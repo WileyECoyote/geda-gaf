@@ -146,7 +146,7 @@ tools *in addition to* the ones listed above:
 Once you have these installed, you need to clone the gEDA `git'
 repository:
 
-  git clone git://git.gpleda.org/gaf.git
+  git clone git://git.geda-project.org/geda-gaf
 
 To generate the configure script, run:
 

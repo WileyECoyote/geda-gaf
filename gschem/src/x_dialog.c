@@ -861,11 +861,11 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
     end = -1;
 
   /* convert the options to integers (-1 means unchanged) */
-  width =  g_strcasecmp (width_str,
+  width =  g_ascii_strcasecmp (width_str,
                          _("*unchanged*")) ? atoi (width_str)  : -1;
-  length = g_strcasecmp (length_str,
+  length = g_ascii_strcasecmp (length_str,
                          _("*unchanged*")) ? atoi (length_str) : -1;
-  space  = g_strcasecmp (space_str,
+  space  = g_ascii_strcasecmp (space_str,
                          _("*unchanged*")) ? atoi (space_str)  : -1;
 
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
@@ -1355,15 +1355,15 @@ static void fill_type_dialog_ok(GtkWidget *w, gpointer data)
     type = -1;
 
   /* convert the options to integers (-1 means unchanged) */
-  width  = g_strcasecmp (width_str,
+  width  = g_ascii_strcasecmp (width_str,
                          _("*unchanged*")) ? atoi (width_str)  : -1;
-  angle1 = g_strcasecmp (angle1_str,
+  angle1 = g_ascii_strcasecmp (angle1_str,
                          _("*unchanged*")) ? atoi (angle1_str) : -1;
-  pitch1 = g_strcasecmp (pitch1_str,
+  pitch1 = g_ascii_strcasecmp (pitch1_str,
                          _("*unchanged*")) ? atoi (pitch1_str) : -1;
-  angle2 = g_strcasecmp (angle2_str,
+  angle2 = g_ascii_strcasecmp (angle2_str,
                          _("*unchanged*")) ? atoi (angle2_str) : -1;
-  pitch2 = g_strcasecmp (pitch2_str,
+  pitch2 = g_ascii_strcasecmp (pitch2_str,
                          _("*unchanged*")) ? atoi (pitch2_str) : -1;
 
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {

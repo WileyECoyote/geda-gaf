@@ -129,7 +129,8 @@ void s_attrib_init()
   int i;
   for (i = 0; i < MAX_ATTRIBS; i++) {
     attrib[i].attrib_name = NULL;	
-  } 
+  }
+  attrib_index=0;
 }
 
 /*! \todo Finish function documentation!!!
