@@ -482,11 +482,23 @@ struct st_toplevel {
   int override_net_color;
   int override_bus_color;
   int override_pin_color;
+  /* END BLOCK - ALTHOUGH THERE ARE MORE CASES! */
+
+  /* used by o_styles.c profiling widths */
   int pin_style;
   int net_style;
   int bus_style;
   int line_style;
-  /* END BLOCK - ALTHOUGH THERE ARE MORE CASES! */
+
+  int thick_bus_width;
+  int thick_line_width;
+  int thick_net_width;
+  int thick_pin_width;
+
+  int thin_bus_width;
+  int thin_line_width;
+  int thin_net_width;
+  int thin_pin_width;
 
   /* controls whether objects are clipped */
   int object_clipping; 

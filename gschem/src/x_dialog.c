@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,6 @@
 static GtkWidget* create_menu_linetype (GSCHEM_TOPLEVEL *w_current);
 static gint line_type_dialog_linetype_change (GtkWidget *w, gpointer data);
 static void line_type_dialog_ok (GtkWidget *w, gpointer data);
-static GtkWidget* create_menu_lineend (GSCHEM_TOPLEVEL *w_current);
 
 static GtkWidget* create_menu_filltype (GSCHEM_TOPLEVEL *w_current);
 static gint fill_type_dialog_filltype_change(GtkWidget *w, gpointer data);
@@ -56,7 +55,6 @@ struct line_type_data {
   GtkWidget *line_type;
   GtkWidget *length_entry;
   GtkWidget *space_entry;
-  GtkWidget *line_end;
 
   GSCHEM_TOPLEVEL *w_current;
 };
@@ -73,6 +71,23 @@ struct fill_type_data {
   GSCHEM_TOPLEVEL *w_current;
 };
 
+/** @brief Finds a widget by its name given a pointer to its parent.
+ *
+ * @param widget Pointer to the parent widget.
+ * @param widget_name Name of the widget.
+ * @return Pointer to the widget or NULL if not found. */
+GtkWidget* lookup_widget(GtkWidget *widget, const gchar *widget_name)
+{
+  GtkWidget *found_widget;
+
+  found_widget = (GtkWidget*) g_object_get_data(G_OBJECT(widget), widget_name);
+
+  if (!found_widget)
+     s_log_message("Widget not found: %s.\n", widget_name);
+
+  return found_widget;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -82,6 +97,38 @@ void destroy_window(GtkWidget *widget, GtkWidget **window)
 {
   *window = NULL;
 }
+
+/*! \brief Create pixmap widget for dialogs boxes.
+ *  \par Function Description
+ *  This is an internally used function to create pixmaps.
+ *  The default bitmap directory is prefixed to the filename
+ *  and if is valid then the image widget is created and returned. GtkWidget *widget, 
+ */
+
+GtkWidget*
+create_pixmap (const gchar *filename)
+{
+  gchar *pathname = NULL;
+  GtkWidget *pixmap;
+
+  if (!filename || !filename[0])
+      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
+                                      GTK_ICON_SIZE_INVALID);
+
+  pathname = g_build_filename (s_path_sys_data (), "bitmap", filename, NULL);
+
+  if (!pathname)
+    {
+      s_log_message("Could not find image at file: %s.\n", filename);
+      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
+                                      GTK_ICON_SIZE_INVALID);
+    }
+
+  pixmap = gtk_image_new_from_file (pathname);
+  g_free (pathname);
+  return pixmap;
+}
+
 
 /* TODO: This string is used by the dialogs: show_text, find_text and hide_text
  * I think it should be removed. (Werner Hoch)
@@ -111,16 +158,16 @@ void text_input_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current)
   if (string[0] == '\0' )
     return;
 
-  switch(w_current->text_caps) {
-    case(LOWER):
+  switch(w_current->text_case) {
+    case(LOWER_CASE):
       tmp = g_utf8_strdown (string, -1);
       break;
 
-    case(UPPER):
+    case(UPPER_CASE):
       tmp = g_utf8_strup (string, -1);
       break;
 
-    case(BOTH):
+    case(BOTH_CASES):
     default:
       /* do nothing */
       break;
@@ -613,41 +660,6 @@ static GtkWidget *create_menu_linetype (GSCHEM_TOPLEVEL *w_current)
   return(menu);
 }
 
-/*! \brief Create line end menu for the line type dialog
- *  \par Function Description
- *  This function creates a GtkMenu with different line end (capstyle) entries.
- */
-static GtkWidget *create_menu_lineend (GSCHEM_TOPLEVEL *w_current)
-{
-  GtkWidget *menu;
-  GSList *group;
-  struct line_end {
-    gchar *str;
-    OBJECT_END end;
-  } types[] = { { N_("Butt"),   END_NONE   },
-                { N_("Square"), END_SQUARE },
-                { N_("Round"),  END_ROUND  },
-                { N_("*unchanged*"), END_VOID  } };
-  gint i;
-
-  menu  = gtk_menu_new ();
-  group = NULL;
-
-  for (i = 0; i < sizeof (types) / sizeof (struct line_end); i++) {
-    GtkWidget *menuitem;
-
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "lineend",
-                         GINT_TO_POINTER (types[i].end));
-    gtk_widget_show (menuitem);
-  }
-
-  return(menu);
-}
-
-
 /*! \brief get the linetype data from selected objects
  *  \par Function Description
  *  Get linetype information over all selected objects.
@@ -655,7 +667,7 @@ static GtkWidget *create_menu_lineend (GSCHEM_TOPLEVEL *w_current)
  *  return -2 in that variable.
  *  \param [in]   selection the selection list
  *  \param [out]  end       OBJECT_END type
- *  \param [out]  type      OBJECT_TYPE type
+ *  \param [out]  type      OBJECT_FILLING type
  *  \param [out]  width     line width
  *  \param [out]  length    length of each line
  *  \param [out]  space     space between points and lines
@@ -670,7 +682,7 @@ static gboolean selection_get_line_type(GList *selection,
   gboolean found = FALSE;
   OBJECT_END oend;
   OBJECT_TYPE otype;
-  gint owidth, olength, ospace;
+  int owidth=0, olength=0, ospace=0;
 
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
     object = (OBJECT *) iter->data;
@@ -678,7 +690,7 @@ static gboolean selection_get_line_type(GList *selection,
                              &owidth, &olength, &ospace))
       continue;
 
-    if (found == FALSE) {  /* first object with linetype */
+    if (found == FALSE) {  /* first object with filltype */
       found = TRUE;
       *end = oend;
       *type = otype;
@@ -692,21 +704,20 @@ static gboolean selection_get_line_type(GList *selection,
       if (*width != owidth) *width = -2;
       if (*length != olength) *length = -2;
       if (*space != ospace) *space = -2;
-      if (*end != oend) *end = -2;
     }
   }
 
   return found;
 }
-
+ 
 
 /*! \brief set the linetype in the linetype dialog
  *  \par Function Description
  *  Set all widgets in the linetype dialog. Variables marked with the
  *  invalid value -2 are set to *unchanged*.
  *  \param [in]   line_type_data dialog structure
- *  \param [in]   end       OBJECT_END type
- *  \param [in]   type      OBJECT_TYPE type
+ *  \param [in]   end       OBJECT_END type (currently not used)
+ *  \param [in]   type      OBJECT_FILLING type
  *  \param [in]   width     fill width.
  *  \param [in]   length    length of each line
  *  \param [in]   space     space between points and lines
@@ -751,14 +762,8 @@ static void line_type_dialog_set_values(struct line_type_data *line_type_data,
   gtk_entry_select_region (GTK_ENTRY (line_type_data->space_entry),
                            0, strlen (text));
   g_free(text);
-
-  if (end == -2)
-    end = END_VOID;
-  gtk_option_menu_set_history(GTK_OPTION_MENU(line_type_data->line_end), end);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(line_type_data->line_end));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 }
+                                         
 
 /*! \brief Callback function for the linetype menu item in the line type dialog
  *  \par Function Description
@@ -821,7 +826,6 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
   OBJECT *object;
   const gchar *width_str, *length_str, *space_str;
   OBJECT_TYPE type;
-  OBJECT_END end;
   gint width, length, space;
   OBJECT_TYPE otype;
   OBJECT_END oend;
@@ -849,17 +853,7 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
                         line_type_data->line_type))))), "linetype"));
   if (type == TYPE_ERASE)
     type = -1;
-
-  end = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-                      GTK_OPTION_MENU (
-                        line_type_data->line_end))))), "lineend"));
-  if (end == END_VOID)
-    end = -1;
-
+  
   /* convert the options to integers (-1 means unchanged) */
   width =  g_ascii_strcasecmp (width_str,
                          _("*unchanged*")) ? atoi (width_str)  : -1;
@@ -874,11 +868,11 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
                              &owidth, &olength, &ospace))
       continue;
 
+    /* oend is not in the dialog, yet */
     otype = type == -1 ? otype : type;
     owidth = width  == -1 ? owidth : width;
     olength = length == -1 ? olength : length;
     ospace = space  == -1 ? ospace : space;
-    oend = end == -1 ? oend : end;
 
     /* set all not required options to -1 and 
        set nice parameters if not provided by the user */
@@ -945,16 +939,15 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *dialog;
   GtkWidget *vbox;
-  GtkWidget *type_menu    = NULL;
+  GtkWidget *optionmenu   = NULL;
   GtkWidget *length_entry = NULL;
   GtkWidget *space_entry  = NULL;
   GtkWidget *width_entry  = NULL;
-  GtkWidget *end_menu     = NULL;
   GtkWidget *table;
   GtkWidget *label;
   struct line_type_data *line_type_data;
   GList *selection;
-  OBJECT_END end;
+  OBJECT_END end          = 0;
   OBJECT_TYPE type=TYPE_SOLID;
   gint width=1, length=-1, space=-1;
 
@@ -1005,7 +998,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
       gtk_misc_set_alignment(GTK_MISC(label),0,0);
       gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0); */
 
-  table = gtk_table_new (5, 2, FALSE);
+  table = gtk_table_new (4, 2, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
   gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
   gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
@@ -1026,14 +1019,10 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
   gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
   gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
 
-  label = gtk_label_new (_("Cap style:"));
-  gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,4,5, GTK_FILL,0,0,0);
-
-  type_menu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(type_menu),
+  optionmenu = gtk_option_menu_new ();
+  gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
                            create_menu_linetype (w_current));
-  gtk_table_attach_defaults(GTK_TABLE(table), type_menu,
+  gtk_table_attach_defaults(GTK_TABLE(table), optionmenu,
                             1,2,0,1);
 
   width_entry = gtk_entry_new();
@@ -1042,7 +1031,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), width_entry,
                             1,2,1,2);
 
-  g_signal_connect(G_OBJECT (type_menu), "changed",
+  g_signal_connect(G_OBJECT (optionmenu), "changed",
                    G_CALLBACK (line_type_dialog_linetype_change),
                    line_type_data);
 
@@ -1058,19 +1047,12 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), space_entry,
                             1,2,3,4);
 
-  end_menu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(end_menu),
-                           create_menu_lineend (w_current));
-  gtk_table_attach_defaults(GTK_TABLE(table), end_menu,
-                            1,2,4,5);
-
   /* populate the data structure */
   line_type_data->dialog = dialog;
   line_type_data->width_entry  = width_entry;
-  line_type_data->line_type    = type_menu;
+  line_type_data->line_type    = optionmenu;
   line_type_data->length_entry = length_entry;
   line_type_data->space_entry  = space_entry;
-  line_type_data->line_end     = end_menu;
 
   line_type_data->w_current = w_current;
 
@@ -1079,7 +1061,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
                               width, length, space);
 
   /* calling it once will set the dash space/length activity */
-  line_type_dialog_linetype_change(type_menu, line_type_data);
+  line_type_dialog_linetype_change(optionmenu, line_type_data);
 
   gtk_widget_grab_focus(width_entry);
   gtk_widget_show_all (dialog);
@@ -2753,32 +2735,41 @@ extern GtkWidget *stwindow;
  */
 void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
 {
-  if(w_current->sowindow) {
-    gdk_window_raise(w_current->sowindow->window);
+  if(w_current->aawindow) {
+    gdk_window_raise(w_current->aawindow->window);
+  }
+  if(w_current->aewindow) {
+    gdk_window_raise(w_current->aewindow->window);
+  }
+  if(w_current->clwindow) {
+    gdk_window_raise(w_current->clwindow->window);
+  }
+  if(w_current->cowindow) {
+    gdk_window_raise(w_current->cowindow->window);
   }
   if(w_current->cswindow) {
     gdk_window_raise(w_current->cswindow->window);
   }
+  if(w_current->hkwindow) {
+    gdk_window_raise(w_current->hkwindow->window);
+  }
   if(w_current->iwindow) {
     gdk_window_raise(w_current->iwindow->window);
-  }
-  if(w_current->tiwindow) {
-    gdk_window_raise(w_current->tiwindow->window);
-  }
-  if(w_current->tewindow) {
-    gdk_window_raise(w_current->tewindow->window);
-  }
-  if(w_current->sewindow) {
-    gdk_window_raise(w_current->sewindow->window);
-  }
-  if(w_current->aawindow) {
-    gdk_window_raise(w_current->aawindow->window);
   }
   if(w_current->mawindow) {
     gdk_window_raise(w_current->mawindow->window);
   }
-  if(w_current->aewindow) {
-    gdk_window_raise(w_current->aewindow->window);
+  if(w_current->sewindow) {
+    gdk_window_raise(w_current->sewindow->window);
+  }
+  if(w_current->sowindow) {
+    gdk_window_raise(w_current->sowindow->window);
+  }
+  if(w_current->tewindow) {
+    gdk_window_raise(w_current->tewindow->window);
+  }
+  if(w_current->tiwindow) {
+    gdk_window_raise(w_current->tiwindow->window);
   }
   if(w_current->trwindow) {
     gdk_window_raise(w_current->trwindow->window);
@@ -2786,16 +2777,6 @@ void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
   if(w_current->tswindow) {
     gdk_window_raise(w_current->tswindow->window);
   }
-  if(w_current->hkwindow) {
-    gdk_window_raise(w_current->hkwindow->window);
-  }
-  if(w_current->cowindow) {
-    gdk_window_raise(w_current->cowindow->window);
-  }
-  if(w_current->clwindow) {
-    gdk_window_raise(w_current->clwindow->window);
-  }
-
 }
 
 /*********** End of misc support functions for dialog boxes *******/
@@ -2835,7 +2816,7 @@ void generic_msg_dialog (const char *msg)
 int generic_confirm_dialog (const char *msg)
 {
   GtkWidget *dialog;
-  gint r;
+  int r;
 
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
@@ -3637,9 +3618,7 @@ close_confirmation_dialog_callback_renderer_toggled (GtkCellRendererToggle *cell
 
   model = GTK_TREE_MODEL (dialog->store_unsaved_pages);
 
-  if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
-    return;
-  }
+  gtk_tree_model_get_iter_from_string (model, &iter, path);
   gtk_tree_model_get (model, &iter,
                       COLUMN_SAVE, &save,
                       -1);
@@ -3877,7 +3856,7 @@ close_confirmation_dialog_constructor (GType type,
 
   /* add buttons to dialog action area */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          _("Close _without saving"), GTK_RESPONSE_NO,
+                          _("_Close without saving"), GTK_RESPONSE_NO,
                           GTK_STOCK_CANCEL,           GTK_RESPONSE_CANCEL,
                           GTK_STOCK_SAVE,             GTK_RESPONSE_YES,
                           NULL);

@@ -23,6 +23,7 @@
   #:use-module (ice-9 optargs)
   #:use-module (srfi srfi-1)
   #:use-module (srfi srfi-9))
+;  #:use-module (srfi srfi-69))
 
 ;; -------------------- Key combinations --------------------
 

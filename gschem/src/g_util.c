@@ -1,6 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 2011 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2011-2012 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,15 +15,25 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 /*! \file g_util.c
  * \brief Scheme utility functions
  */
+/************************ REVISION HISTORY *************************
+;; Who |   When   |  What (Why)
+;; ------------------------------------------------------------------
+;; PB  | ??/??/11 |  Inital release.
+;; ------------------------------------------------------------------
+;; WEH | 10/15/12 | Added int2str, scm_2_cstring function, strequal
+;;                | (so that these generic functions could be used
+;;                | shared rather than defined locally in a module.
+;;                | Update address for Free Software Foundation.
+;; ------------------------------------------------------------------
+*/
 
 #include <config.h>
-#include <missing.h>
 
 #include "gschem.h"
 
@@ -91,4 +102,89 @@ g_init_util ()
   scm_c_define_module ("gschem core util",
                        init_module_gschem_core_util,
                        NULL);
+}
+
+/*! \brief itoa() for c
+ *  \par Function Description
+ *  Translate an integer to askii, like itoa cpp function
+ *
+ * \copyright public domain
+ * \author ArkM
+ *
+ *  @param[in]  value  int to value to convert.
+ *  @param[in]  str    ptr to array for the results
+ *  @param[in]  radix  int base to resolve.
+ *
+ * \usage
+ *
+ *  char s_val[digits];  <-- Declare char array, digits could be
+ *                           macro subsitution or literal value.
+ *  int number = 4.314;  <-- Some integer declared somewhere.
+ *
+ *  *str = int2str( number, s_val, 10 ));
+ *
+ * \example
+ *  strcat(strbuffer, int2str( total, s_val, 10 ));
+ */
+char* int2str(int value, char* str, int radix) {
+
+  static char dig[] ="0123456789"
+                     "abcdefghijklmnopqrstuvwxyz";
+  int n = 0, neg = 0;
+  unsigned int v;
+  char* p, *q;
+  char c;
+
+  if (radix == 10 && value < 0) {
+    value = -value;
+    neg = 1;
+  }
+  v = value;
+  do {
+    str[n++] = dig[v%radix];
+    v /= radix;
+  } while (v);
+  if (neg)
+  str[n++] = '-';
+  str[n] = '\0';
+  for (p = str, q = p + (n-1); p < q; ++p, --q)
+  c = *p, *p = *q, *q = c;
+  return str;
+}
+
+/*!
+ * \brief return c pointer to SCM string.
+ * \par Function Description
+ * String utility function to get a c pointer to a scm string.
+ * The caller is responsible for freeing the pointer.
+ */
+
+char *scm_2_cstring( char* scm_str_name) /* WEH: couldn't find it, made it */
+{
+  SCM s_symbol, s_value;
+  size_t len;
+
+  /* Now get string */
+  s_symbol = scm_c_lookup(scm_str_name);
+  s_value = scm_variable_ref(s_symbol);
+  return gh_scm2newstr(s_value, &len);
+}
+void sort_string_array( char *strings[], size_t strings_size) {
+    int cstring_cmp(const void *a, const void *b)
+    { 
+       const char **ia = (const char **)a;
+       const char **ib = (const char **)b;
+       return strcmp(*ia, *ib);
+	/* strcmp functions works exactly as expected from
+	comparison function */
+   }
+    size_t strings_len = strings_size / sizeof(char *);
+
+   /* sort array using qsort functions */ 
+    qsort(strings, strings_len, sizeof(char *), cstring_cmp); 
+}
+bool strequal(const char *str1, const char *str2) /* Maybe should be in <string.h> */
+{
+  while ((*str1 == *str2) && (*str1)) { str1++; str2++; }
+  return ((*str1 == (unsigned)NULL) && (*str2 == (unsigned)NULL));
 }

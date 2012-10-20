@@ -39,7 +39,9 @@ void g_run_hook_page (GSCHEM_TOPLEVEL *w_current, const char *name, PAGE *page);
 /* g_keys.c */
 void g_keys_reset (GSCHEM_TOPLEVEL *w_current);
 int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event);
+char *g_find_key (char *func_name);
 GtkListStore *g_keys_to_list_store (void);
+
 SCM g_keys_file_new(SCM rest);
 SCM g_keys_file_new_window(SCM rest);
 SCM g_keys_file_open(SCM rest);
@@ -177,6 +179,7 @@ SCM g_keys_options_rubberband(SCM rest);
 SCM g_keys_options_magneticnet(SCM rest);
 SCM g_keys_options_show_log_window(SCM rest);
 SCM g_keys_options_show_coord_window(SCM rest);
+SCM g_keys_configure_settings(SCM rest);
 SCM g_keys_misc(SCM rest);
 SCM g_keys_misc2(SCM rest);
 SCM g_keys_misc3(SCM rest);
@@ -186,30 +189,33 @@ SCM g_keys_cancel(SCM rest);
 void g_init_keys ();
 /* g_rc.c */
 void g_rc_parse_gtkrc();
+int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
+                                   int default_value, char* keyword);
 SCM g_rc_gschem_version(SCM version);
+SCM g_rc_draw_grips(SCM mode);
+SCM g_rc_grid_mode(SCM mode);
+SCM g_rc_dots_grid_dot_size(SCM dotsize);
+SCM g_rc_dots_grid_mode(SCM mode);
+SCM g_rc_dots_grid_fixed_threshold(SCM spacing);
+SCM g_rc_mesh_grid_threshold(SCM spacing);
 SCM g_rc_net_endpoint_mode(SCM mode);
 SCM g_rc_net_midpoint_mode(SCM mode);
 SCM g_rc_net_direction_mode(SCM mode);
 SCM g_rc_net_selection_mode(SCM mode);
-SCM g_rc_net_style(SCM mode);
-SCM g_rc_bus_style(SCM mode);
-SCM g_rc_pin_style(SCM mode);
-SCM g_rc_line_style(SCM mode);
 SCM g_rc_action_feedback_mode(SCM mode);
 SCM g_rc_zoom_with_pan(SCM mode);
 SCM g_rc_text_feedback(SCM mode);
 SCM g_rc_text_display_zoomfactor(SCM zoomfactor);
-SCM g_rc_scrollbar_update(SCM mode);
 SCM g_rc_object_clipping(SCM mode);
-SCM g_rc_logging(SCM mode);
 SCM g_rc_embed_components(SCM mode);
 SCM g_rc_component_dialog_attributes(SCM stringlist);
+SCM g_rc_text_case(SCM mode);
 SCM g_rc_text_size(SCM size);
-SCM g_rc_text_caps_style(SCM mode);
 SCM g_rc_snap_size(SCM size);
-SCM g_rc_logging_destination(SCM mode);
 SCM g_rc_attribute_name(SCM path);
 SCM g_rc_scrollbars(SCM mode);
+SCM g_rc_scrollbar_update(SCM mode);
+SCM g_rc_scrollpan_steps(SCM steps);
 SCM g_rc_paper_size(SCM width, SCM height);
 SCM g_rc_paper_sizes(SCM papername, SCM scm_width, SCM scm_height);
 SCM g_rc_output_type(SCM mode);
@@ -218,9 +224,12 @@ SCM g_rc_image_color(SCM mode);
 SCM g_rc_image_size(SCM width, SCM height);
 SCM g_rc_output_color(SCM mode);
 SCM g_rc_output_capstyle(SCM mode);
+SCM g_rc_logging(SCM mode);
+SCM g_rc_log_destiny(SCM mode);
 SCM g_rc_log_window(SCM mode);
 SCM g_rc_log_window_type(SCM mode);
 SCM g_rc_third_button(SCM mode);
+SCM g_rc_map_keys(SCM keys, SCM action);
 SCM g_rc_middle_button(SCM mode);
 SCM g_rc_scroll_wheel(SCM mode);
 SCM g_rc_net_consolidate(SCM mode);
@@ -234,11 +243,14 @@ SCM g_rc_undo_levels(SCM levels);
 SCM g_rc_undo_control(SCM mode);
 SCM g_rc_undo_type(SCM mode);
 SCM g_rc_undo_panzoom(SCM mode);
-SCM g_rc_draw_grips(SCM mode);
 SCM g_rc_netconn_rubberband(SCM mode);
 SCM g_rc_magnetic_net_mode(SCM mode);
 SCM g_rc_sort_component_library(SCM mode);
+SCM g_rc_add_attribute_offset(SCM offset);
 SCM g_rc_add_menu(SCM menu_name, SCM menu_items);
+SCM g_rc_auto_load_last(SCM mode);
+SCM g_rc_autoplace_attributes_grid(SCM offset);
+SCM g_rc_auto_save_interval(SCM seconds);
 SCM g_rc_window_size(SCM width, SCM height);
 SCM g_rc_warp_cursor(SCM mode);
 SCM g_rc_toolbars(SCM mode);
@@ -249,18 +261,12 @@ SCM g_rc_bus_ripper_size(SCM size);
 SCM g_rc_bus_ripper_type(SCM mode);
 SCM g_rc_bus_ripper_rotation(SCM mode);
 SCM g_rc_force_boundingbox(SCM mode);
-SCM g_rc_dots_grid_dot_size(SCM dotsize);
-SCM g_rc_dots_grid_mode(SCM mode);
-SCM g_rc_dots_grid_fixed_threshold(SCM spacing);
-SCM g_rc_mesh_grid_display_threshold(SCM spacing);
-SCM g_rc_add_attribute_offset(SCM offset);
-SCM g_rc_auto_save_interval(SCM seconds);
+SCM g_rc_drag_can_move(SCM mode);
 SCM g_rc_mousepan_gain(SCM mode);
 SCM g_rc_keyboardpan_gain(SCM mode);
 SCM g_rc_print_command(SCM mode);
 SCM g_rc_select_slack_pixels(SCM pixels);
 SCM g_rc_zoom_gain(SCM gain);
-SCM g_rc_scrollpan_steps(SCM steps);
 SCM g_rc_display_color_map (SCM scm_map);
 SCM g_rc_display_outline_color_map (SCM scm_map);
 /* g_register.c */
@@ -269,6 +275,11 @@ void g_register_funcs(void);
 void g_init_select ();
 /* g_util.c */
 void g_init_util ();
+char* int2str(int value, char* str, int radix) G_GNUC_WARN_UNUSED_RESULT;
+char* scm_2_cstring( char* scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
+void sort_string_array( char *strings[], size_t strings_size);
+bool strequal(const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
+
 /* g_window.c */
 GSCHEM_TOPLEVEL *g_current_window ();
 void g_dynwind_window (GSCHEM_TOPLEVEL *w_current);
@@ -445,6 +456,7 @@ void i_callback_options_snap(gpointer data, guint callback_action, GtkWidget *wi
 void i_callback_options_rubberband(gpointer data, guint callback_action, GtkWidget *widget);
 void i_callback_options_magneticnet(gpointer data, guint callback_action, GtkWidget *widget);
 void i_callback_options_show_log_window(gpointer data, guint callback_action, GtkWidget *widget);
+void i_callback_configure_settings(gpointer data, guint callback_action, GtkWidget *widget);
 void i_callback_misc(gpointer data, guint callback_action, GtkWidget *widget);
 void i_callback_misc2(gpointer data, guint callback_action, GtkWidget *widget);
 void i_callback_misc3(gpointer data, guint callback_action, GtkWidget *widget);
@@ -455,6 +467,7 @@ void i_callback_options_show_coord_window(gpointer data, guint callback_action, 
 gboolean i_callback_close_wm(GtkWidget *widget, GdkEvent *event, gpointer data);
 /* i_vars.c */
 void i_vars_set(GSCHEM_TOPLEVEL *w_current);
+GList* g_list_clear(GList* list);
 void i_vars_freenames();
  /* m_basic.c */
 int mil_x(GSCHEM_TOPLEVEL *w_current, int val);
@@ -731,11 +744,15 @@ GdkColor *x_get_darkcolor(int color);
 COLOR *x_color_lookup(int color);
 COLOR *x_color_lookup_dark(int color);
 gchar *x_color_get_name(int index);
-gboolean x_color_display_enabled (int index);
+bool x_color_display_enabled (int index);
+int x_load_color_scheme(char * scheme);
+
 /* x_dialog.c */
+GtkWidget* create_pixmap ( const gchar *filename);
+void destroy_window(GtkWidget *widget, GtkWidget **window);
+GtkWidget* lookup_widget (GtkWidget *widget, const gchar *widget_name);
 int text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size);
 void select_all_text_in_textview(GtkTextView *textview);
-void destroy_window(GtkWidget *widget, GtkWidget **window);
 void text_input_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
 void text_input_dialog(GSCHEM_TOPLEVEL *w_current);
 gint change_alignment(GtkComboBox *w, GSCHEM_TOPLEVEL *w_current);
@@ -783,6 +800,10 @@ gint x_event_enter(GtkWidget *widget, GdkEventCrossing *event, GSCHEM_TOPLEVEL *
 gboolean x_event_key(GtkWidget *widget, GdkEventKey *event, GSCHEM_TOPLEVEL *w_current);
 gint x_event_scroll(GtkWidget *widget, GdkEventScroll *event, GSCHEM_TOPLEVEL *w_current);
 gboolean x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current, gboolean snapped, gint *wx, gint *wy);
+
+/* x_settings.c */
+void x_configure_settings (GSCHEM_TOPLEVEL *w_current);
+
 /* x_compselect.c */
 void x_compselect_open (GSCHEM_TOPLEVEL *w_current);
 void x_compselect_close (GSCHEM_TOPLEVEL *w_current);
@@ -815,6 +836,11 @@ gint do_popup(GSCHEM_TOPLEVEL *w_current, GdkEventButton *event);
 void x_menus_sensitivity(GSCHEM_TOPLEVEL *w_current, const char *buf, int flag);
 void x_menus_popup_sensitivity(GSCHEM_TOPLEVEL *w_current, const char *buf, int flag);
 void x_menu_attach_recent_files_submenu(GSCHEM_TOPLEVEL *w_current);
+void recent_files_load();
+void recent_files_save(gpointer user_data);
+void recent_files_add(const char *filename);
+const char *recent_files_last( void);
+
 /* x_multiattrib.c */
 void x_multiattrib_open (GSCHEM_TOPLEVEL *w_current);
 void x_multiattrib_close (GSCHEM_TOPLEVEL *w_current);

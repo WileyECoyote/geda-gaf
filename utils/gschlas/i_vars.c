@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2010 Ales Hvezda
- * Copyright (C) 2002-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2012 Ales Hvezda
+ * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,25 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <config.h>
-
-#include <stdio.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
+#include <geda.h>
 #include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
-#include "../include/papersizes.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-int default_force_boundingbox = FALSE;
+int default_force_boundingbox = 0;
 
 void i_vars_set(TOPLEVEL * pr_current)
 { 

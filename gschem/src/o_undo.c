@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -362,8 +362,8 @@ void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
   }
 
   /* temporarily disable logging */
-  save_logging = do_logging;
-  do_logging = FALSE;
+  save_logging = logging;
+  logging = FALSE;
 
   if (w_current->undo_type == UNDO_DISK && u_current->filename) {
 
@@ -396,7 +396,7 @@ void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
   x_vscrollbar_update(w_current);
 
   /* restore logging */
-  do_logging = save_logging;
+  logging = save_logging;
 
   /* set filename right */
   g_free(toplevel->page_current->page_filename);

@@ -926,15 +926,15 @@ void o_path_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
    *  solid to avoid and endless loop produced by other functions in such a
    *  case.
    */
-  line_width = o_current->line_width;
+  /* 09/08/12 | W.E.Hill Modified algorithms to incorperate both THICK & THIN
+   *            styles, and eliminated hard-coded integer values.
+   */
 
-  if (line_width <= 2) {
-    if (toplevel->line_style == THICK) {
-      line_width = LINE_WIDTH;
-    } else {
-      line_width=2;
-    }
-  }
+  line_width = o_current->line_width;
+  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+     line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+     line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
   length = o_current->line_length;
   space  = o_current->line_space;
 

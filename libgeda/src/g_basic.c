@@ -156,6 +156,7 @@ SCM g_scm_eval_string_protected (SCM str)
                          str);
 
   return g_scm_eval_protected (expr, SCM_UNDEFINED);
+
 }
 
 /* Data to be passed to g_read_file()'s worker functions. */
@@ -204,8 +205,10 @@ g_read_file__pre_handler (struct g_read_file_data_t *data, SCM key, SCM args)
  * \param err       Return location for errors, or NULL.
  *  \return TRUE on success, FALSE on failure.
  */
-gboolean
-g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err)
+/* 
+ *  Seems Guile is not smart enough to reconise (if (procedure? symbol)
+ */
+bool g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err)
 {
   struct g_read_file_data_t data;
 
@@ -219,9 +222,9 @@ g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err)
   edascm_dynwind_toplevel (toplevel);
 
   scm_c_catch (SCM_BOOL_T,
-               (scm_t_catch_body) g_read_file__body, &data,
-               (scm_t_catch_handler) g_read_file__post_handler, &data,
-               (scm_t_catch_handler) g_read_file__pre_handler, &data);
+              (scm_t_catch_body) g_read_file__body, &data,
+              (scm_t_catch_handler) g_read_file__pre_handler, &data,
+              (scm_t_catch_handler) g_read_file__post_handler, &data);
 
   scm_dynwind_end ();
 
@@ -231,7 +234,6 @@ g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err)
   g_propagate_error (err, data.err);
   return FALSE;
 }
-
 
 /*! \brief Process a Scheme error into the log and/or a GError
  * \par Function Description

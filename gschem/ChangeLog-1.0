@@ -1,3 +1,21 @@
+2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+	* src/x_autonumber.c: relocated lookup_widget from to src/x_dialog.c
+        * src/x_dialog.c: revised lookup_widget to log widget not found
+        * src/x_log.c: added destroy_with_parent to x_log_open function. The
+          log window was not always being closed when gschem crashed.
+        * src/*.c: replaced depreciated g_strcasecmp with function
+          g_ascii_strcasecmp
+        * src/*: Made temporary repairs to logging system variables and
+          variable implementation
+        * src/g_util.c: Added scm_2_cstring function.
+        * src/i_callbacks.c:  Added new call-back for configure_settings.
+          Replaced explicit strings for colormaps with macros defined in
+          sdefines.h and modified view_XXX_colors call backs to use new
+          load_color_scheme function. Relocated calls to x_color_free()
+          and x_color_allocate () to new the function in x_color.c.
+        * src/x_color.c: Added new function load_color_scheme.
+
 2007-05-26 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/x_image.c: Applied fix for "Write image" seg fault found (and

@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 libgedaincludedir = $(includedir)/libgeda
+
 libgedainclude_HEADERS = \
 	libgeda/colors.h \
 	libgeda/defines.h \

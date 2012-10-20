@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,18 +20,9 @@
 #include <config.h>
 
 #include <stdio.h>
-#include <math.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
 
 #include "gschem.h"
 #include <gdk/gdkkeysyms.h>
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 
 /* used by mouse pan */
 int start_pan_x, start_pan_y;
@@ -368,7 +359,7 @@ gint x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
     switch(w_current->middle_button) {
 
-      case(ACTION):
+      case(MOUSE_MIDDLE_ACTION):
                                 /* determine here if copy or move */
                                 /* for now do move only */
                                 /* make sure the list is not empty */
@@ -408,18 +399,18 @@ gint x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
       }
       break;
 
-      case(REPEAT):
+      case(MOUSE_MIDDLE_REPEAT):
       if (w_current->last_callback != NULL) {
         (*w_current->last_callback)(w_current, 0, NULL);
       }
       break;
 #ifdef HAVE_LIBSTROKE
-      case(STROKE):
+      case(MOUSE_MIDDLE_STROKE):
       DOING_STROKE=TRUE;
       break;
 #endif /* HAVE_LIBSTROKE */
 
-      case(MID_MOUSEPAN_ENABLED):
+      case(MOUSE_MIDDLE_PAN):
       w_current->event_state = MOUSEPAN; /* start */
       w_current->inside_action = 1;
       w_current->doing_pan = TRUE;
@@ -657,7 +648,7 @@ gint x_event_button_released(GtkWidget *widget, GdkEventButton *event,
     }
 
     switch(w_current->middle_button) {
-      case(ACTION):
+      case(MOUSE_MIDDLE_ACTION):
       switch(w_current->event_state) {
         case(MOVE):
         o_move_end(w_current);
@@ -676,13 +667,13 @@ gint x_event_button_released(GtkWidget *widget, GdkEventButton *event,
       break;
 
 #ifdef HAVE_LIBSTROKE
-      case(STROKE):
+      case(MOUSE_MIDDLE_STROKE):
       DOING_STROKE = FALSE;
       x_stroke_translate_and_execute (w_current);
       break;
 #endif /* HAVE_LIBSTROKE */
 
-      case(MID_MOUSEPAN_ENABLED):
+      case(MOUSE_MIDDLE_PAN):
       w_current->doing_pan=FALSE;
       o_invalidate_all (w_current);
       if (w_current->undo_panzoom) {
@@ -773,7 +764,7 @@ gint x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   if (w_current->cowindow) {
     coord_display_update(w_current, (int) event->x, (int) event->y);
   }
-  if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MID_MOUSEPAN_ENABLED) {
+  if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MOUSE_MIDDLE_PAN) {
     if((w_current->event_state == MOUSEPAN) &&
        w_current->inside_action) {
          pdiff_x = (int) event->x - start_pan_x;
@@ -791,9 +782,9 @@ gint x_event_motion(GtkWidget *widget, GdkEventMotion *event,
        }
   }
 
-  /* Huge switch statement to evaluate state transitions. Jump to
-   * end_motion label to escape the state evaluation rather
-   * than returning from the function directly. */
+  /* Huge switch statement to evaluate state transitions. Jump to end_motion
+   * label to escape the state evaluation rather than returning from the
+   * function directly. */
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
 
@@ -806,28 +797,42 @@ gint x_event_motion(GtkWidget *widget, GdkEventMotion *event,
     case(GRIPS):
       o_grips_motion(w_current, w_x, w_y);
     break;
-
     case(STARTSELECT):
+       if ( (!w_current->drag_can_move) || (w_current->drag_can_move &&
+          (! o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy))))
+       {
+         if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
+           w_current->event_state = SBOX;
+           w_current->inside_action = 1;
+         }
+         break;
+       }
+       else
+       {
     /* If the shift or control keys are pressed, that means the user definately wants to drag out a
      * selection box.  Otherwise, if there is not a selected object under the cursor, look for one
      * that could be selected and start moving it.
      */
-    if (w_current->SHIFTKEY || w_current->CONTROLKEY
-            || (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy)
+         if (w_current->SHIFTKEY || w_current->CONTROLKEY ||
+                (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy)
                 && (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE)
-                    || !o_select_selected(w_current)))) {
-      if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
-        w_current->event_state = SBOX;
-        w_current->inside_action = 1;
-      }
-      break;
-    } else {
-      /* Start moving the selected object(s) */
-      o_move_start(w_current, w_x, w_y);
-      w_current->event_state = ENDMOVE;
-      w_current->inside_action = 1;
-      /* Fall through bottom of case to finish the move */
-    }
+                    || !o_select_selected(w_current))))
+         {
+           if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
+             w_current->event_state = SBOX;
+             w_current->inside_action = 1;
+           }
+           break;
+         }
+         else
+         {
+          /* Start moving the selected object(s) */
+           o_move_start(w_current, w_x, w_y);
+           w_current->event_state = ENDMOVE;
+           w_current->inside_action = 1;
+          /* Fall through bottom of case to finish the move */
+         }
+       }
     /* Fall through to handle move */
     case(ENDMOVE):
     case(MOVE):
@@ -862,7 +867,7 @@ gint x_event_motion(GtkWidget *widget, GdkEventMotion *event,
 
 
     case(STARTDRAWNET):
-    if(w_current->magneticnet_mode == 1) {
+    if(w_current->magnetic_net_mode == 1) {
       o_net_start_magnetic(w_current, w_x, w_y);
     }
     break;
@@ -1064,7 +1069,7 @@ void x_event_hschanged (GtkAdjustment *adj, GSCHEM_TOPLEVEL *w_current)
 
   g_return_if_fail (w_current != NULL);
 
-  if (w_current->scrollbars_flag == FALSE) {
+  if (w_current->scrollbars == FALSE) {
     return;
   }
 
@@ -1096,7 +1101,7 @@ void x_event_vschanged (GtkAdjustment *adj, GSCHEM_TOPLEVEL *w_current)
 
   g_return_if_fail (w_current != NULL);
 
-  if (w_current->scrollbars_flag == FALSE) {
+  if (w_current->scrollbars == FALSE) {
     return;
   }
 
@@ -1165,7 +1170,7 @@ gboolean x_event_key (GtkWidget *widget, GdkEventKey *event,
 {
   gboolean retval = FALSE;
   int wx, wy;
-  int alt_key = 0;
+  //int alt_key = 0;
   int shift_key = 0;
   int control_key = 0;
   int pressed;
@@ -1184,7 +1189,7 @@ gboolean x_event_key (GtkWidget *widget, GdkEventKey *event,
   switch (event->keyval) {
     case GDK_Alt_L:
     case GDK_Alt_R:
-      alt_key = 1;
+      //alt_key = 1;
       w_current->ALTKEY = pressed;
       break;
 
@@ -1305,7 +1310,7 @@ gint x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
   }
 
   /* You must have scrollbars enabled if you want to use the scroll wheel to pan */
-  if (!w_current->scrollbars_flag) {
+  if (!w_current->scrollbars) {
     pan_xaxis = FALSE;
     pan_yaxis = FALSE;
   }

@@ -1,5 +1,5 @@
 
-SUBDIRS = toplevel wiki scripts scheme-api
+SUBDIRS = toplevel wiki scripts scheme-api symbols
 
 EXTRA_DIST = ChangeLog-1.0 ChangeLog
 

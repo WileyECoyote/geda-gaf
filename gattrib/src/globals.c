@@ -26,13 +26,7 @@
 #include <config.h>
 #include <stdio.h>
 
-/*------------------------------------------------------------------
- * Gattrib specific includes
- *------------------------------------------------------------------*/
-#include <libgeda/libgeda.h>       /* geda library fcns  */
-#include "../include/struct.h"     /* typdef and struct declarations */
-#include "../include/prototype.h"  /* function prototypes */
-#include "../include/globals.h"
+#include "../include/gattrib.h"  /* include Gattrib specific headers  */
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -818,23 +818,6 @@ void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   o_invalidate_all (w_current);
   g_list_free(pages);
   o_undo_savestate(w_current, UNDO_ALL);
-}
-
-/* ***** UTILITY GUI FUNCTIONS (move to a separate file in the future?) **** */
-
-/** @brief Finds a widget by its name given a pointer to its parent.
- *
- * @param widget Pointer to the parent widget.
- * @param widget_name Name of the widget.
- * @return Pointer to the widget or NULL if not found. */
-GtkWidget* lookup_widget(GtkWidget *widget, const gchar *widget_name)
-{
-  GtkWidget *found_widget;
-
-  found_widget = (GtkWidget*) g_object_get_data(G_OBJECT(widget), 
-						widget_name);
-
-  return found_widget;
 }
 
 /*! \brief Put the icons and the text into the sortorder combobox

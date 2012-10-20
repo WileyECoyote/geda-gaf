@@ -1,13 +1,13 @@
 /* a_basic.c */
-gchar *o_save_objects(TOPLEVEL *toplevel, const GList *object_list, gboolean save_attribs);
+gchar *o_save_objects(TOPLEVEL *toplevel, const GList *object_list, bool save_attribs);
 
 /* f_print.c */
 void f_print_set_line_width(FILE *fp, int width);
-int f_print_set_color(TOPLEVEL *toplevel, FILE *fp, int color);
-int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp, int paper_size_x, int paper_size_y, int eps, gboolean landscape);
+int  f_print_set_color(TOPLEVEL *toplevel, FILE *fp, int color);
+int  f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp, int paper_size_x, int paper_size_y, int eps, bool landscape);
 void f_print_footer(FILE *fp);
 void f_print_objects(TOPLEVEL *toplevel, FILE *fp, const GList *obj_list, int start_x, int start_y, float scale, int unicode_count, gunichar *unicode_table);
-int f_print_initialize_glyph_table(void);
+int  f_print_initialize_glyph_table(void);
 
 /* g_rc.c */
 int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str);
@@ -17,9 +17,21 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd, SCM name);
 SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name);
 SCM g_rc_source_library(SCM path);
 SCM g_rc_source_library_search(SCM path);
-SCM g_rc_world_size(SCM width, SCM height, SCM border);
 SCM g_rc_reset_component_library(void);
 SCM g_rc_reset_source_library(void);
+SCM g_rc_bus_style(SCM mode);
+SCM g_rc_net_style(SCM mode);
+SCM g_rc_line_style(SCM mode);
+SCM g_rc_pin_style(SCM mode);
+SCM g_rc_thick_bus_width(SCM mode);
+SCM g_rc_thick_line_width(SCM mode);
+SCM g_rc_thick_net_width(SCM mode);
+SCM g_rc_thick_pin_width(SCM mode);
+SCM g_rc_thin_bus_width(SCM mode);
+SCM g_rc_thin_line_width(SCM mode);
+SCM g_rc_thin_net_width(SCM mode);
+SCM g_rc_thin_pin_width(SCM mode);
+SCM g_rc_world_size(SCM width, SCM height, SCM border);
 SCM g_rc_untitled_name(SCM name);
 SCM g_rc_bitmap_directory(SCM path);
 SCM g_rc_scheme_directory(SCM path);
@@ -54,8 +66,8 @@ void m_hatch_polygon(GArray *points, gint angle, gint pitch, GArray *lines);
 double m_line_shortest_distance (LINE *circle, int x, int y);
 
 /* m_polygon.c */
-gboolean m_polygon_interior_point(GArray *points, int x, int y);
-double m_polygon_shortest_distance(GArray *points, int x, int y, gboolean closed);
+bool m_polygon_interior_point(GArray *points, int x, int y);
+double m_polygon_shortest_distance(GArray *points, int x, int y, bool closed);
 
 /* m_transform.c */
 void m_transform_combine(TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );
@@ -79,9 +91,9 @@ void o_arc_print_dashed(TOPLEVEL *toplevel, FILE *fp, int x, int y, int radius, 
 void o_arc_print_center(TOPLEVEL *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2, int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 void o_arc_print_phantom(TOPLEVEL *toplevel, FILE *fp, int x, int y, int radius, int angle1, int angle2, int color, int arc_width, int capstyle, int length, int space, int origin_x, int origin_y);
 double o_arc_shortest_distance(OBJECT *object, int x, int y, int force_soild);
-gboolean o_arc_within_sweep(ARC *arc, gint x, gint y);
+bool o_arc_within_sweep(ARC *arc, gint x, gint y);
 void world_get_arc_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_arc_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_arc_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_arc_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_attrib.c */
@@ -114,7 +126,7 @@ void o_box_print_mesh(TOPLEVEL *toplevel, FILE *fp, int x, int y, int width, int
 void o_box_print_hatch(TOPLEVEL *toplevel, FILE *fp, int x, int y, int width, int height, int color, int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 double o_box_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 void world_get_box_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_box_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_box_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_box_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_bus_basic.c */
@@ -122,7 +134,7 @@ OBJECT *o_bus_read(TOPLEVEL *toplevel, const char buf[], unsigned int release_ve
 char *o_bus_save(TOPLEVEL *toplevel, OBJECT *object);
 void o_bus_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current, int origin_x, int origin_y);
 void world_get_bus_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_bus_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_bus_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_bus_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_circle_basic.c */
@@ -139,7 +151,7 @@ void o_circle_print_mesh(TOPLEVEL *toplevel, FILE *fp, int x, int y, int radius,
 void o_circle_print_hatch(TOPLEVEL *toplevel, FILE *fp, int x, int y, int radius, int color, int fill_width, int angle1, int pitch1, int angle2, int pitch2, int origin_x, int origin_y);
 double o_circle_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 void world_get_circle_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_circle_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_circle_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_circle_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_complex_basic.c */
@@ -147,7 +159,7 @@ OBJECT *o_complex_read(TOPLEVEL *toplevel, const char buf[], unsigned int releas
 char *o_complex_save(TOPLEVEL *toplevel, OBJECT *object);
 double o_complex_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 void world_get_complex_bounds(TOPLEVEL *toplevel, OBJECT *complex, int *left, int *top, int *right, int *bottom);
-gboolean o_complex_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_complex_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_complex_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 GList *o_complex_get_promotable (TOPLEVEL *toplevel, OBJECT *object, int detach);
 
@@ -162,7 +174,7 @@ void o_line_print_center(TOPLEVEL *toplevel, FILE *fp, int x1, int y1, int x2, i
 void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp, int x1, int y1, int x2, int y2, int color, int line_width, int capstyle, int length, int space, int origin_x, int origin_y);
 double o_line_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 void world_get_line_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_line_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_line_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_line_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_net_basic.c */
@@ -170,7 +182,7 @@ OBJECT *o_net_read(TOPLEVEL *toplevel, const char buf[], unsigned int release_ve
 char *o_net_save(TOPLEVEL *toplevel, OBJECT *object);
 void o_net_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current, int origin_x, int origin_y);
 void world_get_net_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_net_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_net_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_net_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_path_basic.c */
@@ -179,7 +191,7 @@ char *o_path_save(TOPLEVEL *toplevel, OBJECT *object);
 void o_path_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current, int origin_x, int origin_y);
 double o_path_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 void world_get_path_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_path_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_path_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_path_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 
@@ -190,7 +202,7 @@ void o_picture_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
 		     int origin_x, int origin_y);
 double o_picture_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 void world_get_picture_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_picture_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_picture_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_picture_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 void o_picture_embed(TOPLEVEL *toplevel, OBJECT *object);
 void o_picture_unembed(TOPLEVEL *toplevel, OBJECT *object);
@@ -200,7 +212,7 @@ OBJECT *o_pin_read(TOPLEVEL *toplevel, const char buf[], unsigned int release_ve
 char *o_pin_save(TOPLEVEL *toplevel, OBJECT *object);
 void o_pin_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current, int origin_x, int origin_y);
 void world_get_pin_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top, int *right, int *bottom);
-gboolean o_pin_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_pin_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_pin_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_text_basic.c */
@@ -210,7 +222,7 @@ void o_text_print_text_string(FILE *fp, char *string, int unicode_count, gunicha
 void o_text_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current, int origin_x, int origin_y, int unicode_count, gunichar *unicode_table);
 double o_text_shortest_distance(OBJECT *object, int x, int y, int force_soild);
 int world_get_text_bounds(TOPLEVEL *toplevel, OBJECT *o_current, int *left, int *top, int *right, int *bottom);
-gboolean o_text_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_text_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_text_recalc(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* s_clib.c */
@@ -229,7 +241,7 @@ void s_conn_print(GList *conn_list);
 void s_conn_init(void);
 
 /* s_encoding.c */
-gchar* s_encoding_base64_encode (gchar* src, guint srclen, guint* dstlenp, gboolean strict);
+gchar* s_encoding_base64_encode (gchar* src, guint srclen, guint* dstlenp, bool strict);
 gchar* s_encoding_base64_decode (gchar* src, guint srclen, guint* dstlenp);
 
 /* s_path.c */

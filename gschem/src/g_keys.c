@@ -18,7 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 #include <config.h>
-#include <missing.h>
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -35,10 +34,11 @@
 
 #include "gschem.h"
 
+/*
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
+*/
 #include <gdk/gdkkeysyms.h>
 
 
@@ -46,7 +46,7 @@
 SCM g_keys_ ## name(SCM rest)				\
 {							\
    GSCHEM_TOPLEVEL *w_current = g_current_window ();	\
-   i_callback_ ## name(w_current, 0, NULL);                   \
+   i_callback_ ## name(w_current, 0, NULL);     \
    return SCM_BOOL_T;				\
 }
 
@@ -148,7 +148,7 @@ DEFINE_G_KEYS(buffer_paste5_hotkey)
 DEFINE_G_KEYS(view_redraw)
 
 /* for these functions, repeat middle shortcut would get into the way
- * of what user is try to do */
+ * of what user is trying to do */
 DEFINE_G_KEYS(view_zoom_full)
 DEFINE_G_KEYS(view_zoom_extents)
 DEFINE_G_KEYS(view_zoom_in)
@@ -224,6 +224,7 @@ DEFINE_G_KEYS(options_rubberband)
 DEFINE_G_KEYS(options_magneticnet)
 DEFINE_G_KEYS(options_show_log_window)
 DEFINE_G_KEYS(options_show_coord_window)
+DEFINE_G_KEYS(configure_settings)
 DEFINE_G_KEYS(misc)
 DEFINE_G_KEYS(misc2)
 DEFINE_G_KEYS(misc3)
@@ -244,8 +245,8 @@ static scm_t_bits g_key_smob_tag;
 typedef struct {
   guint keyval;
   GdkModifierType modifiers;
-  gchar *str; /* UTF-8. Free with g_free(). */
-  gchar *disp_str; /* UTF-8. Free with g_free(). */
+  gchar *str;                 /* UTF-8. Free with g_free(). */
+  gchar *disp_str;            /* UTF-8. Free with g_free(). */
 } GschemKey;
 
 /*! \brief Test if a key is valid.
@@ -259,7 +260,7 @@ typedef struct {
  *
  * \return TRUE if the key combination is valid for keybinding.
  */
-static gboolean
+static bool
 g_key_is_valid (guint keyval, GdkModifierType modifiers)
 {
   static const guint invalid_keyvals[] = {
@@ -472,7 +473,7 @@ SCM_SYMBOL (prefix_sym, "prefix");
  * \param [in] data a pointer to the GSCHEM_TOPLEVEL to update.
  * \return FALSE (this is a one-shot timer).
  */
-static gboolean clear_keyaccel_string(gpointer data)
+static bool clear_keyaccel_string(gpointer data)
 {
   GSCHEM_TOPLEVEL *w_current = data;
 
@@ -511,7 +512,55 @@ g_keys_reset (GSCHEM_TOPLEVEL *w_current)
   g_scm_eval_protected (s_expr, scm_interaction_environment ());
   scm_dynwind_end ();
 }
+/*! \brief Exports the keymap in scheme to a GLib GArray.
+ *  \par Function Description
+ *  This function converts the list of key sequence/action pairs
+ *  returned by the scheme function \c dump-current-keymap into an
+ *  array of C structures.
+ *
+ *  The returned value must be freed by caller.
+ *
+ *  \return A GArray with keymap data.
+  */
+GArray* g_keys_dump_keymap (void)
+{
+  SCM dump_proc = scm_c_lookup ("dump-current-keymap");
+  SCM scm_ret;
+  GArray *ret = NULL;
+  struct keyseq_action_t {
+    gchar *keyseq, *action;
+  };
 
+  dump_proc = scm_variable_ref (dump_proc);
+  g_return_val_if_fail (SCM_NFALSEP (scm_procedure_p (dump_proc)), NULL);
+
+  scm_ret = scm_call_0 (dump_proc);
+  g_return_val_if_fail (SCM_CONSP (scm_ret), NULL);
+
+  ret = g_array_sized_new (FALSE,
+                           FALSE,
+                           sizeof (struct keyseq_action_t),
+                           (guint)scm_ilength (scm_ret));
+  for (; scm_ret != SCM_EOL; scm_ret = SCM_CDR (scm_ret)) {
+    SCM scm_keymap_entry = SCM_CAR (scm_ret);
+    struct keyseq_action_t keymap_entry;
+
+    g_return_val_if_fail (SCM_CONSP (scm_keymap_entry) &&
+                          SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
+                          scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
+    keymap_entry.action = g_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
+    keymap_entry.keyseq = g_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
+    ret = g_array_append_val (ret, keymap_entry);
+  }
+
+  return ret;
+}
+/*
+int s_g_add_c_string_keys(char* keys, char* func) {
+
+  if ("gschem-keymap"
+}
+*/
 /*! \brief Evaluate a user keystroke.
  * \par Function Description
  * Evaluates the key combination specified by \a event using the
@@ -613,7 +662,42 @@ g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
 
   return !scm_is_false (s_retval);
 }
+/* Search the global keymap for a particular symbol and return the
+ * keys which execute this hotkey, as a string suitable for display to
+ * the user. This is used by the gschem menu system.
+ *
+ * example: (find-key (quote file-new))
+ * 
+*/
+char *g_find_key (char *func_name) {
+  SCM s_expr;
+  SCM s_iter;
+  SCM s_lst;
+  char *keys=NULL;
 
+  /* Call Scheme procedure to dump global keymap into list */
+  s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
+  s_lst = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+
+  if (scm_is_true (scm_list_p (s_lst))) {
+
+    for (s_iter = s_lst; !scm_is_null (s_iter); s_iter = scm_cdr (s_iter)) {
+      SCM s_binding = scm_caar (s_iter);
+      SCM s_keys = scm_cdar (s_iter);
+      char *binding;
+
+      binding = scm_to_utf8_string (s_binding);
+      if ( strcmp( func_name, binding) == 0) {
+        keys = scm_to_utf8_string (s_keys);
+        break;
+      }
+    }
+  }
+  if ((keys != NULL) && ( !strcmp( keys, "(null)") == 0)) {
+      return g_strdup_printf("%s", keys);
+  }
+  return g_strdup_printf("%s", keys);
+}
 /*! \brief Exports the keymap in Scheme to a GtkListStore
  *  \par Function Description
  *  This function converts the list of key sequence/action pairs
@@ -706,4 +790,3 @@ g_init_keys ()
                        init_module_gschem_core_keymap,
                        NULL);
 }
-

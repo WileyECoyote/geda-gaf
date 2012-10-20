@@ -388,10 +388,10 @@ preview_init (Preview *preview)
   i_vars_set (preview_w_current);
 
   /* be sure to turn off scrollbars */
-  preview_w_current->scrollbars_flag = FALSE;
+  preview_w_current->scrollbars = FALSE;
 
   /* be sure to turn off the grid */
-  preview_w_current->grid = FALSE;
+  preview_w_current->grid_mode = FALSE;
 
   /* preview_w_current windows don't have toolbars */
   preview_w_current->handleboxes = FALSE;

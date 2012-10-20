@@ -161,7 +161,7 @@ GdkColor *x_get_color(int color)
 {
   if ((color < 0) || (color >= MAX_COLORS)
       || (gdk_colors[color] == NULL)) {
-    g_warning (_("Tried to get an invalid color: %d\n"), color);
+    fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
     return(&white);
   } else {
     return(gdk_colors[color]);
@@ -178,7 +178,7 @@ GdkColor *x_get_darkcolor(int color)
 {
   if ((color < 0) || (color >= MAX_COLORS)
       || (gdk_outline_colors[color] == NULL)) {
-    g_warning (_("Tried to get an invalid color: %d\n"), color);
+    fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
     return(&white);
   } else {
     return(gdk_outline_colors[color]);
@@ -211,7 +211,7 @@ COLOR *x_color_lookup_dark (int color)
 {
   if (color < 0 || color >= MAX_COLORS ||
       !display_outline_colors[color].enabled) {
-    g_warning (_("Tried to get an invalid outline color: %d\n"), color);
+    fprintf(stderr, _("Tried to get an invalid outline color: %d\n"), color);
     return &display_outline_colors[DEFAULT_COLOR];
   } else {
     return &display_outline_colors[color];
@@ -219,12 +219,13 @@ COLOR *x_color_lookup_dark (int color)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Return pointer to string name of the color
  *  \par Function Documentation
- *
+ *  The function obtains the RGB color at the given index
+ *  position and calls library function s_color_rgba_encode
+ *  to obtain the a pointer to string name of the color.
  */
-gchar *x_color_get_name(int index)
+char *x_color_get_name(int index)
 {
   COLOR c;
 
@@ -241,8 +242,64 @@ gchar *x_color_get_name(int index)
   return(NULL);
 }
 
-gboolean
-x_color_display_enabled (int index)
+bool x_color_display_enabled (int index)
 {
   return (gdk_colors[index] != NULL);
 }
+
+/*! \brief Loads and executes a color map scheme
+ *  \par Function Documentation
+ *       This function executes a color map scm file after
+ *       verifying accessibility. The file must be referenced
+ *       relative to the path returned by geda-rc-path. The
+ *       current colors are free and the new color allocated.
+ */
+int x_load_color_scheme(char* scheme) {
+
+  char *strBuffer;
+  char *inputfile;
+  char *rc_path;
+  int result = FALSE;
+
+  SCM s_result;
+
+  strBuffer = malloc( MAX_FILE ); /* be 255 */
+
+  if (strBuffer) {
+    rc_path = scm_2_cstring("geda-rc-path");
+    inputfile = g_strconcat (rc_path, G_DIR_SEPARATOR_S, scheme, NULL);
+    free(rc_path);
+    if ((access (inputfile, R_OK)) == 0) {
+      x_color_free();
+      strcpy(strBuffer, "(load \"");
+      strcat(strBuffer, inputfile);
+      strcat(strBuffer, "\")");
+      scm_dynwind_begin (0);
+        scm_dynwind_free(inputfile);
+        scm_dynwind_free(strBuffer);
+        s_result = g_scm_c_eval_string_protected(strBuffer);
+      scm_dynwind_end ();
+      if ((result = scm_is_true(s_result)) ? 1 : 0) {
+        s_log_message(_("Allocatating new color scheme\n"));
+        x_color_allocate();
+      }
+    }
+    else {
+      free(strBuffer);
+      s_log_message (_("x_load_color_scheme: Could not locate file:%s\n"), scheme);
+    }
+  }
+  else
+    s_log_message(_("x_load_color_scheme: Memory allocation error\n"));
+  return result;
+}
+
+
+
+
+
+
+
+
+
+

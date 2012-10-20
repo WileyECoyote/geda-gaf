@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2010 Ales Hvezda
- * Copyright (C) 2002-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2012 Ales Hvezda
+ * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,33 +17,17 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-
 #include <config.h>
-#include <missing.h>
 #include <version.h>
 
-#include <stdio.h>
-#include <ctype.h>
-#include <sys/stat.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include <libguile.h>
+#include <missing.h>
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
-
 #include "../include/globals.h"
 #include "../include/i_vars.h"
 #include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 SCM g_rc_gschlas_version(SCM scm_version)
 {

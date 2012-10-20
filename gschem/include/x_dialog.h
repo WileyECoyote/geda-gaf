@@ -32,13 +32,14 @@
 #define FSB_SAVE		256
 #define FSB_LOAD		512
 
-/*
- * define spacings for dialogs
- */
+/* define spacings for dialogs */
 
 #define DIALOG_BORDER_SPACING 5
-#define DIALOG_V_SPACING 8
-#define DIALOG_H_SPACING 10
+#define DIALOG_V_SPACING 2
+#define DIALOG_H_SPACING 5
+#define DEFAULT_DIALOG_SPACING 0
+#define DEFAULT_SEPERATOR_SPACING 10
+#define DEFAULT_WIDGET_SPACING 1
+#define DIALOG_BUTTON_SPACING DEFAULT_DIALOG_SPACING
 #define DIALOG_INDENTATION 10
-
 #endif /* __X_DIALOG_H__ */

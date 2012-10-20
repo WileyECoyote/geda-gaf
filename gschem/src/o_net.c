@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -95,10 +95,9 @@ void o_net_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
     return;
   }
 
-  if (toplevel->net_style == THICK)
-    size = NET_WIDTH;
+  size = o_style_get_net_width(toplevel);
 
-  end = o_get_line_end (toplevel->print_output_capstyle);
+  end = o_get_line_end (w_current->net_endpoint_mode);
 
   gschem_cairo_line (w_current, end, size, x1, y1, x2, y2);
   gschem_cairo_set_source_color (w_current,
@@ -124,8 +123,7 @@ void o_net_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *o_cur
     return;
   }
 
-  if (w_current->toplevel->net_style == THICK)
-    size = NET_WIDTH;
+  size = o_style_get_net_width(w_current->toplevel);
 
   gschem_cairo_line (w_current, END_NONE, size,
                      o_current->line->x[0] + dx, o_current->line->y[0] + dy,
@@ -609,6 +607,7 @@ int o_net_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
       new_net = o_net_new(toplevel, OBJ_NET, color,
                           w_current->first_wx, w_current->first_wy,
                           w_current->second_wx, w_current->second_wy);
+      new_net->line_width =  o_style_get_net_width(toplevel);
       s_page_append (toplevel, toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
@@ -644,6 +643,8 @@ int o_net_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
       new_net = o_net_new(toplevel, OBJ_NET, color,
                           w_current->second_wx, w_current->second_wy,
                           w_current->third_wx, w_current->third_wy);
+
+      new_net->line_width =  o_style_get_net_width(toplevel);
       s_page_append (toplevel, toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
@@ -684,12 +685,12 @@ void o_net_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 
   /* Orthognal mode enabled when Control Key is NOT pressed or
      if we are using magnetic mode */
-  ortho = !w_current->CONTROLKEY || w_current->magneticnet_mode;
+  ortho = !w_current->CONTROLKEY || w_current->magnetic_net_mode;
 
   if (w_current->rubber_visible)
     o_net_invalidate_rubber (w_current);
 
-  if (w_current->magneticnet_mode) {
+  if (w_current->magnetic_net_mode) {
     if (w_current->CONTROLKEY) {
       /* set the magnetic marker position to current xy if the
 	 controlkey is pressed. Thus the net will not connect to 
@@ -747,13 +748,12 @@ void o_net_draw_rubber(GSCHEM_TOPLEVEL *w_current)
 {
   int size = 0, w_magnetic_halfsize;
 
-  if (w_current->toplevel->net_style == THICK)
-    size = NET_WIDTH;
+  size = o_style_get_net_width(w_current->toplevel);
 
   gschem_cairo_set_source_color (w_current,
                                  x_color_lookup_dark (SELECT_COLOR));
 
-  if (w_current->magneticnet_mode) {
+  if (w_current->magnetic_net_mode) {
     if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
       w_magnetic_halfsize = max (4 * size,
                                  WORLDabs (w_current, MAGNETIC_HALFSIZE));
@@ -800,13 +800,11 @@ void o_net_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy,
                  &second_x, &second_y);
 
-  if (toplevel->net_style == THICK) {
-    size = SCREENabs (w_current, NET_WIDTH);
-  }
+  size = o_style_get_net_width(toplevel);
   size = max (size, 0);
   bloat = size / 2;
 
-  if (w_current->magneticnet_mode) {
+  if (w_current->magnetic_net_mode) {
     if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
       magnetic_halfsize = max (4 * size, MAGNETIC_HALFSIZE);
 
@@ -1143,6 +1141,7 @@ int o_net_add_busrippers(GSCHEM_TOPLEVEL *w_current, OBJECT *net_obj,
         new_obj = o_net_new(toplevel, OBJ_NET, color,
                   rippers[i].x[0], rippers[i].y[0],
                   rippers[i].x[1], rippers[i].y[1]);
+        new_obj->line_width =  o_style_get_net_width(toplevel);
         s_page_append (toplevel, toplevel->page_current, new_obj);
       } else {
 
@@ -1152,6 +1151,7 @@ int o_net_add_busrippers(GSCHEM_TOPLEVEL *w_current, OBJECT *net_obj,
                                    complex_angle, 0,
                                    rippersym,
                                    toplevel->bus_ripper_symname, 1);
+          new_obj->line_width =  o_style_get_net_width(toplevel);
           s_page_append_list (toplevel, toplevel->page_current,
                               o_complex_promote_attribs (toplevel, new_obj));
           s_page_append (toplevel, toplevel->page_current, new_obj);

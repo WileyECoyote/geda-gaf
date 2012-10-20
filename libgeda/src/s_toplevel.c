@@ -104,11 +104,22 @@ TOPLEVEL *s_toplevel_new (void)
   toplevel->override_net_color = -1;
   toplevel->override_bus_color = -1;
   toplevel->override_pin_color = -1;
+  /* END BLOCK - ALTHOUGH THERE ARE MORE CASES! */
+
   toplevel->pin_style = 0;
   toplevel->net_style = 0;
   toplevel->bus_style = 0;
   toplevel->line_style = 0;
-  /* END BLOCK - ALTHOUGH THERE ARE MORE CASES! */
+
+  toplevel->thin_bus_width      = DEFAULT_THIN_BUS_WIDTH;
+  toplevel->thin_line_width     = DEFAULT_THIN_LINE_WIDTH;
+  toplevel->thin_net_width      = DEFAULT_THIN_NET_WIDTH;
+  toplevel->thin_pin_width      = DEFAULT_THIN_PIN_WIDTH;
+
+  toplevel->thick_bus_width     = DEFAULT_THICK_BUS_WIDTH;
+  toplevel->thick_line_width    = DEFAULT_THICK_LINE_WIDTH;
+  toplevel->thick_net_width     = DEFAULT_THICK_NET_WIDTH;
+  toplevel->thick_pin_width     = DEFAULT_THICK_PIN_WIDTH;
 
   toplevel->object_clipping = 0;
 

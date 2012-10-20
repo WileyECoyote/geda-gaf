@@ -24,11 +24,11 @@
 #include <stdio.h>
 
 #include "gschem.h"
-
+/*
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
+*/
 /* window list */
 GList *global_window_list = NULL;
 
@@ -38,16 +38,24 @@ char *output_filename = NULL;
 /* colors */
 GdkColor white;
 GdkColor black;
-
-int logging_dest = LOG_WINDOW;
+int cmap_flag = 0;
 
 /* command line options */
 int quiet_mode = FALSE;
 int verbose_mode = FALSE;
 int auto_place_mode = FALSE;
 
+int auto_load_last;
+
+/* Global Log Configuration */
+volatile int logging;
+volatile int log_destiny; 
+volatile int log_window;
+volatile int log_window_type;
+
 /* Global buffers */
 GList *object_buffer[MAX_BUFFERS];
 
 /* Hooks */
 SCM complex_place_list_changed_hook;
+

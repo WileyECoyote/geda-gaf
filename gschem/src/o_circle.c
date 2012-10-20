@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -425,6 +425,7 @@ void o_circle_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   new_obj = o_circle_new (toplevel, OBJ_CIRCLE, GRAPHIC_COLOR,
                           w_current->first_wx, w_current->first_wy,
                           w_current->distance);
+  new_obj->line_width =  o_style_get_line_width(toplevel);
   s_page_append (toplevel, toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */

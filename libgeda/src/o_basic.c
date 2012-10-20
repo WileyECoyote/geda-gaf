@@ -247,13 +247,14 @@ gboolean o_get_line_options(OBJECT *object,
                             OBJECT_END *end, OBJECT_TYPE *type,
                             int *width, int *length, int *space)
 {
+#ifndef DEBUG 
   if (object->type != OBJ_LINE
       && object->type != OBJ_ARC
       && object->type != OBJ_BOX
       && object->type != OBJ_CIRCLE
       && object->type != OBJ_PATH)
     return FALSE;
-
+#endif
   *end = object->line_end;
   *type = object->line_type;
   *width = object->line_width;
@@ -830,7 +831,7 @@ o_set_visibility (TOPLEVEL *toplevel, OBJECT *object, int visibility)
  *
  *  \param [in]     end        Line end value of the object
  *
- *  \todo Change this function to use it also in gschem_cairo.c
+ *  \TODO: Change this function to use it also in gschem_cairo.c
  */
 int o_get_capstyle (OBJECT_END end)
 {

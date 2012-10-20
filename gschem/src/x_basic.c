@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@ void x_hscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
   TOPLEVEL *toplevel = w_current->toplevel;
         GtkAdjustment        *hadjustment;
 
-	if (w_current->scrollbars_flag == FALSE) {
+	if (w_current->scrollbars == FALSE) {
 		return;
 	}
 
@@ -79,7 +79,7 @@ void x_hscrollbar_update(GSCHEM_TOPLEVEL *w_current)
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment *hadjustment;
 
-  if (w_current->scrollbars_flag == FALSE) {
+  if (w_current->scrollbars == FALSE) {
     return;
   }
 
@@ -116,7 +116,7 @@ void x_vscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment *vadjustment;
 
-  if (w_current->scrollbars_flag == FALSE) {
+  if (w_current->scrollbars == FALSE) {
     return;
   }
 
@@ -137,7 +137,7 @@ void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current)
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment *vadjustment;
 
-  if (w_current->scrollbars_flag == FALSE) {
+  if (w_current->scrollbars == FALSE) {
     return;
   }
 
@@ -172,7 +172,7 @@ void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current)
  */
 void x_scrollbars_update(GSCHEM_TOPLEVEL *w_current)
 {
-  if (w_current->scrollbars_flag == FALSE) {
+  if (w_current->scrollbars == FALSE) {
     return;
   }
 

@@ -1,3 +1,7 @@
+2012-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/i_vars.h: removed empty file and superfluous includes.
+
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated version to 20070526 in prep for the next

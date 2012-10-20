@@ -215,6 +215,7 @@ char *o_pin_save(TOPLEVEL *toplevel, OBJECT *object)
   x2 = object->line->x[1];
   y2 = object->line->y[1];
 
+  /* description of the pin */
   pin_type = object->pin_type;
   whichend = object->whichend;
   
@@ -261,7 +262,7 @@ OBJECT *o_pin_copy(TOPLEVEL *toplevel, OBJECT *o_current)
   new_obj = o_pin_new (toplevel, OBJ_PIN, o_current->color,
                        o_current->line->x[0], o_current->line->y[0],
                        o_current->line->x[1], o_current->line->y[1],
-                       o_current->pin_type, o_current->whichend);
+                       o_current->pin_type,   o_current->whichend);
 
   return new_obj;
 }
@@ -295,10 +296,12 @@ void o_pin_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   y1 = o_current->line->y[0] - origin_y;
   x2 = o_current->line->x[1] - origin_x;
   y2 = o_current->line->y[1] - origin_y;
-  pin_width = 2;
-  if(toplevel->pin_style == THICK) {
-    pin_width = o_current->line_width;
-  }
+
+  pin_width = o_current->line_width;
+  if(pin_width < MIN_LINE_WIDTH_THRESHOLD)
+     pin_width = o_style_get_pin_width(toplevel, PIN_TYPE_NET); /* 1st try updating pin style */
+  if(pin_width < MIN_LINE_WIDTH_THRESHOLD)
+     pin_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
   fprintf(fp, "%d %d %d %d %d %d line\n",x1,y1,x2,y2,pin_width,toplevel->print_output_capstyle);
 
@@ -559,19 +562,16 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
  */
 void o_pin_set_type (TOPLEVEL *toplevel, OBJECT *o_current, int pin_type)
 {
-  o_emit_pre_change_notify (toplevel, o_current);
   switch (pin_type) {
-    default:
-      g_critical ("o_pin_set_type: Got invalid pin type %i\n", pin_type);
-      /* Fall through */
     case PIN_TYPE_NET:
-      o_current->line_width = PIN_WIDTH_NET;
       o_current->pin_type = PIN_TYPE_NET;
       break;
     case PIN_TYPE_BUS:
-      o_current->line_width = PIN_WIDTH_BUS;
       o_current->pin_type = PIN_TYPE_BUS;
       break;
+    default:
+      g_critical ("o_pin_set_type: invalid pin type! %i\n", pin_type);
+      o_current->pin_type = PIN_TYPE_NET;
   }
-  o_emit_change_notify (toplevel, o_current);
+  o_current->line_width = o_style_get_pin_width(toplevel, o_current->pin_type);
 }

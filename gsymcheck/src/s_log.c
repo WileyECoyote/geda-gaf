@@ -17,20 +17,24 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
+#include <stdio.h>
+#include <geda.h>
 
+/*
 #include <config.h>
 
-#include <stdio.h>
 
+*/
 #include <libgeda/libgeda.h>
+#include "globals.h"
 
-void s_log_update (const gchar *log_domain, GLogLevelFlags log_level,
-                   const gchar *buf)
+void s_log_update (const char *log_domain, GLogLevelFlags log_level,
+                   const char *buf)
 {
   if (buf == NULL)
     return;
 
-  switch (logging_dest) {
+  switch (log_destiny) {
     case STDOUT_TTY:
       fputs (buf, stdout);
       break;

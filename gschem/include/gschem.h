@@ -2,11 +2,15 @@
 #include <glib.h>
 #include <gtk/gtk.h>
 #include <libguile.h>
+
+#include <geda.h>
+
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 
 /* gschem headers */
-#include "gschem_defines.h"
+#include "gschem_idefines.h"
+#include "gschem_sdefines.h"
 #include "gschem_struct.h"
 #include "gschem_accel_label.h"
 #include "gschem_action.h"
@@ -25,4 +29,4 @@
 #include "prototype.h"
 
 /* Gettext translation */
-#include "gettext.h"
+#include <gettext.h>

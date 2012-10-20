@@ -1,3 +1,8 @@
+2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * /sysmbol: Restructured symbol library directories and organinzed
+          symbol files.
+
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated version to 20070526 in prep for the next

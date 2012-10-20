@@ -19,20 +19,20 @@
 
 extern char *rc_filename;
 
-extern int logfile_fd;
-extern int do_logging;
-extern int logging_dest;
+extern          int logfile_fd;
+extern volatile int logging;
+extern volatile int log_destiny;
 
 /* gnetlist specific stuff */
 extern NETLIST *netlist_head;
 extern NETLIST *graphical_netlist_head; /* Special objects with 
 					   graphical=1 attribute */
 extern char *guile_proc;
-extern int list_backends;
-extern int verbose_mode;
-extern int interactive_mode;
-extern int quiet_mode;
-extern int netlist_mode;
+extern int   list_backends;
+extern int   verbose_mode;
+extern int   interactive_mode;
+extern int   quiet_mode;
+extern int   netlist_mode;
 extern char *output_filename;
 extern SCM pre_rc_list;       /* before rc loaded */
 extern SCM pre_backend_list;  /* before backend loaded */

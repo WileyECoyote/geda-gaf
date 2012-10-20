@@ -435,7 +435,6 @@ GType gschem_dialog_get_type ()
   return gschem_dialog_type;
 }
 
-
 /*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to support gschem_dialog_new_with_buttons(...)
  *
@@ -472,7 +471,6 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
     }
 }
 
-
 /*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to support gschem_dialog_new_with_buttons(...)
  *
@@ -487,7 +485,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
  *
  *  \return  The GschemDialog created.
  */
-static GtkWidget* gschem_dialog_new_empty (const gchar     *title,
+ GtkWidget* gschem_dialog_new_empty (const gchar     *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
                                            const gchar *settings_name,
@@ -501,7 +499,7 @@ static GtkWidget* gschem_dialog_new_empty (const gchar     *title,
                          NULL);
 
   if (title)
-    gtk_window_set_title (GTK_WINDOW (dialog), title);
+    gtk_window_set_title (GTK_WINDOW (dialog), _(title));
 
   if (parent)
     gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
@@ -514,6 +512,8 @@ static GtkWidget* gschem_dialog_new_empty (const gchar     *title,
 
   if (flags & GTK_DIALOG_NO_SEPARATOR)
     gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+
+    gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
 
   return GTK_WIDGET (dialog);
 }

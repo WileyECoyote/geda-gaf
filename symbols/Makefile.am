@@ -1,53 +1,5 @@
-symbol_dirs = \
-	4000 \
-	74 \
-	IEC417 \
-	allegro \
-	altera \
-	amphenol \
-	analog \
-	apex \
-	asic \
-	asicpads \
-	bus \
-	cascade \
-	connector \
-	dec \
-	diode \
-	ecl \
-	gnetman \
-	idt \
-	io \
-	irf \
-	lattice \
-	linear \
-	local \
-	maxim \
-	memory \
-	micro \
-	minicircuits \
-	misc \
-	national \
-	opto \
-	philips \
-	pla \
-	power \
-	radio \
-	relay \
-	rf \
-	spice \
-	st \
-	supervisor \
-	switcap \
-	switch \
-	titleblock \
-	transistor \
-	tube \
-	verilog \
-	vhdl \
-	xilinx
 
-SUBDIRS = documentation
+symbol_libs =@symbol_dirs@
 
 gafrcddir = $(GEDADATADIR)/gafrc.d
 dist_gafrcd_DATA = geda-clib.scm
@@ -57,7 +9,7 @@ nobase_dist_datasym_DATA = \
 	vhdl/verilog2vhdl.sh vhdl/script.sed
 
 EXTRA_DIST = ChangeLog ChangeLog-1.0 \
-	radio/README AUTHORS
+	     radio/README AUTHORS
 
 if HAVE_GIT_REPO
 ChangeLog: $(top_builddir)/stamp-git
@@ -66,7 +18,7 @@ endif HAVE_GIT_REPO
 
 # Copies symbols into distribution
 dist-hook:
-	@for lib in $(symbol_dirs); do \
+	@for lib in $(symbol_libs); do \
 	  $(MKDIR_P) $(distdir)/$$lib && \
 	  list=`(ls $(srcdir)/$$lib) | grep '.[Ss][Yy][Mm]$$'`; \
 	  for file in $$list; do \
@@ -77,7 +29,7 @@ dist-hook:
 # Installs symbols
 install-data-local:
 	@$(NORMAL_INSTALL)
-	@for lib in $(symbol_dirs); do \
+	@for lib in $(symbol_libs); do \
 	  d="$(DESTDIR)$(datasymdir)/$$lib"; \
 	  $(MKDIR_P) "$$d"; \
 	  list=`(ls $(srcdir)/$$lib) | grep '.[Ss][Yy][Mm]$$'`; \
@@ -90,7 +42,7 @@ install-data-local:
 # Uninstalls symbols
 uninstall-local:
 	@$(NORMAL_UNINSTALL)
-	@for lib in $(symbol_dirs); do \
+	@for lib in $(symbo_libs); do \
 	  d="$(DESTDIR)$(datasymdir)/$$lib"; \
 	  list=`(ls $(srcdir)/$$lib) | grep '\.[Ss][Yy][Mm]$$'`; \
 	  if test -n "$$list"; then \

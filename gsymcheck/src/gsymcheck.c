@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check 
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,18 +18,15 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <config.h>
-#include <version.h>
-
 #include <stdio.h>
-#include <sys/stat.h>
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"
@@ -65,13 +62,13 @@ main_prog(void *closure, int argc, char *argv[])
   x_log_update_func = s_log_update;
   s_log_init ("gsymcheck");
 
-  logging_dest=STDOUT_TTY;
+  log_destiny=STDOUT_TTY;
 
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, "This is the MINGW32 port.\n");
 #endif  
 
-  logging_dest=-1; /* don't output to the screen for now */
+  log_destiny=-1; /* don't output to the screen for now */
   
   /* register guile (scheme) functions */
   g_register_funcs();
@@ -103,7 +100,7 @@ main_prog(void *closure, int argc, char *argv[])
                  pr_current->page_current->page_filename,
                  &err)) {
       /* Not being able to load a file is apparently a fatal error */
-      logging_dest = STDOUT_TTY;
+      log_destiny = STDOUT_TTY;
       g_warning ("%s\n", err->message);
       g_error_free (err);
       exit(2);
@@ -121,7 +118,7 @@ main_prog(void *closure, int argc, char *argv[])
 
   g_free(cwd);
 
-  logging_dest=STDOUT_TTY;
+  log_destiny=STDOUT_TTY;
 
 #if DEBUG 
   s_page_print_all(pr_current);

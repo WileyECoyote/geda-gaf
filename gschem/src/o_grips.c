@@ -1432,7 +1432,7 @@ void o_grips_end(GSCHEM_TOPLEVEL *w_current)
  *  and height of a grip in screen units.
  *
  *  <B>GRIP_SIZE1</B> and <B>GRIP_SIZE2</B> and <B>GRIP_SIZE3</B> are macros defined
- *  in gschem_defines.h. They are the half width/height of a grip in
+ *  in gschem_idefines.h. They are the half width/height of a grip in
  *  world unit for a determined range of zoom factors.
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.

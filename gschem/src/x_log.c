@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,12 @@
  * \file x_log.c
  * \brief GType class and functions to support the gschem log window.
  */
+
+/* Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 09/01/12 |  Apply patch by Gareth Edwards in function x_log_open
+ *                   ( to suppress  GLib-GObject-WARNING message.)
+*/
 
 #include <config.h>
 
@@ -69,11 +75,17 @@ static GtkWidget *log_dialog = NULL;
  * 
  *  If the log dialog instance does exist, present it to the user.
  */
+/* 12/08/10 Gareth Edwards <gareth@edwardsfamily.org.uk>  added
+ * / GtkWindow / "type", GTK_WINDOW_TOPLEVEL, to suppress errors:
+ * "gschem:62319): GLib-GObject-WARNING **: g_object_set_valist:
+ * construct property "type" for object `Log' can't be set after
+ * construction"
+ *
+ */
 void x_log_open ()
 {
   if (log_dialog == NULL) {
     gchar *contents;
-    
     log_dialog = GTK_WIDGET (g_object_new (TYPE_LOG,
                                            /* GtkWindow */
                                            "type", GTK_WINDOW_TOPLEVEL,
@@ -81,6 +93,8 @@ void x_log_open ()
                                            "settings-name", "log",
                                            /* "toplevel", TOPEVEL * */
                                            NULL));
+
+    gtk_window_set_destroy_with_parent (GTK_WINDOW(log_dialog), TRUE);
 
     g_signal_connect (log_dialog,
                       "response",
@@ -284,7 +298,6 @@ static void log_init (Log *log)
   g_object_set (G_OBJECT (log),
                 /* GtkContainer */
                 "border-width",    0,
-                /* GtkWindow */
                 "title",           _("Status"),
                 "default-width",   600,
                 "default-height",  200,

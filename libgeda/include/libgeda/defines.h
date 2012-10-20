@@ -1,20 +1,21 @@
 /* gEDA - GPL Electronic Design Automation
- * libgeda - gEDA's Library
+ * libgeda - gEDA's library
  * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Library General Public
- * License as published by the Free Software Foundation; either
- * version 2 of the License, or (at your option) any later version.
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
  *
- * This library is distributed in the hope that it will be useful,
+ * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Library General Public License for more details.
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 /*! \file defines.h
@@ -34,6 +35,8 @@
 #define VERSION_20000704 20000704
 #define VERSION_20020825 20020825
 #define VERSION_20030921 20030921
+#define VERSION_20110115 20110115
+#define VERSION_20121031 20121031
 /* 20030921 wasn't a real version, just a MinGW test version, but it is */
 /* out there */
 
@@ -45,6 +48,19 @@
 /* FIX-1.0.0.20060906. */
 #define PREPEND_VERSION_STRING ""
 
+/* \note 
+ * Kazu Hirata <kazu@seul.org> on July 16, 1999 - Added these absolute
+ * defaults used when default_... is NULL.
+ *
+ * W.E.Hill Sept 5, 2012 relocated "these" defines from i_var.c to
+ * better organize the code.
+ */
+#define DEFAULT_SCHEME_DIRECTORY   "./"
+#define DEFAULT_BITMAP_DIRECTORY   "../lib/bitmaps"
+#define DEFAULT_BUS_RIPPER_SYMNAME "busripper-1.sym"
+#define DEFAULT_POSTSCRIPT_PROLOG  "prolog.ps"
+#define DEFAULT_UNTITLED_NAME      "untitled"
+
 /* for color mechanism used in gschem */
 #define MAX_COLORS 25
 
@@ -55,23 +71,51 @@
 #define SHOW_NAME_VALUE         0
 #define SHOW_VALUE              1
 #define SHOW_NAME               2
-#define LEAVE_NAME_VALUE_ALONE  -1
+#define LEAVE_NAME_VALUE_ALONE -1
 
 /* for visibility in st_objects */
 #define INVISIBLE               0
 #define VISIBLE                 1
-#define LEAVE_VISIBILITY_ALONE  -1
+#define LEAVE_VISIBILITY_ALONE -1
 
-/* For pin and net styles */
-#define THIN            0     
-#define THICK           1
+/* For bus, line, net, and pin styles */
+#define STYLE_NONE      0
+#define STYLE_THIN      1
+#define STYLE_THICK     2
+
+#define RC_STR_STYLE_NONE      "none"
+#define RC_STR_STYLE_THIN      "thin"
+#define RC_STR_STYLE_THICK     "thick"
+
+#define DEFAULT_BUS_STYLE       STYLE_THICK
+#define DEFAULT_LINE_STYLE      STYLE_THIN
+#define DEFAULT_NET_STYLE       STYLE_NONE
+#define DEFAULT_PIN_STYLE       STYLE_NONE
 
 /* various thicknesses (in mils) */
-#define LINE_WIDTH	10
-#define NET_WIDTH	10
-#define PIN_WIDTH_NET	10
-#define BUS_WIDTH	30
-#define PIN_WIDTH_BUS	30
+#define MIN_LINE_WIDTH_THRESHOLD 2
+#define MIN_BUS_WIDTH            0
+#define MIN_LINE_WIDTH           0
+#define MIN_NET_WIDTH            0
+#define MIN_PIN_WIDTH            0
+
+#define DEFAULT_WIDTH_NONE       0
+
+#define DEFAULT_THIN_BUS_WIDTH   15
+#define DEFAULT_THICK_BUS_WIDTH  30
+
+#define DEFAULT_THIN_LINE_WIDTH	 10
+#define DEFAULT_THICK_LINE_WIDTH 30
+
+#define DEFAULT_THIN_NET_WIDTH	  5
+#define DEFAULT_THICK_NET_WIDTH	 20
+
+#define DEFAULT_THIN_PIN_WIDTH	 10
+#define DEFAULT_THICK_PIN_WIDTH	 30
+
+/* for pin_type */
+#define PIN_TYPE_NET		0
+#define PIN_TYPE_BUS		1
 
 /* various visual cue sizes (in mils) */
 #define CUE_BOX_SIZE 		30
@@ -134,10 +178,13 @@
 #define UNDO_ALL		0
 #define UNDO_VIEWPORT_ONLY	1
 
-/* These are for where status information goes */
-#define LOG_WINDOW		0
-#define STDOUT_TTY		1
-#define BOTH_LOGWIN_STDOUT	2
+/* for log-window keyword */
+#define MAP_LATER		0
+#define MAP_ON_STARTUP		1
+
+/* for log-window-type */
+#define DECORATED		0
+#define TRANSIENT		1
 
 /* list copying flags */
 #define NORMAL_FLAG		0
@@ -146,6 +193,10 @@
 /* hierarchy loading flags */
 #define HIERARCHY_NORMAL_LOAD   0
 #define HIERARCHY_FORCE_LOAD    1
+
+/* for scrollbar-update type */
+#define DISPLAY_CONTINUOUS	0
+#define DISPLAY_DELAYED 	1
 
 /* hierarchy traversing flags */
 #define HIERARCHY_NODUPS (1<<0)
@@ -185,10 +236,6 @@
 #define HORIZONTAL_BELOW	4
 #define VERTICAL_LEFT		5
 #define VERTICAL_RIGHT		6
-
-/* for pin_type */
-#define PIN_TYPE_NET		0
-#define PIN_TYPE_BUS		1
 
 /* gnetlist: hierarchy_*_order */
 #define APPEND			0

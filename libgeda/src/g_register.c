@@ -55,12 +55,26 @@ static struct gsubr_t libgeda_funcs[] = {
   { "component-library-funcs",  3, 0, 0, g_rc_component_library_funcs },
   { "source-library",           1, 0, 0, g_rc_source_library },
   { "source-library-search",    1, 0, 0, g_rc_source_library_search },
-  
-  { "world-size",               3, 0, 0, g_rc_world_size },
-  
+
   { "reset-component-library",  0, 0, 0, g_rc_reset_component_library },
   { "reset-source-library",     0, 0, 0, g_rc_reset_source_library },
-  
+
+  { "net-style",                1, 0, 0, g_rc_net_style },
+  { "bus-style",                1, 0, 0, g_rc_bus_style },
+  { "pin-style",                1, 0, 0, g_rc_pin_style },
+  { "line-style",               1, 0, 0, g_rc_line_style },
+
+  { "thick-bus-width",          1, 0, 0, g_rc_thick_bus_width },
+  { "thick-line-width",         1, 0, 0, g_rc_thick_line_width },
+  { "thick-net-width",          1, 0, 0, g_rc_thick_net_width },
+  { "thick-pin-width",          1, 0, 0, g_rc_thick_pin_width },
+  { "thin-bus-width",           1, 0, 0, g_rc_thin_bus_width },
+  { "thin-line-width",          1, 0, 0, g_rc_thin_line_width },
+  { "thin-net-width",           1, 0, 0, g_rc_thin_net_width },
+  { "thin-pin-width",           1, 0, 0, g_rc_thin_pin_width },
+
+  { "world-size",               3, 0, 0, g_rc_world_size },
+   
   { "untitled-name",            1, 0, 0, g_rc_untitled_name },
   { "scheme-directory",         1, 0, 0, g_rc_scheme_directory },
   { "bitmap-directory",         1, 0, 0, g_rc_bitmap_directory },

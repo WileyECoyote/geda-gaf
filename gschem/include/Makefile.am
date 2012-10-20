@@ -4,13 +4,13 @@
 
 noinst_HEADERS = \
 	globals.h i_vars.h prototype.h x_dialog.h x_states.h \
-	gettext.h \
 	x_compselect.h \
 	x_log.h x_multiattrib.h x_pagesel.h x_print.h x_preview.h \
 	gschem.h \
 	gschem_accel_label.h \
 	gschem_action.h \
-	gschem_defines.h \
+	gschem_idefines.h \
+	gschem_sdefines.h \
 	gschem_dialog.h \
 	gschem_pango.h \
 	gschem_struct.h

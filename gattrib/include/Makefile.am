@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
 noinst_HEADERS = \
+        gattrib.h \
 	globals.h \
 	prototype.h \
 	x_states.h \

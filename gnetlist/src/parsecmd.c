@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,15 +33,11 @@
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
 #endif
-
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 #define OPTIONS "c:g:hil:L:m:o:O:qvV"
 
@@ -49,7 +45,6 @@
 extern char *optarg;
 extern int optind;
 #endif
-
 
 /* Added by SDB 3.3.2006.  */
 #ifdef HAVE_GETOPT_LONG

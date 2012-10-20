@@ -1,29 +1,47 @@
-;                                                         -*-Scheme-*-
+;-*-Scheme-*-
 ; 
 ; Init file for gschem
 ;
 
-(use-modules (gschem deprecated))
+;
+;  WARNING: Make a backup copy of this file before making any changes!
+;
 
 ;  ;'s are comments
 ;  keywords are case sensitive (guile feature)
 ;  mode strings are case sensitive
 ;  colors are not case sensitive 
-;  
-
+;
+;  If an integer is out-side of the valid range, the corresponding limit
+;  will be used and a warning issued.
+;
+; In case of difficulties, start gschem from a shell, as oppose to starting
+; from a GUI. Then look for error messages and double check the parameter(s)
+; listed in the message. If there are multiple messages, be sure to scroll
+; back and look for the "first" error as this is often the only problem.
+;
+; A common symptom that appears when there is a problem with this file is
+; "no menus" and a sensitivity error on  non-existent menu item. This is 
+; indicative of a syntax error in this file. Maybe one of the easiest mistake
+; is to use a colon instead of a semi-colon and no useful information is
+; provided for locating the problem. Try using an Editor like gedit or Kate
+; with search high-lighting. There are not that many colons in this file and
+; none of them should be the first character on a line.
+; 
 ; gschem-version string
 ;
 ; Specifies the version of this file.  This number is used to make sure 
 ; that the rc file is compatible with the version of gschem that is 
 ; being run. The end user should *not* change this value.
 ;
+
 (gschem-version "@DATE_VERSION@")
 
 ;
 ; Start of color section 
 ;
 
-;; Make the gschem color maps more user-friendly
+; Make the gschem color maps more user-friendly
 (color-map-make-friendly display-color-map)
 (color-map-make-friendly display-outline-color-map)
 
@@ -36,6 +54,7 @@
 ;(load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
 ;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
 
+
 ;
 ; End of color section
 ;
@@ -44,67 +63,8 @@
 ; Start of mode related keywords
 ;
 
-; toolbars string
+;BEGIN =================> Display Configuration <===================
 ;
-; Controls if the toolbars are visible or not.
-;
-(toolbars "enabled")
-;(toolbars "disabled")
-
-; handleboxes string
-;
-; Controls if the handleboxes (which contain the menu and toolbar) are 
-; visible or not.
-;
-(handleboxes "enabled")
-;(handleboxes "disabled")
-
-; undo-control string
-;
-; Controls if the undo is enabled or not
-;
-(undo-control "enabled")
-;(undo-control "disabled")
-
-; undo-levels number
-;
-; Determines the number of levels of undo.  Basically this number decides 
-; how many backup schematics are saved on disk.
-;
-(undo-levels 10)
-
-; undo-type string
-;
-; Controls which kind of undo is used.  The default is to use the disk as 
-; the storing medium (ie after every action the undo information is stored
-; to disk).  The other mechanism uses only memory.  The disk mechanism is
-; nice because you get undo-level number of backups of the schematic written
-; to disk as backups so you should never lose a schematic due to a crash.
-;
-(undo-type "disk")
-;(undo-type "memory")
-
-; undo-panzoom string
-;
-; Controls if pan or zoom commands are saved in the undo list.  If this 
-; is enabled then a pan or zoom command will be considered a command and
-; can be undone.  If this is false, then panning and zooming is not saved
-; in the undo list and cannot be undone.  Note, the current viewport 
-; information is saved for every command, so the display will change to the
-; viewport before a command is executed.
-;
-(undo-panzoom "enabled")
-;(undo-panzoom "disabled")
-
-
-; autosave interval
-;
-; Controls if a backup copy is made every "interval" seconds.
-; Note that the backup copy is made when you make some change to the schematic,
-; and there were more than "interval" seconds from the last autosave.
-; Autosaving will not be allowed if setting it to zero.
-(auto-save-interval 120)
-
 ; draw-grips string
 ;
 ; Controls if the editing grips are drawn when selecting objects
@@ -112,215 +72,66 @@
 (draw-grips "enabled")
 ;(draw-grips "disabled")
 
-; net-endpoint-mode string
+;BEGIN ----------------------> Grid Setup <-------------------------
 ;
-; Not user changable.
-(net-endpoint-mode "filledbox")
+; grid-mode string
+;
+; Controls displaying of the grid and grid type.
+;
+;(grid-mode "none")
+(grid-mode "dots")
+;(grid-mode "mesh")
 
-;  net-midpoint-mode string
+; dots-grid-dot-size integer
 ;
-; Not user changable.
-(net-midpoint-mode "filled")
+; The dots-grid-dot-size keyword controls the size of the grid dots in the
+; dots grid display. The units are in pixels. The default (min) value of 1
+; is the best performing as the grid dot size is rendered as a single pixel.
+; Values of 2 and 3 are good values to try if the default grid dot size is
+; too small for your tastes. Anything larger than 3 is probably too large.
+;
+;(dots-grid-dot-size 1)
+(dots-grid-dot-size 2)
+;(dots-grid-dot-size 3)
 
-;  net-direction-mode string
+; dots-grid-fixed-threshold integer
 ;
-;  Controlls if the net direction mode is used. This mode tries to guess
-;  the best continuation direction of a L-shape net when adding a net.
+; The dots-grid-fixed-threshold specifies the minimum number of pixels
+; grid-spacing for the grid to be displayed. Using this parameter you can
+; control the density of the displayed grid (smaller numbers will cause the
+; grid to be drawn denser). This mode is only used when grid-mode is fixed.
 ;
-(net-direction-mode "enabled")
-;(net-direction-mode "disabled")
+(dots-grid-fixed-threshold 10)
 
-;  net-selection-mode string
+; dots-grid-mode string
 ;
-; Controls how many net segments are selected when you click at a net
-; If one of the enabled items is used, the selection state will toggle 
-; through all selection states. The mode defines the maximum search depth
-; for the net selection mode
-;
-;(net-selection-mode "disabled")
-(net-selection-mode "enabled_net")
-;(net-selection-mode "enabled_all")
+; The dots-grid-mode keyword controls the mode of the dotted grid, either
+; variable or fixed. In the variable mode, the grid spacing changes
+; depending on the zoom factor. In the fixed mode, the grid always
+; represents the same number of units as the snap-spacing. You can
+; control the density of the grid using the dots-grid-fixed-threshold.
+(dots-grid-mode "variable")
+;(dots-grid-mode "fixed")
 
-;  net-consolidate string
+; mesh-grid-threshold integer
 ;
-;  Controls if the net consolidation code is used when schematics are read
-;  in, written to disk, and when nets are being drawn (does not consolidate
-;  when things are being copied or moved yet).  Net consolidation is the 
-;  connection of nets which can be combined into one.
-;  Comment out if you want the default mode 
+; The mesh-grid-threshold specifies the minimum line pitch for the
+; grid to be displayed. Using this parameter you can control maximum density
+; of the displayed before the minor, then major grid-lines are switched off.
 ;
-(net-consolidate "enabled")
-;(net-consolidate "disabled")
+(mesh-grid-threshold 25)
 
-;  net-style string
-;
-;  Set to thin if you want thin nets.
-;  Set to thick if you want thick nets.
-;  This mode also determines what net style gets printed
-;
-;(net-style "thin")
-(net-style "thick")
+;END ------------------------> Grid Setup <-------------------------
 
-; netconn-rubberband string
+; object-clipping string
 ;
-; Controls if net connections are maintained when you move a connecting 
-; component or net.   
+; Determines if the object clipping code is executed or not
+; This code does speed up redraws a bit. Possible options are enabled
+; or disabled. Clipping should not normally be turned off, since some
+; X servers don't handle clipping correctly.
 ;
-(netconn-rubberband "enabled")
-;(netconn-rubberband "disabled")
-
-; magnetic-net-mode string
-;
-; Controls the initial setting of the magnetic net mode. The magnetic
-; net mode marks a possible connection that is close to the current
-; cursor position
-(magnetic-net-mode "enabled")
-;(magnetic-net-mode "disabled")
-
-;  bus-style string
-;
-;  Set to thin if you want thin buses.
-;  Set to thick if you want thick buses.
-;  This mode also determines what bus style gets printed
-;
-;(bus-style "thin")
-(bus-style "thick")
-
-; pin-style string
-;
-; Set to thin if you want thin pins
-; Set to thick if you want thick pins.
-; This mode also determines what pin style gets printed
-;
-;(pin-style "thin")
-(pin-style "thick")
-
-; line-style string
-;
-; Set to thin if you want thin lines
-; Set to thick if you want thick lines.
-; This mode also determines what line style gets printed
-;
-;(line-style "thin")
-(line-style "thick")
-
-; zoom-with-pan string
-;
-; Sets the zoom in and zoom out functions to pan the display and then zoom.
-; Basically zoom in / out where the mouse pointer sits on the display.
-; Comment out if you want the default mode.
-;
-(zoom-with-pan "enabled")
-;(zoom-with-pan "disabled")
-
-; zoom-gain integer
-;
-; Controls the percentage size increase when zooming into the page.
-; Un-zooming uses the inverse factor such that a zoom in / zoom out
-; pair will return the schematic to the same size.
-;  E.g:
-;    20% increment => x 1.2 original size when zooming in
-;                  => x 1 / 1.2 x original size when zooming out
-;
-(zoom-gain 20)
-;(zoom-gain 50) ; Hard-coded behaviour up to version 1.5.0.20080706
-
-; fast-mousepan string
-;
-; Controls if text is drawn properly or if a simplified version (a line which
-; represents the text string) is drawn during mouse pan.  Drawing a simple
-; line speeds up mousepan a lot for big schematics
-(fast-mousepan "enabled")
-;(fast-mousepan "disabled")
-
-; mousepan-gain integer
-;
-; Controls how much the display pans when using mousepan.  A larger value
-; provides greater pan distance when moving the mouse, while a smaller value
-; provides a smoother, but smaller pan distance when moving the mouse.
-(mousepan-gain 1)
-;(mousepan-gain 5)
-;(mousepan-gain 10)
-
-; keyboardpan-gain integer
-;
-; Controls how much the display pans when using the keyboard cursor keys.  
-; A larger value provides greater pan distance when pressing the cursor 
-; keys, while a smaller value provides a smoother, but smaller pan 
-; distance when moving the cursor keys.
-(keyboardpan-gain 20)
-;(keyboardpan-gain 10)
-;(keyboardpan-gain 1)
-;(keyboardpan-gain 5)
-
-; select-slack-pixels integer
-;
-; Controls how many pixels around an object can still be clicked as part of
-; that object.
-; A larger value gives greater ease in selecting small, or narrow objects.
-(select-slack-pixels 10)
-;(select-slack-pixels 4)
-;(select-slack-pixels 0)
-;(select-slack-pixels 1)
-
-
-; action-feedback-mode string
-;
-; Set the default action feedback mode (for copy/move/component place).
-; Set to outline to get an outline of the selection. 
-; Set to boundingbox to get a bounding box of the selection. 
-; For a fast machines with fast video use outline (it looks good).
-; For a slow machine use boundingbox; it is much faster.
-; Comment out if you want the default mode.
-;
-(action-feedback-mode "outline")
-;(action-feedback-mode "boundingbox")
-
-; continue-component-place string
-;
-; If this enabled then multiple instances of the same component can be placed
-; immediately without having to click on the name or Apply in the Component
-; Place... dialog box.  If this is disabled then only one component can be
-; placed (the user must then press Apply in the dialog box to place multiple
-; instances of the same component)
-;
-(continue-component-place "enabled")
-;(continue-component-place "disabled")
-
-; sort-components-library string
-;
-; If this is enabled, then the component library will be sorted in
-; alphanumeric order.  Bear in mind that this option is totally
-; cosmetic, and will not alter the component search order (latest
-; added gets scanned first).
-;
-(sort-component-library "disabled")
-;(sort-component-library "enabled")
-
-; text-feedback string
-;
-; Controls if text is drawn when doing an xor action (like copy/move)
-; Comment out if you want the default mode.
-; Not in production yet.
-;
-(text-feedback "only-when-readable")
-;(text-feedback "always")
-
-; text-display-zoomfactor number
-;
-; Sets the zoomfactor number (~150 being the most zoomed out factor) 
-; (zoom factors get smaller as you zoom in) at which text is displayed
-; completely (not a line).  This is only valid if above is set to
-; "only-when-readable" 
-;
-(text-display-zoomfactor 30)
-
-; text-origin-marker string
-;
-; Controls if the text origin markers are displayed (or not)
-;
-(text-origin-marker "enabled")
-;(text-origin-marker "disabled")
+(object-clipping "enabled")
+;(object-clipping "disabled")
 
 ; scrollbars string
 ;
@@ -342,25 +153,221 @@
 (scrollbar-update "continuous")
 ;(scrollbar-update "delayed")
 
-; raise-dialog-boxes-on-expose string
+; scrollpan-steps non-zero integer
 ;
-; Controls if dialog boxes are raised whenever an expose event happens
-; Default is disabled since gtk2 supposedly handles the raising of these
-; dialogs correctly now.
+; Controls the number of scroll pan events required to traverse the viewed
+; schematic area. Larger numbers mean more scroll steps are required to
+; pan across the viewed area and giving finer control over positioning.
+; scrollpan-steps can not be 0.
 ;
-;(raise-dialog-boxes-on-expose "enabled")
-(raise-dialog-boxes-on-expose "disabled")
+(scrollpan-steps 8)
+;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
 
-; object-clipping string
+; window-size integer integer
 ;
-; Determines if the object clipping code is executed or not
-; This code does speed up redraws a bit.
-;   Possible options: enabled or disabled
-; Default is enabled, I do not recommend turning this off, since some X
-; servers don't handle clipping correctly.
+; window-size width height 
 ;
-(object-clipping "enabled")
-;(object-clipping "disabled")
+; Specifies the size of the drawing area window.  The width and height
+; are specified in pixels and do not include the three menu bars and 
+; scrollbars (so the window will be larger than the specified 
+; measurements). Try to keep an aspect ratio of 1.333333 if at all possible. 
+; These numbers are NOT the true size of the window, but of the drawing area.
+;
+;(window-size 650 487)  ; Good size for 800x600
+;(window-size 900 650)  ; Good size for 1024x768
+(window-size 950 712)  ; Good size for 1152x864
+;(window-size 1100 825) ; Good size for 1280x1024
+
+; world-size width height border
+;
+; Specifies the size of the world and a border (in world space units)
+; Be sure all inputs are reals (floats/doubles) and don't try to reverse
+; the values to get a portrait mode.  Code to support that needs to be added
+; The code that implements this automatically transforms the dimensions into
+; the proper aspect ratio.  All units are in inches.
+; This is not the paper size.  That is specified elsewhere.  End users should
+; not change this at all.
+;
+;(world-size 60.0 45.0 1.0)
+(world-size 120.0 90.0 1.0)
+;(world-size 180.0 135.0 1.0)
+
+;BEGIN -------------------> Display Zoom Setup <--------------------
+
+; warp-cursor string
+;
+; Controls if the cursor is warped (or moved) when you zoom in and out.
+; Some people find this forced cursor movement annoying.
+;
+;(warp-cursor "enabled")
+(warp-cursor "disabled")
+
+; zoom-gain integer
+;
+; Controls the percentage size increase when zooming into the page.
+; Un-zooming uses the inverse factor such that a zoom in / zoom out
+; pair will return the schematic to the same size.
+;  E.g.
+;    20% increment => x 1.2 original size when zooming in
+;                  => x 1 / 1.2 x original size when zooming out
+;
+(zoom-gain 20)
+;;(zoom-gain 50) ; Hard-coded behaviour up to version 1.5.0.20080706
+
+; zoom-with-pan string
+;
+; Sets the zoom in and zoom out functions to pan the display and then zoom.
+; Basically zoom in / out where the mouse pointer sits on the display.
+; Comment out if you want the default mode.
+;
+(zoom-with-pan "enabled")
+;(zoom-with-pan "disabled")
+
+;END ------------------->  Display Zoom Setup  <--------------------
+;END ===================> Display Configuration <===================
+
+; image-color string
+;
+; Controls if image (png) is color (enabled) or black/white (disabled)
+;
+(image-color "enabled")
+;(image-color "disabled")
+
+;BEGIN ==================> Set Log Configuration <==================
+
+; logging string or integer
+;
+; Determines if the logging mechanism is enabled or disabled
+; Possible options are enabled or disabled
+;
+; See log-destiny keyword for control over where the messages go.
+;
+(logging "enabled")
+;(logging "disabled")
+
+; log-destiny string
+;
+; Specifies where log message go during run time.
+; Possible options are;
+;      log_window      The log window (if it's visible)
+;      tty             The stdout of the terminal where gschem was run from
+;      both            Both of the above locations
+; Message are always written to the log file (unless logging is disabled)
+; by the above keyword.
+; 
+;
+(log-destiny "log_window")
+;(log-destiny "tty")
+;(log-destiny "both")
+;
+; Controls if the log message window is mapped when gschem is started up
+; Possible options;
+;       startup - opened up when gschem starts
+;       later   - NOT opened up when gschem starts
+;                 (can be opened by Options/Show Log Window)
+;
+(log-window "enabled")
+;(log-window "disabled")
+
+; log-window-type string
+;
+; Controls if the log message window is a transient or if it is decorated 
+; as a normal window (this is dependant on the window manager doing decoration
+; right)
+;
+; Possible options;
+;       decorated       - log window is a normal decorated window
+;       transient       - log window is a transient dialog box, typically
+;                         not decorated by the window manager
+;
+(log-window-type "decorated")
+;(log-window-type "transient")
+
+;END ====================> Log Configuration <======================
+
+;BEGIN ================> Miscellaneous Options <====================
+
+; action-feedback-mode string
+;
+; Set the default action feedback mode (for copy/move/component place).
+; Set to outline to get an outline of the selection. 
+; Set to boundingbox to get a bounding box of the selection. 
+; For a fast machines with fast video use outline (it looks good).
+; For a slow machine use boundingbox; it is much faster.
+; Comment out if you want the default mode.
+;
+(action-feedback-mode "outline")
+;(action-feedback-mode "boundingbox")
+
+; add-attribute-offset integer
+;
+; This has not been implemented/debugged yet.  
+;
+; Controls a offset which is added to the location of text items that are
+; added to an object as an attribute. This offset is added when the following
+; conditions occur;
+;
+;  1) Add/Attribute... has been invoked via the hotkey
+;  2) It is the the "netname" attribute being added
+;  3) It is being attached to a horizontal or vertical net segment
+;  4) The initial mouse position is at or near the actual net (with one
+;     grid unit).
+;
+; If these four conditions are not met, then this offset is not added. 
+(add-attribute-offset 50)
+
+; auto-load-last string
+;
+; Determines if the newly placed components are embedded in the schematic 
+; or if only the filename is specified and the component is searched for 
+; instead.  If it is enabled, then all new components will be embedded 
+; othewise they are not embedded.  This can be controlled on the fly during
+; runtime with the "Embed Component" checkbox on the select component dialog
+; box
+;
+(auto-load-last "enabled")
+;(auto-load-last "disabled")
+
+; autosave interval
+;
+; Controls if a backup copy is made every "interval" seconds.
+; Note that the backup copy is made when you make some change to the schematic,
+; and there were more than "interval" seconds from the last autosave.
+; Autosaving will not be allowed if setting it to zero.
+(auto-save-interval 180)
+
+; Attribute autoplacement grid 
+(define autoplace-attributes-grid 50)
+
+; component-dialog-attributes stringlist
+;
+; Sets a list of attributs that are visible in the component select dialog.
+; The attributes are sorted in the same order as they appear in the list.
+; If the first list element is an asterisk "*", all attributes will be 
+; displayed in alphabetical order.
+;
+; Note 1. An empty list will disable the attribute view in the dialog.
+; Note 2. To enable the list ALL of the semi-colons must be removed
+;         from the first option!
+;
+(component-dialog-attributes '("device" "description" "footprint" "comment"
+			       "net" "model" "model-name" "file" "value"
+			       "numslots" "slotdef" "slot"
+			       "documentation" "symversion" "author"
+			       "use-license=" "dist-license="))
+;(component-dialog-attributes '("*"))
+;(component-dialog-attributes '())
+
+; continue-component-place string
+;
+; If this enabled then multiple instances of the same component can be placed
+; immediately without having to click on the name or Apply in the Component
+; Place... dialog box.  If this is disabled then only one component can be
+; placed (the user must then press Apply in the dialog box to place multiple
+; instances of the same component)
+;
+(continue-component-place "enabled")
+;(continue-component-place "disabled")
 
 ; embed-components string
 ;
@@ -374,108 +381,6 @@
 ;(embed-components "enabled")
 (embed-components "disabled")
 
-; component-dialog-attributes stringlist
-;
-; Sets a list of attributs that are visible in the component select dialog.
-; The attributes are sorted in the same order as they appear in the list.
-; If the first list element is an asterisk "*", all attributes will be 
-; displayed in alphabetical order.
-; An empty list will disable the attribute view in the dialog.
-;
-;(component-dialog-attributes '("device" "description" "footprint" "comment"
-;			       "net" "model" "model-name" "file" "value"
-;			       "numslots" "slotdef" "slot"
-;			       "documentation" "symversion" "author"
-;			       "use-license=" "dist-license="))
-(component-dialog-attributes '("*"))
-;(component-dialog-attributes '())
-
-; logging string
-;
-; Determines if the logging mechanism is enabled or disabled
-;   Possible options: enabled or disabled
-; Default is enabled.
-; See below for the logging-destination keyword for control over
-; where the messages go.
-;
-(logging "enabled")
-;(logging "disabled")
-
-
-; log-window string
-;
-; Controls if the log message window is mapped when gschem is started up
-; Possible options:
-;       startup - opened up when gschem starts
-;       later   - NOT opened up when gschem starts
-;                 (can be opened by Options/Show Log Window)
-;
-(log-window "startup")
-;(log-window "later")
-
-
-; log-window-type string
-;
-; Controls if the log message window is a transient or if it is decorated 
-; as a normal window (this is dependant on the window manager doing decoration
-; right)
-;
-; Possible options:
-;       decorated       - log window is a normal decorated window
-;       transient       - log window is a transient dialog box, typically
-;                         not decorated by the window manager
-;
-(log-window-type "decorated")
-;(log-window-type "transient")
-
-
-; logging-destination string
-;
-; Specifies where log message go during run time.
-; Possible options are:
-;      log_window      The log window (if it's visible)
-;      tty             The stdout of the terminal where gschem was run from
-;      both            Both of the above locations
-; Message are always written to the log file (unless logging is disabled)
-; by the above keyword
-;
-; Default is log_window
-;
-(logging-destination "log_window")
-;(logging-destination "tty")
-;(logging-destination "both")
-
-; text-size number
-;
-; Sets the default text size.
-;
-(text-size 10)
-
-; snap-size number
-;
-; Sets the default grid spacing at start-up of gschem.
-; 
-(snap-size 100)
-
-; text-caps-style string
-;
-; Sets the default caps style used for the input of text
-; lower specifies that all inputed text is in lowercase
-; upper specifies that all inputed text is in uppercase
-; both specifies that all inputed text is used as is (no case conversion)
-;
-(text-caps-style "both")
-;(text-caps-style "lower")
-;(text-caps-style "upper")
-
-;  file-preview string
-;
-;  Controls if the preview area in the File Open/Save As and Component 
-;  dialog boxes is enabled by default or not
-;
-(file-preview "enabled")
-;(file-preview "disabled")
-
 ;  enforce-hierarchy string
 ;
 ;  Controls if the movement between hierarchy levels (of the same underlying
@@ -487,6 +392,99 @@
 (enforce-hierarchy "enabled")
 ;(enforce-hierarchy "disabled")
 
+;  file-preview string
+;
+;  Controls if the preview area in the File Open/Save As and Component 
+;  dialog boxes is enabled by default or not
+;
+(file-preview "enabled")
+;(file-preview "disabled")
+
+; force-boundingbox string
+;
+; Controls if the entire bounding box of a symbol is used when figuring out
+; whichend of the pin is considered the active port.  Enable this when 
+; gschem is guessing incorrectly.
+;
+;(force-boundingbox "enabled")
+(force-boundingbox "disabled")
+
+; handleboxes string
+;
+; Controls if the handleboxes (which contain the menu and toolbar) are 
+; visible or not.
+;
+(handleboxes "enabled")
+;(handleboxes "disabled")
+
+; keyboardpan-gain integer
+;
+; Controls how much the display pans when using the keyboard cursor keys.  
+; A larger value provides greater pan distance when pressing the cursor 
+; keys, while a smaller value provides a smoother, but smaller pan 
+; distance when moving the cursor keys.
+(keyboardpan-gain 20)
+;;(keyboardpan-gain 10)
+;;(keyboardpan-gain 1)
+;;(keyboardpan-gain 5)
+
+; magnetic-net-mode string
+;
+; Controls the initial setting of the magnetic net mode. The magnetic
+; net mode marks a possible connection that is close to the current
+; cursor position
+(magnetic-net-mode "enabled")
+;(magnetic-net-mode "disabled")
+
+; netconn-rubberband string
+;
+; Controls if net connections are maintained when you move a connecting 
+; component or net.   
+;
+(netconn-rubberband "enabled")
+;(netconn-rubberband "disabled")
+;
+; Controls if dialog boxes are raised whenever an expose event happens
+; Default is disabled since gtk2 supposedly handles the raising of these
+; dialogs correctly now.
+;
+;(raise-dialog-boxes-on-expose "enabled")
+(raise-dialog-boxes-on-expose "disabled")
+
+; select-slack-pixels integer
+;
+; Controls how many pixels around an object can still be clicked as part of
+; that object.
+; A larger value gives greater ease in selecting small, or narrow objects.
+(select-slack-pixels 10)
+;;(select-slack-pixels 4)
+;;(select-slack-pixels 0)
+;;(select-slack-pixels 1)
+
+; snap-size number
+;
+; Sets the default snap spacing at start-up of gschem.
+; 
+(snap-size 100)
+
+; sort-components-library string
+;
+; If this is enabled, then the component library will be sorted in
+; alphanumeric order.  Bear in mind that this option is totally
+; cosmetic, and will not alter the component search order (latest
+; added gets scanned first).
+;
+;(sort-component-library "enabled")
+(sort-component-library "disabled")
+
+
+; toolbars string
+;
+; Controls if the toolbars are visible or not.
+;
+(toolbars "enabled")
+;(toolbars "disabled")
+
 ; untitled-name string
 ;
 ; Specify the default untitled basename (usually only used a startup time)
@@ -494,37 +492,226 @@
 ;
 (untitled-name "untitled")
 
-; window-size width height 
-;
-; Specifies the size of the drawing area window.  The width and height
-; are specified in pixels and do not include the three menu bars and 
-; scrollbars (so the window will be larger than the specified 
-; measurements). Try to keep an aspect ratio of 1.333333 if at all possible. 
-; These numbers are NOT the true size of the window, but of the drawing area.
-;
-;(window-size 650 487)  ; Good size for 800x600
-(window-size 900 650)   ; Good size for 1024x768
-;(window-size 950 712)  ; Good size for 1152x864
-;(window-size 1100 825) ; Good size for 1280x1024
+;END ==================> Miscellaneous Options <====================
 
-; world-size width height border
+;BEGIN =================> Nets and Routing Setup <==================
+
+; net-consolidate string
 ;
-; Specifies the size of the world and a border (in world space units)
-; Be sure all inputs are reals (floats/doubles) and don't try to reverse
-; the values: to get a portrait mode.  Code to support that needs to be added
-; The code that implements this automatically transforms the dimensions into
-; the proper aspect ratio.  All units are in inches.
-; This is not the paper size.  That is specified elsewhere.  End users should
-; not change this at all.
+;  Controls if the net consolidation code is used when schematics are read
+;  in, written to disk, and when nets are being drawn (does not consolidate
+;  when things are being copied or moved yet).  Net consolidation is the 
+;  connection of nets which can be combined into one.
+;  Comment out if you want the default mode 
 ;
-(world-size 120.0 90.0 1.0)
-;(world-size 60.0 45.0 1.0)
+(net-consolidate "enabled")
+;(net-consolidate "disabled")
+
+; net-endpoint-mode string
+;
+; Not fully implemented.
+;(net-endpoint-mode "none")
+;(net-endpoint-mode "empty")
+(net-endpoint-mode "filledbox")
+
+;  net-midpoint-mode string
+;
+; Not fully implemented.
+;(net-midpoint-mode "none")
+;(net-midpoint-mode "empty")
+(net-midpoint-mode "filledbox")
+
+;  net-direction-mode string
+;
+;  Controls if the net direction mode is used. This mode tries to guess
+;  the best continuation direction of a L-shape net when adding a net.
+;
+(net-direction-mode "enabled")
+;(net-direction-mode "disabled")
+
+;  net-selection-mode string
+;
+; Controls how many net segments are selected when you click at a net
+; If one of the enabled items is used, the selection state will toggle 
+; through all selection states. The mode defines the maximum search depth
+; for the net selection mode
+;
+;(net-selection-mode "disabled")
+(net-selection-mode "net")
+;(net-selection-mode "all")
+
+;BEGIN --------------------->  Net Ripper  <------------------------
+
+; Bus ripper controls
+; The following keywords control the auto bus ripper addition code
+;
+; bus-ripper-size  => Sets the size of the auto bus rippers.  
+; bus-ripper-type  => Sets the bus ripper type either a "component" or
+;                     plain "net"
+; bus-ripper-syname  => If above is set to component, specify the symbol name.
+;                       The symbol must exist in a component library
+; bus-ripper-rotation => Either "symmetric" or "non-symmetric".  This deals 
+;                        with how the bus ripper symbol is rotated when it 
+;                        is auto added to a schematic.
+;   
+
+; The default bus ripper
+(bus-ripper-size 200)
+(bus-ripper-type "component")
+(bus-ripper-symname "busripper-1.sym")
+(bus-ripper-rotation "non-symmetric")
+
+; A symmetric alternative 
+;(bus-ripper-size 200)
+;(bus-ripper-type "component")
+;(bus-ripper-symname "busripper-2.sym")
+;(bus-ripper-rotation "symmetric")
+
+; A simple net 
+;(bus-ripper-size 200)
+;(bus-ripper-type "net")
+
+;END ------------------------>  Net Ripper  <-----------------------
+
+;BEGIN ---------------------->  Net Styles  <-----------------------
+;  bus-style string
+;
+;  Set to thin if you want thin buses.
+;  Set to thick if you want thick buses.
+;  This mode also determines what bus style gets printed
+;
+;(bus-style "none")
+;(bus-style "thin")
+(bus-style "thick")
+
+; line-style string
+;
+; Set to none disable using line width styles.
+; Set to thin if you want thin lines
+; Set to thick if you want thick lines.
+; This mode also determines what line style gets printed
+;
+;(line-style "none")
+(line-style "thin")
+;(line-style "thick")
+
+;  net-style string
+;
+;  Set to thin if you want thin nets.
+;  Set to thick if you want thick nets.
+;  This mode also determines what net style gets printed
+;
+;(net-style "none")
+(net-style "thin")
+;(net-style "thick")
+
+; pin-style string
+;
+; Set to none disable using line width styles, pins width will be
+; based on the pin type, either net or bus. 
+; Set to thin if you want thin pins
+; Set to thick if you want thick pins.
+; This mode also determines what pin style gets printed
+;
+;(pin-style "none")
+;(pin-style "thin")
+(pin-style "thick")
+
+; Line widths can be set for a given style using the appropriate
+; keywords. While defaults are reasonable values, some installations
+; may require different values for optimization. One example might
+; be a large display operating in a high resolution mode, where
+; 5 pixels may appear minute.
+;
+; Note: If the corresponding xxx-style is NOT used then the internal
+; defaults are assigned, in which case: Nets and Pin will be the old
+; "narrow" values, Lines will be an over-ridable THIN default, and
+; Buses will be over-ridable THICK default. In situtations where 
+; "tweeking" is NOT required, all the keywords for Bus, Line, Net,
+; and Pin styles and widths would be better left commented out.
+;
+; Or, if you feel a compelling urge, you could uncomment them all,
+; along with the styles and just see what you get!
+;
+;(thin-bus-width 15)
+;(thick-bus-width 30)
+
+;(thin-line-width 10)
+;(thick-line-width 30)
+
+;(thin-net-width 5)
+;(thick-net-width 30)
+
+;(thin-pin-width 15)
+;(thick-pin-width 30)
+
+;END ----------------------->  Net Styles  <------------------------
+;END ==================> Nets and Routing Setup <===================
+
+;BEGIN ==============> Pointer Device  Preferences <================
+
+; fast-mousepan string
+;
+; Controls if text is drawn properly or if a simplified version (a line which
+; represents the text string) is drawn during mouse pan.  Drawing a simple
+; line speeds up mousepan a lot for big schematics
+(fast-mousepan "enabled")
+;(fast-mousepan "disabled")
+
+; drag-can-move string
+;
+; If enabled, the drag movement over selected objects can move the objects.
+(drag-can-move "enabled")
+;(drag-can-move "disabled")
+
+; middle-button string
+;
+; Controls if the middle mouse button draws strokes, repeats the last 
+; command, does an action (move and copy (holding down the ALT key) 
+; are supported) on a single objects, or if it does the mouse panning.
+;
+;(middle-button "stroke")
+;(middle-button "repeat")
+;(middle-button "action")
+(middle-button "mousepan")
+
+; mousepan-gain integer
+;
+; Controls how much the display pans when using mousepan.  A larger value
+; provides greater pan distance when moving the mouse, while a smaller value
+; provides a smoother, but smaller pan distance when moving the mouse.
+(mousepan-gain 1)
+;;(mousepan-gain 5)
+;;(mousepan-gain 10)
+
+; scroll-wheel string
+;
+; Controls the binding of the mouse scroll wheel.
+; "classic" style is the gschem default, where scrolling with no modifier
+; key is mapped to zoom, + CTRL -> x-axis pan, + SHIFT -> y-axis pan.
+; "gtk" style changes the behaviour to be more like other GTK appliactions,
+; no modifier -> y-axis pan, + CTRL -> zoom, + SHIFT -> x-axis pan.
+;(scroll-wheel "gtk")
+(scroll-wheel "classic")
+
+
+; third-button string
+;
+; Controls if the third mouse button performs the popup ("popup") or 
+; if it does the mouse panning ("mousepan")
+;
+;(third-button "popup")
+(third-button "mousepan")
+
+;END ================> Pointer Device  Preferences <================
+
+;BEGIN ==================>  Printer Related  <======================
 
 ; page-size width height 
 ;
 ; Specifies the size of the default paper size
 ; Be sure all inputs are reals (floats/doubles) and don't try to reverse
-; the values: to get a portrait mode.  Code to support that needs to be added
+; the values to get a portrait mode.  Code to support that needs to be added
 ; The code that implements this automatically transforms the dimensions into
 ; the proper aspect ratio.  All units are in inches. (use output-orientation
 ; to get portrait mode)
@@ -604,7 +791,6 @@
 ;
 (print-command "lpr")
 
-
 ; output-type string
 ;
 ; Controls what is actually printed
@@ -619,11 +805,10 @@
 
 ; output-orientation string
 ;
-; Controls which way the output page is layed out (landscape or portrait).
-; "auto" allows gschem to automatically choose a proper layout
-(output-orientation "auto")
+; Controls which way the output page is layed out (landscape or portrait)
+;
 ;(output-orientation "portrait")
-;(output-orientation "landscape")
+(output-orientation "landscape")
 
 ; output-color string
 ;
@@ -631,7 +816,6 @@
 ;
 (output-color "disabled")
 ;(output-color "enabled")
-
 
 ; output-capstyle string
 ;
@@ -641,7 +825,6 @@
 ;(output-capstyle "round")
 ;(output-capstyle "butt")
 
-
 ; setpagedevice-orientation string
 ;
 ; If enabled, puts a << /Orientation x >> setpagedevice into the postscript
@@ -649,7 +832,6 @@
 ;
 (setpagedevice-orientation "disabled")
 ;(setpagedevice-orientation "enabled")
-
 
 ; setpagedevice-pagesize string
 ;
@@ -659,158 +841,91 @@
 (setpagedevice-pagesize "disabled")
 ;(setpagedevice-pagesize "enabled")
 
+;END ====================>  Printer Related  <======================
 
-; image-color string
+;BEGIN =================> Set Text Configuration <==================
 ;
-; Controls if image (png) is color (enabled) or black/white (disabled)
+; Sets the default caps style used for the input of text
+; lower specifies that all inputed text is in lowercase
+; upper specifies that all inputed text is in uppercase
+; both specifies that all inputed text is used as is (no case conversion)
 ;
-(image-color "enabled")
-;(image-color "disabled")
+;(text-case "lower")
+;(text-case "upper")
+(text-case "both")
 
-; middle-button string
+; text-display-zoomfactor integer
 ;
-; Controls if the middle mouse button draws strokes, repeats the last 
-; command, does an action (move and copy (holding down the ALT key) 
-; are supported) on a single objects, or if it does the mouse panning.
+; Sets the zoomfactor number (~150 being the most zoomed out factor) 
+; (zoom factors get smaller as you zoom in) at which text is displayed
+; completely (not a line).  This is only valid if above is set to
+; "only-when-readable" 
 ;
-(middle-button "mousepan")
-;(middle-button "action")
-;(middle-button "stroke")
-;(middle-button "repeat")
+(text-display-zoomfactor 30)
 
-; third-button string
+; text-feedback string
 ;
-; Controls if the third mouse button performs the popup ("popup") or 
-; if it does the mouse panning ("mousepan")
+; Controls if text is drawn when doing an xor action (like copy/move)
+; Comment out if you want the default mode.
 ;
-(third-button "popup")
-;(third-button "mousepan")
+(text-feedback "only-when-readable")
+;(text-feedback "always")
 
-; scroll-wheel string
+; text-origin-marker string
 ;
-; Controls the binding of the mouse scroll wheel.
-; "classic" style is the gschem default, where scrolling with no modifier
-; key is mapped to zoom, + CTRL -> x-axis pan, + SHIFT -> y-axis pan.
-; "gtk" style changes the behaviour to be more like other GTK appliactions,
-; no modifier -> y-axis pan, + CTRL -> zoom, + SHIFT -> x-axis pan.
-(scroll-wheel "classic")
-;(scroll-wheel "gtk")
+; Controls if the text origin markers are displayed (or not)
+;
+(text-origin-marker "enabled")
+;(text-origin-marker "disabled")
 
+; text-size integer
+;
+; Sets the default text size.
+;
+(text-size 10)
 
-; scrollpan-steps integer
-;
-; Controls the number of scroll pan events required to traverse the viewed
-; schematic area. Larger numbers mean more scroll steps are required to
-; pan across the viewed area and giving finer control over positioning.
-(scrollpan-steps 8)
-;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
+;END ====================> Text Configuration <=====================
 
-; warp-cursor string
-;
-; Controls if the cursor is warped (or moved) when you zoom in and out.
-; Some people find this forced cursor movement annoying.
-;
-(warp-cursor "enabled")
-;(warp-cursor "disabled")
+;BEGIN ==================>  Undo Sub-System  <======================
 
+; undo-control string
+;
+; Controls if the undo is enabled or not
+;
+(undo-control "enabled")
+;(undo-control "disabled")
 
-; Bus ripper controls
-; The following keywords control the auto bus ripper addition code
+; undo-levels number
 ;
-; bus-ripper-size  : Sets the size of the auto bus rippers.  
-; bus-ripper-type  : Sets the bus ripper type either a "component" or 
-;                    plain "net"
-; bus-ripper-syname  : If above is set to component, specify the symbol name.
-;                      The symbol must exist in a component library
-; bus-ripper-rotation  : Either "symmetric" or "non-symmetric".  This deals 
-;                        with how the bus ripper symbol is rotated when it 
-;                        is auto added to a schematic.
-;   
+; Determines the number of levels of undo.  Basically this number decides 
+; how many backup schematics are saved on disk.
+;
+(undo-levels 10)
 
-; The default bus ripper
-(bus-ripper-size 200)
-(bus-ripper-type "component")
-(bus-ripper-symname "busripper-1.sym")
-(bus-ripper-rotation "non-symmetric")
+; undo-type string
+;
+; Controls which kind of undo is used.  The default is to use the disk as 
+; the storing medium (ie after every action the undo information is stored
+; to disk).  The other mechanism uses only memory.  The disk mechanism is
+; nice because you get undo-level number of backups of the schematic written
+; to disk as backups so you should never lose a schematic due to a crash.
+;
+(undo-type "disk")
+;(undo-type "memory")
 
-; A symmetric alternative 
-;(bus-ripper-size 200)
-;(bus-ripper-type "component")
-;(bus-ripper-symname "busripper-2.sym")
-;(bus-ripper-rotation "symmetric")
+; undo-panzoom string
+;
+; Controls if pan or zoom commands are saved in the undo list.  If this 
+; is enabled then a pan or zoom command will be considered a command and
+; can be undone.  If this is false, then panning and zooming is not saved
+; in the undo list and cannot be undone.  Note, the current viewport 
+; information is saved for every command, so the display will change to the
+; viewport before a command is executed.
+;
+(undo-panzoom "enabled")
+;(undo-panzoom "disabled")
 
-; A simple net 
-;(bus-ripper-size 200)
-;(bus-ripper-type "net")
-
-; Dots grid dot size
-;
-; The dots-grid-dot-size keyword controls the size of the grid dots in the
-; dots grid display. The units are in pixels. The default (min) value of 1
-; is the best performing as the grid dot size is rendered as a single pixel.
-; Values of 2 and 3 are good values to try if the default grid dot size is
-; too small for your tastes. Anything larger than 3 is probably too large.
-;
-(dots-grid-dot-size 1)
-;(dots-grid-dot-size 2)
-;(dots-grid-dot-size 3)
-
-; Dots grid mode
-;
-; The dots-grid-mode keyword controls the mode of the dotted grid, either
-; variable or fixed. In the variable mode, the grid spacing changes
-; depending on the zoom factor. In the fixed mode, the grid always
-; represents the same number of units as the snap-spacing. You can
-; control the density of the grid using the dots-grid-fixed-threshold.
-(dots-grid-mode "variable")
-;(dots-grid-mode "fixed")
-
-; Dots grid fixed threshold
-;
-; The dots-grid-fixed-threshold specifies the minimum number of pixels
-; grid-spacing for the grid to be displayed. Using this parameter you can
-; control thedensity of the displayed grid (smaller numbers will cause the
-; grid to be drawn denser). This mode is only used when grid-mode is fixed.
-;
-(dots-grid-fixed-threshold 10)
-
-; Mesh grid display threshold
-;
-; The mesh-grid-display-threshold specifies the minimum line pitch for a the
-; grid to be displayed. Using this parameter you can control maximum density
-; of the displayed before the minor, then major grid-lines are switched off.
-;
-(mesh-grid-display-threshold 3)
-
-; force-boundingbox string
-;
-; Controls if the entire bounding box of a symbol is used when figuring out
-; whichend of the pin is considered the active port.  Enable this when 
-; gschem is guessing incorrectly.
-;
-(force-boundingbox "disabled")
-;(force-boundingbox "enabled")
-
-
-; add-attribute-offset integer
-;
-; This has not been implemented/debugged yet.  
-; This has not been implemented/debugged yet.  
-; This has not been implemented/debugged yet.  
-;
-; Controls a offset which is added to the location of text items that are
-; added to an object as an attribute.  This offset is added when the following
-; conditions occur:
-;
-;  1) Add/Attribute... has been invoked via the hotkey
-;  2) It is the the "netname" attribute being added
-;  3) It is being attached to a horizontal or vertical net segment
-;  4) The initial mouse position is at or near the actual net (with one
-;     grid unit).
-;
-; If these four conditions are not met, then this offset is not added. 
-;(add-attribute-offset 50)
-
+;END ====================>  Undo Sub-System  <======================
 
 ; reset-componet-library
 ;
@@ -821,33 +936,23 @@
 ;
 ; (reset-component-library)
 
-
-; reset-source-library
-;
-; When reset-source-library is executed, then all known source library
-; paths are erased.  This is useful if the user wants to override all the
-; system provided paths and provide his/her own set.  Normally this is not
-; commented in.
-;
-; (reset-source-library)
-
+;----------------------------------------------------------------------------
 ;
 ; End of mode related keywords
 ;
 
-
 ;
 ; Start of hooks
 ;
+(use-modules (gschem deprecated))
 
-;;
-;; Comment in this scheme code if you want automatic numbering when
+;; Uncomment this scheme code if you want automatic numbering when
 ;; placing new component and copying components.
 ;
 ;(load-from-path "auto-uref.scm")
 ;(add-hook! add-component-hook auto-uref)
 ;(add-hook! copy-component-hook auto-uref)
-;
+
 ;; Define value of page-offset for auto number on insert.
 ;; Refdeses will be numbered from integer multiples of page-offset,
 ;; depending on the lowest refdes value found on the page.
@@ -856,7 +961,6 @@
 ;; Setting to 0 disables the feature.
 ;
 ;(auto-uref-set-page-offset 100)
-
 
 ; Define default pin attributes
 ; Attributes: 
@@ -876,9 +980,6 @@
   (lambda (char)
     (list->string (list char))))
 
-; Attribute autoplacement grid 
-(define autoplace-attributes-grid 50)
-
 ; Load the default position of attributes, for attribute autoplacing 
 ; functions.
 (load-from-path "default-attrib-positions.scm")
@@ -893,8 +994,7 @@
 ; each newly placed pin
 (add-hook! add-pin-hook add-default-pin-attributes)
 
-
-; Comment in this to load the functions to place the attributes automatically.
+; Comment in this to load the functions to place attributes automatically.
 (load-from-path "auto-place-attribs.scm")
 
 ; Autoplace pin text attributes hook. 
@@ -926,23 +1026,23 @@
 ;(add-hook! complex-place-list-changed-hook (lambda (object)
 ;         (autoplace-object-attributes object)) #t)
 
-; Automatically place a titleblock (or other components) when creating
-; a new page.
-; Comment in these lines if you want gschem to automatically place a titleblock
-; when you create a new _empty_ page.
-; Users can customize the default titleblock by adding the following line
-; (without the semi-colons at the beginning) to the gschemrc file:
+;; Automatically place a titleblock (or other components) when creating
+;; a new page.
+;; Comment in these lines if you want gschem to automatically place a titleblock
+;; when you create a new _empty_ page.
+;; Users can customize the default titleblock by adding the following line
+;; (without the semi-colons at the beginning) to the gschemrc file;
 ;; (define default-titleblock "title-A4.sym")
 ;; Change "title-A4.sym" by the name of your prefered titleblock!
 ;
-; If you don't want a titleblock to be added automatically, then add one of 
-; the following lines to your gschemrc file (without the semicolon).
-; There are several ways, so just choose one:
-;   (define default-titleblock "")
-;   (define default-titleblock '())
-;   (define default-titleblock #f)
+;; If you don't want a titleblock to be added automatically, then add one of 
+;; the following lines to your gschemrc file (without the semicolon).
+;; There are several ways, so just choose one;
+;;   (define default-titleblock "")
+;;   (define default-titleblock '())
+;;   (define default-titleblock #f)
 ;
-(define default-titleblock "title-B.sym")
+(define default-titleblock "title-A.sym")
 
 ; Load the regular expressions module
 (if (provided? 'regex)
@@ -960,10 +1060,7 @@
 				   (get-page-filename page)))
 		#t))
 ;      Syntax             Symbol name        X   Y    angle selectable mirrored
-       (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f))
-
-   ;; After adding titleblock, reset page to mark as unchanged.
-   ((@ (geda page) set-page-dirty!) (active-page) #f))
+       (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f)))
 	   #t)
 
 ; Evaluate an expression entered in the magic-colon text box.
@@ -1030,7 +1127,7 @@
 ; guile function which is executed when the stroke is drawn in the
 ; gschem window
 ;
-; Strokes are defined as follows: 
+; Strokes are defined as follows;
 ;
 ; 1  2  3
 ;
@@ -1047,11 +1144,10 @@
 ;
 ; For the most part I went a little overboard on the stroke defs, you 
 ; probably can get away with many less stroke defs, but I'm a very 
-; sloppy stroke drawing person. :-)  Guess my teachers were always 
-; right-- my handwritting was/is awful.
+; sloppy stroke drawing person.
 ;
-; Be careful here, strokes is a rather large list, and make sure you maintain
-; proper ( and )'s.
+; Be careful here, strokes is a rather large list, and make sure you
+; maintain proper ( and )'s.
 ; 
 
 (define strokes
@@ -1159,17 +1255,17 @@
 ;; sequence, and each keystroke consists of a non-modifier key with
 ;; some number of modifiers applied.  Examples:
 ;;
-;;  * (global-set-key "F N" 'file-new-window)
+;;  *(map-keys "F N" 'file-new-window)
 ;;
 ;;    The "New Window" command will be run when an <F> is typed,
 ;;    followed by an <A>.
 ;;
-;;  * (global-set-key "<Control><Shift>A" 'edit-deselect)
+;;  *(map-keys "<Control><Shift>A" 'edit-deselect)
 ;;
 ;;    The "Deselect All" command will be run when the <Ctrl> and
 ;;    <Shift> keys are held down, and the <A> key is pressed.
 ;;
-;;  * (global-set-key "O <Shift>S" 'options-snapsize)
+;;  *(map-keys "O <Shift>S" 'options-snapsize)
 ;;
 ;;    The "Snap Size" dialog box will be shown when an <O> is typed,
 ;;    followed by an <S> typed with the <Shift> key held down.
@@ -1180,165 +1276,164 @@
 ;;
 ;; Later keybindings override earlier ones.
 
-(global-set-key "A C" 'add-component)
-(global-set-key "A A" 'add-attribute-hotkey)
-(global-set-key "A N" 'add-net-hotkey)
-(global-set-key "A U" 'add-bus-hotkey)
-(global-set-key "A T" 'add-text)
-(global-set-key "A L" 'add-line-hotkey)
-(global-set-key "A B" 'add-box-hotkey)
-(global-set-key "A I" 'add-circle-hotkey)
-(global-set-key "A R" 'add-arc-hotkey)
-(global-set-key "A P" 'add-pin-hotkey)
-(global-set-key "A G" 'add-picture-hotkey)
+(map-keys "A C" "add-component")
+(map-keys "A A" "add-attribute-hotkey")
+(map-keys "A N" "add-net-hotkey")
+(map-keys "A U" "add-bus-hotkey")
+(map-keys "A T" "add-text")
+(map-keys "A L" "add-line-hotkey")
+(map-keys "A B" "add-box-hotkey")
+(map-keys "A I" "add-circle-hotkey")
+(map-keys "A R" "add-arc-hotkey")
+(map-keys "A P" "add-pin-hotkey")
+(map-keys "A G" "add-picture-hotkey")
 
-(global-set-key "<Control>A" 'edit-select-all)
-(global-set-key "<Control><Shift>A" 'edit-deselect)
+(map-keys "<Control>A" "edit-select-all")
+(map-keys "<Control><Shift>A" "edit-deselect")
 
-(global-set-key "B" 'add-box-hotkey)
-(global-set-key "<Shift>B" 'add-bus-hotkey)
-(global-set-key "C" 'edit-copy-hotkey)
-(global-set-key "<Control>C" 'clipboard-copy)
-(global-set-key "D" 'edit-delete)
+(map-keys "B" "add-box-hotkey")
+(map-keys "<Shift>B" "add-bus-hotkey")
+(map-keys "C" "edit-copy-hotkey")
+(map-keys "<Control>C" "clipboard-copy")
+(map-keys "D" "edit-delete")
 
-(global-set-key "E <Shift>U" 'edit-undo)
-(global-set-key "E <Shift>R" 'edit-redo)
-(global-set-key "E S" 'edit-select)
-(global-set-key "E C" 'edit-copy-hotkey)
-(global-set-key "E E" 'edit-edit)
-(global-set-key "E Y" 'edit-mcopy-hotkey)
-(global-set-key "E X" 'edit-text)
-(global-set-key "E M" 'edit-move-hotkey)
-(global-set-key "E D" 'edit-delete)
-(global-set-key "E R" 'edit-rotate-90-hotkey)
-(global-set-key "E I" 'edit-mirror-hotkey)
-(global-set-key "E <Shift>S" 'edit-slot)
-(global-set-key "E O" 'edit-color)
-(global-set-key "E L" 'edit-lock)
-(global-set-key "E <Shift>L" 'edit-unlock)
-(global-set-key "E W" 'edit-linetype)
-(global-set-key "E F" 'edit-filltype)
-(global-set-key "E T" 'edit-translate)
-(global-set-key "E <Shift>colon" 'edit-invoke-macro)
-(global-set-key "E B" 'edit-embed)
-(global-set-key "E U" 'edit-unembed)
-(global-set-key "E P" 'edit-update)
-(global-set-key "E N" 'edit-show-hidden)
+(map-keys "E <Shift>U" "edit-undo")
+(map-keys "E <Shift>R" "edit-redo")
+(map-keys "E S" "edit-select")
+(map-keys "E C" "edit-copy-hotkey")
+(map-keys "E E" "edit-edit")
+(map-keys "E Y" "edit-mcopy-hotkey")
+(map-keys "E X" "edit-text")
+(map-keys "E M" "edit-move-hotkey")
+(map-keys "E D" "edit-delete")
+(map-keys "E R" "edit-rotate-90-hotkey")
+(map-keys "E I" "edit-mirror-hotkey")
+(map-keys "E <Shift>S" "edit-slot")
+(map-keys "E O" "edit-color")
+(map-keys "E L" "edit-lock")
+(map-keys "E <Shift>L" "edit-unlock")
+(map-keys "E W" "edit-linetype")
+(map-keys "E F" "edit-filltype")
+(map-keys "E T" "edit-translate")
+(map-keys "E <Shift>colon" "edit-invoke-macro")
+(map-keys "E B" "edit-embed")
+(map-keys "E U" "edit-unembed")
+(map-keys "E P" "edit-update")
+(map-keys "E N" "edit-show-hidden")
 
-(global-set-key "F W" 'file-new-window)
-(global-set-key "F N" 'file-new)
-(global-set-key "F O" 'file-open)
-(global-set-key "F S" 'file-save)
-(global-set-key "F E" 'page-close)
-(global-set-key "F A" 'file-save-as)
-(global-set-key "F L" 'file-save-all)
-(global-set-key "F P" 'file-print)
-(global-set-key "F R" 'page-revert)
-(global-set-key "F I" 'file-image)
-(global-set-key "F T" 'file-script)
-(global-set-key "F C" 'file-close-window)
-(global-set-key "F Q" 'file-quit)
+(map-keys "F W" "file-new-window")
+(map-keys "F N" "file-new")
+(map-keys "F O" "file-open")
+(map-keys "F S" "file-save")
+(map-keys "F E" "page-close")
+(map-keys "F A" "file-save-as")
+(map-keys "F L" "file-save-all")
+(map-keys "F P" "file-print")
+(map-keys "F R" "page-revert")
+(map-keys "F I" "file-image")
+(map-keys "F T" "file-script")
+(map-keys "F C" "file-close-window")
+(map-keys "F Q" "file-quit")
 
-(global-set-key "H A" 'help-about)
-(global-set-key "H M" 'help-manual)
-(global-set-key "H F" 'help-faq)
-(global-set-key "H W" 'help-wiki)
-(global-set-key "H H" 'help-hotkeys)
-(global-set-key "H C" 'hierarchy-documentation)
+(map-keys "H A" "help-about")
+(map-keys "H M" "help-manual")
+(map-keys "H F" "help-faq")
+(map-keys "H W" "help-wiki")
+(map-keys "H H" "help-hotkeys")
+(map-keys "H C" "hierarchy-documentation")
 
-(global-set-key "<Shift>H D" 'hierarchy-down-schematic)
-(global-set-key "<Shift>H S" 'hierarchy-down-symbol)
-(global-set-key "<Shift>H U" 'hierarchy-up)
-(global-set-key "<Shift>H O" 'hierarchy-documentation)
+(map-keys "<Shift>H D" "hierarchy-down-schematic")
+(map-keys "<Shift>H S" "hierarchy-down-symbol")
+(map-keys "<Shift>H U" "hierarchy-up")
+(map-keys "<Shift>H O" "hierarchy-documentation")
 
-(global-set-key "I" 'add-component)
-(global-set-key "L" 'add-line-hotkey)
-(global-set-key "M" 'edit-move-hotkey)
-(global-set-key "N" 'add-net-hotkey)
+(map-keys "I" "add-component")
+(map-keys "L" "add-line-hotkey")
+(map-keys "M" "edit-move-hotkey")
+(map-keys "N" "add-net-hotkey")
 
-(global-set-key "O T" 'options-text-size)
-(global-set-key "O A" 'options-action-feedback)
-(global-set-key "O G" 'options-grid)
-(global-set-key "O S" 'options-snap)
-(global-set-key "O R" 'options-rubberband)
-(global-set-key "O M" 'options-magneticnet)
-(global-set-key "O <Shift>S" 'options-snap-size)
-(global-set-key "O L" 'options-show-log-window)
-(global-set-key "O C" 'options-show-coord-window)
+(map-keys "O T" "options-text-size")
+(map-keys "O A" "options-action-feedback")
+(map-keys "O G" "options-grid")
+(map-keys "O S" "options-snap")
+(map-keys "O R" "options-rubberband")
+(map-keys "O M" "options-magneticnet")
+(map-keys "O <Shift>S" "options-snap-size")
+(map-keys "O L" "options-show-log-window")
+(map-keys "O C" "options-show-coord-window")
 
-(global-set-key "P M" 'page-manager)
-(global-set-key "P N" 'page-next)
-(global-set-key "P P" 'page-prev)
-(global-set-key "P E" 'page-new)
-(global-set-key "P R" 'page-revert)
-(global-set-key "P C" 'page-close)
-(global-set-key "P D" 'page-discard)
-(global-set-key "P <Shift>P" 'page-print)
+(map-keys "P M" "page-manager")
+(map-keys "P N" "page-next")
+(map-keys "P P" "page-prev")
+(map-keys "P E" "page-new")
+(map-keys "P R" "page-revert")
+(map-keys "P C" "page-close")
+(map-keys "P D" "page-discard")
+(map-keys "P <Shift>P" "page-print")
 
-(global-set-key "<Alt>Q" 'file-quit)
-(global-set-key "R" 'view-redraw)
-(global-set-key "<Shift>R" 'edit-redo)
-(global-set-key "S" 'edit-select)
+(map-keys "<Alt>Q" "file-quit")
+(map-keys "R" "view-redraw")
+(map-keys "<Shift>R" "edit-redo")
+(map-keys "S" "edit-select")
 
-(global-set-key "T A" 'attributes-attach)
-(global-set-key "T D" 'attributes-detach)
-(global-set-key "T N" 'attributes-show-name)
-(global-set-key "T V" 'attributes-show-value)
-(global-set-key "T B" 'attributes-show-both)
-(global-set-key "T T" 'attributes-visibility-toggle)
-(global-set-key "T <Shift>F" 'edit-find-text)
-(global-set-key "T H" 'edit-hide-text)
-(global-set-key "T <Shift>H" 'edit-show-text)
-(global-set-key "T U" 'edit-autonumber)
+(map-keys "T A" "attributes-attach")
+(map-keys "T D" "attributes-detach")
+(map-keys "T N" "attributes-show-name")
+(map-keys "T V" "attributes-show-value")
+(map-keys "T B" "attributes-show-both")
+(map-keys "T T" "attributes-visibility-toggle")
+(map-keys "T <Shift>F" "edit-find-text")
+(map-keys "T H" "edit-hide-text")
+(map-keys "T <Shift>H" "edit-show-text")
+(map-keys "T U" "edit-autonumber")
 
-(global-set-key "U" 'edit-undo)
-(global-set-key "<Shift>U" 'edit-undo)
+(map-keys "U" "edit-undo")
+(map-keys "<Shift>U" "edit-undo")
 
-(global-set-key "V R" 'view-redraw)
-(global-set-key "V B" 'view-zoom-box-hotkey)
-(global-set-key "V F" 'view-zoom-full)
-(global-set-key "V E" 'view-zoom-extents)
-(global-set-key "V P" 'view-pan-hotkey)
-(global-set-key "V O" 'view-zoom-out-hotkey)
-(global-set-key "V I" 'view-zoom-in-hotkey)
-(global-set-key "V D" 'view-dark-colors)
-(global-set-key "V L" 'view-light-colors)
-(global-set-key "V W" 'view-bw-colors)
+(map-keys "V R" "view-redraw")
+(map-keys "V B" "view-zoom-box-hotkey")
+(map-keys "V F" "view-zoom-full")
+(map-keys "V E" "view-zoom-extents")
+(map-keys "V P" "view-pan-hotkey")
+(map-keys "V O" "view-zoom-out-hotkey")
+(map-keys "V I" "view-zoom-in-hotkey")
+(map-keys "V D" "view-dark-colors")
+(map-keys "V L" "view-light-colors")
+(map-keys "V W" "view-bw-colors")
 
-(global-set-key "<Control>V" 'clipboard-paste-hotkey)
-(global-set-key "W" 'view-zoom-box-hotkey)
-(global-set-key "X" 'view-pan-hotkey)
-(global-set-key "<Control>X" 'clipboard-cut)
+(map-keys "<Control>V" "clipboard-paste-hotkey")
+(map-keys "W" "view-zoom-box-hotkey")
+(map-keys "X" "view-pan-hotkey")
+(map-keys "<Control>X" "clipboard-cut")
 
-(global-set-key "Y C" 'buffer-copy1)
-(global-set-key "Y U" 'buffer-cut1)
-(global-set-key "Y P" 'buffer-paste1-hotkey)
+(map-keys "Y C" "buffer-copy1")
+(map-keys "Y U" "buffer-cut1")
+(map-keys "Y P" "buffer-paste1-hotkey")
 
-(global-set-key "<Control>Y" 'edit-redo)
-(global-set-key "Z" 'view-zoom-in-hotkey)
-(global-set-key "<Shift>Z" 'view-zoom-out-hotkey)
-(global-set-key "<Control>Z" 'edit-undo)
+(map-keys "<Control>Y" "edit-redo")
+(map-keys "Z" "view-zoom-in-hotkey")
+(map-keys "<Shift>Z" "view-zoom-out-hotkey")
+(map-keys "<Control>Z" "edit-undo")
 
-(global-set-key "Escape" 'cancel)
-(global-set-key "bracketright" 'options-scale-up-snap-size)
-(global-set-key "bracketleft" 'options-scale-down-snap-size)
-(global-set-key "Left" 'view-pan-left)
-(global-set-key "Right" 'view-pan-right)
-(global-set-key "Up" 'view-pan-up)
-(global-set-key "Down" 'view-pan-down)
-(global-set-key "period" 'repeat-last-command)
-(global-set-key "colon" 'edit-invoke-macro)
-(global-set-key "comma" 'misc-misc)
-(global-set-key "equal" 'misc-misc2)
-(global-set-key "plus" 'misc-misc3)
-(global-set-key "Delete" 'edit-delete)
-(global-set-key "greater" 'page-next)
-(global-set-key "Page_Down" 'page-next)
-(global-set-key "less" 'page-prev)
-(global-set-key "Page_Up" 'page-prev)
+(map-keys "Escape" "cancel")
+(map-keys "bracketright" "options-scale-up-snap-size")
+(map-keys "bracketleft" "options-scale-down-snap-size")
+(map-keys "Left" "view-pan-left")
+(map-keys "Right" "view-pan-right")
+(map-keys "Up" "view-pan-up")
+(map-keys "Down" "view-pan-down")
+(map-keys "period" "repeat-last-command")
+(map-keys "colon" "edit-invoke-macro")
+(map-keys "comma" "misc-misc")
+(map-keys "equal" "misc-misc2")
+(map-keys "plus" "misc-misc3")
+(map-keys "Delete" "edit-delete")
+(map-keys "greater" "page-next")
+(map-keys "Page_Down" "page-next")
+(map-keys "less" "page-prev")
+(map-keys "Page_Up" "page-prev")
 
-;
-; Here are the definitions for the top pull down menu bar
+; Definitions for the top pull down menu bar
 ;
 ; The "menu item name" is the name of the item as it will appear in the menu
 ; The "menu action" is the scheme function which is executed when the item
@@ -1364,189 +1459,222 @@
 
 (define file-menu-items
 ;;
-;;          menu item name      menu action             menu hotkey function    menu stock icon
+;;      menu item name      	menu action             menu hotkey function    menu stock icon
 ;;
-        `( (,(N_ "_New")              file-new                file-new                "gtk-new")
-           (,(N_ "_Open...")          file-open               file-open               "gtk-open")
-;; The entry below will be removed from the menu if glib < 2.6 is detected
-           (,(N_ "Open Recen_t")      #f                      #f                      #f)
-           ("SEPARATOR"              #f                      #f                      #f)
-           (,(N_ "_Save")             file-save               file-save               "gtk-save")
-           (,(N_ "Save _As...")       file-save-as            file-save-as            "gtk-save-as")
-           (,(N_ "Save All")          file-save-all           file-save-all           "gtk-save")
-           (,(N_ "_Revert")           page-revert             page-revert             "gtk-revert-to-saved")
-           ("SEPARATOR"              #f                      #f                      #f)
-           (,(N_ "_Print...")         file-print              file-print              "gtk-print")
-           (,(N_ "Write _image...")   file-image              file-image              #f)
-           ("SEPARATOR"              #f                      #f                      #f)
-           (,(N_ "Execute Script...") file-script             file-script             "gtk-execute")
-           ("SEPARATOR"              #f                      #f                      #f)
-           (,(N_ "New Window")        file-new-window         file-new-window         #f)
-           (,(N_ "_Close Window")     file-close-window       file-close-window       "gtk-close")
-           (,(N_ "_Quit")             file-quit               file-quit               "gtk-quit")))
+     `( (,(N_ "_New")      	file-new                file-new                "gtk-new")
+	(,(N_ "_Open...")   	file-open               file-open               "gtk-open")
+
+     ;; The Open Recent will be removed from the menu if glib < 2.6 is detected
+       	(,(N_ "Open Recen_t")	#f              	#f                      #f)
+
+        ("SEPARATOR"         	#f                      #f                      #f)
+        ("_Save"             	file-save               file-save               "gtk-save")
+        ("Save _As..."       	file-save-as            file-save-as            "gtk-save-as")
+        ("Save All"          	file-save-all           file-save-all           "gtk-save")
+        ("_Revert"           	page-revert             page-revert             "gtk-revert-to-saved")
+
+        ("SEPARATOR"         	#f                      #f                      #f)
+        ("_Print..."         	file-print              file-print              "gtk-print")
+        ("Write _image..."  	file-image              file-image              #f)
+
+        ("SEPARATOR"         	#f                      #f                      #f)
+        ("Execute Script..." 	file-script             file-script             "gtk-execute")
+
+        ("SEPARATOR"         	#f                      #f                      #f)
+        ("_Close"            	file-close-window	file-close-window       "gtk-close")
+        ("_Quit"             	file-quit               file-quit               "gtk-quit")
+      )
+)
 
 (define edit-menu-items 
 ;;
-;;          menu item name      menu action             menu hotkey action      menu stock icon
+;;      menu item name      	menu action            menu hotkey action      menu stock icon
 ;;
-        `( (,(N_ "_Undo")              edit-undo              edit-undo               "gtk-undo")
-           (,(N_ "_Redo")              edit-redo              edit-redo               "gtk-redo")
-           ("SEPARATOR"               #f                     #f                      #f)
-           (,(N_ "Cu_t")               clipboard-cut          clipboard-cut           "gtk-cut")
-           (,(N_ "_Copy")              clipboard-copy         clipboard-copy          "gtk-copy")
-           (,(N_ "_Paste")             clipboard-paste-hotkey clipboard-paste-hotkey  "gtk-paste")
-           (,(N_ "_Delete")            edit-delete            edit-delete             "gtk-delete"  )
-           ("SEPARATOR"               #f                     #f                      #f)
-           (,(N_ "Select Mode")        edit-select            edit-select             #f)
-           (,(N_ "Select All")         edit-select-all        edit-select-all         "gtk-select-all")
-           (,(N_ "Deselect")           edit-deselect          edit-deselect           #f)
-           (,(N_ "Copy Mode")          edit-copy              edit-copy-hotkey        #f)
-           (,(N_ "Multiple Copy Mode") edit-mcopy             edit-mcopy-hotkey       #f)
-           (,(N_ "Move Mode")          edit-move              edit-move-hotkey        #f)
-           (,(N_ "Rotate 90 Mode")     edit-rotate-90         edit-rotate-90-hotkey   #f)
-           (,(N_ "Mirror Mode")        edit-mirror            edit-mirror-hotkey      #f)
-           ("SEPARATOR"               #f                     #f                      #f)
-           (,(N_ "Edit...")            edit-edit              edit-edit               #f)
-           (,(N_ "Edit Text...")       edit-text              edit-text               "gtk-edit")
-           (,(N_ "Slot...")            edit-slot              edit-slot               #f)
-           (,(N_ "Color...")           edit-color             edit-color              "gtk-select-color")
-           (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           #f)
-           (,(N_ "Fill Type...")         edit-filltype        edit-filltype           #f)
-           (,(N_ "Symbol Translate...")  edit-translate       edit-translate          #f)
-           (,(N_ "Lock")               edit-lock              edit-lock               #f)
-           (,(N_ "Unlock")             edit-unlock            edit-unlock             #f)
-           ("SEPARATOR"               #f                     #f                      #f)
-           (,(N_ "Invoke Macro")         edit-invoke-macro    edit-invoke-macro       #f)
-           (,(N_ "Embed Component/Picture")    edit-embed     edit-embed              #f)
-           (,(N_ "Unembed Component/Picture")  edit-unembed   edit-unembed            #f)
-           (,(N_ "Update Component")   edit-update            edit-update             "gtk-refresh")
-           (,(N_ "Show/Hide Inv Text") edit-show-hidden       edit-show-hidden        #f)))
+     `( (,(N_ "_Undo")              edit-undo              edit-undo               "gtk-undo")
+        (,(N_ "_Redo")              edit-redo              edit-redo               "gtk-redo")
+
+        ("SEPARATOR"               #f                     #f                      #f)
+        (,(N_ "Cu_t")               clipboard-cut          clipboard-cut           "gtk-cut")
+        (,(N_ "_Copy")              clipboard-copy         clipboard-copy          "gtk-copy")
+        (,(N_ "_Paste")             clipboard-paste-hotkey clipboard-paste-hotkey  "gtk-paste")
+        (,(N_ "_Delete")            edit-delete            edit-delete             "gtk-delete"  )
+
+        ("SEPARATOR"               #f                     #f                      #f)
+        (,(N_ "Select Mode")        edit-select            edit-select             #f)
+        (,(N_ "Select All")         edit-select-all        edit-select-all         "gtk-select-all")
+        (,(N_ "Deselect")           edit-deselect          edit-deselect           #f)
+        (,(N_ "Copy Mode")          edit-copy              edit-copy-hotkey        #f)
+        (,(N_ "Multiple Copy Mode") edit-mcopy             edit-mcopy-hotkey       #f)
+        (,(N_ "Move Mode")          edit-move              edit-move-hotkey        #f)
+        (,(N_ "Rotate 90 Mode")     edit-rotate-90         edit-rotate-90-hotkey   #f)
+        (,(N_ "Mirror Mode")        edit-mirror            edit-mirror-hotkey      #f)
+
+        ("SEPARATOR"               #f                     #f                      #f)
+        (,(N_ "Edit...")            edit-edit              edit-edit               #f)
+        (,(N_ "Edit Text...")       edit-text              edit-text               "gtk-edit")
+        (,(N_ "Slot...")            edit-slot              edit-slot               #f)
+        (,(N_ "Color...")           edit-color             edit-color              "gtk-select-color")
+        (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           #f)
+        (,(N_ "Fill Type...")         edit-filltype        edit-filltype           #f)
+        (,(N_ "Symbol Translate...")  edit-translate       edit-translate          #f)
+        (,(N_ "Lock")               edit-lock              edit-lock               #f)
+        (,(N_ "Unlock")             edit-unlock            edit-unlock             #f)
+
+        ("SEPARATOR"               #f                     #f                      #f)
+        (,(N_ "Invoke Macro")       edit-invoke-macro      edit-invoke-macro       #f)
+        (,(N_ "Embed Component/Picture")    edit-embed     edit-embed              #f)
+        (,(N_ "Unembed Component/Picture")  edit-unembed   edit-unembed            #f)
+        (,(N_ "Update Component")   edit-update            edit-update             "gtk-refresh")
+        (,(N_ "Show/Hide Inv Text") edit-show-hidden       edit-show-hidden        #f)
+      )
+)
 
 (define buffer-menu-items 
 ;;
-;;          menu item name      menu action             menu hotkey action      menu stock icon
+;;      menu item name		menu action             menu hotkey action      menu stock icon
 ;;
-	`( (,(N_ "Copy into 1")	buffer-copy1       	buffer-copy1)
-	   (,(N_ "Copy into 2")	buffer-copy2       	buffer-copy2)
-	   (,(N_ "Copy into 3")	buffer-copy3       	buffer-copy3)
-	   (,(N_ "Copy into 4")	buffer-copy4       	buffer-copy4)
-	   (,(N_ "Copy into 5")	buffer-copy5       	buffer-copy5)
-	   (,(N_ "Cut into 1")	buffer-cut1       	buffer-cut1)
-	   (,(N_ "Cut into 2")	buffer-cut2       	buffer-cut2)
-	   (,(N_ "Cut into 3")	buffer-cut3       	buffer-cut3)
-	   (,(N_ "Cut into 4")	buffer-cut4       	buffer-cut4)
-	   (,(N_ "Cut into 5")	buffer-cut5       	buffer-cut5)
-	   (,(N_ "Paste from 1")	buffer-paste1-hotkey    buffer-paste1-hotkey)
-	   (,(N_ "Paste from 2")	buffer-paste2-hotkey    buffer-paste2-hotkey)
-	   (,(N_ "Paste from 3")	buffer-paste3-hotkey    buffer-paste3-hotkey)
-	   (,(N_ "Paste from 4")	buffer-paste4-hotkey    buffer-paste4-hotkey)
-	   (,(N_ "Paste from 5")	buffer-paste5-hotkey    buffer-paste5-hotkey)))
+     `( (,(N_ "Copy into 1")	buffer-copy1       	buffer-copy1)
+	(,(N_ "Copy into 2")	buffer-copy2       	buffer-copy2)
+	(,(N_ "Copy into 3")	buffer-copy3       	buffer-copy3)
+	(,(N_ "Copy into 4")	buffer-copy4       	buffer-copy4)
+	(,(N_ "Copy into 5")	buffer-copy5       	buffer-copy5)
+	(,(N_ "Cut into 1")	buffer-cut1       	buffer-cut1)
+	(,(N_ "Cut into 2")	buffer-cut2       	buffer-cut2)
+	(,(N_ "Cut into 3")	buffer-cut3       	buffer-cut3)
+	(,(N_ "Cut into 4")	buffer-cut4       	buffer-cut4)
+	(,(N_ "Cut into 5")	buffer-cut5       	buffer-cut5)
+	(,(N_ "Paste from 1")	buffer-paste1-hotkey    buffer-paste1-hotkey)
+	(,(N_ "Paste from 2")	buffer-paste2-hotkey    buffer-paste2-hotkey)
+	(,(N_ "Paste from 3")	buffer-paste3-hotkey    buffer-paste3-hotkey)
+	(,(N_ "Paste from 4")	buffer-paste4-hotkey    buffer-paste4-hotkey)
+	(,(N_ "Paste from 5")	buffer-paste5-hotkey    buffer-paste5-hotkey)
+      )
+)
 
 (define view-menu-items 
 ;;
-;;          menu item name        menu action             menu hotkey action      menu stock icon
+;;      menu item name        	     menu action             menu hotkey action      menu stock icon
 ;;
-        `( (,(N_ "_Redraw")             view-redraw             view-redraw             "gtk-refresh")
-           (,(N_ "_Pan")                view-pan                view-pan-hotkey         #f)
-           (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey    #f)
-           (,(N_ "Zoom _Extents")       view-zoom-extents       view-zoom-extents       "gtk-zoom-fit")
-           (,(N_ "Zoom _In")            view-zoom-in            view-zoom-in-hotkey     "gtk-zoom-in")
-           (,(N_ "Zoom _Out")           view-zoom-out           view-zoom-out-hotkey    "gtk-zoom-out")
-           (,(N_ "Zoom _Full")          view-zoom-full          view-zoom-full          #f)
-           ("SEPARATOR"                #f                      #f                      #f)
-           (,(N_ "_Dark color scheme")  view-dark-colors        view-dark-colors        #f)
-           (,(N_ "_Light color scheme") view-light-colors       view-light-colors       #f)
-           (,(N_ "B_W color scheme")    view-bw-colors          view-bw-colors          #f)
-         ))
+     `( (,(N_ "_Redraw")             view-redraw             view-redraw             "gtk-refresh")
+        (,(N_ "_Pan")                view-pan                view-pan-hotkey         #f)
+        (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey    #f)
+        (,(N_ "Zoom _Extents")       view-zoom-extents       view-zoom-extents       "gtk-zoom-fit")
+        (,(N_ "Zoom _In")            view-zoom-in            view-zoom-in-hotkey     "gtk-zoom-in")
+        (,(N_ "Zoom _Out")           view-zoom-out           view-zoom-out-hotkey    "gtk-zoom-out")
+        (,(N_ "Zoom _Full")          view-zoom-full          view-zoom-full          #f)
+
+        ("SEPARATOR"                #f                      #f                       #f)
+        (,(N_ "_Dark color scheme")  view-dark-colors        view-dark-colors        #f)
+        (,(N_ "_Light color scheme") view-light-colors       view-light-colors       #f)
+        (,(N_ "B_W color scheme")    view-bw-colors          view-bw-colors          #f)
+      )
+)
 
 (define page-menu-items 
 ;;
-;;          menu item name      menu action             menu hotkey action      menu stock icon
+;;      menu item name             menu action             menu hotkey action      menu stock icon
 ;;
-        `( (,(N_ "_Manager...")       page-manager            page-manager            #f)
-           (,(N_ "_Previous")         page-prev               page-prev               "gtk-go-back")
-           (,(N_ "_Next")             page-next               page-next               "gtk-go-forward")
-           (,(N_ "Ne_w")              page-new                page-new                "gtk-new")
-           (,(N_ "_Revert")           page-revert             page-revert             "gtk-revert-to-saved")
-           (,(N_ "_Close")            page-close              page-close              "gtk-close")
-           ("SEPARATOR"              #f                      #f                      #f)
-           (,(N_ "_Discard")          page-discard            page-discard            "gtk-discard")))
+     `( (,(N_ "_Manager...")       page-manager            page-manager            #f)
+        (,(N_ "_Previous")         page-prev               page-prev               "gtk-go-back")
+        (,(N_ "_Next")             page-next               page-next               "gtk-go-forward")
+        (,(N_ "Ne_w")              page-new                page-new                "gtk-new")
+        (,(N_ "_Revert")           page-revert             page-revert             "gtk-revert-to-saved")
+        (,(N_ "_Close")            page-close              page-close              "gtk-close")
+
+        ("SEPARATOR"              #f                      #f                      #f)
+        (,(N_ "_Discard")          page-discard            page-discard            "gtk-discard")
+      )
+)
 
 (define add-menu-items 
 ;;
-;;          menu item name      menu action             menu hotkey action      menu stock icon
+;;      menu item name      	   menu action             menu hotkey action      menu stock icon
 ;;
-	`( (,(N_ "_Component...")     add-component       	add-component)
-	   (,(N_ "_Net")              add-net	  	     	add-net-hotkey)
-	   (,(N_ "B_us")              add-bus	  	     	add-bus-hotkey)
-	   (,(N_ "_Attribute...")     add-attribute  	     	add-attribute-hotkey)
-	   (,(N_ "_Text...")          add-text  	     	add-text)
-	   ("SEPARATOR"              #f                      #f)
-	   (,(N_ "_Line")             add-line  	     	add-line-hotkey)
-	   (,(N_ "_Box")              add-box  	     	add-box-hotkey)
-	   (,(N_ "C_ircle")           add-circle  	     	add-circle-hotkey)
-	   (,(N_ "A_rc")              add-arc  	     	add-arc-hotkey)
-	   (,(N_ "_Pin")              add-pin  	     	add-pin-hotkey)
-	   (,(N_ "Pictu_re...")       add-picture  	     	add-picture-hotkey)))
+     `( (,(N_ "_Component...")     add-component       	   add-component)
+	(,(N_ "_Net")              add-net	  	   add-net-hotkey)
+	(,(N_ "B_us")              add-bus	  	   add-bus-hotkey)
+	(,(N_ "_Attribute...")     add-attribute  	   add-attribute-hotkey)
+	(,(N_ "_Text...")          add-text  	     	   add-text)
+
+	("SEPARATOR"              #f                      #f)
+	(,(N_ "_Line")             add-line  	     	   add-line-hotkey)
+	(,(N_ "_Box")              add-box  	     	   add-box-hotkey)
+	(,(N_ "C_ircle")           add-circle  	     	   add-circle-hotkey)
+	(,(N_ "A_rc")              add-arc  	     	   add-arc-hotkey)
+	(,(N_ "_Pin")              add-pin  	     	   add-pin-hotkey)
+	(,(N_ "Pictu_re...")       add-picture  	   add-picture-hotkey)
+      )
+)
 
 (define hierarchy-menu-items 
 ;;
-;;          menu item name      menu action               menu hotkey action        menu stock icon
+;;      menu item name             menu action               menu hotkey action        menu stock icon
 ;;
-        `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  hierarchy-down-schematic  "gtk-go-down")
-           (,(N_ "Down _Symbol")      hierarchy-down-symbol     hierarchy-down-symbol     "gtk-goto-bottom")
-           (,(N_ "_Up")               hierarchy-up              hierarchy-up              "gtk-go-up")
-           (,(N_ "D_ocumentation...") hierarchy-documentation   hierarchy-documentation   #f)))
+     `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  hierarchy-down-schematic  "gtk-go-down")
+	(,(N_ "Down _Symbol")      hierarchy-down-symbol     hierarchy-down-symbol     "gtk-goto-bottom")
+        (,(N_ "_Up")               hierarchy-up              hierarchy-up              "gtk-go-up")
+        (,(N_ "D_ocumentation...") hierarchy-documentation   hierarchy-documentation   #f)
+      )
+)
 
 (define attributes-menu-items 
 ;;
-;;          menu item name      menu action             menu hotkey action      menu stock icon
+;;      menu item name      	   menu action             menu hotkey action      menu stock icon
 ;;
-        `( (,(N_ "_Attach")           attributes-attach       attributes-attach       #f)
-           (,(N_ "_Detach")           attributes-detach       attributes-detach       #f)
-           (,(N_ "Show _Value")       attributes-show-value   attributes-show-value   #f)
-           (,(N_ "Show _Name")        attributes-show-name    attributes-show-name    #f)
-           (,(N_ "Show _Both")        attributes-show-both    attributes-show-both    #f)
-           (,(N_ "_Toggle Visibility")  attributes-visibility-toggle
-                                  attributes-visibility-toggle                  #f)
-           (,(N_ "_Find Specific Text...")  edit-find-text    edit-find-text          "gtk-find")
-           (,(N_ "_Hide Specific Text...")  edit-hide-text    edit-hide-text          #f)
-           (,(N_ "_Show Specific Text...")  edit-show-text    edit-show-text          #f)
-           (,(N_ "A_utonumber Text...")     edit-autonumber   edit-autonumber         #f)))
+     `( (,(N_ "_Attach")           attributes-attach       attributes-attach       #f)
+        (,(N_ "_Detach")           attributes-detach       attributes-detach       #f)
+        (,(N_ "Show _Value")       attributes-show-value   attributes-show-value   #f)
+        (,(N_ "Show _Name")        attributes-show-name    attributes-show-name    #f)
+        (,(N_ "Show _Both")        attributes-show-both    attributes-show-both    #f)
+        (,(N_ "_Toggle Visibility")  attributes-visibility-toggle
+                                     attributes-visibility-toggle                  #f)
+        (,(N_ "_Find Specific Text...")  edit-find-text    edit-find-text          "gtk-find")
+        (,(N_ "_Hide Specific Text...")  edit-hide-text    edit-hide-text          #f)
+        (,(N_ "_Show Specific Text...")  edit-show-text    edit-show-text          #f)
+        (,(N_ "A_utonumber Text...")     edit-autonumber   edit-autonumber         #f)
+      )
+)
 
 (define options-menu-items 
 ;;
-;;          menu item name      menu action             menu hotkey action      menu stock icon
+;;      menu item name      		menu action             menu hotkey action      menu stock icon
 ;;
-	`( (,(N_ "_Text Size...")	options-text-size       options-text-size)
-	   (,(N_ "Cycle _grid styles")  options-grid           options-grid)
-	   (,(N_ "Toggle _Snap On/Off") options-snap       	options-snap)
-	   (,(N_ "Snap Grid S_pacing...") options-snap-size   	options-snap-size)
-    	   (,(N_ "Scale _up Grid Spacing") options-scale-up-snap-size 
-						    options-scale-up-snap-size)
-    	   (,(N_ "Scale _down Grid Spacing") options-scale-down-snap-size
-						  options-scale-down-snap-size)
-	   (,(N_ "Toggle _Outline/Box")   options-action-feedback   	
-				   options-action-feedback)
-	   (,(N_ "Toggle Net _Rubberband") options-rubberband   options-rubberband)
-	   (,(N_ "Toggle _Magnetic Net") options-magneticnet options-magneticnet)
-	   (,(N_ "Show _Log Window...")    options-show-log-window   
-	 			    options-show-log-window)
-	   (,(N_ "Show _Coord Window...")   options-show-coord-window   
-				     options-show-coord-window)))
+     `( (,(N_ "_Text Size...")		options-text-size       options-text-size)
+	(,(N_ "Cycle _grid styles")     options-grid            options-grid)
+	(,(N_ "Toggle _Snap On/Off")    options-snap       	options-snap)
+	(,(N_ "Snap Grid S_pacing...")  options-snap-size   	options-snap-size)
+	(,(N_ "Scale _up Grid Spacing") options-scale-up-snap-size 
+					options-scale-up-snap-size)
+	(,(N_ "Scale _down Grid Spacing") options-scale-down-snap-size
+					  options-scale-down-snap-size)
+	(,(N_ "Toggle _Outline/Box")    options-action-feedback   	
+				        options-action-feedback)
+	(,(N_ "Toggle Net _Rubberband") options-rubberband   	options-rubberband)
+	(,(N_ "Toggle _Magnetic Net")   options-magneticnet 	options-magneticnet)
+	(,(N_ "Show _Log Window...")    options-show-log-window   
+	 			    	options-show-log-window)
+	(,(N_ "Show _Coord Window...")  options-show-coord-window   
+				     	options-show-coord-window)
+	("SEPARATOR"           	       #f                      #f                 #f)
+	("Con_figure settings..."   	configure-settings   	configure-settings)
+      )
+)
 
 (define help-menu-items 
 ;;
-;;          menu item name                menu action               menu hotkey action        menu stock icon
+;;      menu item name                menu action               menu hotkey action        menu stock icon
 ;;
-        `(
-           (,(N_ "gEDA Docu_mentation...") help-manual               help-manual               "gtk-help")
-           (,(N_ "gschem _FAQ...")         help-faq                  help-faq                  #f)
-           (,(N_ "gEDA _Wiki...")          help-wiki                 help-wiki                 #f)
-           (,(N_ "Component D_ocumentation...") hierarchy-documentation   hierarchy-documentation   #f)
-           ("SEPARATOR"                   #f                        #f                        #f)
-           (,(N_ "_Hotkeys...")            help-hotkeys              help-hotkeys              #f)
-           (,(N_ "_About...")              help-about                help-about                "gtk-about")))
+     `(
+	(,(N_ "gEDA Docu_mentation...") help-manual               help-manual               "gtk-help")
+	(,(N_ "gschem _FAQ...")         help-faq                  help-faq                  #f)
+	(,(N_ "gEDA _Wiki...")          help-wiki                 help-wiki                 #f)
+	(,(N_ "Component D_ocumentation...")
+                                        hierarchy-documentation   hierarchy-documentation   #f)
+	("SEPARATOR"                   #f                        #f                         #f)
+	(,(N_ "_Hotkeys...")            help-hotkeys              help-hotkeys              #f)
+	(,(N_ "_About...")              help-about                help-about                "gtk-about")
+      )
+)
 
 ;
 ; Now actually add the menus.  The order here defines the order in which
@@ -1560,13 +1688,16 @@
 (add-menu (N_ "_Add") add-menu-items)
 (add-menu (N_ "Hie_rarchy") hierarchy-menu-items)
 (add-menu (N_ "A_ttributes") attributes-menu-items)
+
+;; Add Paul Tan's tools utility menu
+;(load-from-path "gschem-tools-menu.scm")
+
 (add-menu (N_ "_Options") options-menu-items)
 (add-menu (N_ "_Help") help-menu-items)
 
 ;
 ; End of keymapping related keywords
 ;
-
 
 ;;
 ;; Major modes

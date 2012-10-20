@@ -1,3 +1,7 @@
+2012-10-18 Wiley E Hill  <wileyhill@gmail.com>
+
+	* symbols/: Relocate symbols/documentation to docs/symbols
+
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* scripts/postproc.sh, removedups.sh: Fixed/improved the wiki

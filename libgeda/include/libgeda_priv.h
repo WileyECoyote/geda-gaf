@@ -5,6 +5,8 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 #include <glib/gstdio.h>
 
+#include <geda.h>
+
 /* Public libgeda headers */
 #include "defines.h"
 #include "struct.h"

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -146,6 +146,7 @@ void main_prog(void *closure, int argc, char *argv[])
   int argv_index;
   int first_page = 1;
   char *filename;
+  char tmpfilename[MAX_PATH];
   SCM scm_tmp;
 
 #ifdef HAVE_GTHREAD
@@ -178,19 +179,6 @@ void main_prog(void *closure, int argc, char *argv[])
   cwd = g_get_current_dir();
   
   libgeda_init();
-
-  /* create log file right away even if logging is enabled */
-  s_log_init ("gschem");
-
-  s_log_message(
-                _("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
-                PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
-  s_log_message(
-                _("gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n"));
-  s_log_message(
-                _("This is free software, and you are welcome to redistribute it under certain\n"));
-  s_log_message(
-                _("conditions; please see the COPYING file for more details.\n\n")); 
 
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, _("This is the MINGW32 port.\n"));
@@ -260,16 +248,18 @@ void main_prog(void *closure, int argc, char *argv[])
    * we can take advantage of that.  */
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
   if (scm_is_false (scm_tmp)) {
-    s_log_message (_("Couldn't find init scm file [%s]\n"), "gschem.scm");
+    s_log_message (_("Couldn't find init scm file \"gschem.scm\"\n"));
   }
-  input_str = scm_to_utf8_string (scm_tmp);
-  if (g_read_file(w_current->toplevel, input_str, NULL)) {
-    s_log_message(_("Read init scm file [%s]\n"), input_str);
-  } else {
-    /*! \todo These two messages are the same. Should be
-     * integrated. */
-    s_log_message(_("Failed to read init scm file [%s]\n"),
+  else {
+    input_str = scm_to_utf8_string (scm_tmp);
+    if (g_read_file(w_current->toplevel, input_str, NULL)) {
+      s_log_message(_("Read init scm file [%s]\n"), input_str);
+    } else {
+      /*! \todo These two messages are the same. Should be
+       * integrated. */
+      s_log_message(_("Failed to read init scm file [%s]\n"),
                   input_str);
+    }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
@@ -277,6 +267,34 @@ void main_prog(void *closure, int argc, char *argv[])
   /* Now read in RC files. */
   g_rc_parse_gtkrc();
   x_rc_parse_gschem (w_current, rc_filename);
+
+  auto_load_last = default_auto_load_last;
+
+  /*TODO: All of this logging stuff should be relocated to Lib */
+  /* Now that the initialization files have been processed, retrieve the log settings. */
+  logging         = default_logging;
+  log_destiny     = default_log_destiny;
+  log_window      = default_log_window;
+  log_window_type = default_log_window_type;
+
+  if (logging == TRUE) {
+    s_log_init ("gschem");
+
+    /* see if open up log window on startup  */
+    if (log_window == MAP_ON_STARTUP) {  /* This assumes MAP to Window */
+      x_log_open ();
+    }
+    /* now we can spam the log */
+    s_log_message(_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
+                     PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
+  }
+  else
+    s_log_message("Logging system is disabled");
+
+  /* Load recent files list. This must be done
+   * before calling x_window_setup(). */
+  recent_files_load();
+  gschem_atexit(recent_files_save, NULL);
 
   /* Set default icon */
   x_window_set_default_icon();
@@ -299,6 +317,28 @@ void main_prog(void *closure, int argc, char *argv[])
       filename = g_build_filename (cwd, argv[i], NULL);
     }
 
+    /* if filename is not valid */
+    if( access( filename, F_OK ) == -1 ) {
+      /* See if user left off file suffix */
+      if (strcmp (get_filename_ext(filename), SCHEMATIC_FILE_SUFFIX) != 0)
+      {
+        /* Check if file name is valid if ".sch" is added */
+        strcpy(tmpfilename, filename);
+        if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+          filename = tmpfilename;
+          s_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+        } else
+        {
+          /* Check if file name is valid if ".sym" is added */
+          strcpy(tmpfilename, filename);
+          if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+            filename = tmpfilename;
+            s_log_message("Assumming symbol file name for [%s]\n", basename (filename));
+          }
+        }
+      }
+    }
+
     if ( first_page )
       first_page = 0;
 
@@ -308,16 +348,26 @@ void main_prog(void *closure, int argc, char *argv[])
      * f_open (called by x_window_open_page). This works for Linux and MINGW32.
      */
     x_window_open_page(w_current, filename);
-    g_free (filename);
+
+    /* Free the pointer if we did not redirected */
+    if ( filename != tmpfilename )
+        g_free (filename);
+  }
+
+  /* Check and do Auto Load - only works if empty commandline */
+  if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
+      s_log_message("Auto loading . . .\n"); /* Log what we did */
+      x_window_open_page(w_current, recent_files_last());
+  }
+  else
+  {   /* If no page has been loaded (wasn't specified in the command line.) */
+      /* Then create an untitled page */
+      if ( first_page ) {
+        x_window_open_page( w_current, NULL );
+     }
   }
 
   g_free(cwd);
-
-  /* If no page has been loaded (wasn't specified in the command line.) */
-  /* Then create an untitled page */
-  if ( first_page ) {
-    x_window_open_page( w_current, NULL );
-  }
 
   /* Update the window to show the current page */
   x_window_set_current_page( w_current, w_current->toplevel->page_current );
@@ -329,11 +379,6 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* Run post-load expressions */
   g_scm_eval_protected (s_post_load_expr, scm_current_module ());
-
-  /* open up log window on startup */
-  if (w_current->log_window == MAP_ON_STARTUP) {
-    x_log_open ();
-  }
 
   /* if there were any symbols which had major changes, put up an error */
   /* dialog box */

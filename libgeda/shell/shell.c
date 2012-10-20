@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
-
+#include <geda.h>
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 

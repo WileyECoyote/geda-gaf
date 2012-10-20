@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist 
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,8 +23,8 @@
 #include <version.h>
 
 #include <stdio.h>
-#include <ctype.h>
-#include <sys/stat.h>
+//#include <ctype.h>
+//#include <sys/stat.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -34,16 +34,12 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/i_vars.h"
 #include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 SCM g_rc_gnetlist_version(SCM scm_version)
 {

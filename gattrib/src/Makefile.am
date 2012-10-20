@@ -1,6 +1,8 @@
 ## Process this file with automake to produce Makefile.in
 ## This Makefile.am created for gattrib by SDB 12.13.2003
 
+AM_CFLAGS=-I$(top_builddir)/include -Wall
+
 bin_PROGRAMS = gattrib
 
 ## don't forget all *.h files */
@@ -33,7 +35,7 @@ gattrib_SOURCES = \
 
 gattrib_CPPFLAGS = -I$(top_srcdir)/libgeda/include \
 	-I$(srcdir)/../include -I$(top_srcdir) -I$(includedir)
-gattrib_CFLAGS = $(GCC_CFLAGS) $(GLIB_CFLAGS) \
+gattrib_CFLAGS = $(GCC_CFLAGS) $(AM_CFLAGS) $(GLIB_CFLAGS) \
 	$(MINGW_CFLAGS) \
 	$(GTK_CFLAGS) $(GTHREAD_CFLAGS) $(GUILE_CFLAGS)
 gattrib_LDFLAGS = $(GLIB_LIBS) $(GTK_LIBS) $(GTHREAD_LIBS) \

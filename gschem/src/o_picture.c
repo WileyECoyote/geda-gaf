@@ -315,7 +315,7 @@ void o_picture_draw (GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
   if (pixbuf == NULL) pixbuf = o_picture_get_fallback_pixbuf (w_current->toplevel);
   /* If the fallback image failed to load, draw a box with a cross in it. */
   if (pixbuf == NULL) {
-    int line_width = (w_current->toplevel->line_style == THICK) ? LINE_WIDTH : 2;
+    int line_width = o_style_get_line_width(w_current->toplevel);
     gschem_cairo_set_source_color (w_current,
                                    o_drawing_color (w_current, o_current));
     gschem_cairo_box (w_current, line_width,

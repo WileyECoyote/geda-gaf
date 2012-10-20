@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,8 +49,7 @@ void o_pin_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
     return;
   }
 
-  if (toplevel->pin_style == THICK)
-    size = o_current->line_width;
+  size = o_style_get_pin_width(toplevel, o_current->pin_type);
 
   end = o_get_line_end (toplevel->print_output_capstyle);
 
@@ -72,7 +71,6 @@ void o_pin_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
   }
 }
 
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -80,15 +78,13 @@ void o_pin_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
  */
 void o_pin_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *o_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
   int size = 0;
 
   if (o_current->line == NULL) {
     return;
   }
 
-  if (toplevel->pin_style == THICK)
-    size = o_current->line_width;
+  size = o_current->line_width;
 
   gschem_cairo_line (w_current, END_NONE, size,
                      o_current->line->x[0] + dx, o_current->line->y[0] + dy,
@@ -143,6 +139,7 @@ void o_pin_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
                       w_current->first_wx, w_current->first_wy,
                       w_current->second_wx, w_current->second_wy,
                       PIN_TYPE_NET, 0);
+  new_obj->line_width = o_style_get_pin_width(toplevel, PIN_TYPE_NET);
   s_page_append (toplevel, toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */
@@ -186,7 +183,6 @@ void o_pin_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  */
 void o_pin_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
   int x1, y1, x2, y2;
   int min_x, min_y, max_x, max_y;
   int bloat = 0;
@@ -195,9 +191,8 @@ void o_pin_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
 
   /* Pins are always first created as net pins, use net pin width */
-  if (toplevel->net_style == THICK ) {
-    bloat = SCREENabs (w_current, PIN_WIDTH_NET) / 2;
-  }
+  bloat = o_style_get_pin_width(w_current->toplevel, PIN_TYPE_NET);
+  bloat = SCREENabs (w_current, bloat / 2);
 
   min_x = min (x1, x2) - bloat;
   max_x = max (x1, x2) + bloat;
@@ -206,7 +201,6 @@ void o_pin_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
 
   o_invalidate_rect (w_current, min_x, min_y, max_x, max_y);
 }
-
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -218,8 +212,7 @@ void o_pin_draw_rubber (GSCHEM_TOPLEVEL *w_current)
   int size = 0;
 
   /* Pins are always first created as net pins, use net pin width */
-  if (w_current->toplevel->net_style == THICK)
-    size = PIN_WIDTH_NET;
+  size = o_style_get_pin_width(w_current->toplevel, PIN_TYPE_NET);
 
   gschem_cairo_line (w_current, END_NONE, size,
                      w_current->first_wx,  w_current->first_wy,

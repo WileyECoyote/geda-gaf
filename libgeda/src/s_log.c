@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,8 +48,7 @@
 /*! Default setting for log update callback function. */
 void (*x_log_update_func)() = NULL;
 
-/*! Default setting for log enable. */
-int do_logging = TRUE;
+int is_logging = NULL; /* Variable to controls whether logging is enable or not */
 
 #define CATCH_LOG_LEVELS (G_LOG_LEVEL_MASK ^ \
                           (G_LOG_LEVEL_DEBUG | G_LOG_LEVEL_INFO))
@@ -88,11 +87,11 @@ void s_log_init (const gchar *prefix)
   int last_exist_logn = 0;
   GDir *logdir = NULL;
 
+  /* Somebody called for initialization, therefore */
+  is_logging = TRUE;
+
   if (logfile_fd != -1) {
     g_critical ("s_log_init: Log already initialised.\n");
-    return;
-  }
-  if (do_logging == FALSE) {
     return;
   }
 
@@ -106,7 +105,7 @@ void s_log_init (const gchar *prefix)
   full_prefix_len = strlen (full_prefix);
 
   /* Find/create the directory where we're going to put the logs.
-   * FIXME should this be configured somehow?
+   * FIXME should this be configured somehow? WEH:Yes it should!
    *
    * Then run through it finding the "biggest" existing filename with
    * a matching prefix & date. */
@@ -179,7 +178,7 @@ void s_log_init (const gchar *prefix)
  */
 void s_log_close (void)
 {
-  do_logging = FALSE; /* subsequent messages are lost after the close */
+  is_logging = FALSE; /* subsequent messages are lost after the close */
 
   if (logfile_fd == -1)
   {
@@ -216,8 +215,8 @@ gchar *s_log_read (void)
     return NULL;
   }
 
-  tmp = do_logging;
-  do_logging = FALSE;
+  tmp = is_logging;
+  is_logging = FALSE;
 
   /* rewind the file */
   lseek(logfile_fd, 0, SEEK_SET);
@@ -228,7 +227,7 @@ gchar *s_log_read (void)
     contents = g_string_append_len (contents, buf, len);
   }
 
-  do_logging = tmp;
+  is_logging = tmp;
 
   return g_string_free (contents, FALSE);
 }
@@ -255,9 +254,6 @@ static void s_log_handler (const gchar *log_domain,
 {
   int status;
 
-  if (do_logging == FALSE) {
-    return;
-  }
   g_return_if_fail (logfile_fd != -1);
   
   status = write (logfile_fd, message, strlen (message));

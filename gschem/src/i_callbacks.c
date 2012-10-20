@@ -1504,54 +1504,45 @@ DEFINE_I_CALLBACK(view_pan_hotkey)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Load the Dark color map scheme
  *  \par Function Description
- *
+ *       This function loads the Dark color map scheme
+ *       based on user input from the keyboard or menu.
  */
 DEFINE_I_CALLBACK (view_dark_colors)
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
 
-  x_color_free ();
   /* Change the scheme here */
-  g_scm_c_eval_string_protected ("(load (build-path geda-rc-path \"gschem-colormap-darkbg\"))");
-  x_color_allocate ();
-
+  x_load_color_scheme(DARK_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Load the Light color map scheme
  *  \par Function Description
- *
+ *       This function loads the Light color map scheme
+ *       based on user input from the keyboard or menu.
  */
 DEFINE_I_CALLBACK (view_light_colors)
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
 
-  x_color_free ();
   /* Change the scheme here */
-  g_scm_c_eval_string_protected ("(load (build-path geda-rc-path \"gschem-colormap-lightbg\"))");
-  x_color_allocate ();
-
+  x_load_color_scheme(LIGHT_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Load the BW color map scheme
  *  \par Function Description
- *
+ *       This function loads the BW color map scheme
+ *       based on user input from the keyboard or menu.
  */
 DEFINE_I_CALLBACK (view_bw_colors)
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
 
-  x_color_free ();
   /* Change the scheme here */
-  g_scm_c_eval_string_protected ("(load (build-path geda-rc-path \"gschem-colormap-bw\"))");
-  x_color_allocate ();
-
+  x_load_color_scheme(BW_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
 }
 
@@ -1564,9 +1555,7 @@ DEFINE_I_CALLBACK (view_bw_colors)
 DEFINE_I_CALLBACK(page_manager)
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   g_return_if_fail (w_current != NULL);
-
   x_pagesel_open (w_current);
 }
 
@@ -3313,11 +3302,11 @@ DEFINE_I_CALLBACK(options_afeedback)
 
   g_return_if_fail (w_current != NULL);
 
-  if (w_current->actionfeedback_mode == BOUNDINGBOX) {
-    w_current->actionfeedback_mode = OUTLINE;
+  if (w_current->action_feedback_mode == BOUNDINGBOX) {
+    w_current->action_feedback_mode = OUTLINE;
     s_log_message(_("Action feedback mode set to OUTLINE\n"));
   } else {
-    w_current->actionfeedback_mode = BOUNDINGBOX;
+    w_current->action_feedback_mode = BOUNDINGBOX;
     s_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
   }
   if (w_current->inside_action &&
@@ -3336,13 +3325,13 @@ DEFINE_I_CALLBACK(options_grid)
 
   g_return_if_fail (w_current != NULL);
 
-  switch (w_current->grid) {
-    case GRID_NONE: w_current->grid = GRID_DOTS; break;
-    case GRID_DOTS: w_current->grid = GRID_MESH; break;
-    case GRID_MESH: w_current->grid = GRID_NONE; break;
+  switch (w_current->grid_mode) {
+    case GRID_NONE: w_current->grid_mode = GRID_DOTS; break;
+    case GRID_DOTS: w_current->grid_mode = GRID_MESH; break;
+    case GRID_MESH: w_current->grid_mode = GRID_NONE; break;
   }
 
-  switch (w_current->grid) {
+  switch (w_current->grid_mode) {
     case GRID_NONE: s_log_message (_("Grid OFF\n"));           break;
     case GRID_DOTS: s_log_message (_("Dot grid selected\n"));  break;
     case GRID_MESH: s_log_message (_("Mesh grid selected\n")); break;
@@ -3415,7 +3404,7 @@ DEFINE_I_CALLBACK(options_magneticnet)
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
 
-  if ((w_current->magneticnet_mode = !w_current->magneticnet_mode)) {
+  if ((w_current->magnetic_net_mode = !w_current->magnetic_net_mode)) {
     s_log_message(_("magnetic net mode: ON\n"));
   }
   else {
@@ -3436,6 +3425,24 @@ DEFINE_I_CALLBACK(options_show_log_window)
 
   g_return_if_fail (w_current != NULL);
   x_log_open ();
+}
+
+/*! 
+ *  Author: Wiley E. Hill
+ *  Date:   Aug 5th, 2012
+ *
+ *  Description: This function defines a procedure to be called
+ *               when the menu option "configure_settings" is selected.
+ *
+ */
+DEFINE_I_CALLBACK(configure_settings)
+{
+  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+
+  /* Load and display Dialog */
+  x_configure_settings(w_current);
+
+  g_return_if_fail (w_current != NULL);
 }
 
 /*! \todo Finish function documentation!!!

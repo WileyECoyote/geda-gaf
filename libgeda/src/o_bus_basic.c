@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -96,7 +96,8 @@ OBJECT *o_bus_new(TOPLEVEL *toplevel,
   new_node->line->y[0] = y1;
   new_node->line->x[1] = x2;
   new_node->line->y[1] = y2;
-  new_node->line_width = BUS_WIDTH;
+
+  new_node->line_width = o_style_get_bus_width(toplevel);
 
   new_node->bus_ripper_direction = bus_ripper_direction;
 
@@ -285,16 +286,17 @@ void o_bus_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   int x2, y2;
 
   if (o_current == NULL) {
-    printf("got null in o_bus_print\n");
+    printf (_("null in o_bus_print\n"));
     return;
   }
 
   f_print_set_color(toplevel, fp, o_current->color);
 
-  bus_width = 2;
-  if (toplevel->bus_style == THICK) {
-    bus_width = BUS_WIDTH;	
-  }
+  bus_width = o_current->line_width;
+  if(bus_width <= MIN_LINE_WIDTH_THRESHOLD)
+    bus_width = o_style_get_bus_width(toplevel);  /* 1st try updating the style */
+  if (bus_width < MIN_LINE_WIDTH_THRESHOLD) /* if STYLE_NONE */
+    bus_width = MIN_LINE_WIDTH_THRESHOLD;
 
   x1 = o_current->line->x[0]-origin_x,
   y1 = o_current->line->y[0]-origin_y;

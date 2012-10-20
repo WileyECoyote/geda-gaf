@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -539,7 +539,7 @@ void o_text_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *o_cu
   factor = (int) toplevel->page_current->to_world_x_constant;
   if ((factor < w_current->text_display_zoomfactor) ||
       o_current->text->size >= 12 ||
-      w_current->text_feedback == ALWAYS) {
+      w_current->text_feedback == ALWAYS_FEEDBACK) {
 
     o_text_draw_lowlevel (w_current, o_current, dx, dy,
                           x_color_lookup_dark (o_current->color));

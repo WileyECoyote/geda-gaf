@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,16 +25,13 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include <math.h>
+#include <glib.h>
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 /*! Tracks which OBJECTs have been visited so far, and how many times.
  *
@@ -44,19 +41,19 @@
 static GHashTable *visit_table = NULL;
 
 /*! Trivial function used when clearing #visit_table. */
-static gboolean
+static bool
 returns_true (gpointer key, gpointer value, gpointer user_data)
 {
   return TRUE;
 }
 
 /*! Retrieve the current visit count for a particular OBJECT. */
-static inline gint
+static inline int
 is_visited(OBJECT *obj)
 {
   gpointer val;
   gpointer orig_key;
-  gboolean exist = g_hash_table_lookup_extended (visit_table,
+  bool exist = g_hash_table_lookup_extended (visit_table,
                                                  obj,
                                                  &orig_key,
                                                  &val);
@@ -64,7 +61,7 @@ is_visited(OBJECT *obj)
 }
 
 /*! Increment the current visit count for a particular OBJECT. */
-static inline gint
+static inline int
 visit(OBJECT *obj)
 {
   gpointer val = GINT_TO_POINTER(is_visited (obj) + 1);
@@ -155,7 +152,7 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
   char *temp;
   SCM scm_uref;
   char *temp_uref;
-  gboolean is_graphical=FALSE;
+  bool is_graphical=FALSE;
   const GList *iter;
 
   if (verbose_mode) {

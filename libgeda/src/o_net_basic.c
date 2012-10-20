@@ -93,7 +93,8 @@ OBJECT *o_net_new(TOPLEVEL *toplevel, char type,
   new_node->line->y[0] = y1;
   new_node->line->x[1] = x2;
   new_node->line->y[1] = y2;
-  new_node->line_width = NET_WIDTH;
+
+  new_node->line_width = o_style_get_net_width(toplevel);
 
   o_net_recalc (toplevel, new_node);
 
@@ -274,10 +275,11 @@ void o_net_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
 
   f_print_set_color(toplevel, fp, o_current->color);
 
-  net_width = 2;
-  if (toplevel->net_style == THICK) {
-    net_width = NET_WIDTH;
-  }
+  net_width = o_current->line_width;
+  if(net_width <= MIN_LINE_WIDTH_THRESHOLD)
+    net_width = o_style_get_net_width;      /* 1st try updating the style */
+  if (net_width < MIN_LINE_WIDTH_THRESHOLD) /* if STYLE_NONE */
+    net_width = MIN_LINE_WIDTH_THRESHOLD;
 
   x1 = o_current->line->x[0] - origin_x,
   y1 = o_current->line->y[0] - origin_y;

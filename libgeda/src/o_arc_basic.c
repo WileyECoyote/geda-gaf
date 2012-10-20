@@ -638,22 +638,15 @@ void o_arc_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
    *  endless loop produced by other functions.
    */
 
-#if 0  /* was causing arcs which are solid to be much thinner compared to */
-  /* lines, boxes, also of zero width */
-  if (o_current->line_width > 0) {
-    arc_width = o_current->line_width;
-  } else {
-    arc_width = 1;
-  }
-#endif
-  arc_width = o_current->line_width;	/* Added instead of above */
-  if(arc_width <=2) {
-    if(toplevel->line_style == THICK) {
-      arc_width=LINE_WIDTH;
-    } else {
-      arc_width=2;
-    }
-  }
+  /* 09/08/12 | W.E.Hill Modified algorithms to incorperate both THICK & THIN
+   *            styles, and eliminate hard-coded integer values.
+   */
+
+  arc_width = o_current->line_width;
+  if(arc_width < MIN_LINE_WIDTH_THRESHOLD)
+     arc_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+  if(arc_width < MIN_LINE_WIDTH_THRESHOLD)
+     arc_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
   length = o_current->line_length;
   space  = o_current->line_space;

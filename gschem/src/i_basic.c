@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,17 +17,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
+
 #include <config.h>
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 /*! \brief Update status bar string 
  *
@@ -105,7 +98,7 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
     case STARTDRAWNET:
     case DRAWNET:
     case NETCONT:
-      if (w_current->magneticnet_mode)
+      if (w_current->magnetic_net_mode)
 	return _("Magnetic Net Mode");
       else
 	return _("Net Mode");
@@ -249,25 +242,22 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current,
   switch(w_current->middle_button) {
 
     /* remove this case eventually and make it a null case */
-    case(ACTION):
-    gtk_label_set(GTK_LABEL(w_current->middle_label),
-                  _("Action"));
+    case(MOUSE_MIDDLE_ACTION):
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _("Action"));
     break;
 
 #ifdef HAVE_LIBSTROKE
-    case(STROKE):
-    gtk_label_set(GTK_LABEL(w_current->middle_label),
-                  _("Stroke"));
+    case(MOUSE_MIDDLE_STROKE):
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _("Stroke"));
     break;
 #else 
     /* remove this case eventually and make it a null case */
-    case(STROKE):
-    gtk_label_set(GTK_LABEL(w_current->middle_label),
-                  _("none"));
+    case(MOUSE_MIDDLE_STROKE):
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _("none"));
     break;
 #endif
 		
-    case(REPEAT):
+    case(MOUSE_MIDDLE_REPEAT):
     temp_string = g_strconcat (_("Repeat/"), string, NULL);
 
     gtk_label_set(GTK_LABEL(w_current->middle_label),
@@ -576,7 +566,7 @@ void i_update_grid_info (GSCHEM_TOPLEVEL *w_current)
                w_current->snap);
   }
 
-  if (w_current->grid == GRID_NONE) {
+  if (w_current->grid_mode == GRID_NONE) {
     grid = g_strdup(_("OFF"));
   } else {
     int visible_grid = x_grid_query_drawn_spacing (w_current);

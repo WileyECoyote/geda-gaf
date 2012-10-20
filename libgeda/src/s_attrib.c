@@ -70,6 +70,16 @@ int s_attrib_add_entry(char *new_attrib)
   return(attrib_index);
 }
 
+/*! \brief Return count of Attributes
+ *  \par Function Description
+ *       Return integer count of the number
+ *       of stored attribute strings
+ */
+int s_attrib_count( void )
+{
+  return(attrib_index);
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description

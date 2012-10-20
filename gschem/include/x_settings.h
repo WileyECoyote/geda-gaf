@@ -1,0 +1,292 @@
+/* C header
+;  File: x_settings.h
+;;
+;;; gEDA - GPL Electronic Design Automation
+;;; gschem - gEDA Schematic Capture
+;;; Copyright (C) 1998-2012 Ales Hvezda
+;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;;
+;;; Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+;;
+;;; This program is free software; you can redistribute it and/or modify
+;;; it under the terms of the GNU General Public License as published by
+;;; the Free Software Foundation; either version 2 of the License, or
+;;; (at your option) any later version.
+;;
+;;; This program is distributed in the hope that it will be useful,
+;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;;; GNU General Public License for more details.
+;;
+;;; You should have received a copy of the GNU General Public License
+;;; along with this program; if not, write to the Free Software
+;;; Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+;;
+;;; Date: Aug, 17, 2012
+;;; Contributing Author: Wiley Edward Hill
+;;
+*/
+/************************ REVISION HISTORY *************************
+;; Who |   When   |  What (Why)
+;; ------------------------------------------------------------------
+;; WEH | 09/17/12 |  Inital release.
+;; ------------------------------------------------------------------
+;;
+*/
+#ifndef __X_SETTINGS_H__
+#define __X_SETTINGS_H__
+
+#define ThisDialog SettingsDialog
+#define DialogTitle "Configure gschem"
+#define DialogSettings "settings"
+
+#define ControlID EnumeratedSettingsControl
+#define Combo_Responder combo_responder
+#define Butt_Responder butt_responder
+#define Radio_Responder radio_responder
+#define Switch_Responder switch_responder
+
+struct rc_4_strings_t
+{
+   const char *zero;
+   const char *one;
+   const char *two;
+   const char *three;
+};
+
+#define RC_BOOL_STRINGS(WhichOne) ((WhichOne) ? RC_STR_ENABLED : RC_STR_DISABLED)
+#define RC_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_NONE, RC_STR_DOTS, RC_STR_MESH, NULL};
+#define RC_DOTS_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_DOTS_MODE_VARIABLE, RC_STR_DOTS_MODE_FIXED, NULL, NULL};
+#define RC_BARS_UPDATE_STRINGS struct rc_4_strings_t string_table = {RC_STR_BARS_CONTINUOUS, RC_STR_BARS_DELAYED, NULL, NULL};
+#define RC_LOG_DESTINY_STRINGS struct rc_4_strings_t string_table = {RC_STR_DESTINY_WINDOW, RC_STR_DESTINY_TTY, RC_STR_DESTINY_BOTH, NULL};
+#define RC_LOG_WINTYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_LOGWIN_DECORATED, RC_STR_LOGWIN_TRANSIENT, NULL, NULL};
+#define RC_ACTION_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_FEEDBACK_OUTLINE, RC_STR_FEEDBACK_BOUNDBOX, NULL, NULL};
+
+#define RC_WINDOW_SIZE_STRINGS struct rc_4_strings_t string_table = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650, \
+                                                                     RC_STR_WINDOW_W950H712, RC_STR_WINDOW_W1100H825};
+
+#define RC_WORLD_SIZE_STRINGS struct rc_4_strings_t string_table =  {RC_STR_WORLD_SMALL, RC_STR_WORLD_MEDIUM, RC_STR_WORLD_LARGE, NULL};
+
+#define RC_NET_MAKER_STRINGS struct rc_4_strings_t string_table = {RC_STR_NET_NONE, RC_STR_EMPTY_BOX, RC_STR_FILLED_BOX, NULL};
+#define RC_NET_SELECTION_STRINGS struct rc_4_strings_t string_table = {RC_STR_DISABLED, RC_STR_NET_NET, RC_STR_NET_ALL, NULL};
+#define RC_STYLES_STRINGS struct rc_4_strings_t string_table = {RC_STR_STYLE_NONE, RC_STR_STYLE_THIN, RC_STR_STYLE_THICK, NULL};
+#define RC_MIDDLE_MOUSE_STRINGS struct rc_4_strings_t string_table = {RC_STR_MID_STROKE, RC_STR_MID_REPEAT, \
+                                                                   RC_STR_MID_ACTION, RC_STR_MID_MOUSEPAN};
+#define RC_3RD_BUTT_STRINGS struct rc_4_strings_t string_table = {RC_STR_3RD_POPUP, RC_STR_3RD_PAN, NULL, NULL};
+#define RC_SCROLL_STRINGS struct rc_4_strings_t string_table = {RC_STR_SCROLL_GTK, RC_STR_SCROLL_CLASSIC, NULL, NULL};
+#define RC_TEXT_CASE_STRINGS struct rc_4_strings_t string_table = {RC_STR_TEXT_LOWER, RC_STR_TEXT_UPPER, RC_STR_TEXT_BOTH };
+#define RC_TXT_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_TXT_READABLE, RC_STR_TXT_ALWAYS, NULL, NULL};
+#define RC_UNDO_TYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_UNDO_DISK, RC_STR_UNDO_MEMORY, NULL, NULL};
+
+typedef struct
+{
+   int display_color_map;
+   int color_scheme_index;
+   int display_outline_color_map; /* Must figureout to determine the status of these options */
+   int window_size;
+   int custom_window_size;
+   int world_size;
+   int custom_world_size;
+   int titleblock_index;
+   char color_map_scheme[MAX_FILENAME];
+   char untitled_name[MAX_FILENAME];
+   char titleblock_fname[MAX_FILENAME];
+
+}  gschem_rc_options;
+
+extern gschem_rc_options rc_options;
+
+typedef enum {
+       General,
+       Edit,
+       Pointer,
+       Window,
+       Text,
+       Styles,
+       Attributes,
+       Library,
+} DialogTabs;
+
+typedef enum {  
+/* Section Labels */
+        Logging,
+        Undo,
+        Nets,
+
+/* Button Controls */
+  /* Attributes TAB */
+        AddAttribute,
+        RemoveAttribute,
+        ClearAttributes,
+        DefaultAttributes,
+        IncreaseAttribute,
+        DecreaseAttribute,
+
+/* 5 Combo Controls  */
+        TitleBlock,
+        ColorMapScheme,
+        DotGridMode,
+        LogWindowType,
+	MiddleButton,
+        ThirdButton,
+        UndoType,
+
+/* 12 Edit Control Ids  */
+        UntitledName,
+
+/* Radio Control by Alphabetical TAB order */
+  /* General TAB */
+        LogDestiny,
+        LogDestinyWindow,
+        LogDestinyTTY,
+        LogDestinyBoth,
+
+  /* Edit TAB */
+        NetEndPoint,
+        NetEndPointNone,
+        NetEndPointEmpty,
+        NetEndPointFilled,
+
+        NetMidPoint,
+        NetMidPointNone,
+        NetMidPointEmpty,
+        NetMidPointFilled,
+
+        NetSelection,
+        NetSelectionNone,
+        NetSelectionNet,
+        NetSelectionAll,
+
+  /* Styles TAB */
+        BusStyle,  BusStyleNone,  BusStyleThin,  BusStyleThick,
+        LineStyle, LineStyleNone, LineStyleThin, LineStyleThick,
+        NetStyle,  NetStyleNone,  NetStyleThin,  NetStyleThick,
+        PinStyle,  PinStyleNone,  PinStyleThin,  PinStyleThick,
+
+  /* Text TAB */
+        CapsStyle,            CapsStyleLower,
+        CapsStyleUpper,       CapsStyleBoth,
+        TextFeedback,         TextFeedbackReadable,
+         TextFeedbackAlways,  TextFeedbackDefault,
+
+  /* Windows TAB */
+        GridDotSize,       GridDotSizeOne,
+        GridDotSizeTwo,    GridDotSizeThree,
+        GridMode,          GridModeNone, GridModeDots, GridModeMesh,
+        WindowSize, WindowSizeW650H487, WindowSizeW900H650,
+                    WindowSizeW950H712, WindowSizeW1100H825,
+        WorldSize, WorldSizeSmall,  WorldSizeMedium, WorldSizeLarge,
+
+  /* Attributes TAB */
+        DialogListAttributes, DialogListAttributesAll,
+        DialogListAttributesNone, DialogListAttributesList,
+
+/* Spinner Controls in Alphabetical order (not TAB) */
+        AttributeOffset,
+        AutoPlacementGrid,
+        AutoSaveInterval,
+        DotGridThreshold,
+        KeyboardPanGain,
+        MeshGridThreshold,
+        MousePanGain,
+        ScrollPanSteps,
+        SelectPixels,
+        SnapSize,
+        TextSize,
+        TextSnapSize,
+        TextZoomFactor,
+        ThickBusWidth,
+        ThickLineWidth,
+        ThickNetWidth,
+        ThickPinWidth,
+        ThinBusWidth,
+        ThinLineWidth,
+        ThinNetWidth,
+        ThinPinWidth,
+        UndoBufferSize,
+        ZoomGain,
+
+/* Label Text for Switch Controls */
+        AutoLoad,
+        AutoSave,
+        ClassicWheel,
+        ConsolidateNets,
+        ContinuePlace,
+        DelayScrolling,
+        DragMove,
+        DrawGrips,
+        EmbedComponents,
+        EnableLog,
+        EnableUndo,
+        EnforceHierarchy,
+        FastMousePan,
+        FeedbackMode,
+        ForceBoundingBox,
+        FilePreview,
+        FriendlyColorMap,
+        FriendlyOutlineMap,
+        InitLogWindow,
+        MagneticNets,
+        NetDirection,
+        NotifyEvents,
+        ObjectClipping,
+        RubberNets,
+        ScrollBars,
+        SortLibrary,
+        SpareSwitch,
+        TextOriginMarker,
+        UndoViews,
+        WarpCursor,
+        ZoomPan,
+/* View Ids */
+        PotentialAttributes,
+        SelectedAttributes,
+} ControlID;
+
+typedef struct {
+   bool is_local;
+   bool is_modified;
+   bool is_volatile;
+   int  value;
+   int  strflag;
+   int  strindex;
+} param;
+
+/* Function Prototypes */
+
+/* Defined in x_settings.c */
+
+GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
+           GtkWidget *widget, GtkWidget *SwitchImage, gboolean istate);
+GtkWidget* get_geda_bulb_image (gboolean WhichState);
+GtkWidget* get_geda_switch_image ( gboolean WhichState);
+
+void bulb_on( GtkWidget *widget);
+void bulb_off( GtkWidget *widget);
+void gtk_bulb_group_set_active(GSList *RadioGroupList, int value);
+
+void configure_dialog_response(GtkWidget *w, gint response, GSCHEM_TOPLEVEL *w_current);
+
+int get_titleblock_cnt(void);
+bool get_titleblock_list(char **Buffer);
+
+int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname);
+
+/* Defined in x_settings_dialog.c */
+bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter);
+int  gtk_radio_group_get_active(GSList *RadioGroupList);
+void gtk_radio_group_set_active(GSList *RadioGroupList, int value);
+
+void initialize_tree_View(GtkTreeView *list, int list_item, int nColumns, int DataType);
+void load_combo_str( GtkComboBox *combo, const char *list[]);
+void load_tree_view_gl( GtkTreeView *TreeView, GList *list);
+void load_tree_view_str( GtkTreeView *TreeView, const char *list[]);
+
+GtkWidget* create_settings_dialog (GSCHEM_TOPLEVEL *w_current);
+bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current);
+void GatherSettings(GSCHEM_TOPLEVEL *w_current);
+
+#endif /* __X_SETTINGS_H__ */
+
+
+

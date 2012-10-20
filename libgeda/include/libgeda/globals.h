@@ -24,9 +24,6 @@
 #ifndef _GLOBALS_H_INCL
 #define _GLOBALS_H_INCL
 
-extern int do_logging;
-extern int logging_dest;
-
 /* Size of a tab in characters */
 extern int tab_in_chars;
 

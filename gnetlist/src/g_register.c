@@ -25,22 +25,15 @@
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#ifdef HAVE_ASSERT_H
-#include <assert.h>
-#endif
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 
 struct gsubr_t {
   char* name;

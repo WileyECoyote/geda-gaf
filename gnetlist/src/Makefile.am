@@ -1,4 +1,5 @@
 ## Process this file with automake to produce Makefile.in
+AM_CFLAGS=-I$(top_builddir)/include -Wall
 
 bin_PROGRAMS = gnetlist 
 
@@ -22,7 +23,7 @@ gnetlist_SOURCES = \
 	vams_misc.c
 
 gnetlist_CPPFLAGS = -I$(top_srcdir)/libgeda/include -I$(srcdir)/../include \
-	-I$(top_srcdir) -I$(includedir)
+	-I$(top_srcdir)/include -I$(includedir)
 gnetlist_CFLAGS = $(GCC_CFLAGS) $(MINGW_CFLIGS) $(GLIB_CFLAGS) \
 	$(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 gnetlist_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)

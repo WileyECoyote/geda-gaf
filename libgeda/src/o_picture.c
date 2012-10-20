@@ -877,7 +877,8 @@ void o_picture_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   /* If the image failed to load, draw a box in the default color with a
    * cross in it. */
   if (image == NULL) {
-    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
+    int line_width = o_style_get_line_width(toplevel);
+//    int line_width = (toplevel->line_style == THICK) ? LINE_WIDTH : 2;
     o_box_print_solid (toplevel, fp, x1, y1, width, height,
                        DEFAULT_COLOR, line_width, SQUARE_CAP, -1, -1, -1, -1);
     o_line_print_solid (toplevel, fp, x1, y1, x1+width, y1-height,

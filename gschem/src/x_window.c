@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,17 +18,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 #include <config.h>
-#include <missing.h>
 
 #include <stdio.h>
 
 #include "gschem.h"
 
+/*
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
+*/
 
-#define GSCHEM_THEME_ICON_NAME "geda-gschem"
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -53,8 +53,8 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
   toplevel->init_top  = -45;
   /* init_right and _bottom are set before this function is called */
 
-  toplevel->width  = default_width;
-  toplevel->height = default_height;
+  toplevel->width  = default_window_width;
+  toplevel->height = default_window_height;
 
   w_current->win_width  = toplevel->width;
   w_current->win_height = toplevel->height;
@@ -419,7 +419,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   x_window_create_drawing(drawbox, w_current);
   x_window_setup_draw_events(w_current);
 
-  if (w_current->scrollbars_flag == TRUE) {
+  if (w_current->scrollbars == TRUE) {
     /* setup scroll bars */
     w_current->v_adjustment = GTK_ADJUSTMENT (
       gtk_adjustment_new (toplevel->init_bottom, 0.0, toplevel->init_bottom,
@@ -488,13 +488,13 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   label = gtk_label_new ("|");
   gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 5);
 
-  if (w_current->middle_button == STROKE) {
+  if (w_current->middle_button == MOUSE_MIDDLE_STROKE) {
 #ifdef HAVE_LIBSTROKE
     w_current->middle_label = gtk_label_new (_("Stroke"));
 #else
     w_current->middle_label = gtk_label_new (_("none"));
 #endif
-  } else if (w_current->middle_button == ACTION) {
+  } else if (w_current->middle_button == MOUSE_MIDDLE_ACTION) {
     w_current->middle_label = gtk_label_new (_("Action"));
   } else {
     w_current->middle_label = gtk_label_new (_("Repeat/none"));
@@ -740,19 +740,18 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const gchar *filename)
       GtkWidget *dialog;
 
       g_warning ("%s\n", err->message);
-      dialog = gtk_message_dialog_new_with_markup
-        (GTK_WINDOW (w_current->main_window),
-         GTK_DIALOG_DESTROY_WITH_PARENT,
-         GTK_MESSAGE_ERROR,
-         GTK_BUTTONS_CLOSE,
-         _("<b>An error occurred while loading the requested file.</b>\n\nLoading from '%s' failed: %s. The gschem log may contain more information."),
-         fn, err->message);
+      dialog = gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
+                                       GTK_DIALOG_DESTROY_WITH_PARENT,
+                                       GTK_MESSAGE_ERROR,
+                                       GTK_BUTTONS_CLOSE,
+                                       "%s",
+                                       err->message);
       gtk_window_set_title (GTK_WINDOW (dialog), _("Failed to load file"));
       gtk_dialog_run (GTK_DIALOG (dialog));
       gtk_widget_destroy (dialog);
       g_error_free (err);
     } else {
-      gtk_recent_manager_add_item (recent_manager, g_filename_to_uri(fn, NULL, NULL));
+      recent_files_add (fn);
     }
   } else {
     if (!quiet_mode)
@@ -891,7 +890,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const gchar *filenam
     page->CHANGED = 0;
 
     /* add to recent file list */
-    gtk_recent_manager_add_item (recent_manager, g_filename_to_uri(filename, NULL, NULL));
+    recent_files_add(filename);
   }
 
   /* log status of operation */

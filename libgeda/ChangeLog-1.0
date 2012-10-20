@@ -1,3 +1,11 @@
+2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
+	* src/s_attrib.c: reset attrib_index in function s_attrib_init
+          added function s_attrib_count.
+          
+        */src/o_style.c: Added new file and implementented functionality
+        * src/s_log.c: renamed do_logging to is_logging to avoid name
+          conflict with gschem.
+
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated version to 20070526 in prep for the next

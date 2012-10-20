@@ -25,19 +25,14 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include <math.h>
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-SCM
-vams_get_attribs_list (OBJECT *object)
+SCM vams_get_attribs_list (OBJECT *object)
 {
   SCM list = SCM_EOL;
   OBJECT *o_current;
@@ -67,8 +62,7 @@ vams_get_attribs_list (OBJECT *object)
   return list;
 }
 
-SCM
-vams_get_package_attributes(SCM scm_uref)
+SCM vams_get_package_attributes(SCM scm_uref)
 {
   NETLIST *nl_current;
   char *uref;

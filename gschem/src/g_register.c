@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -49,19 +49,35 @@ struct gsubr_t {
 /*! \brief */
 static struct gsubr_t gschem_funcs[] = {
   /* rc file */
-  { "gschem-version",           1, 0, 0, g_rc_gschem_version },
 
-  { "display-color-map",        0, 1, 0, g_rc_display_color_map },
+  /* Depreciated */
+  /* This sections exist to segregate depreciated functions or features
+   * but are still maintained in order to help user transition from
+   * previous version.
+   */
+  
+  /* extending support for 20110115 */
+  { "drag-can-move",               1, 0, 0, g_rc_drag_can_move },
+  { "logging-destination",         1, 0, 0, g_rc_log_destiny },
+  { "text-caps-style",             1, 0, 0, g_rc_text_case },
+  { "mesh-grid-display-threshold", 1, 0, 0, g_rc_mesh_grid_threshold },
+  /* End legacy support */
+
+  { "gschem-version",            1, 0, 0, g_rc_gschem_version },
+
+  { "display-color-map",         0, 1, 0, g_rc_display_color_map },
   { "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
+  { "draw-grips",                1, 0, 0, g_rc_draw_grips },
+  { "grid-mode",                 1, 0, 0, g_rc_grid_mode },
+  { "dots-grid-dot-size",        1, 0, 0, g_rc_dots_grid_dot_size },
+  { "dots-grid-fixed-threshold", 1, 0, 0, g_rc_dots_grid_fixed_threshold },
+  { "dots-grid-mode",            1, 0, 0, g_rc_dots_grid_mode },
+  { "mesh-grid-threshold",       1, 0, 0, g_rc_mesh_grid_threshold },
 
   { "net-endpoint-mode",         1, 0, 0, g_rc_net_endpoint_mode },
   { "net-midpoint-mode",         1, 0, 0, g_rc_net_midpoint_mode },
   { "net-direction-mode",        1, 0, 0, g_rc_net_direction_mode },
   { "net-selection-mode",        1, 0, 0, g_rc_net_selection_mode },
-  { "net-style",                 1, 0, 0, g_rc_net_style },
-  { "bus-style",                 1, 0, 0, g_rc_bus_style },
-  { "pin-style",                 1, 0, 0, g_rc_pin_style },
-  { "line-style",                1, 0, 0, g_rc_line_style },
   { "zoom-with-pan",             1, 0, 0, g_rc_zoom_with_pan },
   { "action-feedback-mode",      1, 0, 0, g_rc_action_feedback_mode },
   { "text-feedback",             1, 0, 0, g_rc_text_feedback },
@@ -71,26 +87,27 @@ static struct gsubr_t gschem_funcs[] = {
   { "object-clipping",           1, 0, 0, g_rc_object_clipping },
   { "embed-components",          1, 0, 0, g_rc_embed_components },
   { "component-dialog-attributes",1, 0, 0, g_rc_component_dialog_attributes },
+  { "attribute-name",            1, 0, 0, g_rc_attribute_name },
+
   { "logging",                   1, 0, 0, g_rc_logging },
+  { "log-destiny",               1, 0, 0, g_rc_log_destiny },
+  { "log-window",                1, 0, 0, g_rc_log_window },
+  { "log-window-type",           1, 0, 0, g_rc_log_window_type },
+
   { "text-size",                 1, 0, 0, g_rc_text_size },
   { "snap-size",                 1, 0, 0, g_rc_snap_size },
+  { "text-case",                 1, 0, 0, g_rc_text_case },
 
-  { "text-caps-style",           1, 0, 0, g_rc_text_caps_style },
-  { "logging-destination",       1, 0, 0, g_rc_logging_destination },
-
-  { "attribute-name",            1, 0, 0, g_rc_attribute_name },
   { "paper-size",                2, 0, 0, g_rc_paper_size },
   { "paper-sizes",               3, 0, 0, g_rc_paper_sizes },
-
   { "output-type",               1, 0, 0, g_rc_output_type },
   { "output-orientation",        1, 0, 0, g_rc_output_orientation },
   { "output-color",              1, 0, 0, g_rc_output_color },
   { "output-capstyle",           1, 0, 0, g_rc_output_capstyle },
   { "image-color",               1, 0, 0, g_rc_image_color },
   { "image-size",                2, 0, 0, g_rc_image_size },
-  { "log-window",                1, 0, 0, g_rc_log_window },
-  { "log-window-type",           1, 0, 0, g_rc_log_window_type },
   { "third-button",              1, 0, 0, g_rc_third_button },
+  { "map-keys",                  2, 0, 0, g_rc_map_keys },
   { "middle-button",             1, 0, 0, g_rc_middle_button },
   { "scroll-wheel",              1, 0, 0, g_rc_scroll_wheel },
   { "net-consolidate",           1, 0, 0, g_rc_net_consolidate },
@@ -100,12 +117,12 @@ static struct gsubr_t gschem_funcs[] = {
   { "fast-mousepan",             1, 0, 0, g_rc_fast_mousepan },
   { "raise-dialog-boxes-on-expose", 1, 0, 0, g_rc_raise_dialog_boxes_on_expose },
   { "continue-component-place",  1, 0, 0, g_rc_continue_component_place },
+
   { "undo-levels",               1, 0, 0, g_rc_undo_levels },
   { "undo-control",              1, 0, 0, g_rc_undo_control },
   { "undo-type",                 1, 0, 0, g_rc_undo_type },
   { "undo-panzoom",              1, 0, 0, g_rc_undo_panzoom },
 
-  { "draw-grips",                1, 0, 0, g_rc_draw_grips },
   { "netconn-rubberband",        1, 0, 0, g_rc_netconn_rubberband },
   { "magnetic-net-mode",         1, 0, 0, g_rc_magnetic_net_mode },
   { "sort-component-library",    1, 0, 0, g_rc_sort_component_library },
@@ -120,11 +137,10 @@ static struct gsubr_t gschem_funcs[] = {
   { "bus-ripper-type",           1, 0, 0, g_rc_bus_ripper_type },
   { "bus-ripper-rotation",       1, 0, 0, g_rc_bus_ripper_rotation },
   { "force-boundingbox",         1, 0, 0, g_rc_force_boundingbox },
-  { "dots-grid-dot-size",        1, 0, 0, g_rc_dots_grid_dot_size },
-  { "dots-grid-mode",            1, 0, 0, g_rc_dots_grid_mode },
-  { "dots-grid-fixed-threshold", 1, 0, 0, g_rc_dots_grid_fixed_threshold },
-  { "mesh-grid-display-threshold", 1, 0, 0, g_rc_mesh_grid_display_threshold },
+
   { "add-attribute-offset",      1, 0, 0, g_rc_add_attribute_offset },
+  { "auto-load-last",            1, 0, 0, g_rc_auto_load_last },
+  { "autoplace-attributes-grid", 1, 0, 0, g_rc_autoplace_attributes_grid },
   { "mousepan-gain",             1, 0, 0, g_rc_mousepan_gain },
   { "keyboardpan-gain",          1, 0, 0, g_rc_keyboardpan_gain },
   { "print-command",             1, 0, 0, g_rc_print_command },
@@ -147,7 +163,7 @@ static struct gsubr_t gschem_funcs[] = {
   { "gschem-filesel",            2, 0, 1, g_funcs_filesel },
 
   /* keymapping callbacks */
-  { "file-new-window",           0, 0, 0, g_keys_file_new_window },
+   { "file-new-window",           0, 0, 0, g_keys_file_new_window },
   { "file-new",                  0, 0, 0, g_keys_file_new },
   { "file-open",                 0, 0, 0, g_keys_file_open },
   { "file-script",               0, 0, 0, g_keys_file_script },
@@ -285,13 +301,14 @@ static struct gsubr_t gschem_funcs[] = {
   { "options-magneticnet",       0, 0, 0, g_keys_options_magneticnet },
   { "options-show-log-window",   0, 0, 0, g_keys_options_show_log_window },
   { "options-show-coord-window", 0, 0, 0, g_keys_options_show_coord_window },
+  { "configure-settings",        0, 0, 0, g_keys_configure_settings },
   { "help-about",                0, 0, 0, g_keys_help_about },
   { "help-hotkeys",              0, 0, 0, g_keys_help_hotkeys },
   { "misc-misc",                 0, 0, 0, g_keys_misc },
   { "misc-misc2",                0, 0, 0, g_keys_misc2 },
   { "misc-misc3",                0, 0, 0, g_keys_misc3 },
   { "cancel",                    0, 0, 0, g_keys_cancel },
-
+ 
   { NULL,                        0, 0, 0, NULL } };
 
 /*! \brief Define a hook.

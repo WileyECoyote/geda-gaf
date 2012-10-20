@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,7 +114,7 @@ version ()
 {
   printf(_(
 "gEDA %s (g%.7s)\n"
-"Copyright (C) 1998-2011 gEDA developers\n"
+"Copyright (C) 1998-2012 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -244,3 +244,4 @@ parse_commandline(int argc, char *argv[])
   scm_gc_protect_object (s_post_load_expr);
   return(optind);
 }
+

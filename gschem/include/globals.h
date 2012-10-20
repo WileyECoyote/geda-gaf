@@ -2,7 +2,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,15 +36,18 @@ extern GdkColor black;
 extern char *rc_filename; 
 extern char *output_filename;
 
-
-extern int do_logging;
-extern int logging_dest;
-
-
 /* command line options */
 extern int quiet_mode;
 extern int verbose_mode;
 extern int auto_place_mode;
+
+extern int auto_load_last;
+
+/* Log Related */
+extern volatile int logging;           /* controls if whether logging is enabled or not */
+extern volatile int log_destiny;       /* controls where the log system writes data */
+extern volatile int log_window;
+extern volatile int log_window_type;
 
 #define MAX_BUFFERS 	5
 /* Global buffers */

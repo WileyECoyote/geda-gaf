@@ -28,16 +28,15 @@
 
 #include "libgeda_priv.h"
 
+/*
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
+*/
 
 COLOR print_colors[MAX_COLORS];
 
-#define NOCOLOR {0xff, 0xff, 0xff, 0xff, FALSE}
-#define WHITE   {0xff, 0xff, 0xff, 0xff, TRUE}
-#define GRAY    {0x88, 0x88, 0x88, 0xff, TRUE}
-#define BLACK   {0x00, 0x00, 0x00, 0xff, TRUE}
+/* See defines in s_color.h */
 #define ENDMAP  {0x00, 0x00, 0x00, 0x00, FALSE}
 
 static COLOR default_colors[] = {

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check 
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,16 +18,9 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
-#include <config.h>
 #include <missing.h>
 #include <version.h>
 
-#include <stdio.h>
-#include <ctype.h>
-#include <sys/stat.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
@@ -35,12 +28,9 @@
 #include <unistd.h>
 #endif
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
-
-#include "../include/struct.h"
 #include "../include/globals.h"
-#include "../include/i_vars.h"
-#include "../include/prototype.h"
 
 SCM g_rc_gsymcheck_version(SCM scm_version)
 {

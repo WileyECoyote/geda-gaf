@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,18 +40,18 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
   /* file filter for schematic files (*.sch) */
   filter = gtk_file_filter_new ();
   gtk_file_filter_set_name (filter, _("Schematics"));
-  gtk_file_filter_add_pattern (filter, "*.sch");
+  gtk_file_filter_add_pattern (filter, SCHEMATIC_FILTER);
   gtk_file_chooser_add_filter (filechooser, filter);
   /* file filter for symbol files (*.sym) */
   filter = gtk_file_filter_new ();
   gtk_file_filter_set_name (filter, _("Symbols"));
-  gtk_file_filter_add_pattern (filter, "*.sym");
+  gtk_file_filter_add_pattern (filter, SYMBOL_FILTER);
   gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter for both symbol and schematic files (*.sym+*.sch) */
+  /* file filter for both symbol and schematic files *.sym & *.sch */
   filter = gtk_file_filter_new ();
   gtk_file_filter_set_name (filter, _("Schematics and symbols"));
-  gtk_file_filter_add_pattern (filter, "*.sym");
-  gtk_file_filter_add_pattern (filter, "*.sch");
+  gtk_file_filter_add_pattern (filter, SYMBOL_FILTER);
+  gtk_file_filter_add_pattern (filter, SCHEMATIC_FILTER);
   gtk_file_chooser_add_filter (filechooser, filter);
   /* file filter that match any file */
   filter = gtk_file_filter_new ();
@@ -162,12 +162,10 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
  *
  *  \param [in] w_current The GSCHEM_TOPLEVEL environment.
  */
-void
-x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
+void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 {
   PAGE *page = NULL;
   GtkWidget *dialog;
-  gchar *cwd;
 
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -182,17 +180,20 @@ x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 					  GTK_RESPONSE_CANCEL,
 					  -1);
 
-  x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));  
+  /* 09/09/12 W. E. Hill Added conditional to check state of configuration
+   * variable file_preview.
+   *
+   * Conditionally add the file previewer
+   */
+  if(w_current->file_preview == TRUE)
+    x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
+
   g_object_set (dialog,
                 /* GtkFileChooser */
                 "select-multiple", TRUE,
                 NULL);
   /* add file filters to dialog */
   x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
-  /* force start in current working directory, not in 'Recently Used' */
-  cwd = g_get_current_dir ();
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
-  g_free (cwd);
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     GSList *tmp, *filenames =
@@ -266,10 +267,6 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
     gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog),
                                    toplevel->page_current->page_filename);
   } else {
-    gchar *cwd = g_get_current_dir ();
-    /* force save in current working dir */
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
-    g_free (cwd);
     gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog),
                                        "untitled.sch");
   }

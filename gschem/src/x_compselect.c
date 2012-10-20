@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,8 @@ enum compselect_view {
  *  VIEW_CLIB for the component library view.
  *
  *  \todo FIXME: This function assumes the GtkNotebook pages displaying the
- *               views are in a specific order.
+ *               views are in a specific order. (WEH: But no provisions
+ *               to change the TAB order so it's not broken)
  *
  *  \param [in] compselect  The component selection dialog.
  *  \returns The currently active view (from the compselect_view enum).
@@ -120,12 +121,12 @@ x_compselect_callback_response (GtkDialog *dialog,
                       "behavior", &behavior,
                       NULL);
 
-        w_current->include_complex = w_current->embed_complex = 0;
+        w_current->include_complex = w_current->embed_components = 0;
         switch (behavior) {
             case COMPSELECT_BEHAVIOR_REFERENCE:
               break;
             case COMPSELECT_BEHAVIOR_EMBED:
-              w_current->embed_complex   = 1;
+              w_current->embed_components   = 1;
               break;
             case COMPSELECT_BEHAVIOR_INCLUDE:
               w_current->include_complex = 1;

@@ -1,6 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
  * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,7 +22,6 @@
 #define LIBGEDA_H
 
 #include <glib.h>
-
 #include <stdio.h>
 #include <libguile.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>

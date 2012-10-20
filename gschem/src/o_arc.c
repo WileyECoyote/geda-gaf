@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -204,6 +204,7 @@ void o_arc_end4(GSCHEM_TOPLEVEL *w_current, int radius,
   new_obj = o_arc_new (toplevel, OBJ_ARC, GRAPHIC_COLOR,
                        w_current->first_wx, w_current->first_wy,
                        radius, start_angle, end_angle);
+  new_obj->line_width =  o_style_get_line_width(toplevel);
   s_page_append (toplevel, toplevel->page_current, new_obj);
 
   w_current->first_wx  = -1;

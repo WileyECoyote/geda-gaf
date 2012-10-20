@@ -14,7 +14,8 @@ system-gschemrc: $(top_builddir)/configure system-gschemrc.scm
 	  mv system-gschemrc.new system-gschemrc; \
 	fi
 
-EXTRA_DIST = system-gschemrc.scm gschem-gtkrc gschem-colormap-lightbg gschem-colormap-darkbg gschem-colormap-bw
+EXTRA_DIST = system-gschemrc.scm gschem-gtkrc gschem-colormap-lightbg \
+             gschem-colormap-darkbg gschem-colormap-bw gschem-colormap-custom
 
 MOSTLYCLEANFILES = *.log *~
 CLEANFILES = *.log *~

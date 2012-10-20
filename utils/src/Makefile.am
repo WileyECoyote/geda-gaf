@@ -1,5 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
+AM_CFLAGS=-I$(top_builddir)/include -Wall $(GCC_CFLAGS) $(MINGW_CFLIGS)
+
 bin_PROGRAMS = gmk_sym smash_megafile convert_sym sarlacc_schem olib \
 	       gsch2pcb grenum
 
@@ -26,7 +28,6 @@ sarlacc_schem_CFLAGS = $(GLIB_CFLAGS) $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 sarlacc_schem_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
 sarlacc_schem_LDADD = $(top_builddir)/libgeda/src/libgeda.la
 
-AM_CFLAGS = $(GCC_CFLAGS) $(MINGW_CFLIGS)
 AM_CPPFLAGS = -I$(top_srcdir)/libgeda/include -I$(srcdir)/../include \
 	-I$(top_srcdir) -I$(includedir)
 

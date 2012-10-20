@@ -18,9 +18,11 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
 
+#include <stdio.h>
+/*
 #include <config.h>
 
-#include <stdio.h>
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -30,7 +32,8 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-
+*/
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"
@@ -167,8 +170,7 @@ s_check_symbol (TOPLEVEL *pr_current, PAGE *p_current, const GList *obj_list)
 }
 
 
-gboolean 
-s_check_list_has_item(char **list , char *item)
+bool s_check_list_has_item(char **list , char *item)
 {
   gint cur;
   for (cur = 0; list[cur] != NULL; cur++) {
@@ -266,7 +268,7 @@ s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
   OBJECT *o_current;
-  gboolean overbar_started, escape, leave_parser;
+  bool overbar_started, escape, leave_parser;
   char *message;
   char *text_string, *ptr;
   gunichar current_char;
@@ -786,7 +788,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   char* pin;
   char* cmp;
   int match;
-  gboolean error_parsing = FALSE;
+  bool error_parsing = FALSE;
   int errors_found = 0;
 
   /* look for numslots to see if this symbol has slotting info */

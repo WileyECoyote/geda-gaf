@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -51,8 +51,12 @@ void o_bus_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
     return;
   }
 
-  if (toplevel->bus_style == THICK)
-    size = BUS_WIDTH;
+  /* If we used size = o_current->line_width then object would drawn with the
+   * current width, if the style has changed the screen would not relect the 
+   * change until the file was reloaded, maybe higher level log notice if is
+   * difference like "Notice: restyling ...?, or not WEH 09/12/12 */
+
+  size = o_style_get_bus_width(toplevel);
 
   gschem_cairo_line (w_current, END_SQUARE, size, x1, y1, x2, y2);
 
@@ -79,8 +83,7 @@ void o_bus_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *o_cur
     return;
   }
 
-  if (w_current->toplevel->bus_style == THICK)
-    size = BUS_WIDTH;
+  size = o_current->line_width;
 
   gschem_cairo_line (w_current, END_NONE, size,
                      o_current->line->x[0] + dx, o_current->line->y[0] + dy,
@@ -186,6 +189,8 @@ int o_bus_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   new_obj = o_bus_new(toplevel, OBJ_BUS, color,
                       w_current->first_wx, w_current->first_wy,
                       w_current->second_wx, w_current->second_wy, 0);
+
+  new_obj->line_width =  o_style_get_bus_width(toplevel);
   s_page_append (toplevel, toplevel->page_current, new_obj);
 
   /* connect the new bus to the other busses */
@@ -262,8 +267,8 @@ void o_bus_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
   WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &x1, &y1);
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
 
-  if (toplevel->bus_style == THICK ) {
-    bloat = SCREENabs (w_current, BUS_WIDTH) / 2;
+  if (toplevel->bus_style == STYLE_THICK ) {
+    bloat = SCREENabs (w_current, toplevel->thick_bus_width) / 2;
   }
 
   min_x = min (x1, x2) - bloat;
@@ -289,8 +294,15 @@ void o_bus_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 {
   int size = 0;
 
-  if (w_current->toplevel->bus_style == THICK)
-    size = BUS_WIDTH;
+  if(w_current->toplevel->bus_style == STYLE_THIN) {
+    size = w_current->toplevel->thin_bus_width;
+  } else {
+    if (w_current->toplevel->bus_style == STYLE_THICK) {
+      size = w_current->toplevel->thick_bus_width;
+    } else { 
+      size = MIN_LINE_WIDTH_THRESHOLD;
+    }
+  }
 
   gschem_cairo_line (w_current, END_NONE, size,
                      w_current->first_wx,  w_current->first_wy,

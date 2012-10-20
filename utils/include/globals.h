@@ -1,6 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * utils - gEDA Utilities
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +21,8 @@
 extern char *rc_filename;
 
 extern int logfile_fd;
-extern int do_logging;
-extern int logging_dest;
+extern volatile int logging;
+extern volatile int log_destiny;
 
 /* gnetlist specific stuff */
 extern NETLIST *netlist_head;

@@ -1,12 +1,14 @@
+AUTOMAKE_OPTIONS = nostdinc
+
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
 bin_PROGRAMS = gschem
 
-BUILT_SOURCES = \
-	g_attrib.x \
-	g_hook.x \
-	g_keys.x \
-	g_util.x \
-	g_window.x \
-	g_select.x
+gschem_CXXFLAGS=$(AM_CXXFLAGS)
 
 gschem_SOURCES = \
 	a_pan.c \
@@ -79,24 +81,24 @@ gschem_SOURCES = \
 	x_print.c \
 	x_rc.c \
 	x_script.c \
+        x_settings.c \
+        x_settings_dialog.c \
 	x_stroke.c \
 	x_window.c
 
-gschem_CPPFLAGS = -I$(top_srcdir)/libgeda/include  -I$(srcdir)/../include \
-	-I$(top_srcdir) -I$(includedir) -I$(top_srcdir)/intl
-gschem_CFLAGS = $(GCC_CFLAGS) $(LIBSTROKE_CFLAGS) \
-	$(MINGW_CFLAGS) \
-	$(GLIB_CFLAGS) $(GTK_CFLAGS) $(GTHREAD_CFLAGS) $(GUILE_CFLAGS)
+gschem_CPPFLAGS = $(GEDA_INCLUDES)
+gschem_CFLAGS = $(GCC_CFLAGS) $(LIBSTROKE_CFLAGS) $(AM_CFLAGS)\
+		$(GLIB_CFLAGS) $(GTK_CFLAGS) $(GUILE_CFLAGS) \
+		$(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
 gschem_LDFLAGS = $(LIBSTROKE_LDFLAGS) $(GLIB_LIBS) $(GTK_LIBS) \
-	$(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+		 $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 gschem_LDADD = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
-
-# This is used to generate boilerplate for defining Scheme functions
-# in C.
+# This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
-snarf_cpp_opts = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(gschem_CPPFLAGS) $(AM_CFLAGS) $(gschem_CFLAGS)
+snarf_cpp_opts = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
+		 $(gschem_CPPFLAGS) $(gschem_CFLAGS)  
+
 .c.x:
 	CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
@@ -107,3 +109,4 @@ MOSTLYCLEANFILES = *.log core FILE *~
 CLEANFILES = *.log core FILE *~ $(BUILT_SOURCES)
 DISTCLEANFILES = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
+

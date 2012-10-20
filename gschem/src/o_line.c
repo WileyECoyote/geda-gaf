@@ -35,7 +35,7 @@
  *  according to the current state, described in the GSCHEM_TOPLEVEL object pointed
  *  by <B>w_current</B>.
  *
- *  It first checks if the object is valid or not. If not it returns and do
+ *  It first checks if the object is valid or not. If not it returns and does
  *  not output anything. That should never happen though.
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
@@ -171,6 +171,7 @@ void o_line_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   new_obj = o_line_new (toplevel, OBJ_LINE, GRAPHIC_COLOR,
                         w_current->first_wx, w_current->first_wy,
                         w_current->second_wx, w_current->second_wy);
+  new_obj->line_width =  o_style_get_line_width(toplevel);
   s_page_append (toplevel, toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */

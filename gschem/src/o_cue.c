@@ -89,7 +89,7 @@ static void o_cue_set_color(GSCHEM_TOPLEVEL *w_current, int color)
  *  Draws a cue at the given world coordinate, picking the size based
  *  on whether a bus forms a part of the connection.
  *
- *  The cue's drawn position is hinted to align with the widht a net or
+ *  The cue's drawn position is hinted to align with the width a net or
  *  bus would be drawn on screen. This helps to keep the cue looking
  *  central when lines being hinted onto the pixel grid.
  *
@@ -106,10 +106,10 @@ static void draw_junction_cue (GSCHEM_TOPLEVEL *w_current,
 
   if (bus_involved) {
     size = JUNCTION_CUE_SIZE_BUS / 2;
-    line_width = BUS_WIDTH;
+    line_width = o_style_get_bus_width( w_current->toplevel );
   } else {
     size = JUNCTION_CUE_SIZE_NET / 2;
-    line_width = NET_WIDTH;
+    line_width = o_style_get_net_width( w_current->toplevel );
   }
 
   gschem_cairo_center_arc (w_current, line_width, -1, x, y, size, 0, 360);

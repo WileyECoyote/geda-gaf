@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -124,11 +124,10 @@ SCM g_rc_mode_general(SCM scmmode,
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
-g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
+bool g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
 {
   gchar *sysname = NULL;
-  gboolean status;
+  bool status;
 
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
@@ -150,7 +149,7 @@ g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
+bool
 g_rc_parse_user (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
 {
   /* Default to gafrc */
@@ -175,13 +174,13 @@ g_rc_parse_user (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
+bool
 g_rc_parse_local (TOPLEVEL *toplevel, const gchar *rcname, const gchar *path,
                   GError **err)
 {
   gchar *dir = NULL;
   gchar *rcfile = NULL;
-  gboolean status;
+  bool status;
   g_return_val_if_fail ((toplevel != NULL), FALSE);
 
   /* Default to gafrc */
@@ -218,7 +217,7 @@ g_rc_parse_local (TOPLEVEL *toplevel, const gchar *rcname, const gchar *path,
  * \param err       Return location for errors, or NULL.
  * \return TRUE if \a filename not already loaded, FALSE otherwise.
  */
-static gboolean
+static bool
 g_rc_try_mark_read (TOPLEVEL *toplevel, gchar *filename, GError **err)
 {
   GList *found = NULL;
@@ -248,7 +247,7 @@ g_rc_try_mark_read (TOPLEVEL *toplevel, gchar *filename, GError **err)
  * \param err       Return location for errors, or NULL;
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
+bool
 g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err)
 {
   gchar *name_norm = NULL;
@@ -337,13 +336,12 @@ g_rc_parse__process_error (GError **err, const gchar *pname)
  * \param [in] rcname    Config file basename, or NULL.
  * \param [in] rcfile    Specific config file path, or NULL.
  */
-void
-g_rc_parse (TOPLEVEL *toplevel, const gchar *pname,
-            const gchar *rcname, const gchar *rcfile)
+bool
+g_rc_parse (TOPLEVEL *toplevel, const gchar *pname,const gchar *rcname, const gchar *rcfile)
 {
-  g_rc_parse_handler (toplevel, rcname, rcfile,
-                      (ConfigParseErrorFunc) g_rc_parse__process_error,
-                      (void *) pname);
+  g_rc_parse_handler (toplevel, rcname, rcfile, 
+                     (ConfigParseErrorFunc) g_rc_parse__process_error,
+                     (void *) pname);
 }
 
 /*! \brief General RC file parsing function.
@@ -365,6 +363,7 @@ g_rc_parse (TOPLEVEL *toplevel, const gchar *pname,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
+
 void
 g_rc_parse_handler (TOPLEVEL *toplevel,
                     const gchar *rcname, const gchar *rcfile,
@@ -692,6 +691,359 @@ g_rc_rc_filename()
   }
 
   return scm_source_property (source, scm_sym_filename);
+}
+/* Net Styles*/
+/*! \brief This function processes the bus-style RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the bus-style RC entry. This function
+ *       accepts either string or integer type arguments.
+ *
+ */
+SCM g_rc_bus_style(SCM mode)
+{
+  if(scm_is_string(mode)) {
+   static const vstbl_entry mode_table[] = {
+     {STYLE_NONE , RC_STR_STYLE_NONE  },
+     {STYLE_THIN , RC_STR_STYLE_THIN  },
+     {STYLE_THICK, RC_STR_STYLE_THICK }
+   };
+
+   RETURN_G_RC_MODE("bus-style",
+     		     default_bus_style,
+		     3);
+  } else {
+    int val;
+    if (scm_is_integer(mode)) {
+      int val;
+      val = scm_to_int (mode);
+      if((val < STYLE_NONE) || (val > STYLE_THICK)) {
+        fprintf (stderr, _("Bad value [%d], check bus-style entry in rc file\n"), val);
+        fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_BUS_STYLE);
+        val = DEFAULT_BUS_STYLE;
+      }
+    }
+    else {
+      fprintf (stderr, _("Invalid type assignment, check bus-style entry in rc file\n"));
+      fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_BUS_STYLE);
+      val = DEFAULT_BUS_STYLE;
+    }
+    default_bus_style = val;
+  }
+  return SCM_BOOL_T;
+}
+/*! \brief This function processes the line-style RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the line-style RC entry.  This function
+ *       accepts either string or integer type arguments.
+ *
+ */
+SCM g_rc_line_style(SCM mode)
+{
+  if(scm_is_string(mode)) {
+   static const vstbl_entry mode_table[] = {
+     {STYLE_NONE , RC_STR_STYLE_NONE  },
+     {STYLE_THIN , RC_STR_STYLE_THIN  },
+     {STYLE_THICK, RC_STR_STYLE_THICK }
+   };
+   RETURN_G_RC_MODE("line-style",
+		     default_line_style,
+		     3);
+  } else {
+    int val;
+    if (scm_is_integer(mode)) {
+      val = scm_to_int (mode);
+      if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
+        fprintf (stderr, _("Bad value [%d], check line-style entry in rc file\n"), val);
+        fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_LINE_STYLE);
+        val = DEFAULT_LINE_STYLE;
+      }
+    }
+    else {
+      fprintf (stderr, _("Invalid type assignment, check line-style entry in rc file\n"));
+      fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_LINE_STYLE);
+      val = DEFAULT_LINE_STYLE;
+    }
+    default_line_style = val;
+  }
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the net-style RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the net-style RC entry. This function
+ *       accepts either string or integer type arguments.
+ *
+ */
+SCM g_rc_net_style(SCM mode)
+{
+  if(scm_is_string(mode)) {
+   static const vstbl_entry mode_table[] = {
+     {STYLE_NONE , RC_STR_STYLE_NONE  },
+     {STYLE_THIN , RC_STR_STYLE_THIN  },
+     {STYLE_THICK, RC_STR_STYLE_THICK }
+   };
+
+  RETURN_G_RC_MODE("net-style",
+		   default_net_style,
+		   3);
+  } else {
+    int val;
+    if (scm_is_integer(mode)) {
+      val = scm_to_int (mode);
+      if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
+        fprintf (stderr, _("Bad value [%d], check net-style entry in rc file\n"), val);
+        fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_NET_STYLE);
+        val = DEFAULT_LINE_STYLE;
+      }
+    }
+    else {
+      fprintf (stderr, _("Invalid type assignment, check net-style entry in rc file\n"));
+      fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_NET_STYLE);
+      val = DEFAULT_NET_STYLE;
+    }
+    default_net_style = val;
+  }
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the pin-style RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the pin-style RC entry. This functions
+ *       accepts either string or integer type arguments.
+ *
+ */
+SCM g_rc_pin_style(SCM mode)
+{
+  if(scm_is_string(mode)) {
+   static const vstbl_entry mode_table[] = {
+     {STYLE_NONE , RC_STR_STYLE_NONE  },
+     {STYLE_THIN , RC_STR_STYLE_THIN  },
+     {STYLE_THICK, RC_STR_STYLE_THICK }
+   };
+
+  RETURN_G_RC_MODE("pin-style",
+		   default_pin_style,
+		   3);
+  } else {
+    int val;
+    if (scm_is_integer(mode)) {
+      val = scm_to_int (mode);
+      if ((val < STYLE_NONE) || (val > STYLE_THICK)) {
+        fprintf (stderr, _("Bad value [%d], check pin-style entry in rc file\n"), val);
+        fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_PIN_STYLE);
+        val = DEFAULT_LINE_STYLE;
+      }
+    }
+    else {
+      fprintf (stderr, _("Invalid type assignment, check pin-style entry in rc file\n"));
+      fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_PIN_STYLE);
+      val = DEFAULT_PIN_STYLE;
+    }
+    default_pin_style = val;
+  }
+  return SCM_BOOL_T;
+}
+/*! \brief This function processes the thick-bus-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thick-bus-width RC entry.
+ */
+
+SCM g_rc_thick_bus_width (SCM width)
+{
+  int val;
+
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_BUS_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thick-bus-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_BUS_WIDTH);
+    val = DEFAULT_THICK_BUS_WIDTH;
+  }
+  default_thick_bus_width = val;
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thick-line-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thick-line-width RC entry.
+ */
+SCM g_rc_thick_line_width (SCM width)
+{
+  int val;
+
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_LINE_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thick-line-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_LINE_WIDTH);
+    val = DEFAULT_THICK_LINE_WIDTH;
+  }
+  default_thick_line_width = val;
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thick-net-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thick-net-width RC entry.
+ */
+SCM g_rc_thick_net_width (SCM width)
+{
+  int val;
+
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_NET_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thick-net-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_NET_WIDTH);
+    val = DEFAULT_THICK_NET_WIDTH;
+  }
+  default_thick_net_width = val;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thick-pin-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thick-pin-width RC entry.
+ */
+SCM g_rc_thick_pin_width (SCM width)
+{
+  int val;
+
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_PIN_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thick-pin-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THICK_PIN_WIDTH);
+    val = DEFAULT_THICK_PIN_WIDTH;
+  }
+  default_thick_pin_width = val;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thin-bus-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thin-bus-width RC entry.
+ */
+SCM g_rc_thin_bus_width (SCM width)
+{
+  int val;
+
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_BUS_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thin-bus-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_BUS_WIDTH);
+    val = DEFAULT_THIN_BUS_WIDTH;
+  }
+  default_thin_bus_width = val;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thin-line-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thin-line-width RC entry.
+ */
+SCM g_rc_thin_line_width (SCM width)
+{
+  int val;
+  
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_LINE_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thin-line-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_LINE_WIDTH);
+    val = DEFAULT_THIN_LINE_WIDTH;
+  }
+  default_thin_line_width = val;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thin-net-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thin-net-width RC entry.
+ */
+SCM g_rc_thin_net_width (SCM width)
+{
+  int val;
+  
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_NET_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thin-net-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_NET_WIDTH);
+    val = DEFAULT_THIN_NET_WIDTH;
+  }
+  default_thin_net_width = val;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the thin-pin-width RC entry.
+ *  \par Function Description
+ *       C function to construct lisp algorithms to dynamically process
+ *       configuration data for the thin-pin-width RC entry.
+ */
+SCM g_rc_thin_pin_width (SCM width)
+{
+  int val;
+
+  if (scm_is_integer(width)) {
+    val = scm_to_int (width);
+    if (val < 0) {
+      val = MIN_PIN_WIDTH; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check thin-pin-width entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_THIN_PIN_WIDTH);
+    val = DEFAULT_THIN_PIN_WIDTH;
+  }
+  default_thin_pin_width = val;
+
+  return SCM_BOOL_T;
 }
 
 /*! \todo Finish function description!!!

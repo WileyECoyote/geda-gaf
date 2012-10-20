@@ -15,7 +15,7 @@ gsymcheck_SOURCES = \
 	s_symstruct.c
 
 gsymcheck_CPPFLAGS = -I$(top_srcdir)/libgeda/include -I$(srcdir)/../include \
-	-I$(top_srcdir) -I$(includedir)
+	-I$(abs_top_srcdir)/include -I$(includedir)
 gsymcheck_CFLAGS = $(GCC_CFLAGS) $(MINGW_CFLIGS) $(GLIB_CFLAGS) \
 	$(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 gsymcheck_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)

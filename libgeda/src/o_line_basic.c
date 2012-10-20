@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -559,14 +559,15 @@ void o_line_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
    * In the eventuality of a length and/or space null, the line is printed
    * solid to avoid and endless loop produced by other functions.
    */
+  /* 09/08/12 | W.E.Hill Modified algorithms to incorperate both THICK & THIN
+   *            styles, and eliminated hard-coded integer values.
+   */
+
   line_width = o_current->line_width;
-  if(line_width <=2) {
-    if(toplevel->line_style == THICK) {
-      line_width=LINE_WIDTH;
-    } else {
-      line_width=2;
-    }
-  }
+  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+     line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+     line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
   length = o_current->line_length;
   space  = o_current->line_space;

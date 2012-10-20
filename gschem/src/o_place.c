@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -179,7 +179,7 @@ void o_place_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
   if (drawing) {
     /* Ensure we set this to flag there is "something" supposed to be
      * drawn when the invaliate call below causes an expose event. */
-    w_current->last_drawb_mode = w_current->actionfeedback_mode;
+    w_current->last_drawb_mode = w_current->action_feedback_mode;
     w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
                                             ? CONSTRAINED : FREE;
   }
@@ -220,7 +220,7 @@ void o_place_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
  *  \par Function Description
  *  This function draws either the OBJECTS in the place list
  *  or a rectangle around their bounding box, depending upon the
- *  currently selected w_current->actionfeedback_mode. This takes the
+ *  currently selected w_current->action_feedback_mode. This takes the
  *  value BOUNDINGBOX or OUTLINE.
  *
  * The function applies manhatten mode constraints to the coordinates
@@ -260,7 +260,7 @@ void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
   /* If drawing is true, then don't worry about the previous drawing
    * method and movement constraints, use with the current settings */
   if (drawing) {
-    w_current->last_drawb_mode = w_current->actionfeedback_mode;
+    w_current->last_drawb_mode = w_current->action_feedback_mode;
     w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
                                             ? CONSTRAINED : FREE;
   }
@@ -301,7 +301,7 @@ void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
 
   /* Save movement constraints and drawing method for any
    * corresponding undraw operation. */
-  w_current->last_drawb_mode = w_current->actionfeedback_mode;
+  w_current->last_drawb_mode = w_current->action_feedback_mode;
   w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
                                           ? CONSTRAINED : FREE;
 }

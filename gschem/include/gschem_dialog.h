@@ -21,6 +21,23 @@
 #ifndef __GSCHEM_DIALOG_H__
 #define __GSCHEM_DIALOG_H__
 
+/* Date: Aug 12, 2012
+ * Who:  Wiley E. Hill
+ * What  MACRO: NEW_GSCHEM_DIALOG
+ * Why:  This Macro facilitate creating new Dialog Boxes. 
+*/
+#define NEW_STD_GSCHEM_DIALOG(title, identifier, ptrWindowWidget) \
+      gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
+                                     GTK_DIALOG_MODAL, identifier, ptrWindowWidget)
+
+/* Date: Aug 12, 2012
+ * Who:  Wiley E. Hill
+ * What  MACRO: NEW_GSCHEM_DIALOG
+ * Why:  This Macro facilitate creating new Dialog Boxes. 
+*/
+#define NEW_GSCHEM_DIALOG(title, flags, identifier, ptrWindowWidget) \
+  gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
+                                  flags, identifier, ptrWindowWidget);
 
 #define GSCHEM_TYPE_DIALOG           (gschem_dialog_get_type())
 #define GSCHEM_DIALOG(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_DIALOG, GschemDialog))
@@ -52,6 +69,11 @@ struct _GschemDialog {
 
 
 GType gschem_dialog_get_type (void);
+GtkWidget* gschem_dialog_new_empty (const gchar     *title,
+                                          GtkWindow       *parent,
+                                          GtkDialogFlags   flags,
+                                          const gchar *settings_name,
+                                          GSCHEM_TOPLEVEL *w_current);
 
 GtkWidget* gschem_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags,
                                            const gchar *settings_name, GSCHEM_TOPLEVEL *w_current,

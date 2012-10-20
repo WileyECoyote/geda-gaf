@@ -10,7 +10,7 @@ void o_scale(TOPLEVEL *toplevel, GList *list, int x_scale, int y_scale);
 
 /* f_basic.c */
 gchar *f_get_autosave_filename (const gchar *filename);
-gboolean f_has_active_autosave (const gchar *filename, GError **err);
+bool f_has_active_autosave (const gchar *filename, GError **err);
 int f_open(TOPLEVEL *toplevel, PAGE *page, const gchar *filename, GError **err);
 int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const gchar *filename,
                  const gint flags, GError **err);
@@ -25,20 +25,24 @@ int f_print_command (TOPLEVEL *toplevel, PAGE *page, const char *command);
 int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp);
 void f_print_set_type(TOPLEVEL *toplevel, int type);
 
+/* f_utilities.c */
+const char *get_filename_ext(const char *filename);
+void remove_ext_from_basename(char *filename);
+
 /* g_basic.c */
 SCM g_scm_eval_protected (SCM exp, SCM module_or_state);
 SCM g_scm_eval_string_protected (SCM str);
 SCM g_scm_c_eval_string_protected (const gchar *str);
-gboolean g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err);
+bool g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err);
 
 /* g_rc.c */
 SCM g_rc_mode_general(SCM scmmode, const char *rc_name, int *mode_var, 
                       const vstbl_entry *table, int table_size);
-gboolean g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err);
-gboolean g_rc_parse_user (TOPLEVEL *toplevel, const gchar *rcname, GError **err);
-gboolean g_rc_parse_local (TOPLEVEL *toplevel, const gchar *rcname, const gchar *path, GError **err);
-gboolean g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err);
-void g_rc_parse(TOPLEVEL *toplevel, const gchar* pname, const gchar* rcname, const gchar* rcfile);
+bool g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err);
+bool g_rc_parse_user (TOPLEVEL *toplevel, const gchar *rcname, GError **err);
+bool g_rc_parse_local (TOPLEVEL *toplevel, const gchar *rcname, const gchar *path, GError **err);
+bool g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err);
+bool g_rc_parse(TOPLEVEL *toplevel, const gchar* pname, const gchar* rcname, const gchar* rcfile);
 void g_rc_parse_handler (TOPLEVEL *toplevel, const gchar *rcname, const gchar *rcfile, ConfigParseErrorFunc handler, void *user_data);
 SCM g_rc_rc_filename();
 
@@ -75,14 +79,14 @@ void o_arc_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery
 
 /* o_attrib.c */
 void o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item);
-gboolean o_attrib_is_attached (TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object);
+bool o_attrib_is_attached (TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object);
 void o_attrib_attach(TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object, int set_color);
 void o_attrib_attach_list(TOPLEVEL *toplevel, GList *attr_list, OBJECT *object, int set_color);
 void o_attrib_detach_all(TOPLEVEL *toplevel, OBJECT *object);
 void o_attrib_print(GList *attributes);
 void o_attrib_remove(TOPLEVEL *toplevel, GList **list, OBJECT *remove);
-gboolean o_attrib_string_get_name_value (const gchar *string, gchar **name_ptr, gchar **value_ptr);
-gboolean o_attrib_get_name_value (OBJECT *attrib, gchar **name_ptr, gchar **value_ptr);
+bool o_attrib_string_get_name_value (const gchar *string, gchar **name_ptr, gchar **value_ptr);
+bool o_attrib_get_name_value (OBJECT *attrib, gchar **name_ptr, gchar **value_ptr);
 GList *o_attrib_find_floating_attribs (const GList *list);
 char *o_attrib_search_floating_attribs_by_name (const GList *list, char *name, int counter);
 char *o_attrib_search_attached_attribs_by_name (OBJECT *object, char *name, int counter);
@@ -100,10 +104,10 @@ int inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y);
 void o_recalc_single_object(TOPLEVEL *toplevel, OBJECT *o_current);
 void o_recalc_object_glist(TOPLEVEL *toplevel, GList *object_glist);
 void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current, OBJECT_END end, OBJECT_TYPE type, int width, int length, int space);
-gboolean o_get_line_options(OBJECT *object, OBJECT_END *end, OBJECT_TYPE *type, int *width, int *length, int *space);
+bool o_get_line_options(OBJECT *object, OBJECT_END *end, OBJECT_TYPE *type, int *width, int *length, int *space);
 void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current, OBJECT_FILLING type, int width, int pitch1, int angle1, int pitch2, int angle2);
-gboolean o_get_fill_options(OBJECT *object, OBJECT_FILLING *type, int *width, int *pitch1, int *angle1, int *pitch2, int *angle2);
-gboolean o_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
+bool o_get_fill_options(OBJECT *object, OBJECT_FILLING *type, int *width, int *pitch1, int *angle1, int *pitch2, int *angle2);
+bool o_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
 void o_translate_world (TOPLEVEL *toplevel, gint dx, gint dy, OBJECT *object);
 void o_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
 void o_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
@@ -113,7 +117,7 @@ PAGE *o_get_page (TOPLEVEL *toplevel, OBJECT *object);
 OBJECT *o_get_parent (TOPLEVEL *toplevel, OBJECT *object);
 void o_add_change_notify(TOPLEVEL *toplevel, ChangeNotifyFunc pre_change_func, ChangeNotifyFunc change_func, void *user_data);
 void o_remove_change_notify(TOPLEVEL *toplevel, ChangeNotifyFunc pre_change_func, ChangeNotifyFunc change_func, void *user_data);
-gboolean o_is_visible (TOPLEVEL *toplevel, OBJECT *object);
+bool o_is_visible (TOPLEVEL *toplevel, OBJECT *object);
 void o_set_visibility (TOPLEVEL *toplevel, OBJECT *object, int visibility);
 OBJECT_END o_get_line_end (int capstyle);
 
@@ -196,7 +200,7 @@ int o_net_orientation(OBJECT *object);
 void o_net_consolidate(TOPLEVEL *toplevel, PAGE *page);
 void o_net_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
 void o_net_refresh_conn_cache(TOPLEVEL *toplevel, OBJECT *object);
-gboolean o_net_is_fully_connected(TOPLEVEL *toplevel, OBJECT *object);
+bool o_net_is_fully_connected(TOPLEVEL *toplevel, OBJECT *object);
 
 /* o_path_basic.c */
 OBJECT *o_path_new(TOPLEVEL *toplevel, char type, int color, const char *path_string);
@@ -219,14 +223,14 @@ void o_picture_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_cen
 void o_picture_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 void o_picture_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 OBJECT *o_picture_copy(TOPLEVEL *toplevel, OBJECT *o_current) G_GNUC_WARN_UNUSED_RESULT;
-gboolean o_picture_is_embedded (TOPLEVEL *toplevel, OBJECT *object);
+bool o_picture_is_embedded (TOPLEVEL *toplevel, OBJECT *object);
 GdkPixbuf *o_picture_get_pixbuf (TOPLEVEL *toplevel, OBJECT *object) G_GNUC_WARN_UNUSED_RESULT;
 const char *o_picture_get_data (TOPLEVEL *toplevel, OBJECT *object,
                                 size_t *len);
-gboolean o_picture_set_from_buffer (TOPLEVEL *toplevel, OBJECT *object,
+bool o_picture_set_from_buffer (TOPLEVEL *toplevel, OBJECT *object,
                                     const gchar *filename, const gchar *data,
                                     size_t len, GError **error);
-gboolean o_picture_set_from_file (TOPLEVEL *toplevel, OBJECT *object,
+bool o_picture_set_from_file (TOPLEVEL *toplevel, OBJECT *object,
                                   const gchar *filename, GError **error);
 const gchar *o_picture_get_filename (TOPLEVEL *toplevel, OBJECT *object);
 GdkPixbuf *o_picture_get_fallback_pixbuf (TOPLEVEL *toplevel) G_GNUC_WARN_UNUSED_RESULT;
@@ -247,7 +251,11 @@ void o_selection_print_all(const SELECTION *selection);
 void o_selection_remove(TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_selected);
 void o_selection_select(TOPLEVEL *toplevel, OBJECT *object) G_GNUC_DEPRECATED;
 void o_selection_unselect(TOPLEVEL *toplevel, OBJECT *object) G_GNUC_DEPRECATED;
-
+/* o_style.c */
+int o_style_get_bus_width(TOPLEVEL *toplevel);
+int o_style_get_line_width(TOPLEVEL *toplevel);
+int o_style_get_net_width(TOPLEVEL *toplevel);
+int o_style_get_pin_width(TOPLEVEL *toplevel, int type);
 /* o_text_basic.c */
 int o_text_num_lines(const char *string);
 OBJECT *o_text_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int alignment, int angle, const char *string, int size, int visibility, int show_name_value);
@@ -263,6 +271,7 @@ double o_text_get_font_size_in_points(TOPLEVEL *toplevel, OBJECT *object);
 
 /* s_attrib.c */
 int s_attrib_add_entry(char *new_attrib);
+int s_attrib_count( void );
 void s_attrib_print(void);
 int s_attrib_uniq(char *name);
 void s_attrib_free(void);
@@ -289,7 +298,7 @@ const char *s_path_user_config ();
 
 /* s_clib.c */
 void s_clib_free (void);
-GList *s_clib_get_sources (const gboolean sorted);
+GList *s_clib_get_sources (const bool sorted);
 const CLibSource *s_clib_get_source_by_name (const gchar *name);
 void s_clib_refresh ();
 const CLibSource *s_clib_add_directory (const gchar *directory, 
@@ -315,7 +324,7 @@ GList *s_toplevel_get_symbols (const TOPLEVEL *toplevel);
 
 /* s_color.c */
 void s_color_map_defaults (COLOR *map);
-gboolean s_color_rgba_decode (const gchar *rgba,
+bool s_color_rgba_decode (const gchar *rgba,
                               guchar *r, guchar *g, guchar *b, guchar *a);
 gchar *s_color_rgba_encode (guint8 r, guint8 g, guint8 b, guint8 a);
 SCM s_color_map_to_scm (const COLOR *map);
@@ -374,7 +383,7 @@ PAGE *s_page_search (TOPLEVEL *toplevel, const gchar *filename);
 PAGE *s_page_search_by_page_id (GedaPageList *list, int pid);
 void s_page_print_all (TOPLEVEL *toplevel);
 gint s_page_save_all (TOPLEVEL *toplevel);
-gboolean s_page_check_changed (GedaPageList *list);
+bool s_page_check_changed (GedaPageList *list);
 void s_page_clear_changed (GedaPageList *list);
 void s_page_autosave_init(TOPLEVEL *toplevel);
 gint s_page_autosave (TOPLEVEL *toplevel);

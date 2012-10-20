@@ -1,5 +1,5 @@
 /* GtkSheet widget for Gtk+.
- * Copyright (C) 1999-2001 Adrian E. Feiguin <adrian@ifir.ifir.edu.ar>
+ * Copyright (C) 1999-2012 Adrian E. Feiguin <adrian@ifir.ifir.edu.ar>
  *
  * Based on GtkClist widget by Jay Painter, but major changes.
  * Memory allocation routines inspired on SC (Spreadsheet Calculator)
@@ -41,11 +41,7 @@
  * Included here in order to grab sheet_head->CHANGED, which is set
  * when the user puts a new value in a cell.
  *------------------------------------------------------------------*/
-#include <libgeda/libgeda.h>       /* geda library fcns  */
-#include "../include/struct.h"     /* typdef and struct declarations */
-#include "../include/prototype.h"  /* function prototypes */
-#include "../include/globals.h"
-#include "../include/gettext.h"
+#include "../include/gattrib.h"  /* include Gattrib specific headers  */
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>

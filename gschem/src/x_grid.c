@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -232,7 +232,7 @@ static int query_mesh_grid_spacing (GSCHEM_TOPLEVEL *w_current)
   screen_incr = SCREENabs (w_current, incr);
 
   /* We draw a fine grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_display_threshold) {
+  if (screen_incr >= w_current->mesh_grid_threshold) {
     return incr;
   }
 
@@ -240,7 +240,7 @@ static int query_mesh_grid_spacing (GSCHEM_TOPLEVEL *w_current)
   screen_incr = SCREENabs (w_current, incr);
 
   /* We draw a coarse grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_display_threshold)
+  if (screen_incr >= w_current->mesh_grid_threshold)
     return incr;
 
   return -1;
@@ -271,7 +271,7 @@ static void draw_mesh_grid_region (GSCHEM_TOPLEVEL *w_current,
   SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
 
   /* Draw the fine grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_display_threshold) {
+  if (screen_incr >= w_current->mesh_grid_threshold) {
     draw_mesh (w_current, MESH_GRID_MINOR_COLOR, x_start, y_start,
                x_end, y_end, incr, MESH_COARSE_GRID_MULTIPLIER);
   }
@@ -280,7 +280,7 @@ static void draw_mesh_grid_region (GSCHEM_TOPLEVEL *w_current,
   screen_incr = SCREENabs (w_current, incr);
 
   /* Draw the coarse grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_display_threshold) {
+  if (screen_incr >= w_current->mesh_grid_threshold) {
     draw_mesh (w_current, MESH_GRID_MAJOR_COLOR,
                x_start, y_start, x_end, y_end, incr, 0);
   }
@@ -301,7 +301,7 @@ static void draw_mesh_grid_region (GSCHEM_TOPLEVEL *w_current,
 void x_grid_draw_region (GSCHEM_TOPLEVEL *w_current,
                          int x, int y, int width, int height)
 {
-  switch (w_current->grid) {
+  switch (w_current->grid_mode) {
     case GRID_NONE:
       return;
 
@@ -334,7 +334,7 @@ void x_grid_draw_region (GSCHEM_TOPLEVEL *w_current,
  */
 int x_grid_query_drawn_spacing (GSCHEM_TOPLEVEL *w_current)
 {
-  switch (w_current->grid) {
+  switch (w_current->grid_mode) {
     default:
     case GRID_NONE: return -1;
     case GRID_DOTS: return query_dots_grid_spacing (w_current);
