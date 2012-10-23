@@ -19,7 +19,7 @@ pinseq=2
 T 350 800 9 8 1 1 0 0 1
 pinlabel=NC
 T 350 800 5 8 0 1 0 2 1
-pintype=nc
+pintype=pas
 }
 P 0 500 300 500 1 0 0
 {
@@ -30,7 +30,7 @@ pinseq=3
 T 350 500 9 8 1 1 0 0 1
 pinlabel=NC
 T 350 500 5 8 0 1 0 2 1
-pintype=nc
+pintype=pas
 }
 P 0 200 300 200 1 0 0
 {
@@ -98,10 +98,6 @@ T 300 2150 5 10 0 0 0 0 1
 footprint=MSOP8
 T 300 2350 5 10 0 0 0 0 1
 description= 2.2  CMOS ± 5 V/5V, SPST Switch
-T 300 2550 5 10 0 0 0 0 1
-net=Vcc:4
-T 300 2750 5 10 0 0 0 0 1
-net=GND:7
 T 300 1450 9 10 1 0 0 0 1
 ADG601
 T 300 2950 5 10 0 0 0 0 1

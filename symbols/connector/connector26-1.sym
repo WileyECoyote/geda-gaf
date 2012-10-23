@@ -1,4 +1,4 @@
-v 20031231 1
+v 20121031 1
 P 1500 7500 1800 7500 1 0 1
 {
 T 350 7450 5 8 1 1 0 0 1
@@ -317,6 +317,6 @@ device=CONNECTOR_26
 T 100 8100 8 10 1 1 0 0 1
 refdes=CONN?
 T 100 8700 8 10 0 0 0 0 1
-pins=26
+footprint=SIP26N
 T 100 8500 8 10 0 0 0 0 1
-class=IO
+numslots=0

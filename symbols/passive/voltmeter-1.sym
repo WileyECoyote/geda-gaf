@@ -33,3 +33,7 @@ T 300 600 8 10 1 1 0 0 1
 refdes=V?
 T 100 1000 8 10 0 1 0 0 1
 description=A voltage measurement device
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

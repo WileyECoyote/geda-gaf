@@ -1,4 +1,4 @@
-v 20031231 1
+v 20121031 2
 T 400 2900 9 10 1 0 0 0 1
 A1
 T 400 2100 9 10 1 0 0 0 1
@@ -26,91 +26,143 @@ P 300 2900 0 2900 1 0 1
 T 100 2950 5 8 1 1 0 0 1
 pinnumber=4
 T 100 2950 5 8 0 0 0 0 1
-pinseq=4
+pinseq=1
+T 100 2950 5 8 1 1 0 0 1
+pintype=io
+T 100 2950 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 2500 0 2500 1 0 1
 {
 T 100 2550 5 8 1 1 0 0 1
 pinnumber=5
 T 100 2550 5 8 0 0 0 0 1
-pinseq=5
+pinseq=2
+T 100 2550 5 8 1 1 0 0 1
+pintype=io
+T 100 2550 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 2100 0 2100 1 0 1
 {
 T 100 2150 5 8 1 1 0 0 1
 pinnumber=6
 T 100 2150 5 8 0 0 0 0 1
-pinseq=6
+pinseq=3
+T 100 2150 5 8 1 1 0 0 1
+pintype=io
+T 100 2150 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 1700 0 1700 1 0 1
 {
 T 100 1750 5 8 1 1 0 0 1
 pinnumber=7
 T 100 1750 5 8 0 0 0 0 1
-pinseq=7
+pinseq=4
+T 100 1750 5 8 1 1 0 0 1
+pintype=io
+T 100 1750 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 1300 0 1300 1 0 1
 {
 T 100 1350 5 8 1 1 0 0 1
 pinnumber=12
 T 100 1350 5 8 0 0 0 0 1
-pinseq=12
+pinseq=5
+T 100 1350 5 8 1 1 0 0 1
+pintype=io
+T 100 1350 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 900 0 900 1 0 1
 {
 T 100 950 5 8 1 1 0 0 1
 pinnumber=11
 T 100 950 5 8 0 0 0 0 1
-pinseq=11
+pinseq=6
+T 100 950 5 8 1 1 0 0 1
+pintype=io
+T 100 950 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 500 0 500 1 0 1
 {
 T 100 550 5 8 1 1 0 0 1
 pinnumber=10
 T 100 550 5 8 0 0 0 0 1
-pinseq=10
+pinseq=7
+T 100 550 5 8 1 1 0 0 1
+pintype=io
+T 100 550 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 100 0 100 1 0 1
 {
 T 100 150 5 8 1 1 0 0 1
 pinnumber=9
 T 100 150 5 8 0 0 0 0 1
-pinseq=9
+pinseq=8
+T 100 150 5 8 1 1 0 0 1
+pintype=io
+T 100 150 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 2600 300 2300 300 1 0 0
 {
 T 2400 350 5 8 1 1 0 0 1
 pinnumber=14
 T 2400 350 5 8 0 0 0 0 1
-pinseq=14
+pinseq=9
+T 2400 350 5 8 1 1 0 0 1
+pintype=io
+T 2400 350 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 2600 1100 2300 1100 1 0 0
 {
 T 2400 1150 5 8 1 1 0 0 1
 pinnumber=13
 T 2400 1150 5 8 0 0 0 0 1
-pinseq=13
+pinseq=10
+T 2400 1150 5 8 1 1 0 0 1
+pintype=io
+T 2400 1150 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 2600 1900 2300 1900 1 0 0
 {
 T 2400 1950 5 8 1 1 0 0 1
 pinnumber=2
 T 2400 1950 5 8 0 0 0 0 1
-pinseq=2
+pinseq=11
+T 2400 1950 5 8 1 1 0 0 1
+pintype=io
+T 2400 1950 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 2600 2700 2300 2700 1 0 0
 {
 T 2400 2750 5 8 1 1 0 0 1
 pinnumber=3
 T 2400 2750 5 8 0 0 0 0 1
-pinseq=3
+pinseq=12
+T 2400 2750 5 8 1 1 0 0 1
+pintype=io
+T 2400 2750 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 B 300 0 2000 3200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 2900 2700 5 10 0 0 0 0 1
 device=DC8640
 T 400 2500 9 10 1 0 0 0 1
 B1
-T 300 3250 9 10 1 0 0 0 1
-DC8640
+T 300 3250 9 10 1 1 0 0 1
+device=DC8640
 T 2300 3300 8 10 1 1 0 6 1
 refdes=U?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

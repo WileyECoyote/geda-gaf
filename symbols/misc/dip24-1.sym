@@ -270,3 +270,7 @@ T 300 4750 9 10 1 0 0 0 1
 DIP24
 T 1200 4800 8 10 1 1 0 0 1
 refdes=CONN?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

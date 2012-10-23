@@ -11,9 +11,15 @@ pinnumber=OPAD
 T 302 35 5 10 0 0 0 0 1
 pinseq=1
 T 302 35 5 10 0 1 0 0 1
-pintype=IN
+pintype=in
+T 302 35 5 10 0 1 0 0 1
+pinlabel=n_a
 }
 T 302 218 5 10 0 1 0 0 1
 device=OPAD
 T 500 50 5 10 1 1 0 6 1
 refdes=P?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

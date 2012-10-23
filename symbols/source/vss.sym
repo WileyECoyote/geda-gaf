@@ -1,4 +1,6 @@
-v 20080706 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 P 200 400 200 200 1 0 0
 {
 T 150 350 5 6 0 1 180 0 1
@@ -15,3 +17,9 @@ T 75 50 9 8 1 0 0 0 1
 VSS
 T 450 200 8 10 0 0 0 0 1
 device=POWER
+T 200 300 8 10 0 1 0 0 1
+refdes=none
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

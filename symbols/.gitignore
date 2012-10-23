@@ -14,3 +14,7 @@ config.guess
 config.sub
 *~
 ChangeLog
+sort/
+bfixsymlib
+chksymlib
+libreport.txt

@@ -89,3 +89,7 @@ pinlabel=6
 T 1300 800 5 10 0 1 0 0 1 
 pintype=pas
 }
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

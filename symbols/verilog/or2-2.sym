@@ -1,4 +1,4 @@
-v 20031231 1
+v 20121031 2
 L 300 600 700 600 3 0 0 0 -1 -1
 L 300 0 700 0 3 0 0 0 -1 -1
 L 300 0 300 600 3 0 0 0 -1 -1
@@ -10,6 +10,10 @@ T 1000 300 5 8 0 0 0 0 1
 pinnumber=OUT
 T 1000 300 5 8 0 0 0 0 1
 pinseq=1
+T 1000 300 5 8 0 0 0 0 1
+pintype=io
+T 1000 300 5 8 0 0 0 0 1
+pinlabel=n_a
 }
 V 250 100 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 100 0 100 1 0 1
@@ -18,6 +22,10 @@ T 300 100 5 8 0 0 0 0 1
 pinnumber=IN0
 T 300 100 5 8 0 0 0 0 1
 pinseq=2
+T 300 100 5 8 0 0 0 0 1
+pintype=io
+T 300 100 5 8 0 0 0 0 1
+pinlabel=n_a
 }
 V 250 500 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 200 500 0 500 1 0 1
@@ -26,10 +34,18 @@ T 300 500 5 8 0 0 0 0 1
 pinnumber=IN1
 T 300 500 5 8 0 0 0 0 1
 pinseq=3
+T 300 500 5 8 0 0 0 0 1
+pintype=io
+T 300 500 5 8 0 0 0 0 1
+pinlabel=n_a
 }
 T 400 -100 5 10 1 1 0 2 1
 refdes=U?
 T 400 100 5 8 0 0 0 0 1
 device=or
 T 400 200 5 8 0 0 0 0 1
-VERILOG_PORTS=POSITIONAL
+comment=VERILOG_PORTS=POSITIONAL
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

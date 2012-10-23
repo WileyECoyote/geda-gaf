@@ -1,10 +1,16 @@
-v 20060123 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 P 200 400 200 200 1 0 0
 {
 T 500 100 5 10 0 0 0 0 1
 pinseq=1
 T 500 300 5 10 0 0 0 0 1
 pinnumber=1
+T 500 300 5 10 0 0 0 0 1
+pintype=io
+T 500 300 5 10 0 0 0 0 1
+pinlabel=n_a
 }
 L 350 200 50 200 3 0 0 0 -1 -1
 T 200 150 9 10 1 0 180 3 1
@@ -14,6 +20,12 @@ value=NoConnection
 T 0 800 8 10 0 0 0 0 1
 documentation=nc.pdf
 T 0 1000 8 10 0 0 0 0 1
-device=DRC_Directive
+device=none
 T 0 1200 8 10 0 0 0 0 1
 graphical=1
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown
+T 600 100 9 10 0 0 0 0 1
+refdes=none

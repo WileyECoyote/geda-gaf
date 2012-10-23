@@ -1,4 +1,6 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 P 0 200 200 200 1 0 0
 {
 T 100 250 5 8 0 1 0 0 1
@@ -30,6 +32,10 @@ device=SWITCAP-capacitor
 T 600 300 8 10 1 1 0 0 1
 refdes=C?
 T 0 0 8 10 0 1 0 0 1
-pins=2
+comment=pins=2
 T 600 0 8 10 1 1 0 0 1
 value=1.0
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

@@ -35,3 +35,9 @@ pintype=in
 T 800 500 5 10 1 1 0 3 1
 refdes=LAT?
 B 300 300 1000 1000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+device=none
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

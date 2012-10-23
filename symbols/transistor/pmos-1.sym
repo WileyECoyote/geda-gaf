@@ -24,7 +24,7 @@ P 500 400 700 400 1 0 1
 T 600 500 5 10 0 1 0 0 1
 pinnumber=B
 T 600 500 5 10 0 0 0 0 1
-pinseq=4
+pinseq=2
 T 600 500 5 10 0 1 0 0 1 
 pinlabel=B
 T 600 500 5 10 0 1 0 0 1 
@@ -46,7 +46,7 @@ P 200 400 0 400 1 0 1
 T 0 500 5 10 0 1 0 0 1
 pinnumber=G
 T 0 500 5 10 0 0 0 0 1
-pinseq=2
+pinseq=4
 T 0 500 5 10 0 1 0 0 1 
 pinlabel=G
 T 0 500 5 10 0 1 0 0 1 
@@ -54,3 +54,7 @@ pintype=pas
 }
 T 700 600 8 10 1 1 0 0 1
 refdes=Q?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

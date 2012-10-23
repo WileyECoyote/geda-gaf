@@ -8,13 +8,9 @@ documentation=http://www.wilke.de/multi.htm#tinytiger
 T 400 11400 5 10 0 0 0 0 1
 author=Jan Stap stapATdse.nl
 T 400 10800 5 10 0 0 0 0 1
-date=$Date$
+comment=$Date$
 T 400 10500 5 10 0 0 0 0 1
-rev=$Revision$
-T 400 10200 5 10 0 0 0 0 1
-auth=$Author$
-T 400 9900 5 10 0 0 0 0 1
-fname=$Source$
+comment=rev=$Revision$
 T 400 9600 5 10 0 0 0 0 1
 footprint=DIL 44 900
 T 400 9300 5 10 0 0 0 0 1

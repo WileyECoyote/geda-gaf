@@ -1,8 +1,10 @@
-v 20080706 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 T 700 650 8 10 1 1 0 0 1
-refdes=V?
+refdes=none
 T 700 850 5 10 0 0 0 0 1
-spicetype=V
+comment=spicetype=V
 T 700 1450 5 10 0 0 0 0 1
 description=piece-wise linear signal source
 P 300 1200 300 900 1 0 0
@@ -29,7 +31,7 @@ pintype=pas
 }
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 700 450 5 10 1 1 0 0 1
-voltage=pwl 100n 0 200n 1
+comment=voltage=pwl 100n 0 200n 1
 T 700 250 5 10 0 1 0 0 1
 comment=syntax: pwl t1 v1 t2 v2 ...
 L 120 500 200 720 3 0 0 0 -1 -1
@@ -41,3 +43,9 @@ T 300 900 9 10 1 0 0 5 1
 +
 T 300 300 9 10 1 0 0 3 1
 -
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+device=none
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

@@ -61,3 +61,5 @@ T 200 1600 5 10 0 0 0 0 1
 numslots=0
 T 200 1400 5 10 0 0 0 0 1
 symversion=0.1
+T 200 1700 8 10 0 1 0 0 1
+footprint=unknown

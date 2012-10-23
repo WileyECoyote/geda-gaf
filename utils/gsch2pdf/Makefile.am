@@ -1,5 +1,11 @@
 ## Process this file with automake to produce Makefile.in
 
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
 rcdatadir = $(GEDARCDIR)
 
 bin_PROGRAMS = gsch2pdf
@@ -13,11 +19,7 @@ gsch2pdf_SOURCES = \
 	rc-config.c \
 	print-settings.c
 
-gsch2pdf_CPPFLAGS = \
-	-I$(top_srcdir)/libgeda/include \
-	-I$(srcdir)/../include \
-	-I$(top_srcdir) \
-	-I$(includedir)
+gsch2pdf_CPPFLAGS = $(GEDA_INCLUDES)
 
 gsch2pdf_CFLAGS = $(GCC_CFLAGS) $(MINGW_CFLIGS) $(GLIB_CFLAGS) \
 	$(GUILE_CFLAGS) $(PANGOCAIRO_CFLAGS) $(GDK_PIXBUF_CFLAGS)

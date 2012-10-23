@@ -1,4 +1,6 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 B 300 0 1400 1600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1850 5 10 0 0 0 0 1
 device=DS2480B

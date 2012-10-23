@@ -32,10 +32,7 @@ typedef enum PrintOrientation PrintOrientation;
 
 #define DEFAULT_PRINT_ORIENTATION PRINT_ORIENTATION_LANDSCAPE
 
-
 typedef struct PrintSettings PrintSettings;
-
-
 
 char*
 print_settings_get_font(const PrintSettings *settings);
@@ -85,8 +82,7 @@ print_settings_get_print_orientation(const PrintSettings *settings);
 double
 print_settings_get_print_width(const PrintSettings *settings);
 
-PrintSettings*
-print_settings_new();
+PrintSettings* print_settings_new();
 
 void
 print_settings_set_font(PrintSettings *settings, const char* string);

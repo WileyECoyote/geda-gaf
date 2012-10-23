@@ -29,6 +29,7 @@
 #include <unistd.h>
 #endif
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
@@ -37,7 +38,6 @@
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
 
 #include <stdlib.h>
 #include <math.h>
@@ -49,13 +49,8 @@
 #include "print-settings.h"
 #include "rc-config.h"
 
-
-
 static PrintSettings *print_settings = NULL;
-
 static void print_object_list(TOPLEVEL *current, cairo_t *cairo, const GList *objects);
-
-
 
 static void print_arc(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
@@ -98,8 +93,6 @@ static void print_arc(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_stroke(cairo);
 }
-
-
 
 static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
@@ -184,8 +177,6 @@ static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-
-
 static void print_bus(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
 
@@ -215,8 +206,6 @@ static void print_bus(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_stroke(cairo);
 }
-
-
 
 static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
@@ -287,13 +276,10 @@ static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-
-
 static void print_complex(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
     print_object_list(current, cairo, object->complex->prim_objs);
 }
-
 
 static void print_junctions(TOPLEVEL *current, cairo_t *cairo, const GArray *junctions)
 {
@@ -351,8 +337,6 @@ static void print_line(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-
-
 static void print_net(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
     cairo_set_line_width(
@@ -381,8 +365,6 @@ static void print_net(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_stroke(cairo);
 }
-
-
 
 static void print_path(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
@@ -486,8 +468,6 @@ static void print_path(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-
-
 static void print_pin(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
     cairo_set_line_width(
@@ -516,8 +496,6 @@ static void print_pin(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_stroke(cairo);
 }
-
-
 
 static void print_text(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
@@ -621,7 +599,6 @@ static void print_text(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
         pango_layout_iter_free(iter);
 
-
         pango_layout_get_extents(
             layout,
             &extents_ink,
@@ -704,8 +681,6 @@ static void print_text(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     }
 }
 
-
-
 static void print_object(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 {
     if (o_is_visible(current, object))
@@ -759,8 +734,6 @@ static void print_object(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     }
 }
 
-
-
 static void print_object_list(TOPLEVEL *current, cairo_t *cairo, const GList *objects)
 {
     const GList *node = objects;
@@ -774,8 +747,6 @@ static void print_object_list(TOPLEVEL *current, cairo_t *cairo, const GList *ob
         node = g_list_next(node);
     }
 }
-
-
 
 static void print_page(TOPLEVEL *current, cairo_t *cairo, PAGE *page)
 {
@@ -844,8 +815,6 @@ static void print_page(TOPLEVEL *current, cairo_t *cairo, PAGE *page)
     cairo_restore(cairo);
 }
 
-
-
 static void main2(void *closure, int argc, char *argv[])
 {
     TOPLEVEL *current;
@@ -911,8 +880,6 @@ static void main2(void *closure, int argc, char *argv[])
 
     exit(EXIT_SUCCESS);
 }
-
-
 
 int main(int argc, char *argv[])
 {

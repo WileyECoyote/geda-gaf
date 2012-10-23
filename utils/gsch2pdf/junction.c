@@ -20,11 +20,12 @@
 #include <config.h>
 #include <math.h>
 #include <string.h>
+
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 extern gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
                              OBJECT *object);
-
 
 typedef struct st_sweep_event SWEEP_EVENT;
 typedef struct st_sweep_status SWEEP_STATUS;
@@ -41,7 +42,6 @@ struct st_sweep_event
     SWEEP_STATUS status;
 };
 
-
 static gint compare_points(gconstpointer a, gconstpointer b)
 {
   sPOINT *point_a = (sPOINT*) a;
@@ -49,7 +49,6 @@ static gint compare_points(gconstpointer a, gconstpointer b)
 
   return (point_a->y - point_b->y);
 }
-
 
 /*! \brief Locate all the junctions on a schematic
  *

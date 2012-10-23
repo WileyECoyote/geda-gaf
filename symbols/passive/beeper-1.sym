@@ -34,3 +34,5 @@ T 300 1100 5 10 0 0 0 0 1
 symversion=0.1
 T 277 255 9 8 1 0 0 0 1
 Beeper
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

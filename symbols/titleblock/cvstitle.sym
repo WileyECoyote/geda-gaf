@@ -1,4 +1,6 @@
-v 20080706 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 B 0 0 7000 700 15 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 600 300 9 10 1 1 0 0 1
 date=$Date$
@@ -18,3 +20,11 @@ T 100 300 15 8 1 0 0 0 1
 DATE
 T 900 1800 8 10 0 0 0 0 1
 graphical=1
+T 900 1800 8 10 0 0 0 0 1
+device=none
+T 900 1800 8 10 0 0 0 0 1
+footprint=none
+T 900 1800 8 10 0 0 0 0 1
+refdes=none
+T 900 1800 8 10 0 0 0 0 1
+numslots=0

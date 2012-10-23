@@ -29,6 +29,7 @@
 #include <unistd.h>
 #endif
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
@@ -41,10 +42,7 @@
 #include "print-settings.h"
 #include "rc-config.h"
 
-
 static PrintSettings *settings = NULL;
-
-
 
 static SCM rc_config_font(SCM string)
 {
@@ -57,7 +55,6 @@ static SCM rc_config_font(SCM string)
   return SCM_BOOL_T;
 }
 
-
 static SCM rc_config_junction_size_bus(SCM size)
 {
   print_settings_set_junction_size_bus(settings, scm_to_double(size));
@@ -65,14 +62,12 @@ static SCM rc_config_junction_size_bus(SCM size)
   return SCM_BOOL_T;
 }
 
-
 static SCM rc_config_junction_size_net(SCM size)
 {
   print_settings_set_junction_size_net(settings, scm_to_double(size));
 
   return SCM_BOOL_T;
 }
-
 
 static SCM rc_config_output_orientation(SCM orientation)
 {
@@ -91,8 +86,6 @@ static SCM rc_config_output_orientation(SCM orientation)
   return SCM_BOOL_T;
 }
 
-
-
 static SCM rc_config_page_align(SCM halign, SCM valign)
 {
   print_settings_set_page_align_horizontal(settings, scm_to_double(halign));
@@ -100,8 +93,6 @@ static SCM rc_config_page_align(SCM halign, SCM valign)
 
   return SCM_BOOL_T;
 }
-
-
 
 static SCM rc_config_page_margins(SCM left, SCM top, SCM right, SCM bottom)
 {
@@ -113,8 +104,6 @@ static SCM rc_config_page_margins(SCM left, SCM top, SCM right, SCM bottom)
   return SCM_BOOL_T;
 }
 
-
-
 static SCM rc_config_paper_size(SCM width, SCM height)
 {
   print_settings_set_paper_width(settings, scm_to_double(width));
@@ -122,8 +111,6 @@ static SCM rc_config_paper_size(SCM width, SCM height)
 
   return SCM_BOOL_T;
 }
-
-
 
 /*! \brief Initialize this module
  */
@@ -137,7 +124,6 @@ void rc_config_init()
   scm_c_define_gsubr("page-margins", 4, 0, 0, rc_config_page_margins);
   scm_c_define_gsubr("paper-size", 2, 0, 0, rc_config_paper_size);
 }
-
 
 
 /*! \brief Set the object to store settings from the rc file

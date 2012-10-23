@@ -59,7 +59,7 @@ pinlabel=COLL_D
 T 1750 1100 5 8 0 1 0 8 1
 pintype=io
 T 1900 1050 5 8 0 1 0 2 1
-pinseq=8
+pinseq=5
 }
 P 2100 800 1800 800 1 0 0
 {
@@ -70,7 +70,7 @@ pinlabel=IPK
 T 1750 800 5 8 0 1 0 8 1
 pintype=io
 T 1900 750 5 8 0 1 0 2 1
-pinseq=7
+pinseq=6
 }
 P 2100 500 1800 500 1 0 0
 {
@@ -81,7 +81,7 @@ pinlabel=VCC
 T 1750 500 5 8 0 1 0 8 1
 pintype=pwr
 T 1900 450 5 8 0 1 0 2 1
-pinseq=6
+pinseq=7
 }
 P 2100 200 1800 200 1 0 0
 {
@@ -92,7 +92,7 @@ pinlabel=COMP
 T 1750 200 5 8 0 1 0 8 1
 pintype=io
 T 1900 150 5 8 0 1 0 2 1
-pinseq=5
+pinseq=8
 }
 T 300 1600 8 10 0 0 0 0 1
 device=MC34063

@@ -5,6 +5,10 @@ T 100 650 5 8 1 1 0 0 1
 pinnumber=1
 T 100 650 5 8 0 0 0 0 1
 pinseq=1
+T 100 650 5 8 1 1 0 0 1
+pintype=io
+T 100 650 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1260 300 3 8 1 0 0 0 1
 Gain-
@@ -13,7 +17,11 @@ P 1700 1800 2000 1800 1 0 1
 T 1800 1850 5 8 1 1 0 0 1
 pinnumber=5
 T 1800 1850 5 8 0 0 0 0 1
-pinseq=5
+pinseq=2
+T 1800 1850 5 8 1 1 0 0 1
+pintype=io
+T 1800 1850 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 360 300 3 8 1 0 0 0 1
 Sig in-
@@ -24,7 +32,11 @@ P 0 300 300 300 1 0 0
 T 100 350 5 8 1 1 0 0 1
 pinnumber=4
 T 100 350 5 8 0 0 0 0 1
-pinseq=4
+pinseq=3
+T 100 350 5 8 1 1 0 0 1
+pintype=io
+T 100 350 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1360 1800 3 8 1 0 0 0 1
 Bias
@@ -41,42 +53,66 @@ P 1700 1500 2000 1500 1 0 1
 T 1800 1550 5 8 1 1 0 0 1
 pinnumber=6
 T 1800 1550 5 8 0 0 0 0 1
-pinseq=6
+pinseq=4
+T 1800 1550 5 8 1 1 0 0 1
+pintype=io
+T 1800 1550 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 1700 1200 2000 1200 1 0 1
 {
 T 1800 1250 5 8 1 1 0 0 1
 pinnumber=12
 T 1800 1250 5 8 0 0 0 0 1
-pinseq=12
+pinseq=5
+T 1800 1250 5 8 1 1 0 0 1
+pintype=io
+T 1800 1250 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 0 1700 300 1700 1 0 0
 {
 T 100 1750 5 8 1 1 0 0 1
 pinnumber=10
 T 100 1750 5 8 0 0 0 0 1
-pinseq=10
+pinseq=6
+T 100 1750 5 8 1 1 0 0 1
+pintype=io
+T 100 1750 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 0 1400 300 1400 1 0 0
 {
 T 100 1450 5 8 1 1 0 0 1
 pinnumber=8
 T 100 1450 5 8 0 0 0 0 1
-pinseq=8
+pinseq=7
+T 100 1450 5 8 1 1 0 0 1
+pintype=io
+T 100 1450 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 1700 300 2000 300 1 0 1
 {
 T 1800 350 5 8 1 1 0 0 1
 pinnumber=3
 T 1800 350 5 8 0 0 0 0 1
-pinseq=3
+pinseq=8
+T 1800 350 5 8 1 1 0 0 1
+pintype=io
+T 1800 350 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 1700 600 2000 600 1 0 1
 {
 T 1800 650 5 8 1 1 0 0 1
 pinnumber=2
 T 1800 650 5 8 0 0 0 0 1
-pinseq=2
+pinseq=9
+T 1800 650 5 8 1 1 0 0 1
+pintype=io
+T 1800 650 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 B 300 0 1400 2100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 2100 2200 5 10 0 0 0 0 1
@@ -87,3 +123,7 @@ T 1260 600 3 8 1 0 0 0 1
 Gain+
 T 1700 2200 8 10 1 1 0 6 1
 refdes=U?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

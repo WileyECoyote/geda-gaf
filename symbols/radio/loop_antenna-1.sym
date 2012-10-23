@@ -1,8 +1,32 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 P 600 700 600 0 1 0 1
+{
+T 550 750 9 10 0 0 0 0 1
+pinnumber=1
+T 550 750 9 10 0 0 0 0 1
+pinseq=1
+T 550 750 9 10 0 0 0 0 1
+pintype=pas
+T 250 50 9 10 1 1 0 0 1
+pinlabel=H1
+}
 T 100 2600 9 10 1 0 0 0 1
 LOOP ANTENNA
+T 1900 2400 8 10 0 0 0 0 1
+numslots=0
 P 1300 700 1300 0 1 0 1
+{
+T 1350 750 9 10 0 0 0 0 1
+pinnumber=2
+T 1350 750 9 10 0 0 0 0 1
+pinseq=2
+T 1350 750 9 10 0 0 0 0 1
+pintype=pas
+T 1450 50 9 10 1 1 0 0 1
+pinlabel=H2
+}
 L 600 700 600 900 3 0 0 0 -1 -1
 L 600 900 0 900 3 0 0 0 -1 -1
 L 1300 700 1300 900 3 0 0 0 -1 -1
@@ -17,4 +41,6 @@ T 2000 2400 5 10 0 0 0 0 1
 device=LOOP_ANTENNA
 L 1700 1100 200 1100 3 0 0 0 -1 -1
 T 1900 2400 8 10 1 1 0 0 1
-refdes=U?
+refdes=A?
+T 1900 2400 8 10 0 0 0 0 1
+footprint=unknown

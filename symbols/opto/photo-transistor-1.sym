@@ -1,4 +1,6 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 T -200 500 5 6 0 1 0 0 1
 device=PS2501-1
 P 200 400 200 300 1 0 0
@@ -10,7 +12,7 @@ pinseq=1
 T -163 400 3 6 0 1 0 0 1
 pinlabel=COLLECTOR
 T 200 200 3 6 0 1 0 0 1 
-pintype=pas
+pintype=oc
 }
 P 200 100 200 0 1 0 1
 {
@@ -21,7 +23,7 @@ pinseq=2
 T 210 -50 3 6 0 1 0 0 1
 pinlabel=EMITTER
 T 210 -50 3 6 0 1 0 0 1 
-pintype=pas
+pintype=oe
 }
 L 60 200 20 210 3 0 0 0 -1 -1
 L 20 210 50 240 3 0 0 0 -1 -1
@@ -45,3 +47,7 @@ T 260 100 8 10 1 1 0 0 1
 refdes=Q?
 T -40 0 8 10 0 1 0 0 1
 device=photo-transistor
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

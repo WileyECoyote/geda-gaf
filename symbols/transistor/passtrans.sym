@@ -1,4 +1,6 @@
-v 20080706 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 L 300 600 300 0 3 0 0 0 -1 -1
 L 300 0 1300 600 3 0 0 0 -1 -1
 L 1300 600 1300 0 3 0 0 0 -1 -1
@@ -51,8 +53,12 @@ pinlabel=E
 T 900 0 8 10 1 1 0 2 1
 refdes=X?
 T 0 -235 8 10 0 1 0 0 1
-source=passtrans.sch
+value=source=passtrans.sch
 T 400 365 8 6 1 0 0 0 1
-P=2u
-T 400 265 8 6 1 0 0 0 1
-N=1u
+value=P=2u
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+device=none
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

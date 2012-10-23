@@ -50,3 +50,9 @@ pinseq=4
 T 800 1600 5 10 0 1 0 0 1
 pintype=in
 }
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+device=none
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

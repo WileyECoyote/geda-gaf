@@ -1,6 +1,6 @@
 2012-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*.c: Consolidated Gattrib specific include into a single
+        * src/*.c: Consolidated Gattrib specific includes into a single
         headers file: gattrib.h
 
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>

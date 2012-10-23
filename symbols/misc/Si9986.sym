@@ -1,13 +1,13 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 T 300 2600 5 10 0 0 0 0 1
 footprint=SOIC8
 T 300 2800 5 10 0 0 0 0 1
-pins=8
+comment=pins=8
 B 300 0 1200 1500 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 T 300 2200 5 10 0 0 0 0 1
 device=Si9986
-T 300 2400 5 10 0 0 0 0 1
-class=IC
 T 1500 1600 2 10 1 1 0 6 1
 refdes=U?
 T 300 1550 3 10 1 0 0 0 1

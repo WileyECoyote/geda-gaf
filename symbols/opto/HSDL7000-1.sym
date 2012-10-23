@@ -1,38 +1,60 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 P 200 1000 0 1000 1 0 1
 {
 T 100 1050 5 8 1 1 0 0 1
 pinnumber=6
 T 100 1050 5 8 0 0 0 0 1
-pinseq=6
+pinseq=1
+T 100 1050 5 8 1 1 0 0 1
+pintype=io
+T 100 1050 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 300 600 0 600 1 0 1
 {
 T 100 650 5 8 1 1 0 0 1
 pinnumber=1
 T 100 650 5 8 0 0 0 0 1
-pinseq=1
+pinseq=2
+T 100 650 5 8 1 1 0 0 1
+pintype=io
+T 100 650 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 200 200 0 200 1 0 1
 {
 T 100 250 5 8 1 1 0 0 1
 pinnumber=5
 T 100 250 5 8 0 0 0 0 1
-pinseq=5
+pinseq=3
+T 100 250 5 8 1 1 0 0 1
+pintype=io
+T 100 250 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 2200 1400 1900 1400 1 0 0
 {
 T 2000 1450 5 8 1 1 0 0 1
 pinnumber=7
 T 2000 1450 5 8 0 0 0 0 1
-pinseq=7
+pinseq=4
+T 2000 1450 5 8 1 1 0 0 1
+pintype=io
+T 2000 1450 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 P 2200 1000 1900 1000 1 0 0
 {
 T 2000 1050 5 8 1 1 0 0 1
 pinnumber=3
 T 2000 1050 5 8 0 0 0 0 1
-pinseq=3
+pinseq=5
+T 2000 1050 5 8 1 1 0 0 1
+pintype=io
+T 2000 1050 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1173 1348 9 10 1 0 0 0 1
 IR_TXD
@@ -52,7 +74,11 @@ P 200 1400 0 1400 1 0 1
 T 100 1450 5 8 1 1 0 0 1
 pinnumber=2
 T 100 1450 5 8 0 0 0 0 1
-pinseq=2
+pinseq=6
+T 100 1450 5 8 1 1 0 0 1
+pintype=io
+T 100 1450 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1900 1700 8 10 1 1 0 6 1
 refdes=U?
@@ -63,3 +89,7 @@ T 400 950 9 10 1 0 0 0 1
 IR_RCV
 T 400 1350 9 10 1 0 0 0 1
 TXD
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

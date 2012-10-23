@@ -16,7 +16,7 @@ pinnumber=G
 T 0 300 9 10 0 1 0 0 1
 pinlabel=G
 T 0 300 5 10 0 0 0 0 1
-pinseq=2
+pinseq=1
 T 0 300 5 10 0 0 0 0 1
 pintype=pas
 }
@@ -27,7 +27,7 @@ pinnumber=D
 T 300 700 9 10 0 1 0 0 1
 pinlabel=D
 T 300 700 5 10 0 0 0 0 1
-pinseq=1
+pinseq=2
 T 300 700 5 10 0 0 0 0 1
 pintype=pas
 }
@@ -50,3 +50,5 @@ L 250 275 250 125 3 0 0 0 -1 -1
 L 200 600 200 200 3 0 0 0 -1 -1
 L 250 400 400 400 3 0 0 0 -1 -1
 L 400 400 400 200 3 0 0 0 -1 -1
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

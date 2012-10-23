@@ -12,6 +12,10 @@ T 136 2450 5 8 1 1 0 0 1
 pinnumber=1
 T 136 2450 5 8 0 0 0 0 1
 pinseq=1
+T 136 2450 5 8 1 1 0 0 1
+pintype=io
+T 136 2450 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 2050 3 8 1 0 0 0 1
 INPUT 1
@@ -21,6 +25,10 @@ T 96 2150 5 8 1 1 0 0 1
 pinnumber=2
 T 96 2150 5 8 0 0 0 0 1
 pinseq=2
+T 96 2150 5 8 1 1 0 0 1
+pintype=io
+T 96 2150 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 1750 3 8 1 0 0 0 1
 OUTPUT 1
@@ -30,6 +38,10 @@ T 120 1850 5 8 1 1 0 0 1
 pinnumber=3
 T 120 1850 5 8 0 0 0 0 1
 pinseq=3
+T 120 1850 5 8 1 1 0 0 1
+pintype=io
+T 120 1850 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 1450 3 8 1 0 0 0 1
 GND
@@ -39,6 +51,10 @@ T 96 1550 5 8 1 1 0 0 1
 pinnumber=4
 T 96 1550 5 8 0 0 0 0 1
 pinseq=4
+T 96 1550 5 8 1 1 0 0 1
+pintype=io
+T 96 1550 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 1150 3 8 1 0 0 0 1
 GND
@@ -48,6 +64,10 @@ T 120 1250 5 8 1 1 0 0 1
 pinnumber=5
 T 120 1250 5 8 0 0 0 0 1
 pinseq=5
+T 120 1250 5 8 1 1 0 0 1
+pintype=io
+T 120 1250 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 850 3 8 1 0 0 0 1
 OUTPUT 2
@@ -57,6 +77,10 @@ T 104 950 5 8 1 1 0 0 1
 pinnumber=6
 T 104 950 5 8 0 0 0 0 1
 pinseq=6
+T 104 950 5 8 1 1 0 0 1
+pintype=io
+T 104 950 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 550 3 8 1 0 0 0 1
 INPUT 2
@@ -66,6 +90,10 @@ T 120 650 5 8 1 1 0 0 1
 pinnumber=7
 T 120 650 5 8 0 0 0 0 1
 pinseq=7
+T 120 650 5 8 1 1 0 0 1
+pintype=io
+T 120 650 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 375 250 3 8 1 0 0 0 1
 VC
@@ -75,6 +103,10 @@ T 112 350 5 8 1 1 0 0 1
 pinnumber=8
 T 112 350 5 8 0 0 0 0 1
 pinseq=8
+T 112 350 5 8 1 1 0 0 1
+pintype=io
+T 112 350 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 2042 2350 3 8 1 0 0 0 1
 VSS
@@ -84,6 +116,10 @@ T 2500 2450 5 8 1 1 0 0 1
 pinnumber=16
 T 2500 2450 5 8 0 0 0 0 1
 pinseq=9
+T 2500 2450 5 8 1 1 0 0 1
+pintype=io
+T 2500 2450 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1754 2050 3 8 1 0 0 0 1
 INPUT 4
@@ -93,6 +129,10 @@ T 2500 2150 5 8 1 1 0 0 1
 pinnumber=15
 T 2500 2150 5 8 0 0 0 0 1
 pinseq=10
+T 2500 2150 5 8 1 1 0 0 1
+pintype=io
+T 2500 2150 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1574 1750 3 8 1 0 0 0 1
 OUTPUT 4
@@ -102,6 +142,10 @@ T 2500 1850 5 8 1 1 0 0 1
 pinnumber=14
 T 2500 1850 5 8 0 0 0 0 1
 pinseq=11
+T 2500 1850 5 8 1 1 0 0 1
+pintype=io
+T 2500 1850 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 2014 1450 3 8 1 0 0 0 1
 GND
@@ -111,6 +155,10 @@ T 2500 1550 5 8 1 1 0 0 1
 pinnumber=13
 T 2500 1550 5 8 0 0 0 0 1
 pinseq=12
+T 2500 1550 5 8 1 1 0 0 1
+pintype=io
+T 2500 1550 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 2014 1150 3 8 1 0 0 0 1
 GND
@@ -120,6 +168,10 @@ T 2500 1250 5 8 1 1 0 0 1
 pinnumber=12
 T 2500 1250 5 8 0 0 0 0 1
 pinseq=13
+T 2500 1250 5 8 1 1 0 0 1
+pintype=io
+T 2500 1250 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1598 850 3 8 1 0 0 0 1
 OUTPUT 3
@@ -129,6 +181,10 @@ T 2500 950 5 8 1 1 0 0 1
 pinnumber=11
 T 2500 950 5 8 0 0 0 0 1
 pinseq=14
+T 2500 950 5 8 1 1 0 0 1
+pintype=io
+T 2500 950 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1778 550 3 8 1 0 0 0 1
 INPUT 3
@@ -138,6 +194,10 @@ T 2500 650 5 8 1 1 0 0 1
 pinnumber=10
 T 2500 650 5 8 0 0 0 0 1
 pinseq=15
+T 2500 650 5 8 1 1 0 0 1
+pintype=io
+T 2500 650 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 1250 250 3 8 1 0 0 0 1
 CHIP INHIBIT 2
@@ -147,6 +207,14 @@ T 2500 350 5 8 1 1 0 0 1
 pinnumber=9
 T 2500 350 5 8 0 0 0 0 1
 pinseq=16
+T 2500 350 5 8 1 1 0 0 1
+pintype=io
+T 2500 350 5 8 1 1 0 0 1
+pinlabel=n_a
 }
 T 2400 2800 8 10 1 1 0 6 1
 refdes=U?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

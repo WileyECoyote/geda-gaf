@@ -1,0 +1,528 @@
+/* gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
+#include <config.h>
+#include <stdio.h>
+#include <math.h>
+
+#include "gschem.h"
+
+#ifdef HAVE_LIBDMALLOC
+#include <dmalloc.h>
+#endif
+
+
+typedef void (*FILL_FUNC) (GSCHEM_TOPLEVEL *w_current,
+                           COLOR *color, CIRCLE *circle,
+                           gint fill_width, gint angle1, gint pitch1,
+                           gint angle2, gint pitch2);
+
+
+/*! \brief Placeholder filling function.
+ *  \par Function Description
+ *  This function does nothing. It has the same prototype as all the filling
+ *  functions. It prevent from making a difference between filling in function
+ *  #o_circle_draw().
+ *
+ *  The unit for <B>width</B>, <B>pitch1</B> and <B>pitch2</B> is pixel and unit
+ *  for <B>angle1</B> and <B>angle2</B> is degree.
+ *
+ *  \param [in] w_current   Schematic top level
+ *  \param [in] color       Circle fill color.
+ *  \param [in] circle      Circle to be drawn
+ *  \param [in] fill_width
+ *  \param [in] angle1      1st angle for pattern.
+ *  \param [in] pitch1      1st pitch for pattern.
+ *  \param [in] angle2      2nd angle for pattern.
+ *  \param [in] pitch2      2nd pitch for pattern.
+ */
+static void
+o_circle_fill_hollow (GSCHEM_TOPLEVEL *w_current,
+                      COLOR *color, CIRCLE *circle,
+                      gint fill_width,
+                      gint angle1, gint pitch1,
+                      gint angle2, gint pitch2)
+{
+}
+
+/*! \brief Fill inside of circle with a solid pattern.
+ *  \par Function Description
+ *  This function fills the inside of the circle with a solid pattern.
+ *  Parameters <B>angle1</B>, <B>pitch1</B> and <B>angle2</B>, <B>pitch2</B>
+ *  and <B>width</B> are unused here but kept for compatibility with other
+ *  circle filling functions.
+ *
+ *  The circle is described by the coordinates of its center and its radius.
+ *  Please not that it is not the way GDK take it. Translation is made
+ *  afterward.
+ *
+ *  The unit for <B>width</B>, <B>pitch1</B> and <B>pitch2</B> is pixel and unit
+ *  for <B>angle1</B> and <B>angle2</B> is degree.
+ *
+ *  \param [in] w_current   Schematic top level
+ *  \param [in] color       Circle fill color.
+ *  \param [in] circle      Circle to be drawn
+ *  \param [in] fill_width
+ *  \param [in] angle1      (unused)
+ *  \param [in] pitch1      (unused)
+ *  \param [in] angle2      (unused)
+ *  \param [in] pitch2      (unused)
+ */
+static void
+o_circle_fill_fill (GSCHEM_TOPLEVEL *w_current,
+                    COLOR *color, CIRCLE *circle,
+                    gint fill_width,
+                    gint angle1, gint pitch1,
+                    gint angle2, gint pitch2)
+{
+  /* NOP: We'll fill it when we do the stroking */
+}
+
+/*! \brief Fill inside of circle with single line pattern.
+ *  \par Function Description
+ *  This function fills the inside of the circle with a pattern made of lines.
+ *  The lines are drawn inside the circle with an angle <B>angle1</B> from the
+ *  horizontal. The distance between two of these lines is given by
+ *  <B>pitch1</B> and their width by <B>width</B>.
+ *  Parameters <B>angle2</B>, <B>pitch2</B> are unused here but kept for
+ *  compatibility with other circle filling functions.
+ *
+ *  The circle is described by the coordinates of its center and its radius.
+ *  Please not that it is not the way GDK take it. Translation is made
+ *  afterward. 
+ *
+ *  The unit for <B>width</B>, <B>pitch1</B> and <B>pitch2</B> is pixel and unit
+ *  for <B>angle1</B> and <B>angle2</B> is degree.
+ *
+ *  The only attribute of line here is its width from the parameter <B>width</B>.
+ *
+ *  Negative or null values for <B>pitch1</B> are not allowed as it leads to
+ *  an endless loop.
+ *
+ *  \param [in] w_current   Schematic top level
+ *  \param [in] color       Circle fill color.
+ *  \param [in] circle      Circle to be drawn
+ *  \param [in] fill_width
+ *  \param [in] angle1      1st angle for pattern.
+ *  \param [in] pitch1      1st pitch for pattern.
+ *  \param [in] angle2      (unused)
+ *  \param [in] pitch2      (unused)
+ */
+static void
+o_circle_fill_hatch (GSCHEM_TOPLEVEL *w_current,
+                     COLOR *color, CIRCLE *circle,
+                     gint fill_width,
+                     gint angle1, gint pitch1,
+                     gint angle2, gint pitch2)
+{
+  int i;
+  GArray *lines;
+
+  gschem_cairo_set_source_color (w_current, color);
+
+  lines = g_array_new (FALSE, FALSE, sizeof (LINE));
+  m_hatch_circle (circle, angle1, pitch1, lines);
+
+  for (i=0; i < lines->len; i++) {
+    LINE *line = &g_array_index (lines, LINE, i);
+
+    gschem_cairo_line (w_current, END_NONE, fill_width, line->x[0], line->y[0],
+                                                        line->x[1], line->y[1]);
+  }
+  gschem_cairo_stroke (w_current, TYPE_SOLID, END_NONE, fill_width, -1, -1);
+
+  g_array_free (lines, TRUE);
+}
+
+/*! \brief Fill inside of circle with mesh pattern.
+ *  \par Function Description
+ *  This function fills the inside of the circle with a pattern made of set
+ *  of parallel lines in two directions. The first set is drawn inside the
+ *  circle with an angle <B>angle1</B> from the horizontal. The distance between
+ *  two of these lines is given by <B>pitch1</B>.
+ *  The second set is drawn inside the circle with an angle <B>angle2</B> from
+ *  the horizontal. The distance between two of these lines is given by
+ *  <B>pitch2</B>.
+ *  Every lines have the same width given by <B>width</B>.
+ *
+ *  The unit for <B>width</B>, <B>pitch1</B> and <B>pitch2</B> is pixel and unit
+ *  for <B>angle1</B> and <B>angle2</B> is degree.
+ *
+ *  This function simply makes two successive calls to the function
+ *  #o_circle_fill_hatch() respectively with <B>angle1</B>, <B>pitch1</B> and
+ *  <B>angle2</B>, <B>pitch2</B> for parameters.
+ *
+ *  \param [in] w_current   Schematic top level
+ *  \param [in] color       Circle fill color.
+ *  \param [in] circle      Circle to be drawn
+ *  \param [in] fill_width
+ *  \param [in] angle1      1st angle for pattern.
+ *  \param [in] pitch1      1st pitch for pattern.
+ *  \param [in] angle2      2nd angle for pattern.
+ *  \param [in] pitch2      2nd pitch for pattern.
+ */
+static void
+o_circle_fill_mesh (GSCHEM_TOPLEVEL *w_current,
+                    COLOR *color, CIRCLE *circle,
+                    gint fill_width,
+                    gint angle1, gint pitch1,
+                    gint angle2, gint pitch2)
+{
+  o_circle_fill_hatch (w_current, color, circle,
+                       fill_width, angle1, pitch1, -1, -1);
+  o_circle_fill_hatch (w_current, color, circle,
+                       fill_width, angle2, pitch2, -1, -1);
+	
+}
+
+
+/*! \brief Draw a circle on the screen.
+ *  \par Function Description
+ *  This function is used to draw a circle on screen. The circle is described
+ *  by the OBJECT which is referred by <B>o_current</B>. The display is done
+ *  according to the current state, given by the GSCHEM_TOPLEVEL object pointed by
+ *  <B>w_current</B>.
+ *
+ *  It first checks if the OBJECT pointed is valid or not. If not it
+ *  returns and do not output anything. That should never happen though.
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] o_current  Circle OBJECT to draw.
+ */
+void o_circle_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
+{
+  int angle1, pitch1, angle2, pitch2;
+  FILL_FUNC fill_func;
+
+  if (o_current->circle == NULL) {
+    return;
+  }
+
+  /*
+   * The draw of the circle is divided in two steps : first step is to draw
+   * the outline, the second is to draw the filling pattern inside (if any).
+   *
+   * Finally the function takes care of the grips.
+   */
+
+  /*
+   * The values needed for the fill operation are taken from the
+   * <B>o_current</B> pointed OBJECT. It include the type of fill required, the
+   * width of the lines (if the fill use line) and angles and pitchs for hatch
+   * based filling.
+   *
+   * Once again the width of the line is important as if it is equal to 0 it
+   * may not be displayed. That is definetely not what we are looking for.
+   *
+   * Depending on the type of fill that has to be used inside the circle the
+   * right function is called. Values of <B>angle1</B>, <B>angle2</B>,
+   * <B>pitch1</B> and <B>pitch2</B> are adapted to the type of filling. The
+   * possible functions are the following : #o_circle_fill_hollow(),
+   * #o_circle_fill_fill(), #o_circle_fill_mesh() and #o_circle_fill_hatch().
+   *
+   * The combination <B>pitch1</B> <= 0 and <B>pitch2</B> <= 0 is avoided as it
+   * lead to an endless loop in function called after. It happens when the
+   * zoom factor is too small for two lines separated by the pitch to be
+   * distinct. If such a case is encountered the circle is filled hollow
+   * (e.q. not filled).
+   */
+
+  angle1 = o_current->fill_angle1;
+  pitch1 = o_current->fill_pitch1;
+  angle2 = o_current->fill_angle2;
+  pitch2 = o_current->fill_pitch2;
+
+  switch(o_current->fill_type) {
+    case FILLING_HOLLOW:
+      angle1 = -1; angle2 = -1;
+      pitch1 = 1; pitch2 = 1;
+      /*
+       * this function is empty ! however if it do not use it we have to add
+       * a test before the call. Simply putting a return here instead is not
+       * possible as it would prevent any hollow circle from having its grips
+       */
+      fill_func = o_circle_fill_hollow;
+      break;
+
+    case FILLING_FILL:
+      angle1 = -1; angle2 = -1;
+      pitch1 = 1; pitch2 = 1;
+      fill_func = o_circle_fill_fill;
+      break;
+
+    case FILLING_MESH:
+      fill_func = o_circle_fill_mesh;
+      break;
+
+    case FILLING_HATCH:
+      angle2 = -1;
+      pitch2 = 1;
+      fill_func = o_circle_fill_hatch;
+      break;
+
+    case FILLING_VOID:
+    default:
+      angle1 = -1; angle2 = -1;
+      pitch1 = 1; pitch2 = 1;
+      fill_func = o_circle_fill_hollow;
+      fprintf (stderr, _("Unknown type for circle (fill)!\n"));
+  }
+
+  if ((pitch1 <= 0) || (pitch2 <= 0))
+    fill_func = o_circle_fill_fill;
+
+  (*fill_func) (w_current, o_drawing_color (w_current, o_current),
+                o_current->circle, o_current->fill_width,
+                angle1, pitch1, angle2, pitch2);
+
+  gschem_cairo_arc (w_current, o_current->line_width,
+                               o_current->circle->center_x,
+                               o_current->circle->center_y,
+                               o_current->circle->radius, 0, 360);
+
+  gschem_cairo_set_source_color (w_current,
+                                 o_drawing_color (w_current, o_current));
+  if (o_current->fill_type == FILLING_FILL)
+    cairo_fill_preserve (w_current->cr);
+  gschem_cairo_stroke (w_current, o_current->line_type,
+                                  o_current->line_end,
+                                  o_current->line_width,
+                                  o_current->line_length,
+                                  o_current->line_space);
+
+  if (o_current->selected && w_current->draw_grips)
+    o_circle_draw_grips (w_current, o_current);
+}
+
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void o_circle_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+{
+  int cx, cy, radius;
+
+  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &cx, &cy);
+  radius = SCREENabs (w_current, w_current->distance);
+
+  o_invalidate_rect (w_current, cx - radius, cy - radius,
+                                cx + radius, cy + radius);
+}
+
+/*! \brief Draw a circle described by OBJECT with translation
+ *  \par Function Description
+ *  This function draws the circle object described by <B>*o_current</B>
+ *  translated by the vector (<B>dx</B>,<B>dy</B>).
+ *  The translation vector is in world unit.
+ *
+ *  The circle is displayed with the color of the object.
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] dx         Delta x coordinate for circle.
+ *  \param [in] dy         Delta y coordinate for circle.
+ *  \param [in] o_current  Circle OBJECT to draw.
+ *
+ *  \todo
+ *  add in offsets, get rid of global diffs_x,y
+ */
+void o_circle_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *o_current)
+{
+  g_return_if_fail (o_current->circle != NULL);
+
+  gschem_cairo_arc (w_current, 0, o_current->circle->center_x + dx,
+                                  o_current->circle->center_y + dy,
+                                  o_current->circle->radius, 0, 360);
+
+  gschem_cairo_set_source_color (w_current,
+                                 x_color_lookup_dark (o_current->color));
+  gschem_cairo_stroke (w_current, TYPE_SOLID, END_NONE, 0, -1, -1);
+}
+
+/*! \brief Start process to input a new circle.
+ *  \par Function Description
+ *  This function starts the process to input a new circle. Parameters for
+ *  this circle are pu into/extracted from the <B>w_current</B> toplevel
+ *  structure.
+ *  <B>w_x</B> and <B>w_y</B> are current coordinates of the mouse pointer in
+ *  world units.
+ *
+ *  The first step of the circle input is to set the center of the arc.
+ *  This center is kept in (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). 
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_circle_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+{
+  /* center of circle */
+  w_current->first_wx = w_x;
+  w_current->first_wy = w_y;
+
+  /* radius */
+  w_current->distance = 0;
+
+  /* first temporary circle */
+  o_circle_invalidate_rubber (w_current);
+  w_current->rubber_visible = 1;
+}
+
+/*! \brief End the input of a circle.
+ *  \par Function Description
+ *  This function ends the input of the radius of the circle.
+ *  The (<B>w_x</B>,<B>w_y</B>) point is taken as the other end of the radius
+ *  segment, i.e. on the circle. The distance between this point and the
+ *  center is the radius of the circle.
+ *  <B>w_x</B> and <B>w_y</B> are in world coords.
+ *
+ *  The center has previously been input and saved as
+ *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>).
+ *
+ *  The temporary circle drawn during the input of the radius is erased.
+ *  A new object is allocated, initialized and linked in the object list.
+ *  This new object is finally drawn.
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_x        (unused)
+ *  \param [in] w_y        (unused)
+ */
+void o_circle_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+{
+  TOPLEVEL *toplevel = w_current->toplevel;
+  OBJECT *new_obj;
+
+  g_assert( w_current->inside_action != 0 );
+
+  /* erase the temporary circle */
+  /* o_circle_invalidate_rubber (w_current); */
+  w_current->rubber_visible = 0;
+  
+  /* circle with null radius are not allowed */
+  if (w_current->distance == 0) {
+    /* cancel the object creation */
+    return;
+  }
+
+  /* create the object */
+  new_obj = o_circle_new (toplevel, OBJ_CIRCLE, GRAPHIC_COLOR,
+                          w_current->first_wx, w_current->first_wy,
+                          w_current->distance);
+  new_obj->line_width =  o_style_get_line_width(toplevel);
+  s_page_append (toplevel, toplevel->page_current, new_obj);
+
+  /* Call add-objects-hook */
+  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+  toplevel->page_current->CHANGED = 1;
+  o_undo_savestate(w_current, UNDO_ALL);
+}
+
+/*! \brief Draw temporary circle while dragging edge.
+ *  \par Function Description
+ *  This function draws a circle according to its internal representation and
+ *  allows the modification of its radius. The radius is updated according to
+ *  the current mouse position in <B>w_x</B> and <B>w_y</B>.
+ *  It draws a full circle and the horizontal segment of the radius in the
+ *  right half of the circle.
+ *
+ *  The previous temporary circle is erased, the radius is then computed and
+ *  updated and finally a new temporary circle is drawn.
+ *
+ *  The arc is internally described by :
+ *  <DL>
+ *    <DT>*</DT><DD>(<B>w_current->first_wx</B>,<B>w_current->first_wy</B>) as its
+ *                   center ;
+ *    <DT>*</DT><DD><B>w_current->distance</B> as its radius.
+ *  </DL>
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
+ *  \param [in] w_y        Current y coordinate of pointer in world units.
+ */
+void o_circle_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+{
+  int diff_x, diff_y;
+
+  g_assert( w_current->inside_action != 0 );
+
+  /* erase the previous temporary circle if it is visible */
+  if (w_current->rubber_visible)
+    o_circle_invalidate_rubber (w_current);
+
+  /*
+   * The radius is taken as the biggest distance on the x and y axis between
+   * the center of the circle and the mouse position.
+   */
+  diff_x = abs(w_current->first_wx - w_x);
+  diff_y = abs(w_current->first_wy - w_y);
+  w_current->distance = max(diff_x, diff_y);
+
+  /* draw the new temporary circle */
+  o_circle_invalidate_rubber (w_current);
+  w_current->rubber_visible =1;
+}
+
+/*! \brief Draw circle from GSCHEM_TOPLEVEL object.
+ *  \par Function Description
+ *  This function draws the circle from the variables in the GSCHEM_TOPLEVEL
+ *  structure <B>*w_current</B>.
+ *  The center of the circle is at (<B>w_current->first_wx</B>,
+ *  <B>w_current->first_wy</B>) and its radius is in <B>w_current->distance</B>.
+ *
+ *  It draws a horizontal radius segment on the right half of the circle and
+ *  the circle with the selection color.
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ */
+void o_circle_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+{
+  gschem_cairo_arc (w_current, 0, w_current->first_wx,
+                                  w_current->first_wy,
+                                  w_current->distance, 0, 360);
+
+  gschem_cairo_line (w_current, END_NONE, 0,
+                     w_current->first_wx,
+                     w_current->first_wy,
+                     w_current->first_wx + w_current->distance,
+                     w_current->first_wy);
+
+  gschem_cairo_set_source_color (w_current,
+                                 x_color_lookup_dark (SELECT_COLOR));
+  gschem_cairo_stroke (w_current, TYPE_SOLID, END_NONE, 0, -1, -1);
+}
+
+/*! \brief Draw grip marks on circle.
+ *  \par Function Description
+ *  This function draws the grip that match the circle object <B>*o_current</B>.
+ *
+ *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] o_current  Circle OBJECT to draw grip points on.
+ */
+void o_circle_draw_grips(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
+{
+  if (w_current->draw_grips == FALSE)
+    return;
+
+  /* grip on lower right corner of the square */
+  o_grips_draw (w_current,
+                o_current->circle->center_x + o_current->circle->radius,
+                o_current->circle->center_y - o_current->circle->radius);
+}

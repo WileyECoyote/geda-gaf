@@ -29,6 +29,7 @@
 #include <unistd.h>
 #endif
 
+#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
@@ -39,8 +40,6 @@
 #endif
 
 #include "print-settings.h"
-
-
 
 struct PrintSettings
 {
@@ -63,8 +62,6 @@ struct PrintSettings
 	PrintOrientation orientation;
 };
 
-
-
 /*! \brief Get a string representation of the selected font
  *
  *  \param [in] The settings containing the selected font
@@ -81,8 +78,6 @@ print_settings_get_font(const PrintSettings *settings)
 
   return string;
 }
-
-
 
 /*! \brief Get the diameter of a junction used for a bus
  *
@@ -101,7 +96,6 @@ print_settings_get_junction_size_bus(const PrintSettings *settings)
   return size;
 }
 
-
 /*! \brief Get the diameter of a junction used for nets
  *
  *  \param [in] settings The settings containing the junction size
@@ -118,7 +112,6 @@ print_settings_get_junction_size_net(const PrintSettings *settings)
 
   return size;
 }
-
 
 /*! \brief Get the horizontal alignment
  *
@@ -144,7 +137,6 @@ print_settings_get_page_align_horizontal(const PrintSettings *settings)
   return align;
 }
 
-
 /*! \brief Get the vertical alignment
  *
  *  If the schematic is smaller than the print area vertically, this
@@ -169,8 +161,6 @@ print_settings_get_page_align_vertical(const PrintSettings *settings)
   return align;
 }
 
-
-
 /*! \brief Get the bottom margin
  *
  *  \param [in] settings The settings containing the bottom margin
@@ -187,8 +177,6 @@ print_settings_get_page_margin_bottom(const PrintSettings *settings)
 
   return margin;
 }
-
-
 
 /*! \brief Get the left margin
  *
@@ -207,8 +195,6 @@ print_settings_get_page_margin_left(const PrintSettings *settings)
   return margin;
 }
 
-
-
 /*! \brief Get the right margin
  *
  *  \param [in] settings The settings containing the right margin
@@ -226,8 +212,6 @@ print_settings_get_page_margin_right(const PrintSettings *settings)
   return margin;
 }
 
-
-
 /*! \brief Get the top margin
  *
  *  \param [in] settings The settings containing the top margin
@@ -244,8 +228,6 @@ print_settings_get_page_margin_top(const PrintSettings *settings)
 
   return margin;
 }
-
-
 
 /*! \brief Get the height of the printed page
  *
@@ -283,8 +265,6 @@ print_settings_get_page_height(const PrintSettings *settings)
   return height;
 }
 
-
-
 /*! \brief Get the width of the printed page
  *
  *  Unlike the paper dimensions, this dimension takes the orientation of
@@ -320,8 +300,6 @@ print_settings_get_page_width(const PrintSettings *settings)
 
   return width;
 }
-
-
 
 /*! \brief Get the height of the physical paper
  *
@@ -359,8 +337,6 @@ print_settings_get_paper_width(const PrintSettings *settings)
   return width;
 }
 
-
-
 /*! \brief Get the height of the printable area
  *
  *  \param [in] settings The settings
@@ -381,8 +357,6 @@ print_settings_get_print_height(const PrintSettings *settings)
   return height;
 }
 
-
-
 /*! \brief Get the print orientation
  *
  *  \param [in] The settings containing the print orientation
@@ -399,8 +373,6 @@ print_settings_get_print_orientation(const PrintSettings *settings)
 
   return orientation;
 }
-
-
 
 /*! \brief Get the width of the printable area
  *
@@ -421,8 +393,6 @@ print_settings_get_print_width(const PrintSettings *settings)
 
   return width;
 }
-
-
 
 /*! \brief Create a new print settings object
  *
@@ -453,8 +423,6 @@ print_settings_new()
   return settings;
 }
 
-
-
 /*! \brief Set the font
  *
  *  \param [in] settings The settings containing the font string
@@ -470,8 +438,6 @@ print_settings_set_font(PrintSettings *settings, const char *string)
     settings->font_string = g_strdup(string);
   }
 }
-
-
 
 /*! \brief Set the diameter of a junction used for a bus
  *
@@ -490,7 +456,6 @@ print_settings_set_junction_size_bus(PrintSettings *settings, double size)
   }
 }
 
-
 /*! \brief Set the diameter of a junction used for nets
  *
  *  \param [in,out] settings The settings containing the junction size
@@ -507,8 +472,6 @@ print_settings_set_junction_size_net(PrintSettings *settings, double size)
     }
   }
 }
-
-
 
 /*! \brief Set the horizontal alignment
  *
@@ -536,8 +499,6 @@ print_settings_set_page_align_horizontal(PrintSettings *settings, double align)
   }
 }
 
-
-
 /*! \brief Set the vertical alignment
  *
  *  If the schematic is smaller than the print area vertically, this
@@ -564,8 +525,6 @@ print_settings_set_page_align_vertical(PrintSettings *settings, double align)
   }
 }
 
-
-
 /*! \brief Set the bottom margin
  *
  *  \param [in,out] settings The settings to contain the bottom margin
@@ -583,8 +542,6 @@ print_settings_set_page_margin_bottom(PrintSettings *settings, double margin)
   }
 }
 
-
-
 /*! \brief Set the left margin
  *
  *  \param [in,out] settings The settings to contain the left margin
@@ -601,8 +558,6 @@ print_settings_set_page_margin_left(PrintSettings *settings, double margin)
     }
   }
 }
-
-
 
 /*! \brief Set the right margin
  *
@@ -658,8 +613,6 @@ print_settings_set_paper_height(PrintSettings *settings, double height)
   }
 }
 
-
-
 /*! \brief Set the physical width of the paper
  *
  *  \param [in,out] settings The settings to contain the paper width
@@ -676,8 +629,6 @@ print_settings_set_paper_width(PrintSettings *settings, double width)
     }
   }
 }
-
-
 
 /*! \brief Set the orientation of the print
  *

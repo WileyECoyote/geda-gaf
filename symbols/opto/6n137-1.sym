@@ -67,10 +67,14 @@ pinlabel=GND
 }
 B 300 0 1400 1500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 2200 8 10 0 0 0 0 1
-device=6n137
+device=6N137
 T 300 1900 8 10 0 0 0 0 1
 footprint=DIP8
 T 300 1600 9 10 1 0 0 0 1
 6N137
 T 1500 1600 8 10 1 1 0 0 1
 refdes=U?
+T 300 2200 5 10 0 0 0 0 1
+description=Optocoupler/Optoisolator
+T 300 1800 5 10 0 0 0 0 1
+numslots=0

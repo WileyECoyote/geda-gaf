@@ -1,12 +1,10 @@
-v 20041228 1
+v 20121031 1
 T 700 2900 8 10 1 1 0 6 1
 refdes=CONN?
 T 300 2850 5 10 0 0 0 0 1
 device=CONNECTOR_6
 T 300 3050 5 10 0 0 0 0 1
 footprint=SIP6N
-T 300 3250 5 10 0 0 0 0 1
-author=Leon Kos
 T 300 3450 5 10 0 0 0 0 1
 description=generic connector
 T 300 3650 5 10 0 0 0 0 1

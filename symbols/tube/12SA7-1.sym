@@ -1,4 +1,6 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 L 800 500 800 700 3 0 0 0 -1 -1
 L 800 700 2000 700 3 0 0 0 -1 -1
 L 2000 700 2000 300 3 0 0 0 -1 -1
@@ -54,45 +56,75 @@ L 2200 900 2500 900 3 0 0 0 -1 -1
 L 2200 1700 2500 1700 3 0 0 0 -1 -1
 P 2000 400 2000 0 1 0 1
 {
-T 2100 100 5 8 1 1 0 0 1
+T 2100 400 5 8 1 1 0 0 1
 pinnumber=6
 T 2100 100 5 8 0 0 0 0 1
-pinseq=6
+pinseq=1
+T 2100 100 5 8 0 1 0 0 1
+pintype=io
+T 2100 100 5 8 1 1 0 0 1
+pinlabel=Cathode
 }
 P 2500 900 2900 900 1 0 1
 {
-T 2800 1000 5 8 1 1 0 0 1
+T 2425 950 5 8 1 1 0 0 1
 pinnumber=5
 T 2800 1000 5 8 0 0 0 0 1
-pinseq=5
+pinseq=2
+T 2800 1000 5 8 0 1 0 0 1
+pintype=io
+T 2700 1000 5 8 1 1 0 0 1
+pinlabel=G1
 }
 P 2600 1300 2900 1300 1 0 1
 {
-T 2800 1400 5 8 1 1 0 0 1
+T 2425 1350 5 8 1 1 0 0 1
 pinnumber=4
 T 2800 1400 5 8 0 0 0 0 1
-pinseq=4
+pinseq=3
+T 2800 1400 5 8 0 1 0 0 1
+pintype=io
+T 2700 1400 5 8 1 1 0 0 1
+pinlabel=G24
 }
 P 2500 1700 2900 1700 1 0 1
 {
-T 2800 1800 5 8 1 1 0 0 1
+T 2275 1775 5 8 1 1 0 0 1
 pinnumber=1
 T 2800 1800 5 8 0 0 0 0 1
-pinseq=1
+pinseq=4
+T 2800 1800 5 8 0 1 0 0 1
+pintype=io
+T 2600 1800 5 8 1 1 0 0 1
+pinlabel=G5
 }
 P 1500 2400 1500 2700 1 0 1
 {
-T 1600 2600 5 8 1 1 0 0 1
+T 1350 2200 5 8 1 1 0 0 1
 pinnumber=3
 T 1600 2600 5 8 0 0 0 0 1
-pinseq=3
+pinseq=5
+T 1600 2600 5 8 0 1 0 0 1
+pintype=io
+T 1600 2500 5 8 1 1 0 0 1
+pinlabel=Anode
 }
 P 300 1300 0 1300 1 0 1
 {
-T 100 1400 5 8 1 1 0 0 1
+T 400 1100 5 8 1 1 0 0 1
 pinnumber=8
 T 100 1400 5 8 0 0 0 0 1
-pinseq=8
+pinseq=6
+T 100 1400 5 8 0 1 0 0 1
+pintype=io
+T 100 1400 5 8 1 1 0 0 1
+pinlabel=G3
 }
 T 2300 2300 8 10 1 1 0 0 1
-refdes=U?
+refdes=V?
+T 2300 2300 8 10 0 1 0 0 1
+description=Twin Diode Medium Mu Triode (the 2N2222 of tubes)
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

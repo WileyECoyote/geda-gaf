@@ -142,3 +142,7 @@ T 1400 1375 5 8 0 0 0 0 1
 device=SWITCH_DIP4
 T 300 1550 8 10 1 1 0 0 1
 refdes=U?
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

@@ -1,4 +1,6 @@
-v 20031231 1
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
 V 300 250 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 300 300 300 600 1 0 1
 {
@@ -15,3 +17,11 @@ T 50 0 9 10 1 0 0 0 1
 -Vcc
 T 550 200 8 10 0 0 0 0 1
 net=-Vcc:1
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+device=none
+T 200 300 8 10 0 1 0 0 1
+refdes=none
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

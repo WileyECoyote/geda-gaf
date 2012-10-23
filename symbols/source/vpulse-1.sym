@@ -1,13 +1,15 @@
-v 20080706 1
-T 700 650 8 10 1 1 0 0 1
-refdes=V?
+v 20121031 2
+T 10 10 5 10 0 0 0 0 1
+author=AutoTron <Symbol Repair geda>
+T 700 650 8 10 0 1 0 0 1
+refdes=none
 T 700 850 5 10 0 0 0 0 1
-spicetype=V
+comment=spicetype=V
 T 700 1450 5 10 0 0 0 0 1
 description=pulse power source, generator
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 700 450 5 10 1 1 0 0 1
-voltage=pulse 0 1 10n 10n 100n 1u 2u
+comment=voltage=pulse 0 1 10n 10n 100n 1u 2u
 T 700 250 5 10 0 1 0 0 1
 comment=syntax: pulse v1 v2 td tr tf pw per
 L 375 675 225 675 3 0 0 0 -1 -1
@@ -41,3 +43,9 @@ T 300 900 9 10 1 0 0 5 1
 +
 T 300 300 9 10 1 0 0 3 1
 -
+T 600 100 9 10 0 0 0 0 1
+numslots=0
+T 600 100 9 10 0 0 0 0 1
+device=none
+T 600 100 9 10 0 0 0 0 1
+footprint=unknown

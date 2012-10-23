@@ -36,10 +36,8 @@
 void
 gsymcheck_quit(void)
 {
-  
   s_clib_free();
   s_slib_free();
-
 }
 
 void 
@@ -134,8 +132,7 @@ main_prog(void *closure, int argc, char *argv[])
   exit(exit_status);
 }
 
-int 
-main (int argc, char *argv[])
+int main (int argc, char *argv[])
 {
   /* disable the deprecated warnings in guile 1.6.3 */
   /* Eventually the warnings will need to be fixed */

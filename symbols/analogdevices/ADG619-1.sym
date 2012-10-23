@@ -85,7 +85,7 @@ pinseq=5
 T 1250 200 9 8 1 1 0 6 1
 pinlabel=NC
 T 1250 200 5 8 0 1 0 8 1
-pintype=nc
+pintype=pas
 }
 B 300 0 1000 1400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1850 5 10 0 0 0 0 1
@@ -98,10 +98,6 @@ T 300 2650 5 10 0 0 0 0 1
 footprint=MSOP8
 T 300 2850 5 10 0 0 0 0 1
 description=ADG619 CMOS 5 V/+5 V   Single SPDT Switches 
-T 300 3050 5 10 0 0 0 0 1
-net=Vcc:4
-T 300 3250 5 10 0 0 0 0 1
-net=GND:7
 T 300 1450 9 10 1 0 0 0 1
 ADG619
 T 300 2050 5 10 0 0 0 0 1
