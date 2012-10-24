@@ -1,38 +1,32 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check 
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2012 Ales Hvezda
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation; either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if  not, write to the Free Software
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <stdio.h>
-/*
 #include <config.h>
 
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 #ifdef HAVE_STRINGS_H
 #include <strings.h>
 #endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
-*/
+
 #include <geda.h>
 #include <libgeda/libgeda.h>
 
@@ -125,7 +119,7 @@ s_check_symbol (TOPLEVEL *pr_current, PAGE *p_current, const GList *obj_list)
     
     /* done, now print out the messages */
     s_symstruct_print(s_symcheck);
-    
+
     if (s_symcheck->warning_count > 0) {
       s_log_message("%d warnings found ",
                     s_symcheck->warning_count);
@@ -543,6 +537,7 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   GList *net_numbers = NULL;
   GList *pin_numbers = NULL;
   GList *cur = NULL;
+  GList *cur2 = NULL;
   const GList *iter;
   char *message;
   char *net = NULL;
@@ -676,6 +671,30 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
     }
   }
 
+  /* Check for all pins that are in both lists and print a message.
+     Sometimes this is useful and sometimes it's an error. */
+
+  cur = net_numbers;
+  cur2 = pin_numbers;
+ 
+  while (cur != NULL && cur2 != NULL) {
+    
+    i = strcmp((gchar*)cur->data, (gchar*)cur2->data);
+
+    if (i == 0) {
+       if (!quiet_mode && verbose_mode > 0) {
+
+        s_log_message("Notice: net attribute using defined pin number [%s]\n",
+				 (gchar*) cur->data);
+      }
+      cur = g_list_next(cur);
+    } else if ( i > 0 ) {
+      cur2 = g_list_next(cur2);
+
+    } else { /* i < 0 */
+      cur = g_list_next(cur);
+    }
+  }
   /* FIXME: this is not correct if a pinnumber is defined as pinnumber and
      inside a net. We have to calculate the union set */
   message = g_strdup_printf ("Found %d pins inside symbol\n", 

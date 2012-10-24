@@ -1,5 +1,11 @@
 ## Process this file with automake to produce Makefile.in
 
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
 bin_PROGRAMS = gsymcheck 
 
 # don't forget all *.h files */
@@ -14,12 +20,13 @@ gsymcheck_SOURCES = \
 	s_log.c \
 	s_symstruct.c
 
-gsymcheck_CPPFLAGS = -I$(top_srcdir)/libgeda/include -I$(srcdir)/../include \
-	-I$(abs_top_srcdir)/include -I$(includedir)
+gsymcheck_CPPFLAGS = $(GEDA_INCLUDES)
+
 gsymcheck_CFLAGS = $(GCC_CFLAGS) $(MINGW_CFLIGS) $(GLIB_CFLAGS) \
-	$(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
-gsymcheck_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
-gsymcheck_LDADD = $(top_builddir)/libgeda/src/libgeda.la
+	           $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+gsymcheck_LDFLAGS = $(LIBSTROKE_LDFLAGS) $(GLIB_LIBS) $(GTK_LIBS) \
+		 $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+gsymcheck_LDADD = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
 MOSTLYCLEANFILES = *.log *.ps core FILE *~
 CLEANFILES = *.log *.ps core FILE *~

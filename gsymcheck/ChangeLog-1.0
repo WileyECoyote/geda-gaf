@@ -1,3 +1,28 @@
+2012-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Revised "includes" like was done with gschem,
+          to clarify exactly where to look for include files, to better
+          organize flags, and to eliminate redundent inclusions of paths.
+
+        * src/s_check.c: Revised check for "the same number in a pinnumber
+          attribute and in a net attribute". A previous patch removed the
+          error message and later a "warning" was added instead, see commit:
+          77e0e0f4ffe9573316ebdfdc12d319ccff1074a. This warning was removed
+          because usage of the form net=sig:1 is sited on the geda-gaf web
+          site in an example of HOWTO use the net attribute. Furthermore,
+          use of the word "Warning" may suggest to maintainers and users
+          that many of the library symbols are deficient or sub-standard.
+          To deal with this, the message was downgraded to a "Notice:" and
+          the message is only shown in verbose mode but does not trigger
+          an error or warning.
+          Updated, FSF address and copyrights info.
+
+        * src/g_register.c: Updated, FSF address and copyrights info.
+        * src/g_rc.c: Updated, FSF address.
+        * src/globals: Updated, FSF address.
+        * src/parsecmd.c: Updated, FSF address.
+        * src/s_symstruct.c: Updated, FSF address.
+
 2012-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/i_vars.h: removed empty file and superfluous includes.
