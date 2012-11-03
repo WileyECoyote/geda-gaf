@@ -26,7 +26,6 @@
 #endif
 
 #include "gschem.h"
-#include <missing.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -114,7 +113,7 @@ void o_complex_prepare_place(GSCHEM_TOPLEVEL *w_current, const CLibSymbol *sym)
   } else { /* if (w_current->include_complex) {..} else { */
     OBJECT *new_object;
 
-    new_object = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR,
+    new_object = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR_INDEX,
                                 0, 0, 0, 0, sym, sym_name, 1);
 
     if (new_object->type == OBJ_PLACEHOLDER) {

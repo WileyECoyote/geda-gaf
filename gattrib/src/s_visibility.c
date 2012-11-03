@@ -79,10 +79,10 @@
  * variable "sheet".
  */
 void s_visibility_set_invisible() {
-  gint i, j;
-  gint row_start, row_end, col_start, col_end;
+  int i, j;
+  int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
-  gint cur_page;
+  int cur_page;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
@@ -111,10 +111,8 @@ void s_visibility_set_invisible() {
 			      INVISIBLE, 
 			      LEAVE_NAME_VALUE_ALONE);
 	/* Now set cell in gtksheet to desired color */
-	/* Color names are defined 
-	 * in libgeda/include/colors.h */
-	x_gtksheet_set_cell_text_color(sheet, i, j, GREY); 
-
+	/* Color names are defined in gattrib/include/globals.h */
+	x_gtksheet_set_cell_fgcolor(sheet, i, j, Gray);
       }
     }
     /* Now return sheet to normal -- unselect range */
@@ -130,11 +128,11 @@ void s_visibility_set_invisible() {
 			  sheet->active_cell.col, 
 			  INVISIBLE, 
 			  LEAVE_NAME_VALUE_ALONE);
-
-    x_gtksheet_set_cell_text_color(sheet, 
-				   sheet->active_cell.row, 
-				   sheet->active_cell.col, 
-				   GREY);
+    
+    x_gtksheet_set_cell_fgcolor(sheet, 
+				sheet->active_cell.row, 
+				sheet->active_cell.col, 
+				Gray);
 
     break;
 
@@ -152,10 +150,10 @@ void s_visibility_set_invisible() {
  * variable "sheet".
  */
 void s_visibility_set_name_only() {
-  gint i, j;
-  gint row_start, row_end, col_start, col_end;
+  int i, j;
+  int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
-  gint cur_page;
+  int cur_page;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
@@ -179,9 +177,8 @@ void s_visibility_set_name_only() {
       for (j=col_start; j<=col_end; j++) {
 	s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_NAME);
 	/* Color names are defined 
-	 * in libgeda/include/colors.h */
-	x_gtksheet_set_cell_text_color(sheet, i, j, RED); 
-
+	 * in libgeda/include/geda_colors.h */
+      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Red);
       }
     }
     /* Now return sheet to normal -- unselect range */
@@ -194,10 +191,10 @@ void s_visibility_set_name_only() {
 			  sheet->active_cell.row, 
 			  sheet->active_cell.col, 
 			  VISIBLE, SHOW_NAME);
-    x_gtksheet_set_cell_text_color(sheet, 
-				   sheet->active_cell.row, 
-				   sheet->active_cell.col, 
-				   RED);
+    x_gtksheet_set_cell_fgcolor(sheet,
+				    sheet->active_cell.row,
+				    sheet->active_cell.col,
+				    Red);
 
     break;
 
@@ -213,10 +210,10 @@ void s_visibility_set_name_only() {
  * variable "sheet".
  */
 void s_visibility_set_value_only() {
-  gint i, j;
-  gint row_start, row_end, col_start, col_end;
+  int i, j;
+  int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
-  gint cur_page;
+  int cur_page;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
@@ -240,9 +237,8 @@ void s_visibility_set_value_only() {
       for (j=col_start; j<=col_end; j++) {
 	s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_VALUE);
 	/* Color names are defined 
-	 * in libgeda/include/colors.h */
-	x_gtksheet_set_cell_text_color(sheet, i, j, BLACK); 
-
+	 * in libgeda/include/geda_colors.h */
+      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Black);
       }
     }
     /* Now return sheet to normal -- unselect range */
@@ -258,10 +254,11 @@ void s_visibility_set_value_only() {
 			  sheet->active_cell.row, 
 			  sheet->active_cell.col, 
 			  VISIBLE, SHOW_VALUE);
-    x_gtksheet_set_cell_text_color(sheet, 
-				   sheet->active_cell.row, 
-				   sheet->active_cell.col, 
-				   BLACK);
+    
+    x_gtksheet_set_cell_fgcolor(sheet,
+				    sheet->active_cell.row,
+				    sheet->active_cell.col,
+				    Black);
     break;
 
   }
@@ -278,10 +275,10 @@ void s_visibility_set_value_only() {
  *
  */
 void s_visibility_set_name_and_value() {
-  gint i, j;
-  gint row_start, row_end, col_start, col_end;
+  int i, j;
+  int row_start, row_end, col_start, col_end;
   GtkSheet *sheet;
-  gint cur_page;
+  int cur_page;
 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = sheets[cur_page];
@@ -302,9 +299,8 @@ void s_visibility_set_name_and_value() {
       for (j=col_start; j<=col_end; j++) {
 	s_visibility_set_cell(cur_page, i, j, VISIBLE, SHOW_NAME_VALUE);
 	/* Color names are defined 
-	 * in libgeda/include/colors.h */
-	x_gtksheet_set_cell_text_color(sheet, i, j, BLUE); 
-
+	 * in libgeda/include/geda_colors.h */
+      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Blue);
       }
     }
     /* Now return sheet to normal -- unselect range */
@@ -318,10 +314,10 @@ void s_visibility_set_name_and_value() {
 			  sheet->active_cell.col, 
 			  VISIBLE, 
 			  SHOW_NAME_VALUE);
-    x_gtksheet_set_cell_text_color(sheet, 
-				   sheet->active_cell.row, 
-				   sheet->active_cell.col, 
-				   BLUE);
+    x_gtksheet_set_cell_fgcolor(sheet,
+				    sheet->active_cell.row,
+				    sheet->active_cell.col,
+				    Blue);
 
     break;
 
@@ -342,9 +338,9 @@ void s_visibility_set_name_and_value() {
  * \param visibility Visibility value to set cell to
  * \param show_name_value Name, Value visibility flag
  */
-void s_visibility_set_cell(gint cur_page, gint row, gint col, 
-			   gint visibility, 
-			   gint show_name_value) {
+void s_visibility_set_cell(int cur_page, int row, int col, 
+			   int visibility, 
+			   int show_name_value) {
   TABLE **local_table = NULL;
 
 #ifdef DEBUG

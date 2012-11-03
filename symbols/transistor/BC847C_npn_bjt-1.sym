@@ -61,6 +61,6 @@ z
 T 400 1800 5 8 0 0 0 0 1
 symversion=1.1
 T 400 2200 5 8 0 0 0 0 1
-comment=footprints=SOT23_BEC, TO92_ECB, TO220_ECB, TO220_ECB_LAY, TO126_ECB
+footprints=SOT23_BEC, TO92_ECB, TO220_ECB, TO220_ECB_LAY, TO126_ECB
 T 400 2000 5 8 0 0 0 0 1
 comment=check the data sheet for pinout!

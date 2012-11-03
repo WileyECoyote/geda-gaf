@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library 
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2012 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -14,10 +14,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
  */
 
-/*! \file colors.h
+/*! \file geda_colors.h
  *  \brief define some constants for the colors
  */
 
@@ -49,22 +50,24 @@
 #define MESH_GRID_MAJOR_COLOR           22
 #define MESH_GRID_MINOR_COLOR           23
 
+#define DEFAULT_COLOR_INDEX             GRAPHIC_COLOR
+/*
 #define OVERRIDE_NET_COLOR              4
 #define OVERRIDE_PIN_COLOR              1
 #define OVERRIDE_BUS_COLOR              10
 
-#define DEFAULT_COLOR                   3
-
-#define NOCOLOR     {0xff, 0xff, 0xff, 0xff, FALSE}
-#define BLACK       {0x00, 0x00, 0x00, 0xff, TRUE}
-#define BLUE_RGB    {0x00, 0x00, 0xff, 0xff, TRUE}
-#define CYAN_RGB    {0x00, 0xff, 0xff, 0xff, TRUE}    /* aqua */
-#define GRAY        {0x88, 0x88, 0x88, 0xff, TRUE}
-#define GREEN_RGB   {0x00, 0xff, 0x00, 0xff, TRUE}
-#define MAGENTA_RGB {0xff, 0x00, 0xff, 0xff, TRUE}    /* fuchsia */
-#define ORANGE_RGB  {0xff, 0xa5, 0xff, 0xff, TRUE}
-#define RED_RGB     {0xff, 0x00, 0x00, 0xff, TRUE}
-#define YELLOW_RGB  {0xff, 0xff, 0x00, 0xff, TRUE}
-#define WHITE       {0xff, 0xff, 0xff, 0xff, TRUE}
-
+*/
+#define RGB_NOCOLOR	{0xff, 0xff, 0xff, 0xff, FALSE}
+#define RGB_BLACK	{0x00, 0x00, 0x00, 0xff, TRUE}
+#define RGB_BLUE	{0x00, 0x00, 0xff, 0xff, TRUE}
+#define RGB_CYAN	{0x00, 0xff, 0xff, 0xff, TRUE} /* aqua */
+#define RGB_GRAY	{0x88, 0x88, 0x88, 0xff, TRUE}
+#define RGB_GREY	{0x88, 0x88, 0x88, 0xff, TRUE}
+#define RGB_GREEN	{0x00, 0xff, 0x00, 0xff, TRUE}
+#define RGB_MAGENTA	{0xff, 0x00, 0xff, 0xff, TRUE} /* fuchsia */
+#define RGB_ORANGE	{0xff, 0xa5, 0xff, 0xff, TRUE}
+#define RGB_RED 	{0xff, 0x00, 0x00, 0xff, TRUE}
+#define RGB_YELLOW	{0xff, 0xff, 0x00, 0xff, TRUE}
+#define RGB_WHITE	{0xff, 0xff, 0xff, 0xff, TRUE}
+#define RGB_ENDMAP	{0x00, 0x00, 0x00, 0x00, FALSE}
 #endif

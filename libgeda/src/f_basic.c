@@ -94,9 +94,9 @@ gchar *f_get_autosave_filename (const gchar *filename)
  *
  *  \returns TRUE if autosave active, FALSE otherwise
  */
-gboolean f_has_active_autosave (const gchar *filename, GError **err)
+bool f_has_active_autosave (const gchar *filename, GError **err)
 {
-  gboolean result = FALSE;
+  bool result = FALSE;
   gchar *auto_filename;
   gint file_err = 0;
   gint auto_err = 0;
@@ -162,11 +162,9 @@ gboolean f_has_active_autosave (const gchar *filename, GError **err)
  *
  *  \return 0 on failure, 1 on success.
  */
-int f_open(TOPLEVEL *toplevel, PAGE *page,
-           const gchar *filename, GError **err)
+int f_open(TOPLEVEL *toplevel, PAGE *page, const gchar *filename, GError **err)
 {
-  return f_open_flags (toplevel, page, filename,
-                       F_OPEN_RC | F_OPEN_CHECK_BACKUP, err);
+  return f_open_flags (toplevel, page, filename, F_OPEN_RC | F_OPEN_CHECK_BACKUP, err);
 }
 
 /*! \brief Opens the schematic file with fine-grained control over behaviour.
@@ -190,15 +188,15 @@ int f_open(TOPLEVEL *toplevel, PAGE *page,
  */
 int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
                  const gchar *filename,
-                 const gint flags, GError **err)
+                 const int flags, GError **err)
 {
-  int opened=FALSE;
+  int   opened = FALSE;
   char *full_filename = NULL;
   char *full_rcfilename = NULL;
   char *file_directory = NULL;
   char *saved_cwd = NULL;
   char *backup_filename = NULL;
-  char load_backup_file = 0;
+  char  load_backup_file = 0;
   GError *tmp_err = NULL;
 
   /* has the head been freed yet? */
@@ -209,9 +207,9 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
              toplevel->init_top,  toplevel->init_bottom);
 
 
-  /* Cache the cwd so we can restore it later. */
+  /* Save the cwd so we can restore it later. */
   if (flags & F_OPEN_RESTORE_CWD) {
-    saved_cwd = g_get_current_dir();
+    saved_cwd = getcwd(0,0);
   }
 
   /* get full, absolute path to file */
@@ -260,7 +258,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
   if (flags & F_OPEN_CHECK_BACKUP) {
     /* Check if there is a newer autosave backup file */
     GString *message;
-    gboolean active_backup = f_has_active_autosave (full_filename, &tmp_err);
+    bool active_backup = f_has_active_autosave (full_filename, &tmp_err);
     backup_filename = f_get_autosave_filename (full_filename);
 
     if (tmp_err != NULL) g_warning ("%s\n", tmp_err->message);
@@ -315,6 +313,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
     page->CHANGED=1;
   }
 
+      
   g_free(full_filename);
   g_free(full_rcfilename);
   g_free (backup_filename);
@@ -326,7 +325,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
       /* Error occurred with chdir */
 #warning FIXME: What do we do?
     }
-    g_free(saved_cwd);
+    free(saved_cwd);
   }
 
   return opened;
@@ -362,10 +361,9 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
   gchar *real_filename;
   gchar *only_filename;
   gchar *dirname;
-  mode_t saved_umask, mask;
-  struct stat st;
+  struct stat st_ActiveFile;
   GError *tmp_err = NULL;
-
+    
   /* Get the real filename and file permissions */
   real_filename = follow_symlinks (filename, &tmp_err);
 
@@ -385,6 +383,13 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
     return 0;      
   }
   
+  /* Get the files original permissions */
+  if (stat (real_filename, &st_ActiveFile) != 0)
+  {
+    /* if problem then save default values */
+    st_ActiveFile.st_mode = 0666 & ~umask(0);
+  }
+
   /* Get the directory in which the real filename lives */
   dirname = g_path_get_dirname (real_filename);
   only_filename = g_path_get_basename(real_filename);  
@@ -397,7 +402,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
     {
       backup_filename = g_strdup_printf("%s%c%s~", dirname, 
 					G_DIR_SEPARATOR, only_filename);
-
+       s_log_message ("attempting to create backup file: %s.\n", backup_filename);  
       /* Make the backup file read-write before saving a new one */
       if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) && 
 	   (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR))) {
@@ -405,52 +410,24 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 	  s_log_message (_("Could NOT set previous backup file [%s] read-write\n"),
 			 backup_filename);
 	}
+	else
+	  remove (backup_filename); /* delete backup from previous session */
       }
 	
-      if (rename(real_filename, backup_filename) != 0) {
-	s_log_message (_("Can't save backup file: %s."), backup_filename);
+      if (fcopy(real_filename, backup_filename) != 0) {
+	s_log_message (_("Can't create backup file: %s."), backup_filename);
       }
       else {
-	/* Make the backup file readonly so a 'rm *' command will ask 
-	   the user before deleting it */
-	saved_umask = umask(0);
-	mask = (S_IWRITE|S_IWGRP|S_IEXEC|S_IXGRP|S_IXOTH);
-	mask = (~mask)&0777;
-	mask &= ((~saved_umask) & 0777);
-	if (chmod(backup_filename, mask) != 0) {
-	  s_log_message (_("Could NOT set backup file [%s] readonly\n"),
-                         backup_filename);
-	}
-	umask(saved_umask);
+	/* Make backup readonly so a 'rm *' will ask user before deleting */
+	chmod(backup_filename, 0444 & ~umask(0));
       }
-
       g_free(backup_filename);
     }
   }
-    /* If there is not an existing file with that name, compute the
-     * permissions and uid/gid that we will use for the newly-created file.
-     */
-       
-  if (stat (real_filename, &st) != 0)
-  {
-    struct stat dir_st;
-    int result;
-    
-    /* Use default permissions */
-    saved_umask = umask(0);
-    st.st_mode = 0666 & ~saved_umask;
-    umask(saved_umask);
-#ifdef HAVE_CHOWN
-    st.st_uid = getuid ();
-    
-    result = stat (dirname, &dir_st);
-    
-    if (result == 0 && (dir_st.st_mode & S_ISGID))
-	  st.st_gid = dir_st.st_gid;
-    else
-    st.st_gid = getgid ();
-#endif /* HAVE_CHOWN */
-  }
+  /* If there is not an existing file with that name, compute the
+   * permissions and uid/gid that we will use for the newly-created file.
+   */
+
   g_free (dirname);
   g_free (only_filename);
   
@@ -464,11 +441,12 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
     page->do_autosave_backup = 0;
 
     /* Restore permissions. */
-    chmod (real_filename, st.st_mode);
+    chmod (real_filename, st_ActiveFile.st_mode);
+
 #ifdef HAVE_CHOWN
-    if (chown (real_filename, st.st_uid, st.st_gid)) {
-      /* Error occured with chown */
-#warning FIXME: What do we do?
+    if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
+      /* Either the current user has permissioin to change ownership
+       * or they didn't. */ 
     }
 #endif
 

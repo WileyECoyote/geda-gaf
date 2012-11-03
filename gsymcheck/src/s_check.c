@@ -27,7 +27,6 @@
 #include <unistd.h>
 #endif
 
-#include <geda.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"
@@ -185,16 +184,19 @@ s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
   char *valid_pin_attributes[] = {"pinlabel", "pintype",
 				  "pinseq", "pinnumber",
 				  NULL};
-  char *valid_attributes[] = {"device", "graphical", "description",
-			      "author", "comment", "numslots",
-			      "slotdef", "footprint", "documentation",
-			      "refdes", "slot", "net", "value",
-			      "symversion", "dist-license", "use-license",
-			      NULL};
-  char *obsolete_attributes[] = {"uref", "label", "email", 
-				 NULL};
-  char *forbidden_attributes[] = {"type", "name", 
-				  NULL};
+
+const char* DefaultAttributeList[] = { "source", "model-name", "model", "file", NULL
+};
+
+  char *valid_attributes[] = { "author", "comment", "device", "description",
+                               "dist-license", "documentation", "footprint",
+			       "footprints", "graphical", "net", "numslots",
+			       "pins", "refdes", "slot", "slotdef",
+			       "spicetype", "symversion", "use-license",
+			       "value", NULL};
+
+  char *obsolete_attributes[] = {"email", "label", "uref", NULL};
+  char *forbidden_attributes[] = {"name", "type", NULL};
   /* pin# ?, slot# ? */
   
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {

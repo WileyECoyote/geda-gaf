@@ -1,6 +1,32 @@
+
+2012-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/Makefile.am: Added ./*/*~ to cleaning list.
+        * symbols/*: removed "comment=" from footprints, pins, and spicetype
+          that were add previously to eliminate warnings from gsymcheck, as
+          gsymcheck now allows these.
+
+2012-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/*: Processed and reviewed errors and warnings for virtually
+          every symbol file, updating the libraries are needed to eliminate
+          the errors and warnings by commenting out or removing the offending
+          lines. Some incomplete, corrupt, or duplicate symbols were removed.
+          Added and or revised "many" symbols.
+          
+2012-10-18 Wiley E Hill  <wileyhill@gmail.com>
+
+	* symbols/: Relocated symbols/documentation to docs/symbols, as noted
+          in docs/ChangeLog.
+
+        * symbols/Makefile.am: Replaced literal list of symbol subdirectories
+          with autoconf variable @symbol_dirs@ for substitution during
+          configuration using new symbols-dirs.m4 macro to facilitate re-
+          organization and expansion of the symbol libraries.
+
 2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
-        * /sysmbol: Restructured symbol library directories and organinzed
+        * /symbols: Restructured symbol library directories and organinzed
           symbol files.
 
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>

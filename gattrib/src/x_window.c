@@ -35,13 +35,15 @@
  *------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <gtk/gtk.h>
 
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
+#include <glib-object.h>
+#include <gtksheet.h>
+#include <gattrib.h>  /* include Gattrib specific headers  */
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -55,8 +57,7 @@
 static void
 x_window_create_menu(GtkWindow *window, GtkWidget **menubar);
 
-static void
-x_window_set_default_icon( void );
+static void x_window_set_default_icon( void );
 
 /*! \brief Initialises the toplevel gtksheet
  *
@@ -74,26 +75,25 @@ x_window_set_default_icon( void );
  *  menus is long & it is worthwhile to separate it from other code.  
  *  Maybe I'll refactor this later.
  */
-void
-x_window_init()
+void x_window_init()
 {
   GtkWidget *menu_bar;
   GtkWidget *main_vbox;
-
+  GtkRequisition request;
+ 
   /* Set default icon */
   x_window_set_default_icon();
 
   /*  window is a global declared in globals.h.  */
   window = gtk_window_new(GTK_WINDOW_TOPLEVEL);  
 
-  gtk_window_set_title( GTK_WINDOW(window), _("gattrib -- gEDA attribute editor")); 
-  gtk_window_set_default_size(GTK_WINDOW(window), 750, 600);  
+  gtk_window_set_title(GTK_WINDOW(window), _("gattrib -- gEDA attribute editor")); 
+  gtk_window_set_default_size(GTK_WINDOW(window), 1000, 600);  
   
   gtk_signal_connect (GTK_OBJECT (window), "delete_event",
 		      GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
 
-  /* -----  Now create main_vbox.  This is a container which organizes child  ----- */  
-  /* -----  widgets into a vertical column.  ----- */  
+  /* -----  Now create main_vbox container to hold everthing ----- */   
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
   gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(main_vbox) );
@@ -101,7 +101,23 @@ x_window_init()
   /* -----  Now create menu bar  ----- */  
   x_window_create_menu(GTK_WINDOW(window), &menu_bar);
   gtk_box_pack_start(GTK_BOX (main_vbox), menu_bar, FALSE, TRUE, 0);
+ 
+  status_box=gtk_hbox_new(FALSE, 1);
+  gtk_container_set_border_width(GTK_CONTAINER(status_box),0);
+  gtk_box_pack_start(GTK_BOX(main_vbox), status_box, FALSE, TRUE, 0);
+  gtk_widget_show(status_box);
 
+   /* This is the RC box in the top left cell */
+  location=gtk_label_new(""); 
+  gtk_widget_size_request(location, &request); 
+  gtk_widget_set_usize(location, 150, request.height);
+  gtk_box_pack_start(GTK_BOX(status_box), location, FALSE, TRUE, 0);
+  gtk_widget_show(location);
+
+  entry=gtk_entry_new(); 
+  gtk_box_pack_start(GTK_BOX(status_box), entry, TRUE, TRUE, 0); 
+  gtk_widget_show(entry);
+  
   /* -----  Now init notebook widget  ----- */  
   notebook = gtk_notebook_new();
   gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
@@ -114,8 +130,20 @@ x_window_init()
   sheets = g_malloc0(NUM_SHEETS * sizeof(GtkWidget *));
 }
 
+/*!
+ * \brief File->Save menu item
+ *
+ * Implement the File->Save menu
+ */
+static void menu_file_save()
+{
+  s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
+  s_page_save_all(pr_current);                  /* saves all pages in design */
 
-/*------------------------------------------------------------------
+  sheet_head->CHANGED = FALSE;
+}
+
+/*!------------------------------------------------------------------
  * \brief File Open menu
  *
  * File open menu. Currently unimplemented.
@@ -123,48 +151,76 @@ x_window_init()
  * -# close the current project and reinitialize structures
  * -# load the new project
  */
-#ifdef UNIMPLEMENTED_FEATURES
-static void
-menu_file_open()
+static void menu_file_open()
 {
-  x_dialog_unimplemented_feature();
-#if 0
-  GSList *file_list;
+
+  GSList *file_list =NULL;
 
   file_list = x_fileselect_open();
+  if (file_list != NULL ) {
+    if( sheet_head->CHANGED == TRUE) {
+      switch (x_dialog_file_not_saved()) {
+	case GTK_RESPONSE_CANCEL:
+	  return; /* user canceled from the save unsaved file dialog */
+	case GTK_RESPONSE_YES:
+           menu_file_save();
+        case GTK_RESPONSE_NO:
+      	   /* No need to do anything here, just fall through */
+        default:
+          break;
+      }
+    }
+    s_toplevel_close();
+    /* Load the files, don't check if it went OK */
+    x_fileselect_load_files(file_list);
+    
+  }
+  else
+    fprintf(stderr, "open file canceled:%s\n", (gchar*) g_slist_nth_data(file_list,0));
   
-  /* Load the files, don't check if it went OK */
-  x_fileselect_load_files(file_list);
-  
-  g_slist_foreach(file_list, (GFunc)g_free, NULL);
-  g_slist_free(file_list);
-#endif
-}
-#endif
+  if (file_list != NULL ){
 
-/*!
- * \brief File->Save menu item
+    g_slist_foreach(file_list, (GFunc)g_free, NULL);
+    g_slist_free(file_list);
+  }
+}
+
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
  *
- * Implement the File->Save menu
  */
-static void
-menu_file_save()
+void menu_file_save_as()
 {
-  s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
-  s_page_save_all(pr_current);  /* saves all pages in design */
+  char *filename = malloc(MAX_FILE * sizeof(char)); /* be 255 * 1 */
+  
+  if (filename) {
+    if (x_fileselect(filename)) {
+      /* Dumps sheet data into TOPLEVEL */
+      s_toplevel_gtksheet_to_toplevel(pr_current);
 
-  sheet_head->CHANGED = FALSE;
+      /* replace page filename with new one, do not free filename */
+      g_free (pr_current->page_current->page_filename);
+      pr_current->page_current->page_filename = filename;
+      
+      s_page_save_all(pr_current);
+      /* reset the changed flag of current page*/
+      pr_current->page_current->CHANGED = FALSE;
+      sheet_head->CHANGED = FALSE;
+    } /* else user aborted, do nothing */
+  }
+  else
+     s_log_message("setup_titleblock: Memory allocation error\n");
 }
-
 /*!
  * \brief File->Export CSV menu item
  *
  * Implement the File->Export CSV menu item
  */
-static void 
-menu_file_export_csv()
+static void menu_file_export_csv()
 {
-  gint cur_page;
+  int cur_page;
 
   /* first verify that we are on the correct page (components) */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -183,10 +239,9 @@ menu_file_export_csv()
  *
  * Implement the New attrib menu item
  */
-static void 
-menu_edit_newattrib()
+static void menu_edit_newattrib()
 {
-  gint cur_page;
+  int cur_page;
 
   /* first verify that we are on the correct page (components) */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -202,8 +257,7 @@ menu_edit_newattrib()
  *
  * Implements the Delete Attribute menu item
  */
-static void
-menu_edit_delattrib()
+static void menu_edit_delattrib()
 {
   x_dialog_delattrib();
 }
@@ -215,8 +269,9 @@ static const GtkActionEntry actions[] = {
   /* name, stock-id, label, accelerator, tooltip, callback function */
   /* File menu */
   { "file", NULL, "_File"},
-  /* { "file-open", GTK_STOCK_OPEN, "Open", "<Control>O", "", menu_file_open}, */
+  { "file-open", GTK_STOCK_OPEN, "Open", "<Control>O", "", menu_file_open},
   { "file-save", GTK_STOCK_SAVE, "Save", "<Control>S", "", menu_file_save},
+  { "file-save-as", GTK_STOCK_SAVE_AS, "Save As", "<Control>A", "", menu_file_save_as},
   { "file-export-csv", NULL, "Export CSV", "", "", menu_file_export_csv},
   /* { "file-print", GTK_STOCK_PRINT, "Print", "<Control>P", "", x_dialog_unimplemented_feature}, */
   { "file-quit", GTK_STOCK_QUIT, "Quit", "<Control>Q", "", G_CALLBACK(gattrib_really_quit)},
@@ -259,7 +314,7 @@ static const GtkActionEntry actions[] = {
 static void
 x_window_create_menu(GtkWindow *window, GtkWidget **menubar)
 {
-  gchar *menu_file;
+  char *menu_file;
   GtkUIManager *ui;
   GtkActionGroup *action_group;
   GError *error = NULL;
@@ -308,10 +363,10 @@ x_window_create_menu(GtkWindow *window, GtkWidget **menubar)
 void
 x_window_add_items()
 {
-  gint i, j;
-  gint num_rows, num_cols;
-  gchar *text, *error_string;
-  gint visibility, show_name_value;
+  int i, j;
+  int num_rows, num_cols;
+  char *text, *error_string;
+  int visibility, show_name_value;
   
   /* Do these sanity check to prevent later segfaults */
   if (sheet_head->comp_count == 0) {
@@ -329,20 +384,21 @@ x_window_add_items()
     x_dialog_fatal_error(error_string, 3);
   }
 
-
   /*  initialize the gtksheet. */
   x_gtksheet_init();  /* this creates a new gtksheet having dimensions specified
 		       * in sheet_head->comp_count, etc. . .  */
 
   if (sheet_head->comp_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[0]), 
-			      sheet_head->comp_count, sheet_head->master_comp_list_head);
+			      sheet_head->comp_count,
+			      sheet_head->master_comp_list_head);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[0]), 
-			      sheet_head->comp_attrib_count, sheet_head->master_comp_attrib_list_head);
+			      sheet_head->comp_attrib_count,
+			      sheet_head->master_comp_attrib_list_head);
   }
 
 #ifdef UNIMPLEMENTED_FEATURES
-  /* This is not ready.  I need to implement net attributes */
+  /* This is not ready.  Need to implement net attributes */
   if (sheet_head->net_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[1]), 
 			      sheet_head->net_count, sheet_head->master_net_list_head);
@@ -354,14 +410,12 @@ x_window_add_items()
   }  
 #endif
 
-#ifdef UNIMPLEMENTED_FEATURES
   if (sheet_head->pin_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[2]), 
 			      sheet_head->pin_count, sheet_head->master_pin_list_head);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[2]), 
 			      sheet_head->pin_attrib_count, sheet_head->master_pin_attrib_list_head);
   }
-#endif
 
   /* ------ Comp sheet: put values in the individual cells ------- */
   num_rows = sheet_head->comp_count;
@@ -369,10 +423,10 @@ x_window_add_items()
   for (i = 0; i < num_rows; i++) {
     for (j = 0; j < num_cols; j++) {
       if ( (sheet_head->component_table)[i][j].attrib_value ) { /* NULL = no entry */
-	text = (gchar *) g_strdup( (sheet_head->component_table)[i][j].attrib_value );
+	text = (char *) g_strdup( (sheet_head->component_table)[i][j].attrib_value );
 	visibility = (sheet_head->component_table)[i][j].visibility;
 	show_name_value = (sheet_head->component_table)[i][j].show_name_value;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[0]), i, j, (gchar *) text, 
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[0]), i, j, (char *) text, 
 				  visibility, show_name_value );
 	g_free(text);
       }
@@ -386,10 +440,10 @@ x_window_add_items()
   for (i = 0; i < num_rows; i++) {
     for (j = 0; j < num_cols; j++) {
       if ( (sheet_head->net_table)[i][j].attrib_value ) { /* NULL = no entry */
-	text = (gchar *) g_strdup( (sheet_head->net_table)[i][j].attrib_value );
+	text = (char *) g_strdup( (sheet_head->net_table)[i][j].attrib_value );
 	visibility = (sheet_head->net_table)[i][j].visibility;
 	show_name_value = (sheet_head->component_table)[i][j].show_name_value;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), i, j, (gchar *) text,
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), i, j, (char *) text,
 				  visibility, show_name_value );
 	g_free(text);
       }
@@ -397,22 +451,20 @@ x_window_add_items()
   }
 #endif
 
-#ifdef UNIMPLEMENTED_FEATURES
   /* ------ Pin sheet: put pin attribs in the individual cells ------- */
   num_rows = sheet_head->pin_count;
   num_cols = sheet_head->pin_attrib_count;
   for (i = 0; i < num_rows; i++) {
     for (j = 0; j < num_cols; j++) {
       if ( (sheet_head->pin_table)[i][j].attrib_value ) { /* NULL = no entry */
-	text = (gchar *) g_strdup( (sheet_head->pin_table)[i][j].attrib_value );
+	text = (char *) g_strdup( (sheet_head->pin_table)[i][j].attrib_value );
 	/* pins have no visibility attributes, must therefore provide default. */
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), i, j, (gchar *) text, 
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), i, j, (char *) text, 
 				  VISIBLE, SHOW_VALUE );
 	g_free(text);
       }
     }
   }
-#endif
 
   gtk_widget_show_all( GTK_WIDGET(window) );
 }

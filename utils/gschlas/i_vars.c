@@ -18,7 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <geda.h>
 #include <libgeda/libgeda.h>
 int default_force_boundingbox = 0;
 

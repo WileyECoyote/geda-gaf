@@ -23,10 +23,9 @@
  * \brief Gattrib specific includes.
  */
 
-#include <geda.h>
 #include <libgeda/libgeda.h>       /* geda library fcns  */
 #include "../include/struct.h"     /* typdef and struct declarations */
-#include "../include/prototype.h"  /* function prototypes */
 #include "../include/globals.h"
+#include "../include/prototype.h"  /* function prototypes */
 #include "../include/gettext.h"
 

@@ -1,12 +1,6 @@
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
 #include	<glib-object.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 #ifdef G_ENABLE_DEBUG
 #define g_marshal_value_peek_boolean(v)  g_value_get_boolean (v)
@@ -41,8 +35,8 @@
 #define g_marshal_value_peek_ulong(v)    (v)->data[0].v_ulong
 #define g_marshal_value_peek_int64(v)    (v)->data[0].v_int64
 #define g_marshal_value_peek_uint64(v)   (v)->data[0].v_uint64
-#define g_marshal_value_peek_enum(v)     (v)->data[0].v_int
-#define g_marshal_value_peek_flags(v)    (v)->data[0].v_uint
+#define g_marshal_value_peek_enum(v)     (v)->data[0].v_long
+#define g_marshal_value_peek_flags(v)    (v)->data[0].v_ulong
 #define g_marshal_value_peek_float(v)    (v)->data[0].v_float
 #define g_marshal_value_peek_double(v)   (v)->data[0].v_double
 #define g_marshal_value_peek_string(v)   (v)->data[0].v_pointer
@@ -53,13 +47,13 @@
 #endif /* !G_ENABLE_DEBUG */
 
 
-/* BOOL:INT,INT,POINTER,POINTER (gtkextra-marshal.list:1) */
+/* BOOL:INT,INT,POINTER,POINTER (gtksheet-marshal.list:1) */
 void
-gtkextra_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
-                                           GValue       *return_value,
+gtksheet_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
+                                           GValue       *return_value G_GNUC_UNUSED,
                                            guint         n_param_values,
                                            const GValue *param_values,
-                                           gpointer      invocation_hint,
+                                           gpointer      invocation_hint G_GNUC_UNUSED,
                                            gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__INT_INT_POINTER_POINTER) (gpointer     data1,
@@ -98,13 +92,13 @@ gtkextra_BOOLEAN__INT_INT_POINTER_POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED,POINTER (gtkextra-marshal.list:2) */
+/* BOOL:BOXED,POINTER (gtksheet-marshal.list:2) */
 void
-gtkextra_BOOLEAN__BOXED_POINTER (GClosure     *closure,
-                                 GValue       *return_value,
+gtksheet_BOOLEAN__BOXED_POINTER (GClosure     *closure,
+                                 GValue       *return_value G_GNUC_UNUSED,
                                  guint         n_param_values,
                                  const GValue *param_values,
-                                 gpointer      invocation_hint,
+                                 gpointer      invocation_hint G_GNUC_UNUSED,
                                  gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__BOXED_POINTER) (gpointer     data1,
@@ -139,13 +133,13 @@ gtkextra_BOOLEAN__BOXED_POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED,STRING (gtkextra-marshal.list:3) */
+/* BOOL:BOXED,STRING (gtksheet-marshal.list:3) */
 void
-gtkextra_BOOLEAN__BOXED_STRING (GClosure     *closure,
-                                GValue       *return_value,
+gtksheet_BOOLEAN__BOXED_STRING (GClosure     *closure,
+                                GValue       *return_value G_GNUC_UNUSED,
                                 guint         n_param_values,
                                 const GValue *param_values,
-                                gpointer      invocation_hint,
+                                gpointer      invocation_hint G_GNUC_UNUSED,
                                 gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__BOXED_STRING) (gpointer     data1,
@@ -180,13 +174,13 @@ gtkextra_BOOLEAN__BOXED_STRING (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED,BOXED (gtkextra-marshal.list:4) */
+/* BOOL:BOXED,BOXED (gtksheet-marshal.list:4) */
 void
-gtkextra_BOOLEAN__BOXED_BOXED (GClosure     *closure,
-                               GValue       *return_value,
+gtksheet_BOOLEAN__BOXED_BOXED (GClosure     *closure,
+                               GValue       *return_value G_GNUC_UNUSED,
                                guint         n_param_values,
                                const GValue *param_values,
-                               gpointer      invocation_hint,
+                               gpointer      invocation_hint G_GNUC_UNUSED,
                                gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__BOXED_BOXED) (gpointer     data1,
@@ -221,13 +215,13 @@ gtkextra_BOOLEAN__BOXED_BOXED (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED,DOUBLE,DOUBLE (gtkextra-marshal.list:5) */
+/* BOOL:BOXED,DOUBLE,DOUBLE (gtksheet-marshal.list:5) */
 void
-gtkextra_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
-                                       GValue       *return_value,
+gtksheet_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
+                                       GValue       *return_value G_GNUC_UNUSED,
                                        guint         n_param_values,
                                        const GValue *param_values,
-                                       gpointer      invocation_hint,
+                                       gpointer      invocation_hint G_GNUC_UNUSED,
                                        gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__BOXED_DOUBLE_DOUBLE) (gpointer     data1,
@@ -264,13 +258,13 @@ gtkextra_BOOLEAN__BOXED_DOUBLE_DOUBLE (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:POINTER,POINTER (gtkextra-marshal.list:6) */
+/* BOOL:POINTER,POINTER (gtksheet-marshal.list:6) */
 void
-gtkextra_BOOLEAN__POINTER_POINTER (GClosure     *closure,
-                                   GValue       *return_value,
+gtksheet_BOOLEAN__POINTER_POINTER (GClosure     *closure,
+                                   GValue       *return_value G_GNUC_UNUSED,
                                    guint         n_param_values,
                                    const GValue *param_values,
-                                   gpointer      invocation_hint,
+                                   gpointer      invocation_hint G_GNUC_UNUSED,
                                    gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__POINTER_POINTER) (gpointer     data1,
@@ -305,13 +299,13 @@ gtkextra_BOOLEAN__POINTER_POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:POINTER,BOXED (gtkextra-marshal.list:7) */
+/* BOOL:POINTER,BOXED (gtksheet-marshal.list:7) */
 void
-gtkextra_BOOLEAN__POINTER_BOXED (GClosure     *closure,
-                                 GValue       *return_value,
+gtksheet_BOOLEAN__POINTER_BOXED (GClosure     *closure,
+                                 GValue       *return_value G_GNUC_UNUSED,
                                  guint         n_param_values,
                                  const GValue *param_values,
-                                 gpointer      invocation_hint,
+                                 gpointer      invocation_hint G_GNUC_UNUSED,
                                  gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__POINTER_BOXED) (gpointer     data1,
@@ -346,13 +340,13 @@ gtkextra_BOOLEAN__POINTER_BOXED (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:POINTER,STRING (gtkextra-marshal.list:8) */
+/* BOOL:POINTER,STRING (gtksheet-marshal.list:8) */
 void
-gtkextra_BOOLEAN__POINTER_STRING (GClosure     *closure,
-                                  GValue       *return_value,
+gtksheet_BOOLEAN__POINTER_STRING (GClosure     *closure,
+                                  GValue       *return_value G_GNUC_UNUSED,
                                   guint         n_param_values,
                                   const GValue *param_values,
-                                  gpointer      invocation_hint,
+                                  gpointer      invocation_hint G_GNUC_UNUSED,
                                   gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__POINTER_STRING) (gpointer     data1,
@@ -387,13 +381,13 @@ gtkextra_BOOLEAN__POINTER_STRING (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:POINTER (gtkextra-marshal.list:9) */
+/* BOOL:POINTER (gtksheet-marshal.list:9) */
 void
-gtkextra_BOOLEAN__POINTER (GClosure     *closure,
-                           GValue       *return_value,
+gtksheet_BOOLEAN__POINTER (GClosure     *closure,
+                           GValue       *return_value G_GNUC_UNUSED,
                            guint         n_param_values,
                            const GValue *param_values,
-                           gpointer      invocation_hint,
+                           gpointer      invocation_hint G_GNUC_UNUSED,
                            gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__POINTER) (gpointer     data1,
@@ -426,13 +420,13 @@ gtkextra_BOOLEAN__POINTER (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:BOXED (gtkextra-marshal.list:10) */
+/* BOOL:BOXED (gtksheet-marshal.list:10) */
 void
-gtkextra_BOOLEAN__BOXED (GClosure     *closure,
-                         GValue       *return_value,
+gtksheet_BOOLEAN__BOXED (GClosure     *closure,
+                         GValue       *return_value G_GNUC_UNUSED,
                          guint         n_param_values,
                          const GValue *param_values,
-                         gpointer      invocation_hint,
+                         gpointer      invocation_hint G_GNUC_UNUSED,
                          gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__BOXED) (gpointer     data1,
@@ -465,13 +459,13 @@ gtkextra_BOOLEAN__BOXED (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* BOOL:INT,INT (gtkextra-marshal.list:11) */
+/* BOOL:INT,INT (gtksheet-marshal.list:11) */
 void
-gtkextra_BOOLEAN__INT_INT (GClosure     *closure,
-                           GValue       *return_value,
+gtksheet_BOOLEAN__INT_INT (GClosure     *closure,
+                           GValue       *return_value G_GNUC_UNUSED,
                            guint         n_param_values,
                            const GValue *param_values,
-                           gpointer      invocation_hint,
+                           gpointer      invocation_hint G_GNUC_UNUSED,
                            gpointer      marshal_data)
 {
   typedef gboolean (*GMarshalFunc_BOOLEAN__INT_INT) (gpointer     data1,
@@ -506,15 +500,15 @@ gtkextra_BOOLEAN__INT_INT (GClosure     *closure,
   g_value_set_boolean (return_value, v_return);
 }
 
-/* VOID:INT (gtkextra-marshal.list:12) */
+/* VOID:INT (gtksheet-marshal.list:12) */
 
-/* VOID:INT,STRING (gtkextra-marshal.list:13) */
+/* VOID:INT,STRING (gtksheet-marshal.list:13) */
 void
-gtkextra_VOID__INT_STRING (GClosure     *closure,
-                           GValue       *return_value,
+gtksheet_VOID__INT_STRING (GClosure     *closure,
+                           GValue       *return_value G_GNUC_UNUSED,
                            guint         n_param_values,
                            const GValue *param_values,
-                           gpointer      invocation_hint,
+                           gpointer      invocation_hint G_GNUC_UNUSED,
                            gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__INT_STRING) (gpointer     data1,
@@ -545,21 +539,21 @@ gtkextra_VOID__INT_STRING (GClosure     *closure,
             data2);
 }
 
-/* VOID:BOXED (gtkextra-marshal.list:14) */
+/* VOID:BOXED (gtksheet-marshal.list:14) */
 
-/* VOID:VOID (gtkextra-marshal.list:15) */
+/* VOID:VOID (gtksheet-marshal.list:15) */
 
-/* VOID:BOOL (gtkextra-marshal.list:16) */
+/* VOID:BOOL (gtksheet-marshal.list:16) */
 
-/* VOID:POINTER (gtkextra-marshal.list:17) */
+/* VOID:POINTER (gtksheet-marshal.list:17) */
 
-/* VOID:INT,INT (gtkextra-marshal.list:18) */
+/* VOID:INT,INT (gtksheet-marshal.list:18) */
 void
-gtkextra_VOID__INT_INT (GClosure     *closure,
-                        GValue       *return_value,
+gtksheet_VOID__INT_INT (GClosure     *closure,
+                        GValue       *return_value G_GNUC_UNUSED,
                         guint         n_param_values,
                         const GValue *param_values,
-                        gpointer      invocation_hint,
+                        gpointer      invocation_hint G_GNUC_UNUSED,
                         gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__INT_INT) (gpointer     data1,
@@ -590,13 +584,13 @@ gtkextra_VOID__INT_INT (GClosure     *closure,
             data2);
 }
 
-/* VOID:INT,POINTER (gtkextra-marshal.list:19) */
+/* VOID:INT,POINTER (gtksheet-marshal.list:19) */
 void
-gtkextra_VOID__INT_POINTER (GClosure     *closure,
-                            GValue       *return_value,
+gtksheet_VOID__INT_POINTER (GClosure     *closure,
+                            GValue       *return_value G_GNUC_UNUSED,
                             guint         n_param_values,
                             const GValue *param_values,
-                            gpointer      invocation_hint,
+                            gpointer      invocation_hint G_GNUC_UNUSED,
                             gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__INT_POINTER) (gpointer     data1,
@@ -627,50 +621,13 @@ gtkextra_VOID__INT_POINTER (GClosure     *closure,
             data2);
 }
 
-/* VOID:INT,BOXED (gtkextra-marshal.list:20) */
+/* VOID:POINTER,POINTER (gtksheet-marshal.list:20) */
 void
-gtkextra_VOID__INT_BOXED (GClosure     *closure,
-                          GValue       *return_value,
-                          guint         n_param_values,
-                          const GValue *param_values,
-                          gpointer      invocation_hint,
-                          gpointer      marshal_data)
-{
-  typedef void (*GMarshalFunc_VOID__INT_BOXED) (gpointer     data1,
-                                                gint         arg_1,
-                                                gpointer     arg_2,
-                                                gpointer     data2);
-  register GMarshalFunc_VOID__INT_BOXED callback;
-  register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
-
-  g_return_if_fail (n_param_values == 3);
-
-  if (G_CCLOSURE_SWAP_DATA (closure))
-    {
-      data1 = closure->data;
-      data2 = g_value_peek_pointer (param_values + 0);
-    }
-  else
-    {
-      data1 = g_value_peek_pointer (param_values + 0);
-      data2 = closure->data;
-    }
-  callback = (GMarshalFunc_VOID__INT_BOXED) (marshal_data ? marshal_data : cc->callback);
-
-  callback (data1,
-            g_marshal_value_peek_int (param_values + 1),
-            g_marshal_value_peek_boxed (param_values + 2),
-            data2);
-}
-
-/* VOID:POINTER,POINTER (gtkextra-marshal.list:21) */
-void
-gtkextra_VOID__POINTER_POINTER (GClosure     *closure,
-                                GValue       *return_value,
+gtksheet_VOID__POINTER_POINTER (GClosure     *closure,
+                                GValue       *return_value G_GNUC_UNUSED,
                                 guint         n_param_values,
                                 const GValue *param_values,
-                                gpointer      invocation_hint,
+                                gpointer      invocation_hint G_GNUC_UNUSED,
                                 gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__POINTER_POINTER) (gpointer     data1,
@@ -701,13 +658,13 @@ gtkextra_VOID__POINTER_POINTER (GClosure     *closure,
             data2);
 }
 
-/* VOID:BOXED,POINTER (gtkextra-marshal.list:22) */
+/* VOID:BOXED,POINTER (gtksheet-marshal.list:21) */
 void
-gtkextra_VOID__BOXED_POINTER (GClosure     *closure,
-                              GValue       *return_value,
+gtksheet_VOID__BOXED_POINTER (GClosure     *closure,
+                              GValue       *return_value G_GNUC_UNUSED,
                               guint         n_param_values,
                               const GValue *param_values,
-                              gpointer      invocation_hint,
+                              gpointer      invocation_hint G_GNUC_UNUSED,
                               gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__BOXED_POINTER) (gpointer     data1,
@@ -738,13 +695,13 @@ gtkextra_VOID__BOXED_POINTER (GClosure     *closure,
             data2);
 }
 
-/* VOID:BOXED,BOXED (gtkextra-marshal.list:23) */
+/* VOID:BOXED,BOXED (gtksheet-marshal.list:22) */
 void
-gtkextra_VOID__BOXED_BOXED (GClosure     *closure,
-                            GValue       *return_value,
+gtksheet_VOID__BOXED_BOXED (GClosure     *closure,
+                            GValue       *return_value G_GNUC_UNUSED,
                             guint         n_param_values,
                             const GValue *param_values,
-                            gpointer      invocation_hint,
+                            gpointer      invocation_hint G_GNUC_UNUSED,
                             gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__BOXED_BOXED) (gpointer     data1,
@@ -775,13 +732,13 @@ gtkextra_VOID__BOXED_BOXED (GClosure     *closure,
             data2);
 }
 
-/* VOID:OBJECT,OBJECT (gtkextra-marshal.list:24) */
+/* VOID:OBJECT,OBJECT (gtksheet-marshal.list:23) */
 void
-gtkextra_VOID__OBJECT_OBJECT (GClosure     *closure,
-                              GValue       *return_value,
+gtksheet_VOID__OBJECT_OBJECT (GClosure     *closure,
+                              GValue       *return_value G_GNUC_UNUSED,
                               guint         n_param_values,
                               const GValue *param_values,
-                              gpointer      invocation_hint,
+                              gpointer      invocation_hint G_GNUC_UNUSED,
                               gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (gpointer     data1,
@@ -812,13 +769,13 @@ gtkextra_VOID__OBJECT_OBJECT (GClosure     *closure,
             data2);
 }
 
-/* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (gtkextra-marshal.list:25) */
+/* VOID:DOUBLE,DOUBLE,DOUBLE,DOUBLE (gtksheet-marshal.list:24) */
 void
-gtkextra_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
-                                            GValue       *return_value,
+gtksheet_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE (GClosure     *closure,
+                                            GValue       *return_value G_GNUC_UNUSED,
                                             guint         n_param_values,
                                             const GValue *param_values,
-                                            gpointer      invocation_hint,
+                                            gpointer      invocation_hint G_GNUC_UNUSED,
                                             gpointer      marshal_data)
 {
   typedef void (*GMarshalFunc_VOID__DOUBLE_DOUBLE_DOUBLE_DOUBLE) (gpointer     data1,

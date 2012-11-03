@@ -19,10 +19,6 @@ gsch2pdf-junction.o: junction.c ../../config.h /usr/include/math.h \
  /usr/include/i386-linux-gnu/bits/byteswap.h \
  /usr/include/i386-linux-gnu/bits/types.h \
  /usr/include/i386-linux-gnu/bits/typesizes.h /usr/include/stdlib.h \
- /home/wiley/Projects/geda-gaf/include/geda.h \
- /home/wiley/Projects/geda-gaf/include/missing.h \
- /home/wiley/Projects/geda-gaf/include/geda_types.h \
- /home/wiley/Projects/geda-gaf/include/geda_macros.h \
  ../../libgeda/include/libgeda/libgeda.h \
  /usr/local/include/glib-2.0/glib.h \
  /usr/local/include/glib-2.0/glib/galloca.h \
@@ -389,12 +385,16 @@ gsch2pdf-junction.o: junction.c ../../config.h /usr/include/math.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h \
+ /home/wiley/Projects/geda-gaf/include/geda.h \
+ /home/wiley/Projects/geda-gaf/include/missing.h \
+ /home/wiley/Projects/geda-gaf/include/geda_types.h \
+ /home/wiley/Projects/geda-gaf/include/geda_macros.h \
  ../../libgeda/include/libgeda/defines.h \
  ../../libgeda/include/libgeda/struct.h \
  ../../libgeda/include/libgeda/globals.h \
  ../../libgeda/include/libgeda/o_types.h \
  ../../libgeda/include/libgeda/funcs.h \
- ../../libgeda/include/libgeda/colors.h \
+ ../../libgeda/include/libgeda/geda_colors.h \
  ../../libgeda/include/libgeda/papersizes.h \
  ../../libgeda/include/libgeda/prototype.h \
  ../../libgeda/include/libgeda/edaerrors.h \
@@ -453,14 +453,6 @@ gsch2pdf-junction.o: junction.c ../../config.h /usr/include/math.h \
 /usr/include/i386-linux-gnu/bits/typesizes.h:
 
 /usr/include/stdlib.h:
-
-/home/wiley/Projects/geda-gaf/include/geda.h:
-
-/home/wiley/Projects/geda-gaf/include/missing.h:
-
-/home/wiley/Projects/geda-gaf/include/geda_types.h:
-
-/home/wiley/Projects/geda-gaf/include/geda_macros.h:
 
 ../../libgeda/include/libgeda/libgeda.h:
 
@@ -1288,6 +1280,14 @@ gsch2pdf-junction.o: junction.c ../../config.h /usr/include/math.h \
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
 
+/home/wiley/Projects/geda-gaf/include/geda.h:
+
+/home/wiley/Projects/geda-gaf/include/missing.h:
+
+/home/wiley/Projects/geda-gaf/include/geda_types.h:
+
+/home/wiley/Projects/geda-gaf/include/geda_macros.h:
+
 ../../libgeda/include/libgeda/defines.h:
 
 ../../libgeda/include/libgeda/struct.h:
@@ -1298,7 +1298,7 @@ gsch2pdf-junction.o: junction.c ../../config.h /usr/include/math.h \
 
 ../../libgeda/include/libgeda/funcs.h:
 
-../../libgeda/include/libgeda/colors.h:
+../../libgeda/include/libgeda/geda_colors.h:
 
 ../../libgeda/include/libgeda/papersizes.h:
 

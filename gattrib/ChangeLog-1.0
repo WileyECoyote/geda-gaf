@@ -1,3 +1,64 @@
+2012-10-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x_gtksheet.c: Replaced #defines with enumerated ColorId
+        for function x_gtksheet_add_cell_item, and revised 
+        x_gtksheet_set_cell_fgcolor to allow  limited autoresize
+        functionality.
+        
+        * include/globals.h: Added enumerated types ColorId and SheetId.
+        
+        *src/gtksheet: Setup subfolder for gtksheet source files and
+        created a new makefile.am to generate a temporary gtksheet
+        library to link with gattrib. This will allow for better code
+        organization and facilitate maintenance. Upgraded gtksheet,
+        repaired editing arrow key functionality. 
+
+        *src/gtksheet: Upgraded gtksheet module again, this time
+        repairing a Pango error that occurred while editing a cell
+        when <ctrl-shift-arrow-right> was pressed with the cursor at
+        the extreme right of the text. Applied local fixes: moved
+        #defines from .c to header and added preprocessor conditionals
+        for the gtk_entry_reset_im_context (yet again).
+        Revised function x_gtksheet_add_col_labels to adjust the column
+        width while adding column labels because sometimes the column
+        headings were wider than the widest data field.
+        Added Edit Entry widget and revised Location widget.
+        Added callbacks for cell editing, and monitoring of changes.
+        The codes now sets a flag when any data is modified, thus
+        warning the user to save changes on exit, (the warning started
+        appearing once the flag was updated, I did not do this part.)
+        
+        *src/s_string_list.c: General file cleaning (needs more!).
+        *src//s_attrib.c: General code cleaning, added conditional
+        to check for slot_value=0, to stop s_attrib_get_refdes from
+        appending a period on the end of unslotted components.
+        
+        * src/x_fileselect.c: Added new function x_fileselect as a
+        generic GTK file chooser.
+        
+        * src/x_window.c: Implemented "Save As" functinality.
+        
+        * src/s_table.c: Eliminated "we didn't find the row name"
+        message in function s_table_create_attrib_pair because the
+        messgage was annoying. Added conditionals in functions:
+        s_table_add_toplevel_pin_items_to_pin_table
+        s_table_add_toplevel_comp_items_to_comp_table
+        so components with refdes with type "none" and "pinlabel"
+        would not be added to the tables.
+        
+        * src/s_sheet_data: Added conditional check for components
+        with refdes of type "none" and "pinlabel" in functions:
+        s_sheet_data_add_master_comp_list_items
+        s_sheet_data_add_master_pin_list_items
+        
+        * src/x_dialog.c: Copied generic confirmation dialog from
+        gschem and added to gattrib.
+        
+        * src/s_toplevel.c: Added s_toplevel_close function.
+        Added conditional check for components with refdes of type
+        "none" and "pinlabel" in functional:
+        s_toplevel_sheetdata_to_toplevel
+        
 2012-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*.c: Consolidated Gattrib specific includes into a single

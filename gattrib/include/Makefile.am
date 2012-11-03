@@ -5,10 +5,13 @@ noinst_HEADERS = \
 	globals.h \
 	prototype.h \
 	x_states.h \
-	gtksheet_2_2.h \
 	i_vars.h \
 	struct.h \
-	gtkextra-marshal.h
+	gtksheet.h \
+	gtksheet-marshal.h \
+        gtkitementry.h \
+	gtksheettypebuiltins.h	\
+	gtksheetwidget.h
 
 MOSTLYCLEANFILES = *.log core FILE *~ #*#
 CLEANFILES = *.log core FILE *~ #*#

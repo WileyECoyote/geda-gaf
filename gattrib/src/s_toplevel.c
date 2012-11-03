@@ -42,10 +42,20 @@
 #include <dmalloc.h>
 #endif
 
-
 /* ===================  Public Functions  ====================== */
-
-
+/*------------------------------------------------------------------*/
+/*! \brief Close the TopLevel
+ *
+ *  This function gets calls the Libgeda f_close functions
+ *  
+ */
+void s_toplevel_close() {
+  s_table_destroy(sheet_head->component_table, sheet_head->comp_count, sheet_head->comp_attrib_count);
+  s_table_destroy(sheet_head->net_table, sheet_head->net_count, sheet_head->net_attrib_count);
+  s_table_destroy(sheet_head->pin_table , sheet_head->pin_count, sheet_head->pin_attrib_count);
+  x_gtksheet_destroy_all();
+  f_close(pr_current);
+}
 /*! \brief Read a schematic page
  *
  * Reads in a schematic page & calls f_open, which fills out the
@@ -57,24 +67,23 @@
  */
 int s_toplevel_read_page(TOPLEVEL *toplevel, char *filename)
 {
-  int file_return_code;
+
   GError *err = NULL;
-    
+  int result;
+
   /* Set the new filename */
   toplevel->page_current->page_filename = g_strdup(filename);
-  
-  /* read in and fill out toplevel using f_open and its callees */
-  file_return_code = f_open (toplevel, toplevel->page_current, filename, &err);
 
-  /* If an error occurred, print message */
-  if (err != NULL) {
-    g_warning ("%s", err->message);
+  /* read in and fill out toplevel using f_open and its callees */
+  if(!f_open (toplevel, toplevel->page_current, filename, &err)) {
+    s_log_message ("%s\n", err->message);
+    result = 0;
     g_error_free (err);
   }
-
-  return file_return_code;
+  else
+    result = 1;
+  return result;
 }
-
 
 /*! \brief Verify the entire design
  *
@@ -132,7 +141,7 @@ s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
   PAGE *p_current;
 
 #if DEBUG
-  printf("---------------------   Entering  s_toplevel_gtksheet_to_toplevel   -------------------\n");
+  printf("---------- Entering  s_toplevel_gtksheet_to_toplevel ----------\n");
 #endif
 
   s_sheet_data_gtksheet_to_sheetdata();  /* read data from gtksheet into SHEET_DATA */
@@ -161,7 +170,6 @@ s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
 
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Add a new attribute to the top level
  *
@@ -174,9 +182,9 @@ s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
  *  -# It then adds the appropriate col to the gtksheet.
  * \param new_attrib_name attribute to be added
  */
-void s_toplevel_add_new_attrib(gchar *new_attrib_name) {
-  gint cur_page;  /* current page in notbook  */
-  gint old_comp_attrib_count;
+void s_toplevel_add_new_attrib(char *new_attrib_name) {
+  int cur_page;  /* current page in notbook  */
+  int old_comp_attrib_count;
 
   if (strcmp(new_attrib_name, _("_cancel")) == 0) {
     return;  /* user pressed cancel or closed window with no value in entry */
@@ -264,10 +272,10 @@ void s_toplevel_add_new_attrib(gchar *new_attrib_name) {
  *  menu, and then said "yes" to the confirm dialog.
  */
 void s_toplevel_delete_attrib_col() {
-  gint cur_page;  /* current page in notbook  */
-  gint mincol, maxcol;
+  int cur_page;  /* current page in notbook  */
+  int mincol, maxcol;
   GtkSheet *sheet;
-  gchar *attrib_name;
+  char *attrib_name;
 
   /* Repeat previous checks  */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -358,7 +366,6 @@ void s_toplevel_delete_attrib_col() {
   return;
 }
 
-
 /* =======================  Private functions  ====================== */
 
 /*------------------------------------------------------------------*/
@@ -404,6 +411,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
   for (o_iter = g_list_last (copy_list);
        o_iter != NULL;
        o_iter = g_list_previous (o_iter)) {
+    
     OBJECT *o_current = o_iter->data;
 
     /* ------- Object is a component.  Handle component attributes. ------- */
@@ -416,7 +424,9 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
 #endif
 
       temp_uref = s_attrib_get_refdes(o_current);
-      if (temp_uref != NULL) {
+      if ( (temp_uref) &&
+	 (strcmp (temp_uref, "none")) &&
+	 (strcmp (temp_uref, "pinlabel")) ){
 	/* Must create a name=value pair list for each particular component
 	 * which we can pass to function updating o_current.  This function
          * places all attribs
@@ -426,12 +436,10 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
 							       sheet_head->master_comp_list_head,
 							       sheet_head->comp_attrib_count);
 
-
 	/* Now update attribs in toplevel using this list.  */
 	s_toplevel_update_component_attribs_in_toplevel(toplevel,
 							o_current,
 							new_comp_attrib_pair_list);
-
 	g_free(temp_uref);
       } else {
 #ifdef DEBUG
@@ -448,9 +456,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
 #if 0
   /* -----  Next deal with all nets on the page.  ----- */
   /* This is TBD */
-
 #endif
-
 
   /* -----  Finally deal with all pins on the page.  ----- */
   /* -----  Next deal with all nets on the page.  ----- */
@@ -482,7 +488,10 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
        *  4.  Stick the attribs into the TOPLEVEL data structure.
        */
       temp_uref =  s_attrib_get_refdes(o_current);
-      if ( (temp_uref != NULL) && (o_current->complex->prim_objs) ) {    /* make sure object complex has a refdes  */
+      if ( (temp_uref != NULL) &&
+	 (strcmp (temp_uref, "none")) &&
+	 (strcmp (temp_uref, "pinlabel")) &&
+	 (o_current->complex->prim_objs) ) {    /* make sure object complex has a refdes  */
 
         for (prim_iter = o_current->complex->prim_objs;
              prim_iter != NULL;
@@ -490,13 +499,12 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
           OBJECT *comp_prim_obj = prim_iter->data;
 
           if (comp_prim_obj->type == OBJ_PIN) {
-            new_pin_attrib_list =
-              s_toplevel_get_pin_attribs_in_sheet (temp_uref, comp_prim_obj);
-           s_toplevel_update_pin_attribs_in_toplevel (toplevel,
-                                                      temp_uref,
-                                                      comp_prim_obj,
-                                                      new_pin_attrib_list);
-         }
+            new_pin_attrib_list = s_toplevel_get_pin_attribs_in_sheet (temp_uref, comp_prim_obj);
+            s_toplevel_update_pin_attribs_in_toplevel (toplevel,
+                                                       temp_uref,
+                                                       comp_prim_obj,
+                                                       new_pin_attrib_list);
+          }
         }
       }     /* if(temp_uref  */
       
@@ -532,7 +540,6 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
 #if DEBUG
   printf("-----  Entering s_toplevel_get_component_attribs_in_sheet.\n");
 #endif
-
 
   /* First find pos of this refdes in the master list */
   row = s_table_get_index(sheet_head->master_comp_list_head, refdes);
@@ -581,8 +588,6 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
   return new_attrib_list;
 }
 
-
-
 /*------------------------------------------------------------------*/
 /*! \brief Update component attributes in TOP_LEVEL
  *
@@ -619,13 +624,13 @@ s_toplevel_update_component_attribs_in_toplevel (
   char *new_attrib_value;
   char *old_attrib_name;
   char *old_attrib_value;
-  gchar *refdes;
+  char *refdes;
   GList *a_iter;
   OBJECT *a_current;
   int count = 0;  /* This is to fake out a function called later */
-  gint row, col;
-  gint visibility = 0;
-  gint show_name_value = 0;
+  int row, col;
+  int visibility = 0;
+  int show_name_value = 0;
 
 #if DEBUG
   printf("-----  Entering s_toplevel_update_component_attribs_in_toplevel.\n");
@@ -646,13 +651,12 @@ s_toplevel_update_component_attribs_in_toplevel (
   a_iter = o_current->attribs;
   while (a_iter != NULL) {
     a_current = a_iter->data;
-    if (a_current->type == OBJ_TEXT
-	&& a_current->text != NULL) {  /* found a name=value attribute pair. */
+    if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
+      /* found a name=value attribute pair. */
       /* may need to check more thoroughly here. . . . */
       old_name_value_pair = g_strdup(a_current->text->string);
 
       /* Else clause is suggestion from Ales */
-#if 1
       old_attrib_name = u_basic_breakup_string(old_name_value_pair, '=', 0);
       if ( (strcmp(old_attrib_name, "refdes") != 0) &&
 	   (strcmp(old_attrib_name, "net") != 0) &&
@@ -660,25 +664,24 @@ s_toplevel_update_component_attribs_in_toplevel (
 	   (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
 	s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
       }
-#else
-      /* might now compile now, but this #if'd out branch isn't being built */
-      gint status;  
-      status = o_attrib_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
-      if (status == 0) {
+      else {
+        int status;  
+        status = o_attrib_get_name_value (a_current, &old_attrib_name, &old_attrib_value);
+        if (status == 0) {
         /* Don't put "refdes" or "slot" into list.  Don't put old name=value pair into list if a new
          * one is already in there. */
-        if ( (strcmp(old_attrib_name, "refdes") != 0) &&
-	     (strcmp(old_attrib_name, "net") != 0) &&
-	     (strcmp(old_attrib_name, "slot") != 0) &&
-	     (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
-	  s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
-        }
-	g_free (old_attrib_name);
-	g_free (old_attrib_value);
+           if ( (strcmp(old_attrib_name, "refdes") != 0) &&
+	       (strcmp(old_attrib_name, "net") != 0) &&
+	       (strcmp(old_attrib_name, "slot") != 0) &&
+	       (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
+	    s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
+          }
+	  g_free (old_attrib_name);
+	  g_free (old_attrib_value);
+	}
       }
- #endif
-     g_free(old_name_value_pair);
-     g_free(old_attrib_name);
+      g_free(old_name_value_pair);
+      g_free(old_attrib_name);
     }
     a_iter = g_list_next (a_iter);
   }  /* while (a_current != NULL) */
@@ -886,8 +889,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
   /* Sanity check */
   if (row == -1) {
     /* we didn't find the item in the list */
-    fprintf(stderr, 
-	    _("In s_toplevel_get_pin_attribs_in_sheet, we didn't find the refdes:pin in the master list!\n"));
+    fprintf(stderr, "In s_toplevel_get_pin_attribs_in_sheet, didn't find the refdes:pin [%s]in the master list!\n",row_label );
     return NULL;
   }
 
@@ -907,6 +909,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
     } else {
       name_value_pair = g_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
+     
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */
     g_free(new_attrib_name);
     g_free(name_value_pair);
@@ -923,11 +926,9 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
     i++;
     local_attrib_list = local_attrib_list->next;
   } /* while (local_attrib_list != NULL)  */
-  
+
   return new_attrib_list;
 }
-
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Update pin attributes in toplevel
@@ -1037,7 +1038,6 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
 
   return;
 }
-
 
 
 

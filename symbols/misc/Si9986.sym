@@ -4,7 +4,7 @@ author=AutoTron <Symbol Repair geda>
 T 300 2600 5 10 0 0 0 0 1
 footprint=SOIC8
 T 300 2800 5 10 0 0 0 0 1
-comment=pins=8
+pins=8
 B 300 0 1200 1500 3 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 T 300 2200 5 10 0 0 0 0 1
 device=Si9986

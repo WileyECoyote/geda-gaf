@@ -21,7 +21,6 @@
 #include <math.h>
 #include <string.h>
 
-#include <geda.h>
 #include <libgeda/libgeda.h>
 
 extern gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,

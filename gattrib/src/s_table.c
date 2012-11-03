@@ -190,7 +190,6 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
   printf("In s_table_get_index, examining %s to see if it is in the list.\n", local_string);
 #endif
 
-
   list_element = local_list;
   while (list_element != NULL) {
     if (strcmp(list_element->data, local_string) == 0) {
@@ -201,8 +200,6 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
   }
   return(-1);  /* return code when string is not in master_list  */
 }
-
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Create attribute pair
@@ -219,7 +216,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
  * \param num_attribs
  * \returns STRING_LIST of name=value pairs
  */
-STRING_LIST *s_table_create_attrib_pair(gchar *row_name, 
+STRING_LIST *s_table_create_attrib_pair(char *row_name, 
 					TABLE **table, 
 					STRING_LIST *row_list,
 					int num_attribs)
@@ -234,9 +231,6 @@ STRING_LIST *s_table_create_attrib_pair(gchar *row_name,
   row = s_table_get_index(row_list, row_name);
   /* Sanity check */
   if (row == -1) {
-    /* we didn't find the item in the list */
-    fprintf (stderr,
-             _("In s_table_create_attrib_pair, we didn't find the row name in the row list!\n"));
     return attrib_pair_list;
   }
 
@@ -254,9 +248,6 @@ STRING_LIST *s_table_create_attrib_pair(gchar *row_name,
   return attrib_pair_list;
 }
 
-
-
-
 /*------------------------------------------------------------------*/
 /*! \brief Add components to the component table
  *
@@ -267,34 +258,19 @@ STRING_LIST *s_table_create_attrib_pair(gchar *row_name,
  * \param obj_list pointer to GList containing objects on this page
  */
 void s_table_add_toplevel_comp_items_to_comp_table (const GList *obj_list) {
-  gchar *temp_uref;
+  char *temp_uref;
   int row, col;
-  gchar *attrib_text;
-  gchar *attrib_name;
-  gchar *attrib_value;
+  char *attrib_text;
+  char *attrib_name;
+  char *attrib_value;
   const GList *o_iter;
   GList *a_iter;
   OBJECT *a_current;
-  gint old_visibility, old_show_name_value;
-
-
-  if (verbose_mode) {
-    printf(_("- Starting internal component TABLE creation\n"));
-  }
-
-#ifdef DEBUG
-  fflush(stderr);
-  fflush(stdout);
-  printf("=========== Just entered  s_table_add_toplevel_comp_items_to_comp_table!  ==============\n");
-#endif
+  int old_visibility, old_show_name_value;
 
   /* -----  Iterate through all objects found on page  ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
     OBJECT *o_current = o_iter->data;
-
-#ifdef DEBUG
-      printf("   ---> In s_table_add_toplevel_comp_items_to_comp_table, examining o_current->name = %s\n", o_current->name);
-#endif
 
     /* -----  Now process objects found on page  ----- */
     if (o_current->type == OBJ_COMPLEX &&
@@ -302,12 +278,15 @@ void s_table_add_toplevel_comp_items_to_comp_table (const GList *obj_list) {
 
       /* ---- Don't process part if it lacks a refdes ----- */
       temp_uref = g_strdup(s_attrib_get_refdes(o_current));
-      if (temp_uref) {
+    
+      /* Don't add graphical objects or pin label designators*/
+      if ( (temp_uref) &&
+	 (strcmp (temp_uref, "none")) &&
+	 (strcmp (temp_uref, "pinlabel")) ){
 
 #if DEBUG
-        printf("      In s_table_add_toplevel_comp_items_to_comp_table, found component on page. Refdes = %s\n", temp_uref);
+        printf("In s_table_add_toplevel_comp_items_to_comp_table, found component on page. Refdes = %s\n", temp_uref);
 #endif
-        verbose_print(" C");
 
         /* Having found a component, we loop over all attribs in this
          * component, and stick them
@@ -474,13 +453,13 @@ void s_table_add_toplevel_net_items_to_net_table(OBJECT *start_obj) {
  * \param obj_list List of objects on page
  */
 void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
-  gchar *temp_uref;
-  gchar *pinnumber;
-  gchar *row_label;
+  char *temp_uref;
+  char *pinnumber;
+  char *row_label;
   int row, col;
-  gchar *attrib_text;
-  gchar *attrib_name;
-  gchar *attrib_value;
+  char *attrib_text;
+  char *attrib_name;
+  char *attrib_value;
   const GList *o_iter;
   GList *a_iter;
   GList *o_lower_iter;
@@ -508,7 +487,9 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
 
       /* ---- Don't process part if it lacks a refdes ----- */
       temp_uref = s_attrib_get_refdes(o_current);
-      if (temp_uref) {
+      if ( (temp_uref) &&
+	 (strcmp (temp_uref, "none")) &&
+	 (strcmp (temp_uref, "pinlabel")) ){
 
 	/* -----  Now iterate through lower level objects looking for pins.  ----- */
         for (o_lower_iter = o_current->complex->prim_objs;
@@ -585,7 +566,6 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
   verbose_done();
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Push spreadsheet data to TABLEs.
  *
@@ -620,7 +600,7 @@ void s_table_gtksheet_to_all_tables() {
 		       master_col_list, local_table,
 		       num_rows, num_cols);
 
-#if 0
+#ifdef UNIMPLEMENTED_FEATURES
   /* Next handle net sheet */
   num_rows = sheet_head->net_count;
   num_cols = sheet_head->net_attrib_count;
@@ -634,7 +614,6 @@ void s_table_gtksheet_to_all_tables() {
 		       num_rows, num_cols);
 #endif
 
-#ifdef UNIMPLEMENTED_FEATURES
   /* Finally, handle component pin sheet */
   num_rows = sheet_head->pin_count;
   num_cols = sheet_head->pin_attrib_count;
@@ -647,7 +626,6 @@ void s_table_gtksheet_to_all_tables() {
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
 		       master_col_list, local_table,
 		       num_rows, num_cols);
-#endif
 
   return;
 }
@@ -676,28 +654,27 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_ro
   int row, col;
 
   STRING_LIST *row_list_item;
-  gchar *row_title;
+  char *row_title;
 
   STRING_LIST *col_list_item;
-  gchar *col_title;
+  char *col_title;
   
-  gchar *attrib_value;
+  char *attrib_value;
 
 #ifdef DEBUG
       printf("**********    Entering s_table_gtksheet_to_table     ******************\n");
 #endif
 
-
   row_list_item = master_row_list;
   for (row = 0; row < num_rows; row++) {
-    row_title = (gchar *) g_strdup(row_list_item->data);
+    row_title = (char *) g_strdup(row_list_item->data);
 
     col_list_item = master_col_list;
     for (col = 0; col < num_cols; col++) {
-      col_title = (gchar *) g_strdup(col_list_item->data);
+      col_title = (char *) g_strdup(col_list_item->data);
 
       /* get value of attrib in cell  */
-      attrib_value = (gchar *) gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
+      attrib_value = (char *) gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
 
 #if 0
       if (strlen(attrib_value) == 0) {
@@ -718,7 +695,7 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_ro
 #endif
       g_free( local_table[row][col].attrib_value );
       if (attrib_value != NULL) {
-	local_table[row][col].attrib_value = (gchar *) g_strdup(attrib_value);
+	local_table[row][col].attrib_value = (char *) g_strdup(attrib_value);
       } else {
 	local_table[row][col].attrib_value = NULL;
       }
@@ -729,7 +706,7 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_ro
 #endif
       g_free( local_table[row][col].row_name );
       if (row_title != NULL) {
-	local_table[row][col].row_name = (gchar *) g_strdup(row_title);
+	local_table[row][col].row_name = (char *) g_strdup(row_title);
       } else {
 	local_table[row][col].row_name = NULL;
       }
@@ -740,7 +717,7 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_ro
 #endif
       g_free( local_table[row][col].col_name );
       if (col_title != NULL) {
-	local_table[row][col].col_name = (gchar *) g_strdup(col_title);
+	local_table[row][col].col_name = (char *) g_strdup(col_title);
       } else {
 	local_table[row][col].col_name = NULL;
       }

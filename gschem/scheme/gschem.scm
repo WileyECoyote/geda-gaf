@@ -1,6 +1,6 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2010 Ales Hvezda
+;;; Copyright (C) 1998-2012 Ales Hvezda
 ;;; Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
@@ -15,7 +15,8 @@
 ;;;
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+;;; MA 02111-1301 USA.
 
 (use-modules (gschem keymap)
              (gschem selection)

@@ -28,7 +28,7 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-
+#include <ascii.h>
 #include "libgeda_priv.h"
 
 #ifdef HAVE_LIBDMALLOC
@@ -229,6 +229,7 @@ int o_save (TOPLEVEL *toplevel, const GList *object_list,
             const char *filename, GError **err)
 {
   char *buffer;
+  FILE* output;
 
   /* Check to see if real filename is writable; if file doesn't exists
      we assume all is well */
@@ -239,11 +240,10 @@ int o_save (TOPLEVEL *toplevel, const GList *object_list,
     return 0;      
   }
 
+  output = fopen (filename, "w" );
   buffer = o_save_buffer (toplevel, object_list);
-  if (!g_file_set_contents (filename, buffer, strlen(buffer), err)) {
-    g_free (buffer);
-    return 0;
-  }
+  fputs(buffer, output);
+  fclose(output);
   g_free (buffer);
 
   return 1;
@@ -281,7 +281,7 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
   GList *iter;
   unsigned int release_ver = 0;
   unsigned int fileformat_ver = 0;
-  unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
+  //unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
   int found_pin = 0;
   OBJECT* last_complex = NULL;
   int itemsread = 0;

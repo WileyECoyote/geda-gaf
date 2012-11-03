@@ -1,3 +1,13 @@
+2012-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_check.c: Added three new types to the list of acceptable
+          attributes; "footprints", "pins", and "spicetype". These three
+          additions were selected based on popular demand, i.e., these
+          were the three most common "extra" attributes that were detected
+          while reviewing the entire symbols library. All were commented
+          out during the review, and now these comments have been removed,
+          see symbols ChangeLog.
+
 2012-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Revised "includes" like was done with gschem,

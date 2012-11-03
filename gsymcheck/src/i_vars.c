@@ -18,7 +18,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <geda.h>
 #include <libgeda/libgeda.h>
 void i_vars_set(TOPLEVEL * pr_current)
 { 

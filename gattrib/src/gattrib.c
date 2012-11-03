@@ -22,11 +22,11 @@
  *
  * \section sdb_notes SDB's original comment in gattrib.c
  *
- * In the spirit of open source/free software, major sections of
- * gattrib's code were borrowed from other sources, and hacked
- * together by SDB in Dec. 2003.  Particularly rich sources for code were
- * gEDA/gnetlist, and the gtkextra program testgtksheet.c.  Thanks to their
- * authors for providing the foundation upon which this is built.
+ * In the spirit of open source/free software, major sections of gattrib's
+ * code were borrowed from other sources, and hacked together by SDB in
+ * Dec. 2003.  Particularly rich sources for code were gEDA/gnetlist, and
+ * the gtkextra program testgtksheet.c. Thanks to their authors for
+ * providing the foundation upon which this is built.
  *
  * Of course, I *did* write major portions of the code too . . . . .
  * Some documentation about the internal operation of this program can be
@@ -98,7 +98,6 @@
  *
  */
 
-
 #include <config.h>
 #include <version.h>
 
@@ -143,7 +142,7 @@
  *  
  *  \return value 0 to the shell to denote a successful quit.
  */
-gboolean gattrib_really_quit(void)
+bool gattrib_really_quit(void)
 {
   if (sheet_head->CHANGED == TRUE) {
     x_dialog_unsaved_data();
@@ -162,7 +161,7 @@ gboolean gattrib_really_quit(void)
  *
  *  \param return_code Value to pass to the exit() system call.
  */
-gint gattrib_quit(gint return_code)
+int gattrib_quit(int return_code)
 {
   /*   s_clib_cache_free(); */
   s_clib_free();
@@ -201,7 +200,7 @@ gint gattrib_quit(gint return_code)
  */
 void gattrib_main(void *closure, int argc, char *argv[])
 {
-  /* TOPLEVEL *pr_current is a global */
+  /* TOPLEVEL *pr_current is a global   */
   /* SHEET_DATA *sheet_head is a global */
   /* GtkWidget *main_window is a global */
 
@@ -248,7 +247,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   x_window_init();  
   
   /* ---------- Initialize SHEET_DATA data structure ---------- */
-  sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */
+  sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */ 
 
   GSList *file_list = NULL;
   if (argv_index >= argc) {
@@ -260,7 +259,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
      /* Construct the list of filenames from the command line.
       * argv_index holds the position of the first filename  */
      while (argv_index < argc) {
-        gchar *filename = f_normalize_filename(argv[argv_index], NULL);
+        char *filename = f_normalize_filename(argv[argv_index], NULL);
         if (filename != NULL) {
             file_list = g_slist_append(file_list, filename);
         } else {

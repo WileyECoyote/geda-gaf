@@ -7,7 +7,7 @@ This is a running list of things left to be done with gattrib.  Items
 already completed are marked with  #####. 
 
 *  #####  Fix key_press event handling so that arrow keys work intelligently
-   when using gtk-2.2.
+   when using gtk-2.2. WEH:Done 10/28/12.
 *  Decide what to do about "pins" editing:  How to save out chages?
    Right now "pins" are only displayed, they cannot be changed.
 *  #####  Add "component pins" page to allow users to edit component pin attributes.
@@ -20,6 +20,7 @@ already completed are marked with  #####.
    together.
 *  Find out why it leaves "xterm" on the command prompt when you
    invoke the prog with no files on the cmd line.  This may be GTK bug.
+   WEH: Could not recreate this 10/28/12.
 *  Change save menus to:  save project, save as, which cycles through
    pages and saves objects out on a page by page basis.
 *  Incorporate a "close" item on the menu to close out the current
@@ -60,15 +61,20 @@ already completed are marked with  #####.
    "file" attributes can be very long.   
 *  Per Ales, use the gtksheet stuff as a library instead of a bunch of source
    files.  Is this necessary?  No.  I don't want to do this since a third-
-   party library can change, which makes support a PITA.
+   party library can change, which makes support a PITA. WEH:Comment: Has
+   been converted to a library for linking but not third-party. (Maybe this
+   is at least a compromise, or maybe this is what Ales had mind, dunno,
+   still got source files, but segragated. 10/28/12.)
+   
 *  User should be able to set attrib visibility.  How to implement & show?
 *  #####  Incorporate ability to add attrib columns.
 *  Refactor code so that it makes more sense architecturally.
 *  Fix behavior when using arrow keys to be more "MS Excel-like".  Current
-   Behavior is a PITA.
+   Behavior is a PITA. WEH: Isn't this a repeat of #1? if so: Done 10/28/12.
 *  Replicate attrib visibility code from comp attributes to net and pin
    attributes.
 *  Change display of attrib text in each cell depending upon attrib
    visibility state.  Example:  Invisible = light grey.  Name only = red.
    Value only = normal.  Name & value = bold face.
-*  Make gattrib import csv.
+*  Make gattrib import csv. (WEH: Now that would be way cool, 10/28/12)
+

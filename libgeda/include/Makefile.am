@@ -3,7 +3,7 @@
 libgedaincludedir = $(includedir)/libgeda
 
 libgedainclude_HEADERS = \
-	libgeda/colors.h \
+	libgeda/geda_colors.h \
 	libgeda/defines.h \
 	libgeda/edaerrors.h \
 	libgeda/funcs.h \

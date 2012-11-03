@@ -4,7 +4,7 @@ author=AutoTron <Symbol Repair geda>
 T 700 650 8 10 0 1 0 0 1
 refdes=none
 T 700 850 5 10 0 0 0 0 1
-comment=spicetype=V
+spicetype=V
 T 700 1450 5 10 0 0 0 0 1
 description=pulse power source, generator
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

@@ -42,7 +42,7 @@ pinlabel=n_a
 T 300 2300 8 10 0 1 0 0 1
 device=XINGER4A1305-3
 T 300 2100 8 10 0 0 0 0 1
-comment=pins=3
+pins=3
 T 300 2500 8 10 0 0 0 0 1
 comment=class=IC
 T 300 1900 8 10 0 1 0 0 1

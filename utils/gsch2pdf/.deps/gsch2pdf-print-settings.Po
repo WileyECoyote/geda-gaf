@@ -22,10 +22,6 @@ gsch2pdf-print-settings.o: print-settings.c ../../config.h \
  /usr/include/unistd.h /usr/include/i386-linux-gnu/bits/posix_opt.h \
  /usr/include/i386-linux-gnu/bits/environments.h \
  /usr/include/i386-linux-gnu/bits/confname.h /usr/include/getopt.h \
- /home/wiley/Projects/geda-gaf/include/geda.h \
- /home/wiley/Projects/geda-gaf/include/missing.h \
- /home/wiley/Projects/geda-gaf/include/geda_types.h \
- /home/wiley/Projects/geda-gaf/include/geda_macros.h \
  ../../libgeda/include/libgeda/libgeda.h \
  /usr/local/include/glib-2.0/glib.h \
  /usr/local/include/glib-2.0/glib/galloca.h \
@@ -384,12 +380,16 @@ gsch2pdf-print-settings.o: print-settings.c ../../config.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-io.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-loader.h \
  /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h \
+ /home/wiley/Projects/geda-gaf/include/geda.h \
+ /home/wiley/Projects/geda-gaf/include/missing.h \
+ /home/wiley/Projects/geda-gaf/include/geda_types.h \
+ /home/wiley/Projects/geda-gaf/include/geda_macros.h \
  ../../libgeda/include/libgeda/defines.h \
  ../../libgeda/include/libgeda/struct.h \
  ../../libgeda/include/libgeda/globals.h \
  ../../libgeda/include/libgeda/o_types.h \
  ../../libgeda/include/libgeda/funcs.h \
- ../../libgeda/include/libgeda/colors.h \
+ ../../libgeda/include/libgeda/geda_colors.h \
  ../../libgeda/include/libgeda/papersizes.h \
  ../../libgeda/include/libgeda/prototype.h \
  ../../libgeda/include/libgeda/edaerrors.h \
@@ -463,14 +463,6 @@ gsch2pdf-print-settings.o: print-settings.c ../../config.h \
 /usr/include/i386-linux-gnu/bits/confname.h:
 
 /usr/include/getopt.h:
-
-/home/wiley/Projects/geda-gaf/include/geda.h:
-
-/home/wiley/Projects/geda-gaf/include/missing.h:
-
-/home/wiley/Projects/geda-gaf/include/geda_types.h:
-
-/home/wiley/Projects/geda-gaf/include/geda_macros.h:
 
 ../../libgeda/include/libgeda/libgeda.h:
 
@@ -1270,6 +1262,14 @@ gsch2pdf-print-settings.o: print-settings.c ../../config.h \
 
 /usr/include/gdk-pixbuf-2.0/gdk-pixbuf/gdk-pixbuf-enum-types.h:
 
+/home/wiley/Projects/geda-gaf/include/geda.h:
+
+/home/wiley/Projects/geda-gaf/include/missing.h:
+
+/home/wiley/Projects/geda-gaf/include/geda_types.h:
+
+/home/wiley/Projects/geda-gaf/include/geda_macros.h:
+
 ../../libgeda/include/libgeda/defines.h:
 
 ../../libgeda/include/libgeda/struct.h:
@@ -1280,7 +1280,7 @@ gsch2pdf-print-settings.o: print-settings.c ../../config.h \
 
 ../../libgeda/include/libgeda/funcs.h:
 
-../../libgeda/include/libgeda/colors.h:
+../../libgeda/include/libgeda/geda_colors.h:
 
 ../../libgeda/include/libgeda/papersizes.h:
 

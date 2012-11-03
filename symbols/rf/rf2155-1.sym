@@ -95,7 +95,7 @@ device=RF2155
 T 1700 1900 9 15 1 0 0 4 1
 RF2155
 T 300 3800 8 10 0 0 0 0 1
-comment=pins=16
+pins=16
 T 300 4000 8 10 0 0 0 0 1
 comment=class=IC
 T 300 3600 8 10 0 1 0 0 1

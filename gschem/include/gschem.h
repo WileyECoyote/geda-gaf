@@ -3,8 +3,6 @@
 #include <gtk/gtk.h>
 #include <libguile.h>
 
-#include <geda.h>
-
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 

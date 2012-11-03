@@ -17,7 +17,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-
 /*!
  * \file
  * \brief Global variable declarations
@@ -68,21 +67,18 @@
 #ifndef __GLOBALS__
 #define __GLOBALS__
 
+//#define UNIMPLEMENTED_FEATURES 1
 
 /*------------------------------------------------------------------*/
 /*!
- * The main data structure from gEDA.  I made it a
- * global since it was treated that way anyway.  It is defined in
- * structs.h
+ * The main data structure from gEDA is defined in structs.h
  */
 /*------------------------------------------------------------------*/
 TOPLEVEL *pr_current;
 
 /*------------------------------------------------------------------*/
 /*!
- * My own data structure which I made
- * a global because it was easier to deal with when handing
- * callbacks.  It is defined in structs.h
+ *  a global data structure defined in structs.h
  */
 /*------------------------------------------------------------------*/
 SHEET_DATA *sheet_head;
@@ -90,18 +86,22 @@ SHEET_DATA *sheet_head;
 /*------------------------------------------------------------------
  * GTKsheet includes: stuff for dealing with windows.
  *------------------------------------------------------------------*/
+#define DEFAULT_FONT_WIDTH 12
 #define DEFAULT_PRECISION 2
 #define DEFAULT_SPACE 8
 #define NUM_SHEETS 3            /* Components, Nets, and Pins */
+#define COLUMN_WIDTH_LIMIT 100
 
 GtkWidget *window;              /* Main window */
+GtkWidget *toolbar;
 GtkWidget *notebook;
-
+GtkWidget *popup;
+GtkWidget *status_box;
 GtkSheet **sheets;             /* These are the spreadsheet widgets themselves */
-
 GtkWidget **scrolled_windows;
 GtkWidget *entry;
 GtkWidget *location;
+
 GtkWidget *left_button;
 GtkWidget *center_button;
 GtkWidget *right_button;
@@ -111,14 +111,7 @@ GtkWidget *label;
 extern int verbose_mode;
 extern int quiet_mode;
 
-/* Used to identify colors */
-#define BLACK           0
-#define WHITE           1
-#define RED             2
-#define GREEN           3
-#define BLUE            4
-#define YELLOW          5
-#define CYAN            6
-#define GREY            7
+typedef enum  { Black, Blue, Green, Red, Violet, Yellow, White, Gray } ColorId;
+typedef enum  { Components, Nets, Pins } SheetId;
 
 #endif

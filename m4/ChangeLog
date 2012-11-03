@@ -1,0 +1,10 @@
+
+2012-10-18 Wiley E Hill  <wileyhill@gmail.com>
+
+	* m4/ChangeLog: Add this file!
+
+        * m4/symbols-dirs.m4: Added new script to dynamically obtain a list
+          of all subdirectories 1 level below the symbols directory so that
+          autoconf can substitution the list during re-configuration. This
+          well help to facilitate maintenance of the symbol libraries.
+

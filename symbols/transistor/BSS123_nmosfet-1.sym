@@ -64,7 +64,7 @@ L 380 400 500 400 3 10 1 0 -1 -1
 T 200 2000 5 8 0 0 0 0 1
 symversion=1.1
 T 200 2400 5 8 0 0 0 0 1
-comment=footprints=SOT23_GSD, TO92_DGS, DPAK_GDS, TO220_GDS
+footprints=SOT23_GSD, TO92_DGS, DPAK_GDS, TO220_GDS
 T 200 2200 5 8 0 0 0 0 1
 comment=check the data sheet for pinout!
 T 200 2600 5 8 0 0 0 0 1

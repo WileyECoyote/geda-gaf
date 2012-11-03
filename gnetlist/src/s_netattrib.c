@@ -29,7 +29,7 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include <geda.h>
+
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
@@ -296,7 +296,7 @@ char *s_netattrib_return_netname(TOPLEVEL * pr_current, OBJECT * o_current,
 #endif
 
     /* skip over POWER tag */
-    current_pin = strtok(pinnumber, " ");
+    (void) strtok(pinnumber, " ");
 
     current_pin = strtok(NULL, " ");
     if (current_pin == NULL) {

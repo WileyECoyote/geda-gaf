@@ -49,7 +49,7 @@ L 500 300 500 600 3 0 0 0 -1 -1
 T 600 500 8 10 1 1 0 0 1
 refdes=R?
 T 800 1400 5 10 0 0 0 0 1
-comment=pins=3
+pins=3
 T 800 1200 5 10 0 1 0 0 1
 comment=class=DISCRETE
 T 800 1600 8 10 0 0 0 0 1

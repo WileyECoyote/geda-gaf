@@ -56,11 +56,10 @@
 #include <dmalloc.h>
 #endif
 
-static gint global_pid = 0;
+static int global_pid = 0;
 
 /* Called just before removing an OBJECT from a PAGE. */
-static void
-object_added (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
+static void object_added (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
 {
   /* Set up object parent pointer */
 #ifndef NDEBUG
@@ -113,7 +112,7 @@ pre_object_removed (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
  *  to <B>filename</B>. <B>toplevel</B>'s current page is not changed by
  *  this function.
  */
-PAGE *s_page_new (TOPLEVEL *toplevel, const gchar *filename)
+PAGE *s_page_new (TOPLEVEL *toplevel, const char *filename)
 {
   PAGE *page;
 
@@ -128,9 +127,9 @@ PAGE *s_page_new (TOPLEVEL *toplevel, const gchar *filename)
   if (g_path_is_absolute (filename)) {
     page->page_filename = g_strdup (filename);
   } else {
-    gchar *pwd = g_get_current_dir ();
+    char *pwd = getcwd(0,0);
     page->page_filename = g_build_filename (pwd, filename, NULL);
-    g_free (pwd);
+    free (pwd);
   }
 	
   g_assert (toplevel->init_bottom != 0);
@@ -187,8 +186,8 @@ PAGE *s_page_new (TOPLEVEL *toplevel, const gchar *filename)
 void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
 {
   PAGE *tmp;
-  gchar *backup_filename;
-  gchar *real_filename;
+  char *backup_filename;
+  char *real_filename;
 
   /* We need to temporarily make the page being deleted current because
    * various functions called below (some indirectly) assume they are
@@ -388,7 +387,7 @@ s_page_remove_weak_ptr (PAGE *page,
  */
 void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new) 
 {
-  gchar *dirname;
+  char *dirname;
 
   toplevel->page_current = p_new;
 
@@ -411,7 +410,7 @@ void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new)
  *  
  *  \return PAGE pointer to a matching page, NULL otherwise.
  */
-PAGE *s_page_search (TOPLEVEL *toplevel, const gchar *filename)
+PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename)
 {
   const GList *iter;
   PAGE *page;
@@ -482,11 +481,11 @@ void s_page_print_all (TOPLEVEL *toplevel)
  *  \param [in] toplevel  The TOPLEVEL to save pages from.
  *  \return The number of failed tries to save a page.
  */
-gint s_page_save_all (TOPLEVEL *toplevel)
+int s_page_save_all (TOPLEVEL *toplevel)
 {
   const GList *iter;
   PAGE *p_current;
-  gint status = 0;
+  int status = 0;
 
   for ( iter = geda_list_get_glist( toplevel->pages );
         iter != NULL;
@@ -586,7 +585,7 @@ void s_page_autosave_init(TOPLEVEL *toplevel)
  *  \param [in] toplevel  The TOPLEVEL object.
  *  \return The length in milliseconds to set for next interval.
  */
-gint s_page_autosave (TOPLEVEL *toplevel) 
+int s_page_autosave (TOPLEVEL *toplevel) 
 {
   const GList *iter;
   PAGE *p_current;

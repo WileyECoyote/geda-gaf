@@ -292,12 +292,7 @@ void o_arc_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y, int whichone)
         w_current->second_wy = w_current->second_wy - 360;
       if (w_current->second_wy == 0)
         w_current->second_wy = 360;
-      break;
-	
-    default:
-      return;
     }
-
   }
 	
   /* draw the new temporary arc */

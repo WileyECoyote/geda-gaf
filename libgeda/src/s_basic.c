@@ -93,7 +93,7 @@ OBJECT *s_basic_init_object(OBJECT *new_node, int type, char const *name)
   new_node->parent = NULL;
 		
   /* Setup the color */
-  new_node->color = DEFAULT_COLOR;
+  new_node->color = DEFAULT_COLOR_INDEX;
   new_node->dont_redraw = FALSE;
   new_node->selectable = TRUE;
   new_node->selected = FALSE;

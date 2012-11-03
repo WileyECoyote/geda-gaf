@@ -76,8 +76,8 @@ s_object_add_comp_attrib_to_object (TOPLEVEL *toplevel,
                                     OBJECT *o_current,
                                     char *new_attrib_name,
                                     char *new_attrib_value,
-                                    gint visibility,
-                                    gint show_name_value)
+                                    int visibility,
+                                    int show_name_value)
 {
   char *name_value_pair;
 
@@ -167,8 +167,8 @@ void s_object_replace_attrib_in_object(TOPLEVEL *toplevel,
 				       OBJECT *o_current,
 				       char *new_attrib_name, 
 				       char *new_attrib_value,
-				       gint visibility, 
-				       gint show_name_value)
+				       int visibility, 
+				       int show_name_value)
 {
   GList *a_iter;
   OBJECT *a_current;

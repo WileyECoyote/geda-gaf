@@ -94,10 +94,13 @@ void x_window_free_gc(GSCHEM_TOPLEVEL *w_current)
   gdk_gc_unref(w_current->gc);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Set up callbacks for window events that affect drawing.
  *  \par Function Description
+ * Installs GTK+ callback handlers for signals that are emitted by
+ * the drawing area, and some for the main window that affect the drawing
+ * area.
  *
+ * \param [in] w_current The toplevel environment.
  */
 void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
 {
@@ -856,7 +859,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const gchar *filenam
   /* change to page */
   s_page_goto (toplevel, page);
   /* and try saving current page to filename */
-  ret = (gint)f_save (toplevel, toplevel->page_current, filename, &err);
+  ret = (int)f_save (toplevel, toplevel->page_current, filename, &err);
   if (ret != 1) {
     log_msg   = _("Could NOT save page [%s]\n");
     state_msg = _("Error while trying to save");

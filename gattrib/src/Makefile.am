@@ -3,12 +3,19 @@
 
 AM_CFLAGS=-I$(top_builddir)/include -Wall
 
+LIB_GTKSHEET = gtksheet
+
+SUBDIRS = $(LIB_GTKSHEET)
+
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
 bin_PROGRAMS = gattrib
 
-## don't forget all *.h files */
 gattrib_SOURCES = \
-		gtksheet_2_2.c \
-		gtkextra-marshal.c \
 		globals.c \
 		listsort.c \
 		parsecmd.c \
@@ -32,15 +39,18 @@ gattrib_SOURCES = \
 		s_visibility.c \
 		gattrib.c 
 
+gattrib_CPPFLAGS = $(GEDA_INCLUDES)
 
-gattrib_CPPFLAGS = -I$(top_srcdir)/libgeda/include \
-	-I$(srcdir)/../include -I$(top_srcdir) -I$(includedir)
 gattrib_CFLAGS = $(GCC_CFLAGS) $(AM_CFLAGS) $(GLIB_CFLAGS) \
-	$(MINGW_CFLAGS) \
-	$(GTK_CFLAGS) $(GTHREAD_CFLAGS) $(GUILE_CFLAGS)
+		 $(GTK_CFLAGS) $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) \
+		 $(MINGW_CFLAGS)
+
 gattrib_LDFLAGS = $(GLIB_LIBS) $(GTK_LIBS) $(GTHREAD_LIBS) \
-	$(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
-gattrib_LDADD = $(top_builddir)/libgeda/src/libgeda.la
+		  $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+
+gattrib_LDADD = $(LIB_GTKSHEET)/libgtksheet.a \
+		$(top_builddir)/libgeda/src/libgeda.la
+
 
 MOSTLYCLEANFILES = *.log *.ps core FILE *~ #*# 
 CLEANFILES = *.log *.ps core FILE *~ #*#

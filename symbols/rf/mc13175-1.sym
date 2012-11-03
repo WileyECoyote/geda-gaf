@@ -163,7 +163,7 @@ device=MC13175
 T 1400 2000 9 15 1 0 0 4 1
 MC13175
 T 200 4500 8 10 0 0 0 0 1
-comment=pins=16
+pins=16
 T 200 4700 8 10 0 0 0 0 1
 comment=class=IC
 T 200 4300 8 10 0 1 0 0 1

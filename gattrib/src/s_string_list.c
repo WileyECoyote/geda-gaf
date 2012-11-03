@@ -78,7 +78,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
   STRING_LIST *new_string_list;
   STRING_LIST *local_string_list;
   char *data;
-  gint count;
+  int count;
 
   new_string_list = s_string_list_new();
 
@@ -110,7 +110,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
  */
 void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
 
-  gchar *trial_item = NULL;
+  char *trial_item = NULL;
   STRING_LIST *prev;
   STRING_LIST *local_list;
   
@@ -125,7 +125,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
 #ifdef DEBUG
     printf("In s_string_list_add_item, about to place first item in list.\n");
 #endif
-    list->data = (gchar *) g_strdup(item);
+    list->data = (char *) g_strdup(item);
     list->next = NULL;
     list->prev = NULL;  /* this may have already been initialized. . . . */
     list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
@@ -136,7 +136,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* Otherwise, loop through list looking for duplicates */
   prev = list;
   while (list != NULL) {
-    trial_item = (gchar *) g_strdup(list->data);        
+    trial_item = (char *) g_strdup(list->data);        
     if (strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
       g_free(trial_item);
@@ -151,7 +151,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* In this case, we insert it. */
 
   local_list = (STRING_LIST *) g_malloc(sizeof(STRING_LIST));  /* allocate space for this list entry */
-  local_list->data = (gchar *) g_strdup(item);   /* copy data into list */
+  local_list->data = (char *) g_strdup(item);   /* copy data into list */
   local_list->next = NULL;
   local_list->prev = prev;  /* point this item to last entry in old list */
   prev->next = local_list;  /* make last item in old list point to this one. */
@@ -171,9 +171,9 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
  * \param count pointer to count of items in list
  * \param item item to remove from list
  */
-void s_string_list_delete_item(STRING_LIST **list, int *count, gchar *item) {
+void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
 
-  gchar *trial_item = NULL;
+  char *trial_item = NULL;
   STRING_LIST *list_item;
   STRING_LIST *next_item = NULL;
   STRING_LIST *prev_item = NULL;
@@ -191,7 +191,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, gchar *item) {
   /* Now loop through list looking for item */
   list_item = (*list);
   while (list_item != NULL) {
-    trial_item = (gchar *) g_strdup(list_item->data);        
+    trial_item = (char *) g_strdup(list_item->data);        
 #ifdef DEBUG
     printf("In s_string_list_delete_item, matching item against trial item = %s from list.\n", trial_item);
 #endif
@@ -259,9 +259,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, gchar *item) {
  * \returns 0 if absent, 1 if present
  */
 int s_string_list_in_list(STRING_LIST *list, char *item) {
-
-  gchar *trial_item = NULL;
-  
+ 
   /* First check to see if list is empty.  If empty, return
    * 0 automatically.  (I probably don't need to handle this 
    * separately.)  */
@@ -270,19 +268,15 @@ int s_string_list_in_list(STRING_LIST *list, char *item) {
   }
 
   /* Otherwise, loop through list looking for duplicates */
-  while (list != NULL) {
-    trial_item = (gchar *) g_strdup(list->data);        
-    if (strcmp(trial_item, item) == 0) {
+  while (list != NULL) {    
+    if (strcmp(list->data, item) == 0) {
       /* Found item already in list.  return 1. */
-      g_free(trial_item);
       return 1;
     }
-    g_free(trial_item);
     list = list->next;
   }
 
-  /* If we are here, it's 'cause we didn't find the item 
-   * pre-existing in the list.  In this case, return 0 */
+  /* item was not in the list, so return 0 */
   return 0;
 
 }
@@ -297,14 +291,14 @@ int s_string_list_in_list(STRING_LIST *list, char *item) {
  * \returns NULL if there is a problem otherwise a pointer to
  *          the string.
  */
-gchar *s_string_list_get_data_at_index(STRING_LIST *list, gint index) 
+char *s_string_list_get_data_at_index(STRING_LIST *list, int index) 
 {
-  gint i;
+  int i;
   STRING_LIST *local_item;
 
   /* First check to see if list is empty.  If empty, return
    * NULL automatically.  */
-  if (list->data == NULL) {
+  if (list->length == 0) {
     return NULL;
   }
 
@@ -438,7 +432,6 @@ void s_string_list_sort_master_net_list() {
   int i = 0;
   STRING_LIST *local_list;
 
-
   /* Do this after sorting is done.  This resets the order of the individual items
    * in the list.  */
   local_list = sheet_head->master_net_list_head;
@@ -465,7 +458,6 @@ void s_string_list_sort_master_net_attrib_list() {
   int i = 0;
   STRING_LIST *local_list;
 
-
   /* Do this after sorting is done.  This resets the order of the individual items
    * in the list.  */
   local_list = sheet_head->master_net_attrib_list_head;
@@ -477,7 +469,6 @@ void s_string_list_sort_master_net_attrib_list() {
 
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Sort the master pin list
@@ -543,7 +534,6 @@ void s_string_list_sort_master_pin_attrib_list() {
    * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want 
    * certain attribs to go first. 
    */
-  
 
   /* Do this after sorting is done.  This resets the order of the individual items
    * in the list.  */

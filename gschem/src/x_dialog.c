@@ -947,7 +947,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
   GtkWidget *label;
   struct line_type_data *line_type_data;
   GList *selection;
-  OBJECT_END end          = 0;
+  OBJECT_END end=END_NONE;
   OBJECT_TYPE type=TYPE_SOLID;
   gint width=1, length=-1, space=-1;
 
@@ -2945,14 +2945,14 @@ PAGE *remember_page;
  *  This function takes the string the user likes to find and searches it
  *  in the schematic.
  */
-void find_text_dialog_response(GtkWidget *w, gint response,
+void find_text_dialog_response(GtkWidget *w, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkWidget *textentry;
   GtkWidget *checkdescend;
-  gchar *string;
-  gint done=0, close=0;
+  char *string;
+  int done=0, close=0;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
@@ -2960,7 +2960,8 @@ void find_text_dialog_response(GtkWidget *w, gint response,
     string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
     checkdescend = g_object_get_data(G_OBJECT(w_current->tfindwindow),"checkdescend");
 
-    strncpy(generic_textstring, string, 256);
+    strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
+    generic_textstring[sizeof(generic_textstring)-1] = '\0';
 
     if (remember_page != toplevel->page_current) {
       s_page_goto(toplevel, remember_page);
@@ -3007,7 +3008,8 @@ void find_text_dialog(GSCHEM_TOPLEVEL *w_current)
     if (object->type == OBJ_TEXT) {
       strncpy (generic_textstring,
                o_text_get_string (w_current->toplevel, object),
-               256);
+               sizeof(generic_textstring)-1);
+      generic_textstring[sizeof(generic_textstring)-1] = '\0';
     }
   }
 
@@ -3092,7 +3094,9 @@ void hide_text_dialog_response(GtkWidget *w, gint response,
     textentry = g_object_get_data(G_OBJECT(w_current->thidewindow),"textentry");
     string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
 
-    strncpy(generic_textstring, string, 256);
+    strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
+    generic_textstring[sizeof(generic_textstring)-1] = '\0';
+
     o_edit_hide_specific_text (w_current,
                                s_page_objects (w_current->toplevel->page_current),
                                string);
@@ -3192,7 +3196,8 @@ void show_text_dialog_response(GtkWidget *widget, gint response,
     textentry = g_object_get_data(G_OBJECT(w_current->tshowwindow),"textentry");
     string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
 
-    strncpy(generic_textstring, string, 256);
+    strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
+    generic_textstring[sizeof(generic_textstring)-1] = '\0';
     o_edit_show_specific_text (w_current,
                                s_page_objects (w_current->toplevel->page_current),
                                string);

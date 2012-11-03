@@ -116,10 +116,10 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
  *  \param [in] filenames list of files to be opened
  *  \returns FALSE if any of the files could not be opened, TRUE otherwise
  */
-gboolean
-x_fileselect_load_files (GSList *filenames)
+bool x_fileselect_load_files (GSList *filenames)
 {
   GList *iter;
+  GList *Objects;
   PAGE *p_local;
   GSList *filename;
 
@@ -127,22 +127,25 @@ x_fileselect_load_files (GSList *filenames)
   for (filename = filenames;
        filename != NULL;
        filename = g_slist_next (filename)) {
-    gchar *string = (gchar*)filename->data;
-    
+
+    char *string = (char*)filename->data;
+
     if (!quiet_mode) {
       s_log_message(_("Loading file [%s]\n"), string);
     }
 
     s_page_goto (pr_current, s_page_new (pr_current, string));
-
+  
     if(s_toplevel_read_page(pr_current, string) == 0) {
        fprintf(stderr, _("Couldn't load schematic [%s]\n"), string);
        return FALSE;
     }
 
+    Objects = s_page_objects (pr_current->page_current);
+
     /* Now add all items found to the master lists */
-    s_sheet_data_add_master_comp_list_items (s_page_objects (pr_current->page_current));
-    s_sheet_data_add_master_comp_attrib_list_items (s_page_objects (pr_current->page_current));
+    s_sheet_data_add_master_comp_list_items (Objects);
+    s_sheet_data_add_master_comp_attrib_list_items (Objects);
 #if 0
     /* Note that this must be changed.  We need to input the entire project
      * before doing anything with the nets because we need to first
@@ -151,10 +154,9 @@ x_fileselect_load_files (GSList *filenames)
     s_sheet_data_add_master_net_attrib_list_items (pr_current->page_current->object_list);
 #endif
     
-    s_sheet_data_add_master_pin_list_items (s_page_objects (pr_current->page_current));
-    s_sheet_data_add_master_pin_attrib_list_items (s_page_objects (pr_current->page_current));
+    s_sheet_data_add_master_pin_list_items (Objects);
+    s_sheet_data_add_master_pin_attrib_list_items (Objects);
   }  	/* end of loop over files     */
-  
 
   /* ---------- Sort the master lists  ---------- */
   s_string_list_sort_master_comp_list();
@@ -205,10 +207,9 @@ x_fileselect_load_files (GSList *filenames)
                             * and then calls another fcn to update
                             * the GtkSheet itself.  */
 
-
   /* ---------- Now verify correctness of entire design.  ---------- */
   s_toplevel_verify_design(pr_current);  /* pr_current is a global */
-
+	    
   return TRUE;
 }
 
@@ -220,8 +221,7 @@ x_fileselect_load_files (GSList *filenames)
  *  \returns list of files to be opened, or NULL if the user cancelled
  *           the dialog
  */
-GSList *
-x_fileselect_open (void)
+GSList *x_fileselect_open (void)
 {
   GtkWidget *dialog;
   GSList *filenames = NULL;
@@ -255,69 +255,65 @@ x_fileselect_open (void)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief File save dialog
+/*! \brief Generic File Dialog
  *
- *  This function opens a file chooser dialog and wait for the user to
- *  select a file where the toplevel's current page will be
- *  saved.
- *
- *  If the user cancels the operation (with the cancel button), the
- *  page is not saved.
- *
- *  The function updates the user interface.
+ *  This function opens a file chooser dialog and waits for the user to
+ *  select a folder and enter a filename. The user can also select an
+ *  existing filename or cancel.
+ *  
+ *  \param char *filename a pointer to a buffer to receive the string.
+ *  \returns boolean ture of dialog accepted input. returns false if
+ *           the user cancels.
  */
-void
-x_fileselect_save (void)
+bool x_fileselect ( char* filename )
 {
   GtkWidget *dialog;
-
+  bool   result = FALSE;
+  char  *fname  = NULL;
+  char  *cwd    = NULL;
+    
   dialog = gtk_file_chooser_dialog_new (_("Save as..."),
                                         GTK_WINDOW(window),
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                         GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
                                         NULL);
-
+  
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
 					  GTK_RESPONSE_ACCEPT,
 					  GTK_RESPONSE_CANCEL,
 					  -1);
   
-  g_object_set (dialog,
-                /* GtkFileChooser */
-                "select-multiple", FALSE,
-                /* only in GTK 2.8 */
-                /* "do-overwrite-confirmation", TRUE, */
-                NULL);
-  /* add file filters to dialog */
+  g_object_set (dialog,                     /* GtkFileChooser */
+                "select-multiple", FALSE,   /* only in GTK 2.8 */
+                "do-overwrite-confirmation", TRUE,  /* version?*/
+                NULL);                              /* end options */
+  
   x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
+  
+  /* preset a directory name */
+  if (pr_current->page_current->page_filename != NULL) {
+    cwd = pr_current->page_current->page_filename;
+    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), cwd);
+    fprintf(stderr, "Going to use file name=%s\n", cwd);
+  }
+  else { /* no filename then get current working dir */
+    cwd = getcwd(0,0);
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  }
+  free (cwd);
+      
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    gchar *filename =
-      gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-
-    /* try saving current page of toplevel to file filename */
-    if (filename != NULL &&
-        f_save (pr_current, pr_current->page_current, filename, NULL)) {
-      s_log_message (_("Saved As [%s]\n"), filename);
-
-      /* replace page filename with new one, do not free filename */
-      g_free (pr_current->page_current->page_filename);
-      pr_current->page_current->page_filename = filename;
-
-      /* reset the changed flag of current page*/
-      pr_current->page_current->CHANGED = 0;
-
-    } else {
-      /* report error in log and status bar */
-      s_log_message (_("Could NOT save [%s]\n"),
-                     pr_current->page_current->page_filename);
-
-      g_free (filename);
-
-    }
+    fname = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    strcpy(filename,fname);
+    g_free(fname); /* GTK actually does this when dialog is destroyed */
+    result = TRUE;
+  }
+  else {
+    result = FALSE;
   }
   gtk_widget_destroy (dialog);
-
+  return result;
 }

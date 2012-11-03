@@ -4,7 +4,7 @@ author=AutoTron <Symbol Repair geda>
 T 700 650 8 10 1 1 0 0 1
 refdes=none
 T 700 850 5 10 0 0 0 0 1
-comment=spicetype=V
+spicetype=V
 T 700 1450 5 10 0 0 0 0 1
 description=piece-wise linear signal source
 P 300 1200 300 900 1 0 0

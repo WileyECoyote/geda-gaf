@@ -16,18 +16,19 @@
  *
  * You should have received a copy of the GNU Library General Public
  * License along with this library; if not, write to the
- * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
- * Boston, MA 02110-1301 USA
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
  */
 
-#ifndef __GTK_SHEET_H__
-#define __GTK_SHEET_H__
+#ifndef __GTK_SHEETWIDGET_H__
+#define __GTK_SHEETWIDGET_H__
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif /* __cplusplus */
 
+G_BEGIN_DECLS
 
 typedef enum
 {
@@ -41,30 +42,40 @@ typedef enum
   GTK_SHEET_IS_VISIBLE
 } GtkSheetAttrType;
 
-/* sheet->state */
-
-enum 
+/**
+ * GtkSheetState:
+ */
+typedef enum 
 {
-  GTK_SHEET_NORMAL,
-  GTK_SHEET_ROW_SELECTED,
-  GTK_SHEET_COLUMN_SELECTED,
-  GTK_SHEET_RANGE_SELECTED
-};
-     
-enum
+  GTK_SHEET_NORMAL,             /* Nothing selected */
+  GTK_SHEET_ROW_SELECTED,       /* A single row is selected */
+  GTK_SHEET_COLUMN_SELECTED,    /* A single column is selected */
+  GTK_SHEET_RANGE_SELECTED      /* A range of cells is selected */
+} GtkSheetState;
+
+/**
+ * GtkSheetBorderFlags:
+ * 
+ * Used to build a border mask when setting border properties with gtk_sheet_range_set_border().
+ */     
+typedef enum
 {
   GTK_SHEET_LEFT_BORDER     = 1 << 0, 
   GTK_SHEET_RIGHT_BORDER    = 1 << 1, 
   GTK_SHEET_TOP_BORDER      = 1 << 2, 
   GTK_SHEET_BOTTOM_BORDER   = 1 << 3 
-}; 
+} GtkSheetBorderFlags; 
 
+#define GTK_TYPE_SHEET_CELL_BORDER (gtk_sheet_cell_border_get_type ())
+#define GTK_TYPE_SHEET_CELL_ATTR (gtk_sheet_cell_attr_get_type ())
 #define GTK_TYPE_SHEET_RANGE (gtk_sheet_range_get_type ())
-#define GTK_TYPE_SHEET (gtk_sheet_get_type ())
 
-#define GTK_SHEET(obj)          GTK_CHECK_CAST (obj, gtk_sheet_get_type (), GtkSheet)
-#define GTK_SHEET_CLASS(klass)  GTK_CHECK_CLASS_CAST (klass, gtk_sheet_get_type (), GtkSheetClass)
-#define GTK_IS_SHEET(obj)       GTK_CHECK_TYPE (obj, gtk_sheet_get_type ())
+#define GTK_TYPE_SHEET (gtk_sheet_get_type ())
+#define GTK_SHEET(obj)          (G_TYPE_CHECK_INSTANCE_CAST ((obj),GTK_TYPE_SHEET, GtkSheet))
+#define GTK_SHEET_CLASS(klass)  (G_TYPE_CHECK_CLASS_CAST ((klass), GTK_TYPE_SHEET, GtkSheetClass))
+#define GTK_IS_SHEET(obj)       (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GTK_TYPE_SHEET))
+#define GTK_IS_SHEET_CLASS(klass)      (G_TYPE_CHECK_CLASS_TYPE ((klass), GTK_TYPE_SHEET))
+#define GTK_SHEET_GET_CLASS(obj)       (G_TYPE_INSTANCE_GET_CLASS ((obj), GTK_TYPE_SHEET, GtkSheetClass))
 
 /* Public flags, for compatibility */
 
@@ -89,8 +100,37 @@ typedef struct _GtkSheetButton       GtkSheetButton;
 typedef struct _GtkSheetCellAttr     GtkSheetCellAttr;
 typedef struct _GtkSheetCellBorder     GtkSheetCellBorder;
 
+/**
+ * GtkSheetChild:
+ * @widget: the child's widget
+ * @x: the horizontal pixel position of the widget in the gtksheet
+ * @y: the vertical pixel position of the widget in the gtksheet
+ * @attached_to_cell: whether the child's position is kept attached to the cell indicated by @row and @col
+ * @floating: whether the child size is kept within the area of the cell indicated by @row and @col
+ * @row: the sheet row which the child is attached to.
+ * @col: the sheet column which the child is attached to.
+ * @xpadding: extra horizontal padding added around the widget 
+ * @ypadding: extra vertical padding added around the widget 
+ * @xexpand: whether the sheet cell should expand to take up any extra horizontal space that has been allocated to the sheet.
+ * @yexpand: whether the sheet cell should expand to take up any extra vertical space that has been allocated to the sheet.
+ * @xshrink: whether the widget should shrink when the sheet cell shrinks horizontally.
+ * @yshrink: whether the widget should shrink when the sheet cell shrinks vertically.
+ * @xfill: whether the widget should fill the horizontal space allocated to it in the sheet cell.
+ * @yfill: whether the widget should fill the vertical space allocated to it in the sheet cell
+ *
+ * The GtkSheetChild struct is returned by the gtk_sheet_get_child_at() and 
+ * gtk_sheet_put() functions and contains information about the child's packing
+ * inside a GtkSheet.
+ * Previously, modifying this structure was the only way to modify child's 
+ * packing. However, now that child properties have been implemented, you 
+ * shouldn't use this method. To change child packing options
+ * set child properties with the gtk_container_child_set_property() or similar
+ * functions.
+ *
+ * Deprecated: 0.1.0: Use child properties instead.
+ */
 struct _GtkSheetChild
-{
+{ 
   GtkWidget *widget;
   gint x,y ;
   gboolean attached_to_cell;
@@ -106,8 +146,15 @@ struct _GtkSheetChild
   gboolean yfill;
 };
 
+/**
+ * GtkSheetButton:
+ *
+ * The GtkSheetButton struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheetButton
 {
+  /*< private >*/
   GtkStateType state;
   gchar *label;
 
@@ -117,8 +164,15 @@ struct _GtkSheetButton
   GtkJustification justification;
 };
 
+/**
+ * GtkSheetCellBorder:
+ *
+ * The GtkSheetCellBorder struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheetCellBorder
 {
+  /*< private >*/
   gint8 mask;
   guint width;
   GdkLineStyle line_style;
@@ -127,10 +181,16 @@ struct _GtkSheetCellBorder
   GdkColor color;
 };
 
+/**
+ * GtkSheetCellAttr:
+ *
+ * The GtkSheetCellAttr struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheetCellAttr
 {
+  /*< private >*/
   GtkJustification justification;
-  GdkFont *font;
   PangoFontDescription *font_desc;
   GdkColor foreground;
   GdkColor background;
@@ -139,8 +199,15 @@ struct _GtkSheetCellAttr
   gboolean is_visible;
 };
 
+/**
+ * GtkSheetCell:
+ *
+ * The GtkSheetCell struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheetCell
 {
+   /*< private >*/
   GdkRectangle area;
   gint row;
   gint col;
@@ -151,15 +218,29 @@ struct _GtkSheetCell
   gpointer link;
 };
 
+/**
+ * GtkSheetRange:
+ *
+ * The #GtkSheetCellRange struct is used in many GtkSheet functions to indicate 
+ * a range of cells of the sheet where some properties or changes must be made. 
+ * The range goes from the the upper-left cell determined by @row0 and @col0, to
+ * the bottom-right cell indicated by @rowi and @coli.
+ */
 struct _GtkSheetRange
 {
   gint row0,col0; /* upper-left cell */
-  gint rowi,coli; /* lower-right cell */
+  gint rowi,coli; /* bottom-right cell */
 };
 
-
+/**
+ * GtkSheetRow:
+ *
+ * The GtkSheetRow struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheetRow
 {
+ /*< private >*/
  gchar *name;
  gint height;
  gint top_ypixel;
@@ -170,8 +251,15 @@ struct _GtkSheetRow
  gboolean is_visible;
 };
 
+/**
+ * GtkSheetColumn:
+ *
+ * The GtkSheetColumn struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheetColumn
 {
+ /*< private >*/
  gchar *name;
  gint width;
  gint left_xpixel;
@@ -187,7 +275,12 @@ struct _GtkSheetColumn
  gboolean is_visible;
 };
 
-
+/**
+ * GtkSheet:
+ *
+ * The GtkSheet struct contains only private data.
+ * It should only be accessed through the functions described below.
+ */
 struct _GtkSheet{
   GtkContainer container;
 
@@ -332,6 +425,8 @@ struct _GtkSheetClass
 
  void (*select_range) 		(GtkSheet *sheet, GtkSheetRange *range);
 
+ void (*unselect_range) 	(GtkSheet *sheet, GtkSheetRange *range);
+ 
  void (*clip_range) 		(GtkSheet *sheet, GtkSheetRange *clip_range);
 
  void (*resize_range)		(GtkSheet *sheet,
@@ -372,7 +467,9 @@ struct _GtkSheetClass
 };
   
 GType gtk_sheet_get_type (void);
-GtkType gtk_sheet_range_get_type (void);
+GType gtk_sheet_range_get_type (void);
+GType gtk_sheet_cell_border_get_type (void);
+GType gtk_sheet_cell_attr_get_type (void);
 
 /* create a new sheet */
 GtkWidget *
@@ -434,7 +531,7 @@ void
 gtk_sheet_get_visible_range		(GtkSheet *sheet,
 					 GtkSheetRange *range);
 void
-gtk_sheet_set_selection_mode		(GtkSheet *sheet, gint mode);
+gtk_sheet_set_selection_mode		(GtkSheet *sheet, GtkSelectionMode mode);
 
 void
 gtk_sheet_set_autoresize		(GtkSheet *sheet, gboolean autoresize);
@@ -461,7 +558,7 @@ gboolean
 gtk_sheet_justify_entry			(GtkSheet *sheet);
 
 void
-gtk_sheet_set_locked			(GtkSheet *sheet, gboolean lock);
+gtk_sheet_set_locked			(GtkSheet *sheet, gboolean locked);
 
 gboolean
 gtk_sheet_locked			(GtkSheet *sheet);
@@ -481,10 +578,10 @@ gtk_sheet_thaw				(GtkSheet *sheet);
 /* Background colors */
 void
 gtk_sheet_set_background		(GtkSheet *sheet,
-					 GdkColor *bg_color);
+					 GdkColor *color);
 void
 gtk_sheet_set_grid			(GtkSheet *sheet,
-					 GdkColor *grid_color);
+					 GdkColor *color);
 void
 gtk_sheet_show_grid			(GtkSheet *sheet,
 					 gboolean show);
@@ -597,7 +694,7 @@ gtk_sheet_column_set_visibility		(GtkSheet *sheet,
 					gint column, gboolean visible);
 void
 gtk_sheet_column_label_set_visibility	(GtkSheet *sheet, 
-					gint column, gboolean visible);
+					gint col, gboolean visible);
 void
 gtk_sheet_columns_labels_set_visibility	(GtkSheet *sheet, gboolean visible);
 
@@ -676,10 +773,10 @@ gtk_sheet_cell_get_text 		(GtkSheet *sheet, gint row, gint col);
 
 /* clear cell contents */
 void 
-gtk_sheet_cell_clear			(GtkSheet *sheet, gint row, gint col);
+gtk_sheet_cell_clear			(GtkSheet *sheet, gint row, gint column);
 /* clear cell contents and remove links */
 void 
-gtk_sheet_cell_delete			(GtkSheet *sheet, gint row, gint col);
+gtk_sheet_cell_delete			(GtkSheet *sheet, gint row, gint column);
 
 /* clear range contents. If range==NULL the whole sheet will be cleared */
 void 
@@ -719,11 +816,22 @@ gtk_sheet_get_cell_area (GtkSheet *sheet,
                          gint column,
                          GdkRectangle *area);
 
+/* get column width */
+guint 
+gtk_sheet_get_column_width (GtkSheet * sheet,
+			    gint column);
+
 /* set column width */
 void
 gtk_sheet_set_column_width (GtkSheet * sheet,
 			    gint column,
 			    guint width);
+
+/* get row height */
+guint
+gtk_sheet_get_row_height (GtkSheet * sheet,
+			  gint row);
+
 
 /* set row height */
 void
@@ -758,13 +866,13 @@ gtk_sheet_delete_columns		(GtkSheet *sheet, guint col, guint ncols);
 /* set abckground color of the given range */
 void
 gtk_sheet_range_set_background		(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					const GdkColor *color);
 
 /* set foreground color (text color) of the given range */
 void
 gtk_sheet_range_set_foreground		(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					const GdkColor *color);
 
 /* set text justification (GTK_JUSTIFY_LEFT, RIGHT, CENTER) of the given range.
@@ -772,24 +880,24 @@ gtk_sheet_range_set_foreground		(GtkSheet *sheet,
  * default justification for numbers is GTK_JUSTIFY_RIGHT */
 void
 gtk_sheet_range_set_justification	(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
-					GtkJustification justification);
+					const GtkSheetRange *urange, 
+					GtkJustification just);
 void
 gtk_sheet_column_set_justification      (GtkSheet *sheet,
-                                        gint column,
-                                        GtkJustification justification);
+                                        gint col,
+                                        GtkJustification just);
 /* set if cell contents can be edited or not in the given range:
  * accepted values are TRUE or FALSE. */
 void
 gtk_sheet_range_set_editable		(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					gint editable);
 
 /* set if cell contents are visible or not in the given range:
  * accepted values are TRUE or FALSE.*/
 void
 gtk_sheet_range_set_visible		(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					gboolean visible);
 
 /* set cell border style in the given range.
@@ -799,7 +907,7 @@ gtk_sheet_range_set_visible		(GtkSheet *sheet,
  * line_style is the line_style for the border line */
 void
 gtk_sheet_range_set_border		(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					gint mask, 
 					guint width, 
 					gint line_style);
@@ -807,13 +915,13 @@ gtk_sheet_range_set_border		(GtkSheet *sheet,
 /* set border color for the given range */
 void
 gtk_sheet_range_set_border_color	(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					const GdkColor *color);
 
 /* set font for the given range */
 void
 gtk_sheet_range_set_font		(GtkSheet *sheet, 
-					const GtkSheetRange *range, 
+					const GtkSheetRange *urange, 
 					PangoFontDescription *font);
 
 /* get cell attributes of the given cell */
@@ -826,7 +934,7 @@ gtk_sheet_get_attributes		(GtkSheet *sheet,
 
 GtkSheetChild *
 gtk_sheet_put 				(GtkSheet *sheet, 
-					 GtkWidget *widget, 
+					 GtkWidget *child, 
 					 gint x, gint y);
 void
 gtk_sheet_attach_floating               (GtkSheet *sheet,
@@ -861,11 +969,13 @@ gtk_sheet_button_attach			(GtkSheet *sheet,
 					 gint row, gint col);
                        
 
+G_END_DECLS
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */
 
 
-#endif /* __GTK_SHEET_H__ */
+#endif /* __GTK_SHEETWIDGET_H__ */
 
 

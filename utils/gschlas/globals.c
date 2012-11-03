@@ -18,9 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <geda.h>
 #include <stdio.h>
-
+#include <geda.h>
 char *rc_filename = NULL; 
 
 int logfile_fd=-1;

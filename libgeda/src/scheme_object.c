@@ -689,7 +689,7 @@ SCM_DEFINE (make_line, "%make-line", 0, 0, 0,
             (), "Create a new line object.")
 {
   OBJECT *obj = o_line_new (edascm_c_current_toplevel (),
-                            OBJ_LINE, DEFAULT_COLOR,
+                            OBJ_LINE, DEFAULT_COLOR_INDEX,
                             0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
@@ -970,7 +970,7 @@ SCM_DEFINE (make_box, "%make-box", 0, 0, 0,
             (), "Create a new box object.")
 {
   OBJECT *obj = o_box_new (edascm_c_current_toplevel (),
-                           OBJ_BOX, DEFAULT_COLOR,
+                           OBJ_BOX, DEFAULT_COLOR_INDEX,
                            0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
@@ -1068,7 +1068,7 @@ SCM_DEFINE (make_circle, "%make-circle", 0, 0, 0,
             (), "Create a new circle object.")
 {
   OBJECT *obj = o_circle_new (edascm_c_current_toplevel (),
-                              OBJ_CIRCLE, DEFAULT_COLOR,
+                              OBJ_CIRCLE, DEFAULT_COLOR_INDEX,
                               0, 0, 1);
 
   SCM result = edascm_from_object (obj);
@@ -1162,7 +1162,7 @@ SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
             (), "Create a new arc object.")
 {
   OBJECT *obj = o_arc_new (edascm_c_current_toplevel (),
-                              OBJ_ARC, DEFAULT_COLOR,
+                              OBJ_ARC, DEFAULT_COLOR_INDEX,
                            0, 0, 1, 0, 0);
 
   SCM result = edascm_from_object (obj);
@@ -1271,7 +1271,7 @@ SCM_DEFINE (make_text, "%make-text", 0, 0, 0,
             (), "Create a new text object.")
 {
   OBJECT *obj = o_text_new (edascm_c_current_toplevel (),
-                            OBJ_TEXT, DEFAULT_COLOR,
+                            OBJ_TEXT, DEFAULT_COLOR_INDEX,
                             0, 0, LOWER_LEFT, 0, "", 10,
                             VISIBLE, SHOW_NAME_VALUE);
 
@@ -1565,7 +1565,7 @@ SCM_DEFINE (make_path, "%make-path", 0, 0, 0,
             (), "Create a new path object")
 {
   OBJECT *obj = o_path_new (edascm_c_current_toplevel (),
-                            OBJ_PATH, DEFAULT_COLOR, "");
+                            OBJ_PATH, DEFAULT_COLOR_INDEX, "");
 
   SCM result = edascm_from_object (obj);
 

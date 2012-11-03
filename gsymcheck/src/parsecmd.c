@@ -22,7 +22,6 @@
 #include <unistd.h>
 #endif
 
-#include <geda.h>
 #include <libgeda/libgeda.h>
 #include "../include/globals.h"
 

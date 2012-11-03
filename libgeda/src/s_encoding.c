@@ -26,8 +26,8 @@
  *
  * You should have received a copy of the GNU Library General Public
  * License along with this library; if not, write to the Free
- * Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
- *
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
  ***********************************************************************
     \endverbatim
  *
@@ -187,12 +187,12 @@ gchar* s_encoding_base64_encode (gchar* src, guint srclen,
  *          The integer pointed to by <B>dstlenp</B> is set to the length
  *          of that buffer.
  */
-gchar *s_encoding_base64_decode (gchar* src, guint srclen, guint* dstlenp)
+gchar *s_encoding_base64_decode (char* src, guint srclen, guint* dstlenp)
 {
 
-  gchar* dst;
-  guint   dstidx, state, ch = 0;
-  gchar  res;
+  char* dst;
+  unsigned int dstidx, state, ch = 0;
+  char  res;
   guchar pos;
 
   if (srclen == 0) 
@@ -218,35 +218,23 @@ gchar *s_encoding_base64_decode (gchar* src, guint srclen, guint* dstlenp)
       switch (state) 
 	{
 	case 0:
-	  if (dst != NULL) 
-	    {
-	      dst[dstidx] = (pos << 2);
-	    }
+	  dst[dstidx] = (pos << 2);
 	  state = 1;
 	  break;
 	case 1:
-	  if (dst != NULL) 
-	    {
-	      dst[dstidx] |= (pos >> 4);
-	      res = ((pos & 0x0f) << 4);
-	    }
+	  dst[dstidx] |= (pos >> 4);
+	  res = ((pos & 0x0f) << 4);
 	  dstidx++;
 	  state = 2;
 	  break;
 	case 2:
-	  if (dst != NULL) 
-	    {
-	      dst[dstidx] = res | (pos >> 2);
-	      res = (pos & 0x03) << 6;
-	    }
+	  dst[dstidx] = res | (pos >> 2);
+	  res = (pos & 0x03) << 6;
 	  dstidx++;
 	  state = 3;
 	  break;
 	case 3:
-	  if (dst != NULL) 
-	    {
-	      dst[dstidx] = res | pos;
-	    }
+	  dst[dstidx] = res | pos;
 	  dstidx++;
 	  state = 0;
 	  break;
@@ -304,7 +292,7 @@ gchar *s_encoding_base64_decode (gchar* src, guint srclen, guint* dstlenp)
                                  * zeros.  If we don't check them, they become a
                                  * subliminal channel.
                                  */
-	  if (dst != NULL && res != 0) 
+	  if (res != 0)
 	    {
 	      g_free(dst);
 	      *dstlenp = 0;

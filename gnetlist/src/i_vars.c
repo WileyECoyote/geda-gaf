@@ -25,14 +25,14 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include <geda.h>
+
 #include <libgeda/libgeda.h>
 
 #include "../include/papersizes.h"
 #include "../include/prototype.h"
 
 #define DEFAULT_UNTITLED_NAME    "untitled"
-#define DEFAULT_BITMAP_DIRECTORY   "non-existant"
+
 #define DEFAULT_HIERARCHY_NETNAME_SEPARATOR "/"
 #define DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR "/"
 #define DEFAULT_HIERARCHY_UREF_SEPARATOR "/"

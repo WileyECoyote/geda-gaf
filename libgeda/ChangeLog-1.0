@@ -1,3 +1,32 @@
+2012-10-31 Wiley E. Hill <wileyhill@gmail.com>
+	* src/a_basic.c:Revised o_save function to eliminate use of
+	g_file_set_contents because it resets file permissions to
+	default permissive policy and can potentially expose files
+	that were made private, see bug #1021860 and is was unacceptable.
+	The g_file_set_contents was replace with a simple fputs, which
+	is more efficient and available with all C compilers.
+
+	* src/f_utilities.c: Added new file in order to relocate generic
+	file related utilities to a common file. See function descriptions
+	within the file for more information.
+
+	* src/f_basic.c: Revisions to algorythms in f_save function
+	in an attempt to stop malware like behaviour. Libgeda was
+	incorrectly renaming files to create backups so the file being
+	saved was not over-writing the old file. The user saving the "newly"
+	created file was assuming ownership of schematics and symbols with
+	default permissions regardless of who orginally owned the files.
+	Group settings were also being lost. Old algorythms attempted
+	to set permissions back but there was no assurance that the user had
+	permission to do this when the orginal file was renamed so the new
+	file would be left with the wrong ownership, group setting and
+	permissions and the backup file would incorrectly belong to the
+	orginal owner. The new algorythms create a backup by copying the
+	orginal file, using a new fcopy function located in f_utilities.c
+	so that the orginal ownership, group and permission data is
+	preserved and the backup belongs to the user as it should.
+	
+int (const char *source, const char *target)
 2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
 	* src/s_attrib.c: reset attrib_index in function s_attrib_init
           added function s_attrib_count.

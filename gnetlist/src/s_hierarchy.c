@@ -28,7 +28,7 @@
 #ifdef HAVE_STRINGS_H
 #include <strings.h>
 #endif
-#include <geda.h>
+
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"

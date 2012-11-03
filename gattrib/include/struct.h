@@ -38,7 +38,7 @@
 
 /* -------  Includes needed to make the GTK stuff work  ------ */
 
-#include "gtksheet_2_2.h"
+#include "gtksheet.h"
 
 
 /* ========  Data structures used in processing below here  ========== */
@@ -81,7 +81,6 @@ struct st_sheet_data {
   int pin_count;                              /*!< This cannnot change -- user must edit design using gschem */
   int pin_attrib_count;                       /*!< This can change in this prog if the user adds attribs */
 
-
   TABLE **component_table;                    /*!< points to 2d array of component attribs */
   TABLE **net_table;                          /*!< points to 2d array of net attribs */
   TABLE **pin_table;                          /*!< points to 2d array of pin attribs */
@@ -104,11 +103,11 @@ struct st_sheet_data {
 struct st_table {
   int row;                       /*!< location on spreadsheet */
   int col;                       /*!< location on spreadsheet */
-  gchar *row_name;               /*!< comp, net, or refdes:pin name */
-  gchar *col_name;               /*!< attrib name */
-  gchar *attrib_value;           /*!< attrib value */
-  gint visibility;
-  gint show_name_value;
+  char *row_name;               /*!< comp, net, or refdes:pin name */
+  char *col_name;               /*!< attrib name */
+  char *attrib_value;           /*!< attrib value */
+  int visibility;
+  int show_name_value;
 
 };
 
@@ -124,7 +123,7 @@ struct st_table {
  */
 /* -------------------------------------------------------------------- */
 struct st_string_list {
-  gchar *data;     /*!< points to zero-terminated string */
+  char *data;     /*!< points to zero-terminated string */
   int pos;         /*!< position on spreadsheet */
   int length;      /*!< number of items in list */
   STRING_LIST *prev; /*!< pointer to previous item in linked list */
@@ -144,9 +143,9 @@ struct st_string_list {
  */
 /* -------------------------------------------------------------------- */
 struct st_pin_list {
-  gchar *refdes;       /*!< holds refdes string */
-  gint pinnumber;
-  gchar *pinlabel;     /*!< holds pin label string */
+  char *refdes;       /*!< holds refdes string */
+  int pinnumber;
+  char *pinlabel;     /*!< holds pin label string */
   int pos;             /*!< pos on spreadsheet */
   int length;          /*!< number of items in list */
   PIN_LIST *prev;

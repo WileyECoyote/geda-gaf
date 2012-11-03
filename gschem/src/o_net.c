@@ -1146,7 +1146,7 @@ int o_net_add_busrippers(GSCHEM_TOPLEVEL *w_current, OBJECT *net_obj,
       } else {
 
         if (rippersym != NULL) {
-          new_obj = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR,
+          new_obj = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR_INDEX,
                                    rippers[i].x[0], rippers[i].y[0],
                                    complex_angle, 0,
                                    rippersym,

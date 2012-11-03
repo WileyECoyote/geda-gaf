@@ -36,7 +36,6 @@
 #include <unistd.h>
 #endif
 
-#include <geda.h>
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 

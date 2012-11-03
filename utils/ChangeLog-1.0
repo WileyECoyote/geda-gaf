@@ -1,3 +1,20 @@
+2012-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * scripts/: Added scripts gcheck-library, gclean-symbol,
+                    and gfix-library.
+
+2012-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gschlas/: Updated address for FSF and copyright dates in;
+		    g_rc.c, g_register.c, gschlas.c, s_util.c
+        * gsch2pdf/: Updated address for FSF and copyright dates in;
+		    main.c, print-settings.c, print-settings.h,
+                    rc-config.c, rc-config.h
+        * scripts/: Updated address for FSF and copyright dates in;
+                    pads_backannotate, pcb_backannotate, refdes_renum
+                    gnet_hier_verilog.sh, sw2asc.in
+        * scripts/: Updated address for FSF in convert_sym.awk, 
+
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated version to 20070526 in prep for the next

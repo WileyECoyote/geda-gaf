@@ -64,7 +64,7 @@ void x_dialog_newattrib()
   GtkWidget *dialog;
   GtkWidget *label;
   GtkWidget *attrib_entry;
-  gchar *entry_text;
+  char *entry_text;
 
   /* Create the dialog */
   dialog = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL, 
@@ -116,9 +116,9 @@ void x_dialog_newattrib()
 void x_dialog_delattrib()
 {
   GtkWidget *dialog;
-  gint mincol, maxcol;
+  int mincol, maxcol;
   GtkSheet *sheet;
-  gint cur_page;
+  int cur_page;
 
   /* First verify that exactly one column is selected.  */ 
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -195,18 +195,13 @@ void x_dialog_missing_sym()
 
   gtk_widget_destroy(dialog);
 }
-
-/*! \brief Unsaved data dialog
- *
- * This is the "Unsaved data -- are you sure you want to quit?" dialog
- *         box which is thrown up before the user quits.
- */
-void x_dialog_unsaved_data()
+int x_dialog_file_not_saved()
 {
   GtkWidget *dialog;
-  gchar *tmp;
-  gchar *str;
-
+  char *tmp;
+  char *str;
+  int result;
+  
   tmp = _("Save the changes before closing?");
   str = g_strconcat (_("<big><b>"), tmp, _("</b></big>"), NULL);
 
@@ -215,8 +210,8 @@ void x_dialog_unsaved_data()
 
   dialog = gtk_message_dialog_new (GTK_WINDOW (window),
                                    GTK_DIALOG_MODAL |
-                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_WARNING,
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   GTK_MESSAGE_WARNING,
                                    GTK_BUTTONS_NONE, NULL);
   gtk_message_dialog_set_markup (GTK_MESSAGE_DIALOG (dialog), str);
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
@@ -234,28 +229,38 @@ void x_dialog_unsaved_data()
 
   gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
 
-  switch (gtk_dialog_run (GTK_DIALOG (dialog)))
-    {
-      case GTK_RESPONSE_NO:
-        {
-          gattrib_quit(0);
-          break;
-        }
-      case GTK_RESPONSE_YES:
-        {
-          s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
-          s_page_save_all(pr_current);  /* saves all pages in design */
-          sheet_head->CHANGED = FALSE;
-          gattrib_quit(0);
-          break;
-        }
-      case GTK_RESPONSE_CANCEL:
-      default:
-        {
-          break;
-        }
-      }
+  result = (gtk_dialog_run (GTK_DIALOG (dialog)));
   gtk_widget_destroy (dialog);
+  return result;
+}
+/*! \brief Unsaved data dialog
+ *
+ * This is the "Unsaved data -- are you sure you want to quit?" dialog
+ *         box which is thrown up before the user quits.
+ */
+void x_dialog_unsaved_data()
+{
+  switch (x_dialog_file_not_saved())
+  {
+    case GTK_RESPONSE_NO:
+    {
+      gattrib_quit(0);
+      break;
+    }
+    case GTK_RESPONSE_YES:
+    {
+      s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
+      s_page_save_all(pr_current);  /* saves all pages in design */
+      sheet_head->CHANGED = FALSE;
+      gattrib_quit(0);
+      break;
+    }
+    case GTK_RESPONSE_CANCEL:
+    default:
+    {
+       break;
+    }
+  }
   return;
 }
 
@@ -290,7 +295,7 @@ void x_dialog_unimplemented_feature()
  *  \param [in] return_code the exit code
  *  \todo Is the GPOINTER_TO_INT() call needed in exit()?
  */
-void x_dialog_fatal_error(gchar *string, gint return_code)
+void x_dialog_fatal_error(char *string, int return_code)
 {
   GtkWidget *dialog;
   
@@ -341,7 +346,7 @@ void x_dialog_about_dialog()
  */
 void x_dialog_export_file()
 {
-  gchar *filename;
+  char *filename;
   GtkWidget *dialog;
 
   dialog = gtk_file_chooser_dialog_new(_("Export CSV"), NULL,
@@ -367,4 +372,34 @@ void x_dialog_export_file()
 
   gtk_widget_destroy(dialog);
 }
+/***************** Start of generic confirm dialog box *******************/
 
+/*! \brief Generic Confirmation Dialog
+ *  \par Function Description
+ *       Display a basic dialog with okay/cancel buttons
+ *
+ *  \param Char * message pointer to message to be displayed
+ * 
+ *  \returns True if user select OKAY, False if user select CANCEL
+ *
+ */
+bool generic_confirm_dialog (const char *msg)
+{
+  GtkWidget *dialog;
+  int r;
+
+  dialog = gtk_message_dialog_new (NULL,
+                                   GTK_DIALOG_MODAL |
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   GTK_MESSAGE_INFO,
+                                   GTK_BUTTONS_OK_CANCEL,
+                                   "%s", msg);
+
+  r = gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+
+  if (r ==  GTK_RESPONSE_OK)
+    return 1;
+  else
+    return 0;
+}

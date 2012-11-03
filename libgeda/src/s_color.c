@@ -36,43 +36,41 @@
 
 COLOR print_colors[MAX_COLORS];
 
-/* See defines in s_color.h */
-#define ENDMAP  {0x00, 0x00, 0x00, 0x00, FALSE}
+/* See defines in geda_colors.h */
 
 static COLOR default_colors[] = {
-  WHITE,           /*  0: background         */
-  BLACK,           /*  1: pin                */
-  BLACK,           /*  2: net-endpoint       */
-  BLACK,           /*  3: graphic            */
-  BLACK,           /*  4: net                */
-  BLACK,           /*  5: attribute          */
-  BLACK,           /*  6: logic-bubble       */
-  BLACK,           /*  7: dots-grid          */
-  BLACK,           /*  8: detached-attribute */
-  BLACK,           /*  9: text               */
-  BLACK,           /* 10: bus                */
-  GRAY,            /* 11: select             */
-  GRAY,            /* 12: bounding-box       */
-  GRAY,            /* 13: zoom-box           */
-  GRAY,            /* 14: stroke             */
-  BLACK,           /* 15: lock               */
-  NOCOLOR,         /* 16: output-background  */
-  NOCOLOR,         /* 17: freestyle1         */
-  NOCOLOR,         /* 18: freestyle2         */
-  NOCOLOR,         /* 19: freestyle3         */
-  NOCOLOR,         /* 20: freestyle4         */
-  BLACK,           /* 21: junction           */
-  GRAY,            /* 22: mesh-grid-major    */
-  NOCOLOR,         /* 23: mesh-grid-minor    */
-  ENDMAP
+  RGB_WHITE,      /*  0: background         */
+  RGB_BLACK,      /*  1: pin                */
+  RGB_BLACK,      /*  2: net-endpoint       */
+  RGB_BLACK,      /*  3: graphic            */
+  RGB_BLACK,      /*  4: net                */
+  RGB_BLACK,      /*  5: attribute          */
+  RGB_BLACK,      /*  6: logic-bubble       */
+  RGB_BLACK,      /*  7: dots-grid          */
+  RGB_BLACK,      /*  8: detached-attribute */
+  RGB_BLACK,      /*  9: text               */
+  RGB_BLACK,      /* 10: bus                */
+  RGB_GRAY,       /* 11: select             */
+  RGB_GRAY,       /* 12: bounding-box       */
+  RGB_GRAY,       /* 13: zoom-box           */
+  RGB_GRAY,       /* 14: stroke             */
+  RGB_BLACK,      /* 15: lock               */
+  RGB_NOCOLOR,    /* 16: output-background  */
+  RGB_NOCOLOR,    /* 17: freestyle1         */
+  RGB_NOCOLOR,    /* 18: freestyle2         */
+  RGB_NOCOLOR,    /* 19: freestyle3         */
+  RGB_NOCOLOR,    /* 20: freestyle4         */
+  RGB_BLACK,      /* 21: junction           */
+  RGB_GRAY,       /* 22: mesh-grid-major    */
+  RGB_NOCOLOR,    /* 23: mesh-grid-minor    */
+  RGB_ENDMAP
 };
 
 /*! \brief Initialises the color subsystem
  *  \par Function Description
  *  At the moment, just initialises the print color map.
  */
-void
-s_color_init(void)
+void s_color_init(void)
 {
   s_color_map_defaults (print_colors);
 }
@@ -86,8 +84,7 @@ s_color_init(void)
  *
  *  \param map Color map to initialise.
  */
-void
-s_color_map_defaults (COLOR *map)
+void s_color_map_defaults (COLOR *map)
 {
   int i;
   gboolean reached_end = FALSE;
@@ -131,8 +128,7 @@ s_color_map_defaults (COLOR *map)
  *
  *  \returns #TRUE on success, #FALSE on failure.
  */
-gboolean
-s_color_rgba_decode (const gchar *rgba,
+bool s_color_rgba_decode (const gchar *rgba,
                      guint8 *r, guint8 *g, guint8 *b, guint8 *a)
 {
   gint len, i, ri, gi, bi, ai;
@@ -182,8 +178,7 @@ s_color_rgba_decode (const gchar *rgba,
  * \param [in] b Blue component.
  * \returns A newly allocated string containing the encoded string.
  */
-gchar *
-s_color_rgba_encode (guint8 r, guint8 g, guint8 b, guint8 a)
+char *s_color_rgba_encode (guint8 r, guint8 g, guint8 b, guint8 a)
 {
   if (a < 0xff)
     return g_strdup_printf("#%02x%02x%02x%02x",
@@ -251,7 +246,7 @@ s_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name)
     char *rgba;
     SCM s;
     COLOR c = {0x00, 0x00, 0x00, FALSE};
-    gboolean result;
+    bool result;
     SCM entry = scm_car (curr);
 
     /* Check map entry has correct type */

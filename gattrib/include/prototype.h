@@ -4,8 +4,8 @@
  */
 
 /* ---------------- gattrib.c ---------------- */
-gboolean gattrib_really_quit(void);
-gint gattrib_quit(gint return_code);
+bool gattrib_really_quit(void);
+int gattrib_quit(int return_code);
 
 /* -------------- parsecmd.c ----------------- */
 void usage(char *cmd);   
@@ -18,7 +18,7 @@ int cmp(STRING_LIST *a, STRING_LIST *b);
 STRING_LIST *listsort(STRING_LIST *list, int is_circular, int is_double);
 
 /* ------------- f_export.c ------------- */
-void f_export_components(gchar *filename);
+void f_export_components(char *filename);
 
 
 /* ------------- g_register.c ------------- */
@@ -45,14 +45,13 @@ void s_sheet_data_add_master_pin_attrib_list_items(const GList *obj_list);
 
 void s_sheet_data_gtksheet_to_sheetdata();
 
-
 /* ------------- s_string_list.c ------------- */
 STRING_LIST *s_string_list_new();
 STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list);
 void s_string_list_add_item(STRING_LIST *list, int *count, char *item);
 void s_string_list_delete_item(STRING_LIST **list, int *count, char *item);
 int s_string_list_in_list(STRING_LIST *list, char *item);
-gchar *s_string_list_get_data_at_index(STRING_LIST *list, gint index);
+char *s_string_list_get_data_at_index(STRING_LIST *list, int index);
 
 void s_string_list_sort_master_comp_list();
 void s_string_list_sort_master_comp_attrib_list();
@@ -68,7 +67,7 @@ TABLE **s_table_resize(TABLE **table,
                        int rows, int old_cols, int new_cols);
 void s_table_destroy(TABLE **table, int row_count, int col_count);
 int s_table_get_index(STRING_LIST *list, char *string);
-STRING_LIST *s_table_create_attrib_pair(gchar *row_name, 
+STRING_LIST *s_table_create_attrib_pair(char *row_name, 
 					TABLE **table, 
 					STRING_LIST *row_list,
 					int num_attribs);
@@ -83,10 +82,11 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
 			      TABLE **local_table, int num_rows, int num_cols);
 
 /* ------------- s_toplevel.c ------------- */
+void s_toplevel_close();
 int s_toplevel_read_page(TOPLEVEL *toplevel, char *filename);
 void s_toplevel_verify_design(TOPLEVEL *toplevel);
 void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel);
-void s_toplevel_add_new_attrib(gchar *new_attrib_name);
+void s_toplevel_add_new_attrib(char *new_attrib_name);
 void s_toplevel_delete_attrib_col();
 void s_toplevel_sheetdata_to_toplevel(TOPLEVEL *toplevel, PAGE *page);
 
@@ -109,8 +109,8 @@ void s_object_add_comp_attrib_to_object (TOPLEVEL *toplevel,
                                          OBJECT *o_current,
                                          char *new_attrib_name,
                                          char *new_attrib_value,
-                                         gint visibility,
-                                         gint show_name_value);
+                                         int visibility,
+                                         int show_name_value);
 void s_object_add_net_attrib_to_object (TOPLEVEL *toplevel,
                                         OBJECT *o_current,
                                         char *new_attrib_name,
@@ -124,16 +124,16 @@ void s_object_replace_attrib_in_object (TOPLEVEL *toplevel,
                                         OBJECT *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value,
-                                        gint visibility,
-                                        gint show_name_value);
+                                        int visibility,
+                                        int show_name_value);
 void s_object_remove_attrib_in_object (TOPLEVEL *toplevel,
                                        OBJECT *o_current,
                                        char *new_attrib_name);
 
 OBJECT *s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
                                               char *text_string,
-                                              gint visibility,
-                                              gint show_name_value,
+                                              int visibility,
+                                              int show_name_value,
                                               OBJECT * object);
 void s_object_delete_text_object_in_object(TOPLEVEL *toplevel, OBJECT *test_object);
 int s_object_has_sym_file(OBJECT *object);
@@ -159,8 +159,8 @@ void s_visibility_set_invisible();
 void s_visibility_set_name_only();
 void s_visibility_set_value_only();
 void s_visibility_set_name_and_value();
-void s_visibility_set_cell(gint cur_page, gint row, gint col, 
-			   gint visibility, gint show_name_value);
+void s_visibility_set_cell(int cur_page, int row, int col, 
+			   int visibility, int show_name_value);
 
 /* ------------- i_vars.c ------------- */
 void i_vars_set(TOPLEVEL *toplevel);
@@ -170,31 +170,34 @@ void i_window_vars_set(TOPLEVEL *toplevel);
 void x_dialog_newattrib();
 void x_dialog_delattrib();
 void x_dialog_missing_sym();
+int x_dialog_file_not_saved();
 void x_dialog_unsaved_data();
 void x_dialog_unimplemented_feature();
-void x_dialog_fatal_error(gchar *string, gint return_code);
+void x_dialog_fatal_error(char *string, int return_code);
 void x_dialog_about_dialog();
 void x_dialog_export_file();
+bool generic_confirm_dialog (const char *msg);
 
 /* ------------- x_gtksheet.c ------------- */
 void x_gtksheet_init();
+void x_gtksheet_destroy_all(void);
 void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
 void x_gtksheet_add_col_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
-void x_gtksheet_add_cell_item(GtkSheet *sheet, gint i, gint j, 
-			      char *text, gint visibility, gint show_name_value);
-void x_gtksheet_set_cell_text_color(GtkSheet *sheet, gint row, gint col, 
-				    gint color_name);
+void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, 
+			      char *text, int visibility, int show_name_value);
+void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
+				 ColorId Color );
 int x_gtksheet_get_min_col(GtkSheet *sheet);
 int x_gtksheet_get_max_col(GtkSheet *sheet);
 
 /* ------------- x_fileselect.c ------------- */
 GSList *x_fileselect_open (void);
+bool x_fileselect ( char* filename );
 void x_fileselect_save (void);
-gboolean x_fileselect_load_files (GSList *filenames);
+bool x_fileselect_load_files (GSList *filenames);
 
 /* ------------- x_window.c ------------- */
 void x_window_init();
 void x_window_add_items();
-
 
 

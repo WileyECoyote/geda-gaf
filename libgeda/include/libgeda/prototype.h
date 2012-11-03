@@ -26,6 +26,7 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp);
 void f_print_set_type(TOPLEVEL *toplevel, int type);
 
 /* f_utilities.c */
+int fcopy(const char *source, const char *target);
 const char *get_filename_ext(const char *filename);
 void remove_ext_from_basename(char *filename);
 

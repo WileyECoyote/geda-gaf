@@ -64,6 +64,6 @@ L 200 600 200 200 3 10 1 0 -1 -1
 L 250 600 500 600 3 10 1 0 -1 -1
 L 250 200 500 200 3 10 1 0 -1 -1
 T 200 2400 5 8 0 0 0 0 1
-comment=footprints=SOT23_GSD, TO92_DGS, DPAK_GDS, TO220_GDS
+footprints=SOT23_GSD, TO92_DGS, DPAK_GDS, TO220_GDS
 T 200 2200 5 8 0 0 0 0 1
 comment=check the data sheet for pinout!

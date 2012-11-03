@@ -195,7 +195,7 @@ COLOR *x_color_lookup (int color)
   if (color < 0 || color >= MAX_COLORS ||
       !display_colors[color].enabled) {
     fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
-    return &display_colors[DEFAULT_COLOR];
+    return &display_colors[DEFAULT_COLOR_INDEX];
   } else {
     return &display_colors[color];
   }
@@ -212,7 +212,7 @@ COLOR *x_color_lookup_dark (int color)
   if (color < 0 || color >= MAX_COLORS ||
       !display_outline_colors[color].enabled) {
     fprintf(stderr, _("Tried to get an invalid outline color: %d\n"), color);
-    return &display_outline_colors[DEFAULT_COLOR];
+    return &display_outline_colors[DEFAULT_COLOR_INDEX];
   } else {
     return &display_outline_colors[color];
   }

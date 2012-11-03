@@ -574,7 +574,7 @@ o_update_component (GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
   o_selection_remove (toplevel, page->selection_list, o_current);
 
   /* Create new object and set embedded */
-  o_new = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR,
+  o_new = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR_INDEX,
                          o_current->complex->x,
                          o_current->complex->y,
                          o_current->complex->angle,

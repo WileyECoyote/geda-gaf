@@ -35,7 +35,7 @@
 ; being run. The end user should *not* change this value.
 ;
 
-(gschem-version "20121031")
+(gschem-version "@DATE_VERSION@")
 
 ;
 ; Start of color section 

@@ -49,14 +49,14 @@
  *
  * \param filename The name of the file to export to
  */
-void f_export_components(gchar *filename)
+void f_export_components(char *filename)
 {
-  gint cur_page;
-  gint num_rows;
-  gint num_cols;
-  gint i,j;
+  int cur_page;
+  int num_rows;
+  int num_cols;
+  int i,j;
 
-  gchar *text;
+  char *text;
   FILE *fp;
 
   /* -----  Check that we have a component ----- */
@@ -120,7 +120,7 @@ void f_export_components(gchar *filename)
     for (j = 0; j < num_cols-1; j++) {
       if ( (sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
         /* make a copy of the text, escaping any special chars, like " */
-        text = (gchar *) g_strescape( (sheet_head->component_table)[i][j].attrib_value, "" );
+        text = (char *) g_strescape( (sheet_head->component_table)[i][j].attrib_value, "" );
 #ifdef DEBUG
   printf("In f_export_components, output attribute %s.\n", text);
 #endif
@@ -142,7 +142,7 @@ void f_export_components(gchar *filename)
     /* Now export attrib value for last col (with no "," and with "\n" */
     if ( (sheet_head->component_table)[i][j].attrib_value ) { /* found a string */
       /* make a copy of the text, escaping any special chars, like " */
-      text = (gchar *) g_strescape( (sheet_head->component_table)[i][j].attrib_value, "" );
+      text = (char *) g_strescape( (sheet_head->component_table)[i][j].attrib_value, "" );
 #ifdef DEBUG
   printf("In f_export_components, output final attribute %s.\n", text);
 #endif

@@ -55,7 +55,7 @@ L 250 300 250 175 3 30 0 0 -1 -1
 T 200 1800 5 8 0 0 0 0 1
 symversion=1.1
 T 200 2000 5 8 0 0 0 0 1
-comment=footprints=TO220, TO247_GCE, TO220_GCE
+footprints=TO220, TO247_GCE, TO220_GCE
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 4
 M 500,150
 L 378,170

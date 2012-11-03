@@ -46,7 +46,7 @@ device=TOKO4DFA
 T 0 0 8 10 0 1 0 0 1
 comment=class=IC
 T 0 0 8 10 0 1 0 0 1
-comment=pins=5
+pins=5
 P 700 200 700 0 1 0 1
 {
 T 600 0 5 10 0 1 0 0 1

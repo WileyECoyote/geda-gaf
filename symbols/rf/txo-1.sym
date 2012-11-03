@@ -51,7 +51,7 @@ comment=class=IC
 T 200 2000 8 10 0 0 0 0 1
 device=VTXO
 T 200 1800 8 10 0 0 0 0 1
-comment=pins=4
+pins=4
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1

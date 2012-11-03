@@ -100,11 +100,11 @@ void verbose_reset_index(void)
 /*------------------------------------------------------------------
  * Gattrib specific utilities
  *------------------------------------------------------------------*/
-char *s_misc_remaining_string(gchar *string, gchar delimiter, gint count)
+char *s_misc_remaining_string(char *string, char delimiter, int count)
 {
-  gint i;
-  gchar *remaining;
-  gchar *return_value;
+  int i;
+  char *remaining;
+  char *return_value;
 
   /* find count'th delimiter */
   remaining = string;

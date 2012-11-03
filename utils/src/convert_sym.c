@@ -44,7 +44,7 @@
 #include <math.h>
 
 #include <config.h>
-#include <libgeda/colors.h>
+#include <libgeda/geda_colors.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>

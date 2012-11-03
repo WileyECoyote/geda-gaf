@@ -45,7 +45,7 @@ SCM_DEFINE (make_complex, "%make-complex", 1, 0, 0,
 
   char *tmp = scm_to_utf8_string (basename_s);
   OBJECT *obj = o_complex_new_embedded (edascm_c_current_toplevel (),
-                                        OBJ_COMPLEX, DEFAULT_COLOR, 0, 0, 0,
+                                        OBJ_COMPLEX, DEFAULT_COLOR_INDEX, 0, 0, 0,
                                         FALSE, tmp, TRUE);
   free (tmp);
 
@@ -89,7 +89,7 @@ SCM_DEFINE (make_complex_library, "%make-complex/library", 1, 0, 0,
   const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
   if (clib != NULL) {
     OBJECT *obj = o_complex_new (edascm_c_current_toplevel (),
-                                 OBJ_COMPLEX, DEFAULT_COLOR, 0, 0, 0,
+                                 OBJ_COMPLEX, DEFAULT_COLOR_INDEX, 0, 0, 0,
                                  FALSE, clib, basename, TRUE);
 
     result = edascm_from_object (obj);

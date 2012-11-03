@@ -36,7 +36,7 @@
 #include <getopt.h>
 #endif
 
-#include <libgeda/colors.h>
+#include <libgeda/geda_colors.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -46,7 +46,7 @@
  *  command line options
  */
 #define SARVERSION "0.94"
-#define GEDAVERSION "20020825"
+//#define GEDAVERSION "20020825"
 
 #define DEFAULT_SCALE 200 /* was 100 */
 
@@ -817,7 +817,7 @@ main(int argc, char **argv)
     }
 	
     /* BAD update to latest file format.. */
-    fprintf(stdout,"v %s\n",GEDAVERSION);
+    fprintf(stdout,"v %s\n","@DATE_VERSION@");
 
     fd1 = open(argv[optind],O_RDONLY);
     if( fd1 < 0 )

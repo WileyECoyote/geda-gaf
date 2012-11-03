@@ -35,7 +35,7 @@ pintype=io
 T 200 2200 8 10 0 1 0 0 1
 device=XINGER4A4305
 T 200 2000 8 10 0 0 0 0 1
-comment=pins=5
+pins=5
 T 200 2400 8 10 0 0 0 0 1
 comment=class=IC
 T 200 1800 8 10 0 1 0 0 1
