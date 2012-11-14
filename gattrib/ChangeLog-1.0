@@ -1,3 +1,47 @@
+2012-11-13 Wiley E. Hill <wileyhill@gmail.com>
+        * gattrib: Extension revisions throught-out code adding
+        functionality for toolbars, menus. Major changes were as
+        follows:
+        * src/x_gtksheet.c: Added local function CreateSheet for
+        x_gtksheet_init, added argument PageDataSet. Created new
+        functions; x_gtksheet_reinititialize to resize the gtksheets
+        after new file is loaded. Added signal handlers, starting
+        from code in testgtksheet.c and then functional part were
+        revised for use with gattrib.
+        
+        * src/x_menu.c: New source file, relocated menu code from
+        x_window.c and supplamenting with new menu handlers. Added
+        toolbar toggles and recent file open code (This was hard because
+        even after 7 years there does not seem to be an example of 
+        ui manager with xml and recent manager with chooser! Ultimately
+        the solution was to remove the container and replace with
+        a new recent manager after GTK was done making assumtions, see
+        x_menu_fix_gtk_recent_submenu.)
+        
+	* src/x_fileselect.c: Revised x_fileselect_load_files to
+	use new function x_fileselect_load_file relocated common code
+	to other functions for use by x_menu_file_open and menu_open_recent.
+
+	
+        * src/gattrib: Add calls to functions with code relocated from
+        x_fileselect_load_files rather than being executed in the loader,
+        added calls to s_toplevel_init_data_set and x_gtksheet_init.
+        
+
+	* src/s_table.c: Relocated code from to x_fileselect_load_files
+	x_fileselect_load_files function s_table_load_new_page so that
+	this code could be called from x_menu_file_open and menu_open_recent.
+	
+	* src/x_window: Extensive revision to function x_window_init,
+	relocated menu code to x_menu.c. Added x_window_set_title function.
+		
+	* lib/gattrib-menus.xml: Update to reflect new menu options.
+	* include: Add subfolder gtksheet and move gtksheet headers to
+	subfolder, except gtksheet.h so as to better organize code source.
+	
+	* include/Makefile.am: Revised for seperation of gtksheet headers
+	into subfolder.
+	
 2012-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x_gtksheet.c: Replaced #defines with enumerated ColorId

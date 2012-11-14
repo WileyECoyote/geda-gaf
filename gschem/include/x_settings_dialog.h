@@ -47,12 +47,9 @@
  *    2.) Add the string text to SAME position in DialogStrings
  *
  *    3.) Reference the string with the enumerators using the
- *        following macros:
+ *        macros in x_dialog_controls.h
  */
-#define WIDGET(member)    DialogStrings[member].Widget
-#define LABEL(member)     DialogStrings[member].Label
-#define TOOLTIP(member)   DialogStrings[member].Tip
-#define TAB_LABEL(member) DialogTabData[member].Label
+
 
 /* These Macro were used during development so "dummy" data,
  * in the AttributeList arrays, could be substituted for the
@@ -66,15 +63,8 @@
 #define View2DefaultData DefaultFilterList
 
 #define TitleBlockData DefaultTitleBlockList
-
-typedef struct
-{
-   const char *Widget;
-   const char *Label;
-   const char *Tip;
-} WidgetStringData;
-
-WidgetStringData DialogTabData[] = {
+/*
+static WidgetStringData DialogTabData[] = {
         { "GeneralTab",        "General",      "General program options"},
         { "EditTab",           "Edit",         "Editing preferences"},
         { "PointerTab",        "Pointer",      "Mouse related configuration options"},
@@ -84,7 +74,7 @@ WidgetStringData DialogTabData[] = {
         { "AttributesTab",     "Attributes",   "Attributes"},
         { "LibraryTab",        "Library",      "Library related perferences"},
 };
-
+*/
 WidgetStringData DialogStrings[] = {
 
   /* 5 String for Section Labels */

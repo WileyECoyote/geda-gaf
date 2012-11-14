@@ -33,8 +33,8 @@
 #endif
 
 /* command line arguments */
-int verbose_mode=FALSE; //!< Reflects the value of the command line flag
-int quiet_mode=FALSE;   //!< Reflects the value of the command line flag
+int verbose_mode; //!< Reflects the value of the command line flag
+int quiet_mode;   //!< Reflects the value of the command line flag
 
 /*!
  * these are required by libgeda

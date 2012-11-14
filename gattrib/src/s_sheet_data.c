@@ -45,49 +45,78 @@
 #include <dmalloc.h>
 #endif
 
-
 /*------------------------------------------------------------------*/
 /*!
  * \brief Create a SHEET_DATA struct.
  *
- * Creates an initialised but empty SHEET_DATA struct.
- * \returns a pointer to a SHEET_DATA struct.
+ * Creates an initialised but empty data struct.
+ * \returns a pointer to a data struct.
  */
 SHEET_DATA *s_sheet_data_new()
 {
-  SHEET_DATA *new_sheet;
+  PageDataSet *new_data_set;
 
-  new_sheet = (SHEET_DATA *) g_malloc(sizeof(SHEET_DATA));
+  new_data_set = (PageDataSet *) malloc(sizeof(PageDataSet));
 
-  /* We will malloc and fill out the comp table later. */
-  new_sheet->component_table = NULL;
+  /* We will allocate and fill out the comp table later. */
+  new_data_set->component_table = NULL;
 
-  /* We will malloc and fill out the net table later. */
-  new_sheet->net_table = NULL;
+  /* We will allocate and fill out the net table later. */
+  new_data_set->net_table = NULL;
 
-  /* We will malloc and fill out the pin table later. */
-  new_sheet->pin_table = NULL;
+  /* We will allocate and fill out the pin table later. */
+  new_data_set->pin_table = NULL;
 
   /* Now we create the first cell in each master list. */
-  new_sheet->master_comp_list_head = (STRING_LIST *) s_string_list_new();
-  new_sheet->master_comp_attrib_list_head = (STRING_LIST *) s_string_list_new();
-  new_sheet->comp_count = 0;
-  new_sheet->comp_attrib_count = 0;
+  new_data_set->master_comp_list_head = (STRING_LIST *) s_string_list_new();
+  new_data_set->master_comp_attrib_list_head = (STRING_LIST *) s_string_list_new();
+  new_data_set->attached_attrib = (STRING_LIST *) s_string_list_new();
+    
+  new_data_set->comp_count = 0;
+  new_data_set->comp_attrib_count = 0;
+  new_data_set->attached_attrib_count = 0;
+    
+  new_data_set->master_net_list_head = (STRING_LIST *) s_string_list_new();
+  new_data_set->master_net_attrib_list_head = (STRING_LIST *) s_string_list_new();
+  new_data_set->net_count = 0;
+  new_data_set->net_attrib_count = 0;
 
-  new_sheet->master_net_list_head = (STRING_LIST *) s_string_list_new();
-  new_sheet->master_net_attrib_list_head = (STRING_LIST *) s_string_list_new();
-  new_sheet->net_count = 0;
-  new_sheet->net_attrib_count = 0;
+  new_data_set->master_pin_list_head = (STRING_LIST *) s_string_list_new();
+  new_data_set->master_pin_attrib_list_head = (STRING_LIST *) s_string_list_new();
+  new_data_set->pin_count = 0;
+  new_data_set->pin_attrib_count = 0;
 
-  new_sheet->master_pin_list_head = (STRING_LIST *) s_string_list_new();
-  new_sheet->master_pin_attrib_list_head = (STRING_LIST *) s_string_list_new();
-  new_sheet->pin_count = 0;
-  new_sheet->pin_attrib_count = 0;
+  new_data_set->CHANGED = FALSE;
 
-  new_sheet->CHANGED = FALSE;
+  return (new_data_set);
+}
 
-  return (new_sheet);
+/*------------------------------------------------------------------*/
+/*!
+ * \brief Frees a SHEET_DATA struct and all it's contents.
+ *
+ * Creates an initialised but empty SHEET_DATA struct.
+ * \returns a pointer to a SHEET_DATA struct.
+ */
+bool s_sheet_data_reset(PageDataSet *PageData)
+{
+  if (PageData != NULL) {
+    s_string_list_free(PageData->master_comp_list_head);
+    s_string_list_free(PageData->master_comp_attrib_list_head);
+    s_string_list_free(PageData->attached_attrib);
 
+    s_string_list_free(PageData->master_net_list_head);
+    s_string_list_free(PageData->master_net_attrib_list_head);
+
+    s_string_list_free(PageData->master_pin_list_head);
+    s_string_list_free(PageData->master_pin_attrib_list_head);
+   
+    free(PageData);
+    PageData = NULL;
+  }
+  else
+    return FALSE;
+  return TRUE;
 }
 
 /*------------------------------------------------------------------*/
@@ -144,9 +173,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 				  &(sheet_head->comp_count), temp_uref);
 	  g_free(temp_uref);
 	}
-	
       } /*  if (o_current->type == OBJ_COMPLEX . . . . .) */
-      
   }
   
   return;
@@ -169,6 +196,9 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
   const GList *o_iter;
   GList *a_iter;
   OBJECT *a_current;
+
+  GList *object_attribs;
+  bool is_attached;
   
 #ifdef DEBUG
   fflush(stderr);
@@ -185,43 +215,49 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
     OBJECT *o_current = o_iter->data;
 
 #ifdef DEBUG
-      printf("In s_sheet_data_add_master_comp_attrib_list_items, examining o_current->name = %s\n", o_current->name);
+    printf("In s_sheet_data_add_master_comp_attrib_list_items, examining o_current->name = %s\n", o_current->name);
 #endif
 
-      /*-----  only process if this is a component with attributes ----*/
-      if (o_current->type == OBJ_COMPLEX &&
-          o_current->attribs != NULL) {
+    /*-----  only process if this is a component with attributes ----*/
+    //if (o_current->type == OBJ_COMPLEX && o_current->attribs != NULL) {
+    if (o_current->type == OBJ_COMPLEX) {
+      object_attribs = o_attrib_return_attribs (o_current);
+      for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter)) {
+        a_current = a_iter->data;
 
-	/*------ Iterate through all attribs found on component -----*/
-	a_iter = o_current->attribs; /* This has a side effect.  Why? */
-	while (a_iter != NULL) {
-	  a_current = a_iter->data;
-	  if (a_current->type == OBJ_TEXT && a_current->text != NULL) { 
-	    /* found an attribute */
-	    attrib_text = g_strdup(a_current->text->string);
-	    attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
-
-	      /* Don't include "refdes" or "slot" because they form the row name */
-	      /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
-	    if ( (strcmp(attrib_name, "refdes") != 0) &&
-		 (strcmp(attrib_name, "net") != 0) &&
-		 (strcmp(attrib_name, "slot") != 0) ) {  
+	  if (a_current->type == OBJ_TEXT ) { /* WEH: Are there attributes that are not text? */ 
+	  /* found an attribute */
+	  attrib_text = g_strdup(a_current->text->string);
+	  attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
+	  
+	  /* Don't include "refdes" or "slot" because they form the row name */
+	  /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
+	  //use instr and gang strings, maybe take out pin
+	  if ( (strcmp(attrib_name, "refdes") != 0) &&
+	     (strcmp(attrib_name, "net") != 0) &&
+	     (strcmp(attrib_name, "slot") != 0) ) { 
+	     is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
+	     if (is_attached) {
 #if DEBUG
-	      printf(" . . . from this component, about to add to master comp attrib list attrib = %s\n", attrib_name);
+	       printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
 #endif
-	      s_string_list_add_item(sheet_head->master_comp_attrib_list_head, 
-				     &(sheet_head->comp_attrib_count), attrib_name);
-	    }   /* if (strcmp(attrib_name, "refdes") != 0) */ 
-	    g_free(attrib_name);
-	    g_free(attrib_text);
+	        s_string_list_add_item(sheet_head->attached_attrib, &(sheet_head->attached_attrib_count), attrib_name);
+	     }
+	     else { /* is an attached attribute */
+#if DEBUG
+	       printf("adding an attrib to master comp attrib list attrib = %s\n", attrib_text);
+#endif
+	       s_string_list_add_item(sheet_head->master_comp_attrib_list_head,
+		 		    &(sheet_head->comp_attrib_count), attrib_name);
+	     }
 	  }
-	  a_iter = g_list_next (a_iter);
-	}   /*  while  */
-      }   /* if (o_current->type == OBJ_COMPLEX) */
+	  g_free(attrib_name);
+	  g_free(attrib_text);
+	}
+      } /* Next attribute_iter*/
+    } /* if (o_current->type == OBJ_COMPLEX) */
   }
-  
-  /* -----  Now sort component list into alphabetical order  ----- */
-  
+
   return;
 }
 
@@ -235,6 +271,8 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
  * attributes.
  */
 void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
+  s_string_list_add_item(sheet_head->master_net_list_head, 
+				  &(sheet_head->net_count), "none");
   return;
 }
 
@@ -247,6 +285,8 @@ void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
  * attributes.
  */
 void s_sheet_data_add_master_net_attrib_list_items (const GList *obj_start) {
+  s_string_list_add_item(sheet_head->master_net_attrib_list_head, 
+				  &(sheet_head->net_attrib_count), "none");
   return;
 }
 

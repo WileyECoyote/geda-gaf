@@ -257,10 +257,7 @@ typedef struct {
 
 /* Defined in x_settings.c */
 
-GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
-           GtkWidget *widget, GtkWidget *SwitchImage, gboolean istate);
 GtkWidget* get_geda_bulb_image (gboolean WhichState);
-GtkWidget* get_geda_switch_image ( gboolean WhichState);
 
 void bulb_on( GtkWidget *widget);
 void bulb_off( GtkWidget *widget);

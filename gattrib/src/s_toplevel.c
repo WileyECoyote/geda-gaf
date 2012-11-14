@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * Copyright (C) 2003-2012 Stuart D. Brorson.
- *
+ * Copyright (C) 2012 gEDA Contributors (see ChangeLog for details)
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -49,12 +50,14 @@
  *  This function gets calls the Libgeda f_close functions
  *  
  */
-void s_toplevel_close() {
-  s_table_destroy(sheet_head->component_table, sheet_head->comp_count, sheet_head->comp_attrib_count);
-  s_table_destroy(sheet_head->net_table, sheet_head->net_count, sheet_head->net_attrib_count);
-  s_table_destroy(sheet_head->pin_table , sheet_head->pin_count, sheet_head->pin_attrib_count);
-  x_gtksheet_destroy_all();
-  f_close(pr_current);
+void s_toplevel_close(PageDataSet *PageData) {
+  s_table_destroy(PageData->component_table, PageData->comp_count, PageData->comp_attrib_count);
+  s_table_destroy(PageData->net_table, PageData->net_count, PageData->net_attrib_count);
+  s_table_destroy(PageData->pin_table , PageData->pin_count, PageData->pin_attrib_count);
+  //x_gtksheet_destroy_all();
+  s_sheet_data_reset(PageData);
+  f_close(pr_current);  /*  Does absolutely nothing */
+  s_page_delete (pr_current, pr_current->page_current);
 }
 /*! \brief Read a schematic page
  *
@@ -213,10 +216,14 @@ void s_toplevel_add_new_attrib(char *new_attrib_name) {
     printf("In s_toplevel_add_new_attrib, before adding new comp attrib.\n");
     printf("                           comp_attrib_count = %d\n", old_comp_attrib_count);
 #endif
-
+    s_string_list_add_item(sheet_head->attached_attrib, 
+			   &(sheet_head->attached_attrib_count), 
+			   new_attrib_name);
+    
     s_string_list_add_item(sheet_head->master_comp_attrib_list_head, 
 			   &(sheet_head->comp_attrib_count), 
 			   new_attrib_name);
+
     s_string_list_sort_master_comp_attrib_list();
 
 #ifdef DEBUG
@@ -1039,5 +1046,15 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
   return;
 }
 
+void s_toplevel_init_data_set(TOPLEVEL *toplevel, PageDataSet *PageData) {
+  
+  s_string_list_sort_all_list();
 
+  /* ---------- Create and load the tables  ---------- */
+  s_table_load_new_page(PageData);
+
+  /* ---------- Now verify correctness of entire design.  ---------- */
+  s_toplevel_verify_design(toplevel);  /* pr_current is a global */
+  
+}
 

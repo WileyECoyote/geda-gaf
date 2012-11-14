@@ -636,13 +636,13 @@
 (thin-bus-width 15)
 (thick-bus-width 30)
 
-(thin-line-width 10)
+(thin-line-width 15)
 (thick-line-width 30)
 
-(thin-net-width 5)
-(thick-net-width 20)
+(thin-net-width 15)
+(thick-net-width 25)
 
-(thin-pin-width 10)
+(thin-pin-width 15)
 (thick-pin-width 30)
 
 ;END ----------------------->  Net Styles  <------------------------
@@ -1319,7 +1319,6 @@
 (map-keys "E B" "edit-embed")
 (map-keys "E U" "edit-unembed")
 (map-keys "E P" "edit-update")
-(map-keys "E N" "edit-show-hidden")
 
 (map-keys "F W" "file-new-window")
 (map-keys "F N" "file-new")
@@ -1397,6 +1396,7 @@
 (map-keys "V P" "view-pan-hotkey")
 (map-keys "V O" "view-zoom-out-hotkey")
 (map-keys "V I" "view-zoom-in-hotkey")
+(map-keys "V A" "edit-show-hidden")
 (map-keys "V D" "view-dark-colors")
 (map-keys "V L" "view-light-colors")
 (map-keys "V W" "view-bw-colors")
@@ -1525,7 +1525,6 @@
         (,(N_ "Embed Component/Picture")    edit-embed     edit-embed              #f)
         (,(N_ "Unembed Component/Picture")  edit-unembed   edit-unembed            #f)
         (,(N_ "Update Component")   edit-update            edit-update             "gtk-refresh")
-        (,(N_ "Show/Hide Inv Text") edit-show-hidden       edit-show-hidden        #f)
       )
 )
 
@@ -1562,6 +1561,9 @@
         (,(N_ "Zoom _In")            view-zoom-in            view-zoom-in-hotkey     "gtk-zoom-in")
         (,(N_ "Zoom _Out")           view-zoom-out           view-zoom-out-hotkey    "gtk-zoom-out")
         (,(N_ "Zoom _Full")          view-zoom-full          view-zoom-full          #f)
+
+        ("SEPARATOR"                #f                      #f                       #f)
+        (,(N_ "Show/Hide Inv Text")  edit-show-hidden        edit-show-hidden        #f)
 
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "_Dark color scheme")  view-dark-colors        view-dark-colors        #f)

@@ -53,7 +53,35 @@
 #include <dmalloc.h>
 #endif
 
+/*! \brief Create pixmap widget for dialogs boxes.
+ *  \par Function Description
+ *  This is an internally used function to create pixmaps.
+ *  The default bitmap directory is prefixed to the filename
+ *  and if is valid then the image widget is created and returned. GtkWidget *widget, 
+ */
 
+GtkWidget* create_pixmap (const char *filename)
+{
+  char *pathname = NULL;
+  GtkWidget *pixmap;
+
+  if (!filename || !filename[0])
+      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
+                                      GTK_ICON_SIZE_INVALID);
+
+  pathname = g_build_filename (s_path_sys_data (), "bitmap", filename, NULL);
+
+  if (!pathname)
+    {
+      s_log_message("Could not find image at file: %s.\n", filename);
+      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
+                                      GTK_ICON_SIZE_INVALID);
+    }
+
+  pixmap = gtk_image_new_from_file (pathname);
+  g_free (pathname);
+  return pixmap;
+}
 /*! \brief Add new attribute dialog.
  *
  * This asks for the name of the attrib column to insert

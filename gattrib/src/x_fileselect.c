@@ -67,9 +67,7 @@
 #include <dmalloc.h>
 #endif
 
-
 /* ----- x_fileselect stuff begins here ----- */
-
 /*------------------------------------------------------------------*/
 /*! \brief Set up file filter for the file chooser
  *
@@ -104,156 +102,6 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
   gtk_file_chooser_add_filter (filechooser, filter);
 
 }
-
-/*! \brief Open all files specified in the list.
- *
- * Open all files specified in the list. The caller is responsible for
- * freeing the strings and the list itself.
- *
- *  The function updates the user interface. At the end of the function, 
- *  the toplevel's current page is set to the page of the last loaded page.
- *
- *  \param [in] filenames list of files to be opened
- *  \returns FALSE if any of the files could not be opened, TRUE otherwise
- */
-bool x_fileselect_load_files (GSList *filenames)
-{
-  GList *iter;
-  GList *Objects;
-  PAGE *p_local;
-  GSList *filename;
-
-  /* iterate over selected files */
-  for (filename = filenames;
-       filename != NULL;
-       filename = g_slist_next (filename)) {
-
-    char *string = (char*)filename->data;
-
-    if (!quiet_mode) {
-      s_log_message(_("Loading file [%s]\n"), string);
-    }
-
-    s_page_goto (pr_current, s_page_new (pr_current, string));
-  
-    if(s_toplevel_read_page(pr_current, string) == 0) {
-       fprintf(stderr, _("Couldn't load schematic [%s]\n"), string);
-       return FALSE;
-    }
-
-    Objects = s_page_objects (pr_current->page_current);
-
-    /* Now add all items found to the master lists */
-    s_sheet_data_add_master_comp_list_items (Objects);
-    s_sheet_data_add_master_comp_attrib_list_items (Objects);
-#if 0
-    /* Note that this must be changed.  We need to input the entire project
-     * before doing anything with the nets because we need to first
-     * determine where they are all connected!   */
-    s_sheet_data_add_master_net_list_items (pr_current->page_current->object_list);
-    s_sheet_data_add_master_net_attrib_list_items (pr_current->page_current->object_list);
-#endif
-    
-    s_sheet_data_add_master_pin_list_items (Objects);
-    s_sheet_data_add_master_pin_attrib_list_items (Objects);
-  }  	/* end of loop over files     */
-
-  /* ---------- Sort the master lists  ---------- */
-  s_string_list_sort_master_comp_list();
-  s_string_list_sort_master_comp_attrib_list();
-
-#if 0
-  /* Note that this must be changed.  We need to input the entire project
-   * before doing anything with the nets because we need to first
-   * determine where they are all connected!   */
-  s_string_list_sort_master_net_list();
-  s_string_list_sort_master_net_attrib_list();
-#endif
-
-  s_string_list_sort_master_pin_list();
-  s_string_list_sort_master_pin_attrib_list();
-
-  /* ---------- Create and load the tables  ---------- */
-  sheet_head->component_table = s_table_new(sheet_head->comp_count, sheet_head->comp_attrib_count);
-  sheet_head->net_table = s_table_new(sheet_head->net_count, sheet_head->net_attrib_count);
-  sheet_head->pin_table = s_table_new(sheet_head->pin_count, sheet_head->pin_attrib_count);
-
-  /* must iterate over all pages in design */
-  for ( iter = geda_list_get_glist( pr_current->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-    p_local = (PAGE *)iter->data;
-
-    /* only traverse pages which are toplevel */
-    if (p_local->page_control == 0) {
-      /* adds all components from page to comp_table */
-      s_table_add_toplevel_comp_items_to_comp_table (s_page_objects (p_local));
-#if 0
-      /* Note that this must be changed.  We need to input the entire project
-       * before doing anything with the nets because we need to first
-       * determine where they are all connected!   */
-
-      /* adds all nets from page to net_table */
-      s_table_add_toplevel_net_items_to_net_table(p_local->object_head);
-#endif
-
-      /* adds all pins from page to pin_table */
-      s_table_add_toplevel_pin_items_to_pin_table (s_page_objects (p_local));
-    }
-  } /* for loop over pages */
-
-  /* -------------- update windows --------------- */
-  x_window_add_items();    /* This updates the top level stuff,
-                            * and then calls another fcn to update
-                            * the GtkSheet itself.  */
-
-  /* ---------- Now verify correctness of entire design.  ---------- */
-  s_toplevel_verify_design(pr_current);  /* pr_current is a global */
-	    
-  return TRUE;
-}
-
-/*! \brief Open file dialog
- *
- * This function opens a file chooser dialog and waits for the user
- *         to select at least one file to load as toplevel's new pages.
- *
- *  \returns list of files to be opened, or NULL if the user cancelled
- *           the dialog
- */
-GSList *x_fileselect_open (void)
-{
-  GtkWidget *dialog;
-  GSList *filenames = NULL;
-
-  dialog = gtk_file_chooser_dialog_new (_("Open..."),
-                                        GTK_WINDOW(window),
-                                        GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,
-                                        NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
-					  -1);
-  
-  g_object_set (dialog,
-                /* GtkFileChooser */
-                "select-multiple", TRUE,
-                NULL);
-  /* add file filters to dialog */
-  x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
-  gtk_widget_show (dialog);
-
-  if(gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT)
-     filenames = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
-  
-  gtk_widget_destroy (dialog);
-  return filenames;
-}
-
 /*------------------------------------------------------------------*/
 /*! \brief Generic File Dialog
  *
@@ -317,3 +165,127 @@ bool x_fileselect ( char* filename )
   gtk_widget_destroy (dialog);
   return result;
 }
+
+/*! \brief Do Documentation  */
+/* TODO:move gtk_recent_manager_add_item */
+bool x_fileselect_load_file (char *filename) {
+
+  GList *Objects;
+
+  if (!quiet_mode) {
+    s_log_message(_("Loading file [%s]\n"), filename);
+  }
+
+  s_page_goto (pr_current, s_page_new (pr_current, filename));
+  
+  if(s_toplevel_read_page(pr_current, filename) == 0) {
+     fprintf(stderr, _("Couldn't load schematic [%s]\n"), filename);
+     return FALSE;
+  }
+
+  Objects = s_page_objects (pr_current->page_current);
+
+  /* Now add all items found to the master lists */
+  s_sheet_data_add_master_comp_list_items (Objects);
+  s_sheet_data_add_master_comp_attrib_list_items (Objects);
+
+  /* Note that this must be changed.  We need to input the entire project
+   * before doing anything with the nets because we need to first
+   * determine where they are all connected!   */
+  s_sheet_data_add_master_net_list_items (Objects);
+  s_sheet_data_add_master_net_attrib_list_items (Objects);
+    
+  s_sheet_data_add_master_pin_list_items (Objects);
+  s_sheet_data_add_master_pin_attrib_list_items (Objects);
+    
+  return TRUE;
+}
+
+/*! \brief Open all files specified in the list.
+ *
+ * Open all files specified in the list. The caller is responsible for
+ * freeing the strings and the list itself.
+ *
+ *  The function updates the user interface. At the end of the function, 
+ *  the toplevel's current page is set to the page of the last loaded page.
+ *
+ *  \param [in] filenames list of files to be opened
+ *  \returns FALSE if any of the files could not be opened, TRUE otherwise
+ */
+bool x_fileselect_load_files (GSList *filenames)
+{
+
+  GSList *ptrname;
+  char *filename;
+  
+  /* iterate over selected files */
+  for (ptrname = filenames;
+       ptrname != NULL;
+       ptrname = g_slist_next (ptrname)) {
+
+    filename = (char*)ptrname->data;
+    x_fileselect_load_file(filename);
+
+  }  	/* end of loop over files     */
+	    
+  return TRUE;
+}
+
+/*! \brief Open file dialog
+ *
+ * This function opens a file chooser dialog and waits for the user
+ *  to select at least one file to load as toplevel's new pages.
+ *
+ *  \returns list of files to be opened, or NULL if the user cancelled
+ *           the dialog
+ */
+GSList *x_fileselect_open (void)
+{
+  GtkWidget *dialog;
+  GSList *filenames = NULL;
+  char  *cwd    = NULL;
+  GSList *ptrname;
+  char *filename;
+  
+  dialog = gtk_file_chooser_dialog_new (_("Open..."),
+                                        GTK_WINDOW(window),
+                                        GTK_FILE_CHOOSER_ACTION_OPEN,
+                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                        GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,
+                                        NULL);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
+					  GTK_RESPONSE_ACCEPT,
+					  GTK_RESPONSE_CANCEL,
+					  -1);
+  
+  g_object_set (dialog,
+                /* GtkFileChooser */
+                "select-multiple", TRUE,
+                NULL);
+  /* add file filters to dialog */
+  x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
+  gtk_widget_show (dialog);
+
+  /* get current working dir */
+  cwd = getcwd(0,0);
+  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  free (cwd);
+
+  if(gtk_dialog_run (GTK_DIALOG(dialog)) == GTK_RESPONSE_ACCEPT) {
+     filenames = gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+     for (ptrname = filenames;
+       ptrname != NULL;
+       ptrname = g_slist_next (ptrname)) {
+       filename = (char*)ptrname->data;
+       gtk_recent_manager_add_item (recent_manager,
+				    g_filename_to_uri(filename,
+						      NULL, NULL));
+     }
+  }
+  
+  gtk_widget_destroy (GTK_WIDGET(dialog));
+  return filenames;
+}
+

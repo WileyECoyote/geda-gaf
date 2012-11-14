@@ -40,7 +40,6 @@
 
 #include "gtksheet.h"
 
-
 /* ========  Data structures used in processing below here  ========== */
 
 
@@ -51,9 +50,12 @@
  *            ->(TABLE *XXX_table)                      // table of attrib values (table entries)
  * ----------------------------------------------------------------- */
 typedef struct st_sheet_data SHEET_DATA;
+typedef struct st_sheet_data PageDataSet;
+
 typedef struct st_table TABLE;
 typedef struct st_string_list STRING_LIST;
 typedef struct st_pin_list PIN_LIST;
+
 typedef struct st_main_window MAIN_WINDOW;
 
 
@@ -68,9 +70,12 @@ typedef struct st_main_window MAIN_WINDOW;
 struct st_sheet_data {
   STRING_LIST *master_comp_list_head;         /*!< Sorted list of all component refdeses used in design */
   STRING_LIST *master_comp_attrib_list_head;  /*!< Sorted list of all component attribs used in design */
+  STRING_LIST *attached_attrib;               /*!<  list of all attached attribs used in design */
+  
   int comp_count;                             /*!< This cannnot change -- user must edit design using gschem */
   int comp_attrib_count;                      /*!< This can change in this prog if the user adds attribs */
-
+  int attached_attrib_count; 
+  
   STRING_LIST *master_net_list_head;          /*!< Sorted list of all net names used in design */
   STRING_LIST *master_net_attrib_list_head;   /*!< Sorted list of all net attribs used in design */
   int net_count;                              /*!< This cannnot change -- user must edit design using gschem */

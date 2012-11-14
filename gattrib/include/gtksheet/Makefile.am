@@ -1,12 +1,9 @@
 ## Process this file with automake to produce Makefile.in
 
-noinst_HEADERS =  gtksheet.h
-		  gattrib.h \
-		  globals.h \
-		  prototype.h \
-		  x_states.h \
-		  i_vars.h \
-		  struct.h
+noinst_HEADERS =   gtksheet-version.h \
+		   gtksheet-marshal.h \
+		   gtksheettypebuiltins.h \
+        	   gtkitementry.h
 
 MOSTLYCLEANFILES = *.log core FILE *~ #*#
 CLEANFILES = *.log core FILE *~ #*#

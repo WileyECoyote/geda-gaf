@@ -22,6 +22,8 @@
  *  \brief utilility file functions
  */
 
+/*! TODO: review function s_slib_getbasename could other modules use this
+ *       function, if so then should relocate to this module */
 #include <config.h>
 #if defined(_LINUX)
  #include <sys/sendfile>

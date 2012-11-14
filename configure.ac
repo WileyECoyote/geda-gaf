@@ -211,6 +211,7 @@ AC_CONFIG_FILES([Makefile
                  gattrib/design/Makefile
                  gattrib/docs/Makefile
                  gattrib/include/Makefile
+                 gattrib/include/gtksheet/Makefile
                  gattrib/lib/Makefile
                  gattrib/lib/system-gattribrc
                  gattrib/src/Makefile

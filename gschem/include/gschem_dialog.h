@@ -80,5 +80,9 @@ GtkWidget* gschem_dialog_new_with_buttons (const gchar *title, GtkWindow *parent
                                            const gchar *settings_name, GSCHEM_TOPLEVEL *w_current,
                                            const gchar *first_button_text, ...);
 
+/* Prototypes for Dialogs */
+GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
+           GtkWidget *widget, GtkWidget *SwitchImage, gboolean istate);
+GtkWidget* get_geda_switch_image ( gboolean WhichState);
 
 #endif /* __GSCHEM_DIALOG_H__ */

@@ -697,8 +697,7 @@ GList * o_attrib_return_attribs (OBJECT *object)
  */
 int o_attrib_is_inherited (OBJECT *attrib)
 {
-  return (attrib->attached_to == NULL &&
-          attrib->parent != NULL);
+  return (attrib->attached_to == NULL && attrib->parent != NULL);
 }
 
 

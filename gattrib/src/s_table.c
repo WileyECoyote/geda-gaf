@@ -316,6 +316,7 @@ void s_table_add_toplevel_comp_items_to_comp_table (const GList *obj_list) {
               /* Sanity check */
               if (row == -1 || col == -1) {
                 /* we didn't find the item in the table */
+		fprintf (stderr, "looking for row ref [%s], column named [%s]\n", temp_uref, attrib_name);
                 fprintf (stderr,
                          _("In s_table_add_toplevel_comp_items_to_comp_table, we didn't find either row or col in the lists!\n"));
               } else {
@@ -586,7 +587,7 @@ void s_table_gtksheet_to_all_tables() {
   /* First handle component sheet */
   num_rows = sheet_head->comp_count;
   num_cols = sheet_head->comp_attrib_count;
-  local_gtk_sheet = sheets[0];
+  local_gtk_sheet = sheets[Components];
   master_row_list = sheet_head->master_comp_list_head;
   master_col_list = sheet_head->master_comp_attrib_list_head;
 
@@ -604,7 +605,7 @@ void s_table_gtksheet_to_all_tables() {
   /* Next handle net sheet */
   num_rows = sheet_head->net_count;
   num_cols = sheet_head->net_attrib_count;
-  local_gtk_sheet = sheets[1];
+  local_gtk_sheet = sheets[Nets];
   master_row_list = sheet_head->master_net_list_head;
   master_col_list = sheet_head->master_net_attrib_list_head;
   local_table = sheet_head->net_table;
@@ -617,7 +618,7 @@ void s_table_gtksheet_to_all_tables() {
   /* Finally, handle component pin sheet */
   num_rows = sheet_head->pin_count;
   num_cols = sheet_head->pin_attrib_count;
-  local_gtk_sheet = sheets[2];
+  local_gtk_sheet = sheets[Pins];
   master_row_list = sheet_head->master_pin_list_head;
   master_col_list = sheet_head->master_pin_attrib_list_head;
   /*  local_table = s_table_new(num_rows, num_cols);  */
@@ -732,3 +733,36 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_ro
   return;
 }
 
+/*! \brief Do Documentation  */
+void s_table_load_new_page(PageDataSet *PageData) {
+  GList *iter;
+  PAGE *p_local;
+  
+  PageData->component_table = s_table_new(PageData->comp_count, PageData->comp_attrib_count);
+  PageData->net_table = s_table_new(PageData->net_count, PageData->net_attrib_count);
+  PageData->pin_table = s_table_new(PageData->pin_count, PageData->pin_attrib_count);
+  
+  /* iterate over all pages in design */
+  for ( iter = geda_list_get_glist( pr_current->pages );
+        iter != NULL;
+        iter = g_list_next( iter ) ) {
+    p_local = (PAGE *)iter->data;
+
+    /* only traverse pages which are toplevel */
+    if (p_local->page_control == 0) {
+      /* adds all components from page to comp_table */
+      s_table_add_toplevel_comp_items_to_comp_table (s_page_objects (p_local));
+#if 0
+      /* Note that this must be changed.  We need to input the entire project
+       * before doing anything with the nets because we need to first
+       * determine where they are all connected!   */
+
+      /* adds all nets from page to net_table */
+      s_table_add_toplevel_net_items_to_net_table(p_local->object_head);
+#endif
+
+      /* adds all pins from page to pin_table */
+      s_table_add_toplevel_pin_items_to_pin_table (s_page_objects (p_local));
+    }
+  } /* for loop over pages */
+}

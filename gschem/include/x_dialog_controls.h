@@ -31,9 +31,30 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Inital release.
 ;; ------------------------------------------------------------------
-;;
+;; WEH | 11/03/12 |  Added macros GEDA_SWITCH & GEDA_CALLBACK_SWITCH
+;;                | to support routine with passing parameters and
+;;                | having independent callbacks. Added GEDA_NUMERIC_SPIN
+;;                | to support routines not using embed labels.
 */
+
 #pragma once
+
+typedef struct
+{
+   const char *Widget;
+   const char *Label;
+   const char *Tip;
+} WidgetStringData;
+
+/* Access Macros for String Structures */
+#define WIDGET(member)    DialogStrings[member].Widget
+#define LABEL(member)     DialogStrings[member].Label
+#define TOOLTIP(member)   DialogStrings[member].Tip
+#define TAB_LABEL(member) DialogTabData[member].Label
+
+#define _LABEL(member)     (gettext (LABEL (member)))
+#define _TOOLTIP(member)   (gettext (TOOLTIP (member)))
+#define _TAB_LABEL(member) (gettext (TAB_LABEL(member)))
 
 /* Use this macro like  Debug_IMAGE(AttributesTab_vbox, _6); */
 #define Debug_IMAGE(Parent, Number) \
@@ -297,7 +318,7 @@
  
 /* Widget Callbacks */
 #define GTK_CONNECT_CALLBACK(name, signal, function, data) \
-        g_signal_connect (G_OBJECT(name), signal, GTK_SIGNAL_FUNC(function), data);
+        g_signal_connect (G_OBJECT(name), signal, G_CALLBACK(function), data);
 
 #define GTK_CALLBACK_ENABLER(name, function, target) \
         GTK_CONNECT_CALLBACK(name, "toggled", function, target)
@@ -323,11 +344,15 @@
 #define GTK_ICALLBACK_SWITCH(name) \
         GTK_ICALLBACK (name##Switch, "toggled", Switch_Responder, name)
 
+#define GEDA_CALLBACK_SWITCH(name, func, data) \
+        GTK_CONNECT_CALLBACK (name##Switch, "toggled", func, data)
+
 /* Major Controls/Widgets */
 /* The controls that have "user values" MUST be pre-defined, the macros
  * define the  other widgets locally (and are therefore not accessible
  * directly.) So the Control can be disabled but their labels can not.
- * For info on labels and tooltips strings see the dialog header file.
+ * For info on labels and tooltips strings see the dialog header files
+ * and Access Macros for String Structures above.
 */
 #define GTK_NEW_ARROW(parent, name, dir, style, isexpandable, isfilled, spacing ) \
         name##Arrow = gtk_arrow_new ( dir, style); \
@@ -400,6 +425,14 @@
         group##Group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (name##Radio)); \
         HOOKUP_GEDA_OBJECT(name, Radio)
 
+/* Note that if Dialog uses GEDA_BULB  then don't use show_all short cut, use
+ * traditional gtk_widget_show(widget) because both the off and on images are
+ * inside the controls, show_all will cause both images to be displayed.
+ * One might also consider not defining groups for Bulbs, radio groups are a
+ * MAJOR hassle with GTK-2. Since button callbacks must manage the images it
+ * would be much easier to just manage the button states (while managing images
+ * rather than deal with GTK-2 radio groups.
+ */
 #define GEDA_BULB( group, name, dir) \
         name##Radio = gtk_radio_button_new(group##Group); \
         gtk_widget_show (name##Radio); \
@@ -420,7 +453,7 @@
         gtk_widget_show (hbox); \
         gtk_container_add (GTK_CONTAINER (alignment), hbox);        /* Put box container inside the Alignment */ \
         LightOn = get_geda_bulb_image(TRUE); \
-        gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); \
+        gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); /* Put both images inside box container */ \
         GTK_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
         LightOff = get_geda_bulb_image(FALSE); \
         gtk_widget_show(LightOff); \
@@ -432,7 +465,6 @@
         gtk_misc_set_padding (GTK_MISC (name##Label), 0, 0); }\
         HOOKUP_GEDA_OBJECT(name, Radio) \
         GTK_ICALLBACK_RADIO (name)
-
 
 #define GTK_BULB_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) { \
         HPSECTION (parent, group, spacing); \
@@ -522,17 +554,32 @@
         gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
         HOOKUP_GEDA_OBJECT(name, Spin) \
 }
-                    
-#define GTK_SWITCH(parent, name, spacing, state)  {     \
+
+#define GEDA_NUMERIC_SPIN(name, ivalue, minval, maxval) { \
+        gdouble step = (maxval > 100 ? 5 : 1 ); \
+        gdouble page = (maxval > 100 ? 25 : 10 ); \
+                page = (maxval > 1000 ? 50 : 10 ); \
+        GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
+        name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
+        gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
+        gtk_entry_set_activates_default(GTK_ENTRY(name##Spin), TRUE); \
+        gtk_widget_show (name##Spin);\
+        HOOKUP_GEDA_OBJECT(name, Spin) \
+}
+
+#define GEDA_SWITCH(GedaDialog, parent, name, spacing, state)  {     \
         GtkWidget *name##_hbox=NULL;                    \
         GtkWidget *name##Label=NULL;                    \
         GtkWidget *name##Image=NULL;                    \
         NEW_HCONTROL_BOX (parent, name, spacing)        \
         GTK_R5_LABEL (name)                    \
-        name##Switch = create_geda_switch (ThisDialog, name##_hbox, name##Switch,  name##Image, state); \
+        name##Switch = create_geda_switch (GedaDialog, name##_hbox, name##Switch,  name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
-        GTK_ICALLBACK_SWITCH (name) \
 }
+
+#define GTK_SWITCH(parent, name, spacing, state) \
+        GEDA_SWITCH (ThisDialog, parent, name, spacing, state) \
+        GTK_ICALLBACK_SWITCH (name)
 
 #define GTK_TEXT_ENTRY(parent, name, hpad, itext)  {    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
@@ -543,6 +590,11 @@
         PACK_hBOX(name, name##Entry, FALSE, FALSE, 0) \
         gtk_entry_set_text (GTK_ENTRY (name##Entry), _(itext)); \
         HOOKUP_GEDA_OBJECT(name, Entry) \
+}
+
+#define TOGGLE_SWITCH( switch ) { \
+        GtkWidget* SwitchImage = get_geda_switch_image(GET_SWITCH_STATE (switch)); \
+        gtk_button_set_image(GTK_BUTTON (switch), SwitchImage); \
 }
 
 /* View Trees load_tree_view_##source (ThisDialog, GTK_TREE_VIEW(name##View), data);*/

@@ -104,7 +104,7 @@ compselect_get_view (Compselect *compselect)
  */
 static void
 x_compselect_callback_response (GtkDialog *dialog,
-                                gint arg1,
+                                int arg1,
                                 gpointer user_data)
 {
   Compselect *compselect = (Compselect*)dialog;
@@ -374,17 +374,16 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
  *  \param [in] data  The component selection dialog.
  *  \returns TRUE if item should be visible, FALSE otherwise.
  */
-static gboolean
-lib_model_filter_visible_func (GtkTreeModel *model,
-                                      GtkTreeIter  *iter,
-                                      gpointer      data)
+static bool lib_model_filter_visible_func (GtkTreeModel *model,
+                                           GtkTreeIter  *iter,
+                                           gpointer      data)
 {
   Compselect *compselect = (Compselect*)data;
   CLibSymbol *sym;
-  const gchar *compname;
-  gchar *compname_upper, *text_upper, *pattern;
-  const gchar *text;
-  gboolean ret;
+  const char *compname;
+  char *compname_upper, *text_upper, *pattern;
+  const char *text;
+  bool ret;
 
   g_assert (IS_COMPSELECT (data));
 
@@ -425,7 +424,6 @@ lib_model_filter_visible_func (GtkTreeModel *model,
   return ret;
 }
 
-
 /*! \brief Handles activation (e.g. double-clicking) of a component row
  *  \par Function Description
  *  Component row activated handler:
@@ -463,7 +461,7 @@ tree_row_activated (GtkTreeView       *tree_view,
 
 /*! \brief GCompareFunc to sort an text object list by the object strings
  */
-static gint
+static int
 sort_object_text (OBJECT *a, OBJECT *b)
 {
   return strcmp (a->text->string, b->text->string);
@@ -489,7 +487,7 @@ update_attributes_model (Compselect *compselect, TOPLEVEL *preview_toplevel)
   GtkTreeIter iter;
   GtkTreeViewColumn *column;
   GList *listiter, *o_iter, *o_attrlist, *filter_list;
-  gchar *name, *value;
+  char *name, *value;
   OBJECT *o_current;
 
   model = (GtkListStore*) gtk_tree_view_get_model (compselect->attrtreeview);
@@ -575,7 +573,7 @@ compselect_callback_tree_selection_changed (GtkTreeSelection *selection,
   GtkTreeIter iter, parent;
   Compselect *compselect = (Compselect*)user_data;
   const CLibSymbol *sym = NULL;
-  gchar *buffer = NULL;
+  char *buffer = NULL;
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
@@ -622,8 +620,7 @@ compselect_callback_tree_selection_changed (GtkTreeSelection *selection,
  *  \param [in] data The component selection dialog.
  *  \returns FALSE to remove the timeout.
  */
-static gboolean
-compselect_filter_timeout (gpointer data)
+static bool compselect_filter_timeout (gpointer data)
 {
   Compselect *compselect = COMPSELECT (data);
   GtkTreeModel *model;
@@ -634,7 +631,7 @@ compselect_filter_timeout (gpointer data)
   model = gtk_tree_view_get_model (compselect->libtreeview);
 
   if (model != NULL) {
-    const gchar *text = gtk_entry_get_text (compselect->entry_filter);
+    const char *text = gtk_entry_get_text (compselect->entry_filter);
     gtk_tree_model_filter_refilter ((GtkTreeModelFilter*)model);
     if (strcmp (text, "") != 0) {
       /* filter text not-empty */
@@ -666,7 +663,7 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
 {
   Compselect *compselect = COMPSELECT (user_data);
   GtkWidget *button;
-  gboolean sensitive;
+  bool sensitive;
 
   /* turns button off if filter entry is empty */
   /* turns it on otherwise */
@@ -758,9 +755,7 @@ create_inuse_tree_model (Compselect *compselect)
 
     gtk_list_store_append (store, &iter);
 
-    gtk_list_store_set (store, &iter,
-                        0, symlist->data,
-                        -1);
+    gtk_list_store_set (store, &iter, 0, symlist->data, -1);
   }
 
   g_list_free (symhead);
@@ -951,6 +946,7 @@ create_inuse_treeview (Compselect *compselect)
   gtk_container_add (GTK_CONTAINER (button),
                      gtk_image_new_from_stock (GTK_STOCK_REFRESH,
                                             GTK_ICON_SIZE_SMALL_TOOLBAR));
+
   /* add the refresh button to the horizontal box at the end */
   gtk_box_pack_end (GTK_BOX (hbox), button, FALSE, FALSE, 0);
   g_signal_connect (button,
@@ -1203,8 +1199,7 @@ create_attributes_treeview (Compselect *compselect)
  *  This function creates and returns a <B>GtkComboBox</B> for
  *  selecting the behavior when a component is added to the sheet.
  */
-static GtkWidget*
-create_behaviors_combo_box (void)
+static GtkWidget* create_behaviors_combo_box (void)
 {
   GtkWidget *combobox;
 
@@ -1226,8 +1221,7 @@ create_behaviors_combo_box (void)
   return combobox;
 }
 
-GType
-compselect_get_type ()
+GType compselect_get_type ()
 {
   static GType compselect_type = 0;
 
@@ -1263,8 +1257,8 @@ compselect_get_type ()
  *  \param [in] key_file   The GKeyFile to save the geometry data to.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
-static void
-compselect_geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar *group_name)
+static void compselect_geometry_save (GschemDialog *dialog,
+                                      GKeyFile *key_file, char *group_name)
 {
   int position;
 
@@ -1294,7 +1288,7 @@ compselect_geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar *group
  *  \param [in] group_name The group name in the key file to store the data under.
  */
 static void
-compselect_geometry_restore (GschemDialog *dialog, GKeyFile *key_file, gchar *group_name)
+compselect_geometry_restore (GschemDialog *dialog, GKeyFile *key_file, char *group_name)
 {
   int position;
 
@@ -1486,8 +1480,7 @@ compselect_constructor (GType type,
   return object;
 }
 
-static void
-compselect_finalize (GObject *object)
+static void compselect_finalize (GObject *object)
 {
   Compselect *compselect = COMPSELECT (object);
 
@@ -1499,11 +1492,10 @@ compselect_finalize (GObject *object)
   G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
 }
 
-static void
-compselect_set_property (GObject *object,
-                         guint property_id,
-                         const GValue *value,
-                         GParamSpec *pspec)
+static void compselect_set_property (GObject *object,
+                                     guint property_id,
+                                     const GValue *value,
+                                     GParamSpec *pspec)
 {
   Compselect *compselect = COMPSELECT (object);
 
@@ -1525,11 +1517,10 @@ compselect_set_property (GObject *object,
 
 }
 
-static void
-compselect_get_property (GObject *object,
-                         guint property_id,
-                         GValue *value,
-                         GParamSpec *pspec)
+static void compselect_get_property (GObject *object,
+                                     guint property_id,
+                                     GValue *value,
+                                     GParamSpec *pspec)
 {
   Compselect *compselect = COMPSELECT (object);
 
@@ -1579,10 +1570,7 @@ compselect_get_property (GObject *object,
 
 }
 
-
-
-GType
-compselect_behavior_get_type (void)
+GType compselect_behavior_get_type (void)
 {
   static GType etype = 0;
 

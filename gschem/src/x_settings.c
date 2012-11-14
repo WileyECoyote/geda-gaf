@@ -117,51 +117,6 @@ void configure_dialog_response(GtkWidget *w, gint response,
 /* \defgroup X_Settings_Attribute Read and Write RC File
  *  @{
  */
-GtkWidget*
-get_geda_switch_image (gboolean WhichState)
-{
-   GtkWidget* image;
-
-   if (WhichState)
-     image = create_pixmap (SWITCH_ON_IMAGE);
-   else
-     image = create_pixmap (SWITCH_OFF_IMAGE);
-
-   return image;
-}
-
-
-/*! \brief Function to create a GTK switch image control.
- *  \par Function Description
- *  This function creates a Check Box widget using an image, the Check
- *  Box indicator is disabled so only the images is displayed. This creates
- *  a control similar to a GTK3 Switch, using standard GTK2 controls. The
- *  On or Off images is controlled by the istate variable.
- *
- *  Returns: Newly created widget
- */
-
-GtkWidget*
-create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
-                   GtkWidget *SwitchImage, gboolean istate)
-{
-  widget = gtk_check_button_new ();
-  gtk_widget_show (widget);
-  gtk_box_pack_start (GTK_BOX (parent), widget, FALSE, FALSE, 0);
-  gtk_widget_set_size_request (widget, -1, 30);
-
-  /* turn off the indicator, ie box */
-  gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (widget), FALSE);
-
-  /* Set the value of the control, sets raised property */
-  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), istate);
-
-  SwitchImage = get_geda_switch_image( istate);
-  gtk_widget_show (SwitchImage);
-  gtk_container_add (GTK_CONTAINER (widget), SwitchImage);
-
-  return widget;
-}
 
 /*              Bulb */
 GtkWidget*
@@ -443,7 +398,7 @@ int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
   int lc;				/* Line counter */
   int j;				/* Index for enumerated keywords */
   int khandle;				/* Index of handler for found keyword */
-  int last;				/* Index of the handler called previously */
+  int last=0;				/* Index of the handler called previously */
   int result;				/* Our exit code */
 
   inputfile = g_strconcat (s_path_sys_config (), G_DIR_SEPARATOR_S,

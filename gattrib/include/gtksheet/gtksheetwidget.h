@@ -30,6 +30,7 @@ extern "C" {
 
 G_BEGIN_DECLS
 
+
 typedef enum
 {
   GTK_SHEET_FOREGROUND,
@@ -52,6 +53,7 @@ typedef enum
   GTK_SHEET_COLUMN_SELECTED,    /* A single column is selected */
   GTK_SHEET_RANGE_SELECTED      /* A range of cells is selected */
 } GtkSheetState;
+
 
 /**
  * GtkSheetBorderFlags:
@@ -89,6 +91,8 @@ typedef enum
 #define GTK_SHEET_AUTO_SCROLL(sheet)     gtk_sheet_autoscroll(sheet)
 #define GTK_SHEET_JUSTIFY_ENTRY(sheet)   gtk_sheet_justify_entry(sheet)
 
+
+
 typedef struct _GtkSheet GtkSheet;
 typedef struct _GtkSheetClass GtkSheetClass;
 typedef struct _GtkSheetChild GtkSheetChild;
@@ -99,6 +103,7 @@ typedef struct _GtkSheetRange GtkSheetRange;
 typedef struct _GtkSheetButton       GtkSheetButton;
 typedef struct _GtkSheetCellAttr     GtkSheetCellAttr;
 typedef struct _GtkSheetCellBorder     GtkSheetCellBorder;
+
 
 /**
  * GtkSheetChild:
@@ -146,6 +151,7 @@ struct _GtkSheetChild
   gboolean yfill;
 };
 
+
 /**
  * GtkSheetButton:
  *
@@ -163,6 +169,7 @@ struct _GtkSheetButton
 
   GtkJustification justification;
 };
+
 
 /**
  * GtkSheetCellBorder:
@@ -232,6 +239,7 @@ struct _GtkSheetRange
   gint rowi,coli; /* bottom-right cell */
 };
 
+
 /**
  * GtkSheetRow:
  *
@@ -274,6 +282,7 @@ struct _GtkSheetColumn
  gboolean is_sensitive;
  gboolean is_visible;
 };
+
 
 /**
  * GtkSheet:

@@ -24,50 +24,8 @@
 #include <gdk/gdk.h>
 #include <glib.h>
 
-
-/* sheet flags */
-enum
-{ 
-  GTK_SHEET_IS_LOCKED       = 1 << 0,
-  GTK_SHEET_IS_FROZEN       = 1 << 1,
-  GTK_SHEET_IN_XDRAG        = 1 << 2,
-  GTK_SHEET_IN_YDRAG        = 1 << 3,
-  GTK_SHEET_IN_DRAG         = 1 << 4,
-  GTK_SHEET_IN_SELECTION    = 1 << 5,
-  GTK_SHEET_IN_RESIZE       = 1 << 6,
-  GTK_SHEET_IN_CLIP         = 1 << 7,
-  GTK_SHEET_REDRAW_PENDING  = 1 << 8,
-};
-
-#define GTK_SHEET_FLAGS(sheet)             (GTK_SHEET (sheet)->flags)
-#define GTK_SHEET_SET_FLAGS(sheet,flag)    (GTK_SHEET_FLAGS (sheet) |= (flag))
-#define GTK_SHEET_UNSET_FLAGS(sheet,flag)  (GTK_SHEET_FLAGS (sheet) &= ~(flag))
-
-#define GTK_SHEET_IS_FROZEN(sheet)   (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IS_FROZEN)
-#define GTK_SHEET_IN_XDRAG(sheet)    (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IN_XDRAG)
-#define GTK_SHEET_IN_YDRAG(sheet)    (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IN_YDRAG)
-#define GTK_SHEET_IN_DRAG(sheet)     (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IN_DRAG)
-#define GTK_SHEET_IN_SELECTION(sheet) (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IN_SELECTION)
-#define GTK_SHEET_IN_RESIZE(sheet) (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IN_RESIZE)
-#define GTK_SHEET_IN_CLIP(sheet) (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_IN_CLIP)
-#define GTK_SHEET_REDRAW_PENDING(sheet)   (GTK_SHEET_FLAGS (sheet) & GTK_SHEET_REDRAW_PENDING)
- 
-#define CELL_SPACING 1
-#define DRAG_WIDTH 6
-#define TIMEOUT_SCROLL 20
-#define TIMEOUT_FLASH 200
-#define TIME_INTERVAL 8
-#define COLUMN_MIN_WIDTH 10
-#define MINROWS 1
-#define MINCOLS 1
-#define MAXLENGTH 30
-#define CELLOFFSET 4
-#define DEFAULT_COLUMN_WIDTH 80
-#define DEFAULT_SHEET_TITLE "untitled"
-
-#include <gtksheetfeatures.h>
-#include <gtkitementry.h>
-#include <gtksheetwidget.h>
+#include <gtksheet/gtksheet-version.h>
+#include <gtksheet/gtkitementry.h>
+#include <gtksheet/gtksheetwidget.h>
 
 #endif /* GTK_EXTRA_H */
-

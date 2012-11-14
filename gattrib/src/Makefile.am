@@ -28,6 +28,7 @@ gattrib_SOURCES = \
 		x_gtksheet.c \
 		x_dialog.c \
 		x_fileselect.c \
+		x_menus.c \
 		s_rename.c \
 		s_misc.c \
 		s_string_list.c \

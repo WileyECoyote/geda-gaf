@@ -35,6 +35,7 @@
  *------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
+
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
@@ -47,13 +48,16 @@
 #include <string.h>
 #endif
 
-#include <gtkitementry.h>
+#include "gtksheet.h"
+//#include "gtksheet/gtkitementry.h"
 
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
+#include "gattrib.h"  /* include Gattrib specific headers  */
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
+
+#define COLUMN_MIN_WIDTH 10
 
 const char* Colors [] = { "black", "blue", "green", "red",
                           "violet", "yellow", "white", "gray" };
@@ -64,153 +68,176 @@ void x_gtksheet_destroy_all(){
   int i;
   for(i=0; i<NUM_SHEETS; i++){
     if (sheets[i] !=NULL) {
-      gtk_widget_destroy( (GtkWidget*) sheets[i]);
-      sheets[i]=NULL;
+      if (GTK_IS_SHEET (sheets[i])) {
+        gtk_widget_destroy( (GtkWidget*) sheets[i]);
+        sheets[i]=NULL;
+      }
+      else {
+	fprintf(stderr, "ERROR: x_gtksheet_destroy_all: reference is not a SHEET!\n");
+      }
     }
   }
 }
+
 static int popup_activated(GtkWidget *widget, gpointer data)
 {
-  GtkSheet *sheet;
-  int cur_page;
-  char *item;
+    GtkSheet *sheet;
+    int cur_page;
+    char *item;
 
-  cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-  sheet=GTK_SHEET(sheets[cur_page]);
+    cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
+    sheet=GTK_SHEET(sheets[cur_page]);
 
-  item = (char *)data;
+    item = (char *)data;
 
-  if(strcmp(item,"Add Column")==0)
-    gtk_sheet_add_column(sheet,1);
+    if (strcmp(item,"Toggle Visiablity")==0)
+        fprintf(stderr, "Do Toggle Visiablity" );
+	
+    if (strcmp(item,"Add Column")==0)
+        gtk_sheet_add_column(sheet,1);
 
-  if(strcmp(item,"Add Row")==0)
-    gtk_sheet_add_row(sheet,1);
+    if (strcmp(item,"Insert Column")==0)
+    {
+        if (sheet->state==GTK_SHEET_COLUMN_SELECTED)
+            gtk_sheet_insert_columns(sheet,sheet->range.col0,                       
+                                     sheet->range.coli-sheet->range.col0+1);
 
-  if(strcmp(item,"Insert Row")==0){
-     if(sheet->state==GTK_SHEET_ROW_SELECTED)
-       gtk_sheet_insert_rows(sheet,sheet->range.row0,                       
-                             sheet->range.rowi-sheet->range.row0+1);
-  }
+    }
+    if (strcmp(item,"Hide Column")==0)
+    {
+        if (sheet->state==GTK_SHEET_COLUMN_SELECTED)
+          gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
 
-  if(strcmp(item,"Insert Column")==0){
-    if(sheet->state==GTK_SHEET_COLUMN_SELECTED)
-      gtk_sheet_insert_columns(sheet,sheet->range.col0,                       
-                               sheet->range.coli-sheet->range.col0+1);
+    }
+    if (strcmp(item,"Delete Column")==0)
+    {
+        if (sheet->state==GTK_SHEET_COLUMN_SELECTED)
+            gtk_sheet_delete_columns(sheet,sheet->range.col0,
+                                     sheet->range.coli-sheet->range.col0+1);
+    }
 
-  } 
+    if (strcmp(item,"Clear Cells")==0)
+    {
+        if (sheet->state!=GTK_SHEET_NORMAL)
+            gtk_sheet_range_clear(sheet, &sheet->range);
+    }
 
-  if(strcmp(item,"Delete Row")==0){
-    if(sheet->state==GTK_SHEET_ROW_SELECTED)
-      gtk_sheet_delete_rows(sheet,sheet->range.row0,
-	   		    sheet->range.rowi-sheet->range.row0+1);
- }
-
- if(strcmp(item,"Delete Column")==0){
-   if(sheet->state==GTK_SHEET_COLUMN_SELECTED)
-     gtk_sheet_delete_columns(sheet,sheet->range.col0,
-                              sheet->range.coli-sheet->range.col0+1);   
- } 
-
- if(strcmp(item,"Clear Cells")==0){
-   if(sheet->state!=GTK_SHEET_NORMAL)
-     gtk_sheet_range_clear(sheet, &sheet->range);
- } 
-
- gtk_widget_destroy(popup);
- return TRUE;
+    gtk_widget_destroy(popup);
+    return (TRUE);
 }
 
 static GtkWidget *
-build_menu(GtkWidget *sheet) {
+    build_menu(GtkWidget *sheet)
+{
+    static char *items[]={
+        "Toggle Visiablity",
+        "Add Column",
+        "Insert Column",
+	"Hide Column",
+        "Delete Column",
+        "Clear Cells"
+    };
+    GtkWidget *menu;
+    GtkWidget *item;
+    int i;
 
-  static char *items[]={ "Add Column",
-		         "Add Row",
-		         "Insert Row",
-		         "Insert Column",
-		         "Delete Row",
-                         "Delete Column",
-                         "Clear Cells"
-  };
-  
-  GtkWidget *menu;
-  GtkWidget *item;
-  int i;
+    menu=gtk_menu_new();
 
-  menu=gtk_menu_new();
+    for (i=0; i < (sizeof(items)/sizeof(items[0])) ; i++)
+    {
+        item=gtk_menu_item_new_with_label(items[i]);
 
-  for (i=0; i < (sizeof(items)/sizeof(items[0])) ; i++) {
-    item=gtk_menu_item_new_with_label(items[i]);
+        g_signal_connect(GTK_OBJECT(item),"activate",
+                         (void *) popup_activated,
+                         items[i]);
 
-    gtk_signal_connect(GTK_OBJECT(item),"activate",
-		      (GtkSignalFunc) popup_activated,
-		       items[i]);
+        gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
+        gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
 
-    GTK_WIDGET_SET_FLAGS (item, GTK_SENSITIVE | GTK_CAN_FOCUS);
-    switch(i){
-      case 2:
-        GTK_WIDGET_UNSET_FLAGS (item, GTK_SENSITIVE | GTK_CAN_FOCUS);
-        break;
-      case 3:
-        if(GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED)
-           GTK_WIDGET_UNSET_FLAGS (item, GTK_SENSITIVE | GTK_CAN_FOCUS);
-        break;
-      case 4:
-        if(GTK_SHEET(sheet)->state!=GTK_SHEET_ROW_SELECTED)
-           GTK_WIDGET_UNSET_FLAGS (item, GTK_SENSITIVE | GTK_CAN_FOCUS);
-        break;
-      case 5:
-        if(GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED)
-           GTK_WIDGET_UNSET_FLAGS (item, GTK_SENSITIVE | GTK_CAN_FOCUS);
-        break;
-    } 
+        switch (i)
+        {
+            case 2:
+                if (GTK_SHEET(sheet)->state!=GTK_SHEET_ROW_SELECTED)
+                {
+                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+                }
+                break;
 
-    gtk_widget_show(item);
-    gtk_menu_append(GTK_MENU(menu),item);
-  }
-  return menu;
+            case 3:
+                if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED)
+                {
+                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+                }
+                break;
+
+            case 4:
+                if (GTK_SHEET(sheet)->state!=GTK_SHEET_ROW_SELECTED)
+                {
+                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+                }
+                break;
+
+            case 5:
+                if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED)
+                {
+                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+                }
+                break;
+        } 
+
+        gtk_widget_show(item);
+        gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+    }
+
+    return (menu);
 }
 
 int do_popup(GtkWidget *widget, GdkEventButton *event, gpointer data)
 {
-   GdkModifierType mods;
-   GtkWidget *sheet;
+    GdkModifierType mods;
+    GtkWidget *sheet = GTK_WIDGET(widget);
 
-   sheet=GTK_WIDGET(widget);
+    gdk_window_get_pointer (gtk_widget_get_window(sheet), NULL, NULL, &mods);
 
-   gdk_window_get_pointer (sheet->window, NULL, NULL, &mods);
-   if(mods&GDK_BUTTON3_MASK){ 
+    if (mods&GDK_BUTTON3_MASK)
+    {
+        if (popup)
+        {
+            gtk_object_destroy(GTK_OBJECT(popup));
+            popup = NULL;
+        }
 
-    if(popup)
-       g_free(popup);
+        popup=build_menu(sheet);
 
-    popup=build_menu(sheet);
-
-    gtk_menu_popup(GTK_MENU(popup), NULL, NULL, NULL, NULL,
-		   event->button, event->time);
-   }
-
-   return FALSE;
+        gtk_menu_popup(GTK_MENU(popup), NULL, NULL, NULL, NULL,
+                       event->button, event->time);
+    }
+    return (FALSE);
 }
-
 int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
 {
-  GtkSheet *sheet;
+    GtkSheet *sheet = GTK_SHEET(widget);
+    bool state = sheet->state;
 
-  sheet = GTK_SHEET(widget);
-
-  if(key->state & GDK_CONTROL_MASK || key->keyval==GDK_Control_L ||
-     key->keyval==GDK_Control_R){
-    if((key->keyval=='c' || key->keyval == 'C') && sheet->state != GTK_STATE_NORMAL){
-            if(gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
+    if (key->state & GDK_CONTROL_MASK || key->keyval==GDK_Control_L ||
+        key->keyval==GDK_Control_R)
+    {
+        if ((key->keyval=='c' || key->keyval == 'C') && state != GTK_STATE_NORMAL)
+        {
+            if (gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
             gtk_sheet_clip_range(sheet, &sheet->range);
 /*            gtk_sheet_unselect_range(sheet);
 */
+        }
+        if (key->keyval=='x' || key->keyval == 'X')
+            gtk_sheet_unclip_range(sheet);
     }
-    if(key->keyval=='x' || key->keyval == 'X')
-            gtk_sheet_unclip_range(sheet);    
-  }
 
-  return FALSE;
+    return (FALSE);
 }
 
 void 
@@ -240,17 +267,18 @@ bool change_entry(GtkWidget *widget,
   GtkSheet *sheet;
 
   sheet = GTK_SHEET(widget);
-
-  if(*new_col == 0 && (col != 0 || sheet->state != GTK_STATE_NORMAL))
+  bool state = sheet->state;
+    
+  if(*new_col == 0 && (col != 0 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, gtk_combo_get_type());
 
-  if(*new_col == 1 && (col != 1 || sheet->state != GTK_STATE_NORMAL))
+  if(*new_col == 1 && (col != 1 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, GTK_TYPE_ENTRY);
 
-  if(*new_col == 2 && (col != 2 || sheet->state != GTK_STATE_NORMAL))
+  if(*new_col == 2 && (col != 2 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, GTK_TYPE_SPIN_BUTTON);
 
-  if(*new_col >= 3 && (col < 3 || sheet->state != GTK_STATE_NORMAL))
+  if(*new_col >= 3 && (col < 3 || state != GTK_STATE_NORMAL))
          gtk_sheet_change_entry(sheet, GTK_TYPE_CELL_EDITABLE);
 
   return TRUE;
@@ -284,7 +312,7 @@ bool cell_activate(GtkWidget *widget, int row, int col,
  return TRUE;
 }
 
-bool cell_deactivate(GtkWidget *widget, int row, int col, gpointer data)
+bool cell_deactivate(GtkWidget *widget, int row, int col, PageDataSet *PageData)
 {
   char *celltext;
 
@@ -292,7 +320,7 @@ bool cell_deactivate(GtkWidget *widget, int row, int col, gpointer data)
   if (EditBuffer != NULL) { /* If NULL then we're loading data from file */
     if (celltext != NULL) { /* If NULL then cell was empty */
       if ( strcmp(EditBuffer, celltext) != 0) {
-        sheet_head->CHANGED = TRUE;
+        PageData->CHANGED = TRUE;
       }
     }
   }
@@ -324,12 +352,17 @@ bool alarm_traverse(GtkWidget *widget,
  return TRUE;
 }
 
-void SetupCSheetHandlers(GtkSheet *sheet)
+void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 {
   
   GtkObject *SheetObj;
   SheetObj = GTK_OBJECT(sheet);
-
+ 
+  gtk_signal_connect(SheetObj,
+                    "button_press_event",
+                    (GtkSignalFunc) do_popup,
+                    NULL);
+ 
   gtk_signal_connect(SheetObj,
                     "activate",
                     (GtkSignalFunc) cell_activate, 
@@ -338,7 +371,7 @@ void SetupCSheetHandlers(GtkSheet *sheet)
   gtk_signal_connect(SheetObj,
                      "deactivate",
                      (GtkSignalFunc) cell_deactivate, 
-                     NULL);
+                     PageData);
   return;
 
   gtk_signal_connect(SheetObj,
@@ -366,6 +399,8 @@ void SetupCSheetHandlers(GtkSheet *sheet)
                     (GtkSignalFunc) alarm_traverse, 
                     NULL);
 }
+
+
 
 void
 set_cell(GtkWidget *widget, char *insert, int text_length, int position, 
@@ -473,51 +508,90 @@ int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
 
   return TRUE;
 }
-
 /*! \brief Create the GtkSheet
  *
  * Creates and initializes the GtkSheet widget, which is the
  * spreadsheet widget used for displaying the data.
  * 
  */
-void x_gtksheet_init()
+
+void  x_gtksheet_reinititialize(PageDataSet *PageData) {
+  
+  void RedimensionSheet(GtkSheet *sheet, int nRows, int nCols) {
+    unsigned int cRows = gtk_sheet_get_rows_count(sheet);
+    unsigned int cCols = gtk_sheet_get_columns_count(sheet);
+   // fprintf(stderr, "ERROR: x_gtksheet_init: old_row=(%d), old_col=(), new count =[%d], col count=[%d]\n",
+//	    cRows, cCols, 
+    if (nRows > 0) {
+      if ( nRows > cRows) {
+	  gtk_sheet_add_row(sheet, nRows - cRows );
+      }
+      else {
+	if (  cRows > nRows) {
+          gtk_sheet_delete_rows	(sheet, 0, cRows - nRows);
+        }
+      }
+      /* else they are the same size so do nothing */
+    }
+    if (nCols > 0) {
+      if ( nCols > cCols) {
+	  gtk_sheet_add_column(sheet, nCols - cCols );
+      }
+      else {
+	if ( cCols > nCols) {
+          gtk_sheet_delete_columns(sheet, 0, cCols - nCols);
+	}
+      }
+      /* else they are the same size so do nothing */
+    }
+  }
+ 
+  /* -----  Components  ----- */
+  RedimensionSheet(sheets[Components], PageData->comp_count, PageData->comp_attrib_count);
+  
+  /* -----  Nets  ----- */
+  RedimensionSheet(sheets[Nets], PageData->net_count, PageData->net_attrib_count);
+
+  /* -----  Pins  ----- */
+  RedimensionSheet(sheets[Pins], PageData->pin_count, PageData->pin_attrib_count);
+  /*TODO: May repaint window here? */
+}
+
+void x_gtksheet_init(PageDataSet *PageData)
 {
   int i;
   char *SheetNames[]= { "Components",  "Nets", "Pins"};
 
-  /* ---  Create three new sheets.   were malloc'ed in x_window_init  --- */
+  void CreateSheet(SheetId index, int nRow, int nCol) {
+    if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
+      fprintf(stderr, "ERROR: x_gtksheet_init: %s sheet already exist!\n", SheetNames[index]);
+    } else {
+      if ((nRow > 0) && (nCol >0)) {
+        sheets[index] = (GtkSheet *) gtk_sheet_new( nRow , nCol,
+						 _(SheetNames[index]));
+      }
+      else {
+        fprintf(stderr, "ERROR: x_gtksheet_init: (%s )row count =[%d], col count=[%d]\n",
+	        _(SheetNames[index]), nRow , nCol);
+	sheets[index] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[index]));
+	gtk_sheet_set_locked(GTK_SHEET(sheets[index]), TRUE);   /* disallow editing */
+      }
+    }
+    if(!GTK_IS_SHEET (sheets[index])) {
+      fprintf(stderr, "ERROR: x_gtksheet_init: could not create %s sheet!\n", SheetNames[index]);
+    }
+  }
 
+  /* ---  Create three new sheets that were malloc'ed in x_window_init  --- */
+  
   /* -----  Components  ----- */
-  if ((sheet_head->comp_count > 0) && (sheet_head->comp_attrib_count >0)) {
-    sheets[Components] = (GtkSheet *) gtk_sheet_new( sheet_head->comp_count,
-					    sheet_head->comp_attrib_count,
-					   _(SheetNames[Components]));
-  } else {
-    x_dialog_fatal_error(_("No components found in design.  Please check your schematic and try again!\n"), 1);
-  }
-
+  CreateSheet(Components, PageData->comp_count, PageData->comp_attrib_count);
+  
   /* -----  Nets  ----- */
-  if ((sheet_head->net_count > 0) && (sheet_head->net_attrib_count >0)) {
-    sheets[Nets] = (GtkSheet *) gtk_sheet_new(sheet_head->net_count, sheet_head->net_attrib_count, _(SheetNames[Nets]));
-    gtk_sheet_set_locked(GTK_SHEET(sheets[Nets]), TRUE);   /* disallow editing of attribs for now */
-
-  }
-  else {
-    sheets[Nets] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[Nets]));
-    gtk_sheet_row_button_add_label(sheets[Nets], 0, _("TBD"));
-    gtk_sheet_row_button_justify(sheets[Nets], 0, GTK_JUSTIFY_LEFT);
-    gtk_sheet_column_button_add_label(sheets[Nets], 0, _("TBD"));
-    gtk_sheet_column_button_justify(sheets[Nets], 0, GTK_JUSTIFY_LEFT);
-    gtk_sheet_set_locked(GTK_SHEET(sheets[Nets]), TRUE);   // disallow editing of attribs for now 
-  }
+  CreateSheet(Nets, PageData->net_count, PageData->net_attrib_count);
 
   /* -----  Pins  ----- */
-  if ((sheet_head->pin_count > 0) && (sheet_head->pin_attrib_count >0)) {
-    sheets[Pins] = (GtkSheet *) gtk_sheet_new(sheet_head->pin_count, sheet_head->pin_attrib_count, _(SheetNames[Pins]));
-  }
-  else {
-    sheets[Pins] = (GtkSheet *) gtk_sheet_new(1, 1, _(SheetNames[Pins]));
-  }
+  CreateSheet(Pins, PageData->pin_count, PageData->pin_attrib_count);
   
   /* --- Finally stick labels on the notebooks holding the sheets. --- */
   for(i=0; i<NUM_SHEETS; i++){
@@ -543,8 +617,11 @@ void x_gtksheet_init()
 	    
       gtk_widget_show( GTK_WIDGET(sheets[i]) );
       gtk_widget_show( GTK_WIDGET(scrolled_windows[i]) );
-      gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */     
-     
+      gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */
+      
+      gtk_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
+                         (GtkSignalFunc) clipboard_handler, NULL);
+   
       /*  The entry cell is the text entry field is the one at the top */
       gtk_signal_connect(GTK_OBJECT(gtk_sheet_get_entry(GTK_SHEET(sheets[i]))),
 		         "changed", (GtkSignalFunc)show_entry, NULL);
@@ -560,7 +637,7 @@ void x_gtksheet_init()
 		      "activate", (GtkSignalFunc)activate_sheet_entry,
 		      NULL);
 
-  SetupCSheetHandlers(sheets[Components]);
+  SetupCSheetHandlers(sheets[Components], PageData);
 
   sheets[Pins]->autoresize=TRUE;
   
@@ -643,6 +720,7 @@ void x_gtksheet_add_col_labels(GtkSheet *sheet, int count,
 
     gtk_sheet_column_button_add_label(sheet, j, text);
     gtk_sheet_column_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
+    gtk_sheet_set_column_title(sheet, j, text);
     string_list_item = string_list_item->next;
   }
 }
@@ -670,8 +748,9 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j,
   if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
       ( desired_width > sheet->column[j].width )) {
     gtk_sheet_set_column_width(sheet, j, desired_width);
+    fprintf(stderr, "Setting column[%d] to desired=[%d]", j, desired_width);
   }
-  
+  // wiley see STRING_WIDTH inline in gsw.c
   //char strBuff [TEXT_WIDTH_LIMIT + 2];
 
    /*

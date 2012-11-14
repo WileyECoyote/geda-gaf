@@ -354,9 +354,10 @@ void main_prog(void *closure, int argc, char *argv[])
         g_free (filename);
   }
 
+  /*! \brief Auto-Load */
   /* Check and do Auto Load - only works if empty commandline */
   if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
-      s_log_message("Auto loading . . .\n"); /* Log what we did */
+    s_log_message("Auto loading . . .\n"); /* Log what we did */
       x_window_open_page(w_current, recent_files_last());
   }
   else

@@ -102,7 +102,7 @@ void o_slot_end(GSCHEM_TOPLEVEL *w_current, OBJECT *object, const char *string)
 #endif
 
   if (new_slot_number > numslots || new_slot_number <=0 ) {
-    s_log_message (_("New slot number out of range\n"));
+    s_log_message (_("New slot number [%d], is out of range\n"), new_slot_number);
     g_free (value);
     return;
   }

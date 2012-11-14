@@ -205,7 +205,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
   /* GtkWidget *main_window is a global */
 
   int argv_index;
-
+  GSList *file_list = NULL;
+  
 #ifdef HAVE_GTHREAD
   /* Gattrib isn't threaded, but some of GTK's file chooser
    * backends uses threading so we need to call g_thread_init().
@@ -218,6 +219,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
   /* Initialize gEDA stuff */
   libgeda_init();
 
+  verbose_mode=FALSE;
+  quiet_mode=FALSE;
   /* Note that argv_index holds index to first non-flag command line option 
    * (that is, to the first file name) */
   argv_index = parse_commandline(argc, argv);
@@ -249,7 +252,6 @@ void gattrib_main(void *closure, int argc, char *argv[])
   /* ---------- Initialize SHEET_DATA data structure ---------- */
   sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */ 
 
-  GSList *file_list = NULL;
   if (argv_index >= argc) {
      /* No files specified on the command line, pop up the File open dialog. */
      file_list = x_fileselect_open();
@@ -275,7 +277,18 @@ void gattrib_main(void *closure, int argc, char *argv[])
      /* just exit the program */
      exit(1);
   }
+
+  s_toplevel_init_data_set(pr_current, sheet_head);
   
+  /*  initialize the gtksheet. */
+  x_gtksheet_init(sheet_head);  /* creates a new gtksheet having dimensions specified
+				 * in sheet_head->comp_count, etc. . .  */
+		       
+  /* -------------- update windows --------------- */
+  x_window_add_items();    /* This updates the top level stuff,
+                            * and then calls another fcn to update
+                            * the GtkSheet itself.  */
+                            
   g_slist_foreach(file_list, (GFunc)g_free, NULL);
   g_slist_free(file_list);
 
@@ -307,4 +320,6 @@ int main(int argc, char *argv[])
   scm_boot_guile( argc, argv, gattrib_main, NULL);
 
   exit(0);   /* This is not real exit point.  Real exit is in gattrib_quit. */
+}
+void gattrib_init_data_set(TOPLEVEL *toplevel, PageDataSet *PageData) {
 }

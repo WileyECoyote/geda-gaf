@@ -49,7 +49,7 @@ struct _Multiattrib {
 
   GtkTreeView    *treeview;
 
-  GtkWidget      *show_inherited;
+  GtkWidget      *ShowInheritedSwitch;
   GtkCombo       *combo_name;
   GtkTextView    *textview_value;
   GtkCheckButton *button_visible;
@@ -65,7 +65,6 @@ struct _Multiattrib {
 GType multiattrib_get_type (void);
 
 void multiattrib_update (Multiattrib *multiattrib);
-
 
 /*
  * CellTextView
@@ -89,7 +88,7 @@ struct _CellTextViewClass {
 struct _CellTextView {
   GtkTextView parent_instance;
 
-  gboolean editing_canceled;
+  bool editing_canceled;
 };
 
 
@@ -119,7 +118,7 @@ struct _CellRendererMultiLineText {
   GtkCellRendererText parent_instance;
 
   /*< private >*/
-  guint focus_out_id;
+  unsigned int focus_out_id;
 
 };
 

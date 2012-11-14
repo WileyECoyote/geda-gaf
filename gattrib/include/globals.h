@@ -71,7 +71,7 @@
 
 /*------------------------------------------------------------------*/
 /*!
- * The main data structure from gEDA is defined in structs.h
+ * The main data structure from gEDA is defined in libgeda/structs.h
  */
 /*------------------------------------------------------------------*/
 TOPLEVEL *pr_current;
@@ -83,6 +83,9 @@ TOPLEVEL *pr_current;
 /*------------------------------------------------------------------*/
 SHEET_DATA *sheet_head;
 
+/*! @brief Globals to control displaying of only the attached attributes */
+bool show_attached;
+
 /*------------------------------------------------------------------
  * GTKsheet includes: stuff for dealing with windows.
  *------------------------------------------------------------------*/
@@ -92,19 +95,21 @@ SHEET_DATA *sheet_head;
 #define NUM_SHEETS 3            /* Components, Nets, and Pins */
 #define COLUMN_WIDTH_LIMIT 100
 
-GtkWidget *window;              /* Main window */
-GtkWidget *toolbar;
+GtkWidget        *window;         /* Main window */
+GtkWidget        *menu_bar;
+GtkUIManager     *menu_manager;   /* Manager for menus */
+GtkRecentManager *recent_manager; /* Manager for recently used files */
+  
+GtkWidget *handlebox;
+GtkWidget *Standard_Toolbar;
 GtkWidget *notebook;
 GtkWidget *popup;
-GtkWidget *status_box;
+GtkWidget *edit_box;
 GtkSheet **sheets;             /* These are the spreadsheet widgets themselves */
 GtkWidget **scrolled_windows;
 GtkWidget *entry;
 GtkWidget *location;
 
-GtkWidget *left_button;
-GtkWidget *center_button;
-GtkWidget *right_button;
 GtkWidget *label;
 
 /* command line switch settings */
@@ -113,5 +118,6 @@ extern int quiet_mode;
 
 typedef enum  { Black, Blue, Green, Red, Violet, Yellow, White, Gray } ColorId;
 typedef enum  { Components, Nets, Pins } SheetId;
+typedef enum  { open, save, save_as, cut, copy, paste } IDS_Toolbar;
 
 #endif

@@ -41,11 +41,11 @@
     gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
 
 static GtkWidget* create_menu_linetype (GSCHEM_TOPLEVEL *w_current);
-static gint line_type_dialog_linetype_change (GtkWidget *w, gpointer data);
+static int line_type_dialog_linetype_change (GtkWidget *w, gpointer data);
 static void line_type_dialog_ok (GtkWidget *w, gpointer data);
 
 static GtkWidget* create_menu_filltype (GSCHEM_TOPLEVEL *w_current);
-static gint fill_type_dialog_filltype_change(GtkWidget *w, gpointer data);
+static int fill_type_dialog_filltype_change(GtkWidget *w, gpointer data);
 static void fill_type_dialog_ok(GtkWidget *w, gpointer data);
 
 
@@ -76,7 +76,7 @@ struct fill_type_data {
  * @param widget Pointer to the parent widget.
  * @param widget_name Name of the widget.
  * @return Pointer to the widget or NULL if not found. */
-GtkWidget* lookup_widget(GtkWidget *widget, const gchar *widget_name)
+GtkWidget* lookup_widget(GtkWidget *widget, const char *widget_name)
 {
   GtkWidget *found_widget;
 
@@ -106,9 +106,9 @@ void destroy_window(GtkWidget *widget, GtkWidget **window)
  */
 
 GtkWidget*
-create_pixmap (const gchar *filename)
+create_pixmap (const char *filename)
 {
-  gchar *pathname = NULL;
+  char *pathname = NULL;
   GtkWidget *pixmap;
 
   if (!filename || !filename[0])
@@ -129,6 +129,50 @@ create_pixmap (const gchar *filename)
   return pixmap;
 }
 
+GtkWidget* get_geda_switch_image (gboolean WhichState)
+{
+   GtkWidget* image;
+
+   if (WhichState)
+     image = create_pixmap (SWITCH_ON_IMAGE);
+   else
+     image = create_pixmap (SWITCH_OFF_IMAGE);
+
+   return image;
+}
+
+
+/*! \brief Function to create a GTK switch image control.
+ *  \par Function Description
+ *  This function creates a Check Box widget using an image, the Check
+ *  Box indicator is disabled so only the images is displayed. This creates
+ *  a control similar to a GTK3 Switch, using standard GTK2 controls. The
+ *  On or Off images is controlled by the istate variable.
+ *
+ *  Returns: Newly created widget
+ */
+
+GtkWidget*
+create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
+                   GtkWidget *SwitchImage, gboolean istate)
+{
+  widget = gtk_check_button_new ();
+  gtk_widget_show (widget);
+  gtk_box_pack_start (GTK_BOX (parent), widget, FALSE, FALSE, 0);
+  gtk_widget_set_size_request (widget, -1, 30);
+
+  /* turn off the indicator, ie box */
+  gtk_toggle_button_set_mode (GTK_TOGGLE_BUTTON (widget), FALSE);
+
+  /* Set the value of the control, sets raised property */
+  gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), istate);
+
+  SwitchImage = get_geda_switch_image( istate);
+  gtk_widget_show (SwitchImage);
+  gtk_container_add (GTK_CONTAINER (widget), SwitchImage);
+
+  return widget;
+}
 
 /* TODO: This string is used by the dialogs: show_text, find_text and hide_text
  * I think it should be removed. (Werner Hoch)
@@ -143,8 +187,8 @@ char generic_textstring[256] = "refdes=R";
  */
 void text_input_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current)
 {
-  gchar *string = NULL;
-  gchar *tmp = NULL;
+  char *string = NULL;
+  char *tmp = NULL;
   GtkWidget *tientry;
   GtkTextBuffer *textbuffer;
   GtkTextIter start, end;
@@ -188,7 +232,7 @@ void text_input_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  Callback function for the text entry dialog.
  */
-void text_input_dialog_response(GtkWidget * widget, gint response, GSCHEM_TOPLEVEL *w_current)
+void text_input_dialog_response(GtkWidget * widget, int response, GSCHEM_TOPLEVEL *w_current)
 {
   switch(response) {
   case GTK_RESPONSE_ACCEPT:
@@ -315,11 +359,11 @@ void text_input_dialog (GSCHEM_TOPLEVEL *w_current)
  *  \todo Remove that function. Only the OK-Button should set any
  *  properties in the GSCHEM_TOPLEVEL struct.
  */
-gint change_alignment(GtkComboBox *w, GSCHEM_TOPLEVEL *w_current)
+int change_alignment(GtkComboBox *w, GSCHEM_TOPLEVEL *w_current)
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
-  gint value;
+  int value;
   if( gtk_combo_box_get_active_iter(w, &iter))
   {
     model = gtk_combo_box_get_model(w);
@@ -435,7 +479,7 @@ void text_edit_dialog_ok(GtkWidget *w, GSCHEM_TOPLEVEL *w_current)
  *  The response is either <b>OK</b>, <b>Cancel</b> or delete.
  *
  */
-void text_edit_dialog_response(GtkWidget * widget, gint response, GSCHEM_TOPLEVEL *w_current)
+void text_edit_dialog_response(GtkWidget * widget, int response, GSCHEM_TOPLEVEL *w_current)
 {
   switch(response) {
   case GTK_RESPONSE_ACCEPT:
@@ -633,7 +677,7 @@ static GtkWidget *create_menu_linetype (GSCHEM_TOPLEVEL *w_current)
   GtkWidget *menu;
   GSList *group;
   struct line_type {
-    gchar *str;
+    char *str;
     OBJECT_TYPE type;
   } types[] = { { N_("Solid"),   TYPE_SOLID },
                 { N_("Dotted"),  TYPE_DOTTED },
@@ -641,7 +685,7 @@ static GtkWidget *create_menu_linetype (GSCHEM_TOPLEVEL *w_current)
                 { N_("Center"),  TYPE_CENTER },
                 { N_("Phantom"), TYPE_PHANTOM },
                 { N_("*unchanged*"), TYPE_ERASE } };
-  gint i;
+  int i;
 
   menu  = gtk_menu_new ();
   group = NULL;
@@ -673,13 +717,13 @@ static GtkWidget *create_menu_linetype (GSCHEM_TOPLEVEL *w_current)
  *  \param [out]  space     space between points and lines
  *  \returns TRUE if linetype found, FALSE otherwise
  */
-static gboolean selection_get_line_type(GList *selection,
+static bool selection_get_line_type(GList *selection,
                                         OBJECT_END *end, OBJECT_TYPE *type,
-                                        gint *width, gint *length, gint *space)
+                                        int *width, int *length, int *space)
 {
   GList *iter;
   OBJECT *object;
-  gboolean found = FALSE;
+  bool found = FALSE;
   OBJECT_END oend;
   OBJECT_TYPE otype;
   int owidth=0, olength=0, ospace=0;
@@ -724,9 +768,9 @@ static gboolean selection_get_line_type(GList *selection,
  */
 static void line_type_dialog_set_values(struct line_type_data *line_type_data,
                                         OBJECT_END end, OBJECT_TYPE type,
-                                        gint width, gint length, gint space)
+                                        int width, int length, int space)
 {
-  gchar *text;
+  char *text;
   GtkWidget *menu, *menuitem;
 
   if (type == -2)
@@ -770,12 +814,12 @@ static void line_type_dialog_set_values(struct line_type_data *line_type_data,
  *  This Function is called when the user changes the line type selection.
  *  It sets the dash space/length entries either active or inactive.
  */
-static gint line_type_dialog_linetype_change(GtkWidget *w, gpointer data)
+static int line_type_dialog_linetype_change(GtkWidget *w, gpointer data)
 {
   struct line_type_data *line_type_data = (struct line_type_data*) data;
   GtkWidget *menuitem;
-  gboolean activate_length_entry, activate_space_entry;
-  gint type;
+  bool activate_length_entry, activate_space_entry;
+  int type;
 
   menuitem = gtk_menu_get_active (
     GTK_MENU (gtk_option_menu_get_menu (
@@ -824,12 +868,12 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *selection, *iter;
   OBJECT *object;
-  const gchar *width_str, *length_str, *space_str;
+  const char *width_str, *length_str, *space_str;
   OBJECT_TYPE type;
-  gint width, length, space;
+  int width, length, space;
   OBJECT_TYPE otype;
   OBJECT_END oend;
-  gint owidth, olength, ospace;
+  int owidth, olength, ospace;
 
   /* get the selection */
   if (! o_select_selected(w_current))
@@ -908,7 +952,7 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
  *  objects.
  *  After that it kills the dialog.
  */
-void line_type_dialog_response(GtkWidget *widget, gint response,
+void line_type_dialog_response(GtkWidget *widget, int response,
                                struct line_type_data *line_type_data)
 {
   switch (response) {
@@ -949,7 +993,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
   GList *selection;
   OBJECT_END end=END_NONE;
   OBJECT_TYPE type=TYPE_SOLID;
-  gint width=1, length=-1, space=-1;
+  int width=1, length=-1, space=-1;
 
   if (! o_select_selected(w_current))
     return;
@@ -1080,14 +1124,14 @@ static GtkWidget *create_menu_filltype (GSCHEM_TOPLEVEL *w_current)
   GtkWidget *menu;
   GSList *group;
   struct fill_type {
-    gchar *str;
+    char *str;
     OBJECT_FILLING type;
   } types[] = { { N_("Hollow"), FILLING_HOLLOW },
                 { N_("Filled"), FILLING_FILL },
                 { N_("Mesh"),   FILLING_MESH },
                 { N_("Hatch"),  FILLING_HATCH },
                 { N_("*unchanged*"), FILLING_VOID } };
-  gint i;
+  int i;
 
   menu  = gtk_menu_new ();
   group = NULL;
@@ -1120,16 +1164,16 @@ static GtkWidget *create_menu_filltype (GSCHEM_TOPLEVEL *w_current)
  *  \param [out]  angle2    cross hatch angle
  *  \returns TRUE if filltype found, FALSE otherwise
  */
-static gboolean selection_get_fill_type(GList *selection,
-                                        OBJECT_FILLING *type, gint *width,
-                                        gint *pitch1, gint *angle1,
-                                        gint *pitch2, gint *angle2)
+static bool selection_get_fill_type(GList *selection,
+                                        OBJECT_FILLING *type, int *width,
+                                        int *pitch1, int *angle1,
+                                        int *pitch2, int *angle2)
 {
   GList *iter;
   OBJECT *object;
-  gboolean found = FALSE;
+  bool found = FALSE;
   OBJECT_FILLING otype;
-  gint owidth, opitch1, oangle1, opitch2, oangle2;
+  int owidth, opitch1, oangle1, opitch2, oangle2;
 
 
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
@@ -1174,11 +1218,11 @@ static gboolean selection_get_fill_type(GList *selection,
  *  \param [in]   angle2    cross hatch angle
  */
 static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
-                                        OBJECT_FILLING type, gint width,
-                                        gint pitch1, gint angle1,
-                                        gint pitch2, gint angle2)
+                                        OBJECT_FILLING type, int width,
+                                        int pitch1, int angle1,
+                                        int pitch2, int angle2)
 {
-  gchar *text;
+  char *text;
   GtkWidget *menu, *menuitem;
 
   if (type == -2)
@@ -1240,14 +1284,14 @@ static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
  *  This function sets the entry activity according to the selected
  *  filltype of the filltype dialog.
  */
-static gint fill_type_dialog_filltype_change(GtkWidget *w, gpointer data)
+static int fill_type_dialog_filltype_change(GtkWidget *w, gpointer data)
 {
   struct fill_type_data *fill_type_data = (struct fill_type_data*) data;
   GtkWidget *menuitem;
-  gboolean activate_width_entry;
-  gboolean activate_anglepitch1_entries;
-  gboolean activate_anglepitch2_entries;
-  gint type;
+  bool activate_width_entry;
+  bool activate_anglepitch1_entries;
+  bool activate_anglepitch2_entries;
+  int type;
 
   menuitem = gtk_menu_get_active (
     GTK_MENU (gtk_option_menu_get_menu (
@@ -1303,11 +1347,11 @@ static void fill_type_dialog_ok(GtkWidget *w, gpointer data)
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *selection, *iter;
   OBJECT *object;
-  const gchar *width_str, *angle1_str, *pitch1_str, *angle2_str, *pitch2_str;
+  const char *width_str, *angle1_str, *pitch1_str, *angle2_str, *pitch2_str;
   OBJECT_FILLING type;
-  gint width, angle1, pitch1, angle2, pitch2;
+  int width, angle1, pitch1, angle2, pitch2;
   OBJECT_FILLING otype;
-  gint owidth, oangle1, opitch1, oangle2, opitch2;
+  int owidth, oangle1, opitch1, oangle2, opitch2;
 
   /* get the selection */
   if (! o_select_selected(w_current))
@@ -1395,7 +1439,7 @@ static void fill_type_dialog_ok(GtkWidget *w, gpointer data)
  *  This function handles the user response to the filltype dialog.
  *  It destroys the dialog after that.
  */
-void fill_type_dialog_response(GtkWidget *widget, gint response,
+void fill_type_dialog_response(GtkWidget *widget, int response,
                                struct fill_type_data *fill_type_data)
 {
   switch (response) {
@@ -1439,7 +1483,7 @@ void fill_type_dialog(GSCHEM_TOPLEVEL *w_current)
   struct fill_type_data *fill_type_data;
   GList *selection;
   OBJECT_FILLING type=FILLING_VOID;
-  gint width=0, pitch1=0, angle1=0, pitch2=0, angle2=0;
+  int width=0, pitch1=0, angle1=0, pitch2=0, angle2=0;
 
   if (! o_select_selected(w_current))
     return;
@@ -1585,11 +1629,11 @@ void fill_type_dialog(GSCHEM_TOPLEVEL *w_current)
  *  the dialog and applies it on the current arc.
  *  If the dialog is closed or canceled the function destroys the dialog.
  */
-void arc_angle_dialog_response(GtkWidget *w, gint response,
+void arc_angle_dialog_response(GtkWidget *w, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *spinentry;
-  gint radius, start_angle, sweep_angle;
+  int radius, start_angle, sweep_angle;
   OBJECT *arc_object = NULL;
 
   switch (response) {
@@ -1744,11 +1788,11 @@ void arc_angle_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *arc_object)
  *  This function takes the user action and applies it.
  *  \todo improve error detection / use a spin button?
  */
-void translate_dialog_response(GtkWidget *widget, gint response,
+void translate_dialog_response(GtkWidget *widget, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *textentry;
-  gchar *string;
+  char *string;
 
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -1757,7 +1801,7 @@ void translate_dialog_response(GtkWidget *widget, gint response,
     break;
   case GTK_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(w_current->trwindow),"textentry");
-    string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
+    string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
     if (strlen(string) != 0) {
       o_complex_translate_all(w_current, atoi(string));
     }
@@ -1842,11 +1886,11 @@ void translate_dialog (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function takes the user input and applies it to gschem
  */
-void text_size_dialog_response(GtkWidget *w, gint response,
+void text_size_dialog_response(GtkWidget *w, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *spin_size;
-  gint size;
+  int size;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
@@ -1946,11 +1990,11 @@ void text_size_dialog (GSCHEM_TOPLEVEL *w_current)
  *  This is the response function for the snap size dialog.
  *  It sets the given snap size to gschem.
  */
-void snap_size_dialog_response(GtkWidget *w, gint response,
+void snap_size_dialog_response(GtkWidget *w, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *spin_size;
-  gint size;
+  int size;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
@@ -2052,12 +2096,12 @@ void snap_size_dialog (GSCHEM_TOPLEVEL *w_current)
  *  The function takes the dialog entry and applies the new slot to the
  *  symbol.
  */
-void slot_edit_dialog_response(GtkWidget *widget, gint response, GSCHEM_TOPLEVEL *w_current)
+void slot_edit_dialog_response(GtkWidget *widget, int response, GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *textentry;
   char *slot_string;
   int len;
-  gchar *string = NULL;
+  char *string = NULL;
 
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -2066,7 +2110,7 @@ void slot_edit_dialog_response(GtkWidget *widget, gint response, GSCHEM_TOPLEVEL
     break;
   case GTK_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(w_current->sewindow),"textentry");
-    string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
+    string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
     len = strlen(string);
     if (len != 0) {
       slot_string = g_strdup_printf ("slot=%s", string);
@@ -2211,7 +2255,7 @@ void about_dialog (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function destroys the coord dialog box and does some cleanup.
  */
-void coord_dialog_response(GtkWidget *w, gint response, GSCHEM_TOPLEVEL *w_current)
+void coord_dialog_response(GtkWidget *w, int response, GSCHEM_TOPLEVEL *w_current)
 {
   gtk_widget_destroy(w_current->cowindow);
   w_current->cowindow = NULL;
@@ -2407,7 +2451,7 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
 {
   /* GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data; */
   GValue v = {0, };
-  gint idx;
+  int idx;
 
   /* Get the index of the color on this row */
   gtk_tree_model_get_value (model, iter, 1, &v);
@@ -2431,7 +2475,7 @@ color_menu_change_selection (GtkWidget *widget,
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data;
   GtkComboBox *cbox = GTK_COMBO_BOX (widget);
-  gint idx;
+  int idx;
   GtkTreeIter iter;
   GValue v = {0, };
 
@@ -2467,8 +2511,8 @@ create_color_menu (GSCHEM_TOPLEVEL *w_current)
   GtkCellRenderer *text_cell;
   GtkCellRenderer *color_cell;
 
-  gint i;
-  gchar *str;
+  int i;
+  char *str;
   OBJECT *obj;
   GtkTreeIter iter;
 
@@ -2548,7 +2592,7 @@ void color_edit_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function takes the user response from the color edit dialog
  */
-void color_edit_dialog_response(GtkWidget *widget, gint response, GSCHEM_TOPLEVEL *w_current)
+void color_edit_dialog_response(GtkWidget *widget, int response, GSCHEM_TOPLEVEL *w_current)
 {
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -2630,7 +2674,7 @@ void color_edit_dialog (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function destroys the hotkey dialog and does some cleanup.
  */
-void x_dialog_hotkeys_response(GtkWidget *w, gint response,
+void x_dialog_hotkeys_response(GtkWidget *w, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   switch(response) {
@@ -2844,13 +2888,13 @@ int generic_confirm_dialog (const char *msg)
  *  \warning
  *   Caller must g_free returned character string.
  */
-char *generic_filesel_dialog (const char *msg, const char *templ, gint flags)
+char *generic_filesel_dialog (const char *msg, const char *templ, int flags)
 {
   GtkWidget *dialog;
-  gchar *result = NULL, *folder, *seed;
+  char *result = NULL, *folder, *seed;
   char *title;
-  static gchar *path = NULL;
-  static gchar *shortcuts = NULL;
+  static char *path = NULL;
+  static char *shortcuts = NULL;
 
   /* Default to load if not specified.  Maybe this should cause an error. */
   if (! (flags & (FSB_LOAD | FSB_SAVE))) {
@@ -2957,7 +3001,7 @@ void find_text_dialog_response(GtkWidget *w, int response,
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(w_current->tfindwindow),"textentry");
-    string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
+    string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
     checkdescend = g_object_get_data(G_OBJECT(w_current->tfindwindow),"checkdescend");
 
     strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
@@ -3083,16 +3127,16 @@ void find_text_dialog(GSCHEM_TOPLEVEL *w_current)
  *  This is the response function of the hide text dialog. It takes the user input
  *  and hides all text elements that starts with the searchtext.
  */
-void hide_text_dialog_response(GtkWidget *w, gint response,
+void hide_text_dialog_response(GtkWidget *w, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *textentry;
-  gchar *string;
+  char *string;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(w_current->thidewindow),"textentry");
-    string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
+    string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
 
     strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
     generic_textstring[sizeof(generic_textstring)-1] = '\0';
@@ -3185,16 +3229,16 @@ void hide_text_dialog(GSCHEM_TOPLEVEL * w_current)
  *  This function takes the users input and searches all strings starting with
  *  the given search text and hides those text objects.
  */
-void show_text_dialog_response(GtkWidget *widget, gint response,
+void show_text_dialog_response(GtkWidget *widget, int response,
                                GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *textentry;
-  gchar *string;
+  char *string;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(w_current->tshowwindow),"textentry");
-    string = (gchar*) gtk_entry_get_text(GTK_ENTRY(textentry));
+    string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
 
     strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
     generic_textstring[sizeof(generic_textstring)-1] = '\0';
@@ -3303,8 +3347,8 @@ void select_all_text_in_textview(GtkTextView *textview)
 int text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
 {
   PangoLayout *layout;
-  gchar *tab_string;
-  gint tab_width = 0;
+  char *tab_string;
+  int tab_width = 0;
 
   if (tab_size == 0)
   return -1;
@@ -3522,11 +3566,11 @@ close_confirmation_dialog_init (CloseConfirmationDialog *self)
  *  \param [in] model The tree model.
  *  \returns The number of pages with unsaved changes.
  */
-static gint
+static int
 count_pages (GtkTreeModel *model)
 {
   GtkTreeIter iter;
-  gint n_pages;
+  int n_pages;
 
   gtk_tree_model_get_iter_first (model, &iter);
   for (n_pages = 1;
@@ -3551,7 +3595,7 @@ count_pages (GtkTreeModel *model)
  *  \param [in] piter A pointer on a GtkTreeIter of model or NULL.
  *  \returns The name for the page.
  */
-static gchar*
+static char*
 get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
 {
   GtkTreeIter iter;
@@ -3591,7 +3635,7 @@ close_confirmation_dialog_set_page_name (GtkTreeViewColumn *tree_column,
                                          GtkTreeIter       *iter,
                                          gpointer           data)
 {
-  gchar *page_name;
+  char *page_name;
 
   page_name = get_page_name (tree_model, iter);
   g_object_set (cell,
@@ -3613,13 +3657,13 @@ close_confirmation_dialog_set_page_name (GtkTreeViewColumn *tree_column,
  */
 static void
 close_confirmation_dialog_callback_renderer_toggled (GtkCellRendererToggle *cell_renderer,
-                                                     gchar                 *path,
+                                                     char                 *path,
                                                      gpointer               user_data)
 {
   CloseConfirmationDialog *dialog = CLOSE_CONFIRMATION_DIALOG (user_data);
   GtkTreeModel *model;
   GtkTreeIter iter;
-  gboolean save;
+  bool save;
 
   model = GTK_TREE_MODEL (dialog->store_unsaved_pages);
 
@@ -3649,7 +3693,7 @@ close_confirmation_dialog_build_page_list (CloseConfirmationDialog *dialog)
   GtkWidget *vbox, *scrolled_window, *treeview, *label;
   GtkCellRenderer *renderer;
   GtkTreeViewColumn *column;
-  const gchar *text;
+  const char *text;
 
   /* place the treeview and its caption into their own box */
   vbox = GTK_WIDGET (g_object_new (GTK_TYPE_VBOX,
@@ -3729,9 +3773,9 @@ close_confirmation_dialog_constructor (GType type,
   CloseConfirmationDialog *dialog;
   GtkWidget *hbox, *image, *vbox, *label;
   GtkTreeIter iter;
-  gboolean ret, single_page;
-  gchar *tmp, *str;
-  const gchar *cstr;
+  bool ret, single_page;
+  char *tmp, *str;
+  const char *cstr;
 
   /* chain up to constructor of parent class */
   object =
@@ -3801,7 +3845,7 @@ close_confirmation_dialog_constructor (GType type,
   /* primary label */
   if (single_page) {
     /* single page */
-    gchar *page_name;
+    char *page_name;
 
     page_name = get_page_name (GTK_TREE_MODEL (dialog->store_unsaved_pages),
                                NULL);
@@ -3968,14 +4012,14 @@ close_confirmation_dialog_get_property (GObject    *object,
  *  \param [in] data  A pointer on a GList* to fill.
  *  \returns FALSE to continue walking the tree.
  */
-static gboolean
+static bool
 get_selected_pages (GtkTreeModel *model,
                     GtkTreePath  *path,
                     GtkTreeIter  *iter,
                     gpointer     data)
 {
   PAGE *page;
-  gboolean save;
+  bool save;
 
   gtk_tree_model_get (model, iter,
                       COLUMN_SAVE, &save,
@@ -4094,7 +4138,7 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
  *  \param [in] w_current The toplevel environment.
  *  \returns TRUE if the window can be closed, FALSE otherwise.
  */
-gboolean
+bool
 x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -4103,7 +4147,7 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
   PAGE *p_current;
   PAGE *keep_page;
   GList *unsaved_pages, *p_unsaved;
-  gboolean ret = FALSE;
+  bool ret = FALSE;
 
   keep_page = toplevel->page_current;
 

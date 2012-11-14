@@ -65,6 +65,19 @@ STRING_LIST *s_string_list_new() {
   return local_string_list;
 }
 
+void s_string_list_free(STRING_LIST *strlist) {
+  char *data;
+  if (strlist != NULL) {
+    while (strlist != NULL) {
+      data = strlist->data;
+      if (data != NULL) {
+        g_free(data);
+      }
+      strlist = strlist->next;
+    }
+  }
+  return;
+}
 
 /*------------------------------------------------------------------*/
 /*! \brief Duplicate a STRING_LIST
@@ -390,27 +403,28 @@ void s_string_list_sort_master_comp_attrib_list() {
   local_list = sheet_head->master_comp_attrib_list_head;
 
   /*
-   * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want 
-   * certain attribs to go first. 
-   */
+* Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want
+* certain attribs to go first.
+*/
   for (p=local_list; p; p=p->next) {
     int i;
     p->pos = DEFAULT_ATTRIB_POS;
-    for (i=0; i<NUM_CERTAINS; i++)
+    for (i=0; i<NUM_CERTAINS; i++) {
       if (p->data != NULL) {
         if (strcmp (certain_attribs[i].attrib, p->data) == 0)
-  	{
-	  p->pos = certain_attribs[i].pos;
-	  break;
-	}
+        {
+          p->pos = certain_attribs[i].pos;
+          break;
+        }
       }
+    }
   }
 
   local_list = listsort(local_list, 0, 1);
   sheet_head->master_comp_attrib_list_head = local_list;
 
-  /* Do this after sorting is done.  This resets the order of the individual items
-   * in the list.  */
+  /* Do this after sorting is done. This resets the order of the individual items
+* in the list. */
   while (local_list != NULL) {
     local_list->pos = i;
     i++;
@@ -546,4 +560,19 @@ void s_string_list_sort_master_pin_attrib_list() {
 
   return;
 }
+void s_string_list_sort_all_list() {
+   /* ---------- Sort the master lists  ---------- */
+  s_string_list_sort_master_comp_list();
+  s_string_list_sort_master_comp_attrib_list();
 
+#if 0
+  /* Note that this must be changed.  We need to input the entire project
+   * before doing anything with the nets because we need to first
+   * determine where they are all connected!   */
+  s_string_list_sort_master_net_list();
+  s_string_list_sort_master_net_attrib_list();
+#endif
+
+  s_string_list_sort_master_pin_list();
+  s_string_list_sort_master_pin_attrib_list(); 
+}

@@ -19,7 +19,7 @@
 
 #include <string.h>
 #include <gtk/gtk.h>
-#include <gtksheetfeatures.h>
+#include "gtksheet/gtksheet-version.h"
 #include <gobject/gvaluecollector.h>
 
 const guint gtksheet_major_version = GTKSHEET_MAJOR_VERSION;

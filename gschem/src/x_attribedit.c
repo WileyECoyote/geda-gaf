@@ -35,6 +35,10 @@
 #include <dmalloc.h>
 #endif
 
+#include "x_dialog_controls.h"
+
+#define ThisDialog aewindow
+
 /***************** Start of Attrib Edit dialog box ********************/
 /*! \section attrib-edit-dialog-box Atrib Edit Dialog Box */
 
@@ -43,7 +47,7 @@
  *  \par Function Documentation
  *
  */
-gint option_menu_get_history (GtkOptionMenu *option_menu) 
+int option_menu_get_history (GtkOptionMenu *option_menu) 
 { 
   GtkWidget *active_widget; 
          
@@ -81,24 +85,24 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
   int invocation_flag;
   int nsel=0, addto=0, replace=0, addmask=0;
   int option_index;
-  gint wx, wy;
+  int wx, wy;
 
   i_set_state(w_current, SELECT);
 
   value_entry =
-  gtk_object_get_data(GTK_OBJECT(w_current->aewindow), "value_entry");
+  gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog), "value_entry");
   name_entry =
-  gtk_object_get_data(GTK_OBJECT(w_current->aewindow), "attrib_combo_entry");
+  gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog), "attrib_combo_entry");
   visbutton =
-  gtk_object_get_data(GTK_OBJECT(w_current->aewindow), "visbutton");
+  gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog), "visbutton");
   show_options =
-  gtk_object_get_data(GTK_OBJECT(w_current->aewindow), "show_options");
+  gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog), "show_options");
 
   value = gtk_entry_get_text(value_entry);
   label = gtk_entry_get_text(name_entry);
   newtext = g_strconcat (label, "=", value, NULL);
 
-  if (!x_dialog_validate_attribute(GTK_WINDOW(w_current->aewindow), newtext))
+  if (!x_dialog_validate_attribute(GTK_WINDOW(w_current->ThisDialog), newtext))
   {
     g_free(newtext);
     return;
@@ -130,7 +134,7 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
   }
 
   attribptr =
-  gtk_object_get_data(GTK_OBJECT(w_current->aewindow), "attrib");
+  gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog), "attrib");
   if (!attribptr) {
     OBJECT *new = NULL;
 
@@ -150,19 +154,19 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
     if (nsel > 1) {
 
       addtoallbutton =
-        gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+        gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
                             "addtoallbutton");
 
       addtocompsbutton =
-        gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+        gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
                             "addtocompsbutton");
 
       addtonetsbutton =
-        gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+        gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
                             "addtonetsbutton");
 
       overwritebutton =
-        gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+        gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
                             "overwritebutton");
 
       if (gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(overwritebutton))) {
@@ -223,11 +227,11 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
       new = o_attrib_add_attrib(w_current, newtext, vis, show, object);
 
       invocation_flag =
-	GPOINTER_TO_INT( gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+	GPOINTER_TO_INT( gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
 				  "invocation_flag") );
-      wx = GPOINTER_TO_INT( gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+      wx = GPOINTER_TO_INT( gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
 						"position_wx"));
-      wy = GPOINTER_TO_INT( gtk_object_get_data(GTK_OBJECT(w_current->aewindow),
+      wy = GPOINTER_TO_INT( gtk_object_get_data(GTK_OBJECT(w_current->ThisDialog),
 						"position_wy"));
       
 #if DEBUG
@@ -248,9 +252,9 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
     toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
-  gtk_grab_remove(w_current->aewindow);
-  gtk_widget_destroy(w_current->aewindow);
-  w_current->aewindow = NULL;
+  gtk_grab_remove(w_current->ThisDialog);
+  gtk_widget_destroy(w_current->ThisDialog);
+  w_current->ThisDialog = NULL;
   g_free(newtext);
 }
 
@@ -259,7 +263,7 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
  *  This function catches the user response for the add and edit
  *  attribute dialog.
  */
-void attribute_edit_dialog_response(GtkWidget *w, gint response, 
+void attribute_edit_dialog_response(GtkWidget *w, int response, 
 				 GSCHEM_TOPLEVEL *w_current)
 {
   switch(response) {
@@ -269,9 +273,9 @@ void attribute_edit_dialog_response(GtkWidget *w, gint response,
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     i_set_state(w_current, SELECT);
-    gtk_grab_remove(w_current->aewindow);
-    gtk_widget_destroy(w_current->aewindow);
-    w_current->aewindow = NULL;
+    gtk_grab_remove(w_current->ThisDialog);
+    gtk_widget_destroy(w_current->ThisDialog);
+    w_current->ThisDialog = NULL;
     break;
   default:
     printf("attrib_edit_dialog_response(): strange signal %d\n", response);
@@ -287,17 +291,17 @@ void attribute_edit_dialog_response(GtkWidget *w, gint response,
  */
 void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
-  GtkWidget *aewindow;
+  TOPLEVEL  *toplevel = w_current->toplevel;
+  GtkWidget *ThisDialog;
   GtkWidget *vbox, *label, *table, *alignment;
   GtkWidget *show_options;
   GtkWidget *show_options_menu;
-  GtkWidget *glade_menuitem;
+  GtkWidget *menuitem;
   GtkWidget *attrib_combo_box_entry;
   GtkWidget *attrib_combo_entry;
   GtkWidget *value_entry;
   GtkWidget *visbutton;
-  GSList *hbox2_group = NULL;
+  GSList    *hbox2_group = NULL;
   GtkWidget *addtoallbutton;
   GtkWidget *addtocompsbutton;
   GtkWidget *addtonetsbutton;
@@ -311,10 +315,10 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
   char *name = NULL;
   char *val = NULL;
   OBJECT *attrib = NULL;
-  gint wx, wy;
+  int wx, wy;
   
   /* gschem specific */
-  if (w_current->aewindow)
+  if (w_current->ThisDialog)
     return;
 
   /* gschem specific: What do we count here? (Werner)  */
@@ -326,7 +330,7 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
     }
   }
 
-  aewindow = gschem_dialog_new_with_buttons(_("Single Attribute Editor"),
+  ThisDialog = gschem_dialog_new_with_buttons(_("Single Attribute Editor"),
                                             GTK_WINDOW(w_current->main_window),
                                             GTK_DIALOG_MODAL,
                                             "singleattrib", w_current,
@@ -336,22 +340,22 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
                                             GTK_RESPONSE_APPLY,
                                             NULL);
   /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(aewindow),
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
 					  GTK_RESPONSE_APPLY,
 					  GTK_RESPONSE_REJECT,
 					  -1);
 					 
-  g_signal_connect (G_OBJECT (aewindow), "response",
+  g_signal_connect (G_OBJECT (ThisDialog), "response",
                     G_CALLBACK (attribute_edit_dialog_response),
                     w_current);
 
-  gtk_window_set_position (GTK_WINDOW (aewindow), GTK_WIN_POS_MOUSE);
+  gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(aewindow),
+  gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                   GTK_RESPONSE_APPLY);
 
-  vbox = GTK_DIALOG(aewindow)->vbox;
-  gtk_container_set_border_width(GTK_CONTAINER(aewindow), 
+  vbox = GTK_DIALOG(ThisDialog)->vbox;
+  gtk_container_set_border_width(GTK_CONTAINER(ThisDialog), 
 				 DIALOG_BORDER_SPACING);
   gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
@@ -385,10 +389,8 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
   gtk_table_attach (GTK_TABLE (table), attrib_combo_box_entry, 1, 2, 0, 1,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
-  g_object_ref (attrib_combo_entry);
-  g_object_set_data_full (G_OBJECT (aewindow),
-                         "attrib_combo_entry", attrib_combo_entry,
-                            (GtkDestroyNotify) gtk_widget_unref);
+
+  GTK_HOOKUP_OBJECT (ThisDialog, attrib_combo_entry, "attrib_combo_entry");
 
   /* Value entry */
   label = gtk_label_new (_("Value:"));
@@ -398,9 +400,7 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
                     (GtkAttachOptions) (0), 0, 0);
 
   value_entry = gtk_entry_new ();
-  gtk_widget_ref (value_entry);
-  gtk_object_set_data_full (GTK_OBJECT (aewindow), "value_entry", value_entry,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  GTK_HOOKUP_OBJECT (ThisDialog, value_entry, "value_entry");
   gtk_table_attach (GTK_TABLE (table), value_entry, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
@@ -408,31 +408,25 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
 
   /* Visibility */
   visbutton = gtk_check_button_new_with_label (_("Visible"));
-  gtk_widget_ref (visbutton);
-  gtk_object_set_data_full (GTK_OBJECT (aewindow), "visbutton", visbutton,
-                            (GtkDestroyNotify) gtk_widget_unref);
-
+  GTK_HOOKUP_OBJECT (ThisDialog, visbutton, "visbutton");
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (visbutton), TRUE);
   gtk_table_attach (GTK_TABLE (table), visbutton, 0, 1, 2, 3,
                     (GtkAttachOptions) (GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
 
   show_options = gtk_option_menu_new ();
-  gtk_widget_ref (show_options);
-  gtk_object_set_data_full (GTK_OBJECT (aewindow), "show_options",
-                            show_options,
-                            (GtkDestroyNotify) gtk_widget_unref);
+  GTK_HOOKUP_OBJECT (ThisDialog, show_options, "show_options");
   gtk_widget_show (show_options);
   gtk_table_attach (GTK_TABLE (table), show_options, 1, 2, 2, 3,
                     (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
                     (GtkAttachOptions) (0), 0, 0);
   show_options_menu = gtk_menu_new ();
-  glade_menuitem = gtk_menu_item_new_with_label (_("Show Value Only"));
-  gtk_menu_append (GTK_MENU (show_options_menu), glade_menuitem);
-  glade_menuitem = gtk_menu_item_new_with_label (_("Show Name Only"));
-  gtk_menu_append (GTK_MENU (show_options_menu), glade_menuitem);
-  glade_menuitem = gtk_menu_item_new_with_label (_("Show Name & Value"));
-  gtk_menu_append (GTK_MENU (show_options_menu), glade_menuitem);
+  menuitem = gtk_menu_item_new_with_label (_("Show Value Only"));
+  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  menuitem = gtk_menu_item_new_with_label (_("Show Name Only"));
+  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  menuitem = gtk_menu_item_new_with_label (_("Show Name & Value"));
+  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
   gtk_option_menu_set_menu (GTK_OPTION_MENU (show_options), show_options_menu);
   gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
   
@@ -455,33 +449,25 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
 
     addtoallbutton = gtk_radio_button_new_with_label (hbox2_group, _("All"));
     hbox2_group = gtk_radio_button_group (GTK_RADIO_BUTTON (addtoallbutton));
-    gtk_widget_ref (addtoallbutton);
-    gtk_object_set_data_full (GTK_OBJECT (aewindow), "addtoallbutton", addtoallbutton,
-                              (GtkDestroyNotify) gtk_widget_unref);
+    GTK_HOOKUP_OBJECT (ThisDialog, addtoallbutton, "addtoallbutton");
     gtk_table_attach(GTK_TABLE(table), addtoallbutton, 0, 1, 0, 1,
 		     (GtkAttachOptions) (GTK_FILL), 0, 0, 0);
 		     
     addtocompsbutton = gtk_radio_button_new_with_label (hbox2_group, _("Components"));
     hbox2_group = gtk_radio_button_group (GTK_RADIO_BUTTON (addtocompsbutton));
-    gtk_widget_ref (addtocompsbutton);
-    gtk_object_set_data_full (GTK_OBJECT (aewindow), "addtocompsbutton", addtocompsbutton,
-                              (GtkDestroyNotify) gtk_widget_unref);
+    GTK_HOOKUP_OBJECT (ThisDialog, addtocompsbutton, "addtocompsbutton");
     gtk_table_attach(GTK_TABLE(table), addtocompsbutton, 1, 2, 0, 1,
 		     (GtkAttachOptions) (GTK_FILL), 0, 0, 0);
 
     addtonetsbutton = gtk_radio_button_new_with_label (hbox2_group, _("Nets"));
     hbox2_group = gtk_radio_button_group (GTK_RADIO_BUTTON (addtonetsbutton));
-    gtk_widget_ref (addtonetsbutton);
-    gtk_object_set_data_full (GTK_OBJECT (aewindow), "addtonetsbutton", addtonetsbutton,
-                              (GtkDestroyNotify) gtk_widget_unref);
+    GTK_HOOKUP_OBJECT (ThisDialog, addtonetsbutton, "addtonetsbutton");
     gtk_table_attach(GTK_TABLE(table), addtonetsbutton, 2, 3, 0, 1,
 		     (GtkAttachOptions) (GTK_FILL), 0, 0, 0);
 
     overwritebutton = gtk_check_button_new_with_label (_("Replace existing attributes"));
     gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(overwritebutton), TRUE);
-    gtk_widget_ref (overwritebutton);
-    gtk_object_set_data_full (GTK_OBJECT (aewindow), "overwritebutton", overwritebutton,
-                              (GtkDestroyNotify) gtk_widget_unref);
+    GTK_HOOKUP_OBJECT (ThisDialog, overwritebutton, "overwritebutton");
     gtk_table_attach(GTK_TABLE(table), overwritebutton, 0, 3, 1, 2,
 		     (GtkAttachOptions) (GTK_FILL), 0, 0, 0);
   }
@@ -517,7 +503,7 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
     /* show value only */
     gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
   }
-  gtk_object_set_data(GTK_OBJECT(aewindow), "attrib", attrib);
+  gtk_object_set_data(GTK_OBJECT(ThisDialog), "attrib", attrib);
   if (name) {
     gtk_entry_set_text(GTK_ENTRY(attrib_combo_entry), name);
   }
@@ -526,15 +512,15 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
     len = strlen(val);
     gtk_entry_select_region(GTK_ENTRY(value_entry), 0, len);
   }
-  gtk_object_set_data(GTK_OBJECT(aewindow), "invocation_flag",
+  gtk_object_set_data(GTK_OBJECT(ThisDialog), "invocation_flag",
                       GINT_TO_POINTER(flag));
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy)) {
     wx = wy = -1;
   }
-  gtk_object_set_data(GTK_OBJECT(aewindow), "position_wx",
+  gtk_object_set_data(GTK_OBJECT(ThisDialog), "position_wx",
                       GINT_TO_POINTER(wx));
-  gtk_object_set_data(GTK_OBJECT(aewindow), "position_wy",
+  gtk_object_set_data(GTK_OBJECT(ThisDialog), "position_wy",
                       GINT_TO_POINTER(wy));
   
   /* gschem specific */
@@ -556,10 +542,10 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
   gtk_entry_set_completion(GTK_ENTRY(attrib_combo_entry), attrib_combo_entry_completion);
   
   /* gschem specific */
-  gtk_widget_show_all(aewindow);
-  w_current->aewindow = aewindow;
+  gtk_widget_show_all(ThisDialog);
+  w_current->ThisDialog = ThisDialog;
 
-  gtk_grab_add(w_current->aewindow);
+  gtk_grab_add(w_current->ThisDialog);
 
   if (attrib || (name && strcmp(name, "netname") == 0)) { 
     gtk_widget_grab_focus(value_entry);
@@ -571,4 +557,5 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
   g_free(val);
 
 }
+#undef ThisDialog
 /***************** End of Attrib Edit dialog box **********************/

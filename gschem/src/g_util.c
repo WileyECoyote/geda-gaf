@@ -119,7 +119,7 @@ g_init_util ()
  *
  *  char s_val[digits];  <-- Declare char array, digits could be
  *                           macro subsitution or literal value.
- *  int number = 4.314;  <-- Some integer declared somewhere.
+ *  int number = 4;      <-- Some integer declared somewhere.
  *
  *  *str = int2str( number, s_val, 10 ));
  *
@@ -167,7 +167,7 @@ char *scm_2_cstring( char* scm_str_name) /* WEH: couldn't find it, made it */
   /* Now get string */
   s_symbol = scm_c_lookup(scm_str_name);
   s_value = scm_variable_ref(s_symbol);
-  return gh_scm2newstr(s_value, &len);
+  return (char*) gh_scm2newstr(s_value, &len);
 }
 void sort_string_array( char *strings[], size_t strings_size) {
     int cstring_cmp(const void *a, const void *b)
@@ -183,7 +183,7 @@ void sort_string_array( char *strings[], size_t strings_size) {
    /* sort array using qsort functions */ 
     qsort(strings, strings_len, sizeof(char *), cstring_cmp); 
 }
-bool strequal(const char *str1, const char *str2) /* Maybe should be in <string.h> */
+bool strequal(const char *str1, const char *str2) /* WEH: Maybe should be in <string.h> */
 {
   while ((*str1 == *str2) && (*str1)) { str1++; str2++; }
   return ((*str1 == (unsigned)NULL) && (*str2 == (unsigned)NULL));

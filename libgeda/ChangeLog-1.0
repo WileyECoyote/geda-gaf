@@ -3,7 +3,7 @@
 	g_file_set_contents because it resets file permissions to
 	default permissive policy and can potentially expose files
 	that were made private, see bug #1021860 and is was unacceptable.
-	The g_file_set_contents was replace with a simple fputs, which
+	The g_file_set_contents was replaced with a simple fputs, which
 	is more efficient and available with all C compilers.
 
 	* src/f_utilities.c: Added new file in order to relocate generic
@@ -26,12 +26,11 @@
 	so that the orginal ownership, group and permission data is
 	preserved and the backup belongs to the user as it should.
 	
-int (const char *source, const char *target)
 2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
 	* src/s_attrib.c: reset attrib_index in function s_attrib_init
           added function s_attrib_count.
           
-        */src/o_style.c: Added new file and implementented functionality
+        * src/o_style.c: Added new file and implementented functionality
         * src/s_log.c: renamed do_logging to is_logging to avoid name
           conflict with gschem.
 

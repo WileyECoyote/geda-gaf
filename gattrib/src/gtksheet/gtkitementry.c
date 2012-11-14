@@ -44,7 +44,7 @@
 #include <glib-object.h>
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
-#include "gtkitementry.h"
+#include "gtksheet/gtkitementry.h"
 
 #define MIN_ENTRY_WIDTH  150
 #define DRAW_TIMEOUT     20
@@ -143,9 +143,7 @@ static void         gtk_entry_draw_cursor              (GtkEntry       *entry,
 static PangoLayout *gtk_entry_ensure_layout            (GtkEntry       *entry,
                                                         gboolean        include_preedit);
 static void         gtk_entry_queue_draw               (GtkEntry       *entry);
-
-#if GTK_MAJOR_VERSION >= 2 && GTK_MINOR_VERSION >= 21
-#else
+#if (GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 22)
 static void         gtk_entry_reset_im_context         (GtkEntry       *entry);
 #endif
 static void         gtk_entry_recompute                (GtkEntry       *entry);
@@ -1871,8 +1869,7 @@ gtk_entry_queue_draw (GtkEntry *entry)
   if (GTK_WIDGET_REALIZED (entry))
     gdk_window_invalidate_rect (entry->text_area, NULL, FALSE);
 }
-#if GTK_MAJOR_VERSION >= 2 && GTK_MINOR_VERSION >= 21
-#else
+#if (GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 22)
 static void
 gtk_entry_reset_im_context (GtkEntry *entry)
 {

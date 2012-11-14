@@ -89,9 +89,10 @@
 #include <ascii.h>
 
 #include <gschem_dialog.h>
+#include <x_dialog_controls.h>
 #include <x_settings.h>
 #include <x_settings_dialog.h>
-#include <x_dialog_controls.h>
+
 
 /* ---------------  Function that Should Be Somewhere Else  ---------------- */
 
@@ -433,6 +434,8 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
    6. load_tree_view_gl                   Load view from glist
    7. load_tree_view_str                  Load view from string array
 */
+static void st_callback_selection_changed_view(GtkTreeSelection *selection,
+                                               GtkWidget *Dialog)__attribute__((unused));
 
 /*! \brief function st_callback_selection_changed_view
  *  \par Function Description
@@ -446,7 +449,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
  */
 static void
 st_callback_selection_changed_view(GtkTreeSelection *selection,
-                                        GtkWidget *Dialog)
+                                        GtkWidget *Dialog) 
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
@@ -1233,7 +1236,7 @@ radio_responder(GtkWidget *widget,  gint response, ControlID *Control)
  *       The functions enables or disables other widgets based on
  *       the state of the switch.
  */
-void switch_responder(GtkWidget *widget, gint response,  ControlID *Control)
+static void switch_responder(GtkWidget *widget, gint response,  ControlID *Control)
 {
    gboolean state = GET_SWITCH_STATE (widget);
    GtkWidget* SwitchImage = get_geda_switch_image( state);
@@ -1816,9 +1819,9 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
  */
 /*! \brief Post Dialog procedure to retrieves values in dialog controls.
  *  \par Function Description
- *       This function retrieves and saves the value from all widgets. The values
- *       are save to the either the memory variables from which were loaded or to
- *       the rc_options structure.
+ *       This function retrieves and saves the values from all widgets. The
+ *       values are saved to either the memory variables from which they were
+ *       loaded or to the rc_options structure.
  */
 void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
@@ -1848,7 +1851,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->third_button   = gtk_combo_box_get_active (GTK_COMBO_BOX (ThirdButtonCombo));
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (ColorMapSchemeCombo));
-  if (tmp_int != rc_options.color_scheme_index) {
+  if (tmp_int != rc_options.color_scheme_index) { /* if user changed this settings */
     rc_options.color_scheme_index = tmp_int;
     switch ( tmp_int ) {
     case 0:

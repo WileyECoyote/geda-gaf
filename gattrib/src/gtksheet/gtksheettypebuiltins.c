@@ -2,7 +2,7 @@
 /* Generated data (by glib-mkenums) */
 
 #define GTKSHEET_ENABLE_BROKEN
-#include <gtksheet.h>
+#include "gtksheet.h"
 
 /* enumerations from "gtksheetwidget.h" */
 GType

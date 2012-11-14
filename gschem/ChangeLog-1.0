@@ -1,3 +1,43 @@
+2012-11-04 Wiley E. Hill <wileyhill@gmail.com>
+        * src/x_dialog.c: relocated functions get_geda_switch_image and
+          create_geda_switch from x_settings.c to incorperate in other
+          dialog compilations.
+	* src/o_slot.c: Revised error slot number out of range message
+          in o_slot_end functions to include to the actual number that
+          was passed - new_slot_number. (o_slot_end really report slot=0
+          as invalid or should it just be ignored?)
+	* src/x_multiattrib.c: General revisions, changed toggle button
+          for Show Inherited to toggle switch for Dialog uniformity.
+          Implemented limited tooltips.
+	* src/x_autonumber.c: General revisions incoorperating macros
+          in x_dialog_controls.h, changing toggle buttons to toggle
+          switches. Implemented tooltips.
+	* lib/system-gschemrc.scm: Change lines width settings. Moved
+          menu option "edit-show-hidden" from edit menu to the view
+          (changing hot key from "E N" to "V A" [for View Attributes
+          or ALL]) to improve menu balence, (the Edit menu was too long
+          for some display configurations) and the View menu seems a more
+          appropriate place for this function.
+
+2012-09-17 Wiley E. Hill <wileyhill@gmail.com>
+	* src/x_settings.c: Add new source file.
+	* include/x_settings.h: Add new source file.
+	* src/x_settings_dialog.c: Add new source file configure_settings.
+	* include/x_settings_dialog.h: Add new header file.
+	* include/keywords.h: Add new header file to support x_settings.c.
+	* include/x_dialog_controls.h: Add new header file. This is a
+          barrage of macros for GTK Dialogs.
+	* /include: Where is top-level change log? Revised directory
+          structure to include a global folder for common inclusions.
+	* src/Makefile.am: Revised to include new header folder and added
+          variables INC_GEDA, INC_LOCAL, INC_LIBGEDA, and GEDA_INCLUDES,
+          so that the search paths would be more concise. This also fixes
+          a problem with a redundant search.
+	* lib/system-gschemrc: Extensive revisions to cleanup, document,
+          and group related keywords.
+	* src/*: Seem like much more was done, why are the git Changelogs
+          not used?
+
 2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
 	* src/x_autonumber.c: relocated lookup_widget from to src/x_dialog.c
@@ -11,8 +51,8 @@
         * src/g_util.c: Added scm_2_cstring function.
         * src/i_callbacks.c:  Added new call-back for configure_settings.
           Replaced explicit strings for colormaps with macros defined in
-          sdefines.h and modified view_XXX_colors call backs to use new
-          load_color_scheme function. Relocated calls to x_color_free()
+          gschem_sdefines.h and modified view_XXX_colors call backs to use
+          new load_color_scheme function. Relocated calls to x_color_free()
           and x_color_allocate () to new the function in x_color.c.
         * src/x_color.c: Added new function load_color_scheme.
 
