@@ -4908,9 +4908,11 @@ gtk_sheet_set_cell(GtkSheet *sheet, gint row, gint col,
 
  g_return_if_fail (sheet != NULL);
  g_return_if_fail (GTK_IS_SHEET (sheet));
+ 
+
  if (col > sheet->maxcol || row > sheet->maxrow) return;
  if (col < 0 || row < 0) return;
-
+ 
  CheckBounds(sheet, row, col);
 
  cell=&sheet->data[row][col];

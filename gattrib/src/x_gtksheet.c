@@ -179,10 +179,10 @@ static GtkWidget *build_menu(GtkWidget *sheet)
         }
         break;
       case DeleteAttribute:
-        //if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
           gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
           gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-        //}
+        }
         break;
       case ClearAttributeData:
         if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
@@ -533,9 +533,8 @@ void x_gtksheet_init(PageDataSet *PageData)
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
       fprintf(stderr, "ERROR: x_gtksheet_init: %s sheet already exist!\n", SheetNames[index]);
     } else {
-      if ((nRow > 0) && (nCol >0)) {
-        sheets[index] = (GtkSheet *) gtk_sheet_new( nRow , nCol,
-						 _(SheetNames[index]));
+      if ((nRow > 0) && (nCol > 0)) {
+        sheets[index] = (GtkSheet *) gtk_sheet_new( nRow , nCol, _(SheetNames[index]));
       }
       else {
         fprintf(stderr, "ERROR: x_gtksheet_init: (%s )row count =[%d], col count=[%d]\n",
@@ -782,25 +781,22 @@ void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
 * \param visibility
 * \param show_name_value
 */
-void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
+void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
                               int visibility, int show_name_value, int is_inherited)
 {
   int length = strlen(text);
   int desired_width = length * DEFAULT_FONT_WIDTH;
   int fgcolor;
-  
+
   /* Auto resize up to limit */
   if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
-      ( desired_width > sheet->column[j].width )) {
-    gtk_sheet_set_column_width(sheet, j, desired_width);
+      ( desired_width > sheet->column[col].width )) {
+    gtk_sheet_set_column_width(sheet, col, desired_width);
   }
-  /* wiley see STRING_WIDTH inline in gsw.c */
-
-  gtk_sheet_set_cell(sheet, i, j, GTK_JUSTIFY_LEFT, text);
-
+//http://www.oildecline.com/
+  gtk_sheet_set_cell(sheet, row, col, GTK_JUSTIFY_LEFT, text);
   fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
-  x_gtksheet_set_cell_fgcolor(sheet, i, j, fgcolor);
-  
+  x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 
 /*! \brief Get the first column selected in the GtkSheet

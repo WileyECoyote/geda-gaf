@@ -11,6 +11,7 @@
 </head>
 <body>
 
+<<<<<<< HEAD
 
 <h1 class="sectionedit811"><a name="spice_on_geda_howto" id="spice_on_geda_howto">SPICE on gEDA HOWTO</a></h1>
 <div class="level1">
@@ -624,6 +625,8 @@ One final note: The netlister writes the contents of the lower level .SUBCKT fil
 <!-- EDIT828 SECTION "Handling hierarchical models" [18698-23545] -->
 <h2 class="sectionedit829"><a name="spice_netlist_generation" id="spice_netlist_generation">SPICE netlist generation</a></h2>
 <div class="level2">
+=======
+>>>>>>> 3d3d9b7... Automatic wiki import (Sun Nov 18 15:46:11 UTC 2012)
 
 <p>
 Once the schematic is captured, a SPICE netlist can be generated running the gEDA utility “gnetlist” on the schematic files. Gnetlist is built to be customizable, and is able to generate a netlist of any desired format using a Scheme back-end, which does the real heavy-lifting of creating the netlist. The back-end Scheme file which implements SPICE netlisting is called gnet-spice-sdb.scm, and it lives in the ${PREFIX}/geda/share/gEDA/scheme directory.

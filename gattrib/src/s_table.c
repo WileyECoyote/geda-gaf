@@ -48,48 +48,44 @@
 /*------------------------------------------------------------------*/
 /*! \brief Create a new table
  *
- * This is the table creator.  It returns a pointer to
- * an initialized TABLE struct.  As calling args, it needs
- * the number of rows and cols to allocate.  The table is a
- * dynamically allocated 2D array of structs.  To access data in
- * a cell in the table, you reference (for example):
- * ((sheet_data->comp_table)[i][j]).attrib_value
+ * This is the table creator.  It returns a pointer to an initialized
+ * TABLE data struct. The table is a dynamically allocated 2D array of
+ * structs. The tables are allocated as an array of columns so the arrays
+ * are accessed as (sheet_data->comp_table)[col][row]).field. This is
+ * different then GTK sheets which uses row,col. The orginal version of
+ * this function was YX but was changed to X,Y so memory could be allocated
+ * and deallocated in terms of the number of attributes AND not the number
+ * of components in the design.
+ * 
  * (Parens used only for clarity.  It works without parens.)
  * \param rows Number of rows required in the new table
  * \param cols Number of columns required in the new table
  * \returns a pointer to an initialized TABLE struct.
  */
-TABLE **s_table_new(int rows, int cols)
+TABLE **s_table_new( int rows, int cols)
 {
   TABLE **new_table;
-  int i, j;
+  int x, y;
 
-  /* Here I am trying to create a 2 dimensional array of structs */
+  /* Create a 2 dimensional array of structs */
   
-  /* WEH: If I am interupting this correctly then 1 columns worth of pointers
-   * (rows*sizeof(TABLE *)) = Y*DWORD is being allocated for each row of X *
-   * sizeof(TABLE). Is this what we want? gattrib is Y,X, think we want X,Y.
-   * The reason it mattters is because we want to deal with memory chunks the
-   * size of a column so that we can add and delete attributes. We can not
-   * delete components so we are not interested in allocating or freeing a
-   * rows worth of data */
-  
-  new_table = (TABLE **) g_malloc(rows*sizeof(TABLE *));
-  for (i = 0; i < rows; i++) {
-    new_table[i] = (TABLE *) g_malloc(cols * sizeof(TABLE));
+  new_table = (TABLE **) g_malloc(cols*sizeof(TABLE *));
+
+  for (x = 0; x < cols; x++) {
+    new_table[x] = (TABLE *) g_malloc(rows * sizeof(TABLE));
     /* Should checks be here to verify that malloc was successful*/
   }
-
+  
   /* Now pre-load the table with NULLs */
-  for (i = 0; i < rows; i++) {
-    for (j = 0; j < cols; j++) {
-      (new_table[i][j]).attrib_value = NULL;
-      (new_table[i][j]).row_name = NULL;
-      (new_table[i][j]).col_name = NULL;
-      (new_table[i][j]).row = i;
-      (new_table[i][j]).col = j;
-      (new_table[i][j]).visibility = VISIBLE; 
-      (new_table[i][j]).show_name_value = SHOW_VALUE;
+  for (x = 0; x < cols; x++) {
+    for (y = 0; y < rows; y++) {
+      (new_table[x][y]).attrib_value = NULL;
+      (new_table[x][y]).row_name = NULL;
+      (new_table[x][y]).col_name = NULL;
+      (new_table[x][y]).row = y;
+      (new_table[x][y]).col = x;
+      (new_table[x][y]).visibility = VISIBLE; 
+      (new_table[x][y]).show_name_value = SHOW_VALUE;
     }
   }
 
@@ -100,11 +96,11 @@ TABLE **s_table_new(int rows, int cols)
 /*------------------------------------------------------------------*/
 /*! \brief Resize a TABLE
  *
- * This function recreates the table with
- * a new size.  It can only increase
+ * This function recreates the table with a new size.  It can only increase
  * the number of cols.  You can't increase the number of rows since
- * gattrib doesn't allow you to input new components.  Decreasing the 
- * number of cols is also TBD.
+ * gattrib doesn't allow you to input new components.  For Decreasing the 
+ * number of cols use s_table_remove_attribute.
+ * 
  * \param table Table to resize
  * \param rows Number of rows in the table
  * \param old_cols Number of columns previously in the table
@@ -113,32 +109,52 @@ TABLE **s_table_new(int rows, int cols)
  * \todo The row and column information could be stored in the
  *       TABLE struct.
  */
-TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols)
+TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 {
-  int i, j;
-
-  /* resize the 2 dimensional array of structs */
-  for (i = 0; i < rows; i++) {
-    table[i] = (TABLE *) realloc(table[i], new_cols*sizeof(TABLE) );
-    if (table[i] == NULL) return NULL;  /* die if failed to realloc new memory */
-  }
-
-  /* Now pre-load new cols with NULLs */
-  for (i = 0; i < rows; i++) {
-    for (j = old_cols; j < new_cols; j++) {
-      (table[i][j]).attrib_value = NULL;
-      (table[i][j]).row_name = NULL;
-      (table[i][j]).col_name = NULL;
-      (table[i][j]).row = i;
-      (table[i][j]).col = j;
-      (table[i][j]).is_inherited= FALSE;
-      (table[i][j]).is_promoted = -2;
-      (table[i][j]).visibility = VISIBLE;
-      (table[i][j]).show_name_value = SHOW_VALUE;
+  int x, y;
+  TABLE **new_table;
+  
+  void init_new_record(col) {
+    for (y = 0; y < rows; y++) {
+      (table[col][y]).attrib_value = NULL;
+      (table[col][y]).row_name = NULL;
+      (table[col][y]).col_name = NULL;
+      (table[col][y]).row = y;
+      (table[col][y]).col = col;
+      (table[col][y]).is_inherited= FALSE;
+      (table[col][y]).is_promoted = -2;
+      (table[col][y]).visibility = VISIBLE;
+      (table[col][y]).show_name_value = SHOW_VALUE;
     }
   }
 
-  return table;
+  /* resize the 2 dimensional array of structs */
+  new_table = (TABLE **) realloc(table, Xt * sizeof(TABLE *) );
+  /* TODO: Fix this:*/
+  if (new_table == NULL) return NULL;  /* die if failed to realloc new memory */
+    
+  new_table[Xt] = (TABLE *) g_malloc(rows * sizeof(TABLE));;
+
+  if (Xa == Xt) { /* if appending a column */
+     init_new_record(Xt);
+  }
+  else {
+    for (x = Xt; x > Xa; x--) {
+      for (y = 0; y < rows; y++) {
+        table[x][y].row = table[x-1][y].row;
+        table[x][y].col = table[x-1][y].col;       
+        table[x][y].row_name = table[x-1][y].row_name;
+        table[x][y].col_name = table[x-1][y].col_name;
+        table[x][y].attrib_value = table[x-1][y].attrib_value;
+        table[x][y].visibility = table[x-1][y].visibility;
+        table[x][y].show_name_value = table[x-1][y].show_name_value;
+        table[x][y].is_inherited = table[x-1][y].is_inherited;
+        table[x][y].is_promoted = table[x-1][y].is_promoted;
+      }
+    }
+    init_new_record(Xa);
+  }
+  return new_table;
 }
 
 
@@ -154,21 +170,21 @@ TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols)
  */
 void s_table_destroy(TABLE **table, int row_count, int col_count)
 {
-  int i, j;
+  int x, y;
 
   if (table == NULL)
     return;
 
-  for (i = 0; i < row_count; i++) {
-    for (j = 0; j < col_count; j++) {
-      g_free( (table[i][j]).attrib_value );
-      g_free( (table[i][j]).row_name );
-      g_free( (table[i][j]).col_name );
+  for (x = 0; x < col_count; x++) {
+    for (y = 0; y < row_count; y++) {
+      g_free( (table[x][y]).attrib_value );
+      g_free( (table[x][y]).row_name );
+      g_free( (table[x][y]).col_name );
     }
   }
 
-  for (i = 0; i < row_count; i++) {
-    g_free( table[i] );
+  for (x = 0; x < col_count; x++) {
+    g_free( table[x] );
   }
 
   g_free(table);
@@ -245,13 +261,13 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
   }
 
   for (col = 0; col < num_attribs; col++) {
-    is_inherited = (table[row][col]).is_inherited;
-    is_promoted  = (table[row][col]).is_promoted;
+    is_inherited = (table[col][row]).is_inherited;
+    is_promoted  = (table[col][row]).is_promoted;
     if (is_inherited && ! is_promoted) continue;
     /* pull attrib from table.  If non-null, add it to attrib_pair_list  */
-    if ((table[row][col]).attrib_value != NULL) {
-      attrib_name = (table[row][col]).col_name;
-      attrib_value = (table[row][col]).attrib_value;
+    if ((table[col][row]).attrib_value != NULL) {
+      attrib_name = (table[col][row]).col_name;
+      attrib_value = (table[col][row]).attrib_value;
       name_value_pair = g_strconcat(attrib_name, "=", attrib_value, NULL);
       s_string_list_add_item(attrib_pair_list, &count, name_value_pair);
       g_free(name_value_pair);
@@ -338,15 +354,15 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                 }
                 else {
                   /* Is there a compelling reason for me to put this into a separate fcn? */
-                  ((sheet_head->component_table)[row][col]).row = row;
-                  ((sheet_head->component_table)[row][col]).col = col;
-                  ((sheet_head->component_table)[row][col]).row_name = g_strdup(temp_uref);
-                  ((sheet_head->component_table)[row][col]).col_name = g_strdup(attrib_name);
-                  ((sheet_head->component_table)[row][col]).attrib_value = g_strdup(attrib_value);
-                  ((sheet_head->component_table)[row][col]).visibility = old_visibility;
-                  ((sheet_head->component_table)[row][col]).show_name_value = old_show_name_value;
-                  ((sheet_head->component_table)[row][col]).is_inherited = FALSE;
-                  ((sheet_head->component_table)[row][col]).is_promoted = -1;
+                  ((sheet_head->component_table)[col][row]).row = row;
+                  ((sheet_head->component_table)[col][row]).col = col;
+                  ((sheet_head->component_table)[col][row]).row_name = g_strdup(temp_uref);
+                  ((sheet_head->component_table)[col][row]).col_name = g_strdup(attrib_name);
+                  ((sheet_head->component_table)[col][row]).attrib_value = g_strdup(attrib_value);
+                  ((sheet_head->component_table)[col][row]).visibility = old_visibility;
+                  ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
+                  ((sheet_head->component_table)[col][row]).is_inherited = FALSE;
+                  ((sheet_head->component_table)[col][row]).is_promoted = -1;
                   s_string_list_add_item(AttachedAttributes, &counter, g_strdup(attrib_name));
                   counter++;
                 }
@@ -393,15 +409,15 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                     }
                     else {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
-                      ((sheet_head->component_table)[row][col]).row = row;
-                      ((sheet_head->component_table)[row][col]).col = col;
-                      ((sheet_head->component_table)[row][col]).row_name = g_strdup(temp_uref);
-                      ((sheet_head->component_table)[row][col]).col_name = g_strdup(attrib_name);
-                      ((sheet_head->component_table)[row][col]).attrib_value = g_strdup(attrib_value);
-                      ((sheet_head->component_table)[row][col]).visibility = old_visibility;
-                      ((sheet_head->component_table)[row][col]).show_name_value = old_show_name_value;
-                      ((sheet_head->component_table)[row][col]).is_inherited = TRUE;
-                      ((sheet_head->component_table)[row][col]).is_promoted = FALSE;
+                      ((sheet_head->component_table)[col][row]).row = row;
+                      ((sheet_head->component_table)[col][row]).col = col;
+                      ((sheet_head->component_table)[col][row]).row_name = g_strdup(temp_uref);
+                      ((sheet_head->component_table)[col][row]).col_name = g_strdup(attrib_name);
+                      ((sheet_head->component_table)[col][row]).attrib_value = g_strdup(attrib_value);
+                      ((sheet_head->component_table)[col][row]).visibility = old_visibility;
+                      ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
+                      ((sheet_head->component_table)[col][row]).is_inherited = TRUE;
+                      ((sheet_head->component_table)[col][row]).is_promoted = FALSE;
                     }
                   }
                 }
@@ -479,14 +495,14 @@ void s_table_add_items_to_net_table(OBJECT *start_obj) {
             fflush(stdout);
             printf("In s_table_add_items_to_net_table, about to add row %d, col %d, attrib_value = %s\n",
                    row, col, attrib_value);
-            printf(" . . . current address of attrib_value cell is [%p]\n", &((sheet_head->net_table)[row][col]).attrib_value);
+            printf(" . . . current address of attrib_value cell is [%p]\n", &((sheet_head->net_table)[col][row]).attrib_value);
 #endif
             /* Is there a compelling reason for me to put this into a separate fcn? */
-            ((sheet_head->net_table)[row][col]).row = row;
-            ((sheet_head->net_table)[row][col]).col = col;
-            ((sheet_head->net_table)[row][col]).row_name = g_strdup(temp_netname);
-            ((sheet_head->net_table)[row][col]).col_name = g_strdup(attrib_name);
-            ((sheet_head->net_table)[row][col]).attrib_value = g_strdup(attrib_value);
+            ((sheet_head->net_table)[col][row]).row = row;
+            ((sheet_head->net_table)[col][row]).col = col;
+            ((sheet_head->net_table)[col][row]).row_name = g_strdup(temp_netname);
+            ((sheet_head->net_table)[col][row]).col_name = g_strdup(attrib_name);
+            ((sheet_head->net_table)[col][row]).attrib_value = g_strdup(attrib_value);
           }
           g_free(attrib_name);
           g_free(attrib_text);
@@ -606,11 +622,11 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                     }
                     else {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
-                      ((sheet_head->pin_table)[row][col]).row = row;
-                      ((sheet_head->pin_table)[row][col]).col = col;
-                      ((sheet_head->pin_table)[row][col]).row_name = g_strdup(row_label);
-                      ((sheet_head->pin_table)[row][col]).col_name = g_strdup(attrib_name);
-                      ((sheet_head->pin_table)[row][col]).attrib_value = g_strdup(attrib_value);
+                      ((sheet_head->pin_table)[col][row]).row = row;
+                      ((sheet_head->pin_table)[col][row]).col = col;
+                      ((sheet_head->pin_table)[col][row]).row_name = g_strdup(row_label);
+                      ((sheet_head->pin_table)[col][row]).col_name = g_strdup(attrib_name);
+                      ((sheet_head->pin_table)[col][row]).attrib_value = g_strdup(attrib_value);
                     }
                   }
                 }
@@ -636,7 +652,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
   verbose_done();
 }
 
-/*! \brief Destroy a table
+/*! \brief Remove an Attribute from a table
  *
  * This function destroys the old table.
  * Use it after reading in a new
@@ -646,53 +662,55 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
  * \param col_count Number of columns in table
  */
 #define data_table sheet_head->component_table
-#define free_if(field) if(((data_table)[Y][X]).field) g_free(((data_table)[Y][X]).field);
+#define free_if(field) if(((data_table)[X][Y]).field) g_free(((data_table)[X][Y]).field);
 #define col_count sheet_head->comp_attrib_count
 bool s_table_remove_attribute(TABLE **table, int X) {
   bool result = FALSE;
   int Y;
   int Xi;
   
-  void destroy_last_column() {
+  void free_column(X) {
     for (Y = 0; Y < sheet_head->comp_count; Y++) {
       free_if (row_name)
       free_if (col_name)
       free_if (attrib_value)
-      //g_free( table[Y] ); /* No can do, need to resolve Y,X issue*/
     }
   }
   
   if ( X > col_count ) return result;
+
+  free_column(X);
   
-  if ( X == col_count ) {/* if the last record */
-    destroy_last_column();
+  if ( X == col_count ) {     /* if the last record */
+    g_free( table[X - 1] );
   }
   else {
-    //col_count = col_count -1;
     for (Xi = X; Xi < col_count - 1; Xi++) {
       for (Y = 0; Y < sheet_head->comp_count; Y++) {
-        table[Y][Xi].row = table[Y][Xi + 1].row;
-        table[Y][Xi].col = table[Y][Xi + 1].col;       
-        table[Y][Xi].row_name = table[Y][Xi + 1].row_name;
-        table[Y][Xi].col_name = table[Y][Xi + 1].col_name;
-        table[Y][Xi].attrib_value = table[Y][Xi + 1].attrib_value;
-        table[Y][Xi].visibility = table[Y][Xi + 1].visibility;
-        table[Y][Xi].show_name_value = table[Y][Xi + 1].show_name_value;
-        table[Y][Xi].is_inherited = table[Y][Xi + 1].is_inherited;
-        table[Y][Xi].is_promoted = table[Y][Xi + 1].is_promoted;
+        table[Xi][Y].row = table[Xi + 1][Y].row;
+        table[Xi][Y].col = table[Xi + 1][Y].col;       
+        table[Xi][Y].row_name = table[Xi + 1][Y].row_name;
+        table[Xi][Y].col_name = table[Xi + 1][Y].col_name;
+        table[Xi][Y].attrib_value = table[Xi + 1][Y].attrib_value;
+        table[Xi][Y].visibility = table[Xi + 1][Y].visibility;
+        table[Xi][Y].show_name_value = table[Xi + 1][Y].show_name_value;
+        table[Xi][Y].is_inherited = table[Xi + 1][Y].is_inherited;
+        table[Xi][Y].is_promoted = table[Xi + 1][Y].is_promoted;
       }
     }
-    destroy_last_column();
+    g_free( table[col_count - 1] );
   }
   return TRUE;
 }
+#undef data_table
+#undef free_if
+#undef col_count
 /*------------------------------------------------------------------*/
-/*! \brief Push spreadsheet data to TABLEs.
+/*! \brief Pull spreadsheet data to TABLEs.
  *
  * This function traverses the spreadsheet,
- * extracts the attribs from
- * the cells, and places them back into TABLE.  This is the
- * first step in saving out a project.
+ * extracts the attribs from the cells, and places them back
+ * into TABLE.  This is the first step in saving out a project.
  */
 void s_table_gtksheet_to_all_tables() {
 
@@ -701,8 +719,8 @@ void s_table_gtksheet_to_all_tables() {
   STRING_LIST *master_row_list;
   STRING_LIST *master_col_list;
   TABLE **local_table;
-  GtkSheet *local_gtk_sheet;     
-
+  GtkSheet *local_gtk_sheet;
+  
   /* First handle component sheet */
   num_rows = sheet_head->comp_count;
   num_cols = sheet_head->comp_attrib_count;
@@ -716,10 +734,11 @@ void s_table_gtksheet_to_all_tables() {
 #ifdef DEBUG
   printf("In s_table_gtksheet_to_all_tables, now about to fill out new component table.\n");
 #endif
+
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
                             master_col_list, local_table,
                             num_rows, num_cols);
-
+  
 #ifdef UNIMPLEMENTED_FEATURES
   /* Next handle net sheet */
   num_rows = sheet_head->net_count;
@@ -746,7 +765,6 @@ void s_table_gtksheet_to_all_tables() {
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
 		       master_col_list, local_table,
 		       num_rows, num_cols);
-
   return;
 }
 
@@ -767,9 +785,11 @@ void s_table_gtksheet_to_all_tables() {
  * \param num_rows Number of rows in table
  * \param num_cols Number of columns in table
  */
-void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_row_list, 
-			 STRING_LIST *master_col_list, TABLE **local_table,
-			 int num_rows, int num_cols) 
+void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
+                               STRING_LIST *master_row_list, 
+			       STRING_LIST *master_col_list,
+                               TABLE **local_table,
+			       int num_rows, int num_cols) 
 {
   int row, col;
 
@@ -804,42 +824,42 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, STRING_LIST *master_ro
 #endif
 
 
-#ifdef DEBUG
-      printf("In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n", 
+#if DEBUG
+fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n", 
 	     attrib_value, row, col);
 #endif
 
       /* first handle attrib value in cell */
-#ifdef DEBUG
-      printf("     Updating attrib_value %s\n", attrib_value);
+#if DEBUG
+      fprintf(stderr,"     Updating attrib_value %s\n", attrib_value);
 #endif
-      g_free( local_table[row][col].attrib_value );
+      g_free( local_table[col][row].attrib_value );
       if (attrib_value != NULL) {
-	local_table[row][col].attrib_value = (char *) g_strdup(attrib_value);
+	local_table[col][row].attrib_value = (char *) g_strdup(attrib_value);
       } else {
-	local_table[row][col].attrib_value = NULL;
+	local_table[col][row].attrib_value = NULL;
       }
 
       /* next handle name of row (also held in TABLE cell) */
 #ifdef DEBUG
       printf("     Updating row_name %s\n", row_title);
 #endif
-      g_free( local_table[row][col].row_name );
+      g_free( local_table[col][row].row_name );
       if (row_title != NULL) {
-	local_table[row][col].row_name = (char *) g_strdup(row_title);
+	local_table[col][row].row_name = (char *) g_strdup(row_title);
       } else {
-	local_table[row][col].row_name = NULL;
+	local_table[col][row].row_name = NULL;
       }
 
       /* finally handle name of col */
 #ifdef DEBUG
       printf("     Updating col_name %s\n", col_title);
 #endif
-      g_free( local_table[row][col].col_name );
+      g_free( local_table[col][row].col_name );
       if (col_title != NULL) {
-	local_table[row][col].col_name = (char *) g_strdup(col_title);
+	local_table[col][row].col_name = (char *) g_strdup(col_title);
       } else {
-	local_table[row][col].col_name = NULL;
+	local_table[col][row].col_name = NULL;
       }
 
       /* get next col list item and then iterate. */

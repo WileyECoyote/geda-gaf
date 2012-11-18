@@ -19,7 +19,7 @@
       <menuitem action="edit-clipboard-paste" />
       <separator/>
       <menuitem action="edit-add-attrib" />
-      <!-- <menuitem action="edit-delete-attrib" /> -->
+      <menuitem action="edit-delete-attrib" />
       <menuitem action="edit-promote-attrib" />
       <menuitem action="edit-demote-attrib" />
       <separator/>

@@ -133,8 +133,6 @@ void s_sheet_data_add_master_net_attrib_list_items(const GList *obj_list);
 void s_sheet_data_add_master_pin_list_items(const GList *obj_list);
 void s_sheet_data_add_master_pin_attrib_list_items(const GList *obj_list);
 
-void s_sheet_data_gtksheet_to_sheetdata();
-
 /* ------------- s_string_list.c ------------- */
 STRING_LIST *s_string_list_new();
 void s_string_list_free(STRING_LIST *strlist);
@@ -156,7 +154,8 @@ void s_string_list_sort_all_list();
 
 /* ------------- s_table.c ------------- */
 TABLE **s_table_new(int rows, int cols);
-TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols);
+TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt);
+//TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols);
 void s_table_destroy(TABLE **table, int row_count, int col_count);
 int  s_table_get_index(STRING_LIST *list, char *string);
 STRING_LIST *s_table_create_attrib_pair(char *row_name, 
@@ -168,7 +167,7 @@ void s_table_add_items_to_comp_table(const GList *obj_list);
 void s_table_add_items_to_net_table(const GList *obj_list);
 void s_table_add_items_to_pin_table(const GList *obj_list);
 bool s_table_remove_attribute(TABLE **table, int X);
-  
+
 void s_table_gtksheet_to_all_tables();
 void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, 
 			      STRING_LIST *master_row_list, STRING_LIST *master_col_list, 

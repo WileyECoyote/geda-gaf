@@ -105,14 +105,13 @@ void s_properties_set_cell_visibility(int row, int col, int visibility)
   TABLE **local_table = NULL;
 
 #ifdef DEBUG
-    printf("In s_properties_set_cell, setting row = %d, col = %d.\n", 
-           row, col);
+    printf("In s_properties_set_cell, setting row = %d, col = %d.\n", row, col);
 #endif
 
   local_table = s_properties_get_current_table();
 
   /* Question:  how to sanity check (row, col) selection? */
-  local_table[row][col].visibility = visibility;
+  local_table[col][row].visibility = visibility;
   sheet_head->CHANGED = 1;  /* cell has been updated.  */
 
 }
@@ -135,7 +134,7 @@ void s_properties_set_cell_show_name(int row, int col, int show_name_value)
   local_table = s_properties_get_current_table();
 
   if (show_name_value != LEAVE_NAME_VALUE_ALONE) { 
-    local_table[row][col].show_name_value = show_name_value;
+    local_table[col][row].show_name_value = show_name_value;
     sheet_head->CHANGED = 1;  /* cell has been updated.  */
   }
 }
@@ -146,7 +145,7 @@ bool s_properties_get_visibility(int row, int col) {
   
   local_table = s_properties_get_current_table();
 
-  return local_table[row][col].visibility;
+  return local_table[col][row].visibility;
 }
 /*! \brief Returns the current Show Name value of a cell */
 int s_properties_get_show_name_value(int row, int col) {
@@ -155,7 +154,7 @@ int s_properties_get_show_name_value(int row, int col) {
   
   local_table = s_properties_get_current_table();
 
-  return local_table[row][col].show_name_value;
+  return local_table[col][row].show_name_value;
 }
 /*! \brief Returns heredity of the current cell */
 int s_properties_get_heritence(int row, int col) {
@@ -164,7 +163,7 @@ int s_properties_get_heritence(int row, int col) {
   
   local_table = s_properties_get_current_table();
 
-  return local_table[row][col].is_inherited;
+  return local_table[col][row].is_inherited;
 }
 /*! \brief Set the Foreground color of the cell 
   * \par Function Description
@@ -362,8 +361,8 @@ void s_properties_promote_attribute() {
   col = sheet->active_cell.col;
 
   local_table = s_properties_get_current_table();
-  local_table[row][col].is_inherited = FALSE;
-  local_table[row][col].is_promoted = TRUE;
+  local_table[col][row].is_inherited = FALSE;
+  local_table[col][row].is_promoted = TRUE;
     
   s_properties_set_cell_fgcolor(sheet, row, col);
 
@@ -383,9 +382,9 @@ void s_properties_demote_attribute() {
   local_table = s_properties_get_current_table();
   
   /* we only demote attributes previously having been promote */
-  if(local_table[row][col].is_promoted > 0) {
-    local_table[row][col].is_inherited = TRUE;
-    local_table[row][col].is_promoted = FALSE;
+  if(local_table[col][row].is_promoted > 0) {
+    local_table[col][row].is_inherited = TRUE;
+    local_table[col][row].is_promoted = FALSE;
   }
   
   s_properties_set_cell_fgcolor(sheet, row, col);

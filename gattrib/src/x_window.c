@@ -184,6 +184,7 @@ void x_window_init()
   gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0); 
   gtk_widget_show(entry);
   
+  /* TODO togglable legend ? */
   /* -----  Now init notebook widget  ----- */  
   notebook = gtk_notebook_new();
   gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
@@ -239,7 +240,7 @@ void x_window_add_items(PageDataSet *PageData)
 			      PageData->comp_attrib_count,
 			      PageData->master_comp_attrib_list_head);
   }
-
+ 
   /* This is not ready.  Need to implement net attributes */
   if (PageData->net_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[Nets]), 
@@ -257,18 +258,19 @@ void x_window_add_items(PageDataSet *PageData)
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[Pins]), 
 			      PageData->pin_attrib_count, PageData->master_pin_attrib_list_head);
   }
-
+ 
   /* ------ Comp sheet: put values in the individual cells ------- */
   num_rows = PageData->comp_count;
   num_cols = PageData->comp_attrib_count;
-  for (i = 0; i < num_rows; i++) {
-    for (j = 0; j < num_cols; j++) {
+
+  for (i = 0; i < num_cols; i++) {
+    for (j = 0; j < num_rows; j++) {
       if ( (PageData->component_table)[i][j].attrib_value ) { /* NULL = no entry */
 	text = g_strdup( (PageData->component_table)[i][j].attrib_value );
 	visibility = (PageData->component_table)[i][j].visibility;
 	show_name_value = (PageData->component_table)[i][j].show_name_value;
         is_inherited = (PageData->component_table)[i][j].is_inherited;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[0]), i, j, text, visibility, show_name_value, is_inherited);
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[Components]), j, i, text, visibility, show_name_value, is_inherited);
 	g_free(text);
       }
     }
@@ -277,13 +279,13 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Net sheet: put values in the individual cells ------- */
   num_rows = PageData->net_count;
   num_cols = PageData->net_attrib_count;
-  for (i = 0; i < num_rows; i++) {
-    for (j = 0; j < num_cols; j++) {
+  for (i = 0; i < num_cols; i++) {
+    for (j = 0; j < num_rows; j++) {
       if ( (PageData->net_table)[i][j].attrib_value ) { /* NULL = no entry */
 	text =  g_strdup( (PageData->net_table)[i][j].attrib_value );
 	visibility = (PageData->net_table)[i][j].visibility;
 	show_name_value = (PageData->component_table)[i][j].show_name_value;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), i, j, text, visibility, show_name_value, 0);
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), j, i, text, visibility, show_name_value, 0);
 	g_free(text);
       }
     }
@@ -292,17 +294,16 @@ void x_window_add_items(PageDataSet *PageData)
   /* ------ Pin sheet: put pin attribs in the individual cells ------- */
   num_rows = PageData->pin_count;
   num_cols = PageData->pin_attrib_count;
-  for (i = 0; i < num_rows; i++) {
-    for (j = 0; j < num_cols; j++) {
+  for (i = 0; i < num_cols; i++) {
+    for (j = 0; j < num_rows; j++) {
       if ( (PageData->pin_table)[i][j].attrib_value ) { /* NULL = no entry */
 	text = g_strdup( (PageData->pin_table)[i][j].attrib_value );
 	/* pins have no visibility attributes, must therefore provide default. */
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), i, j, text,  VISIBLE, SHOW_VALUE, 0);
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), j, i, text,  VISIBLE, SHOW_VALUE, 0);
 	g_free(text);
       }
     }
   }
-
 }
 /*!
  * \brief Complete startup initialization for Main Window 
@@ -311,10 +312,11 @@ void x_window_add_items(PageDataSet *PageData)
  */
 void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
 {
+
   /* -------------- update data in windows --------------- */
   x_window_add_items(PageData); /* This updates the top level stuff,and then
                                    calls another fcn to update the GtkSheet */
-                              
+  
   gtk_window_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
   gtk_widget_show( GTK_WIDGET(main_window));
   x_window_update_title(pr_current, PageData);
@@ -415,9 +417,9 @@ void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) 
   
   for( col = 0; col < maxcol; col++) {
     for( row = 0; row < maxrow; row++) {
-      if (sheet_head->component_table[row][col].is_inherited) {
+      if (sheet_head->component_table[col][row].is_inherited) {
         if (show) {
-          text = (sheet_head->component_table)[row][col].attrib_value;
+          text = (sheet_head->component_table)[col][row].attrib_value;
           gtk_sheet_set_cell(sheets[0], row, col, GTK_JUSTIFY_LEFT, text);
         }
         else

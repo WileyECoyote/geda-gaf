@@ -1,3 +1,29 @@
+2012-11-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_table.c: Major re-vamp, tables are now referecne as [X][Y].
+        Revised functions s_table_new,s_table_destroy, s_table_create_attrib
+        _pair, s_table_add_items_to_comp_table, s_table_gtksheet_to_table,
+        Replaced function s_table_resize with s_table_add
+        Added function s_table_remove_attribute
+
+        * src/x_menu.c: completed implementation of delete attribute
+        functionality that was part of the previous commit but was disabled
+        in the menus.
+
+        * src/s_toplevel.c: Eliminated s_sheet_data_gtksheet_to_sheetdata,
+        this function just called s_table_gtksheet_to_all_tables so now
+        s_toplevel_gtksheet_to_toplevel function calls s_table_gtksheet_to
+        _all_tables directly.
+
+        * The revisions above fix gattrib's Y-X dilema: Accessing table data
+        with X-Y may seem awkward since gtksheet is (backwards) Y-X, but now
+        memory can be, and is, allocated and released on a per attribute
+        basis, meaning attributes can be freely added or deleted. gattrib can
+        not add or remove components so there is no need to manipulate memory
+        in terms of rows (Ys).
+
+        * src/x_toolbars.c: Added demote to Attribute toolbar.
+
 2012-11-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/gattrib.c: Revised/Rearranged mainline code so that gattrib

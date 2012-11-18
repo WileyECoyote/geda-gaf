@@ -764,8 +764,7 @@ gtk_sheet_get_active_cell 		(GtkSheet *sheet,
 					gint *row, gint *column);
 
 /* set cell contents and allocate memory if needed */
-void 
-gtk_sheet_set_cell			(GtkSheet *sheet, 
+void gtk_sheet_set_cell			(GtkSheet *sheet, 
 					gint row, gint col, 
                                         GtkJustification justification,
                    			const gchar *text);

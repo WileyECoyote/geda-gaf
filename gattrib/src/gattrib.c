@@ -306,7 +306,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
     }
     argv_index++;
   }
-  
+
   /* ---------- Initialize SHEET_DATA data structure ---------- */
   sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */
   

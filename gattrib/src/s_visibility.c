@@ -359,11 +359,11 @@ void s_visibility_set_cell(int cur_page, int row, int col,
   }
 
   /* Question:  how to sanity check (row, col) selection? */
-  local_table[row][col].visibility;
+  local_table[col][row].visibility;
   sheet_head->CHANGED = 1;  /* cell has been updated.  */
 
   if (show_name_value != LEAVE_NAME_VALUE_ALONE) { 
-    local_table[row][col].show_name_value = show_name_value;
+    local_table[col][row].show_name_value = show_name_value;
     sheet_head->CHANGED = 1;  /* cell has been updated.  */
   }
 }
@@ -386,5 +386,5 @@ bool s_visibility_get_cell(int cur_page, int row, int col) {
     break;
   }
 
-  return local_table[row][col].visibility;
+  return local_table[col][row].visibility;
 }

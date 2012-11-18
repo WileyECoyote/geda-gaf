@@ -556,22 +556,6 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 
 }
 
-/*------------------------------------------------------------------*/
-/*!
- * \brief Extract data from gtksheet
- *
- * This fcn extracts the attribs from the gtksheet widget
- * cells, and places them back into SHEET_DATA.  This is the
- * first step in saving out a project.  Right now I just invoke
- * s_table_gtksheet_to_table.  Do I need to do anything else here?
- */
-void s_sheet_data_gtksheet_to_sheetdata() {
-  
-  s_table_gtksheet_to_all_tables();
-  /* do I need to do anything else here? */
-
-  return;
-}
 
 
 

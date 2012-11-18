@@ -143,8 +143,8 @@ void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
   PAGE *p_current;
   
   /* read data from gtksheet into SHEET_DATA */
-  s_sheet_data_gtksheet_to_sheetdata();
-  
+  s_table_gtksheet_to_all_tables();
+   
   /* iterate over all pages in design */
   for ( iter = geda_list_get_glist( toplevel->pages );
         iter != NULL;
@@ -217,9 +217,9 @@ void s_toplevel_add_new_attrib(int column_location) {
     //s_string_list_sort_master_comp_attrib_list();
 
     /* resize table to accomodate new attrib col      */
-    sheet_head->component_table = s_table_resize(sheet_head->component_table,  /* Table */
+    sheet_head->component_table = s_table_add_column(sheet_head->component_table,  /* Table */
 		                  sheet_head->comp_count,             /* number of rows */
-		                  sheet_head->comp_attrib_count - 1, sheet_head->comp_attrib_count);
+		                  column_location, sheet_head->comp_attrib_count-1);
 
     break;
   case 1:  /* net attribute  */
@@ -231,7 +231,7 @@ void s_toplevel_add_new_attrib(int column_location) {
     break;
   }  /* switch  */
 
-#ifdef DEBUG 
+#if DEBUG
   int i; char* str;
   for ( i = 0; i < sheet_head->comp_attrib_count; i++) {
     str = s_string_list_get_data_at_index(sheet_head->master_comp_attrib_list_head, i);
@@ -242,7 +242,6 @@ void s_toplevel_add_new_attrib(int column_location) {
 if (new_attrib_name) g_free(new_attrib_name);
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Delete an attribute column
@@ -271,21 +270,15 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
   if (!x_dialog_generic_confirm_dialog (msg_buffer, GTK_MESSAGE_WARNING))
      return;
 
-  //s_table_destroy(sheet_head->component_table, 
-  //                sheet_head->comp_count, sheet_head->comp_attrib_count)
-    
-  /* Disable until the Y,X issue is resolved */
+  /* Remove the attributes from the data table */
   s_table_remove_attribute(sheet_head->component_table, col);
   
+  /* Remove the attribute from the column headings */
   s_string_list_delete_item(&(sheet_head->master_comp_attrib_list_head), 
                             &(sheet_head->comp_attrib_count), 
                               attrib_name);
   g_free(attrib_name);
-       
-  /* Now create new table with new attrib count
-  sheet_head->component_table = s_table_new(sheet_head->comp_count, 
-                                            sheet_head->comp_attrib_count);
- */
+
   /* Delete col on gtksheet  */
 #ifdef DEBUG
   printf("In s_toplevel_delete_attrib_col, about to delete col in gtksheet.\n");
@@ -326,7 +319,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
 
   /* -----  First deal with all components on the page.  ----- */
 #ifdef DEBUG
-  printf("-----  In s_toplevel_sheetdata_to_toplevel, handling components\n");
+  fprintf(stderr, "-----  In s_toplevel_sheetdata_to_toplevel, handling components\n");
 #endif
 
   /* Work from a copy list, as objects can be deleted
@@ -374,7 +367,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
 	g_free(temp_uref);
       } else {
 #ifdef DEBUG
-	printf("In s_toplevel_sheetdata_to_toplevel, found complex with no refdes. name = %s\n", 
+	fprintf(stderr, "In s_toplevel_sheetdata_to_toplevel, found complex with no refdes. name = %s\n", 
 	       o_current->name);
 #endif
       }
@@ -392,7 +385,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
   /* -----  Finally deal with all pins on the page.  ----- */
   /* -----  Next deal with all nets on the page.  ----- */
 #ifdef DEBUG
-	printf("-----  In s_toplevel_sheetdata_to_toplevel, handling pins\n");
+	fprintf( stderr, "-----  In s_toplevel_sheetdata_to_toplevel, handling pins\n");
 #endif
 
   /* Work from a copy list in case objects are
@@ -442,12 +435,11 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
       g_free(temp_uref);
     }
   }
-
   g_list_free (copy_list);
 
   return;
 }
-
+#undef DEBUG
 
 /*------------------------------------------------------------------*/
 /*! \brief Get the component attributes from the top level
@@ -492,8 +484,8 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
   while (local_attrib_list != NULL) {  /* iterate over all possible attribs */
     new_attrib_name = g_strdup(local_attrib_list->data);  /* take attrib name from column headings */
 
-    if ( ((sheet_head->component_table)[row][i]).attrib_value ) {
-      new_attrib_value = g_strdup( ((sheet_head->component_table)[row][i]).attrib_value );
+    if ( ((sheet_head->component_table)[i][row]).attrib_value ) {
+      new_attrib_value = g_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
       name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       g_free(new_attrib_value);      
     } else {
@@ -674,8 +666,8 @@ s_toplevel_update_component_attribs_in_toplevel (
   if ( (row == -1) || (col == -1) ) {
     new_attrib_value = NULL;  /* attrib will be deleted below */
   } else { /* we need a better place to get this info since the TABLE can be out of date */
-    visibility = sheet_head->component_table[row][col].visibility;
-    show_name_value = sheet_head->component_table[row][col].show_name_value;
+    visibility = sheet_head->component_table[col][row].visibility;
+    show_name_value = sheet_head->component_table[col][row].show_name_value;
   }
   g_free(refdes);
 
@@ -833,8 +825,8 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
   while (local_attrib_list != NULL) {  /* iterate over all possible attribs */
     new_attrib_name = g_strdup(local_attrib_list->data);  /* take attrib name from column headings */
 
-    if ( ((sheet_head->pin_table)[row][i]).attrib_value ) {
-      new_attrib_value = g_strdup( ((sheet_head->pin_table)[row][i]).attrib_value );
+    if ( ((sheet_head->pin_table)[i][row]).attrib_value ) {
+      new_attrib_value = g_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
       name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       g_free(new_attrib_value);      
     } else {
@@ -973,7 +965,7 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
 void s_toplevel_init_data_set(TOPLEVEL *toplevel, PageDataSet *PageData) {
 
   /* ---------- Sort the Headers  ---------- */
-  s_string_list_sort_all_list();
+  //s_string_list_sort_all_list();
 
   /* ---------- Create and load the tables  ---------- */
   s_table_load_new_page(PageData);
