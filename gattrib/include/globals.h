@@ -86,22 +86,30 @@ SHEET_DATA *sheet_head;
 /*! @brief Globals to control displaying of only the attached attributes */
 bool show_attached;
 
+/*! @brief Globals list for retaining Search and Replace History */
+GList *search_history;
+
 /*------------------------------------------------------------------
  * GTKsheet includes: stuff for dealing with windows.
  *------------------------------------------------------------------*/
+#define MAX_WINDOW_TITLE 128
 #define DEFAULT_FONT_WIDTH 12
 #define DEFAULT_PRECISION 2
 #define DEFAULT_SPACE 8
 #define NUM_SHEETS 3            /* Components, Nets, and Pins */
-#define COLUMN_WIDTH_LIMIT 100
+#define COLUMN_WIDTH_LIMIT 200  /* Auto width adjustment upper limit*/
 
-GtkWidget        *window;         /* Main window */
+GtkWidget        *main_window;         /* Main window */
 GtkWidget        *menu_bar;
 GtkUIManager     *menu_manager;   /* Manager for menus */
 GtkRecentManager *recent_manager; /* Manager for recently used files */
   
-GtkWidget *handlebox;
+GtkWidget *Standard_handlebox;
 GtkWidget *Standard_Toolbar;
+  
+GtkWidget *Attribute_handlebox;
+GtkWidget *Attribute_Toolbar;
+  
 GtkWidget *notebook;
 GtkWidget *popup;
 GtkWidget *edit_box;
@@ -118,6 +126,8 @@ extern int quiet_mode;
 
 typedef enum  { Black, Blue, Green, Red, Violet, Yellow, White, Gray } ColorId;
 typedef enum  { Components, Nets, Pins } SheetId;
-typedef enum  { open, save, save_as, cut, copy, paste } IDS_Toolbar;
+typedef enum  { open, save, save_as, cut, copy, paste,
+                find, replace, attribute, designator,
+                invisible, name_only, value_only, name_value} IDS_Toolbar;
 
 #endif

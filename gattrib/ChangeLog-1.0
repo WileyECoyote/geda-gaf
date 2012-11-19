@@ -1,3 +1,83 @@
+2012-11-16 Wiley E. Hill <wileyhill@gmail.com>
+        * src/gattrib_dialog.c: Add new compilation unit, this is mostly
+        a copy of the gschem version but tweeked for gattrib, i.e. no 
+        w_current. This is mainly so that Dialog positions could be
+        and recalled. gattrib now creates and maintaines a
+        retained a ~/gEDA/gattrib-dialog-geometry file.
+
+        * include/gattrib_dialog.h: Added header to support corresponding
+        source file.
+
+        * src/g_strings.c: New file for generic string functions. These
+        are mostly strings function missing from glibc, maybe should be
+        in libgeda but don't want to prefix with u_basic. These were
+        developed as internal function to support Sear and Replace but
+        are being move to a new file to reduce clutter and so that the
+        algorithms can be used in overhaul of Find dialog.
+
+        * src/g_util.c New file for generic utility functions with two
+        initial functions: g_list_str_inlist and g_list_stri_inlist. Did
+        not find in library and these did not seem to fit in to any of
+        the existing files (maybe g_strings.c but thinking other g_list
+        oriented functions be required in the future).
+
+        * include/struct.h: Added new structure, st_search, to support
+        new Search and Replace functions.
+
+        * src/x_toolbars.c: Added new Attribute toolbar.
+
+        * src/x_dialog.c: Added Search and Replace Dialog, eliminated
+        x_dialog_find_value (taht I jst added last week) and modified
+        Search and Replace Dialog for Find-Only-Mode.
+        Removed create_pixmap function since there is a version in the
+        gattrib_dialog.c src that is being added.
+        Implemented Search and Replace history.
+
+        * src/x_gtksheet.c: Added functions x_gtksheet_range_copy
+        and x_gtksheet_set_max_range to facilitate manipulation
+        of range structures. Added gtk_sheet_set_clip_text(sheets[i], TRUE);
+        in x_gtksheet_init function. This keeps the text from running over
+        into adjacent cells. (Note: There seems to be some confusion
+        in GTKSheet regarding the terminology for "clip", in most context it
+        is associated with "cut/copy/paste" as in clipboard. There is no
+        documentation for the gtk_sheet_set_clip_text function but it has
+        nothing to do with "clipboard", it sets a sheet-level property to
+        clip rendering at the cell borders.
+        Disabled visability of the "Nets" tab. Previously the was controled
+        with preprocessor directives to prevent compilation. The Nets tab
+        is now compiled in but it is kept off and requires development.
+        (Idea: Would it be easer to just have gnetlist generate a text
+         file and read that in to the net sheet then to sort through toplevel
+         with library?)
+
+	* src/x_window: replace gtk_widget_show_all with gtk_widget_show
+        for main window, (requiring that gtk_widget_show be added for the
+        main_vbox widget. Also added gtk_window_position with position set
+        to GTK_WIN_POS_MOUSE so the main window did open in the top left
+        corner of the screen ever time the program starts. Added code to
+        support the new Attribute toolbar.
+
+2012-11-14 Wiley E. Hill <wileyhill@gmail.com>
+	* src/x_window: Add function x_window_update_title and
+	implemented. The new function adds the filename to the
+	titlebar and prefixes an asterisk to indicate content
+	has changed.
+
+	* src/x_find.c: Created new file to implement search
+	features.
+
+	* src/x_dialog: Added functions x_dialog_get_search_text,
+        find_text_dialog_response, x_dialog_find_value
+
+        * src/x_menu.c: Enabled menu option for searching and
+        replacing that were previously disabled/unimplemented.
+
+        * src/x_toolbars.c: Created new file for toolbar, moving
+        the recently add code for toolbars from w_window.c to this
+        file.
+
+	* src/x_window: See previous entry for toolbars.
+
 2012-11-13 Wiley E. Hill <wileyhill@gmail.com>
         * gattrib: Extension revisions throught-out code adding
         functionality for toolbars, menus. Major changes were as
@@ -6,23 +86,26 @@
         x_gtksheet_init, added argument PageDataSet. Created new
         functions; x_gtksheet_reinititialize to resize the gtksheets
         after new file is loaded. Added signal handlers, starting
-        from code in testgtksheet.c and then functional part were
-        revised for use with gattrib.
+        from code in testgtksheet.c and then functional parts were
+        revised for use with gattrib. Added auto column width adjustment
+        upt to fix size limit defined by COLUMN_WIDTH_LIMIT, set to 200
+        for now. This allows auto expansion during loading sheet, to
+        a width of about 14 characters. This is done in the function
+        x_gtksheet_add_cell_item.
         
         * src/x_menu.c: New source file, relocated menu code from
-        x_window.c and supplamenting with new menu handlers. Added
+        x_window.c and supplemented with new menu handlers. Added
         toolbar toggles and recent file open code (This was hard because
         even after 7 years there does not seem to be an example of 
         ui manager with xml and recent manager with chooser! Ultimately
         the solution was to remove the container and replace with
-        a new recent manager after GTK was done making assumtions, see
-        x_menu_fix_gtk_recent_submenu.)
+        a new recent manager after GTK was done making uncontrollable
+        assumptions, see x_menu_fix_gtk_recent_submenu.)
         
 	* src/x_fileselect.c: Revised x_fileselect_load_files to
 	use new function x_fileselect_load_file relocated common code
 	to other functions for use by x_menu_file_open and menu_open_recent.
 
-	
         * src/gattrib: Add calls to functions with code relocated from
         x_fileselect_load_files rather than being executed in the loader,
         added calls to s_toplevel_init_data_set and x_gtksheet_init.

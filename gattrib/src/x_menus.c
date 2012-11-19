@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
- * gschem - gEDA Schematic Capture
+ * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * 
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -46,8 +46,8 @@ void x_menu_file_save()
 {
   s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
   s_page_save_all(pr_current);                  /* saves all pages in design */
-
   sheet_head->CHANGED = FALSE;
+  x_window_update_title(pr_current, sheet_head);
 }
 
 /*!
@@ -72,10 +72,11 @@ void x_menu_file_save_as()
       /* reset the changed flag of current page*/
       pr_current->page_current->CHANGED = FALSE;
       sheet_head->CHANGED = FALSE;
+      x_window_update_title(pr_current, sheet_head);
     } /* else user aborted, do nothing */
   }
   else
-     s_log_message("setup_titleblock: Memory allocation error\n");
+     s_log_message("gattrib file_save_as: Memory allocation error\n");
 }
 /*!
  * \brief File Open menu
@@ -104,18 +105,19 @@ void x_menu_file_open()
     }
     s_toplevel_close(sheet_head);
     sheet_head = s_sheet_data_new();
+    
     /* Load the files, don't check if it went OK */
     x_fileselect_load_files(file_list);
     s_toplevel_init_data_set(pr_current, sheet_head);
   /* -------------- update windows --------------- */
     x_gtksheet_reinititialize(sheet_head);
     x_window_add_items(); /* updates toplevel & GtkSheet */
+    x_window_update_title(pr_current, sheet_head);
   }
 #ifdef DEBUG
     fprintf(stderr, "open file canceled:%s\n", (gchar*) g_slist_nth_data(file_list,0));
 #endif
   if (file_list != NULL ){
-
     g_slist_foreach(file_list, (GFunc)g_free, NULL);
     g_slist_free(file_list);
   }
@@ -143,12 +145,14 @@ static void menu_open_recent( char* filename)
   }
   s_toplevel_close(sheet_head);
   sheet_head = s_sheet_data_new();
+  
   /* Load the files, don't check if it went OK */
   x_fileselect_load_file(filename);
   s_toplevel_init_data_set(pr_current, sheet_head);
   x_gtksheet_reinititialize(sheet_head);
   /* -------------- update windows --------------- */
   x_window_add_items(); /* updates toplevel & GtkSheet */
+  x_window_update_title(pr_current, sheet_head);
 }
 /*!
  * \brief File->Export CSV menu item
@@ -219,6 +223,7 @@ static void menu_edit_paste()
 static void toolbar_icons_only( void )
 {
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_ICONS);
+  gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_ICONS);
 }
 /*!
  * \brief View Toolbar Text
@@ -228,6 +233,7 @@ static void toolbar_icons_only( void )
 static void toolbar_text_only( void )
 {
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_TEXT);
+  gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_TEXT);
 }
 /*!
  * \brief View Toolbar Icons & Text
@@ -237,6 +243,7 @@ static void toolbar_text_only( void )
 static void toolbar_display_both( void )
 {
   gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
+  gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
 }
 
 /* ----------- Recent Files Menu Stuff ----------- */
@@ -282,16 +289,18 @@ static const GtkActionEntry actions[] = {
       
   { "edit-add-attrib", NULL, "Add new attrib column", "", "", x_menu_edit_newattrib},
   { "edit-delete-attrib", NULL, "Delete attrib column", "", "", x_menu_edit_delattrib},
-  /* { "edit-find-attrib", GTK_STOCK_FIND, "Find attrib value", "<Control>F", "", x_dialog_unimplemented_feature}, */
-  /* { "edit-search-replace-attrib-value", NULL, "Search and replace attrib value", "", "", x_dialog_unimplemented_feature}, */
-  /* { "edit-search-for-refdes", NULL, "Search for refdes", "", "", x_dialog_unimplemented_feature}, */
+  
+  { "edit-find-value", GTK_STOCK_FIND, "Find Value", "<Control>F", "Find attribute value", x_find_attribute_value},
+  { "edit-search-replace-value", NULL, "Replace value", "<Control>R", "Search and Replace Attribute value", x_find_replace_attrib_value},
+  { "edit-locate-attrib", GTK_STOCK_FIND, "Locate Attribute", "", "Search for an attribute", x_find_attribute},
+  { "edit-locate-refdes", NULL, "Locate Reference", "", "Search for reference designator", x_find_refdes},
 
   /* View menu */
   { "view", NULL, "_View"},
   { "toolbar", NULL, "_Toolbar"},
-    { "view-toolbar-icons", NULL, "_Icons", NULL, "Display Icons on the toolbar", toolbar_icons_only},
-    { "view-toolbar-text", NULL,  "_Text", NULL, "Display Text on the toolbar", toolbar_text_only},
-    { "view-toolbar-both", NULL, "_Both", NULL, "Display Icons and Text on the toolbar", toolbar_display_both},
+  { "view-toolbar-icons", NULL, "_Icons", NULL, "Display Icons on the toolbar", toolbar_icons_only},
+  { "view-toolbar-text", NULL,  "_Text", NULL, "Display Text on the toolbar", toolbar_text_only},
+  { "view-toolbar-both", NULL, "_Both", NULL, "Display Icons and Text on the toolbar", toolbar_display_both},
 
   /* Visibility menu */
   { "visibility", NULL, "_Visibility"},
@@ -299,16 +308,23 @@ static const GtkActionEntry actions[] = {
   { "visibility-name-only", NULL, "Set selected name visible only", "", "", s_visibility_set_name_only},
   { "visibility-value-only", NULL, "Set selected value visible only", "", "", s_visibility_set_value_only},
   { "visibility-name-value", NULL, "Set selected name and value visible", "", "", s_visibility_set_name_and_value},
-
+  
+  { "window", NULL, "_Window"},
   /* Help menu */
   { "help", NULL, "_Help"},
   { "help-about", GTK_STOCK_ABOUT, "About", "", "", x_dialog_about_dialog},
 };
 /* Toggle items */
 static const GtkToggleActionEntry toggle_entries[] = {
+/* View menu */
   { "view-statusbar", "", "Statusbar", "", "Display Status bar", G_CALLBACK(x_window_editbar_toggle), TRUE },
   { "view-toolbar-standard", "", "_Standard", "", "Display Standard Toolbar", G_CALLBACK(x_window_standard_toolbar_toggle), TRUE },
+  { "view-toolbar-attribute", "", "A_ttribute", "", "Display Attribute Toolbar", G_CALLBACK(x_window_attribute_toolbar_toggle), TRUE },
   { "view-attached-attribs", "", "_Attached", "", "Hide or unhide non-attached attributes", G_CALLBACK(x_window_attached_toggle), FALSE },
+/* Window menu */
+  { "window-auto-resize", "", "_Autoresize", "", "Enable/Disable Auto resize columns", G_CALLBACK(x_window_autoresize_toggle), FALSE },
+  { "window-auto-scroll", "", "Auto_Scroll", "", "Enable/Disable AutoScroll", G_CALLBACK(x_window_autoscroll_toggle), TRUE },
+  { "window-show_grid", "", "Show _Grid", "", "Toggle grid visibility", G_CALLBACK(x_window_grid_toggle), TRUE },
 };
 
 GtkRecentFilter *x_menu_geda_filter() {
@@ -357,7 +373,7 @@ void x_menu_fix_gtk_recent_submenu() {
   }
   gtk_menu_item_set_submenu (GTK_MENU_ITEM (recent_items), menu_files);
 
-  g_signal_connect (menu_files, "selection-done", G_CALLBACK (on_recent_selection), window);
+  g_signal_connect (menu_files, "selection-done", G_CALLBACK (on_recent_selection), main_window);
 
   return;
 
@@ -422,7 +438,7 @@ GtkActionGroup *x_menu_create_recent_action_group() {
  * 11/10/12 WEH Revised to include recent_group
  *
  */
-GtkWidget* x_menu_create_menu(GtkWindow *window)
+GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 {
   char             *menu_file;
   GError           *error = NULL;
@@ -433,7 +449,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *window)
   /* Create and fill the action group object */
   action_group = gtk_action_group_new("MenuActions");
   gtk_action_group_add_actions(action_group, actions, G_N_ELEMENTS(actions), NULL);
-  gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), window);
+  gtk_action_group_add_toggle_actions (action_group, toggle_entries, G_N_ELEMENTS (toggle_entries), main_window);
 
   recent_group = x_menu_create_recent_action_group();
   /* Create the UI manager object */
@@ -453,12 +469,11 @@ GtkWidget* x_menu_create_menu(GtkWindow *window)
 
   g_free(menu_file);
 
-  gtk_window_add_accel_group (window, gtk_ui_manager_get_accel_group(menu_manager));
+  gtk_window_add_accel_group (main_window, gtk_ui_manager_get_accel_group(menu_manager));
 
   menubar = gtk_ui_manager_get_widget(menu_manager, "/ui/menubar/");
   if (menubar == NULL)
     fprintf(stderr, "ERROR: GTK function failed to return Menu object\n");
   return menubar; /* WEH: Does this really get saved? */
 }
-
 

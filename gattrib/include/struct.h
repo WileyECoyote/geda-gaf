@@ -56,8 +56,8 @@ typedef struct st_table TABLE;
 typedef struct st_string_list STRING_LIST;
 typedef struct st_pin_list PIN_LIST;
 
-typedef struct st_main_window MAIN_WINDOW;
-
+//typedef struct st_main_window MAIN_WINDOW;
+typedef struct st_search SearchRecord;
 
 /* -------------------------------------------------------------------- */
 /*! \brief Sheet data structure
@@ -157,6 +157,19 @@ struct st_pin_list {
   PIN_LIST *next;
 };
 
+struct st_search {  
+  GtkSheet  *sheet;
+  GtkSheetRange range;
+  bool FindOnlyMode;
+  bool Case;
+  bool Whole;
+  bool Backword;
+  bool Wrap;
+  bool Found;
+  bool ReplaceAll;
+  int  count;
+  int  mode;
+};
 #endif // #ifndef SHEET_DATA_STRUCT
 
 

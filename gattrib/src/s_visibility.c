@@ -135,10 +135,8 @@ void s_visibility_set_invisible() {
 				Gray);
 
     break;
-
   }
-
-
+  x_window_update_title(pr_current, sheet_head);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -199,6 +197,7 @@ void s_visibility_set_name_only() {
     break;
 
   }
+  x_window_update_title(pr_current, sheet_head);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -262,6 +261,7 @@ void s_visibility_set_value_only() {
     break;
 
   }
+  x_window_update_title(pr_current, sheet_head);
 }
 
 /* ---------------------------------------------------------------------- */
@@ -322,6 +322,7 @@ void s_visibility_set_name_and_value() {
     break;
 
   }
+  x_window_update_title(pr_current, sheet_head);
 }
 
 

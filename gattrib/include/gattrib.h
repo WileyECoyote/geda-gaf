@@ -22,7 +22,7 @@
  * \file
  * \brief Gattrib specific includes.
  */
-
+  
 #include <libgeda/libgeda.h>       /* geda library functions  */
 #include "../include/struct.h"     /* typdef and struct declarations */
 #include "../include/globals.h"

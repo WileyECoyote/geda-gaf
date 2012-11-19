@@ -1047,7 +1047,8 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
 }
 
 void s_toplevel_init_data_set(TOPLEVEL *toplevel, PageDataSet *PageData) {
-  
+
+  /* ---------- Sort the Headers  ---------- */
   s_string_list_sort_all_list();
 
   /* ---------- Create and load the tables  ---------- */

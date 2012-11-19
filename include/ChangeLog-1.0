@@ -1,0 +1,6 @@
+
+2012-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+        * /include: Add this Changlog and .gitignore file.
+
+        * /include/x_dialog_controls.h: Add new macro GEDA_NEW_COMBO

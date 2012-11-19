@@ -177,6 +177,7 @@ AX_LIBGEDA([41:0:0])
 #####################################################################
 
 AC_CONFIG_FILES([Makefile
+                 bitmaps/Makefile
                  intl/Makefile
 
                  libgeda/Makefile

@@ -216,12 +216,12 @@ struct _GtkSheetCell
 {
    /*< private >*/
   GdkRectangle area;
-  gint row;
-  gint col;
+  int row;
+  int col;
 
   GtkSheetCellAttr *attributes;
 
-  gchar *text;
+  char *text;
   gpointer link;
 };
 
@@ -235,8 +235,8 @@ struct _GtkSheetCell
  */
 struct _GtkSheetRange
 {
-  gint row0,col0; /* upper-left cell */
-  gint rowi,coli; /* bottom-right cell */
+  int row0,col0; /* upper-left cell */
+  int rowi,coli; /* bottom-right cell */
 };
 
 
@@ -249,9 +249,9 @@ struct _GtkSheetRange
 struct _GtkSheetRow
 {
  /*< private >*/
- gchar *name;
- gint height;
- gint top_ypixel;
+ char *name;
+ int height;
+ int top_ypixel;
  guint16 requisition;
 
  GtkSheetButton button;
@@ -525,8 +525,7 @@ gtk_sheet_get_entry_widget		(GtkSheet *sheet);
 
 /* Returns sheet->state 
  * Added by Steven Rostedt <steven.rostedt@lmco.com> */
-gint
-gtk_sheet_get_state 			(GtkSheet *sheet);
+gint gtk_sheet_get_state 		(GtkSheet *sheet);
 
 /* Returns sheet's ranges 
  * Added by Murray Cumming */

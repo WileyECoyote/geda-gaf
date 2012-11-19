@@ -2,6 +2,7 @@
 
 noinst_HEADERS =  gtksheet.h
 		  gattrib.h \
+                  gattrib_dialog.h \
 		  globals.h \
 		  prototype.h \
 		  x_states.h \

@@ -1,11 +1,17 @@
+2012-11-15 Wiley E. Hill <wileyhill@gmail.com>
+	* include/x_dialog_controls.h: relocated this recent addition to
+          toplevel include file so other apps, like gattrib could also
+          reference this file.
+
 2012-11-04 Wiley E. Hill <wileyhill@gmail.com>
         * src/x_dialog.c: relocated functions get_geda_switch_image and
           create_geda_switch from x_settings.c to incorperate in other
           dialog compilations.
 	* src/o_slot.c: Revised error slot number out of range message
           in o_slot_end functions to include to the actual number that
-          was passed - new_slot_number. (o_slot_end really report slot=0
-          as invalid or should it just be ignored?)
+          was passed - new_slot_number. (should o_slot_end really report
+          slot=0 as invalid or should it just be ignored? slot=0 means
+          there are no slots!)
 	* src/x_multiattrib.c: General revisions, changed toggle button
           for Show Inherited to toggle switch for Dialog uniformity.
           Implemented limited tooltips.

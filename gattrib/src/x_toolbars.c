@@ -1,0 +1,216 @@
+/* gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ * 
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ */
+#include "config.h"
+
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+
+#include <gtk/gtk.h>
+
+#include <geda_toolbars.h>
+#include <gattrib.h>  /* include Gattrib specific headers  */
+
+//#include <glib/gstdio.h>
+
+#ifdef HAVE_LIBDMALLOC
+#include <dmalloc.h>
+#endif
+
+static ToolbarStringData ToolbarStrings[] = {
+   /* Standard Toolbar*/
+  { "open_button", 	"Open", 	"Open file", "Private"},
+  { "save_button", 	"Save",		"Save file", "Private"},
+  { "save_as_button", 	"Save As", 	"Save the file to different name or location", "Private"},
+  { "cut_button", 	"Cut", 		"Cut selection to the clipboard", "Private"},
+  { "copy_button",  	"Copy", 	"Copy selection to the clipboard", "Private"},
+  { "paste_button",	"Paste",	"Paste selection from the clipboard", "Private"},
+  { "find_button", 	"Find", 	"Search for attribute value", "Private"},
+  { "replace_button", 	"Replace", 	"Search and Replace attribute value", "Private"},
+  { "attribute_button", "Attrib", 	"Locate attribute", "Private"},
+  { "designator_button","Ref Des", 	"Locate Reference Designator", "Private"},
+   /* Attribute Toolbar */
+
+  { "visible_invisible",  "invisible",  "Set selected invisible"},
+  { "visible_name_only",  "name",  "Set selected name visible only"},
+  { "visible_value_only", "value", "Set selected value visible only"},
+  { "visible_name_value", "both", "Set selected name and value visible"},
+  { NULL, NULL, NULL},
+};
+
+/*! \brief Redirect Cut, Copy, Paste from Toolbar to Handler function */
+static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
+{
+  int button = (int)(long*) Control;
+  x_window_clipboard_handler(button);
+  return;
+}
+
+/*! \brief Redirect Open, Save & Save As from Toolbar to Handler functions */
+static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
+{
+  int button = (int)(long*) Control;
+
+  switch ( button ) {
+    case open:
+      x_menu_file_open();
+      break;
+    case save:
+      x_menu_file_save();
+      break;
+    case save_as:
+      x_menu_file_save_as();
+      break;
+    default:
+     s_log_message("toolbar0(): Button ID %d\n", button);
+  }
+
+  return;
+}
+
+/*! \brief Redirect Searches from Toolbar to Handler functions */
+static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
+{
+  int button = (int)(long*) Control;
+
+  switch ( button ) {
+    case find:
+      x_find_attribute_value();
+      break;
+    case replace:
+      x_find_replace_attrib_value();
+      break;
+    case attribute:
+      x_find_attribute();
+      break;
+    case designator:
+      x_find_refdes();
+      break;
+    default:
+     s_log_message("toolbar0(): Button ID %d\n", button);
+  }
+
+  return;
+}
+
+/*! \brief Redirect Open, Save & Save As from Toolbar to visibility functions */
+static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
+{
+  int button = (int)(long*) Control;
+
+  switch ( button ) {
+    case invisible:
+      s_visibility_set_invisible();
+      break;
+    case name_only:
+      s_visibility_set_name_only();
+      break;
+    case value_only:
+      s_visibility_set_value_only();
+      break;
+    case name_value:
+      s_visibility_set_name_and_value();
+      break;
+    default:
+     s_log_message("toolbar0(): Button ID %d\n", button);
+  }
+
+  return;
+}
+
+void x_toolbars_init(GtkWidget *parent_container) {
+  
+  GtkWidget *tmp_toolbar_icon;
+  
+  /* --------- Create and Populate the Standard Toolbar -------- */
+  
+ /* Standard Toolbar*/
+  Standard_handlebox = gtk_handle_box_new ();
+  gtk_box_pack_start(GTK_BOX (parent_container), Standard_handlebox, FALSE, FALSE, 0);
+  gtk_widget_show (Standard_handlebox);
+  
+  /* toolbar will be horizontal, with both icons and text, and with
+   * 5pxl spaces between items and put it into our handlebox */
+
+  Standard_Toolbar = gtk_toolbar_new ();
+
+  gtk_toolbar_set_orientation (GTK_TOOLBAR (Standard_Toolbar),
+			       GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
+  gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
+  gtk_container_add (GTK_CONTAINER (Standard_handlebox), Standard_Toolbar);
+
+  /* Add Open Button to Toolbar */
+  TOOLBAR_STD_BUTTON(Standard, open, PIX, gschem-open.xpm, callBack_toolbar0)
+
+  /* Add Save Button to Toolbar */
+  TOOLBAR_STD_BUTTON(Standard, save, PIX, gschem-save.xpm, callBack_toolbar0)
+
+  /* Add Save As Button to Toolbar */
+  TOOLBAR_STD_BUTTON(Standard, save_as, STK, GTK_STOCK_SAVE_AS, callBack_toolbar0)
+  
+  gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
+
+  TOOLBAR_STD_BUTTON(Standard, cut,   STK, GTK_STOCK_CUT,   callBack_clipboard)
+  TOOLBAR_STD_BUTTON(Standard, copy,  STK, GTK_STOCK_COPY,  callBack_clipboard)
+  TOOLBAR_STD_BUTTON(Standard, paste, STK, GTK_STOCK_PASTE, callBack_clipboard)
+
+  gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
+
+  /* Add Find Button to Search_ToolbarToolbar */
+  TOOLBAR_STD_BUTTON(Standard, find,  PIX, 22x22/geda_find_22x22.xpm, callBack_Searchbar)
+
+  /* Add Replace Button to Toolbar */
+  TOOLBAR_STD_BUTTON(Standard, replace, PIX, 22x22/geda_find_and_replace_22x22.xpm, callBack_Searchbar)
+
+  /* Add Locate Attribute Button to Toolbar */
+  TOOLBAR_STD_BUTTON(Standard, attribute, PIX, 22x22/geda_find_attribute_22x22.xpm, callBack_Searchbar)
+  
+  /* Add Locate Reference Designator to Toolbar */
+  TOOLBAR_STD_BUTTON(Standard, designator, PIX, 24x24/geda_locate_reference_24x24.xpm, callBack_Searchbar)
+  
+  gtk_widget_show (Standard_Toolbar);
+  
+  /* --------- Create and Populate the Attribute Toolbar -------- */
+ /* Attribute Toolbar */
+  Attribute_handlebox = gtk_handle_box_new ();
+  gtk_box_pack_start(GTK_BOX (parent_container), Attribute_handlebox, FALSE, FALSE, 0);
+  gtk_widget_show (Attribute_handlebox);
+  
+  /* toolbar will be horizontal, with both icons and text, and with
+   * 5pxl spaces between items and put it into our handlebox */
+
+  Attribute_Toolbar = gtk_toolbar_new ();
+
+  gtk_toolbar_set_orientation (GTK_TOOLBAR (Attribute_Toolbar),
+                               GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_BOTH);
+  gtk_container_set_border_width (GTK_CONTAINER (Attribute_Toolbar), 0);
+  gtk_container_add (GTK_CONTAINER (Attribute_handlebox), Attribute_Toolbar);
+  
+    /* Add Open Button to Toolbar */
+  TOOLBAR_STD_BUTTON(Attribute, invisible, PIX, 32x32/ghost_invisible_32x32.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, name_only, PIX, 32x32/geda_name_tag_32x32.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, value_only, PIX, 24x24/geda_value_24x24.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, name_value, PIX, 28x28/geda_name_value_28x28.xpm, callBack_AttributeBar0);
+  
+  gtk_widget_show (Attribute_Toolbar);
+  
+}

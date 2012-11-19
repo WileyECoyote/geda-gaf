@@ -2,6 +2,8 @@
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * Copyright (C) 2003-2012 Stuart D. Brorson.
  *
+ * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -48,40 +50,13 @@
 #endif
 
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
+#include <x_dialog_controls.h>
+#include <gattrib_dialog.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
 
-/*! \brief Create pixmap widget for dialogs boxes.
- *  \par Function Description
- *  This is an internally used function to create pixmaps.
- *  The default bitmap directory is prefixed to the filename
- *  and if is valid then the image widget is created and returned. GtkWidget *widget, 
- */
-
-GtkWidget* create_pixmap (const char *filename)
-{
-  char *pathname = NULL;
-  GtkWidget *pixmap;
-
-  if (!filename || !filename[0])
-      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
-                                      GTK_ICON_SIZE_INVALID);
-
-  pathname = g_build_filename (s_path_sys_data (), "bitmap", filename, NULL);
-
-  if (!pathname)
-    {
-      s_log_message("Could not find image at file: %s.\n", filename);
-      return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
-                                      GTK_ICON_SIZE_INVALID);
-    }
-
-  pixmap = gtk_image_new_from_file (pathname);
-  g_free (pathname);
-  return pixmap;
-}
 /*! \brief Add new attribute dialog.
  *
  * This asks for the name of the attrib column to insert
@@ -236,7 +211,7 @@ int x_dialog_file_not_saved()
   tmp = _("If you don't save, all your changes will be permanently lost.");
   str = g_strconcat (str, "\n\n", tmp, NULL);
 
-  dialog = gtk_message_dialog_new (GTK_WINDOW (window),
+  dialog = gtk_message_dialog_new (GTK_WINDOW (main_window),
                                    GTK_DIALOG_MODAL |
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
                                    GTK_MESSAGE_WARNING,
@@ -411,7 +386,7 @@ void x_dialog_export_file()
  *  \returns True if user select OKAY, False if user select CANCEL
  *
  */
-bool generic_confirm_dialog (const char *msg)
+bool x_dialog_generic_confirm_dialog (const char *msg)
 {
   GtkWidget *dialog;
   int r;
@@ -431,3 +406,453 @@ bool generic_confirm_dialog (const char *msg)
   else
     return 0;
 }
+/*********** Start of get text dialog box *******/
+
+/*! \brief Create the text find dialog
+ *  \par Function Description
+ *  This function creates the get text dialog and returns a pointer
+ *  to the string or NULL is the user canceled.
+ */
+char *x_dialog_get_search_text(char* prompt)
+{
+  GtkDialog *dialog    = NULL;
+  GtkWidget *textentry = NULL;
+  
+  char      *text      = NULL;
+  int r;
+  
+  if(dialog != NULL)
+  {
+    gtk_widget_hide((GtkWidget*)dialog);
+    gtk_widget_destroy((GtkWidget*)dialog);
+  }
+  
+   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (_("Find Text"),
+					            GTK_WINDOW(main_window),
+                                                    GTK_DIALOG_MODAL,
+					            GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
+                                                    GTK_STOCK_FIND, GTK_RESPONSE_ACCEPT,
+						    NULL);
+
+  if (dialog) {
+   /* Set the alternative button order (ok, cancel, help) for other systems */
+    gtk_dialog_set_alternative_button_order(dialog,
+					    GTK_RESPONSE_ACCEPT,
+                                            GTK_RESPONSE_REJECT,
+                                            -1);
+    gtk_dialog_set_default_response(dialog, GTK_RESPONSE_ACCEPT);
+    
+    gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_SPACING);
+    
+    GtkWidget *vbox = dialog->vbox;
+    gtk_box_set_spacing((GtkBox*)vbox, DIALOG_V_SPACING);
+
+    GtkWidget *label = gtk_label_new(_(prompt));
+    gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+    gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
+
+    textentry = gtk_entry_new_with_max_length(32);
+    gtk_editable_select_region(GTK_EDITABLE(textentry), 0, -1);
+    gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
+    gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
+    gtk_widget_grab_focus(textentry);
+    gtk_widget_show_all(GTK_WIDGET(dialog));
+    
+    r = gtk_dialog_run ((GtkDialog*)dialog);
+
+    if (r ==  GTK_RESPONSE_ACCEPT)
+      text = g_strdup(gtk_entry_get_text (GTK_ENTRY (textentry)));
+    gtk_widget_destroy (GTK_WIDGET(dialog));
+  }
+  return text;
+
+}
+
+/*********** Start of Search and Replace dialog box *******/
+#define ThisDialog SearchReplaceDialog
+#define DialogTitle "Search and Replace"
+#define DialogSettings "SearchReplace"
+#define ControlID EnumeratedSearchControl
+
+#define AlternateTitle "Geda-gaf Search"
+#define AlternateSettings "FindDialog"
+
+#define Combo_Responder search_replace_combo_responder
+//#define Butt_Responder butt_responder
+//#define Radio_Responder radio_responder
+#define Switch_Responder search_replace_switch_responder
+
+typedef enum { 
+/* 2 Combo Controls  */
+  SearchText,
+  ReplaceText,
+  
+/* 4 Switch Controls */
+  IgnoreCase,
+  WholeWord,
+  SearchBackword,
+  WrapAround,
+
+} ControlID;
+
+WidgetStringData DialogStrings[] = {
+  /* 2 String for Edit Controls */
+        { "SearchTextCombo",	        "  Search for:",      "Enter or select the text to find"},
+        { "ReplaceTextCombo",	        "Replace with:",      "Enter or select the replacement text"},
+
+  /* 4 Strings for Switch Controls */
+        { "IgnoreCaseSwitch",	        "    Ignore Case",   "Set search case sensitivity"},
+        { "WholeWordSwitch",	        "  Match Words",       "Limit Search hits to entire work"},
+        { "SearchBackwordSwitch",	"Search Backword",   "Reverse search direction"},
+        { "WrapAroundSwitch",	        "  Wrap Around",        "Continue search from the beginning"},
+        { NULL, NULL, NULL}
+};
+
+/* The Buttons */
+static GtkWidget *ReplaceAllButt;
+static GtkWidget *ReplaceButt;
+static GtkWidget *FindButt;
+
+/* The Combo Boxes */
+static GtkWidget *SearchTextCombo;
+static GtkWidget *ReplaceTextCombo;
+/* The Switches */
+static GtkWidget *IgnoreCaseSwitch=NULL;
+static GtkWidget *WholeWordSwitch=NULL;
+static GtkWidget *SearchBackwordSwitch=NULL;
+static GtkWidget *WrapAroundSwitch=NULL;
+
+/*! \brief Action Response function for the Search dialogs
+ *  \par Function Description
+ *  This function processes the "response" signals from the action
+ *  buttons in the Search dialogs.
+ */
+static void search_replace_dialog_response(GtkWidget *ThisDialog,
+					   int response,
+			                   SearchRecord *Search)
+{
+  char* search_text;
+  char* replacement_text;
+  
+  /*!@brief Add new text to Search History List */
+  void add_search_history(char *new_text) {
+    /*! \Note: String added to search_history is freed at program exit */
+    if (!g_list_stri_inlist(search_history, new_text)) {
+      search_history = g_list_prepend(search_history, g_strdup(new_text));
+    }
+  }
+
+  /*!@brief Retrieve values and settings from Search Dialog controls */
+  void unload_dialog() {
+    search_text      = g_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (SearchTextCombo)));
+    Search->Case     = !GET_SWITCH_STATE (IgnoreCaseSwitch);
+    Search->Whole    =  GET_SWITCH_STATE (WholeWordSwitch);
+    Search->Backword =  GET_SWITCH_STATE (SearchBackwordSwitch);
+    Search->Wrap     =  GET_SWITCH_STATE (WrapAroundSwitch);
+    add_search_history(search_text);
+  }
+  switch (response) {
+  case GTK_RESPONSE_REJECT: /* Don't replace find next */
+    unload_dialog();
+    Search->Found = x_find_main_search(search_text, NULL);
+    if(search_text) g_free(search_text);
+    break;
+  case GTK_RESPONSE_APPLY: /*"Replace All and close dialog"*/
+    Search->ReplaceAll = TRUE;
+  case GTK_RESPONSE_ACCEPT: /* Replace*/
+    unload_dialog();
+    replacement_text = g_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
+    add_search_history(replacement_text);
+    Search->Found = x_find_main_search(search_text, replacement_text);
+    if(search_text) g_free(search_text);
+    if(replacement_text) g_free(replacement_text);
+    break;
+  case GTK_RESPONSE_DELETE_EVENT:
+  case GTK_RESPONSE_CANCEL:
+    gtk_widget_destroy(ThisDialog);
+    ThisDialog = NULL;
+    break;
+  default:
+    fprintf(stderr, "search_replace_dialog_response(): strange signal %d\n",response);
+  }
+  Search->ReplaceAll = FALSE; /* This must be enabled by user each loop */
+}
+
+/* ------------------------ ComboBox Support Functions ----------------------*/
+
+/*! \brief Search Dialog Combo Responder
+ *  \par Function Description: This callback function is used to set the
+ *       sensitivity of other controls based on combo-box input.
+ */
+static void search_replace_combo_responder(GtkWidget *widget, gpointer data)
+{
+  int WhichComboBox = GPOINTER_TO_UINT (data);
+
+  char *text = gtk_combo_box_get_active_text (GTK_COMBO_BOX (widget));
+
+  switch ( WhichComboBox ) {
+  case SearchText:
+    if ( strlen(text) >0)
+    {
+       gtk_widget_set_sensitive (FindButt, TRUE);
+       gtk_widget_set_sensitive (IgnoreCaseSwitch, TRUE);
+       gtk_widget_set_sensitive (WholeWordSwitch, TRUE);
+       gtk_widget_set_sensitive (SearchBackwordSwitch, TRUE);
+       gtk_widget_set_sensitive (WrapAroundSwitch, TRUE);
+    }
+    else
+    {
+       gtk_widget_set_sensitive (FindButt, FALSE);
+       gtk_widget_set_sensitive (ReplaceButt, FALSE);
+       gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
+       gtk_widget_set_sensitive (IgnoreCaseSwitch, FALSE);
+       gtk_widget_set_sensitive (WholeWordSwitch, FALSE);
+       gtk_widget_set_sensitive (SearchBackwordSwitch, FALSE);
+       gtk_widget_set_sensitive (WrapAroundSwitch, FALSE);
+    }
+    /* No break! */
+  case ReplaceText:
+    /* We are not going to enable Replace buttons unless there is text in the
+     * Search Combo, the pointer in text is to the text in the Replace Combo */
+    if (( strlen(gtk_combo_box_get_active_text (GTK_COMBO_BOX (SearchTextCombo))) >0) &&
+        ( strlen(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo))) >0))
+    {
+       gtk_widget_set_sensitive (ReplaceButt, TRUE);
+       gtk_widget_set_sensitive (ReplaceAllButt, TRUE);
+    }
+    else
+    {
+       gtk_widget_set_sensitive (ReplaceButt, FALSE);
+       gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
+    }
+    break;
+  default:
+    s_log_message("combo_responder(): Warning, Unknown Combo Id: %d\n",WhichComboBox);
+  }
+
+ return;
+}
+
+/* ------------------------- Switch Support Functions -----------------------*/
+
+/*! \brief Toggle Search Dialog Switch Images
+ *  \par Function Description: This function changes the images of
+ *       controls created with create_geda_switch to the opposite
+ *       state, i.e. if ON use OFF image and if OFF use ON image.
+ *       The functions enables or disables other widgets based on
+ *       the state of the switch.
+ */
+static void search_replace_switch_responder(GtkWidget *widget, int response,  ControlID *Control)
+{
+   gboolean state = GET_SWITCH_STATE (widget);
+   GtkWidget* SwitchImage = get_geda_switch_image( state);
+   gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
+
+   /* We don't have a pointer to the Search structure but this does not
+    * matter since we don't need to do anything here, stubbing code here */
+   switch ( response ) {
+   case IgnoreCase:
+   case WholeWord:
+   case SearchBackword:
+   case WrapAround:
+     break;
+   default:
+    s_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", response);
+   }
+
+   return;
+}
+
+/* ---------------- Search Dialog Initialization Functions ------------------*/
+/*! \brief Initialize Search Dialog Controls
+ *  \par Function Description: This function sets the initial state of the
+ *       Search Dialog. The toggle switches are set to the values in the
+ *       Search Record structure. Controls for options and all but the 
+ *       Close button are disabled.
+ */
+static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Search)
+{
+  Search->ReplaceAll = FALSE; /* could have been on if struc re-used */
+  
+  SetSwitch( IgnoreCase,    !Search->Case);
+  SetSwitch( WholeWord,      Search->Whole);
+  SetSwitch( SearchBackword, Search->Backword);
+  SetSwitch( WrapAround,     Search->Wrap);
+  
+  /* User can not change these until there is a search string */
+  /* disable options */
+  gtk_widget_set_sensitive (IgnoreCaseSwitch, FALSE);
+  gtk_widget_set_sensitive (WholeWordSwitch, FALSE);
+  gtk_widget_set_sensitive (SearchBackwordSwitch, FALSE);
+  gtk_widget_set_sensitive (WrapAroundSwitch, FALSE);
+
+  /* Disable buttons */
+  gtk_widget_set_sensitive (FindButt, FALSE);
+  gtk_widget_set_sensitive (ReplaceButt, FALSE);
+  gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
+  
+  if(g_list_length(search_history) > 0) {
+    {
+       lambda (const char* data)
+       {
+         LOAD_STD_COMBO(SearchText,data);
+         return FALSE;
+       }
+       foreach (search_history);
+    }
+    {
+       lambda (const char* data)
+       {
+         LOAD_STD_COMBO(ReplaceText,data);
+         return FALSE;
+       }
+       foreach (search_history);
+    }
+  }
+}
+/*! \brief Create Search Dialog Controls
+ *  \par Function Description: This function creates the Search Dialog
+ *  and all controls. The Dialog can be either a Search/Find or a Search
+ *  and Replace Dialog depending on the second parameter, find_only_mode.
+ *  If find_only_mode is TRUE, then the ReplaceTextCombo, Replace and
+ *  Replace All button are not made visible, effectively creating a Find
+ *  dialog without options to replace. All of the functionality remains
+ *  but is not utilize. This make since because the Search And Replace
+ *  Dialog can also be used as a Find Dialog (without actually replacing
+ *  anything).
+ * 
+ */
+static
+GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_only_mode)
+{
+  GtkWidget *ThisDialog;
+  GtkWidget *MainDialogVBox;
+
+  GtkWidget *dialog_action_area;
+  GtkWidget *CloseButt;
+
+  GtkTooltips *tooltips;
+  tooltips = gtk_tooltips_new ();
+
+  if (find_only_mode)
+    ThisDialog=NEW_STD_GATTRIB_DIALOG( AlternateTitle, AlternateSettings, parent);
+  else
+    ThisDialog=NEW_STD_GATTRIB_DIALOG( DialogTitle, DialogSettings, parent);
+    
+  gtk_window_set_title (GTK_WINDOW (ThisDialog), _(DialogTitle));
+  gtk_window_set_modal (GTK_WINDOW (ThisDialog), FALSE);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (ThisDialog), TRUE);
+  gtk_window_set_type_hint (GTK_WINDOW (ThisDialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+
+  MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
+  gtk_widget_show (MainDialogVBox);
+  
+  HSECTION (MainDialogVBox, InputText);   /* Row 1 */
+    GTK_NEW_COMBO (InputText_hbox, SearchText, 200, 41);
+    
+  HSECTION (MainDialogVBox, NewText);   /*  Row 2 */
+    GEDA_NEW_COMBO (NewText_hbox, ReplaceText, 200, 41);
+  if (find_only_mode) {
+    gtk_widget_hide(ReplaceTextLabel);
+    gtk_widget_hide(ReplaceTextCombo);
+  }
+  HXYP_SEPERATOR (MainDialogVBox, Grp3, 10);
+
+  HSECTION (MainDialogVBox, SearchOptions1);   /*  Row 3 */
+    GTK_SWITCH(SearchOptions1_hbox, IgnoreCase, 0, TRUE);
+    GTK_SWITCH(SearchOptions1_hbox, WholeWord, 0, TRUE);
+  HSECTION (MainDialogVBox, SearchOptions2);   /*  Row 4 */
+    GTK_SWITCH(SearchOptions2_hbox, SearchBackword, 0, FALSE);
+    GTK_SWITCH(SearchOptions2_hbox, WrapAround, 0, TRUE);
+    
+  HXYP_SEPERATOR (MainDialogVBox, Grp4, 10);
+
+  dialog_action_area = GTK_DIALOG (ThisDialog)->action_area;
+  gtk_widget_show (dialog_action_area);
+  gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area), GTK_BUTTONBOX_END);
+
+  CloseButt = gtk_button_new_from_stock ("gtk-close");
+  gtk_widget_show (CloseButt);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CloseButt, GTK_RESPONSE_CANCEL);
+  GTK_WIDGET_SET_FLAGS (CloseButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_size_request (CloseButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
+  gtk_tooltips_set_tip (tooltips, CloseButt, _("Close this dialog"), NULL);
+
+  ReplaceAllButt = gtk_button_new_with_mnemonic (_("Replace All"));
+  if (!find_only_mode) gtk_widget_show (ReplaceAllButt);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceAllButt, GTK_RESPONSE_APPLY);
+  GTK_WIDGET_SET_FLAGS (ReplaceAllButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_size_request (ReplaceAllButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
+  gtk_tooltips_set_tip (tooltips, ReplaceAllButt, _("Replace All and close dialog"), NULL);
+
+  ReplaceButt = gtk_button_new_with_mnemonic (_("Replace"));
+  if (!find_only_mode) gtk_widget_show (ReplaceButt);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), ReplaceButt, GTK_RESPONSE_ACCEPT);
+  GTK_WIDGET_SET_FLAGS (ReplaceButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_size_request (ReplaceButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
+  gtk_tooltips_set_tip (tooltips, ReplaceButt, _("Replace selected text and continue"), NULL);
+  
+  FindButt = gtk_button_new_with_mnemonic (_("Find"));
+  gtk_widget_show (FindButt);
+  gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), FindButt, GTK_RESPONSE_REJECT);
+  GTK_WIDGET_SET_FLAGS (FindButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_size_request (FindButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
+  gtk_tooltips_set_tip (tooltips, FindButt, _("Find next"), NULL);
+ 
+  /* Store pointers to widgets, for use by lookup_widget(). */
+  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, DialogTitle);
+  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox,     "MainDialogVBox");
+  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");
+  GTK_HOOKUP_OBJECT (ThisDialog, CloseButt,       "CloseButt");
+  GTK_HOOKUP_OBJECT (ThisDialog, ReplaceButt,     "ReplaceButt");
+  GTK_HOOKUP_OBJECT (ThisDialog, ReplaceAllButt,  "ReplaceAllButt");
+  GTK_HOOKUP_OBJECT (ThisDialog, FindButt,        "FindButt");
+  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, tooltips, "tooltips");
+  
+  return ThisDialog;
+}
+/*! \brief Startup Search and Replace Dialog
+ *  \par Function Description: This is the main function called by external
+ *       to launch a new Search and Replace Dialog session.
+ */ 
+void x_dialog_search_replace(SearchRecord *Search) {
+  
+  GtkWidget *ThisDialog;
+  
+  ThisDialog = x_dialog_create_search_replace_dialog(GTK_WINDOW ( main_window),
+                                                     Search->FindOnlyMode);
+
+  gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
+
+  x_dialog_init_search_replace(ThisDialog, Search);
+  
+  g_signal_connect (GTK_OBJECT (ThisDialog), "response",
+                    GTK_SIGNAL_FUNC(search_replace_dialog_response), Search);
+
+  gtk_container_border_width (GTK_CONTAINER(ThisDialog),
+                                DIALOG_BORDER_SPACING);
+
+  gtk_widget_show(ThisDialog);
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+/*********** End of find text dialog box *******/

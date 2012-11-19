@@ -44,8 +44,6 @@
 #include <glib-object.h>
 #include <gtksheet.h>
 
-#include <geda_toolbars.h>
-
 #include <gattrib.h>  /* include Gattrib specific headers  */
 
 #ifdef HAVE_LIBDMALLOC
@@ -56,16 +54,6 @@
  * Gattrib specific defines
  *------------------------------------------------------------------*/
 #define GATTRIB_THEME_ICON_NAME "geda-gattrib"
-
-static ToolbarStringData ToolbarStrings[] = {
-  { "open_button", 	"Open", 	"Open file", "Private"},
-  { "save_button", 	"Save",		"Save file", "Private"},
-  { "save_as_button", 	"Save As", 	"Save the file to different name or location", "Private"},
-  { "cut_button", 	"Cut", 		"Cut selection to the clipboard", "Private"},
-  { "copy_button",  	"Copy", 	"Copy selection to the clipboard", "Private"},
-  { "paste_button",	"Paste",	"Paste selection from the clipboard", "Private"},
-  { NULL, NULL, NULL},
-};
 
 /*! \brief Set application icon
  *
@@ -78,27 +66,46 @@ static void x_window_set_default_icon( void )
 {
   gtk_window_set_default_icon_name( GATTRIB_THEME_ICON_NAME );
 }
-
-/*! \brief Set Window tiltle */
-/* TODO: Need to add astericl if file is changed */
 static void x_window_set_title( void )
 {
-    gtk_window_set_title(GTK_WINDOW(window), _("gattrib -- gEDA attribute editor")); 
+    gtk_window_set_title(GTK_WINDOW(main_window), _("gattrib -- gEDA attribute editor"));
+}
+
+/*! \brief Set Window Title */
+void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData)
+{
+  char *filename;
+  char buffer[MAX_WINDOW_TITLE];
+
+  filename = toplevel->page_current->page_filename;
+  if (filename != NULL) {
+    if (PageData->CHANGED) {
+      strcpy (buffer, "*");
+      strcat (buffer, filename);
+    }
+    else {
+      strcpy (buffer, filename);
+    }
+    strcat(buffer, " -- gattrib");
+    gtk_window_set_title(GTK_WINDOW(main_window), buffer);
+  }
+  else
+    gtk_window_set_title(GTK_WINDOW(main_window), "gattrib -- gEDA attribute editor");
 }
 
 /*! \brief Handle Cut, Copy, Paste for Menus and Toolbar */
 void x_window_clipboard_handler(int do_what) {
   
-  GtkWidget *widget = gtk_window_get_focus(GTK_WINDOW(window));
+  GtkWidget *widget = gtk_window_get_focus(GTK_WINDOW(main_window));
   switch (do_what ) {
     case cut:
       if(GTK_IS_LABEL(widget) && gtk_label_get_selectable(GTK_LABEL(widget)))
         g_signal_emit_by_name(widget, "copy-clipboard", NULL); /* just copy */
       else if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
         g_signal_emit_by_name(widget, "cut-clipboard", NULL);
+        x_window_update_title(pr_current, sheet_head);
       break;
     case copy:
-      //gtk_text_buffer_copy_clipboard(buffer, clipboard);
       if((GTK_IS_LABEL(widget) && gtk_label_get_selectable(GTK_LABEL(widget)))
           || GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
         g_signal_emit_by_name(widget, "copy-clipboard", NULL);
@@ -106,40 +113,11 @@ void x_window_clipboard_handler(int do_what) {
     case paste:
       if(GTK_IS_ENTRY(widget) || GTK_IS_TEXT_VIEW(widget))
         g_signal_emit_by_name(widget, "paste-clipboard", NULL);
+	x_window_update_title(pr_current, sheet_head);
       break;
     default:
      s_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
   }
-}
-
-/*! \brief Redirect Cut, Copy, Paste from Toolbar to Handler function */
-static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
-{
-  int button = (int)(long*) Control;
-  x_window_clipboard_handler(button);
-  return;
-}
-
-/*! \brief Redirect Open, Save & Save As from Toolbar to Handler functions */
-static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
-{
-  int button = (int)(long*) Control;
-
-  switch ( button ) {
-    case open:
-      x_menu_file_open();
-      break;
-    case save:
-      x_menu_file_save();
-      break;
-    case save_as:
-      x_menu_file_save_as();
-      break;
-    default:
-     s_log_message("toolbar0(): Button ID %d\n", button);
-  }
-
-  return;
 }
 
 /*! \brief Initialises the toplevel gtksheet
@@ -162,62 +140,33 @@ void x_window_init()
 {
   GtkWidget *main_vbox;
   GtkRequisition request;
-
-  GtkWidget *tmp_toolbar_icon;
  
   /* Set default icon */
   x_window_set_default_icon();
 
   /*  window is a global declared in globals.h.  */
-  window = gtk_window_new(GTK_WINDOW_TOPLEVEL);  
-
+  main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);  
+  
   x_window_set_title();
   
-  gtk_window_set_default_size(GTK_WINDOW(window), 1000, 600);  
+  gtk_window_set_default_size(GTK_WINDOW(main_window), 1000, 600);  
   
-  gtk_signal_connect (GTK_OBJECT (window), "delete_event",
+  gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
 		      GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */   
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
-  gtk_container_add(GTK_CONTAINER(window), GTK_WIDGET(main_vbox) );
-  
+  gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox) );
+  gtk_widget_show( GTK_WIDGET(main_vbox));
+    
   /* -----  Now create menu bar  ----- */  
-  menu_bar = x_menu_create_menu(GTK_WINDOW(window));
+  menu_bar = x_menu_create_menu(GTK_WINDOW(main_window));
   gtk_box_pack_start(GTK_BOX (main_vbox), menu_bar, FALSE, TRUE, 0);
-      
-  handlebox = gtk_handle_box_new ();
-  gtk_box_pack_start(GTK_BOX (main_vbox), handlebox, FALSE, FALSE, 5);
-
-  /* toolbar will be horizontal, with both icons and text, and with
-   * 5pxl spaces between items and put it into our handlebox */
-  Standard_Toolbar = gtk_toolbar_new ();
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Standard_Toolbar),
-			       GTK_ORIENTATION_HORIZONTAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_BOTH);
-  gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 5);
-//gtk_toolbar_set_space_size (GTK_TOOLBAR (toolbar), 5);
-  gtk_container_add (GTK_CONTAINER (handlebox), Standard_Toolbar);
-
-  /* Add Open Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, open, PIX, gschem-open.xpm, callBack_toolbar0)
-
-  /* Add Save Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, save, PIX, gschem-save.xpm, callBack_toolbar0)
-
-  /* Add Save As Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Standard, save_as, STK, GTK_STOCK_SAVE_AS, callBack_toolbar0)
   
-  gtk_toolbar_append_space(GTK_TOOLBAR(Standard_Toolbar));
+   /* -----  Initialize the Toolbar Module ----- */   
+  x_toolbars_init(main_vbox);  
 
-  TOOLBAR_STD_BUTTON(Standard, cut, STK, GTK_STOCK_CUT, callBack_clipboard)
-  TOOLBAR_STD_BUTTON(Standard, copy, STK, GTK_STOCK_COPY, callBack_clipboard)
-  TOOLBAR_STD_BUTTON(Standard, paste, STK, GTK_STOCK_PASTE, callBack_clipboard)
-
-  gtk_widget_show (Standard_Toolbar);
-  gtk_widget_show (handlebox);
-  
   edit_box=gtk_hbox_new(FALSE, 1);
   gtk_container_set_border_width(GTK_CONTAINER(edit_box),0);
   gtk_box_pack_start(GTK_BOX(main_vbox), edit_box, FALSE, TRUE, 0);
@@ -261,7 +210,7 @@ void x_window_init()
  *  -# Call x_gktsheet_add_row_labels(net_count, master_*_list_head)
  *  -# Call x_gktsheet_add_col_labels(net_attrib_count, master_*_attrib_list_head)
  *  -# loop on i, j -- call x_gtksheet_add_entry(i, j, attrib_value)
- *  -# Call gtk_widget_show(window) to show new window.
+ *  -# Call gtk_widget_show(main_window) to show new window.
  */
 void x_window_add_items()
 {
@@ -273,17 +222,20 @@ void x_window_add_items()
   /* Do these sanity check to prevent later segfaults */
   if (sheet_head->comp_count == 0) {
     error_string = _("No components found in entire design!\nDo you have refdeses on your components?");
-    x_dialog_fatal_error(error_string, 1);
+    //x_dialog_fatal_error(error_string, 1);
+    return;
   }
 
   if (sheet_head->comp_attrib_count == 0) {
     error_string = _("No configurable component attributes found in entire design!\nPlease attach at least some attributes before running gattrib.");
-    x_dialog_fatal_error(error_string, 2);
+    //x_dialog_fatal_error(error_string, 2);
+    return;
   }
 
   if (sheet_head->pin_count == 0) {
     error_string = _("No pins found on any components!\nPlease check your design.");
-    x_dialog_fatal_error(error_string, 3);
+    //x_dialog_fatal_error(error_string, 3);
+    return;
   }
 
   /*  reinitialize the gtksheet. */
@@ -365,28 +317,49 @@ void x_window_add_items()
       }
     }
   }
-
-  gtk_widget_show_all( GTK_WIDGET(window) );
+  gtk_window_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
+  gtk_widget_show( GTK_WIDGET(main_window));
 }
-
+/*!
+ * \brief View toogle Attribute toolbar
+ * \par Function Description
+ *
+ */
+void x_window_attribute_toolbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
+{
+  bool show = gtk_toggle_action_get_active(action);
+  if(show)
+    gtk_widget_show(Attribute_handlebox);
+  else
+    gtk_widget_hide(Attribute_handlebox);
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
+}
 /*!
  * \brief View toogle standard toolbar
  * \par Function Description
  *
  */
-void x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *window)
+void x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
   if(show)
-    gtk_widget_show(Standard_Toolbar);
+    gtk_widget_show(Standard_handlebox);
   else
-    gtk_widget_hide(Standard_Toolbar);
+    gtk_widget_hide(Standard_handlebox);
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
 
+/*!
+ * \brief Toggle View between All and Attached Attributes
+ * \par Function Description
+ *      This function checks each column name and hides or unhides
+ *  the column, depending on the action paramter, all columns that
+ *  are not members of attached atribute list ->attached_attrib.
+ */
 #define TOGGLE_ATTACH_X_OFFSET 100
-void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *window)
+void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   int i, j;
   int x, y;
@@ -421,20 +394,20 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *window)
    * version of gtksheet claiming fix had the same problem, so we will resize,
    * which needs to be some anyways */
   /* TODO: WEH: Determine the real x size */
-  gtk_window_get_size(GTK_WINDOW(window), &x, &y);
+  gtk_window_get_size(GTK_WINDOW(main_window), &x, &y);
   x =  (show) ? x - TOGGLE_ATTACH_X_OFFSET : x + TOGGLE_ATTACH_X_OFFSET;
-  gtk_window_resize(GTK_WINDOW(window), x, y);
+  gtk_window_resize(GTK_WINDOW(main_window), x, y);
   
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
 }
 /*!
- * \brief View toogle Statusbar
+ * \brief View toggle Statusbar
  * \par Function Description
  *
  */
 /* View->Statusbar */
-void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *window)
+void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
 {
   bool show = gtk_toggle_action_get_active(action);
   if(show)
@@ -442,4 +415,25 @@ void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *window)
   else
     gtk_widget_hide(edit_box);
   //config_file_set_bool(PREFS_STATUSBAR_VISIBLE, show);
+}
+void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *main_window)
+{
+  bool show = gtk_toggle_action_get_active(action);
+  gtk_sheet_set_autoresize(sheets[Components], show);
+  gtk_sheet_set_autoresize(sheets[Nets], show);
+  gtk_sheet_set_autoresize(sheets[Pins], show);
+}
+void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *main_window)
+{
+  bool show = gtk_toggle_action_get_active(action);
+  gtk_sheet_set_autoscroll(sheets[Components], show);
+  gtk_sheet_set_autoscroll(sheets[Nets], show);
+  gtk_sheet_set_autoscroll(sheets[Pins], show);
+}
+void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *main_window)
+{
+  bool show = gtk_toggle_action_get_active(action);
+  gtk_sheet_show_grid(sheets[Components], show);
+  gtk_sheet_show_grid(sheets[Nets], show);
+  gtk_sheet_show_grid(sheets[Pins], show);
 }

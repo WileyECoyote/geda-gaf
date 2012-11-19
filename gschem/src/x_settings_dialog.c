@@ -754,7 +754,7 @@ static int SavePotentialAttributes(GSCHEM_TOPLEVEL *w_current) {
 
 /*! \brief Function is_not_in_list
  *  \par Function Description: This is a Group 2 support function
- *       used to check is a given attribute is all in the filter
+ *       used to check is a given attribute is already in the filter
  *       Treeview.
  *
  *  @param[in]  GtkTreeView *list    Treeview to look in
@@ -768,7 +768,7 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
   gboolean foreach_func (GtkTreeModel *model, GtkTreePath  *path,
                          GtkTreeIter  *iter,  gpointer      user_data)
   {
-    gchar *attribute;
+    char *attribute;
 
     /* Note: here we use 'iter' and not '&iter', because we did not allocate
      * the iter on the stack and are already getting the pointer to a tree iter */

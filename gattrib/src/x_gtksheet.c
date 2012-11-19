@@ -49,7 +49,6 @@
 #endif
 
 #include "gtksheet.h"
-//#include "gtksheet/gtkitementry.h"
 
 #include "gattrib.h"  /* include Gattrib specific headers  */
 
@@ -126,8 +125,7 @@ static int popup_activated(GtkWidget *widget, gpointer data)
     return (TRUE);
 }
 
-static GtkWidget *
-    build_menu(GtkWidget *sheet)
+static GtkWidget *build_menu(GtkWidget *sheet)
 {
     static char *items[]={
         "Toggle Visiablity",
@@ -230,8 +228,6 @@ int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
         {
             if (gtk_sheet_in_clip(sheet)) gtk_sheet_unclip_range(sheet);
             gtk_sheet_clip_range(sheet, &sheet->range);
-/*            gtk_sheet_unselect_range(sheet);
-*/
         }
         if (key->keyval=='x' || key->keyval == 'X')
             gtk_sheet_unclip_range(sheet);
@@ -284,30 +280,22 @@ bool change_entry(GtkWidget *widget,
   return TRUE;
 }
 
-void cell_change(GtkWidget *widget, gint row, gint col, 
-                  gpointer data)
+void cell_change(GtkWidget *widget, gint row, gint col, gpointer data)
 {
 
 }
 
-bool cell_activate(GtkWidget *widget, int row, int col, 
-                    gpointer data)
+bool cell_activate(GtkWidget *widget, int row, int col, gpointer data)
 {
-  char *celltext;
 
+  char *celltext;
+  
   celltext = gtk_sheet_cell_get_text((GtkSheet*)widget, row, col);
 
   if ( NULL != celltext) {
     /* Make a copy of the contents */
     strcpy(EditBuffer, celltext);
   }
-/*
- GtkSheetRange range;
- range.row0 = range.rowi = row;
- range.col0 = range.coli = col;
-
- gtk_sheet_range_set_justification(GTK_SHEET(widget), &range, GTK_JUSTIFY_LEFT);
-*/
 
  return TRUE;
 }
@@ -315,32 +303,16 @@ bool cell_activate(GtkWidget *widget, int row, int col,
 bool cell_deactivate(GtkWidget *widget, int row, int col, PageDataSet *PageData)
 {
   char *celltext;
-
+  
   celltext = gtk_sheet_cell_get_text((GtkSheet*)widget, row, col);
   if (EditBuffer != NULL) { /* If NULL then we're loading data from file */
     if (celltext != NULL) { /* If NULL then cell was empty */
       if ( strcmp(EditBuffer, celltext) != 0) {
         PageData->CHANGED = TRUE;
+        x_window_update_title(pr_current, PageData);
       }
     }
   }
-  /*
-  GtkSheetRange range;
-
-  GtkSheet *sheet = GTK_SHEET(widget);
-
-  range.row0 = range.rowi = row;
-  range.col0 = range.coli = col;
-
- gtk_sheet_range_set_justification(GTK_SHEET(widget), &range, GTK_JUSTIFY_RIGHT);
-
-  text = g_strdup(gtk_sheet_cell_get_text(GTK_SHEET(widget), row, col));
-
-  if(text && strlen(text) > 0){
-    gtk_sheet_set_cell_text(sheet, row, col, text);
-    g_free(text); 
-  }
-*/
 
  return TRUE;
 }
@@ -372,13 +344,14 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
                      "deactivate",
                      (GtkSignalFunc) cell_deactivate, 
                      PageData);
+
   return;
 
   gtk_signal_connect(SheetObj,
                     "changed", /* or just clicked on */
                     (GtkSignalFunc) cell_change, 
-                    NULL); 
- 
+                    NULL);
+
   gtk_signal_connect(SheetObj,
                      "key_press_event",
                      (GtkSignalFunc) clipboard_handler, 
@@ -399,8 +372,6 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
                     (GtkSignalFunc) alarm_traverse, 
                     NULL);
 }
-
-
 
 void
 set_cell(GtkWidget *widget, char *insert, int text_length, int position, 
@@ -520,8 +491,7 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData) {
   void RedimensionSheet(GtkSheet *sheet, int nRows, int nCols) {
     unsigned int cRows = gtk_sheet_get_rows_count(sheet);
     unsigned int cCols = gtk_sheet_get_columns_count(sheet);
-   // fprintf(stderr, "ERROR: x_gtksheet_init: old_row=(%d), old_col=(), new count =[%d], col count=[%d]\n",
-//	    cRows, cCols, 
+
     if (nRows > 0) {
       if ( nRows > cRows) {
 	  gtk_sheet_add_row(sheet, nRows - cRows );
@@ -614,9 +584,16 @@ void x_gtksheet_init(PageDataSet *PageData)
 			       GTK_WIDGET(label) );
 
       sheets[i]->autoresize=FALSE;
-	    
-      gtk_widget_show( GTK_WIDGET(sheets[i]) );
-      gtk_widget_show( GTK_WIDGET(scrolled_windows[i]) );
+      gtk_sheet_set_autoscroll(sheets[i], TRUE);
+      
+      /* Maybe this fixes a long time sore spot for gattrib */
+      gtk_sheet_set_clip_text(sheets[i], TRUE);
+      
+      /* For now we keep the nets sheet invisible is still useless */
+      if (i != Nets) {
+        gtk_widget_show( GTK_WIDGET(sheets[i]) );
+        gtk_widget_show( GTK_WIDGET(scrolled_windows[i]) );
+      }
       gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */
       
       gtk_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
@@ -679,6 +656,7 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
     
     gtk_sheet_row_button_add_label(sheet, j, text);
     gtk_sheet_row_button_justify(sheet, j, GTK_JUSTIFY_LEFT);
+    gtk_sheet_set_row_title(sheet, j, text);
     string_list_item = string_list_item->next;
   }
   width = char_width * width;
@@ -748,20 +726,9 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j,
   if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
       ( desired_width > sheet->column[j].width )) {
     gtk_sheet_set_column_width(sheet, j, desired_width);
-    fprintf(stderr, "Setting column[%d] to desired=[%d]", j, desired_width);
   }
-  // wiley see STRING_WIDTH inline in gsw.c
-  //char strBuff [TEXT_WIDTH_LIMIT + 2];
+  /* wiley see STRING_WIDTH inline in gsw.c */
 
-   /*
-  if ( strlen(text) > TEXT_WIDTH_LIMIT) {
-    strncpy( strBuff, text, TEXT_WIDTH_LIMIT);
-    strBuff[TEXT_WIDTH_LIMIT] = '\0';    // manually added null character
-    strBuff[TEXT_WIDTH_LIMIT +1] = '\0'; // and another null character 
-  }
-  else
-    strcpy( strBuff, text);
-  */
   gtk_sheet_set_cell(sheet, i, j, GTK_JUSTIFY_LEFT, text);
 
   if (visibility == INVISIBLE) {
@@ -782,11 +749,47 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j,
 	break;
     }
   } /* if (visibility == INVISIBLE) */
-
-  /* Need to find a way to ensure that the text in a cell is clipped.
-   * Otherwise, long attribs overwrite adjacent cells.  */
 }
 
+/*! \brief Set the text color of a range of cells
+ *
+ * Sets the color of a range cells identified by row, col.
+ * \param sheet GtkSheet to operate on
+ * \param row Row of cell to set
+ * \param col Column of cell to set
+ * \param Color id Color to set text to
+ */
+
+void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, 
+                                 ColorId Color )
+{
+  
+  GdkColormap *color_map;
+  GtkSheetRange range;
+  GdkColor color_t;
+
+  /* get pointer to system color map */
+  color_map = gdk_colormap_get_system ();
+  
+  /* fill in the RGB values for associated string */
+  gdk_color_parse ( Colors[Color], &color_t);
+ 
+  /* given the RGB, gtk->resolve the 32 bit pixel data */
+  if (!gdk_colormap_alloc_color (color_map, &color_t, FALSE, FALSE)) {
+    g_error ("couldn't allocate color");
+    return;
+  }
+  
+  /* set color of range */
+  range.row0 = row;
+  range.rowi = row;
+  range.col0 = col;
+  range.coli = col;
+
+  /* set color */
+  gtk_sheet_range_set_foreground(sheet, &range, &color_t);
+
+}
 /*! \brief Get the first column selected in the GtkSheet
  *
  * Get the first column selected in the GtkSheet
@@ -819,44 +822,17 @@ int x_gtksheet_get_max_col(GtkSheet *sheet) {
   }
 }
 
-/*! \brief Set the text color of a range of cells
- *
- * Sets the color of a range cells identified by row, col.
- * \param sheet GtkSheet to operate on
- * \param row Row of cell to set
- * \param col Column of cell to set
- * \param Color id Color to set text to
- */
-
-void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, 
-			         ColorId Color )
+void x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range)
 {
-  
-  GdkColormap *color_map;
-  GtkSheetRange range;
-  GdkColor color_t;
-
-  /* get pointer to system color map */
-  color_map = gdk_colormap_get_system ();
-  
-  /* fill in the RGB values for associated string */
-  gdk_color_parse ( Colors[Color], &color_t);
- 
-  /* given the RGB, gtk->resolve the 32 bit pixel data */
-  if (!gdk_colormap_alloc_color (color_map, &color_t, FALSE, FALSE)) {
-    g_error ("couldn't allocate color");
-    return;
-  }
-  
-  /* set color of range */
-  range.row0 = row;
-  range.rowi = row;
-  range.col0 = col;
-  range.coli = col;
-
-  /* set color */
-  gtk_sheet_range_set_foreground(sheet, &range, &color_t);
-
+  t_range->row0 = s_range->row0;
+  t_range->rowi = s_range->rowi;
+  t_range->col0 = s_range->col0;
+  t_range->coli = s_range->coli;
 }
-
-
+void x_gtksheet_set_max_range(GtkSheet *sheet, GtkSheetRange *range)
+{
+  range->row0 = 0;
+  range->rowi = sheet->maxrow;
+  range->col0 = 0;
+  range->coli = sheet->maxcol;
+}

@@ -20,11 +20,16 @@ gattrib_SOURCES = \
 		listsort.c \
 		parsecmd.c \
 		f_export.c \
+		g_util.c \
+		gattrib_dialog.c \
 		g_register.c \
 		g_rc.c \
+		g_strings.c \
 		i_vars.c \
 		i_basic.c \
+		x_toolbars.c \
 		x_window.c \
+		x_find.c \
 		x_gtksheet.c \
 		x_dialog.c \
 		x_fileselect.c \

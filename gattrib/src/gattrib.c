@@ -131,6 +131,36 @@
 #include <dmalloc.h>
 #endif
 
+typedef struct {
+  void (*func)(void*);
+  void* arg;
+} geda_atexit_struct;
+
+static GList *exit_functions = NULL;
+
+//static GList *search_history=NULL;
+
+/*! \brief Register a function to be called on program exit
+ *
+ *  \par Function Description
+ *  This function registers a function to be called on
+ *  program exit. Multiple functions will be executed in
+ *  the order they are registered.
+ *
+ *  \param [in] func a pointer to the function to be registered
+ *  \param [in] param an arbitrary argument provided to the function
+ *                    when it is called
+ */
+void geda_atexit(geda_atexit_func func, void* data)
+{
+  geda_atexit_struct *p;
+
+  p = g_new(geda_atexit_struct, 1);
+  p->func = func;
+  p->arg = data;
+  exit_functions = g_list_append(exit_functions, p);
+}
+
 /*------------------------------------------------------------------*/
 /*! \brief GTK callback to quit the program.
  *
@@ -149,6 +179,7 @@ bool gattrib_really_quit(void)
   } else {
     gattrib_quit(0);
   }
+  
   return TRUE;
 }
 
@@ -163,6 +194,21 @@ bool gattrib_really_quit(void)
  */
 int gattrib_quit(int return_code)
 {
+  GList *list;
+  geda_atexit_struct *p;
+
+  /* Call all registered functions in order */
+  list = exit_functions;
+  while(list != NULL) {
+    p = (geda_atexit_struct *) list->data;
+    p->func(p->arg);
+    g_free(p);
+    list = g_list_next(list);
+  }
+  g_list_free(exit_functions);
+ 
+  if (search_history) g_list_free(search_history);   
+
   /*   s_clib_cache_free(); */
   s_clib_free();
   s_slib_free();
@@ -288,7 +334,8 @@ void gattrib_main(void *closure, int argc, char *argv[])
   x_window_add_items();    /* This updates the top level stuff,
                             * and then calls another fcn to update
                             * the GtkSheet itself.  */
-                            
+  x_window_update_title(pr_current, sheet_head);
+  
   g_slist_foreach(file_list, (GFunc)g_free, NULL);
   g_slist_free(file_list);
 

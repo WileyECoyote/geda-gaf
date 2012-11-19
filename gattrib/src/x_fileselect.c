@@ -1,7 +1,9 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
+ * 
  * Copyright (C) 2003-2012 Stuart D. Brorson.
- *
+ * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -121,7 +123,7 @@ bool x_fileselect ( char* filename )
   char  *cwd    = NULL;
     
   dialog = gtk_file_chooser_dialog_new (_("Save as..."),
-                                        GTK_WINDOW(window),
+                                        GTK_WINDOW(main_window),
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                         GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
@@ -144,7 +146,9 @@ bool x_fileselect ( char* filename )
   if (pr_current->page_current->page_filename != NULL) {
     cwd = pr_current->page_current->page_filename;
     gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), cwd);
+#ifdef DEBUG
     fprintf(stderr, "Going to use file name=%s\n", cwd);
+#endif
   }
   else { /* no filename then get current working dir */
     cwd = getcwd(0,0);
@@ -248,7 +252,7 @@ GSList *x_fileselect_open (void)
   char *filename;
   
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
-                                        GTK_WINDOW(window),
+                                        GTK_WINDOW(main_window),
                                         GTK_FILE_CHOOSER_ACTION_OPEN,
                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                         GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,

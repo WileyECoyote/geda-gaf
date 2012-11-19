@@ -10,14 +10,14 @@
 	file related utilities to a common file. See function descriptions
 	within the file for more information.
 
-	* src/f_basic.c: Revisions to algorythms in f_save function
+	* src/f_basic.c: Revisions algorythms in f_save function
 	in an attempt to stop malware like behaviour. Libgeda was
 	incorrectly renaming files to create backups so the file being
 	saved was not over-writing the old file. The user saving the "newly"
 	created file was assuming ownership of schematics and symbols with
 	default permissions regardless of who orginally owned the files.
-	Group settings were also being lost. Old algorythms attempted
-	to set permissions back but there was no assurance that the user had
+	Group settings were also being lost. Old algorythms attempted to
+	set permissions back but there was no assurance that the user had
 	permission to do this when the orginal file was renamed so the new
 	file would be left with the wrong ownership, group setting and
 	permissions and the backup file would incorrectly belong to the

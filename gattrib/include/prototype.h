@@ -4,8 +4,11 @@
  */
 
 /* ---------------- gattrib.c ---------------- */
+typedef void (*geda_atexit_func)(void* data);
+void geda_atexit(geda_atexit_func func, void* data);
+
 bool gattrib_really_quit(void);
-int gattrib_quit(int return_code);
+int  gattrib_quit(int return_code);
   
 /* -------------- parsecmd.c ----------------- */
 void usage(char *cmd);   
@@ -26,6 +29,18 @@ SCM g_quit(void);
 
 /* ------------- g_rc.c ------------- */
 SCM g_rc_gattrib_version(SCM version);
+
+/* ------------- g_strings.c ------------- */
+bool strequal(const char *str1, const char *str2);
+int stricmp(char *str1, char *str2);
+int strncmpi(char *str1, char *str2, int n);
+char *stristr(char *str1, char *str2);
+char *strsubst(char *source, char *old_str, char *new_str);
+char *strisubst(char *source, char *old_str, char *new_str);
+
+/* -------------- g_util.c -------------- */
+bool g_list_str_inlist(GList *list, char *string);
+bool g_list_stri_inlist(GList *list, char *string);
 
 /* ------------- s_attrib.c ------------- */
 int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name);
@@ -177,20 +192,33 @@ void x_dialog_unimplemented_feature();
 void x_dialog_fatal_error(char *string, int return_code);
 void x_dialog_about_dialog();
 void x_dialog_export_file();
-bool generic_confirm_dialog (const char *msg);
+bool x_dialog_generic_confirm_dialog (const char *msg);
+
+char *x_dialog_get_search_text(char* prompt);
+void x_dialog_find_value(char* prompt, SearchRecord *Search);
+void x_dialog_search_replace(SearchRecord *Search);
+
+/* ------------- x_find.c ------------- */
+bool x_find_main_search(char* text, char *replacement);
+void x_find_attribute_value(void);
+void x_find_replace_attrib_value(void);
+void x_find_attribute(void);
+void x_find_refdes(void);
 
 /* ------------- x_gtksheet.c ------------- */
+void x_gtksheet_destroy_all(void);
 void x_gtksheet_init(PageDataSet *PageData);
 void x_gtksheet_reinititialize(PageDataSet *PageData);
-void x_gtksheet_destroy_all(void);
 void x_gtksheet_add_row_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
 void x_gtksheet_add_col_labels(GtkSheet *sheet, int count, STRING_LIST *list_head);
 void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, 
 			      char *text, int visibility, int show_name_value);
 void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
 				 ColorId Color );
-int x_gtksheet_get_min_col(GtkSheet *sheet);
-int x_gtksheet_get_max_col(GtkSheet *sheet);
+int  x_gtksheet_get_min_col(GtkSheet *sheet);
+int  x_gtksheet_get_max_col(GtkSheet *sheet);
+void x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range);
+void x_gtksheet_set_max_range(GtkSheet *sheet, GtkSheetRange *range);
 
 /* ------------- x_fileselect.c ------------- */
 bool x_fileselect ( char* filename );
@@ -212,11 +240,18 @@ void x_menu_fix_gtk_recent_submenu();
 GtkActionGroup* x_menu_create_recent_action_group(void);
 GtkWidget* x_menu_create_menu(GtkWindow *window);
 
+/* ------------- x_toolbars.c ------------- */
+void x_toolbars_init(GtkWidget *parent_container);
+
 /* ------------- x_window.c ------------- */
+void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData);
 void x_window_clipboard_handler(int do_what);
 void x_window_init();
 void x_window_add_items();
+void x_window_attribute_toolbar_toggle(GtkToggleAction *action, GtkWindow *window);
 void x_window_standard_toolbar_toggle(GtkToggleAction *action, GtkWindow *window);
 void x_window_editbar_toggle(GtkToggleAction *action, GtkWindow *window);
 void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *window);
-
+void x_window_autoresize_toggle(GtkToggleAction *action, GtkWindow *window);
+void x_window_autoscroll_toggle(GtkToggleAction *action, GtkWindow *window);
+void x_window_grid_toggle(GtkToggleAction *action, GtkWindow *window);

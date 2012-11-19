@@ -1,0 +1,55 @@
+
+gEDA
+
+GPL Electronic Design Automation
+------------------------------------------------------------------------------
+
+README for bitmaps
+
+This file describes where the various bitmaps came from and their license.
+
+Added by wileyhill@gmail.com:
+ghost_invisible_22x22.xpm          kearone@freenet.de, use by permission
+ghost_invisible_24x24.xpm          kearone@freenet.de, use by permission
+ghost_invisible_32x32.xpm          kearone@freenet.de, use by permission
+ghost_invisible_256x256.xpm        kearone@freenet.de, use by permission
+
+Note: The icons are released under the Gnu General Public License,
+       meaning you can use them in free software projects free of
+       charge.  If you wish to use these for other things (or if you need
+       other icons for your project) contact me. Note: it may take a
+       while to answer you since I get pretty much email.
+
+geda_find_16x16.png                Created by wileyhill@gmail.com, GPL
+geda_find_22x22.png                Created by wileyhill@gmail.com, GPL
+geda_find_24x24.png                Created by wileyhill@gmail.com, GPL
+geda_find_32x32.png                Created by wileyhill@gmail.com, GPL
+geda_find_36x36.png                Created by wileyhill@gmail.com, GPL
+geda_find_48x48.png                Created by wileyhill@gmail.com, GPL
+geda_find_64x64.png                Created by wileyhill@gmail.com, GPL
+geda_find_96x96.png                Created by wileyhill@gmail.com, GPL
+geda_find_128x128.png              Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_16x16.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_22x22.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_24x24.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_32x32.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_36x36.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_48x48.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_64x64.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_96x96.png    Created by wileyhill@gmail.com, GPL
+geda_find_and_replace_128x128.png  Created by wileyhill@gmail.com, GPL
+geda_find_attribute_22x22.xpm      Created by wileyhill@gmail.com, GPL
+geda_locate_reference_24x24.xpm    Created by wileyhill@gmail.com, GPL
+geda_name_tag_16x16.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_name_tag_22x22.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_name_tag_24x24.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_name_tag_32x32.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_name_tag_36x36.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_value_16x16.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_value_22x22.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_value_24x24.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_value_32x32.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_value_36x36.xpm    	   Created by wileyhill@gmail.com, GPL
+geda_value_256x256.png    	   Created by wileyhill@gmail.com, GPL
+
+

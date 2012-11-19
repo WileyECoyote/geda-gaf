@@ -24,11 +24,7 @@ bitmapdata_DATA = \
                   gschem-alignment_bottomright.png			 \
                   gschem-alignment_topcenter.png			 \
                   gschem-alignment_middlecenter.png			 \
-                  gschem-alignment_topleft.png                           \
-                  geda_bulb_24x26_off.png                                \
-                  geda_bulb_24x26_on.png                                 \
-                  geda_switch_64x48_off.png                              \
-                  geda_switch_64x48_on.png
+                  gschem-alignment_topleft.png
 
 EXTRA_DIST = $(bitmapdata_DATA)                                          \
              README                                                      \

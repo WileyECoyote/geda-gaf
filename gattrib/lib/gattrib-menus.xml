@@ -20,15 +20,18 @@
       <separator/>     
       <menuitem action="edit-add-attrib" />
       <menuitem action="edit-delete-attrib" />
-      <!-- < menuitem action="edit-find-attrib" / > -->
-      <!-- < menuitem action="edit-search-replace-attrib-value" / > -->
-      <!-- < menuitem action="edit-search-for-refdes" / > -->
+      <separator/>
+      <menuitem action="edit-find-value" />
+      <menuitem action="edit-search-replace-value" />
+      <menuitem action="edit-locate-attrib" />
+      <menuitem action="edit-locate-refdes" />
     </menu>
     <menu action="view">
       <menu action="toolbar">
-	 <menuitem action="view-statusbar" />
-	 <menuitem action="view-toolbar-standard" />
-	 <separator/>  
+         <menuitem action="view-statusbar" />
+         <menuitem action="view-toolbar-standard" />
+         <menuitem action="view-toolbar-attribute" />
+         <separator/>  
          <menuitem action="view-toolbar-icons" />
          <menuitem action="view-toolbar-text" />
          <menuitem action="view-toolbar-both" />
@@ -41,7 +44,11 @@
       <menuitem action="visibility-value-only" />
       <menuitem action="visibility-name-value" />
     </menu>
-
+    <menu action="window">
+      <menuitem action="window-auto-resize" />
+      <menuitem action="window-auto-scroll" />
+      <menuitem action="window-show_grid" />
+    </menu>
     <menu action="help">
       <menuitem action="help-about" />
     </menu>

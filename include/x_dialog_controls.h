@@ -2,7 +2,7 @@
 ;  File: x_dialog_controls.h
 ;;
 ;;; gEDA - GPL Electronic Design Automation
-;;; gschem - gEDA Schematic Capture
+;;;
 ;;; Copyright (C) 1998-2012 Ales Hvezda
 ;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
 ;;
@@ -35,6 +35,11 @@
 ;;                | to support routine with passing parameters and
 ;;                | having independent callbacks. Added GEDA_NUMERIC_SPIN
 ;;                | to support routines not using embed labels.
+;; ------------------------------------------------------------------
+;; WEH | 11/16/12 | Added GEDA_NEW_COMBO macro which is functionally
+;;                | equivalent to GTK_NEW_COMBO but does not have the
+;;                | localization so that the embed widgets, such as the
+;;                | label, are accessible to implementation code.
 */
 
 #pragma once
@@ -389,6 +394,16 @@ typedef struct
         HOOKUP_GEDA_OBJECT(name, Combo) \
         GTK_ICALLBACK_COMBO (name) \
 }
+#define GEDA_NEW_COMBO(parent, name, width, hpad)    \
+        GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
+        GtkWidget *name##Label=NULL;         /* declare Label */             \
+        GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
+        name##Combo = gtk_combo_box_entry_new_text(); \
+        gtk_widget_show(name##Combo); \
+        PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
+        SET_WIDGET_SIZE ( name##Combo, width, -1) \
+        HOOKUP_GEDA_OBJECT(name, Combo) \
+        GTK_ICALLBACK_COMBO (name)
 
 #define GTK_LOAD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), _(text));
 #define LOAD_STD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), text);
