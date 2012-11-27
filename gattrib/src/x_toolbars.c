@@ -46,12 +46,16 @@ static ToolbarStringData ToolbarStrings[] = {
   { "replace_button", 	"Replace", 	"Search and Replace attribute value", "Private"},
   { "attribute_button", "Attrib", 	"Locate attribute", "Private"},
   { "designator_button","Ref Des", 	"Locate Reference Designator", "Private"},
-   /* Attribute Toolbar */
 
-  { "visible_invisible",  "invisible",  "Set selected invisible"},
-  { "visible_name_only",  "name",  "Set selected name visible only"},
-  { "visible_value_only", "value", "Set selected value visible only"},
-  { "visible_name_value", "both", "Set selected name and value visible"},
+   /* Attribute Toolbar */
+  { "invisible_button",  "invisible",  "Set selected invisible"},
+  { "visible_button",    "visible",    "Set selected visible"},
+  { "add_button",        "add",        "Add a new attribute"},
+  { "promote_button",    "promote",    "Attach the selected attribute"},
+  { "demote_button",     "demote",     "Dettach the selected attribute"},
+  { "name_only_button",  "name",       "Set selected name visible only"},
+  { "value_only_button", "value",      "Set selected value visible only"},
+  { "name_value_button", "both",       "Set selected name and value visible"},
   { NULL, NULL, NULL},
 };
 
@@ -117,16 +121,28 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
 
   switch ( button ) {
     case invisible:
-      s_visibility_set_invisible();
+      s_properties_set_invisible();
+      break;
+    case visible:
+      s_properties_set_visible();
+      break;
+    case add:
+      s_toplevel_add_new_attrib(-1);
+      break;
+    case promote:
+      s_properties_promote_attribute();
+      break;
+    case demote:
+      s_properties_demote_attribute();
       break;
     case name_only:
-      s_visibility_set_name_only();
+      s_properties_set_name_only();
       break;
     case value_only:
-      s_visibility_set_value_only();
+      s_properties_set_value_only();
       break;
     case name_value:
-      s_visibility_set_name_and_value();
+      s_properties_set_name_and_value();
       break;
     default:
      s_log_message("toolbar0(): Button ID %d\n", button);
@@ -206,8 +222,12 @@ void x_toolbars_init(GtkWidget *parent_container) {
   gtk_container_add (GTK_CONTAINER (Attribute_handlebox), Attribute_Toolbar);
   
     /* Add Open Button to Toolbar */
-  TOOLBAR_STD_BUTTON(Attribute, invisible, PIX, 32x32/ghost_invisible_32x32.xpm, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, name_only, PIX, 32x32/geda_name_tag_32x32.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, invisible, PIX, 28x28/ghost_invisible_28x28.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, visible,   PIX, 32x32/geda_eye_glasses_32x21.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, add,       PIX, 26x26/geda_redcross_26x26.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, promote,   PIX, 28x28/geda_promote_28x28.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, demote,    PIX, 28x28/geda_demote_28x28.xpm, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, name_only, PIX, 28x28/geda_name_tag_28x28.xpm, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, value_only, PIX, 24x24/geda_value_24x24.xpm, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, name_value, PIX, 28x28/geda_name_value_28x28.xpm, callBack_AttributeBar0);
   

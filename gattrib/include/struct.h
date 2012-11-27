@@ -111,9 +111,10 @@ struct st_table {
   char *row_name;               /*!< comp, net, or refdes:pin name */
   char *col_name;               /*!< attrib name */
   char *attrib_value;           /*!< attrib value */
+  int is_inherited;
+  int is_promoted;
   int visibility;
   int show_name_value;
-
 };
 
 
@@ -128,9 +129,9 @@ struct st_table {
  */
 /* -------------------------------------------------------------------- */
 struct st_string_list {
-  char *data;     /*!< points to zero-terminated string */
-  int pos;         /*!< position on spreadsheet */
-  int length;      /*!< number of items in list */
+  char *data;        /*!< points to zero-terminated string */
+  int pos;           /*!< position on spreadsheet */
+  int length;        /*!< number of items in list */
   STRING_LIST *prev; /*!< pointer to previous item in linked list */
   STRING_LIST *next; /*!< pointer to next item in linked list */
 };

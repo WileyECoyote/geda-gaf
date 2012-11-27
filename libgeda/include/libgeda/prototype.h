@@ -10,19 +10,19 @@ void o_scale(TOPLEVEL *toplevel, GList *list, int x_scale, int y_scale);
 
 /* f_basic.c */
 char *f_get_autosave_filename (const char *filename);
-bool f_has_active_autosave (const char *filename, GError **err);
-int f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err);
-int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
+bool  f_has_active_autosave (const char *filename, GError **err);
+int   f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err);
+int   f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
                  const gint flags, GError **err);
-void f_close(TOPLEVEL *toplevel);
-int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **error);
+void  f_close(TOPLEVEL *toplevel);
+int   f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **error);
 char *f_normalize_filename (const char *filename, GError **error);
 char *follow_symlinks (const char *filename, GError **error);
 
 /* f_print.c */
-int f_print_file (TOPLEVEL *toplevel, PAGE *page, const char *filename);
-int f_print_command (TOPLEVEL *toplevel, PAGE *page, const char *command);
-int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp);
+int  f_print_file (TOPLEVEL *toplevel, PAGE *page, const char *filename);
+int  f_print_command (TOPLEVEL *toplevel, PAGE *page, const char *command);
+int  f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp);
 void f_print_set_type(TOPLEVEL *toplevel, int type);
 
 /* f_utilities.c */
@@ -69,7 +69,6 @@ void m_hatch_path(PATH *path, gint angle, gint pitch, GArray *lines);
 void m_polygon_append_bezier(GArray *points, BEZIER *bezier, int segments);
 void m_polygon_append_point(GArray *points, int x, int y);
 
-
 /* o_arc_basic.c */
 OBJECT *o_arc_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int radius, int start_angle, int end_angle);
 OBJECT *o_arc_copy(TOPLEVEL *toplevel, OBJECT *o_current);
@@ -79,26 +78,26 @@ void o_arc_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery
 void o_arc_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 
 /* o_attrib.c */
-void o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item);
-bool o_attrib_is_attached (TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object);
-void o_attrib_attach(TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object, int set_color);
-void o_attrib_attach_list(TOPLEVEL *toplevel, GList *attr_list, OBJECT *object, int set_color);
-void o_attrib_detach_all(TOPLEVEL *toplevel, OBJECT *object);
-void o_attrib_print(GList *attributes);
-void o_attrib_remove(TOPLEVEL *toplevel, GList **list, OBJECT *remove);
-bool o_attrib_string_get_name_value (const char *string, char **name_ptr, char **value_ptr);
-bool o_attrib_get_name_value (OBJECT *attrib, char **name_ptr, char **value_ptr);
+void   o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item);
+bool   o_attrib_is_attached (TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object);
+void   o_attrib_attach(TOPLEVEL *toplevel, OBJECT *attrib, OBJECT *object, int set_color);
+void   o_attrib_attach_list(TOPLEVEL *toplevel, GList *attr_list, OBJECT *object, int set_color);
+void   o_attrib_detach_all(TOPLEVEL *toplevel, OBJECT *object);
+void   o_attrib_print(GList *attributes);
+void   o_attrib_remove(TOPLEVEL *toplevel, GList **list, OBJECT *remove);
+bool   o_attrib_string_get_name_value (const char *string, char **name_ptr, char **value_ptr);
+bool   o_attrib_get_name_value        (OBJECT *attrib, char **name_ptr, char **value_ptr);
 GList *o_attrib_find_floating_attribs (const GList *list);
-char *o_attrib_search_floating_attribs_by_name (const GList *list, char *name, int counter);
-char *o_attrib_search_attached_attribs_by_name (OBJECT *object, char *name, int counter);
-char *o_attrib_search_inherited_attribs_by_name (OBJECT *object, char *name, int counter);
-char *o_attrib_search_object_attribs_by_name (OBJECT *object, char *name, int counter);
+char  *o_attrib_search_floating_attribs_by_name  (const GList *list, char *name, int counter);
+char  *o_attrib_search_attached_attribs_by_name  (OBJECT *object, char *name, int counter);
+char  *o_attrib_search_inherited_attribs_by_name (OBJECT *object, char *name, int counter);
+char  *o_attrib_search_object_attribs_by_name    (OBJECT *object, char *name, int counter);
 GList *o_attrib_return_attribs(OBJECT *object);
-int o_attrib_is_inherited(OBJECT *attrib);
-void o_attrib_append_attribs_changed_hook(TOPLEVEL *toplevel, AttribsChangedFunc func, void *data);
-void o_attrib_emit_attribs_changed(TOPLEVEL *toplevel, OBJECT *object);
-void o_attrib_freeze_hooks(TOPLEVEL *toplevel, OBJECT *object);
-void o_attrib_thaw_hooks(TOPLEVEL *toplevel, OBJECT *object);
+int    o_attrib_is_inherited  (OBJECT *attrib);
+void   o_attrib_append_attribs_changed_hook(TOPLEVEL *toplevel, AttribsChangedFunc func, void *data);
+void   o_attrib_emit_attribs_changed (TOPLEVEL *toplevel, OBJECT *object);
+void   o_attrib_freeze_hooks         (TOPLEVEL *toplevel, OBJECT *object);
+void   o_attrib_thaw_hooks           (TOPLEVEL *toplevel, OBJECT *object);
 
 /* o_basic.c */
 int inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y);
@@ -350,23 +349,23 @@ void s_cue_output_lowlevel_midpoints(TOPLEVEL *toplevel, OBJECT *object, FILE *f
 void s_cue_output_single(TOPLEVEL *toplevel, OBJECT *object, FILE *fp, int type);
 
 /* s_hierarchy.c */
-PAGE *s_hierarchy_down_schematic_single(TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag);
-void s_hierarchy_down_symbol (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
-PAGE *s_hierarchy_find_up_page(GedaPageList *page_list, PAGE *current_page);
-GList* s_hierarchy_traversepages(TOPLEVEL *toplevel, PAGE *p_current, gint flags);
-gint s_hierarchy_print_page(PAGE *p_current, void * data);
-PAGE *s_hierarchy_find_prev_page(GedaPageList *page_list, PAGE *current_page);
-PAGE *s_hierarchy_find_next_page(GedaPageList *page_list, PAGE *current_page);
+PAGE  *s_hierarchy_down_schematic_single(TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag);
+void   s_hierarchy_down_symbol (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
+PAGE  *s_hierarchy_find_up_page(GedaPageList *page_list, PAGE *current_page);
+GList *s_hierarchy_traversepages(TOPLEVEL *toplevel, PAGE *p_current, gint flags);
+gint   s_hierarchy_print_page(PAGE *p_current, void * data);
+PAGE  *s_hierarchy_find_prev_page(GedaPageList *page_list, PAGE *current_page);
+PAGE  *s_hierarchy_find_next_page(GedaPageList *page_list, PAGE *current_page);
 
 /* s_log.c */
-void s_log_init (const char *filename);
-void s_log_close (void);
+void  s_log_init (const char *filename);
+void  s_log_close (void);
 char *s_log_read (void);
 
 /* s_menu.c */
-int s_menu_return_num(void);
-SCM s_menu_return_entry(int index, char **menu_name);
-int s_menu_add_entry(char *new_menu, SCM menu_items);
+int  s_menu_return_num(void);
+SCM  s_menu_return_entry(int index, char **menu_name);
+int  s_menu_add_entry(char *new_menu, SCM menu_items);
 void s_menu_print(void);
 void s_menu_free(void);
 void s_menu_init(void);

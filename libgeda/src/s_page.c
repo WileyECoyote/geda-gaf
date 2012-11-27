@@ -198,6 +198,7 @@ void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
    */
 
   /* save page_current and switch to page */
+
   if (page == toplevel->page_current) {
     tmp = NULL;
   } else {
@@ -207,7 +208,7 @@ void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
 
   /* Get the real filename and file permissions */
   real_filename = follow_symlinks (page->page_filename, NULL);
-  
+
   if (real_filename == NULL) {
     s_log_message (_("s_page_delete: Can't get the real filename of %s."),
                    page->page_filename);
@@ -226,6 +227,7 @@ void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
     }
     g_free (backup_filename);
   }
+
   g_free(real_filename);
 
   /* Free the selection object */

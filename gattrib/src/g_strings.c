@@ -35,8 +35,66 @@
 #include <dmalloc.h>
 #endif
 
+/*! \brief itoa() for c
+ *  \par Function Description
+ *  Translate an integer to askii, like itoa cpp function
+ *
+ * \copyright public domain
+ * \author ArkM
+ *
+ *  @param[in]  value  int to value to convert.
+ *  @param[in]  str    ptr to array for the results
+ *  @param[in]  radix  int base to resolve.
+ *
+ * \usage
+ *
+ *  char s_val[digits];  <-- Declare char array, digits could be
+ *                           macro subsitution or literal value.
+ *  int number = 4;      <-- Some integer declared somewhere.
+ *
+ *  *str = int2str( number, s_val, 10 ));
+ *
+ * \example
+ *  strcat(strbuffer, int2str( total, s_val, 10 ));
+ */
+char* int2str(int value, char* str, int radix) {
+
+  static char dig[] ="0123456789"
+                     "abcdefghijklmnopqrstuvwxyz";
+  int n = 0, neg = 0;
+  unsigned int v;
+  char* p, *q;
+  char c;
+
+  if (radix == 10 && value < 0) {
+    value = -value;
+    neg = 1;
+  }
+  v = value;
+  do {
+    str[n++] = dig[v%radix];
+    v /= radix;
+  } while (v);
+  if (neg)
+  str[n++] = '-';
+  str[n] = '\0';
+  for (p = str, q = p + (n-1); p < q; ++p, --q)
+  c = *p, *p = *q, *q = c;
+  return str;
+}
 
 /* WEH: Maybe should be in <string.h> is inline */
+/*! \brief Check for equal strings.
+ *
+ *  \par Function Description
+ *  This function compares to strings and returns true if
+ *  they are equal or fals if they are not.
+ * 
+ *  \param [in] char* str1 is the string to be search
+ *  \param [in] char* str1 is the string to search for
+ * 
+ *  \retval TRUE if strings are equivalent, otherwise FALSE.
+ */
 int strequal(const char *str1, const char *str2) 
 {
   while ((*str1 == *str2) && (*str1)) { str1++; str2++; }

@@ -58,10 +58,25 @@
 
 #define COLUMN_MIN_WIDTH 10
 
-const char* Colors [] = { "black", "blue", "green", "red",
-                          "violet", "yellow", "white", "gray" };
+const char* Colors [] = { "black",      "red",    "blue",
+                          "green",      "orange", "purple",
+                          "gray",       "pink",   "skyblue",
+                          "lightgreen", "tan",    "violet",          
+                          "yellow",     "white"
+};
+static char *popup_items[]={ "Toggle Visiablity",
+                             "Add Attribute",
+                             "Insert Attribute",
+                             "Hide Attribute",
+                             "Delete Attribute",
+                             "Clear Attribute Data"
+};
 
 char EditBuffer[255];
+
+GtkSheet *x_gtksheet_get_current_sheet() {
+  return GTK_SHEET(sheets[gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook))]);
+}
 
 void x_gtksheet_destroy_all(){
   int i;
@@ -78,48 +93,42 @@ void x_gtksheet_destroy_all(){
   }
 }
 
-static int popup_activated(GtkWidget *widget, gpointer data)
+//static int popup_activated(GtkWidget *widget, gpointer data)
+static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
 {
     GtkSheet *sheet;
-    int cur_page;
-    char *item;
-
-    cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-    sheet=GTK_SHEET(sheets[cur_page]);
-
-    item = (char *)data;
-
-    if (strcmp(item,"Toggle Visiablity")==0)
-        fprintf(stderr, "Do Toggle Visiablity" );
-	
-    if (strcmp(item,"Add Column")==0)
-        gtk_sheet_add_column(sheet,1);
-
-    if (strcmp(item,"Insert Column")==0)
-    {
-        if (sheet->state==GTK_SHEET_COLUMN_SELECTED)
-            gtk_sheet_insert_columns(sheet,sheet->range.col0,                       
-                                     sheet->range.coli-sheet->range.col0+1);
-
-    }
-    if (strcmp(item,"Hide Column")==0)
-    {
-        if (sheet->state==GTK_SHEET_COLUMN_SELECTED)
-          gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
-
-    }
-    if (strcmp(item,"Delete Column")==0)
-    {
-        if (sheet->state==GTK_SHEET_COLUMN_SELECTED)
-            gtk_sheet_delete_columns(sheet,sheet->range.col0,
-                                     sheet->range.coli-sheet->range.col0+1);
-    }
-
-    if (strcmp(item,"Clear Cells")==0)
-    {
-        if (sheet->state!=GTK_SHEET_NORMAL)
-            gtk_sheet_range_clear(sheet, &sheet->range);
-    }
+    //char *item;
+    sheet = x_gtksheet_get_current_sheet();
+    
+    int WhichItem = (int)(long*) selection;
+    
+    switch ( WhichItem ) {
+      case ToggleVisiablity:
+        if(s_properties_get_visibility(sheet->active_cell.row, sheet->active_cell.col))
+          s_properties_set_invisible();
+        else
+          s_properties_set_visible();
+        break;
+      case AddAttribute:
+        s_toplevel_add_new_attrib(-1);
+        break;
+      case InsertAttribute:
+        s_toplevel_add_new_attrib(sheet->range.col0);
+        break;
+      case HideAttribute:
+        gtk_sheet_column_set_visibility(sheet, sheet->range.col0, FALSE);
+        break;
+      case DeleteAttribute:
+        s_toplevel_delete_attrib_col(sheet);
+        //x_dialog_delete_attrib();
+        //gtk_sheet_delete_columns(sheet, sheet->range.col0, sheet->range.coli-sheet->range.col0+1);
+        break;
+      case ClearAttributeData:
+        gtk_sheet_range_clear(sheet, &sheet->range);
+        break;
+      default:
+          s_log_message("button_responder(): UKNOWN BUTTON ID: %d\n", WhichItem);
+    } /* End Switch WhichItem */  
 
     gtk_widget_destroy(popup);
     return (TRUE);
@@ -127,70 +136,65 @@ static int popup_activated(GtkWidget *widget, gpointer data)
 
 static GtkWidget *build_menu(GtkWidget *sheet)
 {
-    static char *items[]={
-        "Toggle Visiablity",
-        "Add Column",
-        "Insert Column",
-	"Hide Column",
-        "Delete Column",
-        "Clear Cells"
-    };
-    GtkWidget *menu;
-    GtkWidget *item;
-    int i;
+  GtkWidget *menu;
+  GtkWidget *item;
+  int i;
 
-    menu=gtk_menu_new();
+  menu=gtk_menu_new();
 
-    for (i=0; i < (sizeof(items)/sizeof(items[0])) ; i++)
-    {
-        item=gtk_menu_item_new_with_label(items[i]);
+  for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
+  {
+    item=gtk_menu_item_new_with_label(popup_items[i]);
 
-        g_signal_connect(GTK_OBJECT(item),"activate",
-                         (void *) popup_activated,
-                         items[i]);
+    g_signal_connect(GTK_OBJECT(item),"activate",
+                    (void *) popup_activated,
+                    (void *) i);
 
-        gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
-        gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
+    gtk_widget_set_sensitive(GTK_WIDGET(item), TRUE);
+    gtk_widget_set_can_focus(GTK_WIDGET(item), TRUE);
 
-        switch (i)
-        {
-            case 2:
-                if (GTK_SHEET(sheet)->state!=GTK_SHEET_ROW_SELECTED)
-                {
-                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-                }
-                break;
+    switch (i) {
+      case ToggleVisiablity:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case AddAttribute:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case InsertAttribute:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case HideAttribute:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      case DeleteAttribute:
+        //if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        //}
+        break;
+      case ClearAttributeData:
+        if (GTK_SHEET(sheet)->state!=GTK_SHEET_NORMAL) {
+          gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
+          gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
+        }
+        break;
+      } 
 
-            case 3:
-                if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED)
-                {
-                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-                }
-                break;
-
-            case 4:
-                if (GTK_SHEET(sheet)->state!=GTK_SHEET_ROW_SELECTED)
-                {
-                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-                }
-                break;
-
-            case 5:
-                if (GTK_SHEET(sheet)->state!=GTK_SHEET_COLUMN_SELECTED)
-                {
-                    gtk_widget_set_sensitive(GTK_WIDGET(item), FALSE);
-                    gtk_widget_set_can_focus(GTK_WIDGET(item), FALSE);
-                }
-                break;
-        } 
-
-        gtk_widget_show(item);
-        gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
+      gtk_widget_show(item);
+      gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
     }
-
     return (menu);
 }
 
@@ -236,10 +240,8 @@ int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
     return (FALSE);
 }
 
-void 
-resize_handler(GtkWidget *widget, GtkSheetRange *old_range, 
-                                  GtkSheetRange *new_range, 
-                                  gpointer data)
+void resize_handler(GtkWidget *widget, GtkSheetRange *old_range, 
+                    GtkSheetRange *new_range, gpointer data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
                                     old_range->rowi, old_range->coli);
@@ -394,12 +396,10 @@ void show_sheet_entry(GtkWidget *widget, gpointer data)
  const char *text;
  GtkSheet *sheet;
  GtkEntry *sheet_entry;
- int cur_page;
 
  if(!GTK_WIDGET_HAS_FOCUS(widget)) return;
 
- cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
- sheet=GTK_SHEET(sheets[cur_page]);
+ sheet=x_gtksheet_get_current_sheet();
  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
  if((text=gtk_entry_get_text (GTK_ENTRY(entry)))){
@@ -411,11 +411,10 @@ void activate_sheet_entry(GtkWidget *widget, gpointer data)
 {
   GtkSheet *sheet;
   GtkEntry *sheet_entry;
-  int cur_page, row, col;
+  int row, col;
   int justification=GTK_JUSTIFY_LEFT;
   
-  cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-  sheet=GTK_SHEET(sheets[cur_page]);
+  sheet=x_gtksheet_get_current_sheet();
   row=sheet->active_cell.row; col=sheet->active_cell.col;
 
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
@@ -433,12 +432,10 @@ void show_entry(GtkWidget *widget, gpointer data)
  const char *text; 
  GtkSheet *sheet;
  GtkWidget * sheet_entry;
- int cur_page;
 
  if(!GTK_WIDGET_HAS_FOCUS(widget)) return;
 
- cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
- sheet=GTK_SHEET(sheets[cur_page]);
+ sheet=x_gtksheet_get_current_sheet();
  sheet_entry = gtk_sheet_get_entry(sheet);
 
  if((text=gtk_entry_get_text (GTK_ENTRY(sheet_entry))))
@@ -590,10 +587,10 @@ void x_gtksheet_init(PageDataSet *PageData)
       gtk_sheet_set_clip_text(sheets[i], TRUE);
       
       /* For now we keep the nets sheet invisible is still useless */
-      if (i != Nets) {
+      //if (i != Nets) {
         gtk_widget_show( GTK_WIDGET(sheets[i]) );
         gtk_widget_show( GTK_WIDGET(scrolled_windows[i]) );
-      }
+      //}
       gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */
       
       gtk_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
@@ -704,53 +701,6 @@ void x_gtksheet_add_col_labels(GtkSheet *sheet, int count,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Add a cell item to the GtkSheet
- *
- * Add a cell item to the GtkSheet
- * \param sheet GtkSheet to add the cell item to
- * \param i
- * \param j
- * \param text
- * \param visibility
- * \param show_name_value
- */
-void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, 
-			      char *text, 
-			      int visibility, 
-			      int show_name_value)
-{
-  int length = strlen(text);
-  int desired_width = length * DEFAULT_FONT_WIDTH;
-  
-  /* Auto resize up to limit */
-  if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
-      ( desired_width > sheet->column[j].width )) {
-    gtk_sheet_set_column_width(sheet, j, desired_width);
-  }
-  /* wiley see STRING_WIDTH inline in gsw.c */
-
-  gtk_sheet_set_cell(sheet, i, j, GTK_JUSTIFY_LEFT, text);
-
-  if (visibility == INVISIBLE) {
-    x_gtksheet_set_cell_fgcolor(sheet, i, j, Gray);
-  } else {
-    switch(show_name_value) {
-
-    case(SHOW_NAME_VALUE):
-      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Blue);
-	break;
-
-    case(SHOW_NAME):
-      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Red);
-	break;
-
-    case(SHOW_VALUE):
-      	x_gtksheet_set_cell_fgcolor(sheet, i, j, Black);
-	break;
-    }
-  } /* if (visibility == INVISIBLE) */
-}
-
 /*! \brief Set the text color of a range of cells
  *
  * Sets the color of a range cells identified by row, col.
@@ -790,6 +740,69 @@ void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
   gtk_sheet_range_set_foreground(sheet, &range, &color_t);
 
 }
+void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, 
+                                 ColorId Color )
+{
+  
+  GdkColormap *color_map;
+  GtkSheetRange range;
+  GdkColor color_t;
+
+  /* get pointer to system color map */
+  color_map = gdk_colormap_get_system ();
+  
+  /* fill in the RGB values for associated string */
+  gdk_color_parse ( Colors[Color], &color_t);
+ 
+  /* given the RGB, gtk->resolve the 32 bit pixel data */
+  if (!gdk_colormap_alloc_color (color_map, &color_t, FALSE, FALSE)) {
+    g_error ("couldn't allocate color");
+    return;
+  }
+  
+  /* set color of range */
+  range.row0 = row;
+  range.rowi = row;
+  range.col0 = col;
+  range.coli = col;
+
+  /* set color */
+  gtk_sheet_range_set_background(sheet, &range, &color_t);
+
+}
+
+/*------------------------------------------------------------------*/
+/*! \brief Add a cell item to the GtkSheet
+*
+* Add a cell item to the GtkSheet
+* \param sheet GtkSheet to add the cell item to
+* \param i
+* \param j
+* \param text
+* \param visibility
+* \param show_name_value
+*/
+void x_gtksheet_add_cell_item(GtkSheet *sheet, int i, int j, char *text,
+                              int visibility, int show_name_value, int is_inherited)
+{
+  int length = strlen(text);
+  int desired_width = length * DEFAULT_FONT_WIDTH;
+  int fgcolor;
+  
+  /* Auto resize up to limit */
+  if (( desired_width <= COLUMN_WIDTH_LIMIT) &&
+      ( desired_width > sheet->column[j].width )) {
+    gtk_sheet_set_column_width(sheet, j, desired_width);
+  }
+  /* wiley see STRING_WIDTH inline in gsw.c */
+
+  gtk_sheet_set_cell(sheet, i, j, GTK_JUSTIFY_LEFT, text);
+
+  fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
+  x_gtksheet_set_cell_fgcolor(sheet, i, j, fgcolor);
+  
+}
+
 /*! \brief Get the first column selected in the GtkSheet
  *
  * Get the first column selected in the GtkSheet

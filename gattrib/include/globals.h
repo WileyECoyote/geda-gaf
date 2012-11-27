@@ -66,9 +66,6 @@
 
 #ifndef __GLOBALS__
 #define __GLOBALS__
-
-//#define UNIMPLEMENTED_FEATURES 1
-
 /*------------------------------------------------------------------*/
 /*!
  * The main data structure from gEDA is defined in libgeda/structs.h
@@ -81,13 +78,16 @@ TOPLEVEL *pr_current;
  *  a global data structure defined in structs.h
  */
 /*------------------------------------------------------------------*/
-SHEET_DATA *sheet_head;
+PageDataSet *sheet_head;
 
 /*! @brief Globals to control displaying of only the attached attributes */
 bool show_attached;
 
 /*! @brief Globals list for retaining Search and Replace History */
 GList *search_history;
+
+/*! @brief Global general purpose char array for notification messages */
+char msg_buffer[256];
 
 /*------------------------------------------------------------------
  * GTKsheet includes: stuff for dealing with windows.
@@ -97,7 +97,7 @@ GList *search_history;
 #define DEFAULT_PRECISION 2
 #define DEFAULT_SPACE 8
 #define NUM_SHEETS 3            /* Components, Nets, and Pins */
-#define COLUMN_WIDTH_LIMIT 200  /* Auto width adjustment upper limit*/
+#define COLUMN_WIDTH_LIMIT 180  /* Auto width adjustment upper limit*/
 
 GtkWidget        *main_window;         /* Main window */
 GtkWidget        *menu_bar;
@@ -124,10 +124,23 @@ GtkWidget *label;
 extern int verbose_mode;
 extern int quiet_mode;
 
-typedef enum  { Black, Blue, Green, Red, Violet, Yellow, White, Gray } ColorId;
+typedef enum { Black, Red, Blue,
+               Green, Orange, Purple,
+               Gray, Pink, SkyBlue,
+               LightGreen, Tan, Violet,
+               Yellow, White
+} ColorId;
+
 typedef enum  { Components, Nets, Pins } SheetId;
-typedef enum  { open, save, save_as, cut, copy, paste,
-                find, replace, attribute, designator,
-                invisible, name_only, value_only, name_value} IDS_Toolbar;
+typedef enum  { ToggleVisiablity,
+                AddAttribute,
+                InsertAttribute,
+                HideAttribute,
+                DeleteAttribute,
+                ClearAttributeData
+}  IDS_Popup_items;
+    
+typedef enum  { open, save, save_as, cut, copy, paste, find, replace, attribute, designator,
+                invisible, visible, add, promote, demote, name_only, value_only, name_value} IDS_Toolbar;
 
 #endif

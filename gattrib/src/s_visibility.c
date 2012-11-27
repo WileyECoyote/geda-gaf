@@ -96,10 +96,6 @@ void s_visibility_set_invisible() {
   case GTK_SHEET_COLUMN_SELECTED:  
   case GTK_SHEET_ROW_SELECTED: 
 
-#ifdef DEBUG
-    printf("In s_visibility_set_invisible, range/col/row selected.\n");
-#endif
-
     row_start = sheet->range.row0;
     row_end = sheet->range.rowi;
     col_start = sheet->range.col0;
@@ -107,9 +103,7 @@ void s_visibility_set_invisible() {
     for (i=row_start; i<=row_end; i++) {
       for (j=col_start; j<=col_end; j++) {
 	/* first set cell in SHEET_DATA to invisible */
-	s_visibility_set_cell(cur_page, i, j, 
-			      INVISIBLE, 
-			      LEAVE_NAME_VALUE_ALONE);
+	s_visibility_set_cell(cur_page, i, j, INVISIBLE, LEAVE_NAME_VALUE_ALONE);
 	/* Now set cell in gtksheet to desired color */
 	/* Color names are defined in gattrib/include/globals.h */
 	x_gtksheet_set_cell_fgcolor(sheet, i, j, Gray);
@@ -365,7 +359,7 @@ void s_visibility_set_cell(int cur_page, int row, int col,
   }
 
   /* Question:  how to sanity check (row, col) selection? */
-  local_table[row][col].visibility = visibility;
+  local_table[row][col].visibility;
   sheet_head->CHANGED = 1;  /* cell has been updated.  */
 
   if (show_name_value != LEAVE_NAME_VALUE_ALONE) { 
@@ -374,3 +368,23 @@ void s_visibility_set_cell(int cur_page, int row, int col,
   }
 }
 
+bool s_visibility_get_cell(int cur_page, int row, int col) {
+  TABLE **local_table = NULL;
+
+  switch (cur_page) {
+
+  case 0:
+    local_table = sheet_head->component_table;
+    break;
+
+  case 1:
+    local_table = sheet_head->net_table;
+    break;
+
+  case 2:
+    local_table = sheet_head->pin_table;
+    break;
+  }
+
+  return local_table[row][col].visibility;
+}

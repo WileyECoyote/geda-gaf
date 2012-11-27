@@ -47,7 +47,7 @@
 
 /*------------------------------------------------------------------*/
 /*!
- * \brief Create a SHEET_DATA struct.
+ * \brief Create a SHEET_DATA Page Data Struct.
  *
  * Creates an initialised but empty data struct.
  * \returns a pointer to a data struct.
@@ -93,7 +93,7 @@ SHEET_DATA *s_sheet_data_new()
 
 /*------------------------------------------------------------------*/
 /*!
- * \brief Frees a SHEET_DATA struct and all it's contents.
+ * \brief Frees a SHEET_DATA struct and all of it's contents.
  *
  * Creates an initialised but empty SHEET_DATA struct.
  * \returns a pointer to a SHEET_DATA struct.
@@ -119,6 +119,83 @@ bool s_sheet_data_reset(PageDataSet *PageData)
   return TRUE;
 }
 
+/* ------------ s_sheet_data interface to s_string_list --------- */
+static void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name) {
+  s_string_list_add_item(PageData->master_comp_list_head,
+                       &(PageData->comp_count),
+                         component_str_name);
+}
+static void s_sheet_data_add_comp_attrib(PageDataSet *PageData, char *comp_attrib_str_name) {
+  s_string_list_add_item(PageData->master_comp_attrib_list_head,
+                       &(PageData->comp_attrib_count),
+                         comp_attrib_str_name);
+}
+static void s_sheet_data_attached_attrib(PageDataSet *PageData, char *comp_attrib_str_name) {
+  s_string_list_add_item(PageData->attached_attrib,
+                       &(PageData->attached_attrib_count),
+                         comp_attrib_str_name);
+}
+static void s_sheet_data_add_net(PageDataSet *PageData, char *net_str_name) {
+  s_string_list_add_item(PageData->master_net_list_head, 
+                       &(PageData->net_count), net_str_name);
+}
+static void s_sheet_data_add_net_attrib(PageDataSet *PageData, char *net_attrib_str_name) {
+  s_string_list_add_item(PageData->master_net_attrib_list_head, 
+                       &(PageData->net_attrib_count),net_attrib_str_name);
+}
+
+static void s_sheet_data_add_pin(PageDataSet *PageData, char *pin_str_name) {
+  s_string_list_add_item (PageData->master_pin_list_head, &(PageData->pin_count), pin_str_name);
+}
+static void s_sheet_data_add_pin_attrib(PageDataSet *PageData, char *pin_attrib_str_name) {
+  s_string_list_add_item(PageData->master_pin_attrib_list_head, 
+                       &(PageData->pin_attrib_count), pin_attrib_str_name);
+}
+/*------------------------------------------------------------------*/
+/*!
+ * \brief Fill a SHEET_DATA struct with Template Data and load tables.
+ *
+ * Creates an initialised but empty SHEET_DATA struct.
+ * \returns a pointer to a SHEET_DATA struct.
+ */
+void s_sheet_data_load_blank(PageDataSet *PageData)
+{
+  char *comp_attrib[]= { "device",  "footprint", "value",
+                         "description", "symversion" };
+  int blank;
+  char tmp_str[5];
+  char none[6];
+  char *str;
+  
+  if (PageData != NULL) {
+    for (blank=0; blank<5; blank++) {
+      str = int2str(blank, tmp_str, 10);
+ 
+      s_sheet_data_add_comp (PageData, str);
+      s_sheet_data_add_comp_attrib(PageData, comp_attrib[blank]);
+      s_sheet_data_attached_attrib(PageData, comp_attrib[blank]);
+      
+      strcpy(none, "none");
+      s_sheet_data_add_net(PageData, strcat(none, str));
+      strcpy(none, "node"); 
+      s_sheet_data_add_net_attrib(PageData, strcat(none, str));
+
+      s_sheet_data_add_pin(PageData, str);
+    }
+    s_sheet_data_add_pin_attrib(PageData, "pinseq");
+    s_sheet_data_add_pin_attrib(PageData, "pintype");
+    s_sheet_data_add_pin_attrib(PageData, "pinlabel");
+  }
+
+  /* s_table_load_new_page used to be called in x_fileselect but the old
+   * algorythms were rearranged so that this call was moved to s_toplevel
+   * _init_data_set, (for real data) but for a blank "workbook" we are by-
+   * bassing and need to load the dummy data we just put in sheet_data.
+   */
+  s_table_load_new_page(PageData);
+  
+  return;
+}
 /*------------------------------------------------------------------*/
 /*! \brief Add components to master list
  *
@@ -161,7 +238,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 #if DEBUG
 	fprintf(stderr, "ref= %s\n", temp_uref);
 #endif
-	/* Now that we have refdes, store refdes and attach attrib list to component */
+      /* Now that we have refdes, store refdes and attach attrib list to component */
       /* Don't add graphical objects or pin label designators*/
       if ( (temp_uref) &&
 	 (strcmp (temp_uref, "none")) &&
@@ -169,8 +246,8 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 #if DEBUG
 	  printf("In s_sheet_add_master_comp_list, about to add to master list refdes = %s\n", temp_uref);
 #endif
-	    s_string_list_add_item(sheet_head->master_comp_list_head, 
-				  &(sheet_head->comp_count), temp_uref);
+          s_sheet_data_add_comp(sheet_head, temp_uref);
+
 	  g_free(temp_uref);
 	}
       } /*  if (o_current->type == OBJ_COMPLEX . . . . .) */
@@ -203,7 +280,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 #ifdef DEBUG
   fflush(stderr);
   fflush(stdout);
-  printf("=========== Just entered  s_sheet_data_add_master_comp_attrib_list_items!  ==============\n");
+  printf("=========== Just entered  s_sheet_data_add_master_comp_attrib_list_items! ==============\n");
 #endif
 
   if (verbose_mode) {
@@ -232,29 +309,33 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 	  
 	  /* Don't include "refdes" or "slot" because they form the row name */
 	  /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
-	  //use instr and gang strings, maybe take out pin
-	  if ( (strcmp(attrib_name, "refdes") != 0) &&
-	     (strcmp(attrib_name, "net") != 0) &&
-	     (strcmp(attrib_name, "slot") != 0) ) { 
+	  //WEH: use instr and gang strings, maybe take out pin
+	  if ((strcmp(attrib_name, "graphical") != 0) &&
+              (strcmp(attrib_name, "refdes") != 0) &&
+	      (strcmp(attrib_name, "net") != 0) &&
+	      (strcmp(attrib_name, "slot") != 0) ) { 
+            
 	     is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
+          
 	     if (is_attached) {
 #if DEBUG
-	       printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
+               printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
 #endif
-	        s_string_list_add_item(sheet_head->attached_attrib, &(sheet_head->attached_attrib_count), attrib_name);
+               s_sheet_data_attached_attrib(sheet_head, attrib_name);
+               s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
 	     }
-	     else { /* is an attached attribute */
+	     else { /* TODO: non attached attribute should go into a seperate list and be mergered later */
 #if DEBUG
 	       printf("adding an attrib to master comp attrib list attrib = %s\n", attrib_text);
 #endif
-	       s_string_list_add_item(sheet_head->master_comp_attrib_list_head,
-		 		    &(sheet_head->comp_attrib_count), attrib_name);
+               s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
 	     }
 	  }
 	  g_free(attrib_name);
 	  g_free(attrib_text);
 	}
       } /* Next attribute_iter*/
+      
     } /* if (o_current->type == OBJ_COMPLEX) */
   }
 
@@ -271,11 +352,9 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
  * attributes.
  */
 void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
-  s_string_list_add_item(sheet_head->master_net_list_head, 
-				  &(sheet_head->net_count), "none");
+  s_sheet_data_add_net(sheet_head, "none");
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Add net attributes to master list.
@@ -285,11 +364,9 @@ void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
  * attributes.
  */
 void s_sheet_data_add_master_net_attrib_list_items (const GList *obj_start) {
-  s_string_list_add_item(sheet_head->master_net_attrib_list_head, 
-				  &(sheet_head->net_attrib_count), "none");
+  s_sheet_data_add_net_attrib(sheet_head, "none");
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Add pin names to master list.
@@ -357,8 +434,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 #if DEBUG
               printf ("In s_sheet_data_add_master_pin_list_items, about to add to master pin list row_label = %s\n", row_label);
 #endif
-              s_string_list_add_item (sheet_head->master_pin_list_head, &(sheet_head->pin_count), row_label);
-
+              s_sheet_data_add_pin(sheet_head, row_label);
             } else {      /* didn't find pinnumber.  Report error to log. */
               fprintf (stderr, _("In s_sheet_data_add_master_pin_list_items, found component pin with no pinnumber.\n"));
 #ifdef DEBUG
@@ -366,7 +442,6 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 #endif
             }
             g_free (temp_pinnumber);
-
           }
         }
 
@@ -383,7 +458,6 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
       
   return;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Add pin attributes to master list.
@@ -461,9 +535,8 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 	    printf("In s_sheet_data_add_master_pin_attrib_list_items, found pin attrib =  %s\n", attrib_name);
 	    printf(". . . . . adding it to master_pin_attrib_list\n");
 #endif
+                    s_sheet_data_add_pin_attrib(sheet_head, attrib_name);
 
-		    s_string_list_add_item(sheet_head->master_pin_attrib_list_head, 
-					   &(sheet_head->pin_attrib_count), attrib_name);
 		  }   /* if (strcmp(attrib_name, "pinnumber") != 0) */ 
 		  g_free(attrib_value);
 		  g_free(attrib_name);

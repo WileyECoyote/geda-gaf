@@ -455,11 +455,11 @@ static void gtk_sheet_draw_corners		(GtkSheet *sheet,
 static void gtk_sheet_entry_changed		(GtkWidget *widget, 
 						 gpointer data);
 static gboolean gtk_sheet_deactivate_cell	(GtkSheet *sheet);
-static void gtk_sheet_hide_active_cell		(GtkSheet *sheet);
+//void gtk_sheet_hide_active_cell	                (GtkSheet *sheet);
 static gboolean gtk_sheet_activate_cell		(GtkSheet *sheet, 
 						 gint row, gint col);
 static void gtk_sheet_draw_active_cell		(GtkSheet *sheet);
-static void gtk_sheet_show_active_cell		(GtkSheet *sheet);
+//void gtk_sheet_show_active_cell                 (GtkSheet *sheet);
 static void gtk_sheet_click_cell		(GtkSheet *sheet, 
                                  		 gint row, 
                                 		 gint column,
@@ -5263,6 +5263,21 @@ gtk_sheet_cell_get_state (GtkSheet *sheet, gint row, gint col)
  return GTK_STATE_NORMAL;
 }
 
+void gtk_sheet_cell_set_visible (GtkSheet *sheet, int row, int col, gboolean visible)
+{
+  GtkSheetCellAttr attributes;
+
+  g_return_if_fail (sheet != NULL);
+  g_return_if_fail (GTK_IS_SHEET (sheet));
+
+  gtk_sheet_get_attributes(sheet, row, col, &attributes);
+  attributes.is_visible=visible;
+  gtk_sheet_set_cell_attributes(sheet, row, col, attributes); 
+ 
+  if(!GTK_SHEET_IS_FROZEN(sheet))
+      gtk_sheet_range_draw(sheet, NULL);
+
+}
 /**
  * gtk_sheet_get_pixel_info:
  * @sheet: a #GtkSheet
@@ -5487,7 +5502,7 @@ gtk_sheet_deactivate_cell(GtkSheet *sheet)
  return TRUE;
 }	
 
-static void
+void
 gtk_sheet_hide_active_cell(GtkSheet *sheet)
 {
  const char *text;
@@ -5592,7 +5607,7 @@ gtk_sheet_activate_cell(GtkSheet *sheet, gint row, gint col)
     return TRUE;
 }
 
-static void
+void
 gtk_sheet_show_active_cell(GtkSheet *sheet)
 {
  GtkSheetCell *cell;

@@ -71,7 +71,7 @@ static void x_find_notify_not_found(char* text)
 {
   strcpy(search_string, text);
   strcat(search_string, " not found!");
-  x_dialog_generic_confirm_dialog (search_string);
+  x_dialog_generic_confirm_dialog (search_string, GTK_MESSAGE_INFO);
 }
 
 bool x_find_main_search(char* text, char *replacement) {

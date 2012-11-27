@@ -28,7 +28,6 @@
  * native to gEDA.
  */
 
-
 #include <config.h>
 
 #include <stdio.h>
@@ -54,10 +53,11 @@ void s_toplevel_close(PageDataSet *PageData) {
   s_table_destroy(PageData->component_table, PageData->comp_count, PageData->comp_attrib_count);
   s_table_destroy(PageData->net_table, PageData->net_count, PageData->net_attrib_count);
   s_table_destroy(PageData->pin_table , PageData->pin_count, PageData->pin_attrib_count);
-  //x_gtksheet_destroy_all();
   s_sheet_data_reset(PageData);
   f_close(pr_current);  /*  Does absolutely nothing */
-  s_page_delete (pr_current, pr_current->page_current);
+  if(pr_current->page_current != NULL)
+    s_page_delete (pr_current, pr_current->page_current);
+
 }
 /*! \brief Read a schematic page
  *
@@ -137,22 +137,15 @@ void s_toplevel_verify_design (TOPLEVEL *toplevel)
  * to place all
  * stuff in SHEET_DATA into the libgeda TOPLEVEL structure.
  */
-void
-s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
+void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
 {
   GList *iter;
   PAGE *p_current;
-
-#if DEBUG
-  printf("---------- Entering  s_toplevel_gtksheet_to_toplevel ----------\n");
-#endif
-
-  s_sheet_data_gtksheet_to_sheetdata();  /* read data from gtksheet into SHEET_DATA */
-#if DEBUG
-  printf("In s_toplevel_gtksheet_to_toplevel -- done writing stuff from gtksheet into SHEET_DATA.\n");
-#endif
-
-  /* must iterate over all pages in design */
+  
+  /* read data from gtksheet into SHEET_DATA */
+  s_sheet_data_gtksheet_to_sheetdata();
+  
+  /* iterate over all pages in design */
   for ( iter = geda_list_get_glist( toplevel->pages );
         iter != NULL;
         iter = g_list_next( iter ) ) {
@@ -164,13 +157,7 @@ s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
       s_toplevel_sheetdata_to_toplevel (toplevel, p_current);    /* adds all objects from page */
     }
   }
-
-#if DEBUG
-  printf("In s_toplevel_gtksheet_to_toplevel -- done writing SHEEET_DATA text back into pr_currnet.\n");
-#endif  
-
   return;
-
 }
 
 /*------------------------------------------------------------------*/
@@ -185,79 +172,56 @@ s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
  *  -# It then adds the appropriate col to the gtksheet.
  * \param new_attrib_name attribute to be added
  */
-void s_toplevel_add_new_attrib(char *new_attrib_name) {
-  int cur_page;  /* current page in notbook  */
-  int old_comp_attrib_count;
+void s_toplevel_add_new_attrib(int column_location) {
 
-  if (strcmp(new_attrib_name, _("_cancel")) == 0) {
-    return;  /* user pressed cancel or closed window with no value in entry */
-  }
+  int cur_tab;                 /* current page in notebook  */
 
-  /* Next must figure out which sheet the attrib belongs to. */
-  cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-#ifdef DEBUG
-  printf("In s_toplevel_add_new_attrib, adding new attrib to page %d.\n", 
-	 cur_page);
-#endif
+  char *new_attrib_name;
+  GtkSheet *sheet;
+  
+  new_attrib_name = x_dialog_new_attrib();
 
-  switch (cur_page) {
-  case 0:  /* component attribute  */
+  if (!new_attrib_name) return; /* user canceled or closed window with no value in entry */
 
-    /*  Eventually, I want to just resize the table to accomodate the 
-     *  new attrib.  However, that is difficult.  Therefore, I will just
-     *  destroy the old table and recreate it for now. */
+  cur_tab = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
+  sheet = sheets[cur_tab];
 
-    /* 
-    s_table_destroy(sheet_head->component_table, 
-		    sheet_head->comp_count, sheet_head->comp_attrib_count);
-    */
-    old_comp_attrib_count = sheet_head->comp_attrib_count;
-#ifdef DEBUG 
-    printf("In s_toplevel_add_new_attrib, before adding new comp attrib.\n");
-    printf("                           comp_attrib_count = %d\n", old_comp_attrib_count);
-#endif
-    s_string_list_add_item(sheet_head->attached_attrib, 
-			   &(sheet_head->attached_attrib_count), 
-			   new_attrib_name);
+  if(column_location < 0) column_location = sheet->maxcol + 1;
+  
+  switch (cur_tab) {
+  case Components:  /* component attribute sheet */
+
+    if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
+       strcpy(msg_buffer, "Can not add \"");
+       strcat(msg_buffer, new_attrib_name);
+       strcat(msg_buffer, "\", \nAttribute name are ready exist!");
+       generic_msg_dialog( msg_buffer );
+       g_free(new_attrib_name);
+       return;
+    }
     
-    s_string_list_add_item(sheet_head->master_comp_attrib_list_head, 
-			   &(sheet_head->comp_attrib_count), 
-			   new_attrib_name);
+     /* Fill out new sheet with new stuff from gtksheet */
+    gtk_sheet_insert_columns(sheet, column_location, 1);
+  
+    s_string_list_add_item(sheet_head->attached_attrib, 
+                           &sheet_head->attached_attrib_count, 
+                           new_attrib_name);
+    
+    string_list_insert(sheet_head->master_comp_attrib_list_head,
+                      &sheet_head->comp_attrib_count,
+                       column_location, new_attrib_name);
 
-    s_string_list_sort_master_comp_attrib_list();
+    x_gtksheet_add_col_labels(sheet, 
+                              sheet_head->comp_attrib_count, 
+                              sheet_head->master_comp_attrib_list_head); 
+    //s_string_list_sort_master_comp_attrib_list();
 
-#ifdef DEBUG
-    printf("In s_toplevel_add_new_attrib, just updated comp_attrib string list.\n");
-    printf("                             new comp_attrib_count = %d\n", sheet_head->comp_attrib_count);
-#endif
-
-    /* Now create new table */
-    /*     sheet_head->component_table = s_table_new(sheet_head->comp_count, 
-					      sheet_head->comp_attrib_count);
-    */
-
-    /* resize table to accomodate new attrib col */
-    sheet_head->component_table = 
-      s_table_resize(sheet_head->component_table, 
-		     sheet_head->comp_count, 
-		     old_comp_attrib_count, sheet_head->comp_attrib_count);
-
-#ifdef DEBUG
-    printf("In s_toplevel_add_new_attrib, just resized component table.\n");
-#endif
-
-    /* Fill out new sheet with new stuff from gtksheet */
-    gtk_sheet_insert_columns(GTK_SHEET(sheets[0]), sheet_head->comp_attrib_count, 1);
-    x_gtksheet_add_col_labels(GTK_SHEET(sheets[0]), 
-			      sheet_head->comp_attrib_count, 
-			      sheet_head->master_comp_attrib_list_head);
-
-#ifdef DEBUG
-    printf("In s_toplevel_add_new_attrib, just updated gtksheet.\n");
-#endif
+    /* resize table to accomodate new attrib col      */
+    sheet_head->component_table = s_table_resize(sheet_head->component_table,  /* Table */
+		                  sheet_head->comp_count,             /* number of rows */
+		                  sheet_head->comp_attrib_count - 1, sheet_head->comp_attrib_count);
 
     break;
-
   case 1:  /* net attribute  */
     /* insert into net attribute list  */
     break;
@@ -267,6 +231,15 @@ void s_toplevel_add_new_attrib(char *new_attrib_name) {
     break;
   }  /* switch  */
 
+#ifdef DEBUG 
+  int i; char* str;
+  for ( i = 0; i < sheet_head->comp_attrib_count; i++) {
+    str = s_string_list_get_data_at_index(sheet_head->master_comp_attrib_list_head, i);
+    fprintf(stderr, "s_string comp_attrib[%d] = [%s]\n",i , str);
+  }
+#endif    
+
+if (new_attrib_name) g_free(new_attrib_name);
   return;
 }
 
@@ -278,95 +251,46 @@ void s_toplevel_add_new_attrib(char *new_attrib_name) {
  *  column, selected the edit->delete attrib item from the pull-down
  *  menu, and then said "yes" to the confirm dialog.
  */
-void s_toplevel_delete_attrib_col() {
-  int cur_page;  /* current page in notbook  */
-  int mincol, maxcol;
-  GtkSheet *sheet;
+void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
+
+  //int mincol, maxcol;
   char *attrib_name;
+  int col;
+  
+  if (sheet == NULL) return;
 
-  /* Repeat previous checks  */
-  cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-  sheet = GTK_SHEET(sheets[cur_page]);
-  if (sheet == NULL) {
-    return;
-  }
-  mincol = x_gtksheet_get_min_col(sheet);
-  maxcol =  x_gtksheet_get_max_col(sheet);
-  if ( (mincol != maxcol) || (mincol == -1) || (maxcol == -1) ) {
-    return;
-  }
+  col = sheet->range.col0;
 
-#ifdef DEBUG
-  printf("In s_toplevel_delete_attrib_col, checks were OK, now do real work\n");
-#endif
+  /* Get name of the column to delete */
+  attrib_name = g_strdup(sheet->column[col].name);
 
-  /*  Rebuild the gattrib-specific data structures  */
-  switch (cur_page) {
+  /* Ask user to confirm deletion */
+  strcpy(msg_buffer, "Are you sure you want to\n delete the Attribute \"");
+  strcat(msg_buffer, attrib_name);
+  strcat(msg_buffer, "\"?");
+  if (!x_dialog_generic_confirm_dialog (msg_buffer, GTK_MESSAGE_WARNING))
+     return;
 
-  case 0:  /* component attribute  */
-
-    /*  Eventually, I want to just resize the table after deleting the
-     *  attrib.  However, that is difficult.  Therefore, I will just
-     *  destroy the old table and recreate it for now. */
-
-    s_table_destroy(sheet_head->component_table, 
-		    sheet_head->comp_count, sheet_head->comp_attrib_count);
-
-    /*  Get name (label) of the col to delete from the gtk sheet */
-    attrib_name = g_strdup( gtk_sheet_column_button_get_label(sheet, mincol) );
+  //s_table_destroy(sheet_head->component_table, 
+  //                sheet_head->comp_count, sheet_head->comp_attrib_count)
     
-    if (attrib_name != NULL) {
-#ifdef DEBUG
-      printf("In s_toplevel_delete_attrib_col, attrib to delete = %s\n", attrib_name);
-#endif
-    } else {
-      fprintf(stderr, _("In s_toplevel_delete_attrib_col, can't get attrib name\n"));
-      return;
-    }
-    
-#ifdef DEBUG 
-    printf("In s_toplevel_delete_attrib_col, before deleting comp attrib.\n");
-    printf("                           comp_attrib_count = %d\n", sheet_head->comp_attrib_count);
-#endif
-    s_string_list_delete_item(&(sheet_head->master_comp_attrib_list_head), 
-			      &(sheet_head->comp_attrib_count), 
-			      attrib_name);
-    s_string_list_sort_master_comp_attrib_list(); /* this renumbers list also */
-    g_free(attrib_name);
-    
-#ifdef DEBUG
-    printf("In s_toplevel_delete_attrib_col, just updated comp_attrib string list.\n");
-    printf("                             new comp_attrib_count = %d\n", sheet_head->comp_attrib_count);
-#endif
-    
-    /* Now create new table with new attrib count*/
-    sheet_head->component_table = s_table_new(sheet_head->comp_count, 
-					      sheet_head->comp_attrib_count);
-
-    
-#ifdef DEBUG
-    printf("In s_toplevel_delete_attrib_col, just updated SHEET_DATA info.\n");
-#endif
-    break;
-
-  case 1:  /* net attribute  */
-    /* insert into net attribute list  */
-    break;
-    
-  case 2:  /* pin attribute  */
-    /* insert into pin attribute list  */
-    break;
-  }  /* switch  */
-
-
+  /* Disable until the Y,X issue is resolved */
+  s_table_remove_attribute(sheet_head->component_table, col);
+  
+  s_string_list_delete_item(&(sheet_head->master_comp_attrib_list_head), 
+                            &(sheet_head->comp_attrib_count), 
+                              attrib_name);
+  g_free(attrib_name);
+       
+  /* Now create new table with new attrib count
+  sheet_head->component_table = s_table_new(sheet_head->comp_count, 
+                                            sheet_head->comp_attrib_count);
+ */
   /* Delete col on gtksheet  */
 #ifdef DEBUG
   printf("In s_toplevel_delete_attrib_col, about to delete col in gtksheet.\n");
 #endif
-  gtk_sheet_delete_columns (sheet, mincol, 1); 
-#ifdef DEBUG
-  printf("In s_toplevel_delete_attrib_col, done deleting col in gtksheet.\n");
-#endif
+  gtk_sheet_delete_columns (sheet, sheet->range.col0, 1); 
   
   sheet_head->CHANGED = TRUE;  /* Set changed flag so user is prompted when exiting */
 

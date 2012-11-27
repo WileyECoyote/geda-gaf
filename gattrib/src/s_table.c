@@ -65,11 +65,19 @@ TABLE **s_table_new(int rows, int cols)
   int i, j;
 
   /* Here I am trying to create a 2 dimensional array of structs */
+  
+  /* WEH: If I am interupting this correctly then 1 columns worth of pointers
+   * (rows*sizeof(TABLE *)) = Y*DWORD is being allocated for each row of X *
+   * sizeof(TABLE). Is this what we want? gattrib is Y,X, think we want X,Y.
+   * The reason it mattters is because we want to deal with memory chunks the
+   * size of a column so that we can add and delete attributes. We can not
+   * delete components so we are not interested in allocating or freeing a
+   * rows worth of data */
+  
   new_table = (TABLE **) g_malloc(rows*sizeof(TABLE *));
   for (i = 0; i < rows; i++) {
     new_table[i] = (TABLE *) g_malloc(cols * sizeof(TABLE));
-    /* Note that I should put some checks in here to verify that 
-     * malloc worked correctly. */
+    /* Should checks be here to verify that malloc was successful*/
   }
 
   /* Now pre-load the table with NULLs */
@@ -89,7 +97,6 @@ TABLE **s_table_new(int rows, int cols)
 
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Resize a TABLE
  *
@@ -106,15 +113,14 @@ TABLE **s_table_new(int rows, int cols)
  * \todo The row and column information could be stored in the
  *       TABLE struct.
  */
-TABLE **s_table_resize(TABLE **table, 
-		       int rows, int old_cols, int new_cols)
+TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols)
 {
   int i, j;
 
-  /* Here I am trying to resize the 2 dimensional array of structs */
+  /* resize the 2 dimensional array of structs */
   for (i = 0; i < rows; i++) {
     table[i] = (TABLE *) realloc(table[i], new_cols*sizeof(TABLE) );
-    if (table[i] == NULL) exit(-1);  /* die if failed to realloc new memory */
+    if (table[i] == NULL) return NULL;  /* die if failed to realloc new memory */
   }
 
   /* Now pre-load new cols with NULLs */
@@ -125,6 +131,8 @@ TABLE **s_table_resize(TABLE **table,
       (table[i][j]).col_name = NULL;
       (table[i][j]).row = i;
       (table[i][j]).col = j;
+      (table[i][j]).is_inherited= FALSE;
+      (table[i][j]).is_promoted = -2;
       (table[i][j]).visibility = VISIBLE;
       (table[i][j]).show_name_value = SHOW_VALUE;
     }
@@ -217,14 +225,16 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
  * \returns STRING_LIST of name=value pairs
  */
 STRING_LIST *s_table_create_attrib_pair(char *row_name, 
-					TABLE **table, 
-					STRING_LIST *row_list,
-					int num_attribs)
+                                        TABLE **table, 
+                                        STRING_LIST *row_list,
+                                        int num_attribs)
 {
   STRING_LIST *attrib_pair_list;
   char *attrib_name, *attrib_value, *name_value_pair;
   int row, col;
   int count = 0;
+  int is_inherited;
+  int is_promoted;
   
   attrib_pair_list = s_string_list_new();
 
@@ -235,8 +245,11 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
   }
 
   for (col = 0; col < num_attribs; col++) {
+    is_inherited = (table[row][col]).is_inherited;
+    is_promoted  = (table[row][col]).is_promoted;
+    if (is_inherited && ! is_promoted) continue;
     /* pull attrib from table.  If non-null, add it to attrib_pair_list  */
-    if ( (table[row][col]).attrib_value != NULL) {
+    if ((table[row][col]).attrib_value != NULL) {
       attrib_name = (table[row][col]).col_name;
       attrib_value = (table[row][col]).attrib_value;
       name_value_pair = g_strconcat(attrib_name, "=", attrib_value, NULL);
@@ -250,90 +263,93 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
 
 /*------------------------------------------------------------------*/
 /*! \brief Add components to the component table
- *
- * This fcn iterates over adds all
- * objects found on this page looking
- * for components.  When it finds a component, it finds all component
- * attribs and sticks them in the TABLE.
- * \param obj_list pointer to GList containing objects on this page
- */
-void s_table_add_toplevel_comp_items_to_comp_table (const GList *obj_list) {
+*
+* This fcn iterates over adds all
+* objects found on this page looking
+* for components. When it finds a component, it finds all component
+* attribs and sticks them in the TABLE.
+* \param obj_list pointer to GList containing objects on this page
+*/
+void s_table_add_items_to_comp_table (const GList *obj_list) {
+  
   char *temp_uref;
-  int row, col;
   char *attrib_text;
   char *attrib_name;
   char *attrib_value;
-  const GList *o_iter;
-  GList *a_iter;
-  OBJECT *a_current;
-  int old_visibility, old_show_name_value;
 
-  /* -----  Iterate through all objects found on page  ----- */
+  int row, col;
+  int old_visibility, old_show_name_value;
+  int counter;
+  bool is_attached;
+  
+  const GList *o_iter;
+  GList  *a_iter;
+  OBJECT *a_current;
+  STRING_LIST *AttachedAttributes;
+  
+  /* ----- Iterate through all objects found on page ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
     OBJECT *o_current = o_iter->data;
 
-    /* -----  Now process objects found on page  ----- */
+    /* ----- Now process objects found on page ----- */
     if (o_current->type == OBJ_COMPLEX &&
         o_current->attribs != NULL) {
 
       /* ---- Don't process part if it lacks a refdes ----- */
-      temp_uref = g_strdup(s_attrib_get_refdes(o_current));
+      temp_uref = s_attrib_get_refdes(o_current);
     
       /* Don't add graphical objects or pin label designators*/
-      if ( (temp_uref) &&
-	 (strcmp (temp_uref, "none")) &&
-	 (strcmp (temp_uref, "pinlabel")) ){
+      if ((temp_uref) &&
+          (strcmp (temp_uref, "none")) &&
+          (strcmp (temp_uref, "pinlabel")) ) {
 
-#if DEBUG
-        printf("In s_table_add_toplevel_comp_items_to_comp_table, found component on page. Refdes = %s\n", temp_uref);
-#endif
-
-        /* Having found a component, we loop over all attribs in this
-         * component, and stick them
-         * into cells in the table. */
-        a_iter = o_current->attribs;
-        while (a_iter != NULL) {
+        /* Having found a component, we loop over All ATTACHED attribs for this component,
+         * and stick them into cells in the table. */
+         AttachedAttributes = s_string_list_new();
+         counter = 0;
+         a_iter = o_current->attribs; /* This gets a pointer to ATTACHED list of atrributes */
+         while (a_iter != NULL) {
           a_current = a_iter->data;
-          if (a_current->type == OBJ_TEXT
-              && a_current->text != NULL) {  /* found an attribute */
+          if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
             /* may need to check more thoroughly here. . . . */
             attrib_text = g_strdup(a_current->text->string);
             attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
             attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
-            old_visibility = o_is_visible (pr_current, a_current)
-              ? VISIBLE : INVISIBLE;
-	    old_show_name_value = a_current->show_name_value;
+            old_visibility = o_is_visible (pr_current, a_current) ? VISIBLE : INVISIBLE;
+            old_show_name_value = a_current->show_name_value;
 
-	    /* Don't include "refdes" or "slot" because they form the row name. */
-	    /* Also don't include "net" per bug found by Steve W.  4.3.2007 -- SDB */
-            if ( (strcmp(attrib_name, "refdes") != 0) &&
-		 (strcmp(attrib_name, "net") != 0) &&
-		 (strcmp(attrib_name, "slot") != 0) ) {
+            /* Don't include "refdes" or "slot" because they form the row name. */
+            /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
+            if ((strcmp(attrib_name, "refdes") != 0) &&
+                (strcmp(attrib_name, "net") != 0) &&
+                (strcmp(attrib_name, "slot") != 0) ) {
                
               /* Get row and col where to put this attrib */
               row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
               col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
               /* Sanity check */
-              if (row == -1 || col == -1) {
+              if (row == -1) {
                 /* we didn't find the item in the table */
-		fprintf (stderr, "looking for row ref [%s], column named [%s]\n", temp_uref, attrib_name);
-                fprintf (stderr,
-                         _("In s_table_add_toplevel_comp_items_to_comp_table, we didn't find either row or col in the lists!\n"));
-              } else {
-
-#if DEBUG
-                printf("       In s_table_add_toplevel_comp_items_to_comp_table, about to add row %d, col %d, attrib_value = %s\n",
-                       row, col, attrib_value);
-                printf(" . . . current address of attrib_value cell is [%p]\n", &((sheet_head->component_table)[row][col]).attrib_value);
-#endif
-                /* Is there a compelling reason for me to put this into a separate fcn? */
-                ((sheet_head->component_table)[row][col]).row = row;
-                ((sheet_head->component_table)[row][col]).col = col;
-                ((sheet_head->component_table)[row][col]).row_name = g_strdup(temp_uref);
-                ((sheet_head->component_table)[row][col]).col_name = g_strdup(attrib_name);
-                ((sheet_head->component_table)[row][col]).attrib_value = g_strdup(attrib_value);
-                ((sheet_head->component_table)[row][col]).visibility = old_visibility;
-                ((sheet_head->component_table)[row][col]).show_name_value = old_show_name_value;
+                fprintf (stderr, "Component Error looking for row ref [%s]\n", temp_uref);
+              }
+              else {
+                if (col == -1) {
+                  fprintf (stderr, "Component Error looking for column named [%s]\n", attrib_name);
+                }
+                else {
+                  /* Is there a compelling reason for me to put this into a separate fcn? */
+                  ((sheet_head->component_table)[row][col]).row = row;
+                  ((sheet_head->component_table)[row][col]).col = col;
+                  ((sheet_head->component_table)[row][col]).row_name = g_strdup(temp_uref);
+                  ((sheet_head->component_table)[row][col]).col_name = g_strdup(attrib_name);
+                  ((sheet_head->component_table)[row][col]).attrib_value = g_strdup(attrib_value);
+                  ((sheet_head->component_table)[row][col]).visibility = old_visibility;
+                  ((sheet_head->component_table)[row][col]).show_name_value = old_show_name_value;
+                  ((sheet_head->component_table)[row][col]).is_inherited = FALSE;
+                  ((sheet_head->component_table)[row][col]).is_promoted = -1;
+                  s_string_list_add_item(AttachedAttributes, &counter, g_strdup(attrib_name));
+                  counter++;
+                }
               }
             }
             g_free(attrib_name);
@@ -341,11 +357,65 @@ void s_table_add_toplevel_comp_items_to_comp_table (const GList *obj_list) {
             g_free(attrib_value);
           }
           a_iter = g_list_next (a_iter);
-           
-        }  /* while (a_current != NULL) */
-        g_free(temp_uref);
-      }  /* if (temp_uref) */
-    }    /* if (o_current->type == OBJ_COMPLEX)  */
+        } /* while (a_iter != NULL) */
+        /* Do it again but this time for ALL attributes associated with this component */
+        a_iter = o_attrib_return_attribs (o_current);
+        while (a_iter != NULL) {
+          a_current = a_iter->data;
+          is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
+          if(!is_attached) {
+            if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
+              attrib_text = g_strdup(a_current->text->string);
+              attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
+              attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
+              
+              if(!s_string_list_in_list(AttachedAttributes, attrib_name)) {
+                old_visibility = o_is_visible (pr_current, a_current) ? VISIBLE : INVISIBLE;
+                old_show_name_value = a_current->show_name_value;
+
+              /* Don't include "refdes" or "slot" because they form the row name. */
+              /* Also don't include "net" per bug found by Steve W. 4.3.2007 -- SDB */
+                if ((strcmp(attrib_name, "refdes") != 0) &&
+                    (strcmp(attrib_name, "net") != 0) &&
+                    (strcmp(attrib_name, "slot") != 0) ) {
+               
+                    /* Get row and col where to put this attrib */
+                  row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
+                  col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
+                  /* Sanity check */
+                  if (row == -1) {
+                    /* we didn't find the item in the table */
+                    fprintf (stderr, "Component Error looking for row ref [%s]\n", temp_uref);
+                  }
+                  else {
+                    if (col == -1) {
+                      fprintf (stderr, "Component Error looking for column named [%s]\n", attrib_name);
+                    }
+                    else {
+                      /* Is there a compelling reason for me to put this into a separate fcn? */
+                      ((sheet_head->component_table)[row][col]).row = row;
+                      ((sheet_head->component_table)[row][col]).col = col;
+                      ((sheet_head->component_table)[row][col]).row_name = g_strdup(temp_uref);
+                      ((sheet_head->component_table)[row][col]).col_name = g_strdup(attrib_name);
+                      ((sheet_head->component_table)[row][col]).attrib_value = g_strdup(attrib_value);
+                      ((sheet_head->component_table)[row][col]).visibility = old_visibility;
+                      ((sheet_head->component_table)[row][col]).show_name_value = old_show_name_value;
+                      ((sheet_head->component_table)[row][col]).is_inherited = TRUE;
+                      ((sheet_head->component_table)[row][col]).is_promoted = FALSE;
+                    }
+                  }
+                }
+              }
+              g_free(attrib_name);
+              g_free(attrib_text);
+              g_free(attrib_value);
+            }
+          }
+          a_iter = g_list_next (a_iter);
+        } /* while (a_iter != NULL) */
+        s_string_list_free(AttachedAttributes);
+      } /* if (temp_uref) */
+    } /* if (o_current->type == OBJ_COMPLEX) */
   }
  
   verbose_done();
@@ -364,10 +434,10 @@ void s_table_add_toplevel_comp_items_to_comp_table (const GList *obj_list) {
  * \param start_obj Pointer to first object
  *
  * \todo Why do the calling semantics of this function disagree with
- *       s_table_add_toplevel_pin_items_to_pin_table()?  That function
+ *       s_table_add_tems_to_pin_table()?  That function
  *       takes a GList, this one takes a pointer to OBJECT.
  */
-void s_table_add_toplevel_net_items_to_net_table(OBJECT *start_obj) {
+void s_table_add_items_to_net_table(OBJECT *start_obj) {
   OBJECT *o_current;
   char *temp_netname;
   int row, col;
@@ -385,7 +455,7 @@ void s_table_add_toplevel_net_items_to_net_table(OBJECT *start_obj) {
 #if DEBUG
       fflush(stderr);
       fflush(stdout);
-      printf("In s_table_add_toplevel_net_items_to_net_table, Found net on page\n");
+      printf("In s_table_add_items_to_net_table, Found net on page\n");
 #endif
       verbose_print(" N");
  
@@ -407,7 +477,7 @@ void s_table_add_toplevel_net_items_to_net_table(OBJECT *start_obj) {
 #if DEBUG
             fflush(stderr);
             fflush(stdout);
-            printf("In s_table_add_toplevel_net_items_to_net_table, about to add row %d, col %d, attrib_value = %s\n",
+            printf("In s_table_add_items_to_net_table, about to add row %d, col %d, attrib_value = %s\n",
                    row, col, attrib_value);
             printf(" . . . current address of attrib_value cell is [%p]\n", &((sheet_head->net_table)[row][col]).attrib_value);
 #endif
@@ -438,7 +508,7 @@ void s_table_add_toplevel_net_items_to_net_table(OBJECT *start_obj) {
 #if DEBUG
   fflush(stderr);
   fflush(stdout);
-  printf("In s_table_add_toplevel_net_items_to_net_table -- we are about to return\n");
+  printf("In s_table_add_items_to_net_table -- we are about to return\n");
 #endif
  
 }
@@ -453,11 +523,11 @@ void s_table_add_toplevel_net_items_to_net_table(OBJECT *start_obj) {
  * pin attribs and sticks them into the pin table. 
  * \param obj_list List of objects on page
  */
-void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
+void s_table_add_tems_to_pin_table (const GList *obj_list) {
   char *temp_uref;
   char *pinnumber;
   char *row_label;
-  int row, col;
+  int   row, col;
   char *attrib_text;
   char *attrib_name;
   char *attrib_value;
@@ -471,7 +541,7 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
   }
 
 #ifdef DEBUG
-  printf("=========== Just entered  s_table_add_toplevel_pin_items_to_pin_table!  ==============\n");
+  printf("=========== Just entered  s_table_add_tems_to_pin_table!  ==============\n");
 #endif
 
   /* -----  Iterate through all objects found on page  ----- */
@@ -479,7 +549,7 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
     OBJECT *o_current = o_iter->data;
 
 #ifdef DEBUG
-      printf("   ---> In s_table_add_toplevel_pin_items_to_pin_table, examining o_current->name = %s\n", o_current->name);
+      printf("   ---> In s_table_add_tems_to_pin_table, examining o_current->name = %s\n", o_current->name);
 #endif
 
     /* -----  Now process objects found on page  ----- */
@@ -504,7 +574,7 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
 	    row_label = g_strconcat(temp_uref, ":", pinnumber, NULL);
 
 #if DEBUG
-        printf("      In s_table_add_toplevel_pin_items_to_pin_table, examining pin %s\n", row_label);
+        printf("      In s_table_add_tems_to_pin_table, examining pin %s\n", row_label);
 #endif
 
 	    a_iter = o_lower_current->attribs;
@@ -526,23 +596,22 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
 		  row = s_table_get_index(sheet_head->master_pin_list_head, row_label);
 		  col = s_table_get_index(sheet_head->master_pin_attrib_list_head, attrib_name);
                   /* Sanity check */
-                  if (row == -1 || col == -1) {
+                  if (row == -1) {
                     /* we didn't find the item in the table */
-                    fprintf (stderr,
-                             _("In s_table_add_toplevel_pin_items_to_pin_table, we didn't find either row or col in the lists!\n"));
-                  } else {
-
-#if DEBUG
-                    printf("       In s_table_add_toplevel_pin_items_to_pin_table, about to add row %d, col %d, attrib_value = %s\n",
-                           row, col, attrib_value);
-                    printf(" . . . current address of attrib_value cell is [%p]\n", &((sheet_head->component_table)[row][col]).attrib_value);
-#endif
-                    /* Is there a compelling reason for me to put this into a separate fcn? */
-                    ((sheet_head->pin_table)[row][col]).row = row;
-                    ((sheet_head->pin_table)[row][col]).col = col;
-                    ((sheet_head->pin_table)[row][col]).row_name = g_strdup(row_label);
-                    ((sheet_head->pin_table)[row][col]).col_name = g_strdup(attrib_name);
-                    ((sheet_head->pin_table)[row][col]).attrib_value = g_strdup(attrib_value);
+                    fprintf (stderr, "Pin Error looking for row ref [%s]\n", row_label);
+                  }
+                  else {
+                    if (col == -1) {
+                      fprintf (stderr, "Pin Error looking for column named [%s]\n", attrib_name);
+                    }
+                    else {
+                      /* Is there a compelling reason for me to put this into a separate fcn? */
+                      ((sheet_head->pin_table)[row][col]).row = row;
+                      ((sheet_head->pin_table)[row][col]).col = col;
+                      ((sheet_head->pin_table)[row][col]).row_name = g_strdup(row_label);
+                      ((sheet_head->pin_table)[row][col]).col_name = g_strdup(attrib_name);
+                      ((sheet_head->pin_table)[row][col]).attrib_value = g_strdup(attrib_value);
+                    }
                   }
                 }
 		g_free(attrib_name);
@@ -567,6 +636,56 @@ void s_table_add_toplevel_pin_items_to_pin_table (const GList *obj_list) {
   verbose_done();
 }
 
+/*! \brief Destroy a table
+ *
+ * This function destroys the old table.
+ * Use it after reading in a new
+ * page to get rid of the old table before building a new one.
+ * \param table Table to destroy
+ * \param row_count Number of rows in table
+ * \param col_count Number of columns in table
+ */
+#define data_table sheet_head->component_table
+#define free_if(field) if(((data_table)[Y][X]).field) g_free(((data_table)[Y][X]).field);
+#define col_count sheet_head->comp_attrib_count
+bool s_table_remove_attribute(TABLE **table, int X) {
+  bool result = FALSE;
+  int Y;
+  int Xi;
+  
+  void destroy_last_column() {
+    for (Y = 0; Y < sheet_head->comp_count; Y++) {
+      free_if (row_name)
+      free_if (col_name)
+      free_if (attrib_value)
+      //g_free( table[Y] ); /* No can do, need to resolve Y,X issue*/
+    }
+  }
+  
+  if ( X > col_count ) return result;
+  
+  if ( X == col_count ) {/* if the last record */
+    destroy_last_column();
+  }
+  else {
+    //col_count = col_count -1;
+    for (Xi = X; Xi < col_count - 1; Xi++) {
+      for (Y = 0; Y < sheet_head->comp_count; Y++) {
+        table[Y][Xi].row = table[Y][Xi + 1].row;
+        table[Y][Xi].col = table[Y][Xi + 1].col;       
+        table[Y][Xi].row_name = table[Y][Xi + 1].row_name;
+        table[Y][Xi].col_name = table[Y][Xi + 1].col_name;
+        table[Y][Xi].attrib_value = table[Y][Xi + 1].attrib_value;
+        table[Y][Xi].visibility = table[Y][Xi + 1].visibility;
+        table[Y][Xi].show_name_value = table[Y][Xi + 1].show_name_value;
+        table[Y][Xi].is_inherited = table[Y][Xi + 1].is_inherited;
+        table[Y][Xi].is_promoted = table[Y][Xi + 1].is_promoted;
+      }
+    }
+    destroy_last_column();
+  }
+  return TRUE;
+}
 /*------------------------------------------------------------------*/
 /*! \brief Push spreadsheet data to TABLEs.
  *
@@ -598,8 +717,8 @@ void s_table_gtksheet_to_all_tables() {
   printf("In s_table_gtksheet_to_all_tables, now about to fill out new component table.\n");
 #endif
   s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
-		       master_col_list, local_table,
-		       num_rows, num_cols);
+                            master_col_list, local_table,
+                            num_rows, num_cols);
 
 #ifdef UNIMPLEMENTED_FEATURES
   /* Next handle net sheet */
@@ -751,18 +870,18 @@ void s_table_load_new_page(PageDataSet *PageData) {
     /* only traverse pages which are toplevel */
     if (p_local->page_control == 0) {
       /* adds all components from page to comp_table */
-      s_table_add_toplevel_comp_items_to_comp_table (s_page_objects (p_local));
+      s_table_add_items_to_comp_table (s_page_objects (p_local));
 #if 0
       /* Note that this must be changed.  We need to input the entire project
        * before doing anything with the nets because we need to first
        * determine where they are all connected!   */
 
       /* adds all nets from page to net_table */
-      s_table_add_toplevel_net_items_to_net_table(p_local->object_head);
+      s_table_add_items_to_net_table(p_local->object_head);
 #endif
 
       /* adds all pins from page to pin_table */
-      s_table_add_toplevel_pin_items_to_pin_table (s_page_objects (p_local));
+      s_table_add_tems_to_pin_table (s_page_objects (p_local));
     }
   } /* for loop over pages */
 }

@@ -57,12 +57,67 @@
 #include <dmalloc.h>
 #endif
 
+/***************** Start of generic message dialog box *******************/
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void generic_msg_dialog (const char *msg)
+{
+  GtkWidget *dialog;
+
+  dialog = gtk_message_dialog_new (NULL,
+                                   GTK_DIALOG_MODAL |
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   GTK_MESSAGE_INFO,
+                                   GTK_BUTTONS_OK,
+                                   "%s", msg);
+
+  gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+
+}
+
+/***************** End of generic message dialog box *********************/
+/***************** Start of generic confirm dialog box *******************/
+
+/*! \brief Generic Confirmation Dialog
+ *  \par Function Description
+ *       Display a basic dialog with okay/cancel buttons
+ *
+ *  \param Char * message pointer to message to be displayed
+ * 
+ *  \returns True if user select OKAY, False if user select CANCEL
+ *
+ */
+bool x_dialog_generic_confirm_dialog (const char *msg, int type)
+{
+  GtkWidget *dialog;
+  int r;
+
+  dialog = gtk_message_dialog_new (NULL,
+                                   GTK_DIALOG_MODAL |
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   type,
+                                   GTK_BUTTONS_OK_CANCEL,
+                                   "%s", msg);
+
+  r = gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+
+  if (r ==  GTK_RESPONSE_OK)
+    return 1;
+  else
+    return 0;
+}
 /*! \brief Add new attribute dialog.
  *
  * This asks for the name of the attrib column to insert
  *         and then inserts the column.
  */
-void x_dialog_newattrib()
+char *x_dialog_new_attrib()
 {
   GtkWidget *dialog;
   GtkWidget *label;
@@ -84,7 +139,8 @@ void x_dialog_newattrib()
 		      FALSE, FALSE, 0);
 
   /*  Create the "attrib" text entry area */
-  attrib_entry = gtk_entry_new_with_max_length(1024);
+  attrib_entry = gtk_entry_new();
+  gtk_entry_set_max_length ((GtkEntry *)attrib_entry, 48);
   gtk_box_pack_start(GTK_BOX(GTK_DIALOG(dialog)->vbox), attrib_entry, TRUE, TRUE, 5);
   gtk_widget_set_size_request (dialog, 260, 140);
 
@@ -92,22 +148,16 @@ void x_dialog_newattrib()
   
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_OK:
-      entry_text = g_strdup( gtk_entry_get_text(GTK_ENTRY(attrib_entry)) );
-  
-      /* Perhaps do some other checks . . . . */
-      if (entry_text != NULL) {
-        s_toplevel_add_new_attrib(entry_text);
-        g_free(entry_text);
-      }
+      entry_text = g_strdup( gtk_entry_get_text((GtkEntry *)attrib_entry) );
       break;
-  
     case GTK_RESPONSE_CANCEL:
     default:
-      /* do nothing */
+      entry_text = NULL;
       break;
   }
 
   gtk_widget_destroy(dialog);
+  return entry_text;
 }
 
 
@@ -116,11 +166,11 @@ void x_dialog_newattrib()
  * This function throws up the "Delete foo, are you sure?" dialog
  *         box.  It offers two buttons: "yes" and "cancel".
  */
-void x_dialog_delattrib()
+void x_dialog_delete_attrib()
 {
   GtkWidget *dialog;
-  int mincol, maxcol;
   GtkSheet *sheet;
+  int mincol, maxcol;
   int cur_page;
 
   /* First verify that exactly one column is selected.  */ 
@@ -148,7 +198,7 @@ void x_dialog_delattrib()
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_YES:
       /* call the fcn to actually delete the attrib column.  */
-      s_toplevel_delete_attrib_col();  /* this fcn figures out
+      s_toplevel_delete_attrib_col(sheet);  /* this fcn figures out
                                         * which col to delete. */
       break;
 
@@ -375,37 +425,7 @@ void x_dialog_export_file()
 
   gtk_widget_destroy(dialog);
 }
-/***************** Start of generic confirm dialog box *******************/
 
-/*! \brief Generic Confirmation Dialog
- *  \par Function Description
- *       Display a basic dialog with okay/cancel buttons
- *
- *  \param Char * message pointer to message to be displayed
- * 
- *  \returns True if user select OKAY, False if user select CANCEL
- *
- */
-bool x_dialog_generic_confirm_dialog (const char *msg)
-{
-  GtkWidget *dialog;
-  int r;
-
-  dialog = gtk_message_dialog_new (NULL,
-                                   GTK_DIALOG_MODAL |
-                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_INFO,
-                                   GTK_BUTTONS_OK_CANCEL,
-                                   "%s", msg);
-
-  r = gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
-
-  if (r ==  GTK_RESPONSE_OK)
-    return 1;
-  else
-    return 0;
-}
 /*********** Start of get text dialog box *******/
 
 /*! \brief Create the text find dialog

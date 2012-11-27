@@ -42,7 +42,7 @@ gattrib_SOURCES = \
 		s_object.c \
 		s_attrib.c \
 		s_toplevel.c \
-		s_visibility.c \
+		s_properties.c \
 		gattrib.c 
 
 gattrib_CPPFLAGS = $(GEDA_INCLUDES)

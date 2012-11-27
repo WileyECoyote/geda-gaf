@@ -28,7 +28,7 @@
 
 /*! \def INIT_STR(w, name, str) */
 #define INIT_STR(w, name, str) {                                        \
-        g_free((w)->name);                                              \
+        if((w)->name) g_free((w)->name);                                \
         (w)->name = g_strdup(((default_ ## name) != NULL) ?             \
                              (default_ ## name) : (str));               \
 }

@@ -78,6 +78,7 @@ void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData)
   char buffer[MAX_WINDOW_TITLE];
 
   filename = toplevel->page_current->page_filename;
+
   if (filename != NULL) {
     if (PageData->CHANGED) {
       strcpy (buffer, "*");
@@ -196,6 +197,15 @@ void x_window_init()
 
   x_menu_fix_gtk_recent_submenu();
 }
+/*! \brief Add all items to the top level window
+ * 
+ */
+void x_window_blank_document(TOPLEVEL *toplevel, PageDataSet *PageData)
+{
+  s_sheet_data_load_blank(PageData);
+  toplevel->page_current = s_page_new (toplevel, toplevel->untitled_name);
+  toplevel->page_current->page_filename = toplevel->untitled_name;
+}
 
 /*! \brief Add all items to the top level window
  *
@@ -212,121 +222,113 @@ void x_window_init()
  *  -# loop on i, j -- call x_gtksheet_add_entry(i, j, attrib_value)
  *  -# Call gtk_widget_show(main_window) to show new window.
  */
-void x_window_add_items()
+void x_window_add_items(PageDataSet *PageData)
 {
   int i, j;
   int num_rows, num_cols;
-  char *text, *error_string;
-  int visibility, show_name_value;
+  char *text;
+  int visibility, show_name_value, is_inherited;
   
-  /* Do these sanity check to prevent later segfaults */
-  if (sheet_head->comp_count == 0) {
-    error_string = _("No components found in entire design!\nDo you have refdeses on your components?");
-    //x_dialog_fatal_error(error_string, 1);
-    return;
-  }
-
-  if (sheet_head->comp_attrib_count == 0) {
-    error_string = _("No configurable component attributes found in entire design!\nPlease attach at least some attributes before running gattrib.");
-    //x_dialog_fatal_error(error_string, 2);
-    return;
-  }
-
-  if (sheet_head->pin_count == 0) {
-    error_string = _("No pins found on any components!\nPlease check your design.");
-    //x_dialog_fatal_error(error_string, 3);
-    return;
-  }
-
   /*  reinitialize the gtksheet. */
 
-  if (sheet_head->comp_count > 0 ) {
+  if (PageData->comp_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[Components]), 
-			      sheet_head->comp_count,
-			      sheet_head->master_comp_list_head);
+			      PageData->comp_count,
+			      PageData->master_comp_list_head);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[Components]), 
-			      sheet_head->comp_attrib_count,
-			      sheet_head->master_comp_attrib_list_head);
+			      PageData->comp_attrib_count,
+			      PageData->master_comp_attrib_list_head);
   }
 
-#ifdef UNIMPLEMENTED_FEATURES
   /* This is not ready.  Need to implement net attributes */
-  if (sheet_head->net_count > 0 ) {
+  if (PageData->net_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[Nets]), 
-			      sheet_head->net_count, sheet_head->master_net_list_head);
+			      PageData->net_count, PageData->master_net_list_head);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[Nets]), 
-			      sheet_head->net_attrib_count, sheet_head->master_net_attrib_list_head);
+			      PageData->net_attrib_count, PageData->master_net_attrib_list_head);
   } else {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[Nets]), 1, NULL);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[Nets]), 1, NULL);
   }  
-#endif
 
-  if (sheet_head->pin_count > 0 ) {
+  if (PageData->pin_count > 0 ) {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[Pins]), 
-			      sheet_head->pin_count, sheet_head->master_pin_list_head);
+			      PageData->pin_count, PageData->master_pin_list_head);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[Pins]), 
-			      sheet_head->pin_attrib_count, sheet_head->master_pin_attrib_list_head);
+			      PageData->pin_attrib_count, PageData->master_pin_attrib_list_head);
   }
 
   /* ------ Comp sheet: put values in the individual cells ------- */
-  num_rows = sheet_head->comp_count;
-  num_cols = sheet_head->comp_attrib_count;
+  num_rows = PageData->comp_count;
+  num_cols = PageData->comp_attrib_count;
   for (i = 0; i < num_rows; i++) {
     for (j = 0; j < num_cols; j++) {
-      if ( (sheet_head->component_table)[i][j].attrib_value ) { /* NULL = no entry */
-	text = (char *) g_strdup( (sheet_head->component_table)[i][j].attrib_value );
-	visibility = (sheet_head->component_table)[i][j].visibility;
-	show_name_value = (sheet_head->component_table)[i][j].show_name_value;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[0]), i, j, (char *) text, 
-				  visibility, show_name_value );
+      if ( (PageData->component_table)[i][j].attrib_value ) { /* NULL = no entry */
+	text = g_strdup( (PageData->component_table)[i][j].attrib_value );
+	visibility = (PageData->component_table)[i][j].visibility;
+	show_name_value = (PageData->component_table)[i][j].show_name_value;
+        is_inherited = (PageData->component_table)[i][j].is_inherited;
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[0]), i, j, text, visibility, show_name_value, is_inherited);
 	g_free(text);
       }
     }
   }
 
-#ifdef UNIMPLEMENTED_FEATURES
   /* ------ Net sheet: put values in the individual cells ------- */
-  num_rows = sheet_head->net_count;
-  num_cols = sheet_head->net_attrib_count;
+  num_rows = PageData->net_count;
+  num_cols = PageData->net_attrib_count;
   for (i = 0; i < num_rows; i++) {
     for (j = 0; j < num_cols; j++) {
-      if ( (sheet_head->net_table)[i][j].attrib_value ) { /* NULL = no entry */
-	text = (char *) g_strdup( (sheet_head->net_table)[i][j].attrib_value );
-	visibility = (sheet_head->net_table)[i][j].visibility;
-	show_name_value = (sheet_head->component_table)[i][j].show_name_value;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), i, j, (char *) text,
-				  visibility, show_name_value );
+      if ( (PageData->net_table)[i][j].attrib_value ) { /* NULL = no entry */
+	text =  g_strdup( (PageData->net_table)[i][j].attrib_value );
+	visibility = (PageData->net_table)[i][j].visibility;
+	show_name_value = (PageData->component_table)[i][j].show_name_value;
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), i, j, text, visibility, show_name_value, 0);
 	g_free(text);
       }
     }
   }
-#endif
 
   /* ------ Pin sheet: put pin attribs in the individual cells ------- */
-  num_rows = sheet_head->pin_count;
-  num_cols = sheet_head->pin_attrib_count;
+  num_rows = PageData->pin_count;
+  num_cols = PageData->pin_attrib_count;
   for (i = 0; i < num_rows; i++) {
     for (j = 0; j < num_cols; j++) {
-      if ( (sheet_head->pin_table)[i][j].attrib_value ) { /* NULL = no entry */
-	text = (char *) g_strdup( (sheet_head->pin_table)[i][j].attrib_value );
+      if ( (PageData->pin_table)[i][j].attrib_value ) { /* NULL = no entry */
+	text = g_strdup( (PageData->pin_table)[i][j].attrib_value );
 	/* pins have no visibility attributes, must therefore provide default. */
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), i, j, (char *) text, 
-				  VISIBLE, SHOW_VALUE );
+	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), i, j, text,  VISIBLE, SHOW_VALUE, 0);
 	g_free(text);
       }
     }
   }
+
+}
+/*!
+ * \brief Complete startup initialization for Main Window 
+ * \par Function Description
+ *
+ */
+void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
+{
+  /* -------------- update data in windows --------------- */
+  x_window_add_items(PageData); /* This updates the top level stuff,and then
+                                   calls another fcn to update the GtkSheet */
+                              
   gtk_window_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
   gtk_widget_show( GTK_WIDGET(main_window));
+  x_window_update_title(pr_current, PageData);
 }
+
+/* ---------------------- Main Window Toolbar Processor -------------------- */
 /*!
  * \brief View toogle Attribute toolbar
  * \par Function Description
  *
  */
-void x_window_attribute_toolbar_toggle(GtkToggleAction *action, GtkWindow *main_window)
-{
+void x_window_attribute_toolbar_toggle(GtkToggleAction *action,
+                                       GtkWindow *main_window)
+  {
   bool show = gtk_toggle_action_get_active(action);
   if(show)
     gtk_widget_show(Attribute_handlebox);
@@ -401,6 +403,30 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
 }
+void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) {
+  
+  bool show = gtk_toggle_action_get_active(action);
+  
+  char *text;
+  
+  int maxcol = sheet_head->comp_attrib_count;
+  int maxrow = sheet_head->comp_count;
+  int row, col;
+  
+  for( col = 0; col < maxcol; col++) {
+    for( row = 0; row < maxrow; row++) {
+      if (sheet_head->component_table[row][col].is_inherited) {
+        if (show) {
+          text = (sheet_head->component_table)[row][col].attrib_value;
+          gtk_sheet_set_cell(sheets[0], row, col, GTK_JUSTIFY_LEFT, text);
+        }
+        else
+          gtk_sheet_set_cell(sheets[0], row, col, GTK_JUSTIFY_LEFT, "");
+      }
+    }
+  }
+}
+
 /*!
  * \brief View toggle Statusbar
  * \par Function Description

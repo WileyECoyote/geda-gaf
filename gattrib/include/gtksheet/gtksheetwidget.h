@@ -797,7 +797,14 @@ gtk_sheet_range_delete			(GtkSheet *sheet,
 
 /* get cell state: GTK_STATE_NORMAL, GTK_STATE_SELECTED */
 GtkStateType
-gtk_sheet_cell_get_state 		(GtkSheet *sheet, gint row, gint col);
+gtk_sheet_cell_get_state 		(GtkSheet *sheet, int row, int col);
+
+void gtk_sheet_cell_set_visible        (GtkSheet *sheet,
+                                        int row, int col, 
+                                        gboolean visible);
+
+void gtk_sheet_hide_active_cell(GtkSheet *sheet);
+void gtk_sheet_show_active_cell(GtkSheet *sheet);
 
 /* Handles cell links */
 void
@@ -898,15 +905,15 @@ gtk_sheet_column_set_justification      (GtkSheet *sheet,
  * accepted values are TRUE or FALSE. */
 void
 gtk_sheet_range_set_editable		(GtkSheet *sheet, 
-					const GtkSheetRange *urange, 
+					const GtkSheetRange *urange,
 					gint editable);
 
 /* set if cell contents are visible or not in the given range:
  * accepted values are TRUE or FALSE.*/
 void
-gtk_sheet_range_set_visible		(GtkSheet *sheet, 
-					const GtkSheetRange *urange, 
-					gboolean visible);
+gtk_sheet_range_set_visible             (GtkSheet *sheet, 
+                                        const GtkSheetRange *urange,
+                                        gboolean visible);
 
 /* set cell border style in the given range.
  * mask values are CELL_LEFT_BORDER, CELL_RIGHT_BORDER, CELL_TOP_BORDER,
@@ -915,7 +922,7 @@ gtk_sheet_range_set_visible		(GtkSheet *sheet,
  * line_style is the line_style for the border line */
 void
 gtk_sheet_range_set_border		(GtkSheet *sheet, 
-					const GtkSheetRange *urange, 
+					const GtkSheetRange *urange,
 					gint mask, 
 					guint width, 
 					gint line_style);
@@ -923,20 +930,20 @@ gtk_sheet_range_set_border		(GtkSheet *sheet,
 /* set border color for the given range */
 void
 gtk_sheet_range_set_border_color	(GtkSheet *sheet, 
-					const GtkSheetRange *urange, 
+					const GtkSheetRange *urange,
 					const GdkColor *color);
 
 /* set font for the given range */
 void
 gtk_sheet_range_set_font		(GtkSheet *sheet, 
-					const GtkSheetRange *urange, 
+					const GtkSheetRange *urange,
 					PangoFontDescription *font);
 
 /* get cell attributes of the given cell */
 /* TRUE means that the cell is currently allocated */
 gboolean
 gtk_sheet_get_attributes		(GtkSheet *sheet, 
-					gint row, gint col, 
+					gint row, gint col,
 					GtkSheetCellAttr *attributes);
 
 

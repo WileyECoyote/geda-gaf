@@ -63,11 +63,9 @@ void x_menu_file_save_as()
     if (x_fileselect(filename)) {
       /* Dumps sheet data into TOPLEVEL */
       s_toplevel_gtksheet_to_toplevel(pr_current);
-
       /* replace page filename with new one, do not free filename */
       g_free (pr_current->page_current->page_filename);
       pr_current->page_current->page_filename = filename;
-      
       s_page_save_all(pr_current);
       /* reset the changed flag of current page*/
       pr_current->page_current->CHANGED = FALSE;
@@ -76,7 +74,8 @@ void x_menu_file_save_as()
     } /* else user aborted, do nothing */
   }
   else
-     s_log_message("gattrib file_save_as: Memory allocation error\n");
+    fprintf(stderr, "gattrib file_save_as: Memory allocation error\n");
+     //s_log_message("gattrib file_save_as: Memory allocation error\n");
 }
 /*!
  * \brief File Open menu
@@ -103,15 +102,17 @@ void x_menu_file_open()
           break;
       }
     }
+
     s_toplevel_close(sheet_head);
     sheet_head = s_sheet_data_new();
-    
+
     /* Load the files, don't check if it went OK */
     x_fileselect_load_files(file_list);
+
     s_toplevel_init_data_set(pr_current, sheet_head);
   /* -------------- update windows --------------- */
     x_gtksheet_reinititialize(sheet_head);
-    x_window_add_items(); /* updates toplevel & GtkSheet */
+    x_window_add_items(sheet_head); /* updates toplevel & GtkSheet */
     x_window_update_title(pr_current, sheet_head);
   }
 #ifdef DEBUG
@@ -151,7 +152,7 @@ static void menu_open_recent( char* filename)
   s_toplevel_init_data_set(pr_current, sheet_head);
   x_gtksheet_reinititialize(sheet_head);
   /* -------------- update windows --------------- */
-  x_window_add_items(); /* updates toplevel & GtkSheet */
+  x_window_add_items(sheet_head); /* updates toplevel & GtkSheet */
   x_window_update_title(pr_current, sheet_head);
 }
 /*!
@@ -180,17 +181,9 @@ void x_menu_file_export_csv()
  *
  * Implement the New attrib menu item
  */
-void x_menu_edit_newattrib()
+void x_menu_edit_new_attrib()
 {
-  int cur_page;
-
-  /* first verify that we are on the correct page (components) */
-  cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-
-  /* Check that we are on components page. */
-  if (cur_page == 0) {
-    x_dialog_newattrib();  /* This creates dialog box  */
-  }
+  s_toplevel_add_new_attrib(-1);
 }
 
 /*!
@@ -198,9 +191,13 @@ void x_menu_edit_newattrib()
  *
  * Implements the Delete Attribute menu item
  */
-void x_menu_edit_delattrib()
+void x_menu_edit_delete_attrib()
 {
-  x_dialog_delattrib();
+  x_dialog_unimplemented_feature();
+  return;
+  GtkSheet *sheet = x_gtksheet_get_current_sheet();
+  if (sheet->state == GTK_SHEET_COLUMN_SELECTED)
+    s_toplevel_delete_attrib_col(sheet);
 }
 static void menu_edit_cut()
 {
@@ -286,10 +283,12 @@ static const GtkActionEntry actions[] = {
   { "edit-clipboard-cut", GTK_STOCK_CUT, "Cut", "<Control>X", "", menu_edit_cut},
   { "edit-clipboard-copy", GTK_STOCK_COPY, "Copy", "<Control>C", "", menu_edit_copy},
   { "edit-clipboard-paste", GTK_STOCK_PASTE, "Paste", "<Control>V", "", menu_edit_paste},
-      
-  { "edit-add-attrib", NULL, "Add new attrib column", "", "", x_menu_edit_newattrib},
-  { "edit-delete-attrib", NULL, "Delete attrib column", "", "", x_menu_edit_delattrib},
   
+  { "edit-add-attrib",    NULL, "_Add new Attribute", "", "", x_menu_edit_new_attrib},
+  { "edit-delete-attrib", NULL, "D_elete Attribute",  "", "", x_menu_edit_delete_attrib},
+  { "edit-promote-attrib", NULL, "_Promote Attribute", "", "Attach the selected attribute",  s_properties_promote_attribute},
+  { "edit-demote-attrib",  NULL, "_Demote Attribute",  "", "Dettach the selected attribute", s_properties_demote_attribute},
+
   { "edit-find-value", GTK_STOCK_FIND, "Find Value", "<Control>F", "Find attribute value", x_find_attribute_value},
   { "edit-search-replace-value", NULL, "Replace value", "<Control>R", "Search and Replace Attribute value", x_find_replace_attrib_value},
   { "edit-locate-attrib", GTK_STOCK_FIND, "Locate Attribute", "", "Search for an attribute", x_find_attribute},
@@ -299,32 +298,38 @@ static const GtkActionEntry actions[] = {
   { "view", NULL, "_View"},
   { "toolbar", NULL, "_Toolbar"},
   { "view-toolbar-icons", NULL, "_Icons", NULL, "Display Icons on the toolbar", toolbar_icons_only},
-  { "view-toolbar-text", NULL,  "_Text", NULL, "Display Text on the toolbar", toolbar_text_only},
-  { "view-toolbar-both", NULL, "_Both", NULL, "Display Icons and Text on the toolbar", toolbar_display_both},
+  { "view-toolbar-text", NULL,  "_Text",  NULL, "Display Text on the toolbar", toolbar_text_only},
+  { "view-toolbar-both", NULL,  "_Both",  NULL, "Display Icons and Text on the toolbar", toolbar_display_both},
 
   /* Visibility menu */
   { "visibility", NULL, "_Visibility"},
-  { "visibility-invisible", NULL, "Set selected invisible", "", "", s_visibility_set_invisible},
-  { "visibility-name-only", NULL, "Set selected name visible only", "", "", s_visibility_set_name_only},
-  { "visibility-value-only", NULL, "Set selected value visible only", "", "", s_visibility_set_value_only},
-  { "visibility-name-value", NULL, "Set selected name and value visible", "", "", s_visibility_set_name_and_value},
+  { "visibility-invisible", NULL, "Set selected invisible", "", "", s_properties_set_invisible},
+  { "visibility-visible",   NULL, "Set selected visible",   "", "", s_properties_set_visible},
+  { "visibility-name-only", NULL, "Set selected name visible only",   "", "", s_properties_set_name_only},
+  { "visibility-value-only", NULL, "Set selected value visible only", "", "", s_properties_set_value_only},
+  { "visibility-name-value", NULL, "Set selected name and value visible", "", "", s_properties_set_name_and_value},
   
   { "window", NULL, "_Window"},
   /* Help menu */
   { "help", NULL, "_Help"},
   { "help-about", GTK_STOCK_ABOUT, "About", "", "", x_dialog_about_dialog},
 };
+
+static const GtkActionEntry comp_sheet_actions[] = {
+
+};
 /* Toggle items */
 static const GtkToggleActionEntry toggle_entries[] = {
 /* View menu */
-  { "view-statusbar", "", "Statusbar", "", "Display Status bar", G_CALLBACK(x_window_editbar_toggle), TRUE },
-  { "view-toolbar-standard", "", "_Standard", "", "Display Standard Toolbar", G_CALLBACK(x_window_standard_toolbar_toggle), TRUE },
+  { "view-editbar",           "", "_Edit bar", "",  "Display the Edit Status bar", G_CALLBACK(x_window_editbar_toggle), TRUE },
+  { "view-toolbar-standard",  "", "_Standard", "",  "Display Standard Toolbar", G_CALLBACK(x_window_standard_toolbar_toggle), TRUE },
   { "view-toolbar-attribute", "", "A_ttribute", "", "Display Attribute Toolbar", G_CALLBACK(x_window_attribute_toolbar_toggle), TRUE },
-  { "view-attached-attribs", "", "_Attached", "", "Hide or unhide non-attached attributes", G_CALLBACK(x_window_attached_toggle), FALSE },
+  { "view-attached-attribs",  "", "_Attached", "",  "Hide or unhide non-attached attributes", G_CALLBACK(x_window_attached_toggle), FALSE },
+  { "view-inherited-attribs", "", "_Inherited", "", "Hide or unhide inherited attributes", G_CALLBACK(x_window_inherited_toggle), TRUE},
 /* Window menu */
   { "window-auto-resize", "", "_Autoresize", "", "Enable/Disable Auto resize columns", G_CALLBACK(x_window_autoresize_toggle), FALSE },
   { "window-auto-scroll", "", "Auto_Scroll", "", "Enable/Disable AutoScroll", G_CALLBACK(x_window_autoscroll_toggle), TRUE },
-  { "window-show_grid", "", "Show _Grid", "", "Toggle grid visibility", G_CALLBACK(x_window_grid_toggle), TRUE },
+  { "window-show_grid",   "", "Show _Grid", "", "Toggle grid visibility", G_CALLBACK(x_window_grid_toggle), TRUE },
 };
 
 GtkRecentFilter *x_menu_geda_filter() {

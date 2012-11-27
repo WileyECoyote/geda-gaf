@@ -91,36 +91,19 @@ char *s_attrib_get_refdes(OBJECT *object)
 
   /*------ Try to get the refdes -----*/
   temp_uref = o_attrib_search_object_attribs_by_name (object, "refdes", 0);
-  if (!temp_uref) {
-    temp_uref = o_attrib_search_object_attribs_by_name (object, "uref", 0); // deprecated
-    if (temp_uref) {
-      printf(_("WARNING: Found uref=%s, uref= is deprecated, please use refdes=\n"), temp_uref);
-    } else {        /* didn't find refdes.  Report error to log. */
-#ifdef DEBUG
-      printf("In s_attrib_get_refdes, found non-graphical component with no refdes.\n");
-      printf(". . . . complex_basename = %s.\n", object->complex_basename);
-#endif
-      return NULL;
-    } 
-  }
+  if (temp_uref) {
 
-#ifdef DEBUG
-  printf("In s_attrib_get_refdes, found component with refdes %s.\n", temp_uref);
-#endif   
-  
   /*------- Now append .slot to refdes if part is slotted -------- */
   /* Find out if this is a multislotted component */
-  numslots = o_attrib_search_object_attribs_by_name (object, "numslots", 0);
-  if (numslots != NULL) {
-    slot_value = s_slot_search_slot (object, &slot_text_object);
-    if (slot_value != 0)
-      temp_uref = g_strconcat(temp_uref, ".", slot_value, NULL);
+    numslots = o_attrib_search_object_attribs_by_name (object, "numslots", 0);
+    if (numslots != NULL) {
+      slot_value = s_slot_search_slot (object, &slot_text_object);
+      if (slot_value != 0)
+        temp_uref = g_strconcat(temp_uref, ".", slot_value, NULL);
+    }
   }
-
-#ifdef DEBUG
-  printf(". . . .   returning refdes %s.\n", temp_uref);
-#endif   
-  
+  else
+    return NULL;
   return temp_uref;
 
 }

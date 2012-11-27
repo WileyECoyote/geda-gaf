@@ -144,7 +144,7 @@ bool x_fileselect ( char* filename )
   
   /* preset a directory name */
   if (pr_current->page_current->page_filename != NULL) {
-    cwd = pr_current->page_current->page_filename;
+    cwd = g_strdup(pr_current->page_current->page_filename);
     gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), cwd);
 #ifdef DEBUG
     fprintf(stderr, "Going to use file name=%s\n", cwd);
@@ -170,8 +170,17 @@ bool x_fileselect ( char* filename )
   return result;
 }
 
-/*! \brief Do Documentation  */
-/* TODO:move gtk_recent_manager_add_item */
+/*! \brief Open a single file.
+ *
+ *  The function attempts to read in a file to the toplevel and if
+ *  successful preloads the the sheet data that is used for column
+ *  and row titles. If retuns FALSE of s_toplevel_read_page is
+ *  successful otherwaise TRUE.
+ *
+ *  \param [in] filename name of file to be opened
+ *  \retval FALSE if the file could not be opened, TRUE otherwise
+ */
+/* TODO:move gtk_recent_manager_add_item from x_fileselect_open to here */
 bool x_fileselect_load_file (char *filename) {
 
   GList *Objects;
@@ -214,25 +223,26 @@ bool x_fileselect_load_file (char *filename) {
  *  the toplevel's current page is set to the page of the last loaded page.
  *
  *  \param [in] filenames list of files to be opened
- *  \returns FALSE if any of the files could not be opened, TRUE otherwise
+ *  \retval FALSE if any of the files could not be opened, TRUE otherwise
  */
 bool x_fileselect_load_files (GSList *filenames)
 {
 
   GSList *ptrname;
   char *filename;
-  
+  int ret_val = TRUE;
+
   /* iterate over selected files */
   for (ptrname = filenames;
        ptrname != NULL;
        ptrname = g_slist_next (ptrname)) {
 
     filename = (char*)ptrname->data;
-    x_fileselect_load_file(filename);
+    if ( !x_fileselect_load_file(filename))
+       ret_val = FALSE;
+  }   /* end of loop over files     */
 
-  }  	/* end of loop over files     */
-	    
-  return TRUE;
+  return ret_val;
 }
 
 /*! \brief Open file dialog

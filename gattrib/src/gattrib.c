@@ -259,7 +259,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
    * GLib requires threading be initialised before any other GLib
    * functions are called. Do it now if its not already setup.  */
   if (!g_thread_supported ())
-    g_thread_init (NULL);
+    g_thread_init (NULL);                //XInitThreads
 #endif
 
   /* Initialize gEDA stuff */
@@ -272,7 +272,6 @@ void gattrib_main(void *closure, int argc, char *argv[])
   argv_index = parse_commandline(argc, argv);
   
   /* ----------  create log file right away ---------- */
-  /* ----------  even if logging is enabled ---------- */
   s_log_init ("gattrib");
 
   s_log_message
@@ -280,62 +279,61 @@ void gattrib_main(void *closure, int argc, char *argv[])
      PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
      PACKAGE_DATE_VERSION);
 
-  /* ------  register guile (scheme) functions.  Necessary to parse RC file.  ------ */
+  /* register guile (scheme) functions, this is necessary to parse RC file */
   g_register_funcs();
 
-  /* ---------- Start creation of new project: (TOPLEVEL *pr_current) ---------- */
-  pr_current = s_toplevel_new();
+  /* Start creation of new project: (TOPLEVEL *pr_current) */
+  pr_current = s_toplevel_new(); /* s_toplevel_new is in Libgeda */
 
   /* ----- Read in RC files.   ----- */
   g_rc_parse (pr_current, argv[0], "gattribrc", NULL);
 
   i_vars_set(pr_current);
-
+      
   gtk_init(&argc, &argv);
 
   x_window_init();  
+
+  /* Construct the list of filenames from the command line.
+   * argv_index holds the position of the first filename  */
+  while (argv_index < argc) {
+    char *filename = f_normalize_filename(argv[argv_index], NULL);
+    if (filename != NULL) {
+      file_list = g_slist_append(file_list, filename);
+    }
+    else {
+      fprintf(stderr, _("Couldn't find file [%s]\n"), argv[argv_index]);
+    }
+    argv_index++;
+  }
   
   /* ---------- Initialize SHEET_DATA data structure ---------- */
-  sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */ 
+  sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */
+  
+  if (file_list) { /* do we need to call g here? */
+    /* Attempt to Load the files */
+    if(x_fileselect_load_files(file_list)) {
+      /* Sort, Load Tables, Verify Design- Really? */
+      s_toplevel_init_data_set(pr_current, sheet_head);
+    }
+    else {
 
-  if (argv_index >= argc) {
-     /* No files specified on the command line, pop up the File open dialog. */
-     file_list = x_fileselect_open();
-     if(file_list == NULL)
-        exit(0);
-  } else {
-     /* Construct the list of filenames from the command line.
-      * argv_index holds the position of the first filename  */
-     while (argv_index < argc) {
-        char *filename = f_normalize_filename(argv[argv_index], NULL);
-        if (filename != NULL) {
-            file_list = g_slist_append(file_list, filename);
-        } else {
-            fprintf(stderr, _("Couldn't find file [%s]\n"), argv[argv_index]);
-            exit(1);
-        }
-        argv_index++;
-     }
+    /* There was at least 1 error opening files, and we do not know
+       which one, so clear all and start a blank page */
+       s_page_delete (pr_current, pr_current->page_current);
+       x_window_blank_document(pr_current, sheet_head);
+    }
+  }
+  else {
+    x_window_blank_document(pr_current, sheet_head);
   }
 
-  /* Load the files */
-  if(x_fileselect_load_files(file_list) == FALSE) {
-     /* just exit the program */
-     exit(1);
-  }
+  /* create a new gtksheet having dimensions sheet_head->comp_count */
+  x_gtksheet_init(sheet_head);
 
-  s_toplevel_init_data_set(pr_current, sheet_head);
-  
-  /*  initialize the gtksheet. */
-  x_gtksheet_init(sheet_head);  /* creates a new gtksheet having dimensions specified
-				 * in sheet_head->comp_count, etc. . .  */
-		       
-  /* -------------- update windows --------------- */
-  x_window_add_items();    /* This updates the top level stuff,
-                            * and then calls another fcn to update
-                            * the GtkSheet itself.  */
-  x_window_update_title(pr_current, sheet_head);
-  
+  /* -------------- Complete Remaining Windows Stuff ------------- */
+  x_window_finalize_startup(GTK_WINDOW (main_window), sheet_head);
+
   g_slist_foreach(file_list, (GFunc)g_free, NULL);
   g_slist_free(file_list);
 

@@ -114,7 +114,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
 /*------------------------------------------------------------------*/
 /*! \brief Add an item to a STRING_LIST
  *
- * Inserts the item into a STRING_LIST.
+ * Adds the item into a STRING_LIST.
  * It first passes through the
  * list to make sure that there are no duplications.
  * \param list pointer to STRING_LIST to be added to.
@@ -135,14 +135,11 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* First check to see if list is empty.  Handle insertion of first item 
      into empty list separately.  (Is this necessary?) */
   if (list->data == NULL) {
-#ifdef DEBUG
-    printf("In s_string_list_add_item, about to place first item in list.\n");
-#endif
     list->data = (char *) g_strdup(item);
     list->next = NULL;
     list->prev = NULL;  /* this may have already been initialized. . . . */
     list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
-    (*count)++;  /* increment count to 1 */
+    (*count)++;         /* increment count to 1 */
     return;
   }
 
@@ -169,12 +166,11 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   local_list->prev = prev;  /* point this item to last entry in old list */
   prev->next = local_list;  /* make last item in old list point to this one. */
   local_list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
-  (*count)++;  /* increment count */
+  (*count)++;               /* increment count */
   /*   list = local_list;  */
   return;
 
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Delete an item from a STRING_LIST
@@ -260,6 +256,46 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
   fprintf(stderr, _("In s_string_list_delete_item, couldn't delete item %s\n"), item);
   return;
 
+}
+/*------------------------------------------------------------------*/
+/*! \brief Insert item into STRING_LIST
+ *
+ * Inserts a new string into a STRING_LIST. The string is not check
+ * for dupilcation, caller should use s_string_list_in_list first
+ *
+ * \param list      pointer to STRING_LIST to be added to.
+ * \param old_count pointer to integer with total count to be updated
+ * \param pos       integer index where string is to be inserted into the list
+ * \param item      pointer to string to be added
+ */
+void string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item) { 
+    STRING_LIST *new_list;
+    int index;
+    char *str;
+    int count = 0;
+
+    if (pos == *old_count) /* if just appending */
+      s_string_list_add_item(list, old_count, item);
+    else {
+      
+      new_list = s_string_list_new();
+
+      for ( index = 0; index < pos; index++) {
+        str = s_string_list_get_data_at_index(list, index);
+        s_string_list_add_item(new_list, &count,  g_strdup(str));
+      }
+
+      s_string_list_add_item(new_list, &count, g_strdup(item));
+ 
+      for ( index = pos; index < *old_count; index++) {
+        str = s_string_list_get_data_at_index(list, index);
+        s_string_list_add_item(new_list, &count, g_strdup(str));
+      }
+
+      s_string_list_free(list);
+      *list = *new_list;
+      *old_count = count;
+    }
 }
 
 /*------------------------------------------------------------------*/

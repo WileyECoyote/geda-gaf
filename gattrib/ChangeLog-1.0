@@ -1,4 +1,49 @@
+2012-11-21 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/gattrib.c: Revised/Rearranged mainline code so that gattrib
+        could startup without a file. The auto-launching file open is what
+        user saw first when starting from within GUI OS and that was okay
+        but when there was an error in the data gattrib would abort execution,
+        not just loading. This was a problem now that gattrib can "open" files
+        without restarting. We can not just abort with a message and disappear
+        either to a prompt or the desktop, (especially after editing on a file
+        and then saving and then disappear after attempting to open a new file.
+        Is way not cool!) We could some how restore the old data that was just
+        destroyed or present a blank sheet. This commit is devoted to resolving
+        this dilemma.
+
+        * src/s_attrib.c: Performed code clean up in function s_attrib_get_refdes.
+
+        * s_properties.c: Renamed file s_visibility to s_properties.c revised
+        functions to consolidate code. Eliminated unnecessary header inclusions,
+        added functions s_properties_get_current_table, s_properties_get_fgcolor
+        _index, s_properties_get_visibility, s_properties_get_show_name_value,
+        s_properties_set_cell_fgcolor and s_properties_set_visible. Divided
+        s_properties_set_cell into s_properties_set_cell_visibility and
+        s_properties_set_cell_show_name. Added s_properties_promote_attribute
+        s_properties_demote_attribute
+
+        * src/s_table.c: Renamed s_table_add_toplevel_xxxx_items_to_comp_table
+        functions s_table_add_items_to_xxxx_table. Separated conditionals
+        (row == -1) || (col == -1) so that the error messages would indicate
+        which of the two is actually being reported as an error. Eliminated
+        double allocation of temp_uref and changed o_current->atribs to
+        o_attrib_return_attribs so list would include inherited attributes.
+        Added functionality for inherited attributes.
+
+        * src/x_fileselect: Fixed return value from x_fileselect_load_files.
+
+        * src/x_gtksheet.c: Revised x_gtksheet_add_cell_item function to use
+        the new s_properties_get_cell_fgcolor_index function.
+
+        * src/x_menu.c: Added view-inherited-attribs and visibility-visible.
+        Note that previously gattrib did not have capability turn on just the
+        invisibility flag. Added promote and demote.
+
+	* src/x_window: new function x_window_finalize_startup
+
 2012-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/gattrib_dialog.c: Add new compilation unit, this is mostly
         a copy of the gschem version but tweeked for gattrib, i.e. no 
         w_current. This is mainly so that Dialog positions could be
@@ -58,6 +103,7 @@
         support the new Attribute toolbar.
 
 2012-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
 	* src/x_window: Add function x_window_update_title and
 	implemented. The new function adds the filename to the
 	titlebar and prefixes an asterisk to indicate content
@@ -79,6 +125,7 @@
 	* src/x_window: See previous entry for toolbars.
 
 2012-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
         * gattrib: Extension revisions throught-out code adding
         functionality for toolbars, menus. Major changes were as
         follows:
@@ -110,6 +157,7 @@
         x_fileselect_load_files rather than being executed in the loader,
         added calls to s_toplevel_init_data_set and x_gtksheet_init.
         
+        * src/s_sheet_data: Added function s_sheet_data_reset
 
 	* src/s_table.c: Relocated code from to x_fileselect_load_files
 	x_fileselect_load_files function s_table_load_new_page so that
@@ -129,8 +177,8 @@
 
         * src/x_gtksheet.c: Replaced #defines with enumerated ColorId
         for function x_gtksheet_add_cell_item, and revised 
-        x_gtksheet_set_cell_fgcolor to allow  limited autoresize
-        functionality.
+        x_gtksheet_set_cell_fgcolor to allow limited autoresize
+        functionality. Revised x_gtksheet_set_cell_fgcolor.
         
         * include/globals.h: Added enumerated types ColorId and SheetId.
         
@@ -177,7 +225,7 @@
         with refdes of type "none" and "pinlabel" in functions:
         s_sheet_data_add_master_comp_list_items
         s_sheet_data_add_master_pin_list_items
-        
+
         * src/x_dialog.c: Copied generic confirmation dialog from
         gschem and added to gattrib.
         
@@ -597,7 +645,6 @@
 	before leaving program.
 
 	* configure.ac:  Added --enable-debug as configure option.
-
 	
 2005-01-21 Stuart Brorson   <sdb@cloud9.net>
 

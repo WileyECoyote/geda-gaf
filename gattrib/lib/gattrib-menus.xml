@@ -17,9 +17,11 @@
       <menuitem action="edit-clipboard-cut" />
       <menuitem action="edit-clipboard-copy" />
       <menuitem action="edit-clipboard-paste" />
-      <separator/>     
+      <separator/>
       <menuitem action="edit-add-attrib" />
-      <menuitem action="edit-delete-attrib" />
+      <!-- <menuitem action="edit-delete-attrib" /> -->
+      <menuitem action="edit-promote-attrib" />
+      <menuitem action="edit-demote-attrib" />
       <separator/>
       <menuitem action="edit-find-value" />
       <menuitem action="edit-search-replace-value" />
@@ -28,7 +30,7 @@
     </menu>
     <menu action="view">
       <menu action="toolbar">
-         <menuitem action="view-statusbar" />
+         <menuitem action="view-editbar" />
          <menuitem action="view-toolbar-standard" />
          <menuitem action="view-toolbar-attribute" />
          <separator/>  
@@ -37,9 +39,11 @@
          <menuitem action="view-toolbar-both" />
        </menu>
        <menuitem action="view-attached-attribs" />
+       <menuitem action="view-inherited-attribs" />
     </menu>
     <menu action="visibility">
       <menuitem action="visibility-invisible" />
+      <menuitem action="visibility-visible" />
       <menuitem action="visibility-name-only" />
       <menuitem action="visibility-value-only" />
       <menuitem action="visibility-name-value" />

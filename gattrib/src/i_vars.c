@@ -31,8 +31,6 @@
 #include <string.h>
 #endif
 
-
-
 /*------------------------------------------------------------------
  * Gattrib specific includes.  Note that include order is important.
  *------------------------------------------------------------------*/
@@ -43,8 +41,6 @@
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
-
 
 /*------------------------------------------------------------------*/
 /*
