@@ -8,15 +8,23 @@
 ;; The schematic in "mysch.sch" will be printed to the file "mysch.ps"
 
 ;; Uncomment these to override defaults when printing from the command line
-;(output-orientation "portrait")
-;(output-type "limits")
-;(output-color "enabled")
-;(output-text "ps")
+;(print-orientation "portrait")
+;(print-color "enabled")
+;(print-paper "na-letter")
 
 ; You need call this after you call any rc file function
 (gschem-use-rc-values)
 
 ; filename is specified on the command line
-(gschem-postscript "dummyfilename")
+(gschem-pdf "dummyfilename")
+
+(format (current-error-port)
+"WARNING: Exporting with 'print.scm' is deprecated.  Also, it now
+outputs PDF rather than PostScript, which is probably not what you
+want.
+
+Please use `gaf export' instead.  See `man gaf' for details.
+
+")
 
 (gschem-exit)

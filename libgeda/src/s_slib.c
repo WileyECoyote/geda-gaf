@@ -166,20 +166,12 @@ char *s_slib_search_lowlevel(const char *basename)
   slib_path = s_slib_search_dirs(basename);
 
   if (slib_path) {
-    /* return type */
-
-    s_log_message(_("Found [%s]\n"), basename);
-    /* s_log_message("Found [%s] in [%s]\n", basename, slib_path);*/
-
     full_path = g_build_filename (slib_path, basename, NULL);
 		
     g_free(slib_path);
 
     return(full_path);
   } else {
-
-    s_log_message(_("Could not find [%s] in any SourceLibrary\n"), basename);
-
     return(NULL);
   }
 }
@@ -265,74 +257,6 @@ char *s_slib_getbasename(const char *rawname)
 
   /* be sure to g_free this somewhere */
   return(return_filename); 
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief Search SLIB for a particular file name.
- *  \par Function Description
- *  This function will search the SLIB for a particular file name starting
- *  at a location specified by the <B>flag</B> parameter.
- *
- *  \param [in] filename  Character string with file name to search for.
- *  \param [in] flag      Specifies search start location. (See below...)
- *
- *  The <B>flag</B> parameter can be one of the following values:
- *  <DL>
- *    <DT>SLIB_SEARCH_START</DT><DD>Starts a new search for a source file.
- *    <DT>SLIB_SEARCH_NEXT</DT><DD>Returns the next instance of the file if
- *                                 one exists.
- *    <DT>SLIB_SEARCH_DONE</DT><DD>Finish searching.
- *  </DL>
- *
- *  Filename is the raw symbol/whatever file name. This function does all the
- *  required stripping (up to the first period).
- *
- *  \warning
- *  Caller must g_free returned pointer.
- */
-char *s_slib_search(const char *filename, int flag)
-{
-  char *processed_name=NULL;
-  char *new_filename=NULL;
-  char *string=NULL;
-  static int count;
-
-  switch(flag) {
-    case(SLIB_SEARCH_START):
-      count = 0;
-      string=NULL;
-      break;
-
-    case(SLIB_SEARCH_NEXT):
-      count++;
-
-      /* be sure to g_free processed_name */
-      processed_name = s_slib_getbasename(filename);	
-
-#if DEBUG 
-      printf("proced: %s\n", processed_name);
-#endif
-
-      /* for now only look for .sch's */
-      /* this needs to be *MUCH* more flexible */
-      /* number_suffix is large enough ? */
-      new_filename = g_strdup_printf ("%s_%d.sch", processed_name, count);
-
-      string = s_slib_search_lowlevel(new_filename);
-
-      g_free(new_filename);
-      break;
-
-    case(SLIB_SEARCH_DONE):
-      count = 0;
-      string=NULL;
-      break;
-  }
-
-  g_free(processed_name);
-
-  /* don't forget to g_free this string */
-  return(string);
 }
 
 /*! \todo Finish function documentation!!!

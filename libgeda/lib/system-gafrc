@@ -20,16 +20,12 @@
 (load-from-path "geda.scm")
 
 ;; Import deprecated Scheme functions
+(load-from-path "geda-deprecated-config.scm")
 (use-modules (geda deprecated))
 
 
 ;; The directory containing various bitmaps (e.g. icons)
 (bitmap-directory (build-path geda-data-path "bitmap"))
-
-; Set the name of the postscript prolog file that will be 
-; pasted into the postscript output after the DSC comments, but
-; before the main script.
-(postscript-prolog (build-path geda-data-path "prolog.ps"))
 
 ; scheme-directory dir
 ;
@@ -107,12 +103,12 @@
 ;; Make the printing color map more user-friendly
 (color-map-make-friendly print-color-map)
 
-;; Load up a color scheme for printing optimised for a dark background.
-; Comment out the first line and comment in the second line for a
-; white background. The dark background is the original look.
+;; Load up a color scheme for printing optimised for a white background.
+; Comment out the second line and comment in the first line for a
+; dark background. The dark background is the original look.
 ;
-(load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
-;(load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
+;(load (build-path geda-rc-path "print-colormap-darkbg")) ; dark background
+(load (build-path geda-rc-path "print-colormap-lightbg")) ; light background
 
 
 ;;;; Process configuration script directory
