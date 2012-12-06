@@ -31,7 +31,9 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 10/31/12 |  Inital release.
 ;; ------------------------------------------------------------------
-;;
+;; WEH | 12/02/12 |  Renamed autoplace_attributes_grid to attribute_
+;;                |  placement-grid
+;; ------------------------------------------------------------------
 */
 /*************************** CAUTION! ******************************/
 /*
@@ -85,7 +87,7 @@
      KEYWORD ( add_attribute_offset )
      KEYWORD ( auto_load_last )
      KEYWORD ( auto_save_interval )
-     KEYWORD ( autoplace_attributes_grid )
+     KEYWORD ( attribute_placement_grid )
      KEYWORD ( component_dialog_attributes )
      KEYWORD ( continue_component_place )
      KEYWORD ( embed_components )
@@ -131,6 +133,7 @@
      KEYWORD ( mousepan_gain )
      KEYWORD ( scroll_wheel )
      KEYWORD ( image_color )
+     KEYWORD ( invert_images )
      KEYWORD ( text_case )
      KEYWORD ( text_display_zoomfactor )
      KEYWORD ( text_feedback )
@@ -175,7 +178,7 @@ enum {
      KEYWORD(add-attribute-offset,         0, 0, add_attribute_offset)
      KEYWORD(auto-load-last,               0, 0, auto_load_last)
      KEYWORD(auto-save-interval,           0, 0, auto_save_interval)
-     KEYWORD(autoplace-attributes-grid,    0, 0, autoplace_attributes_grid)
+     KEYWORD(attribute-placement-grid,     0, 0, attribute_placement_grid)
      KEYWORD(component-dialog-attributes,  1, 0, component_dialog_attributes)
      KEYWORD(continue-component-place,     0, 0, continue_component_place)
      KEYWORD(embed-components,             0, 0, embed_components)
@@ -217,6 +220,7 @@ enum {
      KEYWORD(mousepan-gain,                0, 0, mousepan_gain)
      KEYWORD(scroll-wheel,                 0, 0, scroll_wheel)
      KEYWORD(image-color,                  0, 0, image_color)
+     KEYWORD(invert-images,                0, 0, invert_images)
      KEYWORD(text-case,                    0, 0, text_case)
      KEYWORD(text-display-zoomfactor,      0, 0, text_display_zoomfactor)
      KEYWORD(text-feedback,                0, 0, text_feedback)

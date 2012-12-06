@@ -1,8 +1,8 @@
 v 20121031 2
 T 10 10 5 10 0 1 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 10 10 5 10 0 1 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 B 200 200 800 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 200 600 0 600 1 0 1
 {

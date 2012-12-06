@@ -213,8 +213,9 @@ void s_toplevel_add_new_attrib(int column_location) {
 
     x_gtksheet_add_col_labels(sheet, 
                               sheet_head->comp_attrib_count, 
-                              sheet_head->master_comp_attrib_list_head); 
-    //s_string_list_sort_master_comp_attrib_list();
+                              sheet_head->master_comp_attrib_list_head);
+    
+    s_string_list_sort_master_comp_attrib_list();
 
     /* resize table to accomodate new attrib col      */
     sheet_head->component_table = s_table_add_column(sheet_head->component_table,  /* Table */
@@ -279,10 +280,11 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
                               attrib_name);
   g_free(attrib_name);
 
-  /* Delete col on gtksheet  */
 #ifdef DEBUG
   printf("In s_toplevel_delete_attrib_col, about to delete col in gtksheet.\n");
 #endif
+  /* Delete col on gtksheet  */
+
   gtk_sheet_delete_columns (sheet, sheet->range.col0, 1); 
   
   sheet_head->CHANGED = TRUE;  /* Set changed flag so user is prompted when exiting */

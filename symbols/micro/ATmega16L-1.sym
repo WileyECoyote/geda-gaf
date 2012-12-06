@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 3000 8600 8 10 1 1 0 6 1
 refdes=U?
 T 400 8750 8 10 0 0 0 0 1

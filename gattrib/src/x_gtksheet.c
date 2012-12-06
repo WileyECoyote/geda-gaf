@@ -74,10 +74,12 @@ static char *popup_items[]={ "Toggle Visiablity",
 
 char EditBuffer[255];
 
+/*! \brief Return pointer to Active GtkSheet */
 GtkSheet *x_gtksheet_get_current_sheet() {
   return GTK_SHEET(sheets[gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook))]);
 }
 
+/*! \brief Destroy All GtkSheets */
 void x_gtksheet_destroy_all(){
   int i;
   for(i=0; i<NUM_SHEETS; i++){
@@ -93,11 +95,20 @@ void x_gtksheet_destroy_all(){
   }
 }
 
-//static int popup_activated(GtkWidget *widget, gpointer data)
+/*! \brief Callback Handler for Popup Mouse Context Menu
+ *
+ *  \par Function Description
+ * This function calls the appropriate functions to process request
+ * from the mouse menu that can be activated when not in editing mode.
+ * Unlike the example in the testgtksheet program this function
+ * receives a pointer to enumerated integer value rather than a string.
+ * 
+ *  \param [in] widget is button widget
+ *  \param [in] selection pointer to enumerated menu selection
+ */
 static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
 {
     GtkSheet *sheet;
-    //char *item;
     sheet = x_gtksheet_get_current_sheet();
     
     int WhichItem = (int)(long*) selection;
@@ -120,8 +131,6 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
         break;
       case DeleteAttribute:
         s_toplevel_delete_attrib_col(sheet);
-        //x_dialog_delete_attrib();
-        //gtk_sheet_delete_columns(sheet, sheet->range.col0, sheet->range.coli-sheet->range.col0+1);
         break;
       case ClearAttributeData:
         gtk_sheet_range_clear(sheet, &sheet->range);
@@ -133,7 +142,15 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
     gtk_widget_destroy(popup);
     return (TRUE);
 }
-
+/*! \brief Create and Setup Popup Mouse Menu
+ *
+ *  \par Function Description
+ * This function is called when the user right clicks on the gtksheet
+ * and the sheet is not in editing mode. The function sets senitivty
+ * on meu choices based on the sheet state.
+ * 
+ *  \param [in] sheet is the active sheet widget
+ */
 static GtkWidget *build_menu(GtkWidget *sheet)
 {
   GtkWidget *menu;
@@ -197,8 +214,17 @@ static GtkWidget *build_menu(GtkWidget *sheet)
     }
     return (menu);
 }
-
-int do_popup(GtkWidget *widget, GdkEventButton *event, gpointer data)
+/*! \brief Mouse Button Call Back
+ *
+ *  \par Function Description
+ * This function check mouse botton press and when the 3rd button
+ * is released the build_menu function is called to create the mouse
+ * menu.
+ * 
+ *  \param [in] sheet is the active sheet widget
+ */
+static int on_mouse_button_press(GtkWidget *widget,
+                                 GdkEventButton *event, gpointer data)
 {
     GdkModifierType mods;
     GtkWidget *sheet = GTK_WIDGET(widget);
@@ -214,13 +240,19 @@ int do_popup(GtkWidget *widget, GdkEventButton *event, gpointer data)
         }
 
         popup=build_menu(sheet);
-
+        /* Tell GTK to do the menu we just created */
         gtk_menu_popup(GTK_MENU(popup), NULL, NULL, NULL, NULL,
                        event->button, event->time);
     }
     return (FALSE);
 }
-int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
+/*! \brief Callback for key-press event
+ *
+ *  \par Function Description
+ * 
+ *  \param [in] sheet is the active sheet widget
+ */
+static int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
 {
     GtkSheet *sheet = GTK_SHEET(widget);
     bool state = sheet->state;
@@ -239,8 +271,11 @@ int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
 
     return (FALSE);
 }
-
-void resize_handler(GtkWidget *widget, GtkSheetRange *old_range, 
+/*! \brief Callback on sheet resize
+ *  \par Function Description
+ *  This function is not used.
+ */ 
+static void on_resize(GtkWidget *widget, GtkSheetRange *old_range, 
                     GtkSheetRange *new_range, gpointer data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
@@ -248,8 +283,11 @@ void resize_handler(GtkWidget *widget, GtkSheetRange *old_range,
   printf("NEW SELECTION: %d %d %d %d\n",new_range->row0, new_range->col0,
                                     new_range->rowi, new_range->coli);
 }
-
-void move_handler(GtkWidget *widget, GtkSheetRange *old_range,
+/*! \brief Callback on sheet Move
+ *  \par Function Description
+ *  This function is not used.
+ */ 
+static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
 		  GtkSheetRange *new_range, gpointer data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
@@ -258,8 +296,12 @@ void move_handler(GtkWidget *widget, GtkSheetRange *old_range,
                                     new_range->rowi, new_range->coli);
 }
 
+/*! \brief Callback on Change Entry
+ *  \par Function Description
+ *  This function is not used.
+ */
 bool change_entry(GtkWidget *widget, 
-		  gint row, gint col, gint *new_row, gint *new_col,
+		  int row, int col, int *new_row, int *new_col,
                   gpointer data)
 {
   GtkSheet *sheet;
@@ -282,12 +324,32 @@ bool change_entry(GtkWidget *widget,
   return TRUE;
 }
 
-void cell_change(GtkWidget *widget, gint row, gint col, gpointer data)
+/*! \brief Callback on Change Cell
+ *  \par Function Description
+ *  This function is not used. Despite the apparent usefullness
+ * of this function, the change signal is not very usefull because
+ * it is called every time a cell is selected or written too. This
+ * signal is emitted even when the data in the cell has not been
+ * changed.
+ */ 
+static void on_change(GtkWidget *widget, int row, int col, gpointer data)
 {
 
 }
-
-bool cell_activate(GtkWidget *widget, int row, int col, gpointer data)
+/*! \brief Call Back on cell activate
+ *
+ *  \par Function Description
+ * This function is call each time a cell is selected. This function
+ * copies the cell text to a temporary string buffer.
+ * 
+ *  \param [in] sheet is the active sheet widget
+ *  \param [in] row integer value of the row of the selected cell
+ *  \param [in] col integer value of the column of the selected cell
+ *  \param [in] data NULL, this parameter is not used
+ * 
+ *  \retval [out] TRUE
+ */
+static bool on_activate_cell(GtkWidget *widget, int row, int col, gpointer data)
 {
 
   char *celltext;
@@ -301,8 +363,24 @@ bool cell_activate(GtkWidget *widget, int row, int col, gpointer data)
 
  return TRUE;
 }
-
-bool cell_deactivate(GtkWidget *widget, int row, int col, PageDataSet *PageData)
+/*! \brief Call Back on cell de-activate
+ *
+ *  \par Function Description
+ * This function is checks the cell when the cell are deactivated and
+ * if the cell has a value, the value is compared to the string in the
+ * temporary string buffer, EditBuffer, to see if the data has changed.
+ * If the strings are not equal the the CHANGE flag is set and the
+ * x_window_update_title is called.
+ * 
+ *  \param [in] sheet is the active sheet widget
+ *  \param [in] row integer value of the row of the selected cell
+ *  \param [in] col integer value of the column of the selected cell
+ *  \param [in] Sheet_data Pointer to data structure
+ * 
+ *  \retval [out] TRUE
+ */
+static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
+                               PageDataSet *PageData)
 {
   char *celltext;
   
@@ -318,7 +396,15 @@ bool cell_deactivate(GtkWidget *widget, int row, int col, PageDataSet *PageData)
 
  return TRUE;
 }
-bool alarm_traverse(GtkWidget *widget, 
+/*! \brief Callback on Traverse Cell
+ *  \par Function Description
+ *  This function is not used. This function could be called after
+ * a cell has been selected, The row, col parameters are the cell
+ * that was previously select. If the function returns FALSE the
+ * cursor is moved back to the old cell. This is used for validation
+ * of the input data.
+ */ 
+static bool on_traverse(GtkWidget *widget, 
                     int row, int col, int *new_row, int *new_col,
                     gpointer data)
 {
@@ -326,6 +412,16 @@ bool alarm_traverse(GtkWidget *widget,
  return TRUE;
 }
 
+/*! \brief Setup Call Back handlers for the Component Sheet
+ *
+ *  \par Function Description
+ * This function is  setup the callbacks for the Component sheet.
+ * Note that we only use 3 before returing. The others are listed
+ * for possiable future.
+ *  \param [in] sheet is the active sheet widget
+ *  \param [in] Sheet_data Pointer to data structure
+ *
+ */
 void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 {
   
@@ -334,50 +430,55 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
  
   gtk_signal_connect(SheetObj,
                     "button_press_event",
-                    (GtkSignalFunc) do_popup,
+                    (GtkSignalFunc) on_mouse_button_press,
                     NULL);
  
   gtk_signal_connect(SheetObj,
                     "activate",
-                    (GtkSignalFunc) cell_activate, 
+                    (GtkSignalFunc) on_activate_cell, 
                      NULL);
   
   gtk_signal_connect(SheetObj,
                      "deactivate",
-                     (GtkSignalFunc) cell_deactivate, 
+                     (GtkSignalFunc) on_deactivate_cell, 
                      PageData);
 
   return;
 
   gtk_signal_connect(SheetObj,
                     "changed", /* or just clicked on */
-                    (GtkSignalFunc) cell_change, 
+                    (GtkSignalFunc) on_change, 
                     NULL);
-
-  gtk_signal_connect(SheetObj,
-                     "key_press_event",
-                     (GtkSignalFunc) clipboard_handler, 
-                     NULL);
 
  gtk_signal_connect(SheetObj,
                     "resize_range",
-                    (GtkSignalFunc) resize_handler, 
+                    (GtkSignalFunc) on_resize, 
                     NULL);
 
  gtk_signal_connect(SheetObj,
                     "move_range",
-                    (GtkSignalFunc) move_handler, 
+                    (GtkSignalFunc) on_move, 
                     NULL);
 
  gtk_signal_connect(SheetObj,
                     "traverse",
-                    (GtkSignalFunc) alarm_traverse, 
+                    (GtkSignalFunc) on_traverse, 
                     NULL);
 }
+/*! \brief Call Back on cell de-activate
+ *
+ *  \par Function Description
+ * This function is Not used
+ * 
+ *  \param [in] widget is the active sheet widget
+ *  \param [in] insert ptr to text string
+ *  \param [in] text_length integer length of text string
+ *  \param [in] position integer not used, dunno
+ *  \param [in] data pointer to unknown not used
+ * 
 
-void
-set_cell(GtkWidget *widget, char *insert, int text_length, int position, 
-         gpointer data)
+void set_cell(GtkWidget *widget, char *insert, int text_length,
+              int position, gpointer data)
 {
   const char *text;
   GtkEntry *sheet_entry;
@@ -385,12 +486,13 @@ set_cell(GtkWidget *widget, char *insert, int text_length, int position,
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(GTK_SHEET(widget)));
 
   if((text = gtk_entry_get_text (sheet_entry))) {
-                          gtk_entry_set_text(GTK_ENTRY(entry), text);
+    gtk_entry_set_text(GTK_ENTRY(entry), text);
   }
   GTK_WIDGET_UNSET_FLAGS(entry, GTK_HAS_FOCUS);
   GTK_WIDGET_SET_FLAGS(GTK_SHEET(widget)->sheet_entry, GTK_HAS_FOCUS);
 } 
-
+ */
+/* Call back for Entry Combo "change" signal*/
 void show_sheet_entry(GtkWidget *widget, gpointer data)
 {
  const char *text;
@@ -406,7 +508,7 @@ void show_sheet_entry(GtkWidget *widget, gpointer data)
    gtk_entry_set_text(sheet_entry, text);
  }
 }
-
+/*! \brief Call back for Entry Combo activate*/
 void activate_sheet_entry(GtkWidget *widget, gpointer data)
 {
   GtkSheet *sheet;
@@ -426,7 +528,7 @@ void activate_sheet_entry(GtkWidget *widget, gpointer data)
 		     gtk_entry_get_text (sheet_entry));
 
 }
-
+/*! \brief Call back for "change" signal from embeded Entry widget */
 void show_entry(GtkWidget *widget, gpointer data)
 {
  const char *text; 
@@ -442,7 +544,7 @@ void show_entry(GtkWidget *widget, gpointer data)
 			  gtk_entry_set_text(GTK_ENTRY(entry), text);
 
 }
-
+/*! \brief Call back for "activate" signal from sheet cell array widget */
 int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data) 
 {
   GtkSheet *sheet;
@@ -476,10 +578,13 @@ int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
 
   return TRUE;
 }
-/*! \brief Create the GtkSheet
+
+/*! \brief Reinitialize the GtkSheet
  *
- * Creates and initializes the GtkSheet widget, which is the
- * spreadsheet widget used for displaying the data.
+ *  \par Function Description
+ * Reinitializes the GtkSheet widget. This function is called
+ * after a file has been opened to resize the gtksheet by adding
+ * or removing rows and columns are required.
  * 
  */
 
@@ -523,11 +628,18 @@ void  x_gtksheet_reinititialize(PageDataSet *PageData) {
   RedimensionSheet(sheets[Pins], PageData->pin_count, PageData->pin_attrib_count);
   /*TODO: May repaint window here? */
 }
+/*! \brief Create the GtkSheet
+ *  \par Function Description
+ * Creates and initializes the GtkSheet widget, which is the
+ * spreadsheet widget used for displaying the data.
+ * 
+ */
 
 void x_gtksheet_init(PageDataSet *PageData)
 {
   int i;
   char *SheetNames[]= { "Components",  "Nets", "Pins"};
+  GtkWidget *label;
 
   void CreateSheet(SheetId index, int nRow, int nCol) {
     if((sheets[index] != NULL) && (GTK_IS_SHEET (sheets[index]))) {
@@ -586,10 +698,10 @@ void x_gtksheet_init(PageDataSet *PageData)
       gtk_sheet_set_clip_text(sheets[i], TRUE);
       
       /* For now we keep the nets sheet invisible is still useless */
-      //if (i != Nets) {
+      if (i != Nets) {
         gtk_widget_show( GTK_WIDGET(sheets[i]) );
         gtk_widget_show( GTK_WIDGET(scrolled_windows[i]) );
-      //}
+      }
       gtk_widget_show( GTK_WIDGET(notebook) );  /* show updated notebook  */
       
       gtk_signal_connect (GTK_OBJECT(sheets[i]), "key_press_event",
@@ -603,6 +715,8 @@ void x_gtksheet_init(PageDataSet *PageData)
 		         "activate", (GtkSignalFunc)activate_sheet_cell, NULL);
     }  
   }
+  /* The next 2 functions setup callbacks for the Entry widget in the would be
+   * status bar*/
   gtk_signal_connect(GTK_OBJECT(entry),
 		      "changed", (GtkSignalFunc)show_sheet_entry, NULL);
 
@@ -618,11 +732,12 @@ void x_gtksheet_init(PageDataSet *PageData)
 
 /*------------------------------------------------------------------*/
 /*! \brief Add row labels to GtkSheet
- *
- * Add row labels to GtkSheet
- * \param sheet Pointer to the GtkSheet object
- * \param count Number of row labels to add
- * \param list_head Top of the string list
+ *  \par Function Description
+ *  Add row labels to GtkSheet
+ * 
+ *  \param sheet Pointer to the GtkSheet object
+ *  \param count Number of row labels to add
+ *  \param list_head Top of the string list
  */
 void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
 			       STRING_LIST *list_head)
@@ -661,8 +776,10 @@ void x_gtksheet_add_row_labels(GtkSheet *sheet, int count,
 
 /*------------------------------------------------------------------*/
 /*! \brief Add column labels to GtkSheet
- *
- * Add column labels to GtkSheet.
+ *  \par Function Description
+ *  This function adds column labels to GtkSheet. The width of the
+ * columns is increased based on the data.
+ * 
  * \param sheet GtkSheet to add columns to
  * \param count
  * \param list_head pointer to top of STRING_LIST
@@ -700,15 +817,16 @@ void x_gtksheet_add_col_labels(GtkSheet *sheet, int count,
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Set the text color of a range of cells
- *
- * Sets the color of a range cells identified by row, col.
+/*! \brief Set the text foreground color of a range of cells
+ *  \par Function Description
+ *  This functions sets the color of a range cells identified by row,
+ *  col.
+ * 
  * \param sheet GtkSheet to operate on
- * \param row Row of cell to set
- * \param col Column of cell to set
+ * \param row   Row of cell to set
+ * \param col   Column of cell to set
  * \param Color id Color to set text to
  */
-
 void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col, 
                                  ColorId Color )
 {
@@ -739,6 +857,16 @@ void x_gtksheet_set_cell_fgcolor(GtkSheet *sheet, int row, int col,
   gtk_sheet_range_set_foreground(sheet, &range, &color_t);
 
 }
+/*! \brief Set the text background color of a range of cells
+ *  \par Function Description
+ *  This functions sets the color of a range cells identified by row,
+ *  col.
+ * 
+ * \param sheet GtkSheet to operate on
+ * \param row Row of cell to set
+ * \param col Column of cell to set
+ * \param Color id Color to set text to
+ */
 void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col, 
                                  ColorId Color )
 {
@@ -772,15 +900,19 @@ void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
 
 /*------------------------------------------------------------------*/
 /*! \brief Add a cell item to the GtkSheet
-*
-* Add a cell item to the GtkSheet
-* \param sheet GtkSheet to add the cell item to
-* \param i
-* \param j
-* \param text
-* \param visibility
-* \param show_name_value
-*/
+ *  \par Function Description
+ *  This functions loads text into a cell, increaseing the column width
+ * up to COLUMN_WIDTH_LIMIT if needed. The function calls x_gtksheet_set
+ * _cell_fgcolor to set the text color based on the properties of the
+ * attribute.
+ * 
+ * \param sheet GtkSheet to add the cell item to
+ * \param i
+ * \param j
+ * \param text
+ * \param visibility
+ * \param show_name_value
+ */
 void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
                               int visibility, int show_name_value, int is_inherited)
 {
@@ -793,14 +925,14 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
       ( desired_width > sheet->column[col].width )) {
     gtk_sheet_set_column_width(sheet, col, desired_width);
   }
-//http://www.oildecline.com/
+
   gtk_sheet_set_cell(sheet, row, col, GTK_JUSTIFY_LEFT, text);
   fgcolor = s_properties_get_fgcolor_index(visibility, show_name_value, is_inherited);
   x_gtksheet_set_cell_fgcolor(sheet, row, col, fgcolor);
 }
 
 /*! \brief Get the first column selected in the GtkSheet
- *
+ *  \par Function Description
  * Get the first column selected in the GtkSheet
  * Returns the index of the first column selected, or -1 if
  *         no column is selected.
@@ -817,7 +949,7 @@ int x_gtksheet_get_min_col(GtkSheet *sheet) {
 }
 
 /*! \brief Get the last column selected in the GtkSheet
- *
+ *  \par Function Description
  * Get the last column selected in the GtkSheet
  * \param GtkSheet to query
  * \returns the index of the last column selected, or -1 if
@@ -831,6 +963,15 @@ int x_gtksheet_get_max_col(GtkSheet *sheet) {
   }
 }
 
+/*! \brief Copy a GtkSheet Range
+ *  \par Function Description
+ * This functions set the integer values in the Target Ranges to
+ * the values in the Source Range
+ * 
+ * \param s_range pointer to the source Range structure
+ * \param t_range pointer to the target Range structure
+ * 
+ */
 void x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range)
 {
   t_range->row0 = s_range->row0;
@@ -838,6 +979,16 @@ void x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range)
   t_range->col0 = s_range->col0;
   t_range->coli = s_range->coli;
 }
+
+/*! \brief Set Range to Maxium value
+ *  \par Function Description
+ * This function set the values in a Range structure from the first cell
+ * on a sheet to the last cell on the sheet.
+ * 
+ * \param GtkSheet to query
+ * \returns the index of the last column selected, or -1 if
+ *         no column is selected.
+ */
 void x_gtksheet_set_max_range(GtkSheet *sheet, GtkSheetRange *range)
 {
   range->row0 = 0;

@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 L 3500 600 3500 0 15 0 0 0 -1 -1
 B 0 0 7600 1400 15 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 L 0 600 7600 600 15 0 0 0 -1 -1

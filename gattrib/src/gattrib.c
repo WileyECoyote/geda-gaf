@@ -163,7 +163,7 @@ void geda_atexit(geda_atexit_func func, void* data)
 
 /*------------------------------------------------------------------*/
 /*! \brief GTK callback to quit the program.
- *
+ *  \par Function Description
  * This is called when the user quits the program using the UI. The
  * callback is attached to the GTK window_delete event in
  * x_window_init() and attached to the File->Quit menu item in

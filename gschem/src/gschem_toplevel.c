@@ -160,7 +160,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
  /* Miscellaneous - in  alphabetical order */
   w_current->action_feedback_mode       = OUTLINE;
   w_current->add_attribute_offset       = DEFAULT_ATTRIBUTE_OFFSET;
-  w_current->autoplace_attributes_grid  = DEFAULT_AUTOPLACE_GRID;
+  w_current->attribute_placement_grid   = DEFAULT_ATTRIB_PLACE_GRID;
   w_current->component_select_attrlist  = NULL;
   w_current->continue_component_place   = 0;
   w_current->embed_components           = 0;

@@ -115,13 +115,15 @@ SCM g_funcs_image(SCM scm_filename)
     x_image_lowlevel (w_current, output_filename,
                       w_current->image_width,
                       w_current->image_height,
-		      g_strdup("png"));
+		      g_strdup("png"),
+                      Image_All);
   } else  {
     filename = scm_to_utf8_string (scm_filename);
     x_image_lowlevel (w_current, filename,
                       w_current->image_width,
                       w_current->image_height,
-		      g_strdup("png"));
+		      g_strdup("png"),
+                      Image_All);
     free(filename);
   }
   

@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 300 2750 5 10 0 0 0 0 1
 comment=pin numbers for SOIC/DIP only, microSOIC different
 P 0 1600 300 1600 1 0 0

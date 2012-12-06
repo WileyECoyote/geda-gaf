@@ -20,7 +20,8 @@
 ;;;
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301
+;;; USA
 ;;
 ;;; Date: Aug, 17, 2012
 ;;; Contributing Author: Wiley Edward Hill
@@ -31,13 +32,16 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Inital release.
 ;; ------------------------------------------------------------------
-;;
-;; To add a new variable or control:
-;;
+;; WEH | 12/02/12 |  Added call to x_settings_set_scm_int in function
+;;                |  GatherSettings (to support renaming of autoplace-
+;;                |  attribute-grid to attribute_placement_grid).
+;; ------------------------------------------------------------------
+;; WEH | 12/04/12 |  Added switch for EnableColorImaging
+;; ------------------------------------------------------------------
 */
-/*! /Comment
+/*! \remarks To add a new variable or control:
  *
- * 1. The variable should be valid readable in the RC system, this is
+ * 1. The variable should be valid and readable in the RC system, this
  *    is not a requirement
  *
  * 2. Create the control
@@ -47,7 +51,8 @@
  *      c.) Added a WidgetStringData record to struct in the file
  *          x_settings_dialog.h, see instructions at the top of the
  *          header.
- *      d.) Add any necassary support functions, to the responder
+ *      d.) Add any necassary support functions and code to the
+ *          responder, i.e. the existing callback function
  *
  *      (At this point the control should be displayed properly.)
  *
@@ -63,6 +68,9 @@
  *
  * 6. Implement a Writer function in the file x_settings.c
  *
+ *    (At this point the new variable and control should be displayed
+ *     and working properly.)
+ * 
  * 7. Varify:
  *
  *      a.) value changes when manually changed in the RC file.
@@ -93,10 +101,9 @@
 #include <x_settings.h>
 #include <x_settings_dialog.h>
 
+/* ---------------  Functions that Should Be Somewhere Else  --------------- */
 
-/* ---------------  Function that Should Be Somewhere Else  ---------------- */
-
-/* Why was this not already included in <gtktreemodel.c> */
+/* Why was this not already included in <gtktreemodel.c> ? */
 bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
     GtkTreePath *path;
@@ -128,11 +135,13 @@ int gtk_radio_group_get_active(GSList *RadioGroupList) {
         break;
      }
   }
-  /* new buttons are *prepended* to the list, so buttons added as
-   * first have last position in the list and using glist reverse
+  /* new buttons are *prepended* to the list, so buttons added first
+   * in the last positions in the list and using glist reverse
    * confuses gtk */
   return ((length - 1) - active);
 }
+
+/* You would have thought . . . */
 void gtk_radio_group_set_active(GSList *RadioGroupList, int value)
 {
   GtkToggleButton *button;
@@ -274,6 +283,7 @@ GtkWidget *DelayScrollingSwitch=NULL;
 GtkWidget *DragMoveSwitch=NULL;
 GtkWidget *DrawGripsSwitch=NULL;
 GtkWidget *EmbedComponentsSwitch=NULL;
+GtkWidget *EnableColorImagingSwitch=NULL;
 GtkWidget *EnableLogSwitch=NULL;
 GtkWidget *EnableUndoSwitch=NULL;
 GtkWidget *EnforceHierarchySwitch=NULL;
@@ -284,6 +294,7 @@ GtkWidget *FilePreviewSwitch=NULL;
 GtkWidget *FriendlyColorMapSwitch=NULL;
 GtkWidget *FriendlyOutlineMapSwitch=NULL;
 GtkWidget *InitLogWindowSwitch=NULL;
+GtkWidget *InvertImagesSwitch=NULL;
 GtkWidget *MagneticNetsSwitch=NULL;
 GtkWidget *NetDirectionSwitch=NULL;
 GtkWidget *NotifyEventsSwitch=NULL;
@@ -291,7 +302,6 @@ GtkWidget *ObjectClippingSwitch=NULL;
 GtkWidget *RubberNetsSwitch=NULL;
 GtkWidget *ScrollBarsSwitch=NULL;
 GtkWidget *SortLibrarySwitch=NULL;
-GtkWidget *SpareSwitchSwitch=NULL;
 GtkWidget *TextOriginMarkerSwitch=NULL;
 GtkWidget *UndoViewsSwitch=NULL;
 GtkWidget *WarpCursorSwitch=NULL;
@@ -376,7 +386,7 @@ static void enable_undo_controls( bool state ){
 /** @brief on_notebook_switch_page in X_Settings_Dialog_Support_Functions */
 /*! \brief Callback on TAB change.
  *  \par Function Description
- *       This function called when ever that TAB sheet is selected. This
+ *       This function is called when ever that TAB sheet is selected. This
  *       allows all sensitivities on sheet to be checked and set properly
  *       in case settings on one sheet effect setting on another.
  */
@@ -557,7 +567,7 @@ void initialize_tree_View(GtkTreeView *list, int list_item,
  *
  *  Abstract:
  *
- *  There are two attribute list referenced in the initializations file.
+ *  There are two attribute list referenced in the initialization file.
  *  The first is a filter list used by the Add Component dialog. This
  *  list is stored in a Glist array. The second list is used by the Add
  *  Attributes routines and is stored in a static struc in Libgeda.
@@ -605,8 +615,10 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
  *  view.
  *      while (list[i]) { add_to_list(TreeView, list[i++]);}
  *
- *  The array of string can be NULL, in which case string are
- *  retieved using s_attrib_get.
+ *  The array of string can be NULL, in which case strings are
+ *  retieved using s_attrib_get. The only "list" passed to this
+ *  function is the default list that is used when the configuration
+ *  data is missing.
 */
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
 {
@@ -643,17 +655,20 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
 /*! \brief Function GetAttributeFilterMode
  *  \par Function Description: This is a Group 2 support function that
  *       returns the integer "setting" based on the state of the variable
- *       component_select_attrlist
+ *       component_select_attrlist, which should not be confused with the
+ *       state indicated in the dialog (after the user has changed/clicked
+ *       the radio/bulb widgets)
  *
- *  \retval 0	= Filter All
- *          1	= No Filter
- *          2	= Filter List
+ *  \retval 0	= Filter All    // rc entry had an
+ *          1	= No Filter     // rc entry had empty list
+ *          2	= Filter List   // rc entry had and actual list
  */
 static int GetAttributeFilterMode(GSCHEM_TOPLEVEL *w_current) {
 
   char* data;
 
-  data = g_list_nth_data (View2Data, 0);
+  data = g_list_nth_data (View2Data, 0);  /* 0 could also be the last */
+  /* return 1 if empty, else return 0 if char is asterisk, else return 2 */
   return data == NULL ? 1 : (data[0] == ASCII_ASTERISK ? 0 : 2 );
 }
 
@@ -705,7 +720,7 @@ static int SaveAttributeFilterList(GSCHEM_TOPLEVEL *w_current) {
          next = gtk_tree_model_iter_next (store, &iter);
          index ++;
        }
-       /* We went thru the new list and the index is still set, so if there
+       /* We went thru the new list and index is still set, so if there
           are any more members in the old list they need to be removed */
        while (index < list_length) {
          str_old = g_list_nth_data (View2Data, index);
@@ -827,8 +842,8 @@ static void decrement_selected_attribute( void ){
 /*! \brief Function add_selected_attribute
  *  \par Function Description: This is a Group 2 support function that
  *       adds the selected attribute from the left list to the right list
- *       but if the attribute is not already in the list. The attribute is
- *       inserted at the current selected position, or appends to end of
+ *       but only if the attribute is not already in the list. The attribute
+ *       is inserted at the current selected position, or appends to end of
  *       of the filter list if there is no selection.
  */
 static void add_selected_attribute( void ) {
@@ -849,12 +864,12 @@ static void add_selected_attribute( void ) {
     gtk_tree_model_get(GTK_TREE_MODEL(l_store), &l_iter, 0, &value,  -1);
     if (is_not_in_list((GtkTreeView*) SelectedAttributesView, value)) { /* if not already in r list */
 
-      /* check if selection in right list */
+      /* check if there is a selection in right list */
       r_selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(SelectedAttributesView));
 
       /* if there was a selection then r_iter set else GTK set r_iter to NULL */
       if (gtk_tree_selection_get_selected( r_selection, (GtkTreeModel**) &r_store, &r_iter))
-        /* if r_iter = NULL then is appended to end but doens't seem to work */
+        /* if r_iter = NULL then is suppose to be appended to end but doens't seem to work */
         gtk_list_store_insert_before(r_store, &n_iter, &r_iter);
       else { /* so do this instead */
         r_store = GTK_LIST_STORE(gtk_tree_view_get_model (GTK_TREE_VIEW (SelectedAttributesView)));
@@ -970,7 +985,7 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
  */
 void combo_responder(GtkWidget *widget, gpointer data)
 {
-  int WhichComboBox = GPOINTER_TO_UINT (data);
+  int WhichComboBox = (int)(long*) data;
 /*
   int row;
   row = gtk_combo_box_get_active (GTK_COMBO_BOX (widget));
@@ -1255,6 +1270,7 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
    case DragMove:
    case DrawGrips:
    case EmbedComponents:
+   case EnableColorImaging:
      break;
    case EnableLog:
      enable_log_controls (state );
@@ -1284,7 +1300,6 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
      gtk_widget_set_sensitive (DelayScrollingSwitch, state);
      break;
    case SortLibrary:
-   case SpareSwitch:
    case TextOriginMarker:
    case UndoViews:
    case WarpCursor:
@@ -1304,8 +1319,8 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
  *  @{
  */
 /*! \brief Function load_settings_dialog
- *  \par Function Description: This function sets the value of controls when
- *       when the dialog begins based on the current settings, in so much as
+ *  \par Function Description: This function sets the value of controls after
+ *       the dialog is created based on the current settings, in so much as
  *       possible. Some configurations options are SCM scripts and we have
  *       to find a way to deal with them ...
  */
@@ -1344,8 +1359,10 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 
 /* Combo Boxes (7) */
 
- /* Using value for green gun @ index 10 . (both mapping and outline
-    must be on if a color map was loaded)
+ /* Using value for green gun @ index 10 to identify which color map
+  * was loaded. (both mapping and outline must be on if a color map
+  * was loaded)
+    
     00 = default mapping also BW
     ff = dark 
     ee = light
@@ -1365,7 +1382,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
       if (cflag->g == 0)
         rc_options.color_scheme_index = 2;
       else {
-        rc_options.color_scheme_index = 3;
+        rc_options.color_scheme_index = 3; /* The custom map */
       }
     }
   }
@@ -1402,7 +1419,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(DragMove, w_current->drag_can_move);
   SetSwitch(DrawGrips, w_current->draw_grips);
   SetSwitch(EmbedComponents, w_current->embed_components);
-
+  SetSwitch(EnableColorImaging, toplevel->image_color);
   SetSwitch(EnableLog, logging);
 
   SetSwitch(EnforceHierarchy, w_current->enforce_hierarchy);
@@ -1417,6 +1434,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(FriendlyOutlineMap, rc_options.display_outline_color_map);
 
   SetSwitch(InitLogWindow, log_window);
+  SetSwitch(InvertImages, toplevel->invert_images);
   SetSwitch(MagneticNets, w_current->magnetic_net_mode);
   SetSwitch(NetDirection, w_current->net_direction_mode);
   SetSwitch(NotifyEvents, w_current->raise_dialog_boxes);
@@ -1424,7 +1442,6 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(RubberNets, w_current->netconn_rubberband);
   SetSwitch(ScrollBars, w_current->scrollbars);
   SetSwitch(SortLibrary, w_current->sort_component_library);
-  SetSwitch(SpareSwitch, FALSE);
   SetSwitch(TextOriginMarker, w_current->text_origin_marker);
   SetSwitch(UndoViews, w_current->undo_panzoom);
   SetSwitch(WarpCursor, w_current->warp_cursor);
@@ -1433,23 +1450,23 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 /* Radio (15) */
   // General TAB
   SetBulbGroup (LogDestiny, log_destiny);
-  /// Edit Tab
+  /* Edit Tab */
   SetBulbGroup (NetEndPoint, w_current->net_endpoint_mode);
   SetBulbGroup (NetMidPoint, w_current->net_midpoint_mode);
 
   SetBulbGroup (NetSelection, net_selection);
 
-  // Styles TAB
+  /* Styles TAB  */
   SetBulbGroup ( BusStyle,  toplevel->bus_style);
   SetBulbGroup ( NetStyle,  toplevel->net_style);
   SetBulbGroup ( LineStyle, toplevel->line_style);
   SetBulbGroup ( PinStyle,  toplevel->pin_style);
 
-  // Text TAB
+  /* Text TAB  */
   SetBulbGroup ( CapsStyle, w_current->text_case);
   SetBulbGroup ( TextFeedback, w_current->text_feedback);
 
-  // Windows TAB
+  /* Windows TAB  */
   SetBulbGroup ( GridDotSize, dot_size);
   SetBulbGroup ( GridMode, w_current->grid_mode);
   
@@ -1487,7 +1504,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 
 /* The Spin Controls Alphabetically (23) */
   SetSpin (AttributeOffset, w_current->add_attribute_offset);
-  SetSpin (AutoPlacementGrid, w_current->autoplace_attributes_grid);
+  SetSpin (AutoPlacementGrid, w_current->attribute_placement_grid);
   SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
   SetSpin (DotGridThreshold, w_current->dots_grid_fixed_threshold);
   SetSpin (KeyboardPanGain, w_current->keyboardpan_gain);
@@ -1523,7 +1540,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
  */
 /* Note! Local Module Main, before "macrolization" the function
  * create_settings_dialog was > 148kbytes. The macros somewhat
- * obsure base coding but is much more manageable then a 150K
+ * obsure base coding but is much more manageable then 100K+
  * lines of gtk_xxx's and does not depend on Glade.
  */
 GtkWidget*
@@ -1544,12 +1561,23 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   GtkTooltips *tooltips;
   tooltips = gtk_tooltips_new ();
 
+
+  /*
+    PangoAttrList *PangoAttributes;
+  PangoAttributes = pango_attr_list_new();
+  pango_attr_list_insert (PangoAttributes, pango_attr_font_desc_new (const PangoFontDescription *desc));
+  pango_attr_list_insert (PangoAttributes, pango_attr_size_new(10));
+  */
+  PangoFontDescription *FontDescription;
+  FontDescription = pango_font_description_from_string("Monospace");
+  pango_font_description_set_absolute_size(FontDescription, 10); 
+
   ThisDialog=NEW_STD_GSCHEM_DIALOG( DialogTitle, DialogSettings, w_current);
   MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
   gtk_widget_show (MainDialogVBox);
   notebook = gtk_notebook_new ();
   gtk_widget_show (notebook);
-  gtk_box_pack_start (GTK_BOX (MainDialogVBox), notebook, TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (MainDialogVBox), notebook, FALSE, FALSE, 0);
 
   { /*------------------- Start General TAB Contents -------------------*/
    GTK_START_TAB (General);
@@ -1563,13 +1591,15 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
      VPSECTION (GeneralTab_vbox, GeneralOptions, 0)  /* GT Grp 2 General Options */
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow1)     /* Grp 2 Row 1 */
            GTK_SWITCH(GeneralOptionsRow1_hbox, FilePreview, 18, TRUE);
-           GTK_SWITCH(GeneralOptionsRow1_hbox, FriendlyColorMap, 120, TRUE);
+           GTK_NEW_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 41);
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow2)     /* Grp 2 Row 2 */
-           GTK_SWITCH(GeneralOptionsRow2_hbox, NotifyEvents, 8, FALSE);
-           GTK_SWITCH(GeneralOptionsRow2_hbox, FriendlyOutlineMap, 108, TRUE);
+           GTK_SWITCH(GeneralOptionsRow2_hbox, EnableColorImaging, 8, FALSE);
+           GTK_SWITCH(GeneralOptionsRow2_hbox, FriendlyColorMap, 120, TRUE);
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow3)     /* Grp 2 Row 3 */
-           GTK_NEW_COMBO (GeneralOptionsRow3_hbox, TitleBlock, 200, 41);
-           GTK_NEW_COMBO (GeneralOptionsRow3_hbox, ColorMapScheme, 150, 9);
+           GTK_SWITCH(GeneralOptionsRow3_hbox, InvertImages, 8, TRUE);
+           GTK_SWITCH(GeneralOptionsRow3_hbox, FriendlyOutlineMap, 108, TRUE);
+      HSECTION (GeneralOptions_vbox, GeneralOptionsRow4)     /* Grp 2 Row 4 */
+           GTK_NEW_COMBO (GeneralOptionsRow4_hbox, ColorMapScheme, 150, 9);
               GTK_LOAD_COMBO (ColorMapScheme, "dark");
               GTK_LOAD_COMBO (ColorMapScheme, "light");
               GTK_LOAD_COMBO (ColorMapScheme, "BW");
@@ -1614,7 +1644,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
          GTK_NUMERIC_SPIN (EditOptionsRow3_hbox, SnapSize, 175, 100, 0, 500);
        HSECTION (EditOptions_vbox, EditOptionsRow4)   /* Grp 1 Row 4 */
          GTK_SWITCH(EditOptionsRow4_hbox, ForceBoundingBox, 20, TRUE);
-         GTK_SWITCH(EditOptionsRow4_hbox, SpareSwitch, 124, TRUE);
+         GTK_SWITCH(EditOptionsRow4_hbox, NotifyEvents, 115, TRUE);
        HSECTION (EditOptions_vbox, EditOptionsRow5)    /* Grp 1 Row 4 */
          GTK_SWITCH(EditOptionsRow5_hbox, WarpCursor, 30, FALSE);
          GTK_SWITCH(EditOptionsRow5_hbox, ObjectClipping, 82, TRUE);
@@ -1647,12 +1677,12 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
        HSECTION (PointerOptions_vbox, PointerRow4)    /* Row 4 */
          GTK_SWITCH(PointerRow4_hbox, ClassicWheel, 8, TRUE);
          GTK_NEW_COMBO (PointerRow4_hbox, ThirdButton, 150, 20);
-         gtk_widget_set_size_request (ThirdButtonCombo, 150, 20);
+         gtk_widget_set_size_request (ThirdButtonCombo, 150, 31);
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
        HSECTION (PointerOptions_vbox, PointerRow5)    /* Row 4 */
          GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton, 150, 266);
-         gtk_widget_set_size_request (MiddleButtonCombo, 150, 20);
+         gtk_widget_set_size_request (MiddleButtonCombo, 150, 31);
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_STROKE)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_REPEAT)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_ACTION)
@@ -1894,6 +1924,8 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->drag_can_move              = GET_SWITCH_STATE (DragMoveSwitch);
   w_current->draw_grips                 = GET_SWITCH_STATE (DrawGripsSwitch);
   w_current->embed_components           = GET_SWITCH_STATE (EmbedComponentsSwitch);
+   toplevel->image_color                = GET_SWITCH_STATE (EnableColorImagingSwitch);
+   toplevel->invert_images              = GET_SWITCH_STATE (InvertImagesSwitch);
   w_current->enforce_hierarchy          = GET_SWITCH_STATE (EnforceHierarchySwitch);
   w_current->fast_mousepan              = GET_SWITCH_STATE (FastMousePanSwitch);
   w_current->action_feedback_mode       = GET_SWITCH_STATE (FeedbackModeSwitch);
@@ -1925,7 +1957,9 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
 /* The Spin Controls Alphabetically (23) */
   w_current->add_attribute_offset       =GET_SPIN_IVALUE (AttributeOffsetSpin);
-  w_current->autoplace_attributes_grid  =GET_SPIN_IVALUE (AutoPlacementGridSpin);
+  w_current->attribute_placement_grid   =GET_SPIN_IVALUE (AutoPlacementGridSpin);
+  x_settings_set_scm_int("autoplace-attributes-grid", w_current->attribute_placement_grid);
+  
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
    toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
   w_current->dots_grid_fixed_threshold  =GET_SPIN_IVALUE (DotGridThresholdSpin);

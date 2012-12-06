@@ -38,22 +38,24 @@ static void toolbar_display_both( void );
 
 /*!------------------------ Menus And Toolbars ---------------------*/
 /*!
- * \brief File->Save menu item
- *
- * Implement the File->Save menu
+ * \brief Save File
+ * \par Function Description
+ * This is a menu callback to implement the File->Save menu options. This
+ * function can also be called by the toolbar button handler.
  */
 void x_menu_file_save()
 {
-  s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
-  s_page_save_all(pr_current);                  /* saves all pages in design */
-  sheet_head->CHANGED = FALSE;
-  x_window_update_title(pr_current, sheet_head);
+  s_toplevel_gtksheet_to_toplevel(pr_current);   /* Dumps sheet data into TOPLEVEL */
+  s_page_save_all(pr_current);                   /* saves all pages in design */
+  sheet_head->CHANGED = FALSE;                   /* reset the status flag */
+  x_window_update_title(pr_current, sheet_head); /* remove the asterisk from title */
 }
 
 /*!
  * \brief File Save As menu
  * \par Function Description
- *
+ * This is a menu callback to implement the File->SaveAs menu options. This
+ * function can also be called by the toolbar button handler.
  */
 void x_menu_file_save_as()
 {
@@ -246,8 +248,9 @@ static void toolbar_display_both( void )
 /* ----------- Recent Files Menu Stuff ----------- */
 #define MAX_RECENT_FILES 10
 /*! \brief Callback for recent-chooser.
- *
- * Will be called if element of recent-file-list is activated
+ *  \par Function Description
+ * This function is called if an element of recent-file-list
+ * is selected.
  */
 static void on_recent_selection (GtkRecentChooser *chooser)
 {
@@ -263,7 +266,21 @@ static void on_recent_selection (GtkRecentChooser *chooser)
   g_free(uri);
   g_free(filename);
 }
-
+/*! \brief Set Senitivity of Menu Items.
+ *  \par Function Description
+ *       This function is called by on_notebook_switch_page when ever a TAB
+ *       is selected, passing a gslist of menu widget items to be set to the
+ *       specified sensitivity
+ */
+void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive)
+{
+    lambda (GtkWidget *menu_item)
+    {
+      gtk_widget_set_sensitive(menu_item, sensitive);
+      return FALSE;
+    }
+    mapcar(ListMenuItems);
+}
 /*!
  * The Gtk action table
  */
@@ -315,9 +332,6 @@ static const GtkActionEntry actions[] = {
   { "help-about", GTK_STOCK_ABOUT, "About", "", "", x_dialog_about_dialog},
 };
 
-static const GtkActionEntry comp_sheet_actions[] = {
-
-};
 /* Toggle items */
 static const GtkToggleActionEntry toggle_entries[] = {
 /* View menu */
@@ -332,6 +346,11 @@ static const GtkToggleActionEntry toggle_entries[] = {
   { "window-show_grid",   "", "Show _Grid", "", "Toggle grid visibility", G_CALLBACK(x_window_grid_toggle), TRUE },
 };
 
+/*! \brief Create geda file filter
+ *  \par Function Description
+ *  This function creates a new files and setups the mine type and extensions
+ *  for the Open Recent sub-sytstem.
+ */
 GtkRecentFilter *x_menu_geda_filter() {
   
   GtkRecentFilter *geda_filter;
@@ -344,11 +363,28 @@ GtkRecentFilter *x_menu_geda_filter() {
   
   return geda_filter;
 }
+
+/*! \brief Rename gtk_recent_chooser_menu_new_for_manager
+ *  \par Function Description
+ *  The name of this GTK function is way too long, and the names chosen for
+ *  data type don't help, so we rename here using something more reasonable.
+ */
 GtkRecentChooser *GetRecentMenuChooser(GtkRecentManager *rm )  {
   GtkWidget *rc = gtk_recent_chooser_menu_new_for_manager(rm );
   return (GtkRecentChooser*) rc;
 }
 
+/*! \brief Fix the GTK 'Open Recent' Menu Option
+ *  \par Function Description
+ *  gtk_ui_manager deliberately setups up the Recent Menu, in the presents
+ *  of a recent manager with chooser when XML menu data is used. The setup
+ *  is a generic one without filters and ALL of the GTK functions intended
+ *  to setup the recent chooser become unresponsive and ignore settings.
+ *  The GTK solution will likely be to depreciated the defective functions
+ *  rather than fix them. The solution here is to remove the container and
+ *  create a new recent_manager and setup manually as would normally be done
+ *  if the XML menu data had not used.
+ */
 void x_menu_fix_gtk_recent_submenu() {
 
   GtkWidget        *recent_items;          /* Be ones GTK errently added */
@@ -385,9 +421,9 @@ void x_menu_fix_gtk_recent_submenu() {
 }
 
 /*! \brief Attach a submenu with filenames to the 'Open Recent'
- *         menu item.
- *
- *  Called from x_window_setup().
+ *  \par Function Description
+ *  Called from x_window_init function to attach the Open Recent
+ * option under the File menu.
  */
 GtkActionGroup *x_menu_create_recent_action_group() {
   GtkRecentAction  *recent_action;
@@ -424,8 +460,38 @@ GtkActionGroup *x_menu_create_recent_action_group() {
   return recent_action_group;
 }
 
+/*! \brief Compile List of Menu Widgets.
+ *  \par Function Description
+ *       This function is called after the xml menu is constructed in
+ *       x_menu_create_menu in order to collect a list of pointers to
+ *       menu items. The list is used for convenience to later set
+ *       sensitivities so the on_notebook_switch_page callback won't
+ *       have to waste time looking up each widget when users switch
+ *       between Sheets/Tabs.
+ */
+static void x_menu_get_collections (GtkUIManager *ui_man) {
+ 
+  ComponentMenuItems = NULL; 
+  GtkWidget *item;
+    
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/edit/edit-add-attrib");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/edit/edit-delete-attrib");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/edit/edit-promote-attrib");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/edit/edit-demote-attrib");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/visibility/visibility-name-only");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/visibility/visibility-value-only");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+  item = gtk_ui_manager_get_widget(ui_man, "/menubar/visibility/visibility-name-value");
+  ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
+
+}
 /*! \brief Create and attach the menu bar
- *
+ *  \par Function Description
  * Create the menu bar and attach it to the main window.
  *
  *  First, the GtkActionGroup object is created and filled with
@@ -477,6 +543,9 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
   gtk_window_add_accel_group (main_window, gtk_ui_manager_get_accel_group(menu_manager));
 
   menubar = gtk_ui_manager_get_widget(menu_manager, "/ui/menubar/");
+  
+  x_menu_get_collections(menu_manager);
+  
   if (menubar == NULL)
     fprintf(stderr, "ERROR: GTK function failed to return Menu object\n");
   return menubar; /* WEH: Does this really get saved? */

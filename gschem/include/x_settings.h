@@ -32,6 +32,8 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Inital release.
 ;; ------------------------------------------------------------------
+;; WEH | 12/04/12 |  Added function x_settings_set_scm_int, revised
+;; ------------------------------------------------------------------
 ;;
 */
 #ifndef __X_SETTINGS_H__
@@ -168,7 +170,7 @@ typedef enum {
         CapsStyle,            CapsStyleLower,
         CapsStyleUpper,       CapsStyleBoth,
         TextFeedback,         TextFeedbackReadable,
-         TextFeedbackAlways,  TextFeedbackDefault,
+        TextFeedbackAlways,  TextFeedbackDefault,
 
   /* Windows TAB */
         GridDotSize,       GridDotSizeOne,
@@ -207,7 +209,7 @@ typedef enum {
         UndoBufferSize,
         ZoomGain,
 
-/* Label Text for Switch Controls */
+/* Text for Switch Controls */
         AutoLoad,
         AutoSave,
         ClassicWheel,
@@ -217,6 +219,7 @@ typedef enum {
         DragMove,
         DrawGrips,
         EmbedComponents,
+        EnableColorImaging,
         EnableLog,
         EnableUndo,
         EnforceHierarchy,
@@ -227,6 +230,7 @@ typedef enum {
         FriendlyColorMap,
         FriendlyOutlineMap,
         InitLogWindow,
+        InvertImages,
         MagneticNets,
         NetDirection,
         NotifyEvents,
@@ -234,7 +238,6 @@ typedef enum {
         RubberNets,
         ScrollBars,
         SortLibrary,
-        SpareSwitch,
         TextOriginMarker,
         UndoViews,
         WarpCursor,

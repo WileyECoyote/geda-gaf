@@ -508,8 +508,10 @@ struct st_toplevel {
   int print_orientation; 
 
   /* either TRUE or FALSE (color or no color) */
-  int image_color; 
-
+  int image_color;
+  /* either TRUE or FALSE (Blk on Wht or Wht on Blk) */
+  int invert_images;
+  
   /* either TRUE or FALSE (color or no color) */
   int print_color; 
 

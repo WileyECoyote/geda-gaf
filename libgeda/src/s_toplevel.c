@@ -126,7 +126,8 @@ TOPLEVEL *s_toplevel_new (void)
   toplevel->print_orientation = 0;
 
   toplevel->image_color = FALSE;
-
+  toplevel->invert_images = TRUE;
+  
   toplevel->print_color = FALSE;
 
   toplevel->print_color_background = 0;

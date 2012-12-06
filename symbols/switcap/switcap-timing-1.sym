@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 1700 700 8 10 1 0 0 0 1
 comment=PERIOD=1e-6
 T 200 1000 9 8 0 0 0 0 1

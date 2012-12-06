@@ -293,7 +293,7 @@ void x_image_write_eps(GSCHEM_TOPLEVEL *w_current, const char* filename)
   toplevel->print_output_type = EXTENTS_NOMARGINS;
   result = f_print_file (toplevel, toplevel->page_current, filename);
   if (result) {
-    s_log_message(_("x_image_lowlevel: Unable to write eps file %s.\n"),
+    s_log_message(_("x_image_write_eps: Unable to write eps file %s.\n"),
         filename);
   }   
 
@@ -315,7 +315,7 @@ void x_image_write_eps(GSCHEM_TOPLEVEL *w_current, const char* filename)
  *
  */
 void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
-    int desired_width, int desired_height, char *filetype)
+    int desired_width, int desired_height, char *filetype, ImageExtent extent)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int width, height;
@@ -368,7 +368,7 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
   if (strcmp(filetype, "eps") == 0) /*WK - catch EPS export case*/
     x_image_write_eps(w_current, filename);
   else {
-    pixbuf = x_image_get_pixbuf(w_current);
+    pixbuf = x_image_get_pixbuf(w_current, extent);
     if (pixbuf != NULL) {
       if (!gdk_pixbuf_save(pixbuf, filename, filetype, &gerror, NULL)) {
         s_log_message(_("x_image_lowlevel: Unable to write %s file %s.\n"),
@@ -482,6 +482,8 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current)
   gtk_box_pack_start (GTK_BOX (vbox2), type_combo, TRUE, TRUE, 0);
   create_type_menu (GTK_COMBO_BOX(type_combo));
 
+  /* extent = Add a switch or check box here for "extents or Display */
+  
   /* Connect the changed signal to the callback, so the filename
      gets updated every time the image type is changed */
   g_signal_connect (type_combo, "changed", 
@@ -558,7 +560,7 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current)
     sscanf(image_size, "%ix%i", &width, &height);
     filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
 
-    x_image_lowlevel(w_current, filename, width, height, image_type);
+    x_image_lowlevel(w_current, filename, width, height, image_type, Image_Display);
   }
 
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
@@ -622,7 +624,7 @@ static void x_image_convert_to_greyscale(GdkPixbuf *pixbuf)
  *  \par Function Description
  *
  */
-GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current)
+GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
 {
   GdkPixbuf *pixbuf;
   int origin_x, origin_y, bottom, right;
@@ -630,13 +632,23 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current)
   GSCHEM_TOPLEVEL new_w_current;
   TOPLEVEL toplevel;
   GdkRectangle rect;
-
+  COLOR *color_0;
+  COLOR *color_1;
+  int index;
+  int err = 0;
+  
   /* Do a copy of the w_current struct and work with it */
   memcpy(&new_w_current, w_current, sizeof(GSCHEM_TOPLEVEL));
   /* Do a copy of the toplevel struct and work with it */
   memcpy(&toplevel, w_current->toplevel, sizeof(TOPLEVEL));
 
   new_w_current.toplevel = &toplevel;
+  
+  /* Do zoom extents to get entire schematic in the window if imaging All */
+  if (extent == Image_All)
+    a_zoom_extents (&new_w_current,
+                     toplevel.page_current->_object_list,
+                     A_PAN_DONT_REDRAW);
 
   WORLDtoSCREEN (&new_w_current, toplevel.page_current->right,
                                  toplevel.page_current->left, &s_right, &s_left);
@@ -660,59 +672,48 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current)
   new_w_current.win_width = new_w_current.image_width;
   new_w_current.win_height = new_w_current.image_height;
 
-  if (toplevel.image_color == FALSE)
-  {
-    /* FIXME this assumes -- not necessarily correctly! -- that the
-     * color at index 0 in the color map is black, and the color at
-     * index 1 is white! */
+  if ((toplevel.image_color == FALSE) && /* If B&W imaging mode */
+      (toplevel.invert_images == TRUE)) {
+ 
+    /* Normally the color at index 0 in the color map is black, and the
+     * color at index 1 is white. We are suppose to generate black&white
+     * (grayscale) output, with white and black inverted. We'll set the
+     * color of all objects first "dark" color we find, normally black */
+    index = 0;
+    color_0 = x_color_lookup(index);
+    while (color_0->r + color_0->g + color_0->b > 20) { /* Close enough, call it black */
+      index++;
+      if (index >= MAX_COLORS) {
+        err = 1;
+        break;
+      }
+      color_0 = x_color_lookup(index);
+    }
+    if (!err)
+      toplevel.override_color = index;
+    else
+      s_log_message("WARNING, encountered color map while looking for a dark color!");
 
-    /* We are going to be doing black&white (grayscale) output, so change the */
-    /* color of all objects to a nice and dark color, say black */
-    toplevel.override_color = 0;
-
-    /* also reset the background to white */
-    toplevel.background_color = 1;
+    /* Now get a light color, normally would be white */
+    index = 0;
+    color_0 = x_color_lookup(index);
+    while ( color_0->r + color_0->g + color_0->b < 0x2E9 ) { /* Close enough, call it white */
+      index++;
+      if (index >= MAX_COLORS) {
+        err = 1;
+        break;
+      }
+      color_0 = x_color_lookup(index);
+    }
+    if (!err)
+      toplevel.background_color = index; /* set over-ride background to light, maybe white */
+    else
+      s_log_message("WARNING, encountered color map while looking for a light color!");
   }
 
   origin_x = origin_y = 0;
   right = size_x;
   bottom = size_y;
-
-  /* ------------------  Begin optional code ------------------------ */
-  /* If the the code in this region is commented, the PNG returned will
-     be the same as the one returned using libgd.
-     I mean: there will be some border all around the schematic.
-     This code is used to adjust the schematic to the border of the image */
-#if 0
-
-  /* Do a zoom extents to get fit all the schematic in the window */
-  /* Commented so the image returned will be the same as with libgd */  
-  a_zoom_extents (&toplevel,
-		  toplevel.page_current->object_list,
-		  A_PAN_DONT_REDRAW);
-
-  
-  /* See if there are objects */
-  
-  aux = toplevel->page_current->object_list;
-  while (aux != NULL) {
-    if (aux->type != -1) {
-      object_found = 1;
-      break;
-    }
-    aux = aux->next;
-  }
-
-  
-  /* If there are no objects, can't use zoom_extents */
-  if (object_found) {
-    get_object_glist_bounds (&toplevel,
-                             toplevel.page_current->object_list,
-                             &origin_x, &origin_y,
-                             &right, &bottom);
-  }
-#endif
-  /* ------------------  End optional code ------------------------ */
   
   rect.x = origin_x;
   rect.y = origin_y;

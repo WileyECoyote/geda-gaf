@@ -66,8 +66,14 @@ static void callBack_clipboard (GtkWidget *button_widget, IDS_Toolbar *Control)
   x_window_clipboard_handler(button);
   return;
 }
-
-/*! \brief Redirect Open, Save & Save As from Toolbar to Handler functions */
+/*! \brief Redirect Open, Save & Save As from Toolbar to Handler functions
+ *  \par Function Description
+ * This is a Call-back function for the file related buttons on the standard
+ * toolbar.
+ * 
+ *  \param [in] widget is button widget
+ *  \param [in] Control pointer to enumerated integer ID of the button
+ */
 static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long*) Control;
@@ -88,8 +94,15 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
 
   return;
 }
-
-/*! \brief Redirect Searches from Toolbar to Handler functions */
+/*! \brief Callback Handler for  Search relates Toolbars buttons
+ *
+ *  \par Function Description
+ * This function calls the approiate functions to process request
+ * from search related buttons on the standard toolbar.
+ * 
+ *  \param [in] widget is button widget
+ *  \param [in] Control pointer to enumerated integer ID of the button
+ */
 static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long*) Control;
@@ -113,8 +126,15 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
 
   return;
 }
-
-/*! \brief Redirect Open, Save & Save As from Toolbar to visibility functions */
+/*! \brief Callback Handler for Visibility relates Toolbars buttons
+ *
+ *  \par Function Description
+ * This function calls the approiate functions to process request
+ * from attribute toolbar buttons.
+ * 
+ *  \param [in] widget is button widget
+ *  \param [in] Control pointer to enumerated integer ID of the button
+ */
 static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
 {
   int button = (int)(long*) Control;
@@ -151,6 +171,13 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
   return;
 }
 
+/*! \brief Initialize Toolbars
+ *
+ *  \par Function Description
+ * This function creates the handlebox, toolbars and toolbar buttons.
+ * 
+ *  \param [in] parent_container is main vbox widget
+ */
 void x_toolbars_init(GtkWidget *parent_container) {
   
   GtkWidget *tmp_toolbar_icon;
@@ -233,4 +260,41 @@ void x_toolbars_init(GtkWidget *parent_container) {
   
   gtk_widget_show (Attribute_Toolbar);
   
+  open_button=open_button;
+  save_button=save_button;
+  save_as_button=save_as_button;
+  cut_button=cut_button;
+  copy_button=copy_button;
+  paste_button=paste_button;
+  
+  find_button=find_button;
+  replace_button=replace_button;
+  
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, attribute_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, designator_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, invisible_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, visible_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, add_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, promote_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, demote_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, name_only_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, value_only_button);
+  ComponentToolbarButtons = g_slist_append(ComponentToolbarButtons, name_value_button);
+
+}
+
+/*! \brief Set Senitivity of Toolbar Buttons.
+ *  \par Function Description
+ *       This function is called by on_notebook_switch_page when ever a TAB
+ *       is selected, passing a gslist of toolbasr button widgets to be set
+ *       to the specified sensitivity
+ */
+void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
+{
+    lambda (GtkWidget *menu_item)
+    {
+      gtk_widget_set_sensitive(menu_item, sensitive);
+      return FALSE;
+    }
+    mapcar(ListToolBarItems);
 }

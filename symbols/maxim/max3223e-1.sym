@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 350 4550 9 10 1 1 0 0 1
 device=MAX3223E
 T 350 8300 5 10 0 0 0 0 1

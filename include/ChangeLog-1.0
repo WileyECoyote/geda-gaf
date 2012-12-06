@@ -1,6 +1,17 @@
+2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
+        * /include/x_dialog_controls.h: Added DialogFont "Monospace 13.3" and
+          PANGO_R5_LABEL, Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary
+          controls would use the new PANGO_R5_LABEL macro instead of GTK_R5
+          _LABEL. GTK's "auto fit widget" Dialog architecture seems to conflict
+          with the Linux principle "every thing is customizable on per users 
+          basis" because changing the system gnome/gtk font style and size
+          shifted  alignment of all the widgets in the dialog box and this
+          is unacceptable. This revision "fixes" this issue by "fixing" font
+          and the font size regardless of the user's settings.
 
 2012-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
         * /include: Add this Changlog and .gitignore file.
 
         * /include/x_dialog_controls.h: Add new macro GEDA_NEW_COMBO
+

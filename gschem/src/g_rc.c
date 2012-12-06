@@ -31,7 +31,11 @@
  *                |  Added g_rc_map_keys function (in order to by-pass functions
  *                |  in gschem.scm)
  * ------------------------------------------------------------------
- *
+ * WEH | 12/02/12 |  Renamed function g_rc_autoplace_attributes_grid to g_rc_
+ *                |  attribute_placement_grid, added function call to x_
+ *                |  settings_set_scm_int to set the definition of autoplace-
+ *                |  attributes-grid
+ * ------------------------------------------------------------------
  */
 
 #include <config.h>
@@ -496,7 +500,22 @@ SCM g_rc_image_color(SCM mode)
 		   default_image_color,
 		   2);
 }
+/*! \brief This function processes the image-color RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for invert-images RC entry.
+ */
+SCM g_rc_invert_images(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
 
+  RETURN_G_RC_MODE("invert-images",
+                   default_invert_images,
+                   2);
+}
 /* ----- Log related ----- */
 /*! \brief This function processes log-enable information RC entry.
  * \par Function Description
@@ -721,16 +740,19 @@ SCM g_rc_attribute_name(SCM scm_path)
 /*! \brief This function processes the autoplace-attributes-grid RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the autoplace-attributes-grid RC entry.
+ *       processing configuration data for the autoplacement-grid  RC entry.
+ *       The keyword is used to set the value of autoplace-attributes-grid.
  */
-SCM g_rc_autoplace_attributes_grid(SCM offset)
+SCM g_rc_attribute_placement_grid(SCM offset)
 {
-  default_autoplace_attributes_grid = ICHECK( offset,
-                                      MIN_AUTOPLACE_GRID,
-                                      MAX_AUTOPLACE_GRID,
-                                      DEFAULT_AUTOPLACE_GRID,
-                                      "autoplace-attributes-grid");
-
+  default_attribute_placement_grid = ICHECK( offset,
+                                     MIN_AUTOPLACE_GRID,
+                                     MAX_AUTOPLACE_GRID,
+                                     DEFAULT_ATTRIB_PLACE_GRID,
+                                     "attribute-placement-grid");
+  
+   x_settings_set_scm_int("autoplace-attributes-grid", default_attribute_placement_grid );
+  
   return SCM_BOOL_T;
 }
 static void

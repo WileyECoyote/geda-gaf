@@ -260,8 +260,8 @@ g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err)
   if (name_norm == NULL) goto parse_file_error;
 
   /* Attempt to load the rc file, if it hasn't been loaded already.
-   * If g_rc_try_mark_read() succeeds, it stores name_norm in
-   * toplevel, so we *don't* free it. */
+* If g_rc_try_mark_read() succeeds, it stores name_norm in
+* toplevel, so we *don't* free it. */
   if (g_rc_try_mark_read (toplevel, name_norm, &tmp_err)
       && g_read_file (toplevel, name_norm, &tmp_err)) {
     s_log_message (_("Parsed config from [%s]\n"), name_norm);
@@ -271,7 +271,7 @@ g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err)
  parse_file_error:
   /* Copy tmp_err into err, with a prefixed message. */
   /*! \todo We should upgrade to GLib >= 2.16 and use
-   * g_propagate_prefixed_error(). */
+* g_propagate_prefixed_error(). */
   if (err == NULL) {
     g_error_free (tmp_err);
   } else {

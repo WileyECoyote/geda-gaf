@@ -75,6 +75,7 @@ int     default_zoom_with_pan      	  = TRUE;
 
 /* Image Related */
 int     default_image_color               = FALSE;
+int     default_invert_images             = TRUE;
 int     default_image_width               = DEFAULT_IMAGE_WIDTH;
 int     default_image_height              = DEFAULT_IMAGE_HEIGHT;
 
@@ -89,7 +90,7 @@ int     default_action_feedback_mode      = OUTLINE;
 int     default_add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
 int     default_auto_load_last            = DEFAULT_AUTO_LOAD_LAST;
 int     default_auto_save_interval        = DEFAULT_SAVE_INTERVAL;
-int     default_autoplace_attributes_grid = DEFAULT_AUTOPLACE_GRID;
+int     default_attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
 GList  *default_component_select_attrlist = NULL;
 int     default_continue_component_place  = TRUE;
 int     default_embed_components          = FALSE;
@@ -206,7 +207,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->action_feedback_mode      = default_action_feedback_mode;
   w_current->add_attribute_offset      = default_add_attribute_offset;
   toplevel->auto_save_interval         = default_auto_save_interval;
-  w_current->autoplace_attributes_grid = default_autoplace_attributes_grid;
+  w_current->attribute_placement_grid  = default_attribute_placement_grid;
   w_current->component_select_attrlist = default_component_select_attrlist;
   w_current->continue_component_place  = default_continue_component_place;
   w_current->embed_components          = default_embed_components;
@@ -247,6 +248,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);
 
   toplevel->image_color                 = default_image_color;
+  toplevel->invert_images               = default_invert_images;
   w_current->image_width                = default_image_width;
   w_current->image_height               = default_image_height;
   toplevel->paper_width                 = default_paper_width;

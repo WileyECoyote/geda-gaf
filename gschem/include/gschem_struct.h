@@ -147,7 +147,7 @@ struct st_gschem_toplevel {
   /* attributes when they are attached to vertical or horizontal nets */
   int add_attribute_offset;
 
-  int autoplace_attributes_grid;
+  int attribute_placement_grid;
   /* holds a list of attribute names displayed in the component select dialog */
   GList *component_select_attrlist; 
 

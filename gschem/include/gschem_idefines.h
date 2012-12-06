@@ -31,7 +31,7 @@
 
 #define MAX_RECENT_FILES 10
 
-/*----------- Color Stuff ----------- */
+/*-------- Color & Image Stuff ------- */
 
 /* For default_image_width  */
 #define DEFAULT_IMAGE_WIDTH     800
@@ -127,7 +127,7 @@
 /* For autoplace_attributes_grid */
 #define MIN_AUTOPLACE_GRID        0
 #define MAX_AUTOPLACE_GRID      500
-#define DEFAULT_AUTOPLACE_GRID   50
+#define DEFAULT_ATTRIB_PLACE_GRID 50
 
 /* select_slack_pixels */
 #define DEFAULT_SLACK_PIXELS      4
@@ -239,7 +239,5 @@
 /* used for undo_type */
 #define UNDO_DISK		0
 #define UNDO_MEMORY		1
-
-
 
 #endif /* !_GSCHEM_IDEFINES_H_INCL */

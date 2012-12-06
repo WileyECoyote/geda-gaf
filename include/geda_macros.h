@@ -4,6 +4,7 @@
 #ifndef lambda
 #define lambda GFunc lambda_func
 #define foreach(glist) g_list_foreach(glist, (GFunc) lambda_func, NULL);
+#define mapcar(gslist) g_slist_foreach(gslist, (GFunc) lambda_func, NULL);
 #else
   #error lambda already defined!
 #endif

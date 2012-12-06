@@ -1,17 +1,65 @@
+2012-12-12 Wiley E. Hill <wileyhill@gmail.com> 
+        * lib/user-gschemrc.scm: Added new configuration file excerpted from
+          from system-gschemrc.scm. Configuration keywords and options not
+          supported by the main configuration dialog in x_settings_dialog.c
+          were excluded from this new file. The file is installed to the same
+          location as system-gschemrc.scm. Routines to save configuration
+          settings read this file as a template if a gschemrc file is not
+          found in the users home directory. The new file is not written to,
+          nor is the file read during program initialization. Added new 
+          variable invert_images.
+
+	* lib/system-gschemrc.scm: Changed (define autoplace-attribute-grid
+          50) to (attribute_placement_grid 50) to avoid name conflict.
+          autoplace-attribute-grid was a function that processed the RC entry
+          and was re-defined as a scm symbol with an integer value by the
+          entry in the RC file. This meant autoplace-attribute-grid could not
+          be read twice while processing xxx-gschemrc files without an error.
+
+        * src/*.c & include/*.h: Implemented renaming of autoplace_attribute
+          _grid to attribute_placement_grid in various files. Added RC support
+          for new top-level variable invert_images.
+
+        * src/x_settings.c: Added new function x_settings_set_scm_int; could
+          not find in libgeda. Revised function generate_rc to use the template
+          rc file and to write to the user's home directory. This resolves the
+          implementation issues on Linux system associated with permissions of
+          /etc/geda. Added handling for new invert_images variable, (image-
+          color was setup with inital release of this file but was not setup in
+          x_settings_dialog.c.
+
+        * src/g_funcs.c: Revised calls to x_image_lowlevel in g_funcs_image to
+          include new parameter.
+
+        * src/g_rc.c: Added call in g_rc_attribute_placement_grid to function
+          x_settings_set_scm_int to define autoplace-attribute-grid
+
+        * src/x_image.c: Revised x_image_get_pixbuf to implement new variable
+          invert_images. The revisions effectively resolves Launchpad 1086530
+          and extends functionality of gschem. Corrected function name in log 
+          message in function x_image_write_eps.
+
+	* src/x_settings_dialog.c: Add call in function GatherSettings to 
+          x_settings_set_scm_int to define autoplace-attribute-grid. Added
+          switch for new top-level variable invert_images. Relocated Notify
+          Events switch to the edit tab, replacing a spare switch location.
+          Rearranged widgets on rows 1, 2 & 3, and created new row 4 to make
+          room for invert_images, image-color switches. 
+
 2012-11-15 Wiley E. Hill <wileyhill@gmail.com>
 	* include/x_dialog_controls.h: relocated this recent addition to
-          toplevel include file so other apps, like gattrib could also
+          toplevel include folder so other apps, like gattrib could also
           reference this file.
 
 2012-11-04 Wiley E. Hill <wileyhill@gmail.com>
-        * src/x_dialog.c: relocated functions get_geda_switch_image and
+          relocated functions get_geda_switch_image and
           create_geda_switch from x_settings.c to incorperate in other
           dialog compilations.
 	* src/o_slot.c: Revised error slot number out of range message
           in o_slot_end functions to include to the actual number that
           was passed - new_slot_number. (should o_slot_end really report
           slot=0 as invalid or should it just be ignored? slot=0 means
-          there are no slots!)
+          there are no slots and this IS VALID according to web-site!)
 	* src/x_multiattrib.c: General revisions, changed toggle button
           for Show Inherited to toggle switch for Dialog uniformity.
           Implemented limited tooltips.

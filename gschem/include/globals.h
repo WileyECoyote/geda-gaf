@@ -22,7 +22,6 @@
 #ifndef H_GSCHEM_GLOBALS_H
 #define H_GSCHEM_GLOBALS_H
 
-
 /* window list */
 extern GList *global_window_list;
 
@@ -80,6 +79,8 @@ extern SCM complex_place_list_changed_hook;
 #else
 #define ATTRIBUTE_UNUSED
 #endif
+
+typedef enum  { Image_All, Image_Display } ImageExtent;
 
 /*EK* used by prototype.h */
 #include "../include/x_states.h"

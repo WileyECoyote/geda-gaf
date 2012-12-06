@@ -40,9 +40,15 @@
 ;;                | equivalent to GTK_NEW_COMBO but does not have the
 ;;                | localization so that the embed widgets, such as the
 ;;                | label, are accessible to implementation code.
+;; ------------------------------------------------------------------
+;; WEH | 12/12/12 | Added DialogFont "Monospace 13.3" and PANGO_R5_LABEL,
+;;                | Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary controls
+;;                | use the new PANGO_R5_LABEL macro instead of GTK_R5_LABEL.
 */
 
 #pragma once
+
+#define DialogFont "Monospace 13.3"
 
 typedef struct
 {
@@ -296,11 +302,15 @@ typedef struct
 #define GTK_RS_LABEL(name, spacing) \
         GTK_PADDED_LABEL (name, spacing, 0, FALSE, FALSE, h) \
         gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_RIGHT);
+        
+#define PANGO_R5_LABEL(name) GTK_PADDED_LABEL (name, 5, 0, FALSE, FALSE, h) \
+        gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_RIGHT); \
+        gtk_widget_modify_font (name##Label, pango_font_description_from_string (DialogFont));
 
 /* Combine Label and Box */
 #define GTK_LABEL_HBOX(parent, name, spacing)  \
         NEW_HCONTROL_BOX (parent, name, spacing); \
-        GTK_R5_LABEL (name);
+        PANGO_R5_LABEL(name)
 
 #define CSECTION_OPTIONS(parent, name, ysize, pad, type) \
           type##ZSECTION(parent, name##Options, -1, ysize) \
@@ -587,7 +597,7 @@ typedef struct
         GtkWidget *name##Label=NULL;                    \
         GtkWidget *name##Image=NULL;                    \
         NEW_HCONTROL_BOX (parent, name, spacing)        \
-        GTK_R5_LABEL (name)                    \
+        PANGO_R5_LABEL (name)                           \
         name##Switch = create_geda_switch (GedaDialog, name##_hbox, name##Switch,  name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
 }

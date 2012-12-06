@@ -48,7 +48,7 @@
 /*------------------------------------------------------------------*/
 /*!
  * \brief Create a SHEET_DATA Page Data Struct.
- *
+ *  \par Function Description
  * Creates an initialised but empty data struct.
  * \returns a pointer to a data struct.
  */
@@ -94,7 +94,7 @@ SHEET_DATA *s_sheet_data_new()
 /*------------------------------------------------------------------*/
 /*!
  * \brief Frees a SHEET_DATA struct and all of it's contents.
- *
+ *  \par Function Description
  * Creates an initialised but empty SHEET_DATA struct.
  * \returns a pointer to a SHEET_DATA struct.
  */
@@ -120,6 +120,20 @@ bool s_sheet_data_reset(PageDataSet *PageData)
 }
 
 /* ------------ s_sheet_data interface to s_string_list --------- */
+
+/*! \brief Add Data to string list in sheet-head structures
+ *  \par Description 
+ *       The next 6 functions are  called from the 
+ * s_sheet_data_add_yada-yada_list_items functions below but have "reduced"
+ * names and simplified parameters to improve readability of those functions.
+ * These functions are also used by the s_sheet_data_load_blank function
+ * below.
+ * 
+ * \param [IN] PageData pointer to sheet_head structure.
+ * \param [IN] xxx_str_name pointer to string to be added to the associated
+ *                          string list
+ * 
+ */
 static void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name) {
   s_string_list_add_item(PageData->master_comp_list_head,
                        &(PageData->comp_count),
@@ -154,9 +168,8 @@ static void s_sheet_data_add_pin_attrib(PageDataSet *PageData, char *pin_attrib_
 /*------------------------------------------------------------------*/
 /*!
  * \brief Fill a SHEET_DATA struct with Template Data and load tables.
- *
- * Creates an initialised but empty SHEET_DATA struct.
- * \returns a pointer to a SHEET_DATA struct.
+ *  \par Function Description
+ * Creates and initialises a SHEET_DATA struct with dummy data.
  */
 void s_sheet_data_load_blank(PageDataSet *PageData)
 {
@@ -188,7 +201,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
   }
 
   /* s_table_load_new_page used to be called in x_fileselect but the old
-   * algorythms were rearranged so that this call was moved to s_toplevel
+   * algorithms were rearranged so that this call was moved to s_toplevel
    * _init_data_set, (for real data) but for a blank "workbook" we are by-
    * bassing and need to load the dummy data we just put in sheet_data.
    */
@@ -198,11 +211,13 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
 }
 /*------------------------------------------------------------------*/
 /*! \brief Add components to master list
- *
- * Add to the master list of components refdeses by running through
- * the components and recording the comp refdeses it discovers. Then
- * it sorts them into alphabetical order.  Data struct being searched
- * is: OBJECT->attribs(->next. . .)->object->text->string
+ *  \par Function Description
+ * Add to the master list of components refdeses by iterating through
+ * the components and selectively recording discovered comp refdeses.
+ * This list is used for the column label on the component sheet. The
+ * Data struct being searched  is: OBJECT->attribs(->next. . .)
+ * ->object->text->string
+ * 
  * \param obj_list pointer to the component list to be added.
  */
 void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
@@ -258,14 +273,13 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Add attributes to master list
- *
- * Add to the master list of comp attributes by running
- * through each component on the page and recording all attribs 
- * it discovers. Then it sorts them into an order used for the 
- * horiz listing of the attribs on the spreadsheet.
- * Data struct being searched is: 
+ *  \par Function Description
+ * Adds attribute names to the master list of comp attributes. The names
+ * are obtained by iterating through each component on the page, selectively
+ * recording discovered attributes.The data struct being searched  is:
  * sheet_head->component_list_head->attrib->name;
- * \param obj_list pointer to list of attributes being added
+ * 
+ * \param obj_list pointer to list of objects
  */
 void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
   char *attrib_text;
@@ -273,16 +287,10 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
   const GList *o_iter;
   GList *a_iter;
   OBJECT *a_current;
-
   GList *object_attribs;
+  
   bool is_attached;
   
-#ifdef DEBUG
-  fflush(stderr);
-  fflush(stdout);
-  printf("=========== Just entered  s_sheet_data_add_master_comp_attrib_list_items! ==============\n");
-#endif
-
   if (verbose_mode) {
     printf(_("- Starting master comp attrib list creation.\n"));
   }
@@ -309,7 +317,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 	  
 	  /* Don't include "refdes" or "slot" because they form the row name */
 	  /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
-	  //WEH: use instr and gang strings, maybe take out pin
+	  //WEH: use instr and gang strings?
 	  if ((strcmp(attrib_name, "graphical") != 0) &&
               (strcmp(attrib_name, "refdes") != 0) &&
 	      (strcmp(attrib_name, "net") != 0) &&
@@ -322,14 +330,12 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
                printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
 #endif
                s_sheet_data_attached_attrib(sheet_head, attrib_name);
-               s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
+
 	     }
-	     else { /* TODO: non attached attribute should go into a seperate list and be mergered later */
 #if DEBUG
-	       printf("adding an attrib to master comp attrib list attrib = %s\n", attrib_text);
+	     printf("adding an attrib to master comp attrib list attrib = %s\n", attrib_text);
 #endif
-               s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
-	     }
+             s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
 	  }
 	  g_free(attrib_name);
 	  g_free(attrib_text);
@@ -344,7 +350,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Add net names to master list.
- *
+ *  \par Function Description
  * Build the master list of net names by running
  * through the individual cells and recording the net refdeses
  * it discovers. 
@@ -358,7 +364,7 @@ void s_sheet_data_add_master_net_list_items (const GList *obj_start) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Add net attributes to master list.
- *
+ *  \par Function Description
  * Build the master list of net attribs.
  * It's currently empty, waiting for implementation of net
  * attributes.
@@ -370,7 +376,7 @@ void s_sheet_data_add_master_net_attrib_list_items (const GList *obj_start) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Add pin names to master list.
- *
+ *  \par Function Description
  * Build the master
  * list of pin names.  It writes the
  * label refdes:pinnumber into the global master pin list.
@@ -461,7 +467,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Add pin attributes to master list.
- *
+ *  \par Function Description
  * Build the master
  * list of pin attributes.  It writes 
  * each attrib name into the master pin attrib list.

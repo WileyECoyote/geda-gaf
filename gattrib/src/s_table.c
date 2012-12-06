@@ -47,7 +47,7 @@
 
 /*------------------------------------------------------------------*/
 /*! \brief Create a new table
- *
+ *  \par Function Description
  * This is the table creator.  It returns a pointer to an initialized
  * TABLE data struct. The table is a dynamically allocated 2D array of
  * structs. The tables are allocated as an array of columns so the arrays
@@ -94,20 +94,18 @@ TABLE **s_table_new( int rows, int cols)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Resize a TABLE
- *
- * This function recreates the table with a new size.  It can only increase
- * the number of cols.  You can't increase the number of rows since
- * gattrib doesn't allow you to input new components.  For Decreasing the 
- * number of cols use s_table_remove_attribute.
+/*! \brief Add Comlumn to the Component TABLE
+ *  \par Function Description
+ * This function adds a column to the component table by increasing the
+ * allocated memory and initialized the new column record. If the coloumn
+ * is inserted rather than appended, existing record are relocated to
+ * make room for the insertion.
  * 
  * \param table Table to resize
  * \param rows Number of rows in the table
- * \param old_cols Number of columns previously in the table
- * \param new_cols Number of columns required in the table
+ * \param Xa Where to add the new column
+ * \param Xt The current number of columns in the table.
  * \returns a pointer to the resized table
- * \todo The row and column information could be stored in the
- *       TABLE struct.
  */
 TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 {
@@ -157,11 +155,10 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   return new_table;
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Destroy a table
- *
- * This function destroys the old table.
+ *  \par Function Description
+ * This function destroys a table array.
  * Use it after reading in a new
  * page to get rid of the old table before building a new one.
  * \param table Table to destroy
@@ -193,15 +190,13 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
   return;
 }
 
-
-
 /*------------------------------------------------------------------*/
 /*! \brief Get a string index number
- *
- * This function returns the index number
- * when given a STRING_LIST and a 
- * string to match.  It finds the index
- * number by iterating through the master  list.
+ *  \par Function Description
+ * This function returns the index number when given a STRING_LIST and a 
+ * string to match.  It finds the index number by iterating through the
+ * master  list.
+ * 
  * \param local_list
  * \param local_string
  * \returns the index of the string
@@ -227,7 +222,7 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Create attribute pair
- *
+ *  \par Function Description
  * This function takes a table, a row list, and a row name,
  * and returns a list holding
  * name=value pairs for all attribs pertainent to that particular
@@ -279,7 +274,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
 
 /*------------------------------------------------------------------*/
 /*! \brief Add components to the component table
-*
+ *  \par Function Description
 * This fcn iterates over adds all
 * objects found on this page looking
 * for components. When it finds a component, it finds all component
@@ -441,7 +436,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
 #if 0
 /*------------------------------------------------------------------*/
 /*! \brief Add nets to net table
- *
+ *  \par Function Description
  * This function iterates over adds all
  * items found on this page looking
  * for nets and adds them individually to the net table.  Looping over
@@ -533,7 +528,7 @@ void s_table_add_items_to_net_table(OBJECT *start_obj) {
 
 /*------------------------------------------------------------------*/
 /*! \brief Add pins to pin table.
- *
+ *  \par Function Description
  * This function iterates over adds all items found on this page
  * looking for pins.  WHen it finds a pin, it gathers all
  * pin attribs and sticks them into the pin table. 
@@ -653,13 +648,12 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 }
 
 /*! \brief Remove an Attribute from a table
- *
- * This function destroys the old table.
- * Use it after reading in a new
- * page to get rid of the old table before building a new one.
- * \param table Table to destroy
- * \param row_count Number of rows in table
- * \param col_count Number of columns in table
+ *  \par Function Description
+ * This function deletes an attribute record in the component and releases
+ * the associated memory.
+ * 
+ * \param table Component Table containing record to remove
+ * \param X     The index of the attribute column to be removed
  */
 #define data_table sheet_head->component_table
 #define free_if(field) if(((data_table)[X][Y]).field) g_free(((data_table)[X][Y]).field);
@@ -707,10 +701,10 @@ bool s_table_remove_attribute(TABLE **table, int X) {
 #undef col_count
 /*------------------------------------------------------------------*/
 /*! \brief Pull spreadsheet data to TABLEs.
- *
- * This function traverses the spreadsheet,
- * extracts the attribs from the cells, and places them back
- * into TABLE.  This is the first step in saving out a project.
+ *  \par Function Description
+ * This function traverses the spreadsheet, extracts the attribs from the
+ * cells, and places them back into TABLE. This is the first step in saving
+ * a project.
  */
 void s_table_gtksheet_to_all_tables() {
 
@@ -772,11 +766,10 @@ void s_table_gtksheet_to_all_tables() {
 /* ===================  Private Functions  ====================== */
 /*------------------------------------------------------------------*/
 /*! \brief Extract attributes from gtksheet into TABLE
- *
- * This function does the actual heavy lifting of looping
- * through the spreadsheet, extracting the attribs from
- * the cells, and placing them back into TABLE.  This is the
- * first step in saving out a project.
+ *  \par Function Description
+ * This function does the actual heavy lifting of looping through the
+ * spreadsheet, extracting the attribs from the cells, and placing them
+ * back into TABLE.
  *
  * \param local_gtk_sheet GtkSheet to save
  * \param master_row_list STRING_LIST of rows
@@ -872,7 +865,13 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
   return;
 }
 
-/*! \brief Do Documentation  */
+/*! \brief Load data tables
+ *  \par Function Description
+ * This function calls s_table_new to create new tables loads and then
+ *  s_table_add_items_to_comp_table to add values the tables.
+ *
+ * \param PageData ptr to sheet_head/PageDataSet structure
+ */
 void s_table_load_new_page(PageDataSet *PageData) {
   GList *iter;
   PAGE *p_local;

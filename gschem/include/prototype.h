@@ -221,6 +221,7 @@ SCM g_rc_paper_sizes(SCM papername, SCM scm_width, SCM scm_height);
 SCM g_rc_output_type(SCM mode);
 SCM g_rc_output_orientation(SCM mode);
 SCM g_rc_image_color(SCM mode);
+SCM g_rc_invert_images(SCM mode);
 SCM g_rc_image_size(SCM width, SCM height);
 SCM g_rc_output_color(SCM mode);
 SCM g_rc_output_capstyle(SCM mode);
@@ -249,7 +250,7 @@ SCM g_rc_sort_component_library(SCM mode);
 SCM g_rc_add_attribute_offset(SCM offset);
 SCM g_rc_add_menu(SCM menu_name, SCM menu_items);
 SCM g_rc_auto_load_last(SCM mode);
-SCM g_rc_autoplace_attributes_grid(SCM offset);
+SCM g_rc_attribute_placement_grid(SCM offset);
 SCM g_rc_auto_save_interval(SCM seconds);
 SCM g_rc_window_size(SCM width, SCM height);
 SCM g_rc_warp_cursor(SCM mode);
@@ -803,6 +804,7 @@ bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current, bool snapped, int
 
 /* x_settings.c */
 void x_configure_settings (GSCHEM_TOPLEVEL *w_current);
+bool x_settings_set_scm_int(char *symbol_name, int value );
 
 /* x_compselect.c */
 void x_compselect_open (GSCHEM_TOPLEVEL *w_current);
@@ -818,9 +820,10 @@ int x_grid_query_drawn_spacing(GSCHEM_TOPLEVEL *w_current);
 void x_draw_tiles(GSCHEM_TOPLEVEL *w_current);
 /* x_image.c */
 void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
-		      int desired_width, int desired_height, char *filetype);
+		      int desired_width, int desired_height,
+                      char *filetype, ImageExtent);
 void x_image_setup(GSCHEM_TOPLEVEL *w_current);
-GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current);
+GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent);
 /* x_log.c */
 void x_log_open ();
 void x_log_close ();

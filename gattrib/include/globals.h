@@ -118,7 +118,8 @@ GtkWidget **scrolled_windows;
 GtkWidget *entry;
 GtkWidget *location;
 
-GtkWidget *label;
+GSList *ComponentMenuItems;
+GSList *ComponentToolbarButtons;
 
 /* command line switch settings */
 extern int verbose_mode;

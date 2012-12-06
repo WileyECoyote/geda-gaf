@@ -1,3 +1,19 @@
+2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
+        * Code Cleanup & Documentation Updates:
+
+	* src/x_window: Eliminated num_rows and num_cols variable in
+          function x_window_add_items, these were unnecessary and did not
+          appreciably improve readability.
+          Added Callback function on_notebook_switch_page for notebook
+
+        * src/x_menu.c: Added new functions x_menus_set_sensitivities and
+          x_menu_get_collections to support enabling and disabling menu
+          options based on the active notebook sheet.
+
+        * src/x_toolbars.c: Revised x_toolbars_init and added new function
+          x_toolbar_set_sensitivities to support enabling and disabling
+          toolbar buttons based on the active notebook sheet.
+
 2012-11-28 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/s_table.c: Major re-vamp, tables are now referecne as [X][Y].
@@ -6,7 +22,7 @@
         Replaced function s_table_resize with s_table_add
         Added function s_table_remove_attribute
 
-        * src/x_menu.c: completed implementation of delete attribute
+        * src/x_menu.c: Completed implementation of delete attribute
         functionality that was part of the previous commit but was disabled
         in the menus.
 
@@ -117,9 +133,9 @@
         Disabled visability of the "Nets" tab. Previously the was controled
         with preprocessor directives to prevent compilation. The Nets tab
         is now compiled in but it is kept off and requires development.
-        (Idea: Would it be easer to just have gnetlist generate a text
-         file and read that in to the net sheet then to sort through toplevel
-         with library?)
+        (Idea: Would it be easer to just have gnetlist generate a text file
+        and read that in to the net sheet then to sort through toplevel
+        with library?)
 
 	* src/x_window: replace gtk_widget_show_all with gtk_widget_show
         for main window, (requiring that gtk_widget_show be added for the
@@ -311,17 +327,17 @@
 
 	2007-04-12 Peter Clifton <pcjc2@cam.ac.uk>
 
-		* src/o_attrib.c: Replace incorrect use of world_get_complex_bounds()
-		  with world_get_object_list_bounds().
+	* src/o_attrib.c: Replaced incorrect use of world_get_complex_bounds()
+	with world_get_object_list_bounds().
 
 2007-04-17 Peter Clifton <pcjc2@cam.ac.uk>
 
-	* src/gtkitementry_2_2.c: Fixed code left accidentally when
-	  removing an obsolete #if 0'd out section.
+	* src/gtkitementry_2_2.c: Fixed code left accidentally when removing
+	an obsolete #if 0'd out section.
 
 2007-4-15  Stuart Brorson <sdb (AT) cloud9 (DOT) net>
-	* src/*.c:  Added DOxygen style comment pragma to many (but not
-	all) .c files.  DOxygenating gattrib is an ongoing project.
+	* src/*.c:  Added DOxygen style comment pragma to many (but not all)
+	source files.  DOxygenating gattrib is an ongoing project.
 	
 2007-04-15 Ales Hvezda   <ahvezda@geda.seul.org>
 

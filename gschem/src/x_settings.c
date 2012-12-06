@@ -31,7 +31,14 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Initial release.
 ;; ------------------------------------------------------------------
-;;
+;; WEH | 12/02/12 |  Added function x_settings_set_scm_int, revised
+;;                |  generate_rc to use the template rc file and to
+;;                |  write to the user's home directory. (This resolves
+;;                |  implementation issues on Linux system that were due
+;;                |  to permissions associated with /etc/geda.)
+;; ------------------------------------------------------------------
+;; WEH | 12/04/12 |  Added function x_settings_set_scm_int, revised
+;; ------------------------------------------------------------------
 */
 
 #ifdef HAVE_CONFIG_H
@@ -224,6 +231,29 @@ void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
 
 }
 
+/** @brief function change_default_titleblock in GatherSettings */
+bool x_settings_set_scm_int(char *symbol_name, int value ) {
+  
+  char s_val[5];
+  char buffer[128];
+  char *str;
+  char *strbuff;
+
+  if (symbol_name) {
+    strbuff = &buffer[0];
+    str = int2str(value, s_val, 10); /* convert the integer to a string */
+    strcpy(strbuff, "(define ");
+    strcat(strbuff, symbol_name );
+    strcat(strbuff, " " );
+    strcat(strbuff, str );
+    strcat(strbuff, ")" );
+    g_scm_c_eval_string_protected(strbuff);
+  }
+  else
+    return FALSE;
+  return TRUE;
+}
+
 /* ----------------- Start Attribute TAB Support Functions ------------------ */
 
 /* \defgroup X_Settings_Attribute Attribute Settings File Support Functions
@@ -387,6 +417,7 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
 int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
 {
   char *inputfile;			/* Name of the input file */
+  char *templatefile;                   /* Name of the Template file */
   char *outputfile;			/* Name of the output file */
 
   FILE* input;				/* Input file handle */
@@ -401,16 +432,27 @@ int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
   int last=0;				/* Index of the handler called previously */
   int result;				/* Our exit code */
 
-  inputfile = g_strconcat (s_path_sys_config (), G_DIR_SEPARATOR_S,
-                           "system-", rcname, NULL);
-  inputfile = f_normalize_filename (inputfile, NULL);
+  /* Build path for user config file */
+  inputfile = g_strconcat (s_path_user_config (), G_DIR_SEPARATOR_S, rcname, NULL);
+  
+  /* Check for existence of user config file */
+  if(access(inputfile, R_OK) != 0) {
+    /* Copy the template user config file to user's folder */
+    templatefile = g_strconcat (s_path_sys_config (), G_DIR_SEPARATOR_S,
+                             "user-", rcname, ".scm", NULL);
+    result = fcopy(templatefile, inputfile);
+  }
+  
   if (inputfile == NULL) {
     s_log_message("File Name error! system-%s", rcname);
     return -1;
   }
 
-  outputfile = g_strconcat (inputfile, ".tmp", NULL);
+  outputfile = g_strconcat (s_path_user_config (), G_DIR_SEPARATOR_S,
+                            rcname, ".tmp", NULL);
 
+  s_log_message("Writing configuration to [%s]", outputfile);
+  
   if (( input = fopen (inputfile, "r" )) == NULL) {
     s_log_message("File open for read-only error: \"%s\", %s\n", inputfile, strerror( errno ));
     result = errno;
@@ -698,9 +740,9 @@ KEYWORD (auto_save_interval) {
   RC_INTEGER_TOUT (auto_save_interval);
 }
 
-/** @brief function do_kw_autoplace_attributes_grid in X_Settings_Keyword_Handlers */
-KEYWORD (autoplace_attributes_grid) {
-  RC_INTEGER_WOUT (autoplace_attributes_grid);
+/** @brief function do_kw_attribute_placement_grid in X_Settings_Keyword_Handlers */
+KEYWORD (attribute_placement_grid) {
+  RC_INTEGER_WOUT (attribute_placement_grid);
 }
 
 /** @brief function do_kw_component_dialog_attributes in X_Settings_Keyword_Handlers */
@@ -1038,7 +1080,10 @@ KEYWORD ( scroll_wheel ) {
 KEYWORD (image_color) {
   RC_BOOLEAN_TOUT (image_color)
 }
-
+/** @brief function do_kw_invert_images in X_Settings_Keyword_Handlers */
+KEYWORD (invert_images) {
+  RC_BOOLEAN_TOUT (invert_images)
+}
 /** @brief function do_kw_text_case in X_Settings_Keyword_Handlers */
 KEYWORD ( text_case ) {
   RC_TEXT_CASE_STRINGS

@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 225 350 9 8 1 1 0 0 1
 device=LM386
 T 200 900 8 10 1 1 0 0 1

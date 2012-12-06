@@ -36,7 +36,7 @@ extern int default_log_window_type;
 extern int default_action_feedback_mode;
 extern int default_add_attribute_offset;
 extern int default_auto_load_last;
-extern int default_autoplace_attributes_grid;
+extern int default_attribute_placement_grid;
 extern int default_auto_save_interval;
 extern GList *default_component_select_attrlist;
 extern int default_continue_component_place;
@@ -90,6 +90,7 @@ extern int default_scroll_wheel;
 
 /* Printer Stuff */
 extern int default_image_color;
+extern int default_invert_images;
 extern int default_image_width;
 extern int default_image_height;
 extern int default_init_right;

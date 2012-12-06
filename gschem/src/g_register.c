@@ -105,6 +105,7 @@ static struct gsubr_t gschem_funcs[] = {
   { "output-color",              1, 0, 0, g_rc_output_color },
   { "output-capstyle",           1, 0, 0, g_rc_output_capstyle },
   { "image-color",               1, 0, 0, g_rc_image_color },
+  { "invert-images",             1, 0, 0, g_rc_invert_images },
   { "image-size",                2, 0, 0, g_rc_image_size },
   { "third-button",              1, 0, 0, g_rc_third_button },
   { "map-keys",                  2, 0, 0, g_rc_map_keys },
@@ -140,7 +141,7 @@ static struct gsubr_t gschem_funcs[] = {
 
   { "add-attribute-offset",      1, 0, 0, g_rc_add_attribute_offset },
   { "auto-load-last",            1, 0, 0, g_rc_auto_load_last },
-  { "autoplace-attributes-grid", 1, 0, 0, g_rc_autoplace_attributes_grid },
+  { "attribute-placement-grid",  1, 0, 0, g_rc_attribute_placement_grid },
   { "mousepan-gain",             1, 0, 0, g_rc_mousepan_gain },
   { "keyboardpan-gain",          1, 0, 0, g_rc_keyboardpan_gain },
   { "print-command",             1, 0, 0, g_rc_print_command },

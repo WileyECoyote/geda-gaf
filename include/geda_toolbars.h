@@ -50,13 +50,13 @@ typedef struct
 #define TB_TOOLTIP(member)   ToolbarStrings[member].Tip
 #define TB_PRIVATE(member)     ToolbarStrings[member].Private
 
-#define TOOLBAR_STD_BUTTON( bar, name, type, icon, func) { \
+#define TOOLBAR_STD_BUTTON( bar, name, type, icon, func) \
    GtkWidget *name##_button; \
    TOOLBAR_BUTTON( bar##_Toolbar, name, type, icon, name##_button, func, name) \
-}
 
-#define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) \
-        TOOLBAR_BUTTON_##type (bar, name, icon, button, func, data)
+#define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) { \
+        TOOLBAR_BUTTON_##type (bar, name, icon, button, func, data) \
+}
 
 #define TOOLBAR_BUTTON_PIX(bar, name, icon, button, func, data) \
     tmp_toolbar_icon = create_pixmap (#icon); /* from file */ \

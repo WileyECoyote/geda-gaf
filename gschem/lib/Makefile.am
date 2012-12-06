@@ -1,6 +1,8 @@
 
+rcuserdir = ~/.gEDA
 rcdatadir = $(GEDARCDIR)
-rcdata_DATA = system-gschemrc gschem-gtkrc \
+
+rcdata_DATA = user-gschemrc.scm system-gschemrc gschem-gtkrc \
 	      gschem-colormap-lightbg gschem-colormap-darkbg \
 	      gschem-colormap-bw gschem-colormap-custom
 
@@ -17,7 +19,8 @@ system-gschemrc: $(top_builddir)/configure system-gschemrc.scm
 	fi
 
 EXTRA_DIST = system-gschemrc.scm gschem-gtkrc gschem-colormap-lightbg \
-             gschem-colormap-darkbg gschem-colormap-bw gschem-colormap-custom
+             gschem-colormap-darkbg gschem-colormap-bw gschem-colormap-custom \
+             user-gschemrc.scm
 
 MOSTLYCLEANFILES = *.log *~
 CLEANFILES = *.log *~

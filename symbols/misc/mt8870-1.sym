@@ -1,6 +1,6 @@
 v 20121031 2
 T 10 10 5 10 0 0 0 0 1
-author=AutoTron <Symbol Repair geda>
+author=AutoTron
 T 700 1850 9 10 1 1 0 0 1
 description=DTMF Receiver
 P 2300 3500 2600 3500 1 0 1

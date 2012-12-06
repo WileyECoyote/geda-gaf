@@ -33,6 +33,8 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Inital release.
 ;; ------------------------------------------------------------------
+;; WEH | 12/04/12 |  Added switch for EnableColorImaging
+;; ------------------------------------------------------------------
 ;;
 */
 /*************************** CAUTION! ******************************/
@@ -92,8 +94,8 @@ WidgetStringData DialogStrings[] = {
         { "DecreaseAttributeButt","Down",         "Decrease selected attribute Add Attribute list"},
 
   /* 6 String for Combo Controls  */
-        { "TitleBlockCombo",      "Titleblock:",    "Name of Default Titleblock"},
-        { "ColorMapSchemeCombo",  "Map Scheme:",    "Choose which color scheme should be load at startup"},
+        { "TitleBlockCombo",      "   Titleblock:",    "Name of Default Titleblock"},
+        { "ColorMapSchemeCombo",  "Scheme:",        "Choose which color scheme should be load at startup"},
         { "DotGridModeCombo",     "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-fixed-threshold."},
         { "LogWindowTypeCombo",   "  Window:",      "Controls if the message window is a transient or decorated as a normal window. The window manager is responsible for doing the decoration"},
         { "MiddleButtonCombo",    "Middle Button:", "Controls if the middle mouse button draws strokes, repeats the last command, does an action (move and copy (holding down the ALT key) are supported) on a single objects, or if it does the mouse panning."},
@@ -220,6 +222,7 @@ WidgetStringData DialogStrings[] = {
         { "DragMoveSwitch",             "Drag Move:",		"If enabled the drag movement over selected objects can move the objects."},
         { "DrawGripsSwitch",            "Draw Grips:",	        "Controls if the editing grips are drawn when selecting objects."},
         { "EmbedComponentsSwitch",      " Embed Components:",	"Determines if the newly placed components are embedded in the schematic or if only the filename is specified and the component is searched for instead. If it is enabled then all new components will be embedded othewise they are not embedded. This can be controlled on the fly during runtime with the \"Embed Component\" checkbox on the select component dialog box."},
+        { "EnableColorImaging",         "Color Imaging:",       "Controls if png images are color (enabled) or black/white (disabled). If Enable images will be generated bases on the active \"Display\" color map, which could be B&W"},
         { "EnableLogSwitch",            "  Enable:",		"Determines if the logging mechanism is enabled or disabled."},
         { "EnableUndoSwitch",           "  Enable:",		"Enabled or disable Undo function."},
         { "EnforceHierarchySwitch",     "Enforce Hierarchy:",	"Controls if the movement between hierarchy levels (of the same underlying schematics) is allowed or not.If this is enabled then the user cannot (without using the page manager) move between hierarchy levels otherwise if enabled the user sees all the hierarchy levels as being flat."},
@@ -227,9 +230,10 @@ WidgetStringData DialogStrings[] = {
         { "FeedbackModeSwitch",         "Feedback Mode:",	"Disable sets Action Feedback to outline to get an outline of the selection. Enable to get a bounding box of the selection. For slow computer or video sub-system, use boundingbox to  improve performance during editing operations."},
         { "ForceBoundingBoxSwitch",     "Bounding Box:",	"Controls if the entire bounding box of a symbol is used when figuring out which end of the pin is considered the active port. Enable this when gschem is guessing incorrectly."},
         { "FilePreviewSwitch",          "File Preview:",	"Controls if the preview area in the File Open/Save As and Component dialog boxes is enabled by default or not."},
-        { "FriendlyColorMapSwitch",     "Color Map:",		"Make the gschem color maps more user-friendly"},
+        { "FriendlyColorMapSwitch",     " Color Map:",		"Make the gschem color maps more user-friendly"},
         { "FriendlyOutlineMapSwitch",   "Outline Map:",	        "Make the gschem Outline color maps more user-friendly"},
         { "InitLogWindowSwitch",        "Start Up:",		"Controls if the log message window is mapped when gschem is started up."},
+        { "InvertImagesSwitch",         "Invert Images:",       "Controls if export black & white images are reversed to black on white (enabled) or not, black on white (disabled)"},
         { "MagneticNetsSwitch",         "   Magnetic:",		"Controls the initial setting of the magnetic net mode. The magnetic net mode marks a possible connection that is close to the current cursor position"},
         { "NetDirectionSwitch",         "  Direction:",		"Controls if the net direction mode is used. This mode tries to guess the best continuation direction of a L-shape net when adding a net."},
         { "NotifyEventsSwitch",         "Notify Events:",	"Controls if dialog boxes are raised whenever an expose event happens."},
@@ -237,7 +241,6 @@ WidgetStringData DialogStrings[] = {
         { "RubberNetsSwitch",           " Rubberband:",	        "Controls if net connections are maintained when you move a connecting component or net."},
         { "ScrollBarsSwitch",           "Scroll Bars:",	        "Controls if the scrollbars are displayed (enabled) or not (disabled). If you disable the scrollbars you will not be able to use the scroll wheel on your mouse."},
         { "SortLibrarySwitch",          "     Sort Library:",	"If this is enabled then the component library will be sorted in alphanumeric order. This option is cosmetic and will not alter the component search order (latest added gets scanned first)."},
-        { "SpareSwitchSwitch",	        "Spare Switch:",	"This switch does nothing"},
         { "TextOriginMarkerSwitch",     "Origin Marker:",	"Controls if the text origin markers are displayed or not."},
         { "UndoViewsSwitch",            "   Views:",		"Controls if pan or zoom commands are saved in the undo list. If this is enabled then a pan or zoom command will be considered a command and can be undone. If this is false then panning and zooming is not saved in the undo list and cannot be undone. Note the current viewport information is saved for every command so the display will change to the viewport before a command is executed."},
         { "WarpCursorSwitch",           "Warp Cursor:",	        "Controls if the cursor is warped (or moved) when you zoom in and out."},

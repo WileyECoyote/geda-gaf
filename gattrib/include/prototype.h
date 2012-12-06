@@ -154,7 +154,7 @@ void s_string_list_sort_all_list();
 
 /* ------------- s_table.c ------------- */
 TABLE **s_table_new(int rows, int cols);
-TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt);
+TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt) G_GNUC_WARN_UNUSED_RESULT;
 //TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols);
 void s_table_destroy(TABLE **table, int row_count, int col_count);
 int  s_table_get_index(STRING_LIST *list, char *string);
@@ -258,13 +258,14 @@ void x_menu_file_save_as();
 void x_menu_file_export_csv();
 void x_menu_edit_new_attrib();
 void x_menu_edit_delete_attrib();
-
+void x_menus_set_sensitivities(GSList *ListMenuItems, int sensitive);
 void x_menu_fix_gtk_recent_submenu();
 GtkActionGroup* x_menu_create_recent_action_group(void);
 GtkWidget* x_menu_create_menu(GtkWindow *window);
 
 /* ------------- x_toolbars.c ------------- */
 void x_toolbars_init(GtkWidget *parent_container);
+void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive);
 
 /* ------------- x_window.c ------------- */
 void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData);
