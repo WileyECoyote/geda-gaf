@@ -381,13 +381,12 @@ void o_move_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
  *
  */
 void
-o_move_draw_rubber (GSCHEM_TOPLEVEL *w_current,
-                    EdaRenderer *renderer)
+o_move_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
 {
   GList *s_iter;
   int diff_x, diff_y;
 
-  o_place_draw_rubber (w_current, renderer);
+  o_place_draw_rubber (w_current, drawing);
 
   if (!w_current->netconn_rubberband)
     return;
@@ -417,7 +416,7 @@ o_move_draw_rubber (GSCHEM_TOPLEVEL *w_current,
     object->line->y[whichone] += diff_y;
 
     /* Draw stretched object */
-    eda_renderer_draw (renderer, object);
+    eda_renderer_draw (w_current->renderer, object);
 
     /* Restore original geometry */
     object->line->x[whichone] -= diff_x;

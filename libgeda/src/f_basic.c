@@ -233,7 +233,8 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
   if (file_directory) { 
     if (chdir (file_directory)) {
       /* Error occurred with chdir */
-#warning FIXME: What do we do?
+      fprintf(stderr, "ERROR, f_open_flags: Could not changed to directory:[%s]",file_directory );
+      return 0;
     }
   }
 
@@ -242,8 +243,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
     full_rcfilename = g_build_filename (file_directory, "gafrc", NULL);
     g_rc_parse_file (toplevel, full_rcfilename, &tmp_err);
     if (tmp_err != NULL) {
-      /* Config files are allowed to be missing or skipped; check for
-       * this. */
+      /* Config files are allowed to be missing or skipped; check for this. */
       if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
           !g_error_matches (tmp_err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
         s_log_message ("%s\n", tmp_err->message);
@@ -312,7 +312,6 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
        the user if save it or not when closing the page. */
     page->CHANGED=1;
   }
-
       
   g_free(full_filename);
   g_free(full_rcfilename);
@@ -322,8 +321,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
    * called. */
   if (flags & F_OPEN_RESTORE_CWD) {
     if (chdir (saved_cwd)) {
-      /* Error occurred with chdir */
-#warning FIXME: What do we do?
+      fprintf(stderr, "ERROR, f_open_flags: Could not restore current directory to:[%s]",saved_cwd );
     }
     free(saved_cwd);
   }
@@ -485,7 +483,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
  *  \return A newly-allocated string with the resolved absolute
  *  pathname on success, NULL otherwise.
  */
-gchar *f_normalize_filename (const gchar *name, GError **error)
+char *f_normalize_filename (const gchar *name, GError **error)
 {
 #if defined (_WIN32)
     char buf[MAX_PATH];

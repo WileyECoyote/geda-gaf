@@ -844,7 +844,7 @@ static void o_path_print_hatch (TOPLEVEL *toplevel, FILE *fp, PATH *path,
   if (fill_width <= 1) fill_width = 2;
 
   lines = g_array_new (FALSE, FALSE, sizeof(LINE));
-
+  fprintf(stderr, "o_path_print_hatch: Calling m_hatch_path with pitch=[%d]", pitch1);
   m_hatch_path (path, angle1, pitch1, lines);
 
   for (i=0; i < lines->len; i++) {

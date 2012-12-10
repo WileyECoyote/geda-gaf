@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -30,12 +30,6 @@
 #endif
 
 #define NUM_BEZIER_SEGMENTS 100
-
-
-typedef void (*FILL_FUNC) (GSCHEM_TOPLEVEL *w_current,
-                           COLOR *color, PATH *path,
-                           gint fill_width,
-                           gint angle1, gint pitch1, gint angle2, gint pitch2);
 
 static PATH *path_copy_modify (PATH *path, int dx, int dy,
                                int new_x, int new_y, int whichone)
@@ -221,19 +215,20 @@ void o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
  */
-void o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current, EdaRenderer *renderer)
+void o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 {
   OBJECT object;
 
   /* Setup a fake object to pass the drawing routine */
   object.type = OBJ_PATH;
+  //color = o_drawing_color (w_current, o_current);
   object.color = SELECT_COLOR;
   object.line_width = 0; /* clamped to 1 pixel in circle_path */
   object.path = path_copy_modify (w_current->which_object->path, 0, 0,
                                   w_current->second_wx,
                                   w_current->second_wy, w_current->which_grip);
 
-  eda_renderer_draw (renderer, &object);
+  eda_renderer_draw (w_current->renderer, &object);
   g_free (object.path->sections);
   g_free (object.path);
 }

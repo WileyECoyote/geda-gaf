@@ -103,6 +103,7 @@ int     default_keyboardpan_gain          = DEFAULT_KEYBOARD_GAIN;
 int     default_magnetic_net_mode         = TRUE;
 int     default_netconn_rubberband        = FALSE;
 int     default_raise_dialog_boxes        = FALSE;
+int     default_save_settings             = TRUE;
 int     default_select_slack_pixels       = DEFAULT_SLACK_PIXELS;
 int     default_snap_size                 = DEFAULT_SNAP_SIZE;
 int     default_sort_component_library    = FALSE;
@@ -187,8 +188,8 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   toplevel->override_pin_color         = default_override_pin_color;
 
 /* Display Sub-System */
-  w_current->draw_grips                = default_draw_grips;
-
+  w_current->renderer->draw_grips      = default_draw_grips;
+  
   w_current->grid_mode                 = default_grid_mode;
   w_current->dots_grid_dot_size        = default_dots_grid_dot_size;
   w_current->dots_grid_mode            = default_dots_grid_mode;
@@ -219,6 +220,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->keyboardpan_gain          = default_keyboardpan_gain;
   w_current->netconn_rubberband        = default_netconn_rubberband;
   w_current->raise_dialog_boxes        = default_raise_dialog_boxes;
+  w_current->save_settings             = default_save_settings;
   w_current->select_slack_pixels       = default_select_slack_pixels;
   w_current->snap_size                 = default_snap_size;
   w_current->sort_component_library    = default_sort_component_library;
@@ -288,7 +290,6 @@ GList* g_list_clear(GList* list){
   if (list != NULL ) {
 
     g_list_foreach(list, (GFunc)g_free, NULL);
-
     lambda (const char* data)
     {
       list = g_list_remove( list, data);
@@ -311,4 +312,43 @@ void i_vars_freenames()
 {
   default_component_select_attrlist = g_list_clear(default_component_select_attrlist);
   g_free(default_print_command);
+}
+
+/*! \brief Setup gschem default configuration.
+ * \par Function Description
+ * Populate the default configuration context with compiled-in
+ * defaults.
+ */
+void
+i_vars_init_defaults()
+{
+  EdaConfig *cfg = eda_config_get_default_context ();
+
+  /* This is the prefix of the default filename used for newly created
+   * schematics and symbols. */
+  /// TRANSLATORS: this string is used to generate a filename for
+  /// newly-created files.  It will be used to create a filename of
+  /// the form "untitled_N.sch", where N is a number.  Please make
+  /// sure that the translation contains characters suitable for use
+  /// in a filename.
+  eda_config_set_string (cfg, "gschem", "default-filename", _("untitled"));
+}
+
+/*! \brief Save user config on exit.
+ * \par Function Description
+ * When gschem exits, try to save the user configuration to disk.
+ */
+void
+i_vars_atexit_save_user_config (gpointer user_data)
+{
+  EdaConfig *cfg = eda_config_get_user_context ();
+  GError *err = NULL;
+
+  eda_config_save (cfg, &err);
+  if (err != NULL) {
+    g_warning ("Failed to save user configuration to '%s': %s.",
+               eda_config_get_filename (cfg),
+               err->message);
+    g_clear_error (&err);
+  }
 }

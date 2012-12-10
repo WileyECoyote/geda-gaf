@@ -77,15 +77,13 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
  * Defines procedures in the (gschem core util) module. The module can
  * be accessed using (use-modules (gschem core util)).
  */
-static void
-init_module_gschem_core_util ()
+static void init_module_gschem_core_util ()
 {
   /* Register the functions */
   #include "g_util.x"
 
   /* Add them to the module's public definitions. */
-  scm_c_export (s_show_uri,
-                NULL);
+  scm_c_export (s_show_uri, NULL);
 }
 
 /*!
@@ -95,8 +93,7 @@ init_module_gschem_core_util ()
  * miscellaneous system services.  Should only be called by
  * main_prog().
  */
-void
-g_init_util ()
+void g_init_util ()
 {
   /* Define the (gschem core util) module */
   scm_c_define_module ("gschem core util",
@@ -152,13 +149,13 @@ char* int2str(int value, char* str, int radix) {
   return str;
 }
 
+char *gh_scm2newstr (SCM str, unsigned int *lenp);
 /*!
  * \brief return c pointer to SCM string.
  * \par Function Description
  * String utility function to get a c pointer to a scm string.
  * The caller is responsible for freeing the pointer.
  */
-
 char *scm_2_cstring( char* scm_str_name) /* WEH: couldn't find it, made it */
 {
   SCM s_symbol, s_value;
@@ -169,6 +166,7 @@ char *scm_2_cstring( char* scm_str_name) /* WEH: couldn't find it, made it */
   s_value = scm_variable_ref(s_symbol);
   return (char*) gh_scm2newstr(s_value, &len);
 }
+
 void sort_string_array( char *strings[], size_t strings_size) {
     int cstring_cmp(const void *a, const void *b)
     { 
@@ -183,6 +181,7 @@ void sort_string_array( char *strings[], size_t strings_size) {
    /* sort array using qsort functions */ 
     qsort(strings, strings_len, sizeof(char *), cstring_cmp); 
 }
+
 bool strequal(const char *str1, const char *str2) /* WEH: Maybe should be in <string.h> */
 {
   while ((*str1 == *str2) && (*str1)) { str1++; str2++; }

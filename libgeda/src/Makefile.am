@@ -1,5 +1,11 @@
 AM_CFLAGS=-I$(top_builddir)/include -Wall
 # Build a libtool library for installation in libdir.
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include/libgeda
+
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
 lib_LTLIBRARIES = libgeda.la
 
 BUILT_SOURCES = \
@@ -11,6 +17,7 @@ BUILT_SOURCES = \
 	scheme_page.x \
 	scheme_attrib.x \
 	scheme_os.x \
+	scheme_config.x \
 	scheme_deprecated.x
 
 scheme_api_sources = \
@@ -22,11 +29,13 @@ scheme_api_sources = \
 	scheme_os.c \
 	scheme_page.c \
 	scheme_attrib.c \
+	scheme_config.c \
 	scheme_deprecated.c
 
 libgeda_la_SOURCES = \
 	$(scheme_api_sources) \
 	a_basic.c \
+	edaconfig.c \
 	edaerrors.c \
 	f_basic.c \
 	f_print.c \
@@ -85,13 +94,16 @@ libgeda_la_SOURCES = \
 	u_basic.c
 
 libgeda_la_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
-	-I$(srcdir)/../include -I$(srcdir)/../include/libgeda
-libgeda_la_CFLAGS = \
+		      $(GEDA_INCLUDES)
+
+libgeda_la_CFLAGS =  \
 	$(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
 	$(GDK_PIXBUF_CFLAGS) $(AM_CFLAGS)
+
 libgeda_la_LDFLAGS = -version-info $(LIBGEDA_SHLIB_VERSION) \
 	$(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) $(GUILE_LIBS) \
 	$(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
+
 LIBTOOL=@LIBTOOL@ --silent
 
 # This is used to generate boilerplate for defining Scheme functions

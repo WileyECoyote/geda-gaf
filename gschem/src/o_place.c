@@ -252,8 +252,8 @@ void o_place_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
 void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
+  cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
   int diff_x, diff_y;
-  int left, top, bottom, right;
 
   g_return_if_fail (toplevel->page_current->place_list != NULL);
 
@@ -280,30 +280,33 @@ void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
     }
   }
 
+  /* Translate the cairo context to the required offset before drawing. */
+  cairo_save (cr);
+  cairo_translate (cr, diff_x, diff_y);
+
   /* Draw with the appropriate mode */
   if (w_current->last_drawb_mode == BOUNDINGBOX) {
+    GArray *map = eda_renderer_get_color_map (w_current->renderer);
+    int flags = eda_renderer_get_cairo_flags (w_current->renderer);
+    int left, top, bottom, right;
 
     /* Find the bounds of the drawing to be done */
     world_get_object_glist_bounds (toplevel,
                                    toplevel->page_current->place_list,
                                    &left, &top, &right, &bottom);
 
-    gschem_cairo_box (w_current, 0, left  + diff_x, top    + diff_y,
-                                    right + diff_x, bottom + diff_y);
-
-    gschem_cairo_set_source_color (w_current,
-                                   x_color_lookup_dark (BOUNDINGBOX_COLOR));
-    gschem_cairo_stroke (w_current, TYPE_SOLID, END_NONE, 0, -1, -1);
+    /* Draw box outline */
+    eda_cairo_box (cr, flags, 0, left, top, right, bottom);
+    eda_cairo_set_source_color (cr, BOUNDINGBOX_COLOR, map);
+    eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, 0, -1, -1);
   } else {
-    o_glist_draw_place (w_current, diff_x, diff_y,
-                        toplevel->page_current->place_list);
+    GList *iter;
+    for (iter = toplevel->page_current->place_list; iter != NULL;
+         iter = g_list_next (iter)) {
+      eda_renderer_draw (w_current->renderer, (OBJECT *) iter->data);
+    }
   }
-
-  /* Save movement constraints and drawing method for any
-   * corresponding undraw operation. */
-  w_current->last_drawb_mode = w_current->action_feedback_mode;
-  w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
-                                          ? CONSTRAINED : FREE;
+  cairo_restore (cr);
 }
 
 

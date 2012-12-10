@@ -156,7 +156,7 @@ OBJECT *o_grips_search_world(GSCHEM_TOPLEVEL *w_current, int x, int y, int *whic
  *  \param [in]  size       Half the width of the grip square in world units.
  *  \return True / False whether the mouse pointer is inside the grip.
  */
-static gboolean inside_grip( int x, int y, int grip_x, int grip_y, int size )
+static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
 {
   int xmin, ymin, xmax, ymax;
 
@@ -864,7 +864,7 @@ int o_grips_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   OBJECT *object;
   int whichone;
 
-  if (w_current->draw_grips == FALSE) {
+  if (w_current->renderer->draw_grips == FALSE) {
     return(FALSE);
   }
 
@@ -1457,60 +1457,6 @@ int o_grips_size(GSCHEM_TOPLEVEL *w_current)
   
   return min(size, MAXIMUM_GRIP_PIXELS/2);
 }
-
-/*! \brief Draw grip centered at <B>x</B>, <B>y</B>
- *  \par Function Description
- *  This function draws a grip centered at (<B>x</B>,<B>y</B>). Its color is
- *  either the selection color or the overriding color from
- *  <B>toplevel->override_color</B>.
- *
- *  The size of the grip depends on the current zoom factor.
- *
- *  <B>x</B> and <B>y</B> are in screen unit.
- *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
- *  \param [in] wx         Center x world coordinate for drawing grip.
- *  \param [in] wy         Center y world coordinate for drawing grip.
- */
-void o_grips_draw(GSCHEM_TOPLEVEL *w_current, int wx, int wy)
-{
-  TOPLEVEL *toplevel = w_current->toplevel;
-  int color;
-  int size, w_size;
-
-  /*
-   * Depending on the current zoom level, the size of the grip is
-   * determined. <B>size</B> is half the width and height of the grip.
-   */
-  /* size is half the width of grip */
-  size = o_grips_size (w_current);
-  w_size = WORLDabs (w_current, size);
-
-  /*
-   * The grip can be displayed or erased : if <B>toplevel->override_color</B>
-   * is not set the grip is drawn with the selection color ; if
-   * <B>toplevel->override_color</B> is set then the color it refers it
-   * is used. This way the grip can be erased if this color is the
-   * background color.
-   */
-  if (toplevel->override_color != -1 ) {
-    /* override : use the override_color instead */
-    color = toplevel->override_color;
-  } else {
-    /* use the normal selection color */
-    color = SELECT_COLOR;
-  }
-
-  /* You can only tell an offset of the grip when it is very small,
-   * at which point, the object it's on is probably drawn 1px wide.
-   * Pass 0 as a hint that we're centering on a "hardware" line.
-   */
-  gschem_cairo_center_box (w_current, 0, 0, wx, wy, w_size, w_size);
-
-  gschem_cairo_set_source_color (w_current, x_color_lookup (color));
-  gschem_cairo_stroke (w_current, TYPE_SOLID, END_NONE, 0, -1, -1);
-}
-
 
 /*! \brief Draw objects being grip maniuplated from GSCHEM_TOPLEVEL object.
  *

@@ -1,10 +1,5 @@
-
-if ENABLE_GATTRIB
-  GATTRIB_DIR=gattrib
-endif
-
-SUBDIRS = bitmaps intl libgeda gschem ${GATTRIB_DIR} gsymcheck gnetlist utils \
-          symbols docs examples
+SUBDIRS = bitmaps intl libgeda libgedacairo gaf gschem gattrib \
+          gsymcheck gnetlist utils symbols docs examples
 
 ACLOCAL_AMFLAGS = -I m4
 

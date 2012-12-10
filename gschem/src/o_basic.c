@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,6 +28,9 @@
 
 #define INVALIDATE_MARGIN 1
 
+extern COLOR display_colors[MAX_COLORS];
+extern COLOR display_outline_colors[MAX_COLORS];
+
 /*! \todo Lots of Gross code... needs lots of cleanup - mainly
  * readability issues
  */
@@ -41,7 +44,7 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
                      GdkRectangle *rectangles, int n_rectangles)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  gboolean draw_selected;
+  bool draw_selected;
   int grip_half_size;
   int cue_half_size;
   int bloat;
@@ -49,6 +52,12 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   GList *obj_list;
   GList *iter;
   BOX *world_rects;
+  
+  EdaRenderer *renderer;
+  int render_flags;
+  GArray *render_color_map = NULL;
+  GArray *render_outline_color_map = NULL;
+  cairo_matrix_t render_mtx;
 
   for (i = 0; i < n_rectangles; i++) {
     x_repaint_background_region (w_current, rectangles[i].x, rectangles[i].y,
@@ -81,30 +90,111 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   obj_list = s_page_objects_in_regions (toplevel, toplevel->page_current,
                                         world_rects, n_rectangles);
   g_free (world_rects);
+  
+  /* Set up renderer based on configuration in w_current */
+  render_flags = EDA_RENDERER_FLAG_HINTING;
+  if (toplevel->show_hidden_text)
+    render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+  if (w_current->fast_mousepan && w_current->doing_pan)
+    render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE
+                     | EDA_RENDERER_FLAG_PICTURE_OUTLINE);
 
+  /* This color map is used for "normal" rendering. */
+  render_color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
+  render_color_map = g_array_append_vals (render_color_map, display_colors, MAX_COLORS);
+
+  /* This color map is used for rendering rubberbanding nets and
+     buses, and objects which are in the process of being placed. */
+  render_outline_color_map =  g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
+  render_outline_color_map =  g_array_append_vals (render_outline_color_map,
+                                                   display_outline_colors,
+                                                   MAX_COLORS);
+
+  /* Set up renderer */
+  renderer = g_object_ref (w_current->renderer);
+
+  g_object_set (G_OBJECT (renderer),
+                "cairo-context", w_current->cr,
+                "grip-size", ((double) grip_half_size * toplevel->page_current->to_world_x_constant),
+                "render-flags", render_flags,
+                "color-map", render_color_map,
+                NULL);
+
+  /* We need to transform the cairo context to world coordinates while
+   * we're drawing using the renderer. */
+  cairo_matrix_init (&render_mtx,
+                     (double) toplevel->page_current->to_screen_x_constant,
+                     0,
+                     0,
+                     - (double) toplevel->page_current->to_screen_y_constant,
+                     (- (double) toplevel->page_current->left * toplevel->page_current->to_screen_x_constant),
+                     ((double) toplevel->page_current->to_screen_y_constant * toplevel->page_current->top + toplevel->height)
+                    );
+
+  cairo_save (w_current->cr);
+  cairo_set_matrix (w_current->cr, &render_mtx);
+
+  /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action &&
-                    ((w_current->event_state == MOVE) ||
-                     (w_current->event_state == ENDMOVE)));
+                  ((w_current->event_state == MOVE) ||
+                   (w_current->event_state == ENDMOVE)));
 
+  /* First pass -- render non-selected objects */
+  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+    OBJECT *o_current = iter->data;
+    
+    if (!(o_current->dont_redraw || o_current->selected)) {
+      eda_renderer_draw (renderer, o_current);
+    }
+  }
+
+  /* Second pass -- render cues */
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
     OBJECT *o_current = iter->data;
 
-    if (o_current->dont_redraw ||
-        (!draw_selected && o_current->selected))
-      continue;
-
-    o_redraw_single (w_current, o_current);
+    if (!(o_current->dont_redraw || o_current->selected)) {
+      eda_renderer_draw_cues (renderer, o_current);
+    }
   }
 
-  o_cue_redraw_all (w_current, obj_list, draw_selected);
+  /* Third pass -- render selected objects, cues & grips. This is
+   * done in a separate pass to non-selected items to make sure that
+   * the selection and grips are never obscured by other objects. */
+  if (draw_selected) {
+    g_object_set (G_OBJECT (renderer),
+                  "override-color", SELECT_COLOR,
+                  NULL);
+    for (iter = geda_list_get_glist (toplevel->page_current->selection_list);
+         iter != NULL; iter = g_list_next (iter)) {
+      OBJECT *o_current = iter->data;
+      if (!o_current->dont_redraw) {
+        eda_renderer_draw (renderer, o_current);
+        eda_renderer_draw_cues (renderer, o_current);
+        if (w_current->renderer->draw_grips )
+        eda_renderer_draw_grips (renderer, o_current);
+      }
+    }
+    g_object_set (G_OBJECT (renderer),
+                  "override-color", -1,
+                  NULL);
+  }
 
   if (w_current->inside_action) {
     /* Redraw the rubberband objects (if they were previously visible) */
+    //OBJECT *o_current;
     switch (w_current->event_state) {
       case MOVE:
       case ENDMOVE:
         if (w_current->last_drawb_mode != -1) {
-          o_move_draw_rubber (w_current, TRUE);
+          /* FIXME shouldn't need to save/restore matrix/colormap here */
+          cairo_save (w_current->cr);
+          cairo_set_matrix (w_current->cr, &render_mtx);
+          eda_renderer_set_color_map (renderer, render_outline_color_map);
+
+          o_move_draw_rubber (w_current, draw_selected);
+
+          eda_renderer_set_color_map (renderer, render_color_map);
+          cairo_restore (w_current->cr);
         }
         break;
 
@@ -113,22 +203,49 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
       case ENDCOMP:
       case ENDTEXT:
       case ENDPASTE:
-        if (w_current->rubber_visible)
-          o_place_draw_rubber (w_current, TRUE);
+        if (w_current->rubber_visible) {
+          /* FIXME shouldn't need to save/restore matrix/colormap here */
+          cairo_save (w_current->cr);
+          cairo_set_matrix (w_current->cr, &render_mtx);
+          eda_renderer_set_color_map (renderer, render_outline_color_map);
+
+          o_place_draw_rubber (w_current, draw_selected);
+
+          eda_renderer_set_color_map (renderer, render_color_map);
+          cairo_restore (w_current->cr);
+        }
         break;
 
       case STARTDRAWNET:
       case DRAWNET:
       case NETCONT:
-        if (w_current->rubber_visible)
+        if (w_current->rubber_visible) {
+          /* FIXME shouldn't need to save/restore matrix/colormap here */
+          cairo_save (w_current->cr);
+          cairo_set_matrix (w_current->cr, &render_mtx);
+          eda_renderer_set_color_map (renderer, render_outline_color_map);
+
           o_net_draw_rubber (w_current);
+
+          eda_renderer_set_color_map (renderer, render_color_map);
+          cairo_restore (w_current->cr);
+        }
         break;
 
       case STARTDRAWBUS:
       case DRAWBUS:
       case BUSCONT:
-        if (w_current->rubber_visible)
+        if (w_current->rubber_visible) {
+          /* FIXME shouldn't need to save/restore matrix/colormap here */
+          cairo_save (w_current->cr);
+          cairo_set_matrix (w_current->cr, &render_mtx);
+          eda_renderer_set_color_map (renderer, render_outline_color_map);
+
           o_bus_draw_rubber(w_current);
+
+          eda_renderer_set_color_map (renderer, render_color_map);
+          cairo_restore (w_current->cr);
+        }
         break;
 
       case GRIPS:
@@ -179,65 +296,10 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   }
 
   g_list_free (obj_list);
-}
+  g_object_unref (G_OBJECT (renderer));
+  g_array_free (render_color_map, TRUE);
+  g_array_free (render_outline_color_map, TRUE);
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void o_redraw (GSCHEM_TOPLEVEL *w_current, GList *object_list, gboolean draw_selected)
-{
-  OBJECT *o_current;
-  GList *iter;
-
-  for (iter = object_list; iter != NULL; iter = g_list_next (iter)) {
-    o_current = (OBJECT *)iter->data;
-
-    if (o_current->dont_redraw ||
-        (!draw_selected && o_current->selected))
-      continue;
-
-    o_redraw_single (w_current, o_current);
-  }
-}
-
-/*! \brief Redraw an object on the screen.
- *  \par Function Description
- *  This function will redraw a single object on the screen.
- *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
- *  \param [in] o_current  The OBJECT to redraw.
- *
- */
-void o_redraw_single(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
-{
-  void (*func) (GSCHEM_TOPLEVEL *, OBJECT *) = NULL;
-
-  if (o_current == NULL)
-    return;
-
-  switch (o_current->type) {
-      case OBJ_LINE:    func = o_line_draw;    break;
-      case OBJ_NET:     func = o_net_draw;     break;
-      case OBJ_BUS:     func = o_bus_draw;     break;
-      case OBJ_BOX:     func = o_box_draw;     break;
-      case OBJ_PICTURE: func = o_picture_draw; break;
-      case OBJ_CIRCLE:  func = o_circle_draw;  break;
-      case OBJ_PLACEHOLDER:
-      case OBJ_COMPLEX: func = o_complex_draw; break;
-      case OBJ_TEXT:    func = o_text_draw;    break;
-      case OBJ_PATH:    func = o_path_draw;    break;
-      case OBJ_PIN:     func = o_pin_draw;     break;
-      case OBJ_ARC:     func = o_arc_draw;     break;
-      default:
-        g_critical ("o_redraw_single: object %p has bad type '%c'\n",
-                    o_current, o_current->type);
-  }
-
-  if (func != NULL)
-    (*func) (w_current, o_current);
 }
 
 
@@ -418,7 +480,7 @@ int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
  *  \brief
  *  \par Function Description
  *
- */
+
 void o_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *object)
 {
   void (*func) (GSCHEM_TOPLEVEL *, int, int, OBJECT*) = NULL;
@@ -444,13 +506,13 @@ void o_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *object)
     (*func) (w_current, dx, dy, object);
   }
 }
-
+ */
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
- */
+
 void o_glist_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, GList *list)
 {
   GList *iter = list;
@@ -460,7 +522,7 @@ void o_glist_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, GList *list
     iter = g_list_next(iter);
   }
 }
-
+ */
 
 /*! \brief Invalidates a rectangular region of the on screen drawing area
  *  \par Function Description

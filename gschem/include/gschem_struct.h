@@ -32,9 +32,9 @@ struct st_gschem_toplevel {
   GtkWidget *toolbar_net;
   GtkWidget *toolbar_bus;
 
-  gchar *keyaccel_string;               /* visual feedback when pressing
+  char *keyaccel_string;               /* visual feedback when pressing
                                            keyboard accelerators */
-  gboolean keyaccel_string_source_id;   /* event source ID used by above */
+  bool keyaccel_string_source_id;   /* event source ID used by above */
 
   /* -------------------- Dialog boxes -------------------- */
   GtkWidget *sowindow;                  /* Script open */
@@ -78,6 +78,7 @@ struct st_gschem_toplevel {
   int win_width, win_height;            /* Actual size of window (?) */
 
   /* --------------------- Drawing state ------------------ */
+  EdaRenderer *renderer;
   int first_wx;
   int first_wy;
   int second_wx;
@@ -120,7 +121,7 @@ struct st_gschem_toplevel {
 
   /* Display Related */
 
-  int draw_grips;         /* sets if grips are enabled or not */
+  //int draw_grips;         /* sets if grips are enabled or not */
 
   /* sets the mininum number of pixels necessary for the grid to be displayed */
   int grid_mode;          /* sets what type of grid to show, can be None, Dots, or Mesh */
@@ -164,6 +165,7 @@ struct st_gschem_toplevel {
   /* sets whether nets rubberband as you move them (or connecting comps) */
   int netconn_rubberband;
   int raise_dialog_boxes;   /*controls if expose events raise dialog boxes*/
+  int save_settings;
   int select_slack_pixels;  /* Number of pixels around an object we can still select it with */
   SNAP_STATE snap;          /* Whether/how to snap to grid */
   int snap_size;            /* Snap grid parameter */

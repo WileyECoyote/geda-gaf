@@ -31,7 +31,11 @@
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
+static int o_bus_consolidate_segments (TOPLEVEL *toplevel, OBJECT *object) __attribute__((unused));
+static void o_bus_consolidate_lowlevel (OBJECT *object,
+                                        OBJECT *del_object,
+                                        int orient) __attribute__((unused));
+                                        
 /*! \brief get the position of the first bus point
  *  \par Function Description
  *  This function gets the position of the first point of a bus object.

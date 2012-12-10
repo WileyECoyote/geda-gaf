@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,41 +36,13 @@
  *  \par Function Description
  *
  */
-void o_complex_draw(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
-{
-  g_return_if_fail (o_current != NULL); 
-  g_return_if_fail (o_current->complex != NULL);
-
-  o_redraw(w_current, o_current->complex->prim_objs, TRUE);
-}
-
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void o_complex_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *object)
-{
-  g_assert( (object->type == OBJ_COMPLEX ||
-             object->type == OBJ_PLACEHOLDER) );
-
-  o_glist_draw_place (w_current, dx, dy, object->complex->prim_objs);
-}
-
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
 void o_complex_prepare_place(GSCHEM_TOPLEVEL *w_current, const CLibSymbol *sym)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *temp_list;
   OBJECT *o_current;
   char *buffer;
-  const gchar *sym_name = s_clib_symbol_get_name (sym);
+  const char *sym_name = s_clib_symbol_get_name (sym);
   GError *err = NULL;
 
   /* remove the old place list if it exists */
@@ -195,8 +167,7 @@ void o_complex_translate_all(GSCHEM_TOPLEVEL *w_current, int offset)
   int x, y;
 
   /* first zoom extents */
-  a_zoom_extents (w_current, s_page_objects (toplevel->page_current),
-                  A_PAN_DONT_REDRAW);
+  a_zoom_extents (w_current, s_page_objects (toplevel->page_current), A_PAN_DONT_REDRAW);
   o_invalidate_all (w_current);
 
   world_get_object_glist_bounds (toplevel,

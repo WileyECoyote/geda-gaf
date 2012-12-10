@@ -1417,7 +1417,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(ContinuePlace, w_current->continue_component_place);
   SetSwitch(DelayScrolling, w_current->scrollbar_update);
   SetSwitch(DragMove, w_current->drag_can_move);
-  SetSwitch(DrawGrips, w_current->draw_grips);
+  SetSwitch(DrawGrips, w_current->renderer->draw_grips);
   SetSwitch(EmbedComponents, w_current->embed_components);
   SetSwitch(EnableColorImaging, toplevel->image_color);
   SetSwitch(EnableLog, logging);
@@ -1922,7 +1922,8 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
              auto_load_last             = GET_SWITCH_STATE (AutoLoadSwitch);
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);
   w_current->drag_can_move              = GET_SWITCH_STATE (DragMoveSwitch);
-  w_current->draw_grips                 = GET_SWITCH_STATE (DrawGripsSwitch);
+  w_current->renderer->draw_grips       = GET_SWITCH_STATE (DrawGripsSwitch);
+  //w_current->draw_grips                 = w_current->renderer->draw_grips;
   w_current->embed_components           = GET_SWITCH_STATE (EmbedComponentsSwitch);
    toplevel->image_color                = GET_SWITCH_STATE (EnableColorImagingSwitch);
    toplevel->invert_images              = GET_SWITCH_STATE (InvertImagesSwitch);

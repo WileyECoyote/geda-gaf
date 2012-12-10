@@ -357,7 +357,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
 }
 
-static gboolean
+static bool
 selected_at_least_one_text_object(GSCHEM_TOPLEVEL *w_current)
 {
   OBJECT *obj;
@@ -383,7 +383,7 @@ selected_at_least_one_text_object(GSCHEM_TOPLEVEL *w_current)
  */
 void i_update_menus(GSCHEM_TOPLEVEL *w_current)
 {
-  gboolean have_text_selected;
+  bool have_text_selected;
   TOPLEVEL *toplevel = w_current->toplevel;
   /* 
    * This is very simplistic.  Right now it just disables all menu

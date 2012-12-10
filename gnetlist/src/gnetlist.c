@@ -247,8 +247,8 @@ void main_prog(void *closure, int argc, char *argv[])
     /* in the current directory.  Having the output go to a different */
     /* directory will confuse the user (confused me, at first). */
     if (chdir (cwd)) {
-      /* Error occured with chdir */
-#warning FIME: What do we do?
+      fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
+      exit(1);
     }
     /* free(cwd); - Defered; see below */
 
@@ -297,7 +297,8 @@ void main_prog(void *closure, int argc, char *argv[])
     /* because the s_traverse functions can change the Current Working Directory. */
     if (chdir (cwd)) {
       /* Error occured with chdir */
-#warning FIXME: What do we do?
+      fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
+      exit(1);
     }
     g_free(cwd);
 

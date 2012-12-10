@@ -41,6 +41,8 @@
 
 /*--------- Display Category --------- */
 
+#define ZOOM_EXTENTS_PADDING_PX 5
+
 #define ZOOM_OUT 0
 #define ZOOM_IN 1
 #define ZOOM_FULL 2

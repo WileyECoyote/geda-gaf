@@ -1,3 +1,13 @@
+2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+	* src/f_print.c: Revised f_print_header to check in s_path_sys_data
+        for prolog file, (how did this ever work without path? Maybe path
+        used to be in RC file name, don't know and did not review history.)
+        Write to encapsulated postscript works again!
+
+	* src/Makefile.am: Added GEDA_INCLUDES variable, as was done for
+        gschem to clean up the include paths.
+
 2012-10-31 Wiley E. Hill <wileyhill@gmail.com>
 	* src/a_basic.c:Revised o_save function to eliminate use of
 	g_file_set_contents because it resets file permissions to

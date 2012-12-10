@@ -37,14 +37,18 @@
         * src/x_image.c: Revised x_image_get_pixbuf to implement new variable
           invert_images. The revisions effectively resolves Launchpad 1086530
           and extends functionality of gschem. Corrected function name in log 
-          message in function x_image_write_eps.
+          message in function x_image_write_eps. Added write to PDF image type
+          and repaired postscript in f_print.c.
 
 	* src/x_settings_dialog.c: Add call in function GatherSettings to 
           x_settings_set_scm_int to define autoplace-attribute-grid. Added
           switch for new top-level variable invert_images. Relocated Notify
           Events switch to the edit tab, replacing a spare switch location.
           Rearranged widgets on rows 1, 2 & 3, and created new row 4 to make
-          room for invert_images, image-color switches. 
+          room for invert_images, image-color switches. Changed w_current->
+          draw_grips to w_current->renderer->draw_grips, this was also done
+          in all other remaining instances of draw_grips, like in o_grips.c
+          and o_basic.c, etc., to support the new lib libgedacairo.la.
 
 2012-11-15 Wiley E. Hill <wileyhill@gmail.com>
 	* include/x_dialog_controls.h: relocated this recent addition to

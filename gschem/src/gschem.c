@@ -120,17 +120,6 @@ void gschem_quit(void)
   gtk_main_quit();
 }
 
-static void add_libgeda_toplevel_hooks (TOPLEVEL *toplevel,
-                                        GSCHEM_TOPLEVEL *w_current)
-{
-    o_attrib_append_attribs_changed_hook (toplevel,
-                                          (AttribsChangedFunc) o_invalidate,
-                                          w_current);
-    s_conn_append_conns_changed_hook (toplevel,
-                                      (ConnsChangedFunc) o_invalidate,
-                                      w_current);
-}
-
 /*! \brief Main Scheme(GUILE) program function.
  *  \par Function Description
  *  This function is the main program called from scm_boot_guile.
@@ -220,11 +209,6 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* Allocate w_current */
   w_current = gschem_toplevel_new ();
-
-  /* Connect hooks that run for each s_toplevel_new() first */
-  s_toplevel_append_new_hook ((NewToplevelFunc) add_libgeda_toplevel_hooks,
-                              w_current);
-
   w_current->toplevel = s_toplevel_new ();
 
   w_current->toplevel->load_newer_backup_func = x_fileselect_load_backup;
@@ -263,11 +247,17 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
-
+  
+  /* Set up Configuration */
+  i_vars_init_defaults (); /* Set defaults */
+  
   /* Now read in RC files. */
   g_rc_parse_gtkrc();
   x_rc_parse_gschem (w_current, rc_filename);
 
+  if (w_current->save_settings)
+    gschem_atexit (i_vars_atexit_save_user_config, NULL);
+    
   auto_load_last = default_auto_load_last;
 
   /*TODO: All of this logging stuff should be relocated to Lib */
@@ -290,7 +280,6 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   else
     s_log_message("Logging system is disabled");
-
   /* Load recent files list. This must be done
    * before calling x_window_setup(). */
   recent_files_load();
@@ -302,7 +291,6 @@ void main_prog(void *closure, int argc, char *argv[])
   /* At end, complete set up of window. */
   x_color_allocate();
   x_window_setup (w_current);
-
 #ifdef HAVE_LIBSTROKE
   x_stroke_init ();
 #endif /* HAVE_LIBSTROKE */
@@ -372,7 +360,6 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* Update the window to show the current page */
   x_window_set_current_page( w_current, w_current->toplevel->page_current );
-
 
 #if DEBUG
   scm_c_eval_string ("(display \"hello guile\n\")");

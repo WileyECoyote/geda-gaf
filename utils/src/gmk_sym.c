@@ -172,7 +172,7 @@ int main(int argc,char **argv)
 {
   FILE *stream;
   char LineBuf[256];
-  int fldcnt,i,c,Debug=0;
+  int fldcnt, i, c, Debug=0;
   char *pFields[MAX_FIELDS];
   int line_nub=0;
 
@@ -189,7 +189,8 @@ int main(int argc,char **argv)
 		    break;
 	  }
         }
-
+  Debug = Debug;
+  
   for(i=0;i<MAX_FIELDS;i++)
      pFields[i]=NULL;
 

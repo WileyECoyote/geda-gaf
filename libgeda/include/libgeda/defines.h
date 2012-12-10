@@ -36,7 +36,7 @@
 #define VERSION_20020825 20020825
 #define VERSION_20030921 20030921
 #define VERSION_20110115 20110115
-#define VERSION_20121031 20121031
+#define VERSION_20121212 20121212
 /* 20030921 wasn't a real version, just a MinGW test version, but it is */
 /* out there */
 
@@ -209,6 +209,7 @@
 #define VECTOR_FONTS		0
 #define PS_FONTS		1
 
+#define DEFAULT_OBJECT_END END_SQUARE
 /* for print dialog box */
 #define EXTENTS			0
 #define WINDOW			1

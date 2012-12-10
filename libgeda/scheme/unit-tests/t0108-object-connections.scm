@@ -65,8 +65,6 @@
     ))
 
 (close-page! P)
-<<<<<<< HEAD
-=======
 
 (define Q (make-page "/test/page/B"))
 
@@ -102,4 +100,3 @@
     (assert-equal '() (object-connections n4))))
 
 (close-page! Q)
->>>>>>> ed432e7... libgeda: Refuse to connect nets inside symbols with other nets.

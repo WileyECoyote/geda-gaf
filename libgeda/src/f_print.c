@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,14 +104,15 @@ int f_print_set_color(TOPLEVEL *toplevel, FILE *fp, int color)
  *  \return 0 on success, -1 on failure.
  */
 int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
-		   int paper_size_x, int paper_size_y, int eps, gboolean landscape)
+		   int paper_size_x, int paper_size_y, int eps, bool landscape)
 {
   char *buf = NULL;
   FILE *prolog = NULL;
   size_t bytes;
   int llx,lly,urx,ury;
   time_t current_time,time_rc;
-
+  char *prologfile;
+  
   /* Compute bounding box */
   llx=0;                          /* So, right now, the box starts at (0,0) */
   lly=0;
@@ -159,11 +160,23 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
   /* Don't check this (succeeds or aborts) */
   buf = g_malloc(PROLOG_BUFFER_SIZE);
 
-  /* Open the prolog file */
-  prolog = fopen(toplevel->postscript_prolog,"r");
+  /* Check for prolog file */
+  prologfile = g_strdup(toplevel->postscript_prolog);
+  if(access(prologfile, R_OK) != 0) {
+    g_free(prologfile);
+    prologfile = g_strconcat (s_path_sys_data (), G_DIR_SEPARATOR_S,
+                              toplevel->postscript_prolog, NULL);
+    if(access(prologfile, R_OK) != 0) {
+      s_log_message(_("f_print_header: Unable to locate prolog file [%s]\n"), prologfile);
+      goto f_print_header_fail;
+    }
+  }
+  else
+    s_log_message(_("f_print_header: using prolog file [%s]\n"), prologfile);
+  
+  prolog = fopen(prologfile,"r");
   if(prolog == NULL) {
-    s_log_message(_("Unable to open the prolog file `%s' for reading "
-                    "in f_print_header()\n"), toplevel->postscript_prolog);
+    s_log_message(_("f_print_header: Unable to open the prolog file \"%s\" for reading\n"), prologfile);
     goto f_print_header_fail;
   }
   /* Loop while reading file into buffer and dump it
@@ -174,23 +187,22 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
     if(ferror(prolog)) break;
     if (fwrite(buf, 1, bytes, fp) != bytes) {
       /* An error occurred  with fwrite */
-#warning FIXME: What do we do?
+      s_log_message(_("f_print_header: Error while writing prolog \"%s\" \n"), prologfile);
+    goto f_print_header_fail;
     }
   } while(!feof(prolog) && !ferror(prolog) && !ferror(fp));
 
   if(ferror(prolog)) {
-      s_log_message(_("Error during reading of the prolog file `%s' "
-                      "in f_print_header()\n"), toplevel->postscript_prolog);
+    s_log_message(_("f_print_header: Error reading prolog file \"%s\"\n"), prologfile);
     goto f_print_header_fail;
   }
 
   if(ferror(fp)) {
-    s_log_message(_("Error during writing of the output postscript file "
-                    "in f_print_header()\n"));
+    s_log_message(_("f_print_header: Error writing postscript output file\n"));
     goto f_print_header_fail;
   }
   g_free(buf);  /* If we got to here, the buffer was allocated. */
-
+  g_free(prologfile);
   fprintf(fp,"%%%%EndProlog\n"
 	  "%%%%Page: 1 1\n");     /* Just name it `page 1' for now */
   
@@ -200,9 +212,11 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
 
  f_print_header_fail:
   s_log_message (_("Giving up on printing\n"));
-  if (prolog != NULL) {
+  if (prolog != NULL)
     fclose (prolog);
-  }
+  if (prologfile != NULL)
+    g_free(prologfile);
+
   g_free (buf); /* g_free() succeeds if argument is NULL */
   return -1;
 }
@@ -435,7 +449,7 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp)
   gunichar unicode_table [128];  /* to contain the list of unicode
 				    characters that need mapping */
   int eps;
-  gboolean landscape;
+  bool landscape;
 
   /* Unicode support */
   f_print_initialize_glyph_table();  /* Fill up unicode map */

@@ -124,9 +124,9 @@ SCM g_rc_mode_general(SCM scmmode,
  * \param err       Return location for errors, or NULL.
  * \return TRUE on success, FALSE on failure.
  */
-bool g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
+bool g_rc_parse_system (TOPLEVEL *toplevel, const char *rcname, GError **err)
 {
-  gchar *sysname = NULL;
+  char *sysname = NULL;
   bool status;
 
   /* Default to gafrc */
@@ -150,7 +150,7 @@ bool g_rc_parse_system (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
  * \return TRUE on success, FALSE on failure.
  */
 bool
-g_rc_parse_user (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
+g_rc_parse_user (TOPLEVEL *toplevel, const char *rcname, GError **err)
 {
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
@@ -175,11 +175,11 @@ g_rc_parse_user (TOPLEVEL *toplevel, const gchar *rcname, GError **err)
  * \return TRUE on success, FALSE on failure.
  */
 bool
-g_rc_parse_local (TOPLEVEL *toplevel, const gchar *rcname, const gchar *path,
+g_rc_parse_local (TOPLEVEL *toplevel, const char *rcname, const char *path,
                   GError **err)
 {
-  gchar *dir = NULL;
-  gchar *rcfile = NULL;
+  char *dir = NULL;
+  char *rcfile = NULL;
   bool status;
   g_return_val_if_fail ((toplevel != NULL), FALSE);
 
@@ -218,7 +218,7 @@ g_rc_parse_local (TOPLEVEL *toplevel, const gchar *rcname, const gchar *path,
  * \return TRUE if \a filename not already loaded, FALSE otherwise.
  */
 static bool
-g_rc_try_mark_read (TOPLEVEL *toplevel, gchar *filename, GError **err)
+g_rc_try_mark_read (TOPLEVEL *toplevel, char *filename, GError **err)
 {
   GList *found = NULL;
   g_return_val_if_fail ((toplevel != NULL), FALSE);
@@ -248,9 +248,9 @@ g_rc_try_mark_read (TOPLEVEL *toplevel, gchar *filename, GError **err)
  * \return TRUE on success, FALSE on failure.
  */
 bool
-g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err)
+g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, GError **err)
 {
-  gchar *name_norm = NULL;
+  char *name_norm = NULL;
   GError *tmp_err = NULL;
   g_return_val_if_fail ((toplevel != NULL), FALSE);
   g_return_val_if_fail ((rcfile != NULL), FALSE);
@@ -275,7 +275,7 @@ g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err)
   if (err == NULL) {
     g_error_free (tmp_err);
   } else {
-    gchar *orig_msg = tmp_err->message;
+    char *orig_msg = tmp_err->message;
     tmp_err->message =
       g_strdup_printf (_("Unable to parse config from [%s]: %s"),
                        (name_norm != NULL) ? name_norm : rcfile, orig_msg);
@@ -287,13 +287,13 @@ g_rc_parse_file (TOPLEVEL *toplevel, const gchar *rcfile, GError **err)
 }
 
 static void
-g_rc_parse__process_error (GError **err, const gchar *pname)
+g_rc_parse__process_error (GError **err, const char *pname)
 {
   char *pbase;
 
   /* Take no chances; if err was not set for some reason, bail out. */
   if (*err == NULL) {
-    const gchar *msgl =
+    const char *msgl =
       _("ERROR: An unknown error occurred while parsing configuration files.");
     s_log_message ("%s\n", msgl);
     fprintf(stderr, "%s\n", msgl);
@@ -336,12 +336,13 @@ g_rc_parse__process_error (GError **err, const gchar *pname)
  * \param [in] rcname    Config file basename, or NULL.
  * \param [in] rcfile    Specific config file path, or NULL.
  */
-bool
-g_rc_parse (TOPLEVEL *toplevel, const gchar *pname,const gchar *rcname, const gchar *rcfile)
+bool g_rc_parse (TOPLEVEL *toplevel, const char *pname,
+                 const char *rcname, const char *rcfile)
 {
   g_rc_parse_handler (toplevel, rcname, rcfile, 
                      (ConfigParseErrorFunc) g_rc_parse__process_error,
                      (void *) pname);
+  return TRUE;
 }
 
 /*! \brief General RC file parsing function.
@@ -366,7 +367,7 @@ g_rc_parse (TOPLEVEL *toplevel, const gchar *pname,const gchar *rcname, const gc
 
 void
 g_rc_parse_handler (TOPLEVEL *toplevel,
-                    const gchar *rcname, const gchar *rcfile,
+                    const char *rcname, const char *rcfile,
                     ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
@@ -406,7 +407,7 @@ g_rc_parse_handler (TOPLEVEL *toplevel,
  */
 SCM g_rc_component_library(SCM path, SCM name)
 {
-  gchar *string;
+  char *string;
   char *temp;
   char *namestr = NULL;
 
@@ -439,8 +440,8 @@ SCM g_rc_component_library(SCM path, SCM name)
   if (g_path_is_absolute (string)) {
     s_clib_add_directory (string, namestr);
   } else {
-    gchar *cwd = g_get_current_dir ();
-    gchar *temp;
+    char *cwd = g_get_current_dir ();
+    char *temp;
     temp = g_build_filename (cwd, string, NULL);
     s_clib_add_directory (temp, namestr);
     g_free(temp);
@@ -466,7 +467,7 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
                                     SCM name)
 {
   const CLibSource *src;
-  gchar *lcmdstr, *gcmdstr;
+  char *lcmdstr, *gcmdstr;
   char *tmp_str, *namestr;
 
   SCM_ASSERT (scm_is_string (listcmd), listcmd, SCM_ARG1, 
@@ -552,7 +553,7 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
  */
 SCM g_rc_source_library(SCM path)
 {
-  gchar *string;
+  char *string;
   char *temp;
   
   SCM_ASSERT (scm_is_string (path), path,
@@ -575,8 +576,8 @@ SCM g_rc_source_library(SCM path)
   if (g_path_is_absolute (string)) {
     s_slib_add_entry (string);
   } else {
-    gchar *cwd = g_get_current_dir ();
-    gchar *temp;
+    char *cwd = g_get_current_dir ();
+    char *temp;
     temp = g_build_filename (cwd, string, NULL);
     s_slib_add_entry (temp);
     g_free(temp);
@@ -597,10 +598,10 @@ SCM g_rc_source_library(SCM path)
  */
 SCM g_rc_source_library_search(SCM path)
 {
-  gchar *string;
+  char *string;
   char *temp;
   GDir *dir;
-  const gchar *entry;
+  const char *entry;
   
   SCM_ASSERT (scm_is_string (path), path,
               SCM_ARG1, "source-library-search");
@@ -634,15 +635,15 @@ SCM g_rc_source_library_search(SCM path)
         (g_ascii_strcasecmp (entry, "..")   != 0) &&
         (g_ascii_strcasecmp (entry, "font") != 0))
     {
-      gchar *fullpath = g_build_filename (string, entry, NULL);
+      char *fullpath = g_build_filename (string, entry, NULL);
 
       if (g_file_test (fullpath, G_FILE_TEST_IS_DIR)) {
         if (s_slib_uniq (fullpath)) {
           if (g_path_is_absolute (fullpath)) {
             s_slib_add_entry (fullpath);
           } else {
-            gchar *cwd = g_get_current_dir ();
-            gchar *temp;
+            char *cwd = g_get_current_dir ();
+            char *temp;
             temp = g_build_filename (cwd, fullpath, NULL);
             s_slib_add_entry (temp);
             g_free(temp);
@@ -1122,7 +1123,7 @@ SCM g_rc_untitled_name(SCM name)
 SCM g_rc_scheme_directory(SCM s_path)
 {
   char *temp;
-  gchar *expanded;
+  char *expanded;
   SCM s_load_path_var;
   SCM s_load_path;
 
@@ -1155,7 +1156,7 @@ SCM g_rc_scheme_directory(SCM s_path)
  */
 SCM g_rc_bitmap_directory(SCM path)
 {
-  gchar *string;
+  char *string;
   char *temp;
 
   SCM_ASSERT (scm_is_string (path), path,
@@ -1319,8 +1320,8 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 {
   GList *list=NULL;
   int length, i;
-  gchar *attr;
-  gchar **attr2;
+  char *attr;
+  char **attr2;
 
   g_list_foreach(default_always_promote_attributes, (GFunc)g_free, NULL);
   g_list_free(default_always_promote_attributes);

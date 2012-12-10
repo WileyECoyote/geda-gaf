@@ -8,11 +8,10 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [1.8.0], [geda-bug@seul.org], [geda-gaf])
+AC_INIT([gEDA/gaf], [1.9.0], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
 AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
-
 AC_CONFIG_AUX_DIR([build-tools])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADER([config.h])
@@ -25,7 +24,7 @@ AC_GNU_SOURCE # FIXME for some reason this is needed?
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20121031])
+AX_GIT_VERSION([20121212])
 
 # This is used for keeping the ChangeLog files up-to-date
 AC_SUBST([CHANGELOG_BASE], [1.0-20121031])
@@ -85,11 +84,13 @@ PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= 2.16.0], ,
 PKG_CHECK_MODULES(GDK_PIXBUF, [gdk-pixbuf-2.0 >= 2.16.0], ,
   AC_MSG_ERROR([GDK_PIXBUF 2.16.0 or later is required.]))
 
-PKG_CHECK_MODULES(CAIRO, [cairo >= 1.8.0], ,
-  AC_MSG_ERROR([CAIRO 1.8.0 or later is required.]))
+AX_CHECK_CAIRO
 
 PKG_CHECK_MODULES(PANGOCAIRO, [pangocairo >= 0.26], ,
   AC_MSG_ERROR([PANGOCAIRO 0.26 or later is required.]))
+
+PKG_CHECK_MODULES(PANGO, [pango >= 1.23.0], ,
+  AC_MSG_ERROR([PANGO 1.23.0 or later is required.]))
 
 #####################################################################
 # Header files & particular functions
@@ -170,7 +171,9 @@ AX_DATA_DIRS
 # Where should PCB footprints be searched for?
 AX_PCB_DIRS
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([41:0:0])
+AX_LIBGEDA([43:0:0])
+# Set up libgedacairo with the correct ld version number
+AX_LIBGEDACAIRO([1:0:0])
 
 #####################################################################
 # Generate output
@@ -193,6 +196,12 @@ AC_CONFIG_FILES([Makefile
                  libgeda/scheme/Makefile
                  libgeda/share/Makefile
                  libgeda/src/Makefile
+
+                 libgedacairo/Makefile
+                 libgedacairo/libgedacairo.pc
+
+                 gaf/Makefile
+                 gaf/po/Makefile.in
 
                  gschem/Makefile
                  gschem/po/Makefile.in
@@ -223,6 +232,7 @@ AC_CONFIG_FILES([Makefile
                  gsymcheck/include/Makefile
                  gsymcheck/lib/Makefile
                  gsymcheck/lib/system-gsymcheckrc
+                 gsymcheck/po/Makefile.in
                  gsymcheck/src/Makefile
                  gsymcheck/tests/Makefile
                  gsymcheck/Makefile
@@ -279,20 +289,10 @@ AC_CONFIG_FILES([Makefile
 
                  docs/Makefile
                  docs/scheme-api/Makefile
-                 docs/scripts/Makefile
                  docs/symbols/Makefile
                  docs/toplevel/Makefile
                  docs/toplevel/gedadocs.html
                  docs/wiki/Makefile
-                 docs/wiki/images/smileys/Makefile
-                 docs/wiki/images/Makefile
-                 docs/wiki/images/interwiki/Makefile
-                 docs/wiki/media/geda/Makefile
-                 docs/wiki/media/wiki/Makefile
-                 docs/wiki/media/tragesym/tragesym/Makefile
-                 docs/wiki/media/tragesym/Makefile
-                 docs/wiki/media/Makefile
-                 docs/wiki/media/devel_tips/Makefile
 
                  examples/Makefile
                  examples/RF_Amp/Makefile

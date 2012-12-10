@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -93,6 +93,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->win_height         = 0;
 
   /* -------------------- Drawing state -------------------- */
+  w_current->renderer           = EDA_RENDERER (g_object_new (EDA_TYPE_RENDERER, NULL));
   w_current->first_wx           = -1;
   w_current->first_wy           = -1;
   w_current->second_wx          = -1;
@@ -133,8 +134,9 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */
-  w_current->draw_grips                   = 0;
-
+  //w_current->draw_grips                   = TRUE;
+  w_current->renderer->draw_grips         = TRUE;
+  
   /* Grid Related - Display=>Grid */
     w_current->grid_mode                  = GRID_MESH;
     w_current->dots_grid_dot_size         = DEFAULT_GRID_DOT_SIZE;

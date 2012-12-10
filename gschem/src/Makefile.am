@@ -10,6 +10,14 @@ bin_PROGRAMS = gschem
 
 gschem_CXXFLAGS=$(AM_CXXFLAGS)
 
+BUILT_SOURCES = \
+	g_attrib.x \
+	g_hook.x \
+	g_keys.x \
+	g_util.x \
+	g_window.x \
+	g_select.x
+	
 gschem_SOURCES = \
 	a_pan.c \
 	a_zoom.c \
@@ -26,7 +34,6 @@ gschem_SOURCES = \
 	gschem.c \
 	gschem_accel_label.c \
 	gschem_action.c \
-	gschem_cairo.c \
 	gschem_dialog.c \
 	gschem_pango.c \
 	gschem_toplevel.c \
@@ -43,7 +50,6 @@ gschem_SOURCES = \
 	o_circle.c \
 	o_complex.c \
 	o_copy.c \
-	o_cue.c \
 	o_delete.c \
 	o_find.c \
 	o_grips.c \
@@ -92,8 +98,11 @@ gschem_CFLAGS = $(GCC_CFLAGS) $(LIBSTROKE_CFLAGS) $(AM_CFLAGS)\
 		$(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
 gschem_LDFLAGS = $(LIBSTROKE_LDFLAGS) $(GLIB_LIBS) $(GTK_LIBS) \
 		 $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
-gschem_LDADD = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
-
+		 
+gschem_LDADD = $(top_builddir)/libgedacairo/libgedacairo.la \
+	       $(top_builddir)/libgeda/src/libgeda.la \
+	       @LIBINTL@
+	
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
 snarf_cpp_opts = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \

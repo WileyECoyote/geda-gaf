@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -152,6 +152,7 @@ static void create_type_menu(GtkComboBox *combo)
   }
   g_slist_free (formats);
   gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "Encapsulated Postscript");
+  gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "Portable Document Format");
 
   /* Set the default menu */
   gtk_combo_box_set_active(GTK_COMBO_BOX(combo), default_index);
@@ -167,16 +168,18 @@ static void create_type_menu(GtkComboBox *combo)
  *  \note This function is only used in this file.
  */
 static char *x_image_get_type_from_description(char *description) {
-  gchar *descr = g_strdup (description);
+  char *descr = g_strdup (description);
   GSList *formats = gdk_pixbuf_get_formats ();
   GSList *ptr;
-  gchar *ptr_descr;
+  char *ptr_descr;
 
   /*WK - catch EPS export case*/
   if (strcmp(descr, _("Encapsulated Postscript")) == 0) { 
     return(g_strdup("eps"));
   }
-
+  if (strcmp(descr, "Portable Document Format") == 0) { 
+    return(g_strdup("pdf"));
+  }
   ptr = formats;
   while (ptr) {
     ptr_descr = gdk_pixbuf_format_get_description (ptr->data);
@@ -201,7 +204,7 @@ static char *x_image_get_type_from_description(char *description) {
  * 
  */
 static void x_image_update_dialog_filename(GtkComboBox *combo, 
-    GSCHEM_TOPLEVEL *w_current) {
+  GSCHEM_TOPLEVEL *w_current) {
   TOPLEVEL *toplevel = w_current->toplevel;
   char* image_type_descr = NULL;
   char *image_type = NULL;
@@ -293,8 +296,7 @@ void x_image_write_eps(GSCHEM_TOPLEVEL *w_current, const char* filename)
   toplevel->print_output_type = EXTENTS_NOMARGINS;
   result = f_print_file (toplevel, toplevel->page_current, filename);
   if (result) {
-    s_log_message(_("x_image_write_eps: Unable to write eps file %s.\n"),
-        filename);
+    s_log_message(_("x_image_write_eps: Unable to write eps file %s.\n"), filename);
   }   
 
   toplevel->paper_width = w;
@@ -365,52 +367,57 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
   /* de select everything first */
   o_select_unselect_all( w_current );
 
-  if (strcmp(filetype, "eps") == 0) /*WK - catch EPS export case*/
+  if (strcmp(filetype, "eps") == 0) { /*WK - catch EPS export case*/
     x_image_write_eps(w_current, filename);
+  }
   else {
-    pixbuf = x_image_get_pixbuf(w_current, extent);
-    if (pixbuf != NULL) {
-      if (!gdk_pixbuf_save(pixbuf, filename, filetype, &gerror, NULL)) {
-        s_log_message(_("x_image_lowlevel: Unable to write %s file %s.\n"),
-            filetype, filename);
-        s_log_message("%s", gerror->message);
+    if (strcmp(filetype, "pdf") == 0)
+      x_print_export_pdf (w_current, filename);
+    else {
+      pixbuf = x_image_get_pixbuf(w_current, extent);
+      if (pixbuf != NULL) {
+        if (!gdk_pixbuf_save(pixbuf, filename, filetype, &gerror, NULL)) {
+          s_log_message(_("x_image_lowlevel: Unable to write %s file %s.\n"),
+              filetype, filename);
+          s_log_message("%s", gerror->message);
 
-        /* Warn the user */
-        dialog = gtk_message_dialog_new (GTK_WINDOW(w_current->main_window),
-            GTK_DIALOG_MODAL
-            | GTK_DIALOG_DESTROY_WITH_PARENT,
-            GTK_MESSAGE_ERROR,
-            GTK_BUTTONS_OK,
-            _("There was the following error when saving image with type %s to filename:\n%s\n\n%s.\n"),
-            filetype, filename, gerror->message
-            );
+          /* Warn the user */
+          dialog = gtk_message_dialog_new (GTK_WINDOW(w_current->main_window),
+              GTK_DIALOG_MODAL
+              | GTK_DIALOG_DESTROY_WITH_PARENT,
+              GTK_MESSAGE_ERROR,
+              GTK_BUTTONS_OK,
+              _("There was the following error when saving image with type %s to filename:\n%s\n\n%s.\n"),
+              filetype, filename, gerror->message
+              );
 
-        gtk_dialog_run (GTK_DIALOG (dialog));
-        gtk_widget_destroy (dialog);
+          gtk_dialog_run (GTK_DIALOG (dialog));
+          gtk_widget_destroy (dialog);
 
-        /* Free the gerror */
-        g_error_free(gerror);
-        gerror = NULL;
+          /* Free the gerror */
+          g_error_free(gerror);
+          gerror = NULL;
 
-        /* Unlink the output file */
-        /* It's not safe to unlink the file if there was an error.
-           For example: if the operation was not allowed due to permissions,
-           the _previous existing_ file will be removed */
-        /* unlink(filename); */
+          /* Unlink the output file */
+          /* It's not safe to unlink the file if there was an error.
+             For example: if the operation was not allowed due to permissions,
+             the _previous existing_ file will be removed */
+          /* unlink(filename); */
+        }
+        else {
+          if (toplevel->image_color == TRUE) {
+            s_log_message(_("Wrote color image to [%s] [%d x %d]\n"), filename, width, height);
+          } else {
+            s_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"), filename, width, height);
+          }
+        }
+        g_free(filetype);
+        if (pixbuf != NULL)
+          g_object_unref(pixbuf);
       }
       else {
-        if (toplevel->image_color == TRUE) {
-          s_log_message(_("Wrote color image to [%s] [%d x %d]\n"), filename, width, height);
-        } else {
-          s_log_message(_("Wrote black and white image to [%s] [%d x %d]\n"), filename, width, height);
-        }
+        s_log_message(_("x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"));
       }
-      g_free(filetype);
-      if (pixbuf != NULL)
-        g_object_unref(pixbuf);
-    }
-    else {
-      s_log_message(_("x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"));
     }
   }
 
@@ -632,8 +639,7 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
   GSCHEM_TOPLEVEL new_w_current;
   TOPLEVEL toplevel;
   GdkRectangle rect;
-  COLOR *color_0;
-  COLOR *color_1;
+  COLOR *color_dx;
   int index;
   int err = 0;
   
@@ -678,16 +684,17 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
     /* Normally the color at index 0 in the color map is black, and the
      * color at index 1 is white. We are suppose to generate black&white
      * (grayscale) output, with white and black inverted. We'll set the
-     * color of all objects first "dark" color we find, normally black */
+     * color of all objects to the first "dark" color we find, will be
+     * black if index 0 is black */
     index = 0;
-    color_0 = x_color_lookup(index);
-    while (color_0->r + color_0->g + color_0->b > 20) { /* Close enough, call it black */
+    color_dx = x_color_lookup(index);
+    while (color_dx->r + color_dx->g + color_dx->b > 20) { /* Close enough, call it black */
       index++;
       if (index >= MAX_COLORS) {
         err = 1;
         break;
       }
-      color_0 = x_color_lookup(index);
+      color_dx = x_color_lookup(index);
     }
     if (!err)
       toplevel.override_color = index;
@@ -696,14 +703,14 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
 
     /* Now get a light color, normally would be white */
     index = 0;
-    color_0 = x_color_lookup(index);
-    while ( color_0->r + color_0->g + color_0->b < 0x2E9 ) { /* Close enough, call it white */
+    color_dx = x_color_lookup(index);
+    while ( color_dx->r + color_dx->g + color_dx->b < 0x2E9 ) { /* Close enough, call it white */
       index++;
       if (index >= MAX_COLORS) {
         err = 1;
         break;
       }
-      color_0 = x_color_lookup(index);
+      color_dx = x_color_lookup(index);
     }
     if (!err)
       toplevel.background_color = index; /* set over-ride background to light, maybe white */

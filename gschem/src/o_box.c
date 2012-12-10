@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -201,15 +201,16 @@ void o_box_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
  */
-void o_box_draw_rubber (GSCHEM_TOPLEVEL *w_current, EdaRenderer *renderer)
+void o_box_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 {
-  double wwidth = 0;
-  cairo_t *cr = eda_renderer_get_cairo_context (renderer);
-  GArray *color_map = eda_renderer_get_color_map (renderer);
-  int flags = eda_renderer_get_cairo_flags (renderer);
+  int width = o_style_get_line_width(w_current->toplevel);
+  
+  cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
+  GArray *color_map = eda_renderer_get_color_map (w_current->renderer);
+  int flags = eda_renderer_get_cairo_flags (w_current->renderer);
 
-  eda_cairo_box (cr, flags, wwidth, w_current->first_wx, w_current->first_wy,
+  eda_cairo_box (cr, flags, width, w_current->first_wx, w_current->first_wy,
                  w_current->second_wx, w_current->second_wy);
   eda_cairo_set_source_color (cr, SELECT_COLOR, color_map);
-  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, wwidth, -1, -1);
+  eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, width, -1, -1);
 }

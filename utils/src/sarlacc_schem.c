@@ -167,7 +167,7 @@ void read_string_file(int fd,char *dest, int dest_size)
  */
 void parse_header(int fd1,int fd2)
 {
-    unsigned char localbuf[32];
+    char localbuf[32];
     int length;
 
     read(fd1,localbuf,32);
@@ -177,7 +177,7 @@ void parse_header(int fd1,int fd2)
 	exit(1);
     }
 
-    length=CONV32(localbuf,BYTECOUNT);    
+    length = strlen(localbuf);
     fprintf(stderr,"length: %d\n",length);
 
     lseek(fd2,length+HDR_LEN,SEEK_SET);

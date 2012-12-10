@@ -26,11 +26,7 @@ Notable changes in gEDA/gaf 1.9.0
          print-paper             print-color
          print-orientation
 
-  - `gschem' now generates PDF files rather than PostScript or EPS
-    files.
-
-  - `gschem' now uses a standard GTK print dialog (with printer
-    selection, print preview, etc.)
+  - `gschem' now generates PDF files in addition to PostScript files.
 
 * A new `gaf' command-line utility has been added.  It provides a
   number of subcommands:

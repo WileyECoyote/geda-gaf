@@ -67,7 +67,30 @@ SCM g_funcs_print(SCM scm_filename)
   
   return SCM_BOOL_T;
 }
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+SCM g_funcs_pdf (SCM scm_filename)
+{
+  char *filename;
+  gboolean status;
+  GSCHEM_TOPLEVEL *w_current = g_current_window ();
 
+  SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
+              SCM_ARG1, "gschem-pdf");
+
+  if (output_filename) {
+    status = x_print_export_pdf (w_current, output_filename);
+  } else  {
+    filename = scm_to_utf8_string(scm_filename);
+    status = x_print_export_pdf (w_current, filename);
+    free(filename);
+  }
+  
+  return (status ? SCM_BOOL_T : SCM_BOOL_F);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description

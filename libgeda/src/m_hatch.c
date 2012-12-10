@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,20 +26,20 @@ typedef struct st_sweep_event SWEEP_EVENT;
 typedef struct st_sweep_status SWEEP_STATUS;
 
 struct st_sweep_status {
-  gint    x;     /* current x coordinate */
-  gint    y1;    /* ending y coordinate  */
-  gdouble m1;    /* inverse slope: y/x   */
-  gdouble b1;    /* x intercept          */
+  int    x;     /* current x coordinate */
+  int    y1;    /* ending y coordinate  */
+  double m1;    /* inverse slope: y/x   */
+  double b1;    /* x intercept          */
 };
 
 struct st_sweep_event {
-  gint         y0;        /* starting y coordinate */
+  int         y0;        /* starting y coordinate */
   SWEEP_STATUS status;
 };
 
-static gint calculate_initial_sweep(gint pitch, gint min_y, gint max_y);
-static gint compare_events(gconstpointer a, gconstpointer b);
-static gint compare_status(gconstpointer a, gconstpointer b);
+static int calculate_initial_sweep(int pitch, int min_y, int max_y);
+static int compare_events(gconstpointer a, gconstpointer b);
+static int compare_status(gconstpointer a, gconstpointer b);
 
 /*! \brief Calculate the initial y cooridinate of the hatch sweep line
  *
@@ -53,9 +53,9 @@ static gint compare_status(gconstpointer a, gconstpointer b);
  *  \param max_y [in] The maximum y coordinate of the object being hatched.
  *  \return The initital y coordinate of the sweep line.
  */
-static gint calculate_initial_sweep(gint pitch, gint min_y, gint max_y)
+static int calculate_initial_sweep(int pitch, int min_y, int max_y)
 {
-  gint delta = max_y - min_y;
+  int delta = max_y - min_y;
 
   return min_y + ((delta - ((delta - pitch) / pitch * pitch)) / 2);
 }
@@ -71,7 +71,7 @@ static gint calculate_initial_sweep(gint pitch, gint min_y, gint max_y)
  *  first equals the second, and a positive value if the first is greater than
  *  the second.
  */
-static gint compare_events(gconstpointer a, gconstpointer b)
+static int compare_events(gconstpointer a, gconstpointer b)
 {
   SWEEP_EVENT *event_a = (SWEEP_EVENT*) a;
   SWEEP_EVENT *event_b = (SWEEP_EVENT*) b;
@@ -90,7 +90,7 @@ static gint compare_events(gconstpointer a, gconstpointer b)
  *  first equals the second, and a positive value if the first is greater than
  *  the second.
  */
-static gint compare_status(gconstpointer a, gconstpointer b)
+static int compare_status(gconstpointer a, gconstpointer b)
 {
   SWEEP_STATUS *status_a = (SWEEP_STATUS*) a;
   SWEEP_STATUS *status_b = (SWEEP_STATUS*) b;
@@ -112,7 +112,7 @@ static gint compare_status(gconstpointer a, gconstpointer b)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_box(BOX *box, gint angle, gint pitch, GArray *lines)
+void m_hatch_box(BOX *box, int angle, int pitch, GArray *lines)
 {
   GArray *corners;
   sPOINT point;
@@ -157,10 +157,10 @@ void m_hatch_box(BOX *box, gint angle, gint pitch, GArray *lines)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_circle(CIRCLE *circle, gint angle, gint pitch, GArray *lines)
+void m_hatch_circle(CIRCLE *circle, int angle, int pitch, GArray *lines)
 {
-  gint      radius;
-  gint      sweep_y;
+  int      radius;
+  int      sweep_y;
   TRANSFORM transform;
 
   g_return_if_fail(circle!=NULL);
@@ -176,7 +176,7 @@ void m_hatch_circle(CIRCLE *circle, gint angle, gint pitch, GArray *lines)
 
   while ( sweep_y < radius ) {
     LINE line;
-    gint x = round(sqrt(pow(radius,2) - pow(sweep_y,2)));
+    int x = round(sqrt(pow(radius,2) - pow(sweep_y,2)));
 
     line.x[0] = -x;
     line.y[0] = sweep_y;
@@ -204,7 +204,7 @@ void m_hatch_circle(CIRCLE *circle, gint angle, gint pitch, GArray *lines)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_path (PATH *path, gint angle, gint pitch, GArray *lines)
+void m_hatch_path (PATH *path, int angle, int pitch, GArray *lines)
 {
   GArray *points;
 
@@ -234,14 +234,14 @@ void m_hatch_path (PATH *path, gint angle, gint pitch, GArray *lines)
  *  segments.  This function appends new line segments to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void m_hatch_polygon(GArray *points, gint angle, gint pitch, GArray *lines)
+void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
 {
   BOUNDS bounds;
   GArray *events;
   TRANSFORM inverse;
   GArray *points2;
   GArray *status;
-  gint sweep_y;
+  int sweep_y;
   TRANSFORM transform;
 
   g_return_if_fail(points!=NULL);
@@ -262,7 +262,7 @@ void m_hatch_polygon(GArray *points, gint angle, gint pitch, GArray *lines)
 
   /* build list of sweep events */
   if ( points2->len > 1 ) {
-    gint index;
+    int index;
     sPOINT *p0 = &g_array_index(points2, sPOINT, points2->len-1);
     for (index=0; index<points2->len; index++) {
       sPOINT *p1 = &g_array_index(points2, sPOINT, index);
@@ -270,7 +270,7 @@ void m_hatch_polygon(GArray *points, gint angle, gint pitch, GArray *lines)
         SWEEP_EVENT event;
         event.y0 = min(p0->y, p1->y);
         event.status.y1 = max(p0->y, p1->y);
-        event.status.m1 = (gdouble)( p1->x - p0->x ) / (gdouble)( p1->y - p0->y );
+        event.status.m1 = (double)( p1->x - p0->x ) / (double)( p1->y - p0->y );
         event.status.b1 = p0->x - event.status.m1 * p0->y;
         g_array_append_val(events, event);
       }
@@ -285,7 +285,7 @@ void m_hatch_polygon(GArray *points, gint angle, gint pitch, GArray *lines)
   sweep_y = calculate_initial_sweep(10 * pitch, bounds.min_y, bounds.max_y);
 
   while ( events->len > 0 || status->len > 0 ) {
-    gint index;
+    int index;
 
     /* add new segments that intersect the sweep line */
     index = 0;

@@ -208,9 +208,9 @@ gchar *s_color_ps_string(gint color)
     return NULL;
   } else {
     return g_strdup_printf ("%.3f %.3f %.3f",
-                            (gdouble) c.r/255.0,
-                            (gdouble) c.g/255.0,
-                            (gdouble) c.b/255.0);
+                            (double) c.r/255.0,
+                            (double) c.g/255.0,
+                            (double) c.b/255.0);
   }
 }
 

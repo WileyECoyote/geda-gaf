@@ -274,9 +274,9 @@ void o_select_box_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void o_select_box_draw_rubber (GSCHEM_TOPLEVEL *w_current, EdaRenderer *renderer)
+void o_select_box_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 {
-  o_box_draw_rubber (w_current, renderer);
+  o_box_draw_rubber (w_current);
 }
 
 /*! \todo Finish function documentation!!!

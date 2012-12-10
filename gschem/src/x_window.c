@@ -65,7 +65,6 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
 
   /* X related stuff */
   x_window_create_main (w_current);
-
   x_menu_attach_recent_files_submenu(w_current);
 }
 
@@ -112,13 +111,11 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
    * Width = root_width*3/4   Height = Width/1.3333333333
    * 1.3333333 is the desired aspect ratio!
    */
-
   gtk_drawing_area_size (GTK_DRAWING_AREA (w_current->drawing_area),
                          w_current->win_width,
                          w_current->win_height);
 
-  gtk_box_pack_start (GTK_BOX (drawbox), w_current->drawing_area,
-                      TRUE, TRUE, 0);
+  gtk_box_pack_start (GTK_BOX (drawbox), w_current->drawing_area, TRUE, TRUE, 0);
   GTK_WIDGET_SET_FLAGS (w_current->drawing_area, GTK_CAN_FOCUS );
   gtk_widget_grab_focus (w_current->drawing_area);
   gtk_widget_show (w_current->drawing_area);
@@ -133,7 +130,7 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
 void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
 {
   struct event_reg_t {
-    gchar *detailed_signal;
+    char *detailed_signal;
     GCallback c_handler;
   };
 
@@ -196,11 +193,11 @@ static GtkWidget *x_window_stock_pixmap(const char *stock, GSCHEM_TOPLEVEL *w_cu
   GdkWindow *window=w_current->main_window->window;
   GdkColor *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
 
-  gchar *filename=g_strconcat(w_current->toplevel->bitmap_directory,
+  char *filename=g_strconcat(w_current->toplevel->bitmap_directory,
                               G_DIR_SEPARATOR_S, 
                               "gschem-", stock, ".xpm", NULL);
 
-  gchar *stockid=g_strconcat("gtk-", stock, NULL);
+  char *stockid=g_strconcat("gtk-", stock, NULL);
 
   /* First check if GTK knows this stock icon */
   if(gtk_stock_lookup(stockid, &item)) {
@@ -536,6 +533,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   w_current->drawable = w_current->window;
 
   x_window_setup_gc(w_current);
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -700,17 +698,17 @@ void x_window_close_all(GSCHEM_TOPLEVEL *w_current)
  *  does not conflict with a file on disk.
  */
 PAGE*
-x_window_open_page (GSCHEM_TOPLEVEL *w_current, const gchar *filename)
+x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *old_current, *page;
-  gchar *fn;
+  char *fn;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
   /* Generate untitled filename if none was specified */
   if (filename == NULL) {
-    gchar *cwd, *tmp;
+    char *cwd, *tmp;
     cwd = g_get_current_dir ();
     tmp = g_strdup_printf ("%s_%d.sch",
                            toplevel->untitled_name,
@@ -739,7 +737,7 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const gchar *filename)
     if (!quiet_mode)
       s_log_message (_("Loading schematic [%s]\n"), fn);
 
-    if (!f_open (toplevel, page, (gchar *) fn, &err)) {
+    if (!f_open (toplevel, page, (char *) fn, &err)) {
       GtkWidget *dialog;
 
       g_warning ("%s\n", err->message);
@@ -819,8 +817,8 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   x_manual_resize (w_current);
   x_hscrollbar_update (w_current);
   x_vscrollbar_update (w_current);
-
   o_invalidate_all (w_current);
+
 }
 
 /*! \brief Saves a page to a file.
@@ -840,13 +838,13 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
  *  \param [in] filename  The name of the file in which to save page.
  *  \returns 1 on success, 0 otherwise.
  */
-gint
-x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const gchar *filename)
+int
+x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *old_current;
-  const gchar *log_msg, *state_msg;
-  gint ret;
+  const char *log_msg, *state_msg;
+  int ret;
   GError *err = NULL;
 
   g_return_val_if_fail (toplevel != NULL, 0);

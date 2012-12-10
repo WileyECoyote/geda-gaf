@@ -325,8 +325,8 @@
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
 ;
-(auto-load-last "enabled")
-;(auto-load-last "disabled")
+;(auto-load-last "enabled")
+(auto-load-last "disabled")
 
 ; autosave interval
 ;

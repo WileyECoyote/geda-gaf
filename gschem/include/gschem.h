@@ -5,6 +5,7 @@
 
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
+#include <libgedacairo/libgedacairo.h>
 
 /* gschem headers */
 #include "gschem_idefines.h"

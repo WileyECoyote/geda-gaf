@@ -281,7 +281,15 @@ enum {
 #define RC_BOOLEAN_GOUT(variable) \
  int state = variable;    /* Retrieve Variable */ \
  RC_BOOLEAN_OUT(variable)     /* Expand Base */
-
+ 
+/*\remark
+   Use this Macro to write a w_current->renderer Boolean Variable
+   @param[in] variable   w_current->renderer integer variable
+ */
+#define RC_BOOLEAN_ROUT(variable) \
+ int state = w_current->renderer->variable; \
+ RC_BOOLEAN_OUT(variable)     /* Expand Base */
+ 
 /*\remark
    Use this Macro to write a TopLevel Boolean Variable
    @param[in] variable   toplevel integer variable

@@ -249,8 +249,8 @@ SELECTION *o_selection_new( void );
 void o_selection_add(TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_selected);
 void o_selection_print_all(const SELECTION *selection);
 void o_selection_remove(TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_selected);
-void o_selection_select(TOPLEVEL *toplevel, OBJECT *object) G_GNUC_DEPRECATED;
-void o_selection_unselect(TOPLEVEL *toplevel, OBJECT *object) G_GNUC_DEPRECATED;
+void o_selection_select(TOPLEVEL *toplevel, OBJECT *object);
+void o_selection_unselect(TOPLEVEL *toplevel, OBJECT *object);
 /* o_style.c */
 int o_style_get_bus_width(TOPLEVEL *toplevel);
 int o_style_get_line_width(TOPLEVEL *toplevel);

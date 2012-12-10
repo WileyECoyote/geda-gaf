@@ -60,7 +60,7 @@ double m_box_shortest_distance (BOX *box, int x, int y, int solid);
 double m_circle_shortest_distance (CIRCLE *circle, int x, int y, int solid);
 
 /* m_hatch.c */
-void m_hatch_polygon(GArray *points, gint angle, gint pitch, GArray *lines);
+void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines);
 
 /* m_line.c */
 double m_line_shortest_distance (LINE *circle, int x, int y);

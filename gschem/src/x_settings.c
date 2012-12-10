@@ -607,7 +607,7 @@ KEYWORD (define_in_rc) {
 
 /** @brief function do_kw_draw_grips in X_Settings_Keyword_Handlers */
 KEYWORD (draw_grips) {
-  RC_BOOLEAN_WOUT (draw_grips);
+  RC_BOOLEAN_ROUT (draw_grips);
 }
 
 /** @brief function do_kw_logging in X_Settings_Keyword_Handlers */
