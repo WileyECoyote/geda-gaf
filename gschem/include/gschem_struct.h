@@ -15,6 +15,18 @@ struct st_gschem_toplevel {
   GtkWidget *menubar;
   GtkWidget *popup_menu;
 
+  GtkWidget *add_handlebox;
+  GtkWidget *attribute_handlebox;
+  GtkWidget *edit_handlebox;
+  GtkWidget *page_handlebox;
+  GtkWidget *standard_handlebox;
+  GtkWidget *zoom_handlebox;
+
+  /* Radioi Drawing Mode Widgets on the Standard Bar */
+  GtkWidget *toolbar_select;
+  GtkWidget *toolbar_net;
+  GtkWidget *toolbar_bus;
+
   GtkWidget *h_scrollbar;
   GtkWidget *v_scrollbar;
   GtkAdjustment *h_adjustment;
@@ -28,12 +40,8 @@ struct st_gschem_toplevel {
   GtkWidget *grid_label;
   GtkWidget *status_label;
 
-  GtkWidget *toolbar_select;
-  GtkWidget *toolbar_net;
-  GtkWidget *toolbar_bus;
-
   char *keyaccel_string;               /* visual feedback when pressing
-                                           keyboard accelerators */
+                                          keyboard accelerators */
   bool keyaccel_string_source_id;   /* event source ID used by above */
 
   /* -------------------- Dialog boxes -------------------- */
@@ -121,8 +129,6 @@ struct st_gschem_toplevel {
 
   /* Display Related */
 
-  //int draw_grips;         /* sets if grips are enabled or not */
-
   /* sets the mininum number of pixels necessary for the grid to be displayed */
   int grid_mode;          /* sets what type of grid to show, can be None, Dots, or Mesh */
   int dots_grid_fixed_threshold;
@@ -150,7 +156,7 @@ struct st_gschem_toplevel {
 
   int attribute_placement_grid;
   /* holds a list of attribute names displayed in the component select dialog */
-  GList *component_select_attrlist; 
+  GList *component_select_attrlist;
 
   /* controls if after doing a place the same component can be placed again */
   int continue_component_place;
@@ -164,8 +170,9 @@ struct st_gschem_toplevel {
 
   /* sets whether nets rubberband as you move them (or connecting comps) */
   int netconn_rubberband;
-  int raise_dialog_boxes;   /*controls if expose events raise dialog boxes*/
-  int save_settings;
+  int raise_dialog_boxes;   /*controls if expose events raise dialog boxes */
+  /* \TODO: Currently save_settings (on exit) is always TRUE */
+  int save_settings;        /*controls if EDA config are written when exiting */
   int select_slack_pixels;  /* Number of pixels around an object we can still select it with */
   SNAP_STATE snap;          /* Whether/how to snap to grid */
   int snap_size;            /* Snap grid parameter */
@@ -198,7 +205,6 @@ struct st_gschem_toplevel {
   int text_case;
   int text_display_zoomfactor;  /* zoom factor at which text is displayed completely */
   int text_feedback;            /* is text is drawn or not in copy/move/place ops */
-  int text_origin_marker; /* controls if text origin marker is displayed or not */
   int text_size;
 
   /* Undo System */

@@ -111,8 +111,7 @@ show_uri__win32 (const gchar *uri, GError **error)
  * \return TRUE on success, FALSE on failure.
  */
 gboolean
-x_show_uri (GSCHEM_TOPLEVEL *w_current, const gchar *uri,
-            GError **error)
+x_show_uri (GSCHEM_TOPLEVEL *w_current, const gchar *uri, GError **error)
 {
 # if defined (SHOW_URI_GIO)
   GdkScreen *screen;

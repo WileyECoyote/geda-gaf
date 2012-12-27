@@ -30,12 +30,12 @@
 #endif
 
 #include "gschem.h"
+#include "x_dialog.h"
+#include "x_dialog_controls.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
-#include "x_dialog_controls.h"
 
 #define ThisDialog aewindow
 

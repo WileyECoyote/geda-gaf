@@ -14,8 +14,8 @@ libgedainclude_HEADERS = \
 	libgeda/papersizes.h \
 	libgeda/prototype.h \
 	libgeda/libgedaguile.h \
-	libgeda/struct.h
-
+	libgeda/s_struct.h \
+	libgeda/g_struct.h
 
 noinst_HEADERS = \
 	gettext_priv.h \

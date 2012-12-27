@@ -33,6 +33,7 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <gettext.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -85,7 +86,7 @@ s_hierarchy_traverse(TOPLEVEL * pr_current, OBJECT * o_current,
 	/* loop over all filenames */
 	while (current_filename != NULL) {
 
-	    s_log_message("Going to traverse source [%s]\n",
+	    s_log_message(_("Going to traverse source [%s]\n"),
 			  current_filename);
 
 	    /* guts here */
@@ -94,15 +95,23 @@ s_hierarchy_traverse(TOPLEVEL * pr_current, OBJECT * o_current,
 #if DEBUG
 	    printf("Going down %s\n", current_filename);
 #endif
+            GError *err = NULL;
 	    child_page =
 		s_hierarchy_down_schematic_single(pr_current,
 						  current_filename,
 						  pr_current->page_current,
 						  page_control,
-                                                  HIERARCHY_FORCE_LOAD);
+                                                  HIERARCHY_FORCE_LOAD,
+                                                  &err);
 
 	    if (child_page == NULL) {
-		fprintf(stderr, "Could not open [%s]\n", current_filename);
+              g_warning (_("Failed to load subcircuit '%s': %s\n"),
+                         current_filename, err->message);
+              fprintf(stderr, _("ERROR: Failed to load subcircuit '%s': %s\n"),
+                      current_filename, err->message);
+              g_error_free (err);
+              exit (2);
+
 	    } else {
               page_control = child_page->page_control;
               s_page_goto (pr_current, child_page);

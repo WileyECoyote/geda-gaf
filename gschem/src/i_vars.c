@@ -152,6 +152,7 @@ int     default_text_case                 = LOWER_CASE;
 int     default_text_display_zoomfactor   = DEFAULT_TEXT_ZOOM;
 int     default_text_feedback             = ONLY_WHEN_READABLE;
 int     default_text_origin_marker        = TRUE;
+int     default_text_marker_size          = DEFAULT_TEXT_MARKER_SIZE;
 int     default_text_size                 = DEFAULT_TEXT_SIZE;
 
 /* Undo System */
@@ -267,10 +268,11 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->text_case                  = default_text_case;
 
 /* default zoom_factor at which text is displayed completely */
-  w_current->text_display_zoomfactor    = default_text_display_zoomfactor;
-  w_current->text_feedback              = default_text_feedback;
-  w_current->text_origin_marker         = default_text_origin_marker;
-  w_current->text_size                  = default_text_size;
+  w_current->text_display_zoomfactor      = default_text_display_zoomfactor;
+  w_current->text_feedback                = default_text_feedback;
+  w_current->renderer->text_origin_marker = default_text_origin_marker;
+  w_current->renderer->text_marker_size   = default_text_marker_size;
+  w_current->text_size                    = default_text_size;
 
 /* Undo Sub-System */
   w_current->undo_levels           = default_undo_levels;
@@ -324,14 +326,6 @@ i_vars_init_defaults()
 {
   EdaConfig *cfg = eda_config_get_default_context ();
 
-  /* This is the prefix of the default filename used for newly created
-   * schematics and symbols. */
-  /// TRANSLATORS: this string is used to generate a filename for
-  /// newly-created files.  It will be used to create a filename of
-  /// the form "untitled_N.sch", where N is a number.  Please make
-  /// sure that the translation contains characters suitable for use
-  /// in a filename.
-  eda_config_set_string (cfg, "gschem", "default-filename", _("untitled"));
 }
 
 /*! \brief Save user config on exit.

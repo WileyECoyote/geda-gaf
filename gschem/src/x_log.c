@@ -48,6 +48,7 @@
 #endif
 
 #include "gschem.h"
+#include "x_dialog.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>

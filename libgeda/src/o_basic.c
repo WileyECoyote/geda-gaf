@@ -243,11 +243,11 @@ void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
  *  \return TRUE on succes, FALSE otherwise
  *
  */
-gboolean o_get_line_options(OBJECT *object,
+bool o_get_line_options(OBJECT *object,
                             OBJECT_END *end, OBJECT_TYPE *type,
                             int *width, int *length, int *space)
 {
-#ifndef DEBUG 
+#if 0
   if (object->type != OBJ_LINE
       && object->type != OBJ_ARC
       && object->type != OBJ_BOX

@@ -6,7 +6,7 @@
 ;;; Copyright (C) 1998-2012 Ales Hvezda
 ;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
 ;;;
-;;; Copyright (C) 2011 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2011-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -165,7 +165,63 @@ int o_style_get_pin_width( TOPLEVEL *toplevel, int type) {
 
   return width;
 }
+/*! \brief Set line_width of object based on style settings.
+ *  \par Function Description
+ *  This function will take an object and recalculate its
+ *  position on the screen.
+ *
+ *  \param [in]     toplevel    The TOPLEVEL object.
+ *  \param [in,out] o_current   OBJECT to set.
+ *
+ */
+void o_style_set_object(TOPLEVEL *toplevel, OBJECT *o_current)
+{
+  if (o_current != NULL) {
+    switch(o_current->type) {
 
+      case(OBJ_LINE):
+        o_current->line_width = o_style_get_line_width( toplevel );
+        break;
+
+      case(OBJ_NET):
+        o_current->line_width = o_style_get_net_width( toplevel );
+        break;
+
+      case(OBJ_BUS):
+        o_current->line_width = o_style_get_bus_width( toplevel );
+        break;
+
+      case(OBJ_BOX):
+        o_current->line_width = o_style_get_line_width( toplevel );
+        break;
+
+      case(OBJ_PATH):
+      case(OBJ_PICTURE):
+        break;
+
+      case(OBJ_CIRCLE):
+        break;
+
+      case(OBJ_COMPLEX):
+      case(OBJ_PLACEHOLDER):
+        break;
+
+      case(OBJ_PIN):
+        if(o_current->pin_type == PIN_TYPE_NET)
+          o_current->line_width = o_style_get_pin_width( toplevel, PIN_TYPE_NET );
+        else
+          o_current->line_width = o_style_get_pin_width( toplevel, PIN_TYPE_BUS );  
+        break;
+
+      case(OBJ_ARC):
+        o_current->line_width = o_style_get_line_width( toplevel );
+        break;
+
+      case(OBJ_TEXT):
+        break;
+    }
+  }
+}
 
 
 

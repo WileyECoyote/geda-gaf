@@ -280,8 +280,8 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   else
     s_log_message("Logging system is disabled");
-  /* Load recent files list. This must be done
-   * before calling x_window_setup(). */
+  
+  /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
   gschem_atexit(recent_files_save, NULL);
 
@@ -307,7 +307,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
     /* if filename is not valid */
     if( access( filename, F_OK ) == -1 ) {
-      /* See if user left off file suffix */
+      /* See if user left off our file suffixes */
       if (strcmp (get_filename_ext(filename), SCHEMATIC_FILE_SUFFIX) != 0)
       {
         /* Check if file name is valid if ".sch" is added */
@@ -394,11 +394,6 @@ int main (int argc, char *argv[])
   textdomain("geda-gschem");
   bind_textdomain_codeset("geda-gschem", "UTF-8");
 #endif
-
-  /* disable the deprecated warnings in guile 1.6.3 */
-  /* Eventually the warnings will need to be fixed */
-  if(getenv("GUILE_WARN_DEPRECATED") == NULL)
-    putenv("GUILE_WARN_DEPRECATED=no");
 
   scm_boot_guile (argc, argv, main_prog, 0);
   

@@ -77,7 +77,7 @@ x_fileselect_callback_update_preview (GtkFileChooser *chooser,
                                       gpointer user_data)
 {
   Preview *preview = PREVIEW (user_data);
-  gchar *filename, *preview_filename = NULL;
+  char *filename, *preview_filename = NULL;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
   if (filename != NULL &&
@@ -166,7 +166,7 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 {
   PAGE *page = NULL;
   GtkWidget *dialog;
-  gchar *cwd;
+  char *cwd;
 
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -208,7 +208,7 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 
     /* open each file */ 
     for (tmp = filenames; tmp != NULL;tmp = g_slist_next (tmp)) {
-      page = x_window_open_page (w_current, (gchar*)tmp->data);
+      page = x_window_open_page (w_current, (char*)tmp->data);
     }
     /* Switch to the last page opened */
     if ( page != NULL )
@@ -240,7 +240,7 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkWidget *dialog;
-  gchar *cwd = NULL;
+  char *cwd = NULL;
 
   dialog = gtk_file_chooser_dialog_new (_("Save as..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -288,7 +288,7 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 				  GTK_RESPONSE_ACCEPT);
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    gchar *filename =
+    char *filename =
       gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
 
     /* If the file already exists, display a dialog box to check if

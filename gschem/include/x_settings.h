@@ -3,10 +3,10 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2013 Ales Hvezda
+;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
 ;;;
-;;; Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -110,7 +110,7 @@ typedef enum {
        Library,
 } DialogTabs;
 
-typedef enum {  
+typedef enum {
 /* Section Labels */
         Logging,
         Undo,
@@ -195,8 +195,8 @@ typedef enum {
         ScrollPanSteps,
         SelectPixels,
         SnapSize,
+        TextMarkerSize,
         TextSize,
-        TextSnapSize,
         TextZoomFactor,
         ThickBusWidth,
         ThickLineWidth,

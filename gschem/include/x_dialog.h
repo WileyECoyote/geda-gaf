@@ -2,12 +2,17 @@
  * gschem - gEDA Schematic Capture
  * Copyright (C) 2006-2010 Dan McMahill
  *
- * This program is free software; you can redistribute it and/or
+ * Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ * Date: December 26, 2012
+ * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
+ *
+ * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
  * version 2 of the License, or (at your option) any later version.
  *
- * This program is distributed in the hope that it will be useful,
+ * This library is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  * Library General Public License for more details.
@@ -18,29 +23,25 @@
  * MA 02111-1301 USA
  */
 
-
 #ifndef __X_DIALOG_H__
 #define __X_DIALOG_H__
 
-/* 
- * Flags for generic_filesel_dialog()
+
+/* Define spacings for dialogs. Defines are in a sperate header,
+ * some dialog use only the define, for example x_compselect
  */
+#include "gschem_xdefines.h"
 
-#define FSB_MAY_EXIST		1
-#define FSB_MUST_EXIST		2
-#define FSB_SHOULD_NOT_EXIST	4
+/* The header defines the GschemDialog class, Should all gschem dialogs
+ * be derived from this class? */
+#include "gschem_dialog.h"
 
-#define FSB_SAVE		256
-#define FSB_LOAD		512
+#include "x_compselect.h"
+#include "x_dialog.h"
+#include "x_log.h"
+#include "x_multiattrib.h"
+#include "x_pagesel.h"
+#include "x_print.h"
+#include "x_states.h"
 
-/* define spacings for dialogs */
-
-#define DIALOG_BORDER_SPACING 5
-#define DIALOG_V_SPACING 2
-#define DIALOG_H_SPACING 5
-#define DEFAULT_DIALOG_SPACING 0
-#define DEFAULT_SEPERATOR_SPACING 10
-#define DEFAULT_WIDGET_SPACING 1
-#define DIALOG_BUTTON_SPACING DEFAULT_DIALOG_SPACING
-#define DIALOG_INDENTATION 10
 #endif /* __X_DIALOG_H__ */

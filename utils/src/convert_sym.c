@@ -44,6 +44,8 @@
 #include <math.h>
 
 #include <config.h>
+
+#include <geda.h>
 #include <libgeda/geda_colors.h>
 
 #ifdef HAVE_LIBDMALLOC
@@ -78,12 +80,10 @@ extern int optind;
 #define MAX_NODES        1024
 #define MAX_POINTS       1024
 
-/* gEDA style enumerators */
-typedef enum {END_NONE, END_SQUARE, END_ROUND} OBJECT_END;
-typedef enum {TYPE_SOLID, TYPE_DOTTED, TYPE_DASHED, TYPE_CENTER,
-              TYPE_PHANTOM, TYPE_ERASE} OBJECT_TYPE;
-typedef enum {FILLING_HOLLOW, FILLING_FILL, FILLING_MESH, FILLING_HATCH,
-              FILLING_VOID} OBJECT_FILLING;
+/* gEDA enumerators */
+/* enumerators OBJECT_END's, OBJECT_TYPE's and  OBJECT_FILLING types were
+ * moved to (top-src)include/geda_enum.h */
+
 typedef enum {NORMAL_PIN, BUS_PIN} OBJECT_PINTYPE;
 
 /* Viewdraw Colours

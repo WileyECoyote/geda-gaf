@@ -28,6 +28,7 @@
 #endif
 
 #include "gschem.h"
+#include "x_dialog.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -178,12 +179,12 @@ static void pagesel_callback_selection_changed (GtkTreeSelection *selection,
  *  \par Function Description
  *
  */
-static gboolean pagesel_callback_button_pressed (GtkWidget *widget,
-						 GdkEventButton *event,
-						 gpointer user_data)
+static bool pagesel_callback_button_pressed (GtkWidget *widget,
+                                             GdkEventButton *event,
+                                             gpointer user_data)
 {
   Pagesel *pagesel = (Pagesel*)user_data;
-  gboolean ret = FALSE;
+  bool ret = FALSE;
 
   if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3) {
     pagesel_popup_menu (pagesel, event);
@@ -574,7 +575,6 @@ void pagesel_update (Pagesel *pagesel)
   GList *iter;
 
   g_assert (IS_PAGESEL (pagesel));
-
   g_return_if_fail (GSCHEM_DIALOG (pagesel)->w_current);
 
   toplevel = GSCHEM_DIALOG (pagesel)->w_current->toplevel;

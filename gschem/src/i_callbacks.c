@@ -28,6 +28,7 @@
 #endif
 
 #include "gschem.h"
+#include "x_menu.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -43,9 +44,13 @@
  */
 /* every i_callback functions have the same footprint */
 #define DEFINE_I_CALLBACK(name)				\
-	void i_callback_ ## name(gpointer data,		\
-			         guint callback_action,	\
+	void i_callback_ ## name(GSCHEM_TOPLEVEL* w_current,    \
+			         unsigned int callback_action,	\
 			         GtkWidget *widget)
+
+#define DEFINE_TB_CALLBACK(name)                         \
+        void i_callback_toolbar_ ## name(GtkWidget* widget, \
+                                        GSCHEM_TOPLEVEL* w_current)
 
 /*! \section callback-intro Callback Functions
  * right now, all callbacks except for the ones on the File menu have
@@ -65,10 +70,7 @@
  */
 DEFINE_I_CALLBACK(file_new)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)data;
   PAGE *page;
-
-  g_return_if_fail (w_current != NULL);
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
@@ -84,13 +86,10 @@ DEFINE_I_CALLBACK(file_new)
  *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_file_new(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(file_new)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
-    
-  i_callback_file_new(data, 0, NULL);
+  i_callback_file_new(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -100,27 +99,27 @@ void i_callback_toolbar_file_new(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(file_new_window)
 {
-  GSCHEM_TOPLEVEL *w_current;
+  GSCHEM_TOPLEVEL *new_window;
   PAGE *page;
 
-  w_current = gschem_toplevel_new ();
-  w_current->toplevel = s_toplevel_new ();
+  new_window = gschem_toplevel_new ();
+  new_window->toplevel = s_toplevel_new ();
 
-  w_current->toplevel->load_newer_backup_func = x_fileselect_load_backup;
-  w_current->toplevel->load_newer_backup_data = w_current;
+  new_window->toplevel->load_newer_backup_func = x_fileselect_load_backup;
+  new_window->toplevel->load_newer_backup_data = new_window;
 
-  o_text_set_rendered_bounds_func (w_current->toplevel,
-                                   o_text_get_rendered_bounds, w_current);
+  o_text_set_rendered_bounds_func (new_window->toplevel,
+                                   o_text_get_rendered_bounds, new_window);
 
   /* Damage notifications should invalidate the object on screen */
-  o_add_change_notify (w_current->toplevel,
+  o_add_change_notify (new_window->toplevel,
                        (ChangeNotifyFunc) o_invalidate,
-                       (ChangeNotifyFunc) o_invalidate, w_current);
+                       (ChangeNotifyFunc) o_invalidate, new_window);
 
-  x_window_setup (w_current);
+  x_window_setup (new_window);
 
-  page = x_window_open_page (w_current, NULL);
-  x_window_set_current_page (w_current, page);
+  page = x_window_open_page (new_window, NULL);
+  x_window_set_current_page (new_window, page);
   s_log_message (_("New Window created [%s]\n"), page->page_filename);
 }
 
@@ -136,11 +135,7 @@ DEFINE_I_CALLBACK(file_new_window)
  */
 DEFINE_I_CALLBACK(file_open)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  x_fileselect_open (w_current);
+    x_fileselect_open (w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -153,13 +148,10 @@ DEFINE_I_CALLBACK(file_open)
  *  since there is a call: widget = NULL, data = 0 (will be w_current)
  *  \todo This should be renamed to page_open perhaps...
  */
-void i_callback_toolbar_file_open(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(file_open)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
-
-  i_callback_file_open(data, 0, NULL);
+  i_callback_file_open(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -169,9 +161,6 @@ void i_callback_toolbar_file_open(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(file_script)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   setup_script_selector(w_current);
 }
 
@@ -186,10 +175,6 @@ DEFINE_I_CALLBACK(file_script)
  */
 DEFINE_I_CALLBACK(file_save)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /*! \todo probably there should be a flag that says whether
    *   page_filename is derived from untitled_name or specified by
    *   a user. Some twisted people might name their files like
@@ -205,39 +190,27 @@ DEFINE_I_CALLBACK(file_save)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Save File initiated by ToolBar Button
  *  \par Function Description
- *
+ *  This callback function for the Save File toolbar button. The function
+ *  just calls the cooresponding Menu handler.
  *  \note
- *  don't use the widget parameter on this function, or do some
- *  checking...
- *  since there is a call: widget = NULL, data = 0 (will be w_current)
- *  \todo This should be renamed to page_open perhaps...
+ *  The widget parameter in this function is a ptr to the toolbar button!
  */
-void i_callback_toolbar_file_save(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(file_save)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
-
-  i_callback_file_save(data, 0, NULL);
+  i_callback_file_save(w_current, 0, NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Save All Files initiated by Menu Selection
  *  \par Function Description
  *
  *  \note
- *  don't use the widget parameter on this function, or do some checking...
- *  since there is a call: widget = NULL, data = 0 (will be w_current)
+ *  The widget parameter in this function is the a ptr to the Menu Selection!
  */
 DEFINE_I_CALLBACK(file_save_all)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (s_page_save_all(w_current->toplevel)) {
      i_set_state_msg(w_current, SELECT, _("Failed to Save All"));
   } else {
@@ -249,19 +222,25 @@ DEFINE_I_CALLBACK(file_save_all)
   i_update_menus(w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Save File As command initiated by Menu Selection
  *  \par Function Description
- *
+ *  Save the current file to disk.
  */
 DEFINE_I_CALLBACK(file_save_as)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   x_fileselect_save (w_current);
 }
-
+/*! \brief Save File As command initiated by Tool-bar Button
+ *  \par Function Description
+ *  This is a callback function for the Save As tool-bar button. The function
+ *  just calls the corresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the tool-bar button!
+ */
+DEFINE_TB_CALLBACK(file_save_as)
+{
+  x_fileselect_save (w_current);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -269,11 +248,9 @@ DEFINE_I_CALLBACK(file_save_as)
  */
 DEFINE_I_CALLBACK(file_print)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   char *base=NULL, *filename;
   char *ps_filename=NULL;
-  
-  g_return_if_fail (w_current != NULL);
+
   g_return_if_fail (w_current->toplevel->page_current->page_filename != NULL);
 
   /* shortcut */
@@ -300,7 +277,17 @@ DEFINE_I_CALLBACK(file_print)
 
   g_free(ps_filename);
 }
-
+/*! \brief File Print command initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Print tool-bar button. The function
+ *  just calls the corresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(file_print)
+{
+  i_callback_file_print(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -308,13 +295,20 @@ DEFINE_I_CALLBACK(file_print)
  */
 DEFINE_I_CALLBACK(file_write_png)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  x_image_setup(w_current);
+    x_image_setup(w_current, png_image);
 }
+/*! \brief Export PDF command initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Print tool-bar button. The function
+ *  just calls the corresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(write_pdf)
+{
+   x_image_setup(w_current, pdf_image);
 
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -327,12 +321,8 @@ DEFINE_I_CALLBACK(file_write_png)
  */
 DEFINE_I_CALLBACK(file_close)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  s_log_message(_("Closing Window\n"));
-  x_window_close(w_current);
+    s_log_message(_("Closing Window\n"));
+    x_window_close(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -345,13 +335,9 @@ DEFINE_I_CALLBACK(file_close)
  *  \todo Need a cleaner way of doing this. This routine is used by the
  *  delete event signals
  */
-int i_callback_close(gpointer data, guint callback_action, GtkWidget *widget)
+DEFINE_I_CALLBACK(close)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_val_if_fail ((w_current != NULL), FALSE);
   i_callback_file_close(w_current, 0, widget);
-  return(FALSE);
 }
 
 /*! \todo Finish function documentation!!!
@@ -361,9 +347,6 @@ int i_callback_close(gpointer data, guint callback_action, GtkWidget *widget)
  */
 DEFINE_I_CALLBACK(file_quit)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   x_window_close_all(w_current);
 }
 
@@ -375,7 +358,6 @@ DEFINE_I_CALLBACK(file_quit)
  */
 DEFINE_I_CALLBACK(edit_undo)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
 
   /* If we're cancelling from a move action, re-wind the
    * page contents back to their state before we started.
@@ -403,13 +385,11 @@ DEFINE_I_CALLBACK(edit_undo)
  *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_edit_undo(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(edit_undo)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
 
-  i_callback_edit_undo(data, 0, NULL);
+  i_callback_edit_undo(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -419,8 +399,6 @@ void i_callback_toolbar_edit_undo(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(edit_redo)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   o_undo_callback(w_current, REDO_ACTION);
 }
 
@@ -432,13 +410,10 @@ DEFINE_I_CALLBACK(edit_redo)
  *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_edit_redo(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(edit_redo)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
-
-  i_callback_edit_redo(data, 0, NULL);
+  i_callback_edit_redo(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -450,8 +425,7 @@ void i_callback_toolbar_edit_redo(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(edit_select)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
 
   /* this is probably the only place this should be */
   i_set_state(w_current, SELECT);
@@ -467,17 +441,15 @@ DEFINE_I_CALLBACK(edit_select)
  *  don't use the widget parameter on this function, or do some checking...
  * since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_edit_select(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK (edit_select)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
 
   if (GTK_TOGGLE_BUTTON (widget)->active) {
     if (!o_invalidate_rubber (w_current)) {
       i_callback_cancel(w_current, 0, NULL);
     }
-    i_callback_edit_select(data, 0, NULL);
+    i_callback_edit_select(w_current, 0, NULL);
   }
 }
 
@@ -487,9 +459,7 @@ void i_callback_toolbar_edit_select(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK (edit_select_all)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data;
   o_redraw_cleanstates (w_current);
-
   o_select_visible_unlocked (w_current);
 
   i_set_state (w_current, SELECT);
@@ -504,9 +474,7 @@ DEFINE_I_CALLBACK (edit_select_all)
  */
 DEFINE_I_CALLBACK (edit_deselect)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data;
   o_redraw_cleanstates (w_current);
-
   o_select_unselect_all (w_current);
 
   i_set_state (w_current, SELECT);
@@ -514,7 +482,18 @@ DEFINE_I_CALLBACK (edit_deselect)
   i_update_toolbar (w_current);
   i_update_menus (w_current);
 }
-
+/*! \brief De-select initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the De-select toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK (deselect)
+{
+  if (!w_current->window) return;
+  i_callback_edit_deselect(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -522,10 +501,6 @@ DEFINE_I_CALLBACK (edit_deselect)
  */
 DEFINE_I_CALLBACK(edit_copy)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_copy, _("Copy"));
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
@@ -542,10 +517,7 @@ DEFINE_I_CALLBACK(edit_copy)
  */
 DEFINE_I_CALLBACK(edit_copy_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
@@ -559,7 +531,19 @@ DEFINE_I_CALLBACK(edit_copy_hotkey)
     w_current->inside_action = 1;
   }
 }
+/*! \brief Copy initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Copy toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_copy)
+{
+  if (!w_current->window) return;
 
+  i_callback_edit_copy(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -567,10 +551,6 @@ DEFINE_I_CALLBACK(edit_copy_hotkey)
  */
 DEFINE_I_CALLBACK(edit_mcopy)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_copy, _("Multiple Copy"));
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
@@ -587,24 +567,33 @@ DEFINE_I_CALLBACK(edit_mcopy)
  */
 DEFINE_I_CALLBACK(edit_mcopy_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
   i_update_middle_button(w_current, i_callback_edit_mcopy_hotkey, _("Multiple Copy"));
   if (o_select_return_first_object(w_current)) {
-    o_redraw_cleanstates(w_current);	
-    w_current->event_state = MCOPY; 
+    o_redraw_cleanstates(w_current);
+    w_current->event_state = MCOPY;
     o_copy_start(w_current, wx, wy);
     w_current->event_state = ENDMCOPY;
     w_current->inside_action = 1;
   }
 }
+/*! \brief Multi-Copy initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Multi-Copy toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_mcopy)
+{
+  if (!w_current->window) return;
 
+  i_callback_edit_mcopy(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -612,10 +601,6 @@ DEFINE_I_CALLBACK(edit_mcopy_hotkey)
  */
 DEFINE_I_CALLBACK(edit_move)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_move, _("Move"));
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
@@ -632,10 +617,7 @@ DEFINE_I_CALLBACK(edit_move)
  */
 DEFINE_I_CALLBACK(edit_move_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
@@ -648,7 +630,19 @@ DEFINE_I_CALLBACK(edit_move_hotkey)
     w_current->inside_action = 1;
   }
 }
+/*! \brief Move initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Move toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_move)
+{
+  if (!w_current->window) return;
 
+  i_callback_edit_move(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -656,14 +650,10 @@ DEFINE_I_CALLBACK(edit_move_hotkey)
  */
 DEFINE_I_CALLBACK(edit_delete)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_delete, _("Delete"));
 
   if (o_select_return_first_object(w_current)) {
-    o_redraw_cleanstates(w_current);	
+    o_redraw_cleanstates(w_current);
     o_delete_selected(w_current);
     /* if you delete the objects you must go into select
      * mode after the delete */
@@ -681,10 +671,6 @@ DEFINE_I_CALLBACK(edit_delete)
  */
 DEFINE_I_CALLBACK(edit_edit)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_edit, _("Edit"));
   o_edit(w_current, geda_list_get_glist( w_current->toplevel->page_current->selection_list ) );
 }
@@ -696,15 +682,11 @@ DEFINE_I_CALLBACK(edit_edit)
  */
 DEFINE_I_CALLBACK(edit_pin_type)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button (w_current, i_callback_edit_pin_type, _("Edit pin type"));
 
   x_dialog_edit_pin_type (w_current,
                           geda_list_get_glist (w_current->toplevel->
-                                                 page_current->selection_list));
+                                               page_current->selection_list));
 }
 
 /*! \todo Finish function documentation!!!
@@ -714,10 +696,7 @@ DEFINE_I_CALLBACK(edit_pin_type)
  */
 DEFINE_I_CALLBACK(edit_text)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   OBJECT *object;
-
-  g_return_if_fail (w_current != NULL);
 
   i_update_middle_button(w_current, i_callback_edit_text, _("Edit Text"));
   object = o_select_return_first_object(w_current);
@@ -735,10 +714,7 @@ DEFINE_I_CALLBACK(edit_text)
  */
 DEFINE_I_CALLBACK(edit_slot)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   OBJECT *object;
-
-  g_return_if_fail (w_current != NULL);
 
   object = o_select_return_first_object(w_current);
 
@@ -755,15 +731,22 @@ DEFINE_I_CALLBACK(edit_slot)
  */
 DEFINE_I_CALLBACK(edit_color)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_color, _("Color"));
 
   color_edit_dialog(w_current);
 }
 
+/*! \brief Edit Color initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Move toolbar button.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_color)
+{
+  i_update_middle_button(w_current, i_callback_edit_color, _("Color"));
+  color_edit_dialog(w_current);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -772,10 +755,6 @@ DEFINE_I_CALLBACK(edit_color)
  */
 DEFINE_I_CALLBACK(edit_rotate_90)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* If inside an appropriate action, send a button 2 released,
    * so rotating will be handled by x_event.c */
   if ( w_current->inside_action &&
@@ -807,11 +786,8 @@ DEFINE_I_CALLBACK(edit_rotate_90)
  */
 DEFINE_I_CALLBACK(edit_rotate_90_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   GList *object_list;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
@@ -851,19 +827,18 @@ DEFINE_I_CALLBACK(edit_rotate_90_hotkey)
   i_update_toolbar(w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Rotate initiated by ToolBar Button
  *  \par Function Description
- *
+ *  This is a callback function for the Rotate toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
  */
-DEFINE_I_CALLBACK(edit_mirror)
+DEFINE_TB_CALLBACK(edit_rotate)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+  if (!w_current->window) return;
 
-  g_return_if_fail (w_current != NULL);
-
-  i_set_state(w_current, ENDMIRROR);
-  i_update_middle_button(w_current, i_callback_edit_mirror, _("Mirror"));
+  i_callback_edit_rotate_90(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -871,18 +846,38 @@ DEFINE_I_CALLBACK(edit_mirror)
  *  \par Function Description
  *
  */
+DEFINE_I_CALLBACK(edit_mirror)
+{
+  i_set_state(w_current, ENDMIRROR);
+  i_update_middle_button(w_current, i_callback_edit_mirror, _("Mirror"));
+}
+/*! \brief Mirror initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Mirror toolbar button.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_mirror)
+{
+  if (!w_current->window) return;
+  i_set_state(w_current, ENDMIRROR);
+  i_update_middle_button(w_current, i_callback_edit_mirror, _("Mirror"));
+}
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 DEFINE_I_CALLBACK(edit_mirror_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   GList *object_list;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
 
   object_list = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
 
@@ -905,17 +900,27 @@ DEFINE_I_CALLBACK(edit_mirror_hotkey)
  */
 DEFINE_I_CALLBACK(edit_lock)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_lock, _("Lock"));
 
   if (o_select_return_first_object(w_current)) {
     o_lock(w_current);
   }
 }
-
+/*! \brief Lock initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Lock toolbar button.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_lock)
+{
+  if (!w_current->window) return;
+  i_update_middle_button(w_current, i_callback_edit_lock, _("Lock"));
+  if (o_select_return_first_object(w_current)) {
+    o_lock(w_current);
+  }
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -923,16 +928,26 @@ DEFINE_I_CALLBACK(edit_lock)
  */
 DEFINE_I_CALLBACK(edit_unlock)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_edit_unlock, _("Unlock"));
   if (o_select_return_first_object(w_current)) {
     o_unlock(w_current);
   }
 }
-
+/*! \brief Unlock initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Unlock toolbar button.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_unlock)
+{
+  if (!w_current->window) return;
+  i_update_middle_button(w_current, i_callback_edit_unlock, _("Unlock"));
+  if (o_select_return_first_object(w_current)) {
+    o_unlock(w_current);
+  }
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -940,10 +955,6 @@ DEFINE_I_CALLBACK(edit_unlock)
  */
 DEFINE_I_CALLBACK(edit_translate)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current,
                          i_callback_edit_translate, _("Translate"));
 
@@ -968,10 +979,6 @@ DEFINE_I_CALLBACK(edit_translate)
 
 DEFINE_I_CALLBACK(edit_invoke_macro)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   gtk_widget_show(w_current->macro_box);
   gtk_widget_grab_focus(w_current->macro_entry);
 }
@@ -984,17 +991,13 @@ DEFINE_I_CALLBACK(edit_invoke_macro)
  */
 DEFINE_I_CALLBACK(edit_embed)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   OBJECT *o_current;
-
-  g_return_if_fail (w_current != NULL);
 
   i_update_middle_button(w_current, i_callback_edit_embed, _("Embed"));
   /* anything selected ? */
   if (o_select_selected(w_current)) {
     /* yes, embed each selected component */
-    GList *s_current =
-      geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+    GList *s_current = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
 
     while (s_current != NULL) {
       o_current = (OBJECT *) s_current->data;
@@ -1008,11 +1011,11 @@ DEFINE_I_CALLBACK(edit_embed)
     o_undo_savestate(w_current, UNDO_ALL);
   } else {
     /* nothing selected, go back to select state */
-    o_redraw_cleanstates(w_current);	
+    o_redraw_cleanstates(w_current);
     w_current->inside_action = 0;
     i_set_state(w_current, SELECT);
   }
-  
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -1023,10 +1026,7 @@ DEFINE_I_CALLBACK(edit_embed)
  */
 DEFINE_I_CALLBACK(edit_unembed)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   OBJECT *o_current;
-
-  g_return_if_fail (w_current != NULL);
 
   i_update_middle_button(w_current, i_callback_edit_unembed, _("Unembed"));
   /* anything selected ? */
@@ -1047,7 +1047,7 @@ DEFINE_I_CALLBACK(edit_unembed)
     o_undo_savestate(w_current, UNDO_ALL);
   } else {
     /* nothing selected, go back to select state */
-    o_redraw_cleanstates(w_current);	
+    o_redraw_cleanstates(w_current);
     w_current->inside_action = 0;
     i_set_state(w_current, SELECT);
   }
@@ -1062,7 +1062,6 @@ DEFINE_I_CALLBACK(edit_unembed)
  */
 DEFINE_I_CALLBACK(edit_update)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *selection;
   GList *selected_components = NULL;
@@ -1092,7 +1091,7 @@ DEFINE_I_CALLBACK(edit_update)
 
   } else {
     /* nothing selected, go back to select state */
-    o_redraw_cleanstates(w_current);	
+    o_redraw_cleanstates(w_current);
     w_current->inside_action = 0;
     i_set_state(w_current, SELECT);
   }
@@ -1106,10 +1105,6 @@ DEFINE_I_CALLBACK(edit_update)
  */
 DEFINE_I_CALLBACK(edit_show_hidden)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
   if (w_current->inside_action)
@@ -1130,10 +1125,6 @@ DEFINE_I_CALLBACK(edit_show_hidden)
  */
 DEFINE_I_CALLBACK(edit_find)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
   if (w_current->inside_action)
@@ -1149,10 +1140,6 @@ DEFINE_I_CALLBACK(edit_find)
  */
 DEFINE_I_CALLBACK(edit_hide_text)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
   if (w_current->inside_action)
@@ -1168,10 +1155,6 @@ DEFINE_I_CALLBACK(edit_hide_text)
  */
 DEFINE_I_CALLBACK(edit_show_text)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
   if (w_current->inside_action)
@@ -1187,15 +1170,24 @@ DEFINE_I_CALLBACK(edit_show_text)
  */
 DEFINE_I_CALLBACK(edit_autonumber_text)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
   if (w_current->inside_action)
     return;
 
+  autonumber_text_dialog(w_current);
+}
+/*! \brief Auto Number initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Auto Number toolbar button. The
+ *  function just launches the Fill Type Dialog.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(autonumber)
+{
+  if (!w_current->window) return;
+  if (w_current->inside_action) return;
   autonumber_text_dialog(w_current);
 }
 
@@ -1206,13 +1198,20 @@ DEFINE_I_CALLBACK(edit_autonumber_text)
  */
 DEFINE_I_CALLBACK(edit_linetype)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   line_type_dialog(w_current);
 }
-
+/*! \brief Edit Line Type initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Edit Line toolbar button. The
+ *  function just launches the Fill Type Dialog.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_linetype)
+{
+  if (!w_current->window) return;
+  line_type_dialog(w_current);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -1220,13 +1219,20 @@ DEFINE_I_CALLBACK(edit_linetype)
  */
 DEFINE_I_CALLBACK(edit_filltype)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   fill_type_dialog(w_current);
 }
-
+/*! \brief Edit Fill Type initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Edit Fill toolbar button. The
+ *  function just launches the Fill Type Dialog.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(edit_filltype)
+{
+  if (!w_current->window) return;
+  fill_type_dialog(w_current);
+}
 /*! \section view-menu View Menu Callback Functions */
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -1238,12 +1244,19 @@ DEFINE_I_CALLBACK(edit_filltype)
  */
 DEFINE_I_CALLBACK(view_redraw)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   o_invalidate_all (w_current);
 }
-
+/*! \brief Redraw initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Redraw toolbar button.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK (view_redraw)
+{
+  if (!w_current->window) return;
+  o_invalidate_all (w_current);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -1253,16 +1266,11 @@ DEFINE_I_CALLBACK(view_redraw)
  */
 DEFINE_I_CALLBACK(view_zoom_full)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* scroll bar stuff */
-  a_zoom(w_current, ZOOM_FULL, DONTCARE, 0);
+  a_zoom(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, 0);
 
-  if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
-  }
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1274,16 +1282,11 @@ DEFINE_I_CALLBACK(view_zoom_full)
  */
 DEFINE_I_CALLBACK(view_zoom_extents)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* scroll bar stuff */
   a_zoom_extents (w_current,
                   s_page_objects (w_current->toplevel->page_current), 0);
-  if (w_current->undo_panzoom) {
+  if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
-  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -1295,11 +1298,8 @@ DEFINE_I_CALLBACK(view_zoom_extents)
  */
 DEFINE_I_CALLBACK(view_zoom_box)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_select_unselect_all (w_current);
+  o_redraw_cleanstates(w_current);
   w_current->inside_action = 0;
   i_set_state(w_current, ZOOMBOXSTART);
 }
@@ -1311,10 +1311,7 @@ DEFINE_I_CALLBACK(view_zoom_box)
  */
 DEFINE_I_CALLBACK(view_zoom_box_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, FALSE, &wx, &wy))
     return;
@@ -1335,15 +1332,10 @@ DEFINE_I_CALLBACK(view_zoom_box_hotkey)
  */
 DEFINE_I_CALLBACK(view_zoom_in)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+  a_zoom(w_current, ZOOM_IN_DIRECTIVE, MENU, 0);
 
-  g_return_if_fail (w_current != NULL);
-
-  a_zoom(w_current, ZOOM_IN, MENU, 0);
-
-  if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
-  }
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1355,15 +1347,10 @@ DEFINE_I_CALLBACK(view_zoom_in)
  */
 DEFINE_I_CALLBACK(view_zoom_out)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+  a_zoom(w_current, ZOOM_OUT_DIRECTIVE, MENU, 0);
 
-  g_return_if_fail (w_current != NULL);
-
-  a_zoom(w_current, ZOOM_OUT, MENU, 0);
- 
-  if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
-  }
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1376,15 +1363,10 @@ DEFINE_I_CALLBACK(view_zoom_out)
  */
 DEFINE_I_CALLBACK(view_zoom_in_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+  a_zoom(w_current, ZOOM_IN_DIRECTIVE, HOTKEY, 0);
 
-  g_return_if_fail (w_current != NULL);
-
-  a_zoom(w_current, ZOOM_IN, HOTKEY, 0);
-
-  if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
-  }
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1396,15 +1378,10 @@ DEFINE_I_CALLBACK(view_zoom_in_hotkey)
  */
 DEFINE_I_CALLBACK(view_zoom_out_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+  a_zoom(w_current, ZOOM_OUT_DIRECTIVE, HOTKEY, 0);
 
-  g_return_if_fail (w_current != NULL);
-
-  a_zoom(w_current, ZOOM_OUT, HOTKEY, 0);
-
-  if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
-  }
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1414,11 +1391,7 @@ DEFINE_I_CALLBACK(view_zoom_out_hotkey)
  */
 DEFINE_I_CALLBACK(view_pan)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   w_current->inside_action = 0;
   i_set_state(w_current, STARTPAN);
 
@@ -1432,10 +1405,6 @@ DEFINE_I_CALLBACK(view_pan)
  */
 DEFINE_I_CALLBACK(view_pan_left)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   a_pan_mouse(w_current, w_current->keyboardpan_gain, 0);
 }
 
@@ -1445,10 +1414,6 @@ DEFINE_I_CALLBACK(view_pan_left)
  */
 DEFINE_I_CALLBACK(view_pan_right)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   /* yes, that's a negative sign there */
   a_pan_mouse(w_current, -w_current->keyboardpan_gain, 0);
 }
@@ -1459,11 +1424,8 @@ DEFINE_I_CALLBACK(view_pan_right)
  */
 DEFINE_I_CALLBACK(view_pan_up)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  a_pan_mouse(w_current, 0, w_current->keyboardpan_gain);
+  if(w_current != NULL)
+    a_pan_mouse(w_current, 0, w_current->keyboardpan_gain);
 }
 
 /*! \brief Scheme callback function that moves the viewport down.
@@ -1472,12 +1434,9 @@ DEFINE_I_CALLBACK(view_pan_up)
  */
 DEFINE_I_CALLBACK(view_pan_down)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  /* yes, that's a negative sign there */
-  a_pan_mouse(w_current, 0, -w_current->keyboardpan_gain);
+  if(w_current != NULL)
+    a_pan_mouse(w_current, 0, -w_current->keyboardpan_gain);
+    /* yes, that's a negative sign there */
 }
 
 /*! \todo Finish function documentation!!!
@@ -1487,10 +1446,7 @@ DEFINE_I_CALLBACK(view_pan_down)
  */
 DEFINE_I_CALLBACK(view_pan_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, FALSE, &wx, &wy))
     return;
@@ -1500,8 +1456,85 @@ DEFINE_I_CALLBACK(view_pan_hotkey)
   a_pan(w_current, wx, wy);
 
   if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   }
+}
+
+/*! \brief Zoom Pan initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Zoom Pan toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(zoom_pan)
+{
+  if (!w_current->window) return;
+  i_callback_view_pan(w_current, 0, NULL);
+}
+/*! \brief Zoom Box initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Zoom Box toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(zoom_box)
+{
+  if (!w_current->window) return;
+  i_callback_view_zoom_box(w_current, 0, NULL);
+}
+
+/*! \brief Zoom Extents initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Zoom Extents toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(zoom_extents)
+{
+  if (!w_current->window) return;
+  i_callback_view_zoom_extents(w_current, 0, NULL);
+}
+
+/*! \brief Zoom In initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Zoom In toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(zoom_in)
+{
+  if (!w_current->window) return;
+  i_callback_view_zoom_in(w_current, 0, NULL);
+}
+
+/*! \brief Zoom Out initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Zoom Out toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(zoom_out)
+{
+  if (!w_current->window) return;
+  i_callback_view_zoom_out(w_current, 0, NULL);
+}
+
+/*! \brief Zoom Limits initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Zoom Limits toolbar button.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(zoom_limits)
+{
+  a_zoom(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, 0);
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
 }
 
 /*! \brief Load the Dark color map scheme
@@ -1511,8 +1544,6 @@ DEFINE_I_CALLBACK(view_pan_hotkey)
  */
 DEFINE_I_CALLBACK (view_dark_colors)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   /* Change the scheme here */
   x_load_color_scheme(DARK_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
@@ -1525,8 +1556,6 @@ DEFINE_I_CALLBACK (view_dark_colors)
  */
 DEFINE_I_CALLBACK (view_light_colors)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   /* Change the scheme here */
   x_load_color_scheme(LIGHT_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
@@ -1539,14 +1568,13 @@ DEFINE_I_CALLBACK (view_light_colors)
  */
 DEFINE_I_CALLBACK (view_bw_colors)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   /* Change the scheme here */
   x_load_color_scheme(BW_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
 }
 
 /*! \section page-menu Page Menu Callback Functions */
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -1554,8 +1582,6 @@ DEFINE_I_CALLBACK (view_bw_colors)
  */
 DEFINE_I_CALLBACK(page_manager)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   x_pagesel_open (w_current);
 }
 
@@ -1566,13 +1592,10 @@ DEFINE_I_CALLBACK(page_manager)
  */
 DEFINE_I_CALLBACK(page_next)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)data;
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *p_current = toplevel->page_current;
   PAGE *p_new;
   GList *iter;
-
-  g_return_if_fail (w_current != NULL);
 
   iter = g_list_find( geda_list_get_glist( toplevel->pages ), p_current );
   iter = g_list_next( iter );
@@ -1601,13 +1624,10 @@ DEFINE_I_CALLBACK(page_next)
  */
 DEFINE_I_CALLBACK(page_prev)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)data;
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *p_current = toplevel->page_current;
   PAGE *p_new;
   GList *iter;
-
-  g_return_if_fail (w_current != NULL);
 
   iter = g_list_find( geda_list_get_glist( toplevel->pages ), p_current );
   iter = g_list_previous( iter );
@@ -1637,10 +1657,7 @@ DEFINE_I_CALLBACK(page_prev)
  */
 DEFINE_I_CALLBACK(page_new)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)data;
   PAGE *page;
-
-  g_return_if_fail (w_current != NULL);
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
@@ -1655,10 +1672,6 @@ DEFINE_I_CALLBACK(page_new)
  */
 DEFINE_I_CALLBACK(page_close)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (w_current->toplevel->page_current->CHANGED) {
     x_dialog_close_changed_page (w_current, w_current->toplevel->page_current);
   } else {
@@ -1675,15 +1688,12 @@ DEFINE_I_CALLBACK(page_close)
  */
 DEFINE_I_CALLBACK(page_revert)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   PAGE *page;
   gchar *filename;
   int page_control;
   int up;
   int response;
   GtkWidget* dialog;
-
-  g_return_if_fail (w_current != NULL);
 
   dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -1727,11 +1737,55 @@ DEFINE_I_CALLBACK(page_revert)
  */
 DEFINE_I_CALLBACK(page_discard)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)data;
-
-  g_return_if_fail (w_current != NULL);
-
   x_window_close_page (w_current, w_current->toplevel->page_current);
+}
+
+/*! \section page-toolbar Page Toolbar Callback Functions */
+
+/*! \brief Open Page Manager initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Page Manager toolbar button.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(page_manager)
+{
+  x_pagesel_open (w_current);
+}
+
+/*! \brief Create New Page initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Page Manager toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(page_new)
+{
+  i_callback_page_new(w_current, 0, NULL);
+}
+
+/*! \brief Switch to Next Page initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Page Manager toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(page_next)
+{
+  i_callback_page_next(w_current, 0, NULL);
+}
+/*! \brief Switch to Previous Page initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Page Manager toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(page_prev)
+{
+  i_callback_page_prev(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1741,8 +1795,6 @@ DEFINE_I_CALLBACK(page_discard)
  */
 DEFINE_I_CALLBACK(page_print)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   s_page_print_all(w_current->toplevel);
 }
 
@@ -1753,9 +1805,6 @@ DEFINE_I_CALLBACK(page_print)
  */
 DEFINE_I_CALLBACK(clipboard_copy)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   if (!o_select_selected (w_current)) return;
 
   i_update_middle_button (w_current, i_callback_clipboard_copy,
@@ -1771,9 +1820,6 @@ DEFINE_I_CALLBACK(clipboard_copy)
  */
 DEFINE_I_CALLBACK(clipboard_cut)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   if (!o_select_selected (w_current)) return;
 
   i_update_middle_button (w_current, i_callback_clipboard_cut,
@@ -1789,11 +1835,8 @@ DEFINE_I_CALLBACK(clipboard_cut)
  */
 DEFINE_I_CALLBACK(clipboard_paste)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data;
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *object_list = NULL;
-
-  g_return_if_fail (w_current != NULL);
 
   i_update_middle_button (w_current, i_callback_buffer_paste1, _("Paste from clipboard"));
 
@@ -1818,12 +1861,9 @@ DEFINE_I_CALLBACK(clipboard_paste)
  */
 DEFINE_I_CALLBACK(clipboard_paste_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data;
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *object_list = NULL;
-  gint wx, wy;
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position (w_current, TRUE, &wx, &wy))
     return;
@@ -1845,10 +1885,6 @@ DEFINE_I_CALLBACK(clipboard_paste_hotkey)
  */
 DEFINE_I_CALLBACK(buffer_copy1)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1864,10 +1900,6 @@ DEFINE_I_CALLBACK(buffer_copy1)
  */
 DEFINE_I_CALLBACK(buffer_copy2)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1883,10 +1915,6 @@ DEFINE_I_CALLBACK(buffer_copy2)
  */
 DEFINE_I_CALLBACK(buffer_copy3)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1902,10 +1930,6 @@ DEFINE_I_CALLBACK(buffer_copy3)
  */
 DEFINE_I_CALLBACK(buffer_copy4)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1921,10 +1945,6 @@ DEFINE_I_CALLBACK(buffer_copy4)
  */
 DEFINE_I_CALLBACK(buffer_copy5)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1940,10 +1960,6 @@ DEFINE_I_CALLBACK(buffer_copy5)
  */
 DEFINE_I_CALLBACK(buffer_cut1)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1959,10 +1975,6 @@ DEFINE_I_CALLBACK(buffer_cut1)
  */
 DEFINE_I_CALLBACK(buffer_cut2)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1978,10 +1990,6 @@ DEFINE_I_CALLBACK(buffer_cut2)
  */
 DEFINE_I_CALLBACK(buffer_cut3)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -1997,10 +2005,6 @@ DEFINE_I_CALLBACK(buffer_cut3)
  */
 DEFINE_I_CALLBACK(buffer_cut4)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -2016,10 +2020,6 @@ DEFINE_I_CALLBACK(buffer_cut4)
  */
 DEFINE_I_CALLBACK(buffer_cut5)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (!o_select_selected (w_current))
     return;
 
@@ -2035,10 +2035,6 @@ DEFINE_I_CALLBACK(buffer_cut5)
  */
 DEFINE_I_CALLBACK(buffer_paste1)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_buffer_paste1, _("Paste 1"));
   if (object_buffer[0] != NULL) {
     o_redraw_cleanstates(w_current);
@@ -2057,10 +2053,6 @@ DEFINE_I_CALLBACK(buffer_paste1)
  */
 DEFINE_I_CALLBACK(buffer_paste2)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_buffer_paste2, _("Paste 2"));
   if (object_buffer[1] != NULL) {
     o_redraw_cleanstates(w_current);
@@ -2079,10 +2071,6 @@ DEFINE_I_CALLBACK(buffer_paste2)
  */
 DEFINE_I_CALLBACK(buffer_paste3)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_buffer_paste3, _("Paste 3"));
   if (object_buffer[2] != NULL) {
     o_redraw_cleanstates(w_current);
@@ -2101,10 +2089,6 @@ DEFINE_I_CALLBACK(buffer_paste3)
  */
 DEFINE_I_CALLBACK(buffer_paste4)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_buffer_paste4, _("Paste 4"));
   if (object_buffer[3] != NULL) {
     o_redraw_cleanstates(w_current);
@@ -2123,10 +2107,6 @@ DEFINE_I_CALLBACK(buffer_paste4)
  */
 DEFINE_I_CALLBACK(buffer_paste5)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   i_update_middle_button(w_current, i_callback_buffer_paste5, _("Paste 5"));
   if (object_buffer[4] != NULL) {
     o_redraw_cleanstates(w_current);
@@ -2145,10 +2125,7 @@ DEFINE_I_CALLBACK(buffer_paste5)
  */
 DEFINE_I_CALLBACK(buffer_paste1_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (object_buffer[0] == NULL) {
     return;
@@ -2167,10 +2144,7 @@ DEFINE_I_CALLBACK(buffer_paste1_hotkey)
  */
 DEFINE_I_CALLBACK(buffer_paste2_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (object_buffer[1] == NULL) {
     return;
@@ -2189,10 +2163,7 @@ DEFINE_I_CALLBACK(buffer_paste2_hotkey)
  */
 DEFINE_I_CALLBACK(buffer_paste3_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (object_buffer[2] == NULL) {
     return;
@@ -2211,10 +2182,7 @@ DEFINE_I_CALLBACK(buffer_paste3_hotkey)
  */
 DEFINE_I_CALLBACK(buffer_paste4_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (object_buffer[3] == NULL) {
     return;
@@ -2233,10 +2201,7 @@ DEFINE_I_CALLBACK(buffer_paste4_hotkey)
  */
 DEFINE_I_CALLBACK(buffer_paste5_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (object_buffer[4] == NULL) {
     return;
@@ -2248,6 +2213,42 @@ DEFINE_I_CALLBACK(buffer_paste5_hotkey)
   o_buffer_paste_start(w_current, wx, wy, 4);
 }
 
+/*! \section clipboard-toolbar Clipboard Tool-Bar Callback Functions */
+
+/*! \brief Cut selection to clipboard initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Clipboard Cut toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(clipboard_cut)
+{
+  i_callback_clipboard_cut(w_current, 0, NULL);
+}
+/*! \brief Copy selection to clipboard initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Clipboard Copy toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(clipboard_copy)
+{
+  i_callback_clipboard_copy(w_current, 0, NULL);
+}
+/*! \brief Paste selection from clipboard initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Clipboard Paste toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(clipboard_paste)
+{
+  i_callback_clipboard_paste(w_current, 0, NULL);
+}
+
 /*! \section add-menu Add Menu Callback Functions */
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -2256,10 +2257,6 @@ DEFINE_I_CALLBACK(buffer_paste5_hotkey)
  */
 DEFINE_I_CALLBACK(add_component)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   o_redraw_cleanstates (w_current);
   x_compselect_open (w_current);
 
@@ -2275,16 +2272,12 @@ DEFINE_I_CALLBACK(add_component)
  *  \par Function Description
  *
  *  \note
- *  don't use the widget parameter on this function, or do some checking... 
+ *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_add_component(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(add_component)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
-  if (!w_current->window) return;
-
-  i_callback_add_component(data, 0, NULL);
+  i_callback_add_component(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -2294,10 +2287,6 @@ void i_callback_toolbar_add_component(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(add_attribute)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   attrib_edit_dialog(w_current, NULL, FROM_MENU);
   i_update_middle_button(w_current, i_callback_add_attribute,
                          _("Attribute"));
@@ -2313,10 +2302,6 @@ DEFINE_I_CALLBACK(add_attribute)
  */
 DEFINE_I_CALLBACK(add_attribute_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   attrib_edit_dialog(w_current, NULL, FROM_HOTKEY);
   i_update_middle_button(w_current, i_callback_add_attribute_hotkey,
                          _("Attribute"));
@@ -2324,7 +2309,17 @@ DEFINE_I_CALLBACK(add_attribute_hotkey)
   i_set_state(w_current, SELECT);
   i_update_toolbar(w_current);
 }
-
+/*! \brief Add Attribute initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Attribute toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_attribute)
+{
+  i_callback_add_attribute(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -2332,11 +2327,7 @@ DEFINE_I_CALLBACK(add_attribute_hotkey)
  */
 DEFINE_I_CALLBACK(add_net)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
   o_net_reset(w_current);
 
@@ -2355,15 +2346,12 @@ DEFINE_I_CALLBACK(add_net)
  */
 DEFINE_I_CALLBACK(add_net_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy;
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
   o_net_reset(w_current);
 
@@ -2386,14 +2374,13 @@ DEFINE_I_CALLBACK(add_net_hotkey)
  *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_add_net(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(add_net)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
+
   if (!w_current->window) return;
 
   if (GTK_TOGGLE_BUTTON (widget)->active) {
-    i_callback_add_net(data, 0, NULL);
+    i_callback_add_net(w_current, 0, NULL);
   }
 }
 
@@ -2404,11 +2391,7 @@ void i_callback_toolbar_add_net(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(add_bus)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   /* need to click */
@@ -2427,15 +2410,12 @@ DEFINE_I_CALLBACK(add_bus)
  */
 DEFINE_I_CALLBACK(add_bus_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy;
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   /* need to click */
@@ -2457,14 +2437,12 @@ DEFINE_I_CALLBACK(add_bus_hotkey)
  *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_add_bus(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(add_bus)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
 
   if (GTK_TOGGLE_BUTTON (widget)->active) {
-     i_callback_add_bus(data, 0, NULL);
+     i_callback_add_bus(w_current, 0, NULL);
   }
 }
 
@@ -2475,11 +2453,7 @@ void i_callback_toolbar_add_bus(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(add_text)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-  
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   w_current->inside_action = 0;
@@ -2497,13 +2471,11 @@ DEFINE_I_CALLBACK(add_text)
  *  don't use the widget parameter on this function, or do some checking...
  *  since there is a call: widget = NULL, data = 0 (will be w_current hack)
  */
-void i_callback_toolbar_add_text(GtkWidget* widget, gpointer data)
+DEFINE_TB_CALLBACK(add_text)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_if_fail (w_current != NULL);
   if (!w_current->window) return;
 
-  i_callback_add_text(data, 0, NULL);
+  i_callback_add_text(w_current, 0, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -2513,11 +2485,7 @@ void i_callback_toolbar_add_text(GtkWidget* widget, gpointer data)
  */
 DEFINE_I_CALLBACK(add_line)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_line, _("Line"));
@@ -2532,15 +2500,12 @@ DEFINE_I_CALLBACK(add_line)
  */
 DEFINE_I_CALLBACK(add_line_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy;
-  
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_line_hotkey, _("Line"));
@@ -2551,6 +2516,19 @@ DEFINE_I_CALLBACK(add_line_hotkey)
   i_set_state(w_current, ENDLINE);
 }
 
+/*! \brief Add Line initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Line toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_line)
+{
+  if (!w_current->window) return;
+
+  i_callback_add_line(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -2558,11 +2536,7 @@ DEFINE_I_CALLBACK(add_line_hotkey)
  */
 DEFINE_I_CALLBACK(add_box)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_box, _("Box"));
@@ -2577,15 +2551,12 @@ DEFINE_I_CALLBACK(add_box)
  */
 DEFINE_I_CALLBACK(add_box_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_box_hotkey, _("Box"));
@@ -2596,6 +2567,20 @@ DEFINE_I_CALLBACK(add_box_hotkey)
   i_set_state(w_current, ENDBOX);
 }
 
+/*! \brief Add Box initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Box toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_box)
+{
+  if (!w_current->window) return;
+
+  i_callback_add_box(w_current, 0, NULL);
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -2603,11 +2588,7 @@ DEFINE_I_CALLBACK(add_box_hotkey)
  */
 DEFINE_I_CALLBACK(add_picture)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   w_current->inside_action = 0;
@@ -2624,9 +2605,20 @@ DEFINE_I_CALLBACK(add_picture)
  */
 DEFINE_I_CALLBACK(add_picture_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
+  i_callback_add_picture(w_current, 0, NULL);
+}
 
-  /* If this function necessary? Yes, if you want the hotkey to work. */
+/*! \brief Add Picture initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Picture toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_picture)
+{
+  if (!w_current->window) return;
+
   i_callback_add_picture(w_current, 0, NULL);
 }
 
@@ -2637,11 +2629,7 @@ DEFINE_I_CALLBACK(add_picture_hotkey)
  */
 DEFINE_I_CALLBACK(add_circle)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_circle, _("Circle"));
@@ -2656,15 +2644,12 @@ DEFINE_I_CALLBACK(add_circle)
  */
 DEFINE_I_CALLBACK(add_circle_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_circle_hotkey,
@@ -2676,6 +2661,19 @@ DEFINE_I_CALLBACK(add_circle_hotkey)
   i_set_state(w_current, ENDCIRCLE);
 }
 
+/*! \brief Add Circle initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Circle toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_circle)
+{
+  if (!w_current->window) return;
+
+  i_callback_add_circle(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -2683,11 +2681,7 @@ DEFINE_I_CALLBACK(add_circle_hotkey)
  */
 DEFINE_I_CALLBACK(add_arc)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-  
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_arc, _("Arc"));
@@ -2702,15 +2696,12 @@ DEFINE_I_CALLBACK(add_arc)
  */
 DEFINE_I_CALLBACK(add_arc_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_arc_hotkey, _("Arc"));
@@ -2720,7 +2711,19 @@ DEFINE_I_CALLBACK(add_arc_hotkey)
   w_current->inside_action = 1;
   i_set_state(w_current, ENDARC);
 }
+/*! \brief Add Arc initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Arc toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_arc)
+{
+  if (!w_current->window) return;
 
+  i_callback_add_arc(w_current, 0, NULL);
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -2728,11 +2731,7 @@ DEFINE_I_CALLBACK(add_arc_hotkey)
  */
 DEFINE_I_CALLBACK(add_pin)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_pin, _("Pin"));
@@ -2747,15 +2746,12 @@ DEFINE_I_CALLBACK(add_pin)
  */
 DEFINE_I_CALLBACK(add_pin_hotkey)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  gint wx, wy; 
-
-  g_return_if_fail (w_current != NULL);
+  int wx, wy;
 
   if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy))
     return;
 
-  o_redraw_cleanstates(w_current);	
+  o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
   i_update_middle_button(w_current, i_callback_add_pin_hotkey, _("Pin"));
@@ -2766,6 +2762,19 @@ DEFINE_I_CALLBACK(add_pin_hotkey)
   i_set_state(w_current, ENDPIN);
 }
 
+/*! \brief Add Pin initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Add Pin toolbar button. The
+ *  function just calls the cooresponding Menu handler.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(add_pin)
+{
+  if (!w_current->window) return;
+
+  i_callback_add_pin(w_current, 0, NULL);
+}
 /*! \section hierarchy-menu Hierarchy Menu Callback Functions */
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -2774,7 +2783,6 @@ DEFINE_I_CALLBACK(add_pin_hotkey)
  */
 DEFINE_I_CALLBACK(hierarchy_down_schematic)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   char *attrib=NULL;
   char *current_filename=NULL;
   int count=0;
@@ -2816,13 +2824,14 @@ DEFINE_I_CALLBACK(hierarchy_down_schematic)
 
     /* loop over all filenames */
     while(current_filename != NULL) {
-
+      GError *err = NULL;
       s_log_message(_("Searching for source [%s]\n"), current_filename);
       child = s_hierarchy_down_schematic_single(w_current->toplevel,
                                                 current_filename,
                                                 parent,
                                                 page_control,
-                                                HIERARCHY_NORMAL_LOAD);
+                                                HIERARCHY_NORMAL_LOAD,
+                                                &err);
 
       /* s_hierarchy_down_schematic_single() will not zoom the loaded page */
       if (child != NULL) {
@@ -2841,7 +2850,26 @@ DEFINE_I_CALLBACK(hierarchy_down_schematic)
 
       /* now do some error fixing */
       if (child == NULL) {
-        s_log_message(_("Cannot find source [%s]\n"), current_filename);
+        const char *msg = (err != NULL) ? err->message : "Unknown error.";
+        char *secondary =
+          g_strdup_printf (_("Failed to descend hierarchy into '%s': %s\n\n"
+                             "The gschem log may contain more information."),
+                           current_filename, msg);
+
+        s_log_message(_("Failed to descend into '%s': %s\n"),
+                      current_filename, msg);
+
+        GtkWidget *dialog =
+          gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
+                                  GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR,
+                                  GTK_BUTTONS_OK,
+                                  _("Failed to descend hierarchy."));
+        g_object_set (G_OBJECT (dialog), "secondary-text", secondary, NULL);
+        gtk_dialog_run (GTK_DIALOG (dialog));
+        gtk_widget_destroy (dialog);
+        g_free (secondary);
+        g_error_free (err);
+
       } else {
         /* this only signifies that we tried */
         loaded_flag = TRUE;
@@ -2894,17 +2922,14 @@ DEFINE_I_CALLBACK(hierarchy_down_schematic)
  */
 DEFINE_I_CALLBACK(hierarchy_down_symbol)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   OBJECT *object;
   const CLibSymbol *sym;
-
-  g_return_if_fail (w_current != NULL);
 
   object = o_select_return_first_object(w_current);
   if (object != NULL) {
     /* only allow going into symbols */
     if (object->type == OBJ_COMPLEX) {
-      s_log_message(_("Searching for symbol [%s]\n"), 
+      s_log_message(_("Searching for symbol [%s]\n"),
 		    object->complex_basename);
       sym = s_clib_get_symbol_by_name (object->complex_basename);
       if (sym == NULL)
@@ -2933,10 +2958,7 @@ DEFINE_I_CALLBACK(hierarchy_down_symbol)
  */
 DEFINE_I_CALLBACK(hierarchy_up)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   PAGE *up_page;
-
-  g_return_if_fail (w_current != NULL);
 
   up_page = s_hierarchy_find_up_page (w_current->toplevel->pages,
                                       w_current->toplevel->page_current);
@@ -2944,6 +2966,91 @@ DEFINE_I_CALLBACK(hierarchy_up)
     s_log_message(_("Cannot find any schematics above the current one!\n"));
   } else {
     x_window_set_current_page(w_current, up_page);
+  }
+}
+/*! \section Hierarchy-Toolbar Hierarchy Toolbar Callback Functions */
+
+/*! \brief Hierarchy Down Schematic initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Down Schematic toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(down_schematic)
+{
+  if (!w_current->window) return;
+  i_callback_hierarchy_down_schematic(w_current, 0, NULL);
+}
+
+/*! \brief Hierarchy Down Symbol initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Down Symbol toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(down_symbol)
+{
+  if (!w_current->window) return;
+  i_callback_hierarchy_down_symbol(w_current, 0, NULL);
+}
+
+/*! \brief Hierarchy Up initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Hierarchy Up toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(hierarchy_up)
+{
+  if (!w_current->window) return;
+  i_callback_hierarchy_up(w_current, 0, NULL);
+}
+/*! \brief Component Documentation initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the See Component Documentation
+ *  toolbar button.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(cdocumentation)
+{
+
+  char *attrib_doc = NULL;
+  OBJECT *object = NULL;
+  GError *error = NULL;
+  bool result;
+
+  if (!w_current->window) return;
+
+  object = o_select_return_first_object(w_current);
+  if (object != NULL) {
+    /* only allow going into symbols */
+    if (object->type == OBJ_COMPLEX) {
+
+      /* look for "documentation" */
+      attrib_doc = o_attrib_search_object_attribs_by_name (object, "documentation", 0);
+      if (attrib_doc) {
+        g_type_init();
+        //result = x_show_uri (w_current, attrib_doc, &error);
+        /* Use this instead until debian-gnome work out thier iceweasel issue */
+        result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
+        if (error) {
+          s_log_message("error: %s", error->message);
+          g_error_free (error);
+        }
+        g_free(attrib_doc);
+      }
+    }
+  } else {
+    s_log_message(_("No component selected"));
+
   }
 }
 
@@ -2955,12 +3062,9 @@ DEFINE_I_CALLBACK(hierarchy_up)
  */
 DEFINE_I_CALLBACK(attributes_attach)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   OBJECT *first_object;
   GList *s_current;
   GList *attached_objects = NULL;
-
-  g_return_if_fail (w_current != NULL);
 
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
@@ -2979,9 +3083,9 @@ DEFINE_I_CALLBACK(attributes_attach)
     return;
   }
 
-  first_object = (OBJECT *) s_current->data; 
+  first_object = (OBJECT *) s_current->data;
   if (!first_object) {
-    return;	
+    return;
   }
 
   /* skip over first object */
@@ -3012,12 +3116,9 @@ DEFINE_I_CALLBACK(attributes_attach)
  */
 DEFINE_I_CALLBACK(attributes_detach)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   GList *s_current;
   OBJECT *o_current;
   GList *detached_attribs = NULL;
-
-  g_return_if_fail (w_current != NULL);
 
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
@@ -3059,10 +3160,7 @@ DEFINE_I_CALLBACK(attributes_detach)
  */
 DEFINE_I_CALLBACK(attributes_show_name)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   TOPLEVEL *toplevel = w_current->toplevel;
-
-  g_return_if_fail (w_current != NULL);
 
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
@@ -3096,10 +3194,7 @@ DEFINE_I_CALLBACK(attributes_show_name)
  */
 DEFINE_I_CALLBACK(attributes_show_value)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   TOPLEVEL *toplevel = w_current->toplevel;
-
-  g_return_if_fail (w_current != NULL);
 
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
@@ -3133,10 +3228,7 @@ DEFINE_I_CALLBACK(attributes_show_value)
  */
 DEFINE_I_CALLBACK(attributes_show_both)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   TOPLEVEL *toplevel = w_current->toplevel;
-
-  g_return_if_fail (w_current != NULL);
 
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
@@ -3170,10 +3262,7 @@ DEFINE_I_CALLBACK(attributes_show_both)
  */
 DEFINE_I_CALLBACK(attributes_visibility_toggle)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   TOPLEVEL *toplevel = w_current->toplevel;
-
-  g_return_if_fail (w_current != NULL);
 
   /* This is a new addition 3/15 to prevent this from executing
    * inside an action */
@@ -3201,6 +3290,134 @@ DEFINE_I_CALLBACK(attributes_visibility_toggle)
   }
 }
 
+/*! \section attributes-toolbar Attributes Toolbar Callback Functions */
+
+/*! \brief Attach Attribute initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Attach Attribute toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(attach_attributes)
+{
+  if (!w_current->window) return;
+  i_callback_attributes_attach(w_current, 0, NULL);
+}
+
+/*! \brief Dettach Attribute initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Dettach Attribute toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(detach_attributes)
+{
+  if (!w_current->window) return;
+  i_callback_attributes_detach(w_current, 0, NULL);
+}
+
+/*! \brief Attributes Show Value initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Dettach Attribute toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(attributes_show_value)
+{
+  if (!w_current->window) return;
+  i_callback_attributes_show_value(w_current, 0, NULL);
+}
+
+/*! \brief Attributes Show Name initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Attributes Show Name toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(attributes_show_name)
+{
+  if (!w_current->window) return;
+  i_callback_attributes_show_name(w_current, 0, NULL);
+}
+
+/*! \brief Attributes Show Both Name and Value initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Attributes Show Both toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(attributes_show_both)
+{
+  if (!w_current->window) return;
+  i_callback_attributes_show_both(w_current, 0, NULL);
+}
+
+/*! \brief Attributes Visibility Toggle initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Attributes Visibility Toggle toolbar button. The
+ *  function just calls the corresponding Menu handler.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(attributes_visibility)
+{
+  if (!w_current->window) return;
+  i_callback_attributes_visibility_toggle(w_current, 0, NULL);
+}
+
+/*! \brief Find Attribute initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Find Attribute Toggle toolbar button.
+ *
+ *  \note   hide_text_dialog(w_current);
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(find_attribute)
+{
+  if (!w_current->window) return;
+  if (w_current->inside_action) return;
+
+  find_text_dialog(w_current);
+}
+/*! \brief Hide Text initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Hide Text Toggle toolbar button.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(hide_text)
+{
+  if (!w_current->window) return;
+  if (w_current->inside_action) return;
+
+  hide_text_dialog(w_current);
+}
+/*! \brief Show Text initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Show Text Toggle toolbar button.
+ *
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(show_text)
+{
+  if (!w_current->window) return;
+  if (w_current->inside_action) return;
+
+  show_text_dialog(w_current);
+}
 /*! \section script-menu Script Menu Callback Functions */
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -3211,10 +3428,7 @@ DEFINE_I_CALLBACK(attributes_visibility_toggle)
  */
 DEFINE_I_CALLBACK(script_console)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-  printf(_("Sorry but this is a non-functioning menu option\n"));
+  s_log_message(_("Sorry but this is a non-functioning menu option\n"));
 }
 
 /*! \section layers-menu Layers Menu Callback Functions */
@@ -3229,10 +3443,8 @@ DEFINE_I_CALLBACK(script_console)
  */
 DEFINE_I_CALLBACK(options_text_size)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-  text_size_dialog(w_current);
+  if(w_current != NULL)
+    text_size_dialog(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -3242,10 +3454,8 @@ DEFINE_I_CALLBACK(options_text_size)
  */
 DEFINE_I_CALLBACK(options_snap_size)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-  snap_size_dialog(w_current);
+  if(w_current != NULL)
+    snap_size_dialog(w_current);
 }
 
 /*! \brief Multiply by two the snap grid size.
@@ -3255,10 +3465,6 @@ DEFINE_I_CALLBACK(options_snap_size)
  */
 DEFINE_I_CALLBACK(options_scale_up_snap_size)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   w_current->snap_size *= 2;
   w_current->toplevel->page_current->CHANGED=1;  /* maybe remove those two lines */
   o_undo_savestate(w_current, UNDO_ALL);
@@ -3274,10 +3480,6 @@ DEFINE_I_CALLBACK(options_scale_up_snap_size)
  */
 DEFINE_I_CALLBACK(options_scale_down_snap_size)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (w_current->snap_size % 2 == 0)
     w_current->snap_size /= 2;
   w_current->toplevel->page_current->CHANGED=1;  /* maybe remove those two lines */
@@ -3298,10 +3500,6 @@ DEFINE_I_CALLBACK(options_scale_down_snap_size)
  */
 DEFINE_I_CALLBACK(options_afeedback)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   if (w_current->action_feedback_mode == BOUNDINGBOX) {
     w_current->action_feedback_mode = OUTLINE;
     s_log_message(_("Action feedback mode set to OUTLINE\n"));
@@ -3312,6 +3510,8 @@ DEFINE_I_CALLBACK(options_afeedback)
   if (w_current->inside_action &&
       w_current->toplevel->page_current->place_list != NULL)
     o_place_invalidate_rubber (w_current, FALSE);
+
+  x_menu_set_toggle(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
 }
 
 /*! \todo Finish function documentation!!!
@@ -3321,10 +3521,6 @@ DEFINE_I_CALLBACK(options_afeedback)
  */
 DEFINE_I_CALLBACK(options_grid)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-
   switch (w_current->grid_mode) {
     case GRID_NONE: w_current->grid_mode = GRID_DOTS; break;
     case GRID_DOTS: w_current->grid_mode = GRID_MESH; break;
@@ -3348,28 +3544,27 @@ DEFINE_I_CALLBACK(options_grid)
  */
 DEFINE_I_CALLBACK(options_snap)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   /* toggle to the next snap state */
   w_current->snap = (w_current->snap+1) % SNAP_STATE_COUNT;
 
   switch (w_current->snap) {
   case SNAP_OFF:
     s_log_message(_("Snap OFF (CAUTION!)\n"));
+    x_menu_set_toggle(w_current, SNAP_TOGGLE, FALSE);
     break;
   case SNAP_GRID:
+    x_menu_set_toggle(w_current, SNAP_TOGGLE, TRUE);
     s_log_message(_("Snap ON\n"));
     break;
   case SNAP_RESNAP:
+    x_menu_set_toggle(w_current, SNAP_TOGGLE, TRUE);
     s_log_message(_("Snap back to the grid (CAUTION!)\n"));
     break;
   default:
-    g_critical("options_snap: toplevel->snap out of range: %d\n",
-               w_current->snap);
+    g_critical("options_snap: toplevel->snap out of range: %d\n", w_current->snap);
   }
-
-  i_show_state(w_current, NULL); /* update status on screen */
-  i_update_grid_info (w_current);
+  i_show_state(w_current, NULL);  /* update status on screen */
+  i_update_grid_info (w_current); /* update on screen grid status */
 }
 
 /*! \todo Finish function documentation!!!
@@ -3383,8 +3578,6 @@ DEFINE_I_CALLBACK(options_snap)
  */
 DEFINE_I_CALLBACK(options_rubberband)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   if (w_current->netconn_rubberband) {
     w_current->netconn_rubberband = 0;
     s_log_message(_("Rubber band OFF \n"));
@@ -3392,6 +3585,7 @@ DEFINE_I_CALLBACK(options_rubberband)
     w_current->netconn_rubberband = 1;
     s_log_message(_("Rubber band ON\n"));
   }
+  x_menu_set_toggle(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
 
 
@@ -3402,14 +3596,13 @@ DEFINE_I_CALLBACK(options_rubberband)
  */
 DEFINE_I_CALLBACK(options_magneticnet)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
   if ((w_current->magnetic_net_mode = !w_current->magnetic_net_mode)) {
     s_log_message(_("magnetic net mode: ON\n"));
   }
   else {
     s_log_message(_("magnetic net mode: OFF\n"));
   }
+  x_menu_set_toggle(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   i_show_state(w_current, NULL);
 }
 
@@ -3421,13 +3614,10 @@ DEFINE_I_CALLBACK(options_magneticnet)
  */
 DEFINE_I_CALLBACK(options_show_log_window)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
-  x_log_open ();
+   x_log_open ();
 }
 
-/*! 
+/*!
  *  Author: Wiley E. Hill
  *  Date:   Aug 5th, 2012
  *
@@ -3437,12 +3627,18 @@ DEFINE_I_CALLBACK(options_show_log_window)
  */
 DEFINE_I_CALLBACK(configure_settings)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  /* Load and display Dialog */
-  x_configure_settings(w_current);
-
-  g_return_if_fail (w_current != NULL);
+   x_configure_settings(w_current); /* Load and display Dialog */
+}
+/*! \brief Launch Settings Dialog initiated by ToolBar Button
+ *  \par Function Description
+ *  This is a callback function for the Preferences toolbar button. The
+ *  function calls the dialog constructor.
+ *  \note
+ *  The widget parameter in this function is a ptr to the toolbar button!
+ */
+DEFINE_TB_CALLBACK(configure_settings)
+{
+   x_configure_settings(w_current); /* Load and display Dialog */
 }
 
 /*! \todo Finish function documentation!!!
@@ -3489,11 +3685,8 @@ DEFINE_I_CALLBACK(misc3)
  */
 DEFINE_I_CALLBACK(cancel)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
   TOPLEVEL *toplevel = w_current->toplevel;
   GValue value = { 0, };
-
-  g_return_if_fail (w_current != NULL);
 
   if (w_current->event_state == ENDCOMP &&
       w_current->cswindow) {
@@ -3540,7 +3733,7 @@ DEFINE_I_CALLBACK(cancel)
   /* clear the key guile command-sequence */
   g_keys_reset (w_current);
 
-  if (w_current->inside_action) { 
+  if (w_current->inside_action) {
      o_invalidate_all (w_current);
   }
 
@@ -3555,9 +3748,6 @@ DEFINE_I_CALLBACK(cancel)
  */
 DEFINE_I_CALLBACK(help_about)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   about_dialog(w_current);
 }
 
@@ -3568,9 +3758,6 @@ DEFINE_I_CALLBACK(help_about)
  */
 DEFINE_I_CALLBACK(help_hotkeys)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   x_dialog_hotkeys(w_current);
 }
 
@@ -3581,9 +3768,6 @@ DEFINE_I_CALLBACK(help_hotkeys)
  */
 DEFINE_I_CALLBACK(options_show_coord_window)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-
-  g_return_if_fail (w_current != NULL);
   coord_dialog (w_current, 0, 0);
 }
 
@@ -3600,13 +3784,9 @@ DEFINE_I_CALLBACK(options_show_coord_window)
  *  used when you click the close button on the window which sends a DELETE
  *  signal to the app
  */
-gboolean i_callback_close_wm ( GtkWidget *widget, GdkEvent *event, 
-	                   gpointer data ) 
+bool i_callback_close_wm ( GtkWidget *widget, GdkEvent *event,
+                           GSCHEM_TOPLEVEL* w_current )
 {
-
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*) data;
-  g_return_val_if_fail ((w_current != NULL), TRUE);
-
   x_window_close(w_current);
 
   /* stop further propagation of the delete_event signal for window: */

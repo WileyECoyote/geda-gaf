@@ -43,9 +43,9 @@
 
 #define ZOOM_EXTENTS_PADDING_PX 5
 
-#define ZOOM_OUT 0
-#define ZOOM_IN 1
-#define ZOOM_FULL 2
+#define ZOOM_OUT_DIRECTIVE 0
+#define ZOOM_IN_DIRECTIVE 1
+#define ZOOM_FULL_DIRECTIVE 2
 
 /* For Grid */
 #define GRID_NONE               0
@@ -95,6 +95,17 @@
 #define SMALL_ZOOMFACTOR1	150
 #define SMALL_ZOOMFACTOR2	30
 #define MAXIMUM_GRIP_PIXELS     30
+
+/* 
+ * These are used in g_funcs.c, supposely Flags for generic_filesel_dialog()
+ * but FSB_MAY_EXIST, FSB_SHOULD_NOT_EXIST are not referenced in any other
+ * file outside of g_funcs.c, need to check usage
+ */
+#define FSB_MAY_EXIST           1
+#define FSB_MUST_EXIST          2
+#define FSB_SHOULD_NOT_EXIST    4
+#define FSB_SAVE                256
+#define FSB_LOAD                512
 
 /*----------- Logging -----------*/
 
@@ -223,6 +234,11 @@
 /* modes for text-feedback */
 #define ONLY_WHEN_READABLE	0
 #define ALWAYS_FEEDBACK		1
+
+/* text_marker_size */
+#define MIN_TEXT_MARKER_SIZE     5
+#define MAX_TEXT_MARKER_SIZE     50
+#define DEFAULT_TEXT_MARKER_SIZE 15
 
 /* text_size */
 #define DEFAULT_TEXT_SIZE       10

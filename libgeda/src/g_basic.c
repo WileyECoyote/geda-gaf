@@ -169,8 +169,7 @@ struct g_read_file_data_t
 
 /* Body function for g_read_file(). Simply loads the specified
  * file. */
-SCM
-g_read_file__body (struct g_read_file_data_t *data)
+SCM g_read_file__body (struct g_read_file_data_t *data)
 {
   return scm_primitive_load (data->filename);
 }

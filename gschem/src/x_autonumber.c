@@ -36,6 +36,7 @@
 #include <dmalloc.h>
 #endif
 
+#include "x_dialog.h"
 #include "x_dialog_controls.h"
 
 #define ThisDialog autonumber_text
@@ -894,10 +895,10 @@ void autonumber_sortorder_create(GSCHEM_TOPLEVEL *w_current)
   char *path;
   GError *error=NULL;
 
-  char *filenames[] = { "gschem-diagonal.png", 
-			"gschem-top2bottom.png", "gschem-bottom2top.png",
-			"gschem-left2right.png", "gschem-right2left.png",
-			"gschem-fileorder.png",
+  char *filenames[] = { "gschem_diagonal.png", 
+			"gschem_top2bottom.png", "gschem_bottom2top.png",
+			"gschem_left2right.png", "gschem_left2right.png",
+			"gschem_fileorder.png",
 			NULL};
   char *names[] = {N_( "Diagonal"),
 		    N_("Top to bottom"), N_("Bottom to top"),

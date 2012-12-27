@@ -1,23 +1,26 @@
 # geda-guile.m4                                           -*-Autoconf-*-
 # serial 3
-
-dnl Check for guile
-dnl Copyright (C) 2009  Dan McMahill <dan@mcmahill.net>
-dnl Copyright (C) 2010-2011  Peter Brett <peter@peter-b.co.uk>
-dnl
-dnl This program is free software; you can redistribute it and/or modify
-dnl it under the terms of the GNU General Public License as published by
-dnl the Free Software Foundation; either version 2 of the License, or
-dnl (at your option) any later version.
-dnl
-dnl This program is distributed in the hope that it will be useful,
-dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
-dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-dnl GNU General Public License for more details.
-dnl
-dnl You should have received a copy of the GNU General Public License
-dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+# Check for Guile
+#
+# gEDA - GPL Electronic Design Automation
+#
+# Copyright (C) 2009  Dan McMahill <dan@mcmahill.net>
+# Copyright (C) 2010-2013  Peter Brett <peter@peter-b.co.uk>
+# Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 AC_DEFUN([AX_CHECK_GUILE],
 [
@@ -126,4 +129,4 @@ configure.])
   CFLAGS="${save_CFLAGS}"
   LIBS="${save_LIBS}"
 
-])dnl AX_CHECK_GUILE
+])# AX_CHECK_GUILE

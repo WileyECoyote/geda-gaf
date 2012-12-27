@@ -27,6 +27,7 @@ dist-hook:
 	done;
 
 # Installs symbols
+
 install-data-local:
 	@$(NORMAL_INSTALL)
 	@for lib in $(symbol_libs); do \
@@ -34,7 +35,6 @@ install-data-local:
 	  $(MKDIR_P) "$$d"; \
 	  list=`(ls $(srcdir)/$$lib) | grep '.[Ss][Yy][Mm]$$'`; \
 	  if test -n "$$list"; then \
-	    echo " ( cd $(srcdir)/$$lib && $(INSTALL_DATA)" $$list "'$$d' )"; \
 	    (cd $(srcdir)/$$lib && $(INSTALL_DATA) $$list "$$d") || exit $$?; \
 	  fi; \
 	done

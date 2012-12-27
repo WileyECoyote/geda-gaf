@@ -3,8 +3,9 @@ SUBDIRS = po
 INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
 
-GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCAIRO)
 
 bin_PROGRAMS = gaf
 
@@ -16,8 +17,8 @@ gaf_SOURCES = \
 	builtins.h \
 	gettext.h \
 	gaf.c \
-	config.c \
-	export.c \
+	gaf-config.c \
+	gaf-export.c \
 	shell.c
 
 gaf_CPPFLAGS = $(GEDA_INCLUDES) -I$(includedir)
@@ -30,7 +31,7 @@ gaf_CFLAGS = \
 gaf_LDFLAGS = $(GUILE_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) $(CAIRO_LIBS) \
 	$(CAIRO_PNG_LIBS) $(CAIRO_PDF_CLAGS) $(CAIRO_PS_LIBS) $(CAIRO_SVG_LIBS)
 gaf_LDADD = \
-	$(top_builddir)/libgedacairo/libgedacairo.la \
+	$(top_builddir)/libgedacairo/src/libgedacairo.la \
 	$(top_builddir)/libgeda/src/libgeda.la \
 	@LIBINTL@
 

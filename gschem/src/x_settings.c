@@ -60,7 +60,7 @@
 #include <dirent.h>
 
 #include "gschem.h"
-#include "gschem_dialog.h"
+#include "gschem_xdefines.h"
 
 #include "x_settings.h"
 #include "keywords.h"
@@ -132,9 +132,9 @@ get_geda_bulb_image (gboolean WhichState)
    GtkWidget* image;
 
    if (WhichState)
-     image = create_pixmap (BULB_ON_IMAGE );
+     image = create_pixmap (GEDA_BITMAP_BULB_ON );
    else
-     image = create_pixmap ( BULB_OFF_IMAGE);
+     image = create_pixmap ( GEDA_BITMAP_BULB_OFF);
 
    return image;
 }
@@ -184,7 +184,7 @@ void gtk_bulb_group_set_active(GSList *RadioGroupList, int value)
 
   if (index < 0 || index >= length) {
 
-     return; 
+     return;
   } /* should not to happen */
 
   for (j = 0; j < length; j++) {
@@ -196,7 +196,7 @@ void gtk_bulb_group_set_active(GSList *RadioGroupList, int value)
        }
            bulb_on(GTK_WIDGET(button));
      }else bulb_off(GTK_WIDGET(button));
-  }    
+  }
 
   return;
 }
@@ -233,7 +233,7 @@ void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
 
 /** @brief function change_default_titleblock in GatherSettings */
 bool x_settings_set_scm_int(char *symbol_name, int value ) {
-  
+
   char s_val[5];
   char buffer[128];
   char *str;
@@ -264,14 +264,14 @@ bool x_settings_set_scm_int(char *symbol_name, int value ) {
  *  \par Function Description
  *  This functions returns the numbers files located in the title-block
  *  folder. This is used to determine how char array to allocate.
- *  
+ *
  * \retval Returns integer count or -1 if the folder is inaccessible.
 */
 int get_titleblock_cnt(void) {
 
   int count=0;
   char TitleBlockPath[MAX_PATH];
-  
+
   DIR *dirp;
   struct dirent *ent;
 
@@ -434,7 +434,7 @@ int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
 
   /* Build path for user config file */
   inputfile = g_strconcat (s_path_user_config (), G_DIR_SEPARATOR_S, rcname, NULL);
-  
+
   /* Check for existence of user config file */
   if(access(inputfile, R_OK) != 0) {
     /* Copy the template user config file to user's folder */
@@ -442,22 +442,22 @@ int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
                              "user-", rcname, ".scm", NULL);
     result = fcopy(templatefile, inputfile);
   }
-  
+
   if (inputfile == NULL) {
-    s_log_message("File Name error! system-%s", rcname);
+    s_log_message("File Name error! system-%s\n", rcname);
     return -1;
   }
 
   outputfile = g_strconcat (s_path_user_config (), G_DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
-  s_log_message("Writing configuration to [%s]", outputfile);
-  
+  s_log_message("Writing configuration to [%s]\n", outputfile);
+
   if (( input = fopen (inputfile, "r" )) == NULL) {
     s_log_message("File open for read-only error: \"%s\", %s\n", inputfile, strerror( errno ));
     result = errno;
   }
-  else 
+  else
     if (( output = fopen (outputfile, "w" )) == NULL)
     {
       s_log_message("Error, opening output \"%s\", %s\n", inputfile, strerror( errno ));
@@ -485,7 +485,7 @@ int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
                 last = khandle;            /* remember this keyword index */
                 keyword_struc[khandle].strBuffer = strbuffer; /* provide handler ptr to raw input buffer */
                 keyword_struc[khandle].func(w_current, input, output);  /* call handler */
-            } 
+            }
           }
           else { /* same as last keyword */
             fputs(strbuffer, output);
@@ -561,7 +561,7 @@ KEYWORD (load_in_rc) {
   ptr = KEY_BUFFER(load_in_rc);     /* get our pointer to the input buffer */
 
   /* The hard-coded integer below refers to the index from the combo box for
-     the color map scheme, now stored in rc_options.color_scheme_index 
+     the color map scheme, now stored in rc_options.color_scheme_index
    */
   if (strstr(ptr, DARK_COLOR_MAP ) != NULL)
     fix(0);
@@ -1101,11 +1101,14 @@ KEYWORD ( text_feedback ) {
   RC_STRING_TABLE_W2OUT (text_feedback)
 }
 
-/** @brief function do_kw_text_origin_markerin X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_origin_marker in X_Settings_Keyword_Handlers */
 KEYWORD ( text_origin_marker ) {
-  RC_BOOLEAN_WOUT (text_origin_marker)
+  RC_BOOLEAN_ROUT (text_origin_marker)
 }
-
+/** @brief function do_kw_text_marker_size in X_Settings_Keyword_Handlers */
+KEYWORD ( text_marker_size ) {
+  RC_INTEGER_ROUT (text_marker_size)
+}
 /** @brief function do_kw_text_size in X_Settings_Keyword_Handlers */
 KEYWORD ( text_size ) {
   RC_INTEGER_WOUT (text_size)

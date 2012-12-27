@@ -1,4 +1,13 @@
 
+2012-12-25 Wiley E Hill  <wileyhill@gmail.com>
+
+        * m4/geda-guile.m4: General review, updated Copyright information
+        * m4/geda-cairo.m4: Updated Copyright information, added CAIRO_PKG
+                            corrected footer.
+        * m4/geda-cairo.m4: Updated Copyright information, corrected
+                            description.
+        * m4/geda-pango.m4: New file.
+
 2012-10-18 Wiley E Hill  <wileyhill@gmail.com>
 
 	* m4/ChangeLog: Add this file!

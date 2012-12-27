@@ -1,3 +1,5 @@
+## Process this file with automake to produce Makefile.in
+
 SUBDIRS = bitmaps intl libgeda libgedacairo gaf gschem gattrib \
           gsymcheck gnetlist utils symbols docs examples
 
@@ -15,9 +17,15 @@ DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-update-xdg-database
 
 BUILT_SOURCES = version.h
-EXTRA_DIST = autogen.sh version.h version.h.in HACKING COPYING.LGPL
 
-# 
+# Include GNU files here because foreign flavor
+EXTRA_DIST = \
+		COPYING.LGPL \
+		HACKING \
+		acinclude.m4 autogen.sh \
+		version.h version.h.in
+
+#
 # Generate version.h. This works by looking at any git repository that
 # is present in the source directory (detected at configure time). If
 # there is a git repository, the HEAD commitid is checked every time

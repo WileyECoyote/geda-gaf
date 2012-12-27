@@ -1,5 +1,5 @@
 ;-*-Scheme-*-
-; 
+;
 ; Init file for gschem
 ;
 
@@ -10,7 +10,7 @@
 ;  ;'s are comments
 ;  keywords are case sensitive (guile feature)
 ;  mode strings are case sensitive
-;  colors are not case sensitive 
+;  colors are not case sensitive
 ;
 ;  If an integer is out-side of the valid range, the corresponding limit
 ;  will be used and a warning issued.
@@ -21,24 +21,24 @@
 ; back and look for the "first" error as this is often the only problem.
 ;
 ; A common symptom that appears when there is a problem with this file is
-; "no menus" and a sensitivity error on  non-existent menu item. This is 
+; "no menus" and a sensitivity error on  non-existent menu item. This is
 ; indicative of a syntax error in this file. Maybe one of the easiest mistake
 ; is to use a colon instead of a semi-colon and no useful information is
 ; provided for locating the problem. Try using an Editor like gedit or Kate
 ; with search high-lighting. There are not that many colons in this file and
 ; none of them should be the first character on a line.
-; 
+;
 ; gschem-version string
 ;
-; Specifies the version of this file.  This number is used to make sure 
-; that the rc file is compatible with the version of gschem that is 
+; Specifies the version of this file.  This number is used to make sure
+; that the rc file is compatible with the version of gschem that is
 ; being run. The end user should *not* change this value.
 ;
 
 (gschem-version "@DATE_VERSION@")
 
 ;
-; Start of color section 
+; Start of color section
 ;
 
 ; Make the gschem color maps more user-friendly
@@ -54,6 +54,25 @@
 ;(load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
 ;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
 ;(load (build-path geda-rc-path "gschem-colormap-custom"))
+
+; image-color string
+;
+; Controls if images (png, jpg, etc.) are color (enabled) or black/white
+; (disabled). If disabled images will be generated in black and white.
+; When enabled, colorable image types will be generated using the active
+; color map scheme, (which could be black/white).
+;
+(image-color "enabled")
+;(image-color "disabled")
+
+; invert-images string
+;
+; When image-color is disabled, invert-images will black and white so that
+; images are black-on-white when enabled (default). When disabled, generated
+; images will be the same as the black and white screen image; white-on-
+; black (like the old gschem style).
+(invert-images "enabled")
+;(invert-images "disabled")
 
 ;
 ; End of color section
@@ -136,7 +155,7 @@
 ; scrollbars string
 ;
 ; Controls if the scrollbars are displayed (enabled) or not (disabled)
-; If you disable the scrollbars, you will not be able to use the scroll 
+; If you disable the scrollbars, you will not be able to use the scroll
 ; wheel on your mouse.  This is an unfortunate side effect of how the
 ; code is implemented.
 ;
@@ -165,17 +184,17 @@
 
 ; window-size integer integer
 ;
-; window-size width height 
+; window-size width height
 ;
 ; Specifies the size of the drawing area window.  The width and height
-; are specified in pixels and do not include the three menu bars and 
-; scrollbars (so the window will be larger than the specified 
-; measurements). Try to keep an aspect ratio of 1.333333 if at all possible. 
+; are specified in pixels and do not include the three menu bars and
+; scrollbars (so the window will be larger than the specified
+; measurements). Try to keep an aspect ratio of 1.333333 if at all possible.
 ; These numbers are NOT the true size of the window, but of the drawing area.
 ;
 ;(window-size 650 487)  ; Good size for 800x600
-;(window-size 900 650)  ; Good size for 1024x768
-(window-size 950 712)  ; Good size for 1152x864
+(window-size 900 650)  ; Good size for 1024x768
+;(window-size 950 712)  ; Good size for 1152x864
 ;(window-size 1100 825) ; Good size for 1280x1024
 
 ; world-size width height border
@@ -226,13 +245,6 @@
 ;END ------------------->  Display Zoom Setup  <--------------------
 ;END ===================> Display Configuration <===================
 
-; image-color string
-;
-; Controls if image (png) is color (enabled) or black/white (disabled)
-;
-(image-color "enabled")
-;(image-color "disabled")
-
 ;BEGIN ==================> Set Log Configuration <==================
 
 ; logging string or integer
@@ -254,7 +266,7 @@
 ;      both            Both of the above locations
 ; Message are always written to the log file (unless logging is disabled)
 ; by the above keyword.
-; 
+;
 ;
 (log-destiny "log_window")
 ;(log-destiny "tty")
@@ -271,7 +283,7 @@
 
 ; log-window-type string
 ;
-; Controls if the log message window is a transient or if it is decorated 
+; Controls if the log message window is a transient or if it is decorated
 ; as a normal window (this is dependant on the window manager doing decoration
 ; right)
 ;
@@ -290,8 +302,8 @@
 ; action-feedback-mode string
 ;
 ; Set the default action feedback mode (for copy/move/component place).
-; Set to outline to get an outline of the selection. 
-; Set to boundingbox to get a bounding box of the selection. 
+; Set to outline to get an outline of the selection.
+; Set to boundingbox to get a bounding box of the selection.
 ; For a fast machines with fast video use outline (it looks good).
 ; For a slow machine use boundingbox; it is much faster.
 ; Comment out if you want the default mode.
@@ -301,7 +313,7 @@
 
 ; add-attribute-offset integer
 ;
-; This has not been implemented/debugged yet.  
+; This has not been implemented/debugged yet.
 ;
 ; Controls a offset which is added to the location of text items that are
 ; added to an object as an attribute. This offset is added when the following
@@ -313,14 +325,14 @@
 ;  4) The initial mouse position is at or near the actual net (with one
 ;     grid unit).
 ;
-; If these four conditions are not met, then this offset is not added. 
+; If these four conditions are not met, then this offset is not added.
 (add-attribute-offset 50)
 
 ; auto-load-last string
 ;
-; Determines if the newly placed components are embedded in the schematic 
-; or if only the filename is specified and the component is searched for 
-; instead.  If it is enabled, then all new components will be embedded 
+; Determines if the newly placed components are embedded in the schematic
+; or if only the filename is specified and the component is searched for
+; instead.  If it is enabled, then all new components will be embedded
 ; othewise they are not embedded.  This can be controlled on the fly during
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
@@ -336,14 +348,14 @@
 ; Autosaving will not be allowed if setting it to zero.
 (auto-save-interval 180)
 
-; Attribute autoplacement grid 
+; Attribute autoplacement grid
 (define autoplace-attributes-grid 50)
 
 ; component-dialog-attributes stringlist
 ;
 ; Sets a list of attributs that are visible in the component select dialog.
 ; The attributes are sorted in the same order as they appear in the list.
-; If the first list element is an asterisk "*", all attributes will be 
+; If the first list element is an asterisk "*", all attributes will be
 ; displayed in alphabetical order.
 ;
 ; Note 1. An empty list will disable the attribute view in the dialog.
@@ -371,9 +383,9 @@
 
 ; embed-components string
 ;
-; Determines if the newly placed components are embedded in the schematic 
-; or if only the filename is specified and the component is searched for 
-; instead.  If it is enabled, then all new components will be embedded 
+; Determines if the newly placed components are embedded in the schematic
+; or if only the filename is specified and the component is searched for
+; instead.  If it is enabled, then all new components will be embedded
 ; othewise they are not embedded.  This can be controlled on the fly during
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
@@ -394,7 +406,7 @@
 
 ;  file-preview string
 ;
-;  Controls if the preview area in the File Open/Save As and Component 
+;  Controls if the preview area in the File Open/Save As and Component
 ;  dialog boxes is enabled by default or not
 ;
 (file-preview "enabled")
@@ -403,7 +415,7 @@
 ; force-boundingbox string
 ;
 ; Controls if the entire bounding box of a symbol is used when figuring out
-; whichend of the pin is considered the active port.  Enable this when 
+; whichend of the pin is considered the active port.  Enable this when
 ; gschem is guessing incorrectly.
 ;
 ;(force-boundingbox "enabled")
@@ -411,7 +423,7 @@
 
 ; handleboxes string
 ;
-; Controls if the handleboxes (which contain the menu and toolbar) are 
+; Controls if the handleboxes (which contain the menu and toolbar) are
 ; visible or not.
 ;
 (handleboxes "enabled")
@@ -419,9 +431,9 @@
 
 ; keyboardpan-gain integer
 ;
-; Controls how much the display pans when using the keyboard cursor keys.  
-; A larger value provides greater pan distance when pressing the cursor 
-; keys, while a smaller value provides a smoother, but smaller pan 
+; Controls how much the display pans when using the keyboard cursor keys.
+; A larger value provides greater pan distance when pressing the cursor
+; keys, while a smaller value provides a smoother, but smaller pan
 ; distance when moving the cursor keys.
 (keyboardpan-gain 20)
 ;;(keyboardpan-gain 10)
@@ -438,8 +450,8 @@
 
 ; netconn-rubberband string
 ;
-; Controls if net connections are maintained when you move a connecting 
-; component or net.   
+; Controls if net connections are maintained when you move a connecting
+; component or net.
 ;
 (netconn-rubberband "enabled")
 ;(netconn-rubberband "disabled")
@@ -464,7 +476,7 @@
 ; snap-size number
 ;
 ; Sets the default snap spacing at start-up of gschem.
-; 
+;
 (snap-size 100)
 
 ; sort-components-library string
@@ -500,9 +512,9 @@
 ;
 ;  Controls if the net consolidation code is used when schematics are read
 ;  in, written to disk, and when nets are being drawn (does not consolidate
-;  when things are being copied or moved yet).  Net consolidation is the 
+;  when things are being copied or moved yet).  Net consolidation is the
 ;  connection of nets which can be combined into one.
-;  Comment out if you want the default mode 
+;  Comment out if you want the default mode
 ;
 (net-consolidate "enabled")
 ;(net-consolidate "disabled")
@@ -532,7 +544,7 @@
 ;  net-selection-mode string
 ;
 ; Controls how many net segments are selected when you click at a net
-; If one of the enabled items is used, the selection state will toggle 
+; If one of the enabled items is used, the selection state will toggle
 ; through all selection states. The mode defines the maximum search depth
 ; for the net selection mode
 ;
@@ -545,15 +557,15 @@
 ; Bus ripper controls
 ; The following keywords control the auto bus ripper addition code
 ;
-; bus-ripper-size  => Sets the size of the auto bus rippers.  
+; bus-ripper-size  => Sets the size of the auto bus rippers.
 ; bus-ripper-type  => Sets the bus ripper type either a "component" or
 ;                     plain "net"
 ; bus-ripper-syname  => If above is set to component, specify the symbol name.
 ;                       The symbol must exist in a component library
-; bus-ripper-rotation => Either "symmetric" or "non-symmetric".  This deals 
-;                        with how the bus ripper symbol is rotated when it 
+; bus-ripper-rotation => Either "symmetric" or "non-symmetric".  This deals
+;                        with how the bus ripper symbol is rotated when it
 ;                        is auto added to a schematic.
-;   
+;
 
 ; The default bus ripper
 (bus-ripper-size 200)
@@ -561,13 +573,13 @@
 (bus-ripper-symname "busripper-1.sym")
 (bus-ripper-rotation "non-symmetric")
 
-; A symmetric alternative 
+; A symmetric alternative
 ;(bus-ripper-size 200)
 ;(bus-ripper-type "component")
 ;(bus-ripper-symname "busripper-2.sym")
 ;(bus-ripper-rotation "symmetric")
 
-; A simple net 
+; A simple net
 ;(bus-ripper-size 200)
 ;(bus-ripper-type "net")
 
@@ -608,7 +620,7 @@
 ; pin-style string
 ;
 ; Set to none disable using line width styles, pins width will be
-; based on the pin type, either net or bus. 
+; based on the pin type, either net or bus.
 ; Set to thin if you want thin pins
 ; Set to thick if you want thick pins.
 ; This mode also determines what pin style gets printed
@@ -626,7 +638,7 @@
 ; Note: If the corresponding xxx-style is NOT used then the internal
 ; defaults are assigned, in which case: Nets and Pin will be the old
 ; "narrow" values, Lines will be an over-ridable THIN default, and
-; Buses will be over-ridable THICK default. In situtations where 
+; Buses will be over-ridable THICK default. In situtations where
 ; "tweeking" is NOT required, all the keywords for Bus, Line, Net,
 ; and Pin styles and widths would be better left commented out.
 ;
@@ -666,8 +678,8 @@
 
 ; middle-button string
 ;
-; Controls if the middle mouse button draws strokes, repeats the last 
-; command, does an action (move and copy (holding down the ALT key) 
+; Controls if the middle mouse button draws strokes, repeats the last
+; command, does an action (move and copy (holding down the ALT key)
 ; are supported) on a single objects, or if it does the mouse panning.
 ;
 ;(middle-button "stroke")
@@ -697,7 +709,7 @@
 
 ; third-button string
 ;
-; Controls if the third mouse button performs the popup ("popup") or 
+; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
 ;(third-button "popup")
@@ -707,7 +719,7 @@
 
 ;BEGIN ==================>  Printer Related  <======================
 
-; page-size width height 
+; page-size width height
 ;
 ; Specifies the size of the default paper size
 ; Be sure all inputs are reals (floats/doubles) and don't try to reverse
@@ -717,29 +729,29 @@
 ; to get portrait mode)
 ;
 (paper-size 11.0 8.5) ; letter
-;(paper-size 14.0 8.5) ; legal 
+;(paper-size 14.0 8.5) ; legal
 ;(paper-size 8.5 5.5) ; statement
 ;(paper-size 17.0 11.0) ; tabloid
 ;(paper-size 11.0 17.0) ; ledger
 ;(paper-size 13.0 8.5) ; folio
-;(paper-size 10.833 8.472) ; quarto 
+;(paper-size 10.833 8.472) ; quarto
 ;(paper-size 14 10) ; 10x14
 ;(paper-size 10.0 7.5) ; executive
 ;(paper-size 11.0 8.5) ; A
-;(paper-size 17.0 11.0) ; B 
-;(paper-size 22.0 17.0) ; C 
-;(paper-size 34.0 22.0) ; D 
-;(paper-size 44.0 34.0) ; E 
-;(paper-size 46.81 33.11) ; A0 
+;(paper-size 17.0 11.0) ; B
+;(paper-size 22.0 17.0) ; C
+;(paper-size 34.0 22.0) ; D
+;(paper-size 44.0 34.0) ; E
+;(paper-size 46.81 33.11) ; A0
 ;(paper-size 33.11 23.39) ; A1
 ;(paper-size 23.39 16.54) ; A2
 ;(paper-size 16.54 11.69) ; A3
 ;(paper-size 11.69 8.27) ; A4
 ;(paper-size 8.27 5.83) ; A5
 ;(paper-size 5.83 4.13) ; A6
-;(paper-size 4.13 2.91) ; A7 
+;(paper-size 4.13 2.91) ; A7
 ;(paper-size 2.91 2.05) ; A8
-;(paper-size 2.05 1.46) ; A9 
+;(paper-size 2.05 1.46) ; A9
 ;(paper-size 1.46 1.02) ; A10
 ;(paper-size 1.02 0.71) ; A11
 ;(paper-size 0.71 0.51) ; A12
@@ -748,8 +760,8 @@
 ;
 ; Specifies which paper sizes are available for printing.
 ; The width and height parameters are in the order for landscape printing,
-; so reversing them for portrait won't work just yet. (and that will be 
-; implemented differently. 
+; so reversing them for portrait won't work just yet. (and that will be
+; implemented differently.
 ; The default paper size is set above.  All units are in inches (forgiveness
 ; please).
 ;
@@ -759,12 +771,12 @@
 (paper-sizes "Letter : 8.5 in x 11 in" 11.0 8.5)
 (paper-sizes "Legal : 8.5 in x 14 in" 14.0 8.5)
 (paper-sizes "Statement : 5.5 in x 8.5 in" 8.5 5.5)
-(paper-sizes "Tabloid : 11 in x 17 in" 17.0 11.0) 
-(paper-sizes "Ledger : 17 in x 11 in" 11.0 17.0) 
-(paper-sizes "Folio : 8.5 in x 13 in" 13.0 8.5) 
-(paper-sizes "Quarto : 8.472 in x 10.833 in" 10.833 8.472) 
-(paper-sizes "10x14 : 10 in x 14 in " 14.0 10.0) 
-(paper-sizes "Executive : 7.5 x 10" 10.0 7.5) 
+(paper-sizes "Tabloid : 11 in x 17 in" 17.0 11.0)
+(paper-sizes "Ledger : 17 in x 11 in" 11.0 17.0)
+(paper-sizes "Folio : 8.5 in x 13 in" 13.0 8.5)
+(paper-sizes "Quarto : 8.472 in x 10.833 in" 10.833 8.472)
+(paper-sizes "10x14 : 10 in x 14 in " 14.0 10.0)
+(paper-sizes "Executive : 7.5 x 10" 10.0 7.5)
 (paper-sizes "A : 8.5 in x 11 in" 11.0 8.5)
 (paper-sizes "B : 11 in x 17 in" 17.0 11.0)
 (paper-sizes "C : 17 in x 22 in" 22.0 17.0)
@@ -784,7 +796,7 @@
 (paper-sizes "A11 1.80 cm x 2.60 cm" 1.02 0.71)
 (paper-sizes "A12 1.30 cm x 1.80 cm" 0.71 0.51)
 
-; print-command string 
+; print-command string
 ;
 ; The command to send data to in order to print to a printer.  On most
 ; systems, this will be "lpr".
@@ -794,13 +806,13 @@
 ; output-type string
 ;
 ; Controls what is actually printed
-;	string is either "extents" or "extents no margins" or 
+;	string is either "extents" or "extents no margins" or
 ;       "current window"
 ;
 (output-type "extents")
 ;(output-type "extents no margins")
 ;(output-type "current window")
-;;; (output-type "limits")  "limits" is considered deprecated and should 
+;;; (output-type "limits")  "limits" is considered deprecated and should
 ;;;                         not be used.
 
 ; output-orientation string
@@ -856,10 +868,10 @@
 
 ; text-display-zoomfactor integer
 ;
-; Sets the zoomfactor number (~150 being the most zoomed out factor) 
+; Sets the zoomfactor number (~150 being the most zoomed out factor)
 ; (zoom factors get smaller as you zoom in) at which text is displayed
 ; completely (not a line).  This is only valid if above is set to
-; "only-when-readable" 
+; "only-when-readable"
 ;
 (text-display-zoomfactor 30)
 
@@ -877,6 +889,13 @@
 ;
 (text-origin-marker "enabled")
 ;(text-origin-marker "disabled")
+
+; text-marker-size integer
+;
+; Sets the default size of the text marker, this value is ignored
+; when the text-origin-marker is disabled.
+;
+(text-marker-size 15)
 
 ; text-size integer
 ;
@@ -897,14 +916,14 @@
 
 ; undo-levels number
 ;
-; Determines the number of levels of undo.  Basically this number decides 
+; Determines the number of levels of undo.  Basically this number decides
 ; how many backup schematics are saved on disk.
 ;
 (undo-levels 10)
 
 ; undo-type string
 ;
-; Controls which kind of undo is used.  The default is to use the disk as 
+; Controls which kind of undo is used.  The default is to use the disk as
 ; the storing medium (ie after every action the undo information is stored
 ; to disk).  The other mechanism uses only memory.  The disk mechanism is
 ; nice because you get undo-level number of backups of the schematic written
@@ -915,10 +934,10 @@
 
 ; undo-panzoom string
 ;
-; Controls if pan or zoom commands are saved in the undo list.  If this 
+; Controls if pan or zoom commands are saved in the undo list.  If this
 ; is enabled then a pan or zoom command will be considered a command and
 ; can be undone.  If this is false, then panning and zooming is not saved
-; in the undo list and cannot be undone.  Note, the current viewport 
+; in the undo list and cannot be undone.  Note, the current viewport
 ; information is saved for every command, so the display will change to the
 ; viewport before a command is executed.
 ;
@@ -963,24 +982,24 @@
 ;(auto-uref-set-page-offset 100)
 
 ; Define default pin attributes
-; Attributes: 
+; Attributes:
 ;   - Attribute name.
 ;   - Value of the attribute.
 ;   - Visibility: #t (visible) or #f (hidden).
-;   - Show_list:  a list containing what to show, using 
+;   - Show_list:  a list containing what to show, using
 ;                 elements like "name" or "value", or an empty list.
-(define default-pin-attributes 
+(define default-pin-attributes
        '(("pintype"   "unknown" #f ())
 	 ("pinlabel"  "unknown" #t ("value"))
 	 ("pinnumber" "0"       #t ("value"))
 	 ("pinseq"    "0"       #f ())))
 
 ; Convert a character into a string
-(define char2str 
+(define char2str
   (lambda (char)
     (list->string (list char))))
 
-; Load the default position of attributes, for attribute autoplacing 
+; Load the default position of attributes, for attribute autoplacing
 ; functions.
 (load-from-path "default-attrib-positions.scm")
 
@@ -997,10 +1016,10 @@
 ; Comment in this to load the functions to place attributes automatically.
 (load-from-path "auto-place-attribs.scm")
 
-; Autoplace pin text attributes hook. 
+; Autoplace pin text attributes hook.
 ; Comment in these if you want the pin attributes to be automatically placed.
 ; There are different hooks for situations like adding a new pin and rotating
-; or mirroring an existing one. 
+; or mirroring an existing one.
 ; The #t at the end means that function is appended to the end of the hook.
 (add-hook! add-pin-hook (lambda (pin)
 	(autoplace-pin-attributes pin )) #t)
@@ -1009,8 +1028,8 @@
 (add-hook! mirror-pin-hook (lambda (pin)
 	(autoplace-pin-attributes pin )) #t)
 
-; Autoplace component/net/buses text attributes hook. 
-; Comment in these if you want the component attributes to be 
+; Autoplace component/net/buses text attributes hook.
+; Comment in these if you want the component attributes to be
 ; automatically placed.
 ; There are different hooks for situations like adding a new pin, rotating
 ; or mirroring an existing one, adding a new attribute or a new component.
@@ -1035,14 +1054,14 @@
 ;; (define default-titleblock "title-A4.sym")
 ;; Change "title-A4.sym" by the name of your prefered titleblock!
 ;
-;; If you don't want a titleblock to be added automatically, then add one of 
+;; If you don't want a titleblock to be added automatically, then add one of
 ;; the following lines to your gschemrc file (without the semicolon).
 ;; There are several ways, so just choose one;
 ;;   (define default-titleblock "")
 ;;   (define default-titleblock '())
 ;;   (define default-titleblock #f)
 ;
-(define default-titleblock "title-A.sym")
+(define default-titleblock "title-B.sym")
 
 ; Load the regular expressions module
 (if (provided? 'regex)
@@ -1053,15 +1072,18 @@
    ; Only place the titleblock if there are no objects in the page
    ; and the page filename ends in ".sym".
    (if (and (null? (get-objects-in-page page))
-	    ; If the guile installation doesn't provide the regex module,
-	    ; don't care about the page filename.
-	    (if (provided? 'regex)
-		(not (string-match ".*\\.[sS][yY][mM]" 
-				   (get-page-filename page)))
-		#t))
+            ; If the guile installation doesn't provide the regex module,
+            ; don't care about the page filename.
+            (if (provided? 'regex)
+                (not (string-match ".*\\.[sS][yY][mM]"
+                                   (get-page-filename page)))
+                #t))
 ;      Syntax             Symbol name        X   Y    angle selectable mirrored
-       (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f)))
-	   #t)
+       (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f))
+
+   ;; After adding titleblock, reset page to mark as unchanged.
+   ((@ (geda page) set-page-dirty!) (active-page) #f))
+           #t)
 
 ; Evaluate an expression entered in the magic-colon text box.
 ; In 20 years this might dispatch to an interpreter for some other language.
@@ -1123,7 +1145,7 @@
 ;
 
 ;
-; This section defines associations between a stroke sequence and a 
+; This section defines associations between a stroke sequence and a
 ; guile function which is executed when the stroke is drawn in the
 ; gschem window
 ;
@@ -1136,19 +1158,19 @@
 ; 7  8  9
 ;
 ; The sequence of number such as "852" specify how the stroke is drawn.
-; Sequence "852" happens to be a vertical line drawn from the bottom going 
+; Sequence "852" happens to be a vertical line drawn from the bottom going
 ; up.
 ;
-; Please see the libstroke documentation for further information on the 
-; stroke description.  
+; Please see the libstroke documentation for further information on the
+; stroke description.
 ;
-; For the most part I went a little overboard on the stroke defs, you 
-; probably can get away with many less stroke defs, but I'm a very 
+; For the most part I went a little overboard on the stroke defs, you
+; probably can get away with many less stroke defs, but I'm a very
 ; sloppy stroke drawing person.
 ;
 ; Be careful here, strokes is a rather large list, and make sure you
 ; maintain proper ( and )'s.
-; 
+;
 
 (define strokes
 ; Letter L for line
@@ -1438,7 +1460,7 @@
 ; The "menu item name" is the name of the item as it will appear in the menu
 ; The "menu action" is the scheme function which is executed when the item
 ; is selected off of the menu.  And "menu hotkey function" is the scheme
-; function which is executed when the hotkey is pressed.  
+; function which is executed when the hotkey is pressed.
 ; "menu hotkey function" has no real functionality in the menuing scheme other
 ; than providing the information as to what hotkey to display in the menu.
 ; "menu hotkey function" is not executed when you select an item off of the
@@ -1486,7 +1508,7 @@
       )
 )
 
-(define edit-menu-items 
+(define edit-menu-items
 ;;
 ;;      menu item name      	menu action            menu hotkey action      menu stock icon
 ;;
@@ -1528,7 +1550,7 @@
       )
 )
 
-(define buffer-menu-items 
+(define buffer-menu-items
 ;;
 ;;      menu item name		menu action             menu hotkey action      menu stock icon
 ;;
@@ -1550,7 +1572,7 @@
       )
 )
 
-(define view-menu-items 
+(define view-menu-items
 ;;
 ;;      menu item name        	     menu action             menu hotkey action      menu stock icon
 ;;
@@ -1572,7 +1594,7 @@
       )
 )
 
-(define page-menu-items 
+(define page-menu-items
 ;;
 ;;      menu item name             menu action             menu hotkey action      menu stock icon
 ;;
@@ -1588,7 +1610,7 @@
       )
 )
 
-(define add-menu-items 
+(define add-menu-items
 ;;
 ;;      menu item name      	   menu action             menu hotkey action      menu stock icon
 ;;
@@ -1608,7 +1630,7 @@
       )
 )
 
-(define hierarchy-menu-items 
+(define hierarchy-menu-items
 ;;
 ;;      menu item name             menu action               menu hotkey action        menu stock icon
 ;;
@@ -1619,7 +1641,7 @@
       )
 )
 
-(define attributes-menu-items 
+(define attributes-menu-items
 ;;
 ;;      menu item name      	   menu action             menu hotkey action      menu stock icon
 ;;
@@ -1637,32 +1659,34 @@
       )
 )
 
-(define options-menu-items 
+(define options-menu-items
 ;;
 ;;      menu item name      		menu action             menu hotkey action      menu stock icon
 ;;
      `( (,(N_ "_Text Size...")		options-text-size       options-text-size)
 	(,(N_ "Cycle _grid styles")     options-grid            options-grid)
-	(,(N_ "Toggle _Snap On/Off")    options-snap       	options-snap)
 	(,(N_ "Snap Grid S_pacing...")  options-snap-size   	options-snap-size)
-	(,(N_ "Scale _up Grid Spacing") options-scale-up-snap-size 
+	(,(N_ "Scale _up Grid Spacing") options-scale-up-snap-size
 					options-scale-up-snap-size)
 	(,(N_ "Scale _down Grid Spacing") options-scale-down-snap-size
 					  options-scale-down-snap-size)
-	(,(N_ "Toggle _Outline/Box")    options-action-feedback   	
-				        options-action-feedback)
-	(,(N_ "Toggle Net _Rubberband") options-rubberband   	options-rubberband)
+        ("SEPARATOR"                   #f                      #f                 #f)
+	(,(N_ "Toggle _Snap On-Off")    options-snap            options-snap)
+	(,(N_ "Toggle _Outline-Box")    options-action-feedback options-action-feedback)
+	(,(N_ "Toggle _Rubberband")     options-rubberband   	options-rubberband)
 	(,(N_ "Toggle _Magnetic Net")   options-magneticnet 	options-magneticnet)
-	(,(N_ "Show _Log Window...")    options-show-log-window   
+        ("SEPARATOR"                   #f                      #f                 #f)
+	(,(N_ "Show _Log Window...")    options-show-log-window
 	 			    	options-show-log-window)
-	(,(N_ "Show _Coord Window...")  options-show-coord-window   
+	(,(N_ "Show _Coord Window...")  options-show-coord-window
 				     	options-show-coord-window)
+
 	("SEPARATOR"           	       #f                      #f                 #f)
 	("Con_figure settings..."   	configure-settings   	configure-settings)
       )
 )
 
-(define help-menu-items 
+(define help-menu-items
 ;;
 ;;      menu item name                menu action               menu hotkey action        menu stock icon
 ;;

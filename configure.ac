@@ -16,6 +16,9 @@ AC_CONFIG_AUX_DIR([build-tools])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADER([config.h])
 
+# Honor aclocal flags
+ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
+
 AM_INIT_AUTOMAKE
 
 AC_GNU_SOURCE # FIXME for some reason this is needed?
@@ -40,13 +43,15 @@ AX_WINDOWS_FLAGS
 #####################################################################
 
 AC_PROG_CC
+AM_PROG_CC_C_O
 AC_PROG_CPP
 
 AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-AM_PROG_CC_C_O
+# If automake 1.11 shave the output to look nice
+m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 # Temporaily Turn Warnings into errors with -Werror option
 #AX_GCC_FLAGS([-Wall -Werror])
@@ -73,7 +78,17 @@ AX_DESKTOP_I18N
 
 PKG_PROG_PKG_CONFIG
 
+#####################################################################
+# Guile stuff
+#####################################################################
+
 AX_CHECK_GUILE([1.8.0])
+
+#####################################################################
+# Cairo stuff
+#####################################################################
+
+AX_CHECK_CAIRO
 
 PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.20.0], ,
   AC_MSG_ERROR([GLib 2.20.0 or later is required.]))
@@ -84,13 +99,10 @@ PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= 2.16.0], ,
 PKG_CHECK_MODULES(GDK_PIXBUF, [gdk-pixbuf-2.0 >= 2.16.0], ,
   AC_MSG_ERROR([GDK_PIXBUF 2.16.0 or later is required.]))
 
-AX_CHECK_CAIRO
-
 PKG_CHECK_MODULES(PANGOCAIRO, [pangocairo >= 0.26], ,
   AC_MSG_ERROR([PANGOCAIRO 0.26 or later is required.]))
 
-PKG_CHECK_MODULES(PANGO, [pango >= 1.23.0], ,
-  AC_MSG_ERROR([PANGO 1.23.0 or later is required.]))
+AX_CHECK_PANGO
 
 #####################################################################
 # Header files & particular functions
@@ -98,8 +110,8 @@ PKG_CHECK_MODULES(PANGO, [pango >= 1.23.0], ,
 
 AC_HEADER_SYS_WAIT
 
-# FIXME these checks are obsolete, because every plausible platform
-# provides what they check for.
+# These checks are mostly obsolete because every plausible platform
+# provides what they check for but we will do check:
 AC_HEADER_STDC
 
 # FIXME these checks may be pointless for one of three reasons: every
@@ -108,17 +120,19 @@ AC_HEADER_STDC
 # provide an alternative, so the build will fail anyway.
 AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
 
-# FIXME since we don't have a sensible alternative, if these headers
-# are missing we should fail. Also need to remove HAVE_ERRNO_H tests
-# in the C source code, since if we *don't* have it the build will
-# fail anyway.
+# Since we don't have a sensible alternative, if these headers are
+# missing we should fail. Also need to remove HAVE_ERRNO_H tests in
+# the C source code, since if we *don't* have it the build will fail.
 AC_CHECK_HEADERS([errno.h fcntl.h])
 
-# FIXME On a system without locale.h, the user may have just disabled NLS
+# On a system without locale.h, the user may have just disabled NLS
 # to be able to build.  But are there known systems with working NLS but
 # without a locale.h?  We do need to include locale.h on some systems
 # to be able to build gschem/src/gschem.c
 AC_CHECK_HEADERS([locale.h])
+
+# to be able to build gschem/src/gschem.c
+#AC_CHECK_HEADERS([gdl.h])
 
 # Check for lrint in math library.
 AC_CHECK_LIB([m], [lrint],
@@ -199,6 +213,8 @@ AC_CONFIG_FILES([Makefile
 
                  libgedacairo/Makefile
                  libgedacairo/libgedacairo.pc
+                 libgedacairo/include/Makefile
+                 libgedacairo/src/Makefile
 
                  gaf/Makefile
                  gaf/po/Makefile.in
@@ -208,6 +224,7 @@ AC_CONFIG_FILES([Makefile
                  gschem/docs/Makefile
                  gschem/include/Makefile
                  gschem/scripts/Makefile
+                 gschem/src/widgets/makefile
                  gschem/src/Makefile
                  gschem/examples/Makefile
                  gschem/lib/Makefile
@@ -303,3 +320,19 @@ AC_CONFIG_FILES([Makefile
                  examples/lightning_detector/Makefile
 ])
 AC_OUTPUT
+echo "
+Configuration:      ${PACKAGE} Ver ${VERSION} ${DATE_VERSION}
+                 -------------------------------------
+                        Compiler:     ${CC}
+                        CPPFLAGS:     ${CPPFLAGS}
+                          CFLAGS:     ${CFLAGS}
+                         LDFLAGS:     ${LDFLAGS}
+
+                           Guile:     ${GUILE_PKG}
+                           Cairo:     ${CAIRO_PKG}
+                           Pango:     ${PANGO_PKG}
+
+                     Destination:     ${prefix}
+                  LibGeda_Domain:     ${LIBGEDA_GETTEXT_DOMAIN}
+                    LibGedaCairo:     ${LIBGEDACAIRO_SHLIB_VERSION}
+"

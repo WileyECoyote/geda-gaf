@@ -26,9 +26,11 @@
 #include <stdio.h>
 #include <libguile.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
+
 #include <geda.h>
 #include <libgeda/defines.h>
-#include <libgeda/struct.h>
+#include <libgeda/s_struct.h>
+#include <libgeda/g_struct.h>
 #include <libgeda/globals.h>
 #include <libgeda/o_types.h>
 #include <libgeda/funcs.h>

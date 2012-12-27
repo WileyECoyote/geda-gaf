@@ -221,8 +221,8 @@ void o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 
   /* Setup a fake object to pass the drawing routine */
   object.type = OBJ_PATH;
-  //color = o_drawing_color (w_current, o_current);
-  object.color = SELECT_COLOR;
+  object.color = o_drawing_color (w_current, &object);
+  //object.color = SELECT_COLOR;
   object.line_width = 0; /* clamped to 1 pixel in circle_path */
   object.path = path_copy_modify (w_current->which_object->path, 0, 0,
                                   w_current->second_wx,

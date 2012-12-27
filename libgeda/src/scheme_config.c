@@ -64,7 +64,8 @@ SCM_SYMBOL (invalid_value_sym, "invalid-value");
  * \param subr   name of failed procedure, or NULL.
  * \param error  error to be converted to a Scheme exception.
  */
-static void error_from_gerror (const char *subr, GError **error)
+static void
+error_from_gerror (const gchar *subr, GError **error)
 {
   if (error == NULL || *error == NULL) {
     scm_misc_error (subr, "Unknown error", SCM_EOL);
@@ -80,7 +81,7 @@ static void error_from_gerror (const char *subr, GError **error)
 
   SCM rest;
 
-  if (err->domain == G_FILE_ERROR) {
+  if (err->domain == G_IO_ERROR) {
     /* File-related errors */
     scm_error (system_error_sym, subr, err->message, SCM_EOL,
                scm_list_1 (scm_from_int (err->code)));
@@ -191,8 +192,11 @@ SCM_DEFINE (path_config_context, "%path-config-context", 1, 0, 0,
   scm_dynwind_begin (0);
   char *path = scm_to_utf8_string (path_s);
   scm_dynwind_free (path);
+  GFile *file = g_file_parse_name (path);
+  scm_dynwind_unwind_handler (g_object_unref, file,
+                              SCM_F_WIND_EXPLICITLY);
 
-  EdaConfig *cfg = eda_config_get_context_for_path (path);
+  EdaConfig *cfg = eda_config_get_context_for_file (file);
   SCM result = edascm_from_config (cfg);
 
   scm_dynwind_end ();
@@ -205,7 +209,7 @@ SCM_DEFINE (path_config_context, "%path-config-context", 1, 0, 0,
  * Returns the underlying filename for the configuration context \a
  * cfg, or #f if it has no filename associated with it.
  *
- * \see eda_config_get_filename().
+ * \see eda_config_get_file().
  *
  * \note Scheme API: Implements the \%config-filename procedure in the
  * (geda core config) module.
@@ -219,9 +223,18 @@ SCM_DEFINE (config_filename, "%config-filename", 1, 0, 0,
   SCM_ASSERT (EDASCM_CONFIGP (cfg_s), cfg_s, SCM_ARG1,
               s_config_filename);
 
+  scm_dynwind_begin (0);
   EdaConfig *cfg = edascm_to_config (cfg_s);
-  const char *path = eda_config_get_filename (cfg);
-  return (path == NULL) ? SCM_BOOL_F : scm_from_utf8_string (path);
+  GFile *file = eda_config_get_file (cfg);
+  gchar *path = NULL;
+  if (file != NULL) {
+    path = g_file_get_parse_name (file);
+    scm_dynwind_free (path);
+  }
+
+  SCM result = (path == NULL) ? SCM_BOOL_F : scm_from_utf8_string (path);
+  scm_dynwind_end ();
+  return result;
 }
 
 /*! \brief Load configuration parameters from file.
@@ -450,7 +463,7 @@ SCM_DEFINE (config_groups, "%config-groups", 1, 0, 0,
 
   EdaConfig *cfg = edascm_to_config (cfg_s);
   gsize i, len;
-  char **groups = eda_config_get_groups (cfg, &len);
+  gchar **groups = eda_config_get_groups (cfg, &len);
   SCM lst_s = SCM_EOL;
 
   scm_dynwind_begin (0);
@@ -492,7 +505,7 @@ SCM_DEFINE (config_has_group_p, "%config-has-group?", 2, 0, 0,
 
   EdaConfig *cfg = edascm_to_config (cfg_s);
   char *group = scm_to_utf8_string (group_s);
-  char result = eda_config_has_group (cfg, group);
+  gboolean result = eda_config_has_group (cfg, group);
   free (group);
   return result ? SCM_BOOL_T : SCM_BOOL_F;
 }
@@ -525,7 +538,7 @@ SCM_DEFINE (config_keys, "%config-keys", 2, 0, 0,
   char *group = scm_to_utf8_string (group_s);
   gsize i, len;
   GError *error = NULL;
-  char **keys = eda_config_get_keys (cfg, group, &len, &error);
+  gchar **keys = eda_config_get_keys (cfg, group, &len, &error);
   SCM lst_s = SCM_EOL;
 
   free (group);
@@ -609,7 +622,7 @@ SCM_DEFINE (config_string, "%config-string", 3, 0, 0,
   char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
   GError *error = NULL;
-  char *value = eda_config_get_string (cfg, group, key, &error);
+  gchar *value = eda_config_get_string (cfg, group, key, &error);
   if (value == NULL) error_from_gerror  (s_config_string, &error);
   scm_dynwind_unwind_handler ((void (*)(void *)) g_free, value,
                               SCM_F_WIND_EXPLICITLY);
@@ -647,7 +660,7 @@ SCM_DEFINE (config_boolean, "%config-boolean", 3, 0, 0,
   char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
   GError *error = NULL;
-  char value = eda_config_get_boolean (cfg, group, key, &error);
+  gboolean value = eda_config_get_boolean (cfg, group, key, &error);
   if (error != NULL) error_from_gerror  (s_config_boolean, &error);
   scm_dynwind_end ();
   return value ? SCM_BOOL_T : SCM_BOOL_F;
@@ -682,7 +695,7 @@ SCM_DEFINE (config_int, "%config-int", 3, 0, 0,
   char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
   GError *error = NULL;
-  int value = eda_config_get_int (cfg, group, key, &error);
+  gint value = eda_config_get_int (cfg, group, key, &error);
   if (error != NULL) error_from_gerror  (s_config_int, &error);
   scm_dynwind_end ();
   return scm_from_int (value);
@@ -717,7 +730,7 @@ SCM_DEFINE (config_real, "%config-real", 3, 0, 0,
   char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
   GError *error = NULL;
-  double value = eda_config_get_double (cfg, group, key, &error);
+  gdouble value = eda_config_get_double (cfg, group, key, &error);
   if (error != NULL) error_from_gerror  (s_config_real, &error);
   scm_dynwind_end ();
   return scm_from_double (value);
@@ -753,7 +766,7 @@ SCM_DEFINE (config_string_list, "%config-string-list", 3, 0, 0,
   scm_dynwind_free (key);
   gsize length, i;
   GError *error = NULL;
-  char **value = eda_config_get_string_list (cfg, group, key,
+  gchar **value = eda_config_get_string_list (cfg, group, key,
                                               &length, &error);
   if (value == NULL) error_from_gerror  (s_config_string_list, &error);
   scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev, value,
@@ -796,8 +809,8 @@ SCM_DEFINE (config_boolean_list, "%config-boolean-list", 3, 0, 0,
   scm_dynwind_free (key);
   gsize length, i;
   GError *error = NULL;
-  bool *value = eda_config_get_boolean_list (cfg, group, key,
-                                             &length, &error);
+  gboolean *value = eda_config_get_boolean_list (cfg, group, key,
+                                                 &length, &error);
   if (value == NULL) error_from_gerror  (s_config_boolean_list, &error);
   scm_dynwind_unwind_handler (g_free, value,
                               SCM_F_WIND_EXPLICITLY);
@@ -839,7 +852,7 @@ SCM_DEFINE (config_int_list, "%config-int-list", 3, 0, 0,
   scm_dynwind_free (key);
   gsize length, i;
   GError *error = NULL;
-  int *value = eda_config_get_int_list (cfg, group, key,
+  gint *value = eda_config_get_int_list (cfg, group, key,
                                          &length, &error);
   if (value == NULL) error_from_gerror  (s_config_int_list, &error);
   scm_dynwind_unwind_handler (g_free, value,
@@ -882,7 +895,7 @@ SCM_DEFINE (config_real_list, "%config-real-list", 3, 0, 0,
   scm_dynwind_free (key);
   gsize length, i;
   GError *error = NULL;
-  double *value = eda_config_get_double_list (cfg, group, key,
+  gdouble *value = eda_config_get_double_list (cfg, group, key,
                                                &length, &error);
   if (value == NULL) error_from_gerror  (s_config_real_list, &error);
   scm_dynwind_unwind_handler (g_free, value,
@@ -931,13 +944,13 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
     scm_dynwind_free (value);
     eda_config_set_string (cfg, group, key, value);
   } else if (scm_is_bool (value_s)) {
-    char value = scm_is_true (value_s);
+    gboolean value = scm_is_true (value_s);
     eda_config_set_boolean (cfg, group, key, value);
   } else if (scm_is_integer (value_s) && scm_is_true (scm_exact_p (value_s))) {
-    int value = scm_to_int (value_s);
+    gint value = scm_to_int (value_s);
     eda_config_set_int (cfg, group, key, value);
   } else if (scm_is_real (value_s)) {
-    double value = scm_to_double (value_s);
+    gdouble value = scm_to_double (value_s);
     eda_config_set_double (cfg, group, key, value);
 
   } else if (scm_is_true (scm_list_p (value_s))) {
@@ -948,7 +961,7 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
     int i = 0;
 
     if (scm_is_string (first_s)) {
-      char **value = g_new0 (char *, len);
+      gchar **value = g_new0 (gchar *, len);
       scm_dynwind_unwind_handler ((void (*)(void *)) g_strfreev, value,
                                   SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
@@ -957,10 +970,10 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
         free (tmp);
       }
       eda_config_set_string_list (cfg, group, key,
-                                  (const char * const *) value, len);
+                                  (const gchar * const *) value, len);
 
     } else if (scm_is_bool (first_s)) {
-      bool *value = g_new0 (bool, len);
+      gboolean *value = g_new0 (gboolean, len);
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_is_true (scm_car (curr_s));
@@ -969,7 +982,7 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
 
     } else if (scm_is_integer (first_s)
                && scm_is_true (scm_exact_p (first_s))) {
-      int *value = g_new0 (int, len);
+      gint *value = g_new0 (gint, len);
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_to_int (scm_car (curr_s));
@@ -977,7 +990,7 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
       eda_config_set_int_list (cfg, group, key, value, len);
 
     } else if (scm_is_real (first_s)) {
-      double *value = g_new0 (double, len);
+      gdouble *value = g_new0 (gdouble, len);
       scm_dynwind_unwind_handler (g_free, value, SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         value[i++] = scm_to_double (scm_car (curr_s));
@@ -1113,7 +1126,8 @@ SCM_DEFINE (remove_config_event_x, "%remove-config-event!", 2, 0, 0,
  * Defines procedures in the (geda core config) module. The module can
  * be accessed using (use-modules (geda core config)).
  */
-static void init_module_geda_core_config ()
+static void
+init_module_geda_core_config ()
 {
   /* Register the functions and symbols */
   #include "scheme_config.x"

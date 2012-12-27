@@ -1,7 +1,4 @@
 
-#include <missing.h>
-#include <geda_types.h>
-#include <geda_macros.h>
 
 #ifdef __GNUC__
 
@@ -16,4 +13,10 @@
 #define STDOUT_TTY		1
 #define BOTH_LOGWIN_STDOUT	2
 
+#include <missing.h>
+#include <geda_types.h>
+#include <geda_bitmaps.h>
+#include <geda_macros.h>
+#include <geda_enum.h>
+#include <geda_struct.h>
 

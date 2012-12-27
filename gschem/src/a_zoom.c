@@ -50,9 +50,9 @@
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
-/* dir is either ZOOM_IN, ZOOM_OUT or ZOOM_FULL which are defined in globals.h */
+/* dir is either ZOOM_IN_DIRECTIVE, ZOOM_OUT_DIRECTIVE or ZOOM_FULL which are defined in globals.h */
 void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flags)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -62,24 +62,24 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
 
   /* NB: w_current->zoom_gain is a percentage increase */
   switch(dir) {
-  case(ZOOM_IN):
+  case(ZOOM_IN_DIRECTIVE):
     relativ_zoom_factor = (100.0 + w_current->zoom_gain) / 100.0;
-    break;	
-	
-  case(ZOOM_OUT):
+    break;
+
+  case(ZOOM_OUT_DIRECTIVE):
     relativ_zoom_factor = 100.0 / (100.0 + w_current->zoom_gain);
     break;
 
-  case(ZOOM_FULL):
+  case(ZOOM_FULL_DIRECTIVE):
     /* indicate the zoom full with a negative zoomfactor */
     relativ_zoom_factor = -1;
     break;
   }
 
-  /* calc center: either "mouse_to_world" or center=center or a 
+  /* calc center: either "mouse_to_world" or center=center or a
      virtual center if warp_cursor is disabled */
   if (w_current->zoom_with_pan == TRUE && selected_from == HOTKEY) {
-    if (!x_event_get_pointer_position(w_current, FALSE, 
+    if (!x_event_get_pointer_position(w_current, FALSE,
 				      &start_x, &start_y))
       return;
     if ( w_current->warp_cursor ) {
@@ -115,11 +115,11 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
   a_pan_general(w_current, world_pan_center_x, world_pan_center_y,
                 relativ_zoom_factor, pan_flags);
 
-  /* Before warping the cursor, filter out any consecutive scroll events 
-   * from the event queue.  If the program receives more than one scroll 
-   * event before it can process the first one, then the globals mouse_x 
+  /* Before warping the cursor, filter out any consecutive scroll events
+   * from the event queue.  If the program receives more than one scroll
+   * event before it can process the first one, then the globals mouse_x
    * and mouse_y won't contain the proper mouse position,
-   * because the handler for the mouse moved event needs to 
+   * because the handler for the mouse moved event needs to
    * run first to set these values.
    */
   GdkEvent *topEvent = gdk_event_get();
@@ -132,8 +132,8 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
     gdk_event_free( topEvent );
     topEvent = gdk_event_get();
   }
-	
-  /* warp the cursor to the right position */ 
+
+  /* warp the cursor to the right position */
   if (w_current->warp_cursor) {
      WORLDtoSCREEN (w_current, world_pan_center_x, world_pan_center_y,
 		   &start_x, &start_y);
@@ -144,7 +144,7 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flags)
 {
@@ -177,18 +177,18 @@ void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flag
   /* choose the smaller one */
   relativ_zoom_factor = (zx < zy ? zx : zy) /
   toplevel->page_current->to_screen_y_constant;
-	
+
   /*get the center of the objects*/
   world_pan_center_x = (double) (lright + lleft) /2.0;
   world_pan_center_y = (double) (lbottom + ltop) /2.0;
-	
+
   /* and create the new window*/
   a_pan_general(w_current, world_pan_center_x, world_pan_center_y,
-                relativ_zoom_factor, pan_flags );	
+                relativ_zoom_factor, pan_flags );
 
-  /*! \bug FIXME? trigger a x_event_motion() call without moving the cursor 
+  /*! \bug FIXME? trigger a x_event_motion() call without moving the cursor
    *  this will redraw rubberband lines after zooming
-   *  removed!, it has side effects in the preview of the part dialog 
+   *  removed!, it has side effects in the preview of the part dialog
    *  need to find another way to trigger x_event_motion() (Werner)
    */
   /* x_basic_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
@@ -198,7 +198,7 @@ void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flag
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void a_zoom_box(GSCHEM_TOPLEVEL *w_current, int pan_flags)
 {
@@ -212,7 +212,7 @@ void a_zoom_box(GSCHEM_TOPLEVEL *w_current, int pan_flags)
     s_log_message(_("Zoom too small!  Cannot zoom further.\n"));
     return;
   }
-	
+
   /*calc new zoomfactors and choose the smaller one*/
   zx = (double) abs(toplevel->page_current->left - toplevel->page_current->right) /
     abs(w_current->first_wx - w_current->second_wx);
@@ -220,20 +220,20 @@ void a_zoom_box(GSCHEM_TOPLEVEL *w_current, int pan_flags)
     abs(w_current->first_wy - w_current->second_wy);
 
   relativ_zoom_factor = (zx < zy ? zx : zy);
-	
+
   /* calculate the center of the zoom box */
   world_pan_center_x = (w_current->first_wx + w_current->second_wx) / 2.0;
   world_pan_center_y = (w_current->first_wy + w_current->second_wy) / 2.0;
 
   /* and create the new window*/
   a_pan_general(w_current, world_pan_center_x, world_pan_center_y,
-                relativ_zoom_factor, pan_flags);	
+                relativ_zoom_factor, pan_flags);
 }
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void a_zoom_box_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
@@ -244,39 +244,41 @@ void a_zoom_box_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void a_zoom_box_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
 {
-  g_assert( w_current->inside_action != 0 );
+  if( w_current->inside_action != 0 ) {
 
-  a_zoom_box_invalidate_rubber (w_current);
-  w_current->rubber_visible = 0;
+    a_zoom_box_invalidate_rubber (w_current);
+    w_current->rubber_visible = 0;
 
-  a_zoom_box(w_current, 0);
+    a_zoom_box(w_current, 0);
 
-  if (w_current->undo_panzoom) {
-    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY); 
+    if (w_current->undo_panzoom) {
+      o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+    }
   }
 }
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void a_zoom_box_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
-  g_assert( w_current->inside_action != 0 );
+  if( w_current->inside_action != 0 ) {
 
-  if (w_current->rubber_visible)
+    if (w_current->rubber_visible)
+      a_zoom_box_invalidate_rubber (w_current);
+
+    w_current->second_wx = w_x;
+    w_current->second_wy = w_y;
+
     a_zoom_box_invalidate_rubber (w_current);
-
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-
-  a_zoom_box_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+    w_current->rubber_visible = 1;
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -299,7 +301,7 @@ void a_zoom_box_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void a_zoom_box_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 {
@@ -317,7 +319,7 @@ void a_zoom_box_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- * 
+ *
  */
 void correct_aspect(GSCHEM_TOPLEVEL *w_current)
 {

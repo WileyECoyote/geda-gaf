@@ -1,4 +1,4 @@
-/* -*- geda-c -*-
+/* -*- geda-h -*-
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2010 Ales Hvezda
@@ -25,8 +25,9 @@
 /* window list */
 extern GList *global_window_list;
 
-/* Manager for recently used files */
+/* Manager for recently used files
 GtkRecentManager *recent_manager;
+ */
 
 /* colors */
 extern GdkColor white;

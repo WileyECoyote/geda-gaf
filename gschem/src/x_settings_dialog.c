@@ -56,9 +56,9 @@
  *
  *      (At this point the control should be displayed properly.)
  *
- * 3. Initialize the value in the function load_settings_dialog 
+ * 3. Initialize the value in the function load_settings_dialog
  *
- * 4. Retrieve the value of the control in GatherSettings 
+ * 4. Retrieve the value of the control in GatherSettings
  *
  *      (At this point the widget should be functioning but the
  *       value will not be saved to disk.)
@@ -70,7 +70,7 @@
  *
  *    (At this point the new variable and control should be displayed
  *     and working properly.)
- * 
+ *
  * 7. Varify:
  *
  *      a.) value changes when manually changed in the RC file.
@@ -96,10 +96,11 @@
 #include <gschem.h>
 #include <ascii.h>
 
-#include <gschem_dialog.h>
-#include <x_dialog_controls.h>
-#include <x_settings.h>
-#include <x_settings_dialog.h>
+#include <gschem_xdefines.h>            /* Define dialog default internal spacing */
+#include <gschem_dialog.h>              /* Definition the base Dialog Class */
+#include <x_dialog_controls.h>          /* Macros for Dialogs */
+#include <x_settings.h>                 /* Common Declarations and Enumerators */
+#include <x_settings_dialog.h>          /* Dialog String Data */
 
 /* ---------------  Functions that Should Be Somewhere Else  --------------- */
 
@@ -259,8 +260,8 @@ GtkWidget *MousePanGainSpin;
 GtkWidget *ScrollPanStepsSpin;
 GtkWidget *SelectPixelsSpin;
 GtkWidget *SnapSizeSpin;
+GtkWidget *TextMarkerSizeSpin;
 GtkWidget *TextSizeSpin;
-GtkWidget *TextSnapSizeSpin;
 GtkWidget *TextZoomFactorSpin;
 GtkWidget *ThickBusWidthSpin;
 GtkWidget *ThickLineWidthSpin;
@@ -459,7 +460,7 @@ static void st_callback_selection_changed_view(GtkTreeSelection *selection,
  */
 static void
 st_callback_selection_changed_view(GtkTreeSelection *selection,
-                                        GtkWidget *Dialog) 
+                                        GtkWidget *Dialog)
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
@@ -578,7 +579,7 @@ void initialize_tree_View(GtkTreeView *list, int list_item,
  *  first list was not read into the memory. A "default" filter list is
  *  maintained in an anonymous array of arrays, see load_tree_view_str
  *  function for more details.
- *  
+ *
 */
 /*! \brief add_to_list 'in Tree View'
  *  \par Function Description
@@ -696,7 +697,7 @@ static int SaveAttributeFilterList(GSCHEM_TOPLEVEL *w_current) {
        g_list_free(View2Data);
        View2Data = NULL;
        break;
-     case 2:   /* LIST */  
+     case 2:   /* LIST */
        store = gtk_tree_view_get_model (GTK_TREE_VIEW(SelectedAttributesView));
 
        /* Get the first iter in the list */
@@ -750,7 +751,7 @@ static int SavePotentialAttributes(GSCHEM_TOPLEVEL *w_current) {
   GtkTreeIter iter;
   char *str_new;
   int next;
- 
+
     s_attrib_init();
 
     store = gtk_tree_view_get_model (GTK_TREE_VIEW(PotentialAttributesView));
@@ -802,10 +803,10 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
 
 /*! \brief Function increment_selected_attribute
  *  \par Function Description: This is a Group 2 support function use to
- *       move an attribute up in the Potential (left) Treeview list. 
+ *       move an attribute up in the Potential (left) Treeview list.
  */
 static void increment_selected_attribute( void ){
-  
+
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GtkTreeIter iter1;
@@ -821,10 +822,10 @@ static void increment_selected_attribute( void ){
 
 /*! \brief Function decrement_selected_attribute
  *  \par Function Description: This is a Group 2 support function use to
- *       move an attribute down in the Potential (left) Treeview list. 
+ *       move an attribute down in the Potential (left) Treeview list.
 */
 static void decrement_selected_attribute( void ){
-  
+
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GtkTreeIter iter1;
@@ -888,7 +889,7 @@ static void add_selected_attribute( void ) {
  *       remove the selected attribute from the filter list.
  */
 static void remove_selected_attribute( void ){
-  
+
   GtkTreeSelection *selection;
   GtkTreeModel *model;
   GtkTreeIter iter;
@@ -1050,7 +1051,7 @@ int setup_titleblock_combo( char *titleblock ){
 
      remove_ext_from_basename(titleblock);
 
-     i = 0; 
+     i = 0;
      while (i < number_of_buffers){
         if (strequal(titleblock, strBuffer[i])) pos = i;
         LOAD_STD_COMBO (TitleBlock, strBuffer[i++]);
@@ -1086,7 +1087,7 @@ radio_responder(GtkWidget *widget,  gint response, ControlID *Control)
   bool state = GET_SWITCH_STATE (widget);
 
   if ((GTK_IS_BUTTON(widget)) && (state != TRUE)) {
-    
+
     bulb_on(widget);
 
     switch ( response ) {
@@ -1271,6 +1272,7 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
    case DrawGrips:
    case EmbedComponents:
    case EnableColorImaging:
+     gtk_widget_set_sensitive (InvertImagesSwitch, state);
      break;
    case EnableLog:
      enable_log_controls (state );
@@ -1291,6 +1293,7 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
      enable_color_map_scheme(state);
      break;
    case InitLogWindow:
+   case InvertImages:
    case MagneticNets:
    case NetDirection:
    case NotifyEvents:
@@ -1328,7 +1331,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 
-  extern gchar *x_color_get_name(int index);
+  extern char *x_color_get_name(int index);
   COLOR *cflag;
 
   /* variable pre-conditioning */
@@ -1362,9 +1365,9 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
  /* Using value for green gun @ index 10 to identify which color map
   * was loaded. (both mapping and outline must be on if a color map
   * was loaded)
-    
+
     00 = default mapping also BW
-    ff = dark 
+    ff = dark
     ee = light
 
     /TODO: Really should check all indexes
@@ -1442,7 +1445,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(RubberNets, w_current->netconn_rubberband);
   SetSwitch(ScrollBars, w_current->scrollbars);
   SetSwitch(SortLibrary, w_current->sort_component_library);
-  SetSwitch(TextOriginMarker, w_current->text_origin_marker);
+  SetSwitch(TextOriginMarker, w_current->renderer->text_origin_marker);
   SetSwitch(UndoViews, w_current->undo_panzoom);
   SetSwitch(WarpCursor, w_current->warp_cursor);
   SetSwitch(ZoomPan, w_current->zoom_with_pan);
@@ -1469,7 +1472,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   /* Windows TAB  */
   SetBulbGroup ( GridDotSize, dot_size);
   SetBulbGroup ( GridMode, w_current->grid_mode);
-  
+
   if ((default_window_width == 650) && (default_window_height == 487))
     rc_options.window_size = 0;
   else
@@ -1513,8 +1516,8 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSpin (ScrollPanSteps, w_current->scrollpan_steps);
   SetSpin (SelectPixels, w_current->select_slack_pixels);
   SetSpin (SnapSize, w_current->snap_size);
+  SetSpin (TextMarkerSize, w_current->renderer->text_marker_size);
   SetSpin (TextSize, w_current->text_size);
-  SetSpin (TextSnapSize,  w_current->snap_size);
   SetSpin (TextZoomFactor, w_current->text_display_zoomfactor);
 
   SetSpin (ThickBusWidth,  toplevel->thick_bus_width);
@@ -1570,7 +1573,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   */
   PangoFontDescription *FontDescription;
   FontDescription = pango_font_description_from_string("Monospace");
-  pango_font_description_set_absolute_size(FontDescription, 10); 
+  pango_font_description_set_absolute_size(FontDescription, 10);
 
   ThisDialog=NEW_STD_GSCHEM_DIALOG( DialogTitle, DialogSettings, w_current);
   MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
@@ -1628,7 +1631,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
    GTK_END_TAB(General);
 
   } /*** END General TAB Contents ***/
- 
+
   { /*------------------- Start Edit TAB Contents -------------------*/
 
    GTK_START_TAB (Edit);
@@ -1723,7 +1726,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
      VSECTION(TextTab_vbox, TextOptionsGrp1);
        GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextSize, DIALOG_V_SPACING, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
        GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextZoomFactor, DIALOG_V_SPACING, 30, 0, 100);
-       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox,  TextSnapSize, DIALOG_V_SPACING, 100, 0, 500);
+       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextMarkerSize, DIALOG_V_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
        GTK_SWITCH(TextOptionsGrp1_vbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
      HD_SEPERATOR (TextTab_vbox, Grp2);
      HSECTION (TextTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
@@ -1950,7 +1953,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->scrollbar_update           = GET_SWITCH_STATE (DelayScrollingSwitch);
   w_current->scroll_wheel               = GET_SWITCH_STATE (ClassicWheelSwitch);
   w_current->sort_component_library     = GET_SWITCH_STATE (SortLibrarySwitch);
-  w_current->text_origin_marker         = GET_SWITCH_STATE (TextOriginMarkerSwitch);
+  w_current->renderer->text_origin_marker = GET_SWITCH_STATE (TextOriginMarkerSwitch);
   w_current->undo_control               = GET_SWITCH_STATE (EnableUndoSwitch);
   w_current->undo_panzoom               = GET_SWITCH_STATE (UndoViewsSwitch);
   w_current->warp_cursor                = GET_SWITCH_STATE (WarpCursorSwitch);
@@ -1960,7 +1963,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->add_attribute_offset       =GET_SPIN_IVALUE (AttributeOffsetSpin);
   w_current->attribute_placement_grid   =GET_SPIN_IVALUE (AutoPlacementGridSpin);
   x_settings_set_scm_int("autoplace-attributes-grid", w_current->attribute_placement_grid);
-  
+
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
    toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
   w_current->dots_grid_fixed_threshold  =GET_SPIN_IVALUE (DotGridThresholdSpin);
@@ -1970,18 +1973,18 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->scrollpan_steps            =GET_SPIN_IVALUE (ScrollPanStepsSpin);
   w_current->select_slack_pixels        =GET_SPIN_IVALUE (SelectPixelsSpin);
   w_current->snap_size        		=GET_SPIN_IVALUE (SnapSizeSpin);
+  w_current->renderer->text_marker_size =GET_SPIN_IVALUE (TextMarkerSizeSpin);
   w_current->text_size                  =GET_SPIN_IVALUE (TextSizeSpin);
-/* w_current->toplevel->snap_size        =GET_SPIN_IVALUE (TextSnapSizeSpin); */
   w_current->text_display_zoomfactor    =GET_SPIN_IVALUE (TextZoomFactorSpin);
 
    toplevel->thick_bus_width            =GET_SPIN_IVALUE (ThickBusWidthSpin);
-   toplevel->thick_line_width           =GET_SPIN_IVALUE (ThickLineWidthSpin); 
-   toplevel->thick_net_width            =GET_SPIN_IVALUE (ThickNetWidthSpin); 
-   toplevel->thick_pin_width            =GET_SPIN_IVALUE (ThickPinWidthSpin); 
+   toplevel->thick_line_width           =GET_SPIN_IVALUE (ThickLineWidthSpin);
+   toplevel->thick_net_width            =GET_SPIN_IVALUE (ThickNetWidthSpin);
+   toplevel->thick_pin_width            =GET_SPIN_IVALUE (ThickPinWidthSpin);
 
-   toplevel->thin_bus_width             =GET_SPIN_IVALUE (ThinBusWidthSpin); 
-   toplevel->thin_line_width            =GET_SPIN_IVALUE (ThinLineWidthSpin); 
-   toplevel->thin_net_width             =GET_SPIN_IVALUE (ThinNetWidthSpin); 
+   toplevel->thin_bus_width             =GET_SPIN_IVALUE (ThinBusWidthSpin);
+   toplevel->thin_line_width            =GET_SPIN_IVALUE (ThinLineWidthSpin);
+   toplevel->thin_net_width             =GET_SPIN_IVALUE (ThinNetWidthSpin);
    toplevel->thin_pin_width             =GET_SPIN_IVALUE (ThinPinWidthSpin);
 
   w_current->undo_levels                =GET_SPIN_IVALUE (UndoBufferSizeSpin);

@@ -36,16 +36,19 @@
 #include <dmalloc.h>
 #endif
 
+/* Define spacings for dialogs. */
+#include "gschem_xdefines.h"
+
 #define X_IMAGE_DEFAULT_SIZE "800x600"
 
 #define X_IMAGE_SIZE_MENU_NAME "image_size_menu"
 #define X_IMAGE_TYPE_MENU_NAME "image_type_menu"
 
-#define X_IMAGE_DEFAULT_TYPE "PNG"
-
 static char *x_image_sizes[] = {"320x240", "640x480", "800x600", "1200x768",
   "1280x960", "1600x1200", "3200x2400", NULL};
-
+  
+const char *ImageTypeStrings[] = { "png", "tiff", "bmp", "ico", "jpeg", "eps", "pdf" };
+   
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
 /* gtk_combo_box_get_active_text was included in GTK 2.6, so we need to store
    the different image type descriptions in a list. */
@@ -114,12 +117,12 @@ static void create_size_menu (GtkComboBox *combo)
  *  \note
  *  This function is only used in this file, there are other create_menus...
  */
-static void create_type_menu(GtkComboBox *combo)
+static void create_type_menu(GtkComboBox *combo, IMAGE_TYPES default_type)
 {
   GSList *formats = gdk_pixbuf_get_formats ();
   GSList *ptr;
   char *buf;
-  int i=0, default_index=0;
+  int i=0, default_index=-1;
 
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
   /* If GTK < 2.6, free the descriptions list */
@@ -139,9 +142,10 @@ static void create_type_menu(GtkComboBox *combo)
           buf);
 #endif
 
-      /* Compare the name with "png" and store the index */
+      /* Compare the name with default and store the index */
       buf = g_strdup (gdk_pixbuf_format_get_name(ptr->data));
-      if (strcasecmp(buf, X_IMAGE_DEFAULT_TYPE) == 0) {
+      fprintf(stderr, "default flag=[%d], buf=[%s]\n",default_type, buf);
+      if (strcasecmp(buf, ImageTypeStrings[default_type]) == 0) {
         default_index = i;
       }
       i++;  /* this is the count of items added to the combo box */
@@ -154,6 +158,7 @@ static void create_type_menu(GtkComboBox *combo)
   gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "Encapsulated Postscript");
   gtk_combo_box_append_text(GTK_COMBO_BOX(combo), "Portable Document Format");
 
+  if (default_index < 0) default_index = default_type;
   /* Set the default menu */
   gtk_combo_box_set_active(GTK_COMBO_BOX(combo), default_index);
   return;
@@ -442,7 +447,7 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
  *  \param w_current [in] the GSCHEM_TOPLEVEL structure.
  *  \return nothing
  */
-void x_image_setup (GSCHEM_TOPLEVEL *w_current)
+void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
 {
   GtkWidget *dialog;
   GtkWidget *vbox1;
@@ -487,7 +492,7 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current)
 
   type_combo = gtk_combo_box_new_text ();
   gtk_box_pack_start (GTK_BOX (vbox2), type_combo, TRUE, TRUE, 0);
-  create_type_menu (GTK_COMBO_BOX(type_combo));
+  create_type_menu (GTK_COMBO_BOX(type_combo), default_type);
 
   /* extent = Add a switch or check box here for "extents or Display */
   
@@ -673,7 +678,7 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
   new_w_current.pl = pango_cairo_create_layout (new_w_current.cr);
 
   new_w_current.grid_mode = 0;
-  new_w_current.text_origin_marker = FALSE;
+  new_w_current.renderer->text_origin_marker = FALSE;
 
   new_w_current.win_width = new_w_current.image_width;
   new_w_current.win_height = new_w_current.image_height;

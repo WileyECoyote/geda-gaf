@@ -64,13 +64,6 @@
 /* For x_window.c */
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
 
-/* These are image filenames used for the widgets in dialog boxes */
-#define SWITCH_ON_IMAGE  	   "geda_switch_64x48_on.png"
-#define SWITCH_OFF_IMAGE 	   "geda_switch_64x48_off.png"
-
-#define BULB_ON_IMAGE    	   "geda_bulb_24x26_on.png"
-#define BULB_OFF_IMAGE   	   "geda_bulb_24x26_off.png"
-
 /* -----------------  Strings for RC Read/Write ----------------- */
 
 /* Generic Strings for RC code */

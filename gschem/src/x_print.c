@@ -30,6 +30,8 @@
 #include <math.h>
 
 #include "gschem.h"
+#include "x_dialog.h"
+
 #include <cairo-pdf.h>
 
 #ifdef HAVE_LIBDMALLOC

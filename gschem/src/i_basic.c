@@ -150,7 +150,7 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
 void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  gchar *what_to_say;
+  char *what_to_say;
   const gchar *array[5] = { NULL };
   int i = 3; /* array[4] must be NULL */
 
@@ -175,7 +175,7 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
   what_to_say = g_strjoinv(" - ", (gchar **) array + i);
 
   if(w_current->keyaccel_string) {
-     gchar *p = what_to_say;
+     char *p = what_to_say;
 
      what_to_say = g_strdup_printf("%s \t\t %s", w_current->keyaccel_string,
            what_to_say);

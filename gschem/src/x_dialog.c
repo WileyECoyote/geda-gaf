@@ -36,6 +36,8 @@
 #include <dmalloc.h>
 #endif
 
+#include "x_dialog.h"
+
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \
   g_object_set_data_full (G_OBJECT (component), name, \
     gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
@@ -102,7 +104,7 @@ void destroy_window(GtkWidget *widget, GtkWidget **window)
  *  \par Function Description
  *  This is an internally used function to create pixmaps.
  *  The default bitmap directory is prefixed to the filename
- *  and if is valid then the image widget is created and returned. GtkWidget *widget, 
+ *  and if is valid then the image widget is created and returned. GtkWidget *widget,
  */
 
 GtkWidget*
@@ -111,9 +113,11 @@ create_pixmap (const char *filename)
   char *pathname = NULL;
   GtkWidget *pixmap;
 
-  if (!filename || !filename[0])
+  if (!filename || !filename[0]) {
+      s_log_message("Bad image file name.\n");
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
                                       GTK_ICON_SIZE_INVALID);
+  }
 
   pathname = g_build_filename (s_path_sys_data (), "bitmap", filename, NULL);
 
@@ -129,14 +133,14 @@ create_pixmap (const char *filename)
   return pixmap;
 }
 
-GtkWidget* get_geda_switch_image (gboolean WhichState)
+GtkWidget* get_geda_switch_image (bool WhichState)
 {
    GtkWidget* image;
 
    if (WhichState)
-     image = create_pixmap (SWITCH_ON_IMAGE);
+     image = create_pixmap (GEDA_BITMAP_SWITCH_ON);
    else
-     image = create_pixmap (SWITCH_OFF_IMAGE);
+     image = create_pixmap (GEDA_BITMAP_SWITCH_OFF);
 
    return image;
 }
@@ -730,7 +734,7 @@ static bool selection_get_line_type(GList *selection,
 
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
     object = (OBJECT *) iter->data;
-    if (! o_get_line_options(object, &oend, &otype, 
+    if (! o_get_line_options(object, &oend, &otype,
                              &owidth, &olength, &ospace))
       continue;
 
@@ -753,7 +757,7 @@ static bool selection_get_line_type(GList *selection,
 
   return found;
 }
- 
+
 
 /*! \brief set the linetype in the linetype dialog
  *  \par Function Description
@@ -785,7 +789,7 @@ static void line_type_dialog_set_values(struct line_type_data *line_type_data,
   else
     text = g_strdup_printf ("%d", width);
   gtk_entry_set_text (GTK_ENTRY (line_type_data->width_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (line_type_data->width_entry), 
+  gtk_entry_select_region (GTK_ENTRY (line_type_data->width_entry),
                            0, strlen (text));
   g_free(text);
 
@@ -794,7 +798,7 @@ static void line_type_dialog_set_values(struct line_type_data *line_type_data,
   else
     text = g_strdup_printf ("%d", length);
   gtk_entry_set_text (GTK_ENTRY (line_type_data->length_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (line_type_data->length_entry), 
+  gtk_entry_select_region (GTK_ENTRY (line_type_data->length_entry),
                            0, strlen (text));
   g_free(text);
 
@@ -807,7 +811,7 @@ static void line_type_dialog_set_values(struct line_type_data *line_type_data,
                            0, strlen (text));
   g_free(text);
 }
-                                         
+
 
 /*! \brief Callback function for the linetype menu item in the line type dialog
  *  \par Function Description
@@ -878,7 +882,7 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
   /* get the selection */
   if (! o_select_selected(w_current))
     return;
-  selection = 
+  selection =
     geda_list_get_glist(w_current->toplevel->page_current->selection_list);
 
   /* get the new values from the text entries of the dialog */
@@ -897,7 +901,7 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
                         line_type_data->line_type))))), "linetype"));
   if (type == TYPE_ERASE)
     type = -1;
-  
+
   /* convert the options to integers (-1 means unchanged) */
   width =  g_ascii_strcasecmp (width_str,
                          _("*unchanged*")) ? atoi (width_str)  : -1;
@@ -918,7 +922,7 @@ static void line_type_dialog_ok(GtkWidget *w, gpointer data)
     olength = length == -1 ? olength : length;
     ospace = space  == -1 ? ospace : space;
 
-    /* set all not required options to -1 and 
+    /* set all not required options to -1 and
        set nice parameters if not provided by the user */
     switch (otype) {
     case (TYPE_SOLID):
@@ -998,7 +1002,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
   if (! o_select_selected(w_current))
     return;
 
-  selection = 
+  selection =
     geda_list_get_glist(w_current->toplevel->page_current->selection_list);
 
   if (! selection_get_line_type(selection, &end, &type,
@@ -1178,7 +1182,7 @@ static bool selection_get_fill_type(GList *selection,
 
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
     object = (OBJECT *) iter->data;
-    if (! o_get_fill_options(object, &otype, &owidth, 
+    if (! o_get_fill_options(object, &otype, &owidth,
                              &opitch1, &oangle1, &opitch2, &oangle2))
       continue;
 
@@ -1237,7 +1241,7 @@ static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
   else
     text = g_strdup_printf ("%d", width);
   gtk_entry_set_text (GTK_ENTRY (fill_type_data->width_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (fill_type_data->width_entry), 
+  gtk_entry_select_region (GTK_ENTRY (fill_type_data->width_entry),
                            0, strlen (text));
   g_free(text);
 
@@ -1246,7 +1250,7 @@ static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
   else
     text = g_strdup_printf ("%d", pitch1);
   gtk_entry_set_text (GTK_ENTRY (fill_type_data->pitch1_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (fill_type_data->pitch1_entry), 
+  gtk_entry_select_region (GTK_ENTRY (fill_type_data->pitch1_entry),
                            0, strlen (text));
   g_free(text);
 
@@ -1255,7 +1259,7 @@ static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
   else
     text = g_strdup_printf ("%d", angle1);
   gtk_entry_set_text (GTK_ENTRY (fill_type_data->angle1_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (fill_type_data->angle1_entry), 
+  gtk_entry_select_region (GTK_ENTRY (fill_type_data->angle1_entry),
                            0, strlen (text));
   g_free(text);
 
@@ -1264,7 +1268,7 @@ static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
   else
     text = g_strdup_printf ("%d", pitch2);
   gtk_entry_set_text (GTK_ENTRY (fill_type_data->pitch2_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (fill_type_data->pitch2_entry), 
+  gtk_entry_select_region (GTK_ENTRY (fill_type_data->pitch2_entry),
                            0, strlen (text));
   g_free(text);
 
@@ -1273,7 +1277,7 @@ static void fill_type_dialog_set_values(struct fill_type_data *fill_type_data,
   else
     text = g_strdup_printf ("%d", angle2);
   gtk_entry_set_text (GTK_ENTRY (fill_type_data->angle2_entry), text);
-  gtk_entry_select_region (GTK_ENTRY (fill_type_data->angle2_entry), 
+  gtk_entry_select_region (GTK_ENTRY (fill_type_data->angle2_entry),
                            0, strlen (text));
   g_free(text);
 }
@@ -1356,7 +1360,7 @@ static void fill_type_dialog_ok(GtkWidget *w, gpointer data)
   /* get the selection */
   if (! o_select_selected(w_current))
     return;
-  selection = 
+  selection =
     geda_list_get_glist(w_current->toplevel->page_current->selection_list);
 
   /* get the new values from the text entries of the dialog */
@@ -1404,8 +1408,8 @@ static void fill_type_dialog_ok(GtkWidget *w, gpointer data)
     oangle1 = angle1 == -1 ? oangle1 : angle1;
     opitch2 = pitch2 == -1 ? opitch2 : pitch2;
     oangle2 = angle2 == -1 ? oangle2 : angle2;
-    
-    /* set all not required options to -1 and 
+
+    /* set all not required options to -1 and
        set nice parameters if not provided by the user */
     switch (otype) {
     case (FILLING_HOLLOW):
@@ -1425,7 +1429,7 @@ static void fill_type_dialog_ok(GtkWidget *w, gpointer data)
     default:
       g_assert_not_reached();
     }
-    
+
     o_set_fill_options (toplevel, object, otype, owidth,
                         opitch1, oangle1, opitch2, oangle2);
   }
@@ -1488,7 +1492,7 @@ void fill_type_dialog(GSCHEM_TOPLEVEL *w_current)
   if (! o_select_selected(w_current))
     return;
 
-  selection = 
+  selection =
     geda_list_get_glist(w_current->toplevel->page_current->selection_list);
 
   if (! selection_get_fill_type(selection, &type, &width,
@@ -1668,7 +1672,7 @@ void arc_angle_dialog_response(GtkWidget *w, int response,
 
 /*! \brief Creates the arc angle dialog
  *  \par Function Description
- *  This function creates the arc angle dialog. Depending on the 
+ *  This function creates the arc angle dialog. Depending on the
  *  \a arc_object the entries are filled with the arc OBJECT properties
  *  or with some standard values.
  *
@@ -1768,7 +1772,7 @@ void arc_angle_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *arc_object)
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_start),0);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_sweep), 90);
   } else {
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(radius), 
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(radius),
 			      arc_object->arc->width / 2);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_start),
 			      arc_object->arc->start_angle);
@@ -2217,7 +2221,7 @@ void about_dialog (GSCHEM_TOPLEVEL *w_current)
                                     PACKAGE_GIT_COMMIT);
 
   logo_file = g_strconcat (w_current->toplevel->bitmap_directory,
-                           G_DIR_SEPARATOR_S, "gschem-about-logo.png", NULL);
+                           G_DIR_SEPARATOR_S, "gschem_about_logo.png", NULL);
 
   logo = gdk_pixbuf_new_from_file (logo_file, &error);
   g_free (logo_file);
@@ -2237,9 +2241,9 @@ void about_dialog (GSCHEM_TOPLEVEL *w_current)
       "comments",       _("gEDA: GPL Electronic Design Automation"),
       "copyright",
       /* TRANSLATORS: "ChangeLog" is a literal filename; please don't translate it. */
-      _("Copyright © 1998-2011 Ales Hvezda"
+      _("Copyright © 1998-2013 Ales Hvezda"
         " <ahvezda@geda.seul.org>\n"
-        "Copyright © 1998-2011 gEDA Contributors"
+        "Copyright © 1998-2013 gEDA Contributors"
         " (see ChangeLog for details)"),
       "website",        "http://www.gpleda.org/",
       NULL);

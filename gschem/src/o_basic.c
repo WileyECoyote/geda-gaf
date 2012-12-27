@@ -142,8 +142,8 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   /* First pass -- render non-selected objects */
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
     OBJECT *o_current = iter->data;
-    
     if (!(o_current->dont_redraw || o_current->selected)) {
+      o_style_set_object(toplevel, o_current);
       eda_renderer_draw (renderer, o_current);
     }
   }
@@ -153,6 +153,7 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
     OBJECT *o_current = iter->data;
 
     if (!(o_current->dont_redraw || o_current->selected)) {
+      o_style_set_object(toplevel, o_current);
       eda_renderer_draw_cues (renderer, o_current);
     }
   }
@@ -168,6 +169,7 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
          iter != NULL; iter = g_list_next (iter)) {
       OBJECT *o_current = iter->data;
       if (!o_current->dont_redraw) {
+        o_style_set_object(toplevel, o_current);
         eda_renderer_draw (renderer, o_current);
         eda_renderer_draw_cues (renderer, o_current);
         if (w_current->renderer->draw_grips )
@@ -653,10 +655,12 @@ void o_invalidate_glist (GSCHEM_TOPLEVEL *w_current, GList *list)
  *  x_color_lookup(), so that code is not duplicated in each drawing
  *  function.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
- *  \param [in] object     The OBJECT whos color to return.
+ *  \param [in] w_current   The GSCHEM_TOPLEVEL object.
+ *  \param [in] object      The OBJECT whos color to return.
+ * 
+ *  \param [out] index      Index of color to use for this object.
  */
-COLOR *o_drawing_color (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+int o_drawing_color (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
 {
   int color_idx;
   OBJECT *temp;
@@ -677,5 +681,5 @@ COLOR *o_drawing_color (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
   if (w_current->toplevel->override_color != -1)
     color_idx = w_current->toplevel->override_color;
 
-  return x_color_lookup (color_idx);
+  return color_idx;
 }

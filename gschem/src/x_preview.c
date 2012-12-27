@@ -160,7 +160,7 @@ preview_callback_button_press (GtkWidget *widget,
 {
   Preview *preview = PREVIEW (widget);
   GSCHEM_TOPLEVEL *preview_w_current = preview->preview_w_current;
-  gint wx, wy; 
+  gint wx, wy;
 
   if (!preview->active) {
     return TRUE;
@@ -168,7 +168,7 @@ preview_callback_button_press (GtkWidget *widget,
 
   switch (event->button) {
       case 1: /* left mouse button: zoom in */
-        a_zoom (preview_w_current, ZOOM_IN, HOTKEY,
+        a_zoom (preview_w_current, ZOOM_IN_DIRECTIVE, HOTKEY,
                 A_PAN_DONT_REDRAW);
         o_invalidate_all (preview_w_current);
         break;
@@ -178,12 +178,12 @@ preview_callback_button_press (GtkWidget *widget,
         a_pan (preview_w_current, wx, wy);
         break;
       case 3: /* right mouse button: zoom out */
-        a_zoom (preview_w_current, ZOOM_OUT, HOTKEY,
+        a_zoom (preview_w_current, ZOOM_OUT_DIRECTIVE, HOTKEY,
                 A_PAN_DONT_REDRAW);
         o_invalidate_all (preview_w_current);
         break;
   }
-  
+
   return FALSE;
 }
 
@@ -208,12 +208,12 @@ preview_update (Preview *preview)
   if (preview_toplevel->page_current == NULL) {
     return;
   }
-  
+
   /* delete old preview, create new page */
   /* it would be better to just resets current page - Fix me */
   s_page_delete (preview_toplevel, preview_toplevel->page_current);
   s_page_goto (preview_toplevel, s_page_new (preview_toplevel, "preview"));
-  
+
   if (preview->active) {
     g_assert ((preview->filename == NULL) || (preview->buffer == NULL));
     if (preview->filename != NULL) {
@@ -261,14 +261,14 @@ preview_update (Preview *preview)
                   s_page_objects (preview_toplevel->page_current),
                   A_PAN_DONT_REDRAW);
   o_invalidate_all (preview_w_current);
-  
+
 }
 
 GType
 preview_get_type ()
 {
   static GType preview_type = 0;
-  
+
   if (!preview_type) {
     static const GTypeInfo preview_info = {
       sizeof(PreviewClass),
@@ -281,12 +281,12 @@ preview_get_type ()
       0,    /* n_preallocs */
       (GInstanceInitFunc) preview_init,
     };
-                
+
     preview_type = g_type_register_static (GTK_TYPE_DRAWING_AREA,
                                            "Preview",
                                            &preview_info, 0);
   }
-  
+
   return preview_type;
 }
 
@@ -296,7 +296,7 @@ preview_class_init (PreviewClass *klass)
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
 
   preview_parent_class = g_type_class_peek_parent (klass);
-  
+
   gobject_class->set_property = preview_set_property;
   gobject_class->get_property = preview_get_property;
   gobject_class->dispose      = preview_dispose;
@@ -323,7 +323,7 @@ preview_class_init (PreviewClass *klass)
                           FALSE,
                           G_PARAM_READWRITE));
 
-        
+
 }
 
 static gboolean
@@ -413,9 +413,9 @@ preview_init (Preview *preview)
   preview->active   = FALSE;
   preview->filename = NULL;
   preview->buffer   = NULL;
-  
-  gtk_widget_set_events (GTK_WIDGET (preview), 
-                         GDK_EXPOSURE_MASK | 
+
+  gtk_widget_set_events (GTK_WIDGET (preview),
+                         GDK_EXPOSURE_MASK |
                          GDK_POINTER_MOTION_MASK |
                          GDK_BUTTON_PRESS_MASK);
   for (tmp = drawing_area_events; tmp->detailed_signal != NULL; tmp++) {
@@ -424,7 +424,7 @@ preview_init (Preview *preview)
                       tmp->c_handler,
                       NULL);
   }
-  
+
 }
 
 static void
@@ -437,7 +437,7 @@ preview_set_property (GObject *object,
   GSCHEM_TOPLEVEL *preview_w_current = preview->preview_w_current;
 
   g_assert (preview_w_current != NULL);
-  
+
   switch(property_id) {
       case PROP_FILENAME:
         if (preview->buffer != NULL) {
@@ -506,15 +506,15 @@ preview_dispose (GObject *self)
     preview_w_current->drawing_area = NULL;
 
     x_window_free_gc (preview_w_current);
-    
+
     s_toplevel_delete (preview_w_current->toplevel);
     g_free (preview_w_current);
 
     preview->preview_w_current = NULL;
   }
-    
+
   G_OBJECT_CLASS (preview_parent_class)->dispose (self);
-  
+
 }
 
 

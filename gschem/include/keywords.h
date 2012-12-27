@@ -138,6 +138,7 @@
      KEYWORD ( text_display_zoomfactor )
      KEYWORD ( text_feedback )
      KEYWORD ( text_origin_marker )
+     KEYWORD ( text_marker_size )
      KEYWORD ( text_size )
      KEYWORD ( undo_control )
      KEYWORD ( undo_levels )
@@ -225,6 +226,7 @@ enum {
      KEYWORD(text-display-zoomfactor,      0, 0, text_display_zoomfactor)
      KEYWORD(text-feedback,                0, 0, text_feedback)
      KEYWORD(text-origin-marker,           0, 0, text_origin_marker)
+     KEYWORD(text-marker-size,             0, 0, text_marker_size)
      KEYWORD(text-size,                    0, 0, text_size)
      KEYWORD(undo-levels,                  0, 0, undo_levels)
      KEYWORD(undo-control,                 0, 0, undo_control)
@@ -357,6 +359,14 @@ enum {
   int number = w_current->variable; \
   RC_INTEGER_OUT(variable, 4)
 
+  /*\remark
+ * Use this Macro to write a w_current->renderer var with single integer
+ * @param[in] variable   a w_current->renderer integer variable
+*/
+#define RC_INTEGER_ROUT(variable) \
+  int number = w_current->renderer->variable; \
+  RC_INTEGER_OUT(variable, 4)
+  
 /*\remark
  * Use this Macro to write toplevel var with single integer 
  * @param[in] variable   toplevel integer variable

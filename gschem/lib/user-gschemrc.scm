@@ -55,6 +55,25 @@
 ;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
 ;(load (build-path geda-rc-path "gschem-colormap-custom"))
 
+; image-color string
+;
+; Controls if images (png, jpg, etc.) are color (enabled) or black/white
+; (disabled). If disabled images will be generated in black and white.
+; When enabled, colorable image types will be generated using the active
+; color map scheme, (which could be black/white).
+;
+(image-color "enabled")
+;(image-color "disabled")
+
+; invert-images string
+;
+; When image-color is disabled, invert-images will black and white so that
+; images are black-on-white when enabled (default). When disabled, generated
+; images will be the same as the black and white screen image; white-on-
+; black (like the old gschem style).
+(invert-images "enabled")
+;(invert-images "disabled")
+
 ;
 ; End of color section
 ;
@@ -747,6 +766,13 @@
 ;
 (text-origin-marker "enabled")
 ;(text-origin-marker "disabled")
+
+; text-marker-size integer
+;
+; Sets the default size of the text marker, this value is ignored
+; when the text-origin-marker is disabled.
+;
+(text-marker-size 15)
 
 ; text-size integer
 ;

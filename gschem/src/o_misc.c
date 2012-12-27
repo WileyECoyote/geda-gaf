@@ -398,7 +398,8 @@ int o_edit_find_text (GSCHEM_TOPLEVEL *w_current, const GList *o_list,
                                                 current_filename,
                                                 parent,
                                                 page_control,
-                                                HIERARCHY_NORMAL_LOAD);
+                                                HIERARCHY_NORMAL_LOAD,
+                                                NULL);
 
             if (child_page != NULL) {
               page_control = child_page->page_control;
@@ -424,14 +425,14 @@ int o_edit_find_text (GSCHEM_TOPLEVEL *w_current, const GList *o_list,
         if (!skiplast) {
           int x1, y1, x2, y2;
 
-          a_zoom(w_current, ZOOM_FULL, DONTCARE, A_PAN_DONT_REDRAW);
+          a_zoom(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, A_PAN_DONT_REDRAW);
           g_assert( world_get_single_object_bounds (toplevel, o_current, &x1, &y1, &x2, &y2) );
           text_screen_height = SCREENabs (w_current, y2 - y1);
           /* this code will zoom/pan till the text screen height is about */
           /* 50 pixels high, perhaps a future enhancement will be to make */
           /* this number configurable */
           while (text_screen_height < 50) {
-            a_zoom(w_current, ZOOM_IN, DONTCARE, A_PAN_DONT_REDRAW);
+            a_zoom(w_current, ZOOM_IN_DIRECTIVE, DONTCARE, A_PAN_DONT_REDRAW);
             text_screen_height = SCREENabs (w_current, y2 - y1);
           }
           a_pan_general(w_current,
@@ -439,7 +440,7 @@ int o_edit_find_text (GSCHEM_TOPLEVEL *w_current, const GList *o_list,
                         1, 0);
 
 	  /* Make sure the titlebar and scrollbars are up-to-date */
-	  x_window_set_current_page(w_current, 
+	  x_window_set_current_page(w_current,
                                     w_current->toplevel->page_current );
 
           last_o = o_current;

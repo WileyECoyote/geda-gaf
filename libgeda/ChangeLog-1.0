@@ -5,6 +5,15 @@
         used to be in RC file name, don't know and did not review history.)
         Write to encapsulated postscript works again!
 
+	* include/libgeda/struct.h: Separated this file into s_struct.h (s
+        for simple) and g_struct.h (glib.h and gdk-pixbuf.h must be included
+        prior to inclusion of this header). Reorganized type defines and
+        structures into mostly alphabetic order except where inclusion of
+        structures in structures prohibited. Also relocated some enumerated
+        types to geda_enum.h  Now edacairo.c does not have to have include
+        EVERY libgeda header just to get the definition for PATH_SECTION.
+        A similar situation    was also occurring with some of the utilities.
+
 	* src/Makefile.am: Added GEDA_INCLUDES variable, as was done for
         gschem to clean up the include paths.
 

@@ -1553,7 +1553,7 @@ SCM g_rc_text_feedback(SCM mode)
 		   default_text_feedback,
 		   2);
 }
-/*! \brief This function processes the text-origin_marker RC entry.
+/*! \brief This function processes the text-origin-marker RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the text_origin_marker RC entry.
@@ -1568,6 +1568,20 @@ SCM g_rc_text_origin_marker(SCM mode)
   RETURN_G_RC_MODE("text-origin-marker",
 		   default_text_origin_marker,
 		   2);
+}
+/*! \brief This function processes the text-marker-size RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the text_origin_marker RC entry.
+ */
+SCM g_rc_text_marker_size(SCM size)
+{
+  default_text_marker_size = ICHECK( size, MIN_TEXT_MARKER_SIZE,
+                                           MAX_TEXT_MARKER_SIZE,
+                                           DEFAULT_TEXT_MARKER_SIZE,
+                                           "text-marker-size");
+
+  return SCM_BOOL_T;
 }
 /*! \brief This function processes the text-size RC entry.
  *  \par Function Description

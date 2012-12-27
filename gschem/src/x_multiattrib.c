@@ -34,6 +34,7 @@
 #include <dmalloc.h>
 #endif
 
+#include "x_dialog.h"
 #include "x_dialog_controls.h"
 
 #define ThisDialog multiattrib

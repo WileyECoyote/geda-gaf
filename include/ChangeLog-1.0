@@ -1,4 +1,15 @@
 2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+        * /include/geda_toolbars.h: Added TOOLBAR_GEDA_BUTTON macro to pass
+          w_current instead of enumerated control ID (but most if not all of
+          these could be phased out by using the TOOLBAR_STD_BUTTON [aka
+          enumerated type] and defining a local handler to call the i_call
+          back [aka menu] version. That would simplify i_callbacks.c by
+          eliminating all of the redundant tool bar functions.
+          Modified ToolbarButtonData structure to include icon data.
+          Added documentation to improve clarity of nested macro scheme.
+
+2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
         * /include/x_dialog_controls.h: Added DialogFont "Monospace 13.3" and
           PANGO_R5_LABEL, Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary
           controls would use the new PANGO_R5_LABEL macro instead of GTK_R5
@@ -8,6 +19,8 @@
           shifted  alignment of all the widgets in the dialog box and this
           is unacceptable. This revision "fixes" this issue by "fixing" font
           and the font size regardless of the user's settings.
+
+        * /include/geda_enum.h: Added IMAGE_TYPES
 
 2012-11-17 Wiley E. Hill <wileyhill@gmail.com>
 

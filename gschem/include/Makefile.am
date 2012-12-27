@@ -3,19 +3,25 @@
 ## Process this file with automake to produce Makefile.in
 
 noinst_HEADERS = \
-	globals.h i_vars.h prototype.h x_dialog.h x_states.h \
-	x_compselect.h \
-	x_log.h x_multiattrib.h x_pagesel.h x_print.h x_preview.h \
-	gschem.h \
-	gschem_accel_label.h \
-	gschem_action.h \
-	gschem_idefines.h \
-	gschem_sdefines.h \
-	gschem_dialog.h \
-	gschem_pango.h \
-	gschem_struct.h
+		globals.h \
+		gschem.h \
+		gschem_dialog.h \
+		gschem_idefines.h \
+		gschem_sdefines.h \
+		gschem_xdefines.h \
+		gschem_pango.h  \
+		gschem_struct.h \
+		i_vars.h \
+		prototype.h   \
+	 	x_compselect.h x_dialog.h x_log.h \
+		x_menu.h x_multiattrib.h \
+		x_pagesel.h x_print.h \
+		x_states.h \
+		x_preview.h x_window.h \
+                widgets.h
 
-MOSTLYCLEANFILES = *.log core FILE *~
-CLEANFILES = *.log core FILE *~
-DISTCLEANFILES = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
+
+MOSTLYCLEANFILES = *~
+CLEANFILES = *~
+DISTCLEANFILES = *~
+MAINTAINERCLEANFILES = *~ Makefile.in

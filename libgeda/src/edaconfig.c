@@ -20,14 +20,12 @@
 #include <config.h>
 
 #include <errno.h>
-#include <glib.h>
 
-#include <glib-object.h>
 #include <libgeda_priv.h>
 
 enum _EdaConfigPropertyId {
   PROP_0,
-  PROP_CONFIG_FILENAME,
+  PROP_CONFIG_FILE,
   PROP_CONFIG_PARENT,
   PROP_CONFIG_TRUSTED,
 };
@@ -39,13 +37,14 @@ struct _EdaConfigPrivate
   /* Accessed via properties */
   EdaConfig *parent;
   gulong parent_handler_id;
-  bool trusted;
+  gboolean trusted;
+  GFile *file;
   char *filename;
 
   /* Other private data */
   GKeyFile *keyfile;
-  bool loaded;
-  bool changed;
+  gboolean loaded;
+  gboolean changed;
 };
 
 /*! Default value for XDG_CONFIG_DIRS if no system configuration
@@ -65,7 +64,7 @@ static void eda_config_dispose (GObject *object);
 static void eda_config_finalize (GObject *object);
 static void eda_config_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec);
 static void eda_config_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec);
-static bool eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent);
+static gboolean eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent);
 
 static void cclosure_marshal_VOID__STRING_STRING (GClosure *closure,
                                                   GValue *return_value,
@@ -98,13 +97,13 @@ eda_config_class_init (EdaConfigClass *klass)
   klass->config_changed = default_config_changed_handler;
 
   /* Register properties */
-  pspec = g_param_spec_string ("filename",
-                               "Configuration file name",
+  pspec = g_param_spec_object ("file",
+                               "Configuration file",
                                "Set underlying file for EdaConfig",
-                               NULL /* default value */,
+                               G_TYPE_FILE,
                                G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE);
   g_object_class_install_property (gobject_class,
-                                   PROP_CONFIG_FILENAME,
+                                   PROP_CONFIG_FILE,
                                    pspec);
 
   pspec = g_param_spec_object ("parent",
@@ -160,7 +159,12 @@ eda_config_init (EdaConfig *config)
 static void
 eda_config_dispose (GObject *object)
 {
-  /* EdaConfig *config = EDA_CONFIG (object); */
+  EdaConfig *config = EDA_CONFIG (object);
+
+  if (config->priv->file != NULL) {
+    g_object_unref (config->priv->file);
+    config->priv->file = NULL;
+  }
 
   g_object_set (object,
                 "parent", NULL,
@@ -170,7 +174,8 @@ eda_config_dispose (GObject *object)
   G_OBJECT_CLASS (eda_config_parent_class)->dispose (object);
 }
 
-/*! Finalize an EdaConfig instance. Free all resources held by the instance. */
+/*! Finalize an EdaConfig instance. Free all resources held by the
+ * instance. */
 static void
 eda_config_finalize (GObject *object)
 {
@@ -192,9 +197,18 @@ eda_config_set_property (GObject *object, guint property_id,
   EdaConfig *parent;
   EdaConfigPrivate *priv = config->priv;
   switch (property_id) {
-  case PROP_CONFIG_FILENAME:
-    g_free (config->priv->filename);
-    config->priv->filename = g_value_dup_string (value);
+
+  case PROP_CONFIG_FILE:
+    if (priv->file != NULL) {
+      g_object_unref (priv->file);
+      priv->file = NULL;
+    }
+    g_free (priv->filename);
+    priv->filename = NULL;
+
+    priv->file = g_value_dup_object (value);
+    if (priv->file != NULL)
+      priv->filename = g_file_get_path (priv->file);
     break;
 
   case PROP_CONFIG_PARENT:
@@ -247,8 +261,8 @@ eda_config_get_property (GObject *object, guint property_id,
 {
   EdaConfig *config = EDA_CONFIG (object);
   switch (property_id) {
-  case PROP_CONFIG_FILENAME:
-    g_value_set_string (value, config->priv->filename);
+  case PROP_CONFIG_FILE:
+    g_value_set_object (value, config->priv->file);
     break;
   case PROP_CONFIG_PARENT:
     g_value_set_object (value, config->priv->parent);
@@ -279,12 +293,14 @@ eda_config_get_property (GObject *object, guint property_id,
 EdaConfig *
 eda_config_get_default_context ()
 {
+  static unsigned int initialized = 0;
   static EdaConfig *config = NULL;
-  if (config == NULL) {
+  if (g_once_init_enter (&initialized)) {
     config = g_object_new (EDA_TYPE_CONFIG,
                            "trusted", TRUE,
                            NULL);
     config->priv->loaded = TRUE;
+    g_once_init_leave (&initialized, 1);
   }
   return config;
 }
@@ -306,9 +322,11 @@ eda_config_get_default_context ()
 EdaConfig *
 eda_config_get_system_context ()
 {
+  static unsigned int initialized = 0;
   static EdaConfig *config = NULL;
-  if (config == NULL) {
+  if (g_once_init_enter (&initialized)) {
     char *filename = NULL;
+    GFile *file;
     const char * const *xdg_dirs;
     int i;
 
@@ -349,12 +367,15 @@ eda_config_get_system_context ()
 
     g_return_val_if_fail (filename != NULL, NULL);
 
+    file = g_file_new_for_path (filename);
     config = g_object_new (EDA_TYPE_CONFIG,
-                           "filename", filename,
+                           "file", file,
                            "parent", eda_config_get_default_context (),
                            "trusted", TRUE,
                            NULL);
     g_free (filename);
+    g_object_unref (file);
+    g_once_init_leave (&initialized, 1);
   }
   return config;
 }
@@ -371,39 +392,28 @@ eda_config_get_system_context ()
 EdaConfig *
 eda_config_get_user_context ()
 {
+  static unsigned int initialized = 0;
   static EdaConfig *config = NULL;
-  if (config == NULL) {
+  if (g_once_init_enter (&initialized)) {
     char *filename = NULL;
+    GFile *file;
 
     /* Search for a user configuration file in XDG_CONFIG_HOME */
     filename = g_build_filename (g_get_user_config_dir (), XDG_SUBDIR,
                                  USER_CONFIG_NAME, NULL);
+    file = g_file_new_for_path (filename);
 
     config = g_object_new (EDA_TYPE_CONFIG,
-                           "filename", filename,
+                           "file", file,
                            "parent", eda_config_get_system_context (),
                            "trusted", TRUE,
                            NULL);
 
     g_free (filename);
+    g_object_unref (file);
+    g_once_init_leave (&initialized, 1);
   }
   return config;
-}
-
-/*! Change directory to \a filename, and return the current working
- * directory as a newly-allocated string.  If an error occurs, returns
- * NULL and sets \a error. */
-static char *
-chdir_get_current_dir (const char *filename, GError **error)
-{
-  if (g_chdir (filename) != 0) {
-      g_set_error (error, G_FILE_ERROR,
-                   g_file_error_from_errno (errno),
-                   _("Could not change directory to '%s': %s"),
-                   filename, g_strerror (errno));
-      return NULL;
-  }
-  return g_get_current_dir ();
 }
 
 /*! Recursively searches upwards from \a path, looking for a
@@ -414,75 +424,134 @@ chdir_get_current_dir (const char *filename, GError **error)
  * logs a critical error.
  *
  * \todo find_project_root() is probably generally useful. */
-static char *
-find_project_root (const char *path)
+static GFile *
+find_project_root (GFile *path)
 {
-  char *dir = NULL;
-  char *next_dir = NULL;
-  char *save_cwd = NULL;
-  char *result = NULL;
-  GError *tmp_err = NULL;
+  GFile *dir = g_object_ref (path);
+  GFile *base_dir;
+  GFile *result = NULL;
 
-  /* Save the current directory. We'll try and get back here when
-   * we're done. */
-  save_cwd = g_get_current_dir ();
+  /* Ensure that dir is a directory that exists */
+  while (TRUE) {
+    GFile *next_dir;
 
-  /* First, try to change directory to the requested path.  This
-   * allows us to check that it exists and is a directory, and to
-   * normalise the filename all at once. If it's not a directory or
-   * doesn't exist, we recurse for its containing directory.  Any
-   * other errors cause failure. */
-  dir = chdir_get_current_dir (path, &tmp_err);
-  if (dir == NULL) {
-    if (g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOTDIR)
-        || g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT)) {
-      g_clear_error (&tmp_err);
-      next_dir = g_path_get_dirname (path);
-      result = find_project_root (next_dir);
-    }
-    goto project_root_done;
-  }
-
-  while (1) {
-
-    /* Check if the current working directory contains a project
-     * config file. If so, hurrah! We've found the project root. */
-    if (g_file_test (LOCAL_CONFIG_NAME, G_FILE_TEST_EXISTS)) {
-      result = dir;
-      dir = NULL;
-      break;
+    if (g_file_query_exists (dir, NULL)) {
+      GFileType type = g_file_query_file_type (dir,
+                                               G_FILE_QUERY_INFO_NONE,
+                                               NULL);
+      if (type == G_FILE_TYPE_DIRECTORY) break;
     }
 
-    /* Try to go to the parent directory */
-    next_dir = chdir_get_current_dir ("..", &tmp_err);
-    if (next_dir == NULL) goto project_root_done;
+    next_dir = g_file_get_parent (dir);
+    g_object_unref (dir);
 
-    /* We were already at the root directory, give up */
-    if (strcmp (next_dir, dir) == 0) {
-      result = g_strdup (path);
-      break;
+    /* Something odd is going on -- even the root directory is
+     * apparently missing! So just give up. */
+    if (next_dir == NULL) {
+      return g_object_ref (path);
     }
-    g_free (dir);
     dir = next_dir;
-    next_dir = NULL;
   }
 
- project_root_done:
-  /* Restore original working directory */
-  if (g_chdir (save_cwd) != 0) {
-    g_critical (_("Could not restore working directory to '%s': %s"),
-                save_cwd, g_strerror (errno));
+  /* Iterate upward from dir, looking for a geda.conf file. */
+  base_dir = g_object_ref (dir);
+  while (result == NULL && dir != NULL) {
+    GFile *cfg_file = g_file_get_child (dir, LOCAL_CONFIG_NAME);
+    GFile *next_dir;
+    if (g_file_query_exists (cfg_file, NULL)) {
+      result = g_object_ref (dir);
+    }
+    g_object_unref (cfg_file);
+    next_dir = g_file_get_parent (dir);
+    g_object_unref (dir);
+    dir = next_dir;
   }
 
-  /* Log error message, if there was one */
-  if (tmp_err != NULL) {
-    g_critical (_("Could not find project root for '%s': "), path);
-    g_clear_error (&tmp_err);
+  /* If a config file wasn't found, just return the directory part of
+   * the original path passed in. */
+  if (result == NULL) {
+    result = g_object_ref (base_dir);
   }
-  g_free (dir);
-  g_free (next_dir);
-  g_free (save_cwd);
-  return (result != NULL) ? result : g_strdup (path);
+
+  if (dir != NULL) {
+    g_object_unref (dir);
+  }
+  g_object_unref (base_dir);
+  return result;
+}
+
+/*! \public \memberof EdaConfig
+ * \brief Return a local configuration context.
+ *
+ * Looks for a configuration file named "geda.conf".  If \a path is
+ * not a directory, it is truncated and then a file named "geda.conf"
+ * is looked for in that directory.  If none is found, the parent
+ * directory is checked, and so on until a configuration file is found
+ * or the root directory is reached.  If no configuration file was
+ * found, the returned context will be associated with a "geda.conf"
+ * in the same directory as \a path.  If \a path is NULL, the current
+ * working directory is used.
+ *
+ * \warning Do not assume that the configuration file associated with
+ * the context returned by eda_config_get_context_for_file() is
+ * located in the directory specified by \a path.
+ *
+ * By default, the parent context of the returned #EdaConfig will be
+ * the user context.
+ *
+ * Multiple calls to eda_config_get_context_for_file() with the same
+ * \a path will return the same configuration context.
+ *
+ * \see eda_config_get_context_for_path().
+ *
+ * \param [in] path    Path to search for configuration from.
+ * \return a local #EdaConfig configuration context for \a path.
+ */
+EdaConfig *
+eda_config_get_context_for_file (GFile *path)
+{
+  static unsigned int initialized = 0;
+  static GHashTable *local_contexts = NULL;
+  GFile *root;
+  GFile *file;
+  EdaConfig *config = NULL;
+
+  /* Initialise global state */
+  if (g_once_init_enter (&initialized)) {
+    local_contexts = g_hash_table_new_full (g_file_hash,
+                                            (GEqualFunc) g_file_equal,
+                                            g_object_unref,
+                                            g_object_unref);
+    g_once_init_leave (&initialized, 1);
+  }
+
+  if (path == NULL) {
+    path = g_file_new_for_path (".");
+  }
+
+  g_return_val_if_fail (G_IS_FILE (path), NULL);
+
+  /* Find the project root, and the corresponding configuration
+   * filename. */
+  root = find_project_root (path);
+  file = g_file_get_child (root, LOCAL_CONFIG_NAME);
+
+  /* If there's already a context available for this file, return
+   * that. Otherwise, create a new context and record it in the global
+   * state. */
+  config = g_hash_table_lookup (local_contexts, file);
+  if (config == NULL) {
+    config = g_object_new (EDA_TYPE_CONFIG,
+                           "file", file,
+                           "parent", eda_config_get_user_context (),
+                           "trusted", FALSE,
+                           NULL);
+    g_hash_table_insert (local_contexts, g_object_ref (file), config);
+  }
+
+  g_object_unref (root);
+  g_object_unref (file);
+  return config;
 }
 
 /*! \public \memberof EdaConfig
@@ -506,50 +575,39 @@ find_project_root (const char *path)
  * Multiple calls to eda_config_get_context_for_path() with the same
  * \a path will return the same configuration context.
  *
+ * \see eda_config_get_context_for_file().
+ *
  * \param [in] path    Path to search for configuration from.
  * \return a local #EdaConfig configuration context for \a path.
  */
 EdaConfig *
 eda_config_get_context_for_path (const char *path)
 {
-  static GHashTable *local_contexts = NULL;
-  char *root;
-  char *filename;
-  EdaConfig *config = NULL;
-
-  /* Initialise global state */
-  if (local_contexts == NULL) {
-    local_contexts = g_hash_table_new_full (g_str_hash,
-                                            g_str_equal,
-                                            g_free,
-                                            g_object_unref);
-  }
-
+  GFile *file;
+  EdaConfig *config;
   g_return_val_if_fail (path != NULL, NULL);
-
-  /* Find the project root, and the corresponding configuration
-   * filename. */
-  root = find_project_root (path);
-
-  filename = g_build_filename (root, LOCAL_CONFIG_NAME, NULL);
-  g_free (root);
-
-  /* If there's already a context available for this file, return
-   * that. Otherwise, create a new context and record it in the global
-   * state. */
-  config = g_hash_table_lookup (local_contexts, filename);
-  if (config == NULL) {
-    config = g_object_new (EDA_TYPE_CONFIG,
-                           "filename", filename,
-                           "parent", eda_config_get_user_context (),
-                           "trusted", FALSE,
-                           NULL);
-    g_hash_table_insert (local_contexts, filename, config);
-    filename = NULL; /* Now owned by hashtable */
-  }
-
-  g_free (filename);
+  file = g_file_new_for_path (path);
+  config = eda_config_get_context_for_file (file);
+  g_object_unref (file);
   return config;
+}
+
+/*! \public \memberof EdaConfig
+ * \brief Return underlying filename for configuration context.
+ *
+ * Return a GFile for the configuration file associated with the
+ * context \a cfg.  May return NULL.
+ *
+ * \see eda_config_get_filename().
+ *
+ * \param cfg  Configuration context.
+ * \return Configuration file for \a cfg.
+ */
+GFile *
+eda_config_get_file (EdaConfig *cfg)
+{
+  g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
+  return cfg->priv->file;
 }
 
 /*! \public \memberof EdaConfig
@@ -558,6 +616,8 @@ eda_config_get_context_for_path (const char *path)
  * Return the filename of the configuration file associated with the
  * context \a cfg.  May return NULL.  The return value is owned by the
  * API and should not be modified or freed.
+ *
+ * \see eda_config_get_file().
  *
  * \param cfg  Configuration context.
  * \return Filename of configuration file for \a cfg.
@@ -573,40 +633,56 @@ eda_config_get_filename (EdaConfig *cfg)
  * \brief Load configuration parameters from file.
  *
  * Attempt to load configuration parameters for the context \a cfg
- * from its associated file.  Returns FALSE and generates a
- * #GFileError on error.  If \a cfg does not have an associated file,
- * does nothing, returns FALSE, and generates a G_FILE_ERROR_FAILED
- * error.
+ * from its associated file.  Returns FALSE and generates a #GIOError
+ * or #EdaConfigError on error.  If \a cfg does not have an associated
+ * file, does nothing, returns FALSE, and generates a
+ * G_IO_ERROR_FAILED error.
  *
- * \see eda_config_is_loaded(), eda_config_get_filename(),
+ * \see eda_config_is_loaded(), eda_config_get_file(),
  * eda_config_save().
  *
  * \param cfg    Configuration context.
  * \param error  Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-bool
+gboolean
 eda_config_load (EdaConfig *cfg, GError **error)
 {
+  gboolean status;
+
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
 
-  if (cfg->priv->filename == NULL) {
+  if (eda_config_get_file (cfg) == NULL) {
     g_set_error (error,
-                 G_FILE_ERROR,
-                 G_FILE_ERROR_FAILED,
+                 G_IO_ERROR,
+                 G_IO_ERROR_FAILED,
                  _("Undefined configuration filename"));
     return FALSE;
   }
 
+  GFile *file = eda_config_get_file (cfg);
+  char *buf;
+  unsigned int len;
+  status = g_file_load_contents (file,
+                                 NULL, /* cancellable */
+                                 &buf,
+                                 &len,
+                                 NULL, /* etag_out */
+                                 error);
+  if (!status) return FALSE;
+
   /* This will be the new key file object. */
   GKeyFile *newkeyfile = g_key_file_new ();
   GError *tmp_err = NULL;
-  int status =
-    g_key_file_load_from_file (newkeyfile,
-                               cfg->priv->filename,
-                               (G_KEY_FILE_KEEP_COMMENTS
-                                | G_KEY_FILE_KEEP_TRANSLATIONS),
-                               &tmp_err);
+  if (len != 0) { /* Don't load zero-length keyfiles */
+    status = g_key_file_load_from_data (newkeyfile, buf, len,
+                                        (G_KEY_FILE_KEEP_COMMENTS
+                                         | G_KEY_FILE_KEEP_TRANSLATIONS),
+                                        &tmp_err);
+  } else {
+    status = TRUE;
+  }
+  g_free (buf);
   if (!status) {
     g_key_file_free (newkeyfile);
     propagate_key_file_error (tmp_err, error);
@@ -634,7 +710,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
  * \return TRUE if \a cfg has been loaded at some point, FALSE
  * otherwise.
  */
-bool
+gboolean
 eda_config_is_loaded (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
@@ -645,49 +721,63 @@ eda_config_is_loaded (EdaConfig *cfg)
  * \brief Save changes to a configuration context.
  *
  * Attempt to save configuration parameters for the context \a cfg to
- * its associated file.  Returns FALSE and generates a #GFileError on
+ * its associated file.  Returns FALSE and generates a #GIOError on
  * error.  If \a cfg does not have an associated file, does nothing,
- * returns FALSE, and generates a G_FILE_ERROR_FAILED error.
+ * returns FALSE, and generates a G_IO_ERROR_FAILED error.
  *
- * \see eda_config_load(), eda_config_get_filename().
+ * \see eda_config_load(), eda_config_get_file().
  *
  * \param cfg    Configuration context.
  * \param error  Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-bool
+gboolean
 eda_config_save (EdaConfig *cfg, GError **error)
 {
+  gboolean status;
+
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
 
-  if (cfg->priv->filename == NULL) {
+  if (eda_config_get_file (cfg) == NULL) {
     g_set_error (error,
-                 G_FILE_ERROR,
-                 G_FILE_ERROR_FAILED,
+                 G_IO_ERROR,
+                 G_IO_ERROR_FAILED,
                  _("Undefined configuration filename"));
     return FALSE;
   }
 
+  GFile *file = eda_config_get_file (cfg);
+
   /* First try and make the directory, if necessary. */
-  char *dirname = g_path_get_dirname (cfg->priv->filename);
-  if (g_mkdir_with_parents (dirname, 0755) != 0) {
-    g_set_error (error,
-                 G_FILE_ERROR,
-                 g_file_error_from_errno (errno),
-                 _("Could not create directory '%s': %s"),
-                 dirname, g_strerror (errno));
-    g_free (dirname);
-    return FALSE;
+  GFile *dir = g_file_get_parent (file);
+  if (dir != NULL) {
+    GError *tmp_err = NULL;
+    status = g_file_make_directory_with_parents (dir, NULL, &tmp_err);
+    g_object_unref (dir);
+
+    if (!status) {
+      if (g_error_matches (tmp_err, G_IO_ERROR, G_IO_ERROR_EXISTS)) {
+        g_clear_error (&tmp_err);
+      } else {
+        g_object_unref (file);
+        g_propagate_error (error, tmp_err);
+        return FALSE;
+      }
+    }
   }
 
-  gsize len;
+  unsigned int len;
   char *buf = g_key_file_to_data (cfg->priv->keyfile, &len, NULL);
-  bool result = g_file_set_contents (cfg->priv->filename,
-                                         buf, len, error);
+  status = g_file_replace_contents (file, buf, len,
+                                    NULL, /* etag */
+                                    FALSE, /* make_backup */
+                                    G_FILE_CREATE_NONE,
+                                    NULL, /* new_etag */
+                                    NULL, /* cancellable */
+                                    error);
   g_free (buf);
-  g_free (dirname);
-  if (result) cfg->priv->changed = FALSE;
-  return result;
+  if (status) cfg->priv->changed = FALSE;
+  return status;
 }
 
 /*! \public \memberof EdaConfig
@@ -702,7 +792,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
  * \param cfg  Configuration context.
  * \return TRUE if altered since last load/save, FALSE otherwise.
  */
-bool
+gboolean
 eda_config_is_changed (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
@@ -735,7 +825,7 @@ eda_config_get_parent (EdaConfig *cfg)
  * \param parent  Context to check if ancestor of \a cfg.
  * \return TRUE if \a parent is ancestor of \a cfg, FALSE otherwise.
  */
-static bool
+static gboolean
 eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
@@ -781,7 +871,7 @@ eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
  * \param cfg  Configuration context.
  * \return TRUE if \a cfg is trusted.
  */
-bool
+gboolean
 eda_config_is_trusted (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
@@ -802,7 +892,7 @@ eda_config_is_trusted (EdaConfig *cfg)
  * \param trusted  TRUE if \a cfg should be trusted; FALSE otherwise.
  */
 void
-eda_config_set_trusted (EdaConfig *cfg, bool trusted)
+eda_config_set_trusted (EdaConfig *cfg, gboolean trusted)
 {
   g_return_if_fail (EDA_IS_CONFIG (cfg));
   g_object_set (cfg, "trusted", trusted, NULL);
@@ -837,9 +927,9 @@ eda_config_get_trusted_context (EdaConfig *cfg)
  * eda_config_get_keys().
  */
 static char **
-hash_table_keys_array (GHashTable *table, gsize *length)
+hash_table_keys_array (GHashTable *table, unsigned int *length)
 {
-  gsize len = g_hash_table_size (table);
+  unsigned int len = g_hash_table_size (table);
   char **result = g_new0 (char *, 1 + len);
   GHashTableIter iter;
   gpointer key;
@@ -875,7 +965,7 @@ hash_table_keys_array (GHashTable *table, gsize *length)
  * \return a newly-allocated NULL-terminated array of strings.
  */
 char **
-eda_config_get_groups (EdaConfig *cfg, gsize *length)
+eda_config_get_groups (EdaConfig *cfg, unsigned int *length)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
 
@@ -886,7 +976,7 @@ eda_config_get_groups (EdaConfig *cfg, gsize *length)
    * as keys. */
   EdaConfig *curr = cfg;
   while (curr != NULL) {
-    gsize len, i;
+    unsigned int len, i;
     char **local_groups = g_key_file_get_groups (curr->priv->keyfile, &len);
     for (i = 0; i < len; i++) {
       g_hash_table_insert (group_table, local_groups[i], NULL);
@@ -913,7 +1003,7 @@ eda_config_get_groups (EdaConfig *cfg, gsize *length)
  * \return TRUE if \a cfg or any of its ancestors contains \a group,
  * otherwise FALSE.
  */
-bool
+gboolean
 eda_config_has_group (EdaConfig *cfg, const char *group)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
@@ -946,7 +1036,7 @@ eda_config_has_group (EdaConfig *cfg, const char *group)
  * \param error   Return location for error information.
  */
 char **
-eda_config_get_keys (EdaConfig *cfg, const char *group, gsize *length,
+eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned int *length,
                      GError **error)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
@@ -954,7 +1044,7 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, gsize *length,
   GHashTable *key_table = NULL;
   EdaConfig *curr;
   for (curr = cfg; curr != NULL; curr = eda_config_get_parent (curr)) {
-    gsize len, i;
+    unsigned int len, i;
     char **local_keys = g_key_file_get_keys (curr->priv->keyfile,
                                               group, &len, NULL);
     /* Skip files that don't provide the requested group */
@@ -1007,7 +1097,7 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, gsize *length,
  * \return TRUE if \a cfg or any of its ancestors contains \a group
  * and \a key, otherwise FALSE.
  */
-bool
+gboolean
 eda_config_has_key (EdaConfig *cfg, const char *group,
                     const char *key, GError **error)
 {
@@ -1080,7 +1170,7 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param error  Return location for error information.
  */
-bool
+gboolean
 eda_config_is_inherited (EdaConfig *cfg, const char *group,
                          const char *key, GError **error)
 {
@@ -1140,7 +1230,7 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as a boolean.
  */
-bool
+gboolean
 eda_config_get_boolean (EdaConfig *cfg, const char *group,
                         const char *key, GError **error)
 {
@@ -1148,7 +1238,7 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
   if (cfg == NULL) return FALSE;
 
   GError *tmp_err = NULL;
-  bool result =
+  gboolean result =
     g_key_file_get_boolean (cfg->priv->keyfile, group, key, &tmp_err);
   propagate_key_file_error (tmp_err, error);
   return result;
@@ -1175,7 +1265,7 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as a integer.
  */
-int
+gint
 eda_config_get_int (EdaConfig *cfg, const char *group,
                     const char *key, GError **error)
 {
@@ -1183,7 +1273,7 @@ eda_config_get_int (EdaConfig *cfg, const char *group,
   if (cfg == NULL) return 0;
 
   GError *tmp_err = NULL;
-  int result =
+  gint result =
     g_key_file_get_integer (cfg->priv->keyfile, group, key, &tmp_err);
   propagate_key_file_error (tmp_err, error);
   return result;
@@ -1245,7 +1335,7 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
  */
 char **
 eda_config_get_string_list (EdaConfig *cfg, const char *group,
-                            const char *key, gsize *length, GError **error)
+                            const char *key, unsigned int *length, GError **error)
 {
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
@@ -1275,15 +1365,15 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as an array of booleans.
  */
-bool *
+gboolean *
 eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, gsize *length, GError **error)
+                             const char *key, unsigned int *length, GError **error)
 {
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
   GError *tmp_err = NULL;
-  bool *result =
+  gboolean *result =
     g_key_file_get_boolean_list (cfg->priv->keyfile, group, key,
                                  length, &tmp_err);
   propagate_key_file_error (tmp_err, error);
@@ -1307,15 +1397,15 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as an array of integers.
  */
-int *
+gint *
 eda_config_get_int_list (EdaConfig *cfg, const char *group,
-                         const char *key, gsize *length, GError **error)
+                         const char *key, unsigned int *length, GError **error)
 {
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
   GError *tmp_err = NULL;
-  int *result =
+  gint *result =
     g_key_file_get_integer_list (cfg->priv->keyfile, group, key,
                                  length, &tmp_err);
   propagate_key_file_error (tmp_err, error);
@@ -1341,7 +1431,7 @@ eda_config_get_int_list (EdaConfig *cfg, const char *group,
  */
 gdouble *
 eda_config_get_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, gsize *length, GError **error)
+                            const char *key, unsigned int *length, GError **error)
 {
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
@@ -1390,7 +1480,7 @@ eda_config_set_string (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_boolean (EdaConfig *cfg, const char *group,
-                        const char *key, bool value)
+                        const char *key, gboolean value)
 {
   g_key_file_set_boolean (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -1411,7 +1501,7 @@ eda_config_set_boolean (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_int (EdaConfig *cfg, const char *group,
-                    const char *key, int value)
+                    const char *key, gint value)
 {
   g_key_file_set_integer (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -1456,7 +1546,7 @@ eda_config_set_double (EdaConfig *cfg, const char *group,
 void
 eda_config_set_string_list (EdaConfig *cfg, const char *group,
                             const char *key, const char * const list[],
-                            gsize length)
+                            unsigned int length)
 {
   g_key_file_set_string_list (cfg->priv->keyfile, group, key,
                               list, length);
@@ -1480,7 +1570,7 @@ eda_config_set_string_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
-                             const char *key, bool list[], gsize length)
+                             const char *key, gboolean list[], unsigned int length)
 {
   g_key_file_set_boolean_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -1504,7 +1594,7 @@ eda_config_set_boolean_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_int_list (EdaConfig *cfg, const char *group,
-                         const char *key, int list[], gsize length)
+                         const char *key, gint list[], unsigned int length)
 {
   g_key_file_set_integer_list (cfg->priv->keyfile, group, key,
                                list, length);
@@ -1529,7 +1619,7 @@ eda_config_set_int_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, gdouble list[], gsize length)
+                            const char *key, gdouble list[], unsigned int length)
 {
   g_key_file_set_double_list (cfg->priv->keyfile, group, key,
                               list, length);
@@ -1651,7 +1741,7 @@ propagate_key_file_error (GError *src, GError **dest)
     return;
   }
 
-  int code;
+  gint code;
 
   switch ((*dest)->code) {
   case G_KEY_FILE_ERROR_UNKNOWN_ENCODING:

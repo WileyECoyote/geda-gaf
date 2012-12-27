@@ -1,4 +1,46 @@
-2012-12-12 Wiley E. Hill <wileyhill@gmail.com> 
+2012-25-12 Wiley E. Hill <wileyhill@gmail.com>
+
+        * all-source-files: Were effective change by changing what header are
+          included in gschem.h. Inclusion of all of the dialog related headers
+          was reorganized. This departs from the apparent "include every" approach
+          used by nearly all source files (but not all). The majority of source
+          files were included headers for dialogs that was simply wasting compiler
+          time. More needs to be done to organized the source files as the
+          complexity of the programs grows.
+
+        * tree: Revised source structure adding the widget folders under both
+          the include and the source directories in order to better organize
+          the source files and headers as the number of file is ever increasing.
+
+        * src/x_menu.c: Revised get_main_menu function, changing the toogle
+          options to menu toggle action object with new GschemToggleAction
+          type (so the accelorators would be added to the menu). Added support
+          routines for Toolbar and Menu Toggle (a lot of work!).
+
+        * src/widget/gschem_toggle_action.c: New file.
+
+        * src/i_callbacks.c: Added callback documentation for c api for component
+          documentation, which was eliminated and the menu redirected to schema
+          code. The callback is a new version that uses g_app_info_launch_default_for_uri
+          rather than the misplaced initiate_gschemdoc function, (an improved version
+          of which now resides in x_misc.c). The new codes include commented code to
+          use x_show_uri function which does spawn a browser but this does work on
+          (pure) Debian Linux, and potentialy on derivative machines, due to an issue
+          related to debian-gnome configurations that has nothing to do with geda code.
+          g_app_info_launch_default_for_uri seems to work REALLY well.
+          Why C interface was replaced with SCM is beyond me, are we forgetting that
+          we are a C program and that Guild is for "extensions" not for core routines.
+          This would be like replacing Excel's internal C++ routines with Visual Basic
+          equivalents. Must keep "extension" in context.
+
+2012-22-12 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x_windows.c: Revised x_window_create_main, added center_hbox,
+          center_vbox, moved drawing box to center_vbox with horizontial
+          scroll, to support new toolbars.
+
+2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
         * lib/user-gschemrc.scm: Added new configuration file excerpted from
           from system-gschemrc.scm. Configuration keywords and options not
           supported by the main configuration dialog in x_settings_dialog.c
@@ -26,7 +68,7 @@
           implementation issues on Linux system associated with permissions of
           /etc/geda. Added handling for new invert_images variable, (image-
           color was setup with inital release of this file but was not setup in
-          x_settings_dialog.c.
+          x_settings_dialog.c. Added missing line-feeds messages in generate_rc
 
         * src/g_funcs.c: Revised calls to x_image_lowlevel in g_funcs_image to
           include new parameter.
@@ -34,11 +76,37 @@
         * src/g_rc.c: Added call in g_rc_attribute_placement_grid to function
           x_settings_set_scm_int to define autoplace-attribute-grid
 
+        * src/i_callbacks.c: Added new DEFINE_T_CALLBACK, revised DEFINE_I_
+          CALLBACK to eliminated gpointer to data. Revised all callback
+          functions by eliminating unnecessary conversion of gpointer to
+          GSCHEM_TOPLEVEL and eliminated all g_return_if_fail(w_current !=
+          NULL). The callbacks are either from menu or toolbar widgets, a few
+          of the toolbar callbacks call menu callbacks and the arguments are
+          defined with a single g_signal_connect in x_menu.c so the only way
+          w_current will be null is if someone modified the x_menu.c code or
+          calls a menu handler, which should not happen and if this does happen
+          then gscehm should crash-&-burn so it will be fixed! There is nothing
+          a "user" can do that would cause w_current to be null in callbacks.
+          Revised callback for view_zoom_box to include a call to o_select_
+          unselect_all because this did not work from the menu if anything
+          as selected, there appears to be a signal handling issue.
+          Added i_callback_toolbar_file_save_as for new toolbar control.
+          Added i_callback_toolbar_file_print for new toolbar control.
+          Added i_callback_toolbar_write_pdf for new toolbar control.
+          Added i_callback_toolbar_clipboard_cut for new toolbar control.
+          Added i_callback_toolbar_clipboard_copy for new toolbar control.
+          Added i_callback_toolbar_clipboard_paste for new toolbar control.
+
+          Updated function documentation
+
         * src/x_image.c: Revised x_image_get_pixbuf to implement new variable
           invert_images. The revisions effectively resolves Launchpad 1086530
           and extends functionality of gschem. Corrected function name in log 
           message in function x_image_write_eps. Added write to PDF image type
-          and repaired postscript in f_print.c.
+          and repaired postscript in f_print.c. Added ImageTypeStrings to 
+          set the initial combo image type instead of hard-code #define and
+          revised function create_type_menu so code could set the, such as
+          toolbar or menus could set default type.
 
 	* src/x_settings_dialog.c: Add call in function GatherSettings to 
           x_settings_set_scm_int to define autoplace-attribute-grid. Added
@@ -51,11 +119,13 @@
           and o_basic.c, etc., to support the new lib libgedacairo.la.
 
 2012-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
 	* include/x_dialog_controls.h: relocated this recent addition to
           toplevel include folder so other apps, like gattrib could also
           reference this file.
 
 2012-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
           relocated functions get_geda_switch_image and
           create_geda_switch from x_settings.c to incorperate in other
           dialog compilations.
@@ -78,6 +148,7 @@
           appropriate place for this function.
 
 2012-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
 	* src/x_settings.c: Add new source file.
 	* include/x_settings.h: Add new source file.
 	* src/x_settings_dialog.c: Add new source file configure_settings.

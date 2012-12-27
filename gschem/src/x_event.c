@@ -336,9 +336,10 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
         break;
 
       case(ZOOMBOXSTART):
+        o_redraw_cleanstates(w_current);
         a_zoom_box_start(w_current, unsnapped_wx, unsnapped_wy);
-        w_current->event_state = ZOOMBOXEND;
         w_current->inside_action = 1;
+        i_set_state(w_current, ZOOMBOXEND);
         break;
 
     }
@@ -513,7 +514,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
  *  \par Function Description
  *
  */
-gint x_event_button_released(GtkWidget *widget, GdkEventButton *event,
+int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
                              GSCHEM_TOPLEVEL *w_current)
 {
   int unsnapped_wx, unsnapped_wy;
@@ -715,7 +716,7 @@ gint x_event_button_released(GtkWidget *widget, GdkEventButton *event,
  *  \par Function Description
  *
  */
-gint x_event_motion(GtkWidget *widget, GdkEventMotion *event,
+int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
                     GSCHEM_TOPLEVEL *w_current)
 {
   int pdiff_x, pdiff_y;
@@ -934,17 +935,16 @@ gint x_event_motion(GtkWidget *widget, GdkEventMotion *event,
  *  \param [in] user_data The toplevel environment as user data.
  *  \returns FALSE to propagate the event further.
  */
-gboolean
-x_event_configure (GtkWidget         *widget,
-                   GdkEventConfigure *event,
-                   gpointer           user_data)
+bool x_event_configure (GtkWidget         *widget,
+                        GdkEventConfigure *event,
+                        gpointer           user_data)
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)user_data;
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *iter;
   PAGE *old_page_current, *p_current;
-  gint old_win_width, old_win_height, new_win_width, new_win_height;
-  gdouble relativ_zoom_factor = 1.0;
+  int old_win_width, old_win_height, new_win_width, new_win_height;
+  double relativ_zoom_factor = 1.0;
 
   g_assert (toplevel != NULL);
 
@@ -977,11 +977,11 @@ x_event_configure (GtkWidget         *widget,
   if (gdk_window_get_state (
         (gtk_widget_get_toplevel (
           widget))->window) & GDK_WINDOW_STATE_MAXIMIZED) {
-    gdouble width_ratio, height_ratio;
+    double width_ratio, height_ratio;
 
     /* tweak relative_zoom to better fit page in maximized window */
-    width_ratio  = ((gdouble)new_win_width)  / ((gdouble)old_win_width);
-    height_ratio = ((gdouble)new_win_height) / ((gdouble)old_win_height);
+    width_ratio  = ((double)new_win_width)  / ((double)old_win_width);
+    height_ratio = ((double)new_win_height) / ((double)old_win_height);
     /* keep smallest ratio as relative zoom factor when panning */
     relativ_zoom_factor =
       (width_ratio < height_ratio) ? width_ratio : height_ratio;
@@ -996,7 +996,7 @@ x_event_configure (GtkWidget         *widget,
         iter != NULL;
         iter = g_list_next( iter ) ) {
 
-    gdouble cx, cy;
+    double cx, cy;
     p_current = (PAGE *)iter->data;
 
     /* doing this the aspectratio is kept when changing (hw)*/
@@ -1285,7 +1285,7 @@ gint x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
   gboolean pan_yaxis = FALSE;
   gboolean zoom = FALSE;
   int pan_direction = 1;
-  int zoom_direction = ZOOM_IN;
+  int zoom_direction = ZOOM_IN_DIRECTIVE;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
@@ -1324,12 +1324,12 @@ gint x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
     case GDK_SCROLL_UP:
     case GDK_SCROLL_LEFT:
       pan_direction = -1;
-      zoom_direction = ZOOM_IN;
+      zoom_direction = ZOOM_IN_DIRECTIVE;
       break;
     case GDK_SCROLL_DOWN:
     case GDK_SCROLL_RIGHT:
       pan_direction =  1;
-      zoom_direction = ZOOM_OUT;
+      zoom_direction = ZOOM_OUT_DIRECTIVE;
       break;
   }
 
@@ -1364,17 +1364,17 @@ gint x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
 
 /*! \brief get the pointer position of a given GSCHEM_TOPLEVEL
  *  \par Function Description
- *  This function gets the pointer position of the drawing area of the 
+ *  This function gets the pointer position of the drawing area of the
  *  current workspace <b>GSCHEM_TOPLEVEL</b>. The flag <b>snapped</b> specifies
  *  whether the pointer position should be snapped to the current grid.
- *  
+ *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
  *  \param [in] snapped    An option flag to specify the wished coords
  *  \param [out] wx        snapped/unsnapped world x coordinate
  *  \param [out] wy        snapped/unsnapped world y coordinate
  *
  *  \return Returns TRUE if the pointer position is inside the drawing area.
- *  
+ *
  */
 gboolean x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
 				       gboolean snapped,
@@ -1385,7 +1385,7 @@ gboolean x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
   gtk_widget_get_pointer(w_current->drawing_area, &sx, &sy);
 
   /* check if we are inside the drawing area */
-  if (sx < 0 || sx >= w_current->win_width 
+  if (sx < 0 || sx >= w_current->win_width
       || sy <0 || sy >= w_current->win_height)
     return FALSE;
 

@@ -31,8 +31,6 @@
 #include "../include/papersizes.h"
 #include "../include/prototype.h"
 
-#define DEFAULT_UNTITLED_NAME    "untitled"
-
 #define DEFAULT_HIERARCHY_NETNAME_SEPARATOR "/"
 #define DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR "/"
 #define DEFAULT_HIERARCHY_UREF_SEPARATOR "/"

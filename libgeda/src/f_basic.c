@@ -162,7 +162,7 @@ bool f_has_active_autosave (const gchar *filename, GError **err)
  *
  *  \return 0 on failure, 1 on success.
  */
-int f_open(TOPLEVEL *toplevel, PAGE *page, const gchar *filename, GError **err)
+int f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 {
   return f_open_flags (toplevel, page, filename, F_OPEN_RC | F_OPEN_CHECK_BACKUP, err);
 }
@@ -187,7 +187,7 @@ int f_open(TOPLEVEL *toplevel, PAGE *page, const gchar *filename, GError **err)
  *  \return 0 on failure, 1 on success.
  */
 int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
-                 const gchar *filename,
+                 const char *filename,
                  const int flags, GError **err)
 {
   int   opened = FALSE;
@@ -240,10 +240,10 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
 
   /* Now open RC and process file */
   if (flags & F_OPEN_RC) {
-    full_rcfilename = g_build_filename (file_directory, "gafrc", NULL);
-    g_rc_parse_file (toplevel, full_rcfilename, &tmp_err);
+    g_rc_parse_local (toplevel, "gafrc", file_directory, &tmp_err);
     if (tmp_err != NULL) {
-      /* Config files are allowed to be missing or skipped; check for this. */
+      /* RC files are allowed to be missing or skipped; check for
+       * this. */
       if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
           !g_error_matches (tmp_err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
         s_log_message ("%s\n", tmp_err->message);

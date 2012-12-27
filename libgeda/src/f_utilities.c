@@ -28,18 +28,27 @@
 #if defined(_LINUX)
  #include <sys/sendfile>
 #endif
-#include <fcntl.h>
-#include <stdio.h>
-#include <errno.h>
 
+#ifdef HAVE_FCNTL_H
+  #include <fcntl.h>
+#endif
+#ifdef HAVE_UNISTD_H
+  #include <unistd.h> 
+#endif
+#include <malloc.h>
+#include <stdio.h>
+#include <glib.h>
+
+#include <errno.h>
 extern int errno ;
 
-#include <libgeda.h>
+#include <defines.h>
 
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 #include<gettext.h>
+
 /*! /comment: The functions in f_basic.c are (mostly) application
  *  specific so this file was created for basic non-application
  *  specific routines.
@@ -100,7 +109,7 @@ int fcopy(const char *source, const char *target)
     return -1;
   }
 
-  buffer = malloc(4096);
+  buffer = malloc(BUFFER_SIZE);
   
   if(!buffer) {
     s_log_message(_("File error(fcopy): Memory Allocation Error!\n"));
@@ -162,7 +171,6 @@ int fcopy(const char *source, const char *target)
     }
     close(input);
   }
-
       
 #if defined(_LINUX)
   /* Sanity-Check for Lock */ 

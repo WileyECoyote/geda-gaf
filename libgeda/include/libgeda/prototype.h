@@ -13,7 +13,7 @@ char *f_get_autosave_filename (const char *filename);
 bool  f_has_active_autosave (const char *filename, GError **err);
 int   f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err);
 int   f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
-                 const gint flags, GError **err);
+                 const int flags, GError **err);
 void  f_close(TOPLEVEL *toplevel);
 int   f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **error);
 char *f_normalize_filename (const char *filename, GError **error);
@@ -37,15 +37,16 @@ SCM g_scm_c_eval_string_protected (const char *str);
 bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err);
 
 /* g_rc.c */
-SCM g_rc_mode_general(SCM scmmode, const char *rc_name, int *mode_var, 
-                      const vstbl_entry *table, int table_size);
-bool g_rc_parse_system (TOPLEVEL *toplevel, const char *rcname, GError **err);
-bool g_rc_parse_user (TOPLEVEL *toplevel, const char *rcname, GError **err);
-bool g_rc_parse_local (TOPLEVEL *toplevel, const char *rcname, const char *path, GError **err);
-bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, GError **err);
-bool g_rc_parse(TOPLEVEL *toplevel, const char* pname, const char* rcname, const char* rcfile);
+SCM g_rc_mode_general   (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
+//bool g_rc_parse_file    (TOPLEVEL *toplevel, const char *rcfile, GError **err);
+//bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GError **err);
+bool g_rc_parse_system  (TOPLEVEL *toplevel, const char *rcname, GError **err);
+bool g_rc_parse_user    (TOPLEVEL *toplevel, const char *rcname, GError **err);
+bool g_rc_parse_local   (TOPLEVEL *toplevel, const char *rcname, const char *path, GError **err);
+bool g_rc_parse         (TOPLEVEL *toplevel, const char* pname, const char* rcname, const char* rcfile);
 void g_rc_parse_handler (TOPLEVEL *toplevel, const char *rcname, const char *rcfile, ConfigParseErrorFunc handler, void *user_data);
 SCM g_rc_rc_filename();
+SCM g_rc_rc_config ();
 
 /* i_vars.c */
 void i_vars_libgeda_set(TOPLEVEL *toplevel);
@@ -61,9 +62,9 @@ void rotate_point_90(int x, int y, int angle, int *newx, int *newy);
 void PAPERSIZEtoWORLD(int width, int height, int border, int *right, int *bottom);
 
 /* m_hatch.c */
-void m_hatch_box(BOX *box, gint angle, gint pitch, GArray *lines);
-void m_hatch_circle(CIRCLE *circle, gint angle, gint pitch, GArray *lines);
-void m_hatch_path(PATH *path, gint angle, gint pitch, GArray *lines);
+void m_hatch_box(BOX *box, int angle, int pitch, GArray *lines);
+void m_hatch_circle(CIRCLE *circle, int angle, int pitch, GArray *lines);
+void m_hatch_path(PATH *path, int angle, int pitch, GArray *lines);
 
 /* m_polygon.c */
 void m_polygon_append_bezier(GArray *points, BEZIER *bezier, int segments);
@@ -107,8 +108,8 @@ void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current, OBJECT_END end, O
 bool o_get_line_options(OBJECT *object, OBJECT_END *end, OBJECT_TYPE *type, int *width, int *length, int *space);
 void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current, OBJECT_FILLING type, int width, int pitch1, int angle1, int pitch2, int angle2);
 bool o_get_fill_options(OBJECT *object, OBJECT_FILLING *type, int *width, int *pitch1, int *angle1, int *pitch2, int *angle2);
-bool o_get_position(TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object);
-void o_translate_world (TOPLEVEL *toplevel, gint dx, gint dy, OBJECT *object);
+bool o_get_position(TOPLEVEL *toplevel, int *x, int *y, OBJECT *object);
+void o_translate_world (TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 void o_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
 void o_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 double o_shortest_distance(OBJECT *object, int x, int y);
@@ -151,10 +152,10 @@ void o_circle_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_cent
 
 /* o_complex_basic.c */
 int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
-			      int *rleft, int *rtop, 
+			      int *rleft, int *rtop,
 			      int *rright, int *rbottom);
 int world_get_object_glist_bounds(TOPLEVEL *toplevel, const GList *o_list,
-			     int *left, int *top, 
+			     int *left, int *top,
 			     int *right, int *bottom);
 int o_complex_is_embedded(OBJECT *o_current);
 GList *o_complex_promote_attribs (TOPLEVEL *toplevel, OBJECT *object);
@@ -252,10 +253,12 @@ void o_selection_remove(TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_sele
 void o_selection_select(TOPLEVEL *toplevel, OBJECT *object);
 void o_selection_unselect(TOPLEVEL *toplevel, OBJECT *object);
 /* o_style.c */
-int o_style_get_bus_width(TOPLEVEL *toplevel);
-int o_style_get_line_width(TOPLEVEL *toplevel);
-int o_style_get_net_width(TOPLEVEL *toplevel);
-int o_style_get_pin_width(TOPLEVEL *toplevel, int type);
+int  o_style_get_bus_width(TOPLEVEL *toplevel);
+int  o_style_get_line_width(TOPLEVEL *toplevel);
+int  o_style_get_net_width(TOPLEVEL *toplevel);
+int  o_style_get_pin_width(TOPLEVEL *toplevel, int type);
+void o_style_set_object(TOPLEVEL *toplevel, OBJECT *o_current);
+
 /* o_text_basic.c */
 int o_text_num_lines(const char *string);
 OBJECT *o_text_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int alignment, int angle, const char *string, int size, int visibility, int show_name_value);
@@ -301,12 +304,12 @@ void s_clib_free (void);
 GList *s_clib_get_sources (const bool sorted);
 const CLibSource *s_clib_get_source_by_name (const char *name);
 void s_clib_refresh ();
-const CLibSource *s_clib_add_directory (const char *directory, 
+const CLibSource *s_clib_add_directory (const char *directory,
 					const char *name);
 const CLibSource *s_clib_add_command (const char *list_cmd,
                                       const char *get_cmd,
 				      const char *name);
-const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, 
+const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc,
 				  const char *name);
 const char *s_clib_source_get_name (const CLibSource *source);
 GList *s_clib_source_get_symbols (const CLibSource *source);
@@ -349,11 +352,11 @@ void s_cue_output_lowlevel_midpoints(TOPLEVEL *toplevel, OBJECT *object, FILE *f
 void s_cue_output_single(TOPLEVEL *toplevel, OBJECT *object, FILE *fp, int type);
 
 /* s_hierarchy.c */
-PAGE  *s_hierarchy_down_schematic_single(TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag);
+PAGE  *s_hierarchy_down_schematic_single(TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag, GError **err);
 void   s_hierarchy_down_symbol (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
 PAGE  *s_hierarchy_find_up_page(GedaPageList *page_list, PAGE *current_page);
-GList *s_hierarchy_traversepages(TOPLEVEL *toplevel, PAGE *p_current, gint flags);
-gint   s_hierarchy_print_page(PAGE *p_current, void * data);
+GList *s_hierarchy_traversepages(TOPLEVEL *toplevel, PAGE *p_current, int flags);
+int   s_hierarchy_print_page(PAGE *p_current, void * data);
 PAGE  *s_hierarchy_find_prev_page(GedaPageList *page_list, PAGE *current_page);
 PAGE  *s_hierarchy_find_next_page(GedaPageList *page_list, PAGE *current_page);
 
@@ -382,11 +385,11 @@ void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new);
 PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename);
 PAGE *s_page_search_by_page_id (GedaPageList *list, int pid);
 void s_page_print_all (TOPLEVEL *toplevel);
-gint s_page_save_all (TOPLEVEL *toplevel);
+int s_page_save_all (TOPLEVEL *toplevel);
 bool s_page_check_changed (GedaPageList *list);
 void s_page_clear_changed (GedaPageList *list);
 void s_page_autosave_init(TOPLEVEL *toplevel);
-gint s_page_autosave (TOPLEVEL *toplevel);
+int s_page_autosave (TOPLEVEL *toplevel);
 void s_page_append (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
 void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list);
 void s_page_remove (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);

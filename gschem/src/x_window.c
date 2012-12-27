@@ -21,14 +21,10 @@
 
 #include <stdio.h>
 
-#include "gschem.h"
+#include <gschem.h>
+#include <x_menu.h>
 
-/*
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-*/
-
+#include <x_window.h>
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -170,56 +166,7 @@ void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
                       tmp->detailed_signal,
                       tmp->c_handler,
                       w_current);
-  }			  
-}
-
-
-/*! \brief Creates a new GtkImage displaying a GTK stock icon if available.
- *
- * If a stock GTK icon with the requested name was not found, this function
- * falls back to the bitmap icons provided in the distribution.
- *
- * \param stock Name of the stock icon ("new", "open", etc.)
- * \param w_current Schematic top level
- * \return Pointer to the new GtkImage object.
- */
-static GtkWidget *x_window_stock_pixmap(const char *stock, GSCHEM_TOPLEVEL *w_current)
-{
-  GtkWidget *wpixmap = NULL;
-  GdkPixmap *pixmap;
-  GdkBitmap *mask;
-  GtkStockItem item;
-
-  GdkWindow *window=w_current->main_window->window;
-  GdkColor *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
-
-  char *filename=g_strconcat(w_current->toplevel->bitmap_directory,
-                              G_DIR_SEPARATOR_S, 
-                              "gschem-", stock, ".xpm", NULL);
-
-  char *stockid=g_strconcat("gtk-", stock, NULL);
-
-  /* First check if GTK knows this stock icon */
-  if(gtk_stock_lookup(stockid, &item)) {
-    wpixmap = gtk_image_new_from_stock(stockid, 
-                                       GTK_ICON_SIZE_SMALL_TOOLBAR);
-  } else {
-    /* Fallback to the original custom icon */
-    pixmap = gdk_pixmap_create_from_xpm (window, &mask, 
-                                         background, filename);
-    if (pixmap != NULL) {
-      wpixmap = gtk_image_new_from_pixmap (pixmap, mask);
-    } else {
-     s_log_message("Could not find image at file: %s.\n", filename);
-     wpixmap = gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE , 
-					GTK_ICON_SIZE_SMALL_TOOLBAR);
-    }
   }
-
-  g_free(filename);
-  g_free(stockid);
-
-  return wpixmap;
 }
 
 static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
@@ -246,18 +193,19 @@ static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
  */
 void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
-
+  TOPLEVEL  *toplevel = w_current->toplevel;
   GtkWidget *label=NULL;
-  GtkWidget *main_box=NULL;
-  GtkWidget *menubar=NULL;
+  GtkWidget *center_hbox;
+  GtkWidget *center_vbox;
   GtkWidget *drawbox=NULL;
   GtkWidget *bottom_box=NULL;
-  GtkWidget *toolbar=NULL;
+
+  GtkWidget *main_box=NULL;
+  GtkWidget *menubar=NULL;
   GtkWidget *handlebox=NULL;
 
   /* used to signify that the window isn't mapped yet */
-  w_current->window = NULL; 
+  w_current->window = NULL;
 
   w_current->main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
@@ -269,14 +217,14 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
    * see below
    */
 
-   /* 
+   /*
     * normally we let the window manager handle locating and sizing
     * the window.  However, for some batch processing of schematics
     * (generating a pdf of all schematics for example) we want to
     * override this.  Hence "auto_place_mode".
     */
-   if( auto_place_mode )
-   	gtk_widget_set_uposition (w_current->main_window, 10, 10);
+  if( auto_place_mode )
+    gtk_widget_set_uposition (w_current->main_window, 10, 10);
 
   /* this should work fine */
   g_signal_connect (G_OBJECT (w_current->main_window), "delete_event",
@@ -289,132 +237,45 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   gtk_container_add(GTK_CONTAINER(w_current->main_window), main_box);
 
   menubar = get_main_menu (w_current);
+
   if (w_current->handleboxes) {
-  	handlebox = gtk_handle_box_new ();
-  	gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
-  	gtk_container_add (GTK_CONTAINER (handlebox), menubar);
+    handlebox = gtk_handle_box_new ();
+    gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
+    gtk_container_add (GTK_CONTAINER (handlebox), menubar);
   } else {
-  	gtk_box_pack_start(GTK_BOX(main_box), menubar, FALSE, FALSE, 0);
+    gtk_box_pack_start(GTK_BOX(main_box), menubar, FALSE, FALSE, 0);
   }
 
   w_current->menubar = menubar;
+  x_menu_set_toggle(w_current, RESET_TOGGLERS, 0);
+
   gtk_widget_realize (w_current->main_window);
 
   if (w_current->handleboxes && w_current->toolbars) {
-  	handlebox = gtk_handle_box_new ();
-  	gtk_box_pack_start (GTK_BOX (main_box), handlebox, FALSE, FALSE, 0);
+     x_toolbars_init_top(w_current, main_box);
   }
- 
-  if (w_current->toolbars) {
-    toolbar = gtk_toolbar_new();
-    gtk_toolbar_set_orientation (GTK_TOOLBAR(toolbar), 
-                                 GTK_ORIENTATION_HORIZONTAL);
-    gtk_toolbar_set_style (GTK_TOOLBAR(toolbar), GTK_TOOLBAR_ICONS);
 
-    if (w_current->handleboxes) {
-      gtk_container_add (GTK_CONTAINER (handlebox), toolbar);
-    } else {
-      gtk_box_pack_start(GTK_BOX(main_box), toolbar, FALSE, FALSE, 0);
-    }
-
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("New"), 
-                             _("New file"), 
-                             "toolbar/new", 
-                             x_window_stock_pixmap("new", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_file_new, 
-                             w_current);
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("Open"), 
-                             _("Open file..."), 
-                             "toolbar/open",
-                             x_window_stock_pixmap("open", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_file_open, 
-                             w_current);
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("Save"), 
-                             _("Save file"), 
-                             "toolbar/save", 
-                             x_window_stock_pixmap("save", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_file_save, 
-                             w_current);
-    gtk_toolbar_append_space (GTK_TOOLBAR(toolbar)); 
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("Undo"), 
-                             _("Undo last operation"), 
-                             "toolbar/undo", 
-                             x_window_stock_pixmap("undo", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_edit_undo, 
-                             w_current);
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("Redo"), 
-                             _("Redo last undo"), 
-                             "toolbar/redo", 
-                             x_window_stock_pixmap("redo", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_edit_redo, 
-                             w_current);
-    gtk_toolbar_append_space (GTK_TOOLBAR(toolbar)); 
-    /* not part of any radio button group */
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("Component"), 
-                             _("Add component...\nSelect library and component from list, move the mouse into main window, click to place\nRight mouse button to cancel"), 
-                             "toolbar/component", 
-                             x_window_stock_pixmap("comp", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_add_component, 
-                             w_current);
-    w_current->toolbar_net = 
-      gtk_toolbar_append_element(GTK_TOOLBAR(toolbar),
-                                 GTK_TOOLBAR_CHILD_RADIOBUTTON,
-                                 NULL,
-                                 _("Nets"),
-                                 _("Add nets mode\nRight mouse button to cancel"),
-                                 "toolbar/nets",
-                                 x_window_stock_pixmap("net", w_current),
-                                 (GtkSignalFunc) i_callback_toolbar_add_net,
-                                 w_current);
-    w_current->toolbar_bus = 
-      gtk_toolbar_append_element(GTK_TOOLBAR(toolbar),
-                                 GTK_TOOLBAR_CHILD_RADIOBUTTON,
-                                 w_current->toolbar_net,
-                                 _("Bus"),
-                                 _("Add buses mode\nRight mouse button to cancel"),
-                                 "toolbar/bus",
-                                 x_window_stock_pixmap("bus", w_current),
-                                 (GtkSignalFunc) i_callback_toolbar_add_bus,
-                                 w_current);
-    /* not part of any radio button group */
-    gtk_toolbar_append_item (GTK_TOOLBAR (toolbar), 
-                             _("Text"), 
-                             _("Add Text..."), 
-                             "toolbar/text", 
-                             x_window_stock_pixmap("text", w_current),
-                             (GtkSignalFunc) i_callback_toolbar_add_text, 
-                             w_current);
-    gtk_toolbar_append_space (GTK_TOOLBAR(toolbar)); 
-    w_current->toolbar_select = 
-      gtk_toolbar_append_element(GTK_TOOLBAR(toolbar),
-                                 GTK_TOOLBAR_CHILD_RADIOBUTTON,
-                                 w_current->toolbar_bus,
-                                 _("Select"),
-                                 _("Select mode"),
-                                 "toolbar/select",
-                                 x_window_stock_pixmap("select", w_current),
-                                 (GtkSignalFunc) i_callback_toolbar_edit_select, 
-                                 w_current);
-
-
-    gtk_toolbar_append_space (GTK_TOOLBAR(toolbar)); 
-    gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w_current->toolbar_select),
-                                 TRUE);
-  } 
-
+  /* --------------------------------------------------------- */
 
   /*  Try to create popup menu (appears in right mouse button  */
   w_current->popup_menu = (GtkWidget *) get_main_popup(w_current);
 
+  center_hbox = gtk_hbox_new(FALSE, 1);
+  gtk_container_border_width(GTK_CONTAINER(center_hbox), 0);
+  gtk_container_add(GTK_CONTAINER(main_box), center_hbox);
+
+  if (w_current->handleboxes && w_current->toolbars) {
+     x_toolbars_init_left(w_current, center_hbox);
+  }
+
+  center_vbox = gtk_vbox_new(FALSE, 1);
+  gtk_container_border_width(GTK_CONTAINER(center_vbox), 0);
+  gtk_container_add(GTK_CONTAINER(center_hbox), center_vbox);
+
   drawbox = gtk_hbox_new(FALSE, 0);
   gtk_container_border_width(GTK_CONTAINER(drawbox), 0);
-  gtk_container_add(GTK_CONTAINER(main_box), drawbox);
+
+  gtk_container_add(GTK_CONTAINER(center_vbox), drawbox);
 
   x_window_create_drawing(drawbox, w_current);
   x_window_setup_draw_events(w_current);
@@ -446,15 +307,16 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
     gtk_range_set_update_policy (GTK_RANGE (w_current->h_scrollbar),
                                  GTK_UPDATE_CONTINUOUS);
 
-    gtk_box_pack_start (GTK_BOX (main_box), w_current->h_scrollbar,
-                        FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (center_vbox), w_current->h_scrollbar, FALSE, FALSE, 0);
 
     g_signal_connect (w_current->h_adjustment,
                       "value_changed",
                       G_CALLBACK (x_event_hschanged),
                       w_current);
   }
-
+  if (w_current->handleboxes && w_current->toolbars) {
+     x_toolbars_init_bottom(w_current, main_box);
+  }
   /* macro box */
   w_current->macro_entry = gtk_entry_new();
   g_signal_connect(w_current->macro_entry, "activate",
@@ -527,13 +389,11 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
 
   gtk_widget_show_all (w_current->main_window);
   gtk_widget_hide(w_current->macro_box);
+  x_toolbars_finialize(w_current);
 
   w_current->window = w_current->drawing_area->window;
-
   w_current->drawable = w_current->window;
-
   x_window_setup_gc(w_current);
-
 }
 
 /*! \todo Finish function documentation!!!
@@ -544,7 +404,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
 void x_window_close(GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  gboolean last_window = FALSE;
+  bool last_window = FALSE;
 
   /* If we're closing whilst inside a move action, re-wind the
    * page contents back to their state before we started */
@@ -702,7 +562,7 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *old_current, *page;
-  char *fn;
+  char *fname;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
@@ -713,31 +573,31 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
     tmp = g_strdup_printf ("%s_%d.sch",
                            toplevel->untitled_name,
                            ++w_current->num_untitled);
-    fn = g_build_filename (cwd, tmp, NULL);
+    fname = g_build_filename (cwd, tmp, NULL);
     g_free(cwd);
     g_free(tmp);
   } else {
-    fn = g_strdup (filename);
+    fname = g_strdup (filename);
   }
 
   /* Return existing page if it is already loaded */
-  page = s_page_search (toplevel, fn);
+  page = s_page_search (toplevel, fname);
   if ( page != NULL ) {
-    g_free(fn);
+    g_free(fname);
     return page;
   }
 
   old_current = toplevel->page_current;
-  page = s_page_new (toplevel, fn);
+  page = s_page_new (toplevel, fname);
   s_page_goto (toplevel, page);
 
   /* Load from file if necessary, otherwise just print a message */
   if (filename != NULL) {
     GError *err = NULL;
     if (!quiet_mode)
-      s_log_message (_("Loading schematic [%s]\n"), fn);
+      s_log_message (_("Loading schematic [%s]\n"), fname);
 
-    if (!f_open (toplevel, page, (char *) fn, &err)) {
+    if (!f_open (toplevel, page, (char *) fname, &err)) {
       GtkWidget *dialog;
 
       g_warning ("%s\n", err->message);
@@ -752,7 +612,7 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
       gtk_widget_destroy (dialog);
       g_error_free (err);
     } else {
-      recent_files_add (fn);
+      recent_files_add (fname);
     }
   } else {
     if (!quiet_mode)
@@ -773,12 +633,12 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
 
   /* This line is generally un-needed, however if some code
    * wants to open a page, yet not bring it to the front, it is
-   * needed needed to add it into the page manager. Otherwise,
-   * it will get done in x_window_set_current_page(...)
+   * needed to add it into the page manager. Otherwise, it will
+   * get done in x_window_set_current_page(...)
    */
   x_pagesel_update (w_current); /* ??? */
 
-  g_free (fn);
+  g_free (fname);
 
   return page;
 }
@@ -987,4 +847,119 @@ x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
 void x_window_set_default_icon( void )
 {
   gtk_window_set_default_icon_name( GSCHEM_THEME_ICON_NAME );
+}
+/* ---------------------- Main Window Toolbar Processor -------------------- */
+/*!
+ * \brief View toogle Add toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Add toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar.
+ */
+void x_window_add_toolbar_toggle(GtkWidget *widget,
+                                      GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->add_handlebox);
+  else
+    gtk_widget_hide(w_current->add_handlebox);
+
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
+}
+/*!
+ * \brief View toogle Attribute toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Attribute toobar.
+ * Note: the function actually toggles visibility of the handlebox
+ * containing the toolbar
+ */
+void x_window_attribute_toolbar_toggle(GtkWidget *widget,
+                                       GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->attribute_handlebox);
+  else
+    gtk_widget_hide(w_current->attribute_handlebox);
+
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
+}
+/*!
+ * \brief View toogle Edit toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Edit toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar.
+ */
+void x_window_edit_toolbar_toggle(GtkWidget *widget,
+                                      GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->edit_handlebox);
+  else
+    gtk_widget_hide(w_current->edit_handlebox);
+
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
+}
+/*!
+ * \brief View toogle Page toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Page toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar.
+ */
+void x_window_page_toolbar_toggle(GtkWidget *widget,
+                                      GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->page_handlebox);
+  else
+    gtk_widget_hide(w_current->page_handlebox);
+
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
+}
+/*!
+ * \brief View toogle standard toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Standard toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbarx_window_page_toolbar_toggle
+ */
+void x_window_standard_toolbar_toggle(GtkWidget *widget,
+                                      GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->standard_handlebox);
+  else
+    gtk_widget_hide(w_current->standard_handlebox);
+
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
+}
+/*!
+ * \brief View toogle Zoom toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Zoom toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar
+ */
+void x_window_zoom_toolbar_toggle(GtkWidget *widget,
+                                      GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->zoom_handlebox);
+  else
+    gtk_widget_hide(w_current->zoom_handlebox);
+
+  /* TODO: WEH: save the toggle setting */
+  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }

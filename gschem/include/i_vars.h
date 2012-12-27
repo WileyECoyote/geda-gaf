@@ -112,6 +112,7 @@ extern int default_text_case;
 extern int default_text_display_zoomfactor;
 extern int default_text_feedback;
 extern int default_text_origin_marker;
+extern int default_text_marker_size;
 extern int default_text_size;
 
 /* Undo System */

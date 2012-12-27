@@ -33,24 +33,11 @@
 
 #include "libgeda_priv.h"
 
-struct _TextBuffer
-{
-  const gchar *buffer;
-  gsize size;
-
-  gchar *line;
-  gsize linesize;
-
-  gsize offset;
-};
-
-#define TEXT_BUFFER_LINE_SIZE 1024
-
 /*! \brief Create a new managed text buffer.
  *
  *  \par Function description 
- *  Allocates and initialises a new TextBuffer to manage the given data
- *  buffer.
+ *  Allocates and initialises a new TextBuffer to manage the given
+ *  data buffer.
  *
  *  If the size argument is negative, assumes that data is
  *  null-terminated.
@@ -59,10 +46,10 @@ struct _TextBuffer
  *  \param size The length of the buffer.
  *  \retval Pointer to a new TextBuffer struct.
  */
-TextBuffer *s_textbuffer_new (const gchar *data, const gint size)
+TextBuffer *s_textbuffer_new (const char *data, const int size)
 {
   TextBuffer *result;
-  gsize realsize;
+  unsigned int realsize;
 
   g_return_val_if_fail ((data != NULL),
                         NULL);
@@ -124,20 +111,20 @@ TextBuffer *s_textbuffer_free (TextBuffer *tb)
  *  \param count Maximum number of characters to read.
  *  \retval      Character array, or NULL if no characters left.
  */
-const gchar *
+const char *
 s_textbuffer_next (TextBuffer *tb, const gssize count)
 {
   gboolean eol = FALSE;
-  gchar c;
-  gsize len;
+  char c;
+  unsigned int len;
 
   g_return_val_if_fail (tb != NULL, NULL);
 
   if (tb->offset >= tb->size) return NULL;
 
-  const gchar *src = tb->buffer + tb->offset;
-  gchar *dest = tb->line;
-  const gchar *buf_end = tb->buffer + tb->size;
+  const char *src = tb->buffer + tb->offset;
+  char *dest = tb->line;
+  const char *buf_end = tb->buffer + tb->size;
 
   while (1) {
     if (src >= buf_end) break;
@@ -189,7 +176,7 @@ s_textbuffer_next (TextBuffer *tb, const gssize count)
  *  \param tb    TextBuffer to read from.
  *  \retval      Character array, or NULL if no characters left.
  */
-const gchar *
+const char *
 s_textbuffer_next_line (TextBuffer *tb)
 {
   return s_textbuffer_next (tb, -1);

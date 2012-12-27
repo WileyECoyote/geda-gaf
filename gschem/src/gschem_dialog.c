@@ -24,15 +24,14 @@
 #include <glib-object.h>
 #include <glib/gstdio.h>
 
-#include "gschem.h"
+#include <gschem.h>
 #include <gdk/gdkkeysyms.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
 
-
-#include "../include/gschem_dialog.h"
+#include <gschem_dialog.h>
 
 /* Signal marshaller based on generated code from glib-genmarshal */
 static void

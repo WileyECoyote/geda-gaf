@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * 
+ *
  * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -60,7 +60,7 @@ void x_menu_file_save()
 void x_menu_file_save_as()
 {
   char *filename = malloc(MAX_FILE * sizeof(char)); /* be 255 * 1 */
-  
+
   if (filename) {
     if (x_fileselect(filename)) {
       /* Dumps sheet data into TOPLEVEL */
@@ -133,7 +133,7 @@ void x_menu_file_open()
  * -# load the new project
  */
 static void menu_open_recent( char* filename)
-{ 
+{
   if( sheet_head->CHANGED == TRUE) {
     switch (x_dialog_file_not_saved()) {
     case GTK_RESPONSE_CANCEL:
@@ -148,7 +148,7 @@ static void menu_open_recent( char* filename)
   }
   s_toplevel_close(sheet_head);
   sheet_head = s_sheet_data_new();
-  
+
   /* Load the files, don't check if it went OK */
   x_fileselect_load_file(filename);
   s_toplevel_init_data_set(pr_current, sheet_head);
@@ -173,7 +173,7 @@ void x_menu_file_export_csv()
   if (cur_page == Components) {
     x_dialog_export_file();
   } else {
-    x_dialog_unimplemented_feature();  /* We only support export 
+    x_dialog_unimplemented_feature();  /* We only support export
                                           of components now */
   }
 }
@@ -260,7 +260,7 @@ static void on_recent_selection (GtkRecentChooser *chooser)
   uri = gtk_recent_chooser_get_current_uri (chooser);
   filename = g_filename_from_uri(uri, NULL, NULL);
   gtk_recent_manager_add_item(recent_manager, uri);
-  
+
   menu_open_recent(filename);
 
   g_free(uri);
@@ -300,7 +300,7 @@ static const GtkActionEntry actions[] = {
   { "edit-clipboard-cut", GTK_STOCK_CUT, "Cut", "<Control>X", "", menu_edit_cut},
   { "edit-clipboard-copy", GTK_STOCK_COPY, "Copy", "<Control>C", "", menu_edit_copy},
   { "edit-clipboard-paste", GTK_STOCK_PASTE, "Paste", "<Control>V", "", menu_edit_paste},
-  
+
   { "edit-add-attrib",    NULL, "_Add new Attribute", "", "", x_menu_edit_new_attrib},
   { "edit-delete-attrib", NULL, "D_elete Attribute",  "", "", x_menu_edit_delete_attrib},
   { "edit-promote-attrib", NULL, "_Promote Attribute", "", "Attach the selected attribute",  s_properties_promote_attribute},
@@ -325,7 +325,7 @@ static const GtkActionEntry actions[] = {
   { "visibility-name-only", NULL, "Set selected name visible only",   "", "", s_properties_set_name_only},
   { "visibility-value-only", NULL, "Set selected value visible only", "", "", s_properties_set_value_only},
   { "visibility-name-value", NULL, "Set selected name and value visible", "", "", s_properties_set_name_and_value},
-  
+
   { "window", NULL, "_Window"},
   /* Help menu */
   { "help", NULL, "_Help"},
@@ -352,15 +352,15 @@ static const GtkToggleActionEntry toggle_entries[] = {
  *  for the Open Recent sub-sytstem.
  */
 GtkRecentFilter *x_menu_geda_filter() {
-  
+
   GtkRecentFilter *geda_filter;
-  
+
   geda_filter = gtk_recent_filter_new();
   gtk_recent_filter_add_mime_type(geda_filter, "application/x-geda-schematic");
   gtk_recent_filter_add_mime_type(geda_filter, "application/x-geda-symbol");
   gtk_recent_filter_add_pattern(geda_filter, "*.sch");
   gtk_recent_filter_add_pattern(geda_filter, "*.sym");
-  
+
   return geda_filter;
 }
 
@@ -391,7 +391,7 @@ void x_menu_fix_gtk_recent_submenu() {
   GtkRecentFilter  *recent_filter;
   GtkRecentChooser *recent_file_chooser;
   GtkWidget        *menu_files;
-  
+
   recent_items =  gtk_ui_manager_get_widget (menu_manager,"/ui/menubar/file/OpenRecent");
 
   if (recent_manager == NULL) {
@@ -433,7 +433,7 @@ GtkActionGroup *x_menu_create_recent_action_group() {
   recent_action_group = gtk_action_group_new("OpenRecentAction");
 /*
  *  Filtering here does not work, maybe someday
- * 
+ *
   recent_filter = x_menu_geda_filter();
   gtk_recent_filter_add_group (recent_filter, "OpenRecentAction" );
 
@@ -446,12 +446,12 @@ GtkActionGroup *x_menu_create_recent_action_group() {
                                                        "Open recently used files",
                                                         NULL,
                                                         recent_manager);
-  
+
 /*
  * Filtering here does not work either, maybe someday
   gtk_recent_chooser_set_filter (recent_file_chooser, recent_filter);
  */
-   
+
   gtk_action_group_add_action (recent_action_group, GTK_ACTION (recent_action));
   g_signal_connect (recent_action, "item-activated",
                     G_CALLBACK (on_recent_selection),
@@ -470,10 +470,10 @@ GtkActionGroup *x_menu_create_recent_action_group() {
  *       between Sheets/Tabs.
  */
 static void x_menu_get_collections (GtkUIManager *ui_man) {
- 
-  ComponentMenuItems = NULL; 
+
+  ComponentMenuItems = NULL;
   GtkWidget *item;
-    
+
   item = gtk_ui_manager_get_widget(ui_man, "/menubar/edit/edit-add-attrib");
   ComponentMenuItems = g_slist_append(ComponentMenuItems, item);
   item = gtk_ui_manager_get_widget(ui_man, "/menubar/edit/edit-delete-attrib");
@@ -528,7 +528,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
 
   gtk_ui_manager_insert_action_group(menu_manager, action_group, 0);
   gtk_ui_manager_insert_action_group(menu_manager, recent_group, 0);
-  
+
   menu_file = g_build_filename(s_path_sys_data (), "gattrib-menus.xml", NULL);
 
   gtk_ui_manager_add_ui_from_file(menu_manager, menu_file, &error);
@@ -543,9 +543,9 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
   gtk_window_add_accel_group (main_window, gtk_ui_manager_get_accel_group(menu_manager));
 
   menubar = gtk_ui_manager_get_widget(menu_manager, "/ui/menubar/");
-  
+
   x_menu_get_collections(menu_manager);
-  
+
   if (menubar == NULL)
     fprintf(stderr, "ERROR: GTK function failed to return Menu object\n");
   return menubar; /* WEH: Does this really get saved? */
