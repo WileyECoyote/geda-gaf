@@ -1,0 +1,9 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+FRAGMENTS=widgets
+
+gschem_SOURCES += \
+	widgets/gschem_accel_label.c    \
+	widgets/gschem_action.c         \
+	widgets/gschem_toggle_action.c
+

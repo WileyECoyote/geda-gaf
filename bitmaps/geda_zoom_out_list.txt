@@ -1,0 +1,6 @@
+geda_zoom_out_22x22.png
+geda_zoom_out_24x24.png
+geda_zoom_out_26x26.png
+geda_zoom_out_28x28.png
+geda_zoom_out_32x32.png
+geda_zoom_out_64x64.png

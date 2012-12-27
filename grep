@@ -1,0 +1,58 @@
+zlib                           zlib - zlib compression library
+gio-unix-2.0                   GIO unix specific APIs - unix specific headers for glib I/O library
+glibmm-2.4                     glibmm - C++ wrapper for GLib
+libtasn1                       libtasn1 - Library for ASN.1 and DER manipulation
+cairo-xcb                      cairo-xcb - XCB surface backend for cairo graphics library
+gio-2.0                        GIO - glib I/O library
+cairomm-1.0                    cairomm - C++ binding for the cairo graphics library
+cairomm-png-1.0                cairomm-png - C++ wrapper for cairo - png support
+gconf-2.0                      gconf - GNOME Config System.
+cairo-gobject                  cairo-gobject - gobject functions for cairo graphics library
+xinerama                       Xinerama - The Xinerama Library
+p11-kit-1                      p11-kit - Library and proxy module for properly loading and sharing PKCS
+libgda-sqlite-4.0              libgda-sqlite-4.0 - GDA (GNOME Data Access) SQLite provider
+dbus-1                         dbus - Free desktop message bus
+cairo-ps                       cairo-ps - PostScript surface backend for cairo graphics library
+gmodule-2.0                    GModule - Dynamic module loader for GLib
+libpng12                       libpng - Loads and saves PNG files
+libselinux                     libselinux - SELinux utility library
+glib-2.0                       GLib - C Utility Library
+xorg-server                    xorg-server - Modular X.Org X Server
+xdmcp                          Xdmcp - X Display Manager Control Protocol library
+randrproto                     RandrProto - Randr extension headers
+fontsproto                     FontsProto - Fonts extension headers
+xau                            Xau - X authorization file management libary
+cairomm-ft-1.0                 cairomm-ft - C++ wrapper for cairo - ft support
+libgeda                        libgeda - gEDA/gaf's core library
+gnome-vfs-2.0                  gnome-vfs - The GNOME virtual file-system libraries
+ORBit-imodule-2.0              ORBit-imodule-2.0 - ORBit runtime typelib generation service.
+pango                          Pango - Internationalized text handling
+nautilus-sendto                nautilus-sendto - Extend nautilus-sendto through plugins
+pciaccess                      pciaccess - Library providing generic access to the PCI bus and devices.
+unique-1.0                     Unique - Create single instance applications
+dbus-python                    dbus-python - Python bindings for D-Bus
+gthread                        GThread - Thread support for GLib
+fontutil                       FontUtil - Font utilities dirs
+libIDL-2.0                     libIDL - IDL parsing library
+libpcrecpp                     libpcrecpp - PCRECPP - C++ wrapper for PCRE
+popt                           popt - popt library.
+pangoft2                       Pango FT2 and Pango Fc - Freetype 2.0 and fontconfig font support for Pango
+ice                            ICE - X Inter Client Exchange Library
+libexslt                       libexslt - EXSLT Extension library
+libsepol                       libsepol - SELinux policy library
+libffi                         libffi - Library supporting Foreign Function Interfaces
+gmodule-no-export-2.0          GModule - Dynamic module loader for GLib
+pangox                         Pango X - X Window System font support for Pango
+ORBit-CosNaming-2.0            ORBit-CosNaming-2.0 - High-performance CORBA Object Request Broker - Naming Service.
+xrender                        Xrender - X Render Library
+libgdiplus                     libgdiplus - GDI+ implementation
+xproto                         Xproto - Xproto headers
+cairomm-pdf-1.0                cairomm-pdf - C++ wrapper for cairo - pdf support
+gdk-pixbuf-2.0                 GdkPixbuf - Image loading and scaling
+libgda-report-4.0              libgda-report-4.0 - GDA (GNOME Data Access) Reports
+xext                           Xext - Misc X Extension Library
+xcb                            XCB - X-protocol C Binding
+libxml++-2.6                   libxml++ - C++ wrapper for libxml
+pthread-stubs                  pthread stubs - Stubs missing from libc for standard pthread functions
+bonobo-activation-2.0          Bonobo Activation - Object activation framework for GNOME
+gtk+-unix-print-2.0            GTK+ - GTK+ Unix print support
