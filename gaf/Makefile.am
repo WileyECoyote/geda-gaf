@@ -1,9 +1,12 @@
+## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
+
 SUBDIRS = po
 
-INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_GEDA = -I$(abs_top_builddir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
-INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
-INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
+INC_LIBGEDA = -I$(abs_top_builddir)/libgeda/include
+INC_LIBCAIRO = -I$(abs_top_builddir)/libgedacairo/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCAIRO)
 
@@ -21,27 +24,28 @@ gaf_SOURCES = \
 	gaf-export.c \
 	shell.c
 
-gaf_CPPFLAGS = $(GEDA_INCLUDES) -I$(includedir)
+AM_CFLAGS     = $(GEDA_INCLUDES) -I$(includedir)
 
-gaf_CFLAGS = \
-	$(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GTK_CFLAGS) \
-	$(GDK_PIXBUF_CFLAGS) $(CAIRO_CFLAGS) $(CAIRO_PNG_CFLAGS) \
-	$(CAIRO_PDF_CLAGS) $(CAIRO_PS_CFLAGS) $(CAIRO_SVG_CFLAGS)
-	
-gaf_LDFLAGS = $(GUILE_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) $(CAIRO_LIBS) \
-	$(CAIRO_PNG_LIBS) $(CAIRO_PDF_CLAGS) $(CAIRO_PS_LIBS) $(CAIRO_SVG_LIBS)
-gaf_LDADD = \
-	$(top_builddir)/libgedacairo/src/libgedacairo.la \
-	$(top_builddir)/libgeda/src/libgeda.la \
-	@LIBINTL@
+gaf_CPPFLAGS  =
 
-localedir = @datadir@/locale
-DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+gaf_CFLAGS    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GTK_CFLAGS) \
+	        $(GDK_PIXBUF_CFLAGS) $(CAIRO_CFLAGS) $(CAIRO_PNG_CFLAGS) \
+		$(CAIRO_PDF_CLAGS) $(CAIRO_PS_CFLAGS) $(CAIRO_SVG_CFLAGS) \
+		$(AM_CFLAGS)
+
+gaf_LDFLAGS   = $(GUILE_LIBS) $(GTK_LIBS) $(GDK_PIXBUF_LIBS) $(CAIRO_LIBS) \
+	        $(CAIRO_PNG_LIBS) $(CAIRO_PDF_CLAGS) $(CAIRO_PS_LIBS) $(CAIRO_SVG_LIBS)
+gaf_LDADD     = $(top_builddir)/libgedacairo/src/libgedacairo.la \
+	        $(top_builddir)/libgeda/src/libgeda.la \
+	          @LIBINTL@
+
+localedir     = @datadir@/locale
+DEFS          = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 # This is used to generate boilerplate for defining Scheme functions
 # in C.
 snarf_cpp_opts = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(gaf_CPPFLAGS) $(AM_CFLAGS) $(gaf_CFLAGS)
+		 $(gaf_CPPFLAGS) $(AM_CFLAGS) $(gaf_CFLAGS)
 .c.x:
 	CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
@@ -54,7 +58,7 @@ snarf_cpp_opts = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 dist_man_MANS = gaf.1
 html_man_files = gaf.html
 
-docsmandir=$(docdir)/man
+docsmandir  =$(docdir)/man
 docsman_DATA=$(html_man_files)
 if ENABLE_GROFF_HTML
 .1.html:
@@ -67,6 +71,6 @@ else
 	@! :
 endif
 
-SUFFIXES = .x .1.in .1 .html
+SUFFIXES   = .x .1.in .1 .html
 
 CLEANFILES = $(BUILT_SOURCES)

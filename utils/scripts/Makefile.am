@@ -2,8 +2,8 @@
 ##
 ## Process this file with automake to produce Makefile.in
 
-bin_SCRIPTS = garchive pads_backannotate pcb_backannotate refdes_renum \
-              sarlacc_sym schdiff sw2asc tragesym
+bin_SCRIPTS    = garchive pads_backannotate pcb_backannotate refdes_renum \
+                 sarlacc_sym schdiff sw2asc tragesym
 
 noinst_SCRIPTS = gnet_hier_verilog.sh gschupdate gsymupdate \
                  gcheck-library gclean-symbol gfix-library gsymfix
@@ -20,7 +20,7 @@ garchive: $(srcdir)/garchive.py
 	chmod a+x tmp$@
 	mv -f tmp$@ $@
 
-MOSTLYCLEANFILES = *.log *.ps core FILE tmp *~
-CLEANFILES = *.log *.ps core FILE tmp  *~
-DISTCLEANFILES = *.log core FILE tmp *~ garchive sw2asc
+MOSTLYCLEANFILES     = *.log *.ps core FILE tmp *~
+CLEANFILES 	     = *.log *.ps core FILE tmp  *~
+DISTCLEANFILES	     = *.log core FILE tmp *~ garchive sw2asc
 MAINTAINERCLEANFILES = *.log *.ps core FILE tmp *~ Makefile.in garchive sw2asc

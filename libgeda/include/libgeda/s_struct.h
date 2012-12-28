@@ -21,10 +21,6 @@
 #ifndef SIMPLE_STRUCT_H
 #define SIMPLE_STRUCT_H
 
-/* Wrappers around a new list mechanism */
-typedef struct _GedaList SELECTION;
-typedef struct _GedaList GedaPageList;
-
 /* gschem structures (gschem) */
 typedef struct st_arc ARC;
 typedef struct st_bezier BEZIER;

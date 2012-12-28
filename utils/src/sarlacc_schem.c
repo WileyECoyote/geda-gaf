@@ -131,8 +131,7 @@ unsigned read_string(char *dest, int dest_size, char *src)
     unsigned size = ((unsigned char *)src)[0];
 
     if (size+1 > dest_size) {
-	fprintf(stderr,"Text too large; size %d, max is %d\n",
-						size, dest_size-1);
+	fprintf(stderr,"Text too large; size %d, max is %d\n", size, dest_size-1);
 	exit(1);
     }
     strncpy(dest,src+1,size);
@@ -186,13 +185,13 @@ void parse_header(int fd1,int fd2)
 /* BAD more titleblock stuff */
 void parse_titleblock(int fd)
 {
-    int size,sheet,total,ypos;
+    int size, sheet, total, ypos;
     char localbuf[1000];
     char data[100];
     char pagesize;
 	
     size = read_block(fd,localbuf,5,sizeof(localbuf));
-    // fprintf(stderr,"\nTitleblock %d bytes\n",size);
+    if (!size) fprintf(stderr,"\nTitleblock %d bytes\n",size);
 
     sheet=CONV16(localbuf,0x00);
     total=CONV16(localbuf,0x02);
@@ -224,7 +223,7 @@ void parse_component(int fd1,int fd2)
     char full_filename[1024];
     int size;
     int x,y;
-    int xpos = 0,ypos = 0,xpossav,ypossav;
+    int xpos = 0,ypos = 0; //xpossav,ypossav;
     int xgeda,ygeda;
     int angle,mirror;
     int i = 0;
@@ -240,7 +239,6 @@ void parse_component(int fd1,int fd2)
     char attribsav[64];
 
     char flags;
-    char vis;
 	
     int pointer;
     FILE *cfp;
@@ -275,7 +273,7 @@ void parse_component(int fd1,int fd2)
     if (flags & 4) val_vis=0;
 /* BAD decode more flags */
 
-    vis = localbuf[14];
+    //vis = localbuf[14];
 
     /* 14-27 */
 
@@ -391,8 +389,8 @@ void parse_component(int fd1,int fd2)
 	      fprintf(stdout,"T %d %d %d %d %d 1 0 0\npattern=%s\n",
 				xpos,ypos,ATTRIBUTE_COLOR,TEXTSIZE,
 		      ( (flags & (1<<i))?1:0 ),attrib);
-	      xpossav = xpos;
-	      ypossav = ypos;
+	      //xpossav = xpos;
+	      //ypossav = ypos;
 	      strcpy(attribsav, attrib);
 	    }
 	}
@@ -418,7 +416,7 @@ void parse_sheet (int fd)
     int x1,y1,x2,y2;
 
     size = read_block(fd,localbuf,15,sizeof(localbuf));
-    // fprintf(stderr,"Sheet %d bytes\n",size);
+    if (!size)  fprintf(stderr,"Sheet %d bytes\n",size);
 
     x1=CONVX(CONV16(localbuf,0));
     y1=CONVY(CONV16(localbuf,2));    
@@ -466,6 +464,7 @@ static void wire_or_bus(int fd, char kind, int color)
     int x1,y1,x2,y2;
 
     size = read_block(fd,localbuf,8,sizeof(localbuf));
+    if (!size) fprintf(stderr,"Wire or Bus %d bytes\n",size);
 
     x1=CONVX(CONV16(localbuf,0));
     y1=CONVY(CONV16(localbuf,2));
@@ -506,7 +505,7 @@ void parse_junction (int fd)
     int size;
 
     size = read_block(fd,localbuf,4,sizeof(localbuf));
-
+    if (!size) fprintf(stderr,"Junctions %d bytes\n",size);
 /*
     x=CONVX(CONV16(localbuf,0));
     y=CONVY(CONV16(localbuf,2));
@@ -528,6 +527,7 @@ void parse_port (int fd)
     int mirror = 0;
 
     size = read_block(fd,localbuf,7,sizeof(localbuf));
+    if (!size) fprintf(stderr,"Ports %d bytes\n",size);
 
     x = CONVX(CONV16(localbuf,0));
     y = CONVY(CONV16(localbuf,2));
@@ -567,6 +567,7 @@ void parse_label (int fd)
     int textsize;
 
     size = read_block(fd,localbuf,5,sizeof(localbuf));
+    if (!size) fprintf(stderr,"Label %d bytes\n",size);
 
     x=CONVX(CONV16(localbuf,0));
     y=CONVY(CONV16(localbuf,2));
@@ -598,7 +599,7 @@ void parse_entry (int fd)
     int x,y,type;
 
     size = read_block(fd,localbuf,5,sizeof(localbuf));
-    // fprintf(stderr,"Entry %d bytes\n",size);
+    if (!size) fprintf(stderr,"Entry %d bytes\n",size);
 
     x=CONVX(CONV16(localbuf,0));
     y=CONVY(CONV16(localbuf,2));
@@ -612,14 +613,14 @@ void parse_dashed (int fd)
 {
     char localbuf[32];
     int size;
-    int x,y,type;
+    //int x,y,type;
 
     size = read_block(fd,localbuf,4,sizeof(localbuf));
-    fprintf(stderr,"Dashed  %d bytes\n",size);
+    if (!size) fprintf(stderr,"Dashed  %d bytes\n",size);
 
-    x=CONVX(CONV16(localbuf,0));
-    y=CONVY(CONV16(localbuf,2));
-    type=localbuf[4];                                    
+    //x=CONVX(CONV16(localbuf,0));
+    //y=CONVY(CONV16(localbuf,2));
+    //type=localbuf[4];                                    
 }
 
 /* BAD Fix power */
@@ -636,7 +637,7 @@ void parse_power (int fd)
     char type;
 
     size = read_block(fd,localbuf,5,sizeof(localbuf));
-    // fprintf(stderr,"POWER %d bytes\n",size);
+    if (!size) fprintf(stderr,"POWER %d bytes\n",size);
 
     read_string(textbuf,sizeof(textbuf),localbuf+0x05);
 
@@ -686,6 +687,7 @@ void parse_text (int fd)
     int x,y,textsize,angle;
 
     size = read_block(fd,localbuf,7,sizeof(localbuf));
+    if (!size) fprintf(stderr,"TEXT %d bytes\n",size);
 
     x=CONVX(CONV16(localbuf,0));
     y=CONVY(CONV16(localbuf,2));
@@ -713,8 +715,7 @@ void parse_marker (int fd)
     int size;
 
     size = read_block(fd,localbuf,0,sizeof(localbuf));
-
-    /* fprintf(stderr,"MARKER %d\n",size); */
+    if (!size) fprintf(stderr,"MARKER %d\n",size);
 }
 
 

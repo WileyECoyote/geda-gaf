@@ -381,7 +381,7 @@ void s_page_weak_ref (PAGE *page, void (*notify_func)(void *, void *), void *use
 void s_page_weak_unref (PAGE *page, void (*notify_func)(void *, void *), void *user_data);
 void s_page_add_weak_ptr (PAGE *page, void *weak_pointer_loc);
 void s_page_remove_weak_ptr (PAGE *page, void *weak_pointer_loc);
-void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new);
+bool s_page_goto (TOPLEVEL *toplevel, PAGE *p_new);
 PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename);
 PAGE *s_page_search_by_page_id (GedaPageList *list, int pid);
 void s_page_print_all (TOPLEVEL *toplevel);

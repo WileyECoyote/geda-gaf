@@ -1,15 +1,14 @@
 ## $Id$
-##
 ## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
 bin_SCRIPTS = gxyrs
-	      
-rcdatadir = @GEDADATADIR@/perl/lib
+
+rcdatadir   = @GEDADATADIR@/perl/lib
 rcdata_DATA = gxyrs.pm
 
-EXTRA_DIST = \
-	gxyrs.pl \
-	gxyrs.pm
+EXTRA_DIST  = gxyrs.pl \
+	      gxyrs.pm
 
 all: gxyrs
 
@@ -26,7 +25,8 @@ gxyrs: $(srcdir)/gxyrs.pl
 	chmod a+x tmp$@
 	mv -f tmp$@ $@
 
-MOSTLYCLEANFILES = *.log *.ps core FILE tmp *~
-CLEANFILES = *.log *.ps core FILE tmp  *~
-DISTCLEANFILES = *.log core FILE tmp *~ gxyrs
-MAINTAINERCLEANFILES = *.log *.ps core FILE tmp *~ Makefile.in gxyrs
+MOSTLYCLEANFILES     = *.log *.ps core FILE *~
+CLEANFILES           = *.log *.ps core FILE *~
+DISTCLEANFILES       = *.log *.ps core FILE *~
+MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
+

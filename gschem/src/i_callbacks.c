@@ -3041,7 +3041,7 @@ DEFINE_TB_CALLBACK(cdocumentation)
         //result = x_show_uri (w_current, attrib_doc, &error);
         /* Use this instead until debian-gnome work out thier iceweasel issue */
         result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
-        if (error) {
+        if (result) {
           s_log_message("error: %s", error->message);
           g_error_free (error);
         }

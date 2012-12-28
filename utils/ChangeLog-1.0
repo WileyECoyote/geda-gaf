@@ -1,3 +1,9 @@
+2012-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gsch2pcb.c: Rectified unused variables and functions.
+        * sarlacc_schem.c: Rectified unused variables.
+        * olib.c: Rectified unused variables.
+
 2012-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
         * scripts/: Added scripts gcheck-library, gclean-symbol,

@@ -1,7 +1,13 @@
 ## Process this file with automake to produce Makefile.in
-AM_CFLAGS=-I$(top_builddir)/include -Wall
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
-bin_PROGRAMS = gnetlist 
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+
+GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
+bin_PROGRAMS = gnetlist
 
 # don't forget all *.h files */
 gnetlist_SOURCES = \
@@ -22,15 +28,17 @@ gnetlist_SOURCES = \
 	s_traverse.c \
 	vams_misc.c
 
-gnetlist_CPPFLAGS = -I$(top_srcdir)/libgeda/include -I$(srcdir)/../include \
-	-I$(top_srcdir)/include -I$(includedir)
-gnetlist_CFLAGS = $(GCC_CFLAGS) $(MINGW_CFLIGS) $(GLIB_CFLAGS) \
-	$(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
-gnetlist_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
-gnetlist_LDADD = $(top_builddir)/libgeda/src/libgeda.la
+AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 
-MOSTLYCLEANFILES = *.log *.ps core FILE *~
-CLEANFILES = *.log *.ps core FILE *~
-DISTCLEANFILES = *.log core FILE *~
+gnetlist_CPPFLAGS    =
+gnetlist_CFLAGS      = $(AM_CFLAGS)    $(GLIB_CFLAGS)  $(GCC_CFLAGS) \
+		       $(MINGW_CFLIGS) $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+
+gnetlist_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
+gnetlist_LDADD	     = $(top_builddir)/libgeda/src/libgeda.la
+
+MOSTLYCLEANFILES     = *.log *.ps core FILE *~
+CLEANFILES           = *.log *.ps core FILE *~
+DISTCLEANFILES       = *.log      core FILE *~
 MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
 

@@ -1,37 +1,40 @@
 ## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
-AM_CFLAGS=-I$(top_builddir)/include -Wall $(GCC_CFLAGS) $(MINGW_CFLIGS)
+INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_LOCAL =  -I$(srcdir)/../include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 
-bin_PROGRAMS = gmk_sym smash_megafile convert_sym sarlacc_schem olib \
-	       gsch2pcb grenum
+GEDA_INCLUDES 	= $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
-# don't forget all *.h files */
-gmk_sym_SOURCES = gmk_sym.c char_width.c
-smash_megafile_SOURCES = smash_megafile.c
-grenum_SOURCES = grenum.c grenum.h
+bin_PROGRAMS	= gmk_sym smash_megafile convert_sym sarlacc_schem olib \
+	          gsch2pcb grenum
 
-olib_SOURCES = olib.l geda_sym_format.h
-olib_LDFLAGS = -lm
+AM_CFLAGS		= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLIGS) \
+			  $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
 
-convert_sym_SOURCES = convert_sym.c char_width.c
-convert_sym_LDFLAGS = -lm
+gmk_sym_SOURCES 	= gmk_sym.c char_width.c
+smash_megafile_SOURCES 	= smash_megafile.c
+grenum_SOURCES		= grenum.c grenum.h
 
-gsch2pcb_SOURCES = gsch2pcb.c
-gsch2pcb_CPPFLAGS = \
-	-DPCBDATADIR=\"$(PCBDATADIR)\" \
-	-DPCBLIBPATH=\"$(PCBLIBPATH)\"
-gsch2pcb_CFLAGS = $(GLIB_CFLAGS)
-gsch2pcb_LDFLAGS = $(GLIB_LIBS)
+olib_SOURCES		= olib.l geda_sym_format.h
+olib_LDFLAGS		= -lm
 
-sarlacc_schem_SOURCES = sarlacc_schem.c
-sarlacc_schem_CFLAGS = $(GLIB_CFLAGS) $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
-sarlacc_schem_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
-sarlacc_schem_LDADD = $(top_builddir)/libgeda/src/libgeda.la
+convert_sym_SOURCES	= convert_sym.c char_width.c
+convert_sym_LDFLAGS	= -lm
 
-AM_CPPFLAGS = -I$(top_srcdir)/libgeda/include -I$(srcdir)/../include \
-	-I$(top_srcdir) -I$(includedir)
+gsch2pcb_SOURCES	= gsch2pcb.c
+gsch2pcb_CPPFLAGS 	= -DPCBDATADIR=\"$(PCBDATADIR)\" \
+			  -DPCBLIBPATH=\"$(PCBLIBPATH)\"
+gsch2pcb_CFLAGS 	= $(AM_CFLAGS)
+gsch2pcb_LDFLAGS 	= $(GLIB_LIBS)
 
-MOSTLYCLEANFILES = *.log *.ps core FILE *~ olib.c
-CLEANFILES = *.log *.ps core FILE *~  olib.c
-DISTCLEANFILES = *.log core FILE *~ olib.c
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in olib.c
+sarlacc_schem_SOURCES 	= sarlacc_schem.c
+sarlacc_schem_CPPFLAGS  = $(GDK_PIXBUF_CFLAGS)
+sarlacc_schem_LDFLAGS 	= $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
+sarlacc_schem_LDADD   	= $(top_builddir)/libgeda/src/libgeda.la
+
+MOSTLYCLEANFILES	= *.log core FILE *~
+CLEANFILES		= *.log core FILE *~ $(BUILT_SOURCES)
+DISTCLEANFILES		= *.log core FILE *~
+MAINTAINERCLEANFILES	= *.log core FILE *~ Makefile.in

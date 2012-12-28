@@ -1,13 +1,11 @@
-==============================================
- 'gschem and Friends' Electronic Design Suite
-==============================================
+2012-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
-Copyright (C) 1998-2012 gEDA Developers
+	* All:Re-organinzed all Makefiles.am's to improve reliabilty of header
+          inclusions and to some what "standardize" the use of automake flags.
+          Various fixes, see change indivual change-logs. Entire code tree once
+          again compiles without ANY errors or warnings. Added AM_INIT_AUTOMAKE
+          ([nostdinc -Woverride -Wportability -Wsyntax -Wunsupported]), 
+          AM_PROG_CC_C_O option m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
+          and AX_CHECK_PANGO to configure.ac. Also added final echoing of
+          configuration summary.
 
-Please see the `ChangeLog' files in the various component
-subdirectories for detailed change information.
-
-..
-   Local Variables:
-   mode: text
-   End:

@@ -7,7 +7,28 @@ Copyright (C) 1998-2012 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
-Notable changes in gEDA/gaf 1.9.0
+Notable changes in gEDA/gaf 2.0.1
+=================================
+
+* GUI's for gschem and gattrib have received Major Make-Overs with
+  toolbars and additional menu options, check box menu items, and
+  more. All user options can now be set in Gschem via a multi-tab
+  dialog with custom controls without adding GTK+3 as dependent or
+  any other new dependencies. Dialogs uniformity has been improved. 
+
+* Functionality of gattrib has been greatly extended including a
+  new Search and Replace function complete with session search
+  history!
+
+* Gattrib no long launches into a a file selector dialog, files can
+  now be loaded or closed via menu or toolbars, The editing bar is
+  now fully functional and mouse menus added. Embedded GTK-Sheet has
+  been updated to the much newed more stable version. GTK-Sheet code
+  has been "modularized" to facilitate update and code maintainence.
+
+  Merry Christmas!
+
+Notable changes in gEDA/gaf 1.9.2
 =================================
 
 * A new schematic renderer library, `libgedacairo' has been added, and

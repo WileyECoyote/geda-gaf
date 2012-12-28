@@ -19,7 +19,7 @@ AC_CONFIG_HEADER([config.h])
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([nostdinc -Woverride  -Wportability -Wsyntax -Wunsupported])
 
 AC_GNU_SOURCE # FIXME for some reason this is needed?
 

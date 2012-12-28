@@ -1,7 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-## This Makefile.am created for gattrib by SDB 12.13.2003
-
-AM_CFLAGS=-I$(top_builddir)/include -Wall
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
 LIB_GTKSHEET = gtksheet
 
@@ -43,22 +41,24 @@ gattrib_SOURCES = \
 		s_attrib.c \
 		s_toplevel.c \
 		s_properties.c \
-		gattrib.c 
+		gattrib.c
 
-gattrib_CPPFLAGS = $(GEDA_INCLUDES)
+AM_CFLAGS        = $(GEDA_INCLUDES) -I$(includedir)
 
-gattrib_CFLAGS = $(GCC_CFLAGS) $(AM_CFLAGS) $(GLIB_CFLAGS) \
-		 $(GTK_CFLAGS) $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) \
-		 $(MINGW_CFLAGS)
+gattrib_CPPFLAGS =
 
-gattrib_LDFLAGS = $(GLIB_LIBS) $(GTK_LIBS) $(GTHREAD_LIBS) \
-		  $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+gattrib_CFLAGS 	 = $(GCC_CFLAGS)     $(GLIB_CFLAGS) $(GTK_CFLAGS) \
+		   $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) \
+		   $(MINGW_CFLAGS)   $(AM_CFLAGS)
 
-gattrib_LDADD = $(LIB_GTKSHEET)/libgtksheet.a \
-		$(top_builddir)/libgeda/src/libgeda.la
+gattrib_LDFLAGS  = $(GLIB_LIBS)  $(GTK_LIBS) $(GTHREAD_LIBS) \
+		   $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 
+gattrib_LDADD	 = $(LIB_GTKSHEET)/libgtksheet.a \
+		   $(top_builddir)/libgeda/src/libgeda.la
 
-MOSTLYCLEANFILES = *.log *.ps core FILE *~ #*# 
-CLEANFILES = *.log *.ps core FILE *~ #*#
-DISTCLEANFILES = *.log core FILE *~ #*#
+MOSTLYCLEANFILES     = *.log *.ps core FILE *~ #*#
+CLEANFILES           = *.log *.ps core FILE *~ #*#
+DISTCLEANFILES       = *.log core FILE *~ #*#
 MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in #*#
+

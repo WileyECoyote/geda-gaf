@@ -1,4 +1,6 @@
-AM_CFLAGS=-I$(top_builddir)/include -Wall
+## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
+
 # Build a libtool library for installation in libdir.
 INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
@@ -93,32 +95,32 @@ libgeda_la_SOURCES = \
 	s_weakref.c \
 	u_basic.c
 
-libgeda_la_CPPFLAGS = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS) \
-		      $(GEDA_INCLUDES)
+AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 
-libgeda_la_CFLAGS =  \
-	$(GCC_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GLIB_CFLAGS) \
-	$(GDK_PIXBUF_CFLAGS) $(AM_CFLAGS)
+libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS)
 
-libgeda_la_LDFLAGS = -version-info $(LIBGEDA_SHLIB_VERSION) \
-	$(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) $(GUILE_LIBS) \
-	$(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
+libgeda_la_CFLAGS    = $(AM_CFLAGS)   $(GUILE_CFLAGS) $(GCC_CFLAGS)   \
+	               $(GLIB_CFLAGS) $(MINGW_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+
+libgeda_la_LDFLAGS   = -version-info $(LIBGEDA_SHLIB_VERSION) \
+		       $(WINDOWS_LIBTOOL_FLAGS) $(MINGW_LDFLAGS) $(GUILE_LIBS) \
+		       $(GLIB_LIBS) $(GDK_PIXBUF_LIBS)
 
 LIBTOOL=@LIBTOOL@ --silent
 
-# This is used to generate boilerplate for defining Scheme functions
-# in C.
+# This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
-snarf_cpp_opts = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	         $(libgeda_la_CPPFLAGS) $(libgeda_la_CFLAGS)
+snarf_cpp_opts       = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	               $(libgeda_la_CPPFLAGS) $(libgeda_la_CFLAGS)
 .c.x:
 	CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
-MOSTLYCLEANFILES = *.log core FILE *~
-CLEANFILES = *.log core FILE *~ $(BUILT_SOURCES)
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log core FILE *~
+CLEANFILES           = *.log core FILE *~ $(BUILT_SOURCES)
+DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
 
 # Unfortunately, in order to test libtool thoroughly, we need access
 # to its private directory.
 objdir = `sed -n -e 's/^objdir=\"\(.*\)\"$$/\1/p' ./libtool`
+

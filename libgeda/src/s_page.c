@@ -21,7 +21,7 @@
 /*! \file s_page.c
  *  \brief The page system
  *
- *  libgeda can handle multiple schematic or symbol pages. libgeda keeps 
+ *  libgeda can handle multiple schematic or symbol pages. libgeda keeps
  *  track of the currently opened pages with a managed _GedaList.
  *  The currently used page is refered with an extra pointer.
  *
@@ -131,7 +131,7 @@ PAGE *s_page_new (TOPLEVEL *toplevel, const char *filename)
     page->page_filename = g_build_filename (pwd, filename, NULL);
     free (pwd);
   }
-	
+
   g_assert (toplevel->init_bottom != 0);
   page->coord_aspectratio = (
     ((float) toplevel->init_right) / ((float) toplevel->init_bottom));
@@ -152,11 +152,11 @@ PAGE *s_page_new (TOPLEVEL *toplevel, const char *filename)
 
   /* init undo struct pointers */
   s_undo_init(page);
-  
+
   page->object_lastplace = NULL;
 
   page->weak_refs = NULL;
-  
+
   set_window (toplevel, page,
               toplevel->init_left, toplevel->init_right,
               toplevel->init_top,  toplevel->init_bottom);
@@ -217,7 +217,7 @@ void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
     backup_filename = f_get_autosave_filename (real_filename);
 
     /* Delete the backup file */
-    if ( (g_file_test (backup_filename, G_FILE_TEST_EXISTS)) && 
+    if ( (g_file_test (backup_filename, G_FILE_TEST_EXISTS)) &&
 	 (!g_file_test(backup_filename, G_FILE_TEST_IS_DIR)) )
     {
       if (unlink(backup_filename) != 0) {
@@ -247,7 +247,7 @@ void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
   s_tile_free_all (page);
 
   /* free current page undo structs */
-  s_undo_free_all (toplevel, page); 
+  s_undo_free_all (toplevel, page);
 
   /* ouch, deal with parents going away and the children still around */
   page->up = -2;
@@ -387,7 +387,7 @@ s_page_remove_weak_ptr (PAGE *page,
  *  \param toplevel  The TOPLEVEL object
  *  \param p_new     The PAGE to go to
  */
-void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new) 
+bool s_page_goto (TOPLEVEL *toplevel, PAGE *p_new)
 {
   char *dirname;
 
@@ -395,11 +395,10 @@ void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new)
 
   dirname = g_dirname (p_new->page_filename);
   if (chdir (dirname)) {
-    /* An error occured with chdir */
-#warning FIXME: What do we do?
+    return FALSE;
   }
   g_free (dirname);
-
+  return TRUE;
 }
 
 /*! \brief Search for pages by filename.
@@ -409,7 +408,7 @@ void s_page_goto (TOPLEVEL *toplevel, PAGE *p_new)
  *
  *  \param toplevel  The TOPLEVEL object
  *  \param filename  The filename string to search for
- *  
+ *
  *  \return PAGE pointer to a matching page, NULL otherwise.
  */
 PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename)
@@ -571,7 +570,7 @@ void s_page_autosave_init(TOPLEVEL *toplevel)
   if (toplevel->auto_save_interval != 0) {
 
     /* 1000 converts seconds into milliseconds */
-    toplevel->auto_save_timeout = 
+    toplevel->auto_save_timeout =
       g_timeout_add(toplevel->auto_save_interval*1000,
                     (GSourceFunc) s_page_autosave,
                     toplevel);
@@ -587,7 +586,7 @@ void s_page_autosave_init(TOPLEVEL *toplevel)
  *  \param [in] toplevel  The TOPLEVEL object.
  *  \return The length in milliseconds to set for next interval.
  */
-int s_page_autosave (TOPLEVEL *toplevel) 
+int s_page_autosave (TOPLEVEL *toplevel)
 {
   const GList *iter;
   PAGE *p_current;

@@ -1,5 +1,5 @@
-
-AUTOMAKE_OPTIONS = nostdinc 1.7 subdir-objects
+## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
 INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
@@ -28,25 +28,25 @@ include Makefile_insert
 include widgets/Makefile_insert
 
 # Extra files not mentioned as sources to include in the source tarball
-EXTRA_DIST =	\
-	widgets/makefile.in
+EXTRA_DIST       = widgets/makefile.in
 
-gschem_CPPFLAGS = $(GEDA_INCLUDES)
-gschem_CFLAGS = $(GCC_CFLAGS) $(LIBSTROKE_CFLAGS) $(AM_CFLAGS)\
-		$(GLIB_CFLAGS) $(GTK_CFLAGS) $(GUILE_CFLAGS) \
-		$(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
+AM_CFLAGS        = $(GEDA_INCLUDES)
+gschem_CPPFLAGS  =
+gschem_CFLAGS    = $(AM_CFLAGS)       $(GCC_CFLAGS)     $(LIBSTROKE_CFLAGS) \
+		   $(GLIB_CFLAGS)     $(GTK_CFLAGS)     $(GUILE_CFLAGS)   \
+		   $(GTHREAD_CFLAGS)  $(MINGW_CFLAGS)   $(gschem_CXXFLAGS)
 
-gschem_LDFLAGS = $(GLIB_LIBS) $(GTK_LIBS) $(LIBSTROKE_LDFLAGS) \
-		 $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+gschem_LDFLAGS   = $(GLIB_LIBS)       $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
+		   $(GTHREAD_LIBS)    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 
-gschem_LDADD = $(top_builddir)/libgedacairo/src/libgedacairo.la \
-	       $(top_builddir)/libgeda/src/libgeda.la \
-	       @LIBINTL@
+gschem_LDADD     = $(top_builddir)/libgedacairo/src/libgedacairo.la \
+	           $(top_builddir)/libgeda/src/libgeda.la \
+	             @LIBINTL@
 
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
-snarf_cpp_opts = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
-		 $(gschem_CPPFLAGS) $(gschem_CFLAGS)
+snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
+		   $(gschem_CPPFLAGS) $(gschem_CFLAGS)
 
 .c.x:
 	CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
@@ -54,8 +54,8 @@ snarf_cpp_opts = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
 localedir = @datadir@/locale
 DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
-MOSTLYCLEANFILES = *.log core FILE *~
-CLEANFILES = *.log core FILE *~ $(BUILT_SOURCES)
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log core FILE *~
+CLEANFILES           = *.log core FILE *~ $(BUILT_SOURCES)
+DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
 

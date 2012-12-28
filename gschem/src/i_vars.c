@@ -190,7 +190,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
 
 /* Display Sub-System */
   w_current->renderer->draw_grips      = default_draw_grips;
-  
+
   w_current->grid_mode                 = default_grid_mode;
   w_current->dots_grid_dot_size        = default_dots_grid_dot_size;
   w_current->dots_grid_mode            = default_dots_grid_mode;
@@ -233,7 +233,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->net_endpoint_mode    = default_net_endpoint_mode;
   w_current->net_direction_mode   = default_net_direction_mode;
   w_current->net_midpoint_mode    = default_net_midpoint_mode;
-  w_current->net_selection_mode   = default_net_selection_mode; 
+  w_current->net_selection_mode   = default_net_selection_mode;
 
   w_current->bus_ripper_rotation  = default_bus_ripper_rotation;
   w_current->bus_ripper_size      = default_bus_ripper_size;
@@ -325,7 +325,7 @@ void
 i_vars_init_defaults()
 {
   EdaConfig *cfg = eda_config_get_default_context ();
-
+  eda_config_set_string (cfg, "gschem", "default-testing", "this is a test");
 }
 
 /*! \brief Save user config on exit.
