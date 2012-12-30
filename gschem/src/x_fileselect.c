@@ -36,7 +36,7 @@ static void
 x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
 {
   GtkFileFilter *filter;
-  
+
   /* file filter for schematic files (*.sch) */
   filter = gtk_file_filter_new ();
   gtk_file_filter_set_name (filter, _("Schematics"));
@@ -141,13 +141,13 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
                 "use-preview-label", FALSE,
                 "preview-widget", frame,
                 NULL);
-  
+
   /* connect callback to update preview */
   g_signal_connect (filechooser,
                     "update-preview",
                     G_CALLBACK (x_fileselect_callback_update_preview),
                     preview);
-  
+
 }
 
 /*! \brief Opens a file chooser for opening one or more schematics.
@@ -206,7 +206,7 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
     GSList *tmp, *filenames =
       gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
 
-    /* open each file */ 
+    /* open each file */
     for (tmp = filenames; tmp != NULL;tmp = g_slist_next (tmp)) {
       page = x_window_open_page (w_current, (char*)tmp->data);
     }
@@ -255,7 +255,7 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 					  GTK_RESPONSE_CANCEL,
 					  -1);
 
-  /* set default response signal. This is usually triggered by the 
+  /* set default response signal. This is usually triggered by the
      "Return" key */
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
 				  GTK_RESPONSE_ACCEPT);
@@ -294,9 +294,9 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
     /* If the file already exists, display a dialog box to check if
        the user really wants to overwrite it. */
     if ((filename != NULL) && g_file_test (filename, G_FILE_TEST_EXISTS)) {
-      GtkWidget *checkdialog = 
+      GtkWidget *checkdialog =
         gtk_message_dialog_new (GTK_WINDOW(dialog),
-                                (GTK_DIALOG_MODAL | 
+                                (GTK_DIALOG_MODAL |
                                  GTK_DIALOG_DESTROY_WITH_PARENT),
                                 GTK_MESSAGE_QUESTION,
                                 GTK_BUTTONS_YES_NO,
@@ -305,7 +305,7 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
                                 filename);
       gtk_window_set_title (GTK_WINDOW (checkdialog), _("Overwrite file?"));
       if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GTK_RESPONSE_YES) {
-        s_log_message (_("Save cancelled on user request\n"));
+        q_log_message (_("Save cancelled on user request\n"));
         g_free (filename);
         filename = NULL;
       }
@@ -357,11 +357,11 @@ int x_fileselect_load_backup(void *user_data, GString *message)
 
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_YES) {
-    gtk_widget_destroy(dialog);  
+    gtk_widget_destroy(dialog);
     return TRUE;
   }
   else {
-    gtk_widget_destroy(dialog);  
+    gtk_widget_destroy(dialog);
     return FALSE;
   }
 }

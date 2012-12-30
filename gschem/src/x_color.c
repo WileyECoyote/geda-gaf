@@ -83,7 +83,7 @@ x_color_free (void)
 void x_color_allocate (void)
 {
   int error;
-  int i;		
+  int i;
   COLOR c;
 
   gdk_color_parse ("black", &black);
@@ -280,7 +280,7 @@ int x_load_color_scheme(char* scheme) {
         s_result = g_scm_c_eval_string_protected(strBuffer);
       scm_dynwind_end ();
       if ((result = scm_is_true(s_result)) ? 1 : 0) {
-        s_log_message(_("Allocatating new color scheme\n"));
+        q_log_message(_("Allocatating new color scheme\n"));
         x_color_allocate();
       }
     }

@@ -219,7 +219,7 @@ DEFINE_I_CALLBACK(file_save_all)
 
   i_update_toolbar(w_current);
   x_pagesel_update (w_current);
-  i_update_menus(w_current);
+  //i_update_menus(w_current); /* WEH: why */
 }
 
 /*! \brief Save File As command initiated by Menu Selection
@@ -321,7 +321,7 @@ DEFINE_TB_CALLBACK(write_pdf)
  */
 DEFINE_I_CALLBACK(file_close)
 {
-    s_log_message(_("Closing Window\n"));
+    q_log_message(_("Closing Window\n"));
     x_window_close(w_current);
 }
 
@@ -465,7 +465,7 @@ DEFINE_I_CALLBACK (edit_select_all)
   i_set_state (w_current, SELECT);
   w_current->inside_action = 0;
   i_update_toolbar (w_current);
-  i_update_menus (w_current);
+  i_update_ui (w_current);
 }
 
 /*! \brief Deselect all objects on page.
@@ -480,7 +480,7 @@ DEFINE_I_CALLBACK (edit_deselect)
   i_set_state (w_current, SELECT);
   w_current->inside_action = 0;
   i_update_toolbar (w_current);
-  i_update_menus (w_current);
+  i_update_ui (w_current);
 }
 /*! \brief De-select initiated by ToolBar Button
  *  \par Function Description
@@ -660,7 +660,7 @@ DEFINE_I_CALLBACK(edit_delete)
     w_current->inside_action = 0;
     i_set_state(w_current, SELECT);
     i_update_toolbar(w_current);
-    i_update_menus(w_current);
+    i_update_ui(w_current);
   }
 }
 
@@ -961,17 +961,17 @@ DEFINE_I_CALLBACK(edit_translate)
   if (w_current->snap == SNAP_OFF) {
     s_log_message(_("WARNING: Do not translate with snap off!\n"));
     s_log_message(_("WARNING: Turning snap on and continuing "
-                  "with translate.\n"));
+                    "with translate.\n"));
     w_current->snap = SNAP_GRID;
     i_show_state(w_current, NULL); /* update status on screen */
   }
 
   if (w_current->snap_size != 100) {
     s_log_message(_("WARNING: Snap grid size is "
-                  "not equal to 100!\n"));
+                    "not equal to 100!\n"));
     s_log_message(_("WARNING: If you are translating a symbol "
-                  "to the origin, the snap grid size should be "
-                  "set to 100\n"));
+                    "to the origin, the snap grid size should be "
+                    "set to 100\n"));
   }
 
   translate_dialog(w_current);
@@ -1890,7 +1890,7 @@ DEFINE_I_CALLBACK(buffer_copy1)
 
   i_update_middle_button(w_current, i_callback_buffer_copy1, _("Copy 1"));
   o_buffer_copy(w_current, 0);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1905,7 +1905,7 @@ DEFINE_I_CALLBACK(buffer_copy2)
 
   i_update_middle_button(w_current, i_callback_buffer_copy2, _("Copy 2"));
   o_buffer_copy(w_current, 1);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1920,7 +1920,7 @@ DEFINE_I_CALLBACK(buffer_copy3)
 
   i_update_middle_button(w_current, i_callback_buffer_copy3, _("Copy 3"));
   o_buffer_copy(w_current, 2);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1935,7 +1935,7 @@ DEFINE_I_CALLBACK(buffer_copy4)
 
   i_update_middle_button(w_current, i_callback_buffer_copy4, _("Copy 4"));
   o_buffer_copy(w_current, 3);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1950,7 +1950,7 @@ DEFINE_I_CALLBACK(buffer_copy5)
 
   i_update_middle_button(w_current, i_callback_buffer_copy5, _("Copy 5"));
   o_buffer_copy(w_current, 4);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1965,7 +1965,7 @@ DEFINE_I_CALLBACK(buffer_cut1)
 
   i_update_middle_button(w_current, i_callback_buffer_cut1, _("Cut 1"));
   o_buffer_cut(w_current, 0);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1980,7 +1980,7 @@ DEFINE_I_CALLBACK(buffer_cut2)
 
   i_update_middle_button(w_current, i_callback_buffer_cut2, _("Cut 2"));
   o_buffer_cut(w_current, 1);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1995,7 +1995,7 @@ DEFINE_I_CALLBACK(buffer_cut3)
 
   i_update_middle_button(w_current, i_callback_buffer_cut3, _("Cut 3"));
   o_buffer_cut(w_current, 2);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -2010,7 +2010,7 @@ DEFINE_I_CALLBACK(buffer_cut4)
 
   i_update_middle_button(w_current, i_callback_buffer_cut4, _("Cut 4"));
   o_buffer_cut(w_current, 3);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -2025,7 +2025,7 @@ DEFINE_I_CALLBACK(buffer_cut5)
 
   i_update_middle_button(w_current, i_callback_buffer_cut5, _("Cut 5"));
   o_buffer_cut(w_current, 4);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -3049,7 +3049,7 @@ DEFINE_TB_CALLBACK(cdocumentation)
       }
     }
   } else {
-    s_log_message(_("No component selected"));
+    q_log_message(_("No component selected"));
 
   }
 }
@@ -3502,10 +3502,10 @@ DEFINE_I_CALLBACK(options_afeedback)
 {
   if (w_current->action_feedback_mode == BOUNDINGBOX) {
     w_current->action_feedback_mode = OUTLINE;
-    s_log_message(_("Action feedback mode set to OUTLINE\n"));
+    q_log_message(_("Action feedback mode set to OUTLINE\n"));
   } else {
     w_current->action_feedback_mode = BOUNDINGBOX;
-    s_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
+    q_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
   }
   if (w_current->inside_action &&
       w_current->toplevel->page_current->place_list != NULL)
@@ -3528,9 +3528,9 @@ DEFINE_I_CALLBACK(options_grid)
   }
 
   switch (w_current->grid_mode) {
-    case GRID_NONE: s_log_message (_("Grid OFF\n"));           break;
-    case GRID_DOTS: s_log_message (_("Dot grid selected\n"));  break;
-    case GRID_MESH: s_log_message (_("Mesh grid selected\n")); break;
+    case GRID_NONE: q_log_message (_("Grid OFF\n"));           break;
+    case GRID_DOTS: q_log_message (_("Dot grid selected\n"));  break;
+    case GRID_MESH: q_log_message (_("Mesh grid selected\n")); break;
   }
 
   i_update_grid_info (w_current);
@@ -3549,16 +3549,16 @@ DEFINE_I_CALLBACK(options_snap)
 
   switch (w_current->snap) {
   case SNAP_OFF:
-    s_log_message(_("Snap OFF (CAUTION!)\n"));
+    q_log_message(_("Snap OFF (CAUTION!)\n"));
     x_menu_set_toggle(w_current, SNAP_TOGGLE, FALSE);
     break;
   case SNAP_GRID:
     x_menu_set_toggle(w_current, SNAP_TOGGLE, TRUE);
-    s_log_message(_("Snap ON\n"));
+    q_log_message(_("Snap ON\n"));
     break;
   case SNAP_RESNAP:
     x_menu_set_toggle(w_current, SNAP_TOGGLE, TRUE);
-    s_log_message(_("Snap back to the grid (CAUTION!)\n"));
+    q_log_message(_("Snap back to the grid (CAUTION!)\n"));
     break;
   default:
     g_critical("options_snap: toplevel->snap out of range: %d\n", w_current->snap);
@@ -3580,10 +3580,10 @@ DEFINE_I_CALLBACK(options_rubberband)
 {
   if (w_current->netconn_rubberband) {
     w_current->netconn_rubberband = 0;
-    s_log_message(_("Rubber band OFF \n"));
+    q_log_message(_("Rubber band OFF \n"));
   } else {
     w_current->netconn_rubberband = 1;
-    s_log_message(_("Rubber band ON\n"));
+    q_log_message(_("Rubber band ON\n"));
   }
   x_menu_set_toggle(w_current, RUBBER_TOGGLE, w_current->netconn_rubberband);
 }
@@ -3597,10 +3597,10 @@ DEFINE_I_CALLBACK(options_rubberband)
 DEFINE_I_CALLBACK(options_magneticnet)
 {
   if ((w_current->magnetic_net_mode = !w_current->magnetic_net_mode)) {
-    s_log_message(_("magnetic net mode: ON\n"));
+    q_log_message(_("magnetic net mode: ON\n"));
   }
   else {
-    s_log_message(_("magnetic net mode: OFF\n"));
+    q_log_message(_("magnetic net mode: OFF\n"));
   }
   x_menu_set_toggle(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
   i_show_state(w_current, NULL);

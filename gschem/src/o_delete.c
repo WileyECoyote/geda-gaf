@@ -88,10 +88,10 @@ void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
                             GTK_STOCK_YES, GTK_RESPONSE_YES,
                             GTK_STOCK_NO, GTK_RESPONSE_NO, NULL);
     gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_NO);
- 
+
     resp = gtk_dialog_run (GTK_DIALOG (dialog));
     gtk_widget_destroy (dialog);
- 
+
     switch (resp) {
     case GTK_RESPONSE_YES: /* Remove all */
       break;
@@ -109,7 +109,7 @@ void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
       return;
     }
   }
- 
+
   for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
     obj = (OBJECT *) iter->data;
     o_selection_remove (toplevel, selection, obj);
@@ -127,5 +127,5 @@ void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
 
   w_current->inside_action = 0;
   o_undo_savestate (w_current, UNDO_ALL);
-  i_update_menus (w_current);
+  i_update_ui (w_current);
 }

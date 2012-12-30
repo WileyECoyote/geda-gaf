@@ -23,6 +23,8 @@
 #include <string.h>
 #endif
 
+#include <unistd.h>
+#include <sys/stat.h>
 #include <gtk/gtk.h>
 
 #include <geda_toolbars.h>
@@ -31,6 +33,16 @@
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
+
+#define TOOLBAR_GEOMETRY_STORE "gschem-toolbar-geometry"
+
+static GSList *can_paste;
+static GSList *can_undo;
+static GSList *can_redo;
+static GSList *have_pages;
+static GSList *complex_object;
+static GSList *some_object;    /* List of widgets on toolbars to set if some object is selected */
+static GSList *text_object;
 
 typedef enum { tb_Add,  tb_Attribute, tb_Edit,
                tb_Page, tb_Standard,  tb_Zoom
@@ -49,6 +61,11 @@ typedef enum  { new, open, save, save_as, print, export_pdf, cut, copy, paste,
                 show_both, visibilty, find_text, hide_text, show_specific,
                 auto_number
 } IDS_GSCHEM_Toolbar;
+
+const char* IDS_Toolbar_Names[] = {
+  "add-bar", "Attribute", "Edit", "Page", "Standard", "Zoom", /* ToolBar Name Strings*/
+  NULL
+};
 
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
@@ -130,15 +147,28 @@ static ToolbarStringData ToolbarStrings[] = {
   { NULL, NULL, NULL},
 };
 
-/*! \brief Creates a new GtkImage displaying a GTK stock icon if available.
+/*! \brief Creates a new Bitmap Image
  *
- * If a stock GTK icon with the requested name was not found, this function
- * falls back to the bitmap icons provided in the distribution.
+ * If for some reason our bitmap can not be found this function falls
+ * back to the stock GTK icon bitmaps provided in the distribution.
+ * This is the opposite of the predecessor function which used the stock
+ * icon as the primary and our bitmap as the backup! This function is
+ * used in combination with the TOOLBAR_xxx_BUTTON macros that use the
+ * LOCAL_ALT option. When LOCAL_ALT options is used the primary icon is
+ * the forth string in the ToolbarStrings, the secondary is will be GTK
+ * _STK_ and the next macro parameter, for example:
  *
- * ex.:   x_window_stock_pixmap("open", w_current),
+ * ex.:TOOLBAR_GEDA_BUTTON( Standard, new, LOCAL_ALT, NEW, callback, data);
+ *                                     ^       ^       ^
+ *                  enumerated index __|       |       |
+ *                                             |       |
+ *                         use this function __|       |
+ *                                                     |
+ *             if file not found then use GTK_STOCK_ __|
  *
- * \param stock Name of the stock icon ("new", "open", etc.)
- * \return GtkWidget Pointer to the new GtkImage object.
+ *
+ * \param item Name of the stock icon ("new", "open", etc.)
+ *
  */
 static GtkWidget *get_stock_alt_pixmap(ToolbarItem* item )
 {
@@ -151,8 +181,8 @@ static GtkWidget *get_stock_alt_pixmap(ToolbarItem* item )
   GdkColor  *background=&w_current->main_window->style->bg[GTK_STATE_NORMAL];
 
   char *filename=g_strconcat(w_current->toplevel->bitmap_directory,
-                              G_DIR_SEPARATOR_S,
-                              TB_ICON_NAME(item->ButtonId), NULL);
+                             G_DIR_SEPARATOR_S,
+                             TB_ICON_NAME(item->ButtonId), NULL);
 
   /* 1ST Try custom icon */
   if(access(filename, R_OK) == 0) {
@@ -176,18 +206,161 @@ static GtkWidget *get_stock_alt_pixmap(ToolbarItem* item )
   return wpixmap;
 }
 
-/*! \brief Finialize Toolbars Initialization
+/*! \brief Save Toolbar State and Geometry
  *
  *  \par Function Description
- * This function sets the visability of the Close button on all the
- * handleboxes. The Main window did a Show All and that turned on all
- * the button on the handleboxes that should be hidden if they are
- * docked. Rather than turn each widget indiviualy, it's easier to "fix"
- * this by having this routine emit a signal to each handlebox.
+ *  This function saves the state of the Toolbar widgets so we
+ *  can restore them to same states the next time we run.
+ */
+void x_toolbars_save_state(GSCHEM_TOPLEVEL *w_current) {
+
+  char *data, *filename;
+  GKeyFile    *key_file = NULL;
+
+  void SaveBarVisibility(GtkWidget * handlebox) {
+    int   bar_id;
+    int   visible;
+    const char *group_name;
+
+    bar_id = GET_TOOLBAR_ID(handlebox);
+    group_name = IDS_Toolbar_Names[bar_id];
+    visible = gtk_widget_get_visible(handlebox);
+    g_key_file_set_integer (key_file, group_name, "visible", visible);
+    //g_key_file_set_integer (key_file, group_name, "x", x);
+    //g_key_file_set_integer (key_file, group_name, "y", y);
+  }
+
+  void SaveAllBars() {
+    SaveBarVisibility(w_current->add_handlebox);
+    SaveBarVisibility(w_current->attribute_handlebox);
+    SaveBarVisibility(w_current->edit_handlebox);
+    SaveBarVisibility(w_current->page_handlebox);
+    SaveBarVisibility(w_current->standard_handlebox);
+    SaveBarVisibility(w_current->zoom_handlebox);
+  }
+
+  bool setup_new_keyfile (char *filename) {
+
+    bool results = TRUE;
+
+    key_file = g_key_file_new();
+
+    if (access(filename, W_OK) != 0) {
+      v_log_message("Creating new Toolbar configuration\n");
+      mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
+      g_file_set_contents (filename, "", -1, NULL);
+    }
+    if (!g_file_test (filename, G_FILE_TEST_EXISTS))
+      results = FALSE;
+    return results;
+  }
+
+  v_log_message("Saving Toolbar configuration\n");
+  filename = g_build_filename(s_path_user_config (), TOOLBAR_GEOMETRY_STORE, NULL);
+
+  if (!g_file_test (filename, G_FILE_TEST_EXISTS))
+    setup_new_keyfile (filename);
+  else
+    key_file = g_key_file_new();
+
+  if(key_file) {
+    SaveAllBars();
+    data = g_key_file_to_data(key_file, NULL, NULL);
+    g_file_set_contents(filename, data, -1, NULL);
+    g_free(data);
+  }
+  else
+    fprintf(stderr, "Warning, could not save Toolbar configuration to %s\n", filename);
+
+  if(key_file) g_key_file_free(key_file);
+  g_free(filename);
+}
+
+/*! \brief Restore Toolbar State and Geometry
  *
- *  \param [in] parent_container is main vbox widget
+ *  \par Function Description
+ *  This function restores the state of the Toolbar widgets.
+ */
+void x_toolbars_restore_state(GSCHEM_TOPLEVEL *w_current) {
+
+  char       *filename;
+  const char *group_name;
+  GError     *err = NULL;
+  GKeyFile   *key_file = NULL;
+
+  void RestoreBarVisibility(GtkWidget * handlebox) {
+    int bar_id;
+    int visible;
+
+    bar_id = GET_TOOLBAR_ID(handlebox);
+    group_name = IDS_Toolbar_Names[bar_id];
+
+    if(key_file) {
+      visible = g_key_file_get_integer (key_file, group_name, "visible", &err);
+      if(!err) {
+        gtk_widget_set_visible(handlebox, visible);
+        x_menu_set_toolbar_toggle(w_current, bar_id, visible);
+      }
+      else {
+        gtk_widget_set_visible(handlebox, TRUE);
+        g_clear_error (&err);
+      }
+    }
+    else
+      s_log_message("Error, Toolbar configuration key file, %s\n", group_name);
+
+  }
+
+  void RestoreAllBars() {
+    if(key_file) {
+      v_log_message("Retrieving toolbar geometry\n");
+      RestoreBarVisibility(w_current->add_handlebox);
+      RestoreBarVisibility(w_current->attribute_handlebox);
+      RestoreBarVisibility(w_current->edit_handlebox);
+      RestoreBarVisibility(w_current->page_handlebox);
+      RestoreBarVisibility(w_current->standard_handlebox);
+      RestoreBarVisibility(w_current->zoom_handlebox);
+    }
+  }
+
+  filename = g_build_filename(s_path_user_config (), TOOLBAR_GEOMETRY_STORE, NULL);
+
+  if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
+    if (access(filename, R_OK) == 0) {
+      key_file = g_key_file_new();
+      if(g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err))
+          RestoreAllBars();
+      else {
+        s_log_message("Warning, Error Restoring Toolbar configuration, %s\n", err->message);
+        g_clear_error (&err);
+      }
+    }
+    else {
+      s_log_message("Warning, Toolbar configuration file access error:, %s\n", err->message);
+    }
+  }
+  else
+    v_log_message("Toolbar configuration geometry not found!\n");
+
+  if(key_file) g_key_file_free(key_file);
+  g_free(filename);
+}
+
+/*! \brief Finialize Toolbar Initialization
+ *
+ *  \par Function Description
+ * This function sets the visibility of the Close buttons on all the
+ * handleboxes. The Main window did a Show All and that revealed all
+ * the buttons on the handleboxes that should be hidden if they are
+ * docked. Rather than turn each widget individually when creating the
+ * main window, it's easier to "fix" this by having this routine emit
+ * a signal to each handlebox.
+ *
+ *  \param [in] w_current pointer to top-level data structure
  */
 void x_toolbars_finialize (GSCHEM_TOPLEVEL *w_current) {
+
+  x_toolbars_restore_state(w_current);
 
   g_signal_emit_by_name(w_current->add_handlebox,       "child-attached");
   g_signal_emit_by_name(w_current->attribute_handlebox, "child-attached");
@@ -198,7 +371,9 @@ void x_toolbars_finialize (GSCHEM_TOPLEVEL *w_current) {
 
 }
 
-void On_Close_Handlebar(GtkWidget *CloseButton, GSCHEM_TOPLEVEL *w_current)
+/*! @brief Toolbar Close Button Handler */
+void
+On_Close_Handlebar(GtkWidget *CloseButton, GSCHEM_TOPLEVEL *w_current)
 {
   GtkWidget *container;
   int HandleBoxId;
@@ -214,19 +389,34 @@ void On_Close_Handlebar(GtkWidget *CloseButton, GSCHEM_TOPLEVEL *w_current)
   }
   else
     fprintf(stderr, "Error [On_Close_Handlebar]: container is not a handlebox\n");
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 
 }
-void On_Dock_ToolBar(GtkHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseButton) {
-   gtk_widget_hide(CloseButton);
 
-}
-void On_Float_ToolBar(GtkHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseButton) {
-   gtk_widget_show(CloseButton);
+/*! @brief Toolbar On Dock Handler to Hide the Close Button */
+void
+On_Dock_ToolBar(GtkHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseButton) {
+  gtk_handle_box_set_shadow_type ( handlebox, GTK_SHADOW_ETCHED_OUT );
+  gtk_widget_hide (CloseButton);
 }
 
-void x_toolbars_add_closer(GSCHEM_TOPLEVEL *w_current, GtkWidget *HandlerBar, GtkWidget *ToolBar) {
+/*! @brief Toolbar On Float Handler to Show the Close Button */
+void
+On_Float_ToolBar(GtkHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseButton) {
+  gtk_handle_box_set_shadow_type ( handlebox, GTK_SHADOW_ETCHED_IN );
+  gtk_widget_show (CloseButton);
+}
+
+/*! \brief Add Close Button Toolbars - the little red X's
+ *
+ *  \par Function Description
+ * This function creates a single close buttons on the each toolbars
+ * along with the nessacary alignment containers. The function sets up
+ * callback to the function defined above.
+ *
+ *  \param [in] parent_container is main vbox widget (main_box)
+ */
+static void
+x_toolbars_add_closer(GSCHEM_TOPLEVEL *w_current, GtkWidget *HandlerBar, GtkWidget *ToolBar) {
 
   GtkWidget *CloseButton;
   GtkWidget *fixed;
@@ -266,7 +456,7 @@ void x_toolbars_add_closer(GSCHEM_TOPLEVEL *w_current, GtkWidget *HandlerBar, Gt
   /* Setup the signal handlers */
   g_signal_connect (CloseButton,"pressed",
                     G_CALLBACK (On_Close_Handlebar),
-                    w_current);
+                    w_current); /* not really needed since menu has embed ptr */
 
   g_signal_connect (HandlerBar,"child-attached",
                     G_CALLBACK (On_Dock_ToolBar),
@@ -281,21 +471,44 @@ void x_toolbars_add_closer(GSCHEM_TOPLEVEL *w_current, GtkWidget *HandlerBar, Gt
   return;
 }
 
-/*! \brief Initialize Toolbars
+/*! \section Initialize-Toolbars
+ *
+ *  \par
+ *  Note that this section relies heavily on MACROS defined in
+ *  geda_toolbars.h in order to reduce coding errors and to help
+ *  clarify the "subject" of the algorythms, rather then obsuring
+ *  the intent in >10k lines of gtk_xxx's.
+ *
+ */
+
+/*! \brief Initialize Toolbars at the Top of the Main Window
  *
  *  \par Function Description
- * This function creates handleboxes, toolbars and toolbar buttons.
+ * This function creates handleboxes, toolbars, toolbar buttons and
+ * related containers in order to create all of the Toolbars at the
+ * Top of the Main Window. This function initializes the global
+ * variables in the compilation unit.
  *
- *  \param [in] parent_container is main vbox widget
+ *  \param [in] parent_container is main vbox widget (main_box)
  */
 void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container) {
 
-  /* ------------------------- Docker ------------------------ */
+  /* ------------------------ Top Toolbars ---------------------- */
   GtkWidget *Add_Toolbar;
   GtkWidget *Page_Toolbar;
   GtkWidget *Standard_Toolbar;
   GtkWidget *Zoom_Toolbar;
 
+  /* --------------- Initialize Module Level Globals ------------ */
+  can_paste      = NULL;
+  can_undo       = NULL;
+  can_redo       = NULL;
+  have_pages     = NULL;
+  complex_object = NULL;
+  some_object    = NULL;
+  text_object    = NULL;
+
+  /* ---------------------- Create Top ToolBox ------------------ */
   GtkWidget *toolbox_T1 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (parent_container), toolbox_T1, FALSE, FALSE, 0);
   gtk_widget_show (toolbox_T1);
@@ -311,11 +524,10 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
 
   Standard_Toolbar = gtk_toolbar_new ();
 
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Standard_Toolbar),
-			       GTK_ORIENTATION_HORIZONTAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_ICONS); /* get config GTK_TOOLBAR_BOTH*/
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR (Standard_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style          (GTK_TOOLBAR (Standard_Toolbar), GTK_TOOLBAR_ICONS); /* get config GTK_TOOLBAR_BOTH*/
   gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (w_current->standard_handlebox), Standard_Toolbar);
+  gtk_container_add              (GTK_CONTAINER (w_current->standard_handlebox), Standard_Toolbar);
 
   /* Add New, Open, Save and Save As Buttons to the Standard Toolbar */
   TOOLBAR_GEDA_BUTTON( Standard, new,     LOCAL_ALT, NEW,     i_callback_toolbar_file_new,     w_current);
@@ -342,8 +554,14 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   TOOLBAR_GEDA_BUTTON( Standard, configure, LOCAL_ALT, PREFERENCES, i_callback_toolbar_configure_settings,  w_current);
 
   gtk_widget_show (Standard_Toolbar);
-  SET_TOOLBAR_ID (w_current->standard_handlebox, tb_Standard);
+  SET_TOOLBAR_ID  (w_current->standard_handlebox, tb_Standard);
   x_toolbars_add_closer(w_current, w_current->standard_handlebox, Standard_Toolbar );
+
+  can_paste   = g_slist_append ( can_paste,   TB_BUTTON (paste));
+  some_object = g_slist_append ( some_object, TB_BUTTON (cut  ));
+  some_object = g_slist_append ( some_object, TB_BUTTON (copy ));
+  can_undo    = g_slist_append ( can_undo,    TB_BUTTON (undo ));
+  can_redo    = g_slist_append ( can_undo,    TB_BUTTON (redo ));
 
   /* ----------- Create and Populate the Page Toolbar ----------- */
 
@@ -353,10 +571,10 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   gtk_widget_show (w_current->page_handlebox);
 
   Page_Toolbar = gtk_toolbar_new ();
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Page_Toolbar), GTK_ORIENTATION_HORIZONTAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Page_Toolbar), GTK_TOOLBAR_ICONS);
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Page_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style          (GTK_TOOLBAR   (Page_Toolbar), GTK_TOOLBAR_ICONS);
   gtk_container_set_border_width (GTK_CONTAINER (Page_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (w_current->page_handlebox), Page_Toolbar);
+  gtk_container_add              (GTK_CONTAINER (w_current->page_handlebox), Page_Toolbar);
 
   TOOLBAR_GEDA_BUTTON( Page, prev_page,    LOCAL_STK, GO_BACK,    i_callback_toolbar_page_prev, w_current);
   TOOLBAR_GEDA_BUTTON( Page, next_page,    LOCAL_STK, GO_FORWARD, i_callback_toolbar_page_next, w_current);
@@ -365,31 +583,40 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
 
-  TOOLBAR_GEDA_BUTTON( Page, down_schematic, LOCAL_PIX, GEDA_DEMOTE_BITMAP,    i_callback_toolbar_down_schematic, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, down_symbol,    LOCAL_PIX, GEDA_DEMOTE_BITMAP,    i_callback_toolbar_down_symbol, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,   i_callback_toolbar_hierarchy_up,  w_current);
+  TOOLBAR_GEDA_BUTTON( Page, down_schematic, LOCAL_PIX, GEDA_DEMOTE_BITMAP,   i_callback_toolbar_down_schematic, w_current);
+  TOOLBAR_GEDA_BUTTON( Page, down_symbol,    LOCAL_PIX, GEDA_DEMOTE_BITMAP,   i_callback_toolbar_down_symbol, w_current);
+  TOOLBAR_GEDA_BUTTON( Page, hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,  i_callback_toolbar_hierarchy_up,  w_current);
   TOOLBAR_GEDA_BUTTON( Page, comp_doc,       LOCAL_PIX, GAF_SEE_NOTES_BITMAP, i_callback_toolbar_cdocumentation, w_current);
 
+  have_pages     = g_slist_append ( have_pages, TB_BUTTON( prev_page ));
+  have_pages     = g_slist_append ( have_pages, TB_BUTTON( next_page ));
+
+  complex_object = g_slist_append ( complex_object, TB_BUTTON( down_schematic));
+  complex_object = g_slist_append ( complex_object, TB_BUTTON( down_symbol   ));
+  complex_object = g_slist_append ( complex_object, TB_BUTTON( hierarchy_up  ));
+  complex_object = g_slist_append ( complex_object, TB_BUTTON( comp_doc      ));
+
   gtk_widget_show (Page_Toolbar);
-  SET_TOOLBAR_ID (w_current->page_handlebox, tb_Page);
+  SET_TOOLBAR_ID       (w_current->page_handlebox, tb_Page);
   x_toolbars_add_closer(w_current, w_current->page_handlebox, Page_Toolbar );
 
   // fprintf(stderr, "what happen to [%s]\n",GAF_SEE_NOTES_BITMAP );
   /* Start Second Toolbar Row */
   GtkWidget *toolbox_T2 = gtk_hbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (parent_container), toolbox_T2, FALSE, FALSE, 0);
-  gtk_widget_show (toolbox_T2);
+  gtk_widget_show    (toolbox_T2);
 
   /* --------- Create and Populate the Add Toolbar -------- */
   w_current->add_handlebox = gtk_handle_box_new ();
-  gtk_box_pack_start(GTK_BOX (toolbox_T2), w_current->add_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show (w_current->page_handlebox);
+  gtk_box_pack_start (GTK_BOX (toolbox_T2), w_current->add_handlebox, FALSE, FALSE, 0);
+  gtk_widget_show    (w_current->page_handlebox);
 
   Add_Toolbar = gtk_toolbar_new ();
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Add_Toolbar), GTK_ORIENTATION_HORIZONTAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Add_Toolbar), GTK_TOOLBAR_ICONS);
+
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Add_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style          (GTK_TOOLBAR   (Add_Toolbar), GTK_TOOLBAR_ICONS);
   gtk_container_set_border_width (GTK_CONTAINER (Add_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (w_current->add_handlebox), Add_Toolbar);
+  gtk_container_add              (GTK_CONTAINER (w_current->add_handlebox), Add_Toolbar);
 
   TOOLBAR_GEDA_BUTTON( Add, add_line,   LOCAL_PIX, GEDA_LINE_BITMAP,    i_callback_toolbar_add_line,  w_current);
   TOOLBAR_GEDA_BUTTON( Add, add_box,    LOCAL_PIX, GEDA_BOX_BITMAP,     i_callback_toolbar_add_box, w_current);
@@ -425,7 +652,7 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
                                  w_current);
   /* not part of any radio button group */
   TOOLBAR_GEDA_BUTTON( Add, add_attribute, LOCAL_PIX, GAF_MAP(ADD_ATTRIBUTE), i_callback_toolbar_add_attribute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Add, add_text,      LOCAL_PIX, GSCHEM_TEXT_BITMAP,   i_callback_toolbar_add_text,  w_current);
+  TOOLBAR_GEDA_BUTTON( Add, add_text,      LOCAL_PIX, GSCHEM_TEXT_BITMAP,     i_callback_toolbar_add_text,  w_current);
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
   w_current->toolbar_select = gtk_toolbar_append_element(GTK_TOOLBAR(Add_Toolbar),
@@ -438,25 +665,25 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
                                  (GtkSignalFunc) i_callback_toolbar_edit_select,
                                  w_current);
 
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w_current->toolbar_select),
-                                 TRUE);
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(w_current->toolbar_select), TRUE);
 
   TOOLBAR_GEDA_BUTTON( Add, deselector,  LOCAL_PIX, GEDA_DESELECT_BITMAP, i_callback_toolbar_deselect,  w_current);
 
   gtk_widget_show (Add_Toolbar);
-  SET_TOOLBAR_ID (w_current->add_handlebox, tb_Add);
+  SET_TOOLBAR_ID  (w_current->add_handlebox, tb_Add);
   x_toolbars_add_closer(w_current, w_current->add_handlebox, Add_Toolbar );
 
   /* --------- Create and Populate the Zoom Toolbar -------- */
   w_current->zoom_handlebox = gtk_handle_box_new ();
   gtk_box_pack_start(GTK_BOX (toolbox_T2), w_current->zoom_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show (w_current->zoom_handlebox);
+  gtk_widget_show   (w_current->zoom_handlebox);
 
   Zoom_Toolbar = gtk_toolbar_new ();
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Zoom_Toolbar), GTK_ORIENTATION_HORIZONTAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Zoom_Toolbar), GTK_TOOLBAR_ICONS);
+
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Zoom_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style          (GTK_TOOLBAR   (Zoom_Toolbar), GTK_TOOLBAR_ICONS);
   gtk_container_set_border_width (GTK_CONTAINER (Zoom_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
+  gtk_container_add              (GTK_CONTAINER (w_current->zoom_handlebox), Zoom_Toolbar);
 
   TOOLBAR_GEDA_BUTTON( Zoom, view_redraw,  LOCAL_ALT, ZOOM_FIT, i_callback_toolbar_view_redraw,  w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, zoom_pan,     LOCAL_ALT, ZOOM_FIT, i_callback_toolbar_zoom_pan,  w_current);
@@ -471,23 +698,34 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   x_toolbars_add_closer(w_current, w_current->zoom_handlebox, Zoom_Toolbar );
 }
 
+/*! \brief Initialize Toolbar at the Left of the Main Window
+ *
+ *  \par Function Description
+ * This function creates handleboxes, toolbars, toolbar buttons and
+ * related containers in order to create the Toolbar at the Left
+ * of the Main Window.
+ *
+ *  \param [in] parent_container is the center_hbox widget
+ */
 void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container) {
   GtkWidget *Edit_Toolbar;
 
   GtkWidget *toolbox_L1 = gtk_vbox_new (FALSE, 0);
   gtk_box_pack_start (GTK_BOX (parent_container), toolbox_L1, FALSE, FALSE, 0);
-  gtk_widget_show (toolbox_L1);
+  gtk_widget_show    (toolbox_L1);
 
   /* --------- Create and Populate the Edit Toolbar -------- */
   w_current->edit_handlebox = gtk_handle_box_new ();
   gtk_box_pack_start(GTK_BOX (toolbox_L1), w_current->edit_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show (w_current->edit_handlebox);
+  gtk_widget_show   (w_current->edit_handlebox);
 
   Edit_Toolbar = gtk_toolbar_new ();
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Edit_Toolbar), GTK_ORIENTATION_VERTICAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Edit_Toolbar), GTK_TOOLBAR_ICONS);
+
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Edit_Toolbar), GTK_ORIENTATION_VERTICAL);
+  gtk_toolbar_set_style          (GTK_TOOLBAR   (Edit_Toolbar), GTK_TOOLBAR_ICONS);
+
   gtk_container_set_border_width (GTK_CONTAINER (Edit_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (w_current->edit_handlebox), Edit_Toolbar);
+  gtk_container_add              (GTK_CONTAINER (w_current->edit_handlebox), Edit_Toolbar);
 
   TOOLBAR_GEDA_BUTTON( Edit, edit_copy,  LOCAL_PIX, GEDA_COPY_BITMAP,    i_callback_toolbar_edit_copy,   w_current);
   TOOLBAR_GEDA_BUTTON( Edit, multi_copy, LOCAL_PIX, GEDA_MULTI_BITMAP,   i_callback_toolbar_edit_mcopy,  w_current);
@@ -501,11 +739,32 @@ void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_containe
   TOOLBAR_GEDA_BUTTON( Edit, lock,       LOCAL_PIX, GEDA_LOCK_BITMAP,   i_callback_toolbar_edit_lock,   w_current);
   TOOLBAR_GEDA_BUTTON( Edit, unlock,     LOCAL_PIX, GEDA_UNLOCK_BITMAP, i_callback_toolbar_edit_unlock, w_current);
 
+  some_object = g_slist_append (some_object, TB_BUTTON ( edit_copy  ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( multi_copy ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( move   ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( mirror ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( rotate ));
+
+  some_object = g_slist_append (some_object, TB_BUTTON ( edit_line  ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( edit_color ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( edit_fill  ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( lock   ));
+  some_object = g_slist_append (some_object, TB_BUTTON ( unlock ));
+
   gtk_widget_show (Edit_Toolbar);
   gtk_widget_show (Edit_Toolbar);
-  SET_TOOLBAR_ID (w_current->edit_handlebox, tb_Edit);
+  SET_TOOLBAR_ID  (w_current->edit_handlebox, tb_Edit);
   x_toolbars_add_closer(w_current, w_current->edit_handlebox, Edit_Toolbar );
 }
+/*! \brief Initialize Toolbar at the Bottom of the Main Window
+ *
+ *  \par Function Description
+ * This function creates handleboxes, toolbars, toolbar buttons and
+ * related containers in order to create the Toolbar at the Bottom
+ * of the Main Window.
+ *
+ *  \param [in] parent_container is the main_box widget (same as the top bar)
+ */
 void x_toolbars_init_bottom(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container) {
 
   GtkWidget *Attribute_Toolbar;
@@ -523,10 +782,12 @@ void x_toolbars_init_bottom(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_contai
   gtk_widget_show (w_current->attribute_handlebox);
 
   Attribute_Toolbar = gtk_toolbar_new ();
-  gtk_toolbar_set_orientation (GTK_TOOLBAR (Attribute_Toolbar), GTK_ORIENTATION_HORIZONTAL);
-  gtk_toolbar_set_style (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_ICONS);
+
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR (Attribute_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_style          (GTK_TOOLBAR (Attribute_Toolbar), GTK_TOOLBAR_ICONS);
+
   gtk_container_set_border_width (GTK_CONTAINER (Attribute_Toolbar), 0);
-  gtk_container_add (GTK_CONTAINER (w_current->attribute_handlebox), Attribute_Toolbar);
+  gtk_container_add              (GTK_CONTAINER (w_current->attribute_handlebox), Attribute_Toolbar);
 
   /* Add Attribute Button to Toolbar */
   TOOLBAR_GEDA_BUTTON(Attribute, attach,     LOCAL_PIX, GAF_PROMOTE_BITMAP,  i_callback_toolbar_attach_attributes,  w_current);
@@ -540,22 +801,63 @@ void x_toolbars_init_bottom(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_contai
   TOOLBAR_GEDA_BUTTON(Attribute, show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, i_callback_toolbar_show_text,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, auto_number,   LOCAL_PIX, GEDA_NUMBER_BITMAP,  i_callback_toolbar_autonumber,  w_current);
 
+  text_object = g_slist_append ( text_object, TB_BUTTON ( attach     ));
+  text_object = g_slist_append ( text_object, TB_BUTTON ( detach     ));
+  text_object = g_slist_append ( text_object, TB_BUTTON ( show_value ));
+  text_object = g_slist_append ( text_object, TB_BUTTON ( show_name  ));
+  text_object = g_slist_append ( text_object, TB_BUTTON ( show_both  ));
+  text_object = g_slist_append ( text_object, TB_BUTTON ( visibilty  ));
+
   gtk_widget_show (Attribute_Toolbar);
   SET_TOOLBAR_ID (w_current->attribute_handlebox, tb_Attribute);
   x_toolbars_add_closer(w_current, w_current->attribute_handlebox, Attribute_Toolbar );
 }
-/*! \brief Set Senitivity of Toolbar Buttons.
+
+/*! \brief Set Sensitivity of Toolbar Buttons
  *  \par Function Description
- *       This function is called by on_notebook_switch_page when ever a TAB
- *       is selected, passing a gslist of toolbasr button widgets to be set
- *       to the specified sensitivity
+ *   This function is called by x_toolbars_set_sensitivities with a gslist
+ *   of toolbasr button widgets to be set to the specified sensitivity
+ *
+ *  \param [in] ListToolBarItems SINGLE linked list of widgets
+ *  \param [in] sensitivee boolean TRUE = sensitive, FALSE = gray-out
  */
-void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive)
+static void x_toolbar_set_sensitivity(GSList *ListToolBarItems, int sensitive)
 {
-    lambda (GtkWidget *menu_item)
+    lambda (GtkWidget *item)
     {
-      gtk_widget_set_sensitive(menu_item, sensitive);
+      gtk_widget_set_sensitive(item, sensitive);
       return FALSE;
     }
     mapcar(ListToolBarItems);
+}
+
+/*! \brief Set Sensitivity of Toolbar Button Groups
+ *
+ *  \par Function Description
+ *  This functions sets the sensitivities of toolbar button as a visual
+ *  aid to the user. When the sensitivity is set to FALSE widgets are
+ *  grayed-out to indicate they are not applicable to the current context.
+ *  Note that this is purely to aid the user, cosmetically the GUI "looks"
+ *  better with color and nothing bad would happen even if a button is
+ *  pressed when not applicable, gschem just ignores the signals.
+ *
+ *  \param [in] mode is an enumerated group identifier (see in globals.h)
+ *  \param [in] state boolean TRUE = sensitive, FALSE = gray-out
+ */
+void x_toolbars_set_sensitivities(ID_SENITIVITY_MODE mode, bool state) {
+  switch (mode) {
+    case CAN_PASTE:      x_toolbar_set_sensitivity(can_paste, state);
+      break;
+    case CAN_UNDO:       x_toolbar_set_sensitivity(can_undo, state);
+      break;
+    case CAN_REDO:       x_toolbar_set_sensitivity(can_redo, state);
+      break;
+    case HAVE_PAGES:     x_toolbar_set_sensitivity(have_pages, state);
+      break;
+    case COMPLEX_OJECTS: x_toolbar_set_sensitivity(complex_object, state);
+      break; /* is optional */
+    case TEXT_OJECTS:    x_toolbar_set_sensitivity(text_object, state);
+      break;
+    case SOME_OJECTS:    x_toolbar_set_sensitivity(some_object, state);
+  }
 }

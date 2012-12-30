@@ -302,7 +302,7 @@ void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate);
 void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate, const char *message);
 void i_update_middle_button(GSCHEM_TOPLEVEL *w_current, void (*func_ptr)(), const char *string);
 void i_update_toolbar(GSCHEM_TOPLEVEL *w_current);
-void i_update_menus(GSCHEM_TOPLEVEL *w_current);
+void i_update_ui(GSCHEM_TOPLEVEL *w_current);
 void i_set_filename(GSCHEM_TOPLEVEL *w_current, const gchar *string);
 void i_update_grid_info(GSCHEM_TOPLEVEL *w_current);
 /* i_callbacks.c */
@@ -764,7 +764,7 @@ int text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size);
 void select_all_text_in_textview(GtkTextView *textview);
 void text_input_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
 void text_input_dialog(GSCHEM_TOPLEVEL *w_current);
-int change_alignment(GtkComboBox *w, GSCHEM_TOPLEVEL *w_current);
+int  change_alignment(GtkComboBox *w, GSCHEM_TOPLEVEL *w_current);
 void text_edit_dialog_ok(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
 void text_edit_dialog(GSCHEM_TOPLEVEL *w_current, const char *string, int text_size, int text_alignment);
 void line_type_dialog(GSCHEM_TOPLEVEL *w_current);
@@ -777,7 +777,7 @@ void slot_edit_dialog(GSCHEM_TOPLEVEL *w_current, const char *string);
 void about_dialog(GSCHEM_TOPLEVEL *w_current);
 void coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y);
 void coord_dialog(GSCHEM_TOPLEVEL *w_current, int x, int y);
-int color_set(GtkWidget *w, gpointer data);
+int  color_set(GtkWidget *w, gpointer data);
 char *index2functionstring(int index);
 void color_edit_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
 void color_edit_dialog(GSCHEM_TOPLEVEL *w_current);
@@ -785,7 +785,7 @@ void x_dialog_hotkeys(GSCHEM_TOPLEVEL *w_current);
 void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current);
 
 void generic_msg_dialog(const char *);
-int generic_confirm_dialog(const char *);
+int  generic_confirm_dialog(const char *);
 char * generic_filesel_dialog(const char *, const char *, int);
 
 void find_text_dialog(GSCHEM_TOPLEVEL *w_current);
@@ -835,9 +835,10 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent);
 /* x_log.c */
 void x_log_open ();
 void x_log_close ();
-void x_log_message (const char *log_domain,
-                    GLogLevelFlags log_level,
-                    const char *message);
+void q_log_message(const char *message);
+void v_log_message(const char *message);
+void x_log_message(const char *log_domain, GLogLevelFlags log_level,
+                   const char *message);
 /* x_misc.c */
 bool x_show_uri (GSCHEM_TOPLEVEL *w_current, const char *buf, GError **err);
 /* x_menus.c */
@@ -879,10 +880,13 @@ void x_stroke_free (void);
 void x_stroke_record (GSCHEM_TOPLEVEL *w_current, int x, int y);
 int x_stroke_translate_and_execute (GSCHEM_TOPLEVEL *w_current);
 /* x_toolbars.c */
+void x_toolbars_save_state(GSCHEM_TOPLEVEL *w_current);
+void x_toolbars_restore_state(GSCHEM_TOPLEVEL *w_current);
 void x_toolbars_finialize(GSCHEM_TOPLEVEL *w_current);
 void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container);
 void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container);
 void x_toolbars_init_bottom(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container);
+void x_toolbars_set_sensitivities(ID_SENITIVITY_MODE mode, bool state);
 /* x_window.c */
 void x_window_setup (GSCHEM_TOPLEVEL *w_current);
 void x_window_setup_gc(GSCHEM_TOPLEVEL *w_current);

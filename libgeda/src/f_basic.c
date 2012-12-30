@@ -24,10 +24,10 @@
 
 #include <config.h>
 
-#include <stdio.h> 
+#include <stdio.h>
 
 #ifdef HAVE_UNISTD_H
-#include <unistd.h> 
+#include <unistd.h>
 #endif
 
 #include <sys/param.h>
@@ -64,9 +64,9 @@
  *  \param [in] filename The filename to create an autosave filename for.
  *  \return A newly allocated string buffer.
  */
-gchar *f_get_autosave_filename (const gchar *filename)
+char *f_get_autosave_filename (const gchar *filename)
 {
-  gchar *result, *basename, *new_basename, *dirname;
+  char *result, *basename, *new_basename, *dirname;
   basename = g_path_get_basename(filename);
   dirname = g_path_get_dirname(filename);
   new_basename = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING,
@@ -94,12 +94,12 @@ gchar *f_get_autosave_filename (const gchar *filename)
  *
  *  \returns TRUE if autosave active, FALSE otherwise
  */
-bool f_has_active_autosave (const gchar *filename, GError **err)
+bool f_has_active_autosave (const char *filename, GError **err)
 {
   bool result = FALSE;
-  gchar *auto_filename;
-  gint file_err = 0;
-  gint auto_err = 0;
+  char *auto_filename;
+  int file_err = 0;
+  int auto_err = 0;
   GFileError g_errcode = 0;
   struct stat file_stat, auto_stat;
 
@@ -230,7 +230,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
   /* First cd into file's directory. */
   file_directory = g_dirname (full_filename);
 
-  if (file_directory) { 
+  if (file_directory) {
     if (chdir (file_directory)) {
       /* Error occurred with chdir */
       fprintf(stderr, "ERROR, f_open_flags: Could not changed to directory:[%s]",file_directory );
@@ -312,7 +312,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
        the user if save it or not when closing the page. */
     page->CHANGED=1;
   }
-      
+
   g_free(full_filename);
   g_free(full_rcfilename);
   g_free (backup_filename);
@@ -361,7 +361,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
   gchar *dirname;
   struct stat st_ActiveFile;
   GError *tmp_err = NULL;
-    
+
   /* Get the real filename and file permissions */
   real_filename = follow_symlinks (filename, &tmp_err);
 
@@ -374,13 +374,13 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
   }
 
   /* Check to see if filename is writable */
-  if (g_file_test(filename, G_FILE_TEST_EXISTS) && 
+  if (g_file_test(filename, G_FILE_TEST_EXISTS) &&
       g_access(filename, W_OK) != 0) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM,
                  _("File %s is read-only"), filename);
-    return 0;      
+    return 0;
   }
-  
+
   /* Get the files original permissions */
   if (stat (real_filename, &st_ActiveFile) != 0)
   {
@@ -390,19 +390,19 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 
   /* Get the directory in which the real filename lives */
   dirname = g_path_get_dirname (real_filename);
-  only_filename = g_path_get_basename(real_filename);  
+  only_filename = g_path_get_basename(real_filename);
 
   /* Do a backup if it's not an undo file backup and it was never saved.
    * Only do a backup if backup files are enabled */
   if (page->saved_since_first_loaded == 0 && toplevel->make_backup_files == TRUE) {
-    if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) && 
+    if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
 	 (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
     {
-      backup_filename = g_strdup_printf("%s%c%s~", dirname, 
+      backup_filename = g_strdup_printf("%s%c%s~", dirname,
 					G_DIR_SEPARATOR, only_filename);
-       s_log_message ("attempting to create backup file: %s.\n", backup_filename);  
+       s_log_message ("attempting to create backup file: %s.\n", backup_filename);
       /* Make the backup file read-write before saving a new one */
-      if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) && 
+      if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
 	   (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR))) {
 	if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
 	  s_log_message (_("Could NOT set previous backup file [%s] read-write\n"),
@@ -411,7 +411,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 	else
 	  remove (backup_filename); /* delete backup from previous session */
       }
-	
+
       if (fcopy(real_filename, backup_filename) != 0) {
 	s_log_message (_("Can't create backup file: %s."), backup_filename);
       }
@@ -428,7 +428,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 
   g_free (dirname);
   g_free (only_filename);
-  
+
   if (o_save (toplevel, s_page_objects (page), real_filename, &tmp_err)) {
 
     page->saved_since_first_loaded = 1;
@@ -444,7 +444,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 #ifdef HAVE_CHOWN
     if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
       /* Either the current user has permissioin to change ownership
-       * or they didn't. */ 
+       * or they didn't. */
     }
 #endif
 

@@ -98,13 +98,13 @@ static GKeyFile *dialog_geometry = NULL;
  */
 static void save_geometry_to_file(gpointer user_data)
 {
-  gchar *data, *file;
+  char *data, *file;
 
+  v_log_message("Saving dialog geometry\n");
   g_assert( dialog_geometry != NULL );
 
   data = g_key_file_to_data(dialog_geometry, NULL, NULL);
-  file = g_build_filename(s_path_user_config (), DIALOG_GEOMETRY_STORE,
-        NULL);
+  file = g_build_filename(s_path_user_config (), DIALOG_GEOMETRY_STORE, NULL);
   g_file_set_contents(file, data, -1, NULL);
   g_free(data);
   g_free(file);
@@ -344,17 +344,17 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
   GObjectClass     *gobject_class = G_OBJECT_CLASS (klass);
   GtkWidgetClass *gtkwidget_class = GTK_WIDGET_CLASS (klass);
 
-  klass->geometry_save         = geometry_save;
-  klass->geometry_restore      = geometry_restore;
+  klass->geometry_save            = geometry_save;
+  klass->geometry_restore         = geometry_restore;
 
-  gtkwidget_class->show        = show_handler;
-  gtkwidget_class->unmap       = unmap_handler;
+  gtkwidget_class->show           = show_handler;
+  gtkwidget_class->unmap          = unmap_handler;
 
-  gobject_class->finalize      = gschem_dialog_finalize;
-  gobject_class->set_property  = gschem_dialog_set_property;
-  gobject_class->get_property  = gschem_dialog_get_property;
+  gobject_class->finalize         = gschem_dialog_finalize;
+  gobject_class->set_property     = gschem_dialog_set_property;
+  gobject_class->get_property     = gschem_dialog_get_property;
 
-  gschem_dialog_parent_class = g_type_class_peek_parent (klass);
+  gschem_dialog_parent_class      = g_type_class_peek_parent (klass);
 
   gschem_dialog_signals[ GEOMETRY_SAVE ] =
     g_signal_new ("geometry-save",
@@ -506,8 +506,8 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
   if (flags & GTK_DIALOG_MODAL)
     gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
-  if (flags & GTK_DIALOG_DESTROY_WITH_PARENT)
-    gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+  //if (flags & GTK_DIALOG_DESTROY_WITH_PARENT)
+  gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 
   if (flags & GTK_DIALOG_NO_SEPARATOR)
     gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);

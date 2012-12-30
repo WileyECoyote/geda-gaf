@@ -33,7 +33,7 @@ GtkRecentManager *recent_manager;
 extern GdkColor white;
 extern GdkColor black;
 
-extern char *rc_filename; 
+extern char *rc_filename;
 extern char *output_filename;
 
 /* command line options */
@@ -82,6 +82,9 @@ extern SCM complex_place_list_changed_hook;
 #endif
 
 typedef enum  { Image_All, Image_Display } ImageExtent;
+typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OJECTS,
+               SOME_OJECTS, TEXT_OJECTS
+} ID_SENITIVITY_MODE;
 
 /*EK* used by prototype.h */
 #include "../include/x_states.h"

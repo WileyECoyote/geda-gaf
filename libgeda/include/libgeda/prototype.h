@@ -2,11 +2,11 @@ G_BEGIN_DECLS
 
 /* a_basic.c */
 const char *o_file_format_header();
-char *o_save_buffer (TOPLEVEL *toplevel, const GList *object_list);
-int o_save (TOPLEVEL *toplevel, const GList *object_list, const char *filename, GError **err);
+char  *o_save_buffer (TOPLEVEL *toplevel, const GList *object_list);
+int    o_save (TOPLEVEL *toplevel, const GList *object_list, const char *filename, GError **err);
 GList *o_read_buffer(TOPLEVEL *toplevel, GList *object_list, char *buffer, const int size, const char *name, GError **err);
 GList *o_read(TOPLEVEL *toplevel, GList *object_list, char *filename, GError **err);
-void o_scale(TOPLEVEL *toplevel, GList *list, int x_scale, int y_scale);
+void   o_scale(TOPLEVEL *toplevel, GList *list, int x_scale, int y_scale);
 
 /* f_basic.c */
 char *f_get_autosave_filename (const char *filename);
@@ -26,14 +26,14 @@ int  f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp);
 void f_print_set_type(TOPLEVEL *toplevel, int type);
 
 /* f_utilities.c */
-int fcopy(const char *source, const char *target);
+int   fcopy(const char *source, const char *target);
 const char *get_filename_ext(const char *filename);
-void remove_ext_from_basename(char *filename);
+void  remove_ext_from_basename(char *filename);
 
 /* g_basic.c */
-SCM g_scm_eval_protected (SCM exp, SCM module_or_state);
-SCM g_scm_eval_string_protected (SCM str);
-SCM g_scm_c_eval_string_protected (const char *str);
+SCM  g_scm_eval_protected (SCM exp, SCM module_or_state);
+SCM  g_scm_eval_string_protected (SCM str);
+SCM  g_scm_c_eval_string_protected (const char *str);
 bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err);
 
 /* g_rc.c */

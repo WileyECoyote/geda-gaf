@@ -24,6 +24,4 @@
 
 #define GTR_SETTINGS_PANEL_SWITCHER_STYLE               "panel-switcher-style"
 
-
-
 #endif

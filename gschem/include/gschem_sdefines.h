@@ -31,6 +31,8 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Inital release.
 ;; ------------------------------------------------------------------
+;; WEH | 12/30/12 |  Added msgbox (for debugging).
+;; ------------------------------------------------------------------
 ;;
 */
 
@@ -41,6 +43,9 @@
 
 /* Logs a normal message. */
 #define s_log_message g_message
+
+/* Can use like: msgbox("example = [%d]", g_list_length(geda_list_get_glist(toplevel->pages))) */
+#define msgbox(...)generic_msg_dialog(g_strdup_printf(__VA_ARGS__));
 
 #endif
 

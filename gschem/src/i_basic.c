@@ -22,10 +22,10 @@
 
 #include "gschem.h"
 
-/*! \brief Update status bar string 
+/*! \brief Update status bar string
  *
  *  \par Function Description
- *  This function actually updates the status bar 
+ *  This function actually updates the status bar
  *  widget with the new string.
  *
  *  \param [in] w_current GSCHEM_TOPLEVEL structure
@@ -141,11 +141,11 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
 /*! \brief Show state field
  *
  *  \par Function Description
- *  Show state field on screen, possibly with the 
+ *  Show state field on screen, possibly with the
  *  addition of an extra message
  *
  *  \param [in] w_current GSCHEM_TOPLEVEL structure
- *  \param [in] message The string to be displayed 
+ *  \param [in] message The string to be displayed
  */
 void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
 {
@@ -156,18 +156,18 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
 
   /* Fill in the string array */
   array[i--] = i_status_string(w_current);
-  
+
   if(toplevel->show_hidden_text)
     array[i--] = _("Show Hidden");
-  
+
   if(w_current->snap == SNAP_OFF)
     array[i--] = _("Snap Off");
   else if (w_current->snap == SNAP_RESNAP)
     array[i--] = _("Resnap Active");
-  
+
   if(message && message[0])
     array[i] = message;
-  
+
   /* Skip over NULLs */
   while(array[i] == NULL)
     i++;
@@ -250,13 +250,13 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current,
     case(MOUSE_MIDDLE_STROKE):
     gtk_label_set(GTK_LABEL(w_current->middle_label), _("Stroke"));
     break;
-#else 
+#else
     /* remove this case eventually and make it a null case */
     case(MOUSE_MIDDLE_STROKE):
     gtk_label_set(GTK_LABEL(w_current->middle_label), _("none"));
     break;
 #endif
-		
+
     case(MOUSE_MIDDLE_REPEAT):
     temp_string = g_strconcat (_("Repeat/"), string, NULL);
 
@@ -276,31 +276,31 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current,
  */
 void i_update_toolbar(GSCHEM_TOPLEVEL *w_current)
 {
-  if (!w_current->toolbars) 
+  if (!w_current->toolbars)
 	return;
 
   switch(w_current->event_state) {
     case(NONE):
     case(SELECT):
-    case(STARTSELECT): 
+    case(STARTSELECT):
       gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 				   w_current->toolbar_select), TRUE);
       break;
-      
-    case(DRAWNET): 
-    case(STARTDRAWNET): 
-    case(NETCONT): 
+
+    case(DRAWNET):
+    case(STARTDRAWNET):
+    case(NETCONT):
       gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 				   w_current->toolbar_net), TRUE);
       break;
-      
-    case(DRAWBUS): 
-    case(STARTDRAWBUS): 
-    case(BUSCONT): 
+
+    case(DRAWBUS):
+    case(STARTDRAWBUS):
+    case(BUSCONT):
       gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
 				   w_current->toolbar_bus), TRUE);
       break;
-      
+
     case(DRAWLINE): /*! \todo */
     case(DRAWBOX): /*! \todo */
     case(DRAWPICTURE): /*! \todo */
@@ -355,6 +355,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
 {
   GSCHEM_TOPLEVEL *w_current = userdata;
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
+  x_toolbars_set_sensitivities(CAN_PASTE, usable);
 }
 
 static bool
@@ -372,7 +373,21 @@ selected_at_least_one_text_object(GSCHEM_TOPLEVEL *w_current)
   }
   return FALSE;
 }
+static bool
+selected_complex_object(GSCHEM_TOPLEVEL *w_current)
+{
+  OBJECT *obj;
+  TOPLEVEL *toplevel = w_current->toplevel;
+  GList *list = geda_list_get_glist(toplevel->page_current->selection_list);
 
+  while(list != NULL) {
+    obj = (OBJECT *) list->data;
+    if (obj->type == OBJ_COMPLEX)
+      return TRUE;
+    list = g_list_next(list);
+  }
+  return FALSE;
+}
 
 /*! \brief Update sensitivity of relevant menu items
  *
@@ -381,15 +396,18 @@ selected_at_least_one_text_object(GSCHEM_TOPLEVEL *w_current)
  *
  *  \param [in] w_current GSCHEM_TOPLEVEL structure
  */
-void i_update_menus(GSCHEM_TOPLEVEL *w_current)
+void i_update_ui(GSCHEM_TOPLEVEL *w_current)
 {
   bool have_text_selected;
+  bool have_mutil_pages;
+  bool is_complex_selected;
+  bool anything_is_selected;
+
   TOPLEVEL *toplevel = w_current->toplevel;
-  /* 
-   * This is very simplistic.  Right now it just disables all menu
-   * items which get greyed out when a component is not selected.
-   * Eventually what gets enabled/disabled
-   * should be based on what is in the selection list 
+  /*
+   * This is improve but still fairly simplistic.  What
+   * gets enabled/disabled could be more selective based
+   * based on what is in the selection list
    */
 
   g_assert(w_current != NULL);
@@ -397,11 +415,48 @@ void i_update_menus(GSCHEM_TOPLEVEL *w_current)
 
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
 
-  if (o_select_selected (w_current)) {
-    have_text_selected = selected_at_least_one_text_object(w_current);
+  have_mutil_pages     = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
+  anything_is_selected = o_select_selected (w_current);
+  is_complex_selected  = selected_complex_object(w_current);
+  have_text_selected   = selected_at_least_one_text_object(w_current);
+
+  if ( have_mutil_pages ) {
+    x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
+    x_menus_sensitivity(w_current, "_Page/_Previous", TRUE);
+  }
+  else {
+    x_menus_sensitivity(w_current, "_Page/_Next", FALSE);
+    x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
+  }
+
+  anything_is_selected = o_select_selected (w_current);
+  if ( anything_is_selected ) {
 
     /* since one or more things are selected, we set these TRUE */
     /* These strings should NOT be internationalized */
+    if(is_complex_selected) {
+      x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
+      x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", TRUE);
+      x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", TRUE);
+      x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", TRUE);
+      x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
+      x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
+
+      /*  Menu items for hierarchy added by SDB 1.9.2005.  */
+      x_menus_popup_sensitivity(w_current, "/Down Schematic", TRUE);
+      x_menus_popup_sensitivity(w_current, "/Down Symbol", TRUE);
+      /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
+    }
+
+    if(have_text_selected) {
+        x_toolbars_set_sensitivities(TEXT_OJECTS, TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/Show _Value", TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/Show _Name", TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/Show _Both", TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", TRUE);
+    }
+
+    x_toolbars_set_sensitivities(SOME_OJECTS, TRUE);
     x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
@@ -420,7 +475,7 @@ void i_update_menus(GSCHEM_TOPLEVEL *w_current)
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Embed Component/Picture", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
+
     x_menus_sensitivity(w_current, "_Buffer/Copy into 1", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 2", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 3", TRUE);
@@ -431,24 +486,10 @@ void i_update_menus(GSCHEM_TOPLEVEL *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Cut into 3", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5", TRUE);
-    x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", TRUE);
-    x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", TRUE);
-    x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", TRUE);
-    x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
-    x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Value", have_text_selected);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Name", have_text_selected);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Both", have_text_selected);
-    x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", have_text_selected);
 
-    /*  Menu items for hierarchy added by SDB 1.9.2005.  */
-    x_menus_popup_sensitivity(w_current, "/Down Schematic", TRUE);
-    x_menus_popup_sensitivity(w_current, "/Down Symbol", TRUE);
-    /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
-
-  } else {
-    /* Nothing is selected, grey these out */
+  } else { /* Nothing is selected, grey these out */
     /* These strings should NOT be internationalized */
+
     x_menus_sensitivity(w_current, "_Edit/Cu_t", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", FALSE);
@@ -500,10 +541,16 @@ void i_update_menus(GSCHEM_TOPLEVEL *w_current)
   x_menus_sensitivity(w_current, "_Buffer/Paste from 4", (object_buffer[3] != NULL));
   x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[4] != NULL));
 
+  /* Update sensitivities on the Toolbars */
+  x_toolbars_set_sensitivities (SOME_OJECTS, anything_is_selected);
+  x_toolbars_set_sensitivities (COMPLEX_OJECTS, is_complex_selected);
+  x_toolbars_set_sensitivities (HAVE_PAGES, have_mutil_pages);
+  x_toolbars_set_sensitivities (TEXT_OJECTS, have_text_selected);
+
 }
 
 /*! \brief Set filename as gschem window title
- *  
+ *
  *  \par Function Description
  *  Set filename as gschem window title using
  *  the gnome HID format style.
@@ -522,12 +569,12 @@ void i_set_filename(GSCHEM_TOPLEVEL *w_current, const gchar *string)
     return;
 
   filename = g_path_get_basename(string);
-  
+
   print_string = g_strdup_printf("%s - gschem", filename);
-  
+
   gtk_window_set_title(GTK_WINDOW(w_current->main_window),
 		       print_string);
-  
+
   g_free(print_string);
   g_free(filename);
 }
@@ -578,7 +625,7 @@ void i_update_grid_info (GSCHEM_TOPLEVEL *w_current)
 
   print_string = g_strdup_printf(_("Grid(%s, %s)"), snap, grid);
   gtk_label_set(GTK_LABEL(w_current->grid_label), print_string);
-  
+
   g_free(print_string);
   g_free(grid);
   g_free(snap);

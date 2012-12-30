@@ -131,7 +131,7 @@ void o_lock(GSCHEM_TOPLEVEL *w_current)
 
   if (!w_current->SHIFTKEY) o_select_unselect_all(w_current);
   o_undo_savestate(w_current, UNDO_ALL);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -336,9 +336,9 @@ void o_edit_show_hidden (GSCHEM_TOPLEVEL *w_current, const GList *o_list)
   o_invalidate_all (w_current);
 
   if (w_current->toplevel->show_hidden_text) {
-    s_log_message(_("Hidden text is now visible\n"));
+    q_log_message(_("Hidden text is now visible\n"));
   } else {
-    s_log_message(_("Hidden text is now invisible\n"));
+    q_log_message(_("Hidden text is now invisible\n"));
   }
 }
 

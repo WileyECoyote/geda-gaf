@@ -45,7 +45,7 @@ clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) user_data;
 
-  i_update_menus (w_current);
+  i_update_ui (w_current);
 }
 
 static void

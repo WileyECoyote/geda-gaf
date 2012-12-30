@@ -1,3 +1,32 @@
+2012-25-29 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x_log.c: Added functions;q_log_message and v_log_message, to
+          facilitate honoring of the quiet_mode and verbose_mode, respectively.
+          Both command-line switches appear to have been ignored for the last
+          14 years!
+
+        * src/(various).c: Changed some "chatter" messages to new q_log_message
+          function
+
+        * src/gschem_dialog.c: Removed conditional from destroy_with_parent in
+          the function gschem_dialog_new_empty. No Children should stay open
+          when main window is destroyed.
+
+        * src/x_windows.c: Revised function x_window_close eliminating all of the
+          gtk_widget_destroy(w_current->sowindow). These were unessacary becasue 
+          they should all have attribute GTK_DIALOG_DESTROY_WITH_PARENT.
+
+        * src/i_basic.c: Renamed i_update_menus to i_update_ui and added
+          conditionals for setting somewhat more selective menu and toolbar
+          senisitivies. Previously the only real critiea was wheather something
+          was selector or not. Added new functions selected_complex_object.
+          (probably could do more here.) 
+
+        * src/toolbars.c: Added Save and Restore functionality to toolbar. At
+          this point only visibility is retained. The new functions use key a
+          file simular to the dialogs geometry. Attempted to use new EDACONFIG
+          but this did not work out. (Maybe a few wringles still?)
+
 2012-25-12 Wiley E. Hill <wileyhill@gmail.com>
 
         * all-source-files: Were effective change by changing what header are

@@ -102,7 +102,7 @@ find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
   }
 
   w_current->toplevel->page_current->object_lastplace = object;
-  i_update_menus (w_current);
+  i_update_ui (w_current);
   return TRUE;
 }
 
@@ -171,13 +171,13 @@ gboolean o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
   /* didn't find anything.... reset lastplace */
   toplevel->page_current->object_lastplace = NULL;
 
-  /* deselect everything only if shift key isn't pressed and 
-     the caller allows it */	
+  /* deselect everything only if shift key isn't pressed and
+     the caller allows it */
   if (change_selection && (!w_current->SHIFTKEY)) {
     o_select_unselect_all (w_current);
   }
 
-  i_update_menus(w_current);
+  i_update_ui(w_current);
   return FALSE;
 }
 

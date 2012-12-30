@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -136,11 +136,11 @@ int
 parse_commandline(int argc, char *argv[])
 {
   int ch;
-  SCM sym_cons = scm_from_utf8_symbol ("cons");
-  SCM sym_set_x = scm_from_utf8_symbol ("set!");
-  SCM sym_load_path = scm_from_utf8_symbol ("%load-path");
-  SCM sym_begin = scm_from_utf8_symbol ("begin");
-  SCM sym_load = scm_from_utf8_symbol ("load");
+  SCM sym_cons        = scm_from_utf8_symbol ("cons");
+  SCM sym_set_x       = scm_from_utf8_symbol ("set!");
+  SCM sym_load_path   = scm_from_utf8_symbol ("%load-path");
+  SCM sym_begin       = scm_from_utf8_symbol ("begin");
+  SCM sym_load        = scm_from_utf8_symbol ("load");
   SCM sym_eval_string = scm_from_utf8_symbol ("eval-string");
 
 #ifdef HAVE_GETOPT_LONG
@@ -165,20 +165,18 @@ parse_commandline(int argc, char *argv[])
         /* Argument is filename of a Scheme script to be run on gschem
          * load.  Add the necessary expression to be evaluated after
          * loading. */
-        s_post_load_expr =
-          scm_cons (scm_list_2 (sym_load,
-                                scm_from_locale_string (optarg)),
-                    s_post_load_expr);
+        s_post_load_expr = scm_cons (scm_list_2 (sym_load,
+                           scm_from_locale_string (optarg)),
+                           s_post_load_expr);
         break;
 
       case 'c':
         /* Argument is a Scheme expression to be evaluated on gschem
          * load.  Add the necessary expression to be evaluated after
          * loading. */
-        s_post_load_expr =
-          scm_cons (scm_list_2 (sym_eval_string,
-                                scm_from_locale_string (optarg)),
-                    s_post_load_expr);
+        s_post_load_expr = scm_cons (scm_list_2 (sym_eval_string,
+                           scm_from_locale_string (optarg)),
+                           s_post_load_expr);
         break;
 
       case 'o':
@@ -236,11 +234,9 @@ parse_commandline(int argc, char *argv[])
   }
 
   /* Make sure Scheme expressions can be passed straight to eval */
-  s_pre_load_expr = scm_cons (sym_begin,
-                              scm_reverse_x (s_pre_load_expr, SCM_UNDEFINED));
+  s_pre_load_expr = scm_cons (sym_begin, scm_reverse_x (s_pre_load_expr, SCM_UNDEFINED));
   scm_gc_protect_object (s_pre_load_expr);
-  s_post_load_expr = scm_cons (sym_begin,
-                               scm_reverse_x (s_post_load_expr, SCM_UNDEFINED));
+  s_post_load_expr = scm_cons (sym_begin, scm_reverse_x (s_post_load_expr, SCM_UNDEFINED));
   scm_gc_protect_object (s_post_load_expr);
   return(optind);
 }

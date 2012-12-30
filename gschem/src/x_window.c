@@ -214,15 +214,11 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
 
   /* We want the widgets to flow around the drawing area, so we don't
    * set a size of the main window.  The drawing area's size is fixed,
-   * see below
+   * see below. Normally we let the window manager handle locating and
+   * sizing the window.  However, for some batch processing of schematics
+   * (generating a pdf of all schematics for example) we want to
+   * override this.  Hence "auto_place_mode".
    */
-
-   /*
-    * normally we let the window manager handle locating and sizing
-    * the window.  However, for some batch processing of schematics
-    * (generating a pdf of all schematics for example) we want to
-    * override this.  Hence "auto_place_mode".
-    */
   if( auto_place_mode )
     gtk_widget_set_uposition (w_current->main_window, 10, 10);
 
@@ -426,7 +422,7 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   o_conn_print_hash(w_current->page_current->conn_table);
 #endif
 
-  /* close all the dialog boxes */
+  /* close all the dialog boxes
   if (w_current->sowindow)
   gtk_widget_destroy(w_current->sowindow);
 
@@ -469,17 +465,11 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
 
   if (w_current->sewindow)
   gtk_widget_destroy(w_current->sewindow);
-
-  if (g_list_length (global_window_list) == 1) {
-    /* no more window after this one, remember to quit */
-    last_window = TRUE;
-  }
-
+*/
   if (toplevel->major_changed_refdes) {
     GList* current = toplevel->major_changed_refdes;
     while (current)
     {
-      /* printf("yeah freeing: %s\n", (char*) current->data); */
       g_free(current->data);
       current = g_list_next(current);
     }
@@ -487,7 +477,10 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   }
 
   /* stuff that has to be done before we free w_current */
-  if (last_window) {
+  if (g_list_length (global_window_list) == 1) {
+    /* no more window after this one, remember to quit */
+    last_window = TRUE;
+    x_toolbars_save_state(w_current);
     /* close the log file */
     s_log_close ();
     /* free the buffers */
@@ -509,7 +502,7 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   global_window_list = g_list_remove (global_window_list, w_current);
   g_free (w_current);
 
-  /* just closed last window, so quit */
+  /* just closed last window, so quit or should open a new document? */
   if (last_window) {
     gschem_quit();
   }
@@ -668,7 +661,7 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
 
   s_page_goto (toplevel, page);
 
-  i_update_menus (w_current);
+  i_update_ui (w_current);
   i_set_filename (w_current, page->page_filename);
 
   x_pagesel_update (w_current);
@@ -818,8 +811,7 @@ x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
     /* new_current will be the new current page at the end of the function */
   }
 
-  s_log_message (page->CHANGED ?
-                 _("Discarding page [%s]\n") : _("Closing [%s]\n"),
+  s_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
                  page->page_filename);
   /* remove page from toplevel list of page and free */
   s_page_delete (toplevel, page);
@@ -864,9 +856,6 @@ void x_window_add_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->add_handlebox);
   else
     gtk_widget_hide(w_current->add_handlebox);
-
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
 /*!
  * \brief View toogle Attribute toolbar
@@ -883,9 +872,6 @@ void x_window_attribute_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->attribute_handlebox);
   else
     gtk_widget_hide(w_current->attribute_handlebox);
-
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
 /*!
  * \brief View toogle Edit toolbar
@@ -902,9 +888,6 @@ void x_window_edit_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->edit_handlebox);
   else
     gtk_widget_hide(w_current->edit_handlebox);
-
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
 /*!
  * \brief View toogle Page toolbar
@@ -921,9 +904,6 @@ void x_window_page_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->page_handlebox);
   else
     gtk_widget_hide(w_current->page_handlebox);
-
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
 /*!
  * \brief View toogle standard toolbar
@@ -940,9 +920,6 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->standard_handlebox);
   else
     gtk_widget_hide(w_current->standard_handlebox);
-
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }
 /*!
  * \brief View toogle Zoom toolbar
@@ -959,7 +936,4 @@ void x_window_zoom_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->zoom_handlebox);
   else
     gtk_widget_hide(w_current->zoom_handlebox);
-
-  /* TODO: WEH: save the toggle setting */
-  //config_file_set_bool(PREFS_TOOLBAR_VISIBLE, show);
 }

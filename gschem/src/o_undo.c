@@ -40,7 +40,7 @@ static int prog_pid=0;
 static char* tmp_path = NULL;
 
 /* this is additional number of levels (or history) at which point the */
-/* undo stack will be trimmed, it's used a safety to prevent running out */ 
+/* undo stack will be trimmed, it's used a safety to prevent running out */
 /* of entries to free */
 #define UNDO_PADDING  5
 
@@ -66,7 +66,7 @@ void o_undo_init(void)
  *  \brief
  *  \par Function Description
  *
- *  
+ *
  *  <B>flag</B> can be one of the following values:
  *  <DL>
  *    <DT>*</DT><DD>UNDO_ALL
@@ -91,7 +91,7 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
 
   if (flag == UNDO_ALL) {
 
-    /* Increment the number of operations since last backup if 
+    /* Increment the number of operations since last backup if
        auto-save is enabled */
     if (toplevel->auto_save_interval != 0) {
       toplevel->page_current->ops_since_last_backup++;
@@ -114,7 +114,7 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
                                prog_pid, undo_file_index++);
 
     /* Changed from f_save to o_save when adding backup copy creation. */
-    /* f_save manages the creaton of backup copies. 
+    /* f_save manages the creaton of backup copies.
        This way, f_save is called only when saving a file, and not when
        saving an undo backup copy */
     o_save (toplevel, s_page_objects (toplevel->page_current), filename, NULL);
@@ -167,7 +167,7 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
 
   g_free(filename);
 
-  /* Now go through and see if we need to free/remove some undo levels */ 
+  /* Now go through and see if we need to free/remove some undo levels */
   /* so we stay within the limits */
 
   /* only check history every 10 undo savestates */
@@ -256,7 +256,7 @@ char *o_undo_find_prev_filename(UNDO *start)
     u_current = u_current->prev;
   }
 
-  return(NULL); 
+  return(NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -277,7 +277,7 @@ GList *o_undo_find_prev_object_head (UNDO *start)
     u_current = u_current->prev;
   }
 
-  return(NULL); 
+  return(NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -304,7 +304,7 @@ void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
   char *save_filename;
 
   if (w_current->undo_control == FALSE) {
-    s_log_message(_("Undo/Redo disabled in rc file\n"));
+    q_log_message(_("Undo/Redo disabled in rc file\n"));
     return;
   }
 
@@ -408,7 +408,7 @@ void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
 
   /* Let the caller to decide if redraw or not */
   o_invalidate_all (w_current);
-  i_update_menus(w_current);
+  i_update_ui(w_current);
 
   /* restore saved undo structures */
   toplevel->page_current->undo_bottom = save_bottom;

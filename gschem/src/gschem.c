@@ -115,7 +115,7 @@ void gschem_quit(void)
   /* enable this to get more memory usage from glib */
   /* You also have to enable something in glib I think */
   /* g_mem_profile();*/
-	 
+
 
   gtk_main_quit();
 }
@@ -153,12 +153,12 @@ void main_prog(void *closure, int argc, char *argv[])
   /* This must be the same for all locales */
   setlocale(LC_NUMERIC, "C");
 
-  /* Disable gtk's ability to set the locale. */ 
+  /* Disable gtk's ability to set the locale. */
   /* If gtk is allowed to set the locale, then it will override the     */
   /* setlocale for LC_NUMERIC (which is important for proper PS output. */
   /* This may look funny here, given we make a call to gtk_set_locale() */
   /* above.  I don't know yet, if this is really the right thing to do. */
-  gtk_disable_setlocale(); 
+  gtk_disable_setlocale();
 
 #endif
 
@@ -166,12 +166,12 @@ void main_prog(void *closure, int argc, char *argv[])
 
   argv_index = parse_commandline(argc, argv);
   cwd = g_get_current_dir();
-  
+
   libgeda_init();
 
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, _("This is the MINGW32 port.\n"));
-#endif  
+#endif
 
 #if DEBUG
   fprintf(stderr, _("Current locale settings: %s\n"), setlocale(LC_ALL, NULL));
@@ -192,10 +192,10 @@ void main_prog(void *closure, int argc, char *argv[])
   /* initialise color map (need to do this before reading rc files */
   x_color_init ();
 
-  o_undo_init(); 
+  o_undo_init();
 
   if (s_path_sys_data () == NULL) {
-    const gchar *message = 
+    const gchar *message =
       _("You must set the GEDADATA environment variable!\n\n"
         "gschem cannot locate its data files. You must set the GEDADATA\n"
         "environment variable to point to the correct location.\n");
@@ -232,12 +232,14 @@ void main_prog(void *closure, int argc, char *argv[])
    * we can take advantage of that.  */
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
   if (scm_is_false (scm_tmp)) {
-    s_log_message (_("Couldn't find init scm file \"gschem.scm\"\n"));
+    s_log_message (_("Unable to locate scm initialization file \"gschem.scm\"\n"));
   }
   else {
     input_str = scm_to_utf8_string (scm_tmp);
     if (g_read_file(w_current->toplevel, input_str, NULL)) {
-      s_log_message(_("Read init scm file [%s]\n"), input_str);
+      if(!quiet_mode) {
+        s_log_message(_("Read init scm file [%s]\n"), input_str);
+      }
     } else {
       /*! \todo These two messages are the same. Should be
        * integrated. */
@@ -247,17 +249,17 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
-  
+
   /* Set up Configuration */
   i_vars_init_defaults (); /* Set defaults */
-  
+
   /* Now read in RC files. */
   g_rc_parse_gtkrc();
   x_rc_parse_gschem (w_current, rc_filename);
 
   if (w_current->save_settings)
     gschem_atexit (i_vars_atexit_save_user_config, NULL);
-    
+
   auto_load_last = default_auto_load_last;
 
   /*TODO: All of this logging stuff should be relocated to Lib */
@@ -280,7 +282,7 @@ void main_prog(void *closure, int argc, char *argv[])
   }
   else
     s_log_message("Logging system is disabled");
-  
+
   /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
   gschem_atexit(recent_files_save, NULL);
@@ -314,14 +316,18 @@ void main_prog(void *closure, int argc, char *argv[])
         strcpy(tmpfilename, filename);
         if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
           filename = tmpfilename;
-          s_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+          if(!quiet_mode) {
+            s_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+          }
         } else
         {
           /* Check if file name is valid if ".sym" is added */
           strcpy(tmpfilename, filename);
           if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
-            s_log_message("Assumming symbol file name for [%s]\n", basename (filename));
+            if(!quiet_mode) {
+              s_log_message("Assumming symbol file name for [%s]\n", basename (filename));
+            }
           }
         }
       }
@@ -345,7 +351,7 @@ void main_prog(void *closure, int argc, char *argv[])
   /*! \brief Auto-Load */
   /* Check and do Auto Load - only works if empty commandline */
   if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
-    s_log_message("Auto loading . . .\n"); /* Log what we did */
+    q_log_message("Auto loading . . .\n"); /* Log what we did */
       x_window_open_page(w_current, recent_files_last());
   }
   else
@@ -368,11 +374,12 @@ void main_prog(void *closure, int argc, char *argv[])
   /* Run post-load expressions */
   g_scm_eval_protected (s_post_load_expr, scm_current_module ());
 
-  /* if there were any symbols which had major changes, put up an error */
-  /* dialog box */
+  /* if there were any symbols which had major changes, show error dialog */
   major_changed_dialog(w_current);
 
   scm_dynwind_end ();
+
+
 
   /* enter main loop */
   gtk_main();
@@ -396,6 +403,6 @@ int main (int argc, char *argv[])
 #endif
 
   scm_boot_guile (argc, argv, main_prog, 0);
-  
+
   return 0;
 }

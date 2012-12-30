@@ -46,12 +46,19 @@ typedef struct
    char *stock_id;
 
 } ToolbarItem;
+typedef struct
+{
+   int  ToolBarId;
 
-#define TB_WIDGET(member)  ToolbarStrings[member].Widget
-#define TB_LABEL(member)   ToolbarStrings[member].Label
-#define TB_TOOLTIP(member) ToolbarStrings[member].Tip
-#define TB_PRIVATE(member) ToolbarStrings[member].Private
+} ToolbarConfig;
+
+#define TB_WIDGET(member)    ToolbarStrings[member].Widget
+#define TB_LABEL(member)     ToolbarStrings[member].Label
+#define TB_TOOLTIP(member)   ToolbarStrings[member].Tip
+#define TB_PRIVATE(member)   ToolbarStrings[member].Private
 #define TB_ICON_NAME(member) ToolbarStrings[member].Private
+
+#define TB_BUTTON(member) member##_button
 
 #define GET_TOOLBAR_ID(obj) (int)(long*) g_object_get_data(G_OBJECT(obj), "BarId");
 #define SET_TOOLBAR_ID(obj, bar_id) g_object_set_data(G_OBJECT(obj), "BarId", GINT_TO_POINTER(bar_id));
@@ -63,7 +70,7 @@ typedef struct
 /* ------------------------- Entry Level -------------------------------- */
 /*! \brief ToolBar Macros with GSCHEM_TOPLEVEL *w_current call-back data */
 #define TOOLBAR_GEDA_BUTTON( bar, name, type, icon, func, data) \
-   GtkWidget *name##_button; \
+   GtkWidget *name##_button __attribute__ ((unused)); /* maybe mv comment for tb devel */ \
    TOOLBAR_BUTTON_DATA( bar##_Toolbar, name, type, icon, name##_button, func, data)
 
 /*! \brief ToolBar Macros with Enumerated Control call-back data */

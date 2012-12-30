@@ -114,7 +114,7 @@ void o_place_end (GSCHEM_TOPLEVEL *w_current,
   g_list_free (temp_dest_list);
 
   o_undo_savestate (w_current, UNDO_ALL);
-  i_update_menus (w_current);
+  i_update_ui (w_current);
 }
 
 /*! \todo Finish function documentation!!!

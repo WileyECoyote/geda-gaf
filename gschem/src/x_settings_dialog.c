@@ -496,7 +496,6 @@ st_tree_row_activated (GtkTreeView *tree_view,
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
-  s_log_message("Row double-clicked\n");
 
   model = gtk_tree_view_get_model (tree_view);
   gtk_tree_model_get_iter (model, &iter, path);
@@ -962,7 +961,7 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
           filter_list_set_default();
           break;
         default:
-          s_log_message("button_responder(): UKNOWN BUTTON ID: %d\n", WhichButt);
+          s_log_message("button_responder(): Unknown button Id: %d\n", WhichButt);
       } /* End Switch */
     else
       if (WhatHappend == GDK_2BUTTON_PRESS)
@@ -1011,7 +1010,7 @@ void combo_responder(GtkWidget *widget, gpointer data)
   case MiddleButton:
     break;
   default:
-    s_log_message("combo_responder(): Warning, Uknown Combo Id: %d\n",WhichComboBox);
+    s_log_message("combo_responder(): Warning, Unknown Combo Id: %d\n",WhichComboBox);
   }
 
  return;
@@ -1309,7 +1308,7 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
    case ZoomPan:
     break;
    default:
-    s_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", response);
+    s_log_message("toggle_switch(): Unknown switch Id: %d\n", response);
    }
 
    return;
@@ -1543,7 +1542,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
  */
 /* Note! Local Module Main, before "macrolization" the function
  * create_settings_dialog was > 148kbytes. The macros somewhat
- * obsure base coding but is much more manageable then 100K+
+ * obsures base coding but is much more manageable then 100K+
  * lines of gtk_xxx's and does not depend on Glade.
  */
 GtkWidget*

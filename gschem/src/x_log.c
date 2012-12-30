@@ -57,14 +57,22 @@
 static void x_log_callback_response (GtkDialog *dialog,
                                      gint arg1,
                                      gpointer user_data);
-static void log_message (Log *log, 
-                         const gchar *message, 
+static void log_message (Log *log,
+                         const gchar *message,
                          const gchar *style);
 
 static void log_class_init (LogClass *class);
 static void log_init       (Log *log);
 
 static GtkWidget *log_dialog = NULL;
+
+void q_log_message(const char* message){
+  if(!quiet_mode) s_log_message(message);
+}
+
+void v_log_message(const char* message){
+  if(verbose_mode) s_log_message(message);
+}
 
 /*!
  *  \brief Open the Log window
@@ -73,7 +81,7 @@ static GtkWidget *log_dialog = NULL;
  *  If the log dialog instance doesn't exist, create it, and read
  *  the current log file contents (if they exist) and insert
  *  them into the log dialog.
- * 
+ *
  *  If the log dialog instance does exist, present it to the user.
  */
 /* 12/08/10 Gareth Edwards <gareth@edwardsfamily.org.uk>  added
@@ -116,9 +124,9 @@ void x_log_open ()
     g_free (contents);
 
     x_log_update_func = x_log_message;
-   
+
     if( auto_place_mode )
-	gtk_widget_set_uposition( log_dialog, 10, 10); 
+	gtk_widget_set_uposition( log_dialog, 10, 10);
     gtk_widget_show (log_dialog);
   } else {
     g_assert (IS_LOG (log_dialog));
@@ -188,7 +196,7 @@ static void x_log_callback_response (GtkDialog *dialog,
     default:
     g_assert_not_reached ();
   }
-  
+
 }
 
 /*!
@@ -199,13 +207,13 @@ static void x_log_callback_response (GtkDialog *dialog,
  *  \param [in] message The message to be logged
  *  \param [in] style   The style to use in the text rendering
  */
-static void log_message (Log *log, const gchar *message, 
+static void log_message (Log *log, const gchar *message,
                          const gchar *style)
 {
   GtkTextBuffer *buffer;
   GtkTextIter iter;
   GtkTextMark *mark;
-  
+
   g_return_if_fail (IS_LOG (log));
 
   buffer = gtk_text_view_get_buffer (log->textview);
@@ -243,7 +251,7 @@ static void log_message (Log *log, const gchar *message,
 GType log_get_type ()
 {
   static GType log_type = 0;
-  
+
   if (!log_type) {
     static const GTypeInfo log_info = {
       sizeof(LogClass),
@@ -256,12 +264,12 @@ GType log_get_type ()
       0,    /* n_preallocs */
       (GInstanceInitFunc) log_init,
     };
-		
+
     log_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
                                        "Log",
                                        &log_info, 0);
   }
-  
+
   return log_type;
 }
 
@@ -276,7 +284,7 @@ GType log_get_type ()
 static void log_class_init (LogClass *klass)
 {
 /*   GObjectClass *gobject_class = G_OBJECT_CLASS (klass); */
-	
+
 }
 
 /*!

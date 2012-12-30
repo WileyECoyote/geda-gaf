@@ -27,8 +27,8 @@ struct st_gschem_toplevel {
   GtkWidget *toolbar_net;
   GtkWidget *toolbar_bus;
 
-  GtkWidget *h_scrollbar;
-  GtkWidget *v_scrollbar;
+  GtkWidget     *h_scrollbar;
+  GtkWidget     *v_scrollbar;
   GtkAdjustment *h_adjustment;
   GtkAdjustment *v_adjustment;
 
@@ -63,10 +63,10 @@ struct st_gschem_toplevel {
   GtkWidget *tfindwindow;               /* text find window */
   GtkWidget *hkwindow;                  /* Help/Hotkeys... dialog*/
   GtkWidget *clwindow;                  /* Color edit dialog */
-  int edit_color;                         /* Used by the color edit dialog */
+   int edit_color;                      /* Used by the color edit dialog */
   GtkWidget *cowindow;                  /* Coordinate window */
-  GtkWidget *coord_world;                 /* World coordinate label */
-  GtkWidget *coord_screen;                /* Screen coordinate window */
+  GtkWidget *coord_world;               /* World coordinate label */
+  GtkWidget *coord_screen;              /* Screen coordinate window */
   GtkWidget *stwindow;                  /* Configuration Settings Dialog window */
 
   /* ------------------ Picture placement ----------------- */

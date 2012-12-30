@@ -38,7 +38,7 @@ static int DOING_STROKE = FALSE;
  *  \par Function Description
  *
  */
-gint x_event_expose(GtkWidget *widget, GdkEventExpose *event,
+int x_event_expose(GtkWidget *widget, GdkEventExpose *event,
                     GSCHEM_TOPLEVEL *w_current)
 {
   GdkRectangle *rectangles;
@@ -424,7 +424,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
   } else if (event->button == 3) {
     if (!w_current->inside_action) {
       if (w_current->third_button == POPUP_ENABLED) {
-        i_update_menus(w_current);  /* update menus before popup  */
+        i_update_ui(w_current);  /* update menus before popup  */
         do_popup(w_current, event);
       } else {
         w_current->event_state = MOUSEPAN; /* start */
@@ -515,7 +515,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
  *
  */
 int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
-                             GSCHEM_TOPLEVEL *w_current)
+                            GSCHEM_TOPLEVEL *w_current)
 {
   int unsnapped_wx, unsnapped_wy;
 
@@ -1131,7 +1131,7 @@ void x_event_vschanged (GtkAdjustment *adj, GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-gint x_event_enter(GtkWidget *widget, GdkEventCrossing *event,
+int x_event_enter(GtkWidget *widget, GdkEventCrossing *event,
                    GSCHEM_TOPLEVEL *w_current)
 {
   g_return_val_if_fail ((w_current != NULL), 0);
@@ -1171,9 +1171,9 @@ static void get_snapped_pointer (GSCHEM_TOPLEVEL *w_current, int *wx, int *wy)
  * \returns TRUE if the event has been handled.
  */
 bool x_event_key (GtkWidget *widget, GdkEventKey *event,
-                      GSCHEM_TOPLEVEL *w_current)
+                  GSCHEM_TOPLEVEL *w_current)
 {
-  gboolean retval = FALSE;
+  bool retval = FALSE;
   int wx, wy;
   //int alt_key = 0;
   int shift_key = 0;
@@ -1277,13 +1277,13 @@ bool x_event_key (GtkWidget *widget, GdkEventKey *event,
  *  \par Function Description
  *
  */
-gint x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
+int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
                      GSCHEM_TOPLEVEL *w_current)
 {
   GtkAdjustment *adj;
-  gboolean pan_xaxis = FALSE;
-  gboolean pan_yaxis = FALSE;
-  gboolean zoom = FALSE;
+  bool pan_xaxis = FALSE;
+  bool pan_yaxis = FALSE;
+  bool zoom = FALSE;
   int pan_direction = 1;
   int zoom_direction = ZOOM_IN_DIRECTIVE;
 
@@ -1376,9 +1376,9 @@ gint x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
  *  \return Returns TRUE if the pointer position is inside the drawing area.
  *
  */
-gboolean x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
-				       gboolean snapped,
-				       gint *wx, gint *wy)
+bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
+				       bool snapped,
+				       int *wx, int *wy)
 {
   int sx, sy, x, y;
 
