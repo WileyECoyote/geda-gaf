@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -96,7 +96,7 @@
 #define SMALL_ZOOMFACTOR2	30
 #define MAXIMUM_GRIP_PIXELS     30
 
-/* 
+/*
  * These are used in g_funcs.c, supposely Flags for generic_filesel_dialog()
  * but FSB_MAY_EXIST, FSB_SHOULD_NOT_EXIST are not referenced in any other
  * file outside of g_funcs.c, need to check usage
@@ -112,7 +112,7 @@
 #define MAP_LATER		0
 #define MAP_ON_STARTUP		1
 
-/* for log-window-type */
+/* for console-window-type */
 #define DECORATED		0
 #define TRANSIENT		1
 
@@ -168,15 +168,15 @@
 #define DEFAULT_RIPPER_SIZE     200
 
 /* for bus_ripper_rotation */
-#define SYMMETRIC               0
-#define NON_SYMMETRIC           1
+#define NON_SYMMETRIC           0
+#define SYMMETRIC               1
 
 #define FREE        1
 #define CONSTRAINED 2
 
 /* for bus_ripper_type */
-#define COMP_BUS_RIPPER         0
-#define NET_BUS_RIPPER          1
+#define NET_BUS_RIPPER          0
+#define COMP_BUS_RIPPER         1
 
 /* for attrib_edit_dialog invocation flag */
 #define FROM_MENU		0
@@ -221,10 +221,8 @@
 #define DEFAULT_PAPER_HEIGHT    85000
 
 /*----------- Text Category -----------*/
-/* for text cap style */
-#define LOWER_CASE      0
-#define UPPER_CASE      1
-#define BOTH_CASES      2
+
+/* text cap style was here, relocated to include/geda_idefines.h 01/02/13 */
 
 /* for text_display_zoomfactor */
 #define DEFAULT_TEXT_ZOOM      30

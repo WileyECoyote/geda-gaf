@@ -47,7 +47,7 @@
  * \param error  Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-static gboolean
+static bool
 show_uri__win32 (const gchar *uri, GError **error)
 {
 
@@ -55,7 +55,7 @@ show_uri__win32 (const gchar *uri, GError **error)
    * doesn't cope very well with Windows. :-( */
 
   int status;
-  gchar *msg = NULL;
+  char *msg = NULL;
 
   g_assert (uri);
 
@@ -110,7 +110,7 @@ show_uri__win32 (const gchar *uri, GError **error)
  * \param error      Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
+bool
 x_show_uri (GSCHEM_TOPLEVEL *w_current, const gchar *uri, GError **error)
 {
 # if defined (SHOW_URI_GIO)
@@ -126,9 +126,9 @@ x_show_uri (GSCHEM_TOPLEVEL *w_current, const gchar *uri, GError **error)
   return show_uri__win32 (uri, error);
 
 # else
-  gboolean spawn_status;
-  gint exit_status;
-  gchar *argv[3];
+  bool spawn_status;
+  int exit_status;
+  char *argv[3];
 
   g_assert (uri);
 

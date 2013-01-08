@@ -34,6 +34,10 @@
 ;; WEH | 12/02/12 |  Renamed autoplace_attributes_grid to attribute_
 ;;                |  placement-grid
 ;; ------------------------------------------------------------------
+;; WEH | 01/06/16 |  Setup remaining Net Ripper variables (to complete
+;;     |          |  the integration of the Ripper settings on the
+;;     |          |  configure settings dailog.
+;; ------------------------------------------------------------------
 */
 /*************************** CAUTION! ******************************/
 /*
@@ -48,12 +52,12 @@
  *        is not done here, at least not directly.)
  *
  *    2.) In the code body, KEYWORD(variable) refers to the unquoted
- *        keyword. Example KEYWORD(log_destiny) yields log-destiny  
+ *        keyword. Example KEYWORD(log_destiny) yields log-destiny
  *
  *    3.) The SCM version doesn't really have to match the C version.
  *        keyword_struc.func is called when keyword_struc.name is
  *        encountered in the data.
- *        
+ *
  *    4.) 1st pass = Declarations and Enumeration. 2nd pass uses the
  *        enumerators to populates structure with strings and pointers
  *        to functions
@@ -81,8 +85,8 @@
      KEYWORD ( zoom_with_pan )
      KEYWORD ( logging )
      KEYWORD ( log_destiny )
-     KEYWORD ( log_window )
-     KEYWORD ( log_window_type )
+     KEYWORD ( console_window )
+     KEYWORD ( console_window_type )
      KEYWORD ( action_feedback_mode )
      KEYWORD ( add_attribute_offset )
      KEYWORD ( auto_load_last )
@@ -123,9 +127,11 @@
      KEYWORD ( thin_net_width )
      KEYWORD ( thin_pin_width )
 
-//     KEYWORD ( bus_ripper_rotation )
-//     KEYWORD ( bus_ripper_size )
-//     KEYWORD ( bus_ripper_type )
+     KEYWORD ( bus_ripper_rotation )
+     KEYWORD ( bus_ripper_size )
+     KEYWORD ( bus_ripper_type )
+     KEYWORD ( bus_ripper_symname )
+
      KEYWORD ( fast_mousepan )
      KEYWORD ( drag_can_move )
      KEYWORD ( middle_button )
@@ -173,8 +179,8 @@ enum {
      KEYWORD(zoom-with-pan,                0, 0, zoom_with_pan )
      KEYWORD(logging,                      0, 0, logging)
      KEYWORD(log-destiny,                  0, 0, log_destiny)
-     KEYWORD(log-window,                   0, 0, log_window)
-     KEYWORD(log-window-type,              0, 0, log_window_type)
+     KEYWORD(console-window,               0, 0, console_window)
+     KEYWORD(console-window-type,          0, 0, console_window_type)
      KEYWORD(action-feedback-mode,         0, 0, action_feedback_mode)
      KEYWORD(add-attribute-offset,         0, 0, add_attribute_offset)
      KEYWORD(auto-load-last,               0, 0, auto_load_last)
@@ -211,9 +217,10 @@ enum {
      KEYWORD(thin-line-width,              0, 0, thin_line_width)
      KEYWORD(thin-net-width,               0, 0, thin_net_width)
      KEYWORD(thin-pin-width,               0, 0, thin_pin_width)
-/*     KEYWORD(bus-ripper-rotation,          0, 0, bus_ripper_rotation) */
-/*     KEYWORD(bus-ripper-size,              0, 0, bus_ripper_size) */
-/*     KEYWORD(bus-ripper-type,              0, 0, bus_ripper_type) */
+     KEYWORD(bus-ripper-rotation,          0, 0, bus_ripper_rotation)
+     KEYWORD(bus-ripper-size,              0, 0, bus_ripper_size)
+     KEYWORD(bus-ripper-type,              0, 0, bus_ripper_type)
+     KEYWORD(bus-ripper-symname,           0, 0, bus_ripper_symname)
      KEYWORD(fast-mousepan,                0, 0, fast_mousepan)
      KEYWORD(drag-can-move,                0, 0, drag_can_move)
      KEYWORD(middle-button,                0, 0, middle_button)
@@ -283,7 +290,7 @@ enum {
 #define RC_BOOLEAN_GOUT(variable) \
  int state = variable;    /* Retrieve Variable */ \
  RC_BOOLEAN_OUT(variable)     /* Expand Base */
- 
+
 /*\remark
    Use this Macro to write a w_current->renderer Boolean Variable
    @param[in] variable   w_current->renderer integer variable
@@ -291,7 +298,7 @@ enum {
 #define RC_BOOLEAN_ROUT(variable) \
  int state = w_current->renderer->variable; \
  RC_BOOLEAN_OUT(variable)     /* Expand Base */
- 
+
 /*\remark
    Use this Macro to write a TopLevel Boolean Variable
    @param[in] variable   toplevel integer variable
@@ -366,9 +373,9 @@ enum {
 #define RC_INTEGER_ROUT(variable) \
   int number = w_current->renderer->variable; \
   RC_INTEGER_OUT(variable, 4)
-  
+
 /*\remark
- * Use this Macro to write toplevel var with single integer 
+ * Use this Macro to write toplevel var with single integer
  * @param[in] variable   toplevel integer variable
 */
 #define RC_INTEGER_TOUT(variable) \
@@ -392,7 +399,7 @@ enum {
   strcat(output_buffer, ")\n"); \
   fputs(output_buffer, output);
 
-/*\remark 
+/*\remark
  * Use this Macro to write local var with selection of 3 strings without quotes
  * @param[in] variable   string variable within the rc_options structure
  *\attention Associated strings are asuume to be in string_table structure

@@ -33,6 +33,7 @@
                              (default_ ## name) : (str));               \
 }
 
+#define Renderer w_current->renderer
 /* Absolute default used when default_... strings are NULL */
 /* Which is to say that the values assigned here will be the */
 /* value assigned if a SCM does not return a different value */
@@ -81,9 +82,9 @@ int     default_image_height              = DEFAULT_IMAGE_HEIGHT;
 
 /* Log Related */
 int     default_logging            	  = TRUE;
-int     default_log_destiny        	  = LOG_WINDOW;
-int     default_log_window         	  = MAP_ON_STARTUP;
-int     default_log_window_type    	  = DECORATED;
+int     default_log_destiny        	  = CONSOLE_WINDOW;
+int     default_console_window         	  = MAP_ON_STARTUP;
+int     default_console_window_type    	  = DECORATED;
 
 /* Miscellaneous - in  alphabetical order */
 int     default_action_feedback_mode      = OUTLINE;
@@ -120,6 +121,7 @@ int     default_net_selection_mode = NET_SELECT_NET;
 int     default_bus_ripper_rotation = NON_SYMMETRIC;
 int     default_bus_ripper_size     = DEFAULT_RIPPER_SIZE;
 int     default_bus_ripper_type     = COMP_BUS_RIPPER;
+char   *default_bus_ripper_symname  = NULL;
 
 /* Pointer Device, aka Mouse stuff */
 int     default_fast_mousepan      = TRUE;
@@ -177,6 +179,7 @@ int     default_undo_type                 = UNDO_DISK;
  *   group last. Variables are listed alphabeticaly within each group.
  *
  */
+
 void i_vars_set(GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -189,7 +192,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   toplevel->override_pin_color         = default_override_pin_color;
 
 /* Display Sub-System */
-  w_current->renderer->draw_grips      = default_draw_grips;
+   Renderer->draw_grips                = default_draw_grips;
 
   w_current->grid_mode                 = default_grid_mode;
   w_current->dots_grid_dot_size        = default_dots_grid_dot_size;
@@ -228,51 +231,52 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->toolbars                  = default_toolbars;
 
 /* Nets and Routing */
-  w_current->magnetic_net_mode    = default_magnetic_net_mode;
-  toplevel->net_consolidate       = default_net_consolidate;
-  w_current->net_endpoint_mode    = default_net_endpoint_mode;
-  w_current->net_direction_mode   = default_net_direction_mode;
-  w_current->net_midpoint_mode    = default_net_midpoint_mode;
-  w_current->net_selection_mode   = default_net_selection_mode;
+  w_current->magnetic_net_mode         = default_magnetic_net_mode;
+  toplevel->net_consolidate            = default_net_consolidate;
+  w_current->net_endpoint_mode         = default_net_endpoint_mode;
+  w_current->net_direction_mode        = default_net_direction_mode;
+  w_current->net_midpoint_mode         = default_net_midpoint_mode;
+  w_current->net_selection_mode        = default_net_selection_mode;
 
-  w_current->bus_ripper_rotation  = default_bus_ripper_rotation;
-  w_current->bus_ripper_size      = default_bus_ripper_size;
-  w_current->bus_ripper_type      = default_bus_ripper_type;
+  w_current->bus_ripper_rotation       = default_bus_ripper_rotation;
+  w_current->bus_ripper_size           = default_bus_ripper_size;
+  w_current->bus_ripper_type           = default_bus_ripper_type;
+  INIT_STR(w_current, bus_ripper_symname, DEFAULT_BUS_RIPPER_SYMNAME);
 
 /* Pointer Device, aka Mouse stuff */
-  w_current->fast_mousepan        = default_fast_mousepan;
-  w_current->drag_can_move        = default_drag_can_move;
-  w_current->middle_button        = default_middle_button;
-  w_current->third_button         = default_third_button;
-  w_current->mousepan_gain        = default_mousepan_gain;
-  w_current->scroll_wheel         = default_scroll_wheel;
+  w_current->fast_mousepan             = default_fast_mousepan;
+  w_current->drag_can_move             = default_drag_can_move;
+  w_current->middle_button             = default_middle_button;
+  w_current->third_button              = default_third_button;
+  w_current->mousepan_gain             = default_mousepan_gain;
+  w_current->scroll_wheel              = default_scroll_wheel;
 
 /* Print Related */
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);
 
-  toplevel->image_color                 = default_image_color;
-  toplevel->invert_images               = default_invert_images;
-  w_current->image_width                = default_image_width;
-  w_current->image_height               = default_image_height;
-  toplevel->paper_width                 = default_paper_width;
-  toplevel->paper_height                = default_paper_height;
-  toplevel->print_color                 = default_print_color;
-  toplevel->print_color_background      = default_print_color_background;
-  toplevel->print_orientation           = default_print_orientation;
-  toplevel->print_output_type           = default_print_output_type;
-  toplevel->print_output_capstyle       = default_print_output_capstyle;
-  toplevel->setpagedevice_orientation   = default_setpagedevice_orientation;
-  toplevel->setpagedevice_pagesize      = default_setpagedevice_pagesize;
+  toplevel->image_color                = default_image_color;
+  toplevel->invert_images              = default_invert_images;
+  w_current->image_width               = default_image_width;
+  w_current->image_height              = default_image_height;
+  toplevel->paper_width                = default_paper_width;
+  toplevel->paper_height               = default_paper_height;
+  toplevel->print_color                = default_print_color;
+  toplevel->print_color_background     = default_print_color_background;
+  toplevel->print_orientation          = default_print_orientation;
+  toplevel->print_output_type          = default_print_output_type;
+  toplevel->print_output_capstyle      = default_print_output_capstyle;
+  toplevel->setpagedevice_orientation  = default_setpagedevice_orientation;
+  toplevel->setpagedevice_pagesize     = default_setpagedevice_pagesize;
 
 /* Text Related */
-  w_current->text_case                  = default_text_case;
+  w_current->text_case                 = default_text_case;
 
 /* default zoom_factor at which text is displayed completely */
-  w_current->text_display_zoomfactor      = default_text_display_zoomfactor;
-  w_current->text_feedback                = default_text_feedback;
-  w_current->renderer->text_origin_marker = default_text_origin_marker;
-  w_current->renderer->text_marker_size   = default_text_marker_size;
-  w_current->text_size                    = default_text_size;
+  w_current->text_display_zoomfactor   = default_text_display_zoomfactor;
+  w_current->text_feedback             = default_text_feedback;
+   Renderer->text_origin_marker        = default_text_origin_marker;
+   Renderer->text_marker_size          = default_text_marker_size;
+  w_current->text_size                 = default_text_size;
 
 /* Undo Sub-System */
   w_current->undo_levels           = default_undo_levels;
@@ -314,6 +318,7 @@ void i_vars_freenames()
 {
   default_component_select_attrlist = g_list_clear(default_component_select_attrlist);
   g_free(default_print_command);
+  g_free(default_bus_ripper_symname);
 }
 
 /*! \brief Setup gschem default configuration.
@@ -322,10 +327,14 @@ void i_vars_freenames()
  * defaults.
  */
 void
-i_vars_init_defaults()
+i_vars_init_defaults(GSCHEM_TOPLEVEL *w_current)
 {
-  EdaConfig *cfg = eda_config_get_default_context ();
-  eda_config_set_string (cfg, "gschem", "default-testing", "this is a test");
+  i_vars_set(w_current);
+
+  EdaConfig *cfg = eda_config_get_user_context ();
+
+
+
 }
 
 /*! \brief Save user config on exit.
@@ -346,3 +355,4 @@ i_vars_atexit_save_user_config (gpointer user_data)
     g_clear_error (&err);
   }
 }
+#undef Renderer

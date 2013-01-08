@@ -1,5 +1,5 @@
 ;-*-Scheme-*-
-; 
+;
 ; User Init file for gschem
 ;
 
@@ -10,7 +10,7 @@
 ;  ;'s are comments
 ;  keywords are case sensitive (guile feature)
 ;  mode strings are case sensitive
-;  colors are not case sensitive 
+;  colors are not case sensitive
 ;
 ;  If an integer is out-side of the valid range, the corresponding limit
 ;  will be used and a warning issued.
@@ -21,24 +21,24 @@
 ; back and look for the "first" error as this is often the only problem.
 ;
 ; A common symptom that appears when there is a problem with this file is
-; "no menus" and a sensitivity error on  non-existent menu item. This is 
+; "no menus" and a sensitivity error on  non-existent menu item. This is
 ; indicative of a syntax error in this file. Maybe one of the easiest mistake
 ; is to use a colon instead of a semi-colon and no useful information is
 ; provided for locating the problem. Try using an Editor like gedit or Kate
 ; with search high-lighting. There are not that many colons in this file and
 ; none of them should be the first character on a line.
-; 
+;
 ; gschem-version string
 ;
-; Specifies the version of this file.  This number is used to make sure 
-; that the rc file is compatible with the version of gschem that is 
+; Specifies the version of this file.  This number is used to make sure
+; that the rc file is compatible with the version of gschem that is
 ; being run. The end user should *not* change this value.
 ;
 
 (gschem-version "20121212")
 
 ;
-; Start of color section 
+; Start of color section
 ;
 
 ; Make the gschem color maps more user-friendly
@@ -155,7 +155,7 @@
 ; scrollbars string
 ;
 ; Controls if the scrollbars are displayed (enabled) or not (disabled)
-; If you disable the scrollbars, you will not be able to use the scroll 
+; If you disable the scrollbars, you will not be able to use the scroll
 ; wheel on your mouse.  This is an unfortunate side effect of how the
 ; code is implemented.
 ;
@@ -184,12 +184,12 @@
 
 ; window-size integer integer
 ;
-; window-size width height 
+; window-size width height
 ;
 ; Specifies the size of the drawing area window.  The width and height
-; are specified in pixels and do not include the three menu bars and 
-; scrollbars (so the window will be larger than the specified 
-; measurements). Try to keep an aspect ratio of 1.333333 if at all possible. 
+; are specified in pixels and do not include the three menu bars and
+; scrollbars (so the window will be larger than the specified
+; measurements). Try to keep an aspect ratio of 1.333333 if at all possible.
 ; These numbers are NOT the true size of the window, but of the drawing area.
 ;
 ;(window-size 650 487)  ; Good size for 800x600
@@ -254,7 +254,7 @@
 
 ; invert-images string
 ;
-; Controls if black/white images are white on black (disabled) or 
+; Controls if black/white images are white on black (disabled) or
 ; black on white (enabled)
 ;
 (invert-images "enabled")
@@ -276,39 +276,39 @@
 ;
 ; Specifies where log message go during run time.
 ; Possible options are;
-;      log_window      The log window (if it's visible)
+;      console_window  The console window (if it's visible)
 ;      tty             The stdout of the terminal where gschem was run from
 ;      both            Both of the above locations
 ; Message are always written to the log file (unless logging is disabled)
 ; by the above keyword.
-; 
 ;
-(log-destiny "log_window")
+;
+(log-destiny "console_window")
 ;(log-destiny "tty")
 ;(log-destiny "both")
 ;
-; Controls if the log message window is mapped when gschem is started up
+; Controls if the console window is mapped when gschem is started up
 ; Possible options;
 ;       startup - opened up when gschem starts
 ;       later   - NOT opened up when gschem starts
-;                 (can be opened by Options/Show Log Window)
+;                 (can be opened by Options/Show console Window)
 ;
-(log-window "enabled")
-;(log-window "disabled")
+(console-window "enabled")
+;(console-window "disabled")
 
-; log-window-type string
+; console-window-type string
 ;
-; Controls if the log message window is a transient or if it is decorated 
+; Controls if the console window is a transient or if it is decorated
 ; as a normal window (this is dependant on the window manager doing decoration
 ; right)
 ;
 ; Possible options;
-;       decorated       - log window is a normal decorated window
-;       transient       - log window is a transient dialog box, typically
+;       decorated       - console window is a normal decorated window
+;       transient       - console window is a transient dialog box, typically
 ;                         not decorated by the window manager
 ;
-(log-window-type "decorated")
-;(log-window-type "transient")
+(console-window-type "decorated")
+;(console-window-type "transient")
 
 ;END ====================> Log Configuration <======================
 
@@ -317,8 +317,8 @@
 ; action-feedback-mode string
 ;
 ; Set the default action feedback mode (for copy/move/component place).
-; Set to outline to get an outline of the selection. 
-; Set to boundingbox to get a bounding box of the selection. 
+; Set to outline to get an outline of the selection.
+; Set to boundingbox to get a bounding box of the selection.
 ; For a fast machines with fast video use outline (it looks good).
 ; For a slow machine use boundingbox; it is much faster.
 ; Comment out if you want the default mode.
@@ -328,7 +328,7 @@
 
 ; add-attribute-offset integer
 ;
-; This has not been implemented/debugged yet.  
+; This has not been implemented/debugged yet.
 ;
 ; Controls a offset which is added to the location of text items that are
 ; added to an object as an attribute. This offset is added when the following
@@ -340,14 +340,14 @@
 ;  4) The initial mouse position is at or near the actual net (with one
 ;     grid unit).
 ;
-; If these four conditions are not met, then this offset is not added. 
+; If these four conditions are not met, then this offset is not added.
 (add-attribute-offset 50)
 
 ; auto-load-last string
 ;
-; Determines if the newly placed components are embedded in the schematic 
-; or if only the filename is specified and the component is searched for 
-; instead.  If it is enabled, then all new components will be embedded 
+; Determines if the newly placed components are embedded in the schematic
+; or if only the filename is specified and the component is searched for
+; instead.  If it is enabled, then all new components will be embedded
 ; othewise they are not embedded.  This can be controlled on the fly during
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
@@ -363,14 +363,14 @@
 ; Autosaving will not be allowed if setting it to zero.
 (auto-save-interval 180)
 
-; Attribute autoplacement grid 
+; Attribute autoplacement grid
 (attribute-placement-grid 50)
 
 ; component-dialog-attributes stringlist
 ;
 ; Sets a list of attributs that are visible in the component select dialog.
 ; The attributes are sorted in the same order as they appear in the list.
-; If the first list element is an asterisk "*", all attributes will be 
+; If the first list element is an asterisk "*", all attributes will be
 ; displayed in alphabetical order.
 ;
 ; Note 1. An empty list will disable the attribute view in the dialog.
@@ -398,9 +398,9 @@
 
 ; embed-components string
 ;
-; Determines if the newly placed components are embedded in the schematic 
-; or if only the filename is specified and the component is searched for 
-; instead.  If it is enabled, then all new components will be embedded 
+; Determines if the newly placed components are embedded in the schematic
+; or if only the filename is specified and the component is searched for
+; instead.  If it is enabled, then all new components will be embedded
 ; othewise they are not embedded.  This can be controlled on the fly during
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
@@ -421,7 +421,7 @@
 
 ;  file-preview string
 ;
-;  Controls if the preview area in the File Open/Save As and Component 
+;  Controls if the preview area in the File Open/Save As and Component
 ;  dialog boxes is enabled by default or not
 ;
 (file-preview "enabled")
@@ -430,7 +430,7 @@
 ; force-boundingbox string
 ;
 ; Controls if the entire bounding box of a symbol is used when figuring out
-; whichend of the pin is considered the active port.  Enable this when 
+; whichend of the pin is considered the active port.  Enable this when
 ; gschem is guessing incorrectly.
 ;
 ;(force-boundingbox "enabled")
@@ -438,7 +438,7 @@
 
 ; handleboxes string
 ;
-; Controls if the handleboxes (which contain the menu and toolbar) are 
+; Controls if the handleboxes (which contain the menu and toolbar) are
 ; visible or not.
 ;
 (handleboxes "enabled")
@@ -446,9 +446,9 @@
 
 ; keyboardpan-gain integer
 ;
-; Controls how much the display pans when using the keyboard cursor keys.  
-; A larger value provides greater pan distance when pressing the cursor 
-; keys, while a smaller value provides a smoother, but smaller pan 
+; Controls how much the display pans when using the keyboard cursor keys.
+; A larger value provides greater pan distance when pressing the cursor
+; keys, while a smaller value provides a smoother, but smaller pan
 ; distance when moving the cursor keys.
 (keyboardpan-gain 20)
 ;;(keyboardpan-gain 10)
@@ -465,8 +465,8 @@
 
 ; netconn-rubberband string
 ;
-; Controls if net connections are maintained when you move a connecting 
-; component or net.   
+; Controls if net connections are maintained when you move a connecting
+; component or net.
 ;
 (netconn-rubberband "enabled")
 ;(netconn-rubberband "disabled")
@@ -491,7 +491,7 @@
 ; snap-size number
 ;
 ; Sets the default snap spacing at start-up of gschem.
-; 
+;
 (snap-size 100)
 
 ; sort-components-library string
@@ -527,9 +527,9 @@
 ;
 ;  Controls if the net consolidation code is used when schematics are read
 ;  in, written to disk, and when nets are being drawn (does not consolidate
-;  when things are being copied or moved yet).  Net consolidation is the 
+;  when things are being copied or moved yet).  Net consolidation is the
 ;  connection of nets which can be combined into one.
-;  Comment out if you want the default mode 
+;  Comment out if you want the default mode
 ;
 (net-consolidate "enabled")
 ;(net-consolidate "disabled")
@@ -559,7 +559,7 @@
 ;  net-selection-mode string
 ;
 ; Controls how many net segments are selected when you click at a net
-; If one of the enabled items is used, the selection state will toggle 
+; If one of the enabled items is used, the selection state will toggle
 ; through all selection states. The mode defines the maximum search depth
 ; for the net selection mode
 ;
@@ -572,31 +572,20 @@
 ; Bus ripper controls
 ; The following keywords control the auto bus ripper addition code
 ;
-; bus-ripper-size  => Sets the size of the auto bus rippers.  
-; bus-ripper-type  => Sets the bus ripper type either a "component" or
-;                     plain "net"
+; bus-ripper-size  => Sets the size of the auto bus rippers.
+; bus-ripper-type  => Sets the bus ripper type, either a "component" or plain "net"
 ; bus-ripper-syname  => If above is set to component, specify the symbol name.
 ;                       The symbol must exist in a component library
-; bus-ripper-rotation => Either "symmetric" or "non-symmetric".  This deals 
-;                        with how the bus ripper symbol is rotated when it 
+; bus-ripper-rotation => Either "symmetric" or "non-symmetric".  This deals
+;                        with how the bus ripper symbol is rotated when it
 ;                        is auto added to a schematic.
-;   
+;
 
-; The default bus ripper
+; The default bus ripper setup
 (bus-ripper-size 200)
 (bus-ripper-type "component")
 (bus-ripper-symname "busripper-1.sym")
 (bus-ripper-rotation "non-symmetric")
-
-; A symmetric alternative 
-;(bus-ripper-size 200)
-;(bus-ripper-type "component")
-;(bus-ripper-symname "busripper-2.sym")
-;(bus-ripper-rotation "symmetric")
-
-; A simple net 
-;(bus-ripper-size 200)
-;(bus-ripper-type "net")
 
 ;END ------------------------>  Net Ripper  <-----------------------
 
@@ -635,7 +624,7 @@
 ; pin-style string
 ;
 ; Set to none disable using line width styles, pins width will be
-; based on the pin type, either net or bus. 
+; based on the pin type, either net or bus.
 ; Set to thin if you want thin pins
 ; Set to thick if you want thick pins.
 ; This mode also determines what pin style gets printed
@@ -653,7 +642,7 @@
 ; Note: If the corresponding xxx-style is NOT used then the internal
 ; defaults are assigned, in which case: Nets and Pin will be the old
 ; "narrow" values, Lines will be an over-ridable THIN default, and
-; Buses will be over-ridable THICK default. In situtations where 
+; Buses will be over-ridable THICK default. In situtations where
 ; "tweeking" is NOT required, all the keywords for Bus, Line, Net,
 ; and Pin styles and widths would be better left commented out.
 ;
@@ -693,8 +682,8 @@
 
 ; middle-button string
 ;
-; Controls if the middle mouse button draws strokes, repeats the last 
-; command, does an action (move and copy (holding down the ALT key) 
+; Controls if the middle mouse button draws strokes, repeats the last
+; command, does an action (move and copy (holding down the ALT key)
 ; are supported) on a single objects, or if it does the mouse panning.
 ;
 ;(middle-button "stroke")
@@ -724,11 +713,11 @@
 
 ; third-button string
 ;
-; Controls if the third mouse button performs the popup ("popup") or 
+; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
-;(third-button "popup")
-(third-button "mousepan")
+(third-button "popup")
+;(third-button "mousepan")
 
 ;END ================> Pointer Device  Preferences <================
 
@@ -745,20 +734,21 @@
 
 ; text-display-zoomfactor integer
 ;
-; Sets the zoomfactor number (~150 being the most zoomed out factor) 
-; (zoom factors get smaller as you zoom in) at which text is displayed
-; completely (not a line).  This is only valid if above is set to
-; "only-when-readable" 
+; Sets the zoom factor at which text is drawn as a box. When the current
+; Zoom is at or above this value, text will be drawn as boxes if text-feed
+; back is set to "only-when-readable". This parameter is not valid when
+; text-feedback is set to "always".
 ;
-(text-display-zoomfactor 30)
+(text-display-zoomfactor 21)
 
 ; text-feedback string
 ;
-; Controls if text is drawn when doing an xor action (like copy/move)
-; Comment out if you want the default mode.
+; Controls if text is rendered when doing an xor action (like copy/move)
+; or when the zoom is above the zoom threashold specified by text-display
+; -zoomfactor. Comment out if you want the default mode.
 ;
-(text-feedback "only-when-readable")
-;(text-feedback "always")
+;(text-feedback "only-when-readable")
+(text-feedback "always")
 
 ; text-origin-marker string
 ;
@@ -793,14 +783,14 @@
 
 ; undo-levels number
 ;
-; Determines the number of levels of undo.  Basically this number decides 
+; Determines the number of levels of undo.  Basically this number decides
 ; how many backup schematics are saved on disk.
 ;
 (undo-levels 10)
 
 ; undo-type string
 ;
-; Controls which kind of undo is used.  The default is to use the disk as 
+; Controls which kind of undo is used.  The default is to use the disk as
 ; the storing medium (ie after every action the undo information is stored
 ; to disk).  The other mechanism uses only memory.  The disk mechanism is
 ; nice because you get undo-level number of backups of the schematic written
@@ -811,10 +801,10 @@
 
 ; undo-panzoom string
 ;
-; Controls if pan or zoom commands are saved in the undo list.  If this 
+; Controls if pan or zoom commands are saved in the undo list.  If this
 ; is enabled then a pan or zoom command will be considered a command and
 ; can be undone.  If this is false, then panning and zooming is not saved
-; in the undo list and cannot be undone.  Note, the current viewport 
+; in the undo list and cannot be undone.  Note, the current viewport
 ; information is saved for every command, so the display will change to the
 ; viewport before a command is executed.
 ;
@@ -846,7 +836,7 @@
 ;; (define default-titleblock "title-A4.sym")
 ;; Change "title-A4.sym" by the name of your prefered titleblock!
 ;
-;; If you don't want a titleblock to be added automatically, then add one of 
+;; If you don't want a titleblock to be added automatically, then add one of
 ;; the following lines to your gschemrc file (without the semicolon).
 ;; There are several ways, so just choose one;
 ;; (define default-titleblock "")

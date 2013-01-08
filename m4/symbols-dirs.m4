@@ -26,8 +26,8 @@ AC_DEFUN([AX_SYM_DIRS],
   AC_MSG_CHECKING([Getting symbol directories])
   GEDASYMDIRS=`find symbols/* -maxdepth 0 -type d -printf "%f "`
 
-  AC_MSG_RESULT([$GEDASYMDIRS])
+  dnl AC_MSG_RESULT([$GEDASYMDIRS])
 
   AC_SUBST([symbol_dirs], [$GEDASYMDIRS])
-
+  []dnl
 ])dnl AX_DATA_DIRS

@@ -276,8 +276,7 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current,
  */
 void i_update_toolbar(GSCHEM_TOPLEVEL *w_current)
 {
-  if (!w_current->toolbars)
-	return;
+  if (!w_current->toolbars) return; /* if toolbars are disabled exit */
 
   switch(w_current->event_state) {
     case(NONE):

@@ -36,6 +36,13 @@
  *                |  settings_set_scm_int to set the definition of autoplace-
  *                |  attributes-grid
  * ------------------------------------------------------------------
+ * WEH | 12/30/12 |  invert-images
+ * ------------------------------------------------------------------
+ * WEH | 01/06/16 |  Relocated g_rc_bus_ripper_symname from libgeda to gschem
+ *                |  (so that all the bus ripper variable would be in the same
+ *                |  module), changed ripper Rotation and Type values to strings
+ *                |  defined in sdefines.h
+ * ------------------------------------------------------------------
  */
 
 #include <config.h>
@@ -139,7 +146,7 @@ SCM g_rc_gschem_version(SCM scm_version)
   char *version;
   SCM rc_filename;
   char *sourcefile;
-  
+
   SCM_ASSERT (scm_is_string (scm_version), scm_version,
               SCM_ARG1, "gschem-version");
 
@@ -225,7 +232,7 @@ SCM g_rc_draw_grips(SCM mode)
     {TRUE , RC_STR_ENABLED },
     {FALSE, RC_STR_DISABLED},
   };
-  
+
   RETURN_G_RC_MODE("draw-grips",
 		   default_draw_grips,
 		   2);
@@ -400,7 +407,7 @@ SCM g_rc_scrollpan_steps(SCM steps)
  *       function to dynamically process configuration data
  *       for the window-size RC entry. This sets the Windows
  *       X-Y size parameters "width" and "height".
- *       
+ *
  */
 SCM g_rc_window_size(SCM width, SCM height)
 {
@@ -556,22 +563,24 @@ SCM g_rc_logging(SCM mode)
  */
 SCM g_rc_log_destiny(SCM mode)
 {
+  /* These are defined in topsrc/include/geda.h */
   static const vstbl_entry mode_table[] = {
-    {LOG_WINDOW         , RC_STR_DESTINY_WINDOW },
+    {CONSOLE_WINDOW     , RC_STR_DESTINY_WINDOW },
     {STDOUT_TTY         , RC_STR_DESTINY_TTY },
-    {BOTH_LOGWIN_STDOUT , RC_STR_DESTINY_BOTH }
+    {BOTH_CONWIN_STDOUT , RC_STR_DESTINY_BOTH }
   };
 
   RETURN_G_RC_MODE("log-destiny",
 		   default_log_destiny,
 		   3);
 }
-/*! \brief This function processes the log-window RC entry.
+/*! \brief This function processes the console-window RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the log-window RC entry.
+ *       processing configuration data for the console-window
+ *       RC entry.
  */
-SCM g_rc_log_window(SCM mode)
+SCM g_rc_console_window(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
     {MAP_ON_STARTUP, "startup" },     /* depreciate */
@@ -580,24 +589,25 @@ SCM g_rc_log_window(SCM mode)
     {MAP_LATER     , RC_STR_DISABLED }
   };
 
-  RETURN_G_RC_MODE("log-window",
-		   default_log_window,
+  RETURN_G_RC_MODE("console-window",
+		   default_console_window,
 		   4);
 }
-/*! \brief This function processes the log-window-type RC entry.
+/*! \brief This function processes the console-window-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the log-window-type RC entry.
+ *       processing configuration data for the console-window-type
+ *       RC entry.
  */
-SCM g_rc_log_window_type(SCM mode)
+SCM g_rc_console_window_type(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
-    {TRANSIENT, RC_STR_LOGWIN_TRANSIENT },
-    {DECORATED, RC_STR_LOGWIN_DECORATED }
+    {TRANSIENT, RC_STR_CONWIN_TRANSIENT },
+    {DECORATED, RC_STR_CONWIN_DECORATED }
   };
-  
-  RETURN_G_RC_MODE("log-window-type",
-		   default_log_window_type,
+
+  RETURN_G_RC_MODE("console-window-type",
+		   default_console_window_type,
 		   2);
 }
 /* ----- Miscellaneous ----- */
@@ -660,7 +670,7 @@ SCM g_rc_map_keys(SCM keys, SCM action)
   char *action_str;
   char *keys_str;
   char scm_expr[128];
- 
+
   SCM s_result;
 
   SCM_ASSERT (scm_is_string (keys), keys, SCM_ARG1, "map-keys");
@@ -669,7 +679,7 @@ SCM g_rc_map_keys(SCM keys, SCM action)
   action_str = scm_to_utf8_string(action);
   keys_str = scm_to_utf8_string(keys);
 
-  strcpy(scm_expr, "(bind-keys! %global-keymap \""); 
+  strcpy(scm_expr, "(bind-keys! %global-keymap \"");
   strcat(scm_expr, keys_str);
   strcat(scm_expr, "\" '");
   strcat(scm_expr, action_str);
@@ -750,21 +760,12 @@ SCM g_rc_attribute_placement_grid(SCM offset)
                                      MAX_AUTOPLACE_GRID,
                                      DEFAULT_ATTRIB_PLACE_GRID,
                                      "attribute-placement-grid");
-  
+
    x_settings_set_scm_int("autoplace-attributes-grid", default_attribute_placement_grid );
-  
+
   return SCM_BOOL_T;
 }
-static void
-free_string_glist(void *data)
-{
-  GList *iter, *glst = *((GList **) data);
 
-  for (iter = glst; iter != NULL; iter = g_list_next (iter)) {
-    g_free (iter->data);
-  }
-  g_list_free (glst);
-}
 /*! \brief This function processes the component dialog RC entry.
  *  \par Function Description
  *  This function reads the string list from the component-dialog-attributes
@@ -960,7 +961,7 @@ SCM g_rc_raise_dialog_boxes_on_expose(SCM mode)
     {TRUE , RC_STR_ENABLED },
     {FALSE, RC_STR_DISABLED},
   };
-  
+
   RETURN_G_RC_MODE("raise-dialog-boxes-on-expose",
 		   default_raise_dialog_boxes,
 		   2);
@@ -1016,7 +1017,7 @@ SCM g_rc_sort_component_library(SCM mode)
   };
 
   RETURN_G_RC_MODE("sort_component_library",
-                   default_sort_component_library, 
+                   default_sort_component_library,
                    2);
 }
 /*! \brief This function processes the toolbars RC entry.
@@ -1129,6 +1130,7 @@ SCM g_rc_net_selection_mode(SCM mode)
 }
 
 /* Net Ripper */
+
 /*! \brief This function processes the bus-ripper-rotation RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1137,8 +1139,8 @@ SCM g_rc_net_selection_mode(SCM mode)
 SCM g_rc_bus_ripper_rotation(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
-    {SYMMETRIC,     "symmetric" },
-    {NON_SYMMETRIC, "non-symmetric"  }
+    {SYMMETRIC,     RC_STR_RIP_SYMMETRIC },
+    {NON_SYMMETRIC, RC_STR_RIP_NON_SYMMETRIC  }
   };
 
   RETURN_G_RC_MODE("bus-ripper-rotation",
@@ -1167,6 +1169,7 @@ SCM g_rc_bus_ripper_size(SCM size)
     val = DEFAULT_RIPPER_SIZE; /* assign default */
   }
 
+  default_bus_ripper_size = val;
   return SCM_BOOL_T;
 }
 /*! \brief This function processes the bus-ripper-type RC entry.
@@ -1177,13 +1180,36 @@ SCM g_rc_bus_ripper_size(SCM size)
 SCM g_rc_bus_ripper_type(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
-    {COMP_BUS_RIPPER, "component" },
-    {NET_BUS_RIPPER,  "net" }
+    {COMP_BUS_RIPPER, RC_STR_RIP_COMPONENT },
+    {NET_BUS_RIPPER,  RC_STR_RIP_NET }
   };
 
   RETURN_G_RC_MODE("bus-ripper-type",
 		   default_bus_ripper_type,
 		   2);
+}
+/*! \brief This function processes the bus-ripper-symname RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the bus-ripper-symname RC entry.
+ *
+ *  \param [in] scmsymname
+ *  \return SCM_BOOL_T always.
+ */
+SCM g_rc_bus_ripper_symname(SCM scmsymname)
+{
+  char *temp;
+
+  SCM_ASSERT (scm_is_string (scmsymname), scmsymname,
+              SCM_ARG1, "bus-ripper-symname");
+
+  g_free(default_bus_ripper_symname);
+
+  temp = scm_to_utf8_string (scmsymname);
+  default_bus_ripper_symname = g_strdup (temp);
+  free (temp);
+
+  return SCM_BOOL_T;
 }
 
 /* Pointer Device, aka Mouse stuff */
@@ -1324,7 +1350,7 @@ SCM g_rc_paper_size(SCM width, SCM height)
               SCM_ARG1, FUNC_NAME);
   SCM_ASSERT (SCM_NIMP (height) && SCM_REALP (height), height,
               SCM_ARG2, FUNC_NAME);
-  
+
   /* yes this is legit, we are casting the resulting double to an int */
   default_paper_width  = (int) (scm_to_double (width)  * MILS_PER_INCH);
   default_paper_height = (int) (scm_to_double (height) * MILS_PER_INCH);
@@ -1382,7 +1408,7 @@ SCM g_rc_print_command(SCM scm_command)
 
   SCM_ASSERT (scm_is_string (scm_command), scm_command,
               SCM_ARG1, FUNC_NAME);
-  
+
   command = scm_to_utf8_string (scm_command);
 
   g_free (default_print_command);
@@ -1422,7 +1448,7 @@ SCM g_rc_output_orientation(SCM mode)
     {PORTRAIT , "portrait" },
     {LANDSCAPE, "landscape"},
   };
-  
+
   RETURN_G_RC_MODE("output-orientation",
 		   default_print_orientation,
 		   2);
@@ -1520,7 +1546,7 @@ SCM g_rc_text_case(SCM mode)
 SCM g_rc_text_display_zoomfactor(SCM zoomfactor)
 {
   int val;
-  
+
   SCM_ASSERT (scm_is_integer (zoomfactor), zoomfactor,
               SCM_ARG1, "test-display-zoom-factor");
 

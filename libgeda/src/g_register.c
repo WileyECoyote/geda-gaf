@@ -74,11 +74,10 @@ static struct gsubr_t libgeda_funcs[] = {
   { "thin-pin-width",           1, 0, 0, g_rc_thin_pin_width },
 
   { "world-size",               3, 0, 0, g_rc_world_size },
-   
+
   { "untitled-name",            1, 0, 0, g_rc_untitled_name },
   { "scheme-directory",         1, 0, 0, g_rc_scheme_directory },
   { "bitmap-directory",         1, 0, 0, g_rc_bitmap_directory },
-  { "bus-ripper-symname",       1, 0, 0, g_rc_bus_ripper_symname },
   { "postscript-prolog",        1, 0, 0, g_rc_postscript_prolog },
   { "attribute-promotion",       1, 0, 0, g_rc_attribute_promotion },
   { "promote-invisible",         1, 0, 0, g_rc_promote_invisible },
@@ -98,12 +97,12 @@ static struct gsubr_t libgeda_funcs[] = {
 void g_register_libgeda_funcs (void)
 {
   struct gsubr_t *tmp = libgeda_funcs;
-  
+
   while (tmp->name != NULL) {
     scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->fnc);
     tmp++;
   }
-  
+
 }
 
 /*! \brief Register some libgeda directories with Scheme.

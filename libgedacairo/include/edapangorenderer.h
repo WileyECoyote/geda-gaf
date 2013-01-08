@@ -50,7 +50,7 @@ struct _EdaPangoRenderer
 };
 
 GType eda_pango_renderer_get_type (void) G_GNUC_CONST;
-PangoRenderer *eda_pango_renderer_new (cairo_t *cr) G_GNUC_WARN_UNUSED_RESULT;
+PangoRenderer *eda_pango_renderer_new (cairo_t *cr) WARN_UNUSED;
 void eda_pango_renderer_show_layout (EdaPangoRenderer *renderer,
                                      PangoLayout *pl, double x, double y);
 
@@ -64,7 +64,7 @@ struct _EdaPangoAttrOverbar
 };
 
 PangoAttrClass *eda_pango_attr_overbar_get_class (void) G_GNUC_CONST;
-PangoAttribute *eda_pango_attr_overbar_new (bool overbar) G_GNUC_WARN_UNUSED_RESULT;
+PangoAttribute *eda_pango_attr_overbar_new (bool overbar) WARN_UNUSED;
 bool eda_is_pango_attr_overbar (PangoAttribute *attr);
 bool eda_pango_parse_overbars (const gchar *overbar_text,
                                    int length,

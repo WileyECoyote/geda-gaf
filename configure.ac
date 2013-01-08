@@ -8,7 +8,7 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [1.9.0], [https://bugs.launchpad.net/geda], [geda-gaf])
+AC_INIT([gEDA/gaf], [2.0.2], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
 AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
@@ -21,7 +21,7 @@ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
 AM_INIT_AUTOMAKE([nostdinc -Woverride  -Wportability -Wsyntax -Wunsupported])
 
-AC_GNU_SOURCE # FIXME for some reason this is needed?
+AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 
 #####################################################################
 # Do version number magic
@@ -41,7 +41,7 @@ AX_WINDOWS_FLAGS
 #####################################################################
 # Check for compiling & linking tools
 #####################################################################
-
+AC_PROG_CXX
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_CPP
@@ -59,9 +59,10 @@ AX_GCC_FLAGS([-Wall])
 
 AC_PROG_MKDIR_P
 AM_PROG_LEX
-AX_PROG_AWK
 AX_PROG_GROFF
 AC_PATH_PROGS([M4], [gm4 m4], [m4])
+AC_PROG_YACC
+AX_PROG_AWK
 
 #####################################################################
 # Internationalisation
@@ -108,51 +109,7 @@ AX_CHECK_PANGO
 # Header files & particular functions
 #####################################################################
 
-AC_HEADER_SYS_WAIT
-
-# These checks are mostly obsolete because every plausible platform
-# provides what they check for but we will do check:
-AC_HEADER_STDC
-
-# FIXME these checks may be pointless for one of three reasons: every
-# even vaguely sane libc implementation provides them; we don't use
-# any of their functions in favour of GLib alternatives; or we don't
-# provide an alternative, so the build will fail anyway.
-AC_CHECK_HEADERS([stdlib.h string.h unistd.h])
-
-# Since we don't have a sensible alternative, if these headers are
-# missing we should fail. Also need to remove HAVE_ERRNO_H tests in
-# the C source code, since if we *don't* have it the build will fail.
-AC_CHECK_HEADERS([errno.h fcntl.h])
-
-# On a system without locale.h, the user may have just disabled NLS
-# to be able to build.  But are there known systems with working NLS but
-# without a locale.h?  We do need to include locale.h on some systems
-# to be able to build gschem/src/gschem.c
-AC_CHECK_HEADERS([locale.h])
-
-# to be able to build gschem/src/gschem.c
-#AC_CHECK_HEADERS([gdl.h])
-
-# Check for lrint in math library.
-AC_CHECK_LIB([m], [lrint],
-             AC_DEFINE([HAVE_LRINT], 1,
-                       [If your math library has lrint in it, define this]))
-
-AC_CHECK_LIB([m], [atan2])
-
-AC_CHECK_FUNCS([chown getlogin])
-
-# Check if the getopt header is present
-AC_CHECK_HEADERS([getopt.h])
-# Check for getopt_long
-# On FreeBSD the 'gnugetopt' library is needed.
-AC_SEARCH_LIBS([getopt_long], [gnugetopt],
-               AC_DEFINE([HAVE_GETOPT_LONG], 1,
-                         [Define to 1 if you have the `getopt_long' function.]))
-
-# Check for misc features of awk
-AX_AWK_FEATURES
+AX_GEDA_STD_CHECKS
 
 #####################################################################
 # Optional things
@@ -195,6 +152,7 @@ AX_LIBGEDACAIRO([1:0:0])
 
 AC_CONFIG_FILES([Makefile
                  bitmaps/Makefile
+                 include/Makefile
                  intl/Makefile
 
                  libgeda/Makefile

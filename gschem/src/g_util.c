@@ -72,6 +72,16 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
   return SCM_UNDEFINED;
 }
 
+void free_string_glist(void *data)
+{
+  GList *iter, *glst = *((GList **) data);
+
+  for (iter = glst; iter != NULL; iter = g_list_next (iter)) {
+    g_free (iter->data);
+  }
+  g_list_free (glst);
+}
+
 /*! \brief Create the (gschem core util) Scheme module.
  * \par Function Description
  * Defines procedures in the (gschem core util) module. The module can
@@ -169,7 +179,7 @@ char *scm_2_cstring( char* scm_str_name) /* WEH: couldn't find it, made it */
 
 void sort_string_array( char *strings[], size_t strings_size) {
     int cstring_cmp(const void *a, const void *b)
-    { 
+    {
        const char **ia = (const char **)a;
        const char **ib = (const char **)b;
        return strcmp(*ia, *ib);
@@ -178,8 +188,8 @@ void sort_string_array( char *strings[], size_t strings_size) {
    }
     size_t strings_len = strings_size / sizeof(char *);
 
-   /* sort array using qsort functions */ 
-    qsort(strings, strings_len, sizeof(char *), cstring_cmp); 
+   /* sort array using qsort functions */
+    qsort(strings, strings_len, sizeof(char *), cstring_cmp);
 }
 
 bool strequal(const char *str1, const char *str2) /* WEH: Maybe should be in <string.h> */

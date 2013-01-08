@@ -1,5 +1,5 @@
 # geda-gattrib.m4                                        -*-Autoconf-*-
-# serial 1.0
+# serial 1.1
 
 dnl Check for dependencies for gattrib and optionally disable it.
 dnl Copyright (C) 2009  Dan McMahill <dan@mcmahill.net>
@@ -19,6 +19,7 @@ dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
 # Check if gattrib should be disabled
+
 AC_DEFUN([AX_OPTION_GATTRIB],
 [
   AC_PREREQ([2.60])dnl
@@ -30,6 +31,7 @@ AC_DEFUN([AX_OPTION_GATTRIB],
 
   if test "X$enable_gattrib" = "Xyes"; then
     AC_MSG_RESULT([yes])
+    AC_CHECK_FUNCS([memset])
   else
     AC_MSG_RESULT([no])
   fi

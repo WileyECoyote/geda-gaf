@@ -37,7 +37,6 @@ int   default_init_right = WIDTH_C;
 int   default_init_bottom = HEIGHT_C;
 char *default_untitled_name = NULL;
 char *default_bitmap_directory = NULL;
-char *default_bus_ripper_symname = NULL;
 char *default_postscript_prolog = NULL;
 GList *default_always_promote_attributes = NULL;
 
@@ -110,7 +109,6 @@ void i_vars_libgeda_set(TOPLEVEL *toplevel)
   /* need them */
   INIT_STR(toplevel, untitled_name   ,   DEFAULT_UNTITLED_NAME   );
   INIT_STR(toplevel, bitmap_directory,   DEFAULT_BITMAP_DIRECTORY);
-  INIT_STR(toplevel, bus_ripper_symname, DEFAULT_BUS_RIPPER_SYMNAME);
   INIT_STR(toplevel, postscript_prolog,  DEFAULT_POSTSCRIPT_PROLOG);
 }
 
@@ -124,7 +122,6 @@ void i_vars_libgeda_freenames()
 {
   g_free(default_untitled_name);
   g_free(default_bitmap_directory);
-  g_free(default_bus_ripper_symname);
   g_free(default_postscript_prolog);
 
   g_list_foreach(default_always_promote_attributes, (GFunc) g_free, NULL);

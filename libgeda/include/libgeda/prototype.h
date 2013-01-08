@@ -273,12 +273,12 @@ void o_text_set_rendered_bounds_func (TOPLEVEL *toplevel, RenderedBoundsFunc fun
 double o_text_get_font_size_in_points(TOPLEVEL *toplevel, OBJECT *object);
 
 /* s_attrib.c */
-int s_attrib_add_entry(char *new_attrib);
-int s_attrib_count( void );
-void s_attrib_print(void);
-int s_attrib_uniq(char *name);
-void s_attrib_free(void);
-void s_attrib_init(void);
+int   s_attrib_add_entry(char *new_attrib);
+int   s_attrib_count( void );
+void  s_attrib_print(void);
+int   s_attrib_uniq(char *name);
+void  s_attrib_free(void);
+void  s_attrib_init(void);
 char *s_attrib_get(int counter);
 
 /* s_basic.c */
@@ -300,70 +300,66 @@ const char *s_path_sys_config ();
 const char *s_path_user_config ();
 
 /* s_clib.c */
-void s_clib_free (void);
+void   s_clib_free (void);
 GList *s_clib_get_sources (const bool sorted);
-const CLibSource *s_clib_get_source_by_name (const char *name);
-void s_clib_refresh ();
-const CLibSource *s_clib_add_directory (const char *directory,
-					const char *name);
-const CLibSource *s_clib_add_command (const char *list_cmd,
-                                      const char *get_cmd,
-				      const char *name);
-const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc,
-				  const char *name);
-const char *s_clib_source_get_name (const CLibSource *source);
-GList *s_clib_source_get_symbols (const CLibSource *source);
-const char *s_clib_symbol_get_name (const CLibSymbol *symbol);
-char *s_clib_symbol_get_filename (const CLibSymbol *symbol);
-const CLibSource *s_clib_symbol_get_source (const CLibSymbol *symbol);
-char *s_clib_symbol_get_data (const CLibSymbol *symbol);
-GList *s_clib_search (const char *pattern, const CLibSearchMode mode);
-void s_clib_flush_search_cache ();
-void s_clib_flush_symbol_cache ();
-void s_clib_symbol_invalidate_data (const CLibSymbol *symbol);
-const CLibSymbol *s_clib_get_symbol_by_name (const char *name);
-char *s_clib_symbol_get_data_by_name (const char *name);
-GList *s_toplevel_get_symbols (const TOPLEVEL *toplevel);
+const  CLibSource *s_clib_get_source_by_name (const char *name);
+void   s_clib_refresh ();
+const CLibSource *s_clib_add_directory  (const char *directory, const char *name);
+const CLibSource *s_clib_add_command    (const char *list_cmd,  const char *get_cmd, const char *name);
+const CLibSource *s_clib_add_scm        (SCM         listfunc,  SCM         getfunc, const char *name);
+
+const char *s_clib_source_get_name             (const CLibSource *source);
+GList      *s_clib_source_get_symbols          (const CLibSource *source);
+const char *s_clib_symbol_get_name             (const CLibSymbol *symbol);
+char       *s_clib_symbol_get_filename         (const CLibSymbol *symbol);
+const CLibSource *s_clib_symbol_get_source     (const CLibSymbol *symbol);
+char       *s_clib_symbol_get_data             (const CLibSymbol *symbol);
+GList      *s_clib_search                      (const char *pattern, const CLibSearchMode mode);
+void        s_clib_flush_search_cache ();
+void        s_clib_flush_symbol_cache ();
+void        s_clib_symbol_invalidate_data      (const CLibSymbol *symbol);
+const CLibSymbol *s_clib_get_symbol_by_name    (const char *name);
+char       *s_clib_symbol_get_data_by_name     (const char *name);
+GList      *s_toplevel_get_symbols             (const TOPLEVEL *toplevel);
 
 /* s_color.c */
-void s_color_map_defaults (COLOR *map);
-bool s_color_rgba_decode (const char *rgba,
-                              guchar *r, guchar *g, guchar *b, guchar *a);
-char *s_color_rgba_encode (guint8 r, guint8 g, guint8 b, guint8 a);
-SCM s_color_map_to_scm (const COLOR *map);
-void s_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name);
+void  s_color_map_defaults (COLOR *map);
+bool  s_color_rgba_decode  (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
+char *s_color_rgba_encode  (guint8 r, guint8 g, guint8 b, guint8 a);
+SCM   s_color_map_to_scm   (const COLOR *map);
+void  s_color_map_from_scm (COLOR *map, SCM lst, const char *scheme_proc_name);
 
 /* s_conn.c */
-void s_conn_remove_object(TOPLEVEL *toplevel, OBJECT *to_remove);
-void s_conn_update_object(TOPLEVEL *toplevel, OBJECT *object);
-int s_conn_net_search(OBJECT* new_net, int whichone, GList * conn_list);
-GList *s_conn_return_others(GList *input_list, OBJECT *object);
-void s_conn_append_conns_changed_hook(TOPLEVEL *toplevel, ConnsChangedFunc func, void *data);
-void s_conn_emit_conns_changed(TOPLEVEL *toplevel, OBJECT *object);
-void s_conn_freeze_hooks(TOPLEVEL *toplevel, OBJECT *object);
-void s_conn_thaw_hooks(TOPLEVEL *toplevel, OBJECT *object);
+void   s_conn_remove_object             (TOPLEVEL *toplevel, OBJECT *to_remove);
+void   s_conn_update_object             (TOPLEVEL *toplevel, OBJECT *object);
+int    s_conn_net_search                (OBJECT* new_net, int whichone, GList * conn_list);
+GList *s_conn_return_others             (GList *input_list, OBJECT *object);
+void   s_conn_append_conns_changed_hook (TOPLEVEL *toplevel, ConnsChangedFunc func, void *data);
+void   s_conn_emit_conns_changed        (TOPLEVEL *toplevel, OBJECT *object);
+void   s_conn_freeze_hooks              (TOPLEVEL *toplevel, OBJECT *object);
+void   s_conn_thaw_hooks                (TOPLEVEL *toplevel, OBJECT *object);
 
 /* s_cue.c */
-void s_cue_postscript_fillbox(TOPLEVEL *toplevel, FILE *fp, int x, int y);
-void s_cue_postscript_junction (TOPLEVEL *toplevel, FILE *fp, int x, int y, int bus_involved);
-void s_cue_output_all(TOPLEVEL *toplevel, const GList *obj_list, FILE *fp, int type);
-void s_cue_output_lowlevel(TOPLEVEL *toplevel, OBJECT *object, int whichone, FILE *fp, int output_type);
-void s_cue_output_lowlevel_midpoints(TOPLEVEL *toplevel, OBJECT *object, FILE *fp, int output_type);
-void s_cue_output_single(TOPLEVEL *toplevel, OBJECT *object, FILE *fp, int type);
+void s_cue_postscript_fillbox           (TOPLEVEL *toplevel, FILE *fp, int x, int y);
+void s_cue_postscript_junction          (TOPLEVEL *toplevel, FILE *fp, int x, int y, int bus_involved);
+void s_cue_output_all                   (TOPLEVEL *toplevel, const GList *obj_list, FILE *fp, int type);
+void s_cue_output_lowlevel              (TOPLEVEL *toplevel, OBJECT *object, int whichone, FILE *fp, int output_type);
+void s_cue_output_lowlevel_midpoints    (TOPLEVEL *toplevel, OBJECT *object, FILE *fp, int output_type);
+void s_cue_output_single                (TOPLEVEL *toplevel, OBJECT *object, FILE *fp, int type);
 
 /* s_hierarchy.c */
-PAGE  *s_hierarchy_down_schematic_single(TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag, GError **err);
-void   s_hierarchy_down_symbol (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
-PAGE  *s_hierarchy_find_up_page(GedaPageList *page_list, PAGE *current_page);
-GList *s_hierarchy_traversepages(TOPLEVEL *toplevel, PAGE *p_current, int flags);
-int   s_hierarchy_print_page(PAGE *p_current, void * data);
-PAGE  *s_hierarchy_find_prev_page(GedaPageList *page_list, PAGE *current_page);
-PAGE  *s_hierarchy_find_next_page(GedaPageList *page_list, PAGE *current_page);
+PAGE  *s_hierarchy_down_schematic_single (TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag, GError **err);
+void   s_hierarchy_down_symbol           (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
+PAGE  *s_hierarchy_find_up_page          (GedaPageList *page_list, PAGE *current_page);
+GList *s_hierarchy_traversepages         (TOPLEVEL *toplevel, PAGE *p_current, int flags);
+int   s_hierarchy_print_page             (PAGE *p_current, void * data);
+PAGE  *s_hierarchy_find_prev_page        (GedaPageList *page_list, PAGE *current_page);
+PAGE  *s_hierarchy_find_next_page        (GedaPageList *page_list, PAGE *current_page);
 
 /* s_log.c */
-void  s_log_init (const char *filename);
+void  s_log_init  (const char *filename);
 void  s_log_close (void);
-char *s_log_read (void);
+char *s_log_read  (void);
 
 /* s_menu.c */
 int  s_menu_return_num(void);

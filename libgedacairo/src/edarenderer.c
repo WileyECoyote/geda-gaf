@@ -50,25 +50,25 @@ enum {
   PROP_GRIP_SIZE,
   PROP_RENDER_FLAGS,
 
-  FLAG_HINTING = EDA_RENDERER_FLAG_HINTING,
+  FLAG_HINTING         = EDA_RENDERER_FLAG_HINTING,
   FLAG_PICTURE_OUTLINE = EDA_RENDERER_FLAG_PICTURE_OUTLINE,
-  FLAG_TEXT_HIDDEN = EDA_RENDERER_FLAG_TEXT_HIDDEN,
-  FLAG_TEXT_OUTLINE = EDA_RENDERER_FLAG_TEXT_OUTLINE,
-  FLAG_TEXT_ORIGIN = EDA_RENDERER_FLAG_TEXT_ORIGIN,
+  FLAG_TEXT_HIDDEN     = EDA_RENDERER_FLAG_TEXT_HIDDEN,
+  FLAG_TEXT_OUTLINE    = EDA_RENDERER_FLAG_TEXT_OUTLINE,
+  FLAG_TEXT_ORIGIN     = EDA_RENDERER_FLAG_TEXT_ORIGIN,
 };
 
 struct _EdaRendererPrivate
 {
-  cairo_t *cr;
-  PangoContext *pc;
-  PangoLayout *pl;
+  cairo_t          *cr;
+  PangoContext     *pc;
+  PangoLayout      *pl;
   EdaPangoRenderer *pr;
   int pc_from_cr;
 
   unsigned int flags;
-  char *font_name;
-  int override_color;
-  double grip_size;
+  char        *font_name;
+  int          override_color;
+  double       grip_size;
 
   GArray *color_map;
 
@@ -93,12 +93,12 @@ EDA_RENDERER_STROKE_WIDTH (EdaRenderer *r,  double line_width) {
   return fmax (line_width, MIN_LINE_WIDTH_THRESHOLD);
 }
 
-
 static GObject *eda_renderer_constructor (GType type,
                                           unsigned int n_construct_properties,
                                           GObjectConstructParam *construct_params);
+
 static void eda_renderer_finalize (GObject *object);
-static void eda_renderer_dispose (GObject *object);
+static void eda_renderer_dispose  (GObject *object);
 static void eda_renderer_set_property (GObject *object, guint property_id,
                                        const GValue *value, GParamSpec *pspec);
 static void eda_renderer_get_property (GObject *object, guint property_id,
@@ -106,39 +106,39 @@ static void eda_renderer_get_property (GObject *object, guint property_id,
 static void eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
                                           PangoContext *new_pc);
 
-static void eda_renderer_set_color (EdaRenderer *renderer, int color);
-static int eda_renderer_is_drawable (EdaRenderer *renderer, OBJECT *object);
-static int eda_renderer_draw_hatch (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_set_color    (EdaRenderer *renderer, int color);
+static int  eda_renderer_is_drawable  (EdaRenderer *renderer, OBJECT *object);
+static int  eda_renderer_draw_hatch   (EdaRenderer *renderer, OBJECT *object);
 
 static void eda_renderer_default_draw (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_list (EdaRenderer *renderer, GList *objects);
-static void eda_renderer_draw_line (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_pin (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_net (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_bus (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_box (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_arc (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_circle (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_path (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_text (EdaRenderer *renderer, OBJECT *object);
-static int eda_renderer_get_font_descent (EdaRenderer *renderer,
-                                          PangoFontDescription *desc);
-static int eda_renderer_prepare_text (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_list    (EdaRenderer *renderer, GList *objects);
+static void eda_renderer_draw_line    (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_pin     (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_net     (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_bus     (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_box     (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_arc     (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_circle  (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_path    (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_text    (EdaRenderer *renderer, OBJECT *object);
+static int  eda_renderer_get_font_descent (EdaRenderer *renderer,
+                                           PangoFontDescription *desc);
+static int  eda_renderer_prepare_text       (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_calc_text_position (EdaRenderer *renderer, OBJECT *object,
                                              int descent, double *x, double *y);
 static void eda_renderer_draw_picture (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_complex (EdaRenderer *renderer, OBJECT *object);
 
 static void eda_renderer_default_draw_grips (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_grips_impl (EdaRenderer *renderer, int n_grips, ...);
-static void eda_renderer_draw_arc_grips (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_path_grips (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_text_grips (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_grips_impl    (EdaRenderer *renderer, int n_grips, ...);
+static void eda_renderer_draw_arc_grips     (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_path_grips    (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_text_grips    (EdaRenderer *renderer, OBJECT *object);
 
 static void eda_renderer_default_draw_cues (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_cues_list (EdaRenderer *renderer, GList *objects);
-static void eda_renderer_draw_end_cues (EdaRenderer *renderer, OBJECT *object,
-                                        int end);
+static void eda_renderer_draw_cues_list    (EdaRenderer *renderer, GList *objects);
+static void eda_renderer_draw_end_cues     (EdaRenderer *renderer, OBJECT *object,
+                                            int end);
 static void eda_renderer_draw_mid_cues (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y,
                                             double width);
@@ -156,11 +156,11 @@ GType
 eda_renderer_flags_get_type ()
 {
   static const GFlagsValue values[] = {
-    {FLAG_HINTING, "hinting", _("Enable hinting")},
+    {FLAG_HINTING,         "hinting", _("Enable hinting")},
     {FLAG_PICTURE_OUTLINE, "picture-outline", _("Picture outlines")},
-    {FLAG_TEXT_HIDDEN, "text-hidden", _("Hidden text")},
-    {FLAG_TEXT_OUTLINE, "text-outline", _("Text outlines")},
-    {FLAG_TEXT_ORIGIN, "text-origin", _("Text origins")},
+    {FLAG_TEXT_HIDDEN,     "text-hidden", _("Hidden text")},
+    {FLAG_TEXT_OUTLINE,    "text-outline", _("Text outlines")},
+    {FLAG_TEXT_ORIGIN,     "text-origin", _("Text origins")},
     {0, 0, 0},
   };
   static GType flags_type = 0;
@@ -337,16 +337,16 @@ eda_renderer_set_property (GObject *object, guint property_id,
     g_hash_table_remove_all (renderer->priv->metrics_cache);
     break;
   case PROP_COLOR_MAP:
-    renderer->priv->color_map = g_value_get_pointer (value);
+    renderer->priv->color_map      = g_value_get_pointer (value);
     break;
   case PROP_OVERRIDE_COLOR:
     renderer->priv->override_color = g_value_get_int (value);
     break;
   case PROP_GRIP_SIZE:
-    renderer->priv->grip_size = g_value_get_double (value);
+    renderer->priv->grip_size      = g_value_get_double (value);
     break;
   case PROP_RENDER_FLAGS:
-    renderer->priv->flags = g_value_get_flags (value);
+    renderer->priv->flags          = g_value_get_flags (value);
     break;
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -577,7 +577,7 @@ static int eda_renderer_draw_hatch (EdaRenderer *renderer, OBJECT *object)
   default:
     g_return_val_if_reached (FALSE);
   }
-  
+
   fill_lines = g_array_new (FALSE, FALSE, sizeof (LINE));
 
   if ( object->fill_pitch1 > 0) {/* Handle mesh and hatch fill types */
@@ -751,9 +751,18 @@ eda_renderer_draw_text (EdaRenderer *renderer, OBJECT *object)
   double dummy = 0;
   double marker_dist = renderer->text_marker_size;
 
+  void text_as_outline_box () {
+    eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), 0,
+                   object->w_left, object->w_bottom,
+                   object->w_right, object->w_top);
+    eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                      TYPE_SOLID, END_SQUARE,
+                      EDA_RENDERER_STROKE_WIDTH (renderer, 0),
+                      -1, -1);
+  }
   /* First check if this is hidden text. */
   if (object->visibility == INVISIBLE
-      && !EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
+   && !EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
     return;
   }
 
@@ -763,14 +772,7 @@ eda_renderer_draw_text (EdaRenderer *renderer, OBJECT *object)
 
   /* If text outline mode is selected, draw an outline */
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_OUTLINE)) {
-    eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                   0, object->w_left, object->w_bottom,
-                   object->w_right, object->w_top);
-    eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                      TYPE_SOLID, END_SQUARE,
-                      EDA_RENDERER_STROKE_WIDTH (renderer, 0),
-                      -1, -1);
-    return;
+    return text_as_outline_box();
   }
 
   /* Otherwise, actually draw the text */
@@ -1070,7 +1072,7 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, OBJECT *object)
   g_return_if_fail (object != NULL);
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_return_if_fail (renderer->priv->cr != NULL);
-  
+
   if(renderer->draw_grips == FALSE)
     return;
 
@@ -1536,8 +1538,7 @@ eda_renderer_get_cairo_context (EdaRenderer *renderer)
   return cr;
 }
 
-bool
-eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
+bool eda_renderer_get_hinting_enabled (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
   return EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING);
@@ -1550,7 +1551,27 @@ GArray * eda_renderer_get_color_map (EdaRenderer *renderer)
   g_object_get (G_OBJECT (renderer), "color-map", &map, NULL);
   return map;
 }
-
+bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
+{
+  if (EDA_IS_RENDERER (renderer))
+    renderer->priv->flags = flags;
+  else
+    return FALSE;
+  return TRUE;
+}
+bool eda_renderer_mask_flags (EdaRenderer *renderer, int flags)
+{
+  if (EDA_IS_RENDERER (renderer))
+    renderer->priv->flags |= flags;
+  else
+    return FALSE;
+  return TRUE;
+}
+int eda_renderer_get_flags (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return renderer->priv->flags;
+}
 void
 eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
 {
@@ -1558,8 +1579,7 @@ eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
   g_object_set (G_OBJECT (renderer), "color-map", map, NULL);
 }
 
-int
-eda_renderer_get_cairo_flags (EdaRenderer *renderer)
+int eda_renderer_get_cairo_flags (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), 0);
   return EDA_RENDERER_CAIRO_FLAGS (renderer);

@@ -38,7 +38,7 @@
 
 #include "x_compselect.h"
 #include "x_dialog.h"
-#include "x_log.h"
+#include "x_console.h"
 #include "x_multiattrib.h"
 #include "x_pagesel.h"
 #include "x_print.h"

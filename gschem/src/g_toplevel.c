@@ -134,9 +134,8 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */
-  //w_current->draw_grips                   = TRUE;
   w_current->renderer->draw_grips         = TRUE;
-  
+
   /* Grid Related - Display=>Grid */
     w_current->grid_mode                  = GRID_MESH;
     w_current->dots_grid_dot_size         = DEFAULT_GRID_DOT_SIZE;
@@ -155,9 +154,9 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
 
   /*    Log Related    */
   logging               = 0;
-  log_destiny           = 0; 
-  log_window            = 0;
-  log_window_type       = 0;
+  log_destiny           = 0;
+  console_window        = 0;
+  console_window_type   = 0;
 
  /* Miscellaneous - in  alphabetical order */
   w_current->action_feedback_mode       = OUTLINE;
@@ -190,6 +189,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
     w_current->bus_ripper_rotation    = 0;
     w_current->bus_ripper_size        = DEFAULT_RIPPER_SIZE;
     w_current->bus_ripper_type        = 0;
+    w_current->bus_ripper_symname     = NULL;
 
   /* Pointer Device, aka Mouse stuff */
   w_current->fast_mousepan      = 0;

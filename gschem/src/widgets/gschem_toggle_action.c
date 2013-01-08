@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1912-2013 Ales Hvezda
  * Copyright (C) 1912-2013 gEDA Contributors (see ChangeLog for details)
  *
  * Date: December 25, 2012
@@ -147,7 +147,7 @@ gschem_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
 static void
 gschem_toggle_action_class_init (GschemToggleActionClass *klass)
 {
-  GObjectClass *gobject_class;
+  GObjectClass   *gobject_class;
   GtkActionClass *action_class;
 
   gschem_toggle_action_parent_class = g_type_class_peek_parent (klass);

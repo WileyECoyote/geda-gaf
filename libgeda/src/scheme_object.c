@@ -1277,8 +1277,7 @@ SCM_DEFINE (make_text, "%make-text", 0, 0, 0,
 
   SCM result = edascm_from_object (obj);
 
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
+  /* At the moment, the only pointer to the object is owned by the smob. */
   edascm_c_set_gc (result, 1);
 
   return result;
@@ -2004,7 +2003,7 @@ SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!",
   /* Convert vector to contiguous buffer */
   scm_t_array_handle handle;
   size_t len;
-  ssize_t inc;
+  ssize_t inc; /* Assuming we have it */
   const scm_t_int8 *elt = scm_s8vector_elements (vec_s, &handle, &len, &inc);
   gchar *buf = g_malloc (len);
   int i;

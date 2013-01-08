@@ -34,7 +34,9 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 12/04/12 |  Added function x_settings_set_scm_int, revised
 ;; ------------------------------------------------------------------
-;;
+;; WEH | 01/06/13 |  Added RC_RIPPER_xxx_STRINGS (new). Revise  gschem_
+;;                |  structure for Ripper name string.
+;; ------------------------------------------------------------------
 */
 #ifndef __X_SETTINGS_H__
 #define __X_SETTINGS_H__
@@ -62,7 +64,7 @@ struct rc_4_strings_t
 #define RC_DOTS_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_DOTS_MODE_VARIABLE, RC_STR_DOTS_MODE_FIXED, NULL, NULL};
 #define RC_BARS_UPDATE_STRINGS struct rc_4_strings_t string_table = {RC_STR_BARS_CONTINUOUS, RC_STR_BARS_DELAYED, NULL, NULL};
 #define RC_LOG_DESTINY_STRINGS struct rc_4_strings_t string_table = {RC_STR_DESTINY_WINDOW, RC_STR_DESTINY_TTY, RC_STR_DESTINY_BOTH, NULL};
-#define RC_LOG_WINTYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_LOGWIN_DECORATED, RC_STR_LOGWIN_TRANSIENT, NULL, NULL};
+#define RC_CONSOLE_WINTYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_CONWIN_DECORATED, RC_STR_CONWIN_TRANSIENT, NULL, NULL};
 #define RC_ACTION_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_FEEDBACK_OUTLINE, RC_STR_FEEDBACK_BOUNDBOX, NULL, NULL};
 
 #define RC_WINDOW_SIZE_STRINGS struct rc_4_strings_t string_table = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650, \
@@ -81,19 +83,25 @@ struct rc_4_strings_t
 #define RC_TXT_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_TXT_READABLE, RC_STR_TXT_ALWAYS, NULL, NULL};
 #define RC_UNDO_TYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_UNDO_DISK, RC_STR_UNDO_MEMORY, NULL, NULL};
 
+#define RC_RIPPER_ROTATION_STRINGS struct rc_4_strings_t string_table = {RC_STR_RIP_SYMMETRIC, RC_STR_RIP_NON_SYMMETRIC, NULL, NULL};
+#define RC_RIPPER_TYPE_STRINGS     struct rc_4_strings_t string_table = {RC_STR_RIP_NET, RC_STR_RIP_COMPONENT, NULL, NULL};
+
+/* This structure is initialized in x_settings_dialog.c, see rc_options */
 typedef struct
 {
    int display_color_map;
    int color_scheme_index;
-   int display_outline_color_map; /* Must figureout to determine the status of these options */
+   int display_outline_color_map; /* Must determine the status of these options */
    int window_size;
    int custom_window_size;
    int world_size;
    int custom_world_size;
    int titleblock_index;
+   int ripper_symbol_index;
    char color_map_scheme[MAX_FILENAME];
    char untitled_name[MAX_FILENAME];
    char titleblock_fname[MAX_FILENAME];
+   char ripper_symbol_fname[MAX_FILENAME];
 
 }  gschem_rc_options;
 
@@ -129,12 +137,13 @@ typedef enum {
         TitleBlock,
         ColorMapScheme,
         DotGridMode,
-        LogWindowType,
+        ConsoleWindowType,
 	MiddleButton,
         ThirdButton,
         UndoType,
+        RipperSymbol,
 
-/* 12 Edit Control Ids  */
+/* 1 Edit Control Ids  */
         UntitledName,
 
 /* Radio Control by Alphabetical TAB order */
@@ -192,6 +201,7 @@ typedef enum {
         KeyboardPanGain,
         MeshGridThreshold,
         MousePanGain,
+        RipperSize,
         ScrollPanSteps,
         SelectPixels,
         SnapSize,
@@ -229,12 +239,14 @@ typedef enum {
         FilePreview,
         FriendlyColorMap,
         FriendlyOutlineMap,
-        InitLogWindow,
+        InitConsoleWindow,
         InvertImages,
         MagneticNets,
         NetDirection,
         NotifyEvents,
         ObjectClipping,
+        RipperRotation,
+        RipperType,
         RubberNets,
         ScrollBars,
         SortLibrary,

@@ -20,8 +20,8 @@ gaf_SOURCES = \
 	builtins.h \
 	gettext.h \
 	gaf.c \
-	gaf-config.c \
-	gaf-export.c \
+	config.c \
+	export.c \
 	shell.c
 
 AM_CFLAGS     = $(GEDA_INCLUDES) -I$(includedir)
@@ -58,7 +58,7 @@ snarf_cpp_opts = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 dist_man_MANS = gaf.1
 html_man_files = gaf.html
 
-docsmandir  =$(docdir)/man
+docsmandir=$(docdir)/man
 docsman_DATA=$(html_man_files)
 if ENABLE_GROFF_HTML
 .1.html:
@@ -71,6 +71,6 @@ else
 	@! :
 endif
 
-SUFFIXES   = .x .1.in .1 .html
+SUFFIXES = .x .1.in .1 .html
 
 CLEANFILES = $(BUILT_SOURCES)

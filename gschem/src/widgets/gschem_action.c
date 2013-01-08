@@ -62,13 +62,15 @@ static void gschem_action_finalize (GObject *object)
  *  \param [in]  value        The GValue the property is being set from
  *  \param [in]  pspec        A GParamSpec describing the property being set
  */
-static void gschem_action_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
+static void
+gschem_action_set_property (GObject *object, unsigned int property_id,
+                            const    GValue *value, GParamSpec *pspec)
 {
   GschemAction *action = GSCHEM_ACTION (object);
 
   if(property_id == PROP_MULTIKEY_ACCEL) {
     g_free (action->multikey_accel);
-    action->multikey_accel = g_strdup (g_value_get_string (value));
+    action->multikey_accel = g_strdup  (g_value_get_string (value));
   }
   else
      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -86,7 +88,9 @@ static void gschem_action_set_property (GObject *object, guint property_id, cons
  *  \param [out] value        The GValue in which to return the value of the property
  *  \param [in]  pspec        A GParamSpec describing the property being got
  */
-static void gschem_action_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
+static void
+gschem_action_get_property (GObject *object, unsigned int property_id,
+                            GValue  *value,  GParamSpec   *pspec)
 {
   GschemAction *action = GSCHEM_ACTION (object);
 

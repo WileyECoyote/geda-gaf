@@ -1342,9 +1342,10 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
 
   GError *tmp_err = NULL;
   char **result =
-    g_key_file_get_string_list (cfg->priv->keyfile, group, key,
-                                length, &tmp_err);
+  g_key_file_get_string_list (cfg->priv->keyfile, group, key,
+                               length, &tmp_err);
   propagate_key_file_error (tmp_err, error);
+
   return result;
 }
 

@@ -85,10 +85,10 @@ typedef bool(*LoadBackupQueryFunc)(void *, GString *);
 
 /* Type definitions for component sources */
 /*! \brief Valid types of component source */
-enum CLibSourceType { 
+enum CLibSourceType {
   CLIB_NONE = 0,
   /*! Directory source */
-  CLIB_DIR, 
+  CLIB_DIR,
   /*! Command source */
   CLIB_CMD,
   /*! Guile function source */
@@ -97,10 +97,10 @@ enum CLibSourceType {
 
 /*! \brief Stores data about a particular component source */
 struct st_CLibSource {
-  
+
   /*! Type of source */
   enum CLibSourceType type;
-  
+
   /*! Name of source */
   char *name;
 
@@ -128,7 +128,7 @@ struct st_CLibSource {
 struct st_CLibSymbol {
   /*! The source this symbol is available from */
   CLibSource *source;
-  
+
   /*! The name of this symbol */
   char *name;
 };
@@ -137,10 +137,10 @@ struct st_CLibSymbol {
 struct st_CacheEntry {
   /*! Pointer to symbol */
   CLibSymbol *ptr;
-  
+
   /*! Symbol data */
   char *data;
-  
+
   /*! Last access */
   time_t accessed;
 };
@@ -150,7 +150,7 @@ struct st_complex {
   int x, y;             /* world origin */
 
   int angle;                            /* orientation, only multiples
-                                         * of 90 degrees allowed */   
+                                         * of 90 degrees allowed */
   /* in degrees */
   int mirror;
 
@@ -173,8 +173,8 @@ struct st_object {
   bool w_bounds_valid;
 
   COMPLEX *complex;
-  LINE *line; 
-  CIRCLE *circle; 
+  LINE *line;
+  CIRCLE *circle;
   ARC *arc;
   BOX *box;
   TEXT *text;
@@ -261,7 +261,7 @@ struct st_conn {
   /*! \brief x coord of the connection position */
   int x;
   /*! \brief y coord of the connection position */
-  int y;		
+  int y;
   /*! \brief which endpoint of the current object caused this connection */
   int whichone;
   /*! \brief which endpoint of the "other" object caused this connection */
@@ -280,7 +280,7 @@ struct st_picture {
   char embedded;
 
   /* upper is considered the origin */
-  int upper_x, upper_y; /* world */     
+  int upper_x, upper_y; /* world */
   int lower_x, lower_y;
 
 };
@@ -291,7 +291,7 @@ struct st_picture {
 #define PICTURE_LOWER_LEFT 3
 
 /*! \brief structure to split a page into tiles
- *  
+ *
  *  This structure is used to track objects that are inside
  *  a smaller TILE of o a page.
  *  See s_tile.c for further informations.
@@ -311,7 +311,7 @@ struct st_page {
   GList *place_list;
   OBJECT *object_lastplace; /* the last found item */
 
-  char *page_filename; 
+  char *page_filename;
   int CHANGED;                  /* changed flag */
   /*int zoom_factor; no longer used*/
   int left, right, top, bottom;         /* World coord limits */
@@ -325,9 +325,9 @@ struct st_page {
 
   TILE world_tiles[MAX_TILES_X][MAX_TILES_Y];
 
-  /* Undo/Redo Stacks and pointers */   
+  /* Undo/Redo Stacks and pointers */
   /* needs to go into page mechanism actually */
-  UNDO *undo_bottom;    
+  UNDO *undo_bottom;
   UNDO *undo_current;
   UNDO *undo_tos;       /* Top Of Stack */
 
@@ -360,7 +360,7 @@ struct st_toplevel {
   char *bitmap_directory;               /* path of the bitmaps */
 
   int init_left, init_right;            /* Starting values for above */
-  int init_top, init_bottom; 
+  int init_top, init_bottom;
 
   int width, height;                    /* height, width of window */
 
@@ -406,20 +406,20 @@ struct st_toplevel {
   int thin_pin_width;
 
   /* controls whether objects are clipped */
-  int object_clipping; 
+  int object_clipping;
 
   /* either landscape or portrait */
-  int print_orientation; 
+  int print_orientation;
 
   /* either TRUE or FALSE (color or no color) */
   int image_color;
   /* either TRUE or FALSE (Blk on Wht or Wht on Blk) */
   int invert_images;
-  
-  /* either TRUE or FALSE (color or no color) */
-  int print_color; 
 
-  /* color used color ouput for background */ 
+  /* either TRUE or FALSE (color or no color) */
+  int print_color;
+
+  /* color used color ouput for background */
   int print_color_background;
 
   /* setpagedevice orientation option enable (TRUE or FALSE) */
@@ -431,17 +431,17 @@ struct st_toplevel {
   /* The name of the prolog file to paste into the Postscript output */
   char *postscript_prolog;
 
-  /* controls if the net consolidation code is used */ 
-  int net_consolidate; 
+  /* controls if the net consolidation code is used */
+  int net_consolidate;
 
   /*controls if attribute promotion happens */
-  int attribute_promotion; 
+  int attribute_promotion;
 
   /* controls if invisible attribs are promoted */
-  int promote_invisible; 
+  int promote_invisible;
 
   /* controls if invisible attribs are kept and not deleted */
-  int keep_invisible;   
+  int keep_invisible;
 
   /* controls the generation of backup (~) files */
   int make_backup_files;
@@ -450,13 +450,10 @@ struct st_toplevel {
   int print_output_type;
 
   /* BUTT, ROUND, SQUARE caps */
-  int print_output_capstyle;            
+  int print_output_capstyle;
 
   /* landscape printing only */
   int paper_width, paper_height;
-
-  /* filename of the bus ripper component if set above */
-  char *bus_ripper_symname;
 
   /* controls if the whole bounding box is used in the auto whichend code */
   int force_boundingbox;
@@ -502,7 +499,7 @@ struct st_toplevel {
 struct st_undo {
 
   /* one of these is used, depending on if you are doing in-memory */
-  /* or file based undo state saving */	
+  /* or file based undo state saving */
   char *filename;
   GList *object_list;
 
@@ -562,7 +559,7 @@ struct st_netlist {
 
   OBJECT *object_ptr;
 
-  CPINLIST *cpins;		
+  CPINLIST *cpins;
 
   char *hierarchy_tag;
   int composite_component;

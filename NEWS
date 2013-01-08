@@ -2,7 +2,7 @@
  'gschem and Friends' Electronic Design Suite
 ==============================================
 
-Copyright (C) 1998-2012 gEDA Developers
+Copyright (C) 1998-2013 gEDA Developers
 
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
@@ -23,10 +23,10 @@ Notable changes in gEDA/gaf 2.0.1
 * Gattrib no long launches into a a file selector dialog, files can
   now be loaded or closed via menu or toolbars, The editing bar is
   now fully functional and mouse menus added. Embedded GTK-Sheet has
-  been updated to the much newed more stable version. GTK-Sheet code
-  has been "modularized" to facilitate update and code maintainence.
+  been updated to a newer, more stable version. GTK-Sheet code has
+  been "modularized" to facilitate future improvements.
 
-  Merry Christmas!
+  Merry Christmas Everyone!
 
 Notable changes in gEDA/gaf 1.9.2
 =================================

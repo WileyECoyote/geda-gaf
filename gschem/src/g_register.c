@@ -55,7 +55,7 @@ static struct gsubr_t gschem_funcs[] = {
    * but are still maintained in order to help user transition from
    * previous version.
    */
-  
+
   /* extending support for 20110115 */
   { "drag-can-move",               1, 0, 0, g_rc_drag_can_move },
   { "logging-destination",         1, 0, 0, g_rc_log_destiny },
@@ -91,8 +91,8 @@ static struct gsubr_t gschem_funcs[] = {
 
   { "logging",                   1, 0, 0, g_rc_logging },
   { "log-destiny",               1, 0, 0, g_rc_log_destiny },
-  { "log-window",                1, 0, 0, g_rc_log_window },
-  { "log-window-type",           1, 0, 0, g_rc_log_window_type },
+  { "console-window",            1, 0, 0, g_rc_console_window },
+  { "console-window-type",       1, 0, 0, g_rc_console_window_type },
 
   { "text-size",                 1, 0, 0, g_rc_text_size },
   { "snap-size",                 1, 0, 0, g_rc_snap_size },
@@ -138,6 +138,7 @@ static struct gsubr_t gschem_funcs[] = {
   { "bus-ripper-size",           1, 0, 0, g_rc_bus_ripper_size },
   { "bus-ripper-type",           1, 0, 0, g_rc_bus_ripper_type },
   { "bus-ripper-rotation",       1, 0, 0, g_rc_bus_ripper_rotation },
+  { "bus-ripper-symname",        1, 0, 0, g_rc_bus_ripper_symname },
   { "force-boundingbox",         1, 0, 0, g_rc_force_boundingbox },
 
   { "add-attribute-offset",      1, 0, 0, g_rc_add_attribute_offset },
@@ -294,14 +295,14 @@ static struct gsubr_t gschem_funcs[] = {
   { "attributes-visibility-toggle", 0, 0, 0, g_keys_attributes_visibility_toggle },
   { "options-text-size",         0, 0, 0, g_keys_options_text_size },
   { "options-snap-size",         0, 0, 0, g_keys_options_snap_size },
-  { "options-scale-up-snap-size",  0, 0, 0, g_keys_options_scale_up_snap_size },
-  { "options-scale-down-snap-size",0, 0, 0, g_keys_options_scale_down_snap_size },
+  { "options-scale-up-snap-size",   0, 0, 0, g_keys_options_scale_up_snap_size },
+  { "options-scale-down-snap-size", 0, 0, 0, g_keys_options_scale_down_snap_size },
   { "options-action-feedback",   0, 0, 0, g_keys_options_afeedback },
   { "options-grid",              0, 0, 0, g_keys_options_grid },
   { "options-snap",              0, 0, 0, g_keys_options_snap },
   { "options-rubberband",        0, 0, 0, g_keys_options_rubberband },
   { "options-magneticnet",       0, 0, 0, g_keys_options_magneticnet },
-  { "options-show-log-window",   0, 0, 0, g_keys_options_show_log_window },
+  { "options-show-console-window",  0, 0, 0, g_keys_options_show_console_window },
   { "options-show-coord-window", 0, 0, 0, g_keys_options_show_coord_window },
   { "configure-settings",        0, 0, 0, g_keys_configure_settings },
   { "help-about",                0, 0, 0, g_keys_help_about },
@@ -310,7 +311,7 @@ static struct gsubr_t gschem_funcs[] = {
   { "misc-misc2",                0, 0, 0, g_keys_misc2 },
   { "misc-misc3",                0, 0, 0, g_keys_misc3 },
   { "cancel",                    0, 0, 0, g_keys_cancel },
- 
+
   { NULL,                        0, 0, 0, NULL } };
 
 /*! \brief Define a hook.
@@ -338,7 +339,7 @@ create_hook (const char *name, int n_args)
 void g_register_funcs (void)
 {
   struct gsubr_t *tmp = gschem_funcs;
- 
+
   while (tmp->name != NULL) {
     scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->fnc);
     tmp++;

@@ -64,7 +64,7 @@ static void s_log_handler (const gchar *log_domain,
 
 static int logfile_fd = -1;
 
-static guint log_handler_id;
+static unsigned int log_handler_id;
 
 /*! \brief Initialize libgeda logging feature.
  *  \par Function Description
@@ -79,10 +79,10 @@ void s_log_init (const gchar *prefix)
 
   time_t nowt;
   struct tm *nowtm;
-  gchar *full_prefix = NULL;
+  char *full_prefix = NULL;
   size_t full_prefix_len = 0;
-  gchar *dir_path = NULL;
-  gchar *filename = NULL;
+  char *dir_path = NULL;
+  char *filename = NULL;
   int s, i;
   int last_exist_logn = 0;
   GDir *logdir = NULL;
@@ -187,7 +187,7 @@ void s_log_close (void)
 
   /* remove the handler */
   g_log_remove_handler (NULL, log_handler_id);
-  
+
   /* close the file */
   if (logfile_fd != -1) {
     close (logfile_fd);
@@ -206,11 +206,11 @@ void s_log_close (void)
 gchar *s_log_read (void)
 {
   gboolean tmp;
-#define BUFSIZE 200  
+#define BUFSIZE 200
   gchar buf[BUFSIZE];
   GString *contents;
   gint len;
-  
+
   if (logfile_fd == -1) {
     return NULL;
   }
@@ -242,7 +242,7 @@ gchar *s_log_read (void)
  *
  *  \param [in] log_domain  (unused).
  *  \param [in] log_level   (unused).
- *  \param [in] message     Character string containing message to 
+ *  \param [in] message     Character string containing message to
  *                          write to log.
  *  \param [in] user_data   (unused).
  *
@@ -255,7 +255,7 @@ static void s_log_handler (const gchar *log_domain,
   int status;
 
   g_return_if_fail (logfile_fd != -1);
-  
+
   status = write (logfile_fd, message, strlen (message));
   if (status == -1) {
     fprintf(stderr, "Could not write message to log file\n");

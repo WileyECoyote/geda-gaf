@@ -46,11 +46,11 @@ extern SCM s_pre_load_expr;
 extern SCM s_post_load_expr;
 
 typedef struct {
-  gschem_atexit_func func;
-  gpointer arg;
-} gschem_atexit_struct;
+  void (*func)(void*);
+  void* arg;
+} geda_atexit_struct;
 
-static GList *exit_functions = NULL;
+static GList *exit_functions  = NULL;
 
 /*! \brief Register a function to be called on program exit
  *
@@ -63,11 +63,11 @@ static GList *exit_functions = NULL;
  *  \param [in] data an arbitrary argument provided to the function
  *                   when it is called
  */
-void gschem_atexit(gschem_atexit_func func, gpointer data)
+void geda_atexit(geda_atexit_func func, void* data)
 {
-  gschem_atexit_struct *p;
+  geda_atexit_struct *p;
 
-  p = g_new(gschem_atexit_struct, 1);
+  p = g_new(geda_atexit_struct, 1);
   p->func = func;
   p->arg = data;
   exit_functions = g_list_append(exit_functions, p);
@@ -81,12 +81,12 @@ void gschem_atexit(gschem_atexit_func func, gpointer data)
 void gschem_quit(void)
 {
   GList *list;
-  gschem_atexit_struct *p;
+  geda_atexit_struct *p;
 
   /* Call all registered functions in order */
   list = exit_functions;
   while(list != NULL) {
-    p = (gschem_atexit_struct *) list->data;
+    p = (geda_atexit_struct *) list->data;
     p->func(p->arg);
     g_free(p);
     list = g_list_next(list);
@@ -250,31 +250,36 @@ void main_prog(void *closure, int argc, char *argv[])
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
 
-  /* Set up Configuration */
-  i_vars_init_defaults (); /* Set defaults */
+  /*! \internal Configuration */
+
+  i_vars_init_defaults (w_current); /* Set defaults */
 
   /* Now read in RC files. */
   g_rc_parse_gtkrc();
   x_rc_parse_gschem (w_current, rc_filename);
 
   if (w_current->save_settings)
-    gschem_atexit (i_vars_atexit_save_user_config, NULL);
+    geda_atexit (i_vars_atexit_save_user_config, NULL);
+
+  /*! \endinternal Configuration */
 
   auto_load_last = default_auto_load_last;
 
   /*TODO: All of this logging stuff should be relocated to Lib */
   /* Now that the initialization files have been processed, retrieve the log settings. */
-  logging         = default_logging;
-  log_destiny     = default_log_destiny;
-  log_window      = default_log_window;
-  log_window_type = default_log_window_type;
+  logging             = default_logging;
+  log_destiny         = default_log_destiny;
+  console_window      = default_console_window;
+  console_window_type = default_console_window_type;
+
+  x_console_init_command_buffer();
 
   if (logging == TRUE) {
     s_log_init ("gschem");
 
     /* see if open up log window on startup  */
-    if (log_window == MAP_ON_STARTUP) {  /* This assumes MAP to Window */
-      x_log_open ();
+    if (console_window == MAP_ON_STARTUP) {  /* This assumes MAP to Window */
+      x_console_open (w_current);
     }
     /* now we can spam the log */
     s_log_message(_("gEDA/gschem version %s%s.%s\n"), PREPEND_VERSION_STRING,
@@ -285,7 +290,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
-  gschem_atexit(recent_files_save, NULL);
+  geda_atexit(recent_files_save, NULL);
 
   /* Set default icon */
   x_window_set_default_icon();
@@ -351,7 +356,7 @@ void main_prog(void *closure, int argc, char *argv[])
   /*! \brief Auto-Load */
   /* Check and do Auto Load - only works if empty commandline */
   if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
-    q_log_message("Auto loading . . .\n"); /* Log what we did */
+    q_log_message("Auto loading . . .\n"); /* maybe Log what we did */
       x_window_open_page(w_current, recent_files_last());
   }
   else

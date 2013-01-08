@@ -25,10 +25,6 @@
 /* window list */
 extern GList *global_window_list;
 
-/* Manager for recently used files
-GtkRecentManager *recent_manager;
- */
-
 /* colors */
 extern GdkColor white;
 extern GdkColor black;
@@ -46,9 +42,10 @@ extern int auto_load_last;
 /* Log Related */
 extern volatile int logging;           /* controls if whether logging is enabled or not */
 extern volatile int log_destiny;       /* controls where the log system writes data */
-extern volatile int log_window;
-extern volatile int log_window_type;
+extern volatile int console_window;
+extern volatile int console_window_type;
 
+#define command_history 22
 #define MAX_BUFFERS 	5
 /* Global buffers */
 extern GList *object_buffer[MAX_BUFFERS];
@@ -81,7 +78,8 @@ extern SCM complex_place_list_changed_hook;
 #define ATTRIBUTE_UNUSED
 #endif
 
-typedef enum  { Image_All, Image_Display } ImageExtent;
+typedef enum  { Image_Display, Image_All,} ImageExtent;
+
 typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OJECTS,
                SOME_OJECTS, TEXT_OJECTS
 } ID_SENITIVITY_MODE;

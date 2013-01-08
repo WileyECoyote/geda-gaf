@@ -30,11 +30,11 @@
 G_BEGIN_DECLS
 
 #define GSCHEM_TYPE_TOGGLE_ACTION            (gschem_toggle_action_get_type ())
-#define GSCHEM_TOGGLE_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_TOGGLE_ACTION, GtkToggleAction))
-#define GSCHEM_TOGGLE_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GSCHEM_TYPE_TOGGLE_ACTION, GtkToggleActionClass))
+#define GSCHEM_TOGGLE_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_TOGGLE_ACTION, GschemToggleAction))
+#define GSCHEM_TOGGLE_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass), GSCHEM_TYPE_TOGGLE_ACTION, GschemToggleActionClass))
 #define GSCHEM_IS_TOGGLE_ACTION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSCHEM_TYPE_TOGGLE_ACTION))
 #define GSCHEM_IS_TOGGLE_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSCHEM_TYPE_TOGGLE_ACTION))
-#define GSCHEM_TOGGLE_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), GSCHEM_TYPE_TOGGLE_ACTION, GtkToggleActionClass))
+#define GSCHEM_TOGGLE_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj), GSCHEM_TYPE_TOGGLE_ACTION, GschemToggleActionClass))
 
 typedef struct _GschemToggleAction        GschemToggleAction;
 typedef struct _GschemToggleActionPrivate GschemToggleActionPrivate;

@@ -72,6 +72,7 @@ int o_text_get_rendered_bounds (void *user_data, OBJECT *o_current,
    * bounds are zoom-level-dependent. */
   if (toplevel->show_hidden_text)
     render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+
   renderer = g_object_ref (w_current->renderer);
   g_object_set (G_OBJECT (renderer),
                 "cairo-context", cr,
@@ -166,7 +167,7 @@ void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int len, int text
   /* skip over head */
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
   numselect = g_list_length( geda_list_get_glist( toplevel->page_current->selection_list ));
-  
+
   while(s_current != NULL) {
     object = (OBJECT *) s_current->data;
 
@@ -190,12 +191,12 @@ void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int len, int text
 	  }
         }
         o_text_recreate(toplevel, object);
-      } 
+      }
     }
-    
+
     s_current = g_list_next(s_current);
   }
-  
+
   toplevel->page_current->CHANGED = 1;
   o_undo_savestate(w_current, UNDO_ALL);
 }

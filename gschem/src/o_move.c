@@ -135,7 +135,7 @@ void o_move_end(GSCHEM_TOPLEVEL *w_current)
   int diff_x, diff_y;
   int left, top, right, bottom;
   GList *s_iter;
-  GList *rubbernet_objects = NULL; 
+  GList *rubbernet_objects = NULL;
 
   object = o_select_return_first_object(w_current);
 
@@ -276,8 +276,8 @@ void o_move_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *selection, *s_current;
   OBJECT *object;
-  gint object_x, object_y;
-  gboolean resnap = FALSE;
+  int object_x, object_y;
+  bool resnap = FALSE;
 
   selection = geda_list_get_glist( toplevel->page_current->selection_list );
 

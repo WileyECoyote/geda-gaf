@@ -13,7 +13,7 @@ noinst_HEADERS = \
 		gschem_struct.h \
 		i_vars.h \
 		prototype.h   \
-	 	x_compselect.h x_dialog.h x_log.h \
+		x_compselect.h x_dialog.h x_console.h \
 		x_menu.h x_multiattrib.h \
 		x_pagesel.h x_print.h \
 		x_states.h \
@@ -21,7 +21,7 @@ noinst_HEADERS = \
                 widgets.h
 
 
-MOSTLYCLEANFILES = *~
-CLEANFILES = *~
-DISTCLEANFILES = *~
-MAINTAINERCLEANFILES = *~ Makefile.in
+MOSTLYCLEANFILES     = *~ #*#
+CLEANFILES           = *~ #*#
+DISTCLEANFILES       = *~ #*#
+MAINTAINERCLEANFILES = *~  #*# Makefile.in

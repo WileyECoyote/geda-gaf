@@ -261,39 +261,39 @@
 ;
 ; Specifies where log message go during run time.
 ; Possible options are;
-;      log_window      The log window (if it's visible)
+;      console_window  The console window (if it's visible)
 ;      tty             The stdout of the terminal where gschem was run from
 ;      both            Both of the above locations
 ; Message are always written to the log file (unless logging is disabled)
 ; by the above keyword.
 ;
 ;
-(log-destiny "log_window")
+(log-destiny "console_window")
 ;(log-destiny "tty")
 ;(log-destiny "both")
 ;
-; Controls if the log message window is mapped when gschem is started up
+; Controls if the console window is mapped when gschem is started up
 ; Possible options;
 ;       startup - opened up when gschem starts
 ;       later   - NOT opened up when gschem starts
-;                 (can be opened by Options/Show Log Window)
+;                 (can be opened by Options/Show console Window)
 ;
-(log-window "enabled")
-;(log-window "disabled")
+(console-window "enabled")
+;(console-window "disabled")
 
-; log-window-type string
+; console-window-type string
 ;
-; Controls if the log message window is a transient or if it is decorated
+; Controls if the console window is a transient or if it is decorated
 ; as a normal window (this is dependant on the window manager doing decoration
 ; right)
 ;
 ; Possible options;
-;       decorated       - log window is a normal decorated window
-;       transient       - log window is a transient dialog box, typically
+;       decorated       - console window is a normal decorated window
+;       transient       - console window is a transient dialog box, typically
 ;                         not decorated by the window manager
 ;
-(log-window-type "decorated")
-;(log-window-type "transient")
+(console-window-type "decorated")
+;(console-window-type "transient")
 
 ;END ====================> Log Configuration <======================
 
@@ -337,8 +337,8 @@
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
 ;
-;(auto-load-last "enabled")
-(auto-load-last "disabled")
+(auto-load-last "enabled")
+;(auto-load-last "disabled")
 
 ; autosave interval
 ;
@@ -567,21 +567,11 @@
 ;                        is auto added to a schematic.
 ;
 
-; The default bus ripper
+; The default bus ripper setup
 (bus-ripper-size 200)
 (bus-ripper-type "component")
 (bus-ripper-symname "busripper-1.sym")
 (bus-ripper-rotation "non-symmetric")
-
-; A symmetric alternative
-;(bus-ripper-size 200)
-;(bus-ripper-type "component")
-;(bus-ripper-symname "busripper-2.sym")
-;(bus-ripper-rotation "symmetric")
-
-; A simple net
-;(bus-ripper-size 200)
-;(bus-ripper-type "net")
 
 ;END ------------------------>  Net Ripper  <-----------------------
 
@@ -712,8 +702,8 @@
 ; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
-;(third-button "popup")
-(third-button "mousepan")
+(third-button "popup")
+;(third-button "mousepan")
 
 ;END ================> Pointer Device  Preferences <================
 
@@ -868,20 +858,21 @@
 
 ; text-display-zoomfactor integer
 ;
-; Sets the zoomfactor number (~150 being the most zoomed out factor)
-; (zoom factors get smaller as you zoom in) at which text is displayed
-; completely (not a line).  This is only valid if above is set to
-; "only-when-readable"
+; Sets the zoom factor at which text is drawn as a box. When the current
+; Zoom is at or above this value, text will be drawn as boxes if text-feed
+; back is set to "only-when-readable". This parameter is not valid when
+; text-feedback is set to "always".
 ;
-(text-display-zoomfactor 30)
+(text-display-zoomfactor 21)
 
 ; text-feedback string
 ;
-; Controls if text is drawn when doing an xor action (like copy/move)
-; Comment out if you want the default mode.
+; Controls if text is rendered when doing an xor action (like copy/move)
+; or when the zoom is above the zoom threashold specified by text-display
+; -zoomfactor. Comment out if you want the default mode.
 ;
-(text-feedback "only-when-readable")
-;(text-feedback "always")
+;(text-feedback "only-when-readable")
+(text-feedback "always")
 
 ; text-origin-marker string
 ;
@@ -1380,7 +1371,7 @@
 (map-keys "O R" "options-rubberband")
 (map-keys "O M" "options-magneticnet")
 (map-keys "O <Shift>S" "options-snap-size")
-(map-keys "O L" "options-show-log-window")
+(map-keys "O L" "options-show-console-window")
 (map-keys "O C" "options-show-coord-window")
 
 (map-keys "P M" "page-manager")
@@ -1676,10 +1667,10 @@
 	(,(N_ "Toggle _Rubberband")     options-rubberband   	options-rubberband)
 	(,(N_ "Toggle _Magnetic Net")   options-magneticnet 	options-magneticnet)
         ("SEPARATOR"                   #f                      #f                 #f)
-	(,(N_ "Show _Log Window...")    options-show-log-window
-	 			    	options-show-log-window)
-	(,(N_ "Show _Coord Window...")  options-show-coord-window
-				     	options-show-coord-window)
+	(,(N_ "Show _Console Window...")  options-show-console-window
+	 			    	  options-show-console-window)
+	(,(N_ "Show _Coord Window...")    options-show-coord-window
+				     	  options-show-coord-window)
 
 	("SEPARATOR"           	       #f                      #f                 #f)
 	("Con_figure settings..."   	configure-settings   	configure-settings)

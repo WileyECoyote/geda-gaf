@@ -18,23 +18,23 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-# Check where gEDA data and configuration should be stored.
+dnl Check where gEDA data and configuration should be stored.
 AC_DEFUN([AX_DATA_DIRS],
 [
   AC_PREREQ([2.60])dnl
 
   # Check where to install ordinary data files (e.g. symbols and
-  # gnetlist backends)
-  # FIXME at some point this should become "$datarootdir/geda-gaf" to
-  # match the tarball name.
+  dnl gnetlist backends)
+  dnl FIXME at some point this should become "$datarootdir/geda-gaf" to
+  dnl match the tarball name.
   AC_MSG_CHECKING([where to install gEDA shared data])
   GEDADATADIR="$datarootdir/gEDA"
-  AC_MSG_RESULT([$GEDADATADIR])
+  dnl AC_MSG_RESULT([$GEDADATADIR])
 
   # Check where to install rc files.
-  # FIXME at some point the rc directory needs to start *defaulting*
-  # to "$sysconfdir/geda-gaf" in order to comply with the GNU & Linux
-  # FHS guidelines.
+  dnl FIXME at some point the rc directory needs to start *defaulting*
+  dnl to "$sysconfdir/geda-gaf" in order to comply with the GNU & Linux
+  dnl FHS guidelines.
   AC_MSG_CHECKING([where to install gEDA rc files])
   AC_ARG_WITH([rcdir],
     AS_HELP_STRING([--with-rcdir[[[=DIR]]]],

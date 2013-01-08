@@ -180,7 +180,7 @@ SCM g_keys_options_scale_up_snap_size(SCM rest);
 SCM g_keys_options_scale_down_snap_size(SCM rest);
 SCM g_keys_options_rubberband(SCM rest);
 SCM g_keys_options_magneticnet(SCM rest);
-SCM g_keys_options_show_log_window(SCM rest);
+SCM g_keys_options_show_console_window(SCM rest);
 SCM g_keys_options_show_coord_window(SCM rest);
 SCM g_keys_configure_settings(SCM rest);
 SCM g_keys_misc(SCM rest);
@@ -230,8 +230,8 @@ SCM g_rc_output_color(SCM mode);
 SCM g_rc_output_capstyle(SCM mode);
 SCM g_rc_logging(SCM mode);
 SCM g_rc_log_destiny(SCM mode);
-SCM g_rc_log_window(SCM mode);
-SCM g_rc_log_window_type(SCM mode);
+SCM g_rc_console_window(SCM mode);
+SCM g_rc_console_window_type(SCM mode);
 SCM g_rc_third_button(SCM mode);
 SCM g_rc_map_keys(SCM keys, SCM action);
 SCM g_rc_middle_button(SCM mode);
@@ -265,6 +265,7 @@ SCM g_rc_setpagedevice_pagesize(SCM mode);
 SCM g_rc_bus_ripper_size(SCM size);
 SCM g_rc_bus_ripper_type(SCM mode);
 SCM g_rc_bus_ripper_rotation(SCM mode);
+SCM g_rc_bus_ripper_symname(SCM scmsymname);
 SCM g_rc_force_boundingbox(SCM mode);
 SCM g_rc_drag_can_move(SCM mode);
 SCM g_rc_mousepan_gain(SCM mode);
@@ -279,6 +280,7 @@ void g_register_funcs(void);
 /* g_select.c */
 void g_init_select ();
 /* g_util.c */
+void free_string_glist(void *data);
 void g_init_util ();
 char* int2str(int value, char* str, int radix);
 char* scm_2_cstring( char* scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
@@ -291,8 +293,8 @@ void g_dynwind_window (GSCHEM_TOPLEVEL *w_current);
 void g_init_window ();
 /* globals.c */
 /* gschem.c */
-typedef void (*gschem_atexit_func)(gpointer data);
-void gschem_atexit(gschem_atexit_func func, gpointer data);
+typedef void (*geda_atexit_func)(gpointer data);
+void geda_atexit(geda_atexit_func func, gpointer data);
 void gschem_quit(void);
 void main_prog(void *closure, int argc, char *argv[]);
 int main(int argc, char *argv[]);
@@ -501,7 +503,7 @@ void i_callback_options_grid(GSCHEM_TOPLEVEL* w_current, unsigned int callback_a
 void i_callback_options_snap(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
 void i_callback_options_rubberband(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
 void i_callback_options_magneticnet(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
-void i_callback_options_show_log_window(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
+void i_callback_options_show_console_window(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
 void i_callback_configure_settings(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
 void i_callback_toolbar_configure_settings(GtkWidget *widget, GSCHEM_TOPLEVEL* w_current);
 void i_callback_misc(GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget);
@@ -516,7 +518,7 @@ bool i_callback_close_wm(GtkWidget *widget, GdkEvent *event, GSCHEM_TOPLEVEL* w_
 void i_vars_set(GSCHEM_TOPLEVEL *w_current);
 void i_vars_freenames();
 GList* g_list_clear(GList* list);
-void i_vars_init_defaults (void);
+void i_vars_init_defaults (GSCHEM_TOPLEVEL *w_current);
 void i_vars_atexit_save_user_config (gpointer user_data);
  /* m_basic.c */
 int mil_x(GSCHEM_TOPLEVEL *w_current, int val);
@@ -792,7 +794,7 @@ void find_text_dialog(GSCHEM_TOPLEVEL *w_current);
 void hide_text_dialog(GSCHEM_TOPLEVEL *w_current);
 void show_text_dialog(GSCHEM_TOPLEVEL *w_current);
 void major_changed_dialog(GSCHEM_TOPLEVEL* w_current);
-void x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page);
+bool x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page);
 bool x_dialog_close_window (GSCHEM_TOPLEVEL *w_current);
 int x_dialog_validate_attribute(GtkWindow* parent, char *attribute);
 void x_dialog_edit_pin_type(GSCHEM_TOPLEVEL *w_current, const GList *obj_list);
@@ -832,9 +834,11 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
                       char *filetype, ImageExtent);
 void x_image_setup(GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type);
 GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent);
-/* x_log.c */
-void x_log_open ();
-void x_log_close ();
+/* x_console.c */
+void x_console_open (GSCHEM_TOPLEVEL *w_current);
+void x_console_close ();
+//void x_console_destroy_command_buffer(void*);
+void x_console_init_command_buffer(void);
 void q_log_message(const char *message);
 void v_log_message(const char *message);
 void x_log_message(const char *log_domain, GLogLevelFlags log_level,

@@ -222,7 +222,7 @@ DEFINE_G_KEYS(options_scale_up_snap_size)
 DEFINE_G_KEYS(options_scale_down_snap_size)
 DEFINE_G_KEYS(options_rubberband)
 DEFINE_G_KEYS(options_magneticnet)
-DEFINE_G_KEYS(options_show_log_window)
+DEFINE_G_KEYS(options_show_console_window)
 DEFINE_G_KEYS(options_show_coord_window)
 DEFINE_G_KEYS(configure_settings)
 DEFINE_G_KEYS(misc)
@@ -667,7 +667,7 @@ g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
  * the user. This is used by the gschem menu system.
  *
  * example: (find-key (quote file-new))
- * 
+ *
 */
 char *g_find_key (char *func_name) {
   SCM s_expr;

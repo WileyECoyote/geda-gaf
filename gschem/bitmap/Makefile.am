@@ -44,7 +44,7 @@ EXTRA_DIST = $(bitmapdata_DATA)                                          \
              README                                                      \
              gschem_about_logo.xcf
 
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~
+DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log *~ Makefile.in

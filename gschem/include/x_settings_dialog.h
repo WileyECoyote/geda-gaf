@@ -35,7 +35,10 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 12/04/12 |  Added switch for EnableColorImaging
 ;; ------------------------------------------------------------------
-;;
+;; WEH | 12/30/12 |  Changed "Log" to "Console"
+;; ------------------------------------------------------------------
+;; WEH | 01/06/13 |  Added strings for new ripper controls, (new)
+;; ------------------------------------------------------------------
 */
 /*************************** CAUTION! ******************************/
 /*
@@ -46,12 +49,11 @@
  *    1.) Besure to add an enumerator in the ControlID array in the
  *        file x_settings.h
  *
- *    2.) Add the string text to SAME position in DialogStrings
+ *    2.) Add the string text to the SAME position in DialogStrings
  *
  *    3.) Reference the string with the enumerators using the
- *        macros in x_dialog_controls.h
+ *        macros in geda_dialog_controls.h
  */
-
 
 /* These Macro were used during development so "dummy" data,
  * in the AttributeList arrays, could be substituted for the
@@ -80,7 +82,7 @@ static WidgetStringData DialogTabData[] = {
 WidgetStringData DialogStrings[] = {
 
   /* 5 String for Section Labels */
-        { "LoggingLabel",         "Logging",      "Logging Options"},
+        { "ConsoleLabel",         "Console Log",  "Console and Logging Options"},
         { "UndoLabel",            "   Undo",      "Undo Options"},
         { "NetsLabel",            "  Net",        "Net Options"},
 
@@ -93,14 +95,15 @@ WidgetStringData DialogStrings[] = {
         { "IncreaseAttributeButt","Up",           "Inscrease selected attribute Add Attribute list"},
         { "DecreaseAttributeButt","Down",         "Decrease selected attribute Add Attribute list"},
 
-  /* 6 String for Combo Controls  */
-        { "TitleBlockCombo",      "   Titleblock:",    "Name of Default Titleblock"},
-        { "ColorMapSchemeCombo",  "Scheme:",        "Choose which color scheme should be load at startup"},
-        { "DotGridModeCombo",     "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-fixed-threshold."},
-        { "LogWindowTypeCombo",   "  Window:",      "Controls if the message window is a transient or decorated as a normal window. The window manager is responsible for doing the decoration"},
-        { "MiddleButtonCombo",    "Middle Button:", "Controls if the middle mouse button draws strokes, repeats the last command, does an action (move and copy (holding down the ALT key) are supported) on a single objects, or if it does the mouse panning."},
-        { "ThirdButtonCombo",     "Third Button:",  "Controls if the third mouse button displays a popup menu or performs panning"},
-        { "UndoTypeCombo",        "  Undo Type:",   "Controls which Undo System configuration. The default is to use the disk as the storing medium (ie after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
+  /* 8 String for Combo Controls  */
+        { "TitleBlockCombo",        "   Titleblock:",   "Name of Default Titleblock"},
+        { "ColorMapSchemeCombo",    "Scheme:",          "Choose which color scheme should be load at startup"},
+        { "DotGridModeCombo",       "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-fixed-threshold."},
+        { "ConsoleWindowTypeCombo", "  Window:",        "Controls if the console window is a transient or decorated as a normal window. The window manager is responsible for doing the decoration"},
+        { "MiddleButtonCombo",      "Middle Button:",   "Controls if the middle mouse button draws strokes, repeats the last command, does an action (move and copy (holding down the ALT key) are supported) on a single objects, or if it does the mouse panning."},
+        { "ThirdButtonCombo",       "Third Button:",    "Controls if the third mouse button displays a popup menu or performs panning"},
+        { "UndoTypeCombo",          "  Undo Type:",     "Controls which Undo System configuration. The default is to use the disk as the storing medium (ie after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
+        { "RipperSymbolCombo",      "Symbol:",          "Specify the symbol name to be used if ripper type is \"component\""},
 
   /* 1 String for Edit Controls Label */
         { "UntitledNameEntry",	        "Untitled Name:",	"Initial name for new drawings"},
@@ -195,6 +198,7 @@ WidgetStringData DialogStrings[] = {
         { "KeyboardPanGainSpin",        "Keyboard Gain:",	"Controls how much the display pans when using the keyboard cursor keys. A larger value provides greater pan distance when pressing the cursor keys while a smaller value provides a smoother but smaller pan distance when moving the cursor keys."},
         { "MeshGridThresholdSpin",      "Mesh Threshold:",	"The mesh-grid-display-threshold specifies the minimum line pitch for a the grid to be displayed. Using this parameter you can control maximum density of the displayed before the minor then major grid-lines are switched off."},
         { "MousePanGainSpin",           "Mouse Pan Gain:",	"Controls how much the display pans when using mousepan. A larger value provides greater pan distance when moving the mouse while a smaller value provides a smoother but smaller pan distance when moving the mouse."},
+        { "RipperSizeSpin",             "Ripper Size:",         "Sets the size of the auto bus rippers."},
         { "ScrollPanStepsSpin",         "Scroll Pan Steps:",	"Controls the number of scroll pan events required to traverse the viewed schematic area. Larger numbers mean more scroll steps are required to pan across the viewed area and giving finer control over positioning."},
         { "SelectPixelsSpin",           "Select Pixels:",	"Controls how many pixels around an object can still be clicked as part of that object. A larger value gives greater ease in selecting small or narrow objects."},
         { "SnapSizeSpin",               "Snap Size:",		"Sets the default spacing which objects snaps to."},
@@ -238,6 +242,8 @@ WidgetStringData DialogStrings[] = {
         { "NetDirectionSwitch",         "  Direction:",		"Controls if the net direction mode is used. This mode tries to guess the best continuation direction of a L-shape net when adding a net."},
         { "NotifyEventsSwitch",         "Notify Events:",	"Controls if dialog boxes are raised whenever an expose event happens."},
         { "ObjectClippingSwitch",       "Object Clipping:",	"Determines if the object clipping code is executed or not."},
+        { "RipperRotationSwitch",       "Ripper Rotation:",     "Determines how the bus ripper symbol is rotated when it is auto added to a schematic, either \"symmetric\" (On) or \"non-symmetric\" (Off)"},
+        { "RipperTypeSwitch",           "Ripper Type:",         "Sets the bus ripper type, either a plain \"net\" (Off) or a \"component\" (On)"},
         { "RubberNetsSwitch",           " Rubberband:",	        "Controls if net connections are maintained when you move a connecting component or net."},
         { "ScrollBarsSwitch",           "Scroll Bars:",	        "Controls if the scrollbars are displayed (enabled) or not (disabled). If you disable the scrollbars you will not be able to use the scroll wheel on your mouse."},
         { "SortLibrarySwitch",          "     Sort Library:",	"If this is enabled then the component library will be sorted in alphanumeric order. This option is cosmetic and will not alter the component search order (latest added gets scanned first)."},
@@ -273,17 +279,3 @@ const char* DefaultTitleBlockList[] = {
 "title-C.sym", "title-D.sym", "title-E.sym",
 NULL};
 #endif /* __X_SETTINGS_DIALOG_H__ */
-
-
-
-
-
-
-
-
-
-
-
-
-
-

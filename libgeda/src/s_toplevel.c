@@ -127,7 +127,7 @@ TOPLEVEL *s_toplevel_new (void)
 
   toplevel->image_color = FALSE;
   toplevel->invert_images = TRUE;
-  
+
   toplevel->print_color = FALSE;
 
   toplevel->print_color_background = 0;
@@ -154,8 +154,6 @@ TOPLEVEL *s_toplevel_new (void)
 
   toplevel->paper_width  = 0;
   toplevel->paper_height = 0;
-
-  toplevel->bus_ripper_symname = NULL;
 
   toplevel->force_boundingbox = FALSE;
 
@@ -215,8 +213,7 @@ void s_toplevel_delete (TOPLEVEL *toplevel)
 
   g_free (toplevel->untitled_name);
   g_free (toplevel->bitmap_directory);
-  g_free (toplevel->bus_ripper_symname);
-  
+
   /* free all fonts */
   /* if you close a window, then you free the font set... */
   /* this is probably a bad idea... */

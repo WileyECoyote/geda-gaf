@@ -2,7 +2,7 @@
 # serial 1
 
 dnl libgedacairo-specific setup
-dnl Copyright (C) 2010  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2010-2013  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -27,4 +27,5 @@ AC_DEFUN([AX_LIBGEDACAIRO],
   AC_MSG_CHECKING([libgedacairo shared library version])
   AC_MSG_RESULT($1)
   AC_SUBST([LIBGEDACAIRO_SHLIB_VERSION], $1)
-])
+  []dnl
+])dnl

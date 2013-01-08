@@ -1,5 +1,5 @@
 /* gEDA - GPL Electronic Design Automation
- * gsymcheck - gEDA Symbol Check 
+ * gsymcheck - gEDA Symbol Check
  * Copyright (C) 1998-2012 Ales Hvezda
  * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
@@ -7,12 +7,12 @@
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if  not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
@@ -40,7 +40,7 @@ SCM g_rc_gsymcheck_version(SCM scm_version)
               SCM_ARG1, "gsymcheck-version");
 
   version = scm_to_utf8_string (scm_version);
-  if (g_strcasecmp (version, PACKAGE_DATE_VERSION) != 0) {
+  if (g_ascii_strcasecmp(version, PACKAGE_DATE_VERSION) != 0) {
     fprintf(stderr, _(
             "You are running gEDA/gaf version [%s%s.%s],\n"
             "but you have a version [%s] gsymcheckrc file:\n[%s]\n"

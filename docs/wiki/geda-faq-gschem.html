@@ -196,7 +196,7 @@ Yes. Sub sheets are represented by special symbols on the top level schematic. Y
 </p>
 
 <p>
-A <code>source=</code> attribute attached to the sub sheet symbol gives the path to the sub sheet file. The pins of the symbol correspond to ports from top sheet to sub sheet. These ports should correspond to a refdes of a port symbol on the sub sheet. The port symbols in the default library of geda are <code>in-1.sym</code> and <code>out-1.sym</code>. Use the hierarchy menu to navigate within the hierarchy of sub sheets. Alternatively, you can navigate with the page manager. 
+A <code>source=</code> attribute attached to the sub sheet symbol gives the path to the sub sheet file. The pins of the symbol correspond to ports from top sheet to sub sheet. These ports should correspond to a refdes of a port symbol on the sub sheet. The port symbols in the default library of geda are <code>in-1.sym</code> and <code>out-1.sym</code>. Use the hierarchy menu to navigate within the hierarchy of sub sheets. Alternatively, you can navigate with the page manager.
 </p>
 
 <p>
@@ -265,7 +265,7 @@ Although support for subsheets covers many aspects of hierarchical design, there
 </ul>
 
 <p>
-Feel free to fix these issues. Contributions are welcome.  
+Feel free to fix these issues. Contributions are welcome.
 </p>
 
 </div>
@@ -279,7 +279,7 @@ Feel free to fix these issues. Contributions are welcome.
 <div class="level2">
 
 <p>
-There is a website <a href="http://www.gedasymbols.org/" class="urlextern" title="http://www.gedasymbols.org/"  rel="nofollow">gedasymbols.org</a> dedicated to user contributed resources for gEDA. You can search the site, preview symbols and download them individually. If you have configured your gafrc files accordingly you can put the symbols right next to the schematics file of your project. You might want to build a local library of symbols, so all projects can access the new symbols. See <a href="geda-faq-gschem.html#can_gafrc_use_a_variable_to_set_the_root_of_my_library" class="wikilink1" title="geda-faq-gschem.html">below</a> for the details. 
+There is a website <a href="http://www.gedasymbols.org/" class="urlextern" title="http://www.gedasymbols.org/"  rel="nofollow">gedasymbols.org</a> dedicated to user contributed resources for gEDA. You can search the site, preview symbols and download them individually. If you have configured your gafrc files accordingly you can put the symbols right next to the schematics file of your project. You might want to build a local library of symbols, so all projects can access the new symbols. See <a href="geda-faq-gschem.html#can_gafrc_use_a_variable_to_set_the_root_of_my_library" class="wikilink1" title="geda-faq-gschem.html">below</a> for the details.
 </p>
 
 <p>
@@ -297,7 +297,8 @@ This nomenclature arose from a discussion which frequently appears on the geda-u
 </p>
 
 <p>
-The debate between proponents of heavy and light symbols is very detailed and involved. Briefly, proponents of heavy symbols believe that they provide better integration between gschem and PCB since the important layout attributes (such as <a href="geda-pcb_tips.html#i_want_to_use_pcb_to_do_layout._how_do_i_know_what_value_to_use_for_the_footprint_attribute" class="wikilink1" title="geda-pcb_tips.html">footprint name</a>) are already built into the symbol. This is considered a good thing for new users (noobs) who just want to design a simple board and don’t appreciate or don’t care about the zillions of variations that even a simple resistor might have (e.g. different footprint, TCR, precision, material composition, etc). Proponents of light symbols prefer to deal with attributes at the schematic level because they believe it to be more flexible. They are quick to point out that a library of heavy symbols will quickly grow into the thousands of parts with grotesquely long names trying to distinguish between the different variations of the part. They also point out that the utility “gattrib” is the preferred tool for dealing with attributes at the schematic level (i.e. in the .sch file).
+The debate between proponents of heavy and light symbols is very detailed and involved. Briefly, proponents of heavy symbols believe that they provide better integration between gschem and PCB since the important layout attributes (such as <a href="geda-pcb_tips.html#i_want_to_use_pcb_to_do_layout._how_do_i_know_what_value_to_use_for_the_footprint_attribute" class="wikilink1" title="geda-pcb_tips.html">footprint name</a>) are already built into the symbol. This is considered a good thing for new users (noobs) who just want to design a simple board and don’t appreciate or don’t care about the zillions of variations that even a simple resistor might have (e.g. different footprint, TCR, precision, material composition, etc). Proponents of light symbols prefer to deal with attributes at the schematic level because they believe it to be more flexible. They are quick to point out that a library of heavy symbols will quickly grow into the thousands of parts with grotesquely long names trying to distinguish between
+the different variations of the part. They also point out that the utility “gattrib” is the preferred tool for dealing with attributes at the schematic level (i.e. in the .sch file).
 </p>
 
 <p>
@@ -330,7 +331,7 @@ The symbols in the symbol library, were contributed by users just like you. Some
 </p>
 
 <p>
-The symbols at <a href="http://www.gedasymbols.org" class="urlextern" title="http://www.gedasymbols.org"  rel="nofollow"> gedasymbols.org</a> are even more adapted to the specific preference of their author.   
+The symbols at <a href="http://www.gedasymbols.org" class="urlextern" title="http://www.gedasymbols.org"  rel="nofollow"> gedasymbols.org</a> are even more adapted to the specific preference of their author.
 Yes, the gEDA docs strongly suggest that symbols use 100 units grid spacing.  But everybody likes to do things their own way, and there is no overall symbol dictator to enforce the rules on contributed symbols. That said, the vast majority of symbols out there conform to the recommendation. You just need to be aware of this possibility.
 </p>
 
@@ -430,7 +431,7 @@ Yes. It is the <a href="geda-gschem_symbol_creation.html" class="wikilink1" titl
 <div class="level2">
 
 <p>
-There is no wizard included in the gschem-<acronym title="Graphical User Interface">GUI</acronym>. But there are scripts which automatically create symbols from parameters given in a config file. One of these scripts is <a href="geda-tragesym_readme.html" class="wikilink1" title="geda-tragesym_readme.html">tragesym</a>. It is part of the default installation of geda. A short <a href="geda-tragesym_tutorial.html" class="wikilink1" title="geda-tragesym_tutorial.html">tutorial</a> will get you started with this tool. 
+There is no wizard included in the gschem-<acronym title="Graphical User Interface">GUI</acronym>. But there are scripts which automatically create symbols from parameters given in a config file. One of these scripts is <a href="geda-tragesym_readme.html" class="wikilink1" title="geda-tragesym_readme.html">tragesym</a>. It is part of the default installation of geda. A short <a href="geda-tragesym_tutorial.html" class="wikilink1" title="geda-tragesym_tutorial.html">tutorial</a> will get you started with this tool.
 </p>
 
 <p>
@@ -456,11 +457,11 @@ Unlike many other EDA software, the format of gschem is strictly human readable 
 <div class="level2">
 
 <p>
-There is nothing in gschem that defines the absolute size of objects. The only connection to real world units is the file name of the various title blocks. For some long forgotten reason, the frame of the title block symbols named “title-A4.sym”, or “title-B.sym” can contain only relatively simple circuits made of the symbols in the default library. If you&#039;d like to put a frame around more complex circuits just choose a title page symbol that fits. 
+There is nothing in gschem that defines the absolute size of objects. The only connection to real world units is the file name of the various title blocks. For some long forgotten reason, the frame of the title block symbols named “title-A4.sym”, or “title-B.sym” can contain only relatively simple circuits made of the symbols in the default library. If you&#039;d like to put a frame around more complex circuits just choose a title page symbol that fits.
 </p>
 
 <p>
-When printing, gschem scales the output so that everything fits within the desired paper format. This paper format is completely independent of the title page symbol used in the schematic. So there is no need to scale the symbols themselves to make them fit a particular paper size. 
+When printing, gschem scales the output so that everything fits within the desired paper format. This paper format is completely independent of the title page symbol used in the schematic. So there is no need to scale the symbols themselves to make them fit a particular paper size.
 Most people prefer to use title-A2.sym or title-A3.sym when printing to A4 sized paper. Some use title block symbols with no frame at all and draw a rectangle as needed (e.g. <a href="http://www.gedasymbols.org/user/kai_martin_knaak/symbols/titleblock/title-block.sym" class="urlextern" title="http://www.gedasymbols.org/user/kai_martin_knaak/symbols/titleblock/title-block.sym"  rel="nofollow">title-block.sym</a> by Kai-Martin Knaak).
 </p>
 
@@ -606,7 +607,7 @@ You have to add each and every dir of your local library. Subdirs are not automa
 <div class="level2">
 
 <p>
-Put 
+Put
 </p>
 <pre class="code">(text-size 10)</pre>
 
@@ -644,32 +645,32 @@ Currently, there is no <acronym title="Graphical User Interface">GUI</acronym> t
 
 </div>
 <!-- EDIT1396 SECTION "How can I tweak colors in gschem?" [24938-25376] -->
-<h2 class="sectionedit1397"><a name="each_time_i_start_gschem_the_log_message_window_is_shown_can_i_disable_it" id="each_time_i_start_gschem_the_log_message_window_is_shown_can_i_disable_it">Each time I start gschem, the log message window is shown. Can I disable it?</a></h2>
+<h2 class="sectionedit1397"><a name="each_time_i_start_gschem_the_console_message_window_is_shown_can_i_disable_it" id="each_time_i_start_gschem_the_console_message_window_is_shown_can_i_disable_it">Each time I start gschem, the console message window is shown. Can I disable it?</a></h2>
 <div class="level2">
 
 <p>
 In the system-gschemrc file, you will find the following section:
 </p>
-<pre class="code">; log-window string
+<pre class="code">; console-window string
 ;
-; Controls if the log message window is mapped when gschem is started up
+; Controls if the console message window is mapped when gschem is started up
 ; Possible options:
 ;       startup - opened up when gschem starts
 ;       later   - NOT opened up when gschem starts
-;                 (can be opened by Options/Show Log Window)
+;                 (can be opened by Options/Show Console Window)
 ;
-(log-window &quot;startup&quot;)
-;(log-window &quot;later&quot;)</pre>
+(console-window &quot;startup&quot;)
+;(console-window &quot;later&quot;)</pre>
 
 <p>
 Comment out the <strong><code>startup</code></strong> line (with a ;) and comment in the <strong><code>later</code></strong> line, or add the following line to your gschemrc file:
 </p>
-<pre class="code">(log-window &quot;later&quot;)</pre>
+<pre class="code">(console-window &quot;later&quot;)</pre>
 
 <p>
-If you want to see the logging messages on stdout instead of the log window, put this line in your gschemrc file:
+If you want to see the logging messages on stdout instead of the console window, put this line in your gschemrc file:
 </p>
-<pre class="code">(logging-destination &quot;tty&quot;)</pre>
+<pre class="code">(log-destiny &quot;tty&quot;)</pre>
 
 </div>
 <!-- EDIT1397 SECTION "Each time I start gschem, the log message window is shown. Can I disable it?" [25377-26194] -->
@@ -692,7 +693,7 @@ Put the following line into your gschemrc file:
 <pre class="code">(define default-titleblock &quot;title-A3.sym&quot;)</pre>
 
 <p>
-Replace “title-A3.sym” with the file name of your favorite title block symbol. 
+Replace “title-A3.sym” with the file name of your favorite title block symbol.
 </p>
 
 </div>
@@ -892,7 +893,7 @@ All of these config files may or may not append paths to the library search list
 <pre class="code">(reset-component-library)</pre>
 
 <p>
-the library search path will be emptied. Order is obviously important, as this command will erase any previously appended paths.  
+the library search path will be emptied. Order is obviously important, as this command will erase any previously appended paths.
 </p>
 
 </div>

@@ -175,7 +175,7 @@ static void setup_keyfile ()
   dialog_geometry = g_key_file_new();
 
   /* Remember to save data on program exit */
-  gschem_atexit(save_geometry_to_file, NULL);
+  geda_atexit(save_geometry_to_file, NULL);
 
   if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
     g_mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
@@ -300,7 +300,6 @@ static void gschem_dialog_set_property (GObject *object, guint property_id, cons
 
 }
 
-
 /*! \brief GObject property getter function
  *
  *  \par Function Description
@@ -329,7 +328,6 @@ static void gschem_dialog_get_property (GObject *object, guint property_id, GVal
   }
 
 }
-
 
 /*! \brief GType class initialiser for GschemDialog
  *

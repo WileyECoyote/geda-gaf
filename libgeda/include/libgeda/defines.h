@@ -48,7 +48,7 @@
 /* FIX-1.0.0.20060906. */
 #define PREPEND_VERSION_STRING ""
 
-/* \note 
+/* \note
  * Kazu Hirata <kazu@seul.org> on July 16, 1999 - Added these absolute
  * defaults used when default_... is NULL.
  *
@@ -57,7 +57,6 @@
  */
 #define DEFAULT_SCHEME_DIRECTORY   "./"
 #define DEFAULT_BITMAP_DIRECTORY   "../lib/bitmaps"
-#define DEFAULT_BUS_RIPPER_SYMNAME "busripper-1.sym"
 #define DEFAULT_POSTSCRIPT_PROLOG  "prolog.ps"
 #define DEFAULT_UNTITLED_NAME      "untitled"
 
@@ -132,7 +131,7 @@
 #define max(a,b) ((a) > (b) ? (a) : (b))
 
 #undef min
-#define min(a,b) ((a) < (b) ? (a) : (b)) 
+#define min(a,b) ((a) < (b) ? (a) : (b))
 
 /* for s_clib_getfilename() */
 #define OPEN_DIR	0
@@ -174,11 +173,11 @@
 #define UNDO_ALL		0
 #define UNDO_VIEWPORT_ONLY	1
 
-/* for log-window keyword */
+/* for console-window keyword */
 #define MAP_LATER		0
 #define MAP_ON_STARTUP		1
 
-/* for log-window-type */
+/* for console-window-type */
 #define DECORATED		0
 #define TRANSIENT		1
 
@@ -199,7 +198,7 @@
 #define HIERARCHY_POSTORDER (1<<1)
 #define HIERARCHY_INNERLOOP (1<<7)
 
-#define MILS_PER_INCH		1000 
+#define MILS_PER_INCH		1000
 
 /* for text_output */
 #define VECTOR_FONTS		0
@@ -211,7 +210,7 @@
 #define WINDOW			1
 #define EXTENTS_NOMARGINS	2
 
-/* for output-capstyle */ 
+/* for output-capstyle */
 #define BUTT_CAP 		0
 #define ROUND_CAP 		1
 #define SQUARE_CAP 		2

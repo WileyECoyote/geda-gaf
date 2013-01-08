@@ -31,9 +31,12 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/17/12 |  Inital release.
 ;; ------------------------------------------------------------------
-;; WEH | 12/30/12 |  Added msgbox (for debugging).
+;; WEH | 12/30/12 |  Added msgbox (for debugging). Changed RC_STR_LOGWIN
+;;                |  RC_STR_CONWIN (to integrate new functionality of
+;;                |  the "retrofitted" log window to a console window)
 ;; ------------------------------------------------------------------
-;;
+;; WEH | 01/06/16 |  Added Bus Ripper Strings for intergration with the
+;;     |          |  configure settings dailog.
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -102,13 +105,13 @@
 #define RC_STR_WORLD_LARGE  "180.0 135.0 1.0"
 
 /* Log Destiny Strings for RC code */
-#define RC_STR_DESTINY_WINDOW "log_window"
+#define RC_STR_DESTINY_WINDOW "console_window"
 #define RC_STR_DESTINY_TTY    "tty"
 #define RC_STR_DESTINY_BOTH   "both"
 
-/* Log Window Type Strings for RC code */
-#define RC_STR_LOGWIN_DECORATED "decorated"
-#define RC_STR_LOGWIN_TRANSIENT "transient"
+/* Console Window Type Strings for RC code */
+#define RC_STR_CONWIN_DECORATED "decorated"
+#define RC_STR_CONWIN_TRANSIENT "transient"
 
 /* Action Feedback Mode Strings for RC code */
 #define RC_STR_FEEDBACK_OUTLINE  "outline"
@@ -121,6 +124,19 @@
 
 #define RC_STR_NET_NET "net"
 #define RC_STR_NET_ALL "all"
+
+/* Bus Ripper Strings for RC code */
+/* Ripper Rotation */
+#define RC_STR_RIP_SYMMETRIC      "symmetric"
+#define RC_STR_RIP_NON_SYMMETRIC  "non-symmetric"
+
+/* Ripper Type */
+#define RC_STR_RIP_COMPONENT "component"
+#define RC_STR_RIP_NET       RC_STR_NET_NET
+
+/* Ripper Symbol Name */
+#define DEFAULT_BUS_RIPPER_SYMNAME "busripper-1.sym"
+#define SECOND_BUS_RIPPER_SYMNAME  "busripper-2.sym"
 
 /* RC string related to the Pointer/Mouse */
 /* Middle button options */

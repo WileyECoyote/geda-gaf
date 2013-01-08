@@ -33,7 +33,7 @@
   #include <fcntl.h>
 #endif
 #ifdef HAVE_UNISTD_H
-  #include <unistd.h> 
+  #include <unistd.h>
 #endif
 #include <malloc.h>
 #include <stdio.h>
@@ -81,7 +81,7 @@ void remove_ext_from_basename(char *filename) {
        n = i;                             /* char # of exension */
        break;
     }
-  }  
+  }
   if (n > 0)
     for(i = n; i < len; i++) {            /* starting with the '.'  */
       filename[i] = '\0';
@@ -95,11 +95,11 @@ int fcopy(const char *source, const char *target)
   int input = 0;
   int output = 0;
 
-  ssize_t nread;
+  size_t nread;
 
   char *buffer;
   char *ptr_out;
-  
+
   int error_exit( int TheError ) {
     s_log_message(_("File error: \"%s\", %s\n"), source, strerror(TheError));
     if (buffer > 0) free(buffer);
@@ -110,7 +110,7 @@ int fcopy(const char *source, const char *target)
   }
 
   buffer = malloc(BUFFER_SIZE);
-  
+
   if(!buffer) {
     s_log_message(_("File error(fcopy): Memory Allocation Error!\n"));
     return -1;
@@ -119,7 +119,7 @@ int fcopy(const char *source, const char *target)
   /* Check to see if inpit is readable */
   if(access(source, R_OK) != 0) {
     s_log_message(_("File error(fcopy[source]): \"%s\", %s\n"), source, strerror( errno ));
-    return -1;      
+    return -1;
   }
 
   input = open(source, O_RDONLY);
@@ -127,28 +127,28 @@ int fcopy(const char *source, const char *target)
     s_log_message(_("File error(fcopy)[source]: \"%s\", %s\n"), source, strerror( errno ));
     return -1;
   }
-  
+
 #if defined(_LINUX)
   if (input > 0)
     if (lockf(input, F_LOCK, 0) == -1) {
       return -1; /* FAILURE */
-      s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, strerror( errno ));    
+      s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, strerror( errno ));
     }
     /* else he input is locked */
   else {
-    s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, strerror( errno ));  
+    s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, strerror( errno ));
     return -1; /* FAILURE */
   }
 #endif
-    
+
   output = open(target, O_WRONLY | O_CREAT | O_EXCL, 0666);
-  
+
   if (output < 0) return error_exit(errno);
 
   while (nread = read(input, buffer, BUFFER_SIZE), nread > 0)
   {
     ptr_out = buffer;
-    ssize_t nwritten;
+    size_t nwritten;
 
     do {
           nwritten = write(output, ptr_out, nread);
@@ -171,9 +171,9 @@ int fcopy(const char *source, const char *target)
     }
     close(input);
   }
-      
+
 #if defined(_LINUX)
-  /* Sanity-Check for Lock */ 
+  /* Sanity-Check for Lock */
   if (lockf(input, T_LOCK, 0) == -1 ) { /* if this is locked -1 is returned! */
     lockf(input, F_ULOCK, 0);
   }
@@ -182,7 +182,7 @@ int fcopy(const char *source, const char *target)
 #endif
   free(buffer);
   return 0; /* Success! */
-  
+
 }
 #undef BUFFER_SIZE
 

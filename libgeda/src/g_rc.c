@@ -1239,29 +1239,6 @@ SCM g_rc_bitmap_directory(SCM path)
  *  \param [in] scmsymname
  *  \return SCM_BOOL_T always.
  */
-SCM g_rc_bus_ripper_symname(SCM scmsymname)
-{
-  char *temp;
-
-  SCM_ASSERT (scm_is_string (scmsymname), scmsymname,
-              SCM_ARG1, "bus-ripper-symname");
-
-  g_free(default_bus_ripper_symname);
-
-  temp = scm_to_utf8_string (scmsymname);
-  default_bus_ripper_symname = g_strdup (temp);
-  free (temp);
-
-  return SCM_BOOL_T;
-}
-
-/*! \todo Finish function description!!!
- *  \brief
- *  \par Function Description
- *
- *  \param [in] scmsymname
- *  \return SCM_BOOL_T always.
- */
 SCM g_rc_postscript_prolog(SCM scmsymname)
 {
   char *temp;

@@ -18,7 +18,6 @@ extern int default_thin_pin_width;
 
 extern char *default_untitled_name;
 extern char *default_bitmap_directory;
-extern char *default_bus_ripper_symname;
 extern char *default_postscript_prolog;
 
 extern GList *default_always_promote_attributes;

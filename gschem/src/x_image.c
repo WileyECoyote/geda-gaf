@@ -36,19 +36,37 @@
 #include <dmalloc.h>
 #endif
 
-/* Define spacings for dialogs. */
-#include "gschem_xdefines.h"
+#include "x_dialog.h"
+#include "geda_dialog_controls.h"
+
+#define ThisDialog dialog
+#define Switch_Responder switch_responder
 
 #define X_IMAGE_DEFAULT_SIZE "800x600"
 
 #define X_IMAGE_SIZE_MENU_NAME "image_size_menu"
 #define X_IMAGE_TYPE_MENU_NAME "image_type_menu"
 
+#define X_IMAGE_DEFAULT_TYPE "PNG"
+
+/* Enumerate Control IDs */
+typedef enum {
+  Extents, EnableColor, InvertImage,
+} ControlID;
+
+static WidgetStringData DialogStrings[] = {
+  { "ExtentsSwitch",      "    Extents",   "Generate image from schematic Extents or the currently displayed view"},
+  { "EnableColorSwitch",  "   Use Color",  "Enable or disable color imaging"},
+  { "InvertImageSwitch",  "Invert Image",  "Enable to reverse Black and White images"},
+  { NULL, NULL, NULL},
+};
+
+
 static char *x_image_sizes[] = {"320x240", "640x480", "800x600", "1200x768",
   "1280x960", "1600x1200", "3200x2400", NULL};
-  
+
 const char *ImageTypeStrings[] = { "png", "tiff", "bmp", "ico", "jpeg", "eps", "pdf" };
-   
+
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
 /* gtk_combo_box_get_active_text was included in GTK 2.6, so we need to store
    the different image type descriptions in a list. */
@@ -144,7 +162,9 @@ static void create_type_menu(GtkComboBox *combo, IMAGE_TYPES default_type)
 
       /* Compare the name with default and store the index */
       buf = g_strdup (gdk_pixbuf_format_get_name(ptr->data));
+#if DEBUG
       fprintf(stderr, "default flag=[%d], buf=[%s]\n",default_type, buf);
+#endif
       if (strcasecmp(buf, ImageTypeStrings[default_type]) == 0) {
         default_index = i;
       }
@@ -164,7 +184,7 @@ static void create_type_menu(GtkComboBox *combo, IMAGE_TYPES default_type)
   return;
 }
 
-/*! \brief Given a gdk-pixbuf image type description, it returns the type, 
+/*! \brief Given a gdk-pixbuf image type description, it returns the type,
  *  or extension of the image.
  *  \par Return the gdk-pixbuf image type, or extension, which has the
  *  given gdk-pixbuf description.
@@ -179,10 +199,10 @@ static char *x_image_get_type_from_description(char *description) {
   char *ptr_descr;
 
   /*WK - catch EPS export case*/
-  if (strcmp(descr, _("Encapsulated Postscript")) == 0) { 
+  if (strcmp(descr, _("Encapsulated Postscript")) == 0) {
     return(g_strdup("eps"));
   }
-  if (strcmp(descr, "Portable Document Format") == 0) { 
+  if (strcmp(descr, "Portable Document Format") == 0) {
     return(g_strdup("pdf"));
   }
   ptr = formats;
@@ -196,7 +216,7 @@ static char *x_image_get_type_from_description(char *description) {
     ptr = ptr->next;
   }
   g_free (descr);
-  return NULL;  
+  return NULL;
 }
 
 /*! \brief Update the filename of a file dialog, when the image type has changed.
@@ -206,9 +226,9 @@ static char *x_image_get_type_from_description(char *description) {
  *  \param combo     [in] A combobox inside a file chooser dialog, with gdk-pixbuf image type descriptions.
  *  \param w_current [in] the GSCHEM_TOPLEVEL structure.
  *  \return nothing.
- * 
+ *
  */
-static void x_image_update_dialog_filename(GtkComboBox *combo, 
+static void x_image_update_dialog_filename(GtkComboBox *combo,
   GSCHEM_TOPLEVEL *w_current) {
   TOPLEVEL *toplevel = w_current->toplevel;
   char* image_type_descr = NULL;
@@ -250,17 +270,17 @@ static void x_image_update_dialog_filename(GtkComboBox *combo,
     file_basename = g_path_get_basename(old_image_filename);
 
     if (g_strrstr(file_basename, ".") != NULL) {
-      file_name = g_strndup(file_basename, 
+      file_name = g_strndup(file_basename,
           g_strrstr(file_basename, ".") - file_basename);
     }
   }
 
   /* Add the extension */
   if (file_name) {
-    new_image_filename = g_strdup_printf("%s.%s", file_name, 
+    new_image_filename = g_strdup_printf("%s.%s", file_name,
         image_type);
   } else {
-    new_image_filename = g_strdup_printf("%s.%s", file_basename, 
+    new_image_filename = g_strdup_printf("%s.%s", file_basename,
         image_type);
   }
 
@@ -302,7 +322,7 @@ void x_image_write_eps(GSCHEM_TOPLEVEL *w_current, const char* filename)
   result = f_print_file (toplevel, toplevel->page_current, filename);
   if (result) {
     s_log_message(_("x_image_write_eps: Unable to write eps file %s.\n"), filename);
-  }   
+  }
 
   toplevel->paper_width = w;
   toplevel->paper_height = h;
@@ -334,13 +354,13 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
   GtkWidget *dialog;
   float prop;
 
-  w_current->image_width = width = desired_width;
+  w_current->image_width  = width  = desired_width;
   w_current->image_height = height = desired_height;
 
-  save_width = toplevel->width;
+  save_width  = toplevel->width;
   save_height = toplevel->height;
 
-  toplevel->width = width;
+  toplevel->width  = width;
   toplevel->height = height;
 
   save_page_left = toplevel->page_current->left;
@@ -439,7 +459,52 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
   o_invalidate_all (w_current);
 
 }
+/*! \brief Toggle switch image & Set InvertSwitch sensitivity
+ *  \par Function Description: This function changes the images on
+ *       EnableColorSwitch and set the sensitivity of the Invert
+ *       ImageSwitch to the opposite state of this control.
+ */
+static void x_image_enable_color (GtkWidget *widget,
+                                  GtkWidget *InvertSwitch)
+{
+  TOGGLE_SWITCH(widget);                  /* Swap-out the switch image */
 
+  if ( GET_SWITCH_STATE (widget))                  /* if Color enabled */
+    gtk_widget_set_sensitive (InvertSwitch, FALSE); /* gray out Invert */
+  else
+    gtk_widget_set_sensitive (InvertSwitch, TRUE);
+
+  return;
+}
+
+/*! \brief Toggle switch images on the Write Image Dialog
+ *  \par Function Description: This function changes the images of
+ *       controls created with create_geda_switch to the opposite
+ *       state, i.e. if ON use OFF image and if OFF use ON image.
+ *       The functions handles callbacks for only two switches on
+ *       this Dialog. This callback doesn't do anything other
+ *       than toggle the image so it could be simplified to just
+ *       TOGGLE_SWITCH(widget); but leaving stubbed for now for
+ *       possible future innovations.
+ */
+static void switch_responder(GtkWidget *widget, ControlID *Control)
+{
+
+  bool state = GET_SWITCH_STATE (widget);
+  GtkWidget* SwitchImage = get_geda_switch_image( state);
+  gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
+
+  int WhichOne = (int)(long*) Control;
+
+  switch ( WhichOne ) {
+  case Extents:
+  case InvertImage:
+    break;
+  default:
+    s_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", WhichOne);
+  }
+  return;
+}
 /*! \brief Display the image file selection dialog.
  *  \par Display the image file selection dialog, allowing the user to
  *  set several options, like image size and image type.
@@ -449,7 +514,7 @@ void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
  */
 void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
 {
-  GtkWidget *dialog;
+  GtkWidget *ThisDialog;
   GtkWidget *vbox1;
   GtkWidget *hbox;
   GtkWidget *label1;
@@ -457,11 +522,37 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
   GtkWidget *vbox2;
   GtkWidget *label2;
   GtkWidget *type_combo;
+  GtkWidget *switch_vbox;
   char *image_type_descr;
   char *filename;
   char *image_size;
   char *image_type;
   int width, height;
+  bool image_color_save   = w_current->toplevel->image_color;
+  bool invert_images_save = w_current->toplevel->invert_images;
+  bool image_extents      = Image_Display;
+
+
+  GtkWidget *ExtentsSwitch=NULL;
+  GtkWidget *EnableColorSwitch=NULL;
+  GtkWidget *InvertImageSwitch=NULL;
+
+  GtkTooltips *tooltips;
+  tooltips = gtk_tooltips_new ();
+
+  /* Create the dialog */
+  ThisDialog = gtk_file_chooser_dialog_new (_("Write image..."),
+                   GTK_WINDOW(w_current->main_window),
+                   GTK_FILE_CHOOSER_ACTION_SAVE,
+                   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                   GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
+                   NULL);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
+      GTK_RESPONSE_ACCEPT,
+      GTK_RESPONSE_CANCEL,
+      -1);
 
   hbox = gtk_hbox_new(FALSE, 0);
 
@@ -494,38 +585,43 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
   gtk_box_pack_start (GTK_BOX (vbox2), type_combo, TRUE, TRUE, 0);
   create_type_menu (GTK_COMBO_BOX(type_combo), default_type);
 
-  /* extent = Add a switch or check box here for "extents or Display */
-  
   /* Connect the changed signal to the callback, so the filename
      gets updated every time the image type is changed */
-  g_signal_connect (type_combo, "changed", 
-      G_CALLBACK(x_image_update_dialog_filename),
-      w_current);
+  g_signal_connect (type_combo, "changed",
+                    G_CALLBACK(x_image_update_dialog_filename),
+                    w_current);
 
   gtk_widget_show (type_combo);
   gtk_widget_show(vbox2);
 
-  /* Create the dialog */
-  dialog = gtk_file_chooser_dialog_new (_("Write image..."),
-      GTK_WINDOW(w_current->main_window),
-      GTK_FILE_CHOOSER_ACTION_SAVE,
-      GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-      GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
-      NULL);
+  switch_vbox = gtk_vbox_new(FALSE, 0);
 
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-      GTK_RESPONSE_ACCEPT,
-      GTK_RESPONSE_CANCEL,
-      -1);
+  /* Create switches, aka check boxes with custom images */
+  /* Add Switch widget for "extents or Display using Switch_Responder */
+  GTK_SWITCH  (switch_vbox, Extents,     10, image_extents);
+
+  /* Create Toggle Switch widget for Color or B/W with independent callback */
+  GEDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, EnableColor, 0, image_color_save);
+
+  /* Create Toggle Switch widget for Invert Image using Switch_Responder callback */
+  GTK_SWITCH  (switch_vbox, InvertImage, 0, invert_images_save);
+
+  gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
+
+  /* setup callback for EnableColorSwitch passing ptr to InvertImageSwitch */
+  GEDA_CALLBACK_SWITCH (EnableColor, x_image_enable_color, InvertImageSwitch)
+
+  /* Set initial sensitivity of InvertImageSwitch (is only for B/W) */
+  gtk_widget_set_sensitive (InvertImageSwitch, image_color_save ? FALSE : TRUE);
 
   /* Add the extra widgets to the dialog*/
   gtk_box_pack_start(GTK_BOX(hbox), vbox1, FALSE, FALSE, 10);
   gtk_box_pack_start(GTK_BOX(hbox), vbox2, FALSE, FALSE, 10);
+  gtk_box_pack_start(GTK_BOX(hbox), switch_vbox , FALSE, FALSE, 0);
 
-  gtk_file_chooser_set_extra_widget (GTK_FILE_CHOOSER(dialog), hbox);
+  gtk_file_chooser_set_extra_widget (GTK_FILE_CHOOSER(ThisDialog), hbox);
 
-  g_object_set (dialog,
+  g_object_set (ThisDialog,
       /* GtkFileChooser */
       "select-multiple", FALSE,
 #if ((GTK_MAJOR_VERSION > 2) || ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION >=8)))
@@ -535,27 +631,27 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
       NULL);
 
   /* Update the filename */
-  x_image_update_dialog_filename(GTK_COMBO_BOX(type_combo), w_current);  
+  x_image_update_dialog_filename(GTK_COMBO_BOX(type_combo), w_current);
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog),
+  gtk_dialog_set_default_response((GtkDialog*) ThisDialog,
       GTK_RESPONSE_ACCEPT);
 
-  gtk_window_position (GTK_WINDOW (dialog),
+  gtk_window_position (GTK_WINDOW (ThisDialog),
       GTK_WIN_POS_MOUSE);
 
-  gtk_container_set_border_width(GTK_CONTAINER(dialog),
+  gtk_container_set_border_width(GTK_CONTAINER(ThisDialog),
       DIALOG_BORDER_SPACING);
-  gtk_box_set_spacing(GTK_BOX(GTK_DIALOG(dialog)->vbox), 
+  gtk_box_set_spacing(GTK_BOX(((GtkDialog*)ThisDialog)->vbox),
       DIALOG_V_SPACING);
 
-  gtk_widget_show (dialog);
+  gtk_widget_show (ThisDialog);
 
-  if (gtk_dialog_run((GTK_DIALOG(dialog))) == GTK_RESPONSE_ACCEPT) {    
+  if (gtk_dialog_run((GtkDialog*)ThisDialog) == GTK_RESPONSE_ACCEPT) {
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
-    image_size = 
-      x_image_sizes[gtk_combo_box_get_active(GTK_COMBO_BOX(size_combo))];
+    image_size =
+      x_image_sizes[gtk_combo_box_get_active   (GTK_COMBO_BOX(size_combo))];
 #else
-    image_size = gtk_combo_box_get_active_text(GTK_COMBO_BOX(size_combo));
+    image_size = gtk_combo_box_get_active_text (GTK_COMBO_BOX(size_combo));
 #endif
 
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
@@ -570,9 +666,13 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
 
     image_type = x_image_get_type_from_description(image_type_descr);
     sscanf(image_size, "%ix%i", &width, &height);
-    filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(dialog));
+    filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(ThisDialog));
 
-    x_image_lowlevel(w_current, filename, width, height, image_type, Image_Display);
+    /* Only the Extents switch/button use a local variable */
+                         image_extents = GET_SWITCH_STATE(ExtentsSwitch);
+    w_current->toplevel->image_color   = GET_SWITCH_STATE(EnableColorSwitch);
+    w_current->toplevel->invert_images = GET_SWITCH_STATE(InvertImageSwitch);
+    x_image_lowlevel(w_current, filename, width, height, image_type, image_extents);
   }
 
 #if ((GTK_MAJOR_VERSION == 2) && (GTK_MINOR_VERSION < 6))
@@ -580,7 +680,11 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
   free_image_type_descriptions_list();
 #endif
 
-  gtk_widget_destroy (dialog);
+  gtk_widget_destroy (ThisDialog);
+
+  /* Restore Top Level variables Or should they retain new settings? */
+  w_current->toplevel->image_color   = image_color_save;
+  w_current->toplevel->invert_images = invert_images_save;
 }
 
 /*! \todo Finish function documentation!!!
@@ -647,14 +751,14 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
   COLOR *color_dx;
   int index;
   int err = 0;
-  
+
   /* Do a copy of the w_current struct and work with it */
   memcpy(&new_w_current, w_current, sizeof(GSCHEM_TOPLEVEL));
   /* Do a copy of the toplevel struct and work with it */
   memcpy(&toplevel, w_current->toplevel, sizeof(TOPLEVEL));
 
   new_w_current.toplevel = &toplevel;
-  
+
   /* Do zoom extents to get entire schematic in the window if imaging All */
   if (extent == Image_All)
     a_zoom_extents (&new_w_current,
@@ -685,12 +789,12 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
 
   if ((toplevel.image_color == FALSE) && /* If B&W imaging mode */
       (toplevel.invert_images == TRUE)) {
- 
+
     /* Normally the color at index 0 in the color map is black, and the
      * color at index 1 is white. We are suppose to generate black&white
      * (grayscale) output, with white and black inverted. We'll set the
      * color of all objects to the first "dark" color we find, will be
-     * black if index 0 is black */
+     * black if index 0 is black, WEH*/
     index = 0;
     color_dx = x_color_lookup(index);
     while (color_dx->r + color_dx->g + color_dx->b > 20) { /* Close enough, call it black */
@@ -704,7 +808,7 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
     if (!err)
       toplevel.override_color = index;
     else
-      s_log_message("WARNING, encountered color map while looking for a dark color!");
+      s_log_message("WARNING, encountered an error while looking for a dark color in the color map!");
 
     /* Now get a light color, normally would be white */
     index = 0;
@@ -720,13 +824,13 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
     if (!err)
       toplevel.background_color = index; /* set over-ride background to light, maybe white */
     else
-      s_log_message("WARNING, encountered color map while looking for a light color!");
+      s_log_message("WARNING, encountered an error while looking for a light color in the color map!");
   }
 
   origin_x = origin_y = 0;
   right = size_x;
   bottom = size_y;
-  
+
   rect.x = origin_x;
   rect.y = origin_y;
   rect.width = right - origin_x;
@@ -742,7 +846,7 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
 
   if (toplevel.image_color == FALSE)
   {
-    x_image_convert_to_greyscale(pixbuf); 
+    x_image_convert_to_greyscale(pixbuf);
   }
 
   if (new_w_current.cr != NULL) cairo_destroy (new_w_current.cr);
@@ -753,3 +857,5 @@ GdkPixbuf *x_image_get_pixbuf (GSCHEM_TOPLEVEL *w_current, ImageExtent extent)
 
   return(pixbuf);
 }
+#undef ThisDialog
+#undef Switch_Responder

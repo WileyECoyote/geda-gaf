@@ -233,11 +233,11 @@ int o_save (TOPLEVEL *toplevel, const GList *object_list,
 
   /* Check to see if real filename is writable; if file doesn't exists
      we assume all is well */
-  if (g_file_test(filename, G_FILE_TEST_EXISTS) && 
+  if (g_file_test(filename, G_FILE_TEST_EXISTS) &&
       g_access(filename, W_OK) != 0) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM,
                  _("File %s is read-only"), filename);
-    return 0;      
+    return 0;
   }
 
   output = fopen (filename, "w" );
@@ -270,23 +270,23 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
                       char *buffer, const int size,
                       const char *name, GError **err)
 {
-  const char *line = NULL;
-  TextBuffer *tb = NULL;
+  const char *line        = NULL;
+  TextBuffer *tb          = NULL;
 
   char objtype;
-  GList *object_list_save=NULL;
-  OBJECT *new_obj=NULL;
-  GList *new_attrs_list;
-  GList *new_object_list = NULL;
+  GList *object_list_save = NULL;
+  OBJECT *new_obj         = NULL;
+  GList *new_attrs_list   = NULL;
+  GList *new_object_list  = NULL;
   GList *iter;
-  unsigned int release_ver = 0;
-  unsigned int fileformat_ver = 0;
-  //unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
-  int found_pin = 0;
-  OBJECT* last_complex = NULL;
-  int itemsread = 0;
+  unsigned int release_ver            = 0;
+  unsigned int fileformat_ver         = 0;
+  unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
 
-  int embedded_level = 0;
+  int found_pin        = 0;
+  int itemsread        = 0;
+  int embedded_level   = 0;
+  OBJECT* last_complex = NULL;
 
   g_return_val_if_fail ((buffer != NULL), NULL);
 
@@ -390,7 +390,7 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
 
-      case(STARTATTACH_ATTR): 
+      case(STARTATTACH_ATTR):
         /* first is the fp */
         /* 2nd is the object to get the attributes */
         if (new_obj != NULL) {
@@ -568,7 +568,7 @@ GList *o_read (TOPLEVEL *toplevel, GList *object_list, char *filename,
 
   if (!g_file_get_contents(filename, &buffer, &size, err)) {
     return NULL;
-  } 
+  }
 
   /* Parse file contents */
   result = o_read_buffer (toplevel, object_list, buffer, size, filename, err);

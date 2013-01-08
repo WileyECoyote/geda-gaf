@@ -38,11 +38,17 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 12/04/12 |  Added switch for EnableColorImaging
 ;; ------------------------------------------------------------------
+;; WEH | 12/30/12 |  Changed "Log" to "Console"
+;; ------------------------------------------------------------------
+;; WEH | 01/06/16 | Added spinner RipperSize, switches RipperRotation
+;;                | RipperType, and combo RipperSymbol, (to extend
+;;                | functionality)
+;; ------------------------------------------------------------------
 */
 /*! \remarks To add a new variable or control:
  *
- * 1. The variable should be valid and readable in the RC system, this
- *    is not a requirement
+ * 1. The variable should be valid and readable in the RC system, but
+ *    this is not a requirement to add the widget.
  *
  * 2. Create the control
  *
@@ -98,7 +104,7 @@
 
 #include <gschem_xdefines.h>            /* Define dialog default internal spacing */
 #include <gschem_dialog.h>              /* Definition the base Dialog Class */
-#include <x_dialog_controls.h>          /* Macros for Dialogs */
+#include <geda_dialog_controls.h>          /* Macros for Dialogs */
 #include <x_settings.h>                 /* Common Declarations and Enumerators */
 #include <x_settings_dialog.h>          /* Dialog String Data */
 
@@ -196,9 +202,11 @@ gschem_rc_options rc_options={
 	1,  /* world_size index */
 	0,  /* custom_world_size flag */
         0,  /* titleblock_index */
+        0,  /* ripper_symbol_index */
 	"gschem-colormap-darkbg", /* color_map_scheme file name [MAX_FILE]*/
 	"",                       /* untitled_name[MAX_FILE] */
-	""};                      /* titleblock_fname[64]; */
+	"",                       /* titleblock_fname[64]; */
+	""};                      /* ripper_symbol_fname [MAX_FILE]*/
 
 /* The Global Widgets */
 GtkWidget *AddAttributeButt=NULL;
@@ -210,11 +218,12 @@ GtkWidget *ConfirmClearCheckBox=NULL;
 /* The Combo Boxes */
 GtkWidget *ColorMapSchemeCombo;
 GtkWidget *DotGridModeCombo;
-GtkWidget *LogWindowTypeCombo;
+GtkWidget *ConsoleWindowTypeCombo;
 GtkWidget *MiddleButtonCombo;
 GtkWidget *ThirdButtonCombo;
 GtkWidget *TitleBlockCombo;
 GtkWidget *UndoTypeCombo;
+GtkWidget *RipperSymbolCombo;
 
 /* The one and only Text Entry Box */
 GtkWidget *UntitledNameEntry;
@@ -257,6 +266,7 @@ GtkWidget *KeyboardPanGainSpin;
 GtkWidget *KeyboardPanGainSpin;
 GtkWidget *MeshGridThresholdSpin;
 GtkWidget *MousePanGainSpin;
+GtkWidget *RipperSizeSpin;
 GtkWidget *ScrollPanStepsSpin;
 GtkWidget *SelectPixelsSpin;
 GtkWidget *SnapSizeSpin;
@@ -294,12 +304,14 @@ GtkWidget *ForceBoundingBoxSwitch=NULL;
 GtkWidget *FilePreviewSwitch=NULL;
 GtkWidget *FriendlyColorMapSwitch=NULL;
 GtkWidget *FriendlyOutlineMapSwitch=NULL;
-GtkWidget *InitLogWindowSwitch=NULL;
+GtkWidget *InitConsoleWindowSwitch=NULL;
 GtkWidget *InvertImagesSwitch=NULL;
 GtkWidget *MagneticNetsSwitch=NULL;
 GtkWidget *NetDirectionSwitch=NULL;
 GtkWidget *NotifyEventsSwitch=NULL;
 GtkWidget *ObjectClippingSwitch=NULL;
+GtkWidget *RipperRotationSwitch=NULL;
+GtkWidget *RipperTypeSwitch=NULL;
 GtkWidget *RubberNetsSwitch=NULL;
 GtkWidget *ScrollBarsSwitch=NULL;
 GtkWidget *SortLibrarySwitch=NULL;
@@ -371,8 +383,8 @@ static void enable_color_map_scheme( bool state ){
 /** @brief enable_log_controls in X_Settings_Dialog_Support_Functions */
 /*! \brief enables and disables log related configuration options. */
 static void enable_log_controls( bool state ){
-  gtk_widget_set_sensitive (InitLogWindowSwitch, state);
-  gtk_widget_set_sensitive (LogWindowTypeCombo, state);
+  gtk_widget_set_sensitive (InitConsoleWindowSwitch, state);
+  gtk_widget_set_sensitive (ConsoleWindowTypeCombo, state);
   gtk_widget_set_sensitive (LogDestinyWindowRadio, state);
   gtk_widget_set_sensitive (LogDestinyTTYRadio, state);
   gtk_widget_set_sensitive (LogDestinyBothRadio, state);
@@ -421,6 +433,8 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
     break;
   case Text:
   case Styles:
+    state = GET_SWITCH_STATE (RipperTypeSwitch);
+    gtk_widget_set_sensitive (RipperSymbolCombo, state);
     break;
   case Attributes:
     state = GET_SWITCH_STATE (DialogListAttributesListRadio);
@@ -1002,12 +1016,13 @@ void combo_responder(GtkWidget *widget, gpointer data)
     else
        gtk_widget_set_sensitive (DotGridThresholdSpin, TRUE);
     break;
-  case LogWindowType:
+  case ConsoleWindowType:
     break;
   case UndoType:
     break;
   case ThirdButton:
   case MiddleButton:
+  case RipperSymbol:
     break;
   default:
     s_log_message("combo_responder(): Warning, Unknown Combo Id: %d\n",WhichComboBox);
@@ -1070,6 +1085,24 @@ int setup_titleblock_combo( char *titleblock ){
      s_log_message("setup_titleblock: Memory allocation error\n");
 
   return pos;
+}
+
+void setup_ripper_symbol_combo(char* cur_name) {
+
+  strcpy(rc_options.ripper_symbol_fname, cur_name);
+
+  if (strequal(rc_options.ripper_symbol_fname, DEFAULT_BUS_RIPPER_SYMNAME))
+    rc_options.ripper_symbol_index = 0;
+  else
+    if (strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
+      rc_options.ripper_symbol_index = 1;
+    else {
+      LOAD_STD_COMBO(RipperSymbol, rc_options.ripper_symbol_fname);
+      rc_options.ripper_symbol_index = 2;
+    }
+
+  gtk_combo_box_set_active((GtkComboBox *)RipperSymbolCombo, rc_options.ripper_symbol_index);
+
 }
 /* -------------------------- End Combo Box Support -------------------------*/
 
@@ -1251,9 +1284,9 @@ radio_responder(GtkWidget *widget,  gint response, ControlID *Control)
  *       The functions enables or disables other widgets based on
  *       the state of the switch.
  */
-static void switch_responder(GtkWidget *widget, gint response,  ControlID *Control)
+static void switch_responder(GtkWidget *widget, int response,  ControlID *Control)
 {
-   gboolean state = GET_SWITCH_STATE (widget);
+   bool state = GET_SWITCH_STATE (widget);
    GtkWidget* SwitchImage = get_geda_switch_image( state);
    gtk_button_set_image(GTK_BUTTON (widget), SwitchImage);
 
@@ -1291,12 +1324,17 @@ static void switch_responder(GtkWidget *widget, gint response,  ControlID *Contr
    case FriendlyOutlineMap:
      enable_color_map_scheme(state);
      break;
-   case InitLogWindow:
+   case InitConsoleWindow:
    case InvertImages:
    case MagneticNets:
    case NetDirection:
    case NotifyEvents:
    case ObjectClipping:
+   case RipperRotation:
+     break;
+   case RipperType:
+     gtk_widget_set_sensitive (RipperSymbolCombo, state);
+     break;
    case RubberNets:
    case ScrollBars:
      gtk_widget_set_sensitive (DelayScrollingSwitch, state);
@@ -1390,10 +1428,10 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   }
   SetCombo ( ColorMapScheme, rc_options.color_scheme_index);
 
-  SetCombo ( DotGridMode, w_current->dots_grid_mode);
-  SetCombo ( LogWindowType, log_window_type);
-  SetCombo ( ThirdButton, w_current->third_button);
-  SetCombo ( MiddleButton, w_current->middle_button);
+  SetCombo ( DotGridMode,   w_current->dots_grid_mode);
+  SetCombo ( ConsoleWindowType, console_window_type);
+  SetCombo ( ThirdButton,   w_current->third_button);
+  SetCombo ( MiddleButton,  w_current->middle_button);
 
 #ifdef DEBUG
   LOAD_COMBO_STR( TitleBlock, DefaultTitleBlockList )
@@ -1406,8 +1444,10 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 
   SetCombo ( UndoType, w_current->undo_type );
 
+  setup_ripper_symbol_combo(w_current->bus_ripper_symname);
+
   strcpy(rc_options.untitled_name, w_current->toplevel->untitled_name);
-  gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), _(rc_options.untitled_name));
+  gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), rc_options.untitled_name);
 
 /* The Switches Alphabetically (31) */
 
@@ -1435,12 +1475,16 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(FriendlyColorMap, rc_options.display_color_map);
   SetSwitch(FriendlyOutlineMap, rc_options.display_outline_color_map);
 
-  SetSwitch(InitLogWindow, log_window);
+  SetSwitch(InitConsoleWindow, console_window);
   SetSwitch(InvertImages, toplevel->invert_images);
   SetSwitch(MagneticNets, w_current->magnetic_net_mode);
   SetSwitch(NetDirection, w_current->net_direction_mode);
   SetSwitch(NotifyEvents, w_current->raise_dialog_boxes);
   SetSwitch(ObjectClipping, w_current->toplevel->object_clipping);
+
+  SetSwitch(RipperRotation, w_current->bus_ripper_rotation);
+  SetSwitch(RipperType, w_current->bus_ripper_type);
+
   SetSwitch(RubberNets, w_current->netconn_rubberband);
   SetSwitch(ScrollBars, w_current->scrollbars);
   SetSwitch(SortLibrary, w_current->sort_component_library);
@@ -1512,6 +1556,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSpin (KeyboardPanGain, w_current->keyboardpan_gain);
   SetSpin (MeshGridThreshold, w_current->mesh_grid_threshold);
   SetSpin (MousePanGain, w_current->mousepan_gain);
+  SetSpin (RipperSize, w_current->bus_ripper_size);
   SetSpin (ScrollPanSteps, w_current->scrollpan_steps);
   SetSpin (SelectPixels, w_current->select_slack_pixels);
   SetSpin (SnapSize, w_current->snap_size);
@@ -1610,10 +1655,10 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
      CSECTION_OPTIONS(GeneralTab_vbox, Logging, -1, 10, H); /* GT Grp 3 Log Related */
        VSECTION (LoggingOptions_hbox, LogOptions);   /* Grp 3 Row 1 */
          GTK_SWITCH(LogOptions_vbox, EnableLog, 5, TRUE);
-         GTK_SWITCH(LogOptions_vbox, InitLogWindow, 0, FALSE);
-         GTK_NEW_COMBO (LogOptions_vbox, LogWindowType, 150, 5);
-           GTK_LOAD_COMBO (LogWindowType, RC_STR_LOGWIN_DECORATED)
-           GTK_LOAD_COMBO (LogWindowType, RC_STR_LOGWIN_TRANSIENT)
+         GTK_SWITCH(LogOptions_vbox, InitConsoleWindow, 0, FALSE);
+         GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 150, 5);
+           GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
+           GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
          GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 50, Window, TTY, Both, Window);
      HXYP_SEPERATOR (GeneralTab_vbox, Grp4, 10);
      CSECTION_OPTIONS(GeneralTab_vbox, Undo, 70, 10, H); /* was GT Grp 4 Undo Related */
@@ -1760,7 +1805,19 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
        VPSECTION (StylesRow2_hbox, PinWidths, DIALOG_V_SPACING)  /* ST Grp 2 Pin Spinners */
          GTK_NUMERIC_SPIN (PinWidths_vbox, ThinPinWidth, DIALOG_V_SPACING +5, DEFAULT_THIN_PIN_WIDTH, 0, 100);
          GTK_NUMERIC_SPIN (PinWidths_vbox, ThickPinWidth, DIALOG_V_SPACING +5, DEFAULT_THICK_PIN_WIDTH, 0, 500);
+     HD_SEPERATOR (StylesTab_vbox, Grp3);      /* Ripper Options */
+       HSECTION(StylesTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
+         GTK_SWITCH(StylesRow3_hbox, RipperType, 88, FALSE);
+         GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 150, 5);
+         gtk_widget_set_size_request (RipperSymbolCombo, 150, 31);
+         GTK_LOAD_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
+         GTK_LOAD_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)
+       HSECTION(StylesTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
+         GTK_SWITCH(StylesRow4_hbox, RipperRotation, 44, FALSE);
+         GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 66, 200, 0, 500);
+                                 //parent, name, spacing, ivalue, minval, maxval
      HD_SEPERATOR (StylesTab_vbox, End);
+
    GTK_END_TAB(Styles);
   } /*** END Styles TAB Contents ***/
 
@@ -1877,7 +1934,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 /* Combo Boxes (7) */
 
   w_current->dots_grid_mode = gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo));
-  log_window_type           = gtk_combo_box_get_active (GTK_COMBO_BOX (LogWindowTypeCombo));
+  console_window_type       = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
   w_current->undo_type      = gtk_combo_box_get_active (GTK_COMBO_BOX (UndoTypeCombo));
   w_current->middle_button  = gtk_combo_box_get_active (GTK_COMBO_BOX (MiddleButtonCombo));
   w_current->third_button   = gtk_combo_box_get_active (GTK_COMBO_BOX (ThirdButtonCombo));
@@ -1920,8 +1977,19 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
     }
     rc_options.titleblock_index = -1; /* set flag to indicate new default_titleblock */
   }
+
+  tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (RipperSymbolCombo));
+
+  if (tmp_int != rc_options.ripper_symbol_index) {
+    g_free(w_current->bus_ripper_symname);
+    w_current->bus_ripper_symname =
+    g_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
+    strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
+  }
 /* The Switches Alphabetically (31) */
              auto_load_last             = GET_SWITCH_STATE (AutoLoadSwitch);
+  w_current->bus_ripper_rotation        = GET_SWITCH_STATE (RipperRotationSwitch);
+  w_current->bus_ripper_type            = GET_SWITCH_STATE (RipperTypeSwitch);
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);
   w_current->drag_can_move              = GET_SWITCH_STATE (DragMoveSwitch);
   w_current->renderer->draw_grips       = GET_SWITCH_STATE (DrawGripsSwitch);
@@ -1945,7 +2013,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
   w_current->netconn_rubberband         = GET_SWITCH_STATE (RubberNetsSwitch);
              logging                    = GET_SWITCH_STATE (EnableLogSwitch);
-             log_window                 = GET_SWITCH_STATE (InitLogWindowSwitch);
+             console_window             = GET_SWITCH_STATE (InitConsoleWindowSwitch);
    toplevel->object_clipping            = GET_SWITCH_STATE (ObjectClippingSwitch);
   w_current->raise_dialog_boxes         = GET_SWITCH_STATE (NotifyEventsSwitch);
   w_current->scrollbars                 = GET_SWITCH_STATE (ScrollBarsSwitch);
@@ -1965,6 +2033,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
    toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
+  w_current->bus_ripper_size            =GET_SPIN_IVALUE (RipperSizeSpin);
   w_current->dots_grid_fixed_threshold  =GET_SPIN_IVALUE (DotGridThresholdSpin);
   w_current->keyboardpan_gain           =GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        =GET_SPIN_IVALUE (MeshGridThresholdSpin);

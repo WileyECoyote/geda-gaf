@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,6 +39,8 @@
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
+#include <gettext.h>
+
 #define OPTIONS "c:g:hil:L:m:o:O:qvV"
 
 #ifndef OPTARG_IN_UNISTD
@@ -58,11 +60,9 @@ struct option long_options[] =
   };
 #endif
 
-
-
 void usage(char *cmd)
 {
-  printf (
+  printf (_(
 "Usage: %s [OPTION ...] [-g BACKEND] [--] FILE ...\n"
 "\n"
 "Generate a netlist from one or more gEDA schematic FILEs.\n"
@@ -70,6 +70,7 @@ void usage(char *cmd)
 "General options:\n"
 "  -q              Quiet mode.\n"
 "  -v, --verbose   Verbose mode.\n"
+"  -o FILE         Filename for netlist data output.\n"
 "  -L DIR          Add DIR to Scheme search path.\n"
 "  -g BACKEND      Specify netlist backend to use.\n"
 "  -O STRING       Pass an option string to backend.\n"
@@ -82,8 +83,8 @@ void usage(char *cmd)
 "  -V, --version   Show version information.\n"
 "  --              Treat all remaining arguments as filenames.\n"
 "\n"
-"Report bugs to <geda-bug@seul.org>.\n"
-"gEDA/gaf homepage: <http://gpleda.org>\n",
+"Report bugs at <https://bugs.launchpad.net/geda>\n"
+"gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
           cmd);
   exit (0);
 }
@@ -118,7 +119,6 @@ catch_handler (void *data, SCM tag, SCM throw_args)
   return SCM_BOOL_F;
 }
 
-
 int
 parse_commandline (int argc, char *argv[])
 {
@@ -144,17 +144,14 @@ parse_commandline (int argc, char *argv[])
       break;
 
     case 'v':
-      backend_params = g_slist_append(backend_params, "verbose_mode");
       verbose_mode = TRUE;
       break;
 
     case 'i':
-      backend_params = g_slist_append(backend_params, "interactive_mode");
       interactive_mode = TRUE;
       break;
 
     case 'q':
-      backend_params = g_slist_append(backend_params, "quiet_mode");
       quiet_mode = TRUE;
       break;
 
@@ -220,16 +217,16 @@ parse_commandline (int argc, char *argv[])
 #ifndef HAVE_GETOPT_LONG
         if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
           fprintf (stderr,
-                   "ERROR: -%c option requires an argument.\n\n",
+                   _("ERROR: -%c option requires an argument.\n\n"),
                    optopt);
         } else if (isprint (optopt)) {
-          fprintf (stderr, "ERROR: Unknown option -%c.\n\n", optopt);
+          fprintf (stderr, _("ERROR: Unknown option -%c.\n\n"), optopt);
         } else {
-          fprintf (stderr, "ERROR: Unknown option character `\\x%x'.\n\n",
+          fprintf (stderr, _("ERROR: Unknown option character `\\x%x'.\n\n"),
                    optopt);
         }
 #endif
-        fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
+        fprintf (stderr, _("\nRun `%s --help' for more information.\n"), argv[0]);
         exit (1);
         break;
 

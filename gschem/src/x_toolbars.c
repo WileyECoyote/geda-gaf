@@ -362,12 +362,12 @@ void x_toolbars_finialize (GSCHEM_TOPLEVEL *w_current) {
 
   x_toolbars_restore_state(w_current);
 
-  g_signal_emit_by_name(w_current->add_handlebox,       "child-attached");
-  g_signal_emit_by_name(w_current->attribute_handlebox, "child-attached");
-  g_signal_emit_by_name(w_current->edit_handlebox,      "child-attached");
-  g_signal_emit_by_name(w_current->page_handlebox,      "child-attached");
-  g_signal_emit_by_name(w_current->standard_handlebox,  "child-attached");
-  g_signal_emit_by_name(w_current->zoom_handlebox,      "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->add_handlebox),       "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->attribute_handlebox), "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->edit_handlebox),      "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->page_handlebox),      "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->standard_handlebox),  "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->zoom_handlebox),      "child-attached");
 
 }
 

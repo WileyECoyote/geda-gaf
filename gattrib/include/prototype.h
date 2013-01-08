@@ -9,9 +9,9 @@ void geda_atexit(geda_atexit_func func, void* data);
 
 bool gattrib_really_quit(void);
 int  gattrib_quit(int return_code);
-  
+
 /* -------------- parsecmd.c ----------------- */
-void usage(char *cmd);   
+void usage(char *cmd);
      /* output usage string */
 int parse_commandline(int argc, char *argv[]);
      /* run through cmd line options and set mode switches. */
@@ -135,12 +135,12 @@ void s_sheet_data_add_master_pin_attrib_list_items(const GList *obj_list);
 
 /* ------------- s_string_list.c ------------- */
 STRING_LIST *s_string_list_new();
-void s_string_list_free(STRING_LIST *strlist);
 STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list);
+void s_string_list_free(STRING_LIST *strlist);
 void s_string_list_add_item(STRING_LIST *list, int *count, char *item);
 void s_string_list_delete_item(STRING_LIST **list, int *count, char *item);
-void string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item);
-int s_string_list_in_list(STRING_LIST *list, char *item);
+void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item);
+int  s_string_list_in_list(STRING_LIST *list, char *item);
 char *s_string_list_get_data_at_index(STRING_LIST *list, int index);
 
 /* \Comment WEH: Do these belong in s_string_list_sort */
@@ -158,8 +158,8 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt) G_GNUC_WARN_
 //TABLE **s_table_resize(TABLE **table, int rows, int old_cols, int new_cols);
 void s_table_destroy(TABLE **table, int row_count, int col_count);
 int  s_table_get_index(STRING_LIST *list, char *string);
-STRING_LIST *s_table_create_attrib_pair(char *row_name, 
-					TABLE **table, 
+STRING_LIST *s_table_create_attrib_pair(char *row_name,
+					TABLE **table,
 					STRING_LIST *row_list,
 					int num_attribs);
 
@@ -169,8 +169,8 @@ void s_table_add_items_to_pin_table(const GList *obj_list);
 bool s_table_remove_attribute(TABLE **table, int X);
 
 void s_table_gtksheet_to_all_tables();
-void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet, 
-			      STRING_LIST *master_row_list, STRING_LIST *master_col_list, 
+void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
+			      STRING_LIST *master_row_list, STRING_LIST *master_col_list,
 			      TABLE **local_table, int num_rows, int num_cols);
 void s_table_load_new_page(PageDataSet *PageData);
 
@@ -189,7 +189,7 @@ void s_toplevel_update_component_attribs_in_toplevel(
 					    OBJECT *o_current,
 					    STRING_LIST *new_comp_attrib_list);
 STRING_LIST *s_toplevel_get_net_attribs_in_sheet(char *netname);
-void s_toplevel_update_net_attribs_in_toplevel(OBJECT *o_current, 
+void s_toplevel_update_net_attribs_in_toplevel(OBJECT *o_current,
 					 STRING_LIST *new_net_attrib_list);
 STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin);
 void s_toplevel_update_pin_attribs_in_toplevel(TOPLEVEL *toplevel,

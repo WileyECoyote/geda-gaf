@@ -10,7 +10,7 @@ GEDA_INCLUDES 	= $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 bin_PROGRAMS	= gmk_sym smash_megafile convert_sym sarlacc_schem olib \
 	          gsch2pcb grenum
 
-AM_CFLAGS		= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLIGS) \
+AM_CFLAGS		= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
 			  $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
 
 gmk_sym_SOURCES 	= gmk_sym.c char_width.c

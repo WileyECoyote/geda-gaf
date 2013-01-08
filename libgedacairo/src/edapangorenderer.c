@@ -43,23 +43,23 @@ enum {
 struct _EdaPangoRendererPrivate
 {
   cairo_t *cr;
-  gboolean overbar;
+  bool overbar;
 };
 
 static GObject *eda_pango_renderer_constructor (GType type,
                                                 guint n_construct_properties,
                                                 GObjectConstructParam *construct_params);
-static void eda_pango_renderer_set_property (GObject *object, guint prop_id,
-                                             const GValue *value,
-                                             GParamSpec *pspec);
-static void eda_pango_renderer_get_property (GObject *object, guint prop_id,
-                                             GValue *value, GParamSpec *pspec);
-static void eda_pango_renderer_finalize (GObject *object);
+static void eda_pango_renderer_set_property    (GObject *object, guint prop_id,
+                                                const GValue *value,
+                                                GParamSpec *pspec);
+static void eda_pango_renderer_get_property    (GObject *object, guint prop_id,
+                                                GValue *value, GParamSpec *pspec);
+static void eda_pango_renderer_finalize        (GObject *object);
 
-static void eda_pango_renderer_draw_glyphs (PangoRenderer *renderer,
-                                            PangoFont *font,
-                                            PangoGlyphString *glyphs,
-                                            int x, int y);
+static void eda_pango_renderer_draw_glyphs    (PangoRenderer *renderer,
+                                               PangoFont *font,
+                                               PangoGlyphString *glyphs,
+                                               int x, int y);
 static void eda_pango_renderer_draw_rectangle (PangoRenderer *renderer,
                                                PangoRenderPart part,
                                                int x, int y,
@@ -69,17 +69,17 @@ static void eda_pango_renderer_draw_error_underline (PangoRenderer *renderer,
                                                      int width, int height);
 static void eda_pango_renderer_part_changed (PangoRenderer *renderer,
                                              PangoRenderPart part);
-static void eda_pango_renderer_begin (PangoRenderer *renderer);
-static void eda_pango_renderer_end (PangoRenderer *renderer);
-static void eda_pango_renderer_prepare_run (PangoRenderer *renderer,
-                                            PangoLayoutRun *run);
+static void eda_pango_renderer_begin        (PangoRenderer *renderer);
+static void eda_pango_renderer_end          (PangoRenderer *renderer);
+static void eda_pango_renderer_prepare_run  (PangoRenderer *renderer,
+                                             PangoLayoutRun *run);
 
 G_DEFINE_TYPE (EdaPangoRenderer, eda_pango_renderer, PANGO_TYPE_RENDERER);
 
 /* ---------------------------------------- */
 
 static PangoAttribute *eda_pango_attr_overbar_copy (const PangoAttribute *attr);
-static gboolean eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
+static bool eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
                                                 const PangoAttribute *attr2);
 
 /* ---------------------------------------- */
@@ -283,7 +283,7 @@ eda_pango_renderer_prepare_run (PangoRenderer *renderer,
                                 PangoLayoutRun *run)
 {
   EdaPangoRenderer *eda_renderer = EDA_PANGO_RENDERER (renderer);
-  gboolean overbar = FALSE;
+  bool overbar = FALSE;
   GSList *l;
 
   for (l = run->item->analysis.extra_attrs; l != NULL; l = g_slist_next (l)) {
@@ -330,7 +330,7 @@ eda_pango_attr_overbar_copy (const PangoAttribute *attr)
   return eda_pango_attr_overbar_new (a->overbar);
 }
 
-static gboolean
+static bool
 eda_pango_attr_overbar_compare (const PangoAttribute *attr1,
                                 const PangoAttribute *attr2)
 {
@@ -355,7 +355,7 @@ eda_pango_attr_overbar_get_class ()
 }
 
 PangoAttribute *
-eda_pango_attr_overbar_new (gboolean overbar)
+eda_pango_attr_overbar_new (bool overbar)
 {
   EdaPangoAttrOverbar *result = g_new (EdaPangoAttrOverbar, 1);
   result->attr.klass = eda_pango_attr_overbar_get_class ();
@@ -363,13 +363,13 @@ eda_pango_attr_overbar_new (gboolean overbar)
   return (PangoAttribute *) result;
 }
 
-gboolean
+bool
 eda_is_pango_attr_overbar (PangoAttribute *attr)
 {
   return attr->klass->type == eda_pango_attr_overbar_get_class()->type;
 }
 
-gboolean
+bool
 eda_pango_parse_overbars (const gchar *overbar_text, int length,
                           PangoAttrList **attr_list, gchar **text)
 {

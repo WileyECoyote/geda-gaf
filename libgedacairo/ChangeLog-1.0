@@ -1,0 +1,9 @@
+2012-12-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * libgedacairo: Created subfolders src and include and coresponding
+          Makefile.am: Revised "includes" again, the gsymcheck_CPPFLAGS
+        was not past to C with some installations. Used AM_CFLAGS instead.
+
+
+
+

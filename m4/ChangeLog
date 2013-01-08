@@ -1,4 +1,25 @@
 
+2013-01-06 Wiley E Hill  <wileyhill@gmail.com>
+
+        * m4/* REMARK: Added checks for functions to pacify autoscan, any sane
+          compiler and standard libs will supply these functions.
+
+        * m4/geda-std-checks.m4: New file, Relocate misc check from configure.ac
+          and added additional checks.
+
+        * m4/geda-gattrib.m4: Added Added AC_CHECK_FUNCS([memset]) which is also
+          used by other compilation units. Technically, should disable module and
+          continue with building.
+
+        * m4/geda-libgeda.m4: Added checks for functions; memmove, size_t, sqrt, 
+          and AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK, relocated AC_HEADER_SYS_WAI
+          chown, strerror strstr, getlogin
+        * m4/geda-pango.m4: Added AC_CHECK_FUNCS([floor]), which is used by
+          edapangorenderer.c.
+
+        * m4/intl.m4: Upgraded to serial 17 (gettext-0.18), and then added
+          checks for functions strchr __argz_count __argz_next __argz_stringify])
+
 2012-12-25 Wiley E Hill  <wileyhill@gmail.com>
 
         * m4/geda-guile.m4: General review, updated Copyright information

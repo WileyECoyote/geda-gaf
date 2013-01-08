@@ -29,8 +29,8 @@ extern int default_zoom_with_pan;
 /* Logging */
 extern int default_logging;
 extern int default_log_destiny;
-extern int default_log_window;
-extern int default_log_window_type;
+extern int default_console_window;
+extern int default_console_window_type;
 
 /* Miscellaneous - in  alphabetical order */
 extern int default_action_feedback_mode;
@@ -79,6 +79,7 @@ extern int thin_pin_width;
 extern int default_bus_ripper_rotation;
 extern int default_bus_ripper_size;
 extern int default_bus_ripper_type;
+extern char *default_bus_ripper_symname;
 
 /* Pointer Device, aka Mouse stuff */
 extern int default_fast_mousepan;

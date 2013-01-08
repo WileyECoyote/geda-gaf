@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2013 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,7 @@
 #endif
 #include <math.h>
 
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
+#include "gattrib.h"  /* include Gattrib specific headers  */
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -55,13 +55,13 @@
  */
 STRING_LIST *s_string_list_new() {
   STRING_LIST *local_string_list;
-  
+
   local_string_list = g_malloc(sizeof(STRING_LIST));
   local_string_list->data = NULL;
   local_string_list->next = NULL;
   local_string_list->prev = NULL;
   local_string_list->pos = -1;   /* can look for this later . . .  */
-  
+
   return local_string_list;
 }
 
@@ -95,7 +95,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
 
   new_string_list = s_string_list_new();
 
-  if (old_string_list->data == NULL) 
+  if (old_string_list->data == NULL)
     /* This is an empty string list */
     return new_string_list;
 
@@ -126,13 +126,13 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   char *trial_item = NULL;
   STRING_LIST *prev;
   STRING_LIST *local_list;
-  
+
   if (list == NULL) {
     fprintf(stderr, _("In s_string_list_add_item, tried to add to a NULL list.\n"));
     return;
   }
 
-  /* First check to see if list is empty.  Handle insertion of first item 
+  /* First check to see if list is empty.  Handle insertion of first item
      into empty list separately.  (Is this necessary?) */
   if (list->data == NULL) {
     list->data = (char *) g_strdup(item);
@@ -146,7 +146,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* Otherwise, loop through list looking for duplicates */
   prev = list;
   while (list != NULL) {
-    trial_item = (char *) g_strdup(list->data);        
+    trial_item = (char *) g_strdup(list->data);
     if (strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
       g_free(trial_item);
@@ -200,7 +200,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
   /* Now loop through list looking for item */
   list_item = (*list);
   while (list_item != NULL) {
-    trial_item = (char *) g_strdup(list_item->data);        
+    trial_item = (char *) g_strdup(list_item->data);
 #ifdef DEBUG
     printf("In s_string_list_delete_item, matching item against trial item = %s from list.\n", trial_item);
 #endif
@@ -229,7 +229,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
 	prev_item->next = next_item;
 	next_item->prev = prev_item;
       }
-      
+
 #ifdef DEBUG
     printf("In s_string_list_delete_item, now free list_item\n");
 #endif
@@ -268,7 +268,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
  * \param pos       integer index where string is to be inserted into the list
  * \param item      pointer to string to be added
  */
-void string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item) { 
+void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item) {
     STRING_LIST *new_list;
     int index;
     char *str;
@@ -277,7 +277,7 @@ void string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
     if (pos == *old_count) /* if just appending */
       s_string_list_add_item(list, old_count, item);
     else {
-      
+
       new_list = s_string_list_new();
 
       for ( index = 0; index < pos; index++) {
@@ -286,7 +286,7 @@ void string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
       }
 
       s_string_list_add_item(new_list, &count, g_strdup(item));
- 
+
       for ( index = pos; index < *old_count; index++) {
         str = s_string_list_get_data_at_index(list, index);
         s_string_list_add_item(new_list, &count, g_strdup(str));
@@ -308,16 +308,16 @@ void string_list_insert (STRING_LIST *list, int *old_count, int pos, char *item)
  * \returns 0 if absent, 1 if present
  */
 int s_string_list_in_list(STRING_LIST *list, char *item) {
- 
+
   /* First check to see if list is empty.  If empty, return
-   * 0 automatically.  (I probably don't need to handle this 
+   * 0 automatically.  (I probably don't need to handle this
    * separately.)  */
   if (list->data == NULL) {
     return 0;
   }
 
   /* Otherwise, loop through list looking for duplicates */
-  while (list != NULL) {    
+  while (list != NULL) {
     if (strcmp(list->data, item) == 0) {
       /* Found item already in list.  return 1. */
       return 1;
@@ -340,7 +340,7 @@ int s_string_list_in_list(STRING_LIST *list, char *item) {
  * \returns NULL if there is a problem otherwise a pointer to
  *          the string.
  */
-char *s_string_list_get_data_at_index(STRING_LIST *list, int index) 
+char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
 {
   int i;
   STRING_LIST *local_item;
@@ -387,7 +387,7 @@ void s_string_list_sort_master_comp_list() {
    * in the list.  */
   while (local_list != NULL) {  /* make sure item is not null */
     local_list->pos = i;
-    if (local_list->next != NULL) {  
+    if (local_list->next != NULL) {
       i++;
       local_list = local_list->next;
     } else {
@@ -500,7 +500,7 @@ void s_string_list_sort_master_net_list() {
  * Take the master net attribute list
  * sheet_head->master_net_attrib_list_head
  * and sort it in this order:
- * value, footprint, model-name, file, 
+ * value, footprint, model-name, file,
  * <all other attributes in alphabetical order>
  */
 /*------------------------------------------------------------------*/
@@ -545,7 +545,7 @@ void s_string_list_sort_master_pin_list() {
    * in the list.  */
   while (local_list != NULL) {  /* make sure item is not null */
     local_list->pos = i;
-    if (local_list->next != NULL) {  
+    if (local_list->next != NULL) {
       i++;
       local_list = local_list->next;
     } else {
@@ -581,8 +581,8 @@ void s_string_list_sort_master_pin_attrib_list() {
   /* Here's where we do the sort */
 
   /*
-   * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want 
-   * certain attribs to go first. 
+   * Note that this sort is TBD -- it is more than just an alphabetic sort 'cause we want
+   * certain attribs to go first.
    */
 
   /* Do this after sorting is done.  This resets the order of the individual items
@@ -610,5 +610,5 @@ void s_string_list_sort_all_list() {
 #endif
 
   s_string_list_sort_master_pin_list();
-  s_string_list_sort_master_pin_attrib_list(); 
+  s_string_list_sort_master_pin_attrib_list();
 }

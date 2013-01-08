@@ -1,7 +1,7 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2010 Ales Hvezda
+;;; Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -1037,7 +1037,7 @@
 	 ;; Make gnetlist return an error if there are DRC errors.
 	 ;; If there are only warnings and it's in quiet mode, then
 	 ;; do not return an error.
-	 (if (> errors_number 0)
+	 (if (and (not (string=? "-" output-filename)) (> errors_number 0))
 	     (begin (display "DRC errors found. See output file.")
                     (newline))
 	     (if (> warnings_number 0)

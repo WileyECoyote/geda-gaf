@@ -23,7 +23,7 @@
 char *rc_filename = NULL; 
 
 int logfile_fd=-1;
-int log_destiny=LOG_WINDOW;
+int log_destiny=CONSOLE_WINDOW;
 
 /* command line arguments */
 int verbose_mode=0;

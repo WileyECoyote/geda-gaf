@@ -49,10 +49,14 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   int cue_half_size;
   int bloat;
   int i;
+  int zoom;
+  bool is_only_text;
+
   GList *obj_list;
   GList *iter;
   BOX *world_rects;
-  
+
+
   EdaRenderer *renderer;
   int render_flags;
   GArray *render_color_map = NULL;
@@ -90,14 +94,36 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   obj_list = s_page_objects_in_regions (toplevel, toplevel->page_current,
                                         world_rects, n_rectangles);
   g_free (world_rects);
-  
-  /* Set up renderer based on configuration in w_current */
+
+  is_only_text = TRUE;
+  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+    OBJECT *object = iter->data;
+    if (object->type != OBJ_TEXT) {
+       is_only_text = FALSE;
+       break;
+    }
+  }
+
+  /* Set up renderer based on configuration in w_current and list */
   render_flags = EDA_RENDERER_FLAG_HINTING;
-  if (toplevel->show_hidden_text)
-    render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
-  if (w_current->fast_mousepan && w_current->doing_pan)
+  if (toplevel->show_hidden_text) render_flags
+    |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+
+  if (w_current->fast_mousepan && w_current->doing_pan) {
     render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE
-                     | EDA_RENDERER_FLAG_PICTURE_OUTLINE);
+                 |   EDA_RENDERER_FLAG_PICTURE_OUTLINE);
+  }
+  else {
+    zoom = toplevel->page_current->to_world_x_constant;
+    if ((w_current->text_feedback != ALWAYS_FEEDBACK) &&
+        (zoom > w_current->text_display_zoomfactor))
+       render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
+  }
+
+  if ((!is_only_text) &&
+      ( w_current->text_feedback != ALWAYS_FEEDBACK) &&
+      ( w_current->inside_action))
+     render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
 
   /* This color map is used for "normal" rendering. */
   render_color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
@@ -151,7 +177,6 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   /* Second pass -- render cues */
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
     OBJECT *o_current = iter->data;
-
     if (!(o_current->dont_redraw || o_current->selected)) {
       o_style_set_object(toplevel, o_current);
       eda_renderer_draw_cues (renderer, o_current);
@@ -176,14 +201,12 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
         eda_renderer_draw_grips (renderer, o_current);
       }
     }
-    g_object_set (G_OBJECT (renderer),
-                  "override-color", -1,
-                  NULL);
+    g_object_set (G_OBJECT (renderer), "override-color", -1, NULL);
   }
 
   if (w_current->inside_action) {
     /* Redraw the rubberband objects (if they were previously visible) */
-    //OBJECT *o_current;
+
     switch (w_current->event_state) {
       case MOVE:
       case ENDMOVE:
@@ -478,54 +501,6 @@ int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
-
-void o_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, OBJECT *object)
-{
-  void (*func) (GSCHEM_TOPLEVEL *, int, int, OBJECT*) = NULL;
-
-  switch (object->type) {
-      case OBJ_LINE:    func = o_line_draw_place;       break;
-      case OBJ_NET:     func = o_net_draw_place;        break;
-      case OBJ_BUS:     func = o_bus_draw_place;        break;
-      case OBJ_BOX:     func = o_box_draw_place;        break;
-      case OBJ_PICTURE: func = o_picture_draw_place;    break;
-      case OBJ_CIRCLE:  func = o_circle_draw_place;     break;
-      case OBJ_PLACEHOLDER:
-      case OBJ_COMPLEX: func = o_complex_draw_place;    break;
-      case OBJ_TEXT:    func = o_text_draw_place;       break;
-      case OBJ_PATH:    func = o_path_draw_place;       break;
-      case OBJ_PIN:     func = o_pin_draw_place;        break;
-      case OBJ_ARC:     func = o_arc_draw_place;        break;
-      default:
-        g_assert_not_reached ();
-  }
-
-  if (func != NULL) {
-    (*func) (w_current, dx, dy, object);
-  }
-}
- */
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
-
-void o_glist_draw_place (GSCHEM_TOPLEVEL *w_current, int dx, int dy, GList *list)
-{
-  GList *iter = list;
-
-  while (iter != NULL) {
-    o_draw_place (w_current, dx, dy, (OBJECT *)iter->data);
-    iter = g_list_next(iter);
-  }
-}
- */
-
 /*! \brief Invalidates a rectangular region of the on screen drawing area
  *  \par Function Description
  *
@@ -657,7 +632,7 @@ void o_invalidate_glist (GSCHEM_TOPLEVEL *w_current, GList *list)
  *
  *  \param [in] w_current   The GSCHEM_TOPLEVEL object.
  *  \param [in] object      The OBJECT whos color to return.
- * 
+ *
  *  \param [out] index      Index of color to use for this object.
  */
 int o_drawing_color (GSCHEM_TOPLEVEL *w_current, OBJECT *object)

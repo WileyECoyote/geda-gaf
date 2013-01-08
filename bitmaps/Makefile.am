@@ -293,9 +293,21 @@ bitmapdata_256_DATA = ghost_invisible_256x256.xpm       \
                       geda_value_256x256.png
 
 EXTRA_DIST = $(bitmapdata_DATA) \
+             $(bitmapdata_16_DATA) \
+             $(bitmapdata_22_DATA) \
+             $(bitmapdata_24_DATA) \
+             $(bitmapdata_26_DATA) \
+             $(bitmapdata_28_DATA) \
+             $(bitmapdata_32_DATA) \
+             $(bitmapdata_36_DATA) \
+             $(bitmapdata_48_DATA) \
+             $(bitmapdata_64_DATA) \
+             $(bitmapdata_96_DATA) \
+             $(bitmapdata_128_DATA) \
+             $(bitmapdata_256_DATA) \
              README
 
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~
+DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log *~ Makefile.in

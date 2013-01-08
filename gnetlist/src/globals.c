@@ -30,7 +30,7 @@
 char *rc_filename = NULL; 
 
 int logfile_fd=-1;
-volatile int log_destiny=LOG_WINDOW;
+volatile int log_destiny=CONSOLE_WINDOW;
 
 /* netlist specific variables */
 NETLIST *netlist_head=NULL;

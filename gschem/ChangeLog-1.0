@@ -1,6 +1,30 @@
+2013-01-06 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/g_rc.c: Relocated g_rc_bus_ripper_symname from libgeda to gschem so
+          to consolidate the Ripper variables. Changed ripper Rotation and Type
+          values to strings defined with macros in gschem_sdefined.h because these
+          string have to match what is written by x_settings.c.
+
+        * src/*.c: Revised as needed for relocation of bus_ripper_symname variable
+
+        * gschem_sdefined.h: Added Bus Ripper Strings
+
+        * src/x_image.c: Add 3 Toggle "Switch" button, 1 for imaging Extents/Display
+          1 for Color or B/W, 1 to Invert B/W images. Implemented new toplevel
+          variables image_color and invert_images.
+
+        * src/globals.h: Reversed Image_Display and Image_All enumeration for
+          semantics with new switches on the Write Image Dialog.
+
+        * src/x_settings.c: Completed code on handlers for Bus Ripper variables.
+
+	* src/x_settings_dialog.c: Added spinner RipperSize, switches Ripper
+          Rotation, RipperType, and combo RipperSymbol for Bus Ripper variables,
+          and associated code for loading and unloading the widgets.
+
 2012-25-29 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/x_log.c: Added functions;q_log_message and v_log_message, to
+        * src/x_log.c: Added functions; q_log_message and v_log_message, to
           facilitate honoring of the quiet_mode and verbose_mode, respectively.
           Both command-line switches appear to have been ignored for the last
           14 years!
@@ -13,14 +37,14 @@
           when main window is destroyed.
 
         * src/x_windows.c: Revised function x_window_close eliminating all of the
-          gtk_widget_destroy(w_current->sowindow). These were unessacary becasue 
+          gtk_widget_destroy(w_current->sowindow). These were unessacary becasue
           they should all have attribute GTK_DIALOG_DESTROY_WITH_PARENT.
 
         * src/i_basic.c: Renamed i_update_menus to i_update_ui and added
           conditionals for setting somewhat more selective menu and toolbar
           senisitivies. Previously the only real critiea was wheather something
           was selector or not. Added new functions selected_complex_object.
-          (probably could do more here.) 
+          (probably could do more here.)
 
         * src/toolbars.c: Added Save and Restore functionality to toolbar. At
           this point only visibility is retained. The new functions use key a
@@ -77,7 +101,7 @@
           location as system-gschemrc.scm. Routines to save configuration
           settings read this file as a template if a gschemrc file is not
           found in the users home directory. The new file is not written to,
-          nor is the file read during program initialization. Added new 
+          nor is the file read during program initialization. Added new
           variable invert_images.
 
 	* lib/system-gschemrc.scm: Changed (define autoplace-attribute-grid
@@ -130,14 +154,14 @@
 
         * src/x_image.c: Revised x_image_get_pixbuf to implement new variable
           invert_images. The revisions effectively resolves Launchpad 1086530
-          and extends functionality of gschem. Corrected function name in log 
+          and extends functionality of gschem. Corrected function name in log
           message in function x_image_write_eps. Added write to PDF image type
-          and repaired postscript in f_print.c. Added ImageTypeStrings to 
+          and repaired postscript in f_print.c. Added ImageTypeStrings to
           set the initial combo image type instead of hard-code #define and
           revised function create_type_menu so code could set the, such as
           toolbar or menus could set default type.
 
-	* src/x_settings_dialog.c: Add call in function GatherSettings to 
+	* src/x_settings_dialog.c: Add call in function GatherSettings to
           x_settings_set_scm_int to define autoplace-attribute-grid. Added
           switch for new top-level variable invert_images. Relocated Notify
           Events switch to the edit tab, replacing a spare switch location.
@@ -151,8 +175,8 @@
 
 	* include/x_dialog_controls.h: relocated this recent addition to
           toplevel include folder so other apps, like gattrib could also
-          reference this file.
-
+          reference this file and renamed to geda_dialog_controls.h
+		* src/o_delete.c:
 2012-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
           relocated functions get_geda_switch_image and
@@ -195,6 +219,9 @@
           and group related keywords.
 	* src/*: Seem like much more was done, why are the git Changelogs
           not used?
+
+2012-07-22 Sergey Alyoshin <alyoshin.s@gmail.com> Added notify on locked
+          items deletion to resolve bug lp-1027596.
 
 2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -241,7 +268,7 @@
 
 2007-05-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* po/nl_NL.po: Copied in new updated Dutch translation from 
+	* po/nl_NL.po: Copied in new updated Dutch translation from
 	Bert Timmerman.  Thanks.
 
 	* po/it_IT.po: Copied in new updated Italian translation from
@@ -264,13 +291,13 @@
 
 	  Applied patch #1706411 by Ivan Stankovic, which adds a list of
 	  recently-accessed files to gschem's File menu.
-	
+
 2007-04-27 Carlos Nieves Onega <cnieves (AT) iespana (DOT) es>
 
 	* src/x_image.c: Added sanity check.
-	
+
 	* po/es_ES.po: Updated spanish translation.
-	
+
 2007-04-22 Carlos Nieves Onega <cnieves (AT) iespana (DOT) es>
 
 	* include/prototype.h, src/g_keys.c, src/g_register.c,
@@ -286,10 +313,10 @@
 
 
 	* lib/system-gschemrc.in: Use gschem-browse-wiki also
-	  when opening the manual. 
+	  when opening the manual.
 
-	  Found a workaround to use gschem-browse-wiki if the user 
-	  wants to display the manual (the manual page is not in 
+	  Found a workaround to use gschem-browse-wiki if the user
+	  wants to display the manual (the manual page is not in
 	  the wiki directory).
 
 2007-04-21 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -326,7 +353,7 @@
 	are likely to do several times in quick succession.  As such, it
 	the keystroke should be a single key. This sets
 	increment/decrement to ']' and '[' respectively.
-	
+
 2007-04-21 Peter Clifton <pcjc2@cam.ac.uk>
 
 	* src/g_keys.c, src/x_print.c: Check return value of
@@ -350,7 +377,7 @@
 
 	 Applied patch by Peter Brett. Moved gschemdoc from
 	 utils/scripts to gschem/scripts.
-	
+
        * lib/system-gschemrc.in: Use PgUp & PgDn to change pages in gschem.
 
 	 Applied patch from Peter Brett. Thanks!
@@ -358,11 +385,11 @@
 	 Not only is it more intuitive to use the page keys to swap
 	 between pages, but the current bindings ('<' & '>') don't
 	 work on German keyboards.
-	
+
        * src/x_fileselect.c:
 	 Make "Save" the default response in the save page dialog.
 	 FR #1704919. Thanks to rikster for reporting this FR.
-	
+
        * src/x_dialog.c:
 	 Make "Save changes" the default response in the close page
 	 confirmation dialog.
@@ -373,48 +400,48 @@
 	 src/x_pagesel.c, src/x_print.c, src/x_script.c,
 	 src/i_callbacks.c:
 
-	 - Set the alternative button order for gtk dialogs 
+	 - Set the alternative button order for gtk dialogs
 	   (now with correct responses).
-	   
-	 - Reverted the changes below. 
+
+	 - Reverted the changes below.
 	   gtk_dialog_set_alternative_button_order should have the same
 	   responses as the dialogs.
-	 
+
 	 - Set the alternative button order for gtk dialogs.
 	 This would allow to display the correct button order whatever
 	 system is running this app. Fix for bug #1553483.
 
 	* src/i_callbacks.c:
 	  - Do nothing if the user deletes the page revert question dialog.
-	
+
 	  - Pop up a message if there is no component selected and the user
 	  hits help->component documentation menu.
-	
-	* src/x_compselect.c: 
+
+	* src/x_compselect.c:
 	  Make the component selector filter case insensitive.
 	  Fixes bug #1673589. Thanks to Phil Endecott for reporting the
 	  bug.
-	
+
 	* lib/system-gschemrc.in: Apply patch from Peter Brett. Thanks!
 	  Rearrange gschem help menu & make it link to wiki pages.
 
 	  Rearrange the gschem help menu:
 	   - "Manual" now links directly to the gschem User Guide.
-	      (Note by cnieves: I commented this out until the gsch2pcb 
+	      (Note by cnieves: I commented this out until the gsch2pcb
 	      tutorial gets into the wiki and the UG wiki page is improved).
 	   - "FAQ" now links directly to the gschem FAQ
 	   - Add menu item which links directly to the wiki root page
 	   - Rearrange "About" and "Hotkeys" to bottom of menu
-	  
+
 	* include/prototype.h, src/g_funcs.h, src/g_register.c:
-	  Apply patch from Peter Brett, adding the gschem-browse-wiki 
+	  Apply patch from Peter Brett, adding the gschem-browse-wiki
 	  Scheme function. Thanks!
 
 	  This function allows Scheme code to open a browser to a wiki page
-	  by calling gschemdoc with its -w option.  
+	  by calling gschemdoc with its -w option.
 
 	  This will facilitate adding more useful things to gschem's "Help"
-	  menu without needing a large number of callbacks to be added to 
+	  menu without needing a large number of callbacks to be added to
 	  gschem.
 
 2007-04-21 Peter Clifton <pcjc2@cam.ac.uk>
@@ -492,9 +519,9 @@
 		  src/o_picture.c, src/o_pin.c, src/o_text.c: Remove calls
 		  to o_..._recalc() or equivelant from drawing routines.
 
-		* src/a_zoom.c: Changed call to world_get_complex_bounds() 
-		  to world_get_object_list_bounds(), and added logic to 
-		  stop the zoom-extents operation if the object list 
+		* src/a_zoom.c: Changed call to world_get_complex_bounds()
+		  to world_get_object_list_bounds(), and added logic to
+		  stop the zoom-extents operation if the object list
 		  evaluated has no bounds (e.g. object list just has hidden
 		  attributes).
 
@@ -503,7 +530,7 @@
 		  Switched over to caching world rather than screen coordinates
 
 		* src/g_hook.c: Removed conditional update of screen coords
-		  in g_set_attrib_text_properties, since o_text_recreate() 
+		  in g_set_attrib_text_properties, since o_text_recreate()
 		  should be recalculating as necessary.
 
 2007-04-15 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -516,31 +543,31 @@
 	* include/x_compselect.h, src/i_callbacks.c, src/x_compselect.c:
 	  Added an "ok" button to the component selector, which hides it
 	  while the user places the components.
-	
+
 	* scheme/auto-place-attribs.scm:
-	    - Use ceiling instead of inexact->exact. 
+	    - Use ceiling instead of inexact->exact.
 	      The latter doesn't round if the argument is 400.5 (example).
 	    - Added support for net and bus attributes.
-	    - In adjust_pos_to_avoid_collision, don't loop again if 
-	    the offset is changed, and fixed x_offset instead of y_offset 
+	    - In adjust_pos_to_avoid_collision, don't loop again if
+	    the offset is changed, and fixed x_offset instead of y_offset
 	    bug.
-	* lib/system-gschemrc.in: 
+	* lib/system-gschemrc.in:
 	    - Added autoplacement grid.
 	    - Added complex list changed hook to the hooks to be enabled
 	      if the user wants attribute autoplacement.
-	
-	    - Added default positions for device and netname attributes 
+
+	    - Added default positions for device and netname attributes
 	  in default-position-of-text-attributes,
 
 	* src/g_hook.c: Fixed custom_world_get_single_object_bounds,
 	  and custom_world_get_object_list_bounds, so they don't traverse
 	  the whole object list.
-	
-	* include/globals.h, include/prototype.h, src/g_register.c, 
+
+	* include/globals.h, include/prototype.h, src/g_register.c,
 	  src/globals.c, src/o_complex.c, src/x_event.c:
 	  Added complex place list changed hook.
 	  This is the list used when placing new components.
-	
+
 2007-04-07 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* src/x_dialog.c: Redraw the schematic after changing the snap size.
@@ -550,8 +577,8 @@
 
 	* lib/system-gschemrc.in, scheme/auto-place-attribs.scm:
 	  Improved the auto placing: if the attribute overlaps with pins
-	  (including pinnumbers), or the pin connection direction where 
-	  a net is supposed to be drawn, then the attributes are moved 
+	  (including pinnumbers), or the pin connection direction where
+	  a net is supposed to be drawn, then the attributes are moved
 	  automatically.
 
 2007-03-31 Peter Clifton <pcjc2@cam.ac.uk>
@@ -579,19 +606,19 @@
 
 	2007-02-12 Peter Clifton <pcjc2@cam.ac.uk>
 
-		* src/x_dialog.c: Removed all calls to o_object_recalc() 
+		* src/x_dialog.c: Removed all calls to o_object_recalc()
 		  now the data it calculates is no longer used.
 
-		* src/o_arc.c, src/o_box.c, src/o_bus.c, src/o_circle.c, 
-		  src/o_line.c, src/o_net.c, src/o_picture.c, src/o_pin.c, 
-		  src/o_select.c, src/o_text.c: Modified drawing routines 
+		* src/o_arc.c, src/o_box.c, src/o_bus.c, src/o_circle.c,
+		  src/o_line.c, src/o_net.c, src/o_picture.c, src/o_pin.c,
+		  src/o_select.c, src/o_text.c: Modified drawing routines
 		  to calculate coordinates directly from object world coords.
 
 		* src/o_arc.c, src/o_box.c, src/o_circle.c, src/o_line.c,
 		  src/o_picture.c: Modified grip drawing / undrawing code
 		  to calculate coordinates directly from object world coords.
 
-		* include/prototype.h, src/o_grips.c: Changed to use world 
+		* include/prototype.h, src/o_grips.c: Changed to use world
 		  coordinates internally for region checking.
 
 		* src/a_pan.c, src/i_callbacks.c, src/o_buffer.c,
@@ -625,7 +652,7 @@
 		  function o_complex_mirror2()
 
 		* include/prototype.h, src/o_misc.c, src/o_complex.c,
-		  src/i_callbacks.c, src/x_event.c: Made o_complex_mirror() 
+		  src/i_callbacks.c, src/x_event.c: Made o_complex_mirror()
 		  into o_complex_mirror_world(), made o_mirror() into
 		  o_mirror_world(), and converted usage as appropriate.
 
@@ -634,20 +661,20 @@
 	* x_dialog.c: removed unused functions generic_text_input*
 
 	* x_basic.c: removed unused dialog functions x_create_dialog_box*
-	
+
 2007-02-24 Werner Hoch <werner.ho@gmx.de>
 
 	* scheme/gschem.scm (dump-keymap): New procedure for
         g_keys_dump_keymap() replacing old fill-mapped-keys.
 
-	* src/g_register.c, src/g_funcs.c (g_funcs_key_*): 
+	* src/g_register.c, src/g_funcs.c (g_funcs_key_*):
 	Removed functions. Replaced with g_keys_dump_keymap()
 
 	* src/g_keys.c (g_keys_dump_keymap): New function to obtain
 	current keymap from scheme.
 
-	* src/x_event.c, src/gschem.c, src/g_keys.c: 
-	Removed empty function set_window_current_key() 
+	* src/x_event.c, src/gschem.c, src/g_keys.c:
+	Removed empty function set_window_current_key()
 
 	* src/gschem.c, src/x_dialog.c: Adaptation for new
 	g_keys_dump_keymap(). (Patches written by Patrick Bernaud)
@@ -664,22 +691,22 @@
 	  src/g_register.c, src/i_callbacks.c:
 	  Added two new hotkeys to increase and decrease the snap grid size.
 	  Feature Request #1443637. Thanks to KaiMartin for the suggestion.
-	
+
 	* src/x_image.c: Free the GError after using it, and don't unlink
-	  the image file in case of errors. It's not always safe. 
-	  For example: if the operation was not allowed due to permissions, 
+	  the image file in case of errors. It's not always safe.
+	  For example: if the operation was not allowed due to permissions,
 	  the _previous existing_ file will be removed.
 
 2007-02-22 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* lib/system-gschemrc.in : Changed the title of the save image 
+	* lib/system-gschemrc.in : Changed the title of the save image
 	  dialog from "Write PNG..." to "Write image...", since gschem can
 	  now support more types than PNG.
 
-	* include/prototype.h, src/g_funcs.c, src/i_callbacks.c, 
+	* include/prototype.h, src/g_funcs.c, src/i_callbacks.c,
 	  src/x_image.c:
 	  Changed the export image dialog by a new one using a GTK
-	  file chooser dialog with image size and image type drop-down 
+	  file chooser dialog with image size and image type drop-down
 	  lists.
 	  If compiled without libgd support (therefore using libgdk-pixbuf),
 	  gschem will support several image types (like PNG, JPEG and ICO).
@@ -719,13 +746,13 @@
 
 2007-02-14 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* test/ext_chars.sch: Added test for the new characters of 
+	* test/ext_chars.sch: Added test for the new characters of
 	  the hungarian charset.
 
 2007-02-12  Werner Hoch <werner.ho@gmx.de>
 
 	* src/x_autonumber.c: added gettext makro _() for sort options
-	 
+
 2007-02-11 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* po/es_ES.po: Updated spanish translation.
@@ -780,14 +807,14 @@
 
 	* configure.ac.in: Added a call to AC_GNU_SOURCE to make autoconf
 	and friends complain less.
-	
+
 2007-01-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/x_image.c: Removed unnecessary printf
 
 2007-01-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/o_misc.c: Applied patch by Peter Clifton to prevent a crash 
+	* src/o_misc.c: Applied patch by Peter Clifton to prevent a crash
 	when updating embedded components.  Should not free strings that
 	are owned by libgeda.
 
@@ -795,15 +822,15 @@
 
 	* include/prototype.h, src/o_misc.c: Moved o_embed and o_unembed
 	into libgeda so that gschlas can also call these functions
-	(to add shell scriptable embed/unembed of all components/pictures 
+	(to add shell scriptable embed/unembed of all components/pictures
 	functionality).
 
 2007-01-05 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* configure.ac.in: Applied patch from Peter Clifton, adding
-	  missing AC_DEFINE(HAS_LIBGD, 1,...) which is still required 
+	  missing AC_DEFINE(HAS_LIBGD, 1,...) which is still required
 	  to enable libgd support.
-	
+
 2007-01-04 Werner Hoch <werner.ho@gmx.de>
 
 	* src/x_compselect.c: added expand property for the filter entry
@@ -861,17 +888,17 @@
 
 2006-12-23 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/g_hook.c (g_add_component): Return if scm_comp_name is 
+	* src/g_hook.c (g_add_component): Return if scm_comp_name is
 	  an empty list (guile's NULL), or the scheme's boolean false.
 	  This was suggested by Peter TB Brett and Steve Tell.
 
-	* src/g_hook.c (g_add_component): 
+	* src/g_hook.c (g_add_component):
 	  Changed the end of this function to avoid the "Statement not reached"
 	  compiler warning. Thanks to Dan McMahill for reporting this.
 
 2006-12-22 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/g_hook.c: 
+	* src/g_hook.c:
 	  -  Added some documentation to custom_world_get_complex_bounds and
 	     g_get_object_bounds.
 	  -  g_add_component: Changed the remaining scheme function's name
@@ -896,7 +923,7 @@
 	* src/x_dialog.c: use GtkDialog for the find text, the show text and
 	  the hide text dialog. Code cleanups.
 
-	* src/x_autonumber.c: fixed o_selection_remove call which caused 
+	* src/x_autonumber.c: fixed o_selection_remove call which caused
 	  gschem to crash. suggestion by Ales, patch from Peter Brett.
 
 	* src/x_dialog.c: cosmetics in the color dialog,
@@ -913,19 +940,19 @@
 	* src/x_dialog.c: cosmetics in the translate dialog
 	  use GtkDialog for the arc angle, the text size and the snap size
 	  dialog. Use GtkSpinButtons for the three dialogs.
-	
+
 2006-12-18 Werner Hoch <werner.ho@gmx.de>
 
 	* src/x_dialog.c: some more code refactoring in the dialogs
 	  edit filltype, edit linetype and edit text. Use the style constants
 	  from x_dialog.h
-	
+
 	* include/x_dialog.h: added constants for dialog layout style
 
-	* src/x_dialog.c: use GtkDialog for text entry dialog, some code 
+	* src/x_dialog.c: use GtkDialog for text entry dialog, some code
 	  refactoring. Fixed a bug in select_all_text_in_textview() which
 	  toggled the selection instead of selecting it.
-	   
+
 	* src/o_picture.c: set transient_for flag for the dialogs
 	  add image and modify image.
 
@@ -944,13 +971,13 @@
 	Merged Carlos' glist work via Peter Brett's patch sets to the trunk
 
 	2006-10-22 Carlos Nieves Onega <cnieves@iespana.es>
-	
+
 		* src/o_delete.c: Changed a check to use glib debugging
 		functions.  Don't free objects at the end of o_delete,
 		but free only the list.
-	
+
 		* src/o_misc.c: Added a sanity check.
-	
+
 		* src/o_basic.c: Don't free objects in the complex place
 		list. It is only a reference to the objects in the page.
 
@@ -965,10 +992,10 @@
 		src/x_attribedit.c, src/x_compselect.c, src/x_dialog.c,
 		src/x_event.c, src/x_multiattrib.c, src/x_print.c:
 		Convert the SELECTION list to a GList.
-        
+
 		* src/a_zoom.c, src/o_arc.c, src/o_basic.c, src/o_box.c,
 		* src/o_basic.c: Rename o_recalc to o_recalc_object_list.
-	
+
 		* src/o_basic.c, src/o_complex.c, src/o_move.c,
 		src/o_text.c, src/x_image.c: Rename get_complex_bounds
 		to get_object_list_bounds.
@@ -978,13 +1005,13 @@
 
 2006-12-14 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/g_hook.c (g_add_component): Don't log message if a component 
+	* src/g_hook.c (g_add_component): Don't log message if a component
 	  name "" is passed to this function.
-	  Changed the function name in the error messages from 
+	  Changed the function name in the error messages from
 	  add-component to add-component-at-xy.
 	  The scheme name of the function was changed on 2006-10-03, but
 	  not the error messages.
-	
+
 	* lib/system-gschemrc.in: Added comment about how to avoid gschem
 	  placing a titleblock automatically.
 
@@ -992,15 +1019,15 @@
 
         * src/g_hook.c: Improved error detection in g_add_attrib.
 	  This should fix bug #1599582.
-	
-	* scheme/auto-place-attribs.scm: 
-	  - Define object types here (by now). This shouldn't be here, 
+
+	* scheme/auto-place-attribs.scm:
+	  - Define object types here (by now). This shouldn't be here,
 	    and should be defined in libgeda if anyone objects.
 	  - in get-reference, the object bounds should include the pins
 	    if the object is a pin, but otherwise don't .
 	    This makes the object bounds correctly calculated for pins.
 	    Thanks to Ales for reporting this bug.
-	  - Corrected typo (horiz-pos should be vertical-pos) in 
+	  - Corrected typo (horiz-pos should be vertical-pos) in
 	    calcule-new-string-bounds.
 
 	* lib/system-gschemrc.in: Fixed typo in the default pin attributes.
@@ -1013,13 +1040,13 @@
 	sync autonumber branch with trunk
 
 	2006-11-28 Werner Hoch  <werner.ho@gmx.de>
-	* src/x_autonumber.c: visual improvements of the sortorder 
+	* src/x_autonumber.c: visual improvements of the sortorder
 	  combobox. Patch by Tomaz Solc, slightly changed.
 
 	2006-11-26 Werner Hoch  <werner.ho@gmx.de>
 	* src/x_autonumber.c: remove the slot attribute if remove numbers
 	  and slotting is active.
-	
+
 	2006-11-24 Werner Hoch  <werner.ho@gmx.de>
 	* src/x_autonumber.c: repaired keypress events, added gettext macros
 	  replaced the sortorder ratio buttons with a combo box. That shrinks
@@ -1030,34 +1057,34 @@
 	* bitmap/gschem-fileorder.png: added an ugly dummy bitmap
 
 	2006-11-11 Werner Hoch  <werner.ho@gmx.de>
-	* src/x_autonumber.c: added used_slot database. This fixes a 
+	* src/x_autonumber.c: added used_slot database. This fixes a
 	  problem with duplicate slotted objects.
 	  Removed keyboard accelerators (by Tomaz Solz #1589430)
 
 	2006-11-09 Werner Hoch  <werner.ho@gmx.de>
-	* src/x_autonumber.c:  (scope_skip == SCOPE_SELECTED) didn't work as 
+	* src/x_autonumber.c:  (scope_skip == SCOPE_SELECTED) didn't work as
 	  expected, fixed it.
 
 	2006-11-07 Werner Hoch  <werner.ho@gmx.de>
-	* src/o_slot.c, x_dialog.c: removed redundant o_undo_savestate() in 
-	  o_slot_end(). But it is required in the slot_edit_dialog_ok() 
-	  function. This repairs to many undo states when using the 
+	* src/o_slot.c, x_dialog.c: removed redundant o_undo_savestate() in
+	  o_slot_end(). But it is required in the slot_edit_dialog_ok()
+	  function. This repairs to many undo states when using the
 	  autoslotting feature of the autonumber dialog.
-	
-	* src/x_autonumber.c:  Added improved autonumber dialog from 
+
+	* src/x_autonumber.c:  Added improved autonumber dialog from
 	  Tomaz Solz (#1589430)
 
 	2006-11-06 Werner Hoch  <werner.ho@gmx.de>
 
-	* src/o_misc.c, src/x_dialog.c, src/x_autonumber.c: moved all 
+	* src/o_misc.c, src/x_dialog.c, src/x_autonumber.c: moved all
 	  autonumber related code to x_autonumber.c
 	  applied patch (#1589430) from Tomaz Solz
 
 	* bitmap/: added bitmaps for the autonumber dialog
-	
+
 2006-12-10 Werner Hoch  <werner.ho@gmx.de>
 
-	* src/x_dialog.c: use GtkDialog for color edit dialog, the 
+	* src/x_dialog.c: use GtkDialog for color edit dialog, the
 	  slot attribute dialog, the linetype dialog, the linestyle
 	  dialog and the translate dialog.
 	  set default response, cosmetics changes and fixes.
@@ -1097,11 +1124,11 @@
 	  with pins on 3 or 4 sides. Now it avoids to overlap the pins or
 	  the attributes when autoplacing.
 
-	* include/prototype.h, src/g_hook.c, src/g_register.c: 
-	  Changed scheme function g_get_object_bounds to accept two 
+	* include/prototype.h, src/g_hook.c, src/g_register.c:
+	  Changed scheme function g_get_object_bounds to accept two
 	  more parameters, allowing to exclude attributes, or objects types
 	  when calculing the object bounds.
-	
+
 	* src/x_compselect.c: clib_directories is now a double linked list.
 
 2006-12-04 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1126,7 +1153,7 @@
 	for the hotkey dialog.
 
 	* src/x_menus.c: Removed the right justification of the help menu
-	item since it has gone out of style to have the help menu all the 
+	item since it has gone out of style to have the help menu all the
 	way on the right hand side.  Something about usability. :)
 
 2006-12-02  Mike Jarabek  <mjarabek@istop.com>
@@ -1161,7 +1188,7 @@
 
 2006-11-19 Werner Hoch  <werner.ho@gmx.de>
 
-	* src/i_basic.c, src/x_grid.c, src/x_window.c: moved the 
+	* src/i_basic.c, src/x_grid.c, src/x_window.c: moved the
 	  filename from the status bar to the window title.
 	  Show grid settings in the status bar.
 
@@ -1180,36 +1207,36 @@
 
 2006-10-23 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/o_text.c: Changed polarity of one of the sanity checks 
+	* src/o_text.c: Changed polarity of one of the sanity checks
 	in the o_text_draw function added on 2006-10-21.
-	
+
 2006-10-21 Carlos Nieves Onega <cnieves@iespana.es>
 
-        * src/o_basic.c: Removed comment referencing to o_recalc_glist, 
+        * src/o_basic.c: Removed comment referencing to o_recalc_glist,
 	  which is not (yet) in CVS.
-	
+
 	* src/o_text.c: Added sanity checks in o_text_draw_lowlevel and
 	o_text_draw functions using GLib functions.
-	
+
 	* src/o_text.c: Removed sanity checks in o_text_draw_lowlevel and
 	o_text_draw functions added today.
-	
+
         * src/a_zoom.c, src/o_arc.c, src/o_basic.c, src/o_box.c,
 	  src/o_buffer.c, /src/o_bus.c, src/o_circle.c, src/o_complex.c,
 	  src/o_cue.c, src/o_grips.c, /src/o_line.c, src/o_net.c,
 	  src/o_picture.c, src/o_pin.c, src/o_select.c, src/o_text.c:
-	  Added a new parameter to o_redraw and o_cue_redraw_all, 
+	  Added a new parameter to o_redraw and o_cue_redraw_all,
 	  to choose wether to draw the selected objects or not.
 	  Make o_redraw call o_redraw_all_fast, since they shared code.
-	
+
 	* src/o_arc.c, src/o_box.c, src/o_bus.c, src/o_circle.c,
 	  src/o_cue.c, src/o_grips.c, src/o_line.c, src/o_net.c,
 	  src/o_picture.c, src/o_pin.c, src/o_text.c:
 	  Don't draw objects if w_current->DONT_REDRAW is 1.
-	
+
 	* src/o_text.c: Added some sanity checks in o_text_draw_lowlevel and
-	o_text_draw functions. 
-	
+	o_text_draw functions.
+
 2006-10-21 Werner Hoch  <werner.ho@gmx.de>
 
 	* po/de_DE.po: Updated German translation
@@ -1277,25 +1304,25 @@
 2006-10-18 Carlos Nieves Onega <cnieves@iespana.es>
 
         * ChangeLog: Improved description of the "fit page when window is
-	maximized" patch on 2006-10-04, and added src/x_window.c: it was 
+	maximized" patch on 2006-10-04, and added src/x_window.c: it was
 	changed, but it was missing in the ChangeLog.
 	Also added a note in the entry for 2006-09-30 regarding this feature,
 	which relates to the entry in 2006-10-04.
-	
+
         * include/prototype.h: Removed the definition of x_event_window_state.
 	This function was added on 2006-09-30 when doing a zoom extents when
 	the user maximizes the gschem window. It was later removed on
 	2006-10-04 when Patrick found a new way to do it in x_event_configure.
-	
+
 	* src/i_callbacks.c: call the new page hook in the file_new_window
-	callback, after the x_window_setup call (the latter creates a new 
+	callback, after the x_window_setup call (the latter creates a new
 	page). Thanks to Peter Clifton for reporting the bug.
-	
-	* src/gschem.c: When modifying this file on 2006-10-16, the 
+
+	* src/gschem.c: When modifying this file on 2006-10-16, the
 	new page hook call was moved inside the parse arguments loop.
 	Therefore, the hook was not called if gschem was executed without
 	arguments.
-	Call the hook after the loop again, but only if first_page is 1 
+	Call the hook after the loop again, but only if first_page is 1
 	(i.e: if no page was loaded before).
 
 2006-10-17  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -1330,7 +1357,7 @@
 
 2006-10-04  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* src/x_compselect.c, include/x_compselect.h: Added a button to 
+	* src/x_compselect.c, include/x_compselect.h: Added a button to
 	clear the filter entry of the component selection dialog.
 	Modified to auto-update the component selection as user types in
 	filter entry.
@@ -1347,10 +1374,10 @@
 
 	* src/x_event.c (x_event_configure), src/x_window.c: Cleaned up.
 	Fixed Bug#1527465: fit page zooms when window is maximized.
-	
+
 	Comment by cnieves on 2006-10-18: This change removes the code added
 	on 2006-09-30, which tried to solve the same problem. Patrick found
-	a cleaner way to do it in x_event_configure, so x_event_window_state 
+	a cleaner way to do it in x_event_configure, so x_event_window_state
 	is no longer needed.
 	The x_window_state function is removed here, and its definition in
 	include/prototype.h was deleted on 2006-10-18. Thus, all code added
@@ -1358,7 +1385,7 @@
 
 2006-10-03 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* lib/system-gschemrc.in, src/g_register.c: 
+	* lib/system-gschemrc.in, src/g_register.c:
 	Changed the name of the new scheme function which adds a component
 	at a given location to add-component-at-xy. The former name
 	was already used.
@@ -1373,22 +1400,22 @@
 	main window is maximized.
 
 	Comment by cnieves on 2006-10-18: This code was removed on 2006-10-04
-	when Patrick found a cleaner way to do this without 
+	when Patrick found a cleaner way to do this without
 	x_event_window_state. Read the ChangeLog entry for the given date.
-	
+
 	* src/x_image.c: Added the border in the gdk-pixbuf's image output.
 	Fix bug #1565433.
-	
+
 2006-09-30 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/g_hook.c: Added code to g_add_component so that the 
+	* src/g_hook.c: Added code to g_add_component so that the
 	component is added to the object list properly.
 
 	* src/g_hook.c: Commented out o_redraw_single call to minimize
 	flickering.  At some point a g_redraw_all should be added for
 	those users who want to use g_component_add from a script.
 
-	* i_callbacks.c: Removed unnecessary redraw and scrollbar calls 
+	* i_callbacks.c: Removed unnecessary redraw and scrollbar calls
 	when adding a new page to minimize flicker
 
 	* lib/system-gschemrc.in: Commented in Carlos' new file-new hook
@@ -1400,7 +1427,7 @@
 
 2006-09-30 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* include/prototype.h, lib/system-gschemrc.in, src/g_hook.c, 
+	* include/prototype.h, lib/system-gschemrc.in, src/g_hook.c,
 	  src/g_register.c, src/gschem.c, src/x_window.c:
 	  Added a new scheme function to get the objects in a page.
 	  Improved the new-page-hook in system-gschemrc so it only adds
@@ -1414,9 +1441,9 @@
 	  Added a new page hook, a new add-component function for scheme,
 	  and some lines in the system-gschemrc file (commented by default),
 	  so gschem can add automatically a symbol when creating a new page.
-	  Commenting out these lines can solven bug #1443806 (gschem 
+	  Commenting out these lines can solven bug #1443806 (gschem
 	  zoomed out way to much on startup).
-	
+
 2006-09-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * AUTHORS: Greatly simplified the file since the ChangeLog tracks
@@ -1426,7 +1453,7 @@
 
 2006-09-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Tweaked glib detection to not fail ./configure 
+        * configure.ac: Tweaked glib detection to not fail ./configure
         when gdlib is not installed.  gdlib is an optional dependancy.
 
 2006-09-24 03:57  Dan McMahill <danmc>
@@ -1474,32 +1501,32 @@
 	  Use gd 2.0.x library instead of libgdgeda.
 	  libgdgeda is not used anymore. Work based on a patch by
 	  Wojciech Kazubski (patch #1479983).
-	
+
 2006-09-15 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* po/ru.po: Updated russian translation provided by Andy Shevchenko,
 	  (bug #1559106 submitted by Chitlesh). Thanks.
-	
+
 2006-09-08 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/prototype.h, scheme/gschem.scm, src/g_keys.c, src/x_event.c,
 	src/x_window.c: Applied another patch for Bug#1553544: "New pages
 	inadvertantly created when adding nets in gschem" from Peter Clifton
-	to address the focus problem with the first patch.  This one is 
+	to address the focus problem with the first patch.  This one is
 	much better and cleaner.
 
 2006-09-07 SDB  <sdb@cloud9.net>
 
-	* src/xprint.c: Added "static void" declaration to 
+	* src/xprint.c: Added "static void" declaration to
 	print_dialog_get_property to prevent compiler error
-	under older version of gcc. 
-	
+	under older version of gcc.
+
 2006-09-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated program version to 20060906.
 
-	* lib/system-gschemrc.in: Applied patch for Bug#1552338: 
-	system-gschemrc gedadata/rc mismatch (filed by Charles Lepple).  
+	* lib/system-gschemrc.in: Applied patch for Bug#1552338:
+	system-gschemrc gedadata/rc mismatch (filed by Charles Lepple).
 	Also fixed a few other instances where the directory for the
 	scheme files were wrong.
 
@@ -1507,14 +1534,14 @@
 	various people have mentioned that mouse pan doesn't feel right with
 	a large value.
 
-	* src/x_window.c: Had to put the keypress signal handler back on 
+	* src/x_window.c: Had to put the keypress signal handler back on
 	the main_window (instead of just the drawing_window), because the
 	up cursor key stopped working.  The original reason for this movement
 	was to fix Bug#1552778 and Bug#1553544 which are still fixed (even
 	with this move it seems), however the focus on the toolbar seems
 	to move when you move the cursor keys (which is a little odd).
 
-	* po/it_IT.po: Updated to the last version provided by Michele 
+	* po/it_IT.po: Updated to the last version provided by Michele
 	Petrecca. Thanks.
 
 	* src/gschem.c, src/g_rc.c, src/x_dialog.c: Added CUSTOM_VERSION
@@ -1522,7 +1549,7 @@
 	it is easier to create custom version of gEDA/gaf.
 
 	* include/Makefile.am: Oops, x_print.h wasn't added.  This was
-	discovered by make distcheck (have I mentioned how much I like 
+	discovered by make distcheck (have I mentioned how much I like
 	make distcheck. :-)
 
 	* po/*.po: make dist(check) updated all po files in prep for the
@@ -1541,7 +1568,7 @@
 	odd behavior that if the user pressed the ESCAPE key in the saveas
 	dialog box, subsequent attempts to open the dialog box will fail
 	with a critical gtk+ error message:
-		(gschem:4708): Gdk-CRITICAL **: gdk_window_raise: assertion 
+		(gschem:4708): Gdk-CRITICAL **: gdk_window_raise: assertion
 	 	`GDK_IS_WINDOW (window)' failed
 
 
@@ -1561,17 +1588,17 @@
 
 2006-08-29 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* lib/system-gschemrc.in: Fixed some typos in comments. 
+	* lib/system-gschemrc.in: Fixed some typos in comments.
 
 	* gschem/include/x_print.h, gschem/include/i_vars.h,
  	gschem/include/prototype.h, gschem/scripts/print.scm,
  	gschem/src/g_funcs.c, gschem/src/g_rc.c, gschem/src/g_register.c,
  	gschem/src/x_dialog.c, gschem/src/x_print.c, gschem/src/x_window.c:
 	Applied second part of patch by Peter Brett to add a new print
-	dialog to gschem.  Patch#1530417.  Unfortunately x_print.c was a 
+	dialog to gschem.  Patch#1530417.  Unfortunately x_print.c was a
 	completely by hand patch, so hopefully I got it right.  Reversed
 	the "Print" and "Cancel" buttons to follow application conventions.
-	Reversed "Save As" and "Cancel" buttons to follow application 
+	Reversed "Save As" and "Cancel" buttons to follow application
 	conventions.
 
 2006-08-24 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1580,8 +1607,8 @@
 
 	* src/o_misc.c: Fixed o_update_component to actually work correctly.
 	All this time, it was just doing the wrong thing by search for
-	existing components in the wrong place.  Update Component still 
-	doesn't do the right thing for symversion, but that can be fixed 
+	existing components in the wrong place.  Update Component still
+	doesn't do the right thing for symversion, but that can be fixed
 	later.
 
 	* examples/filter_1.sch: Updated all components to the latest version.
@@ -1619,27 +1646,27 @@
 2006-08-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/x_fileselect.c: Applied trival patch by Peter Brett to remove
-	unused variable compiler warning. 
+	unused variable compiler warning.
 
 2006-08-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/o_copy.c: Fixed the copying of nets, pins, and buses.  
+	* src/o_copy.c: Fixed the copying of nets, pins, and buses.
         Copy for these objects has been broken for a while now in CVS only.
         This should be revisited later to fix the breakage this fix caused to
 	the transparent rotation when copying objects.
 
 	* src/x_preview.c: Applied Patch#1527418: Make preview-widget
-	resizable and respond to scroll events by Peter Clifton. 
+	resizable and respond to scroll events by Peter Clifton.
 
 	* src/x_event.c: Applied Patch#1527383: Zoom using mouse
 	scroll-wheel by Peter Clifton.  Behavior of the mouse wheel with
-        modifiers:   
-       		NONE = zoom in / out    
-        	Shift = up / down    
+        modifiers:
+       		NONE = zoom in / out
+        	Shift = up / down
         	Control = left / right (as existing)
 
 	* src/o_attrib.c: Applied Patch#1531802: Bugfix for segfault
-	when adding a global attribute by Tomaz Solc. 
+	when adding a global attribute by Tomaz Solc.
 
 	* src/x_window.c: Applied Patch#1533822: gschem: Tidy up
 	gtk_widget_show calls by Peter Brett.
@@ -1649,11 +1676,11 @@
 
 	* src/x_window.c: Applied patch by Tomaz Solc to use stock gtk
 	icons and only fallback on the shipped icons if the stock ones
-	are not available.   Minor cleanup of the code afterwords. 
+	are not available.   Minor cleanup of the code afterwords.
  	Removed obsolete code and functions.
 
 	* src/*.c: Applied patch by Tomaz Solc to add cursor key panning.
-	Minor cleanup of the code afterwards (mainly to add the 
+	Minor cleanup of the code afterwards (mainly to add the
 	keyboardpan_gain to the toplevel as a proper rc variable)
 
 	* po/it_IT.po: Replaced Italian translation with updates from
@@ -1672,7 +1699,7 @@
 
 2006-07-26 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/g_hook.c: Added pointer check. Fixes gschem crash when 
+	* src/g_hook.c: Added pointer check. Fixes gschem crash when
 	adding an attribute while some other attributes were selected.
 	Thanks to Levente Kovacs for reporting the bug and testing the patch.
 
@@ -1714,9 +1741,9 @@
 
 2006-07-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/x_log.h, src/g_hook.c, src/g_keys.c, src/g_rc.c, 
+	* include/x_log.h, src/g_hook.c, src/g_keys.c, src/g_rc.c,
 	src/gschem.c, src/i_basic.c, src/i_callbacks.c, src/o_complex.c,
-	src/o_misc.c, src/o_net.c, src/o_picture.c, src/o_slot.c, 
+	src/o_misc.c, src/o_net.c, src/o_picture.c, src/o_slot.c,
 	src/o_text.c, src/o_undo.c, src/x_attribedit.c, src/x_color.c,
 	src/x_dialog.c, src/x_fileselect.c, src/x_grid.c, src/x_image.c,
 	src/x_menus.c, src/x_pagesel.c, src/x_print.c, src/x_stroke.c,
@@ -1759,7 +1786,7 @@
 	  Ported as real c source code file in the src directory.
 	  Deleted after porting all noweb comments into doxygen format
 	  in respective c source files.
-	
+
 	* noweb: Removed subdirectory.
 
 	* src/Makefile.am: Updated to build from c source instead of noweb.
@@ -1773,7 +1800,7 @@
 
 	* configure.ac: Removed checks for noweb and texi2html.
 	  Added check for Doxygen.
-	
+
 2006-06-02  Mike Jarabek  <mjarabek@istop.com>
 
 	* lib/system-gschemrc.in: Corrected comments about PS backend, and
@@ -1794,18 +1821,18 @@
 
 	* include/prototype.h, noweb/o_find.nw, noweb/x_event.nw:
 	Fixed issue with the selection box when some components overlap.
-	This bug was introduced when adding support for object movement	
+	This bug was introduced when adding support for object movement
 	like "click and drag" style.
 
 	* noweb/g_hook.nw: Fixed bug when calculating the object bounds
 	in text autoplacing.
 
-	* src/Makefile.am: Commented out the indentation of the C code, 
+	* src/Makefile.am: Commented out the indentation of the C code,
 	so gdb can return correct information when debugging.
 
 	* noweb/i_callbacks.nw, noweb/x_event.nw: Moved rotated_inside into
 	the TOPLEVEL structure.
-	
+
 2006-05-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* scripts/notangle_guile.in: Applied patch by Steve Brown to fix
@@ -1837,7 +1864,7 @@
 	  Allow rotating while copying or moving objects.
 	* noweb/g_hook.nw, noweb/o_complex.nw, noweb/o_misc.nw:
 	  Don't draw text if w_current->DONT_REDRAW == 1.
-	
+
 2006-05-16 22:31  Dan McMahill <danmc>
 
 	* include/Makefile.am, include/prototype.h, noweb/g_funcs.nw,
@@ -1849,7 +1876,7 @@
 
 2006-05-16 Werner Hoch <werner.ho@gmx.de>:
 
-	* noweb/o_pin.nw: o_pin_end(): fixed whichend drawing and 
+	* noweb/o_pin.nw: o_pin_end(): fixed whichend drawing and
 	  connection checks.
 
 2006-05-14 Werner Hoch <werner.ho@gmx.de>
@@ -1934,17 +1961,17 @@
 	  In addition provide a partial example of how one can use these
 	  hooks to communicate to pcb.
 
-2006-04-22 Carlos Nieves Onega <cnieves@iespana.es>	
+2006-04-22 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* noweb/o_complex.nw, noweb/o_move.nw: Allow placing and moving
 	  complex objects inside complex objects.
 
 2006-04-15 Werner Hoch <werner.ho@gmx.de>
 
-	* noweb/o_arc.nw: corrected ARC_END_ANGLE calculation in 
+	* noweb/o_arc.nw: corrected ARC_END_ANGLE calculation in
 	  o_arc_rubberband(), simplified the function.
 	  this fixes bug 1468682
-	  
+
 	* noweb/a_pan.nw: set loc_x/y to 0 in a_pan_general,
 	  this fixes a zoom-while-drawing error
 
@@ -1960,10 +1987,10 @@
 
 	* noweb/x_event.nw: drop redundant x_event_motion() events if no
 	  mouse button or modifier key change occured.
-	  This speeds up moving large selections, copying selections and 
+	  This speeds up moving large selections, copying selections and
 	  mouse paning.
 
-2006-04-09 Carlos Nieves Onega <cnieves@iespana.es>	
+2006-04-09 Carlos Nieves Onega <cnieves@iespana.es>
 
         * scheme/auto-place-attribs.scm: Applied patch from Steve Brown
 	  It fixes the get_reference function to always return an integer
@@ -1972,23 +1999,23 @@
 
 	* noweb/x_fileselect.nw: Add the "discard changes" button to the
 	  close page dialog. This fixes bug 1442948.
-	
+
 2006-04-09 Werner Hoch <werner.ho@gmx.de>
 
-	* noweb/x_dialog.nw: find_text_dialog(): moved the descend 
+	* noweb/x_dialog.nw: find_text_dialog(): moved the descend
 	  checkbutton from the action_area to the vbox.
 
 	* noweb/a_pan.nw: a_pan(), a_pan_mouse() rewritten, they'll use
 	  a_pan_general() now, a_pan_calc() removed.
 
 	* noweb/a_pan, noweb/a_zoom.nw, noweb/i_callbacks.nw, noweb/o_misc.nw,
-	  noweb/x_event.nw: bugfix for "[ 1443804 ] gschem scrollbars not 
-	  updating in all cases", added missing scrollbar updates, removed 
+	  noweb/x_event.nw: bugfix for "[ 1443804 ] gschem scrollbars not
+	  updating in all cases", added missing scrollbar updates, removed
 	  duplicate o_redraw_all_fast() calls.
 
 2006-04-03 Werner Hoch <werner.ho@gmx.de>
 
-	* noweb/x_print.nw: print dialog: widged packing fixed, 
+	* noweb/x_print.nw: print dialog: widged packing fixed,
 	  reported by Tomasz Nowak
 
 2006-03-12 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1996,36 +2023,36 @@
         * lib/system-gschemrc.in: Removed load for the system-gafrc file,
         since it is loaded by libgeda first.
 
-2006-02-26 Carlos Nieves Onega <cnieves@iespana.es>	
+2006-02-26 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* noweb/g_hook.nw: Erase the text before changing its attributes
 	  in g_set_attrib_text_properties.
-	
-2006-02-25 Carlos Nieves Onega <cnieves@iespana.es>	
-	* include/globals.h, include/prototype.h, noweb/g_hook.nw, 
-	  noweb/g_register.nw, noweb/globals.nw, noweb/o_pin.nw, 
+
+2006-02-25 Carlos Nieves Onega <cnieves@iespana.es>
+	* include/globals.h, include/prototype.h, noweb/g_hook.nw,
+	  noweb/g_register.nw, noweb/globals.nw, noweb/o_pin.nw,
 	  noweb/o_misc.nw, noweb/o_attrib.nw, noweb/o_complex.nw:
 	  Added new hooks.
 	  Added new scheme subroutines:
 	    - g_add_attrib, which adds an attribute to an object from scheme.
 	    - g_get_pin_ends, which returns the ends' coords of a pin.
-	    - g_set_attrib_text_properties, which sets all text properties 
+	    - g_set_attrib_text_properties, which sets all text properties
 	      of an attribute.
 	    - g_get_object_bounds, which returns a list with the object bounds.
 	    - g_get_object_pins, which returns a list with the pins.
-	
+
 	* scheme/Makefile.am, scheme/auto-place-attribs.scm:
 	  Added new functions to autoplace the attributes.
-	
+
 	* lib/system-gschemrc.in:
 	  Modified the system-gschemrc file so gschem adds automatically
 	  the default pin attributes when placing a new pin, and also
 	  to automatically place the text attributes.
-	
+
 	* noweb/i_vars.h: Fixed compiler warning.
 
 	* po/es_ES.po: fixed some strings.
-	
+
 2006-02-25 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/o_misc.nw: Set the backup file readonly, so an 'rm *'
 	command will ask the user if he really wants to delete the file.
@@ -2039,7 +2066,7 @@
 
 2006-01-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * autogen.sh, m4/guile.m4, m4/gettext.m4, src/Makefile.am: Removed 
+        * autogen.sh, m4/guile.m4, m4/gettext.m4, src/Makefile.am: Removed
 	m4 files since they are installation specifc.  Also, all required
 	libraries should be coming from LIBGEDA_LDFLAGS
 
@@ -2056,27 +2083,27 @@
 
         * README: Updated for the new year and release.
 
-2006-01-13 Carlos Nieves Onega <cnieves@iespana.es>	
+2006-01-13 Carlos Nieves Onega <cnieves@iespana.es>
 	* po/es_ES.po: Updated the spanish translation.
-	
+
 2006-01-12  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* po/fr_FR.po: Updated the French translation.
 
 	* po/*: Updated and merged i18n files.
-	
+
 	* noweb/rcstrings.nw: Rebuilt file from latest system-gschemrc.
 
 2006-01-11  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* po/fr_FR.po: Updated the French translation.
-	
+
 	* po/*: Updated and merged i18n files.
-	
+
 	* noweb/i_callbacks.nw, noweb/o_misc.nw, noweb/o_picture.nw:
 	* noweb/o_text.nw, noweb/x_image.nw, noweb/x_preview.nw:
 	Added missing marks for gettext on log messages.
-	
+
 	* noweb/x_dialog.nw, noweb/x_menus.nw:
 	* noweb/x_multiattrib.nw, noweb/x_pagesel.nw: Marked strings in
 	structures (popup menus and option menus) for i18n with N_().
@@ -2087,67 +2114,67 @@
 2006-01-07  Stuart Brorson  <sdb AT cloud9 DOT net>
         * autogen.sh, Included "-I m4" into
         aclocal to pick up macros from local m4 dir.
-	
+
 	*  src/Makefile.am:  Added @GUILE_LDFLAGS@ to gschem_LDADD
 	to force pick-up of lguile.
-	
+
 2006-01-07  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* po/fr_FR.po: Updated the French translation.
 
 	* noweb/rcstrings.nw: Updated menu entries for un/embedding
 	components and pictures.
-	
-2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/o_attrib.nw, noweb/o_text.nw, noweb/x_multiattrib.nw:
-	In x_multiattrib: moved handling of slot attribute after 
+	In x_multiattrib: moved handling of slot attribute after
 	calling o_text_change or o_attrib_add_attrib into those functions.
 	This is just calling o_slot_end after changed or added a slot
 	attribute.
 	This fixes the bug reported by Karel Kulhavy: graphic symbol is
 	not updated when adding a slot attribute using the single attribute
 	editor. Thanks for the bug report.
-	
-2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/x_attribedit.nw:
 	When mass replacing properties using the add property command,
 	don't delete the old attribute and add a new one: just change
-	the property text, visibility and show proerties, keeping the 
+	the property text, visibility and show proerties, keeping the
 	text location.
 	Bug reported by Karel Kulhavy. Thanks for the bug report.
-	
-2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>
 	* include/prototype.h, noweb/x_color.nw, noweb/x_dialog.nw:
 	Changed	function x_color_get_name to use dynamic memory allocation.
 	Now it returns a newly allocated string with the colorname.
 	This should fix a bug found by John Doty: the 'ex' command provoked
 	a bus error in gschem under MacOS 10.4.3. Thanks for the bug report.
-	
-2005-12-02 Carlos Nieves Onega <cnieves@iespana.es>	
-	* noweb/x_preview.nw: Disable the autosave feature in previews. 
+
+2005-12-02 Carlos Nieves Onega <cnieves@iespana.es>
+	* noweb/x_preview.nw: Disable the autosave feature in previews.
 	This change, together with some libgeda changes at the same date
 	will fix some gschem crashes reported by David Carr. Thanks David!
 
 2005-11-28 Carlos Nieves Onega <cnieves@iespana.es>
-	* noweb/x_fileselect.nw: 
+	* noweb/x_fileselect.nw:
 	Applied minor patch to file selector so the user sees the "Save as"
 	button instead of "Open" when saving the schematic.
 	Thanks to David Carr for noticing it and sending the patch.
-	
+
 2005-11-27 Carlos Nieves Onega <cnieves@iespana.es>
-        * include/prototype.h, noweb/globals.h, noweb/o_misc.nw, 
+        * include/prototype.h, noweb/globals.h, noweb/o_misc.nw,
 	  noweb/x_fileselect.nw:
 	Now gschems checks if there is an autosave backup file when
 	loading a schematic. If it exists, then gschem asks the user
 	what to do.
 
-2005-11-18 Carlos Nieves Onega <cnieves@iespana.es>	
+2005-11-18 Carlos Nieves Onega <cnieves@iespana.es>
 	* include/prototype.h, lib/system-gschemrc.in, noweb/o_misc.nw,
 	  noweb/o_undo.nw:
 	Changed autosave code so the timer callback doesn't do the
 	autosave backups. Now are made within o_undo_savestate, so
-	backups will ONLY be saved when there was a change to the 
-	schematic and there was a timeout of the autosave timer.	
+	backups will ONLY be saved when there was a change to the
+	schematic and there was a timeout of the autosave timer.
 
 2005-11-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -2172,55 +2199,55 @@
 	* noweb/x_log.nw: Added an if to prevent a core dump if the log file
 	cannot be opened. Bug reported by John Luciani.
 
-	* configure.ac: Removed check for gtk+ 2.6.x or greater since gtk+ 
+	* configure.ac: Removed check for gtk+ 2.6.x or greater since gtk+
 	already provides this information.
 
-2005-10-29 Carlos Nieves Onega <cnieves@iespana.es>	
+2005-10-29 Carlos Nieves Onega <cnieves@iespana.es>
         * include/i_vars.h, include/prototype.h, lib/system-gschemrc.in,
-	  noweb/g_rc.nw, noweb/g_register.nw, noweb/i_vars.nw, 
+	  noweb/g_rc.nw, noweb/g_register.nw, noweb/i_vars.nw,
 	  noweb/o_undo.nw:
-	  Added support for backup copies and autosaving every 
+	  Added support for backup copies and autosaving every
 	  "interval" seconds (configurable through system-gschemrc).
-	
-2005-10-23 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-10-23 Carlos Nieves Onega <cnieves@iespana.es>
 	* include/prototype.h, noweb/x_fileselect.nw, noweb/x_preview.nw:
 	Removed a conditional #if in x_preview_setup. It was introduced in
 	my last changes.
-	x_preview_setup should create the drawing_area. Otherwise, it 
+	x_preview_setup should create the drawing_area. Otherwise, it
 	will segfault when adding a new component.
-	Added check at the beginning of x_fileselect_setup to use the 
-	old function when adding a new component, before doing anything 
+	Added check at the beginning of x_fileselect_setup to use the
+	old function when adding a new component, before doing anything
 	else.
-	
-2005-10-17 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-10-17 Carlos Nieves Onega <cnieves@iespana.es>
 	* include/prototype.h, noweb/x_fileselect.nw, noweb/x_preview.nw:
-	Updated file load/save window using GTK widgets. File preview is 
+	Updated file load/save window using GTK widgets. File preview is
 	missing yet.
 
 2005-10-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/x_image.nw: Added some code to make sure non-default sized
-	image are correctly created.  Added code to convert pixbufs to 
+	image are correctly created.  Added code to convert pixbufs to
 	greyscale to implement the image-color rc keyword.
 
 	* configure.ac: Added check for gtk+ 2.6.x or greater to support some
 	future additions.
 
-2005-10-15 Carlos Nieves Onega <cnieves@iespana.es>	
+2005-10-15 Carlos Nieves Onega <cnieves@iespana.es>
         * noweb/x_image.nw: Remove the grid when exporting to PNG.
 	Reorganize and comment some code.
 	Remove text origin markers when exporting to PNG.
-	
-2005-10-15 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-10-15 Carlos Nieves Onega <cnieves@iespana.es>
         * noweb/prototype.h, noweb/i_callbacks.nw, noweb/x_image.nw:
 	Added code to export the schematic to PNG, including pictures,
 	without using libgdgeda.
-	
+
 2005-10-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* examples/gEDA_Flow.sch: Added simple PCB design flow diagram drawn
 	by Stuart.
-	
+
 2005-10-05 Werner Hoch <werner.ho@gmx.de>
 	* noweb/o_net.nw: added the patch from David Carr.
 	when drawing a net, there will be two segments in an L-shape.
@@ -2229,20 +2256,20 @@
 2005-10-04 Werner Hoch <werner.ho@gmx.de>
 	* noweb/x_dialog.nw: removed gettext makro from a programm string
 
-2005-09-30 Carlos Nieves Onega <cnieves@iespana.es>	
-	* noweb/o_misc.nw, noweb/i_callbacks.nw: 
+2005-09-30 Carlos Nieves Onega <cnieves@iespana.es>
+	* noweb/o_misc.nw, noweb/i_callbacks.nw:
 	Added code to embed/unembed pictures.
 
 2005-09-30 Carlos Nieves Onega <cnieves@iespana.es>
         * noweb/i_basic.nw: Added missing check.
-	
+
 2005-09-30 Carlos Nieves Onega <cnieves@iespana.es>
-        * noweb/i_basic.nw: Fixed memory leak which maked gschem to segfault 
+        * noweb/i_basic.nw: Fixed memory leak which maked gschem to segfault
 	when adding pictures. Undid the last patch made by Dan (a NULL string
 	is not the same as a "" string, so it maked gschem segfault), and
-	changed the g_strdup_printf("") to g_strdup(""). This fixes the 
+	changed the g_strdup_printf("") to g_strdup(""). This fixes the
 	compiler warning Dan wanted to fix.
-	
+
 2005-09-27 18:38  Dan McMahill <danmc>
 
         * docs/gschemdoc.texi: add title to remove warnings
@@ -2270,7 +2297,7 @@
 
 2005-08-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_text.nw, x_dialog.nw: Applied Matthias Wenzel's color 
+	* noweb/o_text.nw, x_dialog.nw: Applied Matthias Wenzel's color
 	and usability patch.  Thanks.  The Edit/Color... dialog now makes
 	the selected object's color the default color in the dialog box and
 	the Edit/Text Edit... dialog box has the color selector.
@@ -2286,14 +2313,14 @@
 
 2005-08-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/g_rc.nw, g_register.nw, i_vars.nw: Added 
+	* noweb/g_rc.nw, g_register.nw, i_vars.nw: Added
 	g_rc_grid_fixed_threshold, g_rc_grid_mode and
 	g_rc_add_attribute_offset (which isn't used yet)
 
 	* noweb/x_grid.nw: Added implmentation for fixed grid mode and
 	threshold (control by grid-mode and grid-fixed-threshold keywords).
 
-        * configure.ac: Updated package version to 20050814.  This is a 
+        * configure.ac: Updated package version to 20050814.  This is a
         temporary version and not a real release number.
 
 2005-08-04 22:49  Dan McMahill <danmc>
@@ -2319,18 +2346,18 @@
 	Basically a variable was defined twice, once in libgeda and once
 	in gschem.  Apparently OSX behaves very differently when this
 	happens (the two variables are different while other platforms
-	didn't complain but the "right" thing happened).  This bug was 
+	didn't complain but the "right" thing happened).  This bug was
 	created when the rc code was refactored.
 
 2005-03-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error 
+        * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error
         message if gtk+ 2.2.x is not found.
 
 2005-03-12 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* po/nl_NL.po: Checked in updated Dutch translation from 
-	Bert Timmerman.  Thanks Bert.  
+	* po/nl_NL.po: Checked in updated Dutch translation from
+	Bert Timmerman.  Thanks Bert.
 
 	* po/nl_NL.po: Also converted file to UTF-8, even though there
 	was no conversion necessary.  This is to be consistent with the other
@@ -2339,7 +2366,7 @@
 2005-03-12  Carlos Nieves Onega <cnieves@iespana.es>
 
 	* po/es_ES.po: updated spanish translation.
-	
+
 2005-03-10  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* noweb/x_multiattrib.nw: Made it close the dialog on a key press
@@ -2355,7 +2382,7 @@
         * configure.ac: Bumped version to 20050313
 
 	* po/POTFILES.in: For some odd reason, the list of files in this
-	file was really out of date, so updated it.  
+	file was really out of date, so updated it.
 
 	* Ran make dist to update geda-gschem.pot
 
@@ -2375,14 +2402,14 @@
         * noweb/gschem.c: Fixed code to allow user to specify absolute
         filenames on the command line again.
 
-	* tests/agile-vfo-block_1.sch: Moved schematic into test directory 
-	since it's out-of-date.	
+	* tests/agile-vfo-block_1.sch: Moved schematic into test directory
+	since it's out-of-date.
 
 2005-03-05 Werner Hoch <werner.ho@gmx.de>
 	* noweb/x_dialog.nw: changed the autonumber_text dialog
-	* noweb/o_misc.nw: changed functions which support the autonumber 
+	* noweb/o_misc.nw: changed functions which support the autonumber
 		dialog
-	
+
 2005-03-05 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/gschem.nw:
 	  Removing call to o_text_init, since it's now called in libgeda_init.
@@ -2390,13 +2417,13 @@
 2005-02-28  Carlos Nieves Onega <cnieves@iespana.es>
 
 	* po/es_ES.po: updated spanish translation.
-	
+
 2005-02-28  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* scripts/notangle_guile.in: Improved script with changes suggested
 	by Thien-Thi Nguyen.
 
-	* noweb/x_multiattrib.nw (multiattrib_callback_edited_name) 
+	* noweb/x_multiattrib.nw (multiattrib_callback_edited_name)
 	(multiattrib_callback_edited_value): Added code to check for changes
 	in a slot attribute.
 
@@ -2406,7 +2433,7 @@
 
 	* noweb/i_callbacks.nw (i_callback_hierarchy_down_symbol): Changed
 	to exclude embedded symbols from the hierarchy feature.
-	
+
 	* noweb/x_multiattrib.nw: Modified dialog to make it possible to
 	set multi-line values at adding of attributes.
 	Changed the behavior of the value column to stop edition when
@@ -2414,7 +2441,7 @@
 
 2005-02-26  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/x_multiattrib.nw (x_multiattrib_open): Fixed bug #153 (first 
+	* noweb/x_multiattrib.nw (x_multiattrib_open): Fixed bug #153 (first
 	reported by Ales): added missing reset of toplevel's state at
 	closing of dialog.
 	Created a new CellRenderer for multi-line cells. It is used by the
@@ -2428,16 +2455,16 @@
 
 2005-02-24  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/x_multiattrib.nw: Removed unused variables and fixed a couple 
+	* noweb/x_multiattrib.nw: Removed unused variables and fixed a couple
 	of gcc warnings.
-	
-	* noweb/g_funcs.nw (hash_table_2_list): Replaced deprecated guile 
+
+	* noweb/g_funcs.nw (hash_table_2_list): Replaced deprecated guile
 	functions with their equivalents in the new scm interface.
 
 	* scripts/notangle_guile.in: New version.
-	
+
 	* configure.ac, scripts/Makefile.am: Adapted for renaming of script.
-	
+
 	* scripts/notangle_guile.scm.in: Renamed to notangle_guile.in.
 
 2005-02-22  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -2449,11 +2476,11 @@
 	* noweb/o_misc.nw (o_edit): Adapted for new dialog.
 
 	* include/x_multiattrib.h: New file for the new x_multiattrib.nw.
-	
-	* noweb/x_multiattrib.nw: Modified the dialog to remove deprecated 
+
+	* noweb/x_multiattrib.nw: Modified the dialog to remove deprecated
 	widgets and enable edition of attributes directly from the list.
-	
-	* noweb/x_pagesel.nw: Added a context-sensitive menu to the list of 
+
+	* noweb/x_pagesel.nw: Added a context-sensitive menu to the list of
 	pages and a label below for information.
 
 2005-02-21 04:11  Dan McMahill <danmc>
@@ -2491,7 +2518,7 @@
 	* noweb/i_callbacks.nw: Added implementation for the add_picture_hotkey
 	callback.
 
-	* lib/system-gschemrc.in: Added hotkey assignment "ag" to 
+	* lib/system-gschemrc.in: Added hotkey assignment "ag" to
 	Add/Picture... and move the new item to the bottom of the menu list.
 
 	* noweb/x_menu.nw: Applied part of a patch from Patrick Ammann to
@@ -2499,9 +2526,9 @@
 
 2005-02-20  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/i_callbacks.nw, noweb/gschem.nw: Adapted for new logging 
+	* noweb/i_callbacks.nw, noweb/gschem.nw: Adapted for new logging
 	system.
-	
+
 	* include/x_log.h: New header file for new x_log.nw.
 
 	* noweb/x_log.nw: Cleaned-up.
@@ -2510,14 +2537,14 @@
 
 	* bitmap/Makefile.am, bitmap/README: Added new file gschem-warning.png.
 	* include/prototype.h, include/x_states.h, lib/system-gschemrc.in,
-	  noweb/Makefile.am, noweb/g_keys.nw, noweb/g_register.nw, 
+	  noweb/Makefile.am, noweb/g_keys.nw, noweb/g_register.nw,
 	  noweb/globals.nw, noweb/i_basic.nw, noweb/i_callbacks.nw,
 	  noweb/o_basic.nw, noweb/o_complex.nw, noweb/o_copy.nw,
 	  noweb/o_delete.nw, noweb/o_grips.nw, noweb/o_misc.nw,
 	  noweb/o_move.nw, noweb/o_picture.nw, noweb/rcstrings.nw,
 	  noweb/x_event.nw, src/Makefile.am:
-	  Added picture support.	
-	
+	  Added picture support.
+
 2005-02-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* po/fr_FR.po, LINGUAS: Added French translation by Iznogood.
@@ -2528,20 +2555,20 @@
 
 2005-02-13  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/g_keys.nw (g_get_selected_component_attributes): Adapted for 
+	* noweb/g_keys.nw (g_get_selected_component_attributes): Adapted for
 	new prototype of get_selected_component_attributes.
-	(g_get_selected_filename): Adapted for new prototype of 
+	(g_get_selected_filename): Adapted for new prototype of
 	get_selected_filename;
 
-	* noweb/g_funcs.nw (get_selected_component_attributes): Rewritten to 
-	use a GLib hash table instead of the libgeda s_scratch code. Also 
+	* noweb/g_funcs.nw (get_selected_component_attributes): Rewritten to
+	use a GLib hash table instead of the libgeda s_scratch code. Also
 	reduced number of parameters.
 	(get_selected_filename): Reduced number of parameters.
 
 2005-02-13  Carlos Nieves Onega <cnieves@iespana.es>
 
         * po/es_ES.po, po/LINGUAS: Added first version of spanish translation.
-	
+
 2005-02-13  Carlos Nieves Onega <cnieves@iespana.es>
 
 	* include/prototype.h, noweb/x_pagesel.nw:
@@ -2553,30 +2580,30 @@
 	  If texts like "Add page" are preferred in the buttons, then
 	  there is only needed to comment a line, and uncomment another.
 	  See the code of pagesel_init pagesel function.
-	 
+
 2005-02-12  Carlos Nieves Onega <cnieves@iespana.es>
 
 	* noweb/x_attribedit.nw, noweb/x_dialog.nw, noweb/x_fileselect.nw,
-	  noweb/x_image.nw, noweb/x_log.nw, noweb/x_multiattrib.nw, 
-	  noweb/x_print.nw, noweb/x_pagesel.nw: 
+	  noweb/x_image.nw, noweb/x_log.nw, noweb/x_multiattrib.nw,
+	  noweb/x_print.nw, noweb/x_pagesel.nw:
 	  Beautify buttons (use GTK stock).
-	
+
 2005-02-11  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* noweb/gschem.nw, noweb/i_callbacks.nw, noweb/o_undo.nw:
-	* noweb/x_fileselect.nw, noweb/x_window.nw: Changed for new page 
+	* noweb/x_fileselect.nw, noweb/x_window.nw: Changed for new page
 	manager.
-	
+
 	* include/x_pagesel.h: New header file for new page manager.
-	
-	* noweb/x_pagesel.nw: New page manager in GTK 2.x with hierarchy 
+
+	* noweb/x_pagesel.nw: New page manager in GTK 2.x with hierarchy
 	display.
 
 	* noweb/i_callbacks.nw, noweb/o_undo.nw, noweb/x_fileselect.nw:
-	* noweb/x_image.nw, noweb/x_preview.nw: Adapted for new toplevel and 
+	* noweb/x_image.nw, noweb/x_preview.nw: Adapted for new toplevel and
 	page APIs in libgeda.
-	
-	* noweb/x_window.nw: Refactored to avoid duplication of code with 
+
+	* noweb/x_window.nw: Refactored to avoid duplication of code with
 	libgeda.
 
 2005-02-08 22:28  Dan McMahill <danmc>
@@ -2586,9 +2613,9 @@
 
 2005-02-04  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/*.nw: Made it use GLib's G_DIR_SEPARATOR* instead of 
+	* noweb/*.nw: Made it use GLib's G_DIR_SEPARATOR* instead of
 	libgeda's *_SEPARATER_*.
-	Replaced u_basic_strdup() and u_basic_strdup_multiple() by GLib 
+	Replaced u_basic_strdup() and u_basic_strdup_multiple() by GLib
         functions.
 
 2005-02-04 04:39  danmc
@@ -2634,47 +2661,47 @@
 2005-01-29  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* noweb/gschem.nw, noweb/o_misc.nw:
-	* noweb/o_net.nw, noweb/x_fileselect.nw: Adapted for new component 
+	* noweb/o_net.nw, noweb/x_fileselect.nw: Adapted for new component
 	library code.
 
 2005-01-28  Stuart Brorson <sdb@cloud9.net>
 
 	* noweb/x_preview.nw:  Incorporated patch from Patrick Bernaud.
-	
+
 2005-01-27  Stuart Brorson <sdb@cloud9.net>
 
 	* include/prototype.h, noweb/gschem.nw, noweb/i_callbacks.nw,
 	noweb/x_fileselect.nw, noweb/x_preview.nw, noweb/x_window.nw:
 	Changes made to enable correct opening
 	of schematics in foreign directories.  New algorithm:
-	
+
         1.  Take the filename the user wants to open.
         2.  Turn it into an absolute path, like /foo/bar/baz.sch
         3.  From the path, figure out the directory, /foo/bar
-        4.  From this, create the absolute path to the local gafrc, 
+        4.  From this, create the absolute path to the local gafrc,
 	    /foo/bar/gafrc.
         5.  cd to /foo/bar
-        6.  read /foo/bar/gafrc while sitting in the directory /foo/bar.  
-	    This takes care of all the guile search path problems, 
-	    like when people put things like 
+        6.  read /foo/bar/gafrc while sitting in the directory /foo/bar.
+	    This takes care of all the guile search path problems,
+	    like when people put things like
 	    (component-library "../common/symlib") or some such into
             their RC files.
         7.  After that, read the file itself.
-        8.  Leave the directory set to this directory.  
-	
+        8.  Leave the directory set to this directory.
+
 2005-01-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* tests/missing.sch, Makefile.am: Added test schematic to test
 	missing component rendering.
 
 	* tests/symversion3.sch: Added components which have no attributes
-	(one in the middle of the file and one at the end).  This tests a 
+	(one in the middle of the file and one at the end).  This tests a
 	but which has been fixed in libgeda dealing with symversion= handling.
 
 2005-01-23  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/x_fileselect.nw (x_fileselect_comp_fill_components): Removed 
-	the duplicate message of failure to open directory. It also fix the 
+	* noweb/x_fileselect.nw (x_fileselect_comp_fill_components): Removed
+	the duplicate message of failure to open directory. It also fix the
 	problem reported by Bob Paddock.
 
 2005-01-22 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2687,22 +2714,22 @@
 2005-01-16  Stuart Brorson <sdb@cloud9.net>
 	* noweb/i_basic.nw, noweb/x_menus.nw: incorporated right
 	mouse button bring-up of "up hierarchy", as requested.
-	
+
 2005-01-15  Stuart Brorson <sdb@cloud9.net>
-	* noweb/(gschem.nw, i_basic.nw, x_event.nw, x_menus.nw, 
+	* noweb/(gschem.nw, i_basic.nw, x_event.nw, x_menus.nw,
 	w_window.nw): Various changes made to enable right-button-
 	mouse bring up of hierarchy menus.  Made hierarchy menus grey
 	out when no components are selected.
-	
-	* noweb/x_log.nw, include/prototype.h: changed x_log_init 
+
+	* noweb/x_log.nw, include/prototype.h: changed x_log_init
 	to take const char as arg since it's always called with a
 	quoted string.
 
 2005-01-14 Handsome Greg <xdissent@gmail.com>
- 
+
 	* noweb/g_keys.nw: Replaced all g_key_ functions with g_keys_X
 	and changed associated makefile generation scripts and docs to
-	reflect this change. (fixes Gtk/Glib-2.6.0). Applied by Ales, 
+	reflect this change. (fixes Gtk/Glib-2.6.0). Applied by Ales,
 	the following files changed:
 		M include/prototype.h
 		M docs/gschemdoc.texi
@@ -2710,22 +2737,22 @@
 		M docs/Makefile.am
 		M noweb/Makefile.am
 		A noweb/g_keys.nw
-		R noweb/g_key.nw 
+		R noweb/g_key.nw
 		M noweb/g_register.nw
  		M noweb/x_event.nw
 
 2005-01-08  Stuart Brorson <sdb@cloud9.net>
-	* noweb/x_multiattrib.nw: Added symbol name to items displayed 
+	* noweb/x_multiattrib.nw: Added symbol name to items displayed
 	in multiattrib dialog box.
-	
+
 2005-01-07  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/x_fileselect.nw (x_fileselect_comp_fill_components) 
-	(x_fileselect_search_library): Updated for the new s_clib_getfiles() 
+	* noweb/x_fileselect.nw (x_fileselect_comp_fill_components)
+	(x_fileselect_search_library): Updated for the new s_clib_getfiles()
 	that fixes file number limitation.
 
-	* noweb/i_callbacks.nw 
-	(i_callback_edit_embed, i_callback_edit_unembed): Updated for new 
+	* noweb/i_callbacks.nw
+	(i_callback_edit_embed, i_callback_edit_unembed): Updated for new
 	o_embed() and o_unembed().
 
 	* noweb/o_misc.nw (o_embed, o_unembed): Cleaned-up code, changed
@@ -2739,7 +2766,7 @@
 	* noweb/x_dialog.nw (fill_type_dialog*): Rewrote code for this
 	dialog to work one more than a single object (on the model of
 	line_type_dialog).
-	
+
 	* noweb/o_misc.nw (o_update_component): Added initialization of
 	attribute list and a redraw for each new attribute object.
 
@@ -2758,13 +2785,13 @@
 
 2005-01-04  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/i_callbacks.nw (i_callback_edit_linetype): Modified to create 
+	* noweb/i_callbacks.nw (i_callback_edit_linetype): Modified to create
 	a list of relevant objects that is passed to line_type_dialog.
 
 	* noweb/x_dialog.nw (line_type_dialog*): Rewrote most of the code
 	for the line type dialog. Now it applies to more than a single
 	object.
-	
+
 	* noweb/i_callbacks.nw (i_callback_edit_update): Adapted for the
 	new o_update_component().
 
@@ -2782,7 +2809,7 @@
 	update component (delete and intelligent replace).  These two other
 	modes are not functional yet.
 
-	* noweb/x_grid.nw, i_vars.nw, g_rc.nw, g_register.nw, 
+	* noweb/x_grid.nw, i_vars.nw, g_rc.nw, g_register.nw,
 	lib/system-gschemrc.in: Added the ability to adjust the grid
 	dot size via the "grid-dot-size" rc keyword.
 
@@ -2798,22 +2825,22 @@
 
 	* tests/versionsym1.sch versionsym2.sch versionsym3.sch
 	versionsym_basic.sym versionsym_invalid.sym versionsym_major.sym
-	versionsym_minor.sym versionsym_minor2.sym: Added a bunch of 
+	versionsym_minor.sym versionsym_minor2.sym: Added a bunch of
 	test schematic for the symversion attribute
 
 	* tests/gafrc: Added the first global rc file for all gaf tools.
 
 	* lib/system-gschemrc.in: Added symversion= to the attribute list
-	keyword. 
+	keyword.
 
 	* noweb/gschem.nw: Added call to put up an error dialog box if there
 	are symbols which have changed too much.
 
-	* noweb/x_window.nw: Added code to free up the list of changed 
+	* noweb/x_window.nw: Added code to free up the list of changed
 	refdes (symbols which have changed too much are put into a list which
 	the major changed dialog displays).
 
-	* noweb/x_dialog.nw: Added code to implement the symbol has "changed 
+	* noweb/x_dialog.nw: Added code to implement the symbol has "changed
 	majorly" dialog box.
 
 	* noweb/x_dialog.nw: Added some code to make the new dialog box
@@ -2832,8 +2859,8 @@
 
 	* include/Makefile.am, include/papersizes.h: Moved papersizes.h
 	into libgeda and fixed makefile for this change.
-	
-	* noweb/*.nw: Removed reference to papersizes.h include file 
+
+	* noweb/*.nw: Removed reference to papersizes.h include file
 	(now inside of libgeda).
 
 	* include/i_vars.h, prototype.h, noweb/g_rc.nw, g_register.nw,
@@ -2847,7 +2874,7 @@
 
 2004-05-31 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* lib/system-gschemrc.in: Removed a false comment from the comment 
+	* lib/system-gschemrc.in: Removed a false comment from the comment
 	block around sort-components-library.  Pointed out by Andreas Fester.
 
 	* noweb/gschem.nw: Added an #ifdef HAS_GTK22 around the call to
@@ -2864,7 +2891,7 @@
 
 2004-05-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/gschem.nw: Applied patch (with additional comments) to 
+	* noweb/gschem.nw: Applied patch (with additional comments) to
 	fix gtk's desire to override LC_NUMERIC which breaks the postscript
 	output (by changing periods to commas).  Original fix by Bill Wilson,
 	patch by Andreas Fester.  Thanks.
@@ -2874,7 +2901,7 @@
 	* noweb/x_fileselect.nw: Moved the component option combo menu into
 	the vbox to fix the garbage which people have been seeing.  Turns
 	out that if the combomenu is in the searchbox, then the preview
-	drawing area gets resized which is not permited (otherwise you 
+	drawing area gets resized which is not permited (otherwise you
 	get garbage).  Pointed out and fixed by Carlos.  Thanks.
 
 	* noweb/x_preview.nw: Removed the gtk+ 1.2.x hack, because the
@@ -2894,12 +2921,12 @@
 
 2004-01-10 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* tests/multiline3.sch: Added another test schematic for the 
+	* tests/multiline3.sch: Added another test schematic for the
 	multiline code (mainly for PS testing)
 
 2004-01-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* tests/ext_chars.sch: Added all the new spanish characters by 
+	* tests/ext_chars.sch: Added all the new spanish characters by
 	Carlos to the test schematic.
 
 	* docs/gschem.1: Spent a little time fixing up the man page.
@@ -2910,8 +2937,8 @@
 2004-01-01 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/x_preview.nw: Set the size of all preview windows to the
-	minimum of 160x136.  Even though this does not have the right 
-	aspect ratio, it does get rid of some garbage that was showing up	
+	minimum of 160x136.  Even though this does not have the right
+	aspect ratio, it does get rid of some garbage that was showing up
 	when using gtk+ 1.2.x.  gtk+ 1.2.x was ignoring my specification of
 	160x120 and instead setting the window size to 160x136.  This change
 	is only for gtk+ 1.2.x, gtk+ 2.2.x uses 160x120 and allows this size.
@@ -2921,27 +2948,27 @@
         check for groff.
 
 	* docs/Makefile.am: Added commands to generate an html version
-	of the man page.  This html man page gets installed into the 
+	of the man page.  This html man page gets installed into the
 	documentation directory.
 
 	* docs/gschem.1: Minor updates and fixes.
 
 	* noweb/x_window.nw: Fixed a very long standing bug identified by
 	Karel Kulhav which deals with opening up a schematic, then a
-	new window and then opening a new schematic or closing the new 
-	window.  The bug was that the wrong window will get the open or 
+	new window and then opening a new schematic or closing the new
+	window.  The bug was that the wrong window will get the open or
 	close event.  The fix was to change enter_notify event to be the
 	main window and not the drawing_area.  Thanks for the bug report
 	Karel.
 
 2003-12-31 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/x_multiattrib.nw: Moved some code around to fix a memory 
+	* noweb/x_multiattrib.nw: Moved some code around to fix a memory
 	leak.
 
         * include/prototype.h: Added missing function prototype.
 
-	* tests/attributes.sch: Added test schematic specifically for all 
+	* tests/attributes.sch: Added test schematic specifically for all
 	the different types of valid/invalid attributes.
 
         * configure.ac: Bumped version to 20031231
@@ -2955,36 +2982,36 @@
 	in the st_text structure.
 
 	* noweb/o_text.nw: Refactored the quick text rectangle rendering
-	code into its own function.  Added some #if 0'ed code in prep for a 
+	code into its own function.  Added some #if 0'ed code in prep for a
 	future performance enhancement.
 
 	* noweb/x_log.nw: Further refined the appearance of the log/status
 	dialog box.
 
 	* noweb/x_fileselect.nw: Integrated Stuart's multiple select/open
-	code changes.  Thanks Stuart. You can now pick multiple files from 
-	the file list and they will all be opened.  Use the shift and 
+	code changes.  Thanks Stuart. You can now pick multiple files from
+	the file list and they will all be opened.  Use the shift and
 	control keys to pick the individual files.
 
-	
+
 2003-12-29 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* po/pt_BR.po: Replaced file by new UTF-8 version provided by 
+	* po/pt_BR.po: Replaced file by new UTF-8 version provided by
 	Antonio.
 
 	* noweb/x_multiattrib.nw: Applied a patch by Carlos to add
-	multi line attribute editing.  This work should also be 
+	multi line attribute editing.  This work should also be
 	ported to the single attribute add/edit dialog box.
 
-	* noweb/x_multiattrib.nw: Improved the appearance of the 
+	* noweb/x_multiattrib.nw: Improved the appearance of the
 	new GtkTextView by placing it into a GtkViewport which provides
 	a nice border.  Not sure this is the most correct way of doing
 	this, but it does work.
 
-	* noweb/x_dialog.nw: Applied the same appearance fix to the 
+	* noweb/x_dialog.nw: Applied the same appearance fix to the
 	add text and edit text dialog box.  Put some white space around
 	the edit text dialog box to make it look a little better.  The
-	edit text dialog box needs a major overhaul.  
+	edit text dialog box needs a major overhaul.
 
 	* noweb/x_log.nw: Also added a viewport to the log/status dialog box.
 	Changed the large close button to an edge aligned button and
@@ -2992,12 +3019,12 @@
 
 	* noweb/x_print.nw, x_attribedit.nw: Various appearance improvements.
 
-	* noweb/x_dialog.nw: Added border space to almost all most 
+	* noweb/x_dialog.nw: Added border space to almost all most
 	dialog boxes.  They look a little better now.
 
 	* tests/multiline.sch, multiline2.sch: Added and improved these
 	test schematics to test the postscript printing code.
-	
+
 2003-12-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * ABOUT-NLS: Removed machine generated file from CVS
@@ -3026,30 +3053,30 @@
 
 2003-10-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/gschem.nw: Fixed missing #include <locale.h>.  Pointed 
-	out by Karel Kulhav. 
+	* noweb/gschem.nw: Fixed missing #include <locale.h>.  Pointed
+	out by Karel Kulhav.
 
-	* noweb/x_dialog.nw: Applied Carlos' patch to fix the text 
-	alignment dialog box so that it show the correct item in the 
+	* noweb/x_dialog.nw: Applied Carlos' patch to fix the text
+	alignment dialog box so that it show the correct item in the
 	options menu.
 
 2003-10-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/i_vars.h, include/prototype.h, noweb/g_funcs.nw, 
-	noweb/g_rc.nw, noweb/g_register.nw, noweb/i_vars.nw, 
-	noweb/x_image.nw, scripts/image.scm:  Added the ability to 
+	* include/i_vars.h, include/prototype.h, noweb/g_funcs.nw,
+	noweb/g_rc.nw, noweb/g_register.nw, noweb/i_vars.nw,
+	noweb/x_image.nw, scripts/image.scm:  Added the ability to
 	generate images (png) of schematics from the command line:
 	gschem -o test.png -s image.scm filename.sch
 
 	* noweb/g_rc.nw: Added rc keyword: (image-size width height)
 
-	* noweb/g_funcs.nw: Added new gschem command: gschem-image 
+	* noweb/g_funcs.nw: Added new gschem command: gschem-image
 	which outputs a png to a file.
 
-        * noweb/g_key.nw, g_rc.nw, gschem.nw, i_basic.nw, o_misc.nw, 
-	o_net.nw, o_slot.nw, o_text.nw, o_undo.nw, x_attribedit.nw, 
-	x_dialog.nw, x_fileselect.nw, x_grid.nw, x_image.nw, x_menus.nw, 
-	x_multiattrib.nw, x_print.nw, x_stroke.nw, x_window.nw: 
+        * noweb/g_key.nw, g_rc.nw, gschem.nw, i_basic.nw, o_misc.nw,
+	o_net.nw, o_slot.nw, o_text.nw, o_undo.nw, x_attribedit.nw,
+	x_dialog.nw, x_fileselect.nw, x_grid.nw, x_image.nw, x_menus.nw,
+	x_multiattrib.nw, x_print.nw, x_stroke.nw, x_window.nw:
 	Applied Carlos Nieves Onega's multi-line text patch.  Thank you
 	Carlos!  The next items are the all changes from Carlos' patch
 	and my integration changes.  The changes happened over a period
@@ -3072,7 +3099,7 @@
 	* noweb/i_basic.nw: Removed a few fixed size character buffers.
 	Fixed a possible core dump.
 
-	* noweb/o_misc.nw: Fixed the attribute edit detection code to 
+	* noweb/o_misc.nw: Fixed the attribute edit detection code to
 	only start the attribute editor for one line text attributes.
 
 	* noweb/o_misc.nw: Fixed up references to o_text_height (takes
@@ -3098,14 +3125,14 @@
 
 	* noweb/o_undo.nw: Removed fixed size character buffer.
 
-	* noweb/x_attribedit.nw: Fixed up a few of calls to 
+	* noweb/x_attribedit.nw: Fixed up a few of calls to
 	o_attrib_get_name_value to use the new function signature.
 	Also initalized two pointers to null, so they wouldn't be
 	attempted to be freed.
 
 	* noweb/x_dialog.nw: Added select_all_text_in_textview and
 	text_view_calculate_real_tab_width utillity functions.
-	
+
 	* noweb/x_dialog.nw: Converted the text_input_dialog and
 	text_edit_dialog boxes to use the new gtk+ 2.2.x GtkText API to
 	provide a way of entering multiple lines of text.  This is only
@@ -3163,14 +3190,14 @@
 
 	* configure.ac: Updated version to something more recent, but this
 	version is not an official release.
-	
+
 2003-10-11 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/prototype.h: Added #ifdef HAS_GTK22 around gtk+ 2.2.x 
+	* include/prototype.h: Added #ifdef HAS_GTK22 around gtk+ 2.2.x
 	specific functions.  This means the prototype file is no longer
 	machine generated.
 
-	* noweb/x_dialog.nw: Added some more #ifdef HAS_GTK22 around 
+	* noweb/x_dialog.nw: Added some more #ifdef HAS_GTK22 around
 	gtk+ 2.2.x specific functions.
 
 2003-10-04 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3181,7 +3208,7 @@
 2003-09-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* tests/*.sch: Added a few new test schematics
-	
+
 	* noweb/x_print.nw: Changed the print dialog box so that it closes
 	when the print button is pressed.
 
@@ -3229,11 +3256,11 @@
 
 	* noweb/x_attribedit.nw, x_dialog.nw, x_fileselect.nw, x_image.nw
 	x_log.nw, x_menus.nw, x_multiattrib.nw, x_pagesel.nw, x_print.nw,
-	x_window.nw: 
+	x_window.nw:
         Add #ifdef HAS_GTK?2 depending on the gtk version so
 	that the code base builds for both gtk+ 1.2.x and 2.2.x.
 
-	* noweb/g_rc.nw, gschem.nw, x_event.nw, x_window.nw: 
+	* noweb/g_rc.nw, gschem.nw, x_event.nw, x_window.nw:
 	Changed a few #if ... to #ifdef ...
 
 	* noweb/x_attribedit.nw: Improved the looks of the bottom buttons
@@ -3241,9 +3268,9 @@
 
 2003-08-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/prototype.h, noweb/x_multiattrib.nw: Applied 
+	* include/prototype.h, noweb/x_multiattrib.nw: Applied
         Carlos Nieves O'nega's multi attribute add/change patch.  Thanks!
-	
+
 	* examples/cmos-invert.sch: Minor tweak
 
         * src/parsecmd.c: Cleaned up help message a little.
@@ -3255,14 +3282,14 @@
 	* configure.ac: Renamed from configure.in.
 
 	* configure.ac: A whole bunch of changes to support both
-	gtk+-1.2.x and gtk+-2.2.x.  
+	gtk+-1.2.x and gtk+-2.2.x.
 
-	* configure.ac: Lots of cleanup and moved to the use of pkg-config 
+	* configure.ac: Lots of cleanup and moved to the use of pkg-config
 	for the configuration of almost all libraries (most importantly
 	libgeda).
 
 	* *.in, *.h, etc: Removed a bunch of old unneeded auto* files.
-	
+
 2003-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/i_basic.nw: Removed unused variable
@@ -3281,7 +3308,7 @@
 
 2003-04-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure.in, noweb/Makefile.am: Removed x_multimulti.nw from the 
+	* configure.in, noweb/Makefile.am: Removed x_multimulti.nw from the
 	build and removed the dependancy on gtk+extra (also removed references
 	to this file in the docs/ directory)
 
@@ -3293,7 +3320,7 @@
 	reset-source-library rc keywords.  These empty the
 	component/source libraries when executed.  Useful when a user
 	wants set (override) all the paths themselves from a user rc file.
-	
+
 2003-03-30 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/i_callbacks.nw: Fixed bug #43: "If gschemdoc is not install,
@@ -3306,12 +3333,12 @@
 
 2003-02-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * noweb/g_rc.nw, noweb/i_vars.nw, noweb/x_print.nw: Applied Antonio's 
+        * noweb/g_rc.nw, noweb/i_vars.nw, noweb/x_print.nw: Applied Antonio's
 	no margin printing patch (with minor modifications).  Thanks.
 
         * noweb/g_rc.nw, noweb/i_vars.nw, noweb/x_print.nw: Renamed "limits" to
         "extents".
-	
+
 	* lib/system-gschemrc.in: Added new example usage of the output-type
 	rc keyword, and also put in a note that "limits" should no longer be
 	used.
@@ -3350,7 +3377,7 @@
 	* po/ru.po: Updated version from Andy Shevchenko
 
         * configure.in: Changed -fnative-struct to -mms-bitfields for
-        gcc 3.2 mingw compiler (older mingw compilers are no longer 
+        gcc 3.2 mingw compiler (older mingw compilers are no longer
         supported)
 
 2003-01-16 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3359,11 +3386,11 @@
  	Suggestions by Karel Kulhavy.
 
 2003-01-11 Ales Hvezda   <ahvezda@geda.seul.org>
-	
-	* noweb/o_arc.nw: Applied patch by Patrick to fix Bug #45: arc's 
+
+	* noweb/o_arc.nw: Applied patch by Patrick to fix Bug #45: arc's
 	being drawn incorrectly with snap on.  Thanks Patrick.
 
-	* Makefile.am: Fixed the distclean-local target. 
+	* Makefile.am: Fixed the distclean-local target.
 
 	* lib/system-gschemrc.in: Fixed typo (gif->png)
 
@@ -3371,7 +3398,7 @@
 
      	* noweb/o_misc.nw: Find Specific Text, replaced the strcmp used
      	to search for the text with a strstr so that we can search for
-     	C12 instead of having to seach for refdes=C12. That way the user 
+     	C12 instead of having to seach for refdes=C12. That way the user
      	doesn't have to know what the symbol internal names are.
 
 2003-01-09 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3394,24 +3421,24 @@
 
 2002-12-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/x_attribedit.nw, o_undo.nw, o_misc.nw, o_delete.nw: Added 
+	* noweb/x_attribedit.nw, o_undo.nw, o_misc.nw, o_delete.nw: Added
 	missing calls to i_update_menus()
 
 2002-12-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_basic.nw: Added o_draw_list() and o_draw_selected() helper 
+	* noweb/o_basic.nw: Added o_draw_list() and o_draw_selected() helper
 	functions (used by below change)
 
-	* noweb/o_move.nw: Changed the behavior of move:  When you start 
+	* noweb/o_move.nw: Changed the behavior of move:  When you start
 	the move, the objects are erased first and then the rubber outline
 	is drawn.  This looks a whole lot better, but the downside is that
 	it required the reordering of some operations (namely when things
 	are drawn), so the change is non-trivial.
 
 	* lib/system-gschemrc.in: Fixed spelling mistake: "Dettach" is not
-	a word. 
+	a word.
 
-	* noweb/x_menus.nw: Added data (via gtk_object_set_data()) to 
+	* noweb/x_menus.nw: Added data (via gtk_object_set_data()) to
 	the toplevel menubar.  This data is the individual menu items
 	(of all menus) via the menu path.
 
@@ -3422,16 +3449,16 @@
 	* noweb/x_menus.nw: Removed some cruft which has been around for
 	too long.
 
-	* noweb/x_window.nw: Added code to store the menubar in the 
+	* noweb/x_window.nw: Added code to store the menubar in the
 	TOPLEVEL structure.  Also called i_update_menus when the main
 	window first appears.
 
 	* noweb/i_basic.nw: Added i_update_menus, which, for now, simply
 	disables or enables menu items depending on if there is something
-	selected or not.  This should be improved to take into account 
+	selected or not.  This should be improved to take into account
 	what is inside the selection list.
 
-	* noweb/i_callbacks.nw, o_buffer.nw, o_complex.nw, o_find.nw, 
+	* noweb/i_callbacks.nw, o_buffer.nw, o_complex.nw, o_find.nw,
 	o_select.nw, o_text.nw: Added calls to i_update_menus to keep the
 	menu item disabled/enabled state up to date.
 
@@ -3496,16 +3523,16 @@
 
 	* noweb/o_net.nw, o_pin.nw, o_bus.nw: Fixed all hardcoded widths
 	to be #define'd
-	
+
 	* noweb/o_cue.nw: Fixed all hardcoded sizes for the visual cues to
 	be #define'd
 
 	* configure and friends: Upgraded to gettext 0.11.5
 
-	* configure.in: Added AM_GNU_GETTEXT_VERSION(x.yy.zz) macro to make 
+	* configure.in: Added AM_GNU_GETTEXT_VERSION(x.yy.zz) macro to make
         autopoint happy.
 
-        * configure and friends: Ran "autoreconf --force --install -v" 
+        * configure and friends: Ran "autoreconf --force --install -v"
         to really upgrade to the auto* tools.
 
 	* noweb/g_rc.nw, g_register.nw, i_vars.nw, include/i_vars.h: Added
@@ -3520,8 +3547,8 @@
 
 2002-10-26 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/g_rc.nw, g_register.nw, i_vars.nw, i_vars.h: Added the 
-        following rc keywords: bus-ripper-type, bus-ripper-symname, and 
+	* noweb/g_rc.nw, g_register.nw, i_vars.nw, i_vars.h: Added the
+        following rc keywords: bus-ripper-type, bus-ripper-symname, and
         bus-ripper-rotation
 
 	* noweb/o_net.nw: Added code to act on the above rc keyword info.
@@ -3534,29 +3561,29 @@
 	* lib/system-gschemrc.in: Added defaults for all the bus ripper
 	keywords.
 
-	* tests/buses.sch: Added test schematic for buses.	
+	* tests/buses.sch: Added test schematic for buses.
 
 2002-10-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_net.nw: Added o_net_add_busrippers function.  This
-	function adds the bus rippers after a net addition and after a 
+	function adds the bus rippers after a net addition and after a
 	net is changed via the grips.
 
 	* noweb/o_net.nw: Added calls to above in o_net_end.
 
 	* noweb/o_net.nw: Rearranged o_net_end a little to accommodate the
 	bus ripper code.
-	
+
 	* noweb/o_cue.nw: Added code to render the smaller sized
 	connection cues that connect buses to nets.
 
 	* noweb/o_grips.nw: Added code to the net case (when ending grip
 	manipulations) to draw the bus rippers when connecting the net
 	to a bus.
-	
+
 	* noweb/o_bus.nw: Fix to o_bus_add to init the
 	bus_ripper_direction to zero.
-	
+
 	* noweb/g_rc.nw, g_register.nw, i_vars.nw and friends: Added code
 	to implement the bus-ripper-size rc keyword.
 
@@ -3565,13 +3592,13 @@
 	* tests/nets.sch: Added test schematic for nets.
 
 	* tests/pins.sch: Added a few more test cases.
-	
+
 2002-10-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* tests/pins.sch: Update test schematic to include single pin 
+	* tests/pins.sch: Update test schematic to include single pin
 	components
 
-	* tests/oldsym2.sch: Added an old single pin symbol, to test that 
+	* tests/oldsym2.sch: Added an old single pin symbol, to test that
 	the auto whichend code handles the single pin correctly.
 
 	* noweb/*.nw, include/*.h: Intergrated patch from Egil for
@@ -3591,7 +3618,7 @@
 	all the pins should always be correct.  Do not update this file to
 	the current gEDA/gaf file format ever.
 
-	* configure.in, docs/gschem.txt, include/prototype.h, 
+	* configure.in, docs/gschem.txt, include/prototype.h,
         lib/system-gschemrc.in, noweb/g_key.nw, noweb/g_register.nw,
 	noweb/i_callbacks.nw, noweb/rcstrings.nw, noweb/x_menus.nw,
 	noweb/x_multiattrib.nw: Added Egil Kvaleberg's find documentation
@@ -3615,7 +3642,7 @@
 2002-09-30 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/x_menus.nw: Fixed the code so that toplevel menu names are
-	now translated.  Also fixed it so that "Help" gets translated as 
+	now translated.  Also fixed it so that "Help" gets translated as
 	well.
 
 2002-09-26 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3634,13 +3661,13 @@
 	* noweb/x_attribedit.nw, x_dialog.nw, x_fileselect.nw: Added a few
 	missing _(" ").  Patch by Antonio and Alexandre.
 
-	* po/geda-gschem.pot, pt_BR.po: Updated these file from what 
+	* po/geda-gschem.pot, pt_BR.po: Updated these file from what
 	Antonio and Alexandre sent me.
 
 	* tests/pins.sch: Added test schematic which exercises the pin
 	whichend flag
-	
-	* noweb/rcstrings.nw: Added file which contains all the strings 
+
+	* noweb/rcstrings.nw: Added file which contains all the strings
 	which are related to the menus so that they get translated.
 	The strings are surrounded by _(" ").  This file is NOT built.
 
@@ -3664,17 +3691,17 @@
 
 	* noweb/o_cue.nw: Added code to draw the new pin dangling cues.
 
-	* noweb/o_cue.nw: Added an if in various places so that only the 
+	* noweb/o_cue.nw: Added an if in various places so that only the
 	appropriate cue (based on whichend) is drawn or erase.  This gets
 	rid of a very annoying visual artifiact which was driving me nuts:
         parts of symbols were being erased when a connection was being made
- 	at the WRONG end. 
+ 	at the WRONG end.
 
 2002-09-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/globals.c: Added variable_set_func and quit_func.  These
 	are not used by gschem.
-	
+
 2002-09-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/x_multiattrib.nw: Redid the "Flags" column to be now
@@ -3683,12 +3710,12 @@
 	* noweb/x_multiattrib.nw: Changed the justification of the last
 	two columns to be center
 
-	* noweb/x_mulitattrib.nw: Fixed the slot changing code to be 
+	* noweb/x_mulitattrib.nw: Fixed the slot changing code to be
 	correct (use the correct column)
 
 	* noweb/x_multiattrib.nw: After clicking Change, re-highlight the
 	value entry
-	
+
 2002-09-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/x_multiattrib.nw: Redid multi attribute dialog box using
@@ -3706,10 +3733,10 @@
 
 	* noweb/x_dialog.nw: Moved multi attrib edit dialog box code into
 	above new file.
-	
+
 2002-09-01 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/x_window.nw: Added code to allows the main window to be 
+	* noweb/x_window.nw: Added code to allows the main window to be
 	resized to any smaller size.
 
 2002-08-29 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3717,10 +3744,10 @@
 	* scheme/auto-uref.scm: Fixed left over "uref".  Pointed out/fixed
 	by Antonio A Todo Bom.  Thanks.
 
-	* lib/gschem-lightbg: Fixed the background color for images.  
+	* lib/gschem-lightbg: Fixed the background color for images.
 	Bug pointed out by John Eaton.
 
-	* noweb/gschem.nw: Added bug fix by Alexandre P. Nunes to get 
+	* noweb/gschem.nw: Added bug fix by Alexandre P. Nunes to get
 	the postscript output working again when you pick a locale which
 	uses ","'s instead of "."'s.
 
@@ -3742,7 +3769,7 @@
 	* noweb/x_pagesel.nw: Added the key binding for the Escape key
 
 	* noweb/x_print.nw: Added the key binding for the Escape key
-	
+
 	* noweb/x_image.nw: Added the key binding for the Escape key
 
 	* noweb/o_misc.nw: Fixed the long standing bug in o_edit_find_text
@@ -3762,7 +3789,7 @@
 	the number one is used when autonumbering refdes's.
 
 	* noweb/o_text.nw: Changed the color of the x and I (origin/invisible)
- 	graphical cues to be grey (locked color) instead of red.  Red is 
+ 	graphical cues to be grey (locked color) instead of red.  Red is
 	reserved for errors.
 
 	* noweb/x_attribedit.nw: Changed the cursor focus entry to be the
@@ -3770,7 +3797,7 @@
 
 2002-08-05 Ales Hvezda   <ahvezda@geda.seul.org>
 
- 	* noweb/i_basic.nw: Added a const to get rid of compiler warnings 
+ 	* noweb/i_basic.nw: Added a const to get rid of compiler warnings
 	when compiling with --disable-nls
 
 2002-08-04 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3778,7 +3805,7 @@
 	* noweb/*: Added gettext patch by Alexandre P. Nunes.  Thank you for
 	the work on i18n.
 
-	* intl/ m4/ po/ ABOUT-NLS config.rpath: Added directories / files 
+	* intl/ m4/ po/ ABOUT-NLS config.rpath: Added directories / files
 	to support above
 
 	* configure.in: Updated to support above
@@ -3794,18 +3821,18 @@
 
 2002-07-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_misc.nw, x_dialog.nw, lib/system-gschemrc.in: Renamed 
+	* noweb/o_misc.nw, x_dialog.nw, lib/system-gschemrc.in: Renamed
 	user visible references of uref to refdes
 
 	* examples/*.sch: Update all schematics using gschupdate
-	
+
 2002-07-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/x_attribedit.nw: Added code so that value entry field is 
+	* noweb/x_attribedit.nw: Added code so that value entry field is
 	selected if there is something to select (makes replacing the text
 	much faster).
 
-	* tests/: Created tests directory mainly to hold various tests 
+	* tests/: Created tests directory mainly to hold various tests
 
 	* examples/*.sch: Moved some of the developer only schematics into
 	the test/ directory
@@ -3840,22 +3867,22 @@
 	be much simpler and cleaner
 
 	* noweb/x_attribedit.nw: Integrated patch from Dave Lawrence which
-	adds a bunch of useful capabilities to the attrib add dialog box, 
+	adds a bunch of useful capabilities to the attrib add dialog box,
 	add an attribute to multiple objects, replace existing attributes
 
 2002-07-05 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* lib/system-gschemrc.in: Fixed spelling mistake
 
-	* lib/system-gschemrc.in: Fixed the load of the commonrc file to 
+	* lib/system-gschemrc.in: Fixed the load of the commonrc file to
 	work with --with-rcdir again.
 
 	* noweb/g_key.nw, g_register.nw, i_callbacks.nw: Added Edit/update
-	command 
+	command
 
 2002-06-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_attrib.nw: Changed o_attrib_add_selected to take a 
+	* noweb/o_attrib.nw: Changed o_attrib_add_selected to take a
 	selection list as a parameter (allows for code reuse)
 
 	* noweb/o_select.nw, o_complex.nw: Updated calls to above to pass
@@ -3866,13 +3893,13 @@
 
 	* noweb/o_delete.nw: Removed a static keyword from
 	o_delete_complex(...) to allow for code reuse.
-	
+
 2002-06-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_misc.nw, i_callbacks.nw: Fixed all
 	u_basic_breakup_string calls to take the extra character which is
 	the delimiter.
-	
+
 2002-06-18 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_slot.nw: Plugged a small memory leak which has been
@@ -3880,7 +3907,7 @@
 
 	* noweb/i_basic.nw: Added some experimental code which changes
 	the cursor image.  Something I'm playing with.
-	
+
 2002-06-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* TODO: A little bit of cleanup, organizing things.  I will move
@@ -3889,11 +3916,11 @@
 	* noweb/x_fileselect.nw: Fixed a bug which could have caused a crash.
  	Turn on the preview button with nothing (or just a directory)
 	selected, and gschem tried to open that garbage.
-	
+
 	* noweb/x_dialog.nw: Fixed add/edit attribute dialog box to not add
 	improper attributes
 
-	* noweb/x_dialog.nw, i_callbacks.nw: Added a bunch i_update_toolbar 
+	* noweb/x_dialog.nw, i_callbacks.nw: Added a bunch i_update_toolbar
 	calls
 
 2002-06-10 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3903,7 +3930,7 @@
 
 	* noweb/x_preview.nw: A few fixes to address the WinME problem.
 
-	* noweb/g_rc.nw, gschem.nw, i_callbacks.nw, x_fileselect.nw: 
+	* noweb/g_rc.nw, gschem.nw, i_callbacks.nw, x_fileselect.nw:
 	Made sure that all of this trailing slash nonsense is only built
 	on mingw and does not impact the unix port.
 
@@ -3912,8 +3939,8 @@
 
 2002-06-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/g_rc.nw, gschem.nw, i_callbacks.nw, x_fileselect.nw: 
-	Added a call to u_basic_strip_trailing for the mingw port to 
+	* noweb/g_rc.nw, gschem.nw, i_callbacks.nw, x_fileselect.nw:
+	Added a call to u_basic_strip_trailing for the mingw port to
         make WinME happy (ME was interpreting \\ anywhere in filenames as
         network paths).
 
@@ -3931,7 +3958,7 @@
 2002-05-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* lib/system-gschemrc.in: Fixed incorrect environment variable name
-        "GEDADATARC" to be GEDADATA. 
+        "GEDADATARC" to be GEDADATA.
 
 	* lib/system-gschemrc.in: After reading all the negative opinions of
 	a light colored background, changed default back to a black
@@ -3958,7 +3985,7 @@
 	banding arc)
 
 	* noweb/i_callbacks.nw: Fixed a whole slew of quirks when you are
-        drawing something and cancel it or start another command (that 
+        drawing something and cancel it or start another command (that
         used to leave ghosts around)
 
 	* noweb/i_callbacks.nw: Fixed it so that in some modes, the right
@@ -3967,7 +3994,7 @@
 	* noweb/x_dialog.nw: Added modal grab for add arc dialog box.
 
 2002-05-23 Ales Hvezda   <ahvezda@geda.seul.org>
- 
+
 	* noweb/i_basic.nw, o_grips.nw, x_fileselect.nw, i_callbacks.nw,
         x_event.nw: Add a bunch of i_update_toolbar calls to make sure that
 	the toolbar reflects the current event_state.
@@ -3996,12 +4023,12 @@
 	* noweb/i_basic.nw: Added i_update_toolbar_select, which sets the
 	toolbar icon to select.  This code needs to be refactored.
 
-	* noweb/x_window.nw: Commented out the toolbars which are not 
+	* noweb/x_window.nw: Commented out the toolbars which are not
 	ready for use yet.
 
 2002-05-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/g_rc.nw, g_register.nw, i_vars.nw: Added bitmap-directory 
+	* noweb/g_rc.nw, g_register.nw, i_vars.nw: Added bitmap-directory
 	rc keyword
 
 	* noweb/x_window.nw: Added the use of bitmap_directory
@@ -4037,13 +4064,13 @@
 	* noweb/x_color.nw: Fixed outline colors so that they xor properly
 	for non-black backgrounds
 
-	* noweb/o_arc.nw, o_attrib.nw, o_box.nw, o_bus.nw, o_circle.nw, 
+	* noweb/o_arc.nw, o_attrib.nw, o_box.nw, o_bus.nw, o_circle.nw,
 	  o_grips.nw, o_line.nw, o_net.nw, o_pin.nw, o_select.nw, o_text.nw:
 	Fixed select color getter so that it returns the dark color which has
 	been corrected for a non-black background.  Also did some minor cleanup.
 
 	* noweb/o_attrib.nw, o_basic.nw, o_buffer.nw o_complex.nw, o_copy.nw,
-	  o_move.nw, o_text.nw, x_event.nw: Fixed boundbox color getter so 
+	  o_move.nw, o_text.nw, x_event.nw: Fixed boundbox color getter so
 	that it returns the dark color which has been corrected for a
 	non-black background.
 
@@ -4068,7 +4095,7 @@
 	* lib/system-gschemrc.in: Moved some attribute related items from
 	the Edit/ menu to the Attribute/ menu (Find Specific Text, Hide
 	Specific Text, Show Specific Text)
-	
+
 	* lib/system-gschemrc.in: Changed the hotkeys for the above items
  	to be under the Attribute/ menu)
 
@@ -4113,7 +4140,7 @@
 
 2002-04-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure.in and friends: More work on getting the upgrade of 
+	* configure.in and friends: More work on getting the upgrade of
 	autoconf, automake, and libtool to behave correctly.
 
 	* configure.in: Added PATHSEP variable which holds the proper path
@@ -4153,10 +4180,10 @@
 
 	* configure.in, config.h.in: Added a few checks for some
 	non-portable #includes
-	
+
 	* configure.in: Added checks for mingw32 and disabled the
 	cygwin port
-	
+
 2002-02-18 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.in: Removed all trace of GUILE_LIB and GUILE_INCLUDE
@@ -4168,7 +4195,7 @@
 
 2002-02-11 Ales Hvezda <ahvezda@geda.seul.org>
 
-	* lib/system-gschemrc.in: Added "..." to some of the Edit/ menu 
+	* lib/system-gschemrc.in: Added "..." to some of the Edit/ menu
 	options which popup a dialog box.
 
 2002-02-09 Ales Hvezda <ahvezda@geda.seul.org>
@@ -4176,12 +4203,12 @@
 	* noweb/o_text.nw: Improved o_text_edit_end to loop over all
 	selected objects and change the text size or alignment.  If more
 	than one object is selected then only change size and alignment
-	and not the string.  String can only be changed if one object is 
+	and not the string.  String can only be changed if one object is
 	selected.
 
-	* noweb/x_dialog.nw, noweb/o_text.nw: If you select multiple text 
-	strings and you cannot edit the string, so do not give the user 
-	that option (I removed the text entry if the number of selected 
+	* noweb/x_dialog.nw, noweb/o_text.nw: If you select multiple text
+	strings and you cannot edit the string, so do not give the user
+	that option (I removed the text entry if the number of selected
 	objects > 1)
 
 	* noweb/x_fileselect.nw: Also applied the changes that Chris Ellec
@@ -4194,30 +4221,30 @@
 	should be unaffected.  Previous behavior was to unselect
 	everything (which is wrong).
 
-	* noweb/o_misc.nw: Added suggestion by Wojciech Kazubski for a 
+	* noweb/o_misc.nw: Added suggestion by Wojciech Kazubski for a
 	function which just shows hidden text, but doesn't toggle the
 	visibility.  This new function is called o_edit_show_hidden.
 	The original function is now called o_edit_make_visible.
-	Added it to the rc/lib (g_*.nw) files as well.  
+	Added it to the rc/lib (g_*.nw) files as well.
 
 	* noweb/o_attrib.nw, o_text.nw: Further improved on above to
-	draw a little "I" when showing invisible text 
+	draw a little "I" when showing invisible text
 
 	* noweb/o_text.nw: Fixed the above behavior to work for text items
-	within placed components.  Now you can show all hidden text on a 
+	within placed components.  Now you can show all hidden text on a
 	schematic and see exactly what text is within a symbol! :-)
 
 	* noweb/x_dialog.nw: Put in fix from Dave Lawrence wrt
 	find_text_ok, redraw_all after you find no more text occurances
 
 	* noweb/*.nw: Removed all -Wall warnings
-	 		
+
 2002-01-24 Stefan Petersen <spe@stacken.kth.se>
 
-	* lib/system-gschemrc.in: Fixed bug in path when loading 
+	* lib/system-gschemrc.in: Fixed bug in path when loading
 	  auto-uref. (geda-data => gedarcdir). Thanks to Cris Ellec for
 	  spotting this. Code is usually commented out.
-	
+
 2002-01-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_misc.nw: Added autonumber_text patch by Dave Lawrence.
@@ -4253,11 +4280,11 @@
 
 	* scripts/notangle_guile.scm.in: Added guile script to tangle
 	noweb code without the whole noweb package installed.
-	
-	* noweb/o_{arc|box|circle|line}.nw: Full documentation, code 
+
+	* noweb/o_{arc|box|circle|line}.nw: Full documentation, code
 	clean-up.
 
-	* noweb/o_grips.nw: Full documentation, code clean-up : old 
+	* noweb/o_grips.nw: Full documentation, code clean-up : old
 	function splitted in one function for each object type. Added
 	function to draw and erase grips.
 
@@ -4268,11 +4295,11 @@
 
 2001-10-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_misc.nw: Changed all instances of strnlen to strlen 
+	* noweb/o_misc.nw: Changed all instances of strnlen to strlen
 
 2001-10-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/g_key.nw, g_register.nw: Added first bit of Dave Lawrence's 
+	* noweb/g_key.nw, g_register.nw: Added first bit of Dave Lawrence's
 	  find text patch (hotkey for find text)
 
 	* noweb/o_misc.nw: Added more of Dave's patch (lowlevel support
@@ -4285,20 +4312,20 @@
 	* noweb/g_key.nw, g_register.nw: Added some missing hotkey scheme
 	  functions
 
-	* noweb/o_misc.nw: Minor updates to the patch wrt find-text, did a 
-	  true blue pan instead of calling set_window(...)  Also added a 
+	* noweb/o_misc.nw: Minor updates to the patch wrt find-text, did a
+	  true blue pan instead of calling set_window(...)  Also added a
 	  zoom extents so that the zoom is about right (still experimental)
 
 	* src/Makefile.am: Changed the order of source file building, so that
-	  g_key.* is before g_register.* 
+	  g_key.* is before g_register.*
 
 2001-07-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/g_rc.nw, g_register.nw, i_vars.nw, x_window.nw: 
+	* noweb/g_rc.nw, g_register.nw, i_vars.nw, x_window.nw:
 	  Added (window-size w h) keyword to make some users (including myself)
-	  happy and in control of the window size (instead of having 
+	  happy and in control of the window size (instead of having
 	  gschem pick some always too large window size for me)
-	
+
 2001-07-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.in: Cleaned up all the data dir variables (to only have
@@ -4307,22 +4334,22 @@
 	* noweb/gschem.nw, g_rc.nw: Fixed up code to look for rc files in
           different place when specifing the rc dirs using --with-rcdir.
           This used to work, but it was broken me when I added GEDADATA
-	
+
 	* lib/system-gschemrc.in, noweb/gschem.nw: Added a bunch of code
 	  to allow the rc files to live somewhere else
 
 	* noweb/gschem.nw, g_rc.nw: More work on getting GEDADATA and
 	  GEDADATARC environment variables to work right when you move
 	  the binaries around
-	
-	* noweb/gschem.nw, i_basic.nw, o_slot.nw, o_undo.nw, x_color.nw, 
+
+	* noweb/gschem.nw, i_basic.nw, o_slot.nw, o_undo.nw, x_color.nw,
 	  x_grid.nw: Added patch by Dan Mcmahill for 64-bit architectures.
 
 	* docs/gschem.txt: Misc doc update
 
 2001-07-21 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_undo.nw: Whoops was hardcoding "/tmp", should look at 
+	* noweb/o_undo.nw: Whoops was hardcoding "/tmp", should look at
 	  environment variable TMP instead
 
 
@@ -4331,14 +4358,14 @@
 	* noweb/x_menu.nw: Added code for Cygwin to get monospaced fonts
 	  for the menus.
 
-	* noweb/i_callbacks.nw: Fixed the "scrollbar not updating when 
+	* noweb/i_callbacks.nw: Fixed the "scrollbar not updating when
 	  panning" bug pointed out by Chris; wasn't updating the
 	  scrollbars when panning :)
 
 	* noweb/i_callbacks.nw: Fixed the wasn't updating connections when
 	  doing a symbol translate in a schematic (valid and should work)
 	  This still does NOT work. :(
-	
+
 2001-07-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.in: Fixed all the LDFLAGS to be correct (and only link
@@ -4369,7 +4396,7 @@
 
 	* lib/system-gschemrc.in: Misc updates to some of the key mappings
 	  (added options-rubberband : or and added zoom-extents : ze)
-	
+
 2001-07-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* scheme/gschem.scm: Added a bunch of scheme code to search
@@ -4377,22 +4404,22 @@
 	  a scheme procedure
 
 	* noweb/x_menus.nw: Changed get_main_menu to get its info from
-	  the s_menu_* datastructures as well as put the hotkeys into 
+	  the s_menu_* datastructures as well as put the hotkeys into
 	  the menu
 
-	* noweb/g_rc.nw: Added g_rc_add_menu 
+	* noweb/g_rc.nw: Added g_rc_add_menu
 
 	* noweb/g_register.nw: Added register call for above
 
 	* noweb/gschem.nw: Added s_menu_init() and s_menu_free() calls
 
-	* lib/gschem-gtkrc: Added gtkrc file to set the font on all 
-	  dialog boxes to be fixed (this can be another font as long as 
+	* lib/gschem-gtkrc: Added gtkrc file to set the font on all
+	  dialog boxes to be fixed (this can be another font as long as
 	  it is fixed spaced)
 
 	* lib/system-gschemrc.in: Slowely started adding menu entries
 	  using add-menu
-	
+
 2001-07-05 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/gschem.nw: Removed the "This is alpha software" message and
@@ -4411,7 +4438,7 @@
 
 	* noweb/o_copy.nw, o_move.nw: The bounding box (when enabled) was
 	  not being erased properly after doing a move or copy. Fixed.
-	
+
 2001-07-02 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.in: A little more work to get indent vs gindent to
@@ -4425,7 +4452,7 @@
 
 	* configure.in: Make sure configure scripts work with autoconf-2.50
 	  (had to fix cygwin check), they do not yet work with 2.50
-	
+
 	* Removed all traces of libtool from gschem, libtool is not required
           to build gschem
 
@@ -4438,7 +4465,7 @@
 
 	* noweb/x_fileselect.c: Added code to enable/disable the sorting
 	  of component libraries
-	
+
 2001-06-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.in: More work on getting build mechanism for noweb
@@ -4460,17 +4487,17 @@
 
 	* lib/gschem-systemrc.in: Changed the load of the commonrc file
 	  to use the GEDADATA environment variable
-	
+
 2001-06-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/gschem.c: Added call to libgeda_init
-	
+
 2001-06-05 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/Makefile: misc path changes
 
 	* scripts/geda_totexi: renamed gawk to just plain awk
-	
+
 2001-06-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/*: Added .nw files from Patrick B.
@@ -4494,7 +4521,7 @@
         * Removed all Makefile.in files and configure
 
 2001-03-17 Ales Hvezda   <ahvezda@geda.seul.org>
-        
+
         * Got make dist and make distcheck working (means all files which are
           in CVS are in some Makefile)
 
@@ -4507,7 +4534,7 @@
 
 	* src/x_menus.c: if libgdgeda isn't added, the menu alternative
 	  will not appear (silly, but I did it).
-	
+
 2001-03-07  Stefan Petersen  <spe@geda.seul.org>
 
 	* configure.in: Added patch from Bruno Schwander on libgeda also
@@ -4518,7 +4545,7 @@
 	* configure.in: Removed some hard coded libraries.
 	  Patch and suggestion from Bruno Schwander.
 
-2001-03-04 Ales Hvezda	 <ahvezda@geda.seul.org>	
+2001-03-04 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_complex.c: Fixed the symbol translate code to do a zoom limits
 	  first and then the translate, fixes a bug where symbol didn't always
@@ -4527,7 +4554,7 @@
 	* src/o_misc.c: Put back the code to call the screen coord version of
 	  arc mirror/rotate
 
-	* lib/system-gschemrc: Removed some old unused keyword options 
+	* lib/system-gschemrc: Removed some old unused keyword options
 
 	* src/g_rc.c: Removed some old unused keyword options
 
@@ -4536,21 +4563,21 @@
         * configure.in: Added a check to make sure libgeda-config and
           gesym-config are the right version
 
-2001-03-03 Ales Hvezda	 <ahvezda@geda.seul.org>	
+2001-03-03 Ales Hvezda	 <ahvezda@geda.seul.org>
 
-	* configure.in: Fixed a few bugs dealing with the enabling and 
-	  disabling of features via the command line (pointed out by 
+	* configure.in: Fixed a few bugs dealing with the enabling and
+	  disabling of features via the command line (pointed out by
 	  Karel Kulhavy)
 
-2001-03-02 Ales Hvezda	 <ahvezda@geda.seul.org>	
+2001-03-02 Ales Hvezda	 <ahvezda@geda.seul.org>
 
-	* src/o_copy.c: Oops lines were not being redraw selected after a 
+	* src/o_copy.c: Oops lines were not being redraw selected after a
  	  copy
 
-2001-03-01 Ales Hvezda	 <ahvezda@geda.seul.org>	
+2001-03-01 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_move.c: Fixed a bug (pointed out by Matt Ettus) where an
-	  endpoint was added to the netconn rubberband structure when it 
+	  endpoint was added to the netconn rubberband structure when it
 	  should not have been.  Bug was in an if statement which included
 	  an || which was causing a false hit
 
@@ -4558,20 +4585,20 @@
 
 	* src/*.c: Fixed a bunch of -Wall warnings
 
-2001-02-23 Ales Hvezda	 <ahvezda@geda.seul.org>	
+2001-02-23 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/x_print.c: Fixed a bug where if you specified portrait printing
 	  via the *rc files, you would get incorrect centering of the image.
 	  Bug pointed out by Wolfgang Buesser.
 
-2001-02-19 Ales Hvezda	 <ahvezda@geda.seul.org>	
+2001-02-19 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_complex.c: Added code to get symbol translate working with
 	  the new connection / cue system
-	
-2001-02-17 Ales Hvezda	 <ahvezda@geda.seul.org>	
 
-	* src/o_move.c: Modified and put back the code which implements 
+2001-02-17 Ales Hvezda	 <ahvezda@geda.seul.org>
+
+	* src/o_move.c: Modified and put back the code which implements
 	  netconn rubberbanding
 
 	* src/o_basic.c: Enabled some code to support above
@@ -4579,7 +4606,7 @@
 	* src/x_event.c: Enabled some code to support above
 
 	* src/o_grips.c: Added a redraw_single of the original object if
-	  you try to create a zero length object with a grip 
+	  you try to create a zero length object with a grip
 
 	* src/i_callbacks.c, g_*.c, x_menus.c: Integrated patch from Chris
 	  Ellec for turning on and off the netconn rubberbanding
@@ -4589,8 +4616,8 @@
 
 	* lib/system-gschemrc.in: Made the default for netconn-rubberband
 	  enabled by default
-	
-2001-02-11 Ales Hvezda	 <ahvezda@geda.seul.org>	
+
+2001-02-11 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/x_print.c: Fixed a filename entry widget bug, filenames are
 	  typically longer than 79 characters, so increased size to 200
@@ -4600,16 +4627,16 @@
 
 	* src/o_buffer.c: Misc code changes to support the new connection
 	  and cue system
-	
-2001-02-10 Ales Hvezda	 <ahvezda@geda.seul.org>	
+
+2001-02-10 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_complex.c: Added code to properly update connection / cues
 	  when placing complex objects
 
-	* src/o_complex.c: Found/Fixed a memory leak when placing the 
+	* src/o_complex.c: Found/Fixed a memory leak when placing the
 	  individual objects inside a schematic (via "include objects ...")
 
-	* Started resyncing with the cvs repository.  
+	* Started resyncing with the cvs repository.
 
 	* src/o_grips.c: Got grips to use the new connection / cues system
 
@@ -4619,8 +4646,8 @@
 	* src/o_grips.c: Finally fixed the "disappearing object" bug when you
 	  use a grip on any of the objects.  Now the grips behave like
 	  they should (finally)! :-)
-	
-2001-02-08 Ales Hvezda	 <ahvezda@geda.seul.org>	
+
+2001-02-08 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_misc.c: Got mirror to use the new connection / cue system
 
@@ -4629,17 +4656,17 @@
 	  anymore.  Have to watch out for any breakage.
 
 	* src/o_misc.c: Finally removed the restriction that you could not
-	  mirror embedded components.  :-)  Have to watch out for any 
+	  mirror embedded components.  :-)  Have to watch out for any
 	  breakage.
-	
+
 2001-02-03  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* src/o_arc.c: Added code to draw grips on an arc
 
 	* src/o_grips.c : Added code to handle grips on arc with
 	  o_grips_<search|start|motion|end>_arc() functions.
-	
-2001-02-03 Ales Hvezda	 <ahvezda@geda.seul.org>	
+
+2001-02-03 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_copy.c: Got copy to use the new connection / cue system
 
@@ -4662,7 +4689,7 @@
 
 	* src/o_misc.c: #if'd out some function calls which don't exist
 	  anymore (but I need the place holder to add new functions)
-	
+
 2001-01-27  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/i_callbacks.c: Added code to draw the grid when a new
@@ -4674,39 +4701,39 @@
 
 	* src/o_circle.c: Modified the calls to arc drawing functions to
 	  match the change in the meaning of arc parameters
-	
-2001-01-23 Ales Hvezda	 <ahvezda@geda.seul.org>	
+
+2001-01-23 Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_move.c, o_cue.c: Work on getting the new conn system to
-	  work with move 
-	
-2001-01-19  Ales Hvezda	 <ahvezda@geda.seul.org>	
+	  work with move
+
+2001-01-19  Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_cue.c: Renamed o_conn.c to o_cue.c (makefile updates etc...)
 
 	* src/o_cue.c: More work on getting cues done
-	
+
 2001-01-19  Stefan Petersen  <spe@geda.seul.org>
 
 	* scheme/auto-uref.scm: If there wasn't a question mark in the
 	  uref string, the auto-ref function blew up.
-	
+
 2001-01-18  Ales Hvezda	 <ahvezda@geda.seul.org>
 
 	* src/o_conn.c: A lot of work on getting the visual cues done
-	
+
 2001-01-17  Stefan Petersen  <spe@geda.seul.org>
 
 	* scheme/auto-uref.scm: Made the associative list,used to keep track
 	  of used prefixes, using _real_ Guile associative list functions.
-	
+
 2001-01-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/x_event.c, g_key.c: Fixed a bug pointed out by Thomas Lundin
 	  which was causing a core dump.  Basically, g_key_* functions
 	  were using a stale w_current pointer; switched them to use the
 	  always correct global_window_current pointer.
-	
+
 2001-01-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* docs/gschem.txt: Added a few lines about label= attribute
@@ -4715,7 +4742,7 @@
 
 	* lib/system-gschemrc.in: minor paper-sizes bug that will break
 	  future typechecking.
-	
+
 	* src/g_rc.c: minor spell error in boundingbox
 
 2001-01-07  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -4766,7 +4793,7 @@
 	* src/g_funcs.c: Added support functions for above
 	  (code by Eduard Moser and Martin Lehmann)
 
-	* scheme/generate_netlist.scm: This is the scheme code which pulls 
+	* scheme/generate_netlist.scm: This is the scheme code which pulls
           together all of the above (new file added)
 	  (code by Eduard Moser and Martin Lehmann)
 
@@ -4837,7 +4864,7 @@
 	* src/i_callbacks.c: Integrated changes by Werner Hoch, Bunch of
 	  code cleanup, removed some redundant code
 
-	* src/x_grid.c: Integrated changes by Werner Hoch, Changed the way 
+	* src/x_grid.c: Integrated changes by Werner Hoch, Changed the way
 	  the grid spacing is calculated (and drawn)
 
 	* src/x_basic.c: Integrated changes by Werner Hoch, changed some init
@@ -4866,7 +4893,7 @@
 
 2000-11-22  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_move.c, x_event.c, o_basic.c: Finished adding the code to 
+	* src/o_move.c, x_event.c, o_basic.c: Finished adding the code to
           support the netconn-rubberband rc keyword
 
 2000-11-21  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -4884,7 +4911,7 @@
 	  the nethash table (supporting above)
 
 	* src/o_move.c: Changed all stretch_tail instances (when passing
-	  into s_stretch_add) so that duplicates can be check for (and 
+	  into s_stretch_add) so that duplicates can be check for (and
 	  prevented)
 
 2000-11-12  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -4906,12 +4933,12 @@
 	  old rubberbands (when doing a move and switching from free
 	  to constrained move)
 
-	* src/x_event.c: Added calls to o_move_stretch_rubberband 
+	* src/x_event.c: Added calls to o_move_stretch_rubberband
 
 	* src/o_net.c o_bus.c: Added some routines to support above
 
 	* src/x_window.c: Oops forgot to init ftwindow which will cause
-	  a core dump on some systems, fixed 
+	  a core dump on some systems, fixed
 
 2000-11-09  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -4968,7 +4995,7 @@
 	  dialog box
 
 2000-10-10  Stefan Petersen  <spe@geda.seul.org>
- 	
+
 	* src/gschem.c, src/i_callbacks.c, src/x_fileselect.c, src/x_preview.c
 	  f_open calls silently ignores the error code returned.
 
@@ -4989,7 +5016,7 @@
 
 	* src/gschem.c: Changed CYGWIN32 warning message
 
-	* src/o_arc.c: Patrick checked in a rotate fix for arcs 
+	* src/o_arc.c: Patrick checked in a rotate fix for arcs
 
 	* src/o_misc.c: Added *_erase_grips calls to o_rotate_90 and o_mirror
 
@@ -5000,7 +5027,7 @@
 
 	* src/x_dialog.c: Also remove the log window and the page manger
  	  from the raise dialog function
-	
+
 	* src/o_move.c: Added a missing erase grip function for boxes
 
 	* src/o_delete.c: Added a bunch of erase grip functions for all
@@ -5031,9 +5058,9 @@
 
 	* src/x_event.c: Added code to call o_complex_place_rotate
 
-	* src/x_dialog.c: Removed some code (o_undo_savestate) which didn't 
+	* src/x_dialog.c: Removed some code (o_undo_savestate) which didn't
  	  belong
-	
+
 	* src/x_dialog.c: Added line type / line width dialog box
 
 	* src/i_callbacks.c: Added code to call new line width / line type
@@ -5042,11 +5069,11 @@
 	* src/x_menus.c: Added Edit/Line Width & Type menu option
 
 	* src/*.c, lib/system-gschemrc.in: Added hotkeys for Edit/Line Width &
- 	  Type 
+ 	  Type
 
 2000-10-04  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_line.c: Added code to draw grips 
+	* src/o_line.c: Added code to draw grips
 
 	* src/o_grips.c: Added new file which will contain code which deals
 	  with drawing grips
@@ -5059,12 +5086,12 @@
 
 	* src/o_bus.c: Added code to draw grips
 
-	* */*: Removed all calls to *stretch functions 
+	* */*: Removed all calls to *stretch functions
 
 	* src/x_dialog.c: Removed the file/component selection dialog box
-   	  from the "raise on expose event" 
+   	  from the "raise on expose event"
 
-	* src/o_move.c: Added grip erase function calls to clean up any 
+	* src/o_move.c: Added grip erase function calls to clean up any
 	  droppings
 
 	* src/o_box.c: Added code to draw grips
@@ -5083,10 +5110,10 @@
 
 	* src/o_circle.c: Renamed all d1 to length and d2 to space
 
-	* src/o_*.c: Found a minor bug in o_*_draw which caused primitives to 
+	* src/o_*.c: Found a minor bug in o_*_draw which caused primitives to
 	  sometimes not be drawn
 
-	* src/o_box.c: Renamed box_width to line_width (when it applied to 
+	* src/o_box.c: Renamed box_width to line_width (when it applied to
           the thickness of a line)
 
 	* src/o_*.c: Made sure the thickness of all graphic contexts are 0
@@ -5115,13 +5142,13 @@
 
 	* Added auto-uref.scm and print-NB-attribs.scm scheme programs.
 	  Changed scheme/Makefile.am accordingly and reran automake.
-	
+
 2000-08-28  Stefan Petersen  <spe@geda.seul.org>
 
         * Fixed bug in configure.in. Probably a bug in autoconf.
           Now it should work to configure when libguile is dependent
           on other libs.
-	
+
 2000-08-26  Stefan Petersen  <spe@geda.seul.org>
 
         * Cleaned up configure stuff and added guile.m4 to enhance
@@ -5142,7 +5169,7 @@
 	* src/o_complex.c *.c: Converted all complex references to use the new
 	  complex structure
 
-	* src/*.c: Went through all code and made sure code compiles with 
+	* src/*.c: Went through all code and made sure code compiles with
 	  all the renamed variables
 
 2000-08-20  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -5159,14 +5186,14 @@
 	* src/o_text.c: Found a long hidden bug, wasn't properly recomputing
 	  screen_x and screen_y for text items
 
-	* src/*.c: Converted all text_* references to use the new text 
+	* src/*.c: Converted all text_* references to use the new text
 	  structure
 
 	* src/o_line.c: Converted all line_points references to use the new
 	  line structure
 
 	* src/o_net.c, o_pin.c, o_bus.c: Changed o_line_visible's parameters
-	  to be correct (use line structure). 
+	  to be correct (use line structure).
 
 	* src/o_pin.c: Converted all line_points references to use the new
 	  line structure
@@ -5196,10 +5223,10 @@
 
 	* src/g_hook.c: Added. Contains hook support functions.
 
-	* src/Makefile.am: Added above source file. -> 
+	* src/Makefile.am: Added above source file. ->
 	  all Makefile* and configure are regenerated.
-	
-	* src/globals.c, include/globals.h: Defined three hooks; 
+
+	* src/globals.c, include/globals.h: Defined three hooks;
 	  *_component_hook
 
 	* src/g_register.c: Init attrib smob stuff and defines hooks
@@ -5207,11 +5234,11 @@
 	* src/o_complex.c, src/o_copy.c, src/o_move.c: Calls to hooks added
 
 	* include/prototype.h: two hook support functions.
-	
+
 2000-07-20  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/x_event.c: Fixed a bug in the middle mouse button move when
-	  you pressed the shift key and had the mouse over an existing 
+	  you pressed the shift key and had the mouse over an existing
 	  object.  Now the object is not selected.
 
 2000-07-04  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -5238,21 +5265,21 @@
 	  you zoom and then make a schematic change (zoom undo does not
 	  store state of schematic), so you have to go looking for the data.
 
-	* src/g_rc.c: Added component-library-search rc keyword which 
+	* src/g_rc.c: Added component-library-search rc keyword which
 	  implements the automatic searching and adding of component libraries
 	  given a directory (requested feature for Steve Williams)
 
-	* src/g_register.c: Added code to support component-library-search 
+	* src/g_register.c: Added code to support component-library-search
           rc keyword
 
-	* src/g_rc.c, src/g_register.c: Added very similar code to above to 
+	* src/g_rc.c, src/g_register.c: Added very similar code to above to
           support source-library-search rc keyword
 
-	* src/x_dialog.c (bunch of other files): Fixed attribute add bug 
+	* src/x_dialog.c (bunch of other files): Fixed attribute add bug
 	  where when Add/Attribute...  is execute from the menu and the
 	  attribute text location is weird.
 
-	* src/g_register.c, src/i_callbacks.c, src/g_key.c: Added new 
+	* src/g_register.c, src/i_callbacks.c, src/g_key.c: Added new
 	  function add-attribute-hotkey to support above
 
 	* lib/system-gschemrc.in: Added add-attribute-hotkey in the appropriate
@@ -5276,7 +5303,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 /* NOT DONE */
 /***********************************************************************/
 
-	* src/a_zoom.c, src/a_pan.c: Moved some of the redraw functions 
+	* src/a_zoom.c, src/a_pan.c: Moved some of the redraw functions
 	  around
 
 	* src/x_event.c: Changed one of the o_redraw_all_fast functions to be a
@@ -5284,9 +5311,9 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/o_move.c: Putzed around with the NET move code case to see if
 	  I could improve the net_conn drawing problems.  Not much success
-	  though (probably broke things) 
+	  though (probably broke things)
 
-	* src/a_pan.c, src/a_zoom.c, src/x_event.c, src/i_callbacks.c: 
+	* src/a_pan.c, src/a_zoom.c, src/x_event.c, src/i_callbacks.c:
 	  Removed o_undo_savestate from zoom and pan functions (for now,
 	  eventually routines need to go back in)
 
@@ -5299,11 +5326,11 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-06-23  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/x_fileselect.c, src/i_callbacks.c: Removed the "unselect all 
+	* src/x_fileselect.c, src/i_callbacks.c: Removed the "unselect all
 	  before save" call since the lowlevel routines in libgeda now
 	  take care of saving primitives correctly
 
-	* src/o_undo.c: Moved undo_* pointers into page structure 
+	* src/o_undo.c: Moved undo_* pointers into page structure
 
 	* src/o_undo.c: Moved chunks of code into libgeda/src/s_undo.c
  	  (init and free function)
@@ -5321,14 +5348,14 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* lib/system-gschemrc.in: Added undo-levels and undo-control to
 	  rc file
 
-	* src/gschem.c, src/i_callbacks.c, src/x_fileselect.c, src/x_window.c: 
+	* src/gschem.c, src/i_callbacks.c, src/x_fileselect.c, src/x_window.c:
           Added a o_undo_savestate immediately after you open/create a new page
 
-	* src/*.c: Added an o_undo_savestate after all code which causes a 
+	* src/*.c: Added an o_undo_savestate after all code which causes a
 	  schematic change
 
-	* src/a_zoom.c, src/a_pan.c, src/x_events.c: Added an o_undo_savestate 
-	  after all zoom/pan type code 
+	* src/a_zoom.c, src/a_pan.c, src/x_events.c: Added an o_undo_savestate
+	  after all zoom/pan type code
 
 2000-06-22  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -5339,10 +5366,10 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/o_line.c: Added first call to o_undo_savestate in o_line_end
 
-	* src/g_key.c, src/i_callbacks.c: Added new key callbacks 
+	* src/g_key.c, src/i_callbacks.c: Added new key callbacks
           (for undo and redo)
 
-	* src/g_register.c, lib/system-gschemrc.in: Added keys U and R for 
+	* src/g_register.c, lib/system-gschemrc.in: Added keys U and R for
           undo and redo
 
 	* src/x_menus.c: Added undo and redo to the menu
@@ -5352,12 +5379,12 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/o_buffer.c: Fixed bug which was causing buffers which are
 	  pasted to be misaligned
 
-	* src/x_dialog.c, src/o_attrib.c: Changed the bug fix with 
+	* src/x_dialog.c, src/o_attrib.c: Changed the bug fix with
 	  o_attrib_add_attrib and gschem crashing to now just not attach
 	  the attribute, now o_attrib_add_attrib cannot return NULL (returns
-	  the new text object always) 
+	  the new text object always)
 
-	* src/o_attrib.c: For some odd reason I wasn't using the color 
+	* src/o_attrib.c: For some odd reason I wasn't using the color
 	  variable in o_attrib_add_attrib, fixed that.	Also attributes
 	  which are floating should not be yellow (attached color),
 	  so they are now red which signify a floating attrib.  It is the
@@ -5373,7 +5400,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/x_dialog.c: Added an if to make sure returned object from
 	  o_attrib_add_attrib isn't NULL (that can happen if you try to
-	  attach an attribute to another text item).  This bug caused at 
+	  attach an attribute to another text item).  This bug caused at
 	  least one core dump.
 
 2000-06-03  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -5394,22 +5421,22 @@ src/*.c: Removed all traces of the ADDING_SEL flag
           attribute_promotion variable (it was being used instead of a real
           flag which lead to some ambiguous code)
 
-	* src/g_rc.c, src/i_vars.c: Added keep-invisible *rc keyword 
+	* src/g_rc.c, src/i_vars.c: Added keep-invisible *rc keyword
           (functions and variables)
 
 	* lib/system-gschemrc.in: Added keep-invisible keyword
 
 	* lib/system-gschemrc.in: Spent a little time cleaning this file up.
 	  (more whitespace, a few missing comments)
-	
+
 2000-05-29  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_complex.c: Added Martin Benes' changes which implement the
-	  promotion and attachment of floating attributes when you 
-	  instanciate a component. 
+	  promotion and attachment of floating attributes when you
+	  instanciate a component.
 
-	* src/o_complex.c, src/g_rc.c, src/i_vars.c: Made the above 
-	  code configureable through the *rc files (keyword: 
+	* src/o_complex.c, src/g_rc.c, src/i_vars.c: Made the above
+	  code configureable through the *rc files (keyword:
 	  "attribute-promotion")
 
 	* lib/system-gschemrc.in: Added attribute-promotion keyword (enabled by
@@ -5417,26 +5444,26 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-05-27  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_misc.c: Oops, had a typo in o_rotate_90 which caused boxes 
-	  to be rotated but not drawn 
+	* src/o_misc.c: Oops, had a typo in o_rotate_90 which caused boxes
+	  to be rotated but not drawn
 
 	* src/x_dialog.c: In the multimulti dialog box, give the value entry
-	  the keyboard focus by default (when an attribute is selected) 
+	  the keyboard focus by default (when an attribute is selected)
 	  Written by Martin Benes
 
 	* src/x_dialog.c: In the multimulti dialog box, hitting return in
 	  the value entry caues the dialog box to close
 	  Written by Martin Benes
 
-	* src/x_dialog.c: In the atribute edit dialog box, give the value 
+	* src/x_dialog.c: In the atribute edit dialog box, give the value
 	  entry the keyboard focus by default
 	  Written by Martin Benes
 
-	* src/x_dialog.c: If you add an attribute to a net, the name 
+	* src/x_dialog.c: If you add an attribute to a net, the name
 	  entry gets a default value of "label"
 	  Written by Martin Benes
 
-	* src/x_dialog.c: When adding an attribute to an object using 
+	* src/x_dialog.c: When adding an attribute to an object using
 	  the attribute add dialog box, the current mouse location is used
    	  as the origin point for the new text item.
 	  Written by Martin Benes
@@ -5452,17 +5479,17 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/x_event.c: Added the beginning of the event states which will
 	  be needed to implement the buffer copy/paste
 
-	* src/x_event.h: Added states (STARTPASTE and ENDPASTE) to the state 
+	* src/x_event.h: Added states (STARTPASTE and ENDPASTE) to the state
 	  enumerated type
 
 	* src/Makefile.am: Added o_buffer.c
 
-	* src/o_buffer.c: Finished adding o_buffer_paste_* routines 
+	* src/o_buffer.c: Finished adding o_buffer_paste_* routines
 
-	* src/o_buffer.c: Finished adding o_buffer_copy and o_buffer_cut 
-	  routines 
+	* src/o_buffer.c: Finished adding o_buffer_copy and o_buffer_cut
+	  routines
 
-	* src/x_menus.c: Added Buffer pulldown menu as well as the menu 
+	* src/x_menus.c: Added Buffer pulldown menu as well as the menu
 	  items inside
 
 	* src/globals.c: Added #include ".../globals.h"
@@ -5479,57 +5506,57 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* lib/system-gschemrc.in: Changed raise-dialog-boxes-on-expose to be
 	  enabled by default.  Let's see if anybody complains
-	
+
 
 2000-05-22  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/i_callbacks.c: Started experimenting with the concept of global
-	  (across all windows/pages) buffers to hold cut and paste type 
+	  (across all windows/pages) buffers to hold cut and paste type
 	  objects
 
 	* src/globals.c include/globals.h: Added OBJECT *buffers[10] array for
 	  cut and paste type operations between pages
-	
+
 	* src/o_copy.c: Found and fixed a bug which caused circles to be
 	  copied incorrectly
 
-	* src/o_complex.c: Removed some #if'ed out ancient code 
+	* src/o_complex.c: Removed some #if'ed out ancient code
 
-	* src/gschem.c: Added some init code to main() to handle the 
+	* src/gschem.c: Added some init code to main() to handle the
 	  highly experimental buffers
 
-	* src/i_callbacks.c: Found a minor bug in the new experimental 
+	* src/i_callbacks.c: Found a minor bug in the new experimental
 	  routines (was copying to the wrong end of the object list)
-	
+
 2000-04-21  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* lib/system-gschemrc.in: Changed the default case to be both 
+	* lib/system-gschemrc.in: Changed the default case to be both
 	  (allow both lower and upper case characters when entering text)
 
-	* lib/system-gschemrc.in: Added footprint attribute name to 
+	* lib/system-gschemrc.in: Added footprint attribute name to
 	  attribute-name list
 
 2000-04-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/i_callbacks.c: Worked more on the source= and hierarchy down 
+	* src/i_callbacks.c: Worked more on the source= and hierarchy down
 	  schematic feature by adding the ability to have multiple filenames
-	  (comma seperated) in the source= attribute 
+	  (comma seperated) in the source= attribute
 	  (Idea by Thepthai Tabtieng)
 
 	* src/i_callbacks.c: Fixed the Attribute/Attach... segfault (added
 	  an if ...) (Bug pointed out by Stefan, Thanks)
 
 	* src/i_callbacks.c: Added the ability to search for the source=
-	  attribute inside the symbol if it isn't found attached to the 
+	  attribute inside the symbol if it isn't found attached to the
 	  outside of the symbol (omission pointed out by Thepthai Tabtieng).
-	  If you attach source= attribute to the outside, then inside is 
+	  If you attach source= attribute to the outside, then inside is
 	  NEVER searched.
 
-	* src/x_window.c: Oops forgot to init and destroy w_current->sewindow 
+	* src/x_window.c: Oops forgot to init and destroy w_current->sewindow
 	  Oops forgot to init and destroy w_current->mawindow
 	  Oops forgot to init and destroy w_current->aewindow
-	
-	* src/x_dialog.c: Added x_dialog_raise_all which raises all dialog 
+
+	* src/x_dialog.c: Added x_dialog_raise_all which raises all dialog
 	  boxes if they are displayed
 
 	* src/g_rc.c: Added raise-dialog-boxes-on-expose rc keyword to control
@@ -5567,7 +5594,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/o_misc.c: Added some diag messages to lock and unlock routines
 
-	* src/o_net.c: Introduced a hack which simplifies the handling of 
+	* src/o_net.c: Introduced a hack which simplifies the handling of
 	  net consolidation and selections (unselect everything before you
 	  attempt consolidation)  Not a good solution, but for now it will do.
 
@@ -5580,9 +5607,9 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-03-15  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/i_callbacks.c: Got the parameters to o_mirror correct 
+	* src/i_callbacks.c: Got the parameters to o_mirror correct
 
-	* src/o_misc.c: Started getting o_mirror to work with new selection 
+	* src/o_misc.c: Started getting o_mirror to work with new selection
 	  mechanism (still has some serious bugs)
 
 2000-03-12  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -5602,14 +5629,14 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/x_event.c src/o_text.c: Added code to increase the speed of the
 	  mouse pan (by not drawing all the text)
 
-	* src/a_zoom.c src/x_event.c: Also speed up zoom box and zoom in/out 
+	* src/a_zoom.c src/x_event.c: Also speed up zoom box and zoom in/out
 	  with new faster redraw function
 
 	* src/g_rc.c and friends: Added fast-mousepan keyword which controls
 	  if text is drawn during a pan or not.
 
 	* src/o_misc.c: Fixed up o_edit to work with new selection mechanism
-	  
+
 	* src/o_misc.c: Cleanup of code which calls the multi_* functions to
 	  be simpler
 
@@ -5620,7 +5647,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	  mechanism
 
 2000-03-09  Ales Hvezda  <ahvezda@geda.seul.org>
-	
+
 	* src/i_callbacks.c: Got attribute attach and detach working with
 	  the new selection mechanism
 
@@ -5646,8 +5673,8 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/o_text.c: Got text edit to work with new selection mechanism
 	  (proper erase before and redraw after the edit)
-	
-	* src/o_text.c: Got attrib text edit to work with new selection 
+
+	* src/o_text.c: Got attrib text edit to work with new selection
 	  mechanism
 
 	* src/o_attrib.c: Fixed toggle visibility to work with new selection
@@ -5657,19 +5684,19 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	  using the selection box and caused other invisible objects to be
 	  selected (don't consider invisible objects for anything).
 
-	* src/Makefile.am: Removed old *.h entries 
+	* src/Makefile.am: Removed old *.h entries
 
 	* src/o_attrib.c: Fixed o_attrib_toggle_show_name_value to work with
 	  the new selection mechanism
 
 	* src/o_misc.c: Got Edit/Show Hidden... working again.
-	
+
 2000-03-04  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_basic.c: Combined o_drawbounding and o_drawbounding_new into
 	  a single function.
 
-	* src/o_complex.c: Put the new o_drawbounding into place (new 
+	* src/o_complex.c: Put the new o_drawbounding into place (new
 	  prototype, which means all instances need to be fixed)
 
 	* src/o_basic.c: More o_drawbounding cases fixed
@@ -5687,17 +5714,17 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/*.c: Continued work on getting new selection mechanism working
 
-	* src/o_misc.c: Finished a few of the functions for above, but 
+	* src/o_misc.c: Finished a few of the functions for above, but
 	  #if 0'ed out the rest
 
-	* src/o_slot.c: Update function for new selection mechanism  
+	* src/o_slot.c: Update function for new selection mechanism
 
-	* src/o_stretch.c: Update function for new selection mechanism  
+	* src/o_stretch.c: Update function for new selection mechanism
 
 	* src/o_copy.c, o_move.c, o_delete.c: Basically working again.  Still
 	  have lots to work here.
 
-	* Finished first draft of selection mechanism rewrite... _a lot_ of 
+	* Finished first draft of selection mechanism rewrite... _a lot_ of
 	  things still broken
 
 2000-02-28  Matt Ettus <matt@ettus.com>
@@ -5726,11 +5753,11 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/o_misc: Fixed a minor bug in o_unlock (will be rewritten anyway)
 
-	* src/o_attrib.c: Renamed deal_attrib to o_attrib_add_selected 
+	* src/o_attrib.c: Renamed deal_attrib to o_attrib_add_selected
 
 	* src/o_basic.c: Removed a whole bunch of old functions
 
-	* src/*.c: Started removing all traces of the old selection 
+	* src/*.c: Started removing all traces of the old selection
 	  mechanism
 
 	* src/o_basic.c: Removed a bunch of functions which are no longer
@@ -5744,7 +5771,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/o_misc.c: Rewrote the functions to use new selection mechanism
 
-	* Still todo/broken is o_drawbounding, o_erasebounding, an 
+	* Still todo/broken is o_drawbounding, o_erasebounding, an
 	  o_attrib_slot_copy?, referenced to undraw unselect functions,
 	  and need to write a bunch of _erase functions
 
@@ -5764,9 +5791,9 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/*.c: Removed all // comments (changed to /* */)
 
-	* src/i_callbacks.c: Got rid of setup_attr_selector, instead now 
+	* src/i_callbacks.c: Got rid of setup_attr_selector, instead now
 	  calling attrib_edit_dialog directly
-	
+
 	* src/*.c: Fixed all warnings (using -Wall -Werror)
 
 2000-02-17  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -5785,13 +5812,13 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-02-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_misc.c: Selecting Edit/Edit... on nets, buses, and pins now 
+	* src/o_misc.c: Selecting Edit/Edit... on nets, buses, and pins now
 	  brings up the multi-attrib
 
 	* src/*.c: Update a bunch of files to use call o_text_add with the
 	  extra text alignment parameter
 
-	* src/o_text.c: Added a small x where the origin of a text object is 
+	* src/o_text.c: Added a small x where the origin of a text object is
 	  when the text item (only as debugging, might be perm later)
 
 2000-02-16  Matt Ettus  <matt@ettus.com>
@@ -5815,7 +5842,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/i_callbacks.c: Added code to go up the hierarchy if you close
           an underlying page first.
 
-	* src/i_callbacks.c: Bug fix to make all hierarchy down opened pages 
+	* src/i_callbacks.c: Bug fix to make all hierarchy down opened pages
 	  be zoomed limits
 
 	* src/i_callbacks.c: Bug fix to page revert to make sure hierarchy
@@ -5823,24 +5850,24 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-01-25  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/i_callbacks.c: Added code to allow you to specify a lower 
+	* src/i_callbacks.c: Added code to allow you to specify a lower
 	  (source) schematic use the source= attribute
 
 	* src/x_dialog.c: Fixed that bug which I introduced in the multi-attrib
 	  edit dialog box which caused it to not open if a component with no
 	  attached attributes is selected
 
-	* src/g_rc.c and friends: Added enforce-hierarchy rc keyword which 
+	* src/g_rc.c and friends: Added enforce-hierarchy rc keyword which
 	  controls if how easy it is to move between hierarchy levels
 
-	* src/x_dialog.c: Increased the height of the multi-attrib edit dialog 
-	  box by using gtk_widget_set_usize function 
+	* src/x_dialog.c: Increased the height of the multi-attrib edit dialog
+	  box by using gtk_widget_set_usize function
 
 	* lib/system-gschemrc.in: Add source attribute name to attribute-list
 
 	* src/x_dialog.c: Gave multi attrib, slot edit, and attrib edit their
-	  very own entries in the toplevel structure (mawindow, sewindow, 	
-	  aewindow).  Also gave slot edit it's very own entry "entry" 
+	  very own entries in the toplevel structure (mawindow, sewindow,
+	  aewindow).  Also gave slot edit it's very own entry "entry"
 	  (seentry)
 
 	* src/o_misc.c: Added checks in o_edit to make sure that an attribute
@@ -5849,7 +5876,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/x_dialog.c: Hopefully got the grab for attribute edit dialog
 	  and multi attribute dialog boxes working
 
-	* src/i_callbacks.c and friends: Added edit_text callback just so 
+	* src/i_callbacks.c and friends: Added edit_text callback just so
 	  that the user an forcely edit text even if that text is an attribute
 
 2000-01-26  Matt Ettus  <matt@ettus.com>
@@ -5860,7 +5887,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/x_attrsel.c:  Commented out old attrib add, made it call
 	  new dialog.
 	  NOTE:  The way it calls the new dialog is kind of indirect.
-	
+
 2000-01-25  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_attrib.c: Added o_attrib_add_attrib which takes some parms
@@ -5877,7 +5904,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-01-18  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/x_dialog.c: Moved some code around and added a check to 
+	* src/x_dialog.c: Moved some code around and added a check to
 	  the multiple attrib edit dialog box so gschem won't crash
 
 	* src/x_dialog.c: Filled a string (text[1]) with some thing to avoid
@@ -5895,7 +5922,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	  placement gitter.
 
 	* src/x_dialog.c: Added a few memory frees to avoid memory leaks
-	  
+
 2000-01-17  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/i_callbacks.c: Renamed Hierarchy menu options
@@ -5907,7 +5934,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* lib/system-gschemrc.in: Updated hotkeys for above new callbacks
 
 	* src/i_callbacks.c: Fixed page next and page prev to look at the
-	  page control variable 
+	  page control variable
 
 2000-01-13  Matt Ettus  <matt@ettus.com>
 
@@ -5919,14 +5946,14 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 2000-01-12  Matt Ettus  <matt@ettus.com>
 
-	* src/x_dialog.c: Fixed attrib editor dialog to comply with UI 
+	* src/x_dialog.c: Fixed attrib editor dialog to comply with UI
 	  guidelines
 
 2000-01-08  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_text.c: Fixed o_text.c so that it works with Matt's dialog
 	  boxes.
-	
+
 	* src/x_dialog.c: Minor comment updates
 
 2000-01-07  Matt Ettus  <matt@ettus.com>
@@ -5970,14 +5997,14 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	  o_attrib_return_attribs which now returns an object array
 
 2000-01-03  Ales Hvezda  <ahvezda@geda.seul.org>
-        
+
         * src/i_callbacks.c: Changed misc-misc callback to test out the
           o_attrib_return_attribs functions
 
 2000-01-02  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/i_callbacks.c: Minor bug fix deal with rotate/mirror modes
-	  not updating the status message on the bottom of the screen	
+	  not updating the status message on the bottom of the screen
 
 1999-12-27  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -6007,7 +6034,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* src/x_fileselect.c: Fixed the dialog box title for the SAVEAS_CLOSE
 	  case
 
-	* src/o_net.c: Fixed a nasty bug when enabling net consolidation 
+	* src/o_net.c: Fixed a nasty bug when enabling net consolidation
 	  and drawing non-ortho nets (non-ortho nets would disappear, since
 	  gschem thought it could consolidate them; it cannot not)
 
@@ -6026,19 +6053,19 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 1999-10-19  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/gschem.c: Found/Fixed an old bug which basically was causing
-	  the first argument to always be interpreted as a filename which isn't	
+	  the first argument to always be interpreted as a filename which isn't
 	  always true.
 
 1999-10-18  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/x_print.c: Added some error checking to properly log 
+	* src/x_print.c: Added some error checking to properly log
 	  a successful print or error
 
 1999-10-17  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/g_rc.c: Fixed component-library and source-library keywords
 	  to add the current working directory (conditionally) to the
-	  specified path.  This fixes the bug which Mike Jarabek pointed 
+	  specified path.  This fixes the bug which Mike Jarabek pointed
 	  out when specifing relative path component/source libraries
 
 1999-10-14  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -6061,7 +6088,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	  end of the list)
 
 1999-10-11  Ales Hvezda  <ahvezda@geda.seul.org>
-	
+
 	* src/x_fs.c: Got the component search working
 
 	* src/x_fs.c: Changed all calls to s_clib_getfiles to use the new
@@ -6080,29 +6107,29 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	* general: You can only place *.sym files as components.
 
 	* src/o_pin.c: added o_pin_eraserubber()
-	
+
 	* src/o_stretch.c: Updated _end function to allow for the stretching
 	  of pins
 
 	* src/x_window.c: Used the appropriate #defines for filedialog box init
-	
+
 1999-10-10  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/x_fs.c: Lots of changes related to getting filedialog to act as
 	  the component place dialog box
 
-	* src/i_callback.c: Made the new component place dialog box the 
+	* src/i_callback.c: Made the new component place dialog box the
 	  default
-	
+
 	* src/x_log.c: Fixed memory leak (added x_log_free)
-		
+
 	* src/gschem.c: Added some free()'s for some vars which were allocated
 	  but never freed (in gschem_quit)
 
 1999-10-09  Ales Hvezda  <ahvezda@geda.seul.org>
-	
+
 	* src/gschem.c: Added full path to page_filename (if filename doesn't
-	  start with a / 
+	  start with a /
 
 	* src/x_log.c: Added x_log_init to deal with the chdir gschem is doing
 	  now
@@ -6115,22 +6142,22 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/x_filesel.c: Removed file from Makefile.am
 
-	* src/x_dialog.c: Added x_destroy_window 
+	* src/x_dialog.c: Added x_destroy_window
 
 	* src/x_fs.c: Made sure you can't open up a directory
 
 1999-10-05  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/x_fs.c: Changed filter entry to a filter option box 
+	* src/x_fs.c: Changed filter entry to a filter option box
 
 	* examples/filter_1.sch: misc updates (moved some symbols around so
 	  that they are connected to the right place)
 
 1999-10-04  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/x_fs.c: Fixed a coredump bug in x_fileselect_update_dirfile 
+	* src/x_fs.c: Fixed a coredump bug in x_fileselect_update_dirfile
 
-	* src/x_fs.c: Added "enter key" callback to filename entry 
+	* src/x_fs.c: Added "enter key" callback to filename entry
 
 1999-10-03  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -6138,19 +6165,19 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	* src/x_preview.c: New file which hold preview window code
 
-	* src/x_fs.c: New file which hold new fileselect/component place 
+	* src/x_fs.c: New file which hold new fileselect/component place
 	  dialog box.
 
-	* src/x_menu.c: Added File/Open (EXP)... and Add/Component (EXP)... 
+	* src/x_menu.c: Added File/Open (EXP)... and Add/Component (EXP)...
 	  entries in the top menu bar
 
 	* src/g_rc.c: Added file-preview keyword
-	
+
 	* src/g_register.c: Registered above file-preview
 
-	* src/i_vars.c, include/i_vars.h: Added default_file_preview and init 
+	* src/i_vars.c, include/i_vars.h: Added default_file_preview and init
 
-	* lib/system-gschemrc.in: Added file-preview keyword 
+	* lib/system-gschemrc.in: Added file-preview keyword
 
 	* In all *.c included defines.h before struct.h
 
@@ -6160,14 +6187,14 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 1999-09-28  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/x_menu.c: Added File/Page Close 
-	
+        * src/x_menu.c: Added File/Page Close
+
 	* src/i_callbacks.c: Added code to close the last visible page.
 	  Now it opens up a blank page and close the current visible page.
 
 	* lib/system-gschemrc.in: Added hotkey for File/Close Page (fe)
 
-	* src/x_dialog.c: Fixed the color selection menu on the color edit 
+	* src/x_dialog.c: Fixed the color selection menu on the color edit
 	  dialog box to display the right default color (color 1 - white)
 
 
@@ -6182,7 +6209,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	Forgot to init iwindow to NULL
 
 	Added a few gtk_widget_destroys to x_window_close which I forgot to
-	add when I created the dialog boxes 
+	add when I created the dialog boxes
 
 9/20/99	Changed the project logo to GPL Electronic Design Automation instead
 	of GNU ...
@@ -6191,7 +6218,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	Misplaced a bracket in x_event.c (gschem would not build if you
 	did not have libstroke installed)
-	
+
 	Fixed all warnings
 
 	Added OBJ_BUS and OBJ_PIN to the color change routine in the
@@ -6234,12 +6261,12 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	Added w_current->ALTKEY (so we know if the alt key is being pressed
 	or not)
 
-	If middle-button is "action" and you hold down the ALT key, the 
+	If middle-button is "action" and you hold down the ALT key, the
 	object will be copied instead of moved.
 
-	Fixed the RETURN_G_RC_MODE macro.  Added a number of entries 
+	Fixed the RETURN_G_RC_MODE macro.  Added a number of entries
 	parameter (size), since gschem was core dumping when you passed
-	an unknown string to the mode functions.  (sizeof(mode_table) 
+	an unknown string to the mode functions.  (sizeof(mode_table)
 	was always returning # of bytes, not entries.
 
 	Made the "action" mode the default for the middle-button
@@ -6254,7 +6281,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	used by symbols, created color 17)
 
 9/16/99	Updated all the schematic/symbol opening functions so that only
-	sch's/sym's which are not loaded are actually opened up.  If a 
+	sch's/sym's which are not loaded are actually opened up.  If a
 	schematic is loaded and an attempt is made to open it again, gschem
 	displays the original schematic
 
@@ -6262,7 +6289,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	window manager functions, now you can. (Matt Ettus convinced me
 	to finally fix this)
 
-9/13/99	Inited hkwindow in all x_window.c and s_project.c (all other programs) 
+9/13/99	Inited hkwindow in all x_window.c and s_project.c (all other programs)
 
 	Fixed all example schematics to make sure they display the v*-1.sym
 	symbols properly
@@ -6274,11 +6301,11 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 9/12/99	Added g_funcs_key_name which is used in the list-keys.scm script
 	and in the list keys dialog box
-	
-	Added g_funcs_key_value which is used in the list-keys.scm script	
+
+	Added g_funcs_key_value which is used in the list-keys.scm script
 	and in the list keys dialog box
 
-	Added g_funcs_key_done which is used in the list-keys.scm script	
+	Added g_funcs_key_done which is used in the list-keys.scm script
 	and in the list keys dialog box
 
 	Added x_dialog_hotkeys dialog box
@@ -6301,7 +6328,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	Adding net= attribute to the attribute selection list dialog box
 	(put net in system-gschemrc.in)
 
-9/7/99	Removed all the stupid function pointers I added yesterday 
+9/7/99	Removed all the stupid function pointers I added yesterday
 
 	Moved huge chunks of x_color.c into libgeda/src/s_color.c
 
@@ -6309,7 +6336,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 	Re created embedded_1.sch (using all_1.sch)
 
-	Finished up the color edit dialog box, by doing some rather 
+	Finished up the color edit dialog box, by doing some rather
 	questionable casting of int's to int *'s.
 
 9/6/99	Finally fixed the very broken color system, now you can allocate
@@ -6322,28 +6349,28 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 		  Also fixed up g_register.c
 		- Added logic bubble color keyword / variable / init
 		- Fixed up rc file to use the new system (a lot of cleanup)
-		- Added zoom box color keyword / variable / init 
+		- Added zoom box color keyword / variable / init
 		- Updated zoom box code to use above color
 		- Added lock color keyword / variable / init
 		- Made output-background-color an official color
 		- A few updates to make the color allocation a bit more robust
 		- Created x_color_ps_string which returns the ps string
-		- Changed the default select color to orange... 
-		- Created ptr for image color specifing 
+		- Changed the default select color to orange...
+		- Created ptr for image color specifing
 		- You now get feedback that you specified an invalid color
-		
+
 	With the above changes, users MUST update their rc files to use the
 	new color scheme.  Things will fail badly if they try to use the old
 	system
 
-	Update all example schematic to use the text color (index for that is 
+	Update all example schematic to use the text color (index for that is
 	9)
 
 	Fixed a few -1's in the example schematics
 
 	Almost got the color edit dialog box to work with this new color scheme
-	
-	
+
+
 9/5/99	Removed some examples schematic from examples/ directory (moved them
 	to the gnetlist/examples directory)
 
@@ -6389,20 +6416,20 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 	FSF in the copyright/licence header
 
 8/20/99	Fixed a really really subtle bug in i_sbox.c wasn't checking for
-	the head node.  This bug causes some rather nasty coredumps.  
+	the head node.  This bug causes some rather nasty coredumps.
 	Hidden for so long, because of the way the selection head node
 	was being initialized in the new leaner object creation scheme.
 
 	Finished up the below dialog box cleanup
 
-	Changed the image size from 1280x1024 to 1280x960 in the image/png 
+	Changed the image size from 1280x1024 to 1280x960 in the image/png
 	creation, 1280x960 is the right aspect ratio.
 
 	Temporarily disabled the extension replacement code in ps and image
 	creation till it gets fixed.  Default filename: output.*
 
 8/19/99 Added x_create_dialog_box which is basically just like gtk_dialog_new
-	but will hopefully clean up the code and this will work on the 
+	but will hopefully clean up the code and this will work on the
 	Windows platform.
 
 	Replaced all instances of gtk_dialog_new with x_create_dialog_box
@@ -6437,7 +6464,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 		Filled in some missing functionality
 
 	Finish getting the above net stretch working, mostly.
-	
+
 8/5/99  Added some stuff to configure.in for win32 builds
 
 	Added some misc #ifdefs to support the CYGWIN32 port
@@ -6457,7 +6484,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 7/31/99 Cleaned up *.c. (by Kazu Hirata)
 
-7/27/99	Added o_net_consolidate_segments to o_net_end (so that when you 
+7/27/99	Added o_net_consolidate_segments to o_net_end (so that when you
 	draw nets, you get the minimum number of net segments (if possible))
 
 7/25/99 Cleaned up r_gc.c and i_callbacks.c. (by Kazu Hirata)

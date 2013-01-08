@@ -1,9 +1,9 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * 
+ *
  * Copyright (C) 2003-2012 Stuart D. Brorson.
  * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -80,7 +80,7 @@ static void
 x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
 {
   GtkFileFilter *filter;
-  
+
   /* file filter for schematic files (*.sch) */
   filter = gtk_file_filter_new ();
   gtk_file_filter_set_name (filter, _("Schematics"));
@@ -110,7 +110,7 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
  *  This function opens a file chooser dialog and waits for the user to
  *  select a folder and enter a filename. The user can also select an
  *  existing filename or cancel.
- *  
+ *
  *  \param char *filename a pointer to a buffer to receive the string.
  *  \returns boolean ture of dialog accepted input. returns false if
  *           the user cancels.
@@ -121,27 +121,27 @@ bool x_fileselect ( char* filename )
   bool   result = FALSE;
   char  *fname  = NULL;
   char  *cwd    = NULL;
-    
+
   dialog = gtk_file_chooser_dialog_new (_("Save as..."),
                                         GTK_WINDOW(main_window),
                                         GTK_FILE_CHOOSER_ACTION_SAVE,
                                         GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
                                         GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
                                         NULL);
-  
+
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
 					  GTK_RESPONSE_ACCEPT,
 					  GTK_RESPONSE_CANCEL,
 					  -1);
-  
+
   g_object_set (dialog,                     /* GtkFileChooser */
                 "select-multiple", FALSE,   /* only in GTK 2.8 */
                 "do-overwrite-confirmation", TRUE,  /* version?*/
                 NULL);                              /* end options */
-  
+
   x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
-  
+
   /* preset a directory name */
   if (pr_current->page_current->page_filename != NULL) {
     cwd = g_strdup(pr_current->page_current->page_filename);
@@ -155,7 +155,7 @@ bool x_fileselect ( char* filename )
     gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
   }
   free (cwd);
-      
+
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     fname = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
@@ -183,14 +183,14 @@ bool x_fileselect ( char* filename )
 /* TODO:move gtk_recent_manager_add_item from x_fileselect_open to here */
 bool x_fileselect_load_file (char *filename) {
 
-  GList *Objects;
+  const GList *Objects;
 
   if (!quiet_mode) {
     s_log_message(_("Loading file [%s]\n"), filename);
   }
 
   s_page_goto (pr_current, s_page_new (pr_current, filename));
-  
+
   if(s_toplevel_read_page(pr_current, filename) == 0) {
      fprintf(stderr, _("Couldn't load schematic [%s]\n"), filename);
      return FALSE;
@@ -207,10 +207,10 @@ bool x_fileselect_load_file (char *filename) {
    * determine where they are all connected!   */
   s_sheet_data_add_master_net_list_items (Objects);
   s_sheet_data_add_master_net_attrib_list_items (Objects);
-    
+
   s_sheet_data_add_master_pin_list_items (Objects);
   s_sheet_data_add_master_pin_attrib_list_items (Objects);
-    
+
   return TRUE;
 }
 
@@ -219,7 +219,7 @@ bool x_fileselect_load_file (char *filename) {
  * Open all files specified in the list. The caller is responsible for
  * freeing the strings and the list itself.
  *
- *  The function updates the user interface. At the end of the function, 
+ *  The function updates the user interface. At the end of the function,
  *  the toplevel's current page is set to the page of the last loaded page.
  *
  *  \param [in] filenames list of files to be opened
@@ -260,7 +260,7 @@ GSList *x_fileselect_open (void)
   char  *cwd    = NULL;
   GSList *ptrname;
   char *filename;
-  
+
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
                                         GTK_WINDOW(main_window),
                                         GTK_FILE_CHOOSER_ACTION_OPEN,
@@ -273,7 +273,7 @@ GSList *x_fileselect_open (void)
 					  GTK_RESPONSE_ACCEPT,
 					  GTK_RESPONSE_CANCEL,
 					  -1);
-  
+
   g_object_set (dialog,
                 /* GtkFileChooser */
                 "select-multiple", TRUE,
@@ -298,7 +298,7 @@ GSList *x_fileselect_open (void)
 						      NULL, NULL));
      }
   }
-  
+
   gtk_widget_destroy (GTK_WIDGET(dialog));
   return filenames;
 }

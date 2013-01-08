@@ -22,7 +22,7 @@ struct st_gschem_toplevel {
   GtkWidget *standard_handlebox;
   GtkWidget *zoom_handlebox;
 
-  /* Radioi Drawing Mode Widgets on the Standard Bar */
+  /* Radio Drawing Mode Widgets on the Standard Bar */
   GtkWidget *toolbar_select;
   GtkWidget *toolbar_net;
   GtkWidget *toolbar_bus;
@@ -31,6 +31,9 @@ struct st_gschem_toplevel {
   GtkWidget     *v_scrollbar;
   GtkAdjustment *h_adjustment;
   GtkAdjustment *v_adjustment;
+
+  GtkWidget *command_box;
+  GtkWidget *command_entry;
 
   GtkWidget *macro_box;
   GtkWidget *macro_entry;
@@ -171,7 +174,6 @@ struct st_gschem_toplevel {
   /* sets whether nets rubberband as you move them (or connecting comps) */
   int netconn_rubberband;
   int raise_dialog_boxes;   /*controls if expose events raise dialog boxes */
-  /* \TODO: Currently save_settings (on exit) is always TRUE */
   int save_settings;        /*controls if EDA config are written when exiting */
   int select_slack_pixels;  /* Number of pixels around an object we can still select it with */
   SNAP_STATE snap;          /* Whether/how to snap to grid */
@@ -189,6 +191,7 @@ struct st_gschem_toplevel {
   int bus_ripper_size;      /* sets size of the bus rippers */
   int bus_ripper_type;      /* sets type of the bus ripper (component or net) */
   int bus_ripper_rotation;  /* sets if the the bus ripper is symmetric or not */
+  char *bus_ripper_symname; /* filename of the bus ripper component if set above */
 
 /* Pointer Device, aka Mouse stuff */
   int fast_mousepan;      /* controls if text is completely drawn during mouse pan */

@@ -21,7 +21,7 @@ gschlas_SOURCES = \
 AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 gschlas_CPPFLAGS     =
 gschlas_CFLAGS	     = $(AM_CFLAGS)    $(GCC_CFLAGS)        $(GLIB_CFLAGS) \
-	               $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS) $(MINGW_CFLIGS)
+	               $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS) $(MINGW_CFLAGS)
 gschlas_LDFLAGS	     = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
 gschlas_LDADD 	     = $(top_builddir)/libgeda/src/libgeda.la
 

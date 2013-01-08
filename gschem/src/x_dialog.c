@@ -146,7 +146,7 @@ GtkWidget* get_geda_switch_image (bool WhichState)
 }
 
 
-/*! \brief Function to create a GTK switch image control.
+/*! \brief Function to create a GTK switch image control / widget.
  *  \par Function Description
  *  This function creates a Check Box widget using an image, the Check
  *  Box indicator is disabled so only the images is displayed. This creates
@@ -322,7 +322,6 @@ void text_input_dialog (GSCHEM_TOPLEVEL *w_current)
     select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
 
     /* Set the tab width, using pango tab array */
-    /*! \bug FIXME: This doesn't work. Why? */
     tab_array = pango_tab_array_new (1, TRUE);
     real_tab_width = text_view_calculate_real_tab_width(GTK_TEXT_VIEW(tientry),
                                                         tab_in_chars);
@@ -4071,22 +4070,26 @@ close_confirmation_dialog_get_selected_pages (CloseConfirmationDialog *dialog)
  *
  *  \param [in] w_current The toplevel environment.
  *  \param [in] page      The page to close.
+ *
+ *  \returns TRUE if the page can be closed, FALSE otherwise.
  */
-void
+bool
 x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
 {
   GtkWidget *dialog;
-  PAGE *keep_page;
+  PAGE      *keep_page;
+  bool       result;
 
-  g_return_if_fail (page != NULL && page->CHANGED);
+  g_return_val_if_fail (page != NULL && page->CHANGED, TRUE);
 
+  result = FALSE;
   keep_page = w_current->toplevel->page_current;
 
   dialog = GTK_WIDGET (g_object_new (TYPE_CLOSE_CONFIRMATION_DIALOG,
                                      "unsaved-page", page,
                                      NULL));
-  /* set default response signal. This is usually triggered by the
-     "Return" key */
+
+  /* set default response signal. This is usually triggered by the "Return" key */
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
                                   GTK_RESPONSE_YES);
 
@@ -4094,9 +4097,9 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
       case GTK_RESPONSE_NO:
         /* action selected: close without saving */
         /* close the page, discard changes */
-        x_window_close_page (w_current, page);
+        //x_window_close_page (w_current, page);
+        result = TRUE;
         break;
-
 
       case GTK_RESPONSE_YES:
         /* action selected: save */
@@ -4104,7 +4107,7 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
         i_callback_file_save(w_current, 0, NULL);
         /* has the page been really saved? */
         if (!page->CHANGED) {
-          x_window_close_page (w_current, page);
+          result = TRUE; //x_window_close_page (w_current, page);
         }
         /* no, user has cancelled the save and page has changes */
         /* do not close page */
@@ -4122,9 +4125,11 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   gtk_widget_destroy (dialog);
 
   /* Switch back to the page we were on if it wasn't the one being closed */
-  g_return_if_fail (keep_page != NULL);
+  g_return_val_if_fail (keep_page != NULL, result);
   if (keep_page != page)
     s_page_goto (w_current->toplevel, keep_page);
+
+  return result;
 }
 
 /*! \brief Asks for confirmation before closing a window.

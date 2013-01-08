@@ -39,6 +39,11 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 12/04/12 |  Added function x_settings_set_scm_int, revised
 ;; ------------------------------------------------------------------
+;; WEH | 01/06/16 |  Completed code on handlers for bus_ripper_rotation
+;;     |          |  bus_ripper_size, bus_ripper_type, and added handler
+;;     |          |  for bus_ripper_symname (to complete the integration of
+;;     |          |  the Ripper settings on the configure settings dailog.
+;; ------------------------------------------------------------------
 */
 
 #ifdef HAVE_CONFIG_H
@@ -48,7 +53,7 @@
 #define USE_POSIX
 
 #include <stdio.h>
-//#include <fcntl.h>
+
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
@@ -127,7 +132,7 @@ void configure_dialog_response(GtkWidget *w, gint response,
 
 /*              Bulb */
 GtkWidget*
-get_geda_bulb_image (gboolean WhichState)
+get_geda_bulb_image (bool WhichState)
 {
    GtkWidget* image;
 
@@ -708,15 +713,15 @@ KEYWORD (log_destiny) {
   RC_STRING_TABLE_G3OUT (log_destiny);
 }
 
-/** @brief function do_kw_log_window in X_Settings_Keyword_Handlers */
-KEYWORD (log_window) {
-  RC_BOOLEAN_GOUT (log_window);
+/** @brief function do_kw_console_window in X_Settings_Keyword_Handlers */
+KEYWORD (console_window) {
+  RC_BOOLEAN_GOUT (console_window);
 }
 
-/** @brief function do_kw_log_window_type in X_Settings_Keyword_Handlers */
-KEYWORD (log_window_type) {
-  RC_LOG_WINTYPE_STRINGS
-  RC_STRING_TABLE_G2OUT (log_window_type)
+/** @brief function do_kw_console_window_type in X_Settings_Keyword_Handlers */
+KEYWORD (console_window_type) {
+  RC_CONSOLE_WINTYPE_STRINGS
+  RC_STRING_TABLE_G2OUT (console_window_type)
 }
 
 /** @brief function do_kw_action_feedback_mode in X_Settings_Keyword_Handlers */
@@ -1031,16 +1036,22 @@ KEYWORD ( thin_pin_width ) {
 
 /** @brief function do_kw_bus_ripper_rotation in X_Settings_Keyword_Handlers */
 KEYWORD ( bus_ripper_rotation ) {
- return;
+  RC_RIPPER_ROTATION_STRINGS
+  RC_STRING_TABLE_W2OUT (bus_ripper_rotation)
 }
 
 /** @brief function do_kw_bus_ripper_size in X_Settings_Keyword_Handlers */
 KEYWORD ( bus_ripper_size ) {
- return;
+  RC_INTEGER_WOUT ( bus_ripper_size )
 }
 /** @brief function do_kw_bus_ripper_type in X_Settings_Keyword_Handlers */
 KEYWORD ( bus_ripper_type ) {
- return;
+  RC_RIPPER_TYPE_STRINGS
+  RC_STRING_TABLE_W2OUT (bus_ripper_type)
+}
+/** @brief function do_kw_bus_ripper_symname in X_Settings_Keyword_Handlers */
+KEYWORD(bus_ripper_symname) {
+  RC_STRING_WOUT(bus_ripper_symname)
 }
 
 /** @brief function do_kw_fast_mousepan in X_Settings_Keyword_Handlers */

@@ -49,9 +49,9 @@ int auto_load_last;
 
 /* Global Log Configuration */
 volatile int logging;
-volatile int log_destiny; 
-volatile int log_window;
-volatile int log_window_type;
+volatile int log_destiny;
+volatile int console_window;
+volatile int console_window_type;
 
 /* Global buffers */
 GList *object_buffer[MAX_BUFFERS];

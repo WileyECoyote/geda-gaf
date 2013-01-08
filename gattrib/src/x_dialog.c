@@ -3,7 +3,7 @@
  * Copyright (C) 2003-2012 Stuart D. Brorson.
  *
  * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -50,7 +50,7 @@
 #endif
 
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
-#include <x_dialog_controls.h>
+#include <geda_dialog_controls.h>
 #include <gattrib_dialog.h>
 
 #ifdef HAVE_LIBDMALLOC
@@ -88,7 +88,7 @@ void generic_msg_dialog (const char *msg)
  *       Display a basic dialog with okay/cancel buttons
  *
  *  \param Char * message pointer to message to be displayed
- * 
+ *
  *  \returns True if user select OKAY, False if user select CANCEL
  *
  */
@@ -125,17 +125,17 @@ char *x_dialog_new_attrib()
   char *entry_text;
 
   /* Create the dialog */
-  dialog = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL, 
+  dialog = gtk_dialog_new_with_buttons(_("Add new attribute"), NULL,
 				       GTK_DIALOG_MODAL,
 				       GTK_STOCK_OK, GTK_RESPONSE_OK,
 				       GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
 				       NULL);
- 
+
   gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
-  
+
   /*  Create a text label for the dialog window */
   label = gtk_label_new (_("Enter new attribute name"));
-  gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox), label, 
+  gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox), label,
 		      FALSE, FALSE, 0);
 
   /*  Create the "attrib" text entry area */
@@ -145,7 +145,7 @@ char *x_dialog_new_attrib()
   gtk_widget_set_size_request (dialog, 260, 140);
 
   gtk_widget_show_all(dialog);
-  
+
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_OK:
       entry_text = g_strdup( gtk_entry_get_text((GtkEntry *)attrib_entry) );
@@ -173,7 +173,7 @@ void x_dialog_delete_attrib()
   int mincol, maxcol;
   int cur_page;
 
-  /* First verify that exactly one column is selected.  */ 
+  /* First verify that exactly one column is selected.  */
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   sheet = GTK_SHEET(sheets[cur_page]);
   if (sheet == NULL) {
@@ -193,7 +193,7 @@ void x_dialog_delete_attrib()
                                   GTK_MESSAGE_QUESTION,
                                   GTK_BUTTONS_YES_NO,
                                   _("Are you sure you want to delete this attribute?"));
-  
+
   gtk_window_set_title(GTK_WINDOW(dialog), _("Delete attribute"));
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_YES:
@@ -227,7 +227,7 @@ void x_dialog_missing_sym()
                                   GTK_BUTTONS_NONE,
                                   "%s", string);
 
-  gtk_dialog_add_buttons(GTK_DIALOG(dialog), 
+  gtk_dialog_add_buttons(GTK_DIALOG(dialog),
                   GTK_STOCK_QUIT, GTK_RESPONSE_REJECT,
                   GTK_STOCK_GO_FORWARD, GTK_RESPONSE_ACCEPT,
                   NULL);
@@ -254,7 +254,7 @@ int x_dialog_file_not_saved()
   char *tmp;
   char *str;
   int result;
-  
+
   tmp = _("Save the changes before closing?");
   str = g_strconcat (_("<big><b>"), tmp, _("</b></big>"), NULL);
 
@@ -351,7 +351,7 @@ void x_dialog_unimplemented_feature()
 void x_dialog_fatal_error(char *string, int return_code)
 {
   GtkWidget *dialog;
-  
+
   fprintf(stderr, "%s\n", string);
 
   /* Create the dialog */
@@ -364,7 +364,7 @@ void x_dialog_fatal_error(char *string, int return_code)
 
   gtk_dialog_run(GTK_DIALOG(dialog));
   gtk_widget_destroy(dialog);
-  
+
   exit(GPOINTER_TO_INT(return_code));
 }
 
@@ -382,10 +382,10 @@ void x_dialog_about_dialog()
   dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
                                    GTK_MESSAGE_INFO,
                                    GTK_BUTTONS_OK,
-                                   string, PREPEND_VERSION_STRING, 
+                                   string, PREPEND_VERSION_STRING,
                                    PACKAGE_DOTTED_VERSION,
                                    PACKAGE_DATE_VERSION);
-  
+
   gtk_window_set_title(GTK_WINDOW(dialog), _("About..."));
 
   gtk_dialog_run(GTK_DIALOG(dialog));
@@ -437,16 +437,16 @@ char *x_dialog_get_search_text(char* prompt)
 {
   GtkDialog *dialog    = NULL;
   GtkWidget *textentry = NULL;
-  
+
   char      *text      = NULL;
   int r;
-  
+
   if(dialog != NULL)
   {
     gtk_widget_hide((GtkWidget*)dialog);
     gtk_widget_destroy((GtkWidget*)dialog);
   }
-  
+
    dialog = (GtkDialog*)gtk_dialog_new_with_buttons (_("Find Text"),
 					            GTK_WINDOW(main_window),
                                                     GTK_DIALOG_MODAL,
@@ -461,9 +461,9 @@ char *x_dialog_get_search_text(char* prompt)
                                             GTK_RESPONSE_REJECT,
                                             -1);
     gtk_dialog_set_default_response(dialog, GTK_RESPONSE_ACCEPT);
-    
+
     gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_SPACING);
-    
+
     GtkWidget *vbox = dialog->vbox;
     gtk_box_set_spacing((GtkBox*)vbox, DIALOG_V_SPACING);
 
@@ -477,7 +477,7 @@ char *x_dialog_get_search_text(char* prompt)
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
     gtk_widget_show_all(GTK_WIDGET(dialog));
-    
+
     r = gtk_dialog_run ((GtkDialog*)dialog);
 
     if (r ==  GTK_RESPONSE_ACCEPT)
@@ -502,11 +502,11 @@ char *x_dialog_get_search_text(char* prompt)
 //#define Radio_Responder radio_responder
 #define Switch_Responder search_replace_switch_responder
 
-typedef enum { 
+typedef enum {
 /* 2 Combo Controls  */
   SearchText,
   ReplaceText,
-  
+
 /* 4 Switch Controls */
   IgnoreCase,
   WholeWord,
@@ -553,7 +553,7 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
 {
   char* search_text;
   char* replacement_text;
-  
+
   /*!@brief Add new text to Search History List */
   void add_search_history(char *new_text) {
     /*! \Note: String added to search_history is freed at program exit */
@@ -687,18 +687,18 @@ static void search_replace_switch_responder(GtkWidget *widget, int response,  Co
 /*! \brief Initialize Search Dialog Controls
  *  \par Function Description: This function sets the initial state of the
  *       Search Dialog. The toggle switches are set to the values in the
- *       Search Record structure. Controls for options and all but the 
+ *       Search Record structure. Controls for options and all but the
  *       Close button are disabled.
  */
 static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Search)
 {
   Search->ReplaceAll = FALSE; /* could have been on if struc re-used */
-  
+
   SetSwitch( IgnoreCase,    !Search->Case);
   SetSwitch( WholeWord,      Search->Whole);
   SetSwitch( SearchBackword, Search->Backword);
   SetSwitch( WrapAround,     Search->Wrap);
-  
+
   /* User can not change these until there is a search string */
   /* disable options */
   gtk_widget_set_sensitive (IgnoreCaseSwitch, FALSE);
@@ -710,7 +710,7 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
   gtk_widget_set_sensitive (FindButt, FALSE);
   gtk_widget_set_sensitive (ReplaceButt, FALSE);
   gtk_widget_set_sensitive (ReplaceAllButt, FALSE);
-  
+
   if(g_list_length(search_history) > 0) {
     {
        lambda (const char* data)
@@ -740,7 +740,7 @@ static void x_dialog_init_search_replace(GtkWidget *ThisDialog, SearchRecord *Se
  *  but is not utilize. This make since because the Search And Replace
  *  Dialog can also be used as a Find Dialog (without actually replacing
  *  anything).
- * 
+ *
  */
 static
 GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_only_mode)
@@ -758,7 +758,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
     ThisDialog=NEW_STD_GATTRIB_DIALOG( AlternateTitle, AlternateSettings, parent);
   else
     ThisDialog=NEW_STD_GATTRIB_DIALOG( DialogTitle, DialogSettings, parent);
-    
+
   gtk_window_set_title (GTK_WINDOW (ThisDialog), _(DialogTitle));
   gtk_window_set_modal (GTK_WINDOW (ThisDialog), FALSE);
   gtk_window_set_destroy_with_parent (GTK_WINDOW (ThisDialog), TRUE);
@@ -766,10 +766,10 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
 
   MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
   gtk_widget_show (MainDialogVBox);
-  
+
   HSECTION (MainDialogVBox, InputText);   /* Row 1 */
     GTK_NEW_COMBO (InputText_hbox, SearchText, 200, 41);
-    
+
   HSECTION (MainDialogVBox, NewText);   /*  Row 2 */
     GEDA_NEW_COMBO (NewText_hbox, ReplaceText, 200, 41);
   if (find_only_mode) {
@@ -784,7 +784,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   HSECTION (MainDialogVBox, SearchOptions2);   /*  Row 4 */
     GTK_SWITCH(SearchOptions2_hbox, SearchBackword, 0, FALSE);
     GTK_SWITCH(SearchOptions2_hbox, WrapAround, 0, TRUE);
-    
+
   HXYP_SEPERATOR (MainDialogVBox, Grp4, 10);
 
   dialog_action_area = GTK_DIALOG (ThisDialog)->action_area;
@@ -811,14 +811,14 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   GTK_WIDGET_SET_FLAGS (ReplaceButt, GTK_CAN_DEFAULT);
   gtk_widget_set_size_request (ReplaceButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, ReplaceButt, _("Replace selected text and continue"), NULL);
-  
+
   FindButt = gtk_button_new_with_mnemonic (_("Find"));
   gtk_widget_show (FindButt);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), FindButt, GTK_RESPONSE_REJECT);
   GTK_WIDGET_SET_FLAGS (FindButt, GTK_CAN_DEFAULT);
   gtk_widget_set_size_request (FindButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, FindButt, _("Find next"), NULL);
- 
+
   /* Store pointers to widgets, for use by lookup_widget(). */
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, DialogTitle);
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox,     "MainDialogVBox");
@@ -828,24 +828,24 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   GTK_HOOKUP_OBJECT (ThisDialog, ReplaceAllButt,  "ReplaceAllButt");
   GTK_HOOKUP_OBJECT (ThisDialog, FindButt,        "FindButt");
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, tooltips, "tooltips");
-  
+
   return ThisDialog;
 }
 /*! \brief Startup Search and Replace Dialog
  *  \par Function Description: This is the main function called by external
  *       to launch a new Search and Replace Dialog session.
- */ 
+ */
 void x_dialog_search_replace(SearchRecord *Search) {
-  
+
   GtkWidget *ThisDialog;
-  
+
   ThisDialog = x_dialog_create_search_replace_dialog(GTK_WINDOW ( main_window),
                                                      Search->FindOnlyMode);
 
   gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
   x_dialog_init_search_replace(ThisDialog, Search);
-  
+
   g_signal_connect (GTK_OBJECT (ThisDialog), "response",
                     GTK_SIGNAL_FUNC(search_replace_dialog_response), Search);
 
@@ -854,25 +854,25 @@ void x_dialog_search_replace(SearchRecord *Search) {
 
   gtk_widget_show(ThisDialog);
 }
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*********** End of find text dialog box *******/

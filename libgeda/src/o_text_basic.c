@@ -21,7 +21,7 @@
 /*! \file o_text_basic.c
  *  \brief functions for the text and fonts
  *
- *  \par The font definitions 
+ *  \par The font definitions
  *
  *  Each letter of the font is defined in a single font symbol file. In
  *  the font symbol file, the character width is defined in the second
@@ -43,7 +43,7 @@
  *
  *  The text is stored and printed in several different representations.
  *
- *  In the gEDA files the text is just a string. It is stored unmodified 
+ *  In the gEDA files the text is just a string. It is stored unmodified
  *  in <b>OBJECT->text->string</b>.
  *
  *  If the string is an attribute with an equal sign as delimiter between
@@ -107,7 +107,7 @@ int tab_in_chars = 8;
  *  the name or the value part of the attribute string.
  *  This functions updates the text->disp_string according
  *  to the object->show_name_value settings
- *  
+ *
  *  \param [in] object  The OBJECT to update
  */
 static void update_disp_string (OBJECT *object)
@@ -203,7 +203,7 @@ gboolean o_text_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
  *  \param [in] string  text string to count the lines
  *  \return the number of lines
  */
-int o_text_num_lines(const char *string) 
+int o_text_num_lines(const char *string)
 {
   int line_count = 0;
   const gchar *aux;
@@ -212,7 +212,7 @@ int o_text_num_lines(const char *string)
   if (string == NULL) {
     return 0;
   }
-  
+
   /* if it's not null, then we have at least one line */
   line_count++;
   /* Count how many \n are in the string */
@@ -250,7 +250,7 @@ int o_text_num_lines(const char *string)
  */
 OBJECT *o_text_new(TOPLEVEL *toplevel,
 		   char type, int color, int x, int y, int alignment,
-		   int angle, const char *string, int size, 
+		   int angle, const char *string, int size,
 		   int visibility, int show_name_value)
 {
   OBJECT *new_node=NULL;
@@ -315,11 +315,11 @@ void o_text_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
 
 /*! \brief read a text object from a char buffer
  *  \par Function Description
- *  This function reads a text object from the textbuffer \a tb and 
+ *  This function reads a text object from the textbuffer \a tb and
  *  the text starting with the line \a firstline.
  *  If the line object was read successfully, a new object is
  *  create and appended to the \a object_list.
- *  
+ *
  *  \param [in] toplevel     The TOPLEVEL object
  *  \param [in] first_line   the first line of the text
  *  \param [in] tb           a text buffer (usually a line of a schematic file)
@@ -328,14 +328,14 @@ void o_text_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
  *  \return The object list, or NULL on error.
  */
 OBJECT *o_text_read (TOPLEVEL *toplevel,
-		    const char *first_line,
-		    TextBuffer *tb,
-		    unsigned int release_ver,
-            unsigned int fileformat_ver,
-            GError **err)
+                     const char *first_line,
+                     TextBuffer *tb,
+                     unsigned int release_ver,
+                     unsigned int fileformat_ver,
+                     GError **err)
 {
   OBJECT *new_obj;
-  char type; 
+  char type;
   int x, y;
   int color;
   int size;
@@ -349,9 +349,9 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   GString *textstr;
 
   if (fileformat_ver >= 1) {
-    if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d %d\n", &type, &x, &y, 
+    if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d %d\n", &type, &x, &y,
 	       &color, &size,
-	       &visibility, &show_name_value, 
+	       &visibility, &show_name_value,
 	       &angle, &alignment, &num_lines) != 10) {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse text object"));
       return NULL;
@@ -359,9 +359,9 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   } else if (release_ver < VERSION_20000220) {
     /* yes, above less than (not less than and equal) is correct. The format */
     /* change occurred in 20000220 */
-    if (sscanf(first_line, "%c %d %d %d %d %d %d %d\n", &type, &x, &y, 
+    if (sscanf(first_line, "%c %d %d %d %d %d %d %d\n", &type, &x, &y,
 	       &color, &size,
-	       &visibility, &show_name_value, 
+	       &visibility, &show_name_value,
 	       &angle) != 8) {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse text object"));
       return NULL;
@@ -369,9 +369,9 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
     alignment = LOWER_LEFT; /* older versions didn't have this */
     num_lines = 1; /* only support a single line */
   } else {
-    if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d\n", &type, &x, &y, 
+    if (sscanf(first_line, "%c %d %d %d %d %d %d %d %d\n", &type, &x, &y,
 	       &color, &size,
-	       &visibility, &show_name_value, 
+	       &visibility, &show_name_value,
            &angle, &alignment) != 9) {
       g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse text object"));
       return NULL;
@@ -384,7 +384,7 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   }
 
   switch(angle) {
-	
+
     case(0):
     case(90):
     case(180):
@@ -401,18 +401,18 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   }
 
   switch(alignment) {
-    case(LOWER_LEFT):	
-    case(MIDDLE_LEFT):	
-    case(UPPER_LEFT):	
-    case(LOWER_MIDDLE):	
-    case(MIDDLE_MIDDLE):	
-    case(UPPER_MIDDLE):	
-    case(LOWER_RIGHT):	
-    case(MIDDLE_RIGHT):	
-    case(UPPER_RIGHT):	
-			
+    case(LOWER_LEFT):
+    case(MIDDLE_LEFT):
+    case(UPPER_LEFT):
+    case(LOWER_MIDDLE):
+    case(MIDDLE_MIDDLE):
+    case(UPPER_MIDDLE):
+    case(LOWER_RIGHT):
+    case(MIDDLE_RIGHT):
+    case(UPPER_RIGHT):
+
     break;
-		
+
     default:
       s_log_message(_("Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"),
                     type, x, y, color, size, visibility, show_name_value, angle, alignment);
@@ -432,7 +432,7 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   textstr = g_string_new ("");
   for (i = 0; i < num_lines; i++) {
     const gchar *line;
-    
+
     line = s_textbuffer_next_line (tb);
 
     if (line == NULL) {
@@ -446,7 +446,7 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   /* retrieve the character string from the GString */
   string = g_string_free (textstr, FALSE);
 
-  string = remove_last_nl(string);	
+  string = remove_last_nl(string);
 
   /* convert the character string to UTF-8 if necessary */
   if (!g_utf8_validate (string, -1, NULL)) {
@@ -463,7 +463,7 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
       string = tmp;
     }
   }
-  
+
   new_obj = o_text_new(toplevel, type, color, x, y,
                        alignment, angle, string,
                        size, visibility, show_name_value);
@@ -510,7 +510,7 @@ char *o_text_save(TOPLEVEL *toplevel, OBJECT *object)
 
 /*! \brief recreate the graphics of a text object
  *  \par Function Description
- *  This function updates the underlying primary of the text object 
+ *  This function updates the underlying primary of the text object
  *  \a o_current.
  *
  *  \param toplevel  The TOPLEVEL object
@@ -576,10 +576,10 @@ OBJECT *o_text_copy(TOPLEVEL *toplevel, OBJECT *o_current)
  *  \param [in] string       The string to print
  *  \param [in] unicode_count Number of items in the unicode table
  *  \param [in] unicode_table Table of unicode items
- *  
+ *
  *  \todo investigate whether the TAB character is handled correctly
  */
-void o_text_print_text_string(FILE *fp, char *string, int unicode_count, 
+void o_text_print_text_string(FILE *fp, char *string, int unicode_count,
 			      gunichar *unicode_table)
 {
   int j;
@@ -600,7 +600,7 @@ void o_text_print_text_string(FILE *fp, char *string, int unicode_count,
     if (current_char == '(' || current_char == ')' || current_char == '\\') {
       fprintf(fp, "\\");
     }
-  
+
     c = current_char;
     if (c >= 128) {
       current_char = '?';
@@ -641,7 +641,7 @@ void o_text_print_text_string(FILE *fp, char *string, int unicode_count,
  *  \param [in] unicode_table Table of unicode items
  */
 void o_text_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
-		  int origin_x, int origin_y, 
+		  int origin_x, int origin_y,
 		  int unicode_count, gunichar *unicode_table)
 {
   int alignment;
@@ -671,8 +671,8 @@ void o_text_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
         if (name[0] != '\0') {
           output_string = g_strdup(name);
         } else {
-          fprintf(stderr, 
-                  "Got an improper attribute: %s\n", 
+          fprintf(stderr,
+                  "Got an improper attribute: %s\n",
                   o_current->text->string);
           output_string = g_strdup("invalid");
         }
@@ -684,8 +684,8 @@ void o_text_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
         } else {
           /* you probably can remove this now... */
           /* since improper attributes will never get here */
-          fprintf(stderr, 
-                  "Got an improper attribute: %s\n", 
+          fprintf(stderr,
+                  "Got an improper attribute: %s\n",
                   o_current->text->string);
           output_string = g_strdup("invalid");
         }
@@ -786,7 +786,7 @@ void o_text_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   y = o_current->text->y;
   fprintf(fp,"] %d %d %d %f text\n",angle,x,y,font_size);
 
-  
+
   g_free(output_string);
   g_free(name);
   g_free(value);
@@ -797,7 +797,7 @@ void o_text_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
  *  \par Function Description
  *  This function rotates a text \a object around the point
  *  (\a world_centerx, \a world_centery).
- *  
+ *
  *  \param [in] toplevel      The TOPLEVEL object
  *  \param [in] world_centerx x-coord of the rotation center
  *  \param [in] world_centery y-coord of the rotation center
@@ -835,7 +835,7 @@ void o_text_rotate_world(TOPLEVEL *toplevel,
  *  \par Function Description
  *  This function mirrors a text \a object horizontaly at the point
  *  (\a world_centerx, \a world_centery).
- *  
+ *
  *  \param [in] toplevel      The TOPLEVEL object
  *  \param [in] world_centerx x-coord of the mirror position
  *  \param [in] world_centery y-coord of the mirror position
@@ -847,7 +847,7 @@ void o_text_mirror_world(TOPLEVEL *toplevel,
 {
   int origx, origy;
   int x, y;
-	
+
   origx = object->text->x;
   origy = object->text->y;
 
@@ -916,7 +916,7 @@ void o_text_mirror_world(TOPLEVEL *toplevel,
 
   object->text->x = -x + (world_centerx);
   object->text->y =  y + (world_centery);
-	
+
   o_text_recreate(toplevel, object);
 }
 

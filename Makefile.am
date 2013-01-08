@@ -1,7 +1,9 @@
 ## Process this file with automake to produce Makefile.in
-
-SUBDIRS = bitmaps intl libgeda libgedacairo gaf gschem gattrib \
-          gsymcheck gnetlist utils symbols docs examples
+if ENABLE_GATTRIB
+GATTRIB_DIR=gattrib
+endif
+SUBDIRS = bitmaps include intl libgeda libgedacairo gaf ${GATTRIB_DIR} \
+          gschem gsymcheck gnetlist utils symbols docs examples
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -18,7 +20,6 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 BUILT_SOURCES = version.h
 
-# Include GNU files here because foreign flavor
 EXTRA_DIST = \
 		COPYING.LGPL \
 		HACKING \

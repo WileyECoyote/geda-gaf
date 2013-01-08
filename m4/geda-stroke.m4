@@ -1,34 +1,33 @@
 # geda-stroke.m4                                       -*-Autoconf-*-
 # serial 1.0
-# Check for CAIRO interface library
-#
-# gEDA - GPL Electronic Design Automation
-#
-# Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
-# Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
-# 
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-# 
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-# 
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Check for CAIRO interface library
+dnl
+dnl gEDA - GPL Electronic Design Automation
+dnl
+dnl Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
+dnl 
+dnl This program is free software; you can redistribute it and/or modify
+dnl it under the terms of the GNU General Public License as published by
+dnl the Free Software Foundation; either version 2 of the License, or
+dnl (at your option) any later version.
+dnl 
+dnl This program is distributed in the hope that it will be useful,
+dnl but WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+dnl GNU General Public License for more details.
+dnl 
+dnl You should have received a copy of the GNU General Public License
+dnl along with this program; if not, write to the Free Software
+dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-# Check whether we should use libstroke, and if so if libraries are
-# available.
+# Check whether we should use libstroke, and if so if libraries are available.
 AC_DEFUN([AX_OPTION_STROKE],
 [
-  AC_PREREQ([2.60])# 
+  AC_PREREQ([2.60])dnl 
   AC_MSG_CHECKING([whether to use libstroke])
 
-  # Check what the user wants
+  dnl Check what the user wants
   AC_ARG_WITH([libstroke],
     AS_HELP_STRING([--with-libstroke[[[=DIR]]]],
       [use libstroke (search in [[DIR]])]),
@@ -44,11 +43,10 @@ AC_DEFUN([AX_OPTION_STROKE],
     [ AC_MSG_RESULT([if present])
   ])
 
-  # Check if libstroke is actually available!
+  dnl Check if libstroke is actually available!
   if test "X$libstroke_use" != "Xno"; then
 
-    # If a prefix to search was specified, then add the appropriate
-    # flags.
+    # If a prefix to search was specified, then add the appropriate flags.
     if test "X$libstroke_use" = "X"; then
       LIBSTROKE_LDFLAGS="-L$libstroke_prefix/lib"
       LIBSTROKE_CFLAGS="-I$libstroke_prefix/include"
@@ -68,8 +66,8 @@ AC_DEFUN([AX_OPTION_STROKE],
 
     LIBSTROKE_LDFLAGS="$LIBSTROKE_LDFLAGS -lstroke"])
 
-    # If --with-libstroke was specified, then we *must* have a usable
-    # libstroke.
+    dnl If --with-libstroke was specified, then we *must* have a usable
+    dnl libstroke.
     if test "X$libstroke_use" = "Xyes" -a "X$HAVE_LIBSTROKE" = "Xno"; then
       AC_MSG_ERROR([You specified that libstroke should be used, but libstroke could not
 be found. Ensure that all libstroke development files are installed,
@@ -90,4 +88,4 @@ or configure without --with-libstroke.])
   AC_SUBST([LIBSTROKE_LDFLAGS])
 
 ])
-#  AX_OPTION_STROKE
+dnl  AX_OPTION_STROKE

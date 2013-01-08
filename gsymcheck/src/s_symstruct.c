@@ -1,18 +1,18 @@
 /* gEDA - GPL Electronic Design Automation
- * gsymcheck - gEDA Symbol Check 
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * gsymcheck - gEDA Symbol Check
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if  not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
@@ -35,7 +35,7 @@ SYMCHECK *
 s_symstruct_init(void)
 {
   SYMCHECK *s_symcheck;
-	
+
   s_symcheck = (SYMCHECK *) g_malloc(sizeof(SYMCHECK));
 
   s_symcheck->info_messages = NULL;
@@ -89,9 +89,9 @@ s_symstruct_print(SYMCHECK *s_current)
   if (verbose_mode > 2) {
     list = s_current->info_messages;
     while (list != NULL) {
-      msg = (char *) list->data;     
+      msg = (char *) list->data;
       /* printf("found info: %s\n", msg); */
-      if (msg) { 
+      if (msg) {
         s_log_message("Info: %s", msg);
         g_free(msg);
       }
@@ -103,10 +103,10 @@ s_symstruct_print(SYMCHECK *s_current)
   if (verbose_mode > 1) {
     list = s_current->warning_messages;
     while (list != NULL) {
-      msg = (char *) list->data;     
-     
+      msg = (char *) list->data;
+
       /* printf("found warning: %s\n", msg); */
-      if (msg) { 
+      if (msg) {
         s_log_message("Warning: %s", msg);
         g_free(msg);
       }
@@ -118,10 +118,10 @@ s_symstruct_print(SYMCHECK *s_current)
   if (verbose_mode > 0) {
     list = s_current->error_messages;
     while (list != NULL) {
-      msg = (char *) list->data;     
-     
+      msg = (char *) list->data;
+
       /* printf("found error: %s\n", msg); */
-      if (msg && verbose_mode) { 
+      if (msg && verbose_mode) {
         s_log_message("ERROR: %s", msg);
         g_free(msg);
       }

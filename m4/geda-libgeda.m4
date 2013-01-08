@@ -2,7 +2,8 @@
 # serial 1.0
 
 dnl libgeda-specific setup
-dnl Copyright (C) 2009  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -36,4 +37,16 @@ AC_DEFUN([AX_LIBGEDA],
   AC_SUBST([LIBGEDA_GETTEXT_DOMAIN])
   AC_DEFINE_UNQUOTED([LIBGEDA_GETTEXT_DOMAIN], ["$LIBGEDA_GETTEXT_DOMAIN"],
     "Name of libgeda's gettext domain.")
+
+  AC_HEADER_SYS_WAIT                    # used in x_misc.c
+
+  AC_FUNC_CHOWN                         # used to write files
+
+  AC_CHECK_FUNCS([memmove sqrt])
+  AC_CHECK_FUNCS([strerror strstr])
+  AC_CHECK_FUNCS([getlogin])            # used in f_print.c
+
+  AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK # used by f_basic.c
+
+  AC_TYPE_SSIZE_T                       # scheme_object.c
 ])
