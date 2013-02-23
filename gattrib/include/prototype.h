@@ -33,15 +33,6 @@ SCM g_quit(void);
 /* ------------- g_rc.c ------------- */
 SCM g_rc_gattrib_version(SCM version);
 
-/* ------------- g_strings.c ------------- */
-char* int2str(int value, char* str, int radix);
-bool strequal(const char *str1, const char *str2);
-int  stricmp(char *str1, char *str2);
-int  strncmpi(char *str1, char *str2, int n);
-char *stristr(char *str1, char *str2);
-char *strsubst(char *source, char *old_str, char *new_str);
-char *strisubst(char *source, char *old_str, char *new_str);
-
 /* -------------- g_util.c -------------- */
 bool g_list_str_inlist(GList *list, char *string);
 bool g_list_stri_inlist(GList *list, char *string);

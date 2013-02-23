@@ -226,7 +226,7 @@ WidgetStringData DialogStrings[] = {
         { "DragMoveSwitch",             "Drag Move:",		"If enabled the drag movement over selected objects can move the objects."},
         { "DrawGripsSwitch",            "Draw Grips:",	        "Controls if the editing grips are drawn when selecting objects."},
         { "EmbedComponentsSwitch",      " Embed Components:",	"Determines if the newly placed components are embedded in the schematic or if only the filename is specified and the component is searched for instead. If it is enabled then all new components will be embedded othewise they are not embedded. This can be controlled on the fly during runtime with the \"Embed Component\" checkbox on the select component dialog box."},
-        { "EnableColorImaging",         "Color Imaging:",       "Controls if png images are color (enabled) or black/white (disabled). If Enable images will be generated bases on the active \"Display\" color map, which could be B&W"},
+        { "EnableColorImaging",         "Color Imaging:",       "Controls if png images are color (enabled) or black/white (disabled). If enabled, images will be generated bases on the active \"Display\" color map, which could be B&W"},
         { "EnableLogSwitch",            "  Enable:",		"Determines if the logging mechanism is enabled or disabled."},
         { "EnableUndoSwitch",           "  Enable:",		"Enabled or disable Undo function."},
         { "EnforceHierarchySwitch",     "Enforce Hierarchy:",	"Controls if the movement between hierarchy levels (of the same underlying schematics) is allowed or not.If this is enabled then the user cannot (without using the page manager) move between hierarchy levels otherwise if enabled the user sees all the hierarchy levels as being flat."},

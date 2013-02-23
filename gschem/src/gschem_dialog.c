@@ -70,12 +70,6 @@ gschem_marshal_VOID__POINTER_STRING (GClosure     *closure,
 
 
 enum {
-  PROP_SETTINGS_NAME = 1,
-  PROP_GSCHEM_TOPLEVEL
-};
-
-
-enum {
   GEOMETRY_SAVE,
   GEOMETRY_RESTORE,
   LAST_SIGNAL
@@ -85,9 +79,6 @@ static guint gschem_dialog_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *gschem_dialog_parent_class = NULL;
 
 static GKeyFile *dialog_geometry = NULL;
-
-#define DIALOG_GEOMETRY_STORE "gschem-dialog-geometry"
-
 
 /*! \brief Save all geometry data into a file.
  *
@@ -104,7 +95,7 @@ static void save_geometry_to_file(gpointer user_data)
   g_assert( dialog_geometry != NULL );
 
   data = g_key_file_to_data(dialog_geometry, NULL, NULL);
-  file = g_build_filename(s_path_user_config (), DIALOG_GEOMETRY_STORE, NULL);
+  file = g_build_filename(s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
   g_file_set_contents(file, data, -1, NULL);
   g_free(data);
   g_free(file);
@@ -122,7 +113,7 @@ static void save_geometry_to_file(gpointer user_data)
  */
 static void geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar* group_name)
 {
-  gint x, y, width, height;
+  int x, y, width, height;
 
   gtk_window_get_position (GTK_WINDOW (dialog), &x, &y);
   gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
@@ -170,7 +161,7 @@ static void setup_keyfile ()
     return;
 
   gchar *file = g_build_filename (s_path_user_config (),
-                                  DIALOG_GEOMETRY_STORE, NULL);
+                                  WINDOW_GEOMETRY_STORE, NULL);
 
   dialog_geometry = g_key_file_new();
 
@@ -289,7 +280,7 @@ static void gschem_dialog_set_property (GObject *object, guint property_id, cons
   switch(property_id) {
     case PROP_SETTINGS_NAME:
       g_free (dialog->settings_name);
-      dialog->settings_name = g_strdup (g_value_get_string (value));
+      dialog->settings_name = g_value_dup_string (value);
       break;
     case PROP_GSCHEM_TOPLEVEL:
       dialog->w_current = (GSCHEM_TOPLEVEL*)g_value_get_pointer (value);
@@ -482,10 +473,10 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
  *
  *  \return  The GschemDialog created.
  */
- GtkWidget* gschem_dialog_new_empty (const gchar     *title,
+ GtkWidget* gschem_dialog_new_empty (const gchar           *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
-                                           const gchar *settings_name,
+                                           const char *settings_name,
                                            GSCHEM_TOPLEVEL *w_current)
 {
   GschemDialog *dialog;
@@ -504,7 +495,6 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
   if (flags & GTK_DIALOG_MODAL)
     gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
-  //if (flags & GTK_DIALOG_DESTROY_WITH_PARENT)
   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 
   if (flags & GTK_DIALOG_NO_SEPARATOR)

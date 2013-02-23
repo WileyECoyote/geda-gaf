@@ -959,7 +959,7 @@ double o_text_shortest_distance (OBJECT *object, int x, int y, int force_solid)
  *  \param [in]  new_string            The new value.
  */
 void o_text_set_string (TOPLEVEL *toplevel, OBJECT *obj,
-                        const gchar *new_string)
+                        const char *new_string)
 {
   g_return_if_fail (toplevel != NULL);
   g_return_if_fail (obj != NULL);

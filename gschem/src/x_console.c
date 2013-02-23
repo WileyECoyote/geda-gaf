@@ -50,7 +50,10 @@
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
+#include <errno.h>
+#include <ctype.h>
 
+#include <ascii.h>
 #include "gschem.h"
 #include "x_dialog.h"
 
@@ -65,16 +68,20 @@
 static void console_class_init (ConsoleClass *class);
 static void console_init       (Console      *console);
 
-static GList *command_list;
-static GList *command_buffer;
-
+static GList     *command_list;
+static GList     *command_buffer;
+static GtkWidget *console_entry;
 static GtkWidget *console_dialog = NULL;
 
-void q_log_message(const char* message){ if(!quiet_mode)  s_log_message(message); }
-void v_log_message(const char* message){ if(verbose_mode) s_log_message(message); }
+static ConsoleInputMode console_input_mode;
+
+static GObjectClass *console_parent_class = NULL;
 
 static void x_console_callback_response (GtkDialog *dialog, int arg1, gpointer user_data);
 static void log_message (Console *console, const char *message, const char *style);
+
+void q_log_message(const char* message){ if(!quiet_mode)  s_log_message(message); }
+void v_log_message(const char* message){ if(verbose_mode) s_log_message(message); }
 
 /*!
  *  \brief Destroy Command Buffer
@@ -95,8 +102,10 @@ void x_console_destroy_command_buffer(gpointer user_data) {
       command_buffer=NULL; /* This is not optional */
   }
 }
-void x_console_init_command_buffer(void) {
+void x_console_init_commands(GSCHEM_TOPLEVEL *w_current) {
   command_buffer=NULL;
+  i_command_engage(w_current);
+  //i_command_disengage(FALSE, FALSE);
 }
 /*! ====================== @section Dialog-Handlers ==================== */
 
@@ -115,7 +124,7 @@ void x_console_init_command_buffer(void) {
  * "gschem:62319): GLib-GObject-WARNING **: g_object_set_valist:
  * construct property "type" for object `Log' can't be set after
  * construction"
- * 0/01/13 Wiley E. Hill.
+ * 01/01/13 Wiley E. Hill.
  * Added "gschem-toplevel" construct property so we could inherit
  * pointer to top-level variables.
  */
@@ -195,7 +204,6 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
     default:
     g_assert_not_reached ();
   }
-
 }
 
 /*! ====================== @section Logging-Handlers ==================== */
@@ -299,6 +307,115 @@ GType console_get_type ()
   return console_type;
 }
 
+void x_console_eval_command (GedaEntry *entry, int arg1, gpointer user_data)
+{
+  char *command;
+  char *command_echo;
+  char *ptr;
+
+  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG (console_dialog)->w_current;
+
+  char  command_line[max_command_length];
+
+  char *get_str_token(char* cl) {
+    char *e_ptr, *s_ptr;
+    s_ptr =  e_ptr = cl;
+    while ( *e_ptr != ASCII_NUL) ++e_ptr;
+    while (  s_ptr != e_ptr) if (*s_ptr == ASCII_SPACE) break; else ++s_ptr;
+    if (s_ptr == e_ptr) return g_strdup(cl);
+    return g_strndup(cl, s_ptr - cl );
+  }
+
+  ptr = strcpy (command_line, gtk_entry_get_text (GTK_ENTRY(entry)));
+  while ( *ptr == ASCII_SPACE) ++ptr;
+  if (ptr != command_line)
+    ptr = strcpy(command_line, ptr);
+  if ( *ptr == ASCII_OP)
+    s_log_message("is scm \"%s\"\n", command_line );
+  else {
+    command = get_str_token(command_line);
+    command_echo = g_strconcat(command_line, "\n", NULL);
+    x_log_message ("console", G_LOG_LEVEL_INFO, command_echo);
+    g_free (command_echo);
+
+    if (i_command_is_valid(command)) {
+      i_command_process(w_current, command, word_count(command_line),
+                        command_line, ID_ORIGIN_CONSOLE);
+    }
+    else
+      s_log_message("Unknown command: \"%s\"\n", command );
+
+    g_free (command);
+  }
+  gtk_entry_set_text (GTK_ENTRY(entry), "");
+}
+
+static void x_console_on_activate (GedaEntry *entry, int arg1, gpointer user_data)
+{
+  if(console_input_mode == CONSOLE_COMMAND_MODE)
+    x_console_eval_command (entry, arg1, user_data);
+}
+
+static const char *x_console_get_input_data(void) {
+  const char *string;
+
+  console_input_mode = CONSOLE_INPUT_MODE;
+
+  string = g_strdup(gtk_entry_get_text (GTK_ENTRY(console_entry)));
+
+  gtk_widget_grab_focus(console_entry);
+
+  /* reset the console to command mode*/
+  gtk_entry_set_text (GTK_ENTRY(console_entry), "");
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
+
+  console_input_mode = CONSOLE_COMMAND_MODE;
+  return string;
+}
+
+const char *x_console_get_alphanumeric(void) {
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALPHANUMERIC);
+  return x_console_get_input_data();
+}
+const char *x_console_get_numeric(void) {
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_NUMERIC);
+  return x_console_get_input_data();
+}
+int x_console_get_number(void) {
+  char *string;
+  int   result;
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_NUMBER);
+  string = (char*) x_console_get_input_data();
+  result = atoi(string);
+  g_free(string);
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
+  return result;
+}
+int x_console_get_integer(void) {
+  char *string;
+  int   result;
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_INTEGER);
+  string = (char*) x_console_get_input_data();
+  result = atoi(string);
+  g_free(string);
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
+  return result;
+}
+float x_console_get_real(void) {
+  char *string;
+  float result;
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_REAL);
+  string = (char*) x_console_get_input_data();
+  result = atof(string);
+  g_free(string);
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
+  return result;
+}
+const char *x_console_get_string() {
+  geda_entry_set_valid_input((GedaEntry*)console_entry, ACCEPT_ALL_ASCII);
+  return x_console_get_input_data();
+}
+
 /*!
  *  \brief Console class initialization function
  *
@@ -310,23 +427,7 @@ GType console_get_type ()
 
 static void console_class_init (ConsoleClass *klass)
 {
-/*   GObjectClass *gobject_class = G_OBJECT_CLASS (klass); */
-
-}
-
-void x_console_eval_command (GedaEntry *entry, GSCHEM_TOPLEVEL *w_current)
-{
-  const char *command;
-        char *command_echo;
-
-  command = gtk_entry_get_text (GTK_ENTRY(entry));
-
-
-
-  command_echo = g_strconcat(command, "\n", NULL);
-  x_log_message ("console", G_LOG_LEVEL_INFO, command_echo);
-
-  gtk_entry_set_text (GTK_ENTRY(entry), "");
+  console_parent_class = g_type_class_peek_parent (klass);
 }
 /*!
  *  \brief Console class instance initialization function
@@ -348,13 +449,11 @@ static void console_init (Console *console) /* *Self */
   GtkTextBuffer*  text_buffer;
 
   GtkEntryBuffer* command_entry_buffer;
-  GtkWidget*      command_entry;
   GtkWidget*      console_box;
 
   GtkTextMark*    mark;
 
   bool            decorate   = (console_window_type == DECORATED);
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(console)->w_current;
 
   /* dialog initialization */
   g_object_set (G_OBJECT (console),
@@ -435,45 +534,44 @@ static void console_init (Console *console) /* *Self */
 /*! \remarks: Note: command_buffer is a GLIST of text the user typed
  * in, aka command history. command_entry_buffer is a gtk text entry
  * buffer embedded in the GTK Entry control/widget. Our custom Entry
- * does not directly interact with the commandment. A pointer to the
- * command_buffer list is passed as an argument to the Our Entry
+ * does not directly interact with the command_entry. A pointer to
+ * the command_buffer list is passed as an argument to the Our Entry
  * control so that we retain command history between instances...
 */
   /* if 1st time using global buffer add to the geda_atexit */
   if (!command_buffer)
     geda_atexit(x_console_destroy_command_buffer, NULL);
 
-  command_list = g_list_append(command_list, "testing");
-  command_list = g_list_append(command_list, "auto");
-  command_list = g_list_append(command_list, "complete");
+  i_command_get_command_list(&command_list);
 
   /* Instantiate one our Custom Entry Widgets */
-  command_entry = geda_entry_new(&command_buffer, &command_list);
-  //command_entry = geda_entry_new(&command_buffer, -1);
-  geda_entry_completion_set_case((GedaEntry*) command_entry, FALSE);
+  console_entry = geda_entry_new(&command_buffer, &command_list);
+  //console_entry = geda_entry_new(&command_buffer, -1);
+  geda_entry_completion_set_case((GedaEntry*) console_entry, FALSE);
 
-  //(GEDA_ENTRY(command_entry))->max_history = command_history;
   if(console_window_type == DECORATED)
-    gtk_entry_set_has_frame((GtkEntry*)command_entry, TRUE);
+    gtk_entry_set_has_frame((GtkEntry*)console_entry, TRUE);
   else
-    gtk_entry_set_has_frame((GtkEntry*)command_entry, FALSE);
+    gtk_entry_set_has_frame((GtkEntry*)console_entry, FALSE);
 
   /* create the command entry buffer */
   command_entry_buffer = gtk_entry_buffer_new(NULL, -1);
-  gtk_entry_set_buffer((GtkEntry*) command_entry, command_entry_buffer);
+  gtk_entry_set_buffer((GtkEntry*) console_entry, command_entry_buffer);
   gtk_entry_buffer_set_max_length (command_entry_buffer, max_command_length);
 
-  g_signal_connect (command_entry,
+  console_input_mode = CONSOLE_COMMAND_MODE;
+
+  g_signal_connect (console_entry,
                    "activate",
-                    G_CALLBACK (x_console_eval_command),
-                    w_current); /* Note we pass on our inheritance */
+                    G_CALLBACK (x_console_on_activate), /*x_console_eval_command*/
+                    NULL);
 
   /* Now glue everthing together */
   GtkWidget *align1 = gtk_alignment_new (0, 1, 1, 1);
   GtkWidget *align2 = gtk_alignment_new (0, 1, 1, 0);
 
   gtk_container_add           (GTK_CONTAINER (align1), scrolled_win);
-  gtk_container_add           (GTK_CONTAINER (align2), command_entry);
+  gtk_container_add           (GTK_CONTAINER (align2), console_entry);
 
   gtk_alignment_set_padding   (GTK_ALIGNMENT (align1) ,0, 0, 0, 0);
   gtk_alignment_set_padding   (GTK_ALIGNMENT (align2) ,0, 0, 7, 7);
@@ -492,5 +590,5 @@ static void console_init (Console *console) /* *Self */
   mark = gtk_text_buffer_get_insert (text_buffer);
   gtk_text_view_scroll_to_mark (GTK_TEXT_VIEW (text_view), mark, 0.0, TRUE, 0.0, 1.0);
 
-  gtk_widget_grab_focus(command_entry); /* Not the Close the Button */
+  gtk_widget_grab_focus(console_entry); /* Not the Close the Button */
 }

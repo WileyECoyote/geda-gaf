@@ -3,10 +3,10 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2013 Ales Hvezda
+;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
 ;;;
-;;; Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -240,7 +240,7 @@ GtkWidget *UntitledNameEntry;
   /* Window Tab */
   DECLARE_RADIO_TRIAD (GridDotSize,   One,      Two,      Three);
   DECLARE_RADIO_TRIAD (GridMode,      None,     Dots,     Mesh);
-//  DECLARE_RADIO_TRIAD (MeshThreshold, Three,    Four,     Five);
+/*  DECLARE_RADIO_TRIAD (MeshThreshold, Three,    Four,     Five); */
   DECLARE_QUAD_RADIO  (WindowSize,    W650H487, W900H650, W950H712, W1100H825);
   DECLARE_RADIO_TRIAD (WorldSize,     Large,    Medium,   Small);
 
@@ -498,7 +498,7 @@ st_callback_selection_changed_view(GtkTreeSelection *selection,
  *  @param[in]  column    There is only 1 text data column.
  *  @param[in]  Dialog    is really w_current.
  *
- * \remark
+ * \remarks
  *  This function does not do anything yet, could add/remove
  *  attribute and bypass buttons or what?
  */
@@ -934,8 +934,8 @@ static void clear_attributes( void ){
  */
 static void filter_list_set_default( void )
 {
-  int response = generic_confirm_dialog("Clear attributes and restore default filter list?");
-  if (response) {
+  int response = gschem_confirm_dialog("Clear attributes and restore default filter list?", GTK_MESSAGE_INFO);
+  if (response == GTK_RESPONSE_YES) {
     clear_attributes();
     load_tree_view_str(GTK_TREE_VIEW (SelectedAttributesView), View2DefaultData);
   }
@@ -1467,8 +1467,8 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(EnforceHierarchy, w_current->enforce_hierarchy);
   SetSwitch(FastMousePan, w_current->fast_mousepan);
 
-  SetSwitch(FeedbackMode, w_current->action_feedback_mode);              // was text_feedback
-  SetSwitch(ForceBoundingBox, w_current->toplevel->force_boundingbox);   //was action_feedback_mode
+  SetSwitch(FeedbackMode, w_current->action_feedback_mode);              /* was text_feedback */
+  SetSwitch(ForceBoundingBox, w_current->toplevel->force_boundingbox);   /* was action_feedback_mode */
 
   SetSwitch(FilePreview, w_current->file_preview);
 
@@ -1494,7 +1494,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(ZoomPan, w_current->zoom_with_pan);
 
 /* Radio (15) */
-  // General TAB
+  /* General TAB */
   SetBulbGroup (LogDestiny, log_destiny);
   /* Edit Tab */
   SetBulbGroup (NetEndPoint, w_current->net_endpoint_mode);
@@ -1668,7 +1668,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
          VXP_SEPERATOR(UndoOptions_hbox, UndoToggleOptions, 60);
          VSECTION (UndoOptions_hbox, UndoExtraOptions);
            GTK_NUMERIC_SPIN (UndoExtraOptions_vbox, UndoBufferSize, 0, 10, 1, 99);
-           GTK_NEW_COMBO (UndoExtraOptions_vbox, UndoType, 150, 5); //pad 39
+           GTK_NEW_COMBO (UndoExtraOptions_vbox, UndoType, 150, 5);
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_DISK)
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_MEMORY)
      HXYP_SEPERATOR (GeneralTab_vbox, End, 10);
@@ -1769,7 +1769,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
    GTK_START_TAB (Text);
      VSECTION(TextTab_vbox, TextOptionsGrp1);
        GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextSize, DIALOG_V_SPACING, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
-       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextZoomFactor, DIALOG_V_SPACING, 30, 0, 100);
+       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextZoomFactor, DIALOG_V_SPACING, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
        GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextMarkerSize, DIALOG_V_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
        GTK_SWITCH(TextOptionsGrp1_vbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
      HD_SEPERATOR (TextTab_vbox, Grp2);
@@ -1815,7 +1815,6 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
        HSECTION(StylesTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow4_hbox, RipperRotation, 44, FALSE);
          GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 66, 200, 0, 500);
-                                 //parent, name, spacing, ivalue, minval, maxval
      HD_SEPERATOR (StylesTab_vbox, End);
 
    GTK_END_TAB(Styles);
@@ -1825,7 +1824,6 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
    GTK_START_TAB (Attributes);
     VSECTION (AttributesTab_vbox, AttributeDialogList);  /* Grp 1 Attribute List */
        GTK_HV_BULB_TRIAD (AttributeDialogList_vbox, DialogListAttributes, All, None, List, All);
-       //GTK_ICALLBACK_RTRIAD (DialogListAttributes, attributes_radio_group, All, None, List)
        HSECTION (AttributeDialogList_vbox, AttributeLists); /* Still Grp 1 but now Row 2 */
          VPSECTION (AttributeLists_hbox, AttributeListing, 40); /* Still Grp 1, Row 2 Col 1*/
          GTK_NEW_SCROLL_OUT (AttributeListing_vbox, AttributesListWindow, 15, 190, 220, GTK_POLICY_AUTOMATIC)
@@ -1993,7 +1991,6 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);
   w_current->drag_can_move              = GET_SWITCH_STATE (DragMoveSwitch);
   w_current->renderer->draw_grips       = GET_SWITCH_STATE (DrawGripsSwitch);
-  //w_current->draw_grips                 = w_current->renderer->draw_grips;
   w_current->embed_components           = GET_SWITCH_STATE (EmbedComponentsSwitch);
    toplevel->image_color                = GET_SWITCH_STATE (EnableColorImagingSwitch);
    toplevel->invert_images              = GET_SWITCH_STATE (InvertImagesSwitch);
@@ -2086,7 +2083,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
 /* Retrieve data from Liststores in Views */
    SavePotentialAttributes(w_current);
-   SaveAttributeFilterList(w_current); //SelectedAttributes
+   SaveAttributeFilterList(w_current); /* SelectedAttributes */
 
 }
 /** @} END Group X_Settings_Dialog_Unload_Variables */

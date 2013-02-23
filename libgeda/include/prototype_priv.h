@@ -229,7 +229,7 @@ void s_clib_init (void);
 
 /* s_color.c */
 void s_color_init(void);
-gchar *s_color_ps_string(gint color);
+gchar *s_color_ps_string(int color);
 
 /* s_conn.c */
 CONN *s_conn_return_new(OBJECT *other_object, int type, int x, int y, int whichone, int other_whichone);
@@ -240,8 +240,8 @@ void s_conn_print(GList *conn_list);
 void s_conn_init(void);
 
 /* s_encoding.c */
-gchar* s_encoding_base64_encode (gchar* src, guint srclen, guint* dstlenp, bool strict);
-gchar* s_encoding_base64_decode (gchar* src, guint srclen, guint* dstlenp);
+char* s_encoding_base64_encode (char* src, guint srclen, guint* dstlenp, bool strict);
+char* s_encoding_base64_decode (char* src, guint srclen, guint* dstlenp);
 
 /* s_path.c */
 int s_path_to_polygon(PATH *path, GArray *points);

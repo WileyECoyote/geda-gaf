@@ -198,7 +198,6 @@ void s_page_delete (TOPLEVEL *toplevel, PAGE *page)
    */
 
   /* save page_current and switch to page */
-
   if (page == toplevel->page_current) {
     tmp = NULL;
   } else {
@@ -656,7 +655,7 @@ void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list)
 }
 
 /*! \brief Remove an OBJECT from the PAGE
- *
+ *  \TODO BAd function name: does not include the word "object"
  *  \par Function Description
  *  Removes the passed OBJECT from the PAGE's
  *  linked list of objects.

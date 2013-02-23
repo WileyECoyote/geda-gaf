@@ -18,6 +18,18 @@ system-gschemrc: $(top_builddir)/configure system-gschemrc.scm
 	  mv system-gschemrc.new system-gschemrc; \
 	fi
 
+user-gschemrc: $(top_builddir)/configure user-gschemrc.scm
+	@date_ver=$(DATE_VERSION); \
+	sed -e"s:[@]DATE_VERSION@:$$date_ver:" \
+	  < $(srcdir)/user-gschemrc.scm > user-gschemrc.new; \
+	if diff user-gschemrc user-gschemrc.new > /dev/null 2>&1; then \
+	  rm user-gschemrc.new; \
+	  echo "user-gschemrc is unchanged"; \
+	else \
+	  echo "Recreating user-gschemrc"; \
+	  mv user-gschemrc.new user-gschemrc.scm; \
+	fi
+
 EXTRA_DIST = system-gschemrc.scm gschem-gtkrc gschem-colormap-lightbg \
              gschem-colormap-darkbg gschem-colormap-bw gschem-colormap-custom \
              user-gschemrc.scm

@@ -10,10 +10,9 @@ struct st_gschem_toplevel {
 
   /* ----------------- main window widgets ---------------- */
   GtkWidget *main_window;
-
   GtkWidget *drawing_area;
-  GtkWidget *menubar;
-  GtkWidget *popup_menu;
+
+  int        ui_index;
 
   GtkWidget *add_handlebox;
   GtkWidget *attribute_handlebox;
@@ -22,10 +21,7 @@ struct st_gschem_toplevel {
   GtkWidget *standard_handlebox;
   GtkWidget *zoom_handlebox;
 
-  /* Radio Drawing Mode Widgets on the Standard Bar */
-  GtkWidget *toolbar_select;
-  GtkWidget *toolbar_net;
-  GtkWidget *toolbar_bus;
+  GSList    *toolbar_mode_grp;   /* Single list of MENU toolbar radios */
 
   GtkWidget     *h_scrollbar;
   GtkWidget     *v_scrollbar;
@@ -49,7 +45,6 @@ struct st_gschem_toplevel {
 
   /* -------------------- Dialog boxes -------------------- */
   GtkWidget *sowindow;                  /* Script open */
-  GtkWidget *pfswindow;                 /* Picture File Selection window */
   GtkWidget *cswindow;                  /* component select */
   GtkWidget *iwindow;                   /* image write dialog box */
   GtkWidget *pswindow;                  /* page select */
@@ -125,7 +120,6 @@ struct st_gschem_toplevel {
   int ALTKEY;                           /* alt key pressed? */
   int doing_pan;                        /* mouse pan status flag */
   int buffer_number;                    /* current paste buffer in use */
-  void (*last_callback)();              /* Last i_call* cmd executed */
   GList *clipboard_buffer;              /* buffer for system clipboard integration */
 
   /* ----------------- rc/user parameters ----------------- */
@@ -140,10 +134,6 @@ struct st_gschem_toplevel {
 
   /* Minimum grid line pitch to display. Applies to major and minor lines. */
   int mesh_grid_threshold;
-
-  int scrollbars;         /* controls if scrollbars are displayed */
-  int scrollbar_update;   /* controls if display is updated while scrolling */
-  int scrollpan_steps;    /* Number of scroll pan events required to traverse the viewed area */
 
   /* Zoom Related - Display=>Zoom */
   int warp_cursor;        /* warp the cursor when zooming */
@@ -165,21 +155,17 @@ struct st_gschem_toplevel {
   int continue_component_place;
   int embed_components;   /* controls if complex objects are embedded */
   int enforce_hierarchy;  /* controls how much freedom user has when traversing the hierarchy */
-  int file_preview;       /* controls if the preview area is enabled or not */
-  int handleboxes;        /* sets if the handleboxes are enabled or disabled */
   int include_complex;    /* controls if complex objects are included */
   int keyboardpan_gain;   /* Controls the gain of the keyboard pan */
   int magnetic_net_mode;  /* enables/disables the magnetic net mode ON/OFF */
 
   /* sets whether nets rubberband as you move them (or connecting comps) */
   int netconn_rubberband;
-  int raise_dialog_boxes;   /*controls if expose events raise dialog boxes */
-  int save_settings;        /*controls if EDA config are written when exiting */
+
   int select_slack_pixels;  /* Number of pixels around an object we can still select it with */
   SNAP_STATE snap;          /* Whether/how to snap to grid */
   int snap_size;            /* Snap grid parameter */
   int sort_component_library; /* sort the component library */
-  int toolbars;             /* sets if the toolbar(s) are enabled or disabled */
 
   /* Nets and Routing */
   int net_endpoint_mode;    /* can be either NONE, FILLEDBOX, EMPTYBOX, X */
@@ -199,10 +185,26 @@ struct st_gschem_toplevel {
   int middle_button;      /* controls what the third mouse button does */
   int mousepan_gain;      /* Controls the gain of the mouse pan */
   int scroll_wheel;       /* controls what the mouse scroll wheel does */
+  int pointer_hscroll;    /* controls if the mouse can do horizonal scrolling */
   int third_button;       /* controls what the third mouse button does */
 
   /* Print Related */
   char *print_command;    /* The command to send postscript to when printing */
+
+  /* System Related */
+  int file_preview;         /* controls if the preview area is enabled or not */
+  int handleboxes;          /* sets if the handleboxes are enabled or disabled */
+  int raise_dialog_boxes;   /* controls if expose events raise dialog boxes */
+  int save_ui_settings;     /* controls if EDA config are written when exiting */
+  int show_menu_icons;      /* controls menu images are displayed or not */
+  int toolbars;             /* sets if the toolbar(s) are enabled or disabled */
+  int toolbars_mode;
+
+  /* Scrollbar Stuff */
+  int scrollbars;         /* controls if scrollbars are enabled */
+  int scrollbar_update;   /* controls if display is updated while scrolling */
+  int scrollbars_visible; /* controls if scrollbars are displayed */
+  int scrollpan_steps;    /* Number of scroll pan events required to traverse the viewed area */
 
   /* Text Related Stuff */
   int text_case;
@@ -219,9 +221,9 @@ struct st_gschem_toplevel {
   SCM smob;               /* The Scheme representation of this window */
 };
 
-
 struct st_stretch
 {
   OBJECT *object;
   int whichone;
 };
+

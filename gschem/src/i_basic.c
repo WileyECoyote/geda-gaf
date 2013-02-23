@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -134,7 +134,10 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
     case ENDMCOPY:
       return _("Multiple Copy Mode");
   }
-  g_assert_not_reached();
+#if DEBUG
+  fprintf(stderr, "i_status_string: Invalid state <%d>\n");
+#endif
+
   return ""; /* should not happen */
 }
 
@@ -151,7 +154,7 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   char *what_to_say;
-  const gchar *array[5] = { NULL };
+  const char *array[5] = { NULL };
   int i = 3; /* array[4] must be NULL */
 
   /* Fill in the string array */
@@ -172,7 +175,7 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
   while(array[i] == NULL)
     i++;
 
-  what_to_say = g_strjoinv(" - ", (gchar **) array + i);
+  what_to_say = g_strjoinv(" - ", (char **) array + i);
 
   if(w_current->keyaccel_string) {
      char *p = what_to_say;
@@ -198,6 +201,7 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
 void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
 {
   i_set_state_msg(w_current, newstate, NULL);
+  x_toolbars_update(w_current);
 }
 
 /*! \brief Set new state, then show state field including some
@@ -212,10 +216,10 @@ void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
  *  \param [in] message Message to be shown
  *   *EK* Egil Kvaleberg
  */
-void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate,
-		     const char *message)
+void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate, const char *message)
 {
   w_current->event_state = newstate;
+  x_toolbars_update(w_current);
   i_show_state(w_current, message);
 }
 
@@ -224,17 +228,10 @@ void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate,
  *  \par Function Description
  *
  */
-void i_update_middle_button(GSCHEM_TOPLEVEL *w_current,
-			    void (*func_ptr)(),
-			    const char *string)
+void i_update_middle_button(GSCHEM_TOPLEVEL *w_current, const char *string)
 {
   char *temp_string;
 
-  if (func_ptr == NULL)
-    return;
-
-  if (string == NULL)
-    return;
 
   if (!w_current->middle_label)
     return;
@@ -242,104 +239,30 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current,
   switch(w_current->middle_button) {
 
     /* remove this case eventually and make it a null case */
-    case(MOUSE_MIDDLE_ACTION):
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _("Action"));
+    case( MOUSE_MIDDLE_ACTION ):
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _( RC_STR_MID_ACTION ));
     break;
 
 #ifdef HAVE_LIBSTROKE
-    case(MOUSE_MIDDLE_STROKE):
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _("Stroke"));
+    case( MOUSE_MIDDLE_STROKE ):
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _( RC_STR_MID_STROKE ));
     break;
 #else
     /* remove this case eventually and make it a null case */
-    case(MOUSE_MIDDLE_STROKE):
+    case( MOUSE_MIDDLE_STROKE ):
     gtk_label_set(GTK_LABEL(w_current->middle_label), _("none"));
     break;
 #endif
+    case( MOUSE_MIDDLE_REPEAT ):
+    temp_string = g_strconcat ( RC_STR_MID_REPEAT , "/", string, NULL);
 
-    case(MOUSE_MIDDLE_REPEAT):
-    temp_string = g_strconcat (_("Repeat/"), string, NULL);
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _( temp_string ) );
 
-    gtk_label_set(GTK_LABEL(w_current->middle_label),
-                  temp_string);
-    w_current->last_callback = func_ptr;
     g_free(temp_string);
     break;
 
-  }
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
- *
- */
-void i_update_toolbar(GSCHEM_TOPLEVEL *w_current)
-{
-  if (!w_current->toolbars) return; /* if toolbars are disabled exit */
-
-  switch(w_current->event_state) {
-    case(NONE):
-    case(SELECT):
-    case(STARTSELECT):
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				   w_current->toolbar_select), TRUE);
-      break;
-
-    case(DRAWNET):
-    case(STARTDRAWNET):
-    case(NETCONT):
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				   w_current->toolbar_net), TRUE);
-      break;
-
-    case(DRAWBUS):
-    case(STARTDRAWBUS):
-    case(BUSCONT):
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				   w_current->toolbar_bus), TRUE);
-      break;
-
-    case(DRAWLINE): /*! \todo */
-    case(DRAWBOX): /*! \todo */
-    case(DRAWPICTURE): /*! \todo */
-    case(DRAWPIN): /*! \todo */
-    case(DRAWCIRCLE): /*! \todo */
-    case(DRAWARC): /*! \todo */
-    case(MOVE): /*! \todo */
-    case(COPY): /*! \todo */
-    case(ZOOM): /*! \todo */
-    case(PAN): /*! \todo */
-    case(STARTPAN): /*! \todo */
-    case(STARTCOPY): /*! \todo */
-    case(STARTMOVE): /*! \todo */
-    case(ENDCOPY): /*! \todo */
-    case(ENDMOVE): /*! \todo */
-    case(ENDLINE): /*! \todo */
-    case(ENDBOX): /*! \todo */
-    case(ENDPICTURE): /*! \todo */
-    case(ENDCIRCLE): /*! \todo */
-    case(ENDARC): /*! \todo */
-    case(ENDPIN): /*! \todo */
-    case(ENDCOMP): /*! \todo */
-    case(ENDTEXT): /*! \todo */
-    case(ENDROTATEP): /*! \todo */
-    case(ENDMIRROR): /*! \todo */
-    case(ZOOMBOXSTART): /*! \todo */
-    case(ZOOMBOXEND): /*! \todo */
-    case(STARTROUTENET): /*! \todo */
-    case(ENDROUTENET): /*! \todo */
-    case(MOUSEPAN): /*! \todo */
-    case(STARTPASTE): /*! \todo */
-    case(ENDPASTE): /*! \todo */
-    case(GRIPS): /*! \todo */
-    case(MCOPY): /*! \todo */
-    case(STARTMCOPY): /*! \todo */
-    case(ENDMCOPY): /*! \todo */
-    default:
-      gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(
-				   w_current->toolbar_select), TRUE);
-      break;
+    case( MOUSE_MIDDLE_PAN ):
+    gtk_label_set(GTK_LABEL(w_current->middle_label), _( RC_STR_MID_MOUSEPAN ));
   }
 }
 
@@ -354,7 +277,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
 {
   GSCHEM_TOPLEVEL *w_current = userdata;
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
-  x_toolbars_set_sensitivities(CAN_PASTE, usable);
+  x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
 }
 
 static bool
@@ -391,11 +314,11 @@ selected_complex_object(GSCHEM_TOPLEVEL *w_current)
 /*! \brief Update sensitivity of relevant menu items
  *
  *  \par Function Description
- *  Update sensitivity of relevant menu items.
+ *  Update sensitivity of relevant menu & toolbar items.
  *
  *  \param [in] w_current GSCHEM_TOPLEVEL structure
  */
-void i_update_ui(GSCHEM_TOPLEVEL *w_current)
+void i_update_sensitivities(GSCHEM_TOPLEVEL *w_current)
 {
   bool have_text_selected;
   bool have_mutil_pages;
@@ -406,9 +329,8 @@ void i_update_ui(GSCHEM_TOPLEVEL *w_current)
   /*
    * This is improve but still fairly simplistic.  What
    * gets enabled/disabled could be more selective based
-   * based on what is in the selection list
+   * based on what is in the selection list, WEH
    */
-
   g_assert(w_current != NULL);
   g_assert(toplevel->page_current != NULL);
 
@@ -419,7 +341,8 @@ void i_update_ui(GSCHEM_TOPLEVEL *w_current)
   is_complex_selected  = selected_complex_object(w_current);
   have_text_selected   = selected_at_least_one_text_object(w_current);
 
-  if ( have_mutil_pages ) {
+
+if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
     x_menus_sensitivity(w_current, "_Page/_Previous", TRUE);
   }
@@ -448,14 +371,38 @@ void i_update_ui(GSCHEM_TOPLEVEL *w_current)
     }
 
     if(have_text_selected) {
-        x_toolbars_set_sensitivities(TEXT_OJECTS, TRUE);
+        x_toolbars_set_sensitivities(w_current, TEXT_OBJECTS, TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/Show _Value", TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/Show _Name", TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/Show _Both", TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", TRUE);
     }
 
-    x_toolbars_set_sensitivities(SOME_OJECTS, TRUE);
+    /* since one or more things are selected, we set these TRUE */
+    /* These strings should NOT be internationalized */
+    if(is_complex_selected) {
+      x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
+      x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", TRUE);
+      x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", TRUE);
+      x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", TRUE);
+      x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
+      x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
+
+      /*  Menu items for hierarchy added by SDB 1.9.2005.  */
+      x_menus_popup_sensitivity(w_current, "/Down Schematic", TRUE);
+      x_menus_popup_sensitivity(w_current, "/Down Symbol", TRUE);
+      /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
+    }
+
+    if(have_text_selected) {
+        x_toolbars_set_sensitivities(w_current, TEXT_OBJECTS, TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/Show _Value", TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/Show _Name", TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/Show _Both", TRUE);
+        x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", TRUE);
+    }
+
+    x_toolbars_set_sensitivities(w_current, SOME_OBJECTS, TRUE);
     x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
@@ -485,6 +432,26 @@ void i_update_ui(GSCHEM_TOPLEVEL *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Cut into 3", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5", TRUE);
+
+    x_toolbars_set_sensitivities(w_current, SOME_OBJECTS, TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/_Copy", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Copy Mode", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Multiple Copy Mode", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Move Mode", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Rotate 90 Mode", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Mirror Mode", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Edit...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Edit Text...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Slot...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Lock", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Unlock", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Embed Component/Picture", TRUE);
+    x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
 
   } else { /* Nothing is selected, grey these out */
     /* These strings should NOT be internationalized */
@@ -534,17 +501,17 @@ void i_update_ui(GSCHEM_TOPLEVEL *w_current)
     /* x_menus_popup_sensitivity(w_current, "/Up", FALSE);	*/
   }
 
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 1", (object_buffer[0] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 2", (object_buffer[1] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 3", (object_buffer[2] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 4", (object_buffer[3] != NULL));
-  x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[4] != NULL));
+  x_menus_sensitivity(w_current, "_Buffer/Paste from 1", (object_buffer[1] != NULL));
+  x_menus_sensitivity(w_current, "_Buffer/Paste from 2", (object_buffer[2] != NULL));
+  x_menus_sensitivity(w_current, "_Buffer/Paste from 3", (object_buffer[3] != NULL));
+  x_menus_sensitivity(w_current, "_Buffer/Paste from 4", (object_buffer[4] != NULL));
+  x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[5] != NULL));
 
   /* Update sensitivities on the Toolbars */
-  x_toolbars_set_sensitivities (SOME_OJECTS, anything_is_selected);
-  x_toolbars_set_sensitivities (COMPLEX_OJECTS, is_complex_selected);
-  x_toolbars_set_sensitivities (HAVE_PAGES, have_mutil_pages);
-  x_toolbars_set_sensitivities (TEXT_OJECTS, have_text_selected);
+  x_toolbars_set_sensitivities (w_current, SOME_OBJECTS,    anything_is_selected);
+  x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECTS, is_complex_selected);
+  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,     have_mutil_pages);
+  x_toolbars_set_sensitivities (w_current, TEXT_OBJECTS,    have_text_selected);
 
 }
 
@@ -590,9 +557,9 @@ void i_set_filename(GSCHEM_TOPLEVEL *w_current, const gchar *string)
  */
 void i_update_grid_info (GSCHEM_TOPLEVEL *w_current)
 {
-  gchar *print_string=NULL;
-  gchar *snap=NULL;
-  gchar *grid=NULL;
+  char *print_string=NULL;
+  char *snap=NULL;
+  char *grid=NULL;
 
   if (!w_current->grid_label)
     return;

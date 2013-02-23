@@ -1,4 +1,4 @@
-# geda-std-checks.m4                                     -*-Autoconf-*-
+# geda-std-checks.m4              -*-Autoconf-*-
 # serial 1.0
 
 dnl gEDA Prebuild checks for Library Headers and Functions

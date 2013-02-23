@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -323,7 +323,7 @@ void o_select_box_search(GSCHEM_TOPLEVEL *w_current)
   if (count == 0 && !SHIFTKEY && !CONTROLKEY) {
     o_select_unselect_all (w_current);
   }
-  i_update_ui(w_current);
+  i_update_sensitivities(w_current);
 }
 
 /*! \brief Select all nets connected to the current net
@@ -439,6 +439,7 @@ OBJECT *o_select_return_first_object(GSCHEM_TOPLEVEL *w_current)
  */
 int o_select_selected(GSCHEM_TOPLEVEL *w_current)
 {
+
   TOPLEVEL *toplevel = w_current->toplevel;
   if ( geda_list_get_glist( toplevel->page_current->selection_list )) {
     return(TRUE);

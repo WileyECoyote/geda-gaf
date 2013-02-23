@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@ SCM g_funcs_print(SCM scm_filename)
 {
   char *filename;
   TOPLEVEL *toplevel = edascm_c_current_toplevel ();
-  
+
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-print");
 
@@ -64,7 +64,7 @@ SCM g_funcs_print(SCM scm_filename)
     }
     free(filename);
   }
-  
+
   return SCM_BOOL_T;
 }
 /*! \todo Finish function documentation!!!
@@ -75,12 +75,12 @@ SCM g_funcs_print(SCM scm_filename)
 SCM g_funcs_pdf (SCM scm_filename)
 {
   char *filename;
-  gboolean status;
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+  bool status;
+  GSCHEM_TOPLEVEL *w_current;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-pdf");
-
+  w_current= g_current_window ();
   if (output_filename) {
     status = x_print_export_pdf (w_current, output_filename);
   } else  {
@@ -88,7 +88,7 @@ SCM g_funcs_pdf (SCM scm_filename)
     status = x_print_export_pdf (w_current, filename);
     free(filename);
   }
-  
+
   return (status ? SCM_BOOL_T : SCM_BOOL_F);
 }
 /*! \todo Finish function documentation!!!
@@ -116,7 +116,7 @@ SCM g_funcs_postscript(SCM scm_filename)
     }
     free(filename);
   }
-  
+
   return SCM_BOOL_T;
 }
 
@@ -128,28 +128,29 @@ SCM g_funcs_postscript(SCM scm_filename)
 SCM g_funcs_image(SCM scm_filename)
 {
   char *filename;
+  GSCHEM_TOPLEVEL *w_current;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-image");
 
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+  w_current = g_current_window ();
 
   if (output_filename) {
     x_image_lowlevel (w_current, output_filename,
                       w_current->image_width,
                       w_current->image_height,
-		      g_strdup("png"),
+		      "png",
                       Image_All);
   } else  {
     filename = scm_to_utf8_string (scm_filename);
     x_image_lowlevel (w_current, filename,
                       w_current->image_width,
                       w_current->image_height,
-		      g_strdup("png"),
+		      "png",
                       Image_All);
     free(filename);
   }
-  
+
   return SCM_BOOL_T;
 }
 
@@ -172,8 +173,7 @@ SCM g_funcs_log(SCM scm_msg)
 {
   char *msg;
 
-  SCM_ASSERT (scm_is_string (scm_msg), scm_msg,
-              SCM_ARG1, "gschem-log");
+  SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-log");
 
   msg = scm_to_utf8_string (scm_msg);
   s_log_message ("%s", msg);
@@ -191,11 +191,10 @@ SCM g_funcs_msg(SCM scm_msg)
 {
   char *msg;
 
-  SCM_ASSERT (scm_is_string (scm_msg), scm_msg,
-              SCM_ARG1, "gschem-msg");
+  SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-msg");
 
   msg = scm_to_utf8_string (scm_msg);
-  generic_msg_dialog (msg);
+  gschem_message_dialog(msg, GEDA_MESSAGE_INFO, NULL);
   free(msg);
 
   return SCM_BOOL_T;
@@ -213,9 +212,9 @@ SCM g_funcs_confirm(SCM scm_msg)
 
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg,
 	      SCM_ARG1, "gschem-msg");
-  
+
   msg = scm_to_utf8_string (scm_msg);
-  r = generic_confirm_dialog (msg);
+  r = gschem_confirm_dialog (msg, GTK_MESSAGE_INFO);
   free(msg);
 
   if (r)
@@ -237,13 +236,11 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
 
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg,
 	      SCM_ARG1, "gschem-filesel");
-  
+
   SCM_ASSERT (scm_is_string (scm_templ), scm_templ,
 	      SCM_ARG2, "gschem-filesel");
-  
-  /*! \bug FIXME -- figure out the magic SCM_ASSERT for the flags */
 
-  /*! \bug FIXME -- how to deal with conflicting flags? 
+  /*! \bug FIXME -- how to deal with conflicting flags?
    * Should I throw a scheme error?  Just deal in the c code?
    */
   for (c_flags = 0; scm_is_pair (scm_flags); scm_flags = SCM_CDR (scm_flags)) {
@@ -256,7 +253,7 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
 
     } else if (strcmp (flag, "must_exist") == 0) {
       c_flags |= FSB_MUST_EXIST;
-      
+
     } else if (strcmp (flag, "must_not_exist") == 0) {
       c_flags |= FSB_SHOULD_NOT_EXIST;
 
@@ -279,7 +276,7 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   templ = scm_to_utf8_string (scm_templ);
   scm_dynwind_free (templ);
 
-  r = generic_filesel_dialog (msg, templ, c_flags);
+  r = gschem_filesel_dialog (msg, templ, c_flags);
   scm_dynwind_unwind_handler (g_free, r, SCM_F_WIND_EXPLICITLY);
 
   v = scm_from_utf8_string (r);

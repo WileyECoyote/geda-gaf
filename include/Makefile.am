@@ -10,7 +10,7 @@ noinst_HEADERS  = ascii.h \
                   geda_enum.h \
                   geda_idefines.h \
 		  geda_macros.h \
-		  geda_struct.h
+		  geda_struct.h \
 		  geda_toolbars.h \
 	          geda_types.h \
                   missing.h

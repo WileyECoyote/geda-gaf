@@ -25,7 +25,7 @@
 
 /* This works, but using one macro inside of other doesn't */
 #define GET_PICTURE_WIDTH(w)			\
-  abs((w)->second_wx - (w)->first_wx) 
+  abs((w)->second_wx - (w)->first_wx)
 #define GET_PICTURE_HEIGHT(w)						\
   (w)->pixbuf_wh_ratio == 0 ? 0 : abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
 #define GET_PICTURE_LEFT(w)			\
@@ -50,7 +50,7 @@
  *  <B>w_current->second_wy</B>).
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
- *  \param [in] w_x        Current x coordinate of pointer in world units.    
+ *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
 void o_picture_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
@@ -90,7 +90,7 @@ void o_picture_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   /* erase the temporary picture */
   /* o_picture_draw_rubber(w_current); */
   w_current->rubber_visible = 0;
-  
+
   picture_width  = GET_PICTURE_WIDTH (w_current);
   picture_height = GET_PICTURE_HEIGHT(w_current);
   picture_left   = GET_PICTURE_LEFT  (w_current);
@@ -145,8 +145,8 @@ void o_picture_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
     o_picture_invalidate_rubber (w_current);
 
   /*
-   * New values are fixed according to the <B>w_x</B> and <B>w_y</B> parameters. 
-   * These are saved in <B>w_current</B> pointed structure as new temporary values. 
+   * New values are fixed according to the <B>w_x</B> and <B>w_y</B> parameters.
+   * These are saved in <B>w_current</B> pointed structure as new temporary values.
    * The new box is then drawn.
    */
 
@@ -157,81 +157,6 @@ void o_picture_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   /* draw the new temporary box */
   o_picture_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
-}
-/*! \brief Creates the add image dialog
- *  \par Function Description
- *  This function creates the add image dialog and loads the selected picture.
- */
-void picture_selection_dialog (GSCHEM_TOPLEVEL *w_current)
-{
-  TOPLEVEL *toplevel = w_current->toplevel;
-  gchar *filename;
-  GdkPixbuf *pixbuf;
-  GError *error = NULL;
-  
-  w_current->pfswindow = gtk_file_chooser_dialog_new ("Select a picture file...",
-						      GTK_WINDOW(w_current->main_window),
-						      GTK_FILE_CHOOSER_ACTION_OPEN,
-						      GTK_STOCK_CANCEL, 
-						      GTK_RESPONSE_CANCEL,
-						      GTK_STOCK_OPEN, 
-						      GTK_RESPONSE_ACCEPT,
-						      NULL);
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(w_current->pfswindow),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
-					  -1);
-
-  if (w_current->pixbuf_filename)
-    gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(w_current->pfswindow), 
-				  w_current->pixbuf_filename);
-    
-  if (gtk_dialog_run (GTK_DIALOG (w_current->pfswindow)) == GTK_RESPONSE_ACCEPT) {
-
-    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (w_current->pfswindow));
-    gtk_widget_destroy(w_current->pfswindow);
-    w_current->pfswindow=NULL;
-
-    pixbuf = gdk_pixbuf_new_from_file (filename, &error);
-    
-    if (!pixbuf) {
-      GtkWidget *dialog;
-      
-      dialog = gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
-				       GTK_DIALOG_DESTROY_WITH_PARENT,
-				       GTK_MESSAGE_ERROR,
-				       GTK_BUTTONS_CLOSE,
-				       _("Failed to load picture: %s"),
-				       error->message);
-      /* Wait for any user response */
-      gtk_dialog_run (GTK_DIALOG (dialog));
-      
-      g_error_free (error);
-      gtk_widget_destroy(dialog);
-    }
-    else {
-#if DEBUG
-      printf("Picture loaded succesfully.\n");
-#endif
-      
-      o_invalidate_rubber(w_current);
-      i_update_middle_button(w_current, i_callback_add_picture, _("Picture"));
-      w_current->inside_action = 0;
-      
-      o_picture_set_pixbuf(w_current, pixbuf, filename);
-    
-      toplevel->page_current->CHANGED=1;
-      i_set_state(w_current, DRAWPICTURE);
-    }
-    g_free (filename);
-  }
-
-  i_update_toolbar(w_current);
-  if (w_current->pfswindow) {
-    gtk_widget_destroy(w_current->pfswindow);
-    w_current->pfswindow=NULL;
-  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -334,34 +259,36 @@ bool o_picture_exchange (GSCHEM_TOPLEVEL *w_current,
 void picture_change_filename_dialog (GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  gchar *filename;
+  GtkWidget *dialog;
+  char *filename;
   gboolean result;
   GError *error = NULL;
-  
-  w_current->pfswindow = gtk_file_chooser_dialog_new ("Select a picture file...",
-						      GTK_WINDOW(w_current->main_window),
-						      GTK_FILE_CHOOSER_ACTION_OPEN,
-						      GTK_STOCK_CANCEL, 
-						      GTK_RESPONSE_CANCEL,
-						      GTK_STOCK_OPEN, 
-						      GTK_RESPONSE_ACCEPT,
-						      NULL);
+
+  dialog = gtk_file_chooser_dialog_new (_("Select a picture file..."),
+                                        GTK_WINDOW(w_current->main_window),
+                                        0,
+                                        GTK_STOCK_CANCEL,
+                                        GTK_RESPONSE_CANCEL,
+                                        GTK_STOCK_OPEN,
+                                        GTK_RESPONSE_ACCEPT,
+                                        NULL);
+
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(w_current->pfswindow),
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
 					  GTK_RESPONSE_ACCEPT,
 					  GTK_RESPONSE_CANCEL,
 					  -1);
 
   if (w_current->pixbuf_filename)
-    gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(w_current->pfswindow), 
+    gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
 				  w_current->pixbuf_filename);
-    
-  if (gtk_dialog_run (GTK_DIALOG (w_current->pfswindow)) == GTK_RESPONSE_ACCEPT) {
 
-    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (w_current->pfswindow));
-    gtk_widget_destroy(w_current->pfswindow);
-    w_current->pfswindow=NULL;
+  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
+
+    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    gtk_widget_destroy(dialog);
+    dialog=NULL;
 
     /* Actually update the pictures */
     result = o_picture_exchange (w_current, filename, &error);
@@ -386,10 +313,9 @@ void picture_change_filename_dialog (GSCHEM_TOPLEVEL *w_current)
     g_free (filename);
   }
 
-  i_update_toolbar(w_current);
-  if (w_current->pfswindow) {
-    gtk_widget_destroy(w_current->pfswindow);
-    w_current->pfswindow=NULL;
+  if (dialog) {
+    gtk_widget_destroy(dialog);
+    dialog=NULL;
   }
 }
 

@@ -372,10 +372,8 @@ preview_init (Preview *preview)
   preview_w_current = gschem_toplevel_new ();
   preview_w_current->toplevel = s_toplevel_new ();
 
-  preview_w_current->toplevel->load_newer_backup_func =
-    x_fileselect_load_backup;
-  preview_w_current->toplevel->load_newer_backup_data =
-    preview_w_current;
+  preview_w_current->toplevel->load_newer_backup_func = x_fileselect_load_backup;
+
   o_text_set_rendered_bounds_func (preview_w_current->toplevel,
                                    o_text_get_rendered_bounds,
                                    preview_w_current);

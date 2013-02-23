@@ -35,8 +35,10 @@
 ;;                |  RC_STR_CONWIN (to integrate new functionality of
 ;;                |  the "retrofitted" log window to a console window)
 ;; ------------------------------------------------------------------
-;; WEH | 01/06/16 |  Added Bus Ripper Strings for intergration with the
+;; WEH | 01/06/13 |  Added Bus Ripper Strings for intergration with the
 ;;     |          |  configure settings dailog.
+;; WEH | 01/24/13 |  Add filenames for help documents
+
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -48,7 +50,7 @@
 #define s_log_message g_message
 
 /* Can use like: msgbox("example = [%d]", g_list_length(geda_list_get_glist(toplevel->pages))) */
-#define msgbox(...)generic_msg_dialog(g_strdup_printf(__VA_ARGS__));
+#define msgbox(...)gschem_message_dialog(g_strdup_printf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
 
 #endif
 
@@ -61,7 +63,14 @@
 #define SYMBOL_FILTER              "*.sym"
 
 #define TITLE_BLOCK_PATH           "/sym/titleblock"
+
 #define DEFAULT_UNTITLED_NAME      "untitled"
+
+/* Filenames for Stock Color Maps  */
+#define HELP_MANUAL_FILE           "geda-gschem_ug.html"
+#define HELP_FAQ_FILE              "geda-faq-gschem.html"
+#define HELP_GEDA_FILE             "geda-documentation.html"
+#define HELP_WIKI_FILE             "index.html"
 
 /* Filenames for Stock Color Maps  */
 #define DARK_COLOR_MAP   	   "gschem-colormap-darkbg"
@@ -71,6 +80,11 @@
 
 /* For x_window.c */
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
+
+/* Names of retention files for Saving Window Geometry */
+#define DIALOG_GEOMETRY_STORE      "gschem-dialog-geometry"
+#define TOOLBAR_GEOMETRY_STORE     "gschem-toolbar-geometry"
+#define WINDOW_GEOMETRY_STORE      "gschem-window-geometry"
 
 /* -----------------  Strings for RC Read/Write ----------------- */
 
@@ -140,14 +154,14 @@
 
 /* RC string related to the Pointer/Mouse */
 /* Middle button options */
-#define RC_STR_MID_STROKE   "stroke"
-#define RC_STR_MID_REPEAT   "repeat"
-#define RC_STR_MID_ACTION   "action"
-#define RC_STR_MID_MOUSEPAN "mousepan"
+#define RC_STR_MID_STROKE   "Stroke"
+#define RC_STR_MID_REPEAT   "Repeat"
+#define RC_STR_MID_ACTION   "Action"
+#define RC_STR_MID_MOUSEPAN "Pan"
 
 /* Third button Function */
-#define RC_STR_3RD_POPUP    "popup"
-#define RC_STR_3RD_PAN	    "mousepan"
+#define RC_STR_3RD_POPUP    "Popup"
+#define RC_STR_3RD_PAN	    "Pan"
 
 /* Scroll Wheel Mode */
 #define RC_STR_SCROLL_GTK     "gtk"
@@ -162,6 +176,14 @@
 /* RC String for Text Zoom Factor */
 #define RC_STR_TXT_ALWAYS   "always"
 #define RC_STR_TXT_READABLE "only-when-readable"
+
+/* RC string for Toolbar related options */
+/** String for Toolbar Mode */
+#define RC_STR_TB_ICONS "only-icons"
+#define RC_STR_TB_TEXT  "only-text"
+#define RC_STR_TB_BOTH  "show-both"
+#define RC_STR_TB_HORIZ "show-both-horiz"
+#define RC_STR_TB_LAST  "retention"
 
 /* RC string for Undo options */
 #define RC_STR_UNDO_DISK    "disk"

@@ -40,6 +40,15 @@ typedef enum {FILLING_HOLLOW, FILLING_FILL, FILLING_MESH, FILLING_HATCH, FILLING
 
 typedef enum { png_image, tiff_image, bmp_image, ico_image, jpeg_image, eps_image, pdf_image } IMAGE_TYPES;
 
+typedef enum
+{
+  GEDA_MESSAGE_INFO,
+  GEDA_MESSAGE_WARNING,
+  GEDA_MESSAGE_QUESTON,
+  GEDA_MESSAGE_ERROR,
+  GEDA_MESSAGE_OTHER,
+} gEDA_MessageType;
+
 /* File System Stuff */
 
 /* f_open behaviour flags.  See documentation for f_open_flags() in f_basic.c. */

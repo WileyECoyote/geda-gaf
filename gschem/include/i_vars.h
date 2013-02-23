@@ -18,6 +18,7 @@ extern int default_mesh_grid_threshold;
 extern int default_object_clipping;
 extern int default_scrollbars;
 extern int default_scrollbar_update;
+extern int default_scrollbars_visible;
 extern int default_scrollpan_steps;
 extern int default_window_width;
 extern int default_window_height;
@@ -42,18 +43,14 @@ extern GList *default_component_select_attrlist;
 extern int default_continue_component_place;
 extern int default_embed_components;
 extern int default_enforce_hierarchy;
-extern int default_file_preview;
 extern int default_force_boundingbox;
-extern int default_handleboxes;
 extern int default_include_complex;
 extern int default_keyboardpan_gain;
 extern int default_magnetic_net_mode;
 extern int default_netconn_rubberband;
-extern int default_raise_dialog_boxes;
 extern int default_select_slack_pixels;
 extern int default_snap_size;
 extern int default_sort_component_library;
-extern int default_toolbars;
 
 /* Nets and Routing */
 extern int default_net_consolidate;
@@ -88,6 +85,7 @@ extern int default_middle_button;
 extern int default_third_button;
 extern int default_mousepan_gain;
 extern int default_scroll_wheel;
+extern int default_pointer_hscroll;
 
 /* Printer Stuff */
 extern int default_image_color;
@@ -107,6 +105,15 @@ extern int default_print_color_background;
 extern int default_print_output_capstyle;
 extern int default_setpagedevice_orientation;
 extern int default_setpagedevice_pagesize;
+
+/* System Options */
+extern int default_file_preview;
+extern int default_handleboxes;
+extern int default_raise_dialog_boxes;
+extern int default_save_ui_settings;
+extern int default_show_menu_icons;
+extern int default_toolbars;
+extern int default_toolbars_mode;
 
 /* Text Related Stuff */
 extern int default_text_case;

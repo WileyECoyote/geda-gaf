@@ -184,7 +184,6 @@ x_compselect_callback_response (GtkDialog *dialog,
 
           /* return to the default state */
           i_set_state (w_current, SELECT);
-          i_update_toolbar (w_current);
         }
         break;
 

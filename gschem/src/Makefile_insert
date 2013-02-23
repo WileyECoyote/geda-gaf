@@ -18,6 +18,7 @@ gschem_SOURCES += \
 	g_toplevel.c \
 	i_basic.c \
 	i_callbacks.c \
+        i_command.c \
 	i_vars.c \
 	m_basic.c \
 	o_arc.c \
@@ -57,6 +58,7 @@ gschem_SOURCES += \
 	x_event.c \
 	x_fileselect.c \
 	x_grid.c \
+	x_icons.c \
 	x_image.c \
 	x_menus.c \
 	x_misc.c \
@@ -65,7 +67,6 @@ gschem_SOURCES += \
 	x_preview.c \
 	x_print.c \
 	x_rc.c \
-	x_script.c \
         x_settings.c \
         x_settings_dialog.c \
 	x_stroke.c \

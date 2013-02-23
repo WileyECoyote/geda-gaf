@@ -70,6 +70,8 @@
 #include "x_settings.h"
 #include "keywords.h"
 
+#define RC_INPUT_BUFFER_SIZE 256
+
 #ifdef __GNUC__
   #define LineTerminator { LINE_FEED, ASCII_NUL};
 #else
@@ -259,7 +261,7 @@ bool x_settings_set_scm_int(char *symbol_name, int value ) {
   return TRUE;
 }
 
-/* ----------------- Start Attribute TAB Support Functions ------------------ */
+/* ------------------ End Attribute TAB Support Functions ------------------ */
 
 /* \defgroup X_Settings_Attribute Attribute Settings File Support Functions
  *  @{
@@ -418,7 +420,7 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
  *       file.
  *
  */
-#define RC_INPUT_BUFFER_SIZE 256
+
 int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
 {
   char *inputfile;			/* Name of the input file */
@@ -785,10 +787,10 @@ KEYWORD (component_dialog_attributes) {
   }
 
   ptr_first_char = KEY_BUFFER(component_dialog_attributes);
-  while ( *ptr_first_char == SPACE)  { ++ptr_first_char; } // next char, nothing else since we were called
+  while ( *ptr_first_char == SPACE)  { ++ptr_first_char; } /* next char, nothing else since we were called */
 
   ptr = ptr_first_char;
-  while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_APO )) { ptr++; } // find apostrophe?
+  while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_APO )) { ptr++; } /* find apostrophe? */
 
   if ( *ptr == ASCII_APO ) {
     ptr++; ptr++;

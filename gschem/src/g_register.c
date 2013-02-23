@@ -47,7 +47,7 @@ struct gsubr_t {
 };
 
 /*! \brief */
-static struct gsubr_t gschem_funcs[] = {
+static struct gsubr_t gschem_rc_funcs[] = {
   /* rc file */
 
   /* Depreciated */
@@ -80,23 +80,16 @@ static struct gsubr_t gschem_funcs[] = {
   { "net-selection-mode",        1, 0, 0, g_rc_net_selection_mode },
   { "zoom-with-pan",             1, 0, 0, g_rc_zoom_with_pan },
   { "action-feedback-mode",      1, 0, 0, g_rc_action_feedback_mode },
-  { "text-feedback",             1, 0, 0, g_rc_text_feedback },
-  { "text-display-zoomfactor",   1, 0, 0, g_rc_text_display_zoomfactor },
-  { "scrollbars",                1, 0, 0, g_rc_scrollbars },
-  { "scrollbar-update",          1, 0, 0, g_rc_scrollbar_update },
   { "object-clipping",           1, 0, 0, g_rc_object_clipping },
   { "embed-components",          1, 0, 0, g_rc_embed_components },
   { "component-dialog-attributes",1, 0, 0, g_rc_component_dialog_attributes },
   { "attribute-name",            1, 0, 0, g_rc_attribute_name },
-
   { "logging",                   1, 0, 0, g_rc_logging },
   { "log-destiny",               1, 0, 0, g_rc_log_destiny },
   { "console-window",            1, 0, 0, g_rc_console_window },
   { "console-window-type",       1, 0, 0, g_rc_console_window_type },
 
-  { "text-size",                 1, 0, 0, g_rc_text_size },
   { "snap-size",                 1, 0, 0, g_rc_snap_size },
-  { "text-case",                 1, 0, 0, g_rc_text_case },
 
   { "paper-size",                2, 0, 0, g_rc_paper_size },
   { "paper-sizes",               3, 0, 0, g_rc_paper_sizes },
@@ -111,19 +104,11 @@ static struct gsubr_t gschem_funcs[] = {
   { "map-keys",                  2, 0, 0, g_rc_map_keys },
   { "middle-button",             1, 0, 0, g_rc_middle_button },
   { "scroll-wheel",              1, 0, 0, g_rc_scroll_wheel },
+  { "pointer-hscroll",           1, 0, 0, g_rc_pointer_hscroll },
   { "net-consolidate",           1, 0, 0, g_rc_net_consolidate },
-  { "file-preview",              1, 0, 0, g_rc_file_preview },
   { "enforce-hierarchy",         1, 0, 0, g_rc_enforce_hierarchy },
-  { "text-origin-marker",        1, 0, 0, g_rc_text_origin_marker },
-  { "text-marker-size",          1, 0, 0, g_rc_text_marker_size },
   { "fast-mousepan",             1, 0, 0, g_rc_fast_mousepan },
-  { "raise-dialog-boxes-on-expose", 1, 0, 0, g_rc_raise_dialog_boxes_on_expose },
   { "continue-component-place",  1, 0, 0, g_rc_continue_component_place },
-
-  { "undo-levels",               1, 0, 0, g_rc_undo_levels },
-  { "undo-control",              1, 0, 0, g_rc_undo_control },
-  { "undo-type",                 1, 0, 0, g_rc_undo_type },
-  { "undo-panzoom",              1, 0, 0, g_rc_undo_panzoom },
 
   { "netconn-rubberband",        1, 0, 0, g_rc_netconn_rubberband },
   { "magnetic-net-mode",         1, 0, 0, g_rc_magnetic_net_mode },
@@ -131,8 +116,6 @@ static struct gsubr_t gschem_funcs[] = {
   { "add-menu",                  2, 0, 0, g_rc_add_menu },
   { "window-size",               2, 0, 0, g_rc_window_size },
   { "warp-cursor",               1, 0, 0, g_rc_warp_cursor },
-  { "toolbars",                  1, 0, 0, g_rc_toolbars },
-  { "handleboxes",               1, 0, 0, g_rc_handleboxes },
   { "setpagedevice-orientation", 1, 0, 0, g_rc_setpagedevice_orientation },
   { "setpagedevice-pagesize",    1, 0, 0, g_rc_setpagedevice_pagesize },
   { "bus-ripper-size",           1, 0, 0, g_rc_bus_ripper_size },
@@ -149,11 +132,43 @@ static struct gsubr_t gschem_funcs[] = {
   { "print-command",             1, 0, 0, g_rc_print_command },
   { "select-slack-pixels",       1, 0, 0, g_rc_select_slack_pixels },
   { "zoom-gain",                 1, 0, 0, g_rc_zoom_gain },
-  { "scrollpan-steps",           1, 0, 0, g_rc_scrollpan_steps },
 
   /* backup functions */
   { "auto-save-interval",        1, 0, 0, g_rc_auto_save_interval },
 
+  /* System Related */
+  { "file-preview",              1, 0, 0, g_rc_file_preview },
+  { "handleboxes",               1, 0, 0, g_rc_handleboxes },
+  { "raise-dialog-boxes-on-expose", 1, 0, 0, g_rc_raise_dialog_boxes_on_expose },
+  { "save-ui-settings",          1, 0, 0, g_rc_save_ui_settings },
+  { "show-menu-icons",           1, 0, 0, g_rc_show_menu_icons },
+  { "toolbars",                  1, 0, 0, g_rc_toolbars },
+  { "toolbars-mode",             1, 0, 0, g_rc_toolbars_mode },
+
+  /* Scrollbar Options */
+  { "scrollbars",                1, 0, 0, g_rc_scrollbars },
+  { "scrollbar-update",          1, 0, 0, g_rc_scrollbar_update },
+  { "scrollbars-visible",        1, 0, 0, g_rc_scrollbars_visible },
+  { "scrollpan-steps",           1, 0, 0, g_rc_scrollpan_steps },
+
+  /* Text Options */
+  { "text-case",                 1, 0, 0, g_rc_text_case },
+  { "text-feedback",             1, 0, 0, g_rc_text_feedback },
+  { "text-display-zoomfactor",   1, 0, 0, g_rc_text_display_zoomfactor },
+  { "text-origin-marker",        1, 0, 0, g_rc_text_origin_marker },
+  { "text-marker-size",          1, 0, 0, g_rc_text_marker_size },
+  { "text-size",                 1, 0, 0, g_rc_text_size },
+
+  /* Undo System */
+  { "undo-levels",               1, 0, 0, g_rc_undo_levels },
+  { "undo-control",              1, 0, 0, g_rc_undo_control },
+  { "undo-type",                 1, 0, 0, g_rc_undo_type },
+  { "undo-panzoom",              1, 0, 0, g_rc_undo_panzoom },
+
+  { NULL,                        0, 0, 0, NULL }
+};
+
+static struct gsubr_t gschem_g_funcs[] = {
   /* general guile functions */
   { "gschem-print",              1, 0, 0, g_funcs_print },
   { "gschem-postscript",         1, 0, 0, g_funcs_postscript },
@@ -165,154 +180,64 @@ static struct gsubr_t gschem_funcs[] = {
   { "gschem-confirm",            1, 0, 0, g_funcs_confirm },
   { "gschem-filesel",            2, 0, 1, g_funcs_filesel },
 
-  /* keymapping callbacks */
-   { "file-new-window",           0, 0, 0, g_keys_file_new_window },
-  { "file-new",                  0, 0, 0, g_keys_file_new },
-  { "file-open",                 0, 0, 0, g_keys_file_open },
-  { "file-script",               0, 0, 0, g_keys_file_script },
-  { "file-save",                 0, 0, 0, g_keys_file_save },
-  { "file-save-as",              0, 0, 0, g_keys_file_save_as },
-  { "file-save-all",             0, 0, 0, g_keys_file_save_all },
-  { "file-print",                0, 0, 0, g_keys_file_print },
-  { "file-image",                0, 0, 0, g_keys_file_write_png },
-  { "file-close-window",         0, 0, 0, g_keys_file_close },
-  { "file-quit",                 0, 0, 0, g_keys_file_quit },
-  { "edit-undo",                 0, 0, 0, g_keys_edit_undo },
-  { "edit-redo",                 0, 0, 0, g_keys_edit_redo },
-  { "edit-select",               0, 0, 0, g_keys_edit_select },
-  { "edit-select-all",           0, 0, 0, g_keys_edit_select_all },
-  { "edit-deselect",             0, 0, 0, g_keys_edit_deselect },
-  { "edit-copy",                 0, 0, 0, g_keys_edit_copy },
-  { "edit-copy-hotkey",          0, 0, 0, g_keys_edit_copy_hotkey },
-  { "edit-mcopy",                0, 0, 0, g_keys_edit_mcopy },
-  { "edit-mcopy-hotkey",         0, 0, 0, g_keys_edit_mcopy_hotkey },
-  { "edit-move",                 0, 0, 0, g_keys_edit_move },
-  { "edit-move-hotkey",          0, 0, 0, g_keys_edit_move_hotkey },
-  { "edit-delete",               0, 0, 0, g_keys_edit_delete },
-  { "edit-rotate-90",            0, 0, 0, g_keys_edit_rotate_90 },
-  { "edit-rotate-90-hotkey",     0, 0, 0, g_keys_edit_rotate_90_hotkey },
-  { "edit-mirror",               0, 0, 0, g_keys_edit_mirror },
-  { "edit-mirror-hotkey",        0, 0, 0, g_keys_edit_mirror_hotkey },
-  { "edit-slot",                 0, 0, 0, g_keys_edit_slot },
-  { "edit-color",                0, 0, 0, g_keys_edit_color },
-  { "edit-edit",                 0, 0, 0, g_keys_edit_edit },
-  { "edit-text",                 0, 0, 0, g_keys_edit_text },
-  { "edit-lock",                 0, 0, 0, g_keys_edit_lock },
-  { "edit-unlock",               0, 0, 0, g_keys_edit_unlock },
-  { "edit-linetype",             0, 0, 0, g_keys_edit_linetype },
-  { "edit-filltype",             0, 0, 0, g_keys_edit_filltype },
-  { "edit-translate",            0, 0, 0, g_keys_edit_translate },
-  { "edit-invoke-macro",         0, 0, 0, g_keys_edit_invoke_macro },
-  { "edit-embed",                0, 0, 0, g_keys_edit_embed },
-  { "edit-unembed",              0, 0, 0, g_keys_edit_unembed },
-  { "edit-update",               0, 0, 0, g_keys_edit_update },
-  { "edit-show-hidden",          0, 0, 0, g_keys_edit_show_hidden },
-  { "edit-find-text",            0, 0, 0, g_keys_edit_find },
-  { "edit-show-text",            0, 0, 0, g_keys_edit_show_text },
-  { "edit-hide-text",            0, 0, 0, g_keys_edit_hide_text },
-  { "edit-autonumber",           0, 0, 0, g_keys_edit_autonumber_text },
+  { NULL,                        0, 0, 0, NULL }
+};
 
-  { "clipboard-copy",            0, 0, 0, g_keys_clipboard_copy },
-  { "clipboard-cut",             0, 0, 0, g_keys_clipboard_cut },
-  { "clipboard-paste",           0, 0, 0, g_keys_clipboard_paste },
-  { "clipboard-paste-hotkey",    0, 0, 0, g_keys_clipboard_paste_hotkey },
+static struct gsubr_t gschem_hk_funcs[] = {
 
-  { "buffer-copy1",              0, 0, 0, g_keys_buffer_copy1 },
-  { "buffer-copy2",              0, 0, 0, g_keys_buffer_copy2 },
-  { "buffer-copy3",              0, 0, 0, g_keys_buffer_copy3 },
-  { "buffer-copy4",              0, 0, 0, g_keys_buffer_copy4 },
-  { "buffer-copy5",              0, 0, 0, g_keys_buffer_copy5 },
-  { "buffer-cut1",               0, 0, 0, g_keys_buffer_cut1 },
-  { "buffer-cut2",               0, 0, 0, g_keys_buffer_cut2 },
-  { "buffer-cut3",               0, 0, 0, g_keys_buffer_cut3 },
-  { "buffer-cut4",               0, 0, 0, g_keys_buffer_cut4 },
-  { "buffer-cut5",               0, 0, 0, g_keys_buffer_cut5 },
-  { "buffer-paste1",             0, 0, 0, g_keys_buffer_paste1 },
-  { "buffer-paste2",             0, 0, 0, g_keys_buffer_paste2 },
-  { "buffer-paste3",             0, 0, 0, g_keys_buffer_paste3 },
-  { "buffer-paste4",             0, 0, 0, g_keys_buffer_paste4 },
-  { "buffer-paste5",             0, 0, 0, g_keys_buffer_paste5 },
-  { "buffer-paste1-hotkey",      0, 0, 0, g_keys_buffer_paste1_hotkey },
-  { "buffer-paste2-hotkey",      0, 0, 0, g_keys_buffer_paste2_hotkey },
-  { "buffer-paste3-hotkey",      0, 0, 0, g_keys_buffer_paste3_hotkey },
-  { "buffer-paste4-hotkey",      0, 0, 0, g_keys_buffer_paste4_hotkey },
-  { "buffer-paste5-hotkey",      0, 0, 0, g_keys_buffer_paste5_hotkey },
+  /* Hotkey Key Mapping callbacks */
+  { "edit-copy-hotkey",          0, 0, 0, h_keys_edit_copy_hotkey },
+  { "edit-mcopy-hotkey",         0, 0, 0, h_keys_edit_mcopy_hotkey },
+  { "edit-move-hotkey",          0, 0, 0, h_keys_edit_move_hotkey },
+  { "edit-rotate-hotkey",        0, 0, 0, h_keys_edit_rotate_hotkey },
+  { "edit-mirror-hotkey",        0, 0, 0, h_keys_edit_mirror_hotkey },
 
-  { "view-redraw",               0, 0, 0, g_keys_view_redraw },
-  { "view-zoom-full",            0, 0, 0, g_keys_view_zoom_full },
-  { "view-zoom-extents",         0, 0, 0, g_keys_view_zoom_extents },
-  { "view-zoom-in",              0, 0, 0, g_keys_view_zoom_in },
-  { "view-zoom-out",             0, 0, 0, g_keys_view_zoom_out },
-  { "view-zoom-in-hotkey",       0, 0, 0, g_keys_view_zoom_in_hotkey },
-  { "view-zoom-out-hotkey",      0, 0, 0, g_keys_view_zoom_out_hotkey },
-  { "view-zoom-box",             0, 0, 0, g_keys_view_zoom_box },
-  { "view-zoom-box-hotkey",      0, 0, 0, g_keys_view_zoom_box_hotkey },
-  { "view-pan",                  0, 0, 0, g_keys_view_pan },
-  { "view-pan-hotkey",           0, 0, 0, g_keys_view_pan_hotkey },
-  { "view-pan-left",		 0, 0, 0, g_keys_view_pan_left },
-  { "view-pan-right",		 0, 0, 0, g_keys_view_pan_right },
-  { "view-pan-up",		 0, 0, 0, g_keys_view_pan_up },
-  { "view-pan-down",		 0, 0, 0, g_keys_view_pan_down },
-  { "view-dark-colors",          0, 0, 0, g_keys_view_dark_colors },
-  { "view-light-colors",         0, 0, 0, g_keys_view_light_colors },
-  { "view-bw-colors",            0, 0, 0, g_keys_view_bw_colors },
-  { "page-manager",              0, 0, 0, g_keys_page_manager },
-  { "page-next",                 0, 0, 0, g_keys_page_next },
-  { "page-prev",                 0, 0, 0, g_keys_page_prev },
-  { "page-new",                  0, 0, 0, g_keys_page_new },
-  { "page-close",                0, 0, 0, g_keys_page_close },
-  { "page-revert",               0, 0, 0, g_keys_page_revert },
-  { "page-discard",              0, 0, 0, g_keys_page_discard },
-  { "page-print",                0, 0, 0, g_keys_page_print },
-  { "add-component",             0, 0, 0, g_keys_add_component },
-  { "add-attribute",             0, 0, 0, g_keys_add_attribute },
-  { "add-attribute-hotkey",      0, 0, 0, g_keys_add_attribute_hotkey },
-  { "add-net",                   0, 0, 0, g_keys_add_net },
-  { "add-net-hotkey",            0, 0, 0, g_keys_add_net_hotkey },
-  { "add-bus",                   0, 0, 0, g_keys_add_bus },
-  { "add-bus-hotkey",            0, 0, 0, g_keys_add_bus_hotkey },
-  { "add-text",                  0, 0, 0, g_keys_add_text },
-  { "add-line",                  0, 0, 0, g_keys_add_line },
-  { "add-line-hotkey",           0, 0, 0, g_keys_add_line_hotkey },
-  { "add-box",                   0, 0, 0, g_keys_add_box },
-  { "add-box-hotkey",            0, 0, 0, g_keys_add_box_hotkey },
-  { "add-picture",               0, 0, 0, g_keys_add_picture},
-  { "add-picture-hotkey",        0, 0, 0, g_keys_add_picture_hotkey},
-  { "add-circle",                0, 0, 0, g_keys_add_circle },
-  { "add-circle-hotkey",         0, 0, 0, g_keys_add_circle_hotkey },
-  { "add-arc",                   0, 0, 0, g_keys_add_arc },
-  { "add-arc-hotkey",            0, 0, 0, g_keys_add_arc_hotkey },
-  { "add-pin",                   0, 0, 0, g_keys_add_pin },
-  { "add-pin-hotkey",            0, 0, 0, g_keys_add_pin_hotkey },
-  { "hierarchy-down-schematic",  0, 0, 0, g_keys_hierarchy_down_schematic },
-  { "hierarchy-down-symbol",     0, 0, 0, g_keys_hierarchy_down_symbol },
-  { "hierarchy-up",              0, 0, 0, g_keys_hierarchy_up },
-  { "attributes-attach",         0, 0, 0, g_keys_attributes_attach },
-  { "attributes-detach",         0, 0, 0, g_keys_attributes_detach },
-  { "attributes-show-name",      0, 0, 0, g_keys_attributes_show_name },
-  { "attributes-show-value",     0, 0, 0, g_keys_attributes_show_value },
-  { "attributes-show-both",      0, 0, 0, g_keys_attributes_show_both },
-  { "attributes-visibility-toggle", 0, 0, 0, g_keys_attributes_visibility_toggle },
-  { "options-text-size",         0, 0, 0, g_keys_options_text_size },
-  { "options-snap-size",         0, 0, 0, g_keys_options_snap_size },
-  { "options-scale-up-snap-size",   0, 0, 0, g_keys_options_scale_up_snap_size },
-  { "options-scale-down-snap-size", 0, 0, 0, g_keys_options_scale_down_snap_size },
-  { "options-action-feedback",   0, 0, 0, g_keys_options_afeedback },
-  { "options-grid",              0, 0, 0, g_keys_options_grid },
-  { "options-snap",              0, 0, 0, g_keys_options_snap },
-  { "options-rubberband",        0, 0, 0, g_keys_options_rubberband },
-  { "options-magneticnet",       0, 0, 0, g_keys_options_magneticnet },
-  { "options-show-console-window",  0, 0, 0, g_keys_options_show_console_window },
-  { "options-show-coord-window", 0, 0, 0, g_keys_options_show_coord_window },
-  { "configure-settings",        0, 0, 0, g_keys_configure_settings },
-  { "help-about",                0, 0, 0, g_keys_help_about },
-  { "help-hotkeys",              0, 0, 0, g_keys_help_hotkeys },
-  { "misc-misc",                 0, 0, 0, g_keys_misc },
-  { "misc-misc2",                0, 0, 0, g_keys_misc2 },
-  { "misc-misc3",                0, 0, 0, g_keys_misc3 },
-  { "cancel",                    0, 0, 0, g_keys_cancel },
+  { "buffer-copy1",              0, 0, 0, h_keys_buffer_copy1 },
+  { "buffer-copy2",              0, 0, 0, h_keys_buffer_copy2 },
+  { "buffer-copy3",              0, 0, 0, h_keys_buffer_copy3 },
+  { "buffer-copy4",              0, 0, 0, h_keys_buffer_copy4 },
+  { "buffer-copy5",              0, 0, 0, h_keys_buffer_copy5 },
+  { "buffer-cut1",               0, 0, 0, h_keys_buffer_cut1 },
+  { "buffer-cut2",               0, 0, 0, h_keys_buffer_cut2 },
+  { "buffer-cut3",               0, 0, 0, h_keys_buffer_cut3 },
+  { "buffer-cut4",               0, 0, 0, h_keys_buffer_cut4 },
+  { "buffer-cut5",               0, 0, 0, h_keys_buffer_cut5 },
+  { "buffer-paste1",             0, 0, 0, h_keys_buffer_paste1 },
+  { "buffer-paste2",             0, 0, 0, h_keys_buffer_paste2 },
+  { "buffer-paste3",             0, 0, 0, h_keys_buffer_paste3 },
+  { "buffer-paste4",             0, 0, 0, h_keys_buffer_paste4 },
+  { "buffer-paste5",             0, 0, 0, h_keys_buffer_paste5 },
 
-  { NULL,                        0, 0, 0, NULL } };
+  { "clipboard-paste-hotkey",    0, 0, 0, h_keys_clipboard_paste_hotkey },
+  { "buffer-paste1-hotkey",      0, 0, 0, h_keys_buffer_paste1_hotkey },
+  { "buffer-paste2-hotkey",      0, 0, 0, h_keys_buffer_paste2_hotkey },
+  { "buffer-paste3-hotkey",      0, 0, 0, h_keys_buffer_paste3_hotkey },
+  { "buffer-paste4-hotkey",      0, 0, 0, h_keys_buffer_paste4_hotkey },
+  { "buffer-paste5-hotkey",      0, 0, 0, h_keys_buffer_paste5_hotkey },
+
+  { "view-zoom-in-hotkey",       0, 0, 0, h_keys_view_zoom_in_hotkey },
+  { "view-zoom-out-hotkey",      0, 0, 0, h_keys_view_zoom_out_hotkey },
+  { "view-zoom-box-hotkey",      0, 0, 0, h_keys_view_zoom_box_hotkey },
+  { "view-pan-hotkey",           0, 0, 0, h_keys_view_pan_hotkey },
+  { "view-pan-left",             0, 0, 0, h_keys_view_pan_left },
+  { "view-pan-right",            0, 0, 0, h_keys_view_pan_right },
+  { "view-pan-up",               0, 0, 0, h_keys_view_pan_up },
+  { "view-pan-down",             0, 0, 0, h_keys_view_pan_down },
+
+  { "add-net-hotkey",            0, 0, 0, h_keys_add_net_hotkey },
+  { "add-bus-hotkey",            0, 0, 0, h_keys_add_bus_hotkey },
+  { "add-line-hotkey",           0, 0, 0, h_keys_add_line_hotkey },
+  { "add-box-hotkey",            0, 0, 0, h_keys_add_box_hotkey },
+  { "add-circle-hotkey",         0, 0, 0, h_keys_add_circle_hotkey },
+  { "add-arc-hotkey",            0, 0, 0, h_keys_add_arc_hotkey },
+  { "add-pin-hotkey",            0, 0, 0, h_keys_add_pin_hotkey },
+
+  { "misc-misc",                 0, 0, 0, h_keys_misc },
+  { "misc-misc2",                0, 0, 0, h_keys_misc2 },
+  { "misc-misc3",                0, 0, 0, h_keys_misc3 },
+  { "cancel",                    0, 0, 0, h_keys_cancel },
+  { NULL,                        0, 0, 0, NULL }
+};
 
 /*! \brief Define a hook.
  * \par Function Description
@@ -334,16 +259,31 @@ create_hook (const char *name, int n_args)
 
 /*! \brief Register function with Scheme.
  *  \par Function Description
- *  Creates <B>subr</B> objects to make <B>g_rc_*</B> functions that are defined *  #g_rc.c, #g_keys.c and #g_funcs.c visible to Scheme.
+ *  Creates <B>subr</B> objects to make <B>g_rc_*</B> functions that are
+ *  defined *  #g_rc.c, #g_keys.c and #g_funcs.c visible to Scheme.
  */
 void g_register_funcs (void)
 {
-  struct gsubr_t *tmp = gschem_funcs;
+  struct gsubr_t *func[3] = { gschem_rc_funcs, gschem_g_funcs, gschem_hk_funcs, };
+  struct gsubr_t *grp;
+  static GList   *action_list;
 
-  while (tmp->name != NULL) {
-    scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->fnc);
-    tmp++;
+  int j;
+  for(j = 0; j < 3; j++) {
+    grp = func[j];
+    while (grp->name != NULL) {
+      scm_c_define_gsubr (grp->name, grp->req, grp->opt, grp->rst, grp->fnc);
+      grp++;
+    }
   }
+
+  i_command_get_action_list(&action_list);
+
+  lambda (char* action) {
+    scm_c_define_gsubr (action, 1, 0, 0, i_process_action);
+    return FALSE;
+  }
+  foreach(action_list)
 
   /* Hook stuff */
   complex_place_list_changed_hook = create_hook ("complex-place-list-changed-hook", 1);

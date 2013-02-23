@@ -20,7 +20,7 @@
 
 /*! \file o_attrib.c
  *  \brief utility functions for attributes
- *  
+ *
  *  Attributes are normal text objects. An attribute is a text object
  *  that has a text string that is delimited by an equal "=" character.
  *  The part before the equal character is called <b>name</b> the
@@ -29,10 +29,10 @@
  *  Attributes are attached to OBJECTs (st_object). Each attribute has
  *  a reference to the object it is attached to. Each object that has
  *  attributes has a list of pionters to its attributes.
- *  
+ *
  *  \image html o_attrib_overview.png
  *  \image latex o_attrib_overview.pdf "attribute overview" width=14cm
- * 
+ *
  *  \note
  *  Be sure in o_copy o_move o_delete you maintain the attributes
  *  delete is a bare, because you will have to unattach the other end
@@ -77,7 +77,7 @@ void o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item)
 
 /*! \brief Check whether a attrib is attached to another object
  *  \par Function Description
- *  This function checks whether the object \a attrib is attached to 
+ *  This function checks whether the object \a attrib is attached to
  *  the \a object.
  *
  *  \param [in]  toplevel   The TOPLEVEL object.
@@ -85,7 +85,7 @@ void o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item)
  *  \param [in]  object     The object where you want to add item as an attribute.
  *  \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
-gboolean o_attrib_is_attached (TOPLEVEL *toplevel, 
+gboolean o_attrib_is_attached (TOPLEVEL *toplevel,
                                OBJECT *attrib, OBJECT *object)
 {
   if (attrib == NULL || object == NULL)
@@ -376,9 +376,9 @@ error:
  *  \return TRUE on success, FALSE otherwise.
  */
 gboolean
-o_attrib_string_get_name_value (const gchar *string, gchar **name_ptr, gchar **value_ptr)
+o_attrib_string_get_name_value (const char *string, char **name_ptr, char **value_ptr)
 {
-  gchar *ptr, *prev_char, *next_char;
+  char *ptr, *prev_char, *next_char;
 
   if (name_ptr != NULL)
     *name_ptr = NULL;
@@ -420,8 +420,8 @@ o_attrib_string_get_name_value (const gchar *string, gchar **name_ptr, gchar **v
  *  \param [out] value_ptr  The return location for the value, or NULL.
  *  \return TRUE on success, FALSE otherwise.
  */
-gboolean
-o_attrib_get_name_value (OBJECT *attrib, gchar **name_ptr, gchar **value_ptr)
+bool
+o_attrib_get_name_value (OBJECT *attrib, char **name_ptr, char **value_ptr)
 {
   g_return_val_if_fail (attrib->type == OBJ_TEXT, FALSE);
 
@@ -429,6 +429,13 @@ o_attrib_get_name_value (OBJECT *attrib, gchar **name_ptr, gchar **value_ptr)
                                          name_ptr, value_ptr);
 }
 
+void o_attrib_set_value (OBJECT *attrib, char  *name_ptr,  char *value_ptr)
+{
+
+  if(attrib->text->string) g_free(attrib->text->string);
+
+  attrib->text->string = g_strconcat(name_ptr, "=", value_ptr, NULL);
+}
 
 /*! \brief Find all floating attributes in the given object list.
  *  \par Function Description
@@ -737,8 +744,6 @@ void o_attrib_emit_attribs_changed (TOPLEVEL *toplevel, OBJECT *object)
     object->attrib_notify_pending = 1;
     return;
   }
-
-//  printf ("The attributes of object %p have changed\n", object);
 
   object->attrib_notify_pending = 0;
 

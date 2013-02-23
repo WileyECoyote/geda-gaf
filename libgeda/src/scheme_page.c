@@ -357,13 +357,11 @@ SCM_DEFINE (page_dirty, "%page-dirty?", 1, 0, 0,
  * \param flag_s new flag setting.
  * \return \a page_s
  */
-SCM_DEFINE (set_page_dirty_x, "%set-page-dirty!", 2, 0, 0,
-            (SCM page_s, SCM flag_s),
+SCM_DEFINE (set_page_dirty_x, "%set-page-dirty!", 2, 0, 0, (SCM page_s, SCM flag_s),
             "Set whether a page is flagged as changed.")
 {
   /* Ensure that the argument is a page smob */
-  SCM_ASSERT (EDASCM_PAGEP (page_s), page_s,
-              SCM_ARG1, s_set_page_dirty_x);
+  SCM_ASSERT (EDASCM_PAGEP (page_s), page_s, SCM_ARG1, s_set_page_dirty_x);
 
   PAGE *page = edascm_to_page (page_s);
   page->CHANGED = scm_is_true (flag_s);

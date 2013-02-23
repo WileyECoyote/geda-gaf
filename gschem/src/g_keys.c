@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
 #endif
 
 #include "gschem.h"
+#include "i_actions.h"
 
 /*
 #ifdef HAVE_LIBDMALLOC
@@ -42,200 +43,82 @@
 #include <gdk/gdkkeysyms.h>
 
 
-#define DEFINE_G_KEYS(name)				\
-SCM g_keys_ ## name(SCM rest)				\
+#define DEFINE_H_KEYS(name)				\
+SCM h_keys_ ## name(SCM rest)				\
 {							\
    GSCHEM_TOPLEVEL *w_current = g_current_window ();	\
    i_callback_ ## name(w_current, 0, NULL);     \
    return SCM_BOOL_T;				\
 }
 
+SCM i_process_action(SCM action)
+{
+  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+  char *action_str;
+  action_str = scm_to_utf8_string(action);
+  i_command_process(w_current, action_str, 0, NULL, ID_ORIGIN_KEYBOARD);
+  return SCM_BOOL_T;
+}
+
 /*! \brief test-comment
  * test-comment
  */
-DEFINE_G_KEYS(file_new)
+/* Hoykeys */
+DEFINE_H_KEYS(edit_copy_hotkey)
+DEFINE_H_KEYS(edit_mcopy_hotkey)
+DEFINE_H_KEYS(edit_move_hotkey)
+DEFINE_H_KEYS(edit_rotate_hotkey)
+DEFINE_H_KEYS(edit_mirror_hotkey)
 
-DEFINE_G_KEYS(file_new_window)
+DEFINE_H_KEYS(buffer_copy1)
+DEFINE_H_KEYS(buffer_copy2)
+DEFINE_H_KEYS(buffer_copy3)
+DEFINE_H_KEYS(buffer_copy4)
+DEFINE_H_KEYS(buffer_copy5)
+DEFINE_H_KEYS(buffer_cut1)
+DEFINE_H_KEYS(buffer_cut2)
+DEFINE_H_KEYS(buffer_cut3)
+DEFINE_H_KEYS(buffer_cut4)
+DEFINE_H_KEYS(buffer_cut5)
+DEFINE_H_KEYS(buffer_paste1)
+DEFINE_H_KEYS(buffer_paste2)
+DEFINE_H_KEYS(buffer_paste3)
+DEFINE_H_KEYS(buffer_paste4)
+DEFINE_H_KEYS(buffer_paste5)
 
-/* don't use the widget parameter on this function, or do some checking... */
-/* since there is a call: widget = NULL, data = 0 (will be w_current) */
-/* This should be renamed to page_open perhaps... */
-DEFINE_G_KEYS(file_open)
+DEFINE_H_KEYS(clipboard_paste_hotkey)
+DEFINE_H_KEYS(buffer_paste1_hotkey)
+DEFINE_H_KEYS(buffer_paste2_hotkey)
+DEFINE_H_KEYS(buffer_paste3_hotkey)
+DEFINE_H_KEYS(buffer_paste4_hotkey)
+DEFINE_H_KEYS(buffer_paste5_hotkey)
 
-/* don't use the widget parameter on this function, or do some checking... */
-/* since there is a call: widget = NULL, data = 0 (will be w_current) */
-DEFINE_G_KEYS(file_script)
+DEFINE_H_KEYS(view_zoom_in_hotkey)
+DEFINE_H_KEYS(view_zoom_out_hotkey)
+DEFINE_H_KEYS(view_zoom_box_hotkey)
 
-/* don't use the widget parameter on this function, or do some checking... */
-/* since there is a call: widget = NULL, data = 0 (will be w_current) */
-DEFINE_G_KEYS(file_save)
-DEFINE_G_KEYS(file_save_as)
-DEFINE_G_KEYS(file_save_all)
-DEFINE_G_KEYS(file_print)
-DEFINE_G_KEYS(file_write_png)
+DEFINE_H_KEYS(view_pan_hotkey)
+DEFINE_H_KEYS(view_pan_left)
+DEFINE_H_KEYS(view_pan_right)
+DEFINE_H_KEYS(view_pan_up)
+DEFINE_H_KEYS(view_pan_down)
 
-/* don't use the widget parameter on this function, or do some checking... */
-/* since there is a call: widget = NULL, data = 0 (will be w_current) */
-/* this function closes a window */
-DEFINE_G_KEYS(file_close)
-DEFINE_G_KEYS(file_quit)
+DEFINE_H_KEYS(add_net_hotkey)
+DEFINE_H_KEYS(add_bus_hotkey)
+DEFINE_H_KEYS(add_line_hotkey)
+DEFINE_H_KEYS(add_box_hotkey)
+DEFINE_H_KEYS(add_circle_hotkey)
+DEFINE_H_KEYS(add_arc_hotkey)
+DEFINE_H_KEYS(add_pin_hotkey)
 
-/* Select also does not update the middle button shortcut */
-DEFINE_G_KEYS(edit_undo)
-DEFINE_G_KEYS(edit_redo)
-DEFINE_G_KEYS(edit_select)
-DEFINE_G_KEYS(edit_select_all)
-DEFINE_G_KEYS(edit_deselect)
-DEFINE_G_KEYS(edit_copy)
-DEFINE_G_KEYS(edit_copy_hotkey)
-DEFINE_G_KEYS(edit_mcopy)
-DEFINE_G_KEYS(edit_mcopy_hotkey)
-DEFINE_G_KEYS(edit_move)
-DEFINE_G_KEYS(edit_move_hotkey)
-DEFINE_G_KEYS(edit_delete)
-DEFINE_G_KEYS(edit_rotate_90)
-DEFINE_G_KEYS(edit_rotate_90_hotkey)
-DEFINE_G_KEYS(edit_mirror)
-DEFINE_G_KEYS(edit_mirror_hotkey)
-DEFINE_G_KEYS(edit_slot)
-DEFINE_G_KEYS(edit_color)
-DEFINE_G_KEYS(edit_edit)
-DEFINE_G_KEYS(edit_pin_type)
-DEFINE_G_KEYS(edit_text)
-DEFINE_G_KEYS(edit_lock)
-DEFINE_G_KEYS(edit_unlock)
-DEFINE_G_KEYS(edit_linetype)
-DEFINE_G_KEYS(edit_filltype)
-DEFINE_G_KEYS(edit_translate)
-DEFINE_G_KEYS(edit_invoke_macro)
-DEFINE_G_KEYS(edit_embed)
-DEFINE_G_KEYS(edit_unembed)
-DEFINE_G_KEYS(edit_update)
-DEFINE_G_KEYS(edit_show_hidden)
-DEFINE_G_KEYS(edit_find)
-DEFINE_G_KEYS(edit_show_text)
-DEFINE_G_KEYS(edit_hide_text)
-DEFINE_G_KEYS(edit_autonumber_text)
-
-DEFINE_G_KEYS(clipboard_copy)
-DEFINE_G_KEYS(clipboard_cut)
-DEFINE_G_KEYS(clipboard_paste)
-DEFINE_G_KEYS(clipboard_paste_hotkey)
-
-DEFINE_G_KEYS(buffer_copy1)
-DEFINE_G_KEYS(buffer_copy2)
-DEFINE_G_KEYS(buffer_copy3)
-DEFINE_G_KEYS(buffer_copy4)
-DEFINE_G_KEYS(buffer_copy5)
-DEFINE_G_KEYS(buffer_cut1)
-DEFINE_G_KEYS(buffer_cut2)
-DEFINE_G_KEYS(buffer_cut3)
-DEFINE_G_KEYS(buffer_cut4)
-DEFINE_G_KEYS(buffer_cut5)
-DEFINE_G_KEYS(buffer_paste1)
-DEFINE_G_KEYS(buffer_paste2)
-DEFINE_G_KEYS(buffer_paste3)
-DEFINE_G_KEYS(buffer_paste4)
-DEFINE_G_KEYS(buffer_paste5)
-DEFINE_G_KEYS(buffer_paste1_hotkey)
-DEFINE_G_KEYS(buffer_paste2_hotkey)
-DEFINE_G_KEYS(buffer_paste3_hotkey)
-DEFINE_G_KEYS(buffer_paste4_hotkey)
-DEFINE_G_KEYS(buffer_paste5_hotkey)
-
-/* repeat middle shortcut doesn't make sense on redraw, just hit right
- * button */
-DEFINE_G_KEYS(view_redraw)
-
-/* for these functions, repeat middle shortcut would get into the way
- * of what user is trying to do */
-DEFINE_G_KEYS(view_zoom_full)
-DEFINE_G_KEYS(view_zoom_extents)
-DEFINE_G_KEYS(view_zoom_in)
-DEFINE_G_KEYS(view_zoom_out)
-DEFINE_G_KEYS(view_zoom_in_hotkey)
-DEFINE_G_KEYS(view_zoom_out_hotkey)
-
-DEFINE_G_KEYS(view_zoom_box)
-DEFINE_G_KEYS(view_zoom_box_hotkey)
-DEFINE_G_KEYS(view_pan)
-DEFINE_G_KEYS(view_pan_left)
-DEFINE_G_KEYS(view_pan_right)
-DEFINE_G_KEYS(view_pan_up)
-DEFINE_G_KEYS(view_pan_down)
-DEFINE_G_KEYS(view_pan_hotkey)
-DEFINE_G_KEYS(view_dark_colors)
-DEFINE_G_KEYS(view_light_colors)
-DEFINE_G_KEYS(view_bw_colors)
-DEFINE_G_KEYS(page_manager)
-DEFINE_G_KEYS(page_next)
-DEFINE_G_KEYS(page_prev)
-DEFINE_G_KEYS(page_new)
-DEFINE_G_KEYS(page_close)
-DEFINE_G_KEYS(page_revert)
-DEFINE_G_KEYS(page_discard)
-DEFINE_G_KEYS(page_print)
-DEFINE_G_KEYS(add_component)
-DEFINE_G_KEYS(add_attribute)
-DEFINE_G_KEYS(add_attribute_hotkey)
-DEFINE_G_KEYS(add_net)
-DEFINE_G_KEYS(add_net_hotkey)
-DEFINE_G_KEYS(add_bus)
-DEFINE_G_KEYS(add_bus_hotkey)
-DEFINE_G_KEYS(add_text)
-DEFINE_G_KEYS(add_line)
-DEFINE_G_KEYS(add_line_hotkey)
-DEFINE_G_KEYS(add_box)
-DEFINE_G_KEYS(add_box_hotkey)
-DEFINE_G_KEYS(add_picture)
-DEFINE_G_KEYS(add_picture_hotkey)
-DEFINE_G_KEYS(add_circle)
-DEFINE_G_KEYS(add_circle_hotkey)
-DEFINE_G_KEYS(add_arc)
-DEFINE_G_KEYS(add_arc_hotkey)
-DEFINE_G_KEYS(add_pin)
-DEFINE_G_KEYS(add_pin_hotkey)
-DEFINE_G_KEYS(hierarchy_down_schematic)
-DEFINE_G_KEYS(hierarchy_down_symbol)
-DEFINE_G_KEYS(hierarchy_up)
-DEFINE_G_KEYS(attributes_attach)
-DEFINE_G_KEYS(attributes_detach)
-DEFINE_G_KEYS(attributes_show_name)
-DEFINE_G_KEYS(attributes_show_value)
-DEFINE_G_KEYS(attributes_show_both)
-DEFINE_G_KEYS(attributes_visibility_toggle)
-
-/* i_callback_script_console is not currently implemented */
-DEFINE_G_KEYS(script_console)
-
-/* repeat last command doesn't make sense on options either??? (does
- * it?) */
-DEFINE_G_KEYS(options_text_size)
-
-/* repeat last command doesn't make sense on options either??? (does
- * it?) */
-DEFINE_G_KEYS(options_afeedback)
-DEFINE_G_KEYS(options_grid)
-DEFINE_G_KEYS(options_snap)
-DEFINE_G_KEYS(options_snap_size)
-DEFINE_G_KEYS(options_scale_up_snap_size)
-DEFINE_G_KEYS(options_scale_down_snap_size)
-DEFINE_G_KEYS(options_rubberband)
-DEFINE_G_KEYS(options_magneticnet)
-DEFINE_G_KEYS(options_show_console_window)
-DEFINE_G_KEYS(options_show_coord_window)
-DEFINE_G_KEYS(configure_settings)
-DEFINE_G_KEYS(misc)
-DEFINE_G_KEYS(misc2)
-DEFINE_G_KEYS(misc3)
-
-DEFINE_G_KEYS(help_about)
-DEFINE_G_KEYS(help_hotkeys)
+DEFINE_H_KEYS(misc)
+DEFINE_H_KEYS(misc2)
+DEFINE_H_KEYS(misc3)
 
 /* be sure that you don't use the widget parameter in this one, since it is
 being called with a null, I suppose we should call it with the right param.
 hack */
-DEFINE_G_KEYS(cancel)
+DEFINE_H_KEYS(cancel)
 
 /*! Contains the smob tag for key smobs */
 static scm_t_bits g_key_smob_tag;
@@ -243,10 +126,10 @@ static scm_t_bits g_key_smob_tag;
 
 /*! Type for keybindings. Used internally by gschem key smobs. */
 typedef struct {
-  guint keyval;
+  unsigned int keyval;
   GdkModifierType modifiers;
-  gchar *str;                 /* UTF-8. Free with g_free(). */
-  gchar *disp_str;            /* UTF-8. Free with g_free(). */
+  char *str;                 /* UTF-8. Free with g_free(). */
+  char *disp_str;            /* UTF-8. Free with g_free(). */
 } GschemKey;
 
 /*! \brief Test if a key is valid.
@@ -277,7 +160,7 @@ g_key_is_valid (guint keyval, GdkModifierType modifiers)
     GDK_Terminate_Server, GDK_AudibleBell_Enable,
     0
   };
-  const guint *val;
+  const unsigned int *val;
 
   /* Exclude a bunch of control chars */
   if (keyval <= 0xFF) return keyval >= 0x20;
@@ -290,6 +173,7 @@ g_key_is_valid (guint keyval, GdkModifierType modifiers)
 
   return TRUE;
 }
+
 
 /*! \brief Create a new bindable key object.
  * \par Function Description
@@ -460,8 +344,8 @@ g_key_free (SCM key) {
 }
 
 SCM_SYMBOL (reset_keys_sym, "reset-keys");
-SCM_SYMBOL (press_key_sym, "press-key");
-SCM_SYMBOL (prefix_sym, "prefix");
+SCM_SYMBOL (press_key_sym,  "press-key");
+SCM_SYMBOL (prefix_sym,     "prefix");
 
 /*! \brief Clear the current key accelerator string.
  * \par Function Description
@@ -540,7 +424,7 @@ GArray* g_keys_dump_keymap (void)
   ret = g_array_sized_new (FALSE,
                            FALSE,
                            sizeof (struct keyseq_action_t),
-                           (guint)scm_ilength (scm_ret));
+                           (unsigned int)scm_ilength (scm_ret));
   for (; scm_ret != SCM_EOL; scm_ret = SCM_CDR (scm_ret)) {
     SCM scm_keymap_entry = SCM_CAR (scm_ret);
     struct keyseq_action_t keymap_entry;
@@ -572,8 +456,7 @@ int s_g_add_c_string_keys(char* keys, char* func) {
  *
  * \return 1 if a binding was found for the keystroke, 0 otherwise.
  */
-int
-g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
+int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
 {
   SCM s_retval, s_key, s_expr;
   guint key, mods, upper, lower, caps;
@@ -595,8 +478,7 @@ g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
 
   key = event->keyval;
   gdk_keyval_convert_case (event->keyval, &lower, &upper);
-  mods = (event->state & gtk_accelerator_get_default_mod_mask ()
-                & ~consumed_modifiers);
+  mods = (event->state & gtk_accelerator_get_default_mod_mask () & ~consumed_modifiers);
 
   /* Handle Caps Lock. The idea is to obtain the same keybindings
    * whether Caps Lock is enabled or not. */
@@ -619,7 +501,7 @@ g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
   s_key = g_make_key (key, mods);
 
   /* Update key hint string for status bar. */
-  gchar *keystr = gtk_accelerator_get_label (key, mods);
+  char *keystr = gtk_accelerator_get_label (key, mods);
 
   /* If no current hint string, or the hint string is going to be
    * cleared anyway, use key string directly */
@@ -629,7 +511,7 @@ g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
     w_current->keyaccel_string = keystr;
 
   } else {
-    gchar *p = w_current->keyaccel_string;
+    char *p = w_current->keyaccel_string;
     w_current->keyaccel_string = g_strconcat (p, " ", keystr, NULL);
     g_free (p);
     g_free (keystr);
@@ -642,8 +524,11 @@ g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
   s_expr = scm_list_2 (press_key_sym, s_key);
+
   s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
   scm_dynwind_end ();
+
+
 
   /* If the keystroke was not part of a prefix, start a timer to clear
    * the status bar display. */
@@ -687,6 +572,7 @@ char *g_find_key (char *func_name) {
       char *binding;
 
       binding = scm_to_utf8_string (s_binding);
+
       if ( strcmp( func_name, binding) == 0) {
         keys = scm_to_utf8_string (s_keys);
         break;
@@ -696,6 +582,7 @@ char *g_find_key (char *func_name) {
   if ((keys != NULL) && ( !strcmp( keys, "(null)") == 0)) {
       return g_strdup_printf("%s", keys);
   }
+
   return g_strdup_printf("%s", keys);
 }
 /*! \brief Exports the keymap in Scheme to a GtkListStore
@@ -782,9 +669,9 @@ g_init_keys ()
 {
   /* Register key smob type */
   g_key_smob_tag = scm_make_smob_type ("gschem-key", 0);
-  scm_set_smob_print (g_key_smob_tag, g_key_print);
+  scm_set_smob_print  (g_key_smob_tag, g_key_print);
   scm_set_smob_equalp (g_key_smob_tag, g_key_equalp);
-  scm_set_smob_free (g_key_smob_tag, g_key_free);
+  scm_set_smob_free   (g_key_smob_tag, g_key_free);
 
   scm_c_define_module ("gschem core keymap",
                        init_module_gschem_core_keymap,

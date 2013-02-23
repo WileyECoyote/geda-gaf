@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@
 void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
 {
   OBJECT *o_current;
-  const gchar *str = NULL;
+  const char *str = NULL;
 
   if (list == NULL) {
     w_current->inside_action = 0;
@@ -131,7 +131,7 @@ void o_lock(GSCHEM_TOPLEVEL *w_current)
 
   if (!w_current->SHIFTKEY) o_select_unselect_all(w_current);
   o_undo_savestate(w_current, UNDO_ALL);
-  i_update_ui(w_current);
+  i_update_sensitivities(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -529,7 +529,6 @@ void o_edit_show_specific_text (GSCHEM_TOPLEVEL *w_current,
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-
 /*! \brief Update a component.
  *
  * \par Function Description
@@ -543,6 +542,10 @@ void o_edit_show_specific_text (GSCHEM_TOPLEVEL *w_current,
  * \param [in,out] o_current The OBJECT to be updated.
  *
  * \return the new OBJECT that replaces \a o_current.
+ *
+ * TODO: This function retains attribute positions. If an attribute
+ * position was what changed between symbols versions then using
+ * this "update" function will have no effect.
  */
 OBJECT *
 o_update_component (GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
@@ -640,7 +643,6 @@ o_update_component (GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
 
   return o_new;
 }
-
 /*! \brief Do autosave on all pages that are marked.
  *  \par Function Description
  *  Looks for pages with the do_autosave_backup flag activated and

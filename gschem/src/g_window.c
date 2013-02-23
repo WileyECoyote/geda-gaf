@@ -126,15 +126,12 @@ SCM_DEFINE (current_window, "%current-window", 0, 0, 0,
  * Return the value of the #GSCHEM_TOPLEVEL fluid in the current dynamic
  * context.
  */
-GSCHEM_TOPLEVEL *
-g_current_window ()
+GSCHEM_TOPLEVEL *g_current_window ()
 {
   SCM window_s = current_window ();
 
-  if (!(SCM_SMOB_PREDICATE (window_smob_tag, window_s)
-        &&  ((void *)SCM_SMOB_DATA (window_s) != NULL))) {
-    scm_misc_error (NULL, _("Found invalid gschem window smob ~S"),
-                    scm_list_1 (window_s));
+  if (!(SCM_SMOB_PREDICATE (window_smob_tag, window_s) &&  ((void *)SCM_SMOB_DATA (window_s) != NULL))) {
+    scm_misc_error (NULL, _("Found invalid gschem window smob ~S"), scm_list_1 (window_s));
   }
 
   return (GSCHEM_TOPLEVEL *) SCM_SMOB_DATA (window_s);
@@ -178,10 +175,8 @@ SCM_DEFINE (set_active_page_x, "%set-active-page!", 1, 0, 0,
             (SCM page_s), "Set the active page.")
 {
   SCM_ASSERT (edascm_is_page (page_s), page_s, SCM_ARG1, s_set_active_page_x);
-
   PAGE *page = edascm_to_page (page_s);
   x_window_set_current_page (g_current_window (), page);
-
   return page_s;
 }
 
@@ -200,11 +195,12 @@ SCM_DEFINE (set_active_page_x, "%set-active-page!", 1, 0, 0,
 SCM_DEFINE (override_close_page_x, "%close-page!", 1, 0, 0,
             (SCM page_s), "Close a page.")
 {
+  GSCHEM_TOPLEVEL *w_current;
   /* Ensure that the argument is a page smob */
   SCM_ASSERT (edascm_is_page (page_s), page_s,
               SCM_ARG1, s_override_close_page_x);
 
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+  w_current = g_current_window ();
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *page = edascm_to_page (page_s);
 
@@ -243,7 +239,9 @@ SCM_DEFINE (pointer_position, "%pointer-position", 0, 0, 0,
             (), "Get the current pointer position.")
 {
   int x, y;
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+
+  GSCHEM_TOPLEVEL *w_current;
+  w_current = g_current_window ();
   if (x_event_get_pointer_position (w_current, FALSE, &x, &y)) {
     return scm_cons (scm_from_int (x), scm_from_int (y));
   }
@@ -273,10 +271,11 @@ SCM_DEFINE (snap_point, "%snap-point", 2, 0, 0,
 {
   SCM_ASSERT (scm_is_integer (x_s), x_s, SCM_ARG1, s_snap_point);
   SCM_ASSERT (scm_is_integer (y_s), y_s, SCM_ARG2, s_snap_point);
-
+  GSCHEM_TOPLEVEL *w_current;
   /* We save and restore the current snap setting, because we want to
    * *always* snap the requested cordinates. */
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+
+  w_current = g_current_window ();
   int save_snap = w_current->snap;
   w_current->snap = SNAP_GRID;
   int x = snap_grid (w_current, scm_to_int (x_s));

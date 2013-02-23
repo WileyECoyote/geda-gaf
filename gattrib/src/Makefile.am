@@ -22,7 +22,6 @@ gattrib_SOURCES = \
 		gattrib_dialog.c \
 		g_register.c \
 		g_rc.c \
-		g_strings.c \
 		i_vars.c \
 		i_basic.c \
 		x_toolbars.c \

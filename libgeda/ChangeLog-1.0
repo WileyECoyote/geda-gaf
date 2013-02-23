@@ -1,3 +1,17 @@
+
+2013-01-31 Wiley E. Hill <wileyhill@gmail.com>
+
+	* src/u_basic.c: Relocated lots of misc string function from gschem
+        and gattrib to libgeda. This may be usefull in other clients and we
+        don't have a generic library.
+
+        * src/a_basic.c: modified default case in o_read_buffer to check for
+        non-askii char before returning message that includes the input line.
+
+	* src/o_basic.c: Revised o_emit_pre_change_notify and o_emit_change
+         _notify to return rather than call function if toplevel or toplevel
+         ->page_current is NULL
+
 2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
 
 	* src/f_print.c: Revised f_print_header to check in s_path_sys_data

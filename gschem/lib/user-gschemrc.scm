@@ -1,6 +1,6 @@
 ;-*-Scheme-*-
 ;
-; User Init file for gschem
+; Init file for gschem
 ;
 
 ;
@@ -35,7 +35,7 @@
 ; being run. The end user should *not* change this value.
 ;
 
-(gschem-version "20121212")
+(gschem-version "@DATE_VERSION@")
 
 ;
 ; Start of color section
@@ -152,36 +152,6 @@
 (object-clipping "enabled")
 ;(object-clipping "disabled")
 
-; scrollbars string
-;
-; Controls if the scrollbars are displayed (enabled) or not (disabled)
-; If you disable the scrollbars, you will not be able to use the scroll
-; wheel on your mouse.  This is an unfortunate side effect of how the
-; code is implemented.
-;
-(scrollbars "enabled")
-;(scrollbars "disabled")
-
-; scrollbar-update string
-;
-; Specifies the behavior of the scrollbars in the main window.
-;    continuous - display is redrawn as you move the scrollbar
-;    delayed - display is redrawn once you stop moving the scrollbar
-; Default is continuous
-;
-(scrollbar-update "continuous")
-;(scrollbar-update "delayed")
-
-; scrollpan-steps non-zero integer
-;
-; Controls the number of scroll pan events required to traverse the viewed
-; schematic area. Larger numbers mean more scroll steps are required to
-; pan across the viewed area and giving finer control over positioning.
-; scrollpan-steps can not be 0.
-;
-(scrollpan-steps 8)
-;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
-
 ; window-size integer integer
 ;
 ; window-size width height
@@ -193,8 +163,8 @@
 ; These numbers are NOT the true size of the window, but of the drawing area.
 ;
 ;(window-size 650 487)  ; Good size for 800x600
-;(window-size 900 650)  ; Good size for 1024x768
-(window-size 950 712)  ; Good size for 1152x864
+(window-size 900 650)  ; Good size for 1024x768
+;(window-size 950 712)  ; Good size for 1152x864
 ;(window-size 1100 825) ; Good size for 1280x1024
 
 ; world-size width height border
@@ -244,21 +214,6 @@
 
 ;END ------------------->  Display Zoom Setup  <--------------------
 ;END ===================> Display Configuration <===================
-
-; image-color string
-;
-; Controls if image (png) is color (enabled) or black/white (disabled)
-;
-;(image-color "enabled")
-(image-color "disabled")
-
-; invert-images string
-;
-; Controls if black/white images are white on black (disabled) or
-; black on white (enabled)
-;
-(invert-images "enabled")
-;(invert-images "disabled")
 
 ;BEGIN ==================> Set Log Configuration <==================
 
@@ -352,8 +307,8 @@
 ; runtime with the "Embed Component" checkbox on the select component dialog
 ; box
 ;
-;(auto-load-last "enabled")
-(auto-load-last "disabled")
+(auto-load-last "enabled")
+;(auto-load-last "disabled")
 
 ; autosave interval
 ;
@@ -364,7 +319,7 @@
 (auto-save-interval 180)
 
 ; Attribute autoplacement grid
-(attribute-placement-grid 50)
+(define autoplace-attributes-grid 50)
 
 ; component-dialog-attributes stringlist
 ;
@@ -419,14 +374,6 @@
 (enforce-hierarchy "enabled")
 ;(enforce-hierarchy "disabled")
 
-;  file-preview string
-;
-;  Controls if the preview area in the File Open/Save As and Component
-;  dialog boxes is enabled by default or not
-;
-(file-preview "enabled")
-;(file-preview "disabled")
-
 ; force-boundingbox string
 ;
 ; Controls if the entire bounding box of a symbol is used when figuring out
@@ -435,14 +382,6 @@
 ;
 ;(force-boundingbox "enabled")
 (force-boundingbox "disabled")
-
-; handleboxes string
-;
-; Controls if the handleboxes (which contain the menu and toolbar) are
-; visible or not.
-;
-(handleboxes "enabled")
-;(handleboxes "disabled")
 
 ; keyboardpan-gain integer
 ;
@@ -470,13 +409,6 @@
 ;
 (netconn-rubberband "enabled")
 ;(netconn-rubberband "disabled")
-;
-; Controls if dialog boxes are raised whenever an expose event happens
-; Default is disabled since gtk2 supposedly handles the raising of these
-; dialogs correctly now.
-;
-;(raise-dialog-boxes-on-expose "enabled")
-(raise-dialog-boxes-on-expose "disabled")
 
 ; select-slack-pixels integer
 ;
@@ -503,21 +435,6 @@
 ;
 ;(sort-component-library "enabled")
 (sort-component-library "disabled")
-
-
-; toolbars string
-;
-; Controls if the toolbars are visible or not.
-;
-(toolbars "enabled")
-;(toolbars "disabled")
-
-; untitled-name string
-;
-; Specify the default untitled basename (usually only used a startup time)
-; And typically not changed at runtime
-;
-(untitled-name "untitled")
 
 ;END ==================> Miscellaneous Options <====================
 
@@ -573,7 +490,8 @@
 ; The following keywords control the auto bus ripper addition code
 ;
 ; bus-ripper-size  => Sets the size of the auto bus rippers.
-; bus-ripper-type  => Sets the bus ripper type, either a "component" or plain "net"
+; bus-ripper-type  => Sets the bus ripper type either a "component" or
+;                     plain "net"
 ; bus-ripper-syname  => If above is set to component, specify the symbol name.
 ;                       The symbol must exist in a component library
 ; bus-ripper-rotation => Either "symmetric" or "non-symmetric".  This deals
@@ -649,16 +567,16 @@
 ; Or, if you feel a compelling urge, you could uncomment them all,
 ; along with the styles and just see what you get!
 ;
-(thin-bus-width 20)
+(thin-bus-width 15)
 (thick-bus-width 30)
 
 (thin-line-width 15)
 (thick-line-width 30)
 
-(thin-net-width 20)
+(thin-net-width 15)
 (thick-net-width 25)
 
-(thin-pin-width 20)
+(thin-pin-width 15)
 (thick-pin-width 30)
 
 ;END ----------------------->  Net Styles  <------------------------
@@ -668,7 +586,7 @@
 
 ; fast-mousepan string
 ;
-; Controls if text is drawn properly or if a simplified version (a line which
+; Controls if text is drawn properly or if a simplified version (  if (string == NULL)
 ; represents the text string) is drawn during mouse pan.  Drawing a simple
 ; line speeds up mousepan a lot for big schematics
 (fast-mousepan "enabled")
@@ -686,10 +604,10 @@
 ; command, does an action (move and copy (holding down the ALT key)
 ; are supported) on a single objects, or if it does the mouse panning.
 ;
-;(middle-button "stroke")
-;(middle-button "repeat")
-;(middle-button "action")
-(middle-button "mousepan")
+;(middle-button "Stroke")
+;(middle-button "Repeat")
+;(middle-button "Action")
+(middle-button "Pan")
 
 ; mousepan-gain integer
 ;
@@ -710,16 +628,289 @@
 ;(scroll-wheel "gtk")
 (scroll-wheel "classic")
 
+; pointer-hscroll string
+;
+; Controls if horizontal scroll events are enabled for the pointing device.
+; Pointers with a horizontal scroll feature integrated with a middle button
+; and scroll wheel can have problems with generating a horizontal scroll
+; events when attempting to press the middle button. This option allows dis-
+; abling of pointer horizontal scroll events so that the integrated middle
+; button can be utilized without interference.
+;
+; Enable/disable mouse horizontal scroll events:
+;(pointer-hscroll "enabled")
+(pointer-hscroll "disabled")
 
 ; third-button string
 ;
 ; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
-(third-button "popup")
-;(third-button "mousepan")
+(third-button "Popup")
+;(third-button "Pan")
 
 ;END ================> Pointer Device  Preferences <================
+
+;BEGIN ==================>  Printer Related  <======================
+
+; page-size width height
+;
+; Specifies the size of the default paper size
+; Be sure all inputs are reals (floats/doubles) and don't try to reverse
+; the values to get a portrait mode.  Code to support that needs to be added
+; The code that implements this automatically transforms the dimensions into
+; the proper aspect ratio.  All units are in inches. (use output-orientation
+; to get portrait mode)
+;
+(paper-size 11.0 8.5) ; letter
+;(paper-size 14.0 8.5) ; legal
+;(paper-size 8.5 5.5) ; statement
+;(paper-size 17.0 11.0) ; tabloid
+;(paper-size 11.0 17.0) ; ledger
+;(paper-size 13.0 8.5) ; folio
+;(paper-size 10.833 8.472) ; quarto
+;(paper-size 14 10) ; 10x14
+;(paper-size 10.0 7.5) ; executive
+;(paper-size 11.0 8.5) ; A
+;(paper-size 17.0 11.0) ; B
+;(paper-size 22.0 17.0) ; C
+;(paper-size 34.0 22.0) ; D
+;(paper-size 44.0 34.0) ; E
+;(paper-size 46.81 33.11) ; A0
+;(paper-size 33.11 23.39) ; A1
+;(paper-size 23.39 16.54) ; A2
+;(paper-size 16.54 11.69) ; A3
+;(paper-size 11.69 8.27) ; A4
+;(paper-size 8.27 5.83) ; A5
+;(paper-size 5.83 4.13) ; A6
+;(paper-size 4.13 2.91) ; A7
+;(paper-size 2.91 2.05) ; A8
+;(paper-size 2.05 1.46) ; A9
+;(paper-size 1.46 1.02) ; A10
+;(paper-size 1.02 0.71) ; A11
+;(paper-size 0.71 0.51) ; A12
+
+; paper-sizes string width height
+;
+; Specifies which paper sizes are available for printing.
+; The width and height parameters are in the order for landscape printing,
+; so reversing them for portrait won't work just yet. (and that will be
+; implemented differently.
+; The default paper size is set above.  All units are in inches (forgiveness
+; please).
+;
+; You MUST change this list in this file (gschem-systemrc) if you want
+; any reordering changes to take effect.
+;
+(paper-sizes "Letter : 8.5 in x 11 in" 11.0 8.5)
+(paper-sizes "Legal : 8.5 in x 14 in" 14.0 8.5)
+(paper-sizes "Statement : 5.5 in x 8.5 in" 8.5 5.5)
+(paper-sizes "Tabloid : 11 in x 17 in" 17.0 11.0)
+(paper-sizes "Ledger : 17 in x 11 in" 11.0 17.0)
+(paper-sizes "Folio : 8.5 in x 13 in" 13.0 8.5)
+(paper-sizes "Quarto : 8.472 in x 10.833 in" 10.833 8.472)
+(paper-sizes "10x14 : 10 in x 14 in " 14.0 10.0)
+(paper-sizes "Executive : 7.5 x 10" 10.0 7.5)
+(paper-sizes "A : 8.5 in x 11 in" 11.0 8.5)
+(paper-sizes "B : 11 in x 17 in" 17.0 11.0)
+(paper-sizes "C : 17 in x 22 in" 22.0 17.0)
+(paper-sizes "D : 22 in x 34 in" 34.0 22.0)
+(paper-sizes "E : 34 in x 44 in" 44.0 34.0)
+(paper-sizes "A0  84.10 cm x 118.90 cm" 46.81 33.11)
+(paper-sizes "A1  59.40 cm x 84.10 cm" 33.11 23.39)
+(paper-sizes "A2  42.00 cm x 59.40 cm" 23.39 16.54)
+(paper-sizes "A3  29.70 cm x 42.00 cm" 16.54 11.69)
+(paper-sizes "A4  21.00 cm x 29.70 cm" 11.69 8.27)
+(paper-sizes "A5  14.80 cm x 21.00 cm" 8.27 5.83)
+(paper-sizes "A6  10.50 cm x 14.80 cm" 5.83 4.13)
+(paper-sizes "A7  7.40 cm x 10.50 cm" 4.13 2.91)
+(paper-sizes "A8  5.20 cm x 7.40 cm" 2.91 2.05)
+(paper-sizes "A9  3.70 cm x 5.20 cm" 2.05 1.46)
+(paper-sizes "A10 2.60 cm x 3.70 cm" 1.46 1.02)
+(paper-sizes "A11 1.80 cm x 2.60 cm" 1.02 0.71)
+(paper-sizes "A12 1.30 cm x 1.80 cm" 0.71 0.51)
+
+; print-command string
+;
+; The command to send data to in order to print to a printer.  On most
+; systems, this will be "lpr".
+;
+(print-command "lpr")
+
+; output-type string
+;
+; Controls what is actually printed
+;       string is either "extents" or "extents no margins" or
+;       "current window"
+;
+(output-type "extents")
+;(output-type "extents no margins")
+;(output-type "current window")
+;;; (output-type "limits")  "limits" is considered deprecated and should
+;;;                         not be used.
+
+; output-orientation string
+;
+; Controls which way the output page is layed out (landscape or portrait)
+;
+;(output-orientation "portrait")
+(output-orientation "landscape")
+
+; output-color string
+;
+; Controls if output (postscript) is color (enabled) or black/white (disabled)
+;
+(output-color "disabled")
+;(output-color "enabled")
+
+; output-capstyle string
+;
+; Controls the capstyle at the end of lines in the postscript output
+;
+(output-capstyle "square")
+;(output-capstyle "round")
+;(output-capstyle "butt")
+
+; setpagedevice-orientation string
+;
+; If enabled, puts a << /Orientation x >> setpagedevice into the postscript
+; output.  x is either 1 for landscape or 0 for portrait.
+;
+(setpagedevice-orientation "disabled")
+;(setpagedevice-orientation "enabled")
+
+; setpagedevice-pagesize string
+;
+; If enabled, puts a << /PageSize XxY >> setpagedevice into the postscript
+; output.  XxY is the size of the paper in points.
+;
+(setpagedevice-pagesize "disabled")
+;(setpagedevice-pagesize "enabled")
+
+;END ====================>  Printer Related  <======================
+
+;BEGIN =================> General System Options <==================
+
+;  file-preview string
+;
+;  Controls if the preview area in the File Open/Save As and Component
+;  dialog boxes is enabled by default or not
+;
+(file-preview "enabled")
+;(file-preview "disabled")
+
+; handleboxes string
+;
+; Controls if the handleboxes (which contain the menu and toolbar) are
+; visible or not.
+;
+(handleboxes "enabled")
+;(handleboxes "disabled")
+
+; raise-dialog-boxes-on-expose
+;
+; Controls if dialog boxes are raised whenever an expose event happens
+; Default is disabled since gtk2 supposedly handles the raising of these
+; dialogs correctly now.
+;
+;(raise-dialog-boxes-on-expose "enabled")
+(raise-dialog-boxes-on-expose "disabled")
+
+; save-ui-settings string
+;
+; Controls if settings are written to disk when shutting down. Note this
+; does not control saving of configurations variables, which can be saved
+; in the Preferences Dialog. This feature saves the Main Window size and
+; Position, the state of all tool bars, and menu settings.
+;
+(save-ui-settings "enabled")
+;(save-ui-settings "disabled")
+
+; show-menu-icons string
+;
+; Controls if icon images are displayed in menus. If the setting in the
+; gschem-gtkrc is not responisve, this keyword can be used to used to
+; over-ride interference. If this keyword is used then gschem calls gtk
+; directly to either enable or disable menu icons. gschem does not default
+; this value, meaning that if nither option is used then gtk determines the
+; setting, gtk's default is no icons in menus.
+;
+(show-menu-icons "enabled")
+;(show-menu-icons "disabled")
+
+
+; toolbars string
+;
+; Controls if the toolbars are visible or not. If toolbars are not enabled
+; here then toolbars can not enabled without restarting.
+;
+(toolbars "enabled")
+;(toolbars "disabled")
+
+; toolbars-mode string
+;
+; Controls if Icons, Text, or both are displayed on toolbars. This keyword
+; will over-ride the settings in gtkrc's. This may be required in certain
+; enviroments. gschem does not default this value so the setting will be
+; determined by gtk if this keyword is not set. The last mode, "retention"
+; will cause each toolbar to be restored with values preserved from the
+; last shutdown when save-ui-settings was "enabled".
+;
+;(toolbars-mode "only-icons")
+;(toolbars-mode "only-text")
+;(toolbars-mode "show-both")
+;(toolbars-mode "show-both-horiz")
+(toolbars-mode "retention")
+
+; untitled-name string
+;
+; Specify the default untitled basename (usually only used a startup time)
+; And typically not changed at runtime
+;
+(untitled-name "untitled")
+
+;BEGIN ===================> Scrollbar Options <=====================
+
+; scrollbars string
+;
+; Controls if the scrollbars are enabled or disabled. If you disable
+; the scrollbars, you will not be able to use the scroll wheel on your
+; mouse. See scrollbars-visible.
+;
+(scrollbars "enabled")
+;(scrollbars "disabled")
+
+; scrollbar-update string
+;
+; Specifies the behavior of the scrollbars in the main window.
+;    continuous - display is redrawn as you move the scrollbar
+;    delayed - display is redrawn once you stop moving the scrollbar
+; Default is continuous
+;
+(scrollbar-update "continuous")
+;(scrollbar-update "delayed")
+
+; scrollbars-visible string
+;
+; Controls if the scrollbars are displayed (enabled) or not (disabled)
+; If scrollbars-visible is disabled, scrollbars will not be displade
+; scroll wheel on the pointer will still be functional.
+;
+(scrollbars-visible "enabled")
+;(scrollbars-visible "disabled")
+
+; scrollpan-steps non-zero integer
+;
+; Controls the number of scroll pan events required to traverse the viewed
+; schematic area. Larger numbers mean more scroll steps are required to
+; pan across the viewed area and giving finer control over positioning.
+; scrollpan-steps can not be 0.
+;
+(scrollpan-steps 8)
+;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
+
+;END =====================> Scrollbar Options <=====================
+;END =======================> System Options <======================
 
 ;BEGIN =================> Set Text Configuration <==================
 ;
@@ -827,6 +1018,91 @@
 ; End of mode related keywords
 ;
 
+;
+; Start of hooks
+;
+(use-modules (gschem deprecated))
+
+;; Uncomment this scheme code if you want automatic numbering when
+;; placing new component and copying components.
+;
+;(load-from-path "auto-uref.scm")
+;(add-hook! add-component-hook auto-uref)
+;(add-hook! copy-component-hook auto-uref)
+
+;; Define value of page-offset for auto number on insert.
+;; Refdeses will be numbered from integer multiples of page-offset,
+;; depending on the lowest refdes value found on the page.
+;; If lowest value is 323 and page offset is 100, then next refdes
+;; will be 301.
+;; Setting to 0 disables the feature.
+;
+;(auto-uref-set-page-offset 100)
+
+; Define default pin attributes
+; Attributes:
+;   - Attribute name.
+;   - Value of the attribute.
+;   - Visibility: #t (visible) or #f (hidden).
+;   - Show_list:  a list containing what to show, using
+;                 elements like "name" or "value", or an empty list.
+(define default-pin-attributes
+       '(("pintype"   "unknown" #f ())
+         ("pinlabel"  "unknown" #t ("value"))
+         ("pinnumber" "0"       #t ("value"))
+         ("pinseq"    "0"       #f ())))
+
+; Convert a character into a string
+(define char2str
+  (lambda (char)
+    (list->string (list char))))
+
+; Load the default position of attributes, for attribute autoplacing
+; functions.
+(load-from-path "default-attrib-positions.scm")
+
+; Adds the default pin attributes to each newly placed pin.
+(define (add-default-pin-attributes object)
+  (for-each
+    (lambda (a)
+      (apply add-attribute-to-object object a)) default-pin-attributes))
+
+; Comment in this hook to automatically add the default attributes to
+; each newly placed pin
+(add-hook! add-pin-hook add-default-pin-attributes)
+
+; Comment in this to load the functions to place attributes automatically.
+(load-from-path "auto-place-attribs.scm")
+
+; Autoplace pin text attributes hook.
+; Comment in these if you want the pin attributes to be automatically placed.
+; There are different hooks for situations like adding a new pin and rotating
+; or mirroring an existing one.
+; The #t at the end means that function is appended to the end of the hook.
+(add-hook! add-pin-hook (lambda (pin)
+        (autoplace-pin-attributes pin )) #t)
+(add-hook! rotate-pin-hook (lambda (pin)
+        (autoplace-pin-attributes pin )) #t)
+(add-hook! mirror-pin-hook (lambda (pin)
+        (autoplace-pin-attributes pin )) #t)
+
+; Autoplace component/net/buses text attributes hook.
+; Comment in these if you want the component attributes to be
+; automatically placed.
+; There are different hooks for situations like adding a new pin, rotating
+; or mirroring an existing one, adding a new attribute or a new component.
+; The #t at the end means that function is appended to the end of the hook.
+;(add-hook! add-component-object-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! rotate-component-object-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! mirror-component-object-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! add-attribute-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! complex-place-list-changed-hook (lambda (object)
+;         (autoplace-object-attributes object)) #t)
+
 ;; Automatically place a titleblock (or other components) when creating
 ;; a new page.
 ;; Comment in these lines if you want gschem to automatically place a titleblock
@@ -839,11 +1115,11 @@
 ;; If you don't want a titleblock to be added automatically, then add one of
 ;; the following lines to your gschemrc file (without the semicolon).
 ;; There are several ways, so just choose one;
-;; (define default-titleblock "")
+;;   (define default-titleblock "")
 ;;   (define default-titleblock '())
 ;;   (define default-titleblock #f)
 ;
-(define default-titleblock "title-A.sym")
+(define default-titleblock "title-B.sym")
 
 ; attribute-name string
 ;
@@ -883,9 +1159,7 @@
 (attribute-name "use-license")
 (attribute-name "file")
 
-;;
-;; Major modes
-;;
+
 
 ;; Comment in this scheme code if you want to link with pcb
 ;;

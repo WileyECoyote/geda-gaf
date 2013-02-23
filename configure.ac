@@ -1,4 +1,4 @@
-dnl                                                      -*-Autoconf-*-
+dnl -*-Autoconf-*-
 dnl Process this file with autoconf to generate configure.
 dnl
 dnl The AX_* macros are defined in files in the top-level m4
@@ -8,7 +8,7 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [2.0.2], [https://bugs.launchpad.net/geda], [geda-gaf])
+AC_INIT([gEDA/gaf], [2.0.5], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
 AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
@@ -27,10 +27,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20121212])
+AX_GIT_VERSION([20130214])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20121031])
+AC_SUBST([CHANGELOG_BASE], [1.0-20130214])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
@@ -86,19 +86,19 @@ PKG_PROG_PKG_CONFIG
 AX_CHECK_GUILE([1.8.0])
 
 #####################################################################
-# Cairo stuff
+# GLIB
 #####################################################################
-
-AX_CHECK_CAIRO
 
 PKG_CHECK_MODULES(GLIB, [glib-2.0 >= 2.20.0], ,
   AC_MSG_ERROR([GLib 2.20.0 or later is required.]))
 
-PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= 2.16.0], ,
-  AC_MSG_ERROR([GTK+ 2.16.0 or later is required.]))
+#####################################################################
+# GTK, GDK, Pango & Cairo stuff
+#####################################################################
 
-PKG_CHECK_MODULES(GDK_PIXBUF, [gdk-pixbuf-2.0 >= 2.16.0], ,
-  AC_MSG_ERROR([GDK_PIXBUF 2.16.0 or later is required.]))
+AX_CHECK_GTK
+
+AX_CHECK_CAIRO
 
 PKG_CHECK_MODULES(PANGOCAIRO, [pangocairo >= 0.26], ,
   AC_MSG_ERROR([PANGOCAIRO 0.26 or later is required.]))

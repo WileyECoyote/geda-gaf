@@ -64,6 +64,7 @@ int     default_mesh_grid_threshold       = DEFAULT_GRID_MESH_THRESHOLD;
 int     default_object_clipping           = TRUE;
 int     default_scrollbars                = TRUE;
 int     default_scrollbar_update          = TRUE;
+int     default_scrollbars_visible        = TRUE;
 int     default_scrollpan_steps           = DEFAULT_SCROLLPAN_STEPS;
 
 /* This should be renamed to decribe h&w of what, maybe something like default_screen_height */
@@ -96,19 +97,14 @@ GList  *default_component_select_attrlist = NULL;
 int     default_continue_component_place  = TRUE;
 int     default_embed_components          = FALSE;
 int     default_enforce_hierarchy         = TRUE;
-int     default_file_preview              = FALSE;
 int     default_force_boundingbox         = FALSE;
-int     default_handleboxes               = TRUE;
 int     default_include_complex           = FALSE;
 int     default_keyboardpan_gain          = DEFAULT_KEYBOARD_GAIN;
 int     default_magnetic_net_mode         = TRUE;
 int     default_netconn_rubberband        = FALSE;
-int     default_raise_dialog_boxes        = FALSE;
-int     default_save_settings             = TRUE;
 int     default_select_slack_pixels       = DEFAULT_SLACK_PIXELS;
 int     default_snap_size                 = DEFAULT_SNAP_SIZE;
 int     default_sort_component_library    = FALSE;
-int     default_toolbars                  = TRUE;
 
 /* Nets and Routing */
 int     default_net_consolidate    = TRUE;
@@ -133,6 +129,7 @@ int     default_drag_can_move      = TRUE;
 #endif
 int     default_mousepan_gain      = DEFAULT_MOUSEPAN_GAIN;
 int     default_scroll_wheel       = SCROLL_WHEEL_CLASSIC;
+int     default_pointer_hscroll    = FALSE;
 int     default_third_button       = POPUP_ENABLED;
 
 /* Print Related */
@@ -146,6 +143,15 @@ int     default_print_output_type         = EXTENTS;
 int     default_print_output_capstyle     = SQUARE_CAP;
 int     default_setpagedevice_orientation = FALSE;
 int     default_setpagedevice_pagesize    = FALSE;
+
+/* System Related */
+int     default_file_preview              = FALSE;
+int     default_handleboxes               = TRUE;
+int     default_raise_dialog_boxes        = FALSE;
+int     default_save_ui_settings          = TRUE;
+int     default_show_menu_icons           = RC_NIL;
+int     default_toolbars                  = TRUE;
+int     default_toolbars_mode             = RC_NIL;
 
 /* Text Related */
 int     default_text_case                 = LOWER_CASE;
@@ -203,6 +209,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   toplevel->object_clipping            = default_object_clipping;
   w_current->scrollbars                = default_scrollbars;
   w_current->scrollbar_update          = default_scrollbar_update;
+  w_current->scrollbars_visible        = default_scrollbars_visible;
   w_current->scrollpan_steps           = default_scrollpan_steps;
   w_current->warp_cursor               = default_warp_cursor;
   w_current->zoom_gain                 = default_zoom_gain;
@@ -217,18 +224,13 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->continue_component_place  = default_continue_component_place;
   w_current->embed_components          = default_embed_components;
   w_current->enforce_hierarchy         = default_enforce_hierarchy;
-  w_current->file_preview              = default_file_preview;
   toplevel->force_boundingbox          = default_force_boundingbox;
-  w_current->handleboxes               = default_handleboxes;
   w_current->include_complex           = default_include_complex;
   w_current->keyboardpan_gain          = default_keyboardpan_gain;
   w_current->netconn_rubberband        = default_netconn_rubberband;
-  w_current->raise_dialog_boxes        = default_raise_dialog_boxes;
-  w_current->save_settings             = default_save_settings;
   w_current->select_slack_pixels       = default_select_slack_pixels;
   w_current->snap_size                 = default_snap_size;
   w_current->sort_component_library    = default_sort_component_library;
-  w_current->toolbars                  = default_toolbars;
 
 /* Nets and Routing */
   w_current->magnetic_net_mode         = default_magnetic_net_mode;
@@ -250,6 +252,7 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->third_button              = default_third_button;
   w_current->mousepan_gain             = default_mousepan_gain;
   w_current->scroll_wheel              = default_scroll_wheel;
+  w_current->pointer_hscroll           = default_pointer_hscroll;
 
 /* Print Related */
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);
@@ -267,6 +270,15 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   toplevel->print_output_capstyle      = default_print_output_capstyle;
   toplevel->setpagedevice_orientation  = default_setpagedevice_orientation;
   toplevel->setpagedevice_pagesize     = default_setpagedevice_pagesize;
+
+  /* System Related */
+  w_current->file_preview              = default_file_preview;
+  w_current->handleboxes               = default_handleboxes;
+  w_current->raise_dialog_boxes        = default_raise_dialog_boxes;
+  w_current->save_ui_settings          = default_save_ui_settings;
+  w_current->show_menu_icons           = default_show_menu_icons;
+  w_current->toolbars                  = default_toolbars;
+  w_current->toolbars_mode             = default_toolbars_mode;
 
 /* Text Related */
   w_current->text_case                 = default_text_case;
@@ -286,28 +298,6 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
 
 }
 
-/*! \brief Free default names
- *  \par Function Description
- *  This function will free all of the default variables for gschem.
- *
- */
-GList* g_list_clear(GList* list){
-
-  if (list != NULL ) {
-
-    g_list_foreach(list, (GFunc)g_free, NULL);
-    lambda (const char* data)
-    {
-      list = g_list_remove( list, data);
-      return FALSE;
-    }
-    foreach (list);
-
-    g_list_free(list);
-    list = NULL;
-  }
-  return list;
-}
 
 /*! \brief Free default names
  *  \par Function Description
@@ -327,13 +317,14 @@ void i_vars_freenames()
  * defaults.
  */
 void
-i_vars_init_defaults(GSCHEM_TOPLEVEL *w_current)
+i_vars_init(GSCHEM_TOPLEVEL *w_current)
 {
-  i_vars_set(w_current);
+  i_vars_set (w_current);         /* Set defaults */
 
-  EdaConfig *cfg = eda_config_get_user_context ();
-
-
+  //EdaConfig *cfg = eda_config_get_user_context ();
+  /* Now read in RC files. */
+  g_rc_parse_gtkrc();
+  x_rc_parse_gschem (w_current, rc_filename);
 
 }
 

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -52,10 +52,9 @@ void o_buffer_copy(GSCHEM_TOPLEVEL *w_current, int buf_num)
 {
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     g_warning (_("o_buffer_copy: Invalid buffer %i\n"), buf_num);
-    return;
   }
-
-  selection_to_buffer (w_current, buf_num);
+  else
+    selection_to_buffer (w_current, buf_num);
 }
 
 /*! \todo Finish function documentation!!!
@@ -67,11 +66,11 @@ void o_buffer_cut(GSCHEM_TOPLEVEL *w_current, int buf_num)
 {
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     g_warning (_("o_buffer_cut: Invalid buffer %i\n"), buf_num);
-    return;
   }
-
-  selection_to_buffer (w_current, buf_num);
-  o_delete_selected(w_current);
+  else {
+    selection_to_buffer (w_current, buf_num);
+    o_delete_selected(w_current);
+  }
 }
 
 /*! \todo Finish function documentation!!!

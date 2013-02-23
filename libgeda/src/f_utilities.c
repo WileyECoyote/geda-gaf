@@ -40,7 +40,7 @@
 #include <glib.h>
 
 #include <errno.h>
-extern int errno ;
+extern int errno;
 
 #include <defines.h>
 

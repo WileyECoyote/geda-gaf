@@ -39,19 +39,30 @@
  */
 int mil_x (GSCHEM_TOPLEVEL *w_current, int val)
 {
-  double i;
-  double fval;
   int j;
 
-  fval = val;
-  i = fval * w_current->toplevel->page_current->to_world_x_constant +
-      w_current->toplevel->page_current->left;
+  if ((w_current != NULL) &&
+      (w_current->toplevel != NULL) &&
+      (w_current->toplevel->page_current != NULL)) {
+
+    int   left = w_current->toplevel->page_current->left;
+    float x_constant =
+          w_current->toplevel->page_current->to_world_x_constant;
+
+    double fval;
+
+    fval = val;
 
 #ifdef HAS_RINT
-  j = rint(i);
+    j = rint(fval * x_constant + left);
 #else
-  j = i;
+    j = (fval * x_constant + left) + 0.5;
 #endif
+  }
+  else {
+    fprintf(stderr, "ERROR! mil_x: detected NULL pointer\n");
+    j = 0;
+  }
 
   return(j);
 }
@@ -66,20 +77,31 @@ int mil_x (GSCHEM_TOPLEVEL *w_current, int val)
  */
 int mil_y(GSCHEM_TOPLEVEL *w_current, int val)
 {
-  double i;
-  double fval;
-  int j;
 
-  fval = w_current->toplevel->height - val;
-  i = fval * w_current->toplevel->page_current->to_world_y_constant +
-      w_current->toplevel->page_current->top;
+  int j;
+  if ((w_current != NULL) &&
+      (w_current->toplevel != NULL) &&
+      (w_current->toplevel->page_current != NULL)) {
+
+    int   height = w_current->toplevel->height;
+    int   top = w_current->toplevel->page_current->top;
+    float y_constant =
+          w_current->toplevel->page_current->to_world_y_constant;
+
+    double fval;
+
+    fval = height - val;
 
 #ifdef HAS_RINT
-  j = rint(i);
+    j = rint(fval * y_constant + top);
 #else
-  j = i;
+    j = (fval * y_constant + top) + 0.5;
 #endif
-
+  }
+  else {
+    fprintf(stderr, "ERROR! mil_y: detected NULL pointer\n");
+    j = 0;
+  }
   return(j);
 }
 
@@ -93,26 +115,35 @@ int mil_y(GSCHEM_TOPLEVEL *w_current, int val)
  */
 int pix_x (GSCHEM_TOPLEVEL *w_current, int val)
 {
-
-  double i;
   int j;
 
-  i = w_current->toplevel->page_current->to_screen_x_constant *
-        (double)(val - w_current->toplevel->page_current->left);
+  if ((w_current != NULL) &&
+      (w_current->toplevel != NULL) &&
+      (w_current->toplevel->page_current != NULL)) {
+
+    float x_constant =
+          w_current->toplevel->page_current->to_screen_x_constant;
+
+    int   left = w_current->toplevel->page_current->left;
 
 #ifdef HAS_RINT
-  j = rint(i);
+    j = rint(x_constant * (double)(val - left));
 #else
-  j = i;
+    j = x_constant * (double)(val - left) + 0.5;
 #endif
 
-  /* this is a temp solution to fix the wrapping associated with */
-  /* X coords being greated/less than than 2^15 */
-  if (j >= 32768) {
-    j = 32767;
+    /* this is a temp solution to fix the wrapping associated with */
+    /* X coords being greated/less than than 2^15 */
+    if (j >= 32768) {
+      j = 32767;
+    }
+    if (j <= -32768) {
+      j = -32767;
+    }
   }
-  if (j <= -32768) {
-    j = -32767;
+  else {
+    fprintf(stderr, "ERROR! pix_x: detected NULL pointer\n");
+    j = 0;
   }
 
   return(j);
@@ -128,28 +159,36 @@ int pix_x (GSCHEM_TOPLEVEL *w_current, int val)
  */
 int pix_y(GSCHEM_TOPLEVEL *w_current, int val)
 {
-  double i;
   int j;
 
-  i = w_current->toplevel->height -
-        (w_current->toplevel->page_current->to_screen_y_constant *
-         (double)(val - w_current->toplevel->page_current->top));
+  if ((w_current != NULL) &&
+      (w_current->toplevel != NULL) &&
+      (w_current->toplevel->page_current != NULL)) {
+
+    float y_constant =
+          w_current->toplevel->page_current->to_screen_y_constant;
+    int   top = w_current->toplevel->page_current->top;
+    int   height = w_current->toplevel->height;
 
 #ifdef HAS_RINT
-  j = rint(i);
+    j = rint(height - (y_constant * (double)(val - top)));
 #else
-  j = i;
+    j = (height - (y_constant * (double)(val - top))) + 0.5;
 #endif
 
-  /* this is a temp solution to fix the wrapping associated with */
-  /* X coords being greated/less than than 2^15 */
-  if (j >= 32768) {
-    j = 32767;
+    /* this is a temp solution to fix the wrapping associated with */
+    /* X coords being greated/less than than 2^15 */
+    if (j >= 32768) {
+      j = 32767;
+    }
+    if (j <= -32768) {
+      j = -32767;
+    }
   }
-  if (j <= -32768) {
-    j = -32767;
+  else {
+    fprintf(stderr, "ERROR! pix_y: detected NULL pointer\n");
+    j = 0;
   }
-
   return(j);
 }
 
@@ -166,6 +205,7 @@ int pix_y(GSCHEM_TOPLEVEL *w_current, int val)
  */
 void WORLDtoSCREEN (GSCHEM_TOPLEVEL *w_current, int x, int y, int *px, int *py)
 {
+
   *px = pix_x (w_current, x);
   *py = pix_y (w_current, y);
 }
@@ -242,20 +282,23 @@ int snap_grid(GSCHEM_TOPLEVEL *w_current, int input)
  */
 int SCREENabs(GSCHEM_TOPLEVEL *w_current, int val)
 {
+  if ((w_current == NULL) ||
+      (w_current->toplevel == NULL) ||
+      (w_current->toplevel->page_current == NULL))
+    return 0;
+
   double f0,f1,f;
 
-  double i;
   int j;
 
   f0 = w_current->toplevel->page_current->left;
   f1 = w_current->toplevel->page_current->right;
   f = w_current->toplevel->width / (f1 - f0);
-  i = f * (double)(val);
 
 #ifdef HAS_RINT
-  j = rint(i);
+  j = rint(f * (double)(val));
 #else
-  j = i;
+  j = (f * (double)(val)) + 0.5;
 #endif
 
   return(j);
@@ -274,19 +317,17 @@ int WORLDabs(GSCHEM_TOPLEVEL *w_current, int val)
 {
   double fw0,fw1,fw,fval;
 
-  double i;
   int j;
 
   fw1 = w_current->toplevel->page_current->right;
   fw0 = w_current->toplevel->page_current->left;
   fw  = w_current->toplevel->width;
   fval = val;
-  i = fval * (fw1 - fw0) / fw;
 
 #ifdef HAS_RINT
-  j = rint(i);
+  j = rint(fval * (fw1 - fw0) / fw);
 #else
-  j = i;
+  j = (fval * (fw1 - fw0) / fw) + 0.5;
 #endif
 
   return(j);

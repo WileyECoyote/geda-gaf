@@ -1,21 +1,45 @@
 
-# 
+#
 # gschem's gtkrc file
 #
 # A proportional font is not longer required
 #
 
+#sets the font
 # Comment this in, if you want to change the font
+#gtk-font-name = "sans 8"
+#gtk-font-name = "DejaVu Sans 12"
+
+# styles definitions:
 #style "default"
 #{
 #   font = "fixed"
 #}
 #widget_class "*" style "default"
 
+style "default"
+{
+   font_name = "sans 8"
+}
+widget_class "*" style "default"
+
+style "gschem"
+{
+   font_name = "DejaVu Sans 12"
+}
+widget_class "*" style "gschem"
+
 #old way commented out, still works, but use the above block.
 #style "defaultfont"
 #{
 #  font = "fixed"
 #}
+
 # common default
 #class "GtkWidget" style "defaultfont"
+
+##################
+#    TOOLBARS    #
+##################
+
+gtk-toolbar-style   = GTK_TOOLBAR_ICONS

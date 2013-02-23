@@ -618,7 +618,7 @@ void autonumber_remove_number(AUTONUMBER_TEXT * autotext, OBJECT *o_current)
 {
   OBJECT *o_parent, *o_slot;
   char *str;
-  str = malloc(strlen(autotext->current_searchtext) + 2); // allocate space
+  str = malloc(strlen(autotext->current_searchtext) + 2); /* allocate space */
 
   /* replace old text */
   strcpy(str, autotext->current_searchtext);
@@ -1090,7 +1090,6 @@ void autonumber_get_state(AUTONUMBER_TEXT *autotext)
   /* Scope */
 
   /* Search text history */
- // widget = lookup_widget(autotext->dialog, "scope_text");
   widget = gtk_bin_get_child(GTK_BIN(ScopeTextCombo));
   text = g_strdup(gtk_entry_get_text( GTK_ENTRY(widget)));
 

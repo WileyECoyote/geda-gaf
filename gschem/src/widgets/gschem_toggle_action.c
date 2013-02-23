@@ -21,9 +21,9 @@
  * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *
- * \Note: We do all this for the Multi Keys Characters in the Menus, (because
- *        We really Like them,) otherwise we could have just used the stock
- *        gtk_toggle_action.
+ * \Note: WEH: We do all this for the Multi-Key Characters in the Menus,
+ *        (because We really Like them, otherwise we could have just used
+ *         the stock gtk_toggle_action.)
  */
 #include <config.h>
 #include <geda.h>

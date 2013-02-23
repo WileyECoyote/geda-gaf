@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,6 +63,7 @@ void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
   GList *to_remove;
   GList *iter;
   OBJECT *obj;
+
   unsigned int locked_num = 0;
 
   g_return_if_fail (o_select_selected (w_current));
@@ -77,21 +78,11 @@ void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
 
   if (locked_num > 0) {
     GList *non_locked = NULL;
+    char *msg;
     int resp;
-    GtkWidget *dialog = gtk_message_dialog_new (NULL,
-                        GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                        GTK_MESSAGE_QUESTION, GTK_BUTTONS_NONE,
-                        ngettext ("Delete locked object?", "Delete %u locked objects?",
-                        locked_num), locked_num);
-    gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                            GTK_STOCK_YES, GTK_RESPONSE_YES,
-                            GTK_STOCK_NO, GTK_RESPONSE_NO, NULL);
-    gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_NO);
 
-    resp = gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
-
+    msg = g_strdup_printf(ngettext ("Delete locked object?", "Delete %u locked objects?", locked_num), locked_num);
+    resp =  gschem_confirm_dialog(msg, GTK_MESSAGE_QUESTION);
     switch (resp) {
     case GTK_RESPONSE_YES: /* Remove all */
       break;
@@ -127,5 +118,5 @@ void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
 
   w_current->inside_action = 0;
   o_undo_savestate (w_current, UNDO_ALL);
-  i_update_ui (w_current);
+  i_update_sensitivities (w_current);
 }

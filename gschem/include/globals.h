@@ -1,8 +1,8 @@
 /* -*- geda-h -*-
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,8 +45,10 @@ extern volatile int log_destiny;       /* controls where the log system writes d
 extern volatile int console_window;
 extern volatile int console_window_type;
 
+extern int force_save_as;
+
 #define command_history 22
-#define MAX_BUFFERS 	5
+#define MAX_BUFFERS 	6
 /* Global buffers */
 extern GList *object_buffer[MAX_BUFFERS];
 
@@ -80,11 +82,38 @@ extern SCM complex_place_list_changed_hook;
 
 typedef enum  { Image_Display, Image_All,} ImageExtent;
 
-typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OJECTS,
-               SOME_OJECTS, TEXT_OJECTS
+typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OBJECTS,
+               SOME_OBJECTS, TEXT_OBJECTS
 } ID_SENITIVITY_MODE;
+
+typedef enum { ID_ORIGIN_MENU = -32, /* can't pass paramerter */
+               ID_ORIGIN_TOOLBAR,    /* can't pass paramerter */
+               ID_ORIGIN_KEYBOARD,   /* can't pass paramerter */
+               ID_ORIGIN_MOUSE,      /* can't pass paramerter */
+               ID_ORIGIN_SCM,        /* could pass paramerter */
+               ID_ORIGIN_STROKE,     /* could pass paramerter */
+               ID_ORIGIN_CONSOLE,    /* could pass paramerter */
+               ID_ORIGIN_CAMMAND,    /* could pass paramerter */
+} ID_ACTION_ORIGIN;
+
+/* Utility Macros for Message Dialogs */
+#define message_dialog(text, type) \
+        gschem_message_dialog(text, type, NULL);
+#define titled_message_dialog(text, type, title) \
+        gschem_message_dialog(text, type, title);
+#define information_dialog(text) \
+        message_dialog(text, GEDA_MESSAGE_INFO)
+#define titled_information_dialog(text, title) \
+        titled_message_dialog(text, GEDA_MESSAGE_INFO, title)
+#define warning_dialog(text) \
+        message_dialog(text, GEDA_MESSAGE_WARNING)
+#define titled_warning_dialog(text, title) \
+        titled_message_dialog(text, GEDA_MESSAGE_WARNING, title)
+#define error_dialog(text) \
+        gschem_message_dialog(text, GEDA_MESSAGE_ERROR, NULL)
+#define titled_error_dialog(text, title) \
+        titled_message_dialog(text, GEDA_MESSAGE_ERROR, title)
 
 /*EK* used by prototype.h */
 #include "../include/x_states.h"
-
 #endif

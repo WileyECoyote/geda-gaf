@@ -487,7 +487,7 @@ static bool cellrenderermultilinetext_focus_out_event (GtkWidget *widget,
 static GtkCellEditable* cellrenderermultilinetext_start_editing(GtkCellRenderer      *cell,
 								GdkEvent             *event,
 								GtkWidget            *widget,
-								const gchar          *path,
+								const char          *path,
 								GdkRectangle         *background_area,
 								GdkRectangle         *cell_area,
 								GtkCellRendererState  flags)
@@ -546,8 +546,8 @@ static void cellrenderermultilinetext_editing_done(GtkCellEditable *cell_editabl
   CellRendererMultiLineText *cell = CELL_RENDERER_MULTI_LINE_TEXT (user_data);
   GtkTextBuffer *buffer;
   GtkTextIter start, end;
-  gchar *new_text;
-  const gchar *path;
+  char *new_text;
+  const char *path;
 
   if (cell->focus_out_id > 0) {
     g_signal_handler_disconnect (cell_editable,
@@ -669,8 +669,8 @@ static void multiattrib_edit_moused_cell(Multiattrib *ThisDialog,
 static void multiattrib_action_add_attribute(GSCHEM_TOPLEVEL *w_current,
 					     OBJECT *object,
                                              Multiattrib *ThisDialog,
-					     const gchar *name,
-					     const gchar *value,
+					     const char *name,
+					     const char *value,
 					     int visible,
 					     int show_name_value)
 {
@@ -847,7 +847,7 @@ static void multiattrib_column_set_data_visible(GtkTreeViewColumn *tree_column,
 
   gtk_tree_model_get (tree_model, iter, COLUMN_ATTRIBUTE, &o_attrib, -1);
 
-  g_assert (o_attrib->type == OBJ_TEXT);
+  if(o_attrib->type == OBJ_TEXT) {
 
   inherited = o_attrib_is_inherited (o_attrib);
 
@@ -856,6 +856,7 @@ static void multiattrib_column_set_data_visible(GtkTreeViewColumn *tree_column,
                 "sensitive",   !inherited,
                 "activatable", !inherited,
                 NULL);
+  }
 
 }
 
@@ -875,8 +876,7 @@ static void multiattrib_column_set_data_show_name(GtkTreeViewColumn *tree_column
 
   gtk_tree_model_get (tree_model, iter, COLUMN_ATTRIBUTE, &o_attrib, -1);
 
-  g_assert (o_attrib->type == OBJ_TEXT);
-
+  if(o_attrib->type == OBJ_TEXT) {
   inherited = o_attrib_is_inherited (o_attrib);
 
   g_object_set (cell,
@@ -885,6 +885,7 @@ static void multiattrib_column_set_data_show_name(GtkTreeViewColumn *tree_column
                "sensitive",   !inherited,
                "activatable", !inherited,
                 NULL);
+  }
 
 }
 
@@ -904,7 +905,7 @@ static void multiattrib_column_set_data_show_value(GtkTreeViewColumn *tree_colum
 
   gtk_tree_model_get (tree_model, iter, COLUMN_ATTRIBUTE, &o_attrib, -1);
 
-  g_assert (o_attrib->type == OBJ_TEXT);
+  if(o_attrib->type == OBJ_TEXT) {
 
   inherited = o_attrib_is_inherited (o_attrib);
 
@@ -914,6 +915,7 @@ static void multiattrib_column_set_data_show_value(GtkTreeViewColumn *tree_colum
                "sensitive",   !inherited,
                "activatable", !inherited,
                 NULL);
+  }
 }
 
 /*! \brief Requests an update of the display of a row.
@@ -942,8 +944,8 @@ static void update_row_display (GtkTreeModel *model, GtkTreeIter *iter)
  *
  */
 static void multiattrib_callback_edited_name(GtkCellRendererText *cellrenderertext,
-					     gchar *arg1,
-					     gchar *arg2,
+					     char *arg1,
+					     char *arg2,
 					     gpointer user_data)
 {
   Multiattrib *ThisDialog = (Multiattrib*)user_data;
@@ -951,7 +953,7 @@ static void multiattrib_callback_edited_name(GtkCellRendererText *cellrendererte
   GtkTreeIter iter;
   OBJECT *o_attrib;
   GSCHEM_TOPLEVEL *w_current;
-  gchar *value, *newtext;
+  char *value, *newtext;
   int visibility;
 
   model = gtk_tree_view_get_model (ThisDialog->treeview);
@@ -1451,7 +1453,7 @@ static void multiattrib_callback_button_add(GtkButton *button,
   Multiattrib *ThisDialog = (Multiattrib*)user_data;
   GtkTextBuffer *buffer;
   GtkTextIter start, end;
-  const gchar *name;
+  const char *name;
   char *value;
   GSCHEM_TOPLEVEL *w_current;
   OBJECT *object;
@@ -1500,7 +1502,7 @@ static void multiattrib_callback_button_add(GtkButton *button,
 static void multiattrib_init_attrib_names(GtkCombo *combo)
 {
   GList *items = NULL;
-  const gchar *string;
+  const char *string;
   int i;
 
   for (i = 0, string = s_attrib_get (i);
@@ -1551,7 +1553,7 @@ static void multiattrib_popup_menu(Multiattrib *ThisDialog,
   GtkTreePath *path;
   GtkWidget *menu;
   struct menuitem_t {
-    gchar *label;
+    char *label;
     GCallback callback;
   };
 
@@ -1635,8 +1637,8 @@ static void multiattrib_edit_moused_cell(Multiattrib *ThisDialog,
 
   if (event != NULL &&
       gtk_tree_view_get_path_at_pos (ThisDialog->treeview,
-                                     (gint)event->x,
-                                     (gint)event->y,
+                                     (int)event->x,
+                                     (int)event->y,
                                      &path, &column, NULL, NULL)) {
 
     gtk_tree_view_set_cursor_on_cell(ThisDialog->treeview,
@@ -1654,7 +1656,7 @@ static void multiattrib_edit_moused_cell(Multiattrib *ThisDialog,
  *  \param [in] group_name The group name in the key file to store the data under.
  */
 static void
-multiattrib_geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar *group_name)
+multiattrib_geometry_save (GschemDialog *dialog, GKeyFile *key_file, char *group_name)
 {
   bool show_inherited;
 
@@ -1677,7 +1679,7 @@ multiattrib_geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar *grou
  *  \param [in] group_name The group name in the key file to store the data under.
  */
 static void
-multiattrib_geometry_restore (GschemDialog *dialog, GKeyFile *key_file, gchar *group_name)
+multiattrib_geometry_restore (GschemDialog *dialog, GKeyFile *key_file, char *group_name)
 {
   bool show_inherited;
   GError *error = NULL;

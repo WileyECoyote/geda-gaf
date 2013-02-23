@@ -281,12 +281,14 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
   GList *iter;
   unsigned int release_ver            = 0;
   unsigned int fileformat_ver         = 0;
-  unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
+  //unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
 
   int found_pin        = 0;
   int itemsread        = 0;
   int embedded_level   = 0;
   OBJECT* last_complex = NULL;
+  bool is_ask = 1;
+  char* ptr;
 
   g_return_val_if_fail ((buffer != NULL), NULL);
 
@@ -320,7 +322,6 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
           goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
-
 
       case(OBJ_NET):
         if ((new_obj = o_net_read (toplevel, line, release_ver, fileformat_ver, err)) == NULL)
@@ -511,7 +512,20 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
         break;
 
       default:
-        g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read garbage in [%s] :\n>>\n%s<<\n"), name, line);
+
+        /* some upstream message handlers don't want non-askii meeasge data,
+         * so check line before returning and conditionaly leave off line */
+        ptr = (char*)line;
+        while ( *ptr != ASCII_NUL) {
+          if (( *ptr < SPACE) && (*ptr != ASCII_CR || *ptr != ASCII_LF)) is_ask = FALSE;
+          if ( *ptr > ASCII_TILDE) is_ask = FALSE;
+          if (!is_ask) break;
+          ++ptr;
+        }
+        if (is_ask)
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read garbage in [%s] :\n>>\n%s<<\n"), name, line);
+        else
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read garbage in [%s]"), name);
         new_obj = NULL;
         goto error;
     }

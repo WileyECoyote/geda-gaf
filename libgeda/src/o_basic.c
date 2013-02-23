@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 /*! \file o_basic.c
  *  \brief functions for the basic object type
- *  
+ *
  *  This file contains the code used to handle OBJECTs (st_object).
  *  The object is the basic type of all elements stored in schematic
  *  and symbol files.
@@ -37,7 +37,7 @@
  *  The complex object can carry many primary objects. If the complex
  *  object is a symbol, then the complex symbol contains all the pins,
  *  the text and the graphics.
- *  
+ *
  *  \image html o_object_relations.png
  *  \image latex o_object_relations.pdf "object relations" width=14cm
  */
@@ -172,7 +172,7 @@ o_recalc_object_glist(TOPLEVEL *toplevel, GList *object_glist)
  *  \param [in]     toplevel  The TOPLEVEL object.
  *  \param [in,out] o_current  OBJECT to set line options on.
  *  \param [in]     end        An OBJECT_END.
- *  \param [in]     type       An OBJECT_TYPE.
+ *  \param [in]     type       An OBJECT_TYPE, aka char
  *  \param [in]     width      Line width.
  *  \param [in]     length     Line length.
  *  \param [in]     space      Spacing between dashes/dots. Cannot be negative.
@@ -182,7 +182,7 @@ o_recalc_object_glist(TOPLEVEL *toplevel, GList *object_glist)
  */
 void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
 			OBJECT_END end, OBJECT_TYPE type,
-			int width, int length, int space) 
+			int width, int length, int space)
 {
   if(o_current == NULL) {
     return;
@@ -209,10 +209,10 @@ void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
     }
     break;
     default:
-    
+
     break;
   }
-  
+
   o_emit_pre_change_notify (toplevel, o_current);
 
   o_current->line_width = width;
@@ -282,7 +282,7 @@ bool o_get_line_options(OBJECT *object,
 void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current,
 			OBJECT_FILLING type, int width,
 			int pitch1, int angle1,
-			int pitch2, int angle2) 
+			int pitch2, int angle2)
 {
   if(o_current == NULL) {
     return;
@@ -685,18 +685,16 @@ struct change_notify_entry {
  * \param change_func Function to be called just after changes.
  * \param user_data User data to be passed to callback functions.
  */
-void
-o_add_change_notify (TOPLEVEL *toplevel,
-                     ChangeNotifyFunc pre_change_func,
-                     ChangeNotifyFunc change_func,
-                     void *user_data)
+void o_add_change_notify (TOPLEVEL *toplevel,
+                          ChangeNotifyFunc pre_change_func,
+                          ChangeNotifyFunc change_func,
+                          void *user_data)
 {
   struct change_notify_entry *entry = g_new0 (struct change_notify_entry, 1);
   entry->pre_change_func = pre_change_func;
   entry->change_func = change_func;
   entry->user_data = user_data;
-  toplevel->change_notify_funcs =
-    g_list_prepend (toplevel->change_notify_funcs, entry);
+  toplevel->change_notify_funcs = g_list_prepend (toplevel->change_notify_funcs, entry);
 }
 
 /*! \brief Remove change notification handlers from a TOPLEVEL.
@@ -734,8 +732,7 @@ o_remove_change_notify (TOPLEVEL *toplevel,
       iter->data = NULL;
     }
   }
-  toplevel->change_notify_funcs =
-    g_list_remove_all (toplevel->change_notify_funcs, NULL);
+  toplevel->change_notify_funcs = g_list_remove_all (toplevel->change_notify_funcs, NULL);
 }
 
 /*! \brief Emit an object pre-change notification.
@@ -751,17 +748,19 @@ o_remove_change_notify (TOPLEVEL *toplevel,
 void
 o_emit_pre_change_notify (TOPLEVEL *toplevel, OBJECT *object)
 {
+  if ((toplevel == NULL) ||
+      (toplevel->page_current == NULL))
+    return;
+
   GList *iter;
-  for (iter = toplevel->change_notify_funcs;
-       iter != NULL; iter = g_list_next (iter)) {
-
-    struct change_notify_entry *entry =
-      (struct change_notify_entry *) iter->data;
-
+  for (iter = toplevel->change_notify_funcs; iter != NULL; iter = g_list_next (iter))
+  {
+    struct change_notify_entry *entry = (struct change_notify_entry *) iter->data;
     if ((entry != NULL) && (entry->pre_change_func != NULL)) {
       entry->pre_change_func (entry->user_data, object);
     }
   }
+
 }
 
 /*! \brief Emit an object change notification.
@@ -773,10 +772,15 @@ o_emit_pre_change_notify (TOPLEVEL *toplevel, OBJECT *object)
  *
  * \param toplevel #TOPLEVEL structure to emit notifications from.
  * \param object   #OBJECT structure to emit notifications for.
+ *
  */
 void
 o_emit_change_notify (TOPLEVEL *toplevel, OBJECT *object)
 {
+  if ((toplevel == NULL) ||
+      (toplevel->page_current == NULL))
+    return;
+
   GList *iter;
   for (iter = toplevel->change_notify_funcs;
        iter != NULL; iter = g_list_next (iter)) {
@@ -798,7 +802,7 @@ o_emit_change_notify (TOPLEVEL *toplevel, OBJECT *object)
  *  \param object   The OBJECT structure to be queried
  *  \return TRUE when VISIBLE, FALSE otherwise
  */
-gboolean
+bool
 o_is_visible (TOPLEVEL *toplevel, OBJECT *object)
 {
   g_return_val_if_fail (object != NULL, FALSE);

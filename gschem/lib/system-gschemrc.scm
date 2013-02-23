@@ -152,36 +152,6 @@
 (object-clipping "enabled")
 ;(object-clipping "disabled")
 
-; scrollbars string
-;
-; Controls if the scrollbars are displayed (enabled) or not (disabled)
-; If you disable the scrollbars, you will not be able to use the scroll
-; wheel on your mouse.  This is an unfortunate side effect of how the
-; code is implemented.
-;
-(scrollbars "enabled")
-;(scrollbars "disabled")
-
-; scrollbar-update string
-;
-; Specifies the behavior of the scrollbars in the main window.
-;    continuous - display is redrawn as you move the scrollbar
-;    delayed - display is redrawn once you stop moving the scrollbar
-; Default is continuous
-;
-(scrollbar-update "continuous")
-;(scrollbar-update "delayed")
-
-; scrollpan-steps non-zero integer
-;
-; Controls the number of scroll pan events required to traverse the viewed
-; schematic area. Larger numbers mean more scroll steps are required to
-; pan across the viewed area and giving finer control over positioning.
-; scrollpan-steps can not be 0.
-;
-(scrollpan-steps 8)
-;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
-
 ; window-size integer integer
 ;
 ; window-size width height
@@ -404,14 +374,6 @@
 (enforce-hierarchy "enabled")
 ;(enforce-hierarchy "disabled")
 
-;  file-preview string
-;
-;  Controls if the preview area in the File Open/Save As and Component
-;  dialog boxes is enabled by default or not
-;
-(file-preview "enabled")
-;(file-preview "disabled")
-
 ; force-boundingbox string
 ;
 ; Controls if the entire bounding box of a symbol is used when figuring out
@@ -420,14 +382,6 @@
 ;
 ;(force-boundingbox "enabled")
 (force-boundingbox "disabled")
-
-; handleboxes string
-;
-; Controls if the handleboxes (which contain the menu and toolbar) are
-; visible or not.
-;
-(handleboxes "enabled")
-;(handleboxes "disabled")
 
 ; keyboardpan-gain integer
 ;
@@ -455,13 +409,6 @@
 ;
 (netconn-rubberband "enabled")
 ;(netconn-rubberband "disabled")
-;
-; Controls if dialog boxes are raised whenever an expose event happens
-; Default is disabled since gtk2 supposedly handles the raising of these
-; dialogs correctly now.
-;
-;(raise-dialog-boxes-on-expose "enabled")
-(raise-dialog-boxes-on-expose "disabled")
 
 ; select-slack-pixels integer
 ;
@@ -488,21 +435,6 @@
 ;
 ;(sort-component-library "enabled")
 (sort-component-library "disabled")
-
-
-; toolbars string
-;
-; Controls if the toolbars are visible or not.
-;
-(toolbars "enabled")
-;(toolbars "disabled")
-
-; untitled-name string
-;
-; Specify the default untitled basename (usually only used a startup time)
-; And typically not changed at runtime
-;
-(untitled-name "untitled")
 
 ;END ==================> Miscellaneous Options <====================
 
@@ -655,7 +587,7 @@
 ; fast-mousepan string
 ;
 ; Controls if text is drawn properly or if a simplified version (a line which
-; represents the text string) is drawn during mouse pan.  Drawing a simple
+; represents the text string) is drawn during mouse pan. Drawing a simple
 ; line speeds up mousepan a lot for big schematics
 (fast-mousepan "enabled")
 ;(fast-mousepan "disabled")
@@ -672,10 +604,10 @@
 ; command, does an action (move and copy (holding down the ALT key)
 ; are supported) on a single objects, or if it does the mouse panning.
 ;
-;(middle-button "stroke")
-;(middle-button "repeat")
-;(middle-button "action")
-(middle-button "mousepan")
+;(middle-button "Stroke")
+;(middle-button "Repeat")
+;(middle-button "Action")
+(middle-button "Pan")
 
 ; mousepan-gain integer
 ;
@@ -696,14 +628,26 @@
 ;(scroll-wheel "gtk")
 (scroll-wheel "classic")
 
+; pointer-hscroll string
+;
+; Controls if horizontal scroll events are enabled for the pointing device.
+; Pointers with a horizontal scroll feature integrated with a middle button
+; and scroll wheel can have problems with generating a horizontal scroll
+; events when attempting to press the middle button. This option allows dis-
+; abling of pointer horizontal scroll events so that the integrated middle
+; button can be utilized without interference.
+;
+; Enable/disable mouse horizontal scroll events:
+;(pointer-hscroll "enabled")
+(pointer-hscroll "disabled")
 
 ; third-button string
 ;
 ; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
-(third-button "popup")
-;(third-button "mousepan")
+(third-button "Popup")
+;(third-button "Pan")
 
 ;END ================> Pointer Device  Preferences <================
 
@@ -796,7 +740,7 @@
 ; output-type string
 ;
 ; Controls what is actually printed
-;	string is either "extents" or "extents no margins" or
+;       string is either "extents" or "extents no margins" or
 ;       "current window"
 ;
 (output-type "extents")
@@ -844,6 +788,129 @@
 ;(setpagedevice-pagesize "enabled")
 
 ;END ====================>  Printer Related  <======================
+
+;BEGIN =================> General System Options <==================
+
+;  file-preview string
+;
+;  Controls if the preview area in the File Open/Save As and Component
+;  dialog boxes is enabled by default or not
+;
+(file-preview "enabled")
+;(file-preview "disabled")
+
+; handleboxes string
+;
+; Controls if the handleboxes (which contain the menu and toolbar) are
+; visible or not.
+;
+(handleboxes "enabled")
+;(handleboxes "disabled")
+
+; raise-dialog-boxes-on-expose
+;
+; Controls if dialog boxes are raised whenever an expose event happens
+; Default is disabled since gtk2 supposedly handles the raising of these
+; dialogs correctly now.
+;
+;(raise-dialog-boxes-on-expose "enabled")
+(raise-dialog-boxes-on-expose "disabled")
+
+; save-ui-settings string
+;
+; Controls if settings are written to disk when shutting down. Note this
+; does not control saving of configurations variables, which can be saved
+; in the Preferences Dialog. This feature saves the Main Window size and
+; Position, the state of all tool bars, and menu settings.
+;
+(save-ui-settings "enabled")
+;(save-ui-settings "disabled")
+
+; show-menu-icons string
+;
+; Controls if icon images are displayed in menus. If the setting in the
+; gschem-gtkrc is not responisve, this keyword can be used to used to
+; over-ride interference. If this keyword is used then gschem calls gtk
+; directly to either enable or disable menu icons. gschem does not default
+; this value, meaning that if nither option is used then gtk determines the
+; setting, gtk's default is no icons in menus.
+;
+(show-menu-icons "enabled")
+;(show-menu-icons "disabled")
+
+
+; toolbars string
+;
+; Controls if the toolbars are visible or not. If toolbars are not enabled
+; here then toolbars can not enabled without restarting.
+;
+(toolbars "enabled")
+;(toolbars "disabled")
+
+; toolbars-mode string
+;
+; Controls if Icons, Text, or both are displayed on toolbars. This keyword
+; will over-ride the settings in gtkrc's. This may be required in certain
+; enviroments. gschem does not default this value so the setting will be
+; determined by gtk if this keyword is not set. The last mode, "retention"
+; will cause each toolbar to be restored with values preserved from the
+; last shutdown when save-ui-settings was "enabled".
+;
+;(toolbars-mode "only-icons")
+;(toolbars-mode "only-text")
+;(toolbars-mode "show-both")
+;(toolbars-mode "show-both-horiz")
+(toolbars-mode "retention")
+
+; untitled-name string
+;
+; Specify the default untitled basename (usually only used a startup time)
+; And typically not changed at runtime
+;
+(untitled-name "untitled")
+
+;BEGIN ===================> Scrollbar Options <=====================
+
+; scrollbars string
+;
+; Controls if the scrollbars are enabled or disabled. If you disable
+; the scrollbars, you will not be able to use the scroll wheel on your
+; mouse. See scrollbars-visible.
+;
+(scrollbars "enabled")
+;(scrollbars "disabled")
+
+; scrollbar-update string
+;
+; Specifies the behavior of the scrollbars in the main window.
+;    continuous - display is redrawn as you move the scrollbar
+;    delayed - display is redrawn once you stop moving the scrollbar
+; Default is continuous
+;
+(scrollbar-update "continuous")
+;(scrollbar-update "delayed")
+
+; scrollbars-visible string
+;
+; Controls if the scrollbars are displayed (enabled) or not (disabled)
+; If scrollbars-visible is disabled, scrollbars will not be displade
+; scroll wheel on the pointer will still be functional.
+;
+(scrollbars-visible "enabled")
+;(scrollbars-visible "disabled")
+
+; scrollpan-steps non-zero integer
+;
+; Controls the number of scroll pan events required to traverse the viewed
+; schematic area. Larger numbers mean more scroll steps are required to
+; pan across the viewed area and giving finer control over positioning.
+; scrollpan-steps can not be 0.
+;
+(scrollpan-steps 8)
+;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
+
+;END =====================> Scrollbar Options <=====================
+;END =======================> System Options <======================
 
 ;BEGIN =================> Set Text Configuration <==================
 ;
@@ -981,9 +1048,9 @@
 ;                 elements like "name" or "value", or an empty list.
 (define default-pin-attributes
        '(("pintype"   "unknown" #f ())
-	 ("pinlabel"  "unknown" #t ("value"))
-	 ("pinnumber" "0"       #t ("value"))
-	 ("pinseq"    "0"       #f ())))
+         ("pinlabel"  "unknown" #t ("value"))
+         ("pinnumber" "0"       #t ("value"))
+         ("pinseq"    "0"       #f ())))
 
 ; Convert a character into a string
 (define char2str
@@ -1013,11 +1080,11 @@
 ; or mirroring an existing one.
 ; The #t at the end means that function is appended to the end of the hook.
 (add-hook! add-pin-hook (lambda (pin)
-	(autoplace-pin-attributes pin )) #t)
+        (autoplace-pin-attributes pin )) #t)
 (add-hook! rotate-pin-hook (lambda (pin)
-	(autoplace-pin-attributes pin )) #t)
+        (autoplace-pin-attributes pin )) #t)
 (add-hook! mirror-pin-hook (lambda (pin)
-	(autoplace-pin-attributes pin )) #t)
+        (autoplace-pin-attributes pin )) #t)
 
 ; Autoplace component/net/buses text attributes hook.
 ; Comment in these if you want the component attributes to be
@@ -1026,13 +1093,13 @@
 ; or mirroring an existing one, adding a new attribute or a new component.
 ; The #t at the end means that function is appended to the end of the hook.
 ;(add-hook! add-component-object-hook (lambda (object)
-;	(autoplace-object-attributes object)) #t)
+;       (autoplace-object-attributes object)) #t)
 ;(add-hook! rotate-component-object-hook (lambda (object)
-;	(autoplace-object-attributes object)) #t)
+;       (autoplace-object-attributes object)) #t)
 ;(add-hook! mirror-component-object-hook (lambda (object)
-;	(autoplace-object-attributes object)) #t)
+;       (autoplace-object-attributes object)) #t)
 ;(add-hook! add-attribute-hook (lambda (object)
-;	(autoplace-object-attributes object)) #t)
+;       (autoplace-object-attributes object)) #t)
 ;(add-hook! complex-place-list-changed-hook (lambda (object)
 ;         (autoplace-object-attributes object)) #t)
 
@@ -1167,17 +1234,6 @@
 ; Letter L for line
   '(("14789" . add-line)
 
-; Letter Z for zoom window
-("125789" . view-zoom-box)
-("1254789" . view-zoom-box)
-("1235789" . view-zoom-box)
-("2354789" . view-zoom-box)
-("2324789" . view-zoom-box)
-("12354789" . view-zoom-box)
-("12324789" . view-zoom-box)
-("12365789" . view-zoom-box)
-("1232789" . view-zoom-box)
-
 ; line up for zoom out
 ("852" . view-zoom-out)
 ; line down for zoom in
@@ -1190,16 +1246,16 @@
 ("32478" . edit-copy)
 
 ; Letter E for edit
-("563214789" . edit-edit)
-("53214789" . edit-edit)
-("5321478" . edit-edit)
-("5214789" . edit-edit)
-("521478" . edit-edit)
-("453214789" . edit-edit)
-("45321478" . edit-edit)
-("456321478" . edit-edit)
-("456214789" . edit-edit)
-("45621478" . edit-edit)
+("563214789" . edit-attributes)
+("53214789" . edit-attributes)
+("5321478" . edit-attributes)
+("5214789" . edit-attributes)
+("521478" . edit-attributes)
+("453214789" . edit-attributes)
+("45321478" . edit-attributes)
+("456321478" . edit-attributes)
+("456214789" . edit-attributes)
+("45621478" . edit-attributes)
 
 ; Letter N for net
 ("415963" . add-net)
@@ -1207,7 +1263,6 @@
 ("74148963" . add-net)
 ("74158963" . add-net)
 ("7415963" .  add-net)
-
 
 ; Letter M for move
 ("741236963" . edit-move)
@@ -1235,6 +1290,10 @@
 ("7426963" . edit-move)
 ("74585369" . edit-move)
 
+; Capital Letter O for Open
+("12369874" . file-open)
+("74123698" . file-open)
+
 ; Letter D for delete
 ("14786321" . edit-delete)
 ("14789621" . edit-delete)
@@ -1244,7 +1303,7 @@
 ("25896321" . edit-delete)
 ("4789621" . edit-delete)
 
-; Letter S for select
+; Letter S for save
 ("2145987" . edit-select )
 ("215987" . edit-select )
 ("2156987" . edit-select )
@@ -1252,7 +1311,20 @@
 ("3215987" . edit-select )
 ("32156987" . edit-select )
 ("32148987" . edit-select )
-("32145987" . edit-select )))
+("32145987" . edit-select )
+
+; Letter Z for zoom window
+("125789" . view-zoom-box)
+("1254789" . view-zoom-box)
+("1235789" . view-zoom-box)
+("2354789" . view-zoom-box)
+("2324789" . view-zoom-box)
+("12354789" . view-zoom-box)
+("12324789" . view-zoom-box)
+("12365789" . view-zoom-box)
+("1232789" . view-zoom-box)
+
+))
 
 ;
 ; End of stroke related keywords
@@ -1290,7 +1362,7 @@
 ;; Later keybindings override earlier ones.
 
 (map-keys "A C" "add-component")
-(map-keys "A A" "add-attribute-hotkey")
+(map-keys "A A" "add-attribute")
 (map-keys "A N" "add-net-hotkey")
 (map-keys "A U" "add-bus-hotkey")
 (map-keys "A T" "add-text")
@@ -1301,150 +1373,154 @@
 (map-keys "A P" "add-pin-hotkey")
 (map-keys "A G" "add-picture-hotkey")
 
-(map-keys "<Control>A" "edit-select-all")
+(map-keys "<Control>A"        "edit-select-all")
 (map-keys "<Control><Shift>A" "edit-deselect")
+(map-keys "<Control><Shift>I" "edit-select-invert")
 
-(map-keys "B" "add-box-hotkey")
-(map-keys "<Shift>B" "add-bus-hotkey")
-(map-keys "C" "edit-copy-hotkey")
+(map-keys "B"          "add-box-hotkey")
+(map-keys "<Shift>B"   "add-bus-hotkey")
+(map-keys "C"          "edit-copy-hotkey")
 (map-keys "<Control>C" "clipboard-copy")
-(map-keys "D" "edit-delete")
+(map-keys "D"          "edit-delete")
 
 (map-keys "E <Shift>U" "edit-undo")
 (map-keys "E <Shift>R" "edit-redo")
-(map-keys "E S" "edit-select")
-(map-keys "E C" "edit-copy-hotkey")
-(map-keys "E E" "edit-edit")
-(map-keys "E Y" "edit-mcopy-hotkey")
-(map-keys "E X" "edit-text")
-(map-keys "E M" "edit-move-hotkey")
-(map-keys "E D" "edit-delete")
-(map-keys "E R" "edit-rotate-90-hotkey")
-(map-keys "E I" "edit-mirror-hotkey")
+(map-keys "E S"        "edit-select")
+(map-keys "E C"        "edit-copy-hotkey")
+(map-keys "E A"        "edit-attributes")
+(map-keys "E Y"        "edit-mcopy-hotkey")
+(map-keys "E X"        "edit-text")
+(map-keys "E M"        "edit-move-hotkey")
+(map-keys "E D"        "edit-delete")
+(map-keys "E R"        "edit-rotate-hotkey")
+(map-keys "E I"        "edit-mirror-hotkey")
 (map-keys "E <Shift>S" "edit-slot")
-(map-keys "E O" "edit-color")
-(map-keys "E L" "edit-lock")
+(map-keys "E O"        "edit-color")
+(map-keys "E L"        "edit-lock")
 (map-keys "E <Shift>L" "edit-unlock")
-(map-keys "E W" "edit-linetype")
-(map-keys "E F" "edit-filltype")
-(map-keys "E T" "edit-translate")
+(map-keys "E N"        "edit-pintype")
+(map-keys "E W"        "edit-linetype")
+(map-keys "E F"        "edit-filltype")
+(map-keys "E T"        "edit-translate")
 (map-keys "E <Shift>colon" "edit-invoke-macro")
-(map-keys "E B" "edit-embed")
-(map-keys "E U" "edit-unembed")
-(map-keys "E P" "edit-update")
+(map-keys "E B"        "edit-embed")
+(map-keys "E U"        "edit-unembed")
+(map-keys "E P"        "edit-update")
 
-(map-keys "F W" "file-new-window")
-(map-keys "F N" "file-new")
-(map-keys "F O" "file-open")
-(map-keys "F S" "file-save")
-(map-keys "F E" "page-close")
-(map-keys "F A" "file-save-as")
-(map-keys "F L" "file-save-all")
-(map-keys "F P" "file-print")
-(map-keys "F R" "page-revert")
-(map-keys "F I" "file-image")
-(map-keys "F T" "file-script")
-(map-keys "F C" "file-close-window")
-(map-keys "F Q" "file-quit")
+(map-keys "F N"        "file-new")
+(map-keys "F W"        "file-new-window")
+(map-keys "F O"        "file-open")
+(map-keys "F S"        "file-save")
+(map-keys "F E"        "page-close")
+(map-keys "F A"        "file-save-as")
+(map-keys "F L"        "file-save-all")
+(map-keys "F P"        "file-print")
+(map-keys "F R"        "page-revert")
+(map-keys "F I"        "file-write-image")
+(map-keys "F T"        "file-run-script")
+(map-keys "F C"        "file-close")
+(map-keys "F Q"        "file-quit")
 
-(map-keys "H A" "help-about")
-(map-keys "H M" "help-manual")
-(map-keys "H F" "help-faq")
-(map-keys "H W" "help-wiki")
-(map-keys "H H" "help-hotkeys")
-(map-keys "H C" "hierarchy-documentation")
+(map-keys "H A"        "help-show-about")
+(map-keys "H M"        "help-show-manual")
+(map-keys "H F"        "help-show-faq")
+(map-keys "H W"        "help-show-wiki")
+(map-keys "H H"        "help-show-hotkeys")
+(map-keys "H C"        "hierarchy-documentation")
 
 (map-keys "<Shift>H D" "hierarchy-down-schematic")
 (map-keys "<Shift>H S" "hierarchy-down-symbol")
 (map-keys "<Shift>H U" "hierarchy-up")
 (map-keys "<Shift>H O" "hierarchy-documentation")
 
-(map-keys "I" "add-component")
-(map-keys "L" "add-line-hotkey")
-(map-keys "M" "edit-move-hotkey")
-(map-keys "N" "add-net-hotkey")
+(map-keys "I"          "add-component")
+(map-keys "L"          "add-line-hotkey")
+(map-keys "M"          "edit-move-hotkey")
+(map-keys "N"          "add-net-hotkey")
 
-(map-keys "O T" "options-text-size")
-(map-keys "O A" "options-action-feedback")
-(map-keys "O G" "options-grid")
-(map-keys "O S" "options-snap")
-(map-keys "O R" "options-rubberband")
-(map-keys "O M" "options-magneticnet")
+(map-keys "O A"        "options-action-feedback")
+(map-keys "O G"        "options-cycle-grid")
+(map-keys "O S"        "options-cycle-snap")
+(map-keys "O R"        "options-rubberband")
+(map-keys "O M"        "options-magneticnet")
 (map-keys "O <Shift>S" "options-snap-size")
-(map-keys "O L" "options-show-console-window")
-(map-keys "O C" "options-show-coord-window")
+(map-keys "O T"        "options-show-text-size")
+(map-keys "O L"        "options-show-console")
+(map-keys "O C"        "options-show-coordinates")
 
-(map-keys "P M" "page-manager")
-(map-keys "P N" "page-next")
-(map-keys "P P" "page-prev")
-(map-keys "P E" "page-new")
-(map-keys "P R" "page-revert")
-(map-keys "P C" "page-close")
-(map-keys "P D" "page-discard")
+(map-keys "P M"        "page-manager")
+(map-keys "P N"        "page-next")
+(map-keys "P P"        "page-prev")
+(map-keys "P E"        "page-new")
+(map-keys "P R"        "page-revert")
+(map-keys "P C"        "page-close")
+(map-keys "P D"        "page-discard")
 (map-keys "P <Shift>P" "page-print")
 
-(map-keys "<Alt>Q" "file-quit")
-(map-keys "R" "view-redraw")
-(map-keys "<Shift>R" "edit-redo")
-(map-keys "S" "edit-select")
+(map-keys "<Alt>Q"     "file-quit")
+(map-keys "R"          "view-redraw")
+(map-keys "<Shift>R"   "edit-redo")
+(map-keys "S"          "edit-select")
 
-(map-keys "T A" "attributes-attach")
-(map-keys "T D" "attributes-detach")
-(map-keys "T N" "attributes-show-name")
-(map-keys "T V" "attributes-show-value")
-(map-keys "T B" "attributes-show-both")
-(map-keys "T T" "attributes-visibility-toggle")
-(map-keys "T <Shift>F" "edit-find-text")
-(map-keys "T H" "edit-hide-text")
-(map-keys "T <Shift>H" "edit-show-text")
-(map-keys "T U" "edit-autonumber")
+(map-keys "T A"        "attributes-attach")
+(map-keys "T D"        "attributes-detach")
+(map-keys "T N"        "attributes-show-name")
+(map-keys "T V"        "attributes-show-value")
+(map-keys "T B"        "attributes-show-both")
+(map-keys "T T"        "attributes-visibility-toggle")
+(map-keys "T <Shift>F" "attributes-find-text")
+(map-keys "T H"        "attributes-hide-text")
+(map-keys "T <Shift>H" "attributes-show-text")
+(map-keys "T U"        "attributes-autonumber")
 
-(map-keys "U" "edit-undo")
-(map-keys "<Shift>U" "edit-undo")
+(map-keys "U"          "edit-undo")
+(map-keys "<Shift>U"   "edit-undo")
 
-(map-keys "V R" "view-redraw")
-(map-keys "V B" "view-zoom-box-hotkey")
-(map-keys "V F" "view-zoom-full")
-(map-keys "V E" "view-zoom-extents")
-(map-keys "V P" "view-pan-hotkey")
-(map-keys "V O" "view-zoom-out-hotkey")
-(map-keys "V I" "view-zoom-in-hotkey")
-(map-keys "V A" "edit-show-hidden")
-(map-keys "V D" "view-dark-colors")
-(map-keys "V L" "view-light-colors")
-(map-keys "V W" "view-bw-colors")
+(map-keys "V R"        "view-redraw")
+(map-keys "V B"        "view-zoom-box-hotkey")
+(map-keys "V F"        "view-zoom-full")
+(map-keys "V E"        "view-zoom-extents")
+(map-keys "V P"        "view-pan-hotkey")
+(map-keys "V O"        "view-zoom-out-hotkey")
+(map-keys "V I"        "view-zoom-in-hotkey")
+(map-keys "V D"        "view-documentation")
+(map-keys "V H"        "view-show-hidden")
+(map-keys "V K"        "view-dark-colors")
+(map-keys "V L"        "view-light-colors")
+(map-keys "V W"        "view-bw-colors")
 
 (map-keys "<Control>V" "clipboard-paste-hotkey")
-(map-keys "W" "view-zoom-box-hotkey")
-(map-keys "X" "view-pan-hotkey")
+(map-keys "W"          "view-zoom-box-hotkey")
+(map-keys "X"          "view-pan-hotkey")
 (map-keys "<Control>X" "clipboard-cut")
 
-(map-keys "Y C" "buffer-copy1")
-(map-keys "Y U" "buffer-cut1")
-(map-keys "Y P" "buffer-paste1-hotkey")
+(map-keys "Y C"        "buffer-copy1")
+(map-keys "Y U"        "buffer-cut1")
+(map-keys "Y P"        "buffer-paste1-hotkey")
 
-(map-keys "<Control>Y" "edit-redo")
-(map-keys "Z" "view-zoom-in-hotkey")
-(map-keys "<Shift>Z" "view-zoom-out-hotkey")
-(map-keys "<Control>Z" "edit-undo")
+(map-keys "<Control>Y"  "edit-redo")
+(map-keys "Z"           "view-zoom-in-hotkey")
+(map-keys "<Shift>Z"    "view-zoom-out-hotkey")
+(map-keys "<Control>Z"  "edit-undo")
 
-(map-keys "Escape" "cancel")
-(map-keys "bracketright" "options-scale-up-snap-size")
-(map-keys "bracketleft" "options-scale-down-snap-size")
-(map-keys "Left" "view-pan-left")
-(map-keys "Right" "view-pan-right")
-(map-keys "Up" "view-pan-up")
-(map-keys "Down" "view-pan-down")
-(map-keys "period" "repeat-last-command")
-(map-keys "colon" "edit-invoke-macro")
-(map-keys "comma" "misc-misc")
-(map-keys "equal" "misc-misc2")
-(map-keys "plus" "misc-misc3")
-(map-keys "Delete" "edit-delete")
-(map-keys "greater" "page-next")
-(map-keys "Page_Down" "page-next")
-(map-keys "less" "page-prev")
-(map-keys "Page_Up" "page-prev")
+(map-keys "Escape"        "cancel")
+(map-keys "bracketright"  "scale-up-snap-size")
+(map-keys "bracketleft"   "scale-down-snap-size")
+(map-keys "Left"          "view-pan-left")
+(map-keys "Right"         "view-pan-right")
+(map-keys "Up"            "view-pan-up")
+(map-keys "Down"          "view-pan-down")
+(map-keys "period"        "repeat-last")
+(map-keys "colon"         "edit-invoke-macro")
+(map-keys "comma"         "misc-misc")
+(map-keys "equal"         "misc-misc2")
+(map-keys "plus"          "misc-misc3")
+
+(map-keys "Delete"        "edit-delete")
+(map-keys "greater"       "page-next")
+(map-keys "Page_Down"     "page-next")
+(map-keys "less"          "page-prev")
+(map-keys "Page_Up"       "page-prev")
 
 ; Definitions for the top pull down menu bar
 ;
@@ -1472,116 +1548,119 @@
 
 (define file-menu-items
 ;;
-;;      menu item name      	menu action             menu hotkey function    menu stock icon
+;;      menu item name          menu action             menu hotkey function    menu stock icon
 ;;
-     `( (,(N_ "_New")      	file-new                file-new                "gtk-new")
-	(,(N_ "_Open...")   	file-open               file-open               "gtk-open")
+     `( (,(N_ "_New")           file-new                file-new                "gtk-new"  "Create a new empty file" )
+        (,(N_ "_Open...")       file-open               file-open               "gtk-open" "Open an existing schematic or symbol file")
+        (,(N_ "Open Recen_t")   #f                      #f                      #f)
 
-     ;; The Open Recent will be removed from the menu if glib < 2.6 is detected
-       	(,(N_ "Open Recen_t")	#f              	#f                      #f)
+        ("SEPARATOR"            #f                      #f                      #f)
+        ("_Save"                file-save               file-save               "gtk-save"    "Save the current document")
+        ("Save _As..."          file-save-as            file-save-as            "gtk-save-as" "Save the current document to a new name or location")
+        ("Save All"             file-save-all           file-save-all           "gtk-save"    "Save all open documents")
+        ("_Revert"              page-revert             page-revert             "gtk-revert-to-saved" "Discard changes and reload the current document")
 
-        ("SEPARATOR"         	#f                      #f                      #f)
-        ("_Save"             	file-save               file-save               "gtk-save")
-        ("Save _As..."       	file-save-as            file-save-as            "gtk-save-as")
-        ("Save All"          	file-save-all           file-save-all           "gtk-save")
-        ("_Revert"           	page-revert             page-revert             "gtk-revert-to-saved")
+        ("SEPARATOR"            #f                      #f                      #f)
+        ("_Print..."            file-print              file-print              "gtk-print"   "Print the current document")
+        ("Write _image..."      file-write-image        file-write-image        #f)
 
-        ("SEPARATOR"         	#f                      #f                      #f)
-        ("_Print..."         	file-print              file-print              "gtk-print")
-        ("Write _image..."  	file-image              file-image              #f)
+        ("SEPARATOR"            #f                      #f                      #f)
+        ("Execute Script..."    file-run-script         file-run-script         "gtk-execute" "Execute a script file")
 
-        ("SEPARATOR"         	#f                      #f                      #f)
-        ("Execute Script..." 	file-script             file-script             "gtk-execute")
-
-        ("SEPARATOR"         	#f                      #f                      #f)
-        ("_Close"            	file-close-window	file-close-window       "gtk-close")
-        ("_Quit"             	file-quit               file-quit               "gtk-quit")
+        ("SEPARATOR"            #f                      #f                      #f)
+        ("_Close"               file-close              file-close              "gtk-close"  "Close the current document")
+        ("_Quit"                file-quit               file-quit               "gtk-quit"   "Quit gschem and exit")
       )
 )
 
 (define edit-menu-items
 ;;
-;;      menu item name      	menu action            menu hotkey action      menu stock icon
+;;      menu item name          menu action            menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Undo")              edit-undo              edit-undo               "gtk-undo")
-        (,(N_ "_Redo")              edit-redo              edit-redo               "gtk-redo")
+     `( (,(N_ "_Undo")              edit-undo              edit-undo               "gtk-undo" "Undo the last action")
+        (,(N_ "_Redo")              edit-redo              edit-redo               "gtk-redo" "redo the last un-done action")
 
-        ("SEPARATOR"               #f                     #f                      #f)
-        (,(N_ "Cu_t")               clipboard-cut          clipboard-cut           "gtk-cut")
-        (,(N_ "_Copy")              clipboard-copy         clipboard-copy          "gtk-copy")
-        (,(N_ "_Paste")             clipboard-paste-hotkey clipboard-paste-hotkey  "gtk-paste")
-        (,(N_ "_Delete")            edit-delete            edit-delete             "gtk-delete"  )
+        ("SEPARATOR"               #f                     #f                       #f)
+        (,(N_ "Cu_t")               clipboard-cut          clipboard-cut           "gtk-cut"   "Cut the current selection to the system clipboard")
+        (,(N_ "_Copy")              clipboard-copy         clipboard-copy          "gtk-copy"  "Copy the current selection to the system clipboard")
+        (,(N_ "_Paste")             clipboard-paste        clipboard-paste-hotkey  "gtk-paste" "Paste the contents of the system clipboard")
+        (,(N_ "_Delete")            edit-delete            edit-delete             "gtk-delete" "Delete the current selection" )
 
-        ("SEPARATOR"               #f                     #f                      #f)
-        (,(N_ "Select Mode")        edit-select            edit-select             #f)
-        (,(N_ "Select All")         edit-select-all        edit-select-all         "gtk-select-all")
-        (,(N_ "Deselect")           edit-deselect          edit-deselect           #f)
-        (,(N_ "Copy Mode")          edit-copy              edit-copy-hotkey        #f)
-        (,(N_ "Multiple Copy Mode") edit-mcopy             edit-mcopy-hotkey       #f)
-        (,(N_ "Move Mode")          edit-move              edit-move-hotkey        #f)
-        (,(N_ "Rotate 90 Mode")     edit-rotate-90         edit-rotate-90-hotkey   #f)
-        (,(N_ "Mirror Mode")        edit-mirror            edit-mirror-hotkey      #f)
+        ("SEPARATOR"               #f                     #f                       #f)
+        (,(N_ "Select Mode")        edit-select            edit-select             "geda-select"    "Active select mode")
+        (,(N_ "Select All")         edit-select-all        edit-select-all         "gtk-select-all" "Select all objects")
+        (,(N_ "Deselect")           edit-deselect          edit-deselect           "gtk-cancel"     "Un-select any selected objects")
+        (,(N_ "_Invert Selection")  edit-select-invert     edit-select-invert      "gtk-cancel"     "Invert the current selection set")
 
-        ("SEPARATOR"               #f                     #f                      #f)
-        (,(N_ "Edit...")            edit-edit              edit-edit               #f)
-        (,(N_ "Edit Text...")       edit-text              edit-text               "gtk-edit")
-        (,(N_ "Slot...")            edit-slot              edit-slot               #f)
-        (,(N_ "Color...")           edit-color             edit-color              "gtk-select-color")
-        (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           #f)
-        (,(N_ "Fill Type...")         edit-filltype        edit-filltype           #f)
-        (,(N_ "Symbol Translate...")  edit-translate       edit-translate          #f)
-        (,(N_ "Lock")               edit-lock              edit-lock               #f)
-        (,(N_ "Unlock")             edit-unlock            edit-unlock             #f)
+        (,(N_ "Copy Mode")          edit-copy              edit-copy-hotkey        "geda-copy"   "Copy selection")
+        (,(N_ "Multiple Copy Mode") edit-mcopy             edit-mcopy-hotkey       "geda-multi"  "Make Multible Copies of selection")
+        (,(N_ "Move Mode")          edit-move              edit-move-hotkey        "geda-move"   "Move Objects")
+        (,(N_ "Rotate 90 Mode")     edit-rotate            edit-rotate-hotkey      "geda-rotate" "Rotate the current selection about a point")
+        (,(N_ "Mirror Mode")        edit-mirror            edit-mirror-hotkey      "geda-mirror" "Mirror an object about a point")
 
-        ("SEPARATOR"               #f                     #f                      #f)
-        (,(N_ "Invoke Macro")       edit-invoke-macro      edit-invoke-macro       #f)
-        (,(N_ "Embed Component/Picture")    edit-embed     edit-embed              #f)
-        (,(N_ "Unembed Component/Picture")  edit-unembed   edit-unembed            #f)
-        (,(N_ "Update Component")   edit-update            edit-update             "gtk-refresh")
+        ("SEPARATOR"               #f                     #f                       #f)
+        (,(N_ "Edit...")            edit-attributes        edit-attributes         "gtk-indent" "Open the Attibutes Editor Dialog")
+        (,(N_ "Edit Text...")       edit-text              edit-text               "gtk-edit"   "Open the Text Editor Dialog")
+        (,(N_ "Slot...")            edit-slot              edit-slot               #f           "Open the Slot Editor Dialog")
+        (,(N_ "Color...")           edit-color             edit-color              "gtk-select-color" "Open the Color Editor Dialog")
+        (,(N_ "Edit Pin...")        edit-pintype           edit-pintype            #f                 "Open the Pin Type Dialog")
+        (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           #f                 "Open the Line Editor Dialog")
+        (,(N_ "Fill Type...")         edit-filltype        edit-filltype           #f                 "Open the Fill Editor Dialog")
+        (,(N_ "Symbol Translate...")  edit-translate       edit-translate          "gtk-convert")
+        (,(N_ "Lock")               edit-lock              edit-lock               #f "Lock selected objects")
+        (,(N_ "Unlock")             edit-unlock            edit-unlock             #f "Unlock selected objects")
+
+        ("SEPARATOR"               #f                     #f                       #f)
+        (,(N_ "Invoke Macro")       edit-invoke-macro      edit-invoke-macro       "gtk-execute" "Invoke a macro")
+        (,(N_ "Embed Component/Picture")    edit-embed     edit-embed              #f            "Embed a component or image object")
+        (,(N_ "Unembed Component/Picture")  edit-unembed   edit-unembed            #f            "Unembed a component or image object")
+        (,(N_ "Update Component")   edit-update            edit-update             "gtk-refresh" "Reload definition of selected component")
       )
 )
 
 (define buffer-menu-items
 ;;
-;;      menu item name		menu action             menu hotkey action      menu stock icon
+;;      menu item name          menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "Copy into 1")	buffer-copy1       	buffer-copy1)
-	(,(N_ "Copy into 2")	buffer-copy2       	buffer-copy2)
-	(,(N_ "Copy into 3")	buffer-copy3       	buffer-copy3)
-	(,(N_ "Copy into 4")	buffer-copy4       	buffer-copy4)
-	(,(N_ "Copy into 5")	buffer-copy5       	buffer-copy5)
-	(,(N_ "Cut into 1")	buffer-cut1       	buffer-cut1)
-	(,(N_ "Cut into 2")	buffer-cut2       	buffer-cut2)
-	(,(N_ "Cut into 3")	buffer-cut3       	buffer-cut3)
-	(,(N_ "Cut into 4")	buffer-cut4       	buffer-cut4)
-	(,(N_ "Cut into 5")	buffer-cut5       	buffer-cut5)
-	(,(N_ "Paste from 1")	buffer-paste1-hotkey    buffer-paste1-hotkey)
-	(,(N_ "Paste from 2")	buffer-paste2-hotkey    buffer-paste2-hotkey)
-	(,(N_ "Paste from 3")	buffer-paste3-hotkey    buffer-paste3-hotkey)
-	(,(N_ "Paste from 4")	buffer-paste4-hotkey    buffer-paste4-hotkey)
-	(,(N_ "Paste from 5")	buffer-paste5-hotkey    buffer-paste5-hotkey)
+     `( (,(N_ "Copy into 1")    buffer-copy1            buffer-copy1               "gtk-copy"  "Copy selection to first auxiliary buffer")
+        (,(N_ "Copy into 2")    buffer-copy2            buffer-copy2               "gtk-copy"  "Copy selection to second auxiliary buffer")
+        (,(N_ "Copy into 3")    buffer-copy3            buffer-copy3               "gtk-copy"  "Copy selection to third auxiliary buffer")
+        (,(N_ "Copy into 4")    buffer-copy4            buffer-copy4               "gtk-copy"  "Copy selection to forth auxiliary buffer")
+        (,(N_ "Copy into 5")    buffer-copy5            buffer-copy5               "gtk-copy"  "Copy selection to fifth auxiliary buffer")
+        (,(N_ "Cut into 1")     buffer-cut1             buffer-cut1                "gtk-cut"   "Cut selection to first auxiliary buffer")
+        (,(N_ "Cut into 2")     buffer-cut2             buffer-cut2                "gtk-cut"   "Cut selection to second auxiliary buffer")
+        (,(N_ "Cut into 3")     buffer-cut3             buffer-cut3                "gtk-cut"   "Cut selection to third auxiliary buffer")
+        (,(N_ "Cut into 4")     buffer-cut4             buffer-cut4                "gtk-cut"   "Cut selection to forth auxiliary buffer")
+        (,(N_ "Cut into 5")     buffer-cut5             buffer-cut5                "gtk-cut"   "Cut selection to fifth auxiliary buffer")
+        (,(N_ "Paste from 1")   buffer-paste1-hotkey    buffer-paste1-hotkey       "gtk-paste" "Insert contents of the first auxiliary buffer")
+        (,(N_ "Paste from 2")   buffer-paste2-hotkey    buffer-paste2-hotkey       "gtk-paste" "Insert contents of the second auxiliary buffer")
+        (,(N_ "Paste from 3")   buffer-paste3-hotkey    buffer-paste3-hotkey       "gtk-paste" "Insert contents of the third auxiliary buffer")
+        (,(N_ "Paste from 4")   buffer-paste4-hotkey    buffer-paste4-hotkey       "gtk-paste" "Insert contents of the forth auxiliary buffer")
+        (,(N_ "Paste from 5")   buffer-paste5-hotkey    buffer-paste5-hotkey       "gtk-paste" "Insert contents of the fifth auxiliary buffer")
       )
 )
 
 (define view-menu-items
 ;;
-;;      menu item name        	     menu action             menu hotkey action      menu stock icon
+;;      menu item name               menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Redraw")             view-redraw             view-redraw             "gtk-refresh")
-        (,(N_ "_Pan")                view-pan                view-pan-hotkey         #f)
-        (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey    #f)
-        (,(N_ "Zoom _Extents")       view-zoom-extents       view-zoom-extents       "gtk-zoom-fit")
+     `( (,(N_ "_Redraw")             view-redraw             view-redraw            "gtk-refresh" "redraw the current window")
+        (,(N_ "_Pan")                view-pan                view-pan-hotkey         #f "Activate Panning")
+        (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey    #f "Zoom to a Windowed region")
+        (,(N_ "Zoom _Extents")       view-zoom-extents       view-zoom-extents       "gtk-zoom-fit"  "Zoom to to the extents of the drawing")
         (,(N_ "Zoom _In")            view-zoom-in            view-zoom-in-hotkey     "gtk-zoom-in")
         (,(N_ "Zoom _Out")           view-zoom-out           view-zoom-out-hotkey    "gtk-zoom-out")
-        (,(N_ "Zoom _Full")          view-zoom-full          view-zoom-full          #f)
+        (,(N_ "Zoom _Full")          view-zoom-all           view-zoom-all           "gtk-fullscreen")
 
         ("SEPARATOR"                #f                      #f                       #f)
-        (,(N_ "Show/Hide Inv Text")  edit-show-hidden        edit-show-hidden        #f)
+        (,(N_ "D_ocumentation...")   view-documentation      view-documentation      "gtk-index")
+        (,(N_ "Show/Hide Inv Text")  view-show-hidden        view-show-hidden        "gtk-find-and-replace")
+        (,(N_ "Show/Hide Net Names") view-show-nets          view-show-nets          "gtk-ok")
 
         ("SEPARATOR"                #f                      #f                       #f)
-        (,(N_ "_Dark color scheme")  view-dark-colors        view-dark-colors        #f)
-        (,(N_ "_Light color scheme") view-light-colors       view-light-colors       #f)
-        (,(N_ "B_W color scheme")    view-bw-colors          view-bw-colors          #f)
+        (,(N_ "_Dark color scheme")  view-dark-colors        view-dark-colors        #f "Set the color map to the Dark set")
+        (,(N_ "_Light color scheme") view-light-colors       view-light-colors       #f "Set the color map to the Light set")
+        (,(N_ "B_W color scheme")    view-bw-colors          view-bw-colors          #f "Set the color map to the Black and White")
       )
 )
 
@@ -1589,35 +1668,36 @@
 ;;
 ;;      menu item name             menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Manager...")       page-manager            page-manager            #f)
-        (,(N_ "_Previous")         page-prev               page-prev               "gtk-go-back")
-        (,(N_ "_Next")             page-next               page-next               "gtk-go-forward")
-        (,(N_ "Ne_w")              page-new                page-new                "gtk-new")
-        (,(N_ "_Revert")           page-revert             page-revert             "gtk-revert-to-saved")
-        (,(N_ "_Close")            page-close              page-close              "gtk-close")
+     `( (,(N_ "_Manager...")       page-manager            page-manager            "gtk-properties"       "Open the Page Manager")
+        (,(N_ "_Previous")         page-prev               page-prev               "gtk-go-back"          "Switch to the previous page")
+        (,(N_ "_Next")             page-next               page-next               "gtk-go-forward"       "Switch to the next page")
+        (,(N_ "Ne_w")              page-new                page-new                "gtk-new"              "Create a new Page")
+        (,(N_ "Prin_t")            page-print              page-print              "gtk-print"            "Print the current page")
+        (,(N_ "_Revert")           page-revert             page-revert             "gtk-revert-to-saved"  "Discard changes and reload the current documents")
+        (,(N_ "_Close")            page-close              page-close              "gtk-close"            "Close the current page")
 
         ("SEPARATOR"              #f                      #f                      #f)
-        (,(N_ "_Discard")          page-discard            page-discard            "gtk-discard")
+        (,(N_ "_Discard")          page-discard            page-discard            "gtk-discard"          "Close the current page without saving")
       )
 )
 
 (define add-menu-items
 ;;
-;;      menu item name      	   menu action             menu hotkey action      menu stock icon
+;;      menu item name             menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Component...")     add-component       	   add-component)
-	(,(N_ "_Net")              add-net	  	   add-net-hotkey)
-	(,(N_ "B_us")              add-bus	  	   add-bus-hotkey)
-	(,(N_ "_Attribute...")     add-attribute  	   add-attribute-hotkey)
-	(,(N_ "_Text...")          add-text  	     	   add-text)
+     `( (,(N_ "_Component...")     add-component           add-component           #f           "Add component")
+        (,(N_ "_Net")              add-net                 add-net-hotkey          "gschem-net" "Add net")
+        (,(N_ "B_us")              add-bus                 add-bus-hotkey          "gschem-bus" "Add bus")
+        (,(N_ "_Attribute...")     add-attribute           add-attribute           "gtk-italic" "Add attribute")
+        (,(N_ "_Text...")          add-text                add-text                "gtk-bold"   "Add text")
 
-	("SEPARATOR"              #f                      #f)
-	(,(N_ "_Line")             add-line  	     	   add-line-hotkey)
-	(,(N_ "_Box")              add-box  	     	   add-box-hotkey)
-	(,(N_ "C_ircle")           add-circle  	     	   add-circle-hotkey)
-	(,(N_ "A_rc")              add-arc  	     	   add-arc-hotkey)
-	(,(N_ "_Pin")              add-pin  	     	   add-pin-hotkey)
-	(,(N_ "Pictu_re...")       add-picture  	   add-picture-hotkey)
+        ("SEPARATOR"              #f                      #f)
+        (,(N_ "_Line")             add-line                add-line-hotkey         "geda-line"    "Add line")
+        (,(N_ "_Box")              add-box                 add-box-hotkey          "geda-box"     "Add box")
+        (,(N_ "C_ircle")           add-circle              add-circle-hotkey       "geda-circles" "Add circle")
+        (,(N_ "A_rc")              add-arc                 add-arc-hotkey          "geda-arc"     "Add arc")
+        (,(N_ "_Pin")              add-pin                 add-pin-hotkey          "geda-pin"     "Add pin")
+        (,(N_ "Pictu_re...")       add-picture             add-picture             "gtk-orientation-portrait" "Insert an image into the current document")
       )
 )
 
@@ -1625,55 +1705,50 @@
 ;;
 ;;      menu item name             menu action               menu hotkey action        menu stock icon
 ;;
-     `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  hierarchy-down-schematic  "gtk-go-down")
-	(,(N_ "Down _Symbol")      hierarchy-down-symbol     hierarchy-down-symbol     "gtk-goto-bottom")
-        (,(N_ "_Up")               hierarchy-up              hierarchy-up              "gtk-go-up")
-        (,(N_ "D_ocumentation...") hierarchy-documentation   hierarchy-documentation   #f)
+     `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  hierarchy-down-schematic  "gtk-go-down"     "Descend down in the schematic hierarchy")
+        (,(N_ "Down _Symbol")      hierarchy-down-symbol     hierarchy-down-symbol     "gtk-goto-bottom")
+        (,(N_ "_Up")               hierarchy-up              hierarchy-up              "gtk-go-up"       "ascend up in the schematic hierarchy")
+        (,(N_ "D_ocumentation...") hierarchy-documentation   hierarchy-documentation   "gtk-info"        "Find component documentation")
       )
 )
 
 (define attributes-menu-items
 ;;
-;;      menu item name      	   menu action             menu hotkey action      menu stock icon
+;;      menu item name             menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Attach")           attributes-attach       attributes-attach       #f)
-        (,(N_ "_Detach")           attributes-detach       attributes-detach       #f)
-        (,(N_ "Show _Value")       attributes-show-value   attributes-show-value   #f)
-        (,(N_ "Show _Name")        attributes-show-name    attributes-show-name    #f)
-        (,(N_ "Show _Both")        attributes-show-both    attributes-show-both    #f)
-        (,(N_ "_Toggle Visibility")  attributes-visibility-toggle
-                                     attributes-visibility-toggle                  #f)
-        (,(N_ "_Find Specific Text...")  edit-find-text    edit-find-text          "gtk-find")
-        (,(N_ "_Hide Specific Text...")  edit-hide-text    edit-hide-text          #f)
-        (,(N_ "_Show Specific Text...")  edit-show-text    edit-show-text          #f)
-        (,(N_ "A_utonumber Text...")     edit-autonumber   edit-autonumber         #f)
+     `( (,(N_ "_Attach")           attributes-attach       attributes-attach       "gtk-go-up"   "Attach selected attributes to symbol")
+        (,(N_ "_Detach")           attributes-detach       attributes-detach       "gtk-go-down" "Dettach selected attributes from a symbol")
+        (,(N_ "Show _Value")       attributes-show-value   attributes-show-value   #f "Set selected value visible")
+        (,(N_ "Show _Name")        attributes-show-name    attributes-show-name    #f "Set selected name visible")
+        (,(N_ "Show _Both")        attributes-show-both    attributes-show-both    #f "Set selected name and value visible")
+        ("SEPARATOR"                    #f                     #f                  #f "")
+        (,(N_ "_Toggle Visibility")      attributes-visibility   attributes-visibility   #f "Toggle attribute visibilty")
+        (,(N_ "_Find Specific Text...")  attributes-find-text    attributes-find-text    "gtk-find-and-replace" "Find an attribute")
+        (,(N_ "_Hide Specific Text...")  attributes-hide-text    attributes-hide-text    #f "Hide selected attribute")
+        (,(N_ "_Show Specific Text...")  attributes-show-text    attributes-show-text    #f "Show a specific attribute value")
+        (,(N_ "A_utonumber Text...")     attributes-autonumber   attributes-autonumber   #f "Open Auto Number dialog")
       )
 )
 
 (define options-menu-items
 ;;
-;;      menu item name      		menu action             menu hotkey action      menu stock icon
+;;      menu item name                  menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Text Size...")		options-text-size       options-text-size)
-	(,(N_ "Cycle _grid styles")     options-grid            options-grid)
-	(,(N_ "Snap Grid S_pacing...")  options-snap-size   	options-snap-size)
-	(,(N_ "Scale _up Grid Spacing") options-scale-up-snap-size
-					options-scale-up-snap-size)
-	(,(N_ "Scale _down Grid Spacing") options-scale-down-snap-size
-					  options-scale-down-snap-size)
-        ("SEPARATOR"                   #f                      #f                 #f)
-	(,(N_ "Toggle _Snap On-Off")    options-snap            options-snap)
-	(,(N_ "Toggle _Outline-Box")    options-action-feedback options-action-feedback)
-	(,(N_ "Toggle _Rubberband")     options-rubberband   	options-rubberband)
-	(,(N_ "Toggle _Magnetic Net")   options-magneticnet 	options-magneticnet)
-        ("SEPARATOR"                   #f                      #f                 #f)
-	(,(N_ "Show _Console Window...")  options-show-console-window
-	 			    	  options-show-console-window)
-	(,(N_ "Show _Coord Window...")    options-show-coord-window
-				     	  options-show-coord-window)
-
-	("SEPARATOR"           	       #f                      #f                 #f)
-	("Con_figure settings..."   	configure-settings   	configure-settings)
+     `( (,(N_ "Cycle _grid styles")       options-cycle-grid      options-cycle-grid        #f "Toggle grid between Dot, Mesh and Off")
+        (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size      scale-up-snap-size        #f "Increase the snap size")
+        (,(N_ "Scale _down Grid Spacing") scale-down-snap-size    scale-down-snap-size      #f "Increase the snap size")
+        (,(N_ "Snap Grid S_pacing...")    options-snap-size       options-snap-size         #f "Adjust snap size" )
+        ("SEPARATOR"                     #f                      #f              #f)
+        (,(N_ "Toggle _Snap On-Off")      options-cycle-snap      options-cycle-snap        #f "Toggle the object snap mode")
+        (,(N_ "Toggle _Outline-Box")      options-action-feedback options-action-feedback   #f "Toggle action feedback")
+        (,(N_ "Toggle _Rubberband")       options-rubberband      options-rubberband        #f "Toggle rubberband mode")
+        (,(N_ "Toggle _Magnetic Net")     options-magneticnet     options-magneticnet       #f "Toggle magnetic net mode")
+        ("SEPARATOR"                     #f                      #f              #f)
+        (,(N_ "Show _Console Window...")  options-show-console     options-show-console     #f "Display the console")
+        (,(N_ "Show _Coord Window...")    options-show-coordinates options-show-coordinates #f "Display coordinates")
+        ("SEPARATOR"                     #f                      #f              #f)
+        (,(N_ "_Text Size...")            options-show-text-size   options-show-text-size   #f "Open the Text Size settings")
+        ("_Preferences..."                options-show-settings    options-show-settings    #f "Open the Preferences dialog")
       )
 )
 
@@ -1682,14 +1757,16 @@
 ;;      menu item name                menu action               menu hotkey action        menu stock icon
 ;;
      `(
-	(,(N_ "gEDA Docu_mentation...") help-manual               help-manual               "gtk-help")
-	(,(N_ "gschem _FAQ...")         help-faq                  help-faq                  #f)
-	(,(N_ "gEDA _Wiki...")          help-wiki                 help-wiki                 #f)
-	(,(N_ "Component D_ocumentation...")
-                                        hierarchy-documentation   hierarchy-documentation   #f)
-	("SEPARATOR"                   #f                        #f                         #f)
-	(,(N_ "_Hotkeys...")            help-hotkeys              help-hotkeys              #f)
-	(,(N_ "_About...")              help-about                help-about                "gtk-about")
+        (,(N_ "Gschem Guide")           help-show-manual          help-show-manual          "gtk-help")
+        (,(N_ "_Hotkeys...")            help-show-hotkeys         help-show-hotkeys         "gtk-index")
+        (,(N_ "gschem _FAQ...")         help-show-faq             help-show-faq             #f)
+        ("SEPARATOR"                   #f                        #f                         #f)
+        (,(N_ "Component D_ocumentation...")
+                                        hierarchy-documentation   hierarchy-documentation   "gtk-indent")
+        ("SEPARATOR"                   #f                        #f                         #f)
+        (,(N_ "gEDA Docu_mentation...") help-show-geda           #f                         "gtk-help")
+        (,(N_ "gEDA _Wiki...")          help-show-wiki            help-show-wiki            "gtk-home")
+        (,(N_ "_About...")              help-show-about           help-show-about           "gtk-about")
       )
 )
 

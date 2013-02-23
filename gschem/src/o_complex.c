@@ -214,5 +214,5 @@ void o_complex_translate_all(GSCHEM_TOPLEVEL *w_current, int offset)
   o_invalidate_all (w_current);
   toplevel->page_current->CHANGED=1;
   o_undo_savestate(w_current, UNDO_ALL);
-  i_update_ui(w_current);
+  i_update_sensitivities(w_current);
 }

@@ -13,6 +13,7 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem_alignment_middlecenter.png                      \
 		  gschem_alignment_topleft.png                           \
 		  gschem_bottom2top.png gschem_left2right.png            \
+		  gschem-bus.png                                         \
 		  gschem_bus.xpm                                         \
 		  gschem_comp_24x24.xpm                                  \
 		  gschem_comp_26x26.xpm                                  \
@@ -24,6 +25,7 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem_filltype_mesh_24x24.xpm                         \
 		  gschem_filltype_mesh_26x26.xpm                         \
 		  gschem_filltype_mesh_28x28.xpm                         \
+		  gschem-net.png                                         \
 		  gschem_net.xpm                                         \
 		  gschem_new.xpm gschem_open.xpm gschem_redo.xpm         \
 		  gschem_save.xpm                                        \

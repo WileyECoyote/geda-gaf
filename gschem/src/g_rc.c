@@ -80,7 +80,7 @@
  */
 void g_rc_parse_gtkrc()
 {
-  gchar *filename;
+  char *filename;
 
   filename = g_build_filename (s_path_sys_config (), "gschem-gtkrc", NULL);
   gtk_rc_parse (filename);
@@ -337,70 +337,6 @@ SCM g_rc_object_clipping(SCM mode)
 		   2);
 }
 
-/*! \brief This function processes the scrollbars RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the scrollbars RC entry.
- */
-SCM g_rc_scrollbars(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {TRUE , RC_STR_ENABLED },
-    {FALSE, RC_STR_DISABLED},
-  };
-
-  RETURN_G_RC_MODE("scrollbars",
-		   default_scrollbars,
-		   2);
-}
-
-/*! \brief This function processes the scrollbar-update RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the scrollbar-update RC entry.
- */
-SCM g_rc_scrollbar_update(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {DISPLAY_CONTINUOUS, RC_STR_BARS_CONTINUOUS },
-    {DISPLAY_DELAYED,    RC_STR_BARS_DELAYED }
-  };
-
- RETURN_G_RC_MODE("scrollbar-update",
-		   default_scrollbar_update,
-		   2);
-
-}
-
-/*! \brief This function processes the scrollpan_steps RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the scrollpan_steps RC entry.
- */
-SCM g_rc_scrollpan_steps(SCM steps)
-{
-  int val;
-
-  if (scm_is_integer(steps)) {
-    val = scm_to_int (steps);
-   /* Allow negative numbers in case the user wishes to reverse scroll
-    * direction, but don't allow zero steps as this would result in a
-    * division-by-zero error */
-    if (val == 0) {
-     fprintf(stderr, _("Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"));
-     val = DEFAULT_SCROLLPAN_STEPS; /* default */
-    }
-  }
-  else {
-    fprintf (stderr, _("Invalid type assignment, check scrollpan-steps entry in rc file\n"));
-    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_SCROLLPAN_STEPS);
-    val = DEFAULT_SCROLLPAN_STEPS; /* default value*/
-  }
-
-  default_scrollpan_steps = val;
-
-  return SCM_BOOL_T;
-}
 
 /*! \brief This function processes the window-size RC entry.
  *  \par Function Description
@@ -787,7 +723,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   g_list_free(default_component_select_attrlist);
 
   scm_dynwind_begin(0);
-  scm_dynwind_unwind_handler(free_string_glist, (void *) &list, 0);
+  scm_dynwind_unwind_handler(g_list_free_string, (void *) &list, 0);
 
   /* convert the scm list into a GList */
   for (i=0; i < length; i++) {
@@ -856,23 +792,7 @@ SCM g_rc_enforce_hierarchy(SCM mode)
 		   default_enforce_hierarchy,
 		   2);
 }
-/*! \brief This function processes the file-preview RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the file-preview RC entry.
- */
-SCM g_rc_file_preview(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {TRUE , RC_STR_ENABLED },
-    {FALSE, RC_STR_DISABLED},
-  };
 
-  /* this variable is inconsistantly named with the rest */
-  RETURN_G_RC_MODE("file-preview",
-		   default_file_preview,
-		   2);
-}
 /*! \brief This function processes the force_boundingbox RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -889,22 +809,7 @@ SCM g_rc_force_boundingbox(SCM mode)
 		   default_force_boundingbox,
 		   2);
 }
-/*! \brief This function processes the handleboxes RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the handleboxes RC entry.
- */
-SCM g_rc_handleboxes(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {TRUE , RC_STR_ENABLED },
-    {FALSE, RC_STR_DISABLED},
-  };
 
-  RETURN_G_RC_MODE("handleboxes",
-		   default_handleboxes,
-		   2);
-}
 /*! \brief This function is for setting the keyboardpan_gain.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -950,22 +855,7 @@ SCM g_rc_netconn_rubberband(SCM mode)
 		   default_netconn_rubberband,
 		   2);
 }
-/*! \brief This function processes the raise-dialog-boxes-on-expose RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the raise-dialog-boxes-on-expose RC entry.
- */
-SCM g_rc_raise_dialog_boxes_on_expose(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {TRUE , RC_STR_ENABLED },
-    {FALSE, RC_STR_DISABLED},
-  };
 
-  RETURN_G_RC_MODE("raise-dialog-boxes-on-expose",
-		   default_raise_dialog_boxes,
-		   2);
-}
 /*! \brief This function processes the select-slack-pixels RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1019,22 +909,6 @@ SCM g_rc_sort_component_library(SCM mode)
   RETURN_G_RC_MODE("sort_component_library",
                    default_sort_component_library,
                    2);
-}
-/*! \brief This function processes the toolbars RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the toolbars RC entry.
- */
-SCM g_rc_toolbars(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {TRUE , RC_STR_ENABLED },
-    {FALSE, RC_STR_DISABLED},
-  };
-
-  RETURN_G_RC_MODE("toolbars",
-		   default_toolbars,
-		   2);
 }
 
 /* ----- Nets and Routing ----- */
@@ -1300,6 +1174,24 @@ SCM g_rc_scroll_wheel(SCM mode)
                    default_scroll_wheel,
                    2);
 }
+
+/*! \brief This function processes the pointer-hscroll RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the pointer-hscroll RC entry.
+ */
+SCM g_rc_pointer_hscroll(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("pointer_hscroll",
+                   default_pointer_hscroll,
+                   2);
+}
+
 /*! \brief This function processes the third-button RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -1518,6 +1410,214 @@ SCM g_rc_setpagedevice_pagesize(SCM mode)
   RETURN_G_RC_MODE("setpagedevice-pagesize",
                    default_setpagedevice_pagesize,
 		   2);
+}
+
+/* ----------------- System -----------------*/
+/*! \section System-User-RC-Options */
+
+/*! \brief This function processes the file-preview RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the file-preview RC entry.
+ */
+SCM g_rc_file_preview(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  /* this variable is inconsistantly named with the rest */
+  RETURN_G_RC_MODE("file-preview",
+                   default_file_preview,
+                   2);
+}
+/*! \brief This function processes the handleboxes RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the handleboxes RC entry.
+ */
+SCM g_rc_handleboxes(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("handleboxes",
+                   default_handleboxes,
+                   2);
+}
+/*! \brief This function processes the raise-dialog-boxes-on-expose RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the raise-dialog-boxes-on-expose RC entry.
+ */
+SCM g_rc_raise_dialog_boxes_on_expose(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("raise-dialog-boxes-on-expose",
+                   default_raise_dialog_boxes,
+                   2);
+}
+/*! \section System-User-RC-Options */
+
+/*! \brief This function processes the save-ui-settings RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the save_settings RC entry.
+ */
+SCM g_rc_save_ui_settings(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("save-ui-settings",
+                   default_save_ui_settings,
+                   2);
+}
+
+/*! \brief This function processes the show-menu-icons RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the show-menu-icons
+ *       RC entry.
+ */
+SCM g_rc_show_menu_icons(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("show-menu-icons",
+                   default_show_menu_icons,
+                   2);
+}
+
+/*! \brief This function processes the toolbars RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the toolbars RC entry.
+ */
+SCM g_rc_toolbars(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("toolbars",
+                   default_toolbars,
+                   2);
+}
+/*! \brief This function processes the toolbars-mode RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the toolbars-mode RC entry.
+ */
+SCM g_rc_toolbars_mode(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TOOLBAR_SHOW_ICONS, RC_STR_TB_ICONS },
+    {TOOLBAR_SHOW_TEXT,  RC_STR_TB_TEXT  },
+    {TOOLBAR_SHOW_BOTH,  RC_STR_TB_BOTH  },
+    {TOOLBAR_SHOW_HORIZ, RC_STR_TB_HORIZ },
+    {TOOLBAR_RETENTION,  RC_STR_TB_LAST  }
+  };
+
+  RETURN_G_RC_MODE("toolbars-mode",
+                   default_toolbars_mode,
+                   5);
+}
+/* --------------- Scrollbar ----------------*/
+/*! \section Scrollbar-User-RC-Options */
+
+/*! \brief This function processes the scrollbars RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the scrollbars RC entry.
+ */
+SCM g_rc_scrollbars(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("scrollbars",
+                   default_scrollbars,
+                   2);
+}
+
+/*! \brief This function processes the scrollbar-update RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the scrollbar-update RC entry.
+ */
+SCM g_rc_scrollbar_update(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {DISPLAY_CONTINUOUS, RC_STR_BARS_CONTINUOUS },
+    {DISPLAY_DELAYED,    RC_STR_BARS_DELAYED }
+  };
+
+ RETURN_G_RC_MODE("scrollbar-update",
+                   default_scrollbar_update,
+                   2);
+}
+
+/*! \brief This function processes the scrollbars-visible RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the scrollbars-visible RC entry.
+ */
+SCM g_rc_scrollbars_visible(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED},
+  };
+
+  RETURN_G_RC_MODE("scrollbars-visible",
+                   default_scrollbars_visible,
+                   2);
+}
+
+/*! \brief This function processes the scrollpan_steps RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the scrollpan_steps RC entry.
+ */
+SCM g_rc_scrollpan_steps(SCM steps)
+{
+  int val;
+
+  if (scm_is_integer(steps)) {
+    val = scm_to_int (steps);
+   /* Allow negative numbers in case the user wishes to reverse scroll
+    * direction, but don't allow zero steps as this would result in a
+    * division-by-zero error */
+    if (val == 0) {
+     fprintf(stderr, _("Can not scroll 0 steps, invalid scrollpan-steps, check entry in rc file\n"));
+     val = DEFAULT_SCROLLPAN_STEPS; /* default */
+    }
+  }
+  else {
+    fprintf (stderr, _("Invalid type assignment, check scrollpan-steps entry in rc file\n"));
+    fprintf (stderr, _("Continuing with default value=[%d]\n"), DEFAULT_SCROLLPAN_STEPS);
+    val = DEFAULT_SCROLLPAN_STEPS; /* default value*/
+  }
+
+  default_scrollpan_steps = val;
+
+  return SCM_BOOL_T;
 }
 
 /* ----- Text Related ----- */

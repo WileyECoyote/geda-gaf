@@ -1,19 +1,140 @@
+
+        * src/i_command.c: New file with experimental code to (mostly) replace i_callback.c
+          This scheme uses a single function i_command_process to respond to all actions
+          regarless of the origin.
+
+        * src/o_delete.c: Replaced local dialog with gschem_confirm_dialog.
+
+        * src/x_stroke.c: modified x_stroke_translate_and_execute to use i_command_process.
+
+        * src/x_menu.c: Major modifications to this module; Added additional toggle actions;
+          menu icons, global toolbar style, scrollbars visability and toggling menu tips.
+          Add menu tooltips for menu items. Add static glist for menu_items, a collection
+          of all menu_items
+
+        * src/x_icons.c:  Added an icon factory! Should maybe have done this a long
+          time ago, this makes using bitmaps much easier. Maybe wrong place though,
+          1 file for 40 or so lines seems a waste. Could expand by relocating stray
+          bitmap routines and consolidate into one file or move to some to
+          miscellaneous, dunno.
+
+	* lib/system-gschemrc.scm: Added tooltip and icon id's to menu list.
+          New section 'General System Options' added with new keywords "show-menu-icons"
+          and "toolbars-mode", relocated related keywords to the new section
+          New section 'Scrollbar Options' added with new keyword scrollbars-visible. The
+          scrollbars-visible provide a simple solution to resolve issue with the scrollbars
+          being required for mousing pan. The scrollbars are still present, just not visible
+          and this allows for mouse panning.
+          Added Stroke Letter O for Open.
+          Some keys re-assigned and action names revised as necessary to implement unified
+          actions scheme described in i_command above.
+	  Added invert selection menu item.
+
+        * src/gschem_dialog.c: Relocated DIALOG_GEOMETRY_STORE to /include/sdefines.h
+
+        * include/sdefines.h: Created WINDOW_GEOMETRY_STORE.
+
+        * include/gschem_struct.h: Added new w_current variables pointer_hscroll,
+          scrollbars_visible, and ui_index
+
+        * src/x_events.c: Revised function x_event_scroll to incoorperate
+          new w_current variable pointer_hscroll.
+
+        * src/x_fileselect.c: Added thread protection in x_fileselect_load_backup
+
+        * src/x_window.c: Function x_window_open_page: re-vamp; removed g_run_hook_page
+          from x_window_open_page, this assumed user was creating a new schematic and
+          not a new symbol, (and this was really annoying because it not only made the
+          assumption, the hook also locked the titleblock. The hook was added to action
+          "page-new" but not to "file-new" in i_command action handlers. All new flow
+          is more robust when errors encounted during loading. Message dialog replaced
+          with fprintf to stderr because some messages returned from o_read_buffer may
+          not be suitable for pango.
+
+          Added function x_window_save_geometry to preserve the state of the main
+          window similar to preservation of dialog geometry.
+          
+        * src/g_util.c: rename free_string_glist g_list_free_string
+
+        * src/g_rc.c: x_dialog.c Add alternative_button_order to generic_confirm_dialog
+          renamed "generic_" to "gschem_" for confirm_dialog and message_dialog
+          Added argumenent gEDA_MessageType context and char *title to message_dialog.
+          Added new function g_rc_pointer_hscroll.
+
+        * src/globals.c: Added new variable 'force_save_as' as a flag for the save
+          routine. The flag is set true if the loader, x_window_open_page detects a
+          filespec the user does not have permission to create.
+
+        * include/globals.h: Add Utility Macros for Message Dialogs, Added enumerators
+          ID_COMMAND_ORIGIN and extern reference to new global 'force_save_as'.
+
+        * scripts/gschem.scm: In function invalid-action-error; changed error to gschem-msg
+          because this was crashing gschem when a valid key sequence was pressed that was
+          assigned to a non-extistence function. The function eval-keymap-action now reports
+          the invalid keybinding via a dialog without crashing. Also in eval-keymap-action,
+          the action is now tested for a thunk or a procedure and if is a procedure the
+          procedure is passed the action string. This allows a common call back for all key
+          bindings rather then having to define a seperate function for every key assignment.
+
+        * src/m_basic.c: Revised SCREENabs to return 0 if w_current or toplevel or
+          page_current is NULL. Revised mil_x, mil_y, pix_x and pix_y to 1.) return 0 if
+          w_current or toplevel or page_current is NULL with error message, 2. use local
+          variables for x_constant, y_constant,y_constant y_constant and height.
+          world_y_constant 3.) Eliminated int i.
+
+        * src/o_grips.c: o_grips_size: error message if w_current or toplevel or
+          page_current is NULL and MAXIMUM_GRIP_PIXELS/2
+
+        * include/x_toolbars.h: New file 
+
+        * src/toolbars.c: Modified the toolbar module to use i_command_process, added
+          single point callback that retrieves the action name from the widgets. A
+          separate separate callback is used for toolbar radios. New macros were created
+          for toolbar radions. The "mode" buttons, and the "mode" feature is complete
+          for all of what is perceived to be the original "ADD" modes. The toolbar radios
+          were put into a single group. i_update_toolbar was removed from "everywhere",
+          this one seems to have gotten out of hand, and was being call recursively. 
+          The toolbars now retain their style, along with visibility between sessions.
+          A context/dock senitive popup was added to the toolbars to set various options
+          including auto docking the toolbars. The orientation, which can be changed
+          while floating, is restored to the "home" orientation before re-docking.
+          [The gtk handlebox widget has a "Private" feature do this with a mouse click
+          but this did not appear work and needs to be fixed]. Mean time, the popup
+          menu provides sufficient functionality. (is still 2 mouse-click just different
+          buttons.)
+
+          * src/widgets/ geda_handlebox.c and associated header: This is an adaptation
+          of the gtkhandlebox in it's entirety, not a derived sub-class. The reason
+          for this is because gtk has declared gtkhandlebox depreciated (do to lack
+          lack of functionality). The gnome docker is better but this would impose
+          additional linkage. If we wanted to link to a new library just for toolbars
+          then there are multiple options, GDL seems to be the front-runner.
+          Given the current implementation in our toolbar module we have adequate
+          functionality, for now, and we did not incur any new dependencies, not even
+          GTK3. The only major "toolbar feature" offered in other modern programs is
+          "customization". This could be easily added using the current linkage, and
+          perhaps should be added since all of the gtk_toolbar_??pend_item/element
+          class functions have been depreciated in favor of gtk_toolbar_insert, which
+          is less convenient and requires more effort to implement.
+
+          That's most of the major stuff! Wiley
+
 2013-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/g_rc.c: Relocated g_rc_bus_ripper_symname from libgeda to gschem so
+        * src/g_rc.c: Relocated g_rc_bus_ripper_symname from libgeda to gschem
           to consolidate the Ripper variables. Changed ripper Rotation and Type
           values to strings defined with macros in gschem_sdefined.h because these
           string have to match what is written by x_settings.c.
 
         * src/*.c: Revised as needed for relocation of bus_ripper_symname variable
 
-        * gschem_sdefined.h: Added Bus Ripper Strings
+        * include/gschem_sdefined.h: Added Bus Ripper Strings
 
         * src/x_image.c: Add 3 Toggle "Switch" button, 1 for imaging Extents/Display
           1 for Color or B/W, 1 to Invert B/W images. Implemented new toplevel
           variables image_color and invert_images.
 
-        * src/globals.h: Reversed Image_Display and Image_All enumeration for
+        * include/globals.h: Reversed Image_Display and Image_All enumeration for
           semantics with new switches on the Write Image Dialog.
 
         * src/x_settings.c: Completed code on handlers for Bus Ripper variables.
@@ -42,7 +163,7 @@
 
         * src/i_basic.c: Renamed i_update_menus to i_update_ui and added
           conditionals for setting somewhat more selective menu and toolbar
-          senisitivies. Previously the only real critiea was wheather something
+          senisitivies. Previously the only real criteria was whether something
           was selector or not. Added new functions selected_complex_object.
           (probably could do more here.)
 
@@ -65,7 +186,7 @@
           the include and the source directories in order to better organize
           the source files and headers as the number of file is ever increasing.
 
-        * src/x_menu.c: Revised get_main_menu function, changing the toogle
+        * src/x_menu.c: Revised get_main_menu function, changing the toggle
           options to menu toggle action object with new GschemToggleAction
           type (so the accelorators would be added to the menu). Added support
           routines for Toolbar and Menu Toggle (a lot of work!).

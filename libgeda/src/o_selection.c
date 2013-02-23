@@ -59,7 +59,7 @@ void o_selection_add (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_select
 }
 
 /*! \brief Removes the given object from the selection list
- *  \par Removes the given object from the selection list and does the 
+ *  \par Removes the given object from the selection list and does the
  *  needed work to make the object visually unselected.
  *  It's ok to call this function with an object which is not necessarily
  *  selected.
@@ -72,12 +72,14 @@ void o_selection_remove (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_sel
 {
   if (o_selected == NULL) {
     fprintf(stderr, "Got NULL for o_selected in o_selection_remove\n");
-    return;
   }
+  else {
 
-  if (g_list_find( geda_list_get_glist( selection ), o_selected ) != NULL) {
-    o_selection_unselect (toplevel, o_selected);
-    geda_list_remove( (GedaList *)selection, o_selected );
+    if (g_list_find( geda_list_get_glist( selection ), o_selected ) != NULL) {
+      o_selection_unselect (toplevel, o_selected);
+      geda_list_remove( (GedaList *)selection, o_selected );
+      toplevel->page_current->CHANGED = 1;
+    }
   }
 }
 
@@ -105,7 +107,7 @@ void o_selection_print_all(const SELECTION *selection)
 }
 
 /*! \brief Selects the given object.
- *  \par Sets the select flag, saves the color, and then selects the 
+ *  \par Sets the select flag, saves the color, and then selects the
  *  given object
  *
  *  \param [in] toplevel  The TOPLEVEL object

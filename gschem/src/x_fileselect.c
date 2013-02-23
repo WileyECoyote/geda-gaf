@@ -326,8 +326,10 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 
 /*! \brief Load/Backup selection dialog.
  *  \par Function Description
- *  This function opens a message dialog and wait for the user to choose
- *  if load the backup or the original file.
+ *  This function opens a message dialog and waits for the user to choose
+ *  whether to load the backup or the original file. The function would
+ *  typically be call during start-up, before the main-loop is started.
+ *  Therefore we must manually lock and unlock gtk-threads
  *
  *  \todo Make this a registered callback function with user data,
  *        as we'd rather be passed a GSCHEM_TOPLEVEL than a TOPLEVEL.
@@ -336,14 +338,14 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
  *  \param [in] message   Message to display to user.
  *  \return TRUE if the user wants to load the backup file, FALSE otherwise.
  */
-int x_fileselect_load_backup(void *user_data, GString *message)
+bool x_fileselect_load_backup(GString *message)
 {
   GtkWidget *dialog;
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) user_data;
+  bool result = FALSE;
 
   g_string_append(message, "\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
-
-  dialog = gtk_message_dialog_new (GTK_WINDOW(w_current->main_window),
+  gdk_threads_enter();
+  dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL,
                                    GTK_MESSAGE_QUESTION,
                                    GTK_BUTTONS_YES_NO,
@@ -356,12 +358,12 @@ int x_fileselect_load_backup(void *user_data, GString *message)
 					  -1);
 
   gtk_widget_show (dialog);
+
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_YES) {
-    gtk_widget_destroy(dialog);
-    return TRUE;
+    result = TRUE;
   }
-  else {
-    gtk_widget_destroy(dialog);
-    return FALSE;
-  }
+
+  gtk_widget_destroy(dialog);
+  gdk_threads_leave();
+  return result;
 }

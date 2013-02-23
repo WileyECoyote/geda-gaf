@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -114,7 +114,7 @@ void o_place_end (GSCHEM_TOPLEVEL *w_current,
   g_list_free (temp_dest_list);
 
   o_undo_savestate (w_current, UNDO_ALL);
-  i_update_ui (w_current);
+  i_update_sensitivities (w_current);
 }
 
 /*! \todo Finish function documentation!!!

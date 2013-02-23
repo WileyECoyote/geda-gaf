@@ -64,7 +64,7 @@
  *  \param [in] filename The filename to create an autosave filename for.
  *  \return A newly allocated string buffer.
  */
-char *f_get_autosave_filename (const gchar *filename)
+char *f_get_autosave_filename (const char *filename)
 {
   char *result, *basename, *new_basename, *dirname;
   basename = g_path_get_basename(filename);
@@ -149,33 +149,15 @@ bool f_has_active_autosave (const char *filename, GError **err)
   return result;
 }
 
-/*! \brief Opens the schematic file.
- *  \par Function Description
- *  Opens the schematic file by calling f_open_flags() with the
- *  F_OPEN_RC and F_OPEN_CHECK_BACKUP flags.
- *
- *  \param [in,out] toplevel  The TOPLEVEL object to load the schematic into.
- *  \param [in]      filename  A character string containing the file name
- *                             to open.
- *  \param [in,out] err  #GError structure for error reporting, or
- *                       NULL to disable error reporting
- *
- *  \return 0 on failure, 1 on success.
- */
-int f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
-{
-  return f_open_flags (toplevel, page, filename, F_OPEN_RC | F_OPEN_CHECK_BACKUP, err);
-}
-
-/*! \brief Opens the schematic file with fine-grained control over behaviour.
+/*! \brief Opens the schematic file
  *  \par Function Description
  *  Opens the schematic file and carries out a number of actions
- *  depending on the \a flags set.  If #F_OPEN_RC is set, executes
- *  configuration files found in the target directory.  If
- *  #F_OPEN_CHECK_BACKUP is set, warns user if a backup is found for
- *  the file being loaded, and possibly prompts user for whether to
- *  load the backup instead.  If #F_OPEN_RESTORE_CWD is set, does not
- *  change the working directory to that of the file being loaded.
+ *  depending on the \a flags set.  If #F_OPEN_RC is set, executes RC
+ *  files found in the target directory.  If #F_OPEN_CHECK_BACKUP is
+ *  set, warns user if a backup is found for the file being loaded,
+ *  and possibly prompts user for whether to load the backup instead.
+ *  If #F_OPEN_RESTORE_CWD is set, does not change the working
+ *  directory to that of the file being loaded.
  *
  *  \param [in,out] toplevel  The TOPLEVEL object to load the schematic into.
  *  \param [in]     filename   A character string containing the file name
@@ -186,8 +168,7 @@ int f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
  *
  *  \return 0 on failure, 1 on success.
  */
-int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
-                 const char *filename,
+int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
                  const int flags, GError **err)
 {
   int   opened = FALSE;
@@ -242,8 +223,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
   if (flags & F_OPEN_RC) {
     g_rc_parse_local (toplevel, "gafrc", file_directory, &tmp_err);
     if (tmp_err != NULL) {
-      /* RC files are allowed to be missing or skipped; check for
-       * this. */
+      /* RC files are allowed to be missing or skipped; check for this. */
       if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
           !g_error_matches (tmp_err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
         s_log_message ("%s\n", tmp_err->message);
@@ -266,7 +246,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
       message = g_string_new ("");
       g_string_append_printf(message, _("\nWARNING: Found an autosave backup file:\n  %s.\n\n"), backup_filename);
       if (tmp_err != NULL) {
-        g_string_append(message, _("I could not guess if it is newer, so you have to do it manually.\n"));
+        g_string_append(message, _("Could not guess if it is newer, so you have to do it manually.\n"));
       } else {
         g_string_append(message, _("The backup copy is newer than the schematic, so it seems you should load it instead of the original file.\n"));
       }
@@ -276,8 +256,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
         g_warning (_("\nRun gschem and correct the situation.\n\n"));
       } else {
         /* Ask the user if load the backup or the original file */
-        if (toplevel->load_newer_backup_func
-            (toplevel->load_newer_backup_data, message)) {
+          if (toplevel->load_newer_backup_func( message)) {
           /* Load the backup file */
           load_backup_file = 1;
         }
@@ -295,14 +274,16 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
                         o_read (toplevel, NULL, backup_filename, &tmp_err));
   } else {
     /* Load the original file */
+
     s_page_append_list (toplevel, page,
                         o_read (toplevel, NULL, full_filename, &tmp_err));
   }
 
   if (tmp_err == NULL)
     opened = TRUE;
-  else
+  else {
     g_propagate_error (err, tmp_err);
+  }
 
   if (load_backup_file == 0) {
     /* If it's not the backup file */
@@ -328,7 +309,31 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page,
 
   return opened;
 }
-
+/*! \brief Opens the schematic file.
+ *  \par Function Description
+ *  Opens the schematic file by calling f_open_flags() with the
+ *  F_OPEN_RC and F_OPEN_CHECK_BACKUP flags.
+ *
+ *  \param [in,out] toplevel  The TOPLEVEL object to load the schematic into.
+ *  \param [in]     filename  A character string containing the file name
+ *                             to open.
+ *  \param [in,out] err  #GError structure for error reporting, or
+ *                       NULL to disable error reporting
+ *
+ *  \return 0 on failure, 1 on success.
+ *
+ *  \remarks WEH: Is a good thing when Apache loads configs in path of HTML
+ *  but Apache never execute or has to write these files! Consider:
+ *
+ *  1. Since RC is Scheme, are there any (blaring) security risk here?
+ *  2. Does it really make sense for a library to load any RC file it's
+ *     stubbles across?
+ *  3. Should the user have any say in all of this?
+ */
+int f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
+{
+  return f_open_flags (toplevel, page, filename, F_OPEN_RC | F_OPEN_CHECK_BACKUP, err);
+}
 /*! \brief Closes the schematic file
  *  \par Function Description
  *  Does nothing
@@ -353,12 +358,12 @@ void f_close(TOPLEVEL *toplevel)
  *                            NULL to disable error reporting
  *  \return 1 on success, 0 on failure.
  */
-int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
+bool f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 {
-  gchar *backup_filename;
-  gchar *real_filename;
-  gchar *only_filename;
-  gchar *dirname;
+  char *backup_filename;
+  char *real_filename;
+  char *only_filename;
+  char *dirname;
   struct stat st_ActiveFile;
   GError *tmp_err = NULL;
 
@@ -375,7 +380,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 
   /* Check to see if filename is writable */
   if (g_file_test(filename, G_FILE_TEST_EXISTS) &&
-      g_access(filename, W_OK) != 0) {
+      access(filename, W_OK) != 0) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM,
                  _("File %s is read-only"), filename);
     return 0;
@@ -447,7 +452,6 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
        * or they didn't. */
     }
 #endif
-
     g_free (real_filename);
     return 1;
   }
@@ -483,7 +487,7 @@ int f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
  *  \return A newly-allocated string with the resolved absolute
  *  pathname on success, NULL otherwise.
  */
-char *f_normalize_filename (const gchar *name, GError **error)
+char *f_normalize_filename (const char *name, GError **error)
 {
 #if defined (_WIN32)
     char buf[MAX_PATH];
@@ -515,7 +519,7 @@ char *f_normalize_filename (const gchar *name, GError **error)
    * back slashes.
    */
   DWORD len = GetFullPathName (name, MAX_PATH, buf, NULL);
-  gchar *result;
+  char *result;
 
   if (len == 0 || len > MAX_PATH - 1) {
     result = g_strdup (name);
@@ -545,7 +549,7 @@ char *f_normalize_filename (const gchar *name, GError **error)
 
   /* if relative path, prepend current dir */
   if (!g_path_is_absolute (name)) {
-    gchar *cwd = g_get_current_dir ();
+    char *cwd = g_get_current_dir ();
     g_string_append (rpath, cwd);
     g_free (cwd);
     if (!G_IS_DIR_SEPARATOR (rpath->str[rpath->len - 1])) {
@@ -623,9 +627,9 @@ error:
  *
  *  \note Originally taken from gedit's source code.
  */
-char *follow_symlinks (const gchar *filename, GError **err)
+char *follow_symlinks (const char *filename, GError **err)
 {
-  gchar *followed_filename = NULL;
+  char *followed_filename = NULL;
   gint link_count = 0;
   GError *tmp_err = NULL;
 
@@ -650,7 +654,7 @@ char *follow_symlinks (const gchar *filename, GError **err)
 
   while (link_count < MAX_LINK_LEVEL) {
     struct stat st;
-    gchar *linkname = NULL;
+    char *linkname = NULL;
 
     if (lstat (followed_filename, &st) != 0) {
       /* We could not access the file, so perhaps it does not
@@ -682,8 +686,8 @@ char *follow_symlinks (const gchar *filename, GError **err)
      */
 
     if (!g_path_is_absolute(linkname)) {
-      gchar *dirname = NULL;
-      gchar *tmp = NULL;
+      char *dirname = NULL;
+      char *tmp = NULL;
 
       dirname = g_path_get_dirname(followed_filename);
 

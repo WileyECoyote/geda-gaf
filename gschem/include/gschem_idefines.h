@@ -24,12 +24,10 @@
 
 #define MAX_KEYWORD 48
 
-#define MAX_FILENAME 64
-#ifndef _WIN32
-#define MAX_PATH 248
-#endif
-
 #define MAX_RECENT_FILES 10
+
+/* Flag for defaults to detect keywords absent from RC files */
+#define RC_NIL -1
 
 /*-------- Color & Image Stuff ------- */
 
@@ -242,6 +240,13 @@
 #define DEFAULT_TEXT_SIZE       10
 #define MIN_TEXT_SIZE           1
 #define MAX_TEXT_SIZE           99
+
+/* toolbars_mode */
+#define TOOLBAR_SHOW_ICONS      GTK_TOOLBAR_ICONS
+#define TOOLBAR_SHOW_TEXT       GTK_TOOLBAR_TEXT
+#define TOOLBAR_SHOW_BOTH       GTK_TOOLBAR_BOTH
+#define TOOLBAR_SHOW_HORIZ      GTK_TOOLBAR_BOTH_HORIZ
+#define TOOLBAR_RETENTION      -88
 
 /*----------- Undo System -----------*/
 

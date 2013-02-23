@@ -28,7 +28,6 @@
 ;; Define an eval-in-currentmodule procedure
 (define (eval-cm expr) (eval expr (current-module)))
 
-(define last-action #f)
 (define current-keys '())
 
 (define %global-keymap (make-keymap))
@@ -54,23 +53,25 @@
 ;; current key sequence.
 (define (eval-pressed-key keymap key)
   (if key
-      (begin
-        ;; Add key to current key sequence
-        (set! current-keys (cons key current-keys))
-        (let* ((keys (list->vector (reverse current-keys)))
-               (bound (lookup-keys keymap keys)))
-          (cond
-           ;; Keys are a prefix -- do nothing successfully
-           ((keymap? bound) 'prefix)
-           ;; Keys are bound to something -- reset current key
-           ;; sequence, then try to run the action
-           (bound (begin
-                    (reset-keys)
-                    (eval-keymap-action bound)))
-           ;; No binding
-           (else (reset-keys)))))
-
-      (reset-keys)))
+    (begin
+      ;; Add key to current key sequence
+      (set! current-keys (cons key current-keys))
+      (let* ((keys (list->vector (reverse current-keys)))
+             (bound (lookup-keys keymap keys)))
+        (cond
+         ;; Keys are a prefix -- do nothing successfully
+         ((keymap? bound) 'prefix)
+         ;; Keys are bound to something -- reset current key
+         ;; sequence, then try to run the action
+         (bound (begin
+                  (reset-keys)
+                  (eval-keymap-action bound)
+         )      )
+         ;; No binding
+         (else (reset-keys))
+    ) ) )
+    (reset-keys)
+) )
 
 ;; Evaluates a keymap action.  A keymap action is expected to be a
 ;; symbol naming a thunk variable in the current module.
@@ -79,42 +80,42 @@
 ;; executed via keypress to be repeated.
 (define (eval-keymap-action action)
   (define (invalid-action-error)
-    (error "~S is not a valid action for keybinding." action))
-
-  (cond
-   ;; Handle repeat-last-command
-   ((equal? 'repeat-last-command action)
-    (eval-keymap-action last-action))
-
-   ;; Normal actions
-   ((symbol? action)
+    ;;(error "~S is not a valid action for keybinding." action)
+    (gschem-msg (string-append "Invalid action for keybinding:\n\n" (symbol->string action)))
+  )
+  (if (symbol? action)
     (let ((proc (false-if-exception (eval-cm action))))
       (if (thunk? proc)
           (begin
-            (set! last-action action)
             (proc)
             #t)
-          (invalid-action-error))))
-
-   ;; Otherwise, fail
-   (else (invalid-action-error))))
+          (if (procedure? proc)
+              (begin
+                (proc (symbol->string action))
+                 #t)
+              (invalid-action-error)
+          )
+      )
+   )
+   (invalid-action-error)   ;; Otherwise, fail
+  )
+)
 
 (define (eval-stroke stroke)
   (let ((action (assoc stroke strokes)))
     (cond ((not action)
-;           (display "No such stroke\n")
+;          (display "No such stroke\n")
 ;          (display stroke)
-           #f)
+            "")
           (else
 ;           (display "Scheme found action ")
 ;           (display action)
 ;           (display "\n")
-           ((eval-cm (cdr action)))
-           #t))))
+           (symbol->string (cdr action))))))
 
 ;; Search the global keymap for a particular symbol and return the
 ;; keys which execute this hotkey, as a string suitable for display to
-;; the user. This is used by the gschem menu system.
+;; the user. This is not used.
 (define (find-key action)
   (let ((keys (lookup-binding %global-keymap action)))
     (and keys (keys->display-string keys))))
@@ -168,21 +169,20 @@ found, shows a dialog with an error message."
                   "Could not show documentation for selected component:\n\n"
                   (apply format #f msg args))))))
 
+(define (zoom-sw)
+  (show-wiki "geda:documentation")
+)
 
-(define (help-manual)
-  "help-manual
+;;(define (help-show-manual)
+;;  "help-manual
+;;  Display the front page of the gEDA manuals in a browser."
+;;  (show-wiki "geda:documentation"))
+;;(define (help-show-faq)
+;;  "help-faq
+;;  Display the gschem Frequently Asked Questions in a browser."
+;;  (show-wiki "geda:faq-gschem"))
 
-Display the front page of the gEDA manuals in a browser."
-  (show-wiki "geda:documentation"))
-
-(define (help-faq)
-  "help-faq
-
-Display the gschem Frequently Asked Questions in a browser."
-  (show-wiki "geda:faq-gschem"))
-
-(define (help-wiki)
-  "help-faq
-
-Display the gEDA wiki in a browser."
-  (show-wiki))
+;;(define (help-show-wiki)
+;;  "help-faq
+;;  Display the gEDA wiki in a browser."
+;;  (show-wiki))

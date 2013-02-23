@@ -18,9 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 /*! \file g_rc.c
- *  \brief Parse configuration files.
+ *  \brief Execute Scheme initialisation files.
  *
- * Contains functions to open, parse and manage gEDA configuration
+ * Contains functions to open, parse and manage Scheme initialisation
  * (RC) files.
  */
 
@@ -116,10 +116,10 @@ SCM g_rc_mode_general(SCM scmmode,
 
 /*! \brief Mark an RC file as loaded.
  * \par Function Description
- * If the Scheme initialisation file \a filename has not already been
- * loaded, mark it as loaded and return TRUE, storing \a filename in
- * \a toplevel (\a filename should not subsequently be freed).
- * Otherwise, return FALSE, and set \a err appropriately.
+ *   If the Scheme initialisation file \a filename has not already been
+ * loaded, mark it as loaded and return TRUE, storing \a filename in \a
+ * toplevel (\a filename should not subsequently be freed). Otherwise,
+ * return FALSE, and set \a err appropriately.
  *
  * \note Should only be called by g_rc_parse_file().
  *
@@ -1411,7 +1411,7 @@ SCM g_rc_make_backup_files(SCM mode)
                   2);
 }
 
-extern COLOR print_colors[MAX_COLORS];
+
 
 SCM g_rc_print_color_map (SCM scm_map)
 {

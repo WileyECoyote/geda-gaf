@@ -15,10 +15,21 @@ bitmapdata_64dir  = $(GEDA_BITMAPS)/64x64
 bitmapdata_96dir  = $(GEDA_BITMAPS)/96x96
 bitmapdata_128dir = $(GEDA_BITMAPS)/128x128
 bitmapdata_256dir = $(GEDA_BITMAPS)/256x256
-
+	  
 bitmapdata_DATA    = close_box.png                      \
+		     geda-arc.png                       \
+		     geda-box.png                       \
 		     geda_bulb_24x26_off.png            \
 		     geda_bulb_24x26_on.png             \
+		     geda-circles.png                   \
+                     geda-copy.png                      \
+                     geda-line.png                      \
+                     geda-mirror.png                    \
+                     geda-move.png                      \
+                     geda-multi.png                     \
+                     geda-pin.png                       \
+                     geda-rotate.png                    \
+                     geda-select.png                    \
 		     geda_switch_64x48_off.png          \
 		     geda_switch_64x48_on.png
 
@@ -33,8 +44,8 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 		     gaf_pdf_22x22.xpm                  \
 		     gaf_promote_22x22.png              \
 		     gaf_tools_22x22.xpm                \
-		     geda_arc_22x22.xpm                 \
-		     geda_box_22x22.xpm                 \
+		     geda_arc_22x22.png                 \
+		     geda_box_22x22.png                 \
 		     geda_copy_22x22.png                \
 		     geda_circle_22x22.xpm              \
 		     geda_circles_22x22.png             \
@@ -62,6 +73,7 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 		     geda_sheets_22x22.xpm              \
 		     geda_select_22x22.png              \
 		     geda_tools_22x22.xpm               \
+		     geda_translate_22x22.png           \
 		     geda_unlock_22x22.png              \
 		     geda_value_22x22.xpm               \
 		     geda_view_redraw_22x22.png         \
@@ -70,7 +82,8 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 		     geda_zoom_limits_22x22.png         \
 		     geda_zoom_in_22x22.png             \
 		     geda_zoom_out_22x22.png            \
-		     geda_zoom_pan_22x22.png
+		     geda_zoom_pan_22x22.png            \
+		     gschem_project_close_22x22.png
 
 bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 		     gaf_demote_24x24.png               \
@@ -78,8 +91,8 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 		     gaf_pdf_24x24.xpm                  \
 		     gaf_promote_24x24.png              \
 		     gaf_tools_24x24.xpm                \
-		     geda_arc_24x24.xpm                 \
-		     geda_box_24x24.xpm                 \
+		     geda_arc_24x24.png                 \
+		     geda_box_24x24.png                 \
 		     geda_copy_24x24.png                \
 		     geda_circle_24x24.xpm              \
 		     geda_circles_24x24.png             \
@@ -108,6 +121,7 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 		     geda_sheets_24x24.xpm              \
 		     geda_select_24x24.png              \
 		     geda_tools_24x24.xpm               \
+		     geda_translate_24x24.png           \
 		     geda_unlock_24x24.png              \
 		     geda_value_24x24.xpm               \
 		     geda_view_redraw_24x24.png         \
@@ -116,7 +130,8 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 		     geda_zoom_limits_24x24.png         \
 		     geda_zoom_in_24x24.png             \
 		     geda_zoom_out_24x24.png            \
-		     geda_zoom_pan_24x24.png
+		     geda_zoom_pan_24x24.png            \
+		     gschem_project_close_24x24.png
 
 bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 		     gaf_demote_26x26.png               \
@@ -124,8 +139,8 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 		     gaf_pdf_26x26.xpm                  \
 		     gaf_promote_26x26.png              \
 		     gaf_tools_26x26.xpm                \
-		     geda_arc_26x26.xpm                 \
-		     geda_box_26x26.xpm                 \
+		     geda_arc_26x26.png                 \
+		     geda_box_26x26.png                 \
 		     geda_copy_26x26.png                \
 		     geda_circle_26x26.xpm              \
 		     geda_circles_26x26.png             \
@@ -152,6 +167,7 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 		     geda_sheets_26x26.xpm              \
 		     geda_select_26x26.png              \
 		     geda_tools_26x26.xpm               \
+		     geda_translate_26x26.png           \
 		     geda_value_26x26.xpm               \
 		     geda_view_redraw_26x26.png         \
 		     geda_unlock_26x26.png              \
@@ -160,16 +176,18 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 		     geda_zoom_limits_26x26.png         \
 		     geda_zoom_in_26x26.png             \
 		     geda_zoom_out_26x26.png            \
-		     geda_zoom_pan_26x26.png
+		     geda_zoom_pan_26x26.png            \
+		     gschem_project_close_26x26.png
 
 bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 		     gaf_demote_28x28.png               \
 		     geda_deselect_28x28.png            \
 		     gaf_pdf_28x28.xpm                  \
 		     gaf_promote_28x28.png              \
+		     gaf_see_notes_28x20.png            \
 		     gaf_tools_28x28.xpm                \
-		     geda_arc_28x28.xpm                 \
-		     geda_box_28x28.xpm                 \
+		     geda_arc_28x28.png                 \
+		     geda_box_28x28.png                 \
 		     geda_copy_28x28.png                \
 		     geda_circle_28x28.xpm              \
 		     geda_circles_28x28.png             \
@@ -198,6 +216,7 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 		     geda_sheets_28x28.xpm              \
 		     geda_select_28x28.png              \
 		     geda_tools_28x28.xpm               \
+		     geda_translate_28x28.png           \
 		     geda_unlock_28x28.png              \
 		     geda_value_28x28.xpm               \
 		     geda_view_redraw_28x28.png         \
@@ -206,7 +225,8 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 		     geda_zoom_limits_28x28.png         \
 		     geda_zoom_in_28x28.png             \
 		     geda_zoom_out_28x28.png            \
-		     geda_zoom_pan_28x28.png
+		     geda_zoom_pan_28x28.png            \
+		     gschem_project_close_28x28.png
 
 bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 		     gaf_demote_32x32.png               \
@@ -215,9 +235,9 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 		     gaf_promote_32x32.png              \
 		     gaf_see_notes_32x23.png            \
 		     gaf_tools_32x32.xpm                \
-		     geda_arc_32x32.xpm                 \
+		     geda_arc_32x32.png                 \
 		     geda_copy_32x32.png                \
-		     geda_box_32x32.xpm                 \
+		     geda_box_32x32.png                 \
 		     geda_circle_32x32.xpm              \
 		     geda_circles_32x32.png             \
 		     geda_demote_32x32.png              \
@@ -246,6 +266,7 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 		     geda_sheets_32x32.xpm              \
 		     geda_select_32x32.png              \
 		     geda_tools_32x32.xpm               \
+		     geda_translate_32x32.png           \
 		     geda_unlock_32x32.png              \
 		     geda_value_32x32.xpm               \
 		     geda_view_redraw_32x32.png         \
@@ -254,7 +275,8 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 		     geda_zoom_limits_32x32.png         \
 		     geda_zoom_in_32x32.png             \
 		     geda_zoom_out_32x32.png            \
-		     geda_zoom_pan_32x32.png
+		     geda_zoom_pan_32x32.png            \
+		     gschem_project_close_32x32.png
 
 bitmapdata_36_DATA = gaf_see_notes_36x26.png            \
 		     geda_eye_glasses_36x26.png         \

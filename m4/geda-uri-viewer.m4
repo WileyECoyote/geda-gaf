@@ -2,7 +2,8 @@
 # serial 1
 
 dnl Checks for default URI launcher method
-dnl Copyright (C) 2011  Peter TB Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2011-2013  Peter TB Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2013 gEDA Contributors (see ChangeLog for details)
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -36,6 +37,7 @@ AC_DEFUN([AX_OPTION_URI_VIEWER],
   else
     enable_gio=no
   fi
+
   if test "X$enable_gio" = "Xyes"; then
     AC_DEFINE([SHOW_URI_GIO], [1],
      [Define to 1 if GIO should be used to launch a default application for
@@ -45,31 +47,24 @@ AC_DEFUN([AX_OPTION_URI_VIEWER],
 
 
   AC_MSG_CHECKING([platform URI viewer])
-
-  if test "X$enable_gio" = "Xyes" || test "X$OS_WIN32_NATIVE" = "Xyes"; then
-    # We use an API function, so we don't need a URI viewer application
-    AC_MSG_RESULT([none required])
-
-  else
-    # If the user specified a viewer command, just use that.
-    if test "X$URI_VIEWER" = "X"; then
-
+   # If the user specified a viewer command, just use that.
+  if test "X$URI_VIEWER" = "X"; then
       # On Cygwin, we use cygstart, because it takes care of any required
       # translation between cygwin filenames and native filenames.
-      if test "X$OS_CYGWIN" = "Xyes"; then
+     if test "X$OS_CYGWIN" = "Xyes"; then
         URI_VIEWER=cygstart
 
       # On Mac OS X, we can use open(1) to launch URIs.
-      elif test "X$OS_CARBON" = "Xyes"; then
+     elif test "X$OS_CARBON" = "Xyes"; then
         URI_VIEWER=open
 
       # Default to xdg-open(1) on other platforms.
-      else
+     else
         URI_VIEWER=xdg-open
-      fi
-    fi
-    AC_DEFINE_UNQUOTED([SHOW_URI_COMMAND], ["$URI_VIEWER"],
-                       [Command to launch default application for a URI.])
-    AC_MSG_RESULT([$URI_VIEWER])
+     fi
   fi
+  AC_DEFINE_UNQUOTED([SHOW_URI_COMMAND], ["$URI_VIEWER"],
+                     [Command to launch default application for a URI.])
+  AC_MSG_RESULT([$URI_VIEWER])
+
 ])

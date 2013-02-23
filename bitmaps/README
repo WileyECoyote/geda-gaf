@@ -53,21 +53,29 @@ gaf_tools_26x26.xpm                Created by wileyhill@gmail.com, GPL
 gaf_tools_28x28.xpm                Created by wileyhill@gmail.com, GPL
 gaf_tools_32x32.xpm                Created by wileyhill@gmail.com, GPL
 gaf_tools_128x128.xpm              Created by wileyhill@gmail.com, GPL
-geda_arc_22x22.xpm                 Created by wileyhill@gmail.com, GPL
-geda_arc_24x24.xpm                 Created by wileyhill@gmail.com, GPL
-geda_arc_26x26.xpm                 Created by wileyhill@gmail.com, GPL
-geda_arc_28x28.xpm                 Created by wileyhill@gmail.com, GPL
-geda_arc_23x32.xpm                 Created by wileyhill@gmail.com, GPL
-geda_box_22x22.xpm                 Created by wileyhill@gmail.com, GPL
-geda_box_24x24.xpm                 Created by wileyhill@gmail.com, GPL
-geda_box_26x26.xpm                 Created by wileyhill@gmail.com, GPL
-geda_box_28x28.xpm                 Created by wileyhill@gmail.com, GPL
-geda_box_32x32.xpm                 Created by wileyhill@gmail.com, GPL
+geda-arc.png                       Created by wileyhill@gmail.com, GPL
+geda_arc_22x22.png                 Created by wileyhill@gmail.com, GPL
+geda_arc_24x24.png                 Created by wileyhill@gmail.com, GPL
+geda_arc_26x26.png                 Created by wileyhill@gmail.com, GPL
+geda_arc_28x28.png                 Created by wileyhill@gmail.com, GPL
+geda_arc_23x32.png                 Created by wileyhill@gmail.com, GPL
+geda_box_22x22.png                 Created by wileyhill@gmail.com, GPL
+geda_box_24x24.png                 Created by wileyhill@gmail.com, GPL
+geda_box_26x26.png                 Created by wileyhill@gmail.com, GPL
+geda_box_28x28.png                 Created by wileyhill@gmail.com, GPL
+geda_box_32x32.png                 Created by wileyhill@gmail.com, GPL
 geda_circle_22x22.xpm              Created by wileyhill@gmail.com, GPL
 geda_circle_24x24.xpm              Created by wileyhill@gmail.com, GPL
 geda_circle_26x26.xpm              Created by wileyhill@gmail.com, GPL
 geda_circle_28x28.xpm              Created by wileyhill@gmail.com, GPL
 geda_circle_32x32.xpm              Created by wileyhill@gmail.com, GPL
+geda_circles_22x22.png             Created by wileyhill@gmail.com, GPL
+geda_circles_24x24.png             Created by wileyhill@gmail.com, GPL
+geda_circles_26x26.png             Created by wileyhill@gmail.com, GPL
+geda_circles_28x28.png             Created by wileyhill@gmail.com, GPL
+geda_circles_32x32.png             Created by wileyhill@gmail.com, GPL
+geda_circles_64x64.png             Created by wileyhill@gmail.com, GPL
+geda-circles.png                   Created by wileyhill@gmail.com, GPL
 geda_copy_22x22.png                Created by wileyhill@gmail.com, GPL
 geda_copy_24x24.png                Created by wileyhill@gmail.com, GPL
 geda_copy_26x26.png                Created by wileyhill@gmail.com, GPL
@@ -137,12 +145,6 @@ geda_value_24x24.xpm    	   Created by wileyhill@gmail.com, GPL
 geda_value_32x32.xpm    	   Created by wileyhill@gmail.com, GPL
 geda_value_36x36.xpm    	   Created by wileyhill@gmail.com, GPL
 geda_value_256x256.png    	   Created by wileyhill@gmail.com, GPL
-geda_tools_22x22.xpm               Added by wileyhill@gmail.com, <KDE> GPL
-geda_tools_24x24.xpm               Added by wileyhill@gmail.com, <KDE> GPL
-geda_tools_26x26.xpm               Added by wileyhill@gmail.com, <KDE> GPL
-geda_tools_28x28.xpm               Added by wileyhill@gmail.com, <KDE> GPL
-geda_tools_32x32.xpm               Added by wileyhill@gmail.com, <KDE> GPL
-geda_tools_128x128.xpm             Added by wileyhill@gmail.com, <KDE> GPL
 geda_man_22x22.xpm   	           Created by wileyhill@gmail.com, GPL
 geda_man_24x24.xpm   	           Created by wileyhill@gmail.com, GPL
 geda_man_26x26.xpm   	           Created by wileyhill@gmail.com, GPL
@@ -205,6 +207,17 @@ geda_sheets_24x24.xpm              Created by wileyhill@gmail.com, GPL
 geda_sheets_26x26.xpm              Created by wileyhill@gmail.com, GPL
 geda_sheets_28x28.xpm              Created by wileyhill@gmail.com, GPL
 geda_sheets_32x32.xpm              Created by wileyhill@gmail.com, GPL
+geda_tools_22x22.xpm               Added by wileyhill@gmail.com, <KDE> GPL
+geda_tools_24x24.xpm               Added by wileyhill@gmail.com, <KDE> GPL
+geda_tools_26x26.xpm               Added by wileyhill@gmail.com, <KDE> GPL
+geda_tools_28x28.xpm               Added by wileyhill@gmail.com, <KDE> GPL
+geda_tools_32x32.xpm               Added by wileyhill@gmail.com, <KDE> GPL
+geda_tools_128x128.xpm             Added by wileyhill@gmail.com, <KDE> GPL
+geda_translate_22x22.png           Created by wileyhill@gmail.com, GPL
+geda_translate_24x24.png           Created by wileyhill@gmail.com, GPL
+geda_translate_26x26.png           Created by wileyhill@gmail.com, GPL
+geda_translate_28x28.png           Created by wileyhill@gmail.com, GPL
+geda_translate_32x32.png           Created by wileyhill@gmail.com, GPL
 geda_unlock_22x22.xpm              Created by wileyhill@gmail.com, GPL
 geda_unlock_24x24.xpm              Created by wileyhill@gmail.com, GPL
 geda_unlock_26x26.xpm              Created by wileyhill@gmail.com, GPL
@@ -253,3 +266,10 @@ geda_zoom_pan_24x24.png            Created by wileyhill@gmail.com, GPL
 geda_zoom_pan_26x26.png            Created by wileyhill@gmail.com, GPL
 geda_zoom_pan_28x28.png            Created by wileyhill@gmail.com, GPL
 geda_zoom_pan_32x32.png            Created by wileyhill@gmail.com, GPL
+
+gschem_project_close_22x22.png     Created by wileyhill@gmail.com, GPL
+gschem_project_close_24x24.png     Created by wileyhill@gmail.com, GPL
+gschem_project_close_26x26.png     Created by wileyhill@gmail.com, GPL
+gschem_project_close_28x28.png     Created by wileyhill@gmail.com, GPL
+gschem_project_close_32x32.png     Created by wileyhill@gmail.com, GPL
+

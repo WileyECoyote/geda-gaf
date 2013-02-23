@@ -2,7 +2,7 @@
 # serial 1.0
 
 dnl gEDA Symbol Directories
-dnl Copyright (C) 2012  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2012-2013  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by

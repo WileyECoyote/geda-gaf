@@ -32,7 +32,7 @@
 #define GET_BOX_HEIGHT(w) abs((w)->second_wy - (w)->first_wy)
 
 #define GET_PICTURE_WIDTH(w)			\
-  abs((w)->second_wx - (w)->first_wx) 
+  abs((w)->second_wx - (w)->first_wx)
 #define GET_PICTURE_HEIGHT(w)						\
   (w)->pixbuf_wh_ratio == 0 ? 0 : abs((w)->second_wx - (w)->first_wx)/(w)->pixbuf_wh_ratio
 #define GET_PICTURE_LEFT(w)			\
@@ -739,25 +739,25 @@ static void o_grips_start_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
     case PICTURE_UPPER_LEFT:
       w_current->second_wx = o_current->picture->upper_x;
       w_current->second_wy = o_current->picture->upper_y;
-      w_current->first_wx = o_current->picture->lower_x; 
+      w_current->first_wx = o_current->picture->lower_x;
       w_current->first_wy = o_current->picture->lower_y;
       break;
     case PICTURE_LOWER_RIGHT:
       w_current->second_wx = o_current->picture->lower_x;
       w_current->second_wy = o_current->picture->lower_y;
-      w_current->first_wx = o_current->picture->upper_x; 
+      w_current->first_wx = o_current->picture->upper_x;
       w_current->first_wy = o_current->picture->upper_y;
       break;
     case PICTURE_UPPER_RIGHT:
       w_current->second_wx = o_current->picture->lower_x;
       w_current->second_wy = o_current->picture->upper_y;
-      w_current->first_wx = o_current->picture->upper_x; 
+      w_current->first_wx = o_current->picture->upper_x;
       w_current->first_wy = o_current->picture->lower_y;
       break;
     case PICTURE_LOWER_LEFT:
       w_current->second_wx = o_current->picture->upper_x;
       w_current->second_wy = o_current->picture->lower_y;
-      w_current->first_wx = o_current->picture->lower_x; 
+      w_current->first_wx = o_current->picture->lower_x;
       w_current->first_wy = o_current->picture->upper_y;
       break;
     default:
@@ -1133,7 +1133,7 @@ static void o_grips_end_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
     return;
   }
 
-  o_picture_modify(toplevel, o_current, 
+  o_picture_modify(toplevel, o_current,
 		   w_current->second_wx, w_current->second_wy, whichone);
 
   g_object_unref (w_current->current_pixbuf);
@@ -1208,7 +1208,7 @@ static void o_grips_end_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
   }
 
   /* modify the right line end according to whichone */
-  o_line_modify(toplevel, o_current, 
+  o_line_modify(toplevel, o_current,
 		w_current->second_wx, w_current->second_wy, whichone);
 }
 
@@ -1440,22 +1440,31 @@ void o_grips_end(GSCHEM_TOPLEVEL *w_current)
  */
 int o_grips_size(GSCHEM_TOPLEVEL *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
   int factor, size;
-  
-  factor = (int) toplevel->page_current->to_world_x_constant;
-  if (factor > SMALL_ZOOMFACTOR1) {
-    /* big zoom factor : small size converted to screen unit */
-    size = SCREENabs (w_current, GRIP_SIZE1);
-  } else if (factor > SMALL_ZOOMFACTOR2) {
-    /* medium zoom factor : medium size converted to screen unit */
-    size = SCREENabs (w_current, GRIP_SIZE2);
-  } else {
-    /* small zoom factor : big size converted to screen unit */
-    size = SCREENabs (w_current, GRIP_SIZE3);
+
+  if ((w_current != NULL) &&
+      (w_current->toplevel != NULL) &&
+      (w_current->toplevel->page_current != NULL)) {
+
+    TOPLEVEL *toplevel = w_current->toplevel;
+
+    factor = (int) toplevel->page_current->to_world_x_constant;
+    if (factor > SMALL_ZOOMFACTOR1) {
+      /* big zoom factor : small size converted to screen unit */
+      size = SCREENabs (w_current, GRIP_SIZE1);
+    } else if (factor > SMALL_ZOOMFACTOR2) {
+      /* medium zoom factor : medium size converted to screen unit */
+      size = SCREENabs (w_current, GRIP_SIZE2);
+    } else {
+      /* small zoom factor : big size converted to screen unit */
+      size = SCREENabs (w_current, GRIP_SIZE3);
+    }
   }
-  
-  return min(size, MAXIMUM_GRIP_PIXELS/2);
+  else {
+    fprintf(stderr, "ERROR! o_grips_size: detected NULL pointer\n");
+    size = MAXIMUM_GRIP_PIXELS/2;
+  }
+    return min(size, MAXIMUM_GRIP_PIXELS/2);
 }
 
 /*! \brief Draw objects being grip maniuplated from GSCHEM_TOPLEVEL object.

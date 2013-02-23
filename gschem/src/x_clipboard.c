@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,14 @@
 #define MIME_TYPE_SCHEMATIC "application/x-geda-schematic"
 #define CLIP_TYPE_SCHEMATIC 1
 
+G_LOCK_DEFINE_STATIC(got_answer);
+static bool got_answer;
+
+struct query_usable {
+  void (*callback) (int, void *);
+  void *userdata;
+};
+
 /* \brief Callback for handling system clipboard owner change.
  * \par Function Description
  *
@@ -45,7 +53,7 @@ clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
 {
   GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) user_data;
 
-  i_update_ui (w_current);
+  i_update_sensitivities (w_current);
 }
 
 static void
@@ -92,6 +100,8 @@ x_clipboard_init (GSCHEM_TOPLEVEL *w_current)
                     "owner-change",
                     G_CALLBACK (clip_handle_owner_change),
                     w_current);
+
+  got_answer = TRUE;
 }
 
 /* \brief Initialises system clipboard support
@@ -108,11 +118,6 @@ x_clipboard_finish (GSCHEM_TOPLEVEL *w_current)
     gtk_clipboard_store (cb);
 }
 
-struct query_usable {
-  void (*callback) (int, void *);
-  void *userdata;
-};
-
 
 /* \brief Callback for determining if any clipboard targets are pastable
  * \par Function Description
@@ -122,29 +127,31 @@ struct query_usable {
  * the TRUE / FALSE answer to whether we can paste from the clipboard.
  */
 static void
-query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, gint ntargets,
-                         gpointer data)
+query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, gpointer data)
 {
-  struct query_usable *cbinfo = data;
-  int i;
-  int is_usable = FALSE;
+    struct query_usable *callback_info = data;
+    int i;
+    int is_usable = FALSE;
 
-  for (i = 0; i < ntargets; i++) {
-    if (strcmp (gdk_atom_name (targets[i]), MIME_TYPE_SCHEMATIC) == 0) {
-      is_usable = TRUE;
-      break;
+    for (i = 0; i < ntargets; i++) {
+      if (strcmp (gdk_atom_name (targets[i]), MIME_TYPE_SCHEMATIC) == 0) {
+        is_usable = TRUE;
+        break;
+      }
     }
-  }
 
-  cbinfo->callback (is_usable, cbinfo->userdata);
-  g_free (cbinfo);
+    callback_info->callback (is_usable, callback_info->userdata);
+    g_free (callback_info);
+    G_LOCK(got_answer);
+    got_answer = TRUE; /* unblock submission of new request */
+    G_UNLOCK(got_answer);
 }
 
 
-/* \brief Checks if the system clipboard contains schematic data.
- * \par Function Description
- * Checks whether the current owner of the system clipboard is
- * advertising gEDA schematic data.
+/*! \brief Checks if the system clipboard contains schematic data.
+ *  \par Function Description
+ *   Checks whether the current owner of the system clipboard is
+ *   advertising gEDA schematic data.
  *
  * The check is performed asynchronously. When a response is
  * recieved, the provided callback is called with a TRUE / FALSE
@@ -153,19 +160,46 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, gint ntargets,
  * \param [in] w_current   The current GSCHEM_TOPLEVEL.
  * \param [in] callback    The callback to recieve the response.
  * \param [in] userdata    Arbitrary data to pass the callback.
+ *
+ * \note WEH (01/22/13): We do not want to reallocate another structure
+ * and put in a second request if gtk has not responded to the previous
+ * request.
+ *
  */
 void
 x_clipboard_query_usable (GSCHEM_TOPLEVEL *w_current,
                           void (*callback) (int, void *), void *userdata)
 {
-  GtkClipboard *clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
-  struct query_usable *cbinfo;
+  static int watch_dog;
 
-  cbinfo = g_new (struct query_usable, 1);
-  cbinfo->callback = callback;
-  cbinfo->userdata = userdata;
+  if (got_answer == TRUE) {
+    GtkClipboard *clip = gtk_clipboard_get (GDK_SELECTION_CLIPBOARD);
 
-  gtk_clipboard_request_targets (clip, query_usable_targets_cb, cbinfo);
+    /* Create a new instance of our callback structure */
+    struct query_usable *callback_info;
+    callback_info = g_new (struct query_usable, 1);
+
+    /* Save callers cbfunc ptr and data ptr to the new structure */
+    callback_info->callback = callback;
+    callback_info->userdata = userdata;
+
+    got_answer = FALSE; /* Block ourself; the callback has to unblock */
+
+    /* submit the request */
+    gtk_clipboard_request_targets (clip, query_usable_targets_cb, callback_info);
+  }
+  else {
+    if (watch_dog == 2) { /* Should never get here */
+      fprintf(stderr, "gschem x_clipboard_query_usable: error: releasing block on clipboard query");
+      G_LOCK(got_answer);
+        got_answer = TRUE; /* Is hack, should somehow tell gtk to forget it */
+      G_UNLOCK(got_answer);
+      watch_dog = 0;
+    }
+    else {
+      watch_dog++;
+    }
+  }
 }
 
 /* \brief Set the contents of the system clipboard.

@@ -28,6 +28,10 @@
 #include <string.h>
 #endif
 
+#ifdef HAVE_SYS_WAIT_H
+#include <sys/wait.h>
+#endif
+
 #include "libgeda_priv.h"
 
 #ifdef HAVE_LIBDMALLOC
@@ -91,7 +95,7 @@ OBJECT *s_basic_init_object(OBJECT *new_node, int type, char const *name)
 
   new_node->complex_basename = NULL;
   new_node->parent = NULL;
-		
+
   /* Setup the color */
   new_node->color = DEFAULT_COLOR_INDEX;
   new_node->dont_redraw = FALSE;
@@ -111,7 +115,7 @@ OBJECT *s_basic_init_object(OBJECT *new_node, int type, char const *name)
   new_node->fill_angle2 = 0;
   new_node->fill_pitch1 = 0;
   new_node->fill_pitch2 = 0;
-	
+
   new_node->attribs = NULL;
   new_node->attached_to = NULL;
   new_node->copied_to = NULL;
@@ -162,7 +166,7 @@ void print_struct_forw (GList *list)
   GList *iter;
 
   iter = list;
-  printf("TRYING to PRINT\n");
+  printf("Printing ...\n");
   while (iter != NULL) {
     o_current = (OBJECT *)iter->data;
     printf("Name: %s\n", o_current->name);
@@ -272,7 +276,7 @@ s_delete_object(TOPLEVEL *toplevel, OBJECT *o_current)
 
     if (o_current->text) {
       /*printf("sdeleting text->string\n");*/
-      g_free(o_current->text->string); 
+      g_free(o_current->text->string);
       o_current->text->string = NULL;
       g_free(o_current->text->disp_string);
       /*	printf("sdeleting text\n");*/
@@ -286,7 +290,7 @@ s_delete_object(TOPLEVEL *toplevel, OBJECT *o_current)
 
 
     /*	printf("sdeleting complex_basename\n");*/
-    g_free(o_current->complex_basename); 
+    g_free(o_current->complex_basename);
     o_current->complex_basename = NULL;
 
     if (o_current->complex) {
@@ -330,6 +334,7 @@ s_delete_object_glist(TOPLEVEL *toplevel, GList *list)
     ptr = g_list_previous (ptr);
   }
   g_list_free(list);
+
 }
 
 /*! \brief Add a weak reference watcher to an OBJECT.
@@ -422,10 +427,10 @@ char *remove_nl(char *string)
 
   if (!string)
     return NULL;
-  
+
   i = 0;
   while(string[i] != '\0' && string[i] != '\n' && string[i] != '\r') {
-    i++; 
+    i++;
   }
 
   string[i] = '\0';
@@ -444,12 +449,12 @@ char *remove_last_nl(char *string)
   int len;
 
   if (!string)
-    return NULL;		
+    return NULL;
 
   len = strlen(string);
   if (string[len-1] == '\n' || string[len-1] == '\r')
     string[len-1] = '\0';
-     
+
   return(string);
 }
 
@@ -539,7 +544,7 @@ s_expand_env_variables (const gchar *string)
           /* an escaped '$' */
           g_string_append_c (gstring, string[i++]);
           break;
-          
+
         default:
           /* an isolated '$', put it in output */
           g_string_append_c (gstring, '$');
@@ -627,7 +632,35 @@ const char *s_path_sys_data () {
   }
   return p;
 }
-
+/*! \brief Get the directory with the gEDA system doc.
+ *  \par Function description
+ *  Returns the path to be searched for gEDA doc shared between all
+ *  users. If the GEDADATA environment variable is set, returns its
+ *  value; otherwise, uses a compiled-in path.
+ *
+ *  On Windows, the compiled in path is *not* used, as it might not
+ *  match the path where the user has installed gEDA.
+ *
+ *  \warning The returned string is owned by libgeda and should not be
+ *  modified or free'd.
+ *
+ *  \todo On UNIX platforms we should follow the XDG Base Directory
+ *  Specification.
+ *
+ *  \return the gEDA shared doc path, or NULL if none could be found.
+ */
+const char *s_path_sys_doc () {
+  static const char *p = NULL;
+  /* If GEDADOC is set in the environment, use that path */
+  if (p == NULL) {
+    p = g_getenv ("GEDADOC");
+  }
+  if (p == NULL) {
+    p = GEDADOCDIR;
+    g_setenv ("GEDADOC", p, FALSE);
+  }
+  return p;
+}
 /*! \brief Get the directory with the gEDA system configuration.
  *  \par Function description
  *  Returns the path to be searched for gEDA configuration shared
@@ -688,3 +721,4 @@ const char *s_path_user_config () {
   }
   return p;
 }
+

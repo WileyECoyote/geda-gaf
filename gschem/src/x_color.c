@@ -129,8 +129,7 @@ void x_color_allocate (void)
     }
 
     if (display_outline_colors[i].enabled) {
-      gdk_outline_colors[i] = (GdkColor *)
-        g_malloc(sizeof(GdkColor));
+      gdk_outline_colors[i] = (GdkColor *) g_malloc(sizeof(GdkColor));
 
       c = display_outline_colors[i];
 

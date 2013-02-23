@@ -32,8 +32,8 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   /* ----------------- main window widgets ----------------- */
   w_current->main_window        = NULL;
   w_current->drawing_area       = NULL;
-  w_current->menubar            = NULL;
-  w_current->popup_menu         = NULL;
+  w_current->ui_index           = -1;
+
   w_current->h_scrollbar        = NULL;
   w_current->v_scrollbar        = NULL;
   w_current->h_adjustment       = NULL;
@@ -44,16 +44,11 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->grid_label         = NULL;
   w_current->status_label       = NULL;
 
-  w_current->toolbar_select     = NULL;
-  w_current->toolbar_net        = NULL;
-  w_current->toolbar_bus        = NULL;
-
   w_current->keyaccel_string    = NULL;
   w_current->keyaccel_string_source_id = FALSE;
 
   /*  -------------------  Dialog boxes  ------------------- */
   w_current->sowindow           = NULL;
-  w_current->pfswindow          = NULL;
   w_current->cswindow           = NULL;
   w_current->iwindow            = NULL;
   w_current->pswindow           = NULL;
@@ -128,7 +123,6 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->ALTKEY                = 0;
   w_current->doing_pan             = 0;
   w_current->buffer_number         = 0;
-  w_current->last_callback         = NULL;
   w_current->clipboard_buffer      = NULL;
 
   /* ------------------ rc/user parameters ----------------- */

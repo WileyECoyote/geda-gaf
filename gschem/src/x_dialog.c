@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,6 +41,11 @@
 #define GLADE_HOOKUP_OBJECT(component,widget,name) \
   g_object_set_data_full (G_OBJECT (component), name, \
     gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
+
+const char* IDS_MESSEAGE_TITLES[] = {
+  "Information", "Warning", "Confirmation", "Error", "gschem", /* Message Title Strings*/
+  NULL
+};
 
 static GtkWidget* create_menu_linetype (GSCHEM_TOPLEVEL *w_current);
 static int line_type_dialog_linetype_change (GtkWidget *w, gpointer data);
@@ -245,7 +250,6 @@ void text_input_dialog_response(GtkWidget * widget, int response, GSCHEM_TOPLEVE
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     i_set_state(w_current, SELECT);
-    i_update_toolbar(w_current);
     gtk_widget_destroy(w_current->tiwindow);
     w_current->tiwindow=NULL;
     break;
@@ -497,7 +501,6 @@ void text_edit_dialog_response(GtkWidget * widget, int response, GSCHEM_TOPLEVEL
   }
   /* clean up */
   i_set_state(w_current, SELECT);
-  i_update_toolbar(w_current);
   gtk_widget_destroy(w_current->tewindow);
   w_current->tewindow = NULL;
 }
@@ -971,7 +974,6 @@ void line_type_dialog_response(GtkWidget *widget, int response,
   }
 
   i_set_state (line_type_data->w_current, SELECT);
-  i_update_toolbar (line_type_data->w_current);
   gtk_widget_destroy (line_type_data->dialog);
 
   g_free (line_type_data);
@@ -1008,8 +1010,7 @@ void line_type_dialog (GSCHEM_TOPLEVEL *w_current)
                                 &width, &length, &space))
     return;
 
-  line_type_data = (struct line_type_data*) g_malloc (
-    sizeof (struct line_type_data));
+  line_type_data = (struct line_type_data*) g_malloc (sizeof (struct line_type_data));
 
   dialog = gschem_dialog_new_with_buttons(_("Edit Line Width & Type"),
                                           GTK_WINDOW(w_current->main_window),
@@ -1458,7 +1459,6 @@ void fill_type_dialog_response(GtkWidget *widget, int response,
   }
 
   i_set_state (fill_type_data->w_current, SELECT);
-  i_update_toolbar (fill_type_data->w_current);
 
   gtk_grab_remove (fill_type_data->dialog);
   gtk_widget_destroy (fill_type_data->dialog);
@@ -1814,7 +1814,6 @@ void translate_dialog_response(GtkWidget *widget, int response,
   }
 
   i_set_state(w_current, SELECT);
-  i_update_toolbar(w_current);
   gtk_widget_destroy(w_current->trwindow);
   w_current->trwindow=NULL;
 }
@@ -1914,7 +1913,6 @@ void text_size_dialog_response(GtkWidget *w, int response,
 
   /* clean up */
   i_set_state(w_current, SELECT);
-  i_update_toolbar(w_current);
   gtk_widget_destroy(w_current->tswindow);
   w_current->tswindow = NULL;
 }
@@ -2020,7 +2018,6 @@ void snap_size_dialog_response(GtkWidget *w, int response,
 
   /* clean up */
   i_set_state(w_current, SELECT);
-  i_update_toolbar(w_current);
   gtk_widget_destroy(w_current->tswindow);
   w_current->tswindow = NULL;
 }
@@ -2126,7 +2123,6 @@ void slot_edit_dialog_response(GtkWidget *widget, int response, GSCHEM_TOPLEVEL 
     printf("slot_edit_dialog_response(): strange signal %d\n",response);
   }
   i_set_state(w_current, SELECT);
-  i_update_toolbar(w_current);
   gtk_widget_destroy(w_current->sewindow);
   w_current->sewindow = NULL;
 }
@@ -2835,19 +2831,28 @@ void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void generic_msg_dialog (const char *msg)
+void gschem_message_dialog (const char *msg, gEDA_MessageType context, char *title)
 {
   GtkWidget *dialog;
-
+  gdk_threads_enter();
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
-                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_INFO,
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   context,
                                    GTK_BUTTONS_OK,
                                    "%s", msg);
 
+  if(title) {
+    gtk_window_set_title(GTK_WINDOW(dialog), _(title));
+  }
+  else
+    gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
+
+
   gtk_dialog_run (GTK_DIALOG (dialog));
+
   gtk_widget_destroy (dialog);
+  gdk_threads_leave();
 
 }
 
@@ -2858,27 +2863,43 @@ void generic_msg_dialog (const char *msg)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ *  \remarks TODO: derive this from gschem dialog class
  */
-int generic_confirm_dialog (const char *msg)
+int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
 {
   GtkWidget *dialog;
   int r;
-
+  gdk_threads_enter();
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
-                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   GTK_MESSAGE_INFO,
-                                   GTK_BUTTONS_OK_CANCEL,
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   context,
+                                   GTK_BUTTONS_NONE,
                                    "%s", msg);
+
+  /* add buttons to dialog action area */
+  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+                          GTK_STOCK_NO,         GTK_RESPONSE_NO,
+                          GTK_STOCK_CANCEL,     GTK_RESPONSE_CANCEL,
+                          GTK_STOCK_YES,        GTK_RESPONSE_YES,
+                          NULL);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
+                                          GTK_RESPONSE_YES,
+                                          GTK_RESPONSE_NO,
+                                          GTK_RESPONSE_CANCEL,
+                                          -1);
+
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+
+  gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[GEDA_MESSAGE_QUESTON]));
 
   r = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
-  if (r ==  GTK_RESPONSE_OK)
-    return 1;
-  else
-    return 0;
+  gdk_threads_leave();
+  return r;
 }
 
 /***************** End of generic confirm dialog box *********************/
@@ -2891,7 +2912,7 @@ int generic_confirm_dialog (const char *msg)
  *  \warning
  *   Caller must g_free returned character string.
  */
-char *generic_filesel_dialog (const char *msg, const char *templ, int flags)
+char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
 {
   GtkWidget *dialog;
   char *result = NULL, *folder, *seed;
@@ -2906,7 +2927,7 @@ char *generic_filesel_dialog (const char *msg, const char *templ, int flags)
 
   if (flags & FSB_LOAD) {
     title = g_strdup_printf("%s: Open", msg);
-    dialog = gtk_file_chooser_dialog_new (title,
+    dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_OPEN,
                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
@@ -2917,7 +2938,7 @@ char *generic_filesel_dialog (const char *msg, const char *templ, int flags)
 
   } else {
     title = g_strdup_printf("%s: Save", msg);
-    dialog = gtk_file_chooser_dialog_new (title,
+    dialog = gtk_file_chooser_dialog_new (_(title),
                                           NULL,
                                           GTK_FILE_CHOOSER_ACTION_SAVE,
                                           GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
@@ -3440,7 +3461,6 @@ void major_changed_dialog(GSCHEM_TOPLEVEL* w_current)
 #define IS_CLOSE_CONFIRMATION_DIALOG(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_CLOSE_CONFIRMATION_DIALOG))
 #define IS_CLOSE_CONFIRMATION_DIALOG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), TYPE_CLOSE_CONFIRMATION_DIALOG))
 #define CLOSE_CONFIRMATION_DIALOG_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),TYPE_CLOSE_CONFIRMATION_DIALOG, CloseConfirmationDialogClass))
-
 
 typedef struct _CloseConfirmationDialog      CloseConfirmationDialog;
 typedef struct _CloseConfirmationDialogClass CloseConfirmationDialogClass;
@@ -4058,13 +4078,12 @@ close_confirmation_dialog_get_selected_pages (CloseConfirmationDialog *dialog)
   return selected;
 }
 
-
 /*! \brief Asks for confirmation before closing a changed page.
  *  \par Function Description
  *  This function asks the user to confirm its closing order for
  *  page <B>page</B> while it still has unsaved changes.
  *
- *  It displays a message dialog inviting the user to cancel the
+ *  It displays a message dialog asking the user to cancel the
  *  closing, or to discard the changes or to save the changes to a
  *  file.
  *
@@ -4083,34 +4102,33 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   g_return_val_if_fail (page != NULL && page->CHANGED, TRUE);
 
   result = FALSE;
-  keep_page = w_current->toplevel->page_current;
 
   dialog = GTK_WIDGET (g_object_new (TYPE_CLOSE_CONFIRMATION_DIALOG,
                                      "unsaved-page", page,
                                      NULL));
 
   /* set default response signal. This is usually triggered by the "Return" key */
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-                                  GTK_RESPONSE_YES);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_YES);
 
   switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
       case GTK_RESPONSE_NO:
-        /* action selected: close without saving */
         /* close the page, discard changes */
-        //x_window_close_page (w_current, page);
         result = TRUE;
         break;
 
       case GTK_RESPONSE_YES:
         /* action selected: save */
+        keep_page = w_current->toplevel->page_current;
         s_page_goto (w_current->toplevel, page);
-        i_callback_file_save(w_current, 0, NULL);
-        /* has the page been really saved? */
-        if (!page->CHANGED) {
-          result = TRUE; //x_window_close_page (w_current, page);
+        x_window_save_page (w_current,
+                            w_current->toplevel->page_current,
+                            w_current->toplevel->page_current->page_filename);
+
+        if(!page->CHANGED) {
+          if (keep_page != page)
+            s_page_goto (w_current->toplevel, keep_page);
+            result = TRUE;
         }
-        /* no, user has cancelled the save and page has changes */
-        /* do not close page */
         break;
 
       case GTK_RESPONSE_CANCEL:
@@ -4123,11 +4141,6 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
         break;
   }
   gtk_widget_destroy (dialog);
-
-  /* Switch back to the page we were on if it wasn't the one being closed */
-  g_return_val_if_fail (keep_page != NULL, result);
-  if (keep_page != page)
-    s_page_goto (w_current->toplevel, keep_page);
 
   return result;
 }

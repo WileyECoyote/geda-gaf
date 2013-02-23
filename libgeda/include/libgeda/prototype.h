@@ -12,10 +12,9 @@ void   o_scale(TOPLEVEL *toplevel, GList *list, int x_scale, int y_scale);
 char *f_get_autosave_filename (const char *filename);
 bool  f_has_active_autosave (const char *filename, GError **err);
 int   f_open(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err);
-int   f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
-                 const int flags, GError **err);
+int   f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename, const int flags, GError **err);
 void  f_close(TOPLEVEL *toplevel);
-int   f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **error);
+bool  f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **error);
 char *f_normalize_filename (const char *filename, GError **error);
 char *follow_symlinks (const char *filename, GError **error);
 
@@ -88,6 +87,7 @@ void   o_attrib_print(GList *attributes);
 void   o_attrib_remove(TOPLEVEL *toplevel, GList **list, OBJECT *remove);
 bool   o_attrib_string_get_name_value (const char *string, char **name_ptr, char **value_ptr);
 bool   o_attrib_get_name_value        (OBJECT *attrib, char **name_ptr, char **value_ptr);
+void   o_attrib_set_value             (OBJECT *attrib, char  *name_ptr,  char *value_ptr);
 GList *o_attrib_find_floating_attribs (const GList *list);
 char  *o_attrib_search_floating_attribs_by_name  (const GList *list, char *name, int counter);
 char  *o_attrib_search_attached_attribs_by_name  (OBJECT *object, char *name, int counter);
@@ -157,17 +157,17 @@ int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
 int world_get_object_glist_bounds(TOPLEVEL *toplevel, const GList *o_list,
 			     int *left, int *top,
 			     int *right, int *bottom);
-int o_complex_is_embedded(OBJECT *o_current);
-GList *o_complex_promote_attribs (TOPLEVEL *toplevel, OBJECT *object);
+int     o_complex_is_embedded(OBJECT *o_current);
+GList * o_complex_promote_attribs (TOPLEVEL *toplevel, OBJECT *object);
 OBJECT *o_complex_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int angle, int mirror, const CLibSymbol *clib_sym, const char *basename, int selectable);
 OBJECT *o_complex_new_embedded(TOPLEVEL *toplevel, char type, int color, int x, int y, int angle, int mirror, const char *basename, int selectable);
-void o_complex_set_filename(TOPLEVEL *toplevel, const char *basename);
-void o_complex_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
+void    o_complex_set_filename(TOPLEVEL *toplevel, const char *basename);
+void    o_complex_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 OBJECT *o_complex_copy(TOPLEVEL *toplevel, OBJECT *o_current);
-void o_complex_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
-void o_complex_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
+void    o_complex_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
+void    o_complex_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 OBJECT *o_complex_find_pin_by_attribute(OBJECT *object, char *name, char *wanted_value);
-void o_complex_check_symversion(TOPLEVEL* toplevel, OBJECT* object);
+void    o_complex_check_symversion(TOPLEVEL* toplevel, OBJECT* object);
 
 /* o_embed.c */
 void o_embed(TOPLEVEL *toplevel, OBJECT *o_current);
@@ -185,31 +185,31 @@ double o_line_length(OBJECT *object);
 
 /* o_list.c */
 OBJECT *o_object_copy(TOPLEVEL *toplevel, OBJECT *selected);
-GList *o_glist_copy_all(TOPLEVEL *toplevel, const GList *src_list, GList *dest_list);
-void o_glist_translate_world(TOPLEVEL *toplevel, int dx, int dy, const GList *list);
-void o_glist_rotate_world(TOPLEVEL *toplevel, int x, int y, int angle, const GList *list);
-void o_glist_mirror_world(TOPLEVEL *toplevel, int x, int y, const GList *list);
-void o_glist_set_color(TOPLEVEL *toplevel, const GList *list, int color);
+GList  *o_glist_copy_all(TOPLEVEL *toplevel, const GList *src_list, GList *dest_list);
+void    o_glist_translate_world(TOPLEVEL *toplevel, int dx, int dy, const GList *list);
+void    o_glist_rotate_world(TOPLEVEL *toplevel, int x, int y, int angle, const GList *list);
+void    o_glist_mirror_world(TOPLEVEL *toplevel, int x, int y, const GList *list);
+void    o_glist_set_color(TOPLEVEL *toplevel, const GList *list, int color);
 
 /* o_net_basic.c */
 OBJECT *o_net_new(TOPLEVEL *toplevel, char type, int color, int x1, int y1, int x2, int y2);
-void o_net_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
+void    o_net_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 OBJECT *o_net_copy(TOPLEVEL *toplevel, OBJECT *o_current);
-void o_net_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
-void o_net_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
-int o_net_orientation(OBJECT *object);
-void o_net_consolidate(TOPLEVEL *toplevel, PAGE *page);
-void o_net_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
-void o_net_refresh_conn_cache(TOPLEVEL *toplevel, OBJECT *object);
-bool o_net_is_fully_connected(TOPLEVEL *toplevel, OBJECT *object);
+void    o_net_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
+void    o_net_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
+int     o_net_orientation(OBJECT *object);
+void    o_net_consolidate(TOPLEVEL *toplevel, PAGE *page);
+void    o_net_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
+void    o_net_refresh_conn_cache(TOPLEVEL *toplevel, OBJECT *object);
+bool    o_net_is_fully_connected(TOPLEVEL *toplevel, OBJECT *object);
 
 /* o_path_basic.c */
 OBJECT *o_path_new(TOPLEVEL *toplevel, char type, int color, const char *path_string);
 OBJECT *o_path_copy(TOPLEVEL *toplevel, OBJECT *o_current);
-void o_path_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
-void o_path_translate_world(TOPLEVEL *toplevel, int x, int y, OBJECT *object);
-void o_path_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
-void o_path_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
+void    o_path_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
+void    o_path_translate_world(TOPLEVEL *toplevel, int x, int y, OBJECT *object);
+void    o_path_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
+void    o_path_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 
 /* o_picture.c */
 OBJECT *o_picture_new(TOPLEVEL *toplevel,
@@ -245,6 +245,7 @@ void o_pin_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery
 void o_pin_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
 void o_pin_update_whichend(TOPLEVEL *toplevel, GList *object_list, int num_pins);
 void o_pin_set_type(TOPLEVEL *toplevel, OBJECT *o_current, int pin_type);
+
 /* o_selection.c */
 SELECTION *o_selection_new( void );
 void o_selection_add(TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_selected);
@@ -252,6 +253,7 @@ void o_selection_print_all(const SELECTION *selection);
 void o_selection_remove(TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_selected);
 void o_selection_select(TOPLEVEL *toplevel, OBJECT *object);
 void o_selection_unselect(TOPLEVEL *toplevel, OBJECT *object);
+
 /* o_style.c */
 int  o_style_get_bus_width(TOPLEVEL *toplevel);
 int  o_style_get_line_width(TOPLEVEL *toplevel);
@@ -296,6 +298,7 @@ char *remove_nl(char *string);
 char *remove_last_nl(char *string);
 char *s_expand_env_variables (const char *string);
 const char *s_path_sys_data ();
+const char *s_path_sys_doc ();
 const char *s_path_sys_config ();
 const char *s_path_user_config ();
 
@@ -352,7 +355,7 @@ PAGE  *s_hierarchy_down_schematic_single (TOPLEVEL *toplevel, const char *filena
 void   s_hierarchy_down_symbol           (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
 PAGE  *s_hierarchy_find_up_page          (GedaPageList *page_list, PAGE *current_page);
 GList *s_hierarchy_traversepages         (TOPLEVEL *toplevel, PAGE *p_current, int flags);
-int   s_hierarchy_print_page             (PAGE *p_current, void * data);
+int    s_hierarchy_print_page            (PAGE *p_current, void * data);
 PAGE  *s_hierarchy_find_prev_page        (GedaPageList *page_list, PAGE *current_page);
 PAGE  *s_hierarchy_find_next_page        (GedaPageList *page_list, PAGE *current_page);
 
@@ -381,11 +384,11 @@ bool s_page_goto (TOPLEVEL *toplevel, PAGE *p_new);
 PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename);
 PAGE *s_page_search_by_page_id (GedaPageList *list, int pid);
 void s_page_print_all (TOPLEVEL *toplevel);
-int s_page_save_all (TOPLEVEL *toplevel);
+int  s_page_save_all (TOPLEVEL *toplevel);
 bool s_page_check_changed (GedaPageList *list);
 void s_page_clear_changed (GedaPageList *list);
 void s_page_autosave_init(TOPLEVEL *toplevel);
-int s_page_autosave (TOPLEVEL *toplevel);
+int  s_page_autosave (TOPLEVEL *toplevel);
 void s_page_append (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
 void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list);
 void s_page_remove (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
@@ -396,17 +399,17 @@ GList *s_page_objects_in_region (TOPLEVEL *toplevel, PAGE *page, int min_x, int 
 GList *s_page_objects_in_regions (TOPLEVEL *toplevel, PAGE *page, BOX *rects, int n_rects);
 
 /* s_papersizes.c */
-int s_papersizes_add_entry(char *new_papersize, int width, int height);
-void s_papersizes_print(void);
-int s_papersizes_uniq(char *name);
-void s_papersizes_free(void);
-void s_papersizes_init(void);
+int   s_papersizes_add_entry(char *new_papersize, int width, int height);
+void  s_papersizes_print(void);
+int   s_papersizes_uniq(char *name);
+void  s_papersizes_free(void);
+void  s_papersizes_init(void);
 char *s_papersizes_get(int counter);
-void s_papersizes_get_size(char *string, int *width, int *height);
+void  s_papersizes_get_size(char *string, int *width, int *height);
 
 /* s_path.c */
-PATH *s_path_parse (const char *path_str);
-char *s_path_string_from_path (const PATH *path);
+PATH *s_path_parse              (const char *path_str);
+char *s_path_string_from_path   (const PATH *path);
 
 /* s_toplevel.c */
 void s_toplevel_append_new_hook (NewToplevelFunc func, void *user_data);
@@ -418,44 +421,54 @@ void s_toplevel_add_weak_ptr (TOPLEVEL *toplevel, void *weak_pointer_loc);
 void s_toplevel_remove_weak_ptr (TOPLEVEL *toplevel, void *weak_pointer_loc);
 
 /* s_slib.c */
-int s_slib_add_entry(char *new_path);
-int s_slib_search_for_dirname(char *dir_name);
-char *s_slib_search_dirs(const char *basename);
-char *s_slib_search_lowlevel(const char *basename);
-char *s_slib_getbasename(const char *rawname);
-char *s_slib_search(const char *filename, int flag);
-char *s_slib_search_single(const char *filename);
-void s_slib_free(void);
-void s_slib_init(void);
-char *s_slib_getdir(int index);
-char *s_slib_getfiles(char *directory, int flag);
-void s_slib_print(void);
-int s_slib_uniq(char *path);
-void s_slib_print_dirs(void);
+int   s_slib_add_entry          (char *new_path);
+int   s_slib_search_for_dirname (char *dir_name);
+char *s_slib_search_dirs        (const char *basename);
+char *s_slib_search_lowlevel    (const char *basename);
+char *s_slib_getbasename        (const char *rawname);
+char *s_slib_search             (const char *filename, int flag);
+char *s_slib_search_single      (const char *filename);
+void  s_slib_free               (void);
+void  s_slib_init               (void);
+char *s_slib_getdir             (int index);
+char *s_slib_getfiles           (char *directory, int flag);
+void  s_slib_print              (void);
+int   s_slib_uniq               (char *path);
+void  s_slib_print_dirs         (void);
 
 /* s_slot.c */
-char *s_slot_search_slot(OBJECT *object, OBJECT **return_found);
-void s_slot_update_object(TOPLEVEL *toplevel, OBJECT *object);
+char *s_slot_search_slot  (OBJECT *object, OBJECT **return_found);
+void  s_slot_update_object(TOPLEVEL *toplevel, OBJECT *object);
 
 /* s_tile.c */
-void s_tile_update_object(TOPLEVEL *toplevel, OBJECT *object);
+void   s_tile_update_object  (TOPLEVEL *toplevel, OBJECT *object);
 GList *s_tile_get_objectlists(TOPLEVEL *toplevel, PAGE *p_current, int world_x1, int world_y1, int world_x2, int world_y2);
 
 /* s_undo.c */
 UNDO *s_undo_return_tail(UNDO *head);
 UNDO *s_undo_return_head(UNDO *tail);
 UNDO *s_undo_new_head(void);
-void s_undo_destroy_head(UNDO *u_head);
+void  s_undo_destroy_head(UNDO *u_head);
 UNDO *s_undo_add(UNDO *head, int type, char *filename, GList *object_list, int left, int top, int right, int bottom, int page_control, int up);
-void s_undo_print_all(UNDO *head);
-void s_undo_destroy_all(TOPLEVEL *toplevel, UNDO *head);
-void s_undo_remove(TOPLEVEL *toplevel, UNDO *head, UNDO *u_tos);
-void s_undo_remove_rest(TOPLEVEL *toplevel, UNDO *head);
-int s_undo_levels(UNDO *head);
-void s_undo_init(PAGE *p_current);
-void s_undo_free_all(TOPLEVEL *toplevel, PAGE *p_current);
+void  s_undo_print_all(UNDO *head);
+void  s_undo_destroy_all(TOPLEVEL *toplevel, UNDO *head);
+void  s_undo_remove(TOPLEVEL *toplevel, UNDO *head, UNDO *u_tos);
+void  s_undo_remove_rest(TOPLEVEL *toplevel, UNDO *head);
+int   s_undo_levels(UNDO *head);
+void  s_undo_init(PAGE *p_current);
+void  s_undo_free_all(TOPLEVEL *toplevel, PAGE *p_current);
 
-/* u_basic.c */
+/* ---------------- u_basic.c -------------- */
+char *int2str(int value, char* str, int radix);
+char *scm_2_cstring( char* scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
+void  sort_string_array( char *strings[], size_t strings_size);
+bool  strequal(const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
+char *strstr_rep(char *original, const char *old, const char *new);
+int   stricmp(char *str1, char *str2);
+int   strncmpi(char *str1, char *str2, int n);
+char *stristr(char *str1, char *str2);
+char *strsubst(char *source, char *old_str, char *new_str);
+char *strisubst(char *source, char *old_str, char *new_str);
 char *u_basic_breakup_string(char *string, char delimiter, int count);
-
+int   word_count(char* str);
 G_END_DECLS

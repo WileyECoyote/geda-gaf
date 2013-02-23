@@ -30,6 +30,7 @@
 
 #ifndef __GEDA__TOOLBARS__
 #define __GEDA__TOOLBARS__
+
 typedef struct
 {
    const char *Widget;
@@ -46,6 +47,7 @@ typedef struct
    char *stock_id;
 
 } ToolbarItem;
+
 typedef struct
 {
    int  ToolBarId;
@@ -62,6 +64,8 @@ typedef struct
 
 #define GET_TOOLBAR_ID(obj) (int)(long*) g_object_get_data(G_OBJECT(obj), "BarId");
 #define SET_TOOLBAR_ID(obj, bar_id) g_object_set_data(G_OBJECT(obj), "BarId", GINT_TO_POINTER(bar_id));
+#define GET_TOOLBAR_WC(obj) (int)(long*) g_object_get_data(G_OBJECT(obj), "WinData");
+#define SET_TOOLBAR_WC(obj, win_cur) g_object_set_data(G_OBJECT(obj), "WinData", GINT_TO_POINTER(win_cur));
 
 /*------------------------------------------------------------------
  * GTK Toolbar includes: stuff for dealing with Toolbars.
@@ -98,34 +102,40 @@ typedef struct
 /*! \brief 2nd Level Intermediate ToolBar Macros with Pixmap Icon */
 #define TOOLBAR_BUTTON_PIX(bar, name, next, icon, button, func, data) \
    tmp_toolbar_icon = create_pixmap (icon); /* from file */ \
-   next##_TOOLBAR_BUTTON(bar, tmp_toolbar_icon, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data)
+   next##_TOOLBAR_BUTTON(bar, tmp_toolbar_icon, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
 /*! \brief 2nd Level Intermediate ToolBar Macros with Stock Icon */
 #define TOOLBAR_BUTTON_STK(bar, name, next, icon, button, func, data) \
    tmp_toolbar_icon = gtk_image_new_from_stock(STOCK_MAP(icon), GTK_ICON_SIZE_SMALL_TOOLBAR); \
-   next##_TOOLBAR_BUTTON(bar, tmp_toolbar_icon, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data)
+   next##_TOOLBAR_BUTTON(bar, tmp_toolbar_icon, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
 /*! \brief 2nd Level Intermediate ToolBar Macros with Local Pixmap Icon */
 #define TOOLBAR_BUTTON_LOCAL_PIX(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = create_pixmap (icon); /* from file */ \
-   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data)
+   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
 #define TOOLBAR_BUTTON_LOCAL_STR(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = create_pixmap (TB_ICON_NAME(name)); /* from file */ \
-   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data)
+   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
 /*! \brief 2nd Level Intermediate ToolBar Macros with Local Stock Icon */
 #define TOOLBAR_BUTTON_LOCAL_STK(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = gtk_image_new_from_stock(STOCK_MAP(icon), GTK_ICON_SIZE_SMALL_TOOLBAR); \
-   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data)
+   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
 /*! \brief 2nd Level Intermediate ToolBar Macros with Item Data Struct */
 #define TOOLBAR_BUTTON_LOCAL_ALT(bar, name, next, icon, button, func, data) \
    ToolbarItem name##_ToolbarItem; /* Allocate a Data Structure */ \
    name##_ToolbarItem.stock_id =  STOCK_MAP(icon); \
    name##_ToolbarItem.ButtonId =  name; \
-   GtkWidget *name##_ICN = get_stock_alt_pixmap (&name##_ToolbarItem); \
-   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_TOOLTIP (name)), func, data)
+   GtkWidget *name##_ICN = get_stock_alt_pixmap (w_current, &name##_ToolbarItem); \
+   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_TOOLTIP (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
 /* --------------------------- 3rd Level -------------------------------- */
 #define ENUM_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
@@ -141,4 +151,29 @@ typedef struct
                                      GTK_WIDGET(icon), /* GtkWidget */ \
                                      GTK_SIGNAL_FUNC(func), \
                                      data); /* MUST be PTR to something */
+
+#ifdef ToolBar_Radio_Responder
+
+#define TOOLBAR_GSCHEM_RADIO( bar, var, grp, name, data) \
+    TOOLBAR_GSCHEM_RADIO_STK( bar, var, grp, name, TB_ICON_NAME(name), ToolBar_Radio_Responder, data)
+#else
+#define TOOLBAR_GSCHEM_RADIO( bar, var, grp, name, func, data) \
+    TOOLBAR_GSCHEM_RADIO_STK( bar, var, grp, name, TB_ICON_NAME(name), func, data)
+#endif
+
+#define TOOLBAR_GSCHEM_RADIO_STK( bar, var, grp, name, icon, func, data) \
+   GtkWidget *name##_ICN = gtk_image_new_from_stock(icon, GTK_ICON_SIZE_SMALL_TOOLBAR); \
+   TOOLBAR_GSCHEM_RADIO_ELEMENT ( bar##_Toolbar, name##_ICN, var, grp, name, func, data)
+
+#define TOOLBAR_GSCHEM_RADIO_ELEMENT( bar, icon, var, grp, name, func, data) \
+   var = gtk_toolbar_append_element(GTK_TOOLBAR(bar), \
+                                    GTK_TOOLBAR_CHILD_RADIOBUTTON, \
+                                    grp, \
+                                   _(TB_LABEL (name)), \
+                                   _(TB_TOOLTIP (name)), \
+                                     TB_WIDGET(name), \
+                                     GTK_WIDGET(icon), \
+                                    (GtkSignalFunc) func, \
+                                     data); \
+   g_object_set_data ((GObject*) var, "action", (void*)TB_WIDGET(name));
 #endif

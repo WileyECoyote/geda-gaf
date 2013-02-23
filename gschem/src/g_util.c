@@ -31,6 +31,8 @@
 ;;                | shared rather than defined locally in a module.
 ;;                | Update address for Free Software Foundation.
 ;; ------------------------------------------------------------------
+;; WEH | 01/18/13 | Relocated generic string stuff to libgeda (so code
+;;                | could be used by all geda apps.
 */
 
 #include <config.h>
@@ -54,32 +56,15 @@ SCM_DEFINE (show_uri, "%show-uri", 1, 0, 0, (SCM uri_s),
             "Show a URI in the associated default application")
 {
   /* Check that we were passed a string. */
-  SCM_ASSERT (scm_is_string (uri_s), uri_s, SCM_ARG1, s_show_uri);
+  if (scm_is_string (uri_s), uri_s, SCM_ARG1, s_show_uri) {
 
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
-  const gchar *uri = scm_to_utf8_string (uri_s);
-  GError *err = NULL;
+    const char *uri = scm_to_utf8_string (uri_s);
 
-  if (!x_show_uri (w_current, uri, &err)) {
-    scm_dynwind_begin (0);
-    scm_dynwind_unwind_handler ((void (*)(void *)) g_error_free,
-                                err, SCM_F_WIND_EXPLICITLY);
-    scm_misc_error (s_show_uri, _("Could not launch URI ~S: ~A"),
-                    scm_list_2 (uri_s,
-                                scm_from_utf8_string (err->message)));
-    scm_dynwind_end ();
+    if (!x_show_uri (uri)) {
+      s_log_message( _("Could not launch URI %s\n"), uri);
+    }
   }
   return SCM_UNDEFINED;
-}
-
-void free_string_glist(void *data)
-{
-  GList *iter, *glst = *((GList **) data);
-
-  for (iter = glst; iter != NULL; iter = g_list_next (iter)) {
-    g_free (iter->data);
-  }
-  g_list_free (glst);
 }
 
 /*! \brief Create the (gschem core util) Scheme module.
@@ -95,7 +80,6 @@ static void init_module_gschem_core_util ()
   /* Add them to the module's public definitions. */
   scm_c_export (s_show_uri, NULL);
 }
-
 /*!
  * \brief Initialise miscellaneous gschem utility procedures.
  * \par Function Description
@@ -111,89 +95,42 @@ void g_init_util ()
                        NULL);
 }
 
-/*! \brief itoa() for c
+
+
+/*! \brief Free a Glist of Strings
  *  \par Function Description
- *  Translate an integer to askii, like itoa cpp function
+ *  This function will free all strings in a glist.
  *
- * \copyright public domain
- * \author ArkM
- *
- *  @param[in]  value  int to value to convert.
- *  @param[in]  str    ptr to array for the results
- *  @param[in]  radix  int base to resolve.
- *
- * \usage
- *
- *  char s_val[digits];  <-- Declare char array, digits could be
- *                           macro subsitution or literal value.
- *  int number = 4;      <-- Some integer declared somewhere.
- *
- *  *str = int2str( number, s_val, 10 ));
- *
- * \example
- *  strcat(strbuffer, int2str( total, s_val, 10 ));
  */
-char* int2str(int value, char* str, int radix) {
+void g_list_free_string(void *data)
+{
+  GList *iter, *glst = *((GList **) data);
 
-  static char dig[] ="0123456789"
-                     "abcdefghijklmnopqrstuvwxyz";
-  int n = 0, neg = 0;
-  unsigned int v;
-  char* p, *q;
-  char c;
-
-  if (radix == 10 && value < 0) {
-    value = -value;
-    neg = 1;
+  for (iter = glst; iter != NULL; iter = g_list_next (iter)) {
+    g_free (iter->data);
   }
-  v = value;
-  do {
-    str[n++] = dig[v%radix];
-    v /= radix;
-  } while (v);
-  if (neg)
-  str[n++] = '-';
-  str[n] = '\0';
-  for (p = str, q = p + (n-1); p < q; ++p, --q)
-  c = *p, *p = *q, *q = c;
-  return str;
+  g_list_free (glst);
 }
 
-char *gh_scm2newstr (SCM str, unsigned int *lenp);
-/*!
- * \brief return c pointer to SCM string.
- * \par Function Description
- * String utility function to get a c pointer to a scm string.
- * The caller is responsible for freeing the pointer.
+/*! \brief Free a Glist completely
+ *  \par Function Description
+ *  This function will free all of the data in a glist.
+ *
  */
-char *scm_2_cstring( char* scm_str_name) /* WEH: couldn't find it, made it */
-{
-  SCM s_symbol, s_value;
-  size_t len;
+GList* g_list_clear(GList* list){
 
-  /* Now get string */
-  s_symbol = scm_c_lookup(scm_str_name);
-  s_value = scm_variable_ref(s_symbol);
-  return (char*) gh_scm2newstr(s_value, &len);
-}
+  if (list != NULL ) {
 
-void sort_string_array( char *strings[], size_t strings_size) {
-    int cstring_cmp(const void *a, const void *b)
+    g_list_foreach(list, (GFunc)g_free, NULL);
+    lambda (const char* data)
     {
-       const char **ia = (const char **)a;
-       const char **ib = (const char **)b;
-       return strcmp(*ia, *ib);
-	/* strcmp functions works exactly as expected from
-	comparison function */
-   }
-    size_t strings_len = strings_size / sizeof(char *);
+      list = g_list_remove( list, data);
+      return FALSE;
+    }
+    foreach (list);
 
-   /* sort array using qsort functions */
-    qsort(strings, strings_len, sizeof(char *), cstring_cmp);
-}
-
-bool strequal(const char *str1, const char *str2) /* WEH: Maybe should be in <string.h> */
-{
-  while ((*str1 == *str2) && (*str1)) { str1++; str2++; }
-  return ((*str1 == (unsigned)NULL) && (*str2 == (unsigned)NULL));
+    g_list_free(list);
+    list = NULL;
+  }
+  return list;
 }

@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2011-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -105,57 +105,76 @@ show_uri__win32 (const gchar *uri, GError **error)
  * -# Calling the ShellExecute() Windows API call (default on Windows)
  * -# Running an appropriate external tool.
  *
- * \param w_current  Current #GSCHEM_TOPLEVEL structure.
  * \param uri        URI to launch viewer for.
  * \param error      Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
 bool
-x_show_uri (GSCHEM_TOPLEVEL *w_current, const gchar *uri, GError **error)
+x_show_uri (const char *uri)
 {
-# if defined (SHOW_URI_GIO)
-  GdkScreen *screen;
+  GError *error = NULL;
+#if defined (OS_WIN32) && !defined (OS_CYGWIN)
 
-  g_assert (w_current);
-  g_assert (uri);
-
-  screen = gtk_window_get_screen (GTK_WINDOW (w_current->main_window));
-  return gtk_show_uri (screen, uri, GDK_CURRENT_TIME, error);
-
-# elif defined (OS_WIN32) && !defined (OS_CYGWIN)
   return show_uri__win32 (uri, error);
 
-# else
+#elif defined (SHOW_URI_GIO)
+
+  GdkScreen *screen;
+  int result;
+
+  if(uri == NULL) {
+    return FALSE;
+  }
+
+  screen = gdk_screen_get_default ();
+  result = gtk_show_uri (screen, uri, GDK_CURRENT_TIME, &error);
+  if (!result) {
+    if (verbose_mode) {
+      s_log_message("gtk Failed to open <%s>, %s\n", uri, error->message);
+    }
+    g_error_free (error);
+    error = NULL;
+  }
+  else
+    return result;
+
+  result = g_app_info_launch_default_for_uri(uri, NULL, &error);
+  if (!result) {
+    if (verbose_mode) {
+      s_log_message("glib Failed to open <%s>, %s\n", uri, error->message);
+    }
+    g_error_free (error);
+    error = NULL;
+  }
+  else
+    return result;
+
+  if (verbose_mode) {
+    s_log_message("x_show_uri: falling back to %s\n", SHOW_URI_COMMAND);
+  }
+
+# endif
+
   bool spawn_status;
-  int exit_status;
   char *argv[3];
 
-  g_assert (uri);
-
   argv[0] = SHOW_URI_COMMAND;
-  argv[1] = (gchar *) uri;
+  argv[1] = (char *) uri;
   argv[2] = NULL; /* Null-terminated */
 
-  spawn_status = g_spawn_sync (NULL, /* Inherit working directory */
+  /* Windows use another function so we don't need to worry about *pid */
+  spawn_status = g_spawn_async (NULL, /* Inherit working directory */
                                argv,
                                NULL, /* Inherit environment */
                                G_SPAWN_SEARCH_PATH, /* Flags */
                                NULL, /* No child setup function */
                                NULL, /* No child setup function data */
-                               NULL, /* Don't need stdout */
-                               NULL, /* Don't need stderr */
-                               &exit_status,
-                               error);
+                               NULL, /* No child pid */
+                               &error);
 
   if (!spawn_status) return FALSE;
 
-  if (exit_status != 0) {
-    g_set_error (error, G_SPAWN_ERROR, G_SPAWN_ERROR_FAILED,
-                 _("%s failed to launch URI"), argv[0]);
-    return FALSE;
-  }
-
   return TRUE;
 
-# endif
+
 }

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,14 @@ typedef struct {
   void* arg;
 } geda_atexit_struct;
 
-static GList *exit_functions  = NULL;
+static GList*     exit_functions  = NULL;
+static GMainLoop* main_loop       = NULL;
+
+void shut_down_gui (void)
+{
+  g_main_loop_unref(main_loop);
+  g_main_loop_quit(main_loop);
+}
 
 /*! \brief Register a function to be called on program exit
  *
@@ -95,10 +102,12 @@ void gschem_quit(void)
 
   s_clib_free();
   s_slib_free();
-  s_menu_free();
   /* o_text_freeallfonts();*/
   s_attrib_free();
   s_papersizes_free();
+  x_color_free();
+  x_menu_free_all();
+
 #ifdef HAVE_LIBSTROKE
   x_stroke_free ();
 #endif /* HAVE_LIBSTROKE */
@@ -108,25 +117,12 @@ void gschem_quit(void)
   i_vars_freenames();
   i_vars_libgeda_freenames();
 
-  /* x_window_free_head(); can't do this since it causes a
-   * condition in which window_head->... is still being refered
-   * after this */
-
   /* enable this to get more memory usage from glib */
   /* You also have to enable something in glib I think */
   /* g_mem_profile();*/
-
-
-  gtk_main_quit();
 }
 
-/*! \brief Main Scheme(GUILE) program function.
- *  \par Function Description
- *  This function is the main program called from scm_boot_guile.
- *  It handles initializing all libraries and gSchem variables
- *  and passes control to the gtk main loop.
- */
-void main_prog(void *closure, int argc, char *argv[])
+void gschem( int argc, char *argv[])
 {
   int i;
   char *cwd = NULL;
@@ -134,47 +130,17 @@ void main_prog(void *closure, int argc, char *argv[])
   char *input_str = NULL;
   int argv_index;
   int first_page = 1;
+
   char *filename;
-  char tmpfilename[MAX_PATH];
+  char  tmpfilename[MAX_PATH];
   SCM scm_tmp;
 
-#ifdef HAVE_GTHREAD
-  /* Gschem isn't threaded, but some of GTK's file chooser
-   * backends uses threading so we need to call g_thread_init().
-   * GLib requires threading be initialised before any other GLib
-   * functions are called. Do it now if its not already setup.  */
-  if (!g_thread_supported ()) g_thread_init (NULL);
-#endif
-
-#if ENABLE_NLS
-  /* this should be equivalent to setlocale (LC_ALL, "") */
-  gtk_set_locale();
-
-  /* This must be the same for all locales */
-  setlocale(LC_NUMERIC, "C");
-
-  /* Disable gtk's ability to set the locale. */
-  /* If gtk is allowed to set the locale, then it will override the     */
-  /* setlocale for LC_NUMERIC (which is important for proper PS output. */
-  /* This may look funny here, given we make a call to gtk_set_locale() */
-  /* above.  I don't know yet, if this is really the right thing to do. */
-  gtk_disable_setlocale();
-
-#endif
-
-  gtk_init(&argc, &argv);
-
   argv_index = parse_commandline(argc, argv);
-  cwd = g_get_current_dir();
 
   libgeda_init();
 
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, _("This is the MINGW32 port.\n"));
-#endif
-
-#if DEBUG
-  fprintf(stderr, _("Current locale settings: %s\n"), setlocale(LC_ALL, NULL));
 #endif
 
   /* init global buffers */
@@ -212,15 +178,14 @@ void main_prog(void *closure, int argc, char *argv[])
   w_current->toplevel = s_toplevel_new ();
 
   w_current->toplevel->load_newer_backup_func = x_fileselect_load_backup;
-  w_current->toplevel->load_newer_backup_data = w_current;
 
   o_text_set_rendered_bounds_func (w_current->toplevel,
                                    o_text_get_rendered_bounds, w_current);
 
   /* Damage notifications should invalidate the object on screen */
   o_add_change_notify (w_current->toplevel,
-                       (ChangeNotifyFunc) o_invalidate,
-                       (ChangeNotifyFunc) o_invalidate, w_current);
+                      (ChangeNotifyFunc) o_invalidate,
+                      (ChangeNotifyFunc) o_invalidate, w_current);
 
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
@@ -241,30 +206,19 @@ void main_prog(void *closure, int argc, char *argv[])
         s_log_message(_("Read init scm file [%s]\n"), input_str);
       }
     } else {
-      /*! \todo These two messages are the same. Should be
-       * integrated. */
-      s_log_message(_("Failed to read init scm file [%s]\n"),
-                  input_str);
+      s_log_message(_("Failed to read init scm file [%s]\n"), input_str);
     }
   }
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
 
-  /*! \internal Configuration */
+  /*! \internal Initialize Settings */
+  i_vars_init(w_current);         /* Set defaults */
 
-  i_vars_init_defaults (w_current); /* Set defaults */
-
-  /* Now read in RC files. */
-  g_rc_parse_gtkrc();
-  x_rc_parse_gschem (w_current, rc_filename);
-
-  if (w_current->save_settings)
+  if (w_current->save_ui_settings)
     geda_atexit (i_vars_atexit_save_user_config, NULL);
 
-  /*! \endinternal Configuration */
-
-  auto_load_last = default_auto_load_last;
-
+  /*! \internal Setup Log & Console Systems */
   /*TODO: All of this logging stuff should be relocated to Lib */
   /* Now that the initialization files have been processed, retrieve the log settings. */
   logging             = default_logging;
@@ -272,7 +226,7 @@ void main_prog(void *closure, int argc, char *argv[])
   console_window      = default_console_window;
   console_window_type = default_console_window_type;
 
-  x_console_init_command_buffer();
+  x_console_init_commands(w_current);
 
   if (logging == TRUE) {
     s_log_init ("gschem");
@@ -288,6 +242,10 @@ void main_prog(void *closure, int argc, char *argv[])
   else
     s_log_message("Logging system is disabled");
 
+  /*! \endinternal Log & Console Systems */
+
+  auto_load_last = default_auto_load_last;
+
   /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
   geda_atexit(recent_files_save, NULL);
@@ -302,6 +260,7 @@ void main_prog(void *closure, int argc, char *argv[])
   x_stroke_init ();
 #endif /* HAVE_LIBSTROKE */
 
+  cwd = g_get_current_dir();
   for (i = argv_index; i < argc; i++) {
 
     if (g_path_is_absolute(argv[i]))
@@ -321,7 +280,7 @@ void main_prog(void *closure, int argc, char *argv[])
         strcpy(tmpfilename, filename);
         if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
           filename = tmpfilename;
-          if(!quiet_mode) {
+          if(verbose_mode) {
             s_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
           }
         } else
@@ -330,8 +289,8 @@ void main_prog(void *closure, int argc, char *argv[])
           strcpy(tmpfilename, filename);
           if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
-            if(!quiet_mode) {
-              s_log_message("Assumming symbol file name for [%s]\n", basename (filename));
+            if(verbose_mode) {
+              s_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
             }
           }
         }
@@ -346,28 +305,29 @@ void main_prog(void *closure, int argc, char *argv[])
      * /path/to/foo/../bar/baz.sch.  Bad filenames will be normalized in
      * f_open (called by x_window_open_page). This works for Linux and MINGW32.
      */
+
     x_window_open_page(w_current, filename);
 
     /* Free the pointer if we did not redirected */
     if ( filename != tmpfilename )
         g_free (filename);
   }
+  g_free(cwd);
 
   /*! \brief Auto-Load */
+
   /* Check and do Auto Load - only works if empty commandline */
   if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
-    q_log_message("Auto loading . . .\n"); /* maybe Log what we did */
-      x_window_open_page(w_current, recent_files_last());
+    q_log_message("Auto loading . . .\n"); /* maybe Log what we're doing */
+    x_window_open_page(w_current, recent_files_last());
   }
   else
   {   /* If no page has been loaded (wasn't specified in the command line.) */
       /* Then create an untitled page */
-      if ( first_page ) {
+    if ( first_page ) {
         x_window_open_page( w_current, NULL );
      }
   }
-
-  g_free(cwd);
 
   /* Update the window to show the current page */
   x_window_set_current_page( w_current, w_current->toplevel->page_current );
@@ -384,10 +344,54 @@ void main_prog(void *closure, int argc, char *argv[])
 
   scm_dynwind_end ();
 
+}
+/*! \brief Main Scheme(GUILE) program function.
+ *  \par Function Description
+ *  This function is the main program called from scm_boot_guile.
+ *  It handles initializing all libraries and gSchem variables
+ *  and passes control to the gtk main loop.
+ */
+void main_prog(void *closure, int argc, char *argv[])
+{
 
+#ifdef HAVE_GTHREAD
+  /* Initialise threading before any other GLib functions are called. */
+  if (!g_thread_supported ())
+    g_thread_init (NULL);
+#endif
+  gdk_threads_init();
+
+#if ENABLE_NLS
+  /* This should be equivalent to setlocale (LC_ALL, "") */
+  gtk_set_locale();
+
+  /* This must be the same for all locales */
+  setlocale(LC_NUMERIC, "C");
+
+  /* Disable gtk's ability to set the locale. If gtk is allowed to set the
+   * locale, then it will override the setlocale for LC_NUMERIC (which is
+   * important for proper PS output. This may look funny here, given we make
+   * a call to gtk_set_locale() above. Is this really the right thing to do?
+   */
+  gtk_disable_setlocale();
+
+#if DEBUG
+  fprintf(stderr, _("Current locale settings: %s\n"), setlocale(LC_ALL, NULL));
+#endif
+#endif
+  //g_mem_set_vtable (glib_mem_profiler_table);
+
+  gtk_init(&argc, &argv);
+
+  gschem(argc, argv);
 
   /* enter main loop */
-  gtk_main();
+  main_loop    = g_main_loop_new (NULL, FALSE);
+
+  g_main_loop_run(main_loop);
+
+  gschem_quit();
+
 }
 
 /*! \brief Main executable entrance point.
@@ -408,6 +412,5 @@ int main (int argc, char *argv[])
 #endif
 
   scm_boot_guile (argc, argv, main_prog, 0);
-
   return 0;
 }

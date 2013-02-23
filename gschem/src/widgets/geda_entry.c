@@ -24,7 +24,6 @@
 #include <geda.h>
 #include <ascii.h>
 
-//#include <math.h>
 #include <string.h>
 #include <ctype.h>
 
@@ -46,6 +45,12 @@
  * position is visible.
  *
  */
+
+enum {
+  AUTO_SUB_MENU,
+  AUTO_COMPLETE_ON,
+  AUTO_COMPLETE_OFF,
+};
 
 #define GTK_ENTRY_COMPLETION_KEY "gtk-entry-completion-key"
 
@@ -96,7 +101,7 @@ gpointer *entry_parent_class;
 
 struct _GedaEntryPriv
 {
-  GCompletion    *command_completion;
+  GCompletion      *command_completion;
 
 };
 
@@ -127,7 +132,10 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
   }
 }
 void geda_entry_set_input_case  (GedaEntry *entry, int mode) {
-   GEDA_ENTRY(entry)->text_case = mode;
+  GEDA_ENTRY(entry)->text_case = mode;
+}
+void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode) {
+  GEDA_ENTRY(entry)->validation_mode = mode;
 }
 /*! \brief GObject property setter function
  *
@@ -161,7 +169,9 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
     case PROP_MAX_HISTORY:
       entry->max_history = g_value_get_int (value);
       break;
-
+    case PROP_VALIDATE:
+      geda_entry_set_valid_input(entry, g_value_get_int (value));
+      break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
       break;
@@ -187,7 +197,72 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
   if(property_id == PROP_MAX_HISTORY)
     g_value_set_int (value, GEDA_ENTRY(object)->max_history);
 }
+static void geda_entry_validate_input (GtkEntry    *entry,
+                                       const char  *text,
+                                       int          length,
+                                       int         *position,
+                                       gpointer     data)
+{
+  GtkEditable *editable   = GTK_EDITABLE (entry);
+  GedaEntry   *geda_entry = GEDA_ENTRY   (entry);
 
+  int i, count=0;
+  char *result = g_new (char, length);
+  bool valid = FALSE;
+
+  for (i=0; i < length; i++) {
+    switch (geda_entry->validation_mode) {
+      case ACCEPT_ALL_ASCII:
+         valid = TRUE;
+         break;
+      case ACCEPT_ALPHANUMERIC:
+         if (isalnum(text[i]) || ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)))
+           valid = TRUE;
+         break;
+      case ACCEPT_NUMERIC:
+         if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
+           valid = TRUE;
+         break;
+      case ACCEPT_NUMBER:
+         if (isdigit(text[i]))
+           valid = TRUE;
+         break;
+      case ACCEPT_INTEGER:
+         if (isdigit(text[i]) || (text[i] == ASCII_MINUS))
+           valid = TRUE;
+         break;
+      case ACCEPT_REAL:
+         if (isdigit(text[i]) || (text[i] == ASCII_MINUS) || (text[i] == ASCII_PERIOD))
+           valid = TRUE;
+         break;
+      default:
+         valid = TRUE;
+    }
+    if (!valid)
+      continue;
+
+    if (geda_entry->text_case == LOWER_CASE)
+      result[count++] = isupper(text[i]) ? tolower(text[i]) : text[i];
+    else
+      if (geda_entry->text_case == UPPER_CASE)
+        result[count++] = islower(text[i]) ? toupper(text[i]) : text[i];
+      else
+        result[count++] = text[i];
+  }
+
+  if (count > 0) {
+    g_signal_handlers_block_by_func (G_OBJECT (editable),
+                                     G_CALLBACK (geda_entry_validate_input),
+                                     data);
+    gtk_editable_insert_text (editable, result, count, position);
+    g_signal_handlers_unblock_by_func (G_OBJECT (editable),
+                                       G_CALLBACK (geda_entry_validate_input),
+                                       data);
+  }
+  g_signal_stop_emission_by_name (G_OBJECT (editable), "insert_text");
+
+  g_free (result);
+}
 static void geda_entry_class_init (GedaEntryClass *klass)
 {
   GObjectClass   *gobject_class = G_OBJECT_CLASS (klass);
@@ -236,6 +311,16 @@ static void geda_entry_class_init (GedaEntryClass *klass)
                                                      MAX_ENTRY_HISTORY,      /* default_value */
                                                      G_PARAM_READWRITE));
 
+  g_object_class_install_property (gobject_class,
+                                   PROP_VALIDATE,
+                                   g_param_spec_int ("accept-input-type",
+                                                   _("Set valid input type"), /* nick name */
+                                                   _("0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"), /* hint / blurb */
+                                                     ACCEPT_ALL_ASCII, /* Min value */
+                                                     ACCEPT_REAL,      /* Max value */
+                                                     ACCEPT_ALL_ASCII, /* default_value */
+                                                     G_PARAM_READWRITE));
+
   widget_class->grab_focus = geda_entry_grab_focus;
 
 }
@@ -243,6 +328,8 @@ static void geda_entry_class_init (GedaEntryClass *klass)
 static void
 geda_entry_init (GedaEntry *entry)
 {
+  entry->priv = g_new0 (GedaEntryPriv, 1);
+
   g_signal_connect_after (G_OBJECT (entry), "key_press_event", G_CALLBACK (geda_entry_key_press), NULL);
   if(is_history) {
     g_signal_connect     (G_OBJECT (entry), "activate",        G_CALLBACK (geda_entry_activate), NULL);
@@ -256,7 +343,8 @@ geda_entry_init (GedaEntry *entry)
     }
   }
   g_signal_connect       (G_OBJECT (entry), "populate-popup",  G_CALLBACK (geda_entry_populate_popup), NULL);
-  entry->priv = g_new0 (GedaEntryPriv, 1);
+
+  g_signal_connect       (G_OBJECT (entry), "insert_text",     G_CALLBACK (geda_entry_validate_input), NULL);
 
   /* Initialize & populate a GCompletion for commands */
   if(old_complete_list) {
@@ -269,9 +357,9 @@ geda_entry_init (GedaEntry *entry)
     entry->auto_complete = FALSE;
 
   /* set initial flag state for popup menu*/
-  set_auto_complete = FALSE;
-
-  entry->text_case = BOTH_CASES;
+  set_auto_complete       = FALSE;
+  entry->validation_mode  = ACCEPT_ALL_ASCII;
+  entry->text_case        = BOTH_CASES;
 }
 static void
 geda_entry_finalize (GObject *object)
@@ -288,7 +376,6 @@ geda_entry_finalize (GObject *object)
 	}
 
        *history_list_arg  = history_list;
-       /* *old_complete_list = complete_list; // We dont't code to dynamically add commands*/
         entry = entry;
 	G_OBJECT_CLASS (parent_class)->finalize (object);
 }
@@ -486,7 +573,7 @@ geda_entry_tab_complete (GtkEntry *entry)
     return exit (TRUE);
 
   if ( *(--s_ptr) == ASCII_SPACE)     /* If previous char is space then */
-    return exit (TRUE);                    /* there is nothing complete */
+    return exit (TRUE);                 /* there is nothing to complete */
 
   while ( (s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
 
@@ -506,14 +593,9 @@ geda_entry_tab_complete (GtkEntry *entry)
 
   gtk_entry_set_text (entry, buffer);
   gtk_editable_set_position (GTK_EDITABLE (entry), strlen (buffer));
-/*
-  if (options) {
-    g_list_foreach(options, (GFunc) g_free, NULL);
-    g_list_free (options);
-  }
-*/
-  if (match) g_free (match);
 
+  g_free (match);
+  /* Don't free buffer! */;
   return exit (TRUE);
 
 }

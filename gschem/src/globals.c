@@ -53,6 +53,9 @@ volatile int log_destiny;
 volatile int console_window;
 volatile int console_window_type;
 
+/* Flag for file-save to use file-saveas */
+int force_save_as = FALSE;
+
 /* Global buffers */
 GList *object_buffer[MAX_BUFFERS];
 

@@ -2,7 +2,7 @@
 # serial 1.0
 
 dnl gEDA data and configuration directories
-dnl Copyright (C) 2009  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009-2013 Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -17,6 +17,19 @@ dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+
+AC_DEFUN([AX_DOC_DIRS],
+[
+  AC_PREREQ([2.60])dnl
+
+  # Check where to install Help Documents
+  docdir="$datarootdir/doc/geda-gaf"
+
+  AC_DEFINE_DIR([GEDADOCDIR], [docdir], [Help Documents directory])
+
+  #AC_SUBST([GEDADOCDIR])
+
+])dnl AX_DOC_DIRS
 
 dnl Check where gEDA data and configuration should be stored.
 AC_DEFUN([AX_DATA_DIRS],
@@ -68,7 +81,10 @@ Only libgeda should use this - apps should use s_path_sys_config()])
     GEDARCDIR=$GEDADATADIR
   fi
 
+  AX_DOC_DIRS
+
   AC_SUBST([GEDADATADIR])
   AC_SUBST([GEDARCDIR])
 
 ])dnl AX_DATA_DIRS
+

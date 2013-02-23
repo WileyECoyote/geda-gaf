@@ -79,7 +79,7 @@ typedef void(*AttribsChangedFunc)(void *, OBJECT *);
 typedef void(*ConnsChangedFunc)(void *, OBJECT *);
 
 /*! \brief Type of callback function for querying loading of backups */
-typedef bool(*LoadBackupQueryFunc)(void *, GString *);
+typedef bool(*LoadBackupQueryFunc)( GString *);
 
 /* -------------- Start Structure Definitions -------------*/
 
@@ -491,7 +491,7 @@ struct st_toplevel {
 
   /* Callback function for deciding whether to load a backup file. */
   LoadBackupQueryFunc load_newer_backup_func;
-  void *load_newer_backup_data;
+  //GSCHEM_TOPLEVEL *load_newer_backup_data;
 
   GList *weak_refs; /* Weak references */
 };

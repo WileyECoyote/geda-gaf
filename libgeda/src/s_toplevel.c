@@ -183,7 +183,6 @@ TOPLEVEL *s_toplevel_new (void)
   toplevel->conns_changed_hooks = NULL;
 
   toplevel->load_newer_backup_func = NULL;
-  toplevel->load_newer_backup_data = NULL;
 
   /* Auto-save interval */
   toplevel->auto_save_interval = 0;

@@ -542,15 +542,16 @@ void o_invalidate_rect (GSCHEM_TOPLEVEL *w_current,
    *      is a GdkPixmap. Ensure we only invalidate GdkWindows. */
   if (!GDK_IS_WINDOW( w_current->window ))
     return;
-
   grip_half_size = o_grips_size (w_current);
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
+
   bloat = MAX (grip_half_size, cue_half_size) + INVALIDATE_MARGIN;
 
   rect.x = MIN(x1, x2) - bloat;
   rect.y = MIN(y1, y2) - bloat;
-  rect.width = 1 + abs( x1 - x2 ) + 2 * bloat;
+  rect.width =  1 + abs( x1 - x2 ) + 2 * bloat;
   rect.height = 1 + abs( y1 - y2 ) + 2 * bloat;
+
   gdk_window_invalidate_rect( w_current->window, &rect, FALSE );
 }
 
@@ -583,8 +584,8 @@ void o_invalidate (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
   TOPLEVEL *toplevel = w_current->toplevel;
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
-  if (world_get_single_object_bounds(toplevel, object, &left,  &top,
-                                                       &right, &bottom)) {
+
+  if (world_get_single_object_bounds(toplevel, object, &left,  &top, &right, &bottom)) {
     WORLDtoSCREEN (w_current, left, top, &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rect (w_current, s_left, s_top, s_right, s_bottom);

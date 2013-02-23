@@ -24,6 +24,10 @@ typedef enum {
   CONSOLE_RESPONSE_CLOSE  = 1
 } ConsoleResponseType;
 
+typedef enum {
+  CONSOLE_COMMAND_MODE,
+  CONSOLE_INPUT_MODE
+} ConsoleInputMode;
 
 #define TYPE_CONSOLE         (console_get_type())
 #define CONSOLE(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj),   TYPE_CONSOLE, Console))
@@ -46,7 +50,6 @@ struct _Console {
   unsigned int handler;
 
 };
-
 
 GType console_get_type (void);
 

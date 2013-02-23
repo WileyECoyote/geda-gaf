@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,10 +19,15 @@
  */
 #include <config.h>
 
-#include <stdio.h>
+
+#include <glib/gstdio.h>   /* mkdir */
+#include <libgen.h>        /* dirname */
 
 #include <gschem.h>
 #include <x_menu.h>
+
+#include <stdio.h>
+#include <errno.h>
 
 #include <x_window.h>
 
@@ -41,9 +46,6 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
   /* Initialize the autosave callback */
   s_page_autosave_init(toplevel);
 
-  /* Initialize the clipboard callback */
-  x_clipboard_init (w_current);
-
   /* x_window_setup_world() - BEGIN */
   toplevel->init_left = -45;
   toplevel->init_top  = -45;
@@ -60,8 +62,14 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
   global_window_list = g_list_append (global_window_list, w_current);
 
   /* X related stuff */
+  x_icons_setup_factory();          /* Must setup factory before menus! */
+
   x_window_create_main (w_current);
+  x_window_restore_geometry((GtkWindow*)w_current->main_window, "gschem");
   x_menu_attach_recent_files_submenu(w_current);
+
+  /* Initialize the clipboard callback */
+  x_clipboard_init (w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -118,6 +126,117 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
 
 }
 
+/*! \brief Save Window Geometry
+ *  \par Function Description
+ *  This functions retrieves the given window size, and position on the
+ *  screen and writes the settings to the key file.
+ *
+ *  \param [in] window     The Window whose size and position is to be saved.
+ *  \param [in] group_name The group name in the key file.
+ */
+void x_window_save_geometry(GtkWindow *window, char* group_name)
+{
+  char *data, *filename;
+  int x, y, width, height;
+  GKeyFile *key_file = NULL;
+
+  bool setup_new_keyfile (char *filename) {
+
+    bool results = TRUE;
+
+    key_file = g_key_file_new();
+
+    if (access(filename, W_OK) != 0) {
+      v_log_message("Creating new Window Geometry Configuration file\n");
+      mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
+      g_file_set_contents (filename, "", -1, NULL);
+    }
+    if (!g_file_test (filename, G_FILE_TEST_EXISTS))
+      results = FALSE;
+    return results;
+  }
+
+  filename = g_build_filename (s_path_user_config (),
+                               WINDOW_GEOMETRY_STORE, NULL);
+
+  if (!g_file_test (filename, G_FILE_TEST_EXISTS))
+    setup_new_keyfile (filename);
+  else
+    key_file = g_key_file_new();
+
+  if(key_file) {
+
+    gtk_window_get_position (window, &x, &y);
+    gtk_window_get_size (window, &width, &height);
+
+    g_key_file_set_integer (key_file, group_name, "x", x);
+    g_key_file_set_integer (key_file, group_name, "y", y);
+    g_key_file_set_integer (key_file, group_name, "width",  width );
+    g_key_file_set_integer (key_file, group_name, "height", height);
+
+    data = g_key_file_to_data(key_file, NULL, NULL);
+    g_file_set_contents(filename, data, -1, NULL);
+    g_free(data);
+  }
+  else
+    fprintf(stderr, "Warning, could not save Window configuration to %s\n", filename);
+
+  if(key_file) g_key_file_free(key_file);
+  g_free(filename);
+
+}
+
+/*! \brief Restore Window Geometry
+ *  \par Function Description
+ *  This functions retrieves the given window size and position from the
+ *  key file and sets the given window to the retrived values.
+ *
+ *  \param [in] window     The Window to restore the size and position.
+ *  \param [in] group_name The group name in the key file.
+ */
+void x_window_restore_geometry(GtkWindow *window, char* group_name)
+{
+  char       *filename;
+  GError     *err = NULL;
+  GKeyFile   *key_file = NULL;
+
+  void RestoreWindowGeometry() {
+    int x, y, width, height;
+    if(key_file) {
+      v_log_message("Retrieving Window geometry\n");
+      x      = g_key_file_get_integer (key_file, group_name, "x", NULL);
+      y      = g_key_file_get_integer (key_file, group_name, "y", NULL);
+      width  = g_key_file_get_integer (key_file, group_name, "width",  NULL);
+      height = g_key_file_get_integer (key_file, group_name, "height", NULL);
+
+      gtk_window_move (window, x, y);
+      gtk_window_resize (window, width, height);
+    }
+  }
+
+  filename = g_build_filename(s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
+    if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
+    if (access(filename, R_OK) == 0) {
+      key_file = g_key_file_new();
+      if(g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err))
+        RestoreWindowGeometry();
+      else {
+        s_log_message("Warning, Error Restoring Window configuration, %s\n", err->message);
+        g_clear_error (&err);
+      }
+    }
+    else {
+      s_log_message("Warning, Window configuration file access error:, %s\n", err->message);
+    }
+  }
+  else
+    v_log_message("Window configuration geometry not found!\n");
+
+  if(key_file) g_key_file_free(key_file);
+  g_free(filename);
+
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -169,6 +288,11 @@ void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
   }
 }
 
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
 static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
 {
   GSCHEM_TOPLEVEL *w_current = userdata;
@@ -210,7 +334,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   w_current->main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
   gtk_widget_set_name (w_current->main_window, "gschem");
-  gtk_window_set_policy (GTK_WINDOW (w_current->main_window), TRUE, TRUE, TRUE);
+  gtk_window_set_resizable (GTK_WINDOW(w_current->main_window), TRUE);
 
   /* We want the widgets to flow around the drawing area, so we don't
    * set a size of the main window.  The drawing area's size is fixed,
@@ -232,7 +356,8 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   gtk_container_border_width(GTK_CONTAINER(main_box), 0);
   gtk_container_add(GTK_CONTAINER(w_current->main_window), main_box);
 
-  menubar = get_main_menu (w_current);
+  /* Main Menu */
+  menubar = x_menu_setup_ui (w_current);
 
   if (w_current->handleboxes) {
     handlebox = gtk_handle_box_new ();
@@ -242,19 +367,19 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
     gtk_box_pack_start(GTK_BOX(main_box), menubar, FALSE, FALSE, 0);
   }
 
-  w_current->menubar = menubar;
   x_menu_set_toggle(w_current, RESET_TOGGLERS, 0);
 
   gtk_widget_realize (w_current->main_window);
+  /* End Main Menu */
 
   if (w_current->handleboxes && w_current->toolbars) {
+     x_toolbars_init_window(w_current);
      x_toolbars_init_top(w_current, main_box);
   }
 
   /* --------------------------------------------------------- */
-
   /*  Try to create popup menu (appears in right mouse button  */
-  w_current->popup_menu = (GtkWidget *) get_main_popup(w_current);
+  x_menu_setup_popup(w_current);
 
   center_hbox = gtk_hbox_new(FALSE, 1);
   gtk_container_border_width(GTK_CONTAINER(center_hbox), 0);
@@ -346,18 +471,9 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   label = gtk_label_new ("|");
   gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 5);
 
-  if (w_current->middle_button == MOUSE_MIDDLE_STROKE) {
-#ifdef HAVE_LIBSTROKE
-    w_current->middle_label = gtk_label_new (_("Stroke"));
-#else
-    w_current->middle_label = gtk_label_new (_("none"));
-#endif
-  } else if (w_current->middle_button == MOUSE_MIDDLE_ACTION) {
-    w_current->middle_label = gtk_label_new (_("Action"));
-  } else {
-    w_current->middle_label = gtk_label_new (_("Repeat/none"));
-  }
 
+  w_current->middle_label = gtk_label_new ("middle");
+  i_update_middle_button(w_current, "none");
   gtk_box_pack_start (GTK_BOX (bottom_box), w_current->middle_label,
                       FALSE, FALSE, 0);
 
@@ -384,12 +500,25 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
                     FALSE, 10);
 
   gtk_widget_show_all (w_current->main_window);
+
+  /* The preceeding show_all revealed Everything, so
+   * turn-off widgets that should be hidden */
   gtk_widget_hide(w_current->macro_box);
+
+  /* hide the little red x's in the toolbars */
   x_toolbars_finialize(w_current);
+
+  /* hide the srollbars based on user settings */
+  if (w_current->scrollbars == TRUE &&
+      w_current->scrollbars_visible == FALSE ) {
+    gtk_widget_hide(w_current->v_scrollbar);
+    gtk_widget_hide(w_current->h_scrollbar);
+  }
 
   w_current->window = w_current->drawing_area->window;
   w_current->drawable = w_current->window;
   x_window_setup_gc(w_current);
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -412,7 +541,7 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
 
   /* last chance to save possible unsaved pages */
   if (!x_dialog_close_window (w_current)) {
-    /* user somehow cancelled the close */
+    /* user cancelled the close */
     return;
   }
 
@@ -422,50 +551,6 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   o_conn_print_hash(w_current->page_current->conn_table);
 #endif
 
-  /* close all the dialog boxes
-  if (w_current->sowindow)
-  gtk_widget_destroy(w_current->sowindow);
-
-  if (w_current->cswindow)
-  gtk_widget_destroy(w_current->cswindow);
-
-  if (w_current->tiwindow)
-  gtk_widget_destroy(w_current->tiwindow);
-
-  if (w_current->tewindow)
-  gtk_widget_destroy(w_current->tewindow);
-
-  if (w_current->aawindow)
-  gtk_widget_destroy(w_current->aawindow);
-
-  x_multiattrib_close (w_current);
-
-  if (w_current->aewindow)
-  gtk_widget_destroy(w_current->aewindow);
-
-  if (w_current->trwindow)
-  gtk_widget_destroy(w_current->trwindow);
-
-  x_pagesel_close (w_current);
-
-  if (w_current->tswindow)
-  gtk_widget_destroy(w_current->tswindow);
-
-  if (w_current->iwindow)
-  gtk_widget_destroy(w_current->iwindow);
-
-  if (w_current->hkwindow)
-  gtk_widget_destroy(w_current->hkwindow);
-
-  if (w_current->cowindow)
-  gtk_widget_destroy(w_current->cowindow);
-
-  if (w_current->clwindow)
-  gtk_widget_destroy(w_current->clwindow);
-
-  if (w_current->sewindow)
-  gtk_widget_destroy(w_current->sewindow);
-*/
   if (toplevel->major_changed_refdes) {
     GList* current = toplevel->major_changed_refdes;
     while (current)
@@ -480,13 +565,19 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   if (g_list_length (global_window_list) == 1) {
     /* no more window after this one, remember to quit */
     last_window = TRUE;
-    x_toolbars_save_state(w_current);
+    if(w_current->save_ui_settings == TRUE) {
+      x_toolbars_save_state(w_current);
+      x_window_save_geometry((GtkWindow*)w_current->main_window, "gschem");
+    }
+
     /* close the log file */
     s_log_close ();
+
     /* free the buffers */
     o_buffer_free (w_current);
   }
 
+  x_toolbars_free_window(w_current);
   x_window_free_gc(w_current);
 
   /* Clear Guile smob weak ref */
@@ -502,9 +593,9 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   global_window_list = g_list_remove (global_window_list, w_current);
   g_free (w_current);
 
-  /* just closed last window, so quit or should open a new document? */
+  /* If closed last window, so quit */
   if (last_window) {
-    gschem_quit();
+    shut_down_gui();
   }
 }
 
@@ -547,72 +638,163 @@ void x_window_close_all(GSCHEM_TOPLEVEL *w_current)
  *  \param [in] filename The name of the file to open or NULL for a blank page.
  *  \returns A pointer on the new page.
  *
- *  \bug This code should check to make sure any untitled filename
- *  does not conflict with a file on disk.
+ *  \note When we want a new string allocated we use the glib file utilities,
+ *  When we don't want to deal with freeing we our local buffer and glibc.
+ *
  */
 PAGE*
 x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  PAGE *old_current, *page;
-  char *fname;
+  PAGE     *old_current, *page;
+  char      strbuff[MAX_PATH];
+  char     *path;
+  char     *ptr;
+  int       file_err;
 
   g_return_val_if_fail (toplevel != NULL, NULL);
 
-  /* Generate untitled filename if none was specified */
-  if (filename == NULL) {
-    char *cwd, *tmp;
-    cwd = g_get_current_dir ();
-    tmp = g_strdup_printf ("%s_%d.sch",
-                           toplevel->untitled_name,
-                           ++w_current->num_untitled);
-    fname = g_build_filename (cwd, tmp, NULL);
-    g_free(cwd);
-    g_free(tmp);
-  } else {
-    fname = g_strdup (filename);
-  }
+  /* Generate unique untitled filename if none was specified */
+  char *generate_untitled() {
+    char  s_val[3];
+    char *tmp;
+    char *str;
 
-  /* Return existing page if it is already loaded */
-  page = s_page_search (toplevel, fname);
-  if ( page != NULL ) {
-    g_free(fname);
-    return page;
-  }
+    inline void unique_untitled () {
+      /* Get DIR in buffer */
+      ptr = str = getcwd  ( &strbuff[0], MAX_PATH - 1 );
+      /* Append a seperator onto the end of DIR */
+      while ( *ptr != '\0') ++ptr; /* advance to end of string */
+       *ptr = G_DIR_SEPARATOR;     /* add separator */
+      ++ptr;                       /* advance over separator */
+       *ptr = '\0';                /* Add new NULL */
 
-  old_current = toplevel->page_current;
-  page = s_page_new (toplevel, fname);
-  s_page_goto (toplevel, page);
+      /* Append default name from config */
+      str = strcat  ( str, toplevel->untitled_name );
 
-  /* Load from file if necessary, otherwise just print a message */
-  if (filename != NULL) {
-    GError *err = NULL;
-    if (!quiet_mode)
-      s_log_message (_("Loading schematic [%s]\n"), fname);
+      /* Coverted and append an integer to the string */
+      tmp = int2str ( ++w_current->num_untitled, &s_val[0], 10 );
+      str = strcat  ( str, tmp );
 
-    if (!f_open (toplevel, page, (char *) fname, &err)) {
-      GtkWidget *dialog;
-
-      g_warning ("%s\n", err->message);
-      dialog = gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
-                                       GTK_DIALOG_DESTROY_WITH_PARENT,
-                                       GTK_MESSAGE_ERROR,
-                                       GTK_BUTTONS_CLOSE,
-                                       "%s",
-                                       err->message);
-      gtk_window_set_title (GTK_WINDOW (dialog), _("Failed to load file"));
-      gtk_dialog_run (GTK_DIALOG (dialog));
-      gtk_widget_destroy (dialog);
-      g_error_free (err);
-    } else {
-      recent_files_add (fname);
+      /* Append our file extension */
+      str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
     }
-  } else {
+
+    memset(&strbuff[0], '\0', sizeof(strbuff));
+    unique_untitled ();
+    while ( g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
+    return str;
+  }
+
+  /* Create an empty page with optional filename */
+  inline PAGE* empty_page( const char *name ) {
+    char     *fname;
+    fname = g_strdup ( name ? name : generate_untitled() );
+    page = s_page_new (toplevel, fname);
+    s_page_goto (toplevel, page);
     if (!quiet_mode)
       s_log_message (_("New file [%s]\n"),
                      toplevel->page_current->page_filename);
+    g_free (fname);
+    return page;
+  }
 
-    g_run_hook_page (w_current, "%new-page-hook", toplevel->page_current);
+  /* Recover by switching back to Old or a create blank */
+  inline void resolve_2_recover( const char *name ) {
+    /* There was an error, try go back to old page */
+    if ( old_current != NULL ) {
+      s_page_goto (toplevel, old_current);
+    }
+    else { /* There was error and no previous page */
+      /*fprintf(stderr, "creating empty page\n"); */
+      page = empty_page(name);
+    }
+  }
+
+  if (filename == NULL) {
+    page = empty_page(NULL); /* and were done */
+  }
+  else {
+    old_current = toplevel->page_current; /* save fallback point */
+    if ( g_file_test (filename, G_FILE_TEST_EXISTS)) {
+      /* An existing filename was passed, see if already loaded */
+      page = s_page_search (toplevel, filename);
+      if ( page == NULL ) {
+        GError *err = NULL;
+        /* Problem: f_open needs a pointer to a page so we have to create
+         * a page struct without knowing the file can be read. If an error
+         * occurs then we have to delete this page but s_page_delete is
+         * going to free the name, the one passed to us as a constant, so
+         * we make a copy here for the maybe future page */
+        page = s_page_new (toplevel, g_strdup (filename));
+        s_page_goto (toplevel, page);
+        /* Try to load the file */
+        if (!f_open (toplevel, page, (char *) filename, &err)) {
+          g_warning ("%s\n", err->message);
+          fprintf(stderr, "Error loading file:%s\n", err->message);
+          s_log_message( "Failed to load file:%s\n", err->message);
+          g_error_free (err);
+          s_page_delete (toplevel, page);
+          resolve_2_recover(NULL);
+        }
+        else { /* the file was loaded */
+          if (!quiet_mode) {
+            s_log_message (_("Loading schematic \"%s\"\n"), filename);
+          }
+          recent_files_add (filename);
+        }
+      }
+      else { /* File is already open, so make it the current page */
+        s_page_goto (toplevel, page);
+        /* Fall through and return existing page */
+      }
+    }
+    else {  /* File name specified but does not exist, check path */
+      errno = 0;
+      access (filename,  W_OK && F_OK);
+      file_err = errno;                        /* save file error */
+      path = strcpy (&strbuff[0], filename);
+      path = dirname(path);                    /* g_path_get_dirname() */
+      /* If the path is OK but no file then just create a new file */
+      if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
+        if (!quiet_mode) {
+          s_log_message("Creating new file \"%s\"\n", filename);
+        }
+       /* Filespec may not exist but user has authority to create */
+        page = empty_page(filename);
+      }
+      else { /* Houston, we have problem */
+        /* Filename was specified and but path error, so we still
+         * don't know if base name is okay. Break down filespec and try
+         * to sort out the problem:
+         */
+        if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
+          if( mkdir (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+            s_log_message("Path \"%s\": does not exist\n, successfully created\n", path);
+            page = empty_page(filename);
+            errno = NO_ERROR;
+          }
+          else {
+            s_log_message("Path \"%s\": is not accessible!\n", path);
+          }
+        }
+
+        if( errno != NO_ERROR) {
+          const char   *homedir = g_getenv ("HOME"); /* does not allocate */
+          if (!homedir) homedir = g_get_home_dir (); /* does not allocate */
+          path = strcpy(&strbuff[0], homedir);
+          ptr  = (char*) filename;
+          while ( *ptr != '\0') ++ptr;      /* advance to end of argument */
+          while ( *ptr != G_DIR_SEPARATOR) --ptr;  /* backup to separator */
+          path = strcat(path, ptr);
+          force_save_as = TRUE;
+#if 1
+          fprintf(stderr, "filename:%s\n path:%s\n", path, filename);
+#endif
+          resolve_2_recover(path);
+        }
+      }
+    }
   }
 
   a_zoom_extents (w_current,
@@ -621,17 +803,12 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
 
   o_undo_savestate (w_current, UNDO_ALL);
 
-  if ( old_current != NULL )
-    s_page_goto (toplevel, old_current);
-
   /* This line is generally un-needed, however if some code
    * wants to open a page, yet not bring it to the front, it is
    * needed to add it into the page manager. Otherwise, it will
    * get done in x_window_set_current_page(...)
    */
   x_pagesel_update (w_current); /* ??? */
-
-  g_free (fname);
 
   return page;
 }
@@ -660,10 +837,9 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   o_redraw_cleanstates (w_current);
 
   s_page_goto (toplevel, page);
+  i_update_sensitivities (w_current);
 
-  i_update_ui (w_current);
   i_set_filename (w_current, page->page_filename);
-
   x_pagesel_update (w_current);
   x_multiattrib_update (w_current);
 
@@ -671,7 +847,6 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   x_hscrollbar_update (w_current);
   x_vscrollbar_update (w_current);
   o_invalidate_all (w_current);
-
 }
 
 /*! \brief Saves a page to a file.
@@ -710,22 +885,14 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
   /* change to page */
   s_page_goto (toplevel, page);
   /* and try saving current page to filename */
-  ret = (int)f_save (toplevel, toplevel->page_current, filename, &err);
+  ret = f_save (toplevel, toplevel->page_current, filename, &err);
+
   if (ret != 1) {
     log_msg   = _("Could NOT save page [%s]\n");
     state_msg = _("Error while trying to save");
 
-    GtkWidget *dialog;
+    titled_error_dialog(err->message, "Failed to save file");
 
-    dialog = gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
-                                     GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_ERROR,
-                                     GTK_BUTTONS_CLOSE,
-                                     "%s",
-                                     err->message);
-    gtk_window_set_title (GTK_WINDOW (dialog), _("Failed to save file"));
-    gtk_dialog_run (GTK_DIALOG (dialog));
-    gtk_widget_destroy (dialog);
     g_clear_error (&err);
   } else {
     /* successful save of page to file, update page... */
@@ -741,7 +908,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
     state_msg = _("Saved");
 
     /* reset page CHANGED flag */
-    page->CHANGED = 0;
+    page->CHANGED = FALSE;
 
     /* add to recent file list */
     recent_files_add(filename);
@@ -752,10 +919,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
 
   /* update display and page manager */
   x_window_set_current_page (w_current, old_current);
-
   i_set_state_msg  (w_current, SELECT, state_msg);
-  i_update_toolbar (w_current);
-
   return ret;
 }
 

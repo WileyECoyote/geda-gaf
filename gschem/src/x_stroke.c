@@ -91,23 +91,24 @@ x_stroke_free (void)
  *  \param [in] Y        The X coord of the new point.
  */
 void
-x_stroke_record (GSCHEM_TOPLEVEL *w_current, gint x, gint y)
+x_stroke_record (GSCHEM_TOPLEVEL *w_current, int x, int y)
 {
-  g_assert (stroke_points != NULL);
+  if (stroke_points != NULL) {
 
-  stroke_record (x, y);
+    stroke_record (x, y);
 
-  if (stroke_points->len < STROKE_MAX_POINTS) {
-    StrokePoint point = { x, y };
+    if (stroke_points->len < STROKE_MAX_POINTS) {
+      StrokePoint point = { x, y };
 
-    g_array_append_val (stroke_points, point);
+      g_array_append_val (stroke_points, point);
 
-    gdk_gc_set_foreground (w_current->gc, x_get_color (STROKE_COLOR));
-    gdk_draw_point (w_current->window, w_current->gc, x, y);
+      gdk_gc_set_foreground (w_current->gc, x_get_color (STROKE_COLOR));
+      gdk_draw_point (w_current->window, w_current->gc, x, y);
+    }
   }
 
 }
-
+SCM gh_symbol2scm (char *name);
 /*! \brief Evaluates the stroke.
  *  \par Function Description
  *  This function transforms the stroke input so far in an action.
@@ -121,17 +122,23 @@ x_stroke_record (GSCHEM_TOPLEVEL *w_current, gint x, gint y)
  *  or there is no action attached to the stroke.
  *
  *  \param [in] w_current The GSCHEM_TOPLEVEL object.
- *  \returns 1 on success, 0 otherwise.
+ *  \returns 1 on success, 0 otherwise, or -1 if error.
+ *
+ *  \note WEH: Revised eval-stroke so as to return the action rather
+ *  than the stroke, we already knew what the stoke was because we
+ *  passed it to eval-stroke. This new version evaluates the action
+ *  rather than the stroke.
  */
-gint
+int
 x_stroke_translate_and_execute (GSCHEM_TOPLEVEL *w_current)
 {
-  gchar sequence[STROKE_MAX_SEQUENCE];
+  char sequence[STROKE_MAX_SEQUENCE];
   StrokePoint *point;
   int min_x, min_y, max_x, max_y;
-  gint i;
+  int i;
 
-  g_assert (stroke_points != NULL);
+  if (stroke_points == NULL)
+    return -1;
 
   if (stroke_points->len == 0)
     return 0;
@@ -148,26 +155,42 @@ x_stroke_translate_and_execute (GSCHEM_TOPLEVEL *w_current)
     max_y = max (max_y, point->y);
   }
 
-  o_invalidate_rect (w_current, min_x, min_y, max_x + 1, max_y + 1);
+   o_invalidate_rect (w_current, min_x, min_y, max_x + 1, max_y + 1);
 
   /* resets length of array */
   stroke_points->len = 0;
+  SCM scm_str;
+  char *action;
+  char *expr;
+  int result = 0;
 
   /* try evaluating stroke */
   if (stroke_trans ((char*)&sequence)) {
-    gchar *guile_string =
-      g_strdup_printf("(eval-stroke \"%s\")", sequence);
-    SCM ret;
-
-    scm_dynwind_begin (0);
-    scm_dynwind_unwind_handler (g_free, guile_string, SCM_F_WIND_EXPLICITLY);
-    ret = g_scm_c_eval_string_protected (guile_string);
-    scm_dynwind_end ();
-
-    return (SCM_NFALSEP (ret));
+    expr =  g_strdup_printf("(eval-stroke \"%s\")", sequence);
+    scm_str = g_scm_c_eval_string_protected (expr);
+    g_free(expr);
+    action = scm_to_utf8_string (scm_str);
+    if (strlen(action) > 0) {
+      /* "internal" actions are handled by i_command_process */
+      if (i_command_is_valid(action)) {
+        i_command_process(w_current, action, 0, NULL, ID_ORIGIN_STROKE);
+        result = 1;
+      }
+      else {
+        /* for this to work the user must have defined a custom stroke
+           and the associated function */
+        SCM ret;
+        expr =  g_strdup_printf("(%s)", action);
+        scm_dynwind_begin (0);
+        scm_dynwind_unwind_handler (g_free, expr, SCM_F_WIND_EXPLICITLY);
+        ret = g_scm_c_eval_string_protected (expr);
+        result= (SCM_NFALSEP (ret));
+        scm_dynwind_end ();
+      }
+    }
+    g_free(action);
   }
-
-  return 0;
+  return result;
 }
 
 #endif /* HAVE_LIBSTROKE */

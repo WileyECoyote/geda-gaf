@@ -25,7 +25,7 @@
 /* Date: Aug 12, 2012
  * Who:  Wiley E. Hill
  * What  MACRO: NEW_GSCHEM_DIALOG
- * Why:  This Macro facilitate creating new Dialog Boxes. 
+ * Why:  This Macro facilitate creating new Dialog Boxes.
 */
 #define NEW_STD_GSCHEM_DIALOG(title, identifier, ptrWindowWidget) \
       gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
@@ -34,7 +34,7 @@
 /* Date: Aug 12, 2012
  * Who:  Wiley E. Hill
  * What  MACRO: NEW_GSCHEM_DIALOG
- * Why:  This Macro facilitate creating new Dialog Boxes. 
+ * Why:  This Macro facilitate creating new Dialog Boxes.
 */
 #define NEW_GSCHEM_DIALOG(title, flags, identifier, ptrWindowWidget) \
   gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
@@ -49,6 +49,10 @@
 typedef struct _GschemDialogClass GschemDialogClass;
 typedef struct _GschemDialog      GschemDialog;
 
+enum {
+  PROP_SETTINGS_NAME = 1,
+  PROP_GSCHEM_TOPLEVEL
+};
 
 struct _GschemDialogClass {
   GtkDialogClass parent_class;
@@ -70,7 +74,7 @@ struct _GschemDialog {
 
 
 GType gschem_dialog_get_type (void);
-GtkWidget* gschem_dialog_new_empty (const gchar     *title,
+GtkWidget* gschem_dialog_new_empty (const gchar           *title,
                                           GtkWindow       *parent,
                                           GtkDialogFlags   flags,
                                           const gchar *settings_name,

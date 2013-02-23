@@ -53,7 +53,12 @@
 #define ASCII_APO       0x27     /* ' apostrophe_quote */
 #define ASCII_OP        0x28     /* ( opening parenthesis */
 #define ASCII_CP        0x29     /* ) closing parenthesis */
-#define ASCII_AST       0x30   	 /* * asterisk  */
+#define ASCII_AST       0x2A   	 /* * asterisk  */
+
+#define ASCII_PLUS      0x2B     /* * Plus sign  */
+#define ASCII_MINUS     0x2D     /* * Minus sign */
+#define ASCII_PERIOD    0x2E     /* * Period  */
+#define ASCII_FSLASH    0x2F     /* * Forward Slash  */
 
 #define CARRIAGE_RETURN  ASCII_CR
 #define SYNCHRONOUS_IDLE ASCII_SYN
@@ -160,6 +165,8 @@
 #define ASCII_TILDE			0x7E
 #define ASCII_DELETE			0x7F
 
+#define FORWARD_SLASH        ASCII_SOLIDUS
+#define BACKSLASH      ASCII_REVERSE_SOLIDUS
 #endif
 
 

@@ -1,3 +1,12 @@
+2013-01-24 Wiley E Hill  <wileyhill@gmail.com>
+
+        * m4/geda-gtk.m4: Add new mcro file and relocate modules checks for GTK and
+          GDK bixbuf from configure.ac to new file, Added module check for GTHREAD
+          because main-line included reference to HAVE_GTHREAD, which was not ever
+          getting done because HAVE_GTHREAD was not in config.h
+
+        * m4/geda-uri-viewer.m4: Revised so that SHOW_URI_COMMAND would be defined
+          regardless of the out-come of SHOW_URI_GIO.
 
 2013-01-06 Wiley E Hill  <wileyhill@gmail.com>
 
@@ -11,7 +20,7 @@
           used by other compilation units. Technically, should disable module and
           continue with building.
 
-        * m4/geda-libgeda.m4: Added checks for functions; memmove, size_t, sqrt, 
+        * m4/geda-libgeda.m4: Added checks for functions; memmove, size_t, sqrt,
           and AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK, relocated AC_HEADER_SYS_WAI
           chown, strerror strstr, getlogin
         * m4/geda-pango.m4: Added AC_CHECK_FUNCS([floor]), which is used by

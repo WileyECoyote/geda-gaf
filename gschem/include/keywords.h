@@ -237,8 +237,8 @@ enum {
      KEYWORD(text-size,                    0, 0, text_size)
      KEYWORD(undo-levels,                  0, 0, undo_levels)
      KEYWORD(undo-control,                 0, 0, undo_control)
-     KEYWORD(undo-type,                    0, 0, undo_type)
      KEYWORD(undo-panzoom,                 0, 0, undo_panzoom)
+     KEYWORD(undo-type,                    0, 0, undo_type)
      KEYWORD(attribute-name,               0, 0, attribute_name)
 
 #ifdef _MAKE_KEYWORD_ENUM_
