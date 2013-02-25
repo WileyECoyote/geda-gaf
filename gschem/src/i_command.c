@@ -548,7 +548,6 @@ COMMAND ( do_paste_clip )
   }
 
   object_list = x_clipboard_get (w_current);
-
   if (object_list != NULL) {
     s_delete_object_glist (toplevel, object_buffer[narg]);
     object_buffer[narg] = object_list;
@@ -559,7 +558,6 @@ COMMAND ( do_paste_clip )
   } else {
     i_set_state_msg (w_current, SELECT, _("Empty buffer"));
   }
-
   EXIT_COMMAND(do_paste_clip);
 }
 COMMAND ( do_delete )
@@ -1609,6 +1607,13 @@ COMMAND ( do_hierarchy_documentation )
   EXIT_COMMAND(do_hierarchy_documentation);
 }
 */
+/*! \brief Attach Selected Attributes
+ *  \par Function Description
+ *  This is the action handler function to attach selected attributes
+ *  to an object.
+ *
+ */
+/** @brief function i_cmd_do_attach in i_command_Command_Functions */
 COMMAND ( do_attach )
 {
   NOT_NULL(w_current);
@@ -1647,8 +1652,18 @@ COMMAND ( do_attach )
       }
     }
   }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
   EXIT_COMMAND(do_attach);
 }
+/*! \brief Detach Selected Attributes
+ *  \par Function Description
+ *  This is the action handler function to detach selected attributes
+ *  from their parent.
+ *
+ */
+/** @brief function i_cmd_do_detach in i_command_Command_Functions */
 COMMAND ( do_detach )
 {
   BEGIN_COMMAND(do_detach);
@@ -1681,8 +1696,19 @@ COMMAND ( do_detach )
 
     o_undo_savestate(w_current, UNDO_ALL);
   }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
   EXIT_COMMAND(do_detach);
 }
+
+/*! \brief Set selected Attributes to Show value
+ *  \par Function Description
+ *  This is the action handler function to set selected Attributes bits
+ *  to show only the value of the attributes.
+ *
+ */
+/** @brief function i_cmd_do_show_value in i_command_Command_Functions */
 COMMAND ( do_show_value )
 {
   BEGIN_COMMAND(do_show_value);
@@ -1706,8 +1732,19 @@ COMMAND ( do_show_value )
       o_undo_savestate (w_current, UNDO_ALL);
     }
   }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
   EXIT_COMMAND(do_show_value);
 }
+
+/*! \brief Set selected Attributes to Show Name
+ *  \par Function Description
+ *  This is the action handler function to set selected Attributes bits
+ *  to show only the name of the attributes.
+ *
+ */
+/** @brief function i_cmd_do_show_name in i_command_Command_Functions */
 COMMAND ( do_show_name )
 {
   BEGIN_COMMAND(do_show_name);
@@ -1731,8 +1768,19 @@ COMMAND ( do_show_name )
       o_undo_savestate (w_current, UNDO_ALL);
     }
   }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
   EXIT_COMMAND(do_show_name);
 }
+
+/*! \brief Set selected Attributes to Show Both
+ *  \par Function Description
+ *  This is the action handler function to set selected Attributes bits
+ *  to show both the name and the value of selected attributes.
+ *
+ */
+/** @brief function i_cmd_do_show_both in i_command_Command_Functions */
 COMMAND ( do_show_both )
 {
   BEGIN_COMMAND(do_show_both);
@@ -1756,6 +1804,9 @@ COMMAND ( do_show_both )
       o_undo_savestate (w_current, UNDO_ALL);
     }
   }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
   EXIT_COMMAND(do_show_both);
 }
 
@@ -1783,6 +1834,9 @@ COMMAND ( do_toggle_visibility )
       o_undo_savestate (w_current, UNDO_ALL);
     }
   }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
   EXIT_COMMAND(do_toggle_visibility);
 }
 

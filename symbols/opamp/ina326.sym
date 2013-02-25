@@ -1,0 +1,104 @@
+v 20130214 2
+L 300 1100 300 100 3 15 0 0 -1 -1
+L 300 1100 1100 600 3 15 0 0 -1 -1
+T 1000 900 5 10 1 1 0 0 1
+device=INA326
+L 1100 600 300 100 3 15 0 0 -1 -1
+P 100 200 300 200 1 0 0
+{
+T 250 50 5 8 1 1 0 6 1
+pinnumber=3
+T 350 250 5 5 0 1 0 8 1
+pinseq=4
+T 350 200 9 8 1 1 0 0 1
+pinlabel=+
+T 100 200 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 1000 300 1000 1 0 0
+{
+T 250 1050 5 8 1 1 0 6 1
+pinnumber=2
+T 350 1050 5 5 0 1 0 8 1
+pinseq=1
+T 350 900 9 8 1 1 0 0 1
+pinlabel=-
+T 100 1000 5 8 0 1 0 2 1
+pintype=in
+}
+P 900 500 900 300 1 0 1
+{
+T 935 500 5 8 1 1 180 6 1
+pinnumber=5
+T 900 600 5 5 0 1 0 2 1
+pinseq=6
+T 1235 500 9 8 0 1 180 0 1
+pinlabel=R2
+T 900 300 5 8 0 1 0 2 1
+pintype=out
+}
+P 600 900 600 1100 1 0 1
+{
+T 650 900 5 8 1 1 0 0 1
+pinnumber=7
+T 550 900 5 5 0 1 0 2 1
+pinseq=8
+T 650 800 9 8 1 1 0 5 1
+pinlabel=V+
+T 600 1100 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 600 300 600 100 1 0 1
+{
+T 650 200 5 8 1 1 0 0 1
+pinnumber=4
+T 650 200 5 5 0 1 0 2 1
+pinseq=5
+T 600 350 9 8 1 1 0 3 1
+pinlabel=V-
+T 600 100 5 8 0 1 0 2 1
+pintype=pwr
+}
+T 1000 1100 8 10 1 1 0 0 1
+refdes=U?
+T 150 1400 5 10 0 0 0 0 1
+description=Precision Instrumentation Amplifier 
+T 150 1250 5 10 0 0 0 0 1
+numslots=0
+T 150 1550 5 10 0 0 0 0 1
+footprint=MSOP8
+P 100 800 300 800 1 0 0
+{
+T 250 850 5 8 1 1 0 6 1
+pinnumber=1
+T 350 850 5 5 0 1 0 8 1
+pinseq=2
+T 350 700 9 5 1 1 0 0 1
+pinlabel=R1
+T 100 800 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 400 300 400 1 0 0
+{
+T 250 450 5 8 1 1 0 6 1
+pinnumber=8
+T 350 450 5 5 0 1 0 8 1
+pinseq=3
+T 350 400 9 5 1 1 0 0 1
+pinlabel=R1
+T 100 400 5 8 0 1 0 2 1
+pintype=in
+}
+P 1100 600 1300 600 1 0 1
+{
+T 1100 650 5 8 1 1 0 0 1
+pinnumber=6
+T 1050 750 5 5 0 1 0 2 1
+pinseq=7
+T 1350 450 9 8 1 1 0 6 1
+pinlabel=out
+T 1300 600 5 8 0 1 0 2 1
+pintype=out
+}
+T 150 1750 5 10 0 0 0 0 1
+symversion=0.2

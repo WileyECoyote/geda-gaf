@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -189,8 +189,8 @@ const char* DefaultAttributeList[] = { "source", "model-name", "model",
                                "dist-license", "documentation", "footprint",
 			       "footprints", "graphical", "net", "numslots",
 			       "pins", "refdes", "slot", "slotdef",
-			       "spicetype", "symversion", "use-license",
-			       "value", NULL};
+			       "model-name", "spicetype", "symversion",
+                               "use-license", "value", NULL};
 
   char *obsolete_attributes[] = {"email", "label", "uref", NULL};
   char *forbidden_attributes[] = {"name", "type", NULL};

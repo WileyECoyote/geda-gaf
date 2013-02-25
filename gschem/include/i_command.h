@@ -276,7 +276,7 @@ enum {
      COMMAND ( EDIT_REDO,           "redo",             USE_MAIN_LOOP,          do_redo)
      COMMAND ( EDIT_CB_CUT,         "cut",              USE_MAIN_LOOP,          do_cut_clip)
      COMMAND ( EDIT_CB_COPY,        "copy",             USE_MAIN_LOOP,          do_copy_clip)
-     COMMAND ( EDIT_CB_PASTE,       "paste",            USE_MAIN_LOOP,          do_paste_clip)
+     COMMAND ( EDIT_CB_PASTE,       "paste",            USE_WORKER_THREAD,      do_paste_clip)
      COMMAND ( EDIT_DELETE,         "delete",           USE_MAIN_LOOP,          do_delete)
      COMMAND ( EDIT_SELECT,         "",                 USE_MAIN_LOOP,          do_select)
      COMMAND ( EDIT_SELECT_ALL,     "select all",       USE_MAIN_LOOP,          do_select_all)

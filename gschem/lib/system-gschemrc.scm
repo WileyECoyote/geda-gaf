@@ -1654,7 +1654,7 @@
 
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "D_ocumentation...")   view-documentation      view-documentation      "gtk-index")
-        (,(N_ "Show/Hide Inv Text")  view-show-hidden        view-show-hidden        "gtk-find-and-replace")
+        (,(N_ "Show/Hide Inv Text")  view-show-hidden        view-show-hidden        "gtk-find-and-replace" "Toggle hidden text attributes")
         (,(N_ "Show/Hide Net Names") view-show-nets          view-show-nets          "gtk-ok")
 
         ("SEPARATOR"                #f                      #f                       #f)

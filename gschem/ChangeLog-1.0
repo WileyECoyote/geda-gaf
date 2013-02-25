@@ -1,7 +1,30 @@
+2013-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x_toolbars.c: Added new toolbar items: Edit Text, Show Hidden.
+
+        * src/i_command.c: added verbose message to function attach, detach, show_value,
+          do_show_name, and do_show_both to better info the user.
+
+        * src/i_command.h: Changed do_paste_clip to type USE_WORKER_THREAD.
+
+2013-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/g_register.c: Mostly re-vamp; Split up static structure for subroutines
+          into three; gschem_rc_funcs, gschem_g_funcs, gschem_hk_funcs, eliminating non-
+          hot-key callbacks to help reduce Scheme-C-Scheme-C-Scheme-C discombobulation.
+          Revised function g_register_funcs to use the new structures and to obtain a
+          list of actions to register from i_command_get_action_list.
 
         * src/i_command.c: New file with experimental code to (mostly) replace i_callback.c
           This scheme uses a single function i_command_process to respond to all actions
-          regarless of the origin.
+          regardless of the origin. Most, if not all of the old i_callback.c, that were not
+          hot-key actions, were revised and relocated this module.
+          The central interface function i_command_process manages repeat-last action.
+          The action file-close now uses the same algorithms as page-close so gschem no
+          longer "exit" when the last document is close, instead a new empty document is
+          created (like a "normal" program).
+
+        * src/i_callback.c: Removed nearly all functions that were not hot-key actions.
 
         * src/o_delete.c: Replaced local dialog with gschem_confirm_dialog.
 
@@ -9,8 +32,10 @@
 
         * src/x_menu.c: Major modifications to this module; Added additional toggle actions;
           menu icons, global toolbar style, scrollbars visability and toggling menu tips.
-          Add menu tooltips for menu items. Add static glist for menu_items, a collection
-          of all menu_items
+          Add menu tooltips for menu items. Add glist for menu_items, a collection of all
+          menu_items. Window specific widgets list, such as menu_items, were put in a
+          static list of structures indexed on a per window basis. Added new function
+          x_menu_free_all to free the aforemention structure when a windows is closed.
 
         * src/x_icons.c:  Added an icon factory! Should maybe have done this a long
           time ago, this makes using bitmaps much easier. Maybe wrong place though,
@@ -53,7 +78,7 @@
 
           Added function x_window_save_geometry to preserve the state of the main
           window similar to preservation of dialog geometry.
-          
+
         * src/g_util.c: rename free_string_glist g_list_free_string
 
         * src/g_rc.c: x_dialog.c Add alternative_button_order to generic_confirm_dialog
@@ -85,23 +110,26 @@
         * src/o_grips.c: o_grips_size: error message if w_current or toplevel or
           page_current is NULL and MAXIMUM_GRIP_PIXELS/2
 
-        * include/x_toolbars.h: New file 
+        * include/x_toolbars.h: New file
 
         * src/toolbars.c: Modified the toolbar module to use i_command_process, added
           single point callback that retrieves the action name from the widgets. A
-          separate separate callback is used for toolbar radios. New macros were created
-          for toolbar radions. The "mode" buttons, and the "mode" feature is complete
+          separate callback is used for toolbar radios. New macros were created
+          for toolbar radios. The "mode" buttons, and the "mode" feature is complete
           for all of what is perceived to be the original "ADD" modes. The toolbar radios
           were put into a single group. i_update_toolbar was removed from "everywhere",
-          this one seems to have gotten out of hand, and was being call recursively. 
+          this one seems to have gotten out of hand, and was being call recursively.
           The toolbars now retain their style, along with visibility between sessions.
           A context/dock senitive popup was added to the toolbars to set various options
-          including auto docking the toolbars. The orientation, which can be changed
+          including auto docking the of toolbars. The orientation, which can be changed
           while floating, is restored to the "home" orientation before re-docking.
           [The gtk handlebox widget has a "Private" feature do this with a mouse click
-          but this did not appear work and needs to be fixed]. Mean time, the popup
+          but this did not appear to work and needs to be fixed]. Mean time, the popup
           menu provides sufficient functionality. (is still 2 mouse-click just different
-          buttons.)
+          buttons.)  Changed toolbar list from static and put in new structure
+          ToolBarWidgets, added static list ui_list in order for all of the toolbar
+          widgets to be tracked on a per window basis. Added function x_toolbars_free_window
+          to free the aforemention structure when a windows is closed.
 
           * src/widgets/ geda_handlebox.c and associated header: This is an adaptation
           of the gtkhandlebox in it's entirety, not a derived sub-class. The reason

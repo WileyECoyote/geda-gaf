@@ -1,4 +1,4 @@
-v 20031231 1
+v 20041228 1
 P 0 3000 300 3000 1 0 0
 {
 T 200 3050 5 8 1 1 0 6 1
@@ -164,9 +164,9 @@ pintype=out
 }
 V 1750 200 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 B 300 0 1400 3300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 3740 5 10 0 0 0 0 1
+T 300 3340 5 10 1 1 0 0 1
 device=74138
-T 300 3540 5 10 0 0 0 0 1
+T 300 3740 5 10 0 0 0 0 1
 footprint=DIP16
 T 1700 3400 8 10 1 1 0 6 1
 refdes=U?
@@ -178,7 +178,13 @@ T 300 4150 5 10 0 0 0 0 1
 net=Vcc:16
 T 300 4350 5 10 0 0 0 0 1
 net=GND:8
-T 300 3340 9 10 1 0 0 0 1
-74138
 T 300 4750 5 10 0 0 0 0 1
 documentation=http://www-s.ti.com/sc/ds/sn74hc138.pdf
+T 300 4950 5 10 0 0 0 0 1
+author=Walter Fetter Lages <w.fetter@ieee.org>
+T 0 0 8 10 0 0 0 0 1
+dist-license=GPL
+T 1600 0 8 10 0 0 0 0 1
+use-license=unlimited
+T 0 200 8 10 0 0 0 0 1
+comment=Suggested library: 74

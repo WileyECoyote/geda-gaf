@@ -1,0 +1,53 @@
+v 20130214 2
+P 200 900 200 700 1 0 0
+{
+T 200 900 5 10 0 1 0 0 1
+pinseq=1
+T 200 900 5 10 0 1 0 0 1
+pinnumber=1
+T 200 750 5 10 0 1 0 0 1
+pintype=pas
+T 150 935 9 8 0 1 90 6 1
+pinlabel=+
+}
+P 200 0 200 200 1 0 0
+{
+T 200 0 5 10 0 1 0 0 1
+pinseq=2
+T 200 0 5 10 0 1 0 0 1
+pinnumber=2
+T 200 200 5 10 0 1 0 0 1
+pintype=pas
+T 200 0 5 10 0 1 0 0 1
+pinlabel=N
+}
+L 400 500 0 500 3 15 0 0 -1 -1
+L 200 200 200 400 3 15 0 0 -1 -1
+L 200 500 200 700 3 15 0 0 -1 -1
+T 500 200 5 8 1 1 0 0 1
+device=EEUFC1C332
+A 200 -300 700 75 30 3 15 0 0 -1 -1
+L 125 625 25 625 3 15 0 0 -1 -1
+L 75 575 75 675 3 15 0 0 -1 -1
+T 500 600 8 10 1 1 0 0 1
+refdes=C?
+T 100 1050 5 8 0 0 0 0 1
+description=Aluminum Polarized Electrolytic Capacitor
+T 100 1500 5 8 0 0 0 0 1
+numslots=0
+T 100 1650 5 8 0 0 0 0 1
+symversion=0.1
+T 100 1200 9 8 0 0 0 0 1
+footprint=RCY-200P
+T 500 400 5 10 1 1 0 0 1
+value=3300uF, 16V
+T 100 1800 8 10 0 0 0 0 1
+author=AutoTron
+T 100 1350 9 8 0 0 0 0 1
+documentation=http://www.panasonic.com/industrial/electronic-components/capacitive-products/
+T 800 850 9 8 0 0 0 0 1
+comment=Panasonic Surface Mount
+T 800 700 9 8 0 0 0 0 1
+comment=FC Series,  Type A
+T 800 550 9 8 0 0 0 0 1
+comment=See catalog for optional leading spacing

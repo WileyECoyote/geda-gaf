@@ -1,3 +1,7 @@
+2013-02-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * Added "model-name" to the list of acceptable attributes;
+
 2012-12-30 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Revised "includes" again, the gsymcheck_CPPFLAGS

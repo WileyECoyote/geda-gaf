@@ -520,7 +520,57 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   x_window_setup_gc(w_current);
 
 }
+/*! \brief Close all open Dialogs
+ *  \par Function Description
+ *   This function close any dialog boxes that are currently open.
+ */
+static void x_window_close_all_dialogs(GSCHEM_TOPLEVEL *w_current){
+  /* close all the dialog boxes */
+  if (w_current->sowindow)
+  gtk_widget_destroy(w_current->sowindow);
 
+  if (w_current->cswindow)
+  gtk_widget_destroy(w_current->cswindow);
+
+  if (w_current->tiwindow)
+  gtk_widget_destroy(w_current->tiwindow);
+
+  if (w_current->tewindow)
+  gtk_widget_destroy(w_current->tewindow);
+
+  if (w_current->aawindow)
+  gtk_widget_destroy(w_current->aawindow);
+
+  x_multiattrib_close (w_current);
+
+  if (w_current->aewindow)
+  gtk_widget_destroy(w_current->aewindow);
+
+  if (w_current->trwindow)
+  gtk_widget_destroy(w_current->trwindow);
+
+  x_pagesel_close (w_current);
+
+  if (w_current->tswindow)
+  gtk_widget_destroy(w_current->tswindow);
+
+  if (w_current->iwindow)
+  gtk_widget_destroy(w_current->iwindow);
+
+  if (w_current->hkwindow)
+  gtk_widget_destroy(w_current->hkwindow);
+
+  if (w_current->cowindow)
+  gtk_widget_destroy(w_current->cowindow);
+
+  if (w_current->clwindow)
+  gtk_widget_destroy(w_current->clwindow);
+
+  if (w_current->sewindow)
+  gtk_widget_destroy(w_current->sewindow);
+
+  x_console_close();
+}
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -567,6 +617,7 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
     last_window = TRUE;
     if(w_current->save_ui_settings == TRUE) {
       x_toolbars_save_state(w_current);
+      x_window_close_all_dialogs(w_current);
       x_window_save_geometry((GtkWindow*)w_current->main_window, "gschem");
     }
 
