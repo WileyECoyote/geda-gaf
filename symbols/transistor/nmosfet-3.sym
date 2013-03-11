@@ -12,13 +12,13 @@ L 250 400 350 350 3 0 0 0 -1 -1
 P 0 200 200 200 1 0 0
 {
 T 0 300 5 8 0 1 0 0 1
-pinnumber=G
+pinnumber=1
 T 0 300 9 8 0 1 0 0 1
 pinlabel=G
 T 100 175 5 5 0 1 0 5 1
 pinseq=1
 T 0 200 5 5 0 1 0 0 1
-pintype=pas
+pintype=in
 }
 P 500 600 500 800 1 0 1
 {
@@ -56,7 +56,11 @@ T 700 200 5 8 0 1 0 0 1
 value=COMPONENT_VALUE
 T 0 1200 9 8 0 0 0 0 1
 documentation=http://www.vishay.com/mosfets
-T 0 1500 5 8 0 0 0 0 1
-symversion=0.1
-T 0 1650 8 10 0 0 0 0 1
+T 0 1800 5 8 0 0 0 0 1
+symversion=3.1
+T 0 1950 8 10 0 0 0 0 1
 author=AutoTron
+T 0 1650 5 8 0 0 0 0 1
+dist-license=GPL
+T 0 1500 5 8 0 0 0 0 1
+use-license=unlimited

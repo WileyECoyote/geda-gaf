@@ -1,3 +1,9 @@
+2013-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/*: Created new folders misc_ic, ti, vishay, added more symbols
+          from CVS site. Revised .gitignore to suppress inclusion of doc files
+          (maybe not so bad).
+
 2013-03-04 Wiley E. Hill <wileyhill@gmail.com>
 
         * symbols/*: Created new folders Atmel, added more symbols from CVS site.

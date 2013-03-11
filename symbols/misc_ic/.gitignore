@@ -2,4 +2,4 @@ Makefile
 Makefile.in
 *~
 doc/
-
+doc/*
