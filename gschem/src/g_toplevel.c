@@ -48,28 +48,33 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->keyaccel_string_source_id = FALSE;
 
   /*  -------------------  Dialog boxes  ------------------- */
-  w_current->sowindow           = NULL;
-  w_current->cswindow           = NULL;
-  w_current->iwindow            = NULL;
-  w_current->pswindow           = NULL;
-  w_current->tiwindow           = NULL;
-  w_current->tewindow           = NULL;
-  w_current->sewindow           = NULL;
-  w_current->aawindow           = NULL;
-  w_current->mawindow           = NULL;
-  w_current->aewindow           = NULL;
-  w_current->trwindow           = NULL;
+  w_current->sswindow           = NULL;
   w_current->tswindow           = NULL;
-  w_current->tshowwindow        = NULL;
-  w_current->thidewindow        = NULL;
-  w_current->tfindwindow        = NULL;
-  w_current->hkwindow           = NULL;
+  w_current->aawindow           = NULL;
   w_current->clwindow           = NULL;
-  w_current->edit_color         = 0;
+  w_current->hpwindow           = NULL;
+  w_current->ltwindow           = NULL;
+  w_current->ptwindow           = NULL;
+  w_current->sewindow           = NULL;
+  w_current->tewindow           = NULL;
+  w_current->ftwindow           = NULL;
+  w_current->htwindow           = NULL;
+  w_current->stwindow           = NULL;
+  w_current->trwindow           = NULL;
+
+  w_current->hkwindow           = NULL;
   w_current->cowindow           = NULL;
   w_current->coord_world        = NULL;
   w_current->coord_screen       = NULL;
-  w_current->stwindow           = NULL;
+  w_current->tiwindow           = NULL;
+
+  w_current->aewindow           = NULL;
+  w_current->cpwindow           = NULL;
+  w_current->cswindow           = NULL;
+  w_current->iwindow            = NULL;
+  w_current->mawindow           = NULL;
+  w_current->pswindow           = NULL;
+  w_current->sowindow           = NULL;
 
   /* -------------------- Picture placement ---------------- */
   w_current->current_pixbuf     = NULL;

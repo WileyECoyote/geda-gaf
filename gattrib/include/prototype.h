@@ -67,11 +67,12 @@ void s_object_remove_attrib_in_object (TOPLEVEL *toplevel,
                                        OBJECT *o_current,
                                        char *new_attrib_name);
 
-OBJECT *s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
-                                              char *text_string,
-                                              int visibility,
-                                              int show_name_value,
-                                              OBJECT * object);
+bool s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
+                                           char *text_string,
+                                           int visibility,
+                                           int show_name_value,
+                                           OBJECT * object);
+
 void s_object_delete_text_object_in_object(TOPLEVEL *toplevel, OBJECT *test_object);
 int  s_object_has_sym_file(OBJECT *object);
 

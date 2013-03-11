@@ -74,7 +74,7 @@
 ;;   An example of a 7474 symbol make file
 ; This is a comment line
 /* puon: added "cc" */
-;; device name ,name, name location(tl,tc,tr,bl,bc,br,cc),X size in pins,Y size in pins 
+;; device name ,name, name location(tl,tc,tr,bl,bc,br,cc),X size in pins,Y size in pins
 7474,74HC74,tr,3,5
 ;;
 ;; pin name,pin number,shape(line,clock,dot),side(r,l,t,b),pin position
@@ -183,14 +183,14 @@ int main(int argc,char **argv)
 	  case 'd': Debug = 1;
 	            break;
 	  case '?':
-          case 'h': 
+          case 'h':
                     fprintf(stderr,"usage: %s -dh?\n",argv[0]);
 		    exit(0);
 		    break;
 	  }
         }
   Debug = Debug;
-  
+
   for(i=0;i<MAX_FIELDS;i++)
      pFields[i]=NULL;
 
@@ -200,7 +200,7 @@ int main(int argc,char **argv)
       if ((stream = fopen(argv[1],"r")) == NULL)
          {
          fprintf(stderr, "Cannot open file: %s\n",argv[1]);
-         exit(-1);
+         return -1;
          }
       }
   line_nub=-1;
@@ -220,7 +220,7 @@ int main(int argc,char **argv)
               if (make_pin(fldcnt,pFields)< 0) {
                     fields_free(pFields);
                     break;                /* error processing the pin, get out */
-              }      
+              }
            fields_free(pFields);
 	   }
 	}
@@ -447,7 +447,7 @@ int make_box(int fldcnt,char *pFields[])
   }
 
 
-     /* new file format: x y width height color width 
+     /* new file format: x y width height color width
      end type length space filling fillwidth angle1 pitch1 angle2 pitch2 */
   printf("B %d %d %d %d %d 0 0 0 -1 -1 0 -1 -1 -1 -1 -1\n",pos_x,pos_y,BoxWidth,BoxHeight,GREEN);
   printf("T %d %d %d %d 0 0 0 0\n",pos_x,pos_y+BoxHeight+700,YELLOW,font_size);
@@ -533,17 +533,17 @@ int make_pin(int fldcnt,char *pFields[]) {
 	fprintf (stderr,"\nPlease fix the input file then try again.\n\n");
 	return -1;
   }
-  
+
   strcpy(pin_name,pFields[0]);
   strcpy(pin,pFields[1]); 	      /* get pin number */
-  
+
   for (i=0;i<pin_counter;i++)
      if (!strcmp(pin,pin_used[i])) {
           fprintf (stderr,"\nFatal Error, pin %s is used more that once !\n\n",pin);
           return -1;
      }
   strncpy(pin_used[pin_counter++],pin,5);    /* save the current pin, the first 5 char */
-  
+
   shape = LINE_SHAPE;
   if (!strcasecmp(pFields[2],"dot"))     /* get shape */
      shape = DOT_SHAPE;
@@ -552,15 +552,15 @@ int make_pin(int fldcnt,char *pFields[]) {
   if (!strcasecmp(pFields[3],"L")) side = L_SIDE;
   else
 	if (!strcasecmp(pFields[3],"R")) side = R_SIDE;
-	else      
+	else
 	  if (!strcasecmp(pFields[3],"B")) side = B_SIDE;
-	  else    
+	  else
 		if (!strcasecmp(pFields[3],"T")) side = T_SIDE;
 		else {
 		   fprintf (stderr,"\nError, %s not a valid position, should be l,t,b or r.\n",pFields[3]);
 		   return -1;
 		}
-		  
+
   pin_pos = atoi(pFields[4]);
 
   type = NULL;

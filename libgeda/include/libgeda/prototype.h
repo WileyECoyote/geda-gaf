@@ -89,6 +89,8 @@ bool   o_attrib_string_get_name_value (const char *string, char **name_ptr, char
 bool   o_attrib_get_name_value        (OBJECT *attrib, char **name_ptr, char **value_ptr);
 void   o_attrib_set_value             (OBJECT *attrib, char  *name_ptr,  char *value_ptr);
 GList *o_attrib_find_floating_attribs (const GList *list);
+OBJECT *o_attrib_find_attrib_by_name (const GList *list, char *name, int count);
+OBJECT *o_attrib_first_attrib_by_name (OBJECT *object, char *name);
 char  *o_attrib_search_floating_attribs_by_name  (const GList *list, char *name, int counter);
 char  *o_attrib_search_attached_attribs_by_name  (OBJECT *object, char *name, int counter);
 char  *o_attrib_search_inherited_attribs_by_name (OBJECT *object, char *name, int counter);
@@ -237,14 +239,19 @@ const char *o_picture_get_filename (TOPLEVEL *toplevel, OBJECT *object);
 GdkPixbuf *o_picture_get_fallback_pixbuf (TOPLEVEL *toplevel) G_GNUC_WARN_UNUSED_RESULT;
 
 /* o_pin_basic.c */
-OBJECT *o_pin_new(TOPLEVEL *toplevel, char type, int color, int x1, int y1, int x2, int y2, int pin_type, int whichend);
+OBJECT *o_pin_new(TOPLEVEL *toplevel, char type, int color, int x1, int y1, int x2, int y2, PIN_TYPE pin_type, int whichend);
 void o_pin_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 OBJECT *o_pin_copy(TOPLEVEL *toplevel, OBJECT *o_current);
 void o_pin_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
 void o_pin_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 void o_pin_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone);
 void o_pin_update_whichend(TOPLEVEL *toplevel, GList *object_list, int num_pins);
-void o_pin_set_type(TOPLEVEL *toplevel, OBJECT *o_current, int pin_type);
+void o_pin_set_type(TOPLEVEL *toplevel, OBJECT *o_current, PIN_TYPE pin_type);
+
+bool o_pin_get_options(OBJECT *object, PIN_TYPE *type, int *number, int *sequence,
+                       const char **label, PIN_ATTRIBUTE *attribute);
+void o_pin_set_options(TOPLEVEL *toplevel, OBJECT *object, PIN_TYPE type, int number,
+                       int sequence, const char *label_str, PIN_ATTRIBUTE attribute);
 
 /* o_selection.c */
 SELECTION *o_selection_new( void );
@@ -354,7 +361,7 @@ void s_cue_output_single                (TOPLEVEL *toplevel, OBJECT *object, FIL
 PAGE  *s_hierarchy_down_schematic_single (TOPLEVEL *toplevel, const char *filename, PAGE *parent, int page_control, int flag, GError **err);
 void   s_hierarchy_down_symbol           (TOPLEVEL *toplevel, const CLibSymbol *symbol, PAGE *parent);
 PAGE  *s_hierarchy_find_up_page          (GedaPageList *page_list, PAGE *current_page);
-GList *s_hierarchy_traversepages         (TOPLEVEL *toplevel, PAGE *p_current, int flags);
+GList *s_hierarchy_traverse_pages        (TOPLEVEL *toplevel, PAGE *p_current, int flags);
 int    s_hierarchy_print_page            (PAGE *p_current, void * data);
 PAGE  *s_hierarchy_find_prev_page        (GedaPageList *page_list, PAGE *current_page);
 PAGE  *s_hierarchy_find_next_page        (GedaPageList *page_list, PAGE *current_page);

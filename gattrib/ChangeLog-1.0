@@ -1,3 +1,9 @@
+2013-03-05 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_object.c: Changed return type for function s_object_attrib
+        _add_attrib_in_object to bool and added missing return value in
+        default case
+
 2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
         * Code Cleanup & Documentation Updates:
 
@@ -87,7 +93,7 @@
 2012-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/gattrib_dialog.c: Add new compilation unit, this is mostly
-        a copy of the gschem version but tweeked for gattrib, i.e. no 
+        a copy of the gschem version but tweeked for gattrib, i.e. no
         w_current. This is mainly so that Dialog positions could be
         and recalled. gattrib now creates and maintaines a
         retained a ~/gEDA/gattrib-dialog-geometry file.
@@ -181,16 +187,16 @@
         for now. This allows auto expansion during loading sheet, to
         a width of about 14 characters. This is done in the function
         x_gtksheet_add_cell_item.
-        
+
         * src/x_menu.c: New source file, relocated menu code from
         x_window.c and supplemented with new menu handlers. Added
         toolbar toggles and recent file open code (This was hard because
-        even after 7 years there does not seem to be an example of 
+        even after 7 years there does not seem to be an example of
         ui manager with xml and recent manager with chooser! Ultimately
         the solution was to remove the container and replace with
         a new recent manager after GTK was done making uncontrollable
         assumptions, see x_menu_fix_gtk_recent_submenu.)
-        
+
 	* src/x_fileselect.c: Revised x_fileselect_load_files to
 	use new function x_fileselect_load_file relocated common code
 	to other functions for use by x_menu_file_open and menu_open_recent.
@@ -198,37 +204,37 @@
         * src/gattrib: Add calls to functions with code relocated from
         x_fileselect_load_files rather than being executed in the loader,
         added calls to s_toplevel_init_data_set and x_gtksheet_init.
-        
+
         * src/s_sheet_data: Added function s_sheet_data_reset
 
 	* src/s_table.c: Relocated code from to x_fileselect_load_files
 	x_fileselect_load_files function s_table_load_new_page so that
 	this code could be called from x_menu_file_open and menu_open_recent.
-	
+
 	* src/x_window: Extensive revision to function x_window_init,
 	relocated menu code to x_menu.c. Added x_window_set_title function.
-		
+
 	* lib/gattrib-menus.xml: Update to reflect new menu options.
 	* include: Add subfolder gtksheet and move gtksheet headers to
 	subfolder, except gtksheet.h so as to better organize code source.
-	
+
 	* include/Makefile.am: Revised for seperation of gtksheet headers
 	into subfolder.
-	
+
 2012-10-28 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x_gtksheet.c: Replaced #defines with enumerated ColorId
-        for function x_gtksheet_add_cell_item, and revised 
+        for function x_gtksheet_add_cell_item, and revised
         x_gtksheet_set_cell_fgcolor to allow limited autoresize
         functionality. Revised x_gtksheet_set_cell_fgcolor.
-        
+
         * include/globals.h: Added enumerated types ColorId and SheetId.
-        
+
         *src/gtksheet: Setup subfolder for gtksheet source files and
         created a new makefile.am to generate a temporary gtksheet
         library to link with gattrib. This will allow for better code
         organization and facilitate maintenance. Upgraded gtksheet,
-        repaired editing arrow key functionality. 
+        repaired editing arrow key functionality.
 
         *src/gtksheet: Upgraded gtksheet module again, this time
         repairing a Pango error that occurred while editing a cell
@@ -244,17 +250,17 @@
         The codes now sets a flag when any data is modified, thus
         warning the user to save changes on exit, (the warning started
         appearing once the flag was updated, I did not do this part.)
-        
+
         *src/s_string_list.c: General file cleaning (needs more!).
         *src//s_attrib.c: General code cleaning, added conditional
         to check for slot_value=0, to stop s_attrib_get_refdes from
         appending a period on the end of unslotted components.
-        
+
         * src/x_fileselect.c: Added new function x_fileselect as a
         generic GTK file chooser.
-        
+
         * src/x_window.c: Implemented "Save As" functinality.
-        
+
         * src/s_table.c: Eliminated "we didn't find the row name"
         message in function s_table_create_attrib_pair because the
         messgage was annoying. Added conditionals in functions:
@@ -262,7 +268,7 @@
         s_table_add_toplevel_comp_items_to_comp_table
         so components with refdes with type "none" and "pinlabel"
         would not be added to the tables.
-        
+
         * src/s_sheet_data: Added conditional check for components
         with refdes of type "none" and "pinlabel" in functions:
         s_sheet_data_add_master_comp_list_items
@@ -270,12 +276,12 @@
 
         * src/x_dialog.c: Copied generic confirmation dialog from
         gschem and added to gattrib.
-        
+
         * src/s_toplevel.c: Added s_toplevel_close function.
         Added conditional check for components with refdes of type
         "none" and "pinlabel" in functional:
         s_toplevel_sheetdata_to_toplevel
-        
+
 2012-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*.c: Consolidated Gattrib specific includes into a single
@@ -304,19 +310,19 @@
 	* src/x_window.c: Modify gattrib so it checks for design changes
 	before quitting if user hits delete button on window.  Closes bug
 	1704938 from Peter Brett.
-	
+
 2007-04-21 Carlos Nieves Onega <cnieves (AT) iespana (DOT) es>
 
 	* src/x_fileselect.c:
-	 - Set the alternative button order for gtk dialogs 
+	 - Set the alternative button order for gtk dialogs
 	   (now with correct responses).
-	 - Reverted the changes below. 
+	 - Reverted the changes below.
 	   gtk_dialog_set_alternative_button_order should have the same
 	   responses as the dialogs.
 	 - Set the alternative button order for gtk dialogs.
 	  This would allow to display the correct button order whatever
 	  system is running this app. Fix for bug #1553483.
-	
+
 2007-04-17 21:16  Dan McMahill <danmc>
 
 	* src/gattrib.c: remove /* within comment
@@ -338,7 +344,7 @@
 2007-4-15  Stuart Brorson <sdb (AT) cloud9 (DOT) net>
 	* src/*.c:  Added DOxygen style comment pragma to many (but not all)
 	source files.  DOxygenating gattrib is an ongoing project.
-	
+
 2007-04-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/s_string_list.c: Added missing test to prevent a seg fault
@@ -348,23 +354,23 @@
 	* Makefile.am, configure.ac, docs/*: Created new docs
 	directory, and set up framework to create doxygen generated
 	docs.
-	
+
 2007-4-3  Stuart Brorson <sdb@cloud9.net>
 	* src/s_sheet_data.c, src/s_table.c, src/s_toplevel.c:
-	Temp fix for bug 1692431 -- don't put net= attribute into 
+	Temp fix for bug 1692431 -- don't put net= attribute into
 	component attrib table.
-	
+
 2007-2-11 Stuart Brorson <sdb@cloud9.net>
 	* src/s_toplevel.c: Fixed bug I introduced at code sprint.
-	
+
 2007-02-10 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/listsort.c, src/s_string_list.c: Applied patch by DJ:
 	[ 1637387 ] Enhance sort functions.  Thanks.
 
-	* gattrib/src/globals.c, gattrib/src/i_basic.c, 
-	gattrib/src/s_toplevel.c, gattrib/src/s_visibility.c, 
-	gattrib/src/x_gtksheet.c, gattrib/src/x_window.c: Fixed a few 
+	* gattrib/src/globals.c, gattrib/src/i_basic.c,
+	gattrib/src/s_toplevel.c, gattrib/src/s_visibility.c,
+	gattrib/src/x_gtksheet.c, gattrib/src/x_window.c: Fixed a few
 	compiler warnings.  Removed quit_func since it is completely
 	unused.
 
@@ -394,12 +400,12 @@
 2006-09-30 Stuart Brorson <sdb {AT} cloud9 {DOT} net>
 	* src/s_toplevel.c: Set CHANGED flag when deleting attrib
 	column so user is prompted when quitting before saving.
-	
+
 2006-09-27 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* configure.ac : Applied patch #1564796 by Cesar Strauss, 
+	* configure.ac : Applied patch #1564796 by Cesar Strauss,
 	enabling Cygwin's compilation. Thanks.
-	
+
 2006-09-23  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* src/gattrib.c, src/s_toplevel.c: Adapted for new file selection
@@ -414,7 +420,7 @@
 	Made gattrib throw up GUI window warning user of no
 	components or attributes per request of Peter Clifton.
 	Then program exits with non-zero return code.
-	
+
 2006-09-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated program version to 20060906.
@@ -430,7 +436,7 @@
 2006-08-21   SDB <sdb@cloud9.net>
 
         * include/prototype.h, src/s_table.c, src/s_toplevel.c: Fixed
-	bug in which adding a new attrib column would munge the 
+	bug in which adding a new attrib column would munge the
 	visibility of existing attributes.
 
 2006-08-21 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -447,12 +453,12 @@
 	* include/prototype.h, src/s_misc.c, src/s_sheet_data.c,
 	src/s_table.c, src/s_toplevel.c:  Applied patch from Jeff Mallatt
 	which implements ability to handle attrib strings with multiple
-	= signs. 
+	= signs.
 
 2006-08-12  SDB <sdb@cloud9.net>
 	* configure.ac, src/parsecmd.c:  Implemented getopt_long
 	for systems which have it.
-	
+
 2006-08-12  SDB <sdb@cloud9.net>
 	* include/prototype.h, include/x_menu.h,
 	src/s_visibility.c, src/x_fileselect.c, src/x_gtksheet.c,
@@ -466,23 +472,23 @@
 
 2006-07-31 SDB <sdb@cloud9.net>
         * src/gtksheet_2_2.c: fixed bug in gtk_sheet_make_backing_pixmap.
-	
+
 2006-07-25 Stuart Brorson <sdb@cloud9.net>
 	* src/f_export.c, src/x_dialog.c and others:  Implemented
 	ability to export CSV file of component sheet.
 
 	* ToDos, README:  Updated expository material to reflect current
 	state of project.
-	
+
 2006-07-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/gtksheet_2_2.c: Changed a g_free on a gdk_pixmap to 
-	g_object_unref to fix a valgrind error and the following 
-	output when	
+	* src/gtksheet_2_2.c: Changed a g_free on a gdk_pixmap to
+	g_object_unref to fix a valgrind error and the following
+	output when
 	exiting gattrib:  free(): invalid pointer 0x812a108!
 
-	* src/gattrib.c, src/gtksheet_2_2.c, src/s_object.c, 
-	src/s_rename.c, src/s_sheet_data.c, src/s_string_list.c, 
+	* src/gattrib.c, src/gtksheet_2_2.c, src/s_object.c,
+	src/s_rename.c, src/s_sheet_data.c, src/s_string_list.c,
 	src/s_table.c, src/s_toplevel.c, src/x_dialog.c, src/x_fileselect.c,
 	src/x_gtksheet.c, src/x_window.c: Changed all malloc/free calls to
 	g_malloc/g_free to be consistent with libgeda
@@ -491,7 +497,7 @@
 	* src/gtksheet_2_2.c: Finally fixed annoying bug in which gattrib
 	soaked up 70% of processor time.  Problem had to do with infinite
 	loop of expose_events generated upon call
-	to gdk_window_show(sheet->row_title_window) and 
+	to gdk_window_show(sheet->row_title_window) and
 	gdk_window_show(sheet->row_title_window) in gtk_sheet_expose.  I
 	removed calls to fix bug.
 
@@ -510,7 +516,7 @@
 	* src/globals.c: Added setting of load_newer_backup_func to NULL.
 	It is needed now libgeda checks for autosave backup files when
 	opening a schematic.
-	
+
 2005-09-27 18:45  Dan McMahill <danmc>
 
         * src/: gtkitementry_2_2.c, gtksheet_2_2.c: remove various compiler
@@ -523,15 +529,15 @@
 
 2005-08-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated package version to 20050814.  This is a 
+        * configure.ac: Updated package version to 20050814.  This is a
         temporary version and not a real release number.
 
 2005-07-13 Stuart Brorson <sdb@cloud9.net>
-	* src/s_visibility.c, s_table.c, s_object.c, s_toplevel.c 
-	amongst others.  
+	* src/s_visibility.c, s_table.c, s_object.c, s_toplevel.c
+	amongst others.
 	Made changes to enable setting attribute visibility from
 	within gattrib.
-	
+
 2005-06-17 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/i_vars.c: Fixed some more variables which were shadowing the
@@ -540,20 +546,20 @@
 2005-04-10 Carlos Nieves Onega <cnieves@iespana.es>
 	* src/gtkitementry_1_2.c, src/gtkitementry_2_2.c,
 	  src/gtksheet_1_2.c src/gtksheet_2_2.c:
-	  Fixed segmentation fault because lacking of "default_border" and 
+	  Fixed segmentation fault because lacking of "default_border" and
 	  "default_ouside_border" properties.
 
 2005-04-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/gattrib.c: Moved a variable decl to the top of the function to
-	make gcc 2.96 happy.  
+	make gcc 2.96 happy.
 
 2005-03-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.ac: Removed all tests for gtk+ 1.2.x and fixed error 		message if gtk+ 2.2.x is not found.
 
 2005-03-11 12:30 Stuart Brorson <sdb@cloud9.net>
-        * src/gtksheet*.c:  Incorporated definitions of default_border* 
+        * src/gtksheet*.c:  Incorporated definitions of default_border*
 	as suggested by Carlos.  A couple other possible bugfixes also.
 
 2005-03-08 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -569,7 +575,7 @@
 
 	* src/s_table.c, src/x_dialog.c: Fix some uninitialized variables
 	found by Dan McMahill & -wall gcc warning.
-	
+
 2005-02-21 05:29  Dan McMahill <danmc>
 
 	* configure.ac, include/prototype.h, include/struct.h,
@@ -595,12 +601,12 @@
 
 2005-02-19  Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/globals.c: Added definition of picture_draw_func after 
+	* src/globals.c: Added definition of picture_draw_func after
 	adding picture support to libgeda.
-	
+
 2005-02-15 18:32  Stuart Brorson <sdb@cloud9.net>
 
-	* src/x_dialog.c: Modified GTK buttons slightly so the captions 
+	* src/x_dialog.c: Modified GTK buttons slightly so the captions
 	fit the button, and the button usage matches the text.
 
 2005-02-14 22:31  Dan McMahill <danmc>
@@ -618,9 +624,9 @@
 
 2005-02-13 11:30  Stuart Brorson <sdb@cloud9.net>
 
-	* src/s_table.c: Fixed syntax bug (doubled ;;) in 
+	* src/s_table.c: Fixed syntax bug (doubled ;;) in
 	s_table_add_toplevel_pin_items_to_pin_table.
-	
+
 2005-02-13 01:40  Dan McMahill <danmc>
 
 	* src/s_string_list.c: fix 2 places where a pointer to an int was
@@ -630,15 +636,15 @@
 2005-02-12  Stuart Brorson <sdb@cloud9.net>
 
 	* src/gattrib.c, src/i_vars.c, src/s_toplevel.c, src/x_dialog.c,
-	* src/x_fileselect.c:  Fixed program to compile and run after 
+	* src/x_fileselect.c:  Fixed program to compile and run after
 	Patrick's refactoring of libgeda.  Also made fileselect
 	dialog stay on top of main window when gattrib is invoked with
 	no args on cmd line.
-	
+
 2005-02-12  Carlos Nieves Onega <cnieves@iespana.es>
 
 	* src/x_dialog.c, src/x_fileselect.c: Beautify buttons (use GTK stock).
-	
+
 2005-02-08 12:33  Dan McMahill <danmc>
 
 	* include/prototype.h, src/g_rc.c, src/g_register.c, src/gattrib.c:
@@ -650,35 +656,35 @@
 	* src/gattrib.c, src/s_attrib.c, src/s_object.c:
 	* src/s_sheet_data.c, src/s_string_list.c, src/s_table.c:
 	* src/s_toplevel.c, src/x_dialog.c, src/x_fileselect.c:
-	* src/x_gtksheet.c, src/x_window.c: Replaced u_basic_strdup() and 
+	* src/x_gtksheet.c, src/x_window.c: Replaced u_basic_strdup() and
 	u_basic_strdup_multiple() by GLib functions.
-	
-	* src/gattrib.c, src/x_fileselect.c:  Made it use GLib's 
+
+	* src/gattrib.c, src/x_fileselect.c:  Made it use GLib's
 	G_DIR_SEPARATOR* instead of libgeda's *_SEPARATER_*.
 
 2005-01-27 Stuart Brorson   <sdb@cloud9.net>
 
 	* src/gattrib.c: Changes made to enable correct opening
-	of schematics in foreign directories.  Changes detailed 
-	in libgeda ChangeLog.  
+	of schematics in foreign directories.  Changes detailed
+	in libgeda ChangeLog.
 
-	
+
 2005-01-22 (Later in same day) Stuart Brorson   <sdb@cloud9.net>
 
 	* x_dialog.c, s_toplevel.c:  Rewrote missing symbol dialog box
 	so that only one box is thrown up in event of missing symbols.
-	
+
 2005-01-22 (Later in same day) Stuart Brorson   <sdb@cloud9.net>
 
 	* include/prototype.h, src/(s_attrib.c, s_sheet_data.c,
 	s_table.c, s_toplevel.c,  x_dialog.c): New feature -- gattrib
 	now handles slotted components correctly.
-	
+
 2005-01-22 Stuart Brorson   <sdb@cloud9.net>
 
-	* src/s_toplevel.c, src/s_attrib.c, src/s_sheet_data, Makefile.am: 
+	* src/s_toplevel.c, src/s_attrib.c, src/s_sheet_data, Makefile.am:
 	Fixed bug where pre-existing
-	attribs were deleted instead of being replaced.  Added new fcn 
+	attribs were deleted instead of being replaced.  Added new fcn
 	in s_attrib.c as part of this bugfix.
 
 	* include/prototype.h, include/struct.h, include/x_menu.h,
@@ -687,19 +693,19 @@
 	before leaving program.
 
 	* configure.ac:  Added --enable-debug as configure option.
-	
+
 2005-01-21 Stuart Brorson   <sdb@cloud9.net>
 
         * src/s_toplevel.c, src/x_dialog.c: Fix bug where only one
 	page of design was searched for missing attribs.  Also updated
 	missing_sym dialog box.
-	
+
 2005-01-19 Stuart Brorson   <sdb@cloud9.net>
 
         * src/(s_object.c, gattrib.c, s_toplevel.c,x_fileselect.c,
 	x_dialog.c): Incorporated pop-up window which notifies
 	user if a component is found with no sym file.
-	
+
 2004-12-28 Stuart Brorson   <sdb@cloud9.net>
 
 	* lib/system-gattribrc.in:  Changed to refer to system-gafrc.
@@ -726,14 +732,14 @@
         *  Ported code to GTK+-2.X.  Re-wrote Makefile.am & configure.ac.  Split
 	   gtksheet.c into two versions, one for GTK-1.2 and one for GTK-2.X.
 	   (Both copied from gtkextra.sf.net.)
-	
+
 	*  Many fixes related to moving to GTK-2.X
 
 	*  Incorporated Ales' fix for "for" loop which had i=i++ construct.
 
 2004-07-13  Stuart Brorson  <sdb@cloud9.net>
 
-	*  Eliminated spurious GTK warnings by testing for NULL in arguments 
+	*  Eliminated spurious GTK warnings by testing for NULL in arguments
 	   before calling functions in gtksheet.c.
 
 	*  Removed several extraneous files originally bundled with GtkSheet.
@@ -741,14 +747,14 @@
 2004-06-25  Ales Hvezda  (Noted by SDB)
 
 	*  Modified gattrib to work with soon-to-be-released libgeda 20040710.
-	
+
 2004-03-13  Stuart Brorson  <sdb@cloud9.net>
 
 	*  Implemented alphabetic sort of master_comp_list.
-	
+
 	*  Placed references to g_rc_reset_component_library and other
 	   Guile fcns into g_register to enable Sri's RC customized files.
-	
+
 2004-03-11  Stuart Brorson  <sdb@cloud9.net>
 
         *  Fixed bug in which a loop was terminating early, causing
@@ -758,20 +764,20 @@
 	   (i.e. no refdeses) or no modifiable attributes (i.e. no attribs
 	   other than refdes) would cause a segfault.  Now program just
 	   exits with an error message.
-	
+
 2004-03-06  Stuart Brorson  <sdb@cloud9.net>
 
 	*  Fixed bug in which graphical objects were not discarded
-	   during the "add master list" loop.  This generated a 
+	   during the "add master list" loop.  This generated a
 	   spurious warning message.
 
 	*  Fixed configure.ac to fix the GTK-1.2 vs. GTK-2.X problem
-	   originally identified by Dan, and seen again by Sribalan 
-	   Santhanam in rel 20040304.  Hopefully I fixed the bug this 
-	   time! 
-	
+	   originally identified by Dan, and seen again by Sribalan
+	   Santhanam in rel 20040304.  Hopefully I fixed the bug this
+	   time!
+
 2004-03-04  Stuart Brorson  <sdb@cloud9.net>
-	
+
 	*  Fixed some compilation issues related to GTK-1.2 vs. GTK-2.X.
 	   Dan McMahill discovered the problem, and also provided the
 	   patches fixing it.  Thanks, Dan!
@@ -779,10 +785,10 @@
 	*  "make install" now correctly installs system-gattribrc into
 	   the place where the gEDA RC files live.  I had forgotten to
 	   include this into the last release, and you had to do it by
-	   hand. 
+	   hand.
 
 2004-02-21  Stuart Brorson  <sdb@cloud9.net>
-	
+
 	*  Initial release.
 
 2003-12-05  Stuart Brorson  <sdb@cloud9.net>

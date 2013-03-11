@@ -25,8 +25,8 @@ noinst_HEADERS = \
 	struct_priv.h \
 	libgedaguile_priv.h
 
-MOSTLYCLEANFILES = *.log core FILE *~
-CLEANFILES = *.log core FILE *~
-DISTCLEANFILES = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
+MOSTLYCLEANFILES     = *.log core FILE *~ libgeda/*~
+CLEANFILES           = *.log core FILE *~ libgeda/*~
+DISTCLEANFILES       = *.log core FILE *~ libgeda/*~
+MAINTAINERCLEANFILES = *.log core FILE *~ libgeda/*~ Makefile.in
 

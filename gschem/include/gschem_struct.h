@@ -44,33 +44,39 @@ struct st_gschem_toplevel {
   bool keyaccel_string_source_id;   /* event source ID used by above */
 
   /* -------------------- Dialog boxes -------------------- */
-  GtkWidget *sowindow;                  /* Script open */
-  GtkWidget *cswindow;                  /* component select */
-  GtkWidget *iwindow;                   /* image write dialog box */
-  GtkWidget *pswindow;                  /* page select */
-  GtkWidget *tiwindow;                  /* text input */
-  GtkWidget *tewindow;                  /* text edit */
-  GtkWidget *sewindow;                  /* slot edit */
-  GtkWidget *aawindow;                  /* arc attribs */
-  GtkWidget *mawindow;                  /* multi attribute */
-  GtkWidget *aewindow;                  /* attribute edit */
-  GtkWidget *trwindow;                  /* translate */
-  GtkWidget *tswindow;                  /* text size */
-  GtkWidget *tshowwindow;               /* text show window */
-  GtkWidget *thidewindow;               /* text hide window */
-  GtkWidget *tfindwindow;               /* text find window */
-  GtkWidget *hkwindow;                  /* Help/Hotkeys... dialog*/
-  GtkWidget *clwindow;                  /* Color edit dialog */
-   int edit_color;                      /* Used by the color edit dialog */
-  GtkWidget *cowindow;                  /* Coordinate window */
-  GtkWidget *coord_world;               /* World coordinate label */
-  GtkWidget *coord_screen;              /* Screen coordinate window */
-  GtkWidget *stwindow;                  /* Configuration Settings Dialog window */
+  /* x_dialog.c */
+  GtkWidget *sswindow;          /* Snap Size,  settings: IDS_SNAP_SIZE  */
+  GtkWidget *tswindow;          /* text size,  settings: IDS_TEXT_SIZE  */
+  GtkWidget *aawindow;          /* Arc attrib, settings: IDS_ARC_ANGLE  */
+  GtkWidget *clwindow;          /* Color edit, settings: IDS_COLOR_EDIT */
+  GtkWidget *hpwindow;          /* Fill Type,  settings: IDS_FILL_TYPE  */
+  GtkWidget *ltwindow;          /* Line Type,  settings: IDS_LINE_TYPE  */
+  GtkWidget *ptwindow;          /* Pin Type,   settings: IDS_PIN_EDIT   */
+  GtkWidget *sewindow;          /* Slot edit   settings: IDS_SLOT_EDIT  */
+  GtkWidget *tewindow;          /* text edit   settings: IDS_TEXT_EDIT  */
+  GtkWidget *ftwindow;          /* find text   settings: IDS_FIND_TEXT  */
+  GtkWidget *htwindow;          /* text hide   settings: IDS_HIDE_TEXT  */
+  GtkWidget *stwindow;          /* show text   settings: IDS_SHOW_TEXT  */
+  GtkWidget *tiwindow;          /* text input  settings: IDS_TEXT_INPUT */
+  GtkWidget *trwindow;          /* translate   settings: IDS_TRANSLATE  */
+
+  GtkWidget *hkwindow;         /* Help/Hotkeys settings: IDS_HOTKEYS    */
+  GtkWidget *cowindow;         /* Coordinate   settings: IDS_COORDINATES*/
+  GtkWidget *coord_world;      /* World coordinate label */
+  GtkWidget *coord_screen;     /* Screen coordinate window */
+
+  GtkWidget *aewindow;         /* attribute edit */
+  GtkWidget *cpwindow;         /* Configuration Preferences Dialog */
+  GtkWidget *cswindow;         /* component select */
+  GtkWidget *iwindow;          /* image write dialog box */
+  GtkWidget *mawindow;         /* multi attribute IDS_MULTI_ATTRBIBUTE */
+  GtkWidget *pswindow;         /* page select */
+  GtkWidget *sowindow;         /* Script open */
 
   /* ------------------ Picture placement ----------------- */
   GdkPixbuf *current_pixbuf;            /* used by add picture dialog */
-  double pixbuf_wh_ratio;               /* width/height ratio of the pixbuf */
-  char *pixbuf_filename;
+  double     pixbuf_wh_ratio;           /* width/height ratio of the pixbuf */
+  char      *pixbuf_filename;
 
   /* ------------------- graphics context ----------------- */
   GdkGC *gc;

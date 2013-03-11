@@ -44,7 +44,7 @@
  *
  *  \returns TRUE if the OBJECT was hit, otherwise FALSE.
  */
-static gboolean
+static bool
 is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
                int w_x, int w_y, int w_slack)
 {
@@ -85,7 +85,7 @@ is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
  *  \param [in] change_selection  Whether to select the found object or not.
  *  \returns TRUE if the OBJECT was hit, otherwise FALSE.
  */
-static gboolean
+static bool
 find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
                     int w_x, int w_y, int w_slack,
                     int change_selection)
@@ -124,8 +124,8 @@ find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
  *  \returns TRUE if the object was hit at the given coordinates,
  *           otherwise FALSE.
  */
-gboolean o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
-                        gboolean change_selection)
+bool o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
+                        bool change_selection)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int w_slack;
@@ -178,6 +178,7 @@ gboolean o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
   }
 
   i_update_sensitivities(w_current);
+
   return FALSE;
 }
 
@@ -186,7 +187,7 @@ gboolean o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
  *  \par Function Description
  *
  */
-gboolean
+bool
 o_find_selected_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;

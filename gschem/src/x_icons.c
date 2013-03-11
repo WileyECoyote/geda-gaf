@@ -34,8 +34,10 @@
 static GtkIconFactory* gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
-  "geda-arc", "geda-box", "geda-circles", "geda-copy", "geda-line",
-  "geda-mirror", "geda-move", "geda-multi", "geda-pin", "geda-rotate",
+  "geda-arc", "geda-arc-edit", "geda-box", "geda-circles", "geda-copy",
+  "geda-line", "geda-line-type", "geda-mesh", "geda-mirror", "geda-move",
+  "geda-multi", "geda-pin",  "geda-pin-type", "geda-slot", "geda-rotate",
+  "geda-lock", "geda-unlock", "geda-zoom-box", "geda-zoom-pan",
   "geda-select", "gschem-bus", "gschem-net",
   NULL
 };

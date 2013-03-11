@@ -1339,9 +1339,8 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, OBJECT *object, int end)
   g_return_if_fail ((object->type != OBJ_PIN) || (object->whichend == end));
 
   /* Check whether the current object is a bus or bus pin */
-  is_bus = ((object->type == OBJ_BUS)
-            || ((object->type == OBJ_PIN)
-                && (object->pin_type == PIN_TYPE_BUS)));
+  is_bus = ((object->type == OBJ_BUS) || ((object->type == OBJ_PIN)
+         && (object->pin_type == PIN_TYPE_BUS)));
 
   for (iter = object->conn_list; iter != NULL; iter = g_list_next (iter)) {
     CONN *conn = (CONN *) iter->data;

@@ -3,10 +3,10 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2013 Ales Hvezda
+;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
 ;;
-;;; Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -105,7 +105,7 @@ struct {
  *  \par Function Description
  *  This function destroys the configure_settings dialog.
  */
-void configure_dialog_response(GtkWidget *w, gint response,
+void configure_dialog_response(GtkWidget *Dialog, int response,
 			       GSCHEM_TOPLEVEL *w_current)
 {
   switch (response) {
@@ -122,8 +122,8 @@ void configure_dialog_response(GtkWidget *w, gint response,
     printf("configure_dialog_response(): strange signal %d\n",response);
   }
 
-  gtk_widget_destroy(w_current->stwindow);
-  w_current->stwindow = NULL;
+  gtk_widget_destroy(w_current->cpwindow);
+  w_current->cpwindow = NULL;
 
 }
 /* ----------------- Start Attribute TAB Support Functions ------------------ */
@@ -214,25 +214,24 @@ void gtk_bulb_group_set_active(GSList *RadioGroupList, int value)
  */
 void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
 {
+  w_current->cpwindow = create_settings_dialog( w_current);
 
-  w_current->stwindow = create_settings_dialog( w_current);
+  gtk_window_set_destroy_with_parent (GTK_WINDOW(w_current->cpwindow), TRUE);
 
-  gtk_window_set_destroy_with_parent (GTK_WINDOW(w_current->stwindow), TRUE);
-
-  gtk_window_position (GTK_WINDOW (w_current->stwindow), GTK_WIN_POS_MOUSE);
+  gtk_window_position (GTK_WINDOW (w_current->cpwindow), GTK_WIN_POS_MOUSE);
 
   load_settings_dialog (w_current);
 
-  g_signal_connect (GTK_OBJECT (w_current->stwindow), "response",
+  g_signal_connect (GTK_OBJECT (w_current->cpwindow), "response",
                     GTK_SIGNAL_FUNC(configure_dialog_response), w_current);
 /*
-  g_signal_connect (GTK_OBJECT (w_current->stwindow), "destroy",
+  g_signal_connect (GTK_OBJECT (w_current->cpwindow), "destroy",
                     GTK_SIGNAL_FUNC(destroy_all_radios), w_current);
 */
-  gtk_container_border_width (GTK_CONTAINER(w_current->stwindow),
+  gtk_container_border_width (GTK_CONTAINER(w_current->cpwindow),
                                 DIALOG_BORDER_SPACING);
 
-  gtk_widget_show(w_current->stwindow);
+  gtk_widget_show(w_current->cpwindow);
 
   return;
 

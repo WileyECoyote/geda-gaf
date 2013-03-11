@@ -181,11 +181,11 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
         /* traverse graphical elements, but adding them to the
 	   graphical netlist */
         g_free(temp);
-	
+
 	netlist = s_netlist_return_tail(graphical_netlist_head);
 	is_graphical = TRUE;
-	
-    
+
+
       }
       netlist = s_netlist_add(netlist);
       netlist->nlid = o_current->sid;
@@ -204,29 +204,29 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
           netlist->component_uref = NULL;
         }
       }
-      
+
       if (hierarchy_tag) {
 	netlist->hierarchy_tag = g_strdup (hierarchy_tag);
       }
 
       netlist->object_ptr = o_current;
-      
+
       if (!netlist->component_uref) {
-	
+
 	/* search of net attribute */
 	/* maybe symbol is not a component */
 	/* but a power / gnd symbol */
 	temp = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
-	
+
 	/* nope net attribute not found */
 	if ( (!temp) && (!is_graphical) ) {
-	  
+
 	  fprintf(stderr,
 		  "Could not find refdes on component and could not find any special attributes!\n");
-	  
+
 	  netlist->component_uref = g_strdup("U?");
 	} else {
-	  
+
 #if DEBUG
 	  printf("yeah... found a power symbol\n");
 #endif
@@ -234,18 +234,18 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
 	  netlist->component_uref = NULL;
 	  g_free(temp);
 	}
-	
+
       }
 
       netlist->cpins =
 	s_traverse_component(pr_current, o_current,
 			     hierarchy_tag);
-      
+
       /* here is where you deal with the */
       /* net attribute */
       s_netattrib_handle(pr_current, o_current, netlist,
 			 hierarchy_tag);
-      
+
       /* now you need to traverse any underlying schematics */
       if (pr_current->hierarchy_traversal == TRUE) {
 	s_hierarchy_traverse(pr_current, o_current, netlist);
@@ -274,8 +274,14 @@ CPINLIST *s_traverse_component(TOPLEVEL * pr_current, OBJECT * component,
     OBJECT *o_current = iter->data;
 
     /* Ignore objects which aren't net pins */
-    if (o_current->type != OBJ_PIN ||
-        o_current->pin_type != PIN_TYPE_NET)
+    if (o_current->type != OBJ_PIN)
+      continue;
+
+    if ((o_current->pin_type != PIN_TYPE_NET) ||
+        (o_current->pin_type != PIN_TYPE_BUMP) ||
+        (o_current->pin_type != PIN_TYPE_BALL) ||
+        (o_current->pin_type != PIN_TYPE_WEDGE) ||
+        (o_current->pin_type != PIN_TYPE_RIBBON))
       continue;
 
     /* add cpin node */
@@ -305,7 +311,6 @@ CPINLIST *s_traverse_component(TOPLEVEL * pr_current, OBJECT * component,
     cpins->nets = nets_head;
     /* s_net_print(nets); */
   }
-
 
   return (cpinlist_head);
 }

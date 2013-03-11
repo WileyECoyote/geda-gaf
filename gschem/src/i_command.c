@@ -250,6 +250,7 @@ COMMAND (do_repeat_last)
 COMMAND (do_file)
 {
   BEGIN_COMMAND(do_file);
+  //close discard export import new open print revert save save as, save all
 
   int i;
   fprintf(stderr, "there were %d arguments: ", argc);
@@ -260,7 +261,7 @@ COMMAND (do_file)
   EXIT_COMMAND(do_file);
 }
 
-/* \defgroup i_command_Command_Functions
+/*! \defgroup i_command_Command_Functions
  *  @{
  */
 /*! \brief File New Window action in i_command_Command_Functions
@@ -733,7 +734,7 @@ COMMAND ( do_mirror )
 COMMAND ( do_edit_butes )
 {
   BEGIN_COMMAND(do_edit_butes);
-  o_edit(w_current, geda_list_get_glist( w_current->toplevel->page_current->selection_list ) );
+  o_edit(w_current, geda_list_get_glist( Current_Selection ) );
   EXIT_COMMAND(do_edit_butes);
 }
 COMMAND ( do_edit_text )
@@ -762,33 +763,43 @@ COMMAND ( do_edit_slot )
   EXIT_COMMAND(do_edit_slot);
 }
 /*! \brief Edit Color*/
+COMMAND ( do_edit_arc )
+{
+  BEGIN_COMMAND(do_edit_arc);
+  OBJECT *object;
+
+  object = o_select_return_first_object(w_current);
+  if ( object && object->type == OBJ_ARC ) {
+    x_dialog_edit_arc_angle(w_current, NULL);
+  }
+  EXIT_COMMAND(do_edit_arc);
+}
+/*! \brief Edit Color*/
 COMMAND ( do_edit_color )
 {
   BEGIN_COMMAND(do_edit_color);
 
-  color_edit_dialog(w_current);
+  x_dialog_edit_color (w_current);
   EXIT_COMMAND(do_edit_color);
 }
 COMMAND ( do_pintype )
 {
   BEGIN_COMMAND(do_pintype);
 
-  x_dialog_edit_pin_type (w_current,
-                          geda_list_get_glist (w_current->toplevel->
-                                               page_current->selection_list));
+  x_dialog_edit_pin_type (w_current);
 
   EXIT_COMMAND(do_pintype);
 }
 COMMAND ( do_linetype )
 {
   BEGIN_COMMAND(do_linetype);
-  line_type_dialog(w_current);
+  x_dialog_edit_line_type(w_current);
   EXIT_COMMAND(do_linetype);
 }
 COMMAND ( do_filltype )
 {
   BEGIN_COMMAND(do_filltype);
-  fill_type_dialog(w_current);
+  x_dialog_edit_fill_type(w_current);
   EXIT_COMMAND(do_filltype);
 }
 COMMAND ( do_translate )
@@ -811,7 +822,7 @@ COMMAND ( do_translate )
                     "set to 100\n"));
   }
 
-  translate_dialog(w_current);
+  x_dialog_translate (w_current);
   EXIT_COMMAND(do_translate);
 }
 /*! \brief Lock
@@ -857,14 +868,15 @@ COMMAND ( do_embed )
   /* anything selected ? */
   if (o_select_selected(w_current)) {
     /* yes, embed each selected component */
-    GList *s_current = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+    GList *s_current = geda_list_get_glist( Current_Selection );
 
     while (s_current != NULL) {
       o_current = (OBJECT *) s_current->data;
-      g_assert (o_current != NULL);
-      if ( (o_current->type == OBJ_COMPLEX) ||
-           (o_current->type == OBJ_PICTURE)) {
-        o_embed (w_current->toplevel, o_current);
+      if(o_current != NULL) {
+        if ( (o_current->type == OBJ_COMPLEX) ||
+             (o_current->type == OBJ_PICTURE)) {
+          o_embed (w_current->toplevel, o_current);
+        }
       }
       s_current = g_list_next(s_current);
     }
@@ -887,14 +899,15 @@ COMMAND ( do_unembed )
   if (o_select_selected(w_current)) {
     /* yes, unembed each selected component */
     GList *s_current =
-      geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+      geda_list_get_glist( Current_Selection );
 
     while (s_current != NULL) {
       o_current = (OBJECT *) s_current->data;
-      g_assert (o_current != NULL);
-      if ( (o_current->type == OBJ_COMPLEX) ||
-           (o_current->type == OBJ_PICTURE) ) {
-        o_unembed (w_current->toplevel, o_current);
+      if (o_current != NULL) {
+        if ( (o_current->type == OBJ_COMPLEX) ||
+             (o_current->type == OBJ_PICTURE) ) {
+          o_unembed (w_current->toplevel, o_current);
+        }
       }
       s_current = g_list_next(s_current);
     }
@@ -1318,7 +1331,7 @@ COMMAND ( do_add_text )
   w_current->inside_action = 0;
   i_set_state(w_current, SELECT);
 
-  text_input_dialog(w_current);
+  x_dialog_text_input(w_current);
   EXIT_COMMAND(do_add_text);
 }
 
@@ -1626,7 +1639,7 @@ COMMAND ( do_attach )
   if (!w_current->inside_action) {
 
   /* skip over head */
-    s_current = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+    s_current = geda_list_get_glist( Current_Selection );
     if (s_current) {
 
       first_object = (OBJECT *) s_current->data;
@@ -1674,7 +1687,7 @@ COMMAND ( do_detach )
   /* Do Not detach while inside an action */
   if (!w_current->inside_action) {
 
-    s_current = geda_list_get_glist( w_current->toplevel->page_current->selection_list );
+    s_current = geda_list_get_glist( Current_Selection );
     while (s_current != NULL) {
       o_current = (OBJECT *) s_current->data;
       if (o_current) {
@@ -1848,7 +1861,7 @@ COMMAND ( do_find_text )
 
   /* Don't execute this inside an action */
   if (!w_current->inside_action) {
-    find_text_dialog(w_current);
+    x_dialog_find_text(w_current);
   }
 }
 
@@ -1859,7 +1872,7 @@ COMMAND ( do_hide_text )
   BEGIN_NO_ARGUMENT(do_hide_text);
   /* Don't execute this inside an action */
   if (!w_current->inside_action) {
-     hide_text_dialog(w_current);
+     x_dialog_hide_text(w_current);
   }
 }
 
@@ -1870,10 +1883,18 @@ COMMAND ( do_show_text )
   BEGIN_NO_ARGUMENT(do_show_text);
   /* Don't execute this inside an action */
   if (!w_current->inside_action) {
-    show_text_dialog(w_current);
+    x_dialog_show_text(w_current);
   }
 }
-
+/*! @brief Launch the Multi-Attributes Dialog */
+COMMAND ( do_attributes )
+{
+  NOT_NULL(w_current);
+  BEGIN_NO_ARGUMENT(do_attributes);
+  if (!w_current->inside_action)  {  /* Don't execute this inside an action */
+    x_multiattrib_open(w_current);
+  }
+}
 /*! @brief Launch the Auto Number Dialog */
 COMMAND ( do_autonumber )
 {
@@ -2041,7 +2062,7 @@ COMMAND ( do_show_console )
 COMMAND ( do_show_coordinates )
 {
   BEGIN_COMMAND(do_show_coordinates);
-  coord_dialog (w_current, 0, 0);
+  x_dialog_coord_dialog (w_current, 0, 0);
   EXIT_COMMAND(do_show_coordinates);
 }
 

@@ -78,7 +78,8 @@ void o_selection_remove (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_sel
     if (g_list_find( geda_list_get_glist( selection ), o_selected ) != NULL) {
       o_selection_unselect (toplevel, o_selected);
       geda_list_remove( (GedaList *)selection, o_selected );
-      toplevel->page_current->CHANGED = 1;
+      /* called by gschem o_select_unselect_all, which doesn't want: */
+      /* toplevel->page_current->CHANGED = 1; */
     }
   }
 }

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,7 +63,7 @@ gschem_marshal_VOID__POINTER_STRING (GClosure     *closure,
 
   callback (data1,
             g_value_get_pointer (param_values + 1),
-            (gchar*)g_value_get_string (param_values + 2),
+            (char*)g_value_get_string (param_values + 2),
             data2);
 }
 /* End section based on generated code from glib-genmashal */
@@ -111,7 +111,7 @@ static void save_geometry_to_file(gpointer user_data)
  *  \param [in] key_file   The GKeyFile to save the geometry data to.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
-static void geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar* group_name)
+static void geometry_save (GschemDialog *dialog, GKeyFile *key_file, char* group_name)
 {
   int x, y, width, height;
 
@@ -134,9 +134,9 @@ static void geometry_save (GschemDialog *dialog, GKeyFile *key_file, gchar* grou
  *  \param [in] key_file   The GKeyFile to load the geometry data from.
  *  \param [in] group_name The group name in the key file to find the data under.
  */
-static void geometry_restore (GschemDialog *dialog, GKeyFile *key_file, gchar* group_name)
+static void geometry_restore (GschemDialog *dialog, GKeyFile *key_file, char* group_name)
 {
-  gint x, y, width, height;
+  int x, y, width, height;
 
   x      = g_key_file_get_integer (key_file, group_name, "x", NULL);
   y      = g_key_file_get_integer (key_file, group_name, "y", NULL);
@@ -160,7 +160,7 @@ static void setup_keyfile ()
   if (dialog_geometry != NULL)
     return;
 
-  gchar *file = g_build_filename (s_path_user_config (),
+  char *file = g_build_filename (s_path_user_config (),
                                   WINDOW_GEOMETRY_STORE, NULL);
 
   dialog_geometry = g_key_file_new();
@@ -186,26 +186,145 @@ static void setup_keyfile ()
 }
 
 
+
+/* Begin Call Back Selection Handler */
+
+/*! \brief Update the editing dialog when the page's selection changes.
+ *  \par Function Description
+ *  When the page's selection changes this function identifies how
+ *  many objects which can have attributes are currently selected. If
+ *  this number is 1, the dialog is set to edit the attributes of the
+ *  first selected object..
+ *
+ *  \param [in] selection  The SELECTION object of page being edited.
+ *  \param [in] user_data  The multi-attribute editor dialog.
+ */
+static void gd_callback_selection_changed (SELECTION *selection, gpointer user_data)
+{
+  GschemDialog *Dialog = GSCHEM_DIALOG(user_data);
+  GSCHEM_TOPLEVEL *w_current = Dialog->w_current;
+  GList *iter;
+  OBJECT *object;
+  int object_count = 0;
+
+  if (w_current != NULL) {
+
+    for (iter = geda_list_get_glist (selection); iter != NULL; iter = g_list_next (iter)) {
+      object = (OBJECT *)iter->data;
+      if(object != NULL);
+        object_count++;
+    }
+
+    if (object_count == 0) {
+      object = NULL;
+    }
+    else
+      if (object_count == 1) {
+        Dialog->func (w_current, object);
+      }
+      else {
+        object = o_select_return_first_object (w_current);
+        Dialog->func (w_current, object);
+    }
+  }
+  else
+    fprintf(stderr, "Error gd_callback_selection_changed:TOLEVEL not set;\n");
+}
+
+/*! \brief Update the dialog when the current page's SELECTION object
+ *         is destroyed
+ *  \par Function Description
+ *  This handler is called when the g_object_weak_ref() on the
+ *  SELECTION object we're watching expires. We reset the
+ *  Dialog->selection pointer to NULL to avoid attempting to
+ *  access the destroyed object.
+ *
+ *  \note
+ *  Our signal handlers were automatically disconnected during the
+ *  destruction process.
+ *
+ *  \param [in] data                  Pointer to a dialog
+ *  \param [in] where_the_object_was  Pointer to where the object was
+ *                                    just destroyed
+ */
+static void gd_callback_selection_finalized (gpointer data, GObject *where_the_object_was)
+{
+  GschemDialog *Dialog = GSCHEM_DIALOG(data);
+  g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
+}
+
+/*! \brief Add link between modeless dialog and current selection.
+ *  \par Function Description
+ *  This function connects a handler to the "changed" signal of
+ *  current selection to let the dialog watch it. It also adds a weak
+ *  reference on the selection.
+ *
+ *  \param [in] multiattrib  Ptr to a GschemDialog dialog.
+ *  \param [in] selection    The selection to watch.
+ */
+static void gd_connect_selection (GschemDialog *Dialog)
+{
+
+  Dialog->selection = Dialog->w_current->toplevel->page_current->selection_list;
+  g_object_weak_ref (G_OBJECT (Dialog->selection), gd_callback_selection_finalized, Dialog);
+  g_signal_connect (Dialog->selection, "changed", (GCallback)gd_callback_selection_changed, Dialog);
+  /* Synthesise a selection changed update to refresh the view */
+  /*gd_callback_selection_changed (Dialog->selection, Dialog);*/
+}
+
+/*! \brief Remove the link between Dialog and selection.
+ *  \par Function Description
+ *  If the dialog is watching a selection, this function disconnects
+ *  the "changed" signal and removes the weak reference that was
+ *  previously added on it.
+ *
+ *  \param [in] multiattrib  The Multiattrib dialog.
+ */
+static void gd_disconnect_selection (GschemDialog *Dialog) {
+  SELECTION *selection;
+
+  /* get selection watched from dialog data */
+  selection = (SELECTION*)g_object_get_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION);
+  selection = Dialog->selection;
+  if (selection == NULL) {
+    /* no selection watched */
+    return;
+  }
+
+  g_signal_handlers_disconnect_matched (selection,
+                                        G_SIGNAL_MATCH_FUNC |
+                                        G_SIGNAL_MATCH_DATA,
+                                        0, 0, NULL,
+                                        gd_callback_selection_changed,
+                                        Dialog);
+  g_object_weak_unref (G_OBJECT (selection),
+                       gd_callback_selection_finalized,
+                       Dialog);
+
+  /* reset Dialog data */
+  g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
+}
+
 /*! \brief GtkWidget show signal handler
  *
  *  \par Function Description
- *  Just before the dialog widget is shown, call the hook
+ *  Just before the Dialog widget is shown, call the hook
  *  to restore its previously saved position and size.
  *
  *  \param [in] widget  The GtkWidget being shown.
  */
 static void show_handler (GtkWidget *widget)
 {
-  gchar *group_name;
-  GschemDialog *dialog = GSCHEM_DIALOG( widget );
+  char *group_name;
+  GschemDialog *Dialog = GSCHEM_DIALOG( widget );
 
-  group_name = dialog->settings_name;
+  group_name = Dialog->settings_name;
   if (group_name != NULL) {
 
     setup_keyfile ();
     g_assert( dialog_geometry != NULL );
     if (g_key_file_has_group (dialog_geometry, group_name)) {
-      g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
+      g_signal_emit (Dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
                      dialog_geometry, group_name);
     }
   }
@@ -213,7 +332,6 @@ static void show_handler (GtkWidget *widget)
   /* Let GTK show the window */
   GTK_WIDGET_CLASS (gschem_dialog_parent_class)->show (widget);
 }
-
 
 /*! \brief GtkWidget unmap signal handler
  *
@@ -227,7 +345,7 @@ static void show_handler (GtkWidget *widget)
  */
 static void unmap_handler (GtkWidget *widget)
 {
-  gchar *group_name;
+  char *group_name;
   GschemDialog *dialog = GSCHEM_DIALOG (widget);
 
   group_name = dialog->settings_name;
@@ -237,11 +355,12 @@ static void unmap_handler (GtkWidget *widget)
     g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_SAVE ], 0,
                    dialog_geometry, group_name);
   }
-
+  if (dialog->func != NULL) {
+    gd_disconnect_selection (dialog);
+  }
   /* Let GTK unmap the window */
   GTK_WIDGET_CLASS (gschem_dialog_parent_class)->unmap (widget);
 }
-
 
 /*! \brief GObject finalise handler
  *
@@ -260,6 +379,7 @@ static void gschem_dialog_finalize (GObject *object)
   G_OBJECT_CLASS (gschem_dialog_parent_class)->finalize (object);
 }
 
+/* End CallBack Selection Handler*/
 
 /*! \brief GObject property setter function
  *
@@ -275,20 +395,26 @@ static void gschem_dialog_finalize (GObject *object)
  */
 static void gschem_dialog_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
 {
-  GschemDialog *dialog = GSCHEM_DIALOG (object);
+  GschemDialog *Dialog = GSCHEM_DIALOG (object);
 
   switch(property_id) {
     case PROP_SETTINGS_NAME:
-      g_free (dialog->settings_name);
-      dialog->settings_name = g_value_dup_string (value);
+      g_free (Dialog->settings_name);
+      Dialog->settings_name = g_value_dup_string (value);
       break;
     case PROP_GSCHEM_TOPLEVEL:
-      dialog->w_current = (GSCHEM_TOPLEVEL*)g_value_get_pointer (value);
+      Dialog->w_current = (GSCHEM_TOPLEVEL*)g_value_get_pointer (value);
+      break;
+    case PROP_SELECTION_TRACKER:
+      /* disconnect Dialog from any previous selection */
+      gd_disconnect_selection (Dialog);
+      Dialog->func = g_value_get_pointer(value);
+      /* connect the Dialog to the selection of the current page */
+      gd_connect_selection (Dialog);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
-
 }
 
 /*! \brief GObject property getter function
@@ -305,14 +431,14 @@ static void gschem_dialog_set_property (GObject *object, guint property_id, cons
  */
 static void gschem_dialog_get_property (GObject *object, guint property_id, GValue *value, GParamSpec *pspec)
 {
-  GschemDialog *dialog = GSCHEM_DIALOG (object);
+  GschemDialog *Dialog = GSCHEM_DIALOG (object);
 
   switch(property_id) {
       case PROP_SETTINGS_NAME:
-        g_value_set_string (value, dialog->settings_name);
+        g_value_set_string (value, Dialog->settings_name);
         break;
       case PROP_GSCHEM_TOPLEVEL:
-        g_value_set_pointer (value, (gpointer)dialog->w_current);
+        g_value_set_pointer (value, (gpointer)Dialog->w_current);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -380,14 +506,22 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                          "",
                          NULL,
                          G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
+
   g_object_class_install_property (
     gobject_class, PROP_GSCHEM_TOPLEVEL,
     g_param_spec_pointer ("gschem-toplevel",
                           "",
                           "",
                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
-}
 
+  g_object_class_install_property (
+    gobject_class, PROP_SELECTION_TRACKER,
+    g_param_spec_pointer (DIALOG_DATA_SELECTION,
+                          "",
+                          "",
+                          G_PARAM_WRITABLE));
+
+}
 
 /*! \brief Function to retrieve GschemDialog's GType identifier.
  *
@@ -423,6 +557,7 @@ GType gschem_dialog_get_type ()
   return gschem_dialog_type;
 }
 
+
 /*! \brief Internal GTK function modified from GTK+-2.4.14 gtkdialog.c
  *  to support gschem_dialog_new_with_buttons(...)
  *
@@ -434,11 +569,11 @@ GType gschem_dialog_get_type ()
  *  \param [in]  args               The va_list containging the remaining button strings
  */
 static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
-                                              const gchar    *first_button_text,
+                                              const char    *first_button_text,
                                               va_list         args)
 {
-  const gchar* text;
-  gint response_id;
+  const char* text;
+  int response_id;
 
   g_return_if_fail (GTK_IS_DIALOG (dialog));
 
@@ -446,13 +581,13 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
     return;
 
   text = first_button_text;
-  response_id = va_arg (args, gint);
+  response_id = va_arg (args, int);
 
   while (text != NULL)
     {
       gtk_dialog_add_button (dialog, text, response_id);
 
-      text = va_arg (args, gchar*);
+      text = va_arg (args, char*);
       if (text == NULL)
         break;
       response_id = va_arg (args, int);
@@ -473,7 +608,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
  *
  *  \return  The GschemDialog created.
  */
- GtkWidget* gschem_dialog_new_empty (const gchar           *title,
+ GtkWidget* gschem_dialog_new_empty (const char           *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
                                            const char *settings_name,
@@ -523,9 +658,9 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
  *
  *  \return  The GschemDialog created.
  */
-GtkWidget* gschem_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags,
-                                           const gchar *settings_name, GSCHEM_TOPLEVEL *w_current,
-                                           const gchar *first_button_text, ...)
+GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
+                                           const char *settings_name, GSCHEM_TOPLEVEL *w_current,
+                                           const char *first_button_text, ...)
 {
   GschemDialog *dialog;
   va_list args;

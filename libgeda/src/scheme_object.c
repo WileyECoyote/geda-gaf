@@ -942,6 +942,10 @@ SCM_DEFINE (pin_type, "%pin-type", 1, 0, 0,
 
   switch (obj->pin_type) {
   case PIN_TYPE_NET:
+  case PIN_TYPE_BUMP:
+  case PIN_TYPE_BALL:
+  case PIN_TYPE_WEDGE:
+  case PIN_TYPE_RIBBON:
     result = net_sym;
     break;
   case PIN_TYPE_BUS:

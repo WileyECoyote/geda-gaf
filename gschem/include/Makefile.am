@@ -3,7 +3,6 @@
 ## Process this file with automake to produce Makefile.in
 
 noinst_HEADERS = \
-		dialogs.h		\
 		globals.h		\
 		gschem_dialog.h		\
 		gschem.h		\

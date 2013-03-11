@@ -507,7 +507,9 @@
 
 ;END ------------------------>  Net Ripper  <-----------------------
 
-;BEGIN ---------------------->  Net Styles  <-----------------------
+;END ==================> Nets and Routing Setup <===================
+
+;BEGIN ------------------------>  Styles  <-------------------------
 ;  bus-style string
 ;
 ;  Set to thin if you want thin buses.
@@ -525,8 +527,8 @@
 ; Set to thick if you want thick lines.
 ; This mode also determines what line style gets printed
 ;
-;(line-style "none")
-(line-style "thin")
+(line-style "none")
+;(line-style "thin")
 ;(line-style "thick")
 
 ;  net-style string
@@ -579,8 +581,7 @@
 (thin-pin-width 15)
 (thick-pin-width 30)
 
-;END ----------------------->  Net Styles  <------------------------
-;END ==================> Nets and Routing Setup <===================
+;END ------------------------->  Styles  <--------------------------
 
 ;BEGIN ==============> Pointer Device  Preferences <================
 

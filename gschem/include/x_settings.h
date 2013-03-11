@@ -43,7 +43,7 @@
 
 #define ThisDialog SettingsDialog
 #define DialogTitle "Configure gschem"
-#define DialogSettings "settings"
+#define DialogSettings IDS_CONFIG_SETTINGS
 
 #define ControlID EnumeratedSettingsControl
 #define Combo_Responder combo_responder

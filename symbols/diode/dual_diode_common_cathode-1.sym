@@ -1,0 +1,58 @@
+v 20130214 2
+L 400 600 400 200 3 0 0 0 -1 -1
+L 400 400 200 600 3 0 0 0 -1 -1
+L 200 600 200 200 3 0 0 0 -1 -1
+L 200 200 400 400 3 0 0 0 -1 -1
+P 200 400 0 400 1 0 1
+{
+T 105 445 5 8 0 1 0 6 1
+pinnumber=2
+T 0 650 5 8 0 0 180 6 1
+pinseq=1
+T 205 145 5 8 0 1 0 6 1
+pintype=pas
+T 205 245 5 8 0 1 0 6 1
+pinlabel=A1
+}
+P 500 300 500 100 1 0 1
+{
+T 395 45 5 8 0 1 0 0 1
+pinnumber=3
+T 200 150 5 8 0 0 180 6 1
+pinseq=2
+T 495 145 5 8 0 1 0 0 1
+pintype=pas
+T 595 45 5 8 0 1 0 0 1
+pinlabel=C
+}
+T 400 700 8 10 1 1 0 0 1
+refdes=D?
+T 0 900 8 10 0 0 0 0 1
+footprint=SOT23
+L 600 600 600 200 3 0 0 0 -1 -1
+L 600 400 800 600 3 0 0 0 -1 -1
+L 800 600 800 200 3 0 0 0 -1 -1
+L 800 200 600 400 3 0 0 0 -1 -1
+P 800 400 1000 400 1 0 1
+{
+T 895 445 5 8 0 1 0 0 1
+pinnumber=1
+T 900 150 5 8 0 0 180 8 1
+pinseq=3
+T 895 45 5 8 0 1 0 0 1
+pintype=pas
+T 895 245 5 8 0 1 0 0 1
+pinlabel=A2
+}
+L 400 400 600 400 3 0 0 0 -1 -1
+L 500 300 500 400 3 0 0 0 -1 -1
+T 0 1100 8 10 0 0 0 0 1
+device=DIODE
+T 0 1300 5 10 0 0 0 0 1
+author=Cory Cross
+T 0 1500 5 10 0 0 0 0 1
+documentation=http://www.fairchildsemi.com/ds/BA/BAT54.pdf
+T 0 1700 5 10 0 0 0 0 1
+description=Dual diode w/ common cathode (usually SOT-23)
+T 0 1900 5 10 0 0 0 0 1
+numslots=0

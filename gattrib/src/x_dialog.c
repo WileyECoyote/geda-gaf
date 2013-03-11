@@ -819,7 +819,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
   gtk_widget_set_size_request (FindButt, DEFAULT_BUTTON_WIDTH, DEFAULT_BUTTON_HEIGHT);
   gtk_tooltips_set_tip (tooltips, FindButt, _("Find next"), NULL);
 
-  /* Store pointers to widgets, for use by lookup_widget(). */
+  /* Store pointers to widgets, for use by get_widget_data(). */
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, DialogTitle);
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox,     "MainDialogVBox");
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");

@@ -122,6 +122,12 @@ typedef struct
    next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
+/*! \brief 2nd Level Intermediate ToolBar Macros with Local Factory Icon */
+#define TOOLBAR_BUTTON_LOCAL_FAC(bar, name, next, icon, button, func, data) \
+   GtkWidget *name##_ICN = gtk_image_new_from_stock(TB_ICON_NAME(name), GTK_ICON_SIZE_SMALL_TOOLBAR); \
+   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
+
 /*! \brief 2nd Level Intermediate ToolBar Macros with Local Stock Icon */
 #define TOOLBAR_BUTTON_LOCAL_STK(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = gtk_image_new_from_stock(STOCK_MAP(icon), GTK_ICON_SIZE_SMALL_TOOLBAR); \

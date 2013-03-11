@@ -523,6 +523,7 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
   GtkWidget *label2;
   GtkWidget *type_combo;
   GtkWidget *switch_vbox;
+
   char *image_type_descr;
   char *filename;
   char *image_size;
@@ -531,7 +532,6 @@ void x_image_setup (GSCHEM_TOPLEVEL *w_current, IMAGE_TYPES default_type)
   bool image_color_save   = w_current->toplevel->image_color;
   bool invert_images_save = w_current->toplevel->invert_images;
   bool image_extents      = Image_Display;
-
 
   GtkWidget *ExtentsSwitch=NULL;
   GtkWidget *EnableColorSwitch=NULL;

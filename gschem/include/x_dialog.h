@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 2006-2010 Dan McMahill
+ * Copyright (C) 2006-2013 Dan McMahill
  *
  * Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
  *
@@ -27,6 +27,15 @@
 #define __X_DIALOG_H__
 
 
+#define GSCHEM_HOOKUP_OBJECT(component, widget, name) \
+  g_object_set_data_full (G_OBJECT (component), name, \
+  gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
+
+#define DECLARE_TOOPTIPS \
+  GtkTooltips *tooltips; \
+  tooltips = gtk_tooltips_new (); \
+  tooltips = tooltips;
+
 /* Define spacings for dialogs. Defines are in a sperate header,
  * some dialog use only the define, for example x_compselect
  */
@@ -44,4 +53,40 @@
 #include "x_print.h"
 #include "x_states.h"
 
+typedef struct st_line_type_data line_type_data;
+typedef struct st_fill_type_data fill_type_data;
+typedef struct st_pin_type_data  pin_type_data;
+
+struct st_line_type_data {
+
+  GtkWidget *width_entry;
+  GtkWidget *line_type;
+  GtkWidget *length_entry;
+  GtkWidget *space_entry;
+
+};
+
+struct st_fill_type_data {
+
+  GtkWidget *fill_type;
+  GtkWidget *width_entry;
+  GtkWidget *angle1_entry;
+  GtkWidget *pitch1_entry;
+  GtkWidget *angle2_entry;
+  GtkWidget *pitch2_entry;
+
+};
+struct st_pin_type_data {
+
+  GtkWidget *pin_type;
+  GtkWidget *number_spin;
+  GtkWidget *sequence_spin;
+  GtkWidget *label_entry;
+  GtkWidget *pin_attribute;
+
+  GtkWidget *auto_number;
+  GtkWidget *auto_sequence;
+  GtkWidget *set_attributes;
+
+};
 #endif /* __X_DIALOG_H__ */

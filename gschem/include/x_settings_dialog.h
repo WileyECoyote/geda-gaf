@@ -203,7 +203,7 @@ WidgetStringData DialogStrings[] = {
         { "SelectPixelsSpin",           "Select Pixels:",	"Controls how many pixels around an object can still be clicked as part of that object. A larger value gives greater ease in selecting small or narrow objects."},
         { "SnapSizeSpin",               "Snap Size:",		"Sets the default spacing which objects snaps to."},
         { "TextMarkerSizeSpin",         "  Marker Size:",       "Sets the default size of text origin markers."},
-        { "TextSizeSpin",               "    Text Size:",	"Sets the default text size."},
+        { "TextSizeSpin",               "    Text Size:",	"Sets the default text font size."},
         { "TextZoomFactorSpin",         "  Zoom Factor:",	"Sets the zoomfactor number (~150 being the most zoomed out factor)(zoom factors get smaller as you zoom in) at which text is displayed completely (not a line). This is only valid if FeedBack is set to \"only-when-readable\""},
         { "ThickBusWidthSpin",          "Thick",                "Set the width, in mils, of the Thick Buss"},
         { "ThickLineWidthSpin",         "Thick",                "Set the width, in mils, of the Thick Lines"},

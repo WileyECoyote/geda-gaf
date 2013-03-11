@@ -522,7 +522,7 @@ void o_slot_end(GSCHEM_TOPLEVEL *w_current, OBJECT *object, const char *string);
 int o_text_get_rendered_bounds(void *user_data, OBJECT *object, int *min_x, int *min_y, int *max_x, int *max_y);
 void o_text_prepare_place(GSCHEM_TOPLEVEL *w_current, char *text);
 void o_text_edit(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current);
-void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int len, int text_size, int text_alignment);
+void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int alignment, int color, int size);
 void o_text_change(GSCHEM_TOPLEVEL *w_current, OBJECT *object, char *string, int visibility, int show);
 
 /* o_undo.c */
@@ -579,45 +579,46 @@ bool x_color_display_enabled (int index);
 int x_load_color_scheme(char * scheme);
 
 /* x_dialog.c */
-GtkWidget* create_pixmap ( const char *filename);
-void destroy_window(GtkWidget *widget, GtkWidget **window);
-GtkWidget* lookup_widget (GtkWidget *widget, const char *widget_name);
-int  text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size);
-void select_all_text_in_textview(GtkTextView *textview);
-void text_input_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
-void text_input_dialog(GSCHEM_TOPLEVEL *w_current);
-int  change_alignment(GtkComboBox *w, GSCHEM_TOPLEVEL *w_current);
-void text_edit_dialog_ok(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
-void text_edit_dialog(GSCHEM_TOPLEVEL *w_current, const char *string, int text_size, int text_alignment);
-void line_type_dialog(GSCHEM_TOPLEVEL *w_current);
-void fill_type_dialog(GSCHEM_TOPLEVEL *w_current);
-void arc_angle_dialog(GSCHEM_TOPLEVEL *w_current, OBJECT *arc_object);
-void translate_dialog(GSCHEM_TOPLEVEL *w_current);
-void text_size_dialog(GSCHEM_TOPLEVEL *w_current);
-void snap_size_dialog(GSCHEM_TOPLEVEL *w_current);
-void slot_edit_dialog(GSCHEM_TOPLEVEL *w_current, const char *string);
-void about_dialog(GSCHEM_TOPLEVEL *w_current);
-void coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y);
-void coord_dialog(GSCHEM_TOPLEVEL *w_current, int x, int y);
-int  color_set(GtkWidget *w, gpointer data);
-char *index2functionstring(int index);
-void color_edit_dialog_apply(GtkWidget *w, GSCHEM_TOPLEVEL *w_current);
-void color_edit_dialog(GSCHEM_TOPLEVEL *w_current);
-void x_dialog_hotkeys(GSCHEM_TOPLEVEL *w_current);
-void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current);
+/* Dialog-Utility functions */
+GtkWidget* create_pixmap  ( const char *filename);
+void       destroy_window (GtkWidget *widget, GtkWidget **window);
+GList*     x_dialog_get_list_selected_objects (GSCHEM_TOPLEVEL *w_current, char otype);
+int        text_view_calculate_real_tab_width (GtkTextView *textview, int tab_size);
+void       select_all_text_in_textview        (GtkTextView *textview);
 
-void    gschem_message_dialog(const char *, gEDA_MessageType context, char *title);
-int     gschem_confirm_dialog(const char *, gEDA_MessageType context);
-char   *gschem_filesel_dialog(const char *, const char *, int);
+/* Standard-Dialogs */
+void about_dialog     (GSCHEM_TOPLEVEL *w_current);
+void snap_size_dialog (GSCHEM_TOPLEVEL *w_current);
+void text_size_dialog (GSCHEM_TOPLEVEL *w_current);
 
-void find_text_dialog(GSCHEM_TOPLEVEL *w_current);
-void hide_text_dialog(GSCHEM_TOPLEVEL *w_current);
-void show_text_dialog(GSCHEM_TOPLEVEL *w_current);
-void major_changed_dialog(GSCHEM_TOPLEVEL* w_current);
+/* Editing-Dialogs */
+void x_dialog_edit_arc_angle(GSCHEM_TOPLEVEL *w_current, OBJECT *arc_object);
+void x_dialog_edit_color(GSCHEM_TOPLEVEL *w_current);
+void x_dialog_edit_fill_type(GSCHEM_TOPLEVEL *w_current);
+void x_dialog_edit_line_type(GSCHEM_TOPLEVEL *w_current);
+void x_dialog_edit_pin_type(GSCHEM_TOPLEVEL *w_current);
+void x_dialog_edit_slot (GSCHEM_TOPLEVEL *w_current, const char *string);
+void x_dialog_edit_text (GSCHEM_TOPLEVEL *w_current, OBJECT *object);
+void x_dialog_find_text (GSCHEM_TOPLEVEL *w_current);
+void x_dialog_hide_text (GSCHEM_TOPLEVEL *w_current);
+void x_dialog_show_text (GSCHEM_TOPLEVEL *w_current);
+void x_dialog_text_input (GSCHEM_TOPLEVEL *w_current);
+void x_dialog_translate (GSCHEM_TOPLEVEL *w_current);
+
+/* Systemic-Dialogs */
+void x_dialog_hotkeys (GSCHEM_TOPLEVEL *w_current);
 bool x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page);
 bool x_dialog_close_window (GSCHEM_TOPLEVEL *w_current);
+void x_dialog_coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y);
+void x_dialog_coord_dialog(GSCHEM_TOPLEVEL *w_current, int x, int y);
+void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current);
+void x_dialog_symbol_changed(GSCHEM_TOPLEVEL* w_current);
 int  x_dialog_validate_attribute(GtkWindow* parent, char *attribute);
-void x_dialog_edit_pin_type(GSCHEM_TOPLEVEL *w_current, const GList *obj_list);
+
+/* Gschem-Generic-Dialogs */
+void  gschem_message_dialog(const char *, gEDA_MessageType context, char *title);
+int   gschem_confirm_dialog(const char *, gEDA_MessageType context);
+char *gschem_filesel_dialog(const char *, const char *, int);
 
 /* x_event.c */
 int  x_event_expose(GtkWidget *widget, GdkEventExpose *event, GSCHEM_TOPLEVEL *w_current);

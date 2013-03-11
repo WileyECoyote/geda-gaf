@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2013 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -161,7 +161,7 @@ struct st_complex {
 
 struct st_object {
   int type;                             /* Basic information */
-  int sid;
+  int sid;                              /* sequence id ?? */
   char *name;
 
   PAGE *page; /* Parent page */
@@ -200,8 +200,8 @@ struct st_object {
   int fill_angle1, fill_pitch1;
   int fill_angle2, fill_pitch2;
 
-  bool complex_embedded;                    /* is embedded component? */
-  char *complex_basename;              /* Component Library Symbol name */
+  bool complex_embedded;                /* is embedded component? */
+  char *complex_basename;               /* Component Library Symbol name */
   OBJECT *parent;                       /* Parent object pointer */
 
   int color;                            /* Which color */
@@ -218,16 +218,15 @@ struct st_object {
   /* 1 for up, -1 for down (vertial bus) */
   int bus_ripper_direction;             /* only valid on buses */
 
-
   int font_text_size;                   /* used only with fonts defs */
   GList *font_prim_objs;                        /* used only with fonts defs */
 
-  int whichend;    /* for pins only, either 0 or 1 */
-  int pin_type;    /* for pins only, either NET or BUS */
+  int whichend;         /* for pins only, either 0 or 1 */
+  PIN_TYPE pin_type;    /* for pins only, either NET or BUS */
 
   /* Tracking total number of entities connected by this net */
   int net_num_connected;          /* for nets only */
-  bool valid_num_connected;   /* for nets only */
+  bool valid_num_connected;       /* for nets only */
 
   GList *attribs;       /* attribute stuff */
   int show_name_value;
@@ -307,15 +306,15 @@ struct st_page {
   int pid;
 
   GList *_object_list;
-  SELECTION *selection_list; /* new selection mechanism */
+  SELECTION *selection_list;           /* new selection mechanism */
   GList *place_list;
-  OBJECT *object_lastplace; /* the last found item */
+  OBJECT *object_lastplace;            /* the last found item */
 
   char *page_filename;
-  int CHANGED;                  /* changed flag */
+  int CHANGED;                         /* changed flag */
   /*int zoom_factor; no longer used*/
-  int left, right, top, bottom;         /* World coord limits */
-  double coord_aspectratio;             /* Real worldcoords ratio (?) */
+  int left, right, top, bottom;        /* World coord limits */
+  double coord_aspectratio;            /* Real worldcoords ratio (?) */
 
   float to_screen_x_constant;
   float to_screen_y_constant;
@@ -329,7 +328,7 @@ struct st_page {
   /* needs to go into page mechanism actually */
   UNDO *undo_bottom;
   UNDO *undo_current;
-  UNDO *undo_tos;       /* Top Of Stack */
+  UNDO *undo_tos;                      /* Top Of Stack */
 
   /* up and down the hierarchy */
   /* this holds the pid of the parent page */
@@ -345,7 +344,7 @@ struct st_page {
   int ops_since_last_backup;
   char do_autosave_backup;
 
-  GList *weak_refs; /* Weak references */
+  GList *weak_refs;                    /* Weak references */
 };
 
 struct st_toplevel {
@@ -377,7 +376,6 @@ struct st_toplevel {
 
   GList* major_changed_refdes;          /* A list of all refdes's that have */
                                         /* major symbol version changes */
-
   /* backup variables */
   int auto_save_interval;
   int auto_save_timeout;

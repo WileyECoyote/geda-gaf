@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -32,10 +32,16 @@
 
 #define MAX_SLOT_SIZE 10
 
-/*! \todo Finish function documentation!!!
- *  \brief Change slot of selected component
+/*! \brief Edit Complex Object's Slot Attribute
  *  \par Function Description
+ *  This is really a pre-dialog launch for the Edit Slot Dialog.
+ *  The function insures the selected object is a complex and
+ *  checks for an existing slot attribute. Either the found slot
+ *  attribute or a fictitious values is passed to the Edit-Slot
+ *  Dialog.
  *
+ *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param object    pointer to a "slotable" OBJECT.
  */
 void o_slot_start (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
 {
@@ -53,13 +59,19 @@ void o_slot_start (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
     slot_value = g_strdup ("1");
   }
 
-  slot_edit_dialog (w_current, slot_value);
+  x_dialog_edit_slot (w_current, slot_value);
   g_free (slot_value);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add a Slot Attribute
  *  \par Function Description
+ *  This is function could be called x_dialog_edit_slot_response_ok
+ *  but it is also called from o_attrib, x_autonumber and o_text.
+ *  The function creates a now type "slots" attribute to the drawing
+ *  and attaches it to the object
+ *
+ *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param object    pointer to OBJECT to receive slot attributee.
  *
  */
 void o_slot_end(GSCHEM_TOPLEVEL *w_current, OBJECT *object, const char *string)

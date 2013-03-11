@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -61,11 +61,11 @@ enum {
   AUTONUMBER_RESPECT
 };
 
-enum {
+typedef enum {
   SCOPE_SELECTED,
   SCOPE_PAGE,
   SCOPE_HIERARCHY
-};
+} AutoNumberScope;
 
 /** @brief Enumerate Control IDs. */
 typedef enum {
@@ -94,9 +94,9 @@ static WidgetStringData DialogStrings[] = {
 	{ "scope_skip",		"Skip numbers found in:",	"Set where NOT to look for numbers"},
 	{ "sort_order",		"Sort order:",			"Select the orientation of the Scan method"},
 	{ "opt_startnum",	"Starting number:",	        "Set the starting number for the current scan"},
-	{ "opt_removenum",	"    Remove numbers:",		"Remove numbers tooltip"},
-	{ "opt_slotting",	"Automatic slotting:",		"Automatic slotting tooltip"},
-	{ "scope_overwrite",	"Overwrite existing numbers:",	"Overwrite existing numbers tooltip"},
+	{ "opt_removenum",	"    Remove numbers:",		"Remove existing reference numbers"},
+	{ "opt_slotting",	"Automatic slotting:",		"Automatic slotting"},
+	{ "scope_overwrite",	"Overwrite existing numbers:",	"Overwrite existing numbers"},
         { NULL, NULL, NULL},
 };
 
@@ -108,10 +108,10 @@ struct autonumber_text_t {
   GList *scope_text;
 
   /** @brief Scope for autonumbering text */
-  int scope_number;
+  AutoNumberScope scope_number;
 
   /** @brief Scope for searching existing numbers */
-  int scope_skip;
+  AutoNumberScope scope_skip;
 
   /** @brief Overwrite existing numbers in scope */
   bool scope_overwrite;
@@ -146,16 +146,18 @@ struct autonumber_text_t {
 typedef struct autonumber_slot_t AUTONUMBER_SLOT;
 
 struct autonumber_slot_t {
-  char *symbolname;     /* or should I use the device name? (Werner) */
+  char *symbolname;     /* or should we use the device name? (Werner) */
   int number;           /* usually this is the refdes number */
   int slotnr;           /* just the number of the free slot */
 };
 
 /* The Combo Boxes */
 static GtkWidget *ScopeTextCombo;
-static GtkWidget *ScopeNumberCombo;
-static GtkWidget *ScopeSkipCombo;
 static GtkWidget *SortOrderCombo;
+
+/* The Combo Menus */
+static GtkWidget *ScopeNumberMenu;
+static GtkWidget *ScopeSkipMenu;
 
 /* Spinner Widget Control */
 static GtkWidget *StartNumberSpin;
@@ -167,7 +169,7 @@ static GtkWidget *ScopeOverwriteSwitch=NULL;
 
 /* **************************** BACK-END CODE ****************************** */
 
-/********** compare functions for g_list_sort, ... ***********************/
+/* ******************* compare functions for g_list_sort, ****************** */
 /*! \brief GCompareFunc function to sort a list with g_list_sort().
  *  \par Function Description
  *  Compares the integer values of the gconstpointers a and b.
@@ -291,8 +293,8 @@ int autonumber_sort_diagonal(gconstpointer a, gconstpointer b) {
 /*! \brief GCompareFunc function to acces <B>AUTONUMBER_SLOT</B> object in a GList
  *  \par Function Description
  *  This Funcion takes two <B>AUTONUMBER_SLOT*</B> arguments and compares them.
- *  Sorting criteria is are the AUTONUMBER_SLOT members: first the symbolname, than the
- *  number and last the slotnr.
+ *  Sorting criteria is are the AUTONUMBER_SLOT members: first the symbolname, than
+ *  the number and last the slotnr.
  *  If the number or the slotnr is set to zero it acts as a wildcard.
  *  The function is used as GCompareFunc by GList functions.
  */
@@ -610,19 +612,21 @@ void autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext, OBJECT *o_current,
  *  @param o_current Pointer to the object from which to remove the number
  *
  * \note 11/04/12 WEH: Revised to return str ptr from s_slot-search_slot
- *       directly to g_free. Changed conditional to remove check for inherited
- *       since s_slot_search_slot does not return non-attached slot atrributes.
- *       Replaced g_strdup-printf with more
+ *       directly to g_free.
  */
 void autonumber_remove_number(AUTONUMBER_TEXT * autotext, OBJECT *o_current)
 {
   OBJECT *o_parent, *o_slot;
   char *str;
+
+  /* allocate memory for the search string*/
   str = malloc(strlen(autotext->current_searchtext) + 2); /* allocate space */
 
-  /* replace old text */
+  /* make copy of the search string and append "?" */
   strcpy(str, autotext->current_searchtext);
   strcat(str, "?");
+
+  /* replace old text */
   o_text_set_string (autotext->w_current->toplevel, o_current, str);
   free (str);
 
@@ -633,9 +637,8 @@ void autonumber_remove_number(AUTONUMBER_TEXT * autotext, OBJECT *o_current)
     if (o_parent != NULL) { /* Does child->parent->child make sense?*/
       /* \remark s_slot_search_slot updates o_slot variable */
       g_free (s_slot_search_slot (o_parent, &o_slot));
-      /* s_slot_search_slot only returns attached attributes */
-      /* so if o_slot has a value then we want to delete it */
-      if (o_slot != NULL) {
+      /* Only attempt to remove non-inherited slot attributes */
+      if (o_slot != NULL && !o_attrib_is_inherited (o_slot)) {
         /* delete the slot attribute */
         o_delete (autotext->w_current, o_slot);
       }
@@ -651,7 +654,7 @@ void autonumber_remove_number(AUTONUMBER_TEXT * autotext, OBJECT *o_current)
  *  complex element that is also the parent object of the o_current element.
  *
  * \note 11/04/12 WEH: Revised to eliminate gmalloc of trivial strings (twice).
- *       added conditional so that slot=0 is not passed o_slot_end function
+ *       added conditional so that slot=0 is not passed to o_slot_end function
  *       even though slot=0 is valid, it just means the component has none.
  */
 void autonumber_apply_new_text(AUTONUMBER_TEXT * autotext, OBJECT *o_current,
@@ -676,8 +679,8 @@ void autonumber_apply_new_text(AUTONUMBER_TEXT * autotext, OBJECT *o_current,
 
 /*! \brief Handles all the options of the autonumber text dialog
  *  \par Function Description
- *  This function is the master of all autonumber code. It receives the options of
- *  the the autonumber text dialog in an <B>AUTONUMBER_TEXT</B> structure.
+ *  This function is the master of all autonumber code. It receives the options
+ *  from the autonumber text dialog in an <B>AUTONUMBER_TEXT</B> structure.
  *  First it collects all pages of a hierarchical schematic.
  *  Second it gets all matching text elements for the searchtext.
  *  Then it renumbers all text elements of all schematic pages. The renumbering
@@ -708,9 +711,9 @@ void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   scope_text = g_list_first(autotext->scope_text)->data;
 
   /* Step1: get all pages of the hierarchy */
-  pages = s_hierarchy_traversepages (w_current->toplevel,
-                                     w_current->toplevel->page_current,
-                                     HIERARCHY_NODUPS);
+  pages = s_hierarchy_traverse_pages (w_current->toplevel,
+                                      w_current->toplevel->page_current,
+                                      HIERARCHY_NODUPS);
 
   /*  g_list_foreach(pages, (GFunc) s_hierarchy_print_page, NULL); */
 
@@ -931,6 +934,38 @@ void autonumber_sortorder_create(GSCHEM_TOPLEVEL *w_current)
 				  renderer, "pixbuf", 1, NULL);
 }
 
+/*! \brief Create Scope menus for the AutoNumber dialog
+ *  \par Function Description
+ *  This function creates a GtkMenu with different scope options.
+ */
+static GtkWidget *create_scope_menu (GSCHEM_TOPLEVEL *w_current)
+{
+  GtkWidget *menu;
+  GSList *group;
+  struct scope_options {
+    char *str;
+    AutoNumberScope scope;
+  } types[] = { { N_("Selected objects"),     SCOPE_SELECTED},
+                { N_("Current page"),         SCOPE_PAGE},
+                { N_("Whole hierarchy"),      SCOPE_HIERARCHY }
+              };
+  int i;
+
+  menu  = gtk_menu_new ();
+  group = NULL;
+
+  for (i = 0; i < sizeof (types) / sizeof (struct scope_options); i++) {
+    GtkWidget *menuitem;
+
+    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
+    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
+    gtk_menu_append (GTK_MENU (menu), menuitem);
+    gtk_object_set_data (GTK_OBJECT(menuitem), "scope_menu", GINT_TO_POINTER (types[i].scope));
+    gtk_widget_show (menuitem);
+  }
+
+  return(menu);
+}
 /* ***** STATE STRUCT HANDLING (interface between GUI and backend code) **** */
 
 /** @brief Adds a line to the search text history list
@@ -999,6 +1034,7 @@ AUTONUMBER_TEXT *autonumber_init_state()
     "netname=D?",
     NULL
   };
+
   char **t;
 
   autotext = g_new(AUTONUMBER_TEXT, 1);
@@ -1013,16 +1049,21 @@ AUTONUMBER_TEXT *autonumber_init_state()
     t++;
   }
 
+  /*TODO: Check hierarchy and assign scope based on results.
+   for example is the current page below another page? if so
+   then we shuld start with SCOPE_HIERARCHY*/
   autotext->scope_skip = SCOPE_PAGE;
+
+  /*TODO: Check selection and assign scope based on results */
   autotext->scope_number = SCOPE_SELECTED;
 
-  autotext->scope_overwrite = 0;
+  autotext->scope_overwrite = FALSE;
   autotext->order = AUTONUMBER_SORT_DIAGONAL;
 
   autotext->startnum=1;
 
-  autotext->removenum=0;
-  autotext->slotting=0;
+  autotext->removenum = FALSE;
+  autotext->slotting  = FALSE;
 
   autotext->dialog = NULL;
 
@@ -1033,13 +1074,14 @@ AUTONUMBER_TEXT *autonumber_init_state()
  *
  * @param autotext Pointer to the state struct.
  */
-void autonumber_set_state(AUTONUMBER_TEXT *autotext)
+void restore_dialog_values(AUTONUMBER_TEXT *autotext)
 {
   GtkWidget *widget;
   GtkTreeModel *model;
   GList *el;
-  /* Scope */
+  GtkWidget *menu, *menuitem;
 
+  /* Scope */
   /* Simple way to clear the ComboBox. Owen from #gtk+ says:
    *
    * Yeah, it's just slightly "shady" ... if you want to stick to fully
@@ -1057,9 +1099,17 @@ void autonumber_set_state(AUTONUMBER_TEXT *autotext)
   widget = gtk_bin_get_child(GTK_BIN(ScopeTextCombo));
   gtk_entry_set_text(GTK_ENTRY(widget), g_list_first(autotext->scope_text)->data);
 
-  SetCombo (ScopeSkip, autotext->scope_skip);
+  /* Set the ScopeNumber ComboMenu with the value in autotext->scope_number */
+  gtk_option_menu_set_history(GTK_OPTION_MENU(ScopeNumberMenu), autotext->scope_number);
+  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(ScopeNumberMenu));
+  menuitem = gtk_menu_get_active(GTK_MENU(menu));
+  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
-  SetCombo( ScopeNumber, autotext->scope_number);
+  /* Set the ScopeSkip ComboMenu with the value in autotext->scope_skip */
+  gtk_option_menu_set_history(GTK_OPTION_MENU(ScopeSkipMenu), autotext->scope_skip);
+  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(ScopeSkipMenu));
+  menuitem = gtk_menu_get_active(GTK_MENU(menu));
+  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
   SetSwitch (ScopeOverwrite, autotext->scope_overwrite);
   gtk_widget_set_sensitive(ScopeOverwriteSwitch, autotext->removenum);
@@ -1082,7 +1132,7 @@ void autonumber_set_state(AUTONUMBER_TEXT *autotext)
  *
  * @param autotext Pointer to the state struct.
  */
-void autonumber_get_state(AUTONUMBER_TEXT *autotext)
+static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 {
   GtkWidget *widget;
   char *text;
@@ -1095,9 +1145,21 @@ void autonumber_get_state(AUTONUMBER_TEXT *autotext)
 
   autotext->scope_text = autonumber_history_add(autotext->scope_text, text);
 
-  autotext->scope_skip = gtk_combo_box_get_active (GTK_COMBO_BOX (ScopeSkipCombo));
+  /* Retrieve scope_number selection from ScopeNumberMenu Combo/Menu */
+  autotext->scope_number = GPOINTER_TO_INT(
+    gtk_object_get_data (
+      GTK_OBJECT (
+        gtk_menu_get_active (
+          GTK_MENU (gtk_option_menu_get_menu (
+                      GTK_OPTION_MENU (ScopeNumberMenu))))), "scope_menu"));
 
-  autotext->scope_number = gtk_combo_box_get_active(GTK_COMBO_BOX(ScopeNumberCombo));
+  /* Retrieve scope_skip selection from ScopeSkipMenu Combo/Menu */
+  autotext->scope_skip = GPOINTER_TO_INT(
+    gtk_object_get_data (
+      GTK_OBJECT (
+        gtk_menu_get_active (
+          GTK_MENU (gtk_option_menu_get_menu (
+                      GTK_OPTION_MENU (ScopeSkipMenu))))), "scope_menu"));
 
   autotext->scope_overwrite = GET_SWITCH_STATE (ScopeOverwriteSwitch);
 
@@ -1111,20 +1173,21 @@ void autonumber_get_state(AUTONUMBER_TEXT *autotext)
 
 }
 
-/* ***** CALLBACKS (functions that get called from the GTK) ******* */
+/* ***** CALLBACKS (functions that get called from GTK) ******* */
 
-/*! \brief response  callback for the autonumber text dialog
+/*! \brief response callback for the autonumber text dialog
  *  \par Function Description
- *  The function just closes the dialog if the close button is pressed or the
- *  user closes the dialog window.
- *  Triggering the apply button will call the autonumber action functions.
+ *  The function just closes the dialog if the close button is pressed or
+ *  the  user closes the dialog window. When the Apply button is pressed
+ *  this function calls retrieve_values_from_dialog and then it doesn't make
+ *  any sense.
  */
 void autonumber_text_response(GtkWidget * widget, int response,
 			      AUTONUMBER_TEXT *autotext)
 {
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
-    autonumber_get_state(autotext);
+    retrieve_values_from_dialog(autotext);
     if (autotext->removenum == TRUE && autotext->scope_overwrite == FALSE) {
       /* temporarly set the overwrite flag */
       autotext->scope_overwrite = TRUE;
@@ -1212,22 +1275,20 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
   tooltips = gtk_tooltips_new ();
 
   ThisDialog = gschem_dialog_new_with_buttons(_("Autonumber text"),
-                                                 GTK_WINDOW(w_current->main_window),
-                                                 0, /* not modal */
-                                                 "autonumber", w_current,
-                                                 GTK_STOCK_CLOSE,
-                                                 GTK_RESPONSE_REJECT,
-                                                 GTK_STOCK_APPLY,
-                                                 GTK_RESPONSE_ACCEPT,
-                                                 NULL);
+                                GTK_WINDOW(w_current->main_window),
+          /* modal-less */                  GSCHEM_MODELESS_DIALOG,
+                                           "autonumber", w_current,
+                              GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
+                              GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                              NULL );
+
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
 					  GTK_RESPONSE_ACCEPT,
 					  GTK_RESPONSE_REJECT,
 					  -1);
 
-  gtk_window_position (GTK_WINDOW (ThisDialog),
-		       GTK_WIN_POS_MOUSE);
+  /* gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);*/
 
   gtk_container_border_width(GTK_CONTAINER(ThisDialog),
 			     DIALOG_BORDER_SPACING);
@@ -1279,16 +1340,9 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
                    (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label8), 0, 0.5);
 
-  ScopeNumberCombo = gtk_combo_box_new_text ();
-  gtk_tooltips_set_tip (tooltips, ScopeNumberCombo, _TOOLTIP(ScopeNumber), NULL);
-  gtk_widget_show ( ScopeNumberCombo);
-  gtk_table_attach (GTK_TABLE (table1), ScopeNumberCombo, 1, 2, 1, 2,
-                   (GtkAttachOptions) (GTK_FILL),
-                   (GtkAttachOptions) (GTK_FILL), 0, 0);
-
-  GTK_LOAD_COMBO(ScopeNumber, "Selected objects");
-  GTK_LOAD_COMBO(ScopeNumber, "Current page");
-  GTK_LOAD_COMBO(ScopeNumber, "Whole hierarchy");
+  ScopeNumberMenu = gtk_option_menu_new ();
+  gtk_option_menu_set_menu(GTK_OPTION_MENU(ScopeNumberMenu), create_scope_menu (w_current));
+  gtk_table_attach_defaults(GTK_TABLE(table1), ScopeNumberMenu, 1, 2, 1, 2);
 
   label6 = gtk_label_new (_LABEL(ScopeSkip));
   gtk_widget_show (label6);
@@ -1297,16 +1351,11 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
                    (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label6), 0, 0.5);
 
-  ScopeSkipCombo = gtk_combo_box_new_text ();
-  gtk_tooltips_set_tip (tooltips, ScopeSkipCombo, _TOOLTIP(ScopeSkip), NULL);
-  gtk_widget_show (ScopeSkipCombo);
-  gtk_table_attach (GTK_TABLE (table1), ScopeSkipCombo, 1, 2, 2, 3,
+  ScopeSkipMenu = gtk_option_menu_new ();
+  gtk_option_menu_set_menu(GTK_OPTION_MENU(ScopeSkipMenu), create_scope_menu (w_current));
+  gtk_table_attach (GTK_TABLE (table1), ScopeSkipMenu, 1, 2, 2, 3,
                    (GtkAttachOptions) (GTK_FILL),
                    (GtkAttachOptions) (GTK_FILL), 0, 0);
-
-  GTK_LOAD_COMBO(ScopeSkip, "Selected objects");
-  GTK_LOAD_COMBO(ScopeSkip, "Current page");
-  GTK_LOAD_COMBO(ScopeSkip, "Whole hierarchy");
 
   GTK_SWITCH(vbox3, ScopeOverwrite, 6, FALSE)
 
@@ -1362,11 +1411,11 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
   GTK_SWITCH(vbox4, DoRemoveNumber, 0, FALSE)
   GTK_SWITCH(vbox4, DoSlotting, 0, FALSE)
 
-  /* Store pointers to all widgets, for use by lookup_widget(). */
-  HOOKUP_GEDA_OBJECT (ScopeText, Combo);
-  HOOKUP_GEDA_OBJECT (ScopeNumber, Combo);
-  HOOKUP_GEDA_OBJECT (ScopeSkip, Combo);
-  HOOKUP_GEDA_OBJECT (SortOrder, Combo);
+  /* Store pointers to all widgets, for use by get_widget_data(). */
+  HOOKUP_GEDA_OBJECT (ScopeText,   Combo);
+  HOOKUP_GEDA_OBJECT (ScopeNumber, Menu);
+  HOOKUP_GEDA_OBJECT (ScopeSkip,   Menu);
+  HOOKUP_GEDA_OBJECT (SortOrder,   Combo);
 
   return autonumber_text;
 }
@@ -1383,7 +1432,7 @@ void autonumber_text_dialog(GSCHEM_TOPLEVEL *w_current)
   static AUTONUMBER_TEXT *autotext = NULL;
 
   if(autotext == NULL) {
-    /* first call of this function, init dialog structure */
+    /* first call of this function, to allocate and init our structure */
     autotext=autonumber_init_state();
   }
 
@@ -1391,8 +1440,8 @@ void autonumber_text_dialog(GSCHEM_TOPLEVEL *w_current)
   autotext->w_current = w_current;
 
   if(autotext->dialog == NULL) {
-    /* Dialog is not currently displayed - create it */
 
+    /* Dialog is not currently displayed - create it */
     autotext->dialog = autonumber_create_dialog(w_current);
 
     autonumber_sortorder_create(w_current);
@@ -1404,7 +1453,7 @@ void autonumber_text_dialog(GSCHEM_TOPLEVEL *w_current)
                       G_CALLBACK (autonumber_text_response),
                       autotext);
 
-    autonumber_set_state(autotext);
+    restore_dialog_values(autotext);
 
     gtk_widget_show_all(autotext->dialog);
   }

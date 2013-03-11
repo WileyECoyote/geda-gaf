@@ -166,7 +166,7 @@ cmd_export (int argc, char **argv)
   edascm_dynwind_toplevel (toplevel);
 
   /* Now load rc files, if necessary */
-  if (getenv ("GAF_INHIBIT_RCFILES") == NULL) {
+  if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
     g_rc_parse (toplevel, "gaf export", NULL, NULL);
   }
   i_vars_libgeda_set (toplevel); /* Ugh */

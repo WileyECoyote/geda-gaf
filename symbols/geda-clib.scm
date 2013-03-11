@@ -46,6 +46,7 @@
                      ("analogdevices" "Analog Devices")
                      ("amphenol" "Connectors (Amphenol)")
                      ("apex" "Apex Microtechnology")
+                     ("atmel" "Atmel")
                      ("cirrus" "Cirrus Logic")
                      ("dallas" "Dallas Semiconductor")
                      ("dec" "DEC")
@@ -62,10 +63,13 @@
                      ("panasonic" "Panasonic Electronics")
                      ("philips" "Philips Electronics")
                      ("st" "ST Microelectronics")
+                     ("ti" "Texas Instruments")
+                     ("vishay" "Vishay")
                      ("xilinx" "Xilinx")
  
    ; Electro-Mechanical
                      ("motor" "Motors")
+                     ("meter" "Meters")
                      ("relay" "Relays (standard)")
                      ("switch" "Switches (standard)")
 

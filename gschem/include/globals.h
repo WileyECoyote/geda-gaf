@@ -49,6 +49,7 @@ extern int force_save_as;
 
 #define command_history 22
 #define MAX_BUFFERS 	6
+
 /* Global buffers */
 extern GList *object_buffer[MAX_BUFFERS];
 
@@ -95,6 +96,9 @@ typedef enum { ID_ORIGIN_MENU = -32, /* can't pass paramerter */
                ID_ORIGIN_CONSOLE,    /* could pass paramerter */
                ID_ORIGIN_CAMMAND,    /* could pass paramerter */
 } ID_ACTION_ORIGIN;
+
+/* This macro is used to reduce lines lengths */
+#define Current_Selection w_current->toplevel->page_current->selection_list
 
 /* Utility Macros for Message Dialogs */
 #define message_dialog(text, type) \

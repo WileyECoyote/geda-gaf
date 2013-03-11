@@ -85,9 +85,9 @@ pre_object_removed (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
   o_emit_pre_change_notify (toplevel, object);
 
   /* Clear object parent pointer */
-#ifndef NDEBUG
+#ifdef DEBUG
   if (object->page == NULL) {
-    g_critical ("Object %p has NULL parent page!", object);
+    g_critical ("Object %p has NULL parent page!\n", object);
   }
 #endif
   object->page = NULL;

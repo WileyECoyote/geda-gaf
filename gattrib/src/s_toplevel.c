@@ -502,7 +502,7 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
       /* for some reason, we have lost a name_value_pair somewhere . . .  */
       fprintf(stderr,
 	      _("In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"));
-      exit(-1);
+      return NULL;
     }
 
     /* iterate */
@@ -844,7 +844,7 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
       /* for some reason, we have lost a name_value_pair somewhere . . .  */
       fprintf(stderr,
 	      _("In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"));
-      exit(-1);
+      return NULL;
     }
 
     /* iterate */

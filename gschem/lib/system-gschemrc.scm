@@ -507,7 +507,9 @@
 
 ;END ------------------------>  Net Ripper  <-----------------------
 
-;BEGIN ---------------------->  Net Styles  <-----------------------
+;END ==================> Nets and Routing Setup <===================
+
+;BEGIN ------------------------>  Styles  <-------------------------
 ;  bus-style string
 ;
 ;  Set to thin if you want thin buses.
@@ -525,8 +527,8 @@
 ; Set to thick if you want thick lines.
 ; This mode also determines what line style gets printed
 ;
-;(line-style "none")
-(line-style "thin")
+(line-style "none")
+;(line-style "thin")
 ;(line-style "thick")
 
 ;  net-style string
@@ -579,8 +581,7 @@
 (thin-pin-width 15)
 (thick-pin-width 30)
 
-;END ----------------------->  Net Styles  <------------------------
-;END ==================> Nets and Routing Setup <===================
+;END ------------------------->  Styles  <--------------------------
 
 ;BEGIN ==============> Pointer Device  Preferences <================
 
@@ -635,7 +636,9 @@
 ; and scroll wheel can have problems with generating a horizontal scroll
 ; events when attempting to press the middle button. This option allows dis-
 ; abling of pointer horizontal scroll events so that the integrated middle
-; button can be utilized without interference.
+; button can be utilized without interference. If the screen always seems to
+; pan by itself when attempting to mouse-pan with the scroll-wheel button,
+; then try setting this to "disabled".
 ;
 ; Enable/disable mouse horizontal scroll events:
 ;(pointer-hscroll "enabled")
@@ -1471,6 +1474,7 @@
 (map-keys "T <Shift>F" "attributes-find-text")
 (map-keys "T H"        "attributes-hide-text")
 (map-keys "T <Shift>H" "attributes-show-text")
+(map-keys "T E"        "attributes-editor")
 (map-keys "T U"        "attributes-autonumber")
 
 (map-keys "U"          "edit-undo")
@@ -1599,16 +1603,16 @@
         (,(N_ "Mirror Mode")        edit-mirror            edit-mirror-hotkey      "geda-mirror" "Mirror an object about a point")
 
         ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Edit...")            edit-attributes        edit-attributes         "gtk-indent" "Open the Attibutes Editor Dialog")
+        (,(N_ "Edit...")            edit-attributes        edit-attributes         "gtk-indent" "Edit Properties")
         (,(N_ "Edit Text...")       edit-text              edit-text               "gtk-edit"   "Open the Text Editor Dialog")
-        (,(N_ "Slot...")            edit-slot              edit-slot               #f           "Open the Slot Editor Dialog")
+        (,(N_ "Slot...")            edit-slot              edit-slot               "geda-slot"  "Open the Slot Editor Dialog")
         (,(N_ "Color...")           edit-color             edit-color              "gtk-select-color" "Open the Color Editor Dialog")
-        (,(N_ "Edit Pin...")        edit-pintype           edit-pintype            #f                 "Open the Pin Type Dialog")
-        (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           #f                 "Open the Line Editor Dialog")
-        (,(N_ "Fill Type...")         edit-filltype        edit-filltype           #f                 "Open the Fill Editor Dialog")
+        (,(N_ "Edit Pin...")        edit-pintype           edit-pintype            "geda-pin-type"    "Open the Pin Type Dialog")
+        (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           "geda-line-type"   "Open the Line Editor Dialog")
+        (,(N_ "Fill Type...")         edit-filltype        edit-filltype           "geda-mesh"        "Open the Fill Editor Dialog")
         (,(N_ "Symbol Translate...")  edit-translate       edit-translate          "gtk-convert")
-        (,(N_ "Lock")               edit-lock              edit-lock               #f "Lock selected objects")
-        (,(N_ "Unlock")             edit-unlock            edit-unlock             #f "Unlock selected objects")
+        (,(N_ "Lock")               edit-lock              edit-lock               "geda-lock"   "Lock selected objects")
+        (,(N_ "Unlock")             edit-unlock            edit-unlock             "geda-unlock" "Unlock selected objects")
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Invoke Macro")       edit-invoke-macro      edit-invoke-macro       "gtk-execute" "Invoke a macro")
@@ -1644,9 +1648,9 @@
 ;;
 ;;      menu item name               menu action             menu hotkey action      menu stock icon
 ;;
-     `( (,(N_ "_Redraw")             view-redraw             view-redraw            "gtk-refresh" "redraw the current window")
-        (,(N_ "_Pan")                view-pan                view-pan-hotkey         #f "Activate Panning")
-        (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey    #f "Zoom to a Windowed region")
+     `( (,(N_ "_Redraw")             view-redraw             view-redraw            "gtk-refresh"    "redraw the current window")
+        (,(N_ "_Pan")                view-pan                view-pan-hotkey        "geda-zoom-pan"  "Activate Panning")
+        (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey   "geda-zoom-box"  "Zoom to a Windowed region")
         (,(N_ "Zoom _Extents")       view-zoom-extents       view-zoom-extents       "gtk-zoom-fit"  "Zoom to to the extents of the drawing")
         (,(N_ "Zoom _In")            view-zoom-in            view-zoom-in-hotkey     "gtk-zoom-in")
         (,(N_ "Zoom _Out")           view-zoom-out           view-zoom-out-hotkey    "gtk-zoom-out")
@@ -1726,6 +1730,8 @@
         (,(N_ "_Find Specific Text...")  attributes-find-text    attributes-find-text    "gtk-find-and-replace" "Find an attribute")
         (,(N_ "_Hide Specific Text...")  attributes-hide-text    attributes-hide-text    #f "Hide selected attribute")
         (,(N_ "_Show Specific Text...")  attributes-show-text    attributes-show-text    #f "Show a specific attribute value")
+        ("SEPARATOR"                    #f                     #f                  #f "")
+        (,(N_ "Attrbute _Editor...")     attributes-editor       attributes-editor       "gtk-indent" "Open the Attibutes Editor Dialog")
         (,(N_ "A_utonumber Text...")     attributes-autonumber   attributes-autonumber   #f "Open Auto Number dialog")
       )
 )

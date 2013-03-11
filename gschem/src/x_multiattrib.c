@@ -61,7 +61,7 @@ static WidgetStringData DialogStrings[] = {
  *  \param [in] selection  The SELECTION object of page being edited.
  *  \param [in] user_data  The multi-attribute editor dialog.
  */
-static void callback_selection_changed (SELECTION *selection,
+static void ma_callback_selection_changed (SELECTION *selection,
                                         gpointer   user_data)
 {
   Multiattrib *multiattrib = MULTIATTRIB (user_data);
@@ -103,7 +103,7 @@ static void callback_selection_changed (SELECTION *selection,
                 NULL);
 }
 
-#define DIALOG_DATA_SELECTION "current-selection"
+
 
 /*! \brief Update the dialog when the current page's SELECTION object
  *         is destroyed
@@ -121,7 +121,7 @@ static void callback_selection_changed (SELECTION *selection,
  *  \param [in] where_the_object_was  Pointer to where the object was
  *                                    just destroyed
  */
-static void callback_selection_finalized (gpointer data,
+static void ma_callback_selection_finalized (gpointer data,
                                           GObject *where_the_object_was)
 {
   Multiattrib *ThisDialog = MULTIATTRIB (data);
@@ -140,21 +140,19 @@ static void callback_selection_finalized (gpointer data,
  *  \param [in] multiattrib  The Multiattrib dialog.
  *  \param [in] selection    The selection to watch.
  */
-static void connect_selection (Multiattrib *ThisDialog,
-                               SELECTION   *selection)
+static void ma_connect_selection (Multiattrib *ThisDialog, SELECTION *selection)
 {
-  g_assert (g_object_get_data (G_OBJECT (ThisDialog),
-                               DIALOG_DATA_SELECTION) == NULL);
+  g_assert (g_object_get_data (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION) == NULL);
   g_object_set_data (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION, selection);
   g_object_weak_ref (G_OBJECT (selection),
-                     callback_selection_finalized,
+                     ma_callback_selection_finalized,
                      ThisDialog);
   g_signal_connect (selection,
                     "changed",
-                    (GCallback)callback_selection_changed,
+                    (GCallback)ma_callback_selection_changed,
                     ThisDialog);
   /* Synthesise a selection changed update to refresh the view */
-  callback_selection_changed (selection, ThisDialog);
+  ma_callback_selection_changed (selection, ThisDialog);
 }
 
 /*! \brief Remove the link between multiattrib dialog and selection.
@@ -165,7 +163,7 @@ static void connect_selection (Multiattrib *ThisDialog,
  *
  *  \param [in] multiattrib  The Multiattrib dialog.
  */
-static void disconnect_selection (Multiattrib *ThisDialog) {
+static void ma_disma_connect_selection (Multiattrib *ThisDialog) {
   SELECTION *selection;
 
   /* get selection watched from dialog data */
@@ -180,10 +178,10 @@ static void disconnect_selection (Multiattrib *ThisDialog) {
                                         G_SIGNAL_MATCH_FUNC |
                                         G_SIGNAL_MATCH_DATA,
                                         0, 0, NULL,
-                                        callback_selection_changed,
+                                        ma_callback_selection_changed,
                                         multiattrib);
   g_object_weak_unref (G_OBJECT (selection),
-                       callback_selection_finalized,
+                       ma_callback_selection_finalized,
                        ThisDialog);
 
   /* reset dialog data */
@@ -210,7 +208,7 @@ multiattrib_callback_response (GtkDialog *dialog,
       case GTK_RESPONSE_CLOSE:
       case GTK_RESPONSE_DELETE_EVENT:
         /* cut link from dialog to selection */
-        disconnect_selection (MULTIATTRIB (w_current->mawindow));
+        ma_disma_connect_selection (MULTIATTRIB (w_current->mawindow));
         gtk_widget_destroy (GTK_WIDGET (dialog));
         w_current->mawindow = NULL;
         break;
@@ -230,7 +228,7 @@ void x_multiattrib_open (GSCHEM_TOPLEVEL *w_current)
       GTK_WIDGET (g_object_new (TYPE_MULTIATTRIB,
                                 "object", NULL,
                                 /* GschemDialog */
-                                "settings-name", "multiattrib",
+                                "settings-name", IDS_MULTI_ATTRBI,
                                 "gschem-toplevel", w_current,
                                 NULL));
 
@@ -251,7 +249,6 @@ void x_multiattrib_open (GSCHEM_TOPLEVEL *w_current)
   }
 }
 
-
 /*! \brief Close the multiattrib dialog.
  *
  *  \par Function Description
@@ -264,7 +261,7 @@ void x_multiattrib_close (GSCHEM_TOPLEVEL *w_current)
 {
   if (w_current->mawindow != NULL) {
     /* cut link from dialog to selection */
-    disconnect_selection (MULTIATTRIB (w_current->mawindow));
+    ma_disma_connect_selection (MULTIATTRIB (w_current->mawindow));
     gtk_widget_destroy (w_current->mawindow);
     w_current->mawindow = NULL;
   }
@@ -286,12 +283,11 @@ void x_multiattrib_update( GSCHEM_TOPLEVEL *w_current )
   }
 
   /* disconnect dialog from previous selection */
-  disconnect_selection (MULTIATTRIB (w_current->mawindow));
+  ma_disma_connect_selection (MULTIATTRIB (w_current->mawindow));
   /* connect the dialog to the selection of the current page */
-  connect_selection (MULTIATTRIB (w_current->mawindow),
+  ma_connect_selection (MULTIATTRIB (w_current->mawindow),
                      w_current->toplevel->page_current->selection_list);
 }
-
 
 /*! \section celltextview-widget Cell TextView Widget Code.
  * This widget makes a 'GtkTextView' widget implements the 'GtkCellEditable'
@@ -337,7 +333,6 @@ static void celltextview_get_property (GObject *object,
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
 }
-
 
 /*! \todo Finish function documentation
  *  \brief
@@ -476,7 +471,6 @@ static bool cellrenderermultilinetext_focus_out_event (GtkWidget *widget,
                                                        GdkEvent  *event,
                                                        gpointer   user_data);
 
-
 #define CELL_RENDERER_MULTI_LINE_TEXT_PATH "cell-renderer-multi-line-text-path"
 
 /*! \todo Finish function documentation
@@ -487,7 +481,7 @@ static bool cellrenderermultilinetext_focus_out_event (GtkWidget *widget,
 static GtkCellEditable* cellrenderermultilinetext_start_editing(GtkCellRenderer      *cell,
 								GdkEvent             *event,
 								GtkWidget            *widget,
-								const char          *path,
+								const char           *path,
 								GdkRectangle         *background_area,
 								GdkRectangle         *cell_area,
 								GtkCellRendererState  flags)

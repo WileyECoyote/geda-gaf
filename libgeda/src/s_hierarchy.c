@@ -218,7 +218,7 @@ s_hierarchy_find_up_page (GedaPageList *page_list, PAGE *current_page)
  *  Caller must destroy returned GList with g_list_free().
  */
 GList *
-s_hierarchy_traversepages (TOPLEVEL *toplevel, PAGE *p_current, gint flags)
+s_hierarchy_traverse_pages (TOPLEVEL *toplevel, PAGE *p_current, gint flags)
 {
   OBJECT *o_current;
   PAGE *child_page;
@@ -272,7 +272,8 @@ s_hierarchy_traversepages (TOPLEVEL *toplevel, PAGE *p_current, gint flags)
                                          HIERARCHY_NORMAL_LOAD, &err);
     if (child_page != NULL) {
       /* call the recursive function */
-      s_hierarchy_traversepages (toplevel, child_page, flags | HIERARCHY_INNERLOOP);
+      s_hierarchy_traverse_pages (toplevel, child_page,
+                                  flags | HIERARCHY_INNERLOOP);
     } else {
       s_log_message (_("Failed to descend hierarchy into '%s': %s\n"),
                      filename, err->message);

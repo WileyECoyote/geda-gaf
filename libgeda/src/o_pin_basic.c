@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <ascii.h>
 
 #include "libgeda_priv.h"
 
@@ -70,7 +71,7 @@ gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
 /*! \brief create a new pin object
  *  \par Function Description
  *  This function creates and returns a new pin object.
- *  
+ *
  *  \param [in]     toplevel    The TOPLEVEL object.
  *  \param [in]     type        The OBJECT type (usually OBJ_PIN)
  *  \param [in]     color       The color of the pin
@@ -78,13 +79,13 @@ gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
  *  \param [in]     y1          y-coord of the first point
  *  \param [in]     x2          x-coord of the second point
  *  \param [in]     y2          y-coord of the second point
- *  \param [in]     pin_type    type of pin (PIN_TYPE_NET or PIN_TYPE_BUS)
+ *  \param [in]     pin_type    type of pin
  *  \param [in]     whichend    The connectable end of the pin
  *  \return A new pin OBJECT
  */
 OBJECT *o_pin_new(TOPLEVEL *toplevel,
 		  char type, int color,
-		  int x1, int y1, int x2, int y2, int pin_type, int whichend)
+		  int x1, int y1, int x2, int y2, PIN_TYPE pin_type, int whichend)
 {
   OBJECT *new_node;
 
@@ -110,7 +111,7 @@ OBJECT *o_pin_new(TOPLEVEL *toplevel,
 /*! \brief recalc the visual properties of a pin object
  *  \par Function Description
  *  This function updates the visual coords of the \a o_current object.
- *  
+ *
  *  \param [in]     toplevel    The TOPLEVEL object.
  *  \param [in]     o_current   a pin object.
  *
@@ -148,7 +149,7 @@ OBJECT *o_pin_read (TOPLEVEL *toplevel, const char buf[],
                     unsigned int release_ver, unsigned int fileformat_ver, GError **err)
 {
   OBJECT *new_obj;
-  char type; 
+  char type;
   int x1, y1;
   int x2, y2;
   int color;
@@ -209,7 +210,7 @@ char *o_pin_save(TOPLEVEL *toplevel, OBJECT *object)
   int x1, x2, y1, y2;
   int pin_type, whichend;
   char *buf;
-  
+
   x1 = object->line->x[0];
   y1 = object->line->y[0];
   x2 = object->line->x[1];
@@ -218,7 +219,7 @@ char *o_pin_save(TOPLEVEL *toplevel, OBJECT *object)
   /* description of the pin */
   pin_type = object->pin_type;
   whichend = object->whichend;
-  
+
   buf = g_strdup_printf("%c %d %d %d %d %d %d %d", object->type,
 		   x1, y1, x2, y2, object->color, pin_type, whichend);
   return(buf);
@@ -271,7 +272,7 @@ OBJECT *o_pin_copy(TOPLEVEL *toplevel, OBJECT *o_current)
  *  \par Function Description
  *  This function writes the postscript command of the pin object \a o_current
  *  into the FILE \a fp points to.
- *  
+ *
  *  \param [in] toplevel     The TOPLEVEL object
  *  \param [in] fp           pointer to a FILE structure
  *  \param [in] o_current    The OBJECT to print
@@ -284,7 +285,7 @@ void o_pin_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   int pin_width;
   int x1, y1;
   int x2, y2;
-  
+
   if (o_current == NULL) {
     printf("got null in o_pin_print\n");
     return;
@@ -311,7 +312,7 @@ void o_pin_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
  *  \par Function Description
  *  This function rotates a pin \a object around the point
  *  (\a world_centerx, \a world_centery).
- *  
+ *
  *  \param [in] toplevel      The TOPLEVEL object
  *  \param [in] world_centerx x-coord of the rotation center
  *  \param [in] world_centery y-coord of the rotation center
@@ -324,7 +325,7 @@ void o_pin_rotate_world(TOPLEVEL *toplevel, int world_centerx,
 			OBJECT *object)
 {
   int newx, newy;
-	
+
   if (angle == 0)
     return;
 
@@ -350,7 +351,7 @@ void o_pin_rotate_world(TOPLEVEL *toplevel, int world_centerx,
  *  \par Function Description
  *  This function mirrors a pin \a object horizontaly at the point
  *  (\a world_centerx, \a world_centery).
- *  
+ *
  *  \param [in] toplevel      The TOPLEVEL object
  *  \param [in] world_centerx x-coord of the mirror position
  *  \param [in] world_centery y-coord of the mirror position
@@ -374,7 +375,7 @@ void o_pin_mirror_world(TOPLEVEL *toplevel,
  *  This function modifies one point of a pin \a object. The point
  *  is specified by the \a whichone variable and the new coordinate
  *  is (\a x, \a y).
- *  
+ *
  *  \param toplevel   The TOPLEVEL object
  *  \param object     The pin OBJECT to modify
  *  \param x          new x-coord of the pin point
@@ -396,12 +397,12 @@ void o_pin_modify(TOPLEVEL *toplevel, OBJECT *object,
 /*! \brief guess the whichend of pins of object list
  *  \par Function Description
  *  This function determines the whichend of the pins in the \a object_list.
- *  In older libgeda file format versions there was no information about the 
+ *  In older libgeda file format versions there was no information about the
  *  active end of pins.
  *  This function calculates the bounding box of all pins in the object list.
  *  The side of the pins that are closer to the boundary of the box are
  *  set as active ends of the pins.
- *  
+ *
  *  \param toplevel    The TOPLEVEL object
  *  \param object_list list of OBJECTs
  *  \param num_pins    pin count in the object list
@@ -465,17 +466,17 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
     if (o_current->type == OBJ_PIN && o_current->whichend == -1) {
       if (o_current->line->y[0] == o_current->line->y[1]) {
         /* horizontal */
-        
+
         if (o_current->line->x[0] == left) {
           o_current->whichend = 0;
         } else if (o_current->line->x[1] == left) {
-          o_current->whichend = 1;        
+          o_current->whichend = 1;
         } else if (o_current->line->x[0] == right) {
-          o_current->whichend = 0;        
+          o_current->whichend = 0;
         } else if (o_current->line->x[1] == right) {
           o_current->whichend = 1;
         } else {
-            
+
           d1 = abs(o_current->line->x[0] - left);
           d2 = abs(o_current->line->x[1] - left);
           d3 = abs(o_current->line->x[0] - right);
@@ -503,20 +504,20 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
             o_current->whichend = min1_whichend;
           }
         }
-           
+
       } else if (o_current->line->x[0] == o_current->line->x[1]) {
         /* vertical */
-        
+
         if (o_current->line->y[0] == top) {
           o_current->whichend = 0;
         } else if (o_current->line->y[1] == top) {
-          o_current->whichend = 1;        
+          o_current->whichend = 1;
         } else if (o_current->line->x[0] == bottom) {
-          o_current->whichend = 0;        
+          o_current->whichend = 0;
         } else if (o_current->line->x[1] == bottom) {
           o_current->whichend = 1;
         } else {
-            
+
           d1 = abs(o_current->line->y[0] - top);
           d2 = abs(o_current->line->y[1] - top);
           d3 = abs(o_current->line->y[0] - bottom);
@@ -560,7 +561,7 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
  *  \param [in] o_current  The pin OBJECT being modified
  *  \param [in] pin_type   The new type of this pin
  */
-void o_pin_set_type (TOPLEVEL *toplevel, OBJECT *o_current, int pin_type)
+void o_pin_set_type (TOPLEVEL *toplevel, OBJECT *o_current, PIN_TYPE pin_type)
 {
   switch (pin_type) {
     case PIN_TYPE_NET:
@@ -569,9 +570,175 @@ void o_pin_set_type (TOPLEVEL *toplevel, OBJECT *o_current, int pin_type)
     case PIN_TYPE_BUS:
       o_current->pin_type = PIN_TYPE_BUS;
       break;
+    case PIN_TYPE_BUMP:
+      o_current->pin_type = PIN_TYPE_BUMP;
+      break;
+    case PIN_TYPE_BALL:
+      o_current->pin_type = PIN_TYPE_BALL;
+      break;
+    case PIN_TYPE_WEDGE:
+      o_current->pin_type = PIN_TYPE_WEDGE;
+      break;
+    case PIN_TYPE_RIBBON:
+      o_current->pin_type = PIN_TYPE_RIBBON;
+      break;
     default:
       g_critical ("o_pin_set_type: invalid pin type! %i\n", pin_type);
       o_current->pin_type = PIN_TYPE_NET;
   }
   o_current->line_width = o_style_get_pin_width(toplevel, o_current->pin_type);
+}
+
+PIN_ATTRIBUTE o_pin_get_pintype_attribute(const char *pintype_str) {
+
+  const char *types[] = { "in",  "out", "io",  "oc", "oe", "pas", "tp",
+                          "tri", "clk", "pwr", NULL };
+
+  PIN_ATTRIBUTE index;
+  for (index = PIN_ATTRIB_IN; types[index] != NULL; index++) {
+    if (strcmp(pintype_str, types[index]) == 0)
+      break;
+  }
+  if(types[index] == NULL ) index = PIN_ATTRIB_VOID;
+  return index;
+}
+
+char *o_pin_get_pintype_string(PIN_ATTRIBUTE attribute) {
+
+  const char *types[] = { "in",  "out", "io",  "oc", "oe", "pas", "tp",
+                          "tri", "clk", "pwr", NULL };
+
+  return g_strdup(types[attribute]);
+}
+/*! \brief Retrieve Properties for a Pin Object
+ *
+ *  \par Function Description
+ *  Gets the pin's properties.
+ *
+ *  \param [in]  object    OBJECT to read the properties
+ *  \param [out] type      The PIN_TYPE.
+ *  \param [out] number    The Pin Number associate with the object
+ *  \param [out] sequence  The Pin Sequence Number
+ *  \param [out] label     Ptr to the Pin Label String.
+ *  \param [out] attribute The PIN_ATTRIBUTE
+ *
+ *  \return TRUE on succes, FALSE otherwise
+ */
+bool
+o_pin_get_options(OBJECT *object, PIN_TYPE *type, int *number, int *sequence,
+                  const char **label, PIN_ATTRIBUTE *attribute)
+{
+  bool result;
+  GList *a_iter;
+  OBJECT *a_current;
+  const char *str;
+  int length;
+  char *ptr;
+
+  char *pinnumber_str = NULL;
+  char *pinseq_str = NULL;
+  const char *pinlabel_str = NULL;
+  char *pintype_str = NULL;
+
+  result = (object->type == OBJ_PIN) ? TRUE : FALSE;
+
+  if (result) {
+    *type  = object->pin_type;
+    a_iter = object->attribs;
+    while (a_iter != NULL) {
+      a_current = a_iter->data;
+      str = a_current->text->string;
+      if (str) {
+        ptr = (char*) str;
+        while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_EQUAL_SIGN )) { ptr++; } /* find "=" */
+        if ( *ptr == ASCII_EQUAL_SIGN ) {
+          length = ptr - str;
+          ptr++;
+          if(strncmp(str, "pinnumber", length) == 0 ) {
+            pinnumber_str = ptr;
+           *number = atoi(pinnumber_str);
+          }
+          else {
+            if(strncmp(str, "pinseq", length) == 0) {
+              pinseq_str = ptr;
+             *sequence = atoi(pinseq_str);
+            }
+            else {
+              if(strncmp(str, "pinlabel", length) == 0 ) {
+                pinlabel_str = ptr;
+               *label = pinlabel_str;
+              }
+              else {
+                if(strncmp(str, "pintype", length) == 0) {
+                  pintype_str = ptr;
+                 *attribute = o_pin_get_pintype_attribute(pintype_str);
+                }
+              }
+            }
+          }
+        }
+      }
+      else
+         fprintf(stderr,"got null string\n");
+      a_iter = g_list_next (a_iter);
+    }
+  }
+  if(!pinnumber_str)
+    *number = -1;
+
+  if(!pinseq_str)
+    *sequence = -1;
+
+  if(!pinlabel_str)
+    *label = NULL;
+
+  if(!pintype_str)
+    *attribute = PIN_ATTRIB_VOID;
+
+  return result;
+}
+
+void o_pin_set_options(TOPLEVEL *toplevel, OBJECT *object, PIN_TYPE type,
+                       int number, int sequence, const char *label_str,
+                       PIN_ATTRIBUTE attribute)
+{
+  if (object != NULL && object->type == OBJ_PIN) {
+
+    o_attrib_freeze_hooks(toplevel, object);
+    s_conn_remove_object (toplevel, object);
+
+    OBJECT *bute;
+    object->pin_type = type;
+
+    bute = o_attrib_first_attrib_by_name (object, "pinnumber");
+    if(bute !=NULL) {
+      o_attrib_set_value(bute, "pinnumber",  g_strdup_printf ("%d", number));
+      o_text_recreate(toplevel, bute);
+    } /*
+    else {
+      o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item)
+    }
+    */
+
+    bute = o_attrib_first_attrib_by_name (object, "pinseq");
+    if(bute !=NULL) {
+      o_attrib_set_value(bute, "pinseq",  g_strdup_printf ("%d", sequence));
+      o_text_recreate(toplevel, bute);
+    }
+
+    bute = o_attrib_first_attrib_by_name (object, "pinlabel");
+    if(bute !=NULL) {
+      o_attrib_set_value(bute, "pinlabel",  g_strdup(label_str));
+      o_text_recreate(toplevel, bute);
+    }
+
+    bute = o_attrib_first_attrib_by_name (object, "pintype");
+    if(bute !=NULL) {
+      o_attrib_set_value(bute, "pintype",  o_pin_get_pintype_string(attribute));
+      o_text_recreate(toplevel, bute);
+    }
+    s_conn_update_object (toplevel, object);
+    o_attrib_thaw_hooks (toplevel, object);
+  }
+
 }

@@ -56,23 +56,23 @@
 void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flags)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  double world_pan_center_x,world_pan_center_y,relativ_zoom_factor = - 1;
+  double world_pan_center_x, world_pan_center_y, relative_zoom_factor = - 1;
   int start_x, start_y;
   double top, bottom, right, left;
 
   /* NB: w_current->zoom_gain is a percentage increase */
   switch(dir) {
   case(ZOOM_IN_DIRECTIVE):
-    relativ_zoom_factor = (100.0 + w_current->zoom_gain) / 100.0;
+    relative_zoom_factor = (100.0 + w_current->zoom_gain) / 100.0;
     break;
 
   case(ZOOM_OUT_DIRECTIVE):
-    relativ_zoom_factor = 100.0 / (100.0 + w_current->zoom_gain);
+    relative_zoom_factor = 100.0 / (100.0 + w_current->zoom_gain);
     break;
 
   case(ZOOM_FULL_DIRECTIVE):
     /* indicate the zoom full with a negative zoomfactor */
-    relativ_zoom_factor = -1;
+    relative_zoom_factor = -1;
     break;
   }
 
@@ -87,13 +87,13 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
       world_pan_center_y = start_y;
     } else {
       left = ((toplevel->page_current->left - start_x)
-              * (1/relativ_zoom_factor) + start_x);
+              * (1/relative_zoom_factor) + start_x);
       right = ((toplevel->page_current->right - start_x)
-               * (1/relativ_zoom_factor) + start_x);
+               * (1/relative_zoom_factor) + start_x);
       top = ((toplevel->page_current->top - start_y)
-             * (1/relativ_zoom_factor) + start_y);
+             * (1/relative_zoom_factor) + start_y);
       bottom = ((toplevel->page_current->bottom - start_y)
-                * (1/relativ_zoom_factor) + start_y);
+                * (1/relative_zoom_factor) + start_y);
       world_pan_center_x = (right + left) / 2;
       world_pan_center_y = (top + bottom) / 2;
     }
@@ -105,7 +105,7 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
   }
 
 #if DEBUG
-  printf("relative zoomfactor: %E\n", relativ_zoom_factor);
+  printf("relative zoomfactor: %E\n", relative_zoom_factor);
   printf("new center: x: %E, y: %E \n",
          world_pan_center_x, world_pan_center_y);
 #endif
@@ -113,7 +113,7 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
 
   /* calculate new window and draw it */
   a_pan_general(w_current, world_pan_center_x, world_pan_center_y,
-                relativ_zoom_factor, pan_flags);
+                relative_zoom_factor, pan_flags);
 
   /* Before warping the cursor, filter out any consecutive scroll events
    * from the event queue.  If the program receives more than one scroll
@@ -150,7 +150,7 @@ void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flag
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int lleft, lright, ltop, lbottom;
-  double zx, zy, relativ_zoom_factor;
+  double zx, zy, relative_zoom_factor;
   double world_pan_center_x,world_pan_center_y;
 
   if (list == NULL) {
@@ -175,7 +175,7 @@ void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flag
   zx = (double)(toplevel->width - 2 * ZOOM_EXTENTS_PADDING_PX) / (lright-lleft);
   zy = (double)(toplevel->height - 2 * ZOOM_EXTENTS_PADDING_PX) / (lbottom-ltop);
   /* choose the smaller one */
-  relativ_zoom_factor = (zx < zy ? zx : zy) /
+  relative_zoom_factor = (zx < zy ? zx : zy) /
   toplevel->page_current->to_screen_y_constant;
 
   /*get the center of the objects*/
@@ -184,7 +184,7 @@ void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flag
 
   /* and create the new window*/
   a_pan_general(w_current, world_pan_center_x, world_pan_center_y,
-                relativ_zoom_factor, pan_flags );
+                relative_zoom_factor, pan_flags );
 
   /*! \bug FIXME? trigger a x_event_motion() call without moving the cursor
    *  this will redraw rubberband lines after zooming
@@ -203,7 +203,7 @@ void a_zoom_extents (GSCHEM_TOPLEVEL *w_current, const GList *list, int pan_flag
 void a_zoom_box(GSCHEM_TOPLEVEL *w_current, int pan_flags)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  double zx, zy, relativ_zoom_factor;
+  double zx, zy, relative_zoom_factor;
   double world_pan_center_x, world_pan_center_y;
 
   /*test if there is really a box*/
@@ -219,7 +219,7 @@ void a_zoom_box(GSCHEM_TOPLEVEL *w_current, int pan_flags)
   zy = (double) abs(toplevel->page_current->top - toplevel->page_current->bottom) /
     abs(w_current->first_wy - w_current->second_wy);
 
-  relativ_zoom_factor = (zx < zy ? zx : zy);
+  relative_zoom_factor = (zx < zy ? zx : zy);
 
   /* calculate the center of the zoom box */
   world_pan_center_x = (w_current->first_wx + w_current->second_wx) / 2.0;
@@ -227,7 +227,7 @@ void a_zoom_box(GSCHEM_TOPLEVEL *w_current, int pan_flags)
 
   /* and create the new window*/
   a_pan_general(w_current, world_pan_center_x, world_pan_center_y,
-                relativ_zoom_factor, pan_flags);
+                relative_zoom_factor, pan_flags);
 }
 
 /*! \todo Finish function documentation!!!

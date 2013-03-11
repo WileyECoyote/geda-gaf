@@ -1,7 +1,5 @@
 /*
-
 clear (log screen)
-import
 install
 reload
 reset.
@@ -10,7 +8,6 @@ set
 shell
 [editor]
 connect
-close, new, save, save-as, save-all, revert, run, print
 
 */
 #ifndef __ACTION_FLAGS__
@@ -67,6 +64,7 @@ enum ActionFlag
         COMMAND ( do_edit_text )
         COMMAND ( do_edit_slot )
         COMMAND ( do_edit_color )
+        COMMAND ( do_edit_arc )
         COMMAND ( do_pintype )
         COMMAND ( do_linetype )
         COMMAND ( do_filltype )
@@ -130,6 +128,7 @@ enum ActionFlag
         COMMAND ( do_find_text )
         COMMAND ( do_hide_text )
         COMMAND ( do_show_text )
+        COMMAND ( do_attributes )
         COMMAND ( do_autonumber )
 
 /* Toggles */
@@ -291,6 +290,7 @@ enum {
      COMMAND ( EDIT_ATTRIB,         "edit butes",       USE_WORKER_THREAD,      do_edit_butes)
      COMMAND ( EDIT_TEXT,           "edit text",        USE_WORKER_THREAD,      do_edit_text)
      COMMAND ( EDIT_SLOT,           "edit slot",        USE_WORKER_THREAD,      do_edit_slot)
+     COMMAND ( EDIT_ARC,            "edit arc",         USE_WORKER_THREAD,      do_edit_arc )
      COMMAND ( EDIT_COLOR,          "edit color",       USE_WORKER_THREAD,      do_edit_color)
      COMMAND ( EDIT_PIN,            "pin type",         USE_WORKER_THREAD,      do_pintype)
      COMMAND ( EDIT_LINE,           "line type",        USE_WORKER_THREAD,      do_linetype)
@@ -355,6 +355,7 @@ enum {
      COMMAND ( ATTRIB_FIND,         "find text",        USE_MAIN_LOOP,          do_find_text)
      COMMAND ( ATTRIB_HIDE,         "show text",        USE_MAIN_LOOP,          do_hide_text)
      COMMAND ( ATTRIB_SHOW,         "hide text",        USE_MAIN_LOOP,          do_show_text)
+     COMMAND ( ATTRIB_EDIT,         "edit attrib",      USE_WORKER_THREAD,      do_attributes)
      COMMAND ( ATTRIB_AUTONUM,      "autonumber",       USE_MAIN_LOOP,          do_autonumber)
 
 /* Options */

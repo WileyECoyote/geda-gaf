@@ -3,10 +3,10 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2013 Ales Hvezda
+;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
 ;;
-;;; Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -81,10 +81,36 @@
 /* For x_window.c */
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
 
+/* -----------------  Strings for Dialogs Boxes  ---------------- */
+
 /* Names of retention files for Saving Window Geometry */
 #define DIALOG_GEOMETRY_STORE      "gschem-dialog-geometry"
 #define TOOLBAR_GEOMETRY_STORE     "gschem-toolbar-geometry"
 #define WINDOW_GEOMETRY_STORE      "gschem-window-geometry"
+
+/* Identifcation Strings for Saving & Restoring Window Geometry */
+#define IDS_SNAP_SIZE              "snap-size"  /* Type: MODAL  */
+#define IDS_TEXT_SIZE              "text-size"  /* Type: MODAL  */
+#define IDS_ARC_ANGLE              "arc-angle"  /* Type: MODELESS */
+#define IDS_COLOR_EDIT             "color-edit" /* Type: MODELESS */
+#define IDS_FILL_TYPE              "fill-type"  /* Type: MODELESS */
+#define IDS_LINE_TYPE              "line-type"  /* Type: MODELESS */
+#define IDS_PIN_EDIT               "pin-edit"   /* Type: MODELESS */
+#define IDS_SLOT_EDIT              "slot-edit"  /* Type: MODELESS */
+#define IDS_TEXT_EDIT              "text-edit"  /* Type: MODELESS */
+#define IDS_FIND_TEXT              "find-text"  /* Type: MODELESS */
+#define IDS_HIDE_TEXT              "hide-text"  /* Type: MODELESS */
+#define IDS_SHOW_TEXT              "show-text"  /* Type: MODELESS */
+#define IDS_TEXT_INPUT             "text-input" /* Type: MODELESS */
+#define IDS_TRANSLATE              "translate"  /* Type: MODAL    */
+
+#define IDS_HOTKEYS              "hotkeys"      /* Type: MODELESS */
+#define IDS_COORDINATES          "coordinates"  /* Type: MODELESS */
+#define IDS_CONFIG_SETTINGS      "settings"     /* Type: MODAL    */
+#define IDS_COMP_SELECT          "compselect"
+#define IDS_SINGLE_ATTRBI        "singleattrib" /* Type: MODAL    */
+
+#define IDS_MULTI_ATTRBI         "multiattrib"  /* Type: MODELESS */
 
 /* -----------------  Strings for RC Read/Write ----------------- */
 

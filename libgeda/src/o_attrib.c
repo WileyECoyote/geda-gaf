@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -375,7 +375,7 @@ error:
  *  \param [out] value_ptr  The return location for the value, or NULL.
  *  \return TRUE on success, FALSE otherwise.
  */
-gboolean
+bool
 o_attrib_string_get_name_value (const char *string, char **name_ptr, char **value_ptr)
 {
   char *ptr, *prev_char, *next_char;
@@ -512,7 +512,18 @@ OBJECT *o_attrib_find_attrib_by_name (const GList *list, char *name, int count)
   return NULL;
 }
 
-
+/*! \brief Find first occurance of attribute object attached to an object.
+ *  \par Function Description
+ *  Search for attribute by name.
+ *
+ *  \param [in] list     GList of attributes to search.
+ *  \param [in] name     Character string with attribute name to search for.
+ *  \return The n'th attribute object in the given list with the given name.
+ */
+OBJECT *o_attrib_first_attrib_by_name (OBJECT *object, char *name)
+{
+  return o_attrib_find_attrib_by_name (object->attribs, name, 0);
+}
 /*! \brief Search attribute list by name.
  *  \par Function Description
  *  Search for attribute by name.

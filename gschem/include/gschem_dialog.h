@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2013 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -40,6 +40,9 @@
   gschem_dialog_new_empty(title, GTK_WINDOW(w_current->main_window), \
                                   flags, identifier, ptrWindowWidget);
 
+/* String for storing Selection data in Mode-less Editing Dialogs */
+#define DIALOG_DATA_SELECTION "current-selection"
+
 #define GSCHEM_TYPE_DIALOG           (gschem_dialog_get_type())
 #define GSCHEM_DIALOG(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_DIALOG, GschemDialog))
 #define GSCHEM_DIALOG_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass),  GSCHEM_TYPE_DIALOG, GschemDialogClass))
@@ -50,8 +53,16 @@ typedef struct _GschemDialogClass GschemDialogClass;
 typedef struct _GschemDialog      GschemDialog;
 
 enum {
+  GSCHEM_MODELESS_DIALOG,
+  GSCHEM_DIALOG_MODAL               = 1 << 0, /* call gtk_window_set_modal (win, TRUE) */
+  GSCHEM_DIALOG_DESTROY_WITH_PARENT = 1 << 1, /* call gtk_window_set_destroy_with_parent () */
+  GSCHEM_DIALOG_NO_SEPARATOR        = 1 << 2  /* no separator bar above buttons */
+} GschemDialogFlags;
+
+enum {
   PROP_SETTINGS_NAME = 1,
-  PROP_GSCHEM_TOPLEVEL
+  PROP_GSCHEM_TOPLEVEL,
+  PROP_SELECTION_TRACKER,
 };
 
 struct _GschemDialogClass {
@@ -59,30 +70,32 @@ struct _GschemDialogClass {
 
   void (*geometry_save)    (GschemDialog *dialog,
                             GKeyFile *key_file,
-                            gchar *group_name);
+                            char *group_name);
   void (*geometry_restore) (GschemDialog *dialog,
                             GKeyFile *key_file,
-                            gchar *group_name);
+                            char *group_name);
 };
 
 struct _GschemDialog {
   GtkDialog parent_instance;
 
-  gchar *settings_name;
+  char *settings_name;
   GSCHEM_TOPLEVEL *w_current;
+  SELECTION *selection;
+  void (*func) (GSCHEM_TOPLEVEL *w_current, OBJECT *object);
 };
 
 
 GType gschem_dialog_get_type (void);
-GtkWidget* gschem_dialog_new_empty (const gchar           *title,
+GtkWidget* gschem_dialog_new_empty (const char           *title,
                                           GtkWindow       *parent,
                                           GtkDialogFlags   flags,
-                                          const gchar *settings_name,
+                                          const char *settings_name,
                                           GSCHEM_TOPLEVEL *w_current);
 
-GtkWidget* gschem_dialog_new_with_buttons (const gchar *title, GtkWindow *parent, GtkDialogFlags flags,
-                                           const gchar *settings_name, GSCHEM_TOPLEVEL *w_current,
-                                           const gchar *first_button_text, ...);
+GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
+                                           const char *settings_name, GSCHEM_TOPLEVEL *w_current,
+                                           const char *first_button_text, ...);
 
 /* Prototypes for Dialogs */
 GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,

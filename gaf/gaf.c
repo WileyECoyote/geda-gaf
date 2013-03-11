@@ -122,7 +122,7 @@ main (int argc, char **argv)
       break;
 
     case 2: /* --no-rcfiles */
-      setenv ("GAF_INHIBIT_RCFILES", "1", 1);
+      g_setenv ("GAF_INHIBIT_RCFILES", "1", 1);
       break;
 
     case 'V':

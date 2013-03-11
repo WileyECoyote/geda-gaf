@@ -1,0 +1,66 @@
+v 20130214 2
+B 300 300 1000 600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 275 3050 5 10 0 0 0 0 1
+device=LM1117
+P 800 300 800 0 1 0 1
+{
+T 670 225 5 8 1 1 180 6 1
+pinnumber=1
+T 925 225 5 8 0 1 180 0 1
+pinseq=1
+T 670 225 5 8 0 1 180 6 1
+pintype=pwr
+T 670 475 5 8 1 1 180 6 1
+pinlabel=GND
+}
+P 1600 600 1300 600 1 0 0
+{
+T 1395 645 5 8 1 1 0 0 1
+pinnumber=2
+T 1575 750 5 8 0 1 180 0 1
+pinseq=2
+T 1395 645 5 8 0 1 0 0 1
+pintype=out
+T 945 545 5 8 1 1 0 0 1
+pinlabel=Vout
+}
+P 300 600 0 600 1 0 1
+{
+T 205 645 5 8 1 1 0 6 1
+pinnumber=3
+T 120 750 5 8 0 1 180 0 1
+pinseq=3
+T 255 445 5 8 0 1 0 6 1
+pintype=in
+T 555 545 5 8 1 1 0 6 1
+pinlabel=Vin
+}
+T 1100 950 8 10 1 1 0 0 1
+refdes=U?
+P 1600 800 1300 800 1 0 0
+{
+T 1395 845 5 8 1 1 0 0 1
+pinnumber=4
+T 1575 950 5 8 0 1 180 0 1
+pinseq=4
+T 1395 845 5 8 0 1 0 0 1
+pintype=out
+T 945 745 5 8 1 1 0 0 1
+pinlabel=TAB
+}
+T 275 2250 5 10 0 0 0 0 1
+footprint=SOT223
+T 300 950 9 10 1 0 0 0 1
+LM1117
+T 275 1650 5 10 0 0 0 0 1
+author=Anton Dubniak <twister@tfsoft.org.ua>
+T 275 2050 5 10 0 0 0 0 1
+numslots=0
+T 275 1450 5 10 0 0 0 0 1
+dist-license=GPL
+T 275 1250 5 10 0 0 0 0 1
+use-license=unlimited
+T 275 2850 5 10 0 0 0 0 1
+description=800mA Low-Dropout Linear Regulator (National Semiconductor)
+T 275 2650 5 10 0 0 0 0 1
+documentation=http://www.national.com/ds/LM/LM1117.pdf

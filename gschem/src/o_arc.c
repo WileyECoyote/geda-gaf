@@ -113,7 +113,7 @@ void o_arc_end1(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 #endif
 
   /* open a dialog to input the start and end angle */
-  arc_angle_dialog(w_current, NULL);
+  x_dialog_edit_arc_angle(w_current, NULL);
 }
 
 /*! \brief Ends the process of arc input.
@@ -129,7 +129,7 @@ void o_arc_end1(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \param [in] start_angle  Start of angle in degrees.
  *  \param [in] end_angle    End of angle in degrees.
  */
-void o_arc_end4(GSCHEM_TOPLEVEL *w_current, int radius, 
+void o_arc_end4(GSCHEM_TOPLEVEL *w_current, int radius,
 		int start_angle, int end_angle)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -150,7 +150,7 @@ void o_arc_end4(GSCHEM_TOPLEVEL *w_current, int radius,
   g_run_hook_object (w_current, "%add-objects-hook", new_obj);
 
   toplevel->page_current->CHANGED = 1;
-  
+
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
@@ -203,7 +203,7 @@ void o_arc_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y, int whichone)
     /*
      * The radius is taken as the biggest distance on the x and y
      * axis between the center of the arc and the mouse position.
-     */		
+     */
     diff_x = abs(w_current->first_wx - snap_grid (w_current, w_x));
     diff_y = abs(w_current->first_wy - snap_grid (w_current, w_y));
     w_current->distance = max(diff_x, diff_y);
@@ -219,7 +219,7 @@ void o_arc_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y, int whichone)
     case ARC_START_ANGLE:
       w_current->second_wx = (angle_deg + 360) % 360;
       break;
-	
+
     case ARC_END_ANGLE:
       w_current->second_wy = (((angle_deg + 360) % 360) -
                               w_current->second_wx + 360) % 360;
@@ -229,7 +229,7 @@ void o_arc_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y, int whichone)
         w_current->second_wy = 360;
     }
   }
-	
+
   /* draw the new temporary arc */
   o_arc_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
@@ -251,7 +251,7 @@ void o_arc_draw_rubber (GSCHEM_TOPLEVEL *w_current)
   double rad_angle;
   int rdx, rdy;
   double wwidth = 0;
-  
+
   cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
   GArray *color_map = eda_renderer_get_color_map (w_current->renderer);
   int flags = eda_renderer_get_cairo_flags (w_current->renderer);

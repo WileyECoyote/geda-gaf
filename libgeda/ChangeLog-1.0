@@ -1,4 +1,24 @@
 
+2013-03-06 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/o_attrib.c: Added o_attrib_first_attrib_by_name
+
+        * src/o_style.c: Add conditionals in function o_style_set_object so
+        that styles are only applied if style != STYLE_NONE.
+
+        * src/o_pin_basic.c: Modified o_pin_set_type to include type other
+        than NET and BUS in function o_pin_set_type. Added new functions;
+        o_pin_get_pintype_attribute, o_pin_get_pintype_string, o_pin_get_
+        options, o_pin_set_options.
+
+        * src/s_hierarchy.c: Rename function s_hierarchy_traversepages to
+        s_hierarchy_traverse_pages
+
+        * include/libgeda/g_struct.h: Changed pin_type in st_object from int
+        to PIN_TYPE.
+
+        * include/prototype: Add declaration for o_attrib_find_attrib_by_name
+
 2013-01-31 Wiley E. Hill <wileyhill@gmail.com>
 
 	* src/u_basic.c: Relocated lots of misc string function from gschem
@@ -9,7 +29,7 @@
         non-askii char before returning message that includes the input line.
 
 	* src/o_basic.c: Revised o_emit_pre_change_notify and o_emit_change
-         _notify to return rather than call function if toplevel or toplevel
+         _notify to return rather than do calls if toplevel or toplevel
          ->page_current is NULL
 
 2012-12-12 Wiley E. Hill <wileyhill@gmail.com>
@@ -58,11 +78,11 @@
 	orginal file, using a new fcopy function located in f_utilities.c
 	so that the orginal ownership, group and permission data is
 	preserved and the backup belongs to the user as it should.
-	
+
 2012-06-23 Wiley E. Hill <wileyhill@gmail.com>
 	* src/s_attrib.c: reset attrib_index in function s_attrib_init
           added function s_attrib_count.
-          
+
         * src/o_style.c: Added new file and implementented functionality
         * src/s_log.c: renamed do_logging to is_logging to avoid name
           conflict with gschem.
@@ -80,17 +100,17 @@
 2007-04-28  Stuart Brorson <sdb AT cloud9 DOT net>
 	* src/o_attrib.c, src/o_complex_basic.c, src/s_tile.c:
 	made changes to o_attrib_slot_update and
-	o_attrib_search_pinseq to enable searching slotted parts 
+	o_attrib_search_pinseq to enable searching slotted parts
 	by pinseq.  Added o_complex_count_pins as part of project.
-	
+
 2007-04-22  Peter Brett <peter@peter-b.co.uk>
 	* src/o_box_basic.c: Fix some unused variable warnings in libgeda.
-	
+
 	  In a recent patch libgd was disabled by default (i.e.  HAS_LIBGD
 	  was unset by default).  This exposed some variable declarations
 	  which should have been #ifdefed out, but weren't.  Although most
 	  were later cleared up, some were missed.
-	
+
 2007-04-21  Mike Jarabek  <mjarabek@sentex.ca>
 
 	* src/f_print.c:
@@ -99,15 +119,15 @@
 2007-04-21 Carlos Nieves Onega <cnieves (AT) iespana (DOT) es>
 
 	* src/o_bus_basic.c, src/o_circle_basic.c, src/o_line_basic.c,
-	  src/o_pin_basic.c: 
+	  src/o_pin_basic.c:
 	  - Put unused variables inside #ifdef HAS_LIBGD.
-	  - Reverted the patch below. Those variables are used when 
+	  - Reverted the patch below. Those variables are used when
 	    compiling with libgd.
 	  - Removed unused variables.
 
 	* configure.ac: Don't enable libgd by default.
 	  This makes gdk-pixbuf the default library for png output.
-	
+
 2007-04-21 Peter Clifton <pcjc2@cam.ac.uk>
 
 	* src/m_basic.c: Fix visibility test in visible(..) for the case when the
@@ -119,7 +139,7 @@
 2007-04-17 Peter Clifton <pcjc2@cam.ac.uk>
 
 	Merge changes from noscreen
-	
+
 	2007-16-06 Peter Clifton <pcjc2@cam.ac.uk>
 
 		* src/o_text_basic.c: Use o_text_recalc() to update bounds, as we don't
@@ -177,8 +197,8 @@
 
 	2007-02-25 Peter Clifton <pcjc2@cam.ac.uk>
 
-		* include/prototype.h, src/o_arc_basic.c, src/o_box_basic.c, 
-		  src/o_bus_basic.c, src/o_circle_basic.c, src/o_line_basic.c, 
+		* include/prototype.h, src/o_arc_basic.c, src/o_box_basic.c,
+		  src/o_bus_basic.c, src/o_circle_basic.c, src/o_line_basic.c,
 		  src/o_net_basic.c, src/o_picture.c, src/o_pin_basic.c,
 		  src/o_text_basic.c: Removed get_..._bounds() functions.
 
@@ -212,24 +232,24 @@
 
 2007-04-06 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/g_smob.c: make g_get_object_type scheme function return 
+	* src/g_smob.c: make g_get_object_type scheme function return
 	  a character instead of a string.
-	
-	* include/o_types.h, include/prototype.h, src/g_register.c, 
-	  src/libgeda.c : 
 
-	  Register the OBJ_* object type definitions as scheme character 
+	* include/o_types.h, include/prototype.h, src/g_register.c,
+	  src/libgeda.c :
+
+	  Register the OBJ_* object type definitions as scheme character
 	  variables.
 
 2007-04-05 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* include/prototype.h, src/g_smob.c: Added two new scheme functions:
 
-	    - g_calcule_new_attrib_bounds: calcule the new bounds of an 
-	      attribute with the given parameters, _without_ modifying the 
+	    - g_calcule_new_attrib_bounds: calcule the new bounds of an
+	      attribute with the given parameters, _without_ modifying the
 	      attribute.
 
-	    - g_get_attrib_value_by_attrib_name: given an object and an 
+	    - g_get_attrib_value_by_attrib_name: given an object and an
 	      attribute name, this function returns a list with the values
 	      of the attributes with the given name in that object.
 
@@ -248,16 +268,16 @@
 
 	2006-12-30 Peter Clifton <pcjc2@cam.ac.uk>
 
-		* include/prototype.h, src/o_basic.c: Changed variable names and 
+		* include/prototype.h, src/o_basic.c: Changed variable names and
 		  comments to function inside_region() to allow its use with world
 		  coordinates without apparently swapping top and bottom (which have
 		  different sense in screen and world coords. Now uses {x/y}{min/max}.
 
 	2006-12-27 Peter Clifton <pcjc2@cam.ac.uk>
 
-		* include/prototype.h, src/o_arc_basic.c, src/o_box_basic.c, 
-		  src/o_bus_basic.c, src/o_circle_basic.c, src/o_complex_basic.c, 
-		  src/o_line_basic.c, src/o_net_basic.c, src/o_picture.c, 
+		* include/prototype.h, src/o_arc_basic.c, src/o_box_basic.c,
+		  src/o_bus_basic.c, src/o_circle_basic.c, src/o_complex_basic.c,
+		  src/o_line_basic.c, src/o_net_basic.c, src/o_picture.c,
 		  src/o_pin_basic.c: Removed o_..._translate() functions which
 		  are unused.
 
@@ -274,7 +294,7 @@
 		  since changing to world coordinates
 
 2007-02-24 Werner Hoch <werner.ho@gmx.de>
-	
+
 	* include/struct.h, src/s_page.c, src/s_toplevel.c: Removed unused
 	fields in PAGE and TOPLEVEL as well as functions for old (GtkCList
 	based) page manager. (Patch written by Patrick Bernaud)
@@ -304,7 +324,7 @@
 	  if something goes wrong, and propagate it to the caller functions.
 	  Unlink the file created by f_print_file if there is an error in
 	  f_print_header.
-	
+
 	* autogen.sh: Added automake version number check.
 
 2007-02-10  Mike Jarabek  <mjarabek@sentex.ca>
@@ -330,7 +350,7 @@
 
 	* include/prototype.h, src/Makefile.am, src/o_embed.c: Moved
 	o_embed(...) and o_unembed(...) into o_embed.c so that gschlas
-	can also call these useful functions (to support scriptable 
+	can also call these useful functions (to support scriptable
 	embedding and unembedding of components).
 
 	* src/.cvsignore: Oops, remove obsolete *.c rule that was causing
@@ -341,11 +361,11 @@
 	* include/prototype.h, src/g_smob.c:
 	  Added a new scheme function: get-page-filename, returning
 	  the page filename of the given page.
-	
+
 2006-12-21 Peter Brett   <peter@peter-b.co.uk>
 
 	* include/prototype.h, src/o_selection.c: Update interface of
-	o_selection_print_all() to match other o_selection_*() functions. Pass 
+	o_selection_print_all() to match other o_selection_*() functions. Pass
 	the GList by reference.
 
 	* include/prototype.h: Comment o_selection_select() and
@@ -356,7 +376,7 @@
 	Update interface of o_selection_add() to match
 	o_selection_remove(). Pass the GList by reference so head can be
 	updated.
-	
+
 2006-12-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	Merged Carlos' glist work via Peter Brett's patch sets to the trunk
@@ -383,7 +403,7 @@
 		src/o_text_basic.c: Rename get_complex_bounds to
 		get_object_list_bounds, and make it to call a new function
 		get_single_object_bounds, for each object in the list.
-	
+
 		* src/o_complex_basic.c: Fixed logic level of some checks.
 		* src/o_complex_basic.c: Added some sanity checks.
 
@@ -398,10 +418,10 @@
 	  Added a new scheme function: get-object-type, returning
 	  the object type (object->type as a scheme string) of the given
 	  object.
-	
+
 2006-12-05 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* include/prototype.h, src/s_clib.c: Converted the clib_directories 
+	* include/prototype.h, src/s_clib.c: Converted the clib_directories
 	  list into a double linked list and reversed the search order
 	  (last added directories first).
 
@@ -414,7 +434,7 @@
 	  Added new scheme function get-attrib-angle. It returns the angle
 	  of the given attribute.
 	  Also made a minor fix to the documentation of g_get_attrib_bounds.
-	
+
 2006-12-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/s_toplevel.c: Added missing init of toplevel->line_style
@@ -459,7 +479,7 @@
 2006-10-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Bumped package version to 20061020.
-	
+
 	* configure.ac: Bumped shared library version to 27:0:0
 
 2006-10-19  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -496,7 +516,7 @@
 
 2006-09-30 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/a_basic.c: Fixed a memory leak in o_save when saving 
+	* src/a_basic.c: Fixed a memory leak in o_save when saving
 	complex objects.  Not a large leak, but this function gets called
 	all the time when recording undo info.  Found using valgrind.
 
@@ -507,15 +527,15 @@
 
 	* include/prototype.h, include/struct.h, src/g_smob.c:
 	  Added new page smob.
-	
+
 2006-09-27 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* configure.ac : Applied patch #1564796 by Cesar Strauss, 
+	* configure.ac : Applied patch #1564796 by Cesar Strauss,
 	enabling Cygwin's compilation. Thanks.
-	
+
 2006-09-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * AUTHORS: Updated file pointing people at gschem's AUTHOR file 
+        * AUTHORS: Updated file pointing people at gschem's AUTHOR file
         as the complete list of authors.  Merged all listed files in this
         file into gschem's file.
 
@@ -538,7 +558,7 @@
 
 2006-09-23  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* include/defines.h: 
+	* include/defines.h:
 	* include/struct.h: Removed unused constants and structures
 	because of new file selection and component selection dialogs in
 	gschem.
@@ -555,11 +575,11 @@
 	  src/o_arc_basic.c, src/o_box_basic.c, src/o_bus_basic.c,
 	  src/o_circle_basic.c, src/o_image.c, src/o_line_basic.c,
 	  src/o_net_basic.c, src/o_pin_basic.c, src/s_color.c,
-	  src/s_cue.c: 
+	  src/s_cue.c:
 	  Use gd 2.0.x library instead of libgdgeda.
 	  libgdgeda is not used anymore. Work based on a patch by
 	  Wojciech Kazubski (patch #1479983).
-	
+
 2006-09-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.ac: Updated program version to 20060906.
@@ -569,16 +589,16 @@
 	where system-gafrc is looking for it.  This bug was found when
 	--with-rcdir was used.  This fix is related to Bug#1552338.
 
-	* include/defines.h: Added CUSTOM_VERSION string #define.  
-	Normally this #define defines an empty string, but for those 
+	* include/defines.h: Added CUSTOM_VERSION string #define.
+	Normally this #define defines an empty string, but for those
 	people who need to spin a custom version of gEDA/gaf (of course,
 	following the licensing/distribution requirements of the GPL), they
-	can set this to a string which is appended to printfs/output/dialog 
+	can set this to a string which is appended to printfs/output/dialog
 	boxes where VERSION is used.
 
 2006-09-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/s_toplevel.c: Added code to s_toplevel_delete 
+	* src/s_toplevel.c: Added code to s_toplevel_delete
 	to check for and remove a GSource before it is deleted.  Patch by
 	Patrick Bernaud.  Thanks!
 
@@ -587,7 +607,7 @@
 	be set in the preview toplevel (having the callback there is
 	undesirable).
 
-	* src/s_toplevel.c: Added the init of auto_save_timeout in 
+	* src/s_toplevel.c: Added the init of auto_save_timeout in
 	s_toplevel_new().  Pointed out by PeterC and this make valgrind
 	happy again.
 
@@ -602,7 +622,7 @@
 
 2006-08-30 Werner Hoch <werner.ho@gmx.de>
 
-	* src/o_attrib.c: fix for Bug#1547138: Segfault on adding 
+	* src/o_attrib.c: fix for Bug#1547138: Segfault on adding
 	  toplevel slot attribute to symbol
 
 2006-08-29 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -644,13 +664,13 @@
 
 2006-07-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/s_toplevel.c: Added initialization of missing variable 
-	(toplevel->prev).  This caused a rare segmentation fault 
+	* src/s_toplevel.c: Added initialization of missing variable
+	(toplevel->prev).  This caused a rare segmentation fault
 	(Bug#1528080)
 
 2006-07-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/defines.h: Applied mouse pan patch by Peter Clifton. 
+	* include/defines.h: Applied mouse pan patch by Peter Clifton.
 	(Patch #1527361): Allow middle button panning in gschem
 
 	* include/struct.h, src/s_toplevel.c: Added variables to support
@@ -666,19 +686,19 @@
 
 	* src/a_basic.c, src/f_basic.c, src/f_print.c, src/g_basic.c,
 	src/g_rc.c, src/g_smob.c, src/i_vars.c, src/o_arc_basic.c,
-	src/o_attrib.c, src/o_box_basic.c, src/o_bus_basic.c, 
+	src/o_attrib.c, src/o_box_basic.c, src/o_bus_basic.c,
 	src/o_circle_basic.c, src/o_complex_basic.c, src/o_line_basic.c,
-	src/o_net_basic.c, src/o_picture.c, src/o_pin_basic.c, 
+	src/o_net_basic.c, src/o_picture.c, src/o_pin_basic.c,
 	src/o_selection.c, src/o_text_basic.c, src/s_attrib.c, src/s_basic.c,
 	src/s_color.c, src/s_conn.c, src/s_hierarchy.c, src/s_menu.c,
 	src/s_papersizes.c, src/s_slib.c, src/s_stretch.c, src/s_tile.c,
-	src/s_undo.c, src/u_basic.c: Converted all free, ?alloc, and 
+	src/s_undo.c, src/u_basic.c: Converted all free, ?alloc, and
 	strdup calls to use g_free, g_?alloc, and g_strdup.  This is the
 	first phase in fixing the slice crash under glib 2.10.x.
 
 	* src/libgeda.c: Clarified putenv/free comment
 
-	* src/o_attrib.c, src/o_complex_basic.c src/o_text_basic.c: 
+	* src/o_attrib.c, src/o_complex_basic.c src/o_text_basic.c:
 	Removed some residual noweb #lines and comments
 
 	* src/s_conn.c: Finally figured out that setting a freed object's
@@ -695,13 +715,13 @@
 
 	* libgeda.pc.in: Re-Fixed incorrect order of macros.  Reverted back
 	to the previous order, since the new order is clearly wrong on other
-	platforms than FreeBSD.  
+	platforms than FreeBSD.
 
 2006-07-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* Integrated noweb removal patch by Jason Childs.  Changed default
 	target in docs/Makefile.am to not build the docs by default; this
-	is to speed up the build. 
+	is to speed up the build.
 
 	* src/o_arc_basic.c, src/o_circle_basic.c, src/s_cue.c:
 	Merged changes from the .nw files to the c files that Mike made
@@ -710,7 +730,7 @@
 	* src/g_rc.c, o_complex_basic.c: Merged changes from the .nw files
 	to the .c files that I made just recently.
 
-	* noweb/*.nw, Makefile.am: Removed all files 
+	* noweb/*.nw, Makefile.am: Removed all files
 
 2006-07-04 Jason Childs <oblivian@users.sourceforge.net>
 
@@ -732,18 +752,18 @@
  	Ported as real c source code file in the src directory.
  	Deleted after porting all noweb comments into doxygen format
  	in respective c source files.
- 	
+
  	* noweb: Removed subdirectory.
- 	
+
  	* src/Makefile.am: Updated to build from c source instead of noweb.
  	Fixed distclean setup to not remove c source files.
 
  	* docs/Makefile.am: Added support for Doxygen html and LaTex
  	documents. Fixed distclean setup to not remove required Doxygen html
  	files, and to remove html and latex subdirectories on clean.
- 	
+
  	* Makefile.am: Removed noweb as a buildable subdirectory.
- 	
+
  	* configure.ac: Removed checks for noweb and texi2html.
  	Added check for Doxygen.
 
@@ -752,8 +772,8 @@
 	* libgeda.pc.in: Fixed incorrect order of macros.  Discovered by
 	reading USENET's FreeBSD commit logs. :-)
 
-	* noweb/g_rc.nw, o_complex_basic.nw: Minor bug fix to properly 
-	promotion code to properly promote only specified changes.  
+	* noweb/g_rc.nw, o_complex_basic.nw: Minor bug fix to properly
+	promotion code to properly promote only specified changes.
 
 2006-07-03  Mike Jarabek  <mjarabek@istop.com>
 
@@ -772,7 +792,7 @@
 	  in s_hierarchy_down_schematic_single(): added page loop detector.
 
 	* include/defines.h: added some flags for s_hierarchy*
-	
+
 2006-06-02  Mike Jarabek  <mjarabek@istop.com>
 
 	* noweb/f_print.nw: Added code to check flag for vector vs. PS
@@ -792,32 +812,32 @@
 
 2006-05-20 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* src/Makefile.am: Commented out the indentation of the C code, 
+	* src/Makefile.am: Commented out the indentation of the C code,
 	so gdb can return correct information when debugging.
-	
+
 	* noweb/s_page.nw: Added one more sanity check.
 
 	* include/struct.h: Moved rotated_inside into the TOPLEVEL structure.
-	
+
 2006-05-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * scripts/notangle_guile.in: Applied patch by Steve Brown to fix
         guile stack overflow
 
-	* noweb/f_print.nw: Fixed missing @ which made notangle_guile a 
+	* noweb/f_print.nw: Fixed missing @ which made notangle_guile a
 	little happier.
 
-	* include/i_vars.h, include/prototype.h, include/struct.h, 
+	* include/i_vars.h, include/prototype.h, include/struct.h,
 	noweb/g_rc.nw, noweb/g_register.nw, noweb/i_vars.nw,
 	noweb/o_complex_basic.nw, noweb/s_toplevel.nw: Finally added code
 	to support the rc keyword: always-promote-attributes.  This string
 	holds a list of attribute names that are always promoted.
 
-	* src/Makefile.am: Changed the .nw.c: rule to redirect the generated 
-        C file to a temp file and then move it to the real one.  This fixes 
+	* src/Makefile.am: Changed the .nw.c: rule to redirect the generated
+        C file to a temp file and then move it to the real one.  This fixes
         the stale file problem when notangle fails.
 
-	* noweb/s_toplevel.nw: Added missing variable init 
+	* noweb/s_toplevel.nw: Added missing variable init
 
 2006-05-17  Mike Jarabek  <mjarabek@istop.com>
 
@@ -839,7 +859,7 @@
         * include/struct.h: Added variable which controls if the user
 	  can move objects just dragging them.
 
-2006-04-22 Carlos Nieves Onega <cnieves@iespana.es>	
+2006-04-22 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/o_complex_basic.nw: Allow rotation and mirroring of
 	  complex objects inside complex objects.
 
@@ -849,20 +869,20 @@
 
 2006-04-13 Werner Hoch <werner.ho@gmx.de>
 	* noweb/f_print.nw: added <time.h> for f_print_header()
-	
-2006-04-09 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2006-04-09 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/o_text_basic.nw: Fixed the overbar misinterpretation of
 	multiple escape slashed (bug 1458681). Thanks to Werner Hoch for
 	reporting the bug.
-	
-2006-03-03 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2006-03-03 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/o_text_basic.nw: Finish the overbar if the ending overbar
 	delimiter is omitted. Feature suggested by Enoch H. Wexler. Thanks.
-	
-2006-02-27 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2006-02-27 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/o_text_basic.nw:
 	Added support for overbars. Delimiter character for the overbar is
-	"\_" string (it should be at the beginning and at the end of the 
+	"\_" string (it should be at the beginning and at the end of the
 	overbar). Support for overbars in Postscript code needs to be done.
 
 2006-02-26 Mike Jarabek <mjarabek@istop.com>
@@ -872,14 +892,14 @@
 	  lies about the actual extents, and so does not completely obey
 	  the DSC rules.
 
-2006-02-25 Carlos Nieves Onega <cnieves@iespana.es>	
-	
+2006-02-25 Carlos Nieves Onega <cnieves@iespana.es>
+
         * include/prototype.h, include/struct.h, noweb/g_smob.nw:
 	  Added new smob functions for OBJECT type.
-	
-	* include/prototype.h, noweb/s_color.nw: 
+
+	* include/prototype.h, noweb/s_color.nw:
 	  Added a new function returning the index of a given color name.
-	
+
 2006-02-25 Carlos Nieves Onega <cnieves@iespana.es>
         * noweb/f_basic.nw: Set the backup file readonly, so an 'rm *'
 	command will ask the user if he really wants to delete the file.
@@ -889,12 +909,12 @@
 
 2006-01-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* autogen.sh, m4/gettext.m4: Removed m4 files since they are 
+	* autogen.sh, m4/gettext.m4: Removed m4 files since they are
 	installation specific
 
 2006-01-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Bumped package version to 20060123 and also 
+        * configure.ac: Bumped package version to 20060123 and also
 	change the shared library's version to 25:0:0
 
         * README: Updated for the new year and release.
@@ -902,7 +922,7 @@
 2006-01-07 Stuart Brorson <sdb AT cloud9 DOT net>
 	* autogen.sh, m4/gettext.m4: Included "-I m4" into
 	aclocal to pick up gettext.m4 from local dir.
-	
+
 2006-01-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/s_encoding.nw: Removed extra @'s since they are no longer
@@ -910,35 +930,35 @@
 	they were breaking the build for notangle_guile.  Thank to Stuart
 	and Matthias Wenzel for the fix.
 
-2005-12-02 Carlos Nieves Onega <cnieves@iespana.es>	
-	* noweb/s_page.nw: Make the s_page_autosave function more 
-	failproof, checking all the pointers. This change, together 
-	with some gschem changes at the same date will fix some gschem 
+2005-12-02 Carlos Nieves Onega <cnieves@iespana.es>
+	* noweb/s_page.nw: Make the s_page_autosave function more
+	failproof, checking all the pointers. This change, together
+	with some gschem changes at the same date will fix some gschem
 	crashes reported by David Carr. Thanks David!
 
-2005-11-27 Carlos Nieves Onega <cnieves@iespana.es>	
+2005-11-27 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/s_encoding.nw: Break some lines so notangle_guile
 	doesn't get confused by noweb scape sequences.
-	
-2005-11-27 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-11-27 Carlos Nieves Onega <cnieves@iespana.es>
         * include/funcs.h, include/struct.h, noweb/f_basic.nw,
 	  noweb/s_page.nw:
 	Added definition of the autosave backup filename string.
-	Added check for a backup file when loading a schematic, 
-	and a function to call an app-dependant function to ask 
+	Added check for a backup file when loading a schematic,
+	and a function to call an app-dependant function to ask
 	the user if the backup file should be loaded or not.
-	
-2005-11-18 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-11-18 Carlos Nieves Onega <cnieves@iespana.es>
 	* include/struct.h, noweb/f_basic.nw, noweb/s_page.nw:
 	Changed autosave code so the timer callback doesn't do the
 	autosave backups. Now are made within o_undo_savestate, so
-	backups will ONLY be saved when there was a change to the 
+	backups will ONLY be saved when there was a change to the
 	schematic and there was a timeout of the autosave timer.
-	
+
 2005-11-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/prototype.h, noweb/s_conn.nw: Added search routine which
-	is used in determining if a net segment (of the "L") connects to 
+	is used in determining if a net segment (of the "L") connects to
 	something else.
 
 2005-10-30 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -946,17 +966,17 @@
 	* noweb/s_log.nw: Added an if to get rid of an assert from glib if
 	the logfile_fd is not initialized.  Bug reported by John Luciani.
 
-2005-10-29 Carlos Nieves Onega <cnieves@iespana.es>	
+2005-10-29 Carlos Nieves Onega <cnieves@iespana.es>
 	* include/defines.h, include/prototype.h, include/struct.h,
 	  noweb/f_basic.nw, noweb/s_page.nw, noweb/s_toplevel.nw,
 	  noweb/s_undo.nw:
-	  Added support for backup copies and autosaving every 
+	  Added support for backup copies and autosaving every
 	  "interval" seconds.
-	  
-2005-10-15 Carlos Nieves Onega <cnieves@iespana.es>	
+
+2005-10-15 Carlos Nieves Onega <cnieves@iespana.es>
         * noweb/f_image.nw:
 	Print error if calling f_image_write without libgdgeda support.
-	
+
 2005-10-05 Werner Hoch <werner.ho@gmx.de>
 	* include/struct.h: added the net-drawing patch from David Carr
 	it requires two additional coordinates in st_toplevel
@@ -971,7 +991,7 @@
 	* include/prototypes.h, noweb/Makefile.am, noweb/s_encoding.nw,
 	  src/Makefile.am:
 	Added new file containing functions for base64 encoding/decoding.
-	
+
 2005-09-27 18:31  Dan McMahill <danmc>
 
 	* docs/libgedadoc.texi: add title to document to quiet the
@@ -996,13 +1016,13 @@
 	* noweb/g_basic.nw: Applied patch by Carlos Azevedo which fully expands
 	the path of an rc file, so that it can be found.
 
-	* include/struct.h, noweb/s_toplevel.nw: Added add_attribute_offset 
+	* include/struct.h, noweb/s_toplevel.nw: Added add_attribute_offset
 	rc variable to TOPLEVEL.
 
-	* include/struct.h, noweb/s_toplevel.nw: Added grid_mode and 
+	* include/struct.h, noweb/s_toplevel.nw: Added grid_mode and
 	grid_spacing rc variables to TOPLEVEL.
 
-        * configure.ac: Updated package version to 20050814.  This is a 
+        * configure.ac: Updated package version to 20050814.  This is a
         temporary version and not a real release number.
 
 2005-06-26 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1013,7 +1033,7 @@
 2005-04-20 Carlos Nieves Onega <cnieves@iespana.es>
         * include/prototype.h, noweb/o_picture.nw, noweb/f_print.nw:
 	Added support for printing pictures to postscript.
-	
+
 2005-03-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_text_basic.nw: Removed an extra g_free which was corrupting
@@ -1021,7 +1041,7 @@
 
 2005-03-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error 
+        * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error
         message if gtk+ 2.2.x is not found.
 
 2005-03-11  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -1034,18 +1054,18 @@
 	Also removed GTK 1.2 specific code.
 
 2005-03-11 7:05 Sturt Brorson <sdb@cloud9.net>
-	* noweb/s_toplevel.nw: Added initialization of toplevel_head->next 
-	in s_toplevel_init() to fix possible uninitialized jump in 
+	* noweb/s_toplevel.nw: Added initialization of toplevel_head->next
+	in s_toplevel_init() to fix possible uninitialized jump in
 	s_toplevel_new().
-	
+
 2005-03-10  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/g_rc.nw (g_rc_map_font_character_to_file): Added validation of 
+	* noweb/g_rc.nw (g_rc_map_font_character_to_file): Added validation of
 	SCM parameters (SCM_ASSERT).
 
 2005-03-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/f_basic.nw, o_complex_basic.nw: Fixed compiler warnings 
+	* noweb/f_basic.nw, o_complex_basic.nw: Fixed compiler warnings
 	about uninitialized variables
 
 2005-03-08 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1057,14 +1077,14 @@
 2005-03-05 Carlos Nieves Onega <cnieves@iespana.es>
 
 	* noweb/g_rc.nw: Removed deprecated guile functions.
-	
+
 2005-03-05 Carlos Nieves Onega <cnieves@iespana.es>
 	* noweb/g_rc.nw, noweb/g_register.nw, noweb/libgeda.nw,
 	  noweb/o_text_basic.nw, include/prototype.h, include/defines.h,
 	  noweb/s_toplevel.nw:
 	  Added Unicode support, character to font file mapping by hashtable,
 	  and font mapping definition using system-gafrc.
-	
+
 2005-02-28  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* scripts/notangle_guile.in: Improved script with changes suggested
@@ -1073,11 +1093,11 @@
 2005-02-24  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* scripts/notangle_guile.in: New version.
-	
+
 	* configure.ac, scripts/Makefile.am: Adapted for renaming of script.
-	
+
 	* scripts/notangle_guile.scm.in: Renamed to notangle_guile.in.
-	
+
 2005-02-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.ac: Fixed a minor typo that was causing the linking of
@@ -1089,13 +1109,13 @@
 	* configure.ac, noweb/o_picture.nw:
 	Added temporary GDK dependency. Fixed CLI compilation error
 	when gdk_init was not found when linking.
-	
+
 2005-02-22  Carlos Nieves Onega <cnieves@iespana.es>
 
         * noweb/o_picture.nw: Fix character conversion.
-	
+
         * noweb/o_picture.nw: Initialize GDK if it's a non-graphical app.
-	
+
 2005-02-21 05:38  Dan McMahill <danmc>
 
 	* configure.ac, src/Makefile.am: if we are using gcc, add -Wall
@@ -1115,16 +1135,16 @@
 
 2005-02-20  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/s_clib.nw: Added a missing include of defines.h required for 
+	* noweb/s_clib.nw: Added a missing include of defines.h required for
 	s_log_message().
-	
+
 	* include/defines.h (s_log_message): Added macro for message logging.
-	
+
 	* noweb/s_log.nw: Rewritten to use GLib's message logging.
 
 2005-02-19  Carlos Nieves Onega <cnieves@iespana.es>
 
-        * configure.ac, include/funcs.h, include/libgeda.h, 
+        * configure.ac, include/funcs.h, include/libgeda.h,
 	  include/o_types.h, include/prototype.h, include/struct.h,
 	  noweb/Makefile.am, noweb/a_basic.nw, noweb/f_image.nw,
 	  noweb/f_print.nw, noweb/gdk-pixbuf-hacks.nw, noweb/o_attrib.nw,
@@ -1132,7 +1152,7 @@
 	  noweb/o_picture.nw, noweb/s_basic.nw, noweb/s_toplevel.nw,
 	  src/Makefile.am:
 	  Added picture support.
-	
+
 2005-02-18 22:26  Dan McMahill <danmc>
 
 	* noweb/g_rc.nw: remove a static declaration to match prototype in
@@ -1172,10 +1192,10 @@
 
 2005-02-13  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/s_page.nw (s_page_init_list): Removed useless initialization 
+	* noweb/s_page.nw (s_page_init_list): Removed useless initialization
 	of page head fields.
 
-	* docs/Makefile.am, src/Makefile.am, noweb/Makefile.am: 
+	* docs/Makefile.am, src/Makefile.am, noweb/Makefile.am:
 	* docs/libgedadoc.texi: Updated after removal of s_scratch.
 
 	* noweb/s_scratch.nw: Removed.
@@ -1187,24 +1207,24 @@
 
 2005-02-11  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/f_basic.nw, noweb/libgeda.nw, s_hierarchy.nw: Adapted for 
+	* noweb/f_basic.nw, noweb/libgeda.nw, s_hierarchy.nw: Adapted for
 	changes in toplevel and page APIs and function set_window.
 
 	* noweb/m_basic.nw (set_window): New prototype: added pointer on page
 	to work on as second parameter.
-	
+
 	* noweb/s_page.nw: Simplified API and refactoring.
 
-	* src/Makefile.am, docs/Makefile.am, noweb/Makefile.am: Modified for 
+	* src/Makefile.am, docs/Makefile.am, noweb/Makefile.am: Modified for
 	addition of s_toplevel.nw and deletion of s_project.nw.
-	
+
 	* docs/libgedadoc.texi: Changed references to s_project in s_toplevel.
-	
+
 	* noweb/s_toplevel.nw: New file for handling of toplevel structures.
 
 	* noweb/s_project.nw: Removed: replaced by s_toplevel.nw.
-	
-	* include/struct.h: Modified cwd field of toplevel for dynamic memory 
+
+	* include/struct.h: Modified cwd field of toplevel for dynamic memory
 	allocation.
 
 2005-02-08 22:26  Dan McMahill <danmc>
@@ -1218,12 +1238,12 @@
 	* noweb/f_basic.nw, noweb/g_smob.nw, noweb/i_vars.nw:
 	* noweb/libgeda.nw, noweb/o_attrib.nw, noweb/s_color.nw:
 	* noweb/s_log.nw, noweb/s_menu.nw, noweb/s_page.nw:
-	* noweb/s_undo.nw, noweb/u_basic.nw: Deleted functions u_basic_strdup() 
+	* noweb/s_undo.nw, noweb/u_basic.nw: Deleted functions u_basic_strdup()
 	and u_basic_strdup_multiple(): use GLib functions instead.
 
 	* noweb/o_complex_basic.nw, noweb/o_text_basic.nw:
 	* noweb/s_log.nw, noweb/s_page.nw, noweb/s_slib.nw:
-	* include/defines.h: Deleted *_SEPARATER_* macros: now rely on GLib 
+	* include/defines.h: Deleted *_SEPARATER_* macros: now rely on GLib
 	for the determination of the directory separator.
 
 2005-02-04 04:39  danmc
@@ -1267,11 +1287,11 @@
 2005-02-01  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* noweb/*.nw:
-	* include/libgeda.h: Changed the includes of gh.h in include of 
+	* include/libgeda.h: Changed the includes of gh.h in include of
 	libguile.h required by the scm interface of guile.
-	
+
 	* noweb/g_basic.nw, noweb/g_rc.nw:
-	* noweb/g_register.nw, noweb/g_smob.nw: Switched to the new scm 
+	* noweb/g_register.nw, noweb/g_smob.nw: Switched to the new scm
 	interface of guile.
 
 2005-01-31  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -1280,48 +1300,48 @@
 
 2005-01-30  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/g_rc.nw: Code cleanup: added guile assertions, fixed some 
+	* noweb/g_rc.nw: Code cleanup: added guile assertions, fixed some
 	memory problems, make it use more of glib.
 
-	* noweb/o_complex_basic.nw (o_complex_read): Fixed test after library 
+	* noweb/o_complex_basic.nw (o_complex_read): Fixed test after library
 	search to avoid crash when the component is not found.
 
 2005-01-29  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/g_rc.nw, noweb/o_complex_basic.nw: Adapted for new component 
+	* noweb/g_rc.nw, noweb/o_complex_basic.nw: Adapted for new component
 	library code.
 
 	* noweb/s_clib.nw: Rewrote code for component library.
 
 2005-01-28 Stuart Brorson <sdb@cloud9.net>
 
-	*  noweb/f_basic.nw, noweb/g_rc.nw, noweb/s_page.nw, 
+	*  noweb/f_basic.nw, noweb/g_rc.nw, noweb/s_page.nw,
 	noweb/s_project.nw: incorporated patch by Patrick Bernaud.
-	
+
 2005-01-27 Stuart Brorson <sdb@cloud9.net>
 
 	* include/prototype.h, include/struct.h, noweb/f_basic.nw,
 	noweb/g_rc.nw, noweb/s_page.nw, noweb/s_project.nw,
 	noweb/u_basic.nw:  Changes made to enable correct opening
 	of schematics in foreign directories.  New algorithm:
-	
+
         1.  Take the filename the user wants to open.
         2.  Turn it into an absolute path, like /foo/bar/baz.sch
         3.  From the path, figure out the directory, /foo/bar
-        4.  From this, create the absolute path to the local gafrc, 
+        4.  From this, create the absolute path to the local gafrc,
 	    /foo/bar/gafrc.
         5.  cd to /foo/bar
-        6.  read /foo/bar/gafrc while sitting in the directory /foo/bar.  
-	    This takes care of all the guile search path problems, 
-	    like when people put things like 
+        6.  read /foo/bar/gafrc while sitting in the directory /foo/bar.
+	    This takes care of all the guile search path problems,
+	    like when people put things like
 	    (component-library "../common/symlib") or some such into
             their RC files.
         7.  After that, read the file itself.
-        8.  Leave the directory set to this directory.  
-	
+        8.  Leave the directory set to this directory.
+
 2005-01-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_complex_basic.nw: Fixed a bug where sometimes 
+	* noweb/o_complex_basic.nw: Fixed a bug where sometimes
 	missing rotated/mirror components will cause gschem to render the
 	"missing component symbol" out in la la land.
 
@@ -1356,17 +1376,17 @@
         function now checks if the string is unique and calls
         s_scratch_non_unique_string_fill.
 
-2005-01-19 Stuart Brorson <sdb@cloud9.net>	
-	* noweb/o_complex_basic.nw, include/o_types.h: Created 
+2005-01-19 Stuart Brorson <sdb@cloud9.net>
+	* noweb/o_complex_basic.nw, include/o_types.h: Created
 	OBJ_PLACEHOLDER to signal a complex found with no
 	symbol file.  Changed o_complex_read to put this
 	placeholder into object_list instead of nuking complex.
 	This is to mitigate problem where components were being
 	removed if sym files weren't found.
 
-2005-01-15 Stuart Brorson <sdb@cloud9.net>	
-	* noweb/s_log.nw, prototype.h: changed s_log_init 
-	to take const char as arg since it's always called 
+2005-01-15 Stuart Brorson <sdb@cloud9.net>
+	* noweb/s_log.nw, prototype.h: changed s_log_init
+	to take const char as arg since it's always called
 	with a quoted string.
 
 2005-01-10 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1380,7 +1400,7 @@
 	* noweb/s_project.nw (s_project_setup_rest): Made it handle
 	initialization of field current_clib.
 
-	* include/struct.h: Changed field current_clib of st_toplevel to 
+	* include/struct.h: Changed field current_clib of st_toplevel to
 	char*.
 
 	* noweb/s_clib.nw (s_clib_getfiles): Modified prototype and
@@ -1389,14 +1409,14 @@
 
 2005-01-04  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/o_basic.nw (o_set_line_options): Moved in this function some 
+	* noweb/o_basic.nw (o_set_line_options): Moved in this function some
 	error checking and correcting that previously was in gschem code.
 
 2005-01-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/struct.h, noweb/s_project.nw, noweb/f_print.nw: Implemented
 	a threshold which controls when postscript outputted text is rendered
-	using the vector font instead of the postscript font.  This is a 
+	using the vector font instead of the postscript font.  This is a
 	work around for the rather inaccurate multi-line postscript output.
 
 2004-12-27 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1406,26 +1426,26 @@
 
 2004-07-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/struct.h: Added major_changed_refdes GList to toplevel 
+	* include/struct.h: Added major_changed_refdes GList to toplevel
 	structure.
 
 	* include/prototype.h: Added new function prototype for:
-	o_complex_check_symversion 
+	o_complex_check_symversion
 
-	* noweb/a_basic.nw: Added some code to make the call to 
+	* noweb/a_basic.nw: Added some code to make the call to
 	o_complex_check_symversion when a symbol has been read from disk.
 
 	* noweb/s_project.nw: Misc init code
 
-	* noweb/o_complex_basic.nw: Added code to implement 
+	* noweb/o_complex_basic.nw: Added code to implement
 	o_complex_check_symversion which is called whenever a symbol is
 	loaded from disk.  This function goes through and searches for
 	the symversion= attribute both inside the symbol and attached to
 	the instanciated symbol and checks to make sure nothing/something
 	has changed.
 
-	* noweb/o_complex_basic.nw: Rearranged o_complex_is_eligible_attribute 
-	a little to make it easier to force certain attributes (like the 
+	* noweb/o_complex_basic.nw: Rearranged o_complex_is_eligible_attribute
+	a little to make it easier to force certain attributes (like the
 	new symversion= attribute) to be always promoted (even if they are
 	invisible).   Misc whitespace cleanup too.
 
@@ -1438,7 +1458,7 @@
 	* configure.ac: Added code to specify the rc directory via
 	--with-rcdir.  Also set GEDARCDIR for the newly added rc code.
 
-	* include/Makefile.am, papersizes.h, libgeda.h: Added papersizes.h 
+	* include/Makefile.am, papersizes.h, libgeda.h: Added papersizes.h
 	from gschem.
 
 	* include/prototypes.h: Added a whole slew of new function
@@ -1455,12 +1475,12 @@
 
         * configure.ac: Updated version to 20040710 and changed shared library
 	version to 21:0:0
-	
+
 2004-05-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_bus_basic.nw, o_net_basic.nw, s_cue.nw: Fixed the multi
 	colored dot postscript problem reported by Gabriel Paubert.  Removed
-	some completely redundant postscript to set the color in the wrong 
+	some completely redundant postscript to set the color in the wrong
 	spot.
 
 2004-01-17 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1471,7 +1491,7 @@
 
         * configure.ac: Updated version to 20040111
 
-	* noweb/o_arc_basic.nw o_attrib.nw o_box_basic.nw o_bus_basic.nw 
+	* noweb/o_arc_basic.nw o_attrib.nw o_box_basic.nw o_bus_basic.nw
 	o_circle_basic.nw o_line_basic.nw o_pin_basic.nw o_text_basic.nw:
 	Fixed most -Wall warnings.
 
@@ -1479,20 +1499,20 @@
 	in gschem)
 
 	* noweb/o_pin_basic.nw: Had to remove the pin whichend reset
-	I added on 2003-12-22, since it broke the auto pin whichend 
+	I added on 2003-12-22, since it broke the auto pin whichend
 	code (o_pin_update_whichend; which relies on whichend equaling -1
 	when the whichend is unknown).  Fix the whichend for embedded
-	components still needs to be dealt/fixed.  This problem needs a 
+	components still needs to be dealt/fixed.  This problem needs a
 	release note.
 
 2004-01-10 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_text_basic.nw: Fixed the postscript printing of text
-	when it is rotated 180 degrees.  
+	when it is rotated 180 degrees.
 
 	* noweb/o_text_basic.nw: Attempted to get the multi line text
-	printing a little more accurate.  Not quite there, still have a 
-	large error when the text consists of many lines.  Work in 
+	printing a little more accurate.  Not quite there, still have a
+	large error when the text consists of many lines.  Work in
 	progress.
 
 	* include/defines.h: Changes LINE_SPACING to be a float.
@@ -1538,7 +1558,7 @@
 
 	* noweb/o_text_basic.nw: Included in the above patch was the
 	change to make the multi line spacing 2 instead of 1.5.  I made
-	this line spacing parameter a #define (in defines.h) to make 
+	this line spacing parameter a #define (in defines.h) to make
 	changing it easier.  Eventually this will have to become a rc files
 	parameter.
 
@@ -1547,14 +1567,14 @@
 
 2003-12-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_pin_basic.nw: In search of the "why aren't pins which are 
+	* noweb/o_pin_basic.nw: In search of the "why aren't pins which are
 	part of embedded components not connecting" bug, discovered
 	that if an older schematic is read (with embedded components),
 	the whichone variable wasn't being reset properly (missing <= ).
 
 2003-11-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/struct.h, noweb/s_project.nw: Added unnamed_netname 
+	* include/struct.h, noweb/s_project.nw: Added unnamed_netname
 	variable to TOPLEVEL (and initialized to NULL).  This is for
 	gnetlist.
 
@@ -1563,7 +1583,7 @@
 	* config.guess config.sub depcomp install-sh ltmain.sh missing
 	mkinstalldirs: Removed machine generated files from CVS
 
-        * Makefile.am: Added the above files to be cleaned during 
+        * Makefile.am: Added the above files to be cleaned during
         maintainer-clean
 
 	* autogen.sh: Added script to create auto* generated files
@@ -1596,7 +1616,7 @@
 	over a period of a few weeks, but were checked in on the above
 	date.
 
-	* noweb/a_basic.nw: Removed fixed size buffer from o_save_embedded() 
+	* noweb/a_basic.nw: Removed fixed size buffer from o_save_embedded()
 	and o_save().  Also changed the function signature (removed buf)
 	of all o_*_save functions.
 
@@ -1634,7 +1654,7 @@
 	o_attrib_get_name_value to make sure memory is allocated properly
 	and freed.  Name and value must be freed eventually.
 
-	* noweb/o_attrib.nw: o_attrib_get_name_value() was rewritten to 
+	* noweb/o_attrib.nw: o_attrib_get_name_value() was rewritten to
 	use g_strsplit to break up the string into name and value.
 
 	* noweb/o_attrib.nw: o_attrib_search_name(),
@@ -1644,7 +1664,7 @@
 	All modified to use the newly changed o_attrib_get_name_value().
 
 	* noweb/o_attrib.nw: Added a bunch of frees in certain places to
-	prevent memory leaks.   
+	prevent memory leaks.
 
 	* noweb/o_attrib.nw: Rearranged o_attrib_get_name_value() so that
 	a memory leak does not occur (check the input up front as possible
@@ -1677,7 +1697,7 @@
 
 	* noweb/o_net_basic.nw: Changed signature of o_net_save to just
 	take an object pointer.
-	
+
 	* noweb/o_pin_basic.nw: Changed signature of o_pin_save to just
 	take an object pointer.
 
@@ -1688,9 +1708,9 @@
 
 	* noweb/o_text_basic.nw: Added o_text_num_lines()
 
-	* noweb/o_text_basic.nw: In o_text_load_font removed fixed size 
+	* noweb/o_text_basic.nw: In o_text_load_font removed fixed size
 	character buffer.  Added code to set the width of the new line
-	character (a nop really) and set the width of characters that 
+	character (a nop really) and set the width of characters that
 	cannot be identified.
 
 	* noweb/o_text_basic.nw: Rewrote o_text_height() and
@@ -1699,14 +1719,14 @@
 	a parameter now.
 
 	* noweb/o_text_basic.nw: Removed a size adjustment hack when
-	calculating the width of a string. 
+	calculating the width of a string.
 
 	* noweb/o_text_basic.nw: Added code to o_text_create_string to
-	handle multi-line text objects.  Also added code to handle 
+	handle multi-line text objects.  Also added code to handle
 	tab characters within text lines.
-	
-	* noweb/o_text_basic.nw: Added code to o_text_create_string to 
-	not add newline or tabs to the lowlevel text list 
+
+	* noweb/o_text_basic.nw: Added code to o_text_create_string to
+	not add newline or tabs to the lowlevel text list
 
 	* noweb/o_text_basic.nw: Removed fixed size character buffers in
 	o_text_add().  Removed 1024 limit on text lines.  Fixed up a call
@@ -1723,7 +1743,7 @@
 	* noweb/o_text_basic.nw: In o_text_set_info_font(), added code to
 	set the width of the special newline character correctly.
 
-	* noweb/o_text_basic.nw: Added code to set the text width of 
+	* noweb/o_text_basic.nw: Added code to set the text width of
 	character not found (loaded the ? char instead)
 
 	* noweb/o_text_basic.nw: Changed signature of o_net_save to just
@@ -1737,7 +1757,7 @@
 	o_text_height() since it is not used.
 
 	* noweb/g_smob.nw, o_attrib.nw, o_text_basic.nw: Added some checks
-	to make sure valid pointers are freed (everywhere 
+	to make sure valid pointers are freed (everywhere
 	o_attrib_get_name_value) is called.
 
 	* noweb/*.nw: misc code format cleanup
@@ -1745,19 +1765,19 @@
 	* include/prototype.h: Changed string to file pointer to
 	o_text_read()
 
-	* include/defines.h: Added #define for max single line length.  
+	* include/defines.h: Added #define for max single line length.
 	The text line can spawn multiple 1024 length lines, but a single
 	line can only be 1024 characters long.
 
 	* include/globals.h: Added tab_in_chars global variable.
- 	
+
 	* noweb/o_attrib.nw: Removed old string[...] variable.
 
-	* noweb/o_attrib.nw: Added code to make sure that attributes are 
+	* noweb/o_attrib.nw: Added code to make sure that attributes are
 	only a single line.
 
 	* noweb/o_box_basic.nw, noweb/o_circle_basic.nw: Removed all //
-	comments (replaced them with C comments) 
+	comments (replaced them with C comments)
 
 2003-10-18 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -1775,10 +1795,10 @@
         * configure.ac: Updated version to something more recent, but this
         version is not an official release.
 
-	* noweb/a_basic.nw, o_arc_basic.nw, o_attrib.nw, o_box_basic.nw, 
-	o_bus_basic.nw, o_circle_basic.nw, o_complex_basic.nw, 
-	o_line_basic.nw, o_net_basic.nw, o_pin_basic.nw, o_text_basic.nw: 
-	Added the file format flag to the "v" file line.  Also moved all 
+	* noweb/a_basic.nw, o_arc_basic.nw, o_attrib.nw, o_box_basic.nw,
+	o_bus_basic.nw, o_circle_basic.nw, o_complex_basic.nw,
+	o_line_basic.nw, o_net_basic.nw, o_pin_basic.nw, o_text_basic.nw:
+	Added the file format flag to the "v" file line.  Also moved all
 	version numbers into include/define.h.
 
 	* noweb/o_text_basic.nw: Removed fudge factor from width calculation.
@@ -1814,12 +1834,12 @@
 
         * configure.ac: Improved a bunch of the external library tests for
 	gtk+, guile.
-	
+
 	* configure.ac: Improved the configuration summary message.
 
 	* configure.ac: Oops forgot to AC_SUBST the LIBTOOL_FLAGS variable,
 	shared library was being build with the wrong version
-	
+
 	* configure.ac: Added --with-gtk12 flag so that users can force
 	libgeda to use gtk+ 1.2 instead of gtk+ 2.2.x (if it is found)
 
@@ -1833,15 +1853,15 @@
 	* configure.ac and friends: Rewrote the configure scripts to be sane,
 	much simpler, and up-to-date.
 
-	* configure.in, acconfig.h, and others: Removed a whole bunch of 
+	* configure.in, acconfig.h, and others: Removed a whole bunch of
 	obsolete files.
 
-	* noweb/o_arc_basic.nw, o_box_basic.nw o_bus_basic.nw 
+	* noweb/o_arc_basic.nw, o_box_basic.nw o_bus_basic.nw
 	o_circle_basic.nw, o_line_basic.nw, o_net_basic.nw, o_pin_basic.nw:
 	Obsoleted the HAS_LIBGDGEDA2 #define.  libgdgeda 2.0.15 is now
 	required.
 
-	* libgeda.pc.in: Added new file which is used with pkg-config.  
+	* libgeda.pc.in: Added new file which is used with pkg-config.
 	libgeda now requires pkg-config to configure and the other tools will
 	need pkg-config to link to libgeda.
 
@@ -1852,7 +1872,7 @@
 
 	* *.in, *.h, etc: Removed a bunch of old unneeded auto* files.
 
-	* Toplevel Makefile: Changed the libgeda-config-install to 
+	* Toplevel Makefile: Changed the libgeda-config-install to
 	libgeda-pc-install (for the libgeda.pc file)
 
 	* Toplevel Makefile: Removed all traces of gesym-config*, since
@@ -1866,7 +1886,7 @@
 
 2003-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_arc_basic.nw, o_circle_basic.nw: Added missing break; 
+	* noweb/o_arc_basic.nw, o_circle_basic.nw: Added missing break;
         to make compiler happy.
 
 	* noweb/o_bus_basic.nw: Removed unused variable.
@@ -1883,15 +1903,15 @@
 
 2003-02-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/defines.h, noweb/f_print.nw: Applied Antonio's no 
+	* include/defines.h, noweb/f_print.nw: Applied Antonio's no
 	margin printing patch (with minor modifications).  Thanks.
 
-	* include/defines.h, noweb/f_print.nw: Renamed "limits" to 
+	* include/defines.h, noweb/f_print.nw: Renamed "limits" to
 	"extents"
 
 2003-02-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/s_clib.nw: Added a little more error checking to 
+	* noweb/s_clib.nw: Added a little more error checking to
 	s_clib_add_entry().
 
 2003-02-18 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1909,7 +1929,7 @@
 2003-01-29 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.in: Changed -fnative-struct to -mms-bitfields for
-        gcc 3.2 mingw compiler (older mingw compilers are no longer 
+        gcc 3.2 mingw compiler (older mingw compilers are no longer
         supported)
 
 2003-01-07 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -1920,30 +1940,30 @@
 2002-12-29 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_text_basic.nw: Fixed a minor typo by applying Egil's latest
-	extended character patch (missing break; statement).  
+	extended character patch (missing break; statement).
 
 2002-12-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* acconfig.h, config.h.in, configure.in.h: Added tests to look for
-	the new libgdgeda 2.0.x 
+	the new libgdgeda 2.0.x
 
 	* noweb/o_arc_basic.nw, o_box_basic.nw, o_bus_basic.nw,
 	o_circle_basic.nw, o_line_basic.nw, o_net_basic.nw,
 	o_pin_basic.nw: Added calls to the gd thickness function to render
 	thick lines in the png output
-	
-	* noweb/s_basic.nw: Initialized a few members of st_object which 
+
+	* noweb/s_basic.nw: Initialized a few members of st_object which
 	should have been set to zero.
 
 2002-12-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/o_text_basic.nw: Applied Norwegian/Danish/German characters 
+	* noweb/o_text_basic.nw: Applied Norwegian/Danish/German characters
 	patch from Egil Kvaleberg
 
 2002-12-15 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added menubar variable to TOPLEVEL
-	
+
 2002-11-30 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * aclocal.m4: Removed file from cvs.
@@ -1973,9 +1993,9 @@
 	* include/defines.h: Added a bunch of #defines for various widths
 	and the visual cues
 
-	* noweb/f_print.nw: Fixed bug: When generating color postscript, 
+	* noweb/f_print.nw: Fixed bug: When generating color postscript,
 	the size of the paper wasn't being dealt with at all (wrt to the
-	background fill).	
+	background fill).
 
 	* noweb/o_pin_basic.nw: Changed the hard coded value for pin width
 	when outputing postscript to be 1) #defined and 2) properly computed.
@@ -1988,13 +2008,13 @@
 
 	* noweb/o_arc_basic.nw: Fixed a long standing bug (since July 2002),
 	where arc png output would be wrong.  Turns out that the width and
-	height of an arc are not always equal.  Bug reported by Karel 
+	height of an arc are not always equal.  Bug reported by Karel
 	'Clock' Kulhavy.
 
 	* noweb/s_cues.nw: Changed the hard coded value for all cues sizes
 	when outputing postscript to be 1) #defined and 2) properly computed.
 
-	* configure and friends: Ran "autoreconf --force --install -v" 
+	* configure and friends: Ran "autoreconf --force --install -v"
         to really upgrade to the newest version of the auto* tools.
 
 	* include/struct.h: Added force_boundingbox rc variable.
@@ -2004,7 +2024,7 @@
 	* noweb/s_pin_basic.nw: Added code that if force_boundingbox variable
 	is true, then use the entire bounding box in the pin auto whichend
 	calculation (instead of default: just the pins).
-	
+
 2002-10-26 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added variables for the bus ripper support
@@ -2022,7 +2042,7 @@
 2002-10-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added bus_ripper_direction variable to objects.
-	Only valid for buses. 
+	Only valid for buses.
 
 	* include/struct.h: Added st_bus_ripper structure.  Used in the
 	auto creation of bus rippers when connecting a net to a bus.
@@ -2046,7 +2066,7 @@
 	versioned files (variable defaults to zero).
 
 	* noweb/s_project.nw: Oops, missed override_bus_color in the init
-	of the toplevel variable.  Important since the color of buses was 
+	of the toplevel variable.  Important since the color of buses was
 	being set to zero by gschlas.
 
 2002-10-19 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2056,23 +2076,23 @@
 	box if only one pin is found).  Changed function to take this pin
 	count as a paramater.
 
-	* noweb/a_basic.nw: Passed the number of found pins to 
+	* noweb/a_basic.nw: Passed the number of found pins to
 	o_pin_update_whichend
 
 	* configure.in, *.m4: Upgraded to automake 1.7.1 and autoconf 2.54
 
 2002-10-17 Ales Hvezda   <ahvezda@geda.seul.org>
-	
+
 	* noweb/o_pin_basic.nw: Added some error checking for the whichend
 	parameter on pins.
 
 	* noweb/o_pin_basic.nw: Changed the get world bounding box call in
 	o_pin_update_whichend to only look at pins instead of all
 	graphics.  This fixes a bug which Werner Hoch reported.
-	
+
 2002-09-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/a_basic.nw: Minor performance tweek wrt the 20020825 
+	* noweb/a_basic.nw: Minor performance tweek wrt the 20020825
 	pin compatiblity referenced below.
 
 2002-09-22 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2093,11 +2113,11 @@
 	which end is the active connection end point.  It does not work on
 	angled pins.
 
-	* noweb/a_basic.nw: Added a call to o_pin_update_whichend (in 
+	* noweb/a_basic.nw: Added a call to o_pin_update_whichend (in
 	o_read) which is called when an old symbol/schematic is read
 	in to update the pin's which end variable.  This code is only
 	called if a pin is read in.
-	
+
 	* noweb/o_pin_basic.nw: Added code to read and write the new file
 	pin fields (pin_type and whichend).  libgeda will still read all the
   	old formats just fine.
@@ -2105,7 +2125,7 @@
 	* noweb/o_pin_basic.nw: Updated o_pin_add to take pin_type and
 	whichend as parameters.
 
-	* noweb/s_basic.nw: Inited pin_type and whichend in st_object.	
+	* noweb/s_basic.nw: Inited pin_type and whichend in st_object.
 
 	* noweb/s_conn.nw: Added code to control which end point of a pin
 	can have a connection attached to it.  This is control via the
@@ -2132,17 +2152,17 @@
 	setpagedevice-* rc keywords.
 
 	* noweb/*.nw: Cleaned up -Wall warnings
-	
+
 2002-07-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_attrib.nw: Added a comment to a line which was using
 	uref= which is now deprecated (replaced by refdes=)
-	
+
 2002-07-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_text_basic.nw: Fixed the crash when you try to display
 	the finnish/swedish characters
-	
+
 2002-07-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/o_complex_basic.nw: Changed o_complex_return_pin_object()
@@ -2151,7 +2171,7 @@
 
 	* include/defines.h: Renamed a few #defines to slowly migrate away
 	from the word "label"
-	
+
 2002-07-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.in/Makefile.am: Upgraded to automake 1.6.2
@@ -2164,7 +2184,7 @@
 	* noweb/o_attrib.nw: Removed a log message which is not an error:
 	( Did not find slot= attribute )
 
-	* noweb/o_complex_basic.nw: Changed o_complex_return_pin_object to 
+	* noweb/o_complex_basic.nw: Changed o_complex_return_pin_object to
 	search using the pinseq attribute
 
 2002-06-27 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2179,18 +2199,18 @@
 
 	* noweb/u_basic.nw: Changed u_basic_breakup_string to take a
 	character as a delimiter.
-	
+
 2002-06-21 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/struct.h: Moved all the gsymcheck structures to a
 	gsymcheck specific file
 
-	* noweb/o_attrib.nw: Completely removed two obsolete o_attrib_search_* 
+	* noweb/o_attrib.nw: Completely removed two obsolete o_attrib_search_*
 	functions
 
 2002-06-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* noweb/s_basic.nw: Added patch by Bryce Denney to remove \r in 
+	* noweb/s_basic.nw: Added patch by Bryce Denney to remove \r in
 	remove_nl(...).  This was done to have clean interoperability between
 	the unix and win32 ports.  I don't know if the patch is sufficient
 	to cleanup component (etc...) lines.  Will have to test this for the
@@ -2203,7 +2223,7 @@
 	attribute and returns a pointer to the object.
 
 	* noweb/o_attrib.nw: Added a null pointer check in
-	o_attrib_return_parent(...) 
+	o_attrib_return_parent(...)
 
 2002-06-18 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -2230,7 +2250,7 @@
 	* include/defines.h: Added OTHER_* seperater #defines.  Mainly for
 	mingw32 port.
 
-	* configure.in: Added OTHERPATHSEP 
+	* configure.in: Added OTHERPATHSEP
 
 2002-05-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -2242,7 +2262,7 @@
 
 2002-05-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* include/struct.h: Added bitmap-directory rc variable 
+	* include/struct.h: Added bitmap-directory rc variable
 
 2002-05-12 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -2260,16 +2280,16 @@
 
 2002-04-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure.in and friends: More work on getting the upgrade of 
+	* configure.in and friends: More work on getting the upgrade of
 	autoconf, automake, and libtool to behave correctly.
 
 	* configure.in: Added PATHSEP variable which holds the proper path
 	separater depending on the platform.
 
 	* lib/system-*.in: Work on getting rc files to use above variable.
-	
+
 	* noweb/o_text_basic.nw: Changed the name of the lower case symbols
-	to include an _ to make systems like win32 (which have semi-case 
+	to include an _ to make systems like win32 (which have semi-case
 	sensitive) file systems happy.
 
 2002-04-01 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2310,7 +2330,7 @@
 
 	* configure.in: Added checks for mingw32 and disabled the
 	cygwin port
-	
+
 2002-02-18 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/Makefile.am: Andrew Dyer found a GUILE_* bug. Fixed.
@@ -2323,8 +2343,8 @@
 	number of selected objects
 
 	* include/struct.h: Added show_hidden_text to toplevel structure
-	
-	* noweb/o_text_basic.nw: Went through and make sure that text is 
+
+	* noweb/o_text_basic.nw: Went through and make sure that text is
 	created properly if it is invisible and show_hidden_text is true
 
 	* noweb/*.nw bunch of files: Make sure visibility is being dealt with
@@ -2334,7 +2354,7 @@
 
 2001-11-25  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* noweb/o_arc_basic.nw: Corrected a bug about arc mirroring due to 
+	* noweb/o_arc_basic.nw: Corrected a bug about arc mirroring due to
 	the last changes (2001-11-21) : my fault.
 
 2001-11-21  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -2357,11 +2377,11 @@
 
 	* scripts/notangle_guile.scm.in: Added guile script to tangle
 	noweb code without the whole noweb package installed.
-	
-	* noweb/o_{arc|box|circle|line}_basic.nw: Full documentation, 
+
+	* noweb/o_{arc|box|circle|line}_basic.nw: Full documentation,
 	code clean-up and use of the new identifiers for modification.
 
-	* include/struct.h: Defined identifiers for particular points 
+	* include/struct.h: Defined identifiers for particular points
 	on each type of object.
 
 2001-07-24 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -2392,14 +2412,14 @@
 
 	* noweb/s_menu.nw: Added new file to support dynamic menus in
 	  gschem (add file to all Makefile.am files too)
-	
+
 2001-07-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/defines.h: Increased the maximum number of files and
 	  directories
 
-	* configure.in: (and all other configure.in's) set the VERSION 
-	  to 20010708. 
+	* configure.in: (and all other configure.in's) set the VERSION
+	  to 20010708.
 
 2001-07-02 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -2416,14 +2436,14 @@
 2001-06-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added rc variable and reformated the code
-	
+
 2001-06-21 Stefan Petersen  <spe@geda.seul.org>
 
 	* noweb/g_basic.nw: Improved error information when reading *rc
 	  and other minor clean ups.
 
 	* include/prototype.h: Removed ORIG_g_read_file
-	
+
 2001-06-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/Makefile.am: Further improvements on the noweb build mechansim
@@ -2431,7 +2451,7 @@
 	* src/Makefile.am: Added the ability to build the docs
 
 	* docs/Makefile.am: Added makefile
-	
+
 	* noweb/Makefile.am: Added makefile
 
 	* scripts/Makefile.am: Added makefile
@@ -2442,17 +2462,17 @@
 
 	* src/Makefile.am: Added support for automatic dependency tracking
 	  wrt the noweb files (using VPATH)
-	  
+
 	* noweb/libgeda.c: Changed the init code so that you do not have
-	  to have the GEDADATADIR variable set, but if it is, override 
+	  to have the GEDADATADIR variable set, but if it is, override
 	  the default
-	
+
 2001-06-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/libgeda.c: Added an init function for the library which is
 	  responsible for make sure the require environment variable is set
 
-	* noweb/Makefile: Added above file 
+	* noweb/Makefile: Added above file
 
 	* src/Makefile.am: Added above file
 
@@ -2461,18 +2481,18 @@
 	* noweb/Makefile: misc path changes
 
 	* scripts/geda_totexi: renamed gawk to just plain awk
-	
+
 2001-06-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* noweb/*: Added all the .nw files that were done by Patrick B.
 
-	* Started the slow switch to noweb (almost there, just have to 
+	* Started the slow switch to noweb (almost there, just have to
 	  get the configure mechanism setup)
-	  
+
 	* scripts/*: Added noweb -> texi backend script written by Patrick B.
 
 	* src/*.c: Removed all *.c files from the repository
-	
+
 2001-03-18 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * Removed all Makefile.in files and configure
@@ -2488,20 +2508,20 @@
 
 	* configure, configure.in: Didn't build properly if libgdgeda
 	  was placed in a not common place.
-	
+
 2001-03-11  Stefan Petersen  <spe@geda.seul.org>
 
-	* Makefile.am, Makefile.in, acconfig.h, config.h.in, 
-	  configure, configure.in, include/Makefile.in, src/Makefile.am, 
-	  src/Makefile.in: Removed all traces of libstroke et al and 
+	* Makefile.am, Makefile.in, acconfig.h, config.h.in,
+	  configure, configure.in, include/Makefile.in, src/Makefile.am,
+	  src/Makefile.in: Removed all traces of libstroke et al and
 	  regenerated some files.
-	  
+
 	* s_stroke.c : Removed
-	
+
 2001-03-07  Stefan Petersen  <spe@geda.seul.org>
 
 	* configure.in: Fixed minor bug introduced yesterday.
-	
+
 2001-03-06  Stefan Petersen  <spe@geda.seul.org>
 
 	* configure.in: Removed some hard coded libraries and rearranged
@@ -2511,10 +2531,10 @@
 2001-03-05 Stefan Petersen <spe@geda.seul.org>
 
 	* src/libgeda/s_cue.c: added some missing HAS_LIBGDGEDA.
-	
+
 2001-03-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/o_complex_basic.c: Re-enabled the bounding box calculation 
+	* src/o_complex_basic.c: Re-enabled the bounding box calculation
 	  for arcs inside complex objects.  This was possible because
 	  Patrick fixed the bounding box for arcs!
 
@@ -2532,10 +2552,10 @@
 2001-03-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.in: Fixed a few bugs dealing with the enabling and
-          disabling of features via the command line (pointed out by 
+          disabling of features via the command line (pointed out by
 	  Karel Kulhavy)
-	
-	* src/s_cue.c: Added file which contains the postscript and 
+
+	* src/s_cue.c: Added file which contains the postscript and
 	  the image output routines for the cues
 
 	* src/f_print.c: Added call to output the cues
@@ -2559,7 +2579,7 @@
 	* src/*.c: Converted some // comments to /* */
 
 	* src/*.c: Cleaned up some -Wall warning messages
-	
+
 2001-02-25  Ales Hvezda  <ahvezda@geda.seul.org>
 
         * src/o_attrib.c: Added some if (... == NULL) checks to prevent
@@ -2573,7 +2593,7 @@
 	* src/s_page.c: Added code to forcibly load a schematic page
 	  (s_page_new_lowlevel).  Modified s_page_new to use this new
 	  routine.
-	
+
 2001-02-17 Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* include/struct.c: Removed more of the old connection code
@@ -2587,18 +2607,18 @@
 	* src/s_stretch.c: Put this file back into the build
 
 	* src/f_*.c: Removed all traces of the old connection code
-	
+
 2001-02-16 Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_net_basic.c: Oops, nets which caused midpoints were being
 	  consolidated away (bad), fixed this by checking first to make
 	  sure that that particular endpoint didn't cause any midpoints
 	  (if it did, don't consolidate the net)
-	  
+
 2001-02-11 Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_net_basic.c, src/o_pin_basic.c: Moved the tile update call
-	  inside the ADDING_SEL if inside the *_add functions.  
+	  inside the ADDING_SEL if inside the *_add functions.
 
 	* src/s_tile.c: Added a return if ADDING_SEL is true.
 
@@ -2608,20 +2628,20 @@
 
 	* src/o_net_basic.c: Rewrote net consolidate code to work with the
 	  new connection system
-	
+
 2001-02-10 Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_complex_basic.c: Minor changes, call net functions for
-	  nets (not the line functions).  All this needs to be cleaned up 
+	  nets (not the line functions).  All this needs to be cleaned up
 	  eventually
 
 	* Started syncing with cvs repository
-	
+
 2001-02-08 Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_complex_basic.c: In one of the translate functions,
 	  removed a whole bunch of cruft.
-	
+
 2001-02-04 Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_complex_basic.c: Added a flag to save the state of
@@ -2639,38 +2659,38 @@
 	* src/s_page.c: Made sure page_current points to the current page
 	  being freed in s_page_free_all
 
-	* src/s_tile.c: Changed s_tile_remove_object to take a page 
+	* src/s_tile.c: Changed s_tile_remove_object to take a page
 	  parameter (so that the objects get removed from the right page)
-	
+
 2001-02-03  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/s_conn.c: Added s_conn_return_complex_others to support
 	  o_copy in gschem
-	
+
 2001-02-03  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* src/o_arc_basic.c: Added function o_arc_modify() 
-	
+	* src/o_arc_basic.c: Added function o_arc_modify()
+
 2000-01-30  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_attrib.c: Added o_attrib_search_component which looks for
-	  an attribute both inside and outside of the component 
+	  an attribute both inside and outside of the component
 
 2001-01-24  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
 	* src/o_arc_basic.c: Modified the code for bounding box on arc,
-	  cleaned the translation/rotation functions, added function 
+	  cleaned the translation/rotation functions, added function
 	  o_arc_recalc_world(), changed the meaning of arc fields
 
 	* src/o_box_basic.c: Added functions to print the filling of a box
 
 	* src/o_circle_basic.c : Added functions to print the filling
 	  of a circle
-	
+
 2001-01-23  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/s_conn.c: Minor cleanups
-	
+
 2001-01-17  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/s_conn.c: More work on getting this all done (worked on mid-
@@ -2680,12 +2700,12 @@
 
 2001-01-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/s_conn.c: Bunch of changes to get new conn system finished 
-	
+	* src/s_conn.c: Bunch of changes to get new conn system finished
+
 2000-01-15  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_image.c: Fixed bug -- allow the background of pngs to
-	  take on a different value than black, bug pointed out by 
+	  take on a different value than black, bug pointed out by
           George Billios
 
 2001-01-07  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -2722,9 +2742,9 @@
 
 2001-01-01  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/*.c: Removed all trace of the conn_table, o_conn, s_nethash 
-	  functions. This is in prep for the total rewrite 
-	
+	* src/*.c: Removed all trace of the conn_table, o_conn, s_nethash
+	  functions. This is in prep for the total rewrite
+
 	* include/struct.h: Removed conn table and nethash table and also
 	  removed stretch structure for now.
 
@@ -2734,7 +2754,7 @@
 
 	* include/struct.h: Added world_tiles 2d array to page structure
 
-	* include/struct.h: Added st_tile data structure 
+	* include/struct.h: Added st_tile data structure
 
 	* include/defines.h: Added MAX_TILES_X and MAX_TILES_Y #defines
 
@@ -2744,14 +2764,14 @@
  	  into the right tiles
 
 	* src/o_net_basic.c, o_pin_basic.c, o_bus_basic.c: Added call to
-	  s_tile_add_object when an object is added to object_head 
+	  s_tile_add_object when an object is added to object_head
 	  (or object_tail)
 
 	* src/o_net_basic.c, o_pin_basic.c, o_bus_basic.c: Called copy
-	  routines with the right x,y values so that tiling code works right 
+	  routines with the right x,y values so that tiling code works right
 
-	* src/o_net_basic.c, o_pin_basic.c, o_bus_basic.c: Added a bunch of 
-	  calls to s_tile_update_object after the object is translate 
+	* src/o_net_basic.c, o_pin_basic.c, o_bus_basic.c: Added a bunch of
+	  calls to s_tile_update_object after the object is translate
           (moved around)
 
 	* include/struct.h: Added to the object structure tile_locs which is
@@ -2767,7 +2787,7 @@
 
 	* include/struct.h: Removed zoom_factor variable
 
-	* src/o_arc.c: Finally added code to implement the line type 
+	* src/o_arc.c: Finally added code to implement the line type
 	  postscript output for arcs
 
 	* src/o_circle.c: Also added code to implement the line type
@@ -2818,7 +2838,7 @@
 
 	* configure.in: Added -fnative-struct flag for CYGWIN port only
 
-	* configure.in: Added --enable-debug flag to enable -g flag 
+	* configure.in: Added --enable-debug flag to enable -g flag
 
 2000-11-21  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -2827,7 +2847,7 @@
 
 2000-11-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/s_nethash.c: Added creation function (from 
+	* src/s_nethash.c: Added creation function (from
 	  gnetlist/src/s_traverse.c)
 
 	* src/s_nethash.c: Renamed all functions to s_nethash_*
@@ -2837,9 +2857,9 @@
 
 	* src/s_nethash.c: Added s_nethash_delete_all function
 
-	* include/struct.h: Added conn_list function to st_nethash 
+	* include/struct.h: Added conn_list function to st_nethash
 
-	* src/s_nethash.c: Added conn_list variable usage code 
+	* src/s_nethash.c: Added conn_list variable usage code
 
 	* src/s_stretch.c: Added code to check the uniqueness of midpoint
 	  connections when they are added to the stretch structure
@@ -2867,7 +2887,7 @@
 	* src/s_undo.c: Added the above variables to s_undo_add
 
 	* src/u_basic.c: Oops, didn't allocate enough memory for a temp string
-	  in u_basic_breakup_string.  Fixed. 
+	  in u_basic_breakup_string.  Fixed.
 
 	* src/u_basic.c: Minor correct to malloc
 
@@ -2878,7 +2898,7 @@
 
 	* include/defines.h: Added some hierarchy_*_order #defines
 
-	* src/o_attrib.c: Put in a very very lame lame lame hack in 
+	* src/o_attrib.c: Put in a very very lame lame lame hack in
 	  o_attrib_search_name_partial which should be taken out and shot.
 	  It better be removed when I fix the pin#=# problems
 
@@ -2889,7 +2909,7 @@
 
 2000-10-31  Stefan Petersen  <spe@geda.seul.org>
 
-	* src/f_basic.c: Fixed f_open to return 0 on failure to open a 
+	* src/f_basic.c: Fixed f_open to return 0 on failure to open a
 	  schematic and 1 on success.  (Ales merged his changes to match this)
 
 2000-10-26  Patrick Bernaud  <b-patrick@wanadoo.fr>
@@ -2902,7 +2922,7 @@
 	* src/f_basic.c: Slightly changed Stefan's f_open change.  Even if
 	  you cannot open a file, you should still setup the page.
 
-	* include/struct.h: Added some fields in the gnetlist structs for 
+	* include/struct.h: Added some fields in the gnetlist structs for
           the pinlabel
 
 	* include/struct.h: Added more fields in the gnetlist structs for
@@ -2915,13 +2935,13 @@
 	* include/prototype.h: f_open returns an int.
 
 2000-10-07  Ales Hvezda  <ahvezda@geda.seul.org>
-	
+
 	* src/s_slib.c, src/s_clib.c: changed order for #include <dirent.h>
-	  and removed a #if defined for CYGWIN32 
+	  and removed a #if defined for CYGWIN32
 
 	* configure.in: Removed an really old GTK+ check which is no longer
 	  needed
-	
+
 2000-10-06  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_line_basic.c: Removed all // comments
@@ -2965,13 +2985,13 @@
 	* src/o_circle_basic.c: Further updated the file format per Patrick's
 	  instructions
 
-	* src/o_arc_basic.c: Found a instance where the wrong object was 
+	* src/o_arc_basic.c: Found a instance where the wrong object was
 	  getting it's line type and file options set (in o_arc_copy.c)
 
 	* src/o_basic.c: Renamed all d1 to length and d2 to space
 
 	* src/f_print.c: Added f_print_set_line_width
-	
+
 	* src/o_*_basic.c: Make the appropriate call to above
 
 	* src/o_line_basic.c: Added line type postscript output (solid,
@@ -2985,8 +3005,8 @@
 
 2000-09-26  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* include/struct.h: Intergrated OBJECT structure changes by 
-	  Patrick Bernaud 
+	* include/struct.h: Intergrated OBJECT structure changes by
+	  Patrick Bernaud
 
 	* src/o_arc_basic.c: Intergrated changes to the arc primitive by
 	  Patrick Bernaud
@@ -3016,7 +3036,7 @@
 
 2000-09-14  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_net_basic.c: In o_net_consolidate_segments, added a if 
+	* src/o_net_basic.c: In o_net_consolidate_segments, added a if
 	  expression to make sure you don't try consolidate non-ortho nets
 	  (pointed out by Patrick)
 
@@ -3025,12 +3045,12 @@
 	* Fixed bug in configure.in. Probably a bug in autoconf.
 	  Now it should work to configure when libguile is dependent
 	  on other libs.
-	
+
 2000-08-26  Stefan Petersen  <spe@geda.seul.org>
 
 	* Cleaned up configure stuff and added guile.m4 to enhance
 	  guile configuration.
-	
+
 2000-08-22  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/f_image.c: Oops found a core dumping bug which was
@@ -3045,20 +3065,20 @@
 
 	* configure.in/configure: Made configure look for scm_make_smob_type
 	  in libguile.
-	
+
 
 2000-08-21  Ales Hvezda  <ahvezda@geda.seul.org>
-	
-	* src/o_text_basic.c: #if'ed 0 out o_text_translate (since it is
-	  unused) 
 
-	* include/struct.h: Put a complex pointer into the TEXT item 
+	* src/o_text_basic.c: #if'ed 0 out o_text_translate (since it is
+	  unused)
+
+	* include/struct.h: Put a complex pointer into the TEXT item
 
 	* src/o_text.c: Changed all complex to use the above new pointer
 
-	* src/o_text.c: Added o_text_recalc to work on the text complex 
+	* src/o_text.c: Added o_text_recalc to work on the text complex
 	  pointer
-	
+
 	* src/s_basic.c: Added free of text->complex structure to s_delete
 
 	* include/struct.h: Added COMPLEX structure/typedef (includes private
@@ -3075,7 +3095,7 @@
 
 	* src/o_text_basic.c: Removed some dead code
 
-	* src/*.c: Temporarily called complex (COMPLEX *) complex2 (for 
+	* src/*.c: Temporarily called complex (COMPLEX *) complex2 (for
 	  easy search)
 
 	* include/struct.h: Renamed text->complex to text->prim_objs
@@ -3083,7 +3103,7 @@
 2000-08-20  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* include/struct.h: Started the conversion from LINEPTS/CIRCLE to
-	  a more generic representation 
+	  a more generic representation
 
 	* include/struct.h: Added LINE, BOX, ARC structure/typedef
 
@@ -3103,7 +3123,7 @@
 	* src/o_complex_basic.c: Made sure you call get_box_bounds with the
 	  right (box) parameters
 
-	* include/struct.h: Had to comment out all gpcb related structures 
+	* include/struct.h: Had to comment out all gpcb related structures
           (eventually these will be rewritten and put back into production)
 
 	* include/struct.h: Moved all text parameters into TEXT structure
@@ -3146,7 +3166,7 @@
 
 	* Fixed bug causing seg fault during GC with new attribute smob.
 	  Changed mark function from scm_markcdr to 0.
-	
+
 2000-08-12  Stefan Petersen  <spe@geda.seul.org>
 
         * src/Makefile.am: Makes VPATH building work.
@@ -3156,14 +3176,14 @@
 
 	* src/g_smob.c: Added. Contains attribute smob functions.
 
-	* src/Makefile.am: Added above source file. -> 
+	* src/Makefile.am: Added above source file. ->
           all Makefile* and configure are regenerated.
 
 	* include/struct.h: Added attribute smob definitio struct
 
 	* include/prototype.h: Added prototypes for smob functions defined
 	  in src/g_smob.c
-	
+
 2000-07-04  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/*.c: Updated copyright info in each file
@@ -3177,7 +3197,7 @@
 	* src/*.c: Removed all warnings
 
 	* src/o_selection.c: Fixed some functions which were either supposed
-	  to return something (and were not) or functions which should not 
+	  to return something (and were not) or functions which should not
 	  have been returning anything but were.
 
 	* */*: Upgraded to libtool 1.3.5
@@ -3198,7 +3218,7 @@
 
 	* src/Makefile.am: Bumped up shared library version to 9
 
-	* All gEDA directories/programs: Created distribution Makefile.in 
+	* All gEDA directories/programs: Created distribution Makefile.in
 	  files
 
 	* include/defines.h: Added #defines to support attrib_edit_dialog
@@ -3245,31 +3265,31 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* include/struct.h: Moved undo_* into the PAGE structure
 
-	* src/s_page.c: Added necessary free and init in s_page_* for undo 
+	* src/s_page.c: Added necessary free and init in s_page_* for undo
 	  structs
 
-	* include/struct.h: Added undo_levels and undo_control rc vars to 
+	* include/struct.h: Added undo_levels and undo_control rc vars to
 	  TOPLEVEL structure
 
 2000-06-22  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added first cut of UNDO structure/typedef
 
-	* src/s_undo.c: Added new file which will hold low level undo 
+	* src/s_undo.c: Added new file which will hold low level undo
 	  code
 
 2000-06-07  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_attrib.c: Added Martin Benes' uref renaming patch.  The 
-	  one call to the function which does all the work was #if'ed 
+	* src/o_attrib.c: Added Martin Benes' uref renaming patch.  The
+	  one call to the function which does all the work was #if'ed
 	  out.  o_attrib_update_urefMB has some side effects which makes
-	  it problematic to have in the mainstream release. 
+	  it problematic to have in the mainstream release.
 
 2000-06-04  Ales Hvezda  <ahvezda@geda.seul.org>
-	
+
 	* src/o_text_basic.c: Oops, found an old memory leak; made the
 	  assumption that text which was invisible had no text_head.?? and
-	  just set complex pointer to NULL, and hence created a leak. 
+	  just set complex pointer to NULL, and hence created a leak.
 	  Plugged leak by freeing complex list completely before NULLing
 
 	* src/o_net_basic.c: #if DEBUG'ed out some printf's which dealt
@@ -3288,23 +3308,23 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/o_complex.c: Added code to act on above variable in the new
    	  attribute promotion code
 
-	* include/struct.h: Added keep_invisible variable to the TOPLEVEL 
+	* include/struct.h: Added keep_invisible variable to the TOPLEVEL
           structure
 
 2000-05-28  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added attribute_promotion to TOPLEVEL structure
 
-	* src/o_complex_basic.c: Added Martin Benes' code to implement 
-	  attribute promotion.  
+	* src/o_complex_basic.c: Added Martin Benes' code to implement
+	  attribute promotion.
 
-	* src/o_complex_basic.c: Renamed attach_attributes to 
+	* src/o_complex_basic.c: Renamed attach_attributes to
 	  attribute_promotion
 
 	* src/o_complex_basic.c: Changed some 0's to FALSEs.
 
-	* src/o_complex_basic.c: Added another test to 
-	  o_complex_is_eligible_attribute, only visible floating text 
+	* src/o_complex_basic.c: Added another test to
+	  o_complex_is_eligible_attribute, only visible floating text
           attributes will be promoted
 
 	* src/o_list.c: Added Martin Benes' code changes
@@ -3312,7 +3332,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 2000-05-27  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_text.c: Replaced o_text_mirror and o_text_mirror_world
-          by the much improved routines written by Martin Benes, these 
+          by the much improved routines written by Martin Benes, these
 	  function properly handle the changing of the origin when mirroring
 	  text
 
@@ -3322,15 +3342,15 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 2000-05-22  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_complex.c: Added o_complex_unset_color_single and 
+	* src/o_complex.c: Added o_complex_unset_color_single and
 	  o_complex_set_color_single which unset/set the color on only
 	  one object
 
 	* src/o_list.c: Added a return paramater to o_list_copy_to
 	  (return the new object which was copied)
 
-	* src/o_list.c: Added o_list_copy_all_selection2 which copies 
-	  the objects in a selection list into a plain object list 
+	* src/o_list.c: Added o_list_copy_all_selection2 which copies
+	  the objects in a selection list into a plain object list
 
 	* src/o_list.c: In o_list_copy_all_selection2 unselected the object
 	  first (all objects in the selection list should be selected) and
@@ -3349,25 +3369,25 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/o_text.c: Added missing alignment field to some of the other
 	  warning messages in o_text_read
 
-	* src/u_basic.c: Added u_basic_breakup_string 
+	* src/u_basic.c: Added u_basic_breakup_string
 
 	* include/struct.h: Added raise_dialog_boxes to TOPLEVEL structure
 
 2000-04-15  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_complex.c: Renamed o_complex_return_pin to 
+	* src/o_complex.c: Renamed o_complex_return_pin to
 	  o_complex_return_nth_pin
 
-	* src/o_complex.c: Created new o_complex_return_pin_object to support 
+	* src/o_complex.c: Created new o_complex_return_pin_object to support
 	  gnetlist's g_get_pin_attribute
 
 	* src/create_proto: Updated prototype.h creation script to use gtk/glib
           paths from my machine (installed in /usr/local ...)
 
-	* src/o_attrib.c: Added o_attrib_search_attrib_value to support 
+	* src/o_attrib.c: Added o_attrib_search_attrib_value to support
 	  o_complex_return_pin_object
 
-	* src/o_attrib.c: Added o_attrib_search_attrib_name to support 
+	* src/o_attrib.c: Added o_attrib_search_attrib_name to support
 	  gnetlist's g_get_pin_attribute
 
 2000-03-23  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -3388,13 +3408,13 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* src/a_basic.c: Removed dead code from o_scale
 
-	* src/o_attrib.c: Removed some more dead code (old selection related) 
+	* src/o_attrib.c: Removed some more dead code (old selection related)
 	  from o_attrib_*
 
 	* src/o_complex.c: Misc code cleanup
-	
+
 	* src/s_color.c: Removed an obsolete comment
-	
+
 2000-03-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/o_attrib.c: Got o_attrib_set_color to work with the new selection
@@ -3417,20 +3437,20 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	  the single specified attribute item (instead of looping which is
 	  not correct anymore)
 
-	* src/o_attrib.c: Got the color setting on attributes and 
+	* src/o_attrib.c: Got the color setting on attributes and
 	  non-attributes right
 
 	* src/o_net_basic.c: Put some comments in the net consolidate functions
 	  since these functions are really broken with new selection mechanism
 
 2000-03-06  Ales Hvezda  <ahvezda@geda.seul.org>
-	
+
 	* src/o_attrib.c: Got rid of some of the o_list_search's which are
 	  now not required anymore
 
 2000-03-05  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_text_basic.c: Got o_text_recreate to work right with new 
+	* src/o_text_basic.c: Got o_text_recreate to work right with new
 	  selection mechanism (set saved_color correctly)
 
 2000-02-28  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -3438,7 +3458,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/o_complex.c: Added o_complex_set_saved_color_only which only
 	  sets the saved_color flag of a complex object
 
-	* src/o_complex.c: Added some selection specific functions 
+	* src/o_complex.c: Added some selection specific functions
 
 	* src/x_event.c: Got middle button actions working again
 
@@ -3494,7 +3514,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* include/struct.h: Added text_alignment flag in TOPLEVEL struct
 
-	* src/o_text_basic.c: Changed the order of the T (text) item in 
+	* src/o_text_basic.c: Changed the order of the T (text) item in
 	  schematic files (... angle alignment)
 
 2000-02-16  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -3510,7 +3530,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* src/o_text_basic.c: Added the text alignment flag to the file format
 	  for reading in text items (old text format is still valid though)
-	
+
 	* src/o_text_basic.c: Added the text alignment flag to the file format
 	  (saving text times)
 
@@ -3519,8 +3539,8 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/a_basic.c: Change the default version number (to the current
 	  version) if the version tag is not found in a file read in by o_read
 
-	* src/o_text_basic.c: Added o_text_height function to help 
-	  readability of the up the code and get rid of awful hardcoded 
+	* src/o_text_basic.c: Added o_text_height function to help
+	  readability of the up the code and get rid of awful hardcoded
 	  constants
 
 	* src/o_text_basic.c: Added code to support text alignment flag as well
@@ -3528,7 +3548,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* src/o_text_basic.c: Started getting postscript printing to work; not
 	  complete yet
-	
+
 2000-02-01  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/s_hierarchy.c: Fixed some bugs so that detached pages (from
@@ -3548,22 +3568,22 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* include/struct.h: Added enforce_hierarchy to toplevel structure
 
-	* include/struct.h: Added mawindow to toplevel structure 
+	* include/struct.h: Added mawindow to toplevel structure
           (multi-attrib window)
 
-	* include/struct.h: Added aewindow to toplevel structure 
+	* include/struct.h: Added aewindow to toplevel structure
           (attrib-edit window)
 
-	* include/struct.h: Added sewindow/seentry to toplevel structure 
+	* include/struct.h: Added sewindow/seentry to toplevel structure
           (slot-edit)
 
 2000-01-17  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* include/struct.h: up and down pointers to the st_page structure
 
-	* src/s_hierarchy.c: Added push/pop symbol/schematic functions 
+	* src/s_hierarchy.c: Added push/pop symbol/schematic functions
 
-	* src/s_page.c: Added inits of up and down pointers in the st_page 
+	* src/s_page.c: Added inits of up and down pointers in the st_page
 	  structure
 
 	* include/struct.h: Added page_control variable (which contains an
@@ -3578,14 +3598,14 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 2000-01-03  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/o_attrib.c: Added o_attrib_return_attribs which returns an 
-	  array of all attached attributes given an object 
+	* src/o_attrib.c: Added o_attrib_return_attribs which returns an
+	  array of all attached attributes given an object
 
 	* HACKING: Added file which describes file prefix (for now)
 
 1999-11-09  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/s_clib.c: Fixed s_clib_getfiles to filter files based on 
+	* src/s_clib.c: Fixed s_clib_getfiles to filter files based on
 	  the filter (new argument) passed in
 
 	* src/s_slib.c: Fixed a debugging routine to call the right functions
@@ -3601,7 +3621,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/f_print.c: Added some error checking to make sure you can open
 	  the postscript output file, otherwise log an error message.
 	  Pointed out by Mike Riendeau
-	
+
 	* src/f_print.c: Modified f_print() to return something indicating
 	  success or error
 
@@ -3617,13 +3637,13 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	* src/s_clib.c: Added the ability to set the count in s_clib_getfiles
 
-	* include/struct.h: Added another search related var to FILEDIALOG 
+	* include/struct.h: Added another search related var to FILEDIALOG
 
 	* include/defines.h: Added SET_COUNT #define for s_clib_getfiles
 
 	* include/struct.h: Added search_label gtk widget to FILEDIALOG struct
 
-	* ../*/configure.in: Changed version number to today's date 
+	* ../*/configure.in: Changed version number to today's date
 
 	* src/Makefile.am: Incremented libgeda.so version number
 
@@ -3636,7 +3656,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/s_clib.c: Fixed s_clib_getfiles so that *only* files which .sym
 	  suffix get read in as valid symbol files
 
-	* src/o_pin_basic.c: Added o_pin_modify() 
+	* src/o_pin_basic.c: Added o_pin_modify()
 
 1999-10-10  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -3648,16 +3668,16 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* src/s_log.c: Added cwd to s_log_init to deal with the chdirs that
 	  gschem now does
 
-	* include/struct.h: Added a last search pointer (int) vars to the 
+	* include/struct.h: Added a last search pointer (int) vars to the
 	  FILEDIALOG struct
 
-	* src/s_clib.c: Added s_clib_return_num 
+	* src/s_clib.c: Added s_clib_return_num
 
 1999-10-09  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/s_page.c: Changed s_page_add: full path is now in page_filename
-	
-	* src/s_page.c: Added full path only if page_filename doesn't start 
+
+	* src/s_page.c: Added full path only if page_filename doesn't start
 	  with a '/'
 
 1999-10-05  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -3675,7 +3695,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	* include/struct.h: Added preview_control variable to FILEDIALOG struct
 
 	* include/struct.h: Added directory_entries and file_entries to
-	  FILEDIALOG struct 
+	  FILEDIALOG struct
 
 	* include/defines.h: Added MAX_DIRS and MAX_FILES
 
@@ -3690,9 +3710,9 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 1999-10-01  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* include/struct.h: Added xfwindow array to TOPLEVEL structure
-	
+
 	* include/struct.h: Made the above array a structure
- 	
+
 	* include/struct.h: Changed FILESEL struct to FILEDIALOG struct
 
 	* src/g_basic.c: Added #include for define.h
@@ -3733,7 +3753,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Added a bunch of tests into o_attrib_attach to prevent:
 		- Attaching a non-text item as an attribute
 		- Attaching an attribute to more than one object
-	
+
 	Improved the warning that is displayed when an attribute is already
 	attached to an object
 
@@ -3742,8 +3762,8 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 9/12/99	Added a flag in s_netlist structure for net naming priority
 
-9/7/99	Added s_color.c 
-	
+9/7/99	Added s_color.c
+
 	Cleaned up code to reflect the new function names created by s_color.c
 
 	Removed all lame function pointers now that the color stuff is part
@@ -3752,7 +3772,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Added st_color structure to struct.h
 
 	Added o_attrib_search_name_single_count which is like the other
-	search_name functions in that it allows you to pick the n'th 
+	search_name functions in that it allows you to pick the n'th
 	occurance of an attribute but only searching the specified in object
 
 9/6/99	Removed most color #defines from color.h, in prep for the new color
@@ -3762,7 +3782,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Temporarily broke color image writing
 
 	Put into colors.h the proper #defines for the new colors scheme
-	
+
 	Put a few user rc variables into the toplevel struct
 
 	Fixed color postscript printing
@@ -3774,14 +3794,14 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	pin15=  (and no value))
 
 	Fixed o_attrib_get_name_value so that improper attributes are NOT
-	returned as proper attributes 
+	returned as proper attributes
 
 	Started to fix the broken color image writing
 		- Re-arranged the allocation of colors in o_image.c
 
 	Got color image writing working again
 
-	Unfortunately had to create another function pointer for 
+	Unfortunately had to create another function pointer for
 	x_color_gdcolor_init (ugg... I need to clean all this up...)
 
 8/31/99 Renamed ntext to text (finally)
@@ -3789,7 +3809,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Hopefully fixed the problem that gnetlist was having with embedded
 	components ?
 
-8/30/99	Fixed the bus visual cues postscript output to look better 
+8/30/99	Fixed the bus visual cues postscript output to look better
 	(by controlling the capstyle)
 
 	Fixed the direction of horizontal bus visual cues in postscript
@@ -3805,7 +3825,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Got bus to look thicker when they are imaged.  Still need to do
 	the same to nets
 
-	Fixed a postscript problem when you have thin nets enabled 
+	Fixed a postscript problem when you have thin nets enabled
 	(everything would be thick... which is the exact opposite of what
 	 you would want)
 
@@ -3823,26 +3843,26 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Updated all *.c and *.h files to have the right address for the
         FSF in the copyright/licence header
-  
-        Updated library so version 
 
-8/18/99	More work getting buses to work correctly, updates to o_ales 
+        Updated library so version
+
+8/18/99	More work getting buses to work correctly, updates to o_ales
 	(which will turn into o_conn eventually)
 
 	Added #defines for output-capstyle
-	
-	Added code in f_print which does the work of the capstyle keyword 
+
+	Added code in f_print which does the work of the capstyle keyword
 
 	More work in o_ales to get bus to work right.
-	
+
 	Added code which determines if a connection is valid or invalid
 		NOT valid:  pin to bus
-		NOT valid:  net to endpoint of bus	
-		
+		NOT valid:  net to endpoint of bus
+
 8/17/99 Started adding bus object
 		Including creation of all basic functions
 		Update toplevel structure (struct.h)
-		Update of enumerated types of objects 
+		Update of enumerated types of objects
 
 8/12/99	Added o_net_modify to support the stretch command
 
@@ -3883,28 +3903,28 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	net-consolidate code is not 100% working today.
 
-7/27/99 Added o_net_consolidate* functions which take net segments and 
+7/27/99 Added o_net_consolidate* functions which take net segments and
 	if possible combine the nets into one single net.
 
 	Added o_net_consolidate to f_open so that it runs
 	whenever you open a schematic
 
-	Added o_net_consolidate to f_save so that it runs 
+	Added o_net_consolidate to f_save so that it runs
 	whenever you save a schematic
 
 7/25/99 Cleaned up g_read_file(). (by Kazu Hirata)
-	
+
 7/23/99 Added u_basic_strdup_multiple() to u_basic.c. (by Kazu Hirata)
 
 7/21/99 More work on getting all objects to use new object init and link
-	routines (rest of o_*_basic.c functions) 
+	routines (rest of o_*_basic.c functions)
 
 	Created u_basic.c for utitlity functions to which Kazu is adding
 
 	Removed all traces of s_passing.c and s_passing.h (Yeah, no more
 	p_* kludge)
 
-	#if 0'ed out add_object, replaced by new object init and link 
+	#if 0'ed out add_object, replaced by new object init and link
 	routines
 
 	Found all unknown p_* variables and removed them
@@ -3919,7 +3939,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Minor cosmetic changes in struct.h
 
-	As a first test, converted o_ntext_basic.c to use new 
+	As a first test, converted o_ntext_basic.c to use new
 	s_basic_init_object and s_basic_link_object
 
 7/15/99 Added support for libgdgeda 1.6 (mainly means searching for libpng)
@@ -3939,7 +3959,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Added some variables to struct.h to support gschem rc files
 
-	Added displayed_text_len which holds the true string length of 
+	Added displayed_text_len which holds the true string length of
 	text which is displayed
 
 	Added a check in o_ntext_read for unsupported text angles
@@ -3951,12 +3971,12 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Hopefully got slotting to work with alphanumeric pins
 
-	Removed all warnings	
+	Removed all warnings
 
 	Updated configure.in a bit
 
 	Updated version number (in all other programs as well)
-	
+
 	Updated README file (in all other programs as well)
 
 7/4/99	Fixed the headers in all files to be correct (GPL)
@@ -3966,7 +3986,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Removed some obsolete data structure elements in the gnetlist part
 	of struct.h
 
-	Added code to warn user that a zero length object (line, net, pin 
+	Added code to warn user that a zero length object (line, net, pin
 	etc...) was just read in
 
 7/2/99 	Fixed the ./configure stuff dealing with libgdgeda so that it works
@@ -3992,16 +4012,16 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Moved a o_redraw_all from libgeda into gschem where it belongs
 	(f_image.c)
 
-	Removed all traces of GTK_DEVEL 
+	Removed all traces of GTK_DEVEL
 
 6/24/99 Got all the object primatives outputing to the image (including
-	the rather painful arcs) 
+	the rather painful arcs)
 
 	Added the ability to change the image size
 
 	Added a o_recalc function which recalcs, but doesn't draw the objects
 
-6/23/99 Added o_image.c (which is code which uses the gd lib to output 
+6/23/99 Added o_image.c (which is code which uses the gd lib to output
 	schematics to gifs)
 
 	Added some entries in the TOPLEVEL structure to support the image
@@ -4013,8 +4033,8 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Added support to configure and friends to make libgd an optional
 	library
 
-6/17/99 Added o_ales_search_object which goes through entire the ales_table and 
-	finds the n'th occurance of object 
+6/17/99 Added o_ales_search_object which goes through entire the ales_table and
+	finds the n'th occurance of object
 
 	Above may be removed and moved somewhere else (into gnetlist)
 
@@ -4022,9 +4042,9 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Attempted to find the hidden attribute memory leak
 
-	Found above memory leak and squashed. 
+	Found above memory leak and squashed.
 
-6/10/99 Added the start of support for not creating text items which are 
+6/10/99 Added the start of support for not creating text items which are
 	hidden
 
 6/9/99	Increased the number of symbols which can be in a directory to 1024
@@ -4048,7 +4068,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 5/29/99 Change the license for libgeda back to GPL (from LGPL)
 
-	Put in another check in the o_ales_update_nets function to 
+	Put in another check in the o_ales_update_nets function to
 	make sure we don't add duplicate objects into the ales_list's
 
 	Added in code which allows for unattached toplevel attributes
@@ -4068,14 +4088,14 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
         Commented out most of ../include/globals.h
 
-5/13/99 Increased the size of buffers and the reading in of attributes 
+5/13/99 Increased the size of buffers and the reading in of attributes
 	(o_attrib.c -- o_read_attribs)
 
 	Increased the size of text strings (in o_ntext_basic.c)
-	
+
 	Fixed the appropriate string in s_passing.c (and s_passing.h)
 
-	Fixed text_string allocation size in add_object (s_basic.c) 
+	Fixed text_string allocation size in add_object (s_basic.c)
 
 	The above changes should fix the bug reported by Thomas Dean
 
@@ -4088,12 +4108,12 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 3/23/99 Added GtkWidget *abwindow to struct.h
 
 3/19/99	Added expand_env_variables which takes a string and expands all
-	shell enviroment variables. 
+	shell enviroment variables.
 
 	Fixed it so that when you do some attribute related activities
 	the changed flag gets set
 
-	Had to remove one of the above because just selecting something 
+	Had to remove one of the above because just selecting something
 	with attributes would cause the flag to be set...
 
 3/9/99  Remove all // from all include/*.h files
@@ -4106,8 +4126,8 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 2/25/99 Added gsymcheck structures (include/struct.h)
 
-2/12/99 Added code (#ifndef'ed) for vnsprintf to fix the Solaris 5.5.x 
-	problem (didn't have vnsprintf).  The vnsprintf wrapper is from 
+2/12/99 Added code (#ifndef'ed) for vnsprintf to fix the Solaris 5.5.x
+	problem (didn't have vnsprintf).  The vnsprintf wrapper is from
 	Timidity++-1.2.1, which is under the GPL v2.0
 
 	Minor bug fix to s_log_close (disable the logging of messages after
@@ -4116,7 +4136,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Found a memory leak in s_clib_cache_free, the index used in the loop
         could wrap, so you might end up freeing only a portion of the entries
 
-2/11/99	Searching through stroke structure fixed to be faster (does not 
+2/11/99	Searching through stroke structure fixed to be faster (does not
 	search the whole array of structures)
 
 	Implemented a return value of s_stroke_search_execute (TRUE if it
@@ -4136,17 +4156,17 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 1/23/99 Fixed printing problem created when I switched the rc reading order
 
-	Added code to support portrait printing printing (in struct.h : 
+	Added code to support portrait printing printing (in struct.h :
 	print_orientation, defines.h - a few useful defines)
 
-	Changed f_print_header, w_current is passed in now 
+	Changed f_print_header, w_current is passed in now
 
-	Worked some on getting portait mode right (instead of the _hack_ 
+	Worked some on getting portait mode right (instead of the _hack_
 	which it currently is)
 
-	Changed the way the translating actual happens in the actual 
-	postscript (instead of changing the points in C, it's done with a 
-	translate), much cleaner. (be sure to remove all the dead code... 
+	Changed the way the translating actual happens in the actual
+	postscript (instead of changing the points in C, it's done with a
+	translate), much cleaner. (be sure to remove all the dead code...
 	maybe?)
 
 	Got portrait printing working more or less.  Still might be buggy
@@ -4154,7 +4174,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Added support for color postscript printing (f_print_set_color)
 
-	Fixed some bugs in the printing of colored nets (end/midpoints not 
+	Fixed some bugs in the printing of colored nets (end/midpoints not
 	being colored right)
 
 1/17/99 More gtk+ 1.1.x compatibility work (in s_log.c) (minor #ifndef)
@@ -4168,19 +4188,19 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 12/30/98 Removed duplicate code from snap_grid function
 
 12/15/98 Added clip_nochange and clip_change (really just copied and
-	 changed existing code).  These routines either just tell if a 
-	 line (object) should be clipped and/or the actual points are 
-	 clipped. 
+	 changed existing code).  These routines either just tell if a
+	 line (object) should be clipped and/or the actual points are
+	 clipped.
 
 	 Added SCREENencode_halfspace and WORLDencode_halfspace
 	 which support above code
 
-	 Discovered that my clipping routine wasn't working completely 
-	 right (slope was always zero) fixed now? 
+	 Discovered that my clipping routine wasn't working completely
+	 right (slope was always zero) fixed now?
 
 12/13/98 Fixed pin color being saved as -1
-	 
-	 Added some checks in clip to make sure you don't divide by zero 
+
+	 Added some checks in clip to make sure you don't divide by zero
 	 Assume the object is visible if you were going to divide by zero.
 
 12/9/98 Added WORLDabs and SCREENabs, these function, don't return a points
@@ -4202,7 +4222,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Changed s_basic to allocate and free above structures
 
 	Added circle structure to s_passing.c/s_passing.h
-	
+
 	Added some if's in add_object for p_line_points and p_circle
 
 	Went through and added p_circle=NULL to all the places that needed it
@@ -4212,16 +4232,16 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Discovered a major bug in o_complex_rotate_lowlevel, was trying to
 	rotate a circle using a box routine (worked previously since circle/box
-	used similar datastructs, now that's changed) 
+	used similar datastructs, now that's changed)
 
-	Found the same sort of bug as above in o_complex_mirror_lowlevel. 
+	Found the same sort of bug as above in o_complex_mirror_lowlevel.
 	(trying to use box routine to mirror a circle)
 
-12/6/98 Found another really long term bug in dist() (wrong value being 
+12/6/98 Found another really long term bug in dist() (wrong value being
 	set to temp var).  I don't know how it worked with this bug.
 
 	Found another long standing bug in circle, again not sure how things
-	worked before, dumb luck.  When saving, radius which was saved 
+	worked before, dumb luck.  When saving, radius which was saved
 	could have been zero due to how the circle is represented in memory
 	(stupidly)
 
@@ -4232,9 +4252,9 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 12/3/98	Added Tom Javen's finnish / swedish libgeda patch to o_ntext_basic.c
 
 11/27/98 Apparently I didn't fix the %! in f_print.c so now it's definately
-	 fixed 
+	 fixed
 
-11/18/98 Removed some irrelavent/dead/wasteful code from m_basic.c (math 
+11/18/98 Removed some irrelavent/dead/wasteful code from m_basic.c (math
 	 routines)
 
 11/15/98 Added code to center LIMITS printed schematics
@@ -4244,14 +4264,14 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	 Added backtick.sym to o_ntext_basic.c
 
-11/6/98 Added sort routine to s_clib_getfiles (so that components are in 
+11/6/98 Added sort routine to s_clib_getfiles (so that components are in
 	alphabetical order when displayed)
 
 	Added support to TOPLEVEL struct for print dialog box
 
 	Added s_papersizes.c, place to hold paper sizes read from rc file
 
-	Added print_output_type to TOPLEVEL structure 
+	Added print_output_type to TOPLEVEL structure
 
 11/5/98	Added paper_width, paper_height to the TOPLEVEL structure
 
@@ -4260,7 +4280,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Started work on being able to print out the current window
 
-10/28/98 Cleaned up o_ntext_basic to get rid of special code for space 
+10/28/98 Cleaned up o_ntext_basic to get rid of special code for space
 	 character
 
 10/25/98 Cleaned up all warnings (-Wall only)
@@ -4269,9 +4289,9 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	 Added version information to o_save (o_save_write_header)
 
-	 Added version information reading to o_read 
-	
-	 Passed version info to all o_*_read functions (this was done so, 
+	 Added version information reading to o_read
+
+	 Passed version info to all o_*_read functions (this was done so,
 	 because o_read is called recursively)
 
 10/24/98 Added the ability to have comments in schematic files, but they are
@@ -4284,7 +4304,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	 Added o_attrib_search_slot_number (search for slot#)
 
 	 Added o_attrib_search_pin_number (search for pin#)
-	
+
 	 Added o_attrib_slot_copy (copy pin information over to new complex)
 
 	 Added the o_attrib_slot_copy to o_complex_copy
@@ -4294,7 +4314,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	 Got the first working version of the slotting done
 
-10/18/98 Added o_attrib_search_slot 
+10/18/98 Added o_attrib_search_slot
 
 	 Changed o_attrib_search_name_single to return the object where the
 	 attribute lives
@@ -4306,14 +4326,14 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 10/15/98 Attempt to fix the arc bounding code (doesn't quite work 100%)
 
-10/12/98 Found a small bug in world_get_circle_bounds which was causing 
-	 a_zoom_limits to set the wrong value if a circle was the largest 
-	 object 
+10/12/98 Found a small bug in world_get_circle_bounds which was causing
+	 a_zoom_limits to set the wrong value if a circle was the largest
+	 object
 
 	 Finally fixed o_arc_add so that it takes world coords like all
 	 the other objects! Woo Hoo!
 
-10/10/98 Added netlist structures to struct.h 
+10/10/98 Added netlist structures to struct.h
 
 	 Added visited flag to object structure
 
@@ -4321,7 +4341,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 10/8/98 Worked some more on the mirror code of complex objects
 
-	Almost working except for text inside components which is unmirrored 
+	Almost working except for text inside components which is unmirrored
 	(that displays incorrectly)
 
 10/6/98 Broke schematic format again with the addition of the mirror flag
@@ -4339,7 +4359,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Added rest of o_*_mirror
 
-	Worked on o_ntext_mirror 
+	Worked on o_ntext_mirror
 
 	Worked on o_complex_mirror
 
@@ -4358,7 +4378,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 10/4/98 Worked on gettting printing working and flexible (f_print)
 
 	Got text to be printed using native postscript fonts.  The mapping
-	between the stroked fonts and the real ones is really close, not 
+	between the stroked fonts and the real ones is really close, not
 	perfect, but close.
 
 10/1/98 Fixed all warnings (with -Wall)
@@ -4375,11 +4395,11 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 9/29/98 Today starts the new release system: 19980929
 
-	Added o_attrib_copy_all (to copy attribute lists), useful when you 
+	Added o_attrib_copy_all (to copy attribute lists), useful when you
 	rotate components (and the attribute list is discarded)
 
 	Added o_attrib_reattach and o_attrib_set_color to help support the
-	proper continuation of attached attributes to complexes when they 
+	proper continuation of attached attributes to complexes when they
 	are rotated
 
 0.0.5
@@ -4397,11 +4417,11 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 	Fixed the broken x_update_log call in s_log_message
 
-9/26/98 Added o_*_rotate_world routines  
+9/26/98 Added o_*_rotate_world routines
 
 	More attempts at getting complex's to read and rotate in correctly
 
-	Added o_ntext_rotate_lowlevel (which properly rotates text 
+	Added o_ntext_rotate_lowlevel (which properly rotates text
 	based on angle)
 
 	Fixed rotate_point_90 so that it can accept any angle in increments
@@ -4410,7 +4430,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Wrote and Got o_ntext_rotate working (which rotates text when you
 	hit the rotate button)
 
-9/25/98 Added the angle argument to the complex type (this breaks all 
+9/25/98 Added the angle argument to the complex type (this breaks all
 	schematic files!!) (embedded components now totally broken)
 
 9/23/98	Fixed snap_grid, so that it would work on negative inputs (doh!)
@@ -4425,7 +4445,7 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 
 9/17/98 New code for snapping to the grid (m_basic.c)
 
-9/13/98	Added scheme_directory to the TOPLEVEL structure 
+9/13/98	Added scheme_directory to the TOPLEVEL structure
 
 9/12/98 Added return_zoom_number (m_basic.c)
 
@@ -4442,14 +4462,14 @@ include/struct.h: Removed the ADDING_SEL variable from the TOPLEVEL struct
 	Fixed a bug in the translate_all deal with complex objects, wrong
 	complex translate was being called (should have been _toplevel)
 
-9/4/98	Switched to -version-info since it's more portable 
-	
+9/4/98	Switched to -version-info since it's more portable
+
 	Moved o_basic (mostly) out of libgeda and into gschem
 
 	Removed a lot of gschem specific functions out of libgeda
 
-	Made some function pointers so that various functions can be 
-	revectored (very useful) 
+	Made some function pointers so that various functions can be
+	revectored (very useful)
 
 9/3/98	Create libgeda using libtool
 

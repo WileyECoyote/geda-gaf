@@ -125,7 +125,7 @@ cmd_shell_impl (void *data, int argc, char **argv)
   }
 
   /* Now load rc files, if necessary */
-  if (getenv ("GAF_INHIBIT_RCFILES") == NULL) {
+  if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
     g_rc_parse (toplevel, "gaf shell", NULL, NULL);
   }
   i_vars_libgeda_set (toplevel); /* Ugh */

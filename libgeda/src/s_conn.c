@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,17 +33,17 @@
 
 /*! \file s_conn.c
  *  \brief The connection system
- *  
+ *
  *  The connection system stores and tracks the connections between
  *  connected <b>OBJECTS</b>. The connected OBJECTS are either
  *  <b>pins</b>, <b>nets</b> and <b>busses</b>.
- *  
+ *
  *  Each connection object with the type <b>st_conn</b> represents a
  *  single unidirectional relation to another object.
- *  
+ *
  *  The following figure with two nets and a pin shows the relations
  *  between connections and OBJECTS:
- *  
+ *
  *  \image html s_conn_overview.png
  *  \image latex s_conn_overview.pdf "Connection overview" width=14cm
  */
@@ -51,9 +51,9 @@
 
 /*! \brief create a new connection object
  *  \par Function Description
- *  create a single st_conn object and initialize it with the 
+ *  create a single st_conn object and initialize it with the
  *  given parameters.
- *  
+ *
  *  \return The new connection object
  */
 CONN *s_conn_return_new(OBJECT * other_object, int type, int x, int y,
@@ -151,7 +151,7 @@ int s_conn_remove_other (TOPLEVEL *toplevel, OBJECT *other_object,
             }
 #endif
         s_conn_emit_conns_changed (toplevel, other_object);
-            
+
 	    return (TRUE);
 	}
 
@@ -232,10 +232,10 @@ void s_conn_remove_object (TOPLEVEL *toplevel, OBJECT *to_remove)
  *  \par Function Description
  *  Checks if the point (<b>x</b>,<b>y</b>) is on the OBJECT
  *  and between it's endpoints.
- *  \return TRUE if the point is a midpoint of the OBJECT. FALSE 
- *  if the point is not a midpoinit or if the OBJECT is not a 
- *  NET a PIN or a BUS or if the OBJECT 
- *  has neither horizontal nor vertical orientation. 
+ *  \return TRUE if the point is a midpoint of the OBJECT. FALSE
+ *  if the point is not a midpoinit or if the OBJECT is not a
+ *  NET a PIN or a BUS or if the OBJECT
+ *  has neither horizontal nor vertical orientation.
  */
 OBJECT *s_conn_check_midpoint(OBJECT *o_current, int x, int y)
 {
@@ -245,9 +245,9 @@ OBJECT *s_conn_check_midpoint(OBJECT *o_current, int x, int y)
     case(OBJ_NET):
     case(OBJ_PIN):
     case(OBJ_BUS):
-      min_y = min(o_current->line->y[0], 
+      min_y = min(o_current->line->y[0],
                   o_current->line->y[1]);
-      max_y = max(o_current->line->y[0], 
+      max_y = max(o_current->line->y[0],
                   o_current->line->y[1]);
 
 				/* vertical */
@@ -261,9 +261,9 @@ OBJECT *s_conn_check_midpoint(OBJECT *o_current, int x, int y)
         return(o_current);
       }
 
-      min_x = min(o_current->line->x[0], 
+      min_x = min(o_current->line->x[0],
                   o_current->line->x[1]);
-      max_x = max(o_current->line->x[0], 
+      max_x = max(o_current->line->x[0],
                   o_current->line->x[1]);
 
 				/* horizontal */
@@ -355,8 +355,8 @@ static void add_connection (TOPLEVEL *toplevel,
  *  \par Function Description
  *  This function searches for all geometrical conections of the OBJECT
  *  <b>object</b> to all other connectable objects. It adds connections
- *  to the object and from all other
- *  objects to this one.
+ *  to the object and from all other objects to this one.
+ *
  *  \param toplevel (currently not used)
  *  \param object OBJECT to add into the connection system
  */
@@ -580,7 +580,7 @@ void s_conn_print(GList * conn_list)
  *  \param [in] whichone   The connection number to check.
  *  \param [in] conn_list  List of existing connections to compare
  *                         <B>new_net</B> to.
- *  \return TRUE if a matching connection is found, FALSE otherwise. 
+ *  \return TRUE if a matching connection is found, FALSE otherwise.
  */
 int s_conn_net_search(OBJECT* new_net, int whichone, GList * conn_list)
 {
@@ -591,7 +591,7 @@ int s_conn_net_search(OBJECT* new_net, int whichone, GList * conn_list)
   while (cl_current != NULL) {
 
     conn = (CONN *) cl_current->data;
-    if (conn != NULL && conn->whichone == whichone && 
+    if (conn != NULL && conn->whichone == whichone &&
         conn->x == new_net->line->x[whichone] &&
 	conn->y == new_net->line->y[whichone])
     {
@@ -600,7 +600,7 @@ int s_conn_net_search(OBJECT* new_net, int whichone, GList * conn_list)
 
     cl_current = g_list_next(cl_current);
   }
- 
+
   return FALSE;
 }
 

@@ -88,30 +88,34 @@ void o_line_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *new_obj;
 
-  g_assert( w_current->inside_action != 0 );
+  if( w_current->inside_action != 0 ) {
 
-  /* Don't bother.. the real object is invalidated, its in the same place */
-  /* o_line_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 0;
+    /* Don't bother.. the real object is invalidated, its in the same place */
+    /* o_line_invalidate_rubber (w_current); */
+    w_current->rubber_visible = 0;
 
-  /* don't allow zero length lines */
-  if ( (w_current->first_wx == w_current->second_wx) &&
+    /* don't allow zero length lines */
+    if ( (w_current->first_wx == w_current->second_wx) &&
        (w_current->first_wy == w_current->second_wy) ) {
-    return;
+      return;
+    }
+
+    /* create the line object and draw it */
+    new_obj = o_line_new (toplevel, OBJ_LINE, GRAPHIC_COLOR,
+                          w_current->first_wx, w_current->first_wy,
+                          w_current->second_wx, w_current->second_wy);
+    new_obj->line_width =  o_style_get_line_width(toplevel);
+
+    s_page_append (toplevel, toplevel->page_current, new_obj);
+
+    /* Call add-objects-hook */
+    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+    toplevel->page_current->CHANGED=1;
+    o_undo_savestate(w_current, UNDO_ALL);
   }
-
-  /* create the line object and draw it */
-  new_obj = o_line_new (toplevel, OBJ_LINE, GRAPHIC_COLOR,
-                        w_current->first_wx, w_current->first_wy,
-                        w_current->second_wx, w_current->second_wy);
-  new_obj->line_width =  o_style_get_line_width(toplevel);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
-
-  /* Call add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  toplevel->page_current->CHANGED=1;
-  o_undo_savestate(w_current, UNDO_ALL);
+  else
+    fprintf(stderr, "o_line_end, internal error: inside_action should not be zero\n");
 }
 
 /*! \brief Draw temporary line while dragging end.
@@ -122,7 +126,7 @@ void o_line_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  of the line is (<B>first_wx</B>,<B>first_wy</B>), the second end is
  *  (<B>second_wx</B>,<B>second_wy</B>).
  *  The first end is constant. The second end is updated to the (<B>w_x</B>,<B>w_y</B>).
- * 
+ *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
@@ -140,15 +144,15 @@ void o_line_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
    * The coordinates of the moving end of the line are updated. Its new
    * coordinates are in <B>w_x</B> and <B>w_y</B> parameters and saved to
    * <B>w_current->second_wx</B> and <B>w_current->second_wy</B> respectively.
-   */ 
+   */
   w_current->second_wx = w_x;
   w_current->second_wy = w_y;
-  
+
   /* if the control key was pressed then draw ortho lines */
   if (w_current->CONTROLKEY) {
     diff_x = abs(w_current->second_wx - w_current->first_wx);
     diff_y = abs(w_current->second_wy - w_current->first_wy);
-    
+
     if (diff_x >= diff_y) {
       w_current->second_wy = w_current->first_wy;
     } else {
@@ -201,7 +205,7 @@ int o_line_visible (GSCHEM_TOPLEVEL *w_current, LINE *line,
   *x1 = line->x[0];  *y1 = line->y[0];
   *x2 = line->x[1];  *y2 = line->y[1];
 
-  // Do we want to skip clipping? 
+  // Do we want to skip clipping?
   if (!w_current->toplevel->object_clipping)
     return TRUE;
 fprintf(stderr, "o_line_visible\n");

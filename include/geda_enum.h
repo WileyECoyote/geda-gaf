@@ -38,6 +38,16 @@ typedef enum {TYPE_SOLID, TYPE_DOTTED, TYPE_DASHED, TYPE_CENTER, TYPE_PHANTOM, T
 /*! \brief fill style of objects like cirle, rect, path */
 typedef enum {FILLING_HOLLOW, FILLING_FILL, FILLING_MESH, FILLING_HATCH, FILLING_VOID} OBJECT_FILLING;
 
+/*! \brief pin type styles */
+typedef enum {PIN_TYPE_NET, PIN_TYPE_BUS, PIN_TYPE_BUMP, PIN_TYPE_BALL,
+              PIN_TYPE_WEDGE, PIN_TYPE_RIBBON, PIN_TYPE_VOID} PIN_TYPE;
+
+/*! \brief pin type attributes */
+typedef enum {PIN_ATTRIB_IN,  PIN_ATTRIB_OUT, PIN_ATTRIB_IO,  PIN_ATTRIB_OC,
+              PIN_ATTRIB_OE,  PIN_ATTRIB_PAS, PIN_ATTRIB_TP,  PIN_ATTRIB_TRI,
+              PIN_ATTRIB_CLK, PIN_ATTRIB_PWR, PIN_ATTRIB_VOID
+} PIN_ATTRIBUTE;
+
 typedef enum { png_image, tiff_image, bmp_image, ico_image, jpeg_image, eps_image, pdf_image } IMAGE_TYPES;
 
 typedef enum

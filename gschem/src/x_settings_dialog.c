@@ -1688,7 +1688,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
          GTK_NUMERIC_SPIN (EditOptionsRow2_hbox, KeyboardPanGain, 124, 20, 0, 100);
        HSECTION (EditOptions_vbox, EditOptionsRow3)   /* Grp 1 Row 3 */
          GTK_SWITCH(EditOptionsRow3_hbox, ContinuePlace, 0, TRUE);
-         GTK_NUMERIC_SPIN (EditOptionsRow3_hbox, SnapSize, 175, 100, 0, 500);
+         GTK_NUMERIC_SPIN (EditOptionsRow3_hbox, SnapSize, 175, 100, MIN_SNAP_SIZE, MAX_SNAP_SIZE);
        HSECTION (EditOptions_vbox, EditOptionsRow4)   /* Grp 1 Row 4 */
          GTK_SWITCH(EditOptionsRow4_hbox, ForceBoundingBox, 20, TRUE);
          GTK_SWITCH(EditOptionsRow4_hbox, NotifyEvents, 115, TRUE);
@@ -1882,7 +1882,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   GTK_WIDGET_SET_FLAGS (OkayButt, GTK_CAN_DEFAULT);
   gtk_tooltips_set_tip (tooltips, OkayButt, _("Change settings and close but do not write settings to storage.."), NULL);
 
-  /* Store pointers to widgets, for use by lookup_widget(). */
+  /* Store pointers to widgets, for use by get_widget_data(). */
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, "ThisDialog");
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, MainDialogVBox, "MainDialogVBox");
   GTK_HOOKUP_OBJECT (ThisDialog, notebook, "notebook");

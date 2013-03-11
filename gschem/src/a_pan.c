@@ -35,23 +35,23 @@
  *
  */
 void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
-		   double relativ_zoom_factor,int flags)
+		   double relative_zoom_factor,int flags)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   /* see libgeda/include/defines.h for flags */
   /*if the borders should be ignored always, remove, outcomment or changes
     the flags in the function-calls*/
   /*	flags |= A_PAN_IGNORE_BORDERS;
-   */		
+   */
   /* think it's better that the zoomfactor is defined as pix/mills
      this will be the same as w_current->page_current->to_screen_x/y_constant*/
-  int zoom_max = 5;	
+  int zoom_max = 5;
   int diff;
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
 #if DEBUG
   printf("a_pan_general(): world_cx=%f, world_cy=%f\n",world_cx, world_cy);
-#endif	
+#endif
 
   /* calc minimum zoomfactors and choose the smaller one. They are equal
      if the aspectratio of the world is the same as the screen ratio */
@@ -63,19 +63,19 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
 
 #if DEBUG
   printf("  zx_min=%f, zy_min=%f , flags=%d\n ",zx, zy, flags);
-#endif	
+#endif
 
   /* to_screen_x_constant and to_screen_y_constant are almost the same.
      lets use to_screen_y_constant */
   zoom_old = toplevel->page_current->to_screen_y_constant;
-		
+
   /* calc new zooming factor */
-  /* check if there's a zoom_full (relativ_zoom_factor == -1) */
-  if (relativ_zoom_factor <0)  {
+  /* check if there's a zoom_full (relative_zoom_factor == -1) */
+  if (relative_zoom_factor <0)  {
     zoom_new = zoom_min;
   }
   else {
-    zoom_new = zoom_old * relativ_zoom_factor;
+    zoom_new = zoom_old * relative_zoom_factor;
     zoom_new = zoom_new > zoom_max ? zoom_max : zoom_new;
     if (!(flags & A_PAN_IGNORE_BORDERS)) {
       zoom_new = zoom_new < zoom_min ? zoom_min : zoom_new;
@@ -91,7 +91,7 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
     / 2 / zoom_new + 0.5;
   toplevel->page_current->bottom = world_cy + (double) toplevel->height
     / 2 / zoom_new + 0.5;
-	
+
   /* and put it back to the borders */
   if (!(flags & A_PAN_IGNORE_BORDERS)) {
     /* check right border */
@@ -139,19 +139,19 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
     }
 
   }
-	
+
 #if DEBUG
   printf("zoom_old: %f, zoom_new: %f \n ",zoom_old, zoom_new);
   printf("left: %d, right: %d, top: %d, bottom: %d\n",
-         toplevel->page_current->left, toplevel->page_current->right, 
+         toplevel->page_current->left, toplevel->page_current->right,
 	 toplevel->page_current->top, toplevel->page_current->bottom);
   printf("aspect: %f\n",
-         (float) fabs(toplevel->page_current->right  
+         (float) fabs(toplevel->page_current->right
 		      - toplevel->page_current->left) /
-         (float) fabs(toplevel->page_current->bottom 
+         (float) fabs(toplevel->page_current->bottom
 		      - toplevel->page_current->top ));
 #endif
-	
+
   /* set_window */
   set_window(toplevel, toplevel->page_current,
              toplevel->page_current->left  ,
@@ -180,7 +180,7 @@ void a_pan(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   a_pan_general(w_current, w_x, w_y, 1, 0);
 
   /*! \bug FIXME? This call will trigger a motion event (x_event_motion()),
-   * even if the user doesn't move the mouse 
+   * even if the user doesn't move the mouse
    * Not ready for prime time, maybe there is another way to trigger the
    * motion event without changing the cursor position (Werner)
    */
@@ -200,7 +200,7 @@ void a_pan_mouse(GSCHEM_TOPLEVEL *w_current, int diff_x, int diff_y)
 
 #if DEBUG
   printf("a_pan_mouse(): diff_x=%d, diff_y=%d\n", diff_x, diff_y);
-#endif	
+#endif
 
   page_cx = (toplevel->page_current->left + toplevel->page_current->right) / 2.0;
   page_cy = (toplevel->page_current->top + toplevel->page_current->bottom) / 2.0;
@@ -212,6 +212,6 @@ void a_pan_mouse(GSCHEM_TOPLEVEL *w_current, int diff_x, int diff_y)
   printf("  world_cx=%f, world_cy=%f\n",
 	 world_cx, world_cy);
 #endif
-  
+
   a_pan_general(w_current, world_cx, world_cy, 1, 0);
 }

@@ -49,6 +49,8 @@ void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
 {
   OBJECT *o_current;
   const char *str = NULL;
+  const char *ext;
+  bool  isSymbol;
 
   if (list == NULL) {
     w_current->inside_action = 0;
@@ -58,42 +60,62 @@ void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
 
   o_current = (OBJECT *) list->data;
   if (o_current == NULL) {
-    fprintf(stderr, _("Got an unexpected NULL in o_edit\n"));
-    exit(-1);
+    fprintf(stderr, _("o_edit: Got an unexpected NULL in o_edit\n"));
+    return;
   }
 
+  if ((ext = get_filename_ext(w_current->toplevel->page_current->page_filename)) != NULL) {
+    if (strcmp (ext, SYMBOL_FILE_SUFFIX) == 0)
+      isSymbol = TRUE;
+    else
+      isSymbol = FALSE;
+  }
+  else {
+    isSymbol = FALSE;
+  }
   /* for now deal with only the first item */
+
   switch(o_current->type) {
 
-    /* also add the ability to multi attrib edit: nets, busses, pins */
+    case(OBJ_ARC):
+      x_dialog_edit_arc_angle (w_current, o_current);
+      break;
+    case OBJ_BOX:
+      x_dialog_edit_fill_type (w_current);
+      break;
+    case OBJ_CIRCLE:
+    case (OBJ_LINE):
+      x_dialog_edit_line_type (w_current);
+      break;
     case(OBJ_COMPLEX):
     case(OBJ_PLACEHOLDER):
     case(OBJ_NET):
-    case(OBJ_PIN):
     case(OBJ_BUS):
-    x_multiattrib_open (w_current);
-    break;
-
+      x_multiattrib_open (w_current);
+      break;
     case(OBJ_PICTURE):
-    picture_change_filename_dialog(w_current);
-    break;
-    case(OBJ_ARC):
-    arc_angle_dialog(w_current, o_current);
-    break;
+      picture_change_filename_dialog(w_current);
+      break;
+    case(OBJ_PIN):
+      if(isSymbol) {
+        x_dialog_edit_pin_type(w_current);
+      }
+      else {
+        x_multiattrib_open (w_current);
+      }
+      break;
     case(OBJ_TEXT):
       str = o_text_get_string (w_current->toplevel, o_current);
       if (o_attrib_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
         o_text_num_lines (str) == 1) {
         attrib_edit_dialog(w_current,o_current, FROM_MENU);
-    } else {
-      o_text_edit(w_current, o_current);
-    }
-    break;
+      } else {
+        o_text_edit(w_current, o_current);
+      }
+      break;
   }
 
-  /* has to be more extensive in the future */
-  /* some sort of redrawing? */
 }
 
 /*! \todo Finish function documentation!!!
@@ -341,8 +363,6 @@ void o_edit_show_hidden (GSCHEM_TOPLEVEL *w_current, const GList *o_list)
     q_log_message(_("Hidden text is now invisible\n"));
   }
 }
-
-#define FIND_WINDOW_HALF_SIZE (5000)
 
 OBJECT *last_o = NULL;
 int skiplast;

@@ -113,8 +113,8 @@
 #define DEFAULT_THICK_PIN_WIDTH	 30
 
 /* for pin_type */
-#define PIN_TYPE_NET		0
-#define PIN_TYPE_BUS		1
+//#define PIN_TYPE_NET		0
+//#define PIN_TYPE_BUS		1
 
 /* various visual cue sizes (in mils) */
 #define CUE_BOX_SIZE 		30

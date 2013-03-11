@@ -987,7 +987,7 @@ void o_text_set_string (TOPLEVEL *toplevel, OBJECT *obj,
  *  \param [in]  obj                   The text object.
  *  \return The text object's string, or NULL on failure.
  */
-const gchar *o_text_get_string (TOPLEVEL *toplevel, OBJECT *obj)
+const char *o_text_get_string (TOPLEVEL *toplevel, OBJECT *obj)
 {
   g_return_val_if_fail (toplevel != NULL, NULL);
   g_return_val_if_fail (obj != NULL, NULL);

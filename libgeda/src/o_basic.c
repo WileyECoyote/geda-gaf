@@ -255,11 +255,11 @@ bool o_get_line_options(OBJECT *object,
       && object->type != OBJ_PATH)
     return FALSE;
 #endif
-  *end = object->line_end;
-  *type = object->line_type;
-  *width = object->line_width;
+  *end    = object->line_end;
+  *type   = object->line_type;
+  *width  = object->line_width;
   *length = object->line_length;
-  *space = object->line_space;
+  *space  = object->line_space;
 
   return TRUE;
 }

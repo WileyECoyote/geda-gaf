@@ -484,8 +484,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
     }
   }
 
- end_button_pressed:
-//  scm_dynwind_end ();
+  end_button_pressed:
 
   return(0);
 }
@@ -516,12 +515,11 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
   /* Huge switch statement to evaluate state transitions. Jump to
    * end_button_released label to escape the state evaluation rather
    * than returning from the function directly. */
-  //scm_dynwind_begin (0);
-  //g_dynwind_window (w_current);
 
   if (event->button == 1) {
     switch(w_current->event_state) {
       case(SELECT):
+
         /* do nothing */
         break;
       case(MOVE):
@@ -588,8 +586,8 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
           w_current->inside_action = 1;
         }
         break;
-
     }
+
   } else if (event->button == 2) {
 
     if (w_current->inside_action) {
@@ -676,9 +674,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
       i_set_state(w_current, SELECT);
     }
   }
- end_button_released:
- // scm_dynwind_end ();
-
+  end_button_released:
   return(0);
 }
 
@@ -734,7 +730,7 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   w_y = snap_grid (w_current, unsnapped_wy);
 
   if (w_current->cowindow) {
-    coord_display_update(w_current, (int) event->x, (int) event->y);
+    x_dialog_coord_display_update(w_current, (int) event->x, (int) event->y);
   }
   if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MOUSE_MIDDLE_PAN) {
     if((w_current->event_state == MOUSEPAN) &&
@@ -884,7 +880,6 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   }
 
   scm_dynwind_end ();
-
   return(0);
 }
 
@@ -915,7 +910,7 @@ bool x_event_configure (GtkWidget         *widget,
   GList *iter;
   PAGE *old_page_current, *p_current;
   int old_win_width, old_win_height, new_win_width, new_win_height;
-  double relativ_zoom_factor = 1.0;
+  double relative_zoom_factor = 1.0;
 
   g_assert (toplevel != NULL);
 
@@ -954,7 +949,7 @@ bool x_event_configure (GtkWidget         *widget,
     width_ratio  = ((double)new_win_width)  / ((double)old_win_width);
     height_ratio = ((double)new_win_height) / ((double)old_win_height);
     /* keep smallest ratio as relative zoom factor when panning */
-    relativ_zoom_factor =
+    relative_zoom_factor =
       (width_ratio < height_ratio) ? width_ratio : height_ratio;
 
   }
@@ -974,7 +969,7 @@ bool x_event_configure (GtkWidget         *widget,
     cx = ((gdouble)(p_current->left + p_current->right))  / 2;
     cy = ((gdouble)(p_current->top  + p_current->bottom)) / 2;
     s_page_goto (toplevel, p_current);
-    a_pan_general (w_current, cx, cy, relativ_zoom_factor, A_PAN_DONT_REDRAW);
+    a_pan_general (w_current, cx, cy, relative_zoom_factor, A_PAN_DONT_REDRAW);
 
   }
   /* restore current page to saved value */

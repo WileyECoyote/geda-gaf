@@ -18,20 +18,29 @@ bitmapdata_256dir = $(GEDA_BITMAPS)/256x256
 	  
 bitmapdata_DATA    = close_box.png                      \
 		     geda-arc.png                       \
+		     geda-arc-edit.png                  \
 		     geda-box.png                       \
 		     geda_bulb_24x26_off.png            \
 		     geda_bulb_24x26_on.png             \
 		     geda-circles.png                   \
                      geda-copy.png                      \
                      geda-line.png                      \
+                     geda-line-type.png                 \
+                     geda-lock.png                      \
+                     geda-mesh.png                      \
                      geda-mirror.png                    \
                      geda-move.png                      \
                      geda-multi.png                     \
                      geda-pin.png                       \
+                     geda-pin-type.png                  \
                      geda-rotate.png                    \
                      geda-select.png                    \
+                     geda-slot.png                      \
 		     geda_switch_64x48_off.png          \
-		     geda_switch_64x48_on.png
+		     geda_switch_64x48_on.png           \
+                     geda-unlock.png                    \
+                     geda-zoom-box.png                  \
+                     geda-zoom-pan.png
 
 bitmapdata_16_DATA = geda_find_16x16.xpm	  	\
 		     geda_find_and_replace_16x16.xpm	\

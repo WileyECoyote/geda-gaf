@@ -237,7 +237,7 @@ GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
     scm_items = s_menu_return_entry(i, raw_menu_name);
     if (*raw_menu_name == NULL) {
       fprintf(stderr, "Oops.. got a NULL menu name in get_main_menu()\n");
-      exit(-1);
+      return NULL;
     }
 
     menu = gtk_menu_new();

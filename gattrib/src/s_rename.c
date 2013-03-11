@@ -12,8 +12,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
@@ -110,7 +110,7 @@ void s_rename_next_set(void)
     if (cur_set == MAX_SETS) {
 	fprintf(stderr,
 		_("Increase number of rename_pair sets in s_net.c\n"));
-	exit(-1);
+	return;
     }
     cur_set++;
     rename_counter = 0;
@@ -132,7 +132,7 @@ void s_rename_print(void)
 
 	    if (rename_pairs[i][j].dest) {
 		printf(_(" -> Dest: _%s_\n"), rename_pairs[i][j].dest);
-	    } 
+	    }
 	}
     }
 }
@@ -229,7 +229,7 @@ void s_rename_add(char *src, char *dest)
     if (rename_counter == MAX_RENAME) {
 	fprintf(stderr,
 		_("Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"));
-	exit(-1);
+	return;
     }
 
 }
@@ -282,7 +282,7 @@ void s_rename_all (TOPLEVEL *toplevel, NETLIST * netlist_head)
 
 	verbose_print("R");
 
-#if DEBUG 
+#if DEBUG
 	printf("%d Renaming: %s -> %s\n", i, rename_pairs[cur_set][i].src,
 	       rename_pairs[cur_set][i].dest);
 #endif

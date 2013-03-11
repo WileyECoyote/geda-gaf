@@ -17,8 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
-/*! \todo STILL NEED to clean up line lengths in aa and tr
- */
+
 #include <config.h>
 
 #include <stdio.h>
@@ -143,7 +142,7 @@ void attrib_edit_dialog_ok(GtkWidget * w, GSCHEM_TOPLEVEL *w_current)
       object = (OBJECT *)s_current->data;
       if (object == NULL) {
 	fprintf(stderr, _("ERROR: NULL object!\n"));
-	exit(-1);
+	return;
       }
       if (!object->attached_to) {
 	nsel++;
@@ -333,7 +332,7 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *attr_obj, int flag)
   ThisDialog = gschem_dialog_new_with_buttons(_("Single Attribute Editor"),
                                             GTK_WINDOW(w_current->main_window),
                                             GTK_DIALOG_MODAL,
-                                            "singleattrib", w_current,
+                                            IDS_SINGLE_ATTRBI, w_current,
                                             GTK_STOCK_CANCEL,
                                             GTK_RESPONSE_REJECT,
                                             GTK_STOCK_OK,

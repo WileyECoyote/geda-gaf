@@ -31,7 +31,7 @@
  *  styles TAB in the new settings dialog could have variable widths
  *  adjustments for screen and printing, then there might not be any
  *  reason to have THIN and THICK styles any more.
- * 
+ *
  */
 
 #include <config.h>
@@ -51,9 +51,9 @@
  *
  */
 int o_style_get_bus_width( TOPLEVEL *toplevel ) {
- 
+
   int width;
- 
+
   if(toplevel->bus_style == STYLE_NONE) {
     width = DEFAULT_WIDTH_NONE;
   }
@@ -61,12 +61,12 @@ int o_style_get_bus_width( TOPLEVEL *toplevel ) {
   {
     if(toplevel->bus_style == STYLE_THIN) {
       width = toplevel->thin_bus_width;
-    }  
+    }
     else {
       if (toplevel->bus_style == STYLE_THICK) {
         width = toplevel->thick_bus_width;
       }
-      else { 
+      else {
         width = MIN_LINE_WIDTH_THRESHOLD;
       }
     }
@@ -81,9 +81,9 @@ int o_style_get_bus_width( TOPLEVEL *toplevel ) {
  *
  */
 int o_style_get_line_width( TOPLEVEL *toplevel ) {
- 
+
   int width;
- 
+
   if(toplevel->line_style == STYLE_NONE) {
     width = DEFAULT_WIDTH_NONE;
   }
@@ -91,12 +91,12 @@ int o_style_get_line_width( TOPLEVEL *toplevel ) {
   {
     if(toplevel->line_style == STYLE_THIN) {
       width = toplevel->thin_line_width;
-    }  
+    }
     else {
       if (toplevel->line_style == STYLE_THICK) {
         width = toplevel->thick_line_width;
       }
-      else { 
+      else {
         width = MIN_LINE_WIDTH_THRESHOLD;
       }
     }
@@ -110,9 +110,9 @@ int o_style_get_line_width( TOPLEVEL *toplevel ) {
  *
  */
 int o_style_get_net_width( TOPLEVEL *toplevel ) {
- 
+
   int width;
- 
+
   if(toplevel->net_style == STYLE_NONE) {
     width = DEFAULT_WIDTH_NONE;
   }
@@ -120,12 +120,12 @@ int o_style_get_net_width( TOPLEVEL *toplevel ) {
   {
     if(toplevel->net_style == STYLE_THIN) {
       width = toplevel->thin_net_width;
-    }  
+    }
     else {
       if (toplevel->net_style == STYLE_THICK) {
         width = toplevel->thick_net_width;
       }
-      else { 
+      else {
         width = MIN_LINE_WIDTH_THRESHOLD;
       }
     }
@@ -141,9 +141,9 @@ int o_style_get_net_width( TOPLEVEL *toplevel ) {
  *  of the pin type.
  */
 int o_style_get_pin_width( TOPLEVEL *toplevel, int type) {
- 
+
   int width;
- 
+
   if(toplevel->pin_style == STYLE_NONE) {
     if(type==PIN_TYPE_NET) width = DEFAULT_THIN_PIN_WIDTH;
     else width = DEFAULT_THICK_PIN_WIDTH;
@@ -152,7 +152,7 @@ int o_style_get_pin_width( TOPLEVEL *toplevel, int type) {
   {
     if(toplevel->pin_style == STYLE_THIN) {
       width = toplevel->thin_pin_width;
-    }  
+    }
     else {
       if (toplevel->pin_style == STYLE_THICK) {
         width = toplevel->thick_pin_width;
@@ -176,47 +176,39 @@ int o_style_get_pin_width( TOPLEVEL *toplevel, int type) {
  */
 void o_style_set_object(TOPLEVEL *toplevel, OBJECT *o_current)
 {
+
   if (o_current != NULL) {
     switch(o_current->type) {
-
+      case(OBJ_ARC):
+      case(OBJ_BOX):
+      case(OBJ_CIRCLE):
       case(OBJ_LINE):
-        o_current->line_width = o_style_get_line_width( toplevel );
+        if(toplevel->line_style != STYLE_NONE)
+          o_current->line_width = o_style_get_line_width( toplevel );
         break;
-
       case(OBJ_NET):
-        o_current->line_width = o_style_get_net_width( toplevel );
+        if(toplevel->net_style != STYLE_NONE)
+          o_current->line_width = o_style_get_net_width( toplevel );
         break;
 
       case(OBJ_BUS):
-        o_current->line_width = o_style_get_bus_width( toplevel );
+        if(toplevel->bus_style != STYLE_NONE)
+          o_current->line_width = o_style_get_bus_width( toplevel );
         break;
-
-      case(OBJ_BOX):
-        o_current->line_width = o_style_get_line_width( toplevel );
-        break;
-
       case(OBJ_PATH):
       case(OBJ_PICTURE):
         break;
-
-      case(OBJ_CIRCLE):
-        break;
-
       case(OBJ_COMPLEX):
       case(OBJ_PLACEHOLDER):
         break;
-
       case(OBJ_PIN):
-        if(o_current->pin_type == PIN_TYPE_NET)
-          o_current->line_width = o_style_get_pin_width( toplevel, PIN_TYPE_NET );
-        else
-          o_current->line_width = o_style_get_pin_width( toplevel, PIN_TYPE_BUS );  
+        if(toplevel->pin_style != STYLE_NONE) {
+          if(o_current->pin_type == PIN_TYPE_NET)
+            o_current->line_width = o_style_get_pin_width( toplevel, PIN_TYPE_NET );
+          else
+            o_current->line_width = o_style_get_pin_width( toplevel, PIN_TYPE_BUS );
+        }
         break;
-
-      case(OBJ_ARC):
-        o_current->line_width = o_style_get_line_width( toplevel );
-        break;
-
       case(OBJ_TEXT):
         break;
     }

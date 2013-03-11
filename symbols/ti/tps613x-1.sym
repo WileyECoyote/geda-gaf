@@ -1,0 +1,62 @@
+v 20130214 2
+P 800 200 800 0 1 0 1
+{
+T 650 250 9 8 1 1 0 0 1
+pinlabel=GND
+T 650 50 5 8 1 1 0 0 1
+pinnumber=2
+T 850 50 5 8 0 0 0 0 1
+pinseq=1
+T 850 50 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 1400 1000 1600 1000 1 0 1
+{
+T 1050 950 9 8 1 1 0 0 1
+pinlabel=OUT
+T 1450 1050 5 10 1 1 0 0 1
+pinnumber=5
+T 1500 650 5 10 0 0 0 0 1
+pinseq=2
+T 1500 800 5 10 0 0 0 0 1
+pintype=pwr
+}
+P 0 1000 200 1000 1 0 0
+{
+T 250 950 9 8 1 1 0 0 1
+pinlabel=IN
+T 100 1050 5 10 1 1 0 0 1
+pinnumber=1
+T 400 1050 5 10 0 0 0 0 1
+pinseq=3
+T 300 1200 5 10 0 0 0 0 1
+pintype=pwr
+}
+P 200 500 0 500 1 0 1
+{
+T 250 450 9 8 1 1 0 0 1
+pinlabel=EN
+T 50 550 5 10 1 1 0 0 1
+pinnumber=3
+T 550 450 5 10 0 0 0 0 1
+pinseq=4
+T 500 600 5 10 0 0 0 0 1
+pintype=in
+}
+T 400 700 9 10 1 0 0 0 1
+TPS713x
+B 200 200 1200 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 700 1400 8 10 1 1 0 0 1
+refdes=U?
+T 200 1800 5 10 0 0 0 0 1
+footprint=SOT23-5
+T 195 2395 8 10 0 0 0 0 1
+author=David Griffith <davidgriffith@acm.org>
+T 195 1995 8 10 0 0 0 0 1
+device=TPS7613x
+T 195 1595 8 10 0 1 0 0 1
+documentation=http://www.ti.com/lit/gpn/TPS76133
+T 200 2200 5 10 0 0 0 0 1
+description=low drop-out voltage regulator
+T 200 2600 5 10 0 0 0 0 1
+numslots=0

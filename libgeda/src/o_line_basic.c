@@ -564,7 +564,6 @@ void o_line_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   /* 09/08/12 | W.E.Hill Modified algorithms to incorperate both THICK & THIN
    *            styles, and eliminated hard-coded integer values.
    */
-
   line_width = o_current->line_width;
   if(line_width < MIN_LINE_WIDTH_THRESHOLD)
      line_width = o_style_get_line_width(toplevel); /* 1st try updating style */

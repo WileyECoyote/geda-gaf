@@ -53,7 +53,7 @@ void o_undo_init(void)
 {
   prog_pid = getpid();
 
-  tmp_path = g_strdup (getenv("TMP"));
+  tmp_path = g_strdup (g_getenv("TMP"));
   if (tmp_path == NULL) {
      tmp_path = g_strdup ("/tmp");
   }

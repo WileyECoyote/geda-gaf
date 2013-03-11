@@ -150,6 +150,8 @@
 
 /* For snap-size */
 #define DEFAULT_SNAP_SIZE       100
+#define MIN_SNAP_SIZE           1
+#define MAX_SNAP_SIZE           500
 
 /*--------- Nets and Routing ----------*/
 /* These modes are for net_endpoint_mode and net_midpoint_mode*/

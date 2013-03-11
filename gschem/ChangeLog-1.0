@@ -1,3 +1,76 @@
+2013-02-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/gschem_dialog.c: Add new property PROP_SELECTION_TRACKER, with
+          supporting functions; gd_connect_selection, gd_disconnect_selection
+          gd_callback_selection_finalized, gd_callback_selection_changed. This
+          callback system is similar to the ones in the multiattrib dialog but
+          is implemented in a more general way.
+
+        * src/x_dialog.c: Reorganized code and updated documentation. Revised
+          text_edit_dialog to accept OBJECT, and then pass the same object to the
+          response function rather than w_current. Added data hook for colorcombo
+          and text alignment, eliminating callback for change_alignment. Unneeded
+          change_alignment function was removed because the alignment was being
+          changed when the combo widget selection was changed, even though the
+          OK-Button was not pressed. Revised response function text_edit_dialog
+          _response to accept the OBJECT *object as the third parameter and renamed
+          parameter 1 "dialog" insead of "w", derived w_current from GSCHEM_DIALOG
+          inheritance. General re-vamp for text_edit_dialog_ok revised: Change
+          parameters to accept OBJECT *object, retrieve alignment and color from
+          tree models using GTK data hooks,  Change dialog to modeless and relocate
+          to new "editing" group, add update on selection change. Revised to
+          eliminate conditional construction of the "text" editing buffer, which is
+          set to a empty value if multiable text object are selected.
+          Revised with similar changes for color_edit_dialog, x_dialog_edit_arc_angle,
+
+          Created tooltips: snap_size_dialog, text_size_dialog, x_dialog_edit_arc_angle
+          x_dialog_edit_color, x_dialog_fill_type, x_dialog_edit_line.
+
+          Added new utility function x_dialog_get_list_selected_objects, see description
+          in source module.
+
+          Completely re-vamp x_dialog_edit_pin_type
+
+          removed CHANGE and UNDO from response handler in text_size_dialog, and
+          text_size_dialog.
+
+        * include/x_dialog.h: Relocated widtget data structures for line_type_data,
+          fill_type_data for source to this hear, prefix with st_ and added type
+          definitions. Added new struction for pin data. Added new macro DECLARE_
+          TOOPTIPS.
+
+        * src/x_autonumber.c: Changed ScopeNumberCombo and ScopeSkipCombo to menus as
+          variables ScopeNumberMenu and ScopeSkipMenu. The check menus are consistence
+          with other dialogs, so this helps improve uniformity of dialogs interfaces.
+          The Combo menus use a common creator function: create_scope_menu. Reverted
+          conditional check for inheritance in function autonumber_remove_number because
+          s_slot_search_slot really does return both inherited and non-inherited attributes.
+          Added type difinition for anynomous enumerator now AutoNumberScope and change
+          the varibles autonumber_text_t; scope_number and scope_skip, to use new type.
+          renamed functions: autonumber_get_state to retrieve_values_from_dialog, and
+          autonumber_set_state to restore_dialog_values. Some updates to documentation.
+
+        * src/o_misc.c: Function o_edit; added case for OBJ_BOX, OBJ_LINE, OBJ_CIRCLE
+          Changed PIN type to separate case and made launch conditional based on the
+          whether page is a symbol or a schematic.
+          Removed un-used definition FIND_WINDOW_HALF_SIZE.
+
+        * src/o_slot.c: attempted to update function documentation.
+
+        * src/o_text:Added OBJ_TEXT conditional in o_text_edit and pass OBJECT
+          rather than individual members of OBJECT *o_current to text_edit_dialog.
+          Revised o_text_edit_end: Adding text_color, changed_something conditionals
+          and documentation.
+
+        * src/x_toolbars.c: Added new toolbar items: edit attributes, edit arc, edit
+          pin, edit slot.
+
+        * include/globals.h: Add new macro Current_Selection to help reduce coding
+          lines lengths.
+
+        * remove multible occurance of exit(-1), exiting is not cool, functions need
+          to handle errors more robustly.
+
 2013-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x_toolbars.c: Added new toolbar items: Edit Text, Show Hidden.
@@ -16,26 +89,29 @@
           list of actions to register from i_command_get_action_list.
 
         * src/i_command.c: New file with experimental code to (mostly) replace i_callback.c
-          This scheme uses a single function i_command_process to respond to all actions
+          This scheme uses a single function "i_command_process" to respond to all actions
           regardless of the origin. Most, if not all of the old i_callback.c, that were not
           hot-key actions, were revised and relocated this module.
-          The central interface function i_command_process manages repeat-last action.
+          The central interface function i_command_process also manages repeat-last action.
           The action file-close now uses the same algorithms as page-close so gschem no
-          longer "exit" when the last document is close, instead a new empty document is
+          longer "exits" when the last document is closed, instead a new empty document is
           created (like a "normal" program).
 
         * src/i_callback.c: Removed nearly all functions that were not hot-key actions.
+          The hot-key handlers could really be moved to i_command_process but other than
+          capturing X-Y, the handlers mostly contain redundant code, so need to digress
+          on these.
 
         * src/o_delete.c: Replaced local dialog with gschem_confirm_dialog.
 
         * src/x_stroke.c: modified x_stroke_translate_and_execute to use i_command_process.
 
         * src/x_menu.c: Major modifications to this module; Added additional toggle actions;
-          menu icons, global toolbar style, scrollbars visability and toggling menu tips.
+          menu icons, global toolbar style, scrollbars visibility and toggling menu tips.
           Add menu tooltips for menu items. Add glist for menu_items, a collection of all
           menu_items. Window specific widgets list, such as menu_items, were put in a
           static list of structures indexed on a per window basis. Added new function
-          x_menu_free_all to free the aforemention structure when a windows is closed.
+          x_menu_free_all to free the aforementioned structure when a windows is closed.
 
         * src/x_icons.c:  Added an icon factory! Should maybe have done this a long
           time ago, this makes using bitmaps much easier. Maybe wrong place though,
@@ -45,11 +121,11 @@
 
 	* lib/system-gschemrc.scm: Added tooltip and icon id's to menu list.
           New section 'General System Options' added with new keywords "show-menu-icons"
-          and "toolbars-mode", relocated related keywords to the new section
-          New section 'Scrollbar Options' added with new keyword scrollbars-visible. The
-          scrollbars-visible provide a simple solution to resolve issue with the scrollbars
-          being required for mousing pan. The scrollbars are still present, just not visible
-          and this allows for mouse panning.
+          and "toolbars-mode", relocated related keywords to this new section.
+          New section 'Scrollbar Options' added with new keyword scrollbars-visible.
+          The scrollbars-visible variable provide a simple solution to resolve issue
+          with the scrollbars being required for mousing pan. The scrollbars are still
+          present, just not visible and this allows for mouse panning.
           Added Stroke Letter O for Open.
           Some keys re-assigned and action names revised as necessary to implement unified
           actions scheme described in i_command above.
@@ -60,7 +136,7 @@
         * include/sdefines.h: Created WINDOW_GEOMETRY_STORE.
 
         * include/gschem_struct.h: Added new w_current variables pointer_hscroll,
-          scrollbars_visible, and ui_index
+          scrollbars_visible, and ui_index.
 
         * src/x_events.c: Revised function x_event_scroll to incoorperate
           new w_current variable pointer_hscroll.

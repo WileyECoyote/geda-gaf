@@ -201,7 +201,7 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
 void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
 {
   i_set_state_msg(w_current, newstate, NULL);
-  x_toolbars_update(w_current);
+  //x_toolbars_update(w_current);
 }
 
 /*! \brief Set new state, then show state field including some

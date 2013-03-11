@@ -340,7 +340,7 @@ void gschem( int argc, char *argv[])
   g_scm_eval_protected (s_post_load_expr, scm_current_module ());
 
   /* if there were any symbols which had major changes, show error dialog */
-  major_changed_dialog(w_current);
+  x_dialog_symbol_changed(w_current);
 
   scm_dynwind_end ();
 

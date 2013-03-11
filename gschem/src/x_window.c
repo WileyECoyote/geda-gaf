@@ -83,7 +83,6 @@ void x_window_setup_gc(GSCHEM_TOPLEVEL *w_current)
 
   if (w_current->gc == NULL) {
     fprintf(stderr, _("Couldn't allocate gc\n"));
-    exit(-1);
   }
 }
 
@@ -591,10 +590,10 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
 
   /* last chance to save possible unsaved pages */
   if (!x_dialog_close_window (w_current)) {
+    v_log_message("Close Window canceled");
     /* user cancelled the close */
     return;
   }
-
   x_clipboard_finish (w_current);
 
 #if DEBUG
@@ -923,22 +922,22 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *old_current;
   const char *log_msg, *state_msg;
-  int ret;
+  int result;
   GError *err = NULL;
 
   g_return_val_if_fail (toplevel != NULL, 0);
   g_return_val_if_fail (page     != NULL, 0);
   g_return_val_if_fail (filename != NULL, 0);
 
-  /* save current page for restore after opening */
+  /* save current page for restore after saving */
   old_current = toplevel->page_current;
 
   /* change to page */
   s_page_goto (toplevel, page);
   /* and try saving current page to filename */
-  ret = f_save (toplevel, toplevel->page_current, filename, &err);
+  result = f_save (toplevel, toplevel->page_current, filename, &err);
 
-  if (ret != 1) {
+  if (result != 1) {
     log_msg   = _("Could NOT save page [%s]\n");
     state_msg = _("Error while trying to save");
 
@@ -960,7 +959,6 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
 
     /* reset page CHANGED flag */
     page->CHANGED = FALSE;
-
     /* add to recent file list */
     recent_files_add(filename);
   }
@@ -971,7 +969,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
   /* update display and page manager */
   x_window_set_current_page (w_current, old_current);
   i_set_state_msg  (w_current, SELECT, state_msg);
-  return ret;
+  return result;
 }
 
 /*! \brief Closes a page.

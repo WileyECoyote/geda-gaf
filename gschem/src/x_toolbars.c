@@ -49,7 +49,6 @@
 #include <i_actions.h>
 
 /* convenience macros */
-
 #define CAN_PASTE_LIST       bar_widgets->can_paste
 #define CAN_UNDO_LIST        bar_widgets->can_undo
 #define CAN_REDO_LIST        bar_widgets->can_redo
@@ -78,12 +77,13 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_view_document, etb_view_redraw, etb_zoom_pan, etb_zoom_box,
                 etb_zoom_extents, etb_zoom_in, etb_zoom_out, etb_zoom_all,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_rotate, etb_mirror,
-                etb_edit_text, etb_edit_line, etb_edit_color, etb_edit_fill,
+                etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
+                etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
                 etb_lock, etb_unlock, etb_update, etb_attach, etb_detach,
                 etb_show_value, etb_show_name, etb_show_both, etb_visibilty,
                 etb_show_hidden, etb_find_text, etb_hide_text, etb_show_specific,
                 etb_auto_number, etb_translate
-} IDS_GSCHEM_Toolbar;
+} IDE_GSCHEM_Toolbar;
 
 const char* IDS_Toolbar_Names[] = {
   "add-bar", "Attribute", "Edit", "Page", "Standard", "Zoom", /* ToolBar Name Strings*/
@@ -149,15 +149,22 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(VIEW_ZOOM_ALL),      "All",        "Zoom to Limits",         GEDA_MAP(ZOOM_LIMITS)},
 
   /* Edit Toolbar */
-  { ACTION(EDIT_COPY),          "Copy",       "Copy selection", "Private"},
+  { ACTION(EDIT_COPY),          "Copy",       "Copy selection",                    "Private"},
   { ACTION(EDIT_MCOPY),         "Multi",      "Make multible copies of selection", "Private"},
-  { ACTION(EDIT_MOVE),          "Move",       "Move objects",   "Private"},
-  { ACTION(EDIT_ROTATE),        "Rotate",     "Rotate objects", "Private"},
-  { ACTION(EDIT_MIRROR),        "Mirror",     "Mirror objects", "Private"},
-  { ACTION(EDIT_TEXT),          "Text",       "Edit text properties", "Private"},
-  { ACTION(EDIT_LINE),          "Line",       "Edit line type", "Private"},
-  { ACTION(EDIT_COLOR),         "Color",      "Change Colors",  "Private"},
-  { ACTION(EDIT_FILL),          "Fill",       "Edit Fill type", GEDA_MAP(MESH)},
+  { ACTION(EDIT_MOVE),          "Move",       "Move objects",                      "Private"},
+  { ACTION(EDIT_ROTATE),        "Rotate",     "Rotate objects",                    "Private"},
+  { ACTION(EDIT_MIRROR),        "Mirror",     "Mirror objects",                    "Private"},
+
+  { ACTION(EDIT_ATTRIB),        "Attributes", "Edit Attribute properties", "Private"},
+  { ACTION(EDIT_COLOR),         "Color",      "Change Colors",             "Private"},
+
+  { ACTION(EDIT_TEXT),          "Text",       "Edit text properties",             "Private"},
+  { ACTION(EDIT_SLOT),          "Slots",      "Edit Slot number of complex",    "geda-slot"},
+  { ACTION(EDIT_PIN),           "Pins",       "Open the Pin Editor",        "geda-pin-type"},
+  { ACTION(EDIT_LINE),          "Line",       "Edit line type",                   "Private"},
+  { ACTION(EDIT_FILL),          "Fill",       "Edit Hatch pattern",          GEDA_MAP(MESH)},
+  { ACTION(EDIT_ARC),           "Arcs",       "Edit Arc parameters",        "geda-arc-edit"},
+
   { ACTION(EDIT_LOCK),          "Lock",       "Lock Objects",   "Private"},
   { ACTION(EDIT_UNLOCK),        "Unlock",     "Unlock Objects", "Private"},
   { ACTION(EDIT_UPDATE),        "Update",     "Reload Component from library", "Private"},
@@ -169,7 +176,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_NAME),        "Name",       "Set selected name visible"},
   { ACTION(ATTRIB_BOTH),        "Both",       "Set selected name and value visible", "Private"},
   { ACTION(ATTRIB_VISIBILITY),  "Visible",    "Toggle Visibilty", GEDA_MAP(EYE_GLASSES)},
-  { ACTION(VIEW_HIDDEN),        "Hidden",     "Unlock Objects", "Private"},
+  { ACTION(VIEW_HIDDEN),        "Hidden",     "Toggle hidden text attributes", "Private"},
   { ACTION(ATTRIB_FIND),        "Find",       "Find attribute", GEDA_MAP(FIND_ATTRIBUTE)},
   { ACTION(ATTRIB_HIDE),        "Hide",       "Hide selected attribute", "Private"},
   { ACTION(ATTRIB_SHOW),        "Show",       "Show a specific attribute value", "Private"},
@@ -912,11 +919,11 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   SET_TOOLBAR_WC  (w_current->standard_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->standard_handlebox, Standard_Toolbar );
 
-  CAN_PASTE_LIST   = g_slist_append ( CAN_PASTE_LIST,   TB_BUTTON (etb_paste));
+  CAN_PASTE_LIST   = g_slist_append ( CAN_PASTE_LIST,     TB_BUTTON (etb_paste));
   SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST, TB_BUTTON (etb_cut  ));
   SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST, TB_BUTTON (etb_copy ));
-  CAN_UNDO_LIST    = g_slist_append ( CAN_UNDO_LIST,    TB_BUTTON (etb_undo ));
-  CAN_REDO_LIST    = g_slist_append ( CAN_REDO_LIST,    TB_BUTTON (etb_redo ));
+  CAN_UNDO_LIST    = g_slist_append ( CAN_UNDO_LIST,      TB_BUTTON (etb_undo ));
+  CAN_REDO_LIST    = g_slist_append ( CAN_REDO_LIST,      TB_BUTTON (etb_redo ));
 
   /* ----------- Create and Populate the Page Toolbar ----------- */
 
@@ -1088,14 +1095,24 @@ void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_containe
   TOOLBAR_GEDA_BUTTON( Edit, etb_move,       LOCAL_PIX, GEDA_MOVE_BITMAP,    x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_mirror,     LOCAL_PIX, GEDA_MIRROR_BITMAP,  x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_rotate,     LOCAL_PIX, GEDA_ROTATE_BITMAP,  x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_text,  LOCAL_STK, EDIT,                x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_line,  LOCAL_PIX, GEDA_LINE_TYPE_BITMAP,     x_toolbars_execute,  w_current);
+
+  gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
+
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_butes, LOCAL_STK, INDENT,              x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_edit_color, LOCAL_PIX, GEDA_DISPLAY_COLOR_BITMAP, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_fill,  LOCAL_STR, NULL,                      x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_translate,  LOCAL_PIX, GEDA_TRANSLATE_BITMAP,     x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_lock,       LOCAL_PIX, GEDA_LOCK_BITMAP,          x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_unlock,     LOCAL_PIX, GEDA_UNLOCK_BITMAP,        x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Edit, etb_update,     LOCAL_STK, REFRESH,                   x_toolbars_execute, w_current);
+
+  gtk_toolbar_append_space (GTK_TOOLBAR(Edit_Toolbar));
+
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_text,  LOCAL_STK, EDIT,                   x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_slot,  LOCAL_FAC, NULL,                   x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_pin,   LOCAL_FAC, NULL,                   x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_line,  LOCAL_PIX, GEDA_LINE_TYPE_BITMAP,  x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_fill,  LOCAL_STR, NULL,                   x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_edit_arc,   LOCAL_FAC, NULL,                   x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_translate,  LOCAL_PIX, GEDA_TRANSLATE_BITMAP,  x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_lock,       LOCAL_PIX, GEDA_LOCK_BITMAP,       x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_unlock,     LOCAL_PIX, GEDA_UNLOCK_BITMAP,     x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Edit, etb_update,     LOCAL_STK, REFRESH,                x_toolbars_execute, w_current);
 
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_copy  ));
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_multi_copy ));
@@ -1103,11 +1120,17 @@ void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_containe
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_mirror ));
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_rotate ));
 
-  TEXT_OBJECTS_LIST = g_slist_append (TEXT_OBJECTS_LIST, TB_BUTTON ( etb_edit_text ));
-
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_line  ));
+  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_butes ));
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_color ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_fill  ));
+
+  TEXT_OBJECTS_LIST    = g_slist_append (TEXT_OBJECTS_LIST,    TB_BUTTON ( etb_edit_text ));
+  COMPLEX_OBJECTS_LIST = g_slist_append (COMPLEX_OBJECTS_LIST, TB_BUTTON ( etb_edit_slot ));
+
+  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_pin  ));
+  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_line ));
+  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_fill ));
+  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_arc  ));
+
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_lock   ));
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_unlock ));
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_update ));

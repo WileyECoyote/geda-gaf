@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,9 +40,9 @@
 #include <dmalloc.h>
 #endif
 
-#include "../include/gschem_dialog.h"
-#include "../include/x_preview.h"
-#include "../include/x_compselect.h"
+#include "gschem_dialog.h"
+#include "x_preview.h"
+#include "x_compselect.h"
 
 /*! \def COMPSELECT_FILTER_INTERVAL
  *  \brief The time interval between request and actual filtering
@@ -56,12 +56,10 @@
  */
 #define COMPSELECT_FILTER_INTERVAL 200
 
-
 enum compselect_view {
   VIEW_INUSE=0,
   VIEW_CLIB
 };
-
 
 /*! \brief Return currently active component-selector view
  *
@@ -88,7 +86,6 @@ compselect_get_view (Compselect *compselect)
       return 0;
   }
 }
-
 
 /*! \brief Process the response returned by the component selection dialog.
  *  \par Function Description
@@ -260,7 +257,6 @@ x_compselect_close (GSCHEM_TOPLEVEL *w_current)
   }
 }
 
-
 void
 x_compselect_deselect (GSCHEM_TOPLEVEL *w_current)
 {
@@ -306,8 +302,6 @@ static void compselect_get_property    (GObject *object,
                                         guint property_id,
                                         GValue *value,
                                         GParamSpec *pspec);
-
-
 
 /*! \brief Sets data for a particular cell of the in use treeview.
  *  \par Function Description
@@ -683,7 +677,6 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
   compselect->filter_timeout = g_timeout_add (COMPSELECT_FILTER_INTERVAL,
                                               compselect_filter_timeout,
                                               compselect);
-
 }
 
 /*! \brief Handles a click on the clear button.

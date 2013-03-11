@@ -469,6 +469,7 @@ void o_select_unselect_all(GSCHEM_TOPLEVEL *w_current)
   if (removed != NULL) {
     g_run_hook_object_list (w_current, "%deselect-objects-hook", removed);
   }
+
 }
 
 /*! \brief Selects all visible objects on the current page.

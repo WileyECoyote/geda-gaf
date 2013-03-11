@@ -32,21 +32,20 @@
 #define OBJ_COMPLEX     'C'
 #define OBJ_TEXT        'T'
 #define OBJ_PIN         'P'
-#define OBJ_ARC         'A' 
+#define OBJ_ARC         'A'
 #define OBJ_PLACEHOLDER 'X'  /* added 1.19.2005 by SDB to prevent
 			      * deletion of unfound symbol files */
 
-
-#define STARTATTACH_ATTR	'{'	
-#define ENDATTACH_ATTR		'}'	
-#define START_EMBEDDED		'['	
-#define END_EMBEDDED		']'	
+#define STARTATTACH_ATTR	'{'
+#define ENDATTACH_ATTR		'}'
+#define START_EMBEDDED		'['
+#define END_EMBEDDED		']'
 
 /* font stuff */
-#define INFO_FONT         'F' 
-#define VERSION_CHAR      'v' 
+#define INFO_FONT         'F'
+#define VERSION_CHAR      'v'
 
 /* misc stuff */
-#define COMMENT         '#' 
+#define COMMENT         '#'
 
 #endif

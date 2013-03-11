@@ -172,7 +172,7 @@ void o_move_end(GSCHEM_TOPLEVEL *w_current)
 
     if (object == NULL) {
       fprintf(stderr, _("ERROR: NULL object in o_move_end!\n"));
-      exit(-1);
+      return;
     }
 
 
@@ -461,7 +461,8 @@ void o_move_check_endpoint(GSCHEM_TOPLEVEL *w_current, OBJECT * object)
   if (!object)
   return;
 
-  if (object->type != OBJ_NET && object->type != OBJ_PIN &&
+  if (object->type != OBJ_NET &&
+      object->type != OBJ_PIN &&
       object->type != OBJ_BUS) {
     fprintf(stderr, _("Got a non line object in o_move_check_endpoint\n"));
     return;
@@ -490,9 +491,10 @@ void o_move_check_endpoint(GSCHEM_TOPLEVEL *w_current, OBJECT * object)
          c_current->other_whichone == -1))
       continue;
 
-    if (/* (net)pin to (net)pin contact */
-        (object->type == OBJ_PIN && object->pin_type == PIN_TYPE_NET &&
-          other->type == OBJ_PIN &&  other->pin_type == PIN_TYPE_NET)) {
+/* (net)pin to (net)pin contact */
+   // if ((object->type == OBJ_PIN && object->pin_type == PIN_TYPE_NET
+   //&& other->type == OBJ_PIN &&  other->pin_type == PIN_TYPE_NET)) {
+    if (object->type == OBJ_PIN && other->type == OBJ_PIN) {
 
      /* net to (net)pin contact */
      /* (object->type == OBJ_NET &&
@@ -532,7 +534,6 @@ void o_move_check_endpoint(GSCHEM_TOPLEVEL *w_current, OBJECT * object)
                                                other, whichone);
     }
   }
-
 }
 
 /*! \todo Finish function documentation!!!
