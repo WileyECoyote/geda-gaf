@@ -95,7 +95,14 @@ enum CLibSourceType {
   CLIB_SCM,
 };
 
-/*! \brief Stores data about a particular component source */
+/*! \brief Stores data about a particular component source
+ *
+ * \Remarks The strings for category and groups are optional
+ * and do not necessarily represent functional characteristics,
+ * these are used for organizing the associates symbols when
+ * sorting and displaying libraries.
+ *
+ */
 struct st_CLibSource {
 
   /*! Type of source */
@@ -107,8 +114,14 @@ struct st_CLibSource {
   /*! Available symbols (#CLibSymbol) */
   GList *symbols;
 
+  /*! Optional Catagory */
+  char *category;
+
   /*! Path to directory */
   char *directory;
+
+  /*! Optional group */
+  char *group;
 
   /*! Command & arguments for listing symbols */
   char *list_cmd;
@@ -131,6 +144,7 @@ struct st_CLibSymbol {
 
   /*! The name of this symbol */
   char *name;
+
 };
 
 /*! \brief Symbol data cache entry */
@@ -458,6 +472,9 @@ struct st_toplevel {
 
   /* List of attributes to always promote */
   GList *always_promote_attributes;
+
+  /* holds a list of group names displayed in the component select dialog */
+  GList *component_groups;
 
   /* gnetlist specific */
   int net_naming_priority;

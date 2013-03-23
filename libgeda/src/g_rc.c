@@ -18,9 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 /*! \file g_rc.c
- *  \brief Execute Scheme initialisation files.
+ *  \brief Execute Scheme initialization files.
  *
- * Contains functions to open, parse and manage Scheme initialisation
+ * Contains functions to open, parse and manage Scheme initialization
  * (RC) files.
  */
 
@@ -428,7 +428,47 @@ void g_rc_parse_handler (TOPLEVEL *toplevel, const char *rcname,
 
 #undef HANDLER_DISPATCH
 }
+/*! \brief This function processes the component-group SCM list.
+ *  \par Function Description
+ *  This function reads the string list from the component-groups
+ *  configuration parameter and converts the list into a GList.
+ *  The GList is stored in the global default_component_groups variable.
+ */
+SCM g_rc_component_groups(SCM stringlist)
+{
+  int length, i;
+  GList *list=NULL;
+  char *attr;
 
+  SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
+  length = scm_ilength(stringlist);
+
+  /* If the command is called multiple times, remove the old list before
+     recreating it */
+  g_list_foreach(default_component_groups, (GFunc)g_free, NULL);
+  g_list_free(default_component_groups);
+
+  scm_dynwind_begin(0);
+
+  /* convert the scm list into a GList */
+  for (i=0; i < length; i++) {
+    char *str;
+    SCM elem = scm_list_ref(stringlist, scm_from_int(i));
+
+    SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
+
+    str = scm_to_utf8_string(elem);
+    attr = g_strdup(str);
+    free(str);
+    list = g_list_prepend(list, attr);
+  }
+
+  scm_dynwind_end();
+
+  default_component_groups = g_list_reverse(list);
+
+  return SCM_BOOL_T;
+}
 /*! \brief
  *  \par Function Description
  *
@@ -438,42 +478,39 @@ void g_rc_parse_handler (TOPLEVEL *toplevel, const char *rcname,
  */
 SCM g_rc_component_library(SCM path, SCM name)
 {
-  char *string;
+  char *directory;
   char *temp;
   char *namestr = NULL;
 
-  SCM_ASSERT (scm_is_string (path), path,
-              SCM_ARG1, "component-library");
+  SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "component-library");
 
   scm_dynwind_begin (0);
   if (name != SCM_UNDEFINED) {
-    SCM_ASSERT (scm_is_string (name), name,
-		SCM_ARG2, "component-library");
+    SCM_ASSERT (scm_is_string (name), name, SCM_ARG2, "component-library");
     namestr = scm_to_utf8_string (name);
     scm_dynwind_free(namestr);
   }
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
-  string = s_expand_env_variables (temp);
-  scm_dynwind_unwind_handler (g_free, string, SCM_F_WIND_EXPLICITLY);
+  directory = s_expand_env_variables (temp);
+  scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
   free (temp);
 
   /* invalid path? */
-  if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf(stderr,
-            "Invalid path [%s] passed to component-library\n",
-            string);
+  if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
+    /*fprintf(stderr, "Check library path [%s]\n", directory);*/
     scm_dynwind_end();
     return SCM_BOOL_F;
   }
 
-  if (g_path_is_absolute (string)) {
-    s_clib_add_directory (string, namestr);
-  } else {
+  if (g_path_is_absolute (directory)) {
+    s_clib_add_directory (directory, namestr);
+  }
+  else {
     char *cwd = g_get_current_dir ();
     char *temp;
-    temp = g_build_filename (cwd, string, NULL);
+    temp = g_build_filename (cwd, directory, NULL);
     s_clib_add_directory (temp, namestr);
     g_free(temp);
     g_free(cwd);

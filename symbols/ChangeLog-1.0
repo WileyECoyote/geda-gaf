@@ -1,3 +1,16 @@
+2013-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/geda-clib.scm: Major changes to source list content.
+        Added component-groups.
+
+        * symbols/*: Reorganized directory structure (again).
+
+2013-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/Makefile.am: Redo: Check in library folders and for each
+          subdirectory make a copy in the destination and include all symbols
+          under this subdirectory.
+
 2013-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
         * symbols/*: Created new folders misc_ic, ti, vishay, added more symbols

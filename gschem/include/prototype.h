@@ -209,8 +209,10 @@ void g_init_select ();
 
 /* g_util.c */
 void g_init_util ();
+int  g_list_find_string(GList* list, char *str);
 void g_list_free_string(void *data);
 GList* g_list_clear(GList* list);
+void g_copy_tree_iter(GtkTreeIter *iter1, GtkTreeIter *iter2);
 
 /* g_window.c */
 GSCHEM_TOPLEVEL *g_current_window ();
@@ -636,7 +638,6 @@ bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current, bool snapped, int
 
 /* x_compselect.c */
 void x_compselect_open (GSCHEM_TOPLEVEL *w_current);
-void x_compselect_close (GSCHEM_TOPLEVEL *w_current);
 void x_compselect_deselect (GSCHEM_TOPLEVEL *w_current);
 
 /* x_fileselect.c */

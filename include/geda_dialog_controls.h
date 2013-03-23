@@ -57,6 +57,11 @@ typedef struct
    const char *Tip;
 } WidgetStringData;
 
+#define DECLARE_TOOPTIPS \
+  GtkTooltips *tooltips; \
+  tooltips = gtk_tooltips_new (); \
+  tooltips = tooltips;
+
 /* Access Macros for String Structures */
 #define WIDGET(member)    DialogStrings[member].Widget
 #define LABEL(member)     DialogStrings[member].Label
@@ -190,7 +195,7 @@ typedef struct
 /* End Base Boxes */
 
 #define PACK_BOX(box, item, isexpandable, isfilled, spacing) \
-        gtk_box_pack_start (GTK_BOX (box), item, isexpandable, isfilled, NOT_BELOW_ZERO (spacing));
+        gtk_box_pack_start (GTK_BOX (box), GTK_WIDGET (item), isexpandable, isfilled, NOT_BELOW_ZERO (spacing));
 
 #define PACK_hBOX(box, item, isexpandable, isfilled, spacing) \
         PACK_BOX (box##_hbox, item, isexpandable, isfilled, spacing)
@@ -198,7 +203,7 @@ typedef struct
 #define PACK_vBOX(box, item, isexpandable, isfilled, spacing) \
         PACK_BOX (box##_vbox, item, isexpandable, isfilled, spacing)
 
-// These are used by CSECTION_OPTIONS
+/* These are used by CSECTION_OPTIONS */
 #define HPACK_BOX PACK_hBOX
 #define VPACK_BOX PACK_vBOX
 
@@ -606,6 +611,11 @@ typedef struct
         GEDA_SWITCH (ThisDialog, parent, name, spacing, state) \
         GTK_ICALLBACK_SWITCH (name)
 
+#define TOGGLE_SWITCH( switch ) { \
+        GtkWidget* SwitchImage = get_geda_switch_image(GET_SWITCH_STATE (switch)); \
+        gtk_button_set_image(GTK_BUTTON (switch), SwitchImage); \
+}
+
 #define GTK_TEXT_ENTRY(parent, name, hpad, itext)  {    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
         GtkWidget *name##Label=NULL;         /* declare Label */             \
@@ -617,10 +627,9 @@ typedef struct
         HOOKUP_GEDA_OBJECT(name, Entry) \
 }
 
-#define TOGGLE_SWITCH( switch ) { \
-        GtkWidget* SwitchImage = get_geda_switch_image(GET_SWITCH_STATE (switch)); \
-        gtk_button_set_image(GTK_BUTTON (switch), SwitchImage); \
-}
+#define GTK_EDITITABLE(widget) \
+        gtk_editable_select_region( GTK_EDITABLE (widget), 0, -1);
+
 
 /* View Trees load_tree_view_##source (ThisDialog, GTK_TREE_VIEW(name##View), data);*/
 #define GTK_VIEW_TREE( parent, name, data, source, xsize, ysize) \

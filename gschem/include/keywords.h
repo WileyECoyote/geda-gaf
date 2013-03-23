@@ -186,6 +186,7 @@ enum {
      KEYWORD(auto-load-last,               0, 0, auto_load_last)
      KEYWORD(auto-save-interval,           0, 0, auto_save_interval)
      KEYWORD(attribute-placement-grid,     0, 0, attribute_placement_grid)
+     /* component-groups here */
      KEYWORD(component-dialog-attributes,  1, 0, component_dialog_attributes)
      KEYWORD(continue-component-place,     0, 0, continue_component_place)
      KEYWORD(embed-components,             0, 0, embed_components)

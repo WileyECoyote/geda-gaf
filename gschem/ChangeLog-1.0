@@ -1,3 +1,28 @@
+2013-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x_compselect.c: Mostly re-vamp as follows: Added notebook tabs
+        for manufactures, simulation and local. Revised supporting function
+        need to support multiple tree-views. Switch/toggle buttons added for
+        groups and subgroup which is supported by the new trees-store. Added
+        collapse and expand all. Implemented macros from geda_dialog_controls.h
+        to help reduce "cluttered" sections, (could use more). New variables
+        mantreeview, simtreeview, localtreeview, notebook, applying_filter,
+        show_groups, subgroups and active_tab. Renamed (many) variables and
+        functions to improve readability. Added two (non-visible) columns to the
+        Library tree views, 1 for enumerated data types to support nested
+        structures and 1 for tool-tip. Added tool-tips through-out. Converted
+        combo-box to check menu for consistency with other dialogs, (probably
+        need to derive widget class someday since GtkOptionMenu is depreciated
+        (don't care, GTK as a whole is depreciated). Dialog uses new toplevel
+        glist variable to obtain group data even though this isn't really required.
+        It does provide users with more flexibility in controlling how component
+        library information is displayed.
+        Function x_compselect_close, was eliminated. New Property PROP_VIEW
+        added. General clean-up and improved documentation.
+
+        * src/g_util.c: Added new utility functions g_copy_tree_iter and
+        g_list_find_string.
+
 2013-02-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/gschem_dialog.c: Add new property PROP_SELECTION_TRACKER, with

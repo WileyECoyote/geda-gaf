@@ -39,7 +39,7 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 12/04/12 |  Added function x_settings_set_scm_int, revised
 ;; ------------------------------------------------------------------
-;; WEH | 01/06/16 |  Completed code on handlers for bus_ripper_rotation
+;; WEH | 01/06/13 |  Completed code on handlers for bus_ripper_rotation
 ;;     |          |  bus_ripper_size, bus_ripper_type, and added handler
 ;;     |          |  for bus_ripper_symname (to complete the integration of
 ;;     |          |  the Ripper settings on the configure settings dailog.
@@ -445,7 +445,7 @@ int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
   if(access(inputfile, R_OK) != 0) {
     /* Copy the template user config file to user's folder */
     templatefile = g_strconcat (s_path_sys_config (), G_DIR_SEPARATOR_S,
-                             "user-", rcname, ".scm", NULL);
+                             "user-", rcname, NULL);
     result = fcopy(templatefile, inputfile);
   }
 

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
 
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  */
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
@@ -195,8 +195,8 @@ char *strstr_rep(char *original, const char *old, const char *new)
  *
  *  \par Function Description
  *  This is a garden varity string compare using toupper
- *  on both inputs. This is commonly in standard libraries.
- *  but not all.
+ *  on both inputs. This is commonly in standard libraries,
+ *  but not always.
  *
  *  \param [in] char* str1 is the string to be search
  *  \param [in] char* str1 is the string to search for

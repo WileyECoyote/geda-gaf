@@ -311,9 +311,10 @@ const char *s_path_user_config ();
 
 /* s_clib.c */
 void   s_clib_free (void);
-GList *s_clib_get_sources (const bool sorted);
-const  CLibSource *s_clib_get_source_by_name (const char *name);
 void   s_clib_refresh ();
+GList *s_clib_get_sources (const bool sorted);
+bool   s_clib_source_name_exist (const char *name);
+const  CLibSource *s_clib_get_source_by_name (const char *name);
 const CLibSource *s_clib_add_directory  (const char *directory, const char *name);
 const CLibSource *s_clib_add_command    (const char *list_cmd,  const char *get_cmd, const char *name);
 const CLibSource *s_clib_add_scm        (SCM         listfunc,  SCM         getfunc, const char *name);

@@ -92,8 +92,8 @@ WidgetStringData DialogStrings[] = {
         { "RemoveAttributeButt",  "Remove",       "Remove the selected attribute from the filter list"},
         { "ClearAtrributesButt",  "Clear",        "Double click to clear all attributes from the filter list"},
         { "DefaultAttributeButt", "Default",      "Restore default fliter list of attributes to display"},
-        { "IncreaseAttributeButt","Up",           "Inscrease selected attribute Add Attribute list"},
-        { "DecreaseAttributeButt","Down",         "Decrease selected attribute Add Attribute list"},
+        { "IncreaseAttributeButt","Up",           "Increase selected attribute in the Add Attribute list"},
+        { "DecreaseAttributeButt","Down",         "Decrease selected attribute in the Add Attribute list"},
 
   /* 8 String for Combo Controls  */
         { "TitleBlockCombo",        "   Titleblock:",   "Name of Default Titleblock"},

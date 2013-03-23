@@ -712,7 +712,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
 {
   int length, i;
   GList *list=NULL;
-  gchar *attr;
+  char *attr;
 
   SCM_ASSERT(scm_list_p(stringlist), stringlist, SCM_ARG1, "scm_is_list failed");
   length = scm_ilength(stringlist);
@@ -743,6 +743,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   default_component_select_attrlist = g_list_reverse(list);
 
   return SCM_BOOL_T;
+
 }
 /*! \brief This function processes the continue-component-place RC entry.
  *  \par Function Description

@@ -33,6 +33,8 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 01/18/13 | Relocated generic string stuff to libgeda (so code
 ;;                | could be used by all geda apps.
+;; WEH | 03/18/13 | Added function g_list_find_string.
+
 */
 
 #include <config.h>
@@ -95,7 +97,44 @@ void g_init_util ()
                        NULL);
 }
 
+/*! \brief Detect item in list
+ *
+ * Look for item in the list.
+ *
+ * \param list pointer to the STRING_LIST struct
+ * \param item string to search for
+ * \returns 0 if absent, 1 if present
+ */
+int g_list_find_string(GList *list, char *str) {
 
+  int len;
+  int index = -1;
+  char *ptr;
+
+  /* return -1 if list is empty  */
+  len = g_list_length(list);
+  if ( len != 0 ) {
+
+    for (index = 0; index < len; index++) {
+
+      ptr = g_list_nth_data(list, index);
+      if (ptr == NULL ) {
+        index = -1;
+        break;
+      }
+
+      if (strcmp(ptr, str) == 0) {
+      /* Found item already in list.  return index. */
+        break;
+      }
+    }
+  }
+  if (index == len)
+    index = -1;     /* item was not in the list, so return -2 */
+
+  return index;
+
+}
 
 /*! \brief Free a Glist of Strings
  *  \par Function Description
@@ -134,3 +173,20 @@ GList* g_list_clear(GList* list){
   }
   return list;
 }
+
+/*! \brief Copy a Tree Iter
+ *  \par Function Description
+ *  This function will set all pointers target to the values in source.
+ *
+ */
+void g_copy_tree_iter(GtkTreeIter *source, GtkTreeIter *target)
+{
+  target->stamp       = source->stamp;
+  target->user_data   = source->user_data;
+  target->user_data2  = source->user_data2;
+  target->user_data3  = source->user_data3;
+  return;
+}
+
+
+

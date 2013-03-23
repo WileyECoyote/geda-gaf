@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,6 +50,7 @@ static struct gsubr_t libgeda_funcs[] = {
   { "eval-protected",           1, 1, 0, g_scm_eval_protected },
   { "eval-string-protected",    1, 0, 0, g_scm_eval_string_protected },
 
+  { "component-groups",         1, 0, 0, g_rc_component_groups },
   { "component-library",        1, 1, 0, g_rc_component_library },
   { "component-library-command", 3, 0, 0, g_rc_component_library_command },
   { "component-library-funcs",  3, 0, 0, g_rc_component_library_funcs },

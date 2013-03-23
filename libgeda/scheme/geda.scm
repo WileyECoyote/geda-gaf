@@ -6,8 +6,8 @@
 
 (define (build-path first . rest)
   (if (null? rest) first
-      (apply build-path 
-	     (append (list (string-append first path-sep (car rest))) 
+      (apply build-path
+	     (append (list (string-append first path-sep (car rest)))
 		     (cdr rest)))))
 
 ;; Returns #t if the given path is a regular file, otherwise #f.

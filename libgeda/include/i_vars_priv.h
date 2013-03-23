@@ -21,6 +21,7 @@ extern char *default_bitmap_directory;
 extern char *default_postscript_prolog;
 
 extern GList *default_always_promote_attributes;
+extern GList *default_component_groups;
 
 extern int default_attribute_promotion;
 extern int default_promote_invisible;

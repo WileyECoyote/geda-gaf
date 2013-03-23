@@ -31,11 +31,6 @@
   g_object_set_data_full (G_OBJECT (component), name, \
   gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
 
-#define DECLARE_TOOPTIPS \
-  GtkTooltips *tooltips; \
-  tooltips = gtk_tooltips_new (); \
-  tooltips = tooltips;
-
 /* Define spacings for dialogs. Defines are in a sperate header,
  * some dialog use only the define, for example x_compselect
  */
@@ -45,7 +40,7 @@
  * be derived from this class? */
 #include "gschem_dialog.h"
 
-#include "x_compselect.h"
+//#include "x_compselect.h"
 #include "x_dialog.h"
 #include "x_console.h"
 #include "x_multiattrib.h"

@@ -65,13 +65,13 @@ struct st_gschem_toplevel {
   GtkWidget *coord_world;      /* World coordinate label */
   GtkWidget *coord_screen;     /* Screen coordinate window */
 
-  GtkWidget *aewindow;         /* attribute edit */
-  GtkWidget *cpwindow;         /* Configuration Preferences Dialog */
-  GtkWidget *cswindow;         /* component select */
-  GtkWidget *iwindow;          /* image write dialog box */
-  GtkWidget *mawindow;         /* multi attribute IDS_MULTI_ATTRBIBUTE */
-  GtkWidget *pswindow;         /* page select */
-  GtkWidget *sowindow;         /* Script open */
+  GtkWidget *aewindow;   /* attribute edit */
+  GtkWidget *cpwindow;   /* Preferences   settings: IDS_CONFIG_SETTINGS */
+  GtkWidget *cswindow;   /* Component     settings: IDS_COMP_SELECT     */
+  GtkWidget *iwindow;    /* image write dialog box */
+  GtkWidget *mawindow;   /* multi attribute IDS_MULTI_ATTRBIBUTE */
+  GtkWidget *pswindow;   /* page select */
+  GtkWidget *sowindow;   /* Script open */
 
   /* ------------------ Picture placement ----------------- */
   GdkPixbuf *current_pixbuf;            /* used by add picture dialog */
@@ -154,6 +154,7 @@ struct st_gschem_toplevel {
   int add_attribute_offset;
 
   int attribute_placement_grid;
+
   /* holds a list of attribute names displayed in the component select dialog */
   GList *component_select_attrlist;
 

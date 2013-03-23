@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2013 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -18,14 +18,14 @@
  * MA 02111-1301 USA
  */
 
-
 #ifndef __X_COMPSELECT_H__
 #define __X_COMPSELECT_H__
 
+#define ThisDialog compselect
+#define DialogTitle "Select Component..."
+#define DialogSettings IDS_COMP_SELECT
 
-/*
- * CompselectBehavior
- */
+/* CompselectBehavior */
 
 typedef enum {
   COMPSELECT_BEHAVIOR_REFERENCE,
@@ -33,10 +33,8 @@ typedef enum {
   COMPSELECT_BEHAVIOR_INCLUDE
 } CompselectBehavior;
 
-
 GType compselect_behavior_get_type (void);
 #define COMPSELECT_TYPE_BEHAVIOR  (compselect_behavior_get_type ())
-
 
 /*
  * Compselect
@@ -51,7 +49,6 @@ GType compselect_behavior_get_type (void);
 typedef struct _CompselectClass CompselectClass;
 typedef struct _Compselect      Compselect;
 
-
 struct _CompselectClass {
   GschemDialogClass parent_class;
 
@@ -62,25 +59,39 @@ struct _CompselectClass {
 struct _Compselect {
   GschemDialog parent_instance;
 
-  GtkWidget   *hpaned, *vpaned;
-  GtkTreeView *libtreeview, *inusetreeview, *attrtreeview;
-  GtkNotebook *viewtabs;
-  Preview     *preview;
-  GtkEntry    *entry_filter;
-  GtkButton   *button_clear;
-  guint        filter_timeout;
-  GtkComboBox *combobox_behaviors;
+  GtkWidget    *hpaned, *vpaned;
 
-  gboolean hidden;
+  GtkTreeView  *attrtreeview;
+
+  GtkTreeView  *inusetreeview;
+  GtkTreeView  *stdtreeview;
+  GtkTreeView  *mantreeview;
+  GtkTreeView  *simtreeview;
+  GtkTreeView  *localtreeview;
+
+  GtkNotebook  *notebook;
+  Preview      *preview;
+  GtkEntry     *entry_filter;
+  GtkButton    *button_clear;
+  unsigned int filter_timeout;
+  bool         applying_filter;
+
+  GtkOptionMenu *behavior_menu;
+
+  bool hidden;
+  bool show_groups;
+  bool subgroups;
+
+  int  active_tab;
+
 };
-
 
 GType compselect_get_type (void);
 
 /* Response IDs for special dialog buttons */
 typedef enum {
-  COMPSELECT_RESPONSE_PLACE = 1,
-  COMPSELECT_RESPONSE_HIDE = 2,
+  COMPSELECT_RESPONSE_PLACE   = 1,
+  COMPSELECT_RESPONSE_HIDE    = 2,
   COMPSELECT_RESPONSE_REFRESH = 3
 } CompselectResponseType;
 

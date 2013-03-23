@@ -39,6 +39,7 @@ char *default_untitled_name = NULL;
 char *default_bitmap_directory = NULL;
 char *default_postscript_prolog = NULL;
 GList *default_always_promote_attributes = NULL;
+GList *default_component_groups = NULL;
 
 int   default_attribute_promotion = TRUE;
 int   default_promote_invisible = FALSE;
@@ -101,6 +102,8 @@ void i_vars_libgeda_set(TOPLEVEL *toplevel)
   g_list_foreach(toplevel->always_promote_attributes, (GFunc) g_free, NULL);
   g_list_free(toplevel->always_promote_attributes);
   toplevel->always_promote_attributes = g_list_copy(default_always_promote_attributes);
+  toplevel->component_groups = g_list_copy(default_component_groups);
+
   for (iter = toplevel->always_promote_attributes; iter != NULL;
        iter = g_list_next(iter))
     iter->data = g_strdup(iter->data);
@@ -127,4 +130,8 @@ void i_vars_libgeda_freenames()
   g_list_foreach(default_always_promote_attributes, (GFunc) g_free, NULL);
   g_list_free(default_always_promote_attributes);
   default_always_promote_attributes = NULL;
+
+  g_list_foreach(default_component_groups, (GFunc) g_free, NULL);
+  g_list_free(default_component_groups);
+  default_component_groups = NULL;
 }

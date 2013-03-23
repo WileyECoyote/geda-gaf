@@ -1,3 +1,18 @@
+2013-03-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        *: New toplevel glist variable component_groups with associated
+        default_component_groups, g_rc_function, g_register, ..etc. The
+        new varible is supplied with group names in geda-clib.scm. The
+        names are those directories that are controlled in the tree-view
+        in gschem's component-select dialog
+
+        * src/s_clib.c: Added function s_clib_source_name_exist. Major
+        revision to function s_clib_add_directory to support categorizing
+        and grouping of sources in anticipation of additional library
+        expansion.
+
+        * include/libgeda/st_CLibSource: Added variables group and category
+        to structure st_CLibSource.
 
 2013-03-06 Wiley E. Hill <wileyhill@gmail.com>
 

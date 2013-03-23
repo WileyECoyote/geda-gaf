@@ -260,7 +260,7 @@ enum {
      COMMAND ( FILE_NEW,            "",                 USE_MAIN_LOOP,          do_file_new)
      COMMAND ( FILE_NEW_WINDOW,     "",                 USE_MAIN_LOOP,          do_file_new_window)
      COMMAND ( FILE_OPEN,           "open",             USE_WORKER_THREAD,      do_open)
-     COMMAND ( FILE_SAVE,           "",                 USE_WORKER_THREAD,      do_save)
+     COMMAND ( FILE_SAVE,           "",                 USE_MAIN_LOOP,          do_save)
      COMMAND ( FILE_SAVE_AS,        "save as",          USE_WORKER_THREAD,      do_save_as)
      COMMAND ( FILE_SAVE_ALL,       "",                 USE_MAIN_LOOP,          do_save_all)
      COMMAND ( FILE_PRINT,          "print",            USE_WORKER_THREAD,      do_print)

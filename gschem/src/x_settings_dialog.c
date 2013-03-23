@@ -104,7 +104,7 @@
 
 #include <gschem_xdefines.h>            /* Define dialog default internal spacing */
 #include <gschem_dialog.h>              /* Definition the base Dialog Class */
-#include <geda_dialog_controls.h>          /* Macros for Dialogs */
+#include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <x_settings.h>                 /* Common Declarations and Enumerators */
 #include <x_settings_dialog.h>          /* Dialog String Data */
 
@@ -399,7 +399,7 @@ static void enable_undo_controls( bool state ){
 /** @brief on_notebook_switch_page in X_Settings_Dialog_Support_Functions */
 /*! \brief Callback on TAB change.
  *  \par Function Description
- *       This function is called when ever that TAB sheet is selected. This
+ *       This function is called when ever a TAB sheet is selected. This
  *       allows all sensitivities on sheet to be checked and set properly
  *       in case settings on one sheet effect setting on another.
  */
@@ -1608,7 +1608,6 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   GtkTooltips *tooltips;
   tooltips = gtk_tooltips_new ();
 
-
   /*
     PangoAttrList *PangoAttributes;
   PangoAttributes = pango_attr_list_new();
@@ -1728,7 +1727,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
        HSECTION (PointerOptions_vbox, PointerRow5)    /* Row 4 */
-         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton, 150, 266);
+         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton,  150, 250);
          gtk_widget_set_size_request (MiddleButtonCombo, 150, 31);
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_STROKE)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_REPEAT)
@@ -1808,7 +1807,7 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
      HD_SEPERATOR (StylesTab_vbox, Grp3);      /* Ripper Options */
        HSECTION(StylesTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
          GTK_SWITCH(StylesRow3_hbox, RipperType, 88, FALSE);
-         GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 150, 5);
+         GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 150, 0);
          gtk_widget_set_size_request (RipperSymbolCombo, 150, 31);
          GTK_LOAD_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
          GTK_LOAD_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)

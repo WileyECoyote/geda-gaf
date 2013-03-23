@@ -12,6 +12,7 @@ int  f_print_initialize_glyph_table(void);
 /* g_rc.c */
 int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str);
 int vstbl_get_val(const vstbl_entry *table, int index);
+SCM g_rc_component_groups(SCM stringlist);
 SCM g_rc_component_library(SCM path, SCM name);
 SCM g_rc_component_library_command (SCM listcmd, SCM getcmd, SCM name);
 SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name);

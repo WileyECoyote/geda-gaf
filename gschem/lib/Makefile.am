@@ -27,7 +27,7 @@ user-gschemrc: $(top_builddir)/configure user-gschemrc.scm
 	  echo "user-gschemrc is unchanged"; \
 	else \
 	  echo "Recreating user-gschemrc"; \
-	  mv user-gschemrc.new user-gschemrc.scm; \
+	  mv user-gschemrc.new user-gschemrc; \
 	fi
 
 EXTRA_DIST = system-gschemrc.scm gschem-gtkrc gschem-colormap-lightbg \
@@ -36,5 +36,5 @@ EXTRA_DIST = system-gschemrc.scm gschem-gtkrc gschem-colormap-lightbg \
 
 MOSTLYCLEANFILES = *.log *~
 CLEANFILES = *.log *~
-DISTCLEANFILES = *.log core FILE *~ system-gschemrc
+DISTCLEANFILES = *.log core FILE *~ system-gschemrc user-gschemrc
 MAINTAINERCLEANFILES = system-gschemrc system-gnetlistrc system-gsymbolrc *.log *~ Makefile.in

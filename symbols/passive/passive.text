@@ -1,0 +1,13 @@
+total 44
+drwxr-xr-x 2 root root 4096 Mar 17 22:59 audio
+drwxr-xr-x 2 root root 4096 Mar 19 02:01 capacitor
+drwxr-xr-x 2 root root 4096 Mar 17 23:05 crystal
+drw-rw-rw- 2 geda geda 4096 Mar 11 13:21 doc
+drwxr-xr-x 2 root root 4096 Mar 17 23:05 electrolytic
+drwxr-xr-x 2 root root 4096 Mar 19 02:13 inductor
+drwxr-xr-x 2 root root 4096 Mar 17 23:08 lamp
+-rw-r--r-- 1 root root    0 Mar 21 15:16 passive.text
+drwxr-xr-x 2 root root 4096 Mar 17 23:02 protection
+drwxr-xr-x 2 root root 4096 Mar 17 23:08 resistor
+drwxrwxrwx 2 geda geda 4096 Mar 17 23:17 transformer
+-r--r--r-- 1 root root 1409 Mar 17 22:50 transformer-1.sym~

@@ -1,0 +1,80 @@
+v 20130214 2
+T 0 1400 5 10 0 0 0 0 1
+author=AutoTron
+L 200 800 200 0 3 0 0 0 -1 -1
+L 200 0 800 400 3 0 0 0 -1 -1
+T 250 350 9 8 1 1 0 0 1
+device=LM311
+L 800 400 200 800 3 0 0 0 -1 -1
+P 700 300 700 200 1 0 1
+{
+T 750 225 5 8 1 1 0 0 1
+pinnumber=1
+T 750 225 5 8 0 0 0 0 1
+pinseq=1
+T 750 225 5 8 0 1 0 0 1
+pintype=pwr
+T 750 225 5 8 0 1 0 0 1
+pinlabel=GND
+}
+P 200 600 0 600 1 0 1
+{
+T 50 625 5 8 1 1 0 0 1
+pinnumber=2
+T 50 625 5 8 0 0 0 0 1
+pinseq=2
+T 50 625 5 8 0 1 0 0 1
+pintype=oc
+T 250 550 5 8 1 1 0 0 1
+pinlabel=+
+}
+P 200 200 0 200 1 0 1
+{
+T 50 225 5 8 1 1 0 0 1
+pinnumber=3
+T 50 225 5 8 0 0 0 0 1
+pinseq=3
+T 50 225 5 8 0 1 0 0 1
+pintype=oc
+T 250 175 5 8 1 1 0 0 1
+pinlabel=-
+}
+P 500 200 500 0 1 0 1
+{
+T 400 25 5 8 1 1 0 0 1
+pinnumber=4
+T 400 25 5 8 0 0 0 0 1
+pinseq=4
+T 400 25 5 8 0 1 0 0 1
+pintype=pwr
+T 525 25 5 8 0 1 0 0 1
+pinlabel=V-
+}
+P 800 400 1000 400 1 0 1
+{
+T 875 425 5 8 1 1 0 0 1
+pinnumber=7
+T 875 425 5 8 0 0 0 0 1
+pinseq=5
+T 875 425 5 8 0 1 0 0 1
+pintype=io
+T 775 425 5 8 0 1 0 0 1
+pinlabel=OUT
+}
+P 500 600 500 800 1 0 1
+{
+T 525 650 5 8 1 1 0 0 1
+pinnumber=8
+T 525 650 5 8 0 0 0 0 1
+pinseq=6
+T 525 650 5 8 0 1 0 0 1
+pintype=pwr
+T 600 575 5 8 0 1 0 0 1
+pinlabel=V+
+}
+T 200 900 8 10 1 1 0 0 1
+refdes=U?
+T 0 1300 9 10 0 0 0 0 1
+numslots=0
+T 0 1100 9 10 0 0 0 0 1
+footprint=SO8

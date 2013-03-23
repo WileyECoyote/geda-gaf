@@ -1,0 +1,97 @@
+v 20130214 2
+T 0 2100 5 10 0 0 0 0 1
+author=AutoTron
+L 200 800 200 0 3 0 0 0 -1 -1
+L 200 0 800 400 3 0 0 0 -1 -1
+T 250 350 9 8 1 1 0 0 1
+device=LM411
+L 800 400 200 800 3 0 0 0 -1 -1
+P 500 200 500 100 1 0 1
+{
+T 550 125 5 8 1 1 0 0 1
+pinnumber=1
+T 550 125 5 8 0 0 0 0 1
+pinseq=1
+T 550 125 5 8 0 1 0 0 1
+pintype=pas
+T 550 125 5 8 0 1 0 0 1
+pinlabel=BAL1
+}
+P 200 200 0 200 1 0 1
+{
+T 50 225 5 8 1 1 0 0 1
+pinnumber=2
+T 50 225 5 8 0 0 0 0 1
+pinseq=2
+T 50 225 5 8 0 1 0 0 1
+pintype=in
+T 250 175 5 8 1 1 0 0 1
+pinlabel=-
+}
+P 200 600 0 600 1 0 1
+{
+T 50 625 5 8 1 1 0 0 1
+pinnumber=3
+T 50 625 5 8 0 0 0 0 1
+pinseq=3
+T 50 625 5 8 0 1 0 0 1
+pintype=in
+T 250 550 5 8 1 1 0 0 1
+pinlabel=+
+}
+P 400 100 400 0 1 0 1
+{
+T 300 25 5 8 1 1 0 0 1
+pinnumber=4
+T 300 25 5 8 0 0 0 0 1
+pinseq=4
+T 300 25 5 8 0 1 0 0 1
+pintype=pwr
+T 425 25 5 8 0 1 0 0 1
+pinlabel=Vee
+}
+P 700 300 700 200 1 0 1
+{
+T 750 225 5 8 1 1 0 0 1
+pinnumber=5
+T 750 225 5 8 0 0 0 0 1
+pinseq=5
+T 750 225 5 8 0 1 0 0 1
+pintype=pas
+T 750 225 5 8 0 1 0 0 1
+pinlabel=BAL2
+}
+P 800 400 1000 400 1 0 1
+{
+T 875 425 5 8 1 1 0 0 1
+pinnumber=6
+T 875 425 5 8 0 0 0 0 1
+pinseq=6
+T 875 425 5 8 0 1 0 0 1
+pintype=out
+T 775 425 5 8 0 1 0 0 1
+pinlabel=OUT
+}
+P 500 600 500 800 1 0 1
+{
+T 525 650 5 8 1 1 0 0 1
+pinnumber=7
+T 525 650 5 8 0 0 0 0 1
+pinseq=7
+T 525 650 5 8 0 1 0 0 1
+pintype=pwr
+T 600 575 5 8 0 1 0 0 1
+pinlabel=V+
+}
+T 200 900 8 10 1 1 0 0 1
+refdes=U?
+T 0 1100 9 10 0 0 0 0 1
+numslots=0
+T 0 1300 9 10 0 0 0 0 1
+footprint=SO8
+T 0 1500 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/lf411
+T 0 1700 5 10 0 0 0 0 1
+description=low offset voltage precision JFET-input Operational Amplifier
+T 0 1900 5 10 0 0 0 0 1
+symversion=0.1

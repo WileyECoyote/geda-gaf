@@ -476,7 +476,7 @@ char *remove_last_nl(char *string)
  *  \return A newly-allocated string with variables expanded or NULL
  *  if input string was NULL.
  */
-gchar*
+char*
 s_expand_env_variables (const gchar *string)
 {
   GString *gstring;

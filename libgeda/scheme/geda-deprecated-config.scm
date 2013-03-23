@@ -147,7 +147,7 @@ release.  Please use configuration files instead.
  untitled-name "gschem" "default-filename"
  rc-deprecated-string-transformer)
 
-(define-rc-dead-config scrollbar-update)
+;(define-rc-dead-config scrollbar-update)
 
 (define-rc-deprecated-config
  sort-component-library "gschem.library" "sort"

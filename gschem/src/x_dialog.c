@@ -2071,7 +2071,7 @@ void x_dialog_edit_line_type (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function creates a GtkMenu with the different pin attributes.
  */
-static GtkWidget *create_menu_pin_attributes (GSCHEM_TOPLEVEL *w_current)
+static GtkWidget *create_menu_pin_attributes ( void )
 {
   GtkWidget *menu;
   GSList *group;
@@ -2111,7 +2111,7 @@ static GtkWidget *create_menu_pin_attributes (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function creates a GtkMenu with the different pin types.
  */
-static GtkWidget *create_menu_pin_type (GSCHEM_TOPLEVEL *w_current)
+static GtkWidget *create_menu_pin_type ( void )
 {
   GtkWidget *menu;
   GSList *group;
@@ -2545,8 +2545,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
   GtkWidget *AutoSequenceSwitch  = NULL;
   GtkWidget *SetAttributesSwitch = NULL;
 
-  GtkTooltips *tooltips;
-  tooltips = gtk_tooltips_new ();
+  DECLARE_TOOPTIPS;
 
   pin_type_data *pin_data;
 
@@ -2597,7 +2596,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
 
   optionmenu = gtk_option_menu_new ();
   gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
-                           create_menu_pin_type (w_current));
+                           create_menu_pin_type ());
   gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
   gtk_widget_set_tooltip_text(optionmenu,  _("Select the pin type"));
 
@@ -2619,7 +2618,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
 
   attributemenu = gtk_option_menu_new ();
   gtk_option_menu_set_menu(GTK_OPTION_MENU(attributemenu),
-                           create_menu_pin_attributes (w_current));
+                           create_menu_pin_attributes ());
   gtk_table_attach_defaults(GTK_TABLE(table), attributemenu, 1,2,4,5);
   gtk_widget_set_tooltip_text(attributemenu,  _("Set the pin attrbute"));
 
