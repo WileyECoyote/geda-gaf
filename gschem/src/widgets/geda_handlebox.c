@@ -754,7 +754,7 @@ draw_textured_frame (GtkWidget *widget, GdkWindow *window, GdkRectangle *rect, G
 
 void
 geda_handle_box_set_shadow_type (GedaHandleBox  *handle_box,
-				GtkShadowType  type)
+				 GtkShadowType  type)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
 

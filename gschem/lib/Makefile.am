@@ -2,7 +2,7 @@
 rcuserdir = ~/.gEDA
 rcdatadir = $(GEDARCDIR)
 
-rcdata_DATA = user-gschemrc.scm system-gschemrc gschem-gtkrc \
+rcdata_DATA = user-gschemrc system-gschemrc gschem-gtkrc \
 	      gschem-colormap-lightbg gschem-colormap-darkbg \
 	      gschem-colormap-bw gschem-colormap-custom
 

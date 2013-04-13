@@ -8,7 +8,7 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [2.0.5], [https://bugs.launchpad.net/geda], [geda-gaf])
+AC_INIT([gEDA/gaf], [2.0.6], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
 AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
@@ -27,10 +27,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20130214])
+AX_GIT_VERSION([20130414])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20130214])
+AC_SUBST([CHANGELOG_BASE], [1.0-20130414])
 
 #####################################################################
 # Windows/MinGW/Cygwin support

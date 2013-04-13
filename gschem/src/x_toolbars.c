@@ -592,7 +592,7 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
         gtk_toolbar_set_style (GTK_TOOLBAR (ActiveToolBar.toolbar), TOOLBAR_SHOW_HORIZ);
         break;
       default:
-          s_log_message("menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
+        s_log_message("menu_responder(): UKNOWN MENU ID: %d\n", WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup_menu);

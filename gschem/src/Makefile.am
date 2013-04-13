@@ -54,8 +54,8 @@ snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
 localedir = @datadir@/locale
 DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
-MOSTLYCLEANFILES     = *.log core FILE *~
-CLEANFILES           = *.log core FILE *~ $(BUILT_SOURCES)
-DISTCLEANFILES       = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
+MOSTLYCLEANFILES     = *.log core FILE *~ widgets/*~
+CLEANFILES           = *.log core FILE *~ widgets/*~ $(BUILT_SOURCES)
+DISTCLEANFILES       = *.log core FILE *~ widgets/*~
+MAINTAINERCLEANFILES = *.log core FILE *~ widgets/*~ Makefile.in
 

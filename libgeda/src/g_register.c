@@ -53,12 +53,15 @@ static struct gsubr_t libgeda_funcs[] = {
   { "component-groups",         1, 0, 0, g_rc_component_groups },
   { "component-library",        1, 1, 0, g_rc_component_library },
   { "component-library-command", 3, 0, 0, g_rc_component_library_command },
-  { "component-library-funcs",  3, 0, 0, g_rc_component_library_funcs },
-  { "source-library",           1, 0, 0, g_rc_source_library },
+  { "component-library-funcs",   3, 0, 0, g_rc_component_library_funcs },
+  { "source-library",           1, 0, 0,  g_rc_source_library },
   { "source-library-search",    1, 0, 0, g_rc_source_library_search },
 
   { "reset-component-library",  0, 0, 0, g_rc_reset_component_library },
   { "reset-source-library",     0, 0, 0, g_rc_reset_source_library },
+
+ // { "enable-style-zero",        1, 0, 0, g_rc_enable_style_zero },
+ // { "component-style",          1, 0, 0, g_rc_component_style },
 
   { "net-style",                1, 0, 0, g_rc_net_style },
   { "bus-style",                1, 0, 0, g_rc_bus_style },

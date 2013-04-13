@@ -26,3 +26,6 @@
 #define LOWER_CASE      0
 #define UPPER_CASE      1
 #define BOTH_CASES      2
+
+/* Flag for defaults to detect keywords absent from RC files */
+#define RC_NIL -1

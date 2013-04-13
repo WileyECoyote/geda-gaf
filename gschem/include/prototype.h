@@ -237,8 +237,8 @@ void i_update_sensitivities(GSCHEM_TOPLEVEL *w_current);
 void i_set_filename(GSCHEM_TOPLEVEL *w_current, const gchar *string);
 void i_update_grid_info(GSCHEM_TOPLEVEL *w_current);
 
-/*! \note MACRO: I_CALLBACK_ARGUMENTS is left defined and is with semi-colon
- *               This macro is re-used in the macro in the source file */
+/*! \note MACRO: I_CALLBACK_ARGUMENTS is left defined and is without a semi
+ *               -colon. This macro is re-used in macros in the source file */
 #define I_CALLBACK_ARGUMENTS (GSCHEM_TOPLEVEL* w_current, unsigned int callback_action, GtkWidget *widget)
 /* i_callbacks.c Hotkeys */
 void i_callback_edit_copy_hotkey           I_CALLBACK_ARGUMENTS;
@@ -560,6 +560,8 @@ void x_vscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current);
 void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current);
 void x_scrollbars_update(GSCHEM_TOPLEVEL *w_current);
 void x_basic_warp_cursor(GtkWidget *widget, int x, int y);
+int tree_view_row_get_visibility(GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);
+int tree_view_row_make_visible(GtkTreeView *tree_view, GtkTreeIter *iter, bool center);
 
 /* x_clipboard.c */
 void x_clipboard_init (GSCHEM_TOPLEVEL *w_current);

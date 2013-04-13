@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 #include <config.h>
-
+#include <ascii.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -36,16 +36,19 @@
 #include "gschem.h"
 #include <gdk/gdkkeysyms.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 #include <gschem_xdefines.h>            /* Define dialog default internal spacing */
 #include <gschem_dialog.h>
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 
+#include "widgets/geda_menu_button.h"
 #include "x_preview.h"
 #include "x_compselect.h"
+
+#ifdef HAVE_LIBDMALLOC
+#include <dmalloc.h>
+#endif
+
+#define DEBUG_MESSAGE(text) fprintf(stderr, #text);
 
 /*! \def COMPSELECT_FILTER_INTERVAL
  *  \brief The time interval between request and actual filtering
@@ -58,6 +61,8 @@
  *  Unit is milliseconds.
  */
 #define COMPSELECT_FILTER_INTERVAL 250
+
+#define MASK compselect->style_flag
 
 typedef enum {
   IN_USE_TAB=0,
@@ -80,17 +85,83 @@ const char* IDS_CATEGORIES[] = {
 
 /* Enumerate Control IDs */
 typedef enum {
+       FilterEntry,
+       ClearButton,
+       RefreshAllViews,
+       CollapseButton,
+       ExpandButton,
        SortLibrary,
        ShowGroups,
        SubGroups,
 } ControlID;
 
 static WidgetStringData DialogStrings[] = {
+  { "entry_filter",       "Filter:",      "Enter a filter string"},
+  { "clear-button",       "Clear",        "Clear the filter entry"},
+  { "refresh-button",     "Refresh all",  "Refresh all views"},
+  { "collapse_button",    "Collapse all", "Close all Library containers"},
+  { "expand_button",      "Expand all",   "Expand all Library containers"},
   { "SortLibrarySwitch",  "Sort", "If this is enabled then the component library will be sorted in alphanumeric order.\n This option is cosmetic and will not alter the component search order (latest added gets scanned first)."},
-  { "ShowGroupsSwitch",   "Groups", "Enable or disable Group Folders in treee views"},
-  { "SubGroupsSwitch",    "Assort", "Enable or disable subfolder with in group Categories"},
+  { "ShowGroupsSwitch",   "Groups", "Enable or disable group folders in tree views"},
+  { "SubGroupsSwitch",    "Assort", "Enable or disable subfolder with in group categories"},
   { NULL, NULL, NULL},
 };
+
+static GtkWidget *tree_view_popup_menu;
+
+typedef enum  { ExpandFolder,
+                ExpandAll,
+                CloseFolder,
+                RefreshView,
+                RescanLibs,
+                StylesMenu,
+                ShowToolTips,
+                ToolTipsOn,
+                ToolTipsOff
+
+}  IDS_CS_Popup_items; /* Enumerators to reference the string below: */
+
+static char *popup_items[]={ "Open",
+                             "Open all",
+                             "Close",
+                             "Refresh",
+                             "Rescan",
+                             "Styles",
+                             "Tooltips",
+                             "On",
+                             "Off",
+                             NULL
+};
+static char *popup_tips[]={  "Expand one level",
+                             "Expand all sub-folders",
+                             "Close this folder",
+                             "Refresh this view",
+                             "Rescan the libraries",
+                             "Set styles ooptions",
+                             "Tooltip settings",
+                             "Enable tooltips",
+                             "Disable tooltips",
+                             NULL
+};
+
+enum
+{
+  REFRESH,
+  LAST_SIGNAL
+};
+
+static unsigned int signals[LAST_SIGNAL] = { 0 };
+
+/* These variables hold the dialog settings that were retrived from disk
+ * when the dialog was created, the value are compared to postmortem values
+ * to determine if the new settings should be saved to disk */
+static int old_hpaned;
+static int old_vpaned;
+static int old_tab;
+static bool old_show_tips;
+static bool old_show_groups;
+static bool old_subgroups;
+static unsigned int old_flags;
 
 /*! \brief Process the response returned by the component selection dialog.
  *  \par Function Description
@@ -174,6 +245,8 @@ x_compselect_callback_response(GtkDialog *dialog, int arg1, gpointer user_data)
       case GTK_RESPONSE_CLOSE:
       case GTK_RESPONSE_DELETE_EVENT:
         if (GTK_WIDGET (dialog) == w_current->cswindow){
+          g_slist_free(ThisDialog->style_menu_widgets);
+          /* gtk_widget_destroy(tree_view_popup_menu); */
           gtk_widget_destroy (GTK_WIDGET (dialog));
           w_current->cswindow = NULL;
         }
@@ -443,7 +516,7 @@ static bool lib_model_filter_visible_func (GtkTreeModel *model,
   bool  ret;
 
   if(!IS_COMPSELECT (data)) {
-    fprintf(stderr, "lib_model_filter_visible_func: need ptr to Dialog\n");
+    fprintf(stderr, ">lib_model_filter_visible_func>: Dialog->NULL\n");
     return FALSE;
   }
 
@@ -476,8 +549,7 @@ static bool lib_model_filter_visible_func (GtkTreeModel *model,
     gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
 
     compname = s_clib_symbol_get_name (sym);
-    /* Do a case insensitive comparison, converting the strings
-       to uppercase */
+    /* Do a case insensitive uppercase comparison */
     compname_upper = g_ascii_strup (compname, -1);
     text_upper = g_ascii_strup (text, -1);
     pattern = g_strconcat ("*", text_upper, "*", NULL);
@@ -525,8 +597,90 @@ static void tree_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
     gtk_tree_view_expand_row (tree_view, path, FALSE);
 }
 
-/*! \brief GCompareFunc to sort an text object list by the object strings
+/*! \brief Open Rows in Tree in Tree-View
+ *  \par Function Description
+ *   This function is not call directly.
+ *
+ *  \param [in] tree_view  Pointer to a library tree-view widget
+ *  \param [in] expand_all
  */
+static void tree_open_rows (GtkTreeView *tree_view, bool expand_all)
+{
+  GtkTreeModel     *model = NULL;
+  GtkTreeIter       iter;
+  GtkTreeSelection *selection;
+  GtkTreePath      *path;
+
+  selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
+  if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
+    path = gtk_tree_model_get_path ( model, &iter);
+    gtk_tree_view_expand_row (tree_view, path, expand_all);
+    gtk_tree_path_free(path);
+  }
+}
+
+/*! \brief Open A Row in Tree call-back for Tree-View pop-up menu
+ *  \par Function Description
+ *   This function performs the same functionality as double-clicking on a
+ * close parent row in a tree-view but is enacted from the right context
+ * menu. The function calls the tree_open_rows function above with a value
+ * of FALSE for the expand-all argument. The option is included on the
+ * right menu on for the sake of completeness.
+ *
+ *  \param [in] menu_widget  Un-used menu item widget on the pop-up menu
+ *  \param [in] tree_view    Pointer to the tree-view widget when popup activated
+ */
+static void open_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
+{
+  tree_open_rows (tree_view, FALSE);
+}
+
+/*! \brief Open All Rows in Tree call-back for Tree-View pop-up menu
+ *  \par Function Description
+ *  The function calls the tree_open_rows function above with a value
+ * of TRUE for the expand-all argument. This is the same functionality
+ * as pressing the Expand All button widget.
+ *
+ *  \param [in] menu_widget  Un-used menu item widget on the pop-up menu
+ *  \param [in] tree_view    Pointer to the tree-view widget when popup activated
+ */
+static void open_tree_rows (GtkWidget *menu_widget, GtkTreeView *tree_view)
+{
+  tree_open_rows (tree_view, TRUE);
+}
+
+/*! \brief Close Row in Tree call-back for Tree-View pop-up menu
+ *  \par Function Description
+ *   This function performs the same functionality as double-clicking on an
+ * opened parent row in a tree-view but is enacted from the right context
+ * menu. This allow closing of large tree folders without scrolling up to
+ * the parent or using the collapse all function.
+ *
+ *  \param [in] menu_widget  Un-used menu item widget on the pop-up menu
+ *  \param [in] tree_view    Pointer to the tree-view widget when popup activated
+ */
+static void close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
+{
+  GtkTreeModel     *model = NULL;
+  GtkTreeIter       iter;
+  GtkTreeSelection *selection;
+  GtkTreePath      *path;
+  bool              is_symbol;
+
+  selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
+  if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
+    path = gtk_tree_model_get_path ( model, &iter);
+    /* get column 0 data into variable is_symbol */
+    gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+    if (is_symbol) {
+      gtk_tree_path_up (path);
+    }
+    gtk_tree_view_collapse_row (tree_view, path);
+    gtk_tree_path_free(path);
+  }
+}
+
+/*! \brief GCompareFunc to sort an text object list by the object strings */
 static int sort_object_text (OBJECT *a, OBJECT *b)
 {
   return strcmp (a->text->string, b->text->string);
@@ -682,13 +836,16 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
  *  \par Function Description
  *  This function applies the filtering of components in the treeview of
  *  the dialog based in the text in the search entry. The applying_filter
- *  variable is used here to prevent expanding when there is not text. This
+ *  variable is used here to prevent expanding when there is no text. This
  *  was added when the notebook sheets were added because the filtering is
- *  is apply to multible tree views on an as needed basis, aka, only when
+ *  is applied to multible tree views on an as needed basis, aka, only when
  *  the user switches Tab's with text in the filter entry widget.
  *
- *  The the function is called when ever a filter timeout
- * occurs or when the user changes tabs.
+ *  The function is called when ever a filter timeout occurs or when the
+ *  user changes tabs.
+ *
+ *  Note: The filtering done here is based on text entered by the user and
+ *  has nothing to do with filtering based on style settings.
  *
  *  \param [in] data The component selection dialog.
  *  \param [in] data The Active Tree view to operate on.
@@ -706,6 +863,7 @@ static void cs_apply_filter_tree_view (Compselect *Dialog,
      gtk_tree_view_expand_all (view);
   }
 }
+
 /*! \brief Requests re-evaluation of the filter.
  *  \par Function Description
  *  This is the timeout function for the filtering of component in the
@@ -803,8 +961,6 @@ compselect_callback_filter_entry_changed (GtkEditable *editable,
  *  \param [in]  switch  ptr to the switch, aka toggle-button, widget
  *  \param [in]  Dialog  ptr to the dialog widget
  *
- * TODO: Currently this function does call for a refresh so the change is
- * not visible until the user clicks the refresh button.
  */
 static void
 cs_callback_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
@@ -839,7 +995,136 @@ cs_callback_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
     }
   }
 
+  g_signal_emit (ThisDialog, signals[REFRESH], 0);
+
   return;
+}
+
+/*! \brief Sets toggle item state without emitting signal
+ *  \par Function Description:
+ *   This function sets the active state of a toggle widget while blocking
+ *   signals if the widget has the ID of it's signal handler embedded,
+ *   otherwise the toggle widget is set without blocking the signal.
+ */
+static void gtk_set_item_active(GtkWidget *widget, bool state) {
+  unsigned long handler;
+
+  if ( GTK_IS_OBJECT(widget)) {
+    GObject *object = G_OBJECT(widget);
+    handler =  (unsigned long) g_object_get_data(object, "handler");
+    if( handler) {
+      g_signal_handler_block( object, handler);       /* disable signal */
+      g_object_set (object, "active", state, NULL);   /* set the value */
+      g_signal_handler_unblock( object, handler);     /* re-enable signal */
+    }
+    else { /* Not handler so just set without blocking */
+      g_object_set (object, "active", state, NULL);   /* set the value */
+    }
+  }
+}
+
+/*! \brief Handles changes of the Style settings.
+ *  \par Function Description
+ *  This is call-back function for the style menu toggle widgets. This
+ *  functions establishes the flag mask that will be used when loading
+ *  the tree-views, compselect->style_flag. In other functions through
+ *  out this module this same variable is aliased as MASK (primarily to
+ *  reduce line length).
+ *
+ *  Since this function is only used as a call-back for toggle widgets the
+ *  mask must change. Therefore we emits a <B>refresh</B> signal for the
+ *  tree-views once the mask has been updated.
+ *
+ *  \param [in] button We must find this button in our GSList of widgets.
+ *  \param [in] compselect  The component selection dialog.
+ */
+static void
+compselect_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
+{
+  GSList *iter;
+  int state;
+  int index;
+
+  /* Get the current state of the toggle button that called us */
+  g_object_get (G_OBJECT (button), "active", &state, NULL);
+
+  /* Determine which button was toggled */
+  index = g_slist_index(compselect->style_menu_widgets, button );
+
+  if ( index == COMPSELECT_STYLE_NONE && state) {
+     /* The "None" box was checked so un-check all the check boxes, except
+      * NONE, the second assignment of iter causes the first element to be
+      * skipped, which is "None", which was activated by the user */
+     for (iter = compselect->style_menu_widgets, iter = g_slist_next (iter);
+        iter != NULL; iter = g_slist_next (iter)) {
+       gtk_set_item_active(iter->data, FALSE);
+     }
+     compselect->style_flag = COMPSELECT_STYLE_NONE;  /* Be Zero */
+  }
+  else {
+    if ( index == 9 && state) { /* The "All" box was pressed check */
+       /* Un-check the check "none" box */
+       gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
+       /* Check all the other boxes except NONE*/
+       for (iter = compselect->style_menu_widgets,
+         iter = g_slist_next (iter); iter != NULL; iter = g_slist_next (iter)) {
+         gtk_set_item_active(iter->data, TRUE);
+       }
+       compselect->style_flag = COMPSELECT_STYLE_ALL; /* Be 255 */
+    }
+    else {
+
+       GtkWidget *all_butt;
+       unsigned int mask = 1;
+       /* decrement index because 0 was resolved above */
+       --index;
+
+       if ( state ) {
+         mask = mask << index; /* bit shift left */
+         compselect->style_flag = compselect->style_flag + mask;
+       }
+       else {
+         mask = mask << index; /* bit shift right */
+         compselect->style_flag = compselect->style_flag - mask;
+       }
+
+       /* Set the state of the All check box */
+       state = (compselect->style_flag == COMPSELECT_STYLE_ALL);
+       all_butt = g_slist_nth_data(compselect->style_menu_widgets, 9);
+       gtk_set_item_active(all_butt, state);
+
+       /* Set the state of the None check box */
+       state = (compselect->style_flag == COMPSELECT_STYLE_NONE);
+       gtk_set_item_active(compselect->style_menu_widgets->data, (state));
+    }
+  }
+
+  g_signal_emit (ThisDialog, signals[REFRESH], 0);
+}
+
+/*! \brief Callback for Style toggler on the popup menu.
+ *  \par Function Description
+ *  This is call-back function for the style toggle widgets on the right
+ *  button mouse menu. The function retrieves the index from the widget
+ *  and then get the address of the equivalent "main" style toggle widget.
+ *  The "main" style toggle widget is set unblocked so the preceding
+ *  call-back handler is takes care of establishing the new mask and
+ *  signaling for a refresh.
+ *
+ *  \param [in] button  A menu item toggle button widget on the popup submenu.
+ *  \param [in] compselect  The component selection dialog.
+ */
+static void
+compselect_popup_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
+{
+  int  i;
+  GtkCheckMenuItem *real_butt;
+
+  i = GPOINTER_TO_INT (g_object_get_data( G_OBJECT(button), "index"));
+  real_butt = g_slist_nth_data(compselect->style_menu_widgets, i);
+
+  gtk_check_menu_item_set_active(real_butt, gtk_check_menu_item_get_active(button));
+
 }
 
 /*! \brief Handles changes of behavior.
@@ -859,7 +1144,6 @@ compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
                                       gpointer user_data)
 {
   Compselect *compselect = (Compselect*)user_data;
-
   GtkWidget *menuitem;
   int menu_choice;
 
@@ -871,40 +1155,21 @@ compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
   switch(menu_choice) {
     case COMPSELECT_BEHAVIOR_REFERENCE:
       g_object_set (G_OBJECT (optionmenu), "tooltip-text",
-                    "Default is to reference the component", NULL);
+                    _("Default is to reference the component"), NULL);
       break;
     case COMPSELECT_BEHAVIOR_EMBED:
       g_object_set (G_OBJECT (optionmenu), "tooltip-text",
-                    "Embed component in schematic", NULL);
+                    _("Embed component in schematic"), NULL);
       break;
     case COMPSELECT_BEHAVIOR_INCLUDE:
       g_object_set (G_OBJECT (optionmenu), "tooltip-text",
-                    "Include component as individual objects", NULL);
+                    _("Include component as individual objects"), NULL);
   }
 
   g_signal_emit_by_name (compselect,
                          "response",
                          COMPSELECT_RESPONSE_PLACE,
                          NULL);
-}
-
-/*! \brief Callback on Component Select Dialog change TAB in notebook.
- *  \par Function Description
- *  This function is called when ever a TAB sheet is selected. The
- * set the page number for use by other functions in this module and
- * then call cs_apply_filter_tree_view tp update the avtive
- * treeview widget.
- *
- */
-static void
-on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
-                         guint        page_num, Compselect *Dialog)
-{
-  Dialog->active_tab = page_num;
-  if( Dialog->applying_filter)
-    cs_apply_filter_tree_view (Dialog, get_active_tree_view(Dialog));
-
-  return;
 }
 
 /*!\brief Create the tree model for the "In Use" view.
@@ -983,23 +1248,59 @@ GList *get_tree_sources(GSCHEM_TOPLEVEL *w_current, Compselect *compselect,
   return selected_sources;
 }
 
+/*!\brief Check symbol name for style inclusion
+ * \par Function Description
+ *  Compares integer value after dash in the symbol name to see
+ *  if the symbol should be included based on the style flag mask.
+ *
+ */
+static bool filter_check_style(Compselect *compselect, char *sym_name)
+{
+  char *ptr;
+  unsigned char code[2];
+  unsigned int mask = 1;
+  int flag;
+
+  bool result;
+  result = TRUE;
+  code[1] = ASCII_NUL;
+
+  ptr = sym_name;                     /* set pointer to address of 1st char */
+
+  while ( *ptr != ASCII_NUL) ptr++;   /* increment to the end of string */
+
+  ptr = ptr - 6;                      /* decrement to where dash should be */
+
+  if ( *ptr == ASCII_HYPHEN_MINUS ){  /* and if it's a dash then */
+    ++ptr;                            /* increment to the number */
+    code[0] = *ptr;                   /* retrieve the char value */
+    flag = code[0] & 0x0F;            /* convert askii to number */
+    if ( flag > 0  && flag < 9) {     /* only consider 1 to 8    */
+      mask = mask << ( flag - 1 );              /* raise by power of 2n */
+      if ( !(compselect->style_flag & mask)) {  /* and compare */
+        result = FALSE;
+      }
+    }
+  }
+  return result;
+}
+
 /*!\brief Create the Tree Model for "Library" views.
  * \par Function Description
- * Creates a TreeStore with 2 columns, the first column is a boolean
+ * Creates a TreeStore with 3 columns, the first column is a boolean
  * value indicating whether the second column contains data for a
  * symbol or a source. If the first column contains TRUE then the
  * row is for a symbol entry, if FALSE then the data in the second
  * column is a pointer to a CLibSource record.
  *
  * Data supplied by get_tree_sources is added to a new TreeStore.
- * The data is monitored and if a source name contains a forward
- * slash, indicating a sub-directory in a symbol folder, then that
- * source row is added under the previous parent entry.
+ * The data is monitored looking for group changes, indicating the
+ * different symbol sub-directory.
  *
  * A TreeModel containing the TreeStore is return after connecting
  * associating the model with the visibility filter.
  *
- * In theory, we could nest number of levels using this technique
+ * In theory, we could nest any number of levels using this technique
  * but this implementation only looks for 1 slash.
  *
  */
@@ -1101,15 +1402,21 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
 
 load_symbols: /* It Works! */
 
-    for (sym_iter = symlist; sym_iter != NULL; sym_iter = g_list_next (sym_iter)) {
+    for (sym_iter = symlist; sym_iter != NULL;
+         sym_iter = g_list_next (sym_iter)) {
 
+      sym_name = (char*) s_clib_symbol_get_name(sym_iter->data);
       /* if a directory only has one symbol file and the file name is
        * "placeholder.sym" then we don't display the symbol, the file
        * is being used to over-ride the switches and force a group to
        * always be on the treeview list */
       if (sym_count == 1) {
-        sym_name = (char*) s_clib_symbol_get_name(sym_iter->data);
         if (g_ascii_strcasecmp ( "placeholder.sym", sym_name) == 0)
+          continue;
+      }
+
+      if ( MASK != COMPSELECT_STYLE_ALL ) {
+        if (!filter_check_style(compselect, sym_name))
           continue;
       }
 
@@ -1166,19 +1473,22 @@ compselect_callback_clear_filter_clicked (GtkButton *button,
 
 }
 
-/*!\brief On-demand refresh of the component library.
+/*!\brief Refresh all Library Tree-Views Signal Handler.
  * \par Function Description
- * Requests a rescan of the component library in order to pick up any
- * new symbols, and updates each view on the component selector Dialog.
+ *  This functions is called by compselect_callback_refresh_views
+ *  to rebuild all trees view models. Currently, this functions
+ *  is not called directly because cursor position is not
+ *  maintained. The function cause models in all tree-views to
+ *  be rebuilt.
  */
 static void
-compselect_callback_refresh_libraries (GtkButton *button, gpointer user_data)
+compselect_refresh_tree_views (Compselect *compselect)
 {
-  Compselect *compselect = COMPSELECT (user_data);
   GtkTreeModel *model;
 
   /* inline function to update models in trees */
-  inline void set_tree_view_model(GtkTreeView  *tree_view, DialogTabs data_set) {
+  inline
+  void set_tree_view_model(GtkTreeView  *tree_view, DialogTabs data_set) {
 
     GtkTreeSelection *selection;
 
@@ -1192,17 +1502,14 @@ compselect_callback_refresh_libraries (GtkButton *button, gpointer user_data)
                                      cs_callback_tree_selection_changed,
                                      compselect);
 
-   /* Update the view model with signals blocked */
-   gtk_tree_view_set_model (tree_view, model);
+    /* Update the view model with signals blocked */
+    gtk_tree_view_set_model (tree_view, model);
 
-   /* Unblock & fire handler for stdtreeview selection */
-   g_signal_handlers_unblock_by_func (selection,
-                                     cs_callback_tree_selection_changed,
-                                     compselect);
+    /* Unblock & fire handler for stdtreeview selection */
+    g_signal_handlers_unblock_by_func (selection,
+                                       cs_callback_tree_selection_changed,
+                                       compselect);
   }
-
-  /* Rescan the libraries for symbols */
-  s_clib_refresh ();
 
   /* Refresh the Standard Library TreeView */
   set_tree_view_model(compselect->stdtreeview, STD_TAB);
@@ -1224,6 +1531,243 @@ compselect_callback_refresh_libraries (GtkButton *button, gpointer user_data)
    * as this is the (final) tree view we are updating */
   gtk_tree_view_set_model (compselect->inusetreeview, model);
 
+}
+
+/*!\brief On-demand Refresh all Library Tree-Views.
+ * \par Function Description
+ * The function checks for a selection in the active tree-view and if
+ * an item, either a container or a symbol, is selected then associated
+ * names are saved. compselect_refresh_tree_views is called to rebuild all
+ * tree models. If a selection had existed an attempt is made to locate the
+ * container and or symbol and restore the cursor to the same item.
+ *
+ * This function servers as a "front-end" to compselect_refresh_tree_views,
+ * which is called in the middle section between "save" and "restore".
+ * This function is used by signal handlers, call-back functions, and
+ * the "on-demand" button to rebuild all trees view models.
+ *
+ */
+static void
+compselect_callback_refresh_views (GtkWidget *widget, gpointer user_data)
+{
+  Compselect *compselect = COMPSELECT (user_data);
+
+  GtkTreeView *tree_view;
+  GtkTreeModel  *model;
+  GtkTreeIter     iter;
+  GtkTreeIter     parent;
+  GtkTreePath      *path;
+  GtkTreeSelection *selection;
+
+  bool   is_symbol;
+  bool   at_boundary;
+  bool   do_restore;
+  bool   was_expanded = FALSE;
+
+  CLibSource  *source;
+  CLibSymbol  *symbol;
+  char        *gp_src_name = NULL;
+  char        *src_name    = NULL;
+  char        *sym_name    = NULL;
+
+  tree_view = get_active_tree_view (compselect);
+  selection = gtk_tree_view_get_selection(tree_view);
+
+  /* Check if something is selected and if so then save the name of
+   * the contain folder and the symbol if there is one */
+  if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
+    /* get column 0 data into variable is_symbol */
+    gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+    if (is_symbol) {
+       gtk_tree_model_get ( model, &iter, LVC_ROW_DATA, &symbol, -1);
+       sym_name = g_strdup(symbol->name);
+       gtk_tree_model_iter_parent (model, &parent, &iter);
+       at_boundary = FALSE;
+    }
+    else {
+       at_boundary = TRUE;
+       path = gtk_tree_model_get_path ( model, &iter);
+       was_expanded = gtk_tree_view_row_expanded (tree_view, path);
+       gtk_tree_path_free(path);
+       g_copy_tree_iter(&iter, &parent);
+    }
+    gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
+    src_name = g_strdup(source->name);
+    if (gtk_tree_model_iter_parent (model, &iter, &parent)) {
+      gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
+      gp_src_name = g_strdup(source->name);
+    }
+    do_restore = TRUE;
+  }
+  else {
+    do_restore = FALSE;
+  }
+
+  /* Rebuild the Tree Model */
+  compselect_refresh_tree_views (COMPSELECT (user_data));
+
+  if ( do_restore) {
+    bool valid;
+    bool found = FALSE;
+
+    char *src_name2 = NULL;
+    char *sym_name2 = NULL;
+
+    model = gtk_tree_view_get_model(tree_view);
+
+    /* Get the first iter in the list */
+    valid = gtk_tree_model_get_iter_first (model, &iter);
+
+    if( gp_src_name ) { /* 1st Look for Grand Parent */
+      while (valid) {
+        gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+        if (!is_symbol) {
+          gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
+          src_name2 = source->name;
+          if ( strcmp(src_name2, gp_src_name) == 0) {
+            /* found grand parent */
+            path = gtk_tree_model_get_path ( model, &iter);
+            gtk_tree_view_expand_row (tree_view, path, FALSE);
+            gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+            /* Set iter to 1st child */
+            gtk_tree_path_down(path);
+            gtk_tree_model_get_iter(model, &iter, path);
+            gtk_tree_path_free(path);
+            break;
+          }
+        }
+        valid = gtk_tree_model_iter_next (model, &iter);
+      }
+      g_free (gp_src_name);
+    }
+
+    if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
+
+    while (valid) {                               /* Look for Parent */
+      gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+      if (!is_symbol) {
+        gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
+        src_name2 = source->name;
+        if ( strcmp(src_name2, src_name) == 0) {
+          /* found the folder so check if was expanded and set cursor */
+          path = gtk_tree_model_get_path ( model, &iter);
+          if (was_expanded) { /* expand folder is previously expanded */
+            gtk_tree_view_expand_to_path(tree_view, path);
+          }
+          gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+          /* Set iter to 1st child for next section */
+          gtk_tree_path_down(path);
+          gtk_tree_model_get_iter(model, &iter, path);
+          gtk_tree_path_free(path);
+          break;
+        }
+      }
+      valid = gtk_tree_model_iter_next (model, &iter);
+    }
+
+    if ( !at_boundary ) {
+
+      /* Save iter in case we do not find symbol on 1st pass */
+      gtk_tree_model_iter_parent(model, &parent, &iter);
+
+      /* Look for Symbol - 1st pass */
+      if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
+
+      while (valid) {
+        gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+        if (is_symbol) {
+          gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+          sym_name2 = symbol->name;
+          if ( strcmp(sym_name2, sym_name) == 0) {
+            path = gtk_tree_model_get_path ( model, &iter);
+            gtk_tree_view_expand_to_path(tree_view, path);
+            gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+            gtk_tree_path_free(path);
+            found = TRUE;
+            break;
+          }
+        }
+        valid = gtk_tree_model_iter_next (model, &iter);
+      }
+
+      if (!found) {
+        /* remove "-n.sym" from what we are looking for */
+        sym_name2 = strndup(sym_name, strlen(sym_name) - 6);
+        g_free (sym_name);
+        sym_name = sym_name2;
+
+        /* Look for Symbol - 2nd pass, set iter to 1st child of saved parent */
+        valid = gtk_tree_model_iter_children(model, &iter, &parent);
+
+        while (valid) {
+          gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+          if (is_symbol) {
+            gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
+            sym_name2 = symbol->name;
+            if ( strstr(sym_name, sym_name2) == 0) {
+              path = gtk_tree_model_get_path ( model, &iter);
+              gtk_tree_view_expand_to_path(tree_view, path);
+              gtk_tree_view_set_cursor (tree_view, path, NULL, FALSE);
+              gtk_tree_path_free(path);
+              break;
+            }
+          }
+          valid = gtk_tree_model_iter_next (model, &iter);
+        }
+      }
+    }
+    if (src_name) g_free ( src_name);
+
+    tree_view_row_make_visible(tree_view, &iter, TRUE);
+  } /* End if do_restore */
+}
+
+/*!\brief Refresh all Library Tree-Views Signal Handler.
+ * \par Function Description
+ *  This function is activate when the "refresh" signal is emitted
+ * on the dialog from any internal widgets. The signal is emitted when
+ * a style is changed.
+ *
+ */
+static void
+compselect_on_refresh_tree_views (Compselect *compselect)
+{
+  compselect_callback_refresh_views (NULL, compselect);
+}
+
+/*!\brief Refresh the Active Tree View.
+ * \par Function Description
+ *   This function causes the model for the active tree-view to be
+ * rebuilt.
+ *
+ */
+static void
+compselect_refresh_inuse_view (GtkWidget *widget, gpointer user_data)
+{
+  Compselect *compselect = COMPSELECT (user_data);
+
+  GtkTreeView  *tree_view;
+  GtkTreeModel  *model;
+
+  tree_view = compselect->inusetreeview;
+  g_object_unref (gtk_tree_view_get_model (tree_view));
+  model = create_inuse_tree_model (compselect);
+  gtk_tree_view_set_model (compselect->inusetreeview, model);
+
+}
+
+/*!\brief Rescan component libraries and update treeViews.
+ * \par Function Description
+ * Requests a rescan of the component library in order to pick up any
+ * new symbols, and calls compselect_refresh_tree_views to refresh
+ * the tree views.
+ */
+static void
+compselect_callback_rescan_libraries (GtkButton *button, gpointer user_data)
+{
+  /* Rescan the libraries for symbols */
+  s_clib_refresh ();
+  compselect_callback_refresh_views (NULL, user_data);
 }
 
 /*!\brief Collase All button callback.
@@ -1268,6 +1812,43 @@ compselect_callback_expand_all(GtkButton *button, gpointer user_data)
     fprintf(stderr, "compselect_callback_expand_all, bad TreeView\n");
 }
 
+/*! \brief Emit GTK_RESPONSE_CLOSE signal.*/
+static void on_close_butt_clicked(GtkButton *button, gpointer user_data)
+{
+    g_signal_emit_by_name (GTK_DIALOG (user_data),
+                           "response",
+                           GTK_RESPONSE_CLOSE,
+                           user_data);
+}
+
+/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.*/
+static void on_okay_butt_clicked(GtkButton *button, gpointer user_data)
+{
+    g_signal_emit_by_name (GTK_DIALOG (user_data),
+                           "response",
+                           COMPSELECT_RESPONSE_HIDE,
+                           user_data);
+}
+/*! \brief Callback on Component Select Dialog change TAB in notebook.
+ *  \par Function Description
+ *  This function is called when ever a TAB sheet is selected in order
+ * to set the page number for use by other functions in this module and
+ * then calls cs_apply_filter_tree_view to update the active treeview
+ * widget.
+ *
+ */
+static void
+on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
+                         unsigned int        page_num, Compselect *Dialog)
+{
+  Dialog->active_tab = page_num;
+  if( Dialog->applying_filter)
+    cs_apply_filter_tree_view (Dialog, get_active_tree_view(Dialog));
+
+  if (page_num == IN_USE_TAB)
+    compselect_refresh_inuse_view (NULL, Dialog);
+  return;
+}
 /*! \brief Creates the treeview for the "In Use" view.
  * \par Function Description
  * This function create a new Treeview Widget Assembly. The assembly
@@ -1366,13 +1947,269 @@ static GtkWidget* create_inuse_treeview (Compselect *compselect)
 
   g_signal_connect (button,
                     "clicked",
-                    G_CALLBACK (compselect_callback_refresh_libraries),
+                    G_CALLBACK (compselect_refresh_inuse_view),
                     compselect);
 
   /* Add the refresh button area to the vertical box */
   PACK_BOX( inuse_vbox, hbox, FALSE, FALSE, 0);
 
   return inuse_vbox;
+}
+
+/*! \brief Tool Tips On Callback Handler for Popup Mouse Context Menu
+ *
+ *  \par Function Description
+ * This function sets the LVC_TOOLTIP_TEXT column to be the tooltip
+ * string for each library treeview and is used to enable tooltips
+ * in the tree views.
+ *
+ *  \param [in] menu_item is menu widget
+ *  \param [in] compselect Pointer Compselect dialog structure
+ */
+static void
+compselect_menu_tooltips_on(GtkMenuItem *menu_item, Compselect *compselect)
+{
+  gtk_tree_view_set_tooltip_column (compselect->stdtreeview,   LVC_TOOLTIP_TEXT);
+  gtk_tree_view_set_tooltip_column (compselect->mantreeview,   LVC_TOOLTIP_TEXT);
+  gtk_tree_view_set_tooltip_column (compselect->localtreeview, LVC_TOOLTIP_TEXT);
+  gtk_tree_view_set_tooltip_column (compselect->simtreeview,   LVC_TOOLTIP_TEXT);
+}
+
+/*! \brief Tool Tips Off Callback Handler for Popup Mouse Context Menu
+ *
+ *  \par Function Description
+ * This function sets the tooltip column to -1 for each library treeview
+ * and is used to disable tooltips in the tree views.
+ *
+ *  \param [in] menu_item is menu widget
+ *  \param [in] compselect Pointer Compselect dialog structure
+ */
+static void
+compselect_menu_tooltips_off(GtkMenuItem *menu_item, Compselect *compselect)
+{
+  gtk_tree_view_set_tooltip_column (compselect->stdtreeview,   -1);
+  gtk_tree_view_set_tooltip_column (compselect->mantreeview,   -1);
+  gtk_tree_view_set_tooltip_column (compselect->localtreeview, -1);
+  gtk_tree_view_set_tooltip_column (compselect->simtreeview,   -1);
+}
+
+/*! \brief Create and Setup Popup Mouse Menu for the View Trees
+ *
+ *  \par Function Description
+ * This function constructs a pop-up menu for the Library Tree Views.
+ * The function sets sensitivity on menu choices based on the Tree-View
+ * position and the state of the containing Tree-View.
+ *
+ *  \param [in] sheet is the active sheet widget
+ */
+static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
+{
+  GtkWidget *menu;
+  GtkWidget *submenu;
+  GtkWidget *menuitem;
+  GtkTooltips *tooltips;
+
+  bool is_symbol;
+
+  tooltips = gtk_tooltips_new ();
+
+  GtkTreeIter iter;
+  GtkTreeModel *model;
+  GtkTreeSelection *selection;
+
+  selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
+  if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
+    gtk_tree_model_get (model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
+  }
+  else
+    is_symbol = FALSE;
+
+  menu=gtk_menu_new();
+
+  menuitem = gtk_menu_item_new_with_label(_(popup_items[ExpandFolder]));
+  if (!is_symbol) {
+    gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[ExpandFolder]), NULL);
+    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
+    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
+    g_signal_connect(GTK_OBJECT(menuitem),"activate",
+                    (void *) open_tree_row,
+                    (void *) treeview);
+  }
+  else {
+    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
+    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), FALSE);
+  }
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+
+  menuitem = gtk_menu_item_new_with_label(_(popup_items[ExpandAll]));
+  if (!is_symbol) {
+    gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[ExpandAll]), NULL);
+    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
+    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
+    g_signal_connect(GTK_OBJECT(menuitem),"activate",
+                    (void *) open_tree_rows,
+                    (void *) treeview);
+  }
+  else {
+    gtk_widget_set_sensitive(GTK_WIDGET(menuitem), FALSE);
+    gtk_widget_set_can_focus(GTK_WIDGET(menuitem), FALSE);
+  }
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+
+  /* The Close Menu Option */
+  menuitem = gtk_menu_item_new_with_label(_(popup_items[CloseFolder]));
+  gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[CloseFolder]), NULL);
+  gtk_widget_set_sensitive(GTK_WIDGET(menuitem), TRUE);
+  gtk_widget_set_can_focus(GTK_WIDGET(menuitem), TRUE);
+  g_signal_connect(GTK_OBJECT(menuitem),"activate",
+                    (void *) close_tree_row,
+                    (void *) treeview);
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+
+  /* The Refresh Menu Option */
+  menuitem = gtk_menu_item_new_with_label(_(popup_items[RefreshView]));
+  gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[RefreshView]), NULL);
+  g_signal_connect(GTK_OBJECT(menuitem),"activate",
+                    G_CALLBACK (compselect_callback_refresh_views),
+                    compselect);
+
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+
+  /* The Rescan Menu Option */
+  menuitem = gtk_menu_item_new_with_label(_(popup_items[RescanLibs]));
+  gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[RescanLibs]), NULL);
+  g_signal_connect(GTK_OBJECT(menuitem),"activate",
+                    G_CALLBACK (compselect_callback_rescan_libraries),
+                    compselect);
+
+  gtk_menu_shell_append(GTK_MENU_SHELL(menu), menuitem);
+
+  /* The Styles submenu */
+
+  GSList     *iter2;             /* Use to index the "main" styles menu */
+  const char *label;             /* Ptr to label of the "main" style widget */
+  bool        active;            /* state of the "main" style widget */
+  GtkCheckMenuItem *check_item;  /* Ptr to "main" style widget */
+  unsigned long handler;         /* Signal handler of this submenu item */
+  int index;                     /* Use by callback to index "main" widget */
+
+  /* Note: the handler is not used for the popup menu widgets */
+  menuitem = gtk_menu_item_new_with_label(_(popup_items[StylesMenu]));
+
+  submenu = gtk_menu_new ();
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+
+  index = 0;
+  for (iter2 = compselect->style_menu_widgets; iter2 != NULL; iter2 = g_slist_next (iter2)) {
+    check_item = iter2->data;
+    label      = gtk_menu_item_get_label ( GTK_MENU_ITEM(check_item) );
+    active     = gtk_check_menu_item_get_active (check_item);
+    menuitem   = gtk_check_menu_item_new_with_mnemonic (label);
+    gtk_check_menu_item_set_active( GTK_CHECK_MENU_ITEM(menuitem), active);
+    gtk_check_menu_item_set_draw_as_radio( (GtkCheckMenuItem*) menuitem, FALSE);
+    gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+    handler = g_signal_connect (menuitem, "toggled",
+                                G_CALLBACK (compselect_popup_toggle_style),
+                                compselect);
+
+    gtk_object_set_data (GTK_OBJECT(menuitem), "handler", (void*) handler);
+    gtk_object_set_data (GTK_OBJECT(menuitem), "index", GINT_TO_POINTER(index));
+    index++;
+  }
+
+  /* tooltip submenu */
+  menuitem = gtk_menu_item_new_with_mnemonic (_(popup_items[ShowToolTips]));
+
+  submenu = gtk_menu_new ();
+  gtk_menu_item_set_submenu (GTK_MENU_ITEM (menuitem), submenu);
+  gtk_menu_shell_append (GTK_MENU_SHELL (menu), menuitem);
+
+  menuitem = gtk_image_menu_item_new_with_label (_(popup_items[ToolTipsOn]));
+  gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[ToolTipsOn]), NULL);
+  g_signal_connect (G_OBJECT (menuitem), "activate",
+                    G_CALLBACK (compselect_menu_tooltips_on),
+                    compselect);
+  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+
+  menuitem = gtk_image_menu_item_new_with_label (_(popup_items[ToolTipsOff]));
+  gtk_tooltips_set_tip (tooltips, menuitem, _(popup_tips[ToolTipsOff]), NULL);
+  g_signal_connect (G_OBJECT (menuitem), "activate",
+                    G_CALLBACK (compselect_menu_tooltips_off),
+                    compselect);
+  gtk_menu_shell_append (GTK_MENU_SHELL (submenu), menuitem);
+
+  gtk_widget_show_all (menu);
+
+  return (menu);
+}
+/*! \brief ViewTree Mouse Button Constructor
+ *
+ *  \par Function Description
+ * This function checks if mouse botton press and when the 3rd button
+ * is released the build_view_menu function is called to create the
+ * mouse menu.
+ *
+ *  \param [in] Treeview is the TreeView widget when user "right-clicked"
+ */
+void
+compselect_view_popup_menu (GtkWidget *treeview, GdkEventButton *event, Compselect *compselect)
+{
+
+  if ( GTK_IS_MENU(tree_view_popup_menu)) {
+    gtk_object_destroy(GTK_OBJECT(tree_view_popup_menu));
+    tree_view_popup_menu = NULL;
+  }
+
+  tree_view_popup_menu = build_view_menu(compselect, treeview);
+
+  /* Tell GTK to do the menu we just created, Note: event can be NULL here
+   * when called from compselect_view_onPopupMenu;
+   * gdk_event_get_time() accepts a NULL argument */
+  gtk_menu_popup(GTK_MENU(tree_view_popup_menu), NULL, NULL, NULL, NULL,
+                 (event != NULL) ? event->button : 0,
+                 gdk_event_get_time((GdkEvent*)event));
+}
+
+/*! \brief ViewTree Mouse Button Call Back
+ *
+ *  \par Function Description
+ * This function checks the mouse botton press and when the 3rd button
+ * is released the build_menu function is called to create the mouse
+ * menu.
+ *
+ *  \param [in] treeview is the treeview widget when user "right-clicked"
+ */
+bool
+compselect_view_onButtonPressed (GtkWidget *treeview, GdkEventButton *event,
+                                 Compselect *compselect)
+{
+    /* single click with the right mouse button? */
+    if (event->type == GDK_BUTTON_PRESS  &&  event->button == 3)
+    {
+
+      compselect_view_popup_menu( treeview, event, compselect);
+
+      return TRUE; /* we handled this */
+    }
+
+    return FALSE; /* we did not handle this */
+}
+bool
+compselect_view_onPopupMenu (GtkWidget *treeview, Compselect *compselect)
+{
+    compselect_view_popup_menu(treeview, NULL, compselect);
+
+    return TRUE; /* we handled this */
+}
+
+bool SearchTreeView (GtkTreeModel *model, int column, const char *key,
+                     GtkTreeIter *iter, gpointer search_data)
+{
+    CLibSymbol *sym;
+
+    gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
+    return geda_stristr (sym->name, key);
 }
 
 /*! \brief Creates the treeview for each notebook Library Tab */
@@ -1433,6 +2270,12 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
                                            lib_treeview_set_cell_data,
                                            NULL, NULL);
 
+  gtk_tree_view_set_search_column( (GtkTreeView*) treeview, LVC_ROW_DATA);
+  gtk_tree_view_set_search_equal_func ((GtkTreeView*) treeview,
+                                       SearchTreeView,
+                                       NULL,
+                                       NULL);
+
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
 
   /* Add the treeview to the scrolled window */
@@ -1449,10 +2292,17 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
   /* connect callback to selection */
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+
   g_signal_connect (selection,
                     "changed",
                     G_CALLBACK (cs_callback_tree_selection_changed),
                     compselect);
+
+  g_signal_connect(treeview, "button-press-event",
+                   (GCallback) compselect_view_onButtonPressed, compselect);
+
+  g_signal_connect(treeview, "popup-menu",
+                   (GCallback) compselect_view_onPopupMenu, compselect);
 
   /* Save pointer to treeview in compselect structure */
   *viewtree = treeview;
@@ -1525,7 +2375,7 @@ static GtkWidget *create_attributes_treeview (Compselect *compselect)
   return scrolled_win;
 }
 
-/*! \brief Creates the treeview for the "Library" view */
+/*! \brief Creates the filter area on the Component Select Dialog */
 static GtkWidget *create_filter_area (Compselect *compselect)
 {
   GtkWidget *label, *hbox,  *entry;
@@ -1547,7 +2397,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                     /* GtkMisc */
                                     "xalign", 0.0,
                                     /* GtkLabel */
-                                    "label",  _("Filter:"),
+                                    "label", _LABEL(FilterEntry),
                                     NULL));
 
   /* Add the search label to the filter area */
@@ -1576,7 +2426,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                          "relief",    GTK_RELIEF_NONE,
                                          NULL));
 
-  gtk_widget_set_tooltip_text(clear_butt, _("Clear the filter entry"));
+  gtk_widget_set_tooltip_text(clear_butt, _TOOLTIP(ClearButton));
 
   gtk_container_add (GTK_CONTAINER (clear_butt),
                      gtk_image_new_from_stock (GTK_STOCK_CLEAR,
@@ -1596,7 +2446,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                            "relief",    GTK_RELIEF_NONE,
                                            NULL));
 
-  gtk_widget_set_tooltip_text(refresh_butt, _("Refresh the active View"));
+  gtk_widget_set_tooltip_text(refresh_butt, _TOOLTIP(RefreshAllViews));
 
   gtk_container_add (GTK_CONTAINER (refresh_butt),
                      gtk_image_new_from_stock (GTK_STOCK_REFRESH,
@@ -1613,7 +2463,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                            "relief",    GTK_RELIEF_NONE,
                                            NULL));
 
-  gtk_widget_set_tooltip_text(collapse_butt, _("Close all Library containers"));
+  gtk_widget_set_tooltip_text(collapse_butt, _TOOLTIP(CollapseButton));
 
   gtk_container_add (GTK_CONTAINER (collapse_butt),
                      gtk_image_new_from_stock (GTK_STOCK_GO_UP,
@@ -1630,7 +2480,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
                                            "relief",    GTK_RELIEF_NONE,
                                            NULL));
 
-  gtk_widget_set_tooltip_text(expand_butt, _("Expand all Library containers"));
+  gtk_widget_set_tooltip_text(expand_butt, _TOOLTIP(ExpandButton));
 
   gtk_container_add (GTK_CONTAINER (expand_butt),
                      gtk_image_new_from_stock (GTK_STOCK_GO_DOWN,
@@ -1652,7 +2502,7 @@ static GtkWidget *create_filter_area (Compselect *compselect)
 
   g_signal_connect (refresh_butt,
                     "clicked",
-                    G_CALLBACK (compselect_callback_refresh_libraries),
+                    G_CALLBACK (compselect_callback_refresh_views),
                     compselect);
 
   g_signal_connect (collapse_butt,
@@ -1668,10 +2518,74 @@ static GtkWidget *create_filter_area (Compselect *compselect)
   return hbox;
 }
 
-/*! \brief Create a pin type  for the Pin Properties Editor dialog
- *  \par Function Description
- *  This function creates a GtkMenu with the different pin types.
- */
+/*! \brief Create the style menu for the menu button in the Action Area */
+static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
+{
+  GtkMenu      *menu;
+  GtkWidget    *menuitem;
+  GSList       *widget_list;
+  unsigned long handler;
+  bool          state;
+  int           i;
+
+  struct styles {
+    char *str;
+    CompselectStyle style;
+  } types[] = { { N_("None"),      COMPSELECT_STYLE_NONE },
+                { N_("Style 1"),   COMPSELECT_STYLE1 },
+                { N_("Style 2"),   COMPSELECT_STYLE2 },
+                { N_("Style 3"),   COMPSELECT_STYLE3 },
+                { N_("Style 4"),   COMPSELECT_STYLE4 },
+                { N_("Style 5"),   COMPSELECT_STYLE5 },
+                { N_("Style 6"),   COMPSELECT_STYLE6 },
+                { N_("Style 7"),   COMPSELECT_STYLE7 },
+                { N_("Style 8"),   COMPSELECT_STYLE8 },
+                { N_("All"),       COMPSELECT_STYLE_ALL }
+              };
+
+  widget_list = NULL;
+
+  menu  = GTK_MENU (gtk_menu_new ());
+
+  for (i = 0; i < sizeof (types) / sizeof ( struct styles ); i++) {
+
+    menuitem = gtk_check_menu_item_new_with_mnemonic (_(types[i].str));
+    gtk_menu_append ( menu, menuitem);
+
+    gtk_object_set_data (GTK_OBJECT(menuitem), "style",
+                         GINT_TO_POINTER (types[i].style));
+
+    /* Maybe shouldn't bother since this will be over-riden when dialog is restored */
+    state = ((MASK & types[i].style) == types[i].style);
+
+    g_object_set (G_OBJECT(menuitem), "active",
+                  state,
+                  NULL);
+
+    /* Save pointer to widget */
+    widget_list = g_slist_append(widget_list, menuitem);
+
+    gtk_widget_show (menuitem);
+
+    /* Setup callback for when a menu item is selected */
+    handler= g_signal_connect (menuitem, "toggled",
+                               G_CALLBACK (compselect_toggle_style),
+                               ThisDialog);
+
+    gtk_object_set_data (GTK_OBJECT(menuitem), "handler", (void*) handler);
+
+  }
+  gtk_widget_set_tooltip_text(menuitem, _("Enable all styles"));
+  gtk_widget_set_tooltip_text(widget_list->data, _("Uncheck all styles"));
+
+  if (MASK) /* If any value other than 0 then uncheck "None" */
+    gtk_set_item_active(widget_list->data, FALSE);
+
+  ThisDialog->style_menu_widgets = widget_list;
+
+  return(menu);
+}
+
 /*! \brief Create the menu of behaviors for the Component Select dialog
  *  \par Function Description
  *  This function creates and returns a <B>GtkComboBox</B> for
@@ -1712,6 +2626,100 @@ static GtkWidget *create_behaviors_menu ( )
   return(menu);
 }
 
+/*! \brief Creates the Action Area on the Component Select Dialog */
+static GtkWidget*
+create_action_area (Compselect *ThisDialog, GtkWidget *parent)
+{
+  GtkWidget   *action_hbox  = NULL;
+  GtkWidget   *optionmenu   = NULL;
+
+  GedaMenuButton *stylemenu = NULL;
+
+  /* Create a Horizontal Box for everything to go into */
+  NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
+
+  /* ---- style Menu ---- */
+  stylemenu = geda_menu_button_new(NULL, _("Rescan") );
+
+  if ( GEDA_IS_MENU_BUTTON (stylemenu)) {
+
+    compselect->menu = compselect_create_styles_menu (ThisDialog);
+
+    geda_menu_button_set_menu(stylemenu, (GtkWidget*) compselect->menu );
+
+    geda_menu_button_set_tooltip_text(stylemenu, _("Re-scan component libraries"));
+
+    geda_menu_button_set_arrow_tooltip_text(stylemenu, _("Set style filter"));
+
+    g_signal_connect (stylemenu, "clicked",
+                      G_CALLBACK (compselect_callback_rescan_libraries),
+                      ThisDialog);
+
+    gtk_widget_show_all ((GtkWidget*)stylemenu);
+
+    SetWidgetSize(stylemenu, 125, DIALOG_BUTTON_VSIZE);
+
+    ThisDialog->style_menu = stylemenu;
+
+   /* Add the combobox to the horizontal action box */
+    PACK_BOX( action_hbox, ThisDialog->style_menu, FALSE, FALSE, 10);
+
+  }
+  else
+    ThisDialog->style_menu = NULL;
+
+  /* ---- behavior Menu ---- */
+  /* Create and Save a pointer to the behavior menu widget */
+  optionmenu = gtk_option_menu_new ();
+
+  if ( GTK_IS_OPTION_MENU ( optionmenu )) {
+     gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
+                              create_behaviors_menu ());
+
+     g_signal_connect (optionmenu, "changed",
+                       G_CALLBACK (compselect_callback_behavior_changed),
+                       ThisDialog);
+
+     gtk_widget_show_all (optionmenu);
+
+     SetWidgetSize(optionmenu, 125, DIALOG_BUTTON_VSIZE);
+
+     ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
+
+     /* Add the combobox to the horizontal action box */
+    PACK_BOX( action_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
+
+  }
+  else
+    ThisDialog->behavior_menu = NULL;
+
+  /* Create and connect the Close and Okay Buttons */
+  GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
+  GtkWidget *okay_butt  = gtk_button_new_from_stock (GTK_STOCK_OK);
+
+  SetWidgetSize(close_butt, DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
+  SetWidgetSize(okay_butt,  DIALOG_BUTTON_HSIZE, DIALOG_BUTTON_VSIZE);
+
+  g_signal_connect (close_butt,
+                    "clicked",
+                    G_CALLBACK (on_close_butt_clicked),
+                    ThisDialog);
+
+  g_signal_connect (okay_butt,
+                    "clicked",
+                    G_CALLBACK (on_okay_butt_clicked),
+                    ThisDialog);
+
+  gtk_box_pack_end (GTK_BOX (action_hbox), okay_butt, FALSE, FALSE,
+                    DIALOG_H_SPACING);
+
+  gtk_box_pack_end (GTK_BOX (action_hbox), close_butt, FALSE, FALSE,
+                    DIALOG_H_SPACING);
+
+  return action_hbox;
+}
+
+
 GType compselect_get_type ()
 {
   static GType compselect_type = 0;
@@ -1737,7 +2745,7 @@ GType compselect_get_type ()
   return compselect_type;
 }
 
-/*! \brief GschemDialog "geometry_save" class method handler
+/*! \brief GschemDialog "geometry_save" class method over-ride
  *
  *  \par Function Description
  *  Chain up to our parent's method to save the dialog's size and
@@ -1750,20 +2758,45 @@ GType compselect_get_type ()
 static void compselect_geometry_save (GschemDialog *dialog,
                                       GKeyFile *key_file, char *group_name)
 {
-  int position;
+  int hpaned;
+  int vpaned;
+  int tab;
+  bool show_tips;
+  bool show_groups;
+  bool subgroups;
+  unsigned int flags;
 
   /* Call the parent's geometry_save method */
   GSCHEM_DIALOG_CLASS (compselect_parent_class)->
     geometry_save (dialog, key_file, group_name);
 
-  position = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->hpaned));
-  g_key_file_set_integer (key_file, group_name, "hpaned", position);
+  hpaned = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->hpaned));
+  if( hpaned != old_hpaned)
+    g_key_file_set_integer (key_file, group_name, "hpaned", hpaned);
 
-  position = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->vpaned));
-  g_key_file_set_integer (key_file, group_name, "vpaned", position);
+  vpaned = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->vpaned));
+  if( vpaned != old_vpaned)
+    g_key_file_set_integer (key_file, group_name, "vpaned", vpaned);
 
-  position = gtk_notebook_get_current_page (COMPSELECT (dialog)->notebook);
-  g_key_file_set_integer (key_file, group_name, "source-tab", position);
+  tab = gtk_notebook_get_current_page (COMPSELECT (dialog)->notebook);
+  if( tab != old_tab)
+    g_key_file_set_integer (key_file, group_name, "source-tab", tab);
+
+  flags  = COMPSELECT (dialog)->style_flag;
+  if( flags != old_flags)
+    g_key_file_set_integer (key_file, group_name, "style", flags);
+
+  show_tips =COMPSELECT (dialog)->show_tips;
+  if( show_tips != old_show_tips)
+    g_key_file_set_boolean (key_file, group_name, "show-tips", show_tips);
+
+  show_groups =COMPSELECT (dialog)->show_groups;
+  if( show_groups != old_show_groups)
+    g_key_file_set_boolean (key_file, group_name, "show-groups", show_groups);
+
+  subgroups =COMPSELECT (dialog)->subgroups;
+  if( subgroups != old_subgroups)
+    g_key_file_set_boolean (key_file, group_name, "subgroups", subgroups);
 }
 
 /*! \brief GschemDialog "geometry_restore" class method handler
@@ -1771,6 +2804,11 @@ static void compselect_geometry_save (GschemDialog *dialog,
  *  \par Function Description
  *  Chain up to our parent's method to restore the dialog's size and
  *  position, then restore the dialog's current internal geometry.
+ *  This function also sets the style menu toggle widgets based on the
+ *  flag mask, which was retrieved before the dialog was contructed.
+ *
+ *  \remark This function is executed post contruction, essentially right
+ *  before when the gtk_widget_show is applied to the entire window.
  *
  *  \param [in] dialog     The GschemDialog to restore the geometry of.
  *  \param [in] key_file   The GKeyFile to save the geometry data to.
@@ -1780,41 +2818,137 @@ static void compselect_geometry_restore (GschemDialog *dialog,
                                          GKeyFile *key_file,
                                          char *group_name)
 {
-  int position;
+  Compselect *ThisDialog = COMPSELECT (dialog);
+
+  CompselectStyle types[] = { COMPSELECT_STYLE_NONE,
+                              COMPSELECT_STYLE1,
+                              COMPSELECT_STYLE2,
+                              COMPSELECT_STYLE3,
+                              COMPSELECT_STYLE4,
+                              COMPSELECT_STYLE5,
+                              COMPSELECT_STYLE6,
+                              COMPSELECT_STYLE7,
+                              COMPSELECT_STYLE8,
+                              COMPSELECT_STYLE_ALL };
 
   /* Call the parent's geometry_restore method */
   GSCHEM_DIALOG_CLASS (compselect_parent_class)->
     geometry_restore (dialog, key_file, group_name);
 
-  position = g_key_file_get_integer (key_file, group_name, "hpaned", NULL);
-  if (position != 0)
-    gtk_paned_set_position (GTK_PANED(COMPSELECT (dialog)->hpaned), position);
+  old_hpaned = g_key_file_get_integer (key_file, group_name, "hpaned", NULL);
+  if (old_hpaned != 0)
+    gtk_paned_set_position ( GTK_PANED ( ThisDialog->hpaned), old_hpaned);
 
-  position = g_key_file_get_integer (key_file, group_name, "vpaned", NULL);
-  if (position != 0)
-    gtk_paned_set_position (GTK_PANED(COMPSELECT (dialog)->vpaned), position);
 
-  position = g_key_file_get_integer(key_file, group_name, "source-tab", NULL);
-  gtk_notebook_set_current_page (COMPSELECT (dialog)->notebook, position);
+  old_vpaned = g_key_file_get_integer (key_file, group_name, "vpaned", NULL);
+  if (old_vpaned != 0)
+    gtk_paned_set_position ( GTK_PANED ( ThisDialog->vpaned), old_vpaned);
+
+  old_tab = g_key_file_get_integer(key_file, group_name, "source-tab", NULL);
+  gtk_notebook_set_current_page ( ThisDialog->notebook, old_tab);
+
+  int i;
+  bool state;
+  GtkWidget *menuitem;
+
+  /* skip over "None" & set active if bit is set */
+  for (i = 1; i < sizeof (types) ; i++) {
+    menuitem = g_slist_nth_data(compselect->style_menu_widgets ,i);
+    state = ((MASK & types[i]) == types[i]);
+    gtk_set_item_active(menuitem, state);
+  }
+
+  if (MASK) /* If any value other than 0 then uncheck "None" */
+    gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
+
 }
 
+/*! \brief Retrived Component Select dialog settings
+ *
+ *  \par Function Description
+ *  This function is used to retrieve the previous settings such as the
+ *  flag mask for the style menu before the dialog is contructed.
+ *
+ *  \param [in] compselect The Compselect Dialog widget.
+ *
+ */
+static void compselect_settings_restore (Compselect *compselect)
+{
+  char *file;
+  char *group_name;
+
+  GKeyFile *key_file = NULL;
+
+  GschemDialog *Dialog   = GSCHEM_DIALOG( compselect );
+
+  file = g_build_filename (s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
+
+  key_file = g_key_file_new();
+
+  if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
+    mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
+
+    g_file_set_contents (file, "", -1, NULL);
+  }
+
+  if (!g_key_file_load_from_file (key_file, file, G_KEY_FILE_NONE, NULL)) {
+    /* error opening key file, create an empty one and try again */
+    g_file_set_contents (file, "", -1, NULL);
+    if ( !g_key_file_load_from_file (key_file, file, G_KEY_FILE_NONE, NULL)) {
+       g_free (file);
+       return;
+    }
+  }
+  g_free (file);
+
+  group_name = Dialog->settings_name;
+  if (group_name != NULL) {
+
+    MASK = g_key_file_get_integer(key_file, group_name, "style", NULL);
+    old_flags = MASK;
+
+    compselect->show_tips   = g_key_file_get_boolean(key_file,
+                                                     group_name,
+                                                     "show-tips", NULL);
+    compselect->show_groups = g_key_file_get_boolean(key_file,
+                                                     group_name,
+                                                     "show-groups", NULL);
+    compselect->subgroups   = g_key_file_get_boolean(key_file,
+                                                     group_name,
+                                                     "subgroups", NULL);
+
+    /* saved these to globals to check when exiting */
+    old_show_tips   = compselect->show_tips;
+    old_show_groups = compselect->show_groups;
+    old_subgroups   = compselect->subgroups;
+  }
+}
+
+#undef MASK
+/*! \brief  Compselect Dialog Class Initialization
+ *  \par Function Description
+ *   This is the class initializer function before construction of
+ *   the Compselect dialog.
+ */
 static void
 compselect_class_init (CompselectClass *klass)
 {
   GParamSpec *params;
 
-  GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
+  GObjectClass *gobject_class            = G_OBJECT_CLASS (klass);
   GschemDialogClass *gschem_dialog_class = GSCHEM_DIALOG_CLASS (klass);
 
-  gschem_dialog_class->geometry_save    = compselect_geometry_save;
-  gschem_dialog_class->geometry_restore = compselect_geometry_restore;
+  gschem_dialog_class->geometry_save     = compselect_geometry_save;
+  gschem_dialog_class->geometry_restore  = compselect_geometry_restore;
 
   gobject_class->constructor  = compselect_constructor;
   gobject_class->finalize     = compselect_finalize;
   gobject_class->set_property = compselect_set_property;
   gobject_class->get_property = compselect_get_property;
 
-  compselect_parent_class = g_type_class_peek_parent (klass);
+  compselect_parent_class     = g_type_class_peek_parent (klass);
+
+  klass->refresh              = compselect_on_refresh_tree_views;
 
   params = g_param_spec_pointer ("symbol", "", "", G_PARAM_READABLE);
   g_object_class_install_property ( gobject_class, PROP_SYMBOL, params);
@@ -1833,13 +2967,32 @@ compselect_class_init (CompselectClass *klass)
                              _("Active sheet of the notebook widget"),
                              IN_USE_TAB, LOCAL_TAB, IN_USE_TAB,
                              G_PARAM_READABLE);
+
   g_object_class_install_property ( gobject_class, PROP_VIEW, params);
 
+  signals[REFRESH] =  g_signal_new ("refresh",
+                                    G_OBJECT_CLASS_TYPE (gobject_class),
+                                    G_SIGNAL_RUN_FIRST,
+                                    G_STRUCT_OFFSET (CompselectClass, refresh),
+                                    NULL, NULL,
+                                    g_cclosure_marshal_VOID__VOID,
+                                    G_TYPE_NONE, 0);
 }
 
+/*! \brief  Compselect Dialog Contructor
+ *  \par Function Description
+ *   This is the main function for construction of the Compselect
+ * dialog box. Due to the expanse of this dialog, other previously
+ * defined function function a called to create portions. Those
+ * function above have "create-" in the function name.
+ *
+ * @type:          TYPE_COMPSELECT?
+ * @ # properties: The number of inital parameters?
+ * @ params:       Inital g_object property values
+ */
 static GObject*
 compselect_constructor (GType type,
-                        guint n_construct_properties,
+                        unsigned int n_construct_properties,
                         GObjectConstructParam *construct_params)
 {
   GSCHEM_TOPLEVEL *w_current;
@@ -1849,10 +3002,10 @@ compselect_constructor (GType type,
   GtkWidget *hpaned, *vpaned, *notebook, *attributes;
   GtkWidget *notebook_tab  = NULL;
   GtkWidget *preview       = NULL;
-  GtkWidget *optionmenu    = NULL;
   GtkWidget *alignment     = NULL;
   GtkWidget *frame         = NULL;
   GtkWidget *filter_hbox   = NULL;
+  GtkWidget *action_area   = NULL;
   GtkVBox   *main_vbox     = NULL;
   GtkWidget *label         = NULL;
 
@@ -1865,17 +3018,29 @@ compselect_constructor (GType type,
     constructor (type, n_construct_properties, construct_params);
   ThisDialog = COMPSELECT (object);
 
+  ThisDialog->tooltips = tooltips;
+
   w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
 
-  main_vbox = GTK_VBOX(GTK_DIALOG (ThisDialog)->vbox);
-
-  do_sort = w_current->sort_component_library;
+  SortLibrarySwitch  = NULL;
+  ShowGroupsSwitch   = NULL;
 
   ThisDialog->show_groups = TRUE;
   ThisDialog->subgroups   = TRUE;
 
-  SortLibrarySwitch  = NULL;
-  ShowGroupsSwitch   = NULL;
+  ThisDialog->show_tips   = TRUE;
+
+  /* Initialize the hidden property */
+  ThisDialog->hidden      = FALSE;
+
+  ThisDialog->style_menu_widgets = NULL;
+
+  /* Retrieve previous settings */
+  compselect_settings_restore(ThisDialog);
+
+  main_vbox = GTK_VBOX(GTK_DIALOG (ThisDialog)->vbox);
+
+  do_sort = w_current->sort_component_library;
 
   /* dialog initialization */
   g_object_set (object,
@@ -1993,39 +3158,11 @@ compselect_constructor (GType type,
   GEDA_CALLBACK_SWITCH (ShowGroups,  cs_callback_switch_toggled, ThisDialog)
   GEDA_CALLBACK_SWITCH (SubGroups,   cs_callback_switch_toggled, ThisDialog)
 
-  /* ---- behavior Menu ---- */
-  /* Create and Save a pointer to the behavior menu widget */
-  optionmenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu), create_behaviors_menu ());
-  g_signal_connect (optionmenu, "changed",
-                    G_CALLBACK (compselect_callback_behavior_changed),
-                    ThisDialog);
-
-  gtk_widget_show_all (optionmenu);
-
-  ThisDialog->behavior_menu = (GTK_OPTION_MENU(optionmenu));
-
-   /* Add the combobox to the horizontal options box */
-  PACK_BOX( opts_hbox, ThisDialog->behavior_menu, FALSE, FALSE, 10);
-
   /* Add the horizontal options box to the main vertical box */
   PACK_BOX( main_vbox, opts_hbox, FALSE, FALSE, 0)
 
-  /* now add buttons in the action area */
-  gtk_dialog_add_buttons (GTK_DIALOG (ThisDialog),
-                          /*  - close button */
-                          GTK_STOCK_CLOSE, GTK_RESPONSE_CLOSE,
-                          GTK_STOCK_OK, COMPSELECT_RESPONSE_HIDE,
-                          NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order (GTK_DIALOG (ThisDialog),
-                                          COMPSELECT_RESPONSE_HIDE,
-                                          GTK_RESPONSE_CLOSE,
-                                          -1);
-
-  /* Initialize the hidden property */
-  ThisDialog->hidden = FALSE;
+  action_area = create_action_area (compselect, (GtkWidget*) main_vbox);
+  gtk_widget_show_all (action_area);
 
   g_signal_connect ((gpointer) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
@@ -2043,12 +3180,22 @@ static void compselect_finalize (GObject *object)
   }
 
   G_OBJECT_CLASS (compselect_parent_class)->finalize (object);
+
 }
 
-static void compselect_set_property (GObject *object,
-                                     guint property_id,
+/*! \brief  Set Properties of the Compselect Dialog
+ *  \par Function Description
+ *   This function handled the gobject properties setters.
+ *
+ * @object:  Pointer to Compselect dialog structure
+ * @prop_id: The enumerated property ID
+ * @value:   The value to set the property
+ * @pspec:   The parameter specifications for the property
+ */
+static void compselect_set_property (GObject      *object,
+                                     unsigned int  property_id,
                                      const GValue *value,
-                                     GParamSpec *pspec)
+                                     GParamSpec   *pspec)
 {
   Compselect *compselect = COMPSELECT (object);
 
@@ -2070,6 +3217,15 @@ static void compselect_set_property (GObject *object,
 
 }
 
+/*! \brief  Get Properties of the Compselect Dialog
+ *  \par Function Description
+ *   This function handled the gobject properties request.
+ *
+ * @object:       Pointer to Compselect dialog structure
+ * @prop_id:      The enumerated property ID
+ * @value (out):  The variable that will be set to the property value
+ * @pspec:        The parameter specifications for the property
+ */
 static void compselect_get_property (GObject *object,
                                      guint property_id,
                                      GValue *value,

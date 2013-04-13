@@ -203,12 +203,19 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+
     GSList *tmp, *filenames =
       gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
 
     /* open each file */
-    for (tmp = filenames; tmp != NULL;tmp = g_slist_next (tmp)) {
-      page = x_window_open_page (w_current, (char*)tmp->data);
+    for (tmp = filenames; tmp != NULL; tmp = g_slist_next (tmp)) {
+
+      if(tmp->data != NULL) {
+        page = x_window_open_page (w_current, (char*)tmp->data);
+      }
+      else {
+        s_log_message("<x_window_open_page> error: file name should not be NULL");
+      }
     }
     /* Switch to the last page opened */
     if ( page != NULL )
@@ -218,6 +225,7 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
     g_slist_foreach (filenames, (GFunc)g_free, NULL);
     g_slist_free (filenames);
   }
+
   gtk_widget_destroy (dialog);
 
 }

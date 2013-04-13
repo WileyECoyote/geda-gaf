@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1912-2013 Ales Hvezda
- * Copyright (C) 1912-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2012-2013 Ales Hvezda
+ * Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
  *
  * Date: December 25, 2012
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
@@ -17,7 +17,7 @@
  * Library General Public License for more details.
  *
  * You should have received a copy of the GNU Library General Public
- * License along with the Gnome Library; see the file COPYING.LIB.  If not,
+ * License along with the GTK Library; see the file COPYING.LIB.  If not,
  * write to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, USA.
  *

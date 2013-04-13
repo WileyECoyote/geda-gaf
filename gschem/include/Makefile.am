@@ -31,7 +31,7 @@ noinst_HEADERS = \
 		x_toolbars.h		\
 		x_window.h
 
-MOSTLYCLEANFILES     = *~ #*#
-CLEANFILES           = *~ #*#
-DISTCLEANFILES       = *~ #*#
-MAINTAINERCLEANFILES = *~  #*# Makefile.in
+MOSTLYCLEANFILES     = *~ widgets/*~ #*#
+CLEANFILES           = *~ widgets/*~ #*#
+DISTCLEANFILES       = *~ widgets/*~ #*#
+MAINTAINERCLEANFILES = *~ widgets/*~ #*# Makefile.in

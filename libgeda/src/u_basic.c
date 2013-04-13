@@ -126,6 +126,29 @@ void sort_string_array( char *strings[], size_t strings_size) {
     qsort(strings, strings_len, sizeof(char *), cstring_cmp);
 }
 
+int geda_stristr ( const char *haystack, const char *needle)
+{
+   int result = -1;
+
+   char *upper_needle;
+   char *upper_haystack;
+
+   if (g_strstr_len( haystack, -1, needle) != NULL) {
+     result = 0;
+   }
+   else {
+     upper_needle   = g_ascii_strup( needle, -1);
+     upper_haystack = g_ascii_strup( haystack, -1);
+     if (g_strstr_len( upper_haystack, -1, upper_needle) != NULL) {
+       result = 0;
+     }
+     else
+     g_free(upper_needle);
+     g_free(upper_haystack);
+   }
+
+   return result;
+}
 /* WEH: Maybe should be in <string.h> as inline */
 /*! \brief Check for equal strings.
  *
@@ -220,7 +243,7 @@ int stricmp(char *str1, char *str2)
  *  libraries but not always.
  *
  *  \param [in] char* str1 is the string to be search
- *  \param [in] char* str1 is the string to search for
+ *  \param [in] char* str2 is the string to search for
  *  \param [in] int   n is the number of char to compare
  *
  *  \retval 0 if the strings are equivalent, -1 if str2 if

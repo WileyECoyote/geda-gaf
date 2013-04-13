@@ -27,7 +27,7 @@
 #define MAX_RECENT_FILES 10
 
 /* Flag for defaults to detect keywords absent from RC files */
-#define RC_NIL -1
+//#define RC_NIL -1
 
 /*-------- Color & Image Stuff ------- */
 

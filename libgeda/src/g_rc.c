@@ -134,7 +134,7 @@ static bool g_rc_try_mark_read (TOPLEVEL *toplevel, char *filename, GError **err
   g_return_val_if_fail ((toplevel != NULL), FALSE);
   g_return_val_if_fail ((filename != NULL), FALSE);
 
-  /* Test if marked read already */
+  /* Test if marked read already - WEH:looks dangerous */
   found = g_list_find_custom (toplevel->RC_list, filename,
                               (GCompareFunc) strcmp);
   if (found != NULL) {
@@ -185,10 +185,12 @@ bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GE
     g_clear_error (&tmp_err);
   }
 
+
   /* If the fluid for storing the relevant configuration context for
    * RC file reading hasn't been created yet, create it. */
   if (scheme_rc_config_fluid == SCM_UNDEFINED)
     scheme_rc_config_fluid = scm_permanent_object (scm_make_fluid ());
+
 
   /* Normalise filename */
   name_norm = f_normalize_filename (rcfile, err);
@@ -199,8 +201,8 @@ bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GE
    * toplevel, so we *don't* free it. */
   scm_dynwind_begin (0);
   scm_dynwind_fluid (scheme_rc_config_fluid, edascm_from_config (cfg));
-  status = (g_rc_try_mark_read (toplevel, name_norm, &tmp_err)
-            && g_read_file (toplevel, name_norm, &tmp_err));
+
+  status = (g_rc_try_mark_read (toplevel, name_norm, &tmp_err) && g_read_file (toplevel, name_norm, &tmp_err));
   scm_dynwind_end ();
 
   if (status) {
@@ -309,6 +311,7 @@ g_rc_parse_local (TOPLEVEL *toplevel, const char *rcname, const char *path,
   }
 
   rcfile = g_build_filename (dir, rcname, NULL);
+
   status = g_rc_parse_file (toplevel, rcfile, NULL, err);
 
   g_free (dir);
@@ -497,7 +500,7 @@ SCM g_rc_component_library(SCM path, SCM name)
   scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
   free (temp);
 
-  /* invalid path? */
+  /* is invalid path? */
   if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
     /*fprintf(stderr, "Check library path [%s]\n", directory);*/
     scm_dynwind_end();
@@ -510,8 +513,14 @@ SCM g_rc_component_library(SCM path, SCM name)
   else {
     char *cwd = g_get_current_dir ();
     char *temp;
-    temp = g_build_filename (cwd, directory, NULL);
+
+    if (*directory == '.' && *directory + 1 == '/' )
+      temp = g_build_filename (cwd, directory + 2, NULL);
+    else
+      temp = g_build_filename (cwd, directory, NULL);
+
     s_clib_add_directory (temp, namestr);
+
     g_free(temp);
     g_free(cwd);
   }
@@ -593,6 +602,7 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
 SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
 {
   char *namestr;
+
   SCM result = SCM_BOOL_F;
 
   SCM_ASSERT (scm_is_true (scm_procedure_p (listfunc)), listfunc, SCM_ARG1,
@@ -761,6 +771,7 @@ g_rc_rc_filename()
 
   return scm_source_property (source, scm_sym_filename);
 }
+
 /* Net Styles*/
 /*! \brief This function processes the bus-style RC entry.
  *  \par Function Description

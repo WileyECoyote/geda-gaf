@@ -69,7 +69,7 @@ uninstall-local:
 
 # Since there are no makefile in the symbol subfolders, each must be include here
 # with ./*/*~
-MOSTLYCLEANFILES = *.log *~ ./*~ ./*/*~
-CLEANFILES = *.log *~ ./*~ ./*/*~
-DISTCLEANFILES = *.log core FILE *~ ./*~ ./*/*~
-MAINTAINERCLEANFILES = *.log *~ ./*~ ./*/*~ Makefile.in ChangeLog
+MOSTLYCLEANFILES = *.log *~ ./*~ ./*/*~ ./*/*/*~
+CLEANFILES = *.log *~ ./*~ ./*/*~ ./*/*/*~
+DISTCLEANFILES = *.log core FILE *~ ./*~ ./*/*~ ./*/*/*~
+MAINTAINERCLEANFILES = *.log *~ ./*~ ./*/*~  ./*/*/*~ Makefile.in ChangeLog

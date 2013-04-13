@@ -42,10 +42,13 @@ GList *default_always_promote_attributes = NULL;
 GList *default_component_groups = NULL;
 
 int   default_attribute_promotion = TRUE;
-int   default_promote_invisible = FALSE;
-int   default_keep_invisible = TRUE;
+int   default_promote_invisible   = FALSE;
+int   default_keep_invisible      = TRUE;
 
 int   default_make_backup_files = TRUE;
+
+int   default_enable_style_zero = TRUE;;
+int   default_component_style   = RC_NIL;
 
 /* Net Styles*/
 int   default_bus_style        = DEFAULT_BUS_STYLE;
@@ -74,19 +77,19 @@ void i_vars_libgeda_set(TOPLEVEL *toplevel)
 {
   GList *iter;
 
-  toplevel->init_right   = default_init_right;
-  toplevel->init_bottom  = default_init_bottom;
+  toplevel->init_right          = default_init_right;
+  toplevel->init_bottom         = default_init_bottom;
 
   toplevel->attribute_promotion = default_attribute_promotion;
-  toplevel->promote_invisible = default_promote_invisible;
-  toplevel->keep_invisible = default_keep_invisible;
+  toplevel->promote_invisible   = default_promote_invisible;
+  toplevel->keep_invisible      = default_keep_invisible;
 
-  toplevel->make_backup_files = default_make_backup_files;
+  toplevel->make_backup_files   = default_make_backup_files;
 
-  toplevel->bus_style    = default_bus_style;
-  toplevel->net_style    = default_net_style;
-  toplevel->pin_style    = default_pin_style;
-  toplevel->line_style   = default_line_style;
+  toplevel->bus_style           = default_bus_style;
+  toplevel->net_style           = default_net_style;
+  toplevel->pin_style           = default_pin_style;
+  toplevel->line_style          = default_line_style;
 
   toplevel->thick_bus_width     = default_thick_bus_width;
   toplevel->thick_line_width    = default_thick_line_width;

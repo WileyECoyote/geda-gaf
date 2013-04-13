@@ -322,6 +322,7 @@ COMMAND ( do_close ) {
   BEGIN_COMMAND(do_close);
   bool can_close;
   can_close = TRUE;
+
   if (w_current->toplevel->page_current->CHANGED ) {
     can_close = x_dialog_close_changed_page (w_current, w_current->toplevel->page_current);
   }
@@ -358,13 +359,13 @@ COMMAND ( do_save ) {
   NOT_NULL(w_current->toplevel->page_current);
 
   if(w_current->toplevel->page_current->page_filename == NULL)
-    force_save_as = TRUE;
+    w_current->force_save_as = TRUE;
 
   if (strstr(w_current->toplevel->page_current->page_filename,
       w_current->toplevel->untitled_name))
-        force_save_as = TRUE;
+        w_current->force_save_as = TRUE;
 
-  if (force_save_as) {
+  if (w_current->force_save_as) {
       x_fileselect_save (w_current);
   }
   else {

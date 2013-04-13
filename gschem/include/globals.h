@@ -45,8 +45,6 @@ extern volatile int log_destiny;       /* controls where the log system writes d
 extern volatile int console_window;
 extern volatile int console_window_type;
 
-extern int force_save_as;
-
 #define command_history 22
 #define MAX_BUFFERS 	6
 

@@ -524,10 +524,10 @@ if ( have_mutil_pages ) {
  *  \param [in] w_current GSCHEM_TOPLEVEL structure
  *  \param [in] string The filename
  */
-void i_set_filename(GSCHEM_TOPLEVEL *w_current, const gchar *string)
+void i_set_filename(GSCHEM_TOPLEVEL *w_current, const char *string)
 {
-  gchar *print_string=NULL;
-  gchar *filename=NULL;
+  char *print_string=NULL;
+  char *filename=NULL;
 
   if (!w_current->main_window)
     return;

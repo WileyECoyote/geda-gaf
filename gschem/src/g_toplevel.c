@@ -115,6 +115,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   /* ---------------- Gschem internal state ---------------- */
   w_current->num_untitled          = 0;
   w_current->event_state           = SELECT;
+  w_current->force_save_as         = FALSE;
   w_current->image_width           = 0;
   w_current->image_height          = 0;
   w_current->min_zoom              = 0;

@@ -67,16 +67,20 @@
 char *f_get_autosave_filename (const char *filename)
 {
   char *result, *basename, *new_basename, *dirname;
-  basename = g_path_get_basename(filename);
-  dirname = g_path_get_dirname(filename);
-  new_basename = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING,
+  if (filename== NULL) {
+    result = NULL;
+  }
+  else {
+    basename = g_path_get_basename(filename);
+    dirname = g_path_get_dirname(filename);
+    new_basename = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING,
                                  basename);
-  result = g_build_filename(dirname, new_basename, NULL);
+    result = g_build_filename(dirname, new_basename, NULL);
 
-  g_free(basename);
-  g_free(new_basename);
-  g_free(dirname);
-
+    g_free(basename);
+    g_free(new_basename);
+    g_free(dirname);
+  }
   return result;
 }
 
@@ -221,7 +225,9 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
 
   /* Now open RC and process file */
   if (flags & F_OPEN_RC) {
+
     g_rc_parse_local (toplevel, "gafrc", file_directory, &tmp_err);
+
     if (tmp_err != NULL) {
       /* RC files are allowed to be missing or skipped; check for this. */
       if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&

@@ -92,13 +92,16 @@ static void save_geometry_to_file(gpointer user_data)
   char *data, *file;
 
   v_log_message("Saving dialog geometry\n");
-  g_assert( dialog_geometry != NULL );
+  if( dialog_geometry != NULL ) {
 
-  data = g_key_file_to_data(dialog_geometry, NULL, NULL);
-  file = g_build_filename(s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
-  g_file_set_contents(file, data, -1, NULL);
-  g_free(data);
-  g_free(file);
+    data = g_key_file_to_data(dialog_geometry, NULL, NULL);
+    file = g_build_filename(s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
+    g_file_set_contents(file, data, -1, NULL);
+    g_free(data);
+    g_free(file);
+  }
+  else
+    fprintf(stderr, "<save_geometry_to_file> Error: dialog_geometry=NULL\n");
 }
 
 
@@ -322,11 +325,14 @@ static void show_handler (GtkWidget *widget)
   if (group_name != NULL) {
 
     setup_keyfile ();
-    g_assert( dialog_geometry != NULL );
-    if (g_key_file_has_group (dialog_geometry, group_name)) {
-      g_signal_emit (Dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
-                     dialog_geometry, group_name);
+    if ( dialog_geometry != NULL ) {
+      if (g_key_file_has_group (dialog_geometry, group_name)) {
+        g_signal_emit (Dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
+                       dialog_geometry, group_name);
+      }
     }
+    else
+      fprintf(stderr, "<show_handler> Error: dialog_geometry=NULL\n");
   }
 
   /* Let GTK show the window */
@@ -351,8 +357,8 @@ static void unmap_handler (GtkWidget *widget)
   group_name = dialog->settings_name;
   if (group_name != NULL) {
 
-    g_assert( dialog_geometry != NULL );
-    g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_SAVE ], 0,
+    if( dialog_geometry != NULL )
+      g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_SAVE ], 0,
                    dialog_geometry, group_name);
   }
   if (dialog->func != NULL) {

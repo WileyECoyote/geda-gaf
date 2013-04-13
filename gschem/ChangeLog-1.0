@@ -1,24 +1,112 @@
+
+2013-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        Comments: It seems like one aspects that seems to be "handicapping"
+        the geda-gaf project is the "immature" libraries. So I have striven
+        to add new symbols in "bulk" and much more work is needed, partic-
+        ularly for modern integrated circuits. The Component Selection dia-
+        log was one of Gschem's best and most sophisticated dialogs but as
+        more symbols were added to the library an even more elaborate sys-
+        tems was necessary. This "experimental" release along with the March
+        2013 release have primarily been devoted to improving this situation.
+        I think the library can now be expanded but field testing is needed
+        to "polish" the new schemes. (Maybe a library manager is needed.)
+
+        * src/x_basic.c: Added functions tree_view_row_get_visibility and
+        tree_view_row_make_visible.
+
+        * src/widgets/geda_menu_button.c: New source for Menu Button Widget.
+        The widget is similar to GtkMenuToolButton but is more versatile in
+        terms of configurability and, more importantly, is not derived from
+        GtkToolButton. The widget is not sub-classed but is instead derived
+        from GtkEventBox because the "action-appearance" property does not
+        appear to be responsive for GtkToolButton derivatives. The new widget
+        could use improvements, maybe put button inside alignment widgets
+        but seems functional and stable.
+
+        * src/x_compselect.c: Another re-vamp as follows: Behavior button
+        relocated to custom action area, aka on the same row as the "close"
+        and "okay" button. A new Menu Button widget was added to the left of
+        GtkOptionMenu Behavior combo. The GtkMenuToolButton's disappearing
+        button pre-light was not consistence with the steady combo outline
+        so the new Menu Button widget was invented. The Menu button contains
+        a new "style" check menu which is used to filter displaying of -x.sym
+        files in tree-views where x = 1 through 8. The main button performs
+        the previous "refresh" function but is now called "rescan".
+        A new pop-up menu was added to the right mouse button for the tree
+        views and is also accessible with <shift>-F10. The menu includes a
+        styles submenu and other features. One feature that I really like is
+        the ability to close a tree without having to scroll up to the parent.
+        (This was not needed before but now there are symbol folders with more
+        than 300 symbols, so this feature might come in handy.)
+        Tool-tips added through-out the dialog, with the tips in tree-views
+        being enabled or disabled from the new mouse menu.
+
+        New algorithms were added for refreshing of the library tree-views
+        so that any previously selected row is centered in the views after
+        the model is replaced because it was really annoying when the view
+        was refreshed with the non-labeled, tip-less "refresh" button and all
+        opened folders would collapse because the modle was replaced in the
+        view. The new algorithms locate the folders, sub-folders and selected
+        symbol and re-centers the new view of the tree on the selection. If
+        the previously selected symbol is no longer in the view because it's
+        style was turned off then the first symbol matching the name without
+        the considering the -x.sym characters is selected instead. See new
+        function compselect_callback_refresh_views. (This was a lot of work!)
+
+        A custom signal is emitted with the style is changed and all of the
+        tree-views are automatically "refreshed" so the "refresh" button or
+        menu option shouldn't really be needed.
+
+        Note: With this new scheme, different symbol style sources may or may
+        not be loaded into memory when gschem starts. Those that are, may or
+        may not be visible in the trees-views of the component selection dia-
+        log. In the new context, "Refreshing" meaning rebuilding the models
+        based on the current "group" and "sub-group" setting and populating
+        the trees with the symbols that are in memory.
+
+        Added module level globals to check "settings" variables. The settings
+        are only written to the key file if the value changed. A new procedure,
+        compselect_settings_restore, was added to obtain settings from the
+        keyfile before the dialog is constructed, this will of course need to
+        be revised once the main branch fiures out what to do about a config
+        systems.
+
+        Added conditional call to compselect_refresh_inuse_view in on_notebook
+        _switch_page (so now, unless I am mistaked, manual refreshing is not
+        really needed).
+
+        Consolidated some dialog string to DialogStrings structure and added
+        much documentation. (I am sure there was more but tired now, must rest.)
+
+2013-03-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/globals.c: Move global force_save_as to w_current->force_save_as
+
+        * src/x_dialog.c: Added conditional in select_all_text_in_textview to
+        check for valid GtkTextView pointer.
+
+
 2013-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x_compselect.c: Mostly re-vamp as follows: Added notebook tabs
-        for manufactures, simulation and local. Revised supporting function
-        need to support multiple tree-views. Switch/toggle buttons added for
-        groups and subgroup which is supported by the new trees-store. Added
-        collapse and expand all. Implemented macros from geda_dialog_controls.h
-        to help reduce "cluttered" sections, (could use more). New variables
-        mantreeview, simtreeview, localtreeview, notebook, applying_filter,
-        show_groups, subgroups and active_tab. Renamed (many) variables and
-        functions to improve readability. Added two (non-visible) columns to the
-        Library tree views, 1 for enumerated data types to support nested
-        structures and 1 for tool-tip. Added tool-tips through-out. Converted
-        combo-box to check menu for consistency with other dialogs, (probably
-        need to derive widget class someday since GtkOptionMenu is depreciated
-        (don't care, GTK as a whole is depreciated). Dialog uses new toplevel
-        glist variable to obtain group data even though this isn't really required.
-        It does provide users with more flexibility in controlling how component
-        library information is displayed.
-        Function x_compselect_close, was eliminated. New Property PROP_VIEW
-        added. General clean-up and improved documentation.
+        for manufactures, simulation and local. Revised supporting functions
+        to support multiple tree-views. Switch/toggle buttons added for groups
+        and subgroup which is supported by the new trees-store. Added collapse
+        and expand all. Implemented macros from geda_dialog_controls.h to help
+        reduce "cluttered" sections, (could use more). New variables mantreeview,
+        simtreeview, localtreeview, notebook, applying_filter, show_groups,
+        subgroups and active_tab. Renamed (many) variables and functions in order
+        to improve readability. Added two (non-visible) columns to the Library
+        tree views, 1 for enumerated data types to support nested structures and
+        1 for tool-tips. Added tool-tips through-out. Converted combo-box to check
+        menu for consistency with other dialogs, (probably need to derive widget
+        class someday since GtkOptionMenu is depreciated (don't care, GTK as a
+        whole is depreciated). Dialog uses new toplevel glist variable to obtain
+        group data even though this isn't really required. It does provide users
+        with more flexibility in controlling how component library information is
+        displayed. Function x_compselect_close, was eliminated. New Property
+        PROP_VIEW added. General clean-up and improved documentation.
 
         * src/g_util.c: Added new utility functions g_copy_tree_iter and
         g_list_find_string.
@@ -60,7 +148,7 @@
           text_size_dialog.
 
         * include/x_dialog.h: Relocated widtget data structures for line_type_data,
-          fill_type_data for source to this hear, prefix with st_ and added type
+          fill_type_data from source to this header, prefix with st_ and added type
           definitions. Added new struction for pin data. Added new macro DECLARE_
           TOOPTIPS.
 

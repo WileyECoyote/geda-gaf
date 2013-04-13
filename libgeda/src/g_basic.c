@@ -57,7 +57,7 @@ static SCM protected_pre_unwind_handler (void *data, SCM key, SCM args)
  * This actually does the work of parsing the stack and generating log
  * messages. */
 static SCM protected_post_unwind_handler (void *data, SCM key, SCM args)
-{ 
+{
   /* The stack was captured pre-unwind */
   SCM s_stack = *(SCM *) data;
 
@@ -204,10 +204,10 @@ g_read_file__pre_handler (struct g_read_file_data_t *data, SCM key, SCM args)
  * \param err       Return location for errors, or NULL.
  *  \return TRUE on success, FALSE on failure.
  */
-/* 
+/*
  *  Seems Guile is not smart enough to reconise (if (procedure? symbol)
  */
-bool g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err)
+bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err)
 {
   struct g_read_file_data_t data;
 
@@ -231,6 +231,7 @@ bool g_read_file(TOPLEVEL *toplevel, const gchar *filename, GError **err)
   if (data.err == NULL) return TRUE;
 
   g_propagate_error (err, data.err);
+
   return FALSE;
 }
 

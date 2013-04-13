@@ -5,7 +5,9 @@ FRAGMENTS=widgets
 gschem_SOURCES += \
 	widgets/geda_entry.c            \
 	widgets/geda_handlebox.c        \
+	widgets/geda_menu_button.c      \
 	widgets/gschem_accel_label.c    \
 	widgets/gschem_action.c         \
 	widgets/gschem_toggle_action.c
+
 

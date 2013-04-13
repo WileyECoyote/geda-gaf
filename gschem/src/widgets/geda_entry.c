@@ -631,12 +631,12 @@ popup_menu_callback (GtkMenuItem *item, gpointer data)
   int menu_option = GPOINTER_TO_INT (data);
   switch(menu_option) {
       case AUTO_COMPLETE_ON:
-        fprintf(stderr, "setting auto complete on\n");
+        //fprintf(stderr, "setting auto complete on\n");
         set_auto_complete = TRUE;
         do_auto_complete  = TRUE;
         break;
       case AUTO_COMPLETE_OFF:
-        fprintf(stderr, "disabling auto complete\n");
+        //fprintf(stderr, "disabling auto complete\n");
         set_auto_complete = TRUE;
         do_auto_complete  = FALSE;
         break;

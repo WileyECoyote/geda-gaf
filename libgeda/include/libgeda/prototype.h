@@ -269,16 +269,16 @@ int  o_style_get_pin_width(TOPLEVEL *toplevel, int type);
 void o_style_set_object(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_text_basic.c */
-int o_text_num_lines(const char *string);
+int     o_text_num_lines(const char *string);
 OBJECT *o_text_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int alignment, int angle, const char *string, int size, int visibility, int show_name_value);
-void o_text_recreate(TOPLEVEL *toplevel, OBJECT *o_current);
-void o_text_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *o_current);
+void    o_text_recreate(TOPLEVEL *toplevel, OBJECT *o_current);
+void    o_text_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *o_current);
 OBJECT *o_text_copy(TOPLEVEL *toplevel, OBJECT *o_current);
-void o_text_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
-void o_text_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
-void o_text_set_string(TOPLEVEL *toplevel, OBJECT *obj, const char *new_string);
+void    o_text_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
+void    o_text_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
+void    o_text_set_string(TOPLEVEL *toplevel, OBJECT *obj, const char *new_string);
 const char *o_text_get_string(TOPLEVEL *toplevel, OBJECT *obj);
-void o_text_set_rendered_bounds_func (TOPLEVEL *toplevel, RenderedBoundsFunc func, void *user_data);
+void   o_text_set_rendered_bounds_func (TOPLEVEL *toplevel, RenderedBoundsFunc func, void *user_data);
 double o_text_get_font_size_in_points(TOPLEVEL *toplevel, OBJECT *object);
 
 /* s_attrib.c */
@@ -468,6 +468,7 @@ void  s_undo_free_all(TOPLEVEL *toplevel, PAGE *p_current);
 
 /* ---------------- u_basic.c -------------- */
 char *int2str(int value, char* str, int radix);
+int   geda_stristr( const char *haystack, const char *needle);
 char *scm_2_cstring( char* scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
 void  sort_string_array( char *strings[], size_t strings_size);
 bool  strequal(const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;

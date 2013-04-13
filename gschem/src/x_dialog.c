@@ -200,9 +200,13 @@ void select_all_text_in_textview(GtkTextView *textview)
   GtkTextBuffer *textbuffer;
   GtkTextIter start, end;
 
-  textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(textview));
-  gtk_text_buffer_get_bounds (textbuffer, &start, &end);
-  gtk_text_buffer_select_range(textbuffer, &start, &end);
+  if (GTK_IS_TEXT_VIEW(textview)) {
+    textbuffer = gtk_text_view_get_buffer(textview);
+    gtk_text_buffer_get_bounds (textbuffer, &start, &end);
+    gtk_text_buffer_select_range(textbuffer, &start, &end);
+  }
+  else
+    fprintf(stderr,"select_all_text: parameter is not a textview widget\n");
 }
 
 /*! \todo Finish function documentation!!!
@@ -3738,7 +3742,7 @@ void x_dialog_text_input (GSCHEM_TOPLEVEL *w_current)
   }
 
   /* always select the text in the entry */
-  tientry = gtk_object_get_data(GTK_OBJECT(ThisDialog),"tientry");
+  tientry = gtk_object_get_data(GTK_OBJECT(ThisDialog), IDS_TEXT_INPUT);
   select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
   gtk_widget_grab_focus(tientry);
 }
@@ -4124,7 +4128,7 @@ static char*get_page_name (GtkTreeModel *model, GtkTreeIter *piter)
   gtk_tree_model_get (model, &iter,
                       COLUMN_PAGE, &page,
                       -1);
-  g_assert (page != NULL && page->page_filename != NULL);
+
   return g_path_get_basename (page->page_filename);
 }
 
@@ -4179,7 +4183,12 @@ close_confirmation_callback_renderer_toggled (GtkCellRendererToggle *cell_render
 
   model = GTK_TREE_MODEL (dialog->store_unsaved_pages);
 
-  gtk_tree_model_get_iter_from_string (model, &iter, path);
+  /* Removed conditional but don't know why, can not find documentation supporting
+   * change so re-instating the conditional to "see what happened" */
+  if (!gtk_tree_model_get_iter_from_string (model, &iter, path)) {
+    return;
+  }
+  //gtk_tree_model_get_iter_from_string (model, &iter, path);
   gtk_tree_model_get (model, &iter,
                       COLUMN_SAVE, &save,
                       -1);
@@ -4345,8 +4354,8 @@ close_confirmation_dialog_constructor (GType type,
                         "stock",     GTK_STOCK_DIALOG_WARNING,
                         "icon-size", GTK_ICON_SIZE_DIALOG,
                         NULL);
-  gtk_box_pack_start (GTK_BOX (hbox), image,
-                      FALSE, FALSE, 0);
+
+  gtk_box_pack_start (GTK_BOX (hbox), image,  FALSE, FALSE, 0);
 
   /* vertical box on the right hand side of the dialog */
   vbox = GTK_WIDGET (g_object_new (GTK_TYPE_VBOX,
@@ -4360,13 +4369,13 @@ close_confirmation_dialog_constructor (GType type,
     /* single page */
     char *page_name;
 
-    page_name = get_page_name (GTK_TREE_MODEL (dialog->store_unsaved_pages),
-                               NULL);
+    page_name = get_page_name (GTK_TREE_MODEL (dialog->store_unsaved_pages), NULL);
     tmp = g_strdup_printf (
-      _("Save the changes to schematic \"%s\" before closing?"),
-      page_name);
+      _("Save the changes to schematic \"%s\" before closing?"), page_name);
+
     g_free (page_name);
-  } else {
+  }
+  else {
     /* multi page */
     tmp = g_strdup_printf (
       _("There are %d schematics with unsaved changes. "
@@ -4414,7 +4423,7 @@ close_confirmation_dialog_constructor (GType type,
 
   /* add buttons to dialog action area */
   gtk_dialog_add_buttons (GTK_DIALOG (dialog),
-                          _("_Close without saving"), GTK_RESPONSE_NO,
+                          _("Close without saving"),  GTK_RESPONSE_NO,
                           GTK_STOCK_CANCEL,           GTK_RESPONSE_CANCEL,
                           GTK_STOCK_SAVE,             GTK_RESPONSE_YES,
                           NULL);
@@ -4533,9 +4542,14 @@ static bool get_selected_pages (GtkTreeModel *model,
                       COLUMN_SAVE, &save,
                       COLUMN_PAGE, &page,
                       -1);
+
   if (save) {
-    g_assert (page != NULL);
-    *(GList**)data = g_list_append (*(GList**)data, page);
+    if (page != NULL) {
+      *(GList**)data = g_list_append (*(GList**)data, page);
+    }
+    else {
+      fprintf(stderr, "CloseConfirmationDialog found NULL value for page\n");
+    }
   }
 
   return FALSE;
@@ -4596,6 +4610,7 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_YES);
 
   switch (gtk_dialog_run (GTK_DIALOG (dialog))) {
+
       case GTK_RESPONSE_NO:
         /* close the page, discard changes */
         result = TRUE;
@@ -4617,6 +4632,7 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
         break;
 
       case GTK_RESPONSE_CANCEL:
+
         /* action selected: cancel */
         /* fall through */
       default:
@@ -4653,7 +4669,7 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
   PAGE *p_current;
   PAGE *keep_page;
   GList *unsaved_pages, *p_unsaved;
-  bool done = FALSE;
+  bool return_value = FALSE;
 
   keep_page = toplevel->page_current;
 
@@ -4688,13 +4704,13 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
       case GTK_RESPONSE_NO:
         /* action selected: close without saving */
         /* discard changes, ok to close window */
-        done = TRUE;
+        return_value = TRUE;
         break;
 
       case GTK_RESPONSE_YES:
         /* action selected: save */
         g_object_get (dialog, "selected-pages", &unsaved_pages, NULL);
-        done = TRUE;
+        return_value = TRUE;
         for (p_unsaved = unsaved_pages; p_unsaved != NULL; p_unsaved = g_list_next (p_unsaved)) {
 
           p_current = (PAGE*)p_unsaved->data;
@@ -4705,7 +4721,7 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
                               w_current->toplevel->page_current->page_filename);
 
           /* if user cancelled previous, do not close window */
-          done &= !p_current->CHANGED;
+          return_value &= !p_current->CHANGED;
         }
         g_list_free (unsaved_pages);
         break;
@@ -4716,16 +4732,16 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
       default:
         /* Hit when the user breaks out of the dialog with the escape key
          * or otherwise destroys the dialog window without a proper response */
-        done = FALSE;
+        return_value = FALSE;
         break;
   }
   gtk_widget_destroy (dialog);
 
   /* Switch back to the page we were on */
-  g_return_val_if_fail (keep_page != NULL, done);
+  g_return_val_if_fail (keep_page != NULL, return_value);
   s_page_goto (toplevel, keep_page);
 
-  return done;
+  return return_value;
 }
 
 /***************** End of Close Confirmation dialog box **************/

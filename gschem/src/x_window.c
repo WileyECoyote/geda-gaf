@@ -775,10 +775,11 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
          * a page struct without knowing the file can be read. If an error
          * occurs then we have to delete this page but s_page_delete is
          * going to free the name, the one passed to us as a constant, so
-         * we make a copy here for the maybe future page */
+         * we have to make a copy here for the maybe future page */
         page = s_page_new (toplevel, g_strdup (filename));
         s_page_goto (toplevel, page);
         /* Try to load the file */
+
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           g_warning ("%s\n", err->message);
           fprintf(stderr, "Error loading file:%s\n", err->message);
@@ -837,8 +838,9 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
           while ( *ptr != '\0') ++ptr;      /* advance to end of argument */
           while ( *ptr != G_DIR_SEPARATOR) --ptr;  /* backup to separator */
           path = strcat(path, ptr);
-          force_save_as = TRUE;
-#if 1
+          /* set Flag for file-save to use file-saveas */
+          w_current->force_save_as = TRUE;
+#if DEBUG
           fprintf(stderr, "filename:%s\n path:%s\n", path, filename);
 #endif
           resolve_2_recover(path);

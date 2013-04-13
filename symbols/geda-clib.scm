@@ -1,16 +1,66 @@
 ; -*-Scheme-*-
 ;;;
-;;; Add the default component libraries
+;;; Add default component libraries
 ;;;
-
+;;; Abstract: This file controls which directories will be used as sources
+;;; for symbols. Collectively the directories referenced here are known as
+;;; "Standard Library". Sources, aka directories, and symbols can be loaded
+;;; in virtually any SCM file, but these do not, or should not reference
+;;; folders subordinate to the standard sym folders.
+;;;
+;;; This file implements methods to support organizing and filtering symbol
+;;; libraries. These method can determine how or if symbols are displayed in
+;;; gschem and are detailed in supporting documentation. Details are also
+;;; explained in comments that follow.
+;;;
+;;; The "Standard" libraries are all subordinate to the location set by:
 (define geda-sym-path (build-path geda-data-path "sym"))
 
+;;; All folders in the list below will be added as sources. Each list entry,
+;;; is also a list in the following format:
+;;;
+;;;                      ( string1 string2 [number] )
+;;;
+;;; where
+;;;              string1 is the containing folder under "sym"
+;;;              string2 is the [Category/]Text to Display
+;;;              number is an optional style code
+;;;
+;;; When string1 is NOT directly under "sym" then string1 takes the form
+;;;
+;;;              "dir/sub-dir"
+;;;
+;;; The sub-dir itself is a source, and a member of the group named "dir".
+;;; When string2 does not contain Category, the source will be displayed
+;;; with the "Standard" Category. Sources can be displayed directly under
+;;; the categories "Standard", "Manufacturers" or "Simulation" or under
+;;; the group name. Sub-groups that are a member of:
+;;;
 (component-groups '("connector" "diode" "passive" "linear" "logic" "emechanic"))
 
+;;; can be toggled between the "Standard" category and the group folder.
+;;; Sub-groups not containing a least one file, ie a file with the .sym
+;;; extension are not displayed.
+;;;
+;;; If list entry has a number then that source will only be loaded if the
+;;; number matches:
+(define component-style 3)
+
+;;; unless the number is 0, which are always loaded if
+(define enable-style-zero 1)
+
+;;; The dash zero sub-groups contain template symbols. This allows for symbol
+;;; "themes". If a sub-groups contains generic symbols
 (map
      (lambda (dir)
          (if (list? dir)
-            (component-library (build-path geda-sym-path (car dir)) (cadr dir))
+            (if (and (= (length dir) 3) (> component-style -1))
+                (if (or (= (caddr dir) component-style)
+                        (and (= (caddr dir) 0) enable-style-zero ) )
+                    (component-library (build-path geda-sym-path (car dir)) (cadr dir))
+                )
+                (component-library (build-path geda-sym-path (car dir)) (cadr dir))
+            )
             (component-library (build-path geda-sym-path dir))
          )
       )
@@ -76,40 +126,89 @@
                   ("io"                 "Standard/Input-Output")
                   ("thyristor"          "Standard/Thyristors")
                   ("transistor"         "Standard/Transistors")
+                     ("transistor/npn-smt"      "Standard/NPN Surface Mount")
+                     ("transistor/pnp-smt"      "Standard/PNP Surface Mount")
+                     ("transistor/npn-thru"     "Standard/NPN Thru-Hole")
+                     ("transistor/pnp-thru"     "Standard/PNP Thru-Hole")
+                     ("transistor/npn-power"    "Standard/NPN High Power")
+                     ("transistor/pnp-power"    "Standard/PNP High Power")
+                     ("transistor/npn-medium"   "Standard/NPN Medium Power")
+                     ("transistor/pnp-medium"   "Standard/PNP Medium Power")
+                     ("transistor/npn-bjt"      "Standard/NPN Bipolar Generic")
+                     ("transistor/pnp-bjt"      "Standard/PNP Bipolar Generic")
+
+                     ("transistor/nmosfet-0"    "Standard/Base N-Chan MOSFET" 0)
+                     ("transistor/pmosfet-0"    "Standard/Base P-Chan MOSFET" 0)
+
+                     ("transistor/nmosfet-e"    "Standard/N-Chan Enh MOSFET")
+                     ("transistor/pmosfet-e"    "Standard/P-Chan Enh MOSFET")
+
+                     ("transistor/nmosfet-d"    "Standard/N-Chan Dep MOSFET")
+                     ("transistor/pmosfet-d"    "Standard/P-Chan Dep MOSFET")
+
+                     ("transistor/njfet-0"      "Standard/N-Channel FET" 0)
+                     ("transistor/njfet-1"      "Standard/N-Channel FET 1")
+                     ("transistor/njfet-2"      "Standard/N-Channel FET 2")
+                     ("transistor/pjfet-0"      "Standard/P-Channel FET" 0)
+                     ("transistor/pjfet-1"      "Standard/P-Channel FET 1")
+                     ("transistor/pjfet-2"      "Standard/P-Channel FET 2")
+
+                     ("transistor/darl-bjt"     "Standard/Darlingtons")
+                     ("transistor/darl-npn"     "Standard/NPN Darlington")
+                     ("transistor/darl-pnp"     "Standard/PNP Darlington")
+                     ("transistor/sziklai-bjt"  "Standard/Sziklai Pairs")
+
                   ("IEC417"             "Standard/IEC 60417")
 
 ; Optotronics
-                     ("opto"    "Optocouplers")
-                     ("display" "Displays")
+                  ("opto"    "Optocouplers")
+                  ("display" "Displays")
 
 ; Manufacturers
-                     ("allegro"         "Manufacturers/Allegro Microsystems")
-                     ("altera"          "Manufacturers/Altera")
+                  ("allegro"         "Manufacturers/Allegro Microsystems")
+                  ("altera"          "Manufacturers/Altera")
                   ("analogdevices"   "Manufacturers/Analog Devices")
-                     ("analogdevices/supervisor"       "Manufacturers/Microprocessor Supervisors")
-                     ("amphenol"        "Manufacturers/Amphenol")
-                     ("apex"            "Manufacturers/Apex Microtechnology")
-                     ("atmel"           "Manufacturers/Atmel")
-                     ("cirrus"          "Manufacturers/Cirrus Logic")
-                     ("dallas"          "Manufacturers/Dallas Semiconductor")
-                     ("dec"             "Manufacturers/DEC")
-                     ("fairchild"       "Manufacturers/Fairchild Semiconductor")
-                     ("idt"             "Manufacturers/IDT")
-                     ("intel"           "Manufacturers/Intel")
-                     ("irf"             "Manufacturers/International Rectifier")
-                     ("lattice"         "Manufacturers/Lattice Semiconductor")
-                     ("lineartech"      "Manufacturers/Linear Technology")
-                     ("maxim"           "Manufacturers/Maxim")
-                     ("micro"           "Manufacturers/Microchip")
-                     ("minicircuits"    "Manufacturers/Mini-Circuits")
-                     ("national"        "Manufacturers/National Semiconductor")
+                  ("analogdevices/supervisor"       "Manufacturers/Microprocessor Supervisors")
+                  ("amphenol"        "Manufacturers/Amphenol")
+                  ("apex"            "Manufacturers/Apex Microtechnology")
+                  ("atmel"           "Manufacturers/Atmel")
+                  ("cirrus"          "Manufacturers/Cirrus Logic")
+                  ("dallas"          "Manufacturers/Dallas Semiconductor")
+                  ("dec"             "Manufacturers/DEC")
+                  ("fairchild"       "Manufacturers/Fairchild Semiconductor")
+                  ("idt"             "Manufacturers/IDT")
+                  ("intel"           "Manufacturers/Intel")
+                  ("irf"             "Manufacturers/International Rectifier")
+                  ("lattice"         "Manufacturers/Lattice Semiconductor")
+                  ("lineartech"      "Manufacturers/Linear Technology")
+                  ("maxim"           "Manufacturers/Maxim")
+                  ("micro"           "Manufacturers/Microchip")
+                  ("minicircuits"    "Manufacturers/Mini-Circuits")
+                  ("national"        "Manufacturers/National Semiconductor")
                   ("panasonic" "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")
                      ("panasonic/resistors"            "Manufacturers/Resistors")
-                     ("philips"         "Manufacturers/Philips Electronics")
-                     ("st"              "Manufacturers/ST Microelectronics")
-                     ("ti"              "Manufacturers/Texas Instruments")
+                  ("philips"         "Manufacturers/Philips Electronics")
+                  ("st"              "Manufacturers/ST Microelectronics")
+                  ("ti"              "Manufacturers/Texas Instruments")
+                  ("toshiba" "Manufacturers/Toshiba")
+                     ("toshiba/npn-power-1"    "Manufacturers/NPN Bipolar Power" 1)
+                     ("toshiba/npn-power-2"    "Manufacturers/NPN Bipolar Power" 2)
+                     ("toshiba/npn-power-3"    "Manufacturers/NPN Bipolar Power" 3)
+                     ("toshiba/npn-power-4"    "Manufacturers/NPN Bipolar Power" 4)
+                     ("toshiba/npn-small-1"    "Manufacturers/NPN Bipolar"       1)
+                     ("toshiba/npn-small-2"    "Manufacturers/NPN Bipolar"       2)
+                     ("toshiba/npn-small-3"    "Manufacturers/NPN Bipolar"       3)
+                     ("toshiba/npn-small-4"    "Manufacturers/NPN Bipolar"       4)
+                     ("toshiba/npn-power-1"    "Manufacturers/PNP Bipolar Power" 1)
+                     ("toshiba/pnp-power-2"    "Manufacturers/PNP Bipolar Power" 2)
+                     ("toshiba/pnp-power-3"    "Manufacturers/PNP Bipolar Power" 3)
+                     ("toshiba/pnp-power-4"    "Manufacturers/PNP Bipolar Power" 4)
+                     ("toshiba/pnp-small-1"    "Manufacturers/PNP Bipolar"       1)
+                     ("toshiba/pnp-small-2"    "Manufacturers/PNP Bipolar"       2)
+                     ("toshiba/pnp-small-3"    "Manufacturers/PNP Bipolar"       3)
+                     ("toshiba/pnp-small-4"    "Manufacturers/PNP Bipolar"       4)
                   ("vishay" "Manufacturers/Vishay")
                      ("vishay/nmosfet"                 "Manufacturers/N-Channel MOSFET")
                      ("vishay/pmosfet"                 "Manufacturers/P-Channel MOSFET")
@@ -123,12 +222,12 @@
                      ("emechanic/switch"        "Standard/Switches")
 
 ; Misc
-                     ("memory"          "Memory devices")
-                     ("micro"           "Microcontrollers")
-                     ("tube"            "Vacuum tubes")
-                     ("power"           "Power Systems")
-                     ("misc"            "Misc. unsorted symbols")
-                     ("titleblock"      "Titleblocks/titleblock")
+                  ("memory"          "Memory devices")
+                  ("micro"           "Microcontrollers")
+                  ("tube"            "Vacuum tubes")
+                  ("power"           "Power Systems")
+                  ("misc"            "Misc. unsorted symbols")
+                  ("titleblock"      "Titleblocks/titleblock")
 
 ; Simulation
                   ("simulation" "Simulation/Simulation")
@@ -141,6 +240,7 @@
       )
 )
 
+;;; conceptually, one could also have Local themes
 (if (access? "/usr/local/share/gEDA/sym" R_OK)
   (begin
     (component-library-search "/usr/local/share/gEDA/sym" "Local/Local")

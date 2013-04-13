@@ -90,6 +90,10 @@ typedef struct
 #define SetBulbGroup(group, var) gtk_bulb_group_set_active(group##RadioGroup, var);
 #define SetSpin( name, var) gtk_spin_button_set_value (GTK_SPIN_BUTTON (name##Spin), var);\
 
+/* This macro helps reduce line length */
+#define SetWidgetSize( widget, x_size, y_size) \
+    gtk_widget_set_size_request (GTK_WIDGET (widget), x_size, y_size);
+
 #define GET_SPIN_IVALUE(spinner) gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON (spinner))
 #define GET_SWITCH_STATE(switch) gtk_toggle_button_get_active (GTK_TOGGLE_BUTTON (switch))
 

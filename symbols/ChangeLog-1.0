@@ -1,7 +1,22 @@
+2013-04-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/geda-clib.scm: Added internal documentation, new variables;
+          component-style, enable-style-zero in order to test a new scheme to
+          better organize the symbols library, see documentation in the file.
+          extensive revisions to symbol listings.
+
+        * symbols/*.sym: Created new folders toshiba with 4 diffent styles of
+          symbols for bipolor transistor, totaling 720 new symbols.
+
+        * symbols/transistor/*.sym:  Re-vamp. Most of the symbols were replaced
+          for conformity to new style schemes (yes plural). Most of the new
+          replacements are compatiable with old symbol in terms of pin alignment
+          but not the file names. Template symbols were also included.
+
 2013-03-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * symbols/geda-clib.scm: Major changes to source list content.
-        Added component-groups.
+          Added component-groups.
 
         * symbols/*: Reorganized directory structure (again).
 

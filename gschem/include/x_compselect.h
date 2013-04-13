@@ -1,6 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -33,6 +34,19 @@ typedef enum {
   COMPSELECT_BEHAVIOR_INCLUDE
 } CompselectBehavior;
 
+typedef enum {
+  COMPSELECT_STYLE_NONE =   0,
+  COMPSELECT_STYLE1     =   1,
+  COMPSELECT_STYLE2     =   2,
+  COMPSELECT_STYLE3     =   4,
+  COMPSELECT_STYLE4     =   8,
+  COMPSELECT_STYLE5     =  16,
+  COMPSELECT_STYLE6     =  32,
+  COMPSELECT_STYLE7     =  64,
+  COMPSELECT_STYLE8     = 128,
+  COMPSELECT_STYLE_ALL  = 255
+} CompselectStyle;
+
 GType compselect_behavior_get_type (void);
 #define COMPSELECT_TYPE_BEHAVIOR  (compselect_behavior_get_type ())
 
@@ -54,9 +68,12 @@ struct _CompselectClass {
 
   guint behavior_changed_signal_id;
 
+  void (* refresh)   (Compselect *compselect);
+
 };
 
 struct _Compselect {
+
   GschemDialog parent_instance;
 
   GtkWidget    *hpaned, *vpaned;
@@ -73,10 +90,19 @@ struct _Compselect {
   Preview      *preview;
   GtkEntry     *entry_filter;
   GtkButton    *button_clear;
-  unsigned int filter_timeout;
-  bool         applying_filter;
+  unsigned int  filter_timeout;
+  bool          applying_filter;
 
-  GtkOptionMenu *behavior_menu;
+  GtkTooltips  *tooltips;
+  bool          show_tips;
+
+  GtkOptionMenu  *behavior_menu;
+
+  GedaMenuButton *style_menu;
+  GtkMenu        *menu;
+
+  GSList         *style_menu_widgets;
+  unsigned int    style_flag;
 
   bool hidden;
   bool show_groups;

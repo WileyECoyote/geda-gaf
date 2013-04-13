@@ -399,8 +399,9 @@ static char *run_source_command (const char *command)
   char *standard_output = NULL;
   char *standard_error = NULL;
   int exit_status;
-  GError *e = NULL;
-  gboolean success = FALSE;
+
+  GError *e    = NULL;
+  bool success = FALSE;
 
   g_return_val_if_fail((command != NULL), NULL);
 
@@ -837,26 +838,30 @@ const CLibSource *s_clib_add_directory (const char *directory,
     return NULL;
   }
 
+  if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
+    return NULL;
+  }
+
+  pbuff = memset(&buffer[0], '\0', MAX_FILE);
+
+  strcpy(pbuff, directory );
+
   category = NULL;
   group    = NULL;
 
-  /* copy the directory string to buffer */
-  pbuff = &buffer[0];
-  strcpy(pbuff, directory );
-
   /* get 1st level dir */
-  ptr_dir1 = basename (pbuff);
+  ptr_dir1 =  basename (pbuff);
 
   /* change the last slash to NULLL */
-  ptr      = ptr_dir1 - 1;
-  *ptr   = '\0';
+  ptr   = ptr_dir1 - 1;
+ *ptr   = '\0';
 
   /* get 2nd level dir */
   ptr_dir2 =  basename (pbuff);
 
   /* change the last slash to NULLL */
   ptr      = ptr_dir2 - 1;
-  *ptr     = '\0';
+ *ptr     = '\0';
 
   /* get 3rd level dir */
   ptr_dir3 =  basename (pbuff);
@@ -870,10 +875,14 @@ const CLibSource *s_clib_add_directory (const char *directory,
     }
     else
       if ( strcmp( "sym", ptr_dir1 ) == 0) {
-        group = g_path_get_basename(name);
+         if ( name  != NULL )  {
+           group = g_strdup(basename(name));
+         }
+         else
+           group = g_strdup( ptr_dir2 );
       }
       else
-        group = g_strdup(ptr_dir3);
+        group = g_strdup( ptr_dir2 );
 
   if (name != NULL) {
     int count = 0;
@@ -888,7 +897,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
       default:
         str = strstr(name, "/");
         category = g_strndup(name, str - name);
-        tmpstr   = g_strdup (str + 1);
+        tmpstr = g_strdup (str + 1);
         break;
     }
   }
