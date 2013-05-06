@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (C) 2008 Werner Hoch <werner.ho@gmx.de>
+# Copyright (C) 2008-2013 Werner Hoch <werner.ho@gmx.de>
 # Released under the terms of the GNU General Public License, version 2
 
 # usage: gclean-symbol old_symbol_file [ROTATE]> beautyfied_symbol_file
@@ -104,15 +104,15 @@ def makenice(filename, outfile):
             while file[i][0] != '}' and escape == 0:
                 if re.match("^pinnumber=",file[i+1]) and file[i][0] == 'T':
                     if pos == "left":
-                        pin[1] = 'T %i' %(x+200) + ' %i' %(y+50) + ' 5 8 1 1 0 6 1'  
+                        pin[1] = 'T %i' %(x+200) + ' %i' %(y+50) + ' 5 8 1 1 0 6 1'
                     elif pos == "right":
-                        pin[1] = 'T %i' %(x-200) + ' %i' %(y+50) + ' 5 8 1 1 0 0 1'  
+                        pin[1] = 'T %i' %(x-200) + ' %i' %(y+50) + ' 5 8 1 1 0 0 1'
                     elif pos == "top":
                         pin[1] = 'T %i' %(x+50) + ' %i' %(y-200) + ' 5 8 1 1 0 0 1'
                         if ROTATE == 1:
                             pin[1] = 'T %i' %(x-50) + ' %i' %(y-200) + ' 5 8 1 1 90 0 1'
                     elif pos == "bottom":
-                        pin[1] = 'T %i' %(x+50) + ' %i' %(y+100) + ' 5 8 1 1 0 0 1'  
+                        pin[1] = 'T %i' %(x+50) + ' %i' %(y+100) + ' 5 8 1 1 0 0 1'
                         if ROTATE == 1:
                             pin[1] = 'T %i' %(x-50) + ' %i' %(y+200) + ' 5 8 1 1 90 6 1'
                     outfile.write(pin[1] + "\n" + file[i+1] + "\n")
@@ -163,15 +163,15 @@ def makenice(filename, outfile):
                 i = i + 2
             if pin[1] == "":
                 if pos == "left":
-                    pin[1] = 'T %i' %(x+200) + ' %i' %(y+50) + ' 5 8 1 1 0 6 1'  
+                    pin[1] = 'T %i' %(x+200) + ' %i' %(y+50) + ' 5 8 1 1 0 6 1'
                 elif pos == "right":
-                    pin[1] = 'T %i' %(x-200) + ' %i' %(y+50) + ' 5 8 1 1 0 0 1'  
+                    pin[1] = 'T %i' %(x-200) + ' %i' %(y+50) + ' 5 8 1 1 0 0 1'
                 elif pos == "top":
                     pin[1] = 'T %i' %(x+50) + ' %i' %(y-200) + ' 5 8 1 1 0 0 1'
                     if ROTATE == 1:
                         pin[1] = 'T %i' %(x-50) + ' %i' %(y-200) + ' 5 8 1 1 90 0 1'
                 elif pos == "bottom":
-                    pin[1] = 'T %i' %(x+50) + ' %i' %(y+100) + ' 5 8 1 1 0 0 1'  
+                    pin[1] = 'T %i' %(x+50) + ' %i' %(y+100) + ' 5 8 1 1 0 0 1'
                     if ROTATE == 1:
                         pin[1] = 'T %i' %(x-50) + ' %i' %(y+200) + ' 5 8 1 1 90 6 1'
                 outfile.write(pin[1] + "\n" + "pinnumber=X" + "\n")
@@ -220,7 +220,7 @@ def makenice(filename, outfile):
             if file[i][0] == "}":
                 i = i + 1
             outfile.write("}" + "\n")
-            
+
         elif file[i][0] in "ABLV":
             outfile.write(file[i] +"\n")
             i = i+ 1
@@ -240,7 +240,7 @@ def makenice(filename, outfile):
     ## print all graphical text at the end of file
     outfile.write("\n".join(graphical_text))
     outfile.write("\n")
-    
+
 def getpinpos(pinstring):
     p = pinstring.split(" ")
     whichend = int(p[7])
@@ -264,7 +264,7 @@ def getpinpos(pinstring):
             pos = "right"
 
     return x1, y1, pos
-        
+
 ########################## MAIN ################################################
 
 try:

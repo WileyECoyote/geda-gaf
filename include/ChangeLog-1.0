@@ -1,3 +1,8 @@
+2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * Makefile.am: Added gettext.h (for gschem). Why do we need seperate
+          headers in each include subfolder, they are all the same file.
+
 2013-01-02 Wiley E. Hill <wileyhill@gmail.com>
 
         * /include/geda_idefines.h: New file, relocated text cap style from

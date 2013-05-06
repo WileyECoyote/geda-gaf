@@ -1,3 +1,13 @@
+2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+        -I$(top_srcddir)/include. Don't know where i got abs_top_build.
+        Does not work for distcheck or on Mint (and probably Ubuntu) with
+        automake ver? autoconf v?
+
+        * tests/duplicate_net.output: Updated file
+        * tests/misplaced_attributes.output: Updated file
+
 2013-02-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * Added "model-name" to the list of acceptable attributes;

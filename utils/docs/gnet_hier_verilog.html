@@ -1,0 +1,108 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Sun Apr 14 22:58:07 2013 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>gnet_hier_verilog.sh</title>
+
+</head>
+<body>
+
+<h1 align="center">gnet_hier_verilog.sh</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">gnet_hier_verilog.sh
+&minus; generate a non-flattened hierarchical Verilog
+netlist.</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gnet_hier_verilog.sh</b>
+<i>filename.sch</i></p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><i><b>gnet_hier_verilog.sh</b></i>
+is a simple script to produce a hierarchical verilog netlist
+in a single file. It gathers hierarchical information from a
+list of unique symbols/schematics originating from the top
+level schematic all the way down to the lowest level of the
+design hierarchy. It then successively invokes the existing
+gEDA verilog netlister to produce each single level
+netlists, and concatinates all the unique module netlists
+into one single hierarchical netlist file.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Currently,
+<b>gnet_hier_verilog</b> assumes that one or more
+hierarchical symbol can be represented by a single schematic
+file. If needed, feature for mutiple schematic files mapped
+to a single symbol can be easily added. In that case,
+multiple source attrib are used in that symbol.</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Paul Tan</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gschem</b>(1),
+<b>gnetlist</b>(1)</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 1999-2013 gEDA Contributors. License GPLv2+: GNU GPL
+<br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+<hr>
+</body>
+</html>

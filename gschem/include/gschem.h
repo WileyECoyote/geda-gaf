@@ -18,4 +18,4 @@
 #include "prototype.h"
 
 /* Gettext translation */
-#include <gettext.h>
+//#include <gettext.h>

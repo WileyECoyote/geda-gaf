@@ -13,8 +13,10 @@ noinst_HEADERS  = ascii.h \
 		  geda_struct.h \
 		  geda_toolbars.h \
 	          geda_types.h \
+		  gettext.h \
                   missing.h
 
+EXTRA_DIST =	  $(noinst_HEADERS)
 
 MOSTLYCLEANFILES	= *~
 CLEANFILES 		= *~

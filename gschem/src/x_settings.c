@@ -1158,8 +1158,8 @@ KEYWORD ( attribute_name ) {
 
   ptrBuffer = KEY_BUFFER(attribute_name);
   for (i = 0; i < count; i++) {
-    fgets(ptrBuffer, RC_INPUT_BUFFER_SIZE, input);   /* read in the next line  */
-    ptr = ptrBuffer;                                 /* set pointer to beginning  */
+    /* set pointer to beginning of ptrBuffer if sucessful */
+    ptr = fgets(ptrBuffer, RC_INPUT_BUFFER_SIZE, input);   /* read in the next line  */
     while (( *ptr != ASCII_NUL ) && ( *ptr != ASCII_OP )) { ptr++; } ptr++;
     if (!strncmp (ptr, KEY_NAME(attribute_name), strlen(KEY_NAME(attribute_name))))  /* see if match our keyword */
       break; /* should not do this as long as count in RC file = count in memory */

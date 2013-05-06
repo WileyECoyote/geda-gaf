@@ -11,6 +11,8 @@ SRCDIR=$(srcdir)
 GNETLIST=$(top_builddir)/gnetlist/src/gnetlist
 
 tests:
+
+notests:
 	rm -f $(BUILDDIR)/new_*
 	cp -f $(SRCDIR)/gnetlistrc.hierarchy2 $(BUILDDIR)/gnetlistrc
 	( TESTDIR=$(SRCDIR) \

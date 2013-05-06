@@ -356,10 +356,11 @@ void main_prog(void *closure, int argc, char *argv[])
 
 #ifdef HAVE_GTHREAD
   /* Initialise threading before any other GLib functions are called. */
+  g_thread_init (NULL);
   if (!g_thread_supported ())
-    g_thread_init (NULL);
+    gdk_threads_init();
 #endif
-  gdk_threads_init();
+
 
 #if ENABLE_NLS
   /* This should be equivalent to setlocale (LC_ALL, "") */

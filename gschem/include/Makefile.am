@@ -31,6 +31,8 @@ noinst_HEADERS = \
 		x_toolbars.h		\
 		x_window.h
 
+include widgets/Makefile_insert
+
 MOSTLYCLEANFILES     = *~ widgets/*~ #*#
 CLEANFILES           = *~ widgets/*~ #*#
 DISTCLEANFILES       = *~ widgets/*~ #*#

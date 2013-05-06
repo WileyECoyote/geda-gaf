@@ -43,11 +43,11 @@
 extern int errno;
 
 #include <defines.h>
+#include "libgeda_priv.h"
 
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
-#include<gettext.h>
 
 /*! /comment: The functions in f_basic.c are (mostly) application
  *  specific so this file was created for basic non-application

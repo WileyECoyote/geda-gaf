@@ -14,7 +14,7 @@ AC_PREREQ([2.60])
 AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
 AC_CONFIG_AUX_DIR([build-tools])
 AC_CONFIG_MACRO_DIR([m4])
-AC_CONFIG_HEADER([config.h])
+AC_CONFIG_HEADERS([config.h])
 
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
@@ -55,7 +55,7 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 
 # Temporaily Turn Warnings into errors with -Werror option
 #AX_GCC_FLAGS([-Wall -Werror])
-AX_GCC_FLAGS([-Wall])
+AX_GCC_FLAGS([-O2 -Wall])
 
 AC_PROG_MKDIR_P
 AM_PROG_LEX
@@ -63,6 +63,18 @@ AX_PROG_GROFF
 AC_PATH_PROGS([M4], [gm4 m4], [m4])
 AC_PROG_YACC
 AX_PROG_AWK
+
+# Linker flags...
+
+  # Have linker produce read-only relocations, if it knows how
+  AC_MSG_CHECKING([linker tolerates -z relro])
+  geda_gaf_LDFLAGS="$LDFLAGS"
+  LDFLAGS="-Wl,-z,relro $LDFLAGS"
+  AC_LINK_IFELSE([AC_LANG_PROGRAM([])], [geda_gaf_ok=yes], [geda_gaf_ok=no])
+  AC_MSG_RESULT([$geda_gaf_ok])
+  if test "x$geda_gaf_ok" != "xyes"; then
+    LDFLAGS="$geda_gaf_LDFLAGS"
+fi
 
 #####################################################################
 # Internationalisation
@@ -149,7 +161,7 @@ AX_LIBGEDACAIRO([1:0:0])
 #####################################################################
 # Generate output
 #####################################################################
-
+#                 gnetlist/tests/common/Makefile
 AC_CONFIG_FILES([Makefile
                  bitmaps/Makefile
                  include/Makefile
@@ -221,7 +233,7 @@ AC_CONFIG_FILES([Makefile
                  gnetlist/tests/hierarchy/Makefile
                  gnetlist/tests/hierarchy2/Makefile
                  gnetlist/tests/drc2/Makefile
-                 gnetlist/tests/common/Makefile
+
                  gnetlist/docs/Makefile
                  gnetlist/docs/vams/Makefile
                  gnetlist/examples/vams/Makefile
@@ -232,9 +244,6 @@ AC_CONFIG_FILES([Makefile
                  gnetlist/lib/Makefile
                  gnetlist/utils/Makefile
                  gnetlist/scripts/Makefile
-                 gnetlist/scripts/annotate.sh
-                 gnetlist/scripts/bom_xref.sh
-                 gnetlist/scripts/bompp.sh
                  gnetlist/lib/system-gnetlistrc
 
                  utils/Makefile
@@ -243,14 +252,16 @@ AC_CONFIG_FILES([Makefile
                  utils/examples/gmk_sym/Makefile
                  utils/examples/gsch2pcb/Makefile
                  utils/examples/tragesym/Makefile
+                 utils/gmake/Makefile
+                 utils/include/Makefile
                  utils/gsch2pdf/Makefile
+                 utils/gschemdoc/Makefile
                  utils/gschlas/Makefile
                  utils/gxyrs/Makefile
-                 utils/include/Makefile
                  utils/lib/Makefile
                  utils/lib/system-gschlasrc
                  utils/scripts/Makefile
-                 utils/scripts/sw2asc
+                 utils/scripts/ginstall_local.sh
                  utils/src/Makefile
                  utils/tests/Makefile
                  utils/tests/gxyrs/Makefile

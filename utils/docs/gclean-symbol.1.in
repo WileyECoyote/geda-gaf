@@ -1,0 +1,39 @@
+.TH gclean-symbol 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+gclean-symbol \- clean gEDA symbol
+
+.SH SYNOPSIS
+.B gclean-symbol
+.I symbol_file
+
+.SH DESCRIPTION
+.B gclean-symbol
+clean gEDA symbol
+
+.B usage: gclean-symbol old_symbol_file [ROTATE]> beautyfied_symbol_file
+         ROTATE will rotate the labels of top and bottom pins
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of gclean-symbol:
+https://bugs.launchpad.net/geda/gclean-symbol/+filebug
+
+.SH AUTHOR
+Werner Hoch
+
+.SH SEE ALSO
+.BR gsymcheck (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2008-2013 Werner Hoch.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

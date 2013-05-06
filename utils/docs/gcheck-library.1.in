@@ -1,0 +1,62 @@
+.\" groff -man -Tascii foo.1
+.TH gcheck-library 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+gcheck-library \- A script to assist in maintaining symbol libraries
+
+.SH SYNOPSIS
+.B gcheck-library
+.RI [ OPTIONS ] [ DIRECTIVES [ ARGUMENTS ] ] [ LIBRARY ]
+.SH DESCRIPTION
+.B gcheck-library
+Detect non complient symbols files in gEDA symbol libraries.
+.SH QUICK
+cd /symbols-dir, type gcheck-library <ENTER>.
+.SH INFORMATION
+Use of the following options displays information related to gcheck-library
+but does not check anything:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-u, --usage"
+Displays examples on usage"
+.IP "--version"
+Displays software version information"
+.SH OPTIONS
+.IP "-n, --no_report"
+do not perform report statistics'
+.IP "-r, --report"
+report statistic only, do not perform checking'
+.SH DIRECTIVES
+.IP "-v, --verbose"
+Include additional information during processing.
+Directives affect the mode and operation of the gcheck-library utility and.
+.IP "-a, --all"
+file search pattern is changed from *.sym to *'.
+.IP "-e, --extra"
+Perform extra checks. This directive is passed on toe gsymcheck.
+.IP "-f, --filter"
+The Filter directive is intended to over-ride the internal default symbol file type.
+.SH DIAGNOSTICS
+Note: arguments are case sensitive. See documentation for more detailed information. [dirname] &2>result.txt.
+.SH HOMEPAGE
+http://www.gpleda.org/
+.SH BUGS
+You can report bugs at the Launchpad site of gcheck-library:
+https://bugs.launchpad.net/geda/gcheck-library/+filebug
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+.SH SEE ALSO
+.BR gcheck-library (1)
+
+.SH SEE ALSO
+.BR gcheck-library (1),
+.BR gsymcheck (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2012-2013 gEDA Contributors.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.

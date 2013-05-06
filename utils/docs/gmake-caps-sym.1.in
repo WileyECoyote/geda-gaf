@@ -1,0 +1,67 @@
+.TH gmake-caps-sym 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+gmake-caps-sym \- Make gEDA Capacitor Symbols
+
+.SH SYNOPSIS
+.B gmake-caps-sym
+.RI [ OPTIONS ] TEMPLATE[.sym] PARAMETERS[.spm]
+
+.SH DESCRIPTION
+.B gmake-caps-sym
+Make gEDA Capacitor Symbols
+
+This script is for 'batch' production of capacitor symbols for the geda=gaf project. The script requires a template symbol file and a parameter file. Parameters read from the file are used in the output symbol file name or used as replacement values for pre-set variables in the symbol template file.
+
+.SH QUICK
+.B usage: [-h, --help] | [--version] | [options] template[.sym] parameters[.spm]
+example:
+gmake-caps-sym electro-example-template.sym params-exported-gnumeric.spm<ENTER>.
+.SH PARAMETERS
+Fields in the TAB or space delimited parameter file are read and interpreted as follows:
+
+1. Capacitence string to be substituted for 'CAPACITOR_VALUE' in the symbol file and the output file name
+2. Voltage string is included in the file name and as part of the 'CAPACITOR_VALUE'
+3. PartNumber string, included in the file name and in the 'PART_NUMBER'.
+4. FootPrint string to be substituted for 'unknown' in the symbol file
+
+.SH INFORMATION
+Use of the following options displays information related to gmake-caps-sym
+but does not create any symbols:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-u, --usage"
+Displays examples on usage"
+.IP "--version"
+Displays software version information"
+
+.SH DIRECTIVES
+.IP "-v, --verbose"
+Include additional information during processing.
+
+.SH OPTIONS
+The current version of gmake-caps-sym does not recognize any additionl command-line options
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of gmake-caps-sym:
+https://bugs.launchpad.net/geda/gmake-caps-sym/+filebug
+
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+
+.SH SEE ALSO
+.BR gmake-transistors-sym (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2012-2013 Wiley Edward Hill.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

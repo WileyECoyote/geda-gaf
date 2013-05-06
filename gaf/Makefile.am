@@ -3,18 +3,18 @@ AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
 SUBDIRS = po
 
-INC_GEDA = -I$(abs_top_builddir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
-INC_LIBGEDA = -I$(abs_top_builddir)/libgeda/include
-INC_LIBCAIRO = -I$(abs_top_builddir)/libgedacairo/include
+INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
+INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA) $(INC_LIBCAIRO)
 
 bin_PROGRAMS = gaf
 
-EXTRA_DIST = $(html_man_files) gaf.1.in
-
 BUILT_SOURCES = shell.x
+
+EXTRA_DIST = $(BUILT_SOURCES) $(html_man_files) gaf.1.in
 
 gaf_SOURCES = \
 	builtins.h \

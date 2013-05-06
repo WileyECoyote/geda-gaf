@@ -7,8 +7,8 @@ bin_SCRIPTS = gxyrs
 rcdatadir   = @GEDADATADIR@/perl/lib
 rcdata_DATA = gxyrs.pm
 
-EXTRA_DIST  = gxyrs.pl \
-	      gxyrs.pm
+dist_bin_SCRIPTS  = gxyrs.pl \
+	            gxyrs.pm
 
 all: gxyrs
 
@@ -24,9 +24,9 @@ gxyrs: $(srcdir)/gxyrs.pl
 	sed -e "s#GEDADATADIR#$(GEDADATADIR)#" $(srcdir)/gxyrs.pl | sed -e "s#GEDARCDIR#$(GEDARCDIR)#" > tmp$@
 	chmod a+x tmp$@
 	mv -f tmp$@ $@
-
+	
 MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~
-DISTCLEANFILES       = *.log *.ps core FILE *~
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
+DISTCLEANFILES       = *.log *.ps core FILE *~ gxyrs
+MAINTAINERCLEANFILES = *.log *.ps core FILE *~ gxyrs Makefile.in
 

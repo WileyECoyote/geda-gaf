@@ -1,8 +1,10 @@
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
+VPATH = $(srcdir)
+
 # Build a libtool library for installation in libdir.
-INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include/libgeda
 
@@ -94,6 +96,9 @@ libgeda_la_SOURCES = \
 	s_undo.c \
 	s_weakref.c \
 	u_basic.c
+
+# Probably not the correct way but all's fair in Love, War and Distchecks
+EXTRA_DIST = $(BUILT_SOURCES)
 
 AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 

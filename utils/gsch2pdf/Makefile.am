@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
-INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 
@@ -12,6 +12,12 @@ rcdatadir 	 = $(GEDARCDIR)
 bin_PROGRAMS 	 = gsch2pdf
 
 rcdata_DATA 	 = system-gsch2pdfrc
+
+local_HEADERs    = junction.h \
+		   rc-config.h \
+		   print-settings.h
+
+EXTRA_DIST       = $(rcdata_DATA) $(local_HEADERs)
 
 gsch2pdf_SOURCES = main.c \
 		   junction.c \

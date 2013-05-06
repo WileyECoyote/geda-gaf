@@ -1,3 +1,14 @@
+2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+        -I$(top_srcddir)/include. Don't know where i got abs_top_build.
+        Does not work for distcheck or on Mint (and probably Ubuntu) with
+        automake ver? autoconf v?
+
+        * include/Makefile.am: Addded include widgets/Makefile_insert in
+        order to build out-of-source for distro checks.
+
+        * include/widgets/Makefile_insert: New file, see previous entry.
 
 2013-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -46,7 +57,7 @@
         so that any previously selected row is centered in the views after
         the model is replaced because it was really annoying when the view
         was refreshed with the non-labeled, tip-less "refresh" button and all
-        opened folders would collapse because the modle was replaced in the
+        opened folders would collapse because the model was replaced in the
         view. The new algorithms locate the folders, sub-folders and selected
         symbol and re-centers the new view of the tree on the selection. If
         the previously selected symbol is no longer in the view because it's
@@ -62,14 +73,14 @@
         not be loaded into memory when gschem starts. Those that are, may or
         may not be visible in the trees-views of the component selection dia-
         log. In the new context, "Refreshing" meaning rebuilding the models
-        based on the current "group" and "sub-group" setting and populating
+        based on the current "group" and "sub-group" settings and populating
         the trees with the symbols that are in memory.
 
         Added module level globals to check "settings" variables. The settings
         are only written to the key file if the value changed. A new procedure,
         compselect_settings_restore, was added to obtain settings from the
         keyfile before the dialog is constructed, this will of course need to
-        be revised once the main branch fiures out what to do about a config
+        be revised once the main branch figures out what to do about a config
         systems.
 
         Added conditional call to compselect_refresh_inuse_view in on_notebook

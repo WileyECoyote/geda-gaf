@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
-INC_GEDA = -I$(top_srcdir) -I$(abs_top_builddir)/include -I$(top_srcdir)/intl
+INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
@@ -28,7 +28,7 @@ include Makefile_insert
 include widgets/Makefile_insert
 
 # Extra files not mentioned as sources to include in the source tarball
-EXTRA_DIST       = widgets/makefile.in
+EXTRA_DIST       = widgets/makefile.in $(BUILT_SOURCES)
 
 AM_CFLAGS        = $(GEDA_INCLUDES)
 gschem_CPPFLAGS  =
@@ -40,8 +40,8 @@ gschem_LDFLAGS   = $(GLIB_LIBS)       $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
 		   $(GTHREAD_LIBS)    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 
 gschem_LDADD     = $(top_builddir)/libgedacairo/src/libgedacairo.la \
-	           $(top_builddir)/libgeda/src/libgeda.la \
-	             @LIBINTL@
+		   $(top_builddir)/libgeda/src/libgeda.la \
+		   @LIBINTL@
 
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x

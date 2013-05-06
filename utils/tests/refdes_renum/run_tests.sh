@@ -3,7 +3,7 @@
 # $Id$
 #
 
-# Copyright (C) 2007-2008 Dan McMahill
+# Copyright (C) 2007-2013 Dan McMahill
  
 # This file is part of refdes_renum.
 
@@ -167,14 +167,14 @@ for t in $all_tests ; do
 	done
     fi
     
-    # run refdes_renum
+    # run refdes_renum.pl
     #
     
-    echo "${PERL} -w ${top_srcdir}/scripts/refdes_renum $args $files"
-    cd ${rundir} && ${PERL} -w ${top_srcdir}/scripts/refdes_renum $args $files 
+    echo "${PERL} -w ${top_srcdir}/scripts/refdes_renumpl $args $files"
+    cd ${rundir} && ${PERL} -w ${top_srcdir}/scripts/refdes_renum.pl $args $files 
     rc=$?
     if test $rc -ne $code ; then
-	echo "FAILED:  refdes_renum returned $rc which did not match the expected $code"
+	echo "FAILED:  refdes_renum.pl returned $rc which did not match the expected $code"
 	fail=`expr $fail + 1`
 	continue
     fi

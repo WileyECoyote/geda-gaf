@@ -37,8 +37,6 @@ bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err);
 
 /* g_rc.c */
 SCM g_rc_mode_general   (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
-//bool g_rc_parse_file    (TOPLEVEL *toplevel, const char *rcfile, GError **err);
-//bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GError **err);
 bool g_rc_parse_system  (TOPLEVEL *toplevel, const char *rcname, GError **err);
 bool g_rc_parse_user    (TOPLEVEL *toplevel, const char *rcname, GError **err);
 bool g_rc_parse_local   (TOPLEVEL *toplevel, const char *rcname, const char *path, GError **err);

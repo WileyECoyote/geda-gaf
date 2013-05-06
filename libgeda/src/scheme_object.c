@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library - Scheme API
- * Copyright (C) 2010-2012 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2010-2013 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,6 +26,11 @@
 
 #include "libgeda_priv.h"
 #include "libgedaguile_priv.h"
+
+#ifndef SCM_ARG8
+ #define SCM_ARG8 8
+ #define SCM_ARG9 9
+#endif
 
 SCM_SYMBOL (wrong_type_arg_sym , "wrong-type-arg");
 SCM_SYMBOL (line_sym , "line");
@@ -1767,8 +1772,7 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
              SCM x1_s, SCM y1_s, SCM x2_s, SCM y2_s, SCM x3_s, SCM y3_s),
             "Insert a path element into a path object.")
 {
-  SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s,
-              SCM_ARG1, s_path_insert_x);
+  SCM_ASSERT (edascm_is_object_type (obj_s, OBJ_PATH), obj_s, SCM_ARG1, s_path_insert_x);
   SCM_ASSERT (scm_is_integer (index_s), index_s, SCM_ARG2, s_path_insert_x);
   SCM_ASSERT (scm_is_symbol (type_s), type_s, SCM_ARG3, s_path_insert_x);
 
@@ -1793,16 +1797,22 @@ SCM_DEFINE (path_insert_x, "%path-insert", 3, 6, 0,
   case PATH_CURVETO:
     SCM_ASSERT (scm_is_integer (x1_s), x1_s, SCM_ARG4, s_path_insert_x);
     section.x1 = scm_to_int (x1_s);
+
     SCM_ASSERT (scm_is_integer (y1_s), y1_s, SCM_ARG5, s_path_insert_x);
     section.y1 = scm_to_int (y1_s);
+
     SCM_ASSERT (scm_is_integer (x2_s), x2_s, SCM_ARG6, s_path_insert_x);
     section.x2 = scm_to_int (x2_s);
+
     SCM_ASSERT (scm_is_integer (y2_s), y2_s, SCM_ARG7, s_path_insert_x);
     section.y2 = scm_to_int (y2_s);
-    SCM_ASSERT (scm_is_integer (x3_s), x3_s, 8, s_path_insert_x);
+
+    SCM_ASSERT (scm_is_integer (x3_s), x3_s, SCM_ARG8, s_path_insert_x);
     section.x3 = scm_to_int (x3_s);
-    SCM_ASSERT (scm_is_integer (y3_s), y3_s, 9, s_path_insert_x);
+
+    SCM_ASSERT (scm_is_integer (y3_s), y3_s, SCM_ARG9, s_path_insert_x);
     section.y3 = scm_to_int (y3_s);
+
     break;
   case PATH_MOVETO:
   case PATH_MOVETO_OPEN:

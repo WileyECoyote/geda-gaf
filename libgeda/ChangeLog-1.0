@@ -1,3 +1,26 @@
+2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+        -I$(top_srcdir)/include. Don't know where i got abs_top_build.
+        Does not work for distcheck or on Mint (and probably Ubuntu) with
+        automake ver? autoconf v? (but did work with newer autobuild tools)
+
+        * src/include/Makefile.am: Added libgeda/edaconfig.h to
+        libgedainclude_HEADERS, don't use it (yet)--so missed it!
+
+	* src/f_utilities.c: Change include gettext to include
+        "libgeda_priv.h" to pass distro check, currently gettext.h is the
+        only "libgeda" header needed but is not found in include path.
+
+        * src/shell/Makefile.am: Change -I$(top_builddir)/include to
+        -I$(top_srcdir)/include.
+
+	* scheme/geda/object.scm: Revised path-insert to bypass transform-points
+        for curveto, recursion wasn't working out, just call %path-insert with
+        explicit arguments instead.
+
+        * src/a_basic.c: In function o_read_buffer, added conditional to
+        check for new_object_list != NULL in case: START_EMBEDDED
 
 2013-03-23 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-01-07 17:43-0600\n"
+"POT-Creation-Date: 2013-05-05 13:01-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -47,12 +47,12 @@ msgstr "gEDA Diagram Symbol"
 msgid "o_save_objects: object %p has unknown type '%c'\n"
 msgstr ""
 
-#: libgeda/src/a_basic.c:239 libgeda/src/f_basic.c:380
+#: libgeda/src/a_basic.c:239 libgeda/src/f_basic.c:391
 #, c-format
 msgid "File %s is read-only"
 msgstr ""
 
-#: libgeda/src/a_basic.c:423
+#: libgeda/src/a_basic.c:424
 #, c-format
 msgid ""
 "Read unexpected attach symbol start marker in [%s] :\n"
@@ -60,7 +60,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/a_basic.c:442
+#: libgeda/src/a_basic.c:448 libgeda/src/a_basic.c:456
 #, c-format
 msgid ""
 "Read unexpected embedded symbol start marker in [%s] :\n"
@@ -68,7 +68,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/a_basic.c:473
+#: libgeda/src/a_basic.c:487
 #, c-format
 msgid ""
 "Read unexpected embedded symbol end marker in [%s] :\n"
@@ -76,7 +76,7 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/a_basic.c:508
+#: libgeda/src/a_basic.c:522
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -84,7 +84,7 @@ msgid ""
 "[%s]\n"
 msgstr ""
 
-#: libgeda/src/a_basic.c:514
+#: libgeda/src/a_basic.c:539
 #, c-format
 msgid ""
 "Read garbage in [%s] :\n"
@@ -92,17 +92,22 @@ msgid ""
 "%s<<\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:123 libgeda/src/f_basic.c:136
+#: libgeda/src/a_basic.c:541
+#, c-format
+msgid "Read garbage in [%s]"
+msgstr ""
+
+#: libgeda/src/f_basic.c:127 libgeda/src/f_basic.c:140
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr ""
 
-#: libgeda/src/f_basic.c:219
+#: libgeda/src/f_basic.c:204
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr ""
 
-#: libgeda/src/f_basic.c:267
+#: libgeda/src/f_basic.c:253
 #, c-format
 msgid ""
 "\n"
@@ -111,55 +116,55 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:269
-msgid "I could not guess if it is newer, so you have to do it manually.\n"
+#: libgeda/src/f_basic.c:255
+msgid "Could not guess if it is newer, so you have to do it manually.\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:271
+#: libgeda/src/f_basic.c:257
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:273
+#: libgeda/src/f_basic.c:259
 msgid ""
 "Gschem usually makes backup copies automatically, and this situation happens "
 "when it crashed or it was forced to exit abruptly.\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:276
+#: libgeda/src/f_basic.c:262
 msgid ""
 "\n"
 "Run gschem and correct the situation.\n"
 "\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:370
+#: libgeda/src/f_basic.c:381
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr ""
 
-#: libgeda/src/f_basic.c:408
+#: libgeda/src/f_basic.c:419
 #, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr ""
 
-#: libgeda/src/f_basic.c:416
+#: libgeda/src/f_basic.c:427
 #, c-format
 msgid "Can't create backup file: %s."
 msgstr ""
 
-#: libgeda/src/f_basic.c:456
+#: libgeda/src/f_basic.c:466
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr ""
 
-#: libgeda/src/f_basic.c:703
+#: libgeda/src/f_basic.c:713
 #, c-format
 msgid "%s: %s"
 msgstr ""
 
-#: libgeda/src/g_basic.c:265
+#: libgeda/src/g_basic.c:266
 msgid ""
 "\n"
 "Backtrace:\n"
@@ -169,121 +174,121 @@ msgstr ""
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/g_rc.c:207
+#: libgeda/src/g_rc.c:209
 #, c-format
 msgid "Loaded RC file [%s]\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:211
+#: libgeda/src/g_rc.c:213
 #, c-format
 msgid "Failed to load RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/g_rc.c:326
+#: libgeda/src/g_rc.c:329
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/g_rc.c:338 libgeda/src/g_rc.c:339
+#: libgeda/src/g_rc.c:341 libgeda/src/g_rc.c:342
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:345
+#: libgeda/src/g_rc.c:348
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:753
+#: libgeda/src/g_rc.c:801
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:754 libgeda/src/g_rc.c:760 libgeda/src/g_rc.c:791
-#: libgeda/src/g_rc.c:797 libgeda/src/g_rc.c:830 libgeda/src/g_rc.c:836
-#: libgeda/src/g_rc.c:869 libgeda/src/g_rc.c:875 libgeda/src/g_rc.c:900
-#: libgeda/src/g_rc.c:924 libgeda/src/g_rc.c:948 libgeda/src/g_rc.c:973
-#: libgeda/src/g_rc.c:998 libgeda/src/g_rc.c:1023 libgeda/src/g_rc.c:1048
-#: libgeda/src/g_rc.c:1073
+#: libgeda/src/g_rc.c:802 libgeda/src/g_rc.c:808 libgeda/src/g_rc.c:839
+#: libgeda/src/g_rc.c:845 libgeda/src/g_rc.c:878 libgeda/src/g_rc.c:884
+#: libgeda/src/g_rc.c:917 libgeda/src/g_rc.c:923 libgeda/src/g_rc.c:948
+#: libgeda/src/g_rc.c:972 libgeda/src/g_rc.c:996 libgeda/src/g_rc.c:1021
+#: libgeda/src/g_rc.c:1046 libgeda/src/g_rc.c:1071 libgeda/src/g_rc.c:1096
+#: libgeda/src/g_rc.c:1121
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:759
+#: libgeda/src/g_rc.c:807
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:790
+#: libgeda/src/g_rc.c:838
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:796
+#: libgeda/src/g_rc.c:844
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:829
+#: libgeda/src/g_rc.c:877
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:835
+#: libgeda/src/g_rc.c:883
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:868
+#: libgeda/src/g_rc.c:916
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:874
+#: libgeda/src/g_rc.c:922
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:899
+#: libgeda/src/g_rc.c:947
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:923
+#: libgeda/src/g_rc.c:971
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:947
+#: libgeda/src/g_rc.c:995
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:972
+#: libgeda/src/g_rc.c:1020
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:997
+#: libgeda/src/g_rc.c:1045
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:1022
+#: libgeda/src/g_rc.c:1070
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:1047
+#: libgeda/src/g_rc.c:1095
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:1072
+#: libgeda/src/g_rc.c:1120
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/g_rc.c:1358
+#: libgeda/src/g_rc.c:1406
 msgid ""
 "WARNING: using a string for 'always-promote-attributes' is deprecated. Use a "
 "list of strings instead\n"
@@ -300,8 +305,8 @@ msgstr ""
 
 #: libgeda/src/o_arc_basic.c:282 libgeda/src/o_box_basic.c:326
 #: libgeda/src/o_bus_basic.c:187 libgeda/src/o_circle_basic.c:289
-#: libgeda/src/o_line_basic.c:264 libgeda/src/o_net_basic.c:172
-#: libgeda/src/o_path_basic.c:189 libgeda/src/o_pin_basic.c:183
+#: libgeda/src/o_line_basic.c:265 libgeda/src/o_net_basic.c:172
+#: libgeda/src/o_path_basic.c:189 libgeda/src/o_pin_basic.c:184
 #: libgeda/src/o_text_basic.c:425
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
@@ -309,8 +314,8 @@ msgstr ""
 
 #: libgeda/src/o_arc_basic.c:283 libgeda/src/o_box_basic.c:327
 #: libgeda/src/o_bus_basic.c:188 libgeda/src/o_circle_basic.c:290
-#: libgeda/src/o_line_basic.c:265 libgeda/src/o_net_basic.c:173
-#: libgeda/src/o_path_basic.c:190 libgeda/src/o_pin_basic.c:184
+#: libgeda/src/o_line_basic.c:266 libgeda/src/o_net_basic.c:173
+#: libgeda/src/o_path_basic.c:190 libgeda/src/o_pin_basic.c:185
 #: libgeda/src/o_text_basic.c:426
 msgid "Setting color to default color\n"
 msgstr ""
@@ -490,11 +495,11 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr ""
 
-#: libgeda/src/o_line_basic.c:229 libgeda/src/o_line_basic.c:247
+#: libgeda/src/o_line_basic.c:230 libgeda/src/o_line_basic.c:248
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/o_line_basic.c:259
+#: libgeda/src/o_line_basic.c:260
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr ""
@@ -617,17 +622,17 @@ msgstr ""
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
 
-#: libgeda/src/o_pin_basic.c:160 libgeda/src/o_pin_basic.c:168
+#: libgeda/src/o_pin_basic.c:161 libgeda/src/o_pin_basic.c:169
 msgid "Failed to parse pin object"
 msgstr ""
 
-#: libgeda/src/o_pin_basic.c:174
+#: libgeda/src/o_pin_basic.c:175
 msgid ""
 "Found a pin which did not have the whichone field set.\n"
 "Verify and correct manually.\n"
 msgstr ""
 
-#: libgeda/src/o_pin_basic.c:177
+#: libgeda/src/o_pin_basic.c:178
 #, c-format
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr ""
@@ -661,79 +666,79 @@ msgstr ""
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
 
-#: libgeda/src/s_clib.c:410
+#: libgeda/src/s_clib.c:415
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:415
+#: libgeda/src/s_clib.c:420
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:419
+#: libgeda/src/s_clib.c:424
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:420
+#: libgeda/src/s_clib.c:425
 #, c-format
 msgid ""
 "Error output was:\n"
 "%s\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:506
+#: libgeda/src/s_clib.c:512
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:543
+#: libgeda/src/s_clib.c:568
 #, c-format
 msgid "Failed to open directory [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:679
+#: libgeda/src/s_clib.c:704
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:687
+#: libgeda/src/s_clib.c:712
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:846 libgeda/src/s_clib.c:893
+#: libgeda/src/s_clib.c:959 libgeda/src/s_clib.c:1006
 msgid "Cannot add library: name not specified\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:853
+#: libgeda/src/s_clib.c:966
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:901
+#: libgeda/src/s_clib.c:1014
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:1028
+#: libgeda/src/s_clib.c:1141
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:1088
+#: libgeda/src/s_clib.c:1201
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:1330
+#: libgeda/src/s_clib.c:1443
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/s_clib.c:1336
+#: libgeda/src/s_clib.c:1449
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""
@@ -766,27 +771,27 @@ msgstr ""
 msgid "There are no schematics above the current one!\n"
 msgstr ""
 
-#: libgeda/src/s_hierarchy.c:277
+#: libgeda/src/s_hierarchy.c:278
 #, c-format
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr ""
 
-#: libgeda/src/s_page.c:213
+#: libgeda/src/s_page.c:212
 #, c-format
 msgid "s_page_delete: Can't get the real filename of %s."
 msgstr ""
 
-#: libgeda/src/s_page.c:224
+#: libgeda/src/s_page.c:223
 #, c-format
 msgid "s_page_delete: Unable to delete backup file %s."
 msgstr ""
 
-#: libgeda/src/s_page.c:499
+#: libgeda/src/s_page.c:498
 #, c-format
 msgid "Saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/s_page.c:505
+#: libgeda/src/s_page.c:504
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr ""
@@ -847,107 +852,107 @@ msgstr ""
 msgid "Object ~A has attributes"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:232
+#: libgeda/src/scheme_object.c:237
 msgid "Object ~A has bad type '~A'"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:346
+#: libgeda/src/scheme_object.c:351
 msgid "Object ~A has invalid stroke cap style ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:359
+#: libgeda/src/scheme_object.c:364
 msgid "Object ~A has invalid stroke dash style ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:423
+#: libgeda/src/scheme_object.c:428
 msgid "Invalid stroke cap style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:434
+#: libgeda/src/scheme_object.c:439
 msgid "Invalid stroke dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:444
+#: libgeda/src/scheme_object.c:449
 msgid "Missing dash length parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:454
+#: libgeda/src/scheme_object.c:459
 msgid "Missing dot/dash space parameter for dash style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:516
+#: libgeda/src/scheme_object.c:521
 msgid "Object ~A has invalid fill style ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:565
+#: libgeda/src/scheme_object.c:570
 msgid "Invalid fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:573
+#: libgeda/src/scheme_object.c:578
 msgid "Missing second space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:582
+#: libgeda/src/scheme_object.c:587
 msgid "Missing second angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:592
+#: libgeda/src/scheme_object.c:597
 msgid "Missing stroke width parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:601
+#: libgeda/src/scheme_object.c:606
 msgid "Missing space parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:610
+#: libgeda/src/scheme_object.c:615
 msgid "Missing angle parameter for fill style ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:909
+#: libgeda/src/scheme_object.c:914
 msgid "Invalid pin type ~A, must be 'net or 'bus"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:952
+#: libgeda/src/scheme_object.c:961
 msgid "Object ~A has invalid pin type."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1346
+#: libgeda/src/scheme_object.c:1355
 msgid "Invalid text alignment ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1362
+#: libgeda/src/scheme_object.c:1371
 msgid "Invalid text angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1381
+#: libgeda/src/scheme_object.c:1390
 msgid "Invalid text name/value visibility ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1456
+#: libgeda/src/scheme_object.c:1465
 msgid "Text object ~A has invalid text alignment ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1465
+#: libgeda/src/scheme_object.c:1474
 msgid "Text object ~A has invalid visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1475
+#: libgeda/src/scheme_object.c:1484
 msgid "Text object ~A has invalid text attribute visibility ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1516
+#: libgeda/src/scheme_object.c:1525
 msgid "Object ~A is not included in a page."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1669
+#: libgeda/src/scheme_object.c:1678
 msgid "Path object ~A has invalid element type ~A at index ~A"
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1783
+#: libgeda/src/scheme_object.c:1791
 msgid "Invalid path element type ~A."
 msgstr ""
 
-#: libgeda/src/scheme_object.c:1956
+#: libgeda/src/scheme_object.c:1970
 msgid "Invalid picture angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
@@ -955,7 +960,7 @@ msgstr ""
 msgid "Object ~A is attached to a complex or different page"
 msgstr ""
 
-#: libgeda/src/scheme_page.c:442
+#: libgeda/src/scheme_page.c:445
 msgid "Parse error: ~s"
 msgstr ""
 

@@ -1,0 +1,234 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Mon Apr 15 01:35:54 2013 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>gmake-transistors-sym</title>
+
+</head>
+<body>
+
+<h1 align="center">gmake-transistors-sym</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#QUICK">QUICK</a><br>
+<a href="#PARAMETERS">PARAMETERS</a><br>
+<a href="#INFORMATION">INFORMATION</a><br>
+<a href="#DIRECTIVES">DIRECTIVES</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#HOMEPAGE">HOMEPAGE</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">gmake-transistors-sym
+&minus; Make gEDA Transitor Symbols</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gmake-transistors-sym</b>
+<i>symbol_file</i></p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><i><b>gmake-transistors-sym</b></i>
+[<i>OPTIONS</i>]<i>TEMPLATE[.sym]</i>PARAMETERS[.spm]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gmake-transistors-sym</b>
+Make gEDA Transitor Symbols</p>
+
+<p style="margin-left:11%; margin-top: 1em">This script is
+for &rsquo;batch&rsquo; production of transistor symbols for
+the geda=gaf project. The script requires a template symbol
+file and a parameter file. Parameters read from the file are
+used in the output symbol file name or used as replacement
+values for pre-set variables in the symbol template
+file.</p>
+
+<h2>QUICK
+<a name="QUICK"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>usage: [-h,
+--help] | [--version] | [options] template[.sym]
+parameters[.spm]</b> example: gmake-transistors-sym
+npn-example-template.sym
+params-exported-gnumeric.spm&lt;ENTER&gt;.</p>
+
+<h2>PARAMETERS
+<a name="PARAMETERS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Fields in the
+TAB or space delimited parameter file are read and
+interpreted as follows:</p>
+
+<p style="margin-left:11%; margin-top: 1em">1. Part Number
+string to be substituted for PART_NUMBER in the symbol file
+2. Voltage string is included in the file name and as part
+of the COMPONENT_VALUE 3. Features string also included in
+the file name and in the COMPONENT_VALUE. This could be, for
+example, Wattage or Ampacity 4. Package name, if the -p
+option is present on the command line then the 4th field
+interpreted as the package ID and included in the file name
+5. FootPrint must be the next argument and is substituted
+for unknown in the template 6. Optional symbol file
+modifier, if present, the value is used as a second suffix
+before dash suffix. Normally this would be used to select
+the template with the correct pin -out, for example using
+ECB or BEC. The string is prefixed with a underscore
+composing the template file name. 7. Optional symbol file
+suffix, if this value is present in the parameter file, the
+string will be used between the template given on the
+commanline and the symbol file extension, in this case the
+name of the template given on the command line should only
+be the base file name. The string is prefixed with a dash
+composing the template file name. Note that if a modifier is
+not given then this parameter 6 is assumed to be the symbol
+file suffix</p>
+
+<h2>INFORMATION
+<a name="INFORMATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Use of the
+following options displays information related to
+gmake-transistors-sym but does not create any symbols: <br>
+-h, --help</p>
+
+<p style="margin-left:22%;">Show information about the
+advanced usage of this command.</p>
+
+<p style="margin-left:11%;">-u, --usage</p>
+
+<p style="margin-left:22%;">Displays examples on
+usage&quot;</p>
+
+<p style="margin-left:11%;">--version</p>
+
+<p style="margin-left:22%;">Displays software version
+information&quot;</p>
+
+<h2>DIRECTIVES
+<a name="DIRECTIVES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">-v,
+--verbose</p>
+
+<p style="margin-left:22%;">Include additional information
+during processing.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">-p,
+--package</p>
+
+<p style="margin-left:22%;">The packge type is included in
+the paratmeter data</p>
+
+<p style="margin-left:11%;">-t, --template</p>
+
+<p style="margin-left:22%;">Include the template prefix and
+suffix in the output symbol name</p>
+
+<p style="margin-left:11%;">-m, --modifier</p>
+
+<p style="margin-left:22%;">Suffix the template modifier in
+the output symbol name, like _ecb</p>
+
+<h2>HOMEPAGE
+<a name="HOMEPAGE"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">http://www.gpleda.org/</p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">You can report
+bugs at the Launchpad site of gmake-transistors-sym:
+https://bugs.launchpad.net/geda/gmake-transistors-sym/+filebug</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Wiley Edward
+Hill &lt; wileyhill dot gmail dot com &gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gmake-caps-sym</b>(1)</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 2012-2013 Wiley Edward Hill. License GPLv2+: GNU GPL
+<br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+<hr>
+</body>
+</html>

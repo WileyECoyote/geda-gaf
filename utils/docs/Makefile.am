@@ -1,9 +1,11 @@
 dist_man_MANS = gsch2pcb.1 grenum.1 gxyrs.1 olib.1 pads_backannotate.1 \
 	pcb_backannotate.1 refdes_renum.1 schdiff.1 sw2asc.1 tragesym.1 \
 	smash_megafile.1 convert_sym.1 garchive.1 gmk_sym.1 gschlas.1 \
-	gsymfix.1 sarlacc_sym.1 sarlacc_schem.1
+	sarlacc_sym.1 sarlacc_schem.1 gclean-symbol.1 gsymfix.1 gfix-library.1 \
+        gcheck-library.1 gmake-transistors-sym.1 gmake-caps-sym.1 \
+        gnet_hier_verilog.1
 
-dist_noinst_MANS = gnet_hier_verilog.1
+#dist_noinst_MANS = gnet_hier_verilog.1
 
 EXTRA_DIST = $(addsuffix .in,$(man_MANS) $(noinst_MANS)) \
 	README.gsch2pcb README.olib README.tragesym README.grenum \
@@ -45,7 +47,7 @@ else
 endif
 
 MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~ 
+CLEANFILES = *.log *~
 DISTCLEANFILES = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log *~ Makefile.in $(html_man_files)
 
@@ -53,4 +55,4 @@ distclean-local:
 	-rm -rf html latex
 
 maintainer-clean-local:
-	-rm -rf html latex 
+	-rm -rf html latex

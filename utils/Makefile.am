@@ -1,5 +1,6 @@
 
-SUBDIRS = src gsch2pdf gschlas scripts gxyrs lib include examples docs tests
+SUBDIRS = docs examples include gmake gsch2pdf gschemdoc gschlas gxyrs \
+	  lib scripts src tests
 
 EXTRA_DIST = ChangeLog ChangeLog.tragesym-1.0 ChangeLog.gsch2pcb-1.0 \
 	     ChangeLog-1.0 AUTHORS

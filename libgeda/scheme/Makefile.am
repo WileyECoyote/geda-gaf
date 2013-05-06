@@ -11,7 +11,11 @@ check-am: update-gaf-tool
 # Unit test support.  The unit tests are run using the geda-batch
 # program, with config loading disabled (-q) so that user config
 # already on the system can't interfere with the test process.
+#GAF_SHELL = $(builddir)/../shell/geda-shell -q
+
+# The new commanline tool uses --no-rcfiles
 GAF_SHELL = $(top_builddir)/gaf/gaf --no-rcfiles shell
+
 TESTS_ENVIRONMENT = $(GAF_SHELL) -L $(srcdir) -L $(builddir) \
 	-c '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
 
@@ -42,11 +46,11 @@ TESTS = unit-tests/t0001-geda-conf-lib.scm \
 	unit-tests/t0301-promotable-attributes.scm \
 	unit-tests/t0400-os.scm \
 	unit-tests/t0401-os-expand-env-variables.scm \
-	unit-tests/t0402-config.scm \
 	unit-tests/t1000-deprecated.scm
 
 XFAIL_TESTS = \
-	unit-tests/t0301-promotable-attributes.scm
+	unit-tests/t0301-promotable-attributes.scm \
+	unit-tests/t0402-config.scm
 
 dist_noinst_DATA = geda/core/gettext.scm.in unit-test.scm $(TESTS)
 

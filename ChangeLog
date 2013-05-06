@@ -1,3 +1,9 @@
+2013-04-15  Wiley E. Hill <wileyhill@gmail.com>
+
+	* configure.ac: removed gnetlist/scripts/annotate.sh gnetlist/scripts/
+          bom_xref.sh  gnetlist/scripts/bompp.sh - these should be handled by
+          the local makefile.
+
 2012-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
 	* All:Re-organinzed all Makefiles.am's to improve reliabilty of header

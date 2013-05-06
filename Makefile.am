@@ -20,10 +20,10 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 BUILT_SOURCES = version.h
 
-EXTRA_DIST = \
-		COPYING.LGPL \
+EXTRA_DIST =    COPYING.LGPL \
 		HACKING \
-		acinclude.m4 autogen.sh \
+		autogen.sh \
+		config.h \
 		version.h version.h.in
 
 #

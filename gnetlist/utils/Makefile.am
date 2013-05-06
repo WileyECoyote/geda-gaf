@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-noinst_PROGRAMS = mk_verilog_syms
+bin_PROGRAMS = mk_verilog_syms
 
 mk_verilog_syms_SOURCES = mk_verilog_syms.c
 

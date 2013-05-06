@@ -1,9 +1,18 @@
 
-EXTRA_DIST = bompp.sh.in annotate.sh.in unannotate.sh bom_xref.sh.in \
-	     sch2eaglepos.sh
+SUFFIXES = .sh
 
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~
-DISTCLEANFILES = *.log core FILE *~  bompp.sh annotate.sh bom_xref.sh
-MAINTAINERCLEANFILES = *.log *~ Makefile.in bompp.sh annotate.sh \
-		       bom_xref.sh
+bin_SCRIPTS = 	bompp \
+		bom_xref \
+		annotate \
+		unannotate \
+		sch2eaglepos
+
+EXTRA_DIST = $(bin_SCRIPTS)
+
+CLEANFILES = *.log *~  $(bin_SCRIPTS)
+
+MOSTLYCLEANFILES = $(CONFIG_CLEAN) $(bin_SCRIPTS)
+
+DISTCLEANFILES = *.log core FILE *~  $(bin_SCRIPTS)
+
+MAINTAINERCLEANFILES = *.log *~ Makefile.in  $(bin_SCRIPTS)

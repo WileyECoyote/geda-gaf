@@ -7,6 +7,27 @@ Copyright (C) 1998-2013 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
+Notable changes in gEDA/gaf 2.0.6
+=================================
+
+* GUI Enhancments for gschem GUI with better consistency between
+  dialogs. Most dialog are now modeless and react to selection
+  changes. 
+
+* Component selection enhanced to facilitate selection of library
+  symbols with larger libraries. The selection dialog provides a
+  more advanced interface to allow catagorization of symbols.
+
+* Symbol libraries significantly expanded. A new "style" system is
+  introduced. The new style scheme provides a "standardization" of
+  symbols names. Filtering based on style is supported with user
+  configurable definitions and GUI options.
+
+* Additional support scripts have been added to supplement the suite.
+  Scripts are provided to batch test and repair libraries.
+
+* Man pages have now been added for all geda-gaf programs.
+
 Notable changes in gEDA/gaf 2.0.1
 =================================
 

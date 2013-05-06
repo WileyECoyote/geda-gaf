@@ -1,4 +1,5 @@
 (source-library ".")
-(component-library ".")
+;;(component-library ".")
+(component-library "." "Local/Hierarchy Test")
 ;;(undo-type "memory")
 

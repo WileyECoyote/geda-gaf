@@ -1,6 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = hierarchy hierarchy2 drc2 common
+SUBDIRS = hierarchy hierarchy2 drc2
+# common
 
 EXTRA_DIST = runtest.sh \
 	     7447.vhdl README amp.spice cascade.sch cascade.cascade \
@@ -24,6 +25,7 @@ GNETLIST=$(builddir)/../src/gnetlist
 
 tests:
 
+notest:
 # cleanup
 	rm -f $(BUILDDIR)/new_*
 	rm -rf $(BUILDDIR)/devfiles

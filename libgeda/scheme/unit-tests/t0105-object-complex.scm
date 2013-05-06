@@ -150,7 +150,7 @@
 
 ;; Set up component library, making blatant assumptions about the
 ;; directory layout.
-(component-library (string-join (list (getenv "srcdir") "../../symbols/analog") "/")
+(component-library (string-join (list (getenv "srcdir") "../../../symbols/passive/resistor") "/")
                    "Basic devices")
 
 (begin-test 'component/library

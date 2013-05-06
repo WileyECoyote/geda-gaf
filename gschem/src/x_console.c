@@ -80,8 +80,8 @@ static GObjectClass *console_parent_class = NULL;
 static void x_console_callback_response (GtkDialog *dialog, int arg1, gpointer user_data);
 static void log_message (Console *console, const char *message, const char *style);
 
-void q_log_message(const char* message){ if(!quiet_mode)  s_log_message(message); }
-void v_log_message(const char* message){ if(verbose_mode) s_log_message(message); }
+void q_log_message(const char *message){ if(!quiet_mode)  s_log_message(message); }
+void v_log_message(const char *message){ if(verbose_mode) s_log_message(message); }
 
 /*!
  *  \brief Destroy Command Buffer
@@ -104,8 +104,8 @@ void x_console_destroy_command_buffer(gpointer user_data) {
 }
 void x_console_init_commands(GSCHEM_TOPLEVEL *w_current) {
   command_buffer=NULL;
-  i_command_engage(w_current);
-  //i_command_disengage(FALSE, FALSE);
+  //i_command_engage(w_current);
+  i_command_disengage(FALSE, FALSE);
 }
 /*! ====================== @section Dialog-Handlers ==================== */
 

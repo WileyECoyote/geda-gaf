@@ -5,14 +5,13 @@
              (geda config)
              (srfi srfi-1))
 
-(or (defined? 'define-syntax)
-    (use-modules (ice-9 syncase)))
+(or (defined? 'define-syntax) (use-modules (ice-9 syncase)))
 
-(define *testdir* (string-append (getcwd) separator "t0402-tmp"))
-(define *testdirconf* (string-append *testdir* separator "geda.conf"))
-(define *testdirA* (string-append *testdir* separator "A"))
+(define *testdir*      (string-append (getcwd)   separator "t0402-tmp"))
+(define *testdirconf*  (string-append *testdir*  separator "geda.conf"))
+(define *testdirA*     (string-append *testdir*  separator "A"))
 (define *testdirAconf* (string-append *testdirA* separator "geda.conf"))
-(define *testdirB* (string-append *testdir* separator "B"))
+(define *testdirB*     (string-append *testdir*  separator "B"))
 (define *testdirBconf* (string-append *testdirB* separator "geda.conf"))
 
 ;; Setup/teardown of directories / files needed by tests
@@ -23,6 +22,7 @@
   (mkdir *testdirB*)
   (with-output-to-file *testdirconf* newline)
   (with-output-to-file *testdirAconf* newline))
+
 (define (config-test-teardown)
   (system* "rm" "-rf" *testdir*))
 
@@ -73,7 +73,7 @@
 
     (assert-equal b c)
 
-    (assert-equal *testdirconf* (config-filename c))
+    (assert-equal *testdirconf*  (config-filename c))
     (assert-equal *testdirAconf* (config-filename a))
 
     (assert-equal (user-config-context) (config-parent a))

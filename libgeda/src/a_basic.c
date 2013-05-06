@@ -429,19 +429,32 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
         break;
 
       case(START_EMBEDDED):
-        new_obj = new_object_list->data;
 
-        if (new_obj != NULL &&
-            (new_obj->type == OBJ_COMPLEX ||
-             new_obj->type == OBJ_PLACEHOLDER)) {
+        if (new_object_list != NULL) {
 
-          object_list_save = new_object_list;
-          new_object_list = new_obj->complex->prim_objs;
+          new_obj = new_object_list->data;
 
-          embedded_level++;
-        } else {
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected embedded "
-                                                                 "symbol start marker in [%s] :\n>>\n%s<<\n"),
+          if (new_obj != NULL &&
+             (new_obj->type == OBJ_COMPLEX ||
+              new_obj->type == OBJ_PLACEHOLDER)) {
+
+            object_list_save = new_object_list;
+            new_object_list = new_obj->complex->prim_objs;
+            embedded_level++;
+          }
+          else {
+
+            g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
+                         _("Read unexpected embedded "
+                           "symbol start marker in [%s] :\n>>\n%s<<\n"),
+                         name, line);
+           goto error;
+          }
+        }
+        else {
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
+                       _("Read unexpected embedded "
+                         "symbol start marker in [%s] :\n>>\n%s<<\n"),
                        name, line);
           goto error;
         }
@@ -553,7 +566,9 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
   object_list = g_list_concat (object_list, new_object_list);
 
   return(object_list);
+
  error:
+
   s_delete_object_glist(toplevel, new_object_list);
   return NULL;
 }

@@ -387,6 +387,7 @@ SCM_DEFINE (page_to_string, "%page->string", 1, 0, 0,
               SCM_ARG1, s_page_to_string);
 
   PAGE *page = edascm_to_page (page_s);
+
   TOPLEVEL *toplevel = edascm_c_current_toplevel ();
 
   gchar *buf = o_save_buffer (toplevel, s_page_objects (page));
@@ -414,11 +415,14 @@ SCM_DEFINE (string_to_page, "%string->page", 2, 0, 0,
             (SCM filename_s, SCM str_s),
             "Create a new page from a string.")
 {
+
+
   /* Ensure that the arguments are strings */
   SCM_ASSERT (scm_is_string (filename_s), filename_s,
               SCM_ARG1, s_string_to_page);
   SCM_ASSERT (scm_is_string (str_s), str_s,
               SCM_ARG2, s_string_to_page);
+
 
   TOPLEVEL *toplevel = edascm_c_current_toplevel ();
   char *filename = scm_to_utf8_string (filename_s);
@@ -428,6 +432,7 @@ SCM_DEFINE (string_to_page, "%string->page", 2, 0, 0,
   size_t len;
   GError * err = NULL;
   char *str = scm_to_utf8_stringn (str_s, &len);
+
   GList *objects = o_read_buffer (toplevel, NULL, str, len,
                                   page->page_filename, &err);
   free (str);

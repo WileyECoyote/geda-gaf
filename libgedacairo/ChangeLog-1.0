@@ -1,3 +1,10 @@
+2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+        -I$(top_srcdir)/include. Don't know where i got abs_top_build.
+        Does not work for distcheck or on Mint (and probably Ubuntu) with
+        automake ver? autoconf v?
+
 2012-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * libgedacairo: Created subfolders src and include and coresponding

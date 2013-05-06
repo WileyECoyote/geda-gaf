@@ -1,6 +1,6 @@
 ;; gEDA - GPL Electronic Design Automation
 ;; libgeda - gEDA's library - Scheme API
-;; Copyright (C) 2010-2011 Peter Brett <peter@peter-b.co.uk>
+;; Copyright (C) 2010-2013 Peter Brett <peter@peter-b.co.uk>
 ;;
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -176,7 +176,7 @@
 (define-public (circle-radius c)
   (list-ref (circle-info c) 1))
 
-;;;; Arcs
+;;; Arcs
 
 (define-public (arc? a)
   (object-type? a 'arc))
@@ -213,7 +213,7 @@
 (define-public (arc-end-angle a)
   (list-ref (arc-info a) 3))
 
-;;;; Paths
+;;; Paths
 
 (define-public (path? x)
   (object-type? x 'path))
@@ -252,15 +252,21 @@
   (define (transform-points lst acc)
     (if (null? lst)
         acc
-        (transform-points
-         (cdr lst)
-         (list (caar lst) (cdar lst)))))
+        (transform-points (cdr lst) (list (caar lst) (cdar lst))
+        )
+    )
+  )
+  (if (eq? type 'curveto)
+      ( %path-insert p idx type (car (car points))   (cdr (car points))
+                                (car (cadr points))  (cdr (cadr points))
+                                (car (caddr points)) (cdr (caddr points))
+      )
+      (apply %path-insert p idx type (transform-points points '()))
+  )
 
-  (apply %path-insert p idx type (transform-points points '())))
+)
 
-
-;;;; Pictures
-
+;;; Pictures
 (define-public (picture? x)
   (object-type? x 'picture))
 

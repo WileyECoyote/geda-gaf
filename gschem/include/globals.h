@@ -54,7 +54,9 @@ extern GList *object_buffer[MAX_BUFFERS];
 /* Hooks */
 extern SCM complex_place_list_changed_hook;
 
-#include "gettext.h"
+/* Gettext translation */
+//WEH Testing change from "gettext.h" to <gettext.h>
+#include <gettext.h>
 #ifdef ENABLE_NLS
 # ifdef gettext_noop
 #  define N_(String) gettext_noop (String)

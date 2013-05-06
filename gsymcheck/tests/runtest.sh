@@ -6,7 +6,7 @@ SRCDIR=$3
 rundir=${BUILDDIR}/run
 
 # create temporary run directory and required subdirs
-mkdir -m 0700 -p ${rundir}
+mkdir -m 0777 -p ${rundir}
 rc=$?
 if test $rc -ne 0 ; then
 	echo "Failed to create directory ${rundir} with appropriate permissions"

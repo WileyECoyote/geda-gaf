@@ -3,15 +3,15 @@ SUBDIRS = vams
 
 EXTRA_DIST = $(html_man_files) logo.png \
 	     gnetlist-main.txt what-is-geda.html what-is-gnetlist.html \
-	     gnetlist.dox gnetlist.1.in mk_verilog_syms.1.in
+	     gnetlist.dox gnetlist.1.in
 
 docsreadmedir = $(docdir)/readmes
 dist_docsreadme_DATA = \
 	README.bom README.pcb README.switcap README.verilog \
 	README.vhdl README.sysc README.eagle
 
-dist_man_MANS = gnetlist.1
-noinst_MANS = mk_verilog_syms.1
+dist_man_MANS = gnetlist.1 mk_verilog_syms.1
+#noinst_MANS = mk_verilog_syms.1
 
 .1.in.1:
 	d=`LANG=C date -d $(DATE_VERSION) "+%B %-d, %Y"` ; \

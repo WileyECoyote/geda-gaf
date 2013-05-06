@@ -1,3 +1,17 @@
+2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+        -I$(top_srcddir)/include. Don't know where i got abs_top_build.
+        Does not work for distcheck or on Mint (and probably Ubuntu) with
+        automake ver? autoconf v?
+
+2013-04-15  Wiley E. Hill <wileyhill@gmail.com>
+
+        * utils/Makefile.am: changed no_inst to bin_PROGRAMS
+        * docs/Makefile.am: changed mk_verilog_syms.1 from noinst_MANS
+          to dist_man_MANS
+        * scripts/Makefile.am: changed EXTRA_DIST to bin_SCRIPTS
+
 2012-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * utils/mk_verilog_syms.c: Remove include "config.h", was not used

@@ -49,8 +49,9 @@ GNETLIST=$(builddir)/../../src/gnetlist
 gnet_srcdir=$(top_srcdir)/gnetlist
 gnet_builddir=$(top_builddir)/gnetlist
 
-.PHONY : tests
 tests:
+
+notests:
 # cleanup
 	rm -f $(BUILDDIR)/new_*
 	rm -f $(BUILDDIR)/failed.log

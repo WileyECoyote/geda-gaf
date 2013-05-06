@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
- * Copyright (C) 2011-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2011-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,16 +47,19 @@ struct _EdaConfigPrivate
   gboolean changed;
 };
 
-/*! Default value for XDG_CONFIG_DIRS if no system configuration
- * found. */
+/*! Default value for XDG_CONFIG_DIRS if no system configuration found. */
 #define XDG_CONFIG_DIRS_DEFAULT "/etc/xdg/"
+
 /*! Subdirectory of XDG directories (config, data, cache etc.) to check
  * for gEDA files. */
 #define XDG_SUBDIR "gEDA"
+
 /*! Filename for gEDA system configuration files */
 #define SYSTEM_CONFIG_NAME "geda-system.conf"
+
 /*! Filename for gEDA user configuration files */
 #define USER_CONFIG_NAME "geda-user.conf"
+
 /*! Filename for gEDA local configuration files */
 #define LOCAL_CONFIG_NAME "geda.conf"
 

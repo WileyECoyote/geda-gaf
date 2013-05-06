@@ -1,0 +1,13 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+FRAGMENTS=widgets
+
+noinst_HEADERS += \
+		widgets/geda_entry.h            \
+		widgets/geda_handlebox.h        \
+		widgets/geda_menu_button.h      \
+		widgets/gschem_accel_label.h    \
+		widgets/gschem_action.h         \
+		widgets/gschem_toggle_action.h
+
+

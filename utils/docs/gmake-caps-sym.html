@@ -1,0 +1,196 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Mon Apr 15 04:31:26 2013 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>gmake-caps-sym</title>
+
+</head>
+<body>
+
+<h1 align="center">gmake-caps-sym</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#QUICK">QUICK</a><br>
+<a href="#PARAMETERS">PARAMETERS</a><br>
+<a href="#INFORMATION">INFORMATION</a><br>
+<a href="#DIRECTIVES">DIRECTIVES</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#HOMEPAGE">HOMEPAGE</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">gmake-caps-sym
+&minus; Make gEDA Capacitor Symbols</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gmake-caps-sym</b>
+[<i>OPTIONS</i>]<i>TEMPLATE[.sym]</i>PARAMETERS[.spm]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gmake-caps-sym</b>
+Make gEDA Capacitor Symbols</p>
+
+<p style="margin-left:11%; margin-top: 1em">This script is
+for &rsquo;batch&rsquo; production of capacitor symbols for
+the geda=gaf project. The script requires a template symbol
+file and a parameter file. Parameters read from the file are
+used in the output symbol file name or used as replacement
+values for pre-set variables in the symbol template
+file.</p>
+
+<h2>QUICK
+<a name="QUICK"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>usage: [-h,
+--help] | [--version] | [options] template[.sym]
+parameters[.spm]</b> example: gmake-caps-sym
+electro-example-template.sym
+params-exported-gnumeric.spm&lt;ENTER&gt;.</p>
+
+<h2>PARAMETERS
+<a name="PARAMETERS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Fields in the
+TAB or space delimited parameter file are read and
+interpreted as follows:</p>
+
+<p style="margin-left:11%; margin-top: 1em">1. Capacitence
+string to be substituted for &rsquo;CAPACITOR_VALUE&rsquo;
+in the symbol file and the output file name 2. Voltage
+string is included in the file name and as part of the
+&rsquo;CAPACITOR_VALUE&rsquo; 3. PartNumber string, included
+in the file name and in the &rsquo;PART_NUMBER&rsquo;. 4.
+FootPrint string to be substituted for &rsquo;unknown&rsquo;
+in the symbol file</p>
+
+<h2>INFORMATION
+<a name="INFORMATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Use of the
+following options displays information related to
+gmake-caps-sym but does not create any symbols: <br>
+-h, --help</p>
+
+<p style="margin-left:22%;">Show information about the
+advanced usage of this command.</p>
+
+<p style="margin-left:11%;">-u, --usage</p>
+
+<p style="margin-left:22%;">Displays examples on
+usage&quot;</p>
+
+<p style="margin-left:11%;">--version</p>
+
+<p style="margin-left:22%;">Displays software version
+information&quot;</p>
+
+<h2>DIRECTIVES
+<a name="DIRECTIVES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">-v,
+--verbose</p>
+
+<p style="margin-left:22%;">Include additional information
+during processing.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The current
+version of gmake-caps-sym does not recognize any additionl
+command-line options</p>
+
+<h2>HOMEPAGE
+<a name="HOMEPAGE"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">http://www.gpleda.org/</p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">You can report
+bugs at the Launchpad site of gmake-caps-sym:
+https://bugs.launchpad.net/geda/gmake-caps-sym/+filebug</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Wiley Edward
+Hill &lt; wileyhill dot gmail dot com &gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>gmake-transistors-sym</b>(1)</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 2012-2013 Wiley Edward Hill. License GPLv2+: GNU GPL
+<br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+<hr>
+</body>
+</html>

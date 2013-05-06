@@ -1,7 +1,9 @@
 noinst_PROGRAMS = geda-shell
-AM_CFLAGS=-I$(top_builddir)/include -Wall
+AM_CFLAGS=-I$(top_srcdir)/include -Wall
 BUILT_SOURCES = \
 	shell.x
+
+EXTRA_DIST = $(BUILT_SOURCES)
 
 geda_shell_SOURCES = shell.c
 
