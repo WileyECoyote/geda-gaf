@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -77,7 +77,7 @@ OBJECT *s_basic_init_object(OBJECT *new_node, int type, char const *name)
   new_node->w_left = 0;
   new_node->w_right = 0;
   new_node->w_bottom = 0;
-  new_node->w_bounds_valid = FALSE;
+  new_node->w_bounds_valid_for = NULL;
 
   /* Setup line/circle structs */
   new_node->line = NULL;
@@ -138,7 +138,6 @@ OBJECT *s_basic_init_object(OBJECT *new_node, int type, char const *name)
 
   return(new_node);
 }
-
 
 /*! \brief Helper to allocate and initialise an object.
  *

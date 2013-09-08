@@ -1,0 +1,325 @@
+v 20130414 2
+B 300 4000 3800 2600 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 7725 5 10 0 0 0 0 1
+device=MSP430x44x
+T 4050 6650 8 10 1 1 0 6 1
+refdes=U?
+P 300 3800 0 3800 1 0 1
+{
+T 200 3850 5 8 1 1 0 6 1
+pinnumber=1
+T 350 3800 9 8 1 1 0 0 1
+pinlabel=DREQ
+T 200 3750 5 8 0 1 0 8 1
+pinseq=1
+T 350 3800 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 300 1200 0 1200 1 0 1
+{
+T 200 1250 5 8 1 1 0 6 1
+pinnumber=2
+T 350 1200 9 8 1 1 0 0 1
+pinlabel=GPIO2/DCLK
+T 200 1150 5 8 0 1 0 8 1
+pinseq=2
+T 350 1200 5 8 0 1 0 2 1
+pintype=io
+}
+P 300 800 0 800 1 0 1
+{
+T 200 850 5 8 1 1 0 6 1
+pinnumber=3
+T 350 800 9 8 1 1 0 0 1
+pinlabel=GPIO3/SDATA
+T 200 750 5 8 0 1 0 8 1
+pinseq=3
+T 350 800 5 8 0 1 0 2 1
+pintype=io
+}
+P 300 3400 0 3400 1 0 1
+{
+T 200 3450 5 8 1 1 0 6 1
+pinnumber=4
+T 350 3400 9 8 1 1 0 0 1
+pinlabel=XDCS/BSYNC
+T 200 3350 5 8 0 1 0 8 1
+pinseq=4
+T 350 3400 5 8 0 1 0 2 1
+pintype=io
+}
+P 4100 6000 4400 6000 1 0 1
+{
+T 4200 6050 5 8 1 1 0 0 1
+pinnumber=5
+T 4050 6000 9 8 1 1 0 6 1
+pinlabel=DVDD1
+T 4200 5950 5 8 0 1 0 2 1
+pinseq=5
+T 4050 6000 5 8 0 1 0 8 1
+pintype=io
+}
+P 4100 4600 4400 4600 1 0 1
+{
+T 4200 4650 5 8 1 1 0 0 1
+pinnumber=6
+T 4050 4600 9 8 1 1 0 6 1
+pinlabel=DGND1
+T 4200 4550 5 8 0 1 0 2 1
+pinseq=6
+T 4050 4600 5 8 0 1 0 8 1
+pintype=io
+}
+P 300 3000 0 3000 1 0 1
+{
+T 200 3050 5 8 1 1 0 6 1
+pinnumber=7
+T 350 3000 9 8 1 1 0 0 1
+pinlabel=XTALO
+T 200 2950 5 8 0 1 0 8 1
+pinseq=7
+T 350 3000 5 8 0 1 0 2 1
+pintype=out
+}
+P 300 2600 0 2600 1 0 1
+{
+T 200 2650 5 8 1 1 0 6 1
+pinnumber=8
+T 350 2600 9 8 1 1 0 0 1
+pinlabel=XTALI
+T 200 2550 5 8 0 1 0 8 1
+pinseq=8
+T 350 2600 5 8 0 1 0 2 1
+pintype=in
+}
+P 4100 5600 4400 5600 1 0 1
+{
+T 4200 5650 5 8 1 1 0 0 1
+pinnumber=9
+T 4050 5600 9 8 1 1 0 6 1
+pinlabel=DVDD2
+T 4200 5550 5 8 0 1 0 2 1
+pinseq=9
+T 4050 5600 5 8 0 1 0 8 1
+pintype=io
+}
+P 4100 4200 4400 4200 1 0 1
+{
+T 4200 4250 5 8 1 1 0 0 1
+pinnumber=10
+T 4050 4200 9 8 1 1 0 6 1
+pinlabel=DGND2
+T 4200 4150 5 8 0 1 0 2 1
+pinseq=10
+T 4050 4200 5 8 0 1 0 8 1
+pintype=in
+}
+P 300 5000 0 5000 1 0 1
+{
+T 200 5050 5 8 1 1 0 6 1
+pinnumber=11
+T 350 5000 9 8 1 1 0 0 1
+pinlabel=XCS
+T 200 4950 5 8 0 1 0 8 1
+pinseq=11
+T 350 5000 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 5400 0 5400 1 0 1
+{
+T 200 5450 5 8 1 1 0 6 1
+pinnumber=12
+T 350 5400 9 8 1 1 0 0 1
+pinlabel=SCLK
+T 200 5350 5 8 0 1 0 8 1
+pinseq=12
+T 350 5400 5 8 0 1 0 2 1
+pintype=io
+}
+P 300 5800 0 5800 1 0 1
+{
+T 200 5850 5 8 1 1 0 6 1
+pinnumber=13
+T 350 5800 9 8 1 1 0 0 1
+pinlabel=SI
+T 200 5750 5 8 0 1 0 8 1
+pinseq=13
+T 350 5800 5 8 0 1 0 2 1
+pintype=io
+}
+P 300 6200 0 6200 1 0 1
+{
+T 200 6250 5 8 1 1 0 6 1
+pinnumber=14
+T 350 6200 9 8 1 1 0 0 1
+pinlabel=SO
+T 200 6150 5 8 0 1 0 8 1
+pinseq=14
+T 350 6200 5 8 0 1 0 2 1
+pintype=out
+}
+P 300 200 0 200 1 0 1
+{
+T 200 250 5 8 1 1 0 6 1
+pinnumber=15
+T 350 200 9 8 1 1 0 0 1
+pinlabel=TEST
+T 200 150 5 8 0 1 0 8 1
+pinseq=15
+T 350 200 5 8 0 1 0 2 1
+pintype=out
+}
+P 300 2000 0 2000 1 0 1
+{
+T 200 2050 5 8 1 1 0 6 1
+pinnumber=16
+T 350 2000 9 8 1 1 0 0 1
+pinlabel=GPIO/SPIBOOT
+T 200 1950 5 8 0 1 0 8 1
+pinseq=16
+T 350 2000 5 8 0 1 0 2 1
+pintype=out
+}
+P 300 1600 0 1600 1 0 1
+{
+T 200 1650 5 8 1 1 0 6 1
+pinnumber=17
+T 350 1600 9 8 1 1 0 0 1
+pinlabel=GPIO1
+T 200 1550 5 8 0 1 0 8 1
+pinseq=17
+T 350 1600 5 8 0 1 0 2 1
+pintype=out
+}
+P 4100 1000 4400 1000 1 0 1
+{
+T 4200 1050 5 8 1 1 0 0 1
+pinnumber=18
+T 4050 1000 9 8 1 1 0 6 1
+pinlabel=AGND0
+T 4200 950 5 8 0 1 0 2 1
+pinseq=18
+T 4050 1000 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 3800 4400 3800 1 0 1
+{
+T 4200 3850 5 8 1 1 0 0 1
+pinnumber=19
+T 4050 3800 9 8 1 1 0 6 1
+pinlabel=AVDD0
+T 4200 3750 5 8 0 1 0 2 1
+pinseq=19
+T 4050 3800 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 2400 4400 2400 1 0 1
+{
+T 4200 2450 5 8 1 1 0 0 1
+pinnumber=20
+T 4050 2400 9 8 1 1 0 6 1
+pinlabel=RIGHT
+T 4200 2350 5 8 0 1 0 2 1
+pinseq=20
+T 4050 2400 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 600 4400 600 1 0 1
+{
+T 4200 650 5 8 1 1 0 0 1
+pinnumber=21
+T 4050 600 9 8 1 1 0 6 1
+pinlabel=AGND2
+T 4200 550 5 8 0 1 0 2 1
+pinseq=21
+T 4050 600 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 1600 4400 1600 1 0 1
+{
+T 4200 1650 5 8 1 1 0 0 1
+pinnumber=22
+T 4050 1600 9 8 1 1 0 6 1
+pinlabel=RCAP
+T 4200 1550 5 8 0 1 0 2 1
+pinseq=22
+T 4050 1600 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 3400 4400 3400 1 0 1
+{
+T 4200 3450 5 8 1 1 0 0 1
+pinnumber=23
+T 4050 3400 9 8 1 1 0 6 1
+pinlabel=AVDD2
+T 4200 3350 5 8 0 1 0 2 1
+pinseq=23
+T 4050 3400 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 2800 4400 2800 1 0 1
+{
+T 4200 2850 5 8 1 1 0 0 1
+pinnumber=24
+T 4050 2800 9 8 1 1 0 6 1
+pinlabel=LEFT
+T 4200 2750 5 8 0 1 0 2 1
+pinseq=24
+T 4050 2800 5 8 0 1 0 8 1
+pintype=out
+}
+P 4100 200 4400 200 1 0 1
+{
+T 4200 250 5 8 1 1 0 0 1
+pinnumber=25
+T 4050 200 9 8 1 1 0 6 1
+pinlabel=AGND3
+T 4200 150 5 8 0 1 0 2 1
+pinseq=25
+T 4050 200 5 8 0 1 0 8 1
+pintype=out
+}
+P 0 4600 300 4600 1 0 0
+{
+T 200 4650 5 8 1 1 0 6 1
+pinnumber=26
+T 350 4600 9 8 1 1 0 0 1
+pinlabel=XRESET
+T 200 4550 5 8 0 1 0 8 1
+pinseq=26
+T 350 4600 5 8 0 1 0 2 1
+pintype=out
+}
+P 4400 5000 4100 5000 1 0 0
+{
+T 4200 5050 5 8 1 1 0 0 1
+pinnumber=27
+T 4050 5000 9 8 1 1 0 6 1
+pinlabel=DGND0
+T 4200 4950 5 8 0 1 0 2 1
+pinseq=27
+T 4050 5000 5 8 0 1 0 8 1
+pintype=out
+}
+P 4400 6400 4100 6400 1 0 0
+{
+T 4200 6450 5 8 1 1 0 0 1
+pinnumber=28
+T 4050 6400 9 8 1 1 0 6 1
+pinlabel=DVDD0
+T 4200 6350 5 8 0 1 0 2 1
+pinseq=28
+T 4050 6400 5 8 0 1 0 8 1
+pintype=out
+}
+T 300 7300 5 10 0 0 0 0 1
+footprint=SO28
+T 300 7500 5 10 0 0 0 0 1
+description=16-bit mixed signal microcontroller
+T 300 7100 5 10 0 0 0 0 1
+numslots=0
+T 300 6650 3 10 1 0 0 0 1
+VS1011
+T 300 6900 5 10 0 0 0 0 1
+documentation=~
+B 300 0 3800 4000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

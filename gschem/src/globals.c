@@ -41,11 +41,12 @@ GdkColor black;
 int cmap_flag = 0;
 
 /* command line options */
-int quiet_mode = FALSE;
-int verbose_mode = FALSE;
 int auto_place_mode = FALSE;
+int auto_load_last  = FALSE;
+int quiet_mode      = FALSE;
+int run_mode        = 0;
+int verbose_mode    = FALSE;
 
-int auto_load_last;
 
 /* Global Log Configuration */
 volatile int logging;

@@ -42,8 +42,8 @@
 ;;; Sub-groups not containing a least one file, ie a file with the .sym
 ;;; extension are not displayed.
 ;;;
-;;; If list entry has a number then that source will only be loaded if the
-;;; number matches:
+;;; If the list entry has a number then that source will only be loaded if
+;;; the number matches:
 (define component-style 3)
 
 ;;; unless the number is 0, which are always loaded if
@@ -70,19 +70,24 @@
                      ("passive/capacitor"       "Standard/Capacitors")
                      ("passive/electrolytic"    "Standard/Electrolytic")
                      ("passive/resistor"        "Standard/Resistors")
+                     ("passive/inductor"        "Standard/Inductors")
                      ("passive/rf"              "Standard/Radio Elements")
+                     ("passive/audio"           "Standard/Audio")
                      ("passive/transformer"     "Standard/Transformers")
                      ("passive/crystal"         "Standard/Crystals")
-                     ("passive/inductor"        "Standard/Inductors")
+                     ("passive/resonator"       "Standard/Resonator")
                      ("passive/lamp"            "Standard/Lamps")
                      ("passive/protection"      "Standard/Protection")
-                     ("passive/audio"           "Standard/Audio")
+                     ("passive/thermistor"      "Standard/Thermistors")
+                     ("passive/varistor"        "Standard/Varistor")
+
                   ("connector" "Standard/Connectors")
                      ("connector/barrel"        "Standard/Cylindrical Barrel")
                      ("connector/coaxial"       "Standard/Coaxial")
                      ("connector/DB"            "Standard/D-subminiature")
                      ("connector/DIN"           "Standard/DIN")
                      ("connector/DIN-mini"      "Standard/Mini DIN")
+                     ("connector/flex"          "Standard/Flex")
                      ("connector/generic"       "Standard/Generic")
                      ("connector/header"        "Standard/Headers")
                      ("connector/jtag"          "Standard/JTAG")
@@ -94,17 +99,20 @@
                      ("connector/socket"        "Standard/Sockets")
                      ("connector/terminal"      "Standard/Terminals")
                      ("connector/usb"           "Standard/Universal Serial Bus")
+
                   ("diode" "Standard/Diodes")
-                     ("diode/segments"          "Standard/Segments")
                      ("diode/full-bridge"       "Standard/Full Bridge")
                      ("diode/half-bridge"       "Standard/Half Bridge")
                      ("diode/led"               "Standard/LED")
                      ("diode/zener"             "Standard/Zener-generic")
                      ("diode/zener2"            "Standard/Zener Diodes")
+                     ("diode/segments"          "Standard/Segments")
+
                   ("linear" "Standard/Linear")
+                     ("linear/amplifiers"       "Standard/Amplifiers")
+                     ("linear/audio"            "Standard/Audio")
                      ("linear/comparators"      "Standard/Comparators")
                      ("linear/opamp"            "Standard/Operational Amplifiers")
-                     ("linear/amplifiers"       "Standard/Amplifiers")
                      ("linear/led_drivers"      "Standard/LED Drivers")
                      ("linear/mcontrol"         "Standard/Motor Controllers")
                      ("linear/regulators"       "Standard/Regulators")
@@ -112,14 +120,19 @@
                      ("linear/special"          "Standard/Special Purpose")
                      ("linear/temperature"      "Standard/Temperature")
                      ("linear/timers"           "Standard/Timers")
-
+                     ("linear/telephone"        "Standard/Telephonography")
 ; Logic
                   ("logic" "Standard/Logic")
                      ("logic/74"                "74-series logic")
+                     ("logic/74A"               "74A-series logic")
+                     ("logic/74H"               "74H-series logic")
+                     ("logic/74L"               "74L-series logic")
                      ("logic/4000"              "4000-series logic")
-                     ("logic/ecl"               "ECL logic")
+                     ("logic/SN"                "SN-series Ti logic")
+                     ("logic/ecl"               "Emitter Coupled logic")
                      ("logic/logic-symbols"     "Logic Symbols")
                      ("logic/pla"               "Programmable Logic Arrays")
+                     ("logic/power"             "Power for Logic Symbols")
                   ("network"            "Standard/Network")
                   ("serial"             "Standard/Serial Devices")
                   ("source"             "Standard/Source")
@@ -146,9 +159,12 @@
                      ("transistor/nmosfet-d"    "Standard/N-Chan Dep MOSFET")
                      ("transistor/pmosfet-d"    "Standard/P-Chan Dep MOSFET")
 
+                     ("transistor/igbt"          "Standard/Insulated Gate BiPolar")
+
                      ("transistor/njfet-0"      "Standard/N-Channel FET" 0)
                      ("transistor/njfet-1"      "Standard/N-Channel FET 1")
                      ("transistor/njfet-2"      "Standard/N-Channel FET 2")
+                     ("transistornjfet-diff"    "Standard/N-FET Differential Pair")
                      ("transistor/pjfet-0"      "Standard/P-Channel FET" 0)
                      ("transistor/pjfet-1"      "Standard/P-Channel FET 1")
                      ("transistor/pjfet-2"      "Standard/P-Channel FET 2")
@@ -157,6 +173,7 @@
                      ("transistor/darl-npn"     "Standard/NPN Darlington")
                      ("transistor/darl-pnp"     "Standard/PNP Darlington")
                      ("transistor/sziklai-bjt"  "Standard/Sziklai Pairs")
+                     ("transistor/other"        "Standard/Other misc Transistors")
 
                   ("IEC417"             "Standard/IEC 60417")
 
@@ -168,9 +185,10 @@
                   ("allegro"         "Manufacturers/Allegro Microsystems")
                   ("altera"          "Manufacturers/Altera")
                   ("analogdevices"   "Manufacturers/Analog Devices")
-                  ("analogdevices/supervisor"       "Manufacturers/Microprocessor Supervisors")
+                     ("analogdevices/supervisor"       "Manufacturers/Microprocessor Supervisors")
                   ("amphenol"        "Manufacturers/Amphenol")
                   ("apex"            "Manufacturers/Apex Microtechnology")
+                  ("arduino"         "Manufacturers/Arduino")
                   ("atmel"           "Manufacturers/Atmel")
                   ("cirrus"          "Manufacturers/Cirrus Logic")
                   ("dallas"          "Manufacturers/Dallas Semiconductor")
@@ -179,13 +197,15 @@
                   ("idt"             "Manufacturers/IDT")
                   ("intel"           "Manufacturers/Intel")
                   ("irf"             "Manufacturers/International Rectifier")
+                  ("ixys"            "Manufacturers/IXYS")
                   ("lattice"         "Manufacturers/Lattice Semiconductor")
                   ("lineartech"      "Manufacturers/Linear Technology")
                   ("maxim"           "Manufacturers/Maxim")
-                  ("micro"           "Manufacturers/Microchip")
+                  ("microchip"       "Manufacturers/Microchip")
                   ("minicircuits"    "Manufacturers/Mini-Circuits")
+                  ("mitsubishi"      "Manufacturers/Mitsubishi Electric")
                   ("national"        "Manufacturers/National Semiconductor")
-                  ("panasonic" "Manufacturers/Panasonic")
+                  ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")
                      ("panasonic/resistors"            "Manufacturers/Resistors")
@@ -193,6 +213,7 @@
                   ("st"              "Manufacturers/ST Microelectronics")
                   ("ti"              "Manufacturers/Texas Instruments")
                   ("toshiba" "Manufacturers/Toshiba")
+                     ("toshiba/converter"      "Manufacturers/DC-DC Converters")
                      ("toshiba/npn-power-1"    "Manufacturers/NPN Bipolar Power" 1)
                      ("toshiba/npn-power-2"    "Manufacturers/NPN Bipolar Power" 2)
                      ("toshiba/npn-power-3"    "Manufacturers/NPN Bipolar Power" 3)
@@ -210,22 +231,30 @@
                      ("toshiba/pnp-small-3"    "Manufacturers/PNP Bipolar"       3)
                      ("toshiba/pnp-small-4"    "Manufacturers/PNP Bipolar"       4)
                   ("vishay" "Manufacturers/Vishay")
-                     ("vishay/nmosfet"                 "Manufacturers/N-Channel MOSFET")
-                     ("vishay/pmosfet"                 "Manufacturers/P-Channel MOSFET")
-                     ("xilinx"          "Manufacturers/Xilinx")
+                     ("vishay/nmosfet"         "Manufacturers/N-Channel MOSFET")
+                     ("vishay/pmosfet"         "Manufacturers/P-Channel MOSFET")
+                     ("vishay/dual_pmos"       "Manufacturers/Dual P-MOSFET")
+                  ("xilinx"                    "Manufacturers/Xilinx")
 
 ; Electro-Mechanical
                   ("emechanic" "Electro-Mechanical")
+                     ("emechanic/breaker"       "Standard/Circuit Breaker")
                      ("emechanic/motor"         "Standard/Motors")
                      ("emechanic/meter"         "Standard/Meters")
                      ("emechanic/relay"         "Standard/Relays")
                      ("emechanic/switch"        "Standard/Switches")
+                     ("emechanic/accelerometer" "Standard/Accelerometers")
 
 ; Misc
                   ("memory"          "Memory devices")
                   ("micro"           "Microcontrollers")
+                     ("micro/arm"    "Standard/ARM Processors")
+                     ("micro/MC68"   "Standard/68 Series")
+                     ("micro/MSP430" "Standard/MSP430 Family")
+                     ("micro/PIC"    "Standard/PIC Microcontrollers")
                   ("tube"            "Vacuum tubes")
                   ("power"           "Power Systems")
+                  ("graphic"         "Graphical symbols")
                   ("misc"            "Misc. unsorted symbols")
                   ("titleblock"      "Titleblocks/titleblock")
 
@@ -241,10 +270,10 @@
 )
 
 ;;; conceptually, one could also have Local themes
-(if (access? "/usr/local/share/gEDA/sym" R_OK)
+(if (access? "/usr/local/gEDA/sym" R_OK)
   (begin
-    (component-library-search "/usr/local/share/gEDA/sym" "Local/Local")
-    ;;(component-library "/usr/local/share/gEDA/sym" "local")
+    (component-library-search "/usr/local/gEDA/sym" "Local/Local")
+    ;;(component-library "/usr/local/gEDA/sym" "local")
 ) )
 
 

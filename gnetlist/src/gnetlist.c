@@ -137,191 +137,191 @@ gnetlist_backends (TOPLEVEL *pr_current)
 
 void main_prog(void *closure, int argc, char *argv[])
 {
-    int i;
-    int argv_index;
-    char *cwd;
-    char *str;
-    char *filename;
+  int i;
+  int argv_index;
+  char *cwd;
+  char *str;
+  char *filename;
 
-    TOPLEVEL *pr_current;
+  TOPLEVEL *pr_current;
 
-    /* set default output filename */
-    output_filename = g_strdup("output.net");
+  /* set default output filename */
+  output_filename = g_strdup("output.net");
 
-    argv_index = parse_commandline(argc, argv);
-    cwd = g_get_current_dir();
+  argv_index = parse_commandline(argc, argv);
+  cwd = g_get_current_dir();
 
-    scm_set_program_arguments (argc, argv, NULL);
+  scm_set_program_arguments (argc, argv, NULL);
 
-    /* this is a kludge to make sure that spice mode gets set */
-    /*  Hacked by SDB to allow spice netlisters of arbitrary name
-     *        as long as they begin with "spice".  For example, this spice
-     *  netlister is valid: "spice-sdb".
-     */
-    if (guile_proc) {
-        if (strncmp(guile_proc, "spice", 5) == 0) {
-            netlist_mode = SPICE;
-        }
+  /* this is a kludge to make sure that spice mode gets set */
+  /*  Hacked by SDB to allow spice netlisters of arbitrary name
+   *        as long as they begin with "spice".  For example, this spice
+   *  netlister is valid: "spice-sdb".
+   */
+  if (guile_proc) {
+    if (strncmp(guile_proc, "spice", 5) == 0) {
+      netlist_mode = SPICE;
     }
+  }
 
-    libgeda_init();
+  libgeda_init();
 
-    /* create log file right away */
-    /* even if logging is enabled */
-    s_log_init ("gnetlist");
+  /* create log file right away */
+  /* even if logging is enabled */
+  s_log_init ("gnetlist");
 
-    s_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
-                  PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
-    s_log_message
-        ("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n");
-    s_log_message
-        ("This is free software, and you are welcome to redistribute it under certain\n");
-    s_log_message
-        ("conditions; please see the COPYING file for more details.\n\n");
+  s_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
+                PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
+  s_log_message
+  ("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n");
+  s_log_message
+  ("This is free software, and you are welcome to redistribute it under certain\n");
+  s_log_message
+  ("conditions; please see the COPYING file for more details.\n\n");
 
-#if defined(__MINGW32__) && defined(DEBUG)
-    fprintf(stderr, "This is the MINGW32 port.\n\n");
-#endif
+  #if defined(__MINGW32__) && defined(DEBUG)
+  fprintf(stderr, "This is the MINGW32 port.\n\n");
+  #endif
 
-    /* register guile (scheme) functions */
-    g_register_funcs();
+  /* register guile (scheme) functions */
+  g_register_funcs();
 
-    scm_dynwind_begin (0);
-    pr_current = s_toplevel_new ();
-    edascm_dynwind_toplevel (pr_current);
+  scm_dynwind_begin (0);
+  pr_current = s_toplevel_new ();
+  edascm_dynwind_toplevel (pr_current);
 
-    /* Evaluate Scheme expressions that need to be run before rc files
-     * are loaded. */
-    scm_eval (pre_rc_list, scm_current_module ());
+  /* Evaluate Scheme expressions that need to be run before rc files
+   * are loaded. */
+  scm_eval (pre_rc_list, scm_current_module ());
 
-    g_rc_parse (pr_current, argv[0], "gnetlistrc", rc_filename);
-    /* immediately setup user params */
-    i_vars_set (pr_current);
+  g_rc_parse (pr_current, argv[0], "gnetlistrc", rc_filename);
+  /* immediately setup user params */
+  i_vars_set (pr_current);
 
-    s_rename_init();
+  s_rename_init();
 
-    if(list_backends) {
-      gnetlist_backends(pr_current);
-      exit (0);
-    }
+  if(list_backends) {
+    gnetlist_backends(pr_current);
+    exit (0);
+  }
 
-    /* Evaluate the first set of Scheme expressions before we load any
-     * schematic files */
-    scm_eval (pre_backend_list, scm_current_module ());
+  /* Evaluate the first set of Scheme expressions before we load any
+   * schematic files */
+  scm_eval (pre_backend_list, scm_current_module ());
 
-    i = argv_index;
-    while (argv[i] != NULL) {
-      GError *err = NULL;
+  i = argv_index;
+  while (argv[i] != NULL) {
+    GError *err = NULL;
 
-      if (g_path_is_absolute(argv[i])) {
-        /* Path is already absolute so no need to do any concat of cwd */
-        filename = g_strdup (argv[i]);
-      } else {
-        filename = g_build_filename (cwd, argv[i], NULL);
-      }
-
-      if (!quiet_mode) {
-        s_log_message ("Loading schematic [%s]\n", filename);
-        printf ("Loading schematic [%s]\n", filename);
-      }
-
-      s_page_goto (pr_current, s_page_new (pr_current, filename));
-
-      if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
-        g_warning ("%s\n", err->message);
-        fprintf (stderr, "ERROR: Failed to load '%s': %s\n",
-                 filename, err->message);
-        g_error_free (err);
-	exit(2);
-      }
-
-      /* collect input filenames for backend use */
-      input_files = g_slist_append(input_files, argv[i]);
-
-      i++;
-      g_free (filename);
-    }
-
-    /* Change back to the directory where we started.  This is done */
-    /* since gnetlist is a command line utility and will deposit its output */
-    /* in the current directory.  Having the output go to a different */
-    /* directory will confuse the user (confused me, at first). */
-    if (chdir (cwd)) {
-      fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
-      exit(1);
-    }
-    /* free(cwd); - Defered; see below */
-
-    if (argv[argv_index] == NULL) {
-        fprintf (stderr, "ERROR: No schematics files specified for processing.\n");
-        fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
-        exit (1);
-    }
-
-#if DEBUG
-    s_page_print_all(pr_current);
-#endif
-
-    /* Load basic gnetlist functions */
-    scm_primitive_load_path (scm_from_utf8_string ("gnetlist.scm"));
-
-    if (guile_proc) {
-      SCM s_backend_path;
-
-      /* Search for backend scm file in load path */
-      str = g_strdup_printf("gnet-%s.scm", guile_proc);
-      s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
-      g_free (str);
-
-      /* If it couldn't be found, fail. */
-      if (scm_is_false (s_backend_path)) {
-        fprintf (stderr, "ERROR: Could not find backend `%s' in load path.\n",
-                 guile_proc);
-        fprintf (stderr,
-                 "\nRun `%s --list-backends' for a full list of available backends.\n",
-                 argv[0]);
-        exit (1);
-      }
-
-      /* Load backend code. */
-      scm_primitive_load (s_backend_path);
-
-      /* Evaluate second set of Scheme expressions. */
-      scm_eval (post_backend_list, scm_current_module ());
-    }
-
-    s_traverse_init();
-    s_traverse_start(pr_current);
-
-    /* Change back to the directory where we started AGAIN.  This is done */
-    /* because the s_traverse functions can change the Current Working Directory. */
-    if (chdir (cwd)) {
-      /* Error occured with chdir */
-      fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
-      exit(1);
-    }
-    g_free(cwd);
-
-    /* Run post-traverse code. */
-    scm_primitive_load_path (scm_from_utf8_string ("gnetlist-post.scm"));
-
-    if (guile_proc) {
-        /* check size here hack */
-        str = g_strdup_printf ("(%s \"%s\")", guile_proc, output_filename);
-        scm_c_eval_string (str);
-        g_free (str);
-        /* gh_eval_str_with_stack_saving_handler (input_str); */
-    } else if (interactive_mode) {
-        scm_c_eval_string ("(set-repl-prompt! \"gnetlist> \")");
-        scm_shell (0, NULL);
+    if (g_path_is_absolute(argv[i])) {
+      /* Path is already absolute so no need to do any concat of cwd */
+      filename = g_strdup (argv[i]);
     } else {
-        fprintf(stderr,
-                "You gave neither backend to execute nor interactive mode!\n");
+      filename = g_build_filename (cwd, argv[i], NULL);
     }
 
-    gnetlist_quit();
+    if (!quiet_mode) {
+      s_log_message ("Loading schematic [%s]\n", filename);
+      printf ("Loading schematic [%s]\n", filename);
+    }
 
-    scm_dynwind_end();
+    s_page_goto (pr_current, s_page_new (pr_current, filename));
+
+    if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
+      g_warning ("%s\n", err->message);
+      fprintf (stderr, "ERROR: Failed to load '%s': %s\n",
+               filename, err->message);
+      g_error_free (err);
+      exit(2);
+    }
+
+    /* collect input filenames for backend use */
+    input_files = g_slist_append(input_files, argv[i]);
+
+    i++;
+    g_free (filename);
+  }
+
+  /* Change back to the directory where we started.  This is done */
+  /* since gnetlist is a command line utility and will deposit its output */
+  /* in the current directory.  Having the output go to a different */
+  /* directory will confuse the user (confused me, at first). */
+  if (chdir (cwd)) {
+    fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
+    exit(1);
+  }
+  /* free(cwd); - Defered; see below */
+
+  if (argv[argv_index] == NULL) {
+    fprintf (stderr, "ERROR: No schematics files specified for processing.\n");
+    fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
+    exit (1);
+  }
+
+  #if DEBUG
+  s_page_print_all(pr_current);
+  #endif
+
+  /* Load basic gnetlist functions */
+  scm_primitive_load_path (scm_from_utf8_string ("gnetlist.scm"));
+
+  if (guile_proc) {
+    SCM s_backend_path;
+
+    /* Search for backend scm file in load path */
+    str = g_strdup_printf("gnet-%s.scm", guile_proc);
+    s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
+    g_free (str);
+
+    /* If it couldn't be found, fail. */
+    if (scm_is_false (s_backend_path)) {
+      fprintf (stderr, "ERROR: Could not find backend `%s' in load path.\n",
+               guile_proc);
+      fprintf (stderr,
+               "\nRun `%s --list-backends' for a full list of available backends.\n",
+               argv[0]);
+      exit (1);
+    }
+
+    /* Load backend code. */
+    scm_primitive_load (s_backend_path);
+
+    /* Evaluate second set of Scheme expressions. */
+    scm_eval (post_backend_list, scm_current_module ());
+  }
+
+  s_traverse_init();
+  s_traverse_start(pr_current);
+
+  /* Change back to the directory where we started AGAIN.  This is done */
+  /* because the s_traverse functions can change the Current Working Directory. */
+  if (chdir (cwd)) {
+    /* Error occured with chdir */
+    fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
+    exit(1);
+  }
+  g_free(cwd);
+
+  /* Run post-traverse code. */
+  scm_primitive_load_path (scm_from_utf8_string ("gnetlist-post.scm"));
+
+  if (guile_proc) {
+    /* check size here hack */
+    str = g_strdup_printf ("(%s \"%s\")", guile_proc, output_filename);
+    scm_c_eval_string (str);
+    g_free (str);
+    /* gh_eval_str_with_stack_saving_handler (input_str); */
+  } else if (interactive_mode) {
+    scm_c_eval_string ("(set-repl-prompt! \"gnetlist> \")");
+    scm_shell (0, NULL);
+  } else {
+    fprintf(stderr,
+            "You gave neither backend to execute nor interactive mode!\n");
+  }
+
+  gnetlist_quit();
+
+  scm_dynwind_end();
 }
 
 int main(int argc, char *argv[])

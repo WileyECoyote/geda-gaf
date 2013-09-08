@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@
  */
 GList *s_stretch_add (GList *list, OBJECT *object, int whichone)
 {
-  GList *s_iter;
+  GList   *s_iter;
   STRETCH *s_new;
 
   /* Check if the object is already in the stretch list */
@@ -64,7 +64,7 @@ GList *s_stretch_add (GList *list, OBJECT *object, int whichone)
  * \param [in] b  The OBJECT to test for
  * \returns 0 if STRETCH *a points to OBJECT *b, otherwise 1.
  */
-static gint find_object (gconstpointer a, gconstpointer b)
+static int find_object (gconstpointer a, gconstpointer b)
 {
   return (((STRETCH *)a)->object == (OBJECT *)b) ? 0 : 1;
 }

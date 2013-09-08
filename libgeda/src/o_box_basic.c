@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -79,11 +79,11 @@ OBJECT *o_box_new(TOPLEVEL *toplevel,
 
   /* line type and filling initialized to default */
   o_set_line_options(toplevel, new_node,
-		     o_get_line_end(toplevel->print_output_capstyle), TYPE_SOLID, 0, -1, -1);
+                     o_get_line_end(toplevel->print_output_capstyle), TYPE_SOLID, 0, -1, -1);
   o_set_fill_options(toplevel, new_node, FILLING_HOLLOW, -1, -1, -1, -1, -1);
 
   /* compute the bounding box */
-  o_box_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
 }
@@ -108,9 +108,6 @@ OBJECT *o_box_copy(TOPLEVEL *toplevel, OBJECT *o_current)
   /*
    * The dimensions of the new box are set with the ones of the original box.
    * The two boxes have the same line type and the same filling options.
-   *
-   * The coordinates and the values in world unit are computed with
-   *  #o_box_recalc().
    */
 
   new_obj->box->upper_x = o_current->box->upper_x;
@@ -119,19 +116,19 @@ OBJECT *o_box_copy(TOPLEVEL *toplevel, OBJECT *o_current)
   new_obj->box->lower_y = o_current->box->lower_y;
 
   o_set_line_options(toplevel, new_obj, o_current->line_end,
-		     o_current->line_type, o_current->line_width,
-		     o_current->line_length, o_current->line_space);
+                     o_current->line_type, o_current->line_width,
+                     o_current->line_length, o_current->line_space);
   o_set_fill_options(toplevel, new_obj,
-		     o_current->fill_type, o_current->fill_width,
-		     o_current->fill_pitch1, o_current->fill_angle1,
-		     o_current->fill_pitch2, o_current->fill_angle2);
+                     o_current->fill_type, o_current->fill_width,
+                     o_current->fill_pitch1, o_current->fill_angle1,
+                     o_current->fill_pitch2, o_current->fill_angle2);
 
-  o_box_recalc(toplevel, new_obj);
+  new_obj->w_bounds_valid_for = NULL;
 
   /* new_obj->attribute = 0;*/
 
   return new_obj;
-} 
+}
 
 /*! \brief Modify a BOX OBJECT's coordinates.
  * \par Function Description
@@ -159,7 +156,7 @@ o_box_modify_all (TOPLEVEL *toplevel, OBJECT *object,
   object->box->upper_y = (y1 > y2) ? y1 : y2;
 
   /* recalculate the world coords and bounds */
-  o_box_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, object);
 }
 
@@ -190,53 +187,53 @@ o_box_modify_all (TOPLEVEL *toplevel, OBJECT *object,
 void o_box_modify(TOPLEVEL *toplevel, OBJECT *object,
 		  int x, int y, int whichone)
 {
-	int tmp;
+  int tmp;
 
-	o_emit_pre_change_notify (toplevel, object);
+  o_emit_pre_change_notify (toplevel, object);
 
-	/* change the position of the selected corner */
-	switch(whichone) {
-		case BOX_UPPER_LEFT:
-			object->box->upper_x = x;
-			object->box->upper_y = y;
-			break;
-			
-		case BOX_LOWER_LEFT:
-			object->box->upper_x = x;
-			object->box->lower_y = y;
-			break;
-			
-		case BOX_UPPER_RIGHT:
-			object->box->lower_x = x;
-			object->box->upper_y = y;
-			break;
-			
-		case BOX_LOWER_RIGHT:
-			object->box->lower_x = x;
-			object->box->lower_y = y;
-			break;
-			
-		default:
-			return;
-	}
-	
-	/* need to update the upper left and lower right corners */
-	if(object->box->upper_x > object->box->lower_x) {
-		tmp                  = object->box->upper_x;
-		object->box->upper_x = object->box->lower_x;
-		object->box->lower_x = tmp;
-	}
-	
-	if(object->box->upper_y < object->box->lower_y) {
-		tmp                  = object->box->upper_y;
-		object->box->upper_y = object->box->lower_y;
-		object->box->lower_y = tmp;
-	}
-	
-	/* recalculate the world coords and the boundings */
-	o_box_recalc(toplevel, object);
-	o_emit_change_notify (toplevel, object);
-  
+  /* change the position of the selected corner */
+  switch(whichone) {
+    case BOX_UPPER_LEFT:
+      object->box->upper_x = x;
+      object->box->upper_y = y;
+      break;
+
+    case BOX_LOWER_LEFT:
+      object->box->upper_x = x;
+      object->box->lower_y = y;
+      break;
+
+    case BOX_UPPER_RIGHT:
+      object->box->lower_x = x;
+      object->box->upper_y = y;
+      break;
+
+    case BOX_LOWER_RIGHT:
+      object->box->lower_x = x;
+      object->box->lower_y = y;
+      break;
+
+    default:
+      return;
+  }
+
+  /* need to update the upper left and lower right corners */
+  if(object->box->upper_x > object->box->lower_x) {
+    tmp                  = object->box->upper_x;
+    object->box->upper_x = object->box->lower_x;
+    object->box->lower_x = tmp;
+  }
+
+  if(object->box->upper_y < object->box->lower_y) {
+    tmp                  = object->box->upper_y;
+    object->box->upper_y = object->box->lower_y;
+    object->box->lower_y = tmp;
+  }
+
+  /* recalculate the world coords and the boundings */
+  object->w_bounds_valid_for = NULL;
+  o_emit_change_notify (toplevel, object);
+
 }
 
 /*! \brief Create a box from a character string.
@@ -447,7 +444,7 @@ void o_box_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object)
   object->box->lower_y = object->box->lower_y + dy;
 
   /* recalc the screen coords and the bounding box */
-  o_box_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Rotate BOX OBJECT using WORLD coordinates. 
@@ -491,29 +488,29 @@ void o_box_rotate_world(TOPLEVEL *toplevel,
   object->box->upper_y -= world_centery;
   object->box->lower_x -= world_centerx;
   object->box->lower_y -= world_centery;
-  
+
   /* rotate the upper left corner of the box */
   rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
-		  &newx1, &newy1);
-  
+                  &newx1, &newy1);
+
   /* rotate the lower left corner of the box */
   rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
-		  &newx2, &newy2);
-  
+                  &newx2, &newy2);
+
   /* reorder the corners after rotation */
   object->box->upper_x = min(newx1,newx2);
   object->box->upper_y = max(newy1,newy2);
   object->box->lower_x = max(newx1,newx2);
   object->box->lower_y = min(newy1,newy2);
-  
+
   /* translate object back to normal position */
   object->box->upper_x += world_centerx;
   object->box->upper_y += world_centery;
   object->box->lower_x += world_centerx;
   object->box->lower_y += world_centery;
-  
+
   /* recalc boundings and world coords */
-  o_box_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Mirror BOX using WORLD coordinates.
@@ -530,8 +527,8 @@ void o_box_rotate_world(TOPLEVEL *toplevel,
  *  \param [in,out] object         BOX OBJECT to mirror.
  */
 void o_box_mirror_world(TOPLEVEL *toplevel,
-			int world_centerx, int world_centery,
-			OBJECT *object)
+                        int world_centerx, int world_centery,
+                        OBJECT *object)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -561,33 +558,7 @@ void o_box_mirror_world(TOPLEVEL *toplevel,
   object->box->lower_y += world_centery;
 
   /* recalc boundings and world coords */
-  o_box_recalc(toplevel, object);
-  
-}
-
-/*! \brief Recalculate BOX coordinates in WORLD units.
- *  \par Function Description
- *  This function recalculates the box coordinates and its 
- *  bounding are recalculated as well.
- *
- *  \param [in] toplevel      The TOPLEVEL object.
- *  \param [in,out] o_current  BOX OBJECT to be recalculated.
- */
-void o_box_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, top, right, bottom;
-
-  if (o_current->box == NULL) {
-    return;
-  }
-
-  /* update the bounding box - world unit */
-  world_get_box_bounds(toplevel, o_current, &left, &top, &right, &bottom);
-  o_current->w_left   = left;
-  o_current->w_top    = top;
-  o_current->w_right  = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Get BOX bounding rectangle in WORLD coordinates.
@@ -1322,14 +1293,16 @@ void o_box_print_hatch(TOPLEVEL *toplevel, FILE *fp,
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter of the box.
  *
- *  \param [in] object       The box OBJECT.
+ *  \param [in] toplevel     A TOPLEVEL object.
+ *  \param [in] object       A box OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_box_shortest_distance (OBJECT *object, int x, int y, int force_solid)
+double o_box_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                int x, int y, int force_solid)
 {
   int solid;
 

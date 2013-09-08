@@ -54,7 +54,9 @@ void libgeda_init(void)
 #endif
 
   /* Initialise gobject */
+#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
   g_type_init ();
+#endif
 
   s_path_sys_data ();
   s_path_sys_config ();

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ SCM g_get_packages(SCM level)
 
     NETLIST *nl_current = NULL;
 
-    SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-pins");
+    SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-packages");
 
     /* build a hash table */
     ht = g_hash_table_new (g_str_hash, g_str_equal);
@@ -80,7 +80,7 @@ SCM g_get_non_unique_packages(SCM level)
 
     NETLIST *nl_current = NULL;
 
-    SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-pins");
+    SCM_ASSERT(scm_is_string (level), level, SCM_ARG1, "gnetlist:get-non-unique-packages");
 
     for (nl_current = netlist_head; nl_current != NULL;
          nl_current = nl_current->next) {
@@ -89,7 +89,7 @@ SCM g_get_non_unique_packages(SCM level)
                          list);
       }
     }
-    
+
     return list;
 }
 
@@ -539,14 +539,14 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   OBJECT *o_pin_object;
 
   SCM_ASSERT(scm_is_string (scm_uref),
-	     scm_uref, SCM_ARG1, "gnetlist:get-pin-number-seq");
+	     scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinseq");
 
   SCM_ASSERT(scm_is_string (scm_pinseq),
-             scm_pinseq, SCM_ARG2, "gnetlist:get-pin-number-seq");
+             scm_pinseq, SCM_ARG2, "gnetlist:get-attribute-by-pinseq");
 
 
   SCM_ASSERT(scm_is_string (scm_wanted_attrib),
-             scm_wanted_attrib, SCM_ARG3, "gnetlist:get-pin-attribute-seq");
+             scm_wanted_attrib, SCM_ARG3, "gnetlist:get-attribute-by-pinseq");
 
   scm_dynwind_begin (0);
 
@@ -616,88 +616,88 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
 SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin, SCM
                                scm_wanted_attrib)
 {
-    SCM scm_return_value;
-    NETLIST *nl_current;
-    OBJECT *pin_object;
-    char *uref;
-    char *pin;
-    char *wanted_attrib;
-    char *return_value = NULL;
-    int done = FALSE;
+  SCM scm_return_value;
+  NETLIST *nl_current;
+  OBJECT *pin_object;
+  char *uref;
+  char *pin;
+  char *wanted_attrib;
+  char *return_value = NULL;
+  int done = FALSE;
 
-    SCM_ASSERT(scm_is_string (scm_uref),
-	       scm_uref, SCM_ARG1, "gnetlist:get-pin-attribute");
+  SCM_ASSERT(scm_is_string (scm_uref),
+             scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinnumber");
 
-    SCM_ASSERT(scm_is_string (scm_pin),
-	       scm_pin, SCM_ARG2, "gnetlist:get-pin-attribute");
+  SCM_ASSERT(scm_is_string (scm_pin),
+             scm_pin, SCM_ARG2, "gnetlist:get-attribute-by-pinnumber");
 
-    SCM_ASSERT(scm_is_string (scm_wanted_attrib),
-	       scm_wanted_attrib, SCM_ARG3, "gnetlist:get-pin-attribute");
+  SCM_ASSERT(scm_is_string (scm_wanted_attrib),
+             scm_wanted_attrib, SCM_ARG3, "gnetlist:get-attribute-by-pinnumber");
 
-    scm_dynwind_begin (0);
+  scm_dynwind_begin (0);
 
-    uref = scm_to_utf8_string (scm_uref);
-    scm_dynwind_free (uref);
+  uref = scm_to_utf8_string (scm_uref);
+  scm_dynwind_free (uref);
 
-    pin = scm_to_utf8_string (scm_pin);
-    scm_dynwind_free (pin);
+  pin = scm_to_utf8_string (scm_pin);
+  scm_dynwind_free (pin);
 
-    wanted_attrib = scm_to_utf8_string (scm_wanted_attrib);
-    scm_dynwind_free (wanted_attrib);
+  wanted_attrib = scm_to_utf8_string (scm_wanted_attrib);
+  scm_dynwind_free (wanted_attrib);
 
-    /* here is where you make it multi page aware */
-    nl_current = netlist_head;
+  /* here is where you make it multi page aware */
+  nl_current = netlist_head;
 
-    /* search for the first instance */
-    /* through the entire list */
-    while (nl_current != NULL && !done) {
-	if (nl_current->component_uref) {
-	    if (strcmp(nl_current->component_uref, uref) == 0) {
+  /* search for the first instance */
+  /* through the entire list */
+  while (nl_current != NULL && !done) {
+    if (nl_current->component_uref) {
+      if (strcmp(nl_current->component_uref, uref) == 0) {
 
-		pin_object =
-		    o_complex_find_pin_by_attribute (nl_current->object_ptr,
-		                                     "pinnumber", pin);
+        pin_object =
+        o_complex_find_pin_by_attribute (nl_current->object_ptr,
+                                         "pinnumber", pin);
 
-		if (pin_object) {
+        if (pin_object) {
 
-		    /* only look for the first occurance of wanted_attrib */
-		    return_value =
-		      o_attrib_search_object_attribs_by_name (pin_object,
-		                                              wanted_attrib, 0);
-#if DEBUG
-		    if (return_value) {
-			printf("GOT IT: %s\n", return_value);
-		    }
-#endif
-		} else if (strcmp("pintype",
-				  wanted_attrib) == 0) {
-		  if (nl_current->cpins) {
-		    CPINLIST *pinobject =
-		      s_cpinlist_search_pin(nl_current->cpins, pin);
-		    if (pinobject) {
-		      return_value="pwr";
-#if DEBUG
-		      
-		      printf("Supplied pintype 'pwr' for artificial pin '%s' of '%s'\n",
-			     pin, uref);
-#endif
-		    }
-		  }		
-		}
-	    }
-	}
-	nl_current = nl_current->next;
+          /* only look for the first occurance of wanted_attrib */
+          return_value =
+          o_attrib_search_object_attribs_by_name (pin_object,
+                                                  wanted_attrib, 0);
+          #if DEBUG
+          if (return_value) {
+            printf("GOT IT: %s\n", return_value);
+          }
+          #endif
+        } else if (strcmp("pintype",
+          wanted_attrib) == 0) {
+            if (nl_current->cpins) {
+              CPINLIST *pinobject =
+              s_cpinlist_search_pin(nl_current->cpins, pin);
+              if (pinobject) {
+                return_value="pwr";
+                #if DEBUG
+
+                printf("Supplied pintype 'pwr' for artificial pin '%s' of '%s'\n",
+                pin, uref);
+                #endif
+              }
+            }
+          }
+      }
     }
+    nl_current = nl_current->next;
+  }
 
-    scm_dynwind_end ();
+  scm_dynwind_end ();
 
-    if (return_value) {
-      scm_return_value = scm_from_utf8_string (return_value);
-    } else {
-      scm_return_value = scm_from_utf8_string ("unknown");
-    }
+  if (return_value) {
+    scm_return_value = scm_from_utf8_string (return_value);
+  } else {
+    scm_return_value = scm_from_utf8_string ("unknown");
+  }
 
-    return (scm_return_value);
+  return (scm_return_value);
 }
 
 
@@ -802,15 +802,15 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
     char *has_attrib_name = NULL;
 
     SCM_ASSERT(scm_is_string (scm_netname), scm_netname, SCM_ARG1, 
-	       "gnetlist:get-attr-of-conn-graph-objs-with-attr");
+	       "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
     SCM_ASSERT(scm_is_string (scm_wanted_attribute),
 	       scm_wanted_attribute, SCM_ARG3, 
-	       "gnetlist:get-attr-of-conn-graph-objs-with-attr");
+	       "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
     SCM_ASSERT(scm_is_string (scm_has_attribute),
 	       scm_has_attribute, SCM_ARG2, 
-	       "gnetlist:get-attr-of-conn-graph-objs-with-attr");
+	       "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
 
     scm_dynwind_begin (0);
 

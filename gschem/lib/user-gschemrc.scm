@@ -827,19 +827,6 @@
 (save-ui-settings "enabled")
 ;(save-ui-settings "disabled")
 
-; show-menu-icons string
-;
-; Controls if icon images are displayed in menus. If the setting in the
-; gschem-gtkrc is not responisve, this keyword can be used to used to
-; over-ride interference. If this keyword is used then gschem calls gtk
-; directly to either enable or disable menu icons. gschem does not default
-; this value, meaning that if nither option is used then gtk determines the
-; setting, gtk's default is no icons in menus.
-;
-(show-menu-icons "enabled")
-;(show-menu-icons "disabled")
-
-
 ; toolbars string
 ;
 ; Controls if the toolbars are visible or not. If toolbars are not enabled
@@ -868,7 +855,7 @@
 ; Specify the default untitled basename (usually only used a startup time)
 ; And typically not changed at runtime
 ;
-(untitled-name "untitled")
+;(untitled-name "untitled")
 
 ;BEGIN ===================> Scrollbar Options <=====================
 
@@ -1120,7 +1107,7 @@
 ;;   (define default-titleblock '())
 ;;   (define default-titleblock #f)
 ;
-(define default-titleblock "title-B.sym")
+;(define default-titleblock "title-B.sym")
 
 ; attribute-name string
 ;

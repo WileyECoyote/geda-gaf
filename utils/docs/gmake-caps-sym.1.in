@@ -40,7 +40,7 @@ Displays software version information"
 Include additional information during processing.
 
 .SH OPTIONS
-The current version of gmake-caps-sym does not recognize any additionl command-line options
+The current version of gmake-caps-sym does not recognize any additional command-line options
 
 .SH HOMEPAGE
 http://www.gpleda.org/

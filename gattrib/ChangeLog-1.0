@@ -1,3 +1,14 @@
+
+2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/gtksheet/gtksheetwidget.c: In function: gtk_sheet_get_property()
+        changed variable <valarray> from GValueArray to GArray, replaced
+        g_value_array_new with g_array_sized_new, g_value_array_append with
+        g_array_append_vals, and g_value_array_free with g_array_unref because
+        the compiler said these functions were depreciated.
+        In function gtk_sheet_class_init(), changed G_TYPE_VALUE_ARRAY to
+        G_TYPE_ARRAY for the same reason.
+
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Change -I$(abs_top_builddir)/include to

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-05-04 19:12-0500\n"
+"POT-Creation-Date: 2013-05-09 09:51-0500\n"
 "PO-Revision-Date: 2012-01-31 12:12+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -165,7 +165,7 @@ msgstr "gEDA/gschem versione %s%s.%s\n"
 msgid "Current locale settings: %s\n"
 msgstr "Impostazioni locali correnti: %s\n"
 
-#: gschem/src/i_basic.c:70 gschem/src/x_window.c:497
+#: gschem/src/i_basic.c:70 gschem/src/x_window.c:501
 #: gschem/lib/system-gschemrc.scm:1594
 msgid "Select Mode"
 msgstr "Modalità selezione"
@@ -1818,61 +1818,61 @@ msgstr ""
 msgid "Couldn't allocate gc\n"
 msgstr "Impossibile l'allocazione di gc\n"
 
-#: gschem/src/x_window.c:447
+#: gschem/src/x_window.c:451
 msgid "Evaluate:"
 msgstr ""
 
-#: gschem/src/x_window.c:466
+#: gschem/src/x_window.c:470
 msgid "Pick"
 msgstr "Prendi"
 
-#: gschem/src/x_window.c:483
+#: gschem/src/x_window.c:487
 msgid "Menu/Cancel"
 msgstr "Menu/Cancella"
 
-#: gschem/src/x_window.c:485
+#: gschem/src/x_window.c:489
 msgid "Pan/Cancel"
 msgstr "Pan/Cancella"
 
-#: gschem/src/x_window.c:746
+#: gschem/src/x_window.c:751
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Nuovo file [%s]\n"
 
-#: gschem/src/x_window.c:793
+#: gschem/src/x_window.c:798
 #, fuzzy, c-format
 msgid "Loading schematic \"%s\"\n"
 msgstr "Caricamento schema [%s]\n"
 
-#: gschem/src/x_window.c:943
+#: gschem/src/x_window.c:948
 #, c-format
 msgid "Could NOT save page [%s]\n"
 msgstr "Non è possibile salvare la pagina [%s]\n"
 
-#: gschem/src/x_window.c:944
+#: gschem/src/x_window.c:949
 msgid "Error while trying to save"
 msgstr "Errore durante il salvataggio"
 
-#: gschem/src/x_window.c:956
+#: gschem/src/x_window.c:961
 #, c-format
 msgid "Saved as [%s]\n"
 msgstr "Salvato con il nome [%s]\n"
 
-#: gschem/src/x_window.c:958
+#: gschem/src/x_window.c:963
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Salvato [%s]\n"
 
-#: gschem/src/x_window.c:960
+#: gschem/src/x_window.c:965
 msgid "Saved"
 msgstr "Salvato"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "Annulla pagina [%s]\n"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Chiusura [%s]\n"

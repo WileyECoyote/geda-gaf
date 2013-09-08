@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-05-04 19:12-0500\n"
+"POT-Creation-Date: 2013-05-09 09:51-0500\n"
 "PO-Revision-Date: 2010-02-14 06:08+0000\n"
 "Last-Translator: عبدالله شلي (Abdellah Chelli) <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -163,7 +163,7 @@ msgstr "إصدار gEDA/gschem‫ %s%s.%s\n"
 msgid "Current locale settings: %s\n"
 msgstr "الإعدادات المحلية الحالية: %s\n"
 
-#: gschem/src/i_basic.c:70 gschem/src/x_window.c:497
+#: gschem/src/i_basic.c:70 gschem/src/x_window.c:501
 #: gschem/lib/system-gschemrc.scm:1594
 msgid "Select Mode"
 msgstr "وضع الانتقاء"
@@ -1793,61 +1793,61 @@ msgstr ""
 msgid "Couldn't allocate gc\n"
 msgstr "تعذر تحديد موقع gc\n"
 
-#: gschem/src/x_window.c:447
+#: gschem/src/x_window.c:451
 msgid "Evaluate:"
 msgstr ""
 
-#: gschem/src/x_window.c:466
+#: gschem/src/x_window.c:470
 msgid "Pick"
 msgstr "التقط"
 
-#: gschem/src/x_window.c:483
+#: gschem/src/x_window.c:487
 msgid "Menu/Cancel"
 msgstr "قائمة/ألغِ"
 
-#: gschem/src/x_window.c:485
+#: gschem/src/x_window.c:489
 msgid "Pan/Cancel"
 msgstr "انتقل/ألغِ"
 
-#: gschem/src/x_window.c:746
+#: gschem/src/x_window.c:751
 #, c-format
 msgid "New file [%s]\n"
 msgstr "ملف جديد [‎%s‬]\n"
 
-#: gschem/src/x_window.c:793
+#: gschem/src/x_window.c:798
 #, fuzzy, c-format
 msgid "Loading schematic \"%s\"\n"
 msgstr "تحميل المخطط [‎%s‬]\n"
 
-#: gschem/src/x_window.c:943
+#: gschem/src/x_window.c:948
 #, c-format
 msgid "Could NOT save page [%s]\n"
 msgstr "تعذّر حفظ الصفحة [‎%s‬]\n"
 
-#: gschem/src/x_window.c:944
+#: gschem/src/x_window.c:949
 msgid "Error while trying to save"
 msgstr "خطا عند محاولة الحفظ"
 
-#: gschem/src/x_window.c:956
+#: gschem/src/x_window.c:961
 #, c-format
 msgid "Saved as [%s]\n"
 msgstr "حُفظ كـ [‎%s‬]\n"
 
-#: gschem/src/x_window.c:958
+#: gschem/src/x_window.c:963
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "‏حُفظ [‎%s‬]\n"
 
-#: gschem/src/x_window.c:960
+#: gschem/src/x_window.c:965
 msgid "Saved"
 msgstr "محفوظ"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "إهمال الصفحة [‎%s‬]\n"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "غلق [‎%s‬]\n"

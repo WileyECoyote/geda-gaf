@@ -130,7 +130,7 @@ char *s_slib_search_dirs(const char *basename)
       /* Do a substring comp for a match */
       if (strstr(dptr->d_name, basename) != NULL)  {
         slib_path = g_strdup (slib[i].dir_name);
-	
+
         if (ptr) {
           closedir(ptr);
           ptr = NULL;
@@ -167,7 +167,7 @@ char *s_slib_search_lowlevel(const char *basename)
 
   if (slib_path) {
     full_path = g_build_filename (slib_path, basename, NULL);
-		
+
     g_free(slib_path);
 
     return(full_path);
@@ -198,9 +198,9 @@ char *s_slib_getbasename(const char *rawname)
   int valid=0;
   int len;
   int seen_underscore=0;
-	
-  if (!rawname) 
-  return(NULL);
+
+  if (!rawname)
+    return(NULL);
 
   len = strlen(rawname)+1;
 
@@ -230,9 +230,9 @@ char *s_slib_getbasename(const char *rawname)
     /* if we have then we already removing chars, continue with that */
     if ( seen_underscore ) {
       if (return_filename[i] == '_') {
-        done = 1;	
+        done = 1;
       }
-			
+
       return_filename[i] = '\0';
     } else {
       /* we are still searching for the first underscore */
@@ -241,14 +241,14 @@ char *s_slib_getbasename(const char *rawname)
       if (isdigit((int) return_filename[i])) {
         valid=1;
       } else if (return_filename[i] == '_' && valid) {
-				/* yes it is okay to delete the chars */
+        /* yes it is okay to delete the chars */
         seen_underscore=1;
-				/* incremented, since it is then */
-				/* decremented */
-        i = lastchar+1;  
+        /* incremented, since it is then */
+        /* decremented */
+        i = lastchar+1;
       } else {
         valid = 0;
-        done = 1;	
+        done = 1;
       }
     }
 
@@ -256,7 +256,7 @@ char *s_slib_getbasename(const char *rawname)
   }
 
   /* be sure to g_free this somewhere */
-  return(return_filename); 
+  return(return_filename);
 }
 
 /*! \todo Finish function documentation!!!
@@ -378,79 +378,78 @@ char *s_slib_getfiles(char *directory, int flag)
       break;
 
       /* open the directory and return first element (after if) */
-    case(OPEN_DIR):
+      case(OPEN_DIR):
 
-      if (ptr) {
-        closedir(ptr);
-      }
+        if (ptr) {
+          closedir(ptr);
+        }
 
-      ptr = NULL;
+        ptr = NULL;
 
-      for (j = 0 ; j < count ;j++) {
-        g_free(whole_dir[j]);
-      }
-      count = current = 0 ;
+        for (j = 0 ; j < count ;j++) {
+          g_free(whole_dir[j]);
+        }
+        count = current = 0 ;
 
-      ptr = opendir(directory); /* hack check for existance */
+        ptr = opendir(directory); /* hack check for existance */
 
-      if (ptr == NULL) 
-        return(NULL);
+        if (ptr == NULL)
+          return(NULL);
 
 
-      /* now read the entire directory */
-      dptr = readdir(ptr);
+        /* now read the entire directory */
+        dptr = readdir(ptr);
 
-      while (dptr != NULL) {
-
-				/* skip .'s */
         while (dptr != NULL) {
-          if (dptr->d_name[0] == '.') {
-            dptr = readdir(ptr);
-          } else {
+
+          /* skip .'s */
+          while (dptr != NULL) {
+            if (dptr->d_name[0] == '.') {
+              dptr = readdir(ptr);
+            } else {
+              break;
+            }
+          }
+
+          if (dptr == NULL) {
             break;
           }
+
+          /* hack */
+          if (count < 256) {
+
+            whole_dir[count] = g_strdup (dptr->d_name);
+            count++;
+          } else {
+            g_error ("uggg. too many files in s_slib_getfiles!\n");
+          }
+
+          dptr = readdir(ptr);
         }
-		
-        if (dptr == NULL) {
-          break;
-        }	
-
-        /* hack */
-        if (count < 256) {
-
-          whole_dir[count] = g_strdup (dptr->d_name);
-          count++;
-        } else {
-          g_error ("uggg. too many files in s_slib_getfiles!\n");
-        }
-
-        dptr = readdir(ptr);
-      }
-      return(NULL);
-
-      break;
-
-    case(READ_DIR):
-
-		
-      if (whole_dir[current] && current < count) {
-        return(whole_dir[current++]);
-      } else {
         return(NULL);
-      }
 
-      break;
+        break;
 
-    default:
-      return(NULL);
+        case(READ_DIR):
+
+
+          if (whole_dir[current] && current < count) {
+            return(whole_dir[current++]);
+          } else {
+            return(NULL);
+          }
+
+          break;
+
+        default:
+          return(NULL);
   }
 
-#if DEBUG
+  #if DEBUG
   for (j = 0;j < count; j++) {
     printf("string: %s\n", whole_dir[j]);
   }
-#endif
-
+  #endif
 }
 
 /*! \todo Finish function documentation!!!

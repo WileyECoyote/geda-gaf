@@ -8,14 +8,12 @@
 #include <libgedacairo.h>
 
 /* gschem headers */
-#include "gschem_idefines.h"
-#include "gschem_sdefines.h"
+#include "gschem_idefines.h"       /* integer defines */
+#include "gschem_sdefines.h"       /* string defines  */
 #include "gschem_struct.h"
-#include "i_vars.h"
+#include "i_vars.h"                /* declarations of structures */
 #include "x_preview.h"
 
 #include "globals.h"
 #include "prototype.h"
 
-/* Gettext translation */
-//#include <gettext.h>

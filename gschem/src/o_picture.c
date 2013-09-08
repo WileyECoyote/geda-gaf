@@ -85,7 +85,10 @@ void o_picture_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   int picture_width, picture_height;
   int picture_left, picture_top;
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_picture_end> Not inside action\n");
+    return;
+  }
 
   /* erase the temporary picture */
   /* o_picture_draw_rubber(w_current); */
@@ -138,7 +141,10 @@ void o_picture_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 #if DEBUG
   printf("o_picture_rubberbox called\n");
 #endif
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_picture_motion> Not inside action\n");
+    return;
+  }
 
   /* erase the previous temporary box */
   if (w_current->rubber_visible)
@@ -231,7 +237,10 @@ bool o_picture_exchange (GSCHEM_TOPLEVEL *w_current,
        iter = g_list_next (iter)) {
 
     OBJECT *object = (OBJECT *) iter->data;
-    g_assert (object != NULL);
+    if (object == NULL) {
+      s_log_message("Internal Error Detected: <o_picture_exchange> object = NULL\n");
+      return FALSE;
+    }
 
     if (object->type == OBJ_PICTURE) {
       gboolean status;

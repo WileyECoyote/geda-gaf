@@ -40,9 +40,11 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 12/30/12 |  Changed "Log" to "Console"
 ;; ------------------------------------------------------------------
-;; WEH | 01/06/16 | Added spinner RipperSize, switches RipperRotation
+;; WEH | 01/06/13 | Added spinner RipperSize, switches RipperRotation
 ;;                | RipperType, and combo RipperSymbol, (to extend
 ;;                | functionality)
+;; ------------------------------------------------------------------
+;; WEH | 07/20/13 | Added Font Name Combo (to extend functionality)
 ;; ------------------------------------------------------------------
 */
 /*! \remarks To add a new variable or control:
@@ -59,7 +61,11 @@
  *          header.
  *      d.) Add any necassary support functions and code to the
  *          responder, i.e. the existing callback function
- *
+ *      e.) If there is an error such as "Unknown button Id" then
+ *          there is a generic/common responder with a switch/case
+ *          that does not have a case for the new control being
+ *          added, see step 2.d.
+ * 
  *      (At this point the control should be displayed properly.)
  *
  * 3. Initialize the value in the function load_settings_dialog
@@ -107,6 +113,11 @@
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <x_settings.h>                 /* Common Declarations and Enumerators */
 #include <x_settings_dialog.h>          /* Dialog String Data */
+
+const char* IDS_FONT_NAMES[] = {  /* Menu Icons Strings*/
+  DEFAULT_FONT_NAME, "Courier New", "Helvetica", "Monospace", "Tahoma", "Verdana",
+  NULL
+};
 
 /* ---------------  Functions that Should Be Somewhere Else  --------------- */
 
@@ -194,19 +205,19 @@ void load_combo_str( GtkComboBox *combo, const char *list[])
  *  @{
  */
 gschem_rc_options rc_options={
-	1,  /* display_color_map flag */
-	0,  /* color_scheme_index */
-	1,  /* display_outline_color_map flag */
-	3,  /* window_size index */
-	0,  /* custom_window_size flag */
-	1,  /* world_size index */
-	0,  /* custom_world_size flag */
+        1,  /* display_color_map flag */
+        0,  /* color_scheme_index */
+        1,  /* display_outline_color_map flag */
+        3,  /* window_size index */
+        0,  /* custom_window_size flag */
+        1,  /* world_size index */
+        0,  /* custom_world_size flag */
         0,  /* titleblock_index */
         0,  /* ripper_symbol_index */
-	"gschem-colormap-darkbg", /* color_map_scheme file name [MAX_FILE]*/
-	"",                       /* untitled_name[MAX_FILE] */
-	"",                       /* titleblock_fname[64]; */
-	""};                      /* ripper_symbol_fname [MAX_FILE]*/
+        "gschem-colormap-darkbg", /* color_map_scheme file name [MAX_FILE]*/
+        "",                       /* untitled_name[MAX_FILE] */
+        "",                       /* titleblock_fname[64]; */
+        ""};                      /* ripper_symbol_fname [MAX_FILE]*/
 
 /* The Global Widgets */
 GtkWidget *AddAttributeButt=NULL;
@@ -223,6 +234,7 @@ GtkWidget *MiddleButtonCombo;
 GtkWidget *ThirdButtonCombo;
 GtkWidget *TitleBlockCombo;
 GtkWidget *UndoTypeCombo;
+GtkWidget *FontNameCombo;
 GtkWidget *RipperSymbolCombo;
 
 /* The one and only Text Entry Box */
@@ -341,12 +353,12 @@ GtkWidget *SelectedAttributesView=NULL;
  *   The Inhibitors enable and disable Widgets based on other selections.
  */
 /*
-	1. enable_attribute_list_controls	called in callback functions
-	2. enable_color_map_controls
-	3. enable_color_map_scheme
-	4. enable_log_controls
-	5. enable_undo_controls
-	6. on_notebook_switch_page		is a callback handler
+        1. enable_attribute_list_controls        called in callback functions
+        2. enable_color_map_controls
+        3. enable_color_map_scheme
+        4. enable_log_controls
+        5. enable_undo_controls
+        6. on_notebook_switch_page                is a callback handler
 */
 /*! \brief Set Attribute list crontols based on the value of the
  *         component_select_attrlist.
@@ -673,9 +685,9 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
  *       state indicated in the dialog (after the user has changed/clicked
  *       the radio/bulb widgets)
  *
- *  \retval 0	= Filter All    // rc entry had an
- *          1	= No Filter     // rc entry had empty list
- *          2	= Filter List   // rc entry had and actual list
+ *  \retval 0        = Filter All    // rc entry had an
+ *          1        = No Filter     // rc entry had empty list
+ *          2        = Filter List   // rc entry had and actual list
  */
 static int GetAttributeFilterMode(GSCHEM_TOPLEVEL *w_current) {
 
@@ -1022,6 +1034,7 @@ void combo_responder(GtkWidget *widget, gpointer data)
     break;
   case ThirdButton:
   case MiddleButton:
+  case FontName:
   case RipperSymbol:
     break;
   default:
@@ -1085,6 +1098,34 @@ int setup_titleblock_combo( char *titleblock ){
      s_log_message("setup_titleblock: Memory allocation error\n");
 
   return pos;
+}
+
+/*! \brief Loads Font Name Combo Box and Set Active
+ *  \par Function Description:
+ *   This function up loads font name strings into the FontName
+ *   combobox. If one of strings matches the given font name,
+ *   then that entry is set to be the active combo entry, other
+ *   wise the first entry is set to be the active string.
+ *
+ *  @param[in]  char *cur_font    ptr to name of current font.
+ */
+void setup_font_name_combo(char* cur_font) {
+
+  int current;
+  int index;
+  const char* pfont;
+
+  current = 0;
+  for ( index = 0; IDS_FONT_NAMES[index] != NULL; index++ ) {
+
+    pfont = IDS_FONT_NAMES[index];
+    GTK_LOAD_COMBO (FontName, pfont);
+    if ( cur_font && strequal(cur_font, pfont)) {
+     current = index;
+    }
+  }
+  gtk_combo_box_set_active((GtkComboBox *)FontNameCombo, current);
+
 }
 
 void setup_ripper_symbol_combo(char* cur_name) {
@@ -1367,6 +1408,9 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
 bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
+  EdaConfig *cfg = eda_config_get_user_context ();
+
+  char *tmpstr;
 
   extern char *x_color_get_name(int index);
   COLOR *cflag;
@@ -1438,16 +1482,25 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetCombo (TitleBlock, 1)
 #else
   /* make C variable on stack */
-  setup_titleblock_combo(scm_2_cstring( "default-titleblock" ));
-  rc_options.titleblock_index = gtk_combo_box_get_active (GTK_COMBO_BOX (TitleBlockCombo));
+  tmpstr = eda_config_get_string (cfg, "gschem", "default-titleblock", NULL);
+  setup_titleblock_combo(tmpstr);
+  g_free (tmpstr);
 #endif
 
   SetCombo ( UndoType, w_current->undo_type );
 
+  tmpstr = eda_config_get_string (cfg, "gschem", "default-font-name", NULL);
+  setup_font_name_combo(tmpstr);
+  g_free (tmpstr);
+
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
-  strcpy(rc_options.untitled_name, w_current->toplevel->untitled_name);
-  gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), rc_options.untitled_name);
+  tmpstr = eda_config_get_string (cfg, "gschem", "default-filename", NULL);
+  //strcpy(rc_options.untitled_name, untitled_name);
+  //strcpy(rc_options.untitled_name, w_current->toplevel->untitled_name);
+  //gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), rc_options.untitled_name);
+  gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), tmpstr);
+  g_free (tmpstr);
 
 /* The Switches Alphabetically (31) */
 
@@ -1766,8 +1819,11 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   { /*-------------------- Start Text TAB Contents --------------------*/
 
    GTK_START_TAB (Text);
-     VSECTION(TextTab_vbox, TextOptionsGrp1);
-       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextSize, DIALOG_V_SPACING, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
+     VSECTION(TextTab_vbox, TextOptionsGrp1); /* TT Grp 1 Text Options */
+       HSECTION (TextOptionsGrp1_vbox, TextOptionsRow1)   /* TT Grp 1 Row 1 Text Styles */
+         GTK_NUMERIC_SPIN (TextOptionsRow1_hbox, TextSize, DIALOG_V_SPACING, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
+         GTK_NEW_COMBO (TextOptionsRow1_hbox, FontName, 160, DIALOG_V_SPACING);
+
        GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextZoomFactor, DIALOG_V_SPACING, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
        GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextMarkerSize, DIALOG_V_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
        GTK_SWITCH(TextOptionsGrp1_vbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
@@ -1915,7 +1971,9 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   int tmp_int;
   char *tmpstr;
 
-  /** @brief function change_default_titleblock in GatherSettings */
+  EdaConfig *cfg = eda_config_get_user_context ();
+
+  /** @brief function change_default_titleblock in GatherSettings
   void change_default_titleblock() {
     char expr [MAX_FILENAME] = "(define default-titleblock \"";
          strcat(expr, rc_options.titleblock_fname );
@@ -1923,10 +1981,11 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
          strcat(expr, "\")" );
          g_scm_c_eval_string_protected(expr);
   }
+ */
   /* Next line assigns a pointer to a char field in a GTK Entry widget - do not free it! */
   tmpstr = (char *)gtk_entry_get_text (GTK_ENTRY (UntitledNameEntry));
-  strcpy(rc_options.untitled_name, tmpstr );
-  strcpy(toplevel->untitled_name, rc_options.untitled_name);
+
+  eda_config_set_string (cfg, "gschem", "default-filename", tmpstr);
 
 /* Combo Boxes (7) */
 
@@ -1957,32 +2016,41 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
     }
   } /* else do nothing because the map did not change */
 
+/*
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (TitleBlockCombo));
 
   if (tmp_int != rc_options.titleblock_index) {
-    if (tmp_int != 0 ) { /* and if was not set to None */
-      /* Next line gets a pointer to a dynamic char array - Must be freed! */
+    if (tmp_int != 0 ) { // and if was not set to None
+      // Next line gets a pointer to a dynamic char array - Must be freed! 
       tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (TitleBlockCombo));
-      strcpy(rc_options.titleblock_fname, tmpstr); /* save the filename */
+      strcpy(rc_options.titleblock_fname, tmpstr); // save the filename
       strcat(rc_options.titleblock_fname, SYMBOL_FILE_DOT_SUFFIX);
       g_free(tmpstr);
       change_default_titleblock();
     }
     else {
-      strcpy(rc_options.titleblock_fname, ""); /* write empty quote */
+      strcpy(rc_options.titleblock_fname, ""); // write empty quote
       scm_eval_string(scm_from_utf8_string("(define default-titleblock \"\")"));
     }
-    rc_options.titleblock_index = -1; /* set flag to indicate new default_titleblock */
+    rc_options.titleblock_index = -1; // set flag to indicate new default_titleblock
   }
+*/
+  tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (TitleBlockCombo));
+  eda_config_set_string (cfg, "gschem", "default-titleblock", tmpstr);
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (RipperSymbolCombo));
-
   if (tmp_int != rc_options.ripper_symbol_index) {
     g_free(w_current->bus_ripper_symname);
     w_current->bus_ripper_symname =
     g_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
     strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
   }
+
+  tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (FontNameCombo));
+  eda_config_set_string (cfg, "gschem", "default-font-name", tmpstr);
+  eda_renderer_set_font_name(w_current->renderer, tmpstr);
+  /* Don't free the font name string, belongs to the dialog control */
+
 /* The Switches Alphabetically (31) */
              auto_load_last             = GET_SWITCH_STATE (AutoLoadSwitch);
   w_current->bus_ripper_rotation        = GET_SWITCH_STATE (RipperRotationSwitch);
@@ -2036,7 +2104,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
   w_current->mousepan_gain              =GET_SPIN_IVALUE (MousePanGainSpin);
   w_current->scrollpan_steps            =GET_SPIN_IVALUE (ScrollPanStepsSpin);
   w_current->select_slack_pixels        =GET_SPIN_IVALUE (SelectPixelsSpin);
-  w_current->snap_size        		=GET_SPIN_IVALUE (SnapSizeSpin);
+  w_current->snap_size                  =GET_SPIN_IVALUE (SnapSizeSpin);
   w_current->renderer->text_marker_size =GET_SPIN_IVALUE (TextMarkerSizeSpin);
   w_current->text_size                  =GET_SPIN_IVALUE (TextSizeSpin);
   w_current->text_display_zoomfactor    =GET_SPIN_IVALUE (TextZoomFactorSpin);

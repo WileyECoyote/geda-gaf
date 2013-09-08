@@ -27,11 +27,8 @@
 static void
 x_rc_parse_gschem_error (GError **err, GSCHEM_TOPLEVEL *w_current)
 {
-  char *msg2; /* Secondary text */
+  char      *msg2;   /* Secondary text */
   GtkWidget *dialog;
-
-  g_assert (w_current != NULL);
-  g_assert (err != NULL);
 
   /* Take no chances; if err was not set for some reason, it's a
    * problem. */
@@ -62,7 +59,7 @@ x_rc_parse_gschem_error (GError **err, GSCHEM_TOPLEVEL *w_current)
                             (*err)->message);
   }
 
-  dialog = gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
+  dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR,
                                    GTK_BUTTONS_OK,
                                    _("Cannot load gschem configuration."));

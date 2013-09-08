@@ -21,6 +21,8 @@
 #include <version.h>
 #include <missing.h>
 
+#include <X11/Xlib.h>
+
 #include <stdio.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -102,7 +104,6 @@ void gschem_quit(void)
 
   s_clib_free();
   s_slib_free();
-  /* o_text_freeallfonts();*/
   s_attrib_free();
   s_papersizes_free();
   x_color_free();
@@ -112,7 +113,6 @@ void gschem_quit(void)
   x_stroke_free ();
 #endif /* HAVE_LIBSTROKE */
   o_undo_cleanup();
-  /* s_stroke_free(); no longer needed */
 
   i_vars_freenames();
   i_vars_libgeda_freenames();
@@ -226,7 +226,7 @@ void gschem( int argc, char *argv[])
   console_window      = default_console_window;
   console_window_type = default_console_window_type;
 
-  x_console_init_commands(w_current);
+  x_console_init_commands(w_current, run_mode);
 
   if (logging == TRUE) {
     s_log_init ("gschem");
@@ -354,11 +354,22 @@ void gschem( int argc, char *argv[])
 void main_prog(void *closure, int argc, char *argv[])
 {
 
+  XInitThreads();
+
 #ifdef HAVE_GTHREAD
+
   /* Initialise threading before any other GLib functions are called. */
+
+#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 32 ))
   g_thread_init (NULL);
-  if (!g_thread_supported ())
+#endif
+
+  if (g_thread_supported ()) {
     gdk_threads_init();
+    run_mode = 2;
+  }
+#else
+    run_mode = 1;
 #endif
 
 

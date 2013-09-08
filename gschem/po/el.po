@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-05-04 19:12-0500\n"
+"POT-Creation-Date: 2013-05-09 09:51-0500\n"
 "PO-Revision-Date: 2012-09-01 20:41+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -163,7 +163,7 @@ msgstr "gEDA/gschem έκδοση %s%s.%s\n"
 msgid "Current locale settings: %s\n"
 msgstr "Τρέχουσες ρυθμίσεις τοπικότητας: %s\n"
 
-#: gschem/src/i_basic.c:70 gschem/src/x_window.c:497
+#: gschem/src/i_basic.c:70 gschem/src/x_window.c:501
 #: gschem/lib/system-gschemrc.scm:1594
 msgid "Select Mode"
 msgstr "Λειτουργία Επιλογής"
@@ -1822,61 +1822,61 @@ msgstr ""
 msgid "Couldn't allocate gc\n"
 msgstr "Αδυναμία εντοπισμού του gc\n"
 
-#: gschem/src/x_window.c:447
+#: gschem/src/x_window.c:451
 msgid "Evaluate:"
 msgstr "Εκτίμηση:"
 
-#: gschem/src/x_window.c:466
+#: gschem/src/x_window.c:470
 msgid "Pick"
 msgstr ""
 
-#: gschem/src/x_window.c:483
+#: gschem/src/x_window.c:487
 msgid "Menu/Cancel"
 msgstr "Μενού/Άκυρο"
 
-#: gschem/src/x_window.c:485
+#: gschem/src/x_window.c:489
 msgid "Pan/Cancel"
 msgstr ""
 
-#: gschem/src/x_window.c:746
+#: gschem/src/x_window.c:751
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Νέο αρχείο [%s]\n"
 
-#: gschem/src/x_window.c:793
+#: gschem/src/x_window.c:798
 #, fuzzy, c-format
 msgid "Loading schematic \"%s\"\n"
 msgstr "Φόρτωμα σχεδιαγράμματος [%s]\n"
 
-#: gschem/src/x_window.c:943
+#: gschem/src/x_window.c:948
 #, c-format
 msgid "Could NOT save page [%s]\n"
 msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση της σελίδας [%s]\n"
 
-#: gschem/src/x_window.c:944
+#: gschem/src/x_window.c:949
 msgid "Error while trying to save"
 msgstr "Σφάλμα κατά την προσπάθεια αποθήκευσης"
 
-#: gschem/src/x_window.c:956
+#: gschem/src/x_window.c:961
 #, c-format
 msgid "Saved as [%s]\n"
 msgstr "Αποθηκεύτηκε ως [%s]\n"
 
-#: gschem/src/x_window.c:958
+#: gschem/src/x_window.c:963
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Αποθηκεύτηκε [%s]\n"
 
-#: gschem/src/x_window.c:960
+#: gschem/src/x_window.c:965
 msgid "Saved"
 msgstr "Αποθηκεύτηκε"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr ""
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Κλείσιμο [%s]\n"

@@ -97,8 +97,10 @@ void o_arc_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  */
 void o_arc_end1(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
-  g_assert( w_current->inside_action != 0 );
-
+  if ( w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_arc_end1> Not inside action\n");
+    return;
+  }
   /* erases the previous temporary radius segment */
   /* o_arc_invalidate_rubber (w_current); */
   w_current->rubber_visible = 0;

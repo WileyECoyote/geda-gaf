@@ -45,7 +45,7 @@
  *  \param [out] bottom    the bottom world coord
  */
 void world_get_pin_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top,
-			  int *right, int *bottom)
+                          int *right, int *bottom)
 {
   world_get_line_bounds( toplevel, object, left, top, right, bottom );
 }
@@ -60,8 +60,7 @@ void world_get_pin_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *to
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
-                             OBJECT *object)
+bool o_pin_get_position (TOPLEVEL *toplevel, int *x, int *y, OBJECT *object)
 {
   *x = object->line->x[object->whichend];
   *y = object->line->y[object->whichend];
@@ -84,8 +83,8 @@ gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
  *  \return A new pin OBJECT
  */
 OBJECT *o_pin_new(TOPLEVEL *toplevel,
-		  char type, int color,
-		  int x1, int y1, int x2, int y2, PIN_TYPE pin_type, int whichend)
+                  char type, int color,
+                  int x1, int y1, int x2, int y2, PIN_TYPE pin_type, int whichend)
 {
   OBJECT *new_node;
 
@@ -101,36 +100,11 @@ OBJECT *o_pin_new(TOPLEVEL *toplevel,
 
   o_pin_set_type (toplevel, new_node, pin_type);
 
-  o_pin_recalc (toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   new_node->whichend = whichend;
 
   return new_node;
-}
-
-/*! \brief recalc the visual properties of a pin object
- *  \par Function Description
- *  This function updates the visual coords of the \a o_current object.
- *
- *  \param [in]     toplevel    The TOPLEVEL object.
- *  \param [in]     o_current   a pin object.
- *
- */
-void o_pin_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  if (o_current->line == NULL) {
-    return;
-  }
-
-  world_get_pin_bounds(toplevel, o_current, &left, &top, &right, &bottom);
-
-  o_current->w_left = left;
-  o_current->w_top = top;
-  o_current->w_right = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief read a pin object from a char buffer
@@ -165,15 +139,15 @@ OBJECT *o_pin_read (TOPLEVEL *toplevel, const char buf[],
     whichend = -1;
   } else {
     if (sscanf (buf, "%c %d %d %d %d %d %d %d\n", &type, &x1, &y1, &x2, &y2,
-		&color, &pin_type, &whichend) != 8) {
+      &color, &pin_type, &whichend) != 8) {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse pin object"));
-      return NULL;
-    }
+    return NULL;
+      }
   }
 
   if (whichend == -1) {
     s_log_message (_("Found a pin which did not have the whichone field set.\n"
-                     "Verify and correct manually.\n"));
+    "Verify and correct manually.\n"));
   } else if (whichend < -1 || whichend > 1) {
     s_log_message (_("Found an invalid whichend on a pin (reseting to zero): %d\n"),
                    whichend);
@@ -243,7 +217,7 @@ void o_pin_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object)
   object->line->y[1] = object->line->y[1] + dy;
 
   /* Update bounding box */
-  o_pin_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
   s_tile_update_object(toplevel, object);
 }
@@ -384,12 +358,12 @@ void o_pin_mirror_world(TOPLEVEL *toplevel,
  *
  */
 void o_pin_modify(TOPLEVEL *toplevel, OBJECT *object,
-		  int x, int y, int whichone)
+                  int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
 
-  o_pin_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
   s_tile_update_object(toplevel, object);
 }
@@ -403,13 +377,12 @@ void o_pin_modify(TOPLEVEL *toplevel, OBJECT *object,
  *  The side of the pins that are closer to the boundary of the box are
  *  set as active ends of the pins.
  *
- *  \param toplevel    The TOPLEVEL object
+ *  \param toplevel    A TOPLEVEL object
  *  \param object_list list of OBJECTs
  *  \param num_pins    pin count in the object list
  *
  */
-void o_pin_update_whichend(TOPLEVEL *toplevel,
-                           GList *object_list, int num_pins)
+void o_pin_update_whichend (TOPLEVEL *toplevel, GList *object_list, int num_pins)
 {
   OBJECT *o_current;
   GList *iter;
@@ -424,7 +397,7 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
   if (object_list && num_pins) {
     if (num_pins == 1 || toplevel->force_boundingbox) {
       world_get_object_glist_bounds (toplevel, object_list,
-                                     &left, &top, &right, &bottom);
+                                    &left, &top, &right, &bottom);
     } else {
       found = 0;
 
@@ -433,10 +406,7 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
       while (iter != NULL) {
         o_current = (OBJECT *)iter->data;
         if (o_current->type == OBJ_PIN) {
-          rleft = o_current->w_left;
-          rtop = o_current->w_top;
-          rright = o_current->w_right;
-          rbottom = o_current->w_bottom;
+          world_get_single_object_bounds( toplevel, o_current, &rleft, &rtop, &rright, &rbottom);
 
           if ( found ) {
             left = min( left, rleft );
@@ -467,83 +437,61 @@ void o_pin_update_whichend(TOPLEVEL *toplevel,
       if (o_current->line->y[0] == o_current->line->y[1]) {
         /* horizontal */
 
-        if (o_current->line->x[0] == left) {
-          o_current->whichend = 0;
-        } else if (o_current->line->x[1] == left) {
-          o_current->whichend = 1;
-        } else if (o_current->line->x[0] == right) {
-          o_current->whichend = 0;
-        } else if (o_current->line->x[1] == right) {
-          o_current->whichend = 1;
+        d1 = abs(o_current->line->x[0] - left);
+        d2 = abs(o_current->line->x[1] - left);
+        d3 = abs(o_current->line->x[0] - right);
+        d4 = abs(o_current->line->x[1] - right);
+
+        if (d1 <= d2) {
+          min0 = d1;
+          min0_whichend = 0;
         } else {
+          min0 = d2;
+          min0_whichend = 1;
+        }
 
-          d1 = abs(o_current->line->x[0] - left);
-          d2 = abs(o_current->line->x[1] - left);
-          d3 = abs(o_current->line->x[0] - right);
-          d4 = abs(o_current->line->x[1] - right);
+        if (d3 <= d4) {
+          min1 = d3;
+          min1_whichend = 0;
+        } else {
+          min1 = d4;
+          min1_whichend = 1;
+        }
 
-          if (d1 <= d2) {
-            min0 = d1;
-            min0_whichend = 0;
-          } else {
-            min0 = d2;
-            min0_whichend = 1;
-          }
-
-          if (d3 <= d4) {
-            min1 = d3;
-            min1_whichend = 0;
-          } else {
-            min1 = d4;
-            min1_whichend = 1;
-          }
-
-          if (min0 <= min1) {
-            o_current->whichend = min0_whichend;
-          } else {
-            o_current->whichend = min1_whichend;
-          }
+        if (min0 <= min1) {
+          o_current->whichend = min0_whichend;
+        } else {
+          o_current->whichend = min1_whichend;
         }
 
       } else if (o_current->line->x[0] == o_current->line->x[1]) {
         /* vertical */
 
-        if (o_current->line->y[0] == top) {
-          o_current->whichend = 0;
-        } else if (o_current->line->y[1] == top) {
-          o_current->whichend = 1;
-        } else if (o_current->line->x[0] == bottom) {
-          o_current->whichend = 0;
-        } else if (o_current->line->x[1] == bottom) {
-          o_current->whichend = 1;
+        d1 = abs(o_current->line->y[0] - top);
+        d2 = abs(o_current->line->y[1] - top);
+        d3 = abs(o_current->line->y[0] - bottom);
+        d4 = abs(o_current->line->y[1] - bottom);
+
+        if (d1 <= d2) {
+          min0 = d1;
+          min0_whichend = 0;
         } else {
+          min0 = d2;
+          min0_whichend = 1;
+        }
 
-          d1 = abs(o_current->line->y[0] - top);
-          d2 = abs(o_current->line->y[1] - top);
-          d3 = abs(o_current->line->y[0] - bottom);
-          d4 = abs(o_current->line->y[1] - bottom);
+        if (d3 <= d4) {
+          min1 = d3;
+          min1_whichend = 0;
+        } else {
+          min1 = d4;
+          min1_whichend = 1;
+        }
 
-          if (d1 <= d2) {
-            min0 = d1;
-            min0_whichend = 0;
-          } else {
-            min0 = d2;
-            min0_whichend = 1;
-          }
-
-          if (d3 <= d4) {
-            min1 = d3;
-            min1_whichend = 0;
-          } else {
-            min1 = d4;
-            min1_whichend = 1;
-          }
-
-          if (min0 <= min1) {
-            o_current->whichend = min0_whichend;
-          } else {
-            o_current->whichend = min1_whichend;
-          }
+        if (min0 <= min1) {
+          o_current->whichend = min0_whichend;
+        } else {
+          o_current->whichend = min1_whichend;
         }
       }
     }

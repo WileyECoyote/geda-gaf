@@ -27,6 +27,7 @@ bitmapdata_DATA    = close_box.png                      \
                      geda-line.png                      \
                      geda-line-type.png                 \
                      geda-lock.png                      \
+                     geda_new.png                       \
                      geda-mesh.png                      \
                      geda-mirror.png                    \
                      geda-move.png                      \

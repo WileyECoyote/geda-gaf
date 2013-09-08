@@ -278,6 +278,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
   GSCHEM_TOPLEVEL *w_current = userdata;
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
   x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
+  x_menus_popup_sensitivity (w_current, "/Paste", usable);
 }
 
 static bool
@@ -326,14 +327,20 @@ void i_update_sensitivities(GSCHEM_TOPLEVEL *w_current)
   bool anything_is_selected;
 
   TOPLEVEL *toplevel = w_current->toplevel;
-  /*
-   * This is improve but still fairly simplistic.  What
+
+  if (w_current == NULL) {
+    s_log_message("Internal Error Detected: <i_update_sensitivities> w_current == NULL\n");
+    return;
+  }
+  if (toplevel->page_current == NULL) {
+    s_log_message("Internal Error Detected: <i_update_sensitivities> toplevel->page_current == NULL\n");
+    return;
+  }
+
+  /* This is improve but still fairly simplistic.  What
    * gets enabled/disabled could be more selective based
    * based on what is in the selection list, WEH
    */
-  g_assert(w_current != NULL);
-  g_assert(toplevel->page_current != NULL);
-
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
 
   have_mutil_pages     = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
@@ -356,15 +363,20 @@ if ( have_mutil_pages ) {
 
     /* since one or more things are selected, we set these TRUE */
     /* These strings should NOT be internationalized */
-    if(is_complex_selected) {
-      x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
+    if ( is_complex_selected ) {
+
       x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", TRUE);
       x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", TRUE);
       x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", TRUE);
       x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
       x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
 
-      /*  Menu items for hierarchy added by SDB 1.9.2005.  */
+      x_menus_sensitivity(w_current, "_Edit/Slot...", TRUE);
+      x_menus_sensitivity(w_current, "_Edit/Edit Pin...", TRUE);
+      x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
+      x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
+
+      x_menus_popup_sensitivity(w_current, "/Edit pin type...", TRUE);
       x_menus_popup_sensitivity(w_current, "/Down Schematic", TRUE);
       x_menus_popup_sensitivity(w_current, "/Down Symbol", TRUE);
       /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
@@ -378,31 +390,6 @@ if ( have_mutil_pages ) {
         x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", TRUE);
     }
 
-    /* since one or more things are selected, we set these TRUE */
-    /* These strings should NOT be internationalized */
-    if(is_complex_selected) {
-      x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
-      x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", TRUE);
-      x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", TRUE);
-      x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
-
-      /*  Menu items for hierarchy added by SDB 1.9.2005.  */
-      x_menus_popup_sensitivity(w_current, "/Down Schematic", TRUE);
-      x_menus_popup_sensitivity(w_current, "/Down Symbol", TRUE);
-      /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
-    }
-
-    if(have_text_selected) {
-        x_toolbars_set_sensitivities(w_current, TEXT_OBJECTS, TRUE);
-        x_menus_sensitivity(w_current, "A_ttributes/Show _Value", TRUE);
-        x_menus_sensitivity(w_current, "A_ttributes/Show _Name", TRUE);
-        x_menus_sensitivity(w_current, "A_ttributes/Show _Both", TRUE);
-        x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", TRUE);
-    }
-
-    x_toolbars_set_sensitivities(w_current, SOME_OBJECTS, TRUE);
     x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
@@ -413,14 +400,11 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Edit/Mirror Mode", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Slot...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Lock", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Unlock", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Embed Component/Picture", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
 
     x_menus_sensitivity(w_current, "_Buffer/Copy into 1", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 2", TRUE);
@@ -433,7 +417,6 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5", TRUE);
 
-    x_toolbars_set_sensitivities(w_current, SOME_OBJECTS, TRUE);
     x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", TRUE);
     x_menus_sensitivity(w_current, "_Edit/_Delete", TRUE);
@@ -444,14 +427,19 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Edit/Mirror Mode", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Slot...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Lock", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Unlock", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Embed Component/Picture", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
+
+    x_menus_popup_sensitivity(w_current, "/Cut", TRUE);
+    x_menus_popup_sensitivity(w_current, "/Copy", TRUE);
+
+    x_menus_popup_sensitivity(w_current, "/Edit...", TRUE);
+    x_menus_popup_sensitivity(w_current, "/Duplicate", TRUE);
+    x_menus_popup_sensitivity(w_current, "/Move", TRUE);
+    x_menus_popup_sensitivity(w_current, "/Delete", TRUE);
 
   } else { /* Nothing is selected, grey these out */
     /* These strings should NOT be internationalized */
@@ -468,13 +456,14 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Slot...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Color...", FALSE);
+    x_menus_sensitivity(w_current, "_Edit/Edit Pin...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Lock", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Unlock", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Embed Component/Picture", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Update Component", FALSE);
+
     x_menus_sensitivity(w_current, "_Buffer/Copy into 1", FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 2", FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 3", FALSE);
@@ -485,9 +474,11 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Buffer/Cut into 3", FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4", FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5", FALSE);
+
     x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", FALSE);
     x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", FALSE);
     x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", FALSE);
+
     x_menus_sensitivity(w_current, "A_ttributes/_Attach", FALSE);
     x_menus_sensitivity(w_current, "A_ttributes/_Detach", FALSE);
     x_menus_sensitivity(w_current, "A_ttributes/Show _Value", FALSE);
@@ -499,6 +490,15 @@ if ( have_mutil_pages ) {
     x_menus_popup_sensitivity(w_current, "/Down Schematic", FALSE);
     x_menus_popup_sensitivity(w_current, "/Down Symbol", FALSE);
     /* x_menus_popup_sensitivity(w_current, "/Up", FALSE);	*/
+
+    x_menus_popup_sensitivity(w_current, "/Edit...", FALSE);
+    x_menus_popup_sensitivity(w_current, "/Edit pin type...", FALSE);
+    x_menus_popup_sensitivity(w_current, "/Duplicate", FALSE);
+    x_menus_popup_sensitivity(w_current, "/Move", FALSE);
+    x_menus_popup_sensitivity(w_current, "/Delete", FALSE);
+
+    x_menus_popup_sensitivity(w_current, "/Cut", FALSE);
+    x_menus_popup_sensitivity(w_current, "/Copy", FALSE);
   }
 
   x_menus_sensitivity(w_current, "_Buffer/Paste from 1", (object_buffer[1] != NULL));
@@ -538,8 +538,7 @@ void i_set_filename(GSCHEM_TOPLEVEL *w_current, const char *string)
 
   print_string = g_strdup_printf("%s - gschem", filename);
 
-  gtk_window_set_title(GTK_WINDOW(w_current->main_window),
-		       print_string);
+  gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
 
   g_free(print_string);
   g_free(filename);

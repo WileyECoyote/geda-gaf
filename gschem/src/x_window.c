@@ -135,53 +135,17 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
  */
 void x_window_save_geometry(GtkWindow *window, char* group_name)
 {
-  char *data, *filename;
+  EdaConfig  *cfg;
   int x, y, width, height;
-  GKeyFile *key_file = NULL;
 
-  bool setup_new_keyfile (char *filename) {
+  cfg = eda_config_get_user_context ();
+  gtk_window_get_position (window, &x, &y);
+  gtk_window_get_size (window, &width, &height);
 
-    bool results = TRUE;
-
-    key_file = g_key_file_new();
-
-    if (access(filename, W_OK) != 0) {
-      v_log_message("Creating new Window Geometry Configuration file\n");
-      mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
-      g_file_set_contents (filename, "", -1, NULL);
-    }
-    if (!g_file_test (filename, G_FILE_TEST_EXISTS))
-      results = FALSE;
-    return results;
-  }
-
-  filename = g_build_filename (s_path_user_config (),
-                               WINDOW_GEOMETRY_STORE, NULL);
-
-  if (!g_file_test (filename, G_FILE_TEST_EXISTS))
-    setup_new_keyfile (filename);
-  else
-    key_file = g_key_file_new();
-
-  if(key_file) {
-
-    gtk_window_get_position (window, &x, &y);
-    gtk_window_get_size (window, &width, &height);
-
-    g_key_file_set_integer (key_file, group_name, "x", x);
-    g_key_file_set_integer (key_file, group_name, "y", y);
-    g_key_file_set_integer (key_file, group_name, "width",  width );
-    g_key_file_set_integer (key_file, group_name, "height", height);
-
-    data = g_key_file_to_data(key_file, NULL, NULL);
-    g_file_set_contents(filename, data, -1, NULL);
-    g_free(data);
-  }
-  else
-    fprintf(stderr, "Warning, could not save Window configuration to %s\n", filename);
-
-  if(key_file) g_key_file_free(key_file);
-  g_free(filename);
+  eda_config_set_integer (cfg, group_name, "window-x-position", x);
+  eda_config_set_integer (cfg, group_name, "window-y-position", y);
+  eda_config_set_integer (cfg, group_name, "window-width",      width );
+  eda_config_set_integer (cfg, group_name, "window-height",     height);
 
 }
 
@@ -195,44 +159,45 @@ void x_window_save_geometry(GtkWindow *window, char* group_name)
  */
 void x_window_restore_geometry(GtkWindow *window, char* group_name)
 {
-  char       *filename;
-  GError     *err = NULL;
-  GKeyFile   *key_file = NULL;
 
-  void RestoreWindowGeometry() {
-    int x, y, width, height;
-    if(key_file) {
-      v_log_message("Retrieving Window geometry\n");
-      x      = g_key_file_get_integer (key_file, group_name, "x", NULL);
-      y      = g_key_file_get_integer (key_file, group_name, "y", NULL);
-      width  = g_key_file_get_integer (key_file, group_name, "width",  NULL);
-      height = g_key_file_get_integer (key_file, group_name, "height", NULL);
+  EdaConfig  *cfg;
+  GError     *err      = NULL;
+  bool        xy_error = FALSE;
 
-      gtk_window_move (window, x, y);
-      gtk_window_resize (window, width, height);
-    }
+  int x, y, width, height;
+
+  v_log_message("Retrieving Window geometry\n");
+
+  cfg = eda_config_get_user_context ();
+
+  x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    xy_error = TRUE;
+  }
+  y = eda_config_get_integer (cfg, group_name, "window-y-position", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    xy_error = TRUE; 
   }
 
-  filename = g_build_filename(s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
-    if(g_file_test (filename, G_FILE_TEST_EXISTS)) {
-    if (access(filename, R_OK) == 0) {
-      key_file = g_key_file_new();
-      if(g_key_file_load_from_file(key_file, filename, G_KEY_FILE_NONE, &err))
-        RestoreWindowGeometry();
-      else {
-        s_log_message("Warning, Error Restoring Window configuration, %s\n", err->message);
-        g_clear_error (&err);
-      }
-    }
-    else {
-      s_log_message("Warning, Window configuration file access error:, %s\n", err->message);
-    }
+  width  = eda_config_get_integer (cfg, group_name, "window-width", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    width = DEFAULT_WINDOW_WIDTH;
   }
+  height = eda_config_get_integer (cfg, group_name, "window-height", &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    height = DEFAULT_WINDOW_HEIGHT;
+  }
+
+  if (xy_error)
+    gtk_window_set_position(window, GTK_WIN_POS_CENTER);
   else
-    v_log_message("Window configuration geometry not found!\n");
+    gtk_window_move (window, x, y);
 
-  if(key_file) g_key_file_free(key_file);
-  g_free(filename);
+  gtk_window_resize (window, width, height);
 
 }
 
@@ -298,7 +263,7 @@ static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
   SCM interpreter;
 
   interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
-			   scm_from_utf8_string(gtk_entry_get_text(entry)));
+                           scm_from_utf8_string(gtk_entry_get_text(entry)));
 
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
@@ -437,19 +402,20 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   if (w_current->handleboxes && w_current->toolbars) {
      x_toolbars_init_bottom(w_current, main_box);
   }
+
   /* macro box */
   w_current->macro_entry = gtk_entry_new();
   g_signal_connect(w_current->macro_entry, "activate",
-		   G_CALLBACK(&x_window_invoke_macro), w_current);
+                   G_CALLBACK(&x_window_invoke_macro), w_current);
 
   w_current->macro_box = gtk_hbox_new(FALSE, 0);
   gtk_box_pack_start(GTK_BOX (w_current->macro_box),
                      gtk_label_new (_("Evaluate:")), FALSE, FALSE, 2);
   gtk_box_pack_start(GTK_BOX(w_current->macro_box), w_current->macro_entry,
-		     TRUE, TRUE, 2);
+                     TRUE, TRUE, 2);
   gtk_container_border_width(GTK_CONTAINER(w_current->macro_box), 1);
   gtk_box_pack_start (GTK_BOX (main_box), w_current->macro_box,
-		      FALSE, FALSE, 0);
+                      FALSE, FALSE, 0);
 
   /* bottom box */
   bottom_box = gtk_hbox_new(FALSE, 0);
@@ -505,6 +471,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   gtk_widget_hide(w_current->macro_box);
 
   /* hide the little red x's in the toolbars */
+
   x_toolbars_finialize(w_current);
 
   /* hide the srollbars based on user settings */
@@ -525,6 +492,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
  */
 static void x_window_close_all_dialogs(GSCHEM_TOPLEVEL *w_current){
   /* close all the dialog boxes */
+
   if (w_current->sowindow)
   gtk_widget_destroy(w_current->sowindow);
 
@@ -569,6 +537,7 @@ static void x_window_close_all_dialogs(GSCHEM_TOPLEVEL *w_current){
   gtk_widget_destroy(w_current->sewindow);
 
   x_console_close();
+
 }
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -616,6 +585,7 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
     last_window = TRUE;
     if(w_current->save_ui_settings == TRUE) {
       x_toolbars_save_state(w_current);
+      x_menu_save_state(w_current);
       x_window_close_all_dialogs(w_current);
       x_window_save_geometry((GtkWindow*)w_current->main_window, "gschem");
     }
@@ -899,6 +869,7 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   x_hscrollbar_update (w_current);
   x_vscrollbar_update (w_current);
   o_invalidate_all (w_current);
+
 }
 
 /*! \brief Saves a page to a file.
@@ -970,7 +941,9 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
 
   /* update display and page manager */
   x_window_set_current_page (w_current, old_current);
+
   i_set_state_msg  (w_current, SELECT, state_msg);
+
   return result;
 }
 
@@ -995,7 +968,12 @@ x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   g_return_if_fail (toplevel != NULL);
   g_return_if_fail (page     != NULL);
 
-  g_assert (page->pid != -1);
+  if (page->pid == -1) {
+    s_log_message ("Internal Error: <%s><x_window_close_page>"
+                   "invalid page ID=<%d>, line %d.\n",
+                   __FILE__, page->pid, __LINE__);
+    return;
+  }
 
   /* If we're closing whilst inside a move action, re-wind the
    * page contents back to their state before we started */

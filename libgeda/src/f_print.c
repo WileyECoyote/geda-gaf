@@ -70,7 +70,7 @@ void f_print_set_line_width(FILE *fp, int width)
  */
 int f_print_set_color(TOPLEVEL *toplevel, FILE *fp, int color)
 {
-  gchar *string;
+  char *string;
 
   if (!toplevel->print_color || (toplevel->last_ps_color == color)) return 1;
 
@@ -112,13 +112,13 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
   int llx,lly,urx,ury;
   time_t current_time,time_rc;
   char *prologfile;
-  
+
   /* Compute bounding box */
   llx=0;                          /* So, right now, the box starts at (0,0) */
   lly=0;
-  urx=((float)paper_size_y * 72.0)/1000; 
-  ury=((float)paper_size_x * 72.0)/1000; 
-  
+  urx=((float)paper_size_y * 72.0)/1000;
+  ury=((float)paper_size_x * 72.0)/1000;
+
   /* Get Time of day for creation date */
   time_rc = time(&current_time);
   if(time_rc == (time_t)-1) {
@@ -132,30 +132,30 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
   else
     fprintf(fp, "%%!PS-Adobe-3.0\n");
   fprintf(fp, "%%%%Creator: gEDA gschem %s\n"
-	  "%%%%CreationDate: %s"
-	  "%%%%Title: %s\n"
-#ifdef HAVE_GETLOGIN
-	  "%%%%Author: %s\n"
-#endif
-	  "%%%%BoundingBox: %d %d %d %d\n"
-	  "%%%%Orientation: %s\n"
-	  "%%%%Pages: 1\n"
-	  "%%%%Endcomments\n"
-	  "%%%%BeginProlog\n",
-	  PACKAGE_GIT_VERSION,
-	  ctime(&current_time),
-	  page->page_filename,
-#ifdef HAVE_GETLOGIN
-	  getlogin(),
-#endif
-	  llx, lly, urx, ury,
-	  (landscape ? "Landscape" : "Portrait")
-	  );
+  "%%%%CreationDate: %s"
+  "%%%%Title: %s\n"
+  #ifdef HAVE_GETLOGIN
+  "%%%%Author: %s\n"
+  #endif
+  "%%%%BoundingBox: %d %d %d %d\n"
+  "%%%%Orientation: %s\n"
+  "%%%%Pages: 1\n"
+  "%%%%Endcomments\n"
+  "%%%%BeginProlog\n",
+  PACKAGE_GIT_VERSION,
+  ctime(&current_time),
+          page->page_filename,
+          #ifdef HAVE_GETLOGIN
+          getlogin(),
+          #endif
+          llx, lly, urx, ury,
+          (landscape ? "Landscape" : "Portrait")
+  );
 
   /* Fetch and insert the Postscript prolog from disk here */
-  
+
   /* Allocate a buffer to use during copy */
-#define PROLOG_BUFFER_SIZE 8192
+  #define PROLOG_BUFFER_SIZE 8192
 
   /* Don't check this (succeeds or aborts) */
   buf = g_malloc(PROLOG_BUFFER_SIZE);
@@ -173,7 +173,7 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
   }
   else
     s_log_message(_("f_print_header: using prolog file [%s]\n"), prologfile);
-  
+
   prolog = fopen(prologfile,"r");
   if(prolog == NULL) {
     s_log_message(_("f_print_header: Unable to open the prolog file \"%s\" for reading\n"), prologfile);
@@ -188,7 +188,7 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
     if (fwrite(buf, 1, bytes, fp) != bytes) {
       /* An error occurred  with fwrite */
       s_log_message(_("f_print_header: Error while writing prolog \"%s\" \n"), prologfile);
-    goto f_print_header_fail;
+      goto f_print_header_fail;
     }
   } while(!feof(prolog) && !ferror(prolog) && !ferror(fp));
 
@@ -204,13 +204,13 @@ int f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp,
   g_free(buf);  /* If we got to here, the buffer was allocated. */
   g_free(prologfile);
   fprintf(fp,"%%%%EndProlog\n"
-	  "%%%%Page: 1 1\n");     /* Just name it `page 1' for now */
-  
+  "%%%%Page: 1 1\n");     /* Just name it `page 1' for now */
+
 
   fclose (prolog);
   return 0;
 
- f_print_header_fail:
+  f_print_header_fail:
   s_log_message (_("Giving up on printing\n"));
   if (prolog != NULL)
     fclose (prolog);
@@ -257,7 +257,7 @@ void f_print_objects (TOPLEVEL *toplevel, FILE *fp, const GList *obj_list,
   int origin_x, origin_y;
   int save_last_ps_color;
   const GList *iter;
-	
+
   origin_x = start_x;
   origin_y = start_y;
 
@@ -268,10 +268,10 @@ void f_print_objects (TOPLEVEL *toplevel, FILE *fp, const GList *obj_list,
   /* Apply a translation to move the origin to where we want it */
   if (origin_x != 0 || origin_y != 0) {
     fprintf(fp, "%d %d translate\n", -origin_x, -origin_y);
-  } 
+  }
 
 
-  /* no longer change the coords, the postscript translate takes care 
+  /* no longer change the coords, the postscript translate takes care
    * of this */
   origin_x = 0;
   origin_y = 0;
@@ -352,8 +352,8 @@ void f_print_objects (TOPLEVEL *toplevel, FILE *fp, const GList *obj_list,
 
       case(OBJ_PICTURE):
         o_picture_print(toplevel, fp, o_current,
-        origin_x, origin_y);
-      break;
+                        origin_x, origin_y);
+        break;
 
       default:
         g_return_if_reached ();
@@ -391,7 +391,7 @@ int f_print_file (TOPLEVEL *toplevel, PAGE *page, const char *filename)
   }
 
   result = f_print_stream(toplevel, page, fp);
-  
+
   if (result != 0) {
     /* If there was an error in f_print_stream, then unlink the output file. */
     unlink(filename);
@@ -447,7 +447,7 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp)
   float scale;
   int unicode_count;
   gunichar unicode_table [128];  /* to contain the list of unicode
-				    characters that need mapping */
+  characters that need mapping */
   int eps;
   bool landscape;
 
@@ -456,9 +456,9 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp)
 
   /* Find all the unicode characters */
   unicode_count =
-    f_print_get_unicode_chars (toplevel,
-                               s_page_objects (page),
-                               0, unicode_table);
+  f_print_get_unicode_chars (toplevel,
+                             s_page_objects (page),
+                             0, unicode_table);
 
   /*	printf("%d %d\n", toplevel->paper_width, toplevel->paper_height);*/
 
@@ -470,38 +470,38 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp)
   /* Calculate scale factor that will make the image fit on the page */
 
   switch (toplevel->print_output_type) {
-  case EXTENTS:
-    dx = right  - origin_x;
-    dy = bottom - origin_y;
-    
-    /* Add a 10% margin */
-    margin_x = dx/10;
-    margin_y = dy/10;
-    dx = dx + margin_x;
-    dy = dy + margin_y;
-    break;
+    case EXTENTS:
+      dx = right  - origin_x;
+      dy = bottom - origin_y;
 
-  case WINDOW:
-    dx = page->right - page->left;
-    dy = page->bottom - page->top;
-    origin_x = page->left;
-    origin_y = page->top;
-    right = page->right;
-    bottom = page->bottom;
-    break;
+      /* Add a 10% margin */
+      margin_x = dx/10;
+      margin_y = dy/10;
+      dx = dx + margin_x;
+      dy = dy + margin_y;
+      break;
 
-  case EXTENTS_NOMARGINS:
-    dx = right  - origin_x;
-    dy = bottom - origin_y;
-    break;
+    case WINDOW:
+      dx = page->right - page->left;
+      dy = page->bottom - page->top;
+      origin_x = page->left;
+      origin_y = page->top;
+      right = page->right;
+      bottom = page->bottom;
+      break;
 
-  default:
-    break;
+    case EXTENTS_NOMARGINS:
+      dx = right  - origin_x;
+      dy = bottom - origin_y;
+      break;
+
+    default:
+      break;
 
   }
 
   landscape = ((toplevel->print_orientation == LANDSCAPE) ||
-      ((toplevel->print_orientation == AUTOLAYOUT) && ( dx >= dy )));
+  ((toplevel->print_orientation == AUTOLAYOUT) && ( dx >= dy )));
 
   if(toplevel->paper_width == 0) {
     eps = 1;
@@ -514,7 +514,7 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp)
     }
   } else
     eps = 0;
-  
+
   scale = 0.0;
   if (landscape) {
     /* First attempt to fit in x direction. */
@@ -532,93 +532,93 @@ int f_print_stream(TOPLEVEL *toplevel, PAGE *page, FILE *fp)
     }
   }
 
-#if 0
+  #if 0
   /* Debug */
   printf("dx: %d dy:%d, origin_x:%d origin_y:%d, right:%d bottom:%d\n",
-	 dx,dy,origin_x,origin_y,right,bottom);
+  dx,dy,origin_x,origin_y,right,bottom);
   printf("scale:%f\n",scale);
-#endif  
+  #endif
 
   /* Output the header */
   if (f_print_header(toplevel, page, fp,
-		     toplevel->paper_width,
-		     toplevel->paper_height,
-		     eps, landscape) != 0) {
+    toplevel->paper_width,
+    toplevel->paper_height,
+    eps, landscape) != 0) {
 
     /* There was an error in f_print_header */
     return -1;
-  }
+    }
 
-  /* Output font re-encoding */
-  if (unicode_count) {
-    f_print_unicode_map(fp, unicode_count, unicode_table);
-    /* output font re-encodeing command, use our re-encoding */
-    fprintf(fp,"/gEDAFont UTFencoding /Helvetica RE\n");
-  } else {
-    /* Otherwise, use LATIN1 extended encoding from prolog */
-    fprintf(fp,"/gEDAFont ISOLatin1Extended /Helvetica RE\n");
-  }
-
-
-  /* XXX - Do page orientation selection */
-
-/*   if (toplevel->setpagedevice_orientation) { */
-/*     if (toplevel->print_orientation == LANDSCAPE) { */
-/*       fprintf(fp, "%c%c /Orientation 1 %c%c setpagedevice\n\n", '<', '<', */
-/*               '>', '>'); */
-/*     } else { */
-/*       fprintf(fp, "%c%c /Orientation 0 %c%c setpagedevice\n\n", '<', '<', */
-/*               '>', '>'); */
-/*     } */
-/*   } */
-
-  /* the height and width are in the right order here, since they were
-   * specified in landscape order in the system-gschemrc file.
-   * \074 is '<', \076 is '>' */
-  if (toplevel->setpagedevice_pagesize) {
-    fprintf(fp, "\074\074 /PageSize [%d %d] \076\076 setpagedevice\n",
-            (toplevel->paper_height * 72) / MILS_PER_INCH,
-            (toplevel->paper_width * 72) / MILS_PER_INCH);
-  }
+    /* Output font re-encoding */
+    if (unicode_count) {
+      f_print_unicode_map(fp, unicode_count, unicode_table);
+      /* output font re-encodeing command, use our re-encoding */
+      fprintf(fp,"/gEDAFont UTFencoding /Helvetica RE\n");
+    } else {
+      /* Otherwise, use LATIN1 extended encoding from prolog */
+      fprintf(fp,"/gEDAFont ISOLatin1Extended /Helvetica RE\n");
+    }
 
 
-  /* Apply mils to postscript native units scaling to CTM */
-  fprintf(fp,"%f %f scale\n",
-	  72.0 / 1000.0 , 72.0 / 1000.0);
+    /* XXX - Do page orientation selection */
 
-  /* Now the output is defined in terms of mils */
-  /* Draw a box with the background colour covering the whole page */
-  if (toplevel->print_color &&
+    /*   if (toplevel->setpagedevice_orientation) { */
+    /*     if (toplevel->print_orientation == LANDSCAPE) { */
+    /*       fprintf(fp, "%c%c /Orientation 1 %c%c setpagedevice\n\n", '<', '<', */
+    /*               '>', '>'); */
+    /*     } else { */
+    /*       fprintf(fp, "%c%c /Orientation 0 %c%c setpagedevice\n\n", '<', '<', */
+    /*               '>', '>'); */
+    /*     } */
+    /*   } */
+
+    /* the height and width are in the right order here, since they were
+     * specified in landscape order in the system-gschemrc file.
+     * \074 is '<', \076 is '>' */
+    if (toplevel->setpagedevice_pagesize) {
+      fprintf(fp, "\074\074 /PageSize [%d %d] \076\076 setpagedevice\n",
+              (toplevel->paper_height * 72) / MILS_PER_INCH,
+              (toplevel->paper_width * 72) / MILS_PER_INCH);
+    }
+
+
+    /* Apply mils to postscript native units scaling to CTM */
+    fprintf(fp,"%f %f scale\n",
+            72.0 / 1000.0 , 72.0 / 1000.0);
+
+    /* Now the output is defined in terms of mils */
+    /* Draw a box with the background colour covering the whole page */
+    if (toplevel->print_color &&
       f_print_set_color(toplevel, fp, toplevel->print_color_background)) {
-    fprintf (fp, "%d %d 0 0 fbox\n", toplevel->paper_height,
-                                     toplevel->paper_width);
-  }
+      fprintf (fp, "%d %d 0 0 fbox\n", toplevel->paper_height,
+               toplevel->paper_width);
+      }
 
-  /* Now rotate and translate the graphics to fit onto the desired
-   * page with the orientation we want. Center it too */
-  if (landscape) {
-    fprintf(fp,
-	    "%d %d translate 90 rotate\n",
-	    (int)((toplevel->paper_height + ( dy-margin_y) * scale)/2.0),
-	    (int)((toplevel->paper_width  + (-dx+margin_x) * scale)/2.0));
-  } else { /* portrait */
-    fprintf(fp,"%d %d translate\n",
-	    (int)((toplevel->paper_height + (-dx + margin_x) * scale)/2.0),
-	    (int)((toplevel->paper_width  + (-dy + margin_y) * scale)/2.0));
+      /* Now rotate and translate the graphics to fit onto the desired
+       * page with the orientation we want. Center it too */
+      if (landscape) {
+        fprintf(fp,
+                "%d %d translate 90 rotate\n",
+                (int)((toplevel->paper_height + ( dy-margin_y) * scale)/2.0),
+                (int)((toplevel->paper_width  + (-dx+margin_x) * scale)/2.0));
+      } else { /* portrait */
+        fprintf(fp,"%d %d translate\n",
+        (int)((toplevel->paper_height + (-dx + margin_x) * scale)/2.0),
+        (int)((toplevel->paper_width  + (-dy + margin_y) * scale)/2.0));
 
-  }
+    }
 
-  /* Now apply final mils to output scaling factor */
-  fprintf(fp,"%f %f scale\n",
-	  scale, scale);
+    /* Now apply final mils to output scaling factor */
+    fprintf(fp,"%f %f scale\n",
+            scale, scale);
 
-  /* Print the objects */
-  f_print_objects (toplevel, fp, s_page_objects (page),
-                   origin_x, origin_y, scale, unicode_count, unicode_table);
+    /* Print the objects */
+    f_print_objects (toplevel, fp, s_page_objects (page),
+                     origin_x, origin_y, scale, unicode_count, unicode_table);
 
-  f_print_footer(fp);
+    f_print_footer(fp);
 
-  return(0);
+    return(0);
 }
 
 /*! \brief Sets the current TOPLEVEL object output type
@@ -649,7 +649,7 @@ static int f_print_get_unicode_chars (TOPLEVEL *toplevel,
                                       int count, gunichar *table)
 {
   OBJECT *o_current = NULL;
-  gchar *aux;
+  char *aux;
   gunichar current_char;
   int i, found;
   const GList *iter;
@@ -722,28 +722,28 @@ static void f_print_unicode_map(FILE * fp, int count, gunichar * table)
 
   /* Now fill in the active characters */
   for (i=0; i<128; i++) {  /* Copy in the regular latin chars */
-      glyph_map[i] = g_hash_table_lookup (unicode_char_to_glyph,
-					  GUINT_TO_POINTER (i));
+    glyph_map[i] = g_hash_table_lookup (unicode_char_to_glyph,
+                                        GUINT_TO_POINTER (i));
   }
   /* Finish by using up the rest of the spares */
-  for (i=128; i<(count+128); i++) { 
+  for (i=128; i<(count+128); i++) {
     if(i < (count+128)) {
       glyph_map[i] = g_hash_table_lookup (unicode_char_to_glyph,
-					  GUINT_TO_POINTER (table[i-128]));
+                                          GUINT_TO_POINTER (table[i-128]));
     }
   }
 
   fprintf(fp, "%%%%BeginResource: encoding UTFencoding\n");
   fprintf(fp, "/UTFencoding [\n");
-  
+
   /* Output the re-encoding vector, prettily */
   line_count = 0;
   for (i=0; i<256; i++) {
-      line_count += fprintf(fp, "%s ", glyph_map[i]);
-      if(line_count > 60) {
-	line_count = 0;
-	fprintf(fp, "\n");
-      }
+    line_count += fprintf(fp, "%s ", glyph_map[i]);
+    if(line_count > 60) {
+      line_count = 0;
+      fprintf(fp, "\n");
+    }
   }
 
   fprintf(fp, "] def\n");
@@ -4455,9 +4455,9 @@ int f_print_initialize_glyph_table(void)
 
   /* No, allocate hash table */
   unicode_char_to_glyph = g_hash_table_new_full (g_direct_hash,
-						 g_direct_equal,
-						 NULL,
-						 NULL);
+                                                 g_direct_equal,
+                                                 NULL,
+                                                 NULL);
 
   /* insert all the entries, from glyph name mapping table */
   for(g = glyphs; g->name != NULL; g++) {

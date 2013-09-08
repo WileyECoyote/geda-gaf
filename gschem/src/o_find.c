@@ -48,11 +48,12 @@ static bool
 is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
                int w_x, int w_y, int w_slack)
 {
+  int left, top, right, bottom;
+
   if (!object->selectable)
     return FALSE;
 
-  /* We can't hit invisible (text) objects unless show_hidden_text is active.
-   */
+  /* We can't hit invisible text objects unless show_hidden_text is active. */
   if (!o_is_visible (w_current->toplevel, object) &&
       !w_current->toplevel->show_hidden_text)
     return FALSE;
@@ -60,17 +61,18 @@ is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
   /* Do a coarse test first to avoid computing distances for objects ouside
    * of the hit range.
    */
-  if (!inside_region (object->w_left  - w_slack, object->w_top    - w_slack,
-                      object->w_right + w_slack, object->w_bottom + w_slack,
+  if (!world_get_single_object_bounds(w_current->toplevel, object,
+                                      &left, &top, &right, &bottom) ||
+      !inside_region (left  - w_slack, top    - w_slack,
+                      right + w_slack, bottom + w_slack,
                       w_x, w_y))
     return FALSE;
 
-  return (o_shortest_distance (object, w_x, w_y) < w_slack);
+  return (o_shortest_distance (w_current->toplevel, object, w_x, w_y) < w_slack);
 }
 
 
 /*! \brief Tests a if a given OBJECT was hit at a given set of coordinates
- *
  *  \par Function Description
  *  Tests a if a given OBJECT was hit at a given set of coordinates. If so,
  *  processes selection changes as appropriate for the object and passed
@@ -84,6 +86,9 @@ is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
  *  \param [in] w_slack           The slack applied to the hit-test.
  *  \param [in] change_selection  Whether to select the found object or not.
  *  \returns TRUE if the OBJECT was hit, otherwise FALSE.
+ *
+ *  \remark WEH 07/23/13: This function is ONLY call by the o_find_object
+ *  function below.
  */
 static bool
 find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
@@ -105,7 +110,6 @@ find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
   i_update_sensitivities (w_current);
   return TRUE;
 }
-
 
 /*! \brief Find an OBJECT at a given set of coordinates
  *
@@ -178,7 +182,6 @@ bool o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
   }
 
   i_update_sensitivities(w_current);
-
   return FALSE;
 }
 

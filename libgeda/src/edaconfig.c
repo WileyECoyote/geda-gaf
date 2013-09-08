@@ -36,15 +36,15 @@ struct _EdaConfigPrivate
 {
   /* Accessed via properties */
   EdaConfig *parent;
-  gulong parent_handler_id;
-  gboolean trusted;
+  unsigned long parent_handler_id;
+  bool trusted;
   GFile *file;
   char *filename;
 
   /* Other private data */
   GKeyFile *keyfile;
-  gboolean loaded;
-  gboolean changed;
+  bool loaded;
+  bool changed;
 };
 
 /*! Default value for XDG_CONFIG_DIRS if no system configuration found. */
@@ -625,8 +625,7 @@ eda_config_get_file (EdaConfig *cfg)
  * \param cfg  Configuration context.
  * \return Filename of configuration file for \a cfg.
  */
-const char *
-eda_config_get_filename (EdaConfig *cfg)
+const char *eda_config_get_filename (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
   return cfg->priv->filename;
@@ -648,10 +647,9 @@ eda_config_get_filename (EdaConfig *cfg)
  * \param error  Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
-eda_config_load (EdaConfig *cfg, GError **error)
+bool eda_config_load (EdaConfig *cfg, GError **error)
 {
-  gboolean status;
+  bool status;
 
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
 
@@ -713,8 +711,7 @@ eda_config_load (EdaConfig *cfg, GError **error)
  * \return TRUE if \a cfg has been loaded at some point, FALSE
  * otherwise.
  */
-gboolean
-eda_config_is_loaded (EdaConfig *cfg)
+bool eda_config_is_loaded (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
   return cfg->priv->loaded;
@@ -734,8 +731,7 @@ eda_config_is_loaded (EdaConfig *cfg)
  * \param error  Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
-eda_config_save (EdaConfig *cfg, GError **error)
+bool eda_config_save (EdaConfig *cfg, GError **error)
 {
   gboolean status;
 
@@ -795,8 +791,7 @@ eda_config_save (EdaConfig *cfg, GError **error)
  * \param cfg  Configuration context.
  * \return TRUE if altered since last load/save, FALSE otherwise.
  */
-gboolean
-eda_config_is_changed (EdaConfig *cfg)
+bool eda_config_is_changed (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   return cfg->priv->changed;
@@ -811,8 +806,7 @@ eda_config_is_changed (EdaConfig *cfg)
  * \param cfg  Configuration context.
  * \return parent context of \a cfg, or NULL.
  */
-EdaConfig *
-eda_config_get_parent (EdaConfig *cfg)
+EdaConfig *eda_config_get_parent (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
   return cfg->priv->parent;
@@ -828,8 +822,7 @@ eda_config_get_parent (EdaConfig *cfg)
  * \param parent  Context to check if ancestor of \a cfg.
  * \return TRUE if \a parent is ancestor of \a cfg, FALSE otherwise.
  */
-static gboolean
-eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
+static bool eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   g_return_val_if_fail (EDA_IS_CONFIG (parent), FALSE);
@@ -857,8 +850,7 @@ eda_config_is_descendent (EdaConfig *cfg, EdaConfig *parent)
  * \param cfg     Configuration context.
  * \param parent  New parent context for \a cfg.
  */
-void
-eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
+void eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
 {
   g_return_if_fail (EDA_IS_CONFIG (cfg));
   g_object_set (cfg, "parent", parent, NULL);
@@ -874,8 +866,7 @@ eda_config_set_parent (EdaConfig *cfg, EdaConfig *parent)
  * \param cfg  Configuration context.
  * \return TRUE if \a cfg is trusted.
  */
-gboolean
-eda_config_is_trusted (EdaConfig *cfg)
+bool eda_config_is_trusted (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   return cfg->priv->trusted;
@@ -894,8 +885,7 @@ eda_config_is_trusted (EdaConfig *cfg)
  * \param cfg      Configuration context.
  * \param trusted  TRUE if \a cfg should be trusted; FALSE otherwise.
  */
-void
-eda_config_set_trusted (EdaConfig *cfg, gboolean trusted)
+void eda_config_set_trusted (EdaConfig *cfg, gboolean trusted)
 {
   g_return_if_fail (EDA_IS_CONFIG (cfg));
   g_object_set (cfg, "trusted", trusted, NULL);
@@ -911,8 +901,7 @@ eda_config_set_trusted (EdaConfig *cfg, gboolean trusted)
  * \param cfg  Configuration context.
  * \return first trusted ancestor of \a cfg, or NULL.
  */
-EdaConfig *
-eda_config_get_trusted_context (EdaConfig *cfg)
+EdaConfig *eda_config_get_trusted_context (EdaConfig *cfg)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), NULL);
   EdaConfig *iter = cfg;
@@ -1006,8 +995,7 @@ eda_config_get_groups (EdaConfig *cfg, unsigned int *length)
  * \return TRUE if \a cfg or any of its ancestors contains \a group,
  * otherwise FALSE.
  */
-gboolean
-eda_config_has_group (EdaConfig *cfg, const char *group)
+bool eda_config_has_group (EdaConfig *cfg, const char *group)
 {
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), FALSE);
   g_return_val_if_fail (group != NULL, FALSE);
@@ -1100,7 +1088,7 @@ eda_config_get_keys (EdaConfig *cfg, const char *group, unsigned int *length,
  * \return TRUE if \a cfg or any of its ancestors contains \a group
  * and \a key, otherwise FALSE.
  */
-gboolean
+bool
 eda_config_has_key (EdaConfig *cfg, const char *group,
                     const char *key, GError **error)
 {
@@ -1173,7 +1161,7 @@ eda_config_get_source (EdaConfig *cfg, const char *group,
  * \param key    Configuration key name.
  * \param error  Return location for error information.
  */
-gboolean
+bool
 eda_config_is_inherited (EdaConfig *cfg, const char *group,
                          const char *key, GError **error)
 {
@@ -1233,7 +1221,7 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as a boolean.
  */
-gboolean
+bool
 eda_config_get_boolean (EdaConfig *cfg, const char *group,
                         const char *key, GError **error)
 {
@@ -1260,7 +1248,7 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
  *       error, and check whether it is not NULL to see if an error
  *       occurred.
  *
- * \see eda_config_set_int().
+ * \see eda_config_set_integer().
  *
  * \param cfg    Configuration context.
  * \param group  Configuration group name.
@@ -1268,16 +1256,16 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as a integer.
  */
-gint
-eda_config_get_int (EdaConfig *cfg, const char *group,
-                    const char *key, GError **error)
+int
+eda_config_get_integer (EdaConfig *cfg, const char *group,
+                        const char *key, GError **error)
 {
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return 0;
 
   GError *tmp_err = NULL;
-  gint result =
-    g_key_file_get_integer (cfg->priv->keyfile, group, key, &tmp_err);
+  int result = g_key_file_get_integer (cfg->priv->keyfile,
+                                       group, key, &tmp_err);
   propagate_key_file_error (tmp_err, error);
   return result;
 }
@@ -1303,7 +1291,7 @@ eda_config_get_int (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as a double.
  */
-gdouble
+double
 eda_config_get_double (EdaConfig *cfg, const char *group,
                        const char *key, GError **error)
 {
@@ -1311,7 +1299,7 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
   if (cfg == NULL) return 0.0;
 
   GError *tmp_err = NULL;
-  gdouble result =
+  double result =
     g_key_file_get_double (cfg->priv->keyfile, group, key, &tmp_err);
   propagate_key_file_error (tmp_err, error);
   return result;
@@ -1369,7 +1357,7 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as an array of booleans.
  */
-gboolean *
+bool *
 eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
                              const char *key, unsigned int *length, GError **error)
 {
@@ -1433,7 +1421,7 @@ eda_config_get_int_list (EdaConfig *cfg, const char *group,
  * \param error  Return location for error information.
  * \return configuration value as an array of doubles.
  */
-gdouble *
+double *
 eda_config_get_double_list (EdaConfig *cfg, const char *group,
                             const char *key, unsigned int *length, GError **error)
 {
@@ -1441,7 +1429,7 @@ eda_config_get_double_list (EdaConfig *cfg, const char *group,
   if (cfg == NULL) return NULL;
 
   GError *tmp_err = NULL;
-  gdouble *result =
+  double *result =
     g_key_file_get_double_list (cfg->priv->keyfile, group, key,
                                 length, &tmp_err);
   propagate_key_file_error (tmp_err, error);
@@ -1504,7 +1492,7 @@ eda_config_set_boolean (EdaConfig *cfg, const char *group,
  * \param value  New value for parameter.
  */
 void
-eda_config_set_int (EdaConfig *cfg, const char *group,
+eda_config_set_integer (EdaConfig *cfg, const char *group,
                     const char *key, gint value)
 {
   g_key_file_set_integer (cfg->priv->keyfile, group, key, value);
@@ -1526,7 +1514,7 @@ eda_config_set_int (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_double (EdaConfig *cfg, const char *group,
-                       const char *key, gdouble value)
+                       const char *key, double value)
 {
   g_key_file_set_double (cfg->priv->keyfile, group, key, value);
   g_signal_emit_by_name (cfg, "config-changed", group, key);
@@ -1623,7 +1611,7 @@ eda_config_set_int_list (EdaConfig *cfg, const char *group,
  */
 void
 eda_config_set_double_list (EdaConfig *cfg, const char *group,
-                            const char *key, gdouble list[], unsigned int length)
+                            const char *key, double list[], unsigned int length)
 {
   g_key_file_set_double_list (cfg->priv->keyfile, group, key,
                               list, length);

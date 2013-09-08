@@ -63,8 +63,9 @@
 #include <missing.h>
 
 #include <stdio.h>
+#include <ctype.h>
 #include <math.h>
-#include <sys/stat.h>
+//#include <sys/stat.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -248,10 +249,9 @@ int o_text_num_lines(const char *string)
  *  \note
  *  Caller is responsible for string; this function allocates its own copy.
  */
-OBJECT *o_text_new(TOPLEVEL *toplevel,
-		   char type, int color, int x, int y, int alignment,
-		   int angle, const char *string, int size,
-		   int visibility, int show_name_value)
+OBJECT *o_text_new(TOPLEVEL *toplevel, char type, int color, int x, int y,
+                   int alignment, int angle, const char *string, int size,
+                   int visibility, int show_name_value)
 {
   OBJECT *new_node=NULL;
   TEXT *text;
@@ -282,35 +282,9 @@ OBJECT *o_text_new(TOPLEVEL *toplevel,
   update_disp_string (new_node);
 
   /* Update bounding box */
-  new_node->w_bounds_valid = FALSE;
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
-}
-
-/*! \brief update the visual boundaries of the text object
- *  \par Function Description
- *  This function updates the boundaries of the object \a o_current.
- *
- *  \param [in]  toplevel  The TOPLEVEL object
- *  \param [in]  o_current The OBJECT to update
- */
-void o_text_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  if ((!o_is_visible (toplevel, o_current)) &&
-      (!toplevel->show_hidden_text)) {
-    return;
-  }
-
-  if ( !world_get_text_bounds(toplevel, o_current, &left, &top, &right, &bottom) )
-    return;
-
-  o_current->w_left = left;
-  o_current->w_top = top;
-  o_current->w_right = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief read a text object from a char buffer
@@ -383,23 +357,6 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
     s_log_message(_("Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"), type, x, y, color, size, visibility, show_name_value, angle, alignment);
   }
 
-  switch(angle) {
-
-    case(0):
-    case(90):
-    case(180):
-    case(270):
-    break;
-
-    default:
-      s_log_message(_("Found an unsupported text angle [ %c %d %d %d %d %d %d %d %d ]\n"),
-                    type, x, y, color, size, visibility, show_name_value, angle, alignment);
-      s_log_message(_("Setting angle to 0\n"));
-      angle=0;
-      break;
-
-  }
-
   switch(alignment) {
     case(LOWER_LEFT):
     case(MIDDLE_LEFT):
@@ -426,12 +383,11 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
     s_log_message(_("Setting color to default color\n"));
     color = DEFAULT_COLOR_INDEX;
   }
-
-  g_assert(num_lines && num_lines > 0);
+/* g_assert(num_lines && num_lines > 0) */
 
   textstr = g_string_new ("");
   for (i = 0; i < num_lines; i++) {
-    const gchar *line;
+    const char *line;
 
     line = s_textbuffer_next_line (tb);
 
@@ -451,7 +407,7 @@ OBJECT *o_text_read (TOPLEVEL *toplevel,
   /* convert the character string to UTF-8 if necessary */
   if (!g_utf8_validate (string, -1, NULL)) {
     /* if it is not utf-8, it is ISO_8859-15 */
-    gchar *tmp = g_convert (string, strlen (string),
+    char *tmp = g_convert (string, strlen (string),
                             "UTF-8", "ISO_8859-15",
                             NULL, NULL, NULL);
     if (tmp == NULL) {
@@ -520,7 +476,7 @@ void o_text_recreate(TOPLEVEL *toplevel, OBJECT *o_current)
 {
   o_emit_pre_change_notify (toplevel, o_current);
   update_disp_string (o_current);
-  o_current->w_bounds_valid = FALSE;
+  o_current->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, o_current);
 }
 
@@ -540,7 +496,7 @@ void o_text_translate_world(TOPLEVEL *toplevel,
   o_current->text->y = o_current->text->y + dy;
 
   /* Update bounding box */
-  o_current->w_bounds_valid = FALSE;
+  o_current->w_bounds_valid_for = NULL;
 }
 
 /*! \brief create a copy of a text object
@@ -566,7 +522,50 @@ OBJECT *o_text_copy(TOPLEVEL *toplevel, OBJECT *o_current)
 
   return new_obj;
 }
+/*! \brief Reset the refdes number back to a question mark
+ *
+ *  \par If this text object represents a refdes attribute,
+ *  then this function resets the refdes number back to the
+ *  question mark. In other cases, this function does
+ *  nothing.
+ *
+ *  \param [in] toplevel    The TOPLEVEL object
+ *  \param [in] object      The text object
+ */
+void o_text_reset_refdes(TOPLEVEL *toplevel, OBJECT *object)
+{
+  int   len;
+  int   index;
+  char  buffer[16] = "refdes=\0";
+  char *ptr;
 
+  g_return_if_fail (toplevel     != NULL);
+  g_return_if_fail (object       != NULL);
+  g_return_if_fail (object->type == OBJ_TEXT);
+
+  len   = 0;
+  index = 7;
+
+  ptr   = object->text->string;
+
+  if ( strncmp ( ptr, &buffer[0], index) == 0 ) {
+
+    len = strlen (object->text->string);
+
+    for ( ; index < len; index++) {
+      if ( isdigit(ptr[index]) ) {
+        g_free (object->text->string);
+        buffer[index] = '?';
+        buffer[++index] = '\0';
+        object->text->string= strdup(&buffer[0]);
+        o_text_recreate (toplevel, object);
+        break;
+      }
+      else
+        buffer[index] = ptr[index];
+    }
+  }
+}
 
 /*! \brief write a text string to a postscript file
  *  \par Function Description
@@ -925,24 +924,32 @@ void o_text_mirror_world(TOPLEVEL *toplevel,
  *
  *  This function will calculate the distance to the text regardless
  *  if the text is visible or not.
- *
- *  \param [in] object       The text OBJECT.
+ * 
+ *  \param [in] toplevel     A TOPLEVEL object
+ *  \param [in] object       A text OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
+ * 
  *  \return The shortest distance from the object to the point. If the
  *  distance cannot be calculated, this function returns a really large
  *  number (G_MAXDOUBLE).  With an invalid parameter, this funciton
  *  returns G_MAXDOUBLE.
  */
-double o_text_shortest_distance (OBJECT *object, int x, int y, int force_solid)
+double o_text_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                 int x, int y, int force_solid)
 {
+  int left, top, right, bottom;
   double dx, dy;
 
   g_return_val_if_fail (object->text != NULL, G_MAXDOUBLE);
 
-  dx = min (x - object->w_left, object->w_right - x);
-  dy = min (y - object->w_top, object->w_bottom - y);
+  if (!world_get_single_object_bounds(toplevel, object,
+                                      &left, &top, &right, &bottom))
+    return G_MAXDOUBLE;
+
+  dx = min (x - left, right - x);
+  dy = min (y - top, bottom - y);
 
   dx = min (dx, 0);
   dy = min (dy, 0);
@@ -976,8 +983,6 @@ void o_text_set_string (TOPLEVEL *toplevel, OBJECT *obj,
     o_attrib_emit_attribs_changed (toplevel, obj->attached_to);
 }
 
-
-
 /*! \brief Get the string displayed by a text object.
  *  \par Function Description
  *  Retrieve the text string from a text object. The returned string
@@ -989,8 +994,8 @@ void o_text_set_string (TOPLEVEL *toplevel, OBJECT *obj,
  */
 const char *o_text_get_string (TOPLEVEL *toplevel, OBJECT *obj)
 {
-  g_return_val_if_fail (toplevel != NULL, NULL);
-  g_return_val_if_fail (obj != NULL, NULL);
+  g_return_val_if_fail (toplevel  != NULL, NULL);
+  g_return_val_if_fail (obj       != NULL, NULL);
   g_return_val_if_fail (obj->type == OBJ_TEXT, NULL);
   g_return_val_if_fail (obj->text != NULL, NULL);
 

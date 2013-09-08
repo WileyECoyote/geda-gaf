@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-05-04 19:12-0500\n"
+"POT-Creation-Date: 2013-05-09 09:51-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: kop <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -158,7 +158,7 @@ msgstr "gEDA/gschem verzió %s%s.%s\n"
 msgid "Current locale settings: %s\n"
 msgstr "Jelenlegi területi beállítás: %s\n"
 
-#: gschem/src/i_basic.c:70 gschem/src/x_window.c:497
+#: gschem/src/i_basic.c:70 gschem/src/x_window.c:501
 #: gschem/lib/system-gschemrc.scm:1594
 msgid "Select Mode"
 msgstr "Kiválasztás mód"
@@ -1782,61 +1782,61 @@ msgstr ""
 msgid "Couldn't allocate gc\n"
 msgstr "Nem találom a gc-t.\n"
 
-#: gschem/src/x_window.c:447
+#: gschem/src/x_window.c:451
 msgid "Evaluate:"
 msgstr ""
 
-#: gschem/src/x_window.c:466
+#: gschem/src/x_window.c:470
 msgid "Pick"
 msgstr "Kijelöl"
 
-#: gschem/src/x_window.c:483
+#: gschem/src/x_window.c:487
 msgid "Menu/Cancel"
 msgstr "Menü/mégsem"
 
-#: gschem/src/x_window.c:485
+#: gschem/src/x_window.c:489
 msgid "Pan/Cancel"
 msgstr "Középre/mégsem"
 
-#: gschem/src/x_window.c:746
+#: gschem/src/x_window.c:751
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Új fájl: [%s]\n"
 
-#: gschem/src/x_window.c:793
+#: gschem/src/x_window.c:798
 #, fuzzy, c-format
 msgid "Loading schematic \"%s\"\n"
 msgstr "[%s] rajz betöltése\n"
 
-#: gschem/src/x_window.c:943
+#: gschem/src/x_window.c:948
 #, c-format
 msgid "Could NOT save page [%s]\n"
 msgstr "A [%s] rajz mentése nem sikerült.\n"
 
-#: gschem/src/x_window.c:944
+#: gschem/src/x_window.c:949
 msgid "Error while trying to save"
 msgstr "Hiba mentés közben"
 
-#: gschem/src/x_window.c:956
+#: gschem/src/x_window.c:961
 #, c-format
 msgid "Saved as [%s]\n"
 msgstr "[%s]-ként elmentve.\n"
 
-#: gschem/src/x_window.c:958
+#: gschem/src/x_window.c:963
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "[%s] elmentve.\n"
 
-#: gschem/src/x_window.c:960
+#: gschem/src/x_window.c:965
 msgid "Saved"
 msgstr "Elmentve"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "A(z) [%s] rajz eldobása\n"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "[%s] bezárása\n"

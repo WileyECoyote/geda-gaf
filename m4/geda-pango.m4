@@ -28,8 +28,6 @@ AC_DEFUN([AX_CHECK_PANGO],
 [
   AC_PREREQ([2.52])
 
-  AC_CHECK_FUNCS([floor])
-
   # In Pango >= 1.23.0, check for PangoCairo separately.
   PKG_CHECK_MODULES([PANGO], [pango >= 1.23], [PANGO=yes], [PANGO=no])
   if test "$PANGO" = "yes"; then

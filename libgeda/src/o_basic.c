@@ -77,92 +77,6 @@ int inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
   return ((x >= xmin && x <= xmax && y >= ymin && y <= ymax) ? 1 : 0);
 }
 
-/*! \brief Recalculate position of the given object.
- *  \par Function Description
- *  This function will take an object and recalculate its
- *  position on the screen.
- *
- *  \param [in]     toplevel    The TOPLEVEL object.
- *  \param [in,out] o_current    OBJECT to recalculate.
- *
- */
-void o_recalc_single_object(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  if (o_current != NULL) {
-    switch(o_current->type) {
-
-      case(OBJ_LINE):
-        o_line_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_NET):
-        o_net_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_BUS):
-        o_bus_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_BOX):
-        o_box_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_PATH):
-        o_path_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_PICTURE):
-        o_picture_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_CIRCLE):
-        o_circle_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_COMPLEX):
-      case(OBJ_PLACEHOLDER):
-        o_complex_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_PIN):
-        o_pin_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_ARC):
-        o_arc_recalc(toplevel, o_current);
-        break;
-
-      case(OBJ_TEXT):
-        o_text_recalc(toplevel, o_current);
-        break;
-    }
-  }
-}
-
-
-/*! \brief Recalculate position of a list (GList) of objects.
- *  \par Function Description
- *  This function will take a list (GList) of objects and recalculate their
- *  positions on the screen.
- *
- *  \param [in]     toplevel    The TOPLEVEL object.
- *  \param [in,out] object_glist  OBJECT list to recalculate.
- *
- */
-void
-o_recalc_object_glist(TOPLEVEL *toplevel, GList *object_glist)
-{
-  GList *list = object_glist;
-  OBJECT *o_current;
-
-  while (list != NULL) {
-    o_current = (OBJECT *) list->data;
-    o_recalc_single_object(toplevel, o_current);
-   list = g_list_next(list);
-  }
-}
-
-
 /*! \brief Set an #OBJECT's line options.
  *  \par Function Description
  *  This function allows a line's end, type, width, length and space to be set.
@@ -223,7 +137,7 @@ void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
   o_current->line_space  = space;
 
   /* Recalculate the object's bounding box */
-  o_recalc_single_object( toplevel, o_current );
+  o_current->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, o_current);
 
 }
@@ -347,9 +261,9 @@ gboolean o_get_fill_options(OBJECT *object,
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-gboolean o_get_position (TOPLEVEL *toplevel, gint *x, gint *y, OBJECT *object)
+bool o_get_position (TOPLEVEL *toplevel, int *x, int *y, OBJECT *object)
 {
-  gboolean (*func) (TOPLEVEL*, int*, int*, OBJECT*) = NULL;
+  bool (*func) (TOPLEVEL*, int*, int*, OBJECT*) = NULL;
 
   switch (object->type) {
       case OBJ_LINE:    func = o_line_get_position;    break;
@@ -493,7 +407,8 @@ void o_mirror_world (TOPLEVEL *toplevel, int world_centerx, int world_centery, O
 
 /*! \brief Calculates the distance between the given point and the closest
  * point on the given object.
- *
+ * 
+ *  \param [in] toplevel     A TOPLEVEL object.
  *  \param [in] object       The given object.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
@@ -502,14 +417,15 @@ void o_mirror_world (TOPLEVEL *toplevel, int world_centerx, int world_centery, O
  *  number (G_MAXDOUBLE).  If an error occurs, this function returns
  *  G_MAXDOUBLE.
  */
-double o_shortest_distance (OBJECT *object, int x, int y)
+double o_shortest_distance (TOPLEVEL *toplevel, OBJECT *object, int x, int y)
 {
-  return o_shortest_distance_full (object, x, y, FALSE);
+  return o_shortest_distance_full (toplevel, object, x, y, FALSE);
 }
 
 /*! \brief Calculates the distance between the given point and the closest
  * point on the given object. Allows forcing objects to solid.
- *
+ * 
+ *  \param [in] toplevel     A TOPLEVEL object.
  *  \param [in] object       The given object.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
@@ -519,10 +435,11 @@ double o_shortest_distance (OBJECT *object, int x, int y)
  *  number (G_MAXDOUBLE).  If an error occurs, this function returns
  *  G_MAXDOUBLE.
  */
-double o_shortest_distance_full (OBJECT *object, int x, int y, int force_solid)
+double o_shortest_distance_full (TOPLEVEL *toplevel, OBJECT *object, int x, int y, int force_solid)
 {
   double shortest_distance = G_MAXDOUBLE;
-  double (*func) (OBJECT *, int, int, int) = NULL;
+
+  double (*func) (TOPLEVEL *, OBJECT *, int, int, int) = NULL;
 
   g_return_val_if_fail (object != NULL, G_MAXDOUBLE);
 
@@ -545,7 +462,7 @@ double o_shortest_distance_full (OBJECT *object, int x, int y, int force_solid)
   }
 
   if (func != NULL) {
-    shortest_distance = (*func) (object, x, y, force_solid);
+    shortest_distance = (*func) (toplevel, object, x, y, force_solid);
   }
 
   return shortest_distance;
@@ -565,7 +482,7 @@ double o_shortest_distance_full (OBJECT *object, int x, int y, int force_solid)
 void o_bounds_invalidate(TOPLEVEL *toplevel, OBJECT *obj)
 {
   do {
-      obj->w_bounds_valid = FALSE;
+    obj->w_bounds_valid_for = NULL;
   } while ((obj = obj->parent) != NULL);
 }
 
@@ -666,7 +583,7 @@ o_get_parent (TOPLEVEL *toplevel, OBJECT *object)
 }
 
 /* Structure for each entry in a TOPLEVEL's list of registered change
- * notification handlers */
+ * notification handlers, why is the defined here? */
 struct change_notify_entry {
   ChangeNotifyFunc pre_change_func;
   ChangeNotifyFunc change_func;

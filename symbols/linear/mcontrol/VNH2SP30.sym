@@ -1,0 +1,249 @@
+v 20110115 2
+B 300 300 3300 2000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 2050 5 10 0 0 0 0 1
+device=VNH2SP30
+T 300 2250 5 10 0 0 0 0 1
+footprint=~
+T 3550 2350 8 10 1 1 0 6 1
+refdes=U?
+T -5 0 8 10 0 1 0 0 1
+author=andybusse
+T 300 2450 5 10 0 0 0 0 1
+description=Automotive fully integrated H-bridge driver
+T 300 2250 5 10 0 0 0 0 1
+numslots=0
+T 300 2350 3 10 1 0 0 0 1
+VNH2SP30
+T -5 -5 8 10 0 1 0 0 1
+documentation=http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/DATASHEET/CD00043711.pdf
+P 1900 2300 1900 2600 1 0 1
+{
+T 1850 2395 5 8 1 1 90 0 1
+pinnumber=3
+T 1900 2245 9 8 1 1 90 6 1
+pinlabel=VCC
+T 1850 2400 5 8 0 1 270 8 1
+pinseq=3
+T 1900 2250 5 8 0 1 270 2 1
+pintype=pwr
+}
+P 300 1500 0 1500 1 0 1
+{
+T 250 1550 5 8 1 1 0 6 1
+pinnumber=5
+T 350 1500 9 8 1 1 0 1 1
+pinlabel=INA
+T 200 1450 5 8 0 1 0 8 1
+pinseq=5
+T 350 1500 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 500 0 500 1 0 1
+{
+T 250 550 5 8 1 1 0 6 1
+pinnumber=9
+T 350 500 9 8 1 1 0 1 1
+pinlabel=CS
+T 200 450 5 8 0 1 0 8 1
+pinseq=9
+T 350 500 5 8 0 1 0 2 1
+pintype=out
+}
+P 3600 1500 3900 1500 1 0 1
+{
+T 3650 1550 5 8 1 1 0 0 1
+pinnumber=30
+T 3550 1500 9 8 1 1 0 7 1
+pinlabel=OUTA
+T 3700 1450 5 8 0 1 0 2 1
+pinseq=30
+T 3550 1500 5 8 0 1 0 8 1
+pintype=out
+}
+P 3600 1800 3900 1800 1 0 1
+{
+T 3650 1850 5 8 1 1 0 0 1
+pinnumber=25
+T 3550 1800 9 8 1 1 0 7 1
+pinlabel=OUTA
+T 3700 1750 5 8 0 1 0 2 1
+pinseq=25
+T 3550 1800 5 8 0 1 0 8 1
+pintype=out
+}
+P 3600 2100 3900 2100 1 0 1
+{
+T 3650 2150 5 8 1 1 0 0 1
+pinnumber=1
+T 3550 2100 9 8 1 1 0 7 1
+pinlabel=OUTA
+T 3700 2050 5 8 0 1 0 2 1
+pinseq=1
+T 3550 2100 5 8 0 1 0 8 1
+pintype=out
+}
+P 3600 500 3900 500 1 0 1
+{
+T 3650 550 5 8 1 1 0 0 1
+pinnumber=21
+T 3550 500 9 8 1 1 0 7 1
+pinlabel=OUTB
+T 3700 450 5 8 0 1 0 2 1
+pinseq=21
+T 3550 500 5 8 0 1 0 8 1
+pintype=out
+}
+P 3600 800 3900 800 1 0 1
+{
+T 3650 850 5 8 1 1 0 0 1
+pinnumber=16
+T 3550 800 9 8 1 1 0 7 1
+pinlabel=OUTB
+T 3700 750 5 8 0 1 0 2 1
+pinseq=16
+T 3550 800 5 8 0 1 0 8 1
+pintype=out
+}
+P 3600 1100 3900 1100 1 0 1
+{
+T 3650 1150 5 8 1 1 0 0 1
+pinnumber=15
+T 3550 1100 9 8 1 1 0 7 1
+pinlabel=OUTB
+T 3700 1050 5 8 0 1 0 2 1
+pinseq=15
+T 3550 1100 5 8 0 1 0 8 1
+pintype=out
+}
+P 1100 300 1100 0 1 0 1
+{
+T 1050 205 5 8 1 1 90 6 1
+pinnumber=26
+T 1100 355 9 8 1 1 90 0 1
+pinlabel=GNDA
+T 1150 200 5 8 0 1 90 8 1
+pinseq=26
+T 1100 350 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 1400 300 1400 0 1 0 1
+{
+T 1350 205 5 8 1 1 90 6 1
+pinnumber=27
+T 1400 355 9 8 1 1 90 0 1
+pinlabel=GNDA
+T 1450 200 5 8 0 1 90 8 1
+pinseq=27
+T 1400 350 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 1700 300 1700 0 1 0 1
+{
+T 1650 205 5 8 1 1 90 6 1
+pinnumber=28
+T 1700 355 9 8 1 1 90 0 1
+pinlabel=GNDA
+T 1750 200 5 8 0 1 90 8 1
+pinseq=28
+T 1700 350 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 2200 300 2200 0 1 0 1
+{
+T 2150 205 5 8 1 1 90 6 1
+pinnumber=18
+T 2200 355 9 8 1 1 90 0 1
+pinlabel=GNDB
+T 2250 200 5 8 0 1 90 8 1
+pinseq=18
+T 2200 350 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 2500 300 2500 0 1 0 1
+{
+T 2450 205 5 8 1 1 90 6 1
+pinnumber=19
+T 2500 355 9 8 1 1 90 0 1
+pinlabel=GNDB
+T 2550 200 5 8 0 1 90 8 1
+pinseq=19
+T 2500 350 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 2800 300 2800 0 1 0 1
+{
+T 2750 205 5 8 1 1 90 6 1
+pinnumber=20
+T 2800 355 9 8 1 1 90 0 1
+pinlabel=GNDB
+T 2850 200 5 8 0 1 90 8 1
+pinseq=20
+T 2800 350 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 2200 2300 2200 2600 1 0 1
+{
+T 2150 2395 5 8 1 1 90 0 1
+pinnumber=13
+T 2200 2245 9 8 1 1 90 6 1
+pinlabel=VCC
+T 2150 2400 5 8 0 1 270 8 1
+pinseq=13
+T 2200 2250 5 8 0 1 270 2 1
+pintype=pwr
+}
+P 2500 2300 2500 2600 1 0 1
+{
+T 2450 2395 5 8 1 1 90 0 1
+pinnumber=23
+T 2500 2245 9 8 1 1 90 6 1
+pinlabel=VCC
+T 2450 2400 5 8 0 1 270 8 1
+pinseq=23
+T 2500 2250 5 8 0 1 270 2 1
+pintype=pwr
+}
+P 300 1200 0 1200 1 0 1
+{
+T 250 1250 5 8 1 1 0 6 1
+pinnumber=11
+T 350 1200 9 8 1 1 0 1 1
+pinlabel=INB
+T 200 1150 5 8 0 1 0 8 1
+pinseq=11
+T 350 1200 5 8 0 1 0 2 1
+pintype=in
+}
+P 300 2100 0 2100 1 0 1
+{
+T 250 2150 5 8 1 1 0 6 1
+pinnumber=6
+T 350 2100 9 8 1 1 0 1 1
+pinlabel=ENA/DIAGA
+T 200 2050 5 8 0 1 0 8 1
+pinseq=6
+T 350 2100 5 8 0 1 0 2 1
+pintype=io
+}
+P 300 1800 0 1800 1 0 1
+{
+T 250 1850 5 8 1 1 0 6 1
+pinnumber=10
+T 350 1800 9 8 1 1 0 1 1
+pinlabel=ENB/DIAGB
+T 200 1750 5 8 0 1 0 8 1
+pinseq=10
+T 350 1800 5 8 0 1 0 2 1
+pintype=io
+}
+P 300 800 0 800 1 0 1
+{
+T 250 850 5 8 1 1 0 6 1
+pinnumber=8
+T 350 800 9 8 1 1 0 1 1
+pinlabel=PWM
+T 200 750 5 8 0 1 0 8 1
+pinseq=8
+T 350 800 5 8 0 1 0 2 1
+pintype=in
+}

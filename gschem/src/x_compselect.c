@@ -152,17 +152,6 @@ enum
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-/* These variables hold the dialog settings that were retrived from disk
- * when the dialog was created, the value are compared to postmortem values
- * to determine if the new settings should be saved to disk */
-static int old_hpaned;
-static int old_vpaned;
-static int old_tab;
-static bool old_show_tips;
-static bool old_show_groups;
-static bool old_subgroups;
-static unsigned int old_flags;
-
 /*! \brief Process the response returned by the component selection dialog.
  *  \par Function Description
  *  This function handles the response <B>arg1</B> of the component
@@ -565,7 +554,7 @@ static bool lib_model_filter_visible_func (GtkTreeModel *model,
 /*! \brief Component row activated - double-click handler:
  *  \par Function Description
  * This functions handles row activation of a component row as a
- * convenince to the user, the row expands or colapses any node
+ * convenience to the user, the row expands or colapses any node
  * with children.
  *
  *  \param [in] tree_view The component treeview.
@@ -968,7 +957,7 @@ cs_callback_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
   GSCHEM_TOPLEVEL *w_current;
   Compselect      *ThisDialog;
 
-  /* Changed the Switch image */
+  /* Change the Switch image */
   TOGGLE_SWITCH(Switch);
 
   w_current = Dialog->w_current;
@@ -1276,7 +1265,7 @@ static bool filter_check_style(Compselect *compselect, char *sym_name)
     code[0] = *ptr;                   /* retrieve the char value */
     flag = code[0] & 0x0F;            /* convert askii to number */
     if ( flag > 0  && flag < 9) {     /* only consider 1 to 8    */
-      mask = mask << ( flag - 1 );              /* raise by power of 2n */
+      mask = mask << ( flag - 1 );              /* raise by power of 2 */
       if ( !(compselect->style_flag & mask)) {  /* and compare */
         result = FALSE;
       }
@@ -2007,11 +1996,10 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
   GtkWidget *menu;
   GtkWidget *submenu;
   GtkWidget *menuitem;
-  GtkTooltips *tooltips;
 
   bool is_symbol;
 
-  tooltips = gtk_tooltips_new ();
+  DECLARE_TOOPTIPS
 
   GtkTreeIter iter;
   GtkTreeModel *model;
@@ -2555,12 +2543,11 @@ static GtkMenu *compselect_create_styles_menu (Compselect *ThisDialog )
     gtk_object_set_data (GTK_OBJECT(menuitem), "style",
                          GINT_TO_POINTER (types[i].style));
 
-    /* Maybe shouldn't bother since this will be over-riden when dialog is restored */
+    /* Maybe shouldn't bother since this will be over-riden
+     * when dialog is restored */
     state = ((MASK & types[i].style) == types[i].style);
 
-    g_object_set (G_OBJECT(menuitem), "active",
-                  state,
-                  NULL);
+    g_object_set (G_OBJECT(menuitem), "active", state, NULL);
 
     /* Save pointer to widget */
     widget_list = g_slist_append(widget_list, menuitem);
@@ -2756,47 +2743,45 @@ GType compselect_get_type ()
  *  \param [in] group_name Group name in the key file to store the data under.
  */
 static void compselect_geometry_save (GschemDialog *dialog,
-                                      GKeyFile *key_file, char *group_name)
+                                      EdaConfig *cfg, char *group_name)
 {
-  int hpaned;
-  int vpaned;
-  int tab;
-  bool show_tips;
-  bool show_groups;
-  bool subgroups;
+  int  tmp_int;
+  bool tmp_bool;
   unsigned int flags;
+
+  //cfg = eda_config_get_user_context ();
 
   /* Call the parent's geometry_save method */
   GSCHEM_DIALOG_CLASS (compselect_parent_class)->
-    geometry_save (dialog, key_file, group_name);
+  geometry_save (dialog, cfg, group_name);
 
-  hpaned = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->hpaned));
-  if( hpaned != old_hpaned)
-    g_key_file_set_integer (key_file, group_name, "hpaned", hpaned);
+ /* get position of the horizontal divider between the panes */
+  tmp_int = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->hpaned));
+  eda_config_set_integer (cfg, "gschem.library", "hpaned", tmp_int);
 
-  vpaned = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->vpaned));
-  if( vpaned != old_vpaned)
-    g_key_file_set_integer (key_file, group_name, "vpaned", vpaned);
+ /* get position of the verticla divider between the panes */
+  tmp_int = gtk_paned_get_position (GTK_PANED (COMPSELECT (dialog)->vpaned));
+  eda_config_set_integer (cfg, "gschem.library", "vpaned", tmp_int);
 
-  tab = gtk_notebook_get_current_page (COMPSELECT (dialog)->notebook);
-  if( tab != old_tab)
-    g_key_file_set_integer (key_file, group_name, "source-tab", tab);
+ /* save the active workbook tab */
+  tmp_int = gtk_notebook_get_current_page (COMPSELECT (dialog)->notebook);
+  eda_config_set_integer (cfg, "gschem.library", "source-tab", tmp_int);
 
+  tmp_bool =COMPSELECT (dialog)->show_tips;
+  eda_config_set_boolean (cfg, "gschem.library", "showtips", tmp_bool);
+
+  tmp_bool =COMPSELECT (dialog)->show_groups;
+  eda_config_set_boolean (cfg, "gschem.library", "groups", tmp_bool);
+
+  tmp_bool =COMPSELECT (dialog)->subgroups;
+  eda_config_set_boolean (cfg, "gschem.library", "subgroups", tmp_bool);
+
+  tmp_bool =COMPSELECT (dialog)->do_sort;
+  eda_config_set_boolean (cfg, "gschem.library", "sort", tmp_bool);
+
+ /* Save the user current style mask */
   flags  = COMPSELECT (dialog)->style_flag;
-  if( flags != old_flags)
-    g_key_file_set_integer (key_file, group_name, "style", flags);
-
-  show_tips =COMPSELECT (dialog)->show_tips;
-  if( show_tips != old_show_tips)
-    g_key_file_set_boolean (key_file, group_name, "show-tips", show_tips);
-
-  show_groups =COMPSELECT (dialog)->show_groups;
-  if( show_groups != old_show_groups)
-    g_key_file_set_boolean (key_file, group_name, "show-groups", show_groups);
-
-  subgroups =COMPSELECT (dialog)->subgroups;
-  if( subgroups != old_subgroups)
-    g_key_file_set_boolean (key_file, group_name, "subgroups", subgroups);
+  eda_config_set_integer (cfg, "gschem.library", "style", flags);
 }
 
 /*! \brief GschemDialog "geometry_restore" class method handler
@@ -2815,10 +2800,13 @@ static void compselect_geometry_save (GschemDialog *dialog,
  *  \param [in] group_name Group name in the key file to store the data under.
  */
 static void compselect_geometry_restore (GschemDialog *dialog,
-                                         GKeyFile *key_file,
+                                         EdaConfig *cfg,
                                          char *group_name)
 {
-  Compselect *ThisDialog = COMPSELECT (dialog);
+  Compselect  *ThisDialog;
+  int          tmp_int;
+
+  ThisDialog = COMPSELECT (dialog);
 
   CompselectStyle types[] = { COMPSELECT_STYLE_NONE,
                               COMPSELECT_STYLE1,
@@ -2833,19 +2821,19 @@ static void compselect_geometry_restore (GschemDialog *dialog,
 
   /* Call the parent's geometry_restore method */
   GSCHEM_DIALOG_CLASS (compselect_parent_class)->
-    geometry_restore (dialog, key_file, group_name);
+    geometry_restore (dialog, cfg, group_name);
 
-  old_hpaned = g_key_file_get_integer (key_file, group_name, "hpaned", NULL);
-  if (old_hpaned != 0)
-    gtk_paned_set_position ( GTK_PANED ( ThisDialog->hpaned), old_hpaned);
+  tmp_int = eda_config_get_integer (cfg, "gschem.library", "hpaned", NULL);
+  if (tmp_int > 0)
+    gtk_paned_set_position ( GTK_PANED ( ThisDialog->hpaned), tmp_int);
 
+  tmp_int = eda_config_get_integer (cfg, "gschem.library", "vpaned", NULL);
+  if (tmp_int > 0)
+    gtk_paned_set_position ( GTK_PANED ( ThisDialog->vpaned), tmp_int);
 
-  old_vpaned = g_key_file_get_integer (key_file, group_name, "vpaned", NULL);
-  if (old_vpaned != 0)
-    gtk_paned_set_position ( GTK_PANED ( ThisDialog->vpaned), old_vpaned);
-
-  old_tab = g_key_file_get_integer(key_file, group_name, "source-tab", NULL);
-  gtk_notebook_set_current_page ( ThisDialog->notebook, old_tab);
+  tmp_int = eda_config_get_integer (cfg, "gschem.library", "source-tab", NULL);
+  if (tmp_int >= 0)
+    gtk_notebook_set_current_page ( ThisDialog->notebook, tmp_int);
 
   int i;
   bool state;
@@ -2860,7 +2848,7 @@ static void compselect_geometry_restore (GschemDialog *dialog,
 
   if (MASK) /* If any value other than 0 then uncheck "None" */
     gtk_set_item_active(compselect->style_menu_widgets->data, FALSE);
-
+ 
 }
 
 /*! \brief Retrived Component Select dialog settings
@@ -2872,56 +2860,17 @@ static void compselect_geometry_restore (GschemDialog *dialog,
  *  \param [in] compselect The Compselect Dialog widget.
  *
  */
-static void compselect_settings_restore (Compselect *compselect)
+static void compselect_settings_restore (Compselect *Dialog)
 {
-  char *file;
-  char *group_name;
 
-  GKeyFile *key_file = NULL;
+  EdaConfig *cfg = eda_config_get_user_context ();
 
-  GschemDialog *Dialog   = GSCHEM_DIALOG( compselect );
+  Dialog->style_flag  = eda_config_get_integer (cfg, "gschem.library", "style", NULL);
+  Dialog->show_groups = eda_config_get_boolean (cfg, "gschem.library", "groups", NULL);
+  Dialog->subgroups   = eda_config_get_boolean (cfg, "gschem.library", "subgroups", NULL);
+  Dialog->show_tips   = eda_config_get_boolean (cfg, "gschem.library", "showtips", NULL);
+  Dialog->do_sort     = eda_config_get_boolean (cfg, "gschem.library", "sort", NULL);
 
-  file = g_build_filename (s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
-
-  key_file = g_key_file_new();
-
-  if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
-    mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
-
-    g_file_set_contents (file, "", -1, NULL);
-  }
-
-  if (!g_key_file_load_from_file (key_file, file, G_KEY_FILE_NONE, NULL)) {
-    /* error opening key file, create an empty one and try again */
-    g_file_set_contents (file, "", -1, NULL);
-    if ( !g_key_file_load_from_file (key_file, file, G_KEY_FILE_NONE, NULL)) {
-       g_free (file);
-       return;
-    }
-  }
-  g_free (file);
-
-  group_name = Dialog->settings_name;
-  if (group_name != NULL) {
-
-    MASK = g_key_file_get_integer(key_file, group_name, "style", NULL);
-    old_flags = MASK;
-
-    compselect->show_tips   = g_key_file_get_boolean(key_file,
-                                                     group_name,
-                                                     "show-tips", NULL);
-    compselect->show_groups = g_key_file_get_boolean(key_file,
-                                                     group_name,
-                                                     "show-groups", NULL);
-    compselect->subgroups   = g_key_file_get_boolean(key_file,
-                                                     group_name,
-                                                     "subgroups", NULL);
-
-    /* saved these to globals to check when exiting */
-    old_show_tips   = compselect->show_tips;
-    old_show_groups = compselect->show_groups;
-    old_subgroups   = compselect->subgroups;
-  }
 }
 
 #undef MASK
@@ -3009,26 +2958,20 @@ compselect_constructor (GType type,
   GtkVBox   *main_vbox     = NULL;
   GtkWidget *label         = NULL;
 
-  bool       do_sort;
+  SortLibrarySwitch        = NULL;
+  ShowGroupsSwitch         = NULL;
 
   DECLARE_TOOPTIPS;
 
   /* chain up to constructor of parent class */
   object = G_OBJECT_CLASS (compselect_parent_class)->
-    constructor (type, n_construct_properties, construct_params);
+  constructor (type, n_construct_properties, construct_params);
+
   ThisDialog = COMPSELECT (object);
 
   ThisDialog->tooltips = tooltips;
 
   w_current = GSCHEM_DIALOG (ThisDialog)->w_current;
-
-  SortLibrarySwitch  = NULL;
-  ShowGroupsSwitch   = NULL;
-
-  ThisDialog->show_groups = TRUE;
-  ThisDialog->subgroups   = TRUE;
-
-  ThisDialog->show_tips   = TRUE;
 
   /* Initialize the hidden property */
   ThisDialog->hidden      = FALSE;
@@ -3039,8 +2982,6 @@ compselect_constructor (GType type,
   compselect_settings_restore(ThisDialog);
 
   main_vbox = GTK_VBOX(GTK_DIALOG (ThisDialog)->vbox);
-
-  do_sort = w_current->sort_component_library;
 
   /* dialog initialization */
   g_object_set (object,
@@ -3149,7 +3090,7 @@ compselect_constructor (GType type,
   GTK_NEW_hBOX(opts, FALSE, DEFAULT_DIALOG_SPACING);
 
   /* Create Toggle Switch widgets and put inside the horizontal options box*/
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, do_sort);
+  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
   GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
   GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SubGroups,   5, ThisDialog->subgroups);
 

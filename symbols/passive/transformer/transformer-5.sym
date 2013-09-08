@@ -1,4 +1,4 @@
-v 20041228 1
+v 20130414 2
 T 0 2000 8 10 1 1 0 0 1
 refdes=T?
 A 500 1800 98 270 180 3 0 0 0 -1 -1
@@ -63,8 +63,6 @@ pintype=pas
 T 1300 100 5 10 0 1 0 0 1
 pinlabel=coil_connection
 }
-T 0 1600 8 10 0 0 0 0 1
-device=TRANSFORMER 
 L 1000 700 1300 700 3 0 0 0 -1 -1
 P 1300 700 1500 700 1 0 1
 {
@@ -107,9 +105,19 @@ pintype=pas
 T 1300 2500 5 10 0 1 0 0 1
 pinlabel=coil_connection
 }
-T 1500 900 8 10 0 0 0 0 1
+T 0 2900 8 10 0 0 0 0 1
+device=TRANSFORMER
+T 0 3300 5 10 0 0 0 0 1
 numslots=0
-T 300 3200 8 10 0 1 0 0 1
-comment=The footprint is omitted intentionally because depends on the PCB designer's taste heavily.
-T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+T 0 3500 9 10 0 0 0 0 1
+footprint=none
+{
+T -5 3695 5 10 0 0 0 0 1
+dist-license=GPLv3 
+T -5 3895 5 10 0 0 0 0 1
+use-license=GPLv3
+T -5 4095 5 10 0 0 0 0 1
+author=AutoTron
+}
+T 0 3100 8 10 0 0 0 0 1
+description=Transformer, Multi-Tap

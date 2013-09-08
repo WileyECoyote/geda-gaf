@@ -1,3 +1,16 @@
+2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+       ** src/edarenderer.c: In function eda_renderer_prepare_text(), added
+        call to pango_layout_context_changed prior to calling pango_cairo_
+        update_layout().
+
+        * src/edapangorenderer.c: Eliminated arguments x, y for function
+        eda_pango_renderer_show_layout(). Added call to pango_layout_get_
+        size in eda_pango_renderer_show_layout instead.
+
+        * src/edarenderer.c: Added function eda_renderer_set_font_name().
+
+
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Change -I$(abs_top_builddir)/include to

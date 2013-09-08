@@ -67,4 +67,43 @@ typedef enum { F_OPEN_RC           = 1,
                F_OPEN_RESTORE_CWD  = 4,
 } FOpenFlags;
 
+/**
+ * @GEDA_STATE_FLAG_NORMAL: State during normal operation.
+ * @GEDA_STATE_FLAG_ACTIVE: Widget is active.
+ * @GEDA_STATE_FLAG_PRELIGHT: Widget has a mouse pointer over it.
+ * @GEDA_STATE_FLAG_SELECTED: Widget is selected.
+ * @GEDA_STATE_FLAG_INSENSITIVE: Widget is insensitive.
+ * @GEDA_STATE_FLAG_INCONSISTENT: Widget is inconsistent.
+ * @GEDA_STATE_FLAG_FOCUSED: Widget has the keyboard focus.
+ * @GEDA_STATE_FLAG_BACKDROP: Widget is in a background toplevel window.
+ *
+ * Describes a widget state.
+ */
+typedef enum
+{
+  GEDA_STATE_FLAG_NORMAL       = 0,
+  GEDA_STATE_FLAG_ACTIVE       = 1 << 0,
+  GEDA_STATE_FLAG_PRELIGHT     = 1 << 1,
+  GEDA_STATE_FLAG_SELECTED     = 1 << 2,
+  GEDA_STATE_FLAG_INSENSITIVE  = 1 << 3,
+  GEDA_STATE_FLAG_INCONSISTENT = 1 << 4,
+  GEDA_STATE_FLAG_FOCUSED      = 1 << 5,
+  GEDA_STATE_FLAG_BACKDROP     = 1 << 6
+} GedaStateFlags;
+/**
+ * GtkSizeRequestMode:
+ * @GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH: Prefer height-for-width geometry management
+ * @GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT: Prefer width-for-height geometry management
+ * @GEDA_SIZE_REQUEST_CONSTANT_SIZE: Dont trade height-for-width or width-for-height
+ * 
+ * Specifies a preference for height-for-width or
+ * width-for-height geometry management.
+ */
+typedef enum
+{
+  GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH = 0,
+  GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
+  GEDA_SIZE_REQUEST_CONSTANT_SIZE
+} GedaSizeRequestMode;
 #endif
+

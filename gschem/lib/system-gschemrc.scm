@@ -821,26 +821,13 @@
 
 ; save-ui-settings string
 ;
-; Controls if settings are written to disk when shutting down. Note this
-; does not control saving of configurations variables, which can be saved
-; in the Preferences Dialog. This feature saves the Main Window size and
+; Controls if settings are retained between sessions. Note this does not
+; control saving of configurations variables, which can be saved in the
+; Preferences Dialog. This feature saves the Main Window size and
 ; Position, the state of all tool bars, and menu settings.
 ;
 (save-ui-settings "enabled")
 ;(save-ui-settings "disabled")
-
-; show-menu-icons string
-;
-; Controls if icon images are displayed in menus. If the setting in the
-; gschem-gtkrc is not responisve, this keyword can be used to used to
-; over-ride interference. If this keyword is used then gschem calls gtk
-; directly to either enable or disable menu icons. gschem does not default
-; this value, meaning that if nither option is used then gtk determines the
-; setting, gtk's default is no icons in menus.
-;
-(show-menu-icons "enabled")
-;(show-menu-icons "disabled")
-
 
 ; toolbars string
 ;
@@ -870,7 +857,7 @@
 ; Specify the default untitled basename (usually only used a startup time)
 ; And typically not changed at runtime
 ;
-(untitled-name "untitled")
+;(untitled-name "untitled")
 
 ;BEGIN ===================> Scrollbar Options <=====================
 
@@ -1082,12 +1069,9 @@
 ; There are different hooks for situations like adding a new pin and rotating
 ; or mirroring an existing one.
 ; The #t at the end means that function is appended to the end of the hook.
-(add-hook! add-pin-hook (lambda (pin)
-        (autoplace-pin-attributes pin )) #t)
-(add-hook! rotate-pin-hook (lambda (pin)
-        (autoplace-pin-attributes pin )) #t)
-(add-hook! mirror-pin-hook (lambda (pin)
-        (autoplace-pin-attributes pin )) #t)
+(add-hook! add-pin-hook    (lambda (pin) (autoplace-pin-attributes pin )) #t)
+(add-hook! rotate-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 
 ; Autoplace component/net/buses text attributes hook.
 ; Comment in these if you want the component attributes to be
@@ -1122,29 +1106,29 @@
 ;;   (define default-titleblock '())
 ;;   (define default-titleblock #f)
 ;
-(define default-titleblock "title-B.sym")
+;(define default-titleblock "title-B.sym")
 
 ; Load the regular expressions module
 (if (provided? 'regex)
     (use-modules (ice-9 regex))
     (display "Your Guile installation doesn't provide the regex module.\n"))
 
-(add-hook! (@ (gschem hook) new-page-hook) (lambda (page)
-   ; Only place the titleblock if there are no objects in the page
-   ; and the page filename ends in ".sym".
-   (if (and (null? (get-objects-in-page page))
-            ; If the guile installation doesn't provide the regex module,
-            ; don't care about the page filename.
-            (if (provided? 'regex)
-                (not (string-match ".*\\.[sS][yY][mM]"
-                                   (get-page-filename page)))
-                #t))
-;      Syntax             Symbol name        X   Y    angle selectable mirrored
-       (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f))
+;(add-hook! (@ (gschem hook) new-page-hook) (lambda (page)
+;   ; Only place the titleblock if there are no objects in the page
+;   ; and the page filename ends in ".sym".
+;   (if (and (null? (get-objects-in-page page))
+;            ; If the guile installation doesn't provide the regex module,
+;            ; don't care about the page filename.
+;            (if (provided? 'regex)
+;                (not (string-match ".*\\.[sS][yY][mM]"
+;                                   (get-page-filename page)))
+;                #t))
+;;      Syntax             Symbol name        X   Y    angle selectable mirrored
+;      (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f))
 
    ;; After adding titleblock, reset page to mark as unchanged.
-   ((@ (geda page) set-page-dirty!) (active-page) #f))
-           #t)
+;   ((@ (geda page) set-page-dirty!) (active-page) #f))
+;           #t)
 
 ; Evaluate an expression entered in the magic-colon text box.
 ; In 20 years this might dispatch to an interpreter for some other language.

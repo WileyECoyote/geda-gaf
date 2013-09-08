@@ -80,13 +80,15 @@ smob_print (SCM smob, SCM port, scm_print_state *pstate)
 SCM
 g_scm_from_window (GSCHEM_TOPLEVEL *w_current)
 {
-  g_assert (w_current != NULL);
+  if(w_current != NULL) {
 
-  if (w_current->smob == SCM_UNDEFINED) {
-    SCM_NEWSMOB (w_current->smob, window_smob_tag, w_current);
+    if (w_current->smob == SCM_UNDEFINED) {
+      SCM_NEWSMOB (w_current->smob, window_smob_tag, w_current);
+    }
+
+    return w_current->smob;
   }
-
-  return w_current->smob;
+  return NULL;
 }
 
 /*!

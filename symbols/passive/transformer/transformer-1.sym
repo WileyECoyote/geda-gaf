@@ -1,4 +1,4 @@
-v 20130214 2
+v 20130414 2
 L 400 1100 200 1100 3 0 0 0 -1 -1
 A 400 1000 100 270 180 3 0 0 0 -1 -1
 A 400 400 100 270 180 3 0 0 0 -1 -1
@@ -57,13 +57,23 @@ pintype=pas
 }
 T 300 1300 8 10 1 1 0 0 1
 refdes=T?
-T 0 1500 8 10 0 0 0 0 1
-device=transformer
 A 400 800 100 270 180 3 0 0 0 -1 -1
 A 400 600 100 270 180 3 0 0 0 -1 -1
 A 900 800 100 90 180 3 0 0 0 -1 -1
 A 900 600 100 90 180 3 0 0 0 -1 -1
-T 0 1900 9 10 0 0 0 0 1
+T 0 1500 8 10 0 0 0 0 1
+device=TRANSFORMER
+T 0 1900 5 10 0 0 0 0 1
 numslots=0
-T 0 1700 9 10 0 0 0 0 1
-footprint=unknown
+T 0 2100 9 10 0 0 0 0 1
+footprint=none
+{
+T -5 2295 5 10 0 0 0 0 1
+dist-license=GPLv3 
+T -5 2495 5 10 0 0 0 0 1
+use-license=GPLv3
+T -5 2695 5 10 0 0 0 0 1
+author=AutoTron
+}
+T 0 1700 8 10 0 0 0 0 1
+description=Transformer

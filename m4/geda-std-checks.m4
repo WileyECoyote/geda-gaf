@@ -41,8 +41,12 @@ m4_define([AX_GEDA_TYPES],
   AC_TYPE_UINT32_T
 
   AC_TYPE_SIZE_T
+  AC_TYPE_SSIZE_T
 
   AC_TYPE_MODE_T      dnl Used in gschem/src/o_misc.c
+
+  AC_CHECK_TYPES([ptrdiff_t])
+
   []dnl
 ])dnl AX_GEDA_TYPES
 
@@ -57,6 +61,7 @@ m4_define([AX_GEDA_MATH],
   dnl Check for rint & lrint in math library.
   AC_CHECK_FUNCS([rint])               dnl used by gschem & libgedacairo
   AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
+  AC_CHECK_FUNCS([floor])              dnl used by pango
   AC_CHECK_LIB([m], [lrint],
      AC_DEFINE([HAVE_LRINT], 1,
                [If your math library has lrint in it, define this]))
@@ -114,7 +119,7 @@ m4_define([AX_GEDA_STR_FUNCS],
   AC_CHECK_HEADERS([string.h strings.h])
 
   AC_FUNC_STRTOD
-  AC_CHECK_FUNCS([strrchr])
+  AC_CHECK_FUNCS([strrchr strndup])
 
   []dnl
 ])dnl AX_GEDA_STR_FUNCS

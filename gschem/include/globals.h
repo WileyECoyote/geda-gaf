@@ -1,4 +1,4 @@
-/* -*- geda-h -*-
+/* -*- globals.h -*-
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2013 Ales Hvezda
@@ -33,11 +33,12 @@ extern char *rc_filename;
 extern char *output_filename;
 
 /* command line options */
+extern int auto_place_mode;
+extern int auto_load_last;
+extern int run_mode;
 extern int quiet_mode;
 extern int verbose_mode;
-extern int auto_place_mode;
 
-extern int auto_load_last;
 
 /* Log Related */
 extern volatile int logging;           /* controls if whether logging is enabled or not */
@@ -97,8 +98,9 @@ typedef enum { ID_ORIGIN_MENU = -32, /* can't pass paramerter */
                ID_ORIGIN_CAMMAND,    /* could pass paramerter */
 } ID_ACTION_ORIGIN;
 
-/* This macro is used to reduce lines lengths */
+/* These macros are used to help reduce lines lengths */
 #define Current_Selection w_current->toplevel->page_current->selection_list
+#define Top_Selection toplevel->page_current->selection_list
 
 /* Utility Macros for Message Dialogs */
 #define message_dialog(text, type) \

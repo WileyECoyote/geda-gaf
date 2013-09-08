@@ -47,17 +47,19 @@
  * \param error  Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-static bool
-show_uri__win32 (const gchar *uri, GError **error)
+static bool show_uri__win32 (const char *uri, GError **error)
 {
-
   /* On Windows, we need to use ShellExecute because allegedly GIO
    * doesn't cope very well with Windows. :-( */
 
   int status;
   char *msg = NULL;
 
-  g_assert (uri);
+  if (uri == NULL) {
+    s_log_message ("Internal Error: <%s><show_uri__win32>"
+                    "uri = NULL, line %d.\n", __FILE__, __LINE__);
+    return FALSE;
+  }
 
   status =
     (int) ShellExecute (NULL, /* window handle */

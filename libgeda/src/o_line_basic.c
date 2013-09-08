@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -86,7 +86,7 @@ OBJECT *o_line_new(TOPLEVEL *toplevel,
                      FILLING_HOLLOW, -1, -1, -1, -1, -1);
 
   /* compute bounding box */
-  o_line_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
 }
@@ -114,22 +114,19 @@ OBJECT *o_line_copy(TOPLEVEL *toplevel, OBJECT *o_current)
    * The coordinates of the ends of the new line are set with the ones
    * of the original line. The two lines have the sale line type and
    * filling options.
-   *
-   * The bounding box are computed with
-   * #o_line_recalc().
    */
 
   /* copy the line type and filling options */
   o_set_line_options(toplevel, new_obj, o_current->line_end,
-		     o_current->line_type, o_current->line_width,
-		     o_current->line_length, o_current->line_space);
+                     o_current->line_type, o_current->line_width,
+                     o_current->line_length, o_current->line_space);
   o_set_fill_options(toplevel, new_obj,
-		     o_current->fill_type, o_current->fill_width,
-		     o_current->fill_pitch1, o_current->fill_angle1,
-		     o_current->fill_pitch2, o_current->fill_angle2);
+                     o_current->fill_type, o_current->fill_width,
+                     o_current->fill_pitch1, o_current->fill_angle1,
+                     o_current->fill_pitch2, o_current->fill_angle2);
 
   /* calc the bounding box */
-  o_line_recalc(toplevel, o_current);
+  o_current->w_bounds_valid_for = NULL;
 
   /* new_obj->attribute = 0;*/
 
@@ -181,7 +178,7 @@ void o_line_modify(TOPLEVEL *toplevel, OBJECT *object,
   }
 
   /* recalculate the bounding box */
-  o_line_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, object);
 }
 
@@ -226,27 +223,27 @@ OBJECT *o_line_read (TOPLEVEL *toplevel, const char buf[],
      * They are set to default.
      */
     if (sscanf (buf, "%c %d %d %d %d %d\n", &type,
-		&x1, &y1, &x2, &y2, &color) != 6) {
+      &x1, &y1, &x2, &y2, &color) != 6) {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse line object"));
-      return NULL;
-    }
+    return NULL;
+      }
 
-    line_width = 0;
-    line_end   = END_NONE;
-    line_type  = TYPE_SOLID;
-    line_length= -1;
-    line_space = -1;
+      line_width = 0;
+      line_end   = END_NONE;
+      line_type  = TYPE_SOLID;
+      line_length= -1;
+      line_space = -1;
   } else {
     /*
      * The current line format to describe a line is a space separated
      * list of characters and numbers in plain ASCII on a single line.
      * The meaning of each item is described in the file format documentation.
      */
-      if (sscanf (buf, "%c %d %d %d %d %d %d %d %d %d %d\n", &type,
-		  &x1, &y1, &x2, &y2, &color,
-		  &line_width, &line_end, &line_type, &line_length, &line_space) != 11) {
-        g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse line object"));
-        return NULL;
+    if (sscanf (buf, "%c %d %d %d %d %d %d %d %d %d %d\n", &type,
+      &x1, &y1, &x2, &y2, &color,
+      &line_width, &line_end, &line_type, &line_length, &line_space) != 11) {
+      g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse line object"));
+    return NULL;
       }
   }
 
@@ -323,9 +320,9 @@ char *o_line_save(TOPLEVEL *toplevel, OBJECT *object)
   line_space = object->line_space;
 
   buf = g_strdup_printf("%c %d %d %d %d %d %d %d %d %d %d", object->type,
-			x1, y1, x2, y2, object->color,
-			line_width, line_end, line_type,
-			line_length, line_space);
+                        x1, y1, x2, y2, object->color,
+                        line_width, line_end, line_type,
+                        line_length, line_space);
 
   return(buf);
 }
@@ -340,8 +337,7 @@ char *o_line_save(TOPLEVEL *toplevel, OBJECT *object)
  *  \param [in]     dy         y distance to move.
  *  \param [in,out] object     Line OBJECT to translate.
  */
-void o_line_translate_world(TOPLEVEL *toplevel,
-			    int dx, int dy, OBJECT *object)
+void o_line_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;
@@ -350,7 +346,7 @@ void o_line_translate_world(TOPLEVEL *toplevel,
   object->line->y[1] = object->line->y[1] + dy;
 
   /* Update bounding box */
-  o_line_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Rotate Line OBJECT using WORLD coordinates.
@@ -367,8 +363,8 @@ void o_line_translate_world(TOPLEVEL *toplevel,
  *  \param [in,out]  object         Line OBJECT to rotate.
  */
 void o_line_rotate_world(TOPLEVEL *toplevel,
-			 int world_centerx, int world_centery, int angle,
-			 OBJECT *object)
+                         int world_centerx, int world_centery, int angle,
+                         OBJECT *object)
 {
   int newx, newy;
 
@@ -391,14 +387,14 @@ void o_line_rotate_world(TOPLEVEL *toplevel,
 
   /* rotate line end 1 */
   rotate_point_90(object->line->x[0], object->line->y[0], angle,
-		  &newx, &newy);
+                  &newx, &newy);
 
   object->line->x[0] = newx;
   object->line->y[0] = newy;
 
   /* rotate line end 2 */
   rotate_point_90(object->line->x[1], object->line->y[1], angle,
-		  &newx, &newy);
+                  &newx, &newy);
 
   object->line->x[1] = newx;
   object->line->y[1] = newy;
@@ -422,7 +418,7 @@ void o_line_rotate_world(TOPLEVEL *toplevel,
  *  \param [in,out] object         Line OBJECT to mirror.
  */
 void o_line_mirror_world(TOPLEVEL *toplevel, int world_centerx,
-			 int world_centery, OBJECT *object)
+                         int world_centery, OBJECT *object)
 {
   /* translate object to origin */
   o_line_translate_world(toplevel, -world_centerx, -world_centery, object);
@@ -434,31 +430,6 @@ void o_line_mirror_world(TOPLEVEL *toplevel, int world_centerx,
   /* translate back in position */
   o_line_translate_world(toplevel, world_centerx, world_centery, object);
 
-}
-
-/*! \brief Recalculate line coordinates in SCREEN units.
- *  \par Function Description
- *  This function recalculate the bounding box of the <B>o_current</B>
- *
- *  \param [in] toplevel      The TOPLEVEL object.
- *  \param [in,out] o_current  Line OBJECT to be recalculated.
- */
-void o_line_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  if (o_current->line == NULL) {
-    return;
-  }
-
-  /* update the bounding box - screen unit */
-  world_get_line_bounds(toplevel, o_current,
-		  &left, &top, &right, &bottom);
-  o_current->w_left   = left;
-  o_current->w_top    = top;
-  o_current->w_right  = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief Get line bounding rectangle in WORLD coordinates.
@@ -503,8 +474,7 @@ void world_get_line_bounds(TOPLEVEL *toplevel, OBJECT *object,
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-gboolean o_line_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
-                              OBJECT *object)
+bool o_line_get_position (TOPLEVEL *toplevel, int *x, int *y, OBJECT *object)
 {
   *x = object->line->x[0];
   *y = object->line->y[0];
@@ -528,7 +498,7 @@ gboolean o_line_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
  *  \param [in] origin_y   Page y coordinate to place line OBJECT.
  */
 void o_line_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
-		  int origin_x, int origin_y)
+                  int origin_x, int origin_y)
 {
   int x1, y1, x2, y2;
   int color;
@@ -566,12 +536,12 @@ void o_line_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
    */
   line_width = o_current->line_width;
   if(line_width < MIN_LINE_WIDTH_THRESHOLD)
-     line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
-  if(line_width < MIN_LINE_WIDTH_THRESHOLD)
-     line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
+    line_width = o_style_get_line_width(toplevel); /* 1st try updating style */
+    if(line_width < MIN_LINE_WIDTH_THRESHOLD)
+      line_width = MIN_LINE_WIDTH_THRESHOLD;        /* if STYLE_NONE  */
 
-  length = o_current->line_length;
-  space  = o_current->line_space;
+      length = o_current->line_length;
+    space  = o_current->line_space;
 
   switch(o_current->line_type) {
     case(TYPE_SOLID):
@@ -609,11 +579,11 @@ void o_line_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
   }
 
   (*outl_func)(toplevel, fp,
-	       x1 - origin_x, y1 - origin_y,
-	       x2 - origin_x, y2 - origin_y,
-	       color,
-	       line_width, capstyle, length, space,
-	       origin_x, origin_y);
+               x1 - origin_x, y1 - origin_y,
+               x2 - origin_x, y2 - origin_y,
+               color,
+               line_width, capstyle, length, space,
+               origin_x, origin_y);
 }
 
 /*! \brief Print a solid line to Postscript document.
@@ -640,10 +610,10 @@ void o_line_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
  *  \param [in] origin_y      Page y coordinate to place line OBJECT.
  */
 void o_line_print_solid(TOPLEVEL *toplevel, FILE *fp,
-			int x1, int y1, int x2, int y2,
-			int color,
-			int line_width, int capstyle, int length, int space,
-			int origin_x, int origin_y)
+                        int x1, int y1, int x2, int y2,
+                        int color,
+                        int line_width, int capstyle, int length, int space,
+                        int origin_x, int origin_y)
 {
   f_print_set_color(toplevel, fp, color);
 
@@ -682,10 +652,10 @@ void o_line_print_solid(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place line OBJECT.
  */
 void o_line_print_dotted(TOPLEVEL *toplevel, FILE *fp,
-			 int x1, int y1, int x2, int y2,
-			 int color,
-			 int line_width, int capstyle, int length, int space,
-			 int origin_x, int origin_y)
+                         int x1, int y1, int x2, int y2,
+                         int color,
+                         int line_width, int capstyle, int length, int space,
+                         int origin_x, int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1;
@@ -723,7 +693,7 @@ void o_line_print_dotted(TOPLEVEL *toplevel, FILE *fp,
   while(d < l) {
 
     fprintf(fp,"[%d %d] ",
-	    (int)xa, (int)ya);
+            (int)xa, (int)ya);
     d = d + space;
     xa = xa + dx1;
     ya = ya + dy1;
@@ -763,10 +733,10 @@ void o_line_print_dotted(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place line OBJECT.
  */
 void o_line_print_dashed(TOPLEVEL *toplevel, FILE *fp,
-			 int x1, int y1, int x2, int y2,
-			 int color,
-			 int line_width, int capstyle, int length, int space,
-			 int origin_x, int origin_y)
+                         int x1, int y1, int x2, int y2,
+                         int color,
+                         int line_width, int capstyle, int length, int space,
+                         int origin_x, int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -806,8 +776,8 @@ void o_line_print_dashed(TOPLEVEL *toplevel, FILE *fp,
     yb = ya + dy1;
 
     fprintf(fp, "[%d %d %d %d] ",
-	    (int) xa, (int) ya,
-	    (int) xb, (int) yb);
+            (int) xa, (int) ya,
+            (int) xb, (int) yb);
 
     d = d + space;
     xa = xb + dx2;
@@ -829,8 +799,8 @@ void o_line_print_dashed(TOPLEVEL *toplevel, FILE *fp,
   }
 
   fprintf(fp, "[%d %d %d %d] ",
-	  (int) xa, (int) ya,
-	  (int) xb, (int) yb);
+          (int) xa, (int) ya,
+          (int) xb, (int) yb);
 
   fprintf(fp,"] %d %d dashed\n", line_width, capstyle);
 }
@@ -867,10 +837,10 @@ void o_line_print_dashed(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place line OBJECT.
  */
 void o_line_print_center(TOPLEVEL *toplevel, FILE *fp,
-			 int x1, int y1, int x2, int y2,
-			 int color,
-			 int line_width, int capstyle, int length, int space,
-			 int origin_x, int origin_y)
+                         int x1, int y1, int x2, int y2,
+                         int color,
+                         int line_width, int capstyle, int length, int space,
+                         int origin_x, int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -907,8 +877,8 @@ void o_line_print_center(TOPLEVEL *toplevel, FILE *fp,
     yb = ya + dy1;
 
     fprintf(fp, "[%d %d %d %d] ",
-	    (int) xa, (int) ya,
-	    (int) xb, (int) yb);
+            (int) xa, (int) ya,
+            (int) xb, (int) yb);
 
     d = d + space;
     xa = xb + dx2;
@@ -937,8 +907,8 @@ void o_line_print_center(TOPLEVEL *toplevel, FILE *fp,
     yb = ya + dy1;
 
     fprintf(fp, "[%d %d %d %d] ",
-	    (int) xa, (int) ya,
-	    (int) xb, (int) yb);
+            (int) xa, (int) ya,
+            (int) xb, (int) yb);
 
     d = d + space;
     xa = xb + dx2;
@@ -956,8 +926,8 @@ void o_line_print_center(TOPLEVEL *toplevel, FILE *fp,
     }
 
     fprintf(fp, "[%d %d %d %d] ",
-	    (int) xa, (int) ya,
-	    (int) xb, (int) yb);
+            (int) xa, (int) ya,
+            (int) xb, (int) yb);
 
   }
 
@@ -1000,10 +970,10 @@ void o_line_print_center(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place line OBJECT.
  */
 void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp,
-			  int x1, int y1, int x2, int y2,
-			  int color,
-			  int line_width, int capstyle, int length, int space,
-			  int origin_x, int origin_y)
+                          int x1, int y1, int x2, int y2,
+                          int color,
+                          int line_width, int capstyle, int length, int space,
+                          int origin_x, int origin_y)
 {
   double dx, dy, l, d;
   double dx1, dy1, dx2, dy2;
@@ -1040,8 +1010,8 @@ void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp,
     yb = ya + dy1;
 
     fprintf(fp,"[%d %d %d %d] ",
-	    (int) xa, (int)ya,
-	    (int) xb, (int)yb);
+            (int) xa, (int)ya,
+            (int) xb, (int)yb);
 
     d = d + space;
     xa = xb + dx2;
@@ -1077,8 +1047,8 @@ void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp,
     yb = ya + dy1;
 
     fprintf(fp,"[%d %d %d %d] ",
-	    (int) xa, (int)ya,
-	    (int) xb, (int)yb);
+            (int) xa, (int)ya,
+            (int) xb, (int)yb);
 
     d = d + space;
     xa = xb + dx2;
@@ -1099,8 +1069,8 @@ void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp,
       yb = ya + dy1;
 
       fprintf(fp,"[%d %d %d %d] ",
-	      (int) xa, (int)ya,
-	      (int) xb, (int)yb);
+              (int) xa, (int)ya,
+              (int) xb, (int)yb);
 
       d = d + space;
       xa = xb + dx2;
@@ -1110,16 +1080,16 @@ void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp,
 
     } else {
       if(d + length < l) {
-	xb = xa + dx1;
-	yb = ya + dy1;
+        xb = xa + dx1;
+        yb = ya + dy1;
       } else {
-	xb = x2;
-	yb = y2;
+        xb = x2;
+        yb = y2;
       }
 
       fprintf(fp,"[%d %d %d %d] ",
-	      (int) xa, (int)ya,
-	      (int) xb, (int)yb);
+              (int) xa, (int)ya,
+              (int) xb, (int)yb);
 
     }
   }
@@ -1137,7 +1107,7 @@ void o_line_print_phantom(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] object
  */
 void o_line_scale_world(TOPLEVEL *toplevel, int x_scale, int y_scale,
-			OBJECT *object)
+                        OBJECT *object)
 {
   /* scale the line world coords */
   object->line->x[0] = object->line->x[0] * x_scale;
@@ -1146,7 +1116,7 @@ void o_line_scale_world(TOPLEVEL *toplevel, int x_scale, int y_scale,
   object->line->y[1] = object->line->y[1] * y_scale;
 
   /* update boundingbox */
-  o_line_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
 }
 
@@ -1185,14 +1155,16 @@ double o_line_length(OBJECT *object)
  *  If the line represents a single point (the endpoints are the same), this
  *  function calcualtes the distance to that point.
  *
- *  \param [in] object       The line OBJECT.
+ *  \param [in] toplevel     A TOPLEVEL object.
+ *  \param [in] object       A line OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_line_shortest_distance (OBJECT *object, int x, int y, int force_solid)
+double o_line_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                 int x, int y, int force_solid)
 {
   return m_line_shortest_distance (object->line, x, y);
 }

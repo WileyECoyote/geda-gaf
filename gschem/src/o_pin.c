@@ -50,7 +50,10 @@ void o_pin_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
   OBJECT *new_obj;
   int color;
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_pin_end> Not inside action\n");
+    return;
+  }
 
   if (toplevel->override_pin_color == -1) {
     color = PIN_COLOR;
@@ -89,7 +92,10 @@ void o_pin_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
  */
 void o_pin_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_pin_motion> Not inside action\n");
+    return;
+  }
 
   /* erase the rubberpin if it is visible */
   if (w_current->rubber_visible)

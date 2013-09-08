@@ -1,0 +1,120 @@
+Package: gir1.2-gtk-2.0
+Status: install ok installed
+Priority: optional
+Section: introspection
+Installed-Size: 1333
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Architecture: i386
+Source: gtk+2.0
+Version: 2.24.17-2
+Replaces: gir1.0-gtk-2.0
+Depends: libgtk2.0-common, gir1.2-atk-1.0, gir1.2-freedesktop, gir1.2-gdkpixbuf-2.0, gir1.2-glib-2.0, gir1.2-pango-1.0, libgtk2.0-0 (>= 2.24.0)
+Conflicts: gir1.0-gtk-2.0, gobject-introspection-repository
+Description-en: GTK+ graphical user interface library -- gir bindings
+ GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package can be used by other packages using the GIRepository format to
+ generate dynamic bindings.
+Homepage: http://www.gtk.org/
+
+Package: gir1.2-gtk-2.0
+Source: gtk+2.0
+Version: 2.24.10-2
+Installed-Size: 1305
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Architecture: i386
+Replaces: gir1.0-gtk-2.0
+Depends: libgtk2.0-common, gir1.2-atk-1.0, gir1.2-freedesktop, gir1.2-gdkpixbuf-2.0, gir1.2-glib-2.0, gir1.2-pango-1.0, libgtk2.0-0 (>= 2.24.0)
+Conflicts: gir1.0-gtk-2.0, gobject-introspection-repository
+Description-en: GTK+ graphical user interface library -- gir bindings
+ GTK+ is a multi-platform toolkit for creating graphical user
+ interfaces. Offering a complete set of widgets, GTK+ is suitable
+ for projects ranging from small one-off tools to complete application
+ suites.
+ .
+ This package can be used by other packages using the GIRepository format to
+ generate dynamic bindings.
+Homepage: http://www.gtk.org/
+Description-md5: f16f9e8db01aaaf8ce43a52cf10f4f37
+Tag: role::shared-lib, uitoolkit::gtk
+Section: introspection
+Priority: optional
+Filename: pool/main/g/gtk+2.0/gir1.2-gtk-2.0_2.24.10-2_i386.deb
+Size: 638218
+MD5sum: 424fa4eee0d366bc5baa26f268b91e57
+SHA1: 7018e2ca46ed62b2f6c28db29614cb873027b7c1
+SHA256: b5101b623eb43f1f62dfa295294514473339d8df7975155e3e73a3c09b13537f
+
+Package: libspice-client-gtk-2.0-1
+Source: spice-gtk
+Version: 0.12-5
+Installed-Size: 173
+Maintainer: Liang Guo <guoliang@debian.org>
+Architecture: i386
+Depends: libatk1.0-0 (>= 1.12.4), libc6 (>= 2.4), libcairo2 (>= 1.2.4), libfontconfig1 (>= 2.9.0), libfreetype6 (>= 2.2.1), libgdk-pixbuf2.0-0 (>= 2.22.0), libglib2.0-0 (>= 2.31.8), libgtk2.0-0 (>= 2.24.0), libgudev-1.0-0 (>= 146), libjpeg8 (>= 8c), libpango1.0-0 (>= 1.14.0), libpixman-1-0, libpulse-mainloop-glib0 (>= 0.99.1), libpulse0 (>= 0.99.1), libsasl2-2 (>= 2.1.24), libspice-client-glib-2.0-1 (>= 0.11), libssl1.0.0 (>= 1.0.0), libusb-1.0-0 (>= 2:1.0.8), libusbredirhost1 (>= 0.4.3), libusbredirparser0 (>= 0.4.3), libx11-6, libxrandr2, zlib1g (>= 1:1.1.4)
+Pre-Depends: multiarch-support
+Description-en: GTK2 widget for SPICE clients (runtime library)
+ libspice-gtk2 provides gtk2 widget to show spice display
+ and accept user input.
+ .
+ This package provide the runtime library.
+Multi-Arch: same
+Homepage: http://www.spice-space.org/
+Description-md5: 4655779530036b68e1a6eb5895201773
+Tag: role::shared-lib
+Section: libs
+Priority: optional
+Filename: pool/main/s/spice-gtk/libspice-client-gtk-2.0-1_0.12-5_i386.deb
+Size: 92198
+MD5sum: a55dd5d54756f13ee2e41a45cb99c55b
+SHA1: 89f8985f46039692f7a5300459676620ccf56f35
+SHA256: df5b922be014f3198f626a76364216aa366b00d647ff08ba1e95c5f214d21a1f
+
+Package: gir1.2-spice-client-gtk-2.0
+Source: spice-gtk
+Version: 0.12-5
+Installed-Size: 100
+Maintainer: Liang Guo <guoliang@debian.org>
+Architecture: i386
+Depends: gir1.2-atk-1.0, gir1.2-freedesktop, gir1.2-gdkpixbuf-2.0, gir1.2-glib-2.0, gir1.2-gtk-2.0, gir1.2-pango-1.0, gir1.2-spice-client-glib-2.0 (= 0.12-5), libspice-client-glib-2.0-1 (>= 0.7), libspice-client-gtk-2.0-1 (>= 0.9)
+Description-en: GTK2 widget for SPICE clients (GObject-Introspection)
+ libspice-gtk2 provides gtk2 widget to show spice display
+ and accept user input.
+ .
+ This package contains the GObject-introspection data in binary typelib format.
+Homepage: http://www.spice-space.org/
+Description-md5: f65eddbefcff764f88dce6521e4381f2
+Section: introspection
+Priority: optional
+Filename: pool/main/s/spice-gtk/gir1.2-spice-client-gtk-2.0_0.12-5_i386.deb
+Size: 60594
+MD5sum: 451881631ea873f14d746e1710395f9b
+SHA1: ea681fe6baee915bdf9edeeb11835c5d830c85f6
+SHA256: e253b23311b145e3f5e8a11de170416dfe93b40d0055463c4210470430829410
+
+Package: libspice-client-gtk-2.0-dev
+Source: spice-gtk
+Version: 0.12-5
+Installed-Size: 749
+Maintainer: Liang Guo <guoliang@debian.org>
+Architecture: i386
+Depends: libspice-client-gtk-2.0-1 (= 0.12-5), gir1.2-spice-client-gtk-2.0 (= 0.12-5), libgtk2.0-dev (>= 2.18.0), libspice-client-glib-2.0-dev
+Description-en: GTK2 widget for SPICE clients (development files)
+ libspice-gtk2 provides gtk2 widget to show spice display
+ and accept user input.
+ .
+ This package provide the development headers.
+Homepage: http://www.spice-space.org/
+Description-md5: 9cfe005ae302062cf4613a7ce404f2d7
+Tag: devel::library, role::devel-lib
+Section: libdevel
+Priority: optional
+Filename: pool/main/s/spice-gtk/libspice-client-gtk-2.0-dev_0.12-5_i386.deb
+Size: 131322
+MD5sum: 348ddf92b313f1fa06a4f873c8e7d67a
+SHA1: d34ff847a88889db466744deac69bf7fd0615a0b
+SHA256: 695c3fd06d6f6002acc2e2fc9fcf1cb17d304217d428ea098bf73b646e125363
+

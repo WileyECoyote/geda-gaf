@@ -672,7 +672,7 @@ SCM_DEFINE (config_boolean, "%config-boolean", 3, 0, 0,
  * group_s and \a key_s in the configuration context \a cfg_s, as a
  * integer.
  *
- * \see eda_config_get_int().
+ * \see eda_config_get_integer().
  *
  * \note Scheme API: Implements the \%config-int procedure in the
  * (geda core config) module.
@@ -695,7 +695,7 @@ SCM_DEFINE (config_int, "%config-int", 3, 0, 0,
   char *key = scm_to_utf8_string (key_s);
   scm_dynwind_free (key);
   GError *error = NULL;
-  gint value = eda_config_get_int (cfg, group, key, &error);
+  gint value = eda_config_get_integer (cfg, group, key, &error);
   if (error != NULL) error_from_gerror  (s_config_int, &error);
   scm_dynwind_end ();
   return scm_from_int (value);
@@ -948,7 +948,7 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
     eda_config_set_boolean (cfg, group, key, value);
   } else if (scm_is_integer (value_s) && scm_is_true (scm_exact_p (value_s))) {
     gint value = scm_to_int (value_s);
-    eda_config_set_int (cfg, group, key, value);
+    eda_config_set_integer (cfg, group, key, value);
   } else if (scm_is_real (value_s)) {
     gdouble value = scm_to_double (value_s);
     eda_config_set_double (cfg, group, key, value);

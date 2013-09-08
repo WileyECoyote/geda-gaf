@@ -44,6 +44,9 @@ typedef enum {
   pop_down_schemat,
   pop_down_symbol,
   pop_hierarchy_up,
+  pop_cb_cut,
+  pop_cb_copy,
+  pop_cb_paste
 } pop_MenuItem;
 
 typedef enum { RESET_TOGGLERS=-1, SNAP_TOGGLE, OUTLINE_TOGGLE, RUBBER_TOGGLE,

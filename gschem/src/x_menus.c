@@ -38,39 +38,46 @@
 static void
 x_menu_popup_execute(GSCHEM_TOPLEVEL *w_current, unsigned int action, GtkWidget *widget);
 
-const char* IDS_Popup_Actions[] = { /* temp Menu Toggle Strings*/
-  ACTION(ADD_NET),        ACTION(ADD_ATTRIB),  ACTION(ADD_COMPONENT),
-  ACTION(ADD_BUS),        ACTION(ADD_TEXT),    ACTION(VIEW_ZOOM_IN),
-  ACTION(VIEW_ZOOM_OUT),  ACTION(VIEW_BOX),    ACTION(VIEW_EXTENTS),
-  ACTION(EDIT_SELECT),    ACTION(EDIT_ATTRIB), ACTION(EDIT_PIN),
-  ACTION(EDIT_COPY),      ACTION(EDIT_MOVE),   ACTION(EDIT_DELETE),
-  ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL), ACTION(HIERARCHY_UP),
+/* Note: These are referenced using pop_MenuItem defined in our header */
+const char* IDS_Popup_Actions[] = {
+  ACTION(ADD_NET),        ACTION(ADD_ATTRIB),   ACTION(ADD_COMPONENT),
+  ACTION(ADD_BUS),        ACTION(ADD_TEXT),     ACTION(VIEW_ZOOM_IN),
+  ACTION(VIEW_ZOOM_OUT),  ACTION(VIEW_BOX),     ACTION(VIEW_EXTENTS),
+  ACTION(EDIT_SELECT),    ACTION(EDIT_ATTRIB),  ACTION(EDIT_PIN),
+  ACTION(EDIT_COPY),      ACTION(EDIT_MOVE),    ACTION(EDIT_DELETE),
+  ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),  ACTION(HIERARCHY_UP),
+  ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY), ACTION(EDIT_CB_PASTE),
   NULL
 };
 
 static GtkItemFactoryEntry popup_items[] = {
-  { N_("/Add Net"), 	      NULL, x_menu_popup_execute, pop_add_net,       NULL},
-  { N_("/Add Attribute..."),  NULL, x_menu_popup_execute, pop_add_attribute, NULL},
-  { N_("/Add Component..."),  NULL, x_menu_popup_execute, pop_add_component, NULL},
-  { N_("/Add Bus"), 	      NULL, x_menu_popup_execute, pop_add_bus,       NULL},
-  { N_("/Add Text"), 	      NULL, x_menu_popup_execute, pop_add_text,      NULL},
+  { N_("/Add Net"),           NULL, x_menu_popup_execute, pop_add_net,        NULL},
+  { N_("/Add Attribute..."),  NULL, x_menu_popup_execute, pop_add_attribute,  NULL},
+  { N_("/Add Component..."),  NULL, x_menu_popup_execute, pop_add_component,  NULL},
+  { N_("/Add Bus"),           NULL, x_menu_popup_execute, pop_add_bus,        NULL},
+  { N_("/Add Text"),          NULL, x_menu_popup_execute, pop_add_text,       NULL},
   { "/sep1", NULL, NULL, 0, "<Separator>"},
-  { N_("/Zoom In"),           NULL, x_menu_popup_execute, pop_zoom_in,       NULL},
-  { N_("/Zoom Out"),          NULL, x_menu_popup_execute, pop_zoom_out,      NULL},
-  { N_("/Zoom Box"),          NULL, x_menu_popup_execute, pop_zoom_box,      NULL},
-  { N_("/Zoom Extents"),      NULL, x_menu_popup_execute, pop_zoom_extents,  NULL},
+  { N_("/Zoom In"),           NULL, x_menu_popup_execute, pop_zoom_in,        NULL},
+  { N_("/Zoom Out"),          NULL, x_menu_popup_execute, pop_zoom_out,       NULL},
+  { N_("/Zoom Box"),          NULL, x_menu_popup_execute, pop_zoom_box,       NULL},
+  { N_("/Zoom Extents"),      NULL, x_menu_popup_execute, pop_zoom_extents,   NULL},
   { "/sep1", NULL, NULL, 0, "<Separator>"},
-  { N_("/Select"), 	      NULL, x_menu_popup_execute, pop_edit_select,   NULL},
-  { N_("/Edit..."),           NULL, x_menu_popup_execute, pop_edit_butes,    NULL},
-  { N_("/Edit pin type..."),  NULL, x_menu_popup_execute, pop_edit_pintype,  NULL},
-  { N_("/Copy"),              NULL, x_menu_popup_execute, pop_edit_copy,     NULL},
-  { N_("/Move"),              NULL, x_menu_popup_execute, pop_edit_move,     NULL},
-  { N_("/Delete"),            NULL, x_menu_popup_execute, pop_edit_delete,   NULL},
-  /* Menu items for hierarchy added by SDB 1.9.2005.  */
+  { N_("/Select"),            NULL, x_menu_popup_execute, pop_edit_select,    NULL},
+  { N_("/Edit..."),           NULL, x_menu_popup_execute, pop_edit_butes,     NULL},
+  { N_("/Edit pin type..."),  NULL, x_menu_popup_execute, pop_edit_pintype,   NULL},
+  { N_("/Duplicate"),         NULL, x_menu_popup_execute, pop_edit_copy,      NULL},
+  { N_("/Move"),              NULL, x_menu_popup_execute, pop_edit_move,      NULL},
+  { N_("/Delete"),            NULL, x_menu_popup_execute, pop_edit_delete,    NULL},
+  /* Menu items for hierarchy added by SDB 1.9.2005. */
   {"/sep1", NULL, NULL, 0, "<Separator>"},
-  {N_("/Down Schematic"),     NULL, x_menu_popup_execute, pop_down_schemat,  NULL},
-  {N_("/Down Symbol"),        NULL, x_menu_popup_execute, pop_down_symbol,   NULL},
-  {N_("/Up"),                 NULL, x_menu_popup_execute, pop_hierarchy_up,  NULL},
+  {N_("/Down Schematic"),     NULL, x_menu_popup_execute, pop_down_schemat,   NULL},
+  {N_("/Down Symbol"),        NULL, x_menu_popup_execute, pop_down_symbol,    NULL},
+  {N_("/Up"),                 NULL, x_menu_popup_execute, pop_hierarchy_up,   NULL},
+  /* Menu items for clip-board added by WEH 07.20.2013 */
+  {"/sep1", NULL, NULL, 0, "<Separator>"},
+  {N_("/Cut"),                 NULL, x_menu_popup_execute, pop_cb_cut,        NULL},
+  {N_("/Copy"),                NULL, x_menu_popup_execute, pop_cb_copy,       NULL},
+  {N_("/Paste"),               NULL, x_menu_popup_execute, pop_cb_paste,      NULL},
 };
 
 /* These must be in the same order as ID_GSCHEM_Toolbar in x_toolbars.c */
@@ -84,19 +91,22 @@ const char* IDS_Menu_Toggles[] = { /* temp Menu Toggle Strings*/
    NULL
 };
 
-
 static GList   *recent_files = NULL;
-static GSList   *ui_list = NULL;
+static GSList  *ui_list      = NULL;
 
 int npopup_items = sizeof(popup_items) / sizeof(popup_items[0]);
 
 static void x_menu_toggle_icons(GtkWidget *widget, GSList* list);
 static void x_menu_toggle_tips(GtkWidget *widget, GSList* list);
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Execute Main Menu Selection
  *  \par Function Description
- *
+ *  This is a modified version of the "old" routine that retrieve
+ * the action from the menu items and evaluates with guile. The
+ * might still do this but first checks of the string is a valid
+ * command and if so, then the string is passed to i_command_process
+ * process instead, this eliminates the c=>scheme=>c. This improves
+ * efficiency and provides better stability.
  */
 static void g_menu_execute(GtkAction *action, gpointer user_data)
 {
@@ -124,10 +134,14 @@ static void g_menu_execute(GtkAction *action, gpointer user_data)
     scm_dynwind_end ();
   }
 }
-/*! \todo Finish function documentation!!!
- *  \brief
+
+/*! \brief  Execute Main Popup Menu Selection
  *  \par Function Description
- *
+ *  This functions essentialy performs the same action as the preceeding
+ * main menu function but there is no Scheme involved and commands are
+ * known to be valid. The second argument to i_command_process is the
+ * action string referenced in the static string structure IDS_Popup_
+ * Actions using the enumerated, not unsigned, integer from pop_MenuItem.
  */
 static void
 x_menu_popup_execute(GSCHEM_TOPLEVEL *w_current, unsigned int action, GtkWidget *widget)
@@ -135,10 +149,10 @@ x_menu_popup_execute(GSCHEM_TOPLEVEL *w_current, unsigned int action, GtkWidget 
   i_command_process(w_current, IDS_Popup_Actions[action], 0, NULL, ID_ORIGIN_MENU);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Menu->Destroy->Toggle Items
  *  \par Function Description
- *
+ *  This function is called by gschem_quit to free each ToggleMenuData
+ *  structure that was allocated for toggle menu items.
  */
 void x_menu_free_all() {
 
@@ -151,25 +165,32 @@ void x_menu_free_all() {
   s_menu_free();
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get Pointer to Main Menu Bar
  *  \par Function Description
+ * This function retrieves a pointer to the main menu bar
  *
+ * \retval GtkMenu pointer disguised as a GtkWidget
  */
 GtkWidget *get_main_menu(GSCHEM_TOPLEVEL *w_current) {
   MenuData *menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
   return MENU_BAR;
 }
 
-
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Create Main Menu
  *  \par Function Description
- *
+ * This function creates the main menu based on data in a Scheme list that
+ * was create during startup when an RC file executed. Presummably the
+ * orginal intend was to allow for menu customization and this is possible.
+ * A side-effects is that if there is a single error in the rc/scheme file,
+ * the menu data does not get defined!
+ * TODO: May should create a Pre-create menu function that checks for
+ * existence of menu data and substitutes a "fall-back" menu if needed, WEH.
  */
 GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
 {
-  char *buf;
+  EdaConfig *cfg;
+  GError *err;
+
   GschemAction *action;
   GtkWidget    *menu_item;
   GtkWidget    *root_menu;
@@ -187,6 +208,7 @@ GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
   SCM scm_item_stock;
   SCM scm_index;
 
+  char *buf;
   char *menu_name;
   char *action_name;
   char *dummy = NULL;
@@ -224,6 +246,32 @@ GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
   void
   menu_register_toggler (ToggleMenuData *toggler_data) {
     TOGGLERS_LIST = g_slist_append(TOGGLERS_LIST, toggler_data);
+  }
+
+  cfg = eda_config_get_user_context ();
+  err = NULL;
+
+  bool show_menu_icons;
+  bool show_menu_tips;
+
+  show_menu_icons = eda_config_get_boolean (cfg, "gschem", "show-menu-icons", &err);
+  if (err == NULL) {
+    show_menu_icons = show_menu_icons != FALSE;
+  }
+  else {
+    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    show_menu_icons = !FALSE;
+    g_clear_error (&err);
+  }
+
+  show_menu_tips = eda_config_get_boolean (cfg, "gschem", "show-menu-tips", &err);
+  if (err == NULL) {
+    show_menu_tips = show_menu_tips != FALSE;
+  }
+  else {
+    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    show_menu_tips = !FALSE;
+    g_clear_error (&err);
   }
 
   scm_dynwind_begin (0);
@@ -353,12 +401,11 @@ GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
           else {
             /* save all non-toggle menu items to a single linked list */
             MENU_ITEMS_LIST = g_slist_append(MENU_ITEMS_LIST, menu_item);
-            /* if show_menu_icons keyword was in an RC then enforce the setting here */
-            if (w_current->show_menu_icons != RC_NIL)
-              g_object_set (G_OBJECT(menu_item), "always-show-image", w_current->show_menu_icons, NULL);
+            g_object_set (G_OBJECT(menu_item), "always-show-image", show_menu_icons, NULL);
           }
           if(menu_item_tip) { /* If tip not NULL then attach tip to menu widget */
             gtk_widget_set_tooltip_text(menu_item, _(menu_item_tip));
+            g_object_set (menu_item, "has-tooltip", show_menu_tips, NULL);
             g_free(menu_item_tip);
           }
         }
@@ -525,8 +572,8 @@ GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
      GtkWidget *menu_icons_toggle = gtk_check_menu_item_new_with_mnemonic (  "_Icons" );
      GtkWidget *menu_tips_toggle  = gtk_check_menu_item_new_with_mnemonic (  "_ToolTips" );
 
-     gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_icons_toggle, w_current->show_menu_icons);
-     gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_tips_toggle, TRUE);
+     gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_icons_toggle, show_menu_icons);
+     gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_tips_toggle,  show_menu_tips);
 
      gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Menu/_Icons",     menu_icons_toggle);
      gtk_object_set_data(GTK_OBJECT(MENU_BAR), "_View/_Menu/_ToolTips",  menu_tips_toggle);
@@ -554,20 +601,27 @@ GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current)
   return MENU_BAR;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \section Mouse-Popup-Menu Mouse Menu Functions */
+
+/*! \brief Internationalize Main Popup Menu
  *  \par Function Description
+ *     This function calls gettext for each menu string to translate
+ *  menu text for internationalization.
  *
+ *  \note that we have to discard the 'const' qualifier here to
+ *   avoid build warnings when gettext is disabled.  This is required
+ *   due to the prototype of the function pointer argument to
+ *   gtk_item_factory_set_translate_func()
  */
 static char* gettext_fn(const char *path, gpointer func_data ATTRIBUTE_UNUSED)
 {
-  /*! \bug Note that we have to discard the 'const' qualifier here to
-   * avoid build warnings when gettext is disabled.  This is required
-   * due to the prototype of the function pointer argument to
-   * gtk_item_factory_set_translate_func() */
   return (char *) gettext(path);
 }
 
+/*! \brief Main Popup Menu Setup
+ *  \par Function Description
+ *
+ */
 int x_menu_setup_popup(GSCHEM_TOPLEVEL *w_current)
 {
   static GtkItemFactory *item_factory;
@@ -588,11 +642,10 @@ int x_menu_setup_popup(GSCHEM_TOPLEVEL *w_current)
   gtk_item_factory_set_translate_func (item_factory, gettext_fn, NULL, NULL);
 
   /* This function creates the pop-up menu itself & attaches it to the
-     GtkItemFactory. Pass the item factory,
-     the number of items in the array, the array itself, and any
-     callback data for the the menu items. Note that npopup_items is
-     a static var declared in this file above; popup_items is also a
-     static var declared above.
+     GtkItemFactory. Pass the item factory, the number of items in the array,
+     the array itself, and any callback data for the the menu items. Note that
+     npopup_items is a static var declared in this file above; popup_items is
+     also a static varible declared above.
   */
   gtk_item_factory_create_items(item_factory, npopup_items, popup_items, w_current);
 
@@ -634,10 +687,9 @@ int do_popup (GSCHEM_TOPLEVEL *w_current, GdkEventButton *event)
   return FALSE;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Set Sensitivity of Main Menu Item
  *  \par Function Description
- *
+ *  This function is called from i_basic to set the senitivity of menu items!
  */
 void x_menus_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *buf, int flag)
 {
@@ -668,7 +720,7 @@ void x_menus_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *buf, int flag)
   }
 }
 
-/*! \todo Finish function documentation!!!
+/*! \brief Set Sensitivity of Popup Menu Item
  *  \brief *  \par Function Description
  *  This function sets the sensitivity of the items in the right button
  *  popup.
@@ -676,7 +728,7 @@ void x_menus_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *buf, int flag)
  *  \note
  *  1.9.2005 -- SDB.
  */
-void x_menus_popup_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *buf, int flag)
+void x_menus_popup_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *mpath, int flag)
 {
   GtkWidget *menu_item;
   GtkItemFactory *menu_item_factory;
@@ -684,7 +736,7 @@ void x_menus_popup_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *buf, int
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  if (!buf) {
+  if (!mpath) {
     return;
   }
 
@@ -695,17 +747,52 @@ void x_menus_popup_sensitivity (GSCHEM_TOPLEVEL *w_current, const char *buf, int
 
   /*
    * first get entire item factory from popup, then get the individual
-   * menu item indexed by buf.
+   * menu item indexed by path.
    */
   menu_item_factory = (GtkItemFactory *)gtk_item_factory_from_widget(POPUP_MENU);
-  menu_item = (GtkWidget *) gtk_item_factory_get_widget(menu_item_factory, buf);
+  menu_item = (GtkWidget *) gtk_item_factory_get_widget(menu_item_factory, mpath);
   if (menu_item) {
     gtk_widget_set_sensitive(GTK_WIDGET(menu_item), flag);
   } else {
-    s_log_message(_("Tried to set the sensitivity on a non-existent popup menu_item\n"));
+    s_log_message( _("Can not set sensitivity for <%s>, non-existent popup item\n"), mpath);
   }
 }
 
+/*! \section Main-Menu-Support Functions to support the Main Menu */
+
+void x_menu_save_state(GSCHEM_TOPLEVEL *w_current) {
+
+  GtkCheckMenuItem *toggler;
+  GtkWidget        *menubar;
+  EdaConfig        *cfg;
+
+  char *icons_path   = "_View/_Menu/_Icons";      /* Menu Paths */
+  char *tooltip_path = "_View/_Menu/_ToolTips";
+  bool  state;
+
+  menubar = get_main_menu(w_current);
+
+  if (menubar != NULL) {
+
+     cfg = eda_config_get_user_context ();
+
+     toggler = (GtkCheckMenuItem*) gtk_object_get_data(GTK_OBJECT(menubar), icons_path);
+     state = gtk_check_menu_item_get_active (toggler);
+     eda_config_set_boolean (cfg, "gschem", "show-menu-icons", state);
+
+     toggler = (GtkCheckMenuItem*) gtk_object_get_data(GTK_OBJECT(menubar), tooltip_path);
+     state = gtk_check_menu_item_get_active (toggler);
+     eda_config_set_boolean (cfg, "gschem", "show-menu-tips", state);
+  }
+}
+
+/*! \brief Set Menu Icon Visibility
+ *  \par Function Description
+ *   Callback function turns menu icon on or off based on the state of
+ * the toggle menu item pointer to by widget. This is a callback for
+ * the toggle menu icons option so widget is a toggle item. The list
+ * is a glist of all menu items.
+ */
 static void x_menu_toggle_icons(GtkWidget *widget, GSList* list)
 {
   int state;
@@ -718,6 +805,14 @@ static void x_menu_toggle_icons(GtkWidget *widget, GSList* list)
   }
   mapcar(list)
 }
+
+/*! \brief Enable Disable Menu Tool Tips
+ *  \par Function Description
+ *   Callback function turns menu tips on or off based on the state of
+ * the toggle menu item pointed to by widget. This is a callback for
+ * the toggle tips menu option so widget is the toggle item. The list
+ * is a glist of all menu items.
+ */
 static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
 {
   int state;
@@ -735,11 +830,12 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
     v_log_message("gschem: Disabling menu tooltips\n");
   }
 }
+
 /*! \section menu-toggle-action Menu Toggle Action Support Functions
  *
  *  \par
- *     The Menu toggles buttons need the "activate" signal blocks temporily
- *   so we don't have recursion with i_callbacks.
+ *     The Menu toggles buttons need the "activate" signal blocked
+ *   temporily so we don't have recursion with callbacks.
  */
 /*! \brief Set State of Menu Toggle Items - Low LeveL
  *  \par Function Description
@@ -817,7 +913,7 @@ void x_menu_set_toggle(GSCHEM_TOPLEVEL *w_current, int toggle_id, bool state){
   return;
 }
 
-/*! \brief Set State of Menu ToolBar Toggle Items .
+/*! \brief Set State of Menu ToolBar Toggle Items
  * \par Function Description
  *  This is a menu support function to "uncheck" Toolbar Menu toggle items. The
  * function can be used when the menu option was changed by some other means,
@@ -830,13 +926,11 @@ void x_menu_set_toolbar_toggle(GSCHEM_TOPLEVEL *w_current, int toggle_id, bool s
 
   char  menu_name[36] = "_View/_Toolbars/";
   char *menu_path;
-  //MenuData *menu_data;
+
   GtkWidget *menu_item;
 
   GtkWidget* menubar;
   menubar = get_main_menu(w_current);
-  //menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
-
 
   menu_path = g_strconcat (menu_name, IDS_Menu_Toolbar_Toggles[toggle_id], NULL);
   menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(menubar), menu_path);
@@ -844,7 +938,7 @@ void x_menu_set_toolbar_toggle(GSCHEM_TOPLEVEL *w_current, int toggle_id, bool s
     gtk_check_menu_item_set_active((GtkCheckMenuItem *)menu_item, state);
   }
   else
-      s_log_message("Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n", menu_path);
+    s_log_message("Error, x_menu_set_toolbar_toggle: Did not find path \"%s\"\n", menu_path);
   g_free(menu_path);
   return;
 }
@@ -853,10 +947,10 @@ void x_menu_set_toolbar_toggle(GSCHEM_TOPLEVEL *w_current, int toggle_id, bool s
 /*! \section recent-file Recent Menu Support Functions
  *
  *  \comment This is the old method, as appose to the GTK Recent
- *  Chooser Manger version. This method seems works better on Debian
+ *  Chooser Manger version. This method seems to work better on Debian
  *  machines (which is likely to be the majority) due to default
  *  security policies, which result in all the links to recent files
- *  being erase when ever ANY recent file link is access by anyone
+ *  being erased when ever ANY recent file link is access by anyone
  *  having "administrative" privileges.
  */
 

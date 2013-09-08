@@ -1,0 +1,324 @@
+v 20111231 2
+P 0 4200 300 4200 1 0 0
+{
+T 0 4200 5 10 0 0 0 0 1
+pintype=pas
+T 355 4195 5 10 1 1 0 0 1
+pinlabel=\_MCLR\_
+T 205 4245 5 10 1 1 0 6 1
+pinnumber=1
+T 0 4200 5 10 0 0 0 0 1
+pinseq=1
+}
+P 0 3900 300 3900 1 0 0
+{
+T 0 3900 5 10 0 0 0 0 1
+pintype=pas
+T 355 3895 5 10 1 1 0 0 1
+pinlabel=PGED3/VREF+/CVREF+/AN0/C3INC/RPA0/CTED1/PMD7/RA0
+T 205 3945 5 10 1 1 0 6 1
+pinnumber=2
+T 0 3900 5 10 0 0 0 0 1
+pinseq=2
+}
+P 0 3600 300 3600 1 0 0
+{
+T 0 3600 5 10 0 0 0 0 1
+pintype=pas
+T 355 3595 5 10 1 1 0 0 1
+pinlabel=PGEC3/VREF-/CVREF-/AN1/RPA1/CTED2/PMD6/RA1
+T 205 3645 5 10 1 1 0 6 1
+pinnumber=3
+T 0 3600 5 10 0 0 0 0 1
+pinseq=3
+}
+P 0 3300 300 3300 1 0 0
+{
+T 0 3300 5 10 0 0 0 0 1
+pintype=pas
+T 355 3295 5 10 1 1 0 0 1
+pinlabel=PGED1/AN2/C1IND/C2INB/C3IND/RPB0/PMD0/RB0
+T 205 3345 5 10 1 1 0 6 1
+pinnumber=4
+T 0 3300 5 10 0 0 0 0 1
+pinseq=4
+}
+P 0 3000 300 3000 1 0 0
+{
+T 0 3000 5 10 0 0 0 0 1
+pintype=pas
+T 355 2995 5 10 1 1 0 0 1
+pinlabel=PGEC1/AN3/C1INC/C2INA/RPB1/CTED12/PMD1/RB1
+T 205 3045 5 10 1 1 0 6 1
+pinnumber=5
+T 0 3000 5 10 0 0 0 0 1
+pinseq=5
+}
+P 0 2700 300 2700 1 0 0
+{
+T 0 2700 5 10 0 0 0 0 1
+pintype=pas
+T 355 2695 5 10 1 1 0 0 1
+pinlabel=AN4/C1INB/C2IND/RPB2/SDA2/CTED13/PMD2/RB2
+T 205 2745 5 10 1 1 0 6 1
+pinnumber=6
+T 0 2700 5 10 0 0 0 0 1
+pinseq=6
+}
+P 0 2400 300 2400 1 0 0
+{
+T 0 2400 5 10 0 0 0 0 1
+pintype=pas
+T 355 2395 5 10 1 1 0 0 1
+pinlabel=AN5/C1INA/C2INC/RTCC/RPB3/SCL2/PMWR/RB3
+T 205 2445 5 10 1 1 0 6 1
+pinnumber=7
+T 0 2400 5 10 0 0 0 0 1
+pinseq=7
+}
+P 0 2100 300 2100 1 0 0
+{
+T 0 2100 5 10 0 0 0 0 1
+pintype=pas
+T 355 2095 5 10 1 1 0 0 1
+pinlabel=VSS
+T 205 2145 5 10 1 1 0 6 1
+pinnumber=8
+T 0 2100 5 10 0 0 0 0 1
+pinseq=8
+}
+P 0 1800 300 1800 1 0 0
+{
+T 0 1800 5 10 0 0 0 0 1
+pintype=pas
+T 355 1795 5 10 1 1 0 0 1
+pinlabel=OSC1/CLKI/RPA2/RA2
+T 205 1845 5 10 1 1 0 6 1
+pinnumber=9
+T 0 1800 5 10 0 0 0 0 1
+pinseq=9
+}
+P 0 1500 300 1500 1 0 0
+{
+T 0 1500 5 10 0 0 0 0 1
+pintype=pas
+T 355 1495 5 10 1 1 0 0 1
+pinlabel=OSC2/CLKO/RPA3/PMA0/RA3
+T 205 1545 5 10 1 1 0 6 1
+pinnumber=10
+T 0 1500 5 10 0 0 0 0 1
+pinseq=10
+}
+P 0 1200 300 1200 1 0 0
+{
+T 0 1200 5 10 0 0 0 0 1
+pintype=pas
+T 355 1195 5 10 1 1 0 0 1
+pinlabel=SOSCI/RPB4/RB4
+T 205 1245 5 10 1 1 0 6 1
+pinnumber=11
+T 0 1200 5 10 0 0 0 0 1
+pinseq=11
+}
+P 0 900 300 900 1 0 0
+{
+T 0 900 5 10 0 0 0 0 1
+pintype=pas
+T 355 895 5 10 1 1 0 0 1
+pinlabel=SOSCO/RPA4/T1CK/CTED9/PMA1/RA4
+T 205 945 5 10 1 1 0 6 1
+pinnumber=12
+T 0 900 5 10 0 0 0 0 1
+pinseq=12
+}
+P 0 600 300 600 1 0 0
+{
+T 0 600 5 10 0 0 0 0 1
+pintype=pas
+T 355 595 5 10 1 1 0 0 1
+pinlabel=VDD
+T 205 645 5 10 1 1 0 6 1
+pinnumber=13
+T 0 600 5 10 0 0 0 0 1
+pinseq=13
+}
+P 0 300 300 300 1 0 0
+{
+T 0 300 5 10 0 0 0 0 1
+pintype=pas
+T 355 295 5 10 1 1 0 0 1
+pinlabel=TMS/RPB5/USBID/RB5
+T 205 345 5 10 1 1 0 6 1
+pinnumber=14
+T 0 300 5 10 0 0 0 0 1
+pinseq=14
+}
+P 10600 300 10300 300 1 0 0
+{
+T 10600 300 5 10 0 0 0 6 1
+pintype=pas
+T 10245 295 5 10 1 1 0 6 1
+pinlabel=VBUS
+T 10395 345 5 10 1 1 0 0 1
+pinnumber=15
+T 10600 300 5 10 0 0 0 6 1
+pinseq=15
+}
+P 10600 600 10300 600 1 0 0
+{
+T 10600 600 5 10 0 0 0 6 1
+pintype=pas
+T 10245 595 5 10 1 1 0 6 1
+pinlabel=TDI/RPB7/CTED3/PMD5/INT0/RB7
+T 10395 645 5 10 1 1 0 0 1
+pinnumber=16
+T 10600 600 5 10 0 0 0 6 1
+pinseq=16
+}
+P 10600 900 10300 900 1 0 0
+{
+T 10600 900 5 10 0 0 0 6 1
+pintype=pas
+T 10245 895 5 10 1 1 0 6 1
+pinlabel=TCK/RPB8/SCL1/CTED10/PMD4/RB8
+T 10395 945 5 10 1 1 0 0 1
+pinnumber=17
+T 10600 900 5 10 0 0 0 6 1
+pinseq=17
+}
+P 10600 1200 10300 1200 1 0 0
+{
+T 10600 1200 5 10 0 0 0 6 1
+pintype=pas
+T 10245 1195 5 10 1 1 0 6 1
+pinlabel=TDO/RPB9/SDA1/CTED4/PMD3/RB9
+T 10395 1245 5 10 1 1 0 0 1
+pinnumber=18
+T 10600 1200 5 10 0 0 0 6 1
+pinseq=18
+}
+P 10600 1500 10300 1500 1 0 0
+{
+T 10600 1500 5 10 0 0 0 6 1
+pintype=pas
+T 10245 1495 5 10 1 1 0 6 1
+pinlabel=VSS
+T 10395 1545 5 10 1 1 0 0 1
+pinnumber=19
+T 10600 1500 5 10 0 0 0 6 1
+pinseq=19
+}
+P 10600 1800 10300 1800 1 0 0
+{
+T 10600 1800 5 10 0 0 0 6 1
+pintype=pas
+T 10245 1795 5 10 1 1 0 6 1
+pinlabel=VCAP
+T 10395 1845 5 10 1 1 0 0 1
+pinnumber=20
+T 10600 1800 5 10 0 0 0 6 1
+pinseq=20
+}
+P 10600 2100 10300 2100 1 0 0
+{
+T 10600 2100 5 10 0 0 0 6 1
+pintype=pas
+T 10245 2095 5 10 1 1 0 6 1
+pinlabel=PGED2/RPB10/D+/CTED11/RB10
+T 10395 2145 5 10 1 1 0 0 1
+pinnumber=21
+T 10600 2100 5 10 0 0 0 6 1
+pinseq=21
+}
+P 10600 2400 10300 2400 1 0 0
+{
+T 10600 2400 5 10 0 0 0 6 1
+pintype=pas
+T 10245 2395 5 10 1 1 0 6 1
+pinlabel=PGEC2/RPB11/D-/RB11
+T 10395 2445 5 10 1 1 0 0 1
+pinnumber=22
+T 10600 2400 5 10 0 0 0 6 1
+pinseq=22
+}
+P 10600 2700 10300 2700 1 0 0
+{
+T 10600 2700 5 10 0 0 0 6 1
+pintype=pas
+T 10245 2695 5 10 1 1 0 6 1
+pinlabel=VUSB3V3
+T 10395 2745 5 10 1 1 0 0 1
+pinnumber=23
+T 10600 2700 5 10 0 0 0 6 1
+pinseq=23
+}
+P 10600 3000 10300 3000 1 0 0
+{
+T 10600 3000 5 10 0 0 0 6 1
+pintype=pas
+T 10245 2995 5 10 1 1 0 6 1
+pinlabel=AN11/RPB13/CTPLS/PMRD/RB13
+T 10395 3045 5 10 1 1 0 0 1
+pinnumber=24
+T 10600 3000 5 10 0 0 0 6 1
+pinseq=24
+}
+P 10600 3300 10300 3300 1 0 0
+{
+T 10600 3300 5 10 0 0 0 6 1
+pintype=pas
+T 10245 3295 5 10 1 1 0 6 1
+pinlabel=CVREF/AN10/C3INB/RPB14/VBUSON/SCK1/CTED5/RB14
+T 10395 3345 5 10 1 1 0 0 1
+pinnumber=25
+T 10600 3300 5 10 0 0 0 6 1
+pinseq=25
+}
+P 10600 3600 10300 3600 1 0 0
+{
+T 10600 3600 5 10 0 0 0 6 1
+pintype=pas
+T 10245 3595 5 10 1 1 0 6 1
+pinlabel=AN9/C3INA/RPB15/SCK2/CTED6/PMCS1/RB15
+T 10395 3645 5 10 1 1 0 0 1
+pinnumber=26
+T 10600 3600 5 10 0 0 0 6 1
+pinseq=26
+}
+P 10600 3900 10300 3900 1 0 0
+{
+T 10600 3900 5 10 0 0 0 6 1
+pintype=pas
+T 10245 3895 5 10 1 1 0 6 1
+pinlabel=AVSS
+T 10395 3945 5 10 1 1 0 0 1
+pinnumber=27
+T 10600 3900 5 10 0 0 0 6 1
+pinseq=27
+}
+P 10600 4200 10300 4200 1 0 0
+{
+T 10600 4200 5 10 0 0 0 6 1
+pintype=pas
+T 10245 4195 5 10 1 1 0 6 1
+pinlabel=AVDD
+T 10395 4245 5 10 1 1 0 0 1
+pinnumber=28
+T 10600 4200 5 10 0 0 0 6 1
+pinseq=28
+}
+B 300 0 10000 4500 3 0 1 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 4600 8 10 1 1 0 0 1
+device=PIC32MX250F128B
+T 10100 4600 8 10 1 1 0 0 1
+refdes=U?
+T 300 4800 8 10 0 0 0 0 1
+footprint=DIP28
+T 300 5000 8 10 0 0 0 0 1
+use-license=unlimited
+T 300 5200 8 10 0 0 0 0 1
+dist-license=GPL 2
+T 300 5400 8 10 0 0 0 0 1
+author=Piotr Wiszowaty pwiszowaty458@gmail.com
+T 600 100 9 10 0 0 0 0 1
+numslots=0

@@ -1,0 +1,32 @@
+v 20091004 2
+P 0 500 300 500 1 0 0
+{
+T 0 500 5 10 0 0 0 0 1
+pintype=pwr
+T 355 495 5 10 1 1 0 0 1
+pinlabel=V+
+T 205 545 5 10 1 1 0 6 1
+pinnumber=1
+T 0 500 5 10 0 0 0 0 1
+pinseq=1
+}
+P 0 200 300 200 1 0 0
+{
+T 0 200 5 10 0 0 0 0 1
+pintype=pwr
+T 355 195 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 245 5 10 1 1 0 6 1
+pinnumber=6
+T 0 200 5 10 0 0 0 0 1
+pinseq=2
+}
+B 300 0 700 800 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 900 8 10 1 1 0 0 1
+refdes=IC?
+T 300 1800 8 10 0 0 0 0 1
+device=DG2731
+T 300 1600 8 10 0 0 0 0 1
+description=Power for DG2731 Dual SPDT Analog Switch
+T 300 1400 8 10 0 0 0 0 1
+footprint=MSOP10

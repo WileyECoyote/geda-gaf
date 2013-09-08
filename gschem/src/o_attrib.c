@@ -56,7 +56,10 @@ void o_attrib_add_selected(GSCHEM_TOPLEVEL *w_current, SELECTION *selection,
   GList *a_iter;
   GList *selected_objects = NULL;
 
-  g_assert( selection != NULL );
+  if (selection == NULL) {
+    s_log_message("Internal Error Detected: <o_attrib_add_selected> selection == NULL\n");
+    return;
+  }
 
   for (a_iter = selected->attribs; a_iter != NULL;
        a_iter = g_list_next (a_iter)) {
@@ -95,7 +98,10 @@ void o_attrib_deselect_invisible (GSCHEM_TOPLEVEL *w_current,
   OBJECT *a_current;
   GList *a_iter;
 
-  g_assert( selection != NULL );
+  if (selection == NULL) {
+    s_log_message("Internal Error Detected: <o_attrib_deselect_invisible> selection == NULL\n");
+    return;
+  }
 
   if (w_current->toplevel->show_hidden_text) {
     return;
@@ -129,7 +135,10 @@ void o_attrib_select_invisible (GSCHEM_TOPLEVEL *w_current,
   OBJECT *a_current;
   GList *a_iter;
 
-  g_assert( selection != NULL );
+  if (selection == NULL) {
+    s_log_message("Internal Error Detected: <o_attrib_select_invisible> selection == NULL\n");
+    return;
+  }
 
   if (w_current->toplevel->show_hidden_text) {
     return;
@@ -211,7 +220,6 @@ void o_attrib_toggle_show_name_value(GSCHEM_TOPLEVEL *w_current,
   toplevel->page_current->CHANGED = 1;
 }
 
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -220,57 +228,98 @@ void o_attrib_toggle_show_name_value(GSCHEM_TOPLEVEL *w_current,
 /* This function no longer returns NULL, but will always return the new */
 /* text item */
 OBJECT *o_attrib_add_attrib(GSCHEM_TOPLEVEL *w_current,
-			    const char *text_string, int visibility, 
-			    int show_name_value, OBJECT *object)
+                            const char *text_string, int visibility,
+                            int show_name_value, OBJECT *object)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  OBJECT *new_obj;
-  int world_x = - 1, world_y = -1;
-  int color; 
+
+  int world_x, world_y;
+  int align;
+  int angle;
+  int color;
   int left, right, top, bottom;
+
+  OBJECT *new_obj;
   OBJECT *o_current;
 
-  color = DETACHED_ATTRIBUTE_COLOR;
+  world_x = -1;
+  world_y = -1;
+
+  /* change later of needed */
+  align   = LOWER_LEFT;
+  angle   = 0;
 
   o_current = object;
 
   /* creating a toplevel or unattached attribute */
   if (o_current) {
+
+    color = ATTRIBUTE_COLOR;
+
     /* get coordinates of where to place the text object */
     switch(o_current->type) {
       case(OBJ_COMPLEX):
       case(OBJ_PLACEHOLDER):
         world_x = o_current->complex->x;
         world_y = o_current->complex->y;
-        color = ATTRIBUTE_COLOR;
         break;
 
       case(OBJ_ARC):
         world_x = o_current->arc->x;
         world_y = o_current->arc->y;
-        color = ATTRIBUTE_COLOR;
         break;
 
       case(OBJ_CIRCLE):
         world_x = o_current->circle->center_x;
         world_y = o_current->circle->center_y;
-        color = ATTRIBUTE_COLOR;
         break;
 
       case(OBJ_BOX):
         world_x = o_current->box->upper_x;
         world_y = o_current->box->upper_y;
-        color = ATTRIBUTE_COLOR;
         break;
 
       case(OBJ_LINE):
       case(OBJ_NET):
       case(OBJ_PIN):
       case(OBJ_BUS):
-        world_x = o_current->line->x[0];
-        world_y = o_current->line->y[0];
-        color = ATTRIBUTE_COLOR;
-        break;
+      {
+        int dx = o_current->line->x[1] - o_current->line->x[0];
+        int dy = o_current->line->y[1] - o_current->line->y[0];
+
+        if (dy == 0) {
+          if (dx > 0) {
+            world_x = o_current->line->x[0] + ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+            world_y = o_current->line->y[0] + DEFAULT_ATTRIBUTE_OFFSET;
+          }
+          else {
+            world_x = o_current->line->x[0] - ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+            world_y = o_current->line->y[0] + DEFAULT_ATTRIBUTE_OFFSET;
+
+            align = LOWER_RIGHT;
+          }
+        }
+        else if (dx == 0) {
+          if (dy > 0) {
+            world_x = o_current->line->x[0] - DEFAULT_ATTRIBUTE_OFFSET;
+            world_y = o_current->line->y[0] + ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+
+            angle = 90;
+          }
+          else {
+            world_x = o_current->line->x[0] - DEFAULT_ATTRIBUTE_OFFSET;
+            world_y = o_current->line->y[0] - ( 2 * DEFAULT_ATTRIBUTE_OFFSET);
+
+            align = LOWER_RIGHT;
+            angle = 90;
+          }
+        }
+        else {
+          world_x = o_current->line->x[0];
+          world_y = o_current->line->y[0];
+        }
+      }
+      break;
 
       case(OBJ_TEXT):
         world_x = o_current->text->x;
@@ -279,22 +328,25 @@ OBJECT *o_attrib_add_attrib(GSCHEM_TOPLEVEL *w_current,
         o_current = NULL;
         break;
     }
-  } else {
+  }
+  else {
+
+    color = DETACHED_ATTRIBUTE_COLOR;
+
     world_get_object_glist_bounds (toplevel,
                                    s_page_objects (toplevel->page_current),
                                    &left, &top, &right, &bottom);
-	
-    /* this really is the lower left hand corner */	
-    world_x = left; 
-    world_y = top;  
+
+    /* this really is the lower left hand corner */
+    world_x = left;
+    world_y = top;
 
     /* printf("%d %d\n", world_x, world_y); */
-    color = DETACHED_ATTRIBUTE_COLOR;
   }
 
   /* first create text item */
   new_obj = o_text_new(toplevel, OBJ_TEXT, color, world_x, world_y,
-                       LOWER_LEFT, 0, text_string, /* zero is angle */
+                       align, angle, text_string, /* zero is angle */
                        w_current->text_size, /* current text size */
                        visibility, show_name_value);
   s_page_append (toplevel, toplevel->page_current, new_obj);
@@ -309,7 +361,7 @@ OBJECT *o_attrib_add_attrib(GSCHEM_TOPLEVEL *w_current,
 
   /* handle slot= attribute, it's a special case */
   if (o_current != NULL &&
-      g_ascii_strncasecmp (text_string, "slot=", 5) == 0) {
+    g_ascii_strncasecmp (text_string, "slot=", 5) == 0) {
     o_slot_end (w_current, o_current, text_string);
   }
 

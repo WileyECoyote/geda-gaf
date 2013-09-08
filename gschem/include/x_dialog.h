@@ -41,7 +41,7 @@
 #include "gschem_dialog.h"
 
 //#include "x_compselect.h"
-#include "x_dialog.h"
+//#include "x_dialog.h"
 #include "x_console.h"
 #include "x_multiattrib.h"
 #include "x_pagesel.h"
@@ -79,9 +79,11 @@ struct st_pin_type_data {
   GtkWidget *label_entry;
   GtkWidget *pin_attribute;
 
+  GtkWidget *set_type;
+  GtkWidget *set_attributes;
   GtkWidget *auto_number;
   GtkWidget *auto_sequence;
-  GtkWidget *set_attributes;
+
 
 };
 #endif /* __X_DIALOG_H__ */

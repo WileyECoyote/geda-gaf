@@ -1,5 +1,5 @@
 /* C header
- *  File: gschem_xdefines.h
+ *  File: gschem_ddefines.h
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture

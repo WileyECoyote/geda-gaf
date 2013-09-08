@@ -88,30 +88,30 @@ typedef struct
    TOOLBAR_BUTTON( bar##_Toolbar, name, type, icon, name##_button, callBack_##bar##Bar, name)
 
 /* --------------------------- 1st Level -------------------------------- */
-/*! \brief 1st LeveL Intermediate ToolBar Macros with Enumerated data */
+/*! \brief 1st LeveL Intermediate ToolBar Macro with Enumerated data */
 #define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, ENUM, icon, button, func, data) \
 }
 
-/*! \brief 1st LeveL Intermediate ToolBar Macros with *w_current data */
+/*! \brief 1st LeveL Intermediate ToolBar Macro with *w_current data */
 #define TOOLBAR_BUTTON_DATA( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, GEDA, icon, button, func, data) \
 }
 
 /* --------------------------- 2nd Level -------------------------------- */
-/*! \brief 2nd Level Intermediate ToolBar Macros with Pixmap Icon */
+/*! \brief 2nd Level Intermediate ToolBar Macro with Pixmap Icon */
 #define TOOLBAR_BUTTON_PIX(bar, name, next, icon, button, func, data) \
    tmp_toolbar_icon = create_pixmap (icon); /* from file */ \
    next##_TOOLBAR_BUTTON(bar, tmp_toolbar_icon, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
-/*! \brief 2nd Level Intermediate ToolBar Macros with Stock Icon */
+/*! \brief 2nd Level Intermediate ToolBar Macro with Stock Icon */
 #define TOOLBAR_BUTTON_STK(bar, name, next, icon, button, func, data) \
    tmp_toolbar_icon = gtk_image_new_from_stock(STOCK_MAP(icon), GTK_ICON_SIZE_SMALL_TOOLBAR); \
    next##_TOOLBAR_BUTTON(bar, tmp_toolbar_icon, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
-/*! \brief 2nd Level Intermediate ToolBar Macros with Local Pixmap Icon */
+/*! \brief 2nd Level Intermediate ToolBar Macro with Local Pixmap Icon */
 #define TOOLBAR_BUTTON_LOCAL_PIX(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = create_pixmap (icon); /* from file */ \
    next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
@@ -122,19 +122,19 @@ typedef struct
    next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
-/*! \brief 2nd Level Intermediate ToolBar Macros with Local Factory Icon */
+/*! \brief 2nd Level Intermediate ToolBar Macro with Local Factory Icon */
 #define TOOLBAR_BUTTON_LOCAL_FAC(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = gtk_image_new_from_stock(TB_ICON_NAME(name), GTK_ICON_SIZE_SMALL_TOOLBAR); \
    next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
-/*! \brief 2nd Level Intermediate ToolBar Macros with Local Stock Icon */
+/*! \brief 2nd Level Intermediate ToolBar Macro with Local Stock Icon */
 #define TOOLBAR_BUTTON_LOCAL_STK(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = gtk_image_new_from_stock(STOCK_MAP(icon), GTK_ICON_SIZE_SMALL_TOOLBAR); \
    next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
-/*! \brief 2nd Level Intermediate ToolBar Macros with Item Data Struct */
+/*! \brief 2nd Level Intermediate ToolBar Macro with Item Data Struct */
 #define TOOLBAR_BUTTON_LOCAL_ALT(bar, name, next, icon, button, func, data) \
    ToolbarItem name##_ToolbarItem; /* Allocate a Data Structure */ \
    name##_ToolbarItem.stock_id =  STOCK_MAP(icon); \

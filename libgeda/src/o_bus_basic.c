@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ static int o_bus_consolidate_segments (TOPLEVEL *toplevel, OBJECT *object) __att
 static void o_bus_consolidate_lowlevel (OBJECT *object,
                                         OBJECT *del_object,
                                         int orient) __attribute__((unused));
-                                        
+
 /*! \brief get the position of the first bus point
  *  \par Function Description
  *  This function gets the position of the first point of a bus object.
@@ -64,7 +64,7 @@ gboolean o_bus_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
  *  \param [out] bottom    the bottom world coord
  */
 void world_get_bus_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *top,
-			  int *right, int *bottom)
+                          int *right, int *bottom)
 {
   world_get_line_bounds( toplevel, object, left, top, right, bottom );
 }
@@ -83,10 +83,9 @@ void world_get_bus_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left, int *to
  *  \param [in]  bus_ripper_direction direction of the bus rippers
  *  \return A new bus OBJECT
  */
-OBJECT *o_bus_new(TOPLEVEL *toplevel,
-		  char type, int color,
-		  int x1, int y1, int x2, int y2,
-		  int bus_ripper_direction)
+OBJECT *o_bus_new(TOPLEVEL *toplevel, char type, int color,
+                  int x1, int y1, int x2, int y2,
+                  int bus_ripper_direction)
 {
   OBJECT *new_node;
 
@@ -105,37 +104,9 @@ OBJECT *o_bus_new(TOPLEVEL *toplevel,
 
   new_node->bus_ripper_direction = bus_ripper_direction;
 
-  o_bus_recalc (toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
-}
-
-/*! \brief recalc the visual properties of a bus object
- *  \par Function Description
- *  This function updates the visual coords of the \a o_current object.
- *  
- *  \param [in]     toplevel    The TOPLEVEL object.
- *  \param [in]     o_current   a bus object.
- */
-void o_bus_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  if (o_current == NULL) {
-    return;
-  }
-
-  if (o_current->line == NULL) {
-    return;
-  }
-
-  world_get_bus_bounds(toplevel, o_current, &left, &top, &right, &bottom);
-
-  o_current->w_left = left;
-  o_current->w_top = top;
-  o_current->w_right = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief read a bus object from a char buffer
@@ -242,7 +213,7 @@ void o_bus_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object)
   object->line->y[1] = object->line->y[1] + dy;
 
   /* Update bounding box */
-  o_bus_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
   s_tile_update_object(toplevel, object);
 }
@@ -508,7 +479,7 @@ void o_bus_consolidate(TOPLEVEL *toplevel)
  *  This function modifies one point of a bus \a object. The point
  *  is specified by the \a whichone variable and the new coordinate
  *  is (\a x, \a y).
- *  
+ *
  *  \param toplevel   The TOPLEVEL object
  *  \param object     The bus OBJECT to modify
  *  \param x          new x-coord of the bus point
@@ -516,12 +487,12 @@ void o_bus_consolidate(TOPLEVEL *toplevel)
  *  \param whichone   bus point to modify
  */
 void o_bus_modify(TOPLEVEL *toplevel, OBJECT *object,
-		  int x, int y, int whichone)
+                  int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
 
-  o_bus_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
   s_tile_update_object(toplevel, object);
 }

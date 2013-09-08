@@ -81,17 +81,17 @@ x_fileselect_callback_update_preview (GtkFileChooser *chooser,
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
   if (filename != NULL &&
-      !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
+    !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
     preview_filename = filename;
-  }
+    }
 
-  /* update preview */
-  g_object_set (preview,
-                "filename", preview_filename,
-                "active", (preview_filename != NULL),
-                NULL);
+    /* update preview */
+    g_object_set (preview,
+                  "filename", preview_filename,
+                  "active", (preview_filename != NULL),
+                  NULL);
 
-  g_free (filename);
+    g_free (filename);
 }
 
 /*! \brief Adds a preview to a file chooser.
@@ -177,9 +177,9 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
-					  -1);
+                                          GTK_RESPONSE_ACCEPT,
+                                          GTK_RESPONSE_CANCEL,
+                                          -1);
 
   /* 09/09/12 W. E. Hill Added conditional to check state of configuration
    * variable file_preview.
@@ -205,7 +205,7 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
 
     GSList *tmp, *filenames =
-      gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+    gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
 
     /* open each file */
     for (tmp = filenames; tmp != NULL; tmp = g_slist_next (tmp)) {
@@ -259,14 +259,14 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
-					  -1);
+                                          GTK_RESPONSE_ACCEPT,
+                                          GTK_RESPONSE_CANCEL,
+                                          -1);
 
   /* set default response signal. This is usually triggered by the
-     "Return" key */
+   *     "Return" key */
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-				  GTK_RESPONSE_ACCEPT);
+                                  GTK_RESPONSE_ACCEPT);
 
   g_object_set (dialog,
                 /* GtkFileChooser */
@@ -278,8 +278,8 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
   x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
   /* set the current filename or directory name if new document */
   if ((toplevel->page_current->page_filename != NULL) &&
-      g_file_test (toplevel->page_current->page_filename,
-                   G_FILE_TEST_EXISTS)) {
+       g_file_test (toplevel->page_current->page_filename,
+                    G_FILE_TEST_EXISTS)) {
     gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog),
                                    toplevel->page_current->page_filename);
   }
@@ -293,31 +293,31 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
   }
 
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-				  GTK_RESPONSE_ACCEPT);
+                                  GTK_RESPONSE_ACCEPT);
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     char *filename =
-      gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
 
     /* If the file already exists, display a dialog box to check if
-       the user really wants to overwrite it. */
+     *       the user really wants to overwrite it. */
     if ((filename != NULL) && g_file_test (filename, G_FILE_TEST_EXISTS)) {
       GtkWidget *checkdialog =
-        gtk_message_dialog_new (GTK_WINDOW(dialog),
-                                (GTK_DIALOG_MODAL |
-                                 GTK_DIALOG_DESTROY_WITH_PARENT),
-                                GTK_MESSAGE_QUESTION,
-                                GTK_BUTTONS_YES_NO,
-                                _("The selected file `%s' already exists.\n\n"
-                                  "Would you like to overwrite it?"),
-                                filename);
-      gtk_window_set_title (GTK_WINDOW (checkdialog), _("Overwrite file?"));
-      if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GTK_RESPONSE_YES) {
-        q_log_message (_("Save cancelled on user request\n"));
-        g_free (filename);
-        filename = NULL;
-      }
-      gtk_widget_destroy (checkdialog);
+      gtk_message_dialog_new (GTK_WINDOW(dialog),
+                              (GTK_DIALOG_MODAL |
+                              GTK_DIALOG_DESTROY_WITH_PARENT),
+                              GTK_MESSAGE_QUESTION,
+                              GTK_BUTTONS_YES_NO,
+                              _("The selected file `%s' already exists.\n\n"
+                              "Would you like to overwrite it?"),
+                              filename);
+                              gtk_window_set_title (GTK_WINDOW (checkdialog), _("Overwrite file?"));
+                              if (gtk_dialog_run (GTK_DIALOG (checkdialog)) != GTK_RESPONSE_YES) {
+                                q_log_message (_("Save cancelled on user request\n"));
+                                g_free (filename);
+                                filename = NULL;
+                              }
+                              gtk_widget_destroy (checkdialog);
     }
     /* try saving current page of toplevel to file filename */
     if (filename != NULL) {
@@ -361,9 +361,9 @@ bool x_fileselect_load_backup(GString *message)
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_YES,
-					  GTK_RESPONSE_NO,
-					  -1);
+                                          GTK_RESPONSE_YES,
+                                          GTK_RESPONSE_NO,
+                                          -1);
 
   gtk_widget_show (dialog);
 

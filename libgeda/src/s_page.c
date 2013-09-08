@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -132,7 +132,14 @@ PAGE *s_page_new (TOPLEVEL *toplevel, const char *filename)
     free (pwd);
   }
 
-  g_assert (toplevel->init_bottom != 0);
+  if (toplevel->init_bottom == 0) {
+
+    fprintf (stderr, "Internal Error: "
+                     "<%s><libgeda:s_page_new>"
+                     "init_bottom = 0, line %d.\n", __FILE__, __LINE__);
+    return page;
+  }
+
   page->coord_aspectratio = (
     ((float) toplevel->init_right) / ((float) toplevel->init_bottom));
 
@@ -520,7 +527,7 @@ int s_page_save_all (TOPLEVEL *toplevel)
  *  \param [in] list  GedaPageList to check CHANGED flag in.
  *  \return 1 if any page has the CHANGED flag set, 0 otherwise.
  */
-gboolean s_page_check_changed (GedaPageList *list)
+bool s_page_check_changed (GedaPageList *list)
 {
   const GList *iter;
   PAGE *p_current;

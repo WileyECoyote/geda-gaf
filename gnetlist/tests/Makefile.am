@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-SUBDIRS = hierarchy hierarchy2 drc2
+SUBDIRS = hierarchy hierarchy2 drc2 scripts
 # common
 
 EXTRA_DIST = runtest.sh \

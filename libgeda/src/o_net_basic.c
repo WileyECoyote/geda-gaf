@@ -42,8 +42,7 @@
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-gboolean o_net_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
-                              OBJECT *object)
+bool o_net_get_position (TOPLEVEL *toplevel, int *x, int *y, OBJECT *object)
 {
   return o_line_get_position(toplevel, x, y, object);
 }
@@ -79,7 +78,7 @@ void world_get_net_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left,
  *  \return A new net OBJECT
  */
 OBJECT *o_net_new(TOPLEVEL *toplevel, char type,
-		  int color, int x1, int y1, int x2, int y2)
+                  int color, int x1, int y1, int x2, int y2)
 {
   OBJECT *new_node;
 
@@ -96,39 +95,9 @@ OBJECT *o_net_new(TOPLEVEL *toplevel, char type,
 
   new_node->line_width = o_style_get_net_width(toplevel);
 
-  o_net_recalc (toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
-}
-
-/*! \brief recalc the visual properties of a net object
- *  \par Function Description
- *  This function updates the visual coords of the \a o_current object.
- *  
- *  \param [in]     toplevel    The TOPLEVEL object.
- *  \param [in]     o_current   a net object.
- *
- */
-void o_net_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  if (o_current == NULL) {
-    return;
-  }
-
-  if (o_current->line == NULL) {
-    return;
-  }
-
-  world_get_net_bounds(toplevel, o_current, &left, &top, &right,
-                 &bottom);
-
-  o_current->w_left = left;
-  o_current->w_top = top;
-  o_current->w_right = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief read a net object from a char buffer
@@ -222,7 +191,7 @@ void o_net_translate_world(TOPLEVEL *toplevel, int dx, int dy,
   object->line->y[1] = object->line->y[1] + dy;
 
   /* Update bounding box */
-  o_net_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
   s_tile_update_object(toplevel, object);
 }
@@ -566,13 +535,12 @@ static int o_net_consolidate_segments (TOPLEVEL *toplevel, OBJECT *object)
           }
 
           s_delete_object (toplevel, other_object);
-          o_net_recalc(toplevel, object);
+          object->w_bounds_valid_for = NULL;;
           s_tile_update_object(toplevel, object);
           s_conn_update_object (toplevel, object);
           return(-1);
         }
       }
-      
     }
 
     c_current = g_list_next (c_current);
@@ -630,12 +598,12 @@ void o_net_consolidate(TOPLEVEL *toplevel, PAGE *page)
  *
  */
 void o_net_modify(TOPLEVEL *toplevel, OBJECT *object,
-		  int x, int y, int whichone)
+                  int x, int y, int whichone)
 {
   object->line->x[whichone] = x;
   object->line->y[whichone] = y;
 
-  o_net_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 
   s_tile_update_object(toplevel, object);
 }

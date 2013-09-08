@@ -252,14 +252,14 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   int argv_index;
   GSList *file_list = NULL;
-  
+
 #ifdef HAVE_GTHREAD
   /* Gattrib isn't threaded, but some of GTK's file chooser
    * backends uses threading so we need to call g_thread_init().
    * GLib requires threading be initialised before any other GLib
    * functions are called. Do it now if its not already setup.  */
-  if (!g_thread_supported ())
-    g_thread_init (NULL);                //XInitThreads
+  //if (!g_thread_supported ())
+    //g_thread_init (NULL);                //XInitThreads
 #endif
 
   /* Initialize gEDA stuff */
@@ -289,7 +289,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   g_rc_parse (pr_current, argv[0], "gattribrc", NULL);
 
   i_vars_set(pr_current);
-      
+
   gtk_init(&argc, &argv);
 
   x_window_init();  
@@ -309,7 +309,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   /* ---------- Initialize SHEET_DATA data structure ---------- */
   sheet_head = s_sheet_data_new();   /* sheet_head was declared in globals.h */
-  
+
   if (file_list) { /* do we need to call g here? */
     /* Attempt to Load the files */
     if(x_fileselect_load_files(file_list)) {

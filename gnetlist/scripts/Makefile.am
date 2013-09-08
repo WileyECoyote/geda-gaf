@@ -1,18 +1,31 @@
+# Work around for Autoobsolete distro check is as follows: This file
+# does not need to be modified for make install for make distcheck to
+# work. Three scripts are built two are not. For the two that are not
+# there should be a soft link .in to the .sh files, then distrocheck
+# include them in the builddir.
 
 SUFFIXES = .sh
 
-bin_SCRIPTS = 	bompp \
+TARGET_DIR = $(bindir)
+
+SHdir	 =  $(TARGET_DIR)
+
+SH_FILES = 	bompp \
 		bom_xref \
 		annotate \
 		unannotate \
 		sch2eaglepos
 
-EXTRA_DIST = $(bin_SCRIPTS)
+#EXTRA_DIST = unannotate.sh sch2eaglepos.sh
 
-CLEANFILES = *.log *~  $(bin_SCRIPTS)
+distcheck:
 
-MOSTLYCLEANFILES = $(CONFIG_CLEAN) $(bin_SCRIPTS)
+dist_bin_SCRIPTS=$(SH_FILES)
 
-DISTCLEANFILES = *.log core FILE *~  $(bin_SCRIPTS)
+CLEANFILES = *.log *~  $(SH_FILES)
 
-MAINTAINERCLEANFILES = *.log *~ Makefile.in  $(bin_SCRIPTS)
+MOSTLYCLEANFILES = $(CONFIG_CLEAN) $(SH_FILES)
+
+DISTCLEANFILES = *.log core FILE *~  $(SH_FILES)
+
+MAINTAINERCLEANFILES = *.log *~ Makefile.in  $(SH_FILES)

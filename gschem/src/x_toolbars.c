@@ -30,6 +30,8 @@
 #include <gschem.h>           /* include gschem specific headers  */
 #include <x_menu.h>
 
+#define DEBUG_TOOLBARS 0
+
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
@@ -93,17 +95,17 @@ const char* IDS_Toolbar_Names[] = {
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/
   { ACTION(FILE_NEW),           "New",        "Create a new file", GSCHEM_MAP(NEW)},
-  { ACTION(FILE_OPEN), 	        "Open",       "Open file",         GSCHEM_MAP(OPEN)},
-  { ACTION(FILE_SAVE), 	        "Save",       "Save file",         GSCHEM_MAP(SAVE)},
-  { ACTION(FILE_SAVE_AS), 	"Save As",    "Save the file to different name or location", "Private"},
+  { ACTION(FILE_OPEN),          "Open",       "Open file",         GSCHEM_MAP(OPEN)},
+  { ACTION(FILE_SAVE),          "Save",       "Save file",         GSCHEM_MAP(SAVE)},
+  { ACTION(FILE_SAVE_AS),       "Save As",    "Save the file to different name or location", "Private"},
   { ACTION(FILE_CLOSE),         "Close",      "Close the current file", GSCHEM_MAP(PROJECT_CLOSE)},
 
   { ACTION(FILE_PRINT),         "Print",      "Open the Print Dialog",  "Private"}, /* Most do a ZAP print from bar */
   { ACTION(FILE_WRITE_PDF),     "Write PDF",  "Create PDF document", "Private"},
 
-  { ACTION(EDIT_CB_CUT),	"Cut",        "Cut selection to the clipboard",     "Private"},
-  { ACTION(EDIT_CB_COPY),  	"Copy",       "Copy selection to the clipboard",    "Private"},
-  { ACTION(EDIT_CB_PASTE),	"Paste",      "Paste selection from the clipboard", "Private"},
+  { ACTION(EDIT_CB_CUT),        "Cut",        "Cut selection to the clipboard",     "Private"},
+  { ACTION(EDIT_CB_COPY),       "Copy",       "Copy selection to the clipboard",    "Private"},
+  { ACTION(EDIT_CB_PASTE),      "Paste",      "Paste selection from the clipboard", "Private"},
 
   { ACTION(EDIT_UNDO),          "Undo",       "Undo the last operation",       GSCHEM_MAP(UNDO)},
   { ACTION(EDIT_REDO),          "Redo",       "Redo the last undo",            GSCHEM_MAP(REDO)},
@@ -301,6 +303,11 @@ static void x_toolbars_execute_radio (GtkToggleButton *button, GSCHEM_TOPLEVEL* 
   char* action;
 
   action = g_object_get_data (G_OBJECT(button), "action");
+
+#if DEBUG_TOOLBARS
+  fprintf(stderr, "x_toolbars_execute_radio: action=%s\n",action);
+#endif
+
   if (strcmp(action, "none") != 0)
     if (button->active) {
       i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
@@ -963,7 +970,7 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   SET_TOOLBAR_WC       (w_current->page_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->page_handlebox, Page_Toolbar );
 
-#ifdef DEBUG_TOOLBARS
+#if DEBUG_TOOLBARS
   fprintf(stderr, "what happen to [%s]\n", GAF_SEE_NOTES_BITMAP ); /* can fill in missing icon */
 #endif
 

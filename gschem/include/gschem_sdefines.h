@@ -38,7 +38,9 @@
 ;; WEH | 01/06/13 |  Added Bus Ripper Strings for intergration with the
 ;;     |          |  configure settings dailog.
 ;; WEH | 01/24/13 |  Add filenames for help documents
-
+;; ------------------------------------------------------------------
+;; WEH | 08/24/13 | Changed IDS_SINGLE_ATTRRI to IDS_SINGLE_ATTRIR and
+;;                | updated to type modeless.
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -63,6 +65,9 @@
 #define SYMBOL_FILTER              "*.sym"
 
 #define TITLE_BLOCK_PATH           "/sym/titleblock"
+#define DEFAULT_TITLEBLOCK         "title-B.sym"
+
+#define DEFAULT_FONT_NAME          "Arial"
 
 #define DEFAULT_UNTITLED_NAME      "untitled"
 
@@ -73,9 +78,9 @@
 #define HELP_WIKI_FILE             "index.html"
 
 /* Filenames for Stock Color Maps  */
-#define DARK_COLOR_MAP   	   "gschem-colormap-darkbg"
-#define LIGHT_COLOR_MAP 	   "gschem-colormap-lightbg"
-#define BW_COLOR_MAP 		   "gschem-colormap-bw"
+#define DARK_COLOR_MAP             "gschem-colormap-darkbg"
+#define LIGHT_COLOR_MAP            "gschem-colormap-lightbg"
+#define BW_COLOR_MAP               "gschem-colormap-bw"
 #define CUSTOM_COLOR_MAP           "gschem-colormap-custom"
 
 /* For x_window.c */
@@ -108,7 +113,7 @@
 #define IDS_COORDINATES          "coordinates"  /* Type: MODELESS */
 #define IDS_CONFIG_SETTINGS      "settings"     /* Type: MODAL    */
 #define IDS_COMP_SELECT          "compselect"
-#define IDS_SINGLE_ATTRBI        "singleattrib" /* Type: MODAL    */
+#define IDS_SINGLE_ATTRIR        "singleattrib" /* Type: MODELESS */
 
 #define IDS_MULTI_ATTRBI         "multiattrib"  /* Type: MODELESS */
 
@@ -187,7 +192,7 @@
 
 /* Third button Function */
 #define RC_STR_3RD_POPUP    "Popup"
-#define RC_STR_3RD_PAN	    "Pan"
+#define RC_STR_3RD_PAN      "Pan"
 
 /* Scroll Wheel Mode */
 #define RC_STR_SCROLL_GTK     "gtk"

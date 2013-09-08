@@ -946,8 +946,14 @@ void o_grips_motion(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   int grip = w_current->which_grip;
 
-  g_assert( w_current->inside_action != 0 );
-  g_return_if_fail( w_current->which_object != NULL );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_grips_motion> Not inside action\n");
+    return;
+  }
+  if (w_current->which_object == NULL) {
+    s_log_message("Internal Error Detected: <o_grips_motion> which_object == NULL\n");
+    return;
+  }
 
   switch(w_current->which_object->type) {
     case OBJ_ARC:

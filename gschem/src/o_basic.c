@@ -56,9 +56,10 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   GList *iter;
   BOX *world_rects;
 
+  int render_flags;
 
   EdaRenderer *renderer;
-  int render_flags;
+
   GArray *render_color_map = NULL;
   GArray *render_outline_color_map = NULL;
   cairo_matrix_t render_mtx;
@@ -324,7 +325,6 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   g_object_unref (G_OBJECT (renderer));
   g_array_free (render_color_map, TRUE);
   g_array_free (render_outline_color_map, TRUE);
-
 }
 
 
@@ -392,9 +392,8 @@ int o_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
   return(TRUE);
 }
 
-
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Function Clean State - if drawing action in-progress
  *  \par Function Description
  *  This function is neccesary to make jumps between event_states.
  *  If we are inside an drawing action that created something on the dc,

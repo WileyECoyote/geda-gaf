@@ -8,10 +8,11 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [2.0.6], [https://bugs.launchpad.net/geda], [geda-gaf])
+AC_INIT([gEDA/gaf], [2.0.7], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
-AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
+AC_CONFIG_SRCDIR([version.h.in])
+#AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
 AC_CONFIG_AUX_DIR([build-tools])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
@@ -118,7 +119,12 @@ PKG_CHECK_MODULES(PANGOCAIRO, [pangocairo >= 0.26], ,
 AX_CHECK_PANGO
 
 #####################################################################
-# Header files & particular functions
+# Multitasking and Threading ( Not checked by GTK above )
+#####################################################################
+AC_PATH_X             # used for inclusion of X11.h, XInitThreads();
+
+#####################################################################
+# Check for Standard Header files & particular functions
 #####################################################################
 
 AX_GEDA_STD_CHECKS
@@ -161,7 +167,7 @@ AX_LIBGEDACAIRO([1:0:0])
 #####################################################################
 # Generate output
 #####################################################################
-#                 gnetlist/tests/common/Makefile
+#
 AC_CONFIG_FILES([Makefile
                  bitmaps/Makefile
                  include/Makefile
@@ -233,6 +239,7 @@ AC_CONFIG_FILES([Makefile
                  gnetlist/tests/hierarchy/Makefile
                  gnetlist/tests/hierarchy2/Makefile
                  gnetlist/tests/drc2/Makefile
+                 gnetlist/tests/scripts/Makefile
 
                  gnetlist/docs/Makefile
                  gnetlist/docs/vams/Makefile
@@ -244,6 +251,9 @@ AC_CONFIG_FILES([Makefile
                  gnetlist/lib/Makefile
                  gnetlist/utils/Makefile
                  gnetlist/scripts/Makefile
+                 gnetlist/scripts/annotate.sh
+                 gnetlist/scripts/bompp.sh
+                 gnetlist/scripts/bom_xref.sh
                  gnetlist/lib/system-gnetlistrc
 
                  utils/Makefile
@@ -261,7 +271,10 @@ AC_CONFIG_FILES([Makefile
                  utils/lib/Makefile
                  utils/lib/system-gschlasrc
                  utils/scripts/Makefile
+
+                 utils/scripts/garchive.py
                  utils/scripts/ginstall_local.sh
+
                  utils/src/Makefile
                  utils/tests/Makefile
                  utils/tests/gxyrs/Makefile

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -215,7 +215,12 @@ preview_update (Preview *preview)
   s_page_goto (preview_toplevel, s_page_new (preview_toplevel, "preview"));
 
   if (preview->active) {
-    g_assert ((preview->filename == NULL) || (preview->buffer == NULL));
+    if (preview->filename == NULL && (preview->buffer == NULL)) {
+      s_log_message ("Internal Error: <%s><preview_update>"
+                     "need filename or a buffer, line %d.\n",
+                     __FILE__, __LINE__);
+      return;
+    }
     if (preview->filename != NULL) {
       /* open up file in current page */
       f_open_flags (preview_toplevel, preview_toplevel->page_current,
@@ -426,15 +431,21 @@ preview_init (Preview *preview)
 }
 
 static void
-preview_set_property (GObject *object,
-                      guint property_id,
-                      const GValue *value,
-                      GParamSpec *pspec)
+preview_set_property (GObject *object, unsigned int property_id,
+                      const GValue *value, GParamSpec *pspec)
 {
-  Preview *preview = PREVIEW (object);
-  GSCHEM_TOPLEVEL *preview_w_current = preview->preview_w_current;
+  GSCHEM_TOPLEVEL *preview_w_current;
+  Preview *preview;
 
-  g_assert (preview_w_current != NULL);
+  preview           = PREVIEW (object);
+  preview_w_current = preview->preview_w_current;
+
+  if (preview_w_current == NULL) {
+    s_log_message ("Internal Error: <%s><preview_set_property>"
+                    "preview_w_current = NULL, line %d.\n",
+                   __FILE__, __LINE__);
+    return;
+  }
 
   switch(property_id) {
       case PROP_FILENAME:
@@ -480,10 +491,16 @@ preview_get_property (GObject *object,
 
   switch(property_id) {
       case PROP_FILENAME:
-        g_assert (preview_w_current != NULL);
-        /* return the filename of the current page in toplevel */
-        g_value_set_string (value,
-                            preview_w_current->toplevel->page_current->page_filename);
+        if (preview_w_current != NULL) {
+                  /* return the filename of the current page in toplevel */
+          g_value_set_string (value, preview_w_current->
+                                     toplevel->page_current->page_filename);
+        }
+        else {
+          s_log_message ("Internal Error: <%s><preview_get_property>"
+                         "preview_w_current = NULL, line %d.\n",
+                         __FILE__, __LINE__);
+        }
         break;
       case PROP_ACTIVE:
         g_value_set_boolean (value, preview->active);

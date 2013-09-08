@@ -1,0 +1,86 @@
+[options]
+# wordswap swaps labels if the pin is on the right side an looks like this:
+#   "PB1 (CLK)". That's useful for micro controller port labels
+# rotate_labels rotates the pintext of top and bottom pins
+#   this is useful for large symbols like FPGAs with more than 100 pins
+# sort_labels will sort the pins by it's labels
+#   useful for address ports, busses, ...
+wordswap=yes
+rotate_labels=no
+sort_labels=no
+generate_pinseq=yes
+sym_width=4800
+pinwidthvertical=300
+pinwidthhorizontal=400
+
+[geda_attr]
+# name will be printed in the top of the symbol
+# name is only some graphical text, not an attribute
+# version specifies a gschem version.
+# if you have a device with slots, you'll have to use slot= and slotdef=
+# use comment= if there are special information you want to add
+version=20060113 1
+name=PIC18F4550_DIP40
+device=PIC18F4550_DIP40
+refdes=U?
+footprint=DIP40
+description=Microcontroller with USB interface
+documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/39632D.pdf
+author=Wojciech M. Zabolotny <wzab@ise.pw.edu.pl>
+dist-license=GPL
+use-license=public domain
+numslots=0
+#slot=1
+#slotdef=1:
+#slotdef=2:
+#slotdef=3:
+#slotdef=4:
+#comment=
+#comment=
+#comment=
+[pins]
+#-----------------------------------------------------                          
+#pinnr  seq     type    style   posit.  net     label                           
+#-----------------------------------------------------  
+1		io	line	L		_MCLR_/VPP/RE3
+2		io	line	L		RA0/AN0
+3		io	line	L		RA1/AN1
+4		io	line	L		RA2/AN2/VREF-/CVREF
+5		io	line	L		RA3/AN3/VREF+
+6		io	line	L		RA4/T0CKI/C1OUT/RCV
+7		io	line	L		RA5/AN4/_SS_/HLVDIN/C2OUT
+8		io	line	L		RE0/AN5/CK1SPP
+9		io	line	L		RE1/AN6/CK2SPP
+10		io	line	L		RE2/AN7/OESPP
+11		pwr	line	L		VDD
+12		pwr	line	L		VSS
+13		io	line	L		OSC1/CLKI
+14		io	line	L		OSC2/CLK0/RA6
+15		io	line	L		RC0/T1OSO/T13CKI
+16		io	line	L		RC1/T1OSI/CCP2/_UOE_
+17		io	line	L		RC2/CCP1/P1A
+18		pwr	line	L		VUSB
+19		io	line	L		RD0/SPP0
+20		io	line	L		RD1/SPP1
+						
+40		io	line	R		RB7/KBI3/PGD
+39		io	line	R		RB6/KBI2/PGC
+38		io	line	R		RB5/KBI1/PGM
+37		io	line	R		RB4/AN11/KBI0/CSSPP
+36		io	line	R		RB3/AN9/CCP2/VPO
+35		io	line	R		RB2/AN8/IN2/VMO
+34		io	line	R		RB1/AN10/INT1/SCK/SCL
+33		io	line	R		RB0/AN12/INT0/FLT0/SDI/SDA
+32		pwr	line	R		VDD
+31		pwr	line	R		VSS
+30		io	line	R		RD7/SPP7/P1D
+29		io	line	R		RD6/SPP6/P1C
+28		io	line	R		RD5/SPP5/P1B
+27		io	line	R		RD4/SPP4
+26		io	line	R		RC7/RX/DT/SDO
+25		io	line	R		RC6/TX/CK
+24		io	line	R		RC5/D+/VP
+23		io	line	R		RC4/D-/VM
+22		io	line	R		RD3/SPP3
+21		io	line	R		RD2/SPP2
+

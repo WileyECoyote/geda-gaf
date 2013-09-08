@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,32 +38,32 @@
 /* update object_tail or any list of that matter */
 NETLIST *s_netlist_return_tail(NETLIST * head)
 {
-    NETLIST *nl_current = NULL;
-    NETLIST *ret_struct = NULL;
+  NETLIST *nl_current = NULL;
+  NETLIST *ret_struct = NULL;
 
-    nl_current = head;
-    while (nl_current != NULL) {	/* goto end of list */
-	ret_struct = nl_current;
-	nl_current = nl_current->next;
-    }
+  nl_current = head;
+  while (nl_current != NULL) {	/* goto end of list */
+    ret_struct = nl_current;
+    nl_current = nl_current->next;
+  }
 
-    return (ret_struct);
+  return (ret_struct);
 }
 
 /* hack rename this to be s_return_head */
 /* update object_tail or any list of that matter */
 NETLIST *s_netlist_return_head(NETLIST * tail)
 {
-    NETLIST *nl_current = NULL;
-    NETLIST *ret_struct = NULL;
+  NETLIST *nl_current = NULL;
+  NETLIST *ret_struct = NULL;
 
-    nl_current = tail;
-    while (nl_current != NULL) {	/* goto end of list */
-	ret_struct = nl_current;
-	nl_current = nl_current->prev;
-    }
+  nl_current = tail;
+  while (nl_current != NULL) {	/* goto end of list */
+    ret_struct = nl_current;
+    nl_current = nl_current->prev;
+  }
 
-    return (ret_struct);
+  return (ret_struct);
 }
 
 

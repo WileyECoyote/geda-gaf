@@ -1,3 +1,9 @@
+2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+        * utils/src/convert_sym.c: In function convert_file, switch
+        default case, included 2nd if in 1st if, otherwise text_len
+        was being used uninitialized.
+
 2012-12-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * gsch2pcb.c: Rectified unused variables and functions.

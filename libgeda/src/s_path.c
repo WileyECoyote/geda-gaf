@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * Code originally from librsvg 2.22.2 (LGPL) Copyright (C) 2000 Eazel, Inc.
  *
@@ -42,7 +42,6 @@
 #include "libgeda_priv.h"
 
 #define NUM_BEZIER_SEGMENTS 100
-
 
 PATH *s_path_new (void)
 {

@@ -102,10 +102,17 @@ void x_console_destroy_command_buffer(gpointer user_data) {
       command_buffer=NULL; /* This is not optional */
   }
 }
-void x_console_init_commands(GSCHEM_TOPLEVEL *w_current) {
+void x_console_init_commands(GSCHEM_TOPLEVEL *w_current, int mode) {
   command_buffer=NULL;
-  //i_command_engage(w_current);
-  i_command_disengage(FALSE, FALSE);
+
+#ifdef HAVE_GTHREAD
+  if (mode > 1) {
+    i_command_engage(w_current);
+    v_log_message("Command interface is running in multitasking mode");
+  }
+  else
+#endif
+    i_command_disengage(FALSE, FALSE);
 }
 /*! ====================== @section Dialog-Handlers ==================== */
 
@@ -127,6 +134,8 @@ void x_console_init_commands(GSCHEM_TOPLEVEL *w_current) {
  * 01/01/13 Wiley E. Hill.
  * Added "gschem-toplevel" construct property so we could inherit
  * pointer to top-level variables.
+ * 08/31/13 Replaced g_assert with conditional to shown dialog only
+ * if is our console type instead of crashing entire program.
  */
 void x_console_open (GSCHEM_TOPLEVEL *w_current)
 {
@@ -165,9 +174,12 @@ void x_console_open (GSCHEM_TOPLEVEL *w_current)
     if( auto_place_mode )
       gtk_widget_set_uposition ( console_dialog, 10, 10);
     gtk_widget_show (console_dialog);
-  } else {
-    g_assert (IS_CONSOLE (console_dialog));
-    gtk_window_present ((GtkWindow*)console_dialog);
+  }
+  else {
+    if (IS_CONSOLE (console_dialog))
+      gtk_window_present ((GtkWindow*)console_dialog);
+    else
+      s_log_message("Internal Error: <x_console_open> object is not a console\n");
   }
 }
 
@@ -179,10 +191,13 @@ void x_console_open (GSCHEM_TOPLEVEL *w_current)
 void x_console_close ()
 {
   if (console_dialog) {
-    g_assert (IS_CONSOLE (console_dialog));
-    gtk_widget_destroy (console_dialog);
-    x_log_update_func = NULL;
-    console_dialog = NULL;
+    if (IS_CONSOLE (console_dialog)) {
+      gtk_widget_destroy (console_dialog);
+      x_log_update_func = NULL;
+      console_dialog = NULL;
+    }
+    else
+      s_log_message("Internal Error: <x_console_close> object is not a console\n");
   }
 }
 
@@ -198,11 +213,10 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
   switch (arg1) {
     case GTK_RESPONSE_DELETE_EVENT:
     case CONSOLE_RESPONSE_CLOSE:
-    g_assert (GTK_WIDGET (dialog) == console_dialog);
     x_console_close ();
     break;
     default:
-    g_assert_not_reached ();
+      s_log_message("Internal Error: <x_console_callback_response> unhandled case\n");
   }
 }
 

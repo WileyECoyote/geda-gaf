@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda gschem ru\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-05-04 19:12-0500\n"
+"POT-Creation-Date: 2013-05-09 09:51-0500\n"
 "PO-Revision-Date: 2012-12-04 01:55+0400\n"
 "Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
 "Language-Team: geda-user@delorie.com\n"
@@ -169,7 +169,7 @@ msgstr "gEDA/gschem версии %s%s.%s\n"
 msgid "Current locale settings: %s\n"
 msgstr "Текущие настройки локализации: %s\n"
 
-#: gschem/src/i_basic.c:70 gschem/src/x_window.c:497
+#: gschem/src/i_basic.c:70 gschem/src/x_window.c:501
 #: gschem/lib/system-gschemrc.scm:1594
 msgid "Select Mode"
 msgstr "Выделение"
@@ -1937,63 +1937,63 @@ msgstr "Не удалось выделить структуру графичес
 
 # Можно было бы перевести как "Оценить", но в этом случае не только
 # оцениваются выражения Scheme, но и можно выполнять встроенные процедуры
-#: gschem/src/x_window.c:447
+#: gschem/src/x_window.c:451
 msgid "Evaluate:"
 msgstr "Выполнить:"
 
 # Функция левой кнопки мыши.
 # Имеется в виду выбор чего угодно -- объектов, пунктов меню и т.д.
-#: gschem/src/x_window.c:466
+#: gschem/src/x_window.c:470
 msgid "Pick"
 msgstr "Выбор"
 
-#: gschem/src/x_window.c:483
+#: gschem/src/x_window.c:487
 msgid "Menu/Cancel"
 msgstr "Меню/Отмена действия"
 
-#: gschem/src/x_window.c:485
+#: gschem/src/x_window.c:489
 msgid "Pan/Cancel"
 msgstr "Прокрутка/Отмена действия"
 
-#: gschem/src/x_window.c:746
+#: gschem/src/x_window.c:751
 #, c-format
 msgid "New file [%s]\n"
 msgstr "Новый файл [%s]\n"
 
-#: gschem/src/x_window.c:793
+#: gschem/src/x_window.c:798
 #, fuzzy, c-format
 msgid "Loading schematic \"%s\"\n"
 msgstr "Загрузка схемы [%s]\n"
 
-#: gschem/src/x_window.c:943
+#: gschem/src/x_window.c:948
 #, c-format
 msgid "Could NOT save page [%s]\n"
 msgstr "Не удалось сохранить страницу [%s]\n"
 
-#: gschem/src/x_window.c:944
+#: gschem/src/x_window.c:949
 msgid "Error while trying to save"
 msgstr "Ошибка при попытке сохранения"
 
-#: gschem/src/x_window.c:956
+#: gschem/src/x_window.c:961
 #, c-format
 msgid "Saved as [%s]\n"
 msgstr "Файл сохранён под именем [%s]\n"
 
-#: gschem/src/x_window.c:958
+#: gschem/src/x_window.c:963
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Файл [%s] сохранён\n"
 
-#: gschem/src/x_window.c:960
+#: gschem/src/x_window.c:965
 msgid "Saved"
 msgstr "Файл сохранён"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Discarding page [%s]\n"
 msgstr "Закрытие [%s] без сохранения изменений\n"
 
-#: gschem/src/x_window.c:1029
+#: gschem/src/x_window.c:1034
 #, c-format
 msgid "Closing [%s]\n"
 msgstr "Закрытие [%s]\n"

@@ -1,0 +1,157 @@
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+
+AC_PREREQ([2.69])
+AC_INIT([FULL-PACKAGE-NAME], [VERSION], [BUG-REPORT-ADDRESS])
+AC_CONFIG_SRCDIR([version.h.in])
+AC_CONFIG_HEADERS([config.h])
+
+# Checks for programs.
+AC_PROG_CXX
+AC_PROG_AWK
+AC_PROG_CC
+AC_PROG_CPP
+AC_PROG_INSTALL
+AC_PROG_LN_S
+AC_PROG_MAKE_SET
+AC_PROG_RANLIB
+AC_PROG_MKDIR_P
+AC_PROG_YACC
+
+# Checks for libraries.
+# FIXME: Replace `main' with a function in `-lc':
+AC_CHECK_LIB([c], [main])
+# FIXME: Replace `main' with a function in `-lm':
+AC_CHECK_LIB([m], [main])
+
+# Checks for header files.
+AC_PATH_X
+AC_FUNC_ALLOCA
+AC_CHECK_HEADERS([argz.h fcntl.h float.h inttypes.h langinfo.h libintl.h limits.h locale.h malloc.h stddef.h stdint.h stdio_ext.h stdlib.h string.h strings.h sys/param.h sys/time.h unistd.h wchar.h])
+
+# Checks for typedefs, structures, and compiler characteristics.
+AC_CHECK_HEADER_STDBOOL
+AC_C_INLINE
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT8_T
+AC_TYPE_MODE_T
+AC_TYPE_SIZE_T
+AC_TYPE_SSIZE_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT8_T
+AC_CHECK_TYPES([ptrdiff_t])
+
+# Checks for library functions.
+AC_FUNC_CHOWN
+AM_GNU_GETTEXT
+AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK
+AC_FUNC_MALLOC
+AC_FUNC_MMAP
+AC_FUNC_REALLOC
+AC_FUNC_STRTOD
+AC_CHECK_FUNCS([__argz_count __argz_next __argz_stringify floor getcwd memmove mempcpy memset mkdir munmap nl_langinfo pow rint setlocale sqrt stpcpy strcasecmp strchr strcspn strdup strerror strndup strrchr strstr strtoul])
+
+AC_CONFIG_FILES([Makefile
+                 bitmaps/Makefile
+                 docs/Makefile
+                 docs/scheme-api/Makefile
+                 docs/symbols/Makefile
+                 docs/toplevel/Makefile
+                 docs/wiki/Makefile
+                 examples/Makefile
+                 examples/RF_Amp/Makefile
+                 examples/RF_Amp/model/Makefile
+                 examples/RF_Amp/sym/Makefile
+                 examples/TwoStageAmp/Makefile
+                 examples/gTAG/Makefile
+                 examples/lightning_detector/Makefile
+                 gaf/Makefile
+                 gattrib/Makefile
+                 gattrib/data/Makefile
+                 gattrib/design/Makefile
+                 gattrib/docs/Makefile
+                 gattrib/include/Makefile
+                 gattrib/include/gtksheet/Makefile
+                 gattrib/lib/Makefile
+                 gattrib/src/Makefile
+                 gattrib/src/gtksheet/Makefile
+                 gnetlist/Makefile
+                 gnetlist/docs/Makefile
+                 gnetlist/docs/vams/Makefile
+                 gnetlist/examples/Makefile
+                 gnetlist/examples/switcap/Makefile
+                 gnetlist/examples/vams/Makefile
+                 gnetlist/examples/vams/vhdl/Makefile
+                 gnetlist/examples/vams/vhdl/basic-vhdl/Makefile
+                 gnetlist/examples/vams/vhdl/new-vhdl/Makefile
+                 gnetlist/include/Makefile
+                 gnetlist/lib/Makefile
+                 gnetlist/scheme/Makefile
+                 gnetlist/scripts/Makefile
+                 gnetlist/src/Makefile
+                 gnetlist/tests/Makefile
+                 gnetlist/tests/common/Makefile
+                 gnetlist/tests/drc2/Makefile
+                 gnetlist/tests/hierarchy/Makefile
+                 gnetlist/tests/hierarchy2/Makefile
+                 gnetlist/tests/scripts/Makefile
+                 gnetlist/utils/Makefile
+                 gschem/Makefile
+                 gschem/bitmap/Makefile
+                 gschem/data/Makefile
+                 gschem/docs/Makefile
+                 gschem/examples/Makefile
+                 gschem/include/Makefile
+                 gschem/lib/Makefile
+                 gschem/scheme/Makefile
+                 gschem/scripts/Makefile
+                 gschem/src/Makefile
+                 gschem/src/widgets/makefile
+                 gschem/tests/Makefile
+                 gsymcheck/Makefile
+                 gsymcheck/docs/Makefile
+                 gsymcheck/include/Makefile
+                 gsymcheck/lib/Makefile
+                 gsymcheck/src/Makefile
+                 gsymcheck/tests/Makefile
+                 include/Makefile
+                 intl/Makefile
+                 libgeda/Makefile
+                 libgeda/data/Makefile
+                 libgeda/docs/Makefile
+                 libgeda/docs/images/Makefile
+                 libgeda/include/Makefile
+                 libgeda/lib/Makefile
+                 libgeda/scheme/Makefile
+                 libgeda/share/Makefile
+                 libgeda/shell/Makefile
+                 libgeda/src/Makefile
+                 libgedacairo/Makefile
+                 libgedacairo/include/Makefile
+                 libgedacairo/src/Makefile
+                 symbols/Makefile
+                 utils/Makefile
+                 utils/docs/Makefile
+                 utils/examples/Makefile
+                 utils/examples/gmk_sym/Makefile
+                 utils/examples/gsch2pcb/Makefile
+                 utils/examples/tragesym/Makefile
+                 utils/gmake/Makefile
+                 utils/gsch2pdf/Makefile
+                 utils/gschemdoc/Makefile
+                 utils/gschlas/Makefile
+                 utils/gxyrs/Makefile
+                 utils/include/Makefile
+                 utils/lib/Makefile
+                 utils/scripts/Makefile
+                 utils/src/Makefile
+                 utils/tests/Makefile
+                 utils/tests/gxyrs/Makefile
+                 utils/tests/gxyrs/inputs/Makefile
+                 utils/tests/gxyrs/outputs/Makefile
+                 utils/tests/refdes_renum/Makefile
+                 utils/tests/refdes_renum/inputs/Makefile
+                 utils/tests/refdes_renum/outputs/Makefile])
+AC_OUTPUT

@@ -1,0 +1,71 @@
+.TH bompp 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+bompp \- Format a gEDA Bill of Materials (BOM) file
+
+.SH SYNOPSIS
+.B bompp bomfile >output
+
+.RI [ OPTIONS ] None
+
+.SH DESCRIPTION
+.B bompp
+
+This is a utility script to format BOM files produced by gnetlist. The bom parameters for gnetlist should be device, value, footprint, refdes. One way this can be done is to create a text file with each of these attributes on separate lines and name the file "attribs". This file should look like this:
+
+device
+value
+footprint
+refdes
+
+In the directory containing the file named "attribs", issue a command like:
+
+gnetlist -g bom -o temp.bom /path/example.sch (omit path if the schematic is in the same directory)
+
+This will create the raw bom file "temp.bom". Alternativly, the bom could be generated without the "attribs" file by invoking gnetlist like:
+
+gnetlist  -g bom -o temp.bom example.sch -Oattribs=device,value,footprint,refdes
+
+Then bompp can be used to produce a formated bom using a command like:
+
+bompp temp.bom >example.bom
+
+bompp adds the following headers:
+
+Device", "Value", "Footprint", "Urefs
+
+and aligns the data in columns under the headers.
+
+.SH QUICK
+.B usage: bompp raw.bom >formated.bom
+example:
+temp.bom >example.bom<ENTER>.
+
+.SH PARAMETERS
+The only parameter is the name of the unformatted bom file.
+
+.SH OPTIONS
+No options are available
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of bompp:
+https://bugs.launchpad.net/geda/bompp/+filebug
+
+.SH AUTHOR
+Matt Ettus matt@ettus.com
+
+.SH SEE ALSO
+.BR gnetlist (1) bom_xref (1) annotate (1) unannotate (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2012-2013 Matt Ettus License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

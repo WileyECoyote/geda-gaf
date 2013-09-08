@@ -239,17 +239,20 @@ geda_handle_box_class_init (GedaHandleBoxClass *class)
 	          G_OBJECT_CLASS_TYPE (gobject_class),
 	          G_SIGNAL_RUN_FIRST,
 	          G_STRUCT_OFFSET (GedaHandleBoxClass, child_attached),
-	          NULL, NULL,
-	           NULL,
-	          G_TYPE_NONE, 1,
+	          NULL,
+                  NULL,
+	          g_cclosure_marshal_VOID__BOOLEAN,
+	          G_TYPE_NONE,
+                  1,
 	          GTK_TYPE_WIDGET);
+
   handle_box_signals[SIGNAL_CHILD_DETACHED] =
     g_signal_new ("child-detached",
 	          G_OBJECT_CLASS_TYPE (gobject_class),
 	          G_SIGNAL_RUN_FIRST,
 	          G_STRUCT_OFFSET (GedaHandleBoxClass, child_detached),
 	          NULL, NULL,
-	           NULL,
+	          g_cclosure_marshal_VOID__BOOLEAN,
 	          G_TYPE_NONE, 1,
 	          GTK_TYPE_WIDGET);
 
@@ -700,61 +703,61 @@ geda_handle_box_draw_ghost (GedaHandleBox *handlebox)
 
   handle_position = effective_handle_position (handlebox);
   if (handle_position == GTK_POS_LEFT ||
-      handle_position == GTK_POS_RIGHT)
-    {
-      x = handle_position == GTK_POS_LEFT ? 0 : widget->allocation.width - DRAG_HANDLE_SIZE;
-      y = 0;
-      width = DRAG_HANDLE_SIZE;
-      height = widget->allocation.height;
-    }
+    handle_position == GTK_POS_RIGHT)
+  {
+    x = handle_position == GTK_POS_LEFT ? 0 : widget->allocation.width - DRAG_HANDLE_SIZE;
+    y = 0;
+    width = DRAG_HANDLE_SIZE;
+    height = widget->allocation.height;
+  }
   else
-    {
-      x = 0;
-      y = handle_position == GTK_POS_TOP ? 0 : widget->allocation.height - DRAG_HANDLE_SIZE;
-      width = widget->allocation.width;
-      height = DRAG_HANDLE_SIZE;
-    }
+  {
+    x = 0;
+    y = handle_position == GTK_POS_TOP ? 0 : widget->allocation.height - DRAG_HANDLE_SIZE;
+    width = widget->allocation.width;
+    height = DRAG_HANDLE_SIZE;
+  }
   gtk_paint_shadow (widget->style,
-	            widget->window,
-	            gtk_widget_get_state (widget),
-	            GTK_SHADOW_ETCHED_IN,
-	            NULL, widget, "handle",
-	            x,
-	            y,
-	            width,
-	            height);
-   if (handle_position == GTK_POS_LEFT ||
-       handle_position == GTK_POS_RIGHT)
-     gtk_paint_hline (widget->style,
-	              widget->window,
-	              gtk_widget_get_state (widget),
-	              NULL, widget, "handlebox",
-	              handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
-	              handle_position == GTK_POS_LEFT ? widget->allocation.width : widget->allocation.width - DRAG_HANDLE_SIZE,
-	              widget->allocation.height / 2);
-   else
-     gtk_paint_vline (widget->style,
-	              widget->window,
-	              gtk_widget_get_state (widget),
-	              NULL, widget, "handlebox",
-	              handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
-	              handle_position == GTK_POS_TOP ? widget->allocation.height : widget->allocation.height - DRAG_HANDLE_SIZE,
-	              widget->allocation.width / 2);
+                    widget->window,
+                    gtk_widget_get_state (widget),
+                    GTK_SHADOW_ETCHED_IN,
+                    NULL, widget, "handle",
+                    x,
+                    y,
+                    width,
+                    height);
+  if (handle_position == GTK_POS_LEFT ||
+    handle_position == GTK_POS_RIGHT)
+    gtk_paint_hline (widget->style,
+                     widget->window,
+                     gtk_widget_get_state (widget),
+                     NULL, widget, "handlebox",
+                     handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
+                     handle_position == GTK_POS_LEFT ? widget->allocation.width : widget->allocation.width - DRAG_HANDLE_SIZE,
+                     widget->allocation.height / 2);
+    else
+      gtk_paint_vline (widget->style,
+                       widget->window,
+                       gtk_widget_get_state (widget),
+                       NULL, widget, "handlebox",
+                       handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
+                       handle_position == GTK_POS_TOP ? widget->allocation.height : widget->allocation.height - DRAG_HANDLE_SIZE,
+                       widget->allocation.width / 2);
 }
 
 static void
-draw_textured_frame (GtkWidget *widget, GdkWindow *window, GdkRectangle *rect, GtkShadowType shadow,
-	             GdkRectangle *clip, GtkOrientation orientation)
+draw_textured_frame (GtkWidget *widget, GdkWindow *window, GdkRectangle *rect,
+                     GtkShadowType shadow, GdkRectangle *clip,
+                     GtkOrientation orientation)
 {
-   gtk_paint_handle (widget->style, window, GTK_STATE_NORMAL, shadow,
-	             clip, widget, "handlebox",
-	             rect->x, rect->y, rect->width, rect->height,
-	             orientation);
+  gtk_paint_handle (widget->style, window, GTK_STATE_NORMAL, shadow,
+                    clip, widget, "handlebox",
+                    rect->x, rect->y, rect->width, rect->height,
+                    orientation);
 }
 
 void
-geda_handle_box_set_shadow_type (GedaHandleBox  *handle_box,
-				 GtkShadowType  type)
+geda_handle_box_set_shadow_type (GedaHandleBox *handle_box, GtkShadowType type)
 {
   g_return_if_fail (GEDA_IS_HANDLE_BOX (handle_box));
 
@@ -877,80 +880,83 @@ geda_handle_box_paint (GtkWidget      *widget, GdkEventExpose *event, GdkRectang
   int handle_position;
   GtkOrientation handle_orientation;
 
-  bin = GTK_BIN (widget);
+  bin       = GTK_BIN (widget);
   handlebox = GEDA_HANDLE_BOX (widget);
 
-  handle_position = effective_handle_position (handlebox);
+  handle_orientation = GTK_ORIENTATION_VERTICAL;
+  handle_position    = effective_handle_position (handlebox);
 
-  width = gdk_window_get_width (handlebox->bin_window);
+  width  = gdk_window_get_width (handlebox->bin_window);
   height = gdk_window_get_height (handlebox->bin_window);
 
   if (!event)
     gtk_paint_box (widget->style,
-	           handlebox->bin_window,
-	           gtk_widget_get_state (widget),
-	           handlebox->shadow_type,
-	           area, widget, "handlebox_bin",
-	           0, 0, -1, -1);
-  else
-   gtk_paint_box (widget->style,
-	          handlebox->bin_window,
-	          gtk_widget_get_state (widget),
-	          handlebox->shadow_type,
-	          &event->area, widget, "handlebox_bin",
-	          0, 0, -1, -1);
+                   handlebox->bin_window,
+                   gtk_widget_get_state (widget),
+                   handlebox->shadow_type,
+                   area, widget, "handlebox_bin",
+                   0, 0, -1, -1);
+    else
+      gtk_paint_box (widget->style,
+                     handlebox->bin_window,
+                     gtk_widget_get_state (widget),
+                     handlebox->shadow_type,
+                     &event->area, widget, "handlebox_bin",
+                     0, 0, -1, -1);
 
-/* We currently draw the handle _above_ the relief of the handlebox.
- * it could also be drawn on the same level...
+      /* We currently draw the handle _above_ the relief of the handlebox.
+       * it could also be drawn on the same level...
+       *
+       *	 handlebox->handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
+       *	 handlebox->handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
+       *	 width,
+       *	 height);*/
 
-		 handlebox->handle_position == GTK_POS_LEFT ? DRAG_HANDLE_SIZE : 0,
-		 handlebox->handle_position == GTK_POS_TOP ? DRAG_HANDLE_SIZE : 0,
-		 width,
-		 height);*/
+      switch (handle_position)
+      {
+        case GTK_POS_LEFT:
+          rect.x = 0;
+          rect.y = 0;
+          rect.width = DRAG_HANDLE_SIZE;
+          rect.height = height;
+          handle_orientation = GTK_ORIENTATION_VERTICAL;
+          break;
+        case GTK_POS_RIGHT:
+          rect.x = width - DRAG_HANDLE_SIZE;
+          rect.y = 0;
+          rect.width = DRAG_HANDLE_SIZE;
+          rect.height = height;
+          handle_orientation = GTK_ORIENTATION_VERTICAL;
+          break;
+        case GTK_POS_TOP:
+          rect.x = 0;
+          rect.y = 0;
+          rect.width = width;
+          rect.height = DRAG_HANDLE_SIZE;
+          handle_orientation = GTK_ORIENTATION_HORIZONTAL;
+          break;
+        case GTK_POS_BOTTOM:
+          rect.x = 0;
+          rect.y = height - DRAG_HANDLE_SIZE;
+          rect.width = width;
+          rect.height = DRAG_HANDLE_SIZE;
+          handle_orientation = GTK_ORIENTATION_HORIZONTAL;
+          break;
+        default:
+          fprintf (stderr, "Internal Error: <%s><geda_handle_box_paint>"
+                           "unhandler case for <%d>, line %d.\n",
+                           __FILE__, handle_position, __LINE__);
+          break;
+      }
 
-  switch (handle_position)
-    {
-    case GTK_POS_LEFT:
-      rect.x = 0;
-      rect.y = 0;
-      rect.width = DRAG_HANDLE_SIZE;
-      rect.height = height;
-      handle_orientation = GTK_ORIENTATION_VERTICAL;
-      break;
-    case GTK_POS_RIGHT:
-      rect.x = width - DRAG_HANDLE_SIZE;
-      rect.y = 0;
-      rect.width = DRAG_HANDLE_SIZE;
-      rect.height = height;
-      handle_orientation = GTK_ORIENTATION_VERTICAL;
-      break;
-    case GTK_POS_TOP:
-      rect.x = 0;
-      rect.y = 0;
-      rect.width = width;
-      rect.height = DRAG_HANDLE_SIZE;
-      handle_orientation = GTK_ORIENTATION_HORIZONTAL;
-      break;
-    case GTK_POS_BOTTOM:
-      rect.x = 0;
-      rect.y = height - DRAG_HANDLE_SIZE;
-      rect.width = width;
-      rect.height = DRAG_HANDLE_SIZE;
-      handle_orientation = GTK_ORIENTATION_HORIZONTAL;
-      break;
-    default:
-      g_assert_not_reached ();
-      break;
-    }
+      if (gdk_rectangle_intersect (event ? &event->area : area, &rect, &dest))
+        draw_textured_frame (widget, handlebox->bin_window, &rect,
+                             GTK_SHADOW_OUT,
+                             event ? &event->area : area,
+                             handle_orientation);
 
-  if (gdk_rectangle_intersect (event ? &event->area : area, &rect, &dest))
-    draw_textured_frame (widget, handlebox->bin_window, &rect,
-                         GTK_SHADOW_OUT,
-                         event ? &event->area : area,
-                         handle_orientation);
-
-  if (bin->child && gtk_widget_get_visible (bin->child))
-    GTK_WIDGET_CLASS (geda_handle_box_parent_class)->expose_event (widget, event);
+        if (bin->child && gtk_widget_get_visible (bin->child))
+          GTK_WIDGET_CLASS (geda_handle_box_parent_class)->expose_event (widget, event);
 }
 
 static bool

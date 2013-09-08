@@ -101,11 +101,19 @@ void     eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map);
 cairo_t *eda_renderer_get_cairo_context (EdaRenderer *renderer);
 int      eda_renderer_get_cairo_flags   (EdaRenderer *renderer);
 
+const
+char    *eda_renderer_get_font_name     (EdaRenderer *renderer);
+void     eda_renderer_set_font_name     (EdaRenderer *renderer, char *name);
+
 bool     eda_renderer_set_flags   (EdaRenderer *renderer, int flags);
 int      eda_renderer_get_flags   (EdaRenderer *renderer);
 bool     eda_renderer_mask_flags  (EdaRenderer *renderer, int flags);
 
 int      eda_renderer_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
+                                       double *left, double *top,
+                                       double *right, double *bottom);
+
+int eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
                                        double *left, double *top,
                                        double *right, double *bottom);
 

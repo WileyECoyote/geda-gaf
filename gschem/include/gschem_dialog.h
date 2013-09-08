@@ -52,7 +52,7 @@
 typedef struct _GschemDialogClass GschemDialogClass;
 typedef struct _GschemDialog      GschemDialog;
 
-enum {
+typedef enum {
   GSCHEM_MODELESS_DIALOG,
   GSCHEM_DIALOG_MODAL               = 1 << 0, /* call gtk_window_set_modal (win, TRUE) */
   GSCHEM_DIALOG_DESTROY_WITH_PARENT = 1 << 1, /* call gtk_window_set_destroy_with_parent () */
@@ -68,12 +68,9 @@ enum {
 struct _GschemDialogClass {
   GtkDialogClass parent_class;
 
-  void (*geometry_save)    (GschemDialog *dialog,
-                            GKeyFile *key_file,
-                            char *group_name);
-  void (*geometry_restore) (GschemDialog *dialog,
-                            GKeyFile *key_file,
-                            char *group_name);
+  void (*geometry_save) (GschemDialog *dialog, EdaConfig *cfg, char *group);
+  void (*geometry_restore) (GschemDialog *dialog, EdaConfig *cfg, char *group);
+
 };
 
 struct _GschemDialog {

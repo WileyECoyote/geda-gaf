@@ -146,9 +146,6 @@ static void eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y,
 static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
                                                  double *left, double *top,
                                                  double *right, double *bottom);
-static int eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
-                                              double *left, double *top,
-                                              double *right, double *bottom);
 
 G_DEFINE_TYPE (EdaRenderer, eda_renderer, G_TYPE_OBJECT);
 
@@ -245,8 +242,12 @@ eda_renderer_init (EdaRenderer *renderer)
                                                 EDA_TYPE_RENDERER,
                                                 EdaRendererPrivate);
 
-  /* Set some sensible default options */
-  renderer->priv->font_name = g_strdup (DEFAULT_FONT_NAME);
+  /* Setup default options */
+//  renderer->priv->font_name = g_strdup (DEFAULT_FONT_NAME);
+  if (renderer->priv->font_name == NULL) {
+    renderer->priv->font_name = g_strdup (DEFAULT_FONT_NAME);
+  }
+
   renderer->priv->override_color = -1;
   renderer->priv->grip_size = 100;
 
@@ -778,8 +779,7 @@ eda_renderer_draw_text (EdaRenderer *renderer, OBJECT *object)
   /* Otherwise, actually draw the text */
   cairo_save (renderer->priv->cr);
   if (eda_renderer_prepare_text (renderer, object)) {
-    eda_pango_renderer_show_layout (renderer->priv->pr, renderer->priv->pl,
-                                    0, 0);
+    eda_pango_renderer_show_layout (renderer->priv->pr, renderer->priv->pl);
     cairo_restore (renderer->priv->cr);
   } else {
     cairo_restore (renderer->priv->cr);
@@ -862,6 +862,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, OBJECT *object)
 
   /* Set hinting as appropriate */
   options = cairo_font_options_create ();
+
   cairo_font_options_set_hint_metrics (options, CAIRO_HINT_METRICS_OFF);
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
     cairo_font_options_set_hint_style (options, CAIRO_HINT_STYLE_MEDIUM);
@@ -869,6 +870,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, OBJECT *object)
     cairo_font_options_set_hint_style (options, CAIRO_HINT_STYLE_NONE);
   }
   pango_cairo_context_set_font_options (renderer->priv->pc, options);
+
   cairo_font_options_destroy (options);
 
   pango_cairo_context_set_resolution (renderer->priv->pc, 1000);
@@ -876,6 +878,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, OBJECT *object)
   /* Set font name and size, and obtain descent metric */
   desc = pango_font_description_from_string (renderer->priv->font_name);
   pango_font_description_set_size (desc, size);
+
   pango_layout_set_font_description (renderer->priv->pl, desc);
   descent = eda_renderer_get_font_descent (renderer, desc);
   pango_font_description_free (desc);
@@ -898,8 +901,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, OBJECT *object)
 
   /* Special case turns upside-down text back upright */
   if (object->text->angle != 180) {
-    cairo_rotate (renderer->priv->cr,
-                  M_PI * object->text->angle / 180.);
+    cairo_rotate (renderer->priv->cr, M_PI * object->text->angle / 180.);
   }
 
   cairo_scale (renderer->priv->cr, 1, -1);
@@ -914,6 +916,9 @@ eda_renderer_prepare_text (EdaRenderer *renderer, OBJECT *object)
     cairo_device_to_user_distance (renderer->priv->cr, &dx, &dy);
     cairo_translate (renderer->priv->cr, dx, dy);
   }
+
+  /* Tell Pango to re-layout the text with the new transformation matrix */
+  pango_layout_context_changed (renderer->priv->pl);
 
   pango_cairo_update_layout (renderer->priv->cr, renderer->priv->pl);
   return TRUE;
@@ -1436,7 +1441,7 @@ eda_renderer_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
                                                          right, bottom);
 }
 
-static int
+int
 eda_renderer_default_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
                                       double *left, double *top,
                                       double *right, double *bottom)
@@ -1466,7 +1471,7 @@ eda_renderer_default_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
   }
 }
 
-static int
+int
 eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
                                    double *left, double *top,
                                    double *right, double *bottom)
@@ -1550,6 +1555,16 @@ GArray * eda_renderer_get_color_map (EdaRenderer *renderer)
   g_object_get (G_OBJECT (renderer), "color-map", &map, NULL);
   return map;
 }
+const char *eda_renderer_get_font_name(EdaRenderer *renderer)
+{
+  return (renderer->priv->font_name);
+}
+void eda_renderer_set_font_name(EdaRenderer *renderer, char *fontname)
+{
+  g_free(renderer->priv->font_name);
+  renderer->priv->font_name = g_strdup (fontname);
+}
+
 bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
 {
   if (EDA_IS_RENDERER (renderer))

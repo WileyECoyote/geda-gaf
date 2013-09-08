@@ -65,9 +65,9 @@ struct st_gschem_toplevel {
   GtkWidget *coord_world;      /* World coordinate label */
   GtkWidget *coord_screen;     /* Screen coordinate window */
 
-  GtkWidget *aewindow;   /* attribute edit */
-  GtkWidget *cpwindow;   /* Preferences   settings: IDS_CONFIG_SETTINGS */
-  GtkWidget *cswindow;   /* Component     settings: IDS_COMP_SELECT     */
+  GtkWidget *aewindow;   /* attribute edit settings: IDS_SINGLE_ATTRIB   */
+  GtkWidget *cpwindow;   /* Preferences    settings: IDS_CONFIG_SETTINGS */
+  GtkWidget *cswindow;   /* Component      settings: IDS_COMP_SELECT     */
   GtkWidget *iwindow;    /* image write dialog box */
   GtkWidget *mawindow;   /* multi attribute IDS_MULTI_ATTRBIBUTE */
   GtkWidget *pswindow;   /* page select */
@@ -100,8 +100,7 @@ struct st_gschem_toplevel {
   int magnetic_wx, magnetic_wy;         /* Position of the magnetic marker*/
   int distance;
   int inside_action;                    /* Are we doing an action? */
-  int rubber_visible;                   /* Are there any rubber lines on
-					   the screen? */
+  int rubber_visible;                   /* Are there any rubber lines on the screen? */
   int net_direction;                    /* bit field to guess the best net direction */
   int which_grip;                       /* Which grip is being manipulated.
                                            Its range of values depends on the
@@ -204,9 +203,9 @@ struct st_gschem_toplevel {
   int handleboxes;          /* sets if the handleboxes are enabled or disabled */
   int raise_dialog_boxes;   /* controls if expose events raise dialog boxes */
   int save_ui_settings;     /* controls if EDA config are written when exiting */
-  int show_menu_icons;      /* controls menu images are displayed or not */
   int toolbars;             /* sets if the toolbar(s) are enabled or disabled */
-  int toolbars_mode;
+  int toolbars_mode;        /* either text, icons or both */
+  int show_toolbar_tips;    /* determines if tips are enbled on toolbar items */
 
   /* Scrollbar Stuff */
   int scrollbars;         /* controls if scrollbars are enabled */

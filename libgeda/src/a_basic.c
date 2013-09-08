@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -94,13 +94,13 @@ gchar *o_save_buffer (TOPLEVEL *toplevel, const GList *object_list)
  *  \param [in] save_attribs  Should attribute objects encounterd be saved?
  *  \returns a buffer containing schematic data or NULL on failure.
  */
-gchar *o_save_objects (TOPLEVEL *toplevel, const GList *object_list, gboolean save_attribs)
+gchar *o_save_objects (TOPLEVEL *toplevel, const GList *object_list, bool save_attribs)
 {
   OBJECT *o_current;
   const GList *iter;
-  gchar *out;
+  char *out;
   GString *acc;
-  gboolean already_wrote = FALSE;
+  bool already_wrote = FALSE;
 
   acc = g_string_new("");
 
@@ -270,33 +270,45 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
                       char *buffer, const int size,
                       const char *name, GError **err)
 {
-  const char *line        = NULL;
-  TextBuffer *tb          = NULL;
+  const char *line             = NULL;
+  TextBuffer *tb               = NULL;
 
-  char objtype;
-  GList *object_list_save = NULL;
-  OBJECT *new_obj         = NULL;
-  GList *new_attrs_list   = NULL;
-  GList *new_object_list  = NULL;
-  GList *iter;
-  unsigned int release_ver            = 0;
-  unsigned int fileformat_ver         = 0;
-  //unsigned int current_fileformat_ver = FILEFORMAT_VERSION;
+  char    objtype;
+  GList  *object_list_save     = NULL;
+  OBJECT *new_obj              = NULL;
+  GList  *new_attrs_list       = NULL;
+  GList  *new_object_list      = NULL;
+  GList  *iter;
+  unsigned int release_ver     = 0;
+  unsigned int fileformat_ver  = 0;
 
-  int found_pin        = 0;
-  int itemsread        = 0;
-  int embedded_level   = 0;
-  OBJECT* last_complex = NULL;
-  bool is_ask = 1;
+  int found_pin                = 0;
+  int itemsread                = 0;
+  int embedded_level           = 0;
+  int line_count               = 0;
+  OBJECT* last_complex         = NULL;
+  bool is_ask                  = TRUE;
   char* ptr;
 
-  g_return_val_if_fail ((buffer != NULL), NULL);
+  if (buffer == NULL) {
+    g_set_error (err, EDA_ERROR, EDA_ERROR_NULL_POINTER,
+                 _("<o_read_buffer> detected NULL pointer to buffer "));
+    return NULL;
+  }
+
+  /* Check the buffer is valid UTF-8 */
+  if (!g_utf8_validate (buffer, (size < 0) ? -1 : size, NULL)) {
+    g_set_error (err, EDA_ERROR, EDA_ERROR_UNKNOWN_ENCODING,
+                 _("Schematic data was not valid UTF-8"));
+    return NULL;
+  }
 
   tb = s_textbuffer_new (buffer, size);
 
   while (1) {
 
     line = s_textbuffer_next_line(tb);
+    ++line_count;
     if (line == NULL) break;
 
     sscanf(line, "%c", &objtype);
@@ -350,7 +362,7 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
 
       case(OBJ_CIRCLE):
         if ((new_obj = o_circle_read (toplevel, line, release_ver, fileformat_ver, err)) == NULL)
-	  goto error;
+          goto error;
         new_object_list = g_list_prepend (new_object_list, new_obj);
         break;
 
@@ -422,8 +434,8 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
         }
         else {
           g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected attach "
-                                                                 "symbol start marker in [%s] :\n>>\n%s<<\n"),
-                       name, line);
+                                                          "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
+                       line_count, name, line);
           goto error;
         }
         break;
@@ -446,16 +458,16 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
 
             g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
                          _("Read unexpected embedded "
-                           "symbol start marker in [%s] :\n>>\n%s<<\n"),
-                         name, line);
+                           "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
+                            line_count, name, line);
            goto error;
           }
         }
         else {
           g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
                        _("Read unexpected embedded "
-                         "symbol start marker in [%s] :\n>>\n%s<<\n"),
-                       name, line);
+                         "symbol start marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
+                          line_count, name, line);
           goto error;
         }
         break;
@@ -480,13 +492,13 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
             tmp->parent = new_obj;
           }
 
-          o_recalc_single_object (toplevel, new_obj);
+          new_obj->w_bounds_valid_for = NULL;
 
           embedded_level--;
         } else {
           g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read unexpected embedded "
-                                                                 "symbol end marker in [%s] :\n>>\n%s<<\n"),
-                       name, line);
+                                                          "symbol end marker on line <%d>, in [%s] :\n>>\n%s<<\n"),
+                       line_count, name, line);
           goto error;
         }
         break;
@@ -499,10 +511,11 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
         /* NOP */
         break;
 
+      case(ASCII_CR):
+      case(ASCII_LF):
       case(COMMENT):
         /* do nothing */
         break;
-
       case(VERSION_CHAR):
         itemsread = sscanf(line, "v %u %u\n", &release_ver, &fileformat_ver);
 
@@ -526,8 +539,8 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
 
       default:
 
-        /* some upstream message handlers don't want non-askii meeasge data,
-         * so check line before returning and conditionaly leave off line */
+        /* some upstream message handlers don't want non-ASCII message data,
+         * so check line before returning and conditionally leave off line */
         ptr = (char*)line;
         while ( *ptr != ASCII_NUL) {
           if (( *ptr < SPACE) && (*ptr != ASCII_CR || *ptr != ASCII_LF)) is_ask = FALSE;
@@ -536,9 +549,13 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
           ++ptr;
         }
         if (is_ask)
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read garbage in [%s] :\n>>\n%s<<\n"), name, line);
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
+                       _("Read garbage line <%d> in [%s] :\n>>\n%s<<\n"),
+                       line_count, name, line);
         else
-          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE, _("Read garbage in [%s]"), name);
+          g_set_error (err, EDA_ERROR, EDA_ERROR_PARSE,
+                       _("Read garbage line <%d> in [%s]"),
+                       line_count, name);
         new_obj = NULL;
         goto error;
     }

@@ -141,7 +141,6 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "handleboxes",               1, 0, 0, g_rc_handleboxes },
   { "raise-dialog-boxes-on-expose", 1, 0, 0, g_rc_raise_dialog_boxes_on_expose },
   { "save-ui-settings",          1, 0, 0, g_rc_save_ui_settings },
-  { "show-menu-icons",           1, 0, 0, g_rc_show_menu_icons },
   { "toolbars",                  1, 0, 0, g_rc_toolbars },
   { "toolbars-mode",             1, 0, 0, g_rc_toolbars_mode },
 

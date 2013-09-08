@@ -92,8 +92,10 @@ int o_bus_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   int color;
   GList *prev_conn_objects = NULL;
 
-  g_assert( w_current->inside_action != 0 );
-
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_bus_end> Not inside action\n");
+    return FALSE;
+  }
   if (toplevel->override_bus_color == -1) {
     color = BUS_COLOR;
   } else {
@@ -130,7 +132,7 @@ int o_bus_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   w_current->first_wx = w_current->second_wx;
   w_current->first_wy = w_current->second_wy;
   o_undo_savestate(w_current, UNDO_ALL);
-  return TRUE;
+  return !FALSE;
 }
 
 /*! \brief draw the bus rubber when creating a bus
@@ -153,7 +155,10 @@ void o_bus_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   int diff_x, diff_y;
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_bus_motion> Not inside action\n");
+    return;
+  }
 
   if (w_current->rubber_visible)
     o_bus_invalidate_rubber (w_current);

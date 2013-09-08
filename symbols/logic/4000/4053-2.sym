@@ -1,21 +1,21 @@
-v 20031231 1
+v 20130414 2
 T 1700 3100 8 10 1 1 0 6 1
 refdes=U?
 T 300 3050 9 10 1 0 0 0 1
 4053
-T 300 3250 5 10 0 0 0 0 1
+T 0 3250 5 10 0 0 0 0 1
 device=4053
-T 300 3450 5 10 0 0 0 0 1
+T 0 3450 5 10 0 0 0 0 1
 footprint=DIP16
-T 300 3650 5 10 0 0 0 0 1
+T 0 3650 5 10 0 0 0 0 1
 numslots=0
-T 300 3850 5 10 0 0 0 0 1
+T 0 3850 5 10 0 0 0 0 1
 description=3 2-1 analogue multiplexer/demultiplexer
-T 300 4050 5 10 0 0 0 0 1
+T 0 4050 5 10 0 0 0 0 1
 net=VDD:16
-T 300 4250 5 10 0 0 0 0 1
+T 0 4250 5 10 0 0 0 0 1
 net=VSS:8
-T 300 4450 5 10 0 0 0 0 1
+T 0 4450 5 10 0 0 0 0 1
 net=VEE:7
 P 2000 2700 1700 2700 1 0 0
 {
@@ -161,5 +161,5 @@ T 350 1100 5 8 0 1 0 2 1
 pintype=pas
 }
 B 300 0 1400 3000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 300 4650 5 10 0 0 0 0 1
+T 0 4650 5 10 0 0 0 0 1
 documentation=http://www.semiconductors.philips.com/acrobat/datasheets/HEF4053B_CNV_3.pdf

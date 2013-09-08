@@ -113,28 +113,28 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->stretch_list = NULL;
 
   /* ---------------- Gschem internal state ---------------- */
-  w_current->num_untitled          = 0;
-  w_current->event_state           = SELECT;
-  w_current->force_save_as         = FALSE;
-  w_current->image_width           = 0;
-  w_current->image_height          = 0;
-  w_current->min_zoom              = 0;
-  w_current->max_zoom              = 8;
-  w_current->net_selection_state   = 0;
-  w_current->text_alignment        = 0;
-  w_current->drawbounding_action_mode = FREE;
-  w_current->last_drawb_mode       = LAST_DRAWB_MODE_NONE;
-  w_current->CONTROLKEY            = 0;
-  w_current->SHIFTKEY              = 0;
-  w_current->ALTKEY                = 0;
-  w_current->doing_pan             = 0;
-  w_current->buffer_number         = 0;
-  w_current->clipboard_buffer      = NULL;
+  w_current->num_untitled                 = 0;
+  w_current->event_state                  = SELECT;
+  w_current->force_save_as                = FALSE;
+  w_current->image_width                  = 0;
+  w_current->image_height                 = 0;
+  w_current->min_zoom                     = 0;
+  w_current->max_zoom                     = 8;
+  w_current->net_selection_state          = 0;
+  w_current->text_alignment               = 0;
+  w_current->drawbounding_action_mode     = FREE;
+  w_current->last_drawb_mode              = LAST_DRAWB_MODE_NONE;
+  w_current->CONTROLKEY                   = 0;
+  w_current->SHIFTKEY                     = 0;
+  w_current->ALTKEY                       = 0;
+  w_current->doing_pan                    = 0;
+  w_current->buffer_number                = 0;
+  w_current->clipboard_buffer             = NULL;
 
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */
-  w_current->renderer->draw_grips         = TRUE;
+    w_current->renderer->draw_grips         = TRUE;
 
   /* Grid Related - Display=>Grid */
     w_current->grid_mode                  = GRID_MESH;
@@ -180,24 +180,24 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->snap_size                  = 100;
 
   /* Nets and Routing */
-  w_current->net_direction_mode       = TRUE;
-  w_current->net_endpoint_mode        = FILLED_BOX;
-  w_current->net_midpoint_mode        = FILLED_BOX;
-  w_current->net_selection_mode       = NET_SELECT_NET;
+  w_current->net_direction_mode         = TRUE;
+  w_current->net_endpoint_mode          = FILLED_BOX;
+  w_current->net_midpoint_mode          = FILLED_BOX;
+  w_current->net_selection_mode         = NET_SELECT_NET;
 
   /* Ripper Related - Nets and Routing=>Ripper */
-    w_current->bus_ripper_rotation    = 0;
-    w_current->bus_ripper_size        = DEFAULT_RIPPER_SIZE;
-    w_current->bus_ripper_type        = 0;
-    w_current->bus_ripper_symname     = NULL;
+    w_current->bus_ripper_rotation      = 0;
+    w_current->bus_ripper_size          = DEFAULT_RIPPER_SIZE;
+    w_current->bus_ripper_type          = 0;
+    w_current->bus_ripper_symname       = NULL;
 
   /* Pointer Device, aka Mouse stuff */
-  w_current->fast_mousepan      = 0;
-  w_current->drag_can_move      = TRUE;
-  w_current->middle_button      = 0;
-  w_current->mousepan_gain      = DEFAULT_MOUSEPAN_GAIN;
-  w_current->scroll_wheel       = SCROLL_WHEEL_CLASSIC;
-  w_current->third_button       = 0;
+  w_current->fast_mousepan              = 0;
+  w_current->drag_can_move              = TRUE;
+  w_current->middle_button              = 0;
+  w_current->mousepan_gain              = DEFAULT_MOUSEPAN_GAIN;
+  w_current->scroll_wheel               = SCROLL_WHEEL_CLASSIC;
+  w_current->third_button               = 0;
 
   /* Print Related */
   w_current->print_command = NULL;
@@ -211,12 +211,12 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->text_size                    = DEFAULT_TEXT_SIZE;
 
   /* Undo Sub-System */
-  w_current->undo_control       = 0;
-  w_current->undo_levels        = 0;
-  w_current->undo_type          = 0;
-  w_current->undo_panzoom       = 0;
+  w_current->undo_control               = 0;
+  w_current->undo_levels                = 0;
+  w_current->undo_type                  = 0;
+  w_current->undo_panzoom               = 0;
 
-  w_current->smob               = SCM_UNDEFINED;
+  w_current->smob                       = SCM_UNDEFINED;
 
   return w_current;
 }

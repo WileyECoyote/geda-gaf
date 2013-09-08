@@ -1,3 +1,8 @@
+2013-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+        * geda_dialog_controls.h: Change all macros to use g_object_set instead
+          of gtk_widget_show. Added GSCHEM_SWITCH macro for switches in tables.
+
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * Makefile.am: Added gettext.h (for gschem). Why do we need seperate

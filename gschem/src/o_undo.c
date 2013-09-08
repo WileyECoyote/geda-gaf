@@ -92,7 +92,7 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
   if (flag == UNDO_ALL) {
 
     /* Increment the number of operations since last backup if
-       auto-save is enabled */
+     *      auto-save is enabled */
     if (toplevel->auto_save_interval != 0) {
       toplevel->page_current->ops_since_last_backup++;
     }
@@ -115,8 +115,8 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
 
     /* Changed from f_save to o_save when adding backup copy creation. */
     /* f_save manages the creaton of backup copies.
-       This way, f_save is called only when saving a file, and not when
-       saving an undo backup copy */
+     *      This way, f_save is called only when saving a file, and not when
+     *      saving an undo backup copy */
     o_save (toplevel, s_page_objects (toplevel->page_current), filename, NULL);
 
   } else if (w_current->undo_type == UNDO_MEMORY && flag == UNDO_ALL) {
@@ -149,21 +149,21 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
              toplevel->page_current->up);
 
   toplevel->page_current->undo_current =
-      toplevel->page_current->undo_tos;
+  toplevel->page_current->undo_tos;
 
   if (toplevel->page_current->undo_bottom == NULL) {
     toplevel->page_current->undo_bottom =
-        toplevel->page_current->undo_tos;
+    toplevel->page_current->undo_tos;
   }
 
-#if DEBUG
+  #if DEBUG
   printf("\n\n---Undo----\n");
   s_undo_print_all(toplevel->page_current->undo_bottom);
   printf("BOTTOM: %s\n", toplevel->page_current->undo_bottom->filename);
   printf("TOS: %s\n", toplevel->page_current->undo_tos->filename);
   printf("CURRENT: %s\n", toplevel->page_current->undo_current->filename);
   printf("----\n");
-#endif
+  #endif
 
   g_free(filename);
 
@@ -177,30 +177,33 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
 
   levels = s_undo_levels(toplevel->page_current->undo_bottom);
 
-#if DEBUG
+  #if DEBUG
   printf("levels: %d\n", levels);
-#endif
+  #endif
 
   if (levels >= w_current->undo_levels + UNDO_PADDING) {
     levels = levels - w_current->undo_levels;
 
-#if DEBUG
+    #if DEBUG
     printf("Trimming: %d levels\n", levels);
-#endif
+    #endif
 
     u_current = toplevel->page_current->undo_bottom;
 
     while (levels > 0) {
       /* Because we use a pad you are always guaranteed to never */
       /* exhaust the list */
-      g_assert (u_current != NULL);
 
+      if (u_current == NULL) {
+        s_log_message("Internal Error Detected: <o_undo_savestate:198> u_current == NULL\n");
+        return;
+      }
       u_current_next = u_current->next;
 
       if (u_current->filename) {
-#if DEBUG
+        #if DEBUG
         printf("Freeing: %s\n", u_current->filename);
-#endif
+        #endif
         unlink(u_current->filename);
         g_free(u_current->filename);
       }
@@ -218,23 +221,27 @@ void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
       levels--;
     }
 
-    g_assert (u_current != NULL);
+    if (u_current == NULL) {
+      s_log_message("Internal Error Detected: <o_undo_savestate:225> u_current == NULL\n");
+      return;
+    }
+
     u_current->prev = NULL;
     toplevel->page_current->undo_bottom = u_current;
 
-#if DEBUG
+    #if DEBUG
     printf("New current is: %s\n", u_current->filename);
-#endif
+    #endif
   }
 
-#if DEBUG
+  #if DEBUG
   printf("\n\n---Undo----\n");
   s_undo_print_all(toplevel->page_current->undo_bottom);
   printf("BOTTOM: %s\n", toplevel->page_current->undo_bottom->filename);
   printf("TOS: %s\n", toplevel->page_current->undo_tos->filename);
   printf("CURRENT: %s\n", toplevel->page_current->undo_current->filename);
   printf("----\n");
-#endif
+  #endif
 
 }
 

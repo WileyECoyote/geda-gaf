@@ -1,0 +1,58 @@
+v 20130414 2
+B 500 200 1100 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 1000 1800 1000 1300 1 0 0
+{
+T 1000 1800 5 10 0 0 90 0 1
+pintype=pwr
+T 1000 1245 5 10 1 1 90 6 1
+pinlabel=Vdd
+T 950 1395 5 8 1 1 90 0 1
+pinnumber=5
+T 1000 1800 5 10 0 0 90 0 1
+pinseq=5
+}
+P 1400 1800 1400 1300 1 0 0
+{
+T 1400 1800 5 10 0 0 90 0 1
+pintype=pwr
+T 1400 1245 5 10 1 1 90 6 1
+pinlabel=GND
+T 1350 1395 5 8 1 1 90 0 1
+pinnumber=3
+T 1400 1800 5 10 0 0 90 0 1
+pinseq=3
+}
+P 0 600 500 600 1 0 0
+{
+T 0 600 5 10 0 0 180 0 1
+pintype=pwr
+T 555 595 5 10 1 1 0 0 1
+pinlabel=SDA
+T 405 645 5 8 1 1 0 6 1
+pinnumber=2
+T 0 600 5 10 0 0 180 0 1
+pinseq=2
+}
+P 0 300 500 300 1 0 0
+{
+T 0 300 5 10 0 0 180 0 1
+pintype=pwr
+T 555 295 5 10 1 1 0 0 1
+pinlabel=SCLK
+T 405 345 5 8 1 1 0 6 1
+pinnumber=4
+T 0 300 5 10 0 0 180 0 1
+pinseq=4
+}
+T 495 0 8 10 1 1 0 0 1
+refdes=U?
+T 1195 -2 8 10 1 1 0 0 1
+device=TC74
+T -5 -4 8 10 0 1 0 0 1
+footprint=TO220_5
+T -990 3260 5 10 0 0 0 0 1
+author=Brad Ackerman <brad@facefault.org>
+T -990 2860 5 10 0 0 0 0 1
+documentation=http://www.microchip.com/wwwproducts/Devices.aspx?dDocName=en010749
+T -990 3060 5 10 0 0 0 0 1
+description=I2C temperature sensor

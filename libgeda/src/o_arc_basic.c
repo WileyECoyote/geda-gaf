@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -104,7 +104,7 @@ OBJECT *o_arc_new(TOPLEVEL *toplevel,
   o_set_fill_options(toplevel, new_node,
                      FILLING_HOLLOW, -1, -1, -1, -1, -1);
 
-  o_arc_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   /* new_node->graphical = arc; eventually */
 
@@ -172,38 +172,38 @@ void o_arc_modify(TOPLEVEL *toplevel, OBJECT *object,
 		  int x, int y, int whichone)
 {
 
-	o_emit_pre_change_notify (toplevel, object);
+  o_emit_pre_change_notify (toplevel, object);
 
-	switch(whichone) {
-		case ARC_CENTER:
-		/* modify the center of arc object */
-		object->arc->x = x;
-		object->arc->y = y;
-		break;
-		
-		case ARC_RADIUS:
-		/* modify the radius of arc object */
-		object->arc->width  = 2 * x;
-		object->arc->height = 2 * x;
-		break;
+  switch(whichone) {
+    case ARC_CENTER:
+      /* modify the center of arc object */
+      object->arc->x = x;
+      object->arc->y = y;
+      break;
 
-		case ARC_START_ANGLE:
-		/* modify the start angle of the arc object */
-		object->arc->start_angle = x;
-		break;
+    case ARC_RADIUS:
+      /* modify the radius of arc object */
+      object->arc->width  = 2 * x;
+      object->arc->height = 2 * x;
+      break;
 
-		case ARC_END_ANGLE:
-		/* modify the end angle of the arc object */
-		object->arc->end_angle = x;
-		break;
+    case ARC_START_ANGLE:
+      /* modify the start angle of the arc object */
+      object->arc->start_angle = x;
+      break;
 
-		default:
-		break;
-	}
+    case ARC_END_ANGLE:
+      /* modify the end angle of the arc object */
+      object->arc->end_angle = x;
+      break;
 
-	/* update the screen coords and the bounding box */
-	o_arc_recalc(toplevel, object);
-	o_emit_change_notify (toplevel, object);
+    default:
+      break;
+  }
+
+  /* update the screen coords and the bounding box */
+  object->w_bounds_valid_for = NULL;
+  o_emit_change_notify (toplevel, object);
 }
 
 /*! \brief
@@ -361,7 +361,7 @@ void o_arc_translate_world(TOPLEVEL *toplevel, int dx, int dy,
 
 
   /* Recalculate screen coords from new world coords */
-  o_arc_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief
@@ -415,9 +415,9 @@ void o_arc_rotate_world(TOPLEVEL *toplevel,
   object->arc->y += world_centery;
 
   /* update the screen coords and the bounding box */
-  o_arc_recalc(toplevel, object);
-  
-}                                   
+  object->w_bounds_valid_for = NULL;
+
+}
 
 /*! \brief Mirror the WORLD coordinates of an ARC.
  *  \par Function Description
@@ -452,46 +452,15 @@ void o_arc_mirror_world(TOPLEVEL *toplevel,
   /* start_angle *MUST* be positive */
   if(object->arc->start_angle < 0) object->arc->start_angle += 360;
   object->arc->end_angle = -object->arc->end_angle;
-	
+
   /* translate object back to its previous position */
   object->arc->x += world_centerx;
   object->arc->y += world_centery;
 
   /* update the screen coords and bounding box */
-  o_arc_recalc(toplevel, object);
-	
+  object->w_bounds_valid_for = NULL;
+
 }
-
-/*! \brief
- *  \par Function Description
- *  This function recalculates internal parameters in screen units
- *  of an object containing an arc. The object is given as parameters <B>o_current</B>.
- *  The calculation is done according to the zoom factor detailed in the <B>toplevel</B>
- *  pointed structure.
- *  It also recalculates the <B>OBJECT</B> specific fields and the bounding box of the arc.
- *  
- *  The bounding box - in world units - is recalculated with the <B>world_get_arc_bounds()</B> function.
- *
- *  \param [in] toplevel  The TOPLEVEL object.
- *  \param [in] o_current
- */
-void o_arc_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-	
-  if (o_current->arc == NULL) {
-    return;
-  }
-
-  /* recalculates the bounding box */
-  world_get_arc_bounds(toplevel, o_current, &left, &top, &right, &bottom);
-  o_current->w_left   = left;
-  o_current->w_top    = top;
-  o_current->w_right  = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
-}
-
 
 /*! \brief
  *  \par Function Description
@@ -512,7 +481,7 @@ void o_arc_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
  *  \param [out] bottom
  */
 void world_get_arc_bounds(TOPLEVEL *toplevel, OBJECT *object, int *left,
-			  int *top, int *right, int *bottom)
+                          int *top, int *right, int *bottom)
 {
   int x1, y1, x2, y2, x3, y3;
   int radius, start_angle, end_angle;
@@ -1093,11 +1062,11 @@ void o_arc_print_center(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y
  */
 void o_arc_print_phantom(TOPLEVEL *toplevel, FILE *fp,
-			 int x, int y, int radius,
-			 int angle1, int angle2,
-			 int color,
-			 int arc_width, int capstyle, int length, int space,
-			 int origin_x, int origin_y)
+                         int x, int y, int radius,
+                         int angle1, int angle2,
+                         int color,
+                         int arc_width, int capstyle, int length, int space,
+                         int origin_x, int origin_y)
 {
   int da, db, a1, d;
 
@@ -1125,42 +1094,42 @@ void o_arc_print_phantom(TOPLEVEL *toplevel, FILE *fp,
   }
   da = (int) ((length * 180) / (((double) radius) * M_PI));
   db = (int) ((space  * 180) / (((double) radius) * M_PI));
-  
+
   /* If da or db too small for arc to be displayed as dotted,
-     draw a solid arc */
+   *    draw a solid arc */
   if ((da <= 0) || (db <= 0)) {
     o_arc_print_solid(toplevel, fp,
-		      x, y, radius,
-		      angle1, angle2,
-		      color,						  
-		      arc_width, capstyle, length, space, origin_x, origin_y);
+                      x, y, radius,
+                      angle1, angle2,
+                      color,
+                      arc_width, capstyle, length, space, origin_x, origin_y);
     return;
   }
-  
+
   fprintf(fp,"[");
-  
+
   d = angle1;
   while ((d + da + 3 * db) < (angle1 + angle2)) {
     a1 = d;
     d = d + da;
-    
+
     fprintf(fp,"[%d %d] ",(int) a1, (int) a1 + da);
-    
+
     d = d + db;
     /*
-      xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
-      ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
-    */
+     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+     *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
+     */
     fprintf(fp,"[%d] ",d);
-    
+
     d = d + db;
-    
+
     /*
-      xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
-      ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
-    */
+     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+     *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
+     */
     fprintf(fp,"[%d] ",d);
-    
+
     d = d + db;
   }
 
@@ -1182,47 +1151,49 @@ void o_arc_print_phantom(TOPLEVEL *toplevel, FILE *fp,
     a1 = d;
     d = d + da;
   }
-  
+
   fprintf(fp,"[%d %d] ",(int) a1, (int) a1 + da);
-  
+
   if ((d + db) < (angle1 + angle2)) {
     d = d + db;
-    
+
     /*
-      xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
-      ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
-    */
+     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+     *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
+     */
     fprintf(fp,"[%d] ",d);
-    
+
   }
-  
+
   if ((d + db) < (angle1 + angle2)) {
     d = d + db;
-    
+
     /*
-      xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
-      ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
-    */
-    
+     *     xa = ((double) x) + ((double) radius) * cos(d * (M_PI / 180));
+     *     ya = ((double) y) + ((double) radius) * sin(d * (M_PI / 180));
+     */
+
     fprintf(fp,"[%d] ",d);
 
   }
 
   fprintf(fp,"] %d %d %d %d %d dashedarc %% phantom\n",
-    x,y, radius, arc_width, capstyle);
+          x,y, radius, arc_width, capstyle);
 }
 
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter of the arc.
- *
- *  \param [in] object       The arc OBJECT.
+ * 
+ *  \param [in] toplevel     A TOPLEVEL object.
+ *  \param [in] object       An arc OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_arc_shortest_distance (OBJECT *object, int x, int y, int force_solid)
+double o_arc_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                int x, int y, int force_solid)
 {
   double shortest_distance;
   double radius;

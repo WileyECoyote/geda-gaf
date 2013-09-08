@@ -1,3 +1,18 @@
+2013-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * symbols/geda-clib.scm: Change local path for user symbols from
+          "/usr/local/share/gEDA/sym" to "/usr/local/gEDA/sym" because this
+          was conflicting with installation to the local folder because the
+          main library was showing up on the Local tab of the components
+          select dialog.
+
+        * symbols/*.sym: Created new folders arduino, microchip, mitsubishi,
+          emechanic/accelerometer, linear/74A, linear/74h, linear/74L, linear/SN
+          linear/power, linear/telphone, and probably someother, in order to
+          try and better organize the symbols library -- still a big mess!
+          Added numerous symbols, mostly from "personnal" libraries around
+          the net.
+
 2013-04-14 Wiley E. Hill <wileyhill@gmail.com>
 
         * symbols/geda-clib.scm: Added internal documentation, new variables;

@@ -1,0 +1,49 @@
+.TH bom_xref 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+bom_xref \- Create a Formated Bill of Materials (BOM) Cross Reference Listing file
+
+.SH SYNOPSIS
+.B bom_xref
+.RI [ OPTIONS ] None
+
+.SH DESCRIPTION
+.B bom_xref
+bom_xref a gEDA Schematic File
+
+This is a utility script to generate a formated cross-reference listing from a raw BOM file produced by gnetlist. The BOM parameters for gnetlist should be device, value, footprint, refdes. See bompp for details on how to create a raw BOM file.
+bom_xref aligns the data into columns without headers in the following order: refdes device, value, footprint
+
+.SH QUICK
+.B usage: bom_xref raw.bom >formated.xref
+example:
+temp.bom >example.xref<ENTER>.
+
+.SH PARAMETERS
+The only parameter is the name of the unformatted bom file.
+
+.SH OPTIONS
+No options are available
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of bom_xref:
+https://bugs.launchpad.net/geda/bom_xref/+filebug
+
+.SH AUTHOR
+Matt Ettus matt@ettus.com
+
+.SH SEE ALSO
+.BR gnetlist (1) bom_xref (1) annotate (1) unannotate (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2012-2013 Matt Ettus License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

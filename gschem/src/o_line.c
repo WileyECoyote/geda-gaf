@@ -135,7 +135,11 @@ void o_line_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   int diff_x, diff_y;
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message ("Internal Error: <%s><o_line_motion>"
+                    "Not inside action, line %d.\n", __FILE__, __LINE__);
+    return;
+  }
 
   if (w_current->rubber_visible)
     o_line_invalidate_rubber (w_current);

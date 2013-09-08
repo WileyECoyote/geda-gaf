@@ -1,4 +1,5 @@
 /* gEDA - GPL Electronic Design Automation
+ *
  * gschem - gEDA Schematic Capture
  * Copyright (C) 2012-2013 Ales Hvezda
  * Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)

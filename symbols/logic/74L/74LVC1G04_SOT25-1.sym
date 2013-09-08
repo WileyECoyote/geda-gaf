@@ -1,0 +1,44 @@
+v 20130414 2
+L 300 600 300 0 3 0 0 0 -1 -1
+L 300 0 800 300 3 0 0 0 -1 -1
+L 800 300 300 600 3 0 0 0 -1 -1
+P 1100 300 900 300 1 0 0
+{
+T 1100 200 5 10 0 1 0 0 1
+pintype=out
+T 845 295 5 10 0 1 0 6 1
+pinlabel=out
+T 895 345 5 10 1 1 0 0 1
+pinnumber=1
+T 900 350 5 10 0 1 0 0 1
+pinseq=1
+}
+P 0 300 200 300 1 0 0
+{
+T 100 100 5 10 0 1 0 0 1
+pintype=in
+T 355 295 5 10 0 1 0 0 1
+pinlabel=in
+T 205 345 5 10 1 1 0 6 1
+pinnumber=4
+T 0 300 5 10 0 1 0 0 1
+pinseq=2
+}
+A 850 300 50 0 360 3 0 0 0 -1 -1
+T 300 700 8 10 1 1 0 0 1
+refdes=U?
+T 600 550 9 4 1 1 0 0 1
+device=74LVC1G04
+T 0 900 8 10 0 1 0 0 1
+description=Single inverter with a standard push-pull output
+T 0 1100 8 10 0 1 0 0 1
+footprint=SOT25
+T 0 1300 8 10 0 1 0 0 1
+dist-license=GPL2
+T 0 1500 8 10 0 0 0 0 1
+use-license=unlimited
+T 600 0 8 10 0 0 0 0 1
+net=GND:5
+T 600 700 8 10 0 0 0 0 1
+net=Vcc:2
+L 200 300 300 300 3 0 1 0 -1 -1

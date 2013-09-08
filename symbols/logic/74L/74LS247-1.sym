@@ -1,0 +1,201 @@
+v 20110115 2
+P 100 3000 400 3000 1 0 0
+{
+T 300 3050 5 8 1 1 0 6 1
+pinnumber=7
+T 300 2950 5 8 0 1 0 8 1
+pinseq=7
+T 450 3000 9 8 1 1 0 0 1
+pinlabel=IA
+T 450 3000 5 8 0 1 0 2 1
+pintype=in
+}
+P 2100 3000 1800 3000 1 0 0
+{
+T 1900 3050 5 8 1 1 0 0 1
+pinnumber=13
+T 1900 2950 5 8 0 1 0 2 1
+pinseq=13
+T 1725 3000 9 8 1 1 0 6 1
+pinlabel=A
+T 1725 3000 5 8 0 1 0 8 1
+pintype=out
+}
+P 2100 2600 1800 2600 1 0 0
+{
+T 1900 2650 5 8 1 1 0 0 1
+pinnumber=12
+T 1900 2550 5 8 0 1 0 2 1
+pinseq=12
+T 1750 2600 9 8 1 1 0 6 1
+pinlabel=B
+T 1750 2600 5 8 0 1 0 8 1
+pintype=out
+}
+P 100 2200 400 2200 1 0 0
+{
+T 300 2250 5 8 1 1 0 6 1
+pinnumber=2
+T 300 2150 5 8 0 1 0 8 1
+pinseq=2
+T 450 2200 9 8 1 1 0 0 1
+pinlabel=IC
+T 450 2200 5 8 0 1 0 2 1
+pintype=in
+}
+P 2100 2200 1800 2200 1 0 0
+{
+T 1900 2250 5 8 1 1 0 0 1
+pinnumber=11
+T 1900 2150 5 8 0 1 0 2 1
+pinseq=11
+T 1750 2200 9 8 1 1 0 6 1
+pinlabel=C
+T 1750 2200 5 8 0 1 0 8 1
+pintype=out
+}
+P 100 1800 400 1800 1 0 0
+{
+T 300 1850 5 8 1 1 0 6 1
+pinnumber=6
+T 300 1750 5 8 0 1 0 8 1
+pinseq=6
+T 450 1800 9 8 1 1 0 0 1
+pinlabel=ID
+T 450 1800 5 8 0 1 0 2 1
+pintype=in
+}
+P 2100 1800 1800 1800 1 0 0
+{
+T 1900 1850 5 8 1 1 0 0 1
+pinnumber=10
+T 1900 1750 5 8 0 1 0 2 1
+pinseq=10
+T 1750 1800 9 8 1 1 0 6 1
+pinlabel=D
+T 1750 1800 5 8 0 1 0 8 1
+pintype=out
+}
+P 2100 1400 1800 1400 1 0 0
+{
+T 1900 1450 5 8 1 1 0 0 1
+pinnumber=9
+T 1900 1350 5 8 0 1 0 2 1
+pinseq=9
+T 1750 1400 9 8 1 1 0 6 1
+pinlabel=E
+T 1750 1400 5 8 0 1 0 8 1
+pintype=out
+}
+P 2100 1000 1800 1000 1 0 0
+{
+T 1900 1050 5 8 1 1 0 0 1
+pinnumber=15
+T 1900 950 5 8 0 1 0 2 1
+pinseq=15
+T 1750 1000 9 8 1 1 0 6 1
+pinlabel=F
+T 1750 1000 5 8 0 1 0 8 1
+pintype=out
+}
+P 100 2600 400 2600 1 0 0
+{
+T 300 2650 5 8 1 1 0 6 1
+pinnumber=1
+T 300 2550 5 8 0 1 0 8 1
+pinseq=1
+T 450 2600 9 8 1 1 0 0 1
+pinlabel=IB
+T 450 2600 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 1400 300 1400 1 0 0
+{
+T 300 1450 5 8 1 1 0 6 1
+pinnumber=4
+T 300 1350 5 8 0 1 0 8 1
+pinseq=4
+T 450 1400 9 8 1 1 0 0 1
+pinlabel=BI/RBO
+T 450 1400 5 8 0 1 0 2 1
+pintype=in
+}
+B 400 0 1400 3300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 3740 5 10 0 0 0 0 1
+device=74195
+T 300 3540 5 10 0 0 0 0 1
+footprint=DIP16
+T 1600 3500 8 10 1 1 180 6 1
+refdes=U?
+T 300 3950 5 10 0 0 0 0 1
+description=7 segments driver/decoder
+T 300 4550 5 10 0 0 0 0 1
+numslots=0
+T 500 3340 9 10 1 0 0 0 1
+74LS247
+V 350 1400 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 4750 5 10 0 0 0 0 1
+documentation=http://susta.cz/fel/74/pdf/sn_74247.pdf
+P 100 600 300 600 1 0 0
+{
+T 300 650 5 8 1 1 0 6 1
+pinnumber=3
+T 300 550 5 8 0 1 0 8 1
+pinseq=3
+T 450 600 9 8 1 1 0 0 1
+pinlabel=LT
+T 450 600 5 8 0 1 0 2 1
+pintype=in
+}
+V 350 600 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 100 1000 300 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=5
+T 300 950 5 8 0 1 0 8 1
+pinseq=5
+T 450 1000 9 8 1 1 0 0 1
+pinlabel=RBI
+T 450 1000 5 8 0 1 0 2 1
+pintype=in
+}
+V 350 1000 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 2100 600 1800 600 1 0 0
+{
+T 1900 650 5 8 1 1 0 0 1
+pinnumber=14
+T 1900 550 5 8 0 1 0 2 1
+pinseq=14
+T 1750 600 9 8 1 1 0 6 1
+pinlabel=G
+T 1750 600 5 8 0 1 0 8 1
+pintype=out
+}
+P 100 200 400 200 1 0 0
+{
+T 300 250 5 8 1 1 0 6 1
+pinnumber=16
+T 300 150 5 8 0 1 0 8 1
+pinseq=16
+T 450 200 9 8 1 1 0 0 1
+pinlabel=VCC
+T 450 200 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2100 200 1800 200 1 0 0
+{
+T 1895 245 5 8 1 1 0 0 1
+pinnumber=8
+T 1900 250 5 8 0 1 180 8 1
+pinseq=8
+T 1745 195 9 8 1 1 0 6 1
+pinlabel=GND
+T 1750 200 5 8 0 1 180 2 1
+pintype=pwr
+}
+T 95 0 8 10 0 1 0 0 1
+author=José Roberto Colombo Junior colombojrj@gmail.com
+T 4100 2100 8 10 0 1 0 0 1
+dist-license=GPL3
+T 3100 3000 8 10 0 1 0 0 1
+use-license=unlimited

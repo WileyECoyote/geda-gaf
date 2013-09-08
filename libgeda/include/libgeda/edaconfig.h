@@ -64,9 +64,9 @@ GQuark eda_config_error_quark (void);
 
 #define EDA_TYPE_CONFIG (eda_config_get_type ())
 #define EDA_CONFIG(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDA_TYPE_CONFIG, EdaConfig))
-#define EDA_CONFIG_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), EDA_TYPE_CONFIG, EdaConfigClass))
+#define EDA_CONFIG_CLASS(class) (G_TYPE_CHECK_CLASS_CAST ((class), EDA_TYPE_CONFIG, EdaConfigClass))
 #define EDA_IS_CONFIG(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), EDA_TYPE_CONFIG))
-#define EDA_IS_CONFIG_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((obj), EDA_TYPE_CONFIG))
+#define EDA_IS_CONFIG_CLASS(class) (G_TYPE_CHECK_CLASS_TYPE ((class), EDA_TYPE_CONFIG))
 #define EDA_CONFIG_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), EDA_TYPE_CONFIG, EdaConfigClass))
 
 typedef struct _EdaConfigClass EdaConfigClass;
@@ -126,9 +126,9 @@ EdaConfig *eda_config_get_source (EdaConfig *cfg, const char *group, const char 
 
 /* ---------------------------------------------------------------- */
 
-char    *eda_config_get_string (EdaConfig *cfg, const char *group, const char *key, GError **err) G_GNUC_WARN_UNUSED_RESULT;
+char    *eda_config_get_string  (EdaConfig *cfg, const char *group, const char *key, GError **err) G_GNUC_WARN_UNUSED_RESULT;
 bool     eda_config_get_boolean (EdaConfig *cfg, const char *group, const char *key, GError **err);
-int      eda_config_get_int (EdaConfig *cfg, const char *group, const char *key, GError **err);
+int      eda_config_get_integer (EdaConfig *cfg, const char *group, const char *key, GError **err);
 double   eda_config_get_double (EdaConfig *cfg, const char *group, const char *key, GError **err);
 char   **eda_config_get_string_list (EdaConfig *cfg, const char *group, const char *key, gsize *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
 bool    *eda_config_get_boolean_list (EdaConfig *cfg, const char *group, const char *key, gsize *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
@@ -136,10 +136,10 @@ int     *eda_config_get_int_list (EdaConfig *cfg, const char *group, const char 
 double  *eda_config_get_double_list (EdaConfig *cfg, const char *group, const char *key, gsize *length, GError **err) G_GNUC_WARN_UNUSED_RESULT;
 
 
-void eda_config_set_string (EdaConfig *cfg, const char *group, const char *key, const char *value);
+void eda_config_set_string  (EdaConfig *cfg, const char *group, const char *key, const char *value);
 void eda_config_set_boolean (EdaConfig *cfg, const char *group, const char *key, bool value);
-void eda_config_set_int (EdaConfig *cfg, const char *group, const char *key, int value);
-void eda_config_set_double (EdaConfig *cfg, const char *group, const char *key, double value);
+void eda_config_set_integer (EdaConfig *cfg, const char *group, const char *key, int value);
+void eda_config_set_double  (EdaConfig *cfg, const char *group, const char *key, double value);
 void eda_config_set_string_list (EdaConfig *cfg, const char *group, const char *key, const char * const list[], gsize length);
 void eda_config_set_boolean_list (EdaConfig *cfg, const char *group, const char *key, bool list[], gsize length);
 void eda_config_set_int_list (EdaConfig *cfg, const char *group, const char *key, int list[], gsize length);

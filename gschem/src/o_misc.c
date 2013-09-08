@@ -109,7 +109,7 @@ void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
       if (o_attrib_get_name_value (o_current, NULL, NULL) &&
         /* attribute editor only accept 1-line values for attribute */
         o_text_num_lines (str) == 1) {
-        attrib_edit_dialog(w_current,o_current, FROM_MENU);
+        attrib_edit_dialog(w_current,o_current, ID_ORIGIN_MENU);
       } else {
         o_text_edit(w_current, o_current);
       }
@@ -331,7 +331,7 @@ void o_edit_show_hidden_lowlevel (GSCHEM_TOPLEVEL *w_current,
 
     if (o_current->type == OBJ_COMPLEX || o_current->type == OBJ_PLACEHOLDER) {
       o_edit_show_hidden_lowlevel(w_current, o_current->complex->prim_objs);
-      o_recalc_single_object(toplevel, o_current);
+      o_current->w_bounds_valid_for = NULL;
     }
 
     iter = g_list_next (iter);
@@ -439,14 +439,18 @@ int o_edit_find_text (GSCHEM_TOPLEVEL *w_current, const GList *o_list,
     if (o_current->type == OBJ_TEXT &&
         (o_is_visible (toplevel, o_current) || toplevel->show_hidden_text)) {
 
-      const gchar *str = o_text_get_string (toplevel, o_current);
+      const char *str = o_text_get_string (toplevel, o_current);
      /* replaced strcmp with strstr to simplify the search */
       if (strstr (str,stext)) {
         if (!skiplast) {
           int x1, y1, x2, y2;
 
           a_zoom(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, A_PAN_DONT_REDRAW);
-          g_assert( world_get_single_object_bounds (toplevel, o_current, &x1, &y1, &x2, &y2) );
+
+          if (!world_get_single_object_bounds (toplevel, o_current, &x1, &y1, &x2, &y2)) {
+             s_log_message("Internal Error Detected: <o_edit_find_text> world object bounds returned FALSE\n");
+             return 0;
+          }
           text_screen_height = SCREENabs (w_current, y2 - y1);
           /* this code will zoom/pan till the text screen height is about */
           /* 50 pixels high, perhaps a future enhancement will be to make */
@@ -500,7 +504,7 @@ void o_edit_hide_specific_text (GSCHEM_TOPLEVEL *w_current,
     o_current = (OBJECT *)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
-      const gchar *str = o_text_get_string (w_current->toplevel, o_current);
+      const char *str = o_text_get_string (w_current->toplevel, o_current);
       if (!strncmp (stext, str, strlen (stext))) {
         if (o_is_visible (toplevel, o_current)) {
           o_set_visibility (toplevel, o_current, INVISIBLE);
@@ -534,7 +538,7 @@ void o_edit_show_specific_text (GSCHEM_TOPLEVEL *w_current,
     o_current = (OBJECT *)iter->data;
 
     if (o_current->type == OBJ_TEXT) {
-      const gchar *str = o_text_get_string (w_current->toplevel, o_current);
+      const char *str = o_text_get_string (w_current->toplevel, o_current);
       if (!strncmp (stext, str, strlen (stext))) {
         if (!o_is_visible (toplevel, o_current)) {
           o_set_visibility (toplevel, o_current, VISIBLE);
@@ -619,10 +623,13 @@ o_update_component (GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
    * works. */
   for (iter = new_attribs; iter != NULL; iter = g_list_next (iter)) {
     OBJECT *attr_new = iter->data;
-    gchar *name;
-    gchar *value;
+    char *name;
+    char *value;
 
-    g_assert (attr_new->type == OBJ_TEXT);
+    if (attr_new->type != OBJ_TEXT) {
+      s_log_message("Internal Error Detected: <o_update_component> attr_new->type != OBJ_TEXT\n");
+      return NULL;
+    }
 
     o_attrib_get_name_value (attr_new, &name, NULL);
 
@@ -675,10 +682,10 @@ void o_autosave_backups(GSCHEM_TOPLEVEL *w_current)
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *iter;
   PAGE *p_save, *p_current;
-  gchar *backup_filename;
-  gchar *real_filename;
-  gchar *only_filename;
-  gchar *dirname;
+  char *backup_filename;
+  char *real_filename;
+  char *only_filename;
+  char *dirname;
   mode_t saved_umask;
   mode_t mask;
   struct stat st;

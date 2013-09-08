@@ -1,18 +1,18 @@
 /* gEDA - GPL Electronic Design Automation
- * gsymcheck - gEDA Symbol Check 
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * gsymcheck - gEDA Symbol Check
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if  not, write to the Free Software
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
@@ -39,7 +39,7 @@ gsymcheck_quit(void)
   s_slib_free();
 }
 
-void 
+void
 main_prog(void *closure, int argc, char *argv[])
 {
   int i;
@@ -48,7 +48,7 @@ main_prog(void *closure, int argc, char *argv[])
   char *cwd;
 
   TOPLEVEL *pr_current;
-  
+
   argv_index = parse_commandline(argc, argv);
   cwd = g_get_current_dir();
 
@@ -63,10 +63,10 @@ main_prog(void *closure, int argc, char *argv[])
 
 #if defined(__MINGW32__) && defined(DEBUG)
   fprintf(stderr, "This is the MINGW32 port.\n");
-#endif  
+#endif
 
   log_destiny=-1; /* don't output to the screen for now */
-  
+
   /* register guile (scheme) functions */
   g_register_funcs();
 
@@ -74,7 +74,7 @@ main_prog(void *closure, int argc, char *argv[])
   g_rc_parse (pr_current, argv[0], "gsymcheckrc", rc_filename);
 
   i_vars_set(pr_current);
-  
+
   i = argv_index;
   while (argv[i] != NULL) {
 
@@ -93,19 +93,19 @@ main_prog(void *closure, int argc, char *argv[])
                  s_page_new (pr_current, filename));
 
     if (!f_open (pr_current,
-                 pr_current->page_current,
-                 pr_current->page_current->page_filename,
-                 &err)) {
+      pr_current->page_current,
+      pr_current->page_current->page_filename,
+      &err)) {
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;
-      g_warning ("%s\n", err->message);
-      g_error_free (err);
-      exit(2);
-    } else {
-      g_message (_("Loaded file [%s]\n"), filename);
-    }
-    i++;
-    g_free (filename);
+    g_warning ("%s\n", err->message);
+    g_error_free (err);
+    exit(2);
+      } else {
+        g_message (_("Loaded file [%s]\n"), filename);
+      }
+      i++;
+      g_free (filename);
   }
 
   if (argv[argv_index] == NULL) {
@@ -117,10 +117,10 @@ main_prog(void *closure, int argc, char *argv[])
 
   log_destiny=STDOUT_TTY;
 
-#if DEBUG 
+#if DEBUG
   s_page_print_all(pr_current);
 #endif
-  
+
   if (!quiet_mode) s_log_message("\n");
 
   exit_status = s_check_all(pr_current);

@@ -36,7 +36,7 @@ SCM  g_scm_c_eval_string_protected (const char *str);
 bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err);
 
 /* g_rc.c */
-SCM g_rc_mode_general   (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
+SCM  g_rc_mode_general  (SCM scmmode, const char *rc_name, int *mode_var, const vstbl_entry *table, int table_size);
 bool g_rc_parse_system  (TOPLEVEL *toplevel, const char *rcname, GError **err);
 bool g_rc_parse_user    (TOPLEVEL *toplevel, const char *rcname, GError **err);
 bool g_rc_parse_local   (TOPLEVEL *toplevel, const char *rcname, const char *path, GError **err);
@@ -102,8 +102,6 @@ void   o_attrib_thaw_hooks           (TOPLEVEL *toplevel, OBJECT *object);
 
 /* o_basic.c */
 int inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y);
-void o_recalc_single_object(TOPLEVEL *toplevel, OBJECT *o_current);
-void o_recalc_object_glist(TOPLEVEL *toplevel, GList *object_glist);
 void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current, OBJECT_END end, OBJECT_TYPE type, int width, int length, int space);
 bool o_get_line_options(OBJECT *object, OBJECT_END *end, OBJECT_TYPE *type, int *width, int *length, int *space);
 void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current, OBJECT_FILLING type, int width, int pitch1, int angle1, int pitch2, int angle2);
@@ -112,7 +110,7 @@ bool o_get_position(TOPLEVEL *toplevel, int *x, int *y, OBJECT *object);
 void o_translate_world (TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 void o_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
 void o_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
-double o_shortest_distance(OBJECT *object, int x, int y);
+double o_shortest_distance(TOPLEVEL *toplevel, OBJECT *object, int x, int y);
 void o_set_color(TOPLEVEL *toplevel, OBJECT *object, int color);
 PAGE *o_get_page (TOPLEVEL *toplevel, OBJECT *object);
 OBJECT *o_get_parent (TOPLEVEL *toplevel, OBJECT *object);
@@ -151,12 +149,8 @@ void o_circle_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_cent
 void o_circle_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 
 /* o_complex_basic.c */
-int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
-			      int *rleft, int *rtop,
-			      int *rright, int *rbottom);
-int world_get_object_glist_bounds(TOPLEVEL *toplevel, const GList *o_list,
-			     int *left, int *top,
-			     int *right, int *bottom);
+int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current, int *rleft, int *rtop,int *rright, int *rbottom);
+int world_get_object_glist_bounds(TOPLEVEL *toplevel, const GList *o_list, int *left, int *top,int *right, int *bottom);
 int     o_complex_is_embedded(OBJECT *o_current);
 GList * o_complex_promote_attribs (TOPLEVEL *toplevel, OBJECT *object);
 OBJECT *o_complex_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int angle, int mirror, const CLibSymbol *clib_sym, const char *basename, int selectable);
@@ -164,6 +158,7 @@ OBJECT *o_complex_new_embedded(TOPLEVEL *toplevel, char type, int color, int x, 
 void    o_complex_set_filename(TOPLEVEL *toplevel, const char *basename);
 void    o_complex_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object);
 OBJECT *o_complex_copy(TOPLEVEL *toplevel, OBJECT *o_current);
+void    o_complex_reset_refdes(TOPLEVEL *toplevel, OBJECT *object);
 void    o_complex_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
 void    o_complex_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 OBJECT *o_complex_find_pin_by_attribute(OBJECT *object, char *name, char *wanted_value);
@@ -268,10 +263,12 @@ void o_style_set_object(TOPLEVEL *toplevel, OBJECT *o_current);
 
 /* o_text_basic.c */
 int     o_text_num_lines(const char *string);
-OBJECT *o_text_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int alignment, int angle, const char *string, int size, int visibility, int show_name_value);
+OBJECT *o_text_new(TOPLEVEL *toplevel, char type, int color, int x, int y, int alignment,
+                   int angle, const char *string, int size, int visibility, int show_name_value);
 void    o_text_recreate(TOPLEVEL *toplevel, OBJECT *o_current);
 void    o_text_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *o_current);
 OBJECT *o_text_copy(TOPLEVEL *toplevel, OBJECT *o_current);
+void    o_text_reset_refdes(TOPLEVEL *toplevel, OBJECT *object);
 void    o_text_rotate_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, int angle, OBJECT *object);
 void    o_text_mirror_world(TOPLEVEL *toplevel, int world_centerx, int world_centery, OBJECT *object);
 void    o_text_set_string(TOPLEVEL *toplevel, OBJECT *obj, const char *new_string);

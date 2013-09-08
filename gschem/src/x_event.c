@@ -76,10 +76,14 @@ int x_event_expose(GtkWidget *widget, GdkEventExpose *event,
   return(0);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Button Press Event Handler
  *  \par Function Description
- *
+ *   This function is called each time a mouse button is pressed. The
+ *  routine checks which button triggered the event and whether a key
+ *  -- SHIFT, CONTROL or ALT, was pressed when the press event occured.
+ * The routine also check for a "double" click event, which GDK isolates
+ * for us. Th approiate action is performed based on the current state
+ * of the program. Enumerated state are defined in the file x_states.h.
  */
 int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
                             GSCHEM_TOPLEVEL *w_current)
@@ -90,7 +94,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-#if DEBUG
+#if DEBUG  || DEBUG_EVENTS
   printf("pressed button %d! \n", event->button);
   printf("event state: %d \n", event->state);
   printf("w_current state: %d \n", w_current->event_state);
@@ -109,7 +113,8 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
        w_current->event_state == SELECT)) {
     o_find_object(w_current, w_x, w_y, TRUE);
     if (o_select_selected (w_current)) {
-       o_edit(w_current, geda_list_get_glist( toplevel->page_current->selection_list ));
+       o_edit(w_current,
+         geda_list_get_glist( toplevel->page_current->selection_list ));
        i_set_state(w_current, SELECT);
        return(0);
     }
@@ -123,7 +128,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
    * end_button_pressed label to escape the state evaluation rather than
    * returning from the function directly. */
 
-  if (event->button == 1) {
+  if (event->button == GDK_BUTTON_PRIMARY) {
     switch(w_current->event_state) {
 
       case(SELECT):
@@ -489,10 +494,13 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
   return(0);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Button Release Event Handler
  *  \par Function Description
- *
+ *   This function is called each time a mouse button is released. The
+ *  routine checks which button triggered the event and whether a key
+ *  -- SHIFT, CONTROL or ALT, was pressed when the release event occured
+ *  and performs the approiate action based on the current state of the
+ *  program. Enumerated state are defined in the file x_states.h.
  */
 int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
                             GSCHEM_TOPLEVEL *w_current)
@@ -501,8 +509,8 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-#if DEBUG
-  printf("released! %d \n", w_current->event_state);
+#if DEBUG || DEBUG_EVENTS
+  printf("x_event_button_released: entry! %d \n", w_current->event_state);
 #endif
 
   w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
@@ -575,20 +583,22 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
       case(STARTSELECT):
         /* first look for grips */
+
         if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
-                                /* now go looking for objects to select */
+          /* now look for objects to select, TRUE = add to page selection */
           o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
           w_current->event_state = SELECT;
           w_current->inside_action = 0;
-        } else {
-                                /* an grip was found */
+        }
+        else {  /* n grip was found */
           w_current->event_state = GRIPS;
           w_current->inside_action = 1;
         }
         break;
     }
 
-  } else if (event->button == 2) {
+  }
+  else if (event->button == 2) {
 
     if (w_current->inside_action) {
       if (w_current->event_state == ENDCOMP ||
@@ -659,7 +669,8 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
       break;
     }
 
-  } else if (event->button == 3) {
+  }
+  else if (event->button == 3) {
     if (w_current->doing_pan) { /* just for ending a mouse pan */
       w_current->doing_pan=FALSE;
       o_invalidate_all (w_current);
@@ -667,14 +678,16 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
       if (w_current->undo_panzoom) {
         o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
       }
-      /* this needs to be REDONE */
-      /* if you mouse pan, you will be thrown out of the current mode. */
-      /* not good */
+      /* This needs to be REDONE, if user mouse pans, the user will be
+       * thrown out of the current mode. Not good */
       w_current->inside_action = 0;
       i_set_state(w_current, SELECT);
     }
   }
   end_button_released:
+#if DEBUG || DEBUG_EVENTS
+  printf("x_event_button_released: exit! %d \n", w_current->event_state);
+#endif
   return(0);
 }
 
@@ -912,7 +925,11 @@ bool x_event_configure (GtkWidget         *widget,
   int old_win_width, old_win_height, new_win_width, new_win_height;
   double relative_zoom_factor = 1.0;
 
-  g_assert (toplevel != NULL);
+  if (toplevel == NULL) {
+    s_log_message ("Internal Error: <%s><x_event_configure>"
+                    "toplevel == NULL, line %d.\n", __FILE__, __LINE__);
+    return FALSE;
+  }
 
   if (toplevel->page_current == NULL) {
     /* don't want to call this if the current page isn't setup yet */
@@ -1343,8 +1360,7 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
  *
  */
 bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
-				       bool snapped,
-				       int *wx, int *wy)
+                                   bool snapped, int *wx, int *wy)
 {
   int sx, sy, x, y;
 

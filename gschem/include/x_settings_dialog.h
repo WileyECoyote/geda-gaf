@@ -95,7 +95,7 @@ WidgetStringData DialogStrings[] = {
         { "IncreaseAttributeButt","Up",           "Increase selected attribute in the Add Attribute list"},
         { "DecreaseAttributeButt","Down",         "Decrease selected attribute in the Add Attribute list"},
 
-  /* 8 String for Combo Controls  */
+  /* 9 String for Combo Controls  */
         { "TitleBlockCombo",        "   Titleblock:",   "Name of Default Titleblock"},
         { "ColorMapSchemeCombo",    "Scheme:",          "Choose which color scheme should be load at startup"},
         { "DotGridModeCombo",       "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-fixed-threshold."},
@@ -103,6 +103,7 @@ WidgetStringData DialogStrings[] = {
         { "MiddleButtonCombo",      "Middle Button:",   "Controls if the middle mouse button draws strokes, repeats the last command, does an action (move and copy (holding down the ALT key) are supported) on a single objects, or if it does the mouse panning."},
         { "ThirdButtonCombo",       "Third Button:",    "Controls if the third mouse button displays a popup menu or performs panning"},
         { "UndoTypeCombo",          "  Undo Type:",     "Controls which Undo System configuration. The default is to use the disk as the storing medium (ie after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
+        { "FontNameCombo",          "Font:",            "Select the Default Font"},
         { "RipperSymbolCombo",      "Symbol:",          "Specify the symbol name to be used if ripper type is \"component\""},
 
   /* 1 String for Edit Controls Label */

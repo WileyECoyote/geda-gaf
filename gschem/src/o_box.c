@@ -105,7 +105,10 @@ void o_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   int box_width, box_height;
   int box_left, box_top;
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_box_end> Not inside action\n");
+    return;
+  }
 
   /* get the last coords of the pointer */
   w_current->second_wx = w_x;
@@ -114,7 +117,7 @@ void o_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   /* erase the temporary box */
   /* o_box_invalidate_rubber (w_current); */
   w_current->rubber_visible = 0;
-  
+
   box_width  = GET_BOX_WIDTH (w_current);
   box_height = GET_BOX_HEIGHT(w_current);
   box_left   = GET_BOX_LEFT  (w_current);
@@ -122,12 +125,12 @@ void o_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 
   /* boxes with null width or height are not allowed */
   if ((box_width == 0) || (box_height == 0)) {
-	  /* cancel the object creation */
-	  w_current->first_wx = (-1);
-	  w_current->first_wy = (-1);
-	  w_current->second_wx  = (-1);
-	  w_current->second_wy  = (-1);
-	  return;
+    /* cancel the object creation */
+    w_current->first_wx = (-1);
+    w_current->first_wy = (-1);
+    w_current->second_wx  = (-1);
+    w_current->second_wy  = (-1);
+    return;
   }
 
   /* create the object */
@@ -139,12 +142,12 @@ void o_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 #if DEBUG
   printf("coords: %d %d %d %d\n", box_left, box_top, box_width, box_height);
 #endif
-	
+
   w_current->first_wx = (-1);
   w_current->first_wy = (-1);
   w_current->second_wx  = (-1);
   w_current->second_wy  = (-1);
-	
+
   /* Call add-objects-hook */
   g_run_hook_object (w_current, "%add-objects-hook", new_obj);
 
@@ -170,7 +173,10 @@ void o_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 void o_box_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_box_motion> Not inside action\n");
+    return;
+  }
 
   /* erase the previous temporary box if it is visible */
   if (w_current->rubber_visible)

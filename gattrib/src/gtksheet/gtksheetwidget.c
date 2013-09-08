@@ -969,7 +969,8 @@ gtk_sheet_get_property (GObject    *object,
 {
   GtkSheet *self = GTK_SHEET (object);
   GValue auxval = {0,};
-  GValueArray *valarray;
+  //GValueArray *valarray;
+  GArray *valarray;
 
   switch (property_id)
   {
@@ -1024,17 +1025,23 @@ gtk_sheet_get_property (GObject    *object,
     case PROP_ACTIVE_CELL:
       /* Create a GValueArray of gint-containing GValues with the active_cells
          row and col. */
-      valarray = g_value_array_new(2);
+     // valarray = g_value_array_new(2);
+      valarray = g_array_sized_new(1,1,1,1);
       g_value_init(&auxval, G_TYPE_INT);
       g_value_set_int(&auxval, self->active_cell.row);
-      g_value_array_append(valarray, &auxval);
+      //g_value_array_append(valarray, &auxval);
+      g_array_append_vals (valarray,  &auxval, 1);
+
       g_value_set_int(&auxval, self->active_cell.col);
-      g_value_array_append(valarray, &auxval);
+     // g_value_array_append(valarray, &auxval);
+      g_array_append_vals (valarray,  &auxval, 1);
+
       /* Put the GValueArray in the provided GValue, which should be
          initialized with g_value_init(value, G_TYPE_VALUE_ARRAY) */
       g_value_set_boxed(value, valarray);
       /* Free the auxiliary GValueArray */
-      g_value_array_free(valarray);
+      //g_value_array_free(valarray);
+      g_array_unref(valarray);
       break;
 
     case PROP_SELECTED_RANGE:
@@ -1077,7 +1084,6 @@ gtk_sheet_class_init (GtkSheetClass * klass)
   object_class = (GtkObjectClass *) klass;
   widget_class = (GtkWidgetClass *) klass;
   container_class = (GtkContainerClass *) klass;
-
 
   container_class->add = NULL;
   container_class->remove = gtk_sheet_remove;
@@ -1129,8 +1135,8 @@ gtk_sheet_class_init (GtkSheetClass * klass)
   sheet_signals[SELECT_ROW] =
     g_signal_new ("select-row",
             G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, select_row),
+            G_SIGNAL_RUN_LAST,
+            G_STRUCT_OFFSET (GtkSheetClass, select_row),
             NULL,
             NULL,
             gtksheet_VOID__INT,
@@ -1147,10 +1153,10 @@ gtk_sheet_class_init (GtkSheetClass * klass)
   sheet_signals[SELECT_COLUMN] =
     g_signal_new ("select-column",
             G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, select_column),
+            G_SIGNAL_RUN_LAST,
+            G_STRUCT_OFFSET (GtkSheetClass, select_column),
             NULL, NULL,
-		    gtksheet_VOID__INT,
+            gtksheet_VOID__INT,
             G_TYPE_NONE, 1, G_TYPE_INT);
 
   /**
@@ -1163,11 +1169,11 @@ gtk_sheet_class_init (GtkSheetClass * klass)
    sheet_signals[SELECT_RANGE] =
     g_signal_new ("select-range",
             G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, select_range),
+            G_SIGNAL_RUN_LAST,
+            G_STRUCT_OFFSET (GtkSheetClass, select_range),
             NULL, NULL,
             gtksheet_VOID__BOXED,
-	        G_TYPE_NONE, 1, GTK_TYPE_SHEET_RANGE);
+            G_TYPE_NONE, 1, GTK_TYPE_SHEET_RANGE);
 
    /**
     * GtkSheet::unselect-range:
@@ -1200,11 +1206,11 @@ gtk_sheet_class_init (GtkSheetClass * klass)
   sheet_signals[CLIP_RANGE] =
     g_signal_new ("clip-range",
             G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, clip_range),
+            G_SIGNAL_RUN_LAST,
+            G_STRUCT_OFFSET (GtkSheetClass, clip_range),
             NULL, NULL,
             gtksheet_VOID__BOXED,
-	        G_TYPE_NONE, 1, GTK_TYPE_SHEET_RANGE);
+            G_TYPE_NONE, 1, GTK_TYPE_SHEET_RANGE);
 
    /**
    * GtkSheet::resize-range:
@@ -1217,12 +1223,12 @@ gtk_sheet_class_init (GtkSheetClass * klass)
    */
   sheet_signals[RESIZE_RANGE] =
     g_signal_new ("resize-range",
-		    G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, resize_range),
+            G_TYPE_FROM_CLASS(object_class),
+            G_SIGNAL_RUN_LAST,
+            G_STRUCT_OFFSET (GtkSheetClass, resize_range),
             NULL, NULL,
-		    gtksheet_VOID__BOXED_BOXED,
-	        G_TYPE_NONE, 2, GTK_TYPE_SHEET_RANGE, GTK_TYPE_SHEET_RANGE);
+            gtksheet_VOID__BOXED_BOXED,
+            G_TYPE_NONE, 2, GTK_TYPE_SHEET_RANGE, GTK_TYPE_SHEET_RANGE);
   /**
    * GtkSheet::move-range:
    * @sheet: the sheet widget that emitted the signal.
@@ -1238,12 +1244,12 @@ gtk_sheet_class_init (GtkSheetClass * klass)
    */
   sheet_signals[MOVE_RANGE] =
     g_signal_new ("move-range",
-		    G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, move_range),
-            NULL, NULL,
-		    gtksheet_VOID__BOXED_BOXED,
-            G_TYPE_NONE, 2, GTK_TYPE_SHEET_RANGE, GTK_TYPE_SHEET_RANGE);
+                  G_TYPE_FROM_CLASS(object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkSheetClass, move_range),
+                  NULL, NULL,
+                  gtksheet_VOID__BOXED_BOXED,
+                  G_TYPE_NONE, 2, GTK_TYPE_SHEET_RANGE, GTK_TYPE_SHEET_RANGE);
 
   /**
    * GtkSheet::traverse:
@@ -1259,13 +1265,13 @@ gtk_sheet_class_init (GtkSheetClass * klass)
    */
   sheet_signals[TRAVERSE] =
     g_signal_new ("traverse",
-		    G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, traverse),
-            NULL, NULL,
-            gtksheet_BOOLEAN__INT_INT_POINTER_POINTER,
-	        G_TYPE_BOOLEAN, 4, G_TYPE_INT, G_TYPE_INT,
-                               G_TYPE_POINTER, G_TYPE_POINTER);
+                  G_TYPE_FROM_CLASS(object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkSheetClass, traverse),
+                  NULL, NULL,
+                  gtksheet_BOOLEAN__INT_INT_POINTER_POINTER,
+                  G_TYPE_BOOLEAN, 4, G_TYPE_INT, G_TYPE_INT,
+                  G_TYPE_POINTER, G_TYPE_POINTER);
 
   /**
    * GtkSheet::deactivate:
@@ -1277,12 +1283,12 @@ gtk_sheet_class_init (GtkSheetClass * klass)
    */
   sheet_signals[DEACTIVATE] =
     g_signal_new ("deactivate",
-		    G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, deactivate),
-            NULL, NULL,
-            gtksheet_BOOLEAN__INT_INT,
-	        G_TYPE_BOOLEAN, 2, G_TYPE_INT, G_TYPE_INT);
+                  G_TYPE_FROM_CLASS(object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkSheetClass, deactivate),
+                  NULL, NULL,
+                  gtksheet_BOOLEAN__INT_INT,
+                  G_TYPE_BOOLEAN, 2, G_TYPE_INT, G_TYPE_INT);
 
   /**
    * GtkSheet::activate:
@@ -1294,12 +1300,12 @@ gtk_sheet_class_init (GtkSheetClass * klass)
    */
   sheet_signals[ACTIVATE] =
     g_signal_new ("activate",
-		    G_TYPE_FROM_CLASS(object_class),
-		    G_SIGNAL_RUN_LAST,
-		    G_STRUCT_OFFSET (GtkSheetClass, activate),
-            NULL, NULL,
-            gtksheet_BOOLEAN__INT_INT,
-            G_TYPE_BOOLEAN, 2, G_TYPE_INT, G_TYPE_INT);
+                  G_TYPE_FROM_CLASS(object_class),
+                  G_SIGNAL_RUN_LAST,
+                  G_STRUCT_OFFSET (GtkSheetClass, activate),
+                  NULL, NULL,
+                  gtksheet_BOOLEAN__INT_INT,
+                  G_TYPE_BOOLEAN, 2, G_TYPE_INT, G_TYPE_INT);
 
   /**
    * GtkSheet::set-cell:
@@ -1507,7 +1513,7 @@ gtk_sheet_class_init (GtkSheetClass * klass)
   pspec = g_param_spec_boxed("active-cell",
                              "Active cell (row, column)",
                              "An array (row, column) indicating the active cell",
-                             G_TYPE_VALUE_ARRAY,
+                             G_TYPE_ARRAY,
                              G_PARAM_READABLE);
   g_object_class_install_property (gobject_class,
                                    PROP_ACTIVE_CELL,

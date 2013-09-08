@@ -34,7 +34,7 @@
 #define OBJ_PIN         'P'
 #define OBJ_ARC         'A'
 #define OBJ_PLACEHOLDER 'X'  /* added 1.19.2005 by SDB to prevent
-			      * deletion of unfound symbol files */
+                              * deletion of unfound symbol files */
 
 #define STARTATTACH_ATTR	'{'
 #define ENDATTACH_ATTR		'}'

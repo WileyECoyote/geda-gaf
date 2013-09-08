@@ -49,7 +49,7 @@ static struct gsubr_t gnetlist_funcs[] = {
 
   /* gnetlistrc functions */
   { "gnetlist-version",             1, 0, 0, g_rc_gnetlist_version },
-    
+
   { "net-naming-priority",          1, 0, 0, g_rc_net_naming_priority },
   { "hierarchy-traversal",          1, 0, 0, g_rc_hierarchy_traversal },
   { "hierarchy-uref-mangle",        1, 0, 0, g_rc_hierarchy_uref_mangle },
@@ -94,7 +94,7 @@ static struct gsubr_t gnetlist_funcs[] = {
 void g_register_funcs(void)
 {
   struct gsubr_t *tmp = gnetlist_funcs;
-  
+
   while (tmp->name != NULL) {
     scm_c_define_gsubr (tmp->name, tmp->req, tmp->opt, tmp->rst, tmp->fnc);
     tmp++;

@@ -30,7 +30,10 @@
 #include <gtk/gtk.h>
 #include <gdk/gdkkeysyms.h>
 #include "widgets/geda_entry.h"
+
 #include "gettext.h"
+
+#define GTK_ENTRY_COMPLETION_KEY "gtk-entry-completion-key"
 
 /**
  * SECTION:gedaentry
@@ -52,15 +55,31 @@ enum {
   AUTO_COMPLETE_OFF,
 };
 
-#define GTK_ENTRY_COMPLETION_KEY "gtk-entry-completion-key"
+enum {
+  STOP_ACTIVATE,
+  LAST_SIGNAL
+};
+enum {
+  PROP_ACTIVATES_DEFAULT = 1,
+  PROP_ATTRIBUTES,
+  PROP_AUTO_COMPLETION,
+  PROP_CASE_SENSITIVE,
+  PROP_INPUT_CASE,
+  PROP_MAX_HISTORY,
+  PROP_VALIDATE,
+};
 
-static void     geda_entry_class_init        (GedaEntryClass *klass);
+static unsigned int signals[LAST_SIGNAL] = { 0 };
+
+static void     geda_entry_class_init        (GedaEntryClass *class);
 static void     geda_entry_init              (GedaEntry      *entry);
 static void     geda_entry_finalize          (GObject        *object);
+static void     geda_entry_real_activate     (GedaEntry      *entry);
 static bool     geda_entry_key_press         (GedaEntry      *widget,
                                               GdkEventKey    *event,
                                               gpointer        data);
 static void     geda_entry_grab_focus        (GtkWidget      *widget);
+static void     geda_entry_realize           (GtkWidget      *widget);
 static void     geda_entry_activate          (GedaEntry      *entry,
                                               gpointer        data);
 static void     geda_entry_history_up        (GedaEntry      *entry);
@@ -87,7 +106,7 @@ static int strncmpi(char *str1, char *str2, int n);
 
 static GList  *history_list;
 static GList **history_list_arg;
-static bool    is_history;
+static bool    have_history;
 static GList  *complete_list;
 static GList **old_complete_list;
 
@@ -101,14 +120,105 @@ gpointer *entry_parent_class;
 
 struct _GedaEntryPriv
 {
-  GCompletion      *command_completion;
+  GCompletion *command_completion;
+  bool         case_sensitive;
 
+  PangoAttrList *attrs;
+  PangoFontMap  *font_map;
 };
 
 const char* IDS_CONSOLE_POPUP[] = {
   "Auto Complete", "On", "Off", /* Popup Menu Strings*/
   NULL
 };
+/**
+ * gtk_entry_get_activates_default:
+ * @entry: a #GtkEntry
+ *
+ * Retrieves the value set by gtk_entry_set_activates_default().
+ *
+ * Return value: %TRUE if the entry will activate the default widget
+ **/
+bool
+geda_entry_get_activates_default (GedaEntry *entry)
+{
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
+
+  return entry->activates_default;
+}
+
+/*! \brief Set Entry attribute List
+ *  \par Function Description
+ * @setting: %TRUE to activate window's default widget on Enter keypress
+ *
+ * If @setting is %TRUE, pressing Enter in the @entry will activate the default
+ * widget for the window containing the entry. This usually means that
+ * the dialog box containing the entry will be closed, since the default
+ * widget is usually one of the dialog buttons.
+ *
+ * (For experts: if @setting is %TRUE, the entry calls
+ * gtk_window_activate_default() on the window containing the entry, in
+ * the default handler for the #GtkEntry::activate signal.)
+ **/
+void
+geda_entry_set_activates_default (GedaEntry *entry, bool setting)
+{
+  g_return_if_fail (IS_GEDA_ENTRY (entry));
+
+  setting = setting != FALSE;
+
+  if (setting != entry->activates_default)
+    {
+      entry->activates_default = setting;
+      //g_object_notify (G_OBJECT (entry), "activates-default");
+    }
+}
+
+/*! \brief Set Entry attribute List
+ *  \par Function Description
+ * This function applies the PangoAttrList to entry text font
+ * description.
+ */
+void geda_entry_set_attributes ( GedaEntry *entry, PangoAttrList *attrs)
+{
+  PangoAttrList *old_attrs;
+  PangoLayout* layout;
+
+  g_return_if_fail (IS_GEDA_ENTRY (entry));
+
+  old_attrs = entry->priv->attrs;
+
+  if (attrs)
+    pango_attr_list_ref (attrs);
+
+  if (old_attrs)
+    pango_attr_list_unref (old_attrs);
+
+  entry->priv->attrs = attrs;
+
+  layout = gtk_entry_get_layout ( (GtkEntry*) entry );
+  if (layout) {
+    pango_layout_set_attributes (layout, entry->priv->attrs);
+    g_object_notify (G_OBJECT (entry), "attributes");
+  }
+
+  gtk_widget_queue_resize (GTK_WIDGET (entry));
+}
+
+/*! \brief Get Entry attribute List
+ *  \par Function Description
+ * Gets the attribute list that was set on the entry using
+ * geda_entry_set_attributes(), if any.
+ *
+ * \retval: list the PangoAttrList attribute list, or %NULL
+ *          if none was set.
+ */
+PangoAttrList  *geda_entry_get_attributes (GedaEntry *entry)
+{
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), NULL);
+
+  return entry->priv->attrs;
+}
 
 void geda_entry_set_max_history (GedaEntry *entry, int value)
 {
@@ -118,23 +228,52 @@ int  geda_entry_get_max_history (GedaEntry *entry)
 {
   return entry->max_history;
 }
+
+/*! \brief Get sensitivity of internal completion algorithms */
+bool geda_entry_completion_get_case (GedaEntry *entry) {
+
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
+
+  return entry->priv->case_sensitive;
+}
+
 /*! \brief Set sensitivity of internal completion algorithms */
 void
 geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
 {
+  g_return_if_fail (IS_GEDA_ENTRY (entry));
+
   if(have_auto_complete) {
-  if (sensitive)
-    g_completion_set_compare( entry->priv->command_completion,
-                              strncmp);
-  else
-    g_completion_set_compare( entry->priv->command_completion,
-                              (GCompletionStrncmpFunc) strncmpi);
+
+    sensitive = sensitive != FALSE;
+    entry->priv->case_sensitive = sensitive;
+    if (sensitive)
+      g_completion_set_compare( entry->priv->command_completion,
+                                strncmp);
+    else
+      g_completion_set_compare( entry->priv->command_completion,
+                               (GCompletionStrncmpFunc) strncmpi);
   }
 }
-void geda_entry_set_input_case  (GedaEntry *entry, int mode) {
+bool geda_entry_get_input_case (GedaEntry *entry)
+{
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), FALSE);
+  return entry->text_case;
+}
+void geda_entry_set_input_case  (GedaEntry *entry, int mode)
+{
   GEDA_ENTRY(entry)->text_case = mode;
 }
-void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode) {
+
+GedaEntryAccept
+geda_entry_get_valid_input (GedaEntry *entry)
+{
+  g_return_val_if_fail (IS_GEDA_ENTRY (entry), ACCEPT_ALL_ASCII);
+  return entry->validation_mode;
+}
+
+void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
+{
   GEDA_ENTRY(entry)->validation_mode = mode;
 }
 /*! \brief GObject property setter function
@@ -157,11 +296,17 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
 
   switch (property_id)
     {
+    case PROP_ACTIVATES_DEFAULT:
+      geda_entry_set_activates_default (entry, g_value_get_boolean (value));
+      break;
+    case PROP_ATTRIBUTES:
+      geda_entry_set_attributes (entry, g_value_get_boxed (value));
+      break;
     case PROP_AUTO_COMPLETION:
       entry->auto_complete = have_auto_complete ? g_value_get_boolean (value) : FALSE;
       break;
     case PROP_CASE_SENSITIVE:
-      geda_entry_set_max_history(entry, g_value_get_boolean (value));
+      geda_entry_completion_set_case(entry, g_value_get_boolean (value));
       break;
     case PROP_INPUT_CASE:
       geda_entry_set_input_case(entry, g_value_get_int (value));
@@ -194,8 +339,35 @@ static void
 geda_entry_get_property (GObject *object, unsigned int  property_id,
                          GValue  *value,  GParamSpec   *pspec)
 {
-  if(property_id == PROP_MAX_HISTORY)
-    g_value_set_int (value, GEDA_ENTRY(object)->max_history);
+  GedaEntry *entry = GEDA_ENTRY(object);
+
+  switch (property_id)
+    {
+    case PROP_ACTIVATES_DEFAULT:
+      g_value_set_boolean (value, entry->activates_default);
+      break;
+    case PROP_ATTRIBUTES:
+      g_value_set_boxed (value, entry->priv->attrs);
+      break;
+    case PROP_AUTO_COMPLETION:
+      g_value_set_boolean (value, have_auto_complete ? entry->auto_complete : FALSE);
+      break;
+    case PROP_CASE_SENSITIVE:
+      g_value_set_boolean(value, geda_entry_completion_get_case(entry));
+      break;
+    case PROP_INPUT_CASE:
+      g_value_set_int (value, geda_entry_get_input_case(entry));
+      break;
+    case PROP_MAX_HISTORY:
+      g_value_set_int (value, entry->max_history);
+      break;
+    case PROP_VALIDATE:
+      g_value_set_enum (value, geda_entry_get_valid_input(entry));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+    }
 }
 static void geda_entry_validate_input (GtkEntry    *entry,
                                        const char  *text,
@@ -263,75 +435,137 @@ static void geda_entry_validate_input (GtkEntry    *entry,
 
   g_free (result);
 }
-static void geda_entry_class_init (GedaEntryClass *klass)
-{
-  GObjectClass   *gobject_class = G_OBJECT_CLASS (klass);
-  GtkWidgetClass *widget_class = GTK_WIDGET_CLASS (klass);
 
-  parent_class = g_type_class_peek_parent (klass);
+static void geda_entry_class_init (GedaEntryClass *class)
+{
+  GParamSpec     *params;
+
+  GObjectClass   *gobject_class;
+  GtkWidgetClass *widget_class;
+  GtkBindingSet  *binding_set;
+
+  gobject_class = G_OBJECT_CLASS (class);
+  widget_class  = GTK_WIDGET_CLASS (class);
+
+  parent_class       = g_type_class_peek_parent (class);
   entry_parent_class = g_type_class_peek_parent (g_type_class_peek (GTK_TYPE_ENTRY));
 
   gobject_class->finalize = geda_entry_finalize;
-
   gobject_class->set_property = geda_entry_set_property;
   gobject_class->get_property = geda_entry_get_property;
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_AUTO_COMPLETION,
-                                   g_param_spec_boolean ("auto-completion",
-                                                       _("Auto-Completion"),
-                                                       _("Enable Auto-completion, if installed"),
-                                                         TRUE, /* default_value */
-                                                         G_PARAM_READWRITE));
-  g_object_class_install_property (gobject_class,
-                                   PROP_CASE_SENSITIVE,
-                                   g_param_spec_boolean ("case-sensitive",
-                                                       _("FALSE Auto-Completion in NOT case sensitive"),
-                                                       _("if Auto-completion is enabled, set case compare function"),
-                                                         FALSE, /* default_value */
-                                                         G_PARAM_READWRITE));
+  class->activate = geda_entry_real_activate;
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_INPUT_CASE,
-                                   g_param_spec_int ("input-case",
-                                                   _("Set case of input"), /* nick name */
-                                                   _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
-                                                     0, /* Min value */
-                                                     2, /* Max value */
-                                                     2, /* default_value */
-                                                     G_PARAM_READWRITE));
+  params = g_param_spec_boolean ("activates-default",
+                               _("Activates default"),
+                               _("Whether to activate the default widget when Enter is pressed"),
+                                  FALSE,
+                                  G_PARAM_READWRITE);
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_MAX_HISTORY,
-                                   g_param_spec_int ("max-history",
-                                                   _("Set maxium history"), /* nick name */
-                                                   _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
-                                                     0,        /* Min value */
-                                                     G_MAXINT, /* Max value */
-                                                     MAX_ENTRY_HISTORY,      /* default_value */
-                                                     G_PARAM_READWRITE));
+  g_object_class_install_property (gobject_class, PROP_ACTIVATES_DEFAULT, params);
 
-  g_object_class_install_property (gobject_class,
-                                   PROP_VALIDATE,
-                                   g_param_spec_int ("accept-input-type",
-                                                   _("Set valid input type"), /* nick name */
-                                                   _("0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"), /* hint / blurb */
-                                                     ACCEPT_ALL_ASCII, /* Min value */
-                                                     ACCEPT_REAL,      /* Max value */
-                                                     ACCEPT_ALL_ASCII, /* default_value */
-                                                     G_PARAM_READWRITE));
+  params = g_param_spec_boxed ("attributes",
+                             _("Attributes"),
+                             _("A list of style attributes to apply to the text"),
+                                PANGO_TYPE_ATTR_LIST,
+                                G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_ATTRIBUTES, params);
+
+  params = g_param_spec_boolean ("auto-completion",
+                               _("Auto-Completion"),
+                               _("Enable Auto-completion, if installed"),
+                                  TRUE, /* default_value */
+                                  G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_AUTO_COMPLETION, params);
+
+  params = g_param_spec_boolean ("case-sensitive",
+                               _("FALSE Auto-Completion in NOT case sensitive"),
+                               _("if Auto-completion is enabled, set case compare function"),
+                                FALSE, /* default_value */
+                                G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_CASE_SENSITIVE, params);
+
+  params = g_param_spec_int ("input-case",
+                           _("Set case of input"), /* nick name */
+                           _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
+                              0, /* Min value */
+                              2, /* Max value */
+                              2, /* default_value */
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_INPUT_CASE, params);
+
+  params = g_param_spec_int ("max-history",
+                           _("Set maxium history"), /* nick name */
+                           _("0 = lower, 1 lower, 2 don't change the case"), /* hint / blurb */
+                              0,        /* Min value */
+                              G_MAXINT, /* Max value */
+                              MAX_ENTRY_HISTORY,      /* default_value */
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_MAX_HISTORY, params );
+
+  params = g_param_spec_int ("accept-input-type",
+                           _("Set valid input type"), /* nick name */
+                           _("0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"), /* hint / blurb */
+                              ACCEPT_ALL_ASCII, /* Min value */
+                              ACCEPT_REAL,      /* Max value */
+                              ACCEPT_ALL_ASCII, /* default_value */
+                              G_PARAM_READWRITE);
+
+  g_object_class_install_property (gobject_class, PROP_VALIDATE, params);
+
+  /**
+   * GtkEntry::activate:
+   * @entry: The entry on which the signal is emitted
+   *
+   * The ::activate signal is emitted when the user hits
+   * the Enter key.
+   *
+   * While this signal is used as a
+   * <link linkend="keybinding-signals">keybinding signal</link>,
+   * it is also commonly used by applications to intercept
+   * activation of entries.
+   *
+   * The default bindings for this signal are all forms of the Enter key.
+   */
+
+  signals[STOP_ACTIVATE] = g_signal_new (_("stop_activate"),
+                                    G_TYPE_FROM_CLASS (gobject_class),
+                                    G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
+                                    G_STRUCT_OFFSET (GedaEntryClass, activate),
+                                    NULL, NULL,
+                                    g_cclosure_marshal_VOID__VOID,
+                                    G_TYPE_NONE, 0);
+
+  widget_class->activate_signal = signals[STOP_ACTIVATE];
+
+  /*  Key bindings */
+  binding_set = gtk_binding_set_by_class (class);
+
+  /* Activate */
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0, "stop_activate", 0);
+
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_ISO_Enter, 0, "stop_activate", 0);
+
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0, "stop_activate", 0);
 
   widget_class->grab_focus = geda_entry_grab_focus;
+  widget_class->realize    = geda_entry_realize;
 
 }
 
-static void
-geda_entry_init (GedaEntry *entry)
+static void geda_entry_init (GedaEntry *entry)
 {
   entry->priv = g_new0 (GedaEntryPriv, 1);
 
+  entry->priv->font_map = pango_cairo_font_map_get_default();
+
   g_signal_connect_after (G_OBJECT (entry), "key_press_event", G_CALLBACK (geda_entry_key_press), NULL);
-  if(is_history) {
+  if(have_history) {
     g_signal_connect     (G_OBJECT (entry), "activate",        G_CALLBACK (geda_entry_activate), NULL);
     if(history_list_arg) {
       history_list = *history_list_arg;
@@ -357,28 +591,82 @@ geda_entry_init (GedaEntry *entry)
     entry->auto_complete = FALSE;
 
   /* set initial flag state for popup menu*/
-  set_auto_complete       = FALSE;
-  entry->validation_mode  = ACCEPT_ALL_ASCII;
-  entry->text_case        = BOTH_CASES;
+  set_auto_complete           = FALSE;
+  entry->validation_mode      = ACCEPT_ALL_ASCII;
+  entry->text_case            = BOTH_CASES;
+  entry->activates_default    = FALSE;
+  entry->priv->case_sensitive = FALSE;
+
+  entry->priv->attrs          = NULL;
+
 }
-static void
-geda_entry_finalize (GObject *object)
+
+static void geda_entry_finalize (GObject *object)
 {
-	GedaEntry *entry;
+  GedaEntry *entry;
 
-	entry = GEDA_ENTRY (object);
+  entry = GEDA_ENTRY (object);
 
-	if (entry->priv->command_completion) {
-	  g_completion_free (entry->priv->command_completion);
-	}
-	if (entry->priv) {
-	  g_free (entry->priv);
-	}
+  if (entry->priv->command_completion) {
+    g_completion_free (entry->priv->command_completion);
+  }
 
-       *history_list_arg  = history_list;
-        entry = entry;
-	G_OBJECT_CLASS (parent_class)->finalize (object);
+  /* Save history to caller's glist*/
+  if (have_history)
+    *history_list_arg  = history_list;
+
+  G_OBJECT_CLASS (parent_class)->finalize (object);
+
+  if (entry->priv->attrs && G_IS_OBJECT(entry->priv->attrs))
+    pango_attr_list_unref (entry->priv->attrs);
+
+  if ( entry->priv->font_map && G_IS_OBJECT(entry->priv->font_map) ) {
+    g_object_unref (entry->priv->font_map);
+    entry->priv->font_map = NULL;
+  }
+
+  if (entry->priv) {
+    g_free (entry->priv);
+  }
 }
+
+/*! \brief Entry Stop Activate Default signal Responder
+ *  \par Function Description
+ *  This function exist to stop GTK-2 from activating the
+ *  the default widget when an "Enter" key is press. The
+ *  GtkEntry gtk_entry_set_activates_default function does
+ *  not work correclty, the default widget will eventually
+ *  see the signal regardless of the setting.
+ *
+ *  \param [in]  object The GedaEntry object
+ */
+static void
+geda_entry_real_activate (GedaEntry *entry)
+{
+  GtkWindow *window;
+  GtkWidget *default_widget, *focus_widget;
+  GtkWidget *toplevel;
+  GtkWidget *widget;
+
+  widget = GTK_WIDGET (entry);
+
+  if (entry->activates_default) {
+    toplevel = gtk_widget_get_toplevel (widget);
+    if (GTK_IS_WINDOW (toplevel))
+    {
+      window = GTK_WINDOW (toplevel);
+
+      if (window) {
+        default_widget = gtk_window_get_default_widget (window);
+        focus_widget = gtk_window_get_focus (window);
+        if (widget != default_widget &&
+          !(widget == focus_widget && (!default_widget || !gtk_widget_get_sensitive (default_widget))))
+          gtk_window_activate_default (window);
+      }
+    }
+  }
+}
+
 static bool
 geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, gpointer data)
 {
@@ -388,20 +676,25 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, gpointer data)
   if (( set_auto_complete ) && ( have_auto_complete )) {/* If somebody wants & we have */
     entry->auto_complete = do_auto_complete;
     set_auto_complete = FALSE; /* We did it so reset flag */
-    fprintf(stderr, "setting auto complete to [%d}\n",do_auto_complete);
   }
+
   switch (event->keyval) {
     case GDK_Down:
-      if ((state == 0) && (is_history)) {
+      if ((state == 0) && (have_history)) {
         geda_entry_history_down (entry);
         handled = TRUE;
       }
       break;
     case GDK_Up:
-      if ((state == 0) && (is_history)) {
+      if ((state == 0) && (have_history)) {
         geda_entry_history_up (entry);
         handled = TRUE;
       }
+      break;
+    case GDK_KP_Enter:
+    case GDK_KEY_Return:
+    case GDK_KEY_ISO_Enter:
+      handled = TRUE;
       break;
     case GDK_Tab:
       if ( (state  == 0) && (entry->auto_complete) ) {
@@ -411,7 +704,6 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, gpointer data)
     default:
       break;
   }
-
   return handled;
 }
 static void
@@ -422,7 +714,25 @@ geda_entry_grab_focus (GtkWidget *widget)
   */
   GTK_WIDGET_CLASS (entry_parent_class)->grab_focus (widget);
 }
+static void geda_entry_realize (GtkWidget *widget)
+{
+  PangoContext         *context;
+  PangoLayout          *layout;
 
+  GedaEntry *entry = GEDA_ENTRY (widget);
+
+  GTK_WIDGET_CLASS (parent_class)->realize (widget);
+
+  if (gtk_widget_has_screen(widget)) {
+    layout = gtk_entry_get_layout ( (GtkEntry*) widget);
+    context = pango_layout_get_context (layout);
+
+    pango_context_set_font_map (context, entry->priv->font_map);
+    entry->priv->font_map = g_object_ref (entry->priv->font_map);
+    pango_layout_context_changed (layout);
+
+  }
+}
 static void
 geda_entry_activate (GedaEntry *entry, gpointer data)
 {
@@ -648,10 +958,10 @@ popup_menu_callback (GtkMenuItem *item, gpointer data)
 GtkWidget *geda_entry_new (GList** history, GList** complete)
 {
   if ((int)history == -1)
-    is_history = FALSE;
+    have_history = FALSE;
   else {
     history_list_arg = history;
-    is_history = TRUE;
+    have_history = TRUE;
   }
   if((int)complete == -1)
     have_auto_complete = FALSE;

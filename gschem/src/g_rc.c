@@ -234,8 +234,8 @@ SCM g_rc_draw_grips(SCM mode)
   };
 
   RETURN_G_RC_MODE("draw-grips",
-		   default_draw_grips,
-		   2);
+                   default_draw_grips,
+                   2);
 }
 
 /*! (category "Display")
@@ -254,8 +254,8 @@ SCM g_rc_grid_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("grid-mode",
-		   default_grid_mode,
-		   3);
+                   default_grid_mode,
+                   3);
 }
 
 /*! \brief This function processes the dots-grid-dot-size RC entry.
@@ -333,8 +333,8 @@ SCM g_rc_object_clipping(SCM mode)
   };
 
   RETURN_G_RC_MODE("object-clipping",
-		   default_object_clipping,
-		   2);
+                   default_object_clipping,
+                   2);
 }
 
 
@@ -374,8 +374,8 @@ SCM g_rc_warp_cursor(SCM mode)
   };
 
   RETURN_G_RC_MODE("warp-cursor",
-		   default_warp_cursor,
-		   2);
+                   default_warp_cursor,
+                   2);
 }
 
 /*! \brief This function processes the zoom-gain RC entry.
@@ -422,8 +422,8 @@ SCM g_rc_zoom_with_pan(SCM mode)
   };
 
   RETURN_G_RC_MODE("zoom-with-pan",
-		   default_zoom_with_pan,
-		   2);
+                   default_zoom_with_pan,
+                   2);
 }
 
 /* ----- Image Related ----- */
@@ -440,8 +440,8 @@ SCM g_rc_image_color(SCM mode)
   };
 
   RETURN_G_RC_MODE("image-color",
-		   default_image_color,
-		   2);
+                   default_image_color,
+                   2);
 }
 /*! \brief This function processes the image-color RC entry.
  *  \par Function Description
@@ -477,7 +477,7 @@ SCM g_rc_logging(SCM mode)
 
     RETURN_G_RC_MODE("logging",
 	    	      default_logging,
-		      2);
+                      2);
   } else {
     if (scm_is_integer(mode)) {
       int val;
@@ -507,8 +507,8 @@ SCM g_rc_log_destiny(SCM mode)
   };
 
   RETURN_G_RC_MODE("log-destiny",
-		   default_log_destiny,
-		   3);
+                   default_log_destiny,
+                   3);
 }
 /*! \brief This function processes the console-window RC entry.
  *  \par Function Description
@@ -526,8 +526,8 @@ SCM g_rc_console_window(SCM mode)
   };
 
   RETURN_G_RC_MODE("console-window",
-		   default_console_window,
-		   4);
+                   default_console_window,
+                   4);
 }
 /*! \brief This function processes the console-window-type RC entry.
  *  \par Function Description
@@ -543,8 +543,8 @@ SCM g_rc_console_window_type(SCM mode)
   };
 
   RETURN_G_RC_MODE("console-window-type",
-		   default_console_window_type,
-		   2);
+                   default_console_window_type,
+                   2);
 }
 /* ----- Miscellaneous ----- */
 /*! \brief This function processes the action-feedback-mode RC entry.
@@ -560,8 +560,8 @@ SCM g_rc_action_feedback_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("action-feedback-mode",
-		   default_action_feedback_mode,
-		   2);
+                   default_action_feedback_mode,
+                   2);
 }
 /*! \brief This function processes the add-attribute-offset RC entry.
  *  \par Function Description
@@ -642,8 +642,8 @@ SCM g_rc_auto_load_last(SCM mode)
   };
 
   RETURN_G_RC_MODE("auto-load-last",
-		   default_auto_load_last,
-		   2);
+                   default_auto_load_last,
+                   2);
 }
 /*! \brief This function processes the auto-save-interval RC entry.
  *  \par Function Description
@@ -758,8 +758,8 @@ SCM g_rc_continue_component_place(SCM mode)
   };
 
   RETURN_G_RC_MODE("continue-component-place",
-		   default_continue_component_place,
-		   2);
+                   default_continue_component_place,
+                   2);
 }
 /*! \brief This function processes the embed-components RC entry.
  *  \par Function Description
@@ -774,8 +774,8 @@ SCM g_rc_embed_components(SCM mode)
   };
 
   RETURN_G_RC_MODE("embed-components",
-		   default_embed_components,
-		   2);
+                   default_embed_components,
+                   2);
 }
 /*! \brief This function processes the enforce-hierarchy RC entry.
  *  \par Function Description
@@ -790,8 +790,8 @@ SCM g_rc_enforce_hierarchy(SCM mode)
   };
 
   RETURN_G_RC_MODE("enforce-hierarchy",
-		   default_enforce_hierarchy,
-		   2);
+                   default_enforce_hierarchy,
+                   2);
 }
 
 /*! \brief This function processes the force_boundingbox RC entry.
@@ -807,8 +807,8 @@ SCM g_rc_force_boundingbox(SCM mode)
   };
 
   RETURN_G_RC_MODE("force-boundingbox",
-		   default_force_boundingbox,
-		   2);
+                   default_force_boundingbox,
+                   2);
 }
 
 /*! \brief This function is for setting the keyboardpan_gain.
@@ -837,8 +837,8 @@ SCM g_rc_magnetic_net_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("magnetic-net-mode",
-		   default_magnetic_net_mode,
-		   2);
+                   default_magnetic_net_mode,
+                   2);
 }
 /*! \brief This function processes the netconn-rubberband RC entry.
  *  \par Function Description
@@ -853,8 +853,8 @@ SCM g_rc_netconn_rubberband(SCM mode)
   };
 
   RETURN_G_RC_MODE("netconn-rubberband",
-		   default_netconn_rubberband,
-		   2);
+                   default_netconn_rubberband,
+                   2);
 }
 
 /*! \brief This function processes the select-slack-pixels RC entry.
@@ -926,8 +926,8 @@ SCM g_rc_net_consolidate(SCM mode)
   };
 
   RETURN_G_RC_MODE("net-consolidate",
-		   default_net_consolidate,
-		   2);
+                   default_net_consolidate,
+                   2);
 }
 /*! \brief This function processes the net-endpoint-mode RC entry.
  *  \par Function Description
@@ -943,8 +943,8 @@ SCM g_rc_net_endpoint_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("net-endpoint-mode",
-		   default_net_endpoint_mode,
-		   3);
+                   default_net_endpoint_mode,
+                   3);
 }
 
 /*! \brief This function processes the net-midpoint-mode RC entry.
@@ -963,8 +963,8 @@ SCM g_rc_net_midpoint_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("net-midpoint-mode",
-		   default_net_midpoint_mode,
-		   4);
+                   default_net_midpoint_mode,
+                   4);
 }
 
 /*! \brief This function processes the net-direction-mode RC entry.
@@ -980,8 +980,8 @@ SCM g_rc_net_direction_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("net-direction-mode",
-		   default_net_direction_mode,
-		   2);
+                   default_net_direction_mode,
+                   2);
 }
 /*! \brief This function processes the net-selection_mode RC entry.
  *  \par Function Description
@@ -1000,8 +1000,8 @@ SCM g_rc_net_selection_mode(SCM mode)
   };
 
   RETURN_G_RC_MODE("net-selection-mode",
-		   default_net_selection_mode,
-		   5);
+                   default_net_selection_mode,
+                   5);
 }
 
 /* Net Ripper */
@@ -1019,8 +1019,8 @@ SCM g_rc_bus_ripper_rotation(SCM mode)
   };
 
   RETURN_G_RC_MODE("bus-ripper-rotation",
-		   default_bus_ripper_rotation,
-		   2);
+                   default_bus_ripper_rotation,
+                   2);
 }
 /*! \brief This function processes the bus-ripper-size RC entry.
  *  \par Function Description
@@ -1060,8 +1060,8 @@ SCM g_rc_bus_ripper_type(SCM mode)
   };
 
   RETURN_G_RC_MODE("bus-ripper-type",
-		   default_bus_ripper_type,
-		   2);
+                   default_bus_ripper_type,
+                   2);
 }
 /*! \brief This function processes the bus-ripper-symname RC entry.
  *  \par Function Description
@@ -1102,8 +1102,8 @@ SCM g_rc_fast_mousepan(SCM mode)
   };
 
   RETURN_G_RC_MODE("fast-mousepan",
-		   default_fast_mousepan,
-		   2);
+                   default_fast_mousepan,
+                   2);
 }
 
 /*! \brief This function processes the drag-can-move RC entry.
@@ -1119,8 +1119,8 @@ SCM g_rc_drag_can_move(SCM mode)
   };
 
   RETURN_G_RC_MODE("drag-can-move",
-		   default_drag_can_move,
-		   2);
+                   default_drag_can_move,
+                   2);
 }
 
 /*! \brief This function processes the middle-button RC entry.
@@ -1138,8 +1138,8 @@ SCM g_rc_middle_button(SCM mode)
   };
 
   RETURN_G_RC_MODE("middle-button",
-		   default_middle_button,
-		   4);
+                   default_middle_button,
+                   4);
 }
 /*! \brief This function processes the mousepan-gain RC entry.
  *  \par Function Description
@@ -1206,8 +1206,8 @@ SCM g_rc_third_button(SCM mode)
   };
 
   RETURN_G_RC_MODE("third-button",
-		   default_third_button,
-		   2);
+                   default_third_button,
+                   2);
 }
 
 /* ----- Print Related ----- */
@@ -1327,8 +1327,8 @@ SCM g_rc_output_type(SCM mode)
   };
 
   RETURN_G_RC_MODE("output-type",
-		   default_print_output_type,
-		   4);
+                   default_print_output_type,
+                   4);
 }
 /*! \brief This function processes the output-orientation RC entry.
  *  \par Function Description
@@ -1343,8 +1343,8 @@ SCM g_rc_output_orientation(SCM mode)
   };
 
   RETURN_G_RC_MODE("output-orientation",
-		   default_print_orientation,
-		   2);
+                   default_print_orientation,
+                   2);
 }
 /*! \brief This function processes the output-color RC entry.
  *  \par Function Description
@@ -1360,8 +1360,8 @@ SCM g_rc_output_color(SCM mode)
 
   /* this variable is inconsistantly named with the rest */
   RETURN_G_RC_MODE("output-color",
-		   default_print_color,
-		   2);
+                   default_print_color,
+                   2);
 }
 /*! \brief This function processes the output-capstyle RC entry.
  *  \par Function Description
@@ -1377,8 +1377,8 @@ SCM g_rc_output_capstyle(SCM mode)
   };
 
   RETURN_G_RC_MODE("output-capstyle",
-		   default_print_output_capstyle,
-		   3);
+                   default_print_output_capstyle,
+                   3);
 }
 /*! \brief This function processes the setpagedevice-orientation RC entry.
  *  \par Function Description
@@ -1394,7 +1394,7 @@ SCM g_rc_setpagedevice_orientation(SCM mode)
 
   RETURN_G_RC_MODE("setpagedevice-orientation",
                    default_setpagedevice_orientation,
-		   2);
+                   2);
 }
 /*! \brief This function processes the setpagedevice-pagesize RC entry.
  *  \par Function Description
@@ -1410,7 +1410,7 @@ SCM g_rc_setpagedevice_pagesize(SCM mode)
 
   RETURN_G_RC_MODE("setpagedevice-pagesize",
                    default_setpagedevice_pagesize,
-		   2);
+                   2);
 }
 
 /* ----------------- System -----------------*/
@@ -1481,24 +1481,6 @@ SCM g_rc_save_ui_settings(SCM mode)
 
   RETURN_G_RC_MODE("save-ui-settings",
                    default_save_ui_settings,
-                   2);
-}
-
-/*! \brief This function processes the show-menu-icons RC entry.
- *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the show-menu-icons
- *       RC entry.
- */
-SCM g_rc_show_menu_icons(SCM mode)
-{
-  static const vstbl_entry mode_table[] = {
-    {TRUE , RC_STR_ENABLED },
-    {FALSE, RC_STR_DISABLED},
-  };
-
-  RETURN_G_RC_MODE("show-menu-icons",
-                   default_show_menu_icons,
                    2);
 }
 
@@ -1636,8 +1618,8 @@ SCM g_rc_text_case(SCM mode)
   };
 
   RETURN_G_RC_MODE("text-case",
-		   default_text_case,
-		   3);
+                   default_text_case,
+                   3);
 }
 /*! \brief This function processes the text-display_zoomfactor RC entry.
  *  \par Function Description
@@ -1677,8 +1659,8 @@ SCM g_rc_text_feedback(SCM mode)
   };
 
   RETURN_G_RC_MODE("text-feedback",
-		   default_text_feedback,
-		   2);
+                   default_text_feedback,
+                   2);
 }
 /*! \brief This function processes the text-origin-marker RC entry.
  *  \par Function Description
@@ -1693,8 +1675,8 @@ SCM g_rc_text_origin_marker(SCM mode)
   };
 
   RETURN_G_RC_MODE("text-origin-marker",
-		   default_text_origin_marker,
-		   2);
+                   default_text_origin_marker,
+                   2);
 }
 /*! \brief This function processes the text-marker-size RC entry.
  *  \par Function Description
@@ -1775,8 +1757,8 @@ SCM g_rc_undo_type(SCM mode)
   };
 
   RETURN_G_RC_MODE("undo-type",
-		   default_undo_type,
-		   2);
+                   default_undo_type,
+                   2);
 }
 
 

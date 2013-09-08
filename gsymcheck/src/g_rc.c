@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -42,11 +42,11 @@ SCM g_rc_gsymcheck_version(SCM scm_version)
   version = scm_to_utf8_string (scm_version);
   if (g_ascii_strcasecmp(version, PACKAGE_DATE_VERSION) != 0) {
     fprintf(stderr, _(
-            "You are running gEDA/gaf version [%s%s.%s],\n"
-            "but you have a version [%s] gsymcheckrc file:\n[%s]\n"
-            "Please be sure that you have the latest rc file.\n"),
-            PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION,
-            version, rc_filename);
+      "You are running gEDA/gaf version [%s%s.%s],\n"
+      "but you have a version [%s] gsymcheckrc file:\n[%s]\n"
+      "Please be sure that you have the latest rc file.\n"),
+      PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION,
+      version, rc_filename);
     ret = SCM_BOOL_F;
   }
 

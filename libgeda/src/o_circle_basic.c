@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -74,31 +74,30 @@ int dist(int x1, int y1, int x2, int y2)
  *  \param [in]     radius       Radius of new circle.
  *  \return A pointer to the new end of the object list.
  */
-OBJECT *o_circle_new(TOPLEVEL *toplevel,
-		     char type, int color,
-		     int x, int y, int radius)
+OBJECT *o_circle_new(TOPLEVEL *toplevel, char type, int color,
+                     int x, int y, int radius)
 {
-  OBJECT *new_node;	
+  OBJECT *new_node;
 
   /* create the object */
   new_node = s_basic_new_object(type, "circle");
   new_node->color  = color;
-  
+
   new_node->circle = (CIRCLE *) g_malloc(sizeof(CIRCLE));
-  
+
   /* describe the circle with its center and radius */
   new_node->circle->center_x = x;
   new_node->circle->center_y = y;
   new_node->circle->radius   = radius;
-  
+
   /* line type and filling initialized to default */
   o_set_line_options(toplevel, new_node,
-		     o_get_line_end(toplevel->print_output_capstyle), TYPE_SOLID, 0, -1, -1);
+                     o_get_line_end(toplevel->print_output_capstyle), TYPE_SOLID, 0, -1, -1);
   o_set_fill_options(toplevel, new_node,
-		     FILLING_HOLLOW, -1, -1, -1, -1, -1);
+                     FILLING_HOLLOW, -1, -1, -1, -1, -1);
 
   /* compute the bounding box coords */
-  o_circle_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
 }
@@ -124,24 +123,21 @@ OBJECT *o_circle_copy(TOPLEVEL *toplevel, OBJECT *o_current)
    * The parameters of the new circle are set with the ones of the original
    * circle. The two circle have the same line type and the same filling
    * options.
-   *
-   * The bounding box coordinates are computed with
-   * #o_circle_recalc().
    */
   /* modify */
   new_obj->circle->center_x = o_current->circle->center_x;
   new_obj->circle->center_y = o_current->circle->center_y;
   new_obj->circle->radius   = o_current->circle->radius;
-  
+
   o_set_line_options(toplevel, new_obj, o_current->line_end,
-		     o_current->line_type, o_current->line_width,
-		     o_current->line_length, o_current->line_space);
+                     o_current->line_type, o_current->line_width,
+                     o_current->line_length, o_current->line_space);
   o_set_fill_options(toplevel, new_obj,
-		     o_current->fill_type, o_current->fill_width,
-		     o_current->fill_pitch1, o_current->fill_angle1,
-		     o_current->fill_pitch2, o_current->fill_angle2);
-  
-  o_circle_recalc(toplevel, new_obj);
+                     o_current->fill_type, o_current->fill_width,
+                     o_current->fill_pitch1, o_current->fill_angle1,
+                     o_current->fill_pitch2, o_current->fill_angle2);
+
+  new_obj->w_bounds_valid_for = NULL;
 
   /*	new_obj->attribute = 0;*/
 
@@ -177,7 +173,7 @@ OBJECT *o_circle_copy(TOPLEVEL *toplevel, OBJECT *o_current)
  *  </DL>
  */
 void o_circle_modify(TOPLEVEL *toplevel, OBJECT *object,
-		     int x, int y, int whichone)
+                     int x, int y, int whichone)
 {
   o_emit_pre_change_notify (toplevel, object);
 
@@ -190,8 +186,8 @@ void o_circle_modify(TOPLEVEL *toplevel, OBJECT *object,
     case CIRCLE_RADIUS:
       /* modify the radius of the circle */
       if (x == 0) {
-	s_log_message(_("Null radius circles are not allowed\n"));
-	return;
+        s_log_message(_("Null radius circles are not allowed\n"));
+        return;
       }
       object->circle->radius = x;
       break;
@@ -200,7 +196,7 @@ void o_circle_modify(TOPLEVEL *toplevel, OBJECT *object,
   }
 
   /* recalculate the boundings */
-  o_circle_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, object);
 }
 
@@ -226,7 +222,7 @@ OBJECT *o_circle_read (TOPLEVEL *toplevel, const char buf[],
               unsigned int release_ver, unsigned int fileformat_ver, GError ** err)
 {
   OBJECT *new_obj;
-  char type; 
+  char type;
   int x1, y1;
   int radius;
   int color;
@@ -252,29 +248,29 @@ OBJECT *o_circle_read (TOPLEVEL *toplevel, const char buf[],
     circle_type  = TYPE_SOLID;
     circle_length= -1;
     circle_space = -1;
-    
+
     circle_fill  = FILLING_HOLLOW;
     fill_width  = 0;
     angle1      = -1;
     pitch1      = -1;
     angle2      = -1;
     pitch2      = -1;
-			
+
   } else {
-	
+
     /*
      * The current line format to describe a circle is a space separated
      * list of characters and numbers in plain ASCII on a single line. The
      * meaning of each item is described in the file format documentation.
-     */  
+     */
     if (sscanf(buf, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-	       &type, &x1, &y1, &radius, &color,
-	       &circle_width, &circle_end, &circle_type,
-	       &circle_length, &circle_space, &circle_fill,
-	       &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 16) {
+      &type, &x1, &y1, &radius, &color,
+      &circle_width, &circle_end, &circle_type,
+      &circle_length, &circle_space, &circle_fill,
+      &fill_width, &angle1, &pitch1, &angle2, &pitch2) != 16) {
       g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse circle object"));
-      return NULL;
-    }
+    return NULL;
+      }
   }
 
 
@@ -284,14 +280,14 @@ OBJECT *o_circle_read (TOPLEVEL *toplevel, const char buf[],
     s_log_message (_("Setting radius to 0\n"));
     radius = 0;
   }
-  
+
   if (color < 0 || color > MAX_COLORS) {
     s_log_message(_("Found an invalid color [ %s ]\n"), buf);
     s_log_message(_("Setting color to default color\n"));
     color = DEFAULT_COLOR_INDEX;
   }
 
-  /* 
+  /*
    * A circle is internally described by its center and its radius.
    *
    * A new object is allocated, initialized and added to the object list.
@@ -300,10 +296,10 @@ OBJECT *o_circle_read (TOPLEVEL *toplevel, const char buf[],
    */
   new_obj = o_circle_new(toplevel, type, color, x1, y1, radius);
   o_set_line_options(toplevel, new_obj,
-		     circle_end, circle_type, circle_width, 
-		     circle_length, circle_space);
+                     circle_end, circle_type, circle_width,
+                     circle_length, circle_space);
   o_set_fill_options(toplevel, new_obj,
-		     circle_fill, fill_width, pitch1, angle1, pitch2, angle2);
+                     circle_fill, fill_width, pitch1, angle1, pitch2, angle2);
 
   return new_obj;
 }
@@ -338,14 +334,14 @@ char *o_circle_save(TOPLEVEL *toplevel, OBJECT *object)
   x = object->circle->center_x;
   y = object->circle->center_y;
   radius = object->circle->radius;
-  
+
   /* line type parameters */
   circle_width = object->line_width;
   circle_end   = object->line_end;
   circle_type  = object->line_type;
   circle_length= object->line_length;
   circle_space = object->line_space;
-  
+
   /* filling parameters */
   circle_fill  = object->fill_type;
   fill_width   = object->fill_width;
@@ -353,12 +349,12 @@ char *o_circle_save(TOPLEVEL *toplevel, OBJECT *object)
   pitch1       = object->fill_pitch1;
   angle2       = object->fill_angle2;
   pitch2       = object->fill_pitch2;
-  
-  buf = g_strdup_printf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d", 
-			object->type, x, y, radius, object->color,
-			circle_width, circle_end, circle_type, circle_length, 
-			circle_space, circle_fill,
-			fill_width, angle1, pitch1, angle2, pitch2);
+
+  buf = g_strdup_printf("%c %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d",
+                        object->type, x, y, radius, object->color,
+                        circle_width, circle_end, circle_type, circle_length,
+                        circle_space, circle_fill,
+                        fill_width, angle1, pitch1, angle2, pitch2);
   return(buf);
 }
            
@@ -373,15 +369,15 @@ char *o_circle_save(TOPLEVEL *toplevel, OBJECT *object)
  *  \param [in,out] object     Circle OBJECT to translate.
  */
 void o_circle_translate_world(TOPLEVEL *toplevel,
-			      int dx, int dy, OBJECT *object)
+                              int dx, int dy, OBJECT *object)
 {
   /* Do world coords */
   object->circle->center_x = object->circle->center_x + dx;
   object->circle->center_y = object->circle->center_y + dy;
-  
+
   /* recalc the screen coords and the bounding box */
-  o_circle_recalc(toplevel, object);
-  
+  object->w_bounds_valid_for = NULL;
+
 }
 
 /*! \brief Rotate Circle OBJECT using WORLD coordinates. 
@@ -398,8 +394,8 @@ void o_circle_translate_world(TOPLEVEL *toplevel,
  *  \param [in,out]  object         Circle OBJECT to rotate.
  */
 void o_circle_rotate_world(TOPLEVEL *toplevel,
-			   int world_centerx, int world_centery, int angle,
-			   OBJECT *object)
+                           int world_centerx, int world_centery, int angle,
+                           OBJECT *object)
 {
   int newx, newy;
   int x, y;
@@ -409,7 +405,7 @@ void o_circle_rotate_world(TOPLEVEL *toplevel,
   if(angle < 0) angle = -angle;
   /* angle must be a 90 multiple or no rotation performed */
   if((angle % 90) != 0) return;
-  
+
   /*
    * The center of rotation (<B>world_centerx</B>,<B>world_centery</B>) is
    * translated to the origin. The rotation of the center around the origin
@@ -420,20 +416,20 @@ void o_circle_rotate_world(TOPLEVEL *toplevel,
   /* translate object to origin */
   object->circle->center_x -= world_centerx;
   object->circle->center_y -= world_centery;
-  
+
   /* rotate the center of the circle around the origin */
   x = object->circle->center_x;
   y = object->circle->center_y;
   rotate_point_90(x, y, angle, &newx, &newy);
   object->circle->center_x = newx;
   object->circle->center_y = newy;
-  
+
   /* translate back in position */
   object->circle->center_x += world_centerx;
   object->circle->center_y += world_centery;
 
-  o_circle_recalc(toplevel, object);
-  
+  object->w_bounds_valid_for = NULL;
+
 }
 
 /*! \brief Mirror circle using WORLD coordinates.
@@ -450,8 +446,8 @@ void o_circle_rotate_world(TOPLEVEL *toplevel,
  *  \param [in,out] object         Circle OBJECT to mirror.
  */
 void o_circle_mirror_world(TOPLEVEL *toplevel,
-			   int world_centerx, int world_centery,
-			   OBJECT *object)
+                           int world_centerx, int world_centery,
+                           OBJECT *object)
 {
   /* translate object to origin */
   object->circle->center_x -= world_centerx;
@@ -466,37 +462,8 @@ void o_circle_mirror_world(TOPLEVEL *toplevel,
   object->circle->center_y += world_centery;
 
   /* recalc boundings and screen coords */
-  o_circle_recalc(toplevel, object);
-  
-}
+  object->w_bounds_valid_for = NULL;
 
-/*! \brief Recalculate circle coordinates in SCREEN units.
- *  \par Function Description
- *  This function recalculates the screen coords of the <B>o_current</B> pointed
- *  circle object from its world coords.
- *
- *  The circle coordinates and its bounding are recalculated as well as the
- *  OBJECT specific (line width, filling ...).
- *
- *  \param [in] toplevel      The TOPLEVEL object.
- *  \param [in,out] o_current  Circle OBJECT to be recalculated.
- */
-void o_circle_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  if (o_current->circle == NULL) {
-    return;
-  }
-  
-  /* update the bounding box - world unit */
-  world_get_circle_bounds(toplevel, o_current,
-		    &left, &top, &right, &bottom);
-  o_current->w_left   = left;
-  o_current->w_top    = top;
-  o_current->w_right  = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief Get circle bounding rectangle in WORLD coordinates.
@@ -754,10 +721,10 @@ void o_circle_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
  *  \param [in] origin_y      Page y coordinate to place circle OBJECT.
  */
 void o_circle_print_solid(TOPLEVEL *toplevel, FILE *fp,
-			  int x, int y, int radius,
-			  int color,
-			  int circle_width, int capstyle, int length, int space,
-			  int origin_x, int origin_y)
+                          int x, int y, int radius,
+                          int color,
+                          int circle_width, int capstyle, int length, int space,
+                          int origin_x, int origin_y)
 {
 
   o_arc_print_solid(toplevel, fp,
@@ -798,10 +765,10 @@ void o_circle_print_solid(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place circle OBJECT.
  */
 void o_circle_print_dotted(TOPLEVEL *toplevel, FILE *fp,
-			   int x, int y, int radius,
-			   int color,
-			   int circle_width, int capstyle, int length, int space,
-			   int origin_x, int origin_y)
+                           int x, int y, int radius,
+                           int color,
+                           int circle_width, int capstyle, int length, int space,
+                           int origin_x, int origin_y)
 {
 
   o_arc_print_dotted(toplevel, fp,
@@ -840,11 +807,11 @@ void o_circle_print_dotted(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place circle OBJECT.
  */
 void o_circle_print_dashed(TOPLEVEL *toplevel, FILE *fp,
-			   int x, int y,
-			   int radius,
-			   int color,
-			   int circle_width, int capstyle, int length, int space,
-			   int origin_x, int origin_y)
+                           int x, int y,
+                           int radius,
+                           int color,
+                           int circle_width, int capstyle, int length, int space,
+                           int origin_x, int origin_y)
 {
 
   o_arc_print_dashed(toplevel, fp,
@@ -926,11 +893,9 @@ void o_circle_print_center(TOPLEVEL *toplevel, FILE *fp,
  *  \param [in] origin_y      Page y coordinate to place circle OBJECT.
  */
 void o_circle_print_phantom(TOPLEVEL *toplevel, FILE *fp,
-			    int x, int y,
-			    int radius,
-			    int color,
-			    int circle_width, int capstyle, int length, int space,
-			    int origin_x, int origin_y)
+                            int x, int y, int radius, int color,
+                            int circle_width, int capstyle, int length, int space,
+                            int origin_x, int origin_y)
 {
 
   o_arc_print_phantom(toplevel, fp,
@@ -1111,17 +1076,18 @@ void o_circle_print_hatch(TOPLEVEL *toplevel, FILE *fp,
 }
 
 /*! \brief Calculates the distance between the given point and the closest
- * point on the perimeter of the circle.
- *
- *  \param [in] object       The circle OBJECT.
+ *  point on the perimeter of the circle.
+ * 
+ *  \param [in] toplevel     A TOPLEVEL object.
+ *  \param [in] object       A circle OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
  *  \return The shortest distance from the object to the point.  With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_circle_shortest_distance (OBJECT *object, int x, int y,
-                                   int force_solid)
+double o_circle_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                   int x, int y, int force_solid)
 {
   int solid;
 

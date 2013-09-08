@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -57,44 +57,132 @@
 int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
                                    int *rleft, int *rtop, int *rright, int *rbottom)
 {
-  if (o_current != NULL) {
-    switch(o_current->type) {
-      case(OBJ_TEXT):
-        /* only do bounding boxes for visible or doing show_hidden_text*/
-        /* you might lose some attrs though */
-        if (! (o_is_visible (toplevel, o_current) ||
-                toplevel->show_hidden_text)) {
-          return 0;
-        }
-        /* This case falls through intentionally */
-      case(OBJ_LINE):
-      case(OBJ_NET):
-      case(OBJ_BUS):
-      case(OBJ_BOX):
-      case(OBJ_PICTURE):
-      case(OBJ_CIRCLE):
-      case(OBJ_PATH):
-      case(OBJ_PIN):
-      case(OBJ_ARC):
-      case(OBJ_COMPLEX):
-      case(OBJ_PLACEHOLDER):
-        if (!o_current->w_bounds_valid) {
-          o_recalc_single_object (toplevel, o_current);
-          if (!o_current->w_bounds_valid) {
+  if (o_current == NULL) {
+    return 0;
+  }
+
+  /* only do bounding boxes for visible or doing show_hidden_text*/
+  /* you might lose some attrs though */
+  if (o_current->type == OBJ_TEXT &&
+    ! (o_is_visible (toplevel, o_current) || toplevel->show_hidden_text)) {
+    return 0;
+    }
+
+    if (o_current->w_bounds_valid_for != toplevel) {
+      int left, right, top, bottom;
+      switch(o_current->type) {
+
+        case(OBJ_LINE):
+          if (o_current->line == NULL) {
             return 0;
           }
-        }
-        *rleft = o_current->w_left;
-        *rtop = o_current->w_top;
-        *rright = o_current->w_right;
-        *rbottom = o_current->w_bottom;
-        return 1;
+          world_get_line_bounds(toplevel, o_current,
+                                &left, &top, &right, &bottom);
+          break;
 
-      default:
-        break;
+        case(OBJ_NET):
+          if (o_current->line == NULL) {
+            return 0;
+          }
+          world_get_net_bounds(toplevel, o_current,
+                               &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_BUS):
+          if (o_current->line == NULL) {
+            return 0;
+          }
+          world_get_bus_bounds(toplevel, o_current,
+                               &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_BOX):
+          if (o_current->box == NULL) {
+            return 0;
+          }
+          world_get_box_bounds(toplevel, o_current,
+                               &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_PATH):
+          g_return_val_if_fail (o_current->path != NULL, 0);
+          if (o_current->path->num_sections <= 0) {
+            return 0;
+          }
+          world_get_path_bounds (toplevel, o_current,
+                                 &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_PICTURE):
+          if (o_current->picture == NULL) {
+            return 0;
+          }
+          world_get_picture_bounds(toplevel, o_current,
+                                   &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_CIRCLE):
+          if (o_current->circle == NULL) {
+            return 0;
+          }
+          world_get_circle_bounds(toplevel, o_current,
+                                  &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_COMPLEX):
+        case(OBJ_PLACEHOLDER):
+          /* realc routine Add this somewhere */
+          /* libhack */
+          /* o_recalc(toplevel, o_current->complex);*/
+
+          if ((!o_current) || (o_current->type != OBJ_COMPLEX &&
+            o_current->type != OBJ_PLACEHOLDER))
+            return 0;
+
+          if (o_current->complex->prim_objs == NULL)
+            return 0;
+
+          world_get_complex_bounds(toplevel, o_current,
+                                   &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_PIN):
+          if (o_current->line == NULL) {
+            return 0;
+          }
+          world_get_pin_bounds(toplevel, o_current,
+                               &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_ARC):
+          if (o_current->arc == NULL) {
+            return 0;
+          }
+          world_get_arc_bounds(toplevel, o_current,
+                               &left, &top, &right, &bottom);
+          break;
+
+        case(OBJ_TEXT):
+          if ( !world_get_text_bounds(toplevel, o_current,
+            &left, &top, &right, &bottom) ) {
+            return 0;
+            }
+            break;
+
+        default:
+          return 0;
+      }
+      o_current->w_left   = left;
+      o_current->w_top    = top;
+      o_current->w_right  = right;
+      o_current->w_bottom = bottom;
+      o_current->w_bounds_valid_for = toplevel;
     }
-  }
-  return 0;
+    *rleft = o_current->w_left;
+    *rtop = o_current->w_top;
+    *rright = o_current->w_right;
+    *rbottom = o_current->w_bottom;
+    return 1;
 }
 
 
@@ -478,16 +566,14 @@ static void create_placeholder(TOPLEVEL * toplevel, OBJECT * new_node, int x, in
  *  \par Function Description
  *
  */
-OBJECT *o_complex_new(TOPLEVEL *toplevel,
-		      char type,
-		      int color, int x, int y, int angle,
-		      int mirror, const CLibSymbol *clib,
-		      const gchar *basename,
-		      int selectable)
+OBJECT *o_complex_new(TOPLEVEL *toplevel, char type,
+                      int color, int x, int y, int angle,
+                      int mirror, const CLibSymbol *clib,
+                      const char *basename, int selectable)
 {
   OBJECT *new_node=NULL;
   GList *iter;
-  gchar *buffer = NULL;
+  char *buffer = NULL;
 
   new_node = s_basic_new_object(type, "complex");
 
@@ -545,7 +631,7 @@ OBJECT *o_complex_new(TOPLEVEL *toplevel,
     tmp->parent = new_node;
   }
 
-  o_complex_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
 }
@@ -594,41 +680,12 @@ OBJECT *o_complex_new_embedded(TOPLEVEL *toplevel,
   return new_node;
 }
 
-/*! \brief update the visual boundaries of the complex object
- *  \par Function Description
- *  This function updates the boundaries of the object \a o_current.
- *
- *  \param [in]  toplevel  The TOPLEVEL object
- *  \param [in]  o_current The OBJECT to update
- */
-void o_complex_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, right, top, bottom;
-
-  /* realc routine Add this somewhere */
-  /* libhack */
-  /* o_recalc(toplevel, o_current->complex);*/
-
-  if ((!o_current) || (o_current->type != OBJ_COMPLEX && o_current->type != OBJ_PLACEHOLDER))
-    return;
-
-  if (o_current->complex->prim_objs == NULL)
-    return;
-
-  world_get_complex_bounds(toplevel, o_current, &left, &top, &right, &bottom);
-  o_current->w_left = left;
-  o_current->w_top = top;
-  o_current->w_right = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
-}
-
 /*! \brief read a complex object from a char buffer
  *  \par Function Description
  *  This function reads a complex object from the buffer \a buf.
  *  If the complex object was read successfully, a new object is
  *  allocated and appended to the \a object_list.
- *  
+ *
  *  \param [in] toplevel     The TOPLEVEL object
  *  \param [in] buf          a text buffer (usually a line of a schematic file)
  *  \param [in] release_ver  The release number gEDA
@@ -650,7 +707,7 @@ OBJECT *o_complex_read (TOPLEVEL *toplevel,
   int mirror;
 
   if (sscanf(buf, "%c %d %d %d %d %d %s\n",
-	     &type, &x1, &y1, &selectable, &angle, &mirror, basename) != 7) {
+    &type, &x1, &y1, &selectable, &angle, &mirror, basename) != 7) {
     g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse complex object"));
     return NULL;
   }
@@ -675,20 +732,20 @@ OBJECT *o_complex_read (TOPLEVEL *toplevel,
     case(1):
 
       break;
-		
+
     default:
       s_log_message(_("Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"), type, x1, y1, selectable, angle, mirror, basename);
       s_log_message (_("Setting mirror to 0\n"));
       mirror = 0;
   }
   if (strncmp(basename, "EMBEDDED", 8) == 0) {
-    
+
     new_obj = o_complex_new_embedded(toplevel, type,
                                      DEFAULT_COLOR_INDEX, x1, y1, angle, mirror,
                                      basename + 8,
                                      selectable);
   } else {
-    
+
     const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
 
     new_obj = o_complex_new(toplevel, type,
@@ -727,8 +784,8 @@ char *o_complex_save(TOPLEVEL *toplevel, OBJECT *object)
 
   if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
     basename = g_strdup_printf ("%s%s",
-				object->complex_embedded ? "EMBEDDED" : "",
-				object->complex_basename);
+                                object->complex_embedded ? "EMBEDDED" : "",
+                                object->complex_basename);
     /* We force the object type to be output as OBJ_COMPLEX for both
      * these object types. */
     buf = g_strdup_printf("%c %d %d %d %d %d %s", OBJ_COMPLEX,
@@ -762,7 +819,7 @@ void o_complex_translate_world(TOPLEVEL *toplevel, int dx, int dy,
 
   o_glist_translate_world (toplevel, dx, dy, object->complex->prim_objs);
 
-  o_complex_recalc (toplevel, object);
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Create a copy of a COMPLEX object
@@ -804,7 +861,7 @@ OBJECT *o_complex_copy(TOPLEVEL *toplevel, OBJECT *o_current)
   }
 
   /* Recalculate bounds */
-  o_complex_recalc(toplevel, o_new);
+  o_new->w_bounds_valid_for = NULL;
 
   /* Delete or hide attributes eligible for promotion inside the complex */
   o_complex_remove_promotable_attribs (toplevel, o_new);
@@ -820,6 +877,28 @@ OBJECT *o_complex_copy(TOPLEVEL *toplevel, OBJECT *o_current)
   return o_new;
 }
 
+/*! \brief Reset the refdes number back to a question mark
+ *
+ *  \par This function finds the refdes attribute inside this
+ *  object and resets the refdes number back to a question mark.
+ *
+ *  \param [in] toplevel    The TOPLEVEL object
+ *  \param [in] object      The complex containing text objects
+ */
+void o_complex_reset_refdes(TOPLEVEL *toplevel, OBJECT *object)
+{
+  GList *iter = object->attribs;
+
+  while (iter != NULL) {
+    OBJECT *attrib = (OBJECT*) iter->data;
+
+    if (attrib->type == OBJ_TEXT) {
+      o_text_reset_refdes(toplevel, attrib);
+    }
+
+    iter = g_list_next (iter);
+  }
+}
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -983,7 +1062,7 @@ o_complex_check_symversion(TOPLEVEL* toplevel, OBJECT* object)
   {
     refdes = g_strdup ("unknown");
   }
-  
+
   if (inside)
   {
     inside_value = strtod(inside, &err_check);
@@ -1025,7 +1104,7 @@ o_complex_check_symversion(TOPLEVEL* toplevel, OBJECT* object)
   printf("%s:\n\tinside: %.1f outside: %.1f\n\n", object->name,
          inside_value, outside_value);
 #endif
-  
+
   /* symversion= is not present anywhere */
   if (!inside_present && !outside_present)
   {
@@ -1049,7 +1128,7 @@ o_complex_check_symversion(TOPLEVEL* toplevel, OBJECT* object)
   if ((inside_present && !outside_present) ||
       ((inside_present && outside_present) && (inside_value > outside_value)))
   {
-    
+
     s_log_message(_("WARNING: Symbol version mismatch on refdes %s (%s):\n"
                     "\tSymbol in library is newer than "
                     "instantiated symbol\n"),
@@ -1074,7 +1153,7 @@ o_complex_check_symversion(TOPLEVEL* toplevel, OBJECT* object)
     printf("i: %f %f %f\n", inside_value, inside_major, inside_minor);
     printf("o: %f %f %f\n", outside_value, outside_major, outside_minor);
 #endif
-    
+
     if (inside_major > outside_major)
     {
       char* refdes_copy;
@@ -1129,7 +1208,8 @@ done:
  *        force treating them as solid filled.
  *        We ignore the force_solid argument to this function.
  *
- *  \param [in] object       The complex  OBJECT.
+ *  \param [in] toplevel     A TOPLEVEL object.
+ *  \param [in] object       A complex  OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
@@ -1138,8 +1218,8 @@ done:
  *  number (G_MAXDOUBLE).  With an invalid parameter, this function returns
  *  G_MAXDOUBLE.
  */
-double o_complex_shortest_distance (OBJECT *object, int x, int y,
-                                    int force_solid)
+double o_complex_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                    int x, int y, int force_solid)
 {
   double shortest_distance = G_MAXDOUBLE;
   double distance;
@@ -1152,25 +1232,26 @@ double o_complex_shortest_distance (OBJECT *object, int x, int y,
   for (iter = object->complex->prim_objs;
        iter != NULL; iter= g_list_next (iter)) {
     OBJECT *obj = iter->data;
+    int left, top, right, bottom;
 
     /* Collect the bounds of any lines and arcs in the symbol */
     if ((obj->type == OBJ_LINE || obj->type == OBJ_ARC) &&
-        obj->w_bounds_valid) {
-
+        world_get_single_object_bounds(toplevel, obj,
+                                       &left, &top, &right, &bottom)) {
       if (found_line_bounds) {
-        line_bounds.lower_x = min (line_bounds.lower_x, obj->w_left);
-        line_bounds.lower_y = min (line_bounds.lower_y, obj->w_top);
-        line_bounds.upper_x = max (line_bounds.upper_x, obj->w_right);
-        line_bounds.upper_y = max (line_bounds.upper_y, obj->w_bottom);
+        line_bounds.lower_x = min (line_bounds.lower_x, left);
+        line_bounds.lower_y = min (line_bounds.lower_y, top);
+        line_bounds.upper_x = max (line_bounds.upper_x, right);
+        line_bounds.upper_y = max (line_bounds.upper_y, bottom);
       } else {
-        line_bounds.lower_x = obj->w_left;
-        line_bounds.lower_y = obj->w_top;
-        line_bounds.upper_x = obj->w_right;
-        line_bounds.upper_y = obj->w_bottom;
+        line_bounds.lower_x = left;
+        line_bounds.lower_y = top;
+        line_bounds.upper_x = right;
+        line_bounds.upper_y = bottom;
         found_line_bounds = 1;
       }
     } else {
-      distance = o_shortest_distance_full (obj, x, y, TRUE);
+      distance = o_shortest_distance_full (toplevel, obj, x, y, TRUE);
       shortest_distance = min (shortest_distance, distance);
     }
 

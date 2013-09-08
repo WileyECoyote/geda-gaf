@@ -1,6 +1,3 @@
-
-
-
 #ifndef __GTKEXTRA_TYPE_BUILTINS_H__
 #define __GTKEXTRA_TYPE_BUILTINS_H__
 

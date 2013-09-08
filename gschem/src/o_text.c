@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -136,7 +136,6 @@ void o_text_prepare_place(GSCHEM_TOPLEVEL *w_current, char *text)
   i_set_state (w_current, ENDTEXT);
 }
 
-
 /*! \brief Launch the Edit Text Dialog
  *  \par Function Description
  *   This function calls x_dialog_edit_text() which could have been done
@@ -163,27 +162,22 @@ void o_text_edit(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
  *  \param [in] text_size      integer, The new text size integer
  *  \param [in] text_alignment integer, The new text alignment
  *  \param [in] text_color     integer, The new text color
- *
+ *  \param [in] rotate         integer, The rotation angle
+ * 
  * 02/27/13 WEH Added text_color, changed_something conditionals and documentation
+ * 07/20/13 WEH Added rotatation, eliminated numselect and len & add conditonal
+ *          skip for values less then 0.
  */
-void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int text_alignment,
-                     int text_color, int text_size)
+void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int text_align,
+                     int text_color, int text_size, int rotate)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *object;
   GList  *s_current;
   bool    changed_something;
-  int     numselect;
-  int     len;
-
-  if (string)
-    len = strlen(string);
-  else
-    len = 0;
 
   /* skip over head */
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
-  numselect = g_list_length( geda_list_get_glist( toplevel->page_current->selection_list ));
 
   changed_something = FALSE;
   while(s_current != NULL) {
@@ -192,36 +186,42 @@ void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int text_alignmen
     if (object) {
       if (object->type == OBJ_TEXT) {
 
+        /* Text string is only applicable if string has length */
+        if ( string && strlen (string) != 0 ) {
+          if (strcmp(object->text->string, string) != 0) {
+            changed_something = TRUE;
+            o_text_set_string (w_current->toplevel, object, string);
+            /* handle slot= attribute, it's a special case */
+            if (object->attached_to != NULL &&
+              g_ascii_strncasecmp (string, "slot=", 5) == 0) {
+              o_slot_end (w_current, object->attached_to, string);
+            }
+          }
+        }
+
         /* Change Size */
-        if(object->text->size != text_size) {
+        if( text_size >= 0 && object->text->size != text_size) {
           object->text->size = text_size;
           changed_something = TRUE;
         }
 
         /* Change Alignment */
-        if(object->text->alignment != text_alignment) {
-          object->text->alignment = text_alignment;
+        if(text_align >= 0 && object->text->alignment != text_align) {
+          object->text->alignment = text_align;
           changed_something = TRUE;
         }
 
         /* Change Color */
-        if( object->color != text_color) {
+        if( text_color >= 0 && object->color != text_color) {
           object->color = text_color;
           changed_something = TRUE;
         }
-
-        /* Text string is only applicable if only ONE text object selected */
-        if (numselect == 1 && len != 0) {
-          if (strcmp(object->text->string, string) != 0) {
-            changed_something = TRUE;
-            o_text_set_string (w_current->toplevel, object, string);
-	    /* handle slot= attribute, it's a special case */
-	    if (object->attached_to != NULL &&
-                g_ascii_strncasecmp (string, "slot=", 5) == 0) {
-	      o_slot_end (w_current, object->attached_to, string);
-            }
-	  }
+        /* Change Rotation */
+        if (rotate >= 0 && object->text->angle != rotate) {
+          object->text->angle = rotate;
+          changed_something = TRUE;
         }
+
         if (changed_something) {
           o_text_recreate(toplevel, object);
         }
@@ -235,18 +235,19 @@ void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int text_alignmen
     toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
+
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Change Text String
  *  \par Function Description
- *
+ *  This function is call by 
  *  \note
  *  The object passed in should be the REAL object, NOT any copy in any
  *  selection list
  */
 void o_text_change(GSCHEM_TOPLEVEL *w_current, OBJECT *object, char *string,
-		   int visibility, int show)
+                   int visibility, int show)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   if (object == NULL) {

@@ -71,9 +71,9 @@ int     default_scrollpan_steps           = DEFAULT_SCROLLPAN_STEPS;
 int     default_window_height             = DEFAULT_WINDOW_HEIGHT;  /* these variables are used in x_window.c */
 int     default_window_width              = DEFAULT_WINDOW_WIDTH;
 
-int     default_warp_cursor        	  = TRUE;
-int     default_zoom_gain          	  = DEFAULT_ZOOM_GAIN;
-int     default_zoom_with_pan      	  = TRUE;
+int     default_warp_cursor               = TRUE;
+int     default_zoom_gain                 = DEFAULT_ZOOM_GAIN;
+int     default_zoom_with_pan             = TRUE;
 
 /* Image Related */
 int     default_image_color               = FALSE;
@@ -82,10 +82,10 @@ int     default_image_width               = DEFAULT_IMAGE_WIDTH;
 int     default_image_height              = DEFAULT_IMAGE_HEIGHT;
 
 /* Log Related */
-int     default_logging            	  = TRUE;
-int     default_log_destiny        	  = CONSOLE_WINDOW;
-int     default_console_window         	  = MAP_ON_STARTUP;
-int     default_console_window_type    	  = DECORATED;
+int     default_logging                   = TRUE;
+int     default_log_destiny               = CONSOLE_WINDOW;
+int     default_console_window            = MAP_ON_STARTUP;
+int     default_console_window_type       = DECORATED;
 
 /* Miscellaneous - in  alphabetical order */
 int     default_action_feedback_mode      = OUTLINE;
@@ -107,30 +107,30 @@ int     default_snap_size                 = DEFAULT_SNAP_SIZE;
 int     default_sort_component_library    = FALSE;
 
 /* Nets and Routing */
-int     default_net_consolidate    = TRUE;
-int     default_net_endpoint_mode  = FILLED_BOX;
-int     default_net_midpoint_mode  = FILLED_BOX;
-int     default_net_direction_mode = TRUE;
-int     default_net_selection_mode = NET_SELECT_NET;
+int     default_net_consolidate           = TRUE;
+int     default_net_endpoint_mode         = FILLED_BOX;
+int     default_net_midpoint_mode         = FILLED_BOX;
+int     default_net_direction_mode        = TRUE;
+int     default_net_selection_mode        = NET_SELECT_NET;
 
   /* Net Ripper */
-int     default_bus_ripper_rotation = NON_SYMMETRIC;
-int     default_bus_ripper_size     = DEFAULT_RIPPER_SIZE;
-int     default_bus_ripper_type     = COMP_BUS_RIPPER;
-char   *default_bus_ripper_symname  = NULL;
+int     default_bus_ripper_rotation       = NON_SYMMETRIC;
+int     default_bus_ripper_size           = DEFAULT_RIPPER_SIZE;
+int     default_bus_ripper_type           = COMP_BUS_RIPPER;
+char   *default_bus_ripper_symname        = NULL;
 
 /* Pointer Device, aka Mouse stuff */
-int     default_fast_mousepan      = TRUE;
-int     default_drag_can_move      = TRUE;
+int     default_fast_mousepan             = TRUE;
+int     default_drag_can_move             = TRUE;
 #ifdef HAVE_LIBSTROKE
-  int   default_middle_button      = MOUSE_MIDDLE_STROKE;
+  int   default_middle_button             = MOUSE_MIDDLE_STROKE;
 #else
-  int   default_middle_button      = MOUSE_MIDDLE_REPEAT;
+  int   default_middle_button             = MOUSE_MIDDLE_REPEAT;
 #endif
-int     default_mousepan_gain      = DEFAULT_MOUSEPAN_GAIN;
-int     default_scroll_wheel       = SCROLL_WHEEL_CLASSIC;
-int     default_pointer_hscroll    = FALSE;
-int     default_third_button       = POPUP_ENABLED;
+int     default_mousepan_gain             = DEFAULT_MOUSEPAN_GAIN;
+int     default_scroll_wheel              = SCROLL_WHEEL_CLASSIC;
+int     default_pointer_hscroll           = FALSE;
+int     default_third_button              = POPUP_ENABLED;
 
 /* Print Related */
 int     default_paper_width               = DEFAULT_PAPER_WIDTH; /* letter size */
@@ -149,9 +149,9 @@ int     default_file_preview              = FALSE;
 int     default_handleboxes               = TRUE;
 int     default_raise_dialog_boxes        = FALSE;
 int     default_save_ui_settings          = TRUE;
-int     default_show_menu_icons           = RC_NIL;
 int     default_toolbars                  = TRUE;
 int     default_toolbars_mode             = RC_NIL;
+int     default_show_toolbar_tips         = RC_NIL;
 
 /* Text Related */
 int     default_text_case                 = LOWER_CASE;
@@ -276,9 +276,9 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->handleboxes               = default_handleboxes;
   w_current->raise_dialog_boxes        = default_raise_dialog_boxes;
   w_current->save_ui_settings          = default_save_ui_settings;
-  w_current->show_menu_icons           = default_show_menu_icons;
   w_current->toolbars                  = default_toolbars;
   w_current->toolbars_mode             = default_toolbars_mode;
+  w_current->show_toolbar_tips         = default_show_toolbar_tips;
 
 /* Text Related */
   w_current->text_case                 = default_text_case;
@@ -291,13 +291,12 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->text_size                 = default_text_size;
 
 /* Undo Sub-System */
-  w_current->undo_levels           = default_undo_levels;
-  w_current->undo_control          = default_undo_control;
-  w_current->undo_type             = default_undo_type;
-  w_current->undo_panzoom          = default_undo_panzoom;
+  w_current->undo_levels               = default_undo_levels;
+  w_current->undo_control              = default_undo_control;
+  w_current->undo_type                 = default_undo_type;
+  w_current->undo_panzoom              = default_undo_panzoom;
 
 }
-
 
 /*! \brief Free default names
  *  \par Function Description
@@ -311,6 +310,31 @@ void i_vars_freenames()
   g_free(default_bus_ripper_symname);
 }
 
+char *i_var_get_gschem_config_string(EdaConfig *cfg, char *str) {
+
+  GError *err = NULL;
+  char *tmpstr;
+
+  tmpstr = eda_config_get_string (cfg, "gschem", str, &err);
+  if (err != NULL) {
+    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    g_clear_error (&err);
+  }
+  return tmpstr;
+}
+
+void i_vars_recall_user_settings(GSCHEM_TOPLEVEL *w_current)
+{
+  EdaConfig *cfg = eda_config_get_user_context ();
+
+  char *tmpstr;
+
+  tmpstr = i_var_get_gschem_config_string (cfg, "default-font-name");
+  if (tmpstr != NULL) {
+    eda_renderer_set_font_name(w_current->renderer, tmpstr);
+    g_free (tmpstr);
+  }
+}
 /*! \brief Setup gschem default configuration.
  * \par Function Description
  * Populate the default configuration context with compiled-in
@@ -319,12 +343,33 @@ void i_vars_freenames()
 void
 i_vars_init(GSCHEM_TOPLEVEL *w_current)
 {
-  i_vars_set (w_current);         /* Set defaults */
+  EdaConfig *cfg = eda_config_get_default_context ();
 
-  //EdaConfig *cfg = eda_config_get_user_context ();
-  /* Now read in RC files. */
+  /* read in RC files, which may over-ride the hard-coded defaults! */
   g_rc_parse_gtkrc();
   x_rc_parse_gschem (w_current, rc_filename);
+
+  /* Set values for all variables */
+  i_vars_set (w_current);
+
+  /* This is the prefix of the default filename used for newly created
+   * schematics and symbols. */
+  /// TRANSLATORS: this string is used to generate a filename for
+  /// newly-created files.  It will be used to create a filename of
+  /// the form "untitled_N.sch", where N is a number.  Please make
+  /// sure that the translation contains characters suitable for use
+  /// in a filename.
+  eda_config_set_string (cfg, "gschem", "default-filename",   _(DEFAULT_UNTITLED_NAME));
+  eda_config_set_string (cfg, "gschem", "default-font-name",   (DEFAULT_FONT_NAME));
+  eda_config_set_string (cfg, "gschem", "default-titleblock", _(DEFAULT_TITLEBLOCK));
+
+  eda_config_set_boolean (cfg, "gschem.library", "sort",      FALSE);
+  eda_config_set_boolean (cfg, "gschem.library", "groups",    TRUE);
+  eda_config_set_boolean (cfg, "gschem.library", "subgroups", TRUE);
+  eda_config_set_boolean (cfg, "gschem.library", "showtips",  TRUE);
+  eda_config_set_integer (cfg, "gschem.library", "style",     255);
+
+  i_vars_recall_user_settings (w_current);
 
 }
 

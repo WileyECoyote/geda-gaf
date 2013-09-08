@@ -1,0 +1,326 @@
+v 20110115 2
+B 300 0 5500 4500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 0 4100 300 4100 1 0 0
+{
+T -300 4200 5 10 0 0 0 0 1
+pintype=in
+T 355 4095 5 10 1 1 0 0 1
+pinlabel=\_MCLR\_/VPP/RE3
+T 205 4145 5 10 1 1 0 6 1
+pinnumber=1
+T -300 4200 5 10 0 0 0 0 1
+pinseq=1
+}
+P 0 3800 300 3800 1 0 0
+{
+T -300 3900 5 10 0 0 0 0 1
+pintype=io
+T 355 3795 5 10 1 1 0 0 1
+pinlabel=RA0/AN0
+T 205 3845 5 10 1 1 0 6 1
+pinnumber=2
+T -300 3900 5 10 0 0 0 0 1
+pinseq=2
+}
+P 0 3500 300 3500 1 0 0
+{
+T -300 3600 5 10 0 0 0 0 1
+pintype=io
+T 355 3495 5 10 1 1 0 0 1
+pinlabel=RA1/AN1
+T 205 3545 5 10 1 1 0 6 1
+pinnumber=3
+T -300 3600 5 10 0 0 0 0 1
+pinseq=3
+}
+P 0 3200 300 3200 1 0 0
+{
+T -300 3300 5 10 0 0 0 0 1
+pintype=io
+T 355 3195 5 10 1 1 0 0 1
+pinlabel=RA2/AN2/VREF-/CVREF
+T 205 3245 5 10 1 1 0 6 1
+pinnumber=4
+T -300 3300 5 10 0 0 0 0 1
+pinseq=4
+}
+P 0 2900 300 2900 1 0 0
+{
+T -300 3000 5 10 0 0 0 0 1
+pintype=io
+T 355 2895 5 10 1 1 0 0 1
+pinlabel=RA3/AN3/VREF+
+T 205 2945 5 10 1 1 0 6 1
+pinnumber=5
+T -300 3000 5 10 0 0 0 0 1
+pinseq=5
+}
+P 0 2600 300 2600 1 0 0
+{
+T -300 2700 5 10 0 0 0 0 1
+pintype=io
+T 355 2595 5 10 1 1 0 0 1
+pinlabel=RA4/T0CKI/C10UT/RCV
+T 205 2645 5 10 1 1 0 6 1
+pinnumber=6
+T -300 2700 5 10 0 0 0 0 1
+pinseq=6
+}
+P 0 2300 300 2300 1 0 0
+{
+T -300 2400 5 10 0 0 0 0 1
+pintype=io
+T 355 2295 5 10 1 1 0 0 1
+pinlabel=RA5/AN4/\_SS\_/HLVDIN/C2OUT
+T 205 2345 5 10 1 1 0 6 1
+pinnumber=7
+T -300 2400 5 10 0 0 0 0 1
+pinseq=7
+}
+P 0 2000 300 2000 1 0 0
+{
+T -300 2100 5 10 0 0 0 0 1
+pintype=in
+T 355 1995 5 10 1 1 0 0 1
+pinlabel=VSS
+T 205 2045 5 10 1 1 0 6 1
+pinnumber=8
+T -300 2100 5 10 0 0 0 0 1
+pinseq=8
+}
+P 6100 4100 5800 4100 1 0 0
+{
+T 6400 4000 5 10 0 0 180 0 1
+pintype=io
+T 5745 4095 5 10 1 1 0 6 1
+pinlabel=RB7/KBI3/PGD
+T 5895 4145 5 10 1 1 0 0 1
+pinnumber=28
+T 6400 4000 5 10 0 0 180 0 1
+pinseq=28
+}
+P 6100 3800 5800 3800 1 0 0
+{
+T 6400 3700 5 10 0 0 180 0 1
+pintype=io
+T 5745 3795 5 10 1 1 0 6 1
+pinlabel=RB6/KBI2/PGC
+T 5895 3845 5 10 1 1 0 0 1
+pinnumber=27
+T 6400 3700 5 10 0 0 180 0 1
+pinseq=27
+}
+P 6100 3500 5800 3500 1 0 0
+{
+T 6400 3400 5 10 0 0 180 0 1
+pintype=io
+T 5745 3495 5 10 1 1 0 6 1
+pinlabel=RB5/KBI1/PGM
+T 5895 3545 5 10 1 1 0 0 1
+pinnumber=26
+T 6400 3400 5 10 0 0 180 0 1
+pinseq=26
+}
+P 6100 3200 5800 3200 1 0 0
+{
+T 6400 3100 5 10 0 0 180 0 1
+pintype=io
+T 5745 3195 5 10 1 1 0 6 1
+pinlabel=RB4/AN11/KBIO
+T 5895 3245 5 10 1 1 0 0 1
+pinnumber=25
+T 6400 3100 5 10 0 0 180 0 1
+pinseq=25
+}
+P 6100 2900 5800 2900 1 0 0
+{
+T 6400 2800 5 10 0 0 180 0 1
+pintype=io
+T 5745 2895 5 10 1 1 0 6 1
+pinlabel=RB3/AN9/CCP2(1)/VPO
+T 5895 2945 5 10 1 1 0 0 1
+pinnumber=24
+T 6400 2800 5 10 0 0 180 0 1
+pinseq=24
+}
+P 6100 2600 5800 2600 1 0 0
+{
+T 6400 2500 5 10 0 0 180 0 1
+pintype=io
+T 5745 2595 5 10 1 1 0 6 1
+pinlabel=RB2/AN8/INT2/VMO
+T 5895 2645 5 10 1 1 0 0 1
+pinnumber=23
+T 6400 2500 5 10 0 0 180 0 1
+pinseq=23
+}
+P 6100 2300 5800 2300 1 0 0
+{
+T 6400 2200 5 10 0 0 180 0 1
+pintype=io
+T 5745 2295 5 10 1 1 0 6 1
+pinlabel=RB1/AN10/INT1/SCK/SCL
+T 5895 2345 5 10 1 1 0 0 1
+pinnumber=22
+T 6400 2200 5 10 0 0 180 0 1
+pinseq=22
+}
+P 6100 2000 5800 2000 1 0 0
+{
+T 6400 1900 5 10 0 0 180 0 1
+pintype=io
+T 5745 1995 5 10 1 1 0 6 1
+pinlabel=RB0/AN12/INT0/FTL0/SDI/SDA
+T 5895 2045 5 10 1 1 0 0 1
+pinnumber=21
+T 6400 1900 5 10 0 0 180 0 1
+pinseq=21
+}
+T 2600 1400 8 10 1 1 0 0 1
+value=PIC18F2550
+T 300 4500 8 10 1 1 0 0 1
+refdes=U?
+P 0 1700 300 1700 1 0 0
+{
+T -300 1800 5 10 0 0 0 0 1
+pintype=in
+T 355 1695 5 10 1 1 0 0 1
+pinlabel=OSC1/CLK1
+T 205 1745 5 10 1 1 0 6 1
+pinnumber=9
+T -300 1800 5 10 0 0 0 0 1
+pinseq=9
+}
+P 0 1400 300 1400 1 0 0
+{
+T -300 1500 5 10 0 0 0 0 1
+pintype=out
+T 355 1395 5 10 1 1 0 0 1
+pinlabel=OSC2/CLKO/RA6
+T 205 1445 5 10 1 1 0 6 1
+pinnumber=10
+T -300 1500 5 10 0 0 0 0 1
+pinseq=10
+}
+P 0 1100 300 1100 1 0 0
+{
+T -300 1200 5 10 0 0 0 0 1
+pintype=io
+T 355 1095 5 10 1 1 0 0 1
+pinlabel=RC0/T1OSO/T13CKI
+T 205 1145 5 10 1 1 0 6 1
+pinnumber=11
+T -300 1200 5 10 0 0 0 0 1
+pinseq=11
+}
+P 0 800 300 800 1 0 0
+{
+T -300 900 5 10 0 0 0 0 1
+pintype=io
+T 355 795 5 10 1 1 0 0 1
+pinlabel=C1/T1OSI/CCP2(1)/\_UOE\_
+T 205 845 5 10 1 1 0 6 1
+pinnumber=12
+T -300 900 5 10 0 0 0 0 1
+pinseq=12
+}
+P 0 500 300 500 1 0 0
+{
+T -300 600 5 10 0 0 0 0 1
+pintype=io
+T 355 495 5 10 1 1 0 0 1
+pinlabel=RC2/CCP1
+T 205 545 5 10 1 1 0 6 1
+pinnumber=13
+T -300 600 5 10 0 0 0 0 1
+pinseq=13
+}
+P 0 200 300 200 1 0 0
+{
+T -300 300 5 10 0 0 0 0 1
+pintype=io
+T 355 195 5 10 1 1 0 0 1
+pinlabel=VUSB
+T 205 245 5 10 1 1 0 6 1
+pinnumber=14
+T -300 300 5 10 0 0 0 0 1
+pinseq=14
+}
+P 6100 1700 5800 1700 1 0 0
+{
+T 6400 1600 5 10 0 0 180 0 1
+pintype=in
+T 5745 1695 5 10 1 1 0 6 1
+pinlabel=VDD
+T 5895 1745 5 10 1 1 0 0 1
+pinnumber=20
+T 6400 1600 5 10 0 0 180 0 1
+pinseq=20
+}
+P 6100 1400 5800 1400 1 0 0
+{
+T 6400 1300 5 10 0 0 180 0 1
+pintype=in
+T 5745 1395 5 10 1 1 0 6 1
+pinlabel=VSS
+T 5895 1445 5 10 1 1 0 0 1
+pinnumber=19
+T 6400 1300 5 10 0 0 180 0 1
+pinseq=19
+}
+P 6100 1100 5800 1100 1 0 0
+{
+T 6400 1000 5 10 0 0 180 0 1
+pintype=io
+T 5745 1095 5 10 1 1 0 6 1
+pinlabel=RC7/RX/DT/SDO
+T 5895 1145 5 10 1 1 0 0 1
+pinnumber=18
+T 6400 1000 5 10 0 0 180 0 1
+pinseq=18
+}
+P 6100 800 5800 800 1 0 0
+{
+T 6400 700 5 10 0 0 180 0 1
+pintype=io
+T 5745 795 5 10 1 1 0 6 1
+pinlabel=RC6/TX/CK
+T 5895 845 5 10 1 1 0 0 1
+pinnumber=17
+T 6400 700 5 10 0 0 180 0 1
+pinseq=17
+}
+P 6100 500 5800 500 1 0 0
+{
+T 6400 400 5 10 0 0 180 0 1
+pintype=io
+T 5745 495 5 10 1 1 0 6 1
+pinlabel=RC5/D+/VP
+T 5895 545 5 10 1 1 0 0 1
+pinnumber=16
+T 6400 400 5 10 0 0 180 0 1
+pinseq=16
+}
+P 6100 200 5800 200 1 0 0
+{
+T 6400 100 5 10 0 0 180 0 1
+pintype=io
+T 5745 195 5 10 1 1 0 6 1
+pinlabel=RC4/D-/VM
+T 5895 245 5 10 1 1 0 0 1
+pinnumber=15
+T 6400 100 5 10 0 0 180 0 1
+pinseq=15
+}
+T -1300 -100 8 10 0 1 0 0 1
+author=coldnew <coldnew.tw@gmail.com>
+T -500 300 8 10 0 1 0 0 1
+dist-license=GPL
+T -1100 800 8 10 0 1 0 0 1
+use-license=unlimited
+T -1000 500 8 10 0 1 0 0 1
+documentation=http://ww1.microchip.com/downloads/en/devicedoc/39632c.pdf
+T 2600 1700 8 10 0 1 0 0 1
+device=PIC18F2550
+T 2600 1900 8 10 0 0 0 0 1
+footprint=DIP40

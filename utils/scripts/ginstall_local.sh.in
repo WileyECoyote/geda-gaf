@@ -35,20 +35,20 @@ do_show_usage()
 
 do_show_help(){
 echo
-echo Quick:   `basename $0` 'just run without in arguments as compiling any geda-gaf apps'
+echo Quick:   `basename $0` 'just run without in arguments after compiling a geda-gaf apps'
 echo
 echo "Abstract: This script is for creating shortcut links, usually referred to as"
 echo "          soft links for all of the files in the geda bin folder, both scripts"
 echo "          and binaries, in the local/bin folder. By default, extensions are"
 echo "          removed from the script names. This script is useful after installing"
 echo "          from the source, rather than a distribution and can be ran after \"make"
-echo "          install\" complete successfully to add links in the command path"
+echo "          install\" completes successfully to add links in the command path"
 echo
 echo "Options: -h, --help       Show this information"
 echo "         -v, --verbose    Display extra information during processing"
 echo "             --version    Display software version information"
 echo
-echo "         -d, --directory  folder containing file to be linked"
+echo "         -d, --directory  folder containing files to be linked"
 echo "         -l, --location   folder where links are to be created"
 echo "         -n, --no-trim    do not trim extensions"
 }
@@ -64,7 +64,7 @@ ParseCommandLine(){
     --directory | -d) OVERRIDE_BIN=true                               ;;
      --location | -l) OVERRIDE_DESTINY=true                           ;;
       --no-trim | -n) DO_TRIM=false                                   ;;
-    	            *) case $LAST_ARG in
+    	            *) case $LAST_ARG inW: geda: binary-without-manpage usr/bin/ginstall_local
                        --directory | -d) DesiredDir="$Arg"            ;;
                         --location | -l) DesiredDestiny="$Arg"        ;;
                     *) do_show_usage ; exit $ERR_BAD_ARGS             ;;

@@ -44,8 +44,12 @@
 ;;     |          |  for bus_ripper_symname (to complete the integration of
 ;;     |          |  the Ripper settings on the configure settings dailog.
 ;; ------------------------------------------------------------------
+;; WEH | 13/07/19 |  fixed stack overflow in get_titleblock_list fix
+;;                |  i < MAX_FILENAME instead if MAX_PATH
+;; ------------------------------------------------------------------
+;;
 */
-
+ 
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
@@ -333,7 +337,7 @@ bool get_titleblock_list(char **Buffer) {
        {
           strcpy(tmpbuff, basename(ent->d_name));
           namelen = strlen( tmpbuff) - 4; /* substract the extension */
-          for (i = namelen; i < MAX_PATH - namelen; i++) {
+          for (i = namelen; i < MAX_FILENAME - namelen; i++) {
                tmpbuff[i] = '\0';
           }
           strcpy (Buffer[index++], tmpbuff);
@@ -947,11 +951,11 @@ KEYWORD (sort_component_library) {
   RC_BOOLEAN_WOUT (sort_component_library);
 }
 
-/** @brief function do_kw_untitled_name in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_untitled_name in X_Settings_Keyword_Handlers
 KEYWORD(untitled_name) {
   RC_STRING_TOUT(untitled_name)
 }
-
+ */
 /** @brief function do_kw_net_consolidate in X_Settings_Keyword_Handlers */
 KEYWORD (net_consolidate) {
   RC_BOOLEAN_TOUT (net_consolidate);

@@ -105,6 +105,7 @@ struct _Compselect {
   unsigned int    style_flag;
 
   bool hidden;
+  bool do_sort;
   bool show_groups;
   bool subgroups;
 

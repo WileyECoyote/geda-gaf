@@ -26,9 +26,6 @@
 
 #define MAX_RECENT_FILES 10
 
-/* Flag for defaults to detect keywords absent from RC files */
-//#define RC_NIL -1
-
 /*-------- Color & Image Stuff ------- */
 
 /* For default_image_width  */
@@ -87,11 +84,11 @@
 #define DEFAULT_ZOOM_GAIN       20
 
 /* For grip size */
-#define GRIP_SIZE1		25
-#define GRIP_SIZE2		50
-#define GRIP_SIZE3		80
-#define SMALL_ZOOMFACTOR1	150
-#define SMALL_ZOOMFACTOR2	30
+#define GRIP_SIZE1              25
+#define GRIP_SIZE2              50
+#define GRIP_SIZE3              80
+#define SMALL_ZOOMFACTOR1      150
+#define SMALL_ZOOMFACTOR2       30
 #define MAXIMUM_GRIP_PIXELS     30
 
 /*
@@ -177,10 +174,6 @@
 /* for bus_ripper_type */
 #define NET_BUS_RIPPER          0
 #define COMP_BUS_RIPPER         1
-
-/* for attrib_edit_dialog invocation flag */
-#define FROM_MENU		0
-#define FROM_HOTKEY		1
 
 /*--------- Pointer/Mouse ---------*/
 

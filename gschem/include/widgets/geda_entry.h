@@ -55,14 +55,6 @@ typedef struct _GedaEntry      GedaEntry;
 typedef struct _GedaEntryClass GedaEntryClass;
 typedef struct _GedaEntryPriv  GedaEntryPriv;
 
-enum {
-  PROP_AUTO_COMPLETION = 1,
-  PROP_CASE_SENSITIVE,
-  PROP_INPUT_CASE,
-  PROP_MAX_HISTORY,
-  PROP_VALIDATE
-};
-
 typedef enum {
   ACCEPT_ALL_ASCII,
   ACCEPT_ALPHANUMERIC,
@@ -76,7 +68,8 @@ struct _GedaEntry
 {
         GtkEntry          parent;
         GedaEntryAccept   validation_mode;
-        volatile int      auto_complete;
+        volatile int      activates_default    : 1;
+        volatile int      auto_complete        : 1;
         volatile int      history_index;
         volatile int      text_case;
         volatile int      max_history;
@@ -87,9 +80,13 @@ struct _GedaEntryClass
 {
         GtkEntryClass   parent_class;
 
+  /* Action signals */
+  void (* activate)         (GtkEntry       *entry);
+
   /* Hook to customize right-click popup */
   void (* populate_popup)   (GtkEntry       *entry,
                              GtkMenu        *menu);
+
 };
 
 GType      geda_entry_get_type        (void) G_GNUC_CONST;
@@ -103,9 +100,18 @@ void gtk_entry_set_completion                (GtkEntry *entry,
                                               GtkEntryCompletion *completion);
 GtkEntryCompletion *gtk_entry_get_completion (GtkEntry *entry);
 
+bool geda_entry_completion_get_case (GedaEntry *entry);
 void geda_entry_completion_set_case (GedaEntry *entry, bool sensitive);
+
 void geda_entry_set_input_case      (GedaEntry *entry, int mode);
+bool geda_entry_get_input_case      (GedaEntry *entry);
+
+void geda_entry_set_activates_default (GedaEntry *entry, bool  setting);
+bool geda_entry_get_activates_default (GedaEntry *entry);
+
 void geda_entry_set_valid_input     (GedaEntry *entry, GedaEntryAccept mode);
+void geda_entry_set_attributes      (GedaEntry *entry, PangoAttrList *attrs);
+PangoAttrList  *geda_entry_get_attributes (GedaEntry *entry);
 
 G_END_DECLS
 

@@ -1,0 +1,841 @@
+v 20130414 2
+P 0 4600 300 4600 1 0 0
+{
+T 275 4575 5 6 0 1 180 0 1
+pintype=out
+T 355 4595 5 10 1 1 0 0 1
+pinlabel=RSET_BG
+T 205 4645 5 10 1 1 0 6 1
+pinnumber=1
+T 275 4625 5 6 0 1 0 6 1
+pinseq=1
+}
+T 300 12100 8 10 0 0 0 0 1
+comment=model=W5100
+T 300 12300 8 10 0 0 0 0 1
+comment=manufacturer=Wiznet
+T 1900 8550 8 10 1 1 0 6 1
+refdes=U?
+T 300 11900 8 10 0 0 0 0 1
+footprint=LQFP80_12
+T 300 12500 8 10 0 0 0 0 1
+symversion=0.1
+T 300 12700 8 10 0 0 0 0 1
+numslots=0
+P 0 11100 300 11100 1 0 0
+{
+T 275 11075 5 6 0 1 180 0 1
+pintype=pwr
+T 355 11095 5 10 1 1 0 0 1
+pinlabel=AVcc3V3
+T 205 11145 5 10 1 1 0 6 1
+pinnumber=2
+T 275 11125 5 6 0 1 0 6 1
+pinseq=2
+}
+P 0 8700 300 8700 1 0 0
+{
+T 275 8675 5 6 0 1 180 0 1
+pintype=pwr
+T 355 8695 5 10 1 1 0 0 1
+pinlabel=AGND
+T 205 8745 5 10 1 1 0 6 1
+pinnumber=4
+T 275 8725 5 6 0 1 0 6 1
+pinseq=4
+}
+P 0 5900 300 5900 1 0 0
+{
+T 275 5875 5 6 0 1 180 0 1
+pintype=in
+T 355 5895 5 10 1 1 0 0 1
+pinlabel=RXIP
+T 205 5945 5 10 1 1 0 6 1
+pinnumber=5
+T 275 5925 5 6 0 1 0 6 1
+pinseq=5
+}
+P 0 5600 300 5600 1 0 0
+{
+T 275 5575 5 6 0 1 180 0 1
+pintype=in
+T 355 5595 5 10 1 1 0 0 1
+pinlabel=RXIN
+T 205 5645 5 10 1 1 0 6 1
+pinnumber=6
+T 275 5625 5 6 0 1 0 6 1
+pinseq=6
+}
+P 0 10100 300 10100 1 0 0
+{
+T 275 10075 5 6 0 1 180 0 1
+pintype=pwr
+T 355 10095 5 10 1 1 0 0 1
+pinlabel=AVcc1V8
+T 205 10145 5 10 1 1 0 6 1
+pinnumber=7
+T 275 10125 5 6 0 1 0 6 1
+pinseq=7
+}
+P 0 5300 300 5300 1 0 0
+{
+T 275 5275 5 6 0 1 180 0 1
+pintype=out
+T 355 5295 5 10 1 1 0 0 1
+pinlabel=TXOP
+T 205 5345 5 10 1 1 0 6 1
+pinnumber=8
+T 275 5325 5 6 0 1 0 6 1
+pinseq=8
+}
+P 0 5000 300 5000 1 0 0
+{
+T 275 4975 5 6 0 1 180 0 1
+pintype=out
+T 355 4995 5 10 1 1 0 0 1
+pinlabel=TXON
+T 205 5045 5 10 1 1 0 6 1
+pinnumber=9
+T 275 5025 5 6 0 1 0 6 1
+pinseq=9
+}
+P 0 8500 300 8500 1 0 0
+{
+T 275 8475 5 6 0 1 180 0 1
+pintype=pwr
+T 355 8495 5 10 1 1 0 0 1
+pinlabel=AGND
+T 205 8545 5 10 1 1 0 6 1
+pinnumber=10
+T 275 8525 5 6 0 1 0 6 1
+pinseq=10
+}
+P 0 6600 300 6600 1 0 0
+{
+T 275 6575 5 6 0 1 180 0 1
+pintype=out
+T 355 6595 5 10 1 1 0 0 1
+pinlabel=1V8_OUT
+T 205 6645 5 10 1 1 0 6 1
+pinnumber=11
+T 275 6625 5 6 0 1 0 6 1
+pinseq=11
+}
+P 0 8000 300 8000 1 0 0
+{
+T 275 7975 5 6 0 1 180 0 1
+pintype=pwr
+T 355 7995 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 8045 5 10 1 1 0 6 1
+pinnumber=13
+T 275 8025 5 6 0 1 0 6 1
+pinseq=13
+}
+P 0 7800 300 7800 1 0 0
+{
+T 275 7775 5 6 0 1 180 0 1
+pintype=pwr
+T 355 7795 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 7845 5 10 1 1 0 6 1
+pinnumber=14
+T 275 7825 5 6 0 1 0 6 1
+pinseq=14
+}
+P 3900 2900 3600 2900 1 0 0
+{
+T 3625 2875 5 6 0 1 180 6 1
+pintype=io
+T 3545 2895 5 10 1 1 0 6 1
+pinlabel=DATA7
+T 3695 2945 5 10 1 1 0 0 1
+pinnumber=19
+T 3625 2925 5 6 0 1 0 0 1
+pinseq=19
+}
+P 3900 2600 3600 2600 1 0 0
+{
+T 3625 2575 5 6 0 1 180 6 1
+pintype=io
+T 3545 2595 5 10 1 1 0 6 1
+pinlabel=DATA6
+T 3695 2645 5 10 1 1 0 0 1
+pinnumber=20
+T 3625 2625 5 6 0 1 0 0 1
+pinseq=20
+}
+P 3900 2300 3600 2300 1 0 0
+{
+T 3625 2275 5 6 0 1 180 6 1
+pintype=io
+T 3545 2295 5 10 1 1 0 6 1
+pinlabel=DATA5
+T 3695 2345 5 10 1 1 0 0 1
+pinnumber=21
+T 3625 2325 5 6 0 1 0 0 1
+pinseq=21
+}
+P 3900 2000 3600 2000 1 0 0
+{
+T 3625 1975 5 6 0 1 180 6 1
+pintype=io
+T 3545 1995 5 10 1 1 0 6 1
+pinlabel=DATA4
+T 3695 2045 5 10 1 1 0 0 1
+pinnumber=22
+T 3625 2025 5 6 0 1 0 0 1
+pinseq=22
+}
+P 3900 1700 3600 1700 1 0 0
+{
+T 3625 1675 5 6 0 1 180 6 1
+pintype=io
+T 3545 1695 5 10 1 1 0 6 1
+pinlabel=DATA3
+T 3695 1745 5 10 1 1 0 0 1
+pinnumber=23
+T 3625 1725 5 6 0 1 0 0 1
+pinseq=23
+}
+P 3900 1400 3600 1400 1 0 0
+{
+T 3625 1375 5 6 0 1 180 6 1
+pintype=io
+T 3545 1395 5 10 1 1 0 6 1
+pinlabel=DATA2
+T 3695 1445 5 10 1 1 0 0 1
+pinnumber=24
+T 3625 1425 5 6 0 1 0 0 1
+pinseq=24
+}
+P 3900 1100 3600 1100 1 0 0
+{
+T 3625 1075 5 6 0 1 180 6 1
+pintype=io
+T 3545 1095 5 10 1 1 0 6 1
+pinlabel=DATA1
+T 3695 1145 5 10 1 1 0 0 1
+pinnumber=25
+T 3625 1125 5 6 0 1 0 0 1
+pinseq=25
+}
+P 3900 800 3600 800 1 0 0
+{
+T 3625 775 5 6 0 1 180 6 1
+pintype=io
+T 3545 795 5 10 1 1 0 6 1
+pinlabel=DATA0
+T 3695 845 5 10 1 1 0 0 1
+pinnumber=26
+T 3625 825 5 6 0 1 0 0 1
+pinseq=26
+}
+P 3900 7500 3600 7500 1 0 0
+{
+T 3625 7475 5 6 0 1 180 6 1
+pintype=in
+T 3545 7495 5 10 1 1 0 6 1
+pinlabel=ADDR14
+T 3695 7545 5 10 1 1 0 0 1
+pinnumber=38
+T 3625 7525 5 6 0 1 0 0 1
+pinseq=38
+}
+P 3900 7200 3600 7200 1 0 0
+{
+T 3625 7175 5 6 0 1 180 6 1
+pintype=in
+T 3545 7195 5 10 1 1 0 6 1
+pinlabel=ADDR13
+T 3695 7245 5 10 1 1 0 0 1
+pinnumber=39
+T 3625 7225 5 6 0 1 0 0 1
+pinseq=39
+}
+P 3900 6900 3600 6900 1 0 0
+{
+T 3625 6875 5 6 0 1 180 6 1
+pintype=in
+T 3545 6895 5 10 1 1 0 6 1
+pinlabel=ADDR12
+T 3695 6945 5 10 1 1 0 0 1
+pinnumber=40
+T 3625 6925 5 6 0 1 0 0 1
+pinseq=40
+}
+P 3900 6600 3600 6600 1 0 0
+{
+T 3625 6575 5 6 0 1 180 6 1
+pintype=in
+T 3545 6595 5 10 1 1 0 6 1
+pinlabel=ADDR11
+T 3695 6645 5 10 1 1 0 0 1
+pinnumber=41
+T 3625 6625 5 6 0 1 0 0 1
+pinseq=41
+}
+P 3900 6300 3600 6300 1 0 0
+{
+T 3625 6275 5 6 0 1 180 6 1
+pintype=in
+T 3545 6295 5 10 1 1 0 6 1
+pinlabel=ADDR10
+T 3695 6345 5 10 1 1 0 0 1
+pinnumber=42
+T 3625 6325 5 6 0 1 0 0 1
+pinseq=42
+}
+P 3900 6000 3600 6000 1 0 0
+{
+T 3625 5975 5 6 0 1 180 6 1
+pintype=in
+T 3545 5995 5 10 1 1 0 6 1
+pinlabel=ADDR9
+T 3695 6045 5 10 1 1 0 0 1
+pinnumber=45
+T 3625 6025 5 6 0 1 0 0 1
+pinseq=45
+}
+P 3900 5700 3600 5700 1 0 0
+{
+T 3625 5675 5 6 0 1 180 6 1
+pintype=in
+T 3545 5695 5 10 1 1 0 6 1
+pinlabel=ADDR8
+T 3695 5745 5 10 1 1 0 0 1
+pinnumber=46
+T 3625 5725 5 6 0 1 0 0 1
+pinseq=46
+}
+P 3900 5400 3600 5400 1 0 0
+{
+T 3625 5375 5 6 0 1 180 6 1
+pintype=in
+T 3545 5395 5 10 1 1 0 6 1
+pinlabel=ADDR7
+T 3695 5445 5 10 1 1 0 0 1
+pinnumber=47
+T 3625 5425 5 6 0 1 0 0 1
+pinseq=47
+}
+P 3900 5100 3600 5100 1 0 0
+{
+T 3625 5075 5 6 0 1 180 6 1
+pintype=in
+T 3545 5095 5 10 1 1 0 6 1
+pinlabel=ADDR6
+T 3695 5145 5 10 1 1 0 0 1
+pinnumber=48
+T 3625 5125 5 6 0 1 0 0 1
+pinseq=48
+}
+P 3900 4800 3600 4800 1 0 0
+{
+T 3625 4775 5 6 0 1 180 6 1
+pintype=in
+T 3545 4795 5 10 1 1 0 6 1
+pinlabel=ADDR5
+T 3695 4845 5 10 1 1 0 0 1
+pinnumber=49
+T 3625 4825 5 6 0 1 0 0 1
+pinseq=49
+}
+P 3900 4500 3600 4500 1 0 0
+{
+T 3625 4475 5 6 0 1 180 6 1
+pintype=in
+T 3545 4495 5 10 1 1 0 6 1
+pinlabel=ADDR4
+T 3695 4545 5 10 1 1 0 0 1
+pinnumber=50
+T 3625 4525 5 6 0 1 0 0 1
+pinseq=50
+}
+P 3900 4200 3600 4200 1 0 0
+{
+T 3625 4175 5 6 0 1 180 6 1
+pintype=in
+T 3545 4195 5 10 1 1 0 6 1
+pinlabel=ADDR3
+T 3695 4245 5 10 1 1 0 0 1
+pinnumber=51
+T 3625 4225 5 6 0 1 0 0 1
+pinseq=51
+}
+P 3900 3900 3600 3900 1 0 0
+{
+T 3625 3875 5 6 0 1 180 6 1
+pintype=in
+T 3545 3895 5 10 1 1 0 6 1
+pinlabel=ADDR2
+T 3695 3945 5 10 1 1 0 0 1
+pinnumber=52
+T 3625 3925 5 6 0 1 0 0 1
+pinseq=52
+}
+P 3900 3600 3600 3600 1 0 0
+{
+T 3625 3575 5 6 0 1 180 6 1
+pintype=in
+T 3545 3595 5 10 1 1 0 6 1
+pinlabel=ADDR1
+T 3695 3645 5 10 1 1 0 0 1
+pinnumber=53
+T 3625 3625 5 6 0 1 0 0 1
+pinseq=53
+}
+P 3900 3300 3600 3300 1 0 0
+{
+T 3625 3275 5 6 0 1 180 6 1
+pintype=in
+T 3545 3295 5 10 1 1 0 6 1
+pinlabel=ADDR0
+T 3695 3345 5 10 1 1 0 0 1
+pinnumber=54
+T 3625 3325 5 6 0 1 0 0 1
+pinseq=54
+}
+P 0 1900 300 1900 1 0 0
+{
+T 275 1875 5 6 0 1 180 0 1
+pintype=out
+T 355 1895 5 10 1 1 0 0 1
+pinlabel=LINKLED
+T 205 1945 5 10 1 1 0 6 1
+pinnumber=66
+T 275 1925 5 6 0 1 0 6 1
+pinseq=66
+}
+P 0 1600 300 1600 1 0 0
+{
+T 275 1575 5 6 0 1 180 0 1
+pintype=out
+T 355 1595 5 10 1 1 0 0 1
+pinlabel=SPDLED
+T 205 1645 5 10 1 1 0 6 1
+pinnumber=67
+T 275 1625 5 6 0 1 0 6 1
+pinseq=67
+}
+P 0 9000 300 9000 1 0 0
+{
+T 275 8975 5 6 0 1 180 0 1
+pintype=pwr
+T 355 8995 5 10 1 1 0 0 1
+pinlabel=Vcc1V8
+T 205 9045 5 10 1 1 0 6 1
+pinnumber=69
+T 275 9025 5 6 0 1 0 6 1
+pinseq=69
+}
+P 0 1300 300 1300 1 0 0
+{
+T 275 1275 5 6 0 1 180 0 1
+pintype=out
+T 355 1295 5 10 1 1 0 0 1
+pinlabel=FDXLED
+T 205 1345 5 10 1 1 0 6 1
+pinnumber=70
+T 275 1325 5 6 0 1 0 6 1
+pinseq=70
+}
+P 0 1000 300 1000 1 0 0
+{
+T 275 975 5 6 0 1 180 0 1
+pintype=out
+T 355 995 5 10 1 1 0 0 1
+pinlabel=COLLED
+T 205 1045 5 10 1 1 0 6 1
+pinnumber=71
+T 275 1025 5 6 0 1 0 6 1
+pinseq=71
+}
+P 0 700 300 700 1 0 0
+{
+T 275 675 5 6 0 1 180 0 1
+pintype=out
+T 355 695 5 10 1 1 0 0 1
+pinlabel=RXLED
+T 205 745 5 10 1 1 0 6 1
+pinnumber=72
+T 275 725 5 6 0 1 0 6 1
+pinseq=72
+}
+P 0 400 300 400 1 0 0
+{
+T 275 375 5 6 0 1 180 0 1
+pintype=out
+T 355 395 5 10 1 1 0 0 1
+pinlabel=TXLED
+T 205 445 5 10 1 1 0 6 1
+pinnumber=73
+T 275 425 5 6 0 1 0 6 1
+pinseq=73
+}
+P 0 9900 300 9900 1 0 0
+{
+T 275 9875 5 6 0 1 180 0 1
+pintype=pwr
+T 355 9895 5 10 1 1 0 0 1
+pinlabel=AVcc1V8
+T 205 9945 5 10 1 1 0 6 1
+pinnumber=74
+T 275 9925 5 6 0 1 0 6 1
+pinseq=74
+}
+P 2800 0 2800 300 1 0 0
+{
+T 2775 275 5 6 0 1 90 6 1
+pintype=in
+T 2580 350 5 10 1 1 0 0 1
+pinlabel=XTLN
+T 2705 250 5 10 1 1 180 0 1
+pinnumber=75
+T 2825 275 5 6 0 1 180 6 1
+pinseq=75
+}
+P 1900 0 1900 300 1 0 0
+{
+T 1875 275 5 6 0 1 90 6 1
+pintype=out
+T 1680 350 5 10 1 1 0 0 1
+pinlabel=XTLP
+T 1805 250 5 10 1 1 180 0 1
+pinnumber=76
+T 1925 275 5 6 0 1 180 6 1
+pinseq=76
+}
+T 2300 7600 9 8 1 0 0 6 1
+MCU Interface
+P 3900 11100 3600 11100 1 0 0
+{
+T 3625 11075 5 6 0 1 180 6 1
+pintype=in
+T 3545 11095 5 10 1 1 0 6 1
+pinlabel=!RESET
+T 3695 11145 5 10 1 1 0 0 1
+pinnumber=59
+T 3625 11125 5 6 0 1 0 0 1
+pinseq=59
+}
+P 3900 8900 3600 8900 1 0 0
+{
+T 3625 8875 5 6 0 1 180 6 1
+pintype=in
+T 3545 8895 5 10 1 1 0 6 1
+pinlabel=!CS
+T 3695 8945 5 10 1 1 0 0 1
+pinnumber=55
+T 3625 8925 5 6 0 1 0 0 1
+pinseq=55
+}
+P 3900 8600 3600 8600 1 0 0
+{
+T 3625 8575 5 6 0 1 180 6 1
+pintype=out
+T 3545 8595 5 10 1 1 0 6 1
+pinlabel=!INT
+T 3695 8645 5 10 1 1 0 0 1
+pinnumber=56
+T 3625 8625 5 6 0 1 0 0 1
+pinseq=56
+}
+P 3900 8300 3600 8300 1 0 0
+{
+T 3625 8275 5 6 0 1 180 6 1
+pintype=in
+T 3545 8295 5 10 1 1 0 6 1
+pinlabel=!WR
+T 3695 8345 5 10 1 1 0 0 1
+pinnumber=57
+T 3625 8325 5 6 0 1 0 0 1
+pinseq=57
+}
+P 3900 8000 3600 8000 1 0 0
+{
+T 3625 7975 5 6 0 1 180 6 1
+pintype=in
+T 3545 7995 5 10 1 1 0 6 1
+pinlabel=!RD
+T 3695 8045 5 10 1 1 0 0 1
+pinnumber=58
+T 3625 8025 5 6 0 1 0 0 1
+pinseq=58
+}
+P 3900 9400 3600 9400 1 0 0
+{
+T 3625 9375 5 6 0 1 180 6 1
+pintype=out
+T 3545 9395 5 10 1 1 0 6 1
+pinlabel=MISO
+T 3695 9445 5 10 1 1 0 0 1
+pinnumber=27
+T 3625 9425 5 6 0 2 0 0 1
+pinseq=27
+}
+P 3900 9700 3600 9700 1 0 0
+{
+T 3625 9675 5 6 0 1 180 6 1
+pintype=in
+T 3545 9695 5 10 1 1 0 6 1
+pinlabel=MOSI
+T 3695 9745 5 10 1 1 0 0 1
+pinnumber=28
+T 3625 9725 5 6 0 1 0 0 1
+pinseq=28
+}
+P 3900 10000 3600 10000 1 0 0
+{
+T 3625 9975 5 6 0 1 180 6 1
+pintype=in
+T 3545 9995 5 10 1 1 0 6 1
+pinlabel=!SCS
+T 3695 10045 5 10 1 1 0 0 1
+pinnumber=29
+T 3625 10025 5 6 0 1 0 0 1
+pinseq=29
+}
+P 3900 10300 3600 10300 1 0 0
+{
+T 3625 10275 5 6 0 1 180 6 1
+pintype=in
+T 3545 10295 5 10 1 1 0 6 1
+pinlabel=SCLK
+T 3695 10345 5 10 1 1 0 0 1
+pinnumber=30
+T 3625 10325 5 6 0 1 0 0 1
+pinseq=30
+}
+P 3900 10600 3600 10600 1 0 0
+{
+T 3625 10575 5 6 0 1 180 6 1
+pintype=in
+T 3545 10595 5 10 1 1 0 6 1
+pinlabel=SEN
+T 3695 10645 5 10 1 1 0 0 1
+pinnumber=31
+T 3625 10625 5 6 0 1 0 0 1
+pinseq=31
+}
+T 3500 10800 9 5 1 0 0 6 1
+SPI mode enable
+T 400 6200 9 8 1 0 0 0 1
+PHY Signals
+P 0 4200 300 4200 1 0 0
+{
+T 275 4175 5 6 0 1 180 0 1
+pintype=in
+T 355 4195 5 10 1 1 0 0 1
+pinlabel=OPMODE0
+T 205 4245 5 10 1 1 0 6 1
+pinnumber=63
+T 275 4225 5 6 0 1 0 6 1
+pinseq=63
+}
+P 0 3900 300 3900 1 0 0
+{
+T 275 3875 5 6 0 1 180 0 1
+pintype=in
+T 355 3895 5 10 1 1 0 0 1
+pinlabel=OPMODE1
+T 205 3945 5 10 1 1 0 6 1
+pinnumber=64
+T 275 3925 5 6 0 1 0 6 1
+pinseq=64
+}
+P 0 3600 300 3600 1 0 0
+{
+T 275 3575 5 6 0 1 180 0 1
+pintype=in
+T 355 3595 5 10 1 1 0 0 1
+pinlabel=OPMODE2
+T 205 3645 5 10 1 1 0 6 1
+pinnumber=65
+T 275 3625 5 6 0 1 0 6 1
+pinseq=65
+}
+T 1300 4300 9 3 1 0 180 6 7
+000 Auto-negatiation enable with all capabilities
+001 Auto-negatiation with 100 Base- X FDX/HDX ability
+010 Auto-negatiation with 10 Base-T FDX/HDX ability
+100 Manual selection of 100 Base-TX FDX
+101 Manual selection of 100 Base-TX HDX
+110 Manual selection of 10 Base-T FDX
+111 Manual selection of 10 Base-T HDX
+P 0 3200 300 3200 1 0 0
+{
+T 275 3175 5 6 0 1 180 0 1
+pintype=in
+T 355 3195 5 10 1 1 0 0 1
+pinlabel=TEST_MODE3
+T 205 3245 5 10 1 1 0 6 1
+pinnumber=34
+T 275 3225 5 6 0 1 0 6 1
+pinseq=34
+}
+P 0 3000 300 3000 1 0 0
+{
+T 275 2975 5 6 0 1 180 0 1
+pintype=in
+T 355 2995 5 10 1 1 0 0 1
+pinlabel=TEST_MODE2
+T 205 3045 5 10 1 1 0 6 1
+pinnumber=35
+T 275 3025 5 6 0 1 0 6 1
+pinseq=35
+}
+P 0 2800 300 2800 1 0 0
+{
+T 275 2775 5 6 0 1 180 0 1
+pintype=in
+T 355 2795 5 10 1 1 0 0 1
+pinlabel=TEST_MODE1
+T 205 2845 5 10 1 1 0 6 1
+pinnumber=36
+T 275 2825 5 6 0 1 0 6 1
+pinseq=36
+}
+P 0 2600 300 2600 1 0 0
+{
+T 275 2575 5 6 0 1 180 0 1
+pintype=in
+T 355 2595 5 10 1 1 0 0 1
+pinlabel=TEST_MODE0
+T 205 2645 5 10 1 1 0 6 1
+pinnumber=37
+T 275 2625 5 6 0 1 0 6 1
+pinseq=37
+}
+T 1700 2600 9 5 1 0 270 6 1
+Normal mode: 0000
+T 1400 7900 9 8 1 0 0 0 1
+Power Supply
+P 0 10800 300 10800 1 0 0
+{
+T 275 10775 5 6 0 1 180 0 1
+pintype=pwr
+T 355 10795 5 10 1 1 0 0 1
+pinlabel=Vcc3V3
+T 205 10845 5 10 1 1 0 6 1
+pinnumber=12
+T 275 10825 5 6 0 1 0 6 1
+pinseq=12
+}
+P 0 10600 300 10600 1 0 0
+{
+T 275 10575 5 6 0 1 180 0 1
+pintype=pwr
+T 355 10595 5 10 1 1 0 0 1
+pinlabel=Vcc3V3
+T 205 10645 5 10 1 1 0 6 1
+pinnumber=18
+T 275 10625 5 6 0 1 0 6 1
+pinseq=18
+}
+P 0 10400 300 10400 1 0 0
+{
+T 275 10375 5 6 0 1 180 0 1
+pintype=pwr
+T 355 10395 5 10 1 1 0 0 1
+pinlabel=Vcc3V3
+T 205 10445 5 10 1 1 0 6 1
+pinnumber=44
+T 275 10425 5 6 0 1 0 6 1
+pinseq=44
+}
+P 0 9600 300 9600 1 0 0
+{
+T 275 9575 5 6 0 1 180 0 1
+pintype=pwr
+T 355 9595 5 10 1 1 0 0 1
+pinlabel=Vcc1V8
+T 205 9645 5 10 1 1 0 6 1
+pinnumber=15
+T 275 9625 5 6 0 1 0 6 1
+pinseq=15
+}
+P 0 9400 300 9400 1 0 0
+{
+T 275 9375 5 6 0 1 180 0 1
+pintype=pwr
+T 355 9395 5 10 1 1 0 0 1
+pinlabel=Vcc1V8
+T 205 9445 5 10 1 1 0 6 1
+pinnumber=16
+T 275 9425 5 6 0 1 0 6 1
+pinseq=16
+}
+P 0 9200 300 9200 1 0 0
+{
+T 275 9175 5 6 0 1 180 0 1
+pintype=pwr
+T 355 9195 5 10 1 1 0 0 1
+pinlabel=Vcc1V8
+T 205 9245 5 10 1 1 0 6 1
+pinnumber=33
+T 275 9225 5 6 0 1 0 6 1
+pinseq=33
+}
+P 0 8300 300 8300 1 0 0
+{
+T 275 8275 5 6 0 1 180 0 1
+pintype=pwr
+T 355 8295 5 10 1 1 0 0 1
+pinlabel=AGND
+T 205 8345 5 10 1 1 0 6 1
+pinnumber=77
+T 275 8325 5 6 0 1 0 6 1
+pinseq=77
+}
+P 0 7600 300 7600 1 0 0
+{
+T 275 7575 5 6 0 1 180 0 1
+pintype=pwr
+T 355 7595 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 7645 5 10 1 1 0 6 1
+pinnumber=17
+T 275 7625 5 6 0 1 0 6 1
+pinseq=17
+}
+P 0 7400 300 7400 1 0 0
+{
+T 275 7375 5 6 0 1 180 0 1
+pintype=pwr
+T 355 7395 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 7445 5 10 1 1 0 6 1
+pinnumber=32
+T 275 7425 5 6 0 1 0 6 1
+pinseq=32
+}
+P 0 7200 300 7200 1 0 0
+{
+T 275 7175 5 6 0 1 180 0 1
+pintype=pwr
+T 355 7195 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 7245 5 10 1 1 0 6 1
+pinnumber=43
+T 275 7225 5 6 0 1 0 6 1
+pinseq=43
+}
+P 0 7000 300 7000 1 0 0
+{
+T 275 6975 5 6 0 1 180 0 1
+pintype=pwr
+T 355 6995 5 10 1 1 0 0 1
+pinlabel=GND
+T 205 7045 5 10 1 1 0 6 1
+pinnumber=68
+T 275 7025 5 6 0 1 0 6 1
+pinseq=68
+}
+T 2175 525 9 8 1 0 0 0 1
+Clock
+T 400 2200 9 8 1 0 0 0 1
+LED Signals
+B 300 300 3300 11300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 1500 8150 9 10 1 1 0 0 1
+device=W5100

@@ -33,7 +33,7 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  *
- * 	$Id$
+ *       $Id$
  */
 
 #include <stdio.h>
@@ -283,8 +283,8 @@ unsigned int strrindex(char *s, char c);
 void         strtolower(char *s);
 int get_continued_string(char *buf, size_t buffer_size, FILE *fp);
 int get_style(FILE *fp, unsigned int *colour,
-	      struct LineStyle *linestyle,
-	      struct FillStyle *fillstyle);
+            struct LineStyle *linestyle,
+            struct FillStyle *fillstyle);
 void set_orientation(int *angle, int *mirror, int orientation);
 
 /* conversion readers */
@@ -307,11 +307,11 @@ void do_instance(FILE *fp);
 
 /* output objects */
 void text_object(int x, int y, unsigned int color, unsigned int size,
-		 unsigned int visibility, unsigned int show_name_value,
-		 int angle, char *text, unsigned int origin);
+             unsigned int visibility, unsigned int show_name_value,
+             int angle, char *text, unsigned int origin);
 void attribute_object(int x, int y, unsigned int color, unsigned int  size,
-		      unsigned int visibility, unsigned int show_name_value,
-		      int angle, char *name, char *value, unsigned int origin);
+                  unsigned int visibility, unsigned int show_name_value,
+                  int angle, char *name, char *value, unsigned int origin);
 void line_object(int x1, int y1, int x2, int y2, unsigned int color,
                  struct LineStyle *linestyle);
 void circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
@@ -319,16 +319,16 @@ void circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
 void pin_object(int x1, int y1, int x2, int y2, unsigned int color,
                 OBJECT_PINTYPE pintype, unsigned int whichend);
 void box_object(int x1, int y1, unsigned int width, unsigned int height,
-		unsigned int color, struct LineStyle *linestyle,
+            unsigned int color, struct LineStyle *linestyle,
                 struct FillStyle *fillstyle);
 void arc_object(int x1, int y1, unsigned int radius,
-		int start_angle, int sweep_angle, unsigned int color,
+            int start_angle, int sweep_angle, unsigned int color,
                 struct LineStyle *linestyle);
 void net_segment(int x1, int y1, int x2, int y2, unsigned int color);
 void bus_segment(int x1, int y1, int x2, int y2, unsigned int color,
                  int ripperdir);
 void complex_object(int x, int y, unsigned int selectable,
-	       int angle, unsigned int mirror, char *name);
+             int angle, unsigned int mirror, char *name);
 void begin_attach(void);
 void end_attach(void);
 void reset_attributes(void);
@@ -342,7 +342,7 @@ int GetStringDisplayLength(char *str,int font_size);
 int attach_pending = 0;    /* keep track of whether the last object */
                            /* read may have attachments pending. */
 int add_attributes = 0;    /* keep track of whether we are adding attributes */
-			   /* to some previous object */
+                     /* to some previous object */
 int pin_attributes = 0;    /* when true, we are adding attributes to a pin */
 int net_attributes = 0;    /* when true, we are adding atrributes to a net */
 int complex_attributes = 0;/* when true, we are adding attibutes to a complex*/
@@ -354,8 +354,8 @@ int net_nodes_y[MAX_NODES];
 int scale          = 10;   /* scale factor for viewlogic-geda conversion */
 /* int symbol_mode    = 0; */
 int records_processed = 0; /* used to keep track of the number of viewlogic
-			    * records processed for diagnostics
-			    */
+                      * records processed for diagnostics
+                      */
 
 int minx = 0;              /* bounding box for symbol */
 int miny = 0;
@@ -366,10 +366,10 @@ void
 usage(char *cmd)
 {
   fprintf(stderr,
-	  "Usage:\n\t%s <viewlogic_filename>\n"
-	  " Where:\n"
-	  "\t<viewlogic_filename> is the name of the file you\n"
-	  "\t\t\t  want to convert to gEDA format\n", cmd);
+        "Usage:\n\t%s <viewlogic_filename>\n"
+        " Where:\n"
+        "\t<viewlogic_filename> is the name of the file you\n"
+        "\t\t\t  want to convert to gEDA format\n", cmd);
   exit(1);
 }
 
@@ -408,7 +408,7 @@ main(int argc, char **argv)
   if(infile == NULL)
     {
       fprintf(stderr,"Error: Unable to open file `%s' in %s()\n",
-	      infileName,__func__);
+            infileName,__func__);
       return 1;
     }
 
@@ -436,98 +436,99 @@ convert_file(FILE *fp)
   while((c =fgetc(fp)) != EOF) /* fetch record type */
     {
       switch(c) /* branch to appropriate handler */
-	{
-	case 'D':
-	  do_bounding_box(fp);
-	  break;
+      {
+      case 'D':
+        do_bounding_box(fp);
+        break;
 
-	case 'U':
-	  do_unattached_attribute(fp);
-	  break;
+      case 'U':
+        do_unattached_attribute(fp);
+        break;
 
-	case 'A':
-	  do_attached_attribute(fp);
-	  break;
+      case 'A':
+        do_attached_attribute(fp);
+        break;
 
-	case 'T':
-	  do_text(fp);
-	  break;
+      case 'T':
+        do_text(fp);
+        break;
 
-	case 'l':
-	  do_line(fp);
-	  break;
+      case 'l':
+        do_line(fp);
+        break;
 
-	case 'P':
-	  do_pin(fp);
-	  break;
+      case 'P':
+        do_pin(fp);
+        break;
 
-	case 'b':
-	  do_box(fp);
-	  break;
+      case 'b':
+        do_box(fp);
+        break;
 
-	case 'c':
-	  do_circle(fp);
-	  break;
+      case 'c':
+        do_circle(fp);
+        break;
 
-	case 'a':
-	  do_arc(fp);
-	  break;
+      case 'a':
+        do_arc(fp);
+        break;
 
-	case 'L':
-	  do_label(fp);
-	  break;
+      case 'L':
+        do_label(fp);
+        break;
 
-	  /* net stuff */
-	case 'N':
-	  do_net_start(fp);
-	  break;
-	case 'J':
-	  do_net_node(fp);
-	  break;
-	case 'S':
-	  do_net_segment(fp);
-	  break;
-	case 'B':
-	  do_net_segment_bus(fp);
-	  break;
+        /* net stuff */
+      case 'N':
+        do_net_start(fp);
+        break;
+      case 'J':
+        do_net_node(fp);
+        break;
+      case 'S':
+        do_net_segment(fp);
+        break;
+      case 'B':
+        do_net_segment_bus(fp);
+        break;
 
-	case 'I':
-	  do_instance(fp);
-	  break;
-	  /* ZZZZ */
+      case 'I':
+        do_instance(fp);
+        break;
+        /* ZZZZ */
 
-	case 'V': case 'K': case 'Y': case 'i': case 'E':
-	case 'Z':
-	  do_nop(fp);
-	  break;
+      case 'V': case 'K': case 'Y': case 'i': case 'E':
+      case 'Z':
+        do_nop(fp);
+        break;
 
-	case 'Q':
-	  fprintf(stderr,"Warning 'Q' record found and not handled at"
-		  "record %d, contact maintainer\n",records_processed);
-	  do_nop(fp);
-	  break;
+      case 'Q':
+        fprintf(stderr,"Warning 'Q' record found and not handled at"
+              "record %d, contact maintainer\n",records_processed);
+        do_nop(fp);
+        break;
 
-	case 'C':  /* connected pin record */
-	  do_nop(fp);
-	  break;
+      case 'C':  /* connected pin record */
+        do_nop(fp);
+        break;
 
-	case 'X':  /* unconnected pin record */
-	  do_nop(fp);
-	  break;
-	case '|':  /* some kind of timestamp */
-	  do_nop(fp);
-	  break;
-	default: /* just read in the record and trash it */
-	  if (fgets(buf, MAX_TEXTLEN, fp) != NULL)
-	  /* nuke trailing CR, if there */
-            text_len=strlen(buf);
-	  if(buf[text_len-1] == '\n')
-	    {
-	      buf[text_len-1] = 0;
-	    }
-	  fprintf(stderr,"Warning: Unrecognized record #%d:\n'%c%s'\n",
-		  records_processed, c, buf);
-	}
+      case 'X':  /* unconnected pin record */
+        do_nop(fp);
+        break;
+      case '|':  /* some kind of timestamp */
+        do_nop(fp);
+        break;
+      default: /* just read in the record and trash it */
+        if (fgets(buf, MAX_TEXTLEN, fp) != NULL) {
+        /* nuke trailing CR, if there */
+          text_len = strlen(buf);
+
+          if(buf[text_len-1] == '\n') {
+              buf[text_len-1] = 0;
+          }
+        }
+        fprintf(stderr,"Warning: Unrecognized record #%d:\n'%c%s'\n",
+              records_processed, c, buf);
+      }
       records_processed++;
     }
 
@@ -559,7 +560,7 @@ do_bounding_box(FILE *fp)
   if(fscanf(fp,"%d %d %d %d\n", &minx, &miny, &maxx, &maxy) != 4)
     {
       fprintf(stderr,"Error: Invalid bounding box record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -602,11 +603,11 @@ do_unattached_attribute(FILE *fp)
    * U #X #Y #SIZE #ROTATION #origin #Visibility ATTR_TEXT
    */
   if(fscanf(fp,"%d %d %u %d %u %u", &x, &y, &size, &angle, &origin,
-	    &viewvis) != 6)
+          &viewvis) != 6)
     {
       fprintf(stderr,"Error: Invalid Unattached attribute record #%d "
-	      "in %s()\n",
-	      records_processed, __func__);
+            "in %s()\n",
+            records_processed, __func__);
       exit(1);
     }
 
@@ -647,8 +648,8 @@ do_unattached_attribute(FILE *fp)
 
     default:
       fprintf(stderr,"Error: Invalid visibility value %d in "
-	      "viewlogic file at record #%d in function %s()\n",
-	      viewvis, records_processed, __func__);
+            "viewlogic file at record #%d in function %s()\n",
+            viewvis, records_processed, __func__);
       return;
     }
 
@@ -666,7 +667,7 @@ do_unattached_attribute(FILE *fp)
   }
 
   attribute_object( x, y, color, size, visibility, show_name_value, angle,
-		    name, value, origin );
+                name, value, origin );
 
 }
 
@@ -730,8 +731,8 @@ do_attached_attribute(FILE *fp)
 
     default:
       fprintf(stderr,"Error: Invalid visibility value %d in "
-	      "viewlogic file at record #%d, in function %s()\n",
-	      viewvis, records_processed, __func__);
+            "viewlogic file at record #%d, in function %s()\n",
+            viewvis, records_processed, __func__);
       return;
   }
 
@@ -809,7 +810,7 @@ do_attached_attribute(FILE *fp)
       else
       {
         fprintf(stderr,"Error: Invalid or unknown pin type \"%s\" for record "
-	        "#%d in %s()\n", value, records_processed, __func__);
+              "#%d in %s()\n", value, records_processed, __func__);
         exit(1);
       }
 
@@ -901,10 +902,10 @@ do_text(FILE *fp)
    *  T #X #Y #SIZE #ROTATION #ORIGIN TEXT
    */
   if(fscanf(fp,"%d %d %u %d %u",&x, &y, &size, &angle,
-	    &origin) != 5)
+          &origin) != 5)
     {
       fprintf(stderr,"Error: Invalid text record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -924,7 +925,7 @@ do_text(FILE *fp)
   get_style(fp, &color, &linestyle, &fillstyle);
 
   text_object(x, y, color, size, visibility, show_name_value, angle, text, \
-	      origin);
+            origin);
 
 }
 
@@ -948,8 +949,8 @@ do_line(FILE *fp)
   if(fscanf(fp,"%d",&pairs) != 1)
     {
       fprintf(stderr,"Error: Unable to read number of line pairs "
-	      "for record #%d, in %s()\n",
-	      records_processed, __func__);
+            "for record #%d, in %s()\n",
+            records_processed, __func__);
       exit(1);
     }
 
@@ -957,12 +958,12 @@ do_line(FILE *fp)
   for (i=0; i < pairs; i++)
     {
       if(fscanf(fp,"%d %d", &x[i], &y[i]) != 2)
-	{
-	  fprintf(stderr,"Error: unable to read %dth coodinate pair "
-		  "for record #%d, in %s()\n",
-		  i+1, records_processed, __func__);
-	  exit(1);
-	}
+      {
+        fprintf(stderr,"Error: unable to read %dth coodinate pair "
+              "for record #%d, in %s()\n",
+              i+1, records_processed, __func__);
+        exit(1);
+      }
 
       x[i] *= scale;
       y[i] *= scale;
@@ -1006,10 +1007,10 @@ do_pin(FILE *fp)
    */
 
   if(fscanf(fp,"%*d %d %d %d %d %*d %u %u\n",&x1, &y1, &x2, &y2,
-	    &pindir, &pinsense) != 6)
+          &pindir, &pinsense) != 6)
     {
       fprintf(stderr,"Error:Invalid pin record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1095,8 +1096,8 @@ do_pin(FILE *fp)
     default:
       /* Invalid pin direction */
       fprintf(stderr,"Error: Invalid pin direction %d in "
-	      "ViewLogic file at record #%d, in function %s()\n",
-	      pindir, records_processed, __func__);
+            "ViewLogic file at record #%d, in function %s()\n",
+            pindir, records_processed, __func__);
       exit(1);
   }
 
@@ -1148,7 +1149,7 @@ do_box(FILE *fp)
   if(fscanf(fp, "%d %d %d %d\n", &x1, &y1, &x2, &y2) != 4)
     {
       fprintf(stderr, "Error: Invalid box record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1185,7 +1186,7 @@ do_circle(FILE *fp)
   if(fscanf(fp,"%d %d %u\n",&x, &y, &radius) != 3)
     {
       fprintf(stderr,"Error: Invalid circle record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1223,10 +1224,10 @@ do_arc(FILE *fp)
    */
 
   if(fscanf(fp,"%d %d %d %d %d %d\n",
-	    &x1, &y1, &x2, &y2, &x3, &y3) != 6)
+          &x1, &y1, &x2, &y2, &x3, &y3) != 6)
     {
       fprintf(stderr,"Error: Invalid arc record #%d, in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1259,7 +1260,7 @@ do_arc(FILE *fp)
     }
 
   yop = ((x2p * ( x3p*x3p + y3p*y3p ) - x3p * ( x2p*x2p + y2p*y2p )) /
-	 (2 * (x2p * y3p - y2p * x3p)));
+       (2 * (x2p * y3p - y2p * x3p)));
 
   xop = (x2p*x2p - 2*y2p*yop) / (2 * x2p);
 
@@ -1292,7 +1293,7 @@ do_arc(FILE *fp)
 
 
   arc_object((int)xo,(int)yo, (unsigned int)radius,
-	     (int)gstart,(int)sweep_angle, color, &linestyle);
+           (int)gstart,(int)sweep_angle, color, &linestyle);
 
 }
 
@@ -1317,7 +1318,7 @@ do_label(FILE *fp)
             &global, &visibility, &overbar) != 8)
     {
       fprintf(stderr,"Error: Invalid label record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1379,7 +1380,7 @@ do_label(FILE *fp)
 
   begin_attach();
   text_object(x, y, color, size, visibility, show_name_value, angle, text, \
-	      origin);
+            origin);
 }
 
 /* four functions for doing net stuff */
@@ -1411,8 +1412,8 @@ do_net_node(FILE *fp)
   if(segment_count > MAX_NODES)
     {
       fprintf(stderr,"Error: too many nodes on a net at record #%d, "
-	      "in %s(), try increasing\n"
-	      "\tMAX_NODES\n", records_processed, __func__);
+            "in %s(), try increasing\n"
+            "\tMAX_NODES\n", records_processed, __func__);
       exit(1); /* this is fatal */
     }
 
@@ -1420,7 +1421,7 @@ do_net_node(FILE *fp)
   if(fscanf(fp,"%d %d %d\n",&x, &y, &type) < 2)
     {
       fprintf(stderr,"Error: Invalid net node record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1448,7 +1449,7 @@ do_net_segment(FILE *fp)
   if(fscanf(fp,"%u %u\n",&n1, &n2) != 2)
     {
       fprintf(stderr,"Error: Invalid net segment record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1456,7 +1457,7 @@ do_net_segment(FILE *fp)
 
   /* output a geda net segment */
   net_segment(net_nodes_x[n1], net_nodes_y[n1],
-	      net_nodes_x[n2], net_nodes_y[n2], color);
+            net_nodes_x[n2], net_nodes_y[n2], color);
 
   /* there could be attributes to follow */
   add_attributes = 1;   /* add attributes */
@@ -1479,7 +1480,7 @@ do_net_segment_bus(FILE *fp)
   if(fscanf(fp,"%u %u\n",&n1, &n2) != 2)
     {
       fprintf(stderr,"Error: Invalid bus segment record #%d in %s()\n",
-	      records_processed, __func__);
+            records_processed, __func__);
       exit(1);
     }
 
@@ -1490,7 +1491,7 @@ do_net_segment_bus(FILE *fp)
 
   /* output a geda bus segment */
   bus_segment(net_nodes_x[n1], net_nodes_y[n1],
-	      net_nodes_x[n2], net_nodes_y[n2], color, ripperdir);
+            net_nodes_x[n2], net_nodes_y[n2], color, ripperdir);
 
   /* there could be attributes to follow */
   add_attributes = 1;   /* add attributes */
@@ -1622,7 +1623,7 @@ set_orientation(int *angle, int *mirror, int orientation)
     break;
   default:
     fprintf(stderr,"Error: Invalid orientation value %d at record %d\n",
-	    orientation, records_processed);
+          orientation, records_processed);
   }
 }
 
@@ -1631,8 +1632,8 @@ set_orientation(int *angle, int *mirror, int orientation)
 /* output a geda text object */
 void
 text_object(int x, int y, unsigned int color, unsigned int size,
-	    unsigned int visibility, unsigned int show_name_value,
-	    int angle, char *text, unsigned int origin)
+          unsigned int visibility, unsigned int show_name_value,
+          int angle, char *text, unsigned int origin)
 {
   unsigned int text_size;
 #if 0
@@ -1690,18 +1691,18 @@ text_object(int x, int y, unsigned int color, unsigned int size,
 
     case 1:   /* measure just the value part */
       textlen = GetStringDisplayLength(&text[strindex(text,'=') + 1],
-				       text_size);
+                               text_size);
       break;
 
     case 2:   /* measure just the name part */
       textlen = GetStringDisplayLength(text, text_size)
-	- GetStringDisplayLength(&text[strindex(text,'=')],text_size);
+      - GetStringDisplayLength(&text[strindex(text,'=')],text_size);
       break;
 
     default:
       fprintf(stderr,"Error: invalid show_name_value: %d at record #%d, "
-	      "in %s()\n",
-	      show_name_value, records_processed, __func__);
+            "in %s()\n",
+            show_name_value, records_processed, __func__);
       return;
     }
 
@@ -1740,8 +1741,8 @@ text_object(int x, int y, unsigned int color, unsigned int size,
     {
       angle = 0;
       fprintf(stderr,"Warning: Forcing text '%s' into standard alignment "
-	      "at record #%d\n",
-	      text,records_processed);
+            "at record #%d\n",
+            text,records_processed);
     }
 #endif
 
@@ -1765,15 +1766,15 @@ text_object(int x, int y, unsigned int color, unsigned int size,
   numlines = 1;
 
   printf( "T %d %d %u %u %u %u %d %u %u\n%s\n", x, y, color, text_size,
-	  visibility, show_name_value, angle, origin, numlines, text);
+        visibility, show_name_value, angle, origin, numlines, text);
 
 }
 
 
 void
 attribute_object(int x, int y, unsigned int color, unsigned int  size,
-		 unsigned int visibility, unsigned int show_name_value,
-		 int angle, char *name, char *value, unsigned int origin)
+             unsigned int visibility, unsigned int show_name_value,
+             int angle, char *name, char *value, unsigned int origin)
 {
 
   char text[MAX_TEXTLEN], text2[MAX_TEXTLEN];
@@ -1800,37 +1801,37 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
 
 #ifdef DEBUG
       printf("Comparing `%s' to `%s' in %s()\n",tmpName,
-	     translations[i].origName,__func__);
+           translations[i].origName,__func__);
 #endif
 
       if(strcmp(tmpName,translations[i].origName) == 0) /* match? */
-	switch(translations[i].action)
-	  {
-	  case REPLACE_NAME:
-	    strncpy(tmpName, translations[i].newName, MAX_TEXTLEN-1);
-	    done = 1;
-	    break;
+      switch(translations[i].action)
+        {
+        case REPLACE_NAME:
+          strncpy(tmpName, translations[i].newName, MAX_TEXTLEN-1);
+          done = 1;
+          break;
 
-	  case KILL:
-	    fprintf(stderr,"Warning: Killing attribute `%s=%s' at (%d,%d)"
-		    " from record #%d\n",
-		    tmpName, tmpValue,x,y,records_processed);
-	    done = 1;
-	    return;
+        case KILL:
+          fprintf(stderr,"Warning: Killing attribute `%s=%s' at (%d,%d)"
+                " from record #%d\n",
+                tmpName, tmpValue,x,y,records_processed);
+          done = 1;
+          return;
 
-	  case WARN_USER:
-	    fprintf(stderr,"Warning: attribute name `%s=%s' at (%d,%d) "
-		    "at record #%d, found during conversion\n"
-		    "\tpassing it through unchanged\n",
-		    tmpName,tmpValue,x,y,records_processed);
-	    done = 1;
-	    break;
-	  default:
-	    fprintf(stderr,"Error: Unknown action code for attribute\n"
-		    "`%s=%s' at record #%d in %s()\n",
-		    tmpName,tmpValue,records_processed,__func__);
-	    exit(1);
-	  }
+        case WARN_USER:
+          fprintf(stderr,"Warning: attribute name `%s=%s' at (%d,%d) "
+                "at record #%d, found during conversion\n"
+                "\tpassing it through unchanged\n",
+                tmpName,tmpValue,x,y,records_processed);
+          done = 1;
+          break;
+        default:
+          fprintf(stderr,"Error: Unknown action code for attribute\n"
+                "`%s=%s' at record #%d in %s()\n",
+                tmpName,tmpValue,records_processed,__func__);
+          exit(1);
+        }
     }
 
   /* if attribute name was not replaced/dropped, convert to lowercase */
@@ -1902,7 +1903,7 @@ attribute_object(int x, int y, unsigned int color, unsigned int  size,
 #endif
 
   text_object( x, y, color, size, visibility, show_name_value, \
-	       angle, text, origin);
+             angle, text, origin);
 
 }
 
@@ -1941,7 +1942,7 @@ pin_object(int x1, int y1, int x2, int y2, unsigned int color,
 
 void
 box_object(int x1, int y1, unsigned int width, unsigned int height,
-	   unsigned int color, struct LineStyle *linestyle,
+         unsigned int color, struct LineStyle *linestyle,
            struct FillStyle *fillstyle)
 {
   printf("B %d %d %u %u %u %i %i %i %i %i %i %i %i %i %i %i\n", x1, y1,
@@ -1956,11 +1957,11 @@ box_object(int x1, int y1, unsigned int width, unsigned int height,
 
 void
 arc_object(int x1, int y1, unsigned int radius,
-	   int start_angle, int sweep_angle, unsigned int color,
+         int start_angle, int sweep_angle, unsigned int color,
            struct LineStyle *linestyle)
 {
   printf("A %d %d %u %d %d %u %i %i %i %i %i\n", x1, y1, radius,
-	 start_angle, sweep_angle, color,
+       start_angle, sweep_angle, color,
          linestyle->line_width, linestyle->line_capstyle,
          linestyle->line_dashstyle, linestyle->line_dashlength,
          linestyle->line_dashspace);
@@ -1980,7 +1981,7 @@ bus_segment(int x1, int y1, int x2, int y2, unsigned int color, int ripperdir)
 
 void
 complex_object(int x, int y, unsigned int selectable,
-	       int angle, unsigned int mirror, char *name)
+             int angle, unsigned int mirror, char *name)
 {
   printf("C %d %d %u %d %u %s\n", x, y, selectable, angle, mirror, name);
 }
@@ -2018,7 +2019,7 @@ reset_attributes(void)
                          /* read may have attachments pending. */
 
   add_attributes = 0;    /* keep track of whether we are adding attributes */
-			 /* to some previous object */
+                   /* to some previous object */
   pin_attributes = 0;    /* when true, we are adding attributes to a pin */
   net_attributes = 0;    /* when true, we are adding atrributes to a net */
   complex_attributes = 0;/* when true, we are addint attibutes to a complex */
@@ -2073,8 +2074,8 @@ get_continued_string(char *buf, size_t buffer_size, FILE *fp)
 
 /* read in a possible style record to modify the current style */
 int get_style(FILE *fp, unsigned int *colour,
-	      struct LineStyle *linestyle,
-	      struct FillStyle *fillstyle)
+            struct LineStyle *linestyle,
+            struct FillStyle *fillstyle)
 {
   int c;
   unsigned int vdfillstyle, vdlinestyle;
@@ -2083,20 +2084,20 @@ int get_style(FILE *fp, unsigned int *colour,
   if(c == 'Q') /* do we have a modifier? */
     {
       if(fscanf(fp,"%u %u %u\n", colour, &vdfillstyle, &vdlinestyle) != 3)
-	{
-	  fprintf(stderr,"Error: Invalid modifier record #%d in %s()\n",
-		  records_processed, __func__);
-	  exit(1);
-	}
+      {
+        fprintf(stderr,"Error: Invalid modifier record #%d in %s()\n",
+              records_processed, __func__);
+        exit(1);
+      }
 
       /* re-map colour into a geda colour */
       if(*colour > 15)
-	{
-	  fprintf(stderr,"Error: Invalid colour number %u in record #%d, "
-		  "in %s()\n",
-		  *colour,records_processed, __func__);
-	  exit(1);
-	}
+      {
+        fprintf(stderr,"Error: Invalid colour number %u in record #%d, "
+              "in %s()\n",
+              *colour,records_processed, __func__);
+        exit(1);
+      }
       *colour = colormap[*colour];
 
       /* re-map vdfillstyle to gEDA FillStyle */

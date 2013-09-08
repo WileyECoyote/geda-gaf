@@ -53,6 +53,7 @@ void o_selection_add (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_select
 {
   if (o_selected->selected == FALSE)
   {
+    /* Got enough stack? Lets find out! */
     o_selection_select (toplevel, o_selected);
     geda_list_add( (GedaList *)selection, o_selected );
   }
@@ -122,6 +123,7 @@ void o_selection_select(TOPLEVEL *toplevel, OBJECT *object)
   o_emit_pre_change_notify (toplevel, object);
   object->selected = TRUE;
   o_emit_change_notify (toplevel, object);
+
 }
 
 /*! \brief Unselects the given object.

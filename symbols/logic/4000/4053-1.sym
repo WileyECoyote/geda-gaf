@@ -1,4 +1,4 @@
-v 20031231 1
+v 20130414 2
 P 0 600 300 600 1 0 0
 {
 T 200 650 5 8 1 1 0 6 1
@@ -60,17 +60,17 @@ T 1400 1200 5 10 0 0 0 0 1
 slotdef=2:4,9,3,5
 T 1400 1400 5 10 0 0 0 0 1
 slotdef=3:14,11,13,12
-T 1400 1600 5 10 0 0 0 0 1
+T 0 1600 5 10 0 0 0 0 1
 device=4053
 T 300 1200 8 10 1 1 0 0 1
 refdes=U?
-T 1400 1800 5 10 0 0 0 0 1
+T 0 1800 5 10 0 0 0 0 1
 footprint=DIP16
-T 1400 2000 5 10 0 0 0 0 1
+T 0 2000 5 10 0 0 0 0 1
 description=3 2-1 analogue multiplexer/demultiplexer
-T 1400 2200 5 10 0 0 0 0 1
+T 0 2200 5 10 0 0 0 0 1
 documentation=http://www.semiconductors.philips.com/acrobat/datasheets/HEF4053B_CNV_3.pdf
 T 300 0 9 10 1 0 0 0 1
 4053
-T 1400 2400 5 10 0 0 0 0 1
+T 0 2400 5 10 0 0 0 0 1
 comment=dont_use this symbol: pin 6 (EN) ist missing; for safety I've enabled the device

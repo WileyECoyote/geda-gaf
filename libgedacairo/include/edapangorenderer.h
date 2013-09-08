@@ -52,7 +52,7 @@ struct _EdaPangoRenderer
 GType eda_pango_renderer_get_type (void) G_GNUC_CONST;
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr) WARN_UNUSED;
 void eda_pango_renderer_show_layout (EdaPangoRenderer *renderer,
-                                     PangoLayout *pl, double x, double y);
+                                     PangoLayout *pl);
 
 /* ---------------------------------------- */
 

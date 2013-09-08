@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ void s_tile_init(TOPLEVEL * toplevel, PAGE * p_current)
 #if DEBUG 
   printf("X, Y: %d %d\n", x_size, y_size);
 #endif
-    
+
   for (j = 0; j < MAX_TILES_Y; j++) {
     for (i = 0; i < MAX_TILES_X; i++) {
       t_current = &p_current->world_tiles[i][j];
@@ -123,7 +123,7 @@ static void s_tile_add_line_object (TOPLEVEL *toplevel, OBJECT *object)
   double x, y;
   int start, end;
 
-#if DEBUG  
+#if DEBUG
   printf("name: %s\n", object->name);
 #endif
 
@@ -469,7 +469,7 @@ void s_tile_free_all(PAGE * p_current)
 {
   int i, j;
   TILE *t_current;
-  
+
   for (j = 0; j < MAX_TILES_Y; j++) {
     for (i = 0; i < MAX_TILES_X; i++) {
       t_current = &p_current->world_tiles[i][j];

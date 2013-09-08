@@ -75,7 +75,7 @@ typedef struct
 /* Use this macro like  Debug_IMAGE(AttributesTab_vbox, _6); */
 #define Debug_IMAGE(Parent, Number) \
   GtkWidget *BugImage##Number= create_pixmap ( "gschem-delete.xpm"); \
-             gtk_widget_show (BugImage##Number); \
+             g_object_set (BugImage##Number, "visible", TRUE, NULL); \
              gtk_box_pack_start (GTK_BOX (Parent), BugImage##Number, FALSE, FALSE, 0); \
              gtk_tooltips_set_tip (tooltips, BugImage##Number, _("Debugging This"), NULL);
 
@@ -117,12 +117,12 @@ typedef struct
 /* Tabs Related (not Tables) */
 #define GTK_START_TAB(name) \
   GtkWidget *name##Tab_vbox = gtk_vbox_new (FALSE, 0); \
-  gtk_widget_show(name##Tab_vbox); \
+  g_object_set (name##Tab_vbox, "visible", TRUE, NULL);     \
   gtk_container_add (GTK_CONTAINER (notebook), name##Tab_vbox);
 
 #define GTK_END_TAB(name) \
-  GtkWidget *name##Tab = gtk_label_new (_(#name)); \
-  gtk_widget_show(name##Tab); \
+  GtkWidget *name##Tab = gtk_label_new (_(#name));     \
+  g_object_set (name##Tab, "visible", TRUE, NULL);     \
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook), \
                               gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), name), \
                               name##Tab);
@@ -138,7 +138,7 @@ typedef struct
 #define SEPERATOR(parent, suffix, dir, isexpandable, isfilled, xpad, ypad) { \
         GtkWidget *dir##Separator##suffix; \
         dir##Separator##suffix = gtk_##dir##separator_new (); \
-        gtk_widget_show(dir##Separator##suffix); \
+        g_object_set ( dir##Separator##suffix, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (parent), dir##Separator##suffix, isexpandable, isfilled, 0); \
         gtk_widget_set_size_request (dir##Separator##suffix, xpad, ypad); \
 }
@@ -187,7 +187,7 @@ typedef struct
 /* Level 1 Boxes - use in Major Widget Controls (MWC) */
 #define BASE_BOX( name, type, homo, spacing) \
         name##_##type##box = gtk_##type##box_new (homo, NOT_BELOW_ZERO (spacing)); \
-        gtk_widget_show(name##_##type##box);
+        g_object_set (name##_##type##box, "visible", TRUE, NULL);
 
 #define LOCAL_BASE_BOX( name, type, homo, spacing) \
         GtkWidget *name##_##type##box; \
@@ -280,18 +280,18 @@ typedef struct
         SET_WIDGET_SIZE ( name##_vbox, xsize, ysize)
 
 #define VZPSECTION(parent, name, xsize, ysize, xpad, ypad) \
-        VZSECTION (parent, name, xsize, ysize) \
+        VZSECTION (parent, name, xsize, ysize)             \
         SET_WIDGET_PADDING ( name##_vbox, xpad, ypad)
 
 #define VZXSECTION(parent, name, ysize, vspacing, ispacing ) \
-        LOCAL_BASE_BOX (name, v, FALSE, vspacing) \
-        PACK_BOX(parent, name##_vbox, TRUE, TRUE, ispacing) \
+        LOCAL_BASE_BOX (name, v, FALSE, vspacing)            \
+        PACK_BOX(parent, name##_vbox, TRUE, TRUE, ispacing)  \
         SET_WIDGET_SIZE ( name##_vbox, -1, ysize)
 
 /*  Label Widget */
 #define GTK_NEW_LABEL(name, isexpandable, isfilled, type) \
         name##Label = gtk_label_new (_(LABEL (name)));    \
-                      gtk_widget_show(name##Label); \
+                      g_object_set (name##Label, "visible", TRUE, NULL);      \
                       PACK_BOX(name##_##type##box, name##Label, isexpandable, \
                                isfilled, DEFAULT_WIDGET_SPACING)
 
@@ -324,14 +324,14 @@ typedef struct
 #define CSECTION_OPTIONS(parent, name, ysize, pad, type) \
           type##ZSECTION(parent, name##Options, -1, ysize) \
           GtkWidget *name##Label=gtk_label_new (_(LABEL (name))); \
-          gtk_widget_show(name##Label); \
+          g_object_set (name##Label, "visible", TRUE, NULL); \
           gtk_tooltips_set_tip (tooltips, name##Label, _(TOOLTIP (name)), NULL); \
           type##PACK_BOX (name##Options, name##Label, FALSE, FALSE, pad); \
           gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_CENTER);
 
 #define GTK_NEW_SCROLL( parent, name, spacing, xsize, ysize, bars, theme) \
           GtkWidget *name = gtk_scrolled_window_new (NULL, NULL); \
-          gtk_widget_show(name); \
+          g_object_set (name, "visible", TRUE, NULL); \
           gtk_box_pack_start (GTK_BOX (parent), name, FALSE, TRUE, spacing); \
           gtk_widget_set_size_request (name, xsize, ysize); \
           gtk_scrolled_window_set_policy (GTK_SCROLLED_WINDOW (name), GTK_POLICY_NEVER, bars); \
@@ -380,7 +380,7 @@ typedef struct
 */
 #define GTK_NEW_ARROW(parent, name, dir, style, isexpandable, isfilled, spacing ) \
         name##Arrow = gtk_arrow_new ( dir, style); \
-        gtk_widget_show(name##Arrow); \
+        g_object_set (name##Arrow, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (parent), name##Arrow, isexpandable, isfilled, spacing);
 
 #define GTK_STD_ARROW(parent, name, dir, style) \
@@ -388,7 +388,7 @@ typedef struct
 
 #define GTK_NEW_BUTTON(parent, name, isexpandable, isfilled, focus, spacing) \
         name##Butt = gtk_button_new_with_mnemonic (_(LABEL (name)));  \
-        gtk_widget_show(name##Butt); \
+        g_object_set ( name##Butt, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (parent), name##Butt, isexpandable, isfilled, spacing); \
         gtk_button_set_focus_on_click (GTK_BUTTON (name##Butt), focus); \
         HOOKUP_GEDA_OBJECT(name, Butt)
@@ -399,7 +399,7 @@ typedef struct
 
 #define GTK_NEW_CHECKBOX(parent, name) \
         name##CheckBox = gtk_check_button_new_with_mnemonic (_(LABEL (name))); \
-        gtk_widget_show(name##CheckBox); \
+        g_object_set (name##CheckBox, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (parent), name##CheckBox, FALSE, FALSE, 0);
 
 #define GTK_NEW_COMBO(parent, name, width, hpad)  {    \
@@ -407,7 +407,7 @@ typedef struct
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
         name##Combo = gtk_combo_box_entry_new_text(); \
-        gtk_widget_show(name##Combo); \
+        g_object_set ( name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, -1) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
@@ -418,7 +418,7 @@ typedef struct
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
         name##Combo = gtk_combo_box_entry_new_text(); \
-        gtk_widget_show(name##Combo); \
+        g_object_set (name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, -1) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
@@ -454,13 +454,13 @@ typedef struct
 
 #define GTK_RADIO( group, name, dir) \
         name##Radio = gtk_radio_button_new_with_mnemonic (group##Group, _(LABEL (name))); \
-        gtk_widget_show(name##Radio); \
+        g_object_set (name##Radio, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (group##Group_##dir##box), name##Radio, FALSE, FALSE, 0); \
         group##Group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (name##Radio)); \
         HOOKUP_GEDA_OBJECT(name, Radio)
 
 /* Note that if Dialog uses GEDA_BULB  then don't use show_all short cut, use
- * traditional gtk_widget_show(widget) because both the off and on images are
+ * traditional g_object_set(widget) because both the off and on images are
  * inside the controls, show_all will cause both images to be displayed.
  * One might also consider not defining groups for Bulbs, radio groups are a
  * MAJOR hassle with GTK-2. Since button callbacks must manage the images it
@@ -469,7 +469,7 @@ typedef struct
  */
 #define GEDA_BULB( group, name, dir) \
         name##Radio = gtk_radio_button_new(group##Group); \
-        gtk_widget_show (name##Radio); \
+        g_object_set (name##Radio, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (group##Group_##dir##box), name##Radio, FALSE, FALSE, 0); \
         group##Group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (name##Radio)); \
         gtk_toggle_button_set_inconsistent (GTK_TOGGLE_BUTTON (name##Radio), TRUE); \
@@ -481,20 +481,20 @@ typedef struct
         GtkWidget *LightOn; \
         GtkWidget *LightOff; \
         alignment = gtk_alignment_new (0, 0, 1, 0);                 /* Create new Alignment Widget */ \
-        gtk_widget_show (alignment); \
+        g_object_set (alignment, "visible", TRUE, NULL); \
         gtk_container_add (GTK_CONTAINER (name##Radio), alignment); /* Put Alignment Widget Inside the Radio */ \
         hbox = gtk_hbox_new (FALSE, 2);                             /* Create new Box container */ \
-        gtk_widget_show (hbox); \
+        g_object_set (hbox, "visible", TRUE, NULL); \
         gtk_container_add (GTK_CONTAINER (alignment), hbox);        /* Put box container inside the Alignment */ \
         LightOn = get_geda_bulb_image(TRUE); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); /* Put both images inside box container */ \
         GTK_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
         LightOff = get_geda_bulb_image(FALSE); \
-        gtk_widget_show(LightOff); \
+        g_object_set (LightOff, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOff, FALSE, FALSE, 0); \
         GTK_HOOKUP_OBJECT (ThisDialog, LightOff, "Off"); \
         GtkWidget *name##Label = gtk_label_new (_(LABEL (name))); \
-        gtk_widget_show (name##Label); \
+        g_object_set ( name##Label, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (hbox), name##Label, FALSE, FALSE, 0); \
         gtk_misc_set_padding (GTK_MISC (name##Label), 0, 0); }\
         HOOKUP_GEDA_OBJECT(name, Radio) \
@@ -583,7 +583,7 @@ typedef struct
         GTK_LABEL_HBOX (parent, name, spacing); /* create hbox and label */  \
         GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
         name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
-        gtk_widget_show (name##Spin);\
+        g_object_set (name##Spin, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Spin, FALSE, TRUE, 0) \
         gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
         HOOKUP_GEDA_OBJECT(name, Spin) \
@@ -597,7 +597,7 @@ typedef struct
         name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
         gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
         gtk_entry_set_activates_default(GTK_ENTRY(name##Spin), TRUE); \
-        gtk_widget_show (name##Spin);\
+        g_object_set (name##Spin, "visible", TRUE, NULL); \
         HOOKUP_GEDA_OBJECT(name, Spin) \
 }
 
@@ -607,6 +607,16 @@ typedef struct
         GtkWidget *name##Image=NULL;                    \
         NEW_HCONTROL_BOX (parent, name, spacing)        \
         PANGO_R5_LABEL (name)                           \
+        name##Switch = create_geda_switch (GedaDialog, name##_hbox, name##Switch,  name##Image, state); \
+        HOOKUP_GEDA_OBJECT(name, Switch) \
+}
+#define GSCHEM_SWITCH(GedaDialog, table, name, left, top, state)  {     \
+        GtkWidget *name##_hbox=NULL;                    \
+        GtkWidget *name##Label=NULL;                    \
+        GtkWidget *name##Image=NULL;                    \
+        BASE_BOX( name, h, FALSE, DEFAULT_WIDGET_SPACING) \
+        gtk_table_attach(GTK_TABLE(table), name##_hbox, left, left+1, top, top+1, GTK_SHRINK, GTK_FILL,0,0); \
+        GTK_RS_LABEL (name, 2)                          \
         name##Switch = create_geda_switch (GedaDialog, name##_hbox, name##Switch,  name##Image, state); \
         HOOKUP_GEDA_OBJECT(name, Switch) \
 }
@@ -625,7 +635,7 @@ typedef struct
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, hpad);    /* create hbox and label */  \
         name##Entry = gtk_entry_new (); \
-        gtk_widget_show (name##Entry); \
+        g_object_set ( name##Entry, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Entry, FALSE, FALSE, 0) \
         gtk_entry_set_text (GTK_ENTRY (name##Entry), _(itext)); \
         HOOKUP_GEDA_OBJECT(name, Entry) \
@@ -638,13 +648,14 @@ typedef struct
 /* View Trees load_tree_view_##source (ThisDialog, GTK_TREE_VIEW(name##View), data);*/
 #define GTK_VIEW_TREE( parent, name, data, source, xsize, ysize) \
         name##View = GTK_WIDGET( gtk_tree_view_new()); \
-        gtk_widget_show (name##View); \
+        g_object_set ( name##View, "visible", TRUE, NULL); \
         gtk_container_add (GTK_CONTAINER(parent), name##View); \
         initialize_tree_View(GTK_TREE_VIEW(name##View), 0, 1, G_TYPE_STRING); \
         load_tree_view_##source (GTK_TREE_VIEW(name##View), data); \
         connect_list_view( ThisDialog, GTK_TREE_VIEW(name##View)); \
         SET_WIDGET_SIZE ( name##View, xsize, ysize)  \
         HOOKUP_GEDA_OBJECT(name, View)
+
 
 
 

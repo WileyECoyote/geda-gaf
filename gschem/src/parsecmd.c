@@ -33,7 +33,7 @@
 #include <dmalloc.h>
 #endif
 
-#define GETOPT_OPTIONS "c:hL:o:pqr:s:vV"
+#define GETOPT_OPTIONS "c:hmL:o:pqr:s:vV"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -47,12 +47,13 @@ extern int optind;
 #ifdef HAVE_GETOPT_LONG
 struct option long_options[] =
   {
-    {"help", 0, 0, 'h'},
-    {"version", 0, 0, 'V'},
-    {"quiet", 0, 0, 'q'},
-    {"verbose", 0, 0, 'v'},
+    {"help",        0, 0, 'h'},
+    {"safe-mode",   0, 0, 'm'},
+    {"output",      0, 0, 'o'},
     {"config-file", 0, 0, 'r'},
-    {"output", 0, 0, 'o'},
+    {"version",     0, 0, 'V'},
+    {"quiet",       0, 0, 'q'},
+    {"verbose",     0, 0, 'v'},
     {0, 0, 0, 0}
   };
 #endif
@@ -79,28 +80,29 @@ static void
 usage(char *cmd)
 {
   printf(_(
-"Usage: %s [OPTION ...] [--] [FILE ...]\n"
-"\n"
-"Interactively edit gEDA schematics or symbols.  If one or more FILEs\n"
-"are specified, open them for editing; otherwise, create a new, empty\n"
-"schematic.\n"
-"\n"
-"Options:\n"
-"  -q, --quiet              Quiet mode.\n"
-"  -v, --verbose            Verbose mode.\n"
-"  -r, --config-file=FILE   Additional configuration file to load.\n"
-"  -L DIR                   Add DIR to Scheme search path.\n"
-"  -c EXPR                  Scheme expression to run at startup.\n"
-"  -s FILE                  Scheme script to run at startup.\n"
-"  -o, --output=FILE        Output filename (for printing).\n"
-"  -p                       Automatically place the window.\n"
-"  -V, --version            Show version information.\n"
-"  -h, --help               Help; this message.\n"
-"  --                       Treat all remaining arguments as filenames.\n"
-"\n"
-"Report bugs at <https://bugs.launchpad.net/geda>\n"
-"gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
-         cmd);
+    "Usage: %s [OPTION ...] [--] [FILE ...]\n"
+    "\n"
+    "Interactively edit gEDA schematics or symbols.  If one or more FILEs\n"
+    "are specified, open them for editing; otherwise, create a new, empty\n"
+    "schematic.\n"
+    "\n"
+    "Options:\n"
+    "  -c EXPR                  Scheme expression to run at startup.\n"
+    "  -h, --help               Help; this message.\n"
+    "  -L DIR                   Add DIR to Scheme search path.\n"
+    "  -m, --safe-mode          Safe Mode.\n"
+    "  -o, --output=FILE        Output filename (for printing).\n"
+    "  -p                       Automatically place the window.\n"
+    "  -q, --quiet              Quiet mode.\n"
+    "  -r, --config-file=FILE   Additional configuration file to load.\n"
+    "  -s FILE                  Scheme script to run at startup.\n"
+    "  -v, --verbose            Verbose mode.\n"
+    "  -V, --version            Show version information.\n"
+    "  --                       Treat all remaining arguments as filenames.\n"
+    "\n"
+    "Report bugs at <https://bugs.launchpad.net/geda>\n"
+    "gEDA/gaf homepage: <http://www.geda-project.org/>\n"),
+    cmd);
   exit(0);
 }
 
@@ -113,14 +115,14 @@ static void
 version ()
 {
   printf(_(
-"gEDA %s (g%.7s)\n"
-"Copyright (C) 1998-2013 gEDA developers\n"
-"This is free software, and you are welcome to redistribute it under\n"
-"certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n"),
-         PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
-  exit (0);
+    "gEDA %s (g%.7s)\n"
+    "Copyright (C) 1998-2013 gEDA developers\n"
+    "This is free software, and you are welcome to redistribute it under\n"
+    "certain conditions. For details, see the file `COPYING', which is\n"
+    "included in the gEDA distribution.\n"
+    "There is NO WARRANTY, to the extent permitted by law.\n"),
+    PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
+    exit (0);
 }
 
 /*! \brief Parse gschem command-line options.
@@ -149,8 +151,41 @@ parse_commandline(int argc, char *argv[])
   while ((ch = getopt (argc, argv, GETOPT_OPTIONS)) != -1) {
 #endif
     switch (ch) {
-      case 'v':
-        verbose_mode = TRUE;
+      case 'c':
+        /* Argument is a Scheme expression to be evaluated on gschem
+         * load.  Add the necessary expression to be evaluated after
+         * loading. */
+        s_post_load_expr = scm_cons (scm_list_2 (sym_eval_string,
+                           scm_from_locale_string (optarg)),
+                           s_post_load_expr);
+        break;
+      case 'h':
+        usage(argv[0]);
+        break;
+
+      case 'L':
+        /* Argument is a directory to add to the Scheme load path.
+         * Add the necessary expression to be evaluated before rc file
+         * loading. */
+        s_pre_load_expr =
+          scm_cons (scm_list_3 (sym_set_x,
+                                sym_load_path,
+                                scm_list_3 (sym_cons,
+                                            scm_from_locale_string (optarg),
+                                            sym_load_path)),
+                    s_pre_load_expr);
+        break;
+
+      case 'm':
+        run_mode = 1;
+        break;
+
+      case 'o':
+        output_filename = g_strdup (optarg);
+        break;
+
+      case 'p':
+        auto_place_mode = TRUE;
         break;
 
       case 'q':
@@ -170,38 +205,8 @@ parse_commandline(int argc, char *argv[])
                            s_post_load_expr);
         break;
 
-      case 'c':
-        /* Argument is a Scheme expression to be evaluated on gschem
-         * load.  Add the necessary expression to be evaluated after
-         * loading. */
-        s_post_load_expr = scm_cons (scm_list_2 (sym_eval_string,
-                           scm_from_locale_string (optarg)),
-                           s_post_load_expr);
-        break;
-
-      case 'o':
-        output_filename = g_strdup (optarg);
-        break;
-
-      case 'p':
-        auto_place_mode = TRUE;
-        break;
-
-      case 'L':
-        /* Argument is a directory to add to the Scheme load path.
-         * Add the necessary expression to be evaluated before rc file
-         * loading. */
-        s_pre_load_expr =
-          scm_cons (scm_list_3 (sym_set_x,
-                                sym_load_path,
-                                scm_list_3 (sym_cons,
-                                            scm_from_locale_string (optarg),
-                                            sym_load_path)),
-                    s_pre_load_expr);
-        break;
-
-      case 'h':
-        usage(argv[0]);
+      case 'v':
+        verbose_mode = TRUE;
         break;
 
       case 'V':
@@ -225,7 +230,7 @@ parse_commandline(int argc, char *argv[])
         exit (1);
         break;
       default:
-        g_assert_not_reached ();
+        fprintf (stderr, "<parse_commandline> unhandler case for <%c>.\n", ch);
     }
   }
 

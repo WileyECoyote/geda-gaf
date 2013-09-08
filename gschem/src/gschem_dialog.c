@@ -78,35 +78,7 @@ enum {
 static guint gschem_dialog_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *gschem_dialog_parent_class = NULL;
 
-static GKeyFile *dialog_geometry = NULL;
-
-/*! \brief Save all geometry data into a file.
- *
- *  \par Function Description
- *  This is called at program exit to save all window geometry data into a file
- *
- *  \param [in] user_data unused
- */
-static void save_geometry_to_file(gpointer user_data)
-{
-  char *data, *file;
-
-  v_log_message("Saving dialog geometry\n");
-  if( dialog_geometry != NULL ) {
-
-    data = g_key_file_to_data(dialog_geometry, NULL, NULL);
-    file = g_build_filename(s_path_user_config (), WINDOW_GEOMETRY_STORE, NULL);
-    g_file_set_contents(file, data, -1, NULL);
-    g_free(data);
-    g_free(file);
-  }
-  else
-    fprintf(stderr, "<save_geometry_to_file> Error: dialog_geometry=NULL\n");
-}
-
-
 /*! \brief GschemDialog "geometry_save" class method handler
- *
  *  \par Function Description
  *  Save the dialog's current position and size to the passed GKeyFile
  *
@@ -114,22 +86,21 @@ static void save_geometry_to_file(gpointer user_data)
  *  \param [in] key_file   The GKeyFile to save the geometry data to.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
-static void geometry_save (GschemDialog *dialog, GKeyFile *key_file, char* group_name)
+static void geometry_save (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
 {
   int x, y, width, height;
 
   gtk_window_get_position (GTK_WINDOW (dialog), &x, &y);
   gtk_window_get_size (GTK_WINDOW (dialog), &width, &height);
 
-  g_key_file_set_integer (key_file, group_name, "x", x);
-  g_key_file_set_integer (key_file, group_name, "y", y);
-  g_key_file_set_integer (key_file, group_name, "width",  width );
-  g_key_file_set_integer (key_file, group_name, "height", height);
+  eda_config_set_integer (cfg, group_name, "x", x);
+  eda_config_set_integer (cfg, group_name, "y", y);
+  eda_config_set_integer (cfg, group_name, "width", width);
+  eda_config_set_integer (cfg, group_name, "height", height);
 }
 
 
 /*! \brief GschemDialog "geometry_restore" class method handler
- *
  *  \par Function Description
  *  Restore dialog's last position and size from the passed GKeyFile
  *
@@ -137,58 +108,19 @@ static void geometry_save (GschemDialog *dialog, GKeyFile *key_file, char* group
  *  \param [in] key_file   The GKeyFile to load the geometry data from.
  *  \param [in] group_name The group name in the key file to find the data under.
  */
-static void geometry_restore (GschemDialog *dialog, GKeyFile *key_file, char* group_name)
+static void
+geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
 {
   int x, y, width, height;
 
-  x      = g_key_file_get_integer (key_file, group_name, "x", NULL);
-  y      = g_key_file_get_integer (key_file, group_name, "y", NULL);
-  width  = g_key_file_get_integer (key_file, group_name, "width",  NULL);
-  height = g_key_file_get_integer (key_file, group_name, "height", NULL);
+  x      = eda_config_get_integer (cfg, group_name, "x", NULL);
+  y      = eda_config_get_integer (cfg, group_name, "y", NULL);
+  width  = eda_config_get_integer (cfg, group_name, "width",  NULL);
+  height = eda_config_get_integer (cfg, group_name, "height", NULL);
 
   gtk_window_move (GTK_WINDOW (dialog), x, y);
   gtk_window_resize (GTK_WINDOW (dialog), width, height);
 }
-
-
-/*! \brief Setup the GKeyFile for saving / restoring geometry
- *
- *  \par Function Description
- *  Check if the GKeyFile for saving / restoring geometry is open.
- *  If it doesn't exist, we create it here, and also install a hook
- *  to ensure its contents are saved at program exit.
- */
-static void setup_keyfile ()
-{
-  if (dialog_geometry != NULL)
-    return;
-
-  char *file = g_build_filename (s_path_user_config (),
-                                  WINDOW_GEOMETRY_STORE, NULL);
-
-  dialog_geometry = g_key_file_new();
-
-  /* Remember to save data on program exit */
-  geda_atexit(save_geometry_to_file, NULL);
-
-  if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
-    g_mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
-
-    g_file_set_contents (file, "", -1, NULL);
-  }
-
-  if (!g_key_file_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
-    /* error opening key file, create an empty one and try again */
-    g_file_set_contents (file, "", -1, NULL);
-    if ( !g_key_file_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
-       g_free (file);
-       return;
-    }
-  }
-  g_free (file);
-}
-
-
 
 /* Begin Call Back Selection Handler */
 
@@ -267,12 +199,9 @@ static void gd_callback_selection_finalized (gpointer data, GObject *where_the_o
  */
 static void gd_connect_selection (GschemDialog *Dialog)
 {
-
   Dialog->selection = Dialog->w_current->toplevel->page_current->selection_list;
   g_object_weak_ref (G_OBJECT (Dialog->selection), gd_callback_selection_finalized, Dialog);
   g_signal_connect (Dialog->selection, "changed", (GCallback)gd_callback_selection_changed, Dialog);
-  /* Synthesise a selection changed update to refresh the view */
-  /*gd_callback_selection_changed (Dialog->selection, Dialog);*/
 }
 
 /*! \brief Remove the link between Dialog and selection.
@@ -318,21 +247,21 @@ static void gd_disconnect_selection (GschemDialog *Dialog) {
  */
 static void show_handler (GtkWidget *widget)
 {
-  char *group_name;
-  GschemDialog *Dialog = GSCHEM_DIALOG( widget );
+  EdaConfig    *cfg;
+  GschemDialog *dialog;
+  char         *group_name;
 
-  group_name = Dialog->settings_name;
+  dialog      = GSCHEM_DIALOG (widget);
+  cfg         = eda_config_get_user_context ();
+  group_name  = dialog->settings_name;
+
   if (group_name != NULL) {
-
-    setup_keyfile ();
-    if ( dialog_geometry != NULL ) {
-      if (g_key_file_has_group (dialog_geometry, group_name)) {
-        g_signal_emit (Dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
-                       dialog_geometry, group_name);
-      }
+    if ( cfg != NULL ) {
+        g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
+                       cfg, group_name);
     }
     else
-      fprintf(stderr, "<show_handler> Error: dialog_geometry=NULL\n");
+      fprintf(stderr, "<show_handler> Error: cfg=NULL, could not save dialog geometry\n");
   }
 
   /* Let GTK show the window */
@@ -351,19 +280,26 @@ static void show_handler (GtkWidget *widget)
  */
 static void unmap_handler (GtkWidget *widget)
 {
-  char *group_name;
-  GschemDialog *dialog = GSCHEM_DIALOG (widget);
+  EdaConfig    *cfg;
+  GschemDialog *dialog;
+  char         *group_name;
 
-  group_name = dialog->settings_name;
+  dialog      = GSCHEM_DIALOG (widget);
+  cfg         = eda_config_get_user_context ();
+  group_name  = dialog->settings_name;
+
   if (group_name != NULL) {
 
-    if( dialog_geometry != NULL )
+    if( cfg != NULL )
       g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_SAVE ], 0,
-                   dialog_geometry, group_name);
+                     cfg, group_name);
   }
+
+  /* Disconnect the update selection handler function*/
   if (dialog->func != NULL) {
     gd_disconnect_selection (dialog);
   }
+
   /* Let GTK unmap the window */
   GTK_WIDGET_CLASS (gschem_dialog_parent_class)->unmap (widget);
 }
@@ -399,7 +335,9 @@ static void gschem_dialog_finalize (GObject *object)
  *  \param [in]  value        The GValue the property is being set from
  *  \param [in]  pspec        A GParamSpec describing the property being set
  */
-static void gschem_dialog_set_property (GObject *object, guint property_id, const GValue *value, GParamSpec *pspec)
+static void
+gschem_dialog_set_property (GObject *object, guint property_id,
+                            const GValue *value, GParamSpec *pspec)
 {
   GschemDialog *Dialog = GSCHEM_DIALOG (object);
 

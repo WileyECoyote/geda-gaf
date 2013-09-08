@@ -386,88 +386,88 @@ bool f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 
   /* Check to see if filename is writable */
   if (g_file_test(filename, G_FILE_TEST_EXISTS) &&
-      access(filename, W_OK) != 0) {
+    access(filename, W_OK) != 0) {
     g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM,
                  _("File %s is read-only"), filename);
     return 0;
-  }
+    }
 
-  /* Get the files original permissions */
-  if (stat (real_filename, &st_ActiveFile) != 0)
-  {
-    /* if problem then save default values */
-    st_ActiveFile.st_mode = 0666 & ~umask(0);
-  }
-
-  /* Get the directory in which the real filename lives */
-  dirname = g_path_get_dirname (real_filename);
-  only_filename = g_path_get_basename(real_filename);
-
-  /* Do a backup if it's not an undo file backup and it was never saved.
-   * Only do a backup if backup files are enabled */
-  if (page->saved_since_first_loaded == 0 && toplevel->make_backup_files == TRUE) {
-    if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
-	 (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
+    /* Get the files original permissions */
+    if (stat (real_filename, &st_ActiveFile) != 0)
     {
-      backup_filename = g_strdup_printf("%s%c%s~", dirname,
-					G_DIR_SEPARATOR, only_filename);
-       s_log_message ("attempting to create backup file: %s.\n", backup_filename);
-      /* Make the backup file read-write before saving a new one */
-      if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
-	   (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR))) {
-	if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
-	  s_log_message (_("Could NOT set previous backup file [%s] read-write\n"),
-			 backup_filename);
-	}
-	else
-	  remove (backup_filename); /* delete backup from previous session */
-      }
-
-      if (fcopy(real_filename, backup_filename) != 0) {
-	s_log_message (_("Can't create backup file: %s."), backup_filename);
-      }
-      else {
-	/* Make backup readonly so a 'rm *' will ask user before deleting */
-	chmod(backup_filename, 0444 & ~umask(0));
-      }
-      g_free(backup_filename);
+      /* if problem then save default values */
+      st_ActiveFile.st_mode = 0666 & ~umask(0);
     }
-  }
-  /* If there is not an existing file with that name, compute the
-   * permissions and uid/gid that we will use for the newly-created file.
-   */
 
-  g_free (dirname);
-  g_free (only_filename);
+    /* Get the directory in which the real filename lives */
+    dirname = g_path_get_dirname (real_filename);
+    only_filename = g_path_get_basename(real_filename);
 
-  if (o_save (toplevel, s_page_objects (page), real_filename, &tmp_err)) {
+    /* Do a backup if it's not an undo file backup and it was never saved.
+     * Only do a backup if backup files are enabled */
+    if (page->saved_since_first_loaded == 0 && toplevel->make_backup_files == TRUE) {
+      if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
+        (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
+      {
+        backup_filename = g_strdup_printf("%s%c%s~", dirname,
+        G_DIR_SEPARATOR, only_filename);
+        s_log_message ("attempting to create backup file: %s.\n", backup_filename);
+        /* Make the backup file read-write before saving a new one */
+        if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
+          (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR))) {
+          if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
+            s_log_message (_("Could NOT set previous backup file [%s] read-write\n"),
+            backup_filename);
+          }
+          else
+            remove (backup_filename); /* delete backup from previous session */
+          }
 
-    page->saved_since_first_loaded = 1;
-
-    /* Reset the last saved timer */
-    g_get_current_time (&page->last_load_or_save_time);
-    page->ops_since_last_backup = 0;
-    page->do_autosave_backup = 0;
-
-    /* Restore permissions. */
-    chmod (real_filename, st_ActiveFile.st_mode);
-
-#ifdef HAVE_CHOWN
-    if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
-      /* Either the current user has permissioin to change ownership
-       * or they didn't. */
+          if (fcopy(real_filename, backup_filename) != 0) {
+            s_log_message (_("Can't create backup file: %s."), backup_filename);
+          }
+          else {
+            /* Make backup readonly so a 'rm *' will ask user before deleting */
+            chmod(backup_filename, 0444 & ~umask(0));
+          }
+          g_free(backup_filename);
+      }
     }
-#endif
-    g_free (real_filename);
-    return 1;
-  }
-  else {
-    g_set_error (err, tmp_err->domain, tmp_err->code,
-                 _("Could NOT save file: %s"), tmp_err->message);
-    g_clear_error (&tmp_err);
-    g_free (real_filename);
-    return 0;
-  }
+    /* If there is not an existing file with that name, compute the
+     * permissions and uid/gid that we will use for the newly-created file.
+     */
+
+    g_free (dirname);
+    g_free (only_filename);
+
+    if (o_save (toplevel, s_page_objects (page), real_filename, &tmp_err)) {
+
+      page->saved_since_first_loaded = 1;
+
+      /* Reset the last saved timer */
+      g_get_current_time (&page->last_load_or_save_time);
+      page->ops_since_last_backup = 0;
+      page->do_autosave_backup = 0;
+
+      /* Restore permissions. */
+      chmod (real_filename, st_ActiveFile.st_mode);
+
+      #ifdef HAVE_CHOWN
+      if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
+        /* Either the current user has permissioin to change ownership
+         * or they didn't. */
+      }
+      #endif
+      g_free (real_filename);
+      return 1;
+    }
+    else {
+      g_set_error (err, tmp_err->domain, tmp_err->code,
+                   _("Could NOT save file: %s"), tmp_err->message);
+                   g_clear_error (&tmp_err);
+                   g_free (real_filename);
+                   return 0;
+    }
 }
 
 /*! \brief Builds an absolute pathname.

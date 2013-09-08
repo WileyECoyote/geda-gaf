@@ -13,7 +13,7 @@
 #define Renderer w_current->renderer
 #define Toplevel w_current->toplevel
 
-#define COMMAND(symbol, repeat, aflag,  func) [ cmd_##func ] = { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, 0, 0},
+#define COMMAND(symbol, repeat, aflag,  func) [ cmd_##func ] = { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, 0, 0, 0},
 typedef struct {
   void (*func)(void*);
   void* arg1;
@@ -26,11 +26,12 @@ static struct {
    unsigned char status;
    unsigned char aflag;
    void (*func) (GSCHEM_TOPLEVEL *w_current);
+   int   who;
    int   narg;
    unsigned char *sarg;
    GSCHEM_TOPLEVEL *w_current;
 } command_struc[COMMAND_COUNT] = {
- [ cmd_unknown ] = { "unknown", 0, 0, 0, 0, 0, 0, 0},
+ [ cmd_unknown ] = { "unknown", 0, 0, 0, 0, 0, 0, 0, 0},
 
  #include "i_command.h"
 };
@@ -39,6 +40,7 @@ static struct {
 #define CMD_FUNC(symbol)command_struc[cmd_##symbol].func
 #define CMD_OPTIONS(symbol)command_struc[cmd_##symbol].sarg
 #define CMD_NAME(symbol)command_struc[cmd_##symbol].name
+#define CMD_WHO(symbol)command_struc[cmd_##symbol].who
 #define CMD_INTEGER(symbol)command_struc[cmd_##symbol].narg
 #define CMD_STATUS(symbol)command_struc[cmd_##symbol].status
 
@@ -80,7 +82,7 @@ void i_command_router(char* command, GSCHEM_TOPLEVEL *w_current)
         task->arg1 = command_struc[i].w_current;
         g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
       }
-      else {
+      else /* USE_WORKER_THREAD */ {
         gdk_threads_enter();
         command_struc[i].func(command_struc[i].w_current);
         gdk_threads_leave();
@@ -104,6 +106,7 @@ void i_command_engage(GSCHEM_TOPLEVEL *w_current)
   {
     is_engaged = TRUE;
   }
+
   return;
 }
 void i_command_disengage(bool immediate, bool wait_return)
@@ -111,6 +114,7 @@ void i_command_disengage(bool immediate, bool wait_return)
   if(CommandPool)
     g_thread_pool_free(CommandPool, immediate, wait_return);
   is_engaged = FALSE;
+
   return;
 }
 void i_command_get_command_list(GList** list)
@@ -156,7 +160,7 @@ void i_command_process(GSCHEM_TOPLEVEL *w_current, const char* command,
       }
       if ( i == CMD(do_repeat_last))
           i = last_command;
-
+      command_struc[i].who = who;
       command_struc[i].narg = narg;
       command_struc[i].sarg  = (unsigned char *) g_strdup(arg);
       command_struc[i].w_current  = w_current;
@@ -473,7 +477,7 @@ COMMAND ( do_undo )
 {
   BEGIN_COMMAND(do_undo);
   /* If we're cancelling from a move action, re-wind the
-   * page contents back to their state before we started.
+   * page contents back to the state before we started.
    *
    * It "might" be nice to sub-undo rotates / zoom changes
    * made whilst moving components, but when the undo code
@@ -529,9 +533,11 @@ COMMAND ( do_copy_clip )
       /* if no arguments then use buffer 0 */
       narg = 0;
     }
+    /* Copy to one of our buffer */
     o_buffer_copy (w_current, narg);
+    /* if buffer number =0, the copy to system buffer */
     if ( narg == 0) {
-      x_clipboard_set (w_current, object_buffer[narg]);
+      x_clipboard_set (w_current, object_buffer[0]);
     }
     i_update_sensitivities(w_current);
   }
@@ -573,6 +579,7 @@ COMMAND ( do_delete )
     w_current->inside_action = 0;
     i_set_state(w_current, SELECT);
     i_update_sensitivities(w_current);
+    w_current->toplevel->page_current->CHANGED = TRUE;
   }
   EXIT_COMMAND(do_delete);
 }
@@ -1048,7 +1055,7 @@ COMMAND ( do_documentation)
       /* look for "documentation" */
         attrib_doc = o_attrib_search_object_attribs_by_name (object, "documentation", 0);
         if (attrib_doc) {
-          g_type_init();
+          //g_type_init();
           //result = x_show_uri (w_current, attrib_doc, &error);
           /* Use this instead until debian-gnome work out thier iceweasel issue */
           result = g_app_info_launch_default_for_uri(attrib_doc, NULL, &error);
@@ -1194,7 +1201,12 @@ COMMAND ( do_page_new )
 {
 /* This is simular to file new accept we add new page hook*/
   BEGIN_COMMAND(do_page_new);
+  EdaConfig *cfg = eda_config_get_user_context ();
   PAGE *page;
+  char *tblock;
+  char *sym_file;
+  const CLibSymbol *clib;
+  OBJECT *object;
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
@@ -1204,7 +1216,21 @@ COMMAND ( do_page_new )
  /* would be far easier to set page->CHANGED=FALSE here then
   * for scheme to have done this in the hook, could just add
   * the titleblock here too */
+  tblock = eda_config_get_string (cfg, "gschem", "default-titleblock", NULL);
+  sym_file = g_strconcat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+  clib = s_clib_get_symbol_by_name (sym_file);
+  if (clib != NULL) {
+    object = o_complex_new (w_current->toplevel,
+                            OBJ_COMPLEX, DEFAULT_COLOR_INDEX, 0, 0, 0,
+                            FALSE, clib, sym_file, FALSE);
 
+    s_page_append (w_current->toplevel, page, object);
+  }
+
+  g_free(sym_file);
+  g_free(tblock);
+
+  page->CHANGED = 1;
   a_zoom_extents (w_current, s_page_objects (page),
                   A_PAN_DONT_REDRAW);
 
@@ -1301,6 +1327,7 @@ COMMAND ( do_add_net )
   w_current->inside_action = 0;
   EXIT_COMMAND(do_add_net);
 }
+
 COMMAND ( do_add_bus )
 {
   BEGIN_COMMAND(do_add_bus);
@@ -1313,12 +1340,16 @@ COMMAND ( do_add_bus )
   w_current->inside_action = 0;
   EXIT_COMMAND(do_add_bus);
 }
+
 COMMAND ( do_add_attribute )
 {
   BEGIN_COMMAND( do_add_attribute);
-  attrib_edit_dialog(w_current, NULL, FROM_MENU);
+
+  //i_set_state(w_current, SELECT);
+  attrib_edit_dialog(w_current, NULL, CMD_WHO(do_add_attribute));
 
   i_set_state(w_current, SELECT);
+
   EXIT_COMMAND( do_add_attribute);
 }
 COMMAND ( do_add_text )

@@ -55,7 +55,6 @@
 #include <dmalloc.h>
 #endif
 
-
 /*! \brief Add an attribute to an existing attribute list.
  *  \par Function Description
  *  Add an attribute to an existing attribute list.
@@ -85,7 +84,7 @@ void o_attrib_add(TOPLEVEL *toplevel, OBJECT *object, OBJECT *item)
  *  \param [in]  object     The object where you want to add item as an attribute.
  *  \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
-gboolean o_attrib_is_attached (TOPLEVEL *toplevel,
+bool o_attrib_is_attached (TOPLEVEL *toplevel,
                                OBJECT *attrib, OBJECT *object)
 {
   if (attrib == NULL || object == NULL)
@@ -166,7 +165,7 @@ void o_attrib_attach_list (TOPLEVEL *toplevel,
 void o_attrib_detach_all(TOPLEVEL *toplevel, OBJECT *object)
 {
   OBJECT *a_current;
-  GList *a_iter;
+  GList  *a_iter;
 
   o_attrib_freeze_hooks (toplevel, object);
 
@@ -194,7 +193,7 @@ void o_attrib_detach_all(TOPLEVEL *toplevel, OBJECT *object)
 void o_attrib_print(GList *attributes)
 {
   OBJECT *a_current;
-  GList *a_iter;
+  GList  *a_iter;
 
   a_iter = attributes;
 
@@ -249,11 +248,11 @@ GList *o_read_attribs (TOPLEVEL *toplevel,
                        TextBuffer *tb,
                        unsigned int release_ver, unsigned int fileformat_ver, GError ** err)
 {
-  GList *object_list = NULL;
-  OBJECT *new_obj;
+  GList      *object_list = NULL;
+  OBJECT     *new_obj;
   const char *line = NULL;
-  char objtype;
-  int ATTACH=FALSE;
+  char        objtype;
+  int         ATTACH=FALSE;
 
   while (1) {
 
@@ -376,7 +375,8 @@ error:
  *  \return TRUE on success, FALSE otherwise.
  */
 bool
-o_attrib_string_get_name_value (const char *string, char **name_ptr, char **value_ptr)
+o_attrib_string_get_name_value (const char *string,
+                                char **name_ptr, char **value_ptr)
 {
   char *ptr, *prev_char, *next_char;
 
@@ -536,7 +536,8 @@ OBJECT *o_attrib_first_attrib_by_name (OBJECT *object, char *name)
  *  \param [in] counter  Which occurance to return.
  *  \return Character string with attribute value, NULL otherwise.
  */
-static char *o_attrib_search_attrib_list_by_name (const GList *list, char *name, int counter)
+static char *o_attrib_search_attrib_list_by_name (const GList *list,
+                                                  char *name, int counter)
 {
   OBJECT *attrib;
   char *value = NULL;
@@ -565,7 +566,8 @@ static char *o_attrib_search_attrib_list_by_name (const GList *list, char *name,
  *  \warning
  *  Caller must g_free returned character string.
  */
-char *o_attrib_search_floating_attribs_by_name (const GList *list, char *name, int counter)
+char *o_attrib_search_floating_attribs_by_name (const GList *list,
+                                                char *name, int counter)
 {
   char *result;
   GList *attributes;
@@ -593,7 +595,8 @@ char *o_attrib_search_floating_attribs_by_name (const GList *list, char *name, i
  *  \warning
  *  Caller must g_free returned character string.
  */
-char *o_attrib_search_attached_attribs_by_name (OBJECT *object, char *name, int counter)
+char *o_attrib_search_attached_attribs_by_name (OBJECT *object,
+                                                char *name, int counter)
 {
   return o_attrib_search_attrib_list_by_name (object->attribs, name, counter);
 }
@@ -638,7 +641,8 @@ char *o_attrib_search_inherited_attribs_by_name (OBJECT *object, char *name, int
  *  \warning
  *  Caller must g_free returned character string.
  */
-char *o_attrib_search_object_attribs_by_name (OBJECT *object, char *name, int counter)
+char *o_attrib_search_object_attribs_by_name (OBJECT *object,
+                                              char *name, int counter)
 {
   char *result;
   GList *attributes;
@@ -667,10 +671,10 @@ char *o_attrib_search_object_attribs_by_name (OBJECT *object, char *name, int co
  */
 GList * o_attrib_return_attribs (OBJECT *object)
 {
-  GList *attribs = NULL;
-  GList *inherited_attribs;
   OBJECT *a_current;
-  GList *a_iter;
+  GList  *attribs = NULL;
+  GList  *inherited_attribs;
+  GList  *a_iter;
 
   g_return_val_if_fail (object != NULL, NULL);
 
@@ -747,7 +751,6 @@ static void call_attribs_changed_hook (gpointer data, gpointer user_data)
 
   hook->func (hook->data, object);
 }
-
 
 void o_attrib_emit_attribs_changed (TOPLEVEL *toplevel, OBJECT *object)
 {

@@ -78,11 +78,15 @@ void x_pagesel_open (GSCHEM_TOPLEVEL *w_current)
 void x_pagesel_close (GSCHEM_TOPLEVEL *w_current)
 {
   if (w_current->pswindow) {
-    g_assert (IS_PAGESEL (w_current->pswindow));
-    gtk_widget_destroy (w_current->pswindow);
-    w_current->pswindow = NULL;
+    if (IS_PAGESEL (w_current->pswindow)) {
+      gtk_widget_destroy (w_current->pswindow);
+      w_current->pswindow = NULL;
+    }
+    else {
+      s_log_message ("Internal Error: <%s> <x_pagesel_close>"
+                     "pswindow is wrong object, line %d.\n", __FILE__, __LINE__);
+    }
   }
-  
 }
 
 /*! \brief Update the list and status of <B>toplevel</B>'s pages.
@@ -95,8 +99,13 @@ void x_pagesel_close (GSCHEM_TOPLEVEL *w_current)
 void x_pagesel_update (GSCHEM_TOPLEVEL *w_current)
 {
   if (w_current->pswindow) {
-    g_assert (IS_PAGESEL (w_current->pswindow));
-    pagesel_update (PAGESEL (w_current->pswindow));
+    if (IS_PAGESEL (w_current->pswindow)) {
+      pagesel_update (PAGESEL (w_current->pswindow));
+    }
+    else {
+      s_log_message ("Internal Error: <%s> <x_pagesel_update>"
+                     "pswindow is wrong object, line %d.\n", __FILE__, __LINE__);
+    }
   }
 }
 
@@ -108,11 +117,12 @@ void x_pagesel_update (GSCHEM_TOPLEVEL *w_current)
  *  \param [in] arg1       Response argument of page manager dialog.
  *  \param [in] user_data  Pointer to relevant GSCHEM_TOPLEVEL structure.
  */
-static void x_pagesel_callback_response (GtkDialog *dialog,
-					 gint arg1,
-					 gpointer user_data)
+static void
+x_pagesel_callback_response (GtkDialog *dialog, int arg1, gpointer user_data)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)user_data;
+  GSCHEM_TOPLEVEL *w_current;
+
+  w_current = (GSCHEM_TOPLEVEL*)user_data;
 
   switch (arg1) {
       case PAGESEL_RESPONSE_UPDATE:
@@ -120,14 +130,19 @@ static void x_pagesel_callback_response (GtkDialog *dialog,
         break;
       case GTK_RESPONSE_DELETE_EVENT:
       case PAGESEL_RESPONSE_CLOSE:
-        g_assert (GTK_WIDGET (dialog) == w_current->pswindow);
-        gtk_widget_destroy (GTK_WIDGET (dialog));
-        w_current->pswindow = NULL;
+        if (IS_PAGESEL (w_current->pswindow)) {
+          gtk_widget_destroy (GTK_WIDGET (dialog));
+          w_current->pswindow = NULL;
+        }
+        else {
+          s_log_message ("Internal Error: <%s> <x_pagesel_callback_response>"
+                         "pswindow is wrong object, line %d.\n", __FILE__, __LINE__);
+        }
         break;
       default:
-        g_assert_not_reached ();
+        s_log_message ("Internal Error: <%s> <x_pagesel_callback_response>"
+                     "unhandled case for <%d>, line %d.\n", __FILE__, arg1, __LINE__);
   }
-  
 }
 
 enum {
@@ -149,8 +164,9 @@ static void pagesel_popup_menu (Pagesel *pagesel,
  *  \par Function Description
  *
  */
-static void pagesel_callback_selection_changed (GtkTreeSelection *selection,
-						gpointer user_data)
+static void
+pagesel_callback_selection_changed (GtkTreeSelection *selection,
+                                    gpointer user_data)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
@@ -557,9 +573,9 @@ static void select_page(GtkTreeView *treeview,
     }
 
     select_page (treeview, &iter, page);
-    
+
   } while (gtk_tree_model_iter_next (treemodel, &iter));
-  
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -569,16 +585,23 @@ static void select_page(GtkTreeView *treeview,
  */
 void pagesel_update (Pagesel *pagesel)
 {
-  GtkTreeModel *model;
-  TOPLEVEL *toplevel;
-  PAGE *p_current;
-  GList *iter;
 
-  g_assert (IS_PAGESEL (pagesel));
-  g_return_if_fail (GSCHEM_DIALOG (pagesel)->w_current);
+  GSCHEM_TOPLEVEL *w_current;
+  TOPLEVEL        *toplevel;
+  PAGE            *p_current;
+  GtkTreeModel    *model;
+  GList           *iter;
 
-  toplevel = GSCHEM_DIALOG (pagesel)->w_current->toplevel;
-  model    = gtk_tree_view_get_model (pagesel->treeview);
+  if (!IS_PAGESEL (pagesel)) {
+    s_log_message ("Internal Error: <%s> <pagesel_update>"
+                   "pagesel is wrong object, line %d.\n", __FILE__, __LINE__);
+    return;
+  }
+
+  w_current = GSCHEM_DIALOG (pagesel)->w_current;
+  toplevel  = w_current->toplevel;
+
+  model     = gtk_tree_view_get_model (pagesel->treeview);
 
   /* wipe out every thing in the store */
   gtk_tree_store_clear (GTK_TREE_STORE (model));

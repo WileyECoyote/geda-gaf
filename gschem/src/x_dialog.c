@@ -24,10 +24,10 @@
 
 #include <stdio.h>
 #ifdef HAVE_STDLIB_H
-#include <stdlib.h>
+# include <stdlib.h>
 #endif
 #ifdef HAVE_STRING_H
-#include <string.h>
+# include <string.h>
 #endif
 
 #include "gschem.h"
@@ -38,25 +38,13 @@
 
 #include <geda_dialog_controls.h>
 #include "x_dialog.h"
+#include "widgets.h"
 
 const char* IDS_MESSEAGE_TITLES[] = {
   "Information", "Warning", "Confirmation", "Error", "gschem", /* Message Title Strings*/
   NULL
 };
 
-/* Enumerate Control IDs */
-typedef enum {
-       AutoNumber,
-       AutoSequence,
-       SetAttributes,
-} ControlID;
-
-static WidgetStringData DialogStrings[] = {
-        { "AutoNumberSwitch",    "   Auto Number:", "Enable or disable auto renumbering pin numbers, Number will be the starting pin number"},
-        { "AutoSequenceSwitch",  " Auto Sequence:", "Enable or disable auto re-sequencing pins\n, this only changes the sequence number, not the actual sequence in the symbol file"},
-        { "SetAttributesSwitch", "Set Attributes:", "Enable to set all selected attributes to the prescribed value"},
-        { NULL, NULL, NULL},
-};
 static GtkWidget* create_menu_linetype (GSCHEM_TOPLEVEL *w_current);
 static int x_dialog_edit_line_type_change (GtkWidget *w, line_type_data *ld);
 static void x_dialog_edit_line_type_ok (GtkWidget *w, line_type_data *ld);
@@ -65,29 +53,74 @@ static GtkWidget* create_menu_filltype (GSCHEM_TOPLEVEL *w_current);
 static int x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fd);
 static void x_dialog_edit_fill_type_ok(GtkWidget *w, fill_type_data *fd);
 
-static GtkWidget *create_color_menu(GSCHEM_TOPLEVEL * w_current, int color_index);
-
 /* string buffer used by dialogs: show_text, find_text and hide_text */
-char generic_textstring[256] = "refdes=R";
+char General_textstring[256] = "refdes=R";
 
 /*! \defgroup Dialog-Utilities
  *  @{ \par This Group contains utility functions used by various dialogs
 */
 
-/*! \brief Distroy Window Function
+/*! \brief Create AtkObject widget and Link Label with Widget
  *  \par Function Description
- *
+ *  This function obtains a new accesible object associate with linkto
+ *  and associates the object with the label widget.
  */
-void destroy_window(GtkWidget *widget, GtkWidget **window)
+AtkObject*
+atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
 {
-  *window = NULL;
+  AtkObject *atk_obj;
+
+  atk_obj = gtk_widget_get_accessible (linkto);
+
+  if (GTK_IS_ACCESSIBLE (atk_obj)) {
+    /* Accessibility support is enabled.
+       Make the label ATK_RELATON_LABEL_FOR for the size list as well. */
+
+    AtkObject      *atk_label;
+    AtkRelationSet *relation_set;
+    AtkRelation    *relation;
+    AtkObject      *obj_array[1];
+
+    atk_label    = gtk_widget_get_accessible (label);
+
+    relation_set = atk_object_ref_relation_set (atk_obj);
+
+    relation     = atk_relation_set_get_relation_by_type (relation_set,
+                                                          ATK_RELATION_LABELLED_BY);
+    if (relation) {
+      atk_relation_add_target (relation, atk_label);
+    }
+    else {
+      obj_array[0] = atk_label;
+      relation     = atk_relation_new (obj_array, 1, ATK_RELATION_LABELLED_BY);
+      atk_relation_set_add (relation_set, relation);
+    }
+    g_object_unref (relation_set);
+
+    relation_set = atk_object_ref_relation_set (atk_label);
+    relation     = atk_relation_set_get_relation_by_type (relation_set,
+                                                          ATK_RELATION_LABEL_FOR);
+    if (relation) {
+      atk_relation_add_target (relation, atk_obj);
+    }
+    else {
+      obj_array[0] = atk_obj;
+      relation = atk_relation_new (obj_array, 1, ATK_RELATION_LABEL_FOR);
+      atk_relation_set_add (relation_set, relation);
+    }
+    g_object_unref (relation_set);
+  }
+  else
+    atk_obj = NULL;
+
+  return atk_obj;
 }
 
 /*! \brief Create pixmap widget for dialogs boxes.
  *  \par Function Description
  *  This is an internally used function to create pixmaps.
  *  The default bitmap directory is prefixed to the filename
- *  and if is valid then the image widget is created and returned. GtkWidget *widget,
+ *  and if is valid then the image widget is created and returned.
  */
 
 GtkWidget* create_pixmap (const char *filename)
@@ -115,6 +148,15 @@ GtkWidget* create_pixmap (const char *filename)
   return pixmap;
 }
 
+/*! \brief Distroy Window Function
+ *  \par Function Description
+ *
+ */
+void destroy_window(GtkWidget *widget, GtkWidget **window)
+{
+  *window = NULL;
+}
+
 GtkWidget* get_geda_switch_image (bool WhichState)
 {
    GtkWidget* image;
@@ -126,18 +168,19 @@ GtkWidget* get_geda_switch_image (bool WhichState)
 
    return image;
 }
+
 /*! \brief Function to create a GTK switch image control / widget.
  *  \par Function Description
  *  This function creates a Check Box widget using an image, the Check
  *  Box indicator is disabled so only the images is displayed. This creates
- *  a control similar to a GTK3 Switch, using standard GTK2 controls. The
+ *  a control similar to a GTK3 Switch, using a standard GTK2 widget. The
  *  On or Off images is controlled by the istate variable.
  *
  *  Returns: Newly created widget
  */
 GtkWidget*
 create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
-                   GtkWidget *SwitchImage, gboolean istate)
+                   GtkWidget *SwitchImage, bool istate)
 {
   widget = gtk_check_button_new ();
   gtk_widget_show (widget);
@@ -155,37 +198,6 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
   gtk_container_add (GTK_CONTAINER (widget), SwitchImage);
 
   return widget;
-}
-
-/*! \brief Create a list of selected object of the given type
- *  \par Function Description
- *  This is a general utility function that is like get selection except
- *  this function returns a list containing only objects of the specified
- *  type.
- *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
- *  \param otype     An Object type OBJECT, not checked.
- *
- *  \returns Glist* list of selected object or NULL is no object of the
- *                  specified type are selected.
- *
- *  \note Caller should g_list_free returned list
- */
-GList *x_dialog_get_list_selected_objects(GSCHEM_TOPLEVEL *w_current,
-                                          char otype)
-{
-
-  GList *selection, *iter, *list = NULL;
-  OBJECT *object;
-
-   /* Get the current selection and the count */
-  selection = geda_list_get_glist(Current_Selection);
-  for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
-      object = (OBJECT *) iter->data;
-      if ( object->type == otype)
-        list = g_list_append (list, object);
-  }
-  return list;
 }
 
 /*! \brief Selects all text in a TextView widget
@@ -246,8 +258,13 @@ int text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
  *  @{ \par This Group contains Functions for Standard Dialogs
 */
 
-/***************** Start of help/about dialog box ********************/
+/*!***** \section Help-About-Dialog ( Help About Standard-Dialogs ) *****/
 
+static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, gpointer data)
+{
+   x_show_uri(link);
+}
+#include <gnu/libc-version.h>
 /*! \brief Create the about dialog and show it
  *  \par Function Description
  *  This function creates the about dialog.
@@ -257,7 +274,10 @@ void about_dialog (GSCHEM_TOPLEVEL *w_current)
   char *version_string;
   char *logo_file;
   GdkPixbuf *logo;
+  char *comments;
+  char *copyright;
   GError *error = NULL;
+  GtkWidget *Dialog;
 
   version_string = g_strdup_printf (_("%s (g%.7s)"),
                                     PACKAGE_DOTTED_VERSION,
@@ -270,35 +290,52 @@ void about_dialog (GSCHEM_TOPLEVEL *w_current)
   g_free (logo_file);
 
   if (error != NULL) {
-    g_assert (logo == NULL);
-    s_log_message ("Could not load image at file: %s\n%s\n",
+    if (logo == NULL){
+      s_log_message ("Could not load image at file: %s\n%s\n",
                    logo_file, error->message);
-    g_error_free (error);
+      g_error_free (error);
+    }
   }
 
-  gtk_show_about_dialog (
-      GTK_WINDOW (w_current->main_window),
-      "version",        version_string,
-      "logo",           logo,
-      "title",          _("About gschem"),
-      "comments",       _("gEDA: GPL Electronic Design Automation"),
-      "copyright",
-      /* TRANSLATORS: "ChangeLog" is a literal filename;
-       * please don't translate it. */
-      _("Copyright © 1998-2013 Ales Hvezda"
-        " <ahvezda@geda.seul.org>\n"
-        "Copyright © 1998-2013 gEDA Contributors"
-        " (see ChangeLog for details)"),
-      "website",        "http://www.gpleda.org/",
-      NULL);
+  char *gEDA_str = _("gEDA: GPL Electronic Design Automation\nglibc ");
+
+  comments  = g_strconcat (gEDA_str, gnu_get_libc_version(), NULL);
+
+  copyright = _("Copyright © 1998-2013 Ales Hvezda"
+                " <ahvezda@geda.seul.org>\n"
+                "Copyright © 1998-2013 gEDA Contributors"
+                " (see ChangeLog for details)");
+
+  Dialog = gtk_about_dialog_new ();
+
+  g_object_set (GTK_OBJECT(Dialog), "version",    version_string,
+                                    "logo",       logo,
+                                    "title",      _("About gschem"),
+                                    "comments",   comments,
+                                    "copyright",  copyright,
+                                    "website",    "http://geda-project.org/",
+                                       NULL);     /* End marker */
+
+  /* About dialog URI calls maybe broken on Windows */
+#if (GTK_MAJOR_VERSION == 2 && GTK_MINOR_VERSION < 24)
+  /* deprecated since GTK 2.24 */
+  gtk_about_dialog_set_url_hook(dialog_link_cb, NULL, NULL);
+ #else
+  g_signal_connect(GTK_ABOUT_DIALOG(Dialog), "activate-link", G_CALLBACK(dialog_link_cb), NULL);
+#endif
+
+  gtk_dialog_run(GTK_DIALOG(Dialog));
+  gtk_widget_destroy(Dialog);
 
   g_free (version_string);
-  g_object_unref (logo);
+  g_free (comments);
+  if (logo) g_object_unref (logo);
+
 }
 
-/***************** End of help/about dialog box *********************/
+/*!****************** End of help/about dialog box **********************/
 
-/***************** Start of Snap size dialog box *********************/
+/*!***** \section Snap-Size-Dialog ( Snap Size Standard-Dialogs ) ******/
 
 /*! \brief response function for the snap size dialog
  *  \par Function Description
@@ -390,7 +427,8 @@ void snap_size_dialog (GSCHEM_TOPLEVEL *w_current)
     gtk_entry_set_activates_default(GTK_ENTRY(snap_size), TRUE);
     gtk_widget_grab_focus(snap_size);
 
-    gtk_widget_set_tooltip_text(snap_size,  _("Sets the default spacing\n which objects snaps to."));
+    gtk_widget_set_tooltip_text(snap_size,
+            _("Sets the default spacing\n which objects snaps to."));
 
     GSCHEM_HOOKUP_OBJECT(Dialog, snap_size, IDS_SNAP_SIZE);
 
@@ -409,13 +447,13 @@ void snap_size_dialog (GSCHEM_TOPLEVEL *w_current)
   gtk_editable_select_region(GTK_EDITABLE(snap_size), 0, -1);
 }
 
-/***************** End of Snap size dialog box ***********************/
+/*!******************* End of Snap size dialog box **********************/
 
-/***************** Start of Text size dialog box *********************/
+/*!****** \section Text-Size-Dialog ( Text Size Standard-Dialogs ) *****/
 
 /*! \brief response function for the text size dialog
  *  \par Function Description
- *  This function takes the user input and applies it to gschem
+ *  This function takes the user input and applies it to the text object
  */
 static void
 text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
@@ -516,11 +554,11 @@ void text_size_dialog (GSCHEM_TOPLEVEL *w_current)
   gtk_editable_select_region(GTK_EDITABLE(text_size), 0, -1);
 }
 
-/***************** End of Text size dialog box ***********************/
+/*!******************** End of Text size dialog box *********************/
 
 /*! @} endgroup Standard-Dialogs */
 
-/*! \defgroup Editing-Dialogs
+/*! \defgroup Editing-Dialogs ( X-Dialogs )
  *  @{
  *  \par This Group contains Dialogs for Editing Objects
  *  \details
@@ -532,11 +570,11 @@ void text_size_dialog (GSCHEM_TOPLEVEL *w_current)
  * stay open while other editing is performed.
  */
 
-/***************** Start of Arc dialog box ***************************/
+/*!******** \section Arc-Edit-Dialog ( Edit Arc Editing-Dialogs ) *******/
 
 /*! \brief Handle selection change event for x_dialog_edit_arc_angle
  *  \par Function Description
- *  Updates the color combobox when the selection changes.
+ *  Updates the combobox when the selection changes.
  *
  *  \param w_current pointer to GSCHEM_TOPLEVEL context
  *  \param object    pointer to a selected OBJECT.
@@ -571,9 +609,9 @@ x_dialog_edit_arc_angle_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
   }
 }
 
-/*! \brief Apply a color change to selected objects
+/*! \brief Apply changes to selected objects
  *  \par Function Description
- *  This function applies a color change to the currently selected objects.
+ *  This function applies the changes to the currently selected objects.
  */
 static void
 x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
@@ -760,9 +798,11 @@ void x_dialog_edit_arc_angle (GSCHEM_TOPLEVEL *w_current, OBJECT *arc_object)
 
 }
 
-/***************** End of Arc dialog box *****************************/
+/********************** End of Arc dialog box ***************************/
 
-const char* IDS_COLOR_STRING[] = {
+/*!*** \section Common-Edit-Dialog ( Common Routines Editing-Dialogs ) **/
+
+const char* IDS_COLOR_STRINGS[] = {
   "Background", "Pin", "Net endpoint", "Graphic", "Net", "Attribute",
   "Logic bubble", "Grid point", "Detached attribute", "Text", "Bus",
   "Selection", "Bounding box", "Zoom box", "Stroke", "Lock",
@@ -810,10 +850,9 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
  *  first holding the user-friendly name of the color, and the other
  *  the color map index.
  *
- *
  *  \param [in] w_current    The current gschem context.
  */
-static GtkWidget *create_color_menu (GSCHEM_TOPLEVEL *w_current, int color_index)
+GtkWidget *create_color_menu (GSCHEM_TOPLEVEL *w_current, int color_index)
 {
   GtkListStore    *store;
   GtkComboBox     *cbox;
@@ -851,7 +890,7 @@ static GtkWidget *create_color_menu (GSCHEM_TOPLEVEL *w_current, int color_index
   for (i = 0; i < MAX_COLORS; i++) {
     /* Skip 'invalid' colors. */
     if (!x_color_display_enabled(i)) continue;
-    str = _(IDS_COLOR_STRING[i]);
+    str = _(IDS_COLOR_STRINGS[i]);
     gtk_list_store_append (store, &iter);
     gtk_list_store_set (store, &iter, 0, str, 1, i, -1);
     if (i == color_index)
@@ -861,183 +900,7 @@ static GtkWidget *create_color_menu (GSCHEM_TOPLEVEL *w_current, int color_index
   return GTK_WIDGET (cbox);
 }
 
-/***************** Start of color edit dialog box *******************/
-
-/*! \brief Handle selection change event for x_dialog_edit_color
- *  \par Function Description
- *  Updates the color combobox when the selection changes.
- *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
- *  \param object    pointer to a selected OBJECT.
- */
-static void
-x_dialog_color_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
-{
-  GtkComboBox *ColorCombo;
-  int index;
-
-  if (object != NULL) {
-    index = object->color;
-
-    ColorCombo = g_object_get_data (G_OBJECT (w_current->clwindow), IDS_COLOR_EDIT);
-    gtk_combo_box_set_active((GtkComboBox *)ColorCombo, index);
-  }
-}
-
-/*! \brief Apply a color change to selected objects
- *  \par Function Description
- *  This function applies a color change to the currently selected objects.
- */
-static void
-x_dialog_edit_color_apply(GtkWidget *dialog, GSCHEM_TOPLEVEL *w_current)
-{
-  GList  *s_current = NULL;
-  OBJECT *object = NULL;
-  int     color_index;
-
-  GtkComboBox *ColorCombo;
-  GtkTreeIter  iter;
-  GValue       value = {0, };
-
-  s_current = geda_list_get_glist( Current_Selection );
-
-  if(s_current != NULL) {
-
-    /* Get ptr to the Combo widget */
-    ColorCombo = g_object_get_data (G_OBJECT (dialog), IDS_COLOR_EDIT);
-
-    /* Retrieve the current index from the tree model in the widget */
-    if( gtk_combo_box_get_active_iter(GTK_COMBO_BOX(ColorCombo), &iter)) {
-      gtk_tree_model_get_value ( gtk_combo_box_get_model (ColorCombo), &iter, 1, &value);
-      color_index = g_value_get_int (&value);
-
-      while(s_current != NULL) {
-
-        object = (OBJECT *) s_current->data;
-        if (object == NULL) {
-          fprintf(stderr, _("ERROR: NULL object in x_dialog_edit_color_apply!\n"));
-        }
-        else {
-          if(object->color != color_index) {
-            o_set_color (w_current->toplevel, object, color_index);
-            w_current->toplevel->page_current->CHANGED = 1;
-          }
-        }
-        s_current = g_list_next(s_current);
-      }
-    }
-    o_undo_savestate(w_current, UNDO_ALL);
-  }
-}
-
-/*! \brief response function for the color edit dialog
- *  \par Function Description
- *  This function takes the user response from the color edit dialog
- */
-static void
-x_dialog_edit_color_response(GtkWidget *Dialog, int response,
-                           GSCHEM_TOPLEVEL *w_current)
-{
-  switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
-    /* cut link from dialog to selection */
-    gtk_widget_destroy(w_current->clwindow);
-    w_current->clwindow = NULL;
-    break;
-  case GTK_RESPONSE_ACCEPT:
-    x_dialog_edit_color_apply(Dialog, w_current);
-    break;
-  default:
-    printf("ERROR: x_dialog_edit_color_response(): strange signal %d\n",response);
-  }
-}
-
-
-/*! \brief Create the color edit dialog
- *  \par Function Description
- *  This function creates the color edit dialog
- */
-void x_dialog_edit_color (GSCHEM_TOPLEVEL *w_current)
-{
-  GtkWidget *Dialog;
-  GtkWidget *optionmenu;
-  GtkWidget *label;
-  GtkWidget *vbox;
-  DECLARE_TOOPTIPS
-
-  OBJECT *object;
-  int color_index;
-
-  object = o_select_return_first_object (w_current);
-
-  if (object != NULL)
-    color_index = object->color;
-  else
-    color_index = ATTRIBUTE_COLOR;
-
-  Dialog = w_current->clwindow;
-  if (!Dialog) {
-    Dialog = gschem_dialog_new_with_buttons(_("Color Edit"),
-                                            GTK_WINDOW(w_current->main_window),
-           /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
-                                            IDS_COLOR_EDIT, w_current,
-                                            GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                            GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
-                                            NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-    gtk_dialog_set_alternative_button_order(GTK_DIALOG(Dialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
-                                            -1);
-
-    gtk_window_position (GTK_WINDOW (Dialog),
-                         GTK_WIN_POS_MOUSE);
-
-    gtk_dialog_set_default_response (GTK_DIALOG (Dialog),
-                                     GTK_RESPONSE_ACCEPT);
-
-    gtk_container_border_width(GTK_CONTAINER(Dialog),
-                               DIALOG_BORDER_SPACING);
-    vbox = GTK_DIALOG(Dialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
-
-    label = gtk_label_new(_("Object color:"));
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
-
-    optionmenu = create_color_menu ( w_current, color_index );
-
-    gtk_box_pack_start(GTK_BOX(vbox), optionmenu, FALSE, FALSE, 0);
-    gtk_widget_set_tooltip_text(optionmenu, _("Select the color for the select objects."));
-
-    GSCHEM_HOOKUP_OBJECT(Dialog, optionmenu, IDS_COLOR_EDIT);
-
-    gtk_window_set_transient_for (GTK_WINDOW(Dialog),
-                                  GTK_WINDOW(w_current->main_window));
-
-    g_signal_connect (G_OBJECT (Dialog), "response",
-                      G_CALLBACK (x_dialog_edit_color_response),
-                      w_current);
-
-    g_object_set (G_OBJECT (Dialog),
-                  DIALOG_DATA_SELECTION,
-                  x_dialog_color_update_selection, NULL);
-
-    gtk_widget_show_all(Dialog);
-    w_current->clwindow = Dialog;
-  }
-
-  else { /* dialog already created */
-    x_dialog_color_update_selection (w_current, object);
-    gtk_window_present(GTK_WINDOW(Dialog));
-  }
-}
-
-/***************** End of color edit dialog box *********************/
-
-/***************** Start of Fill Type dialog box **********************/
+/*!****** \section Fill-Type-Dialog ( Fill Type Editing-Dialogs ) *******/
 
 /*! \brief Create a menu with fill types for the line type dialog
  *  \par Function Description
@@ -1075,7 +938,7 @@ static GtkWidget *create_menu_filltype (GSCHEM_TOPLEVEL *w_current)
   return menu;
 }
 
-/*! \brief get the filltype data from selected objects
+/*! \brief Get the filltype data from selected objects
  *  \par Function Description
  *  Get filltype information over all selected objects.
  *  If a object property is different to the other objects, then
@@ -1129,7 +992,7 @@ static bool selection_get_fill_type(GList *selection,
   return found;
 }
 
-/*! \brief set the filltype in the filltype dialog
+/*! \brief Set the filltype in the filltype dialog
  *  \par Function Description
  *  Set all widgets in the filltype dialog. Variables marked with the
  *  invalid value -2 are set to *unchanged*.
@@ -1202,7 +1065,6 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   g_free(text);
 }
 
-
 /*! \brief Callback function for the filltype menu in the filltype dialog
  *  \par Function Description
  *  This function sets the entry activity according to the selected
@@ -1218,16 +1080,21 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
   bool activate_anglepitch2_entries;
   int type;
 
+  activate_width_entry         = FALSE;
+  activate_anglepitch1_entries = FALSE;
+  activate_anglepitch2_entries = FALSE;
+
   menuitem = gtk_menu_get_active (
     GTK_MENU (gtk_option_menu_get_menu (
                 GTK_OPTION_MENU (fill_data->fill_type))));
 
   type = GPOINTER_TO_INT(
     gtk_object_get_data (GTK_OBJECT (menuitem), "filltype"));
+
   switch(type) {
   case(FILLING_HOLLOW):
   case(FILLING_FILL):
-    activate_width_entry = FALSE;
+    activate_width_entry         = FALSE;
     activate_anglepitch1_entries = FALSE;
     activate_anglepitch2_entries = FALSE;
     break;
@@ -1238,12 +1105,14 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
     break;
   case(FILLING_MESH):
   case(FILLING_VOID):
-    activate_width_entry = TRUE;
+    activate_width_entry         = TRUE;
     activate_anglepitch1_entries = TRUE;
     activate_anglepitch2_entries = TRUE;
     break;
   default:
-    g_assert_not_reached ();
+    s_log_message ("Internal Error: <%s><x_dialog_edit_fill_type_change>"
+                    "unhandlered case for <%d>, line %d.\n",
+                   __FILE__, type, __LINE__);
   }
 
   gtk_widget_set_sensitive (fill_data->width_entry,
@@ -1259,7 +1128,6 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
 
   return(0);
 }
-
 
 /*! \brief Apply the settings of the filltype dialog to the selection
  *  \par Function Description
@@ -1349,7 +1217,9 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
       if (opitch2 < 1) opitch2 = 100;
       break;
     default:
-      g_assert_not_reached();
+      s_log_message ("Internal Error: <%s><x_dialog_edit_fill_type_ok>"
+                     "unhandlered case for <%d>, line %d.\n",
+                     __FILE__, otype, __LINE__);
     }
 
     o_set_fill_options (toplevel, object, otype, owidth,
@@ -1557,6 +1427,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
 
   return Dialog;
 }
+
 /*! \brief Creates the fill type dialog
  *  \par Function Description
  *  This function creates the fill type dialog.
@@ -1582,9 +1453,9 @@ void x_dialog_edit_fill_type(GSCHEM_TOPLEVEL *w_current)
   x_dialog_fill_type_update_selection (w_current, NULL);
 }
 
-/***************** End of Fill Type dialog box ***********************/
+/******************* End of Fill Type dialog box ************************/
 
-/***************** Start of Line Type/width dialog box ****************/
+/*!****** \section Line-Type-Dialog ( Line Type Editing-Dialogs ) *******/
 
 /*! \brief Create a line type menu for the line type dialog
  *  \par Function Description
@@ -1850,7 +1721,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
       if (olength < 1) olength = 100;
       break;
     default:
-      g_assert_not_reached();
+      s_log_message ("Internal Error: <%s><x_dialog_edit_line_type_ok>"
+                     "unhandlered case for <%d>, line %d.\n",
+                     __FILE__, otype, __LINE__);
     }
 
     o_set_line_options (toplevel,
@@ -2068,640 +1941,8 @@ void x_dialog_edit_line_type (GSCHEM_TOPLEVEL *w_current)
 
 /***************** End of Line Type / Width dialog box ****************/
 
-/*! \brief Edit the type Pin Properties */
-/***************** Start pin type edit dialog box *********************/
+/*!******** \section Edit-Slots-Dialog ( Slots Editing-Dialogs ) ********/
 
-/*! \brief Create a pin attribute menu for the Pin Properties Editor dialog
- *  \par Function Description
- *  This function creates a GtkMenu with the different pin attributes.
- */
-static GtkWidget *create_menu_pin_attributes ( void )
-{
-  GtkWidget *menu;
-  GSList *group;
-  struct pin_attribute {
-    char *str;
-    PIN_ATTRIBUTE attribute;
-  } types[] = { { N_("in"),          PIN_ATTRIB_IN },
-                { N_("out"),         PIN_ATTRIB_OUT },
-                { N_("io"),          PIN_ATTRIB_IO },
-                { N_("oc"),          PIN_ATTRIB_OC },
-                { N_("oe"),          PIN_ATTRIB_OE },
-                { N_("pas"),         PIN_ATTRIB_PAS },
-                { N_("tp"),          PIN_ATTRIB_TP },
-                { N_("tri"),         PIN_ATTRIB_TRI },
-                { N_("clk"),         PIN_ATTRIB_CLK },
-                { N_("pwr"),         PIN_ATTRIB_PWR },
-                { N_("*missing*"),   PIN_ATTRIB_VOID }
-              };
-  int i;
-
-  menu  = gtk_menu_new ();
-  group = NULL;
-
-  for (i = 0; i < sizeof (types) / sizeof (struct pin_attribute); i++) {
-    GtkWidget *menuitem;
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "pinattribute",
-                         GINT_TO_POINTER (types[i].attribute));
-    gtk_widget_show (menuitem);
-  }
-
-  return(menu);
-}
-/*! \brief Create a pin type menu for the Pin Properties Editor dialog
- *  \par Function Description
- *  This function creates a GtkMenu with the different pin types.
- */
-static GtkWidget *create_menu_pin_type ( void )
-{
-  GtkWidget *menu;
-  GSList *group;
-  struct pin_type {
-    char *str;
-    PIN_TYPE type;
-  } types[] = { { N_("Net"),         PIN_TYPE_NET },
-                { N_("Bus"),         PIN_TYPE_BUS },
-                { N_("Bump"),        PIN_TYPE_BUMP },
-                { N_("Ball"),        PIN_TYPE_BALL },
-                { N_("Wedge"),       PIN_TYPE_WEDGE },
-                { N_("Ribbon"),      PIN_TYPE_RIBBON },
-                { N_("*error*"),     PIN_TYPE_VOID } };
-  int i;
-
-  menu  = gtk_menu_new ();
-  group = NULL;
-
-  for (i = 0; i < sizeof (types) / sizeof (struct pin_type); i++) {
-    GtkWidget *menuitem;
-
-    menuitem = gtk_radio_menu_item_new_with_label (group, _(types[i].str));
-    group = gtk_radio_menu_item_group (GTK_RADIO_MENU_ITEM (menuitem));
-    gtk_menu_append (GTK_MENU (menu), menuitem);
-    gtk_object_set_data (GTK_OBJECT(menuitem), "pintype",
-                         GINT_TO_POINTER (types[i].type));
-    gtk_widget_show (menuitem);
-  }
-
-  return(menu);
-}
-
-/*! \brief Set the Values in the Pin Properties Editor dialog
- *  \par Function Description
- *  Set all widgets in the pin type dialog. Variables marked with the
- *  invalid value -1 are disabled.
- *  \param [in]   pin_type_data dialog structure
- *  \param [in]   type      OBJECT_FILLING type
- *  \param [in]   number    the pin number.
- *  \param [in]   sequence  sequence of the pin
- *  \param [in]   label     pin name
- *  \param [in]   attribute attribute
- */
-static void
-x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, PIN_TYPE type,
-                                  int number, int sequence,
-                                  const char *label, PIN_ATTRIBUTE attribute)
-{
-  GtkWidget *menu, *menuitem;
-
-  gtk_option_menu_set_history(GTK_OPTION_MENU(pin_data->pin_type), type);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(pin_data->pin_type));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
-
-  if (number == -1)
-    gtk_widget_set_sensitive(pin_data->number_spin, FALSE);
-  else
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON(pin_data->number_spin), number);
-
-  if (sequence == -1)
-    gtk_widget_set_sensitive(pin_data->sequence_spin, FALSE);
-  else
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON(pin_data->sequence_spin), sequence);
-
-  if (label == NULL)
-    gtk_entry_set_text (GTK_ENTRY (pin_data->label_entry), _("*missing*"));
-  else
-    gtk_entry_set_text (GTK_ENTRY (pin_data->label_entry), label);
-
-  gtk_option_menu_set_history(GTK_OPTION_MENU(pin_data->pin_attribute), attribute);
-  menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(pin_data->pin_attribute));
-  menuitem = gtk_menu_get_active(GTK_MENU(menu));
-  gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
-
-}
-
-/*! \brief Apply function for the Pin Properties Editor Dialog
- *  \par Function Description
- *  The function retrieves the values in the Pin Editor dialog
- *  and applies values to selected objects based on dialog settings
- *  and the current selection.
- */
-static void
-x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
-{
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
-  TOPLEVEL *toplevel = w_current->toplevel;
-
-  GList  *iter, *pin_objects = NULL;
-  OBJECT *object;
-
-  bool    auto_number        = FALSE;
-  bool    auto_sequence      = FALSE;
-  bool    set_attributes     = FALSE;
-  bool    changed_something  = FALSE;
-  int     num_selected;
-
-  PIN_TYPE type, otype;
-  PIN_ATTRIBUTE attribute, oattribute;
-
-  int number = 0;
-  int sequence, onumber, osequence;
-
-  const char *label_str, *olabel_str;
-
-  /* if nothing selected then get out */
-  if (! o_select_selected(w_current))
-    return;
-
-  type = GPOINTER_TO_INT(
-    gtk_object_get_data (
-      GTK_OBJECT (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-                      GTK_OPTION_MENU (
-                        pin_data->pin_type))))), "pintype"));
-
-  if (type == PIN_TYPE_VOID) {
-    titled_warning_dialog("The Pin Type can not be set VOID", "Pin Properties");
-    return;
-  }
-
-  attribute = GPOINTER_TO_INT(
-  gtk_object_get_data (
-    GTK_OBJECT (
-        gtk_menu_get_active (
-          GTK_MENU (gtk_option_menu_get_menu (
-                      GTK_OPTION_MENU (
-                        pin_data->pin_attribute))))), "pinattribute"));
-
-  if (attribute == PIN_ATTRIB_VOID)
-    titled_information_dialog("Ignoring Pin attribute VOID", "Pin Properties");
-
-  number = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->number_spin));
-  sequence = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->sequence_spin));
-
-  /* Get the current selected pin objects and the count */
-  pin_objects = x_dialog_get_list_selected_objects(w_current, OBJ_PIN);
-  num_selected  = g_list_length( pin_objects);
-
-  if (num_selected == 1) {
-    object = (OBJECT *) g_list_nth_data(pin_objects, 0);
-    if (o_pin_get_options(object, &otype, &onumber, &osequence,
-        &olabel_str, &oattribute)) {
-
-      /* get the new label from the dialog */
-      label_str   = gtk_entry_get_text (GTK_ENTRY (pin_data->label_entry));
-
-      if (type != otype) {
-        changed_something = TRUE;
-        otype = type;
-      }
-
-      if (number != onumber) {
-        changed_something = TRUE;
-        onumber = number;
-      }
-      if (sequence != osequence) {
-        changed_something = TRUE;
-        osequence = sequence;
-      }
-      if (olabel_str == NULL) {
-        changed_something = TRUE;
-        olabel_str = label_str;
-      }
-      else {
-        if ( strcmp(label_str, olabel_str) != 0) {
-          changed_something = TRUE;
-          olabel_str = label_str;
-        }
-      }
-      if (attribute != oattribute) {
-        changed_something = TRUE;
-        oattribute = attribute;
-      }
-      if(changed_something) {
-        o_pin_set_options (toplevel, object, otype, onumber, osequence,
-                           olabel_str, oattribute);
-      }
-    }
-    else
-      fprintf(stderr, "x_dialog_edit_pin_type_ok got FALSE pin object \n");
-  }
-  else { /* More than 1 pin is selected */
-
-    auto_number    = GET_SWITCH_STATE(pin_data->auto_number);
-    auto_sequence  = GET_SWITCH_STATE(pin_data->auto_sequence);
-    set_attributes = GET_SWITCH_STATE(pin_data->set_attributes);
-
-    for (iter = pin_objects; iter != NULL; iter = g_list_next(iter)) {
-      object = (OBJECT *) iter->data;
-      if (!o_pin_get_options(object, &otype, &onumber, &osequence,
-                             &olabel_str, &oattribute))
-        continue; /* Should never happen */
-      if (otype == -1 || type != otype) {
-        changed_something = TRUE;
-        otype = type;
-      }
-
-      if (attribute != -1 || attribute != oattribute) {
-        changed_something = TRUE;
-        oattribute = attribute;
-      }
-      if(auto_number) {
-        if (number != onumber) {
-          changed_something = TRUE;
-          onumber = number;
-        }
-        number++;
-      }
-      if(auto_sequence) {
-        if (sequence != osequence) {
-          changed_something = TRUE;
-          osequence = sequence;
-        }
-        sequence++;
-      }
-      if(set_attributes) {
-        if (attribute != oattribute) {
-          changed_something = TRUE;
-          oattribute = attribute;
-        }
-      }
-      o_pin_set_options (toplevel, object, otype, onumber, osequence,
-                         olabel_str, oattribute);
-    }
-  }
-  if(changed_something) {
-    toplevel->page_current->CHANGED = 1;
-    o_undo_savestate(w_current, UNDO_ALL);
-  }
-  g_list_free (pin_objects);
-}
-
-/*! \brief Response function for the Pin Properties Editor dialog
- *  \par Function Description
- *  This is a response function called when the used selects one
- *  of the action bottons, either CLOSE or APPLY.
- *
- *  \param [in]   Dialog    ptr to the dialog widget
- *  \param [in]   response  int signal indicating which button
- *  \param [in]   pin_data  ptr to THE pin_type_data struction
- */
-void
-x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
-                                 pin_type_data *pin_data)
-{
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
-
-  switch (response) {
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
-    gtk_widget_destroy (Dialog);
-    g_free (pin_data);
-    w_current->ptwindow = NULL;
-    break;
-  case GTK_RESPONSE_ACCEPT:
-    x_dialog_edit_pin_type_ok(Dialog, pin_data);
-    break;
-  default:
-    printf("x_dialog_edit_pin_type_response(): strange signal %d\n",response);
-  }
-
-  i_set_state (w_current, SELECT);
-
-}
-
-/*! \brief Set Sensitivities of Widgets on the Pin Properties Editor
- *  \par Function Description:
- *   This function obtains a list of selected pin objects and sets
- * Sensitivities and Tooltip visibilities based on the number of
- * select pins and the state of the switch (check-box buttons).
- *
- *  \param [in]  Dialog  ptr to the dialog widget
- */
-static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
-{
-  GList *pin_objects = NULL;
-  bool state;
-  int num_selected;
-  pin_type_data *pin_data;
-
-  GSCHEM_TOPLEVEL *w_current = Dialog->w_current;
-
-  /* Get ptr to the data structure */
-  pin_data = g_object_get_data (G_OBJECT (Dialog), IDS_PIN_EDIT);
-
-  /* Determine the number of selected pin objects */
-  pin_objects   = x_dialog_get_list_selected_objects(w_current, OBJ_PIN);
-  num_selected  = g_list_length( pin_objects);
-  g_list_free (pin_objects); /*Just needed to know how many */
-
-  /* Set sensitivity of widgets */
-  if (num_selected == 1) {
-    /* Disable the Switches */
-    gtk_widget_set_sensitive (pin_data->auto_number,    FALSE);
-    gtk_widget_set_sensitive (pin_data->auto_sequence,  FALSE);
-    gtk_widget_set_sensitive (pin_data->set_attributes, FALSE);
-
-    /* Hide Tooltips for the disabled Switches */
-    g_object_set (pin_data->auto_number,    "has-tooltip", FALSE, NULL);
-    g_object_set (pin_data->auto_sequence,  "has-tooltip", FALSE, NULL);
-    g_object_set (pin_data->set_attributes, "has-tooltip", FALSE, NULL);
-
-    /* Enable all input widgets */
-    gtk_widget_set_sensitive (pin_data->number_spin,     TRUE);
-    gtk_widget_set_sensitive (pin_data->sequence_spin,   TRUE);
-    gtk_widget_set_sensitive (pin_data->label_entry,     TRUE);
-    gtk_widget_set_sensitive (pin_data->pin_attribute,   TRUE);
-
-    /* Enable all the Tooltips for input widgets */
-    g_object_set (pin_data->number_spin,   "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->sequence_spin, "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->label_entry,   "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->pin_attribute, "has-tooltip", TRUE, NULL);
-  }
-  else {
-    /* Enable all  Switches */
-    gtk_widget_set_sensitive (pin_data->auto_number,     TRUE);
-    gtk_widget_set_sensitive (pin_data->auto_sequence,   TRUE);
-    gtk_widget_set_sensitive (pin_data->set_attributes,  TRUE);
-
-    /* Enable Tooltips for the Switches */
-    g_object_set (pin_data->auto_number,    "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->auto_sequence,  "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->set_attributes, "has-tooltip", TRUE, NULL);
-
-    /* Disable the label widget and the label Tooltip */
-    gtk_widget_set_sensitive (pin_data->label_entry,   FALSE);
-    g_object_set (pin_data->label_entry,   "has-tooltip", TRUE, NULL);
-
-    /* Set the remaining widgets based on switch states */
-    state = GET_SWITCH_STATE (pin_data->auto_number);
-    gtk_widget_set_sensitive (pin_data->number_spin, state);
-    g_object_set (pin_data->number_spin,   "has-tooltip", state, NULL);
-
-    state = GET_SWITCH_STATE (pin_data->auto_sequence);
-    gtk_widget_set_sensitive (pin_data->sequence_spin, state);
-    g_object_set (pin_data->sequence_spin, "has-tooltip", state, NULL);
-
-    state = GET_SWITCH_STATE (pin_data->set_attributes);
-    gtk_widget_set_sensitive (pin_data->pin_attribute, state);
-    g_object_set (pin_data->pin_attribute, "has-tooltip", state, NULL);
-  }
-
-}
-
-/*! \brief Callback when a Switch is toggled on the Pin Properties Editor
- *  \par Function Description:
- *   This function changes images for switches that are toggled. The image
- * is set to the opposite state, i.e. if ON use OFF image and if OFF use ON
- * image. The function then calls xd_edit_pin_set_sensitivity to update
- * sensitivities of all the applicable widgets on the dialog.
- *
- *  \param [in]  switch  ptr to the switch, aka toggle-button, widget
- *  \param [in]  Dialog  ptr to the dialog widget
- */
-static void
-xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
-{
-  /* Changed the Switch image */
-  TOGGLE_SWITCH(Switch);
-
-  /* Update Widget sensitivities */
-  xd_edit_pin_set_sensitivity(Dialog);
-
-  return;
-}
-
-/*! \brief Handle selection change event for Pin Properties Editor Dialog
- *  \par Function Description
- *  Updates the Pin Properties dialog widgets when the selection changes.
- *  It uses the selection to set it's initial values.
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
- *  \param object    pointer to a selected OBJECT.
- */
-static void
-x_dialog_pin_type_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
-{
-  GtkWidget *Dialog;
-  PIN_TYPE type=PIN_TYPE_NET;
-  int number=1, sequence=-1;
-  const char *label = NULL;
-  PIN_ATTRIBUTE attribute = PIN_ATTRIB_PAS;
-  pin_type_data *pin_data;
-
-  if (object != NULL && object->type == OBJ_PIN) {
-    /* Get ptr to the Dialog window */
-    Dialog    = w_current->ptwindow;
-
-    xd_edit_pin_set_sensitivity(GSCHEM_DIALOG(Dialog));
-
-    /* Get ptr to the data structure */
-    pin_data = g_object_get_data (G_OBJECT (Dialog), IDS_PIN_EDIT);
-
-    /* Check this object */
-    if (o_pin_get_options(object, &type, &number, &sequence, &label, &attribute)) {
-      /* fill in the fields of the dialog */
-      x_dialog_edit_pin_type_set_values(pin_data, type, number, sequence, label,
-                                        attribute);
-      /* And set focus to the Pin-type combo menu */
-      gtk_widget_grab_focus(pin_data->pin_type);
-    }
-    /* Else do nothing! */
-  }
-}
-
-/*! \brief Create the Pin Properties Editor Dialog
- *  \par Function Description
- *  This function creates the modaless Pin Properties Dialog, then
- *  connects callback handlers. Memory for a pin_type_data is allocated
- *  and assigned values with pointers to the input widgets.
- */
-GtkWidget *x_dialog_pin_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
-{
-  GtkWidget *ThisDialog;
-  GtkWidget *vbox;
-  GtkWidget *opts_vbox;
-
-  GtkWidget *optionmenu     = NULL;
-  GtkWidget *number_spin    = NULL;
-  GtkWidget *sequence_spin  = NULL;
-  GtkWidget *label_entry    = NULL;
-  GtkWidget *attributemenu  = NULL;
-
-  GtkWidget *table;
-  GtkWidget *label;
-
-  GtkWidget *AutoNumberSwitch    = NULL;
-  GtkWidget *AutoSequenceSwitch  = NULL;
-  GtkWidget *SetAttributesSwitch = NULL;
-
-  DECLARE_TOOPTIPS;
-
-  pin_type_data *pin_data;
-
-  ThisDialog = gschem_dialog_new_with_buttons(_("Pin Propties Editor"),
-                                          GTK_WINDOW(w_current->main_window),
-     /* nonmodal Editing ThisDialog */    GSCHEM_MODELESS_DIALOG,
-                                          IDS_PIN_EDIT, w_current,
-                                          GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                          GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
-                                          NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
-                                          -1);
-
-  gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GTK_RESPONSE_ACCEPT);
-
-  gtk_container_border_width(GTK_CONTAINER(ThisDialog), DIALOG_BORDER_SPACING);
-  vbox = GTK_DIALOG(ThisDialog)->vbox;
-  gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
-
-  table = gtk_table_new (5, 3, FALSE);
-  gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
-  gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-  gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
-
-  label = gtk_label_new (_("Type:"));
-  gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
-
-  label = gtk_label_new (_("Number:"));
-  gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,1,2, GTK_FILL,0,0,0);
-
-  label = gtk_label_new (_("Sequence:"));
-  gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,2,3, GTK_FILL,0,0,0);
-
-  label = gtk_label_new (_("Label:"));
-  gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
-
-  label = gtk_label_new (_("Attribute:"));
-  gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,4,5, GTK_FILL,0,0,0);
-
-  optionmenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(optionmenu),
-                           create_menu_pin_type ());
-  gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
-  gtk_widget_set_tooltip_text(optionmenu,  _("Select the pin type"));
-
-  number_spin = gtk_spin_button_new_with_range(1, 100000, 1);
-  gtk_entry_set_activates_default(GTK_ENTRY(number_spin), TRUE);
-  gtk_table_attach_defaults(GTK_TABLE(table), number_spin, 1,2,1,2);
-  gtk_widget_set_tooltip_text(number_spin,  _("Set the pin number"));
-
-  sequence_spin = gtk_spin_button_new_with_range(1, 100000, 1);
-  gtk_entry_set_activates_default(GTK_ENTRY(sequence_spin), TRUE);
-  gtk_table_attach_defaults(GTK_TABLE(table), sequence_spin, 1,2,2,3);
-  gtk_widget_set_tooltip_text(sequence_spin,  _("Set the sequence number"));
-
-  label_entry = gtk_entry_new();
-  gtk_entry_set_activates_default (GTK_ENTRY(label_entry), TRUE);
-  gtk_editable_select_region(GTK_EDITABLE(label_entry), 0, -1);
-  gtk_table_attach_defaults(GTK_TABLE(table), label_entry, 1,2,3,4);
-  gtk_widget_set_tooltip_text(label_entry, _("Enter pin name or description"));
-
-  attributemenu = gtk_option_menu_new ();
-  gtk_option_menu_set_menu(GTK_OPTION_MENU(attributemenu),
-                           create_menu_pin_attributes ());
-  gtk_table_attach_defaults(GTK_TABLE(table), attributemenu, 1,2,4,5);
-  gtk_widget_set_tooltip_text(attributemenu,  _("Set the pin attrbute"));
-
-  HD_SEPERATOR (vbox, Options);
-
-  opts_vbox = gtk_vbox_new(FALSE, DIALOG_V_SPACING);
-  gtk_box_pack_start (GTK_BOX (vbox), opts_vbox, FALSE, TRUE, 0);
-
-  /* Allocate memory for a structure to hold pointers to our Widgets */
-  pin_data = (pin_type_data*) g_malloc (sizeof (struct st_pin_type_data));
-
-  /* Create Toggle Switch widgets */
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_vbox, AutoNumber,    0, FALSE);
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_vbox, AutoSequence,  0, FALSE);
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_vbox, SetAttributes, 0, FALSE);
-
-  /* Setup callback for Switch widget */
-  GEDA_CALLBACK_SWITCH (AutoNumber,    xd_edit_pin_switch_toggled, ThisDialog)
-  GEDA_CALLBACK_SWITCH (AutoSequence,  xd_edit_pin_switch_toggled, ThisDialog)
-  GEDA_CALLBACK_SWITCH (SetAttributes, xd_edit_pin_switch_toggled, ThisDialog)
-
-  /* populate the data structure */
-  pin_data->pin_type       = optionmenu;
-  pin_data->number_spin    = number_spin;
-  pin_data->sequence_spin  = sequence_spin;
-  pin_data->label_entry    = label_entry;
-  pin_data->pin_attribute  = attributemenu;
-  pin_data->auto_number    = AutoNumberSwitch;
-  pin_data->auto_sequence  = AutoSequenceSwitch;
-  pin_data->set_attributes = SetAttributesSwitch;
-
-  /* fill in the fields of the dialog */
-  x_dialog_edit_pin_type_set_values(pin_data, PIN_TYPE_NET, 1, 1, NULL,
-                                    PIN_ATTRIB_PAS);
-
-  g_object_set_data (G_OBJECT(ThisDialog), IDS_PIN_EDIT, pin_data);
-
-  g_signal_connect (G_OBJECT (ThisDialog), "response",
-                    G_CALLBACK (x_dialog_edit_pin_type_response),
-                    pin_data);
-
-  g_object_set (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION,
-                x_dialog_pin_type_update_selection,
-                NULL);
-
-  return ThisDialog;
-}
-
-/*! \brief Pin Properties Editor Dialog - Main Entry
- *  \par Function Description
- *  This function initiates or activates the Pin Properties Dialog
- *  for manipulating the properties of pins objects.
- */
-void x_dialog_edit_pin_type (GSCHEM_TOPLEVEL *w_current)
-{
-  GtkWidget *ThisDialog;
-  OBJECT *object;
-
-  ThisDialog = w_current->ptwindow;
-  if (!ThisDialog) {
-
-    ThisDialog = x_dialog_pin_type_create_dialog(w_current);
-    gtk_window_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
-    gtk_window_set_transient_for (GTK_WINDOW(ThisDialog),
-                                  GTK_WINDOW(w_current->main_window));
-
-    w_current->ptwindow = ThisDialog;
-    gtk_widget_show_all (ThisDialog);
-  }
-  else { /* dialog already created */
-    gtk_window_present (GTK_WINDOW(ThisDialog));
-  }
-  object = o_select_return_first_object(w_current);
-  x_dialog_pin_type_update_selection (w_current, object);
-}
-
-/***************** End of pin type edit dialog box *********************/
-
-/***************** Start of slot edit dialog box *********************/
 /*! \brief response function for the slot edit dialog
  *  \par Function Description
  *  The function calles o_slot_end to apply the dialog entry to the slot
@@ -2861,378 +2102,9 @@ void x_dialog_edit_slot (GSCHEM_TOPLEVEL *w_current, const char *string)
   }
 
 }
-/***************** End of Slot Edit dialog box ***********************/
+/******************** End of Slot Edit dialog box ***********************/
 
-/***************** Start of Text Edit dialog box **********************/
-/*! \brief Callback for Editing Text Properties
- *  \par Function Description
- *   This function updates widgets on the text_edit dialog with the text
- * properties of the passed object. If multible objects are selected
- * the text eding field is set to NULL.
- *
- */
-static void x_dialog_text_edit_update_selection (GSCHEM_TOPLEVEL *w_current,
-                                                 OBJECT *object)
-{
-  GtkWidget     *ThisDialog;
-  GtkWidget     *widget;
-  GtkTextBuffer *textbuffer;
-  char *string;
-  int   text_alignment;
-  int   text_color;
-  int   text_size;
-  int   num_selected;
-
-  /* Lookup table for translating between alignment values and the combo box
-      list indices, index is alignment value, value is list index */
-  int alignment_lookup[] = {6, 3, 0, 7, 4, 1, 8, 5, 2};
-
-  ThisDialog = w_current->tewindow;
-
-  if (object != NULL && object->type == OBJ_TEXT) {
-    /* get count of TEXT only objects */
-    num_selected  = g_list_length( geda_list_get_glist( Current_Selection ));
-
-    /* text string entry will only show up if one object is selected */
-    {
-      widget = g_object_get_data (G_OBJECT (ThisDialog), IDS_TEXT_EDIT);
-      textbuffer = gtk_text_view_get_buffer (GTK_TEXT_VIEW (widget));
-      if (num_selected == 1) {
-        string = object->text->string;
-        gtk_text_buffer_set_text (GTK_TEXT_BUFFER (textbuffer), string, -1);
-        select_all_text_in_textview (GTK_TEXT_VIEW (widget));
-      }
-      else {
-        gtk_text_buffer_set_text (GTK_TEXT_BUFFER (textbuffer), "", -1);
-      }
-    }
-
-    { /* Text Alignment */
-      text_alignment = object->text->alignment;
-      widget = g_object_get_data (G_OBJECT (ThisDialog), "alignment");
-      gtk_combo_box_set_active(GTK_COMBO_BOX(widget), alignment_lookup[text_alignment]);
-    }
-
-    { /* Text Color */
-      text_color = object->color;
-      widget = g_object_get_data (G_OBJECT (ThisDialog), "colorcombo");
-      gtk_combo_box_set_active((GtkComboBox *)widget, text_color);
-    }
-    { /* Text Size */
-      text_size = object->text->size;
-      string = g_strdup_printf("%d", text_size);
-      widget = g_object_get_data (G_OBJECT (ThisDialog), "sizeentry");
-      gtk_entry_set_text(GTK_ENTRY(widget), string);
-      g_free(string);
-    }
-  }
-  return;
-}
-
-/*! \brief Create the alignment combo box list store for the text
-*   property dialog
- *  \par Function Description
- *  This function creates a GtkListStore with nine different alignment
- *  entries.
- */
-static GtkListStore *create_menu_alignment (GSCHEM_TOPLEVEL *w_current)
-{
-  GtkListStore *store;
-  GtkTreeIter   iter;
-
-  store = gtk_list_store_new(2, G_TYPE_STRING, G_TYPE_INT);
-
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Upper Left"), -1);
-  gtk_list_store_set(store, &iter, 1, 2, -1);
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Upper Middle"), -1);
-  gtk_list_store_set(store, &iter, 1, 5, -1);
-  gtk_list_store_append( store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Upper Right"), -1);
-  gtk_list_store_set(store, &iter, 1, 8, -1);
-
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Middle Left"), -1);
-  gtk_list_store_set(store, &iter, 1, 1, -1);
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Middle Middle"), -1);
-  gtk_list_store_set(store, &iter, 1, 4, -1);
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Middle Right"), -1);
-  gtk_list_store_set(store, &iter, 1, 7, -1);
-
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Lower Left"), -1);
-  gtk_list_store_set(store, &iter, 1, 0, -1);
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Lower Middle"), -1);
-  gtk_list_store_set(store, &iter, 1, 3, -1);
-  gtk_list_store_append(store, &iter);
-  gtk_list_store_set(store, &iter, 0, _("Lower Right"), -1);
-  gtk_list_store_set(store, &iter, 1, 6, -1);
-
-  return store;
-}
-
-/*! \brief Apply the settings from the text property dialog
- *  \par Function Description
- *  This function retrieve the user settings to the selected text objects
- *  and closes the dialog
- */
-void x_dialog_edit_text_ok(GSCHEM_TOPLEVEL *w_current, OBJECT *object)
-{
-  GtkWidget     *ThisDialog;
-  GtkTextBuffer *textbuffer;
-  GtkTextIter    start, end;
-  GtkTreeIter    iter;
-  GtkTreeModel  *model;
-  GtkWidget     *widget;
-  GValue         value = {0 };
-
-  char *string;
-  const char *text_size_string;
-  int   num_selected;
-  int   text_alignment;
-  int   text_color;
-  int   text_size;
-
-  ThisDialog = w_current->tewindow;
-  /* Retrieve values from the object that was passed */
-  string         = object->text->string;
-  text_alignment = object->text->alignment;
-  text_color     = object->color;
-  text_size      = object->text->size;
-
-  num_selected = g_list_length( geda_list_get_glist( Current_Selection ));
-
-  /* text string entry will only show up if one object is selected */
-  if (num_selected == 1) {
-    widget = g_object_get_data (G_OBJECT (ThisDialog), IDS_TEXT_EDIT);
-    textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(widget));
-    gtk_text_buffer_get_bounds (textbuffer, &start, &end);
-    string = gtk_text_iter_get_text (&start, &end);
-  } /* else the string will be null which is okay */
-
-  { /* Text Alignment */
-    widget = g_object_get_data (G_OBJECT (ThisDialog), "alignment");
-
-    if( gtk_combo_box_get_active_iter(GTK_COMBO_BOX(widget), &iter)) {
-      model = gtk_combo_box_get_model((GtkComboBox*) widget);
-      gtk_tree_model_get(model, &iter, 1, &text_alignment, -1);
-    }
-  }
-  { /* Text Color */
-    widget = g_object_get_data (G_OBJECT (ThisDialog), "colorcombo");
-
-    if( gtk_combo_box_get_active_iter(GTK_COMBO_BOX(widget), &iter)) {
-      gtk_tree_model_get_value (gtk_combo_box_get_model((GtkComboBox*) widget),
-                               &iter, 1, &value);
-      text_color = g_value_get_int (&value);
-    }
-  }
-  { /* Text Size */
-    text_size_string = NULL;
-    widget = g_object_get_data (G_OBJECT (ThisDialog), "sizeentry");
-    if(widget) {
-      text_size_string = gtk_entry_get_text(GTK_ENTRY(widget));
-      if (text_size_string) {
-        text_size = atoi(text_size_string);
-      }
-    }
-    else
-      fprintf(stderr, "x_dialog_edit_text_ok:did not find sizeentry widget");
-  }
-
-  o_text_edit_end(w_current, string, text_alignment, text_color, text_size);
-}
-
-/*! \brief Response function for the text property dialog
- *  \par Function Description
- *  This function receives the user response of the text property dialog.
- *  The response is either <b>OK</b>, <b>Cancel</b> or delete.
- *
- */
-void
-x_dialog_edit_text_response(GtkWidget *Dialog, int response, OBJECT *object)
-{
-  GSCHEM_TOPLEVEL *w_current;
-
-  w_current = GSCHEM_DIALOG (Dialog)->w_current;
-
-  switch(response) {
-  case GTK_RESPONSE_ACCEPT:
-    x_dialog_edit_text_ok(w_current, object);
-    i_set_state(w_current, SELECT);
-    break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
-    gtk_widget_destroy(Dialog);
-    w_current->tewindow = NULL;
-    break;
-  default:
-    printf("x_dialog_edit_text_response(): strange signal %d\n", response);
-  }
-}
-
-/*! \brief Create the edit text properties dialog
- *  \par Function Description
- *  This Function creates the dialog to edit text properties.
- */
-void x_dialog_edit_text (GSCHEM_TOPLEVEL *w_current, OBJECT *text_object)
-{
-  GtkWidget *ThisDialog;
-  GtkWidget *label;
-  GtkWidget *table;
-  GtkWidget *vbox;
-  GtkWidget *optionmenu;
-  GtkWidget *combobox;
-  GtkListStore *align_menu_model;
-  GtkCellRenderer *cell;
-  GtkWidget *viewport1;
-  GtkWidget *textentry;
-  GtkWidget *sizeentry;
-  GtkWidget *alignment;
-  GtkWidget *scrolled_window;
-
-  ThisDialog = w_current->tewindow;
-  if (!ThisDialog) {
-    ThisDialog = gschem_dialog_new_with_buttons(_("Edit Text Properties"),
-                                       GTK_WINDOW(w_current->main_window),
-        /* nonmodal Editing Dialog */              GSCHEM_MODELESS_DIALOG,
-                                                   "text-edit", w_current,
-                                     GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                     GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
-                                                                     NULL);
-
-    /* Set the alternative button order (ok, cancel, help) for other systems */
-    gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
-                                            GTK_RESPONSE_REJECT,
-                                            -1);
-
-    /* Create the Dialog */
-    vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_container_set_border_width(GTK_CONTAINER(ThisDialog),
-                                   DIALOG_BORDER_SPACING);
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
-
-    /* Text Contents Label */
-    label = gtk_label_new (_("<b>Text Content</b>"));
-    gtk_label_set_use_markup (GTK_LABEL (label), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
-
-    /* Alignment Widget - Not Text Alignment property */
-    alignment = gtk_alignment_new(0,0,1,1);
-    gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0,
-                                DIALOG_INDENTATION, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
-
-    /* Viewport Widget to hold the editing buffer window */
-    viewport1 = gtk_viewport_new (NULL, NULL);
-    gtk_widget_set_size_request(GTK_WIDGET(viewport1),-1,75);
-
-    /* Create and add scrollable Window widget */
-    scrolled_window = gtk_scrolled_window_new(NULL, NULL);
-    gtk_scrolled_window_set_policy(GTK_SCROLLED_WINDOW(scrolled_window),
-                                   GTK_POLICY_AUTOMATIC,
-                                   GTK_POLICY_AUTOMATIC);
-    gtk_container_add (GTK_CONTAINER (viewport1), scrolled_window);
-    gtk_container_add( GTK_CONTAINER(alignment), viewport1);
-
-    /* Finally, create the actual text entry widget */
-    textentry = gtk_text_view_new();
-    gtk_text_view_set_editable (GTK_TEXT_VIEW (textentry), TRUE);
-    gtk_container_add(GTK_CONTAINER(scrolled_window), textentry);
-    gtk_widget_grab_focus(textentry);
-
-    /* Text Properties Label */
-    label = gtk_label_new(_("<b>Text Properties</b>"));
-    gtk_label_set_use_markup(GTK_LABEL(label), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
-
-    /* Alignment Widget - Not Text Alignment property */
-    alignment = gtk_alignment_new(0,0,1,1);
-    gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0,
-                              DIALOG_INDENTATION, 0);
-    gtk_box_pack_start(GTK_BOX(vbox), alignment, FALSE, FALSE, 0);
-
-    /* Create Table Widget and put inside the alignment widget */
-    table = gtk_table_new (3, 2, FALSE);
-    gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
-    gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
-    gtk_container_add(GTK_CONTAINER(alignment), table);
-
-    /* Color Property Label */
-    label = gtk_label_new(_("Color:"));
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
-
-    /* Use Subfucntion to create Color Slection Combobox */
-    optionmenu = create_color_menu (w_current, text_object->color);
-    gtk_table_attach_defaults(GTK_TABLE(table), optionmenu, 1,2,0,1);
-
-    /* Text Size Label */
-    label = gtk_label_new(_("Size:"));
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_table_attach(GTK_TABLE(table), label, 0,1,1,2, GTK_FILL,0,0,0);
-
-    /* Text Size Entry widget */
-    sizeentry = gtk_entry_new_with_max_length (10);
-    gtk_editable_select_region(GTK_EDITABLE (sizeentry), 0, -1);
-    gtk_table_attach_defaults(GTK_TABLE(table), sizeentry, 1,2,1,2);
-    gtk_entry_set_activates_default(GTK_ENTRY(sizeentry), TRUE);
-
-    /* Text Alignment Label */
-    label = gtk_label_new(_("Alignment:"));
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_table_attach(GTK_TABLE(table), label, 0,1,2,3, GTK_FILL,0,0,0);
-
-    align_menu_model = create_menu_alignment(w_current);
-    combobox = gtk_combo_box_new_with_model(GTK_TREE_MODEL(align_menu_model));
-    gtk_combo_box_set_wrap_width(GTK_COMBO_BOX(combobox), 3);
-    cell = gtk_cell_renderer_text_new();
-    gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combobox), cell, TRUE);
-    gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combobox),
-                                   cell, "text", 0, NULL);
-    g_object_unref (align_menu_model);
-    gtk_table_attach_defaults(GTK_TABLE(table), combobox, 1,2,2,3);
-
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, textentry,  IDS_TEXT_EDIT);
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, combobox,   "alignment");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, optionmenu, "colorcombo");
-    GSCHEM_HOOKUP_OBJECT(ThisDialog, sizeentry,  "sizeentry");
-
-    /* Set the OKAY button to be the default widget */
-    gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_ACCEPT);
-
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
-                      G_CALLBACK (x_dialog_edit_text_response),
-                      text_object);
-
-    gtk_window_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
-
-    g_object_set (G_OBJECT (ThisDialog),
-                  DIALOG_DATA_SELECTION,
-                  x_dialog_text_edit_update_selection, NULL);
-
-    gtk_widget_show_all(ThisDialog);
-    w_current->tewindow = ThisDialog;
-  }
-
-  else { /* dialog already there */
-    gtk_window_present(GTK_WINDOW(ThisDialog));
-  }
-  x_dialog_text_edit_update_selection (w_current, text_object);
-
-}
-
-/***************** End of Text Edit dialog box ************************/
-
-/****************** Start of find text dialog box ********************/
+/*!****** \section Find-Text-Dialog ( Find Text Editing-Dialogs ) *******/
 
 /*! \brief response function for the find text dialog
  *  \par Function Description
@@ -3263,8 +2135,8 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
     string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
     checkdescend = g_object_get_data(G_OBJECT(Dialog), "checkdescend");
 
-    strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
-    generic_textstring[sizeof(generic_textstring)-1] = '\0';
+    strncpy(General_textstring, string, sizeof(General_textstring)-1);
+    General_textstring[sizeof(General_textstring)-1] = '\0';
 
     if (remember_page != toplevel->page_current) {
       s_page_goto(toplevel, remember_page);
@@ -3312,10 +2184,10 @@ void x_dialog_find_text(GSCHEM_TOPLEVEL *w_current)
   remember_page = w_current->toplevel->page_current;
   if ((object = o_select_return_first_object(w_current)) != NULL) {
     if (object->type == OBJ_TEXT) {
-      strncpy (generic_textstring,
+      strncpy (General_textstring,
                o_text_get_string (w_current->toplevel, object),
-               sizeof(generic_textstring)-1);
-      generic_textstring[sizeof(generic_textstring)-1] = '\0';
+               sizeof(General_textstring)-1);
+      General_textstring[sizeof(General_textstring)-1] = '\0';
     }
   }
 
@@ -3371,11 +2243,13 @@ void x_dialog_find_text(GSCHEM_TOPLEVEL *w_current)
 
   /* always select the text string in the entry */
   textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_FIND_TEXT);
-  gtk_entry_set_text(GTK_ENTRY(textentry), generic_textstring);
+  gtk_entry_set_text(GTK_ENTRY(textentry), General_textstring);
   gtk_entry_select_region(GTK_ENTRY(textentry), 0, -1);
 }
 
 /*********** End of find text dialog box *******/
+
+/*! \section Edit-Hide-Text-Dialog in Editing-Dialogs*/
 
 /*********** Start of hide text dialog box *******/
 
@@ -3395,8 +2269,8 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
     textentry = g_object_get_data(G_OBJECT(Dialog),IDS_HIDE_TEXT);
     string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
 
-    strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
-    generic_textstring[sizeof(generic_textstring)-1] = '\0';
+    strncpy(General_textstring, string, sizeof(General_textstring)-1);
+    General_textstring[sizeof(General_textstring)-1] = '\0';
 
     o_edit_hide_specific_text (w_current,
                                s_page_objects (w_current->toplevel->page_current),
@@ -3472,11 +2346,13 @@ void x_dialog_hide_text(GSCHEM_TOPLEVEL * w_current)
 
   /* always select the text in the search entry */
   textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_HIDE_TEXT);
-  gtk_entry_set_text(GTK_ENTRY(textentry), generic_textstring);
+  gtk_entry_set_text(GTK_ENTRY(textentry), General_textstring);
   gtk_entry_select_region(GTK_ENTRY(textentry), 0, -1);
 }
 
 /*********** End of hide text dialog box *******/
+
+/*! \section Edit-Show-Text-Dialog in Editing-Dialogs*/
 
 /*********** Start of show text dialog box *******/
 
@@ -3496,8 +2372,8 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
     textentry = g_object_get_data(G_OBJECT(Dialog),IDS_SHOW_TEXT);
     string = (char*) gtk_entry_get_text(GTK_ENTRY(textentry));
 
-    strncpy(generic_textstring, string, sizeof(generic_textstring)-1);
-    generic_textstring[sizeof(generic_textstring)-1] = '\0';
+    strncpy(General_textstring, string, sizeof(General_textstring)-1);
+    General_textstring[sizeof(General_textstring)-1] = '\0';
     o_edit_show_specific_text (w_current,
                                s_page_objects (w_current->toplevel->page_current),
                                string);
@@ -3572,13 +2448,13 @@ void x_dialog_show_text(GSCHEM_TOPLEVEL * w_current)
 
   /* always select the text in the entry */
   textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_SHOW_TEXT);
-  gtk_entry_set_text(GTK_ENTRY(textentry), generic_textstring);
+  gtk_entry_set_text(GTK_ENTRY(textentry), General_textstring);
   gtk_entry_select_region(GTK_ENTRY(textentry), 0, -1);
 }
 
 /*********** End of show text dialog box *******/
 
-/***************** Start of Text Input dialog box *********************/
+/*!***** \section Text-Input-Dialog ( Text-Input Editing-Dialogs ) ******/
 
 /*! \brief Apply function for the text entry dialog
  *  \par Function Description
@@ -3595,36 +2471,37 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
   tientry = gtk_object_get_data(GTK_OBJECT(Dialog), IDS_TEXT_INPUT);
 
   textbuffer = gtk_text_view_get_buffer(GTK_TEXT_VIEW(tientry));
+
   gtk_text_buffer_get_bounds (textbuffer, &start, &end);
   string =  gtk_text_iter_get_text (&start, &end);
 
-  if (string[0] == '\0' )
-    return;
+  if (string[0] != '\0' ) {
 
-  switch(w_current->text_case) {
-    case(LOWER_CASE):
-      tmp = g_utf8_strdown (string, -1);
-      break;
+    switch(w_current->text_case) {
+      case(LOWER_CASE):
+        tmp = g_utf8_strdown (string, -1);
+        break;
 
-    case(UPPER_CASE):
-      tmp = g_utf8_strup (string, -1);
-      break;
+      case(UPPER_CASE):
+        tmp = g_utf8_strup (string, -1);
+        break;
 
-    case(BOTH_CASES):
-    default:
-      /* do nothing */
-      break;
+      case(BOTH_CASES):
+      default:
+        /* do nothing */
+        break;
+    }
+
+    /* Select the text, so you can continue immediatly writing the next text */
+    select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
+    gtk_widget_grab_focus(tientry);
+
+    w_current->toplevel->page_current->CHANGED=1;
+
+    o_text_prepare_place (w_current, tmp == NULL ? string : tmp);
+    g_free (string);
+    g_free (tmp);
   }
-
-  /* Select the text, so you can continue immediatly writing the next text */
-  select_all_text_in_textview(GTK_TEXT_VIEW(tientry));
-  gtk_widget_grab_focus(tientry);
-
-  w_current->toplevel->page_current->CHANGED=1;
-
-  o_text_prepare_place (w_current, tmp == NULL ? string : tmp);
-  g_free (string);
-  g_free (tmp);
 }
 
 /*! \brief Response Function for the Text Entry dialog
@@ -3747,9 +2624,9 @@ void x_dialog_text_input (GSCHEM_TOPLEVEL *w_current)
   gtk_widget_grab_focus(tientry);
 }
 
-/***************** End of Text Input dialog box ***********************/
+/******************* End of Text Input dialog box ***********************/
 
-/***************** Start of Translate dialog box *********************/
+/*!****** \section Translate-Dialog ( Translate Editing-Dialogs ) *******/
 
 /*! \brief response function for the translate dialog
  *  \par Function Description
@@ -3853,7 +2730,7 @@ void x_dialog_translate (GSCHEM_TOPLEVEL *w_current)
  *  @{ \par This Group contains Functions for System Level Dialogs
 */
 
-/***************** Start of help/keymapping dialog box **************/
+/*!********* \section Hotkeys-Dialog (Hotkeys Systemic-Dialogs) *********/
 
 /*! \brief Response function for the hotkey dialog
  *  \par Function Description
@@ -3953,9 +2830,11 @@ void x_dialog_hotkeys (GSCHEM_TOPLEVEL *w_current)
   }
 }
 
-/***************** End of help/keymapping dialog box ****************/
+/******************* End of help/keymapping dialog box ******************/
 
-/***************** Start of Close Confirmation dialog box ************/
+/*!*** \section Confirm-Exit-Dialog ( Confirm-Exit Systemic-Dialogs) ****/
+
+/****************** Aka Confirm-Close, need's it's own file *************/
 
 #define TYPE_CLOSE_CONFIRMATION_DIALOG            (close_confirmation_dialog_get_type ())
 #define CLOSE_CONFIRMATION_DIALOG(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_CLOSE_CONFIRMATION_DIALOG, CloseConfirmationDialog))
@@ -4331,7 +3210,13 @@ close_confirmation_dialog_constructor (GType type,
   ret = gtk_tree_model_get_iter_first (GTK_TREE_MODEL (
                                          dialog->store_unsaved_pages),
                                        &iter);
-  g_assert (ret);
+  if(!ret) {
+    s_log_message ("Internal Error: <%s>"
+                   "<close_confirmation_dialog_constructor>"
+                   "gtk_tree_model_get_iter_first returned NULL, line %d.\n",
+                     __FILE__, __LINE__);
+    return NULL;
+  }
   single_page = !gtk_tree_model_iter_next (GTK_TREE_MODEL (
                                              dialog->store_unsaved_pages),
                                            &iter);
@@ -4744,9 +3629,10 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
   return return_value;
 }
 
-/***************** End of Close Confirmation dialog box **************/
+/****************** End of Close Confirmation dialog box ****************/
 
-/***************** Start of coord dialog box ************************/
+/*!**** \section Coordinates-Dialog ( Coordinates Systemic-Dialogs) *****/
+
 /*! \brief Response function for the coord dialog
  *  \par Function Description
  *  This function destroys the coord dialog box and does some cleanup.
@@ -4847,10 +3733,12 @@ void x_dialog_coord_dialog (GSCHEM_TOPLEVEL *w_current, int x, int y)
 /***************** End of coord dialog box **************************/
 
 /***************** Start of misc helper dialog boxes **************/
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Raise All Dialogs
  *  \par Function Description
- *
+ *  This is a generic function called when the gschem main window is
+ * made active after being non-active, such as minmized or behind
+ * another application window. Since this could at time, this routine
+ * request any open gschem dialog be raised/brought to the foreground.
  */
 void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
 {
@@ -4925,10 +3813,10 @@ void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
   }
 }
 
-/*********** Start of major symbol changed dialog box *******/
+/*!* \section Symbol-Changed-Dialog ( Symbol Changed Systemic-Dialogs) **/
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Annoyance Dialog
  *  \par Function Description
  *
  */
@@ -4981,7 +3869,9 @@ void x_dialog_symbol_changed(GSCHEM_TOPLEVEL* w_current)
   }
 }
 
-/*********** End of major symbol changed dialog box *******/
+/****************** End of major symbol changed dialog box **************/
+
+/*!******** \section Invalid-Dialog ( Invalid Systemic-Dialogs) *********/
 
 /*! \brief Validate the input attribute
  *  \par Function Description
@@ -5012,19 +3902,17 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
   return TRUE;
 }
 
-/*********** End of misc support functions for dialog boxes *******/
+/************** End of misc support functions for dialog boxes **********/
 /*! @} endgroup Systemic-Dialogs */
 
-/*! \defgroup Gschem-Generic-Dialogs
- *  @{ \par This Group contains Generic Utility Dialogs
+/*! \defgroup Gschem-General-Dialogs
+ *  @{ \par This Group contains General Utility Dialogs
 */
 
-/***************** Start of generic message dialog box *******************/
+/*!***** \section Message-Dialog ( Message Gschem-General-Dialogs) ******/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
+/*! \brief General Purpose Message Dialog
+ *  \remarks See Utility Macros defined in globals.h
  */
 void gschem_message_dialog (const char *msg, gEDA_MessageType context, char *title)
 {
@@ -5051,13 +3939,11 @@ void gschem_message_dialog (const char *msg, gEDA_MessageType context, char *tit
 
 }
 
-/***************** End of generic message dialog box *********************/
+/***************** End of General message dialog box ********************/
 
-/***************** Start of generic confirm dialog box *******************/
+/*!**** \section Confirmation-Dialog (Confirmation General-Dialogs) *****/
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief General Purpose Confirmation Dialog
  *  \remarks TODO: derive this from gschem dialog class
  */
 int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
@@ -5097,9 +3983,10 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
   return r;
 }
 
-/***************** End of generic confirm dialog box *********************/
+/****************** End of General confirm dialog box ********************/
 
-/***************** Start of generic file select dialog box ***************/
+/*!** \section File-Select-File-Dialog ( File Select General-Dialogs) ***/
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -5196,6 +4083,5 @@ char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
 
 }
 
-/***************** End of generic file select dialog box *****************/
-/*! @} endgroup Gschem-Generic-Dialogs */
-
+/***************** End of General file select dialog box ****************/
+/*! @} endgroup Gschem-General-Dialogs */

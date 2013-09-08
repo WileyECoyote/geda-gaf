@@ -5,6 +5,7 @@
 #
 # gEDA - GPL Electronic Design Automation
 # gcheck-library - gEDA Symbol Library Batch Processor
+#
 # Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 #
 #------------------------------------------------------------------

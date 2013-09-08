@@ -133,14 +133,15 @@ typedef enum {
         IncreaseAttribute,
         DecreaseAttribute,
 
-/* 5 Combo Controls  */
+/* 9 Combo Controls  */
         TitleBlock,
         ColorMapScheme,
         DotGridMode,
         ConsoleWindowType,
-	MiddleButton,
+        MiddleButton,
         ThirdButton,
         UndoType,
+        FontName,
         RipperSymbol,
 
 /* 1 Edit Control Ids  */

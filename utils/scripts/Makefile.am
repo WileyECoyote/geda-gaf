@@ -12,8 +12,7 @@ PYdir	 =  $(TARGET_DIR)
 SH_SCRIPTS	 = gcheck-library \
 		   gfix-library \
                    gnet_hier_verilog \
-                   gpstoimage \
-                   ginstall_local
+                   gpstoimage
 
 PERL_SCRIPTS	 = gsymfix.pl gschupdate.pl gsymupdate.pl \
 		   pads_backannotate.pl pcb_backannotate.pl \
@@ -26,17 +25,19 @@ PY_SCRIPTS 	 = garchive.py \
                    gclean-symbol.py \
                    tragesym.py
 		
-noinst_SCRIPTS	 = convert_sym.awk sw2asc.awk
+noinst_SCRIPTS	 = convert_sym.awk sw2asc.awk ginstall_local
 
+#enble this for distcheck
+distcheck:
 dist_bin_SCRIPTS = $(PERL_SCRIPTS) $(PY_SCRIPTS) $(SH_SCRIPTS) \
 		   $(noinst_SCRIPTS)
 
 ##  SDB's stuff to enable garchive.  This hardcodes the path to the
 ##  system libraries into garchive prior to installation.
-garchive: $(srcdir)/garchive.py
-	sed -e "s#GEDADATADIR#$(GEDADATADIR)#" $(srcdir)/garchive.py > tmp$@
-	@chmod a+x tmp$@
-	@mv -f tmp$@ $@
+#garchive: $(srcdir)/garchive.py
+#	sed -e "s#GEDADATADIR#$(GEDADATADIR)#" $(srcdir)/garchive.py > tmp$@
+#	@chmod a+x tmp$@
+#	@mv -f tmp$@ $@
 
 MOSTLYCLEANFILES     = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)
 CLEANFILES 	     = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)

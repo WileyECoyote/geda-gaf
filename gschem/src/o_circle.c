@@ -96,12 +96,14 @@ void o_circle_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *new_obj;
 
-  g_assert( w_current->inside_action != 0 );
-
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_circle_end> Not inside action\n");
+    return;
+  }
   /* erase the temporary circle */
   /* o_circle_invalidate_rubber (w_current); */
   w_current->rubber_visible = 0;
-  
+
   /* circle with null radius are not allowed */
   if (w_current->distance == 0) {
     /* cancel the object creation */
@@ -148,7 +150,10 @@ void o_circle_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   int diff_x, diff_y;
 
-  g_assert( w_current->inside_action != 0 );
+  if (w_current->inside_action == 0) {
+    s_log_message("Internal Error Detected: <o_circle_motion> Not inside action\n");
+    return;
+  }
 
   /* erase the previous temporary circle if it is visible */
   if (w_current->rubber_visible)

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ struct st_menu {
 
 static int menu_index=0;
 
-#define MAX_MENUS	32
+#define MAX_MENUS 32
 
 /* and eventually make this unlimited */
 /* hack hack */
@@ -97,7 +97,7 @@ int s_menu_add_entry(char *new_menu, SCM menu_items)
   scm_gc_protect_object (menu_items);
   menu[menu_index].menu_items = menu_items;
   menu_index++;
-  
+
   return(menu_index);
 }
 

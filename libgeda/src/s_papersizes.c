@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,8 +36,8 @@
 
 /*! \brief */
 struct st_papersizes_names {
-	char *papersize_name;
-	int width, height;
+  char *papersize_name;
+  int width, height;
 };
 
 /*! \brief */
@@ -66,7 +66,7 @@ int s_papersizes_add_entry(char *new_papersize, int width, int height)
   if (papersizes_index >= MAX_PAGESIZES) {
     return(-1); 
   }
-	
+
   papersizes[papersizes_index].papersize_name = g_strdup (new_papersize);
 
   papersizes[papersizes_index].width = width;

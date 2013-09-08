@@ -26,6 +26,16 @@
 #include <dmalloc.h>
 #endif
 
+/*! \brief Copy Current Selection to Buffer
+ *  \par Function Description
+ *   The function is used both the "clipboard" copy and the
+ *   "clipboard" cut routines. This function first deleted
+ *   the contents of the assigned buffer before copying the
+ *   current selection to the buffer.
+ *
+ *   \param w_current A pointer to a GSCHEM top level object
+ *   \param buf_num   integer value of the buffer to use.
+ */
 static void
 selection_to_buffer(GSCHEM_TOPLEVEL *w_current, int buf_num)
 {
@@ -43,24 +53,50 @@ selection_to_buffer(GSCHEM_TOPLEVEL *w_current, int buf_num)
                                              object_buffer[buf_num]);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Copy Selection to Buffer
  *  \par Function Description
+ *  This function calls selection_to_buffer to copy the current
+ *  selection data to a buffer and then iterator over the objects
+ *  in the buffer, calling o_complex_reset_refdes for each complex
+ *  in the copied buffer.
  *
+ *  \param w_current A pointer to a GSCHEM top level object
+ *  \param buf_num   integer value of the buffer to use.
  */
 void o_buffer_copy(GSCHEM_TOPLEVEL *w_current, int buf_num)
 {
+  GList *iter;
+
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     g_warning (_("o_buffer_copy: Invalid buffer %i\n"), buf_num);
   }
   else
     selection_to_buffer (w_current, buf_num);
+
+  /* Get a pointer to the glist in the buffer */
+  iter = object_buffer[buf_num];
+
+  /* reset all the refdes in the copied buffer */
+  while (iter != NULL) {
+
+    OBJECT *object = (OBJECT*) iter->data;
+
+    if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER) {
+      o_complex_reset_refdes(w_current->toplevel ,object);
+    }
+
+    iter = g_list_next(iter);
+  }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Cut Selection to Buffer
  *  \par Function Description
+ *  This function calls selection_to_buffer to copy the current
+ *  selection data to a buffer and then deleted the selected
+ *  data.
  *
+ *  \param w_current A pointer to a GSCHEM top level object
+ *  \param buf_num   integer value of the buffer to use.
  */
 void o_buffer_cut(GSCHEM_TOPLEVEL *w_current, int buf_num)
 {
@@ -73,10 +109,11 @@ void o_buffer_cut(GSCHEM_TOPLEVEL *w_current, int buf_num)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Paste Buffer Contents to drawing
  *  \par Function Description
- *
+ *  This function initiates the pasting of data by copying the buffer
+ *  contents and updates the global state variable so the user can
+ *  position/place the any objects that were in the buffer.
  */
 void o_buffer_paste_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
                           int buf_num)
@@ -127,10 +164,11 @@ void o_buffer_paste_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Initialize the Buffers
  *  \par Function Description
- *
+ *  This function just set each member of our global array
+ *  of buffer pointers to NULL.
+ * 
  */
 void o_buffer_init(void)
 {
@@ -141,10 +179,10 @@ void o_buffer_init(void)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Free All buffers
  *  \par Function Description
- *
+ *  This function iterates over each buffer and deletes any
+ *  found by calling s_delete_object_glist.
  */
 void o_buffer_free(GSCHEM_TOPLEVEL *w_current)
 {

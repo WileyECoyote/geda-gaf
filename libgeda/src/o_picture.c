@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -325,35 +325,9 @@ OBJECT *o_picture_new (TOPLEVEL *toplevel,
   }
 
   /* compute the bounding picture */
-  o_picture_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
-}
-
-/*! \brief Recalculate picture bounding box.
- *  \par Function Description
- *  This function recalculates the bounding box of the <B>o_current</B>
- *  parameter picture object.
- *
- *  \param [in] toplevel      The TOPLEVEL object.
- *  \param [in,out] o_current  Picture OBJECT to be recalculated.
- */
-void o_picture_recalc(TOPLEVEL *toplevel, OBJECT *o_current)
-{
-  int left, top, right, bottom;
-
-  if (o_current->picture == NULL) {
-    return;
-  }
-
-  /* update the bounding picture - world units */
-  world_get_picture_bounds(toplevel, o_current,
-		     &left, &top, &right, &bottom);
-  o_current->w_left   = left;
-  o_current->w_top    = top;
-  o_current->w_right  = right;
-  o_current->w_bottom = bottom;
-  o_current->w_bounds_valid = TRUE;
 }
 
 /*! \brief Get picture bounding rectangle in WORLD coordinates.
@@ -467,57 +441,57 @@ void o_picture_modify(TOPLEVEL *toplevel, OBJECT *object,
       object->picture->upper_x = x;
       tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
       if (y < object->picture->lower_y) {
-	tmp = -tmp;
+        tmp = -tmp;
       }
       object->picture->upper_y = object->picture->lower_y + tmp;
       break;
-			
+
     case PICTURE_LOWER_LEFT:
       object->picture->upper_x = x;
       tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
       if (y > object->picture->upper_y) {
-	tmp = -tmp;
+        tmp = -tmp;
       }
       object->picture->lower_y = object->picture->upper_y - tmp;
       break;
-      
+
     case PICTURE_UPPER_RIGHT:
       object->picture->lower_x = x;
       tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
       if (y < object->picture->lower_y) {
-	tmp = -tmp;
+        tmp = -tmp;
       }
       object->picture->upper_y = object->picture->lower_y + tmp;
       break;
-      
+
     case PICTURE_LOWER_RIGHT:
       object->picture->lower_x = x;
       tmp = abs(object->picture->upper_x - object->picture->lower_x) / ratio;
       if (y > object->picture->upper_y) {
-	tmp = -tmp;
+        tmp = -tmp;
       }
       object->picture->lower_y = object->picture->upper_y - tmp;
       break;
-      
+
     default:
       return;
   }
-  
+
   /* need to update the upper left and lower right corners */
   if(object->picture->upper_x > object->picture->lower_x) {
     tmp                      = object->picture->upper_x;
     object->picture->upper_x = object->picture->lower_x;
     object->picture->lower_x = tmp;
   }
-  
+
   if(object->picture->upper_y < object->picture->lower_y) {
     tmp                      = object->picture->upper_y;
     object->picture->upper_y = object->picture->lower_y;
     object->picture->lower_y = tmp;
   }
-	
+
   /* recalculate the screen coords and the boundings */
-  o_picture_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, object);
 }
 
@@ -548,7 +522,7 @@ o_picture_modify_all (TOPLEVEL *toplevel, OBJECT *object,
   object->picture->upper_y = (y1 > y2) ? y1 : y2;
 
   /* recalculate the world coords and bounds */
-  o_box_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
   o_emit_change_notify (toplevel, object);
 }
 
@@ -573,15 +547,15 @@ void o_picture_rotate_world(TOPLEVEL *toplevel,
 {
   int newx1, newy1;
   int newx2, newy2;
-  
+
   /* Only 90 degree multiple and positive angles are allowed. */
   /* angle must be positive */
   if(angle < 0) angle = -angle;
   /* angle must be a 90 multiple or no rotation performed */
   if((angle % 90) != 0) return;
-  
+
   object->picture->angle = ( object->picture->angle + angle ) % 360;
-	
+
   /* The center of rotation (<B>world_centerx</B>, <B>world_centery</B>) is
    * translated to the origin. The rotation of the upper left and lower
    * right corner are then performed. Finally, the rotated picture is
@@ -592,30 +566,30 @@ void o_picture_rotate_world(TOPLEVEL *toplevel,
   object->picture->upper_y -= world_centery;
   object->picture->lower_x -= world_centerx;
   object->picture->lower_y -= world_centery;
-  
+
   /* rotate the upper left corner of the picture */
   rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
-		  &newx1, &newy1);
-  
+                  &newx1, &newy1);
+
   /* rotate the lower left corner of the picture */
   rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
-		  &newx2, &newy2);
-  
+                  &newx2, &newy2);
+
   /* reorder the corners after rotation */
   object->picture->upper_x = min(newx1,newx2);
   object->picture->upper_y = max(newy1,newy2);
   object->picture->lower_x = max(newx1,newx2);
   object->picture->lower_y = min(newy1,newy2);
-  
+
   /* translate object back to normal position */
   object->picture->upper_x += world_centerx;
   object->picture->upper_y += world_centery;
   object->picture->lower_x += world_centerx;
   object->picture->lower_y += world_centery;
-  
+
   /* recalc boundings and screen coords */
-  o_picture_recalc(toplevel, object);
-	
+  object->w_bounds_valid_for = NULL;
+
 }
 
 /*! \brief Mirror a picture using WORLD coordinates.
@@ -632,8 +606,8 @@ void o_picture_rotate_world(TOPLEVEL *toplevel,
  *  \param [in,out] object         Picture OBJECT to mirror.
  */
 void o_picture_mirror_world(TOPLEVEL *toplevel,
-			    int world_centerx, int world_centery,
-			    OBJECT *object)
+                            int world_centerx, int world_centery,
+                            OBJECT *object)
 {
   int newx1, newy1;
   int newx2, newy2;
@@ -675,8 +649,8 @@ void o_picture_mirror_world(TOPLEVEL *toplevel,
   object->picture->lower_y += world_centery;
 
   /* recalc boundings and screen coords */
-  o_picture_recalc(toplevel, object);
-  
+  object->w_bounds_valid_for = NULL;
+
 }
 
 /*! \brief Translate a picture position in WORLD coordinates by a delta.
@@ -690,16 +664,16 @@ void o_picture_mirror_world(TOPLEVEL *toplevel,
  *  \param [in,out] object     Picture OBJECT to translate.
  */
 void o_picture_translate_world(TOPLEVEL *toplevel,
-			       int dx, int dy, OBJECT *object)
+                               int dx, int dy, OBJECT *object)
 {
   /* Do world coords */
   object->picture->upper_x = object->picture->upper_x + dx;
   object->picture->upper_y = object->picture->upper_y + dy;
   object->picture->lower_x = object->picture->lower_x + dx;
   object->picture->lower_y = object->picture->lower_y + dy;
-  
+
   /* recalc the screen coords and the bounding picture */
-  o_picture_recalc(toplevel, object);
+  object->w_bounds_valid_for = NULL;
 }
 
 /*! \brief Create a copy of a picture.
@@ -749,7 +723,7 @@ OBJECT *o_picture_copy(TOPLEVEL *toplevel, OBJECT *object)
   picture->pixbuf = o_picture_get_pixbuf (toplevel, object);
 
   /* compute the bounding picture */
-  o_picture_recalc(toplevel, new_node);
+  new_node->w_bounds_valid_for = NULL;
 
   return new_node;
 }
@@ -1007,15 +981,16 @@ void o_picture_unembed (TOPLEVEL *toplevel, OBJECT *object)
  *
  *  Interrior points within the picture return a distance of zero.
  *
- *  \param [in] object       The picture OBJECT.
+ *  \param [in] toplevel     A TOPLEVEL object
+ *  \param [in] object       A picture OBJECT.
  *  \param [in] x            The x coordinate of the given point.
  *  \param [in] y            The y coordinate of the given point.
  *  \param [in] force_solid  If true, force treating the object as solid.
  *  \return The shortest distance from the object to the point. With an
  *  invalid parameter, this function returns G_MAXDOUBLE.
  */
-double o_picture_shortest_distance (OBJECT *object, int x, int y,
-                                    int force_solid)
+double o_picture_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
+                                    int x, int y, int force_solid)
 {
   double dx, dy;
   double x1, y1, x2, y2;
