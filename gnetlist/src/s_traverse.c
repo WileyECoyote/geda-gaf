@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include "../include/gettext.h"
 
 /*! Tracks which OBJECTs have been visited so far, and how many times.
  *
@@ -79,36 +80,32 @@ s_traverse_clear_all_visited (const GList *obj_list)
 
 void s_traverse_init(void)
 {
-    netlist_head = s_netlist_add(NULL);
-    netlist_head->nlid = -1;	/* head node */
+  netlist_head = s_netlist_add(NULL);
+  netlist_head->nlid = -1;	/* head node */
 
-    graphical_netlist_head = s_netlist_add(NULL);
-    graphical_netlist_head->nlid = -1;	/* head node */
+  graphical_netlist_head = s_netlist_add(NULL);
+  graphical_netlist_head->nlid = -1;	/* head node */
 
-    if (verbose_mode) {
-	printf
-	    ("\n\n------------------------------------------------------\n");
-	printf("Verbose mode legend\n\n");
-	printf("n : Found net\n");
-	printf("C : Found component (staring to traverse component)\n");
-	printf
-	    ("p : Found pin (starting to traverse pin / or examining pin)\n");
-	printf("P : Found end pin connection (end of this net)\n");
-	printf("R : Starting to rename a net\n");
-	printf("v : Found source attribute, traversing down\n");
-	printf("^ : Finished underlying source, going back up\n");
-	printf("u : Found a refdes which needs to be demangle\n");
-	printf
-	    ("U : Found a connected_to refdes which needs to be demangle\n");
-	printf
-	    ("------------------------------------------------------\n\n");
+  if (verbose_mode) {
+    printf(_("\n\n------------------------------------------------------\n"));
+    printf(_("Verbose mode legend\n\n"));
+    printf(_("n : Found net\n"));
+    printf(_("C : Found component (staring to traverse component)\n"));
+    printf(_("p : Found pin (starting to traverse pin / or examining pin)\n"));
+    printf(_("P : Found end pin connection (end of this net)\n"));
+    printf(_("R : Starting to rename a net\n"));
+    printf(_("v : Found source attribute, traversing down\n"));
+    printf(_("^ : Finished underlying source, going back up\n"));
+    printf(_("u : Found a refdes which needs to be demangle\n"));
+    printf(_("U : Found a connected_to refdes which needs to be demangle\n"));
+    printf(_("------------------------------------------------------\n\n"));
 
-    }
+  }
 
-    /* Initialise the hashtable which contains the visit
-       count. N.b. no free functions are required. */
-    visit_table = g_hash_table_new (g_direct_hash,
-                                    g_direct_equal);
+  /* Initialise the hashtable which contains the visit
+   *      count. N.b. no free functions are required. */
+  visit_table = g_hash_table_new (g_direct_hash,
+                                  g_direct_equal);
 }
 
 void s_traverse_start(TOPLEVEL * pr_current)
@@ -138,7 +135,7 @@ void s_traverse_start(TOPLEVEL * pr_current)
                             graphical_netlist_head);
 
   if (verbose_mode) {
-    printf("\nInternal netlist representation:\n\n");
+    printf(_("\nInternal netlist representation:\n\n"));
     s_netlist_print(netlist_head);
   }
 }
@@ -147,15 +144,29 @@ void s_traverse_start(TOPLEVEL * pr_current)
 void
 s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_tag)
 {
-  NETLIST *netlist;
-  char *temp;
-  SCM scm_uref;
-  char *temp_uref;
-  bool is_graphical=FALSE;
-  const GList *iter;
+  NETLIST  *netlist;
+  char     *temp;
+  SCM       scm_uref;
+  char     *temp_uref;
+  bool      is_graphical;
+  bool      is_hierarchy;
+  const     GList *iter;
+  GError    *err;
+  EdaConfig *cfg;
+
+  is_graphical = FALSE;
+  is_hierarchy = TRUE;
+  err          = NULL;
+
+  cfg = eda_config_get_context_for_file (NULL);
+  is_hierarchy = eda_config_get_boolean (cfg, "gnetlist", "traverse-hierarchy", &err);
+  if (err != NULL) {
+    is_hierarchy = TRUE;
+    g_clear_error (&err);
+  }
 
   if (verbose_mode) {
-    printf("- Starting internal netlist creation\n");
+    printf(_("- Starting internal netlist creation\n"));
   }
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
@@ -164,14 +175,15 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
     netlist = s_netlist_return_tail(netlist_head);
 
     if (o_current->type == OBJ_PLACEHOLDER) {
-      printf("WARNING: Found a placeholder/missing component, are you missing a symbol file? [%s]\n", o_current->complex_basename);
+      printf(_("WARNING: Found a placeholder/missing component, are you missing a symbol file? [%s]\n"),
+o_current->complex_basename);
     }
 
     if (o_current->type == OBJ_COMPLEX) {
 
-#if DEBUG
+      #if DEBUG
       printf("starting NEW component\n\n");
-#endif
+      #endif
 
       verbose_print(" C");
 
@@ -179,11 +191,11 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
       temp = o_attrib_search_object_attribs_by_name (o_current, "graphical", 0);
       if (temp) {
         /* traverse graphical elements, but adding them to the
-	   graphical netlist */
+         *   graphical netlist */
         g_free(temp);
 
-	netlist = s_netlist_return_tail(graphical_netlist_head);
-	is_graphical = TRUE;
+        netlist = s_netlist_return_tail(graphical_netlist_head);
+        is_graphical = TRUE;
 
 
       }
@@ -195,7 +207,7 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
       if (scm_is_string( scm_uref )) {
         temp_uref = scm_to_utf8_string (scm_uref);
         netlist->component_uref =
-          s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
+        s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
         g_free(temp_uref);
       } else {
         if (hierarchy_tag) {
@@ -206,49 +218,46 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
       }
 
       if (hierarchy_tag) {
-	netlist->hierarchy_tag = g_strdup (hierarchy_tag);
+        netlist->hierarchy_tag = g_strdup (hierarchy_tag);
       }
 
       netlist->object_ptr = o_current;
 
       if (!netlist->component_uref) {
 
-	/* search of net attribute */
-	/* maybe symbol is not a component */
-	/* but a power / gnd symbol */
-	temp = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
+        /* search of net attribute */
+        /* maybe symbol is not a component */
+        /* but a power / gnd symbol */
+        temp = o_attrib_search_object_attribs_by_name (o_current, "net", 0);
 
-	/* nope net attribute not found */
-	if ( (!temp) && (!is_graphical) ) {
+        /* nope net attribute not found */
+        if ( (!temp) && (!is_graphical) ) {
 
-	  fprintf(stderr,
-		  "Could not find refdes on component and could not find any special attributes!\n");
+          fprintf(stderr,
+                _("Could not find refdes on component and could not find any special attributes!\n"));
 
-	  netlist->component_uref = g_strdup("U?");
-	} else {
+                  netlist->component_uref = g_strdup("U?");
+        } else {
 
-#if DEBUG
-	  printf("yeah... found a power symbol\n");
-#endif
-	  /* it's a power or some other special symbol */
-	  netlist->component_uref = NULL;
-	  g_free(temp);
-	}
+          #if DEBUG
+          printf("yeah... found a power symbol\n");
+          #endif
+          /* it's a power or some other special symbol */
+          netlist->component_uref = NULL;
+          g_free(temp);
+        }
 
       }
 
       netlist->cpins =
-	s_traverse_component(pr_current, o_current,
-			     hierarchy_tag);
+      s_traverse_component(pr_current, o_current, hierarchy_tag);
 
-      /* here is where you deal with the */
-      /* net attribute */
-      s_netattrib_handle(pr_current, o_current, netlist,
-			 hierarchy_tag);
+      /* here is where we deal with the net attribute */
+      s_netattrib_handle(pr_current, o_current, netlist, hierarchy_tag);
 
-      /* now you need to traverse any underlying schematics */
-      if (pr_current->hierarchy_traversal == TRUE) {
-	s_hierarchy_traverse(pr_current, o_current, netlist);
+      /* Conditionally traverse any underlying schematics */
+      if (is_hierarchy) {
+        s_hierarchy_traverse(pr_current, o_current, netlist);
       }
     }
   }
@@ -257,7 +266,7 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
 }
 
 CPINLIST *s_traverse_component(TOPLEVEL * pr_current, OBJECT * component,
-			       char *hierarchy_tag)
+                               char *hierarchy_tag)
 {
   CPINLIST *cpinlist_head = NULL;
   CPINLIST *cpins = NULL;
@@ -303,7 +312,7 @@ CPINLIST *s_traverse_component(TOPLEVEL * pr_current, OBJECT * component,
     /* This avoids us adding an unnamed net for an unconnected pin */
     if (o_current->conn_list != NULL) {
       /* result of s_traverse_net() is not used, explicitly cast function value (void) */
-      (void) s_traverse_net (pr_current, nets, TRUE,
+      s_traverse_net (pr_current, nets, TRUE,
                              o_current, hierarchy_tag, cpins->type);
       s_traverse_clear_all_visited (s_page_objects (pr_current->page_current));
     }
@@ -323,7 +332,7 @@ static int connection_type (OBJECT *object)
     case OBJ_NET:  return PIN_TYPE_NET;
     case OBJ_BUS:  return PIN_TYPE_BUS;
     default:
-      g_critical ("Non-connectable object being queried for connection type\n");
+      g_critical(_("Non-connectable object being queried for connection type\n"));
       return PIN_TYPE_NET;
   }
 }
@@ -360,7 +369,7 @@ NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
       /* search for the old label= attribute on nets */
       temp = o_attrib_search_object_attribs_by_name (object, "label", 0);
       if (temp) {
-        printf("WARNING: Found label=%s. label= is deprecated, please use netname=\n", temp);
+        printf(_("WARNING: Found label=%s. label= is deprecated, please use netname=\n"), temp);
         new_net->net_name =
           s_hierarchy_create_netname(pr_current, temp,
                                      hierarchy_tag);
@@ -409,12 +418,12 @@ NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
       return nets;
   }
 
-  /*printf("Found net %s\n", object->name); */
+  /*printf(_("Found net %s\n", object->name/0)); */
   verbose_print("n");
 
   /* this is not perfect yet and won't detect a loop... */
   if (is_visited(object) > 100) {
-    fprintf(stderr, "Found a possible net/pin infinite connection\n");
+    fprintf(stderr, _("Found a possible net/pin infinite connection\n"));
     exit(-1);
   }
 

@@ -1150,7 +1150,7 @@ multiattrib_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
       case SHOW_VALUE:      new_snv = SHOW_NAME_VALUE; break;
       default:
         new_snv = SHOW_NAME_VALUE;
-        s_log_message ("Internal Error: <%s>"
+        g_critical ("Internal Error: <%s>"
                        "<multiattrib_callback_toggled_show_name>"
                        "unhandled case for <%d>, line %d.\n",
                        __FILE__, o_attrib->show_name_value, __LINE__);
@@ -1207,10 +1207,10 @@ static void multiattrib_callback_toggled_show_value(GtkCellRendererToggle *cell_
       case SHOW_VALUE:      new_snv = SHOW_NAME;       break;
       default:
         new_snv = SHOW_NAME_VALUE;
-        s_log_message ("Internal Error: <%s>"
-                       "<multiattrib_callback_toggled_show_value>"
-                       "unhandled case for <%d>, line %d.\n",
-                       __FILE__, o_attrib->show_name_value, __LINE__);
+        g_critical ("Internal Error: <%s>"
+                    "<multiattrib_callback_toggled_show_value>"
+                    "unhandled case for <%d>, line %d.\n",
+                     __FILE__, o_attrib->show_name_value, __LINE__);
   }
 
   /* actually modifies the attribute */

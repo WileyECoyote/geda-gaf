@@ -25,22 +25,42 @@ bitmapdata_DATA = gschem_about_logo.png                                  \
 		  gschem_filltype_mesh_24x24.xpm                         \
 		  gschem_filltype_mesh_26x26.xpm                         \
 		  gschem_filltype_mesh_28x28.xpm                         \
+		  gschem-invert.png                                      \
+		  gschem_invert_22x22.png                                \
+		  gschem_invert_24x24.png                                \
+		  gschem_invert_26x26.png                                \
+		  gschem_invert_28x28.png                                \
+		  gschem_invert_32x32.png                                \
 		  gschem-net.png                                         \
 		  gschem_net.xpm                                         \
 		  gschem_new.xpm gschem_open.xpm gschem_redo.xpm         \
 		  gschem_save.xpm                                        \
 		  gschem_right2left.png gschem_fileorder.png             \
 		  gschem_rotate.xpm gschem_mirror.xpm gschem_warning.png \
-		  gschem_select.xpm                                      \
-		  gschem_select_22x22.xpm                                \
-		  gschem_select_24x24.xpm                                \
-		  gschem_select_26x26.xpm                                \
+		  gschem-select.png                                      \
+		  gschem_select_22x22.png                                \
+		  gschem_select_24x24.png                                \
+		  gschem_select_26x26.png                                \
+		  gschem_select_28x28.png                                \
+		  gschem_select_32x32.png                                \
+		  gschem-select-all.png                                  \
+		  gschem_select_all_22x22.png                            \
+		  gschem_select_all_24x24.png                            \
+		  gschem_select_all_26x26.png                            \
+		  gschem_select_all_28x28.png                            \
+		  gschem_select_all_32x32.png                            \
 		  gschem_text_24x24.png                                  \
 		  gschem_text_26x26.png                                  \
 		  gschem_transitor_28x28.png                             \
 		  gschem_transitor_32x32.png                             \
 		  gschem_top2bottom.png gschem_diagonal.png              \
-		  gschem_undo.xpm
+		  gschem_undo.xpm                                        \
+		  gschem-unselect.png                                    \
+		  gschem_unselect_22x22.png                              \
+		  gschem_unselect_24x24.png                              \
+		  gschem_unselect_26x26.png                              \
+		  gschem_unselect_28x28.png                              \
+		  gschem_unselect_32x32.png
 
 EXTRA_DIST = $(bitmapdata_DATA)                                          \
              README                                                      \

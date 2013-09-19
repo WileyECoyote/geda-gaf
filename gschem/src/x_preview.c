@@ -168,7 +168,7 @@ preview_callback_button_press (GtkWidget *widget,
 
   switch (event->button) {
       case 1: /* left mouse button: zoom in */
-        a_zoom (preview_w_current, ZOOM_IN_DIRECTIVE, HOTKEY,
+        a_zoom (preview_w_current, ZOOM_IN_DIRECTIVE, ID_ORIGIN_MOUSE,
                 A_PAN_DONT_REDRAW);
         o_invalidate_all (preview_w_current);
         break;
@@ -178,7 +178,7 @@ preview_callback_button_press (GtkWidget *widget,
         a_pan (preview_w_current, wx, wy);
         break;
       case 3: /* right mouse button: zoom out */
-        a_zoom (preview_w_current, ZOOM_OUT_DIRECTIVE, HOTKEY,
+        a_zoom (preview_w_current, ZOOM_OUT_DIRECTIVE, ID_ORIGIN_MOUSE,
                 A_PAN_DONT_REDRAW);
         o_invalidate_all (preview_w_current);
         break;

@@ -37,8 +37,8 @@
 #ifndef __X_TOOLBARS_H__
 #define __X_TOOLBARS_H__
 
-typedef enum { tb_Add,  tb_Attribute, tb_Edit,
-               tb_Page, tb_Standard,  tb_Zoom
+typedef enum { tb_Add,  tb_Attribute, tb_Edit,      tb_Grid_Snap,
+               tb_Page, tb_Select,    tb_Standard,  tb_Zoom
 
 } ID_GSCHEM_Toolbar;
 
@@ -69,9 +69,15 @@ typedef struct {
   GtkWidget *toolbar_circle;
   GtkWidget *toolbar_line;
   GtkWidget *toolbar_net;
+  GtkWidget *toolbar_path;
   GtkWidget *toolbar_pin;
   GtkWidget *toolbar_select;
   GtkWidget *toolbar_none;
+
+  /* Radio Widgets on the Grid_Snap Bar */
+  GtkWidget *toolbar_dot;
+  GtkWidget *toolbar_mesh;
+  GtkWidget *toolbar_off;
 
 } ToolBarWidgets;
 

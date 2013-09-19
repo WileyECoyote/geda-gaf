@@ -32,7 +32,6 @@
 #include <dmalloc.h>
 #endif
 
-#define MIME_TYPE_SCHEMATIC "application/x-geda-schematic"
 #define CLIP_TYPE_SCHEMATIC 1
 
 G_LOCK_DEFINE_STATIC(got_answer);

@@ -64,7 +64,7 @@ ParseCommandLine(){
     --directory | -d) OVERRIDE_BIN=true                               ;;
      --location | -l) OVERRIDE_DESTINY=true                           ;;
       --no-trim | -n) DO_TRIM=false                                   ;;
-    	            *) case $LAST_ARG inW: geda: binary-without-manpage usr/bin/ginstall_local
+    	            *) case $LAST_ARG in
                        --directory | -d) DesiredDir="$Arg"            ;;
                         --location | -l) DesiredDestiny="$Arg"        ;;
                     *) do_show_usage ; exit $ERR_BAD_ARGS             ;;

@@ -131,13 +131,6 @@ int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
 
         case(OBJ_COMPLEX):
         case(OBJ_PLACEHOLDER):
-          /* realc routine Add this somewhere */
-          /* libhack */
-          /* o_recalc(toplevel, o_current->complex);*/
-
-          if ((!o_current) || (o_current->type != OBJ_COMPLEX &&
-            o_current->type != OBJ_PLACEHOLDER))
-            return 0;
 
           if (o_current->complex->prim_objs == NULL)
             return 0;

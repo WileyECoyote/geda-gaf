@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgedacairo - Rendering gEDA schematics with Cairo
- * Copyright (C) 2010-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2010-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
  *
  * This file based on GDK's gdkpango.c (LGPL V2+)
  * Copyright (C) 2000 Red Hat, Inc.
@@ -314,13 +314,15 @@ eda_pango_renderer_show_layout (EdaPangoRenderer *renderer, PangoLayout *pl)
   g_return_if_fail (renderer->priv->cr != NULL);
   g_return_if_fail (PANGO_IS_LAYOUT (pl));
 
-  double width;
-  double height;
+  int width;
+  int height;
 
   pango_layout_get_size (pl, &width, &height);
+  width = width / PANGO_SCALE;
+  height = height / PANGO_SCALE;
+
   pango_renderer_draw_layout (PANGO_RENDERER (renderer),
-                              pl, width * PANGO_SCALE,
-                              height * PANGO_SCALE);
+                              pl, width, height);
 }
 
 
@@ -444,3 +446,4 @@ eda_pango_parse_overbars (const gchar *overbar_text, int length,
 
   return TRUE;
 }
+

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -228,10 +228,6 @@
 #define NEITHER			0
 #define HORIZONTAL		1
 #define VERTICAL		2
-#define HORIZONTAL_ABOVE	3
-#define HORIZONTAL_BELOW	4
-#define VERTICAL_LEFT		5
-#define VERTICAL_RIGHT		6
 
 /* gnetlist: hierarchy_*_order */
 #define APPEND			0

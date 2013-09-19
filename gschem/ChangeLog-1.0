@@ -1,3 +1,101 @@
+2013-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+        * Applied numerous changes based on changes in the Master branch. Attempted
+          to provide the same functionality in the Rampage branch but I was behind on
+          updates, and have ignored most of the dialog updates, until I can re-examine
+          these. Most of the recent updates to dialogs do no involve functionality and
+          most all of the dialogs in the Rampage branch have already under gone
+          extensive revisions.
+
+          Implemented "Reset refdes number to the question mark when parts are copied"
+          equivalent to the functionality added in the master branch with commit
+          7dafcd5e30e957dc1fffbb2eedae5d1a555a6552. The "feature" was later reverted
+          with commit f28e4db09bb6ee732976e03b6b342c085fbb828b due to potential data
+          loss, presumably reference designators. I did not revert because the version
+          implemented in Rampage used different algorythms and I could not detect any
+          data losses. (When the feature was impletmented, the feature was tested with
+          with various ref-des formats; such as RL0911 and ZZZ1.). Perhaps someones is
+          using a format that I am not familiar with.
+
+        * src/o_buffer.cut: Set flag for page changed in function o_buffer_cut.
+
+        * src/i_command: Major changes; added int x and int y to command_struc, added
+          new ActionFlags using bits 2 and 3. None of the threads use the new bit 2,
+          which is a fallback to in-line mode. When bit 3 of the Action flag is set,
+          i_command_process captures the cursor X-Y position to the new members or
+          zero both if x_event_get_pointer_position returns false. Bit 3 is set for
+          each action potentially responding to Hot-key or Right-Mouse input, where
+          the cursor position is relevant. This was done in i_command_process rather
+          then repeating the same blocks of code or adding function calls in each of
+          the action handlers that would use this feature. Within the action handlers
+          the new HOT_ACTION macro is used to determine if the X-Y input should be
+          used. More of the code (for hot-keys) in i_callback was moved over this
+          module
+
+          Added function msg_need_select_1st() so that the string MSG_SELECT_OBJECT_1ST
+          would not allocated in multible action handlers.
+
+          Added new action zoom-selection.
+
+        * src/x_icons.c: Major changes, see revision notes in the source file.
+        * src/gschem.c: Eliminated call to x_window_set_default_icon. This is called
+          a little later in x_icons_initialize, which is called from x_window_setup().
+
+        * gschem_action: Revised to include icon-id property, see revision notes in
+          the source file.
+
+        * src/x_menus.c: Numerous revisions, revised popup structure to include tips
+          and icons. Revised x_menu_setup_popup to eliminated depreciated item factory.
+          Added new GSLIST member to menu data structure for popup menu widgets and
+          associated reference macro POPUP_ITEMS_LIST. Eliminated global int npopup_
+          items, which was only used by the item_factory. Added two new menu options
+          for toggling of icons and tips on the context menu. Revised function x_menu_
+          popup_execute, which now retrieve a pointer to the top-level w_current data
+          structure from the widget. Changed menu_icons_toggle and menu_tips_toggle to
+          radio type.
+
+          Added variable menus_broken in x_menu_setup_ui. The variable is used to
+          suppress redundant error messages and does not otherwise effect the menus.
+          Added index varible to the error message to facilitate locating invalid
+          menu data.
+
+          Added two new toolbars to the view/toolbars submenu.
+
+          Updated documentation in the source file.
+
+        * src/g_action: New source file from master branch, relocated i_process_action
+          to this file and re-named g_process_action.
+
+        * src/x_dialog.c: Aded new experimental feature by enhancing the Coord dialog,
+          changing World label to a Text Entry widget, which allows entering of coor-
+          dinates. upon activating, by pressing "enter" the cursor is repostioned to
+          the given coordinate relative to the drawing area.
+
+        * src/x_event.c: Added new function: x_event_set_pointer_position to support
+          enhancments to the Coord dialog.
+
+        * src/x_menus.h: Relocated structure definition for popup menu entry from
+          the source to the header and added type definition, to reduce clutter in
+          the source file. Revised the popup entry data structure to include the
+          callback function, pointer to icon name and tooltips. Added defines for
+          menu toggle paths because these are referenced in three place; creation,
+          saving and restoring.
+
+        * src/x_basic.c: Updated source documentation.
+
+        * include/gschem_idefines.h: Eliminated defines for selected from "HOTKEY"
+          and "MENU. Replaced in sources with ID_ORIGIN_KEYBOARD and ID_ORIGIN_MENU.
+
+
+2013-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/prototype.h: fix typo o_net_finishmagnetic->o_net_finish_magnetic
+
+        * src/*.c: Replaced GTK_WIDGET_SET_FLAGS with equivenlent gtk function in
+          x_window.x, function x_window_create_drawing, x_dialog, function x_dialog
+          _create_search_replace_dialog and x_settings_dialog.c, function create_
+          settings_dialog, also replace g_widget_show with g_object_set.
+
 2013-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/parsecmd.c: Added --safe-mode and associated global varible run_mode.
@@ -50,15 +148,16 @@
           to reduce line lengths:
 
         * src/gschem.c: In function main_prog(), eliminated call to g_thread
-        _init. GTK claims this is no longer necessary.
+        _init. GTK claims this is no longer necessary. (Reverted this using
+        conditional compilation)
 
         * src/i_basic.c: Set sensitivity for editing and clipboard items.
         Fixed sensitivities for Unembed Component/Picture and popup items.
         Sensitivities are now more accurate.
 
         * src/i_command.c: In function do_documentation, eliminated call to
-g_type_init, GTK claims this is no longer necessary. Libgeda make this call
-        during initialization.
+        g_type_init, GTK claims this is no longer necessary. Libgeda make
+         this call during initialization.
 
         * src/o_select.c: Applied Top_Selection macro to reduce line lengths
         and general code clean up. In function o_select_object(), added

@@ -19,6 +19,9 @@
 #define EDIT_REDO        edit-redo
 #define EDIT_CB_CUT      clipboard-cut
 #define EDIT_CB_COPY     clipboard-copy
+#define EDIT_BUF_cut     clipboard-cut
+#define EDIT_BUF_copy    clipboard-copy
+#define EDIT_BUF_paste   clipboard-paste
 #define EDIT_CB_PASTE    clipboard-paste
 #define EDIT_DELETE      edit-delete
 #define EDIT_SELECT      edit-select
@@ -50,6 +53,7 @@
 #define VIEW_REDRAW      view-redraw
 #define VIEW_PAN         view-pan
 #define VIEW_BOX         view-zoom-box
+#define VIEW_SELECTED    view-zoom-selected
 #define VIEW_EXTENTS     view-zoom-extents
 #define VIEW_ZOOM_IN     view-zoom-in
 #define VIEW_ZOOM_OUT    view-zoom-out
@@ -76,6 +80,7 @@
 #define ADD_ATTRIB       add-attribute
 #define ADD_TEXT         add-text
 #define ADD_LINE         add-line
+#define ADD_PATH         add-path
 #define ADD_BOX          add-box
 #define ADD_CIRCLE       add-circle
 #define ADD_ARC          add-arc
@@ -99,14 +104,21 @@
 #define ATTRIB_EDIT      attributes-editor
 #define ATTRIB_AUTONUM   attributes-autonumber
 
+/* Grid */
+#define OPT_GRID_DOT     options-grid-dot
+#define OPT_GRID_MESH    options-grid-mesh
+#define OPT_GRID_OFF     options-grid-off
+
 /* Toggles */
 #define OPT_CYLCE_GRID   options-cycle-grid
 #define OPT_SNAP_UP      scale-up-snap-size
 #define OPT_SNAP_DOWN    scale-down-snap-size
 #define OPT_SNAP_SIZE    options-snap-size
+#define OPT_SNAP_OFF     options-snap-off
+#define OPT_SNAP_ON      options-snap-on
 
 /* Toggles */
-#define TOGGLE_SNAP      options-cycle-snap
+#define CYCLE_SNAP       options-cycle-snap
 #define TOGGLE_FEEDBACK  options-action-feedback
 #define TOGGLE_RUBBER    options-rubberband
 #define TOGGLE_MAGNETIC  options-magneticnet

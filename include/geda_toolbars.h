@@ -71,6 +71,10 @@ typedef struct
  * GTK Toolbar includes: stuff for dealing with Toolbars.
  *------------------------------------------------------------------*/
 
+#define GEDA_PACK_TOOLBOX( parent, bar) \
+  gtk_box_pack_start (GTK_BOX (parent), bar, FALSE, FALSE, 0); \
+  g_object_set (bar, "visible", TRUE, NULL);
+
 /* ------------------------- Entry Level -------------------------------- */
 /*! \brief ToolBar Macros with GSCHEM_TOPLEVEL *w_current call-back data */
 #define TOOLBAR_GEDA_BUTTON( bar, name, type, icon, func, data) \

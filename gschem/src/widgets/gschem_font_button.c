@@ -24,7 +24,7 @@
 #include <stdio.h>
 
 #include "widgets/geda_label.h"
-#include "widgets/font_button.h"
+#include "widgets/gschem_font_button.h"
 #include "widgets/geda_font_dialog.h"
 
 #include "gettext.h"

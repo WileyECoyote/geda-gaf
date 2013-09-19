@@ -21,6 +21,7 @@
 #include <config.h>
 #include <version.h>
 #include <missing.h>
+#include <ascii.h>
 
 #include <stdio.h>
 #ifdef HAVE_STDLIB_H
@@ -29,7 +30,7 @@
 #ifdef HAVE_STRING_H
 # include <string.h>
 #endif
-
+#include <ctype.h>
 #include "gschem.h"
 
 #ifdef HAVE_LIBDMALLOC
@@ -204,8 +205,6 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
  *  \par Function Description
  *  The function selects all the text in a TextView widget.
  *
- * \Note Called by:
- *
  */
 void select_all_text_in_textview(GtkTextView *textview)
 {
@@ -218,7 +217,7 @@ void select_all_text_in_textview(GtkTextView *textview)
     gtk_text_buffer_select_range(textbuffer, &start, &end);
   }
   else
-    fprintf(stderr,"select_all_text: parameter is not a textview widget\n");
+    g_warning("select_all_text: parameter is not a textview widget\n");
 }
 
 /*! \todo Finish function documentation!!!
@@ -3433,7 +3432,7 @@ static bool get_selected_pages (GtkTreeModel *model,
       *(GList**)data = g_list_append (*(GList**)data, page);
     }
     else {
-      fprintf(stderr, "CloseConfirmationDialog found NULL value for page\n");
+      g_warning("CloseConfirmationDialog found NULL value for page\n");
     }
   }
 
@@ -3653,11 +3652,19 @@ void x_dialog_coord_dialog_response(GtkWidget *Dialog, int response,
  */
 void x_dialog_coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y)
 {
+  GtkWidget *Dialog;
+  GtkEntry  *screen_entry;
+  GtkEntry  *world_entry;
+
   char *string;
   int world_x, world_y;
 
+  Dialog = w_current->cowindow;
+  screen_entry = gtk_object_get_data(GTK_OBJECT(Dialog), "screen");
+  world_entry  = gtk_object_get_data(GTK_OBJECT(Dialog), "world");
+
   string = g_strdup_printf("(%d, %d)", x, y);
-  gtk_label_set_text(GTK_LABEL(w_current->coord_screen), string );
+  gtk_entry_set_text(screen_entry, string );
   g_free(string);
 
   SCREENtoWORLD (w_current, x, y, &world_x, &world_y);
@@ -3665,8 +3672,66 @@ void x_dialog_coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y)
   world_y = snap_grid (w_current, world_y);
 
   string = g_strdup_printf("(%d, %d)", world_x, world_y);
-  gtk_label_set_text(GTK_LABEL(w_current->coord_world), string );
+  gtk_entry_set_text(world_entry, string );
   g_free(string);
+}
+
+static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
+{
+  GSCHEM_TOPLEVEL *w_current;
+  const char *str;
+  char buffer[36];
+  char *x_str, *y_str;
+  int   icomma, x, y;
+  int   index;
+  bool  valid;
+
+  icomma = -1;
+  valid  = FALSE;
+  x_str  = NULL;
+  y_str  = NULL;
+  str    = NULL;
+  str    = gtk_entry_get_text (GTK_ENTRY(entry));
+
+  if (str) {
+    strcpy(&buffer[0], str);
+    for (index =0; index < 36; index++) {
+
+      if (!buffer[index])
+        break;
+
+      if ( isdigit(buffer[index])) {
+        if (!x_str) {
+          x_str = &buffer[index];
+        }
+        else if (!y_str && icomma > 0) {
+          y_str = &buffer[index];
+        }
+      }
+      else if ( buffer[index] == ASCII_COMMA) {
+        icomma = index;
+      }
+      else if ( buffer[index] == ASCII_LEFT_PARENTHESIS ||
+        buffer[index] == ASCII_RIGHT_PARENTHESIS ) {
+        buffer[index] = ASCII_SPACE;
+      }
+    }
+    if ( x_str && y_str) {
+      if ( icomma > 0)
+        buffer[icomma] = '\0';
+      x = atoi(x_str);
+      y = atoi(y_str);
+      valid = !FALSE;
+    }
+
+    if (valid) {
+      w_current = Dialog->w_current;
+      x_event_set_pointer_position (w_current, x, y);
+      if (!w_current->inside_action) {
+        o_place_motion (w_current, x, y);
+      }
+    }
+  }
 }
 
 /*! \brief Create the coord dialog
@@ -3676,14 +3741,19 @@ void x_dialog_coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y)
 void x_dialog_coord_dialog (GSCHEM_TOPLEVEL *w_current, int x, int y)
 {
   GtkWidget *ThisDialog;
-  GtkWidget *frame;
   GtkWidget *vbox;
+  GtkWidget *frame;
+  GtkWidget *screen_entry;
+  GtkWidget *world_entry;
+  GdkColor   bg_color;
 
   ThisDialog = w_current->cowindow;
+
   if (!ThisDialog) {
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Coords"),
                          GTK_WINDOW(w_current->main_window),
-    /* nonmodal System Dialog */     GSCHEM_MODELESS_DIALOG,
+                         GSCHEM_MODELESS_DIALOG,
                                  IDS_COORDINATES, w_current,
                        GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
                                                        NULL);
@@ -3692,32 +3762,56 @@ void x_dialog_coord_dialog (GSCHEM_TOPLEVEL *w_current, int x, int y)
 
     gtk_container_border_width (GTK_CONTAINER(ThisDialog),
                                 DIALOG_BORDER_SPACING);
+
+    bg_color.red   = 0xEEEE;
+    bg_color.green = 0xEBEB;
+    bg_color.blue  = 0xE7E7;
+
     vbox = GTK_DIALOG(ThisDialog)->vbox;
     gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     frame = gtk_frame_new (_("Screen"));
-    w_current->coord_screen = gtk_label_new("(########, ########)");
-    gtk_label_set_justify( GTK_LABEL(w_current->coord_screen),
-                           GTK_JUSTIFY_LEFT);
-    gtk_misc_set_padding(GTK_MISC(w_current->coord_screen),
-                         DIALOG_H_SPACING, DIALOG_V_SPACING);
-    gtk_container_add(GTK_CONTAINER (frame),
-                      w_current->coord_screen);
-    gtk_box_pack_start(GTK_BOX (vbox), frame, FALSE, FALSE, 0);
+    gtk_container_add(GTK_CONTAINER (vbox), frame);
+    g_object_set (frame, "visible", TRUE, NULL);
+/*
+    event_box = gtk_event_box_new();
+    gtk_container_add (GTK_CONTAINER(frame), event_box);
+    g_object_set (event_box, "visible", TRUE, NULL);
+*/
+    screen_entry = geda_visible_entry_new ( DISABLE, DISABLE);
+    gtk_entry_set_has_frame (GTK_ENTRY(screen_entry), FALSE);
+    gtk_entry_set_alignment (GTK_ENTRY(screen_entry), 0.5);
+    geda_entry_widget_modify_color (screen_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+    gtk_container_add(GTK_CONTAINER (frame), screen_entry);
 
     frame = gtk_frame_new (_("World"));
-    w_current->coord_world = gtk_label_new ("(########, ########)");
-    gtk_misc_set_padding(GTK_MISC(w_current->coord_world),
-                         DIALOG_H_SPACING, DIALOG_V_SPACING);
-    gtk_label_set_justify(GTK_LABEL(w_current->coord_world), GTK_JUSTIFY_LEFT);
-    gtk_container_add(GTK_CONTAINER (frame), w_current->coord_world);
-    gtk_box_pack_start(GTK_BOX (vbox), frame, FALSE, FALSE, 0);
+    gtk_container_add(GTK_CONTAINER (vbox), frame);
+    g_object_set (frame, "visible", TRUE, NULL);
+/*
+    event_box = gtk_event_box_new();
+    gtk_container_add (GTK_CONTAINER(frame), event_box);
+    g_object_set (event_box, "visible", TRUE, NULL);
+*/
+    world_entry = geda_visible_entry_new ( DISABLE, DISABLE);
+    gtk_entry_set_has_frame (GTK_ENTRY(world_entry), FALSE);
+    gtk_entry_set_alignment (GTK_ENTRY(world_entry), 0.5);
+    geda_entry_widget_modify_color (world_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color); 
+    gtk_container_add(GTK_CONTAINER (frame), world_entry);
+    geda_entry_set_valid_input((GedaEntry*)world_entry, ACCEPT_COORDINATE);
+
+    GSCHEM_HOOKUP_OBJECT ( ThisDialog, screen_entry, "screen");
+    GSCHEM_HOOKUP_OBJECT ( ThisDialog, world_entry,  "world");
+
+    g_signal_connect (world_entry, "process-entry",
+                      G_CALLBACK (co_on_entry_activate),
+                      ThisDialog);
 
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_coord_dialog_response),
                       w_current);
 
-    gtk_widget_show_all(ThisDialog);
+    gtk_widget_show(ThisDialog);
+
 
     w_current->cowindow = ThisDialog;
   }
@@ -3917,7 +4011,6 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
 void gschem_message_dialog (const char *msg, gEDA_MessageType context, char *title)
 {
   GtkWidget *dialog;
-  gdk_threads_enter();
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -3935,7 +4028,6 @@ void gschem_message_dialog (const char *msg, gEDA_MessageType context, char *tit
   gtk_dialog_run (GTK_DIALOG (dialog));
 
   gtk_widget_destroy (dialog);
-  gdk_threads_leave();
 
 }
 
@@ -3950,7 +4042,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
 {
   GtkWidget *dialog;
   int r;
-  gdk_threads_enter();
+  //gdk_threads_enter();
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -3979,7 +4071,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
   r = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
-  gdk_threads_leave();
+  //gdk_threads_leave();
   return r;
 }
 

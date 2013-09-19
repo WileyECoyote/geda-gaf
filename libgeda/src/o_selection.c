@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -107,7 +107,7 @@ void o_selection_print_all(const SELECTION *selection)
   printf("DONE printing selection ********************\n");
   printf("\n");
 }
-
+/* This description does not match what the function does */
 /*! \brief Selects the given object.
  *  \par Sets the select flag, saves the color, and then selects the
  *  given object

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ void s_color_init(void)
 void s_color_map_defaults (COLOR *map)
 {
   int i;
-  gboolean reached_end = FALSE;
+  bool reached_end = FALSE;
   COLOR c;
   for (i = 0; i < MAX_COLORS; i++) {
     if (reached_end) {
@@ -128,11 +128,11 @@ void s_color_map_defaults (COLOR *map)
  *
  *  \returns #TRUE on success, #FALSE on failure.
  */
-bool s_color_rgba_decode (const gchar *rgba,
+bool s_color_rgba_decode (const char *rgba,
                      guint8 *r, guint8 *g, guint8 *b, guint8 *a)
 {
-  gint len, i, ri, gi, bi, ai;
-  gchar c;
+  int len, i, ri, gi, bi, ai;
+  char c;
 
   /* Default to solid white */
   *r = 0xff; *g = 0xff; *b = 0xff; *a = 0xff;
@@ -182,10 +182,10 @@ char *s_color_rgba_encode (guint8 r, guint8 g, guint8 b, guint8 a)
 {
   if (a < 0xff)
     return g_strdup_printf("#%02x%02x%02x%02x",
-                           (gint) r, (gint) g, (gint) b, (gint) a);
+                           (int) r, (int) g, (int) b, (int) a);
   else
     return g_strdup_printf("#%02x%02x%02x",
-                           (gint) r, (gint) g, (gint) b);
+                           (int) r, (int) g, (int) b);
 }
 
 /*! \todo Finish function documentation!!!
@@ -193,7 +193,7 @@ char *s_color_rgba_encode (guint8 r, guint8 g, guint8 b, guint8 a)
  *  \par Function Description
  *
  */
-gchar *s_color_ps_string(gint color)
+char *s_color_ps_string(int color)
 {
   COLOR c;
 
@@ -223,7 +223,7 @@ s_color_map_to_scm (const COLOR *map)
     SCM color_val = SCM_BOOL_F;
     if (map[i].enabled) {
       COLOR c = map[i];
-      gchar *rgba = s_color_rgba_encode (c.r, c.g, c.b, c.a);
+      char *rgba = s_color_rgba_encode (c.r, c.g, c.b, c.a);
       color_val = scm_from_utf8_string (rgba);
       g_free (rgba);
     }

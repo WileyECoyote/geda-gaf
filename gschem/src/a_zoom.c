@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -78,9 +78,10 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
 
   /* calc center: either "mouse_to_world" or center=center or a
      virtual center if warp_cursor is disabled */
-  if (w_current->zoom_with_pan == TRUE && selected_from == HOTKEY) {
-    if (!x_event_get_pointer_position(w_current, FALSE,
-				      &start_x, &start_y))
+  if (w_current->zoom_with_pan == TRUE &&
+     ((selected_from == ID_ORIGIN_KEYBOARD) ||
+       (selected_from == ID_ORIGIN_MOUSE))) {
+    if (!x_event_get_pointer_position(w_current, FALSE, &start_x, &start_y))
       return;
     if ( w_current->warp_cursor ) {
       world_pan_center_x = start_x;
@@ -97,7 +98,8 @@ void a_zoom(GSCHEM_TOPLEVEL *w_current, int dir, int selected_from, int pan_flag
       world_pan_center_x = (right + left) / 2;
       world_pan_center_y = (top + bottom) / 2;
     }
-  } else {
+  }
+  else {
     world_pan_center_x = (double) (toplevel->page_current->left +
                                    toplevel->page_current->right ) / 2;
     world_pan_center_y = (double) (toplevel->page_current->top +

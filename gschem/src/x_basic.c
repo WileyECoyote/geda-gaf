@@ -28,10 +28,11 @@
 #include <dmalloc.h>
 #endif
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Repaint Background Region
  *  \par Function Description
- *
+ *  This function is called by o_redraw_rects to redraw the grid
+ *  within a rectangular region given by specific parameters.
+ * 
  */
 void x_repaint_background_region (GSCHEM_TOPLEVEL *w_current,
                                   int x, int y, int width, int height)
@@ -47,10 +48,11 @@ void x_repaint_background_region (GSCHEM_TOPLEVEL *w_current,
   x_grid_draw_region (w_current, x, y, width, height);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Set Horizontal Scroll Bar Range
  *  \par Function Description
- *
+ *   This functions sets the upper and lower limits of the
+ *  horizontal scroll bar to the left of right values of the
+ *  drawing area.
  */
 void x_hscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
 {
@@ -69,10 +71,9 @@ void x_hscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Update Horizontal Scroll Bar
  *  \par Function Description
- *
+ *   This functions updates the scale of horizontal scroll bar.
  */
 void x_hscrollbar_update(GSCHEM_TOPLEVEL *w_current)
 {
@@ -106,10 +107,11 @@ void x_hscrollbar_update(GSCHEM_TOPLEVEL *w_current)
   gtk_signal_emit_by_name(GTK_OBJECT(hadjustment), "value_changed");
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Set Vertical Scroll Bar Range
  *  \par Function Description
- *
+ *   This functions sets the upper and lower limits of the
+ *  vertical scroll bar to the top of bottom values of the
+ *  drawing area.
  */
 void x_vscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
 {
@@ -127,10 +129,9 @@ void x_vscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
   vadjustment->upper = toplevel->init_bottom;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Update Vertical Scroll Bar
  *  \par Function Description
- *
+ *   This functions updates the scale of vertical scroll bar.
  */
 void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current)
 {
@@ -165,10 +166,10 @@ void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current)
   gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "value_changed");
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Update Scroll Bars
  *  \par Function Description
- *
+ *   This functions calls the preceding functions; x_hscrollbar_update
+ *   and v_hscrollbar_update to update the individual bars.
  */
 void x_scrollbars_update(GSCHEM_TOPLEVEL *w_current)
 {
@@ -180,12 +181,19 @@ void x_scrollbars_update(GSCHEM_TOPLEVEL *w_current)
   x_vscrollbar_update(w_current);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Set Cursor/Pointer Position
  *  \par Function Description
+ *   This function sets the pointer position to relative
+ *  screen coordinates of the given widget.
  *
+ *  \param [in] widget to which the coordinates will be relative
+ *  \param [in] x      integer abscissa in screen units
+ *  \param [in] y      integer ordinate in screen units
+ *
+ * \note WEH: For setting the cursor relative to the drawing area
+ *       using world coordinates see x_event_set_pointer_position.
  */
-void x_basic_warp_cursor (GtkWidget* widget, gint x, gint y)
+void x_basic_warp_cursor (GtkWidget* widget, int x, int y)
 {
   GdkScreen *screen;
   GdkDisplay *display;
@@ -217,7 +225,8 @@ void x_basic_warp_cursor (GtkWidget* widget, gint x, gint y)
  *  This function is primarily used by the next function to determine if
  *  a row in a scrollable view is centered.
  */
-int tree_view_row_get_visibility(GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible)
+int tree_view_row_get_visibility(GtkTreeView *tree_view, GtkTreeIter *iter,
+                                 bool fully_visible)
 {
   GtkTreeModel *model;
   GtkTreePath *path, *start_path, *end_path;
@@ -259,7 +268,8 @@ int tree_view_row_get_visibility(GtkTreeView *tree_view, GtkTreeIter *iter, bool
  *  positions. GTK lacks comparable functionality. Don't bother with
  *  gtk_tree_view_set_cursor.
  */
-int tree_view_row_make_visible(GtkTreeView *tree_view, GtkTreeIter *iter, bool center)
+int tree_view_row_make_visible(GtkTreeView *tree_view, GtkTreeIter *iter,
+                               bool center)
 {
   GtkTreePath *path;
   int visible;

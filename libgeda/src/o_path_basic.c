@@ -74,17 +74,38 @@ typedef void (*FILL_FUNC) (TOPLEVEL *toplevel, FILE *fp, PATH *path,
 OBJECT *o_path_new (TOPLEVEL *toplevel,
                     char type, int color, const char *path_string)
 {
+  return o_path_new_take_path (toplevel, type, color,
+                               s_path_parse (path_string));
+}
+
+/*! \brief Create a new path object.
+ *  \par Function Description
+ *  This function creates and returns a new OBJECT representing a path
+ *  using the path shape data stored in \a path_data.  The \a
+ *  path_data is subsequently owned by the returned OBJECT.
+ *
+ *  \see o_path_new().
+ *
+ *  \param [in]     toplevel     The TOPLEVEL object.
+ *  \param [in]     type         Must be OBJ_PATH.
+ *  \param [in]     color        The path color.
+ *  \param [in]     path_data    The #PATH data structure to use.
+ *  \return A pointer to the new end of the object list.
+ */
+OBJECT *o_path_new_take_path (TOPLEVEL *toplevel,
+                              char type, int color, PATH *path_data)
+{
   OBJECT *new_node;
 
   /* create the object */
   new_node        = s_basic_new_object (type, "path");
   new_node->color = color;
 
-  new_node->path  = s_path_parse (path_string);
+  new_node->path  = path_data;
 
   /* path type and filling initialized to default */
   o_set_line_options (toplevel, new_node,
-                      o_get_line_end(toplevel->print_output_capstyle), TYPE_SOLID, 0, -1, -1);
+                      DEFAULT_OBJECT_END, TYPE_SOLID, 0, -1, -1);
   o_set_fill_options (toplevel, new_node,
                       FILLING_HOLLOW, -1, -1, -1, -1, -1);
 
@@ -93,8 +114,6 @@ OBJECT *o_path_new (TOPLEVEL *toplevel,
 
   return new_node;
 }
-
-
 /*! \brief Create a copy of a path.
  *  \par Function Description
  *  This function creates a verbatim copy of the
@@ -130,8 +149,6 @@ OBJECT *o_path_copy (TOPLEVEL *toplevel, OBJECT *o_current)
   /* return the new tail of the object list */
   return new_obj;
 }
-
-
 /*! \brief Create path OBJECT from character string.
  *  \par Function Description
  *  This function creates a path OBJECT from the character string
@@ -175,9 +192,9 @@ OBJECT *o_path_read (TOPLEVEL *toplevel,
    */
   /* Allocate enough space */
   if (sscanf (first_line, "%c %d %d %d %d %d %d %d %d %d %d %d %d %d\n",
-	      &type, &color, &line_width, &line_end, &line_type,
-	      &line_length, &line_space, &fill_type, &fill_width, &angle1,
-	      &pitch1, &angle2, &pitch2, &num_lines) != 14) {
+       &type, &color, &line_width, &line_end, &line_type,
+       &line_length, &line_space, &fill_type, &fill_width, &angle1,
+       &pitch1, &angle2, &pitch2, &num_lines) != 14) {
     g_set_error(err, EDA_ERROR, EDA_ERROR_PARSE, _("Failed to parse path object"));
     return NULL;
   }
@@ -228,7 +245,6 @@ OBJECT *o_path_read (TOPLEVEL *toplevel,
 
   return new_obj;
 }
-
 
 /*! \brief Create a character string representation of a path OBJECT.
  *  \par Function Description
@@ -281,8 +297,7 @@ char *o_path_save (TOPLEVEL *toplevel, OBJECT *object)
   return buf;
 }
 
-
-/*! \brief Modify controol point location
+/*! \brief Modify control point location
  *
  *  \par Function Description
  *  This function modifies a control point location of the path object
@@ -340,7 +355,6 @@ void o_path_modify (TOPLEVEL *toplevel, OBJECT *object,
   o_emit_change_notify (toplevel, object);
 }
 
-
 /*! \brief Translate a path position in WORLD coordinates by a delta.
  *  \par Function Description
  *  This function applies a translation of (<B>x1</B>,<B>y1</B>) to the path
@@ -381,7 +395,6 @@ void o_path_translate_world (TOPLEVEL *toplevel,
   /* Update bounding box */
   object->w_bounds_valid_for = NULL;
 }
-
 
 /*! \brief Rotate Line OBJECT using WORLD coordinates.
  *  \par Function Description

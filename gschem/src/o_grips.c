@@ -696,7 +696,7 @@ static void o_grips_start_path(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
   w_current->first_wy = w_current->second_wy = gy;
 
   /* draw the first temporary path */
-  /* o_path_invalidate_rubber (w_current); */
+  /* o_path_invalidate_rubber_grips (w_current); */
   w_current->rubber_visible = 1;
 }
 
@@ -965,7 +965,7 @@ void o_grips_motion(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
       break;
 
     case OBJ_PATH:
-      o_path_motion (w_current, w_x, w_y);
+      o_path_motion_grips (w_current, w_x, w_y);
       break;
 
     case OBJ_PICTURE:
@@ -1494,7 +1494,7 @@ void o_grips_draw_rubber (GSCHEM_TOPLEVEL *w_current)
       break;
 
     case OBJ_PATH:
-      o_path_draw_rubber (w_current);
+      o_path_draw_rubber_grips (w_current);
       break;
 
     case OBJ_PICTURE:

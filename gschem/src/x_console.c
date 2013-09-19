@@ -216,7 +216,7 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
     x_console_close ();
     break;
     default:
-      s_log_message("Internal Error: <x_console_callback_response> unhandled case\n");
+      g_critical("Internal Error: <x_console_callback_response> unhandled case\n");
   }
 }
 
@@ -560,7 +560,7 @@ static void console_init (Console *console) /* *Self */
 
   /* Instantiate one our Custom Entry Widgets */
   console_entry = geda_entry_new(&command_buffer, &command_list);
-  //console_entry = geda_entry_new(&command_buffer, -1);
+
   geda_entry_completion_set_case((GedaEntry*) console_entry, FALSE);
 
   if(console_window_type == DECORATED)

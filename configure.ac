@@ -20,7 +20,9 @@ AC_CONFIG_HEADERS([config.h])
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-AM_INIT_AUTOMAKE([nostdinc -Woverride  -Wportability -Wsyntax -Wunsupported])
+# 'serial-tests' option disables support for parallel testsuites present
+#  in recent versions of Automake. serial-tests
+AM_INIT_AUTOMAKE([ parallel-tests color-tests nostdinc -Woverride  -Wportability -Wsyntax -Wunsupported])
 
 AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 
@@ -46,6 +48,8 @@ AC_PROG_CXX
 AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_CPP
+
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 
 AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
@@ -310,7 +314,7 @@ Configuration:      ${PACKAGE} Ver ${VERSION} ${DATE_VERSION}
                           CFLAGS:     ${CFLAGS}
                          LDFLAGS:     ${LDFLAGS}
 
-                           Guile:     ${GUILE_PKG}
+                           Guile:     ${GUILE_PKG_NAME}
                            Cairo:     ${CAIRO_PKG}
                            Pango:     ${PANGO_PKG}
 

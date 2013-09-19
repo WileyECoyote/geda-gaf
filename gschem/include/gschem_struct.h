@@ -17,7 +17,9 @@ struct st_gschem_toplevel {
   GtkWidget *add_handlebox;
   GtkWidget *attribute_handlebox;
   GtkWidget *edit_handlebox;
+  GtkWidget *grid_snap_handlebox;
   GtkWidget *page_handlebox;
+  GtkWidget *select_handlebox;
   GtkWidget *standard_handlebox;
   GtkWidget *zoom_handlebox;
 
@@ -106,6 +108,7 @@ struct st_gschem_toplevel {
                                            Its range of values depends on the
                                            type of object being manipulated. */
   OBJECT *which_object;                 /* Object being manipulated */
+  PATH   *temp_path;                    /* Path being created */
 
   /* ----------------- Rubberbanding nets ----------------- */
   GList *stretch_list;
@@ -169,10 +172,11 @@ struct st_gschem_toplevel {
   /* sets whether nets rubberband as you move them (or connecting comps) */
   int netconn_rubberband;
 
-  int select_slack_pixels;  /* Number of pixels around an object we can still select it with */
-  SNAP_STATE snap;          /* Whether/how to snap to grid */
-  int snap_size;            /* Snap grid parameter */
+  int select_slack_pixels;    /* Number of pixels around an object we can still select it with */
+  SNAP_STATE snap;            /* Whether/how to snap to grid */
+  int snap_size;              /* Snap grid parameter */
   int sort_component_library; /* sort the component library */
+  SNAP_STATE old_snap;        /* Use to toggle the snap to the previous state */
 
   /* Nets and Routing */
   int net_endpoint_mode;    /* can be either NONE, FILLEDBOX, EMPTYBOX, X */

@@ -25,38 +25,96 @@
  *
  * Date: Jan, 31, 2013
  * Contributing Author: Wiley Edward Hill
- *
-*/
-
+ * 
+ */
+/************************ REVISION HISTORY *************************
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 01/31/13 |  Inital release, new file.
+ * ------------------------------------------------------------------
+ * WEH | 09/10/13 | Added more icons, seperate geda &  gschem (to
+ *                | reduce the lists to smaller sizes, in anticipation
+ *                | adding more icons).
+ *                | to support routines not using embed labels.
+ * ------------------------------------------------------------------
+ * WEH | 09/16/13 | Relocated _set_default_icon from x_window to this
+ *                | module (improvement to general code organization).
+ *                | Added new function x_icons_add_search_path from
+ *                | master branch ([with new name] as feature update).
+ *                | Consolidated icon intialization to new function
+ *                | x_icons_initialize (for better code organization).
+ */
 #include <gschem.h>
 
 static GtkIconFactory* gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
-  "geda-arc", "geda-arc-edit", "geda-box", "geda-circles", "geda-copy",
-  "geda-line", "geda-line-type", "geda_new", "geda-mesh", "geda-mirror",
-  "geda-move", "geda-multi", "geda-pin",  "geda-pin-type", "geda-slot",
-  "geda-rotate",
-  "geda-lock", "geda-unlock", "geda-zoom-box", "geda-zoom-pan",
-  "geda-select", "gschem-bus", "gschem-net",
+  "geda-arc",       "geda-arc-edit",  "geda-box",       "geda-bus",
+  "geda-circle",    "geda-circles",   "geda-component", "geda-copy",
+  "geda-display",   "geda-grid-dot",  "geda-grid-mesh", "geda-line",
+  "geda-line-type", "geda-lock",      "geda-net",       "geda-magnet",
+  "geda-mesh",      "geda-mirror",    "geda-move",      "geda-multi",
+  "geda-new",       "geda-path",      "geda-pin",       "geda-pin-type",
+  "geda-slot",      "geda-snap-off",  "geda-snap-on",   "geda-rotate",
+  "geda-unlock",    "geda-zoom-box",  "geda-zoom-pan",
   NULL
 };
+
+const char* IDS_GSCHEM_ICONS[] = {
+  "gschem-bus",    "gschem-invert",     "gschem-net",
+  "gschem-select", "gschem-select-all", "gschem-unselect",
+  NULL
+};
+
+/*! \brief Setup default icon for GTK windows
+ *
+ *  \par Function Description
+ *  Sets the default window icon by name, to be found in the current icon
+ *  theme path.
+ * 
+ *  \note The default icon name is \#defined in sdefines.h as
+ *        GSCHEM_THEME_ICON_NAME.
+ */
+void x_icons_set_default_icon (const char* icon_name)
+{
+  gtk_window_set_default_icon_name( icon_name );
+}
+
+/*! \brief Setup icon search paths.
+ * \par Function Description
+ * Add the icons installed by gschem to the search path for the
+ * default icon theme, so that they can be automatically found by GTK.
+ */
+void x_icons_add_search_path (const char *path)
+{
+  char *icon_path;
+
+  g_return_if_fail (s_path_sys_data () != NULL);
+
+  icon_path = g_build_filename (s_path_sys_data (), path, NULL);
+  gtk_icon_theme_append_search_path (gtk_icon_theme_get_default (),
+                                     icon_path);
+  g_free (icon_path);
+}
 
 /*! \brief Stock Icon Factory
  *
  *  \par Function Description
  *  This function sets up a GTK Icon Factory
  */
-void x_icons_setup_factory()
+static void x_icons_setup_factory()
 {
   GtkIconSet *icon_set;
   GdkPixbuf  *pixbuf;
-  GError     *err = NULL;
+  GError     *err;
 
-  const char* icon_name = NULL;
-  char *filename;
-  char *pathname;
+  const char *icon_name;
+  char       *filename;
+  char       *pathname;
   int index;
+
+  err       = NULL;
+  icon_name = NULL;
 
   gschem_factory = gtk_icon_factory_new ();
   gtk_icon_factory_add_default (gschem_factory);
@@ -90,4 +148,62 @@ void x_icons_setup_factory()
 
   }
 
+  for ( index = 0; IDS_GSCHEM_ICONS[index] != NULL; index++ ) {
+
+    icon_name = IDS_GSCHEM_ICONS[index];
+
+    filename = g_strconcat (icon_name, ".png", NULL);
+    pathname = g_build_filename (s_path_sys_data (), "bitmap", filename, NULL);
+    g_free(filename);
+    if(pathname) {
+      if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
+        ( access(pathname, R_OK) == 0)) {
+        pixbuf = gdk_pixbuf_new_from_file(pathname, &err);
+        if(!err) {
+          icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
+          gtk_icon_factory_add (gschem_factory, icon_name, icon_set);
+        }
+        else {
+          s_log_message("Warning, Error reading image file: %s\n", err->message);
+          g_clear_error (&err);
+          err = NULL;
+        }
+      }
+      else { /* file non existence or not accessible */
+        s_log_message("Warning, Error accessing image file: %s\n", pathname);
+      }
+      g_free(pathname);
+    }
+
+  }
 }
+
+/*! \brief Setup icon search paths.
+ * \par Function Description
+ * Add the icons installed by gschem to the search path for the
+ * default icon theme, so that they can be automatically found by GTK.
+ */
+void x_icons_initialize (void)
+{
+  x_icons_add_search_path ("icons");
+
+  x_icons_set_default_icon(GSCHEM_THEME_ICON_NAME);
+
+  x_icons_setup_factory();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

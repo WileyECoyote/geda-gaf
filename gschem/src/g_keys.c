@@ -36,66 +36,62 @@
 #include "i_actions.h"
 
 /*
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-*/
+ * #ifdef HAVE_LIBDMALLOC
+ * #include <dmalloc.h>
+ * #endif
+ */
 #include <gdk/gdkkeysyms.h>
 
-
-#define DEFINE_H_KEYS(name)				\
-SCM h_keys_ ## name(SCM rest)				\
-{							\
-   GSCHEM_TOPLEVEL *w_current = g_current_window ();	\
-   i_callback_ ## name(w_current, 0, NULL);     \
-   return SCM_BOOL_T;				\
+#define DEFINE_H_KEYS(name)                       \
+SCM h_keys_ ## name(SCM rest)                     \
+{                                                 \
+GSCHEM_TOPLEVEL *w_current = g_current_window (); \
+i_callback_ ## name(w_current, 0, NULL);          \
+return SCM_BOOL_T;                                \
 }
 
-SCM i_process_action(SCM action)
-{
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
-  char *action_str;
-  action_str = scm_to_utf8_string(action);
-  i_command_process(w_current, action_str, 0, NULL, ID_ORIGIN_KEYBOARD);
-  return SCM_BOOL_T;
+#define DEFINE_BUFFER_KEY_FUNC(name, number)        \
+SCM buffer_ ## name ## number(SCM rest)             \
+{                                                   \
+  GSCHEM_TOPLEVEL *w_current = g_current_window (); \
+  char *status_msg_str;                             \
+  status_msg_str = g_strconcat ( #name, " ", #number, NULL); \
+  i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_KEYBOARD); \
+  g_free (status_msg_str);                          \
+  return SCM_BOOL_T;                                \
 }
+#define DEFINE_BUFFER_MENU_FUNC(name, number)       \
+SCM buffer_ ## name ## number ##_menu(SCM rest)     \
+{                                                   \
+  GSCHEM_TOPLEVEL *w_current = g_current_window (); \
+  char *status_msg_str;                             \
+  status_msg_str = g_strconcat ( #name, " ", #number, NULL); \
+  i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_MENU); \
+  g_free (status_msg_str);                          \
+  return SCM_BOOL_T;                                \
+}
+#define DEFINE_BUFFER_FUNCS(name, number)           \
+        DEFINE_BUFFER_KEY_FUNC(name, number)        \
+        DEFINE_BUFFER_MENU_FUNC(name, number)
 
-/*! \brief test-comment
- * test-comment
- */
 /* Hoykeys */
-DEFINE_H_KEYS(edit_copy_hotkey)
-DEFINE_H_KEYS(edit_mcopy_hotkey)
-DEFINE_H_KEYS(edit_move_hotkey)
-DEFINE_H_KEYS(edit_rotate_hotkey)
-DEFINE_H_KEYS(edit_mirror_hotkey)
+DEFINE_BUFFER_FUNCS( copy, 1)
+DEFINE_BUFFER_FUNCS( copy, 2)
+DEFINE_BUFFER_FUNCS( copy, 3)
+DEFINE_BUFFER_FUNCS( copy, 4)
+DEFINE_BUFFER_FUNCS( copy, 5)
 
-DEFINE_H_KEYS(buffer_copy1)
-DEFINE_H_KEYS(buffer_copy2)
-DEFINE_H_KEYS(buffer_copy3)
-DEFINE_H_KEYS(buffer_copy4)
-DEFINE_H_KEYS(buffer_copy5)
-DEFINE_H_KEYS(buffer_cut1)
-DEFINE_H_KEYS(buffer_cut2)
-DEFINE_H_KEYS(buffer_cut3)
-DEFINE_H_KEYS(buffer_cut4)
-DEFINE_H_KEYS(buffer_cut5)
-DEFINE_H_KEYS(buffer_paste1)
-DEFINE_H_KEYS(buffer_paste2)
-DEFINE_H_KEYS(buffer_paste3)
-DEFINE_H_KEYS(buffer_paste4)
-DEFINE_H_KEYS(buffer_paste5)
+DEFINE_BUFFER_FUNCS( cut, 1)
+DEFINE_BUFFER_FUNCS( cut, 2)
+DEFINE_BUFFER_FUNCS( cut, 3)
+DEFINE_BUFFER_FUNCS( cut, 4)
+DEFINE_BUFFER_FUNCS( cut, 5)
 
-DEFINE_H_KEYS(clipboard_paste_hotkey)
-DEFINE_H_KEYS(buffer_paste1_hotkey)
-DEFINE_H_KEYS(buffer_paste2_hotkey)
-DEFINE_H_KEYS(buffer_paste3_hotkey)
-DEFINE_H_KEYS(buffer_paste4_hotkey)
-DEFINE_H_KEYS(buffer_paste5_hotkey)
-
-DEFINE_H_KEYS(view_zoom_in_hotkey)
-DEFINE_H_KEYS(view_zoom_out_hotkey)
-DEFINE_H_KEYS(view_zoom_box_hotkey)
+DEFINE_BUFFER_FUNCS( paste, 1)
+DEFINE_BUFFER_FUNCS( paste, 2)
+DEFINE_BUFFER_FUNCS( paste, 3)
+DEFINE_BUFFER_FUNCS( paste, 4)
+DEFINE_BUFFER_FUNCS( paste, 5)
 
 DEFINE_H_KEYS(view_pan_hotkey)
 DEFINE_H_KEYS(view_pan_left)
@@ -103,21 +99,13 @@ DEFINE_H_KEYS(view_pan_right)
 DEFINE_H_KEYS(view_pan_up)
 DEFINE_H_KEYS(view_pan_down)
 
-DEFINE_H_KEYS(add_net_hotkey)
-DEFINE_H_KEYS(add_bus_hotkey)
-DEFINE_H_KEYS(add_line_hotkey)
-DEFINE_H_KEYS(add_box_hotkey)
-DEFINE_H_KEYS(add_circle_hotkey)
-DEFINE_H_KEYS(add_arc_hotkey)
-DEFINE_H_KEYS(add_pin_hotkey)
-
 DEFINE_H_KEYS(misc)
 DEFINE_H_KEYS(misc2)
 DEFINE_H_KEYS(misc3)
 
 /* be sure that you don't use the widget parameter in this one, since it is
-being called with a null, I suppose we should call it with the right param.
-hack */
+ * being called with a null, I suppose we should call it with the right param.
+ * hack */
 DEFINE_H_KEYS(cancel)
 
 /*! Contains the smob tag for key smobs */
@@ -144,9 +132,9 @@ typedef struct {
  * \return TRUE if the key combination is valid for keybinding.
  */
 static bool
-g_key_is_valid (guint keyval, GdkModifierType modifiers)
+g_key_is_valid ( unsigned int keyval, GdkModifierType modifiers)
 {
-  static const guint invalid_keyvals[] = {
+  static const unsigned int invalid_keyvals[] = {
     GDK_Shift_L, GDK_Shift_R, GDK_Shift_Lock, GDK_Caps_Lock, GDK_ISO_Lock,
     GDK_Control_L, GDK_Control_R, GDK_Meta_L, GDK_Meta_R,
     GDK_Alt_L, GDK_Alt_R, GDK_Super_L, GDK_Super_R, GDK_Hyper_L, GDK_Hyper_R,
@@ -174,7 +162,6 @@ g_key_is_valid (guint keyval, GdkModifierType modifiers)
   return TRUE;
 }
 
-
 /*! \brief Create a new bindable key object.
  * \par Function Description
  * Create and return a new gschem key object from a \a keyval and a
@@ -187,7 +174,7 @@ g_key_is_valid (guint keyval, GdkModifierType modifiers)
  * \return a new bindable key object, or SCM_BOOL_F.
  */
 static SCM
-g_make_key (guint keyval, GdkModifierType modifiers)
+g_make_key (unsigned int keyval, GdkModifierType modifiers)
 {
   SCM result = SCM_BOOL_F;
   if (g_key_is_valid (keyval, modifiers)) {
@@ -405,7 +392,7 @@ g_keys_reset (GSCHEM_TOPLEVEL *w_current)
  *  The returned value must be freed by caller.
  *
  *  \return A GArray with keymap data.
-  */
+ */
 GArray* g_keys_dump_keymap (void)
 {
   SCM dump_proc = scm_c_lookup ("dump-current-keymap");
@@ -430,8 +417,8 @@ GArray* g_keys_dump_keymap (void)
     struct keyseq_action_t keymap_entry;
 
     g_return_val_if_fail (SCM_CONSP (scm_keymap_entry) &&
-                          SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
-                          scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
+    SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
+    scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
     keymap_entry.action = g_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
     keymap_entry.keyseq = g_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
     ret = g_array_append_val (ret, keymap_entry);
@@ -440,11 +427,11 @@ GArray* g_keys_dump_keymap (void)
   return ret;
 }
 /*
-int s_g_add_c_string_keys(char* keys, char* func) {
-
-  if ("gschem-keymap"
-}
-*/
+ * int s_g_add_c_string_keys(char* keys, char* func) {
+ *
+ *  if ("gschem-keymap"
+ }
+ */
 /*! \brief Evaluate a user keystroke.
  * \par Function Description
  * Evaluates the key combination specified by \a event using the
@@ -459,7 +446,7 @@ int s_g_add_c_string_keys(char* keys, char* func) {
 int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
 {
   SCM s_retval, s_key, s_expr;
-  guint key, mods, upper, lower, caps;
+  unsigned int key, mods, upper, lower, caps;
   GdkDisplay *display;
   GdkKeymap *keymap;
   GdkModifierType consumed_modifiers;
@@ -506,46 +493,43 @@ int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
   /* If no current hint string, or the hint string is going to be
    * cleared anyway, use key string directly */
   if ((w_current->keyaccel_string == NULL) ||
-      w_current->keyaccel_string_source_id) {
+    w_current->keyaccel_string_source_id) {
     g_free (w_current->keyaccel_string);
-    w_current->keyaccel_string = keystr;
+  w_current->keyaccel_string = keystr;
 
-  } else {
-    char *p = w_current->keyaccel_string;
-    w_current->keyaccel_string = g_strconcat (p, " ", keystr, NULL);
-    g_free (p);
-    g_free (keystr);
-  }
+    } else {
+      char *p = w_current->keyaccel_string;
+      w_current->keyaccel_string = g_strconcat (p, " ", keystr, NULL);
+      g_free (p);
+      g_free (keystr);
+    }
 
-  /* Update status bar */
-  i_show_state(w_current, NULL);
+    /* Update status bar */
+    i_show_state(w_current, NULL);
 
-  /* Build and evaluate Scheme expression. */
-  scm_dynwind_begin (0);
-  g_dynwind_window (w_current);
-  s_expr = scm_list_2 (press_key_sym, s_key);
+    /* Build and evaluate Scheme expression. */
+    scm_dynwind_begin (0);
+    g_dynwind_window (w_current);
+    s_expr = scm_list_2 (press_key_sym, s_key);
+    s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+    scm_dynwind_end ();
 
-  s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
-  scm_dynwind_end ();
-
-
-
-  /* If the keystroke was not part of a prefix, start a timer to clear
-   * the status bar display. */
-  if (w_current->keyaccel_string_source_id) {
-    /* Cancel any existing timers that haven't fired yet. */
-    GSource *timer =
+    /* If the keystroke was not part of a prefix, start a timer to clear
+     * the status bar display. */
+    if (w_current->keyaccel_string_source_id) {
+      /* Cancel any existing timers that haven't fired yet. */
+      GSource *timer =
       g_main_context_find_source_by_id (NULL,
                                         w_current->keyaccel_string_source_id);
-    g_source_destroy (timer);
-    w_current->keyaccel_string_source_id = 0;
-  }
-  if (!scm_is_eq (s_retval, prefix_sym)) {
-    w_current->keyaccel_string_source_id =
+      g_source_destroy (timer);
+      w_current->keyaccel_string_source_id = 0;
+    }
+    if (!scm_is_eq (s_retval, prefix_sym)) {
+      w_current->keyaccel_string_source_id =
       g_timeout_add(400, clear_keyaccel_string, w_current);
-  }
+    }
 
-  return !scm_is_false (s_retval);
+    return !scm_is_false (s_retval);
 }
 /* Search the global keymap for a particular symbol and return the
  * keys which execute this hotkey, as a string suitable for display to
@@ -553,7 +537,7 @@ int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
  *
  * example: (find-key (quote file-new))
  *
-*/
+ */
 char *g_find_key (char *func_name) {
   SCM s_expr;
   SCM s_iter;
@@ -580,7 +564,7 @@ char *g_find_key (char *func_name) {
     }
   }
   if ((keys != NULL) && ( !strcmp( keys, "(null)") == 0)) {
-      return g_strdup_printf("%s", keys);
+    return g_strdup_printf("%s", keys);
   }
 
   return g_strdup_printf("%s", keys);
@@ -597,7 +581,7 @@ char *g_find_key (char *func_name) {
  *  The returned value must be freed by caller.
  *
  *  \return A GtkListStore containing keymap data.
-  */
+ */
 GtkListStore *
 g_keys_to_list_store (void)
 {

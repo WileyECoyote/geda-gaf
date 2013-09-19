@@ -56,8 +56,8 @@ extern GList *object_buffer[MAX_BUFFERS];
 extern SCM complex_place_list_changed_hook;
 
 /* Gettext translation */
-//WEH Testing change from "gettext.h" to <gettext.h>
 #include <gettext.h>
+
 #ifdef ENABLE_NLS
 # ifdef gettext_noop
 #  define N_(String) gettext_noop (String)
@@ -88,14 +88,14 @@ typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OBJECTS,
                SOME_OBJECTS, TEXT_OBJECTS
 } ID_SENITIVITY_MODE;
 
-typedef enum { ID_ORIGIN_MENU = -32, /* can't pass paramerter */
-               ID_ORIGIN_TOOLBAR,    /* can't pass paramerter */
-               ID_ORIGIN_KEYBOARD,   /* can't pass paramerter */
-               ID_ORIGIN_MOUSE,      /* can't pass paramerter */
-               ID_ORIGIN_SCM,        /* could pass paramerter */
-               ID_ORIGIN_STROKE,     /* could pass paramerter */
-               ID_ORIGIN_CONSOLE,    /* could pass paramerter */
-               ID_ORIGIN_CAMMAND,    /* could pass paramerter */
+typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
+               ID_ORIGIN_TOOLBAR,  /* -31     can't pass paramerter */
+               ID_ORIGIN_KEYBOARD, /* -30     can't pass paramerter */
+               ID_ORIGIN_MOUSE,    /* -29     can't pass paramerter */
+               ID_ORIGIN_SCM,      /* -28     could pass paramerter */
+               ID_ORIGIN_STROKE,   /* -27     could pass paramerter */
+               ID_ORIGIN_CONSOLE,  /* -26     could pass paramerter */
+               ID_ORIGIN_CAMMAND,  /* -25     could pass paramerter */
 } ID_ACTION_ORIGIN;
 
 /* These macros are used to help reduce lines lengths */

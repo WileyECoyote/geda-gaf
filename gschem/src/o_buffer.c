@@ -106,6 +106,7 @@ void o_buffer_cut(GSCHEM_TOPLEVEL *w_current, int buf_num)
   else {
     selection_to_buffer (w_current, buf_num);
     o_delete_selected(w_current);
+    w_current->toplevel->page_current->CHANGED = TRUE;
   }
 }
 

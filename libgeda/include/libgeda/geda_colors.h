@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
- * libgeda - gEDA's Library 
- * Copyright (C) 1998-2012 Ales Hvezda
+ * libgeda - gEDA's Library
+ * Copyright (C) 1998-2013 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -40,23 +40,18 @@
 #define BOUNDINGBOX_COLOR               12
 #define ZOOM_BOX_COLOR                  13
 #define STROKE_COLOR                    14
-#define LOCK_COLOR 	                15
-#define OUTPUT_BACKGROUND_COLOR         16     
-#define FREESTYLE1_COLOR         	17     
-#define FREESTYLE2_COLOR         	18     
-#define FREESTYLE3_COLOR         	19     
-#define FREESTYLE4_COLOR         	20     
-#define JUNCTION_COLOR         		21     
+#define LOCK_COLOR                      15
+#define OUTPUT_BACKGROUND_COLOR         16
+#define FREESTYLE1_COLOR                17
+#define FREESTYLE2_COLOR                18
+#define FREESTYLE3_COLOR                19
+#define FREESTYLE4_COLOR                20
+#define JUNCTION_COLOR                  21
 #define MESH_GRID_MAJOR_COLOR           22
 #define MESH_GRID_MINOR_COLOR           23
 
 #define DEFAULT_COLOR_INDEX             GRAPHIC_COLOR
-/*
-#define OVERRIDE_NET_COLOR              4
-#define OVERRIDE_PIN_COLOR              1
-#define OVERRIDE_BUS_COLOR              10
 
-*/
 #define RGB_NOCOLOR	{0xff, 0xff, 0xff, 0xff, FALSE}
 #define RGB_BLACK	{0x00, 0x00, 0x00, 0xff, TRUE}
 #define RGB_BLUE	{0x00, 0x00, 0xff, 0xff, TRUE}

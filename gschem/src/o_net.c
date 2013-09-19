@@ -111,7 +111,7 @@ void o_net_guess_direction(GSCHEM_TOPLEVEL *w_current, int wx, int wy)
           current_rules = (int*) bus_rules;
           break;
         default:
-          s_log_message("Internal Error Detected: <o_net_guess_direction> unhandled case=%d\n", o_current->type);
+          g_critical("Internal Error: <o_net_guess_direction> unhandled case=%d\n", o_current->type);
           return;
       }
 

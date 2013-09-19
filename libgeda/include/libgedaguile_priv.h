@@ -156,7 +156,7 @@ SCM edascm_from_toplevel (TOPLEVEL *toplevel);
 /*! Tests whether a Scheme value is a PAGE smob. */
 #define EDASCM_PAGEP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_PAGE)
 
-/*! Tests whether a Scheme value is an OBJECT smob. */
+/*! Tests whether a Scheme value is an EdaConfig smob. */
 #define EDASCM_OBJECTP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_OBJECT)
 
 /*! Tests whether a Scheme value is an OBJECT smob. */

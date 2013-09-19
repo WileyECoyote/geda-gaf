@@ -333,7 +333,6 @@ int WORLDabs(GSCHEM_TOPLEVEL *w_current, int val)
   return(j);
 }
 
-
 /*! \brief */
 typedef struct st_halfspace HALFSPACE;
 

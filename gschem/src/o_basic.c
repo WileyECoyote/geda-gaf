@@ -293,6 +293,11 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
         if (w_current->rubber_visible)
           o_line_draw_rubber (w_current);
         break;
+      case PATHCONT:
+      case ENDPATH:
+        if (w_current->rubber_visible)
+          o_path_draw_rubber (w_current);
+        break;
 
       case ENDBOX:
         if (w_current->rubber_visible)
@@ -342,51 +347,57 @@ int o_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
 
   switch(w_current->event_state) {
 
-    case(STARTDRAWBUS):
-    case(DRAWBUS):
-    case(BUSCONT):
+    case ( STARTDRAWBUS ):
+    case ( DRAWBUS ):
+    case ( BUSCONT ):
       o_bus_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(STARTDRAWNET):
-    case(DRAWNET):
-    case(NETCONT):
+    case ( STARTDRAWNET ):
+    case ( DRAWNET ):
+    case ( NETCONT ):
       o_net_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(DRAWPIN):
-    case(ENDPIN):
+    case ( DRAWPIN ):
+    case ( ENDPIN ):
       o_pin_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(DRAWLINE):
-    case(ENDLINE):
+    case ( DRAWLINE ):
+    case ( ENDLINE ):
       o_line_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(DRAWBOX):
-    case(ENDBOX):
+    case ( DRAWPATH ):
+    case ( PATHCONT ):
+    case ( ENDPATH ):
+      o_path_invalidate_rubber (w_current);
+      break;
+
+    case ( DRAWBOX ):
+    case ( ENDBOX ):
       o_box_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(DRAWPICTURE):
-    case(ENDPICTURE):
+    case ( DRAWPICTURE ):
+    case ( ENDPICTURE ):
       o_picture_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(DRAWCIRCLE):
-    case(ENDCIRCLE):
+    case ( DRAWCIRCLE ):
+    case ( ENDCIRCLE ):
       o_circle_invalidate_rubber (w_current);
-    break;
+      break;
 
-    case(DRAWARC):
-    case(ENDARC):
+    case ( DRAWARC ):
+    case ( ENDARC ):
       o_arc_invalidate_rubber (w_current);
-    break;
+      break;
 
     default:
       return(FALSE);
-    break;
+      break;
   }
 
   return(TRUE);
@@ -412,29 +423,31 @@ int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
 
   switch (w_current->event_state) {
     /* all states with something on the dc */
-    case(ENDCOMP):
+    case ( ENDCOMP ):
       /* De-select the lists in the component selector */
       x_compselect_deselect (w_current);
 
       /* Fall through */
-    case(COPY):
-    case(MCOPY):
-    case(DRAWBUS):
-    case(DRAWNET):
-    case(ENDARC):
-    case(ENDBOX):
-    case(ENDCIRCLE):
-    case(ENDCOPY):
-    case(ENDMCOPY):
-    case(ENDLINE):
-    case(ENDMOVE):
-    case(ENDPASTE):
-    case(ENDPIN):
-    case(ENDTEXT):
-    case(GRIPS):
-    case(MOVE):
-    case(NETCONT):
-    case(ZOOMBOXEND):
+    case ( COPY ):
+    case ( MCOPY ):
+    case ( DRAWBUS ):
+    case ( DRAWNET ):
+    case ( ENDARC ):
+    case ( ENDBOX ):
+    case ( ENDCIRCLE ):
+    case ( ENDCOPY ):
+    case ( ENDMCOPY ):
+    case ( ENDLINE ):
+    case ( PATHCONT ):
+    case ( ENDPATH ):
+    case ( ENDMOVE ):
+    case ( ENDPASTE ):
+    case ( ENDPIN ):
+    case ( ENDTEXT ):
+    case ( GRIPS ):
+    case ( MOVE ):
+    case ( NETCONT ):
+    case ( ZOOMBOXEND ):
       /* it is possible to cancel in the middle of a place,
        * so lets be sure to clean up the place_list structure */
 
@@ -466,33 +479,33 @@ int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
       return TRUE;
 
     /* all remaining states without dc changes */
-    case(NONE):
-    case(SELECT):
-    case(DRAWLINE):
-    case(DRAWBOX):
-    case(DRAWCIRCLE):
-    case(ZOOM):
-    case(PAN):
-    case(BUSCONT):
-    case(DRAWARC):
-    case(DRAWPICTURE):
-    case(DRAWPIN):
-    case(ENDMIRROR):
-    case(ENDPICTURE):
-    case(ENDROTATEP):
-    case(ENDROUTENET):
-    case(MOUSEPAN):
-    case(SBOX):
-    case(STARTCOPY):
-    case(STARTMCOPY):
-    case(STARTDRAWBUS):
-    case(STARTDRAWNET):
-    case(STARTMOVE):
-    case(STARTPAN):
-    case(STARTPASTE):
-    case(STARTROUTENET):
-    case(STARTSELECT):
-    case(ZOOMBOXSTART):
+    case ( NONE ):
+    case ( SELECT ):
+    case ( DRAWLINE ):
+    case ( DRAWBOX ):
+    case ( DRAWCIRCLE ):
+    case ( ZOOM ):
+    case ( PAN ):
+    case ( BUSCONT ):
+    case ( DRAWARC ):
+    case ( DRAWPICTURE ):
+    case ( DRAWPIN ):
+    case ( ENDMIRROR ):
+    case ( ENDPICTURE ):
+    case ( ENDROTATEP ):
+    case ( ENDROUTENET ):
+    case ( MOUSEPAN ):
+    case ( SBOX ):
+    case ( STARTCOPY ):
+    case ( STARTMCOPY ):
+    case ( STARTDRAWBUS ):
+    case ( STARTDRAWNET ):
+    case ( STARTMOVE ):
+    case ( STARTPAN ):
+    case ( STARTPASTE ):
+    case ( STARTROUTENET ):
+    case ( STARTSELECT ):
+    case ( ZOOMBOXSTART ):
       return FALSE;
   }
 

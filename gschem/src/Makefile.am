@@ -56,6 +56,7 @@ DEFS = -DLOCALEDIR=\"$(localedir)\" @DEFS@
 
 MOSTLYCLEANFILES     = *.log core FILE *~ widgets/*~
 CLEANFILES           = *.log core FILE *~ widgets/*~ $(BUILT_SOURCES)
-DISTCLEANFILES       = *.log core FILE *~ widgets/*~
-MAINTAINERCLEANFILES = *.log core FILE *~ widgets/*~ Makefile.in
+DISTCLEANFILES       = *.log core FILE *~ widgets/*~ widgets/Makefile
+MAINTAINERCLEANFILES = *.log core FILE *~ widgets/*~ Makefile.in widgets/Makefile.in
+
 

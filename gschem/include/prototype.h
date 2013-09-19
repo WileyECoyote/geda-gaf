@@ -20,6 +20,11 @@ void a_zoom_box_invalidate_rubber(GSCHEM_TOPLEVEL *w_current);
 void a_zoom_box_draw_rubber(GSCHEM_TOPLEVEL *w_current);
 void correct_aspect(GSCHEM_TOPLEVEL *w_current);
 
+/* g_action.c */
+SCM  g_process_action(SCM action);
+bool g_action_eval_by_name (GSCHEM_TOPLEVEL *w_current, const char *action_name);
+bool g_action_get_position (bool snap, int *x, int *y);
+
 /* g_attrib.c */
 void g_init_attrib ();
 
@@ -49,38 +54,44 @@ char *g_find_key (char *func_name);
 GtkListStore *g_keys_to_list_store (void);
 
 /* Hoykeys */
-SCM h_keys_edit_copy_hotkey(SCM rest);
-SCM h_keys_edit_mcopy_hotkey(SCM rest);
-SCM h_keys_edit_move_hotkey(SCM rest);
-SCM h_keys_edit_rotate_hotkey(SCM rest);
-SCM h_keys_edit_mirror_hotkey(SCM rest);
+SCM buffer_copy1(SCM action);
+SCM buffer_copy2(SCM action);
+SCM buffer_copy3(SCM action);
+SCM buffer_copy4(SCM action);
+SCM buffer_copy5(SCM action);
 
-SCM h_keys_buffer_copy1(SCM action);
-SCM h_keys_buffer_copy2(SCM action);
-SCM h_keys_buffer_copy3(SCM action);
-SCM h_keys_buffer_copy4(SCM action);
-SCM h_keys_buffer_copy5(SCM action);
-SCM h_keys_buffer_cut1(SCM action);
-SCM h_keys_buffer_cut2(SCM action);
-SCM h_keys_buffer_cut3(SCM action);
-SCM h_keys_buffer_cut4(SCM action);
-SCM h_keys_buffer_cut5(SCM action);
-SCM h_keys_buffer_paste1(SCM action);
-SCM h_keys_buffer_paste2(SCM action);
-SCM h_keys_buffer_paste3(SCM action);
-SCM h_keys_buffer_paste4(SCM action);
-SCM h_keys_buffer_paste5(SCM action);
+SCM buffer_cut1(SCM action);
+SCM buffer_cut2(SCM action);
+SCM buffer_cut3(SCM action);
+SCM buffer_cut4(SCM action);
+SCM buffer_cut5(SCM action);
 
-SCM h_keys_clipboard_paste_hotkey(SCM rest);
-SCM h_keys_buffer_paste1_hotkey(SCM rest);
-SCM h_keys_buffer_paste2_hotkey(SCM rest);
-SCM h_keys_buffer_paste3_hotkey(SCM rest);
-SCM h_keys_buffer_paste4_hotkey(SCM rest);
-SCM h_keys_buffer_paste5_hotkey(SCM rest);
+SCM buffer_paste1(SCM action);
+SCM buffer_paste2(SCM action);
+SCM buffer_paste3(SCM action);
+SCM buffer_paste4(SCM action);
+SCM buffer_paste5(SCM action);
+
+SCM buffer_copy1_menu(SCM rest);
+SCM buffer_copy2_menu(SCM rest);
+SCM buffer_copy3_menu(SCM rest);
+SCM buffer_copy4_menu(SCM rest);
+SCM buffer_copy5_menu(SCM rest);
+
+SCM buffer_cut1_menu(SCM rest);
+SCM buffer_cut2_menu(SCM rest);
+SCM buffer_cut3_menu(SCM rest);
+SCM buffer_cut4_menu(SCM rest);
+SCM buffer_cut5_menu(SCM rest);
+
+SCM buffer_paste1_menu(SCM rest);
+SCM buffer_paste2_menu(SCM rest);
+SCM buffer_paste3_menu(SCM rest);
+SCM buffer_paste4_menu(SCM rest);
+SCM buffer_paste5_menu(SCM rest);
 
 SCM h_keys_view_zoom_in_hotkey(SCM rest);
 SCM h_keys_view_zoom_out_hotkey(SCM rest);
-SCM h_keys_view_zoom_box_hotkey(SCM rest);
 
 SCM h_keys_view_pan_hotkey(SCM rest);
 SCM h_keys_view_pan_left(SCM rest);
@@ -88,17 +99,7 @@ SCM h_keys_view_pan_right(SCM rest);
 SCM h_keys_view_pan_up(SCM rest);
 SCM h_keys_view_pan_down(SCM rest);
 
-SCM h_keys_add_net_hotkey(SCM rest);
-SCM h_keys_add_bus_hotkey(SCM rest);
-SCM h_keys_add_line_hotkey(SCM rest);
-SCM h_keys_add_box_hotkey(SCM rest);
-SCM h_keys_add_circle_hotkey(SCM rest);
-SCM h_keys_add_arc_hotkey(SCM rest);
-SCM h_keys_add_pin_hotkey(SCM rest);
-
 /* Menus and Keyboard */
-SCM i_process_action(SCM action);
-
 SCM h_keys_misc(SCM rest);
 SCM h_keys_misc2(SCM rest);
 SCM h_keys_misc3(SCM rest);
@@ -227,6 +228,7 @@ int  main(int argc, char *argv[]);
 void shut_down_gui(void);
 
 /* i_basic.c */
+
 void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message);
 void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate);
 void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate, const char *message);
@@ -270,10 +272,6 @@ void i_callback_buffer_paste3_hotkey       I_CALLBACK_ARGUMENTS;
 void i_callback_buffer_paste4_hotkey       I_CALLBACK_ARGUMENTS;
 void i_callback_buffer_paste5_hotkey       I_CALLBACK_ARGUMENTS;
 
-void i_callback_view_zoom_box_hotkey       I_CALLBACK_ARGUMENTS;
-void i_callback_view_zoom_in_hotkey        I_CALLBACK_ARGUMENTS;
-void i_callback_view_zoom_out_hotkey       I_CALLBACK_ARGUMENTS;
-
 void i_callback_view_pan_hotkey            I_CALLBACK_ARGUMENTS;
 void i_callback_view_pan_left              I_CALLBACK_ARGUMENTS;
 void i_callback_view_pan_right             I_CALLBACK_ARGUMENTS;
@@ -285,7 +283,6 @@ void i_callback_add_bus_hotkey             I_CALLBACK_ARGUMENTS;
 void i_callback_add_line_hotkey            I_CALLBACK_ARGUMENTS;
 void i_callback_add_box_hotkey             I_CALLBACK_ARGUMENTS;
 void i_callback_add_circle_hotkey          I_CALLBACK_ARGUMENTS;
-void i_callback_add_arc_hotkey             I_CALLBACK_ARGUMENTS;
 void i_callback_add_pin_hotkey             I_CALLBACK_ARGUMENTS;
 
 void i_callback_file_new                   I_CALLBACK_ARGUMENTS;
@@ -459,7 +456,7 @@ void o_move_end_rubberband(GSCHEM_TOPLEVEL *w_current, int world_diff_x, int wor
 void o_net_reset(GSCHEM_TOPLEVEL *w_current);
 void o_net_guess_direction(GSCHEM_TOPLEVEL *w_current, int x, int y);
 void o_net_find_magnetic(GSCHEM_TOPLEVEL *w_current, int event_x, int event_y);
-void o_net_finishmagnetic(GSCHEM_TOPLEVEL *w_current);
+void o_net_finish_magnetic(GSCHEM_TOPLEVEL *w_current);
 void o_net_start_magnetic(GSCHEM_TOPLEVEL *w_current, int x, int y);
 void o_net_start(GSCHEM_TOPLEVEL *w_current, int x, int y);
 int  o_net_end(GSCHEM_TOPLEVEL *w_current, int x, int y);
@@ -467,6 +464,17 @@ void o_net_motion(GSCHEM_TOPLEVEL *w_current, int x, int y);
 void o_net_draw_rubber(GSCHEM_TOPLEVEL *w_current);
 void o_net_invalidate_rubber(GSCHEM_TOPLEVEL *w_current);
 int  o_net_add_busrippers(GSCHEM_TOPLEVEL *w_current, OBJECT *net_obj, GList *other_objects);
+
+/* o_path.c */
+void o_path_start(GSCHEM_TOPLEVEL *w_current, int x, int y);
+void o_path_continue (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y);
+void o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y);
+bool o_path_end(GSCHEM_TOPLEVEL *w_current, int x, int y);
+void o_path_invalidate_rubber (GSCHEM_TOPLEVEL *w_current);
+void o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current);
+void o_path_invalidate_rubber_grips (GSCHEM_TOPLEVEL *w_current);
+void o_path_motion_grips (GSCHEM_TOPLEVEL *w_current, int x, int y);
+void o_path_draw_rubber_grips (GSCHEM_TOPLEVEL *w_current);
 
 /* o_picture.c */
 void o_picture_start(GSCHEM_TOPLEVEL *w_current, int x, int y);
@@ -477,13 +485,6 @@ void o_picture_draw_rubber(GSCHEM_TOPLEVEL *w_current);
 bool o_picture_exchange(GSCHEM_TOPLEVEL *w_current, const gchar *filename, GError **error);
 void picture_change_filename_dialog (GSCHEM_TOPLEVEL *w_current);
 void o_picture_set_pixbuf(GSCHEM_TOPLEVEL *w_current, GdkPixbuf *pixbuf, char *filename);
-
-/* o_path.c */
-void o_path_invalidate_rubber(GSCHEM_TOPLEVEL *w_current);
-void o_path_start(GSCHEM_TOPLEVEL *w_current, int x, int y);
-void o_path_end(GSCHEM_TOPLEVEL *w_current, int x, int y);
-void o_path_motion(GSCHEM_TOPLEVEL *w_current, int x, int y);
-void o_path_draw_rubber(GSCHEM_TOPLEVEL *w_current);
 
 /* o_pin.c */
 void o_pin_start(GSCHEM_TOPLEVEL *w_current, int x, int y);
@@ -664,19 +665,22 @@ int  x_event_enter(GtkWidget *widget, GdkEventCrossing *event, GSCHEM_TOPLEVEL *
 bool x_event_key(GtkWidget *widget, GdkEventKey *event, GSCHEM_TOPLEVEL *w_current);
 int  x_event_scroll(GtkWidget *widget, GdkEventScroll *event, GSCHEM_TOPLEVEL *w_current);
 bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current, bool snapped, int *wx, int *wy);
+void x_event_set_pointer_position (GSCHEM_TOPLEVEL *w_current, int wx, int wy);
 
 /* x_fileselect.c */
 void x_fileselect_open(GSCHEM_TOPLEVEL *w_current);
 void x_fileselect_save(GSCHEM_TOPLEVEL *w_current);
-int x_fileselect_load_backup(GString *message);
+int  x_fileselect_load_backup(GString *message);
 
 /* x_grid.c */
 void x_grid_draw_region(GSCHEM_TOPLEVEL *w_current, int x, int y, int width, int height);
-int x_grid_query_drawn_spacing(GSCHEM_TOPLEVEL *w_current);
+int  x_grid_query_drawn_spacing(GSCHEM_TOPLEVEL *w_current);
 void x_draw_tiles(GSCHEM_TOPLEVEL *w_current);
 
 /* x_icons.c */
-void x_icons_setup_factory( void );
+void x_icons_add_search_path (const char *path);
+void x_icons_set_default_icon (const char* icon_name);
+void x_icons_initialize( void );
 
 /* x_image.c */
 void x_image_lowlevel(GSCHEM_TOPLEVEL *w_current, const char* filename,
@@ -695,7 +699,7 @@ GtkWidget *get_main_menu(GSCHEM_TOPLEVEL *w_current);
 GtkWidget *x_menu_setup_ui(GSCHEM_TOPLEVEL *w_current);
 
 int x_menu_setup_popup(GSCHEM_TOPLEVEL *w_current);
-int do_popup(GSCHEM_TOPLEVEL *w_current, GdkEventButton *event);
+int x_menu_display_popup(GSCHEM_TOPLEVEL *w_current, GdkEventButton *event);
 void x_menus_sensitivity(GSCHEM_TOPLEVEL *w_current, const char *buf, int flag);
 void x_menus_popup_sensitivity(GSCHEM_TOPLEVEL *w_current, const char *buf, int flag);
 void x_menu_save_state(GSCHEM_TOPLEVEL *w_current);
@@ -773,10 +777,11 @@ PAGE *x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename);
 void x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page);
 int  x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename);
 void x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page);
-void x_window_set_default_icon (void);
 void x_window_add_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
 void x_window_attribute_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
+void x_window_gridsnap_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
 void x_window_edit_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
 void x_window_page_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
 void x_window_standard_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
+void x_window_select_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);
 void x_window_zoom_toolbar_toggle(GtkWidget *widget, GSCHEM_TOPLEVEL *w_current);

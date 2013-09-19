@@ -61,7 +61,7 @@ o_select_run_hooks(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current, int flag)
       g_run_hook_object (w_current, "%select-objects-hook", o_current);
       break;
     default:
-      s_log_message("Internal Error Detected: <o_select_run_hooks> unhandled case\n");
+      g_critical("Internal Error Detected: <o_select_run_hooks> unhandled case\n");
   }
 }
 

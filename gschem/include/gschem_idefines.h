@@ -196,8 +196,6 @@
 
 /* for selected_from */
 #define DONTCARE		0
-#define MENU			1
-#define HOTKEY			2
 
 /* for a_pan_general and a_zoom */
 #define A_PAN_IGNORE_BORDERS 	1

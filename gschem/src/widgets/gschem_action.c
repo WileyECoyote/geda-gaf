@@ -17,20 +17,30 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
-
+/************************ REVISION HISTORY *************************
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 09/16/13 | Separated call to g_param_spec_string from
+ *                | g_object_class_install_property. Setup data with
+ *                | new function gschem_action_label_init. Added property
+ *                | PROP_ICON_ID and associated functions. Set property
+ *                | handlers back to switch/case. Added GInstanceInitFunc.
+ *                | (The gschem_action_set_icon_name checks both the
+ *                | theme-able search path and our icon factory for icons).
+ */
 #include <config.h>
 
 #include <gtk/gtk.h>
 #include "widgets/gschem_action.h"
 #include "widgets/gschem_accel_label.h"
+#include "gettext.h"
 
 enum {
   PROP_MULTIKEY_ACCEL = 1,
+  PROP_ICON_ID,
 };
 
-
 static GObjectClass *gschem_action_parent_class = NULL;
-
 
 /*! \brief GObject finalise handler
  *
@@ -45,6 +55,7 @@ static void gschem_action_finalize (GObject *object)
   GschemAction *action = GSCHEM_ACTION (object);
 
   g_free (action->multikey_accel);
+  g_free (action->icon_name);
 
   G_OBJECT_CLASS (gschem_action_parent_class)->finalize (object);
 }
@@ -68,12 +79,19 @@ gschem_action_set_property (GObject *object, unsigned int property_id,
 {
   GschemAction *action = GSCHEM_ACTION (object);
 
-  if(property_id == PROP_MULTIKEY_ACCEL) {
-    g_free (action->multikey_accel);
-    action->multikey_accel = g_strdup  (g_value_get_string (value));
+  switch (property_id)
+  {
+    case PROP_MULTIKEY_ACCEL:
+      g_free (action->multikey_accel);
+      action->multikey_accel = g_strdup (g_value_get_string (value));
+      break;
+    case PROP_ICON_ID:
+      gschem_action_set_icon_name(action, g_value_get_string (value));
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
   }
-  else
-     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
 }
 
 /*! \brief GObject property getter function
@@ -94,10 +112,18 @@ gschem_action_get_property (GObject *object, unsigned int property_id,
 {
   GschemAction *action = GSCHEM_ACTION (object);
 
-  if(property_id == PROP_MULTIKEY_ACCEL)
-    g_value_set_string (value, action->multikey_accel);
-  else
-    G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+  switch (property_id)
+  {
+    case PROP_MULTIKEY_ACCEL:
+      g_value_set_string (value, action->multikey_accel);
+      break;
+    case PROP_ICON_ID:
+      g_value_set_string (value, action->icon_name);
+      break;
+    default:
+      G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
+      break;
+  }
 }
 
 static void
@@ -121,13 +147,13 @@ gschem_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
     if (label == NULL) {
       g_object_get (action, "label", &label_string, NULL);
       g_object_new (GSCHEM_TYPE_ACCEL_LABEL,
-		    "use-underline", TRUE,
-		    "xalign", 0.0,
-		    "visible", TRUE,
-		    "parent", proxy,
-		    "label", label_string,
-		    "accel-string", gs_action->multikey_accel,
-		    NULL);
+                    "use-underline", TRUE,
+                    "xalign", 0.0,
+                    "visible", TRUE,
+                    "parent", proxy,
+                    "label", label_string,
+                    "accel-string", gs_action->multikey_accel,
+                    NULL);
     }
   }
 
@@ -146,7 +172,8 @@ gschem_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
  */
 static void gschem_action_class_init (GschemActionClass *klass)
 {
-  GObjectClass     *gobject_class = G_OBJECT_CLASS (klass);
+  GParamSpec     *params;
+  GObjectClass   *gobject_class   = G_OBJECT_CLASS (klass);
   GtkActionClass *gtkaction_class = GTK_ACTION_CLASS (klass);
 
   gtkaction_class->connect_proxy  = gschem_action_connect_proxy;
@@ -157,16 +184,28 @@ static void gschem_action_class_init (GschemActionClass *klass)
 
   gschem_action_parent_class      = g_type_class_peek_parent (klass);
 
-  g_object_class_install_property ( gobject_class,
-                                    PROP_MULTIKEY_ACCEL,
-                                    g_param_spec_string ("multikey-accel",
-                                    "",
-                                    "",
-                                    NULL,
-                                    G_PARAM_READWRITE));
+  params = g_param_spec_string ("multikey-accel",
+                              _("multikey-accelerator"),
+                              _("A string with characters in positions key characters"),
+                                 NULL,
+                               (G_PARAM_WRITABLE));
+
+  g_object_class_install_property( gobject_class, PROP_MULTIKEY_ACCEL, params);
+
+  params = g_param_spec_string ("icon-id",
+                              _("icon-identification"),
+                              _("String name of the icon image"),
+                                 NULL,
+                               (G_PARAM_WRITABLE));
+
+  g_object_class_install_property( gobject_class, PROP_ICON_ID, params);
+
 }
-
-
+static void gschem_action_init (GschemAction *action)
+{
+  action->multikey_accel = NULL;
+  action->icon_name      = NULL;
+}
 /*! \brief Function to retrieve GschemAction's GType identifier.
  *
  *  \par Function Description
@@ -190,7 +229,7 @@ GType gschem_action_get_type ()
       NULL, /* class_data */
       sizeof(GschemAction),
       0,    /* n_preallocs */
-      NULL, /* instance_init */
+      (GInstanceInitFunc) gschem_action_init, /* instance_init */
     };
 
     gschem_action_type = g_type_register_static (GTK_TYPE_ACTION,
@@ -211,7 +250,7 @@ GType gschem_action_get_type ()
  * /param [in] name            A unique name for the action
  * /param [in] label           The label displayed in menu items and on buttons, or NULL
  * /param [in] tooltip         A tooltip for the action, or NULL
- * /param [in] stock_id        The stock icon to display in widgets representing the action, or NULL
+ * /param [in] icon_id         The icon to display in widgets representing the action, or NULL
  * /param [in] multikey_accel  The (potentially) multi-key accelerator used for this action
  *
  * /returns A new GschemAction
@@ -219,7 +258,7 @@ GType gschem_action_get_type ()
 GschemAction *gschem_action_new (const char *name,
                                  const char *label,
                                  const char *tooltip,
-                                 const char *stock_id,
+                                 const char *icon_id,
                                  const char *multikey_accel)
 {
   g_return_val_if_fail (name != NULL, NULL);
@@ -228,7 +267,38 @@ GschemAction *gschem_action_new (const char *name,
                        "name", name,
                        "label", label,
                        "tooltip", tooltip,
-                       "stock-id", stock_id,
+                       "icon-id", icon_id,
                        "multikey-accel", multikey_accel,
                        NULL);
+}
+
+const char *gschem_action_get_icon_name (GschemAction *action)
+{
+  g_return_val_if_fail (GSCHEM_IS_ACTION (action), NULL);
+  return action->icon_name;
+}
+
+void gschem_action_set_icon_name (GschemAction *action,
+                                   const char  *icon_name)
+{
+  GtkStockItem stock_info;
+
+  g_return_if_fail (GSCHEM_IS_ACTION (action));
+
+  g_free (action->icon_name);
+  action->icon_name = NULL;
+
+  action->icon_name = g_strdup (icon_name);
+
+  if (icon_name != NULL) {
+    if ( gtk_stock_lookup(icon_name, &stock_info)) {
+      gtk_action_set_stock_id (GTK_ACTION(action), icon_name);
+    }
+    else if ( gtk_icon_factory_lookup_default(icon_name)) {
+      gtk_action_set_stock_id (GTK_ACTION(action), icon_name);
+    }
+    else {
+      gtk_action_set_icon_name (GTK_ACTION(action), icon_name);
+    }
+  }
 }

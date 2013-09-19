@@ -1661,21 +1661,15 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   GtkTooltips *tooltips;
   tooltips = gtk_tooltips_new ();
 
-  /*
-    PangoAttrList *PangoAttributes;
-  PangoAttributes = pango_attr_list_new();
-  pango_attr_list_insert (PangoAttributes, pango_attr_font_desc_new (const PangoFontDescription *desc));
-  pango_attr_list_insert (PangoAttributes, pango_attr_size_new(10));
-  */
   PangoFontDescription *FontDescription;
   FontDescription = pango_font_description_from_string("Monospace");
   pango_font_description_set_absolute_size(FontDescription, 10);
 
   ThisDialog=NEW_STD_GSCHEM_DIALOG( DialogTitle, DialogSettings, w_current);
   MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
-  gtk_widget_show (MainDialogVBox);
+  g_object_set ( MainDialogVBox, "visible", TRUE, NULL);
   notebook = gtk_notebook_new ();
-  gtk_widget_show (notebook);
+  g_object_set ( notebook, "visible", TRUE, NULL);
   gtk_box_pack_start (GTK_BOX (MainDialogVBox), notebook, FALSE, FALSE, 0);
 
   { /*------------------- Start General TAB Contents -------------------*/
@@ -1916,25 +1910,25 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   } /*** END Library TAB Contents ***/
 
   dialog_action_area = GTK_DIALOG (ThisDialog)->action_area;
-  gtk_widget_show (dialog_action_area);
+  g_object_set (dialog_action_area, "visible", TRUE, NULL);
   gtk_button_box_set_layout (GTK_BUTTON_BOX (dialog_action_area), GTK_BUTTONBOX_END);
 
   CancelButt = gtk_button_new_from_stock ("gtk-cancel");
-  gtk_widget_show (CancelButt);
+  g_object_set (CancelButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CancelButt, GTK_RESPONSE_CANCEL);
-  GTK_WIDGET_SET_FLAGS (CancelButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default(CancelButt, TRUE);
   gtk_tooltips_set_tip (tooltips, CancelButt, _("Close without changing any settings"), NULL);
 
   SaveButt = gtk_button_new_with_mnemonic (_("Save"));
-  gtk_widget_show (SaveButt);
+  g_object_set (SaveButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), SaveButt, GTK_RESPONSE_APPLY);
-  GTK_WIDGET_SET_FLAGS (SaveButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default(SaveButt, TRUE);
   gtk_tooltips_set_tip (tooltips, SaveButt, _("Close and Write settings to disk"), NULL);
 
   OkayButt = gtk_button_new_from_stock ("gtk-ok");
-  gtk_widget_show (OkayButt);
+  g_object_set (OkayButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), OkayButt, GTK_RESPONSE_OK);
-  GTK_WIDGET_SET_FLAGS (OkayButt, GTK_CAN_DEFAULT);
+  gtk_widget_set_can_default(OkayButt, TRUE);
   gtk_tooltips_set_tip (tooltips, OkayButt, _("Change settings and close but do not write settings to storage.."), NULL);
 
   /* Store pointers to widgets, for use by get_widget_data(). */

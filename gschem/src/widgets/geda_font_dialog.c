@@ -1260,20 +1260,20 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   gtk_widget_show (size_label);
   gtk_table_attach (GTK_TABLE (table), size_label, 2, 3, 0, 1, GTK_FILL, 0, 0, 0);
 
-  dialog->font_entry = geda_entry_new ( (GList **)-1, (GList **)-1);
+  dialog->font_entry = geda_entry_new ( DISABLE, DISABLE);
   gtk_editable_set_editable (GTK_EDITABLE (dialog->font_entry), TRUE);
   gtk_widget_set_size_request (dialog->font_entry, 20, -1);
   gtk_widget_show (dialog->font_entry);
   gtk_table_attach (GTK_TABLE (table), dialog->font_entry, 0, 1, 1, 2, GTK_FILL, 0, 0, 0);
 
-  dialog->style_entry = geda_entry_new ( (GList **)-1, (GList **)-1);
+  dialog->style_entry = geda_entry_new ( DISABLE, DISABLE);
   gtk_editable_set_editable (GTK_EDITABLE (dialog->style_entry), FALSE);
   gtk_widget_set_size_request (dialog->style_entry, 20, -1);
   gtk_widget_show (dialog->style_entry);
   gtk_table_attach (GTK_TABLE (table), dialog->style_entry, 1, 2, 1, 2, GTK_FILL, 0, 0, 0);
 
   /* Size Entry */
-  dialog->size_entry = geda_entry_new ( (GList **)-1, (GList **)-1);
+  dialog->size_entry = geda_entry_new ( DISABLE, DISABLE);
   gtk_widget_set_size_request (dialog->size_entry, 20, -1);
   gtk_widget_set_tooltip_text (GTK_WIDGET(dialog->size_entry), size_entry_tip);
   gtk_table_attach (GTK_TABLE (table), dialog->size_entry, 2, 3, 1, 2, GTK_FILL, 0, 0, 0);

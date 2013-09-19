@@ -182,54 +182,54 @@ static struct gsubr_t gschem_g_funcs[] = {
   { NULL,                        0, 0, 0, NULL }
 };
 
+static struct gsubr_t gschem_buffer_funcs [] = {
+
+  { "buffer-copy1",              0, 0, 0, buffer_copy1 },
+  { "buffer-copy2",              0, 0, 0, buffer_copy2 },
+  { "buffer-copy3",              0, 0, 0, buffer_copy3 },
+  { "buffer-copy4",              0, 0, 0, buffer_copy4 },
+  { "buffer-copy5",              0, 0, 0, buffer_copy5 },
+
+  { "buffer-cut1",               0, 0, 0, buffer_cut1 },
+  { "buffer-cut2",               0, 0, 0, buffer_cut2 },
+  { "buffer-cut3",               0, 0, 0, buffer_cut3 },
+  { "buffer-cut4",               0, 0, 0, buffer_cut4 },
+  { "buffer-cut5",               0, 0, 0, buffer_cut5 },
+
+  { "buffer-paste1",             0, 0, 0, buffer_paste1 },
+  { "buffer-paste2",             0, 0, 0, buffer_paste2 },
+  { "buffer-paste3",             0, 0, 0, buffer_paste3 },
+  { "buffer-paste4",             0, 0, 0, buffer_paste4 },
+  { "buffer-paste5",             0, 0, 0, buffer_paste5 },
+
+  { "buffer-copy1-menu",         0, 0, 0, buffer_copy1_menu },
+  { "buffer-copy2-menu",         0, 0, 0, buffer_copy2_menu },
+  { "buffer-copy3-menu",         0, 0, 0, buffer_copy3_menu },
+  { "buffer-copy4-menu",         0, 0, 0, buffer_copy4_menu },
+  { "buffer-copy5-menu",         0, 0, 0, buffer_copy5_menu },
+
+  { "buffer-cut1-menu",          0, 0, 0, buffer_cut1_menu },
+  { "buffer-cut2-menu",          0, 0, 0, buffer_cut2_menu },
+  { "buffer-cut3-menu",          0, 0, 0, buffer_cut3_menu },
+  { "buffer-cut4-menu",          0, 0, 0, buffer_cut4_menu },
+  { "buffer-cut5-menu",          0, 0, 0, buffer_cut5_menu },
+
+  { "buffer-paste1-menu",        0, 0, 0, buffer_paste1_menu },
+  { "buffer-paste2-menu",        0, 0, 0, buffer_paste2_menu },
+  { "buffer-paste3-menu",        0, 0, 0, buffer_paste3_menu },
+  { "buffer-paste4-menu",        0, 0, 0, buffer_paste4_menu },
+  { "buffer-paste5-menu",        0, 0, 0, buffer_paste5_menu },
+
+  { NULL,                        0, 0, 0, NULL }
+};
+
 static struct gsubr_t gschem_hk_funcs[] = {
-
   /* Hotkey Key Mapping callbacks */
-  { "edit-copy-hotkey",          0, 0, 0, h_keys_edit_copy_hotkey },
-  { "edit-mcopy-hotkey",         0, 0, 0, h_keys_edit_mcopy_hotkey },
-  { "edit-move-hotkey",          0, 0, 0, h_keys_edit_move_hotkey },
-  { "edit-rotate-hotkey",        0, 0, 0, h_keys_edit_rotate_hotkey },
-  { "edit-mirror-hotkey",        0, 0, 0, h_keys_edit_mirror_hotkey },
-
-  { "buffer-copy1",              0, 0, 0, h_keys_buffer_copy1 },
-  { "buffer-copy2",              0, 0, 0, h_keys_buffer_copy2 },
-  { "buffer-copy3",              0, 0, 0, h_keys_buffer_copy3 },
-  { "buffer-copy4",              0, 0, 0, h_keys_buffer_copy4 },
-  { "buffer-copy5",              0, 0, 0, h_keys_buffer_copy5 },
-  { "buffer-cut1",               0, 0, 0, h_keys_buffer_cut1 },
-  { "buffer-cut2",               0, 0, 0, h_keys_buffer_cut2 },
-  { "buffer-cut3",               0, 0, 0, h_keys_buffer_cut3 },
-  { "buffer-cut4",               0, 0, 0, h_keys_buffer_cut4 },
-  { "buffer-cut5",               0, 0, 0, h_keys_buffer_cut5 },
-  { "buffer-paste1",             0, 0, 0, h_keys_buffer_paste1 },
-  { "buffer-paste2",             0, 0, 0, h_keys_buffer_paste2 },
-  { "buffer-paste3",             0, 0, 0, h_keys_buffer_paste3 },
-  { "buffer-paste4",             0, 0, 0, h_keys_buffer_paste4 },
-  { "buffer-paste5",             0, 0, 0, h_keys_buffer_paste5 },
-
-  { "clipboard-paste-hotkey",    0, 0, 0, h_keys_clipboard_paste_hotkey },
-  { "buffer-paste1-hotkey",      0, 0, 0, h_keys_buffer_paste1_hotkey },
-  { "buffer-paste2-hotkey",      0, 0, 0, h_keys_buffer_paste2_hotkey },
-  { "buffer-paste3-hotkey",      0, 0, 0, h_keys_buffer_paste3_hotkey },
-  { "buffer-paste4-hotkey",      0, 0, 0, h_keys_buffer_paste4_hotkey },
-  { "buffer-paste5-hotkey",      0, 0, 0, h_keys_buffer_paste5_hotkey },
-
-  { "view-zoom-in-hotkey",       0, 0, 0, h_keys_view_zoom_in_hotkey },
-  { "view-zoom-out-hotkey",      0, 0, 0, h_keys_view_zoom_out_hotkey },
-  { "view-zoom-box-hotkey",      0, 0, 0, h_keys_view_zoom_box_hotkey },
   { "view-pan-hotkey",           0, 0, 0, h_keys_view_pan_hotkey },
   { "view-pan-left",             0, 0, 0, h_keys_view_pan_left },
   { "view-pan-right",            0, 0, 0, h_keys_view_pan_right },
   { "view-pan-up",               0, 0, 0, h_keys_view_pan_up },
   { "view-pan-down",             0, 0, 0, h_keys_view_pan_down },
-
-  { "add-net-hotkey",            0, 0, 0, h_keys_add_net_hotkey },
-  { "add-bus-hotkey",            0, 0, 0, h_keys_add_bus_hotkey },
-  { "add-line-hotkey",           0, 0, 0, h_keys_add_line_hotkey },
-  { "add-box-hotkey",            0, 0, 0, h_keys_add_box_hotkey },
-  { "add-circle-hotkey",         0, 0, 0, h_keys_add_circle_hotkey },
-  { "add-arc-hotkey",            0, 0, 0, h_keys_add_arc_hotkey },
-  { "add-pin-hotkey",            0, 0, 0, h_keys_add_pin_hotkey },
 
   { "misc-misc",                 0, 0, 0, h_keys_misc },
   { "misc-misc2",                0, 0, 0, h_keys_misc2 },
@@ -263,12 +263,12 @@ create_hook (const char *name, int n_args)
  */
 void g_register_funcs (void)
 {
-  struct gsubr_t *func[3] = { gschem_rc_funcs, gschem_g_funcs, gschem_hk_funcs, };
+  struct gsubr_t *func[4] = { gschem_rc_funcs, gschem_g_funcs, gschem_hk_funcs, gschem_buffer_funcs};
   struct gsubr_t *grp;
   static GList   *action_list;
 
   int j;
-  for(j = 0; j < 3; j++) {
+  for(j = 0; j < 4; j++) {
     grp = func[j];
     while (grp->name != NULL) {
       scm_c_define_gsubr (grp->name, grp->req, grp->opt, grp->rst, grp->fnc);
@@ -279,7 +279,7 @@ void g_register_funcs (void)
   i_command_get_action_list(&action_list);
 
   lambda (char* action) {
-    scm_c_define_gsubr (action, 1, 0, 0, i_process_action);
+    scm_c_define_gsubr (action, 1, 0, 0, g_process_action);
     return FALSE;
   }
   foreach(action_list)

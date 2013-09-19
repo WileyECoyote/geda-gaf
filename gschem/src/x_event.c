@@ -22,6 +22,8 @@
 #include <stdio.h>
 
 #include "gschem.h"
+#include "x_drag.h"
+
 #include <gdk/gdkkeysyms.h>
 
 /* used by mouse pan */
@@ -94,14 +96,14 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-#if DEBUG  || DEBUG_EVENTS
+  #if DEBUG  || DEBUG_EVENTS
   printf("pressed button %d! \n", event->button);
   printf("event state: %d \n", event->state);
   printf("w_current state: %d \n", w_current->event_state);
   printf("Selection is:\n");
   o_selection_print_all((toplevel->page_current->selection_list));
   printf("\n");
-#endif
+  #endif
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
                  &unsnapped_wx, &unsnapped_wy);
@@ -109,389 +111,410 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
   w_y = snap_grid (w_current, unsnapped_wy);
 
   if (event->type == GDK_2BUTTON_PRESS &&
-      (w_current->event_state == STARTSELECT ||
-       w_current->event_state == SELECT)) {
+    (w_current->event_state == STARTSELECT ||
+    w_current->event_state == SELECT)) {
     o_find_object(w_current, w_x, w_y, TRUE);
-    if (o_select_selected (w_current)) {
-       o_edit(w_current,
-         geda_list_get_glist( toplevel->page_current->selection_list ));
-       i_set_state(w_current, SELECT);
-       return(0);
-    }
+  if (o_select_selected (w_current)) {
+    o_edit(w_current,
+           geda_list_get_glist( toplevel->page_current->selection_list ));
+    i_set_state(w_current, SELECT);
+    return(0);
   }
-
-  w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
-  w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK) ? 1 : 0;
-
-  /* Huge switch statement to evaluate state transitions. Jump to
-   * end_button_pressed label to escape the state evaluation rather than
-   * returning from the function directly. */
-
-  if (event->button == GDK_BUTTON_PRIMARY) {
-    switch(w_current->event_state) {
-
-      case(SELECT):
-        /* look for grips or fall through if not enabled */
-        if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
-          /* now go into normal SELECT */
-          w_current->event_state = STARTSELECT;
-          w_current->first_wx = w_current->second_wx = unsnapped_wx;
-          w_current->first_wy = w_current->second_wy = unsnapped_wy;
-        } else {
-          /* a grip was found */
-          w_current->event_state = GRIPS;
-          w_current->inside_action = 1;
-        }
-        break;
-
-      case(STARTCOPY):
-        if (o_select_selected(w_current)) {
-          o_copy_start(w_current, w_x, w_y);
-          w_current->event_state = COPY;
-          w_current->inside_action = 1;
-        }
-        break;
-
-      case(STARTMCOPY):
-        if (o_select_selected(w_current)) {
-          o_copy_start(w_current, w_x, w_y);
-          w_current->event_state = MCOPY;
-          w_current->inside_action = 1;
-        }
-        break;
-
-      case(STARTMOVE):
-        if (o_select_selected(w_current)) {
-          o_move_start(w_current, w_x, w_y);
-          w_current->event_state = MOVE;
-          w_current->inside_action = 1;
-        }
-        break;
-
-      case(STARTPASTE):
-        o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
-        w_current->event_state = ENDPASTE;
-        w_current->inside_action = 1;
-        break;
-
-      case(DRAWLINE):
-        o_line_start(w_current, w_x, w_y);
-        w_current->event_state = ENDLINE;
-        w_current->inside_action = 1;
-        break;
-
-      case(ENDLINE):
-        o_line_end(w_current, w_x, w_y);
-        w_current->inside_action = 0;
-        w_current->event_state = DRAWLINE;
-        break;
-
-      case(DRAWBOX):
-        o_box_start(w_current, w_x, w_y);
-        w_current->event_state = ENDBOX;
-        w_current->inside_action = 1;
-        break;
-
-      case(ENDBOX):
-        o_box_end(w_current, w_x, w_y);
-        w_current->inside_action = 0;
-        w_current->event_state = DRAWBOX;
-        break;
-
-      case(DRAWPICTURE):
-        o_picture_start(w_current, w_x, w_y);
-        w_current->event_state = ENDPICTURE;
-        w_current->inside_action = 1;
-        break;
-
-      case(ENDPICTURE):
-        o_picture_end(w_current, w_x, w_y);
-        w_current->inside_action = 0;
-        w_current->event_state = DRAWPICTURE;
-        break;
-
-      case(DRAWCIRCLE):
-        o_circle_start(w_current, w_x, w_y);
-        w_current->event_state = ENDCIRCLE;
-        w_current->inside_action = 1;
-        break;
-
-      case(ENDCIRCLE):
-        o_circle_end(w_current, w_x, w_y);
-        w_current->inside_action = 0;
-        w_current->event_state = DRAWCIRCLE;
-        break;
-
-      case(DRAWARC):
-        o_arc_start(w_current, w_x, w_y);
-        w_current->event_state = ENDARC;
-        w_current->inside_action = 1;
-        break;
-
-      case(ENDARC):
-        o_arc_end1(w_current, w_x, w_y);
-        w_current->inside_action = 0;
-        w_current->event_state = DRAWARC;
-        break;
-
-      case(DRAWPIN):
-        o_pin_start(w_current, w_x, w_y);
-        w_current->event_state = ENDPIN;
-        w_current->inside_action = 1;
-        break;
-
-      case(ENDPIN):
-        o_pin_end(w_current, w_x, w_y);
-        w_current->inside_action = 0;
-        w_current->event_state = DRAWPIN;
-        break;
-
-      case(STARTDRAWNET):  /*! \todo change state name? */
-        o_net_start(w_current, w_x, w_y);
-        w_current->inside_action = 1;
-        w_current->event_state=DRAWNET;
-
-        break;
-
-      case(STARTDRAWBUS):
-        o_bus_start(w_current, w_x, w_y);
-        w_current->inside_action = 1;
-        w_current->event_state=DRAWBUS;
-
-        break;
-
-      case(DRAWNET):
-      case(NETCONT):
-        /* Only continue the net if net end worked */
-        if (o_net_end(w_current, w_x, w_y)) {
-          o_net_start(w_current, w_current->first_wx, w_current->first_wy);
-          w_current->event_state=NETCONT;
-        } else { /* cleanup and start a new net */
-          o_net_invalidate_rubber (w_current);
-          o_net_reset(w_current);
-          i_set_state(w_current, STARTDRAWNET);
-          w_current->inside_action = 0;
-        }
-        break;
-
-      case(DRAWBUS):
-      case(BUSCONT):
-        /* Only continue the net if net end worked */
-        if (o_bus_end(w_current, w_x, w_y)) {
-          o_bus_start(w_current, w_current->first_wx, w_current->first_wy);
-          w_current->event_state=BUSCONT;
-        } else {
-          w_current->inside_action=0;
-          i_set_state(w_current, STARTDRAWBUS);
-        }
-        break;
-      case(ENDCOMP):
-        o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
-                    NULL, "%add-objects-hook");
-        if (!w_current->continue_component_place) {
-          w_current->inside_action = 0;
-          i_set_state(w_current, SELECT);
-        }
-        break;
-
-      case(ENDPASTE):
-        o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
-        break;
-
-      case(ENDROTATEP):
-        o_rotate_world_update(w_current, w_x, w_y, 90,
-          geda_list_get_glist(toplevel->page_current->selection_list ));
-
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
-        break;
-
-      case(ENDMIRROR):
-        o_mirror_world_update(w_current, w_x, w_y,
-                              geda_list_get_glist(
-                                toplevel->page_current->selection_list ));
-
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
-        break;
-
-      case(ENDTEXT):
-        o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
-        break;
-
-
-      case(STARTPAN):
-        a_pan(w_current, w_x, w_y);
-        i_set_state(w_current, SELECT);
-        break;
-
-      case(ZOOMBOXSTART):
-        o_redraw_cleanstates(w_current);
-        a_zoom_box_start(w_current, unsnapped_wx, unsnapped_wy);
-        w_current->inside_action = 1;
-        i_set_state(w_current, ZOOMBOXEND);
-        break;
-
-    }
-  } else if (event->button == 2) {
-
-    /* try this out and see how it behaves */
-    if (w_current->inside_action) {
-      if (!(w_current->event_state == ENDCOMP ||
-            w_current->event_state == ENDTEXT ||
-            w_current->event_state == ENDMOVE ||
-            w_current->event_state == ENDCOPY ||
-            w_current->event_state == ENDMCOPY ||
-            w_current->event_state == ENDPASTE )) {
-        i_callback_cancel(w_current, 0, NULL);
-      }
-      goto end_button_pressed;
     }
 
-    switch(w_current->middle_button) {
+    w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
+    w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
+    w_current->ALTKEY     = (event->state & GDK_MOD1_MASK) ? 1 : 0;
 
-      case(MOUSE_MIDDLE_ACTION):
-        /* determine here if copy or move for now do move only
-           make sure the list is not empty */
-        if (o_select_selected(w_current)) {
+    /* Huge switch statement to evaluate state transitions. Jump to
+     * end_button_pressed label to escape the state evaluation rather than
+     * returning from the function directly. */
 
-        }
-        else {
-          o_select_unselect_all(w_current);
+    if (event->button == GDK_BUTTON_PRIMARY) {
+      switch(w_current->event_state) {
 
-        }
-          /* don't want to search if shift key is depresed */
-        if (!w_current->SHIFTKEY) {
-            o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
-        }
-
-      if (!o_select_selected(w_current)) {
-        /* this means the above find did not
-         * find anything */
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
-        goto end_button_pressed;
-      }
-
-      if (w_current->ALTKEY) {
-        o_copy_start(w_current, w_x, w_y);
-        w_current->inside_action = 1;
-        i_set_state(w_current, COPY);
-      } else {
-        o_move_start(w_current, w_x, w_y);
-        w_current->inside_action = 1;
-        i_set_state(w_current, MOVE);
-      }
-      break;
-
-      case(MOUSE_MIDDLE_REPEAT):
-          i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
-      break;
-#ifdef HAVE_LIBSTROKE
-      case(MOUSE_MIDDLE_STROKE):
-      DOING_STROKE=TRUE;
-      break;
-#endif /* HAVE_LIBSTROKE */
-
-      case(MOUSE_MIDDLE_PAN):
-      w_current->event_state = MOUSEPAN; /* start */
-      w_current->inside_action = 1;
-      w_current->doing_pan = TRUE;
-      start_pan_x = (int) event->x;
-      start_pan_y = (int) event->y;
-      throttle=0;
-      break;
-    }
-
-  } else if (event->button == 3) {
-    if (!w_current->inside_action) {
-      if (w_current->third_button == POPUP_ENABLED) {
-        i_update_sensitivities(w_current);  /* update menus before popup  */
-        do_popup(w_current, event);
-      } else {
-        w_current->event_state = MOUSEPAN; /* start */
-        w_current->inside_action = 1;
-        w_current->doing_pan = TRUE;
-        start_pan_x = (int) event->x;
-        start_pan_y = (int) event->y;
-        throttle=0;
-      }
-    } else { /* this is the default cancel */
-      switch (w_current->event_state) {
-        case(STARTDRAWNET):
-        case(DRAWNET):
-        case(NETCONT):
-          w_current->inside_action = 0;
-          i_set_state(w_current, STARTDRAWNET);
-          o_net_invalidate_rubber (w_current);
-          o_net_reset(w_current);
+        case(SELECT):
+          /* look for grips or fall through if not enabled */
+          if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
+            /* now go into normal SELECT */
+            w_current->event_state = STARTSELECT;
+            w_current->first_wx = w_current->second_wx = unsnapped_wx;
+            w_current->first_wy = w_current->second_wy = unsnapped_wy;
+          } else {
+            /* a grip was found */
+            w_current->event_state = GRIPS;
+            w_current->inside_action = 1;
+          }
           break;
 
-        case(STARTDRAWBUS):
-        case(DRAWBUS):
-        case(BUSCONT):
-          w_current->inside_action = 0;
-          i_set_state(w_current, STARTDRAWBUS);
-          o_bus_invalidate_rubber (w_current);
+        case(STARTCOPY):
+          if (o_select_selected(w_current)) {
+            o_copy_start(w_current, w_x, w_y);
+            w_current->event_state = COPY;
+            w_current->inside_action = 1;
+          }
           break;
 
-        case(DRAWPIN):
-        case(ENDPIN):
-          w_current->inside_action = 0;
-          i_set_state(w_current, DRAWPIN);
-          o_pin_invalidate_rubber (w_current);
+        case(STARTMCOPY):
+          if (o_select_selected(w_current)) {
+            o_copy_start(w_current, w_x, w_y);
+            w_current->event_state = MCOPY;
+            w_current->inside_action = 1;
+          }
+          break;
+
+        case(STARTMOVE):
+          if (o_select_selected(w_current)) {
+            o_move_start(w_current, w_x, w_y);
+            w_current->event_state = MOVE;
+            w_current->inside_action = 1;
+          }
+          break;
+
+        case(STARTPASTE):
+          o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
+          w_current->event_state = ENDPASTE;
+          w_current->inside_action = 1;
           break;
 
         case(DRAWLINE):
-        case(ENDLINE):
-          w_current->inside_action = 0;
-          i_set_state(w_current, DRAWLINE);
-          o_line_invalidate_rubber (w_current);
+          o_line_start(w_current, w_x, w_y);
+          w_current->event_state = ENDLINE;
+          w_current->inside_action = 1;
           break;
 
-        case(DRAWBOX):
-        case(ENDBOX):
+        case(ENDLINE):
+          o_line_end(w_current, w_x, w_y);
           w_current->inside_action = 0;
-          i_set_state(w_current, DRAWBOX);
-          o_box_invalidate_rubber (w_current);
+          w_current->event_state = DRAWLINE;
+          break;
+        case DRAWPATH:
+          o_path_start (w_current, w_x, w_y);
+          w_current->event_state = ENDPATH;
+          w_current->inside_action = TRUE;
+          break;
+
+        case PATHCONT:
+          o_path_continue (w_current, w_x, w_y);
+          w_current->event_state = ENDPATH;
+          w_current->inside_action = TRUE;
+          break;
+        case(DRAWBOX):
+          o_box_start(w_current, w_x, w_y);
+          w_current->event_state = ENDBOX;
+          w_current->inside_action = 1;
+          break;
+
+        case(ENDBOX):
+          o_box_end(w_current, w_x, w_y);
+          w_current->inside_action = 0;
+          w_current->event_state = DRAWBOX;
           break;
 
         case(DRAWPICTURE):
+          o_picture_start(w_current, w_x, w_y);
+          w_current->event_state = ENDPICTURE;
+          w_current->inside_action = 1;
+          break;
+
         case(ENDPICTURE):
+          o_picture_end(w_current, w_x, w_y);
           w_current->inside_action = 0;
-          i_set_state(w_current, DRAWPICTURE);
-          o_picture_invalidate_rubber (w_current);
+          w_current->event_state = DRAWPICTURE;
           break;
 
         case(DRAWCIRCLE):
+          o_circle_start(w_current, w_x, w_y);
+          w_current->event_state = ENDCIRCLE;
+          w_current->inside_action = 1;
+          break;
+
         case(ENDCIRCLE):
+          o_circle_end(w_current, w_x, w_y);
           w_current->inside_action = 0;
-          i_set_state(w_current, DRAWCIRCLE);
-          o_circle_invalidate_rubber (w_current);
+          w_current->event_state = DRAWCIRCLE;
           break;
 
         case(DRAWARC):
-        case(ENDARC):
-          w_current->inside_action = 0;
-          i_set_state(w_current, DRAWARC);
-          o_arc_invalidate_rubber (w_current);
+          o_arc_start(w_current, w_x, w_y);
+          w_current->event_state = ENDARC;
+          w_current->inside_action = 1;
           break;
 
-        default:
-          i_callback_cancel(w_current, 0, NULL);
+        case(ENDARC):
+          o_arc_end1(w_current, w_x, w_y);
+          w_current->inside_action = 0;
+          w_current->event_state = DRAWARC;
           break;
+
+        case(DRAWPIN):
+          o_pin_start(w_current, w_x, w_y);
+          w_current->event_state = ENDPIN;
+          w_current->inside_action = 1;
+          break;
+
+        case(ENDPIN):
+          o_pin_end(w_current, w_x, w_y);
+          w_current->inside_action = 0;
+          w_current->event_state = DRAWPIN;
+          break;
+
+        case(STARTDRAWNET):  /*! \todo change state name? */
+          o_net_start(w_current, w_x, w_y);
+          w_current->inside_action = 1;
+          w_current->event_state=DRAWNET;
+
+          break;
+
+        case(STARTDRAWBUS):
+          o_bus_start(w_current, w_x, w_y);
+          w_current->inside_action = 1;
+          w_current->event_state=DRAWBUS;
+
+          break;
+
+        case(DRAWNET):
+        case(NETCONT):
+          /* Only continue the net if net end worked */
+          if (o_net_end(w_current, w_x, w_y)) {
+            o_net_start(w_current, w_current->first_wx, w_current->first_wy);
+            w_current->event_state=NETCONT;
+          } else { /* cleanup and start a new net */
+            o_net_invalidate_rubber (w_current);
+            o_net_reset(w_current);
+            i_set_state(w_current, STARTDRAWNET);
+            w_current->inside_action = 0;
+          }
+          break;
+
+        case(DRAWBUS):
+        case(BUSCONT):
+          /* Only continue the net if net end worked */
+          if (o_bus_end(w_current, w_x, w_y)) {
+            o_bus_start(w_current, w_current->first_wx, w_current->first_wy);
+            w_current->event_state=BUSCONT;
+          } else {
+            w_current->inside_action=0;
+            i_set_state(w_current, STARTDRAWBUS);
+          }
+          break;
+        case(ENDCOMP):
+          o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
+                      NULL, "%add-objects-hook");
+          if (!w_current->continue_component_place) {
+            w_current->inside_action = 0;
+            i_set_state(w_current, SELECT);
+          }
+          break;
+
+        case(ENDPASTE):
+          o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
+          w_current->inside_action = 0;
+          i_set_state(w_current, SELECT);
+          break;
+
+        case(ENDROTATEP):
+          o_rotate_world_update(w_current, w_x, w_y, 90,
+                                geda_list_get_glist(toplevel->page_current->selection_list ));
+
+          w_current->inside_action = 0;
+          i_set_state(w_current, SELECT);
+          break;
+
+        case(ENDMIRROR):
+          o_mirror_world_update(w_current, w_x, w_y,
+                                geda_list_get_glist(
+                                  toplevel->page_current->selection_list ));
+
+          w_current->inside_action = 0;
+          i_set_state(w_current, SELECT);
+          break;
+
+        case(ENDTEXT):
+          o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
+          w_current->inside_action = 0;
+          i_set_state(w_current, SELECT);
+          break;
+
+
+        case(STARTPAN):
+          a_pan(w_current, w_x, w_y);
+          i_set_state(w_current, SELECT);
+          break;
+
+        case(ZOOMBOXSTART):
+          o_redraw_cleanstates(w_current);
+          a_zoom_box_start(w_current, unsnapped_wx, unsnapped_wy);
+          w_current->inside_action = 1;
+          i_set_state(w_current, ZOOMBOXEND);
+          break;
+
       }
     }
-  }
+    else if (event->button == 2) {
 
-  end_button_pressed:
+      /* try this out and see how it behaves */
+      if (w_current->inside_action) {
+        if (!(w_current->event_state == ENDCOMP ||
+          w_current->event_state == ENDTEXT ||
+          w_current->event_state == ENDMOVE ||
+          w_current->event_state == ENDCOPY ||
+          w_current->event_state == ENDMCOPY ||
+          w_current->event_state == ENDPASTE )) {
+          i_callback_cancel(w_current, 0, NULL);
+          }
+          goto end_button_pressed;
+      }
 
-  return(0);
+      switch(w_current->middle_button) {
+
+        case(MOUSE_MIDDLE_ACTION):
+          /* determine here if copy or move for now do move only
+           *          make sure the list is not empty */
+          if (o_select_selected(w_current)) {
+
+          }
+          else {
+            o_select_unselect_all(w_current);
+
+          }
+          /* don't want to search if shift key is depresed */
+          if (!w_current->SHIFTKEY) {
+            o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
+          }
+
+          if (!o_select_selected(w_current)) {
+            /* this means the above find did not
+             * find anything */
+            w_current->inside_action = 0;
+            i_set_state(w_current, SELECT);
+            goto end_button_pressed;
+          }
+
+          if (w_current->ALTKEY) {
+            o_copy_start(w_current, w_x, w_y);
+            w_current->inside_action = 1;
+            i_set_state(w_current, COPY);
+          } else {
+            o_move_start(w_current, w_x, w_y);
+            w_current->inside_action = 1;
+            i_set_state(w_current, MOVE);
+          }
+          break;
+
+        case(MOUSE_MIDDLE_REPEAT):
+          i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
+          break;
+          #ifdef HAVE_LIBSTROKE
+        case(MOUSE_MIDDLE_STROKE):
+          DOING_STROKE=TRUE;
+          break;
+          #endif /* HAVE_LIBSTROKE */
+
+        case(MOUSE_MIDDLE_PAN):
+          w_current->event_state = MOUSEPAN; /* start */
+          w_current->inside_action = 1;
+          w_current->doing_pan = TRUE;
+          start_pan_x = (int) event->x;
+          start_pan_y = (int) event->y;
+          throttle=0;
+          break;
+      }
+
+    }
+    else if (event->button == 3) {
+      if (!w_current->inside_action) {
+        if (w_current->third_button == POPUP_ENABLED) {
+          i_update_sensitivities(w_current);  /* update menus before popup  */
+          x_menu_display_popup(w_current, event);
+        } else {
+          w_current->event_state = MOUSEPAN; /* start */
+          w_current->inside_action = 1;
+          w_current->doing_pan = TRUE;
+          start_pan_x = (int) event->x;
+          start_pan_y = (int) event->y;
+          throttle=0;
+        }
+      }
+      else { /* this is the default cancel */
+        switch (w_current->event_state) {
+          case(STARTDRAWNET):
+          case(DRAWNET):
+          case(NETCONT):
+            w_current->inside_action = 0;
+            i_set_state(w_current, STARTDRAWNET);
+            o_net_invalidate_rubber (w_current);
+            o_net_reset(w_current);
+            break;
+
+          case(STARTDRAWBUS):
+          case(DRAWBUS):
+          case(BUSCONT):
+            w_current->inside_action = 0;
+            i_set_state(w_current, STARTDRAWBUS);
+            o_bus_invalidate_rubber (w_current);
+            break;
+
+          case(DRAWPIN):
+          case(ENDPIN):
+            w_current->inside_action = 0;
+            i_set_state(w_current, DRAWPIN);
+            o_pin_invalidate_rubber (w_current);
+            break;
+
+          case(DRAWLINE):
+          case(ENDLINE):
+            w_current->inside_action = 0;
+            i_set_state(w_current, DRAWLINE);
+            o_line_invalidate_rubber (w_current);
+            break;
+
+          case DRAWPATH:
+          case PATHCONT:
+          case ENDPATH:
+            w_current->inside_action = 0;
+            i_set_state (w_current, DRAWPATH);
+            o_path_invalidate_rubber (w_current);
+            break;
+
+          case(DRAWBOX):
+          case(ENDBOX):
+            w_current->inside_action = 0;
+            i_set_state(w_current, DRAWBOX);
+            o_box_invalidate_rubber (w_current);
+            break;
+
+          case(DRAWPICTURE):
+          case(ENDPICTURE):
+            w_current->inside_action = 0;
+            i_set_state(w_current, DRAWPICTURE);
+            o_picture_invalidate_rubber (w_current);
+            break;
+
+          case(DRAWCIRCLE):
+          case(ENDCIRCLE):
+            w_current->inside_action = 0;
+            i_set_state(w_current, DRAWCIRCLE);
+            o_circle_invalidate_rubber (w_current);
+            break;
+
+          case(DRAWARC):
+          case(ENDARC):
+            w_current->inside_action = 0;
+            i_set_state(w_current, DRAWARC);
+            o_arc_invalidate_rubber (w_current);
+            break;
+
+          default:
+            i_callback_cancel(w_current, 0, NULL);
+            break;
+        }
+      }
+    }
+
+    end_button_pressed:
+
+    return(0);
 }
 
 /*! \brief Button Release Event Handler
@@ -506,12 +529,13 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
                             GSCHEM_TOPLEVEL *w_current)
 {
   int unsnapped_wx, unsnapped_wy;
+  int w_x, w_y;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-#if DEBUG || DEBUG_EVENTS
+  #if DEBUG || DEBUG_EVENTS
   printf("x_event_button_released: entry! %d \n", w_current->event_state);
-#endif
+  #endif
 
   w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
@@ -519,6 +543,9 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
                  &unsnapped_wx, &unsnapped_wy);
+
+  w_x = snap_grid (w_current, unsnapped_wx);
+  w_y = snap_grid (w_current, unsnapped_wy);
 
   /* Huge switch statement to evaluate state transitions. Jump to
    * end_button_released label to escape the state evaluation rather
@@ -595,6 +622,15 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
           w_current->inside_action = 1;
         }
         break;
+      case ENDPATH:
+        if (o_path_end (w_current, w_x, w_y)) {
+          w_current->event_state = PATHCONT;
+          w_current->inside_action = TRUE;
+        } else {
+          w_current->event_state = DRAWPATH;
+          w_current->inside_action = FALSE;
+        }
+        break;
     }
 
   }
@@ -602,11 +638,11 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
     if (w_current->inside_action) {
       if (w_current->event_state == ENDCOMP ||
-          w_current->event_state == ENDTEXT ||
-          w_current->event_state == ENDMOVE ||
-          w_current->event_state == ENDCOPY ||
-          w_current->event_state == ENDMCOPY ||
-          w_current->event_state == ENDPASTE ) {
+        w_current->event_state == ENDTEXT ||
+        w_current->event_state == ENDMOVE ||
+        w_current->event_state == ENDCOPY ||
+        w_current->event_state == ENDMCOPY ||
+        w_current->event_state == ENDPASTE ) {
 
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, FALSE);
@@ -628,45 +664,45 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
         }
         w_current->rubber_visible = 1;
         goto end_button_released;
-      }
+        }
     }
 
     switch(w_current->middle_button) {
       case(MOUSE_MIDDLE_ACTION):
-      switch(w_current->event_state) {
-        case(MOVE):
-        o_move_end(w_current);
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
+        switch(w_current->event_state) {
+          case(MOVE):
+            o_move_end(w_current);
+            w_current->inside_action = 0;
+            i_set_state(w_current, SELECT);
+            break;
+
+          case(COPY):
+            o_copy_end(w_current);
+            w_current->inside_action = 0;
+            i_set_state(w_current, SELECT);
+            break;
+        }
         break;
 
-        case(COPY):
-        o_copy_end(w_current);
-        w_current->inside_action = 0;
-        i_set_state(w_current, SELECT);
-        break;
-      }
-      break;
+        #ifdef HAVE_LIBSTROKE
+          case(MOUSE_MIDDLE_STROKE):
+            DOING_STROKE = FALSE;
+            x_stroke_translate_and_execute (w_current);
+            break;
+            #endif /* HAVE_LIBSTROKE */
 
-#ifdef HAVE_LIBSTROKE
-      case(MOUSE_MIDDLE_STROKE):
-      DOING_STROKE = FALSE;
-      x_stroke_translate_and_execute (w_current);
-      break;
-#endif /* HAVE_LIBSTROKE */
-
-      case(MOUSE_MIDDLE_PAN):
-      w_current->doing_pan=FALSE;
-      o_invalidate_all (w_current);
-      if (w_current->undo_panzoom) {
-        o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
-      }
-      /* this needs to be REDONE */
-      /* if you mouse pan, you will be thrown out of the current mode. */
-      /* not good */
-      w_current->inside_action = 0;
-      i_set_state(w_current, SELECT);
-      break;
+          case(MOUSE_MIDDLE_PAN):
+            w_current->doing_pan=FALSE;
+            o_invalidate_all (w_current);
+            if (w_current->undo_panzoom) {
+              o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+            }
+            /* this needs to be REDONE */
+            /* if you mouse pan, you will be thrown out of the current mode. */
+            /* not good */
+            w_current->inside_action = 0;
+            i_set_state(w_current, SELECT);
+            break;
     }
 
   }
@@ -685,9 +721,9 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
     }
   }
   end_button_released:
-#if DEBUG || DEBUG_EVENTS
+  #if DEBUG || DEBUG_EVENTS
   printf("x_event_button_released: exit! %d \n", w_current->event_state);
-#endif
+  #endif
   return(0);
 }
 
@@ -711,28 +747,28 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
   w_current->ALTKEY     = (event->state & GDK_MOD1_MASK) ? 1 : 0;
 
-#if DEBUG
+  #if DEBUG
   /*  printf("MOTION!\n");*/
-#endif
+  #endif
 
-#ifdef HAVE_LIBSTROKE
+  #ifdef HAVE_LIBSTROKE
   if (DOING_STROKE == TRUE) {
     x_stroke_record (w_current, event->x, event->y);
     return(0);
   }
-#endif /* HAVE_LIBSTROKE */
+  #endif /* HAVE_LIBSTROKE */
 
   /* skip the moving event if there are other moving events in the
-     gdk event queue (Werner)
-     Only skip the event if is the same event and no buttons or modifier
-     keys changed*/
+   *    gdk event queue (Werner)
+   *    Only skip the event if is the same event and no buttons or modifier
+   *    keys changed*/
   if ((test_event = gdk_event_get()) != NULL) {
     if (test_event->type == GDK_MOTION_NOTIFY
-        && ((GdkEventMotion *) test_event)->state == event->state) {
+      && ((GdkEventMotion *) test_event)->state == event->state) {
       skip_event= 1;
-    }
-    gdk_event_put(test_event); /* put it back in front of the queue */
-    gdk_event_free(test_event);
+      }
+      gdk_event_put(test_event); /* put it back in front of the queue */
+      gdk_event_free(test_event);
     if (skip_event == 1)
       return 0;
   }
@@ -747,20 +783,20 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   }
   if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MOUSE_MIDDLE_PAN) {
     if((w_current->event_state == MOUSEPAN) &&
-       w_current->inside_action) {
-         pdiff_x = (int) event->x - start_pan_x;
-         pdiff_y = (int) event->y - start_pan_y;
+      w_current->inside_action) {
+      pdiff_x = (int) event->x - start_pan_x;
+    pdiff_y = (int) event->y - start_pan_y;
 
-         if (!(throttle % 5)) {
-           a_pan_mouse(w_current, pdiff_x*w_current->mousepan_gain,
-                       pdiff_y*w_current->mousepan_gain);
+    if (!(throttle % 5)) {
+      a_pan_mouse(w_current, pdiff_x*w_current->mousepan_gain,
+                  pdiff_y*w_current->mousepan_gain);
 
-           start_pan_x = (int) event->x;
-           start_pan_y = (int) event->y;
-         }
-         throttle++;
-         return(0);
-       }
+      start_pan_x = (int) event->x;
+      start_pan_y = (int) event->y;
+    }
+    throttle++;
+    return(0);
+      }
   }
 
   /* Huge switch statement to evaluate state transitions. Jump to end_motion
@@ -772,123 +808,128 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   switch(w_current->event_state) {
 
     case(SELECT):
-    /* do nothing */
-    break;
+      /* do nothing */
+      break;
 
     case(GRIPS):
       o_grips_motion(w_current, w_x, w_y);
-    break;
+      break;
     case(STARTSELECT):
-       if ( (!w_current->drag_can_move) || (w_current->drag_can_move &&
-          (! o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy))))
-       {
-         if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
-           w_current->event_state = SBOX;
-           w_current->inside_action = 1;
-         }
-         break;
-       }
-       else
-       {
-    /* If the shift or control keys are pressed, that means the user definately wants to drag out a
-     * selection box.  Otherwise, if there is not a selected object under the cursor, look for one
-     * that could be selected and start moving it.
-     */
-         if (w_current->SHIFTKEY || w_current->CONTROLKEY ||
-                (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy)
-                && (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE)
-                    || !o_select_selected(w_current))))
-         {
-           if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
-             w_current->event_state = SBOX;
-             w_current->inside_action = 1;
-           }
-           break;
-         }
-         else
-         {
+      if ( (!w_current->drag_can_move) || (w_current->drag_can_move &&
+        (! o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy))))
+      {
+        if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
+          w_current->event_state = SBOX;
+          w_current->inside_action = 1;
+        }
+        break;
+      }
+      else
+      {
+        /* If the shift or control keys are pressed, that means the user definately wants to drag out a
+         * selection box.  Otherwise, if there is not a selected object under the cursor, look for one
+         * that could be selected and start moving it.
+         */
+        if (w_current->SHIFTKEY || w_current->CONTROLKEY ||
+          (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy)
+          && (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE)
+          || !o_select_selected(w_current))))
+        {
+          if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
+            w_current->event_state = SBOX;
+            w_current->inside_action = 1;
+          }
+          break;
+        }
+        else
+        {
           /* Start moving the selected object(s) */
-           o_move_start(w_current, w_x, w_y);
-           w_current->event_state = ENDMOVE;
-           w_current->inside_action = 1;
+          o_move_start(w_current, w_x, w_y);
+          w_current->event_state = ENDMOVE;
+          w_current->inside_action = 1;
           /* Fall through bottom of case to finish the move */
-         }
-       }
-    /* Fall through to handle move */
-    case(ENDMOVE):
-    case(MOVE):
-    if (w_current->inside_action)
-      o_move_motion (w_current, w_x, w_y);
-    break;
+        }
+      }
+      /* Fall through to handle move */
+      case(ENDMOVE):
+      case(MOVE):
+        if (w_current->inside_action)
+          o_move_motion (w_current, w_x, w_y);
+        break;
 
-    case(ENDLINE):
-    if (w_current->inside_action)
-      o_line_motion (w_current, w_x, w_y);
-    break;
+      case(ENDLINE):
+        if (w_current->inside_action)
+          o_line_motion (w_current, w_x, w_y);
+        break;
 
-    case(ENDBOX):
-    if (w_current->inside_action)
-      o_box_motion ( w_current, w_x, w_y);
-    break;
+      case PATHCONT:
+      case ENDPATH:
+        if (w_current->inside_action)
+          o_path_motion (w_current, w_x, w_y);
+        break;
+      case(ENDBOX):
+        if (w_current->inside_action)
+          o_box_motion ( w_current, w_x, w_y);
+        break;
 
-    case(ENDPICTURE):
-    if (w_current->inside_action)
-      o_picture_motion ( w_current, w_x, w_y);
-    break;
+      case(ENDPICTURE):
+        if (w_current->inside_action)
+          o_picture_motion ( w_current, w_x, w_y);
+        break;
 
-    case(ENDCIRCLE):
-    if (w_current->inside_action)
-      o_circle_motion (w_current, w_x, w_y);
-    break;
+      case(ENDCIRCLE):
+        if (w_current->inside_action)
+          o_circle_motion (w_current, w_x, w_y);
+        break;
 
-    case(ENDARC):
-    if (w_current->inside_action)
-      o_arc_motion (w_current, w_x, w_y, ARC_RADIUS);
-    break;
+      case(ENDARC):
+        if (w_current->inside_action)
+          o_arc_motion (w_current, w_x, w_y, ARC_RADIUS);
+        break;
 
 
-    case(STARTDRAWNET):
-    if(w_current->magnetic_net_mode == 1) {
-      o_net_start_magnetic(w_current, w_x, w_y);
-    }
-    break;
+      case(STARTDRAWNET):
+        if(w_current->magnetic_net_mode == 1) {
+          o_net_start_magnetic(w_current, w_x, w_y);
+        }
+        break;
 
-    case(DRAWNET):
-    case(NETCONT):
-    if (w_current->inside_action)
-      o_net_motion (w_current, w_x, w_y);
-    break;
+      case(DRAWNET):
+      case(NETCONT):
+        if (w_current->inside_action)
+          o_net_motion (w_current, w_x, w_y);
+        break;
 
-    case(DRAWBUS):
-    case(BUSCONT):
-    if (w_current->inside_action)
-      o_bus_motion (w_current, w_x, w_y);
-    break;
+      case(DRAWBUS):
+      case(BUSCONT):
+        if (w_current->inside_action)
+          o_bus_motion (w_current, w_x, w_y);
+        break;
 
-    case(ENDPIN):
-    if (w_current->inside_action)
-      o_pin_motion (w_current, w_x, w_y);
-    break;
+      case(ENDPIN):
+        if (w_current->inside_action)
+          o_pin_motion (w_current, w_x, w_y);
+        break;
 
-    case(COPY):
-    case(MCOPY):
-    case(ENDCOPY):
-    case(ENDMCOPY):
-    case(ENDCOMP):
-    case(ENDPASTE):
-    case(ENDTEXT):
-    o_place_motion (w_current, w_x, w_y);
-    break;
+      case(COPY):
+      case(MCOPY):
+      case(ENDCOPY):
+      case(ENDMCOPY):
+      case(ENDCOMP):
+      case(ENDPASTE):
+      case(ENDTEXT):
+        o_place_motion (w_current, w_x, w_y);
+        break;
 
-    case(SBOX):
-    if (w_current->inside_action)
-    o_select_box_motion (w_current, unsnapped_wx, unsnapped_wy);
-    break;
+      case(SBOX):
+        if (w_current->inside_action)
+          o_select_box_motion (w_current, unsnapped_wx, unsnapped_wy);
+        break;
 
-    case(ZOOMBOXEND):
-    if (w_current->inside_action)
-      a_zoom_box_motion (w_current, unsnapped_wx, unsnapped_wy);
-    break;
+      case(ZOOMBOXEND):
+        if (w_current->inside_action)
+          a_zoom_box_motion (w_current, unsnapped_wx, unsnapped_wy);
+        break;
 
   }
 
@@ -1317,8 +1358,7 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
   }
 
   if (zoom) {
-    /*! \todo Change "HOTKEY" TO new "MOUSE" specifier? */
-    a_zoom(w_current, zoom_direction, HOTKEY, 0);
+    a_zoom(w_current, zoom_direction, ID_ORIGIN_MOUSE, 0);
   }
 
   if (pan_xaxis) {
@@ -1343,7 +1383,6 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
 
   return 0;
 }
-
 
 /*! \brief get the pointer position of a given GSCHEM_TOPLEVEL
  *  \par Function Description
@@ -1380,4 +1419,29 @@ bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
   *wy = y;
 
   return TRUE;
+}
+
+/*! \brief Set Pointer Position Relative to the Drawing Area
+ *  \par Function Description
+ *   This function sets the pointer position to relative
+ *  screen coordinates off the given widget.
+ *
+ *  \param [in] w_current   The GSCHEM_TOPLEVEL object
+ *  \param [in] wx     integer abscissa in World units
+ *  \param [in] wy     integer ordinate in World units
+ *
+ */
+void
+x_event_set_pointer_position (GSCHEM_TOPLEVEL *w_current, int wx, int wy)
+{
+  int sx, sy;
+
+  gtk_window_present (GTK_WINDOW(w_current->main_window));
+
+  WORLDtoSCREEN (w_current,  wx, wy, &sx, &sy);
+
+  /* set cursor position */
+  x_basic_warp_cursor (w_current->drawing_area, sx, sy);
+
+  return;
 }

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ x_stroke_record (GSCHEM_TOPLEVEL *w_current, int x, int y)
   }
 
 }
-SCM gh_symbol2scm (char *name);
+//SCM gh_symbol2scm (char *name);
 /*! \brief Evaluates the stroke.
  *  \par Function Description
  *  This function transforms the stroke input so far in an action.

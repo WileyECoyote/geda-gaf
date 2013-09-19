@@ -317,7 +317,7 @@ gtk_entry_realize (GtkWidget *widget)
   GdkWindowAttr attributes;
   gint attributes_mask;
 
-  GTK_WIDGET_SET_FLAGS (widget, GTK_REALIZED);
+  gtk_widget_realize (widget);
   entry = GTK_ENTRY (widget);
   editable = GTK_EDITABLE (widget);
 

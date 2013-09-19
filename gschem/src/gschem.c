@@ -250,12 +250,10 @@ void gschem( int argc, char *argv[])
   recent_files_load();
   geda_atexit(recent_files_save, NULL);
 
-  /* Set default icon */
-  x_window_set_default_icon();
-
   /* At end, complete set up of window. */
   x_color_allocate();
   x_window_setup (w_current);
+
 #ifdef HAVE_LIBSTROKE
   x_stroke_init ();
 #endif /* HAVE_LIBSTROKE */

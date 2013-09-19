@@ -99,9 +99,9 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
     case DRAWNET:
     case NETCONT:
       if (w_current->magnetic_net_mode)
-	return _("Magnetic Net Mode");
+        return _("Magnetic Net Mode");
       else
-	return _("Net Mode");
+        return _("Net Mode");
     case STARTDRAWBUS:
     case DRAWBUS:
     case BUSCONT:
@@ -109,6 +109,10 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
     case DRAWLINE:
     case ENDLINE:
       return _("Line Mode");
+    case DRAWPATH:
+    case PATHCONT:
+    case ENDPATH:
+      return _("Path Mode");
     case DRAWBOX:
     case ENDBOX:
       return _("Box Mode");
@@ -189,21 +193,6 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
   g_free(what_to_say);
 }
 
-/*! \brief Set new state, then show state field
- *
- *  \par Function Description
- *  Set new state, then show state field.
- *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
- *  \param [in] newstate The new state
- *   *EK* Egil Kvaleberg
- */
-void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
-{
-  i_set_state_msg(w_current, newstate, NULL);
-  //x_toolbars_update(w_current);
-}
-
 /*! \brief Set new state, then show state field including some
  *         message
  *
@@ -221,6 +210,20 @@ void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate, const c
   w_current->event_state = newstate;
   x_toolbars_update(w_current);
   i_show_state(w_current, message);
+}
+
+/*! \brief Set new state, then show state field
+ *
+ *  \par Function Description
+ *  Set new state, then show state field.
+ *
+ *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] newstate The new state
+ *   *EK* Egil Kvaleberg
+ */
+void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
+{
+  i_set_state_msg(w_current, newstate, NULL);
 }
 
 /*! \todo Finish function documentation!!!
@@ -376,9 +379,9 @@ if ( have_mutil_pages ) {
       x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
       x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
 
-      x_menus_popup_sensitivity(w_current, "/Edit pin type...", TRUE);
-      x_menus_popup_sensitivity(w_current, "/Down Schematic", TRUE);
-      x_menus_popup_sensitivity(w_current, "/Down Symbol", TRUE);
+      x_menus_popup_sensitivity(w_current, "Edit pin type...", TRUE);
+      x_menus_popup_sensitivity(w_current, "Down Schematic", TRUE);
+      x_menus_popup_sensitivity(w_current, "Down Symbol", TRUE);
       /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
     }
 
@@ -433,13 +436,13 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
 
-    x_menus_popup_sensitivity(w_current, "/Cut", TRUE);
-    x_menus_popup_sensitivity(w_current, "/Copy", TRUE);
+    x_menus_popup_sensitivity(w_current, "Cut", TRUE);
+    x_menus_popup_sensitivity(w_current, "Copy", TRUE);
 
-    x_menus_popup_sensitivity(w_current, "/Edit...", TRUE);
-    x_menus_popup_sensitivity(w_current, "/Duplicate", TRUE);
-    x_menus_popup_sensitivity(w_current, "/Move", TRUE);
-    x_menus_popup_sensitivity(w_current, "/Delete", TRUE);
+    x_menus_popup_sensitivity(w_current, "Edit...", TRUE);
+    x_menus_popup_sensitivity(w_current, "Duplicate", TRUE);
+    x_menus_popup_sensitivity(w_current, "Move", TRUE);
+    x_menus_popup_sensitivity(w_current, "Delete", TRUE);
 
   } else { /* Nothing is selected, grey these out */
     /* These strings should NOT be internationalized */
@@ -487,18 +490,18 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", FALSE);
 
     /*  Menu items for hierarchy added by SDB 1.9.2005.  */
-    x_menus_popup_sensitivity(w_current, "/Down Schematic", FALSE);
-    x_menus_popup_sensitivity(w_current, "/Down Symbol", FALSE);
+    x_menus_popup_sensitivity(w_current, "Down Schematic", FALSE);
+    x_menus_popup_sensitivity(w_current, "Down Symbol", FALSE);
     /* x_menus_popup_sensitivity(w_current, "/Up", FALSE);	*/
 
-    x_menus_popup_sensitivity(w_current, "/Edit...", FALSE);
-    x_menus_popup_sensitivity(w_current, "/Edit pin type...", FALSE);
-    x_menus_popup_sensitivity(w_current, "/Duplicate", FALSE);
-    x_menus_popup_sensitivity(w_current, "/Move", FALSE);
-    x_menus_popup_sensitivity(w_current, "/Delete", FALSE);
+    x_menus_popup_sensitivity(w_current, "Edit...", FALSE);
+    x_menus_popup_sensitivity(w_current, "Edit pin type...", FALSE);
+    x_menus_popup_sensitivity(w_current, "Duplicate", FALSE);
+    x_menus_popup_sensitivity(w_current, "Move", FALSE);
+    x_menus_popup_sensitivity(w_current, "Delete", FALSE);
 
-    x_menus_popup_sensitivity(w_current, "/Cut", FALSE);
-    x_menus_popup_sensitivity(w_current, "/Copy", FALSE);
+    x_menus_popup_sensitivity(w_current, "Cut", FALSE);
+    x_menus_popup_sensitivity(w_current, "Copy", FALSE);
   }
 
   x_menus_sensitivity(w_current, "_Buffer/Paste from 1", (object_buffer[1] != NULL));
@@ -510,7 +513,7 @@ if ( have_mutil_pages ) {
   /* Update sensitivities on the Toolbars */
   x_toolbars_set_sensitivities (w_current, SOME_OBJECTS,    anything_is_selected);
   x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECTS, is_complex_selected);
-  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,     have_mutil_pages);
+  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,      have_mutil_pages);
   x_toolbars_set_sensitivities (w_current, TEXT_OBJECTS,    have_text_selected);
 
 }

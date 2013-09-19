@@ -56,7 +56,7 @@ enum {
 };
 
 enum {
-  STOP_ACTIVATE,
+  PROCESS_ENTRY,
   LAST_SIGNAL
 };
 enum {
@@ -170,7 +170,7 @@ geda_entry_set_activates_default (GedaEntry *entry, bool setting)
   if (setting != entry->activates_default)
     {
       entry->activates_default = setting;
-      //g_object_notify (G_OBJECT (entry), "activates-default");
+      g_object_notify (G_OBJECT (entry), "activates-default");
     }
 }
 
@@ -395,6 +395,9 @@ static void geda_entry_validate_input (GtkEntry    *entry,
          if ((text[i] > ASCII_APO) && (text[i] < ASCII_QUESTION_MARK)) /* includes colon and semicolon */
            valid = TRUE;
          break;
+      case ACCEPT_COORDINATE:
+         if ((text[i] == ASCII_COMMA) || (text[i] == ASCII_LEFT_PARENTHESIS) || (text[i] == ASCII_RIGHT_PARENTHESIS))
+           valid = TRUE;
       case ACCEPT_NUMBER:
          if (isdigit(text[i]))
            valid = TRUE;
@@ -450,7 +453,7 @@ static void geda_entry_class_init (GedaEntryClass *class)
   parent_class       = g_type_class_peek_parent (class);
   entry_parent_class = g_type_class_peek_parent (g_type_class_peek (GTK_TYPE_ENTRY));
 
-  gobject_class->finalize = geda_entry_finalize;
+  gobject_class->finalize     = geda_entry_finalize;
   gobject_class->set_property = geda_entry_set_property;
   gobject_class->get_property = geda_entry_get_property;
 
@@ -533,7 +536,7 @@ static void geda_entry_class_init (GedaEntryClass *class)
    * The default bindings for this signal are all forms of the Enter key.
    */
 
-  signals[STOP_ACTIVATE] = g_signal_new (_("stop_activate"),
+  signals[PROCESS_ENTRY] = g_signal_new ("process-entry",
                                     G_TYPE_FROM_CLASS (gobject_class),
                                     G_SIGNAL_RUN_FIRST | G_SIGNAL_ACTION,
                                     G_STRUCT_OFFSET (GedaEntryClass, activate),
@@ -541,17 +544,17 @@ static void geda_entry_class_init (GedaEntryClass *class)
                                     g_cclosure_marshal_VOID__VOID,
                                     G_TYPE_NONE, 0);
 
-  widget_class->activate_signal = signals[STOP_ACTIVATE];
+  widget_class->activate_signal = signals[PROCESS_ENTRY];
 
   /*  Key bindings */
   binding_set = gtk_binding_set_by_class (class);
 
   /* Activate */
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0, "stop_activate", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0, "process-entry", 0);
 
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_ISO_Enter, 0, "stop_activate", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_ISO_Enter, 0, "process-entry", 0);
 
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0, "stop_activate", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0, "process-entry", 0);
 
   widget_class->grab_focus = geda_entry_grab_focus;
   widget_class->realize    = geda_entry_realize;
@@ -665,6 +668,7 @@ geda_entry_real_activate (GedaEntry *entry)
       }
     }
   }
+  
 }
 
 static bool
@@ -914,25 +918,27 @@ geda_entry_tab_complete (GtkEntry *entry)
 static void
 geda_entry_populate_popup (GedaEntry *entry, GtkMenu *menu, gpointer data)
 {
-        GtkWidget *item;
-        GtkWidget *submenu;
+  GtkWidget *item;
+  GtkWidget *submenu;
 
-        item = gtk_menu_item_new_with_mnemonic (_("Auto Complete"));
-        gtk_widget_show (item);
+  if (have_auto_complete) {
+    item = gtk_menu_item_new_with_mnemonic (_("Auto Complete"));
+    gtk_widget_show (item);
 
-        submenu = gtk_menu_new ();
-        gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
-        gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
+    submenu = gtk_menu_new ();
+    gtk_menu_item_set_submenu (GTK_MENU_ITEM (item), submenu);
+    gtk_menu_shell_append (GTK_MENU_SHELL (menu), item);
 
-        item = gtk_image_menu_item_new_with_label (_("On"));
-        g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), GINT_TO_POINTER (1));
-        gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
+    item = gtk_image_menu_item_new_with_label (_("On"));
+    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), GINT_TO_POINTER (1));
+    gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
 
-        item = gtk_image_menu_item_new_with_label (_("Off"));
-        g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), GINT_TO_POINTER (2));
-        gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
+    item = gtk_image_menu_item_new_with_label (_("Off"));
+    g_signal_connect (G_OBJECT (item), "activate", G_CALLBACK (popup_menu_callback), GINT_TO_POINTER (2));
+    gtk_menu_shell_append (GTK_MENU_SHELL (submenu), item);
 
-        gtk_widget_show_all (submenu);
+    gtk_widget_show_all (submenu);
+  }
 }
 
 static void
@@ -954,7 +960,80 @@ popup_menu_callback (GtkMenuItem *item, gpointer data)
         break;
   }
 }
-/* ------------------------------------------------------------- */
+
+/* --------------------- Widget Style Functions ----------------- */
+/*! \section Entry-Style */
+
+static void
+geda_entry_modify_color_component (GtkWidget      *widget,
+                                   GtkRcFlags      component,
+                                   GtkStateType    state,
+                                   const GdkColor *color)
+{
+  GtkRcStyle *rc_style;
+
+  rc_style = gtk_widget_get_modifier_style (widget);
+
+  if (color)
+  {
+    switch (component)
+    {
+      case GTK_RC_FG:
+        rc_style->fg[state]   = *color;
+        break;
+      case GTK_RC_BG:
+        rc_style->bg[state]   = *color;
+        break;
+      case GTK_RC_TEXT:
+        rc_style->text[state] = *color;
+        break;
+      case GTK_RC_BASE:
+        rc_style->base[state] = *color;
+        break;
+      default:
+        g_critical ("Internal Error: <%s><geda_entry_modify_color_component>"
+                    "unhandled case=%d, line %d.\n",
+                     __FILE__, component, __LINE__);
+    }
+
+    rc_style->color_flags[state] |= component;
+  }
+  else
+    rc_style->color_flags[state] &= ~component;
+
+  gtk_widget_modify_style (widget, rc_style);
+}
+
+void
+geda_entry_widget_modify_color (GtkWidget      *widget,
+                                GtkRcFlags      component,
+                                GtkStateType    state,
+                                const GdkColor *color)
+{
+  g_return_if_fail (GTK_IS_WIDGET (widget));
+
+  if(state >= GTK_STATE_NORMAL || state <= GTK_STATE_INSENSITIVE)
+    state = GTK_STATE_NORMAL;
+
+  geda_entry_modify_color_component (widget, component, state, color);
+
+}
+
+void geda_entry_modify_fg (GedaEntry *entry,
+                           GtkStateType state,
+                           const GdkColor *color)
+{
+  geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_FG, state, color);
+}
+
+void geda_entry_modify_bg (GedaEntry      *entry,
+                           GtkStateType    state,
+                           const GdkColor *color)
+{
+  geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_BG, state, color);
+}
+
+/* -------------------------------------------------------------- */
 GtkWidget *geda_entry_new (GList** history, GList** complete)
 {
   if ((int)history == -1)
@@ -976,6 +1055,14 @@ GtkWidget *geda_entry_new (GList** history, GList** complete)
   }
   return GTK_WIDGET (g_object_new (geda_entry_get_type (), NULL));
 }
+GtkWidget *geda_visible_entry_new (GList** history, GList** complete)
+{
+  GtkWidget *entry;
+  entry = geda_entry_new ( history, complete);
+  g_object_set (entry, "visible", TRUE, NULL);
+  return entry;
+}
+
 /*!
  * gtk_entry_new_with_buffer:
  * @buffer: The buffer to use for the new #GtkEntry.

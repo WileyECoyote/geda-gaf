@@ -23,8 +23,9 @@
 #include <glib/gstdio.h>   /* mkdir */
 #include <libgen.h>        /* dirname */
 
-#include <gschem.h>
-#include <x_menu.h>
+#include "gschem.h"
+#include "x_menu.h"
+#include "x_drag.h"
 
 #include <stdio.h>
 #include <errno.h>
@@ -62,7 +63,7 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
   global_window_list = g_list_append (global_window_list, w_current);
 
   /* X related stuff */
-  x_icons_setup_factory();          /* Must setup factory before menus! */
+  x_icons_initialize();  /* Initialize icons - must be done before menus! */
 
   x_window_create_main (w_current);
   x_window_restore_geometry((GtkWindow*)w_current->main_window, "gschem");
@@ -82,7 +83,7 @@ void x_window_setup_gc(GSCHEM_TOPLEVEL *w_current)
   w_current->gc = gdk_gc_new(w_current->window);
 
   if (w_current->gc == NULL) {
-    fprintf(stderr, _("Couldn't allocate gc\n"));
+    g_critical(_("Couldn't allocate gc\n"));
   }
 }
 
@@ -119,10 +120,10 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
                          w_current->win_height);
 
   gtk_box_pack_start (GTK_BOX (drawbox), w_current->drawing_area, TRUE, TRUE, 0);
-  GTK_WIDGET_SET_FLAGS (w_current->drawing_area, GTK_CAN_FOCUS );
+  gtk_widget_set_can_focus(w_current->drawing_area, TRUE);
   gtk_widget_grab_focus (w_current->drawing_area);
-  gtk_widget_show (w_current->drawing_area);
-
+  g_object_set ( w_current->drawing_area, "visible", TRUE,
+                                          "name",    "GschemDrawingArea", NULL);
 }
 
 /*! \brief Save Window Geometry
@@ -201,8 +202,7 @@ void x_window_restore_geometry(GtkWindow *window, char* group_name)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Setup X-Events
  *  \par Function Description
  *
  */
@@ -214,14 +214,15 @@ void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
   };
 
   struct event_reg_t drawing_area_events[] = {
-    { "expose_event",         G_CALLBACK(x_event_expose)          },
-    { "button_press_event",   G_CALLBACK(x_event_button_pressed)  },
-    { "button_release_event", G_CALLBACK(x_event_button_released) },
-    { "motion_notify_event",  G_CALLBACK(x_event_motion)          },
-    { "configure_event",      G_CALLBACK(x_event_configure)       },
-    { "key_press_event",      G_CALLBACK(x_event_key)             },
-    { "key_release_event",    G_CALLBACK(x_event_key)             },
-    { NULL,                   NULL                                } };
+    { "expose_event",         G_CALLBACK (x_event_expose)          },
+    { "button_press_event",   G_CALLBACK (x_event_button_pressed)  },
+    { "button_release_event", G_CALLBACK (x_event_button_released) },
+    { "motion_notify_event",  G_CALLBACK (x_event_motion)          },
+    { "configure_event",      G_CALLBACK (x_event_configure)       },
+    { "key_press_event",      G_CALLBACK (x_event_key)             },
+    { "key_release_event",    G_CALLBACK (x_event_key)             },
+    { NULL,                   NULL                                 } };
+
   struct event_reg_t main_window_events[] = {
     { "enter_notify_event",   G_CALLBACK(x_event_enter)           },
     { "scroll_event",         G_CALLBACK(x_event_scroll)          },
@@ -319,6 +320,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   main_box = gtk_vbox_new(FALSE, 1);
   gtk_container_border_width(GTK_CONTAINER(main_box), 0);
   gtk_container_add(GTK_CONTAINER(w_current->main_window), main_box);
+  g_object_set (main_box, "visible", TRUE, NULL);
 
   /* Main Menu */
   menubar = x_menu_setup_ui (w_current);
@@ -327,9 +329,11 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
     handlebox = gtk_handle_box_new ();
     gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
     gtk_container_add (GTK_CONTAINER (handlebox), menubar);
+    g_object_set (handlebox, "visible", TRUE, NULL);
   } else {
     gtk_box_pack_start(GTK_BOX(main_box), menubar, FALSE, FALSE, 0);
   }
+  g_object_set (menubar, "visible", TRUE, NULL);
 
   x_menu_set_toggle(w_current, RESET_TOGGLERS, 0);
 
@@ -348,6 +352,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   center_hbox = gtk_hbox_new(FALSE, 1);
   gtk_container_border_width(GTK_CONTAINER(center_hbox), 0);
   gtk_container_add(GTK_CONTAINER(main_box), center_hbox);
+  g_object_set (center_hbox, "visible", TRUE, NULL);
 
   if (w_current->handleboxes && w_current->toolbars) {
      x_toolbars_init_left(w_current, center_hbox);
@@ -356,11 +361,12 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   center_vbox = gtk_vbox_new(FALSE, 1);
   gtk_container_border_width(GTK_CONTAINER(center_vbox), 0);
   gtk_container_add(GTK_CONTAINER(center_hbox), center_vbox);
+  g_object_set (center_vbox, "visible", TRUE, NULL);
 
   drawbox = gtk_hbox_new(FALSE, 0);
   gtk_container_border_width(GTK_CONTAINER(drawbox), 0);
-
   gtk_container_add(GTK_CONTAINER(center_vbox), drawbox);
+  g_object_set (drawbox, "visible", TRUE, NULL);
 
   x_window_create_drawing(drawbox, w_current);
   x_window_setup_draw_events(w_current);
@@ -854,7 +860,9 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   TOPLEVEL *toplevel = w_current->toplevel;
 
   g_return_if_fail (toplevel != NULL);
-  g_return_if_fail (page != NULL);
+
+  if(page == NULL)
+    return;
 
   o_redraw_cleanstates (w_current);
 
@@ -1022,18 +1030,7 @@ x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   }
 }
 
-
-/*! \brief Setup default icon for GTK windows
- *
- *  \par Function Description
- *  Sets the default window icon by name, to be found in the current icon
- *  theme. The name used is \#defined above as GSCHEM_THEME_ICON_NAME.
- */
-void x_window_set_default_icon( void )
-{
-  gtk_window_set_default_icon_name( GSCHEM_THEME_ICON_NAME );
-}
-/* ---------------------- Main Window Toolbar Processor -------------------- */
+/* --------------------- Main Window Toolbar Processors -------------------- */
 /*!
  * \brief View toogle Add toolbar
  * \par Function Description
@@ -1055,7 +1052,7 @@ void x_window_add_toolbar_toggle(GtkWidget *widget,
  * \par Function Description
  *      This function toggles the visibility of the Attribute toobar.
  * Note: the function actually toggles visibility of the handlebox
- * containing the toolbar
+ * containing the toolbar.
  */
 void x_window_attribute_toolbar_toggle(GtkWidget *widget,
                                        GSCHEM_TOPLEVEL *w_current)
@@ -1065,6 +1062,22 @@ void x_window_attribute_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->attribute_handlebox);
   else
     gtk_widget_hide(w_current->attribute_handlebox);
+}
+/*!
+ * \brief View toogle Grid/Snap toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Grid/Snap toobar.
+ * Note: the function actually toggles visibility of the handlebox
+ * containing the toolbar.
+ */
+void x_window_gridsnap_toolbar_toggle(GtkWidget *widget,
+                                       GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->grid_snap_handlebox);
+  else
+    gtk_widget_hide(w_current->grid_snap_handlebox);
 }
 /*!
  * \brief View toogle Edit toolbar
@@ -1103,7 +1116,7 @@ void x_window_page_toolbar_toggle(GtkWidget *widget,
  * \par Function Description
  *      This function toggles the visibility of the Standard toobar.
  * Note the function actually toggle visibility of the handlebox
- * containing the toolbarx_window_page_toolbar_toggle
+ * containing the toolbar.
  */
 void x_window_standard_toolbar_toggle(GtkWidget *widget,
                                       GSCHEM_TOPLEVEL *w_current)
@@ -1113,6 +1126,23 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget,
     gtk_widget_show(w_current->standard_handlebox);
   else
     gtk_widget_hide(w_current->standard_handlebox);
+}
+
+/*!
+ * \brief View toogle selection toolbar
+ * \par Function Description
+ *      This function toggles the visibility of the Select toobar.
+ * Note the function actually toggle visibility of the handlebox
+ * containing the toolbar.
+ */
+void x_window_select_toolbar_toggle(GtkWidget *widget,
+                                      GSCHEM_TOPLEVEL *w_current)
+{
+  bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
+  if(show)
+    gtk_widget_show(w_current->select_handlebox);
+  else
+    gtk_widget_hide(w_current->select_handlebox);
 }
 /*!
  * \brief View toogle Zoom toolbar

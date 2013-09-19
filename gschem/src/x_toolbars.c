@@ -67,28 +67,42 @@ static GtkWidget *popup_menu;
 
 static ToolBarInfo ActiveToolBar;
 
+/*! \note #1: These numerators are used to access the structure of strings
+ *            ToolbarStrings, i.e. if an item is added to one then an item
+ *            must be added to the cooresponding position in the other.
+ * 
+ *  \note #2: etb_none is a dummy member used in the add mode radio group.
+ *         The group is a collection of radio button and when don't want
+ *         any of them selected then we set etb_none to be the active
+ *         radio button.
+ */
 typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
-                etb_print, etb_write_pdf,
-                etb_cut, etb_copy, etb_paste, etb_undo, etb_redo,
-                etb_configure, etb_selector, etb_deselector, etb_none,
+                etb_print, etb_write_pdf, etb_cut, etb_copy, etb_paste,
+                etb_undo, etb_redo, etb_configure, etb_selector,
+                etb_deselector, etb_none, etb_select_all, etb_select_none,
                 etb_add_component, etb_add_net, etb_add_bus, etb_add_attribute,
                 etb_add_text, etb_add_line, etb_add_box, etb_add_circle,
-                etb_add_arc, etb_add_pin, etb_insert_pic,
+                etb_add_arc, etb_add_path, etb_add_pin, etb_insert_pic,
                 etb_prev_page, etb_next_page, etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
                 etb_view_document, etb_view_redraw, etb_zoom_pan, etb_zoom_box,
-                etb_zoom_extents, etb_zoom_in, etb_zoom_out, etb_zoom_all,
+                etb_zoom_select, etb_zoom_extents, etb_zoom_in, etb_zoom_out,
+                etb_zoom_all,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_rotate, etb_mirror,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
-                etb_lock, etb_unlock, etb_update, etb_attach, etb_detach,
-                etb_show_value, etb_show_name, etb_show_both, etb_visibilty,
-                etb_show_hidden, etb_find_text, etb_hide_text, etb_show_specific,
-                etb_auto_number, etb_translate
+                etb_translate, etb_lock, etb_unlock, etb_update,
+                etb_attach, etb_detach, etb_show_value, etb_show_name,
+                etb_show_both, etb_visibilty, etb_show_hidden, etb_find_text,
+                etb_hide_text, etb_show_specific, etb_auto_number,
+                etb_grid_dot, etb_grid_mesh, etb_grid_off,
+                etb_snap_up, etb_snap_down, etb_snap_set, etb_snap_off,
+                etb_snap_on,
 } IDE_GSCHEM_Toolbar;
 
-const char* IDS_Toolbar_Names[] = {
-  "add-bar", "Attribute", "Edit", "Page", "Standard", "Zoom", /* ToolBar Name Strings*/
+/* Important: See IDS_Menu_Toolbar_Toggles in x_menu.c */
+const char* IDS_Toolbar_Names[] = {  /* ToolBar Name Strings */
+  "add-bar", "Attribute", "Edit", "GridSnap", "Page", "Select", "Standard", "Zoom",
   NULL
 };
 
@@ -111,21 +125,26 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_REDO),          "Redo",       "Redo the last undo",            GSCHEM_MAP(REDO)},
   { ACTION(OPT_SETTINGS),       "Config",     "Set configuration preferences", GEDA_MAP(TOOLS)},
 
-  { ACTION(EDIT_SELECT),        "Select",     "Select mode",  "geda-select"},
-  { ACTION(EDIT_DESELECT),      "Deselect",   "Unselect everthing", GEDA_MAP(SELECT)},
-  { "nil"              ,        "nil",        "nil",          "gtk-no"},
+  { ACTION(EDIT_SELECT),        "Select",     "Activate Select mode",                "gschem-select"},
+  { ACTION(EDIT_DESELECT),      "Deselect",   "Unselect everything",                 "gschem-unselect"},
+
+  { "nil"              ,        "nil",        "nil",          "gtk-no"}, /* dummy corresponding to etb_none */
+
+  { ACTION(EDIT_SELECT_ALL),    "Select All", "Select all objects in the database",  "gschem-select-all"},
+  { ACTION(EDIT_INVERT),        "Invert Sel", "Invert the current selection set",    "gschem-invert"},
 
   { ACTION(ADD_COMPONENT),      "Component",  "Add Component...\nSelect library and component from list, move the mouse into main window, click to place\nRight mouse button to cancel", "Private"},
-  { ACTION(ADD_NET),            "Nets",       "Add Nets mode\nRight mouse button to cancel",  "gschem-net"},
-  { ACTION(ADD_BUS),            "Bus",        "Add Buses mode\nRight mouse button to cancel", "gschem-bus"},
+  { ACTION(ADD_NET),            "Nets",       "Add Nets mode\nRight mouse button to cancel",  "geda-net"},
+  { ACTION(ADD_BUS),            "Bus",        "Add Buses mode\nRight mouse button to cancel", "geda-bus"},
   { ACTION(ADD_ATTRIB),         "Attrib",     "Add Attribute...", "Private"},
   { ACTION(ADD_TEXT),           "Text",       "Add Text...",      "Private"},
 
   /* Add Toolbar */
   { ACTION(ADD_LINE),           "Line",       "Add line",        "geda-line"},
   { ACTION(ADD_BOX),            "Box",        "Add Box",         "geda-box"},
-  { ACTION(ADD_CIRCLE),         "circle",     "Add Circle",      "geda-circles"},
+  { ACTION(ADD_CIRCLE),         "circle",     "Add Circle",      "geda-circle"},
   { ACTION(ADD_ARC),            "Arc",        "Add Arc",         "geda-arc"},
+  { ACTION(ADD_PATH),           "Path",       "Add Path",        "geda-path"},
   { ACTION(ADD_PIN),            "Pin",        "Add Pin",         "geda-pin"},
   { ACTION(ADD_PICTURE),        "Picture",    "Insert an image", "Private"},
 
@@ -145,6 +164,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(VIEW_REDRAW),        "Redraw",     "Redraw current display", GEDA_MAP(VIEW_REDRAW)},
   { ACTION(VIEW_PAN),           "Pan",        "Zoom Pan",               GEDA_MAP(ZOOM_PAN)},
   { ACTION(VIEW_BOX),           "Window",     "Zoom Window",            GEDA_MAP(ZOOM_BOX)},
+  { ACTION(VIEW_SELECTED),      "Selected",   "Zoom to selection",      "gtk-zoom-fit"},
   { ACTION(VIEW_EXTENTS),       "Extents",    "Zoom to extents",        GEDA_MAP(ZOOM_EXTENTS)},
   { ACTION(VIEW_ZOOM_IN),       "In",         "Zoom In",                GEDA_MAP(ZOOM_IN)},
   { ACTION(VIEW_ZOOM_OUT),      "Out",        "Zoom Out",               GEDA_MAP(ZOOM_OUT)},
@@ -157,8 +177,8 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_ROTATE),        "Rotate",     "Rotate objects",                    "Private"},
   { ACTION(EDIT_MIRROR),        "Mirror",     "Mirror objects",                    "Private"},
 
-  { ACTION(EDIT_ATTRIB),        "Attributes", "Edit Attribute properties", "Private"},
-  { ACTION(EDIT_COLOR),         "Color",      "Change Colors",             "Private"},
+  { ACTION(EDIT_ATTRIB),        "Attributes", "Edit Attribute properties",         "Private"},
+  { ACTION(EDIT_COLOR),         "Color",      "Change Colors",                     "Private"},
 
   { ACTION(EDIT_TEXT),          "Text",       "Edit text properties",             "Private"},
   { ACTION(EDIT_SLOT),          "Slots",      "Edit Slot number of complex",    "geda-slot"},
@@ -167,6 +187,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_FILL),          "Fill",       "Edit Hatch pattern",          GEDA_MAP(MESH)},
   { ACTION(EDIT_ARC),           "Arcs",       "Edit Arc parameters",        "geda-arc-edit"},
 
+  { ACTION(EDIT_TRANSLATE),     "Translate",  "Translate component positions", GEDA_MAP(TRANSLATE)},
   { ACTION(EDIT_LOCK),          "Lock",       "Lock Objects",   "Private"},
   { ACTION(EDIT_UNLOCK),        "Unlock",     "Unlock Objects", "Private"},
   { ACTION(EDIT_UPDATE),        "Update",     "Reload Component from library", "Private"},
@@ -183,7 +204,17 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_HIDE),        "Hide",       "Hide selected attribute", "Private"},
   { ACTION(ATTRIB_SHOW),        "Show",       "Show a specific attribute value", "Private"},
   { ACTION(ATTRIB_AUTONUM),     "Auto #",     "Open Auto Number dialog", "Private"},
-  { ACTION(EDIT_TRANSLATE),     "Translate",  "Translate component positions", GEDA_MAP(TRANSLATE)},
+
+  { ACTION(OPT_GRID_DOT),       "Dots",       "Set the Grid Display to Dots Mode",  "geda-grid-dot"},
+  { ACTION(OPT_GRID_MESH),      "Mesh",       "Set the Grid Display to Mesh Mode",  "geda-grid-mesh"},
+  { ACTION(OPT_GRID_OFF),       "Off",        "Turn the display grid off",          "geda-display"},
+
+  { ACTION(OPT_SNAP_UP),        "UP",         "Increase the Snap size",    "geda-snap"},
+  { ACTION(OPT_SNAP_DOWN),      "Down",       "Descrease the Snap size",   "geda-snap"},
+  { ACTION(OPT_SNAP_SIZE),      "Set",        "Open the Snap Size dialog", "geda-magnet"},
+  { ACTION(OPT_SNAP_OFF),       "Snap Off",   "Turn Snap mode off",        "geda-snap-off"},
+  { ACTION(OPT_SNAP_ON),        "Snap On",    "Turn Snap mode on",         "geda-snap-on"},
+
   { NULL, NULL, NULL},
 };
 
@@ -313,6 +344,24 @@ static void x_toolbars_execute_radio (GtkToggleButton *button, GSCHEM_TOPLEVEL* 
       i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
     }
 }
+
+static void x_toolbars_snap_toggle(GtkWidget* widget, GSCHEM_TOPLEVEL* w_current)
+{
+  char*      action;
+  GtkWidget* button;
+
+  action = g_object_get_data (G_OBJECT(widget), "action");
+  button = g_object_get_data (G_OBJECT(widget), "snap-widget");
+
+  g_object_set (widget, "visible",  FALSE, NULL);
+  g_object_set (button, "visible", !FALSE, NULL);
+
+#if DEBUG_TOOLBARS
+  fprintf(stderr, "x_toolbars_execute: action=%s\n",action);
+#endif
+  i_command_process(w_current, action, 0, NULL, ID_ORIGIN_TOOLBAR);
+}
+
 /*! \brief Save Toolbar Configuration
  *
  *  \par Function Description
@@ -330,9 +379,10 @@ void x_toolbars_save_state(GSCHEM_TOPLEVEL *w_current) {
     int   style;
     const char *group_name;
 
-    bar_id = GET_TOOLBAR_ID(handlebox);
+    bar_id     = GET_TOOLBAR_ID(handlebox);
     group_name = IDS_Toolbar_Names[bar_id];
-    visible = gtk_widget_get_visible(handlebox);
+    visible    = gtk_widget_get_visible(handlebox);
+
     g_key_file_set_integer (key_file, group_name, "visible", visible);
     style = gtk_toolbar_get_style (GTK_TOOLBAR (GTK_BIN (handlebox)->child));
     g_key_file_set_integer (key_file, group_name, "style", style);
@@ -344,7 +394,9 @@ void x_toolbars_save_state(GSCHEM_TOPLEVEL *w_current) {
     SaveBarProperties(w_current->add_handlebox);
     SaveBarProperties(w_current->attribute_handlebox);
     SaveBarProperties(w_current->edit_handlebox);
+    SaveBarProperties(w_current->grid_snap_handlebox);
     SaveBarProperties(w_current->page_handlebox);
+    SaveBarProperties(w_current->select_handlebox);
     SaveBarProperties(w_current->standard_handlebox);
     SaveBarProperties(w_current->zoom_handlebox);
   }
@@ -380,7 +432,7 @@ void x_toolbars_save_state(GSCHEM_TOPLEVEL *w_current) {
     g_free(data);
   }
   else
-    fprintf(stderr, "Warning, could not save Toolbar configuration to %s\n", filename);
+    g_warning("Warning, could not save Toolbar configuration to %s\n", filename);
 
   if(key_file) g_key_file_free(key_file);
   g_free(filename);
@@ -436,7 +488,9 @@ void x_toolbars_restore_state(GSCHEM_TOPLEVEL *w_current) {
       RestoreBarProperties(w_current->add_handlebox);
       RestoreBarProperties(w_current->attribute_handlebox);
       RestoreBarProperties(w_current->edit_handlebox);
+      RestoreBarProperties(w_current->grid_snap_handlebox);
       RestoreBarProperties(w_current->page_handlebox);
+      RestoreBarProperties(w_current->select_handlebox);
       RestoreBarProperties(w_current->standard_handlebox);
       RestoreBarProperties(w_current->zoom_handlebox);
     }
@@ -500,7 +554,9 @@ void x_toolbars_finialize (GSCHEM_TOPLEVEL *w_current) {
   g_signal_emit_by_name(GTK_WIDGET(w_current->add_handlebox),       "child-attached");
   g_signal_emit_by_name(GTK_WIDGET(w_current->attribute_handlebox), "child-attached");
   g_signal_emit_by_name(GTK_WIDGET(w_current->edit_handlebox),      "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->grid_snap_handlebox), "child-attached");
   g_signal_emit_by_name(GTK_WIDGET(w_current->page_handlebox),      "child-attached");
+  g_signal_emit_by_name(GTK_WIDGET(w_current->select_handlebox),    "child-attached");
   g_signal_emit_by_name(GTK_WIDGET(w_current->standard_handlebox),  "child-attached");
   g_signal_emit_by_name(GTK_WIDGET(w_current->zoom_handlebox),      "child-attached");
 
@@ -616,8 +672,8 @@ static int popup_activated(GtkWidget *widget, IDS_HB_Popup_items* selection)
  */
 static GtkWidget *build_menu(GtkWidget *widget)
 {
-  GtkWidget *menu;
-  GtkWidget *item;
+  GtkWidget   *menu;
+  GtkWidget   *item;
   GtkTooltips *tooltips;
 
   bool is_floating;
@@ -639,7 +695,7 @@ static GtkWidget *build_menu(GtkWidget *widget)
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
     item = gtk_menu_item_new_with_label(_(popup_items[i]));
-
+    //gtk_image_menu_item_new_with_label
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
 
     g_signal_connect(GTK_OBJECT(item),"activate",
@@ -689,7 +745,7 @@ static GtkWidget *build_menu(GtkWidget *widget)
         }
         break;
       }
-      gtk_widget_show(item);
+      g_object_set (item, "visible", TRUE, NULL);
       gtk_menu_shell_append(GTK_MENU_SHELL(menu), item);
     }
     return (menu);
@@ -832,6 +888,7 @@ x_toolbars_add_closer(GSCHEM_TOPLEVEL *w_current, GtkWidget *HandleBar, GtkWidge
  */
 
 void x_toolbars_init_window(GSCHEM_TOPLEVEL *w_current) {
+
   ToolBarWidgets *bar_widgets = g_new0 (ToolBarWidgets, 1);
 
   TheToolBars          = NULL;
@@ -864,6 +921,7 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   /* ------------------------ Top Toolbars ---------------------- */
   GtkWidget *Add_Toolbar;
   GtkWidget *Page_Toolbar;
+  GtkWidget *Select_Toolbar;
   GtkWidget *Standard_Toolbar;
   GtkWidget *Zoom_Toolbar;
 
@@ -878,21 +936,19 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
 
   /* ---------------------- Create Top ToolBox ------------------ */
   GtkWidget *toolbox_T1 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (parent_container), toolbox_T1, FALSE, FALSE, 0);
-  gtk_widget_show (toolbox_T1);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_T1)
 
   /* --------- Create and Populate the Standard Toolbar -------- */
   /* Standard Toolbar*/
   w_current->standard_handlebox = geda_handle_box_new();
-  gtk_box_pack_start(GTK_BOX (toolbox_T1), w_current->standard_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show (w_current->standard_handlebox);
+  GEDA_PACK_TOOLBOX (toolbox_T1, w_current->standard_handlebox);
 
   /* toolbar will be horizontal, with both icons and text, and with
    * 5pxl spaces between items and put it into our handlebox */
 
   Standard_Toolbar = gtk_toolbar_new ();
 
-  gtk_toolbar_set_orientation    (GTK_TOOLBAR (Standard_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Standard_Toolbar), GTK_ORIENTATION_HORIZONTAL);
   gtk_container_set_border_width (GTK_CONTAINER (Standard_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->standard_handlebox), Standard_Toolbar);
 
@@ -921,23 +977,22 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   TOOLBAR_GEDA_BUTTON( Standard, etb_redo,      LOCAL_STK, REDO,        x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( Standard, etb_configure, LOCAL_ALT, PREFERENCES, x_toolbars_execute,  w_current);
 
-  gtk_widget_show (Standard_Toolbar);
+  g_object_set (Standard_Toolbar, "visible", TRUE, NULL);
+
   SET_TOOLBAR_ID  (w_current->standard_handlebox, tb_Standard);
   SET_TOOLBAR_WC  (w_current->standard_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->standard_handlebox, Standard_Toolbar );
 
-  CAN_PASTE_LIST   = g_slist_append ( CAN_PASTE_LIST,     TB_BUTTON (etb_paste));
-  SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST, TB_BUTTON (etb_cut  ));
-  SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST, TB_BUTTON (etb_copy ));
-  CAN_UNDO_LIST    = g_slist_append ( CAN_UNDO_LIST,      TB_BUTTON (etb_undo ));
-  CAN_REDO_LIST    = g_slist_append ( CAN_REDO_LIST,      TB_BUTTON (etb_redo ));
+  CAN_PASTE_LIST    = g_slist_append ( CAN_PASTE_LIST,     TB_BUTTON (etb_paste));
+  SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST,  TB_BUTTON (etb_cut  ));
+  SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST,  TB_BUTTON (etb_copy ));
+  CAN_UNDO_LIST     = g_slist_append ( CAN_UNDO_LIST,      TB_BUTTON (etb_undo ));
+  CAN_REDO_LIST     = g_slist_append ( CAN_REDO_LIST,      TB_BUTTON (etb_redo ));
 
   /* ----------- Create and Populate the Page Toolbar ----------- */
 
   w_current->page_handlebox = geda_handle_box_new ();
-
-  gtk_box_pack_start(GTK_BOX (toolbox_T1), w_current->page_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show (w_current->page_handlebox);
+  GEDA_PACK_TOOLBOX (toolbox_T1, w_current->page_handlebox);
 
   Page_Toolbar = gtk_toolbar_new ();
 
@@ -965,7 +1020,8 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   COMPLEX_OBJECTS_LIST = g_slist_append ( COMPLEX_OBJECTS_LIST, TB_BUTTON( etb_hierarchy_up  ));
   COMPLEX_OBJECTS_LIST = g_slist_append ( COMPLEX_OBJECTS_LIST, TB_BUTTON( etb_view_document ));
 
-  gtk_widget_show (Page_Toolbar);
+  g_object_set (Page_Toolbar, "visible", TRUE, NULL);
+
   SET_TOOLBAR_ID       (w_current->page_handlebox, tb_Page);
   SET_TOOLBAR_WC       (w_current->page_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->page_handlebox, Page_Toolbar );
@@ -976,13 +1032,11 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
 
   /* Start Second Toolbar Row */
   GtkWidget *toolbox_T2 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (parent_container), toolbox_T2, FALSE, FALSE, 0);
-  gtk_widget_show    (toolbox_T2);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_T2);
 
   /* --------- Create and Populate the Add Toolbar -------- */
   w_current->add_handlebox = geda_handle_box_new ();
-  gtk_box_pack_start (GTK_BOX (toolbox_T2), w_current->add_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show    (w_current->page_handlebox);
+  GEDA_PACK_TOOLBOX (toolbox_T2, w_current->add_handlebox);
 
   Add_Toolbar = gtk_toolbar_new ();
 
@@ -997,9 +1051,11 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
 
-  /* Toolbar radio button group */
+  /* Toolbar radio button group - ToolBar_Radio_Responder defines a callback so ver 1 is expanded here*/
+  /*                    bar, var,              grp,              name,            data */
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(line),   NULL,             etb_add_line,    w_current);
-  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(arc),    BarRadio(line),   etb_add_arc,     w_current);
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(path),   BarRadio(line),   etb_add_path,    w_current);
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(arc),    BarRadio(path),   etb_add_arc,     w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(box),    BarRadio(arc),    etb_add_box,     w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(circle), BarRadio(box),    etb_add_circle,  w_current);
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(pin),    BarRadio(circle), etb_add_pin,     w_current);
@@ -1011,9 +1067,6 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
 
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(select), BarRadio(net), etb_selector, w_current)
-
-  TOOLBAR_GEDA_BUTTON( Add, etb_deselector,  LOCAL_PIX, GEDA_DESELECT_BITMAP, x_toolbars_execute,  w_current);
-
   TOOLBAR_GSCHEM_RADIO( Add, BarRadio(none), BarRadio(select), etb_none, w_current)
 
   /* Append all Toolbar "Mode" radio widgets to a GSlist */
@@ -1027,15 +1080,40 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(select));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(none));
 
-  gtk_widget_show      (Add_Toolbar);
+  g_object_set (Add_Toolbar, "visible", TRUE, NULL);
+
   SET_TOOLBAR_ID       (w_current->add_handlebox, tb_Add);
   SET_TOOLBAR_WC       (w_current->add_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->add_handlebox, Add_Toolbar );
 
+  /* ------ Create and Populate the Selection Toolbar ------ */
+
+  /* Select Toolbar*/
+  w_current->select_handlebox = geda_handle_box_new();
+  GEDA_PACK_TOOLBOX (toolbox_T2, w_current->select_handlebox);
+
+  /* toolbar will be horizontal, with both icons and text, and with
+   * 5pxl spaces between items and put it into our handlebox */
+
+  Select_Toolbar = gtk_toolbar_new ();
+
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (Select_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_container_set_border_width (GTK_CONTAINER (Select_Toolbar), 0);
+  gtk_container_add              (GTK_CONTAINER (w_current->select_handlebox), Select_Toolbar);
+
+  TOOLBAR_GEDA_BUTTON( Select, etb_deselector,  LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Select, etb_select_all,  LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Select, etb_select_none, LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+
+  g_object_set (Select_Toolbar, "visible", TRUE, NULL);
+
+  SET_TOOLBAR_ID       (w_current->select_handlebox, tb_Select);
+  SET_TOOLBAR_WC       (w_current->select_handlebox, w_current);
+  x_toolbars_add_closer(w_current, w_current->select_handlebox, Select_Toolbar );
+
   /* --------- Create and Populate the Zoom Toolbar -------- */
   w_current->zoom_handlebox = geda_handle_box_new ();
-  gtk_box_pack_start(GTK_BOX (toolbox_T2), w_current->zoom_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show   (w_current->zoom_handlebox);
+  GEDA_PACK_TOOLBOX (toolbox_T2, w_current->zoom_handlebox);
 
   Zoom_Toolbar = gtk_toolbar_new ();
 
@@ -1046,18 +1124,21 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   TOOLBAR_GEDA_BUTTON( Zoom, etb_view_redraw,  LOCAL_ALT, ZOOM_FIT, x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_pan,     LOCAL_ALT, ZOOM_FIT, x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_box,     LOCAL_ALT, ZOOM_FIT, x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_select,  LOCAL_FAC, ZOOM_FIT, x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_extents, LOCAL_ALT, ZOOM_FIT, x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_in,      LOCAL_ALT, ZOOM_IN,  x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_out,     LOCAL_ALT, ZOOM_OUT, x_toolbars_execute, w_current);
   TOOLBAR_GEDA_BUTTON( Zoom, etb_zoom_all,     LOCAL_ALT, ZOOM_100, x_toolbars_execute, w_current);
 
-  gtk_widget_show      (Zoom_Toolbar);
+  g_object_set (Zoom_Toolbar, "visible", TRUE, NULL);
+
   SET_TOOLBAR_ID       (w_current->zoom_handlebox, tb_Zoom);
   SET_TOOLBAR_WC       (w_current->zoom_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->zoom_handlebox, Zoom_Toolbar );
 
   TheToolBars = g_slist_append ( TheToolBars, Add_Toolbar);
   TheToolBars = g_slist_append ( TheToolBars, Page_Toolbar);
+  TheToolBars = g_slist_append ( TheToolBars, Select_Toolbar);
   TheToolBars = g_slist_append ( TheToolBars, Standard_Toolbar);
   TheToolBars = g_slist_append ( TheToolBars, Zoom_Toolbar);
 
@@ -1083,13 +1164,11 @@ void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_containe
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
   GtkWidget *toolbox_L1 = gtk_vbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (parent_container), toolbox_L1, FALSE, FALSE, 0);
-  gtk_widget_show    (toolbox_L1);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_L1);
 
   /* --------- Create and Populate the Edit Toolbar -------- */
   w_current->edit_handlebox = geda_handle_box_new ();
-  gtk_box_pack_start(GTK_BOX (toolbox_L1), w_current->edit_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show   (w_current->edit_handlebox);
+  GEDA_PACK_TOOLBOX (toolbox_L1, w_current->edit_handlebox);
 
   Edit_Toolbar = gtk_toolbar_new ();
 
@@ -1142,15 +1221,15 @@ void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_containe
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_unlock ));
   SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_update ));
 
-  gtk_widget_show (Edit_Toolbar);
+  g_object_set (Edit_Toolbar, "visible", TRUE, NULL);
 
   SET_TOOLBAR_ID        (w_current->edit_handlebox, tb_Edit);
   SET_TOOLBAR_WC        (w_current->edit_handlebox, w_current);
   x_toolbars_add_closer (w_current, w_current->edit_handlebox, Edit_Toolbar );
   TheToolBars = g_slist_append ( TheToolBars, Edit_Toolbar);
 }
+
 /*! \brief Initialize Toolbar at the Bottom of the Main Window
- *
  *  \par Function Description
  * This function creates handleboxes, toolbars, toolbar buttons and
  * related containers in order to create the Toolbar at the Bottom
@@ -1161,20 +1240,18 @@ void x_toolbars_init_left(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_containe
 void x_toolbars_init_bottom(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container) {
 
   GtkWidget *Attribute_Toolbar;
+  GtkWidget *GripSnap_Toolbar;
   ToolBarWidgets *bar_widgets;
 
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
-  /* Start Second Toolbar Row */
+  /* Start Bootom Toolbar Row */
   GtkWidget *toolbox_B1 = gtk_hbox_new (FALSE, 0);
-  gtk_box_pack_start (GTK_BOX (parent_container), toolbox_B1, FALSE, FALSE, 0);
-  gtk_widget_show (toolbox_B1);
+  GEDA_PACK_TOOLBOX (parent_container, toolbox_B1);
 
   /* --------- Create and Populate the Attribute Toolbar -------- */
 
   w_current->attribute_handlebox = geda_handle_box_new ();
-
-  gtk_box_pack_start(GTK_BOX (toolbox_B1), w_current->attribute_handlebox, FALSE, FALSE, 0);
-  gtk_widget_show (w_current->attribute_handlebox);
+  GEDA_PACK_TOOLBOX (toolbox_B1,  w_current->attribute_handlebox);
 
   Attribute_Toolbar = gtk_toolbar_new ();
 
@@ -1203,12 +1280,56 @@ void x_toolbars_init_bottom(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_contai
   TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_show_name  ));
   TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_show_both  ));
 
-  gtk_widget_show (Attribute_Toolbar);
+  g_object_set (Attribute_Toolbar, "visible", TRUE, NULL);
+
   SET_TOOLBAR_ID       (w_current->attribute_handlebox, tb_Attribute);
   SET_TOOLBAR_WC       (w_current->attribute_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->attribute_handlebox, Attribute_Toolbar );
 
   TheToolBars = g_slist_append ( TheToolBars, Attribute_Toolbar);
+
+  /* -------- Create and Populate the GridSnap Toolbar -------- */
+  w_current->grid_snap_handlebox = geda_handle_box_new ();
+  GEDA_PACK_TOOLBOX (toolbox_B1, w_current->grid_snap_handlebox);
+
+  GripSnap_Toolbar = gtk_toolbar_new ();
+
+  gtk_toolbar_set_orientation    (GTK_TOOLBAR   (GripSnap_Toolbar), GTK_ORIENTATION_HORIZONTAL);
+  gtk_container_set_border_width (GTK_CONTAINER (GripSnap_Toolbar), 0);
+  gtk_container_add              (GTK_CONTAINER (w_current->grid_snap_handlebox), GripSnap_Toolbar);
+
+  /* Toolbar radio button group - ToolBar_Radio_Responder defines a callback so ver 1 is expanded here*/
+  /*                    bar,      var,             grp,             name,            data */
+  TOOLBAR_GSCHEM_RADIO( GripSnap, BarRadio(dot),   NULL,            etb_grid_dot,    w_current);
+  TOOLBAR_GSCHEM_RADIO( GripSnap, BarRadio(mesh),  BarRadio(dot),   etb_grid_mesh,   w_current);
+  TOOLBAR_GSCHEM_RADIO( GripSnap, BarRadio(off),   BarRadio(mesh),  etb_grid_off,    w_current);
+
+  gtk_toolbar_append_space (GTK_TOOLBAR(GripSnap_Toolbar));
+
+  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_up,     LOCAL_STK, GOTO_TOP,    x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_down,   LOCAL_STK, GOTO_BOTTOM, x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_set,    LOCAL_FAC, JUMP_TO,     x_toolbars_execute,  w_current);
+
+  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_off,    LOCAL_FAC, NULL,     x_toolbars_snap_toggle,  w_current);
+  TOOLBAR_GEDA_BUTTON( GripSnap, etb_snap_on,     LOCAL_FAC, NULL,     x_toolbars_snap_toggle,  w_current);
+
+  g_object_set (GripSnap_Toolbar, "visible", TRUE, NULL);
+
+  g_object_set_data (G_OBJECT(etb_snap_off_button), "snap-widget", etb_snap_on_button);
+  g_object_set_data (G_OBJECT(etb_snap_on_button),  "snap-widget", etb_snap_off_button);
+
+  if (w_current->snap == SNAP_OFF) {
+    g_object_set (etb_snap_off_button, "visible", FALSE, NULL);
+  }
+  else {
+    g_object_set (etb_snap_on_button, "visible", FALSE, NULL);
+  }
+
+  SET_TOOLBAR_ID       (w_current->grid_snap_handlebox, tb_Grid_Snap);
+  SET_TOOLBAR_WC       (w_current->grid_snap_handlebox, w_current);
+  x_toolbars_add_closer(w_current, w_current->grid_snap_handlebox, GripSnap_Toolbar );
+
+  TheToolBars = g_slist_append ( TheToolBars, GripSnap_Toolbar);
 }
 
 /*! \brief Set Sensitivity of Toolbar Buttons
@@ -1374,9 +1495,17 @@ void x_toolbars_activate_select ( GSCHEM_TOPLEVEL *w_current) {
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(bar_widgets->toolbar_none), TRUE);
 }
-/*! \brief
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+
+/*! \brief Update the Toolbars based on the current state
+ *  This function sets the state of the "mode" radio buttons on the Add
+ *  tool-bar. This is done to synchronize the tool-bars with the rest of
+ *  the interface since the "mode" can be set by other means. For example
+ *  if the Add/Line menu option is chosen then the Line mode button needs
+ *  to be depressed, without emitting a signal. Where as if the Edit/Arc
+ *  menu option is selected then the invisible "none" mode button should
+ *  be "activated". And so forth.
  *
+ *  \param [in] w_current GSCHEM_TOPLEVEL structure
  */
 void x_toolbars_update(GSCHEM_TOPLEVEL *w_current)
 {

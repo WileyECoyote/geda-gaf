@@ -655,10 +655,3 @@ typedef struct
         connect_list_view( ThisDialog, GTK_TREE_VIEW(name##View)); \
         SET_WIDGET_SIZE ( name##View, xsize, ysize)  \
         HOOKUP_GEDA_OBJECT(name, View)
-
-
-
-
-
-
-

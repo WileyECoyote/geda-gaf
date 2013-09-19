@@ -135,13 +135,13 @@ x_pagesel_callback_response (GtkDialog *dialog, int arg1, gpointer user_data)
           w_current->pswindow = NULL;
         }
         else {
-          s_log_message ("Internal Error: <%s> <x_pagesel_callback_response>"
-                         "pswindow is wrong object, line %d.\n", __FILE__, __LINE__);
+          g_critical ("Internal Error: <%s> <x_pagesel_callback_response>"
+                      "pswindow is wrong object, line %d.\n", __FILE__, __LINE__);
         }
         break;
       default:
-        s_log_message ("Internal Error: <%s> <x_pagesel_callback_response>"
-                     "unhandled case for <%d>, line %d.\n", __FILE__, arg1, __LINE__);
+        g_critical ("Internal Error: <%s> <x_pagesel_callback_response>"
+                    "unhandled case for <%d>, line %d.\n", __FILE__, arg1, __LINE__);
   }
 }
 

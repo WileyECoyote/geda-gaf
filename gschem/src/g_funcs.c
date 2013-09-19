@@ -194,9 +194,10 @@ SCM g_funcs_msg(SCM scm_msg)
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-msg");
 
   msg = scm_to_utf8_string (scm_msg);
-  gschem_message_dialog(msg, GEDA_MESSAGE_INFO, NULL);
-  free(msg);
 
+  gschem_message_dialog(msg, GEDA_MESSAGE_INFO, NULL);
+
+  free(msg);
   return SCM_BOOL_T;
 }
 
@@ -210,8 +211,7 @@ SCM g_funcs_confirm(SCM scm_msg)
   int r;
   char *msg;
 
-  SCM_ASSERT (scm_is_string (scm_msg), scm_msg,
-	      SCM_ARG1, "gschem-msg");
+  SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-msg");
 
   msg = scm_to_utf8_string (scm_msg);
   r = gschem_confirm_dialog (msg, GTK_MESSAGE_INFO);

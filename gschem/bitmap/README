@@ -15,16 +15,38 @@ gschem_comp_26x26.xpm  	 	Created by AVH, GPL (Resized by wileyhill@gmail.com)
 gschem_copy.xpm 		Created by AVH, GPL
 gschem_delete.xpm		Created by AVH, GPL 
 gschem_edit.xpm			Created by AVH, GPL 
+gschem_invert_22x22.png 	Created by wileyhill@gmail.com, GPL2
+gschem_invert_24x24.png 	Created by wileyhill@gmail.com, GPL2
+gschem_invert_26x26.png 	Created by wileyhill@gmail.com, GPL2
+gschem_invert_28x28.png 	Created by wileyhill@gmail.com, GPL2
+gschem_invert_32x32.png 	Created by wileyhill@gmail.com, GPL2
+gschem-invert.png 	        Created by wileyhill@gmail.com, GPL2
 gschem_mirror.xpm		Created by AVH, GPL 
 gschem_rotate.xpm		Created by AVH, GPL 
 gschem_move.xpm			Created by AVH, GPL 
 gschem_net.xpm			Created by AVH, GPL
-gschem_select.xpm		Created by AVH, GPL
-gschem_select_22x22.xpm 	Created by wileyhill@gmail.com, GPL
-gschem_select_24x24.xpm 	Created by wileyhill@gmail.com, GPL
-gschem_select_26x26.xpm 	Created by wileyhill@gmail.com, GPL
+gschem_select_22x22.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_24x24.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_26x26.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_28x28.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_32x32.png 	Created by wileyhill@gmail.com, GPL2
+gschem-select.png 	        Created by wileyhill@gmail.com, GPL2
+gschem_select_all_22x22.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_all_24x24.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_all_26x26.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_all_28x28.png 	Created by wileyhill@gmail.com, GPL2
+gschem_select_all_32x32.png 	Created by wileyhill@gmail.com, GPL2
+gschem-select-all.png           Created by wileyhill@gmail.com, GPL2
+
 gschem_text_24x24.png   	Created by AVH, GPL (converted from xpm to png  wileyhill@gmail.com)
 gschem_text_26x26.png   	Created by AVH, GPL (Resized by wileyhill@gmail.com)
+
+gschem_unselect_22x22.png 	Created by wileyhill@gmail.com, GPL2
+gschem_unselect_24x24.png 	Created by wileyhill@gmail.com, GPL2
+gschem_unselect_26x26.png 	Created by wileyhill@gmail.com, GPL2
+gschem_unselect_28x28.png 	Created by wileyhill@gmail.com, GPL2
+gschem_unselect_32x32.png 	Created by wileyhill@gmail.com, GPL2
+gschem-unselect.png 	        Created by wileyhill@gmail.com, GPL2
 
 gschem_bottom2top.png		Created by Tomaz Solc, GPL
 gschem_top2bottom.png		Created by Tomaz Solc, GPL

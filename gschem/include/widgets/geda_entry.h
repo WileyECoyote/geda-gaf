@@ -51,6 +51,8 @@ typedef struct
 #define IS_GEDA_ENTRY_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_ENTRY))
 #define GEDA_ENTRY_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ENTRY, GedaEntryClass))
 
+#define DISABLE (GList **)-1
+
 typedef struct _GedaEntry      GedaEntry;
 typedef struct _GedaEntryClass GedaEntryClass;
 typedef struct _GedaEntryPriv  GedaEntryPriv;
@@ -58,6 +60,7 @@ typedef struct _GedaEntryPriv  GedaEntryPriv;
 typedef enum {
   ACCEPT_ALL_ASCII,
   ACCEPT_ALPHANUMERIC,
+  ACCEPT_COORDINATE,
   ACCEPT_NUMERIC,
   ACCEPT_NUMBER,
   ACCEPT_INTEGER,
@@ -89,25 +92,38 @@ struct _GedaEntryClass
 
 };
 
-GType      geda_entry_get_type        (void) G_GNUC_CONST;
-GtkWidget *geda_entry_new             (GList** history, GList** complete);
-GtkWidget *geda_entry_new_with_buffer (GtkEntryBuffer *buffer);
+GType      geda_entry_get_type               (void) G_GNUC_CONST;
+GtkWidget *geda_entry_new                    (GList** history, GList** complete);
+GtkWidget *geda_visible_entry_new            (GList** history, GList** complete);
+GtkWidget *geda_entry_new_with_buffer        (GtkEntryBuffer *buffer);
 
-void geda_entry_set_max_history       (GedaEntry *entry, int value);
-int  geda_entry_get_max_history       (GedaEntry *entry);
+void geda_entry_set_max_history              (GedaEntry *entry, int value);
+int  geda_entry_get_max_history              (GedaEntry *entry);
 
 void gtk_entry_set_completion                (GtkEntry *entry,
                                               GtkEntryCompletion *completion);
 GtkEntryCompletion *gtk_entry_get_completion (GtkEntry *entry);
 
-bool geda_entry_completion_get_case (GedaEntry *entry);
-void geda_entry_completion_set_case (GedaEntry *entry, bool sensitive);
+bool geda_entry_completion_get_case          (GedaEntry *entry);
+void geda_entry_completion_set_case          (GedaEntry *entry, bool sensitive);
 
-void geda_entry_set_input_case      (GedaEntry *entry, int mode);
-bool geda_entry_get_input_case      (GedaEntry *entry);
+void geda_entry_set_input_case               (GedaEntry *entry, int mode);
+bool geda_entry_get_input_case               (GedaEntry *entry);
 
-void geda_entry_set_activates_default (GedaEntry *entry, bool  setting);
-bool geda_entry_get_activates_default (GedaEntry *entry);
+void geda_entry_set_activates_default        (GedaEntry *entry, bool  setting);
+bool geda_entry_get_activates_default        (GedaEntry *entry);
+
+void geda_entry_widget_modify_color          (GtkWidget    *widget,
+                                              GtkRcFlags    component,
+                                              GtkStateType  state,
+                                        const GdkColor     *color);
+void geda_entry_modify_fg                    (GedaEntry    *entry,
+                                              GtkStateType  state,
+                                        const GdkColor     *color);
+void geda_entry_modify_bg                    (GedaEntry    *entry,
+                                              GtkStateType  state,
+                                        const GdkColor     *color);
+
 
 void geda_entry_set_valid_input     (GedaEntry *entry, GedaEntryAccept mode);
 void geda_entry_set_attributes      (GedaEntry *entry, PangoAttrList *attrs);

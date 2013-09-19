@@ -20,6 +20,7 @@ noinst_HEADERS = \
 		x_compselect.h		\
 		x_console.h		\
 		x_dialog.h		\
+		x_drag.h                \
 		x_menu.h		\
 		x_multiattrib.h		\
 		x_pagesel.h		\

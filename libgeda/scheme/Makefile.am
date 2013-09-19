@@ -16,7 +16,9 @@ check-am: update-gaf-tool
 # The new commanline tool uses --no-rcfiles
 GAF_SHELL = $(top_builddir)/gaf/gaf --no-rcfiles shell
 
-TESTS_ENVIRONMENT = $(GAF_SHELL) -L $(srcdir) -L $(builddir) \
+TEST_EXTENSIONS  = .scm
+SCM_LOG_COMPILER = $(GAF_SHELL)
+AM_SCM_LOG_FLAGS = -L $(srcdir) -L $(builddir) \
 	-c '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
 
 TESTS = unit-tests/t0001-geda-conf-lib.scm \

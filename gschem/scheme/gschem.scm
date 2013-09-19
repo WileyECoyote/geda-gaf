@@ -1,7 +1,7 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2013 Ales Hvezda
+;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -75,12 +75,8 @@
 
 ;; Evaluates a keymap action.  A keymap action is expected to be a
 ;; symbol naming a thunk variable in the current module.
-;;
-;; The special-case symbol repeat-last-command causes the last action
-;; executed via keypress to be repeated.
 (define (eval-keymap-action action)
   (define (invalid-action-error)
-    ;;(error "~S is not a valid action for keybinding." action)
     (gschem-msg (string-append "Invalid action for keybinding:\n\n" (symbol->string action)))
   )
   (if (symbol? action)
@@ -97,7 +93,7 @@
           )
       )
    )
-   (invalid-action-error)   ;; Otherwise, fail
+   (invalid-action-error)   ;; action is not a symbols, so fail
   )
 )
 
@@ -186,3 +182,4 @@ found, shows a dialog with an error message."
 ;;  "help-faq
 ;;  Display the gEDA wiki in a browser."
 ;;  (show-wiki))
+

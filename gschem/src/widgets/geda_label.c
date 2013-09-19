@@ -1248,7 +1248,7 @@ static void
 geda_label_get_property (GObject *object, unsigned int  prop_id,
                          GValue  *value,  GParamSpec   *pspec)
 {
-  GedaLabel *label = GEDA_LABEL (object);
+  GedaLabel *label       = GEDA_LABEL (object);
   GedaLabelPrivate *priv = label->priv;
 
   switch (prop_id)

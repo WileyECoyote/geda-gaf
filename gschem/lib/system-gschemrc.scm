@@ -1232,6 +1232,9 @@
 ("21489" . edit-copy)
 ("32478" . edit-copy)
 
+; Letter B for Box
+("7417654456987" . add-box)
+
 ; Letter E for edit
 ("563214789" . edit-attributes)
 ("53214789" . edit-attributes)
@@ -1243,6 +1246,9 @@
 ("456321478" . edit-attributes)
 ("456214789" . edit-attributes)
 ("45621478" . edit-attributes)
+
+; Letter I for Insert component
+("123789258" . add-component)
 
 ; Letter N for net
 ("415963" . add-net)
@@ -1300,6 +1306,9 @@
 ("32148987" . edit-select )
 ("32145987" . edit-select )
 
+; Letter U for undo
+("1478963" . edit-undo )
+
 ; Letter Z for zoom window
 ("125789" . view-zoom-box)
 ("1254789" . view-zoom-box)
@@ -1350,37 +1359,38 @@
 
 (map-keys "A C" "add-component")
 (map-keys "A A" "add-attribute")
-(map-keys "A N" "add-net-hotkey")
-(map-keys "A U" "add-bus-hotkey")
+(map-keys "A N" "add-net")
+(map-keys "A U" "add-bus")
 (map-keys "A T" "add-text")
-(map-keys "A L" "add-line-hotkey")
-(map-keys "A B" "add-box-hotkey")
-(map-keys "A I" "add-circle-hotkey")
-(map-keys "A R" "add-arc-hotkey")
-(map-keys "A P" "add-pin-hotkey")
-(map-keys "A G" "add-picture-hotkey")
+(map-keys "A L" "add-line")
+(map-keys "A H" "add-path")
+(map-keys "A B" "add-box")
+(map-keys "A I" "add-circle")
+(map-keys "A R" "add-arc")
+(map-keys "A P" "add-pin")
+(map-keys "A G" "add-picture")
 
 (map-keys "<Control>A"        "edit-select-all")
 (map-keys "<Control><Shift>A" "edit-deselect")
 (map-keys "<Control><Shift>I" "edit-select-invert")
 
-(map-keys "B"          "add-box-hotkey")
-(map-keys "<Shift>B"   "add-bus-hotkey")
-(map-keys "C"          "edit-copy-hotkey")
+;;(map-keys "B"          "add-box")
+(map-keys "<Shift>B"   "add-bus")
+(map-keys "C"          "edit-copy")
 (map-keys "<Control>C" "clipboard-copy")
 (map-keys "D"          "edit-delete")
 
 (map-keys "E <Shift>U" "edit-undo")
 (map-keys "E <Shift>R" "edit-redo")
 (map-keys "E S"        "edit-select")
-(map-keys "E C"        "edit-copy-hotkey")
+(map-keys "E C"        "edit-copy")
 (map-keys "E A"        "edit-attributes")
-(map-keys "E Y"        "edit-mcopy-hotkey")
+(map-keys "E Y"        "edit-mcopy")
 (map-keys "E X"        "edit-text")
-(map-keys "E M"        "edit-move-hotkey")
+(map-keys "E M"        "edit-move")
 (map-keys "E D"        "edit-delete")
-(map-keys "E R"        "edit-rotate-hotkey")
-(map-keys "E I"        "edit-mirror-hotkey")
+(map-keys "E R"        "edit-rotate")
+(map-keys "E I"        "edit-mirror")
 (map-keys "E <Shift>S" "edit-slot")
 (map-keys "E O"        "edit-color")
 (map-keys "E L"        "edit-lock")
@@ -1412,7 +1422,7 @@
 (map-keys "H M"        "help-show-manual")
 (map-keys "H F"        "help-show-faq")
 (map-keys "H W"        "help-show-wiki")
-(map-keys "H H"        "help-show-hotkeys")
+(map-keys "H H"        "help-shows")
 (map-keys "H C"        "hierarchy-documentation")
 
 (map-keys "<Shift>H D" "hierarchy-down-schematic")
@@ -1421,9 +1431,9 @@
 (map-keys "<Shift>H O" "hierarchy-documentation")
 
 (map-keys "I"          "add-component")
-(map-keys "L"          "add-line-hotkey")
-(map-keys "M"          "edit-move-hotkey")
-(map-keys "N"          "add-net-hotkey")
+(map-keys "L"          "add-line")
+(map-keys "M"          "edit-move")
+(map-keys "N"          "add-net")
 
 (map-keys "O A"        "options-action-feedback")
 (map-keys "O G"        "options-cycle-grid")
@@ -1464,32 +1474,45 @@
 (map-keys "U"          "edit-undo")
 (map-keys "<Shift>U"   "edit-undo")
 
-(map-keys "V R"        "view-redraw")
-(map-keys "V B"        "view-zoom-box-hotkey")
-(map-keys "V F"        "view-zoom-full")
+(map-keys "V A"        "view-zoom-all")
+(map-keys "V B"        "view-zoom-box")
 (map-keys "V E"        "view-zoom-extents")
-(map-keys "V P"        "view-pan-hotkey")
-(map-keys "V O"        "view-zoom-out-hotkey")
-(map-keys "V I"        "view-zoom-in-hotkey")
+(map-keys "V S"        "view-zoom-selected")
+(map-keys "V I"        "view-zoom-in")
+(map-keys "V O"        "view-zoom-out")
+(map-keys "V P"        "view-pan")
+(map-keys "V R"        "view-redraw")
 (map-keys "V D"        "view-documentation")
 (map-keys "V H"        "view-show-hidden")
 (map-keys "V K"        "view-dark-colors")
 (map-keys "V L"        "view-light-colors")
 (map-keys "V W"        "view-bw-colors")
 
-(map-keys "<Control>V" "clipboard-paste-hotkey")
-(map-keys "W"          "view-zoom-box-hotkey")
-(map-keys "X"          "view-pan-hotkey")
+(map-keys "<Control>V" "clipboard-paste")
+(map-keys "W"          "view-zoom-box")
+(map-keys "X"          "view-pan")
 (map-keys "<Control>X" "clipboard-cut")
 
-(map-keys "Y C"        "buffer-copy1")
-(map-keys "Y U"        "buffer-cut1")
-(map-keys "Y P"        "buffer-paste1-hotkey")
+(map-keys "Y C 1"         "buffer-copy1")
+(map-keys "Y U 1"         "buffer-cut1")
+(map-keys "Y P 1"         "buffer-paste1")
+(map-keys "Y C 2"         "buffer-copy2")
+(map-keys "Y U 2"         "buffer-cut2")
+(map-keys "Y P 2"         "buffer-paste2")
+(map-keys "Y C 3"         "buffer-copy3")
+(map-keys "Y U 3"         "buffer-cut3")
+(map-keys "Y P 3"         "buffer-paste3")
+(map-keys "Y C 4"         "buffer-copy4")
+(map-keys "Y U 4"         "buffer-cut4")
+(map-keys "Y P 4"         "buffer-paste4")
+(map-keys "Y C 5"         "buffer-copy5")
+(map-keys "Y U 5"         "buffer-cut5")
+(map-keys "Y P 5"         "buffer-paste5")
 
-(map-keys "<Control>Y"  "edit-redo")
-(map-keys "Z"           "view-zoom-in-hotkey")
-(map-keys "<Shift>Z"    "view-zoom-out-hotkey")
-(map-keys "<Control>Z"  "edit-undo")
+(map-keys "<Control>Y"    "edit-redo")
+(map-keys "Z"             "view-zoom-in")
+(map-keys "<Shift>Z"      "view-zoom-out")
+(map-keys "<Control>Z"    "edit-undo")
 
 (map-keys "Escape"        "cancel")
 (map-keys "bracketright"  "scale-up-snap-size")
@@ -1536,209 +1559,213 @@
 
 (define file-menu-items
 ;;
-;;      menu item name          menu action             menu hotkey function    menu stock icon
+;;      menu item name          menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_New")           file-new                file-new                "gtk-new"  "Create a new empty file" )
-        (,(N_ "_Open...")       file-open               file-open               "gtk-open" "Open an existing schematic or symbol file")
-        (,(N_ "Open Recen_t")   #f                      #f                      #f)
+     `( (,(N_ "_New")           file-new                "gtk-new"    "Create a new empty file" )
+        (,(N_ "_Open...")       file-open               "gtk-open"   "Open an existing schematic or symbol file")
+        (,(N_ "Open Recen_t")   #f                      #f)
+
+        ("SEPARATOR"            #f                      #f)
+        ("_Save"                file-save               "gtk-save"    "Save the current document")
+        ("Save _As..."          file-save-as            "gtk-save-as" "Save the current document to a new name or location")
+        ("Save All"             file-save-all           "gtk-save"    "Save all open documents")
+        ("_Revert"              page-revert             "gtk-revert-to-saved" "Discard changes and reload the current document")
 
         ("SEPARATOR"            #f                      #f                      #f)
-        ("_Save"                file-save               file-save               "gtk-save"    "Save the current document")
-        ("Save _As..."          file-save-as            file-save-as            "gtk-save-as" "Save the current document to a new name or location")
-        ("Save All"             file-save-all           file-save-all           "gtk-save"    "Save all open documents")
-        ("_Revert"              page-revert             page-revert             "gtk-revert-to-saved" "Discard changes and reload the current document")
+        ("_Print..."            file-print              "gtk-print"   "Print the current document")
+        ("Write _image..."      file-write-image        #f)
 
         ("SEPARATOR"            #f                      #f                      #f)
-        ("_Print..."            file-print              file-print              "gtk-print"   "Print the current document")
-        ("Write _image..."      file-write-image        file-write-image        #f)
+        ("Execute Script..."    file-run-script         "gtk-execute" "Execute a script file")
 
-        ("SEPARATOR"            #f                      #f                      #f)
-        ("Execute Script..."    file-run-script         file-run-script         "gtk-execute" "Execute a script file")
-
-        ("SEPARATOR"            #f                      #f                      #f)
-        ("_Close"               file-close              file-close              "gtk-close"  "Close the current document")
-        ("_Quit"                file-quit               file-quit               "gtk-quit"   "Quit gschem and exit")
+        ("SEPARATOR"               #f                   #f                       #f)
+        ("_Close"               file-close              "gtk-close"   "Close the current document")
+        ("_Quit"                file-quit               "gtk-quit"    "Quit gschem and exit")
       )
 )
 
 (define edit-menu-items
 ;;
-;;      menu item name          menu action            menu hotkey action      menu stock icon
+;;      menu item name              menu action            menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Undo")              edit-undo              edit-undo               "gtk-undo" "Undo the last action")
-        (,(N_ "_Redo")              edit-redo              edit-redo               "gtk-redo" "redo the last un-done action")
+     `( (,(N_ "_Undo")              edit-undo              "gtk-undo"         "Undo the last action")
+        (,(N_ "_Redo")              edit-redo              "gtk-redo"         "redo the last un-done action")
+
+        ("SEPARATOR"               #f                     #f                 #f)
+        (,(N_ "Cu_t")               clipboard-cut          "gtk-cut"          "Cut the current selection to the system clipboard")
+        (,(N_ "_Copy")              clipboard-copy         "gtk-copy"         "Copy the current selection to the system clipboard")
+        (,(N_ "_Paste")             clipboard-paste        "gtk-paste"        "Paste the contents of the system clipboard")
+        (,(N_ "_Delete")            edit-delete            "gtk-delete"       "Delete the current selection" )
+
+        ("SEPARATOR"               #f                     #f)
+        (,(N_ "Select Mode")        edit-select            "gschem-select"     "Activate Select mode")
+        (,(N_ "Select All")         edit-select-all        "gschem-select-all" "Select all objects")
+        (,(N_ "Deselect")           edit-deselect          "gschem-unselect"   "Unselect everything")
+        (,(N_ "_Invert Selection")  edit-select-invert     "gschem-invert"     "Invert the current selection set")
+
+        (,(N_ "Copy Mode")          edit-copy              "geda-copy"        "Copy selection")
+        (,(N_ "Multiple Copy Mode") edit-mcopy             "geda-multi"       "Make Multible Copies of selection")
+        (,(N_ "Move Mode")          edit-move              "geda-move"        "Move Objects")
+        (,(N_ "Rotate 90 Mode")     edit-rotate            "geda-rotate"      "Rotate the current selection about
+a point") 
+        (,(N_ "Mirror Mode")        edit-mirror            "geda-mirror"      "Mirror an object about a point")
 
         ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Cu_t")               clipboard-cut          clipboard-cut           "gtk-cut"   "Cut the current selection to the system clipboard")
-        (,(N_ "_Copy")              clipboard-copy         clipboard-copy          "gtk-copy"  "Copy the current selection to the system clipboard")
-        (,(N_ "_Paste")             clipboard-paste        clipboard-paste-hotkey  "gtk-paste" "Paste the contents of the system clipboard")
-        (,(N_ "_Delete")            edit-delete            edit-delete             "gtk-delete" "Delete the current selection" )
+        (,(N_ "Edit...")            edit-attributes        "gtk-indent"       "Edit Properties")
+        (,(N_ "Edit Text...")       edit-text              "gtk-edit"         "Open the Text Editor Dialog")
+        (,(N_ "Slot...")            edit-slot              "geda-slot"        "Open the Slot Editor Dialog")
+        (,(N_ "Color...")           edit-color             "gtk-select-color" "Open the Color Editor Dialog")
+        (,(N_ "Edit Pin...")        edit-pintype           "geda-pin-type"    "Open the Pin Type Dialog")
+        (,(N_ "Line Width & Type...") edit-linetype        "geda-line-type"   "Open the Line Editor Dialog")
+        (,(N_ "Fill Type...")         edit-filltype        "geda-mesh"        "Open the Fill Editor Dialog")
+        (,(N_ "Symbol Translate...")  edit-translate       "gtk-convert"      "Reset the X-Y Zero point")
+        (,(N_ "Lock")               edit-lock              "geda-lock"        "Lock selected objects")
+        (,(N_ "Unlock")             edit-unlock            "geda-unlock"      "Unlock selected objects")
 
-        ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Select Mode")        edit-select            edit-select             "geda-select"    "Active select mode")
-        (,(N_ "Select All")         edit-select-all        edit-select-all         "gtk-select-all" "Select all objects")
-        (,(N_ "Deselect")           edit-deselect          edit-deselect           "gtk-cancel"     "Un-select any selected objects")
-        (,(N_ "_Invert Selection")  edit-select-invert     edit-select-invert      "gtk-cancel"     "Invert the current selection set")
-
-        (,(N_ "Copy Mode")          edit-copy              edit-copy-hotkey        "geda-copy"   "Copy selection")
-        (,(N_ "Multiple Copy Mode") edit-mcopy             edit-mcopy-hotkey       "geda-multi"  "Make Multible Copies of selection")
-        (,(N_ "Move Mode")          edit-move              edit-move-hotkey        "geda-move"   "Move Objects")
-        (,(N_ "Rotate 90 Mode")     edit-rotate            edit-rotate-hotkey      "geda-rotate" "Rotate the current selection about a point")
-        (,(N_ "Mirror Mode")        edit-mirror            edit-mirror-hotkey      "geda-mirror" "Mirror an object about a point")
-
-        ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Edit...")            edit-attributes        edit-attributes         "gtk-indent" "Edit Properties")
-        (,(N_ "Edit Text...")       edit-text              edit-text               "gtk-edit"   "Open the Text Editor Dialog")
-        (,(N_ "Slot...")            edit-slot              edit-slot               "geda-slot"  "Open the Slot Editor Dialog")
-        (,(N_ "Color...")           edit-color             edit-color              "gtk-select-color" "Open the Color Editor Dialog")
-        (,(N_ "Edit Pin...")        edit-pintype           edit-pintype            "geda-pin-type"    "Open the Pin Type Dialog")
-        (,(N_ "Line Width & Type...") edit-linetype        edit-linetype           "geda-line-type"   "Open the Line Editor Dialog")
-        (,(N_ "Fill Type...")         edit-filltype        edit-filltype           "geda-mesh"        "Open the Fill Editor Dialog")
-        (,(N_ "Symbol Translate...")  edit-translate       edit-translate          "gtk-convert")
-        (,(N_ "Lock")               edit-lock              edit-lock               "geda-lock"   "Lock selected objects")
-        (,(N_ "Unlock")             edit-unlock            edit-unlock             "geda-unlock" "Unlock selected objects")
-
-        ("SEPARATOR"               #f                     #f                       #f)
-        (,(N_ "Invoke Macro")       edit-invoke-macro      edit-invoke-macro       "gtk-execute" "Invoke a macro")
-        (,(N_ "Embed Component/Picture")    edit-embed     edit-embed              #f            "Embed a component or image object")
-        (,(N_ "Unembed Component/Picture")  edit-unembed   edit-unembed            #f            "Unembed a component or image object")
-        (,(N_ "Update Component")   edit-update            edit-update             "gtk-refresh" "Reload definition of selected component")
+        ("SEPARATOR"               #f                     #f)
+        (,(N_ "Invoke Macro")       edit-invoke-macro      "gtk-execute"      "Invoke a macro")
+        (,(N_ "Embed Component/Picture")    edit-embed    #f                  "Embed a component or image object")
+        (,(N_ "Unembed Component/Picture")  edit-unembed  #f                  "Unembed a component or image object")
+        (,(N_ "Update Component")   edit-update            "gtk-refresh"      "Reload definition of selected component")
       )
 )
 
 (define buffer-menu-items
 ;;
-;;      menu item name          menu action             menu hotkey action      menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "Copy into 1")    buffer-copy1            buffer-copy1               "gtk-copy"  "Copy selection to first auxiliary buffer")
-        (,(N_ "Copy into 2")    buffer-copy2            buffer-copy2               "gtk-copy"  "Copy selection to second auxiliary buffer")
-        (,(N_ "Copy into 3")    buffer-copy3            buffer-copy3               "gtk-copy"  "Copy selection to third auxiliary buffer")
-        (,(N_ "Copy into 4")    buffer-copy4            buffer-copy4               "gtk-copy"  "Copy selection to forth auxiliary buffer")
-        (,(N_ "Copy into 5")    buffer-copy5            buffer-copy5               "gtk-copy"  "Copy selection to fifth auxiliary buffer")
-        (,(N_ "Cut into 1")     buffer-cut1             buffer-cut1                "gtk-cut"   "Cut selection to first auxiliary buffer")
-        (,(N_ "Cut into 2")     buffer-cut2             buffer-cut2                "gtk-cut"   "Cut selection to second auxiliary buffer")
-        (,(N_ "Cut into 3")     buffer-cut3             buffer-cut3                "gtk-cut"   "Cut selection to third auxiliary buffer")
-        (,(N_ "Cut into 4")     buffer-cut4             buffer-cut4                "gtk-cut"   "Cut selection to forth auxiliary buffer")
-        (,(N_ "Cut into 5")     buffer-cut5             buffer-cut5                "gtk-cut"   "Cut selection to fifth auxiliary buffer")
-        (,(N_ "Paste from 1")   buffer-paste1-hotkey    buffer-paste1-hotkey       "gtk-paste" "Insert contents of the first auxiliary buffer")
-        (,(N_ "Paste from 2")   buffer-paste2-hotkey    buffer-paste2-hotkey       "gtk-paste" "Insert contents of the second auxiliary buffer")
-        (,(N_ "Paste from 3")   buffer-paste3-hotkey    buffer-paste3-hotkey       "gtk-paste" "Insert contents of the third auxiliary buffer")
-        (,(N_ "Paste from 4")   buffer-paste4-hotkey    buffer-paste4-hotkey       "gtk-paste" "Insert contents of the forth auxiliary buffer")
-        (,(N_ "Paste from 5")   buffer-paste5-hotkey    buffer-paste5-hotkey       "gtk-paste" "Insert contents of the fifth auxiliary buffer")
+     `( (,(N_ "Copy into 1")    buffer-copy1            "gtk-copy"  "Copy selection to first auxiliary buffer")
+        (,(N_ "Copy into 2")    buffer-copy2            "gtk-copy"  "Copy selection to second auxiliary buffer")
+        (,(N_ "Copy into 3")    buffer-copy3            "gtk-copy"  "Copy selection to third auxiliary buffer")
+        (,(N_ "Copy into 4")    buffer-copy4            "gtk-copy"  "Copy selection to forth auxiliary buffer")
+        (,(N_ "Copy into 5")    buffer-copy5            "gtk-copy"  "Copy selection to fifth auxiliary buffer")
+        (,(N_ "Cut into 1")     buffer-cut1             "gtk-cut"   "Cut selection to first auxiliary buffer")
+        (,(N_ "Cut into 2")     buffer-cut2             "gtk-cut"   "Cut selection to second auxiliary buffer")
+        (,(N_ "Cut into 3")     buffer-cut3             "gtk-cut"   "Cut selection to third auxiliary buffer")
+        (,(N_ "Cut into 4")     buffer-cut4             "gtk-cut"   "Cut selection to forth auxiliary buffer")
+        (,(N_ "Cut into 5")     buffer-cut5             "gtk-cut"   "Cut selection to fifth auxiliary buffer")
+        (,(N_ "Paste from 1")   buffer-paste1           "gtk-paste" "Insert contents of the first auxiliary buffer")
+        (,(N_ "Paste from 2")   buffer-paste2           "gtk-paste" "Insert contents of the second auxiliary buffer")
+        (,(N_ "Paste from 3")   buffer-paste3           "gtk-paste" "Insert contents of the third auxiliary buffer")
+        (,(N_ "Paste from 4")   buffer-paste4           "gtk-paste" "Insert contents of the forth auxiliary buffer")
+        (,(N_ "Paste from 5")   buffer-paste5           "gtk-paste" "Insert contents of the fifth auxiliary buffer")
       )
 )
 
 (define view-menu-items
 ;;
-;;      menu item name               menu action             menu hotkey action      menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Redraw")             view-redraw             view-redraw            "gtk-refresh"    "redraw the current window")
-        (,(N_ "_Pan")                view-pan                view-pan-hotkey        "geda-zoom-pan"  "Activate Panning")
-        (,(N_ "Zoom _Box")           view-zoom-box           view-zoom-box-hotkey   "geda-zoom-box"  "Zoom to a Windowed region")
-        (,(N_ "Zoom _Extents")       view-zoom-extents       view-zoom-extents       "gtk-zoom-fit"  "Zoom to to the extents of the drawing")
-        (,(N_ "Zoom _In")            view-zoom-in            view-zoom-in-hotkey     "gtk-zoom-in")
-        (,(N_ "Zoom _Out")           view-zoom-out           view-zoom-out-hotkey    "gtk-zoom-out")
-        (,(N_ "Zoom _Full")          view-zoom-all           view-zoom-all           "gtk-fullscreen")
+     `( (,(N_ "_Redraw")             view-redraw             "gtk-refresh"    "redraw the current window")
+        (,(N_ "_Pan")                view-pan                "geda-zoom-pan"  "Activate Panning")
+        (,(N_ "Zoom _Box")           view-zoom-box           "geda-zoom-box"  "Zoom to a Windowed region")
+        (,(N_ "Zoom _Selection")     view-zoom-selected      "gtk-zoom-fit"   "Zoom to selected objects")
+        (,(N_ "Zoom _Extents")       view-zoom-extents       "gtk-zoom-100"   "Zoom to to the extents of the drawing")
+        (,(N_ "Zoom _In")            view-zoom-in            "gtk-zoom-in")
+        (,(N_ "Zoom _Out")           view-zoom-out           "gtk-zoom-out")
+        (,(N_ "Zoom _All")           view-zoom-all           "gtk-fullscreen")
 
         ("SEPARATOR"                #f                      #f                       #f)
-        (,(N_ "D_ocumentation...")   view-documentation      view-documentation      "gtk-index")
-        (,(N_ "Show/Hide Inv Text")  view-show-hidden        view-show-hidden        "gtk-find-and-replace" "Toggle hidden text attributes")
-        (,(N_ "Show/Hide Net Names") view-show-nets          view-show-nets          "gtk-ok")
+        (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")
+        (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" "Toggle hidden text attributes")
+        (,(N_ "Show/Hide Net Names") view-show-nets          "gtk-ok")
 
-        ("SEPARATOR"                #f                      #f                       #f)
-        (,(N_ "_Dark color scheme")  view-dark-colors        view-dark-colors        #f "Set the color map to the Dark set")
-        (,(N_ "_Light color scheme") view-light-colors       view-light-colors       #f "Set the color map to the Light set")
-        (,(N_ "B_W color scheme")    view-bw-colors          view-bw-colors          #f "Set the color map to the Black and White")
+        ("SEPARATOR"                #f                       #f)
+        (,(N_ "_Dark color scheme")  view-dark-colors        #f "Set the color map to the Dark set")
+        (,(N_ "_Light color scheme") view-light-colors       #f "Set the color map to the Light set")
+        (,(N_ "B_W color scheme")    view-bw-colors          #f "Set the color map to the Black and White")
       )
 )
 
 (define page-menu-items
 ;;
-;;      menu item name             menu action             menu hotkey action      menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Manager...")       page-manager            page-manager            "gtk-properties"       "Open the Page Manager")
-        (,(N_ "_Previous")         page-prev               page-prev               "gtk-go-back"          "Switch to the previous page")
-        (,(N_ "_Next")             page-next               page-next               "gtk-go-forward"       "Switch to the next page")
-        (,(N_ "Ne_w")              page-new                page-new                "gtk-new"              "Create a new Page")
-        (,(N_ "Prin_t")            page-print              page-print              "gtk-print"            "Print the current page")
-        (,(N_ "_Revert")           page-revert             page-revert             "gtk-revert-to-saved"  "Discard changes and reload the current documents")
-        (,(N_ "_Close")            page-close              page-close              "gtk-close"            "Close the current page")
+     `( (,(N_ "_Manager...")       page-manager            "gtk-properties"       "Open the Page Manager")
+        (,(N_ "_Previous")         page-prev               "gtk-go-back"          "Switch to the previous page")
+        (,(N_ "_Next")             page-next               "gtk-go-forward"       "Switch to the next page")
+        (,(N_ "Ne_w")              page-new                "gtk-new"              "Create a new Page")
+        (,(N_ "Prin_t")            page-print              "gtk-print"            "Print the current page")
+        (,(N_ "_Revert")           page-revert             "gtk-revert-to-saved"  "Discard changes and reload the current
+documents")
+        (,(N_ "_Close")            page-close              "gtk-close"            "Close the current page")
 
-        ("SEPARATOR"              #f                      #f                      #f)
-        (,(N_ "_Discard")          page-discard            page-discard            "gtk-discard"          "Close the current page without saving")
+        ("SEPARATOR"              #f                      #f)
+        (,(N_ "_Discard")          page-discard            "gtk-discard"          "Close the current page without saving")
       )
 )
 
 (define add-menu-items
 ;;
-;;      menu item name             menu action             menu hotkey action      menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Component...")     add-component           add-component           #f           "Add component")
-        (,(N_ "_Net")              add-net                 add-net-hotkey          "gschem-net" "Add net")
-        (,(N_ "B_us")              add-bus                 add-bus-hotkey          "gschem-bus" "Add bus")
-        (,(N_ "_Attribute...")     add-attribute           add-attribute           "gtk-italic" "Add attribute")
-        (,(N_ "_Text...")          add-text                add-text                "gtk-bold"   "Add text")
+     `( (,(N_ "_Component...")     add-component           "geda-component"   "Insert a symbol from the component library")
+        (,(N_ "_Net")              add-net                 "gschem-net"       "Add net")
+        (,(N_ "B_us")              add-bus                 "gschem-bus"       "Add bus")
+        (,(N_ "_Attribute...")     add-attribute           "insert-attribute" "Add attribute")
+        (,(N_ "_Text...")          add-text                "gtk-bold"         "Add text")
 
         ("SEPARATOR"              #f                      #f)
-        (,(N_ "_Line")             add-line                add-line-hotkey         "geda-line"    "Add line")
-        (,(N_ "_Box")              add-box                 add-box-hotkey          "geda-box"     "Add box")
-        (,(N_ "C_ircle")           add-circle              add-circle-hotkey       "geda-circles" "Add circle")
-        (,(N_ "A_rc")              add-arc                 add-arc-hotkey          "geda-arc"     "Add arc")
-        (,(N_ "_Pin")              add-pin                 add-pin-hotkey          "geda-pin"     "Add pin")
-        (,(N_ "Pictu_re...")       add-picture             add-picture             "gtk-orientation-portrait" "Insert an image into the current document")
+        (,(N_ "A_rc")              add-arc                 "geda-arc"         "Create arc")
+        (,(N_ "_Box")              add-box                 "geda-box"         "Add box")
+        (,(N_ "C_ircle")           add-circle              "geda-circle"      "Add circle")
+        (,(N_ "_Line")             add-line                "geda-line"        "Add line")
+        (,(N_ "Pat_h")             add-path                "geda-path"        "Add Path")
+        (,(N_ "Pictu_re...")       add-picture             "gtk-orientation-portrait" "Insert an image into the current document")
+        (,(N_ "_Pin")              add-pin                 "geda-pin"         "Add pin")
       )
 )
 
 (define hierarchy-menu-items
 ;;
-;;      menu item name             menu action               menu hotkey action        menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  hierarchy-down-schematic  "gtk-go-down"     "Descend down in the schematic hierarchy")
-        (,(N_ "Down _Symbol")      hierarchy-down-symbol     hierarchy-down-symbol     "gtk-goto-bottom")
-        (,(N_ "_Up")               hierarchy-up              hierarchy-up              "gtk-go-up"       "ascend up in the schematic hierarchy")
-        (,(N_ "D_ocumentation...") hierarchy-documentation   hierarchy-documentation   "gtk-info"        "Find component documentation")
+     `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  "gtk-go-down"     "Descend down in the schematic hierarchy")
+        (,(N_ "Down _Symbol")      hierarchy-down-symbol     "gtk-goto-bottom")
+        (,(N_ "_Up")               hierarchy-up              "gtk-go-up"       "ascend up in the schematic hierarchy")
+        (,(N_ "D_ocumentation...") hierarchy-documentation   "gtk-info"        "Find component documentation")
       )
 )
 
 (define attributes-menu-items
 ;;
-;;      menu item name             menu action             menu hotkey action      menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Attach")           attributes-attach       attributes-attach       "gtk-go-up"   "Attach selected attributes to symbol")
-        (,(N_ "_Detach")           attributes-detach       attributes-detach       "gtk-go-down" "Dettach selected attributes from a symbol")
-        (,(N_ "Show _Value")       attributes-show-value   attributes-show-value   #f "Set selected value visible")
-        (,(N_ "Show _Name")        attributes-show-name    attributes-show-name    #f "Set selected name visible")
-        (,(N_ "Show _Both")        attributes-show-both    attributes-show-both    #f "Set selected name and value visible")
-        ("SEPARATOR"                    #f                     #f                  #f "")
-        (,(N_ "_Toggle Visibility")      attributes-visibility   attributes-visibility   #f "Toggle attribute visibilty")
-        (,(N_ "_Find Specific Text...")  attributes-find-text    attributes-find-text    "gtk-find-and-replace" "Find an attribute")
-        (,(N_ "_Hide Specific Text...")  attributes-hide-text    attributes-hide-text    #f "Hide selected attribute")
-        (,(N_ "_Show Specific Text...")  attributes-show-text    attributes-show-text    #f "Show a specific attribute value")
-        ("SEPARATOR"                    #f                     #f                  #f "")
-        (,(N_ "Attrbute _Editor...")     attributes-editor       attributes-editor       "gtk-indent" "Open the Attibutes Editor Dialog")
-        (,(N_ "A_utonumber Text...")     attributes-autonumber   attributes-autonumber   #f "Open Auto Number dialog")
+     `( (,(N_ "_Attach")           attributes-attach             "gtk-go-up"   "Attach selected attributes to symbol")
+        (,(N_ "_Detach")           attributes-detach             "gtk-go-down" "Dettach selected attributes from a symbol")
+        (,(N_ "Show _Value")       attributes-show-value         #f "Set selected value visible")
+        (,(N_ "Show _Name")        attributes-show-name          #f "Set selected name visible")
+        (,(N_ "Show _Both")        attributes-show-both          #f "Set selected name and value visible")
+        ("SEPARATOR"                    #f                       #f)
+        (,(N_ "_Toggle Visibility")      attributes-visibility   #f "Toggle attribute visibilty")
+        (,(N_ "_Find Specific Text...")  attributes-find-text    "gtk-find-and-replace" "Find an attribute")
+        (,(N_ "_Hide Specific Text...")  attributes-hide-text    #f "Hide selected attribute")
+        (,(N_ "_Show Specific Text...")  attributes-show-text    #f "Show a specific attribute value")
+        ("SEPARATOR"                    #f                       #f)
+        (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent" "Open the Attibutes Editor Dialog")
+        (,(N_ "A_utonumber Text...")     attributes-autonumber   #f "Open Auto Number dialog")
       )
 )
 
 (define options-menu-items
 ;;
-;;      menu item name                  menu action             menu hotkey action      menu stock icon
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "Cycle _grid styles")       options-cycle-grid      options-cycle-grid        #f "Toggle grid between Dot, Mesh and Off")
-        (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size      scale-up-snap-size        #f "Increase the snap size")
-        (,(N_ "Scale _down Grid Spacing") scale-down-snap-size    scale-down-snap-size      #f "Increase the snap size")
-        (,(N_ "Snap Grid S_pacing...")    options-snap-size       options-snap-size         #f "Adjust snap size" )
-        ("SEPARATOR"                     #f                      #f              #f)
-        (,(N_ "Toggle _Snap On-Off")      options-cycle-snap      options-cycle-snap        #f "Toggle the object snap mode")
-        (,(N_ "Toggle _Outline-Box")      options-action-feedback options-action-feedback   #f "Toggle action feedback")
-        (,(N_ "Toggle _Rubberband")       options-rubberband      options-rubberband        #f "Toggle rubberband mode")
-        (,(N_ "Toggle _Magnetic Net")     options-magneticnet     options-magneticnet       #f "Toggle magnetic net mode")
-        ("SEPARATOR"                     #f                      #f              #f)
-        (,(N_ "Show _Console Window...")  options-show-console     options-show-console     #f "Display the console")
-        (,(N_ "Show _Coord Window...")    options-show-coordinates options-show-coordinates #f "Display coordinates")
-        ("SEPARATOR"                     #f                      #f              #f)
-        (,(N_ "_Text Size...")            options-show-text-size   options-show-text-size   #f "Open the Text Size settings")
-        ("_Preferences..."                options-show-settings    options-show-settings    #f "Open the Preferences dialog")
+     `( (,(N_ "Cycle _grid styles")       options-cycle-grid       #f "Toggle grid between Dot, Mesh and Off")
+        (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size       #f "Increase the snap size")
+        (,(N_ "Scale _down Grid Spacing") scale-down-snap-size     #f "Increase the snap size")
+        (,(N_ "Snap Grid S_pacing...")    options-snap-size        #f "Adjust snap size" )
+        ("SEPARATOR"                     #f                        #f)
+        (,(N_ "Toggle _Snap On-Off")      options-cycle-snap       #f "Toggle the object snap mode")
+        (,(N_ "Toggle _Outline-Box")      options-action-feedback  #f "Toggle action feedback")
+        (,(N_ "Toggle _Rubberband")       options-rubberband       #f "Toggle rubberband mode")
+        (,(N_ "Toggle _Magnetic Net")     options-magneticnet      #f "Toggle magnetic net mode")
+        ("SEPARATOR"                     #f                        #f)
+        (,(N_ "Show _Console Window...")  options-show-console     #f "Display the console")
+        (,(N_ "Show _Coord Window...")    options-show-coordinates #f "Display coordinates")
+        ("SEPARATOR"                     #f                        #f)
+        (,(N_ "_Text Size...")            options-show-text-size   #f "Open the Text Size settings")
+        ("_Preferences..."                options-show-settings    #f "Open the Preferences dialog")
       )
 )
 
@@ -1747,16 +1774,16 @@
 ;;      menu item name                menu action               menu hotkey action        menu stock icon
 ;;
      `(
-        (,(N_ "Gschem Guide")           help-show-manual          help-show-manual          "gtk-help")
-        (,(N_ "_Hotkeys...")            help-show-hotkeys         help-show-hotkeys         "gtk-index")
-        (,(N_ "gschem _FAQ...")         help-show-faq             help-show-faq             #f)
-        ("SEPARATOR"                   #f                        #f                         #f)
+        (,(N_ "Gschem Guide")           help-show-manual          "gtk-help")
+        (,(N_ "_Hotkeys...")            help-show-hotkeys         "gtk-index")
+        (,(N_ "gschem _FAQ...")         help-show-faq             #f)
+        ("SEPARATOR"                   #f                         #f)
         (,(N_ "Component D_ocumentation...")
-                                        hierarchy-documentation   hierarchy-documentation   "gtk-indent")
-        ("SEPARATOR"                   #f                        #f                         #f)
-        (,(N_ "gEDA Docu_mentation...") help-show-geda           #f                         "gtk-help")
-        (,(N_ "gEDA _Wiki...")          help-show-wiki            help-show-wiki            "gtk-home")
-        (,(N_ "_About...")              help-show-about           help-show-about           "gtk-about")
+                                        hierarchy-documentation   "gtk-indent")
+        ("SEPARATOR"                   #f                         #f)
+        (,(N_ "gEDA Docu_mentation...") help-show-geda            "gtk-help")
+        (,(N_ "gEDA _Wiki...")          help-show-wiki            "gtk-home")
+        (,(N_ "_About...")              help-show-about           "gtk-about")
       )
 )
 
@@ -1774,7 +1801,7 @@
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 
 ;; Add Paul Tan's tools utility menu
-;(load-from-path "gschem-tools-menu.scm")
+(load-from-path "gschem/gschem-tools-menu.scm")
 
 (add-menu (N_ "_Options") options-menu-items)
 (add-menu (N_ "_Help") help-menu-items)

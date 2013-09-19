@@ -36,6 +36,7 @@ struct _GschemAction
 {
   GtkAction parent_instance;
   char *multikey_accel;
+  char *icon_name;
 };
 
 struct _GschemActionClass
@@ -45,10 +46,14 @@ struct _GschemActionClass
 
 GType gschem_action_get_type (void);
 
-GschemAction *gschem_action_new        (const char *name,
-                                        const char *label,
-                                        const char *tooltip,
-                                        const char *stock_id,
-                                        const char *multikey_accel);
+GschemAction *gschem_action_new           (const char   *name,
+                                           const char   *label,
+                                           const char   *tooltip,
+                                           const char   *icon_id,
+                                           const char   *multikey_accel);
+const char *gschem_action_get_icon_name   (GschemAction *action);
+void        gschem_action_set_icon_name   (GschemAction *action,
+                                           const char   *icon_name);
+
 
 #endif /* __GSCHEM_ACTION_H__ */
