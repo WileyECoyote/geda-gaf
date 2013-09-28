@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License 
  * along with this program; if not, write to the Free Software 
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
@@ -34,9 +35,38 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include "../include/gettext.h"
+
+/* Used by the connected string functions */
+#define PIN_NET_PREFIX "__netattrib_power_pin "
 
 /* used by the extract functions below */
 #define DELIMITERS ",; "
+
+char *s_netattrib_pinnum_get_connected_string (const char *pinnum)
+{
+  return g_strdup_printf (PIN_NET_PREFIX "%s", pinnum);
+}
+
+const char *s_netattrib_connected_string_get_pinnum (const char *str)
+{
+  int prefix_len = (sizeof PIN_NET_PREFIX) - 1;
+
+  if (strncmp (str, PIN_NET_PREFIX, prefix_len) != 0) {
+    return NULL;
+  }
+
+  return str + prefix_len;
+}
+
+void s_netattrib_check_connected_string (const char *str)
+{
+  if (s_netattrib_connected_string_get_pinnum (str) == NULL) return;
+
+  fprintf (stderr,
+         _("ERROR: `%s' is reserved for internal use."), PIN_NET_PREFIX);
+           exit (1);
+}
 
 /* things to do here : */
 /* write the net alias function */
@@ -44,129 +74,125 @@
 /* be sure to g_free returned string */
 char *s_netattrib_extract_netname(char *value)
 {
-    char *return_value = NULL;
-    int i = 0;
+  char *return_value = NULL;
+  int i = 0;
 
-    /* a bit larger than needed ... */
-    return_value = g_strdup (value);
+  /* a bit larger than needed ... */
+  return_value = g_strdup (value);
 
-    while (value[i] != ':' && value[i] != '\0') {
-	return_value[i] = value[i];
-	i++;
-    }
+  while (value[i] != ':' && value[i] != '\0') {
+    return_value[i] = value[i];
+    i++;
+  }
 
-    if (value[i] != ':') {
-	fprintf(stderr, "Found malformed net attribute\n");
-	return (g_strdup ("unknown"));
-    }
+  if (value[i] != ':') {
+    fprintf(stderr, _("Found malformed net attribute\n"));
+    return (g_strdup ("unknown"));
+  }
 
-    return_value[i] = '\0';
+  return_value[i] = '\0';
 
-    return (return_value);
+  return (return_value);
 
 }
 
 /* if this function creates a cpinlist list, it will not have a head node */
 void
 s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
-			NETLIST * netlist, char *value,
-			char *hierarchy_tag)
+                        NETLIST * netlist, char *value, char *hierarchy_tag)
 {
-    NETLIST *netlist_tail = NULL;
-    CPINLIST *cpinlist_tail = NULL;
-    CPINLIST *new_cpin = NULL;
-    CPINLIST *old_cpin = NULL;
-    char *connected_to = NULL;
-    char *net_name = NULL;
-    char *start_of_pinlist = NULL;
-    char *char_ptr = NULL;
-    char *current_pin = NULL;
+  NETLIST *netlist_tail   = NULL;
+  CPINLIST *cpinlist_tail = NULL;
+  CPINLIST *new_cpin      = NULL;
+  CPINLIST *old_cpin      = NULL;
+  char *connected_to      = NULL;
+  char *net_name          = NULL;
+  char *start_of_pinlist  = NULL;
+  char *char_ptr          = NULL;
+  char *current_pin       = NULL;
+
+  char_ptr = strchr(value, ':');
+
+  if (char_ptr == NULL) {
+    return;
+  }
 
 
-    char_ptr = strchr(value, ':');
+  net_name = s_netattrib_extract_netname(value);
 
-    if (char_ptr == NULL) {
-	return;
+  /* skip over first : */
+  start_of_pinlist = char_ptr + 1;
+  current_pin = strtok(start_of_pinlist, DELIMITERS);
+  while (current_pin) {
+
+    netlist_tail = s_netlist_return_tail(netlist);
+    cpinlist_tail = s_cpinlist_return_tail(netlist_tail->cpins);
+
+    if (netlist->component_uref) {
+
+      old_cpin =
+      s_cpinlist_search_pin(netlist_tail->cpins, current_pin);
+
+      if (old_cpin) {
+
+        g_assert (old_cpin->nets != NULL);
+
+        if (old_cpin->nets->net_name) {
+          fprintf(stderr, _("Found a cpinlist head with a netname! [%s]\n"),
+                  old_cpin->nets->net_name);
+          g_free(old_cpin->nets->net_name);
+        }
+
+
+        old_cpin->nets->net_name =
+        s_hierarchy_create_netattrib(pr_current, net_name,
+                                     hierarchy_tag);
+        old_cpin->nets->net_name_has_priority = TRUE;
+        connected_to = g_strdup_printf("%s %s",
+                                       netlist->component_uref,
+                                       current_pin);
+        old_cpin->nets->connected_to = g_strdup(connected_to);
+        old_cpin->nets->nid = o_current->sid;
+        g_free(connected_to);
+      }
+      else {
+
+
+        new_cpin = s_cpinlist_add(cpinlist_tail);
+
+        new_cpin->pin_number = g_strdup (current_pin);
+        new_cpin->net_name = NULL;
+
+        new_cpin->plid = o_current->sid;
+
+        new_cpin->nets = s_net_add(NULL);
+        new_cpin->nets->net_name_has_priority = TRUE;
+        new_cpin->nets->net_name =
+        s_hierarchy_create_netattrib(pr_current, net_name,
+                                     hierarchy_tag);
+
+        connected_to = g_strdup_printf("%s %s",
+                                       netlist->component_uref,
+                                       current_pin);
+        new_cpin->nets->connected_to = g_strdup(connected_to);
+        new_cpin->nets->nid = o_current->sid;
+
+        #if DEBUG
+        printf("Finished creating: %s\n", connected_to);
+        printf("netname: %s %s\n", new_cpin->nets->net_name,
+               hierarchy_tag);
+        #endif
+
+        g_free(connected_to);
+      }
+
+    } else {		/* no uref, means this is a special component */
+
     }
-
-
-    net_name = s_netattrib_extract_netname(value);
-
-    /* skip over first : */
-    start_of_pinlist = char_ptr + 1;
-    current_pin = strtok(start_of_pinlist, DELIMITERS);
-    while (current_pin) {
-
-	netlist_tail = s_netlist_return_tail(netlist);
-	cpinlist_tail = s_cpinlist_return_tail(netlist_tail->cpins);
-
-	if (netlist->component_uref) {
-
-	    old_cpin =
-		s_cpinlist_search_pin(netlist_tail->cpins, current_pin);
-
-	    if (old_cpin) {
-
-		g_assert (old_cpin->nets != NULL);
-
-		if (old_cpin->nets->net_name) {
-		    fprintf(stderr,
-			    "Found a cpinlist head with a netname! [%s]\n",
-			    old_cpin->nets->net_name);
-		    g_free(old_cpin->nets->net_name);
-		}
-
-
-		old_cpin->nets->net_name =
-		    s_hierarchy_create_netattrib(pr_current, net_name,
-						 hierarchy_tag);
-		old_cpin->nets->net_name_has_priority = TRUE;
-		connected_to = g_strdup_printf("%s %s",
-                                   netlist->component_uref,
-                                   current_pin);
-		old_cpin->nets->connected_to = g_strdup(connected_to);
-		old_cpin->nets->nid = o_current->sid;
-		g_free(connected_to);
-	    } else {
-
-
-		new_cpin = s_cpinlist_add(cpinlist_tail);
-
-		new_cpin->pin_number = g_strdup (current_pin);
-		new_cpin->net_name = NULL;
-
-		new_cpin->plid = o_current->sid;
-
-		new_cpin->nets = s_net_add(NULL);
-		new_cpin->nets->net_name_has_priority = TRUE;
-		new_cpin->nets->net_name =
-		    s_hierarchy_create_netattrib(pr_current, net_name,
-						 hierarchy_tag);
-
-		connected_to = g_strdup_printf("%s %s",
-                                   netlist->component_uref,
-                                   current_pin);
-		new_cpin->nets->connected_to = g_strdup(connected_to);
-		new_cpin->nets->nid = o_current->sid;
-
-#if DEBUG
-		printf("Finished creating: %s\n", connected_to);
-		printf("netname: %s %s\n", new_cpin->nets->net_name,
-		       hierarchy_tag);
-#endif
-
-		g_free(connected_to);
-	    }
-
-	} else {		/* no uref, means this is a special component */
-
-	}
-	current_pin = strtok(NULL, DELIMITERS);
-    }
-
-    g_free(net_name);
+    current_pin = strtok(NULL, DELIMITERS);
+  }
+  g_free(net_name);
 }
-
 
 void
 s_netattrib_handle (TOPLEVEL * pr_current, OBJECT * o_current,
@@ -204,14 +230,14 @@ s_netattrib_handle (TOPLEVEL * pr_current, OBJECT * o_current,
   }
 }
 
-char *s_netattrib_net_search (OBJECT * o_current, char *wanted_pin)
+char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
 {
-  char *value = NULL;
-  char *char_ptr = NULL;
-  char *net_name = NULL;
-  char *current_pin = NULL;
-  char *start_of_pinlist = NULL;
-  char *return_value = NULL;
+  char *value             = NULL;
+  char *char_ptr          = NULL;
+  char *net_name          = NULL;
+  char *start_of_pinlist  = NULL;
+  char *return_value      = NULL;
+  const char *current_pin = NULL;
   int counter;
 
   if (o_current == NULL ||
@@ -229,8 +255,9 @@ char *s_netattrib_net_search (OBJECT * o_current, char *wanted_pin)
 
     char_ptr = strchr (value, ':');
     if (char_ptr == NULL) {
-      fprintf (stderr, "Got an invalid net= attrib [net=%s]\n"
-                       "Missing : in net= attrib\n", value);
+      fprintf (stderr,
+     _("Got an invalid net= attrib [net=%s]\nMissing : in net= attrib\n"),
+              value);
       g_free (value);
       return NULL;
     }
@@ -260,8 +287,9 @@ char *s_netattrib_net_search (OBJECT * o_current, char *wanted_pin)
 
     char_ptr = strchr (value, ':');
     if (char_ptr == NULL) {
-      fprintf (stderr, "Got an invalid net= attrib [net=%s]\n"
-                       "Missing : in net= attrib\n", value);
+      fprintf (stderr,
+          _("Got an invalid net= attrib [net=%s]\nMissing : in net= attrib\n"),
+              value);
       g_free (value);
       return NULL;
     }
@@ -285,38 +313,26 @@ char *s_netattrib_net_search (OBJECT * o_current, char *wanted_pin)
 }
 
 char *s_netattrib_return_netname(TOPLEVEL * pr_current, OBJECT * o_current,
-				 char *pinnumber, char *hierarchy_tag)
+                                 char *pinnumber, char *hierarchy_tag)
 {
-    char *current_pin;
-    char *netname;
-    char *temp_netname;
+  const char *current_pin;
+  char *netname;
+  char *temp_netname;
 
-#if DEBUG
-    printf("extract return netname here\n");
-#endif
+  current_pin = s_netattrib_connected_string_get_pinnum (pinnumber);
+  if (current_pin == NULL) return NULL;
 
-    /* skip over POWER tag */
-    (void) strtok(pinnumber, " ");
+  /* use hierarchy tag here to make this net uniq */
+  temp_netname = s_netattrib_net_search(o_current->parent,
+                                        current_pin);
 
-    current_pin = strtok(NULL, " ");
-    if (current_pin == NULL) {
-	return (NULL);
-    }
-#if DEBUG
-    printf("inside return_netname: %s\n", current_pin);
-#endif
+  netname =
+  s_hierarchy_create_netattrib(pr_current, temp_netname,
+                               hierarchy_tag);
 
-    /* use hierarchy tag here to make this net uniq */
-    temp_netname = s_netattrib_net_search(o_current->parent,
-                                          current_pin);
+  #if DEBUG
+  printf("netname: %s\n", netname);
+  #endif
 
-    netname =
-	s_hierarchy_create_netattrib(pr_current, temp_netname,
-				     hierarchy_tag);
-
-#if DEBUG
-    printf("netname: %s\n", netname);
-#endif
-
-    return (netname);
+  return (netname);
 }

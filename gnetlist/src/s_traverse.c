@@ -144,15 +144,17 @@ void s_traverse_start(TOPLEVEL * pr_current)
 void
 s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_tag)
 {
-  NETLIST  *netlist;
-  char     *temp;
-  SCM       scm_uref;
-  char     *temp_uref;
-  bool      is_graphical;
-  bool      is_hierarchy;
-  const     GList *iter;
-  GError    *err;
-  EdaConfig *cfg;
+  SCM      scm_uref;
+  NETLIST *netlist;
+  char    *base_name;
+  char    *net_name;
+  char    *temp;
+  char    *temp_uref;
+  bool     is_graphical;
+  bool     is_hierarchy;
+  const GList *iter;
+  GError      *err;
+  EdaConfig   *cfg;
 
   is_graphical = FALSE;
   is_hierarchy = TRUE;
@@ -173,10 +175,11 @@ s_traverse_sheet (TOPLEVEL * pr_current, const GList *obj_list, char *hierarchy_
     OBJECT *o_current = iter->data;
 
     netlist = s_netlist_return_tail(netlist_head);
+    base_name = o_current->complex_basename;
 
     if (o_current->type == OBJ_PLACEHOLDER) {
-      printf(_("WARNING: Found a placeholder/missing component, are you missing a symbol file? [%s]\n"),
-o_current->complex_basename);
+      printf(_("WARNING: Found a placeholder/missing component, is symbol file missing? [%s]\n"),
+                base_name);
     }
 
     if (o_current->type == OBJ_COMPLEX) {
@@ -232,13 +235,13 @@ o_current->complex_basename);
 
         /* nope net attribute not found */
         if ( (!temp) && (!is_graphical) ) {
-
+          net_name = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
           fprintf(stderr,
-                _("Could not find refdes on component and could not find any special attributes!\n"));
+         _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
+            base_name, net_name);
 
-                  netlist->component_uref = g_strdup("U?");
+          netlist->component_uref = g_strdup("U?");
         } else {
-
           #if DEBUG
           printf("yeah... found a power symbol\n");
           #endif
@@ -339,12 +342,13 @@ static int connection_type (OBJECT *object)
 
 
 NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
-                     OBJECT *object, char *hierarchy_tag, int type)
+                     OBJECT   *object, char *hierarchy_tag, int type)
 {
-  NET *new_net;
-  CONN *c_current;
+  NET   *new_net;
+  CONN  *c_current;
   GList *cl_current;
-  char *temp = NULL;
+  char  *temp                   = NULL;
+  const  char *netattrib_pinnum = NULL;
 
   visit (object);
 
@@ -362,8 +366,8 @@ NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
 
     if (temp) {
       new_net->net_name =
-        s_hierarchy_create_netname(pr_current, temp,
-                                   hierarchy_tag);
+      s_hierarchy_create_netname(pr_current, temp,
+                                 hierarchy_tag);
       g_free(temp);
     } else if (object->type == OBJ_NET) {
       /* search for the old label= attribute on nets */
@@ -371,22 +375,22 @@ NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
       if (temp) {
         printf(_("WARNING: Found label=%s. label= is deprecated, please use netname=\n"), temp);
         new_net->net_name =
-          s_hierarchy_create_netname(pr_current, temp,
-                                     hierarchy_tag);
+        s_hierarchy_create_netname(pr_current, temp,
+                                   hierarchy_tag);
         g_free(temp);
       }
     }
   }
-#if DEBUG
+  #if DEBUG
   printf("inside traverse: %s\n", object->name);
-#endif
+  #endif
 
   if (object->type == OBJ_PIN) {
 
     verbose_print (starting ? "p" : "P");
 
     new_net->connected_to =
-      s_net_return_connected_string (pr_current, object, hierarchy_tag);
+    s_net_return_connected_string (pr_current, object, hierarchy_tag);
 
     temp = o_attrib_search_object_attribs_by_name (object, "pinlabel", 0);
 
@@ -395,23 +399,23 @@ NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
     }
 
     /* net= new */
-    if (strstr(nets->connected_to, "POWER") &&
-        type == PIN_TYPE_NET) {
+    netattrib_pinnum = s_netattrib_connected_string_get_pinnum (nets->connected_to);
+    if (netattrib_pinnum != NULL && type == PIN_TYPE_NET) {
 
-#if DEBUG
+      #if DEBUG
       printf("going to find netname %s \n", nets->connected_to);
-#endif
+      #endif
       nets->net_name =
-        s_netattrib_return_netname (pr_current, object,
-                                    nets->connected_to,
-                                    hierarchy_tag);
+      s_netattrib_return_netname (pr_current, object,
+                                  nets->connected_to,
+                                  hierarchy_tag);
       nets->net_name_has_priority = TRUE;
       g_free(nets->connected_to);
       nets->connected_to = NULL;
     }
-#if DEBUG
+    #if DEBUG
     printf("traverse connected_to: %s\n", new_net->connected_to);
-#endif
+    #endif
 
     /* Terminate if we hit a pin which isn't the one we started with */
     if (!starting)
@@ -435,10 +439,10 @@ NET *s_traverse_net (TOPLEVEL *pr_current, NET *nets, int starting,
     if (c_current->other_object != NULL) {
 
       if (!is_visited(c_current->other_object) &&
-          c_current->other_object != object) {
+        c_current->other_object != object) {
         nets = s_traverse_net (pr_current, nets, FALSE,
                                c_current->other_object, hierarchy_tag, type);
-      }
+        }
 
     }
     cl_current = g_list_next(cl_current);

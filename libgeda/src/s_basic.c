@@ -222,7 +222,7 @@ s_delete_object(TOPLEVEL *toplevel, OBJECT *o_current)
   if (o_current != NULL) {
     /* If currently attached to a page, remove it from the page */
     if (o_current->page != NULL) {
-      s_page_remove (toplevel, o_current->page, o_current);
+      s_page_remove_object (toplevel, o_current->page, o_current);
     }
 
     s_conn_remove_object (toplevel, o_current);

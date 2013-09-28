@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file o_bus_basic.c 
@@ -46,7 +47,7 @@ static void o_bus_consolidate_lowlevel (OBJECT *object,
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-gboolean o_bus_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
+bool o_bus_get_position (TOPLEVEL *toplevel, int *x, int *y,
                               OBJECT *object)
 {
   return o_line_get_position(toplevel, x, y, object);

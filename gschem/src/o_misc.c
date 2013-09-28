@@ -47,10 +47,10 @@
  */
 void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
 {
-  OBJECT *o_current;
+  OBJECT     *o_current;
+  bool        isSymbol;
   const char *str = NULL;
   const char *ext;
-  bool  isSymbol;
 
   if (list == NULL) {
     w_current->inside_action = 0;
@@ -74,7 +74,6 @@ void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
     isSymbol = FALSE;
   }
   /* for now deal with only the first item */
-
   switch(o_current->type) {
 
     case(OBJ_ARC):
@@ -88,10 +87,12 @@ void o_edit(GSCHEM_TOPLEVEL *w_current, GList *list)
       x_dialog_edit_line_type (w_current);
       break;
     case(OBJ_COMPLEX):
+      x_multiattrib_open (w_current);
+      break;
     case(OBJ_PLACEHOLDER):
     case(OBJ_NET):
     case(OBJ_BUS):
-      x_multiattrib_open (w_current);
+      attrib_edit_dialog(w_current,o_current, ID_ORIGIN_MENU);
       break;
     case(OBJ_PICTURE):
       picture_change_filename_dialog(w_current);
@@ -658,7 +659,7 @@ o_update_component (GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
   s_slot_update_object (toplevel, o_new);
 
   /* Replace old OBJECT with new OBJECT */
-  s_page_replace (toplevel, page, o_current, o_new);
+  s_page_replace_object (toplevel, page, o_current, o_new);
   s_delete_object (toplevel, o_current);
 
   /* Select new OBJECT */

@@ -19,7 +19,6 @@
  */
 #include <config.h>
 
-
 #include <glib/gstdio.h>   /* mkdir */
 #include <libgen.h>        /* dirname */
 
@@ -66,11 +65,12 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
   x_icons_initialize();  /* Initialize icons - must be done before menus! */
 
   x_window_create_main (w_current);
-  x_window_restore_geometry((GtkWindow*)w_current->main_window, "gschem");
+  x_window_restore_settings(w_current);
   x_menu_attach_recent_files_submenu(w_current);
 
   /* Initialize the clipboard callback */
   x_clipboard_init (w_current);
+
 }
 
 /*! \todo Finish function documentation!!!
@@ -105,7 +105,8 @@ void x_window_free_gc(GSCHEM_TOPLEVEL *w_current)
  *
  * \param [in] w_current The toplevel environment.
  */
-void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
+static
+void x_window_create_drawing_area (GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
 {
   /* drawing next */
   w_current->drawing_area = gtk_drawing_area_new ();
@@ -118,8 +119,7 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
   gtk_drawing_area_size (GTK_DRAWING_AREA (w_current->drawing_area),
                          w_current->win_width,
                          w_current->win_height);
-
-  gtk_box_pack_start (GTK_BOX (drawbox), w_current->drawing_area, TRUE, TRUE, 0);
+  gtk_container_add(GTK_CONTAINER(drawbox), w_current->drawing_area);
   gtk_widget_set_can_focus(w_current->drawing_area, TRUE);
   gtk_widget_grab_focus (w_current->drawing_area);
   g_object_set ( w_current->drawing_area, "visible", TRUE,
@@ -132,21 +132,78 @@ void x_window_create_drawing(GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
  *  screen and writes the settings to the key file.
  *
  *  \param [in] window     The Window whose size and position is to be saved.
- *  \param [in] group_name The group name in the key file.
  */
-void x_window_save_geometry(GtkWindow *window, char* group_name)
+void x_window_save_settings(GSCHEM_TOPLEVEL *w_current)
 {
+  GtkWindow  *window;
   EdaConfig  *cfg;
+  const char *group_name = EDA_CONFIG_GROUP;
   int x, y, width, height;
+  int array[4];
 
-  cfg = eda_config_get_user_context ();
+  v_log_message(_("Saving main window geometry and settings.\n"));
+
+  /* Get the Window Geometry - Restored by x_window_restore_settings */
+  window = GTK_WINDOW(w_current->main_window);
+  cfg    = eda_config_get_user_context ();
   gtk_window_get_position (window, &x, &y);
   gtk_window_get_size (window, &width, &height);
 
+  /* Save the Window Geometry data */
   eda_config_set_integer (cfg, group_name, "window-x-position", x);
   eda_config_set_integer (cfg, group_name, "window-y-position", y);
   eda_config_set_integer (cfg, group_name, "window-width",      width );
   eda_config_set_integer (cfg, group_name, "window-height",     height);
+
+  /* All settings from here down are restored by i_vars_recall_user_settings
+   * except cursor-index, which is restored by x_window_restore_settings */
+
+  /* Scrolling Settings */
+  eda_config_set_integer (cfg, group_name, "scrollbars",         w_current->scrollbars);
+  eda_config_set_integer (cfg, group_name, "scrollbar-update",   w_current->scrollbar_update);
+  eda_config_set_integer (cfg, group_name, "scrollbars-visible", w_current->scrollbars_visible);
+
+  /* Grips Settings */
+  eda_config_set_boolean (cfg, group_name, "draw-grips",   w_current->renderer->draw_grips);
+  eda_config_set_integer (cfg, group_name, "grip-pixels",  w_current->grip_pixel_size);
+
+  array[0] = w_current->renderer->grip_stroke_color.pixel;
+  array[1] = w_current->renderer->grip_stroke_color.red;
+  array[2] = w_current->renderer->grip_stroke_color.green;
+  array[3] = w_current->renderer->grip_stroke_color.blue;
+  eda_config_set_int_list (cfg, group_name, "grips-stroke", array, 4);
+
+  array[0] = w_current->renderer->grip_fill_color.pixel;
+  array[1] = w_current->renderer->grip_fill_color.red;
+  array[2] = w_current->renderer->grip_fill_color.green;
+  array[3] = w_current->renderer->grip_fill_color.blue;
+  eda_config_set_int_list (cfg, group_name, "grips-fill", array, 4);
+
+  /* Save setting for Junction Cues and Nets */
+  eda_config_set_integer (cfg, group_name, "junction-size", w_current->renderer->junction_size);
+
+  array[0] = w_current->renderer->junction_color.pixel;
+  array[1] = w_current->renderer->junction_color.red;
+  array[2] = w_current->renderer->junction_color.green;
+  array[3] = w_current->renderer->junction_color.blue;
+  eda_config_set_int_list (cfg, group_name, "junction-color", array, 4);
+
+  array[0] = w_current->renderer->net_endpoint_color.pixel;
+  array[1] = w_current->renderer->net_endpoint_color.red;
+  array[2] = w_current->renderer->net_endpoint_color.green;
+  array[3] = w_current->renderer->net_endpoint_color.blue;
+  eda_config_set_int_list (cfg, group_name, "net-endpoint-color", array, 4);
+
+  /* Save Pointer, aka Mouse stuff */
+  eda_config_set_integer (cfg, group_name, "cursor-index",    w_current->drawing_pointer);
+  eda_config_set_integer (cfg, group_name, "drag-can-move",   w_current->drag_can_move);
+  eda_config_set_integer (cfg, group_name, "fast-mousepan",   w_current->fast_mousepan);
+  eda_config_set_integer (cfg, group_name, "middle-button",   w_current->middle_button);
+  eda_config_set_integer (cfg, group_name, "mousepan-gain",   w_current->mousepan_gain);
+  eda_config_set_integer (cfg, group_name, "pointer-hscroll", w_current->pointer_hscroll);
+  eda_config_set_integer (cfg, group_name, "scrollpan-steps", w_current->scrollpan_steps);
+  eda_config_set_integer (cfg, group_name, "scroll-wheel",    w_current->scroll_wheel);
+  eda_config_set_integer (cfg, group_name, "third-button",    w_current->third_button);
 
 }
 
@@ -156,20 +213,21 @@ void x_window_save_geometry(GtkWindow *window, char* group_name)
  *  key file and sets the given window to the retrived values.
  *
  *  \param [in] window     The Window to restore the size and position.
- *  \param [in] group_name The group name in the key file.
  */
-void x_window_restore_geometry(GtkWindow *window, char* group_name)
+void x_window_restore_settings(GSCHEM_TOPLEVEL *w_current)
 {
-
+  GtkWindow *window;
   EdaConfig  *cfg;
-  GError     *err      = NULL;
-  bool        xy_error = FALSE;
+  GError     *err        = NULL;
+  const char *group_name = EDA_CONFIG_GROUP;
+  bool        xy_error    = FALSE;
 
   int x, y, width, height;
 
-  v_log_message("Retrieving Window geometry\n");
+  v_log_message(_("Retrieving Window geometry and settings.\n"));
 
-  cfg = eda_config_get_user_context ();
+  window = GTK_WINDOW(w_current->main_window);
+  cfg    = eda_config_get_user_context ();
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
   if (err != NULL) {
@@ -200,7 +258,13 @@ void x_window_restore_geometry(GtkWindow *window, char* group_name)
 
   gtk_window_resize (window, width, height);
 
+  /* Restore Cursor/Pointer settings */
+  int pointer_id = x_settings_lookup_cursor(w_current->drawing_pointer);
+  x_window_set_cursor(w_current, pointer_id);
+
 }
+
+
 
 /*! \brief Setup X-Events
  *  \par Function Description
@@ -221,6 +285,7 @@ void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
     { "configure_event",      G_CALLBACK (x_event_configure)       },
     { "key_press_event",      G_CALLBACK (x_event_key)             },
     { "key_release_event",    G_CALLBACK (x_event_key)             },
+
     { NULL,                   NULL                                 } };
 
   struct event_reg_t main_window_events[] = {
@@ -368,7 +433,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   gtk_container_add(GTK_CONTAINER(center_vbox), drawbox);
   g_object_set (drawbox, "visible", TRUE, NULL);
 
-  x_window_create_drawing(drawbox, w_current);
+  x_window_create_drawing_area ( drawbox, w_current);
   x_window_setup_draw_events(w_current);
 
   if (w_current->scrollbars == TRUE) {
@@ -382,8 +447,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
     gtk_range_set_update_policy (GTK_RANGE (w_current->v_scrollbar),
                                  GTK_UPDATE_CONTINUOUS);
 
-    gtk_box_pack_start (GTK_BOX (drawbox), w_current->v_scrollbar,
-                        FALSE, FALSE, 0);
+    gtk_box_pack_start (GTK_BOX (drawbox), w_current->v_scrollbar,FALSE, FALSE, 0);
 
     g_signal_connect (w_current->v_adjustment,
                       "value_changed",
@@ -428,7 +492,7 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   gtk_container_border_width(GTK_CONTAINER(bottom_box), 1);
   gtk_box_pack_start (GTK_BOX (main_box), bottom_box, FALSE, FALSE, 0);
 
-  /*	label = gtk_label_new ("Mouse buttons:");
+  /* label = gtk_label_new ("Mouse buttons:");
         gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 10);
   */
 
@@ -587,13 +651,14 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
 
   /* stuff that has to be done before we free w_current */
   if (g_list_length (global_window_list) == 1) {
-    /* no more window after this one, remember to quit */
+    /* no more windows after this one, remember to quit */
     last_window = TRUE;
     if(w_current->save_ui_settings == TRUE) {
       x_toolbars_save_state(w_current);
       x_menu_save_state(w_current);
       x_window_close_all_dialogs(w_current);
-      x_window_save_geometry((GtkWindow*)w_current->main_window, "gschem");
+      x_window_save_settings(w_current);
+      x_settings_save_settings(w_current);
     }
 
     /* close the log file */
@@ -617,7 +682,8 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
 
   s_toplevel_delete (toplevel);
   global_window_list = g_list_remove (global_window_list, w_current);
-  g_free (w_current);
+
+  gschem_toplevel_free (w_current);
 
   /* If closed last window, so quit */
   if (last_window) {
@@ -765,6 +831,7 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
+
           if (!quiet_mode) {
             s_log_message (_("Loading schematic \"%s\"\n"), filename);
           }
@@ -925,7 +992,8 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
     titled_error_dialog(err->message, "Failed to save file");
 
     g_clear_error (&err);
-  } else {
+  }
+  else {
     /* successful save of page to file, update page... */
     /* change page name if necessary and prepare log message */
     if (g_ascii_strcasecmp (page->page_filename, filename) != 0) {
@@ -1027,6 +1095,28 @@ x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
 
     /* change to new_current and update display */
     x_window_set_current_page (w_current, new_current);
+  }
+}
+
+void x_window_set_cursor(GSCHEM_TOPLEVEL *w_current, int cursor_id)
+{
+
+  GdkWindow *draw_window;
+
+  draw_window = gtk_widget_get_window(w_current->drawing_area);
+
+  if(draw_window){
+    if (w_current->cursor) {
+      gdk_window_set_cursor(draw_window, NULL);
+      if (w_current->cursor->ref_count > 0) {
+        gdk_cursor_destroy(w_current->cursor);
+      }
+    }
+
+    if (cursor_id >= 0) {
+      w_current->cursor = gdk_cursor_new (cursor_id);
+      gdk_window_set_cursor (draw_window, w_current->cursor);
+    }
   }
 }
 

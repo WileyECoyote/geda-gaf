@@ -188,5 +188,18 @@ void g_copy_tree_iter(GtkTreeIter *source, GtkTreeIter *target)
   return;
 }
 
+/* Why was this not already included in <gtktreemodel.c> ? */
+bool g_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
+{
+    GtkTreePath *path;
+    gboolean ret;
 
+    path = gtk_tree_model_get_path (tree_model, iter);
+    ret = gtk_tree_path_prev (path);
+    if (ret != FALSE)
+      gtk_tree_model_get_iter (tree_model, iter, path);
+
+    gtk_tree_path_free (path);
+    return ret;
+}
 

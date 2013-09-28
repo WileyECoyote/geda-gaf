@@ -28,7 +28,7 @@
 #include <config.h>
 
 #include <glib-object.h>
-
+#include "libgeda_priv.h"
 #include "geda_list.h"
 
 #ifdef HAVE_LIBDMALLOC
@@ -90,11 +90,11 @@ static void geda_list_finalize( GObject *object )
  */
 static void geda_list_class_init( gpointer g_class, gpointer g_class_data )
 {
-  GedaListClass *klass = GEDA_LIST_CLASS( g_class );
+  GedaListClass *klass        = GEDA_LIST_CLASS( g_class );
   GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
-  geda_list_parent_class = g_type_class_peek_parent( klass );
+  geda_list_parent_class      = g_type_class_peek_parent( klass );
 
-  gobject_class->finalize = geda_list_finalize;
+  gobject_class->finalize     = geda_list_finalize;
 
   geda_list_signals[ CHANGED ] =
     g_signal_new ("changed",
@@ -183,7 +183,33 @@ void geda_list_add_glist( GedaList *list, GList *items )
   g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
 }
 
+int geda_glist_is_homogeneous_objects ( GList *list)
+{
+  GList  *o_iter;
+  OBJECT *object;
+  int     otype;
+  bool    answer;
 
+  o_iter = list;
+  object = (OBJECT *)o_iter->data;
+  if (object) {
+    answer = TRUE;
+    otype  = object->type;
+    o_iter = g_list_next (o_iter);
+
+    while (o_iter != NULL) {
+      object = (OBJECT *)o_iter->data;
+      if (object->type != otype) {
+        answer = FALSE;
+        break;
+      }
+      o_iter = g_list_next (o_iter);
+    }
+  }
+  else
+    answer = FALSE;
+  return answer;
+}
 /*! \brief Removes the given item from the GedaList
  *
  *  \par Function Description

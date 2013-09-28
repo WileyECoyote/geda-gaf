@@ -52,6 +52,7 @@ GType geda_list_get_type (void);
 GedaList *geda_list_new( void );
 void geda_list_add( GedaList *list, gpointer item );
 void geda_list_add_glist( GedaList *list, GList *items );
+int  geda_glist_is_homogeneous_objects ( GList *list);
 void geda_list_remove( GedaList *list, gpointer item );
 /*void geda_list_remove_glist( GedaList *list, GList *items ); */ /* Undemanded as yet */
 void geda_list_remove_all( GedaList *list );

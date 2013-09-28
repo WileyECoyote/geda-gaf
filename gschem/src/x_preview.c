@@ -240,7 +240,7 @@ preview_update (Preview *preview)
                             objects);
       }
       else {
-        s_page_append (preview_toplevel, preview_toplevel->page_current,
+        s_page_append_object (preview_toplevel, preview_toplevel->page_current,
                        o_text_new(preview_toplevel, OBJ_TEXT, 2, 100, 100, LOWER_MIDDLE, 0,
                                   err->message, 10, VISIBLE, SHOW_NAME_VALUE));
         g_error_free(err);
@@ -523,8 +523,7 @@ preview_dispose (GObject *self)
     x_window_free_gc (preview_w_current);
 
     s_toplevel_delete (preview_w_current->toplevel);
-    g_free (preview_w_current);
-
+    gschem_toplevel_free (preview_w_current);
     preview->preview_w_current = NULL;
   }
 

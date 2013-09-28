@@ -7,6 +7,28 @@ Copyright (C) 1998-2013 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
+Notable changes in gEDA/gaf 2.0.7
+=================================
+
+* New Path drawing tool from Master bramch implemented.
+
+* Many user settings are no long dependent on RC entries and are
+  saved at the end of each session if the "save settings on exit"
+  option is enabled, allowing users to change settings on-the-fly
+  without worry about the consequences.
+
+* New "Deselect" mode can be used to remove objects from a selection
+  set.
+
+* The color of grips, text markers, and cues can be changed using a
+  color selector dialog. In addition the size of grips, markers and
+  cues can be customized by the user in the Preferences dialog.
+
+* "Save As" can now optionaly add the ".sch" file extension.
+
+* Refdes number are reset when using buffers and the clipboard.
+
+
 Notable changes in gEDA/gaf 2.0.6
 =================================
 

@@ -8,7 +8,7 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [2.0.7], [https://bugs.launchpad.net/geda], [geda-gaf])
+AC_INIT([gEDA/gaf], [2.0.7.3], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
 AC_CONFIG_SRCDIR([version.h.in])
@@ -49,7 +49,7 @@ AC_PROG_CC
 AM_PROG_CC_C_O
 AC_PROG_CPP
 
-m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
+m4_ifdef([AM_PROG_AR], [AM_PROG_AR]) dnl Workaround for Automake 1.11
 
 AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC

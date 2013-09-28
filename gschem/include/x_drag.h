@@ -23,8 +23,7 @@
 #define H_GSCHEM_DRAGnDROP_H
 
 enum {
-        TARGET_INT32,
         TARGET_STRING,
-        TARGET_OBJECT
+        TARGET_OBJECTS,
 };
 #endif /* H_GSCHEM_DRAGnDROP */

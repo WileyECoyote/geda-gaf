@@ -142,7 +142,7 @@ void o_arc_end4(GSCHEM_TOPLEVEL *w_current, int radius,
                        w_current->first_wx, w_current->first_wy,
                        radius, start_angle, end_angle);
   new_obj->line_width =  o_style_get_line_width(toplevel);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
+  s_page_append_object (toplevel, toplevel->page_current, new_obj);
 
   w_current->first_wx  = -1;
   w_current->first_wy  = -1;

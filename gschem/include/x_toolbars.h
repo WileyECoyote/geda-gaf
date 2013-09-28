@@ -72,6 +72,7 @@ typedef struct {
   GtkWidget *toolbar_path;
   GtkWidget *toolbar_pin;
   GtkWidget *toolbar_select;
+  GtkWidget *toolbar_deselect;
   GtkWidget *toolbar_none;
 
   /* Radio Widgets on the Grid_Snap Bar */

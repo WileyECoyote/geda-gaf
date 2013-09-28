@@ -72,7 +72,10 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   g_return_if_fail (toplevel != NULL);
   g_return_if_fail (toplevel->page_current != NULL);
 
-  grip_half_size = o_grips_size (w_current);
+  /* grip_half_size = GRIP_PIXEL_SIZE / 2; */
+
+  grip_half_size = o_grips_half_size (w_current, NULL);
+
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
 
@@ -188,9 +191,8 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
    * done in a separate pass to non-selected items to make sure that
    * the selection and grips are never obscured by other objects. */
   if (draw_selected) {
-    g_object_set (G_OBJECT (renderer),
-                  "override-color", SELECT_COLOR,
-                  NULL);
+
+    g_object_set (G_OBJECT (renderer), "override-color", SELECT_COLOR, NULL);
     for (iter = geda_list_get_glist (toplevel->page_current->selection_list);
          iter != NULL; iter = g_list_next (iter)) {
       OBJECT *o_current = iter->data;
@@ -198,8 +200,13 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
         o_style_set_object(toplevel, o_current);
         eda_renderer_draw (renderer, o_current);
         eda_renderer_draw_cues (renderer, o_current);
-        if (w_current->renderer->draw_grips )
-        eda_renderer_draw_grips (renderer, o_current);
+        if (w_current->renderer->draw_grips ) {
+          /* get the dynamic size of the grip */
+          grip_half_size = o_grips_half_size (w_current, o_current);
+          g_object_set (G_OBJECT (renderer), "grip-size",
+           ((double) grip_half_size * toplevel->page_current->to_world_x_constant), NULL);
+          eda_renderer_draw_grips (renderer, o_current);
+        }
       }
     }
     g_object_set (G_OBJECT (renderer), "override-color", -1, NULL);
@@ -504,6 +511,7 @@ int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
     case ( STARTPAN ):
     case ( STARTPASTE ):
     case ( STARTROUTENET ):
+    case ( STARTDESELECT ):
     case ( STARTSELECT ):
     case ( ZOOMBOXSTART ):
       return FALSE;
@@ -546,7 +554,7 @@ void o_invalidate_rect (GSCHEM_TOPLEVEL *w_current,
                         int x1, int y1, int x2, int y2)
 {
   GdkRectangle rect;
-  int grip_half_size;
+  int grip_half_size = MAX_GRIP_PIXELS / 2; /* is faster & safer */
   int cue_half_size;
   int bloat;
 
@@ -554,8 +562,10 @@ void o_invalidate_rect (GSCHEM_TOPLEVEL *w_current,
    *      is a GdkPixmap. Ensure we only invalidate GdkWindows. */
   if (!GDK_IS_WINDOW( w_current->window ))
     return;
-  grip_half_size = o_grips_size (w_current);
-  cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
+
+  /* grip_half_size = o_grips_half_size (w_current); */
+
+  cue_half_size  = SCREENabs (w_current, CUE_BOX_SIZE);
 
   bloat = MAX (grip_half_size, cue_half_size) + INVALIDATE_MARGIN;
 

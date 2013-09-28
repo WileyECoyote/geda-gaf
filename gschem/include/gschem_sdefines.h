@@ -56,6 +56,7 @@
 
 #endif
 
+#define EDA_CONFIG_GROUP           "gschem";
 #define MIME_TYPE_SCHEMATIC        "application/x-geda-schematic"
 
 #define SCHEMATIC_FILE_SUFFIX      "sch"
@@ -115,6 +116,7 @@
 
 #define IDS_HOTKEYS            "hotkeys"      /* Type: MODELESS */
 #define IDS_COORDINATES        "coordinates"  /* Type: MODELESS */
+#define IDS_CONSOLE            "console"      /* Type: MODELESS */
 #define IDS_CONFIG_SETTINGS    "settings"     /* Type: MODAL    */
 #define IDS_COMP_SELECT        "compselect"
 #define IDS_SINGLE_ATTRIR      "singleattrib" /* Type: MODELESS */

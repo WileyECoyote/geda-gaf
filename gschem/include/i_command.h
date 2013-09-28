@@ -58,6 +58,7 @@ enum ActionFlag
         COMMAND ( do_select_all )
         COMMAND ( do_select_invert )
         COMMAND ( do_deselect )
+        COMMAND ( do_deselect_all )
         COMMAND ( do_copy )
         COMMAND ( do_mcopy )
         COMMAND ( do_move )
@@ -294,6 +295,7 @@ enum {
      COMMAND ( EDIT_SELECT_ALL,     "select all",       USE_MAIN_LOOP,          do_select_all)
      COMMAND ( EDIT_INVERT,         "invert",           USE_MAIN_LOOP,          do_select_invert)
      COMMAND ( EDIT_DESELECT,       "deselect",         USE_MAIN_LOOP,          do_deselect)
+     COMMAND ( EDIT_DESELECT_ALL,   "deselect-all",     USE_MAIN_LOOP,          do_deselect_all)
 
      COMMAND ( EDIT_COPY,           "copy mode",        USE_XY_WORKER,          do_copy)
      COMMAND ( EDIT_MCOPY,          "multi-copy",       USE_XY_WORKER,          do_mcopy)

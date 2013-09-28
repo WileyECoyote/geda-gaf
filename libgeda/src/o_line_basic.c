@@ -215,7 +215,6 @@ OBJECT *o_line_read (TOPLEVEL *toplevel, const char buf[],
   int line_type;
   int color;
 
-
   if (release_ver <= VERSION_20000704) {
     /*
      * The old geda file format, i.e. releases 20000704 and older, does
@@ -276,9 +275,11 @@ OBJECT *o_line_read (TOPLEVEL *toplevel, const char buf[],
   o_set_line_options (toplevel, new_obj,
                       line_end, line_type, line_width, line_length,
                       line_space);
-  /* filling is irrelevant for line, just set to default */
+
+  /* filling is irrelevant for line, just set to default
   o_set_fill_options (toplevel, new_obj,
                       FILLING_HOLLOW, -1, -1, -1, -1, -1);
+  */
 
   return new_obj;
 }

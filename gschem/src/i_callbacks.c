@@ -178,33 +178,6 @@ DEFINE_I_CALLBACK(page_discard)
   i_command_process(w_current, "page-discard", 0, NULL, ID_ORIGIN_SCM);
 }
 
-/*! \brief Ales' catch all misc callback
- *  \par Function Description
- *
- *  \note this is a critical function
- */
-DEFINE_I_CALLBACK(misc)
-{
-}
-
-/*! \brief Ales' second catch all misc callback
- *  \par Function Description
- *
- *  \note this is not a critical function
- */
-DEFINE_I_CALLBACK(misc2)
-{
-}
-
-/*! \brief Ales' third catch all misc callback
- *  \par Function Description
- *
- *  \note this is the third misc callback responder
- */
-DEFINE_I_CALLBACK(misc3)
-{
-}
-
 /*! \brief Cancel Everthing
  *  \par Function Description
  *

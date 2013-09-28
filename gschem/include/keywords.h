@@ -3,10 +3,10 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2012 Ales Hvezda
-;;; Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2013 Ales Hvezda
+;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
 ;;
-;;; Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -138,6 +138,7 @@
      KEYWORD ( third_button )
      KEYWORD ( mousepan_gain )
      KEYWORD ( scroll_wheel )
+
      KEYWORD ( image_color )
      KEYWORD ( invert_images )
      KEYWORD ( text_case )
@@ -161,7 +162,7 @@ enum {
      kw_unknown,
 #endif
      KEYWORD(define,                       1, 0, define_in_rc)
-     KEYWORD(load, 			   1, 0, load_in_rc)
+     KEYWORD(load,                         1, 0, load_in_rc)
      KEYWORD(draw-grips,                   0, 0, draw_grips)
      KEYWORD(grid-mode,                    0, 0, grid_mode)
      KEYWORD(dots-grid-dot-size,           0, 0, dots_grid_dot_size)

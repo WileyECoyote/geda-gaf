@@ -222,8 +222,7 @@ void o_picture_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *objec
 OBJECT *o_picture_copy(TOPLEVEL *toplevel, OBJECT *o_current) G_GNUC_WARN_UNUSED_RESULT;
 bool o_picture_is_embedded (TOPLEVEL *toplevel, OBJECT *object);
 GdkPixbuf *o_picture_get_pixbuf (TOPLEVEL *toplevel, OBJECT *object) G_GNUC_WARN_UNUSED_RESULT;
-const char *o_picture_get_data (TOPLEVEL *toplevel, OBJECT *object,
-                                size_t *len);
+const char *o_picture_get_data (TOPLEVEL *toplevel, OBJECT *object, size_t *len);
 bool o_picture_set_from_buffer (TOPLEVEL *toplevel, OBJECT *object,
                                     const char *filename, const char *data,
                                     size_t len, GError **error);
@@ -378,26 +377,27 @@ void s_menu_init(void);
 
 /* s_page.c */
 PAGE *s_page_new (TOPLEVEL *toplevel, const char *filename);
-void s_page_delete (TOPLEVEL *toplevel, PAGE *page);
-void s_page_delete_list(TOPLEVEL *toplevel);
-void s_page_weak_ref (PAGE *page, void (*notify_func)(void *, void *), void *user_data);
-void s_page_weak_unref (PAGE *page, void (*notify_func)(void *, void *), void *user_data);
-void s_page_add_weak_ptr (PAGE *page, void *weak_pointer_loc);
-void s_page_remove_weak_ptr (PAGE *page, void *weak_pointer_loc);
-bool s_page_goto (TOPLEVEL *toplevel, PAGE *p_new);
+void  s_page_delete (TOPLEVEL *toplevel, PAGE *page);
+void  s_page_delete_list(TOPLEVEL *toplevel);
+void  s_page_weak_ref (PAGE *page, void (*notify_func)(void *, void *), void *user_data);
+void  s_page_weak_unref (PAGE *page, void (*notify_func)(void *, void *), void *user_data);
+void  s_page_add_weak_ptr (PAGE *page, void *weak_pointer_loc);
+void  s_page_remove_weak_ptr (PAGE *page, void *weak_pointer_loc);
+bool  s_page_set_current (TOPLEVEL *toplevel, PAGE *page);
+bool  s_page_goto (TOPLEVEL *toplevel, PAGE *p_new);
 PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename);
 PAGE *s_page_search_by_page_id (GedaPageList *list, int pid);
-void s_page_print_all (TOPLEVEL *toplevel);
-int  s_page_save_all (TOPLEVEL *toplevel);
-bool s_page_check_changed (GedaPageList *list);
-void s_page_clear_changed (GedaPageList *list);
-void s_page_autosave_init(TOPLEVEL *toplevel);
-int  s_page_autosave (TOPLEVEL *toplevel);
-void s_page_append (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
-void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list);
-void s_page_remove (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
-void s_page_replace (TOPLEVEL *toplevel, PAGE *page, OBJECT *object1, OBJECT *object2);
-void s_page_delete_objects (TOPLEVEL *toplevel, PAGE *page);
+void  s_page_print_all (TOPLEVEL *toplevel);
+int   s_page_save_all (TOPLEVEL *toplevel);
+bool  s_page_check_changed (GedaPageList *list);
+void  s_page_clear_changed (GedaPageList *list);
+void  s_page_autosave_init(TOPLEVEL *toplevel);
+int   s_page_autosave (TOPLEVEL *toplevel);
+void  s_page_append_object (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
+void  s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list);
+void  s_page_remove_object  (TOPLEVEL *toplevel, PAGE *page, OBJECT *object);
+void  s_page_replace_object (TOPLEVEL *toplevel, PAGE *page, OBJECT *object1, OBJECT *object2);
+void  s_page_delete_objects (TOPLEVEL *toplevel, PAGE *page);
 const GList *s_page_objects (PAGE *page);
 GList *s_page_objects_in_region (TOPLEVEL *toplevel, PAGE *page, int min_x, int min_y, int max_x, int max_y);
 GList *s_page_objects_in_regions (TOPLEVEL *toplevel, PAGE *page, BOX *rects, int n_rects);

@@ -565,10 +565,9 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
   /* Was the very last thing we read a complex and has it not been checked */
   /* yet?  This would happen if the complex is at the very end of the file  */
   /* and had no attached attributes */
-  if (last_complex)
-  {
-        o_complex_check_symversion(toplevel, last_complex);
-        last_complex = NULL;  /* no longer need to check */
+  if (last_complex) {
+    o_complex_check_symversion(toplevel, last_complex);
+    last_complex = NULL;  /* no longer need to check */
   }
 
   if (found_pin) {
@@ -619,6 +618,7 @@ GList *o_read (TOPLEVEL *toplevel, GList *object_list, char *filename,
   /* Parse file contents */
   result = o_read_buffer (toplevel, object_list, buffer, size, filename, err);
   g_free (buffer);
+
   return result;
 }
 

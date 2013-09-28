@@ -22,21 +22,21 @@
 #define SIMPLE_STRUCT_H
 
 /* gschem structures (gschem) */
-typedef struct st_arc ARC;
-typedef struct st_bezier BEZIER;
-typedef struct st_bounds BOUNDS;
-typedef struct st_box BOX;
-typedef struct st_bus_ripper BUS_RIPPER;
+typedef struct st_arc          ARC;
+typedef struct st_bezier       BEZIER;
+typedef struct st_bounds       BOUNDS;
+typedef struct st_box          BOX;
+typedef struct st_bus_ripper   BUS_RIPPER;
 
-typedef struct st_circle CIRCLE;
-typedef struct st_color COLOR;
-typedef struct st_line LINE;
-typedef struct st_point sPOINT;              /* intentionally out of order */
+typedef struct st_circle       CIRCLE;
+typedef struct st_color        COLOR;
+typedef struct st_line         LINE;
+typedef struct st_point       sPOINT;          /* intentionally out of order */
 typedef struct st_path_section PATH_SECTION;
-typedef struct st_path PATH;
-typedef struct st_transform TRANSFORM;
-typedef struct st_TextBuffer TextBuffer;     /* For Managed text buffers */
-typedef struct st_text TEXT;
+typedef struct st_path         PATH;
+typedef struct st_transform    TRANSFORM;
+typedef struct st_TextBuffer   TextBuffer;     /* For Managed text buffers */
+typedef struct st_text         TEXT;
 
 /*------------------------------------------------------------------
  *                             ARC

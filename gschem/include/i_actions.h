@@ -27,7 +27,8 @@
 #define EDIT_SELECT      edit-select
 #define EDIT_SELECT_ALL  edit-select-all
 #define EDIT_INVERT      edit-select-invert
-#define EDIT_DESELECT    edit-deselect
+#define EDIT_DESELECT     edit-deselect
+#define EDIT_DESELECT_ALL edit-deselect-all
 
 #define EDIT_COPY        edit-copy
 #define EDIT_MCOPY       edit-mcopy

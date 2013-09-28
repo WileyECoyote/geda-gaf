@@ -224,7 +224,8 @@ SCM g_rc_display_outline_color_map (SCM scm_map)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for draw-grips RC entry.
- *
+ * 
+ * Depreciated!
  */
 SCM g_rc_draw_grips(SCM mode)
 {
@@ -1093,6 +1094,7 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the fast-mousepan RC entry.
+ * Depreciate!
  */
 SCM g_rc_fast_mousepan(SCM mode)
 {
@@ -1110,6 +1112,7 @@ SCM g_rc_fast_mousepan(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the drag-can-move RC entry.
+ * Depreciate!
  */
 SCM g_rc_drag_can_move(SCM mode)
 {
@@ -1127,6 +1130,7 @@ SCM g_rc_drag_can_move(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the middle-button RC entry.
+ *  Depreciate!
  */
 SCM g_rc_middle_button(SCM mode)
 {
@@ -1145,6 +1149,7 @@ SCM g_rc_middle_button(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the mousepan-gain RC entry.
+ * Depreciate!
  */
 SCM g_rc_mousepan_gain(SCM gain)
 {
@@ -1157,6 +1162,7 @@ SCM g_rc_mousepan_gain(SCM gain)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scroll-wheel RC entry.
+ * Depreciate!
  */
 /* Who |   When   |  What (Why)
  * ------------------------------------------------------------------
@@ -1180,6 +1186,7 @@ SCM g_rc_scroll_wheel(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the pointer-hscroll RC entry.
+ * Depreciate!
  */
 SCM g_rc_pointer_hscroll(SCM mode)
 {
@@ -1197,6 +1204,7 @@ SCM g_rc_pointer_hscroll(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the third-button RC entry.
+ * Depreciate!
  */
 SCM g_rc_third_button(SCM mode)
 {
@@ -1577,6 +1585,7 @@ SCM g_rc_scrollbars_visible(SCM mode)
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for the scrollpan_steps RC entry.
+ * Depreciated!
  */
 SCM g_rc_scrollpan_steps(SCM steps)
 {

@@ -99,10 +99,6 @@ DEFINE_H_KEYS(view_pan_right)
 DEFINE_H_KEYS(view_pan_up)
 DEFINE_H_KEYS(view_pan_down)
 
-DEFINE_H_KEYS(misc)
-DEFINE_H_KEYS(misc2)
-DEFINE_H_KEYS(misc3)
-
 /* be sure that you don't use the widget parameter in this one, since it is
  * being called with a null, I suppose we should call it with the right param.
  * hack */

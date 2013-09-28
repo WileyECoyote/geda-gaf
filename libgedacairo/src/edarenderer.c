@@ -37,9 +37,21 @@
 /* We don't use gettext */
 #define _(x) (x)
 
-#define DEFAULT_FONT_NAME "Arial"
-#define GRIP_COLOR SELECT_COLOR
-#define TEXT_MARKER_COLOR LOCK_COLOR
+#define EDAR_DEFAULT_GRIP_SIZE             100
+#define EDAR_DEFAULT_JUNCTION_SIZE          50
+#define EDAR_DEFAULT_TEXT_MARKER_SIZE       15
+#define EDAR_MIN_TEXT_MARKER_SIZE            5
+#define EDAR_MAX_TEXT_MARKER_SIZE          100
+
+#define EDAR_DEFAULT_FONT_NAME          "Arial"
+
+#define EDAR_DEFAULT_GRIP_STROKE_COLOR  "orange"
+#define EDAR_DEFAULT_GRIP_FILL_COLOR    "black"
+#define EDAR_DEFAULT_TEXT_MARKER_COLOR  "gray"
+#define EDAR_DEFAULT_JUNCTION_COLOR     "yellow"
+#define EDAR_DEFAULT_ENDPOINT_COLOR     "red"
+
+
 
 enum {
   PROP_CAIRO_CONTEXT = 1,
@@ -48,6 +60,14 @@ enum {
   PROP_COLOR_MAP,
   PROP_OVERRIDE_COLOR,
   PROP_GRIP_SIZE,
+  PROP_GRIP_STROKE,
+  PROP_GRIP_FILL,
+  PROP_JUNCTION_COLOR,
+  PROP_JUNCTION_SIZE,
+  PROP_ENDPOINT_COLOR,
+  PROP_MARKER_COLOR,
+  PROP_TEXT_MARKER_SIZE,
+
   PROP_RENDER_FLAGS,
 
   FLAG_HINTING         = EDA_RENDERER_FLAG_HINTING,
@@ -55,6 +75,9 @@ enum {
   FLAG_TEXT_HIDDEN     = EDA_RENDERER_FLAG_TEXT_HIDDEN,
   FLAG_TEXT_OUTLINE    = EDA_RENDERER_FLAG_TEXT_OUTLINE,
   FLAG_TEXT_ORIGIN     = EDA_RENDERER_FLAG_TEXT_ORIGIN,
+
+  EDAR_GRIP_SQUARE,
+  EDAR_GRIP_CIRCLE,
 };
 
 struct _EdaRendererPrivate
@@ -68,9 +91,8 @@ struct _EdaRendererPrivate
   unsigned int flags;
   char        *font_name;
   int          override_color;
-  double       grip_size;
 
-  GArray *color_map;
+  GArray      *color_map;
 
   /* Cache of font metrics for different font sizes. */
   GHashTable *metrics_cache;
@@ -107,6 +129,7 @@ static void eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr
                                           PangoContext *new_pc);
 
 static void eda_renderer_set_color    (EdaRenderer *renderer, int color);
+static int  eda_renderer_is_drawable_color (EdaRenderer *renderer, int color, int use_override);
 static int  eda_renderer_is_drawable  (EdaRenderer *renderer, OBJECT *object);
 static int  eda_renderer_draw_hatch   (EdaRenderer *renderer, OBJECT *object);
 
@@ -121,8 +144,8 @@ static void eda_renderer_draw_arc     (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_circle  (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_path    (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_text    (EdaRenderer *renderer, OBJECT *object);
-static int  eda_renderer_get_font_descent (EdaRenderer *renderer,
-                                           PangoFontDescription *desc);
+static int  eda_renderer_get_font_descent   (EdaRenderer *renderer,
+                                             PangoFontDescription *desc);
 static int  eda_renderer_prepare_text       (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_calc_text_position (EdaRenderer *renderer, OBJECT *object,
                                              int descent, double *x, double *y);
@@ -130,18 +153,18 @@ static void eda_renderer_draw_picture (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_complex (EdaRenderer *renderer, OBJECT *object);
 
 static void eda_renderer_default_draw_grips (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_grips_impl    (EdaRenderer *renderer, int n_grips, ...);
+static void eda_renderer_draw_grips_impl    (EdaRenderer *renderer, int type, int n_grips, ...);
 static void eda_renderer_draw_arc_grips     (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_path_grips    (EdaRenderer *renderer, OBJECT *object);
 static void eda_renderer_draw_text_grips    (EdaRenderer *renderer, OBJECT *object);
 
-static void eda_renderer_default_draw_cues (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_cues_list    (EdaRenderer *renderer, GList *objects);
-static void eda_renderer_draw_end_cues     (EdaRenderer *renderer, OBJECT *object,
-                                            int end);
-static void eda_renderer_draw_mid_cues (EdaRenderer *renderer, OBJECT *object);
-static void eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y,
-                                            double width);
+static void eda_renderer_draw_junction_cue  (EdaRenderer *renderer, int x, int y,
+                                             double width);
+static void eda_renderer_draw_mid_cues      (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_end_cues      (EdaRenderer *renderer, OBJECT *object,
+                                             int end);
+static void eda_renderer_default_draw_cues  (EdaRenderer *renderer, OBJECT *object);
+static void eda_renderer_draw_cues_list     (EdaRenderer *renderer, GList *objects);
 
 static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
                                                  double *left, double *top,
@@ -153,17 +176,16 @@ GType
 eda_renderer_flags_get_type ()
 {
   static const GFlagsValue values[] = {
-    {FLAG_HINTING,         "hinting", _("Enable hinting")},
+    {FLAG_HINTING,         "hinting",         _("Enable hinting")},
     {FLAG_PICTURE_OUTLINE, "picture-outline", _("Picture outlines")},
-    {FLAG_TEXT_HIDDEN,     "text-hidden", _("Hidden text")},
-    {FLAG_TEXT_OUTLINE,    "text-outline", _("Text outlines")},
-    {FLAG_TEXT_ORIGIN,     "text-origin", _("Text origins")},
+    {FLAG_TEXT_HIDDEN,     "text-hidden",     _("Hidden text")},
+    {FLAG_TEXT_OUTLINE,    "text-outline",    _("Text outlines")},
+    {FLAG_TEXT_ORIGIN,     "text-origin",     _("Text origins")},
     {0, 0, 0},
   };
   static GType flags_type = 0;
   if (flags_type == 0) {
-    flags_type = g_flags_register_static ("EdaRendererFlags",
-                                          values);
+    flags_type = g_flags_register_static ("EdaRendererFlags", values);
   }
   return flags_type;
 }
@@ -172,67 +194,138 @@ static void
 eda_renderer_class_init (EdaRendererClass *klass)
 {
   GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-  GParamFlags param_flags;
+  GParamSpec   *params;
+  GParamFlags   param_flags;
 
   g_type_class_add_private (gobject_class, sizeof (EdaRendererPrivate));
 
   /* Register functions with base class */
-  gobject_class->constructor = eda_renderer_constructor;
-  gobject_class->finalize = eda_renderer_finalize;
-  gobject_class->dispose = eda_renderer_dispose;
+  gobject_class->constructor  = eda_renderer_constructor;
+  gobject_class->finalize     = eda_renderer_finalize;
+  gobject_class->dispose      = eda_renderer_dispose;
   gobject_class->set_property = eda_renderer_set_property;
   gobject_class->get_property = eda_renderer_get_property;
 
   /* Install default implementations of virtual public methods */
-  klass->draw = eda_renderer_default_draw;
-  klass->draw_grips = eda_renderer_default_draw_grips;
-  klass->draw_cues = eda_renderer_default_draw_cues;
+  klass->draw        = eda_renderer_default_draw;
+  klass->draw_grips  = eda_renderer_default_draw_grips;
+  klass->draw_cues   = eda_renderer_default_draw_cues;
   klass->user_bounds = eda_renderer_default_get_user_bounds;
 
   /* Install properties */
   param_flags = (G_PARAM_READWRITE | G_PARAM_STATIC_NAME | G_PARAM_STATIC_NICK |
                  G_PARAM_STATIC_BLURB);
 
-  g_object_class_install_property (gobject_class, PROP_CAIRO_CONTEXT,
-                                   g_param_spec_pointer ("cairo-context",
-                                                         _("Cairo context"),
-                                                         _("The Cairo context for rendering"),
-                                                         param_flags));
-  g_object_class_install_property (gobject_class, PROP_PANGO_CONTEXT,
-                                   g_param_spec_pointer ("pango-context",
-                                                         _("Pango context"),
-                                                         _("The Pango context for text rendering"),
-                                                         param_flags));
-  g_object_class_install_property (gobject_class, PROP_FONT_NAME,
-                                   g_param_spec_string ("font-name",
-                                                        _("Font name"),
-                                                        _("The name of the font to use for text rendering"),
-                                                        DEFAULT_FONT_NAME,
-                                                        param_flags));
-  g_object_class_install_property (gobject_class, PROP_COLOR_MAP,
-                                   g_param_spec_pointer ("color-map",
-                                                         _("Color map"),
-                                                         _("Map for determining colors from color indices"),
-                                                         param_flags));
-  g_object_class_install_property (gobject_class, PROP_OVERRIDE_COLOR,
-                                   g_param_spec_int ("override-color",
-                                                     _("Override color"),
-                                                     _("Index of color to force used for all drawing."),
-                                                     -1, G_MAXINT, -1,
-                                                     param_flags));
-  g_object_class_install_property (gobject_class, PROP_GRIP_SIZE,
-                                   g_param_spec_double ("grip-size",
-                                                        _("Grip size"),
-                                                        _("Size in user coordinates to draw grips"),
-                                                        0, G_MAXDOUBLE, 100,
-                                                        param_flags));
-  g_object_class_install_property (gobject_class, PROP_RENDER_FLAGS,
-                                   g_param_spec_flags ("render-flags",
-                                                       _("Rendering flags"),
-                                                       _("Flags controlling rendering"),
-                                                       EDA_TYPE_RENDERER_FLAGS,
-                                                       FLAG_HINTING | FLAG_TEXT_ORIGIN,
-                                                       param_flags));
+  params = g_param_spec_pointer ("cairo-context",
+                               _("Cairo context"),
+                               _("The Cairo context for rendering"),
+                                  param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_CAIRO_CONTEXT, params);
+
+  params = g_param_spec_pointer ("pango-context",
+                               _("Pango context"),
+                               _("The Pango context for text rendering"),
+                                  param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_PANGO_CONTEXT, params);
+
+  params = g_param_spec_string ("font-name",
+                              _("Font name"),
+                              _("The name of the font to use for text rendering"),
+                                 EDAR_DEFAULT_FONT_NAME,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_FONT_NAME, params);
+
+  params =g_param_spec_pointer ("color-map",
+                              _("Color map"),
+                              _("Map for determining colors from color indices"),
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_COLOR_MAP, params);
+
+  params =g_param_spec_int ("override-color",
+                          _("Override color"),
+                          _("Index of color to force used for all drawing."),
+                            -1, MAX_COLORS, -1,
+                             param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_OVERRIDE_COLOR, params);
+
+  params = g_param_spec_flags ("render-flags",
+                             _("Rendering  Flags"),
+                             _("Flags controlling rendering"),
+                                EDA_TYPE_RENDERER_FLAGS,
+                                FLAG_HINTING | FLAG_TEXT_ORIGIN,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_RENDER_FLAGS, params);
+
+  params = g_param_spec_double ("grip-size",
+                              _("Grip size"),
+                              _("Size in user coordinates to draw grips"),
+                                 0, G_MAXDOUBLE, EDAR_DEFAULT_GRIP_SIZE,
+                                 param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_GRIP_SIZE, params);
+
+  params = g_param_spec_boxed ("grips-stroke",
+                             _("Grip Stroke Color"),
+                             _("GDK color to use when rendering strokes for grips"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_GRIP_STROKE, params);
+
+  params = g_param_spec_boxed ("grips-fill",
+                             _("Grip Fill Color"),
+                             _("GDK color to use when rendering background of grips"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_GRIP_FILL, params);
+
+  params = g_param_spec_boxed ("junction-color",
+                             _("Junction Color"),
+                             _("GDK color to use when rendering Junctions"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_JUNCTION_COLOR, params);
+
+  params =g_param_spec_int ("junction-size",
+                          _("Junction size"),
+                          _("Size to draw junction cue points."),
+                             0, 999, 10,
+                             param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_JUNCTION_SIZE, params);
+
+  params = g_param_spec_boxed ("net-endpoint-color",
+                             _("Net Endpoint Color"),
+                             _("GDK color to use when rendering Net and Pin endpoints"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_ENDPOINT_COLOR, params);
+
+  params = g_param_spec_boxed ("text-marker-color",
+                             _("Text Marker Color"),
+                             _("GDK color to use when rendering text markers"),
+                                GDK_TYPE_COLOR,
+                                param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_MARKER_COLOR, params);
+
+  params =g_param_spec_int ("text-marker-size",
+                          _("Text Marker size"),
+                          _("Size to draw text markers."),
+                             EDAR_MIN_TEXT_MARKER_SIZE,
+                             EDAR_MAX_TEXT_MARKER_SIZE, 15,
+                             param_flags);
+
+  g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_SIZE, params);
 }
 
 static void
@@ -243,13 +336,20 @@ eda_renderer_init (EdaRenderer *renderer)
                                                 EdaRendererPrivate);
 
   /* Setup default options */
-//  renderer->priv->font_name = g_strdup (DEFAULT_FONT_NAME);
   if (renderer->priv->font_name == NULL) {
-    renderer->priv->font_name = g_strdup (DEFAULT_FONT_NAME);
+    renderer->priv->font_name = g_strdup (EDAR_DEFAULT_FONT_NAME);
   }
 
   renderer->priv->override_color = -1;
-  renderer->priv->grip_size = 100;
+  EDAR_GRIP_SIZE           = EDAR_DEFAULT_GRIP_SIZE;
+  EDAR_JUNCTION_SIZE       = EDAR_DEFAULT_JUNCTION_SIZE;
+  EDAR_TEXT_MARKER_SIZE    = EDAR_DEFAULT_TEXT_MARKER_SIZE;
+
+  gdk_color_parse(EDAR_DEFAULT_GRIP_STROKE_COLOR,  &EDAR_GRIP_STROKE_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_GRIP_FILL_COLOR,    &EDAR_GRIP_FILL_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_JUNCTION_COLOR,     &EDAR_JUNCTION_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_ENDPOINT_COLOR,     &EDAR_NET_ENDPOINT_COLOR);
+  gdk_color_parse(EDAR_DEFAULT_TEXT_MARKER_COLOR,  &EDAR_TEXT_MARKER_COLOR);
 
   /* Font metrics are expensive to compute, so we need to cache them. */
   renderer->priv->metrics_cache =
@@ -259,7 +359,7 @@ eda_renderer_init (EdaRenderer *renderer)
 
 static GObject *
 eda_renderer_constructor (GType type,
-                          guint n_construct_properties,
+                          unsigned int n_construct_properties,
                           GObjectConstructParam *construct_params) {
   GObject *object;
   GObjectClass *parent_object_class;
@@ -326,10 +426,12 @@ eda_renderer_set_property (GObject *object, guint property_id,
                                   (cairo_t *) g_value_get_pointer (value),
                                   NULL);
     break;
+
   case PROP_PANGO_CONTEXT:
     eda_renderer_update_contexts (renderer, NULL,
                                   PANGO_CONTEXT (g_value_get_pointer (value)));
     break;
+
   case PROP_FONT_NAME:
     if (renderer->priv->font_name != NULL)
       g_free (renderer->priv->font_name);
@@ -337,18 +439,52 @@ eda_renderer_set_property (GObject *object, guint property_id,
     /* Clear font metrics cache */
     g_hash_table_remove_all (renderer->priv->metrics_cache);
     break;
+
   case PROP_COLOR_MAP:
     renderer->priv->color_map      = g_value_get_pointer (value);
     break;
+
   case PROP_OVERRIDE_COLOR:
     renderer->priv->override_color = g_value_get_int (value);
     break;
+
   case PROP_GRIP_SIZE:
-    renderer->priv->grip_size      = g_value_get_double (value);
+    EDAR_GRIP_SIZE                 = g_value_get_double (value);
     break;
+
+  case PROP_GRIP_STROKE: /* Grip Stroke Color */
+    eda_renderer_set_grips_stroke_color(renderer, g_value_get_boxed (value));
+    break;
+
+  case PROP_GRIP_FILL:  /* Grip Fill Color */
+    eda_renderer_set_grips_fill_color (renderer, g_value_get_boxed (value));
+    break;
+
+  case PROP_JUNCTION_COLOR:
+    eda_renderer_set_junction_color (renderer, g_value_get_boxed (value));
+    break;
+
+  case PROP_JUNCTION_SIZE:
+    EDAR_JUNCTION_SIZE             = g_value_get_int (value);
+    break;
+
+  case PROP_ENDPOINT_COLOR:
+    eda_renderer_set_net_endpoint_color (renderer, g_value_get_boxed (value));
+    break;
+
+
+  case PROP_MARKER_COLOR:  /* Marker Stroke Color */
+    eda_renderer_set_text_marker_color (renderer, g_value_get_boxed (value));
+    break;
+
+  case PROP_TEXT_MARKER_SIZE:
+    EDAR_TEXT_MARKER_SIZE          = g_value_get_int (value);
+    break;
+
   case PROP_RENDER_FLAGS:
     renderer->priv->flags          = g_value_get_flags (value);
     break;
+
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
@@ -364,24 +500,58 @@ eda_renderer_get_property (GObject *object, guint property_id,
   case PROP_CAIRO_CONTEXT:
     g_value_set_pointer (value, renderer->priv->cr);
     break;
+
   case PROP_PANGO_CONTEXT:
     g_value_set_pointer (value, renderer->priv->pc);
     break;
   case PROP_FONT_NAME:
     g_value_set_string (value, renderer->priv->font_name);
     break;
+
   case PROP_COLOR_MAP:
     g_value_set_pointer (value, renderer->priv->color_map);
     break;
+
   case PROP_OVERRIDE_COLOR:
     g_value_set_int (value, renderer->priv->override_color);
     break;
+
   case PROP_GRIP_SIZE:
-    g_value_set_double (value, renderer->priv->grip_size);
+    g_value_set_double (value, EDAR_GRIP_SIZE);
     break;
+
+  case PROP_GRIP_STROKE: /* Grip Stroke Color */
+    g_value_set_boxed (value, &EDAR_GRIP_STROKE_COLOR);
+    break;
+
+  case PROP_GRIP_FILL: /* Grip Fill Color */
+    g_value_set_boxed (value, &EDAR_GRIP_FILL_COLOR);
+    break;
+
+  case PROP_JUNCTION_COLOR:
+    g_value_set_boxed (value, &EDAR_JUNCTION_COLOR);
+    break;
+
+  case PROP_JUNCTION_SIZE:
+    g_value_set_int (value, EDAR_JUNCTION_SIZE);
+    break;
+
+  case PROP_ENDPOINT_COLOR:
+    g_value_set_boxed (value, &EDAR_NET_ENDPOINT_COLOR);
+    break;
+
+  case PROP_MARKER_COLOR:  /* Marker Stroke Color */
+    g_value_set_boxed (value, &EDAR_TEXT_MARKER_COLOR);
+    break;
+
+  case PROP_TEXT_MARKER_SIZE:
+    g_value_set_int (value, EDAR_TEXT_MARKER_SIZE);
+    break;
+
   case PROP_RENDER_FLAGS:
     g_value_set_flags (value, renderer->priv->flags);
     break;
+
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
@@ -522,6 +692,7 @@ eda_renderer_is_drawable_color (EdaRenderer *renderer, int color,
   if ((renderer->priv->override_color >= 0) && use_override) {
     color = renderer->priv->override_color;
   }
+
   /* If color index out of color map bounds, don't draw */
   g_return_val_if_fail ((map != NULL), FALSE);
   g_return_val_if_fail ((color >= 0) || (color < map->len), FALSE);
@@ -750,7 +921,7 @@ eda_renderer_draw_text (EdaRenderer *renderer, OBJECT *object)
 {
   double x, y;
   double dummy = 0;
-  double marker_dist = renderer->text_marker_size;
+  double marker_dist = EDAR_TEXT_MARKER_SIZE;
 
   void text_as_outline_box () {
     eda_cairo_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), 0,
@@ -791,35 +962,31 @@ eda_renderer_draw_text (EdaRenderer *renderer, OBJECT *object)
   if (object->visibility != INVISIBLE)
     return;
 
-  /* Check that color is enabled */
-  if (!eda_renderer_is_drawable_color (renderer, TEXT_MARKER_COLOR, FALSE))
-    return;
-
   /* If the text marker is too tiny, don't draw it. */
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
     cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
     if (marker_dist < 1) return;
   }
 
-  eda_renderer_set_color (renderer, TEXT_MARKER_COLOR);
+  gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
   /* Centre of marker is just below and to the right of the text
    * object's origin. */
-  x = object->text->x + 2 * renderer->text_marker_size;
-  y = object->text->y - 2 * renderer->text_marker_size;
+  x = object->text->x + 2 * EDAR_TEXT_MARKER_SIZE;
+  y = object->text->y - 2 * EDAR_TEXT_MARKER_SIZE;
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,  /* Top */
-                  x - renderer->text_marker_size, y + renderer->text_marker_size,
-                  x + renderer->text_marker_size, y + renderer->text_marker_size);
+                  x - EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE,
+                  x + EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE);
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,  /* Vertical */
-                  x, y + renderer->text_marker_size,
-                  x, y - renderer->text_marker_size);
+                  x, y + EDAR_TEXT_MARKER_SIZE,
+                  x, y - EDAR_TEXT_MARKER_SIZE);
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,  /* Bottom */
-                  x - renderer->text_marker_size, y - renderer->text_marker_size,
-                  x + renderer->text_marker_size, y - renderer->text_marker_size);
+                  x - EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE,
+                  x + EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE);
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     TYPE_SOLID, END_NONE,
                     EDA_RENDERER_STROKE_WIDTH (renderer, 0),
@@ -1083,62 +1250,57 @@ eda_renderer_default_draw_grips (EdaRenderer *renderer, OBJECT *object)
 
   if (!eda_renderer_is_drawable (renderer, object))
     return;
-  if (!eda_renderer_is_drawable_color (renderer, GRIP_COLOR, FALSE))
-    return;
-
-  eda_cairo_set_source_color (renderer->priv->cr, GRIP_COLOR,
-                              renderer->priv->color_map);
 
   switch (object->type) {
-  case OBJ_LINE:
-  case OBJ_NET:
-  case OBJ_BUS:
-  case OBJ_PIN:
-    eda_renderer_draw_grips_impl (renderer, 2,
-        object->line->x[0], object->line->y[0],
-        object->line->x[1], object->line->y[1]);
-    break;
-  case OBJ_BOX:
-    eda_renderer_draw_grips_impl (renderer, 4,
-        object->box->upper_x, object->box->upper_y,
-        object->box->lower_x, object->box->upper_y,
-        object->box->upper_x, object->box->lower_y,
-        object->box->lower_x, object->box->lower_y);
-    break;
-  case OBJ_ARC:
-    eda_renderer_draw_arc_grips (renderer, object);
-    break;
-  case OBJ_CIRCLE:
-    /* Grip at bottom right of containing square */
-    eda_renderer_draw_grips_impl (renderer, 1,
-        object->circle->center_x + object->circle->radius,
-        object->circle->center_y - object->circle->radius);
-    break;
-  case OBJ_PATH:
-    eda_renderer_draw_path_grips (renderer, object);
-    break;
-  case OBJ_TEXT:
-    if(renderer->text_origin_marker)
-      eda_renderer_draw_text_grips (renderer, object);
-    break;
-  case OBJ_PICTURE:
-    eda_renderer_draw_grips_impl (renderer, 4,
-        object->picture->upper_x, object->picture->upper_y,
-        object->picture->lower_x, object->picture->upper_y,
-        object->picture->upper_x, object->picture->lower_y,
-        object->picture->lower_x, object->picture->lower_y);
-    break;
-  case OBJ_COMPLEX:
-  case OBJ_PLACEHOLDER:
-    /* No grips */
-    break;
-  default:
-    g_return_if_reached ();
+    case OBJ_LINE:
+    case OBJ_NET:
+    case OBJ_BUS:
+    case OBJ_PIN:
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 2,
+                                    object->line->x[0], object->line->y[0],
+                                    object->line->x[1], object->line->y[1]);
+      break;
+    case OBJ_BOX:
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 4,
+                                    object->box->upper_x, object->box->upper_y,
+                                    object->box->lower_x, object->box->upper_y,
+                                    object->box->upper_x, object->box->lower_y,
+                                    object->box->lower_x, object->box->lower_y);
+      break;
+    case OBJ_ARC:
+      eda_renderer_draw_arc_grips (renderer, object);
+      break;
+    case OBJ_CIRCLE:
+      /* Grip at bottom right of containing square */
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
+                                    object->circle->center_x + object->circle->radius,
+                                    object->circle->center_y - object->circle->radius);
+      break;
+    case OBJ_PATH:
+      eda_renderer_draw_path_grips (renderer, object);
+      break;
+    case OBJ_TEXT:
+      if(renderer->text_origin_marker)
+        eda_renderer_draw_text_grips (renderer, object);
+      break;
+    case OBJ_PICTURE:
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 4,
+                                    object->picture->upper_x, object->picture->upper_y,
+                                    object->picture->lower_x, object->picture->upper_y,
+                                    object->picture->upper_x, object->picture->lower_y,
+                                    object->picture->lower_x, object->picture->lower_y);
+      break;
+    case OBJ_COMPLEX:
+    case OBJ_PLACEHOLDER:
+      /* No grips */
+      break;
+    default:
+      g_return_if_reached ();
   }
 }
 
 static void
-eda_renderer_draw_grips_impl (EdaRenderer *renderer, int n_grips, ...)
+eda_renderer_draw_grips_impl (EdaRenderer *renderer, int type, int n_grips, ...)
 {
   va_list coordinates;
   int i;
@@ -1148,13 +1310,30 @@ eda_renderer_draw_grips_impl (EdaRenderer *renderer, int n_grips, ...)
     int x = va_arg (coordinates, int);
     int y = va_arg (coordinates, int);
 
-    eda_cairo_center_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                          0, 0, x, y,
-                          renderer->priv->grip_size,
-                          renderer->priv->grip_size);
+    switch (type) {
+      case EDAR_GRIP_SQUARE:
+        eda_cairo_center_box (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                              0, 0, x, y,
+                              EDAR_GRIP_SIZE,
+                              EDAR_GRIP_SIZE);
+        break;
+      case EDAR_GRIP_CIRCLE:
+        eda_cairo_center_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                              0, 0, x, y,
+                              EDAR_GRIP_SIZE,
+                              0, 360);
+        break;
+      default:
+        g_return_if_reached ();
+    }
+
+    gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_GRIP_FILL_COLOR);
+    cairo_fill_preserve (renderer->priv->cr);
+
+    gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_GRIP_STROKE_COLOR);
     eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                       TYPE_SOLID, END_NONE,
-                      EDA_RENDERER_STROKE_WIDTH (renderer, 0), -1, -1);
+                      0, -1, -1);
   }
   va_end (coordinates);
 }
@@ -1186,7 +1365,7 @@ eda_renderer_draw_arc_grips (EdaRenderer *renderer, OBJECT *object)
   x3 = x1 + radius * cos ((start_angle + end_angle) * M_PI / 180);
   y3 = y1 + radius * sin ((start_angle + end_angle) * M_PI / 180);
 
-  eda_renderer_draw_grips_impl (renderer, 3,
+  eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 3,
                                 x1, y1, /* center */
                                 x2, y2, /* start_angle */
                                 x3, y3); /* end_angle */
@@ -1217,7 +1396,7 @@ eda_renderer_draw_path_grips (EdaRenderer *renderer, OBJECT *object)
                         TYPE_SOLID, END_NONE,
                         EDA_RENDERER_STROKE_WIDTH (renderer, 0), -1, -1);
       /* Two control point grips */
-      eda_renderer_draw_grips_impl (renderer, 2,
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_CIRCLE, 2,
                                     section->x1, section->y1,
                                     section->x2, section->y2);
       /* Deliberately fall through */
@@ -1227,7 +1406,7 @@ eda_renderer_draw_path_grips (EdaRenderer *renderer, OBJECT *object)
       last_x = next_x;
       last_y = next_y;
       /* One control point grip */
-      eda_renderer_draw_grips_impl (renderer, 1,
+      eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 1,
                                     section->x3, section->y3);
       break;
     case PATH_END:
@@ -1240,7 +1419,7 @@ static void
 eda_renderer_draw_text_grips (EdaRenderer *renderer, OBJECT *object)
 {
   double dummy = 0;
-  double marker_dist = renderer->text_marker_size;
+  double marker_dist = EDAR_TEXT_MARKER_SIZE;
   int x = object->text->x;
   int y = object->text->y;
 
@@ -1250,25 +1429,27 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, OBJECT *object)
     return;
   }
 
-  /* Check that color is enabled */
-  if (!eda_renderer_is_drawable_color (renderer, TEXT_MARKER_COLOR, FALSE))
+  /* Check that color is enabled
+  if (!eda_renderer_is_drawable_color (renderer, EDAR_TEXT_MARKER_COLOR, FALSE))
     return;
-
+  */
   /* If the text marker is too tiny, don't draw it. */
   cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
   if (marker_dist < 1) return;
-
-  eda_cairo_set_source_color (renderer->priv->cr, TEXT_MARKER_COLOR,
+/*
+  eda_cairo_set_source_color (renderer->priv->cr, EDAR_TEXT_MARKER_COLOR,
                               renderer->priv->color_map);
+*/
+  gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,
-                  x - renderer->text_marker_size, y - renderer->text_marker_size,
-                  x + renderer->text_marker_size, y + renderer->text_marker_size);
+                  x - EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE,
+                  x + EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE);
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_NONE, 0,
-                  x - renderer->text_marker_size, y + renderer->text_marker_size,
-                  x + renderer->text_marker_size, y - renderer->text_marker_size);
+                  x - EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE,
+                  x + EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE);
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     TYPE_SOLID, END_NONE,
                     EDA_RENDERER_STROKE_WIDTH (renderer, 0),
@@ -1280,54 +1461,32 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, OBJECT *object)
  * ================================================================ */
 
 static void
-eda_renderer_draw_cues_list (EdaRenderer *renderer, GList *objects)
+eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y, double width)
 {
-  GList *iter;
-
-  for (iter = objects; iter != NULL; iter = g_list_next (iter)) {
-    eda_renderer_draw_cues (renderer, (OBJECT *) iter->data);
+  double radius = width / 2;
+/*
+  if (!eda_renderer_is_drawable_color (renderer, EDAR_JUNCTION_COLOR, 1)) {
+    return;
   }
-}
+*/
+  eda_cairo_center_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                        width, -1, x, y, radius, 0, 360);
 
-void
-eda_renderer_draw_cues (EdaRenderer *renderer, OBJECT *object)
-{
-  g_return_if_fail (EDA_IS_RENDERER (renderer));
-  EDA_RENDERER_GET_CLASS (renderer)->draw_cues (renderer, object);
+  gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_JUNCTION_COLOR);
+
+  cairo_fill (renderer->priv->cr);
 }
 
 static void
-eda_renderer_default_draw_cues (EdaRenderer *renderer, OBJECT *object)
+eda_renderer_draw_mid_cues (EdaRenderer *renderer, OBJECT *object)
 {
-  g_return_if_fail (object != NULL);
-  g_return_if_fail (renderer->priv->cr != NULL);
+  GList *iter;
+  for (iter = object->conn_list; iter != NULL; iter = g_list_next (iter)) {
+    CONN *conn = (CONN *) iter->data;
 
-  switch (object->type) {
-  case OBJ_LINE:
-  case OBJ_BOX:
-  case OBJ_ARC:
-  case OBJ_CIRCLE:
-  case OBJ_PATH:
-  case OBJ_TEXT:
-  case OBJ_PICTURE:
-    break;
-  case OBJ_COMPLEX:
-  case OBJ_PLACEHOLDER:
-    /* Recurse */
-    eda_renderer_draw_cues_list (renderer, object->complex->prim_objs);
-    break;
-  case OBJ_NET:
-  case OBJ_BUS:
-    eda_renderer_draw_mid_cues (renderer, object);
-    eda_renderer_draw_end_cues (renderer, object, 0);
-    eda_renderer_draw_end_cues (renderer, object, 1);
-    break;
-  case OBJ_PIN:
-    g_return_if_fail ((object->whichend == 1) || (object->whichend == 0));
-    eda_renderer_draw_end_cues (renderer, object, object->whichend);
-    break;
-  default:
-    g_return_if_reached ();
+    if (conn->type == CONN_MIDPOINT) {
+      eda_renderer_draw_junction_cue (renderer, conn->x, conn->y, EDAR_JUNCTION_SIZE);
+    }
   }
 }
 
@@ -1373,9 +1532,8 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, OBJECT *object, int end)
   }
 
   /* Only things left to be drawn are end point cues */
-  if (!eda_renderer_is_drawable_color (renderer, NET_ENDPOINT_COLOR, TRUE))
-    return;
-  eda_renderer_set_color (renderer, NET_ENDPOINT_COLOR);
+
+  gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_NET_ENDPOINT_COLOR);
 
   switch (object->type) {
   case OBJ_NET:
@@ -1398,31 +1556,55 @@ eda_renderer_draw_end_cues (EdaRenderer *renderer, OBJECT *object, int end)
 }
 
 static void
-eda_renderer_draw_mid_cues (EdaRenderer *renderer, OBJECT *object)
+eda_renderer_default_draw_cues (EdaRenderer *renderer, OBJECT *object)
 {
-  GList *iter;
-  for (iter = object->conn_list; iter != NULL; iter = g_list_next (iter)) {
-    CONN *conn = (CONN *) iter->data;
+  g_return_if_fail (object != NULL);
+  g_return_if_fail (renderer->priv->cr != NULL);
 
-    if (conn->type == CONN_MIDPOINT) {
-      eda_renderer_draw_junction_cue (renderer, conn->x, conn->y, object->line_width);
-    }
+  switch (object->type) {
+  case OBJ_LINE:
+  case OBJ_BOX:
+  case OBJ_ARC:
+  case OBJ_CIRCLE:
+  case OBJ_PATH:
+  case OBJ_TEXT:
+  case OBJ_PICTURE:
+    break;
+  case OBJ_COMPLEX:
+  case OBJ_PLACEHOLDER:
+    /* Recurse */
+    eda_renderer_draw_cues_list (renderer, object->complex->prim_objs);
+    break;
+  case OBJ_NET:
+  case OBJ_BUS:
+    eda_renderer_draw_mid_cues (renderer, object);
+    eda_renderer_draw_end_cues (renderer, object, 0);
+    eda_renderer_draw_end_cues (renderer, object, 1);
+    break;
+  case OBJ_PIN:
+    g_return_if_fail ((object->whichend == 1) || (object->whichend == 0));
+    eda_renderer_draw_end_cues (renderer, object, object->whichend);
+    break;
+  default:
+    g_return_if_reached ();
   }
 }
 
 static void
-eda_renderer_draw_junction_cue (EdaRenderer *renderer, int x, int y, double width)
+eda_renderer_draw_cues_list (EdaRenderer *renderer, GList *objects)
 {
-  double radius = width / 2;
+  GList *iter;
 
-  if (!eda_renderer_is_drawable_color (renderer, JUNCTION_COLOR, 1)) {
-    return;
+  for (iter = objects; iter != NULL; iter = g_list_next (iter)) {
+    eda_renderer_draw_cues (renderer, (OBJECT *) iter->data);
   }
+}
 
-  eda_cairo_center_arc (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                        width, -1, x, y, radius, 0, 360);
-  eda_renderer_set_color (renderer, JUNCTION_COLOR);
-  cairo_fill (renderer->priv->cr);
+void
+eda_renderer_draw_cues (EdaRenderer *renderer, OBJECT *object)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  EDA_RENDERER_GET_CLASS (renderer)->draw_cues (renderer, object);
 }
 
 /* ================================================================
@@ -1498,9 +1680,9 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
    * device coordinates, but we need world coordinates. */
   pango_layout_get_pixel_extents (renderer->priv->pl,
                                   &inked_rect, &logical_rect);
-  *left = (double) inked_rect.x;
-  *top = (double) inked_rect.y;
-  *right = (double) inked_rect.x + inked_rect.width;
+  *left   = (double) inked_rect.x;
+  *top    = (double) inked_rect.y;
+  *right  = (double) inked_rect.x + inked_rect.width;
   *bottom = (double) inked_rect.y + inked_rect.height;
   cairo_user_to_device (renderer->priv->cr, left, top);
   cairo_user_to_device (renderer->priv->cr, right, bottom);
@@ -1555,6 +1737,12 @@ GArray * eda_renderer_get_color_map (EdaRenderer *renderer)
   g_object_get (G_OBJECT (renderer), "color-map", &map, NULL);
   return map;
 }
+void
+eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_object_set (G_OBJECT (renderer), "color-map", map, NULL);
+}
 const char *eda_renderer_get_font_name(EdaRenderer *renderer)
 {
   return (renderer->priv->font_name);
@@ -1586,15 +1774,126 @@ int eda_renderer_get_flags (EdaRenderer *renderer)
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
   return renderer->priv->flags;
 }
-void
-eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
-{
-  g_return_if_fail (EDA_IS_RENDERER (renderer));
-  g_object_set (G_OBJECT (renderer), "color-map", map, NULL);
-}
-
 int eda_renderer_get_cairo_flags (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), 0);
   return EDA_RENDERER_CAIRO_FLAGS (renderer);
+}
+
+double eda_renderer_get_grips_size (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return EDAR_GRIP_SIZE;
+}
+void eda_renderer_set_grips_size (EdaRenderer *renderer, double new_size)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_object_set (G_OBJECT (renderer), "grip-size", new_size, NULL);
+}
+
+const
+GdkColor *eda_renderer_get_grips_stroke_color (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
+  return (const GdkColor*) &EDAR_GRIP_STROKE_COLOR;
+}
+void
+eda_renderer_set_grips_stroke_color (EdaRenderer *renderer, GdkColor* color)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_return_if_fail (color != NULL);
+
+  EDAR_GRIP_STROKE_COLOR.red   = color->red;
+  EDAR_GRIP_STROKE_COLOR.green = color->green;
+  EDAR_GRIP_STROKE_COLOR.blue  = color->blue;
+}
+const
+GdkColor *eda_renderer_get_grips_fill_color (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
+  return (const GdkColor*) &EDAR_GRIP_FILL_COLOR;
+}
+
+void
+eda_renderer_set_grips_fill_color (EdaRenderer *renderer, GdkColor* color)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_return_if_fail (color != NULL);
+
+  EDAR_GRIP_FILL_COLOR.red   = color->red;
+  EDAR_GRIP_FILL_COLOR.green = color->green;
+  EDAR_GRIP_FILL_COLOR.blue  = color->blue;
+}
+
+const
+GdkColor *eda_renderer_get_junction_color (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
+  return (const GdkColor*) &EDAR_JUNCTION_COLOR;
+}
+void
+eda_renderer_set_junction_color (EdaRenderer *renderer, GdkColor* color)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_return_if_fail (color != NULL);
+
+  EDAR_JUNCTION_COLOR.red   = color->red;
+  EDAR_JUNCTION_COLOR.green = color->green;
+  EDAR_JUNCTION_COLOR.blue  = color->blue;
+}
+int eda_renderer_get_junction_size (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return EDAR_JUNCTION_SIZE;
+}
+void eda_renderer_set_junction_size (EdaRenderer *renderer, int new_size)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_object_set (G_OBJECT (renderer), "junction-size", new_size, NULL);
+}
+
+const
+GdkColor *eda_renderer_get_net_endpoint_color (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
+  return (const GdkColor*) &EDAR_NET_ENDPOINT_COLOR;
+}
+
+void
+eda_renderer_set_net_endpoint_color (EdaRenderer *renderer, GdkColor* color)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_return_if_fail (color != NULL);
+
+  EDAR_NET_ENDPOINT_COLOR.red   = color->red;
+  EDAR_NET_ENDPOINT_COLOR.green = color->green;
+  EDAR_NET_ENDPOINT_COLOR.blue  = color->blue;
+}
+
+const
+GdkColor *eda_renderer_get_text_marker_color (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), NULL);
+  return (const GdkColor*) &EDAR_TEXT_MARKER_COLOR;
+}
+
+void
+eda_renderer_set_text_marker_color (EdaRenderer *renderer, GdkColor* color)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_return_if_fail (color != NULL);
+
+  EDAR_TEXT_MARKER_COLOR.red   = color->red;
+  EDAR_TEXT_MARKER_COLOR.green = color->green;
+  EDAR_TEXT_MARKER_COLOR.blue  = color->blue;
+}
+int eda_renderer_get_text_marker_size (EdaRenderer *renderer)
+{
+  g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);
+  return EDAR_TEXT_MARKER_SIZE;
+}
+void eda_renderer_set_text_marker_size (EdaRenderer *renderer, int new_size)
+{
+  g_return_if_fail (EDA_IS_RENDERER (renderer));
+  g_object_set (G_OBJECT (renderer), "text-marker-size", new_size, NULL);
 }

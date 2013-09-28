@@ -169,28 +169,28 @@ void x_window_init()
 {
   GtkWidget *main_vbox;
   GtkRequisition request;
- 
+
   /* Set default icon */
   x_window_set_default_icon();
 
   /*  window is a global declared in globals.h.  */
   main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);  
-   
+
   gtk_window_set_default_size(GTK_WINDOW(main_window), 1000, 600);  
-  
+
   gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
-		      GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
+                      GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
 
   /* -----  Now create main_vbox container to hold everthing ----- */   
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
   gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox) );
   gtk_widget_show( GTK_WIDGET(main_vbox));
-    
+
   /* -----  Now create menu bar  ----- */  
   menu_bar = x_menu_create_menu(GTK_WINDOW(main_window));
   gtk_box_pack_start(GTK_BOX (main_vbox), menu_bar, FALSE, TRUE, 0);
-  
+
    /* -----  Initialize the Toolbar Module ----- */   
   x_toolbars_init(main_vbox);  
 
@@ -209,13 +209,13 @@ void x_window_init()
   entry=gtk_entry_new(); 
   gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0); 
   gtk_widget_show(entry);
-  
+
   /* TODO togglable legend ? */
   /* -----  Now init notebook widget  ----- */  
   notebook = gtk_notebook_new();
   gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
   gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
-  
+
   g_signal_connect ((gpointer) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
@@ -253,46 +253,49 @@ void x_window_add_items(PageDataSet *PageData)
   int col, row;
   char *text;
   int visibility, show_name_value, is_inherited;
-  
+
   /* Add labels to the component sheet */
   if (PageData->comp_count > 0 ) {
-    x_gtksheet_add_row_labels(GTK_SHEET(sheets[Components]), 
-			      PageData->comp_count,
-			      PageData->master_comp_list_head);
-    x_gtksheet_add_col_labels(GTK_SHEET(sheets[Components]), 
-			      PageData->comp_attrib_count,
-			      PageData->master_comp_attrib_list_head);
+    x_gtksheet_add_row_labels(GTK_SHEET(sheets[Components]),
+                              PageData->comp_count,
+                              PageData->master_comp_list_head);
+    x_gtksheet_add_col_labels(GTK_SHEET(sheets[Components]),
+                              PageData->comp_attrib_count,
+                              PageData->master_comp_attrib_list_head);
   }
- 
+
   /* This is not ready.  Need to implement net attributes */
   if (PageData->net_count > 0 ) {
-    x_gtksheet_add_row_labels(GTK_SHEET(sheets[Nets]), 
-			      PageData->net_count, PageData->master_net_list_head);
-    x_gtksheet_add_col_labels(GTK_SHEET(sheets[Nets]), 
-			      PageData->net_attrib_count, PageData->master_net_attrib_list_head);
-  } else {
+    x_gtksheet_add_row_labels(GTK_SHEET(sheets[Nets]),
+                              PageData->net_count, PageData->master_net_list_head);
+    x_gtksheet_add_col_labels(GTK_SHEET(sheets[Nets]),
+                              PageData->net_attrib_count,
+                              PageData->master_net_attrib_list_head);
+  }
+  else {
     x_gtksheet_add_row_labels(GTK_SHEET(sheets[Nets]), 1, NULL);
     x_gtksheet_add_col_labels(GTK_SHEET(sheets[Nets]), 1, NULL);
-  }  
+  }
 
   if (PageData->pin_count > 0 ) {
-    x_gtksheet_add_row_labels(GTK_SHEET(sheets[Pins]), 
-			      PageData->pin_count, PageData->master_pin_list_head);
-    x_gtksheet_add_col_labels(GTK_SHEET(sheets[Pins]), 
-			      PageData->pin_attrib_count, PageData->master_pin_attrib_list_head);
+    x_gtksheet_add_row_labels(GTK_SHEET(sheets[Pins]),
+                              PageData->pin_count, PageData->master_pin_list_head);
+    x_gtksheet_add_col_labels(GTK_SHEET(sheets[Pins]),
+                              PageData->pin_attrib_count,
+                              PageData->master_pin_attrib_list_head);
   }
- 
+
   /* ------ Comp sheet: put values in the individual cells ------- */
   for (col = 0; col < PageData->comp_attrib_count; col++) {
     for (row = 0; row < PageData->comp_count; row++) {
       if ( (PageData->component_table)[col][row].attrib_value ) { /* NULL = no entry */
-	text = g_strdup( (PageData->component_table)[col][row].attrib_value );
-	visibility = (PageData->component_table)[col][row].visibility;
-	show_name_value = (PageData->component_table)[col][row].show_name_value;
+        text = g_strdup( (PageData->component_table)[col][row].attrib_value );
+        visibility = (PageData->component_table)[col][row].visibility;
+        show_name_value = (PageData->component_table)[col][row].show_name_value;
         is_inherited = (PageData->component_table)[col][row].is_inherited;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[Components]), row, col, text,
+        x_gtksheet_add_cell_item( GTK_SHEET(sheets[Components]), row, col, text,
                                   visibility, show_name_value, is_inherited);
-	g_free(text);
+        g_free(text);
       }
     }
   }
@@ -301,11 +304,11 @@ void x_window_add_items(PageDataSet *PageData)
   for (col = 0; col <PageData->net_attrib_count; col++) {
     for (row = 0; row < PageData->net_count; row++) {
       if ( (PageData->net_table)[col][row].attrib_value ) { /* NULL = no entry */
-	text =  g_strdup( (PageData->net_table)[col][row].attrib_value );
-	visibility = (PageData->net_table)[col][row].visibility;
-	show_name_value = (PageData->component_table)[col][row].show_name_value;
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
-	g_free(text);
+        text =  g_strdup( (PageData->net_table)[col][row].attrib_value );
+        visibility = (PageData->net_table)[col][row].visibility;
+        show_name_value = (PageData->component_table)[col][row].show_name_value;
+        x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
+        g_free(text);
       }
     }
   }
@@ -314,10 +317,10 @@ void x_window_add_items(PageDataSet *PageData)
   for (col = 0; col < PageData->pin_attrib_count; col++) {
     for (row = 0; row < PageData->pin_count; row++) {
       if ( (PageData->pin_table)[col][row].attrib_value ) { /* NULL = no entry */
-	text = g_strdup( (PageData->pin_table)[col][row].attrib_value );
-	/* pins have no visibility attributes, must therefore provide default. */
-	x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), row, col, text,  VISIBLE, SHOW_VALUE, 0);
-	g_free(text);
+        text = g_strdup( (PageData->pin_table)[col][row].attrib_value );
+        /* pins have no visibility attributes, must therefore provide default. */
+        x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), row, col, text,  VISIBLE, SHOW_VALUE, 0);
+        g_free(text);
       }
     }
   }
@@ -336,8 +339,9 @@ void x_window_finalize_startup(GtkWindow *main_window, PageDataSet *PageData)
   /* -------------- update data in windows --------------- */
   x_window_add_items(PageData); /* This updates the top level stuff,and then
                                    calls another fcn to update the GtkSheet */
-  
+
   gtk_window_position (GTK_WINDOW (main_window), GTK_WIN_POS_MOUSE);
+
   gtk_widget_show( GTK_WIDGET(main_window));
   x_window_update_title(pr_current, PageData);
 }

@@ -273,6 +273,7 @@ void x_compselect_open (GSCHEM_TOPLEVEL *w_current)
   if ( ThisDialog == NULL) {
 
     ThisDialog = g_object_new (TYPE_COMPSELECT, /* GschemDialog */
+                               "parent", w_current->main_window,
                                "settings-name",  DialogSettings,
                                "gschem-toplevel", w_current,
                                 NULL);
@@ -282,13 +283,11 @@ void x_compselect_open (GSCHEM_TOPLEVEL *w_current)
                       G_CALLBACK (x_compselect_callback_response),
                       w_current);
 
-    gtk_window_set_transient_for (GTK_WINDOW (ThisDialog),
-                                  GTK_WINDOW (w_current->main_window));
-
     gtk_widget_show (ThisDialog);
     w_current->cswindow = ThisDialog;
 
-  } else {
+  }
+  else {
     gtk_window_present (GTK_WINDOW (ThisDialog));
   }
 

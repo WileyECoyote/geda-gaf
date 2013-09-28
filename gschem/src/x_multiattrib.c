@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -230,13 +231,10 @@ void x_multiattrib_open (GSCHEM_TOPLEVEL *w_current)
     w_current->mawindow =
       GTK_WIDGET (g_object_new (TYPE_MULTIATTRIB,
                                 "object", NULL,
-                                /* GschemDialog */
+                                "parent", w_current->main_window,
                                 "settings-name", IDS_MULTI_ATTRBI,
                                 "gschem-toplevel", w_current,
                                 NULL));
-
-    gtk_window_set_transient_for (GTK_WINDOW(w_current->mawindow),
-                                  GTK_WINDOW(w_current->main_window));
 
     g_signal_connect (w_current->mawindow,
                       "response",
@@ -735,7 +733,7 @@ static void multiattrib_action_promote_attribute (GSCHEM_TOPLEVEL *w_current,
   } else {
       /* make a copy of the attribute object */
       o_new = o_object_copy (toplevel, o_attrib);
-      s_page_append (toplevel, toplevel->page_current, o_new);
+      s_page_append_object (toplevel, toplevel->page_current, o_new);
       /* add the attribute its parent */
       o_attrib_attach (toplevel, o_new, object, TRUE);
       /* note: this object is unselected (not added to selection). */
@@ -1993,45 +1991,41 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                     ThisDialog);
 
   column = GTK_TREE_VIEW_COLUMN ( g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                	       /* GtkTreeViewColumn */
-                                	       "title", _("Vis?"),
-                                	        NULL));
+                                        /* GtkTreeViewColumn */
+                                        "title", _("Vis?"),
+                                         NULL));
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column, renderer,
-                                	   multiattrib_column_set_data_visible,
-                                	   ThisDialog, NULL);
+                                    multiattrib_column_set_data_visible,
+                                   ThisDialog, NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   /*       - column 4: show name */
-  renderer = GTK_CELL_RENDERER (
-                                g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
-                                	      NULL));
+  renderer = GTK_CELL_RENDERER ( g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
+                                               NULL));
   g_signal_connect (renderer,
                     "toggled",
                     G_CALLBACK (multiattrib_callback_toggled_show_name),
                     ThisDialog);
-  column = GTK_TREE_VIEW_COLUMN (
-                                 g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                	       /* GtkTreeViewColumn */
-                                	       "title", _("N"),
-                                	       NULL));
+  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                                              /* GtkTreeViewColumn */
+                                               "title", _("N"),
+                                               NULL));
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column, renderer,
                                 	   multiattrib_column_set_data_show_name,
                                 	   NULL, NULL);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
   /*       - column 5: show value */
-  renderer = GTK_CELL_RENDERER (
-                                g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
-                                	      NULL));
+  renderer = GTK_CELL_RENDERER (g_object_new (GTK_TYPE_CELL_RENDERER_TOGGLE,
+                                              NULL));
   g_signal_connect (renderer,
                     "toggled",
                     G_CALLBACK (multiattrib_callback_toggled_show_value),
                     ThisDialog);
-  column = GTK_TREE_VIEW_COLUMN (
-                                 g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                	       /* GtkTreeViewColumn */
-                                	       "title", _("V"),
-                                	       NULL));
+  column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
+                                               /* GtkTreeViewColumn */
+                                               "title", _("V"),
+                                               NULL));
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_set_cell_data_func (column, renderer,
                                 	   multiattrib_column_set_data_show_value,
@@ -2104,16 +2098,15 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                                     /* GtkLabel */
                                     "label",  _("Value:"),
                                     NULL));
-  scrolled_win = GTK_WIDGET (
-                	     g_object_new (GTK_TYPE_SCROLLED_WINDOW,
-                                	   /* GtkScrolledWindow */
-                                	   "hscrollbar-policy",
-                                	   GTK_POLICY_NEVER,
-                                	   "vscrollbar-policy",
-                                	   GTK_POLICY_AUTOMATIC,
-                                	   "shadow-type",
-                                	   GTK_SHADOW_IN,
-                                	   NULL));
+  scrolled_win = GTK_WIDGET (g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                                    /* GtkScrolledWindow */
+                                    "hscrollbar-policy",
+                                    GTK_POLICY_NEVER,
+                                    "vscrollbar-policy",
+                                    GTK_POLICY_AUTOMATIC,
+                                    "shadow-type",
+                                    GTK_SHADOW_IN,
+                                    NULL));
   /*! \fixme Forcing the size request is a horrible band-aid and
    *  should be replaced by a better heuristic. */
   textview = GTK_WIDGET (g_object_new (GTK_TYPE_TEXT_VIEW,

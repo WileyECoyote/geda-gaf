@@ -52,7 +52,7 @@
  * \copyright public domain
  * \author ArkM
  *
- *  @param[in]  value  int to value to convert.
+ *  @param[in]  value  int value to convert.
  *  @param[in]  str    ptr to array for the results
  *  @param[in]  radix  int base to resolve.
  *

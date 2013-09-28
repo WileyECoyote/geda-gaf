@@ -65,7 +65,13 @@
 #define MAX_GRID_MESH_THRESHOLD 99
 #define DEFAULT_GRID_MESH_THRESHOLD 25
 
-/* For mesh_grid_threshold */
+/* for console-window-type */
+#define MAX_JUNCTION_SIZE       100
+#define MIN_JUNCTION_SIZE         0
+#define DEFAULT_JUNCTION_SIZE    10
+#define DEFAULT_JUNCTION_COLOR  JUNCTION_COLOR
+
+/* For Both Scrollbars and Mousewheel */
 #define DEFAULT_SCROLLPAN_STEPS 8
 
 /* For Window-Size */
@@ -83,13 +89,18 @@
 #define MAX_ZOOM_GAIN           99
 #define DEFAULT_ZOOM_GAIN       20
 
-/* For grip size */
-#define GRIP_SIZE1              25
-#define GRIP_SIZE2              50
-#define GRIP_SIZE3              80
-#define SMALL_ZOOMFACTOR1      150
-#define SMALL_ZOOMFACTOR2       30
-#define MAXIMUM_GRIP_PIXELS     30
+/* For grip size in pixels (i.e. device units) */
+#define GRIP_SIZE_ZOOM1         60
+#define GRIP_ZOOM_THREASHOLD_1  15
+
+#define MIN_GRIP_PIXELS          7
+#define DEFAULT_GRIP_SIZE       12
+#define MAX_GRIP_PIXELS         30
+
+/* These aren't int's, but they don't belong in sdefines */
+#define DEFAULT_GRIP_STROKE_COLOR  SELECT_COLOR
+#define DEFAULT_GRIP_FILL_COLOR    BACKGROUND_COLOR
+#define GRIP_PIXEL_SIZE w_current->grip_pixel_size
 
 /*
  * These are used in g_funcs.c, supposely Flags for generic_filesel_dialog()
@@ -104,12 +115,12 @@
 
 /*----------- Logging -----------*/
 
-#define MAP_LATER		0
-#define MAP_ON_STARTUP		1
+#define MAP_LATER       0
+#define MAP_ON_STARTUP  1
 
 /* for console-window-type */
-#define DECORATED		0
-#define TRANSIENT		1
+#define DECORATED       0
+#define TRANSIENT       1
 
 /*--------- Miscellaneous ----------*/
 
@@ -142,7 +153,7 @@
 
 /* For keyboardpan_gain */
 #define MIN_KEYBOARD_GAIN         1
-#define MAX_KEYBOARD_GAIN        99
+#define MAX_KEYBOARD_GAIN       999
 #define DEFAULT_KEYBOARD_GAIN    20
 
 /* For snap-size */
@@ -151,6 +162,9 @@
 #define MAX_SNAP_SIZE           500
 
 /*--------- Nets and Routing ----------*/
+
+#define DEFAULT_NET_ENDPOINT_COLOR NET_ENDPOINT_COLOR
+
 /* These modes are for net_endpoint_mode and net_midpoint_mode*/
 #define NET_NONE        0
 #define EMPTY_BOX	1
@@ -176,16 +190,18 @@
 #define COMP_BUS_RIPPER         1
 
 /*--------- Pointer/Mouse ---------*/
+#define DEFAULT_CURSOR_INDEX    0
 
 /* for third-mouse */
 #define POPUP_ENABLED		0
 #define MOUSEPAN_ENABLED	1
 
 /* for middle-mouse */
-#define MOUSE_MIDDLE_STROKE	0
-#define MOUSE_MIDDLE_REPEAT	1
-#define MOUSE_MIDDLE_ACTION	2
-#define MOUSE_MIDDLE_PAN	3
+#define MOUSE_MIDDLE_STROKE     0
+#define MOUSE_MIDDLE_REPEAT     1
+#define MOUSE_MIDDLE_ACTION     2
+#define MOUSE_MIDDLE_PAN        3
+#define DEFAULT_MOUSE_MIDDLE    MOUSE_MIDDLE_PAN
 
 /* for mousepan_gain */
 #define DEFAULT_MOUSEPAN_GAIN   5
@@ -226,8 +242,9 @@
 
 /* text_marker_size */
 #define MIN_TEXT_MARKER_SIZE     5
-#define MAX_TEXT_MARKER_SIZE     50
-#define DEFAULT_TEXT_MARKER_SIZE 15
+#define MAX_TEXT_MARKER_SIZE     100
+#define DEFAULT_TEXT_MARKER_SIZE 20
+#define DEFAULT_TEXT_MARKER_COLOR LOCK_COLOR
 
 /* text_size */
 #define DEFAULT_TEXT_SIZE       10
@@ -244,14 +261,14 @@
 /*----------- Undo System -----------*/
 
 /* used in o_undo_callback */
-#define UNDO_ACTION		0
-#define REDO_ACTION		1
+#define UNDO_ACTION              0
+#define REDO_ACTION              1
 
 /* For undo_levels */
 #define DEFAULT_UNDO_LEVELS     10
 
 /* used for undo_type */
-#define UNDO_DISK		0
-#define UNDO_MEMORY		1
+#define UNDO_DISK                0
+#define UNDO_MEMORY              1
 
 #endif /* !_GSCHEM_IDEFINES_H_INCL */

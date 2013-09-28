@@ -1,3 +1,24 @@
+2013-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_page.c: Renamed functions: s_page_append, s_page_remove, and
+        s_page_replace, appending "_object" to each of these. Added emmission
+        o_emit_pre_change_notify in function object_added, and
+
+        * src/o_line_basic: Eliminated call to o_set_fill_options in function
+        o_line_read because o_line_new sets the fill options to defaults when
+        the line was created.
+
+        * src/o_basic.c: Eliminated o_emit_pre_change_notify and o_emit_change_notify
+        in functions: o_set_line_options and o_set_fill_options due to systemic
+        issue as follows: f_open()->f_open_flags()->o_read()->o_read_buffer()->
+        o_line_read->o_line_new->o_set_line_options & o_set_fill_options &
+        o_line_read->o_set_line_options, (o_line_read->o_set_fill_options was
+        eliminated per preceeding entry). And all of this generated 8 signals
+        that a change was being made yet the database remained unchanged until
+        list of newly read objects is returned to s_page_append_list in f_open.
+        o_emit_change_notify is already emitted when s_page_append_list->s_page_
+        append_list->object_added is called.
+
 2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/a_basic.c: Add the ability to read empty lines, just carriage-

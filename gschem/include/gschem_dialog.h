@@ -62,7 +62,9 @@ typedef enum {
 enum {
   PROP_SETTINGS_NAME = 1,
   PROP_GSCHEM_TOPLEVEL,
+  PROP_PARENT_WINDOW,
   PROP_SELECTION_TRACKER,
+  PROP_TITLE,
 };
 
 struct _GschemDialogClass {
@@ -76,9 +78,10 @@ struct _GschemDialogClass {
 struct _GschemDialog {
   GtkDialog parent_instance;
 
-  char *settings_name;
+  char            *settings_name;
+  GtkWindow       *parent_window;
   GSCHEM_TOPLEVEL *w_current;
-  SELECTION *selection;
+  SELECTION       *selection;
   void (*func) (GSCHEM_TOPLEVEL *w_current, OBJECT *object);
 };
 
@@ -94,9 +97,17 @@ GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent,
                                            const char *settings_name, GSCHEM_TOPLEVEL *w_current,
                                            const char *first_button_text, ...);
 
+
+GtkWindow  *gschem_dialog_get_parent(GschemDialog *dialog);
+void        gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent);
+
+const char *gschem_dialog_get_title(GschemDialog *dialog);
+void        gschem_dialog_set_title(GschemDialog *dialog, const char*title);
+
 /* Prototypes for Dialogs */
 GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,
            GtkWidget *widget, GtkWidget *SwitchImage, gboolean istate);
 GtkWidget* get_geda_switch_image ( gboolean WhichState);
+
 
 #endif /* __GSCHEM_DIALOG_H__ */

@@ -58,7 +58,7 @@
 
 static int global_pid = 0;
 
-/* Called just before removing an OBJECT from a PAGE. */
+/* Called just before adding an OBJECT from a PAGE. */
 static void object_added (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
 {
   /* Set up object parent pointer */
@@ -69,13 +69,15 @@ static void object_added (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
 #endif
   object->page = page;
 
+  o_emit_pre_change_notify (toplevel, object);
+
   /* Add object to tile system. */
-  s_tile_add_object (toplevel, object);
+  s_tile_add_object        (toplevel, object);
 
   /* Update object connection tracking */
-  s_conn_update_object (toplevel, object);
+  s_conn_update_object     (toplevel, object);
 
-  o_emit_change_notify (toplevel, object);
+  o_emit_change_notify     (toplevel, object);
 }
 
 /* Called just before removing an OBJECT from a PAGE. */
@@ -102,6 +104,7 @@ pre_object_removed (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
 
   /* Remove object from tile system */
   s_tile_remove_object (object);
+
 }
 
 /*! \brief create a new page object
@@ -385,26 +388,46 @@ s_page_remove_weak_ptr (PAGE *page,
   page->weak_refs = s_weakref_remove_ptr (page->weak_refs,
                                           weak_pointer_loc);
 }
+/*\ brief Set the current page
+ *  \par Function Description
+ *  Changes the current page in \a toplevel to the page \a page.
+ *
+ * \param [in,out] toplevel This toplevel
+ * \param [in] page The new current page
+ */
+bool s_page_set_current (TOPLEVEL *toplevel, PAGE *page)
+{
+  g_return_val_if_fail (toplevel != NULL, FALSE);
+
+  toplevel->page_current = page;
+
+  return TRUE;
+}
 
 /*! \brief changes the current page in toplevel
  *  \par Function Description
- *  Changes the current page in \a toplevel to the page \a p_new.
+ *  Calls s_page_set_current to change the current page
+ * referenced by \a toplevel and changes the current
+ * working directory to the directory associated with the
+ * page.
  *
  *  \param toplevel  The TOPLEVEL object
  *  \param p_new     The PAGE to go to
  */
-bool s_page_goto (TOPLEVEL *toplevel, PAGE *p_new)
+bool s_page_goto (TOPLEVEL *toplevel, PAGE *page)
 {
   char *dirname;
+  bool  result;
 
-  toplevel->page_current = p_new;
-
-  dirname = g_dirname (p_new->page_filename);
-  if (chdir (dirname)) {
-    return FALSE;
+  result = FALSE;
+  if (s_page_set_current (toplevel, page)) {
+    dirname = g_path_get_dirname(page->page_filename);
+    if (!chdir (dirname)) {
+      result = TRUE;
+    }
+    g_free (dirname);
   }
-  g_free (dirname);
-  return TRUE;
+  return result;
 }
 
 /*! \brief Search for pages by filename.
@@ -636,7 +659,7 @@ int s_page_autosave (TOPLEVEL *toplevel)
  *  \param [in] page      The PAGE the object is being added to.
  *  \param [in] object    The OBJECT being added to the page.
  */
-void s_page_append (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
+void s_page_append_object (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
 {
   page->_object_list = g_list_append (page->_object_list, object);
   object_added (toplevel, page, object);
@@ -654,15 +677,17 @@ void s_page_append (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
  */
 void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list)
 {
-  GList *iter;
+  GList  *iter;
+  OBJECT *object;
+
   page->_object_list = g_list_concat (page->_object_list, obj_list);
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    object_added (toplevel, page, iter->data);
+    object = iter->data;
+    object_added (toplevel, page, object);
   }
 }
 
 /*! \brief Remove an OBJECT from the PAGE
- *  \TODO BAd function name: does not include the word "object"
  *  \par Function Description
  *  Removes the passed OBJECT from the PAGE's
  *  linked list of objects.
@@ -671,7 +696,7 @@ void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list)
  *  \param [in] page      The PAGE the object is being removed from.
  *  \param [in] object    The OBJECT being removed from the page.
  */
-void s_page_remove (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
+void s_page_remove_object (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
 {
   pre_object_removed (toplevel, page, object);
   page->_object_list = g_list_remove (page->_object_list, object);
@@ -690,14 +715,14 @@ void s_page_remove (TOPLEVEL *toplevel, PAGE *page, OBJECT *object)
  * \param [in] object2   The OBJECT being added to the page.
  */
 void
-s_page_replace (TOPLEVEL *toplevel, PAGE *page,
-                OBJECT *object1, OBJECT *object2)
+s_page_replace_object (TOPLEVEL *toplevel, PAGE *page,
+                       OBJECT *object1, OBJECT *object2)
 {
   GList *iter = g_list_find (page->_object_list, object1);
 
   /* If object1 not found, append object2 */
   if (iter == NULL) {
-    s_page_append (toplevel, page, object2);
+    s_page_append_object (toplevel, page, object2);
     return;
   }
 

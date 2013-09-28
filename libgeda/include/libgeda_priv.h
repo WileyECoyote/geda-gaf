@@ -11,6 +11,7 @@
 #include <defines.h>
 #include <s_struct.h>
 #include <g_struct.h>
+#include <s_toplevel.h>
 
 #include <edaconfig.h>
 #include <edaerrors.h>

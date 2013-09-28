@@ -46,6 +46,8 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 07/20/13 | Added Font Name Combo (to extend functionality)
 ;; ------------------------------------------------------------------
+;; WEH | 09/20/13 | Added PointerCurso Combo (to extend functionality)
+;; ------------------------------------------------------------------
 */
 /*! \remarks To add a new variable or control:
  *
@@ -120,21 +122,6 @@ const char* IDS_FONT_NAMES[] = {  /* Menu Icons Strings*/
 };
 
 /* ---------------  Functions that Should Be Somewhere Else  --------------- */
-
-/* Why was this not already included in <gtktreemodel.c> ? */
-bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter)
-{
-    GtkTreePath *path;
-    gboolean ret;
-
-    path = gtk_tree_model_get_path (tree_model, iter);
-    ret = gtk_tree_path_prev (path);
-    if (ret != FALSE)
-      gtk_tree_model_get_iter (tree_model, iter, path);
-
-    gtk_tree_path_free (path);
-    return ret;
-}
 
 /* Could call this one gtkless_radio_group_get_active */
 int gtk_radio_group_get_active(GSList *RadioGroupList) {
@@ -226,10 +213,18 @@ GtkWidget *ClearAttributesButt=NULL;
 GtkWidget *DefaultAttributesButt=NULL;
 GtkWidget *ConfirmClearCheckBox=NULL;
 
+/* The Color Buttons */
+GtkWidget *GripStrokeColorButt;
+GtkWidget *GripFillColorButt;
+GtkWidget *JunctionColorButt;
+GtkWidget *NetEndpointColorButt;
+GtkWidget *TextMarkerColorButt;
+
 /* The Combo Boxes */
 GtkWidget *ColorMapSchemeCombo;
 GtkWidget *DotGridModeCombo;
 GtkWidget *ConsoleWindowTypeCombo;
+GtkWidget *PointerCursorCombo;
 GtkWidget *MiddleButtonCombo;
 GtkWidget *ThirdButtonCombo;
 GtkWidget *TitleBlockCombo;
@@ -252,7 +247,6 @@ GtkWidget *UntitledNameEntry;
   /* Window Tab */
   DECLARE_RADIO_TRIAD (GridDotSize,   One,      Two,      Three);
   DECLARE_RADIO_TRIAD (GridMode,      None,     Dots,     Mesh);
-/*  DECLARE_RADIO_TRIAD (MeshThreshold, Three,    Four,     Five); */
   DECLARE_QUAD_RADIO  (WindowSize,    W650H487, W900H650, W950H712, W1100H825);
   DECLARE_RADIO_TRIAD (WorldSize,     Large,    Medium,   Small);
 
@@ -274,6 +268,8 @@ GtkWidget *AttributeOffsetSpin;
 GtkWidget *AutoPlacementGridSpin;
 GtkWidget *AutoSaveIntervalSpin;
 GtkWidget *DotGridThresholdSpin;
+GtkWidget *GripPixelSizeSpin;
+GtkWidget *JunctionSizeSpin;
 GtkWidget *KeyboardPanGainSpin;
 GtkWidget *KeyboardPanGainSpin;
 GtkWidget *MeshGridThresholdSpin;
@@ -322,10 +318,12 @@ GtkWidget *MagneticNetsSwitch=NULL;
 GtkWidget *NetDirectionSwitch=NULL;
 GtkWidget *NotifyEventsSwitch=NULL;
 GtkWidget *ObjectClippingSwitch=NULL;
+GtkWidget *PointerHScrollSwitch=NULL;
 GtkWidget *RipperRotationSwitch=NULL;
 GtkWidget *RipperTypeSwitch=NULL;
 GtkWidget *RubberNetsSwitch=NULL;
 GtkWidget *ScrollBarsSwitch=NULL;
+GtkWidget *ScrollBarsVisibleSwitch=NULL;
 GtkWidget *SortLibrarySwitch=NULL;
 GtkWidget *TextOriginMarkerSwitch=NULL;
 GtkWidget *UndoViewsSwitch=NULL;
@@ -432,6 +430,11 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
       enable_color_map_scheme(state);
     break;
   case Edit:
+    state = GET_SWITCH_STATE (DrawGripsSwitch);
+      gtk_widget_set_sensitive (GripPixelSizeSpin,   state);
+      gtk_widget_set_sensitive (GripStrokeColorButt, state);
+      gtk_widget_set_sensitive (GripFillColorButt,   state);
+    break;
   case Pointer:
     break;
   case Window:
@@ -441,6 +444,7 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
        gtk_widget_set_sensitive (DotGridThresholdSpin, TRUE);
 
     state = GET_SWITCH_STATE (ScrollBarsSwitch);
+    gtk_widget_set_sensitive (ScrollBarsVisibleSwitch, state);
     gtk_widget_set_sensitive (DelayScrollingSwitch, state);
     break;
   case Text:
@@ -840,7 +844,7 @@ static void increment_selected_attribute( void ){
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(PotentialAttributesView));
   if (gtk_tree_selection_get_selected( selection, &model, &iter1)) {
     iter2 = gtk_tree_iter_copy (&iter1);
-    if (gtk_tree_model_iter_previous (model, iter2))
+    if (g_tree_model_iter_previous (model, iter2))
     gtk_list_store_swap (GTK_LIST_STORE(model), &iter1, iter2);
   }
 }
@@ -1000,7 +1004,128 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
         } /* End Switch */
   }
 }
+
 /* -------------------------- End Attributes Support ------------------------*/
+
+/*! \section Popup-Menu */
+
+static GtkWidget *popup_menu; /* Seems safer to use a global for this */
+
+/*! \brief Restore Default Color Setting - Display Menu item responder
+ *  \par Function Description: Called when once of the two menu items
+ *       on the "restore default color" mini menu is selected. If
+*/
+static void
+color_button_popup_menu_callback (GtkMenuItem *item, gpointer data)
+{
+  bool restore_default_color;
+  int  color_index;
+  GtkColorButton *button;
+
+  restore_default_color = (int)(long*)data;
+
+  if (restore_default_color) {
+    color_index = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(item), "color-index"));
+    button      = g_object_get_data(G_OBJECT(item), "color-button");
+    gtk_color_button_set_color(button, x_get_color(color_index));
+  }
+
+  gtk_widget_destroy(popup_menu);
+}
+
+/*! \brief Restore Default Color Setting - Display Menu
+ *  \par Function Description: We need used to be able to restore
+ *   default colors, since the Color Selector Dialog is a child of
+ *   button, only display after the button pressed, we can not easily
+ *   add a "restore default" button to the action area, so instead we
+ *   have the user right click on the color button and display a "mini"
+ *   menu with just two choices, restore defaults or cancel. This function
+ *   creates that menu and sets up the callback to the preceding function
+ *   after embedding the pertinent data in the menu item.
+*/
+static void default_color_button_popup (GtkColorButton *button, GdkEventButton *event, int index)
+{
+  GtkWidget   *item;
+
+  if (popup_menu) {
+    gtk_object_destroy(GTK_OBJECT(popup_menu));
+    popup_menu = NULL;
+  }
+  popup_menu = gtk_menu_new ();
+
+  item = gtk_image_menu_item_new_with_label (_("Restore default"));
+
+  g_object_set_data(G_OBJECT(item), "color-index",  GINT_TO_POINTER(index));
+
+  g_object_set_data (G_OBJECT(item), "color-button", button);
+
+  g_signal_connect (G_OBJECT (item), "activate",
+                    G_CALLBACK (color_button_popup_menu_callback), GINT_TO_POINTER (1));
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (popup_menu), item);
+
+  item = gtk_image_menu_item_new_with_label (_("Cancel"));
+
+  g_signal_connect (G_OBJECT (item), "activate",
+                    G_CALLBACK (color_button_popup_menu_callback), GINT_TO_POINTER (0));
+
+  gtk_menu_shell_append (GTK_MENU_SHELL (popup_menu), item);
+
+  gtk_widget_show_all (popup_menu);
+
+  gtk_menu_popup(GTK_MENU(popup_menu), NULL, NULL, NULL, NULL, event->button, event->time);
+
+}
+
+/*! \brief Restore Default Color Setting - Check button events
+ *  \par Function Description: This is callback function for all of the
+ *   color buttons used in the Preferences/Settings dialog. This function
+ *   intercepts mouse button press events, looking for "right clicks" on
+ *   a color button, passing the all other events to the regular button
+ *   event handler. If a the event was a "button 3 down" (but not release)
+ *   the preceding function is called, passing the pertinent data, to
+ *   display a pop-up menu.
+ */
+static
+bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control)
+{
+
+  bool resolved = FALSE;
+
+  if (GTK_IS_COLOR_BUTTON(widget)) {
+
+    int WhatHappend = event->type;
+    int WhichButt   = (int)(long*) Control;
+    int color_index = -1;
+
+    if (event->button == 3) /* only interest in right button down */
+      if (WhatHappend == GDK_BUTTON_PRESS) {
+       resolved = TRUE;
+       switch ( WhichButt ) {
+         case GripStrokeColor:
+            color_index = SELECT_COLOR;
+           break;
+         case GripFillColor:
+            color_index = BACKGROUND_COLOR;
+           break;
+         case NetEndpointColor:
+            color_index = NET_ENDPOINT_COLOR;
+           break;
+         case TextMarkerColor:
+            color_index = LOCK_COLOR;
+           break;
+         case JunctionColor:
+            color_index = JUNCTION_COLOR;
+         default:
+           s_log_message("color button_responder(): Unknown button Id: %d\n", WhichButt);
+      } /* End Switch */
+      if(color_index != -1) {
+        default_color_button_popup((GtkColorButton *)widget, event, color_index);
+      }
+    }
+  }
+  return resolved;
+}
 /* ---------------------------- End Button Support --------------------------*/
 
 /* ------------------------ ComboBox Support Functions ----------------------*/
@@ -1032,6 +1157,7 @@ void combo_responder(GtkWidget *widget, gpointer data)
     break;
   case UndoType:
     break;
+  case PointerCursor:
   case ThirdButton:
   case MiddleButton:
   case FontName:
@@ -1343,6 +1469,10 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
    case DelayScrolling:
    case DragMove:
    case DrawGrips:
+     gtk_widget_set_sensitive (GripPixelSizeSpin,   state);
+     gtk_widget_set_sensitive (GripStrokeColorButt, state);
+     gtk_widget_set_sensitive (GripFillColorButt,   state);
+     break;
    case EmbedComponents:
    case EnableColorImaging:
      gtk_widget_set_sensitive (InvertImagesSwitch, state);
@@ -1371,17 +1501,24 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
    case NetDirection:
    case NotifyEvents:
    case ObjectClipping:
+   case PointerHScroll:
    case RipperRotation:
      break;
    case RipperType:
      gtk_widget_set_sensitive (RipperSymbolCombo, state);
      break;
    case RubberNets:
+     break;
    case ScrollBars:
-     gtk_widget_set_sensitive (DelayScrollingSwitch, state);
+     gtk_widget_set_sensitive (ScrollBarsVisibleSwitch, state);
+     gtk_widget_set_sensitive (DelayScrollingSwitch,    state);
      break;
    case SortLibrary:
+     break;
    case TextOriginMarker:
+     gtk_widget_set_sensitive (TextMarkerSizeSpin,  state);
+     gtk_widget_set_sensitive (TextMarkerColorButt, state);
+     break;
    case UndoViews:
    case WarpCursor:
    case ZoomPan:
@@ -1411,9 +1548,10 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   EdaConfig *cfg = eda_config_get_user_context ();
 
   char *tmpstr;
-
   extern char *x_color_get_name(int index);
+  const GdkColor* color;
   COLOR *cflag;
+
 
   /* variable pre-conditioning */
 
@@ -1440,6 +1578,21 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
     rc_options.display_color_map = FALSE;
     rc_options.display_outline_color_map = FALSE;
   }
+
+  color = eda_renderer_get_grips_stroke_color (w_current->renderer);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(GripStrokeColorButt),  color);
+
+  color = eda_renderer_get_grips_fill_color (w_current->renderer);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(GripFillColorButt),    color);
+
+  color = eda_renderer_get_net_endpoint_color (w_current->renderer);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(NetEndpointColorButt), color);
+
+  color = eda_renderer_get_text_marker_color (w_current->renderer);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(TextMarkerColorButt),  color);
+
+  color = eda_renderer_get_junction_color (w_current->renderer);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(JunctionColorButt),    color);
 
 /* Combo Boxes (7) */
 
@@ -1475,6 +1628,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetCombo ( DotGridMode,   w_current->dots_grid_mode);
   SetCombo ( ConsoleWindowType, console_window_type);
   SetCombo ( ThirdButton,   w_current->third_button);
+  SetCombo ( PointerCursor, w_current->drawing_pointer);
   SetCombo ( MiddleButton,  w_current->middle_button);
 
 #ifdef DEBUG
@@ -1496,8 +1650,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
   tmpstr = eda_config_get_string (cfg, "gschem", "default-filename", NULL);
-  //strcpy(rc_options.untitled_name, untitled_name);
-  //strcpy(rc_options.untitled_name, w_current->toplevel->untitled_name);
+
   //gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), rc_options.untitled_name);
   gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), tmpstr);
   g_free (tmpstr);
@@ -1535,11 +1688,14 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSwitch(NotifyEvents, w_current->raise_dialog_boxes);
   SetSwitch(ObjectClipping, w_current->toplevel->object_clipping);
 
+  SetSwitch(PointerHScroll, w_current->pointer_hscroll);
+
   SetSwitch(RipperRotation, w_current->bus_ripper_rotation);
   SetSwitch(RipperType, w_current->bus_ripper_type);
 
   SetSwitch(RubberNets, w_current->netconn_rubberband);
   SetSwitch(ScrollBars, w_current->scrollbars);
+  SetSwitch(ScrollBarsVisible, w_current->scrollbars_visible);
   SetSwitch(SortLibrary, w_current->sort_component_library);
   SetSwitch(TextOriginMarker, w_current->renderer->text_origin_marker);
   SetSwitch(UndoViews, w_current->undo_panzoom);
@@ -1606,6 +1762,8 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   SetSpin (AutoPlacementGrid, w_current->attribute_placement_grid);
   SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
   SetSpin (DotGridThreshold, w_current->dots_grid_fixed_threshold);
+  SetSpin (GripPixelSize, w_current->grip_pixel_size);
+  SetSpin (JunctionSize, w_current->renderer->junction_size);
   SetSpin (KeyboardPanGain, w_current->keyboardpan_gain);
   SetSpin (MeshGridThreshold, w_current->mesh_grid_threshold);
   SetSpin (MousePanGain, w_current->mousepan_gain);
@@ -1677,22 +1835,22 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
      VSECTION (GeneralTab_vbox, GeneralAutoOptions) /* GT Grp 1 Auto Options */
        HSECTION (GeneralAutoOptions_vbox, AutoOptionsRow1);   /* Grp 1 Row 1 */
            GTK_SWITCH (AutoOptionsRow1_hbox, AutoSave, 51, TRUE)
-           GTK_NUMERIC_SPIN (AutoOptionsRow1_hbox, AutoSaveInterval, 48, 180, 60, 3600)
+           GTK_NUMERIC_SPIN (AutoOptionsRow1_hbox, AutoSaveInterval, 33, 180, 60, 3600)
        HSECTION (GeneralAutoOptions_vbox, AutoOptionsRow2)    /* Grp 1 Row 2 */
-           GTK_SWITCH(AutoOptionsRow2_hbox, AutoLoad, 50, TRUE);
-           GTK_TEXT_ENTRY(AutoOptionsRow2_hbox, UntitledName, 48, DEFAULT_UNTITLED_NAME)
+           GTK_SWITCH(AutoOptionsRow2_hbox, AutoLoad, 7, TRUE);
+           GTK_TEXT_ENTRY(AutoOptionsRow2_hbox, UntitledName, 5, DEFAULT_UNTITLED_NAME)
      VPSECTION (GeneralTab_vbox, GeneralOptions, 0)  /* GT Grp 2 General Options */
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow1)     /* Grp 2 Row 1 */
            GTK_SWITCH(GeneralOptionsRow1_hbox, FilePreview, 18, TRUE);
-           GTK_NEW_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 41);
+           GTK_NEW_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 9);
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow2)     /* Grp 2 Row 2 */
-           GTK_SWITCH(GeneralOptionsRow2_hbox, EnableColorImaging, 8, FALSE);
-           GTK_SWITCH(GeneralOptionsRow2_hbox, FriendlyColorMap, 120, TRUE);
+           GTK_SWITCH(GeneralOptionsRow2_hbox, EnableColorImaging, 7, FALSE);
+           GTK_SWITCH(GeneralOptionsRow2_hbox, FriendlyColorMap, 114, TRUE);
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow3)     /* Grp 2 Row 3 */
            GTK_SWITCH(GeneralOptionsRow3_hbox, InvertImages, 8, TRUE);
-           GTK_SWITCH(GeneralOptionsRow3_hbox, FriendlyOutlineMap, 108, TRUE);
+           GTK_SWITCH(GeneralOptionsRow3_hbox, FriendlyOutlineMap, 101, TRUE);
       HSECTION (GeneralOptions_vbox, GeneralOptionsRow4)     /* Grp 2 Row 4 */
-           GTK_NEW_COMBO (GeneralOptionsRow4_hbox, ColorMapScheme, 150, 9);
+           GTK_NEW_COMBO (GeneralOptionsRow4_hbox, ColorMapScheme, 150, 18);
               GTK_LOAD_COMBO (ColorMapScheme, "dark");
               GTK_LOAD_COMBO (ColorMapScheme, "light");
               GTK_LOAD_COMBO (ColorMapScheme, "BW");
@@ -1705,9 +1863,9 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
          GTK_NEW_COMBO (LogOptions_vbox, ConsoleWindowType, 150, 5);
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_DECORATED)
            GTK_LOAD_COMBO (ConsoleWindowType, RC_STR_CONWIN_TRANSIENT)
-         GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 50, Window, TTY, Both, Window);
+         GTK_V_BULB_TRIAD (LoggingOptions_hbox, LogDestiny, 10, Window, TTY, Both, Window);
      HXYP_SEPERATOR (GeneralTab_vbox, Grp4, 10);
-     CSECTION_OPTIONS(GeneralTab_vbox, Undo, 70, 10, H); /* was GT Grp 4 Undo Related */
+     CSECTION_OPTIONS(GeneralTab_vbox, Undo, 63, 5, H); /* was GT Grp 4 Undo Related */
        VSECTION (UndoOptions_hbox, UndoToggleOptions);
          GTK_SWITCH(UndoToggleOptions_vbox, EnableUndo, 0, TRUE);
          GTK_SWITCH(UndoToggleOptions_vbox, UndoViews, 0, FALSE);
@@ -1726,21 +1884,26 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 
    GTK_START_TAB (Edit);
      VSECTION (EditTab_vbox, EditOptions) /* ET Grp 1 Auto Options */
-       HSECTION (EditOptions_vbox, EditOptionsRow1)  /* Grp 1 Row 1 */
-         GTK_SWITCH(EditOptionsRow1_hbox, DrawGrips, 42, TRUE);
-         GTK_NUMERIC_SPIN (EditOptionsRow1_hbox, SelectPixels, 91, 10, 0, 20);
-       HSECTION (EditOptions_vbox, EditOptionsRow2)  /* Grp 1 Row 2 */
-         GTK_SWITCH(EditOptionsRow2_hbox, FeedbackMode, 9, TRUE);
-         GTK_NUMERIC_SPIN (EditOptionsRow2_hbox, KeyboardPanGain, 124, 20, 0, 100);
-       HSECTION (EditOptions_vbox, EditOptionsRow3)   /* Grp 1 Row 3 */
-         GTK_SWITCH(EditOptionsRow3_hbox, ContinuePlace, 0, TRUE);
-         GTK_NUMERIC_SPIN (EditOptionsRow3_hbox, SnapSize, 175, 100, MIN_SNAP_SIZE, MAX_SNAP_SIZE);
+       GEDA_FRAME (EditOptions_vbox, Grips, -1, 100, 0.05, 0.2, 10)
+         VSECTION (Grips_hbox, GripOptions)  /* Grp 1 Row 1 */
+           HSECTION ( GripOptions_vbox, GripOptionsRow1)  /* Grp 1 Row 3 */
+             GTK_SWITCH(GripOptionsRow1_hbox, DrawGrips, 34, TRUE);
+             GTK_NUMERIC_SPIN (GripOptionsRow1_hbox, GripPixelSize, 45, 10, MIN_GRIP_PIXELS, MAX_GRIP_PIXELS);
+           HSECTION (GripOptions_vbox, GripOptionsRow2)  /* Grp 1 Row 2 */
+             GEDA_COLOR_BUTTON (GripOptionsRow2_hbox, GripStrokeColor, 34)
+             GEDA_COLOR_BUTTON (GripOptionsRow2_hbox, GripFillColor, 24)
+       HSECTION (EditOptions_vbox, EditOptionsRow3)  /* Grp 1 Row 3 */
+         GTK_SWITCH(EditOptionsRow3_hbox, FeedbackMode, 12, TRUE);
+         GTK_NUMERIC_SPIN (EditOptionsRow3_hbox, KeyboardPanGain, 13, 20, MIN_KEYBOARD_GAIN, MAX_KEYBOARD_GAIN);
        HSECTION (EditOptions_vbox, EditOptionsRow4)   /* Grp 1 Row 4 */
-         GTK_SWITCH(EditOptionsRow4_hbox, ForceBoundingBox, 20, TRUE);
-         GTK_SWITCH(EditOptionsRow4_hbox, NotifyEvents, 115, TRUE);
-       HSECTION (EditOptions_vbox, EditOptionsRow5)    /* Grp 1 Row 4 */
-         GTK_SWITCH(EditOptionsRow5_hbox, WarpCursor, 30, FALSE);
-         GTK_SWITCH(EditOptionsRow5_hbox, ObjectClipping, 82, TRUE);
+         GTK_SWITCH(EditOptionsRow4_hbox, ContinuePlace, 2, TRUE);
+         GTK_NUMERIC_SPIN (EditOptionsRow4_hbox, SnapSize, 22, 100, MIN_SNAP_SIZE, MAX_SNAP_SIZE);
+       HSECTION (EditOptions_vbox, EditOptionsRow5)   /* Grp 1 Row 5 */
+         GTK_SWITCH(EditOptionsRow5_hbox, ForceBoundingBox, 22, TRUE);
+         GTK_NUMERIC_SPIN (EditOptionsRow5_hbox, SelectPixels, 15, 10, 0, 20);
+       HSECTION (EditOptions_vbox, EditOptionsRow6)    /* Grp 1 Row 6 */
+         GTK_SWITCH(EditOptionsRow6_hbox, NotifyEvents, 12, TRUE);
+         GTK_SWITCH(EditOptionsRow6_hbox, ObjectClipping, 0, TRUE);
      HYP_SEPERATOR (EditTab_vbox, Grp2, 10);
      CSECTION_OPTIONS(EditTab_vbox, Nets, 20, DIALOG_V_SPACING, H); /*ET Grp 2 Edit Nets */
        VSECTION(NetsOptions_hbox, NetsGroup1) /* ET Grp 1 Net Selection Options */
@@ -1759,28 +1922,35 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
    GTK_START_TAB (Pointer);
      VSECTION(PointerTab_vbox, PointerOptions) /* PT Solo Grp 1 */
        HSECTION (PointerOptions_vbox, PointerRow1)    /* Row 1 */
-         GTK_SWITCH(PointerRow1_hbox, ZoomPan, 62, FALSE);
-         GTK_NUMERIC_SPIN (PointerRow1_hbox, ZoomGain, 72, 20, 0, 100);
+         GTK_SWITCH(PointerRow1_hbox, ZoomPan, 18, FALSE);
+         GTK_NUMERIC_SPIN (PointerRow1_hbox, ZoomGain, 67, 20, 0, 80);
        HSECTION (PointerOptions_vbox, PointerRow2)    /* Row 1 */
-         GTK_SWITCH(PointerRow2_hbox, FastMousePan, 41, FALSE);
-         GTK_NUMERIC_SPIN (PointerRow2_hbox, MousePanGain, 38, 1, 1, 30);
+         GTK_SWITCH(PointerRow2_hbox, FastMousePan, 18, FALSE);
+         GTK_NUMERIC_SPIN (PointerRow2_hbox, MousePanGain, 22, 1, 1, 30);
        HSECTION (PointerOptions_vbox, PointerRow3)    /* Row 3 */
-         GTK_SWITCH(PointerRow3_hbox, DragMove, 54, TRUE);
-         GTK_NUMERIC_SPIN (PointerRow3_hbox, ScrollPanSteps, 0, 8, 0, 100);
+         GTK_SWITCH(PointerRow3_hbox, DragMove, 18, TRUE);
+         GTK_NUMERIC_SPIN (PointerRow3_hbox, ScrollPanSteps, 11, 8, 0, 80);
        HSECTION (PointerOptions_vbox, PointerRow4)    /* Row 4 */
-         GTK_SWITCH(PointerRow4_hbox, ClassicWheel, 8, TRUE);
-         GTK_NEW_COMBO (PointerRow4_hbox, ThirdButton, 150, 20);
-         gtk_widget_set_size_request (ThirdButtonCombo, 150, 31);
-         GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
-         GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
+         GTK_SWITCH(PointerRow4_hbox, ClassicWheel, 40, TRUE);
+         GTK_NEW_COMBO (PointerRow4_hbox, PointerCursor,  150, 13);
+           LOAD_COMBO_STR( PointerCursor, CursorStrings );
+         gtk_widget_set_size_request (PointerCursorCombo, 150, 31);
        HSECTION (PointerOptions_vbox, PointerRow5)    /* Row 4 */
-         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton,  150, 250);
-         gtk_widget_set_size_request (MiddleButtonCombo, 150, 31);
+         GTK_SWITCH(PointerRow5_hbox, PointerHScroll, 8, FALSE);
+         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton,   150, 12);
+         gtk_widget_set_size_request (MiddleButtonCombo,  150, 31);
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_STROKE)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_REPEAT)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_ACTION)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPAN)
+       HSECTION (PointerOptions_vbox, PointerRow6)    /* Row 4 */
+         GTK_SWITCH(PointerRow6_hbox, WarpCursor, 30, FALSE);
+         GTK_NEW_COMBO (PointerRow6_hbox, ThirdButton,  150, 0);
+         gtk_widget_set_size_request (ThirdButtonCombo, 150, 31);
+         GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
+         GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
      HXYP_SEPERATOR (PointerTab_vbox, End, 10);
+
    GTK_END_TAB(Pointer);
   } /*** END Pointer TAB Contents ***/
 
@@ -1793,20 +1963,20 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
      HD_SEPERATOR (WindowTab_vbox, Grp2);
        HPSECTION(WindowTab_vbox, GridOptions, DIALOG_V_SPACING) /* WT Row 2 */
          GTK_V_BULB_TRIAD( GridOptions_hbox, GridMode, 0, None, Dots, Mesh, Mesh);
-         VPSECTION(GridOptions_hbox, GridDotOptions, 60) /* WT Row 2 Grp 2 Dot Grid Options */
+         VPSECTION(GridOptions_hbox, GridDotOptions, 50) /* WT Row 2 Grp 2 Dot Grid Options */
            GTK_NEW_COMBO (GridDotOptions_vbox, DotGridMode, 150, DIALOG_V_SPACING);
            GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE)
            GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED)
            GTK_NUMERIC_SPIN (GridDotOptions_vbox, DotGridThreshold, DIALOG_V_SPACING, DEFAULT_GRID_DOT_SIZE, MIN_GRID_DOT_SIZE, MAX_GRID_DOT_THRESHOLD);
      HD_SEPERATOR (WindowTab_vbox, Grp3);
        HSECTION(WindowTab_vbox, MeshGridSizeOptions) /* WT Row 3 */
-         GTK_V_BULB_TRIAD (MeshGridSizeOptions_hbox, GridDotSize, 0, One, Two, Three, One);
-         GTK_NUMERIC_SPIN (MeshGridSizeOptions_hbox, MeshGridThreshold, 105, DEFAULT_GRID_MESH_THRESHOLD, MIN_GRID_MESH_THRESHOLD, MAX_GRID_MESH_THRESHOLD);
+         GTK_V_BULB_TRIAD (MeshGridSizeOptions_hbox, GridDotSize, 8, One, Two, Three, One);
+         GTK_NUMERIC_SPIN (MeshGridSizeOptions_hbox, MeshGridThreshold, 0, DEFAULT_GRID_MESH_THRESHOLD, MIN_GRID_MESH_THRESHOLD, MAX_GRID_MESH_THRESHOLD);
      HD_SEPERATOR (WindowTab_vbox, Grp4);
-       HSECTION(WindowTab_vbox, WindowScrollOptions) /* WT Grp 4  */
-         GTK_SWITCH(WindowScrollOptions_hbox, ScrollBars, 35, TRUE);
-         GTK_SWITCH(WindowScrollOptions_hbox, DelayScrolling, 77, FALSE);
-     HD_SEPERATOR (WindowTab_vbox, End);
+       GEDA_FRAME (WindowTab_vbox, Scrolling, -1, 58, 0.05, 0.2, 10)
+         GTK_SWITCH(Scrolling_hbox, ScrollBars,        DIALOG_H_SPACING + 10, TRUE);
+         GTK_SWITCH(Scrolling_hbox, ScrollBarsVisible, DIALOG_H_SPACING + 10, TRUE);
+         GTK_SWITCH(Scrolling_hbox, DelayScrolling,    DIALOG_H_SPACING + 10, FALSE);
    GTK_END_TAB(Window);
   } /*** END Window TAB Contents ***/
 
@@ -1815,12 +1985,17 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
    GTK_START_TAB (Text);
      VSECTION(TextTab_vbox, TextOptionsGrp1); /* TT Grp 1 Text Options */
        HSECTION (TextOptionsGrp1_vbox, TextOptionsRow1)   /* TT Grp 1 Row 1 Text Styles */
-         GTK_NUMERIC_SPIN (TextOptionsRow1_hbox, TextSize, DIALOG_V_SPACING, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
+         GTK_NUMERIC_SPIN (TextOptionsRow1_hbox, TextSize, 9, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
          GTK_NEW_COMBO (TextOptionsRow1_hbox, FontName, 160, DIALOG_V_SPACING);
-
-       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextZoomFactor, DIALOG_V_SPACING, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
-       GTK_NUMERIC_SPIN (TextOptionsGrp1_vbox, TextMarkerSize, DIALOG_V_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
-       GTK_SWITCH(TextOptionsGrp1_vbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
+       HSECTION (TextOptionsGrp1_vbox, TextOptionsRow2)   /* TT Grp 1 Row 1 Text Styles */
+         GTK_NUMERIC_SPIN (TextOptionsRow2_hbox, TextZoomFactor, 9, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
+       GEDA_FRAME (TextOptionsGrp1_vbox, Markers, -1, 96, 0.3, 0.2, DIALOG_H_SPACING)
+         VSECTION (Markers_hbox, MarkerOptions)  /* Grp 1 Row 1 */
+           HSECTION ( MarkerOptions_vbox, MarkerOptionsRow3)  /* Grp 1 Row 3 */
+             GTK_SWITCH(MarkerOptionsRow3_hbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
+           HSECTION (MarkerOptions_vbox, MarkerOptionsRow4)  /* Grp 1 Row 2 */
+             GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, DIALOG_H_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
+             GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, 0)
      HD_SEPERATOR (TextTab_vbox, Grp2);
      HSECTION (TextTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
        GTK_V_BULB_TRIAD(CapsStyleOptions_hbox, CapsStyle, DIALOG_H_SPACING, Lower, Upper, Both, Both);
@@ -1856,14 +2031,19 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
          GTK_NUMERIC_SPIN (PinWidths_vbox, ThickPinWidth, DIALOG_V_SPACING +5, DEFAULT_THICK_PIN_WIDTH, 0, 500);
      HD_SEPERATOR (StylesTab_vbox, Grp3);      /* Ripper Options */
        HSECTION(StylesTab_vbox, StylesRow3);     /* ST Grp 2 Lines and Pins */
-         GTK_SWITCH(StylesRow3_hbox, RipperType, 88, FALSE);
-         GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 150, 0);
-         gtk_widget_set_size_request (RipperSymbolCombo, 150, 31);
+         GTK_SWITCH(StylesRow3_hbox, RipperType, 30, FALSE);
+         GTK_NEW_COMBO (StylesRow3_hbox, RipperSymbol, 0, 0);
+         gtk_widget_set_size_request (RipperSymbolCombo, 180, 31);
          GTK_LOAD_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
          GTK_LOAD_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)
        HSECTION(StylesTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
-         GTK_SWITCH(StylesRow4_hbox, RipperRotation, 44, FALSE);
-         GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 66, 200, 0, 500);
+         GTK_SWITCH(StylesRow4_hbox, RipperRotation, 18, FALSE);
+         GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 30, 200, 0, 500);
+     HD_SEPERATOR (StylesTab_vbox, Grp4);        /* Junction Options */
+       GEDA_FRAME (StylesTab_vbox, Junctions, -1, 58, 0.05, 0.2, 10)
+         GTK_NUMERIC_SPIN (Junctions_hbox, JunctionSize, 12, DEFAULT_JUNCTION_SIZE, MIN_JUNCTION_SIZE, MAX_JUNCTION_SIZE);
+         GEDA_COLOR_BUTTON (Junctions_hbox, JunctionColor, DIALOG_H_SPACING)
+         GEDA_COLOR_BUTTON (Junctions_hbox, NetEndpointColor, DIALOG_H_SPACING)
      HD_SEPERATOR (StylesTab_vbox, End);
 
    GTK_END_TAB(Styles);
@@ -1950,6 +2130,9 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 }
 /** @} END Group X_Settings_Dialog */
 
+int x_settings_lookup_cursor(int offset) {
+  return DrawingCursorsInt[offset];
+}
 /* \defgroup X_Settings_Dialog_Unload_Variables
  *  @{
  */
@@ -1962,8 +2145,9 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
   TOPLEVEL *toplevel = w_current->toplevel;
-  int tmp_int;
-  char *tmpstr;
+  int       tmp_int;
+  char     *tmpstr;
+  GdkColor  color;
 
   EdaConfig *cfg = eda_config_get_user_context ();
 
@@ -1981,13 +2165,36 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
 
   eda_config_set_string (cfg, "gschem", "default-filename", tmpstr);
 
-/* Combo Boxes (7) */
+/* The Color Buttons */
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(GripStrokeColorButt), &color);
+  eda_renderer_set_grips_stroke_color (w_current->renderer, &color);
+
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(GripFillColorButt), &color);
+  eda_renderer_set_grips_fill_color (w_current->renderer, &color);
+
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(NetEndpointColorButt), &color);
+  eda_renderer_set_net_endpoint_color (w_current->renderer, &color);
+
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(TextMarkerColorButt), &color);
+  eda_renderer_set_text_marker_color (w_current->renderer, &color);
+
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(JunctionColorButt), &color);
+  eda_renderer_set_junction_color (w_current->renderer, &color);
+
+/* Combo Boxes (10) */
 
   w_current->dots_grid_mode = gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo));
   console_window_type       = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
   w_current->undo_type      = gtk_combo_box_get_active (GTK_COMBO_BOX (UndoTypeCombo));
   w_current->middle_button  = gtk_combo_box_get_active (GTK_COMBO_BOX (MiddleButtonCombo));
   w_current->third_button   = gtk_combo_box_get_active (GTK_COMBO_BOX (ThirdButtonCombo));
+  tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (PointerCursorCombo));
+
+  if (tmp_int != w_current->drawing_pointer) {
+    int pointer_id = DrawingCursorsInt[tmp_int];   /* get the cursor id from our table */
+    w_current->drawing_pointer = tmp_int;      /* Save the index with table offset factor*/
+    x_window_set_cursor(w_current, pointer_id);
+  }
 
   tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (ColorMapSchemeCombo));
   if (tmp_int != rc_options.color_scheme_index) { /* if user changed this settings */
@@ -2010,25 +2217,6 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
     }
   } /* else do nothing because the map did not change */
 
-/*
-  tmp_int = gtk_combo_box_get_active (GTK_COMBO_BOX (TitleBlockCombo));
-
-  if (tmp_int != rc_options.titleblock_index) {
-    if (tmp_int != 0 ) { // and if was not set to None
-      // Next line gets a pointer to a dynamic char array - Must be freed! 
-      tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (TitleBlockCombo));
-      strcpy(rc_options.titleblock_fname, tmpstr); // save the filename
-      strcat(rc_options.titleblock_fname, SYMBOL_FILE_DOT_SUFFIX);
-      g_free(tmpstr);
-      change_default_titleblock();
-    }
-    else {
-      strcpy(rc_options.titleblock_fname, ""); // write empty quote
-      scm_eval_string(scm_from_utf8_string("(define default-titleblock \"\")"));
-    }
-    rc_options.titleblock_index = -1; // set flag to indicate new default_titleblock
-  }
-*/
   tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (TitleBlockCombo));
   eda_config_set_string (cfg, "gschem", "default-titleblock", tmpstr);
 
@@ -2075,9 +2263,17 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
    toplevel->object_clipping            = GET_SWITCH_STATE (ObjectClippingSwitch);
   w_current->raise_dialog_boxes         = GET_SWITCH_STATE (NotifyEventsSwitch);
   w_current->scrollbars                 = GET_SWITCH_STATE (ScrollBarsSwitch);
+
+             tmp_int                   = GET_SWITCH_STATE (ScrollBarsVisibleSwitch);
+  if (tmp_int != w_current->scrollbars_visible) {
+    w_current->scrollbars_visible      =  tmp_int;
+    g_object_set (w_current->v_scrollbar, "visible", tmp_int, NULL);
+    g_object_set (w_current->h_scrollbar, "visible", tmp_int, NULL);
+  }
   w_current->scrollbar_update           = GET_SWITCH_STATE (DelayScrollingSwitch);
   w_current->scroll_wheel               = GET_SWITCH_STATE (ClassicWheelSwitch);
   w_current->sort_component_library     = GET_SWITCH_STATE (SortLibrarySwitch);
+  w_current->pointer_hscroll            = GET_SWITCH_STATE (PointerHScrollSwitch);
   w_current->renderer->text_origin_marker = GET_SWITCH_STATE (TextOriginMarkerSwitch);
   w_current->undo_control               = GET_SWITCH_STATE (EnableUndoSwitch);
   w_current->undo_panzoom               = GET_SWITCH_STATE (UndoViewsSwitch);
@@ -2093,6 +2289,7 @@ void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
    toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
   w_current->bus_ripper_size            =GET_SPIN_IVALUE (RipperSizeSpin);
   w_current->dots_grid_fixed_threshold  =GET_SPIN_IVALUE (DotGridThresholdSpin);
+  w_current->grip_pixel_size            =GET_SPIN_IVALUE (GripPixelSizeSpin);
   w_current->keyboardpan_gain           =GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        =GET_SPIN_IVALUE (MeshGridThresholdSpin);
   w_current->mousepan_gain              =GET_SPIN_IVALUE (MousePanGainSpin);

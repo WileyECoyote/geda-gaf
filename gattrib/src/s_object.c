@@ -357,7 +357,7 @@ s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
                         LOWER_LEFT, 0, /* zero is angle */
                         text_string, DEFAULT_TEXT_SIZE,
                         visibility, show_name_value);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
+  s_page_append_object(toplevel, toplevel->page_current, new_obj);
 
   /* now toplevel->page_current->object_tail contains new text item */
 
@@ -392,7 +392,7 @@ void
 s_object_delete_text_object_in_object (TOPLEVEL *toplevel,
                                        OBJECT * text_object)
 {
-  s_page_remove (toplevel, toplevel->page_current, text_object);
+  s_page_remove_object (toplevel, toplevel->page_current, text_object);
   s_delete_object (toplevel, text_object);
   toplevel->page_current->CHANGED = 1;
 }

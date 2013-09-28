@@ -95,8 +95,8 @@ int inside_region(int xmin, int ymin, int xmax, int ymax, int x, int y)
  *        If a max value is not required, then it would simplify the code.
  */
 void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
-			OBJECT_END end, OBJECT_TYPE type,
-			int width, int length, int space)
+                        OBJECT_END end, OBJECT_TYPE type,
+                        int width, int length, int space)
 {
   if(o_current == NULL) {
     return;
@@ -127,7 +127,7 @@ void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
     break;
   }
 
-  o_emit_pre_change_notify (toplevel, o_current);
+  /* o_emit_pre_change_notify (toplevel, o_current); */
 
   o_current->line_width = width;
   o_current->line_end   = end;
@@ -138,7 +138,7 @@ void o_set_line_options(TOPLEVEL *toplevel, OBJECT *o_current,
 
   /* Recalculate the object's bounding box */
   o_current->w_bounds_valid_for = NULL;
-  o_emit_change_notify (toplevel, o_current);
+  /*  o_emit_change_notify (toplevel, o_current); */
 
 }
 
@@ -194,15 +194,15 @@ bool o_get_line_options(OBJECT *object,
  *
  */
 void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current,
-			OBJECT_FILLING type, int width,
-			int pitch1, int angle1,
-			int pitch2, int angle2)
+                        OBJECT_FILLING type, int width,
+                        int pitch1, int angle1,
+                        int pitch2, int angle2)
 {
   if(o_current == NULL) {
     return;
   }
 
-  o_emit_pre_change_notify (toplevel, o_current);
+  /* o_emit_pre_change_notify (toplevel, o_current); */
 
   o_current->fill_type = type;
   o_current->fill_width = width;
@@ -213,7 +213,7 @@ void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current,
   o_current->fill_pitch2 = pitch2;
   o_current->fill_angle2 = angle2;
 
-  o_emit_change_notify (toplevel, o_current);
+  /*  o_emit_change_notify (toplevel, o_current); */
 }
 
 /*! \brief get #OBJECT's fill properties.
@@ -231,10 +231,10 @@ void o_set_fill_options(TOPLEVEL *toplevel, OBJECT *o_current,
  *  \return TRUE on succes, FALSE otherwise
  *
  */
-gboolean o_get_fill_options(OBJECT *object,
-                            OBJECT_FILLING *type, int *width,
-                            int *pitch1, int *angle1,
-                            int *pitch2, int *angle2)
+bool o_get_fill_options(OBJECT *object,
+                        OBJECT_FILLING *type, int *width,
+                        int *pitch1, int *angle1,
+                        int *pitch2, int *angle2)
 {
   if (object->type != OBJ_BOX
       && object->type != OBJ_CIRCLE

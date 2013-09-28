@@ -11,7 +11,8 @@ gschem/src/g_util.c
 gschem/src/g_window.c
 gschem/src/globals.c
 gschem/src/gschem.c
-gschem/src/gschem_dialog.c
+gschem/src/gschemhotkeystore.c
+gschem/src/gschem_accel_label.c
 gschem/src/i_basic.c
 gschem/src/i_callbacks.c
 gschem/src/i_vars.c
@@ -45,12 +46,12 @@ gschem/src/x_basic.c
 gschem/src/x_clipboard.c
 gschem/src/x_color.c
 gschem/src/x_compselect.c
-gschem/src/x_console.c
 gschem/src/x_dialog.c
 gschem/src/x_event.c
 gschem/src/x_fileselect.c
 gschem/src/x_grid.c
 gschem/src/x_image.c
+gschem/src/x_log.c
 gschem/src/x_menus.c
 gschem/src/x_misc.c
 gschem/src/x_multiattrib.c
@@ -58,16 +59,16 @@ gschem/src/x_pagesel.c
 gschem/src/x_preview.c
 gschem/src/x_print.c
 gschem/src/x_rc.c
-gschem/src/x_settings.c
-gschem/src/x_settings_dialog.c
+gschem/src/x_script.c
 gschem/src/x_stroke.c
-gschem/src/x_toolbars.c
 gschem/src/x_window.c
 
 gschem/data/geda-gschem.desktop.in
 
 gschem/lib/system-gschemrc.scm
 
+gschem/scheme/gschem/action.scm
+gschem/scheme/gschem/builtins.scm
 gschem/scheme/gschem/deprecated.scm
 gschem/scheme/gschem/gschemdoc.scm
 gschem/scheme/gschem/keymap.scm

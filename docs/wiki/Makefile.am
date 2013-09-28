@@ -17,6 +17,7 @@ install-data-local:
 	  $(MKDIR_P) $$d; \
 	  list=`(cd $(srcdir)/$$dir && find . -maxdepth 1 -type f -print) | sed -e's:^\./::' | grep -v '\(Makefile\|\.gitignore\)'`; \
 	  if test -n "$$list"; then \
+	    echo " ( cd $(srcdir)/$$dir && $(INSTALL_DATA)" $$list "'$$d' )"; \
 	    (cd $(srcdir)/$$dir && $(INSTALL_DATA) $$list "$$d") || exit $$?; \
 	  fi; \
 	done

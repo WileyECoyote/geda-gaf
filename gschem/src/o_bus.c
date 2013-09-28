@@ -27,33 +27,6 @@
 #include <dmalloc.h>
 #endif
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void o_bus_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
-{
-  TOPLEVEL *toplevel = w_current->toplevel;
-  int x1, y1, x2, y2;
-  int min_x, min_y, max_x, max_y;
-  int bloat = 0;
-
-  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &x1, &y1);
-  WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
-
-  if (toplevel->bus_style == STYLE_THICK ) {
-    bloat = SCREENabs (w_current, toplevel->thick_bus_width) / 2;
-  }
-
-  min_x = min (x1, x2) - bloat;
-  max_x = max (x1, x2) + bloat;
-  min_y = min (y1, y2) - bloat;
-  max_y = max (y1, y2) + bloat;
-
-  o_invalidate_rect (w_current, min_x, min_y, max_x, max_y);
-}
-
 /*! \brief set the start point of a new bus
  *  \par Function Description
  *  This function sets the start point (<B>w_x</B>,<B>w_y</B>) of a new bus
@@ -118,7 +91,7 @@ int o_bus_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
                       w_current->second_wx, w_current->second_wy, 0);
 
   new_obj->line_width =  o_style_get_bus_width(toplevel);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
+  s_page_append_object (toplevel, toplevel->page_current, new_obj);
 
   /* connect the new bus to the other busses */
   prev_conn_objects = s_conn_return_others (prev_conn_objects, new_obj);
@@ -137,10 +110,9 @@ int o_bus_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 
 /*! \brief draw the bus rubber when creating a bus
  *  \par Function Description
- *  This function draws
- *  a bus rubber from the point (<B>first_wx</B>,<B>first_wy</B>) from  
- *  the <B>GSCHEM_TOPLEVEL</B> structure to the input parameter
- *  (<B>w_x</B>, <B>w_y</B>).
+ *  This function draws a bus rubber from the point
+ *  (<B>first_wx</B>,<B>first_wy</B>) from the <B>GSCHEM_TOPLEVEL
+ *  </B> structure to the input parameter (<B>w_x</B>, <B>w_y</B>).
  *
  *  The function stores creates an non-orthogonal bus segment if the 
  *  CONTROLKEY is pressed. The coordinates of the second rubberbus point
@@ -180,6 +152,33 @@ void o_bus_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 
   o_bus_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void o_bus_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+{
+  TOPLEVEL *toplevel = w_current->toplevel;
+  int x1, y1, x2, y2;
+  int min_x, min_y, max_x, max_y;
+  int bloat = 0;
+
+  WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &x1, &y1);
+  WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
+
+  if (toplevel->bus_style == STYLE_THICK ) {
+    bloat = SCREENabs (w_current, toplevel->thick_bus_width) / 2;
+  }
+
+  min_x = min (x1, x2) - bloat;
+  max_x = max (x1, x2) + bloat;
+  min_y = min (y1, y2) - bloat;
+  max_y = max (y1, y2) + bloat;
+
+  o_invalidate_rect (w_current, min_x, min_y, max_x, max_y);
 }
 
 /*! \brief draw a rubberbus segment

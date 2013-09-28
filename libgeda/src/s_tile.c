@@ -135,7 +135,7 @@ static void s_tile_add_line_object (TOPLEVEL *toplevel, OBJECT *object)
   if (p_current == NULL) {
     return;
   }
-  
+
   x_size = (double) toplevel->init_right / (double) MAX_TILES_X;
   y_size = (double) toplevel->init_bottom / (double) MAX_TILES_Y;
 
@@ -220,8 +220,7 @@ static void s_tile_add_line_object (TOPLEVEL *toplevel, OBJECT *object)
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
-          /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y &&
-            v >= 0 && w >= 0);*/
+          /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
           t_current = &p_current->world_tiles[v][w];
           found = g_list_find(t_current->objects, object);
 
@@ -237,8 +236,7 @@ static void s_tile_add_line_object (TOPLEVEL *toplevel, OBJECT *object)
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
-          /* g_assert(v < MAX_TILES_X && w < MAX_TILES_Y &&
-             v >= 0 && w >= 0);*/
+          /* g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
           t_current = &p_current->world_tiles[v][w];
           found = g_list_find(t_current->objects, object);
 
@@ -255,8 +253,7 @@ static void s_tile_add_line_object (TOPLEVEL *toplevel, OBJECT *object)
           if (v < 0 || w < 0 || v > MAX_TILES_X-1 || w > MAX_TILES_Y-1) {
             return;
           }
-          /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y &&
-            v >= 0 && w >= 0);*/
+          /*g_assert(v < MAX_TILES_X && w < MAX_TILES_Y && v >= 0 && w >= 0);*/
           t_current = &p_current->world_tiles[v][w];
           found = g_list_find(t_current->objects, object);
 

@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -28,7 +29,6 @@
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
 
 typedef void (*DRAW_FUNC) (TOPLEVEL *toplevel, FILE *fp, PATH *path,
                            int line_width, int length, int space,
@@ -51,7 +51,8 @@ typedef void (*FILL_FUNC) (TOPLEVEL *toplevel, FILE *fp, PATH *path,
  *  The <B>type</B> parameter must be equal to #OBJ_PATH.
  *  The <B>color</B> parameter corresponds to the color the path
  *  will be drawn with.
- *
+ *  The path shape is created by parsing \a path_string.
+ * 
  *  The #OBJECT structure is allocated with the
  *  #s_basic_init_object() function. The structure describing
  *  the path is allocated and initialized with the parameters given

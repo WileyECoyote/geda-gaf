@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file o_box_basic.c
@@ -57,9 +58,8 @@
  *  \param [in]     y2           Lower y coordinate.
  *  \return The new OBJECT
  */
-OBJECT *o_box_new(TOPLEVEL *toplevel,
-		  char type, int color,
-		  int x1, int y1, int x2, int y2)
+OBJECT *o_box_new(TOPLEVEL *toplevel, char type, int color,
+                  int x1, int y1, int x2, int y2)
 {
   OBJECT *new_node;
   BOX *box;
@@ -184,8 +184,8 @@ o_box_modify_all (TOPLEVEL *toplevel, OBJECT *object,
  *    <DT>*</DT><DD>BOX_LOWER_RIGHT
  *  </DL>
  */
-void o_box_modify(TOPLEVEL *toplevel, OBJECT *object,
-		  int x, int y, int whichone)
+void
+o_box_modify(TOPLEVEL *toplevel, OBJECT *object, int x, int y, int whichone)
 {
   int tmp;
 

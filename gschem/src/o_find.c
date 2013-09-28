@@ -190,7 +190,7 @@ bool o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
  *  \par Function Description
  *
  */
-bool
+OBJECT *
 o_find_selected_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -202,8 +202,8 @@ o_find_selected_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
     OBJECT *o_current = s_current->data;
 
     if (is_object_hit (w_current, o_current, w_x, w_y, w_slack))
-      return TRUE;
+      return o_current;
   }
 
-  return FALSE;
+  return NULL;
 }

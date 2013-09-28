@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file o_picture.c
@@ -59,10 +60,10 @@ OBJECT *o_picture_read (TOPLEVEL *toplevel,
   int width, height, angle;
   int mirrored, embedded;
   int num_conv;
-  gchar type;
-  const gchar *line = NULL;
-  gchar *filename;
-  gchar *file_content = NULL;
+  char type;
+  const char *line = NULL;
+  char *filename;
+  char *file_content = NULL;
   guint file_length = 0;
 
   num_conv = sscanf(first_line, "%c %d %d %d %d %d %d %d\n",
@@ -180,10 +181,10 @@ OBJECT *o_picture_read (TOPLEVEL *toplevel,
 char *o_picture_save(TOPLEVEL *toplevel, OBJECT *object)
 {
   int width, height, x1, y1;
-  gchar *encoded_picture=NULL;
-  gchar *out=NULL;
+  char *encoded_picture=NULL;
+  char *out=NULL;
   guint encoded_picture_length;
-  const gchar *filename = NULL;
+  const char *filename = NULL;
 
   /* calculate the width and height of the box */
   width  = abs(object->picture->lower_x - object->picture->upper_x); 
@@ -271,8 +272,8 @@ char *o_picture_save(TOPLEVEL *toplevel, OBJECT *object)
  *  \return A pointer to a new picture #OBJECT.
  */
 OBJECT *o_picture_new (TOPLEVEL *toplevel,
-                       const gchar *file_content, gsize file_length,
-                       const gchar *filename,
+                       const char *file_content, gsize file_length,
+                       const char *filename,
                        char type, int x1, int y1, int x2, int y2, int angle,
                        int mirrored, int embedded)
 {
@@ -363,7 +364,7 @@ void world_get_picture_bounds(TOPLEVEL *toplevel, OBJECT *object,
  *  \param [in] object   The object to get the position.
  *  \return TRUE if successfully determined the position, FALSE otherwise
  */
-gboolean o_picture_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
+bool o_picture_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
                               OBJECT *object)
 {
   *x = min(object->picture->lower_x, object->picture->upper_x);
@@ -428,7 +429,7 @@ o_picture_get_ratio (TOPLEVEL *toplevel, OBJECT *object)
  *  </DL>
  */
 void o_picture_modify(TOPLEVEL *toplevel, OBJECT *object,
-		      int x, int y, int whichone)
+                      int x, int y, int whichone)
 {
   int tmp;
   double ratio = o_picture_get_ratio (toplevel, object);
@@ -923,8 +924,8 @@ void o_picture_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
  */
 void o_picture_embed (TOPLEVEL *toplevel, OBJECT *object)
 {
-  const gchar *filename = o_picture_get_filename (toplevel, object);
-  gchar *basename;
+  const char *filename = o_picture_get_filename (toplevel, object);
+  char *basename;
 
   if (o_picture_is_embedded (toplevel, object)) return;
 
@@ -954,8 +955,8 @@ void o_picture_embed (TOPLEVEL *toplevel, OBJECT *object)
 void o_picture_unembed (TOPLEVEL *toplevel, OBJECT *object)
 {
   GError *err = NULL;
-  const gchar *filename = o_picture_get_filename (toplevel, object);
-  gchar *basename;
+  const char *filename = o_picture_get_filename (toplevel, object);
+  char *basename;
 
   if (!o_picture_is_embedded (toplevel, object)) return;
 
@@ -1021,7 +1022,7 @@ double o_picture_shortest_distance (TOPLEVEL *toplevel, OBJECT *object,
  * \param object    The picture #OBJECT to inspect.
  * \return TRUE if \a object is embedded.
  */
-gboolean
+bool
 o_picture_is_embedded (TOPLEVEL *toplevel, OBJECT *object)
 {
   g_return_val_if_fail (object != NULL, FALSE);
@@ -1089,15 +1090,15 @@ o_picture_get_data (TOPLEVEL *toplevel, OBJECT *object,
  * \param error    Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
+bool
 o_picture_set_from_buffer (TOPLEVEL *toplevel, OBJECT *object,
-                           const gchar *filename,
-                           const gchar *data, size_t len,
+                           const char *filename,
+                           const char *data, size_t len,
                            GError **error)
 {
   GdkPixbuf *pixbuf;
   GInputStream *stream;
-  gchar *tmp;
+  char *tmp;
 
   g_return_val_if_fail (toplevel != NULL, FALSE);
   g_return_val_if_fail (object != NULL, FALSE);
@@ -1125,7 +1126,7 @@ o_picture_set_from_buffer (TOPLEVEL *toplevel, OBJECT *object,
   g_free (object->picture->filename);
   object->picture->filename = tmp;
 
-  gchar *buf = g_realloc (object->picture->file_content,
+  char *buf = g_realloc (object->picture->file_content,
                           len);
   /* It's possible that these buffers might overlap, because the
    * library user hates us. */
@@ -1148,14 +1149,14 @@ o_picture_set_from_buffer (TOPLEVEL *toplevel, OBJECT *object,
  * \param error    Location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-gboolean
+bool
 o_picture_set_from_file (TOPLEVEL *toplevel, OBJECT *object,
-                         const gchar *filename,
+                         const char *filename,
                          GError **error)
 {
-  gchar *buf;
+  char *buf;
   size_t len;
-  gboolean status;
+  bool status;
 
   g_return_val_if_fail (filename != NULL, FALSE);
 
@@ -1177,7 +1178,7 @@ o_picture_set_from_file (TOPLEVEL *toplevel, OBJECT *object,
  * \param object   The picture #OBJECT to inspect.
  * \return the filename associated with \a object.
  */
-const gchar *
+const char *
 o_picture_get_filename (TOPLEVEL *toplevel, OBJECT *object)
 {
   g_return_val_if_fail (object != NULL, NULL);
@@ -1198,10 +1199,10 @@ GdkPixbuf *
 o_picture_get_fallback_pixbuf (TOPLEVEL *toplevel)
 {
   static GdkPixbuf *pixbuf = NULL;
-  static gboolean failed = FALSE;
+  static bool failed = FALSE;
 
   if (pixbuf == NULL && !failed) {
-    gchar *filename;
+    char *filename;
     GError *error = NULL;
 
     filename = g_build_filename (toplevel->bitmap_directory,

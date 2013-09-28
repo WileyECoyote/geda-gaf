@@ -67,9 +67,10 @@
 OBJECT *o_grips_search_world(GSCHEM_TOPLEVEL *w_current, int x, int y, int *whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  OBJECT *object=NULL;
-  OBJECT *found=NULL;
-  GList *s_current;
+  OBJECT   *object=NULL;
+  OBJECT   *found=NULL;
+  GList    *s_current;
+
   int size;
   int w_size;
 
@@ -77,14 +78,15 @@ OBJECT *o_grips_search_world(GSCHEM_TOPLEVEL *w_current, int x, int y, int *whic
     return(NULL);
   }
 
-  /* get the size of the grip according to zoom level */
-  size = o_grips_size(w_current);
-  w_size = WORLDabs (w_current, size );
+  /* size = GRIP_PIXEL_SIZE / 2; */
 
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
   while (s_current != NULL) {
     object = (OBJECT *) s_current->data;
     if (object) {
+      /* get the dynamic size of the grip */
+      size = o_grips_half_size(w_current, object);
+      w_size = WORLDabs (w_current, size );
       switch(object->type) {
         case(OBJ_ARC):
           /* check the grips of the arc object */
@@ -555,10 +557,10 @@ static void o_grips_start_arc(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
 
   /* describe the arc with GSCHEM_TOPLEVEL variables */
   /* center */
-  w_current->first_wx = o_current->arc->x;
-  w_current->first_wy = o_current->arc->y;
+  w_current->first_wx  = o_current->arc->x;
+  w_current->first_wy  = o_current->arc->y;
   /* radius */
-  w_current->distance = o_current->arc->width / 2;
+  w_current->distance  = o_current->arc->width / 2;
   /* angles */
   w_current->second_wx = o_current->arc->start_angle;
   w_current->second_wy = o_current->arc->end_angle;
@@ -600,26 +602,26 @@ static void o_grips_start_box(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
     case BOX_UPPER_LEFT:
       w_current->second_wx = o_current->box->upper_x;
       w_current->second_wy = o_current->box->upper_y;
-      w_current->first_wx = o_current->box->lower_x;
-      w_current->first_wy = o_current->box->lower_y;
+      w_current->first_wx  = o_current->box->lower_x;
+      w_current->first_wy  = o_current->box->lower_y;
       break;
     case BOX_LOWER_RIGHT:
       w_current->second_wx = o_current->box->lower_x;
       w_current->second_wy = o_current->box->lower_y;
-      w_current->first_wx = o_current->box->upper_x;
-      w_current->first_wy = o_current->box->upper_y;
+      w_current->first_wx  = o_current->box->upper_x;
+      w_current->first_wy  = o_current->box->upper_y;
       break;
     case BOX_UPPER_RIGHT:
       w_current->second_wx = o_current->box->lower_x;
       w_current->second_wy = o_current->box->upper_y;
-      w_current->first_wx = o_current->box->upper_x;
-      w_current->first_wy = o_current->box->lower_y;
+      w_current->first_wx  = o_current->box->upper_x;
+      w_current->first_wy  = o_current->box->lower_y;
       break;
     case BOX_LOWER_LEFT:
       w_current->second_wx = o_current->box->upper_x;
       w_current->second_wy = o_current->box->lower_y;
-      w_current->first_wx = o_current->box->lower_x;
-      w_current->first_wy = o_current->box->upper_y;
+      w_current->first_wx  = o_current->box->lower_x;
+      w_current->first_wy  = o_current->box->upper_y;
       break;
     default:
       return; /* error */
@@ -728,7 +730,7 @@ static void o_grips_start_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
   TOPLEVEL *toplevel = w_current->toplevel;
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-  w_current->current_pixbuf = o_picture_get_pixbuf (toplevel, o_current);
+  w_current->current_pixbuf  = o_picture_get_pixbuf (toplevel, o_current);
   w_current->pixbuf_filename =
     g_strdup (o_picture_get_filename (toplevel, o_current));
   w_current->pixbuf_wh_ratio = o_picture_get_ratio (toplevel, o_current);
@@ -739,26 +741,26 @@ static void o_grips_start_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
     case PICTURE_UPPER_LEFT:
       w_current->second_wx = o_current->picture->upper_x;
       w_current->second_wy = o_current->picture->upper_y;
-      w_current->first_wx = o_current->picture->lower_x;
-      w_current->first_wy = o_current->picture->lower_y;
+      w_current->first_wx  = o_current->picture->lower_x;
+      w_current->first_wy  = o_current->picture->lower_y;
       break;
     case PICTURE_LOWER_RIGHT:
       w_current->second_wx = o_current->picture->lower_x;
       w_current->second_wy = o_current->picture->lower_y;
-      w_current->first_wx = o_current->picture->upper_x;
-      w_current->first_wy = o_current->picture->upper_y;
+      w_current->first_wx  = o_current->picture->upper_x;
+      w_current->first_wy  = o_current->picture->upper_y;
       break;
     case PICTURE_UPPER_RIGHT:
       w_current->second_wx = o_current->picture->lower_x;
       w_current->second_wy = o_current->picture->upper_y;
-      w_current->first_wx = o_current->picture->upper_x;
-      w_current->first_wy = o_current->picture->lower_y;
+      w_current->first_wx  = o_current->picture->upper_x;
+      w_current->first_wy  = o_current->picture->lower_y;
       break;
     case PICTURE_LOWER_LEFT:
       w_current->second_wx = o_current->picture->upper_x;
       w_current->second_wy = o_current->picture->lower_y;
-      w_current->first_wx = o_current->picture->lower_x;
-      w_current->first_wy = o_current->picture->upper_y;
+      w_current->first_wx  = o_current->picture->lower_x;
+      w_current->first_wy  = o_current->picture->upper_y;
       break;
     default:
       return; /* error */
@@ -831,8 +833,8 @@ static void o_grips_start_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
   /* describe the line with GSCHEM_TOPLEVEL variables */
   w_current->second_wx = o_current->line->x[whichone];
   w_current->second_wy = o_current->line->y[whichone];
-  w_current->first_wx = o_current->line->x[!whichone];
-  w_current->first_wy = o_current->line->y[!whichone];
+  w_current->first_wx  = o_current->line->x[!whichone];
+  w_current->first_wy  = o_current->line->y[!whichone];
 
   /* draw the first temporary line */
   /* o_line_invalidate_rubber (w_current); */
@@ -842,9 +844,9 @@ static void o_grips_start_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
 /*! \brief Start process of modifiying one grip.
  *  \par Function Description
  *  This function starts the process of modifying one grip of an object
- *  on the current sheet. The event occured in (<B>w_x</B>,<B>w_y</B>) in world unit.
- *  If this position is related to a grip of an object, the function
- *  prepares the modification of this grip thanks to the user input.
+ *  on the current sheet. The event occured at (<B>w_x</B>,<B>w_y</B>) in
+ *  world unit. If this position is related to a grip of an object, the
+ *  function prepares the modification of this grip thanks to the user input.
  *
  *  The function returns <B>FALSE</B> if an error occured or if no grip
  *  have been found under (<B>w_x</B>,<B>w_y</B>). It returns <B>TRUE</B> if a grip
@@ -874,7 +876,7 @@ int o_grips_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   if (object == NULL)
     return FALSE;
 
-  w_current->which_grip = whichone;
+  w_current->which_grip   = whichone;
   w_current->which_object = object;
 
   /* Switch off drawing for the object being modified */
@@ -1003,8 +1005,8 @@ void o_grips_cancel(GSCHEM_TOPLEVEL *w_current)
   OBJECT *object = w_current->which_object;
 
   /* reset global variables */
-  w_current->which_grip = -1;
-  w_current->which_object = NULL;
+  w_current->which_grip     = -1;
+  w_current->which_object   = NULL;
   w_current->rubber_visible = 0;
 
   /* Switch drawing of the object back on */
@@ -1431,46 +1433,68 @@ void o_grips_end(GSCHEM_TOPLEVEL *w_current)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-
 /*! \brief Get half the width and height of grip in screen units.
  *  \par Function Description
- *  According to the current zoom level, the function returns half the width
- *  and height of a grip in screen units.
- *
- *  <B>GRIP_SIZE1</B> and <B>GRIP_SIZE2</B> and <B>GRIP_SIZE3</B> are macros defined
- *  in gschem_idefines.h. They are the half width/height of a grip in
- *  world unit for a determined range of zoom factors.
+ *  This function returns a value half the size of the grip size
+ *  in screen units, based on the objects width and the zoom factor.
+ *  Between the threashold and 0, grippable object with non-zero
+ *  width, the size returned is the greater of width - factor and
+ *  <B>GRIP_SIZE_ZOOM1</B>. The value returned for "grippables" with
+ *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
+ *  MAX_GRIP_PIXELS is returned.
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
  *  \return Half grip size in screen units.
  */
-int o_grips_size(GSCHEM_TOPLEVEL *w_current)
+int o_grips_half_size(GSCHEM_TOPLEVEL *w_current,  OBJECT *object)
 {
-  int factor, size;
+  TOPLEVEL *toplevel = w_current->toplevel;
+  int factor;
+  int ret_size;
+  int abs_size;
 
-  if ((w_current != NULL) &&
-      (w_current->toplevel != NULL) &&
-      (w_current->toplevel->page_current != NULL)) {
-
-    TOPLEVEL *toplevel = w_current->toplevel;
-
-    factor = (int) toplevel->page_current->to_world_x_constant;
-    if (factor > SMALL_ZOOMFACTOR1) {
-      /* big zoom factor : small size converted to screen unit */
-      size = SCREENabs (w_current, GRIP_SIZE1);
-    } else if (factor > SMALL_ZOOMFACTOR2) {
-      /* medium zoom factor : medium size converted to screen unit */
-      size = SCREENabs (w_current, GRIP_SIZE2);
-    } else {
-      /* small zoom factor : big size converted to screen unit */
-      size = SCREENabs (w_current, GRIP_SIZE3);
+  if ( object == NULL)
+  {
+    ret_size = MAX_GRIP_PIXELS / 2;
+  }
+  else
+  {
+    /* if is a grip-able object */
+    if (object->type == OBJ_NET    ||
+        object->type == OBJ_BUS    ||
+        object->type == OBJ_LINE   ||
+        object->type == OBJ_ARC    ||
+        object->type == OBJ_BOX    ||
+        object->type == OBJ_CIRCLE ||
+        object->type == OBJ_PATH)
+    {
+      factor = (int) toplevel->page_current->to_world_x_constant;
+      if (factor < GRIP_ZOOM_THREASHOLD_1) {
+        abs_size = SCREENabs (w_current, GRIP_SIZE_ZOOM1);
+        if (object->line_width > 0)
+        {
+          if (( object->line_width > w_current->grip_pixel_size) && (factor > 0)) {
+            ret_size = max( abs_size, (object->line_width - factor) / 2) ;
+          }
+          else
+          {
+            ret_size = abs_size;
+          }
+        }
+        else
+        {
+           ret_size = abs_size;
+        }
+      }
+      else {
+        ret_size = w_current->grip_pixel_size / 2;
+      }
+    }
+    else {
+      ret_size = w_current->grip_pixel_size / 2;
     }
   }
-  else {
-    fprintf(stderr, "ERROR! o_grips_size: detected NULL pointer\n");
-    size = MAXIMUM_GRIP_PIXELS/2;
-  }
-    return min(size, MAXIMUM_GRIP_PIXELS/2);
+  return min(ret_size, MAX_GRIP_PIXELS/2);
 }
 
 /*! \brief Draw objects being grip maniuplated from GSCHEM_TOPLEVEL object.

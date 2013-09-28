@@ -101,7 +101,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
   printf("event state: %d \n", event->state);
   printf("w_current state: %d \n", w_current->event_state);
   printf("Selection is:\n");
-  o_selection_print_all((toplevel->page_current->selection_list));
+  o_selection_print_all((Top_Selection));
   printf("\n");
   #endif
 
@@ -112,28 +112,31 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
   if (event->type == GDK_2BUTTON_PRESS &&
     (w_current->event_state == STARTSELECT ||
-    w_current->event_state == SELECT)) {
-    o_find_object(w_current, w_x, w_y, TRUE);
-  if (o_select_selected (w_current)) {
-    o_edit(w_current,
-           geda_list_get_glist( toplevel->page_current->selection_list ));
-    i_set_state(w_current, SELECT);
-    return(0);
-  }
+     w_current->event_state == SELECT)) {
+       o_find_object(w_current, w_x, w_y, TRUE);
+       if (o_select_selected (w_current)) {
+         o_edit(w_current, geda_list_get_glist( Top_Selection ));
+           i_set_state(w_current, SELECT);
+           return(0);
+      }
     }
 
     w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
     w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-    w_current->ALTKEY     = (event->state & GDK_MOD1_MASK) ? 1 : 0;
+    w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
     /* Huge switch statement to evaluate state transitions. Jump to
      * end_button_pressed label to escape the state evaluation rather than
      * returning from the function directly. */
 
     if (event->button == GDK_BUTTON_PRIMARY) {
-      switch(w_current->event_state) {
 
+      switch(w_current->event_state) {
+        case(DESELECT):
+          w_current->event_state = STARTDESELECT;
+          break;
         case(SELECT):
+
           /* look for grips or fall through if not enabled */
           if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
             /* now go into normal SELECT */
@@ -142,135 +145,133 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
             w_current->first_wy = w_current->second_wy = unsnapped_wy;
           } else {
             /* a grip was found */
-            w_current->event_state = GRIPS;
-            w_current->inside_action = 1;
+            w_current->event_state   = GRIPS;
+            w_current->inside_action = TRUE;
           }
           break;
 
         case(STARTCOPY):
           if (o_select_selected(w_current)) {
             o_copy_start(w_current, w_x, w_y);
-            w_current->event_state = COPY;
-            w_current->inside_action = 1;
+            w_current->event_state   = COPY;
+            w_current->inside_action = TRUE;
           }
           break;
 
         case(STARTMCOPY):
           if (o_select_selected(w_current)) {
             o_copy_start(w_current, w_x, w_y);
-            w_current->event_state = MCOPY;
-            w_current->inside_action = 1;
+            w_current->event_state   = MCOPY;
+            w_current->inside_action = TRUE;
           }
           break;
 
         case(STARTMOVE):
           if (o_select_selected(w_current)) {
             o_move_start(w_current, w_x, w_y);
-            w_current->event_state = MOVE;
-            w_current->inside_action = 1;
+            w_current->event_state   = MOVE;
+            w_current->inside_action = TRUE;
           }
           break;
 
         case(STARTPASTE):
           o_buffer_paste_start(w_current, w_x, w_y, w_current->buffer_number);
-          w_current->event_state = ENDPASTE;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDPASTE;
+          w_current->inside_action = TRUE;
           break;
 
         case(DRAWLINE):
           o_line_start(w_current, w_x, w_y);
-          w_current->event_state = ENDLINE;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDLINE;
+          w_current->inside_action = TRUE;
           break;
 
         case(ENDLINE):
           o_line_end(w_current, w_x, w_y);
-          w_current->inside_action = 0;
-          w_current->event_state = DRAWLINE;
+          w_current->inside_action = FALSE;
+          w_current->event_state   = DRAWLINE;
           break;
         case DRAWPATH:
           o_path_start (w_current, w_x, w_y);
-          w_current->event_state = ENDPATH;
+          w_current->event_state   = ENDPATH;
           w_current->inside_action = TRUE;
           break;
 
         case PATHCONT:
           o_path_continue (w_current, w_x, w_y);
-          w_current->event_state = ENDPATH;
+          w_current->event_state   = ENDPATH;
           w_current->inside_action = TRUE;
           break;
         case(DRAWBOX):
           o_box_start(w_current, w_x, w_y);
-          w_current->event_state = ENDBOX;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDBOX;
+          w_current->inside_action = TRUE;
           break;
 
         case(ENDBOX):
           o_box_end(w_current, w_x, w_y);
-          w_current->inside_action = 0;
-          w_current->event_state = DRAWBOX;
+          w_current->inside_action = FALSE;
+          w_current->event_state   = DRAWBOX;
           break;
 
         case(DRAWPICTURE):
           o_picture_start(w_current, w_x, w_y);
-          w_current->event_state = ENDPICTURE;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDPICTURE;
+          w_current->inside_action = TRUE;
           break;
 
         case(ENDPICTURE):
           o_picture_end(w_current, w_x, w_y);
-          w_current->inside_action = 0;
-          w_current->event_state = DRAWPICTURE;
+          w_current->inside_action = FALSE;
+          w_current->event_state   = DRAWPICTURE;
           break;
 
         case(DRAWCIRCLE):
           o_circle_start(w_current, w_x, w_y);
-          w_current->event_state = ENDCIRCLE;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDCIRCLE;
+          w_current->inside_action = TRUE;
           break;
 
         case(ENDCIRCLE):
           o_circle_end(w_current, w_x, w_y);
-          w_current->inside_action = 0;
-          w_current->event_state = DRAWCIRCLE;
+          w_current->inside_action = FALSE;
+          w_current->event_state   = DRAWCIRCLE;
           break;
 
         case(DRAWARC):
           o_arc_start(w_current, w_x, w_y);
-          w_current->event_state = ENDARC;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDARC;
+          w_current->inside_action = TRUE;
           break;
 
         case(ENDARC):
           o_arc_end1(w_current, w_x, w_y);
-          w_current->inside_action = 0;
-          w_current->event_state = DRAWARC;
+          w_current->inside_action = FALSE;
+          w_current->event_state   = DRAWARC;
           break;
 
         case(DRAWPIN):
           o_pin_start(w_current, w_x, w_y);
-          w_current->event_state = ENDPIN;
-          w_current->inside_action = 1;
+          w_current->event_state   = ENDPIN;
+          w_current->inside_action = TRUE;
           break;
 
         case(ENDPIN):
           o_pin_end(w_current, w_x, w_y);
-          w_current->inside_action = 0;
-          w_current->event_state = DRAWPIN;
+          w_current->inside_action = FALSE;
+          w_current->event_state   = DRAWPIN;
           break;
 
         case(STARTDRAWNET):  /*! \todo change state name? */
           o_net_start(w_current, w_x, w_y);
-          w_current->inside_action = 1;
-          w_current->event_state=DRAWNET;
-
+          w_current->event_state   = DRAWNET;
+          w_current->inside_action = TRUE;
           break;
 
         case(STARTDRAWBUS):
           o_bus_start(w_current, w_x, w_y);
-          w_current->inside_action = 1;
-          w_current->event_state=DRAWBUS;
-
+          w_current->inside_action = TRUE;
+          w_current->event_state   = DRAWBUS;
           break;
 
         case(DRAWNET):
@@ -278,12 +279,13 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           /* Only continue the net if net end worked */
           if (o_net_end(w_current, w_x, w_y)) {
             o_net_start(w_current, w_current->first_wx, w_current->first_wy);
-            w_current->event_state=NETCONT;
-          } else { /* cleanup and start a new net */
+            w_current->event_state = NETCONT;
+          }
+          else { /* cleanup and start a new net */
             o_net_invalidate_rubber (w_current);
             o_net_reset(w_current);
             i_set_state(w_current, STARTDRAWNET);
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
           }
           break;
 
@@ -293,8 +295,9 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           if (o_bus_end(w_current, w_x, w_y)) {
             o_bus_start(w_current, w_current->first_wx, w_current->first_wy);
             w_current->event_state=BUSCONT;
-          } else {
-            w_current->inside_action=0;
+          }
+          else {
+            w_current->inside_action = FALSE;
             i_set_state(w_current, STARTDRAWBUS);
           }
           break;
@@ -302,14 +305,14 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           o_place_end(w_current, w_x, w_y, w_current->continue_component_place,
                       NULL, "%add-objects-hook");
           if (!w_current->continue_component_place) {
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, SELECT);
           }
           break;
 
         case(ENDPASTE):
           o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
-          w_current->inside_action = 0;
+          w_current->inside_action = FALSE;
           i_set_state(w_current, SELECT);
           break;
 
@@ -317,7 +320,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           o_rotate_world_update(w_current, w_x, w_y, 90,
                                 geda_list_get_glist(toplevel->page_current->selection_list ));
 
-          w_current->inside_action = 0;
+          w_current->inside_action = FALSE;
           i_set_state(w_current, SELECT);
           break;
 
@@ -326,13 +329,13 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
                                 geda_list_get_glist(
                                   toplevel->page_current->selection_list ));
 
-          w_current->inside_action = 0;
+          w_current->inside_action = FALSE;
           i_set_state(w_current, SELECT);
           break;
 
         case(ENDTEXT):
           o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
-          w_current->inside_action = 0;
+          w_current->inside_action = FALSE;
           i_set_state(w_current, SELECT);
           break;
 
@@ -345,7 +348,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
         case(ZOOMBOXSTART):
           o_redraw_cleanstates(w_current);
           a_zoom_box_start(w_current, unsnapped_wx, unsnapped_wy);
-          w_current->inside_action = 1;
+          w_current->inside_action = TRUE;
           i_set_state(w_current, ZOOMBOXEND);
           break;
 
@@ -384,20 +387,19 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           }
 
           if (!o_select_selected(w_current)) {
-            /* this means the above find did not
-             * find anything */
-            w_current->inside_action = 0;
+            /* this means the above find did not find anything */
+            w_current->inside_action = FALSE;
             i_set_state(w_current, SELECT);
             goto end_button_pressed;
           }
 
           if (w_current->ALTKEY) {
             o_copy_start(w_current, w_x, w_y);
-            w_current->inside_action = 1;
+            w_current->inside_action = TRUE;
             i_set_state(w_current, COPY);
           } else {
             o_move_start(w_current, w_x, w_y);
-            w_current->inside_action = 1;
+            w_current->inside_action = TRUE;
             i_set_state(w_current, MOVE);
           }
           break;
@@ -413,11 +415,11 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
         case(MOUSE_MIDDLE_PAN):
           w_current->event_state = MOUSEPAN; /* start */
-          w_current->inside_action = 1;
+          w_current->inside_action = TRUE;
           w_current->doing_pan = TRUE;
           start_pan_x = (int) event->x;
           start_pan_y = (int) event->y;
-          throttle=0;
+          throttle = 0;
           break;
       }
 
@@ -428,12 +430,12 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           i_update_sensitivities(w_current);  /* update menus before popup  */
           x_menu_display_popup(w_current, event);
         } else {
-          w_current->event_state = MOUSEPAN; /* start */
-          w_current->inside_action = 1;
+          w_current->event_state   = MOUSEPAN; /* start */
+          w_current->inside_action = TRUE;
           w_current->doing_pan = TRUE;
           start_pan_x = (int) event->x;
           start_pan_y = (int) event->y;
-          throttle=0;
+          throttle    = 0;
         }
       }
       else { /* this is the default cancel */
@@ -441,7 +443,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           case(STARTDRAWNET):
           case(DRAWNET):
           case(NETCONT):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, STARTDRAWNET);
             o_net_invalidate_rubber (w_current);
             o_net_reset(w_current);
@@ -450,21 +452,21 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           case(STARTDRAWBUS):
           case(DRAWBUS):
           case(BUSCONT):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, STARTDRAWBUS);
             o_bus_invalidate_rubber (w_current);
             break;
 
           case(DRAWPIN):
           case(ENDPIN):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, DRAWPIN);
             o_pin_invalidate_rubber (w_current);
             break;
 
           case(DRAWLINE):
           case(ENDLINE):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, DRAWLINE);
             o_line_invalidate_rubber (w_current);
             break;
@@ -472,35 +474,35 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           case DRAWPATH:
           case PATHCONT:
           case ENDPATH:
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state (w_current, DRAWPATH);
             o_path_invalidate_rubber (w_current);
             break;
 
           case(DRAWBOX):
           case(ENDBOX):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, DRAWBOX);
             o_box_invalidate_rubber (w_current);
             break;
 
           case(DRAWPICTURE):
           case(ENDPICTURE):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, DRAWPICTURE);
             o_picture_invalidate_rubber (w_current);
             break;
 
           case(DRAWCIRCLE):
           case(ENDCIRCLE):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, DRAWCIRCLE);
             o_circle_invalidate_rubber (w_current);
             break;
 
           case(DRAWARC):
           case(ENDARC):
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, DRAWARC);
             o_arc_invalidate_rubber (w_current);
             break;
@@ -530,6 +532,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 {
   int unsnapped_wx, unsnapped_wy;
   int w_x, w_y;
+  OBJECT *object;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
@@ -539,7 +542,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
   w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK) ? 1 : 0;
+  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
                  &unsnapped_wx, &unsnapped_wy);
@@ -553,9 +556,9 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
   if (event->button == 1) {
     switch(w_current->event_state) {
+      case(DESELECT):
       case(SELECT):
-
-        /* do nothing */
+        /* do nothing - is almost same as not having a case */
         break;
       case(MOVE):
         w_current->event_state = ENDMOVE;
@@ -570,27 +573,27 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
         break;
       case(GRIPS):
         o_grips_end(w_current),
-        w_current->inside_action = 0;
+        w_current->inside_action = FALSE;
         i_set_state(w_current, SELECT);
         break;
       case(ENDMOVE):
         o_move_end(w_current);
         /* having this stay in copy was driving me nuts*/
-        w_current->inside_action = 0;
+        w_current->inside_action = FALSE;
         i_set_state(w_current, SELECT);
         break;
 
       case(ENDCOPY):
         o_copy_end(w_current);
         /* having this stay in copy was driving me nuts*/
-        w_current->inside_action = 0;
+        w_current->inside_action = FALSE;
         i_set_state(w_current, SELECT);
         break;
 
       case(ENDMCOPY):
         o_copy_multiple_end(w_current);
         /* having this stay in copy was driving me nuts*/
-        w_current->inside_action = 1;
+        w_current->inside_action = TRUE;
         /* Keep the state and the inside_action, as the copy has not finished. */
         i_set_state(w_current, ENDMCOPY);
         o_undo_savestate(w_current, UNDO_ALL);
@@ -598,36 +601,43 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
       case(SBOX):
         o_select_box_end(w_current, unsnapped_wx, unsnapped_wy);
-        w_current->inside_action = 0;
+        w_current->inside_action = FALSE;
         i_set_state(w_current, SELECT);
         break;
 
       case(ZOOMBOXEND):
         a_zoom_box_end(w_current, unsnapped_wx, unsnapped_wy);
-        w_current->inside_action = 0;
+        w_current->inside_action = FALSE;
         i_set_state(w_current, SELECT);
         break;
-
+      case(STARTDESELECT):
+        object = o_find_selected_object(w_current, unsnapped_wx, unsnapped_wy);
+        if (object) {
+          if (!w_current->CONTROLKEY) {
+            o_select_object(w_current, object, SINGLE, 1);
+          }
+        }
+        break;
       case(STARTSELECT):
         /* first look for grips */
 
         if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
           /* now look for objects to select, TRUE = add to page selection */
           o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
-          w_current->event_state = SELECT;
-          w_current->inside_action = 0;
+          w_current->event_state   = SELECT;
+          w_current->inside_action = FALSE;
         }
         else {  /* n grip was found */
-          w_current->event_state = GRIPS;
-          w_current->inside_action = 1;
+          w_current->event_state   = GRIPS;
+          w_current->inside_action = TRUE;
         }
         break;
       case ENDPATH:
         if (o_path_end (w_current, w_x, w_y)) {
-          w_current->event_state = PATHCONT;
+          w_current->event_state   = PATHCONT;
           w_current->inside_action = TRUE;
         } else {
-          w_current->event_state = DRAWPATH;
+          w_current->event_state   = DRAWPATH;
           w_current->inside_action = FALSE;
         }
         break;
@@ -646,10 +656,11 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
 
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, FALSE);
-        } else {
+        }
+        else {
           o_place_invalidate_rubber (w_current, FALSE);
         }
-        w_current->rubber_visible = 0;
+        w_current->rubber_visible = FALSE;
 
         o_place_rotate(w_current);
 
@@ -662,7 +673,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
         } else {
           o_place_invalidate_rubber (w_current, TRUE);
         }
-        w_current->rubber_visible = 1;
+        w_current->rubber_visible = TRUE;
         goto end_button_released;
         }
     }
@@ -672,13 +683,13 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
         switch(w_current->event_state) {
           case(MOVE):
             o_move_end(w_current);
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, SELECT);
             break;
 
           case(COPY):
             o_copy_end(w_current);
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, SELECT);
             break;
         }
@@ -700,7 +711,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
             /* this needs to be REDONE */
             /* if you mouse pan, you will be thrown out of the current mode. */
             /* not good */
-            w_current->inside_action = 0;
+            w_current->inside_action = FALSE;
             i_set_state(w_current, SELECT);
             break;
     }
@@ -716,7 +727,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
       }
       /* This needs to be REDONE, if user mouse pans, the user will be
        * thrown out of the current mode. Not good */
-      w_current->inside_action = 0;
+      w_current->inside_action = FALSE;
       i_set_state(w_current, SELECT);
     }
   }
@@ -724,7 +735,7 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
   #if DEBUG || DEBUG_EVENTS
   printf("x_event_button_released: exit! %d \n", w_current->event_state);
   #endif
-  return(0);
+  return(FALSE);
 }
 
 /*! \todo Finish function documentation!!!

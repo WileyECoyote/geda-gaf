@@ -3579,9 +3579,10 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
                                      "unsaved-pages", unsaved_pages,
                                      NULL));
 
+/*
   gtk_window_set_transient_for (GTK_WINDOW (dialog),
                                 GTK_WINDOW (w_current->main_window));
-
+*/
   g_list_free (unsaved_pages);
 
   switch ( gtk_dialog_run (GTK_DIALOG (dialog)) ) {

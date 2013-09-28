@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * Copyright (C) 2003-2012 Stuart D. Brorson.
- *
+ * Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
+ * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -179,7 +180,7 @@ bool gattrib_really_quit(void)
   } else {
     gattrib_quit(0);
   }
-  
+
   return TRUE;
 }
 
@@ -206,7 +207,7 @@ int gattrib_quit(int return_code)
     list = g_list_next(list);
   }
   g_list_free(exit_functions);
- 
+
   if (search_history) g_list_free(search_history);   
 
   /*   s_clib_cache_free(); */
@@ -254,12 +255,19 @@ void gattrib_main(void *closure, int argc, char *argv[])
   GSList *file_list = NULL;
 
 #ifdef HAVE_GTHREAD
+
   /* Gattrib isn't threaded, but some of GTK's file chooser
    * backends uses threading so we need to call g_thread_init().
    * GLib requires threading be initialised before any other GLib
    * functions are called. Do it now if its not already setup.  */
-  //if (!g_thread_supported ())
-    //g_thread_init (NULL);                //XInitThreads
+
+#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
+  g_thread_init (NULL);
+#endif
+
+  if (g_thread_supported ()) {
+    gdk_threads_init();
+  }
 #endif
 
   /* Initialize gEDA stuff */
@@ -270,7 +278,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
   /* Note that argv_index holds index to first non-flag command line option 
    * (that is, to the first file name) */
   argv_index = parse_commandline(argc, argv);
-  
+
   /* ----------  create log file right away ---------- */
   s_log_init ("gattrib");
 

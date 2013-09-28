@@ -21,13 +21,20 @@
 
 #include "gschem.h"
 
+/*! \brief Create New Top-Level Window Data Structure
+ *  \par Function Description
+ *  This function is call to creates a new "w_current" data structure
+ *  for each opened window. The hard-coded values set here will normally
+ *  be over-written by with the default values found in i_var.s, or the
+ *  user settings.
+ */
 GSCHEM_TOPLEVEL *gschem_toplevel_new ()
 {
   GSCHEM_TOPLEVEL *w_current;
 
   w_current = g_new0 (GSCHEM_TOPLEVEL, 1);
 
-  w_current->toplevel = NULL;
+  w_current->toplevel           = NULL;
 
   /* ----------------- main window widgets ----------------- */
   w_current->main_window        = NULL;
@@ -100,12 +107,12 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->second_wy          = -1;
   w_current->third_wx           = -1;
   w_current->third_wy           = -1;
-  w_current->distance           = 0;
+  w_current->distance           =  0;
   w_current->magnetic_wx        = -1;
   w_current->magnetic_wy        = -1;
-  w_current->inside_action      = 0;
-  w_current->rubber_visible     = 0;
-  w_current->net_direction      = 0;
+  w_current->inside_action      =  0;
+  w_current->rubber_visible     =  0;
+  w_current->net_direction      =  0;
   w_current->which_grip         = -1;
   w_current->which_object       = NULL;
   w_current->temp_path          = NULL;
@@ -154,10 +161,10 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
     w_current->zoom_with_pan              = 0;
 
   /*    Log Related    */
-  logging               = 0;
-  log_destiny           = 0;
-  console_window        = 0;
-  console_window_type   = 0;
+  logging                               = 0;
+  log_destiny                           = 0;
+  console_window                        = 0;
+  console_window_type                   = 0;
 
  /* Miscellaneous - in  alphabetical order */
   w_current->action_feedback_mode       = OUTLINE;
@@ -192,14 +199,6 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
     w_current->bus_ripper_type          = 0;
     w_current->bus_ripper_symname       = NULL;
 
-  /* Pointer Device, aka Mouse stuff */
-  w_current->fast_mousepan              = 0;
-  w_current->drag_can_move              = TRUE;
-  w_current->middle_button              = 0;
-  w_current->mousepan_gain              = DEFAULT_MOUSEPAN_GAIN;
-  w_current->scroll_wheel               = SCROLL_WHEEL_CLASSIC;
-  w_current->third_button               = 0;
-
   /* Print Related */
   w_current->print_command = NULL;
 
@@ -221,3 +220,21 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
 
   return w_current;
 }
+
+/*! \brief Free the gschem toplevel
+ *  \par Function Description
+ *  This function release the memory allocated to the given
+ *  GSCHEM_TOPLEVEL data structure.
+ *
+ *  \param [in] w_current The gschem toplevel
+ */
+void
+gschem_toplevel_free (GSCHEM_TOPLEVEL *w_current)
+{
+  if (w_current->renderer != NULL) {
+    g_object_unref (w_current->renderer);
+    w_current->renderer = NULL;
+  }
+  g_free (w_current);
+}
+

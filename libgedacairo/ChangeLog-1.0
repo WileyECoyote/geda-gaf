@@ -1,3 +1,16 @@
+2013-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/edarenderer.c/h: Replaced fixed defined values and code references
+          with variables, referenced by macros for; grip size, color and fill
+          color, text marker color, junction size and color, net endpoint color,
+          adding macro defines for defaults to complement the new varibles.
+          Added property ID's and handlers for new variables. These changes
+          allow libgedacairo to be more flexible for artifacts only used as
+          display aids and are not actually part of the drawing. Also, the
+          default values assigned during initialization, and g_object are the
+          values that have used previously in Gschem, so if none of these new
+          "properties" are set the displayed output still appears "normal".
+
 2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
        ** src/edarenderer.c: In function eda_renderer_prepare_text(), added
@@ -9,7 +22,6 @@
         size in eda_pango_renderer_show_layout instead.
 
         * src/edarenderer.c: Added function eda_renderer_set_font_name().
-
 
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 

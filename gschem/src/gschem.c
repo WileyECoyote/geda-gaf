@@ -112,7 +112,7 @@ void gschem_quit(void)
 #ifdef HAVE_LIBSTROKE
   x_stroke_free ();
 #endif /* HAVE_LIBSTROKE */
-  o_undo_cleanup();
+  o_undo_finalize();
 
   i_vars_freenames();
   i_vars_libgeda_freenames();
@@ -158,10 +158,8 @@ void gschem( int argc, char *argv[])
   /* initialise color map (need to do this before reading rc files */
   x_color_init ();
 
-  o_undo_init();
-
   if (s_path_sys_data () == NULL) {
-    const gchar *message =
+    const char *message =
       _("You must set the GEDADATA environment variable!\n\n"
         "gschem cannot locate its data files. You must set the GEDADATA\n"
         "environment variable to point to the correct location.\n");
@@ -176,6 +174,8 @@ void gschem( int argc, char *argv[])
   /* Allocate w_current */
   w_current = gschem_toplevel_new ();
   w_current->toplevel = s_toplevel_new ();
+
+  o_undo_init(w_current);
 
   w_current->toplevel->load_newer_backup_func = x_fileselect_load_backup;
 
@@ -215,9 +215,6 @@ void gschem( int argc, char *argv[])
   /*! \internal Initialize Settings */
   i_vars_init(w_current);         /* Set defaults */
 
-  if (w_current->save_ui_settings)
-    geda_atexit (i_vars_atexit_save_user_config, NULL);
-
   /*! \internal Setup Log & Console Systems */
   /*TODO: All of this logging stuff should be relocated to Lib */
   /* Now that the initialization files have been processed, retrieve the log settings. */
@@ -244,14 +241,13 @@ void gschem( int argc, char *argv[])
 
   /*! \endinternal Log & Console Systems */
 
-  auto_load_last = default_auto_load_last;
-
   /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
   geda_atexit(recent_files_save, NULL);
 
   /* At end, complete set up of window. */
   x_color_allocate();
+
   x_window_setup (w_current);
 
 #ifdef HAVE_LIBSTROKE
@@ -314,6 +310,9 @@ void gschem( int argc, char *argv[])
 
   /*! \brief Auto-Load */
 
+  /* Retrive the setting for auto-load-last */
+  auto_load_last = default_auto_load_last;
+
   /* Check and do Auto Load - only works if empty commandline */
   if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
     q_log_message("Auto loading . . .\n"); /* maybe Log what we're doing */
@@ -342,6 +341,9 @@ void gschem( int argc, char *argv[])
 
   scm_dynwind_end ();
 
+  if (w_current->save_ui_settings) {
+    geda_atexit (i_vars_atexit_save_user_config, NULL);
+  }
 }
 /*! \brief Main Scheme(GUILE) program function.
  *  \par Function Description

@@ -63,6 +63,9 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
     case STARTROUTENET: /*! \todo */
     case ENDROUTENET: /*! \todo */
       return "";
+    case STARTDESELECT:
+    case DESELECT:
+      return _("Deselect Mode");
     case STARTSELECT:
     case SELECT:
     case SBOX:

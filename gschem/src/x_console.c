@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*
@@ -136,20 +137,19 @@ void x_console_init_commands(GSCHEM_TOPLEVEL *w_current, int mode) {
  * pointer to top-level variables.
  * 08/31/13 Replaced g_assert with conditional to shown dialog only
  * if is our console type instead of crashing entire program.
+ * 09/26/13 Added parent property to dialog and change static
+ * setting string to IDS_defined in sdefines.h
  */
 void x_console_open (GSCHEM_TOPLEVEL *w_current)
 {
   if (console_dialog == NULL) {
     char *contents;
     console_dialog = GTK_WIDGET (g_object_new (TYPE_CONSOLE,
-                                           /* GtkWindow */
                                            "type", GTK_WINDOW_TOPLEVEL,
-                                           /* GschemDialog */
-                                           "settings-name", "console",
+                                           "parent", w_current->main_window,
+                                           "settings-name", IDS_CONSOLE,
                                            "gschem-toplevel", w_current,
                                            NULL));
-
-    gtk_window_set_destroy_with_parent (GTK_WINDOW(console_dialog), TRUE);
 
     g_signal_connect (console_dialog,
                       "response",
@@ -512,7 +512,7 @@ static void console_init (Console *console) /* *Self */
   gtk_text_buffer_create_tag (text_buffer,    "old",
                              "foreground",    "#404040",
                              "foreground-set", TRUE,
-			      NULL);
+                              NULL);
 
   /* "warning" messages are printed in red */
   gtk_text_buffer_create_tag (text_buffer,    "warning",

@@ -44,7 +44,7 @@
 ;;     |          |  for bus_ripper_symname (to complete the integration of
 ;;     |          |  the Ripper settings on the configure settings dailog.
 ;; ------------------------------------------------------------------
-;; WEH | 13/07/19 |  fixed stack overflow in get_titleblock_list fix
+;; WEH | 07/19/13 |  fixed stack overflow in get_titleblock_list fix
 ;;                |  i < MAX_FILENAME instead if MAX_PATH
 ;; ------------------------------------------------------------------
 ;;
@@ -110,7 +110,7 @@ struct {
  *  This function destroys the configure_settings dialog.
  */
 void configure_dialog_response(GtkWidget *Dialog, int response,
-			       GSCHEM_TOPLEVEL *w_current)
+                               GSCHEM_TOPLEVEL *w_current)
 {
   switch (response) {
   case GTK_RESPONSE_APPLY:
@@ -119,6 +119,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
     break;
   case GTK_RESPONSE_OK:
     GatherSettings (w_current);
+  case GTK_RESPONSE_DELETE_EVENT:
   case GTK_RESPONSE_CANCEL:
     /* void */
     break;
@@ -130,6 +131,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
   w_current->cpwindow = NULL;
 
 }
+
 /* ----------------- Start Attribute TAB Support Functions ------------------ */
 
 /* \defgroup X_Settings_Attribute Read and Write RC File
@@ -228,10 +230,7 @@ void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
 
   g_signal_connect (GTK_OBJECT (w_current->cpwindow), "response",
                     GTK_SIGNAL_FUNC(configure_dialog_response), w_current);
-/*
-  g_signal_connect (GTK_OBJECT (w_current->cpwindow), "destroy",
-                    GTK_SIGNAL_FUNC(destroy_all_radios), w_current);
-*/
+
   gtk_container_border_width (GTK_CONTAINER(w_current->cpwindow),
                                 DIALOG_BORDER_SPACING);
 
@@ -241,6 +240,36 @@ void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
 
 }
 
+void x_settings_save_settings(GSCHEM_TOPLEVEL *w_current)
+{
+  int array[4];
+
+  EdaConfig *cfg = eda_config_get_user_context ();
+  const char *group_name = EDA_CONFIG_GROUP;
+
+  /* Save text related stuff  - Restored by i_vars_recall_user_settings */
+  eda_config_set_integer (cfg, group_name, "text-case",       w_current->text_case);
+  eda_config_set_integer (cfg, group_name, "text-zoomfactor", w_current->text_display_zoomfactor);
+  eda_config_set_integer (cfg, group_name, "text-feedback",   w_current->text_feedback);
+  eda_config_set_integer (cfg, group_name, "text-size",       w_current->text_size);
+
+  eda_config_set_boolean (cfg, group_name, "text-origin-marker", w_current->
+                                  renderer->text_origin_marker);
+  eda_config_set_integer (cfg, group_name, "text-marker-size",   w_current->
+                                  renderer->text_marker_size);
+
+  array[0] = w_current->renderer->text_marker_color.pixel;
+  array[1] = w_current->renderer->text_marker_color.red;
+  array[2] = w_current->renderer->text_marker_color.green;
+  array[3] = w_current->renderer->text_marker_color.blue;
+  eda_config_set_int_list (cfg, group_name, "text_marker_color", array, 4);
+
+  /* Undo Sub-System - Restored by o_undo_init */
+  eda_config_set_boolean (cfg, group_name, "undo-control", w_current->undo_control);
+  eda_config_set_integer (cfg, group_name, "undo-levels",  w_current->undo_levels);
+  eda_config_set_boolean (cfg, group_name, "undo-panzoom", w_current->undo_panzoom);
+  eda_config_set_boolean (cfg, group_name, "undo-type",     w_current->undo_type);
+}
 /** @brief function change_default_titleblock in GatherSettings */
 bool x_settings_set_scm_int(char *symbol_name, int value ) {
 
@@ -615,10 +644,11 @@ KEYWORD (define_in_rc) {
   fputs(output_buffer, output);  /* write line to output file*/
 }
 
-/** @brief function do_kw_draw_grips in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_draw_grips in X_Settings_Keyword_Handlers  */
 KEYWORD (draw_grips) {
   RC_BOOLEAN_ROUT (draw_grips);
 }
+
 
 /** @brief function do_kw_logging in X_Settings_Keyword_Handlers */
 KEYWORD (logging) {
@@ -955,7 +985,7 @@ KEYWORD (sort_component_library) {
 KEYWORD(untitled_name) {
   RC_STRING_TOUT(untitled_name)
 }
- */
+  */
 /** @brief function do_kw_net_consolidate in X_Settings_Keyword_Handlers */
 KEYWORD (net_consolidate) {
   RC_BOOLEAN_TOUT (net_consolidate);
@@ -1059,12 +1089,12 @@ KEYWORD(bus_ripper_symname) {
   RC_STRING_WOUT(bus_ripper_symname)
 }
 
-/** @brief function do_kw_fast_mousepan in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_fast_mousepan in X_Settings_Keyword_Handlers  */
 KEYWORD ( fast_mousepan ) {
   RC_BOOLEAN_WOUT (fast_mousepan)
 }
 
-/** @brief function do_kw_drag_can_move in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_drag_can_move in X_Settings_Keyword_Handlers  */
 KEYWORD ( drag_can_move ) {
   RC_BOOLEAN_WOUT (drag_can_move)
 }
@@ -1081,7 +1111,7 @@ KEYWORD ( third_button ) {
   RC_STRING_TABLE_W2OUT (third_button)
 }
 
-/** @brief function do_kw_mousepan_gain in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_mousepan_gain in X_Settings_Keyword_Handlers  */
 KEYWORD ( mousepan_gain ) {
   RC_INTEGER_WOUT (mousepan_gain)
 }

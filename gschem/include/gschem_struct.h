@@ -86,7 +86,7 @@ struct st_gschem_toplevel {
   /* ------------------  Drawing surfaces  ---------------- */
   GdkWindow *window;                    /* drawing_area's X drawable */
   GdkPixmap *drawable;                  /* drawable to paint onto */
-  cairo_t *cr;                          /* Cairo surface */
+  cairo_t   *cr;                        /* Cairo surface */
   PangoLayout *pl;                      /* Pango layout */
 
   int win_width, win_height;            /* Actual size of window (?) */
@@ -134,6 +134,7 @@ struct st_gschem_toplevel {
   /* ----------------- rc/user parameters ----------------- */
 
   /* Display Related */
+  int grip_pixel_size;
 
   /* sets the mininum number of pixels necessary for the grid to be displayed */
   int grid_mode;          /* sets what type of grid to show, can be None, Dots, or Mesh */
@@ -191,16 +192,19 @@ struct st_gschem_toplevel {
   char *bus_ripper_symname; /* filename of the bus ripper component if set above */
 
 /* Pointer Device, aka Mouse stuff */
-  int fast_mousepan;      /* controls if text is completely drawn during mouse pan */
-  int drag_can_move;      /* Controls if drag can move objects or not */
-  int middle_button;      /* controls what the third mouse button does */
-  int mousepan_gain;      /* Controls the gain of the mouse pan */
-  int scroll_wheel;       /* controls what the mouse scroll wheel does */
-  int pointer_hscroll;    /* controls if the mouse can do horizonal scrolling */
-  int third_button;       /* controls what the third mouse button does */
+  GdkCursor* cursor;       /* Mouse GEDA Cursor Code */
+  int drawing_pointer;     /* Mouse GEDA Cursor Code */
+  int fast_mousepan;       /* controls if text is completely drawn during mouse pan */
+  int drag_can_move;       /* Controls if drag can move objects or not */
+  int middle_button;       /* controls what the third mouse button does */
+  int mousepan_gain;       /* Controls the gain of the mouse pan */
+  int scrollpan_steps;     /* Number of scroll pan events required to traverse the viewed area */
+  int scroll_wheel;        /* controls what the mouse scroll wheel does */
+  int pointer_hscroll;     /* controls if the mouse can do horizonal scrolling */
+  int third_button;        /* controls what the third mouse button does */
 
   /* Print Related */
-  char *print_command;    /* The command to send postscript to when printing */
+  char *print_command;     /* The command to send postscript to when printing */
 
   /* System Related */
   int file_preview;         /* controls if the preview area is enabled or not */
@@ -215,7 +219,6 @@ struct st_gschem_toplevel {
   int scrollbars;         /* controls if scrollbars are enabled */
   int scrollbar_update;   /* controls if display is updated while scrolling */
   int scrollbars_visible; /* controls if scrollbars are displayed */
-  int scrollpan_steps;    /* Number of scroll pan events required to traverse the viewed area */
 
   /* Text Related Stuff */
   int text_case;

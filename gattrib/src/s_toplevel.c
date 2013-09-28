@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * Copyright (C) 2003-2012 Stuart D. Brorson.
- * Copyright (C) 2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -141,7 +141,7 @@ void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
 {
   GList *iter;
   PAGE *p_current;
-
+g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
   /* read data from gtksheet into SHEET_DATA */
   s_table_gtksheet_to_all_tables();
 
@@ -151,10 +151,18 @@ void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
         iter = g_list_next( iter ) ) {
 
     p_current = (PAGE *)iter->data;
-    toplevel->page_current = p_current;
-    /* only traverse pages which are toplevel */
-    if (p_current->page_control == 0) {
-      s_toplevel_sheetdata_to_toplevel (toplevel, p_current);    /* adds all objects from page */
+    /*toplevel->page_current = p_current;*/
+    if(s_page_set_current (toplevel, p_current)) {
+      /* only traverse pages which are toplevel */
+      if (p_current->page_control == 0) {
+        s_toplevel_sheetdata_to_toplevel (toplevel, p_current);    /* adds all objects from page */
+      }
+    }
+    else {
+       strcpy(msg_buffer, "Unknown error selecting page <");
+       strcat(msg_buffer, p_current->page_filename);
+       strcat(msg_buffer, ">, \n!");
+       generic_msg_dialog( msg_buffer );
     }
   }
   return;

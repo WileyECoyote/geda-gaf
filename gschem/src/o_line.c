@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -106,7 +107,7 @@ void o_line_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
                           w_current->second_wx, w_current->second_wy);
     new_obj->line_width =  o_style_get_line_width(toplevel);
 
-    s_page_append (toplevel, toplevel->page_current, new_obj);
+    s_page_append_object (toplevel, toplevel->page_current, new_obj);
 
     /* Call add-objects-hook */
     g_run_hook_object (w_current, "%add-objects-hook", new_obj);

@@ -115,7 +115,7 @@ void o_circle_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
                           w_current->first_wx, w_current->first_wy,
                           w_current->distance);
   new_obj->line_width =  o_style_get_line_width(toplevel);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
+  s_page_append_object (toplevel, toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */
   g_run_hook_object (w_current, "%add-objects-hook", new_obj);

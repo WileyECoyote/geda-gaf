@@ -1,3 +1,61 @@
+2013-09-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/o_undo.c: Renamed function o_undo_cleanup to finalize. GSCHEM_TOPLEVEL
+          as parameter to o_undo_init. Moved call o_undo_init() in gschem.c to after
+          top level is created.
+
+        * src_o_grips: Tested with grip_half_size = GRIP_PIXEL_SIZE / 2, which does
+          appear to be an improvment over setting the grip size strickly based on
+          the zoom factor. Using a "fixed" grip size was not aesthetically pleasing
+          for objects with the line width property set. So the entire scheme was
+          replaced with an experimental dynamic grip size system. In this system the
+          grip size for redraws is object dependent, and maximized for invalidates.
+          At higher zoom levels the grip size for objects can be absolute or based
+          on the object's width and the zoom factor.
+
+        * src/x_compselect.c: Added parent property to g_object_new in function
+          x_compselect_open. Removed gtk_window_set_transient_for since parent
+          object will make the call to lib, see changes to gschem_dialog below.
+
+        * src/x_multiattrib.c: Added parent property to g_object_new in function
+          x_multiattrib_open. Removed gtk_window_set_transient_for since parent
+          object will make the call to glib, see changes to gschem_dialog below.
+
+        * src/x_compselect.c: Added parent property to g_object_new in function
+          x_compselect_open. Removed gtk_window_set_transient_for since parent
+          object will make the call to glib, see changes to gschem_dialog below.
+
+        * src/gschem_dialog.c: Add new properties PROP_PARENT_WINDOW and PROP_TITLE,
+          with supporting functions; gschem_dialog_get_parent, gschem_dialog_
+          set_parent, gschem_dialog_get_title and gschem_dialog_set_title.
+
+        * src/x_fileselect.c: Add checkbox with option to append "sch" on the file
+          name of the user so elects. The file extension is not added if file already
+          has an "dot extension". The option  is save to the user config settings.
+
+        * src/x_settings.c: Added new function x_settings_save_settings to save misc
+          user configurable settings. Maybe should just move all of the "save settings"
+          to this function to bettter organize the code.
+
+        * src/x_settings_dialog.c: Added new widgets and variables for grip size,
+          color, fill color, text markers, size and color, net enpoint color, junction
+          size and color. Added new functions for popup menu to restore default colors.
+          Added check in function GatherSettings for a change to w_current->scrollbars_
+          visible when retrieved, and update the widgets so that a re-start is not
+          required when changing this setting.
+
+        * src/x_windows.c: removed  * char* group from save and restore settings
+          functions, renamed both function "settings" instead of "geometry".
+          renamed function x_window_create_drawing x_window_create_drawing_area and
+          made static, removed from prototype.h.
+
+        * Added New Deselct mode: i_command/menu/toolbar renamed deselect action to
+          deselect-all, added new action deselect. In x_states.h added DESELECT and
+          STARTDESELECT. Added status string in i_basic.c->i_status_string. Added
+          DESELECT & STARTDESELECT to button press event handlers in x_events.c. In
+          Added STARTDESELECT in o_basic.c->o_redraw_cleanstates(), which does nothing.
+          In o_select.c->o_select_object reversed CONTROLKEY if deselecting.
+
 2013-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
         * Applied numerous changes based on changes in the Master branch. Attempted
@@ -17,7 +75,7 @@
           with various ref-des formats; such as RL0911 and ZZZ1.). Perhaps someones is
           using a format that I am not familiar with.
 
-        * src/o_buffer.cut: Set flag for page changed in function o_buffer_cut.
+        * src/o_buffer.c: Set flag for page changed in function o_buffer_cut.
 
         * src/i_command: Major changes; added int x and int y to command_struc, added
           new ActionFlags using bits 2 and 3. None of the threads use the new bit 2,

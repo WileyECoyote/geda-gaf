@@ -16,7 +16,7 @@ gschem_SOURCES += \
 	globals.c \
 	gschem.c \
 	gschem_dialog.c \
-	g_toplevel.c \
+	gschem_toplevel.c \
 	i_basic.c \
 	i_callbacks.c \
 	i_command.c \

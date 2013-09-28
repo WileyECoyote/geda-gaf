@@ -14,13 +14,24 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
  */
 
 #ifndef __EDA_RENDERER_H__
 #define __EDA_RENDERER_H__
 
 G_BEGIN_DECLS
+
+/* These macros are used to help reduce lines lengths */
+#define EDAR_GRIP_SIZE          renderer->grip_size
+#define EDAR_GRIP_STROKE_COLOR  renderer->grip_stroke_color
+#define EDAR_GRIP_FILL_COLOR    renderer->grip_fill_color
+
+#define EDAR_JUNCTION_COLOR     renderer->junction_color
+#define EDAR_JUNCTION_SIZE      renderer->junction_size
+#define EDAR_NET_ENDPOINT_COLOR renderer->net_endpoint_color
+#define EDAR_TEXT_MARKER_COLOR  renderer->text_marker_color
+#define EDAR_TEXT_MARKER_SIZE   renderer->text_marker_size
 
 #define EDA_TYPE_RENDERER (eda_renderer_get_type ())
 #define EDA_RENDERER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDA_TYPE_RENDERER, EdaRenderer))
@@ -51,11 +62,20 @@ struct _EdaRenderer
   GObject parent_instance;
 
   /* Public members */
-  int draw_grips;         /* sets if grips are enabled or not */
-  int min_width;
+  int      draw_grips;         /* controls if grips are enabled or not */
+  double   grip_size;
+  GdkColor grip_stroke_color;
+  GdkColor grip_fill_color;
 
-  int text_origin_marker; /* controls if text origin marker is displayed or not */
-  int text_marker_size;   /* controls if text origin marker is displayed or not */
+  int      min_width;
+
+  int      junction_size;
+  GdkColor junction_color;     /* The stroke color to be used for rendering junctions */
+  GdkColor net_endpoint_color; /* The stroke color to be used for net/pin end points */
+
+  int      text_origin_marker; /* controls if text origin marker is displayed or not */
+  int      text_marker_size;   /* controls the size of text origin markers */
+  GdkColor text_marker_color;  /* The stroke color to be used for text origin marker */
 
   /* Private members */
   EdaRendererPrivate *priv;
@@ -95,6 +115,14 @@ void eda_renderer_draw_grips      (EdaRenderer *renderer, OBJECT *object);
 void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *objects);
 void eda_renderer_draw_cues       (EdaRenderer *renderer, OBJECT *object);
 
+int  eda_renderer_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
+                                   double *left, double *top,
+                                   double *right, double *bottom);
+
+int  eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
+                                        double *left, double *top,
+                                        double *right, double *bottom);
+
 GArray  *eda_renderer_get_color_map (EdaRenderer *renderer);
 void     eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map);
 
@@ -109,14 +137,37 @@ bool     eda_renderer_set_flags   (EdaRenderer *renderer, int flags);
 int      eda_renderer_get_flags   (EdaRenderer *renderer);
 bool     eda_renderer_mask_flags  (EdaRenderer *renderer, int flags);
 
-int      eda_renderer_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
-                                       double *left, double *top,
-                                       double *right, double *bottom);
+double   eda_renderer_get_grips_size    (EdaRenderer *renderer);
+void     eda_renderer_set_grips_size    (EdaRenderer *renderer,
+                                         double new_size);
 
-int eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
-                                       double *left, double *top,
-                                       double *right, double *bottom);
+const
+GdkColor* eda_renderer_get_grips_stroke_color (EdaRenderer *renderer);
+void      eda_renderer_set_grips_stroke_color (EdaRenderer *renderer,
+                                               GdkColor*    color);
+const
+GdkColor* eda_renderer_get_grips_fill_color   (EdaRenderer *renderer);
+void      eda_renderer_set_grips_fill_color   (EdaRenderer *renderer,
+                                               GdkColor*    color);
+const
+GdkColor* eda_renderer_get_junction_color     (EdaRenderer *renderer);
+void      eda_renderer_set_junction_color     (EdaRenderer *renderer,
+                                               GdkColor*    color);
+int       eda_renderer_get_junction_size      (EdaRenderer *renderer);
+void      eda_renderer_set_junction_size      (EdaRenderer *renderer,
+                                               int new_size);
 
+const
+GdkColor* eda_renderer_get_net_endpoint_color (EdaRenderer *renderer);
+void      eda_renderer_set_net_endpoint_color (EdaRenderer *renderer,
+                                               GdkColor* color);
+const
+GdkColor* eda_renderer_get_text_marker_color  (EdaRenderer *renderer);
+void      eda_renderer_set_text_marker_color  (EdaRenderer *renderer,
+                                               GdkColor*    color);
+int       eda_renderer_get_text_marker_size   (EdaRenderer *renderer);
+void      eda_renderer_set_text_marker_size   (EdaRenderer *renderer,
+                                               int new_size);
 G_END_DECLS
 
 #endif /* !__EDA_RENDERER_H__ */

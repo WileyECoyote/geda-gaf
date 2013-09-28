@@ -28,15 +28,19 @@
 ;;
 */
 /************************ REVISION HISTORY *************************
-;; Who |   When   |  What (Why)
+;; Who |   When   | What (Why)
 ;; ------------------------------------------------------------------
-;; WEH | 09/17/12 |  Inital release.
+;; WEH | 09/17/12 | Inital release.
 ;; ------------------------------------------------------------------
-;; WEH | 12/04/12 |  Added function x_settings_set_scm_int, revised
+;; WEH | 12/04/12 | Added function x_settings_set_scm_int, revised
 ;; ------------------------------------------------------------------
-;; WEH | 01/06/13 |  Added RC_RIPPER_xxx_STRINGS (new). Revise  gschem_
-;;                |  structure for Ripper name string.
+;; WEH | 01/06/13 | Added RC_RIPPER_xxx_STRINGS (new). Revise  gschem_
+;;                | structure for Ripper name string.
 ;; ------------------------------------------------------------------
+;; WEH | 09/20/13 | Added PointerCursor Combo (to extend functionality)
+GripStrokeColor
+;; ------------------------------------------------------------------
+//ScrollBarsVisible
 */
 #ifndef __X_SETTINGS_H__
 #define __X_SETTINGS_H__
@@ -48,6 +52,7 @@
 #define ControlID EnumeratedSettingsControl
 #define Combo_Responder combo_responder
 #define Butt_Responder butt_responder
+#define Color_Butt_Responder color_butt_responder
 #define Radio_Responder radio_responder
 #define Switch_Responder switch_responder
 
@@ -75,10 +80,12 @@ struct rc_4_strings_t
 #define RC_NET_MAKER_STRINGS struct rc_4_strings_t string_table = {RC_STR_NET_NONE, RC_STR_EMPTY_BOX, RC_STR_FILLED_BOX, NULL};
 #define RC_NET_SELECTION_STRINGS struct rc_4_strings_t string_table = {RC_STR_DISABLED, RC_STR_NET_NET, RC_STR_NET_ALL, NULL};
 #define RC_STYLES_STRINGS struct rc_4_strings_t string_table = {RC_STR_STYLE_NONE, RC_STR_STYLE_THIN, RC_STR_STYLE_THICK, NULL};
+
 #define RC_MIDDLE_MOUSE_STRINGS struct rc_4_strings_t string_table = {RC_STR_MID_STROKE, RC_STR_MID_REPEAT, \
                                                                    RC_STR_MID_ACTION, RC_STR_MID_MOUSEPAN};
 #define RC_3RD_BUTT_STRINGS struct rc_4_strings_t string_table = {RC_STR_3RD_POPUP, RC_STR_3RD_PAN, NULL, NULL};
 #define RC_SCROLL_STRINGS struct rc_4_strings_t string_table = {RC_STR_SCROLL_GTK, RC_STR_SCROLL_CLASSIC, NULL, NULL};
+
 #define RC_TEXT_CASE_STRINGS struct rc_4_strings_t string_table = {RC_STR_TEXT_LOWER, RC_STR_TEXT_UPPER, RC_STR_TEXT_BOTH };
 #define RC_TXT_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_TXT_READABLE, RC_STR_TXT_ALWAYS, NULL, NULL};
 #define RC_UNDO_TYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_UNDO_DISK, RC_STR_UNDO_MEMORY, NULL, NULL};
@@ -125,6 +132,11 @@ typedef enum {
         Nets,
 
 /* Button Controls */
+  /* Edit TAB */
+        GripStrokeColor,
+        GripFillColor,
+        NetEndpointColor,
+
   /* Attributes TAB */
         AddAttribute,
         RemoveAttribute,
@@ -133,11 +145,18 @@ typedef enum {
         IncreaseAttribute,
         DecreaseAttribute,
 
-/* 9 Combo Controls  */
+    /* Text TAB */
+        TextMarkerColor,
+
+    /* Styles TAB */
+        JunctionColor,
+
+/* 10 Combo Controls  */
         TitleBlock,
         ColorMapScheme,
         DotGridMode,
         ConsoleWindowType,
+        PointerCursor,
         MiddleButton,
         ThirdButton,
         UndoType,
@@ -199,6 +218,8 @@ typedef enum {
         AutoPlacementGrid,
         AutoSaveInterval,
         DotGridThreshold,
+        GripPixelSize,
+        JunctionSize,
         KeyboardPanGain,
         MeshGridThreshold,
         MousePanGain,
@@ -246,10 +267,12 @@ typedef enum {
         NetDirection,
         NotifyEvents,
         ObjectClipping,
+        PointerHScroll,
         RipperRotation,
         RipperType,
         RubberNets,
         ScrollBars,
+        ScrollBarsVisible,
         SortLibrary,
         TextOriginMarker,
         UndoViews,
@@ -259,15 +282,6 @@ typedef enum {
         PotentialAttributes,
         SelectedAttributes,
 } ControlID;
-
-typedef struct {
-   bool is_local;
-   bool is_modified;
-   bool is_volatile;
-   int  value;
-   int  strflag;
-   int  strindex;
-} param;
 
 /* Function Prototypes */
 
@@ -301,6 +315,3 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current);
 void GatherSettings(GSCHEM_TOPLEVEL *w_current);
 
 #endif /* __X_SETTINGS_H__ */
-
-
-

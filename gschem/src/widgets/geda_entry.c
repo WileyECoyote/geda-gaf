@@ -668,7 +668,6 @@ geda_entry_real_activate (GedaEntry *entry)
       }
     }
   }
-  
 }
 
 static bool

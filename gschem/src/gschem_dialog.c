@@ -349,12 +349,20 @@ gschem_dialog_set_property (GObject *object, guint property_id,
     case PROP_GSCHEM_TOPLEVEL:
       Dialog->w_current = (GSCHEM_TOPLEVEL*)g_value_get_pointer (value);
       break;
+    case PROP_PARENT_WINDOW:
+      fprintf(stderr, "gschem_dialog_set_property: set parent=main\n");
+      gschem_dialog_set_parent(Dialog, (GtkWindow*) g_value_get_pointer (value));
+      break;
     case PROP_SELECTION_TRACKER:
       /* disconnect Dialog from any previous selection */
       gd_disconnect_selection (Dialog);
       Dialog->func = g_value_get_pointer(value);
       /* connect the Dialog to the selection of the current page */
       gd_connect_selection (Dialog);
+      break;
+
+    case PROP_TITLE:
+      gtk_window_set_title (GTK_WINDOW (object), g_value_get_string (value));
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -384,6 +392,12 @@ static void gschem_dialog_get_property (GObject *object, guint property_id, GVal
       case PROP_GSCHEM_TOPLEVEL:
         g_value_set_pointer (value, (gpointer)Dialog->w_current);
         break;
+      case PROP_PARENT_WINDOW:
+        g_value_set_pointer (value, Dialog->parent_window);
+        break;
+      case PROP_TITLE:
+        g_value_set_string (value, gtk_window_get_title(GTK_WINDOW(object)));
+       break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
@@ -459,12 +473,26 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                           G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
 
   g_object_class_install_property (
+    gobject_class, PROP_PARENT_WINDOW,
+    g_param_spec_pointer ("parent",
+                        _("Parent Window"),
+                        _("Parent window for this dialog"),
+                          G_PARAM_READWRITE));
+
+  g_object_class_install_property (
     gobject_class, PROP_SELECTION_TRACKER,
     g_param_spec_pointer (DIALOG_DATA_SELECTION,
                           "",
                           "",
                           G_PARAM_WRITABLE));
 
+  g_object_class_install_property (
+    gobject_class, PROP_TITLE,
+    g_param_spec_string ("title",
+                       _("Title"),
+                       _("Dialog window title"),
+                         NULL,
+                         G_PARAM_READWRITE));
 }
 
 /*! \brief Function to retrieve GschemDialog's GType identifier.
@@ -512,7 +540,7 @@ GType gschem_dialog_get_type ()
  *  \param [in]  first_button_text  The text string for the first button
  *  \param [in]  args               The va_list containging the remaining button strings
  */
-static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
+static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
                                               const char    *first_button_text,
                                               va_list         args)
 {
@@ -552,7 +580,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
  *
  *  \return  The GschemDialog created.
  */
- GtkWidget* gschem_dialog_new_empty (const char           *title,
+ GtkWidget* gschem_dialog_new_empty (const char            *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
                                            const char *settings_name,
@@ -561,7 +589,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog      *dialog,
   GschemDialog *dialog;
 
   dialog = g_object_new (GSCHEM_TYPE_DIALOG,
-                         "settings-name", settings_name,
+                         "settings-name",   settings_name,
                          "gschem-toplevel", w_current,
                          NULL);
 
@@ -622,3 +650,34 @@ GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent,
   return GTK_WIDGET (dialog);
 }
 
+GtkWindow *gschem_dialog_get_parent(GschemDialog *dialog)
+{
+  if( !GSCHEM_IS_DIALOG(dialog))
+    fprintf(stderr, "Error, <gschem_dialog_get_parent> object is not a GschemDialog\n");
+  else
+    return dialog->parent_window;
+  return NULL;
+}
+void gschem_dialog_set_parent(GschemDialog *dialog, GtkWindow *parent)
+{
+  if( !GSCHEM_IS_DIALOG(dialog))
+    fprintf (stderr, "Error, <gschem_dialog_set_parent> parameter 1 is not a GschemDialog\n");
+  else if (!GTK_IS_WINDOW(parent))
+    fprintf (stderr, "Error, <gschem_dialog_set_parent> parameter 2 is not a GtkWindow\n");
+  else {
+    if (dialog->parent_window) {
+      gtk_window_set_transient_for (GTK_WINDOW (dialog), NULL);
+    }
+    dialog->parent_window = parent;
+    gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+    gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+  }
+}
+const char *gschem_dialog_get_title(GschemDialog *dialog)
+{
+  return gtk_window_get_title(GTK_WINDOW(dialog));
+}
+void gschem_dialog_set_title(GschemDialog *dialog, const char*title)
+{
+  gtk_window_set_title (GTK_WINDOW (dialog), title);
+}

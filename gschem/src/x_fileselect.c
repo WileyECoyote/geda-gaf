@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -246,9 +247,18 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
 void
 x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
+  TOPLEVEL  *toplevel = w_current->toplevel;
   GtkWidget *dialog;
-  char *cwd = NULL;
+  GtkWidget *hbox;
+  GtkWidget *cb_add_ext;
+  bool       auto_ext;
+  char      *cwd = NULL;
+  EdaConfig *cfg = eda_config_get_user_context ();
+
+  //GtkTooltips *tooltips;
+  //tooltips = gtk_tooltips_new ();
+
+  auto_ext = eda_config_get_boolean (cfg, "gschem", "auto-file-suffix", NULL);
 
   dialog = gtk_file_chooser_dialog_new (_("Save as..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -294,10 +304,33 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 
   gtk_dialog_set_default_response(GTK_DIALOG(dialog),
                                   GTK_RESPONSE_ACCEPT);
+
+  /* Add our extra widget to the dialog */
+  hbox = gtk_hbox_new(FALSE, 0);
+
+  cb_add_ext = gtk_check_button_new_with_label (_("Auto file Suffix"));
+
+  gtk_widget_show (cb_add_ext);
+  gtk_box_pack_start (GTK_BOX(hbox), cb_add_ext, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text(cb_add_ext, "Automatic append the file extension");
+  gtk_toggle_button_set_active ((GtkToggleButton*)cb_add_ext, auto_ext);
+  gtk_file_chooser_set_extra_widget (GTK_FILE_CHOOSER(dialog), hbox);
+
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    char *filename =
-    gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    char *filename;
+    char *filebase;
+    char *tmpname;
+
+    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    filebase = basename(filename);
+    auto_ext = gtk_toggle_button_get_active ((GtkToggleButton*)cb_add_ext);
+
+    if (auto_ext && (filebase != NULL) && get_filename_ext(filebase)) {
+      tmpname = g_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
+      g_free (filename);
+      filename = tmpname;
+    }
 
     /* If the file already exists, display a dialog box to check if
      *       the user really wants to overwrite it. */
@@ -325,11 +358,11 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
                           w_current->toplevel->page_current,
                           filename);
     }
-
     g_free (filename);
+    eda_config_set_boolean (cfg, "gschem", "auto-file-suffix", auto_ext);
   }
   gtk_widget_destroy (dialog);
-
+  
 }
 
 /*! \brief Load/Backup selection dialog.

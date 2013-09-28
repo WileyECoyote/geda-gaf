@@ -31,6 +31,7 @@
 #include <libgeda/defines.h>
 #include <libgeda/s_struct.h>
 #include <libgeda/g_struct.h>
+#include <libgeda/s_toplevel.h>
 #include <libgeda/globals.h>
 #include <libgeda/o_types.h>
 #include <libgeda/funcs.h>

@@ -31,6 +31,14 @@
 
 #define NUM_BEZIER_SEGMENTS 100
 
+#define NUM_BEZIER_SEGMENTS 100
+
+
+typedef void (*FILL_FUNC) (GSCHEM_TOPLEVEL *w_current,
+                           COLOR *color, PATH *path,
+                           int fill_width,
+                           int angle1, int pitch1, int angle2, int pitch2);
+
 static PATH *path_copy_modify (PATH *path, int dx, int dy,
                                int new_x, int new_y, int whichone)
 {
@@ -69,6 +77,7 @@ static PATH *path_copy_modify (PATH *path, int dx, int dy,
         if (whichone == grip_no++) {
           x3 = new_x; y3 = new_y;
         }
+      /* Fall through */
       case PATH_END:
         break;
     }
@@ -97,6 +106,12 @@ path_rubber_bbox (GSCHEM_TOPLEVEL *w_current, PATH *path,
   int grip_no = 0;
   int i;
 
+  if (w_current == NULL) {
+    fprintf (stderr, "Internal Error: " "<%s><path_rubber_bbox>"
+    "w_current = NULL, line %d.\n", __FILE__, __LINE__);
+    return;
+  }
+
   if (path == NULL)
     path = w_current->which_object->path;
 
@@ -123,27 +138,28 @@ path_rubber_bbox (GSCHEM_TOPLEVEL *w_current, PATH *path,
         if (whichone == grip_no++) {
           x2 = new_x; y2 = new_y;
         }
-         *min_x = MIN (*min_x, x1);  *min_y = MIN (*min_y, y1);
-         *max_x = MAX (*max_x, x1);  *max_y = MAX (*max_y, y1);
-         *min_x = MIN (*min_x, x2);  *min_y = MIN (*min_y, y2);
-         *max_x = MAX (*max_x, x2);  *max_y = MAX (*max_y, y2);
+        *min_x = MIN (*min_x, x1);  *min_y = MIN (*min_y, y1);
+        *max_x = MAX (*max_x, x1);  *max_y = MAX (*max_y, y1);
+        *min_x = MIN (*min_x, x2);  *min_y = MIN (*min_y, y2);
+        *max_x = MAX (*max_x, x2);  *max_y = MAX (*max_y, y2);
         /* Fall through */
-        case PATH_MOVETO:
-        case PATH_MOVETO_OPEN:
-        case PATH_LINETO:
-          /* Destination point grip */
-          if (whichone == grip_no++) {
-            x3 = new_x; y3 = new_y;
-          }
-         *min_x = MIN (*min_x, x3);  *min_y = MIN (*min_y, y3);
-         *max_x = MAX (*max_x, x3);  *max_y = MAX (*max_y, y3);
-        case PATH_END:
-          break;
+      case PATH_MOVETO:
+      case PATH_MOVETO_OPEN:
+      case PATH_LINETO:
+        /* Destination point grip */
+        if (whichone == grip_no++) {
+          x3 = new_x; y3 = new_y;
+        }
+        *min_x = MIN (*min_x, x3);  *min_y = MIN (*min_y, y3);
+        *max_x = MAX (*max_x, x3);  *max_y = MAX (*max_y, y3);
+        /* Fall through */
+      case PATH_END:
+        break;
     }
   }
 }
 
-/*! \section: Default capacity of newly created path objects, in path */
+/*! Default capacity of newly created path objects, in path sections. */
 #define TEMP_PATH_DEFAULT_SIZE 8
 
 /*! \brief Add elements to the temporary PATH.
@@ -152,8 +168,7 @@ path_rubber_bbox (GSCHEM_TOPLEVEL *w_current, PATH *path,
  * creating paths has room for additional sections.  If not, doubles
  * its capacity.
  */
-static void
-path_expand (GSCHEM_TOPLEVEL *w_current)
+static void path_expand (GSCHEM_TOPLEVEL *w_current)
 {
   PATH *p = w_current->temp_path;
   if (p->num_sections == p->num_sections_max) {
@@ -197,42 +212,43 @@ path_next_sections (GSCHEM_TOPLEVEL *w_current)
 
   if (w_current == NULL) {
     fprintf (stderr, "Internal Error: " "<%s><path_next_sections>"
-                     "w_current = NULL, line %d.\n", __FILE__, __LINE__);
+    "w_current = NULL, line %d.\n", __FILE__, __LINE__);
     return 0;
   }
-  if (w_current->temp_path == NULL || w_current->temp_path->sections != NULL) {
+  if (w_current->temp_path == NULL || w_current->temp_path->sections == NULL) {
     fprintf (stderr, "Internal Error: " "<%s><path_next_sections>"
                      "invalid temp_path or section, line %d.\n",
                      __FILE__, __LINE__);
     return 0;
   }
+
   x1 = w_current->first_wx;
   y1 = w_current->first_wy;
   x2 = w_current->second_wx;
   y2 = w_current->second_wy;
   x3 = w_current->third_wx;
   y3 = w_current->third_wy;
-  p = w_current->temp_path;
+  p  = w_current->temp_path;
 
   save_num_sections = p->num_sections;
 
-  /* Check whether the section that's being added is the initial
+  /* Check whether the section that is being added is the initial
    * MOVETO.  This is detected if the path is currently empty. */
   start_path = (p->num_sections == 0);
 
   prev_section = start_path ? NULL : &p->sections[p->num_sections - 1];
 
-  /* Check whether the point that's being added has a handle offset. */
-  cusp_point = (w_current->first_wx == w_current->second_wx
-                && w_current->first_wy == w_current->second_wy);
+  /* Check whether the point that is being added has a handle offset. */
+  cusp_point = (w_current->first_wx == w_current->second_wx &&
+                w_current->first_wy == w_current->second_wy);
 
   /* Check whether there's a leftover control handle from the previous
    * point. */
-  cusp_prev = (!start_path
-               && prev_section->x3 == x3
-               && prev_section->y3 == y3);
+  cusp_prev = (!start_path &&
+                prev_section->x3 == x3 &&
+                prev_section->y3 == y3);
 
-  /* Check whether the section that's being added closes the path.
+  /* Check whether the section that is being added closes the path.
    * This is detected if the location of the node is the same as the
    * location of the starting node, and there is at least one section
    * in the path in addition to the initial MOVETO section. */
@@ -241,7 +257,7 @@ path_next_sections (GSCHEM_TOPLEVEL *w_current)
                 && x1 == section->x3
                 && y1 == section->y3);
 
-  /* Check whether the section that's being added ends the path. This
+  /* Check whether the section that is being added ends the path. This
    * is detected if the location of the node is the same as the
    * location of the previous node. */
   end_path = (!start_path
@@ -272,22 +288,23 @@ path_next_sections (GSCHEM_TOPLEVEL *w_current)
       section->x3 = x1;
       section->y3 = y1;
 
-    } else {
+    }
+    else {
       /* If there are one or more Bezier control points, the section
        * needs to be a CURVETO.  The control point of the current
        * point is mirrored about the point (i.e. the line is kept
        * continuous through the point). */
       section->code = PATH_CURVETO;
-      section->x1 = x3;
-      section->y1 = y3;
-      section->x2 = x1 + (x1 - x2);
-      section->y2 = y1 + (y1 - y2);
-      section->x3 = x1;
-      section->y3 = y1;
+      section->x1   = x3;
+      section->y1   = y3;
+      section->x2   = x1 + (x1 - x2);
+      section->y2   = y1 + (y1 - y2);
+      section->x3   = x1;
+      section->y3   = y1;
 
       if (close_path) {
         path_expand (w_current);
-        section = &p->sections[p->num_sections++];
+        section       = &p->sections[p->num_sections++];
         section->code = PATH_END;
       }
     }
@@ -297,9 +314,9 @@ path_next_sections (GSCHEM_TOPLEVEL *w_current)
 }
 
 /*! \brief Invalidate current path creation screen region.
- *  \par Function Description
- *   Invalidates the screen region occupied by the current path creation
- *   preview and control handle helpers.
+ * \par Function Description
+ * Invalidates the screen region occupied by the current path creation
+ * preview and control handle helpers.
  */
 void
 o_path_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
@@ -326,7 +343,6 @@ o_path_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
   o_invalidate_rect (w_current, x1, y1, x2, y2);
 
   w_current->temp_path->num_sections -= added_sections;
-
 }
 
 /*! \brief Start process to input a new path.
@@ -346,69 +362,70 @@ void o_path_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   if (w_current == NULL) {
     fprintf (stderr, "Internal Error: " "<%s><o_path_start>"
-                     "w_current = NULL, line %d.\n", __FILE__, __LINE__);
+    "w_current = NULL, line %d.\n", __FILE__, __LINE__);
     return;
   }
 
   /* Reset path creation state */
   if (w_current->temp_path != NULL) {
-  w_current->temp_path->num_sections = 0;
-  } else {
-  PATH *p = g_new0 (PATH, 1);
-  p->sections = g_new0 (PATH_SECTION, TEMP_PATH_DEFAULT_SIZE);
-  p->num_sections = 0;
-  p->num_sections_max = TEMP_PATH_DEFAULT_SIZE;
-  w_current->temp_path = p;
+    w_current->temp_path->num_sections = 0;
+  }
+  else {
+    PATH *path              = g_new0 (PATH, 1);
+    path->sections          = g_new0 (PATH_SECTION, TEMP_PATH_DEFAULT_SIZE);
+    path->num_sections      = 0;
+    path->num_sections_max  = TEMP_PATH_DEFAULT_SIZE;
+    w_current->temp_path    = path;
   }
 
-  w_current->which_grip = -1;
-  w_current->first_wx = w_x;
-  w_current->first_wy = w_y;
-  w_current->second_wx = w_x;
-  w_current->second_wy = w_y;
-  w_current->third_wx = w_x;
-  w_current->third_wy = w_y;
+  w_current->which_grip     = -1;
+  w_current->first_wx       = w_x;
+  w_current->first_wy       = w_y;
+  w_current->second_wx      = w_x;
+  w_current->second_wy      = w_y;
+  w_current->third_wx       = w_x;
+  w_current->third_wy       = w_y;
 
   /* Enable preview drawing */
   w_current->rubber_visible = TRUE;
 }
 
-/*! \brief Begin inputting a new path node.
- *  \par Function Description
- *  Re-enters path creation mode, saving the current pointer location
- *  as the location of the next path control point.
+/* \brief Begin inputting a new path node.
+ * \par Function Description
+ * Re-enters path creation mode, saving the current pointer location
+ * as the location of the next path control point.
  */
-void o_path_continue (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void
+o_path_continue (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   if (w_current == NULL) {
-    fprintf (stderr, "Internal Error: " "<%s><o_path_start>"
+    fprintf (stderr, "Internal Error: " "<%s><o_path_continue>"
                      "w_current = NULL, line %d.\n", __FILE__, __LINE__);
     return;
   }
 
   o_path_invalidate_rubber (w_current);
 
-  w_current->first_wx = w_x;
-  w_current->first_wy = w_y;
+  w_current->first_wx  = w_x;
+  w_current->first_wy  = w_y;
   w_current->second_wx = w_x;
   w_current->second_wy = w_y;
 
   o_path_invalidate_rubber (w_current);
 }
 
-/*! \brief Give feedback on path creation during mouse movement.
- *  \par Function Description
- *  If the user is currently in the process of creating a path node
- *  (i.e. has mouse button pressed), moves the next node's control
- *  point.  If the user has not yet pressed the mouse button to start
- *  defining a path node, moves the next node's location and control
- *  point together.
+/* \brief Give feedback on path creation during mouse movement.
+ * \par Function Description
+ * If the user is currently in the process of creating a path node
+ * (i.e. has mouse button pressed), moves the next node's control
+ * point.  If the user has not yet pressed the mouse button to start
+ * defining a path node, moves the next node's location and control
+ * point together.
  */
-void
-o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   if (w_current == NULL) {
-    fprintf (stderr, "Internal Error: " "<%s><o_path_start>"
+    fprintf (stderr, "Internal Error: " "<%s><o_path_motion>"
                      "w_current = NULL, line %d.\n", __FILE__, __LINE__);
     return;
   }
@@ -444,7 +461,8 @@ o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-bool o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+bool
+o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 {
   bool          close_path;
   bool          end_path;
@@ -455,34 +473,36 @@ bool o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   PATH         *p;
   int           x1, y1, x2, y2;
 
-  if (w_current == NULL || w_current->toplevel ) {
-    fprintf (stderr, "Internal Error: " "<%s><path_next_sections>"
+  if (w_current == NULL || w_current->toplevel == NULL) {
+    fprintf (stderr, "Internal Error: " "<%s><o_path_end>"
                      "w_current or toplevel = NULL, line %d.\n",
                       __FILE__, __LINE__);
     return FALSE;
   }
-  if (w_current->temp_path == NULL || w_current->temp_path->sections != NULL) {
-    fprintf (stderr, "Internal Error: " "<%s><path_next_sections>"
+  if (w_current->temp_path == NULL || w_current->temp_path->sections == NULL) {
+    fprintf (stderr, "Internal Error: " "<%s><o_path_end>"
                      "invalid temp_path or section, line %d.\n",
                      __FILE__, __LINE__);
     return FALSE;
   }
+
   o_path_invalidate_rubber (w_current);
 
   toplevel = w_current->toplevel;
+
   x1 = w_current->first_wx;
   y1 = w_current->first_wy;
   x2 = w_current->second_wx;
   y2 = w_current->second_wy;
-  p = w_current->temp_path;
+  p  = w_current->temp_path;
 
-  /* Check whether the section that's being added is the initial
+  /* Check whether the section that is being added is the initial
    * MOVETO.  This is detected if the path is currently empty. */
-  start_path = (p->num_sections == 0);
+  start_path   = (p->num_sections == 0);
 
   prev_section = start_path ? NULL : &p->sections[p->num_sections - 1];
 
-  /* Check whether the section that's being added closes the path.
+  /* Check whether the section that is being added closes the path.
    * This is detected if the location of the node is the same as the
    * location of the starting node, and there is at least one section
    * in the path in addition to the initial MOVETO section. */
@@ -491,7 +511,7 @@ bool o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
                 && x1 == section->x3
                 && y1 == section->y3);
 
-  /* Check whether the section that's being added ends the path. This
+  /* Check whether the section that is being added ends the path. This
    * is detected if the location of the node is the same as the
    * location of the previous node. */
   end_path = (!start_path
@@ -506,14 +526,14 @@ bool o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
     OBJECT *obj = o_path_new_take_path (toplevel, OBJ_PATH,
                                         GRAPHIC_COLOR, p);
     w_current->temp_path = NULL;
-    w_current->first_wx = -1;
-    w_current->first_wy = -1;
+    w_current->first_wx  = -1;
+    w_current->first_wy  = -1;
     w_current->second_wx = -1;
     w_current->second_wy = -1;
-    w_current->third_wx = -1;
-    w_current->third_wy = -1;
+    w_current->third_wx  = -1;
+    w_current->third_wy  = -1;
 
-    s_page_append (toplevel, toplevel->page_current, obj);
+    s_page_append_object (toplevel, toplevel->page_current, obj);
     g_run_hook_object (w_current, "%add-objects-hook", obj);
     toplevel->page_current->CHANGED = TRUE;
     o_undo_savestate (w_current, UNDO_ALL);
@@ -531,7 +551,6 @@ bool o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
     return TRUE;
   }
 }
-
 
 /*! \brief Draw path creation preview.
  * \par Function Description
@@ -570,10 +589,11 @@ o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 
   /* Setup a fake object to pass the drawing routine */
   memset (&object, 0, sizeof (OBJECT));
-  object.type = OBJ_PATH;
-  object.color = SELECT_COLOR;
+
+  object.type       = OBJ_PATH;
+  object.color      = SELECT_COLOR;
   object.line_width = 0; /* clamped to 1 pixel in circle_path */
-  object.path = w_current->temp_path;
+  object.path       = w_current->temp_path;
 
   eda_renderer_draw (renderer, &object);
 
@@ -594,6 +614,7 @@ o_path_invalidate_rubber_grips (GSCHEM_TOPLEVEL *w_current)
   WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
   o_invalidate_rect (w_current, x1, y1, x2, y2);
 }
+
 
 /*! \brief Draw temporary path while dragging end.
  *  \par Function Description
@@ -629,21 +650,24 @@ void o_path_motion_grips (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *
  *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
  */
-void o_path_draw_rubber_grips (GSCHEM_TOPLEVEL *w_current)
+void
+o_path_draw_rubber_grips (GSCHEM_TOPLEVEL *w_current)
 {
   OBJECT object;
 
   /* Setup a fake object to pass the drawing routine */
   memset (&object, 0, sizeof (OBJECT));
+
   object.type       = OBJ_PATH;
-  object.color      = o_drawing_color (w_current, &object);
-  object.line_width = 0; /* clamped to 1 pixel in circle_path */
-  object.path       = path_copy_modify (w_current->which_object->path, 0, 0,
-                                        w_current->second_wx,
-                                        w_current->second_wy,
-                                        w_current->which_grip);
+  object.color      = SELECT_COLOR;
+  object.line_width = 0;  /* clamped to 1 pixel in circle_path */
+
+  object.path = path_copy_modify (w_current->which_object->path, 0, 0,
+                                  w_current->second_wx,
+                                  w_current->second_wy, w_current->which_grip);
 
   eda_renderer_draw (w_current->renderer, &object);
   g_free (object.path->sections);
   g_free (object.path);
 }
+

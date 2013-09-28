@@ -44,6 +44,8 @@
 ;; WEH | 12/12/12 | Added DialogFont "Monospace 13.3" and PANGO_R5_LABEL,
 ;;                | Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary controls
 ;;                | use the new PANGO_R5_LABEL macro instead of GTK_R5_LABEL.
+;; ------------------------------------------------------------------
+;; WEH | 12/12/12 | Added GEDA_FRAME to extend macro library
 */
 
 #pragma once
@@ -340,6 +342,28 @@ typedef struct
 #define GTK_NEW_SCROLL_OUT( parent, name, spacing, xsize, ysize, bars) \
         GTK_NEW_SCROLL( parent, name, spacing, xsize, ysize, bars, GTK_SHADOW_ETCHED_OUT)
 
+/* Frame Widget DIALOG_V_SPACING*/
+#define GEDA_FRAME(parent, name, width, height, xalign, yalign, space) \
+        /* Create outer alignment to hold the Frame */ \
+        GtkWidget *name##Align1 = gtk_alignment_new (xalign, yalign, 0, 0); \
+        gtk_widget_set_size_request (name##Align1, width, height + space); \
+        gtk_container_add (GTK_CONTAINER (parent), name##Align1);  \
+        g_object_set (name##Align1, "visible", TRUE, NULL);    \
+        /* Create a Frame and put in the outer alignment */ \
+        GtkWidget *name##Frame = gtk_frame_new (_(#name)); \
+        gtk_widget_set_size_request (name##Frame, width, height); \
+        gtk_container_add(GTK_CONTAINER (name##Align1), name##Frame); \
+        g_object_set (name##Frame, "visible", TRUE, NULL); \
+        /* Create inner alignment and put inside the Frame */ \
+        GtkWidget *name##Align2 = gtk_alignment_new (0, 0, 0, 0); \
+        gtk_container_add (GTK_CONTAINER (name##Frame), name##Align2);  \
+        g_object_set (name##Align2, "visible", TRUE, NULL); \
+        /* Create a horizontal box and put inside the inner alignment */ \
+        GtkWidget *name##_hbox = gtk_hbox_new (FALSE, NOT_BELOW_ZERO (DIALOG_H_SPACING)); \
+        gtk_container_add(GTK_CONTAINER (name##Align2), name##_hbox); \
+        g_object_set (name##_##hbox, "visible", TRUE, NULL); \
+        gtk_box_set_spacing(GTK_BOX(name##_##hbox), space); \
+
 /* Widget Callbacks */
 #define GTK_CONNECT_CALLBACK(name, signal, function, data) \
         g_signal_connect (G_OBJECT(name), signal, G_CALLBACK(function), data);
@@ -349,13 +373,16 @@ typedef struct
 
 #define GTK_ICALLBACK(name, signal, function, data) \
         g_signal_connect (G_OBJECT(name), signal, G_CALLBACK(function), \
-                           GUINT_TO_POINTER (data));
+                          GUINT_TO_POINTER (data));
 
 #define GTK_ICALLBACK_COMBO(name) \
         GTK_ICALLBACK (name##Combo, "changed", Combo_Responder, name)
 
 #define GTK_ICALLBACK_BUTT(name) \
         GTK_ICALLBACK (name##Butt, "button_press_event", Butt_Responder, name)
+
+#define GTK_ICALLBACK_CBUTT(name) \
+        GTK_ICALLBACK (name##Butt, "button_press_event", Color_Butt_Responder, name)
 
 #define GTK_ICALLBACK_RADIO(name) \
         GTK_ICALLBACK (name##Radio, "pressed", Radio_Responder, name)
@@ -396,6 +423,18 @@ typedef struct
 #define GTK_STD_BUTTON(parent, name) \
         GTK_NEW_BUTTON (parent, name, TRUE, TRUE, TRUE, DIALOG_BUTTON_SPACING) \
         GTK_ICALLBACK_BUTT (name)
+
+#define GEDA_COLOR_BUTTON(parent, name, spacing) \
+        GtkWidget *name##_hbox=NULL;                    \
+        GtkWidget *name##Label=NULL;                    \
+        NEW_HCONTROL_BOX (parent, name, spacing)        \
+        PANGO_R5_LABEL (name)                           \
+        name##Butt = gtk_color_button_new ();  \
+        gtk_color_button_set_title((GtkColorButton*)name##Butt, _(WIDGET (name)));\
+        g_object_set ( name##Butt, "visible", TRUE, NULL); \
+        gtk_box_pack_start (GTK_BOX ( name##_hbox), name##Butt, FALSE, FALSE, DIALOG_BUTTON_SPACING); \
+        gtk_tooltips_set_tip (tooltips, name##Butt, _(TOOLTIP (name)), NULL); \
+        GTK_ICALLBACK_CBUTT (name)
 
 #define GTK_NEW_CHECKBOX(parent, name) \
         name##CheckBox = gtk_check_button_new_with_mnemonic (_(LABEL (name))); \
@@ -442,7 +481,6 @@ typedef struct
 #define DECLARE_QUAD_RADIO(group, R1, R2, R3, R4) \
         DECLARE_RADIO_TRIAD (group, R1, R2, R3) \
         DECLARE_RADIO(group##R4)
-
 
 #define GTK_RADIO_GROUP( group, dir) \
         GSList *group##Group = NULL; \

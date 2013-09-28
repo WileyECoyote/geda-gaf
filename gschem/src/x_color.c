@@ -151,10 +151,10 @@ void x_color_allocate (void)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get Pointer to GdkColor
  *  \par Function Documentation
- *
+ *   Returns a pointer to the active GdkColor object given the geda
+ *  /gschem color index.
  */
 GdkColor *x_get_color(int color)
 {

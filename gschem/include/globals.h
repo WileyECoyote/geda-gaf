@@ -47,7 +47,8 @@ extern volatile int console_window;
 extern volatile int console_window_type;
 
 #define command_history 22
-#define MAX_BUFFERS 	6
+#define MAX_BUFFERS 	7
+#define DND_BUFFER   MAX_BUFFERS - 1
 
 /* Global buffers */
 extern GList *object_buffer[MAX_BUFFERS];

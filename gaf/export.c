@@ -28,6 +28,9 @@
 #include <math.h>
 #include <errno.h>
 
+#include <gtk/gtk.h>
+#include <gdk/gdk.h>
+
 /* Gettext translation */
 #include "gettext.h"
 
@@ -35,7 +38,6 @@
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
 
-#include <gtk/gtk.h>
 #include <glib/gstdio.h>
 #include <cairo.h>
 #include <cairo-svg.h>

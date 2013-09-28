@@ -699,13 +699,34 @@ COMMAND ( do_select_invert )
 COMMAND ( do_deselect )
 {
   BEGIN_COMMAND(do_deselect);
+
+  o_redraw_cleanstates (w_current);
+
+  if (o_select_selected (w_current))
+    i_set_state (w_current, DESELECT);
+  else /* Automaticaly switch to SELECT mode cause nothing to deselect */
+    msg_need_select_1st(w_current);
+    //i_set_state (w_current, SELECT);
+
+  w_current->inside_action = 0;
+  i_update_sensitivities (w_current);
+  EXIT_COMMAND(do_deselect);
+}
+/** @fn i_cmd_do_deselect in i_command_Command_Functions
+ *! \brief Deselect all objects on page.
+ *  \par Function Description
+ * Sets all objects on page as deselected.
+ */
+COMMAND ( do_deselect_all )
+{
+  BEGIN_COMMAND(do_deselect_all);
   o_redraw_cleanstates (w_current);
   o_select_unselect_all (w_current);
 
   i_set_state (w_current, SELECT);
   w_current->inside_action = 0;
   i_update_sensitivities (w_current);
-  EXIT_COMMAND(do_deselect);
+  EXIT_COMMAND(do_deselect_all);
 }
 
 /** @fn i_cmd_do_copy in i_command_Command_Functions */
@@ -1426,7 +1447,7 @@ COMMAND ( do_page_new )
                             OBJ_COMPLEX, DEFAULT_COLOR_INDEX, 0, 0, 0,
                             FALSE, clib, sym_file, FALSE);
 
-    s_page_append (w_current->toplevel, page, object);
+    s_page_append_object (w_current->toplevel, page, object);
   }
 
   g_free(sym_file);
@@ -2340,9 +2361,9 @@ COMMAND ( do_cycle_grid )
   BEGIN_NO_ARGUMENT(do_cycle_grid);
 
   switch (w_current->grid_mode) {
-    case GRID_NONE: w_current->grid_mode = GRID_NONE; break;
-    case GRID_DOTS: w_current->grid_mode = GRID_DOTS; break;
-    case GRID_MESH: w_current->grid_mode = GRID_MESH; break;
+    case GRID_NONE: w_current->grid_mode = GRID_DOTS; break;
+    case GRID_DOTS: w_current->grid_mode = GRID_MESH; break;
+    case GRID_MESH: w_current->grid_mode = GRID_NONE; break;
   }
 
   switch (w_current->grid_mode) {

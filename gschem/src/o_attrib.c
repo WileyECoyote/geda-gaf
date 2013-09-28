@@ -349,7 +349,7 @@ OBJECT *o_attrib_add_attrib(GSCHEM_TOPLEVEL *w_current,
                        align, angle, text_string, /* zero is angle */
                        w_current->text_size, /* current text size */
                        visibility, show_name_value);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
+  s_page_append_object (toplevel, toplevel->page_current, new_obj);
 
   /* now attach the attribute to the object (if o_current is not NULL) */
   /* remember that o_current contains the object to get the attribute */

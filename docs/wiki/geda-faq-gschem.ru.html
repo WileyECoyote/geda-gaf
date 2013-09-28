@@ -416,7 +416,7 @@ text…</em></strong>] нужно выбрать другую желаемую �
 Окно журналирования в <strong>gschem</strong> можно отвадить вот
 такой строкой в <em><code>gschemrc</code></em>:
 </p>
-<pre class="code">(console-window &quot;later&quot;)</pre>
+<pre class="code">(log-window &quot;later&quot;)</pre>
 
 <p>
 Можно добавить эту строку или в <em><code>$HOME/.gEDA/gschemrc</code></em>, или в каталог проекта,
@@ -955,7 +955,7 @@ gschem myschematic.sch</pre>
 <p>
 В файле <em><code>system-gschemrc</code></em> вы найдёте следующий раздел:
 </p>
-<pre class="code">; console-window string
+<pre class="code">; log-window string
 ;
 ; Controls if the log message window is mapped when gschem is started up
 ; Possible options:
@@ -963,20 +963,20 @@ gschem myschematic.sch</pre>
 ;       later   - NOT opened up when gschem starts
 ;                 (can be opened by Options/Show Log Window)
 ;
-(console-window &quot;startup&quot;)
-;(console-window &quot;later&quot;)</pre>
+(log-window &quot;startup&quot;)
+;(log-window &quot;later&quot;)</pre>
 
 <p>
 Закомментируйте строку <code>startup</code> (с помощью символа «;») и раскомментируйте
 строку <code>later</code>, или добавьте в свой <em><code>gschemrc</code></em> следующую строку:
 </p>
-<pre class="code">(console-window &quot;later&quot;)</pre>
+<pre class="code">(log-window &quot;later&quot;)</pre>
 
 <p>
 Если вы хотите, чтобы вместо окна журнала сообщения выводились на стандартный
 вывод (<em>stdout</em>), добавьте в свой <em><code>gschemrc</code></em> такую строку:
 </p>
-<pre class="code">(log-destiny &quot;tty&quot;)</pre>
+<pre class="code">(logging-destination &quot;tty&quot;)</pre>
 
 </div>
 <!-- EDIT1013 SECTION "Каждый раз при запуске gschem появляется окно журнала. Можно ли его отключить?" [52313-53450] -->

@@ -86,8 +86,13 @@ o_select_object(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
   int CONTROLKEY;
   int removing_obj = 0;
 
-  SHIFTKEY = w_current->SHIFTKEY;
-  CONTROLKEY = w_current->CONTROLKEY;
+  SHIFTKEY   = w_current->SHIFTKEY;
+
+  /* If we are in "deslect mode" reverse our state CONTROLKEY*/
+  if (w_current->event_state == STARTDESELECT)
+    CONTROLKEY = !w_current->CONTROLKEY;
+  else
+    CONTROLKEY = w_current->CONTROLKEY;
 
   #if DEBUG
     printf("OBJECT id: %d\n", o_current->sid);
@@ -95,8 +100,8 @@ o_select_object(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
 
   switch(o_current->selected) {
 
-    case (FALSE):         /* object not selected */
-
+    case (FALSE):          /* object not selected */
+    {
       switch (SHIFTKEY) {  /* shift key pressed? */
 
       case(TRUE):          /* shift key pressed  */
@@ -120,9 +125,9 @@ o_select_object(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
       o_select_run_hooks( w_current, o_current, 1 );
       o_selection_add (toplevel, Selection, o_current);
       break;
-
+    }
     case (TRUE):  /* object was already selected */
-
+    {
       switch (SHIFTKEY) { /* shift key pressed ? */
 
       case (TRUE):          /* shift key pressed */
@@ -169,6 +174,7 @@ o_select_object(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
         break;
       }
       break; /* end object selected switch */
+    }
   }
 
   /* do the attributes */

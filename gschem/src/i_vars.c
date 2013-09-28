@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -41,15 +41,21 @@
 
 #define DEFAULT_PRINT_COMMAND "lpr"
 
+/*! \brief Set Default Defaults
+ *  \par  This section creates and assigns default values for top-level
+ *  "default" variables. Each of these is declare extern in i_var.h so
+ *  that they maybe written to by when RC files are processed by libgeda
+ *  or gschem.
+ */
 /* Color Related */
-int     default_attribute_color    = ATTRIBUTE_COLOR;
-int     default_background_color   = BACKGROUND_COLOR;
-int     default_detachattr_color   = DETACHED_ATTRIBUTE_COLOR;
-int     default_junction_color     = JUNCTION_COLOR;
-int     default_net_endpoint_color = NET_ENDPOINT_COLOR;
-int     default_override_net_color = -1;
-int     default_override_bus_color = -1;
-int     default_override_pin_color = -1;
+int     default_attribute_color           = ATTRIBUTE_COLOR;
+int     default_background_color          = BACKGROUND_COLOR;
+int     default_detachattr_color          = DETACHED_ATTRIBUTE_COLOR;
+int     default_junction_color            = JUNCTION_COLOR;
+int     default_net_endpoint_color        = NET_ENDPOINT_COLOR;
+int     default_override_net_color        = -1;
+int     default_override_bus_color        = -1;
+int     default_override_pin_color        = -1;
 
 /* Display Sub-System */
 
@@ -65,7 +71,6 @@ int     default_object_clipping           = TRUE;
 int     default_scrollbars                = TRUE;
 int     default_scrollbar_update          = TRUE;
 int     default_scrollbars_visible        = TRUE;
-int     default_scrollpan_steps           = DEFAULT_SCROLLPAN_STEPS;
 
 /* This should be renamed to decribe h&w of what, maybe something like default_screen_height */
 int     default_window_height             = DEFAULT_WINDOW_HEIGHT;  /* these variables are used in x_window.c */
@@ -120,14 +125,12 @@ int     default_bus_ripper_type           = COMP_BUS_RIPPER;
 char   *default_bus_ripper_symname        = NULL;
 
 /* Pointer Device, aka Mouse stuff */
-int     default_fast_mousepan             = TRUE;
 int     default_drag_can_move             = TRUE;
-#ifdef HAVE_LIBSTROKE
-  int   default_middle_button             = MOUSE_MIDDLE_STROKE;
-#else
-  int   default_middle_button             = MOUSE_MIDDLE_REPEAT;
-#endif
+int     default_fast_mousepan             = TRUE;
+
+int     default_middle_button             = DEFAULT_MOUSE_MIDDLE;
 int     default_mousepan_gain             = DEFAULT_MOUSEPAN_GAIN;
+int     default_scrollpan_steps           = DEFAULT_SCROLLPAN_STEPS;
 int     default_scroll_wheel              = SCROLL_WHEEL_CLASSIC;
 int     default_pointer_hscroll           = FALSE;
 int     default_third_button              = POPUP_ENABLED;
@@ -169,9 +172,148 @@ int     default_undo_levels               = DEFAULT_UNDO_LEVELS;
 int     default_undo_panzoom              = FALSE;
 int     default_undo_type                 = UNDO_DISK;
 
+char *i_var_get_gschem_config_string(EdaConfig *cfg, char *str) {
+
+  GError *err = NULL;
+  char *tmpstr;
+
+  tmpstr = eda_config_get_string (cfg, "gschem", str, &err);
+  if (err != NULL) {
+    g_warning ("Error retrieving user configuration: '%s'", err->message);
+    g_clear_error (&err);
+  }
+  return tmpstr;
+}
+
+void
+i_var_restore_gschem_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
+{
+  GError *err = NULL;
+  bool tmp_bool;
+
+  tmp_bool = eda_config_get_boolean (cfg, "gschem", key, &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    *var = def_val;
+  }
+  else {
+    *var = tmp_bool;
+  }
+
+}
+
+void
+i_var_restore_gschem_integer(EdaConfig *cfg, char *key, int *var, int def_val)
+{
+  GError *err = NULL;
+  int tmp_int;
+
+  tmp_int = eda_config_get_integer (cfg, "gschem", key, &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    *var = def_val;
+  }
+  else {
+    *var = tmp_int;
+  }
+}
+void
+i_var_restore_gschem_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
+{
+  GError   *err = NULL;
+  GdkColor *color;
+  int      *array;
+  unsigned int rediculus = 4;
+
+  array = eda_config_get_int_list (cfg, "gschem", key, &rediculus, &err);
+  if (err != NULL) {
+    g_clear_error (&err);
+    //gdk_color_parse( cname, var);
+    color = x_get_color(index);
+    var->pixel = color->pixel;
+    var->red   = color->red;
+    var->green = color->green;
+    var->blue  = color->blue;
+  }
+  else {
+    var->pixel = array[0];
+    var->red   = array[1];
+    var->green = array[2];
+    var->blue  = array[3];
+  }
+}
+/*! \brief Recall User Settings
+ *  \par  This section retrieves the values of configuration settings from
+ *  the new configuration system and assigns the values to the cooresponding
+ *  top-level variable. Note that this is done after the "old" system, so
+ *  the RC values will be ignored.
+ */
+void i_vars_recall_user_settings(GSCHEM_TOPLEVEL *w_current)
+{
+  EdaConfig *cfg = eda_config_get_user_context ();
+
+  char *tmp_str;
+
+  tmp_str = i_var_get_gschem_config_string (cfg, "default-font-name");
+  if (tmp_str != NULL) {
+    eda_renderer_set_font_name(w_current->renderer, tmp_str);
+    g_free (tmp_str);
+  }
+
+  /* Scrolling Settings - Saved by: x_window_save_settings */
+  i_var_restore_gschem_integer(cfg, "scrollbars",         &w_current->scrollbars,         TRUE);
+  i_var_restore_gschem_integer(cfg, "scrollbar-update",   &w_current->scrollbar_update,   TRUE);
+  i_var_restore_gschem_integer(cfg, "scrollbars-visible", &w_current->scrollbars_visible, TRUE);
+
+  /* Grips Settings - Saved by: x_window_save_settings */
+  i_var_restore_gschem_boolean(cfg, "draw-grips",  &w_current->renderer->
+                                     draw_grips,      TRUE);
+
+  i_var_restore_gschem_integer(cfg, "grip-pixels", &w_current->
+                                     grip_pixel_size, DEFAULT_GRIP_SIZE);
+
+  i_var_restore_gschem_color(cfg, "grips-stroke",  &w_current->renderer->
+                                   grip_stroke_color, DEFAULT_GRIP_STROKE_COLOR);
+
+  i_var_restore_gschem_color(cfg, "grips-fill",    &w_current->renderer->
+                                   grip_fill_color,   DEFAULT_GRIP_FILL_COLOR);
+
+  /* Restore Cues & Endpoints settings - Saved by: x_window_save_settings */
+  i_var_restore_gschem_integer(cfg, "junction-size", &w_current->renderer->
+                                     junction_size,   DEFAULT_JUNCTION_SIZE);
+
+  i_var_restore_gschem_color(cfg, "junction-color",  &w_current->renderer->
+                                   junction_color,    DEFAULT_JUNCTION_COLOR);
+
+  i_var_restore_gschem_color(cfg, "net-endpoint-color", &w_current->renderer->
+                                   net_endpoint_color,   DEFAULT_NET_ENDPOINT_COLOR);
+
+  /* Restore text related stuff - Saved by: x_settings_save_settings */
+  i_var_restore_gschem_integer(cfg, "text-case",          &w_current->text_case,     BOTH_CASES);
+  i_var_restore_gschem_integer(cfg, "text-zoomfactor",    &w_current->text_display_zoomfactor, DEFAULT_TEXT_ZOOM);
+  i_var_restore_gschem_integer(cfg, "text-feedback",      &w_current->text_feedback, ONLY_WHEN_READABLE);
+  i_var_restore_gschem_integer(cfg, "text-size",          &w_current->text_size,     DEFAULT_TEXT_SIZE);
+  i_var_restore_gschem_boolean(cfg, "text-origin-marker", &w_current->renderer->
+                                     text_origin_marker,   TRUE);
+  i_var_restore_gschem_integer(cfg, "text-marker-size",   &w_current->renderer->
+                                     text_marker_size,     DEFAULT_TEXT_MARKER_SIZE);
+  i_var_restore_gschem_color(cfg,   "text_marker_color",  &w_current->renderer->
+                                     text_marker_color,    DEFAULT_TEXT_MARKER_COLOR);
+
+  /* Pointer Device, aka Mouse stuff - Saved by: x_window_save_settings */
+  i_var_restore_gschem_integer(cfg, "cursor-index",    &w_current->drawing_pointer, DEFAULT_CURSOR_INDEX);
+  i_var_restore_gschem_integer(cfg, "drag-can-move",   &w_current->drag_can_move,   TRUE);
+  i_var_restore_gschem_integer(cfg, "fast-mousepan",   &w_current->fast_mousepan,   TRUE);
+  i_var_restore_gschem_integer(cfg, "middle-button",   &w_current->middle_button,   DEFAULT_MOUSE_MIDDLE);
+  i_var_restore_gschem_integer(cfg, "mousepan-gain",   &w_current->mousepan_gain,   DEFAULT_MOUSEPAN_GAIN);
+  i_var_restore_gschem_integer(cfg, "pointer-hscroll", &w_current->pointer_hscroll, FALSE);
+  i_var_restore_gschem_integer(cfg, "scrollpan-steps", &w_current->scrollpan_steps, DEFAULT_SCROLLPAN_STEPS);
+  i_var_restore_gschem_integer(cfg, "scroll-wheel",    &w_current->scroll_wheel,    SCROLL_WHEEL_CLASSIC);
+  i_var_restore_gschem_integer(cfg, "third-button",    &w_current->third_button,    POPUP_ENABLED);
+}
+
 /*!
  *  \brief This functions sets the values of top-level interger variables.
- *
  *  \par Function Description
  *       This functions assigns the current default values to the toplevel
  *       variables. The first time this occurs is in the main-line after
@@ -188,7 +330,7 @@ int     default_undo_type                 = UNDO_DISK;
 
 void i_vars_set(GSCHEM_TOPLEVEL *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
+  TOPLEVEL *toplevel                   = w_current->toplevel;
   i_vars_libgeda_set(toplevel);
 
 /* Color Related */
@@ -196,9 +338,6 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   toplevel->override_net_color         = default_override_net_color;
   toplevel->override_bus_color         = default_override_bus_color;
   toplevel->override_pin_color         = default_override_pin_color;
-
-/* Display Sub-System */
-   Renderer->draw_grips                = default_draw_grips;
 
   w_current->grid_mode                 = default_grid_mode;
   w_current->dots_grid_dot_size        = default_dots_grid_dot_size;
@@ -210,7 +349,6 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->scrollbars                = default_scrollbars;
   w_current->scrollbar_update          = default_scrollbar_update;
   w_current->scrollbars_visible        = default_scrollbars_visible;
-  w_current->scrollpan_steps           = default_scrollpan_steps;
   w_current->warp_cursor               = default_warp_cursor;
   w_current->zoom_gain                 = default_zoom_gain;
   w_current->zoom_with_pan             = default_zoom_with_pan;
@@ -246,13 +384,14 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   INIT_STR(w_current, bus_ripper_symname, DEFAULT_BUS_RIPPER_SYMNAME);
 
 /* Pointer Device, aka Mouse stuff */
-  w_current->fast_mousepan             = default_fast_mousepan;
   w_current->drag_can_move             = default_drag_can_move;
+  w_current->fast_mousepan             = default_fast_mousepan;
   w_current->middle_button             = default_middle_button;
-  w_current->third_button              = default_third_button;
   w_current->mousepan_gain             = default_mousepan_gain;
-  w_current->scroll_wheel              = default_scroll_wheel;
   w_current->pointer_hscroll           = default_pointer_hscroll;
+  w_current->scrollpan_steps           = default_scrollpan_steps;
+  w_current->scroll_wheel              = default_scroll_wheel;
+  w_current->third_button              = default_third_button;
 
 /* Print Related */
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);
@@ -296,6 +435,8 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->undo_type                 = default_undo_type;
   w_current->undo_panzoom              = default_undo_panzoom;
 
+  i_vars_recall_user_settings (w_current);
+
 }
 
 /*! \brief Free default names
@@ -310,31 +451,6 @@ void i_vars_freenames()
   g_free(default_bus_ripper_symname);
 }
 
-char *i_var_get_gschem_config_string(EdaConfig *cfg, char *str) {
-
-  GError *err = NULL;
-  char *tmpstr;
-
-  tmpstr = eda_config_get_string (cfg, "gschem", str, &err);
-  if (err != NULL) {
-    g_warning ("Error retrieving user configuration: '%s'", err->message);
-    g_clear_error (&err);
-  }
-  return tmpstr;
-}
-
-void i_vars_recall_user_settings(GSCHEM_TOPLEVEL *w_current)
-{
-  EdaConfig *cfg = eda_config_get_user_context ();
-
-  char *tmpstr;
-
-  tmpstr = i_var_get_gschem_config_string (cfg, "default-font-name");
-  if (tmpstr != NULL) {
-    eda_renderer_set_font_name(w_current->renderer, tmpstr);
-    g_free (tmpstr);
-  }
-}
 /*! \brief Setup gschem default configuration.
  * \par Function Description
  * Populate the default configuration context with compiled-in
@@ -350,7 +466,7 @@ i_vars_init(GSCHEM_TOPLEVEL *w_current)
   x_rc_parse_gschem (w_current, rc_filename);
 
   /* Set values for all variables */
-  i_vars_set (w_current);
+  //i_vars_set (w_current);
 
   /* This is the prefix of the default filename used for newly created
    * schematics and symbols. */
@@ -363,14 +479,13 @@ i_vars_init(GSCHEM_TOPLEVEL *w_current)
   eda_config_set_string (cfg, "gschem", "default-font-name",   (DEFAULT_FONT_NAME));
   eda_config_set_string (cfg, "gschem", "default-titleblock", _(DEFAULT_TITLEBLOCK));
 
+  eda_config_set_boolean (cfg, "gschem", "auto-file-suffix",  TRUE);
+
   eda_config_set_boolean (cfg, "gschem.library", "sort",      FALSE);
   eda_config_set_boolean (cfg, "gschem.library", "groups",    TRUE);
   eda_config_set_boolean (cfg, "gschem.library", "subgroups", TRUE);
   eda_config_set_boolean (cfg, "gschem.library", "showtips",  TRUE);
   eda_config_set_integer (cfg, "gschem.library", "style",     255);
-
-  i_vars_recall_user_settings (w_current);
-
 }
 
 /*! \brief Save user config on exit.

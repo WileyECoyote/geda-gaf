@@ -76,7 +76,7 @@ void o_pin_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
                       w_current->second_wx, w_current->second_wy,
                       PIN_TYPE_NET, 0);
   new_obj->line_width = o_style_get_pin_width(toplevel, PIN_TYPE_NET);
-  s_page_append (toplevel, toplevel->page_current, new_obj);
+  s_page_append_object (toplevel, toplevel->page_current, new_obj);
 
   /* Call add-objects-hook */
   g_run_hook_object (w_current, "%add-objects-hook", new_obj);

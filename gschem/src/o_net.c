@@ -508,7 +508,7 @@ int o_net_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
                           w_current->first_wx, w_current->first_wy,
                           w_current->second_wx, w_current->second_wy);
       new_net->line_width =  o_style_get_net_width(toplevel);
-      s_page_append (toplevel, toplevel->page_current, new_net);
+      s_page_append_object (toplevel, toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
 
@@ -545,7 +545,7 @@ int o_net_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
                           w_current->third_wx, w_current->third_wy);
 
       new_net->line_width =  o_style_get_net_width(toplevel);
-      s_page_append (toplevel, toplevel->page_current, new_net);
+      s_page_append_object (toplevel, toplevel->page_current, new_net);
 
       added_objects = g_list_prepend (added_objects, new_net);
 
@@ -1048,7 +1048,7 @@ int o_net_add_busrippers(GSCHEM_TOPLEVEL *w_current, OBJECT *net_obj,
                   rippers[i].x[0], rippers[i].y[0],
                   rippers[i].x[1], rippers[i].y[1]);
         new_obj->line_width =  o_style_get_net_width(toplevel);
-        s_page_append (toplevel, toplevel->page_current, new_obj);
+        s_page_append_object (toplevel, toplevel->page_current, new_obj);
       } else {
 
         if (rippersym != NULL) {
@@ -1060,7 +1060,7 @@ int o_net_add_busrippers(GSCHEM_TOPLEVEL *w_current, OBJECT *net_obj,
           new_obj->line_width =  o_style_get_net_width(toplevel);
           s_page_append_list (toplevel, toplevel->page_current,
                               o_complex_promote_attribs (toplevel, new_obj));
-          s_page_append (toplevel, toplevel->page_current, new_obj);
+          s_page_append_object (toplevel, toplevel->page_current, new_obj);
         } else {
           s_log_message(_("Bus ripper symbol [%s] was not found in any component library\n"),
                         w_current->bus_ripper_symname);

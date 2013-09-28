@@ -67,7 +67,9 @@ static struct gsubr_t gschem_rc_funcs[] = {
 
   { "display-color-map",         0, 1, 0, g_rc_display_color_map },
   { "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
+
   { "draw-grips",                1, 0, 0, g_rc_draw_grips },
+
   { "grid-mode",                 1, 0, 0, g_rc_grid_mode },
   { "dots-grid-dot-size",        1, 0, 0, g_rc_dots_grid_dot_size },
   { "dots-grid-fixed-threshold", 1, 0, 0, g_rc_dots_grid_fixed_threshold },
@@ -100,16 +102,11 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "image-color",               1, 0, 0, g_rc_image_color },
   { "invert-images",             1, 0, 0, g_rc_invert_images },
   { "image-size",                2, 0, 0, g_rc_image_size },
-  { "third-button",              1, 0, 0, g_rc_third_button },
   { "map-keys",                  2, 0, 0, g_rc_map_keys },
-  { "middle-button",             1, 0, 0, g_rc_middle_button },
-  { "scroll-wheel",              1, 0, 0, g_rc_scroll_wheel },
-  { "pointer-hscroll",           1, 0, 0, g_rc_pointer_hscroll },
+
   { "net-consolidate",           1, 0, 0, g_rc_net_consolidate },
   { "enforce-hierarchy",         1, 0, 0, g_rc_enforce_hierarchy },
-  { "fast-mousepan",             1, 0, 0, g_rc_fast_mousepan },
   { "continue-component-place",  1, 0, 0, g_rc_continue_component_place },
-
   { "netconn-rubberband",        1, 0, 0, g_rc_netconn_rubberband },
   { "magnetic-net-mode",         1, 0, 0, g_rc_magnetic_net_mode },
   { "sort-component-library",    1, 0, 0, g_rc_sort_component_library },
@@ -127,7 +124,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "add-attribute-offset",      1, 0, 0, g_rc_add_attribute_offset },
   { "auto-load-last",            1, 0, 0, g_rc_auto_load_last },
   { "attribute-placement-grid",  1, 0, 0, g_rc_attribute_placement_grid },
-  { "mousepan-gain",             1, 0, 0, g_rc_mousepan_gain },
+
   { "keyboardpan-gain",          1, 0, 0, g_rc_keyboardpan_gain },
   { "print-command",             1, 0, 0, g_rc_print_command },
   { "select-slack-pixels",       1, 0, 0, g_rc_select_slack_pixels },
@@ -135,6 +132,15 @@ static struct gsubr_t gschem_rc_funcs[] = {
 
   /* backup functions */
   { "auto-save-interval",        1, 0, 0, g_rc_auto_save_interval },
+
+  /* Pointer Device */
+  { "fast-mousepan",             1, 0, 0, g_rc_fast_mousepan },
+  { "middle-button",             1, 0, 0, g_rc_middle_button },
+  { "mousepan-gain",             1, 0, 0, g_rc_mousepan_gain },
+  { "pointer-hscroll",           1, 0, 0, g_rc_pointer_hscroll },
+  { "scrollpan-steps",           1, 0, 0, g_rc_scrollpan_steps },
+  { "scroll-wheel",              1, 0, 0, g_rc_scroll_wheel },
+  { "third-button",              1, 0, 0, g_rc_third_button },
 
   /* System Related */
   { "file-preview",              1, 0, 0, g_rc_file_preview },
@@ -148,7 +154,6 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "scrollbars",                1, 0, 0, g_rc_scrollbars },
   { "scrollbar-update",          1, 0, 0, g_rc_scrollbar_update },
   { "scrollbars-visible",        1, 0, 0, g_rc_scrollbars_visible },
-  { "scrollpan-steps",           1, 0, 0, g_rc_scrollpan_steps },
 
   /* Text Options */
   { "text-case",                 1, 0, 0, g_rc_text_case },
@@ -231,9 +236,6 @@ static struct gsubr_t gschem_hk_funcs[] = {
   { "view-pan-up",               0, 0, 0, h_keys_view_pan_up },
   { "view-pan-down",             0, 0, 0, h_keys_view_pan_down },
 
-  { "misc-misc",                 0, 0, 0, h_keys_misc },
-  { "misc-misc2",                0, 0, 0, h_keys_misc2 },
-  { "misc-misc3",                0, 0, 0, h_keys_misc3 },
   { "cancel",                    0, 0, 0, h_keys_cancel },
   { NULL,                        0, 0, 0, NULL }
 };

@@ -78,6 +78,44 @@
 ; End of color section
 ;
 
+
+; Make the gschem color maps more user-friendly
+(color-map-make-friendly display-color-map)
+(color-map-make-friendly display-outline-color-map)
+
+; Load up a color scheme which has a dark (black) background.
+; Comment out the first line and comment in the second line for a
+; light (almost white) background.  The dark background is the
+; original look.
+;
+(load (build-path geda-rc-path "gschem-colormap-darkbg")) ; dark background
+;(load (build-path geda-rc-path "gschem-colormap-lightbg")) ; light background
+;(load (build-path geda-rc-path "gschem-colormap-bw")) ; light background, bw
+;(load (build-path geda-rc-path "gschem-colormap-custom"))
+
+; image-color string
+;
+; Controls if images (png, jpg, etc.) are color (enabled) or black/white
+; (disabled). If disabled images will be generated in black and white.
+; When enabled, colorable image types will be generated using the active
+; color map scheme, (which could be black/white).
+;
+(image-color "enabled")
+;(image-color "disabled")
+
+; invert-images string
+;
+; When image-color is disabled, invert-images will black and white so that
+; images are black-on-white when enabled (default). When disabled, generated
+; images will be the same as the black and white screen image; white-on-
+; black (like the old gschem style).
+(invert-images "enabled")
+;(invert-images "disabled")
+
+;
+; End of color section
+;
+
 ;
 ; Start of mode related keywords
 ;
@@ -587,16 +625,16 @@
 
 ; fast-mousepan string
 ;
-; Controls if text is drawn properly or if a simplified version (  if (string == NULL)
-; represents the text string) is drawn during mouse pan.  Drawing a simple
+; Controls if text is drawn properly or if a simplified version (a line which
+; represents the text string) is drawn during mouse pan. Drawing a simple
 ; line speeds up mousepan a lot for big schematics
-(fast-mousepan "enabled")
+;(fast-mousepan "enabled")
 ;(fast-mousepan "disabled")
 
 ; drag-can-move string
 ;
 ; If enabled, the drag movement over selected objects can move the objects.
-(drag-can-move "enabled")
+;(drag-can-move "enabled")
 ;(drag-can-move "disabled")
 
 ; middle-button string
@@ -608,14 +646,14 @@
 ;(middle-button "Stroke")
 ;(middle-button "Repeat")
 ;(middle-button "Action")
-(middle-button "Pan")
+;(middle-button "Pan")
 
 ; mousepan-gain integer
 ;
 ; Controls how much the display pans when using mousepan.  A larger value
 ; provides greater pan distance when moving the mouse, while a smaller value
 ; provides a smoother, but smaller pan distance when moving the mouse.
-(mousepan-gain 1)
+;(mousepan-gain 1)
 ;;(mousepan-gain 5)
 ;;(mousepan-gain 10)
 
@@ -627,7 +665,17 @@
 ; "gtk" style changes the behaviour to be more like other GTK appliactions,
 ; no modifier -> y-axis pan, + CTRL -> zoom, + SHIFT -> x-axis pan.
 ;(scroll-wheel "gtk")
-(scroll-wheel "classic")
+;;(scroll-wheel "classic")
+
+; scrollpan-steps non-zero integer
+;
+; Controls the number of scroll pan events required to traverse the viewed
+; schematic area. Larger numbers mean more scroll steps are required to
+; pan across the viewed area and giving finer control over positioning.
+; scrollpan-steps can not be 0.
+;
+;(scrollpan-steps 8)
+;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
 
 ; pointer-hscroll string
 ;
@@ -636,18 +684,20 @@
 ; and scroll wheel can have problems with generating a horizontal scroll
 ; events when attempting to press the middle button. This option allows dis-
 ; abling of pointer horizontal scroll events so that the integrated middle
-; button can be utilized without interference.
+; button can be utilized without interference. If the screen always seems to
+; pan by itself when attempting to mouse-pan with the scroll-wheel button,
+; then try setting this to "disabled".
 ;
 ; Enable/disable mouse horizontal scroll events:
 ;(pointer-hscroll "enabled")
-(pointer-hscroll "disabled")
+;(pointer-hscroll "disabled")
 
 ; third-button string
 ;
 ; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
-(third-button "Popup")
+;(third-button "Popup")
 ;(third-button "Pan")
 
 ;END ================> Pointer Device  Preferences <================
@@ -865,7 +915,7 @@
 ; the scrollbars, you will not be able to use the scroll wheel on your
 ; mouse. See scrollbars-visible.
 ;
-(scrollbars "enabled")
+;(scrollbars "enabled")
 ;(scrollbars "disabled")
 
 ; scrollbar-update string
@@ -875,7 +925,7 @@
 ;    delayed - display is redrawn once you stop moving the scrollbar
 ; Default is continuous
 ;
-(scrollbar-update "continuous")
+;(scrollbar-update "continuous")
 ;(scrollbar-update "delayed")
 
 ; scrollbars-visible string
@@ -884,18 +934,8 @@
 ; If scrollbars-visible is disabled, scrollbars will not be displade
 ; scroll wheel on the pointer will still be functional.
 ;
-(scrollbars-visible "enabled")
+;(scrollbars-visible "enabled")
 ;(scrollbars-visible "disabled")
-
-; scrollpan-steps non-zero integer
-;
-; Controls the number of scroll pan events required to traverse the viewed
-; schematic area. Larger numbers mean more scroll steps are required to
-; pan across the viewed area and giving finer control over positioning.
-; scrollpan-steps can not be 0.
-;
-(scrollpan-steps 8)
-;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
 
 ;END =====================> Scrollbar Options <=====================
 ;END =======================> System Options <======================
@@ -909,7 +949,7 @@
 ;
 ;(text-case "lower")
 ;(text-case "upper")
-(text-case "both")
+;(text-case "both")
 
 ; text-display-zoomfactor integer
 ;
@@ -918,7 +958,7 @@
 ; back is set to "only-when-readable". This parameter is not valid when
 ; text-feedback is set to "always".
 ;
-(text-display-zoomfactor 21)
+;(text-display-zoomfactor 21)
 
 ; text-feedback string
 ;
@@ -927,13 +967,13 @@
 ; -zoomfactor. Comment out if you want the default mode.
 ;
 ;(text-feedback "only-when-readable")
-(text-feedback "always")
+;(text-feedback "always")
 
 ; text-origin-marker string
 ;
 ; Controls if the text origin markers are displayed (or not)
 ;
-(text-origin-marker "enabled")
+;(text-origin-marker "enabled")
 ;(text-origin-marker "disabled")
 
 ; text-marker-size integer
@@ -941,13 +981,13 @@
 ; Sets the default size of the text marker, this value is ignored
 ; when the text-origin-marker is disabled.
 ;
-(text-marker-size 15)
+;(text-marker-size 15)
 
 ; text-size integer
 ;
 ; Sets the default text size.
 ;
-(text-size 10)
+;(text-size 10)
 
 ;END ====================> Text Configuration <=====================
 
@@ -957,7 +997,7 @@
 ;
 ; Controls if the undo is enabled or not
 ;
-(undo-control "enabled")
+;(undo-control "enabled")
 ;(undo-control "disabled")
 
 ; undo-levels number
@@ -965,7 +1005,7 @@
 ; Determines the number of levels of undo.  Basically this number decides
 ; how many backup schematics are saved on disk.
 ;
-(undo-levels 10)
+;(undo-levels 10)
 
 ; undo-type string
 ;
@@ -975,7 +1015,7 @@
 ; nice because you get undo-level number of backups of the schematic written
 ; to disk as backups so you should never lose a schematic due to a crash.
 ;
-(undo-type "disk")
+;(undo-type "disk")
 ;(undo-type "memory")
 
 ; undo-panzoom string
@@ -987,7 +1027,7 @@
 ; information is saved for every command, so the display will change to the
 ; viewport before a command is executed.
 ;
-(undo-panzoom "enabled")
+;(undo-panzoom "enabled")
 ;(undo-panzoom "disabled")
 
 ;END ====================>  Undo Sub-System  <======================

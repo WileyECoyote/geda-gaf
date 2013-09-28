@@ -239,6 +239,6 @@
 (define def-reference-pos     5)
 (define def-alignment-pos     6)
 (define def-angle-pos         7)
-(define def-move-pos 	        8)
+(define def-move-pos 	      8)
 (define def-spacing-pos       9)
 (define def-color-pos        10)

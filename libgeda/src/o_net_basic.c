@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -181,8 +182,8 @@ char *o_net_save(TOPLEVEL *toplevel, OBJECT *object)
  *  \param [in] object       The net OBJECT to be moved
  *
  */
-void o_net_translate_world(TOPLEVEL *toplevel, int dx, int dy,
-			   OBJECT *object)
+void
+o_net_translate_world(TOPLEVEL *toplevel, int dx, int dy, OBJECT *object)
 {
   /* Update world coords */
   object->line->x[0] = object->line->x[0] + dx;
@@ -231,7 +232,7 @@ OBJECT *o_net_copy(TOPLEVEL *toplevel,  OBJECT *o_current)
  *  \param [in] origin_y     y-coord of the postscript origin
  */
 void o_net_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
-		 int origin_x, int origin_y)
+                 int origin_x, int origin_y)
 {
   int net_width;
   int x1, y1;
@@ -271,9 +272,8 @@ void o_net_print(TOPLEVEL *toplevel, FILE *fp, OBJECT *o_current,
  *  \param [in] object        The net object
  *  \note only steps of 90 degrees are allowed for the \a angle
  */
-void o_net_rotate_world(TOPLEVEL *toplevel,
-			int world_centerx, int world_centery, int angle,
-			OBJECT *object)
+void o_net_rotate_world(TOPLEVEL *toplevel, int world_centerx,
+                        int world_centery, int angle, OBJECT *object)
 {
   int newx, newy;
 
@@ -303,14 +303,14 @@ void o_net_rotate_world(TOPLEVEL *toplevel,
  *  \par Function Description
  *  This function mirrors a net \a object horizontaly at the point
  *  (\a world_centerx, \a world_centery).
- *  
+ *
  *  \param [in] toplevel      The TOPLEVEL object
  *  \param [in] world_centerx x-coord of the mirror position
  *  \param [in] world_centery y-coord of the mirror position
  *  \param [in] object        The net object
  */
 void o_net_mirror_world(TOPLEVEL *toplevel, int world_centerx,
-			int world_centery, OBJECT *object)
+                        int world_centery, OBJECT *object)
 {
   /* translate object to origin */
   o_net_translate_world(toplevel, -world_centerx, -world_centery,
@@ -333,11 +333,11 @@ void o_net_mirror_world(TOPLEVEL *toplevel, int world_centerx,
 int o_net_orientation(OBJECT *object)
 {
     if (object->line->y[0] == object->line->y[1]) {
-	return (HORIZONTAL);
+      return (HORIZONTAL);
     }
 
     if (object->line->x[0] == object->line->x[1]) {
-	return (VERTICAL);
+      return (VERTICAL);
     }
 
     return (NEITHER);
@@ -350,7 +350,7 @@ int o_net_orientation(OBJECT *object)
  *  connected segments. The first net segment is extended to the length of
  *  both objects.
  *  The second object (\a del_object) is the object that should be deleted.
- *  
+ *
  *  \param [in] object     A net object to extend
  *  \param [in] del_object A net object to be merged into \a object
  *  \param [in] orient     The orientation of both net objects
@@ -361,10 +361,10 @@ int o_net_orientation(OBJECT *object)
 static void o_net_consolidate_lowlevel (OBJECT *object,
                                         OBJECT *del_object, int orient)
 {
-  int temp1, temp2;
-  int final1, final2;
-  int changed = 0;
-  GList *a_iter;
+  int     temp1, temp2;
+  int     final1, final2;
+  int     changed = 0;
+  GList  *a_iter;
   OBJECT *a_current;
 
 #if DEBUG
@@ -374,7 +374,6 @@ static void o_net_consolidate_lowlevel (OBJECT *object,
          del_object->line->y[0], del_object->line->x[1],
          del_object->line->y[1]);
 #endif
-
 
   if (orient == HORIZONTAL) {
 
@@ -436,7 +435,7 @@ static void o_net_consolidate_lowlevel (OBJECT *object,
  *  This function checks if the \a object is connected to another net
  *  between it's endpoints. Net segment's only can be merged if there
  *  is no midpoint connection.
- *  
+ *
  *  \param object  a net OBJECT to check
  *  \param x       x-coord of the connection location
  *  \param y       y-coord of the connection location
@@ -445,7 +444,7 @@ static void o_net_consolidate_lowlevel (OBJECT *object,
 static int o_net_consolidate_nomidpoint (OBJECT *object, int x, int y)
 {
   GList *c_current;
-  CONN *conn;
+  CONN  *conn;
 
   c_current = object->conn_list;
   while(c_current != NULL) {
@@ -454,13 +453,12 @@ static int o_net_consolidate_nomidpoint (OBJECT *object, int x, int y)
       if (conn->other_object->sid != object->sid &&
           conn->x == x && conn->y == y &&
           conn->type == CONN_MIDPOINT) {
-#if DEBUG        
+#if DEBUG
         printf("Found one! %s\n", conn->other_object->name); 
-#endif         
+#endif
         return(FALSE);
       }
     }
-    
     c_current = g_list_next(c_current);
   }
 
@@ -471,7 +469,7 @@ static int o_net_consolidate_nomidpoint (OBJECT *object, int x, int y)
  *  \par Function Description
  *  This function tries to consolidate a net with any other object
  *  that is connected to the current \a object.
- *  
+ *
  *  \param toplevel   The TOPLEVEL object
  *  \param object     The object to consolidate
  *  \return 0 if no consolidation was possible, -1 otherwise
@@ -479,13 +477,13 @@ static int o_net_consolidate_nomidpoint (OBJECT *object, int x, int y)
  */
 static int o_net_consolidate_segments (TOPLEVEL *toplevel, OBJECT *object)
 {
-  int object_orient;
-  int other_orient;
-  GList *c_current;
-  CONN *conn;
+  int     object_orient;
+  int     other_orient;
+  GList  *c_current;
+  CONN   *conn;
   OBJECT *other_object;
-  PAGE *page;
-  int changed = 0;
+  PAGE   *page;
+  int     changed = 0;
 
   g_return_val_if_fail ((toplevel != NULL), 0);
   g_return_val_if_fail ((object != NULL), 0);
@@ -493,7 +491,12 @@ static int o_net_consolidate_segments (TOPLEVEL *toplevel, OBJECT *object)
 
   /* It's meaningless to do anything here if the object isn't in a page. */
   page = o_get_page (toplevel, object);
-  g_return_val_if_fail ((page != NULL), 0);
+  if (page == NULL) {
+    fprintf (stderr, "<%s><o_net_consolidate_segments>"
+                     "page should not be NULL, line %d.\n",
+                     __FILE__, __LINE__);
+    return 0;
+  };
 
   object_orient = o_net_orientation(object);
 
@@ -589,7 +592,7 @@ void o_net_consolidate(TOPLEVEL *toplevel, PAGE *page)
  *  This function modifies one point of a net \a object. The point
  *  is specified by the \a whichone variable and the new coordinate
  *  is (\a x, \a y).
- *  
+ *
  *  \param toplevel   The TOPLEVEL object
  *  \param object     The net OBJECT to modify
  *  \param x          new x-coord of the net point
@@ -746,8 +749,7 @@ void o_net_refresh_conn_cache(TOPLEVEL *toplevel, OBJECT *o_current)
  *  \param [in] o_current   The OBJECT to check connectivity of
  *  \return TRUE if net is fully connected, FALSE otherwise
  */
-gboolean o_net_is_fully_connected (TOPLEVEL *toplevel,
-                                   OBJECT   *o_current)
+bool o_net_is_fully_connected (TOPLEVEL *toplevel, OBJECT   *o_current)
 {
   g_return_val_if_fail (toplevel, FALSE);
   g_return_val_if_fail (o_current, FALSE);

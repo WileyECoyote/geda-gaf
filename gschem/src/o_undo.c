@@ -44,14 +44,21 @@ static char* tmp_path = NULL;
 /* of entries to free */
 #define UNDO_PADDING  5
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Inititialize Undo System
  *  \par Function Description
- *
+ *  This function obtains the process ID and temporary directory path for
+ *  later use, and retrieves user settings affecting the UNDO system.
  */
-void o_undo_init(void)
+void o_undo_init(GSCHEM_TOPLEVEL *w_current)
 {
+  EdaConfig *cfg = eda_config_get_user_context ();
+
   prog_pid = getpid();
+
+  i_var_restore_gschem_boolean(cfg, "undo-control", &w_current->undo_control, TRUE);
+  i_var_restore_gschem_integer(cfg, "undo-levels",  &w_current->undo_levels,  DEFAULT_UNDO_LEVELS);
+  i_var_restore_gschem_boolean(cfg, "undo-panzoom", &w_current->undo_panzoom, FALSE);
+  i_var_restore_gschem_boolean(cfg, "undo-type",    &w_current->undo_type,    UNDO_DISK);
 
   tmp_path = g_strdup (g_getenv("TMP"));
   if (tmp_path == NULL) {
@@ -60,14 +67,16 @@ void o_undo_init(void)
 #if DEBUG
   printf("%s\n", tmp_path);
 #endif
+
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Undo Save State
  *  \par Function Description
- *
- *
- *  <B>flag</B> can be one of the following values:
+ *   This function is called to push the current state onto the
+ *   undo buffer.
+ * \param [in] w_current The toplevel environment.
+ * \param [in] flag      integer <B>flag</B> can be one of the
+ *                       following values:
  *  <DL>
  *    <DT>*</DT><DD>UNDO_ALL
  *    <DT>*</DT><DD>UNDO_VIEWPORT_ONLY
@@ -76,11 +85,11 @@ void o_undo_init(void)
 void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  char *filename = NULL;
-  GList *object_list = NULL;
-  int levels;
-  UNDO *u_current;
-  UNDO *u_current_next;
+  char     *filename = NULL;
+  GList    *object_list = NULL;
+  UNDO     *u_current;
+  UNDO     *u_current_next;
+  int       levels;
 
   /* save autosave backups if necessary */
   o_autosave_backups(w_current);
@@ -311,7 +320,7 @@ void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
   char *save_filename;
 
   if (w_current->undo_control == FALSE) {
-    q_log_message(_("Undo/Redo disabled in rc file\n"));
+    q_log_message(_("Undo/Redo disabled\n"));
     return;
   }
 
@@ -463,7 +472,7 @@ void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
  *  \par Function Description
  *
  */
-void o_undo_cleanup(void)
+void o_undo_finalize(void)
 {
   int i;
   char *filename;
@@ -499,7 +508,4 @@ void o_undo_remove_last_undo(GSCHEM_TOPLEVEL *w_current)
           toplevel->page_current->undo_bottom;
     }
   }
-
-
-
 }

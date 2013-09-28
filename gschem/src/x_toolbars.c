@@ -78,8 +78,8 @@ static ToolBarInfo ActiveToolBar;
  */
 typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_print, etb_write_pdf, etb_cut, etb_copy, etb_paste,
-                etb_undo, etb_redo, etb_configure, etb_selector,
-                etb_deselector, etb_none, etb_select_all, etb_select_none,
+                etb_undo, etb_redo, etb_configure, etb_selector, etb_deselector,
+                etb_deselect_all, etb_none, etb_select_all, etb_select_invert,
                 etb_add_component, etb_add_net, etb_add_bus, etb_add_attribute,
                 etb_add_text, etb_add_line, etb_add_box, etb_add_circle,
                 etb_add_arc, etb_add_path, etb_add_pin, etb_insert_pic,
@@ -125,8 +125,9 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_REDO),          "Redo",       "Redo the last undo",            GSCHEM_MAP(REDO)},
   { ACTION(OPT_SETTINGS),       "Config",     "Set configuration preferences", GEDA_MAP(TOOLS)},
 
-  { ACTION(EDIT_SELECT),        "Select",     "Activate Select mode",                "gschem-select"},
-  { ACTION(EDIT_DESELECT),      "Deselect",   "Unselect everything",                 "gschem-unselect"},
+  { ACTION(EDIT_SELECT),       "Select",      "Activate Select mode",               "gschem-select"},
+  { ACTION(EDIT_DESELECT),     "Deselect",    "Activate UnSelect mode",             "gschem-unselect"},
+  { ACTION(EDIT_DESELECT_ALL), "Deselect All","Unselect everything",                "gschem-unselect"},
 
   { "nil"              ,        "nil",        "nil",          "gtk-no"}, /* dummy corresponding to etb_none */
 
@@ -695,7 +696,7 @@ static GtkWidget *build_menu(GtkWidget *widget)
   for (i=0; i < (sizeof(popup_items)/sizeof(popup_items[0])) ; i++)
   {
     item = gtk_menu_item_new_with_label(_(popup_items[i]));
-    //gtk_image_menu_item_new_with_label
+
     gtk_tooltips_set_tip (tooltips, item, _(popup_tips[i]), NULL);
 
     g_signal_connect(GTK_OBJECT(item),"activate",
@@ -1066,11 +1067,15 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Add_Toolbar));
 
-  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(select), BarRadio(net), etb_selector, w_current)
-  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(none), BarRadio(select), etb_none, w_current)
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(select),   BarRadio(net),    etb_selector,   w_current)
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(deselect), BarRadio(net),    etb_deselector, w_current)
 
-  /* Append all Toolbar "Mode" radio widgets to a GSlist */
+  TOOLBAR_GSCHEM_RADIO( Add, BarRadio(none),     BarRadio(select), etb_none, w_current)
+
+  /* Append all Toolbar "Mode" radio widgets to a GSlist, add a record in the struct
+   * ToolBarWidgets, see function x_toolbars_update */
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(line));
+  TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(path));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(arc));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(box));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(circle));
@@ -1078,6 +1083,7 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(bus));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(net));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(select));
+  TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(deselect));
   TOOLBAR_RADIOS  = g_slist_append ( TOOLBAR_RADIOS, BarRadio(none));
 
   g_object_set (Add_Toolbar, "visible", TRUE, NULL);
@@ -1101,9 +1107,9 @@ void x_toolbars_init_top(GSCHEM_TOPLEVEL *w_current, GtkWidget *parent_container
   gtk_container_set_border_width (GTK_CONTAINER (Select_Toolbar), 0);
   gtk_container_add              (GTK_CONTAINER (w_current->select_handlebox), Select_Toolbar);
 
-  TOOLBAR_GEDA_BUTTON( Select, etb_deselector,  LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Select, etb_select_all,  LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON( Select, etb_select_none, LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Select, etb_deselect_all,  LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Select, etb_select_all,    LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON( Select, etb_select_invert,   LOCAL_FAC, NULL, x_toolbars_execute,  w_current);
 
   g_object_set (Select_Toolbar, "visible", TRUE, NULL);
 
@@ -1520,6 +1526,10 @@ void x_toolbars_update(GSCHEM_TOPLEVEL *w_current)
     case(STARTSELECT):
       target = (GtkToggleButton*) bar_widgets->toolbar_select;
       break;
+    case(DESELECT):
+    case(STARTDESELECT):
+      target = (GtkToggleButton*) bar_widgets->toolbar_deselect;
+      break;
     case(DRAWNET):
     case(STARTDRAWNET):
     case(NETCONT):
@@ -1536,7 +1546,12 @@ void x_toolbars_update(GSCHEM_TOPLEVEL *w_current)
     case(DRAWBOX):
       target = (GtkToggleButton*) bar_widgets->toolbar_box;
       break;
+    case(DRAWPATH):
+    case(PATHCONT):
+      target = (GtkToggleButton*) bar_widgets->toolbar_path;
+      break;
     case(DRAWPICTURE): /* \Launches Dialog */
+      break;
     case(DRAWPIN):
       target = (GtkToggleButton*) bar_widgets->toolbar_pin;
       break;

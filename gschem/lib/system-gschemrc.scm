@@ -88,7 +88,7 @@
 ;
 ; Controls if the editing grips are drawn when selecting objects
 ;
-(draw-grips "enabled")
+;(draw-grips "enabled")
 ;(draw-grips "disabled")
 
 ;BEGIN ----------------------> Grid Setup <-------------------------
@@ -590,13 +590,13 @@
 ; Controls if text is drawn properly or if a simplified version (a line which
 ; represents the text string) is drawn during mouse pan. Drawing a simple
 ; line speeds up mousepan a lot for big schematics
-(fast-mousepan "enabled")
+;(fast-mousepan "enabled")
 ;(fast-mousepan "disabled")
 
 ; drag-can-move string
 ;
 ; If enabled, the drag movement over selected objects can move the objects.
-(drag-can-move "enabled")
+;(drag-can-move "enabled")
 ;(drag-can-move "disabled")
 
 ; middle-button string
@@ -608,16 +608,26 @@
 ;(middle-button "Stroke")
 ;(middle-button "Repeat")
 ;(middle-button "Action")
-(middle-button "Pan")
+;(middle-button "Pan")
 
 ; mousepan-gain integer
 ;
 ; Controls how much the display pans when using mousepan.  A larger value
 ; provides greater pan distance when moving the mouse, while a smaller value
 ; provides a smoother, but smaller pan distance when moving the mouse.
-(mousepan-gain 1)
+;(mousepan-gain 1)
 ;;(mousepan-gain 5)
 ;;(mousepan-gain 10)
+
+; scrollpan-steps non-zero integer
+;
+; Controls the number of scroll-wheel pan events required to traverse the
+; viewed schematic area. Larger numbers mean more scroll steps are required
+; to pan across the viewed area and giving finer control over positioning.
+; scrollpan-steps can not be 0.
+;
+;(scrollpan-steps 8)
+;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
 
 ; scroll-wheel string
 ;
@@ -627,7 +637,7 @@
 ; "gtk" style changes the behaviour to be more like other GTK appliactions,
 ; no modifier -> y-axis pan, + CTRL -> zoom, + SHIFT -> x-axis pan.
 ;(scroll-wheel "gtk")
-(scroll-wheel "classic")
+;;(scroll-wheel "classic")
 
 ; pointer-hscroll string
 ;
@@ -642,14 +652,14 @@
 ;
 ; Enable/disable mouse horizontal scroll events:
 ;(pointer-hscroll "enabled")
-(pointer-hscroll "disabled")
+;(pointer-hscroll "disabled")
 
 ; third-button string
 ;
 ; Controls if the third mouse button performs the popup ("popup") or
 ; if it does the mouse panning ("mousepan")
 ;
-(third-button "Popup")
+;(third-button "Popup")
 ;(third-button "Pan")
 
 ;END ================> Pointer Device  Preferences <================
@@ -799,8 +809,8 @@
 ;  Controls if the preview area in the File Open/Save As and Component
 ;  dialog boxes is enabled by default or not
 ;
-(file-preview "enabled")
-;(file-preview "disabled")
+;(file-preview "enabled")
+(file-preview "disabled")
 
 ; handleboxes string
 ;
@@ -867,7 +877,7 @@
 ; the scrollbars, you will not be able to use the scroll wheel on your
 ; mouse. See scrollbars-visible.
 ;
-(scrollbars "enabled")
+;(scrollbars "enabled")
 ;(scrollbars "disabled")
 
 ; scrollbar-update string
@@ -877,7 +887,7 @@
 ;    delayed - display is redrawn once you stop moving the scrollbar
 ; Default is continuous
 ;
-(scrollbar-update "continuous")
+;(scrollbar-update "continuous")
 ;(scrollbar-update "delayed")
 
 ; scrollbars-visible string
@@ -886,18 +896,9 @@
 ; If scrollbars-visible is disabled, scrollbars will not be displade
 ; scroll wheel on the pointer will still be functional.
 ;
-(scrollbars-visible "enabled")
+;(scrollbars-visible "enabled")
 ;(scrollbars-visible "disabled")
 
-; scrollpan-steps non-zero integer
-;
-; Controls the number of scroll pan events required to traverse the viewed
-; schematic area. Larger numbers mean more scroll steps are required to
-; pan across the viewed area and giving finer control over positioning.
-; scrollpan-steps can not be 0.
-;
-(scrollpan-steps 8)
-;;(scrollpan-steps 4) ; Hard-coded behaviour up to version 1.5.0.20080706
 
 ;END =====================> Scrollbar Options <=====================
 ;END =======================> System Options <======================
@@ -911,7 +912,7 @@
 ;
 ;(text-case "lower")
 ;(text-case "upper")
-(text-case "both")
+;(text-case "both")
 
 ; text-display-zoomfactor integer
 ;
@@ -920,7 +921,7 @@
 ; back is set to "only-when-readable". This parameter is not valid when
 ; text-feedback is set to "always".
 ;
-(text-display-zoomfactor 21)
+;(text-display-zoomfactor 21)
 
 ; text-feedback string
 ;
@@ -929,13 +930,13 @@
 ; -zoomfactor. Comment out if you want the default mode.
 ;
 ;(text-feedback "only-when-readable")
-(text-feedback "always")
+;(text-feedback "always")
 
 ; text-origin-marker string
 ;
 ; Controls if the text origin markers are displayed (or not)
 ;
-(text-origin-marker "enabled")
+;(text-origin-marker "enabled")
 ;(text-origin-marker "disabled")
 
 ; text-marker-size integer
@@ -943,13 +944,13 @@
 ; Sets the default size of the text marker, this value is ignored
 ; when the text-origin-marker is disabled.
 ;
-(text-marker-size 15)
+;(text-marker-size 15)
 
 ; text-size integer
 ;
 ; Sets the default text size.
 ;
-(text-size 10)
+;(text-size 10)
 
 ;END ====================> Text Configuration <=====================
 
@@ -959,7 +960,7 @@
 ;
 ; Controls if the undo is enabled or not
 ;
-(undo-control "enabled")
+;(undo-control "enabled")
 ;(undo-control "disabled")
 
 ; undo-levels number
@@ -967,7 +968,7 @@
 ; Determines the number of levels of undo.  Basically this number decides
 ; how many backup schematics are saved on disk.
 ;
-(undo-levels 10)
+;(undo-levels 10)
 
 ; undo-type string
 ;
@@ -977,7 +978,7 @@
 ; nice because you get undo-level number of backups of the schematic written
 ; to disk as backups so you should never lose a schematic due to a crash.
 ;
-(undo-type "disk")
+;(undo-type "disk")
 ;(undo-type "memory")
 
 ; undo-panzoom string
@@ -989,7 +990,7 @@
 ; information is saved for every command, so the display will change to the
 ; viewport before a command is executed.
 ;
-(undo-panzoom "enabled")
+;(undo-panzoom "enabled")
 ;(undo-panzoom "disabled")
 
 ;END ====================>  Undo Sub-System  <======================
@@ -1523,9 +1524,9 @@
 (map-keys "Down"          "view-pan-down")
 (map-keys "period"        "repeat-last")
 (map-keys "colon"         "edit-invoke-macro")
-(map-keys "comma"         "misc-misc")
-(map-keys "equal"         "misc-misc2")
-(map-keys "plus"          "misc-misc3")
+
+(map-keys "minus"         "view-zoom-out")
+(map-keys "plus"          "view-zoom-in")
 
 (map-keys "Delete"        "edit-delete")
 (map-keys "greater"       "page-next")
@@ -1599,15 +1600,16 @@
 
         ("SEPARATOR"               #f                     #f)
         (,(N_ "Select Mode")        edit-select            "gschem-select"     "Activate Select mode")
+        (,(N_ "Deselect Mode")      edit-deselect          "gschem-unselect"   "Activate Deselect mode")
         (,(N_ "Select All")         edit-select-all        "gschem-select-all" "Select all objects")
-        (,(N_ "Deselect")           edit-deselect          "gschem-unselect"   "Unselect everything")
+        (,(N_ "Deselect All")       edit-deselect-all      "gschem-unselect"   "Unselect everything")
         (,(N_ "_Invert Selection")  edit-select-invert     "gschem-invert"     "Invert the current selection set")
 
+        ("SEPARATOR"               #f                     #f)
         (,(N_ "Copy Mode")          edit-copy              "geda-copy"        "Copy selection")
         (,(N_ "Multiple Copy Mode") edit-mcopy             "geda-multi"       "Make Multible Copies of selection")
         (,(N_ "Move Mode")          edit-move              "geda-move"        "Move Objects")
-        (,(N_ "Rotate 90 Mode")     edit-rotate            "geda-rotate"      "Rotate the current selection about
-a point") 
+        (,(N_ "Rotate 90 Mode")     edit-rotate            "geda-rotate"      "Rotate the current selection about a point") 
         (,(N_ "Mirror Mode")        edit-mirror            "geda-mirror"      "Mirror an object about a point")
 
         ("SEPARATOR"               #f                     #f                       #f)
@@ -1801,7 +1803,7 @@ documents")
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 
 ;; Add Paul Tan's tools utility menu
-(load-from-path "gschem/gschem-tools-menu.scm")
+;;(load-from-path "gschem/gschem-tools-menu.scm")
 
 (add-menu (N_ "_Options") options-menu-items)
 (add-menu (N_ "_Help") help-menu-items)

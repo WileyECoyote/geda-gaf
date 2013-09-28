@@ -184,9 +184,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
   char  load_backup_file = 0;
   GError *tmp_err = NULL;
 
-  /* has the head been freed yet? */
-  /* probably not hack PAGE */
-
+  /* has the head been freed yet?  probably not hack PAGE */
   set_window(toplevel, page,
              toplevel->init_left, toplevel->init_right,
              toplevel->init_top,  toplevel->init_bottom);
@@ -278,9 +276,9 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
     /* Load the backup file */
     s_page_append_list (toplevel, page,
                         o_read (toplevel, NULL, backup_filename, &tmp_err));
-  } else {
+  }
+  else {
     /* Load the original file */
-
     s_page_append_list (toplevel, page,
                         o_read (toplevel, NULL, full_filename, &tmp_err));
   }
