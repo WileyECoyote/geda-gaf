@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 #include <missing.h>
@@ -36,10 +36,6 @@
 
 #include "libgeda_priv.h"
 #include "libgedaguile.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 
 static void process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err);
 
@@ -106,7 +102,7 @@ SCM g_scm_eval_protected (SCM exp, SCM module_or_state)
     body_data = scm_list_2 (exp, module_or_state);
   }
 
-  result = scm_c_catch (SCM_BOOL_T,
+  result = scm_c_catch (SCM_BOOL_T,                    /* SCM tag */
                         protected_body_eval,           /* catch body */
                         &body_data,                    /* body data */
                         protected_post_unwind_handler, /* post handler */
@@ -205,7 +201,7 @@ g_read_file__pre_handler (struct g_read_file_data_t *data, SCM key, SCM args)
  *  \return TRUE on success, FALSE on failure.
  */
 /*
- *  Seems Guile is not smart enough to reconise (if (procedure? symbol)
+ *  Seems Guile is not smart enough to recognize (if (procedure? symbol)
  */
 bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err)
 {
@@ -221,9 +217,9 @@ bool g_read_file(TOPLEVEL *toplevel, const char *filename, GError **err)
   edascm_dynwind_toplevel (toplevel);
 
   scm_c_catch (SCM_BOOL_T,
-              (scm_t_catch_body) g_read_file__body, &data,
-              (scm_t_catch_handler) g_read_file__pre_handler, &data,
-              (scm_t_catch_handler) g_read_file__post_handler, &data);
+              (scm_t_catch_body)    g_read_file__body, &data,
+              (scm_t_catch_handler) g_read_file__post_handler, &data,
+              (scm_t_catch_handler) g_read_file__pre_handler, &data);
 
   scm_dynwind_end ();
 
@@ -265,7 +261,7 @@ process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err) {
   if (scm_is_true (scm_stack_p (s_stack))) {
     scm_puts (_("\nBacktrace:\n"), s_port);
     scm_display_backtrace (s_stack, s_port, SCM_BOOL_F, SCM_BOOL_F);
-    scm_puts ("\n", s_port);
+    //scm_puts ("\n", s_port);
   }
 
   s_location = SCM_BOOL_F;

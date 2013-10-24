@@ -18,10 +18,12 @@ BUILT_SOURCES = \
 	scheme_toplevel.x \
 	scheme_object.x \
 	scheme_complex.x \
+	scheme_color.x \
 	scheme_page.x \
 	scheme_attrib.x \
 	scheme_os.x \
 	scheme_config.x \
+	scheme_closure.x \
 	scheme_deprecated.x
 
 scheme_api_sources = \
@@ -30,11 +32,14 @@ scheme_api_sources = \
 	scheme_toplevel.c \
 	scheme_object.c \
 	scheme_complex.c \
+	scheme_color.c \
 	scheme_os.c \
 	scheme_page.c \
 	scheme_attrib.c \
 	scheme_config.c \
-	scheme_deprecated.c
+	scheme_closure.c \
+	scheme_deprecated.c \
+	edascmhookproxy.c
 
 libgeda_la_SOURCES = \
 	$(scheme_api_sources) \
@@ -64,6 +69,7 @@ libgeda_la_SOURCES = \
 	o_box_basic.c \
 	o_bus_basic.c \
 	o_circle_basic.c \
+	o_color.c \
 	o_complex_basic.c \
 	o_embed.c \
 	o_line_basic.c \
@@ -88,6 +94,7 @@ libgeda_la_SOURCES = \
 	s_page.c \
 	s_papersizes.c \
 	s_path.c \
+	s_place.c \
 	s_slib.c \
 	s_slot.c \
 	s_textbuffer.c \

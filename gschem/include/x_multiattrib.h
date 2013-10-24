@@ -14,18 +14,13 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
  */
-
 
 #ifndef __X_MULTIATTRIB_H__
 #define __X_MULTIATTRIB_H__
 
-
-/*
- * Multiattrib
- */
+/* Multiattrib */
 
 #define TYPE_MULTIATTRIB         (multiattrib_get_type())
 #define MULTIATTRIB(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_MULTIATTRIB, Multiattrib))
@@ -39,7 +34,7 @@ typedef struct _Multiattrib      Multiattrib;
 
 struct _MultiattribClass {
   GschemDialogClass parent_class;
-  
+
 };
 
 struct _Multiattrib {
@@ -66,9 +61,7 @@ GType multiattrib_get_type (void);
 
 void multiattrib_update (Multiattrib *multiattrib);
 
-/*
- * CellTextView
- */
+/* CellTextView */
 
 #define TYPE_CELL_TEXT_VIEW         (celltextview_get_type())
 #define CELL_TEXT_VIEW(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_CELL_TEXT_VIEW, CellTextView))
@@ -82,7 +75,7 @@ typedef struct _CellTextView      CellTextView;
 
 struct _CellTextViewClass {
   GtkTextViewClass parent_class;
-  
+
 };
 
 struct _CellTextView {
@@ -95,9 +88,7 @@ struct _CellTextView {
 GType celltextview_get_type (void);
 
 
-/*
- * CellRendererMultiLineText
- */
+/* CellRendererMultiLineText */
 
 #define TYPE_CELL_RENDERER_MULTI_LINE_TEXT         (cellrenderermultilinetext_get_type())
 #define CELL_RENDERER_MULTI_LINE_TEXT(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_CELL_RENDERER_MULTI_LINE_TEXT, CellRendererMultiLineText))
@@ -111,19 +102,25 @@ typedef struct _CellRendererMultiLineText      CellRendererMultiLineText;
 
 struct _CellRendererMultiLineTextClass {
   GtkCellRendererTextClass parent_class;
-  
+
 };
 
 struct _CellRendererMultiLineText {
   GtkCellRendererText parent_instance;
 
   /*< private >*/
-  unsigned int focus_out_id;
+  unsigned int  focus_out_id;
+  unsigned int  in_buffer_menu;
+  unsigned long populate_popup_id;
+  unsigned long buffer_menu_popdown_timeout;
 
+  GtkWidget *buffer;
 };
-
 
 GType cellrenderermultilinetext_get_type (void);
 
+#define CR_SINGLE_LINE GTK_TYPE_CELL_RENDERER_TEXT
+#define CR_MULTI_LINE  TYPE_CELL_RENDERER_MULTI_LINE_TEXT
+#define CR_TOGGLE_CELL GTK_TYPE_CELL_RENDERER_TOGGLE
 
 #endif /* __X_MULTIATTRIB_H__ */

@@ -31,6 +31,8 @@ action_icons = \
 
 action_icon_files = \
 	$(action_icons:%=%-16.png) \
+	attribute-visibility-28.png \
+	attribute-visibility-22.png \
 	insert-symbol-22.png \
 	insert-net-22.png \
 	insert-bus-22.png \

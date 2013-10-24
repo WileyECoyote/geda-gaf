@@ -21,11 +21,19 @@
 #include <config.h>
 
 #include "gschem.h"
+#include "x_fileselect.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
 
+static GschemFileFilterDataDef filter_data[] = {
+    GSCHEM_FILTER_SCHEMATIC,
+    GSCHEM_FILTER_SYMBOL,
+    GSCHEM_FILTER_BOTH,
+    GSCHEM_FILTER_NONE,
+    GSCHEM_NO_MORE_FILTERS
+};
 
 /*! \brief Creates filter for file chooser.
  *  \par Function Description
@@ -34,32 +42,22 @@
  *  \param [in] filechooser The file chooser to add filter to.
  */
 static void
-x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
+x_fileselect_setup_file_filters (GtkFileChooser *filechooser)
 {
-  GtkFileFilter *filter;
+  GtkFileFilter           *filter;
+  GschemFileFilterDataDef *data;
+  int i;
 
-  /* file filter for schematic files (*.sch) */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("Schematics"));
-  gtk_file_filter_add_pattern (filter, SCHEMATIC_FILTER);
-  gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter for symbol files (*.sym) */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("Symbols"));
-  gtk_file_filter_add_pattern (filter, SYMBOL_FILTER);
-  gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter for both symbol and schematic files *.sym & *.sch */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("Schematics and symbols"));
-  gtk_file_filter_add_pattern (filter, SYMBOL_FILTER);
-  gtk_file_filter_add_pattern (filter, SCHEMATIC_FILTER);
-  gtk_file_chooser_add_filter (filechooser, filter);
-  /* file filter that match any file */
-  filter = gtk_file_filter_new ();
-  gtk_file_filter_set_name (filter, _("All files"));
-  gtk_file_filter_add_pattern (filter, "*");
-  gtk_file_chooser_add_filter (filechooser, filter);
-
+  for (data = filter_data; data->name != NULL; data++) {
+    filter = gtk_file_filter_new ();
+    gtk_file_filter_set_name(filter, data->name);
+    for (i = 0; data->pattern[i] != '\0'; i++) {
+      const char *ext = data->pattern[i];
+      gtk_file_filter_add_pattern (filter, ext);
+    }
+    g_object_set_data( G_OBJECT(filter), "id", GINT_TO_POINTER(data->id));
+    gtk_file_chooser_add_filter (filechooser, filter);
+  }
 }
 
 /*! \brief Updates the preview when the selection changes.
@@ -161,9 +159,9 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
  *  At the end of the function, the w_current->toplevel's current page
  *  is set to the page of the last loaded page.
  *
- *  \param [in] w_current The GSCHEM_TOPLEVEL environment.
+ *  \param [in] w_current The GschemToplevel environment.
  */
-void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
+void x_fileselect_open(GschemToplevel *w_current)
 {
   PAGE *page = NULL;
   GtkWidget *dialog;
@@ -195,7 +193,7 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
                 "select-multiple", TRUE,
                 NULL);
   /* add file filters to dialog */
-  x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
+  x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
 
   /* force start in current working directory, not in 'Recently Used' */
   cwd = g_get_current_dir ();
@@ -242,21 +240,21 @@ void x_fileselect_open(GSCHEM_TOPLEVEL *w_current)
  *
  *  The function updates the user interface.
  *
- *  \param [in] w_current The GSCHEM_TOPLEVEL environment.
+ *  \param [in] w_current The GschemToplevel environment.
  */
 void
-x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
+x_fileselect_save (GschemToplevel *w_current)
 {
-  TOPLEVEL  *toplevel = w_current->toplevel;
-  GtkWidget *dialog;
-  GtkWidget *hbox;
-  GtkWidget *cb_add_ext;
+  TOPLEVEL      *toplevel = w_current->toplevel;
+
+  GtkWidget     *dialog;
+  GtkWidget     *hbox;
+  GtkWidget     *cb_add_ext;
+
   bool       auto_ext;
   char      *cwd = NULL;
-  EdaConfig *cfg = eda_config_get_user_context ();
 
-  //GtkTooltips *tooltips;
-  //tooltips = gtk_tooltips_new ();
+  EdaConfig *cfg = eda_config_get_user_context ();
 
   auto_ext = eda_config_get_boolean (cfg, "gschem", "auto-file-suffix", NULL);
 
@@ -285,11 +283,12 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
                 /* "do-overwrite-confirmation", TRUE, */
                 NULL);
   /* add file filters to dialog */
-  x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
+  x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
+
   /* set the current filename or directory name if new document */
   if ((toplevel->page_current->page_filename != NULL) &&
        g_file_test (toplevel->page_current->page_filename,
-                    G_FILE_TEST_EXISTS)) {
+       G_FILE_TEST_EXISTS)) {
     gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog),
                                    toplevel->page_current->page_filename);
   }
@@ -302,8 +301,7 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
                                        toplevel->untitled_name);
   }
 
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-                                  GTK_RESPONSE_ACCEPT);
+  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
 
   /* Add our extra widget to the dialog */
   hbox = gtk_hbox_new(FALSE, 0);
@@ -318,18 +316,30 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
 
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    char *filename;
-    char *filebase;
-    char *tmpname;
+    char          *filename;
+    char          *filebase;
+    char          *tmpname;
+    GtkFileFilter *filter;
+    int            type;
 
     filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
     filebase = basename(filename);
     auto_ext = gtk_toggle_button_get_active ((GtkToggleButton*)cb_add_ext);
-
-    if (auto_ext && (filebase != NULL) && get_filename_ext(filebase)) {
-      tmpname = g_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
-      g_free (filename);
-      filename = tmpname;
+    tmpname  = NULL;
+    if (auto_ext && (filebase != NULL)) {
+      if (!get_filename_ext(filebase)) {
+        filter = gtk_file_chooser_get_filter( GTK_FILE_CHOOSER(dialog));
+        type = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(filter), "id" ));
+        if (type == FILTER_SCHEMATIC)
+          tmpname = g_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
+        else
+          if (type == FILTER_SYMBOL)
+           tmpname = g_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
+        if (tmpname) {
+          g_free (filename);
+          filename = tmpname;
+        }
+      }
     }
 
     /* If the file already exists, display a dialog box to check if
@@ -362,7 +372,7 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
     eda_config_set_boolean (cfg, "gschem", "auto-file-suffix", auto_ext);
   }
   gtk_widget_destroy (dialog);
-  
+
 }
 
 /*! \brief Load/Backup selection dialog.
@@ -373,20 +383,25 @@ x_fileselect_save (GSCHEM_TOPLEVEL *w_current)
  *  Therefore we must manually lock and unlock gtk-threads
  *
  *  \todo Make this a registered callback function with user data,
- *        as we'd rather be passed a GSCHEM_TOPLEVEL than a TOPLEVEL.
+ *        as we'd rather be passed a GschemToplevel than a TOPLEVEL.
  *
  *  \param [in] user_data The TOPLEVEL object.
  *  \param [in] message   Message to display to user.
  *  \return TRUE if the user wants to load the backup file, FALSE otherwise.
  */
-bool x_fileselect_load_backup(GString *message)
+bool x_fileselect_load_backup(GString *message, GschemToplevel *w_current)
 {
   GtkWidget *dialog;
+  GtkWindow *window;
+
   bool result = FALSE;
 
-  g_string_append(message, "\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n");
+  window = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
+
+  g_string_append(message, _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n"));
   gdk_threads_enter();
-  dialog = gtk_message_dialog_new (NULL,
+
+  dialog = gtk_message_dialog_new (window,
                                    GTK_DIALOG_MODAL,
                                    GTK_MESSAGE_QUESTION,
                                    GTK_BUTTONS_YES_NO,

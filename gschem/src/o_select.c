@@ -15,8 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA, 02110-1301 USA
  */
 /*! \Note The code in this file is sometimes not obvious, especially
  * o_select_object (which implements the selection of objects either
@@ -44,151 +43,164 @@
 #include <dmalloc.h>
 #endif
 
+typedef enum { DESELECT_HOOK, SELECT_HOOK} HOOKS;
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  */
-void
-o_select_run_hooks(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current, int flag)
+static void
+o_select_run_hooks(GschemToplevel *w_current, OBJECT *o_current, HOOKS which_hook)
 {
-  switch (flag) {
+#if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
+  fprintf(stderr, "o_select_run_hooks: begin\n");
+#endif
+
+  switch (which_hook) {
+
     /* If flag == 0, then we are deselecting something. */
-    case 0:
+    case DESELECT_HOOK:
       g_run_hook_object (w_current, "%deselect-objects-hook", o_current);
       break;
+
       /* If flag == 1, then we are selecting something. */
-    case 1:
+    case SELECT_HOOK:
       g_run_hook_object (w_current, "%select-objects-hook", o_current);
       break;
+
     default:
       g_critical("Internal Error Detected: <o_select_run_hooks> unhandled case\n");
   }
+
+#if DEBUG || DEBUG_HOOKS || DEBUG_SELECT
+  fprintf(stderr, "o_select_run_hooks: exit\n");
+#endif
 }
 
 /*! \brief Select or Unselect an Object
  *  \par Function Description
  *     This function adds or removes an object from the current selection
  * 
- *  \param [in] w_current         The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current         A pointer to a GschemToplevel object.
  *  \param [in] object            The OBJECT of interest.
  *  \note
  *  type can be either SINGLE meaning selection is a single mouse click
  *      or it can be MULTIPLE meaning selection is a selection box
  */
 void
-o_select_object(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+o_select_object(GschemToplevel *w_current, OBJECT *o_current,
                 int type, int count)
 {
-  TOPLEVEL  *toplevel  = w_current->toplevel;
+  TOPLEVEL  *Toplevel  = w_current->toplevel;
   SELECTION *Selection = Current_Selection;
+  bool       removing_obj;
+  int        CONTROLKEY;
+  int        SHIFTKEY;
 
-  int SHIFTKEY;
-  int CONTROLKEY;
-  int removing_obj = 0;
+  #if DEBUG
+  printf("OBJECT id: %d\n", o_current->sid);
+  #endif
 
-  SHIFTKEY   = w_current->SHIFTKEY;
+  SHIFTKEY     = w_current->SHIFTKEY;
 
-  /* If we are in "deslect mode" reverse our state CONTROLKEY*/
+  removing_obj = FALSE;
+
+  /* If in "deselect mode" reverse OUR state of CONTROLKEY */
   if (w_current->event_state == STARTDESELECT)
     CONTROLKEY = !w_current->CONTROLKEY;
   else
     CONTROLKEY = w_current->CONTROLKEY;
 
-  #if DEBUG
-    printf("OBJECT id: %d\n", o_current->sid);
-  #endif
-
   switch(o_current->selected) {
 
-    case (FALSE):          /* object not selected */
-    {
-      switch (SHIFTKEY) {  /* shift key pressed? */
+    case(FALSE):          /* object not selected */
 
-      case(TRUE):          /* shift key pressed  */
-                           /* just fall through  */
-        break;
+      switch(SHIFTKEY) {  /* shift key pressed? */
 
-      case(FALSE):
+        case(TRUE):          /* shift key pressed  */
+          /* just fall through  */
+          break; /* Or not? */
 
-        /* condition: first object being added  */
-        /* condition: control key not pressed   */
-        /* condition: for both multiple and single object added */
-        /* result: remove all objects from selection */
-        if (count == 0 && !CONTROLKEY) {
-          o_select_unselect_all(w_current);
-        }
-        break;
+        case(FALSE):
 
-      } /* End shift key switch */
+          /* condition: first object being added  */
+          /* condition: control key not pressed   */
+          /* condition: for both multiple and single object added */
+          /* result: remove all objects from selection */
+          if (count == 0 && !CONTROLKEY) {
+            o_select_unselect_all(w_current);
+          }
+          break;
+
+      } /* End Switch shift key */
 
       /* object not selected, so add it to the selection list */
-      o_select_run_hooks( w_current, o_current, 1 );
-      o_selection_add (toplevel, Selection, o_current);
+      o_select_run_hooks (w_current, o_current, SELECT_HOOK);
+      o_selection_add    (Toplevel,  Selection, o_current);
       break;
-    }
-    case (TRUE):  /* object was already selected */
-    {
+
+    case(TRUE):  /* object was already selected */
+
       switch (SHIFTKEY) { /* shift key pressed ? */
 
-      case (TRUE):          /* shift key pressed */
+        case (TRUE):          /* shift key pressed */
 
-        /* condition: not doing multi-selection  */
-        /*     then : remove object from selection */
-        if (type != MULTIPLE) {
-          o_select_run_hooks( w_current, o_current, 0 );
-          o_selection_remove (toplevel, Selection, o_current);
-          removing_obj = 1;
-        }
+          /* condition: not doing multi-selection  */
+          /*     then : remove object from selection */
+          if (type != MULTIPLE) {
+            o_select_run_hooks (w_current, o_current, DESELECT_HOOK);
+            o_selection_remove (Toplevel,  Selection, o_current);
+            removing_obj = TRUE;
+          }
 
-        break;
+          break;
 
-      case (FALSE): /* shift key not pressed */
+        case(FALSE): /* shift key not pressed */
 
-        /* condition: doing multiple */
-        /* condition: first object being added */
-        /* condition: control key not pressed  */
-        /*   then 1 : remove all objects from selection */
-        /*        2 : add object to selection */
-        if (type == MULTIPLE && count == 0 && !CONTROLKEY) {
-          o_select_unselect_all (w_current);
-          o_select_run_hooks( w_current, o_current, 1 );
-          o_selection_add (toplevel, Selection, o_current);
-        }
+          /* condition: doing multiple */
+          /* condition: first object being added */
+          /* condition: control key not pressed  */
+          /*   then 1 : remove all objects from selection */
+          /*        2 : add object to selection */
+          if (type == MULTIPLE && count == 0 && !CONTROLKEY) {
+            o_select_unselect_all (w_current);
+            o_select_run_hooks    (w_current, o_current, SELECT_HOOK);
+            o_selection_add       (Toplevel,  Selection, o_current);
+          }
 
-        /* condition: doing single object add */
-        /* condition: control key not pressed */
-        /* 1st objective: remove all objects from selection */
-        /* 2nd objective: add object to selection list */
-        if (type == SINGLE && !CONTROLKEY) {
-          o_select_unselect_all (w_current);
-          o_select_run_hooks (w_current, o_current, 1);
-          o_selection_add (toplevel, Selection, o_current);
-        }
+          /* condition: doing single object add */
+          /* condition: control key not pressed */
+          /* 1st objective: remove all objects from selection */
+          /* 2nd objective: add object to selection list */
+          if (type == SINGLE && !CONTROLKEY) {
+            o_select_unselect_all (w_current);
+            o_select_run_hooks    (w_current, o_current, SELECT_HOOK);
+            o_selection_add       (Toplevel,  Selection, o_current);
+          }
 
-        if (CONTROLKEY) {
-          o_select_run_hooks(w_current, o_current, 0);
-          o_selection_remove (toplevel, Selection, o_current);
-          removing_obj = 1;
-        }
+          if (CONTROLKEY) {
+            o_select_run_hooks    (w_current, o_current, DESELECT_HOOK);
+            o_selection_remove    (Toplevel,  Selection, o_current);
+            removing_obj = TRUE;
+          }
 
-        break;
+          break;
       }
-      break; /* end object selected switch */
-    }
-  }
+      break;
+  } /* End Switch object selected */
 
   /* do the attributes */
-  if (removing_obj) {
+  if ( TRUE == removing_obj) {
     /* Remove the invisible attributes from the object list as well,
      * so they don't remain selected without the user knowing. */
-    o_attrib_deselect_invisible (w_current, Selection, o_current);
+     o_attrib_deselect_invisible (w_current, Selection, o_current);
   }
   else {
     /* If the type is MULTIPLE (meaning a select box was/is being used),
      * only select invisible attributes on objects. Otherwise attributes
      * will be "double selected", causing them to remain unselected if
      * using invert-selection (CONTROLKEY is pressed) */
-    if( type == MULTIPLE) {
+    if ( MULTIPLE == type ) {
       o_attrib_select_invisible (w_current, Selection, o_current);
     }
     else {
@@ -203,7 +215,7 @@ o_select_object(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \par Function Description
  *
  */
-int o_select_box_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+int o_select_box_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   int diff_x, diff_y;
 
@@ -226,10 +238,10 @@ int o_select_box_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void o_select_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_select_box_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   o_select_box_invalidate_rubber (w_current);
-  w_current->rubber_visible = 0;
+  w_current->rubber_visible = FALSE;
 
   o_select_box_search(w_current);
 }
@@ -239,7 +251,7 @@ void o_select_box_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void o_select_box_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_select_box_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->rubber_visible)
     o_select_box_invalidate_rubber (w_current);
@@ -248,14 +260,14 @@ void o_select_box_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   w_current->second_wy = w_y;
 
   o_select_box_invalidate_rubber (w_current);
-  w_current->rubber_visible = 1;
+  w_current->rubber_visible = TRUE;
 }
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  */
-void o_select_box_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_select_box_invalidate_rubber (GschemToplevel *w_current)
 {
   int x1, y1, x2, y2;
 
@@ -273,7 +285,7 @@ void o_select_box_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void o_select_box_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_select_box_draw_rubber (GschemToplevel *w_current)
 {
   o_box_draw_rubber (w_current);
 }
@@ -283,7 +295,7 @@ void o_select_box_draw_rubber (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void o_select_box_search(GSCHEM_TOPLEVEL *w_current)
+void o_select_box_search(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *o_current=NULL;
@@ -327,6 +339,7 @@ void o_select_box_search(GSCHEM_TOPLEVEL *w_current)
     o_select_unselect_all (w_current);
   }
   i_update_sensitivities(w_current);
+
 }
 
 /*! \brief Select all nets connected to the current net
@@ -334,21 +347,21 @@ void o_select_box_search(GSCHEM_TOPLEVEL *w_current)
  *   and the net_selection_state of the current net this function will either
  *   select the single net, all directly connected nets or all nets connected
  *   with netname labels.
- *  \param [in] w_current  GSCHEM_TOPLEVEL struct.
+ *  \param [in] w_current  Pointer to GschemToplevel struct.
  *  \param [in] o_net      Pointer to a single net object
  */
-void o_select_connected_nets(GSCHEM_TOPLEVEL *w_current, OBJECT* o_net)
+void o_select_connected_nets(GschemToplevel *w_current, OBJECT* o_net)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  const GList *o_iter;
-  GList *iter1;
+  const     GList *o_iter;
+            GList *iter1;
   OBJECT *o_current;
-  int count=0;
-  char* netname;
+  int     count;
+  char   *netname;
 
-  GList *netstack = NULL;
-  GList *netnamestack = NULL;
-  GList *netnameiter;
+  GList  *netstack     = NULL;
+  GList  *netnamestack = NULL;
+  GList  *netnameiter;
 
   if (o_net->type != OBJ_NET) {
     s_log_message("Internal Error Detected: <o_select_connected_nets> Not a Net type object\n");
@@ -365,33 +378,33 @@ void o_select_connected_nets(GSCHEM_TOPLEVEL *w_current, OBJECT* o_net)
   count = 0;
   while (1) {
     netnameiter = g_list_last(netnamestack);
-    for (iter1 = g_list_last(netstack);
+    for (iter1  = g_list_last(netstack);
          iter1 != NULL;
-    iter1 = g_list_previous(iter1), count++) {
+         iter1  = g_list_previous(iter1), count++) {
       o_current = iter1->data;
       if (o_current->type == OBJ_NET &&
         (!o_current->selected || count == 0)) {
         o_select_object (w_current, o_current, SINGLE, count);
-      if (w_current->net_selection_state > 1) {
-        /* collect nets */
-        netstack = g_list_concat(s_conn_return_others(NULL, o_current),
-                                 netstack);
-      }
-      if (w_current->net_selection_state > 2) {
-        /* collect netnames */
-        netname = o_attrib_search_object_attribs_by_name (o_current,
-                                                          "netname", 0);
-        if (netname != NULL) {
-          if (g_list_find_custom(netnamestack, netname,
-            (GCompareFunc) strcmp) == NULL) {
-            netnamestack = g_list_append(netnamestack, netname);
-          }
-          else {
-            g_free(netname);
+        if (w_current->net_selection_state > 1) {
+          /* collect nets */
+          netstack = g_list_concat(s_conn_return_others(NULL, o_current),
+                                   netstack);
+        }
+        if (w_current->net_selection_state > 2) {
+          /* collect netnames */
+          netname = o_attrib_search_object_attribs_by_name (o_current,
+                                                            "netname", 0);
+          if (netname != NULL) {
+            if (g_list_find_custom(netnamestack, netname,
+                                  (GCompareFunc) strcmp) == NULL) {
+              netnamestack = g_list_append(netnamestack, netname);
+            }
+            else {
+              g_free(netname);
+            }
           }
         }
       }
-        }
     }
     g_list_free(netstack);
     netstack = NULL;
@@ -400,26 +413,26 @@ void o_select_connected_nets(GSCHEM_TOPLEVEL *w_current, OBJECT* o_net)
       break; /* no new netnames in the stack --> finished */
 
       /* get all the nets of the stacked netnames */
-      for (o_iter = s_page_objects (toplevel->page_current);
-           o_iter != NULL;
-      o_iter = g_list_next (o_iter)) {
-        o_current = o_iter->data;
-        if (o_current->type == OBJ_TEXT
-          && o_current->attached_to != NULL) {
-          if (o_current->attached_to->type == OBJ_NET) {
-            netname =
-            o_attrib_search_object_attribs_by_name (o_current->attached_to,
-                                                    "netname", 0);
-            if (netname != NULL) {
-              if (g_list_find_custom (netnamestack,
-                netname, (GCompareFunc) strcmp) != NULL) {
-                netstack = g_list_prepend(netstack, o_current->attached_to);
-              }
-              g_free(netname);
+    for (o_iter  = s_page_objects (toplevel->page_current);
+         o_iter != NULL;
+         o_iter  = g_list_next (o_iter)) {
+      o_current  = o_iter->data;
+      if (o_current->type == OBJ_TEXT
+        && o_current->attached_to != NULL) {
+        if (o_current->attached_to->type == OBJ_NET) {
+          netname =
+          o_attrib_search_object_attribs_by_name (o_current->attached_to,
+                                                  "netname", 0);
+          if (netname != NULL) {
+            if (g_list_find_custom (netnamestack,
+              netname, (GCompareFunc) strcmp) != NULL) {
+              netstack = g_list_prepend(netstack, o_current->attached_to);
             }
+            g_free(netname);
           }
-          }
+        }
       }
+    }
   }
 
   w_current->net_selection_state += 1;
@@ -431,45 +444,72 @@ void o_select_connected_nets(GSCHEM_TOPLEVEL *w_current, OBJECT* o_net)
   g_list_free(netnamestack);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get the Number of Currently Selected Objects
  *  \par Function Description
- *
- * \return TRUE if the selection list is not empty, otherwise false.
- * also make sure item is valid
+ *   Returns the selection set count. Does not check validity
+ *   of objects, this should have been done when the objects
+ *   were added, nor does this function varify that the object
+ *   or objects still exist.
+ * 
+ * \returns count of the selection list..
  */
-int o_select_selected(GSCHEM_TOPLEVEL *w_current)
+int o_select_get_count(GschemToplevel *w_current)
 {
-
-  TOPLEVEL *toplevel = w_current->toplevel;
-  if ( geda_list_get_glist( Top_Selection )) {
-    return(TRUE);
-  }
-  return(FALSE);
+  return g_list_length(w_current->Top_Selection->glist);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Check if any Currently Select Objects
  *  \par Function Description
  *
+ * \returns TRUE if the selection list is not empty,
+ *          FALSE if the selection list is empty,
  */
-void o_select_unselect_all(GSCHEM_TOPLEVEL *w_current)
+bool o_select_is_selection(GschemToplevel *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
+  return (w_current->Top_Selection->glist != FALSE);
+}
+/*! \brief UnSelect All Objects
+ *  \par Function Description
+ *   Removes all members from the toplevel selection list
+ *  and calls the run hook function, after the object(s)
+ *  have been removed, pass a list of the object that were
+ *  removed.
+ *
+ * \remarks WEH: Could it help to have a freeze/thaw wrapper
+ *          around the do loop if count was many?
+ */
+void o_select_unselect_all(GschemToplevel *w_current)
+{
+  TOPLEVEL  *toplevel  = w_current->toplevel;
   SELECTION *selection = Top_Selection;
-  GList *removed = NULL;
-  GList *iter;
+  GList     *removed;
+  GList     *iter;
+  OBJECT    *object;
+  int        count;
 
-  removed = g_list_copy (geda_list_get_glist (selection));
-  for (iter = removed; iter != NULL; iter = g_list_next (iter)) {
-    o_selection_remove (toplevel, selection, (OBJECT *) iter->data);
+  if (selection->glist != NULL) {
+
+    removed = g_list_copy(selection->glist);
+
+    count   = g_list_length(removed);
+
+    if (count > 1) {
+      iter = g_list_first(removed);
+      do {
+        object = iter->data;
+        o_selection_remove(toplevel, selection, object );
+        NEXT(iter);
+      } while (iter);
+      /* Call hooks with list of removed objects */
+      g_run_hook_object_list(w_current, "%deselect-objects-hook", removed);
+    }
+    else {
+      object = removed->data;
+      o_selection_remove(toplevel, selection, object);
+      g_run_hook_object(w_current, "%deselect-objects-hook", object);
+    }
+    g_list_free(removed);
   }
-
-  /* Call hooks */
-  if (removed != NULL) {
-    g_run_hook_object_list (w_current, "%deselect-objects-hook", removed);
-  }
-
 }
 
 /*! \brief Selects all visible objects on the current page.
@@ -478,12 +518,12 @@ void o_select_unselect_all(GSCHEM_TOPLEVEL *w_current)
  * unlocked on the current page, and any attached attributes whether
  * visible or invisible..
  *
- * \param w_current  The current #GSCHEM_TOPLEVEL structure.
+ * \param w_current  Pointer to a GschemToplevel structure.
  */
 void
-o_select_visible_unlocked (GSCHEM_TOPLEVEL *w_current)
+o_select_visible_unlocked (GschemToplevel *w_current)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
+  TOPLEVEL  *toplevel  = w_current->toplevel;
   SELECTION *selection = Top_Selection;
   const GList *iter;
   GList *added;
@@ -526,7 +566,7 @@ o_select_visible_unlocked (GSCHEM_TOPLEVEL *w_current)
  *
  */
 void
-o_select_move_to_place_list(GSCHEM_TOPLEVEL *w_current)
+o_select_move_to_place_list(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *selection;
@@ -547,7 +587,7 @@ o_select_move_to_place_list(GSCHEM_TOPLEVEL *w_current)
  *  this function returns a list containing only objects of the specified
  *  type.
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param otype     An Object type OBJECT, not checked.
  *
  *  \returns Glist* list of selected object or NULL is no object of the
@@ -555,14 +595,13 @@ o_select_move_to_place_list(GSCHEM_TOPLEVEL *w_current)
  *
  *  \note Caller should g_list_free returned list
  */
-GList *o_select_get_list_selected_objects(GSCHEM_TOPLEVEL *w_current,
-                                          char otype)
+GList*
+o_select_get_list_selected_objects(GschemToplevel *w_current, char otype)
 {
-
-  GList *selection, *iter, *list = NULL;
+  GList  *selection, *iter, *list = NULL;
   OBJECT *object;
 
-   /* Get the current selection and the count */
+  /* Get the current selection list, alias Current_Selection->glist */
   selection = geda_list_get_glist(Current_Selection);
   for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
       object = (OBJECT *) iter->data;
@@ -579,7 +618,7 @@ GList *o_select_get_list_selected_objects(GSCHEM_TOPLEVEL *w_current,
  *
  *  \param toplevel A pointer to a Gschem Toplevel data structure
  */
-OBJECT *o_select_return_first_object(GSCHEM_TOPLEVEL *w_current)
+OBJECT *o_select_return_first_object(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   if (! ( w_current &&

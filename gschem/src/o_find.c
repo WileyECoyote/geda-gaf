@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -36,7 +37,7 @@
  *  object is not selectable (e.g. it is locked), or it is invisible and
  *  not being rendered, this function will return FALSE.
  *
- *  \param [in] w_current         The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current         The GschemToplevel object.
  *  \param [in] object            The OBJECT being hit-tested.
  *  \param [in] w_x               The X coordinate to test (in world coords).
  *  \param [in] w_y               The Y coordinate to test (in world coords).
@@ -45,7 +46,7 @@
  *  \returns TRUE if the OBJECT was hit, otherwise FALSE.
  */
 static bool
-is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
+is_object_hit (GschemToplevel *w_current, OBJECT *object,
                int w_x, int w_y, int w_slack)
 {
   int left, top, right, bottom;
@@ -79,7 +80,7 @@ is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
  *  flag. Saves a pointer to the found object so future find operations
  *  resume after this object.
  *
- *  \param [in] w_current         The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current         The GschemToplevel object.
  *  \param [in] object            The OBJECT being hit-tested.
  *  \param [in] w_x               The X coordinate to test (in world coords).
  *  \param [in] w_y               The Y coordinate to test (in world coords).
@@ -91,7 +92,7 @@ is_object_hit (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
  *  function below.
  */
 static bool
-find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
+find_single_object (GschemToplevel *w_current, OBJECT *object,
                     int w_x, int w_y, int w_slack,
                     int change_selection)
 {
@@ -121,14 +122,14 @@ find_single_object (GSCHEM_TOPLEVEL *w_current, OBJECT *object,
  *  found, so multiple find operations at the same point will cycle
  *  through any objects on top of each other at this location.
  *
- *  \param [in] w_current         The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current         The GschemToplevel object.
  *  \param [in] w_x               The X coordinate to test (in world coords).
  *  \param [in] w_y               The Y coordinate to test (in world coords).
  *  \param [in] change_selection  Whether to select the found object or not.
  *  \returns TRUE if the object was hit at the given coordinates,
  *           otherwise FALSE.
  */
-bool o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
+bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
                         bool change_selection)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -191,7 +192,7 @@ bool o_find_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
  *
  */
 OBJECT *
-o_find_selected_object (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+o_find_selected_object (GschemToplevel *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int w_slack = WORLDabs (w_current, w_current->select_slack_pixels);

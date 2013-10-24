@@ -219,7 +219,7 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, PIN_TYPE type,
 static void
 x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   TOPLEVEL        *toplevel;
 
   GList  *iter;
@@ -250,7 +250,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   number      = 0;
 
   /* if nothing selected then get out */
-  if (! o_select_selected(w_current))
+  if (!o_select_is_selection(w_current))
     return;
 
   type = GPOINTER_TO_INT(
@@ -262,7 +262,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
               pin_data->pin_type))))), WIDGET(PinType)));
 
   if (type == PIN_TYPE_VOID) {
-    titled_warning_dialog("The Pin Type can not be set VOID", "Pin Properties");
+    titled_warning_dialog(_("Pin Properties"), "%s", _("The Pin Type can not be set VOID"));
     return;
   }
 
@@ -275,7 +275,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
               pin_data->pin_attribute))))), WIDGET(PinAttributes)));
 
   if (attribute == PIN_ATTRIB_VOID)
-    titled_information_dialog("Ignoring Pin attribute VOID", "Pin Properties");
+    titled_information_dialog(_("Pin Properties"), "%s", _("Ignoring Pin attribute VOID"));
 
   number = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->number_spin));
   sequence = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->sequence_spin));
@@ -397,7 +397,7 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
 
   pin_type_data *pin_data;
 
-  GSCHEM_TOPLEVEL *w_current = Dialog->w_current;
+  GschemToplevel *w_current = Dialog->w_current;
 
   /* Get ptr to the data structure */
   pin_data = g_object_get_data (G_OBJECT (Dialog), IDS_PIN_EDIT);
@@ -534,11 +534,11 @@ xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
  *  \par Function Description
  *  Updates the Pin Properties dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected OBJECT.
  */
 static void
-x_dialog_pin_type_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+x_dialog_pin_type_update_selection (GschemToplevel *w_current, OBJECT *object)
 {
   GschemDialog *Dialog;
 
@@ -597,7 +597,7 @@ void
 x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
                                  pin_type_data *pin_data)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -695,7 +695,7 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent) {
  *  associated labels is attach to the dialog.
  * 
  */
-GtkWidget *x_dialog_pin_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
+GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
 {
   AtkObject *atk_type_obj;
   AtkObject *atk_attrib_obj;
@@ -920,7 +920,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
  *  This function initiates or activates the Pin Properties Dialog
  *  for manipulating the properties of pins objects.
  */
-void x_dialog_edit_pin_type (GSCHEM_TOPLEVEL *w_current)
+void x_dialog_edit_pin_type (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   OBJECT    *object;

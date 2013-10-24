@@ -7,15 +7,48 @@ Copyright (C) 1998-2013 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
-Notable changes in gEDA/gaf 2.0.7
+Notable changes in gEDA/gaf 2.0.8 - Rampage Edition
+
+* The Coordinates Dialog allows direct entering of World Coordinates.
+  If an XY coordinate is "entered" when not in an Action, the cursor
+  will be positioned over the point so that "hot-keys" can be used,
+  to begin an action starting from an exact point. Parentheses for
+  the coordinates is optional.
+
+* Gschem now supports bidirectional Drag & Drop. Contents of Schematic
+  drawings can be "dragged" from one gschem window to any other instance
+  of gschem. The target can also be the World Entry of the Coordinates
+  Dialog of the same or another instances of gschem. Dropping schematic
+  objects on the World Entry requires that a value be entered immediately
+  afterward for the dropped object to be inserted into the drawing at the
+  specified point. Dropping a ".sch" file results in the file being loaded
+  into new window. The results of dropping a ".sym" file depends on where
+  the file is located. If the symbol file is in a Library source directory
+  then the symbol is inserted into the current Schematic, otherwise the
+  symbol file is opened in a new window for editing as a Symbol definition.
+
+* "Save As" can now optionally add the ".sch" or ".sym" file extension.
+  based on the filter selection.
+
+* Generated color images file can now be inverted. User can choose between
+  the Display or the Print Color map on Write Image Dialog.
+
+* Gschem is more tolerent of errors in RC files.
+
+* Message dialogs are more consistence.
+
+Notable changes in gEDA/gaf 2.0.7 - Rampage Edition
 =================================
+
+* The Gdk cursor to be use over the Drawing Area is now user
+  configurable via the Preference dialog.
 
 * New Path drawing tool from Master bramch implemented.
 
 * Many user settings are no long dependent on RC entries and are
   saved at the end of each session if the "save settings on exit"
   option is enabled, allowing users to change settings on-the-fly
-  without worry about the consequences.
+  without permenently changing their configuration.
 
 * New "Deselect" mode can be used to remove objects from a selection
   set.
@@ -29,7 +62,7 @@ Notable changes in gEDA/gaf 2.0.7
 * Refdes number are reset when using buffers and the clipboard.
 
 
-Notable changes in gEDA/gaf 2.0.6
+Notable changes in gEDA/gaf 2.0.6 - Rampage Edition
 =================================
 
 * GUI Enhancments for gschem GUI with better consistency between
@@ -50,7 +83,7 @@ Notable changes in gEDA/gaf 2.0.6
 
 * Man pages have now been added for all geda-gaf programs.
 
-Notable changes in gEDA/gaf 2.0.1
+Notable changes in gEDA/gaf 2.0.1 - Rampage Edition
 =================================
 
 * GUI's for gschem and gattrib have received Major Make-Overs with

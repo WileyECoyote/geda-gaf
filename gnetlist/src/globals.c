@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist 
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,12 +15,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
-
-#include <stdio.h>
 
 #include <libgeda/libgeda.h>
 
@@ -28,16 +27,16 @@
 #include "../include/prototype.h"
 
 char *rc_filename = NULL; 
+int   logfile_fd  = -1;
 
-int logfile_fd=-1;
 volatile int log_destiny=CONSOLE_WINDOW;
 
 /* netlist specific variables */
 NETLIST *netlist_head=NULL;
-NETLIST *graphical_netlist_head=NULL; /* Special objects with 
-					 graphical=1 attribute */
-char *guile_proc=NULL; 
 
+/* Special objects with graphical=1 attribute */
+NETLIST *graphical_netlist_head=NULL;
+char *guile_proc=NULL; 
 
 /* command line arguments */
 int list_backends=FALSE;

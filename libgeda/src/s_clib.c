@@ -144,15 +144,11 @@
  * ===================
  */
 
-/*! All symbols in directory sources end with this string. Must be
- *  lowercase. */
-#define SYM_FILENAME_FILTER ".sym"
-
 /*! Library command mode used to fetch list of symbols */
-#define CLIB_LIST_CMD       "list"
+//#define CLIB_LIST_CMD       "list" /* Really? */
 
 /*! Library command mode used to fetch symbol data */
-#define CLIB_DATA_CMD       "get"
+//#define CLIB_DATA_CMD       "get"
 
 /*! Maximum number of symbol cache entries */
 #define CLIB_MAX_SYMBOL_CACHE 128
@@ -514,7 +510,17 @@ static char *get_unique_source_name (const char *name)
 
   return newname;
 }
-
+/*! \brief Is Path a Symbol Library Source.
+ *  \par Function Description
+ *  Compares the string argument to each of the strings in the
+ *  list of source name. If a match is found to the string then
+ *  then the source is currently a source and the function
+ *  returns TRUE, if a match is not found then FALSE is
+ *  returned.
+ *  .
+ *  \param path The source name to look for in the source list.
+ *  \return [bool] TRUE is the source was found, otherwise FALSE.
+ */
 bool s_clib_source_name_exist (const char *name)
 {
   GList *sourcelist;
@@ -522,11 +528,39 @@ bool s_clib_source_name_exist (const char *name)
 
   bool result = FALSE;
 
-  for (sourcelist = clib_sources; sourcelist != NULL;
-       sourcelist = g_list_next(sourcelist)) {
-
+  for (sourcelist = clib_sources; sourcelist != NULL;  NEXT(sourcelist))
+  {
     source = (CLibSource *) sourcelist->data;
     if (strcmp (source->name, name) == 0) {
+      result = TRUE;
+      break;
+    }
+  }
+
+  return result;
+}
+/*! \brief Is Path a Symbol Library Source.
+ *  \par Function Description
+ *  Compares the string argument to each of the strings in the
+ *  list of sources directories designated. If a match is found
+ *  to the string then the folder is currently a source folder
+ *  and the function returns TRUE, if a match is not found then
+ *  FALSE is returned.
+ *  .
+ *  \param path The path name to look for in the source list.
+ *  \return [bool] TRUE is the path was found, otherwise FALSE.
+ */
+bool s_clib_source_path_exist (const char *path)
+{
+  GList *sourcelist;
+  CLibSource *source;
+
+  bool result = FALSE;
+
+  for (sourcelist = clib_sources; sourcelist != NULL;  NEXT(sourcelist))
+  {
+    source = (CLibSource *) sourcelist->data;
+    if (strcmp (source->directory, path) == 0) {
       result = TRUE;
       break;
     }
@@ -586,7 +620,7 @@ static void refresh_directory (CLibSource *source)
 
     /* skip filenames which don't have the right suffix. */
     low_entry = g_utf8_strdown (entry, -1);
-    if (!g_str_has_suffix (low_entry, SYM_FILENAME_FILTER)) {
+    if (!g_str_has_suffix (low_entry, SYMBOL_FILE_DOT_SUFFIX)) {
       g_free (low_entry);
       continue;
     }
@@ -804,7 +838,7 @@ const CLibSource *s_clib_get_source_by_name (const char *name)
 /*! \brief Add a directory of symbol files to the library
  *  \par Function Description
  *  Adds a directory containing symbol files to the library.  Only
- *  files ending with #SYM_FILENAME_FILTER are considered to be symbol
+ *  files ending with #SYMBOL_FILE_DOT_SUFFIX are considered to be symbol
  *  files.  A \a name may be specified for the source; if \a name is
  *  \b NULL, the basename of the directory as returned by
  *  g_path_get_basename() is used.

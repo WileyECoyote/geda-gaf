@@ -1,17 +1,45 @@
-
+/* GTK - The GIMP Toolkit
+ * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Modified by the GTK+ Team and others 1997-2000.  See the AUTHORS
+ * file for a list of people on the GTK+ Team.  See the ChangeLog
+ * files for a list of changes.  These files are distributed with
+ * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+ *
+ * THIS FILE IS LGPL LICENSED, gEDA AS A WHOLE IS GPL LICENSED
+ *
+ * Adapted for gEDA by Wiley Edward Hill <wileyhill@gmail.com> with
+ * modifications, July 2013.
+ *
+ */
 /** This is a temporary replacement for the stock GtkLabel widget. The
  *  "bulk" of this code is from Gtk+3.7.4, but has been modified to
  *  run under the gtk+2.24.17 library. According to Valgrind: this
  *  version has fewer errors and does not have the memory leaks common
  *  to both the aforementioned versions. The direct leaks are not really
  *  in the Gtklabel widget. The leaks are related to Pango, FontConfig
- *  and somewhere else in GTK. (note: After upgrading Cairo, from
- *  libcairo2_1.12.2-3 to libcairo2-dbg_1.12.14-5, and associated depend-
- *  encies, under Debian, Wheezy->Sid, the amount of memory reported as
- *  "definitely lost" doubled.) This version implements a work around that
- *  can not be implemented by sub-classing. See geda_label_ensure_layout.
- *  Another suppression was not acceptable, couldn't let it go, so
- *  contrived this version ....
+ *  and somewhere else in GTK, possibly after tweeks by Debi. (note:
+ *  After upgrading Cairo, from libcairo2_1.12.2-3 to libcairo2-dbg_1.
+ *  12.14-5, and associated dependencies, under Debian, Wheezy->Sid, the
+ *  amount of memory reported as "definitely lost" doubled.) This version
+ *  implements a work around that can not be implemented by sub-classing.
+ *  See geda_label_ensure_layout. Another suppression was not acceptable,
+ *  couldn't let it go, so contrived this version ....
  */
 #define GTK_COMPILATION 1
 #include <geda.h>
@@ -2153,6 +2181,7 @@ geda_label_set_use_markup_internal (GedaLabel *label, bool val)
       priv->use_markup = val;
 
       g_object_notify (G_OBJECT (label), "use-markup");
+
     }
 }
 
@@ -2231,7 +2260,10 @@ void geda_label_set_text (GedaLabel *label, const char *str)
 
   g_object_thaw_notify (G_OBJECT (label));
 }
-
+void geda_label_widget_set_text (GtkWidget *widget, const char *str)
+{
+  geda_label_set_text((GedaLabel *)widget,str);
+}
 /**
  * geda_label_set_attributes:
  * @label: a #GedaLabel
@@ -2751,6 +2783,10 @@ const char *geda_label_get_text (GedaLabel *label)
   g_return_val_if_fail (GEDA_IS_LABEL (label), NULL);
 
   return label->text;
+}
+const char*geda_label_widget_get_text (GtkWidget *widget)
+{
+  return geda_label_get_text((GedaLabel*) widget);
 }
 
 static PangoAttrList *
@@ -5144,6 +5180,20 @@ bool geda_label_get_use_markup (GedaLabel *label)
   g_return_val_if_fail (GEDA_IS_LABEL (label), FALSE);
 
   return label->priv->use_markup;
+}
+
+/*! \brief Widget Convenience Versions of label set_use_markup */
+void geda_label_widget_set_use_markup (GtkWidget *widget, bool setting)
+{
+  geda_label_set_use_markup ((GedaLabel*)widget, setting);
+}
+
+/*! \brief Widget Convenience Versions of label get_use_markup */
+bool geda_label_widget_get_use_markup (GtkWidget *widget)
+{
+  g_return_val_if_fail (GEDA_IS_LABEL (widget), FALSE);
+
+  return geda_label_get_use_markup ((GedaLabel*)widget);
 }
 
 /**

@@ -17,6 +17,8 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
  */
 
+#include <libgeda/edascmhookproxy.h>
+
 /*!
  * \file libgedaguile.h
  * Scheme API public declarations and definitions.
@@ -66,3 +68,6 @@ int edascm_is_config (SCM smob);
 
 /* Set whether a gEDA object may be garbage collected. */
 void edascm_c_set_gc (SCM smob, int gc);
+
+/* Create a Scheme closure around a C function. */
+SCM edascm_c_make_closure (SCM (*func)(SCM, gpointer), gpointer user_data);

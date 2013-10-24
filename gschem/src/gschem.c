@@ -52,13 +52,15 @@ typedef struct {
   void* arg;
 } geda_atexit_struct;
 
-static GList*     exit_functions  = NULL;
-static GMainLoop* main_loop       = NULL;
+static GList     *exit_functions  = NULL; /* to be done after loop ends */
+static GMainLoop *main_loop       = NULL;
 
 void shut_down_gui (void)
 {
-  g_main_loop_unref(main_loop);
-  g_main_loop_quit(main_loop);
+  if (main_loop && g_main_loop_is_running (main_loop)) {
+    g_main_loop_unref(main_loop);
+    g_main_loop_quit(main_loop);
+  }
 }
 
 /*! \brief Register a function to be called on program exit
@@ -118,21 +120,26 @@ void gschem_quit(void)
   i_vars_libgeda_freenames();
 
   /* enable this to get more memory usage from glib */
-  /* You also have to enable something in glib I think */
-  /* g_mem_profile();*/
+  /* You also have to enable something in glib I think RUSAGE_CHILDREN*/
+#ifdef G_STAT_MEM
+  g_mem_profile();
+#endif
+
 }
 
 void gschem( int argc, char *argv[])
 {
-  int i;
+  int   i;
+  int   argv_index;
+  int   first_page = 1;
   char *cwd = NULL;
-  GSCHEM_TOPLEVEL *w_current = NULL;
   char *input_str = NULL;
-  int argv_index;
-  int first_page = 1;
-
   char *filename;
   char  tmpfilename[MAX_PATH];
+
+  GschemToplevel *w_current = NULL;
+  TOPLEVEL        *toplevel;
+
   SCM scm_tmp;
 
   argv_index = parse_commandline(argc, argv);
@@ -172,18 +179,19 @@ void gschem( int argc, char *argv[])
   }
 
   /* Allocate w_current */
-  w_current = gschem_toplevel_new ();
+  w_current           = gschem_toplevel_new ();
   w_current->toplevel = s_toplevel_new ();
+  toplevel            = w_current->toplevel;
 
   o_undo_init(w_current);
 
-  w_current->toplevel->load_newer_backup_func = x_fileselect_load_backup;
-
-  o_text_set_rendered_bounds_func (w_current->toplevel,
-                                   o_text_get_rendered_bounds, w_current);
+  f_set_backup_loader_query_func  (toplevel, x_fileselect_load_backup,
+                                   w_current);
+  o_text_set_rendered_bounds_func (toplevel, o_text_get_rendered_bounds,
+                                   w_current);
 
   /* Damage notifications should invalidate the object on screen */
-  o_add_change_notify (w_current->toplevel,
+  o_add_change_notify (toplevel,
                       (ChangeNotifyFunc) o_invalidate,
                       (ChangeNotifyFunc) o_invalidate, w_current);
 
@@ -193,8 +201,9 @@ void gschem( int argc, char *argv[])
   /* Run pre-load Scheme expressions */
   g_scm_eval_protected (s_pre_load_expr, scm_current_module ());
 
-  /* By this point, libgeda should have setup the Guile load path, so
-   * we can take advantage of that.  */
+  /* By this point, libgeda should have setup the Guile load path.
+   * Note that the log system is not initialized yet so any messages
+   * will go to the console or null */
   scm_tmp = scm_sys_search_load_path (scm_from_utf8_string ("gschem.scm"));
   if (scm_is_false (scm_tmp)) {
     s_log_message (_("Unable to locate scm initialization file \"gschem.scm\"\n"));
@@ -212,10 +221,13 @@ void gschem( int argc, char *argv[])
   free (input_str); /* M'allocated by scm_to_utf8_string() */
   scm_remember_upto_here_1 (scm_tmp);
 
-  /*! \internal Initialize Settings */
+  /*! \internal Initialize default configuration Settings */
   i_vars_init(w_current);         /* Set defaults */
+  if (w_current->save_ui_settings) {
+    geda_atexit (i_vars_atexit_save_user_config, NULL);
+  }
 
-  /*! \internal Setup Log & Console Systems */
+  /*! \internal Begin Setup Log & Console Systems */
   /*TODO: All of this logging stuff should be relocated to Lib */
   /* Now that the initialization files have been processed, retrieve the log settings. */
   logging             = default_logging;
@@ -228,7 +240,7 @@ void gschem( int argc, char *argv[])
   if (logging == TRUE) {
     s_log_init ("gschem");
 
-    /* see if open up log window on startup  */
+    /* see if open up console/log window on startup  */
     if (console_window == MAP_ON_STARTUP) {  /* This assumes MAP to Window */
       x_console_open (w_current);
     }
@@ -237,9 +249,9 @@ void gschem( int argc, char *argv[])
                      PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
   }
   else
-    s_log_message("Logging system is disabled");
+    v_log_message("Logging system is disabled");
 
-  /*! \endinternal Log & Console Systems */
+  /*! \internal End Setup Log & Console Systems > */
 
   /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
@@ -247,6 +259,8 @@ void gschem( int argc, char *argv[])
 
   /* At end, complete set up of window. */
   x_color_allocate();
+
+  x_image_init();
 
   x_window_setup (w_current);
 
@@ -275,7 +289,7 @@ void gschem( int argc, char *argv[])
         if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
           filename = tmpfilename;
           if(verbose_mode) {
-            s_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+            v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
           }
         } else
         {
@@ -284,7 +298,7 @@ void gschem( int argc, char *argv[])
           if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
             filename = tmpfilename;
             if(verbose_mode) {
-              s_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
+              v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
             }
           }
         }
@@ -327,7 +341,7 @@ void gschem( int argc, char *argv[])
   }
 
   /* Update the window to show the current page */
-  x_window_set_current_page( w_current, w_current->toplevel->page_current );
+  x_window_set_current_page( w_current, toplevel->page_current );
 
 #if DEBUG
   scm_c_eval_string ("(display \"hello guile\n\")");
@@ -336,14 +350,11 @@ void gschem( int argc, char *argv[])
   /* Run post-load expressions */
   g_scm_eval_protected (s_post_load_expr, scm_current_module ());
 
+  scm_dynwind_end ();
+
   /* if there were any symbols which had major changes, show error dialog */
   x_dialog_symbol_changed(w_current);
 
-  scm_dynwind_end ();
-
-  if (w_current->save_ui_settings) {
-    geda_atexit (i_vars_atexit_save_user_config, NULL);
-  }
 }
 /*! \brief Main Scheme(GUILE) program function.
  *  \par Function Description
@@ -363,15 +374,13 @@ void main_prog(void *closure, int argc, char *argv[])
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 32 ))
   g_thread_init (NULL);
 #endif
-
   if (g_thread_supported ()) {
     gdk_threads_init();
     run_mode = 2;
   }
 #else
-    run_mode = 1;
+  run_mode = 1;
 #endif
-
 
 #if ENABLE_NLS
   /* This should be equivalent to setlocale (LC_ALL, "") */
@@ -391,16 +400,27 @@ void main_prog(void *closure, int argc, char *argv[])
   fprintf(stderr, _("Current locale settings: %s\n"), setlocale(LC_ALL, NULL));
 #endif
 #endif
-  //g_mem_set_vtable (glib_mem_profiler_table);
+
+#ifdef G_STAT_MEM
+  g_mem_set_vtable (glib_mem_profiler_table);
+#endif
 
   gtk_init(&argc, &argv);
 
   gschem(argc, argv);
 
-  /* enter main loop */
-  main_loop    = g_main_loop_new (NULL, FALSE);
+  /* create a main loop */
+  main_loop  = g_main_loop_new (NULL, TRUE);
 
-  g_main_loop_run(main_loop);
+  if (g_main_loop_is_running (main_loop))
+  {
+    GDK_THREADS_LEAVE ();
+
+    /* enter main loop */
+    g_main_loop_run(main_loop);
+    GDK_THREADS_ENTER ();
+    gdk_flush ();
+  }
 
   gschem_quit();
 
@@ -410,7 +430,7 @@ void main_prog(void *closure, int argc, char *argv[])
  *  \par Function Description
  *  This is the main function for gSchem. It sets up the Scheme(GUILE)
  *  environment and passes control to via scm_boot_guile to
- *  the #main_prog function.
+ *  the#main_prog function.
  */
 int main (int argc, char *argv[])
 {

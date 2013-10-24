@@ -21,6 +21,7 @@
 #include <config.h>
 
 #include "gschem.h"
+#include <widgets/geda_label.h>
 
 /*! \brief Update status bar string
  *
@@ -28,18 +29,17 @@
  *  This function actually updates the status bar
  *  widget with the new string.
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  *  \param [in] string The new string to be shown in the status bar
  */
-static void i_update_status(GSCHEM_TOPLEVEL *w_current, const char *string)
+static void i_update_status(GschemToplevel *w_current, const char *string)
 {
   if (!w_current->status_label)
     return;
 
   if (string) {
     /* NOTE: consider optimizing this if same label */
-    gtk_label_set(GTK_LABEL(w_current->status_label),
-                  (char *) string);
+    geda_label_widget_set_text(w_current->status_label, (char*) string);
   }
 }
 
@@ -49,12 +49,12 @@ static void i_update_status(GSCHEM_TOPLEVEL *w_current, const char *string)
  *  Returns a string describing the currently
  *  selected mode.
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  *  \returns a string that will only last until the next time
  *   the function is called (which is probably just fine, really)
  *   *EK* Egil Kvaleberg
  */
-static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
+static const char *i_status_string(GschemToplevel *w_current)
 {
   static char *buf = 0;
 
@@ -154,10 +154,10 @@ static const char *i_status_string(GSCHEM_TOPLEVEL *w_current)
  *  Show state field on screen, possibly with the
  *  addition of an extra message
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  *  \param [in] message The string to be displayed
  */
-void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
+void i_show_state(GschemToplevel *w_current, const char *message)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   char *what_to_say;
@@ -203,12 +203,12 @@ void i_show_state(GSCHEM_TOPLEVEL *w_current, const char *message)
  *  Set new state, then show state field including some
  *  message.
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  *  \param [in] newstate The new state
  *  \param [in] message Message to be shown
  *   *EK* Egil Kvaleberg
  */
-void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate, const char *message)
+void i_set_state_msg(GschemToplevel *w_current, enum x_states newstate, const char *message)
 {
   w_current->event_state = newstate;
   x_toolbars_update(w_current);
@@ -220,11 +220,11 @@ void i_set_state_msg(GSCHEM_TOPLEVEL *w_current, enum x_states newstate, const c
  *  \par Function Description
  *  Set new state, then show state field.
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  *  \param [in] newstate The new state
  *   *EK* Egil Kvaleberg
  */
-void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
+void i_set_state(GschemToplevel *w_current, enum x_states newstate)
 {
   i_set_state_msg(w_current, newstate, NULL);
 }
@@ -234,7 +234,7 @@ void i_set_state(GSCHEM_TOPLEVEL *w_current, enum x_states newstate)
  *  \par Function Description
  *
  */
-void i_update_middle_button(GSCHEM_TOPLEVEL *w_current, const char *string)
+void i_update_middle_button(GschemToplevel *w_current, const char *string)
 {
   char *temp_string;
 
@@ -246,29 +246,29 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current, const char *string)
 
     /* remove this case eventually and make it a null case */
     case( MOUSE_MIDDLE_ACTION ):
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _( RC_STR_MID_ACTION ));
+    geda_label_widget_set_text(w_current->middle_label, _( RC_STR_MID_ACTION ));
     break;
 
 #ifdef HAVE_LIBSTROKE
     case( MOUSE_MIDDLE_STROKE ):
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _( RC_STR_MID_STROKE ));
+    geda_label_widget_set_text(w_current->middle_label, _( RC_STR_MID_STROKE ));
     break;
 #else
     /* remove this case eventually and make it a null case */
     case( MOUSE_MIDDLE_STROKE ):
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _("none"));
+    geda_label_widget_set_text(w_current->middle_label, _("none"));
     break;
 #endif
     case( MOUSE_MIDDLE_REPEAT ):
     temp_string = g_strconcat ( RC_STR_MID_REPEAT , "/", string, NULL);
 
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _( temp_string ) );
+    geda_label_widget_set_text(w_current->middle_label, _( temp_string ) );
 
     g_free(temp_string);
     break;
 
     case( MOUSE_MIDDLE_PAN ):
-    gtk_label_set(GTK_LABEL(w_current->middle_label), _( RC_STR_MID_MOUSEPAN ));
+    geda_label_widget_set_text(w_current->middle_label, _( RC_STR_MID_MOUSEPAN ));
   }
 }
 
@@ -281,14 +281,14 @@ void i_update_middle_button(GSCHEM_TOPLEVEL *w_current, const char *string)
  */
 static void clipboard_usable_cb (int usable, void *userdata)
 {
-  GSCHEM_TOPLEVEL *w_current = userdata;
+  GschemToplevel *w_current = userdata;
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
   x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
   x_menus_popup_sensitivity (w_current, "/Paste", usable);
 }
 
 static bool
-selected_at_least_one_text_object(GSCHEM_TOPLEVEL *w_current)
+selected_at_least_one_text_object(GschemToplevel *w_current)
 {
   OBJECT *obj;
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -298,12 +298,12 @@ selected_at_least_one_text_object(GSCHEM_TOPLEVEL *w_current)
     obj = (OBJECT *) list->data;
     if (obj->type == OBJ_TEXT)
       return TRUE;
-    list = g_list_next(list);
+    NEXT(list);
   }
   return FALSE;
 }
 static bool
-selected_complex_object(GSCHEM_TOPLEVEL *w_current)
+selected_complex_object(GschemToplevel *w_current)
 {
   OBJECT *obj;
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -313,7 +313,7 @@ selected_complex_object(GSCHEM_TOPLEVEL *w_current)
     obj = (OBJECT *) list->data;
     if (obj->type == OBJ_COMPLEX)
       return TRUE;
-    list = g_list_next(list);
+    NEXT(list);
   }
   return FALSE;
 }
@@ -323,9 +323,9 @@ selected_complex_object(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  Update sensitivity of relevant menu & toolbar items.
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  */
-void i_update_sensitivities(GSCHEM_TOPLEVEL *w_current)
+void i_update_sensitivities(GschemToplevel *w_current)
 {
   bool have_text_selected;
   bool have_mutil_pages;
@@ -350,7 +350,7 @@ void i_update_sensitivities(GSCHEM_TOPLEVEL *w_current)
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
 
   have_mutil_pages     = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
-  anything_is_selected = o_select_selected (w_current);
+  anything_is_selected = o_select_is_selection (w_current);
   is_complex_selected  = selected_complex_object(w_current);
   have_text_selected   = selected_at_least_one_text_object(w_current);
 
@@ -364,7 +364,6 @@ if ( have_mutil_pages ) {
     x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
   }
 
-  anything_is_selected = o_select_selected (w_current);
   if ( anything_is_selected ) {
 
     /* since one or more things are selected, we set these TRUE */
@@ -527,10 +526,10 @@ if ( have_mutil_pages ) {
  *  Set filename as gschem window title using
  *  the gnome HID format style.
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  *  \param [in] string The filename
  */
-void i_set_filename(GSCHEM_TOPLEVEL *w_current, const char *string)
+void i_set_filename(GschemToplevel *w_current, const char *string)
 {
   char *print_string=NULL;
   char *filename=NULL;
@@ -558,9 +557,9 @@ void i_set_filename(GSCHEM_TOPLEVEL *w_current, const char *string)
  *  and prints it to the status bar.
  *  The format is "Grid([SnapGridSize],[CurrentGridSize])"
  *
- *  \param [in] w_current GSCHEM_TOPLEVEL structure
+ *  \param [in] w_current GschemToplevel structure
  */
-void i_update_grid_info (GSCHEM_TOPLEVEL *w_current)
+void i_update_grid_info (GschemToplevel *w_current)
 {
   char *print_string=NULL;
   char *snap=NULL;
@@ -595,7 +594,7 @@ void i_update_grid_info (GSCHEM_TOPLEVEL *w_current)
   }
 
   print_string = g_strdup_printf(_("Grid(%s, %s)"), snap, grid);
-  gtk_label_set(GTK_LABEL(w_current->grid_label), print_string);
+  geda_label_widget_set_text(w_current->grid_label, print_string);
 
   g_free(print_string);
   g_free(grid);

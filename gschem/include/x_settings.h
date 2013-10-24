@@ -38,9 +38,13 @@
 ;;                | structure for Ripper name string.
 ;; ------------------------------------------------------------------
 ;; WEH | 09/20/13 | Added PointerCursor Combo (to extend functionality)
-GripStrokeColor
 ;; ------------------------------------------------------------------
-//ScrollBarsVisible
+;; WEH | 09/25/13 | Added GripStrokeColor, GripFillColor,TextMarkerColor,
+;;                | TextOriginMarker, TextMarkerSize, JunctionColor,
+;;                | TextMarkerSize and JunctionSize, NetEndpointColor,
+;;                | ScrollBarsVisible
+;; ------------------------------------------------------------------
+//
 */
 #ifndef __X_SETTINGS_H__
 #define __X_SETTINGS_H__
@@ -293,12 +297,12 @@ void bulb_on( GtkWidget *widget);
 void bulb_off( GtkWidget *widget);
 void gtk_bulb_group_set_active(GSList *RadioGroupList, int value);
 
-void configure_dialog_response(GtkWidget *w, gint response, GSCHEM_TOPLEVEL *w_current);
+void configure_dialog_response(GtkWidget *w, gint response, GschemToplevel *w_current);
 
 int get_titleblock_cnt(void);
 bool get_titleblock_list(char **Buffer);
 
-int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname);
+int generate_rc(GschemToplevel *w_current, const char *rcname);
 
 /* Defined in x_settings_dialog.c */
 bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter);
@@ -310,8 +314,8 @@ void load_combo_str( GtkComboBox *combo, const char *list[]);
 void load_tree_view_gl( GtkTreeView *TreeView, GList *list);
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[]);
 
-GtkWidget* create_settings_dialog (GSCHEM_TOPLEVEL *w_current);
-bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current);
-void GatherSettings(GSCHEM_TOPLEVEL *w_current);
+GtkWidget* create_settings_dialog (GschemToplevel *w_current);
+bool load_settings_dialog (GschemToplevel *w_current);
+void GatherSettings(GschemToplevel *w_current);
 
 #endif /* __X_SETTINGS_H__ */

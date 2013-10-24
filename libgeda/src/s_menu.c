@@ -44,8 +44,7 @@ static int menu_index=0;
 
 #define MAX_MENUS 32
 
-/* and eventually make this unlimited */
-/* hack hack */
+/* and eventually make this unlimited, is a hack */
 static struct st_menu menu[MAX_MENUS];
 
 /*! \todo Finish function documentation!!!

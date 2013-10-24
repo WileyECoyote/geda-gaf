@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
  * Copyright (C) 1998-2013 Ales Hvezda
- *
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
@@ -14,8 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
  */
 
 #ifndef SIMPLE_STRUCT_H
@@ -31,7 +31,7 @@ typedef struct st_bus_ripper   BUS_RIPPER;
 typedef struct st_circle       CIRCLE;
 typedef struct st_color        COLOR;
 typedef struct st_line         LINE;
-typedef struct st_point       sPOINT;          /* intentionally out of order */
+typedef struct st_point        POINT;        /* intentionally out of order */
 typedef struct st_path_section PATH_SECTION;
 typedef struct st_path         PATH;
 typedef struct st_transform    TRANSFORM;
@@ -81,7 +81,6 @@ struct st_box {
   /* upper is considered the origin */
   int upper_x, upper_y; /* world */     
   int lower_x, lower_y;
-
 };
 
 #define BOX_UPPER_LEFT 0
@@ -105,6 +104,7 @@ struct st_bus_ripper
  *                            CIRCLE
  *------------------------------------------------------------------*/
 struct st_circle {
+  /* shouldn't these just x & y like the rest of the world? */
   int center_x, center_y; /* world */
   int radius;
 };
@@ -129,7 +129,7 @@ struct st_line {
 };
 
 /*------------------------------------------------------------------
- *                           sPOINT
+ *                           POINT
  *------------------------------------------------------------------*/
 struct st_point {
   int x;

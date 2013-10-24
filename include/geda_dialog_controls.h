@@ -45,7 +45,18 @@
 ;;                | Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary controls
 ;;                | use the new PANGO_R5_LABEL macro instead of GTK_R5_LABEL.
 ;; ------------------------------------------------------------------
-;; WEH | 12/12/12 | Added GEDA_FRAME to extend macro library
+;; WEH | 09/08/13 | Changed all macros to use g_object_set instead of gtk
+;;                | _widget_show. Added GSCHEM_SWITCH macro for switches
+;;                | in tables.
+;; ------------------------------------------------------------------
+;; WEH | 09/20/13 | Added GEDA_FRAME to extend macro library
+;; ------------------------------------------------------------------
+;; WEH | 09/27/13 | replaced older gtk_tooltips_set_tip function with
+;;                | newer gtk_widget_set_tooltip_text function.
+;; ------------------------------------------------------------------
+;; WEH | 10/06/13 |
+;;                |
+;;
 */
 
 #pragma once
@@ -79,7 +90,7 @@ typedef struct
   GtkWidget *BugImage##Number= create_pixmap ( "gschem-delete.xpm"); \
              g_object_set (BugImage##Number, "visible", TRUE, NULL); \
              gtk_box_pack_start (GTK_BOX (Parent), BugImage##Number, FALSE, FALSE, 0); \
-             gtk_tooltips_set_tip (tooltips, BugImage##Number, _("Debugging This"), NULL);
+             gtk_widget_set_tooltip_text ( BugImage##Number, _("Debugging This"));
 
 #define NOT_BELOW_ZERO(padding) padding < 0 ? 0 : padding
 
@@ -107,12 +118,12 @@ typedef struct
     g_object_set_data (G_OBJECT (component), name, widget);
 
 #define HOOKUP_GEDA_OBJECT_NO_REF(name, type) \
-    gtk_tooltips_set_tip (tooltips, name##type, _(TOOLTIP (name)), NULL); \
+    gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \
     g_object_set_data (G_OBJECT (ThisDialog), WIDGET(name), \
     g_object_ref(name##type));
 
 #define HOOKUP_GEDA_OBJECT(name, type) \
-    gtk_tooltips_set_tip (tooltips, name##type, _(TOOLTIP (name)), NULL); \
+    gtk_widget_set_tooltip_text ( name##type, _(TOOLTIP (name))); \
     g_object_set_data_full (G_OBJECT (ThisDialog), WIDGET(name), \
     g_object_ref(name##type), (GDestroyNotify) gtk_object_unref);
 
@@ -327,7 +338,7 @@ typedef struct
           type##ZSECTION(parent, name##Options, -1, ysize) \
           GtkWidget *name##Label=gtk_label_new (_(LABEL (name))); \
           g_object_set (name##Label, "visible", TRUE, NULL); \
-          gtk_tooltips_set_tip (tooltips, name##Label, _(TOOLTIP (name)), NULL); \
+          gtk_widget_set_tooltip_text ( name##Label, _(TOOLTIP (name))); \
           type##PACK_BOX (name##Options, name##Label, FALSE, FALSE, pad); \
           gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_CENTER);
 
@@ -433,7 +444,7 @@ typedef struct
         gtk_color_button_set_title((GtkColorButton*)name##Butt, _(WIDGET (name)));\
         g_object_set ( name##Butt, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX ( name##_hbox), name##Butt, FALSE, FALSE, DIALOG_BUTTON_SPACING); \
-        gtk_tooltips_set_tip (tooltips, name##Butt, _(TOOLTIP (name)), NULL); \
+        gtk_widget_set_tooltip_text ( name##Butt, _(TOOLTIP (name))); \
         GTK_ICALLBACK_CBUTT (name)
 
 #define GTK_NEW_CHECKBOX(parent, name) \
@@ -470,7 +481,7 @@ typedef struct
 
 /* Radio Widget Controls */
 
-#define DECLARE_RADIO(name)GtkWidget *name##Radio=NULL;
+#define DECLARE_RADIO(name)static GtkWidget *name##Radio=NULL;
 
 #define DECLARE_RADIO_TRIAD(group, R1, R2, R3) \
         GSList *group##RadioGroup = NULL; \
@@ -486,7 +497,7 @@ typedef struct
         GSList *group##Group = NULL; \
         GtkWidget *group##Label=NULL;         /* define Label */ \
         GTK_PADDED_LABEL (group, 5, 0, FALSE, FALSE, h); \
-        gtk_tooltips_set_tip (tooltips, group##Label, _(TOOLTIP (group)), NULL);  \
+        gtk_widget_set_tooltip_text ( group##Label, _(TOOLTIP (group)));  \
         LOCAL_BASE_BOX(group##Group, dir, TRUE, 0) \
         PACK_BOX(group##_hbox, group##Group##_##dir##box, FALSE, TRUE, DEFAULT_WIDGET_SPACING)
 

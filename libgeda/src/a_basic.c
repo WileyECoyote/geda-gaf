@@ -62,10 +62,10 @@ const gchar *o_file_format_header()
  *  \param [in] object_list The head of a GList of OBJECTs to save.
  *  \returns a buffer containing schematic data or NULL on failure.
  */
-gchar *o_save_buffer (TOPLEVEL *toplevel, const GList *object_list)
+char *o_save_buffer (TOPLEVEL *toplevel, const GList *object_list)
 {
   GString *acc;
-  gchar *buffer;
+  char    *buffer;
 
   if (toplevel == NULL) return NULL;
 
@@ -96,11 +96,11 @@ gchar *o_save_buffer (TOPLEVEL *toplevel, const GList *object_list)
  */
 gchar *o_save_objects (TOPLEVEL *toplevel, const GList *object_list, bool save_attribs)
 {
-  OBJECT *o_current;
-  const GList *iter;
-  char *out;
+  OBJECT  *o_current;
+  const    GList *iter;
+  char    *out;
   GString *acc;
-  bool already_wrote = FALSE;
+  bool     already_wrote = FALSE;
 
   acc = g_string_new("");
 
@@ -264,11 +264,13 @@ int o_save (TOPLEVEL *toplevel, const GList *object_list,
  *  \param [in]     buffer       The memory buffer to read from.
  *  \param [in]     size         The size of the buffer.
  *  \param [in]     name         The name to describe the data with.
+ *  \param [in,out] err          #GError structure for error reporting.
+ * 
  *  \return GList of objects if successful read, or NULL on error.
  */
-GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
-                      char *buffer, const int size,
-                      const char *name, GError **err)
+GList *o_read_buffer (TOPLEVEL   *toplevel, GList *object_list,
+                      const char *buffer,    const int size,
+                      const char *name,     GError **err)
 {
   const char *line             = NULL;
   TextBuffer *tb               = NULL;
@@ -579,6 +581,7 @@ GList *o_read_buffer (TOPLEVEL *toplevel, GList *object_list,
   tb = s_textbuffer_free(tb);
 
   new_object_list = g_list_reverse(new_object_list);
+
   object_list = g_list_concat (object_list, new_object_list);
 
   return(object_list);

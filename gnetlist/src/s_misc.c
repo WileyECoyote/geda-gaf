@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,10 +21,6 @@
 #include <config.h>
 
 #include <stdio.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 
 #include <libgeda/libgeda.h>
 
@@ -47,15 +43,15 @@ void verbose_print(char *string)
 
 void verbose_done(void)
 {
-    if (verbose_mode) {
-	if (char_index >= 70) {
-	    printf("\nDONE\n");
-	} else {
-	    printf(" DONE\n");
-	}
-
-	char_index = 0;
+  if (verbose_mode) {
+    if (char_index >= 70) {
+      printf("\nDONE\n");
+    } else {
+      printf(" DONE\n");
     }
+
+    char_index = 0;
+  }
 }
 
 void verbose_reset_index(void)

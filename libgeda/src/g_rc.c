@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2013 Ales Hvezda
  * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 /*! \file g_rc.c
  *  \brief Execute Scheme initialization files.
@@ -44,17 +44,12 @@
 #include "libgeda_priv.h"
 #include "libgedaguile.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
-int vstbl_lookup_str(const vstbl_entry *table,
-			    int size, const char *str)
+int vstbl_lookup_str(const vstbl_entry *table, int size, const char *str)
 {
   int i;
 
@@ -116,9 +111,9 @@ SCM g_rc_mode_general(SCM scmmode,
 
 /*! \brief Mark an RC file as loaded.
  * \par Function Description
- *   If the Scheme initialisation file \a filename has not already been
- * loaded, mark it as loaded and return TRUE, storing \a filename in \a
- * toplevel (\a filename should not subsequently be freed). Otherwise,
+ *   If the Scheme initialization file \a filename has not already been
+ * loaded, mark the file as loaded and return TRUE, storing \a filename
+ * in \a toplevel (\a filename should not subsequently be freed). Otherwise,
  * return FALSE, and set \a err appropriately.
  *
  * \note Should only be called by g_rc_parse_file().
@@ -131,10 +126,17 @@ SCM g_rc_mode_general(SCM scmmode,
 static bool g_rc_try_mark_read (TOPLEVEL *toplevel, char *filename, GError **err)
 {
   GList *found = NULL;
-  g_return_val_if_fail ((toplevel != NULL), FALSE);
-  g_return_val_if_fail ((filename != NULL), FALSE);
 
-  /* Test if marked read already - WEH:looks dangerous */
+  if (toplevel == NULL) {
+    BUG_MSG("g_rc_try_mark_read", "toplevel is NULL.\n")
+    return FALSE;
+  }
+  if (filename == NULL) {
+    BUG_MSG("g_rc_try_mark_read>", "filename is NULL\n");
+    return FALSE;
+  }
+
+  /* Test if marked read already */
   found = g_list_find_custom (toplevel->RC_list, filename,
                               (GCompareFunc) strcmp);
   if (found != NULL) {
@@ -152,7 +154,7 @@ SCM scheme_rc_config_fluid = SCM_UNDEFINED;
 
 /*! \brief Load an RC file.
  * \par Function Description
- * Load and run the Scheme initialisation file \a rcfile, reporting
+ * Load and run the Scheme initialization file \a rcfile, reporting
  * errors via \a err.
  *
  * \param toplevel  The current #TOPLEVEL structure.
@@ -161,48 +163,54 @@ SCM scheme_rc_config_fluid = SCM_UNDEFINED;
  * \param err       Return location for errors, or NULL;
  * \return TRUE on success, FALSE on failure.
  */
-bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GError **err)
+bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile,
+                      EdaConfig *cfg, GError **err)
 {
-  char *name_norm = NULL;
-  GError *tmp_err = NULL;
-  bool status = FALSE;
-  g_return_val_if_fail ((toplevel != NULL), FALSE);
-  g_return_val_if_fail ((rcfile != NULL), FALSE);
+  bool    status     = FALSE;
+  char   *name_norm  = NULL;
+  GError *tmp_err    = NULL;
+
+  if (toplevel == NULL) {
+    BUG_MSG("g_rc_parse_file>", "toplevel is NULL.\n");
+    return FALSE;
+  }
+  if (rcfile == NULL) {
+    BUG_MSG("g_rc_parse_file>", "rcfile is NULL.\n");
+    return FALSE;
+  }
 
   /* If no configuration file was specified, get the default
    * configuration file for the rc file. */
   if (cfg == NULL) {
     cfg = eda_config_get_context_for_path (rcfile);
   }
-  /* If the configuration wasn't loaded yet, attempt to load
-   * it. Config loading is on a best-effort basis; if we fail, just
-   * print a warning. */
+  /* If the configuration wasn't loaded yet, attempt to load the
+   * file. Config loading is on a best-effort basis; if we fail,
+   * just print a warning. */
   if (!eda_config_is_loaded (cfg)) {
     eda_config_load (cfg, &tmp_err);
     if (tmp_err != NULL && !g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT))
-    //  g_warning (_("Failed to load config from '%s': %s\n"),
-    //             eda_config_get_filename (cfg), tmp_err->message);
+      //g_warning (_("Failed to load config from '%s': %s\n"),
+      //           eda_config_get_filename (cfg), tmp_err->message);
     g_clear_error (&tmp_err);
   }
 
-
-  /* If the fluid for storing the relevant configuration context for
-   * RC file reading hasn't been created yet, create it. */
+  /* If the fluid for storing the relevant configuration context
+   * for the RC file reading hasn't been created yet, create it. */
   if (scheme_rc_config_fluid == SCM_UNDEFINED)
     scheme_rc_config_fluid = scm_permanent_object (scm_make_fluid ());
-
 
   /* Normalise filename */
   name_norm = f_normalize_filename (rcfile, err);
   if (name_norm == NULL) return FALSE;
 
-  /* Attempt to load the RC file, if it hasn't been loaded already.
-   * If g_rc_try_mark_read() succeeds, it stores name_norm in
+  /* Attempt to load the RC file, if the same file has not been loaded
+   * already. If g_rc_try_mark_read() succeeds, it stores name_norm in
    * toplevel, so we *don't* free it. */
   scm_dynwind_begin (0);
   scm_dynwind_fluid (scheme_rc_config_fluid, edascm_from_config (cfg));
-
-  status = (g_rc_try_mark_read (toplevel, name_norm, &tmp_err) && g_read_file (toplevel, name_norm, &tmp_err));
+  status = (g_rc_try_mark_read (toplevel, name_norm, &tmp_err) &&
+            g_read_file (toplevel, name_norm, &tmp_err));
   scm_dynwind_end ();
 
   if (status) {
@@ -210,7 +218,7 @@ bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GE
   } else {
     /* Copy tmp_err into err, with a prefixed message. */
     g_propagate_prefixed_error (err, tmp_err,
-                                _("Failed to load RC file [%s]: "),
+                                _("Error encounted processing RC file [%s]: "),
                                 name_norm);
     g_free (name_norm);
   }
@@ -219,7 +227,7 @@ bool g_rc_parse_file (TOPLEVEL *toplevel, const char *rcfile, EdaConfig *cfg, GE
 
 /*! \brief Load a system RC file.
  * \par Function Description
- * Attempts to load and run the system Scheme initialisation file with
+ * Attempts to load and run the system Scheme initialization file with
  * basename \a rcname.  The string "system-" is prefixed to \a rcname.
  * If \a rcname is NULL, the default value of "gafrc" is used.
  *
@@ -248,7 +256,7 @@ bool g_rc_parse_system (TOPLEVEL *toplevel, const char *rcname, GError **err)
 
 /*! \brief Load a user RC file.
  * \par Function Description
- * Attempts to load the user Scheme initialisation file with basename
+ * Attempts to load the user Scheme initialization file with basename
  * \a rcname.  If \a rcname is NULL, the default value of "gafrc" is
  * used.
  *
@@ -261,7 +269,7 @@ bool
 g_rc_parse_user (TOPLEVEL *toplevel, const char *rcname, GError **err)
 {
   char *rcfile = NULL;
-  bool status;
+  bool  status;
 
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
@@ -275,7 +283,7 @@ g_rc_parse_user (TOPLEVEL *toplevel, const char *rcname, GError **err)
 
 /*! \brief Load a local RC file.
  * \par Function Description
- * Attempts to load the Scheme initialisation file with basename \a
+ * Attempts to load the Scheme initialization file with basename \a
  * rcname corresponding to \a path, reporting errors via \a err.  If
  * \a path is a directory, looks for a file named \a rcname in that
  * directory. Otherwise, looks for a file named \a rcname in the same
@@ -293,10 +301,14 @@ bool
 g_rc_parse_local (TOPLEVEL *toplevel, const char *rcname, const char *path,
                   GError **err)
 {
-  char *dir = NULL;
+  bool  status;
+  char *dir    = NULL;
   char *rcfile = NULL;
-  bool status;
-  g_return_val_if_fail ((toplevel != NULL), FALSE);
+
+  if (toplevel == NULL) {
+    BUG_MSG("g_rc_parse_local", "toplevel is NULL.\n");
+    return FALSE;
+  }
 
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
@@ -330,7 +342,8 @@ static void g_rc_parse__process_error (GError **err, const char *pname)
     s_log_message ("%s\n", msgl);
     fprintf(stderr, "%s\n", msgl);
 
-  } else {
+  }
+  else {
     /* Config files are allowed to be missing or skipped; check for
      * this. */
     if (g_error_matches (*err, G_FILE_ERROR, G_FILE_ERROR_NOENT) ||
@@ -347,14 +360,16 @@ static void g_rc_parse__process_error (GError **err, const char *pname)
   pbase = g_path_get_basename (pname);
   fprintf (stderr, _("ERROR: The %s log may contain more information.\n"),
            pbase);
+
   exit (1);
 }
 
-/*! \brief General RC file parsing function.
+/*! \brief General RC Configuration file parsing function.
  * \par Function Description
  * Calls g_rc_parse_handler() with the default error handler. If any
- * error other than ENOENT occurs while parsing a configuration file,
- * prints an informative message and calls exit(1).
+ * error other than ENOENT occurs while loading or running a Scheme
+ * initialisation file, prints an informative message and calls
+ * exit(1).
  *
  * \bug libgeda shouldn't call exit() - this function calls
  *      g_rc_parse__process_error(), which does.
@@ -377,10 +392,101 @@ bool g_rc_parse (TOPLEVEL *toplevel, const char *pname,
   return TRUE;
 }
 
+#ifdef HANDLER_DISPATCH
+#  error HANDLER_DISPATCH already defined
+#endif
+#define HANDLER_DISPATCH \
+  do { if (err == NULL) break;  handler (&err, user_data);        \
+       g_clear_error (&err); } while (0)
+
 /*! \brief General RC file parsing function.
  * \par Function Description
  * Attempt to load system, user and local (current working directory)
- * configuration files, first with the default "gafrc" basename and
+ * configuration \a gafrc files. The second parameter is not used by
+ * thiis function but serves a place holder to be consistence with the
+ * other g_xxxx_parse_handler's; g_rcname_parse_handler and
+ * g_rcfile_parse_handler.
+ *
+ * If an error occurs, calls \a handler with the provided \a user_data
+ * and a GError.
+ *
+ * \see g_rc_parse().
+ *
+ * \param toplevel  The current #TOPLEVEL structure.
+ * \param dummy     NULL.
+ * \param handler   Handler function for config parse errors.
+ * \param user_data Data to be passed to \a handler.
+ */
+void g_gafrc_parse_handler (TOPLEVEL *toplevel, const char *dummy,
+                            ConfigParseErrorFunc handler, void *user_data)
+{
+  GError *err = NULL;
+
+  /* Load RC files in order. */
+  g_rc_parse_system (toplevel, NULL, &err);          HANDLER_DISPATCH;
+  g_rc_parse_user   (toplevel, NULL, &err);         HANDLER_DISPATCH;
+  g_rc_parse_local  (toplevel, NULL, NULL, &err); HANDLER_DISPATCH;
+}
+/*! \brief General RC file parsing function.
+ * \par Function Description
+ * Attempt to load system, user and local (current working directory)
+ * configuration files the basename \a rcname, if \a rcname is not NULL.
+ *
+ * If an error occurs, calls \a handler with the provided \a user_data
+ * and a GError.
+ *
+ * \see g_rc_parse().
+ *
+ * \param toplevel  The current #TOPLEVEL structure.
+ * \param rcname    Config file basename, or NULL.
+ * \param handler   Handler function for config parse errors.
+ * \param user_data Data to be passed to \a handler.
+ */
+void g_rcname_parse_handler (TOPLEVEL *toplevel, const char *rcname,
+                             ConfigParseErrorFunc handler, void *user_data)
+{
+  GError *err = NULL;
+
+  /* Application-specific rcname. */
+  if (rcname != NULL) {
+    g_rc_parse_system (toplevel, rcname, &err);       HANDLER_DISPATCH;
+    g_rc_parse_user   (toplevel, rcname, &err);       HANDLER_DISPATCH;
+    g_rc_parse_local  (toplevel, rcname, NULL, &err); HANDLER_DISPATCH;
+  }
+
+}
+/*! \brief General RC file parsing function.
+ * \par Function Description
+ * Attempt to load configuration from \a rcfile if \a rcfile is not NULL.
+ *
+ * If an error occurs, calls \a handler with the provided \a user_data
+ * and a GError.
+ *
+ * \see g_rc_parse().
+ *
+ * \param toplevel  The current #TOPLEVEL structure.
+ * \param rcfile    Specific config file path, or NULL.
+ * \param handler   Handler function for config parse errors.
+ * \param user_data Data to be passed to \a handler.
+ */
+void g_rcfile_parse_handler (TOPLEVEL *toplevel, const char *rcfile,
+                             ConfigParseErrorFunc handler, void *user_data)
+{
+  GError *err = NULL;
+
+  /* Finally, optional additional RC file.  Specifically use the
+   * current working directory's configuration context here, no matter
+   * where the rc file is located on disk. */
+  if (rcfile != NULL) {
+    EdaConfig *cwd_cfg = eda_config_get_context_for_file (NULL);
+    g_rc_parse_file (toplevel, rcfile, cwd_cfg, &err); HANDLER_DISPATCH;
+  }
+}
+#undef HANDLER_DISPATCH
+/*! \brief General RC file parsing function.
+ * \par Function Description
+ * Attempt to load system, user and local (current working directory)
+ * configuration files, starting with the default "gafrc" basename and
  * then with the basename \a rcname, if \a rcname is not NULL.
  * Additionally, attempt to load configuration from \a rcfile if \a
  * rcfile is not NULL.
@@ -396,41 +502,23 @@ bool g_rc_parse (TOPLEVEL *toplevel, const char *pname,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-
 void g_rc_parse_handler (TOPLEVEL *toplevel, const char *rcname,
                          const char *rcfile, ConfigParseErrorFunc handler,
                          void *user_data)
 {
-  GError *err = NULL;
-
-#ifdef HANDLER_DISPATCH
-#  error HANDLER_DISPATCH already defined
-#endif
-#define HANDLER_DISPATCH \
-  do { if (err == NULL) break;  handler (&err, user_data);        \
-       g_clear_error (&err); } while (0)
-
   /* Load RC files in order. */
   /* First gafrc files. */
-  g_rc_parse_system (toplevel, NULL, &err);       HANDLER_DISPATCH;
-  g_rc_parse_user   (toplevel, NULL, &err);       HANDLER_DISPATCH;
-  g_rc_parse_local  (toplevel, NULL, NULL, &err); HANDLER_DISPATCH;
+  g_gafrc_parse_handler (toplevel, NULL, handler, user_data);
+
   /* Next application-specific rcname. */
-  if (rcname != NULL) {
-    g_rc_parse_system (toplevel, rcname, &err);       HANDLER_DISPATCH;
-    g_rc_parse_user   (toplevel, rcname, &err);       HANDLER_DISPATCH;
-    g_rc_parse_local  (toplevel, rcname, NULL, &err); HANDLER_DISPATCH;
-  }
+  g_rcname_parse_handler (toplevel, rcname, handler, user_data);
+
   /* Finally, optional additional RC file.  Specifically use the
    * current working directory's configuration context here, no matter
    * where the rc file is located on disk. */
-  if (rcfile != NULL) {
-      EdaConfig *cwd_cfg = eda_config_get_context_for_file (NULL);
-    g_rc_parse_file (toplevel, rcfile, cwd_cfg, &err); HANDLER_DISPATCH;
-  }
-
-#undef HANDLER_DISPATCH
+  g_rcfile_parse_handler (toplevel, rcfile, handler, user_data);
 }
+
 /*! \brief This function processes the component-group SCM list.
  *  \par Function Description
  *  This function reads the string list from the component-groups
@@ -606,11 +694,11 @@ SCM g_rc_component_library_funcs (SCM listfunc, SCM getfunc, SCM name)
   SCM result = SCM_BOOL_F;
 
   SCM_ASSERT (scm_is_true (scm_procedure_p (listfunc)), listfunc, SCM_ARG1,
-	      "component-library-funcs");
+              "component-library-funcs");
   SCM_ASSERT (scm_is_true (scm_procedure_p (getfunc)), getfunc, SCM_ARG2,
-	      "component-library-funcs");
+              "component-library-funcs");
   SCM_ASSERT (scm_is_string (name), name, SCM_ARG3,
-	      "component-library-funcs");
+              "component-library-funcs");
 
   namestr = scm_to_utf8_string (name);
 
@@ -638,7 +726,7 @@ SCM g_rc_source_library(SCM path)
               SCM_ARG1, "source-library");
 
   /* take care of any shell variables */
-  temp = scm_to_utf8_string (path);
+  temp   = scm_to_utf8_string (path);
   string = s_expand_env_variables (temp);
   free (temp);
 
@@ -708,6 +796,7 @@ SCM g_rc_source_library_search(SCM path)
   }
 
   while ((entry = g_dir_read_name (dir))) {
+
     /* don't do . and .. and special case font */
     if ((g_ascii_strcasecmp (entry, ".")    != 0) &&
         (g_ascii_strcasecmp (entry, "..")   != 0) &&
@@ -789,10 +878,9 @@ SCM g_rc_bus_style(SCM mode)
      {STYLE_THICK, RC_STR_STYLE_THICK }
    };
 
-   RETURN_G_RC_MODE("bus-style",
-     		     default_bus_style,
-		     3);
-  } else {
+   RETURN_G_RC_MODE("bus-style", default_bus_style, 3);
+  }
+  else {
     int val;
     if (scm_is_integer(mode)) {
       int val;
@@ -827,10 +915,9 @@ SCM g_rc_line_style(SCM mode)
      {STYLE_THIN , RC_STR_STYLE_THIN  },
      {STYLE_THICK, RC_STR_STYLE_THICK }
    };
-   RETURN_G_RC_MODE("line-style",
-		     default_line_style,
-		     3);
-  } else {
+   RETURN_G_RC_MODE("line-style", default_line_style, 3);
+  }
+  else {
     int val;
     if (scm_is_integer(mode)) {
       val = scm_to_int (mode);
@@ -866,10 +953,9 @@ SCM g_rc_net_style(SCM mode)
      {STYLE_THICK, RC_STR_STYLE_THICK }
    };
 
-  RETURN_G_RC_MODE("net-style",
-		   default_net_style,
-		   3);
-  } else {
+  RETURN_G_RC_MODE("net-style", default_net_style, 3);
+  }
+  else {
     int val;
     if (scm_is_integer(mode)) {
       val = scm_to_int (mode);
@@ -905,10 +991,9 @@ SCM g_rc_pin_style(SCM mode)
      {STYLE_THICK, RC_STR_STYLE_THICK }
    };
 
-  RETURN_G_RC_MODE("pin-style",
-		   default_pin_style,
-		   3);
-  } else {
+  RETURN_G_RC_MODE("pin-style", default_pin_style, 3);
+  }
+  else {
     int val;
     if (scm_is_integer(mode)) {
       val = scm_to_int (mode);
@@ -1267,9 +1352,7 @@ SCM g_rc_bitmap_directory(SCM path)
 
   /* invalid path? */
   if (!g_file_test (string, G_FILE_TEST_IS_DIR)) {
-    fprintf (stderr,
-             "Invalid path [%s] passed to bitmap-directory\n",
-             string);
+    fprintf (stderr, "Path invalid[%s], %s\n", string, g_strerror (errno));
     g_free(string);
     return SCM_BOOL_F;
   }
@@ -1346,8 +1429,8 @@ SCM g_rc_attribute_promotion(SCM mode)
   };
 
   RETURN_G_RC_MODE("attribute-promotion",
-		   default_attribute_promotion,
-		   2);
+                   default_attribute_promotion,
+                   2);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1363,8 +1446,8 @@ SCM g_rc_promote_invisible(SCM mode)
   };
 
   RETURN_G_RC_MODE("promote-invisible",
-		   default_promote_invisible,
-		   2);
+                   default_promote_invisible,
+                   2);
 }
 
 /*! \todo Finish function documentation!!!
@@ -1380,8 +1463,8 @@ SCM g_rc_keep_invisible(SCM mode)
   };
 
   RETURN_G_RC_MODE("keep-invisible",
-		   default_keep_invisible,
-		   2);
+                   default_keep_invisible,
+                   2);
 }
 
 /*! \todo Finish function description!!!
@@ -1404,7 +1487,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
   if (scm_is_string (attrlist)) {
     char *temp;
     s_log_message(_("WARNING: using a string for 'always-promote-attributes'"
-		    " is deprecated. Use a list of strings instead\n"));
+    " is deprecated. Use a list of strings instead\n")); /* How do we do that? */
 
     /* convert the space separated strings into a GList */
     temp = scm_to_utf8_string (attrlist);
@@ -1413,19 +1496,20 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
     for (i=0; attr2[i] != NULL; i++) {
       if (strlen(attr2[i]) > 0) {
-	list = g_list_prepend(list, g_strdup(attr2[i]));
+        list = g_list_prepend(list, g_strdup(attr2[i]));
       }
     }
     g_strfreev(attr2);
-  } else {
+  }
+  else {
     SCM_ASSERT(scm_list_p(attrlist), attrlist, SCM_ARG1, "always-promote-attributes");
     length = scm_ilength(attrlist);
     /* convert the scm list into a GList */
     for (i=0; i < length; i++) {
       char *temp;
       SCM_ASSERT(scm_is_string(scm_list_ref(attrlist, scm_from_int(i))),
-		 scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
-		 "always-promote-attribute: list element is not a string");
+                 scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
+                 "always-promote-attribute: list element is not a string");
       temp = scm_to_utf8_string (scm_list_ref (attrlist, scm_from_int (i)));
       attr = g_strdup(temp);
       free (temp);
@@ -1458,8 +1542,6 @@ SCM g_rc_make_backup_files(SCM mode)
                   default_make_backup_files,
                   2);
 }
-
-
 
 SCM g_rc_print_color_map (SCM scm_map)
 {

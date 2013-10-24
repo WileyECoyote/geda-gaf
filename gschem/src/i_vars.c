@@ -72,7 +72,7 @@ int     default_scrollbars                = TRUE;
 int     default_scrollbar_update          = TRUE;
 int     default_scrollbars_visible        = TRUE;
 
-/* This should be renamed to decribe h&w of what, maybe something like default_screen_height */
+/* This should be renamed to describe h&w of what, maybe something like default_screen_height */
 int     default_window_height             = DEFAULT_WINDOW_HEIGHT;  /* these variables are used in x_window.c */
 int     default_window_width              = DEFAULT_WINDOW_WIDTH;
 
@@ -199,7 +199,6 @@ i_var_restore_gschem_boolean(EdaConfig *cfg, char *key, int *var, bool def_val)
   else {
     *var = tmp_bool;
   }
-
 }
 
 void
@@ -228,7 +227,6 @@ i_var_restore_gschem_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
   array = eda_config_get_int_list (cfg, "gschem", key, &rediculus, &err);
   if (err != NULL) {
     g_clear_error (&err);
-    //gdk_color_parse( cname, var);
     color = x_get_color(index);
     var->pixel = color->pixel;
     var->red   = color->red;
@@ -248,17 +246,24 @@ i_var_restore_gschem_color(EdaConfig *cfg, char *key, GdkColor *var, int index)
  *  top-level variable. Note that this is done after the "old" system, so
  *  the RC values will be ignored.
  */
-void i_vars_recall_user_settings(GSCHEM_TOPLEVEL *w_current)
+void i_vars_recall_user_settings(GschemToplevel *w_current)
 {
-  EdaConfig *cfg = eda_config_get_user_context ();
-
+  EdaConfig *cfg     = eda_config_get_user_context ();
+  TOPLEVEL *toplevel = w_current->toplevel;
   char *tmp_str;
+
+  v_log_message("Restoring user settings\n");
 
   tmp_str = i_var_get_gschem_config_string (cfg, "default-font-name");
   if (tmp_str != NULL) {
     eda_renderer_set_font_name(w_current->renderer, tmp_str);
     g_free (tmp_str);
   }
+
+  i_var_restore_gschem_boolean(cfg, "image-color",   &toplevel->image_color,   TRUE);
+  i_var_restore_gschem_boolean(cfg, "invert-images", &toplevel->invert_images, TRUE);
+  i_var_restore_gschem_integer(cfg, "image-width",   &w_current->image_width,  DEFAULT_IMAGE_WIDTH);
+  i_var_restore_gschem_integer(cfg, "image-height",  &w_current->image_height, DEFAULT_IMAGE_HEIGHT);
 
   /* Scrolling Settings - Saved by: x_window_save_settings */
   i_var_restore_gschem_integer(cfg, "scrollbars",         &w_current->scrollbars,         TRUE);
@@ -328,13 +333,13 @@ void i_vars_recall_user_settings(GSCHEM_TOPLEVEL *w_current)
  *
  */
 
-void i_vars_set(GSCHEM_TOPLEVEL *w_current)
+void i_vars_set(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel                   = w_current->toplevel;
   i_vars_libgeda_set(toplevel);
 
 /* Color Related */
-  toplevel->background_color           = default_background_color;
+  w_current->background_color          = default_background_color;
   toplevel->override_net_color         = default_override_net_color;
   toplevel->override_bus_color         = default_override_bus_color;
   toplevel->override_pin_color         = default_override_pin_color;
@@ -352,6 +357,12 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->warp_cursor               = default_warp_cursor;
   w_current->zoom_gain                 = default_zoom_gain;
   w_current->zoom_with_pan             = default_zoom_with_pan;
+
+/* Imaging Related */
+  toplevel->image_color                = default_image_color;
+  toplevel->invert_images              = default_invert_images;
+  w_current->image_width               = default_image_width;
+  w_current->image_height              = default_image_height;
 
 /* Miscellaneous - in  alphabetical order */
   w_current->action_feedback_mode      = default_action_feedback_mode;
@@ -393,13 +404,9 @@ void i_vars_set(GSCHEM_TOPLEVEL *w_current)
   w_current->scroll_wheel              = default_scroll_wheel;
   w_current->third_button              = default_third_button;
 
-/* Print Related */
+/* Print & Related */
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);
 
-  toplevel->image_color                = default_image_color;
-  toplevel->invert_images              = default_invert_images;
-  w_current->image_width               = default_image_width;
-  w_current->image_height              = default_image_height;
   toplevel->paper_width                = default_paper_width;
   toplevel->paper_height               = default_paper_height;
   toplevel->print_color                = default_print_color;
@@ -457,16 +464,15 @@ void i_vars_freenames()
  * defaults.
  */
 void
-i_vars_init(GSCHEM_TOPLEVEL *w_current)
+i_vars_init(GschemToplevel *w_current)
 {
   EdaConfig *cfg = eda_config_get_default_context ();
 
-  /* read in RC files, which may over-ride the hard-coded defaults! */
+  /* read in Gtk RC files */
   g_rc_parse_gtkrc();
-  x_rc_parse_gschem (w_current, rc_filename);
 
   /* Set values for all variables */
-  //i_vars_set (w_current);
+  v_log_message("Assigning default configuration settings\n");
 
   /* This is the prefix of the default filename used for newly created
    * schematics and symbols. */
@@ -486,6 +492,10 @@ i_vars_init(GSCHEM_TOPLEVEL *w_current)
   eda_config_set_boolean (cfg, "gschem.library", "subgroups", TRUE);
   eda_config_set_boolean (cfg, "gschem.library", "showtips",  TRUE);
   eda_config_set_integer (cfg, "gschem.library", "style",     255);
+
+  /* read in Gscehm RC files, which may over-ride the hard-coded defaults! */
+  x_rc_parse_gschem (w_current, rc_filename);
+
 }
 
 /*! \brief Save user config on exit.
@@ -496,13 +506,13 @@ void
 i_vars_atexit_save_user_config (gpointer user_data)
 {
   EdaConfig *cfg = eda_config_get_user_context ();
-  GError *err = NULL;
+  GError    *err = NULL;
 
   eda_config_save (cfg, &err);
   if (err != NULL) {
-    g_warning ("Failed to save user configuration to '%s': %s.",
-               eda_config_get_filename (cfg),
-               err->message);
+    g_warning (_("Failed to save user configuration to '%s': %s."),
+                  eda_config_get_filename (cfg),
+                  err->message);
     g_clear_error (&err);
   }
 }

@@ -29,7 +29,7 @@
 
 SCM g_process_action(SCM action)
 {
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+  GschemToplevel *w_current = g_current_window ();
   char *action_str;
   action_str = scm_to_utf8_string(action);
   i_command_process(w_current, action_str, 0, NULL, ID_ORIGIN_KEYBOARD);
@@ -49,7 +49,7 @@ SCM g_process_action(SCM action)
  * \return TRUE on success, FALSE on failure.
  */
 bool
-g_action_eval_by_name (GSCHEM_TOPLEVEL *w_current, const char *action_name)
+g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
 {
   SCM s_eval_action_proc;
   SCM s_expr;
@@ -112,7 +112,7 @@ g_action_get_position (bool snap, int *x, int *y)
 {
   SCM s_action_position_proc;
   SCM s_point;
-  GSCHEM_TOPLEVEL *w_current = g_current_window ();
+  GschemToplevel *w_current = g_current_window ();
 
   if (w_current == NULL) {
     fprintf (stderr, "Internal Error: <%s><g_action_eval_by_name>"

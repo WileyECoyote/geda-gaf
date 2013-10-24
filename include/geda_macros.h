@@ -8,3 +8,9 @@
 #else
   #error lambda already defined!
 #endif
+
+#define GLIST_PREVIOUS(lst) ((lst) ? (((GList *)(lst))->prev) : NULL)
+#define GLIST_NEXT(lst)     ((lst) ? (((GList *)(lst))->next) : NULL)
+
+#define NEXT(i) i = GLIST_NEXT(i)
+#define PREVIOUS(i) i = GLIST_PREVIOUS(i)

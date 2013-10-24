@@ -27,7 +27,7 @@
 #include "libgeda_priv.h"
 #include "libgedaguile_priv.h"
 
-#ifndef SCM_ARG8
+#ifndef  SCM_ARG8
  #define SCM_ARG8 8
  #define SCM_ARG9 9
 #endif
@@ -80,8 +80,8 @@ SCM_SYMBOL (closepath_sym , "closepath");
 
 void o_page_changed (TOPLEVEL *t, OBJECT *o)
 {
-  PAGE *p = o_get_page (t, o);
-  if (p != NULL) p->CHANGED = TRUE;
+  PAGE *page = o_get_page (t, o);
+  if (page != NULL) page->CHANGED = TRUE;
 }
 
 /*! \brief Convert a Scheme object list to a GList.
@@ -701,9 +701,8 @@ SCM_DEFINE (set_object_color_x, "%set-object-color!", 2, 0, 0,
 SCM_DEFINE (make_line, "%make-line", 0, 0, 0,
             (), "Create a new line object.")
 {
-  OBJECT *obj = o_line_new (edascm_c_current_toplevel (),
-                            OBJ_LINE, DEFAULT_COLOR_INDEX,
-                            0, 0, 0, 0);
+  OBJECT *obj = o_line_new (edascm_c_current_toplevel (), OBJ_LINE,
+                            DEFAULT_LINE_COLOR_INDEX, 0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
 
@@ -986,9 +985,8 @@ SCM_DEFINE (pin_type, "%pin-type", 1, 0, 0,
 SCM_DEFINE (make_box, "%make-box", 0, 0, 0,
             (), "Create a new box object.")
 {
-  OBJECT *obj = o_box_new (edascm_c_current_toplevel (),
-                           OBJ_BOX, DEFAULT_COLOR_INDEX,
-                           0, 0, 0, 0);
+  OBJECT *obj = o_box_new (edascm_c_current_toplevel (), OBJ_BOX,
+                           DEFAULT_BOX_COLOR_INDEX, 0, 0, 0, 0);
 
   SCM result = edascm_from_object (obj);
 
@@ -1084,9 +1082,8 @@ SCM_DEFINE (box_info, "%box-info", 1, 0, 0,
 SCM_DEFINE (make_circle, "%make-circle", 0, 0, 0,
             (), "Create a new circle object.")
 {
-  OBJECT *obj = o_circle_new (edascm_c_current_toplevel (),
-                              OBJ_CIRCLE, DEFAULT_COLOR_INDEX,
-                              0, 0, 1);
+  OBJECT *obj = o_circle_new (edascm_c_current_toplevel (), OBJ_CIRCLE,
+                              DEFAULT_CIRCLE_COLOR_INDEX, 0, 0, 1);
 
   SCM result = edascm_from_object (obj);
 
@@ -1178,14 +1175,12 @@ SCM_DEFINE (circle_info, "%circle-info", 1, 0, 0,
 SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
             (), "Create a new arc object.")
 {
-  OBJECT *obj = o_arc_new (edascm_c_current_toplevel (),
-                              OBJ_ARC, DEFAULT_COLOR_INDEX,
-                           0, 0, 1, 0, 0);
+  OBJECT *obj = o_arc_new (edascm_c_current_toplevel (), OBJ_ARC,
+                           DEFAULT_ARC_COLOR_INDEX, 0, 0, 1, 0, 0);
 
   SCM result = edascm_from_object (obj);
 
-  /* At the moment, the only pointer to the object is owned by the
-   * smob. */
+  /* At the moment, the only pointer to the object is owned by the smob. */
   edascm_c_set_gc (result, 1);
 
   return result;
@@ -1283,14 +1278,16 @@ SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0,
  * (geda core object) module.
  *
  * \return a newly-created text object.
+ *
+ * \comment WEH: May need to rethink this, 11 parameters may be a bit
+ *               much,even for Schema
  */
 SCM_DEFINE (make_text, "%make-text", 0, 0, 0,
             (), "Create a new text object.")
 {
-  OBJECT *obj = o_text_new (edascm_c_current_toplevel (),
-                            OBJ_TEXT, DEFAULT_COLOR_INDEX,
-                            0, 0, LOWER_LEFT, 0, "", 10,
-                            VISIBLE, SHOW_NAME_VALUE);
+  OBJECT *obj = o_text_new (edascm_c_current_toplevel (), OBJ_TEXT,
+                            DEFAULT_TEXT_COLOR_INDEX, 0, 0, LOWER_LEFT, 0,
+                            "", 10, VISIBLE, SHOW_NAME_VALUE);
 
   SCM result = edascm_from_object (obj);
 
@@ -1581,7 +1578,7 @@ SCM_DEFINE (make_path, "%make-path", 0, 0, 0,
             (), "Create a new path object")
 {
   OBJECT *obj = o_path_new (edascm_c_current_toplevel (),
-                            OBJ_PATH, DEFAULT_COLOR_INDEX, "");
+                            OBJ_PATH, DEFAULT_PATH_COLOR_INDEX, "");
 
   SCM result = edascm_from_object (obj);
 

@@ -15,8 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
 /*
@@ -32,6 +31,11 @@
  * WEH | 01/01/13 |  Converted old Log Window to a Console Dialog (as
  *                   this seems more usefull and still functions as
  *                   a log window )
+ * -----------------------------------------------------------------
+ * WEH | 09/28/13 |  Revised q_log_message & v_log_message to accept
+ *                   variable number of arguments, (so superfluous
+ *                   info is not forced to log window). Revised
+ *                   x_console_init_commands to have dynamic messages.
 */
 
 #include <config.h>
@@ -58,7 +62,7 @@
 #include "gschem.h"
 #include "x_dialog.h"
 
-#define max_command_length 128
+#define MAX_COMMAND_LENGTH 128
 
 #include "widgets/geda_entry.h"
 
@@ -81,8 +85,32 @@ static GObjectClass *console_parent_class = NULL;
 static void x_console_callback_response (GtkDialog *dialog, int arg1, gpointer user_data);
 static void log_message (Console *console, const char *message, const char *style);
 
-void q_log_message(const char *message){ if(!quiet_mode)  s_log_message(message); }
-void v_log_message(const char *message){ if(verbose_mode) s_log_message(message); }
+void q_log_message(const char *format, ...)
+{
+  if(!quiet_mode) {
+    char *buffer;
+    buffer = malloc(MESSAGE_BUFFER_SIZE);
+    va_list args;
+    va_start (args, format);
+    vsnprintf ( buffer, MESSAGE_BUFFER_SIZE, format, args);
+    va_end (args);
+    s_log_message("%s", buffer);
+    if (buffer) free(buffer);
+  }
+}
+void v_log_message(const char *format, ...)
+{
+  if(verbose_mode) {
+    char *buffer;
+    buffer = malloc(MESSAGE_BUFFER_SIZE);
+    va_list args;
+    va_start (args, format);
+    vsnprintf ( buffer, MESSAGE_BUFFER_SIZE, format, args);
+    va_end (args);
+    s_log_message("%s", buffer);
+    if (buffer) free(buffer);
+  }
+}
 
 /*!
  *  \brief Destroy Command Buffer
@@ -90,30 +118,43 @@ void v_log_message(const char *message){ if(verbose_mode) s_log_message(message)
  *  \par Function Description
  *  We elected to create the GList *command_buffer in this module, rather
  * than in main, so we don't have to externally reference, but this means
- * we also have to free it (or not realy since the only time this function
+ * we also have to free it (or not really since the only time this function
  * is used is when the main line exits and all memory is freed by the OS.
  *
  *  If the Console dialog instance does exist, present it to the user.
  */
 void x_console_destroy_command_buffer(gpointer user_data) {
   if (command_buffer) {
-      fprintf(stderr, "destroying history\n");
+      v_log_message("destroying history\n");
       g_list_foreach(command_buffer, (GFunc)g_free, NULL);
       g_list_free (command_buffer);
       command_buffer=NULL; /* This is not optional */
   }
 }
-void x_console_init_commands(GSCHEM_TOPLEVEL *w_current, int mode) {
+void x_console_init_commands(GschemToplevel *w_current, int mode) {
+
   command_buffer=NULL;
 
 #ifdef HAVE_GTHREAD
+
+  char* describe_level[] = {  "safe mode",
+                              "multitasking mode",
+                              "unknown"
+                           };
+
+  unsigned int nlevel = G_N_ELEMENTS (describe_level);
+
   if (mode > 1) {
+    mode = mode - 1;
+    nlevel = mode > nlevel ? nlevel - 1 : mode;
     i_command_engage(w_current);
-    v_log_message("Command interface is running in multitasking mode");
+    v_log_message(_("Command interface: engaged using (%s)"), describe_level[mode]);
   }
-  else
+  else {
 #endif
+    v_log_message(_("Command interface: engaged using (%s)"), describe_level[0]);
     i_command_disengage(FALSE, FALSE);
+  }
 }
 /*! ====================== @section Dialog-Handlers ==================== */
 
@@ -139,14 +180,15 @@ void x_console_init_commands(GSCHEM_TOPLEVEL *w_current, int mode) {
  * if is our console type instead of crashing entire program.
  * 09/26/13 Added parent property to dialog and change static
  * setting string to IDS_defined in sdefines.h
+ * 09/29/13 Removed parent property, it makes the dialog annoying
+ * because it stays above the main window.
  */
-void x_console_open (GSCHEM_TOPLEVEL *w_current)
+void x_console_open (GschemToplevel *w_current)
 {
   if (console_dialog == NULL) {
     char *contents;
     console_dialog = GTK_WIDGET (g_object_new (TYPE_CONSOLE,
-                                           "type", GTK_WINDOW_TOPLEVEL,
-                                           "parent", w_current->main_window,
+                                           "type", GTK_WINDOW_TOPLEVEL, 
                                            "settings-name", IDS_CONSOLE,
                                            "gschem-toplevel", w_current,
                                            NULL));
@@ -327,9 +369,9 @@ void x_console_eval_command (GedaEntry *entry, int arg1, gpointer user_data)
   char *command_echo;
   char *ptr;
 
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG (console_dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG (console_dialog)->w_current;
 
-  char  command_line[max_command_length];
+  char  command_line[MAX_COMMAND_LENGTH];
 
   char *get_str_token(char* cl) {
     char *e_ptr, *s_ptr;
@@ -366,6 +408,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, gpointer user_data)
 
 static void x_console_on_activate (GedaEntry *entry, int arg1, gpointer user_data)
 {
+
   if(console_input_mode == CONSOLE_COMMAND_MODE)
     x_console_eval_command (entry, arg1, user_data);
 }
@@ -545,7 +588,7 @@ static void console_init (Console *console) /* *Self */
 
   console_box   = gtk_vbox_new (FALSE, 0);
 
-/*! \remarks: Note: command_buffer is a GLIST of text the user typed
+/*! \note: Note: command_buffer is a GLIST of text the user typed
  * in, aka command history. command_entry_buffer is a gtk text entry
  * buffer embedded in the GTK Entry control/widget. Our custom Entry
  * does not directly interact with the command_entry. A pointer to
@@ -556,6 +599,10 @@ static void console_init (Console *console) /* *Self */
   if (!command_buffer)
     geda_atexit(x_console_destroy_command_buffer, NULL);
 
+/*! \note:command list is an extended version of the action list, and
+ * includes all the RC variables, the list list is passed to our
+ * custom entry widget for the command completion feature
+*/
   i_command_get_command_list(&command_list);
 
   /* Instantiate one our Custom Entry Widgets */
@@ -571,12 +618,12 @@ static void console_init (Console *console) /* *Self */
   /* create the command entry buffer */
   command_entry_buffer = gtk_entry_buffer_new(NULL, -1);
   gtk_entry_set_buffer((GtkEntry*) console_entry, command_entry_buffer);
-  gtk_entry_buffer_set_max_length (command_entry_buffer, max_command_length);
+  gtk_entry_buffer_set_max_length (command_entry_buffer, MAX_COMMAND_LENGTH);
 
   console_input_mode = CONSOLE_COMMAND_MODE;
 
   g_signal_connect (console_entry,
-                   "activate",
+                   "process-entry",
                     G_CALLBACK (x_console_on_activate), /*x_console_eval_command*/
                     NULL);
 

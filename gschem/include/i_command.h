@@ -1,3 +1,34 @@
+/* -*- i_command.h -*-
+ * gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ *
+ * Copyright (C) 2013 Ales Hvezda
+ * Copyright (C) 2013 Wiley Edward Hill
+ *
+ * Copyright (C) 2013 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+ *
+ *  Contributing Author: Wiley Edward Hill
+ *  Date Contributed: February, 02, 2013
+ *
+ */
+ /*! \warning Unless you really know what your doing - Don't do it.
+  *           This file is included twice in i_command.c and one in
+  *           i_callbacks.c and is compiled differently each time!
+  */
 /*
 clear (log screen)
 install
@@ -23,13 +54,15 @@ enum ActionFlag
 
 #define ActionTaskMask 1
 #define XY_ActionMask  4
-#endif
+
+#endif /* __ACTION_FLAGS__ */
 
 #ifndef I_DO_DECLARE
 
 #ifndef COMMAND
 
-#define COMMAND(func) void i_cmd_##func(GSCHEM_TOPLEVEL *w_current);
+/* define Macro for declarations if I_DO_DECLARE is not defined */
+#define COMMAND(func) void i_cmd_##func(GschemToplevel *w_current);
 
         COMMAND ( do_debug )
         COMMAND ( do_repeat_last )
@@ -247,27 +280,58 @@ enum ActionFlag
         COMMAND ( undo_type )
 
 #undef  COMMAND
+
 #define _MAKE_COMMAND_ENUM_
 
-/* MACRO( string-to-look-for, 0=once OR 1=recursive, not used, handler function base name */
+/* MACRO Enumerate function base name on this pass */
 #define COMMAND(action, rstr, flags, func) cmd_##func,
 
 enum {
         cmd_unknown,
+
+#endif   /* COMMAND was not defined when the header was loaded so enumerate */
+
+#else   /* I_DO_DECLARE was not defined so filling a command structure */
+
+/* MACRO( string-to-look-for, 0=once OR 1=recursive, not used, handler function base name */
+ #define COMMAND(action, rstr, flags, func) extern void i_cmd_##func(GschemToplevel *w_current);
 #endif
 
-#else
+#include "i_actions.h" /* Note: We need to resolve action strings on this pass */
 
- #define COMMAND(action, rstr, flags, func) extern void i_cmd_##func(GSCHEM_TOPLEVEL *w_current);
-#endif
-
-#include "i_actions.h"
 /*! \note #1 set arg1 = 0 for a worker thread or arg1 = 1 to run in Gtk
- *           main-loop thread, i.e. if guile is to be called use 1 else use 0!
- *           we could use scm_init_guile for thread but manual states that this
- *           is not portable. (maybe some propeller-head can fix!)
+ *           main-loop thread, i.e. if guile is to be called use 1, else use
+ *           0, or their corresponding XY versions if the action can come from
+ *           either ID_ORIGIN_KEYBOARD or ID_ORIGIN_MOUSE. If all else fails,
+ *           use the USE_INLINE_MODE to disable threading for that action! If
+ *           USE_INLINE_MODE does not work then something else is wrong some
+ *           where, is not a threading issue. Actually, if USE_INLINE_MODE
+ *           works and the others do not, then there is probably something
+ *           wrong somewhere, for example inadvertent recursion in a signal
+ *           handler. This might turn up when threading if a mutex blocks the
+ *           reentering thread access to a variable that the first thread is
+ *           waiting on to change state, maybe something like: while(i<#).
+ *           The single threading mode will mask this problem, but that does
+ *           not mean code in not flawed!
+ *           If code leaves C, executes guile, returns to C, and C then runs
+ *           new GTK code, particulary the filechooserdialog, as oppose to a
+ *           custom dialog, then after returning to C the orginal GTK code
+ *           will not run, appears to lock up - GTK is doing this on purpose.
+ *           This can be handled by using USE_MAIN_LOOP, and wrapping Gtk
+ *           between gdk_threads_enter and gdk_threads_leave. Examples are
+ *           in x_image_setup and x_fileselect_load_backup.
+ *           Or use USE_INLINE_MODE. (WEH: So far I have been able to avoid
+ *           USE_INLINE_MODE by fixing the problem or using wrappers!)
+ * 
+ *           We could use scm_init_guile (which does not seem to work)
+ *           for threading but manual states that this is not portable.
+ *           (WEH: maybe some propeller-head can fix!)
+ * 
+ *           Action handlers, of any type, are not reentrant. They will wait
+ *           up to MAX_WAIT_FOR_ACTION for the code to become available before
+ *           reporting an issues, and then give up, see function BlockThread.
  */
-     COMMAND ( debug,               "debug",            USE_WORKER_THREAD,      do_debug)
+     COMMAND ( debug,               "debug",            USE_MAIN_LOOP,          do_debug)
      COMMAND ( repeat-last,         NULL,               USE_MAIN_LOOP,          do_repeat_last)
 /* Menu and Toolbar Commands */
      COMMAND ( file,                NULL,               USE_MAIN_LOOP,          do_file)
@@ -278,7 +342,8 @@ enum {
      COMMAND ( FILE_SAVE_AS,        "save as",          USE_WORKER_THREAD,      do_save_as)
      COMMAND ( FILE_SAVE_ALL,       NULL,               USE_MAIN_LOOP,          do_save_all)
      COMMAND ( FILE_PRINT,          "print",            USE_WORKER_THREAD,      do_print)
-     COMMAND ( FILE_WRITE_IMAGE,    "write image",      USE_WORKER_THREAD,      do_write_image)
+     COMMAND ( FILE_WRITE_IMAGE,    "write image",      USE_MAIN_LOOP,          do_write_image)
+/* never works with selection inline*/
      COMMAND ( FILE_WRITE_PDF,      "write_pdf",        USE_WORKER_THREAD,      do_write_pdf)
      COMMAND ( FILE_RUN_SCRIPT,     "run_script",       USE_MAIN_LOOP,          do_run_script)
      COMMAND ( FILE_CLOSE,          "close",            USE_WORKER_THREAD,      do_close)
@@ -290,7 +355,7 @@ enum {
      COMMAND ( EDIT_CB_CUT,         "cut",              USE_MAIN_LOOP,          do_cut_clip)
      COMMAND ( EDIT_CB_COPY,        "copy",             USE_MAIN_LOOP,          do_copy_clip)
      COMMAND ( EDIT_CB_PASTE,       "paste",            USE_XY_WORKER,          do_paste_clip)
-     COMMAND ( EDIT_DELETE,         "delete",           USE_MAIN_LOOP,          do_delete)
+     COMMAND ( EDIT_DELETE,         "delete",           USE_MAIN_LOOP,          do_delete)     /* work inline*/
      COMMAND ( EDIT_SELECT,         NULL,               USE_MAIN_LOOP,          do_select)
      COMMAND ( EDIT_SELECT_ALL,     "select all",       USE_MAIN_LOOP,          do_select_all)
      COMMAND ( EDIT_INVERT,         "invert",           USE_MAIN_LOOP,          do_select_invert)

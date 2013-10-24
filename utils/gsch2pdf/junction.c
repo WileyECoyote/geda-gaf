@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 #include <math.h>
@@ -43,8 +43,8 @@ struct st_sweep_event
 
 static gint compare_points(gconstpointer a, gconstpointer b)
 {
-  sPOINT *point_a = (sPOINT*) a;
-  sPOINT *point_b = (sPOINT*) b;
+  POINT *point_a = (POINT*) a;
+  POINT *point_b = (POINT*) b;
 
   return (point_a->y - point_b->y);
 }
@@ -53,10 +53,10 @@ static gint compare_points(gconstpointer a, gconstpointer b)
  *
  *  \param [in] current the TOPLEVEL object
  *  \param [in] objects The objects on the schematic
- *  \param [in,out] junctions A GArray of sPOINT to contain the coordinates
+ *  \param [in,out] junctions A GArray of POINT to contain the coordinates
  *  of junctions.  This function appends new junctions to the GArray and leaves
  *  existing GArray contents unchanged.
- *  \param [in,out] unconnected A GArray of sPOINT to contain the coordinates
+ *  \param [in,out] unconnected A GArray of POINT to contain the coordinates
  *  of unconnected endpoints.  This function appends new endpoints to the GArray and leaves
  *  existing GArray contents unchanged.
  */
@@ -65,14 +65,14 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
   const GList *node = objects;
 
   GArray *events = g_array_new(FALSE, FALSE, sizeof(SWEEP_EVENT));
-  GArray *points = g_array_new(FALSE, FALSE, sizeof(sPOINT));
+  GArray *points = g_array_new(FALSE, FALSE, sizeof(POINT));
   GArray *status = g_array_new(FALSE, FALSE, sizeof(SWEEP_STATUS));
 
   while (node != NULL) {
     OBJECT *object = (OBJECT*) node->data;
     if (object->type == OBJ_NET) {
       SWEEP_EVENT event;
-      sPOINT point;
+      POINT point;
       event.y0 = min(object->line->y[0], object->line->y[1]);
       event.status.y1 = max(object->line->y[0], object->line->y[1]);
       event.status.line = *(object->line);
@@ -84,7 +84,7 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
       point.y = object->line->y[1];
       g_array_append_val(points, point);
     } else if (object->type == OBJ_PIN) {
-      sPOINT point;
+      POINT point;
       o_pin_get_position(current, &point.x, &point.y, object);
       g_array_append_val(points, point);
     } else if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
@@ -92,7 +92,7 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
       while (node2 != NULL) {
         OBJECT *object2 = (OBJECT*) node2->data;
         if (object2->type == OBJ_PIN) {
-          sPOINT point2;
+          POINT point2;
           o_pin_get_position(current, &point2.x, &point2.y, object2);
           g_array_append_val(points, point2);
         }
@@ -107,7 +107,7 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
   while ( points->len > 0 ) {
     int count;
     int index;
-    sPOINT current = g_array_index(points, sPOINT, 0);
+    POINT current = g_array_index(points, POINT, 0);
 
     /* add new segments that intersect the sweep line */
     index = 0;
@@ -134,8 +134,8 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
 
     /* test for endpoint intersections */
     for (index=0; index<points->len; index++) {
-      sPOINT *point = &g_array_index(points, sPOINT, index);
-      if (memcmp(&current, point, sizeof(sPOINT)) == 0) {
+      POINT *point = &g_array_index(points, POINT, index);
+      if (memcmp(&current, point, sizeof(POINT)) == 0) {
         count++;
       }
     }
@@ -175,8 +175,8 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
     /* remove points from array */
     index = 0;
     while ( index < points->len ) {
-      sPOINT *point = &g_array_index(points, sPOINT, index);
-      if ( memcmp(&current, point, sizeof(sPOINT)) == 0 ) {
+      POINT *point = &g_array_index(points, POINT, index);
+      if ( memcmp(&current, point, sizeof(POINT)) == 0 ) {
         g_array_remove_index(points, index);
       } else {
         index++;

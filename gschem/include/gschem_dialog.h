@@ -70,7 +70,7 @@ enum {
 struct _GschemDialogClass {
   GtkDialogClass parent_class;
 
-  void (*geometry_save) (GschemDialog *dialog, EdaConfig *cfg, char *group);
+  void (*geometry_save)    (GschemDialog *dialog, EdaConfig *cfg, char *group);
   void (*geometry_restore) (GschemDialog *dialog, EdaConfig *cfg, char *group);
 
 };
@@ -80,21 +80,21 @@ struct _GschemDialog {
 
   char            *settings_name;
   GtkWindow       *parent_window;
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel  *w_current;
   SELECTION       *selection;
-  void (*func) (GSCHEM_TOPLEVEL *w_current, OBJECT *object);
+  void (*func) (GschemToplevel *w_current, OBJECT *object);
 };
 
 
 GType gschem_dialog_get_type (void);
 GtkWidget* gschem_dialog_new_empty (const char           *title,
-                                          GtkWindow       *parent,
-                                          GtkDialogFlags   flags,
-                                          const char *settings_name,
-                                          GSCHEM_TOPLEVEL *w_current);
+                                          GtkWindow      *parent,
+                                          GtkDialogFlags  flags,
+                                          const char     *settings_name,
+                                          GschemToplevel *w_current);
 
 GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
-                                           const char *settings_name, GSCHEM_TOPLEVEL *w_current,
+                                           const char *settings_name, GschemToplevel *w_current,
                                            const char *first_button_text, ...);
 
 

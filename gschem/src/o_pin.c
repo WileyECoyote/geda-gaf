@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -33,7 +34,7 @@
  *  \par Function Description
  *
  */
-void o_pin_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->first_wx = w_current->second_wx = w_x;
   w_current->first_wy = w_current->second_wy = w_y;
@@ -44,7 +45,7 @@ void o_pin_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void o_pin_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
+void o_pin_end(GschemToplevel *w_current, int x, int y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *new_obj;
@@ -90,7 +91,7 @@ void o_pin_end(GSCHEM_TOPLEVEL *w_current, int x, int y)
  *  \par Function Description
  *
  */
-void o_pin_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_pin_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->inside_action == 0) {
     s_log_message("Internal Error Detected: <o_pin_motion> Not inside action\n");
@@ -120,7 +121,7 @@ void o_pin_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \brief
  *  \par Function Description
  */
-void o_pin_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_pin_invalidate_rubber (GschemToplevel *w_current)
 {
   int x1, y1, x2, y2;
   int min_x, min_y, max_x, max_y;
@@ -146,7 +147,7 @@ void o_pin_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void o_pin_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_pin_draw_rubber (GschemToplevel *w_current)
 {
   int size = 0;
 

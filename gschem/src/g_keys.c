@@ -45,7 +45,7 @@
 #define DEFINE_H_KEYS(name)                       \
 SCM h_keys_ ## name(SCM rest)                     \
 {                                                 \
-GSCHEM_TOPLEVEL *w_current = g_current_window (); \
+GschemToplevel *w_current = g_current_window ();  \
 i_callback_ ## name(w_current, 0, NULL);          \
 return SCM_BOOL_T;                                \
 }
@@ -53,7 +53,7 @@ return SCM_BOOL_T;                                \
 #define DEFINE_BUFFER_KEY_FUNC(name, number)        \
 SCM buffer_ ## name ## number(SCM rest)             \
 {                                                   \
-  GSCHEM_TOPLEVEL *w_current = g_current_window (); \
+  GschemToplevel *w_current = g_current_window ();  \
   char *status_msg_str;                             \
   status_msg_str = g_strconcat ( #name, " ", #number, NULL); \
   i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_KEYBOARD); \
@@ -63,7 +63,7 @@ SCM buffer_ ## name ## number(SCM rest)             \
 #define DEFINE_BUFFER_MENU_FUNC(name, number)       \
 SCM buffer_ ## name ## number ##_menu(SCM rest)     \
 {                                                   \
-  GSCHEM_TOPLEVEL *w_current = g_current_window (); \
+  GschemToplevel *w_current = g_current_window ();  \
   char *status_msg_str;                             \
   status_msg_str = g_strconcat ( #name, " ", #number, NULL); \
   i_command_process(w_current, ACTION(EDIT_BUF_##name), number, status_msg_str, ID_ORIGIN_MENU); \
@@ -337,12 +337,12 @@ SCM_SYMBOL (prefix_sym,     "prefix");
  * keystroke is pressed.  If the current key sequence was a prefix,
  * let it persist.
  *
- * \param [in] data a pointer to the GSCHEM_TOPLEVEL to update.
+ * \param [in] data a pointer to the GschemToplevel to update.
  * \return FALSE (this is a one-shot timer).
  */
 static bool clear_keyaccel_string(gpointer data)
 {
-  GSCHEM_TOPLEVEL *w_current = data;
+  GschemToplevel *w_current = data;
 
   /* If the window context has disappeared, do nothing. */
   if (g_list_find(global_window_list, w_current) == NULL) {
@@ -351,7 +351,7 @@ static bool clear_keyaccel_string(gpointer data)
 
   g_free(w_current->keyaccel_string);
   w_current->keyaccel_string = NULL;
-  w_current->keyaccel_string_source_id = 0;
+  w_current->keyaccel_ssid = 0;
   i_show_state(w_current, NULL);
   return FALSE;
 }
@@ -361,10 +361,10 @@ static bool clear_keyaccel_string(gpointer data)
  * If any prefix keys are stored in the current key sequence, clears
  * them.
  *
- * \param w_current  The active #GSCHEM_TOPLEVEL context.
+ * \param w_current  The active #GschemToplevel context.
  */
 void
-g_keys_reset (GSCHEM_TOPLEVEL *w_current)
+g_keys_reset (GschemToplevel *w_current)
 {
   SCM s_expr = scm_list_1 (reset_keys_sym);
 
@@ -434,12 +434,12 @@ GArray* g_keys_dump_keymap (void)
  * current keymap.  Updates the gschem status bar with the current key
  * sequence.
  *
- * \param w_current  The active #GSCHEM_TOPLEVEL context.
+ * \param w_current  The active #GschemToplevel context.
  * \param event      A GdkEventKey structure.
  *
  * \return 1 if a binding was found for the keystroke, 0 otherwise.
  */
-int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
+int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 {
   SCM s_retval, s_key, s_expr;
   unsigned int key, mods, upper, lower, caps;
@@ -489,7 +489,7 @@ int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
   /* If no current hint string, or the hint string is going to be
    * cleared anyway, use key string directly */
   if ((w_current->keyaccel_string == NULL) ||
-    w_current->keyaccel_string_source_id) {
+    w_current->keyaccel_ssid) {
     g_free (w_current->keyaccel_string);
   w_current->keyaccel_string = keystr;
 
@@ -512,16 +512,16 @@ int g_keys_execute(GSCHEM_TOPLEVEL *w_current, GdkEventKey *event)
 
     /* If the keystroke was not part of a prefix, start a timer to clear
      * the status bar display. */
-    if (w_current->keyaccel_string_source_id) {
+    if (w_current->keyaccel_ssid) {
       /* Cancel any existing timers that haven't fired yet. */
       GSource *timer =
       g_main_context_find_source_by_id (NULL,
-                                        w_current->keyaccel_string_source_id);
+                                        w_current->keyaccel_ssid);
       g_source_destroy (timer);
-      w_current->keyaccel_string_source_id = 0;
+      w_current->keyaccel_ssid = 0;
     }
     if (!scm_is_eq (s_retval, prefix_sym)) {
-      w_current->keyaccel_string_source_id =
+      w_current->keyaccel_ssid =
       g_timeout_add(400, clear_keyaccel_string, w_current);
     }
 

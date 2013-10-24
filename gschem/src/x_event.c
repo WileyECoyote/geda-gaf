@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,15 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
 #include <stdio.h>
 
 #include "gschem.h"
-#include "x_drag.h"
+#include "x_window.h"
 
 #include <gdk/gdkkeysyms.h>
 
@@ -35,49 +36,6 @@ int throttle = 0;
 static int DOING_STROKE = FALSE;
 #endif /* HAVE_LIBSTROKE */
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-int x_event_expose(GtkWidget *widget, GdkEventExpose *event,
-                    GSCHEM_TOPLEVEL *w_current)
-{
-  GdkRectangle *rectangles;
-  int n_rectangles;
-  cairo_t *save_cr;
-  PangoLayout *save_pl;
-
-#if DEBUG
-  printf("EXPOSE\n");
-#endif
-
-  g_return_val_if_fail ((w_current != NULL), 0);
-
-  save_cr = w_current->cr;
-  save_pl = w_current->pl;
-
-  w_current->cr = gdk_cairo_create( widget->window );
-  w_current->pl = pango_cairo_create_layout (w_current->cr);
-
-  gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
-  o_redraw_rects (w_current, rectangles, n_rectangles);
-  g_free (rectangles);
-
-  /* raise the dialog boxes if this feature is enabled */
-  if (w_current->raise_dialog_boxes) {
-    x_dialog_raise_all(w_current);
-  }
-
-  g_object_unref (w_current->pl);
-  cairo_destroy (w_current->cr);
-
-  w_current->cr = save_cr;
-  w_current->pl = save_pl;
-
-  return(0);
-}
-
 /*! \brief Button Press Event Handler
  *  \par Function Description
  *   This function is called each time a mouse button is pressed. The
@@ -87,23 +45,25 @@ int x_event_expose(GtkWidget *widget, GdkEventExpose *event,
  * for us. Th approiate action is performed based on the current state
  * of the program. Enumerated state are defined in the file x_states.h.
  */
-int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
-                            GSCHEM_TOPLEVEL *w_current)
+int x_event_button_pressed(GtkWidget      *widget,
+                           GdkEventButton *event,
+                           GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  int w_x, w_y;
-  int unsnapped_wx, unsnapped_wy;
+
+  int  w_x, w_y;
+  int  unsnapped_wx, unsnapped_wy;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-  #if DEBUG  || DEBUG_EVENTS
+#if DEBUG  || DEBUG_EVENTS
   printf("pressed button %d! \n", event->button);
   printf("event state: %d \n", event->state);
   printf("w_current state: %d \n", w_current->event_state);
   printf("Selection is:\n");
   o_selection_print_all((Top_Selection));
   printf("\n");
-  #endif
+#endif
 
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
                  &unsnapped_wx, &unsnapped_wy);
@@ -112,13 +72,13 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
   if (event->type == GDK_2BUTTON_PRESS &&
     (w_current->event_state == STARTSELECT ||
-     w_current->event_state == SELECT)) {
-       o_find_object(w_current, w_x, w_y, TRUE);
-       if (o_select_selected (w_current)) {
-         o_edit(w_current, geda_list_get_glist( Top_Selection ));
-           i_set_state(w_current, SELECT);
-           return(0);
-      }
+    w_current->event_state == SELECT)) {
+    o_find_object(w_current, w_x, w_y, TRUE);
+  if (o_select_is_selection (w_current)) {
+    o_edit(w_current, geda_list_get_glist( Top_Selection ), ID_ORIGIN_EVENT);
+    i_set_state(w_current, SELECT);
+    return(0);
+  }
     }
 
     w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
@@ -130,7 +90,6 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
      * returning from the function directly. */
 
     if (event->button == GDK_BUTTON_PRIMARY) {
-
       switch(w_current->event_state) {
         case(DESELECT):
           w_current->event_state = STARTDESELECT;
@@ -151,7 +110,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           break;
 
         case(STARTCOPY):
-          if (o_select_selected(w_current)) {
+          if (o_select_is_selection(w_current)) {
             o_copy_start(w_current, w_x, w_y);
             w_current->event_state   = COPY;
             w_current->inside_action = TRUE;
@@ -159,7 +118,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           break;
 
         case(STARTMCOPY):
-          if (o_select_selected(w_current)) {
+          if (o_select_is_selection(w_current)) {
             o_copy_start(w_current, w_x, w_y);
             w_current->event_state   = MCOPY;
             w_current->inside_action = TRUE;
@@ -167,7 +126,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
           break;
 
         case(STARTMOVE):
-          if (o_select_selected(w_current)) {
+          if (o_select_is_selection(w_current)) {
             o_move_start(w_current, w_x, w_y);
             w_current->event_state   = MOVE;
             w_current->inside_action = TRUE;
@@ -358,12 +317,12 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
 
       /* try this out and see how it behaves */
       if (w_current->inside_action) {
-        if (!(w_current->event_state == ENDCOMP ||
-          w_current->event_state == ENDTEXT ||
-          w_current->event_state == ENDMOVE ||
-          w_current->event_state == ENDCOPY ||
-          w_current->event_state == ENDMCOPY ||
-          w_current->event_state == ENDPASTE )) {
+        if (!(w_current->event_state == ENDCOMP  ||
+          w_current->event_state     == ENDTEXT  ||
+          w_current->event_state     == ENDMOVE  ||
+          w_current->event_state     == ENDCOPY  ||
+          w_current->event_state     == ENDMCOPY ||
+          w_current->event_state     == ENDPASTE )) {
           i_callback_cancel(w_current, 0, NULL);
           }
           goto end_button_pressed;
@@ -374,7 +333,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
         case(MOUSE_MIDDLE_ACTION):
           /* determine here if copy or move for now do move only
            *          make sure the list is not empty */
-          if (o_select_selected(w_current)) {
+          if (o_select_is_selection(w_current)) {
 
           }
           else {
@@ -386,7 +345,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
             o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
           }
 
-          if (!o_select_selected(w_current)) {
+          if (!o_select_is_selection(w_current)) {
             /* this means the above find did not find anything */
             w_current->inside_action = FALSE;
             i_set_state(w_current, SELECT);
@@ -407,11 +366,11 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
         case(MOUSE_MIDDLE_REPEAT):
           i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
           break;
-          #ifdef HAVE_LIBSTROKE
+#ifdef HAVE_LIBSTROKE
         case(MOUSE_MIDDLE_STROKE):
           DOING_STROKE=TRUE;
           break;
-          #endif /* HAVE_LIBSTROKE */
+#endif /* HAVE_LIBSTROKE */
 
         case(MOUSE_MIDDLE_PAN):
           w_current->event_state = MOUSEPAN; /* start */
@@ -514,7 +473,7 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
       }
     }
 
-    end_button_pressed:
+end_button_pressed:
 
     return(0);
 }
@@ -527,18 +486,20 @@ int x_event_button_pressed(GtkWidget *widget, GdkEventButton *event,
  *  and performs the approiate action based on the current state of the
  *  program. Enumerated state are defined in the file x_states.h.
  */
-int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
-                            GSCHEM_TOPLEVEL *w_current)
+bool x_event_button_released (GtkWidget      *widget,
+                              GdkEventButton *event,
+                              GschemToplevel *w_current)
 {
   int unsnapped_wx, unsnapped_wy;
   int w_x, w_y;
+
   OBJECT *object;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-  #if DEBUG || DEBUG_EVENTS
+#if DEBUG || DEBUG_EVENTS
   printf("x_event_button_released: entry! %d \n", w_current->event_state);
-  #endif
+#endif
 
   w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
@@ -577,8 +538,12 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
         i_set_state(w_current, SELECT);
         break;
       case(ENDMOVE):
-        o_move_end(w_current);
         /* having this stay in copy was driving me nuts*/
+        if (w_current->drag_event) {
+          gdk_event_free(w_current->drag_event);
+          w_current->drag_event = NULL;
+        }
+        o_move_end(w_current);
         w_current->inside_action = FALSE;
         i_set_state(w_current, SELECT);
         break;
@@ -641,18 +606,21 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
           w_current->inside_action = FALSE;
         }
         break;
+      case STARTDND:
+        w_current->dnd_state = NONE;
+        g_print ("x_event_button_released: w_current->event_state = STARTDND\n" );
+        break;
     }
-
   }
   else if (event->button == 2) {
 
     if (w_current->inside_action) {
       if (w_current->event_state == ENDCOMP ||
-        w_current->event_state == ENDTEXT ||
-        w_current->event_state == ENDMOVE ||
-        w_current->event_state == ENDCOPY ||
-        w_current->event_state == ENDMCOPY ||
-        w_current->event_state == ENDPASTE ) {
+          w_current->event_state == ENDTEXT ||
+          w_current->event_state == ENDMOVE ||
+          w_current->event_state == ENDCOPY ||
+          w_current->event_state == ENDMCOPY ||
+          w_current->event_state == ENDPASTE ) {
 
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, FALSE);
@@ -695,12 +663,12 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
         }
         break;
 
-        #ifdef HAVE_LIBSTROKE
+#ifdef HAVE_LIBSTROKE
           case(MOUSE_MIDDLE_STROKE):
             DOING_STROKE = FALSE;
             x_stroke_translate_and_execute (w_current);
             break;
-            #endif /* HAVE_LIBSTROKE */
+#endif /* HAVE_LIBSTROKE */
 
           case(MOUSE_MIDDLE_PAN):
             w_current->doing_pan=FALSE;
@@ -731,43 +699,322 @@ int x_event_button_released(GtkWidget *widget, GdkEventButton *event,
       i_set_state(w_current, SELECT);
     }
   }
+
   end_button_released:
-  #if DEBUG || DEBUG_EVENTS
+#if DEBUG || DEBUG_EVENTS
   printf("x_event_button_released: exit! %d \n", w_current->event_state);
-  #endif
+#endif
   return(FALSE);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+
+/*! \brief Updates GSCHEM TOPLEVEL when drawing area is configured.
  *  \par Function Description
+ *  This is the callback function connected to the configure event of
+ *  the drawing area of the main window.
  *
+ *  It updates the size of the backingstore for the associated
+ *  toplevel structure (creates a new pixmap) and re-pans each of its
+ *  pages to keep their contents centered in the drawing area.
+ *
+ *  When the window is maximised, the zoom of every page is changed to
+ *  best fit the previously displayed area of the page in the new
+ *  area. Otherwise the current zoom level is left unchanged.
+ *
+ *  \param [in] widget    The drawing area which received the signal.
+ *  \param [in] event     The event structure of signal configure-event.
+ *  \param [in] user_data The toplevel environment as user data.
+ *  \returns FALSE to propagate the event further.
  */
-int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
-                    GSCHEM_TOPLEVEL *w_current)
+bool x_event_configure (GtkWidget         *widget,
+                        GdkEventConfigure *event,
+                        GschemToplevel    *w_current)
 {
-  int pdiff_x, pdiff_y;
-  int w_x, w_y;
+  TOPLEVEL *toplevel = w_current->toplevel;
+
+  GList *iter;
+  PAGE  *old_page_current, *p_current;
+  int    old_win_width,     old_win_height, new_win_width, new_win_height;
+  double relative_zoom_factor = 1.0;
+
+  if (toplevel == NULL) {
+    s_log_message ("Internal Error: <%s><x_event_configure>"
+                    "toplevel == NULL, line %d.\n", __FILE__, __LINE__);
+    return FALSE;
+  }
+
+  if (toplevel->page_current == NULL) {
+    /* don't want to call this if the current page isn't setup yet */
+    return FALSE;
+  }
+
+  old_win_width  = w_current->win_width;
+  old_win_height = w_current->win_height;
+  new_win_width  = event->width;
+  new_win_height = event->height;
+
+  if (old_win_width  == new_win_width &&
+      old_win_height == new_win_height) {
+    /* the size of the drawing area has not changed */
+    /* nothing to do here */
+    return FALSE;
+  }
+
+  w_current->drawable = w_current->window;
+
+  /* update the GschemToplevel with new size of drawing area */
+  w_current->win_width   = toplevel->width  = new_win_width;
+  w_current->win_height  = toplevel->height = new_win_height;
+
+
+  /* in the case the user has maximised the window (hence the */
+  /* configure event) fit the view by playing with zoom level */
+  if (gdk_window_get_state (
+        (gtk_widget_get_toplevel (
+          widget))->window) & GDK_WINDOW_STATE_MAXIMIZED) {
+    double width_ratio, height_ratio;
+
+    /* tweak relative_zoom to better fit page in maximized window */
+    width_ratio  = ((double)new_win_width)  / ((double)old_win_width);
+    height_ratio = ((double)new_win_height) / ((double)old_win_height);
+    /* keep smallest ratio as relative zoom factor when panning */
+    relative_zoom_factor =
+      (width_ratio < height_ratio) ? width_ratio : height_ratio;
+
+  }
+
+  /* save current page */
+  old_page_current = toplevel->page_current;
+
+  /* re-pan each page of the TOPLEVEL */
+  for ( iter = geda_list_get_glist( toplevel->pages );
+        iter != NULL;
+        iter = g_list_next( iter ) ) {
+
+    double cx, cy;
+    p_current = (PAGE *)iter->data;
+
+    /* doing this the aspectratio is kept when changing (hw)*/
+    cx = ((gdouble)(p_current->left + p_current->right))  / 2;
+    cy = ((gdouble)(p_current->top  + p_current->bottom)) / 2;
+    s_page_goto (toplevel, p_current);
+    a_pan_general (w_current, cx, cy, relative_zoom_factor, A_PAN_DONT_REDRAW);
+
+  }
+  /* restore current page to saved value */
+  s_page_goto (toplevel, old_page_current);
+
+  /* redraw the current page and update UI */
+  o_invalidate_all (w_current);
+  x_scrollbars_update (w_current);
+
+  return FALSE;
+}
+
+/*! \brief On event Expose
+ *  \par Function Description
+ *  The expose event in Gtk is equivalent to the OnDraw in
+ *  MS Windows, except it's not just a hook, we actually
+ *  have do the drawing. We don't do in any drawing here,
+ *  the function creates a temporary Cairo drawable context
+ *  and Pango layout and calls o_redraw_rects() to do the
+ *  actually drawing. The temporary drawable and layout are
+ *  destroyed and the originals restored. The function also
+ *  raises any open dialogs to the foreground.
+ */
+int x_event_expose (GtkWidget      *widget,
+                    GdkEventExpose *event,
+                    GschemToplevel *w_current)
+{
+  GdkRectangle *rectangles;
+  int         n_rectangles;
+  cairo_t      *save_cr;
+
+#if DEBUG
+  printf("EXPOSE\n");
+#endif
+
+  g_return_val_if_fail ((w_current != NULL), 0);
+
+  save_cr = w_current->cr;
+
+  w_current->cr = gdk_cairo_create( widget->window );
+
+  gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
+  o_redraw_rects (w_current, rectangles, n_rectangles);
+  g_free (rectangles);
+
+  /* raise the dialog boxes if this feature is enabled */
+  if (w_current->raise_dialog_boxes) {
+    x_dialog_raise_all(w_current);
+  }
+
+  cairo_destroy (w_current->cr);
+
+  w_current->cr = save_cr;
+
+  return(0);
+}
+
+/*! \brief Get a snapped pointer position in world coordinates
+ *
+ *  \par Function Description
+ *  Queries GTK for the mouse location in world coordinates,
+ *  then snaps it to the grid.
+ *
+ * \param [in]  w_current  The GschemToplevel object.
+ * \param [out] wx         Return location for the snapped X coordinate.
+ * \param [out] wy         Return location for the snapped Y coordiante.
+ */
+static void get_snapped_pointer (GschemToplevel *w_current, int *wx, int *wy)
+{
+  int sx, sy;
   int unsnapped_wx, unsnapped_wy;
-  int skip_event=0;
+
+  gtk_widget_get_pointer (DrawingArea, &sx, &sy);
+
+  SCREENtoWORLD   (w_current, sx, sy, &unsnapped_wx, &unsnapped_wy);
+  *wx = snap_grid (w_current, unsnapped_wx);
+  *wy = snap_grid (w_current, unsnapped_wy);
+}
+
+/*! \brief Callback to handle key events in the drawing area.
+ *  \par Function Description
+ * GTK+ callback function (registered in x_window_setup_draw_events() ) which
+ * handles key press and release events from the GTK+ system.
+ *
+ * \param [in] widget the widget that generated the event
+ * \param [in] event the event itself
+ * \param w_current the toplevel environment
+ * \returns TRUE if the event has been handled.
+ */
+bool x_event_key (GtkWidget      *widget,
+                  GdkEventKey    *event,
+                  GschemToplevel *w_current)
+{
+  bool retval      = FALSE;
+  int  control_key = 0;
+  int  shift_key   = 0;
+  int  pressed;
+  int  wx, wy;
+
+#if DEBUG || DEBUG_EVENTS
+  printf("x_event_key_pressed: Pressed key %i.\n", event->keyval);
+#endif
+
+  /* update the state of the modifiers */
+  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
+  w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK)   ? 1 : 0;
+  w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
+
+  pressed = (event->type == GDK_KEY_PRESS) ? 1 : 0;
+
+  switch (event->keyval) {
+    case GDK_Alt_L:
+    case GDK_Alt_R:
+      w_current->ALTKEY = pressed;
+      break;
+
+    case GDK_Shift_L:
+    case GDK_Shift_R:
+      shift_key = 1;
+      w_current->SHIFTKEY = pressed;
+      break;
+
+    case GDK_Control_L:
+    case GDK_Control_R:
+      control_key = 1;
+      w_current->CONTROLKEY = pressed;
+      break;
+  }
+
+  /* Huge switch statement to evaluate state transitions. Jump to
+   * end_key label to escape the state evaluation rather
+   * than returning from the function directly. */
+
+  switch (w_current->event_state) {
+    case ENDLINE:
+      if (control_key) {
+        get_snapped_pointer (w_current, &wx, &wy);
+        o_line_motion (w_current, wx, wy);
+      }
+      break;
+    case STARTDRAWNET:
+      if (control_key) {
+        get_snapped_pointer (w_current, &wx, &wy);
+        o_net_start_magnetic(w_current, wx, wy);
+      }
+      break;
+    case DRAWNET:
+    case NETCONT:
+      if (shift_key || control_key) {
+        get_snapped_pointer (w_current, &wx, &wy);
+        o_net_motion (w_current, wx, wy);
+      }
+      break;
+    case DRAWBUS:
+    case BUSCONT:
+      if (control_key) {
+        get_snapped_pointer (w_current, &wx, &wy);
+        o_bus_motion (w_current, wx, wy);
+      }
+      break;
+    case ENDMOVE:
+      if (control_key) {
+        get_snapped_pointer (w_current, &wx, &wy);
+        o_move_motion (w_current, wx, wy);
+      }
+      break;
+    case ENDCOMP:   /* FIXME: This state shouldn't respond to modifier keys */
+    case ENDPASTE:  /* FIXME: This state shouldn't respond to modifier keys */
+    case ENDTEXT:   /* FIXME: This state shouldn't respond to modifier keys */
+    case ENDCOPY:
+    case ENDMCOPY:
+      if (control_key) {
+        get_snapped_pointer (w_current, &wx, &wy);
+        o_place_motion (w_current, wx, wy);
+      }
+      break;
+  }
+
+  if (pressed)
+    retval = g_keys_execute (w_current, event) ? TRUE : FALSE;
+
+  return retval;
+}
+
+/*! \brief Drawing Area Pointer Motion Callback Handler
+ *  \par Function Description
+ *  This function is call by the underling window context event
+ *  dispatcher when ever the mouse pointer position changes.
+ */
+bool x_event_motion (GtkWidget      *widget,
+                     GdkEventMotion *event,
+                     GschemToplevel *w_current)
+{
+  int skip_event = 0;
+  int pdiff_x, pdiff_y;
+  int unsnapped_wx, unsnapped_wy;
+  int w_x, w_y;
+
   GdkEvent *test_event;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
   w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK) ? 1 : 0;
+  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
-  #if DEBUG
+#if DEBUG || DEBUG_EVENTS
   /*  printf("MOTION!\n");*/
-  #endif
+#endif
 
-  #ifdef HAVE_LIBSTROKE
+#ifdef HAVE_LIBSTROKE
   if (DOING_STROKE == TRUE) {
     x_stroke_record (w_current, event->x, event->y);
     return(0);
   }
-  #endif /* HAVE_LIBSTROKE */
+#endif /* HAVE_LIBSTROKE */
 
   /* skip the moving event if there are other moving events in the
    *    gdk event queue (Werner)
@@ -776,7 +1023,7 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   if ((test_event = gdk_event_get()) != NULL) {
     if (test_event->type == GDK_MOTION_NOTIFY
       && ((GdkEventMotion *) test_event)->state == event->state) {
-      skip_event= 1;
+        skip_event = 1;
       }
       gdk_event_put(test_event); /* put it back in front of the queue */
       gdk_event_free(test_event);
@@ -789,32 +1036,31 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
   w_x = snap_grid (w_current, unsnapped_wx);
   w_y = snap_grid (w_current, unsnapped_wy);
 
+  /* If exist update the Coord Dialog */
   if (w_current->cowindow) {
-    x_dialog_coord_display_update(w_current, (int) event->x, (int) event->y);
+    x_dialog_coord_update_display(w_current, (int) event->x, (int) event->y);
   }
+
   if (w_current->third_button == MOUSEPAN_ENABLED || w_current->middle_button == MOUSE_MIDDLE_PAN) {
-    if((w_current->event_state == MOUSEPAN) &&
-      w_current->inside_action) {
+    if((w_current->event_state == MOUSEPAN) && w_current->inside_action) {
       pdiff_x = (int) event->x - start_pan_x;
-    pdiff_y = (int) event->y - start_pan_y;
+      pdiff_y = (int) event->y - start_pan_y;
 
-    if (!(throttle % 5)) {
-      a_pan_mouse(w_current, pdiff_x*w_current->mousepan_gain,
-                  pdiff_y*w_current->mousepan_gain);
+      if (!(throttle % 5)) {
+        a_pan_mouse(w_current, pdiff_x*w_current->mousepan_gain,
+                    pdiff_y*w_current->mousepan_gain);
 
-      start_pan_x = (int) event->x;
-      start_pan_y = (int) event->y;
-    }
-    throttle++;
-    return(0);
+        start_pan_x = (int) event->x;
+        start_pan_y = (int) event->y;
       }
+      throttle++;
+      return(0);
+    }
   }
 
   /* Huge switch statement to evaluate state transitions. Jump to end_motion
    * label to escape the state evaluation rather than returning from the
    * function directly. */
-  scm_dynwind_begin (0);
-  g_dynwind_window (w_current);
 
   switch(w_current->event_state) {
 
@@ -844,7 +1090,7 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
         if (w_current->SHIFTKEY || w_current->CONTROLKEY ||
           (!o_find_selected_object(w_current, w_current->first_wx, w_current->first_wy)
           && (!o_find_object(w_current, w_current->first_wx, w_current->first_wy, TRUE)
-          || !o_select_selected(w_current))))
+          || !o_select_is_selection(w_current))))
         {
           if (o_select_box_start(w_current, unsnapped_wx, unsnapped_wy)) {
             w_current->event_state = SBOX;
@@ -858,14 +1104,20 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
           o_move_start(w_current, w_x, w_y);
           w_current->event_state = ENDMOVE;
           w_current->inside_action = 1;
+          if (w_current->drag_event) {
+            gdk_event_free(w_current->drag_event);
+          }
+          w_current->drag_event = gdk_event_copy( (GdkEvent*)event);
           /* Fall through bottom of case to finish the move */
         }
       }
       /* Fall through to handle move */
       case(ENDMOVE):
       case(MOVE):
-        if (w_current->inside_action)
+        if (w_current->inside_action) {
+
           o_move_motion (w_current, w_x, w_y);
+        }
         break;
 
       case(ENDLINE):
@@ -944,362 +1196,8 @@ int x_event_motion(GtkWidget *widget, GdkEventMotion *event,
 
   }
 
-  scm_dynwind_end ();
   return(0);
 }
-
-/*! \brief Updates the GSCHEM_TOPLEVEL and display when drawing area is configured.
- *  \par Function Description
- *  This is the callback function connected to the configure event of
- *  the drawing area of the main window.
- *
- *  It updates the size of the backingstore for the associated
- *  toplevel structure (creates a new pixmap) and re-pans each of its
- *  pages to keep their contents centered in the drawing area.
- *
- *  When the window is maximised, the zoom of every page is changed to
- *  best fit the previously displayed area of the page in the new
- *  area. Otherwise the current zoom level is left unchanged.
- *
- *  \param [in] widget    The drawing area which received the signal.
- *  \param [in] event     The event structure of signal configure-event.
- *  \param [in] user_data The toplevel environment as user data.
- *  \returns FALSE to propagate the event further.
- */
-bool x_event_configure (GtkWidget         *widget,
-                        GdkEventConfigure *event,
-                        gpointer           user_data)
-{
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL*)user_data;
-  TOPLEVEL *toplevel = w_current->toplevel;
-  GList *iter;
-  PAGE *old_page_current, *p_current;
-  int old_win_width, old_win_height, new_win_width, new_win_height;
-  double relative_zoom_factor = 1.0;
-
-  if (toplevel == NULL) {
-    s_log_message ("Internal Error: <%s><x_event_configure>"
-                    "toplevel == NULL, line %d.\n", __FILE__, __LINE__);
-    return FALSE;
-  }
-
-  if (toplevel->page_current == NULL) {
-    /* don't want to call this if the current page isn't setup yet */
-    return FALSE;
-  }
-
-  old_win_width  = w_current->win_width;
-  old_win_height = w_current->win_height;
-  new_win_width  = event->width;
-  new_win_height = event->height;
-
-  if (old_win_width  == new_win_width &&
-      old_win_height == new_win_height) {
-    /* the size of the drawing area has not changed */
-    /* nothing to do here */
-    return FALSE;
-  }
-
-  w_current->drawable = w_current->window;
-
-  /* update the GSCHEM_TOPLEVEL with new size of drawing area */
-  w_current->win_width   = toplevel->width  = new_win_width;
-  w_current->win_height  = toplevel->height = new_win_height;
-
-
-  /* in the case the user has maximised the window (hence the */
-  /* configure event) fit the view by playing with zoom level */
-  if (gdk_window_get_state (
-        (gtk_widget_get_toplevel (
-          widget))->window) & GDK_WINDOW_STATE_MAXIMIZED) {
-    double width_ratio, height_ratio;
-
-    /* tweak relative_zoom to better fit page in maximized window */
-    width_ratio  = ((double)new_win_width)  / ((double)old_win_width);
-    height_ratio = ((double)new_win_height) / ((double)old_win_height);
-    /* keep smallest ratio as relative zoom factor when panning */
-    relative_zoom_factor =
-      (width_ratio < height_ratio) ? width_ratio : height_ratio;
-
-  }
-
-  /* save current page */
-  old_page_current = toplevel->page_current;
-
-  /* re-pan each page of the TOPLEVEL */
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
-    double cx, cy;
-    p_current = (PAGE *)iter->data;
-
-    /* doing this the aspectratio is kept when changing (hw)*/
-    cx = ((gdouble)(p_current->left + p_current->right))  / 2;
-    cy = ((gdouble)(p_current->top  + p_current->bottom)) / 2;
-    s_page_goto (toplevel, p_current);
-    a_pan_general (w_current, cx, cy, relative_zoom_factor, A_PAN_DONT_REDRAW);
-
-  }
-  /* restore current page to saved value */
-  s_page_goto (toplevel, old_page_current);
-
-  /* redraw the current page and update UI */
-  o_invalidate_all (w_current);
-  x_scrollbars_update (w_current);
-
-  return FALSE;
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- *  \note
- *  this is used during an open command
- *  to setup the correct sizes
- */
-void x_manual_resize(GSCHEM_TOPLEVEL *w_current)
-{
-  TOPLEVEL *toplevel = w_current->toplevel;
-
-  /* of the actual win window (drawing_area) */
-  w_current->win_width  = w_current->drawing_area->allocation.width;
-  w_current->win_height = w_current->drawing_area->allocation.height;
-
-#if DEBUG
-  printf("manual: %d %d\n", w_current->win_width, w_current->win_height);
-#endif
-
-  toplevel->width = w_current->win_width;
-  toplevel->height = w_current->win_height;
-
-  /* need to do this every time you change width / height */
-  set_window(toplevel, toplevel->page_current,
-             toplevel->page_current->left,
-             toplevel->page_current->right,
-             toplevel->page_current->top,
-             toplevel->page_current->bottom);
-
-#if DEBUG
-  printf("Window aspect: %f\n",
-         (float) w_current->win_width / (float) w_current->win_height);
-  /* No longer used?
-     printf("w: %d h: %d\n", width, height); */
-  printf("aw: %d ah: %d\n", w_current->win_width, w_current->win_height);
-#endif
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void x_event_hschanged (GtkAdjustment *adj, GSCHEM_TOPLEVEL *w_current)
-{
-  TOPLEVEL *toplevel = w_current->toplevel;
-  int current_left;
-  int new_left;
-  GtkAdjustment        *hadjustment;
-
-  g_return_if_fail (w_current != NULL);
-
-  if (w_current->scrollbars == FALSE) {
-    return;
-  }
-
-  hadjustment =
-  gtk_range_get_adjustment(GTK_RANGE(w_current->h_scrollbar));
-
-  current_left = toplevel->page_current->left;
-  new_left = (int) hadjustment->value;
-
-  toplevel->page_current->left = new_left;
-  toplevel->page_current->right =
-    toplevel->page_current->right -
-    (current_left - new_left);
-
-  o_invalidate_all (w_current);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void x_event_vschanged (GtkAdjustment *adj, GSCHEM_TOPLEVEL *w_current)
-{
-  TOPLEVEL *toplevel = w_current->toplevel;
-  int current_bottom;
-  int new_bottom;
-  GtkAdjustment        *vadjustment;
-
-  g_return_if_fail (w_current != NULL);
-
-  if (w_current->scrollbars == FALSE) {
-    return;
-  }
-
-  vadjustment = gtk_range_get_adjustment(
-                                         GTK_RANGE(w_current->v_scrollbar));
-
-  current_bottom = toplevel->page_current->bottom;
-  new_bottom = toplevel->init_bottom - (int) vadjustment->value;
-
-  toplevel->page_current->bottom = new_bottom;
-  toplevel->page_current->top =
-    toplevel->page_current->top -
-    (current_bottom - new_bottom);
-
-#if DEBUG
-  printf("vrange %f %f\n", vadjustment->lower, vadjustment->upper);
-  printf("vvalue %f\n", vadjustment->value);
-  printf("actual: %d %d\n", toplevel->page_current->top,
-         toplevel->page_current->bottom);
-#endif
-
-  o_invalidate_all (w_current);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-int x_event_enter(GtkWidget *widget, GdkEventCrossing *event,
-                   GSCHEM_TOPLEVEL *w_current)
-{
-  g_return_val_if_fail ((w_current != NULL), 0);
-  /* do nothing or now */
-  return(0);
-}
-
-/*! \brief Get a snapped pointer position in world coordinates
- *
- *  \par Function Description
- *  Queries GTK for the mouse location in world coordinates,
- *  then snaps it to the grid.
- *
- * \param [in]  w_current  The GSCHEM_TOPLEVEL object.
- * \param [out] wx         Return location for the snapped X coordinate.
- * \param [out] wy         Return location for the snapped Y coordiante.
- */
-static void get_snapped_pointer (GSCHEM_TOPLEVEL *w_current, int *wx, int *wy)
-{
-  int sx, sy;
-  int unsnapped_wx, unsnapped_wy;
-
-  gtk_widget_get_pointer (w_current->drawing_area, &sx, &sy);
-  SCREENtoWORLD (w_current, sx, sy, &unsnapped_wx, &unsnapped_wy);
-  *wx = snap_grid (w_current, unsnapped_wx);
-  *wy = snap_grid (w_current, unsnapped_wy);
-}
-
-/*! \brief Callback to handle key events in the drawing area.
- *  \par Function Description
- * GTK+ callback function (registered in x_window_setup_draw_events() ) which
- * handles key press and release events from the GTK+ system.
- *
- * \param [in] widget the widget that generated the event
- * \param [in] event the event itself
- * \param w_current the toplevel environment
- * \returns TRUE if the event has been handled.
- */
-bool x_event_key (GtkWidget *widget, GdkEventKey *event,
-                  GSCHEM_TOPLEVEL *w_current)
-{
-  bool retval = FALSE;
-  int wx, wy;
-  int shift_key = 0;
-  int control_key = 0;
-  int pressed;
-
-#if DEBUG
-  printf("x_event_key_pressed: Pressed key %i.\n", event->keyval);
-#endif
-
-  /* update the state of the modifiers */
-  w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
-  w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK)   ? 1 : 0;
-  w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
-
-  pressed = (event->type == GDK_KEY_PRESS) ? 1 : 0;
-
-  switch (event->keyval) {
-    case GDK_Alt_L:
-    case GDK_Alt_R:
-      w_current->ALTKEY = pressed;
-      break;
-
-    case GDK_Shift_L:
-    case GDK_Shift_R:
-      shift_key = 1;
-      w_current->SHIFTKEY = pressed;
-      break;
-
-    case GDK_Control_L:
-    case GDK_Control_R:
-      control_key = 1;
-      w_current->CONTROLKEY = pressed;
-      break;
-  }
-
-
-  /* Huge switch statement to evaluate state transitions. Jump to
-   * end_key label to escape the state evaluation rather
-   * than returning from the function directly. */
-
-  switch (w_current->event_state) {
-    case ENDLINE:
-      if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
-        o_line_motion (w_current, wx, wy);
-      }
-      break;
-    case STARTDRAWNET:
-      if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
-        o_net_start_magnetic(w_current, wx, wy);
-      }
-      break;
-    case DRAWNET:
-    case NETCONT:
-      if (shift_key || control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
-        o_net_motion (w_current, wx, wy);
-      }
-      break;
-    case DRAWBUS:
-    case BUSCONT:
-      if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
-        o_bus_motion (w_current, wx, wy);
-      }
-      break;
-    case ENDMOVE:
-      if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
-        o_move_motion (w_current, wx, wy);
-      }
-      break;
-    case ENDCOMP:   /* FIXME: This state shouldn't respond to modifier keys */
-    case ENDPASTE:  /* FIXME: This state shouldn't respond to modifier keys */
-    case ENDTEXT:   /* FIXME: This state shouldn't respond to modifier keys */
-    case ENDCOPY:
-    case ENDMCOPY:
-      if (control_key) {
-        get_snapped_pointer (w_current, &wx, &wy);
-        o_place_motion (w_current, wx, wy);
-      }
-      break;
-  }
-
-  if (pressed)
-    retval = g_keys_execute (w_current, event) ? TRUE : FALSE;
-
-  return retval;
-}
-
 
 /*! \brief Callback for Window Scroll Events.
  *  \par Function Description
@@ -1310,13 +1208,15 @@ bool x_event_key (GtkWidget *widget, GdkEventKey *event,
  *
  * \param [in] w_current The toplevel environment.
  */
-int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
-                    GSCHEM_TOPLEVEL *w_current)
+bool x_event_scroll (GtkWidget      *widget,
+                     GdkEventScroll *event,
+                     GschemToplevel *w_current)
 {
-  GtkAdjustment *adj;
   bool pan_xaxis = FALSE;
   bool pan_yaxis = FALSE;
-  bool zoom = FALSE;
+  bool zoom      = FALSE;
+
+  GtkAdjustment *adjust;
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
@@ -1327,13 +1227,13 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
 
   if (w_current->scroll_wheel == SCROLL_WHEEL_CLASSIC) {
     /* Classic gschem behaviour */
-    zoom =      !w_current->CONTROLKEY && !w_current->SHIFTKEY;
+    zoom      = !w_current->CONTROLKEY && !w_current->SHIFTKEY;
     pan_yaxis = !w_current->CONTROLKEY &&  w_current->SHIFTKEY;
     pan_xaxis =  w_current->CONTROLKEY && !w_current->SHIFTKEY;
   }
   else {
     /* GTK style behaviour */
-    zoom =       w_current->CONTROLKEY && !w_current->SHIFTKEY;
+    zoom      =  w_current->CONTROLKEY && !w_current->SHIFTKEY;
     pan_yaxis = !w_current->CONTROLKEY && !w_current->SHIFTKEY;
     pan_xaxis = !w_current->CONTROLKEY &&  w_current->SHIFTKEY;
   }
@@ -1341,7 +1241,7 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
   /* If the user has a left/right scroll wheel, check if x-axis scrolling is enabled */
   if (event->direction == GDK_SCROLL_LEFT ||
       event->direction == GDK_SCROLL_RIGHT) {
-      zoom = FALSE;
+      zoom      = FALSE;
       pan_yaxis = FALSE;
       pan_xaxis = w_current->pointer_hscroll;
   }
@@ -1352,18 +1252,18 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
     pan_yaxis = FALSE;
   }
 
-  int pan_direction = 1;
+  int pan_direction  = 1;
   int zoom_direction = ZOOM_IN_DIRECTIVE;
 
   switch (event->direction) {
     case GDK_SCROLL_UP:
     case GDK_SCROLL_LEFT:
-      pan_direction = -1;
+      pan_direction  = -1;
       zoom_direction = ZOOM_IN_DIRECTIVE;
       break;
     case GDK_SCROLL_DOWN:
     case GDK_SCROLL_RIGHT:
-      pan_direction =  1;
+      pan_direction  =  1;
       zoom_direction = ZOOM_OUT_DIRECTIVE;
       break;
   }
@@ -1373,35 +1273,99 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
   }
 
   if (pan_xaxis) {
-    adj = gtk_range_get_adjustment(GTK_RANGE(w_current->h_scrollbar));
-    gtk_adjustment_set_value(adj, min(adj->value + pan_direction *
-                                        (adj->page_increment /
+
+    adjust = gtk_range_get_adjustment(HorizontalScrollRange);
+    gtk_adjustment_set_value(adjust, min(adjust->value + pan_direction *
+                                        (adjust->page_increment /
                                          w_current->scrollpan_steps),
-                                      adj->upper - adj->page_size));
+                                         adjust->upper - adjust->page_size));
   }
 
   if (pan_yaxis) {
-    adj = gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));
-    gtk_adjustment_set_value(adj, min(adj->value + pan_direction *
-                                        (adj->page_increment /
+
+    adjust = gtk_range_get_adjustment(VerticalScrollRange);
+    gtk_adjustment_set_value(adjust, min(adjust->value + pan_direction *
+                                        (adjust->page_increment /
                                          w_current->scrollpan_steps),
-                                      adj->upper - adj->page_size));
+                                         adjust->upper - adjust->page_size));
   }
 
   if (w_current->undo_panzoom && (zoom || pan_xaxis || pan_yaxis)) {
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   }
 
-  return 0;
+  return 1;
 }
 
-/*! \brief get the pointer position of a given GSCHEM_TOPLEVEL
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void x_event_hschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
+{
+  TOPLEVEL *toplevel = w_current->toplevel;
+
+  int current_left;
+  int new_left;
+
+  g_return_if_fail (w_current != NULL);
+
+  if (w_current->scrollbars) {
+    current_left = toplevel->page_current->left;
+    new_left     = (int) adjust->value;
+
+    toplevel->page_current->left = new_left;
+    toplevel->page_current->right =
+    toplevel->page_current->right -
+    (current_left - new_left);
+
+    o_invalidate_all (w_current);
+  }
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
+{
+  TOPLEVEL *toplevel = w_current->toplevel;
+
+  int current_bottom;
+  int new_bottom;
+
+  g_return_if_fail (w_current != NULL);
+
+  if (w_current->scrollbars) {
+    current_bottom = toplevel->page_current->bottom;
+    new_bottom     = toplevel->init_bottom - (int) adjust->value;
+
+    toplevel->page_current->bottom = new_bottom;
+    toplevel->page_current->top =
+    toplevel->page_current->top -
+    (current_bottom - new_bottom);
+
+#if DEBUG || DEBUG_EVENTS
+    printf("vrange %f %f\n",  adjust->lower, adjust->upper);
+    printf("vvalue %f\n",     adjust->value);
+    printf("actual: %d %d\n", toplevel->page_current->top,
+                              toplevel->page_current->bottom);
+#endif
+
+    o_invalidate_all (w_current);
+  }
+}
+
+
+/*! \brief get the pointer position of a given GschemToplevel
  *  \par Function Description
  *  This function gets the pointer position of the drawing area of the
- *  current workspace <b>GSCHEM_TOPLEVEL</b>. The flag <b>snapped</b> specifies
+ *  current workspace <b>GschemToplevel</b>. The flag <b>snapped</b> specifies
  *  whether the pointer position should be snapped to the current grid.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] snapped    An option flag to specify the wished coords
  *  \param [out] wx        snapped/unsnapped world x coordinate
  *  \param [out] wy        snapped/unsnapped world y coordinate
@@ -1409,7 +1373,7 @@ int x_event_scroll (GtkWidget *widget, GdkEventScroll *event,
  *  \return Returns TRUE if the pointer position is inside the drawing area.
  *
  */
-bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
+bool x_event_get_pointer_position (GschemToplevel *w_current,
                                    bool snapped, int *wx, int *wy)
 {
   int sx, sy, x, y;
@@ -1417,15 +1381,18 @@ bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
   gtk_widget_get_pointer(w_current->drawing_area, &sx, &sy);
 
   /* check if we are inside the drawing area */
-  if (sx < 0 || sx >= w_current->win_width
-      || sy <0 || sy >= w_current->win_height)
+  if (sx < 0 || sx >= w_current->win_width  ||
+      sy < 0 || sy >= w_current->win_height) {
     return FALSE;
+  }
 
   SCREENtoWORLD (w_current, sx, sy, &x, &y);
+
   if (snapped) {
     x = snap_grid (w_current, x);
     y = snap_grid (w_current, y);
   }
+
   *wx = x;
   *wy = y;
 
@@ -1437,13 +1404,13 @@ bool x_event_get_pointer_position (GSCHEM_TOPLEVEL *w_current,
  *   This function sets the pointer position to relative
  *  screen coordinates off the given widget.
  *
- *  \param [in] w_current   The GSCHEM_TOPLEVEL object
+ *  \param [in] w_current   The GschemToplevel object
  *  \param [in] wx     integer abscissa in World units
  *  \param [in] wy     integer ordinate in World units
  *
  */
 void
-x_event_set_pointer_position (GSCHEM_TOPLEVEL *w_current, int wx, int wy)
+x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy)
 {
   int sx, sy;
 
@@ -1455,4 +1422,43 @@ x_event_set_pointer_position (GSCHEM_TOPLEVEL *w_current, int wx, int wy)
   x_basic_warp_cursor (w_current->drawing_area, sx, sy);
 
   return;
+}
+
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ *  \note
+ *  this is used during an open command to setup the correct sizes
+ */
+void x_manual_resize(GschemToplevel *w_current)
+{
+  TOPLEVEL *toplevel = w_current->toplevel;
+
+  /* of the actual win window (drawing_area) */
+  w_current->win_width  = DrawingArea->allocation.width;
+  w_current->win_height = DrawingArea->allocation.height;
+
+#if DEBUG || DEBUG_EVENTS
+  printf("manual: %d %d\n", w_current->win_width, w_current->win_height);
+#endif
+
+  toplevel->width  = w_current->win_width;
+  toplevel->height = w_current->win_height;
+
+  /* need to do this every time you change width / height */
+  set_window(toplevel, toplevel->page_current,
+             toplevel->page_current->left,
+             toplevel->page_current->right,
+             toplevel->page_current->top,
+             toplevel->page_current->bottom);
+
+#if DEBUG || DEBUG_EVENTS
+  printf("Window aspect: %f\n",
+         (float) w_current->win_width / (float) w_current->win_height);
+  /* No longer used?
+     printf("w: %d h: %d\n", width, height); */
+  printf("aw: %d ah: %d\n", w_current->win_width, w_current->win_height);
+#endif
 }

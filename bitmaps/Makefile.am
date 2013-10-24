@@ -40,6 +40,7 @@ bitmapdata_DATA    = close_box.png                      \
                      geda-mirror.png                    \
                      geda-move.png                      \
                      geda-multi.png                     \
+                     geda-open-recent.png               \
                      geda-path.png                      \
                      geda-pin.png                       \
                      geda-pin-type.png                  \
@@ -76,6 +77,7 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 		     geda_demote_22x22.png              \
 		     geda_display_22x22.png             \
 		     geda_display_color_22x22.xpm       \
+		     geda_eye_glasses_22x16.png         \
 		     geda_grid_dot_22x22.png            \
 		     geda_grid_mesh_22x22.png           \
 		     geda_find_22x22.xpm		\
@@ -239,12 +241,12 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 		     geda_display_color_28x28.xpm       \
 		     geda_demote_28x28.png              \
 		     geda_deselect_28x28.png            \
+		     geda_eye_glasses_28x20.png         \
 		     geda_film_roll_28x28.xpm           \
 		     geda_find_28x28.xpm		\
 		     geda_find_attribute_28x28.png      \
 		     geda_grid_dot_28x28.png            \
 		     geda_grid_mesh_28x28.png           \
-		     geda_eye_glasses_28x20.png         \
 		     geda_line_28x28.xpm                \
 		     geda_line_type_28x28.png           \
 		     geda_locate_reference_28x28.xpm	\

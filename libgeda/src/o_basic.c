@@ -502,8 +502,7 @@ void o_set_color (TOPLEVEL *toplevel, OBJECT *object, int color)
 
   object->color = color;
 
-  if (object->type == OBJ_COMPLEX ||
-      object->type == OBJ_PLACEHOLDER)
+  if (object->type == OBJ_COMPLEX || object->type == OBJ_PLACEHOLDER)
     o_glist_set_color (toplevel, object->complex->prim_objs, color);
 }
 
@@ -521,14 +520,57 @@ void o_set_color (TOPLEVEL *toplevel, OBJECT *object, int color)
  *
  * \sa s_page_append_object() s_page_append() s_page_remove()
  */
-PAGE *
-o_get_page (TOPLEVEL *toplevel, OBJECT *object)
+PAGE *o_get_page (TOPLEVEL *toplevel, OBJECT *object)
 {
   if (object->parent != NULL) {
     return o_get_page (toplevel, object->parent);
   }
   return object->page;
 }
+
+/*! \brief Get File Extension of the File Assocatiacted with PAGE.
+ *
+ * \par Function Description
+ * Returns a pointer to extension of the filename associated with PAGE.
+ * The string is owned by the Page and must not be changed!
+ *
+ * \param [in] page Pointer to a PAGE data structure.
+ * 
+ * \return point to the page file name extension or NULL if there
+ *         either no file name or no DOT suffix used in the name.
+ *
+ */
+const char *o_get_page_file_extension (PAGE *page)
+{
+  if (page != NULL && page->page_filename != NULL) {
+    return get_filename_ext(page->page_filename);
+  }
+  return NULL;
+}
+
+/*! \brief Get is PAGE a Symbol file.
+ *
+ * \par Function Description
+ * Returns true if the filename assocaited with page ends in ".sym"!
+ *
+ * \param [in] page Pointer to a PAGE data structure.
+ *
+ * \return bool TRUE if Page is data from a Symbol file
+ *
+ */
+bool o_get_page_is_symbol (PAGE *page) {
+  const char *ext;
+  bool isSymbol = FALSE;
+  if (page != NULL) {
+    if ((ext = o_get_page_file_extension(page)) != NULL) {
+      if (strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
+        isSymbol = TRUE;
+      }
+    }
+  }
+  return isSymbol;
+}
+
 
 /*! \brief Get an object's parent PAGE, or fall back to global current page.
  *

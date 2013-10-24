@@ -1,5 +1,5 @@
 
-SUBDIRS = src include utils lib scheme examples scripts tests docs
+SUBDIRS = po src include utils lib scheme examples scripts tests docs
 
 EXTRA_DIST = BUGS ChangeLog ChangeLog-1.0
 
@@ -8,7 +8,7 @@ ChangeLog: $(top_builddir)/stamp-git
 	(cd $(srcdir) && $(GIT) log --pretty=medium $(CHANGELOG_BASE).. -- .) > $@
 endif HAVE_GIT_REPO
 
-MOSTLYCLEANFILES = *.log core FILE *~ 
-CLEANFILES = *.log core FILE *~ 
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log core FILE *~ 
+CLEANFILES           = *.log core FILE *~ 
+DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in ChangeLog

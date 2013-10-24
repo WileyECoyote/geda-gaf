@@ -79,38 +79,37 @@ TOPLEVEL *s_toplevel_new (void)
 
   toplevel = (TOPLEVEL*)g_new (TOPLEVEL, 1);
 
-  toplevel->RC_list = NULL;
+  toplevel->RC_list            = NULL;
 
   toplevel->untitled_name      = NULL;
   toplevel->bitmap_directory   = NULL;
 
-  toplevel->init_left = 0;
-  toplevel->init_top  = 0;
+  toplevel->init_left          = 0;
+  toplevel->init_top           = 0;
   /* init_right and _bottom are set before this function is called */
 
-  toplevel->width  = 1;
-  toplevel->height = 1;
+  toplevel->width              = 1;
+  toplevel->height             = 1;
 
-  toplevel->override_color = -1;
+  toplevel->override_color     = -1;
 
-  toplevel->pages = geda_list_new();
-  toplevel->page_current = NULL;
+  toplevel->pages              = geda_list_new();
+  toplevel->page_current       = NULL;
 
-  toplevel->show_hidden_text = 0;
+  toplevel->show_hidden_text   = 0;
 
-  toplevel->major_changed_refdes = NULL;
+  toplevel->major_changed_refdes   = NULL;
 
   /* BLOCK SET IN GSCHEM, BUT USED IN LIBGEDA - NEEDS A RETHINK */
-  toplevel->background_color   = 0;
-  toplevel->override_net_color = -1;
-  toplevel->override_bus_color = -1;
-  toplevel->override_pin_color = -1;
+  toplevel->override_net_color     = -1;
+  toplevel->override_bus_color     = -1;
+  toplevel->override_pin_color     = -1;
   /* END BLOCK - ALTHOUGH THERE ARE MORE CASES! */
 
-  toplevel->pin_style = 0;
-  toplevel->net_style = 0;
-  toplevel->bus_style = 0;
-  toplevel->line_style = 0;
+  toplevel->pin_style           = 0;
+  toplevel->net_style           = 0;
+  toplevel->bus_style           = 0;
+  toplevel->line_style          = 0;
 
   toplevel->thin_bus_width      = DEFAULT_THIN_BUS_WIDTH;
   toplevel->thin_line_width     = DEFAULT_THIN_LINE_WIDTH;
@@ -122,74 +121,75 @@ TOPLEVEL *s_toplevel_new (void)
   toplevel->thick_net_width     = DEFAULT_THICK_NET_WIDTH;
   toplevel->thick_pin_width     = DEFAULT_THICK_PIN_WIDTH;
 
-  toplevel->object_clipping = 0;
+  toplevel->object_clipping                = 0;
 
-  toplevel->print_orientation = 0;
+  toplevel->print_orientation              = 0;
 
-  toplevel->image_color = FALSE;
-  toplevel->invert_images = TRUE;
+  toplevel->image_color                    = FALSE;
+  toplevel->invert_images                  = TRUE;
 
-  toplevel->print_color = FALSE;
+  toplevel->print_color                    = FALSE;
 
-  toplevel->print_color_background = 0;
+  toplevel->print_color_background         = 0;
 
-  toplevel->setpagedevice_orientation = FALSE;
+  toplevel->setpagedevice_orientation      = FALSE;
 
-  toplevel->setpagedevice_pagesize = FALSE;
+  toplevel->setpagedevice_pagesize         = FALSE;
 
-  toplevel->postscript_prolog = NULL;
+  toplevel->postscript_prolog              = NULL;
 
-  toplevel->net_consolidate = FALSE;
+  toplevel->net_consolidate                = FALSE;
 
   /* The following is an attempt at getting (deterministic) defaults */
   /* for the following variables */
-  toplevel->attribute_promotion = FALSE;
-  toplevel->promote_invisible   = FALSE;
-  toplevel->keep_invisible      = FALSE;
+  toplevel->attribute_promotion            = FALSE;
+  toplevel->promote_invisible              = FALSE;
+  toplevel->keep_invisible                 = FALSE;
 
-  toplevel->make_backup_files = TRUE;
+  toplevel->make_backup_files              = TRUE;
 
-  toplevel->print_output_type = 0;
+  toplevel->print_output_type              = 0;
 
-  toplevel->print_output_capstyle = BUTT_CAP;
+  toplevel->print_output_capstyle          = BUTT_CAP;
 
-  toplevel->paper_width  = 0;
-  toplevel->paper_height = 0;
+  toplevel->paper_width                    = 0;
+  toplevel->paper_height                   = 0;
 
-  toplevel->force_boundingbox = FALSE;
+  toplevel->force_boundingbox              = FALSE;
 
-  toplevel->always_promote_attributes = NULL;
+  toplevel->always_promote_attributes      = NULL;
 
-  toplevel->net_naming_priority = 0;
-  toplevel->hierarchy_traversal = 0;
-  toplevel->hierarchy_uref_mangle = 0;
-  toplevel->hierarchy_netname_mangle = 0;
-  toplevel->hierarchy_netattrib_mangle = 0;
-  toplevel->hierarchy_uref_separator      = NULL;
-  toplevel->hierarchy_netname_separator   = NULL;
-  toplevel->hierarchy_netattrib_separator = NULL;
-  toplevel->hierarchy_netattrib_order = 0;
-  toplevel->hierarchy_netname_order = 0;
-  toplevel->hierarchy_uref_order = 0;
-  toplevel->unnamed_netname = NULL;
-  toplevel->unnamed_busname = NULL;
+  toplevel->net_naming_priority            = 0;
+  toplevel->hierarchy_traversal            = 0;
+  toplevel->hierarchy_uref_mangle          = 0;
+  toplevel->hierarchy_netname_mangle       = 0;
+  toplevel->hierarchy_netattrib_mangle     = 0;
+  toplevel->hierarchy_uref_separator       = NULL;
+  toplevel->hierarchy_netname_separator    = NULL;
+  toplevel->hierarchy_netattrib_separator  = NULL;
+  toplevel->hierarchy_netattrib_order      = 0;
+  toplevel->hierarchy_netname_order        = 0;
+  toplevel->hierarchy_uref_order           = 0;
+  toplevel->unnamed_netname                = NULL;
+  toplevel->unnamed_busname                = NULL;
 
-  toplevel->rendered_text_bounds_func = NULL;
-  toplevel->rendered_text_bounds_data = NULL;
+  toplevel->rendered_text_bounds_func      = NULL;
+  toplevel->rendered_text_bounds_data      = NULL;
 
-  toplevel->change_notify_funcs = NULL;
+  toplevel->change_notify_funcs            = NULL;
 
-  toplevel->attribs_changed_hooks = NULL;
+  toplevel->attribs_changed_hooks          = NULL;
 
-  toplevel->conns_changed_hooks = NULL;
+  toplevel->conns_changed_hooks            = NULL;
 
-  toplevel->load_newer_backup_func = NULL;
+  toplevel->load_newer_backup_func         = NULL;
+  toplevel->load_newer_backup_data         = NULL;
 
   /* Auto-save interval */
-  toplevel->auto_save_interval = 0;
-  toplevel->auto_save_timeout = 0;
+  toplevel->auto_save_interval             = 0;
+  toplevel->auto_save_timeout              = 0;
 
-  toplevel->weak_refs = NULL;
+  toplevel->weak_refs                      = NULL;
 
   /* Call hooks */
   g_list_foreach (new_toplevel_hooks, call_new_toplevel_hook, toplevel);

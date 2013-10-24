@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -40,10 +41,10 @@
  *  attribute or a fictitious values is passed to the Edit-Slot
  *  Dialog.
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a "slotable" OBJECT.
  */
-void o_slot_start (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+void o_slot_start (GschemToplevel *w_current, OBJECT *object)
 {
   char *slot_value;
 
@@ -70,11 +71,11 @@ void o_slot_start (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  The function creates a now type "slots" attribute to the drawing
  *  and attaches it to the object
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to OBJECT to receive slot attributee.
  *
  */
-void o_slot_end(GSCHEM_TOPLEVEL *w_current, OBJECT *object, const char *string)
+void o_slot_end(GschemToplevel *w_current, OBJECT *object, const char *string)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *new_obj;

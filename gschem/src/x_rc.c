@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
  */
 #include <config.h>
 #include "gschem.h"
@@ -23,65 +23,169 @@
 #include <locale.h>
 #endif
 
-/* Error handler function used by x_rc_parse_gschem(). */
-static void
-x_rc_parse_gschem_error (GError **err, GSCHEM_TOPLEVEL *w_current)
+/*! \brief This Function is used to Recover from Unbound Variables.
+ *  \par Function Description
+ *  This function is not normally executed. If an unbound variable is
+ *  encountered while processing an initialization file, this function
+ *  is assigned to that variable. What the function does is not so much
+ *  important as it's existent. When the same initialization file is
+ *  reprocessed, the variable is no longer unbound. If the would be
+ *  variable had been defined like (typo "enabled") or (type 1), then
+ *  cadr is returned, otherwise <UNDEFINED> is returned.
+ *
+ */
+SCM g_rc_unbound_handler (SCM rst)
 {
-  char      *msg2;   /* Secondary text */
-  GtkWidget *dialog;
+  SCM  s_value;
+  SCM  r_value;
+
+  if (scm_list_p(rst)) {
+    s_value = SCM_CAR(rst);
+    r_value = s_value;
+  }
+  else
+    r_value = SCM_UNDEFINED;
+
+  return r_value;
+}
+
+/*! \brief Error handler function used by x_rc_parse_gschem.
+ * \par Function Description
+ *  The file is called from functions in Libgeda, after an error was
+ *  encountered processing an RC initialization file. If a valid err
+ *  pointer is passed the error is interrogated. Missing RC files are
+ *  not reported. For other errors, a descriptive message is logged
+ *  and a dialog is displayed to inform the user of the error. If the
+ *  error did not include a message then the error is reported as
+ *  unknown. If the error was due to an  "Unbound variable", then a
+ *  scheme subroutine is assigned to the string name and the integer
+ *  pointed to by the second argument is incremented to indicated
+ *  that another attempt should be made to process the RC file.
+ *
+ * \param err        A point to a ponter to a Gerror structure.
+ * \param user_data  Specific config file path, or NULL.
+ */
+static void
+x_rc_parse_gschem_error (GError **err, void *retry_flag)
+{
+  char *dialog_message  = _("<b>Error Proccessing Configuration.</b>");
+  char *dialog_title    = _("gschem RC File Error");
+  char *err_msg_unknown = _("An unknown error occurred while parsing configuration files.");
+  char *msg_log_more    = _("The gschem log may contain more information.");
+
+  char       *msg2;             /* Secondary text */
+  char       *unbound_sym;      /* Unbound Symbol name */
+  const char *unbound_msg;      /* As received Unbound*/
+  const char *unbound_needle = "Unbound variable:";
+
+  if (err == NULL) {
+    BUG_MSG("x_rc_parse_gschem_error>", "err is NULL.\n");
+    return;
+  }
 
   /* Take no chances; if err was not set for some reason, it's a
    * problem. */
   if (*err == NULL) {
     /* Log message */
-    s_log_message (_("ERROR: An unknown error occurred while parsing"
-                     "configuration files.\n"));
+    s_log_message (_("ERROR: %s\n"), err_msg_unknown);
 
     /* Dialog message */
-    msg2 =
-      g_strdup (_("An unknown error occurred while parsing configuration files."
-                  "\n\nThe gschem log may contain more information."));
-  } else {
+    msg2 = g_strconcat ( err_msg_unknown, "\n\n", msg_log_more, NULL);
+  }
+  else {
 
-    /* Config files are allowed to be missing or skipped; check for
-     * this. */
+    /* Config files are allowed to be missing or skipped; check for this. */
     if (g_error_matches (*err, G_FILE_ERROR, G_FILE_ERROR_NOENT) ||
         g_error_matches (*err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
       return;
     }
 
-    /* Log message */
-    s_log_message (_("ERROR: %s\n"), (*err)->message);
+    /* Check if this was an "Unbound variable:" message */
+    unbound_msg = stristr ((*err)->message, unbound_needle) + 18;
+    if (unbound_msg) { /* True if stristr found "Unbound variable:" */
+
+      int *iptr = (int*)retry_flag;
+      int retry = *iptr;
+
+      /* Guild added a carriage return character to the end of the
+       * message, so get rid of it! */
+      unbound_sym = g_strndup (unbound_msg, strlen(unbound_msg) -1);
+
+      /* Define a dummy routine using this name */
+      scm_c_define_gsubr (unbound_sym, 0, 1, 1, g_rc_unbound_handler);
+      *iptr = ++retry;
+      g_free(unbound_sym);
+    }
+    else  /* Log message */
+      s_log_message (_("ERROR: %s\n"), (*err)->message);
 
     /* Dialog message */
-    msg2 = g_strdup_printf (_("%s\n\n"
-                              "The gschem log may contain more information."),
-                            (*err)->message);
+    msg2 = g_strdup_printf ("%s\n\n%s", (*err)->message, msg_log_more);
   }
 
-  dialog = gtk_message_dialog_new (NULL,
-                                   GTK_DIALOG_MODAL, GTK_MESSAGE_ERROR,
-                                   GTK_BUTTONS_OK,
-                                   _("Cannot load gschem configuration."));
-  g_object_set (G_OBJECT (dialog), "secondary-text", msg2, NULL);
-  gtk_dialog_run (GTK_DIALOG (dialog));
-  gtk_widget_destroy (dialog);
+  /* Inform the user */
+  titled_pango_error_dialog ( dialog_message, msg2, dialog_title );
+
   g_free (msg2);
 }
 
+#define ConfigParseFunc void (*parser)(TOPLEVEL *, const char *, \
+                                       ConfigParseErrorFunc, void *)
 /*! \brief Load gschem configuration files and display error dialogs.
  * \par Function Description
- * Loads configuration files in a similar manner to g_rc_parse().
- * Instead of exiting on error, display error dialogs with explanatory
- * messages.
+ *  Calls functions in Libgeda to process RC initialization files using
+ *  previous function, x_rc_parse_gschem_error as an error handler. The
+ *  function passes a pointer to an integer as the last parameter, and
+ *  if that integer is incremented then a recoverable error occurred,
+ *  and the call to process the RC file is repeated until either the
+ *  integer is not incremented, meaning an error did not occur, or the
+ *  number of attempts equals MAX_RC_ATTEMPTS, defined in idefines.h.
+ *  Currently the limit is set to make 3 attempts, which applies to
+ *  each type, gafrc, gschemrc, and rcfile, seperately, not in total.
  *
- * \param w_current  The current #GSCHEM_TOPLEVEL structure.
+ * \param w_current  The current #GschemToplevel structure.
  * \param rcfile     Specific config file path, or NULL.
  */
 void
-x_rc_parse_gschem (GSCHEM_TOPLEVEL *w_current, const gchar *rcfile) {
-  TOPLEVEL *toplevel = w_current->toplevel;
-  g_rc_parse_handler (toplevel, "gschemrc", rcfile,
-                      (ConfigParseErrorFunc) x_rc_parse_gschem_error,
-                      (void *) w_current);
+x_rc_parse_gschem (GschemToplevel *w_current, const char *rcfile) {
+
+  int attempt;
+  int index;
+  int retry;
+
+  struct {
+    ConfigParseFunc;
+    const char *arg;
+  } rc_processors[] = {{ g_gafrc_parse_handler,   NULL      },
+                       { g_rcname_parse_handler, "gschemrc" },
+                       { g_rcfile_parse_handler,  rcfile    }};
+
+  for ( index = 0; index < G_N_ELEMENTS(rc_processors); index++)
+  {
+    retry   =  0;
+    attempt = -1;
+    do {
+      rc_processors[index].parser (w_current->toplevel,
+                                   rc_processors[index].arg,
+                                   x_rc_parse_gschem_error, &retry);
+      attempt++;
+    } while ( attempt < retry && attempt < MAX_RC_ATTEMPTS);
+  }
 }
+
+#undef ConfigParseFunc
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

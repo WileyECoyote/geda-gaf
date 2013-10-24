@@ -51,6 +51,7 @@
 #define EDAR_DEFAULT_JUNCTION_COLOR     "yellow"
 #define EDAR_DEFAULT_ENDPOINT_COLOR     "red"
 
+#define EDAR_DEFAULT_OVERRIDE_COLOR_INDEX 1
 
 
 enum {
@@ -678,6 +679,9 @@ eda_renderer_set_color (EdaRenderer *renderer, int color)
 {
   if (renderer->priv->override_color != -1) {
     color = renderer->priv->override_color;
+  }
+  if (color == -1) {
+    fprintf(stderr,"eda_renderer_set_color, calling eda_cairo_set_source_color, with color = %d\n", color);
   }
   eda_cairo_set_source_color (renderer->priv->cr, color,
                               renderer->priv->color_map);
@@ -1429,17 +1433,10 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, OBJECT *object)
     return;
   }
 
-  /* Check that color is enabled
-  if (!eda_renderer_is_drawable_color (renderer, EDAR_TEXT_MARKER_COLOR, FALSE))
-    return;
-  */
   /* If the text marker is too tiny, don't draw it. */
   cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
   if (marker_dist < 1) return;
-/*
-  eda_cairo_set_source_color (renderer->priv->cr, EDAR_TEXT_MARKER_COLOR,
-                              renderer->priv->color_map);
-*/
+
   gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
@@ -1743,6 +1740,7 @@ eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map)
   g_return_if_fail (EDA_IS_RENDERER (renderer));
   g_object_set (G_OBJECT (renderer), "color-map", map, NULL);
 }
+
 const char *eda_renderer_get_font_name(EdaRenderer *renderer)
 {
   return (renderer->priv->font_name);
@@ -1780,6 +1778,15 @@ int eda_renderer_get_cairo_flags (EdaRenderer *renderer)
   return EDA_RENDERER_CAIRO_FLAGS (renderer);
 }
 
+int eda_renderer_get_override_color_index (EdaRenderer *renderer)
+{
+  return renderer->priv->override_color;
+}
+void
+eda_renderer_set_override_color_index (EdaRenderer *renderer, int color_index)
+{
+  renderer->priv->override_color = color_index;
+}
 double eda_renderer_get_grips_size (EdaRenderer *renderer)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), -1);

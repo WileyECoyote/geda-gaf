@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*!
@@ -70,6 +71,16 @@ typedef struct
 /*------------------------------------------------------------------
  * GTK Toolbar includes: stuff for dealing with Toolbars.
  *------------------------------------------------------------------*/
+#define GEDA_TOOLBAR_BUTTON_ATK(bar, button, tip, action) \
+   { \
+     AtkObject *atk_obj = gtk_widget_get_accessible(button); \
+     char *str = g_strconcat("Geda-toolbar-", action, "-button", NULL); \
+     gtk_widget_set_name (button, str); \
+           str = g_strdelimit(str, "-", ' ' ); \
+     atk_object_set_name (atk_obj, _(str)); \
+     atk_object_set_description(atk_obj, tip); \
+     g_free(str); \
+   }
 
 #define GEDA_PACK_TOOLBOX( parent, bar) \
   gtk_box_pack_start (GTK_BOX (parent), bar, FALSE, FALSE, 0); \
@@ -95,11 +106,13 @@ typedef struct
 /*! \brief 1st LeveL Intermediate ToolBar Macro with Enumerated data */
 #define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, ENUM, icon, button, func, data) \
+        GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_WIDGET(name)) \
 }
 
 /*! \brief 1st LeveL Intermediate ToolBar Macro with *w_current data */
 #define TOOLBAR_BUTTON_DATA( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, GEDA, icon, button, func, data) \
+        GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_WIDGET(name)) \
 }
 
 /* --------------------------- 2nd Level -------------------------------- */
@@ -185,5 +198,14 @@ typedef struct
                                      GTK_WIDGET(icon), \
                                     (GtkSignalFunc) func, \
                                      data); \
-   g_object_set_data ((GObject*) var, "action", (void*)TB_WIDGET(name));
+   g_object_set_data ((GObject*) var, "action", (void*)TB_WIDGET(name)); \
+   { \
+     AtkObject *atk_obj = gtk_widget_get_accessible(var); \
+     char *str = g_strconcat("Geda-toolbar-button-", TB_WIDGET(name), "-mode", NULL); \
+     gtk_widget_set_name (var, str); \
+           str = g_strdelimit(str, "-", ' ' ); \
+     atk_object_set_name (atk_obj, _(str)); \
+     atk_object_set_description(atk_obj,_(TB_TOOLTIP (name))); \
+     g_free(str); \
+   }
 #endif

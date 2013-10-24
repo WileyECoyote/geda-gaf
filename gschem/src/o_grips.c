@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -58,13 +58,13 @@
  *  The list of selected object is covered : each object is tested with the
  *  appropriate function.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_world(GSCHEM_TOPLEVEL *w_current, int x, int y, int *whichone)
+OBJECT *o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT   *object=NULL;
@@ -79,14 +79,16 @@ OBJECT *o_grips_search_world(GSCHEM_TOPLEVEL *w_current, int x, int y, int *whic
   }
 
   /* size = GRIP_PIXEL_SIZE / 2; */
+  size = w_current->grip_pixel_size / 2;
+  w_size = WORLDabs (w_current, size );
 
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
   while (s_current != NULL) {
     object = (OBJECT *) s_current->data;
     if (object) {
       /* get the dynamic size of the grip */
-      size = o_grips_half_size(w_current, object);
-      w_size = WORLDabs (w_current, size );
+      //size = o_grips_half_size(w_current, object);
+      //w_size = WORLDabs (w_current, size );
       switch(object->type) {
         case(OBJ_ARC):
           /* check the grips of the arc object */
@@ -197,7 +199,7 @@ static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
  *  The <B>size</B> parameter is the width (and height) of the square
  *  representing a grip in world units.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Arc OBJECT to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -205,7 +207,7 @@ static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_arc_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+OBJECT *o_grips_search_arc_world(GschemToplevel *w_current, OBJECT *o_current,
                                  int x, int y, int size, int *whichone)
 {
   int centerx, centery, radius, start_angle, end_angle;
@@ -262,7 +264,7 @@ OBJECT *o_grips_search_arc_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  The <B>size</B> parameter is half the width (and half the height) of
  *  the square representing a grip in world units.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Box OBJECT to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -270,7 +272,7 @@ OBJECT *o_grips_search_arc_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_box_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+OBJECT *o_grips_search_box_world(GschemToplevel *w_current, OBJECT *o_current,
                                  int x, int y, int size, int *whichone)
 {
   /* inside upper left grip ? */
@@ -327,7 +329,7 @@ OBJECT *o_grips_search_box_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  The <B>size</B> parameter is half the width (and half the height) of the
  *  square representing a grip in world units.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Picture OBJECT to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -335,7 +337,7 @@ OBJECT *o_grips_search_box_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_path_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+OBJECT *o_grips_search_path_world(GschemToplevel *w_current, OBJECT *o_current,
                                      int x, int y, int size, int *whichone)
 {
   PATH_SECTION *section;
@@ -397,7 +399,7 @@ OBJECT *o_grips_search_path_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  The <B>size</B> parameter is half the width (and half the height) of the
  *  square representing a grip in world units.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Picture OBJECT to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -405,7 +407,7 @@ OBJECT *o_grips_search_path_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_picture_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+OBJECT *o_grips_search_picture_world(GschemToplevel *w_current, OBJECT *o_current,
                                      int x, int y, int size, int *whichone)
 {
   /* inside upper left grip ? */
@@ -460,7 +462,7 @@ OBJECT *o_grips_search_picture_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_curre
  *  is inscribed in. Moving this grip change the radius of the circle.
  *  The identifier of this grip is <B>CIRCLE_RADIUS</B>.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Circle OBJECT to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -468,7 +470,7 @@ OBJECT *o_grips_search_picture_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_curre
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_circle_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+OBJECT *o_grips_search_circle_world(GschemToplevel *w_current, OBJECT *o_current,
                                     int x, int y, int size, int *whichone)
 {
   /* check the grip for radius */
@@ -495,7 +497,7 @@ OBJECT *o_grips_search_circle_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_curren
  *
  *  The parameter <B>size</B> is half the size of the grip in world units.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Line OBJECT to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -503,7 +505,7 @@ OBJECT *o_grips_search_circle_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_curren
  *  \param [out] whichone   Which grip point is selected.
  *  \return Pointer to OBJECT the grip is on, NULL otherwise.
  */
-OBJECT *o_grips_search_line_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+OBJECT *o_grips_search_line_world(GschemToplevel *w_current, OBJECT *o_current,
                                   int x, int y, int size, int *whichone)
 {
   /* check the grip on the end of line 1 */
@@ -529,33 +531,33 @@ OBJECT *o_grips_search_line_world(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \par Function Description
  *  This function initializes the grip motion process for an arc.
  *  From the <B>o_current</B> pointed object, it stores into the
- *  GSCHEM_TOPLEVEL structure the coordinates of the center, the radius
+ *  GschemToplevel structure the coordinates of the center, the radius
  *  and the two angle that describes an arc. These variables are used in
  *  the grip process.
  *
  *  The coordinates of the center of the arc on x- and y-axis are stored
- *  into the <B>first_wx</B> and <B>first_wy</B> fields of the GSCHEM_TOPLEVEL
+ *  into the <B>first_wx</B> and <B>first_wy</B> fields of the GschemToplevel
  *  structure in screen units.
  *
  *  The radius of the center is stored into the <B>distance</B> field of
- *  the GSCHEM_TOPLEVEL structure in screen units.
+ *  the GschemToplevel structure in screen units.
  *
  *  The two angles describing the arc on a circle are stored into the
  *  <B>second_wx</B> for the starting angle and <B>second_wy</B> for the ending angle.
  *  These angles are expressed in degrees.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Arc OBJECT to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
  *  \param [out] whichone   (unused)
  */
-static void o_grips_start_arc(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_start_arc(GschemToplevel *w_current, OBJECT *o_current,
                               int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-  /* describe the arc with GSCHEM_TOPLEVEL variables */
+  /* describe the arc with GschemToplevel variables */
   /* center */
   w_current->first_wx  = o_current->arc->x;
   w_current->first_wy  = o_current->arc->y;
@@ -573,7 +575,7 @@ static void o_grips_start_arc(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
 /*! \brief Initialize grip motion process for a box.
  *  \par Function Description
  *  This function initializes the grip motion process for a box. From the
- *  <B>o_current</B> pointed object, it stores into the GSCHEM_TOPLEVEL
+ *  <B>o_current</B> pointed object, it stores into the GschemToplevel
  *  structure the .... These variables are used in the grip process.
  *
  *  The function first erases the grips.
@@ -585,13 +587,13 @@ static void o_grips_start_arc(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not suppose
  *  to change during the action.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Box OBJECT to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_box(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_start_box(GschemToplevel *w_current, OBJECT *o_current,
                               int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
@@ -636,7 +638,7 @@ static void o_grips_start_box(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \par Function Description
  *  This function initializes the grip motion process for a path.
  *  From the <B>o_current</B> pointed object, it stores into the
- *  GSCHEM_TOPLEVEL structure the ....
+ *  GschemToplevel structure the ....
  *  These variables are used in the grip process.
  *
  *  The function first erases the grips.
@@ -648,13 +650,13 @@ static void o_grips_start_box(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not
  *  suppose to change during the action.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Picture OBJECT to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_path(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_start_path(GschemToplevel *w_current, OBJECT *o_current,
                                int x, int y, int whichone)
 {
   PATH_SECTION *section;
@@ -706,7 +708,7 @@ static void o_grips_start_path(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \par Function Description
  *  This function initializes the grip motion process for a picture.
  *  From the <B>o_current</B> pointed object, it stores into the
- *  GSCHEM_TOPLEVEL structure the ....
+ *  GschemToplevel structure the ....
  *  These variables are used in the grip process.
  *
  *  The function first erases the grips.
@@ -718,13 +720,13 @@ static void o_grips_start_path(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not
  *  suppose to change during the action.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Picture OBJECT to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_start_picture(GschemToplevel *w_current, OBJECT *o_current,
                                   int x, int y, int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -775,7 +777,7 @@ static void o_grips_start_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \par Function Description
  *  This function initializes the grip motion process for a circle.
  *  From the <B>o_current</B> pointed object, it stores into the
- *  GSCHEM_TOPLEVEL structure the coordinate of the center and the radius.
+ *  GschemToplevel structure the coordinate of the center and the radius.
  *  These variables are used in the grip process.
  *
  *  The function first erases the grips.
@@ -786,19 +788,19 @@ static void o_grips_start_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *
  *  The radius of the circle is stored in <B>w_current->distance</B>.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Circle OBJECT to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_circle(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_start_circle(GschemToplevel *w_current, OBJECT *o_current,
                                  int x, int y, int whichone)
 {
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-  /* store circle center and radius in GSCHEM_TOPLEVEL structure */
+  /* store circle center and radius in GschemToplevel structure */
   w_current->first_wx = o_current->circle->center_x;
   w_current->first_wy = o_current->circle->center_y;
   w_current->distance = o_current->circle->radius;
@@ -819,18 +821,18 @@ static void o_grips_start_circle(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  The line end that corresponds to the moving grip is in
  *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Line OBJECT to check.
  *  \param [in]  x          (unused)
  *  \param [in]  y          (unused)
  *  \param [out] whichone   Which coordinate to check.
  */
-static void o_grips_start_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_start_line(GschemToplevel *w_current, OBJECT *o_current,
                                int x, int y, int whichone)
 {
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
 
-  /* describe the line with GSCHEM_TOPLEVEL variables */
+  /* describe the line with GschemToplevel variables */
   w_current->second_wx = o_current->line->x[whichone];
   w_current->second_wy = o_current->line->y[whichone];
   w_current->first_wx  = o_current->line->x[!whichone];
@@ -852,16 +854,16 @@ static void o_grips_start_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  have been found under (<B>w_x</B>,<B>w_y</B>). It returns <B>TRUE</B> if a grip
  *  has been found and modification of the object has been started.
  *
- *  If a grip has been found, this function modifies the GSCHEM_TOPLEVEL
+ *  If a grip has been found, this function modifies the GschemToplevel
  *  variables <B>which_grip</B> and <B>which_object</B> with the identifier
  *  of the grip and the object it belongs to respectively.
  *
- *  \param [in]  w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  w_x        Current x coordinate of pointer in world units.
  *  \param [in]  w_y        Current y coordinate of pointer in world units.
  *  \return FALSE if an error occurred or no grip was found, TRUE otherwise.
  */
-int o_grips_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+int o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   OBJECT *object;
   int whichone;
@@ -940,11 +942,11 @@ int o_grips_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  It erases the temporary object, updates its internal representation,
  *  and draws it again.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_grips_motion(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_grips_motion(GschemToplevel *w_current, int w_x, int w_y)
 {
   int grip = w_current->which_grip;
 
@@ -998,9 +1000,9 @@ void o_grips_motion(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  of an object with a grip. It's main utility is to reset the
  *  dont_redraw flag on the object which was being modified.
  *
- *  \param [in,out] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in,out] w_current  The GschemToplevel object.
  */
-void o_grips_cancel(GSCHEM_TOPLEVEL *w_current)
+void o_grips_cancel(GschemToplevel *w_current)
 {
   OBJECT *object = w_current->which_object;
 
@@ -1031,11 +1033,11 @@ void o_grips_cancel(GSCHEM_TOPLEVEL *w_current)
  *  angles describing the arc -, this angle is updated with the
  *  #o_arc_modify() function.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Arc OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_arc(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_arc(GschemToplevel *w_current, OBJECT *o_current,
                             int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1079,11 +1081,11 @@ static void o_grips_end_arc(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \brief End process of modifying box object with grip.
  *  \par Function Description
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Box OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_box(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_box(GschemToplevel *w_current, OBJECT *o_current,
                             int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1108,11 +1110,11 @@ static void o_grips_end_box(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \brief End process of modifying path object with grip.
  *  \par Function Description
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Picture OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_path(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_path(GschemToplevel *w_current, OBJECT *o_current,
                              int whichone)
 {
   o_path_modify (w_current->toplevel, o_current,
@@ -1123,11 +1125,11 @@ static void o_grips_end_path(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  \brief End process of modifying picture object with grip.
  *  \par Function Description
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Picture OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_picture(GschemToplevel *w_current, OBJECT *o_current,
                                 int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1162,11 +1164,11 @@ static void o_grips_end_picture(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *
  *  The last value of the radius is in <B>w_current->distance</B> in screen units.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Circle OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_circle(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_circle(GschemToplevel *w_current, OBJECT *o_current,
                                int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1196,11 +1198,11 @@ static void o_grips_end_circle(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  A line with a null width, i.e. when both ends are identical, is not
  *  allowed. In this case, the process is stopped and the line unchanged.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Line OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_line(GschemToplevel *w_current, OBJECT *o_current,
                              int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1233,11 +1235,11 @@ static void o_grips_end_line(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  A net with zero length, i.e. when both ends are identical, is not
  *  allowed. In this case, the process is stopped and the line unchanged.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Net OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_net(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_net(GschemToplevel *w_current, OBJECT *o_current,
                             int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1275,11 +1277,11 @@ static void o_grips_end_net(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  A pin with zero length, i.e. when both ends are identical, is not
  *  allowed. In this case, the process is stopped and the line unchanged.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Net OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_pin(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_pin(GschemToplevel *w_current, OBJECT *o_current,
                             int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1311,11 +1313,11 @@ static void o_grips_end_pin(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  A bus with zero length, i.e. when both ends are identical, is not
  *  allowed. In this case, the process is stopped and the bus unchanged.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  bus OBJECT to end modification on.
  *  \param [in] whichone   Which grip is pointed to.
  */
-static void o_grips_end_bus(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
+static void o_grips_end_bus(GschemToplevel *w_current, OBJECT *o_current,
                             int whichone)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -1350,9 +1352,9 @@ static void o_grips_end_bus(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current,
  *  the temporary object, updates the object and draws the modified object
  *  normally.
  *
- *  \param [in,out] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in,out] w_current  The GschemToplevel object.
  */
-void o_grips_end(GSCHEM_TOPLEVEL *w_current)
+void o_grips_end(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *object;
@@ -1443,10 +1445,10 @@ void o_grips_end(GSCHEM_TOPLEVEL *w_current)
  *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
  *  MAX_GRIP_PIXELS is returned.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \return Half grip size in screen units.
  */
-int o_grips_half_size(GSCHEM_TOPLEVEL *w_current,  OBJECT *object)
+int o_grips_half_size(GschemToplevel *w_current,  OBJECT *object)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int factor;
@@ -1455,7 +1457,7 @@ int o_grips_half_size(GSCHEM_TOPLEVEL *w_current,  OBJECT *object)
 
   if ( object == NULL)
   {
-    ret_size = MAX_GRIP_PIXELS / 2;
+    ret_size = w_current->grip_pixel_size / 2;//MAX_GRIP_PIXELS / 2;
   }
   else
   {
@@ -1497,14 +1499,14 @@ int o_grips_half_size(GSCHEM_TOPLEVEL *w_current,  OBJECT *object)
   return min(ret_size, MAX_GRIP_PIXELS/2);
 }
 
-/*! \brief Draw objects being grip maniuplated from GSCHEM_TOPLEVEL object.
+/*! \brief Draw objects being grip maniuplated from GschemToplevel object.
  *
  *  \par Function Description
  *  This function draws the objects being grip manipulated.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  */
-void o_grips_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_grips_draw_rubber (GschemToplevel *w_current)
 {
   g_return_if_fail (w_current->which_object != NULL);
 

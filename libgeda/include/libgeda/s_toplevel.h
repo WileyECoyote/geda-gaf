@@ -64,7 +64,6 @@ struct st_toplevel {
   int auto_save_timeout;
 
   /* BLOCK SET IN GSCHEM, BUT USED IN LIBGEDA - NEEDS A RETHINK */
-  int background_color;
   int override_net_color;
   int override_bus_color;
   int override_pin_color;
@@ -173,9 +172,9 @@ struct st_toplevel {
   /* Callback functions for object connections change notification */
   GList *conns_changed_hooks;
 
-  /* Callback function for deciding whether to load a backup file. */
+  /* Callback function to load a backup file. */
   LoadBackupQueryFunc load_newer_backup_func;
-  //GSCHEM_TOPLEVEL *load_newer_backup_data;
+  void *load_newer_backup_data;
 
   GList *weak_refs; /* Weak references */
 };

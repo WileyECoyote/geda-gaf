@@ -116,7 +116,7 @@ void s_log_init (const gchar *prefix)
     /* It's okay to use the logging functions from here, because
      * there's already a default handler. */
     g_warning ("Could not create log directory %s: %s\n",
-               dir_path, strerror (errno));
+               dir_path, g_strerror (errno));
     g_free (dir_path);
     g_free (full_prefix);
     return;
@@ -162,7 +162,7 @@ void s_log_init (const gchar *prefix)
                  dir_path);
     } else {
       g_warning ("Could not create log file in %s: %s\n",
-                 dir_path, strerror (errno));
+                 dir_path, g_strerror (errno));
     }
   }
 

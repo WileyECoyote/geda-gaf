@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -49,7 +50,7 @@
  *
  *  \todo get a better name
  */
-void o_attrib_add_selected(GSCHEM_TOPLEVEL *w_current, SELECTION *selection,
+void o_attrib_add_selected(GschemToplevel *w_current, SELECTION *selection,
                            OBJECT *selected)
 {
   OBJECT *a_current;
@@ -87,11 +88,11 @@ void o_attrib_add_selected(GSCHEM_TOPLEVEL *w_current, SELECTION *selection,
  *  from the selection list. If hidden text is being shown, this
  *  function returns immediately.
  *
- *  \param [in]     w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]     w_current  The GschemToplevel object.
  *  \param [in,out] selection  The SELECTION list to remove from.
  *  \param [in]     object     The OBJECT whose invisible attributes to remove.
  */
-void o_attrib_deselect_invisible (GSCHEM_TOPLEVEL *w_current,
+void o_attrib_deselect_invisible (GschemToplevel *w_current,
                                   SELECTION *selection,
                                   OBJECT *selected)
 {
@@ -124,11 +125,11 @@ void o_attrib_deselect_invisible (GSCHEM_TOPLEVEL *w_current,
  *  to the selection list. If hidden text is being shown, this
  *  function returns immediately.
  *
- *  \param [in]     w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in]     w_current  The GschemToplevel object.
  *  \param [in,out] selection  The SELECTION list to add to.
  *  \param [in]     object     The OBJECT whose invisible attributes to add.
  */
-void o_attrib_select_invisible (GSCHEM_TOPLEVEL *w_current,
+void o_attrib_select_invisible (GschemToplevel *w_current,
                                   SELECTION *selection,
                                   OBJECT *selected)
 {
@@ -160,10 +161,10 @@ void o_attrib_select_invisible (GSCHEM_TOPLEVEL *w_current,
  *  object and updates it. The object is erased or redrawn if
  *  necessary.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] object     The attribute object.
  */
-void o_attrib_toggle_visibility(GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+void o_attrib_toggle_visibility(GschemToplevel *w_current, OBJECT *object)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 
@@ -202,11 +203,11 @@ void o_attrib_toggle_visibility(GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  attribute is shown by its attribute object. The attribute object
  *  is erased, updated and finally redrawn.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] object     The attribute object.
  *  \param [in] show_name_value  The new display flag for attribute.
  */
-void o_attrib_toggle_show_name_value(GSCHEM_TOPLEVEL *w_current,
+void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
                                      OBJECT *object, int show_name_value)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -224,10 +225,9 @@ void o_attrib_toggle_show_name_value(GSCHEM_TOPLEVEL *w_current,
  *  \brief
  *  \par Function Description
  *
- */
-/* This function no longer returns NULL, but will always return the new */
-/* text item */
-OBJECT *o_attrib_add_attrib(GSCHEM_TOPLEVEL *w_current,
+ * \note This function no longer returns NULL, instead the new object,
+ * aka text item, is always return */
+OBJECT *o_attrib_add_attrib(GschemToplevel *w_current,
                             const char *text_string, int visibility,
                             int show_name_value, OBJECT *object)
 {

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -64,9 +64,19 @@ extern int errno;
  */
 const char *get_filename_ext(const char *filename) {
     const char *dot = strrchr(filename, '.');
-    if(!dot || dot == filename) return "";
+    if(!dot || dot == filename) return NULL;
     return dot + 1;
 }
+
+const char *geda_basename(const char *path)
+{
+  if (path) {
+    char *base = strrchr(path, G_DIR_SEPARATOR);
+    return base ? base+1 : path;
+  }
+  return NULL;
+}
+
 /* warning: MUST not be const char */
 void remove_ext_from_basename(char *filename) {
 
@@ -101,7 +111,7 @@ int fcopy(const char *source, const char *target)
   char *ptr_out;
 
   int error_exit( int TheError ) {
-    s_log_message(_("File error: \"%s\", %s\n"), source, strerror(TheError));
+    s_log_message(_("File error: \"%s\", %s\n"), source, g_strerror(TheError));
     if (buffer > 0) free(buffer);
     if (input >= 0) close(input);
     if (output >= 0) close(output);
@@ -118,13 +128,13 @@ int fcopy(const char *source, const char *target)
 
   /* Check to see if inpit is readable */
   if(access(source, R_OK) != 0) {
-    s_log_message(_("File error(fcopy[source]): \"%s\", %s\n"), source, strerror( errno ));
+    s_log_message(_("File error(fcopy[source]): \"%s\", %s\n"), source, g_strerror( errno ));
     return -1;
   }
 
   input = open(source, O_RDONLY);
   if (input < 0) {
-    s_log_message(_("File error(fcopy)[source]: \"%s\", %s\n"), source, strerror( errno ));
+    s_log_message(_("File error(fcopy)[source]: \"%s\", %s\n"), source, g_strerror( errno ));
     return -1;
   }
 
@@ -132,11 +142,11 @@ int fcopy(const char *source, const char *target)
   if (input > 0)
     if (lockf(input, F_LOCK, 0) == -1) {
       return -1; /* FAILURE */
-      s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, strerror( errno ));
+      s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, g_strerror( errno ));
     }
     /* else he input is locked */
   else {
-    s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, strerror( errno ));
+    s_log_message(_("File lock error(fcopy): \"%s\", %s\n"), source, g_strerror( errno ));
     return -1; /* FAILURE */
   }
 #endif

@@ -52,17 +52,41 @@
 
 #define DEFAULT_COLOR_INDEX             GRAPHIC_COLOR
 
-#define RGB_NOCOLOR	{0xff, 0xff, 0xff, 0xff, FALSE}
-#define RGB_BLACK	{0x00, 0x00, 0x00, 0xff, TRUE}
-#define RGB_BLUE	{0x00, 0x00, 0xff, 0xff, TRUE}
-#define RGB_CYAN	{0x00, 0xff, 0xff, 0xff, TRUE} /* aqua */
-#define RGB_GRAY	{0x88, 0x88, 0x88, 0xff, TRUE}
-#define RGB_GREY	{0x88, 0x88, 0x88, 0xff, TRUE}
-#define RGB_GREEN	{0x00, 0xff, 0x00, 0xff, TRUE}
-#define RGB_MAGENTA	{0xff, 0x00, 0xff, 0xff, TRUE} /* fuchsia */
-#define RGB_ORANGE	{0xff, 0xa5, 0xff, 0xff, TRUE}
-#define RGB_RED 	{0xff, 0x00, 0x00, 0xff, TRUE}
-#define RGB_YELLOW	{0xff, 0xff, 0x00, 0xff, TRUE}
-#define RGB_WHITE	{0xff, 0xff, 0xff, 0xff, TRUE}
-#define RGB_ENDMAP	{0x00, 0x00, 0x00, 0x00, FALSE}
+#define DEFAULT_ARC_COLOR_INDEX         GRAPHIC_COLOR
+#define DEFAULT_BOX_COLOR_INDEX         GRAPHIC_COLOR
+#define DEFAULT_BUS_COLOR_INDEX         BUS_COLOR
+#define DEFAULT_CIRCLE_COLOR_INDEX      GRAPHIC_COLOR
+#define DEFAULT_COMPLEX_COLOR_INDEX     GRAPHIC_COLOR
+#define DEFAULT_LINE_COLOR_INDEX        GRAPHIC_COLOR
+#define DEFAULT_NET_COLOR_INDEX         NET_COLOR
+#define DEFAULT_PATH_COLOR_INDEX        GRAPHIC_COLOR
+#define DEFAULT_PICTURE_COLOR_INDEX     GRAPHIC_COLOR
+#define DEFAULT_PIN_COLOR_INDEX         PIN_COLOR
+#define DEFAULT_TEXT_COLOR_INDEX        TEXT_COLOR
+
+#define COMPLEX_COLOR_INDEX  { OBJ_COMPLEX, DEFAULT_COMPLEX_COLOR_INDEX }
+#define NET_COLOR_INDEX      { OBJ_NET,     DEFAULT_NET_COLOR_INDEX     }
+#define TEXT_COLOR_INDEX     { OBJ_TEXT,    DEFAULT_TEXT_COLOR_INDEX    }
+#define PIN_COLOR_INDEX      { OBJ_PIN,     DEFAULT_PIN_COLOR_INDEX     }
+#define LINE_COLOR_INDEX     { OBJ_LINE,    DEFAULT_LINE_COLOR_INDEX    }
+#define CIRCLE_COLOR_INDEX   { OBJ_CIRCLE,  DEFAULT_CIRCLE_COLOR_INDEX  }
+#define BUS_COLOR_INDEX      { OBJ_BUS,     DEFAULT_BUS_COLOR_INDEX     }
+#define ARC_COLOR_INDEX      { OBJ_BUS,     DEFAULT_BUS_COLOR_INDEX     }
+#define BOX_COLOR_INDEX      { OBJ_BOX,     DEFAULT_BOX_COLOR_INDEX     }
+#define PICTURE_COLOR_INDEX  { OBJ_PICTURE, DEFAULT_PICTURE_COLOR_INDEX }
+#define PATH_COLOR_INDEX     { OBJ_PATH,    DEFAULT_PATH_COLOR_INDEX    }
+
+#define RGB_NOCOLOR   {0xff, 0xff, 0xff, 0xff, FALSE}
+#define RGB_BLACK     {0x00, 0x00, 0x00, 0xff, TRUE}
+#define RGB_BLUE      {0x00, 0x00, 0xff, 0xff, TRUE}
+#define RGB_CYAN      {0x00, 0xff, 0xff, 0xff, TRUE} /* aqua */
+#define RGB_GRAY      {0x88, 0x88, 0x88, 0xff, TRUE}
+#define RGB_GREY      {0x88, 0x88, 0x88, 0xff, TRUE}
+#define RGB_GREEN     {0x00, 0xff, 0x00, 0xff, TRUE}
+#define RGB_MAGENTA   {0xff, 0x00, 0xff, 0xff, TRUE} /* fuchsia */
+#define RGB_ORANGE    {0xff, 0xa5, 0xff, 0xff, TRUE}
+#define RGB_RED       {0xff, 0x00, 0x00, 0xff, TRUE}
+#define RGB_YELLOW    {0xff, 0xff, 0x00, 0xff, TRUE}
+#define RGB_WHITE     {0xff, 0xff, 0xff, 0xff, TRUE}
+#define RGB_ENDMAP    {0x00, 0x00, 0x00, 0x00, FALSE}
 #endif

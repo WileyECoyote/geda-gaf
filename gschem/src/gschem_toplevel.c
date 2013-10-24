@@ -28,11 +28,11 @@
  *  be over-written by with the default values found in i_var.s, or the
  *  user settings.
  */
-GSCHEM_TOPLEVEL *gschem_toplevel_new ()
+GschemToplevel *gschem_toplevel_new ()
 {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
 
-  w_current = g_new0 (GSCHEM_TOPLEVEL, 1);
+  w_current = g_new0 (GschemToplevel, 1);
 
   w_current->toplevel           = NULL;
 
@@ -43,8 +43,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
 
   w_current->h_scrollbar        = NULL;
   w_current->v_scrollbar        = NULL;
-  w_current->h_adjustment       = NULL;
-  w_current->v_adjustment       = NULL;
+
   w_current->left_label         = NULL;
   w_current->middle_label       = NULL;
   w_current->right_label        = NULL;
@@ -52,7 +51,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->status_label       = NULL;
 
   w_current->keyaccel_string    = NULL;
-  w_current->keyaccel_string_source_id = FALSE;
+  w_current->keyaccel_ssid      = FALSE;
 
   /*  -------------------  Dialog boxes  ------------------- */
   w_current->sswindow           = NULL;
@@ -71,8 +70,8 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
 
   w_current->hkwindow           = NULL;
   w_current->cowindow           = NULL;
-  w_current->coord_world        = NULL;
-  w_current->coord_screen       = NULL;
+  w_current->world_entry        = NULL;
+  w_current->screen_entry       = NULL;
   w_current->tiwindow           = NULL;
 
   w_current->aewindow           = NULL;
@@ -95,7 +94,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->window             = NULL;
   w_current->drawable           = NULL;
   w_current->cr                 = NULL;
-  w_current->pl                 = NULL;
+
   w_current->win_width          = 0;
   w_current->win_height         = 0;
 
@@ -121,28 +120,37 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->stretch_list = NULL;
 
   /* ---------------- Gschem internal state ---------------- */
-  w_current->num_untitled                 = 0;
-  w_current->event_state                  = SELECT;
-  w_current->force_save_as                = FALSE;
-  w_current->image_width                  = 0;
-  w_current->image_height                 = 0;
-  w_current->min_zoom                     = 0;
-  w_current->max_zoom                     = 8;
-  w_current->net_selection_state          = 0;
-  w_current->text_alignment               = 0;
-  w_current->drawbounding_action_mode     = FREE;
-  w_current->last_drawb_mode              = LAST_DRAWB_MODE_NONE;
+
+  /* Buffer Related */
+  w_current->buffer_number                = 0;
+  w_current->clipboard_buffer             = NULL;
+
+  /* Drag&Drop */
+  w_current->drag_event                   = NULL;
+  w_current->dnd_state                    = 0;
+  w_current->dnd_save_state               = 0;
+  w_current->drag_action                  = GDK_ACTION_COPY;
+
+  /* Key States */
   w_current->CONTROLKEY                   = 0;
   w_current->SHIFTKEY                     = 0;
   w_current->ALTKEY                       = 0;
+
+  /* Misc status flags and limits */
+  w_current->drawbounding_action_mode     = FREE;
   w_current->doing_pan                    = 0;
-  w_current->buffer_number                = 0;
-  w_current->clipboard_buffer             = NULL;
+  w_current->event_state                  = SELECT;
+  w_current->force_save_as                = FALSE;
+  w_current->inside_redraw                = 0;
+  w_current->last_drawb_mode              = LAST_DRAWB_MODE_NONE;
+  w_current->min_zoom                     = 0;
+  w_current->max_zoom                     = 8;
+  w_current->num_untitled                 = 0;
 
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */
-    w_current->renderer->draw_grips         = TRUE;
+    w_current->renderer->draw_grips       = TRUE;
 
   /* Grid Related - Display=>Grid */
     w_current->grid_mode                  = GRID_MESH;
@@ -159,6 +167,11 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
     w_current->warp_cursor                = 0;
     w_current->zoom_gain                  = DEFAULT_ZOOM_GAIN;
     w_current->zoom_with_pan              = 0;
+
+  /* Imaging Related */
+  w_current->image_width                = 0;
+  w_current->image_height               = 0;
+  w_current->background_color           = 0;
 
   /*    Log Related    */
   logging                               = 0;
@@ -192,6 +205,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->net_endpoint_mode          = FILLED_BOX;
   w_current->net_midpoint_mode          = FILLED_BOX;
   w_current->net_selection_mode         = NET_SELECT_NET;
+  w_current->net_selection_state        = 0; /* internal, not RC */
 
   /* Ripper Related - Nets and Routing=>Ripper */
     w_current->bus_ripper_rotation      = 0;
@@ -203,6 +217,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->print_command = NULL;
 
   /* Text Related */
+  w_current->text_alignment               = 0;
   w_current->text_case                    = BOTH_CASES;
   w_current->text_display_zoomfactor      = DEFAULT_TEXT_ZOOM;
   w_current->text_feedback                = ONLY_WHEN_READABLE;
@@ -214,7 +229,7 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
   w_current->undo_control               = 0;
   w_current->undo_levels                = 0;
   w_current->undo_type                  = 0;
-  w_current->undo_panzoom               = 0;
+  w_current->undo_panzoom               = FALSE;
 
   w_current->smob                       = SCM_UNDEFINED;
 
@@ -224,12 +239,12 @@ GSCHEM_TOPLEVEL *gschem_toplevel_new ()
 /*! \brief Free the gschem toplevel
  *  \par Function Description
  *  This function release the memory allocated to the given
- *  GSCHEM_TOPLEVEL data structure.
+ *  GschemToplevel data structure.
  *
  *  \param [in] w_current The gschem toplevel
  */
 void
-gschem_toplevel_free (GSCHEM_TOPLEVEL *w_current)
+gschem_toplevel_free (GschemToplevel *w_current)
 {
   if (w_current->renderer != NULL) {
     g_object_unref (w_current->renderer);

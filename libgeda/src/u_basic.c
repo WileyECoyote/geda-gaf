@@ -226,7 +226,7 @@ char *strstr_rep(char *original, const char *old, const char *new)
  *
  *  \retval TRUE if strings are equivalent, otherwise FALSE.
  */
-int stricmp(char *str1, char *str2)
+int stricmp(const char *str1, const char *str2)
 {
   while (( toupper(*str1) == toupper(*str2)) && (*str1))
   {
@@ -250,7 +250,7 @@ int stricmp(char *str1, char *str2)
  *  first mis-match is because str2 is greater, or 1 if the
  *  first mis-match is because str1 is greater.
  */
-int strncmpi(char *str1, char *str2, int n)
+int strncmpi(const char *str1, const char *str2, int n)
 {
   int i = 0;
   while (( toupper(*str1) == toupper(*str2)) && i < n)
@@ -288,9 +288,9 @@ int strncmpi(char *str1, char *str2, int n)
  *  \retval char* to the first occurance of str2 in str2 or
  *  NULL if str2 is not contained in str1.
  */
-char *stristr(char *str1, char *str2)
+const char *stristr(const char *str1, const char *str2)
 {
-  char *ptr;
+  const char *ptr;
 
   /* if 2 is longer than 1, 2 can not be IN 1 */
   if (strlen(str2) > strlen(str1)) return NULL;
@@ -394,7 +394,7 @@ char *strisubst(char *source, char *old_str, char *new_str)
     memset(temp, 0, size); /* initialize new memory */
 
       /* Get pointer to the old string */
-    if (!(ptr1 = stristr(source, old_str))) return NULL;
+    if (!(ptr1 = (char*)stristr(source, old_str))) return NULL;
 
       /* get pointer to the end of the old string in the source */
     ptr2 = ptr1 + length; /* pointing to the old last char */

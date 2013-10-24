@@ -32,14 +32,14 @@
  *  \par Function Description
  *
  */
-void o_move_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *s_iter;
 
   g_return_if_fail (w_current->stretch_list == NULL);
 
-  if (o_select_selected (w_current)) {
+  if (o_select_is_selection (w_current)) {
 
     /* Save the current state. When rotating the selection when moving,
        we have to come back to here */
@@ -50,8 +50,7 @@ void o_move_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
     w_current->first_wx = w_current->second_wx = w_x;
     w_current->first_wy = w_current->second_wy = w_y;
 
-    o_invalidate_glist (w_current,
-       geda_list_get_glist (toplevel->page_current->selection_list));
+    o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
 
     if (w_current->netconn_rubberband) {
       o_move_prep_rubberband(w_current);
@@ -59,8 +58,8 @@ void o_move_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
       /* Set the dont_redraw flag on rubberbanded objects and invalidate them.
        * This ensures that they are not drawn (in their un-stretched position)
        * during screen updates. */
-      for (s_iter = w_current->stretch_list;
-           s_iter != NULL; s_iter = g_list_next (s_iter)) {
+      for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
+      {
         STRETCH *stretch = s_iter->data;
         stretch->object->dont_redraw = TRUE;
         o_invalidate (w_current, stretch->object);
@@ -79,28 +78,7 @@ void o_move_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-static void o_move_end_lowlevel_glist (GSCHEM_TOPLEVEL *w_current,
-                                       GList *list,
-                                       int diff_x, int diff_y)
-{
-  OBJECT *object;
-  GList *iter;
-
-  iter = list;
-  while (iter != NULL) {
-    object = (OBJECT *)iter->data;
-    o_move_end_lowlevel (w_current, object, diff_x, diff_y);
-    iter = g_list_next (iter);
-  }
-}
-
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void o_move_end_lowlevel (GSCHEM_TOPLEVEL *w_current,
+void o_move_end_lowlevel (GschemToplevel *w_current,
                          OBJECT *object,
                          int diff_x, int diff_y)
 {
@@ -112,7 +90,7 @@ void o_move_end_lowlevel (GSCHEM_TOPLEVEL *w_current,
     case (OBJ_BUS):
     case (OBJ_PIN):
       s_conn_remove_object (toplevel, object);
-      o_translate_world (toplevel, diff_x, diff_y, object);
+      o_translate_world    (toplevel, diff_x, diff_y, object);
       s_conn_update_object (toplevel, object);
       break;
 
@@ -122,19 +100,21 @@ void o_move_end_lowlevel (GSCHEM_TOPLEVEL *w_current,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Finalize Move Operation
  *  \par Function Description
  *
  */
-void o_move_end(GSCHEM_TOPLEVEL *w_current)
+void o_move_end(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  GList *s_current = NULL;
+
   OBJECT *object;
+  OBJECT *sub_object;
+  GList  *selection_list = NULL;
+  GList  *rubbernet_objects = NULL;
+  GList  *iter;
+
   int diff_x, diff_y;
-  GList *s_iter;
-  GList *rubbernet_objects = NULL;
 
   object = o_select_return_first_object(w_current);
 
@@ -157,38 +137,37 @@ void o_move_end(GSCHEM_TOPLEVEL *w_current)
 
   /* Unset the dont_redraw flag on rubberbanded objects.
    * We set this above, in o_move_start(). */
-  for (s_iter = w_current->stretch_list;
-       s_iter != NULL; s_iter = g_list_next (s_iter)) {
-    STRETCH *stretch = s_iter->data;
+  for (iter = w_current->stretch_list; iter != NULL; NEXT(iter)) {
+    STRETCH *stretch = iter->data;
     stretch->object->dont_redraw = FALSE;
   }
 
-  s_current = geda_list_get_glist( toplevel->page_current->selection_list );
+  selection_list = Current_Selection->glist;
 
-  while (s_current != NULL) {
+  while (selection_list != NULL) {
 
-    object = (OBJECT *) s_current->data;
+    object = (OBJECT *) selection_list->data;
 
     if (object == NULL) {
       fprintf(stderr, _("ERROR: NULL object in o_move_end!\n"));
       return;
     }
 
-
     switch (object->type) {
       case (OBJ_COMPLEX):
       case (OBJ_PLACEHOLDER):
-
-        /* TODO: Fix so we can just pass the complex to o_move_end_lowlevel,
-         * IE.. by falling through the bottom of this case statement. */
 
         /* this next section of code is from */
         /* o_complex_world_translate_world */
         object->complex->x = object->complex->x + diff_x;
         object->complex->y = object->complex->y + diff_y;
 
-        o_move_end_lowlevel_glist (w_current, object->complex->prim_objs,
-                                   diff_x, diff_y);
+        iter = g_list_first( object->complex->prim_objs);
+        while (iter != NULL) {
+          sub_object = (OBJECT *)iter->data;
+          o_move_end_lowlevel (w_current, sub_object, diff_x, diff_y);
+          NEXT(iter);
+        }
 
         object->w_bounds_valid_for = NULL;
 
@@ -198,25 +177,23 @@ void o_move_end(GSCHEM_TOPLEVEL *w_current)
         o_move_end_lowlevel (w_current, object, diff_x, diff_y);
         break;
     }
-
-    s_current = g_list_next(s_current);
+    NEXT(selection_list);
   }
 
   /* Remove the undo saved in o_move_start */
   o_undo_remove_last_undo(w_current);
 
   /* Draw the objects that were moved */
-  o_invalidate_glist (w_current,
-    geda_list_get_glist (toplevel->page_current->selection_list));
+  o_invalidate_glist (w_current, geda_list_get_glist (Top_Selection));
 
   /* Draw the connected nets/buses that were also changed */
   o_invalidate_glist (w_current, rubbernet_objects);
 
   /* Call move-objects-hook for moved objects and changed connected
    * nets/buses */
-  GList *moved_list = g_list_concat (toplevel->page_current->place_list,
+  GList *moved_list = g_list_concat (Place_List,
                                      rubbernet_objects);
-  toplevel->page_current->place_list = NULL;
+  Place_List = NULL;
   rubbernet_objects = NULL;
   g_run_hook_object_list (w_current, "%move-objects-hook", moved_list);
   g_list_free (moved_list);
@@ -234,20 +211,21 @@ void o_move_end(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void o_move_cancel (GSCHEM_TOPLEVEL *w_current)
+void o_move_cancel (GschemToplevel *w_current)
 {
   GList *s_iter;
 
   /* Unset the dont_redraw flag on rubberbanded objects.
    * We set this above, in o_move_start(). */
-  for (s_iter = w_current->stretch_list;
-       s_iter != NULL; s_iter = g_list_next (s_iter)) {
+  for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
+  {
     STRETCH *stretch = s_iter->data;
     stretch->object->dont_redraw = FALSE;
   }
-  g_list_free(w_current->toplevel->page_current->place_list);
-  w_current->toplevel->page_current->place_list = NULL;
-
+  //g_list_free(w_current->Place_List);
+  //w_current->Place_List = NULL;
+  s_place_free_place_list(w_current->toplevel);
+ 
   s_stretch_destroy_all (w_current->stretch_list);
   w_current->stretch_list = NULL;
 
@@ -263,7 +241,7 @@ void o_move_cancel (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void o_move_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *selection, *s_current;
@@ -271,7 +249,7 @@ void o_move_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   int object_x, object_y;
   bool resnap = FALSE;
 
-  selection = geda_list_get_glist( toplevel->page_current->selection_list );
+  selection = geda_list_get_glist( Top_Selection );
 
   /* realign the object if we are in resnap mode */
   if (selection != NULL
@@ -279,9 +257,7 @@ void o_move_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
 
     if (g_list_length(selection) > 1) {
       /* find an object that is not attached to any other object */
-      for (s_current = selection;
-           s_current != NULL;
-           s_current = g_list_next(s_current)) {
+      for (s_current = selection; s_current != NULL; NEXT(s_current)) {
         if (((OBJECT *) s_current->data)->attached_to == NULL) {
           object = (OBJECT *) s_current->data;
           resnap = TRUE;
@@ -292,9 +268,8 @@ void o_move_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
       /* Only resnap single elements. This is also the case if
          the selection contains one object and all other object
          elements are attributes of the object element.*/
-      for (s_current = selection;
-           s_current != NULL && resnap == TRUE;
-           s_current = g_list_next(s_current)) {
+      for (s_current = selection; s_current != NULL && resnap == TRUE; NEXT(s_current))
+      {
         if (!(object == (OBJECT *) s_current->data)
             && !o_attrib_is_attached(toplevel,
                                      (OBJECT *) s_current->data, object)) {
@@ -328,7 +303,7 @@ void o_move_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void o_move_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
+void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
   GList *s_iter;
   int dx1, dx2, dy1, dy2;
@@ -337,8 +312,8 @@ void o_move_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
   o_place_invalidate_rubber (w_current, drawing);
   if (w_current->netconn_rubberband) {
 
-    for (s_iter = w_current->stretch_list;
-         s_iter != NULL; s_iter = g_list_next (s_iter)) {
+    for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
+    {
       STRETCH *s_current = s_iter->data;
       OBJECT *object = s_current->object;
 
@@ -373,7 +348,7 @@ void o_move_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
  *
  */
 void
-o_move_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
+o_move_draw_rubber (GschemToplevel *w_current, int drawing)
 {
   GList *s_iter;
   int diff_x, diff_y;
@@ -386,8 +361,8 @@ o_move_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
   diff_x = w_current->second_wx - w_current->first_wx;
   diff_y = w_current->second_wy - w_current->first_wy;
 
-  for (s_iter = w_current->stretch_list;
-       s_iter != NULL; s_iter = g_list_next (s_iter)) {
+  for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
+  {
     STRETCH *s_current = s_iter->data;
     OBJECT *object = s_current->object;
     int whichone = s_current->whichone;
@@ -442,7 +417,7 @@ int o_move_return_whichone(OBJECT * object, int x, int y)
  *  \par Function Description
  *
  */
-void o_move_check_endpoint(GSCHEM_TOPLEVEL *w_current, OBJECT * object)
+void o_move_check_endpoint(GschemToplevel *w_current, OBJECT * object)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *cl_current;
@@ -460,10 +435,8 @@ void o_move_check_endpoint(GSCHEM_TOPLEVEL *w_current, OBJECT * object)
     return;
   }
 
-  for (cl_current = object->conn_list;
-       cl_current != NULL;
-       cl_current = g_list_next(cl_current)) {
-
+  for (cl_current = object->conn_list; cl_current != NULL; NEXT(cl_current))
+  {
     c_current = (CONN *) cl_current->data;
     other = c_current->other_object;
 
@@ -533,7 +506,7 @@ void o_move_check_endpoint(GSCHEM_TOPLEVEL *w_current, OBJECT * object)
  *  \par Function Description
  *
  */
-void o_move_prep_rubberband(GSCHEM_TOPLEVEL *w_current)
+void o_move_prep_rubberband(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *s_current;
@@ -541,8 +514,8 @@ void o_move_prep_rubberband(GSCHEM_TOPLEVEL *w_current)
   OBJECT *o_current;
   GList *iter;
 
-  for (s_current = geda_list_get_glist (toplevel->page_current->selection_list);
-       s_current != NULL; s_current = g_list_next (s_current)) {
+  for (s_current = geda_list_get_glist (Top_Selection);
+       s_current != NULL; NEXT(s_current)) {
     object = s_current->data;
 
     if (object == NULL)
@@ -557,8 +530,8 @@ void o_move_prep_rubberband(GSCHEM_TOPLEVEL *w_current)
 
       case (OBJ_COMPLEX):
       case (OBJ_PLACEHOLDER):
-        for (iter = object->complex->prim_objs;
-             iter != NULL; iter = g_list_next (iter)) {
+        for (iter = object->complex->prim_objs; iter != NULL; NEXT(iter))
+        {
           o_current = iter->data;
 
           if (o_current->type == OBJ_PIN) {
@@ -596,21 +569,21 @@ int o_move_zero_length(OBJECT * object)
  *  \par Function Description
  *
  */
-void o_move_end_rubberband (GSCHEM_TOPLEVEL *w_current,
+void o_move_end_rubberband (GschemToplevel *w_current,
                             int w_dx, int w_dy,
                             GList** objects)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *s_iter, *s_iter_next;
 
-  for (s_iter = w_current->stretch_list;
-       s_iter != NULL; s_iter = s_iter_next) {
+  for (s_iter = w_current->stretch_list; s_iter != NULL; s_iter = s_iter_next)
+  {
     STRETCH *s_current = s_iter->data;
     OBJECT *object = s_current->object;
     int whichone = s_current->whichone;
 
     /* Store this now, since we may delete the current item */
-    s_iter_next = g_list_next (s_iter);
+    s_iter_next = s_iter->next;
 
     if (object->type == OBJ_NET ||
         object->type == OBJ_BUS) {

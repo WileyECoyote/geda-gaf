@@ -16,11 +16,15 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #ifndef H_GSCHEM_GLOBALS_H
 #define H_GSCHEM_GLOBALS_H
+
+/* Our Process ID */
+extern int prog_pid;
 
 /* window list */
 extern GList *global_window_list;
@@ -41,16 +45,16 @@ extern int verbose_mode;
 
 
 /* Log Related */
-extern volatile int logging;           /* controls if whether logging is enabled or not */
-extern volatile int log_destiny;       /* controls where the log system writes data */
-extern volatile int console_window;
-extern volatile int console_window_type;
+extern volatile int logging;             /* controls if whether logging is enabled or not */
+extern volatile int log_destiny;         /* controls where the log system writes data  */
+extern volatile int console_window;      /* maybe should be widget pointer, if enabled */
+extern volatile int console_window_type; /* controls if console dialog is decorated */
 
 #define command_history 22
-#define MAX_BUFFERS 	7
-#define DND_BUFFER   MAX_BUFFERS - 1
 
-/* Global buffers */
+/* Global buffers - see file globals.c*/
+#define MAX_BUFFERS      7
+#define DND_BUFFER   MAX_BUFFERS - 1
 extern GList *object_buffer[MAX_BUFFERS];
 
 /* Hooks */
@@ -85,41 +89,99 @@ extern SCM complex_place_list_changed_hook;
 
 typedef enum  { Image_Display, Image_All,} ImageExtent;
 
+/*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
+ *  \par Description
+ *  The ToolBar module maintains lists of GtkToolBarItems groups. These
+ *  enumerators refer to groups associated with the active state and can
+ *  be passed to x_toolbars_set_sensitivities to enable or disable the
+ *  items.
+ */
 typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OBJECTS,
                SOME_OBJECTS, TEXT_OBJECTS
-} ID_SENITIVITY_MODE;
+} EID_SENITIVITY_MODE;
 
+/*! \brief Enumerated Action Origin - EID_ACTION_ORIGIN
+ *  \par Description
+ *  All modules passing actions to i_command_process use these to
+ * indicate how the action was initiated. The command processor will
+ * automatically capture positional information for actions originating
+ * from ID_ORIGIN_KEYBOARD or ID_ORIGIN_MOUSE. Action handlers can use
+ * the macro CMD_WHO to get this value. (see do_zoom_in or do_add_attribute
+ * for examples of action handlers that utilize EID_ACTION_ORIGIN.)
+ */
 typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_TOOLBAR,  /* -31     can't pass paramerter */
                ID_ORIGIN_KEYBOARD, /* -30     can't pass paramerter */
-               ID_ORIGIN_MOUSE,    /* -29     can't pass paramerter */
-               ID_ORIGIN_SCM,      /* -28     could pass paramerter */
-               ID_ORIGIN_STROKE,   /* -27     could pass paramerter */
-               ID_ORIGIN_CONSOLE,  /* -26     could pass paramerter */
-               ID_ORIGIN_CAMMAND,  /* -25     could pass paramerter */
-} ID_ACTION_ORIGIN;
+ /* popup */   ID_ORIGIN_MOUSE,    /* -29     can't pass paramerter */
+ /* clicked */ ID_ORIGIN_EVENT,    /* -28     can't pass paramerter */
+               ID_ORIGIN_SCM,      /* -27     could pass paramerter */
+               ID_ORIGIN_STROKE,   /* -26     could pass paramerter */
+               ID_ORIGIN_CONSOLE,  /* -25     could pass paramerter */
+               ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
+} EID_ACTION_ORIGIN;
 
 /* These macros are used to help reduce lines lengths */
+#define Current_Page      w_current->toplevel->page_current
 #define Current_Selection w_current->toplevel->page_current->selection_list
-#define Top_Selection toplevel->page_current->selection_list
 
 /* Utility Macros for Message Dialogs */
 #define message_dialog(text, type) \
         gschem_message_dialog(text, type, NULL);
+
 #define titled_message_dialog(text, type, title) \
         gschem_message_dialog(text, type, title);
-#define information_dialog(text) \
-        message_dialog(text, GEDA_MESSAGE_INFO)
-#define titled_information_dialog(text, title) \
-        titled_message_dialog(text, GEDA_MESSAGE_INFO, title)
-#define warning_dialog(text) \
-        message_dialog(text, GEDA_MESSAGE_WARNING)
-#define titled_warning_dialog(text, title) \
-        titled_message_dialog(text, GEDA_MESSAGE_WARNING, title)
-#define error_dialog(text) \
-        gschem_message_dialog(text, GEDA_MESSAGE_ERROR, NULL)
-#define titled_error_dialog(text, title) \
-        titled_message_dialog(text, GEDA_MESSAGE_ERROR, title)
+
+#define pango_message_dialog(text1, text2, type, title) \
+        gschem_markup_message_dialog(text1, text2, type, title);
+
+/* These don't really justify their own functions - just do inline */
+/* Plain Text dialogs */
+#define information_dialog(...) { \
+        char *msg = (char*)g_strdup_vprintf(__VA_ARGS__); \
+        message_dialog( msg, GEDA_MESSAGE_INFO) \
+        g_free (msg); }
+#define warning_dialog(...) { \
+        char *msg = (char*)g_strdup_vprintf(__VA_ARGS__); \
+        message_dialog(msg, GEDA_MESSAGE_WARNING) \
+        g_free (msg); }
+#define error_dialog(...) { \
+        char *msg = (char*)g_strdup_vprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_ERROR, NULL) \
+        g_free (msg); }
+
+/* Titled Plain Text dialogs */
+#define titled_information_dialog(title, ...) { \
+        char *msg = (char*)g_strdup_vprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_INFO, title) \
+        g_free (msg); }
+#define titled_warning_dialog(title, ...) { \
+        char *msg = (char*)g_strdup_vprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_WARNING, title) \
+        g_free (msg); }
+#define titled_error_dialog(title, ...) { \
+        char *msg = (char*)g_strdup_vprintf(__VA_ARGS__); \
+        titled_message_dialog(msg, GEDA_MESSAGE_ERROR, title) \
+        g_free (msg); }
+
+/* Pango Text dialogs - markup is optional for messages */
+#define pango_info_dialog(msg1, msg2) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_INFO, NULL)
+
+#define pango_warning_dialog(msg1, msg2) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_WARNING, NULL)
+
+#define pango_error_dialog(msg1, msg2) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_ERROR, NULL)
+
+/* Titled Pango Text dialogs */
+#define titled_pango_info_dialog(msg1, msg2, title) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_INFO, title)
+
+#define titled_pango_warning_dialog(msg1, msg2, title) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_WARNING, title)
+
+#define titled_pango_error_dialog(msg1, msg2, title) \
+        pango_message_dialog( msg1, msg2, GEDA_MESSAGE_ERROR, title)
 
 /*EK* used by prototype.h */
 #include "../include/x_states.h"

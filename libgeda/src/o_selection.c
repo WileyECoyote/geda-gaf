@@ -53,7 +53,7 @@ void o_selection_add (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_select
 {
   if (o_selected->selected == FALSE)
   {
-    /* Got enough stack? Lets find out! */
+    /* WEH:Got enough stack? Lets find out! */
     o_selection_select (toplevel, o_selected);
     geda_list_add( (GedaList *)selection, o_selected );
   }
@@ -63,7 +63,7 @@ void o_selection_add (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_select
  *  \par Removes the given object from the selection list and does the
  *  needed work to make the object visually unselected.
  *  It's ok to call this function with an object which is not necessarily
- *  selected.
+ *  selected, or even with a NULL pointer for an object.
  *
  *  \param [in] toplevel   The TOPLEVEL object
  *  \param [in] selection  Pointer to the selection list
@@ -71,11 +71,7 @@ void o_selection_add (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_select
  */
 void o_selection_remove (TOPLEVEL *toplevel, SELECTION *selection, OBJECT *o_selected)
 {
-  if (o_selected == NULL) {
-    fprintf(stderr, "Got NULL for o_selected in o_selection_remove\n");
-  }
-  else {
-
+  if (o_selected != NULL) {
     if (g_list_find( geda_list_get_glist( selection ), o_selected ) != NULL) {
       o_selection_unselect (toplevel, o_selected);
       geda_list_remove( (GedaList *)selection, o_selected );

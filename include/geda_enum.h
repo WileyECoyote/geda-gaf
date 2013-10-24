@@ -48,7 +48,9 @@ typedef enum {PIN_ATTRIB_IN,  PIN_ATTRIB_OUT, PIN_ATTRIB_IO,  PIN_ATTRIB_OC,
               PIN_ATTRIB_CLK, PIN_ATTRIB_PWR, PIN_ATTRIB_VOID
 } PIN_ATTRIBUTE;
 
-typedef enum { png_image, tiff_image, bmp_image, ico_image, jpeg_image, eps_image, pdf_image } IMAGE_TYPES;
+typedef enum { png_image, tiff_image, bmp_image, ico_image, jpeg_image,
+               eps_image, pdf_image, last_image
+} IMAGE_TYPES;
 
 typedef enum
 {

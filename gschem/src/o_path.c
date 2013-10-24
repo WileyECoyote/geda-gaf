@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -34,7 +35,7 @@
 #define NUM_BEZIER_SEGMENTS 100
 
 
-typedef void (*FILL_FUNC) (GSCHEM_TOPLEVEL *w_current,
+typedef void (*FILL_FUNC) (GschemToplevel *w_current,
                            COLOR *color, PATH *path,
                            int fill_width,
                            int angle1, int pitch1, int angle2, int pitch2);
@@ -98,7 +99,7 @@ static PATH *path_copy_modify (PATH *path, int dx, int dy,
  * control point changes applied.
  */
 static void
-path_rubber_bbox (GSCHEM_TOPLEVEL *w_current, PATH *path,
+path_rubber_bbox (GschemToplevel *w_current, PATH *path,
                   int *min_x, int *max_y, int *max_x, int *min_y)
 {
   int x1, y1, x2, y2, x3, y3;
@@ -168,7 +169,7 @@ path_rubber_bbox (GSCHEM_TOPLEVEL *w_current, PATH *path,
  * creating paths has room for additional sections.  If not, doubles
  * its capacity.
  */
-static void path_expand (GSCHEM_TOPLEVEL *w_current)
+static void path_expand (GschemToplevel *w_current)
 {
   PATH *p = w_current->temp_path;
   if (p->num_sections == p->num_sections_max) {
@@ -181,7 +182,7 @@ static void path_expand (GSCHEM_TOPLEVEL *w_current)
 /*! \brief Add new sections to the temporary path while drawing.
  * \par Function Description
  * Calculates the next section to be added to a path while drawing.
- * The temporary slots in the #GSCHEM_TOPLEVEL structure are used as
+ * The temporary slots in the #GschemToplevel structure are used as
  * follows:
  *   - first_wx and first_wy contain the location of the next point
  *     that will lie on the path
@@ -202,7 +203,7 @@ static void path_expand (GSCHEM_TOPLEVEL *w_current)
  * \return the number of path sections added.
  */
 static int
-path_next_sections (GSCHEM_TOPLEVEL *w_current)
+path_next_sections (GschemToplevel *w_current)
 {
   bool cusp_point, cusp_prev, close_path, end_path, start_path;
   PATH *p;
@@ -319,7 +320,7 @@ path_next_sections (GSCHEM_TOPLEVEL *w_current)
  * preview and control handle helpers.
  */
 void
-o_path_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+o_path_invalidate_rubber (GschemToplevel *w_current)
 {
   int added_sections;
   int min_x, min_y, max_x, max_y;
@@ -351,14 +352,14 @@ o_path_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
  *  the current sheet by resetting the path creation state and
  *  enabling preview ("rubber") drawing.
  *
- *  For details of how #GSCHEM_TOPLEVEL fields are used during the
+ *  For details of how #GschemToplevel fields are used during the
  *  path creation process, see path_next_sections().
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_path_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_path_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current == NULL) {
     fprintf (stderr, "Internal Error: " "<%s><o_path_start>"
@@ -396,7 +397,7 @@ void o_path_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  * as the location of the next path control point.
  */
 void
-o_path_continue (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+o_path_continue (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current == NULL) {
     fprintf (stderr, "Internal Error: " "<%s><o_path_continue>"
@@ -422,7 +423,7 @@ o_path_continue (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  * defining a path node, moves the next node's location and control
  * point together.
  */
-void o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_path_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current == NULL) {
     fprintf (stderr, "Internal Error: " "<%s><o_path_motion>"
@@ -457,12 +458,12 @@ void o_path_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  adds a new initialized path object to the list of object of the current
  *  sheet.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
 bool
-o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+o_path_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   bool          close_path;
   bool          end_path;
@@ -559,7 +560,7 @@ o_path_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  * applicable).
  */
 void
-o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+o_path_draw_rubber (GschemToplevel *w_current)
 {
   EdaRenderer *renderer;
   OBJECT object;
@@ -602,7 +603,7 @@ o_path_draw_rubber (GSCHEM_TOPLEVEL *w_current)
 }
 
 void
-o_path_invalidate_rubber_grips (GSCHEM_TOPLEVEL *w_current)
+o_path_invalidate_rubber_grips (GschemToplevel *w_current)
 {
   int min_x, min_y, max_x, max_y;
   int x1, y1, x2, y2;
@@ -625,11 +626,11 @@ o_path_invalidate_rubber_grips (GSCHEM_TOPLEVEL *w_current)
  *  (<B>second_wx</B>,<B>second_wy</B>).
  *  The first end is constant. The second end is updated to the (<B>w_x</B>,<B>w_y</B>).
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_path_motion_grips (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_path_motion_grips (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->rubber_visible)
     o_path_invalidate_rubber_grips (w_current);
@@ -641,17 +642,17 @@ void o_path_motion_grips (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   w_current->rubber_visible = 1;
 }
 
-/*! \brief Draw path from GSCHEM_TOPLEVEL object.
+/*! \brief Draw path from GschemToplevel object.
  *  \par Function Description
  *  This function draws a path with an exclusive or function over the sheet.
  *  The color of the box is <B>SELECT_COLOR</B>. The path is
  *  described by the two points (<B>w_current->first_wx</B>,
  *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  */
 void
-o_path_draw_rubber_grips (GSCHEM_TOPLEVEL *w_current)
+o_path_draw_rubber_grips (GschemToplevel *w_current)
 {
   OBJECT object;
 

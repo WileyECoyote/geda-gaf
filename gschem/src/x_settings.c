@@ -47,6 +47,8 @@
 ;; WEH | 07/19/13 |  fixed stack overflow in get_titleblock_list fix
 ;;                |  i < MAX_FILENAME instead if MAX_PATH
 ;; ------------------------------------------------------------------
+;; WEH | 09/25/13 |  Add function x_settings_save_settings
+;; ------------------------------------------------------------------
 ;;
 */
  
@@ -86,12 +88,12 @@
 
 #define KEYWORD(symbol, narg, sarg, func) [ kw_##func ] = { #symbol, do_kw_##func, narg, sarg },
 
-char output_buffer[255];
+char output_buffer[RC_INPUT_BUFFER_SIZE];
 extern const char* DefaultFilterList[];
 
 struct {
    const char *name;
-   void (*func) (GSCHEM_TOPLEVEL *w_current, FILE* input, FILE* output);
+   void (*func) (GschemToplevel *w_current, FILE* input, FILE* output);
    unsigned int narg;
    char *strBuffer;
 } keyword_struc[KEYWORD_COUNT] = {
@@ -110,7 +112,7 @@ struct {
  *  This function destroys the configure_settings dialog.
  */
 void configure_dialog_response(GtkWidget *Dialog, int response,
-                               GSCHEM_TOPLEVEL *w_current)
+                               GschemToplevel *w_current)
 {
   switch (response) {
   case GTK_RESPONSE_APPLY:
@@ -153,9 +155,9 @@ get_geda_bulb_image (bool WhichState)
 }
 void bulb_on( GtkWidget *widget) {
 
-  GList* button   =gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    =gtk_container_get_children (GTK_CONTAINER (button->data));
-  GList* lightbox =gtk_container_get_children (GTK_CONTAINER (align->data));
+  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
+  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
+  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
 
   GtkWidget* BulbOnImage = lightbox->data;
   lightbox = lightbox->next;
@@ -167,9 +169,9 @@ void bulb_on( GtkWidget *widget) {
 
 void bulb_off( GtkWidget *widget) {
 
-  GList* button   =gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    =gtk_container_get_children (GTK_CONTAINER (button->data));
-  GList* lightbox =gtk_container_get_children (GTK_CONTAINER (align->data));
+  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
+  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
+  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
 
   GtkWidget* BulbOnImage = lightbox->data;
   lightbox = lightbox->next;
@@ -218,7 +220,7 @@ void gtk_bulb_group_set_active(GSList *RadioGroupList, int value)
  *  \par Function Description
  *  This function is call to creates the configure_settings dialog.
  */
-void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
+void x_configure_settings (GschemToplevel* w_current)
 {
   w_current->cpwindow = create_settings_dialog( w_current);
 
@@ -240,12 +242,17 @@ void x_configure_settings (GSCHEM_TOPLEVEL* w_current)
 
 }
 
-void x_settings_save_settings(GSCHEM_TOPLEVEL *w_current)
+void x_settings_save_settings(GschemToplevel *w_current)
 {
-  int array[4];
-
-  EdaConfig *cfg = eda_config_get_user_context ();
+  TOPLEVEL   *toplevel = w_current->toplevel;
+  EdaConfig  *cfg = eda_config_get_user_context ();
   const char *group_name = EDA_CONFIG_GROUP;
+  int         array[4];
+
+  eda_config_set_boolean (cfg, group_name, "image-color",    toplevel->image_color);
+  eda_config_set_boolean (cfg, group_name, "invert-images",  toplevel->invert_images);
+  eda_config_set_integer (cfg, group_name, "image-width",    w_current->image_width);
+  eda_config_set_integer (cfg, group_name, "image-height",   w_current->image_height);
 
   /* Save text related stuff  - Restored by i_vars_recall_user_settings */
   eda_config_set_integer (cfg, group_name, "text-case",       w_current->text_case);
@@ -253,6 +260,8 @@ void x_settings_save_settings(GSCHEM_TOPLEVEL *w_current)
   eda_config_set_integer (cfg, group_name, "text-feedback",   w_current->text_feedback);
   eda_config_set_integer (cfg, group_name, "text-size",       w_current->text_size);
 
+  /* text-marker probably belong in the x_window_save group but for now well keep
+   * text-marks stuff with text stuff */
   eda_config_set_boolean (cfg, group_name, "text-origin-marker", w_current->
                                   renderer->text_origin_marker);
   eda_config_set_integer (cfg, group_name, "text-marker-size",   w_current->
@@ -268,7 +277,7 @@ void x_settings_save_settings(GSCHEM_TOPLEVEL *w_current)
   eda_config_set_boolean (cfg, group_name, "undo-control", w_current->undo_control);
   eda_config_set_integer (cfg, group_name, "undo-levels",  w_current->undo_levels);
   eda_config_set_boolean (cfg, group_name, "undo-panzoom", w_current->undo_panzoom);
-  eda_config_set_boolean (cfg, group_name, "undo-type",     w_current->undo_type);
+  eda_config_set_boolean (cfg, group_name, "undo-type",    w_current->undo_type);
 }
 /** @brief function change_default_titleblock in GatherSettings */
 bool x_settings_set_scm_int(char *symbol_name, int value ) {
@@ -308,21 +317,25 @@ bool x_settings_set_scm_int(char *symbol_name, int value ) {
 */
 int get_titleblock_cnt(void) {
 
-  int count=0;
-  char TitleBlockPath[MAX_PATH];
-
-  DIR *dirp;
+        char     TitleBlockPath[MAX_PATH];
+  const char    *suffix;
+  int            count = 0;
+  DIR           *dirp;
   struct dirent *ent;
 
   strcpy (TitleBlockPath, s_path_sys_data());
   strcat (TitleBlockPath, TITLE_BLOCK_PATH);
+
 
   dirp = opendir (TitleBlockPath);
   if (dirp != NULL)
   {
      /* get all the files within directory */
      while ((ent = readdir (dirp)) != NULL) {
-       if (strcmp (get_filename_ext(ent->d_name), SYMBOL_FILE_SUFFIX) == 0){ count++;}
+       suffix = get_filename_ext(ent->d_name);
+       if ( suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
+         count++;
+       }
      }
      closedir (dirp);
   } else
@@ -343,15 +356,16 @@ int get_titleblock_cnt(void) {
 */
 bool get_titleblock_list(char **Buffer) {
 
-  int  i, index =0;
-  char TitleBlockPath[MAX_PATH];
-  bool result = TRUE;
-  int  namelen;
+  bool        result = TRUE;
+  const char *suffix;
+        char  TitleBlockPath[MAX_PATH];
+        char  tmpbuff[MAX_FILENAME];
 
-  char tmpbuff[MAX_FILENAME];
+  int         namelen;
+  int         i, index =0;
 
-  DIR *dirp;
-  struct dirent *ent;
+  DIR        *dirp;
+  struct      dirent *ent;
 
   strcpy (TitleBlockPath, s_path_sys_data());
   strcat (TitleBlockPath, TITLE_BLOCK_PATH);
@@ -362,7 +376,8 @@ bool get_titleblock_list(char **Buffer) {
      /* get all the files within directory */
      while ((ent = readdir (dirp)) != NULL)
      {
-       if (strcmp (get_filename_ext(ent->d_name), SYMBOL_FILE_SUFFIX) == 0)
+       suffix = get_filename_ext(ent->d_name);
+       if ( suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
        {
           strcpy(tmpbuff, basename(ent->d_name));
           namelen = strlen( tmpbuff) - 4; /* substract the extension */
@@ -378,6 +393,7 @@ bool get_titleblock_list(char **Buffer) {
       s_log_message("get_titleblock_list: error opening: %s\n", TitleBlockPath);
       result = FALSE;
   }
+
   return result;
 }
 
@@ -453,7 +469,7 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
  *
  */
 
-int generate_rc(GSCHEM_TOPLEVEL *w_current, const char *rcname)
+int generate_rc(GschemToplevel *w_current, const char *rcname)
 {
   char *inputfile;			/* Name of the input file */
   char *templatefile;                   /* Name of the Template file */
@@ -562,7 +578,7 @@ static bool is_enabled(const char* ptr) {
 }
 /** @} END Group X_Settings_Read_Write */
 
-#define KEYWORD(func) void do_kw_##func(GSCHEM_TOPLEVEL *w_current, FILE* input, FILE* output)
+#define KEYWORD(func) void do_kw_##func(GschemToplevel *w_current, FILE* input, FILE* output)
 
 /* --------------------- Begin Keyword Handler Functions ------------------- */
 
@@ -854,8 +870,8 @@ KEYWORD (component_dialog_attributes) {
         ptr = ptr_first_char;
         while ( ASCII_NUL != *ptr++) { if ( *ptr == ASCII_CP) ++pc; } /* count close parenthesis   */
         while ( po > pc ) {                                          /* while count does not match */
-          fgets(ptr_first_char, RC_INPUT_BUFFER_SIZE, input);       /* read in the next line  */
-          ptr = ptr_first_char;                                    /* set point to beginning  */
+          ptr = fgets(ptr_first_char, RC_INPUT_BUFFER_SIZE, input);  /* read in the next line  */
+          //ptr = ptr_first_char;                                    /* set point to beginning  */
           while ( ASCII_NUL != *ptr++) {                          /* search the entire string */
             if ( *ptr == ASCII_CP) ++pc; }  /* while counting close parenthesis */
         }

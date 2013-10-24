@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -46,9 +47,9 @@ static void x_pagesel_callback_response (GtkDialog *dialog,
  *  Opens the page manager dialog for <B>toplevel</B> if it is not already.
  *  In this last case, it raises the dialog.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object to open page manager for.
+ *  \param [in] w_current  The GschemToplevel object to open page manager for.
  */
-void x_pagesel_open (GSCHEM_TOPLEVEL *w_current)
+void x_pagesel_open (GschemToplevel *w_current)
 {
   if (w_current->pswindow == NULL) {
     w_current->pswindow = GTK_WIDGET (g_object_new (TYPE_PAGESEL,
@@ -73,9 +74,9 @@ void x_pagesel_open (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  Closes the page manager dialog associated with <B>toplevel</B>.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object to close page manager for.
+ *  \param [in] w_current  The GschemToplevel object to close page manager for.
  */
-void x_pagesel_close (GSCHEM_TOPLEVEL *w_current)
+void x_pagesel_close (GschemToplevel *w_current)
 {
   if (w_current->pswindow) {
     if (IS_PAGESEL (w_current->pswindow)) {
@@ -94,9 +95,9 @@ void x_pagesel_close (GSCHEM_TOPLEVEL *w_current)
  *  Updates the list and status of <B>toplevel</B>\'s pages if the page
  *  manager dialog is opened.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object to update.
+ *  \param [in] w_current  The GschemToplevel object to update.
  */
-void x_pagesel_update (GSCHEM_TOPLEVEL *w_current)
+void x_pagesel_update (GschemToplevel *w_current)
 {
   if (w_current->pswindow) {
     if (IS_PAGESEL (w_current->pswindow)) {
@@ -115,14 +116,14 @@ void x_pagesel_update (GSCHEM_TOPLEVEL *w_current)
  *
  *  \param [in] dialog     GtkDialog that issues callback.
  *  \param [in] arg1       Response argument of page manager dialog.
- *  \param [in] user_data  Pointer to relevant GSCHEM_TOPLEVEL structure.
+ *  \param [in] user_data  Pointer to relevant GschemToplevel structure.
  */
 static void
 x_pagesel_callback_response (GtkDialog *dialog, int arg1, gpointer user_data)
 {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
 
-  w_current = (GSCHEM_TOPLEVEL*)user_data;
+  w_current = (GschemToplevel*)user_data;
 
   switch (arg1) {
       case PAGESEL_RESPONSE_UPDATE:
@@ -171,7 +172,7 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
   GtkTreeModel *model;
   GtkTreeIter iter;
   Pagesel *pagesel = (Pagesel*)user_data;
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   PAGE *page;
 
   if (!gtk_tree_selection_get_selected (selection, &model, &iter)) {
@@ -586,7 +587,7 @@ static void select_page(GtkTreeView *treeview,
 void pagesel_update (Pagesel *pagesel)
 {
 
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   TOPLEVEL        *toplevel;
   PAGE            *p_current;
   GtkTreeModel    *model;

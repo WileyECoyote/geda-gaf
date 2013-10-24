@@ -46,11 +46,11 @@ const char* IDS_MESSEAGE_TITLES[] = {
   NULL
 };
 
-static GtkWidget* create_menu_linetype (GSCHEM_TOPLEVEL *w_current);
+static GtkWidget* create_menu_linetype (GschemToplevel *w_current);
 static int x_dialog_edit_line_type_change (GtkWidget *w, line_type_data *ld);
 static void x_dialog_edit_line_type_ok (GtkWidget *w, line_type_data *ld);
 
-static GtkWidget* create_menu_filltype (GSCHEM_TOPLEVEL *w_current);
+static GtkWidget* create_menu_filltype (GschemToplevel *w_current);
 static int x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fd);
 static void x_dialog_edit_fill_type_ok(GtkWidget *w, fill_type_data *fd);
 
@@ -194,6 +194,9 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
   /* Set the value of the control, sets raised property */
   gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (widget), istate);
 
+  /* Set the Widgets Name */
+  gtk_widget_set_name (widget, "GedaToggleSwitch");
+
   SwitchImage = get_geda_switch_image( istate);
   gtk_widget_show (SwitchImage);
   gtk_container_add (GTK_CONTAINER (widget), SwitchImage);
@@ -268,7 +271,7 @@ static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, gpointer da
  *  \par Function Description
  *  This function creates the about dialog.
  */
-void about_dialog (GSCHEM_TOPLEVEL *w_current)
+void about_dialog (GschemToplevel *w_current)
 {
   char *version_string;
   char *logo_file;
@@ -347,7 +350,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 {
   GtkWidget *snap_size;
   int size;
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
@@ -375,14 +378,12 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
  *  \par Function Description
  *  This function creates the snap size dialog.
  */
-void snap_size_dialog (GSCHEM_TOPLEVEL *w_current)
+void snap_size_dialog (GschemToplevel *w_current)
 {
   GtkWidget *label = NULL;
   GtkWidget *vbox;
   GtkWidget *snap_size;
   GtkWidget *Dialog;
-
-  DECLARE_TOOPTIPS
 
   Dialog = w_current->sswindow;
   if (!Dialog) {
@@ -459,7 +460,7 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
 {
   GtkWidget *text_size;
   int size;
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
@@ -486,13 +487,12 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
  *  \par Function Description
  *  This function creates the text size dialog.
  */
-void text_size_dialog (GSCHEM_TOPLEVEL *w_current)
+void text_size_dialog (GschemToplevel *w_current)
 {
   GtkWidget *label = NULL;
   GtkWidget *vbox;
   GtkWidget *text_size;
   GtkWidget *Dialog;
-  DECLARE_TOOPTIPS
 
   Dialog = w_current->tswindow;
   if (!Dialog ) {
@@ -575,11 +575,11 @@ void text_size_dialog (GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  Updates the combobox when the selection changes.
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected OBJECT.
  */
 static void
-x_dialog_edit_arc_angle_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, OBJECT *object)
 {
   GtkWidget *radius, *spin_start, *spin_sweep;
 
@@ -613,7 +613,7 @@ x_dialog_edit_arc_angle_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  This function applies the changes to the currently selected objects.
  */
 static void
-x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
+x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 {
   GtkWidget *spinentry;
   int radius, start_angle, sweep_angle;
@@ -647,7 +647,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
                        sweep_angle, 0, ARC_END_ANGLE);
         }
       }
-      s_current = g_list_next(s_current);
+      NEXT(s_current);
     }
   }
   else {
@@ -667,7 +667,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
 static void
 x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -690,20 +690,19 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
  *  entries are filled with the arc OBJECT properties or with some standard
  *  values.
  *
- *  \param [in] w_current   The GSCHEM_TOPLEVEL object
+ *  \param [in] w_current   The GschemToplevel object
  *  \param [in] arc_object  an arc OBJECT if used to modify an arc
  *                          or NULL to create a new arc.
  *
  * TODO: When multi-selection and modless is applied then only change
  *       the changed value, maybe add check box next to each
  */
-void x_dialog_edit_arc_angle (GSCHEM_TOPLEVEL *w_current, OBJECT *arc_object)
+void x_dialog_edit_arc_angle (GschemToplevel *w_current, OBJECT *arc_object)
 {
   GtkWidget *label = NULL;
   GtkWidget *vbox;
   GtkWidget *alignment, *table;
   GtkWidget *radius, *spin_start, *spin_sweep;
-  DECLARE_TOOPTIPS
 
   GtkWidget *Dialog = w_current->aawindow;
 
@@ -819,7 +818,7 @@ const char* IDS_COLOR_STRINGS[] = {
  *  \param cell
  *  \param model
  *  \param iter
- *  \param data the current #GSCHEM_TOPLEVEL pointer.
+ *  \param data the current #GschemToplevel pointer.
  */
 static void
 color_menu_swatch_layout_data (GtkCellLayout *layout,
@@ -828,7 +827,7 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
                                GtkTreeIter *iter,
                                void* data)
 {
-  /* GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) data; */
+  /* GschemToplevel *w_current = (GschemToplevel *) data; */
   GValue v = {0, };
   int index;
 
@@ -851,7 +850,7 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
  *
  *  \param [in] w_current    The current gschem context.
  */
-GtkWidget *create_color_menu (GSCHEM_TOPLEVEL *w_current, int color_index)
+GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
 {
   GtkListStore    *store;
   GtkComboBox     *cbox;
@@ -905,7 +904,7 @@ GtkWidget *create_color_menu (GSCHEM_TOPLEVEL *w_current, int color_index)
  *  \par Function Description
  *  This function creates a GtkMenu with the different fill types.
  */
-static GtkWidget *create_menu_filltype (GSCHEM_TOPLEVEL *w_current)
+static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 {
   GtkWidget *menu;
   GSList *group;
@@ -963,7 +962,7 @@ static bool selection_get_fill_type(GList *selection,
   int owidth, opitch1, oangle1, opitch2, oangle2;
 
 
-  for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
+  for (iter = selection; iter != NULL; NEXT(iter)) {
     object = (OBJECT *) iter->data;
     if (! o_get_fill_options(object, &otype, &owidth,
                              &opitch1, &oangle1, &opitch2, &oangle2))
@@ -1136,7 +1135,7 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
 static void
 x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
   TOPLEVEL *toplevel = w_current->toplevel;
 
   GList *selection, *iter;
@@ -1148,7 +1147,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   int owidth, oangle1, opitch1, oangle2, opitch2;
 
   /* get the selection */
-  if (! o_select_selected(w_current))
+  if (!o_select_is_selection(w_current))
     return;
   selection = geda_list_get_glist(Current_Selection);
 
@@ -1185,7 +1184,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   pitch2 = g_ascii_strcasecmp (pitch2_str,
                          _("*unchanged*")) ? atoi (pitch2_str) : -1;
 
-  for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
+  for (iter = selection; iter != NULL; NEXT(iter)) {
     object = (OBJECT *) iter->data;
     if (! o_get_fill_options(object, &otype, &owidth,
                              &opitch1, &oangle1, &opitch2, &oangle2))
@@ -1238,7 +1237,7 @@ static void
 x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
                                  fill_type_data *fill_data)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -1262,11 +1261,11 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  Updates the fill_type dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected OBJECT.
  */
 static void
-x_dialog_fill_type_update_selection (GSCHEM_TOPLEVEL *w_current,
+x_dialog_fill_type_update_selection (GschemToplevel *w_current,
                                      OBJECT *object)
 {
   GtkWidget *Dialog;
@@ -1279,7 +1278,7 @@ x_dialog_fill_type_update_selection (GSCHEM_TOPLEVEL *w_current,
   Dialog    = w_current->hpwindow;
   fill_data = g_object_get_data (G_OBJECT (Dialog), IDS_FILL_TYPE);
 
-  if ( o_select_selected(w_current)) {
+  if (o_select_is_selection(w_current)) {
     selection = geda_list_get_glist(Current_Selection);
     if (! selection_get_fill_type(selection, &type, &width,
       &pitch1, &angle1, &pitch2, &angle2))
@@ -1292,7 +1291,7 @@ x_dialog_fill_type_update_selection (GSCHEM_TOPLEVEL *w_current,
     gtk_widget_grab_focus(fill_data->width_entry);
   }
 }
-GtkWidget *x_dialog_fill_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
+GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
   GtkWidget *vbox;
@@ -1304,7 +1303,6 @@ GtkWidget *x_dialog_fill_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
   GtkWidget *pitch2_entry = NULL;
   GtkWidget *table;
   GtkWidget *label;
-  DECLARE_TOOPTIPS
 
   fill_type_data *fill_data;
   Dialog = gschem_dialog_new_with_buttons(_("Edit Fill Type"),
@@ -1431,7 +1429,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function creates the fill type dialog.
  */
-void x_dialog_edit_fill_type(GSCHEM_TOPLEVEL *w_current)
+void x_dialog_edit_fill_type(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
 
@@ -1460,7 +1458,7 @@ void x_dialog_edit_fill_type(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function creates a GtkMenu with the different linetypes.
  */
-static GtkWidget *create_menu_linetype (GSCHEM_TOPLEVEL *w_current)
+static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
 {
   GtkWidget *menu;
   GSList *group;
@@ -1516,7 +1514,7 @@ selection_get_line_type(GList *selection, OBJECT_END *end, OBJECT_TYPE *type,
   OBJECT_TYPE otype;
   int owidth=0, olength=0, ospace=0;
 
-  for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
+  for (iter = selection; iter != NULL; NEXT(iter)) {
     object = (OBJECT *) iter->data;
     if (! o_get_line_options(object, &oend, &otype,
                              &owidth, &olength, &ospace))
@@ -1649,7 +1647,7 @@ x_dialog_edit_line_type_change(GtkWidget *w,
 static void
 x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
   TOPLEVEL *toplevel = w_current->toplevel;
 
   GList *selection, *iter;
@@ -1662,7 +1660,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   int owidth, olength, ospace;
 
   /* get the selection */
-  if (! o_select_selected(w_current))
+  if (!o_select_is_selection(w_current))
     return;
   selection = geda_list_get_glist(Current_Selection);
 
@@ -1691,7 +1689,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   space  = g_ascii_strcasecmp (space_str,
                          _("*unchanged*")) ? atoi (space_str)  : -1;
 
-  for (iter = selection; iter != NULL; iter = g_list_next(iter)) {
+  for (iter = selection; iter != NULL; NEXT(iter)) {
     object = (OBJECT *) iter->data;
     if (! o_get_line_options(object, &oend, &otype,
                              &owidth, &olength, &ospace))
@@ -1743,7 +1741,7 @@ void
 x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
                                  line_type_data *line_data)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG(Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
 
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -1768,11 +1766,11 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
  *  Updates the fill_type dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected OBJECT.
  */
 static void
-x_dialog_line_type_update_selection (GSCHEM_TOPLEVEL *w_current,
+x_dialog_line_type_update_selection (GschemToplevel *w_current,
                                      OBJECT *object)
 {
   GtkWidget *Dialog;
@@ -1787,7 +1785,7 @@ x_dialog_line_type_update_selection (GSCHEM_TOPLEVEL *w_current,
 
   line_data = g_object_get_data (G_OBJECT (Dialog), IDS_LINE_TYPE);
 
-  if ( o_select_selected(w_current)) {
+  if (o_select_is_selection(w_current)) {
     selection = geda_list_get_glist(Current_Selection);
     if (! selection_get_line_type(selection, &end, &type, &width, &length, &space))
      return;
@@ -1800,7 +1798,7 @@ x_dialog_line_type_update_selection (GSCHEM_TOPLEVEL *w_current,
     gtk_widget_grab_focus(line_data->width_entry);
   }
 }
-GtkWidget *x_dialog_line_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
+GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
   GtkWidget *vbox;
@@ -1810,7 +1808,6 @@ GtkWidget *x_dialog_line_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
   GtkWidget *width_entry  = NULL;
   GtkWidget *table;
   GtkWidget *label;
-  DECLARE_TOOPTIPS
 
   line_type_data *line_data;
 
@@ -1918,7 +1915,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GSCHEM_TOPLEVEL *w_current)
  *  This function creates and sets up a dialog for manipulating
  *  properties of line objects.
  */
-void x_dialog_edit_line_type (GSCHEM_TOPLEVEL *w_current)
+void x_dialog_edit_line_type (GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
   Dialog = w_current->ltwindow;
@@ -1948,7 +1945,7 @@ void x_dialog_edit_line_type (GSCHEM_TOPLEVEL *w_current)
  *  the selected symbol, if they exist.
  */
 void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
-                                 GSCHEM_TOPLEVEL *w_current)
+                                 GschemToplevel *w_current)
 {
   GtkWidget *textentry;
   char *slot_string;
@@ -1984,11 +1981,11 @@ void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
  *  Updates the Slot Properties dialog widgets when the selection changes.
  *  The initial value is set when x_dialog_edit_slot is first called.
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected OBJECT.
  */
 static void
-x_dialog_slot_edit_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+x_dialog_slot_edit_update_selection (GschemToplevel *w_current, OBJECT *object)
 {
   GtkWidget *ThisDialog;
   GtkWidget *textentry;
@@ -2028,7 +2025,7 @@ x_dialog_slot_edit_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  \par Function Description
  *  This function creates the slot edit dialog.
  */
-void x_dialog_edit_slot (GSCHEM_TOPLEVEL *w_current, const char *string)
+void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
 {
   GtkWidget *ThisDialog;
   GtkWidget *label = NULL;
@@ -2112,7 +2109,7 @@ void x_dialog_edit_slot (GSCHEM_TOPLEVEL *w_current, const char *string)
 void x_dialog_find_text_response(GtkWidget *Dialog, int response,
                                  PAGE *remember_page)
 {
-  GSCHEM_TOPLEVEL *w_current = GSCHEM_DIALOG (Dialog)->w_current;
+  GschemToplevel *w_current = GSCHEM_DIALOG (Dialog)->w_current;
   TOPLEVEL *toplevel = w_current->toplevel;
 
   GtkWidget *textentry;
@@ -2170,7 +2167,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  This function creates the text find dialog.
  */
-void x_dialog_find_text(GSCHEM_TOPLEVEL *w_current)
+void x_dialog_find_text(GschemToplevel *w_current)
 {
   static GtkWidget *ThisDialog;
   GtkWidget *label = NULL;
@@ -2258,7 +2255,7 @@ void x_dialog_find_text(GSCHEM_TOPLEVEL *w_current)
  *  and hides all text elements that starts with the searchtext.
  */
 void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
-                                 GSCHEM_TOPLEVEL *w_current)
+                                 GschemToplevel *w_current)
 {
   GtkWidget *textentry;
   char *string;
@@ -2289,7 +2286,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  This function creates the hide text dialog.
  */
-void x_dialog_hide_text(GSCHEM_TOPLEVEL * w_current)
+void x_dialog_hide_text(GschemToplevel * w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *label = NULL;
@@ -2361,7 +2358,7 @@ void x_dialog_hide_text(GSCHEM_TOPLEVEL * w_current)
  *  the given search text and hides those text objects.
  */
 void x_dialog_show_text_response(GtkWidget *Dialog, int response,
-                                 GSCHEM_TOPLEVEL *w_current)
+                                 GschemToplevel *w_current)
 {
   GtkWidget *textentry;
   char *string;
@@ -2391,7 +2388,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  This function creates the show text dialog.
  */
-void x_dialog_show_text(GSCHEM_TOPLEVEL * w_current)
+void x_dialog_show_text(GschemToplevel * w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *label = NULL;
@@ -2459,7 +2456,7 @@ void x_dialog_show_text(GSCHEM_TOPLEVEL * w_current)
  *  \par Function Description
  *  This function applies the text from the text entry dialog.
  */
-void x_dialog_text_input_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
+void x_dialog_text_input_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 {
   char *string = NULL;
   char *tmp    = NULL;
@@ -2508,7 +2505,7 @@ void x_dialog_text_input_apply(GtkWidget *Dialog, GSCHEM_TOPLEVEL *w_current)
  *  Callback function for the text entry dialog.
  */
 void x_dialog_text_input_response(GtkWidget *Dialog, int response,
-                                  GSCHEM_TOPLEVEL *w_current)
+                                  GschemToplevel *w_current)
 {
   switch(response) {
   case GTK_RESPONSE_ACCEPT:
@@ -2529,7 +2526,7 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  This function creates or raises the modeless text entry dialog
  */
-void x_dialog_text_input (GSCHEM_TOPLEVEL *w_current)
+void x_dialog_text_input (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *label = NULL;
@@ -2633,7 +2630,7 @@ void x_dialog_text_input (GSCHEM_TOPLEVEL *w_current)
  *  \todo improve error detection / use a spin button?
  */
 void x_dialog_translate_response(GtkWidget *Dialog, int response,
-                                 GSCHEM_TOPLEVEL *w_current)
+                                 GschemToplevel *w_current)
 {
   GtkWidget *textentry;
   char *string;
@@ -2664,7 +2661,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  Create the dialog to translate symbols.
  */
-void x_dialog_translate (GSCHEM_TOPLEVEL *w_current)
+void x_dialog_translate (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *label;
@@ -2736,7 +2733,7 @@ void x_dialog_translate (GSCHEM_TOPLEVEL *w_current)
  *  This function destroys the hotkey dialog and does some cleanup.
  */
 void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
-                               GSCHEM_TOPLEVEL *w_current)
+                               GschemToplevel *w_current)
 {
   switch(response) {
   case GTK_RESPONSE_REJECT:
@@ -2756,13 +2753,13 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
  *  This function creates the hotkey dialog and puts the list of hotkeys
  *  into it.
  */
-void x_dialog_hotkeys (GSCHEM_TOPLEVEL *w_current)
+void x_dialog_hotkeys (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
-  GtkWidget *vbox, *scrolled_win;
-  GtkListStore *store;
-  GtkWidget *treeview;
-  GtkCellRenderer *renderer;
+  GtkWidget *vbox,  *scrolled_win;
+  GtkListStore      *store;
+  GtkWidget         *treeview;
+  GtkCellRenderer   *renderer;
   GtkTreeViewColumn *column;
 
   ThisDialog = w_current->hkwindow;
@@ -2793,7 +2790,7 @@ void x_dialog_hotkeys (GSCHEM_TOPLEVEL *w_current)
 
     /* the model */
     store = g_keys_to_list_store ();
-
+    //store = GTK_TREE_MODEL (gschem_hotkey_store_new ());
     /* the tree view */
     treeview = gtk_tree_view_new_with_model(GTK_TREE_MODEL(store));
     gtk_container_add(GTK_CONTAINER(scrolled_win), treeview);
@@ -3359,11 +3356,9 @@ close_confirmation_dialog_set_property (GObject      *object,
     case PROP_UNSAVED_PAGES:
       data = g_value_get_pointer (value);
       /* add set of pages to model */
-      for (p_current = (GList*)data;
-           p_current != NULL;
-           p_current = g_list_next (p_current)) {
-        gtk_list_store_append (dialog->store_unsaved_pages,
-                               &iter);
+      for (p_current = (GList*)data; p_current != NULL; NEXT(p_current))
+      {
+        gtk_list_store_append (dialog->store_unsaved_pages, &iter);
         gtk_list_store_set (dialog->store_unsaved_pages,
                             &iter,
                             COLUMN_SAVE, TRUE,
@@ -3476,7 +3471,7 @@ close_confirmation_dialog_get_selected_pages (CloseConfirmationDialog *dialog)
  *  \returns TRUE if the page can be closed, FALSE otherwise.
  */
 bool
-x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
+x_dialog_close_changed_page (GschemToplevel *w_current, PAGE *page)
 {
   GtkWidget *dialog;
   PAGE      *keep_page;
@@ -3545,7 +3540,7 @@ x_dialog_close_changed_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
  *  \returns TRUE if the window can be closed, FALSE otherwise.
  */
 bool
-x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
+x_dialog_close_window (GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *iter;
@@ -3560,7 +3555,8 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
   unsaved_pages = NULL;
 
   /* Loop through all the pages */
-  for ( iter = geda_list_get_glist( toplevel->pages ); iter != NULL; iter = g_list_next( iter ) ) {
+  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  {
     /* get ptr to a page */
     p_current = (PAGE*)iter->data;
     /* if flag set */
@@ -3596,14 +3592,14 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
         /* action selected: save */
         g_object_get (dialog, "selected-pages", &unsaved_pages, NULL);
         return_value = TRUE;
-        for (p_unsaved = unsaved_pages; p_unsaved != NULL; p_unsaved = g_list_next (p_unsaved)) {
-
+        for (p_unsaved = unsaved_pages; p_unsaved != NULL; NEXT(p_unsaved))
+        {
           p_current = (PAGE*)p_unsaved->data;
 
           s_page_goto (toplevel, p_current);
 
           x_window_save_page (w_current, p_current,
-                              w_current->toplevel->page_current->page_filename);
+                              Current_Page->page_filename);
 
           /* if user cancelled previous, do not close window */
           return_value &= !p_current->CHANGED;
@@ -3631,211 +3627,20 @@ x_dialog_close_window (GSCHEM_TOPLEVEL *w_current)
 
 /****************** End of Close Confirmation dialog box ****************/
 
-/*!**** \section Coordinates-Dialog ( Coordinates Systemic-Dialogs) *****/
+#include "x_coord.c"
 
-/*! \brief Response function for the coord dialog
- *  \par Function Description
- *  This function destroys the coord dialog box and does some cleanup.
- */
-void x_dialog_coord_dialog_response(GtkWidget *Dialog, int response,
-                                    GSCHEM_TOPLEVEL *w_current)
-{
-  gtk_widget_destroy(Dialog);
-  w_current->cowindow = NULL;
-  w_current->coord_world = NULL;
-  w_current->coord_screen = NULL;
-}
-
-/*! \brief Update the coordinates in the coord dialog box.
- *  \par Function Description
- *  This function takes the screen coordinates and prints the
- *  screen and the world coordinates in the coord dialog.
- */
-void x_dialog_coord_display_update(GSCHEM_TOPLEVEL *w_current, int x, int y)
-{
-  GtkWidget *Dialog;
-  GtkEntry  *screen_entry;
-  GtkEntry  *world_entry;
-
-  char *string;
-  int world_x, world_y;
-
-  Dialog = w_current->cowindow;
-  screen_entry = gtk_object_get_data(GTK_OBJECT(Dialog), "screen");
-  world_entry  = gtk_object_get_data(GTK_OBJECT(Dialog), "world");
-
-  string = g_strdup_printf("(%d, %d)", x, y);
-  gtk_entry_set_text(screen_entry, string );
-  g_free(string);
-
-  SCREENtoWORLD (w_current, x, y, &world_x, &world_y);
-  world_x = snap_grid (w_current, world_x);
-  world_y = snap_grid (w_current, world_y);
-
-  string = g_strdup_printf("(%d, %d)", world_x, world_y);
-  gtk_entry_set_text(world_entry, string );
-  g_free(string);
-}
-
-static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
-{
-  GSCHEM_TOPLEVEL *w_current;
-  const char *str;
-  char buffer[36];
-  char *x_str, *y_str;
-  int   icomma, x, y;
-  int   index;
-  bool  valid;
-
-  icomma = -1;
-  valid  = FALSE;
-  x_str  = NULL;
-  y_str  = NULL;
-  str    = NULL;
-  str    = gtk_entry_get_text (GTK_ENTRY(entry));
-
-  if (str) {
-    strcpy(&buffer[0], str);
-    for (index =0; index < 36; index++) {
-
-      if (!buffer[index])
-        break;
-
-      if ( isdigit(buffer[index])) {
-        if (!x_str) {
-          x_str = &buffer[index];
-        }
-        else if (!y_str && icomma > 0) {
-          y_str = &buffer[index];
-        }
-      }
-      else if ( buffer[index] == ASCII_COMMA) {
-        icomma = index;
-      }
-      else if ( buffer[index] == ASCII_LEFT_PARENTHESIS ||
-        buffer[index] == ASCII_RIGHT_PARENTHESIS ) {
-        buffer[index] = ASCII_SPACE;
-      }
-    }
-    if ( x_str && y_str) {
-      if ( icomma > 0)
-        buffer[icomma] = '\0';
-      x = atoi(x_str);
-      y = atoi(y_str);
-      valid = !FALSE;
-    }
-
-    if (valid) {
-      w_current = Dialog->w_current;
-      x_event_set_pointer_position (w_current, x, y);
-      if (!w_current->inside_action) {
-        o_place_motion (w_current, x, y);
-      }
-    }
-  }
-}
-
-/*! \brief Create the coord dialog
- *  \par Function Description
- *  This function creates the coord dialog box.
- */
-void x_dialog_coord_dialog (GSCHEM_TOPLEVEL *w_current, int x, int y)
-{
-  GtkWidget *ThisDialog;
-  GtkWidget *vbox;
-  GtkWidget *frame;
-  GtkWidget *screen_entry;
-  GtkWidget *world_entry;
-  GdkColor   bg_color;
-
-  ThisDialog = w_current->cowindow;
-
-  if (!ThisDialog) {
-
-    ThisDialog = gschem_dialog_new_with_buttons(_("Coords"),
-                         GTK_WINDOW(w_current->main_window),
-                         GSCHEM_MODELESS_DIALOG,
-                                 IDS_COORDINATES, w_current,
-                       GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                                       NULL);
-
-    gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_NONE);
-
-    gtk_container_border_width (GTK_CONTAINER(ThisDialog),
-                                DIALOG_BORDER_SPACING);
-
-    bg_color.red   = 0xEEEE;
-    bg_color.green = 0xEBEB;
-    bg_color.blue  = 0xE7E7;
-
-    vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
-
-    frame = gtk_frame_new (_("Screen"));
-    gtk_container_add(GTK_CONTAINER (vbox), frame);
-    g_object_set (frame, "visible", TRUE, NULL);
-/*
-    event_box = gtk_event_box_new();
-    gtk_container_add (GTK_CONTAINER(frame), event_box);
-    g_object_set (event_box, "visible", TRUE, NULL);
-*/
-    screen_entry = geda_visible_entry_new ( DISABLE, DISABLE);
-    gtk_entry_set_has_frame (GTK_ENTRY(screen_entry), FALSE);
-    gtk_entry_set_alignment (GTK_ENTRY(screen_entry), 0.5);
-    geda_entry_widget_modify_color (screen_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-    gtk_container_add(GTK_CONTAINER (frame), screen_entry);
-
-    frame = gtk_frame_new (_("World"));
-    gtk_container_add(GTK_CONTAINER (vbox), frame);
-    g_object_set (frame, "visible", TRUE, NULL);
-/*
-    event_box = gtk_event_box_new();
-    gtk_container_add (GTK_CONTAINER(frame), event_box);
-    g_object_set (event_box, "visible", TRUE, NULL);
-*/
-    world_entry = geda_visible_entry_new ( DISABLE, DISABLE);
-    gtk_entry_set_has_frame (GTK_ENTRY(world_entry), FALSE);
-    gtk_entry_set_alignment (GTK_ENTRY(world_entry), 0.5);
-    geda_entry_widget_modify_color (world_entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color); 
-    gtk_container_add(GTK_CONTAINER (frame), world_entry);
-    geda_entry_set_valid_input((GedaEntry*)world_entry, ACCEPT_COORDINATE);
-
-    GSCHEM_HOOKUP_OBJECT ( ThisDialog, screen_entry, "screen");
-    GSCHEM_HOOKUP_OBJECT ( ThisDialog, world_entry,  "world");
-
-    g_signal_connect (world_entry, "process-entry",
-                      G_CALLBACK (co_on_entry_activate),
-                      ThisDialog);
-
-    g_signal_connect (G_OBJECT (ThisDialog), "response",
-                      G_CALLBACK (x_dialog_coord_dialog_response),
-                      w_current);
-
-    gtk_widget_show(ThisDialog);
-
-
-    w_current->cowindow = ThisDialog;
-  }
-
-  else { /* window already creatad  */
-    gtk_window_present(GTK_WINDOW(ThisDialog));
-  }
-
-  /* always update the coords when the dialog is requested */
-  x_dialog_coord_display_update(w_current, x, y);
-}
-
-/***************** End of coord dialog box **************************/
 
 /***************** Start of misc helper dialog boxes **************/
 /*! \brief Raise All Dialogs
  *  \par Function Description
- *  This is a generic function called when the gschem main window is
- * made active after being non-active, such as minmized or behind
- * another application window. Since this could at time, this routine
- * request any open gschem dialog be raised/brought to the foreground.
+ *  This is a generic function called by x_event_expose if
+ * w_current->raise_dialog_boxes is TRUE. This routine is
+ * used to request that any open gschem dialog be raised
+ * /brought to the foreground. Since the main window is
+ * continuously being sent expose events, this could have
+ * a dramatic impact on slower machines.
  */
-void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
+void x_dialog_raise_all(GschemToplevel *w_current)
 {
   if(w_current->sswindow) { /* Snap Size */
     gdk_window_raise(w_current->sswindow->window);
@@ -3910,57 +3715,159 @@ void x_dialog_raise_all(GSCHEM_TOPLEVEL *w_current)
 
 /*!* \section Symbol-Changed-Dialog ( Symbol Changed Systemic-Dialogs) **/
 
-/*! \todo Finish function documentation!!!
- *  \brief Annoyance Dialog
+/*! \brief Populate the the Symbol Change Dialog
  *  \par Function Description
- *
+ *  Called by x_dialog_symbol_changed to add a list of out-dated symbols
+ *  to the message area of the Symbol Changed dialog. The function creates
+ *  widgets as nessasary to present the listing.
  */
-void x_dialog_symbol_changed(GSCHEM_TOPLEVEL* w_current)
+
+static
+void xd_add_changed_symbol_list (GschemToplevel  *w_current,
+                                 GtkMessageDialog *dialog)
+{
+  GtkWidget *mess_area;
+  GtkWidget *hbox, *vbox, *label;
+  GtkWidget *tree_view, *scroll;
+
+  GtkListStore      *list_store = NULL;
+  GtkCellRenderer   *renderer;
+  GtkTreeViewColumn *column;
+
+  char  *tmp;
+  GList *changed;
+
+  list_store = gtk_list_store_new (1, G_TYPE_STRING);
+
+  for (changed = w_current->toplevel->major_changed_refdes;
+       changed != NULL; NEXT(changed)) {
+
+    char *value = (char *) changed->data;
+    GtkTreeIter iter;
+
+    gtk_list_store_append (list_store, &iter);
+    gtk_list_store_set (list_store, &iter, 0, value, -1);
+  }
+
+  mess_area = gtk_message_dialog_get_message_area (dialog);
+
+  /* This box contains the warning image and the vbox */
+  hbox = g_object_new (GTK_TYPE_HBOX,
+                       /* GtkContainer */
+                       "border-width", 5,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing", 12,
+                       NULL);
+
+  gtk_box_pack_start (GTK_BOX (mess_area), hbox, TRUE, TRUE, 0);
+
+  /* This box contains the labels and list of changed symbols */
+  vbox = g_object_new (GTK_TYPE_VBOX,
+                       /* GtkBox */
+                       "homogeneous", FALSE,
+                       "spacing", 12,
+                       NULL);
+
+  gtk_box_pack_start (GTK_BOX (hbox), vbox, FALSE, FALSE, 0);
+
+  /* Primary label */
+  tmp = g_strconcat ("<big><b>",
+                     _("Major symbol changes detected."),
+                     "</b></big>", NULL);
+
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        "yalign", 0.0,
+                        "selectable", TRUE,
+                        /* GtkLabel */
+                        "wrap", TRUE,
+                        "use-markup", TRUE,
+                        "label", tmp,
+                        NULL);
+
+  gtk_container_add (GTK_CONTAINER (vbox), label);
+  g_free (tmp);
+
+  /* Secondary label */
+  label = g_object_new (GTK_TYPE_LABEL,
+                        /* GtkMisc */
+                        "xalign", 0.0,
+                        "yalign", 0.0,
+                        "selectable", TRUE,
+                        /* GtkLabel */
+                        "wrap", TRUE,
+                        "use-markup", TRUE,
+                        "label",
+                        _("Changes have occurred to the symbols shown below.\n\n"
+                          "Be sure to verify each of these symbols."),
+                        NULL);
+
+
+  gtk_container_add (GTK_CONTAINER (vbox), label);
+
+  /* List of changed symbols */
+  scroll = g_object_new (GTK_TYPE_SCROLLED_WINDOW,
+                         /* GtkScrolledWindow */
+                         "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                         "vscrollbar-policy", GTK_POLICY_AUTOMATIC,
+                         "shadow-type",       GTK_SHADOW_IN,
+                         NULL);
+
+  gtk_box_pack_start (GTK_BOX (vbox), scroll, TRUE, TRUE, 0);
+
+  tree_view = g_object_new (GTK_TYPE_TREE_VIEW,
+                            /* GtkTreeView */
+                            "enable-search", FALSE,
+                            "headers-visible", FALSE,
+                            "model", list_store,
+                            NULL);
+
+  gtk_container_add (GTK_CONTAINER (scroll), tree_view);
+
+  renderer = gtk_cell_renderer_text_new ();
+
+  column = gtk_tree_view_column_new_with_attributes (_("Symbol"),
+                                                     renderer,
+                                                     "text", 0,
+                                                     NULL);
+
+  gtk_tree_view_append_column (GTK_TREE_VIEW (tree_view), column);
+
+  gtk_widget_show_all (mess_area);
+}
+
+/*! \brief Annoyance Dialog
+ *  \par Function Description
+ *  Called when a symbol in a drawing being loaded is an older version
+ *  than the same symbol in the library, based on the symversion in the
+ *  symbol definition, to creates a message dialog notifying the user of
+ *  such. This function only setups the basic dialog, see the preceding
+ *  function xd_add_changed_symbol_list.
+ */
+void x_dialog_symbol_changed(GschemToplevel* w_current)
 {
   GtkWidget* dialog;
-  char* refdes_string = NULL;
-  char* tmp;
 
   if (w_current->toplevel->major_changed_refdes) {
 
-    GList* current = w_current->toplevel->major_changed_refdes;
-    while (current)
-    {
-      char *value = (char*) current->data;
-
-      if (!refdes_string)
-      {
-        refdes_string = g_strdup (value);
-      } else {
-        tmp = g_strconcat (refdes_string, "\n", value, NULL);
-        g_free(refdes_string);
-        refdes_string = tmp;
-      }
-
-      current = g_list_next(current);
-    }
-
-    tmp = g_strconcat (refdes_string,
-                       "\n\nBe sure to verify each of these symbols!",
-                       NULL);
-    g_free(refdes_string);
-    refdes_string = tmp;
-
     dialog = gtk_message_dialog_new ((GtkWindow*) w_current->main_window,
                                      GTK_DIALOG_DESTROY_WITH_PARENT,
-                                     GTK_MESSAGE_ERROR,
+                                     GEDA_MESSAGE_INFO,
                                      GTK_BUTTONS_CLOSE,
-                        "Major symbol changes detected in refdes:\n\n%s\n",
-                                     refdes_string);
+                                     NULL);
+
+    xd_add_changed_symbol_list (w_current, GTK_MESSAGE_DIALOG(dialog));
 
     gtk_window_position(GTK_WINDOW (dialog), GTK_WIN_POS_MOUSE);
     gtk_widget_show(dialog);
+    gtk_window_set_transient_for (GTK_WINDOW (dialog),
+                                  GTK_WINDOW (w_current->main_window));
 
     g_signal_connect_swapped (dialog, "response",
                               G_CALLBACK (gtk_widget_destroy),
                               dialog);
-
-    g_free(refdes_string);
   }
 }
 
@@ -4004,36 +3911,6 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
  *  @{ \par This Group contains General Utility Dialogs
 */
 
-/*!***** \section Message-Dialog ( Message Gschem-General-Dialogs) ******/
-
-/*! \brief General Purpose Message Dialog
- *  \remarks See Utility Macros defined in globals.h
- */
-void gschem_message_dialog (const char *msg, gEDA_MessageType context, char *title)
-{
-  GtkWidget *dialog;
-  dialog = gtk_message_dialog_new (NULL,
-                                   GTK_DIALOG_MODAL |
-                                   GTK_DIALOG_DESTROY_WITH_PARENT,
-                                   context,
-                                   GTK_BUTTONS_OK,
-                                   "%s", msg);
-
-  if(title) {
-    gtk_window_set_title(GTK_WINDOW(dialog), _(title));
-  }
-  else
-    gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
-
-
-  gtk_dialog_run (GTK_DIALOG (dialog));
-
-  gtk_widget_destroy (dialog);
-
-}
-
-/***************** End of General message dialog box ********************/
-
 /*!**** \section Confirmation-Dialog (Confirmation General-Dialogs) *****/
 
 /*! \brief General Purpose Confirmation Dialog
@@ -4043,7 +3920,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
 {
   GtkWidget *dialog;
   int r;
-  //gdk_threads_enter();
+  gdk_threads_enter();
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -4072,7 +3949,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
   r = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
-  //gdk_threads_leave();
+  gdk_threads_leave();
   return r;
 }
 
@@ -4177,4 +4054,79 @@ char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
 }
 
 /***************** End of General file select dialog box ****************/
+
+/*!***** \section Message-Dialogs ( Message Gschem-General-Dialogs) ******/
+
+/*! \brief General Purpose Message Dialog
+ *  \remarks See Utility Macros defined in globals.h
+ *  \remarks This dialog is not for messages with Pango markups,
+ *           gschem_markup_message_dialog.
+ */
+void gschem_message_dialog (const char *msg, gEDA_MessageType context, const char *title)
+{
+  GtkWidget *dialog;
+
+  if (msg) {
+
+      dialog = gtk_message_dialog_new (NULL,
+                                       GTK_DIALOG_MODAL |
+                                       GTK_DIALOG_DESTROY_WITH_PARENT,
+                                       context,
+                                       GTK_BUTTONS_OK,
+                                       "%s", msg);
+
+    if(title) {
+      gtk_window_set_title(GTK_WINDOW(dialog), _(title));
+    }
+    else
+      gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
+
+
+    gtk_dialog_run (GTK_DIALOG (dialog));
+
+    gtk_widget_destroy (dialog);
+  }
+}
+
+/*! \brief General Purpose Pango Message Dialog
+ *  \remarks See Utility Macros defined in globals.h
+ */
+void gschem_markup_message_dialog (const char *msg1, const char *msg2,
+                                   gEDA_MessageType context, const char *title)
+{
+  GtkWidget *dialog;
+
+  bool       msg_1_has_markup = FALSE;
+  bool       msg_2_has_markup = FALSE;
+
+  if (strstr(msg1, "</"))
+    msg_1_has_markup = TRUE;
+
+  if (strstr(msg2, "</"))
+    msg_2_has_markup = TRUE;
+
+  dialog = g_object_new (GTK_TYPE_MESSAGE_DIALOG,
+                         /* "message-border",       DIALOG_BORDER_SPACING,*/
+                         "message-type",         context,
+                         "text",                 msg1,
+                         "use-markup",           msg_1_has_markup,
+                         "secondary-text",       msg2,
+                         "secondary-use-markup", msg_2_has_markup,
+                         "buttons",              GTK_BUTTONS_OK,
+                         NULL);
+  if(title) {
+    gtk_window_set_title(GTK_WINDOW(dialog), _(title));
+  }
+  else
+    gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[context]));
+
+
+  gtk_dialog_run (GTK_DIALOG (dialog));
+
+  gtk_widget_destroy (dialog);
+
+}
+
+/******************* End of General message dialogs **********************/
+
 /*! @} endgroup Gschem-General-Dialogs */

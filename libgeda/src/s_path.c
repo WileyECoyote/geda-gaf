@@ -708,7 +708,7 @@ int s_path_to_polygon (PATH *path, GArray *points)
 {
   int closed = FALSE;
   int i;
-  sPOINT point = { 0, 0 };
+  POINT point = { 0, 0 };
 
   if (points->len > 0) {
     g_array_remove_range (points, 0, points->len - 1);
@@ -770,7 +770,7 @@ double s_path_shortest_distance (PATH *path, int x, int y, int solid)
   int closed;
   GArray *points;
 
-  points = g_array_new (FALSE, FALSE, sizeof (sPOINT));
+  points = g_array_new (FALSE, FALSE, sizeof (POINT));
 
   closed = s_path_to_polygon (path, points);
 

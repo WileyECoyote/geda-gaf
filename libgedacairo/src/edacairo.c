@@ -61,15 +61,25 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
   cairo_user_to_device (cr, &wx, &wy);
   *sx = round (wx); *sy = round (wy);
 }
-
+#include <stdio.h>
 void
 eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
 {
   COLOR c;
 
-  g_return_if_fail (color >= 0);
-  g_return_if_fail (map != NULL);
-  g_return_if_fail ((color >= 0) && (map->len > color));
+  if (map == NULL) {
+    fprintf (stderr, "Internal Error: "
+                     "<%s> line <%d>, <eda_cairo_set_source_color>"
+                     "map = NULL.\n", __FILE__, __LINE__);
+    return;
+  }
+  if ( (color < 0) || (color > map->len - 1)) {
+    fprintf (stderr, "Internal Error: "
+                     "<%s>, line <%d>, <eda_cairo_set_source_color>"
+                     "map->len %d > color index = %d.\n",
+                      __FILE__, __LINE__,  map->len, color);
+    return;
+  }
 
   c = g_array_index (map, COLOR, color);
 

@@ -136,8 +136,8 @@ geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
  */
 static void gd_callback_selection_changed (SELECTION *selection, gpointer user_data)
 {
-  GschemDialog *Dialog = GSCHEM_DIALOG(user_data);
-  GSCHEM_TOPLEVEL *w_current = Dialog->w_current;
+  GschemDialog   *Dialog    = GSCHEM_DIALOG(user_data);
+  GschemToplevel *w_current = Dialog->w_current;
   GList *iter;
   OBJECT *object;
   int object_count = 0;
@@ -163,7 +163,7 @@ static void gd_callback_selection_changed (SELECTION *selection, gpointer user_d
     }
   }
   else
-    fprintf(stderr, "Error gd_callback_selection_changed:TOLEVEL not set;\n");
+    fprintf(stderr, "Error gd_callback_selection_changed:TOPLEVEL not set;\n");
 }
 
 /*! \brief Update the dialog when the current page's SELECTION object
@@ -347,10 +347,9 @@ gschem_dialog_set_property (GObject *object, guint property_id,
       Dialog->settings_name = g_value_dup_string (value);
       break;
     case PROP_GSCHEM_TOPLEVEL:
-      Dialog->w_current = (GSCHEM_TOPLEVEL*)g_value_get_pointer (value);
+      Dialog->w_current = (GschemToplevel*)g_value_get_pointer (value);
       break;
     case PROP_PARENT_WINDOW:
-      fprintf(stderr, "gschem_dialog_set_property: set parent=main\n");
       gschem_dialog_set_parent(Dialog, (GtkWindow*) g_value_get_pointer (value));
       break;
     case PROP_SELECTION_TRACKER:
@@ -576,7 +575,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
  *  \param [in]  parent             The GtkWindow which will parent this dialog
  *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
  *  \param [in]  settings_name      The name gschem should use to store this dialog's settings
- *  \param [in]  w_current          The GSCHEM_TOPLEVEL object this dialog is associated with
+ *  \param [in]  w_current          The GschemToplevel object this dialog is associated with
  *
  *  \return  The GschemDialog created.
  */
@@ -584,7 +583,7 @@ static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
                                            const char *settings_name,
-                                           GSCHEM_TOPLEVEL *w_current)
+                                           GschemToplevel *w_current)
 {
   GschemDialog *dialog;
 
@@ -624,14 +623,14 @@ static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
  *  \param [in]  parent             The GtkWindow which will parent this dialog
  *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
  *  \param [in]  settings_name      The name gschem should use to store this dialog's settings
- *  \param [in]  w_current          The GSCHEM_TOPLEVEL object this dialog is associated with
+ *  \param [in]  w_current          The GschemToplevel object this dialog is associated with
  *  \param [in]  first_button_text  The text string for the first button
  *  \param [in]  ...                A variable number of arguments with the remaining button strings
  *
  *  \return  The GschemDialog created.
  */
 GtkWidget* gschem_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
-                                           const char *settings_name, GSCHEM_TOPLEVEL *w_current,
+                                           const char *settings_name, GschemToplevel *w_current,
                                            const char *first_button_text, ...)
 {
   GschemDialog *dialog;

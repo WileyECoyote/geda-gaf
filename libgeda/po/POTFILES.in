@@ -27,10 +27,13 @@ libgeda/src/s_hierarchy.c
 libgeda/src/s_page.c
 libgeda/src/s_slib.c
 libgeda/src/s_slot.c
+
 libgeda/src/scheme_attrib.c
 libgeda/src/scheme_complex.c
 libgeda/src/scheme_object.c
 libgeda/src/scheme_page.c
+
+libgeda/src/edascmhookproxy.c
 libgeda/src/edaconfig.c
 libgeda/scheme/geda/attrib.scm
 

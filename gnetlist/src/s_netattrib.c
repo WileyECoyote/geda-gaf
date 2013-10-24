@@ -21,21 +21,14 @@
 
 #include <config.h>
 
-#include <stdio.h>
 #include <ctype.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include <gettext.h>
 
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
-#include "../include/gettext.h"
 
 /* Used by the connected string functions */
 #define PIN_NET_PREFIX "__netattrib_power_pin "
@@ -101,10 +94,11 @@ void
 s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
                         NETLIST * netlist, char *value, char *hierarchy_tag)
 {
-  NETLIST *netlist_tail   = NULL;
+  NETLIST  *netlist_tail  = NULL;
   CPINLIST *cpinlist_tail = NULL;
   CPINLIST *new_cpin      = NULL;
   CPINLIST *old_cpin      = NULL;
+
   char *connected_to      = NULL;
   char *net_name          = NULL;
   char *start_of_pinlist  = NULL;
@@ -177,11 +171,11 @@ s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
         new_cpin->nets->connected_to = g_strdup(connected_to);
         new_cpin->nets->nid = o_current->sid;
 
-        #if DEBUG
+#if DEBUG
         printf("Finished creating: %s\n", connected_to);
         printf("netname: %s %s\n", new_cpin->nets->net_name,
                hierarchy_tag);
-        #endif
+#endif
 
         g_free(connected_to);
       }
@@ -199,7 +193,7 @@ s_netattrib_handle (TOPLEVEL * pr_current, OBJECT * o_current,
                     NETLIST * netlist, char *hierarchy_tag)
 {
   char *value;
-  int counter;
+  int   counter;
 
   /* for now just look inside the component */
   for (counter = 0; ;) {
@@ -238,7 +232,7 @@ char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
   char *start_of_pinlist  = NULL;
   char *return_value      = NULL;
   const char *current_pin = NULL;
-  int counter;
+  int   counter;
 
   if (o_current == NULL ||
       o_current->complex == NULL)
@@ -330,9 +324,9 @@ char *s_netattrib_return_netname(TOPLEVEL * pr_current, OBJECT * o_current,
   s_hierarchy_create_netattrib(pr_current, temp_netname,
                                hierarchy_tag);
 
-  #if DEBUG
+#if DEBUG
   printf("netname: %s\n", netname);
-  #endif
+#endif
 
   return (netname);
 }

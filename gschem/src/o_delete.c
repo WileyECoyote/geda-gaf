@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -32,10 +33,10 @@
  *  This function erases the object \a object before deleting it. It
  *  deals with connection and object connected to it.
  *
- *  \param [in] w_current The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current The GschemToplevel object.
  *  \param [in] object    The object to delete.
  */
-void o_delete (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+void o_delete (GschemToplevel *w_current, OBJECT *object)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 
@@ -54,69 +55,70 @@ void o_delete (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  This function deletes the objects selected on the current page of
  *  toplevel \a w_current.
  *
- *  \param [in] w_current The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current The GschemToplevel object.
  */
-void o_delete_selected (GSCHEM_TOPLEVEL *w_current)
+void o_delete_selected (GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  SELECTION *selection = toplevel->page_current->selection_list;
+  SELECTION *selection = Top_Selection;
   GList *to_remove;
   GList *iter;
   OBJECT *obj;
 
   unsigned int locked_num = 0;
 
-  g_return_if_fail (o_select_selected (w_current));
+  if (o_select_is_selection (w_current)) {
 
-  to_remove = g_list_copy (geda_list_get_glist (selection));
+    to_remove = g_list_copy (geda_list_get_glist (selection));
 
-  for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
-    obj = (OBJECT *) iter->data;
-    if (obj->selectable == FALSE)
-      locked_num++;
-  }
-
-  if (locked_num > 0) {
-    GList *non_locked = NULL;
-    char *msg;
-    int resp;
-
-    msg = g_strdup_printf(ngettext ("Delete locked object?", "Delete %u locked objects?", locked_num), locked_num);
-    resp =  gschem_confirm_dialog(msg, GTK_MESSAGE_QUESTION);
-    switch (resp) {
-    case GTK_RESPONSE_YES: /* Remove all */
-      break;
-    case GTK_RESPONSE_NO: /* Remove non locked */
-      for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
-        obj = (OBJECT *) iter->data;
-        if (obj->selectable == TRUE)
-          non_locked = g_list_append (non_locked, iter->data);
-      }
-      g_list_free (to_remove);
-      to_remove = non_locked;
-      break;
-    default: /* Cancel */
-      g_list_free (to_remove);
-      return;
+    for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
+      obj = (OBJECT *) iter->data;
+      if (obj->selectable == FALSE)
+        locked_num++;
     }
+
+    if (locked_num > 0) {
+      GList *non_locked = NULL;
+      char *msg;
+      int resp;
+
+      msg = g_strdup_printf(ngettext ("Delete locked object?", "Delete %u locked objects?", locked_num), locked_num);
+      resp =  gschem_confirm_dialog(msg, GTK_MESSAGE_QUESTION);
+      switch (resp) {
+        case GTK_RESPONSE_YES: /* Remove all */
+          break;
+        case GTK_RESPONSE_NO: /* Remove non locked */
+          for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
+            obj = (OBJECT *) iter->data;
+            if (obj->selectable == TRUE)
+              non_locked = g_list_append (non_locked, iter->data);
+          }
+          g_list_free (to_remove);
+          to_remove = non_locked;
+          break;
+        default: /* Cancel */
+          g_list_free (to_remove);
+          return;
+      }
+    }
+
+    for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
+      obj = (OBJECT *) iter->data;
+      o_selection_remove   (toplevel, selection, obj);
+      s_page_remove_object (toplevel, toplevel->page_current, obj);
+    }
+
+    g_run_hook_object_list (w_current, "%remove-objects-hook", to_remove);
+
+    for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
+      obj = (OBJECT *) iter->data;
+      s_delete_object (toplevel, obj);
+    }
+
+    g_list_free (to_remove);
+
+    w_current->inside_action = 0;
+    o_undo_savestate (w_current, UNDO_ALL);
+    //i_update_sensitivities (w_current);
   }
-
-  for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
-    obj = (OBJECT *) iter->data;
-    o_selection_remove   (toplevel, selection, obj);
-    s_page_remove_object (toplevel, toplevel->page_current, obj);
-  }
-
-  g_run_hook_object_list (w_current, "%remove-objects-hook", to_remove);
-
-  for (iter = to_remove; iter != NULL; iter = g_list_next (iter)) {
-    obj = (OBJECT *) iter->data;
-    s_delete_object (toplevel, obj);
-  }
-
-  g_list_free (to_remove);
-
-  w_current->inside_action = 0;
-  o_undo_savestate (w_current, UNDO_ALL);
-  i_update_sensitivities (w_current);
 }

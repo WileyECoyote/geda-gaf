@@ -25,6 +25,10 @@
 #ifndef _DEFINES_H_INCL
 #define _DEFINES_H_INCL
 
+/* Utility macro to report code errors */
+#define BUG_MSG( fun, msg) fprintf (stderr, "Internal Error: <%s>, <%s> line %d: " \
+                                             msg, fun, __FILE__, __LINE__);
+
 /* Current schematic/symbol file format */
 #define FILEFORMAT_VERSION     2
 
@@ -47,6 +51,18 @@
 /* For example, if you set this string to "FIX-", the resulting output is:  */
 /* FIX-1.0.0.20060906. */
 #define PREPEND_VERSION_STRING ""
+
+
+/* W.E.Hill Oct 16, 2013 relocated "these" defines from gschem so gaf's
+ * can all reference.
+ */
+#define SCHEMATIC_FILE_SUFFIX      "sch"
+#define SCHEMATIC_FILE_DOT_SUFFIX  ".sch"
+#define SCHEMATIC_FILTER           "*.sch"
+
+#define SYMBOL_FILE_SUFFIX         "sym"
+#define SYMBOL_FILE_DOT_SUFFIX     ".sym"
+#define SYMBOL_FILTER              "*.sym"
 
 /* \note
  * Kazu Hirata <kazu@seul.org> on July 16, 1999 - Added these absolute
@@ -78,9 +94,9 @@
 #define LEAVE_VISIBILITY_ALONE -1
 
 /* For bus, line, net, and pin styles */
-#define STYLE_NONE      0
-#define STYLE_THIN      1
-#define STYLE_THICK     2
+#define STYLE_NONE              0
+#define STYLE_THIN              1
+#define STYLE_THICK             2
 
 #define RC_STR_STYLE_NONE      "none"
 #define RC_STR_STYLE_THIN      "thin"
@@ -103,29 +119,29 @@
 #define DEFAULT_THIN_BUS_WIDTH   15
 #define DEFAULT_THICK_BUS_WIDTH  30
 
-#define DEFAULT_THIN_LINE_WIDTH	 10
+#define DEFAULT_THIN_LINE_WIDTH  10
 #define DEFAULT_THICK_LINE_WIDTH 30
 
-#define DEFAULT_THIN_NET_WIDTH	  5
-#define DEFAULT_THICK_NET_WIDTH	 20
+#define DEFAULT_THIN_NET_WIDTH    5
+#define DEFAULT_THICK_NET_WIDTH  20
 
-#define DEFAULT_THIN_PIN_WIDTH	 10
-#define DEFAULT_THICK_PIN_WIDTH	 30
+#define DEFAULT_THIN_PIN_WIDTH   10
+#define DEFAULT_THICK_PIN_WIDTH  30
 
 /* for pin_type */
-//#define PIN_TYPE_NET		0
-//#define PIN_TYPE_BUS		1
+//#define PIN_TYPE_NET      0
+//#define PIN_TYPE_BUS      1
 
 /* various visual cue sizes (in mils) */
-#define CUE_BOX_SIZE 		30
-#define JUNCTION_CUE_SIZE_NET	50
-#define JUNCTION_CUE_SIZE_BUS	30
-#define PIN_CUE_SIZE_NET	30
-#define PIN_CUE_SIZE_BUS	50
+#define CUE_BOX_SIZE            30
+#define JUNCTION_CUE_SIZE_NET   50
+#define JUNCTION_CUE_SIZE_BUS   30
+#define PIN_CUE_SIZE_NET        30
+#define PIN_CUE_SIZE_BUS        50
 
 /* For text location on component not found graphics */
-#define NOT_FOUND_TEXT_X	100
-#define NOT_FOUND_TEXT_Y	100
+#define NOT_FOUND_TEXT_X        100
+#define NOT_FOUND_TEXT_Y        100
 
 #undef max
 #define max(a,b) ((a) > (b) ? (a) : (b))
@@ -134,15 +150,15 @@
 #define min(a,b) ((a) < (b) ? (a) : (b))
 
 /* for s_clib_getfilename() */
-#define OPEN_DIR	0
-#define READ_DIR	1
-#define CLOSE_DIR	2
-#define SET_COUNT	3
+#define OPEN_DIR            0
+#define READ_DIR            1
+#define CLOSE_DIR           2
+#define SET_COUNT           3
 
 /* for s_slib_search() */
-#define SLIB_SEARCH_START	0
-#define SLIB_SEARCH_NEXT	1
-#define SLIB_SEARCH_DONE	2
+#define SLIB_SEARCH_START   0
+#define SLIB_SEARCH_NEXT    1
+#define SLIB_SEARCH_DONE    2
 
 /* for text alignment */
 /*   2 -- 5 -- 8  */
@@ -150,97 +166,97 @@
 /*   1 -- 4 -- 7  */
 /*   |    |    |  */
 /*   0 -- 3 -- 6  */
-#define LOWER_LEFT	0
-#define MIDDLE_LEFT	1
-#define UPPER_LEFT	2
-#define LOWER_MIDDLE	3
-#define MIDDLE_MIDDLE	4
-#define UPPER_MIDDLE	5
-#define LOWER_RIGHT	6
-#define MIDDLE_RIGHT	7
-#define UPPER_RIGHT	8
+#define LOWER_LEFT         0
+#define MIDDLE_LEFT        1
+#define UPPER_LEFT         2
+#define LOWER_MIDDLE       3
+#define MIDDLE_MIDDLE      4
+#define UPPER_MIDDLE       5
+#define LOWER_RIGHT        6
+#define MIDDLE_RIGHT       7
+#define UPPER_RIGHT        8
 
 /* one character string used to calculate tab's width */
 /* Warning: it MUST be a string. */
 #define TAB_CHAR_MODEL "b"
 
 /* The conn modes for type */
-#define CONN_NULL               0
-#define CONN_ENDPOINT		1
-#define CONN_MIDPOINT		2
+#define CONN_NULL           0
+#define CONN_ENDPOINT       1
+#define CONN_MIDPOINT       2
 
 /* used for undo_savestate flag */
-#define UNDO_ALL		0
-#define UNDO_VIEWPORT_ONLY	1
+#define UNDO_ALL            0
+#define UNDO_VIEWPORT_ONLY  1
 
 /* for console-window keyword */
-#define MAP_LATER		0
-#define MAP_ON_STARTUP		1
+#define MAP_LATER           0
+#define MAP_ON_STARTUP      1
 
 /* for console-window-type */
-#define DECORATED		0
-#define TRANSIENT		1
+#define DECORATED           0
+#define TRANSIENT           1
 
 /* list copying flags */
-#define NORMAL_FLAG		0
-#define SELECTION_FLAG		1
+#define NORMAL_FLAG         0
+#define SELECTION_FLAG      1
 
 /* hierarchy loading flags */
 #define HIERARCHY_NORMAL_LOAD   0
 #define HIERARCHY_FORCE_LOAD    1
 
 /* for scrollbar-update type */
-#define DISPLAY_CONTINUOUS	0
-#define DISPLAY_DELAYED 	1
+#define DISPLAY_CONTINUOUS      0
+#define DISPLAY_DELAYED         1
 
 /* hierarchy traversing flags */
-#define HIERARCHY_NODUPS (1<<0)
+#define HIERARCHY_NODUPS    (1<<0)
 #define HIERARCHY_POSTORDER (1<<1)
 #define HIERARCHY_INNERLOOP (1<<7)
 
-#define MILS_PER_INCH		1000
+#define MILS_PER_INCH       1000
 
 /* for text_output */
-#define VECTOR_FONTS		0
-#define PS_FONTS		1
+#define VECTOR_FONTS        0
+#define PS_FONTS            1
 
 #define DEFAULT_OBJECT_END END_SQUARE
 /* for print dialog box */
-#define EXTENTS			0
-#define WINDOW			1
-#define EXTENTS_NOMARGINS	2
+#define EXTENTS             0
+#define WINDOW              1
+#define EXTENTS_NOMARGINS   2
 
 /* for output-capstyle */
-#define BUTT_CAP 		0
-#define ROUND_CAP 		1
-#define SQUARE_CAP 		2
+#define BUTT_CAP        0
+#define ROUND_CAP       1
+#define SQUARE_CAP      2
 
 /* for print dialog box */
-#define LANDSCAPE		0
-#define PORTRAIT 		1
-#define AUTOLAYOUT 		2
+#define LANDSCAPE       0
+#define PORTRAIT        1
+#define AUTOLAYOUT      2
 
 /* for type to s_cue_output_all */
-#define POSTSCRIPT		0
-#define PNG			1
+#define POSTSCRIPT      0
+#define PNG             1
 
 /* for o_net_orientation */
-#define NEITHER			0
-#define HORIZONTAL		1
-#define VERTICAL		2
+#define NEITHER         0
+#define HORIZONTAL      1
+#define VERTICAL        2
 
 /* gnetlist: hierarchy_*_order */
-#define APPEND			0
-#define PREPEND			1
+#define APPEND          0
+#define PREPEND         1
 
 /* gnetlist: netlist_mode */
-#define gEDA			0
-#define SPICE			1
-#define TANGO			2
+#define gEDA            0
+#define SPICE           1
+#define TANGO           2
 
 /* gnetlist: net-naming-priority */
-#define NETATTRIB_ATTRIBUTE	0
-#define NETNAME_ATTRIBUTE	1
+#define NETATTRIB_ATTRIBUTE 0
+#define NETNAME_ATTRIBUTE   1
 
 /* gschcheck: Error types */
 #define NO_ERR                  0
@@ -277,7 +293,6 @@
 #ifndef S_IRWXG
 # define S_IRWXG 0
 #endif
-
 
 /* Used by the rc loading mechanism */
 #define RETURN_G_RC_MODE(rc, var, size) \

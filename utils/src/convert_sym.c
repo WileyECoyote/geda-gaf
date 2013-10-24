@@ -543,8 +543,8 @@ void
 do_nop(FILE *fp)
 {
   char text[MAX_TEXTLEN];
-
-  fgets(text,MAX_TEXTLEN,fp);
+  char *nop __attribute__ ((unused));
+  nop = fgets(text,MAX_TEXTLEN,fp);
 }
 
 void
@@ -2033,41 +2033,45 @@ get_continued_string(char *buf, size_t buffer_size, FILE *fp)
 {
   int c;
   size_t text_len;
+  char *ptr;
 
   /* skip leading whitespace */
   while(isspace((c=fgetc(fp))));
   ungetc(c,fp);  /* push back last char, cause it's not whitespace */
 
   /* read in the text */
-  buf = fgets(buf, buffer_size, fp);
-  records_processed++;
-  /* nuke trailing CR/NL, if there */
-  text_len=strlen(buf);
-  while (buf[text_len-1] == '\n' || buf[text_len-1] == '\r')
+  ptr = fgets(buf, buffer_size, fp);
+  if (ptr != NULL) {
+    records_processed++;
+    /* nuke trailing CR/NL, if there */
+    text_len=strlen(buf);
+
+    while (buf[text_len-1] == '\n' || buf[text_len-1] == '\r')
     {
       buf[text_len-1] = 0;
       text_len--;
     }
 
-  /* check for continuation chars */
-  while((c = getc(fp)) == '+')
+    /* check for continuation chars */
+    while((c = getc(fp)) == '+')
     {
       c = getc(fp);                         /* suck in space */
-      fgets(&buf[text_len], MAX_TEXTLEN-text_len,fp);  /* read in next chunk */
+      buf = fgets(&buf[text_len], MAX_TEXTLEN-text_len,fp);  /* read in next chunk */
       records_processed++;
       text_len=strlen(buf);                 /* update text length */
       /* nuke trailing CR/NL, if there */
       while (buf[text_len-1] == '\n' || buf[text_len-1] == '\r')
-        {
-          buf[text_len-1] = 0;
-          text_len--;
-        }
+      {
+        buf[text_len-1] = 0;
+        text_len--;
+      }
     }
-  ungetc(c,fp);   /* push back last char, obviously wasn't a + */
 
-#ifdef DEBUG
+    ungetc(c,fp);   /* push back last char, obviously wasn't a + */
+  }
+  #ifdef DEBUG
   printf("Buffer:'%s' in %s()\n",buf,__func__);
-#endif
+  #endif
 
   return 0;
 }

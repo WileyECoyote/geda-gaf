@@ -158,7 +158,7 @@ OBJECT *o_pin_read (TOPLEVEL *toplevel, const char buf[],
   if (color < 0 || color > MAX_COLORS) {
     s_log_message (_("Found an invalid color [ %s ]\n"), buf);
     s_log_message (_("Setting color to default color\n"));
-    color = DEFAULT_COLOR_INDEX;
+    color = PIN_COLOR;
   }
 
   if (toplevel->override_pin_color != -1) {
@@ -436,8 +436,8 @@ void o_pin_update_whichend (TOPLEVEL *toplevel, GList *object_list, int num_pins
     /* Determine which end of the pin is on or nearest the boundary */
     if (o_current->type == OBJ_PIN && o_current->whichend == -1) {
       if (o_current->line->y[0] == o_current->line->y[1]) {
-        /* horizontal */
 
+        /* horizontal */
         d1 = abs(o_current->line->x[0] - left);
         d2 = abs(o_current->line->x[1] - left);
         d3 = abs(o_current->line->x[0] - right);

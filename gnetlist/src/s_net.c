@@ -22,20 +22,14 @@
 #include <config.h>
 #include <missing.h>
 
-#include <stdio.h>
 #include <ctype.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
+
+#include <gettext.h>
 
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
-#include "../include/gettext.h"
 
 static int unnamed_net_counter = 1;
 static int unnamed_bus_counter = 1;
@@ -137,7 +131,8 @@ char *s_net_return_connected_string(TOPLEVEL * pr_current, OBJECT * object,
                                     char *hierarchy_tag)
 {
   OBJECT *o_current;
-  SCM scm_uref;
+  SCM     scm_uref;
+
   char *pinnum    = NULL;
   char *uref      = NULL;
   char *temp_uref = NULL;
@@ -337,15 +332,18 @@ char *s_net_name_search(TOPLEVEL * pr_current, NET * net_head)
 char *s_net_name (TOPLEVEL * pr_current, NETLIST * netlist_head,
                   NET * net_head, char *hierarchy_tag, int type)
 {
-  char *string = NULL;
-  NET *n_start;
-  NETLIST *nl_current;
+
+  NET      *n_start;
+  NETLIST  *nl_current;
   CPINLIST *pl_current;
-  char *net_name = NULL;
-  int found = 0;
+
+
+  char *net_name;
+  char *string            = NULL;
   char *temp;
-  int *unnamed_counter;
   char *unnamed_string;
+  int  *unnamed_counter;
+  int   found             = 0;
 
   net_name = s_net_name_search(pr_current, net_head);
 
@@ -398,48 +396,52 @@ char *s_net_name (TOPLEVEL * pr_current, NETLIST * netlist_head,
   /* which is just a place holder */
   /* and the head node shows up here */
 
-  if (net_head->nid == -1 && net_head->prev == NULL
-    && net_head->next == NULL) {
+  if (net_head->nid == -1 &&
+    net_head->prev == NULL &&
+    net_head->next == NULL)
+  {
     string = g_strdup_printf("unconnected_pin-%d", unnamed_pin_counter++);
 
-  return (string);
+    return (string);
 
-    }
+  }
 
-    switch (type) {
-      case PIN_TYPE_NET:
-        unnamed_counter = &unnamed_net_counter;
-        unnamed_string = pr_current->unnamed_netname;
-        break;
-      case PIN_TYPE_BUS:
-        unnamed_counter = &unnamed_bus_counter;
-        unnamed_string = pr_current->unnamed_busname;
-        break;
-      default:
-        g_critical (_("Incorrect connectivity type %i in s_name_nets()\n"), type);
-        return NULL;
-    }
-
-    /* have we exceeded the number of unnamed nets? */
-    if (*unnamed_counter < MAX_UNNAMED_NETS) {
-
-      if (netlist_mode == SPICE) {
-        string = g_strdup_printf("%d", (*unnamed_counter)++);
-      } else {
-        temp = g_strdup_printf ("%s%d", unnamed_string, (*unnamed_counter)++);
-        if (hierarchy_tag) {
-          string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);
-          g_free (temp);
-        } else {
-          string = temp;
-        }
-      }
-
-    } else {
-      fprintf(stderr, _("Increase number of unnamed nets (s_net.c)\n"));
+  switch (type) {
+    case PIN_TYPE_NET:
+      unnamed_counter = &unnamed_net_counter;
+      unnamed_string = pr_current->unnamed_netname;
+      break;
+    case PIN_TYPE_BUS:
+      unnamed_counter = &unnamed_bus_counter;
+      unnamed_string = pr_current->unnamed_busname;
+      break;
+    default:
+      g_critical (_("Incorrect connectivity type %i in s_name_nets()\n"), type);
       return NULL;
+  }
+
+  /* have we exceeded the number of unnamed nets? */
+  if (*unnamed_counter < MAX_UNNAMED_NETS) {
+
+    if (netlist_mode == SPICE) {
+      string = g_strdup_printf("%d", (*unnamed_counter)++);
+    }
+    else {
+      temp = g_strdup_printf ("%s%d", unnamed_string, (*unnamed_counter)++);
+      if (hierarchy_tag) {
+        string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);
+        g_free (temp);
+      } else {
+        string = temp;
+      }
     }
 
-    return string;
+  }
+  else {
+    fprintf(stderr, _("Increase number of unnamed nets (s_net.c)\n"));
+    return NULL;
+  }
+
+  return string;
 
 }

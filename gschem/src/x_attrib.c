@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
@@ -41,9 +42,9 @@
 
 typedef enum
 {
-  /* This dialog is used for both edit and creating new object */
+  /* This dialog is used for both edit and creating new attributes */
   SAE_EDIT_MODE,
-  SAE_CREATE_NEW
+  SAE_ADD_MODE
 } AttributeEditMode;
 
 /*! \section attrib-edit-dialog-box Attrib Edit Dialog Box */
@@ -55,7 +56,7 @@ typedef enum
  * the text editing field is set to NULL.
  *
  */
-static void x_dialog_attrib_edit_update_selection (GSCHEM_TOPLEVEL *w_current,
+static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
                                                    OBJECT *object)
 {
   GtkWidget *ThisDialog;
@@ -63,10 +64,13 @@ static void x_dialog_attrib_edit_update_selection (GSCHEM_TOPLEVEL *w_current,
   TOPLEVEL  *toplevel;
   char      *name = NULL;
   char      *val  = NULL;
+  //int        mode_flag;
   int        len  = 0;
 
   ThisDialog = w_current->aewindow;
-  toplevel = w_current->toplevel;
+  toplevel   = w_current->toplevel;
+
+  // mode_flag =  GPOINTER_TO_INT( g_object_get_data(G_OBJECT(ThisDialog), "mode_flag") );
 
   if (object != NULL && object->type == OBJ_TEXT) {
 
@@ -140,10 +144,10 @@ int option_menu_get_history (GtkOptionMenu *option_menu)
  *  "apply" and one to "close" the dialog.
  * 
  * \param mode flag to indicate create mode or edit an existing
- * \param w_current is pointer to a GSCHEM_TOPLEVEL structure
+ * \param w_current is pointer to a GschemToplevel structure
  */
 static void
-attrib_edit_dialog_ok(AttributeEditMode mode, GSCHEM_TOPLEVEL *w_current)
+attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 {
   TOPLEVEL  *toplevel;
   GtkWidget *ThisDialog;
@@ -158,9 +162,8 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GSCHEM_TOPLEVEL *w_current)
   const char *value, *label;
   char       *newtext;
   int vis, show;
-  int invocation_flag;
+
   int option_index;
-  int wx, wy;
 
   ThisDialog = w_current->aewindow;
   toplevel   = w_current->toplevel;
@@ -205,30 +208,18 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GSCHEM_TOPLEVEL *w_current)
       break;
   }
 
-  if (mode == SAE_CREATE_NEW) {
+  if (mode == SAE_ADD_MODE) {
+
     OBJECT *new = NULL;
 
     object = o_select_return_first_object(w_current);
 
     new = o_attrib_add_attrib(w_current, newtext, vis, show, object);
 
-
-    invocation_flag =
-    GPOINTER_TO_INT( g_object_get_data(G_OBJECT(ThisDialog),
-                                         "invocation_flag") );
-    wx = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(ThisDialog),
-                                              "position_wx"));
-    wy = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(ThisDialog),
-                                              "position_wy"));
-
-    #if DEBUG
-    printf("invocation flag: %d\n", invocation_flag);
-    #endif
-    if (invocation_flag == ID_ORIGIN_KEYBOARD &&
-        wx != -1 && wy != -1) {
+    if ( w_current->first_wx != -1 && w_current->first_wy != -1) {
       o_invalidate (w_current, new);
-      new->text->x = wx;
-      new->text->y = wy;
+      new->text->x = w_current->first_wx;
+      new->text->y = w_current->first_wy;
       o_text_recreate(toplevel, new);
       toplevel->page_current->CHANGED = 1;
       o_undo_savestate(w_current, UNDO_ALL);
@@ -251,7 +242,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GSCHEM_TOPLEVEL *w_current)
  *  attribute dialog.
  */
 void attribute_edit_dialog_response(GtkWidget *w, int response,
-                                    GSCHEM_TOPLEVEL *w_current)
+                                    GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   ThisDialog = w_current->aewindow;
@@ -261,7 +252,7 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
       attrib_edit_dialog_ok ( SAE_EDIT_MODE, w_current);
       break;
     case GTK_RESPONSE_ACCEPT:
-      attrib_edit_dialog_ok ( SAE_CREATE_NEW, w_current);
+      attrib_edit_dialog_ok ( SAE_ADD_MODE, w_current);
       gtk_grab_remove(ThisDialog);
       break;
     case GTK_RESPONSE_REJECT:
@@ -277,7 +268,7 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
 /*! \brief Move Focus when Enter pressed in Name Entry
  *  \par Function Description
  *  This function is call when the ENTER button is press
- *  in Attribute Name entry, the function set focus to the
+ *  in Attribute Name entry, the function sets focus to the
  *  Value Entry.
  */
 static void
@@ -287,11 +278,54 @@ callback_attrib_entry_activate (GtkWidget *w, GtkWidget *value_entry)
     gtk_widget_grab_focus(value_entry);
 }
 
+GtkWidget *x_attrib_option_menu_new()
+{
+  GtkWidget  *options_menu;
+  GtkWidget  *show_options_menu;
+  GtkWidget  *menuitem;
+
+  const char *options_menu_tip;
+  const char *options_name_tip;
+  const char *options_value_tip;
+  const char *options_both_tip;
+
+  options_menu_tip  = _("Select to choose an attribute visibility options");
+  options_name_tip  = _("Show only the name of the attribute");
+  options_value_tip = _("Show only the value of the attribute");
+  options_both_tip  = _("Show both the name and the value of the attribute");
+
+  options_menu = gtk_option_menu_new ();
+  g_object_set (options_menu, "visible", TRUE, NULL);
+
+  show_options_menu = gtk_menu_new ();
+  gtk_widget_set_tooltip_text (GTK_WIDGET(options_menu), options_menu_tip);
+
+  menuitem = gtk_menu_item_new_with_label (_("Show Value Only"));
+  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_name_tip);
+
+  menuitem = gtk_menu_item_new_with_label (_("Show Name Only"));
+  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_value_tip);
+
+  menuitem = gtk_menu_item_new_with_label (_("Show Name & Value"));
+  gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
+  gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_both_tip);
+
+  gtk_option_menu_set_menu (GTK_OPTION_MENU (options_menu), show_options_menu);
+  gtk_option_menu_set_history (GTK_OPTION_MENU (options_menu), 0);
+
+  return options_menu;
+}
 /*! \brief Create the attribute add/edit dialog
  *  \par Function Description
- *  This function creates the single attribute edit dialog.
+ *  This function creates the single attribute edit dialog. This dialog
+ *  is special in that it can be either an "add" new attribute or an
+ *  "Edit" (existing) attribute dialog.
+ *
  */
-void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
+static
+void attrib_edit_dialog (GschemToplevel *w_current, OBJECT *object, int flag)
 {
   AtkObject  *atk_name_obj;
   AtkObject  *atk_value_obj;
@@ -300,8 +334,6 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
   GtkWidget  *vbox, *label, *table, *alignment;
   GtkWidget  *name_label, *value_label;
   GtkWidget  *show_options;
-  GtkWidget  *show_options_menu;
-  GtkWidget  *menuitem;
   GtkWidget  *attrib_combo_box_entry;
   GtkWidget  *attrib_combo_entry;
   GtkWidget  *value_entry;
@@ -314,39 +346,49 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
   /* gschem specific */
   char       *string = NULL;
   int i;
-  int wx, wy;
 
-  DECLARE_TOOPTIPS;
+  const char *name_label_text;
+  const char *name_label_text_add;
+  const char *name_label_text_edit;
 
   const char *name_entry_tip;
   const char *name_list_tip;
+  const char *name_list_add_tip;
+  const char *name_list_edit_tip;
   const char *value_entry_tip;
+  const char *value_entry_add_tip;
+  const char *value_entry_edit_tip;
   const char *visibility_tip;
-  const char *options_menu_tip;
-  const char *options_name_tip;
-  const char *options_value_tip;
-  const char *options_both_tip;
-
-  name_entry_tip    = _("Enter the attribute name");
-  name_list_tip     = _("Select  the attribute name");
-  value_entry_tip   = _("Enter the value of the attribute");
-  visibility_tip    = _("Enable or disable visibilit of the attribute");
-  options_menu_tip  = _("Select to choose an attribute visibilty options");
-  options_name_tip  = _("Show only the name of the attribute");
-  options_value_tip = _("Show only the value of the attribute");
-  options_both_tip  = _("Show both the name and the value of the attribute");
 
   ThisDialog = w_current->aewindow;
 
   if (!ThisDialog) {
 
-    if (object) {
-      response     = GTK_RESPONSE_APPLY;
-      dialog_flags = GSCHEM_MODELESS_DIALOG;
+    name_entry_tip       = _("Enter or type an attribute name"); /* common */
+    name_label_text_add  = _("<b>Add Attribute</b>");
+    name_label_text_edit = _("<b>Edit Attribute</b>");
+
+    name_list_add_tip    = _("Select the attribute name to add");
+    name_list_edit_tip   = _("Select the name of the attribute to edit");
+
+    value_entry_add_tip  = _("Input a value for the new attribute");
+    value_entry_edit_tip = _("Input or edit the value of the attribute");
+
+    visibility_tip       = _("Enable or disable visibility of the attribute");
+
+    if (SAE_ADD_MODE == flag) {
+      name_label_text    = name_label_text_add;
+      name_list_tip      = name_list_add_tip;
+      value_entry_tip    = value_entry_add_tip;
+      response           = GTK_RESPONSE_ACCEPT;
+      dialog_flags       = GSCHEM_DIALOG_MODAL;
     }
     else {
-      response     = GTK_RESPONSE_ACCEPT;
-      dialog_flags = GSCHEM_DIALOG_MODAL;
+      name_label_text    = name_label_text_edit;
+      name_list_tip      = name_list_edit_tip;
+      value_entry_tip    = value_entry_edit_tip;
+      response           = GTK_RESPONSE_APPLY;
+      dialog_flags       = GSCHEM_MODELESS_DIALOG;
     }
 
     ThisDialog = gschem_dialog_new_with_buttons(_("Single Attribute Editor"),
@@ -362,20 +404,18 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
                                    DIALOG_BORDER_SPACING);
     gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
-    if (object)
-      label = geda_label_new(_("<b>Edit Attribute</b>"));
-    else
-      label = geda_label_new(_("<b>Add Attribute</b>"));
-
+    /* Main Body Label */
+    label = geda_aligned_label_new(name_label_text, 0, 0);
     geda_label_set_use_markup ( GEDA_LABEL(label), TRUE);
-    gtk_misc_set_alignment(GTK_MISC(label),0,0);
-    gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);
+    gtk_container_add (GTK_CONTAINER (vbox), label);
 
+    /* Create alignment widget for main body and add to vbox */
     alignment = gtk_alignment_new(0,0,1,1);
     gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0,
                               DIALOG_INDENTATION, 0);
     gtk_box_pack_start(GTK_BOX(vbox), alignment, TRUE, TRUE, 0);
 
+    /* Create the "body" table and add to the alignment widget */
     table = gtk_table_new (3, 2, FALSE);
     gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
     gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
@@ -419,28 +459,11 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
                       (GtkAttachOptions) (0), 0, 0);
     gtk_widget_set_tooltip_text (GTK_WIDGET(visbutton), visibility_tip);
 
-    show_options = gtk_option_menu_new ();
-    gtk_widget_show (show_options);
+    show_options = x_attrib_option_menu_new();
+
     gtk_table_attach (GTK_TABLE (table), show_options, 1, 2, 2, 3,
                       (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
                       (GtkAttachOptions) (0), 0, 0);
-    show_options_menu = gtk_menu_new ();
-    gtk_widget_set_tooltip_text (GTK_WIDGET(show_options), options_menu_tip);
-
-    menuitem = gtk_menu_item_new_with_label (_("Show Value Only"));
-    gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_name_tip);
-
-    menuitem = gtk_menu_item_new_with_label (_("Show Name Only"));
-    gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_value_tip);
-
-    menuitem = gtk_menu_item_new_with_label (_("Show Name & Value"));
-    gtk_menu_append (GTK_MENU (show_options_menu), menuitem);
-    gtk_widget_set_tooltip_text (GTK_WIDGET(menuitem), options_both_tip);
-
-    gtk_option_menu_set_menu (GTK_OPTION_MENU (show_options), show_options_menu);
-    gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
 
     /** Set the relationships between the label and their Widgets **/
     geda_label_set_mnemonic_widget (GEDA_LABEL (name_label),  attrib_combo_entry);
@@ -450,12 +473,12 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
     atk_value_obj = atk_widget_linked_label_new (value_label, value_entry );
 
     if ( atk_name_obj ) {
-      atk_object_set_name        (atk_name_obj,    _("Atrribute Name List"));
-      atk_object_set_description (atk_name_obj,       name_list_tip );
+      atk_object_set_name        (atk_name_obj,  _("Atrribute Name List"));
+      atk_object_set_description (atk_name_obj,     name_list_tip );
     }
     if ( atk_value_obj ) {
-      atk_object_set_name        (atk_value_obj,   _("Attribute Value Entry"));
-      atk_object_set_description (atk_value_obj,      value_entry_tip );
+      atk_object_set_name        (atk_value_obj, _("Attribute Value Entry"));
+      atk_object_set_description (atk_value_obj,    value_entry_tip );
     }
 
     if (!object) {
@@ -464,16 +487,7 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
       gtk_option_menu_set_history (GTK_OPTION_MENU (show_options), 0);
     }
 
-    g_object_set_data(G_OBJECT(ThisDialog), "invocation_flag",
-                        GINT_TO_POINTER(flag));
-
-    if (!x_event_get_pointer_position(w_current, TRUE, &wx, &wy)) {
-      wx = wy = -1;
-    }
-    g_object_set_data(G_OBJECT(ThisDialog), "position_wx",
-                        GINT_TO_POINTER(wx));
-    g_object_set_data(G_OBJECT(ThisDialog), "position_wy",
-                        GINT_TO_POINTER(wy));
+    g_object_set_data(G_OBJECT(ThisDialog), "mode_flag", GINT_TO_POINTER(flag));
 
     /* load the combo's tree with our list of attributes names */
     i = 0;
@@ -524,8 +538,7 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
 
     /* Tell our inherited on-selection change callback handler which
      * function to use */
-    g_object_set (G_OBJECT (ThisDialog),
-                  DIALOG_DATA_SELECTION,
+    g_object_set (G_OBJECT (ThisDialog), DIALOG_DATA_SELECTION,
                   x_dialog_attrib_edit_update_selection, NULL);
 
     if (!object) {
@@ -540,6 +553,14 @@ void attrib_edit_dialog (GSCHEM_TOPLEVEL *w_current, OBJECT *object, int flag)
   }
   x_dialog_attrib_edit_update_selection (w_current, object);
 
+}
+void x_attrib_add_dialog (GschemToplevel *w_current, OBJECT *object)
+{
+  attrib_edit_dialog (w_current, object, SAE_ADD_MODE);
+}
+void x_attrib_edit_dialog (GschemToplevel *w_current, OBJECT *object)
+{
+  attrib_edit_dialog (w_current, object, SAE_EDIT_MODE);
 }
 #undef ThisDialog
 /***************** End of Attrib Edit dialog box **********************/

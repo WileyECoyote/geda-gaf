@@ -1,3 +1,70 @@
+2013-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/libgeda/defines.h: Relocated defines for schematic and
+        and symbols files from gschme/includes/s_defines.h to this file
+        so these would be accessible to the library (and other apps).
+
+        * include/libgeda/geda_list.h: relocated macros Place_List and
+        Top_Selection from gschem/include/globals.h to this file because
+        this seems like a more appropriate place for these.
+
+        * include/libgeda/s_struct.h: Renamed struct type sPOINT to POINT,
+        maybe I'd done went and did a bad thing johnny, real bad.
+
+        * src/*.c: Replaced all strerror with g_strerror;
+
+        * src/a_basic.c: Added "const" qualifier to third parameter of
+        o_read_buffer, which is the input string buffer and added parameter
+        documentation for Gerror, which was not part of the orginal function.
+
+        * src/g_rc.c: Separated processing code in g_rc_parse_handler to
+        functions; g_gafrc_parse_handler, g_rcname_parse_handler, and
+        g_rcfile_parse_handler, (maybe like the "old days",) adding a dummy
+        parameter to g_gafrc_parse_handler for uniformity with the other
+        two. The function g_rc_parse_handler still exist, and works the same
+        way, but is not utilized. (gschem was revised to use the separated
+        versions.) This allows reprocessing of groups rather than all of them
+        in the event a recoverable error is encountered.
+
+        * src/o_basic.c: Added new functions; o_get_page_file_extension and
+        o_get_page_is_symbol.
+
+        * /src/s_clib.c: Eliminate define SYM_FILENAME_FILTER, which was in
+        the wrong place. Replaced with SYMBOL_FILE_DOT_SUFFIX, now defined
+        in defines.h, added new library function s_clib_source_path_exist.
+
+        * src/src/o_color.c: New file with just one function, so far:
+        o_color_get_object_default, more work needed here.
+
+        * src/src/o_complex.c: Replaced s_delete_object_glist with s_place
+        _free_place_list in function o_complex_prepare_place, implemented
+        s_place_set_place_list.
+
+        * src/s_place.c: New compilation unit, it's a start anyways.
+
+        * src/s_color.c: Relocated SCM function to new file scheme_color.c
+        in order to better organize the project.
+
+        * src/scheme_color.c: created new files and relocated SCM function
+        from s_color.c.
+
+        * src/u_basic.c: Added const qualifiers to stricmp, strncmpi, and
+        stristr (and maybe a couple of other modules too) and added cast in
+        strisubst for stristr.
+
+2013-10-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/f_basic.c: Revised to include new function f_set_backup_loader
+        _query_func. This new function use variable arguments and can be passed
+        data for the callback, such a pointer to w_current, or not.
+
+        * src/o_selection.c:  Remove error message for o_selected = NULL in
+        o_selection_remove, the function now returns quitely, as it would if
+        the object had not been found.
+
+        * src/s_toplevel.c: Added load_newer_backup_data, the Master branch is
+        has this variable.
+
 2013-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/s_page.c: Renamed functions: s_page_append, s_page_remove, and

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,8 +15,10 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
+
 #include <config.h>
 
 #include <stdio.h>
@@ -32,7 +34,7 @@
 #endif
 
 COLOR display_colors[MAX_COLORS];
-COLOR display_outline_colors[MAX_COLORS];
+COLOR outline_colors[MAX_COLORS];
 
 static GdkColor* gdk_colors[MAX_COLORS];
 static GdkColor* gdk_outline_colors[MAX_COLORS];
@@ -51,7 +53,7 @@ x_color_init (void)
 
   /* Initialise default color maps */
   s_color_map_defaults (display_colors);
-  s_color_map_defaults (display_outline_colors);
+  s_color_map_defaults (outline_colors);
 }
 
 /*! \brief Frees memory used by the color system.
@@ -70,7 +72,7 @@ x_color_free (void)
   for (i = 0; i < MAX_COLORS; i++) {
     if (display_colors[i].enabled)
       gdk_colormap_free_colors (colormap, gdk_colors[i], 1);
-    if (display_outline_colors[i].enabled)
+    if (outline_colors[i].enabled)
       gdk_colormap_free_colors (colormap, gdk_outline_colors[i], 1);
   }
 }
@@ -128,10 +130,10 @@ void x_color_allocate (void)
       gdk_colors[i] = NULL;
     }
 
-    if (display_outline_colors[i].enabled) {
+    if (outline_colors[i].enabled) {
       gdk_outline_colors[i] = (GdkColor *) g_malloc(sizeof(GdkColor));
 
-      c = display_outline_colors[i];
+      c = outline_colors[i];
 
       /* Interpolate 8-bpp colours into 16-bpp GDK color
        * space. N.b. ignore transparency because GDK doesn't
@@ -167,6 +169,50 @@ GdkColor *x_get_color(int color)
   }
 }
 
+/*! \brief Get Display Color Map
+ *  \par Function Documentation
+ *   Returns a pointer to a new Garray containing a copy of the
+ *   current color-map allocations.
+ * 
+ *  \note the returned color-map MUST be freed using g_array_free.
+ */
+GArray *x_color_get_display_color_map()
+{
+  GArray* color_map;
+  color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
+  color_map = g_array_append_vals (color_map, display_colors, MAX_COLORS);
+  return color_map;
+}
+
+/*! \brief Get Display Outline Color Map
+ *  \par Function Documentation
+ *   Returns a pointer to a new Garray containing a copy of the
+ *   current color-map allocations.
+ *
+ *  \note the returned color-map MUST be freed using g_array_free.
+ */
+GArray *x_color_get_outline_color_map()
+{
+  GArray* color_map;
+  color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
+  color_map = g_array_append_vals (color_map, outline_colors, MAX_COLORS);
+  return color_map;
+}
+/*! \brief Get Display Color Map
+ *  \par Function Documentation
+ *   Returns a pointer to a new Garray containing a copy of the
+ *   current color-map allocations.
+ *
+ *  \note the returned color-map MUST be freed using g_array_free.
+ */
+GArray   *x_color_get_print_color_map()
+{
+  GArray* color_map;
+  color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
+  color_map = g_array_append_vals (color_map, print_colors, MAX_COLORS);
+  return color_map;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Documentation
@@ -191,8 +237,7 @@ GdkColor *x_get_darkcolor(int color)
  */
 COLOR *x_color_lookup (int color)
 {
-  if (color < 0 || color >= MAX_COLORS ||
-      !display_colors[color].enabled) {
+  if (color < 0 || color >= MAX_COLORS || !display_colors[color].enabled) {
     fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
     return &display_colors[DEFAULT_COLOR_INDEX];
   } else {
@@ -208,14 +253,33 @@ COLOR *x_color_lookup (int color)
  */
 COLOR *x_color_lookup_dark (int color)
 {
-  if (color < 0 || color >= MAX_COLORS ||
-      !display_outline_colors[color].enabled) {
+  if (color < 0 || color >= MAX_COLORS || !outline_colors[color].enabled) {
     fprintf(stderr, _("Tried to get an invalid outline color: %d\n"), color);
-    return &display_outline_colors[DEFAULT_COLOR_INDEX];
+    return &outline_colors[DEFAULT_COLOR_INDEX];
   } else {
-    return &display_outline_colors[color];
+    return &outline_colors[color];
   }
 
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Documentation
+ *
+ */
+bool x_color_get_state (int color)
+{
+  return display_colors[color].enabled;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Documentation
+ *
+ */
+void x_color_set_state (int color, int state)
+{
+  display_colors[color].enabled = state != FALSE;
 }
 
 /*! \brief Return pointer to string name of the color
@@ -292,13 +356,3 @@ int x_load_color_scheme(char* scheme) {
     s_log_message(_("x_load_color_scheme: Memory allocation error\n"));
   return result;
 }
-
-
-
-
-
-
-
-
-
-

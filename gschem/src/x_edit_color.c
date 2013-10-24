@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*!
@@ -54,11 +55,11 @@
  *  \par Function Description
  *  Updates the color combobox when the selection changes.
  *
- *  \param w_current pointer to GSCHEM_TOPLEVEL context
+ *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected OBJECT.
  */
 static void
-x_dialog_color_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+x_dialog_color_update_selection (GschemToplevel *w_current, OBJECT *object)
 {
   GtkComboBox *ColorCombo;
   int index;
@@ -76,7 +77,7 @@ x_dialog_color_update_selection (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  This function applies a color change to the currently selected objects.
  */
 static void
-x_dialog_edit_color_apply(GtkWidget *dialog, GSCHEM_TOPLEVEL *w_current)
+x_dialog_edit_color_apply(GtkWidget *dialog, GschemToplevel *w_current)
 {
   GList  *s_current = NULL;
   OBJECT *object = NULL;
@@ -123,7 +124,7 @@ x_dialog_edit_color_apply(GtkWidget *dialog, GSCHEM_TOPLEVEL *w_current)
  */
 static void
 x_dialog_edit_color_response(GtkWidget *Dialog, int response,
-                           GSCHEM_TOPLEVEL *w_current)
+                           GschemToplevel *w_current)
 {
   switch (response) {
   case GTK_RESPONSE_REJECT:
@@ -145,7 +146,7 @@ x_dialog_edit_color_response(GtkWidget *Dialog, int response,
  *  \par Function Description
  *  This function creates the color edit dialog
  */
-void x_dialog_edit_color (GSCHEM_TOPLEVEL *w_current)
+void x_dialog_edit_color (GschemToplevel *w_current)
 {
   GtkWidget *Dialog;
   GtkWidget *optionmenu;

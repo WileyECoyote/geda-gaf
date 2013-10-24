@@ -63,78 +63,78 @@ int global_sid=0;
 OBJECT *s_basic_init_object(OBJECT *new_node, int type, char const *name)
 {
   /* setup sid */
-  new_node->sid = global_sid++;
-  new_node->type = type;
+  new_node->sid                    = global_sid++;
+  new_node->type                   = type;
 
   /* Setup the name */
   new_node->name = g_strdup_printf("%s.%d", name, new_node->sid);
 
-  /* Don't associate with a page, initially */
-  new_node->page = NULL;
+  /* Not associate with a page, initially */
+  new_node->page                   = NULL;
 
   /* Setup the bounding box */
-  new_node->w_top = 0;
-  new_node->w_left = 0;
-  new_node->w_right = 0;
-  new_node->w_bottom = 0;
-  new_node->w_bounds_valid_for = NULL;
+  new_node->w_top                  = 0;
+  new_node->w_left                 = 0;
+  new_node->w_right                = 0;
+  new_node->w_bottom               = 0;
+  new_node->w_bounds_valid_for     = NULL;
 
   /* Setup line/circle structs */
-  new_node->line = NULL;
-  new_node->path = NULL;
-  new_node->circle = NULL;
-  new_node->arc = NULL;
-  new_node->box = NULL;
-  new_node->picture = NULL;
-  new_node->text = NULL;
-  new_node->complex = NULL;
+  new_node->line                   = NULL;
+  new_node->path                   = NULL;
+  new_node->circle                 = NULL;
+  new_node->arc                    = NULL;
+  new_node->box                    = NULL;
+  new_node->picture                = NULL;
+  new_node->text                   = NULL;
+  new_node->complex                = NULL;
 
-  new_node->tiles = NULL;
+  new_node->tiles                  = NULL;
 
-  new_node->conn_list = NULL;
+  new_node->conn_list              = NULL;
 
-  new_node->complex_basename = NULL;
-  new_node->parent = NULL;
+  new_node->complex_basename       = NULL;
+  new_node->parent                 = NULL;
 
   /* Setup the color */
-  new_node->color = DEFAULT_COLOR_INDEX;
-  new_node->dont_redraw = FALSE;
-  new_node->selectable = TRUE;
-  new_node->selected = FALSE;
-  new_node->locked_color = -1;
+  new_node->color                  = DEFAULT_COLOR_INDEX;
+  new_node->dont_redraw            = FALSE;
+  new_node->selectable             = TRUE;
+  new_node->selected               = FALSE;
+  new_node->locked_color           = LOCK_COLOR;
 
-  new_node->bus_ripper_direction = 0;
+  new_node->bus_ripper_direction   = 0;
 
-  new_node->line_end = END_NONE;
-  new_node->line_type = TYPE_SOLID;
-  new_node->line_width = 0;
-  new_node->line_space = 0;
-  new_node->line_length = 0;
-  new_node->fill_width = 0;
-  new_node->fill_angle1 = 0;
-  new_node->fill_angle2 = 0;
-  new_node->fill_pitch1 = 0;
-  new_node->fill_pitch2 = 0;
+  new_node->line_end               = END_NONE;
+  new_node->line_type              = TYPE_SOLID;
+  new_node->line_width             = 0;
+  new_node->line_space             = 0;
+  new_node->line_length            = 0;
+  new_node->fill_width             = 0;
+  new_node->fill_angle1            = 0;
+  new_node->fill_angle2            = 0;
+  new_node->fill_pitch1            = 0;
+  new_node->fill_pitch2            = 0;
 
-  new_node->attribs = NULL;
-  new_node->attached_to = NULL;
-  new_node->copied_to = NULL;
-  new_node->show_name_value = SHOW_NAME_VALUE;
-  new_node->visibility = VISIBLE;
+  new_node->attribs                = NULL;
+  new_node->attached_to            = NULL;
+  new_node->copied_to              = NULL;
+  new_node->show_name_value        = SHOW_NAME_VALUE;
+  new_node->visibility             = VISIBLE;
 
-  new_node->pin_type = PIN_TYPE_NET;
-  new_node->whichend = -1;
+  new_node->pin_type               = PIN_TYPE_NET;
+  new_node->whichend               = -1;
 
-  new_node->net_num_connected = 0;
-  new_node->valid_num_connected = FALSE;
+  new_node->net_num_connected      = 0;
+  new_node->valid_num_connected    = FALSE;
 
-  new_node->weak_refs = NULL;
+  new_node->weak_refs              = NULL;
 
   new_node->attrib_notify_freeze_count = 0;
-  new_node->attrib_notify_pending = 0;
+  new_node->attrib_notify_pending      = 0;
 
-  new_node->conn_notify_freeze_count = 0;
-  new_node->conn_notify_pending = 0;
+  new_node->conn_notify_freeze_count   = 0;
+  new_node->conn_notify_pending        = 0;
 
   return(new_node);
 }
@@ -315,9 +315,9 @@ s_delete_object(TOPLEVEL *toplevel, OBJECT *o_current)
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
- *
+ *   deletes everything including the GList
  */
-/* deletes everything include the GList */
+/*  */
 void
 s_delete_object_glist(TOPLEVEL *toplevel, GList *list)
 {

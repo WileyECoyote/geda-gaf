@@ -292,7 +292,7 @@ static void print_junctions(TOPLEVEL *current, cairo_t *cairo, const GArray *jun
         );
 
   for (index=0; index<junctions->len; index++) {
-    sPOINT junction = g_array_index(junctions, sPOINT ,index);
+    POINT junction = g_array_index(junctions, POINT ,index);
 
     cairo_arc(
          cairo,
@@ -803,8 +803,8 @@ static void print_page(TOPLEVEL *current, cairo_t *cairo, PAGE *page)
 
     print_object_list(current, cairo, list);
 
-    GArray *junctions = g_array_new(FALSE, FALSE, sizeof(sPOINT));
-    
+    GArray *junctions = g_array_new(FALSE, FALSE, sizeof(POINT));
+
     junction_locate(current, list, junctions, NULL);
 
     print_junctions(current, cairo, junctions);

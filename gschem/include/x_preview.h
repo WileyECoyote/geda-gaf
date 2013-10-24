@@ -21,7 +21,6 @@
 #ifndef __X_PREVIEW_H__
 #define __X_PREVIEW_H__
 
-
 /*
  * Preview
  */
@@ -31,20 +30,18 @@
 #define PREVIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PREVIEW, PreviewClass))
 #define IS_PREVIEW(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PREVIEW))
 
-
 typedef struct _PreviewClass PreviewClass;
 typedef struct _Preview      Preview;
 
 
 struct _PreviewClass {
   GtkDrawingAreaClass parent_class;
-  
 };
 
 struct _Preview {
   GtkDrawingArea parent_instance;
 
-  GSCHEM_TOPLEVEL *preview_w_current;
+  GschemToplevel *preview_w_current;
 
   gchar *filename;
   gchar *buffer;

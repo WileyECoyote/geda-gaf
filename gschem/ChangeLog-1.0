@@ -1,8 +1,283 @@
+2013-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/globals.h: New macro Current_Page =  w_current->
+          toplevel->page_current created to shorten line lengths and
+          to eliminate local variables created only for this purpose.
+          Relocated macros Place_List and Top_Selection to libgeda/
+          include/libgeda/geda_list.h, because this seems a more
+          appropriate place for these.
+
+        * src/gschem.c: Added directives for conditional compiling of
+          g_mem_profile stuff rather than using comments.
+
+        * src/i_command: Added new variable <accelerator> in function
+          i_command_router - meant to do this sooner. The router now
+          checks the last_command first, which i_command_process just
+          set so i_command_router would normally do only one string
+          comparison. Added mutex, with GMACROS, to the last_command
+          variable. This was previously tested and deemed unnecessary
+          but was added back because last_command is now accessed by
+          i_command_router, just in case glib dawdle around getting
+          the task going. Extensive testing using internal thread
+          analysis code indicates glib does not dawdle, but CPU maybe
+          faster than the norm, so hard to gauge.
+          New macro BEGIN_W_COMMAND used to replace the combination of
+          NOT_NULL and BEGIN_COMMAND.
+          Implemented new Current_Page macro to eliminate PAGE *parent
+          to refer to w_current->toplevel->page_current in multiple
+          functions, I think these also improved readability.
+          Replaced g_list_next() NEXT macro.
+
+        * src/o_misc.c: Added in parameter to the o_edit function so that
+          handler can know where the command originated. Currently, this
+          information is not utilized.
+
+        * src/o_move.c: replaced g_list_free with s_place_free_place_list in
+          function o_move_cancel.
+
+        * src/x_edit_attrib.c: Removed DECLARE_TOOPTIPS, see log entry
+          for 09/27.
+
+        * src/x_event.c: Change 3 parameter from x_event_configure to
+          GschemToplevel like the other event handlers, re-sequenced
+          functions in file.
+
+        * src/x_compselect.c: Replaced s_delete_object_glist with s_place
+          _free_place_list in function o_complex_prepare_place.
+
+          src/x_console.c: "Fixed" console entry by updating the signal
+          name for to that used by the custom entry widget, the "activate"
+          signal was previously changed to "process_entry" but was not
+          updated in x_console. Changed "destroying history" from fprintf
+          to v_log, oops.
+
+          Added more comments source and header files.
+
+        * src/x_clipboard.c: Replaced "on-the-fly" error message dialog
+          with new titled_pango_error_dialog and added log message to
+          actually record the error in the log.
+
+        * src/x_fileselect.c: Replace x_fileselect_setup_file_filters,
+          static struct GschemFileFilterDataDef and initialize macros
+          and IDE_FILTER enumerators. The x_fileselect_save function
+          now adds ".sch" or "sym", based on the active filter widget,
+          but only if there is no period in the file name.
+
+        * include/x_fileselect.h: New file added to reduce filter data
+          clutter in corresponding source.
+
+        * lib/system-gschemrc.scm: Added a few stock icons to menu
+          entries, some gtk some not, all theme-able.
+
+        * src/x_image.c: Replaced "on-the-fly" error message dialog
+          with new titled_pango_error_dialog with minor revision to the
+          message. Include <errno.h>, revised error message in function
+          x_image_get_pixbuf to include strerror.
+
+        * src/x_menu.c: Modifications to function x_menus_sensitivity
+          to implement Verbose and Quite mode variables. Modifications
+          to x_menu_setup_popup to check for the existence of valid a
+          main menu bar and menu items. Revised x_menu_setup_ui to use
+          image menus for actionless items if the icon name is present.
+
+        * src/x_multiattrib.c: Replaced "on-the-fly" error message
+          dialog warning_dialog macro, eliminated g_ascii_strcasecmp
+          in function multiattrib_callback_edited_name. Revised function
+          multiattrib_init to use a struct with a for loop for column
+          constructions rather that old in-line one-by-one appoarch.
+          Many #define created and utilized to reduce line length and
+          compound lines. Eliminated function cellrenderermultilinetext
+          _focus_out_event - was extremely annoying.
+
+        * src/x_print.c: Replaced "on-the-fly" error message dialogs
+          with new titled_pango_error_dialog.
+
+        * src/x_rc.c: Revised x_rc_parse_gschem_error to cosolidate
+          string and handle define dummy function for unbound errs.
+          Added function g_rc_unbound_handler, which will return the
+          string associated with the last unbound varible or return
+          <undefined> if no such value exist. Revamped function x_rc
+          _parse_gschem, new algorithms retry loading of RC files.
+
+        * src/o_picture.c: Replaced "on-the-fly" error message dialogs
+          with new pango_error_dialog with minor revision to the message
+          and include logging of the error.
+
+2013-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/o_move: Eliminated function o_move_end_lowlevel_glist,
+          the function likely used more code managing the stack than
+          the function actually performed.
+
+        * src/x_color.c: Renamed display_outline_colors to outline_colors,
+          there is no print_outline_colors so there should be no confusion
+          Add x_color_get_outline_color_map().
+
+        * src/x_dialog.c: Added gschem_markup_message_dialog.
+
+        * src/x_edit.c: Eliminated gtk_window_position, gschem_dialog
+          will restore the dialog position to last active position.
+
+2013-10-06 Wiley E. Hill <wileyhill@gmail.com>
+
+          Made prog_pid, the main process ID, a program global, instead
+          of a module level global in the undo module.
+
+        * src/*: Renamed the w_current widgets for the coord labels to
+          world_entry & screen_entry.
+
+        * src/o_select.c: Re-write; functions o_select_unselect_all.
+          Replaced function o_select_selected with new slightly faster
+          "drop-in-replacement" o_select_is_selection and added new
+          function o_select_get_count. Made o_select_run_hooks static
+          and added local enumerators for SELECT and DESELECT HOOKS.
+
+        * src/x_coord.c: Relocated the code for the Coordinates Dialog
+          in x_dialog.c into a separate file but in the same compilation
+          unit (at least for now). Renamed x_dialog_coord_display_update
+          to x_dialog_coord_update_display -- makes more sense to me.
+
+          src/x_states.h: Added new states; ENDDNDSTR = End D&D String,
+          ENDDNDOOBJ, = END D&D Our Object ENDDNDFOBJ = END D&D Foreign
+          Object. A Foreign object means from another instance of Gschem,
+          only distingished between because dragging in a Foreign defaults
+          to a copy, droping natives defaults to moves, maybe haven't done
+          it yet! There is no such distingishment for strings, which can
+          only come from Foreign windows. Note that these state pertain to
+          dragging TO and dropping on the coordinate world entry widget,
+          not the Drawing Area. The DrawingArea has it's own algorithms
+          that do not induce new states, but utilize existing ones. All
+          string inputs are processed by algorithms in the DND module. 
+
+        * src/x_window.c: Oops, did not finish resolving the visibility
+          got side tracked, is now finished, I hope. Cleanup on aisle 5,
+          x_window_create_main(). After naming DrawingArea in preivous
+          version, forgot to log, renamed widget adding a colon and the
+          process id, this is not utilized during runtime but is useful
+          when debugging D&D.
+
+2013-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/i_command: Added some comments, also in header file.
+
+        * src/x_color.c: Add x_color_get_display_color_map() and x_color_
+          get_print_color_map. I think is better than external references.
+
+        * src/x_image.c: Major revisions as follows: Added global static
+          integers to retain user settings for image type, image size and
+          image extents for the editing session. This is useful since the
+          dialog automatically closes after writing images.
+          Replaced text combo boxes for image size and type with new geda
+          version which eliminates the need for conditional compiling.
+          Added two new check box widgets; 1 to optionally use the print
+          color map instead of the display color map, and the second button
+          to optionally reverse only the Black and White when inverting color
+          images. The use Color switch no longer disables the Invert switch.
+          Color image can now be inverted by a new function x_image_invert
+          _color_buffer. Added two new integer parameters to x_image_get
+          _pixbuf and x_image_lowlevel to support the two new options.
+          Revised x_image_get_pixbuf function to dynamically allocates the
+          memory for "new_w_current" and "toplevel", rather than using static
+          declarations for GSCHEM_TOPLEVEL & TOPLEVEL, was 948 bytes.
+          x_image_get_pixbuf function now uses it's own EdaRenderer, with
+          new variables GArray color-map, and PangoContext *context. Junction
+          and end-point markers are now set to black for B&W imaging, (this
+          was needed due to recent upgrades to the EdaRenderer to allow
+          additional marker colors. Replaced algorithms in x_image_convert_
+          to_greyscale that do the actual conversion.
+          Revised x_image_get_type_from_description, which leaked like a
+          sieve, maybe fixed now.
+          Added tooltips for image size combo, image type combo and the two
+          new check buttons.
+
+        * src/x_print.c: Changes in x_print_draw_page to use x_color_get
+          _print_color_map, and set makers to black.
+
+        * src/x_settings_dialog.c: Changed all global widgets to static as
+          as precautionary measure.
+
+        * src/x_toolbars.c: In function x_toolbar_set_sensitivity, set
+          tooltips on or off based on sensitivity of toolbar items.
+
+2013-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/gschem.c: More tweeking; moved logging and console initialize
+          after x_window_setup so that the console/log can be a transient
+          child of the main window but this makes the console/log window an
+          annoyance that won't get out of the way, reverted modification to
+          src/x_console.c so the dialog does not set the main window as the
+          parent. Revised to use new function f_set_backup_loader_query_func
+
+        * src/o_basic.c: Relocated function o_update_component from o_misc.c.
+          Revised o_update_component to update the symbol version. Removed
+          declaration to external color maps.
+
+        * src/i_vars.c: Added message for Verbose mode, when restoring
+          configuration settings in functions; i_vars_init and i_vars_
+          recall_user_settings.
+
+        * src/x_basic.c: Added iter time stamp checks in tree_view_row_make
+          _visible() and tree_view_row_get_visibility. Does the QT toolkit
+          have this kind of crap?
+
+        * src/x_compselect.c: Added check for compselect->style_flag in
+          compselect_callback_refresh_views, so that after the refresh the
+          routine will stop looking for descendants beyond the second level
+          when looking to restore the cursor position in the TreeView.
+
+        * src/x_console.c: Added format specifiers for s_log_message in
+          q_log_message and v_log_message to surpress -Wformat-security.
+
+        * src/x_dialog.c: Revise x_dialog_symbol_changed dialog, using code
+          from the Master branch, but put the code that creates the "internal"
+          widgets into a seperate function: xd_add_changed_symbol_list. Also,
+          uses a gtk_message_dialog, not a regular gtk_dialog.
+
+          Added gtk_widget_set_name in function create_geda_switch().
+
+        * src/x_fileselect.c: Revised dialog to be child of main_window if
+          w_current was passed.
+
+        * src/various: General clean-up and improved source documentation.
+
+2013-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/gschem_struct.h: Eliminate h_adjustment & v_adjustment.
+        * src/gschem_toplevel.c: Eliminate h_adjustment & v_adjustment.
+
+        * src/x_console.c: Revised q_log_message & v_log_message to accept a
+          variable number of arguments. Revised x_console_init_commands to have
+          dynamic messages.
+
+        * src/x_dialog.c: Removed macro DECLARE_TOOPTIPS from x_dialog_fill_type
+          _create_dialog, x_dialog_line_type_create_dialog, snap_size_dialog, text_
+          size_dialog, and x_dialog_edit_arc_angle because the tooltip widget is
+          no longer required and the macros in geda_dialog_controls.h now use gtk_
+          widget_set_tooltip_text instead of gtk_tooltips_set_tip.
+
+        * src/x_dnd.c: New source module to support drag & drop;
+
+        * src/x_image.c: Removed macro DECLARE_TOOPTIPS in x_image_setup, see entry
+          for x_dialog.c.
+
+        * src/x_autonumber.c, src/x_multiattrib.c, &
+          src/x_compselect.c: Replaced gtk_tooltips_set_tip with widget_set_tooltip
+          _text
+
+        * src/x_window.c: Changed h_adjustment & v_adjustment to local varibles,
+          as these were not used outside of x_window_create_main except in the
+          callbacks, which are passed pointers to the controls.
+
+        * src/x_window.h: Created macros to refer to w_current->main_window
+          w_current->drawing_area, w_current->h_scrollbar,w_current->v_scrollbar,
+          including HorizontalScrollRange and VerticalScrollRange with GTK_RANGE
+          cast.
+
 2013-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/o_undo.c: Renamed function o_undo_cleanup to finalize. GSCHEM_TOPLEVEL
           as parameter to o_undo_init. Moved call o_undo_init() in gschem.c to after
-          top level is created.
+          the top level is created.
 
         * src_o_grips: Tested with grip_half_size = GRIP_PIXEL_SIZE / 2, which does
           appear to be an improvment over setting the grip size strickly based on
@@ -31,7 +306,7 @@
 
         * src/x_fileselect.c: Add checkbox with option to append "sch" on the file
           name of the user so elects. The file extension is not added if file already
-          has an "dot extension". The option  is save to the user config settings.
+          has an "dot extension". The option is save to the user config settings.
 
         * src/x_settings.c: Added new function x_settings_save_settings to save misc
           user configurable settings. Maybe should just move all of the "save settings"
@@ -49,12 +324,16 @@
           renamed function x_window_create_drawing x_window_create_drawing_area and
           made static, removed from prototype.h.
 
-        * Added New Deselct mode: i_command/menu/toolbar renamed deselect action to
+        * Added New Deselect mode: i_command/menu/toolbar renamed deselect action to
           deselect-all, added new action deselect. In x_states.h added DESELECT and
           STARTDESELECT. Added status string in i_basic.c->i_status_string. Added
           DESELECT & STARTDESELECT to button press event handlers in x_events.c. In
           Added STARTDESELECT in o_basic.c->o_redraw_cleanstates(), which does nothing.
           In o_select.c->o_select_object reversed CONTROLKEY if deselecting.
+
+          P.S: De-select could use improvement, this does not work by "windowing".
+          Objects to be removed must be selected indivualy. The user could hold the
+          "ctrl" key and do this but maybe is still an improvement.
 
 2013-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -81,7 +360,7 @@
           new ActionFlags using bits 2 and 3. None of the threads use the new bit 2,
           which is a fallback to in-line mode. When bit 3 of the Action flag is set,
           i_command_process captures the cursor X-Y position to the new members or
-          zero both if x_event_get_pointer_position returns false. Bit 3 is set for
+          zero's both if x_event_get_pointer_position returns false. Bit 3 is set for
           each action potentially responding to Hot-key or Right-Mouse input, where
           the cursor position is relevant. This was done in i_command_process rather
           then repeating the same blocks of code or adding function calls in each of
@@ -93,11 +372,13 @@
           Added function msg_need_select_1st() so that the string MSG_SELECT_OBJECT_1ST
           would not allocated in multible action handlers.
 
-          Added new action zoom-selection.
+          Added new action zoom-selection, and no we did not have this before.
 
         * src/x_icons.c: Major changes, see revision notes in the source file.
-        * src/gschem.c: Eliminated call to x_window_set_default_icon. This is called
-          a little later in x_icons_initialize, which is called from x_window_setup().
+
+        * src/gschem.c: Eliminated call to x_window_set_default_icon. This is now
+          called a little later in a new function: x_icons_initialize(), which is
+          called from x_window_setup().
 
         * gschem_action: Revised to include icon-id property, see revision notes in
           the source file.
@@ -117,17 +398,19 @@
           Added index varible to the error message to facilitate locating invalid
           menu data.
 
-          Added two new toolbars to the view/toolbars submenu.
+          Added the two new toolbars to the view/toolbars submenu.
 
           Updated documentation in the source file.
 
         * src/g_action: New source file from master branch, relocated i_process_action
           to this file and re-named g_process_action.
 
+        * src/x_basic.c: Updated source documentation.
+
         * src/x_dialog.c: Aded new experimental feature by enhancing the Coord dialog,
           changing World label to a Text Entry widget, which allows entering of coor-
-          dinates. upon activating, by pressing "enter" the cursor is repostioned to
-          the given coordinate relative to the drawing area.
+          dinates. Upon activating, by pressing "enter" the cursor is repostioned to
+          the given coordinate relative to the drawing area. Say YEA! (I like it)
 
         * src/x_event.c: Added new function: x_event_set_pointer_position to support
           enhancments to the Coord dialog.
@@ -138,8 +421,6 @@
           callback function, pointer to icon name and tooltips. Added defines for
           menu toggle paths because these are referenced in three place; creation,
           saving and restoring.
-
-        * src/x_basic.c: Updated source documentation.
 
         * include/gschem_idefines.h: Eliminated defines for selected from "HOTKEY"
           and "MENU. Replaced in sources with ID_ORIGIN_KEYBOARD and ID_ORIGIN_MENU.
@@ -186,19 +467,19 @@
 
         * src/widgets/geda_label.c: New replacement widget for gtklabel.
 
-        * remark: The preceding widgets were replaced in order to dianose and
+        * remark: The preceding widgets were replaced in order to diagnose and
           eliminate a memory leak. Gtk is having Pango use FontConfig to find
           a best match font, between Pango and FontConfig a block of memory is
           not being released after the widgets are destroyed. After "pin-point-
           ing" the leak, more than 40 hours later, may be able to work-around
           the leak by super-classing but already done. Replacement widgets are
-          a work-around, but also has improved performance (according to rusage),
+          a work-around, but also offer improved performance (according to rusage),
           few errors in libraries (according to valgrind) and is cleaner code
           (according to me).
 
-        * src/x_edit_text.c: Separated the Text Editing dialog to code to a
-          new compilation unit. (This was when the aforementioned memory leak
-          was detected.)
+        * src/x_edit_text.c: Separated the Text Editing dialog code to a new
+          compilation unit. (This was when the aforementioned memory leak was
+          detected.)
 
 2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -215,7 +496,7 @@
 
         * src/i_command.c: In function do_documentation, eliminated call to
         g_type_init, GTK claims this is no longer necessary. Libgeda make
-         this call during initialization.
+        this call during initialization.
 
         * src/o_select.c: Applied Top_Selection macro to reduce line lengths
         and general code clean up. In function o_select_object(), added
@@ -318,7 +599,7 @@
         symbol and re-centers the new view of the tree on the selection. If
         the previously selected symbol is no longer in the view because it's
         style was turned off then the first symbol matching the name without
-        the considering the -x.sym characters is selected instead. See new
+        considering the -x.sym characters, is selected instead. See new
         function compselect_callback_refresh_views. (This was a lot of work!)
 
         A custom signal is emitted with the style is changed and all of the
@@ -387,8 +668,8 @@
           is implemented in a more general way.
 
         * src/x_dialog.c: Reorganized code and updated documentation. Revised
-          text_edit_dialog to accept OBJECT, and then pass the same object to the
-          response function rather than w_current. Added data hook for colorcombo
+          text_edit_dialog to accept OBJECT, (which then passed the same object to
+          the response function rather than w_current.) Added data hook for colorcombo
           and text alignment, eliminating callback for change_alignment. Unneeded
           change_alignment function was removed because the alignment was being
           changed when the combo widget selection was changed, even though the
@@ -400,7 +681,7 @@
           tree models using GTK data hooks,  Change dialog to modeless and relocate
           to new "editing" group, add update on selection change. Revised to
           eliminate conditional construction of the "text" editing buffer, which is
-          set to a empty value if multiable text object are selected.
+          set to an empty value if multiable text objects are selected.
           Revised with similar changes for color_edit_dialog, x_dialog_edit_arc_angle,
 
           Created tooltips: snap_size_dialog, text_size_dialog, x_dialog_edit_arc_angle
@@ -409,7 +690,7 @@
           Added new utility function x_dialog_get_list_selected_objects, see description
           in source module.
 
-          Completely re-vamp x_dialog_edit_pin_type
+          Completely re-vamp x_dialog_edit_pin_type.
 
           removed CHANGE and UNDO from response handler in text_size_dialog, and
           text_size_dialog.
@@ -470,12 +751,12 @@
 
         * src/i_command.c: New file with experimental code to (mostly) replace i_callback.c
           This scheme uses a single function "i_command_process" to respond to all actions
-          regardless of the origin. Most, if not all of the old i_callback.c, that were not
-          hot-key actions, were revised and relocated this module.
+          regardless of the origin. Most, if not all of the old i_callback.c functions,
+          that were not hot-key actions, were revised and relocated to this module.
           The central interface function i_command_process also manages repeat-last action.
           The action file-close now uses the same algorithms as page-close so gschem no
           longer "exits" when the last document is closed, instead a new empty document is
-          created (like a "normal" program).
+          created (like a "normal" program). (That was so annoying!)
 
         * src/i_callback.c: Removed nearly all functions that were not hot-key actions.
           The hot-key handlers could really be moved to i_command_process but other than
@@ -551,7 +832,7 @@
 
         * scripts/gschem.scm: In function invalid-action-error; changed error to gschem-msg
           because this was crashing gschem when a valid key sequence was pressed that was
-          assigned to a non-extistence function. The function eval-keymap-action now reports
+          assigned to a non-existence function. The function eval-keymap-action now reports
           the invalid keybinding via a dialog without crashing. Also in eval-keymap-action,
           the action is now tested for a thunk or a procedure and if is a procedure the
           procedure is passed the action string. This allows a common call back for all key
@@ -577,15 +858,15 @@
           this one seems to have gotten out of hand, and was being call recursively.
           The toolbars now retain their style, along with visibility between sessions.
           A context/dock senitive popup was added to the toolbars to set various options
-          including auto docking the of toolbars. The orientation, which can be changed
+          including auto docking of the toolbars. The orientation, which can be changed
           while floating, is restored to the "home" orientation before re-docking.
-          [The gtk handlebox widget has a "Private" feature do this with a mouse click
+          [The gtk handlebox widget has a "Private" feature to do this with a mouse click
           but this did not appear to work and needs to be fixed]. Mean time, the popup
-          menu provides sufficient functionality. (is still 2 mouse-click just different
+          menu provides sufficient functionality. (is still 2 mouse-clicks just different
           buttons.)  Changed toolbar list from static and put in new structure
           ToolBarWidgets, added static list ui_list in order for all of the toolbar
           widgets to be tracked on a per window basis. Added function x_toolbars_free_window
-          to free the aforemention structure when a windows is closed.
+          to free the aforemention structure when a window is closed.
 
           * src/widgets/geda_handlebox.c and associated header: This is an adaptation
           of the gtkhandlebox in it's entirety, not a derived sub-class. The reason
@@ -599,7 +880,8 @@
           "customization". This could be easily added using the current linkage, and
           perhaps should be added since all of the gtk_toolbar_??pend_item/element
           class functions have been depreciated in favor of gtk_toolbar_insert, which
-          is less convenient and requires more effort to implement.
+          is less convenient and requires more effort to implement. It seems that it
+          would be easier to replace gtk_toolbar's rather then use the new ones.
 
           That's most of the major stuff! Wiley
 
@@ -627,7 +909,7 @@
           Rotation, RipperType, and combo RipperSymbol for Bus Ripper variables,
           and associated code for loading and unloading the widgets.
 
-2012-25-29 Wiley E. Hill <wileyhill@gmail.com>
+2012-12-29 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x_log.c: Added functions; q_log_message and v_log_message, to
           facilitate honoring of the quiet_mode and verbose_mode, respectively.
@@ -635,7 +917,7 @@
           14 years!
 
         * src/(various).c: Changed some "chatter" messages to new q_log_message
-          function
+          function.
 
         * src/gschem_dialog.c: Removed conditional from destroy_with_parent in
           the function gschem_dialog_new_empty. No Children should stay open
@@ -652,17 +934,17 @@
           (probably could do more here.)
 
         * src/toolbars.c: Added Save and Restore functionality to toolbar. At
-          this point only visibility is retained. The new functions use key a
+          this point only visibility is retained. The new functions use a key
           file simular to the dialogs geometry. Attempted to use new EDACONFIG
           but this did not work out. (Maybe a few wringles still?)
 
-2012-25-12 Wiley E. Hill <wileyhill@gmail.com>
+2012-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
-        * all-source-files: Were effective change by changing what header are
+        * all-source-files: Were effectively changed by changing what headers are
           included in gschem.h. Inclusion of all of the dialog related headers
           was reorganized. This departs from the apparent "include every" approach
           used by nearly all source files (but not all). The majority of source
-          files were included headers for dialogs that was simply wasting compiler
+          files included headers for dialogs that was simply wasting compiler
           time. More needs to be done to organized the source files as the
           complexity of the programs grows.
 
@@ -691,7 +973,7 @@
           This would be like replacing Excel's internal C++ routines with Visual Basic
           equivalents. Must keep "extension" in context.
 
-2012-22-12 Wiley E. Hill <wileyhill@gmail.com>
+2012-12-22 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x_windows.c: Revised x_window_create_main, added center_hbox,
           center_vbox, moved drawing box to center_vbox with horizontial
@@ -763,8 +1045,8 @@
           message in function x_image_write_eps. Added write to PDF image type
           and repaired postscript in f_print.c. Added ImageTypeStrings to
           set the initial combo image type instead of hard-code #define and
-          revised function create_type_menu so code could set the, such as
-          toolbar or menus could set default type.
+          revised function create_type_menu so code could set the value, such
+          as toolbar or menus could set default type.
 
         * src/x_settings_dialog.c: Add call in function GatherSettings to
           x_settings_set_scm_int to define autoplace-attribute-grid. Added
@@ -811,7 +1093,7 @@
         * src/x_settings.c: Add new source file.
         * include/x_settings.h: Add new source file.
         * src/x_settings_dialog.c: Add new source file configure_settings.
-        * include/x_settings_dialog.h: Add new header file.
+        * include/x_settings_dialog.h: Added new header file.
         * include/keywords.h: Add new header file to support x_settings.c.
         * include/x_dialog_controls.h: Add new header file. This is a
           barrage of macros for GTK Dialogs.

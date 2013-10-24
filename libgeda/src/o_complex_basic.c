@@ -180,7 +180,7 @@ int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
 
 
 /*! \brief Return the bounds of the given GList of objects.
- *  \par Given a list of objects, calcule the bounds coordinates.
+ *  \par Given a list of objects, calculates the bounds coordinates.
  *  \param [in]  toplevel The TOPLEVEL structure.
  *  \param [in]  head   The list of objects to look the bounds for.
  *  \param [out] left   pointer to the left coordinate of the object.
@@ -194,8 +194,9 @@ int world_get_single_object_bounds(TOPLEVEL *toplevel, OBJECT *o_current,
 int world_get_object_glist_bounds(TOPLEVEL *toplevel, const GList *head,
                                   int *left, int *top, int *right, int *bottom)
 {
-  const GList *s_current=NULL;
-  OBJECT *o_current=NULL;
+  const GList *s_current = NULL;
+  OBJECT      *o_current = NULL;
+
   int rleft, rtop, rright, rbottom;
   int found = 0;
 
@@ -210,19 +211,19 @@ int world_get_object_glist_bounds(TOPLEVEL *toplevel, const GList *head,
 
     if ( world_get_single_object_bounds( toplevel, o_current, &rleft, &rtop, &rright, &rbottom) ) {
       if ( found ) {
-        *left = min( *left, rleft );
-        *top = min( *top, rtop );
-        *right = max( *right, rright );
+        *left   = min( *left, rleft );
+        *top    = min( *top, rtop );
+        *right  = max( *right, rright );
         *bottom = max( *bottom, rbottom );
       } else {
-        *left = rleft;
-        *top = rtop;
-        *right = rright;
+        *left   = rleft;
+        *top    = rtop;
+        *right  = rright;
         *bottom = rbottom;
-        found = 1;
+         found  = 1;
       }
     }
-    s_current = g_list_next (s_current);
+    NEXT(s_current);
   }
   return found;
 }
@@ -734,7 +735,7 @@ OBJECT *o_complex_read (TOPLEVEL *toplevel,
   if (strncmp(basename, "EMBEDDED", 8) == 0) {
 
     new_obj = o_complex_new_embedded(toplevel, type,
-                                     DEFAULT_COLOR_INDEX, x1, y1, angle, mirror,
+                                     DEFAULT_COMPLEX_COLOR_INDEX, x1, y1, angle, mirror,
                                      basename + 8,
                                      selectable);
   } else {
@@ -742,7 +743,7 @@ OBJECT *o_complex_read (TOPLEVEL *toplevel,
     const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
 
     new_obj = o_complex_new(toplevel, type,
-                                DEFAULT_COLOR_INDEX,
+                                DEFAULT_COMPLEX_COLOR_INDEX,
                                 x1, y1, 
                                 angle, mirror, clib,
                                 basename, selectable);

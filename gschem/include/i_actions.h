@@ -1,4 +1,58 @@
-
+/* -*- i_action.h -*-
+ * gEDA - GPL Electronic Design Automation
+ * gschem - gEDA Schematic Capture
+ *
+ * Copyright (C) 2013 Ales Hvezda
+ * Copyright (C) 2013 Wiley Edward Hill
+ *
+ * Copyright (C) 2013 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+ *
+ *  Contributing Author: Wiley Edward Hill
+ *  Date Contributed: February, 02, 2013
+ *
+ */
+/*! \file i_action.h
+ *
+ *  \brief List all Builtin User Interface Commands/Actions
+ *  \par Description
+ *   Maybe a temporary scheme used to synchronize the action
+ *  "text". With the old system, all actions in gschem were
+ *   dependent on finding and successfully reading a Scheme
+ *   RC file, which is proved both unstable and unreliable,
+ *   particularly on nix's due to stricter enforcement of file
+ *   "permissions" and there is no control over the contents of
+ *   these files. Maybe the Menu definitions need their own file
+ *   instead of mixing with global RC options.
+ * 
+ *   This file provides a common "compiled-in list that's ensures
+ *   UI actions generated from input systems, such as the toolbars
+ *   or Menus, will pass a valid action string to the command
+ *   processor. Maybe not the best idea, was/is a "quick fix"
+ *
+ *   Also note, action strings can and are combined with strings
+ *   like "button", "window", combobox, etc, after any hyphen
+ *   have been stripped, and used as descriptions and names for
+ *   ATK objects, along with tooltip text and widget names, to
+ *   support accessiblity beyond the basic GTK-2 provisions.
+ *   For an example of how this is implemented see "geda_tool
+ *   bars.h" in the toplevel include folder. Therefore, action
+ *   strings should be chosen carefully.
+ *
+ */
 #define QUOTE_SYMBOL(symbol) #symbol
 #define ACTION(...) QUOTE_SYMBOL(__VA_ARGS__)
 

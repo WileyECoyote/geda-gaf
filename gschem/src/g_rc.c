@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -65,18 +65,12 @@
 
 #include "gschem.h"
 #include "ascii.h"
-/*
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-*/
 
 /*! \brief Loads gtk rc files for pararsing
  *
  *  \par Function Description
- *       This function load the initialization files for the gschem
- *       gtk interface configuration and pass the file data to be
- *       parased.
+ *       This function calls gtk_rc_parse to arse the our system and user
+ *       initialization files.
  */
 void g_rc_parse_gtkrc()
 {
@@ -178,7 +172,7 @@ SCM g_rc_gschem_version(SCM scm_version)
 
 /* Color Related */
 extern COLOR display_colors[MAX_COLORS];
-extern COLOR display_outline_colors[MAX_COLORS];
+extern COLOR outline_colors[MAX_COLORS];
 
 /*! \brief This function processes the display-color-map RC entry.
  *  \par Function Description
@@ -208,13 +202,13 @@ SCM g_rc_display_color_map (SCM scm_map)
 SCM g_rc_display_outline_color_map (SCM scm_map)
 {
   if (scm_map == SCM_UNDEFINED) {
-    return s_color_map_to_scm (display_outline_colors);
+    return s_color_map_to_scm (outline_colors);
   }
 
   SCM_ASSERT (scm_is_true (scm_list_p (scm_map)),
               scm_map, SCM_ARG1, "display-outline-color-map");
   cmap_flag = cmap_flag * -1;
-  s_color_map_from_scm (display_outline_colors, scm_map, "display-outline-color-map");
+  s_color_map_from_scm (outline_colors, scm_map, "display-outline-color-map");
   return SCM_BOOL_T;
 }
 

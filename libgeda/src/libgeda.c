@@ -16,8 +16,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
+#define GLIB_DISABLE_DEPRECATION_WARNINGS
 #include <config.h>
 
 #include <stdio.h>
@@ -55,7 +56,7 @@ void libgeda_init(void)
 
   /* Initialise gobject */
 #if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 36 ))
-  g_type_init ();
+  g_type_init();
 #endif
 
   s_path_sys_data ();

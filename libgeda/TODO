@@ -11,6 +11,8 @@ Code cleanups (no particular order):
 
 	Use the ascii code in all the font width specifiers (lib/sym/font)
 
+        Does o_page_changed belong scheme_object.c? (formally s_object.c)
+
 ----------------------
 
 

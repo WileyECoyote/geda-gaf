@@ -1,18 +1,19 @@
 noinst_PROGRAMS = geda-shell
-AM_CFLAGS=-I$(top_srcdir)/include -Wall
-BUILT_SOURCES = \
-	shell.x
+AM_CFLAGS       =-I$(top_srcdir)/include
+BUILT_SOURCES   = shell.x
 
-EXTRA_DIST = $(BUILT_SOURCES)
+EXTRA_DIST      = $(BUILT_SOURCES)
 
 geda_shell_SOURCES = shell.c
 
 geda_shell_CPPFLAGS = \
 	-I$(srcdir)/../include -I$(top_srcdir) -I$(includedir) \
 	-I$(top_srcdir)/intl
+
 geda_shell_CFLAGS = \
 	$(GCC_CFLAGS) $(AM_CFLAGS) $(MINGW_CFLAGS) $(GUILE_CFLAGS) \
         $(GLIB_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+
 geda_shell_LDFLAGS = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
 geda_shell_LDADD = ../src/libgeda.la @LIBINTL@
 

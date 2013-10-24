@@ -36,14 +36,15 @@
 #define OPT_BAR_TEXT_MENU_PATH "_View/_Toolbars/_Text"
 #define OPT_BAR_VERT_MENU_PATH "_View/_Toolbars/Both _Vertical"
 #define OPT_BAR_HOZI_MENU_PATH "_View/_Toolbars/Both _Horizontal"
- 
+
 #define OPT_ICON_MENU_PATH     "_View/_Menu/_Icons"
 #define OPT_TIPS_MENU_PATH     "_View/_Menu/_ToolTips"
 #define OPT_POPCONS_MENU_PATH  "_View/_Menu/_Context Icons"
 #define OPT_POPTIPS_MENU_PATH  "_View/_Menu/Context Tip_s"
 
-#define RECENT_FILES_STORE "gschem-recent-files"
 #define MAX_RECENT_FILES 10 /* Make this a variable like normal programs */
+#define RECENT_FILES_STORE "gschem-recent-files"
+#define SENSITIVITY_ERROR_LIMIT 5
 
 typedef enum {
   pop_add_net,
@@ -58,8 +59,6 @@ typedef enum {
   pop_edit_select,
   pop_edit_butes,
   pop_edit_pintype,
-  pop_edit_copy,
-  pop_edit_move,
   pop_edit_delete,
   pop_down_schemat,
   pop_down_symbol,
@@ -88,12 +87,12 @@ struct st_menu_data {
 };
 
 struct st_recent_file_menu_data {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   char *filename;
 };
 
 struct st_toggle_menu_data {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   int   toggle_id;
   char *toggle_name;
   char *menu_item_name;
@@ -102,7 +101,7 @@ struct st_toggle_menu_data {
 };
 
 struct st_menu_radio_data {
-  GSCHEM_TOPLEVEL  *w_current;
+  GschemToplevel   *w_current;
   GtkCheckMenuItem *widget;
   unsigned long handler;
 };

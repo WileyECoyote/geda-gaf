@@ -299,7 +299,7 @@ void s_page_delete_list(TOPLEVEL *toplevel)
   /* s_page_delete removes items from the page list, so make a copy */
   list_copy = g_list_copy (geda_list_get_glist (toplevel->pages));
 
-  for (iter = list_copy; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = list_copy; iter != NULL; NEXT(iter)) {
     page = (PAGE *)iter->data;
 
     s_page_delete (toplevel, page);
@@ -445,10 +445,8 @@ PAGE *s_page_search (TOPLEVEL *toplevel, const char *filename)
   const GList *iter;
   PAGE *page;
 
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
+  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  {
     page = (PAGE *)iter->data;
     if ( g_ascii_strcasecmp( page->page_filename, filename ) == 0 )
       return page;
@@ -470,9 +468,8 @@ PAGE *s_page_search_by_page_id (GedaPageList *list, int pid)
 {
   const GList *iter;
 
-  for ( iter = geda_list_get_glist (list);
-        iter != NULL;
-        iter = g_list_next (iter) ) {
+  for ( iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
+  {
     PAGE *page = (PAGE *)iter->data;
     if (page->pid == pid) {
       return page;
@@ -494,10 +491,8 @@ void s_page_print_all (TOPLEVEL *toplevel)
   const GList *iter;
   PAGE *page;
 
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
+  for ( iter = geda_list_get_glist( toplevel->pages ); iter != NULL; NEXT(iter))
+  {
     page = (PAGE *)iter->data;
     printf ("FILENAME: %s\n", page->page_filename);
     print_struct_forw (page->_object_list);
@@ -517,10 +512,8 @@ int s_page_save_all (TOPLEVEL *toplevel)
   PAGE *p_current;
   int status = 0;
 
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
+  for ( iter = geda_list_get_glist( toplevel->pages ); iter != NULL; NEXT(iter))
+  {
     p_current = (PAGE *)iter->data;
 
     if (f_save (toplevel, p_current,
@@ -555,10 +548,8 @@ bool s_page_check_changed (GedaPageList *list)
   const GList *iter;
   PAGE *p_current;
 
-  for ( iter = geda_list_get_glist( list );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
+  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  {
     p_current = (PAGE *)iter->data;
     if (p_current->CHANGED) {
       return TRUE;
@@ -579,10 +570,8 @@ void s_page_clear_changed (GedaPageList *list)
   const GList *iter;
   PAGE *p_current;
 
-  for ( iter = geda_list_get_glist( list );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
+  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  {
     p_current = (PAGE *)iter->data;
     p_current->CHANGED = 0;
   }
@@ -634,10 +623,8 @@ int s_page_autosave (TOPLEVEL *toplevel)
   if ( toplevel->pages == NULL)
     return toplevel->auto_save_interval;
 
-  for ( iter = geda_list_get_glist( toplevel->pages );
-        iter != NULL;
-        iter = g_list_next( iter ) ) {
-
+  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  {
     p_current = (PAGE *)iter->data;
 
     if (p_current->ops_since_last_backup != 0) {
@@ -681,7 +668,7 @@ void s_page_append_list (TOPLEVEL *toplevel, PAGE *page, GList *obj_list)
   OBJECT *object;
 
   page->_object_list = g_list_concat (page->_object_list, obj_list);
-  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
     object = iter->data;
     object_added (toplevel, page, object);
   }
@@ -743,7 +730,7 @@ void s_page_delete_objects (TOPLEVEL *toplevel, PAGE *page)
 {
   GList *objects = page->_object_list;
   GList *iter;
-  for (iter = objects; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = objects; iter != NULL; NEXT(iter)) {
     pre_object_removed (toplevel, page, iter->data);
   }
   page->_object_list = NULL;
@@ -814,7 +801,7 @@ GList *s_page_objects_in_regions (TOPLEVEL *toplevel, PAGE *page,
   GList *list = NULL;
   int i;
 
-  for (iter = page->_object_list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
     OBJECT *object = iter->data;
     int left, top, right, bottom;
     int visible;

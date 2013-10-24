@@ -674,19 +674,19 @@ bool eda_config_load (EdaConfig *cfg, GError **error)
 
   /* This will be the new key file object. */
   GKeyFile *newkeyfile = g_key_file_new ();
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   if (len != 0) { /* Don't load zero-length keyfiles */
     status = g_key_file_load_from_data (newkeyfile, buf, len,
                                         (G_KEY_FILE_KEEP_COMMENTS
                                          | G_KEY_FILE_KEEP_TRANSLATIONS),
-                                        &tmp_err);
+                                        &sys_err);
   } else {
     status = TRUE;
   }
   g_free (buf);
   if (!status) {
     g_key_file_free (newkeyfile);
-    propagate_key_file_error (tmp_err, error);
+    propagate_key_file_error (sys_err, error);
     return FALSE;
   }
 
@@ -750,16 +750,16 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
   /* First try and make the directory, if necessary. */
   GFile *dir = g_file_get_parent (file);
   if (dir != NULL) {
-    GError *tmp_err = NULL;
-    status = g_file_make_directory_with_parents (dir, NULL, &tmp_err);
+    GError *sys_err = NULL;
+    status = g_file_make_directory_with_parents (dir, NULL, &sys_err);
     g_object_unref (dir);
 
     if (!status) {
-      if (g_error_matches (tmp_err, G_IO_ERROR, G_IO_ERROR_EXISTS)) {
-        g_clear_error (&tmp_err);
+      if (g_error_matches (sys_err, G_IO_ERROR, G_IO_ERROR_EXISTS)) {
+        g_clear_error (&sys_err);
       } else {
         g_object_unref (file);
-        g_propagate_error (error, tmp_err);
+        g_propagate_error (error, sys_err);
         return FALSE;
       }
     }
@@ -1193,10 +1193,10 @@ eda_config_get_string (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
-  GError *tmp_err = NULL;
-  char *result =
-    g_key_file_get_string (cfg->priv->keyfile, group, key, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+  GError *sys_err = NULL;
+  char *result =  g_key_file_get_string (cfg->priv->keyfile, group, key, &sys_err);
+  propagate_key_file_error (sys_err, error);
+
   return result;
 }
 
@@ -1228,10 +1228,10 @@ eda_config_get_boolean (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return FALSE;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   gboolean result =
-    g_key_file_get_boolean (cfg->priv->keyfile, group, key, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+    g_key_file_get_boolean (cfg->priv->keyfile, group, key, &sys_err);
+  propagate_key_file_error (sys_err, error);
   return result;
 }
 
@@ -1263,10 +1263,10 @@ eda_config_get_integer (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return 0;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   int result = g_key_file_get_integer (cfg->priv->keyfile,
-                                       group, key, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+                                       group, key, &sys_err);
+  propagate_key_file_error (sys_err, error);
   return result;
 }
 
@@ -1298,10 +1298,10 @@ eda_config_get_double (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return 0.0;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   double result =
-    g_key_file_get_double (cfg->priv->keyfile, group, key, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+    g_key_file_get_double (cfg->priv->keyfile, group, key, &sys_err);
+  propagate_key_file_error (sys_err, error);
   return result;
 }
 
@@ -1331,11 +1331,11 @@ eda_config_get_string_list (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   char **result =
   g_key_file_get_string_list (cfg->priv->keyfile, group, key,
-                               length, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+                               length, &sys_err);
+  propagate_key_file_error (sys_err, error);
 
   return result;
 }
@@ -1364,11 +1364,11 @@ eda_config_get_boolean_list (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   gboolean *result =
     g_key_file_get_boolean_list (cfg->priv->keyfile, group, key,
-                                 length, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+                                 length, &sys_err);
+  propagate_key_file_error (sys_err, error);
   return result;
 }
 
@@ -1396,11 +1396,11 @@ eda_config_get_int_list (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   gint *result =
     g_key_file_get_integer_list (cfg->priv->keyfile, group, key,
-                                 length, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+                                 length, &sys_err);
+  propagate_key_file_error (sys_err, error);
   return result;
 }
 
@@ -1428,11 +1428,11 @@ eda_config_get_double_list (EdaConfig *cfg, const char *group,
   cfg = eda_config_get_source (cfg, group, key, error);
   if (cfg == NULL) return NULL;
 
-  GError *tmp_err = NULL;
+  GError *sys_err = NULL;
   double *result =
     g_key_file_get_double_list (cfg->priv->keyfile, group, key,
-                                length, &tmp_err);
-  propagate_key_file_error (tmp_err, error);
+                                length, &sys_err);
+  propagate_key_file_error (sys_err, error);
   return result;
 }
 

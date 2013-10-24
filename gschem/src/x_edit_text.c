@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
@@ -81,7 +82,7 @@ static WidgetStringData DialogStrings[] = {
  * the text editing field is set to NULL.
  *
  */
-static void x_dialog_text_edit_update_selection (GSCHEM_TOPLEVEL *w_current,
+static void x_dialog_text_edit_update_selection (GschemToplevel *w_current,
                                                  OBJECT *object)
 {
   GtkWidget     *ThisDialog;
@@ -222,7 +223,7 @@ static void x_dialog_text_edit_update_selection (GSCHEM_TOPLEVEL *w_current,
  *  This function creates a GtkListStore with nine different alignment
  *  entries.
  */
-static GtkListStore *create_menu_alignment (GSCHEM_TOPLEVEL *w_current)
+static GtkListStore *create_menu_alignment (GschemToplevel *w_current)
 {
   GtkListStore *store;
   GtkTreeIter   iter;
@@ -267,7 +268,7 @@ static GtkListStore *create_menu_alignment (GSCHEM_TOPLEVEL *w_current)
  *  This function retrieve the user settings to the selected text objects
  *  and closes the dialog
  */
-void x_dialog_edit_text_ok(GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+void x_dialog_edit_text_ok(GschemToplevel *w_current, OBJECT *object)
 {
   GtkWidget     *ThisDialog;
   GtkTextBuffer *textbuffer;
@@ -356,7 +357,7 @@ void x_dialog_edit_text_ok(GSCHEM_TOPLEVEL *w_current, OBJECT *object)
 void
 x_dialog_edit_text_response(GtkWidget *Dialog, int response, OBJECT *object)
 {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
 
   w_current = GSCHEM_DIALOG (Dialog)->w_current;
 
@@ -391,7 +392,7 @@ widget_value_modified (GtkWidget *widget, gpointer user_data)
  *  \par Function Description
  *  This Function creates the dialog to edit text properties.
  */
-void x_dialog_edit_text (GSCHEM_TOPLEVEL *w_current, OBJECT *text_object)
+void x_dialog_edit_text (GschemToplevel *w_current, OBJECT *text_object)
 {
   AtkObject *atk_text_obj;
   AtkObject *atk_align_obj;
@@ -609,8 +610,6 @@ void x_dialog_edit_text (GSCHEM_TOPLEVEL *w_current, OBJECT *text_object)
     g_signal_connect (G_OBJECT (ThisDialog), "response",
                       G_CALLBACK (x_dialog_edit_text_response),
                       text_object);
-
-    gtk_window_position(GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
     g_object_set (G_OBJECT (ThisDialog),
                   DIALOG_DATA_SELECTION,

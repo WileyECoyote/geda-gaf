@@ -44,8 +44,8 @@ SCM_DEFINE (make_complex, "%make-complex", 1, 0, 0,
   SCM_ASSERT (scm_is_string (basename_s), basename_s, SCM_ARG1, s_make_complex);
 
   char *tmp = scm_to_utf8_string (basename_s);
-  OBJECT *obj = o_complex_new_embedded (edascm_c_current_toplevel (),
-                                        OBJ_COMPLEX, DEFAULT_COLOR_INDEX, 0, 0, 0,
+  OBJECT *obj = o_complex_new_embedded (edascm_c_current_toplevel (), OBJ_COMPLEX,
+                                        DEFAULT_COMPLEX_COLOR_INDEX, 0, 0, 0,
                                         FALSE, tmp, TRUE);
   free (tmp);
 
@@ -88,8 +88,8 @@ SCM_DEFINE (make_complex_library, "%make-complex/library", 1, 0, 0,
   SCM result = SCM_BOOL_F;
   const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
   if (clib != NULL) {
-    OBJECT *obj = o_complex_new (edascm_c_current_toplevel (),
-                                 OBJ_COMPLEX, DEFAULT_COLOR_INDEX, 0, 0, 0,
+    OBJECT *obj = o_complex_new (edascm_c_current_toplevel (), OBJ_COMPLEX,
+                                 DEFAULT_COMPLEX_COLOR_INDEX, 0, 0, 0,
                                  FALSE, clib, basename, TRUE);
 
     result = edascm_from_object (obj);

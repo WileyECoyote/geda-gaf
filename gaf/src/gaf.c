@@ -62,22 +62,18 @@ static struct internal_command commands[] =
 static void
 usage (void)
 {
-  printf (_("Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
-"\n"
-"gEDA/gaf command-line utility.\n"
-"\n"
-"General options:\n"
-"  --no-rcfiles   inhibit loading of 'gafrc' files\n"
-"  -h, --help     display usage information and exit\n"
-"  -V, --version  display version information and exit\n"
-"\n"
-"Commonly-used commands (type `gaf <cmd> --help' for usage):\n"
-"  shell          Scheme REPL for interactive gEDA data processing\n"
-"  config         Edit gEDA configuration\n"
-"  export         Export gEDA files in various image formats.\n"
-"\n"
-"Please report bugs to %s.\n"),
-PACKAGE_BUGREPORT);
+  printf (_("Usage: gaf [OPTION...] COMMAND [ARGS ...]\n\n"
+            "gEDA/gaf command-line utility.\n\n"
+            "General options:\n"
+            "  --no-rcfiles   inhibit loading of 'gafrc' files\n"
+            "  -h, --help     display usage information and exit\n"
+            "  -V, --version  display version information and exit\n\n"
+            "Commonly-used commands (type `gaf <cmd> --help' for usage):\n"
+            "  shell          Scheme REPL for interactive gEDA data processing\n"
+            "  config         Edit gEDA configuration\n"
+            "  export         Export gEDA files in various image formats.\n\n"
+            "Please report bugs to %s.\n"),
+             PACKAGE_BUGREPORT);
   exit (0);
 }
 
@@ -86,7 +82,7 @@ static void
 version (void)
 {
   printf(_("gEDA/gaf %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
+"Copyright (C) 1998-2013 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"

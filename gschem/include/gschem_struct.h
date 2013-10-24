@@ -1,7 +1,9 @@
 /*! \brief different kind of snapping mechanisms used in TOPLEVEL */
 typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 
-typedef struct st_gschem_toplevel GSCHEM_TOPLEVEL;
+#define GSCHEM_TOPLEVEL(ptr) ((GschemToplevel*)(ptr))
+
+typedef struct st_gschem_toplevel GschemToplevel;
 typedef struct st_stretch STRETCH;
 
 struct st_gschem_toplevel {
@@ -25,10 +27,8 @@ struct st_gschem_toplevel {
 
   GSList    *toolbar_mode_grp;   /* Single list of MENU toolbar radios */
 
-  GtkWidget     *h_scrollbar;
-  GtkWidget     *v_scrollbar;
-  GtkAdjustment *h_adjustment;
-  GtkAdjustment *v_adjustment;
+  GtkWidget *h_scrollbar;
+  GtkWidget *v_scrollbar;
 
   GtkWidget *command_box;
   GtkWidget *command_entry;
@@ -41,9 +41,9 @@ struct st_gschem_toplevel {
   GtkWidget *grid_label;
   GtkWidget *status_label;
 
-  char *keyaccel_string;               /* visual feedback when pressing
-                                          keyboard accelerators */
-  bool keyaccel_string_source_id;   /* event source ID used by above */
+  char *keyaccel_string;       /* visual feedback when pressing
+                                         keyboard accelerators */
+  bool keyaccel_ssid;          /* event source ID used by above */
 
   /* -------------------- Dialog boxes -------------------- */
   /* x_dialog.c */
@@ -64,8 +64,8 @@ struct st_gschem_toplevel {
 
   GtkWidget *hkwindow;         /* Help/Hotkeys settings: IDS_HOTKEYS    */
   GtkWidget *cowindow;         /* Coordinate   settings: IDS_COORDINATES*/
-  GtkWidget *coord_world;      /* World coordinate label */
-  GtkWidget *coord_screen;     /* Screen coordinate window */
+  GtkWidget *world_entry;      /* World coordinate Entry */
+  GtkWidget *screen_entry;     /* Screen coordinate window */
 
   GtkWidget *aewindow;   /* attribute edit settings: IDS_SINGLE_ATTRIB   */
   GtkWidget *cpwindow;   /* Preferences    settings: IDS_CONFIG_SETTINGS */
@@ -80,17 +80,15 @@ struct st_gschem_toplevel {
   double     pixbuf_wh_ratio;           /* width/height ratio of the pixbuf */
   char      *pixbuf_filename;
 
-  /* ------------------- graphics context ----------------- */
-  GdkGC *gc;
-
   /* ------------------  Drawing surfaces  ---------------- */
-  GdkWindow *window;                    /* drawing_area's X drawable */
-  GdkPixmap *drawable;                  /* drawable to paint onto */
-  cairo_t   *cr;                        /* Cairo surface */
-  PangoLayout *pl;                      /* Pango layout */
+  GdkGC *gc;                            /* graphics context */
+  GdkWindow   *window;                  /* drawing_area's X drawable */
+  GdkPixmap   *drawable;                /* drawable to paint onto */
+  cairo_t     *cr;                      /* Cairo surface */
 
   int win_width, win_height;            /* Actual size of window (?) */
-
+  int background_color;
+  
   /* --------------------- Drawing state ------------------ */
   EdaRenderer *renderer;
   int first_wx;
@@ -114,26 +112,36 @@ struct st_gschem_toplevel {
   GList *stretch_list;
 
   /* ---------------- Gschem internal state --------------- */
-  int num_untitled;                     /* keep track of untitled wins */
-  int event_state;                      /* Current event state */
-  int force_save_as;                    /* Flag to force use file-saveas */
-  int image_width, image_height;        /* h, w of image write */
-  int min_zoom;                         /* minimum zoom factor */
-  int max_zoom;                         /* maximum zoom factor */
-  int text_alignment;                   /* current alignment of text */
-  int inside_redraw;                    /* complex vs list redrawing */
-  int drawbounding_action_mode;         /* outline vs bounding box */
-  int last_drawb_mode;                  /* last above mode */
+
+  /* Buffer Related */
+  int    buffer_number;        /* current paste buffer in use */
+  GList *clipboard_buffer;     /* buffer for system clipboard integration */
+
+  /* Drag&Drop */
+  GdkEvent *drag_event;        /* copy of motion event for Drag&Drop */
+  int drag_action;             /* Controls the GdkDragAction for Drag&Drop */
+  int dnd_state;               /* */
+  int dnd_save_state;
+
+  /* Key States */
   int CONTROLKEY;                       /* control key pressed? */
   int SHIFTKEY;                         /* shift key pressed? */
   int ALTKEY;                           /* alt key pressed? */
+
+  /* Misc status flags and limits */
   int doing_pan;                        /* mouse pan status flag */
-  int buffer_number;                    /* current paste buffer in use */
-  GList *clipboard_buffer;              /* buffer for system clipboard integration */
+  int drawbounding_action_mode;         /* outline vs bounding box */
+  int event_state;                      /* Current event state */
+  int force_save_as;                    /* Flag to force use file-saveas */
+  int inside_redraw;                    /* complex vs list redrawing */
+  int last_drawb_mode;                  /* last above mode */
+  int min_zoom;                         /* minimum zoom factor */
+  int max_zoom;                         /* maximum zoom factor */
+  int num_untitled;                     /* keep track of untitled wins */
 
   /* ----------------- rc/user parameters ----------------- */
 
-  /* Display Related */
+/* Display Related */
   int grip_pixel_size;
 
   /* sets the mininum number of pixels necessary for the grid to be displayed */
@@ -150,7 +158,10 @@ struct st_gschem_toplevel {
   int zoom_gain;          /* Percentage increase in size for a zoom-in operation */
   int zoom_with_pan;
 
-/* Miscellaneous - in  alphabetical order */
+/* Imaging Related */
+  int image_width, image_height;        /* h, w of image write */
+
+ /* Miscellaneous - in  alphabetical order */
   int action_feedback_mode;   /* can be either OUTLINE or BOUNDINGBOX */
 
   /* sets the offset (in world coordinates) that are added to netname */
@@ -221,6 +232,7 @@ struct st_gschem_toplevel {
   int scrollbars_visible; /* controls if scrollbars are displayed */
 
   /* Text Related Stuff */
+  int text_alignment;           /* current alignment of text */
   int text_case;
   int text_display_zoomfactor;  /* zoom factor at which text is displayed completely */
   int text_feedback;            /* is text is drawn or not in copy/move/place ops */

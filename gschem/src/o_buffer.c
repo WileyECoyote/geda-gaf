@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 #include <stdio.h>
@@ -37,7 +37,7 @@
  *   \param buf_num   integer value of the buffer to use.
  */
 static void
-selection_to_buffer(GSCHEM_TOPLEVEL *w_current, int buf_num)
+selection_to_buffer(GschemToplevel *w_current, int buf_num)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *s_current = NULL;
@@ -63,7 +63,7 @@ selection_to_buffer(GSCHEM_TOPLEVEL *w_current, int buf_num)
  *  \param w_current A pointer to a GSCHEM top level object
  *  \param buf_num   integer value of the buffer to use.
  */
-void o_buffer_copy(GSCHEM_TOPLEVEL *w_current, int buf_num)
+void o_buffer_copy(GschemToplevel *w_current, int buf_num)
 {
   GList *iter;
 
@@ -98,7 +98,7 @@ void o_buffer_copy(GSCHEM_TOPLEVEL *w_current, int buf_num)
  *  \param w_current A pointer to a GSCHEM top level object
  *  \param buf_num   integer value of the buffer to use.
  */
-void o_buffer_cut(GSCHEM_TOPLEVEL *w_current, int buf_num)
+void o_buffer_cut(GschemToplevel *w_current, int buf_num)
 {
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     g_warning (_("o_buffer_cut: Invalid buffer %i\n"), buf_num);
@@ -116,16 +116,22 @@ void o_buffer_cut(GSCHEM_TOPLEVEL *w_current, int buf_num)
  *  contents and updates the global state variable so the user can
  *  position/place the any objects that were in the buffer.
  */
-void o_buffer_paste_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
+bool o_buffer_paste_start(GschemToplevel *w_current, int w_x, int w_y,
                           int buf_num)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int rleft, rtop, rbottom, rright;
   int x, y;
 
+  if (w_current == NULL) {
+    fprintf (stderr, "Internal Error: <%s><o_buffer_paste_start>"
+                     "w_current is NULL, line %d.\n", __FILE__, __LINE__);
+    return FALSE;
+  }
+
   if (buf_num < 0 || buf_num >= MAX_BUFFERS) {
     fprintf(stderr, _("Got an invalid buffer_number [o_buffer_paste_start]\n"));
-    return;
+    return FALSE;
   }
 
   w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
@@ -138,13 +144,20 @@ void o_buffer_paste_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
     o_glist_copy_all (toplevel, object_buffer[buf_num],
                       toplevel->page_current->place_list);
 
+
+#if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
+    int dint;
+    dint = g_list_length(toplevel->page_current->place_list);
+    printf("o_buffer_paste_start: buffers has %d objects\n", dint);
+#endif
+
   if (!world_get_object_glist_bounds (toplevel,
                                       toplevel->page_current->place_list,
                                      &rleft, &rtop,
                                      &rright, &rbottom)) {
-    /* If the place buffer doesn't have any objects
-     * to define its any bounds, we drop out here */
-    return;
+    /* If the place buffer doesn't have any objects to define its any
+     * bounds, we drop out here */
+    return FALSE;
   }
 
   /* Place the objects into the buffer at the mouse origin, (w_x, w_y). */
@@ -161,7 +174,14 @@ void o_buffer_paste_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y,
 
   w_current->inside_action = 1;
   i_set_state(w_current, ENDPASTE);
+
+#if DEBUG || DEBUG_DND_EVENTS || DEBUG_PASTE
+printf("o_buffer_paste_start: calling o_place_start with %d objects\n", dint);
+#endif
+
   o_place_start (w_current, w_x, w_y);
+
+  return TRUE;
 }
 
 
@@ -185,7 +205,7 @@ void o_buffer_init(void)
  *  This function iterates over each buffer and deletes any
  *  found by calling s_delete_object_glist.
  */
-void o_buffer_free(GSCHEM_TOPLEVEL *w_current)
+void o_buffer_free(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int i;

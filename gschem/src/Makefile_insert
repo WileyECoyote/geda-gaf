@@ -16,6 +16,8 @@ gschem_SOURCES += \
 	globals.c \
 	gschem.c \
 	gschem_dialog.c \
+	gschem_hotkeystore.c \
+        gschem_main_window.c \
 	gschem_toplevel.c \
 	i_basic.c \
 	i_callbacks.c \
@@ -48,6 +50,7 @@ gschem_SOURCES += \
 	o_undo.c \
 	parsecmd.c \
 	s_stretch.c \
+	x_attrib.c \
 	x_autonumber.c \
 	x_basic.c \
 	x_clipboard.c \
@@ -55,7 +58,7 @@ gschem_SOURCES += \
 	x_compselect.c \
 	x_console.c \
 	x_dialog.c \
-	x_edit_attrib.c \
+	x_dnd.c \
 	x_edit_color.c \
 	x_edit_pin.c \
 	x_edit_text.c \

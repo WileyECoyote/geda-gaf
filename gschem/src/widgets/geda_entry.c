@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  *
  * Date: December 31, 2012
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
@@ -28,12 +28,13 @@
 #include <ctype.h>
 
 #include <gtk/gtk.h>
+
 #include <gdk/gdkkeysyms.h>
 #include "widgets/geda_entry.h"
 
 #include "gettext.h"
 
-#define GTK_ENTRY_COMPLETION_KEY "gtk-entry-completion-key"
+#define MAX_ICONS 2
 
 /**
  * SECTION:gedaentry
@@ -71,36 +72,35 @@ enum {
 
 static unsigned int signals[LAST_SIGNAL] = { 0 };
 
-static void     geda_entry_class_init        (GedaEntryClass *class);
-static void     geda_entry_init              (GedaEntry      *entry);
-static void     geda_entry_finalize          (GObject        *object);
-static void     geda_entry_real_activate     (GedaEntry      *entry);
-static bool     geda_entry_key_press         (GedaEntry      *widget,
-                                              GdkEventKey    *event,
-                                              gpointer        data);
-static void     geda_entry_grab_focus        (GtkWidget      *widget);
-static void     geda_entry_realize           (GtkWidget      *widget);
-static void     geda_entry_activate          (GedaEntry      *entry,
-                                              gpointer        data);
-static void     geda_entry_history_up        (GedaEntry      *entry);
-static void     geda_entry_history_down      (GedaEntry      *entry);
-static bool     geda_entry_tab_complete      (GtkEntry        *entry);
-static void     geda_entry_populate_popup    (GedaEntry       *entry,
-                                              GtkMenu         *menu,
-                                              gpointer         data);
+static void    geda_entry_class_init         (GedaEntryClass   *class);
+static void    geda_entry_init               (GedaEntry        *entry);
+static void    geda_entry_finalize           (GObject          *object);
+static void    geda_entry_real_activate      (GedaEntry        *entry);
+static bool    geda_entry_key_press          (GedaEntry        *widget,
+                                              GdkEventKey      *event,
+                                              gpointer          data);
+static void    geda_entry_grab_focus         (GtkWidget        *widget);
+static void    geda_entry_realize            (GtkWidget        *widget);
+static void    geda_entry_activate           (GedaEntry        *entry,
+                                              gpointer          data);
+static void    geda_entry_history_up         (GedaEntry        *entry);
+static void    geda_entry_history_down       (GedaEntry        *entry);
+static bool    geda_entry_tab_complete       (GtkEntry         *entry);
 
-static void     popup_menu_callback          (GtkMenuItem    *item,
-                                              gpointer        data);
+static void    geda_entry_populate_popup     (GedaEntry        *entry,
+                                              GtkMenu          *menu,
+                                              gpointer          data);
+static void    popup_menu_callback           (GtkMenuItem      *item,
+                                              gpointer          data);
 
-
-static void     geda_entry_set_property      (GObject        *object,
-                                              unsigned int    property_id,
-                                              const GValue   *value,
-                                              GParamSpec     *pspec);
-static void     geda_entry_get_property      (GObject        *object,
-                                              unsigned int    property_id,
-                                              GValue         *value,
-                                              GParamSpec   *pspec);
+static void    geda_entry_set_property       (GObject          *object,
+                                              unsigned int      property_id,
+                                              const GValue     *value,
+                                              GParamSpec       *pspec);
+static void    geda_entry_get_property       (GObject          *object,
+                                              unsigned int      property_id,
+                                              GValue           *value,
+                                              GParamSpec       *pspec);
 
 static int strncmpi(char *str1, char *str2, int n);
 
@@ -118,13 +118,35 @@ static GtkEntryClass *parent_class = NULL;
 G_DEFINE_TYPE (GedaEntry, geda_entry, GTK_TYPE_ENTRY);
 gpointer *entry_parent_class;
 
+typedef struct
+{
+  GdkWindow     *window;
+  char          *tooltip;
+  unsigned int   insensitive    : 1;
+  unsigned int   nonactivatable : 1;
+  unsigned int   prelight       : 1;
+  unsigned int   in_drag        : 1;
+  unsigned int   pressed        : 1;
+
+  GtkImageType   storage_type;
+  GdkPixbuf     *pixbuf;
+  char          *stock_id;
+  char          *icon_name;
+  GIcon         *gicon;
+
+  GtkTargetList *target_list;
+  GdkDragAction  actions;
+} EntryIconInfo;
+
 struct _GedaEntryPriv
 {
-  GCompletion *command_completion;
-  bool         case_sensitive;
+  GedaCompletion *command_completion;
+  bool            case_sensitive;
 
   PangoAttrList *attrs;
   PangoFontMap  *font_map;
+
+  EntryIconInfo *icons[MAX_ICONS];
 };
 
 const char* IDS_CONSOLE_POPUP[] = {
@@ -248,11 +270,11 @@ geda_entry_completion_set_case (GedaEntry *entry, bool sensitive)
     sensitive = sensitive != FALSE;
     entry->priv->case_sensitive = sensitive;
     if (sensitive)
-      g_completion_set_compare( entry->priv->command_completion,
-                                strncmp);
+      geda_completion_set_compare( entry->priv->command_completion,
+                                   (GedaStrCompareNFunc) strncmp);
     else
-      g_completion_set_compare( entry->priv->command_completion,
-                               (GCompletionStrncmpFunc) strncmpi);
+      geda_completion_set_compare( entry->priv->command_completion,
+                                 (GedaStrCompareNFunc) strncmpi);
   }
 }
 bool geda_entry_get_input_case (GedaEntry *entry)
@@ -457,7 +479,19 @@ static void geda_entry_class_init (GedaEntryClass *class)
   gobject_class->set_property = geda_entry_set_property;
   gobject_class->get_property = geda_entry_get_property;
 
-  class->activate = geda_entry_real_activate;
+  class->activate             = geda_entry_real_activate;
+
+  /* We over-ride parent's drag&drop, which is over-riding widget class
+   * because we support drag&drop stuff other than just text and the
+   * stock entry intecepts all of drag&drop signals! */
+  class->drag_begin           = widget_class->drag_begin;
+  class->drag_end             = widget_class->drag_end;
+  class->drag_drop            = widget_class->drag_drop;
+  class->drag_motion          = widget_class->drag_motion;
+  class->drag_leave           = widget_class->drag_leave;
+  class->drag_data_received   = widget_class->drag_data_received;
+  class->drag_data_get        = widget_class->drag_data_get;
+  class->drag_data_delete     = widget_class->drag_data_delete;
 
   params = g_param_spec_boolean ("activates-default",
                                _("Activates default"),
@@ -550,15 +584,19 @@ static void geda_entry_class_init (GedaEntryClass *class)
   binding_set = gtk_binding_set_by_class (class);
 
   /* Activate */
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0, "process-entry", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_Return, 0,    "process-entry", 0);
 
   gtk_binding_entry_add_signal (binding_set, GDK_KEY_ISO_Enter, 0, "process-entry", 0);
 
-  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0, "process-entry", 0);
+  gtk_binding_entry_add_signal (binding_set, GDK_KEY_KP_Enter, 0,  "process-entry", 0);
 
   widget_class->grab_focus = geda_entry_grab_focus;
   widget_class->realize    = geda_entry_realize;
 
+#ifdef DEBUG_GEDA_ENTRY
+  fprintf(stderr, "new geda_entry created: history=%d, completion=%d\n",
+          have_history, have_auto_complete );
+#endif
 }
 
 static void geda_entry_init (GedaEntry *entry)
@@ -569,7 +607,8 @@ static void geda_entry_init (GedaEntry *entry)
 
   g_signal_connect_after (G_OBJECT (entry), "key_press_event", G_CALLBACK (geda_entry_key_press), NULL);
   if(have_history) {
-    g_signal_connect     (G_OBJECT (entry), "activate",        G_CALLBACK (geda_entry_activate), NULL);
+    //g_signal_connect     (G_OBJECT (entry), "activate",        G_CALLBACK (geda_entry_activate), NULL);
+    g_signal_connect     (G_OBJECT (entry), "process-entry",   G_CALLBACK (geda_entry_activate), NULL);
     if(history_list_arg) {
       history_list = *history_list_arg;
       entry->history_index = g_list_length (history_list);
@@ -586,8 +625,8 @@ static void geda_entry_init (GedaEntry *entry)
   /* Initialize & populate a GCompletion for commands */
   if(old_complete_list) {
     complete_list = *old_complete_list;
-    entry->priv->command_completion = g_completion_new (NULL);
-    g_completion_add_items (entry->priv->command_completion, complete_list);
+    entry->priv->command_completion = geda_completion_new (NULL);
+    geda_completion_add_items (entry->priv->command_completion, complete_list);
     entry->auto_complete = TRUE;
   }
   else
@@ -611,7 +650,7 @@ static void geda_entry_finalize (GObject *object)
   entry = GEDA_ENTRY (object);
 
   if (entry->priv->command_completion) {
-    g_completion_free (entry->priv->command_completion);
+    geda_completion_free (entry->priv->command_completion);
   }
 
   /* Save history to caller's glist*/
@@ -650,7 +689,9 @@ geda_entry_real_activate (GedaEntry *entry)
   GtkWidget *default_widget, *focus_widget;
   GtkWidget *toplevel;
   GtkWidget *widget;
-
+#ifdef DEBUG_GEDA_ENTRY
+  fprintf(stderr, "<geda_entry_real_activate> in over-ride: got <activate> signal\n");
+#endif
   widget = GTK_WIDGET (entry);
 
   if (entry->activates_default) {
@@ -861,8 +902,8 @@ static int strncmpi(char *str1, char *str2, int n)
         else
           return ((*str1 > *str2 ) ? -1 : 1);
 }
-static bool
-geda_entry_tab_complete (GtkEntry *entry)
+
+static bool geda_entry_tab_complete (GtkEntry *entry)
 {
   char  *buffer;
   char  *s_ptr;
@@ -892,7 +933,7 @@ geda_entry_tab_complete (GtkEntry *entry)
 
   if (s_ptr != buffer) ++s_ptr;       /* if compounding then skip space */
 
-  options = g_completion_complete (geda_entry->priv->command_completion, s_ptr, &match);
+  options = geda_completion_complete (geda_entry->priv->command_completion, s_ptr, &match);
 
   if (g_list_length (options) == 0)                    /* if no matches */
     return exit (TRUE);
@@ -946,12 +987,17 @@ popup_menu_callback (GtkMenuItem *item, gpointer data)
   int menu_option = GPOINTER_TO_INT (data);
   switch(menu_option) {
       case AUTO_COMPLETE_ON:
-        //fprintf(stderr, "setting auto complete on\n");
+
+#ifdef DEBUG_GEDA_ENTRY
+        fprintf(stderr, "setting auto complete on\n");
+#endif
         set_auto_complete = TRUE;
         do_auto_complete  = TRUE;
         break;
       case AUTO_COMPLETE_OFF:
-        //fprintf(stderr, "disabling auto complete\n");
+#ifdef DEBUG_GEDA_ENTRY
+        fprintf(stderr, "disabling auto complete\n");
+#endif
         set_auto_complete = TRUE;
         do_auto_complete  = FALSE;
         break;

@@ -20,8 +20,7 @@
 ;;;
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301
-;;; USA
+;;; Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 ;;
 ;;; Date: Aug, 17, 2012
 ;;; Contributing Author: Wiley Edward Hill
@@ -47,6 +46,11 @@
 ;; WEH | 07/20/13 | Added Font Name Combo (to extend functionality)
 ;; ------------------------------------------------------------------
 ;; WEH | 09/20/13 | Added PointerCurso Combo (to extend functionality)
+;; ------------------------------------------------------------------
+;; WEH | 09/25/13 | Added GripStrokeColor, GripFillColor,TextMarkerColor,
+;;                | TextOriginMarker, TextMarkerSize, JunctionColor,
+;;                | TextMarkerSize and JunctionSize, NetEndpointColor,
+;;                | ScrollBarsVisible
 ;; ------------------------------------------------------------------
 */
 /*! \remarks To add a new variable or control:
@@ -207,33 +211,33 @@ gschem_rc_options rc_options={
         ""};                      /* ripper_symbol_fname [MAX_FILE]*/
 
 /* The Global Widgets */
-GtkWidget *AddAttributeButt=NULL;
-GtkWidget *RemoveAttributeButt=NULL;
-GtkWidget *ClearAttributesButt=NULL;
-GtkWidget *DefaultAttributesButt=NULL;
-GtkWidget *ConfirmClearCheckBox=NULL;
+static GtkWidget *AddAttributeButt=NULL;
+static GtkWidget *RemoveAttributeButt=NULL;
+static GtkWidget *ClearAttributesButt=NULL;
+static GtkWidget *DefaultAttributesButt=NULL;
+//static GtkWidget *ConfirmClearCheckBox=NULL;
 
 /* The Color Buttons */
-GtkWidget *GripStrokeColorButt;
-GtkWidget *GripFillColorButt;
-GtkWidget *JunctionColorButt;
-GtkWidget *NetEndpointColorButt;
-GtkWidget *TextMarkerColorButt;
+static GtkWidget *GripStrokeColorButt;
+static GtkWidget *GripFillColorButt;
+static GtkWidget *JunctionColorButt;
+static GtkWidget *NetEndpointColorButt;
+static GtkWidget *TextMarkerColorButt;
 
 /* The Combo Boxes */
-GtkWidget *ColorMapSchemeCombo;
-GtkWidget *DotGridModeCombo;
-GtkWidget *ConsoleWindowTypeCombo;
-GtkWidget *PointerCursorCombo;
-GtkWidget *MiddleButtonCombo;
-GtkWidget *ThirdButtonCombo;
-GtkWidget *TitleBlockCombo;
-GtkWidget *UndoTypeCombo;
-GtkWidget *FontNameCombo;
-GtkWidget *RipperSymbolCombo;
+static GtkWidget *ColorMapSchemeCombo;
+static GtkWidget *DotGridModeCombo;
+static GtkWidget *ConsoleWindowTypeCombo;
+static GtkWidget *PointerCursorCombo;
+static GtkWidget *MiddleButtonCombo;
+static GtkWidget *ThirdButtonCombo;
+static GtkWidget *TitleBlockCombo;
+static GtkWidget *UndoTypeCombo;
+static GtkWidget *FontNameCombo;
+static GtkWidget *RipperSymbolCombo;
 
 /* The one and only Text Entry Box */
-GtkWidget *UntitledNameEntry;
+static GtkWidget *UntitledNameEntry;
 
 /* The Radio Widgets */
   /* General TAB */
@@ -264,74 +268,74 @@ GtkWidget *UntitledNameEntry;
   DECLARE_RADIO_TRIAD (DialogListAttributes,  All, None, List);
 
 /* The Spinners */
-GtkWidget *AttributeOffsetSpin;
-GtkWidget *AutoPlacementGridSpin;
-GtkWidget *AutoSaveIntervalSpin;
-GtkWidget *DotGridThresholdSpin;
-GtkWidget *GripPixelSizeSpin;
-GtkWidget *JunctionSizeSpin;
-GtkWidget *KeyboardPanGainSpin;
-GtkWidget *KeyboardPanGainSpin;
-GtkWidget *MeshGridThresholdSpin;
-GtkWidget *MousePanGainSpin;
-GtkWidget *RipperSizeSpin;
-GtkWidget *ScrollPanStepsSpin;
-GtkWidget *SelectPixelsSpin;
-GtkWidget *SnapSizeSpin;
-GtkWidget *TextMarkerSizeSpin;
-GtkWidget *TextSizeSpin;
-GtkWidget *TextZoomFactorSpin;
-GtkWidget *ThickBusWidthSpin;
-GtkWidget *ThickLineWidthSpin;
-GtkWidget *ThickNetWidthSpin;
-GtkWidget *ThickPinWidthSpin;
-GtkWidget *ThinBusWidthSpin;
-GtkWidget *ThinLineWidthSpin;
-GtkWidget *ThinNetWidthSpin;
-GtkWidget *ThinPinWidthSpin;
-GtkWidget *UndoBufferSizeSpin;
-GtkWidget *ZoomGainSpin;
+static GtkWidget *AttributeOffsetSpin;
+static GtkWidget *AutoPlacementGridSpin;
+static GtkWidget *AutoSaveIntervalSpin;
+static GtkWidget *DotGridThresholdSpin;
+static GtkWidget *GripPixelSizeSpin;
+static GtkWidget *JunctionSizeSpin;
+static GtkWidget *KeyboardPanGainSpin;
+static GtkWidget *KeyboardPanGainSpin;
+static GtkWidget *MeshGridThresholdSpin;
+static GtkWidget *MousePanGainSpin;
+static GtkWidget *RipperSizeSpin;
+static GtkWidget *ScrollPanStepsSpin;
+static GtkWidget *SelectPixelsSpin;
+static GtkWidget *SnapSizeSpin;
+static GtkWidget *TextMarkerSizeSpin;
+static GtkWidget *TextSizeSpin;
+static GtkWidget *TextZoomFactorSpin;
+static GtkWidget *ThickBusWidthSpin;
+static GtkWidget *ThickLineWidthSpin;
+static GtkWidget *ThickNetWidthSpin;
+static GtkWidget *ThickPinWidthSpin;
+static GtkWidget *ThinBusWidthSpin;
+static GtkWidget *ThinLineWidthSpin;
+static GtkWidget *ThinNetWidthSpin;
+static GtkWidget *ThinPinWidthSpin;
+static GtkWidget *UndoBufferSizeSpin;
+static GtkWidget *ZoomGainSpin;
 
 /* The Switches */
-GtkWidget *AutoLoadSwitch=NULL;
-GtkWidget *AutoSaveSwitch=NULL;
-GtkWidget *ClassicWheelSwitch=NULL;
-GtkWidget *ConsolidateNetsSwitch=NULL;
-GtkWidget *ContinuePlaceSwitch=NULL;
-GtkWidget *DelayScrollingSwitch=NULL;
-GtkWidget *DragMoveSwitch=NULL;
-GtkWidget *DrawGripsSwitch=NULL;
-GtkWidget *EmbedComponentsSwitch=NULL;
-GtkWidget *EnableColorImagingSwitch=NULL;
-GtkWidget *EnableLogSwitch=NULL;
-GtkWidget *EnableUndoSwitch=NULL;
-GtkWidget *EnforceHierarchySwitch=NULL;
-GtkWidget *FastMousePanSwitch=NULL;
-GtkWidget *FeedbackModeSwitch=NULL;
-GtkWidget *ForceBoundingBoxSwitch=NULL;
-GtkWidget *FilePreviewSwitch=NULL;
-GtkWidget *FriendlyColorMapSwitch=NULL;
-GtkWidget *FriendlyOutlineMapSwitch=NULL;
-GtkWidget *InitConsoleWindowSwitch=NULL;
-GtkWidget *InvertImagesSwitch=NULL;
-GtkWidget *MagneticNetsSwitch=NULL;
-GtkWidget *NetDirectionSwitch=NULL;
-GtkWidget *NotifyEventsSwitch=NULL;
-GtkWidget *ObjectClippingSwitch=NULL;
-GtkWidget *PointerHScrollSwitch=NULL;
-GtkWidget *RipperRotationSwitch=NULL;
-GtkWidget *RipperTypeSwitch=NULL;
-GtkWidget *RubberNetsSwitch=NULL;
-GtkWidget *ScrollBarsSwitch=NULL;
-GtkWidget *ScrollBarsVisibleSwitch=NULL;
-GtkWidget *SortLibrarySwitch=NULL;
-GtkWidget *TextOriginMarkerSwitch=NULL;
-GtkWidget *UndoViewsSwitch=NULL;
-GtkWidget *WarpCursorSwitch=NULL;
-GtkWidget *ZoomPanSwitch=NULL;
+static GtkWidget *AutoLoadSwitch=NULL;
+static GtkWidget *AutoSaveSwitch=NULL;
+static GtkWidget *ClassicWheelSwitch=NULL;
+static GtkWidget *ConsolidateNetsSwitch=NULL;
+static GtkWidget *ContinuePlaceSwitch=NULL;
+static GtkWidget *DelayScrollingSwitch=NULL;
+static GtkWidget *DragMoveSwitch=NULL;
+static GtkWidget *DrawGripsSwitch=NULL;
+static GtkWidget *EmbedComponentsSwitch=NULL;
+static GtkWidget *EnableColorImagingSwitch=NULL;
+static GtkWidget *EnableLogSwitch=NULL;
+static GtkWidget *EnableUndoSwitch=NULL;
+static GtkWidget *EnforceHierarchySwitch=NULL;
+static GtkWidget *FastMousePanSwitch=NULL;
+static GtkWidget *FeedbackModeSwitch=NULL;
+static GtkWidget *ForceBoundingBoxSwitch=NULL;
+static GtkWidget *FilePreviewSwitch=NULL;
+static GtkWidget *FriendlyColorMapSwitch=NULL;
+static GtkWidget *FriendlyOutlineMapSwitch=NULL;
+static GtkWidget *InitConsoleWindowSwitch=NULL;
+static GtkWidget *InvertImagesSwitch=NULL;
+static GtkWidget *MagneticNetsSwitch=NULL;
+static GtkWidget *NetDirectionSwitch=NULL;
+static GtkWidget *NotifyEventsSwitch=NULL;
+static GtkWidget *ObjectClippingSwitch=NULL;
+static GtkWidget *PointerHScrollSwitch=NULL;
+static GtkWidget *RipperRotationSwitch=NULL;
+static GtkWidget *RipperTypeSwitch=NULL;
+static GtkWidget *RubberNetsSwitch=NULL;
+static GtkWidget *ScrollBarsSwitch=NULL;
+static GtkWidget *ScrollBarsVisibleSwitch=NULL;
+static GtkWidget *SortLibrarySwitch=NULL;
+static GtkWidget *TextOriginMarkerSwitch=NULL;
+static GtkWidget *UndoViewsSwitch=NULL;
+static GtkWidget *WarpCursorSwitch=NULL;
+static GtkWidget *ZoomPanSwitch=NULL;
 
-GtkWidget *PotentialAttributesView=NULL;
-GtkWidget *SelectedAttributesView=NULL;
+static GtkWidget *PotentialAttributesView=NULL;
+static GtkWidget *SelectedAttributesView=NULL;
 
 /** @} END Group X_Settings_Dialog_Globals */
 
@@ -490,7 +494,7 @@ static void st_callback_selection_changed_view(GtkTreeSelection *selection,
  */
 static void
 st_callback_selection_changed_view(GtkTreeSelection *selection,
-                                        GtkWidget *Dialog)
+                                          GtkWidget *Dialog)
 {
   GtkTreeIter iter;
   GtkTreeModel *model;
@@ -519,10 +523,10 @@ st_callback_selection_changed_view(GtkTreeSelection *selection,
  *  attribute and bypass buttons or what?
  */
 static void
-st_tree_row_activated (GtkTreeView *tree_view,
-                       GtkTreePath *path,
+st_tree_row_activated (GtkTreeView       *tree_view,
+                       GtkTreePath       *path,
                        GtkTreeViewColumn *column,
-                       GtkWidget *Dialog)
+                       GtkWidget         *Dialog)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
@@ -693,7 +697,7 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
  *          1        = No Filter     // rc entry had empty list
  *          2        = Filter List   // rc entry had and actual list
  */
-static int GetAttributeFilterMode(GSCHEM_TOPLEVEL *w_current) {
+static int GetAttributeFilterMode(GschemToplevel *w_current) {
 
   char* data;
 
@@ -707,7 +711,7 @@ static int GetAttributeFilterMode(GSCHEM_TOPLEVEL *w_current) {
  *       clears the current attribute "filter" list, creates a new list
  *       or modified the old list based on the Dialog settings
  */
-static int SaveAttributeFilterList(GSCHEM_TOPLEVEL *w_current) {
+static int SaveAttributeFilterList(GschemToplevel *w_current) {
    GtkTreeModel *store = NULL;
    GtkTreeIter iter;
 
@@ -775,7 +779,7 @@ static int SaveAttributeFilterList(GSCHEM_TOPLEVEL *w_current) {
  *       so the only modification is the order of the attributes in the
  *       list.
  */
-static int SavePotentialAttributes(GSCHEM_TOPLEVEL *w_current) {
+static int SavePotentialAttributes(GschemToplevel *w_current) {
   GtkTreeModel *store;
   GtkTreeIter iter;
   char *str_new;
@@ -1178,6 +1182,7 @@ void combo_responder(GtkWidget *widget, gpointer data)
  *
  *  @param[in]  char *titleblock    ptr to name of current default titleblock.
  */
+static
 int setup_titleblock_combo( char *titleblock ){
 
   int i;
@@ -1542,7 +1547,7 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
  *       possible. Some configurations options are SCM scripts and we have
  *       to find a way to deal with them ...
  */
-bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
+bool load_settings_dialog (GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   EdaConfig *cfg = eda_config_get_user_context ();
@@ -1551,7 +1556,6 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   extern char *x_color_get_name(int index);
   const GdkColor* color;
   COLOR *cflag;
-
 
   /* variable pre-conditioning */
 
@@ -1606,7 +1610,6 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
 
     /TODO: Really should check all indexes
  */
-
   cflag = x_color_lookup(10); /* index of "bus" */
   if (cflag->g == 0xff) {
     rc_options.color_scheme_index = 0;
@@ -1650,8 +1653,6 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
   tmpstr = eda_config_get_string (cfg, "gschem", "default-filename", NULL);
-
-  //gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), rc_options.untitled_name);
   gtk_entry_set_text (GTK_ENTRY (UntitledNameEntry), tmpstr);
   g_free (tmpstr);
 
@@ -1802,7 +1803,7 @@ bool load_settings_dialog (GSCHEM_TOPLEVEL *w_current)
  * lines of gtk_xxx's and does not depend on Glade.
  */
 GtkWidget*
-create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
+create_settings_dialog (GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *MainDialogVBox;
@@ -1815,9 +1816,6 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   GtkWidget *CancelButt;
   GtkWidget *SaveButt;
   GtkWidget *OkayButt;
-
-  GtkTooltips *tooltips;
-  tooltips = gtk_tooltips_new ();
 
   PangoFontDescription *FontDescription;
   FontDescription = pango_font_description_from_string("Monospace");
@@ -2097,19 +2095,19 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   g_object_set (CancelButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), CancelButt, GTK_RESPONSE_CANCEL);
   gtk_widget_set_can_default(CancelButt, TRUE);
-  gtk_tooltips_set_tip (tooltips, CancelButt, _("Close without changing any settings"), NULL);
+  gtk_widget_set_tooltip_text (CancelButt, _("Close without changing any settings"));
 
   SaveButt = gtk_button_new_with_mnemonic (_("Save"));
   g_object_set (SaveButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), SaveButt, GTK_RESPONSE_APPLY);
   gtk_widget_set_can_default(SaveButt, TRUE);
-  gtk_tooltips_set_tip (tooltips, SaveButt, _("Close and Write settings to disk"), NULL);
+  gtk_widget_set_tooltip_text (SaveButt, _("Close and Write settings to disk"));
 
   OkayButt = gtk_button_new_from_stock ("gtk-ok");
   g_object_set (OkayButt, "visible", TRUE, NULL);
   gtk_dialog_add_action_widget (GTK_DIALOG (ThisDialog), OkayButt, GTK_RESPONSE_OK);
   gtk_widget_set_can_default(OkayButt, TRUE);
-  gtk_tooltips_set_tip (tooltips, OkayButt, _("Change settings and close but do not write settings to storage.."), NULL);
+  gtk_widget_set_tooltip_text ( OkayButt, _("Change settings and close but do not write settings to storage.."));
 
   /* Store pointers to widgets, for use by get_widget_data(). */
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, ThisDialog, "ThisDialog");
@@ -2119,7 +2117,6 @@ create_settings_dialog (GSCHEM_TOPLEVEL *w_current)
   GTK_HOOKUP_OBJECT (ThisDialog, CancelButt, "CancelButt");
   GTK_HOOKUP_OBJECT (ThisDialog, SaveButt, "SaveButt");
   GTK_HOOKUP_OBJECT (ThisDialog, OkayButt, "OkayButt");
-  GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, tooltips, "tooltips");
 
   gtk_widget_grab_default (CancelButt);
 
@@ -2142,7 +2139,7 @@ int x_settings_lookup_cursor(int offset) {
  *       values are saved to either the memory variables from which they were
  *       loaded or to the rc_options structure.
  */
-void GatherSettings(GSCHEM_TOPLEVEL *w_current) {
+void GatherSettings(GschemToplevel *w_current) {
 
   TOPLEVEL *toplevel = w_current->toplevel;
   int       tmp_int;

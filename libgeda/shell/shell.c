@@ -67,29 +67,29 @@ static void
 version ()
 {
   printf(
-"gEDA %s (g%.7s)\n"
-"Copyright (C) 1998-2010 gEDA developers\n"
-"This is free software, and you are welcome to redistribute it under\n"
-"certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n",
-         PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
-  exit (0);
+    "gEDA %s (g%.7s)\n"
+    "Copyright (C) 1998-2010 gEDA developers\n"
+    "This is free software, and you are welcome to redistribute it under\n"
+    "certain conditions. For details, see the file `COPYING', which is\n"
+    "included in the gEDA distribution.\n"
+    "There is NO WARRANTY, to the extent permitted by law.\n",
+    PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
+    exit (0);
 }
 
 /* Some symbols we need */
-SCM_SYMBOL (sym_load, "load");
+SCM_SYMBOL (sym_load,        "load");
 SCM_SYMBOL (sym_eval_string, "eval-string");
-SCM_SYMBOL (sym_set_x, "set!");
-SCM_SYMBOL (sym_load_path, "%load-path");
-SCM_SYMBOL (sym_cons, "cons");
+SCM_SYMBOL (sym_set_x,       "set!");
+SCM_SYMBOL (sym_load_path,   "%load-path");
+SCM_SYMBOL (sym_cons,        "cons");
 SCM_SYMBOL (sym_use_modules, "use-modules");
-SCM_SYMBOL (sym_ice_9, "ice-9");
-SCM_SYMBOL (sym_readline, "readline");
+SCM_SYMBOL (sym_ice_9,       "ice-9");
+SCM_SYMBOL (sym_readline,    "readline");
 SCM_SYMBOL (sym_activate_readline, "activate-readline");
-SCM_SYMBOL (sym_top_repl, "top-repl");
-SCM_SYMBOL (sym_quit, "quit");
-SCM_SYMBOL (sym_begin, "begin");
+SCM_SYMBOL (sym_top_repl,          "top-repl");
+SCM_SYMBOL (sym_quit,              "quit");
+SCM_SYMBOL (sym_begin,       "begin");
 
 static void
 shell_main (void *data, int argc, char **argv)
@@ -108,63 +108,61 @@ shell_main (void *data, int argc, char **argv)
   opterr = 0;
   while ((c = getopt (argc, argv, GETOPT_OPTIONS)) != -1) {
     switch (c) {
-    case 's':
-      /* Construct an application of LOAD to the script name */
-      run_lst = scm_cons (scm_list_2 (sym_load,
-                                      scm_from_locale_string (optarg)),
-                          run_lst);
-      interactive = 0;
-      goto endoptloop;
-    case 'c':
-      /* We need to evaluate an expression */
-      run_lst = scm_cons (scm_list_2 (sym_eval_string,
-                                  scm_from_locale_string (optarg)),
-                          run_lst);
-      interactive = 0;
-      goto endoptloop;
-    case 'L':
-      /* Add argument to %load-path */
-      setup_lst = scm_cons (scm_list_3 (sym_set_x,
-                                        sym_load_path,
-                                        scm_list_3 (sym_cons,
-                                                    scm_from_locale_string (optarg),
-                                                    sym_load_path)),
-                            setup_lst);
-      break;
-    case 'l':
-      /* Same as -s, pretty much */
-      run_lst = scm_cons (scm_list_2 (sym_load,
-                                      scm_from_locale_string (optarg)),
-                          run_lst);
-      break;
-    case 'q':
-      inhibit_rc = 1;
-      break;
-    case 'h':
-      usage (0);
-    case 'V':
-      version();
-    case '?':
-      if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
-        fprintf (stderr,
-                 "ERROR: -%c option requires an argument.\n\n",
-                 optopt);
-        usage (1);
-      } else if (isprint (optopt)) {
-        fprintf (stderr, "ERROR: Unknown option -%c\n\n", optopt);
-        usage (1);
-      } else {
-        fprintf (stderr,
-                 "ERROR: Unknown option character `\\x%x'.\n\n",
-                 optopt);
-        usage (1);
-      }
-    default:
-      g_assert_not_reached ();
+      case 's':
+        /* Construct an application of LOAD to the script name */
+        run_lst = scm_cons (scm_list_2 (sym_load,
+                                        scm_from_locale_string (optarg)),
+                            run_lst);
+        interactive = 0;
+        goto endoptloop;
+      case 'c':
+        /* We need to evaluate an expression */
+        run_lst = scm_cons (scm_list_2 (sym_eval_string,
+                                        scm_from_locale_string (optarg)),
+                            run_lst);
+        interactive = 0;
+        goto endoptloop;
+      case 'L':
+        /* Add argument to %load-path */
+        setup_lst = scm_cons (scm_list_3 (sym_set_x,
+                                          sym_load_path,
+                                          scm_list_3 (sym_cons,
+                                                      scm_from_locale_string (optarg),
+                                                      sym_load_path)),
+                              setup_lst);
+        break;
+      case 'l':
+        /* Same as -s, pretty much */
+        run_lst = scm_cons (scm_list_2 (sym_load,
+                                        scm_from_locale_string (optarg)),
+                            run_lst);
+        break;
+      case 'q':
+        inhibit_rc = 1;
+        break;
+      case 'h':
+        usage (0);
+      case 'V':
+        version();
+      case '?':
+        if ((optopt != ':') && (strchr (GETOPT_OPTIONS, optopt) != NULL)) {
+          fprintf (stderr,
+                   "ERROR: -%c option requires an argument.\n\n", optopt);
+          usage (1);
+        } else if (isprint (optopt)) {
+          fprintf (stderr, "ERROR: Unknown option -%c\n\n", optopt);
+          usage (1);
+        } else {
+          fprintf (stderr,
+                   "ERROR: Unknown option character `\\x%x'.\n\n", optopt);
+          usage (1);
+        }
+      default:
+        g_assert_not_reached ();
     }
   }
 
- endoptloop:
+  endoptloop:
   /* Set program arguments visible from Guile */
   scm_set_program_arguments (argc - optind, argv + optind, "geda-shell");
 
@@ -180,13 +178,13 @@ shell_main (void *data, int argc, char **argv)
     if (isatty (1) && isatty (0)) {
 
       printf (
-"gEDA " PACKAGE_GIT_VERSION "\n"
-"Copyright (C) 1998-2010 gEDA developers\n"
-"This is free software, and you are welcome to redistribute it under\n"
-"certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n"
-              );
+        "gEDA " PACKAGE_GIT_VERSION "\n"
+        "Copyright (C) 1998-2010 gEDA developers\n"
+        "This is free software, and you are welcome to redistribute it under\n"
+        "certain conditions. For details, see the file `COPYING', which is\n"
+        "included in the gEDA distribution.\n"
+        "There is NO WARRANTY, to the extent permitted by law.\n"
+      );
     }
 
   } else {

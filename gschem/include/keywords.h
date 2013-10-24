@@ -20,7 +20,8 @@
 ;;;
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+;;; MA 02110-1301 USA
 ;;
 ;;; Date: Aug, 17, 2012
 ;;; Contributing Author: Wiley Edward Hill
@@ -64,7 +65,7 @@
  */
 
 #ifndef KEYWORD
-#define KEYWORD(func) void do_kw_##func(GSCHEM_TOPLEVEL *w_current, FILE* input, FILE* output);
+#define KEYWORD(func) void do_kw_##func(GschemToplevel *w_current, FILE* input, FILE* output);
 
      KEYWORD ( define_in_rc )
      KEYWORD ( load_in_rc )

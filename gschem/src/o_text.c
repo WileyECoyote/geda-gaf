@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -54,7 +55,7 @@ int o_text_get_rendered_bounds (void *user_data, OBJECT *o_current,
                                 int *min_x, int *min_y,
                                 int *max_x, int *max_y)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) user_data;
+  GschemToplevel *w_current = (GschemToplevel *) user_data;
   TOPLEVEL *toplevel;
   EdaRenderer *renderer;
   cairo_t *cr;
@@ -105,7 +106,7 @@ int o_text_get_rendered_bounds (void *user_data, OBJECT *o_current,
  *  \par Function Description
  *
  */
-void o_text_prepare_place(GSCHEM_TOPLEVEL *w_current, char *text)
+void o_text_prepare_place(GschemToplevel *w_current, char *text)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 
@@ -142,7 +143,7 @@ void o_text_prepare_place(GSCHEM_TOPLEVEL *w_current, char *text)
  *   in i_command do_edit_text or o_edit directly so maybe this function
  *   is just adding an unnecessary stack push and pops.
  */
-void o_text_edit(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
+void o_text_edit(GschemToplevel *w_current, OBJECT *o_current)
 {
   if(o_current->type == OBJ_TEXT) {
     x_dialog_edit_text(w_current, o_current);
@@ -168,7 +169,7 @@ void o_text_edit(GSCHEM_TOPLEVEL *w_current, OBJECT *o_current)
  * 07/20/13 WEH Added rotatation, eliminated numselect and len & add conditonal
  *          skip for values less then 0.
  */
-void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int text_align,
+void o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
                      int text_color, int text_size, int rotate)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
@@ -246,7 +247,7 @@ void o_text_edit_end(GSCHEM_TOPLEVEL *w_current, char *string, int text_align,
  *  The object passed in should be the REAL object, NOT any copy in any
  *  selection list
  */
-void o_text_change(GSCHEM_TOPLEVEL *w_current, OBJECT *object, char *string,
+void o_text_change(GschemToplevel *w_current, OBJECT *object, char *string,
                    int visibility, int show)
 {
   TOPLEVEL *toplevel = w_current->toplevel;

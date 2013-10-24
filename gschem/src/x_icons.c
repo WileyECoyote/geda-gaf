@@ -20,7 +20,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301
  * USA
  *
  * Date: Jan, 31, 2013
@@ -49,14 +50,14 @@
 static GtkIconFactory* gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
-  "geda-arc",       "geda-arc-edit",  "geda-box",       "geda-bus",
-  "geda-circle",    "geda-circles",   "geda-component", "geda-copy",
-  "geda-display",   "geda-grid-dot",  "geda-grid-mesh", "geda-line",
-  "geda-line-type", "geda-lock",      "geda-net",       "geda-magnet",
-  "geda-mesh",      "geda-mirror",    "geda-move",      "geda-multi",
-  "geda-new",       "geda-path",      "geda-pin",       "geda-pin-type",
-  "geda-slot",      "geda-snap-off",  "geda-snap-on",   "geda-rotate",
-  "geda-unlock",    "geda-zoom-box",  "geda-zoom-pan",
+  "geda-arc",       "geda-arc-edit",    "geda-box",       "geda-bus",
+  "geda-circle",    "geda-circles",     "geda-component", "geda-copy",
+  "geda-display",   "geda-grid-dot",    "geda-grid-mesh", "geda-line",
+  "geda-line-type", "geda-lock",        "geda-net",       "geda-magnet",
+  "geda-mesh",      "geda-mirror",      "geda-move",      "geda-multi",
+  "geda-new",       "geda-open-recent", "geda-path",      "geda-pin",       "geda-pin-type",
+  "geda-slot",      "geda-snap-off",    "geda-snap-on",   "geda-rotate",
+  "geda-unlock",    "geda-zoom-box",    "geda-zoom-pan",
   NULL
 };
 

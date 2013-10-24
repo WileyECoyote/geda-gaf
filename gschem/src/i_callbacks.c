@@ -310,8 +310,8 @@ DEFINE_I_CALLBACK(help_show_about)
  *  used when you click the close button on the window which sends a DELETE
  *  signal to the app
  */
-bool i_callback_close_wm ( GtkWidget *widget, GdkEvent *event,
-                           GSCHEM_TOPLEVEL* w_current )
+bool i_callback_close_wm ( GtkWidget      *widget, GdkEvent *event,
+                           GschemToplevel *w_current )
 {
   x_window_close(w_current);
 

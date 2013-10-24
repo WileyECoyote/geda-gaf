@@ -38,7 +38,7 @@ typedef struct _GedaListClass GedaListClass;
 
 struct _GedaList {
   GObject parent;
-  GList *glist;
+  GList  *glist;
 };
 
 struct _GedaListClass {
@@ -58,7 +58,12 @@ void geda_list_remove( GedaList *list, gpointer item );
 void geda_list_remove_all( GedaList *list );
 
 /*const GList *geda_list_get_glist( GedaList *list ); */
-#define geda_list_get_glist(list) (list->glist)
+//#define geda_list_get_glist(list) (list->glist)
+
+#define geda_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
+
+#define Place_List    toplevel->page_current->place_list
+#define Top_Selection toplevel->page_current->selection_list
 
 G_END_DECLS
 

@@ -85,14 +85,14 @@ void m_polygon_append_bezier (GArray *points, BEZIER *bezier, int segments)
  */
 void m_polygon_append_point (GArray *points, int x, int y)
 {
-  sPOINT point = { x, y };
+  POINT point = { x, y };
 
   point.x = x;
   point.y = y;
 
   if (points->len == 0 ||
-      memcmp (&g_array_index (points, sPOINT, points->len - 1),
-              &point, sizeof (sPOINT)) != 0) {
+      memcmp (&g_array_index (points, POINT, points->len - 1),
+              &point, sizeof (POINT)) != 0) {
     g_array_append_val (points, point);
   }
 }
@@ -116,13 +116,13 @@ gboolean m_polygon_interior_point (GArray *points, int x, int y)
 
   if (points->len > 0) {
     int i;
-    sPOINT p1 = g_array_index (points, sPOINT, points->len - 1);
+    POINT p1 = g_array_index (points, POINT, points->len - 1);
 
     for (i=0; i < points->len; i++) {
-      sPOINT p0 = p1;
+      POINT p0 = p1;
       double xi;
 
-      p1 = g_array_index (points, sPOINT, i);
+      p1 = g_array_index (points, POINT, i);
 
       if (y < p0.y && y < p1.y)
         continue;
@@ -158,12 +158,12 @@ double m_polygon_shortest_distance (GArray *points, int x, int y, gboolean close
 
   if (points->len > 0) {
     int i = 0;
-    sPOINT point;
+    POINT point;
 
     if (closed) {
-      point = g_array_index (points, sPOINT, points->len - 1);
+      point = g_array_index (points, POINT, points->len - 1);
     } else {
-      point = g_array_index (points, sPOINT, i++);
+      point = g_array_index (points, POINT, i++);
     }
 
     while (i < points->len) {
@@ -173,7 +173,7 @@ double m_polygon_shortest_distance (GArray *points, int x, int y, gboolean close
       line.x[0] = point.x;
       line.y[0] = point.y;
 
-      point = g_array_index (points, sPOINT, i++);
+      point = g_array_index (points, POINT, i++);
 
       line.x[1] = point.x;
       line.y[1] = point.y;

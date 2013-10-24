@@ -14,7 +14,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -50,7 +50,7 @@ static void
 clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
                           gpointer user_data)
 {
-  GSCHEM_TOPLEVEL *w_current = (GSCHEM_TOPLEVEL *) user_data;
+  GschemToplevel *w_current = (GschemToplevel *) user_data;
 
   i_update_sensitivities (w_current);
 }
@@ -59,12 +59,12 @@ static void
 clip_get (GtkClipboard *cb,  GtkSelectionData *selection_data,
           unsigned int info, gpointer user_data_or_owner)
 {
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   TOPLEVEL        *toplevel;
   GdkAtom          type;
   char            *buf;
 
-  w_current = (GSCHEM_TOPLEVEL *) user_data_or_owner;
+  w_current = (GschemToplevel *) user_data_or_owner;
   toplevel = w_current->toplevel;
 
   type = gdk_atom_intern (MIME_TYPE_SCHEMATIC, FALSE);
@@ -84,7 +84,7 @@ clip_get (GtkClipboard *cb,  GtkSelectionData *selection_data,
 static void
 clip_clear (GtkClipboard *cb, gpointer user_data_or_owner)
 {
-  GSCHEM_TOPLEVEL *w_current = user_data_or_owner;
+  GschemToplevel *w_current = user_data_or_owner;
   TOPLEVEL *toplevel = w_current->toplevel;
 
   /* Free the objects in the clipboard buffer */
@@ -98,7 +98,7 @@ clip_clear (GtkClipboard *cb, gpointer user_data_or_owner)
  * and update the menu item sensitivity if necessary.
  */
 void
-x_clipboard_init (GSCHEM_TOPLEVEL *w_current)
+x_clipboard_init (GschemToplevel *w_current)
 {
   GtkClipboard *cb;
 
@@ -117,7 +117,7 @@ x_clipboard_init (GSCHEM_TOPLEVEL *w_current)
  * and update the menu item sensitivity if necessary.
  */
 void
-x_clipboard_finish (GSCHEM_TOPLEVEL *w_current)
+x_clipboard_finish (GschemToplevel *w_current)
 {
   GtkClipboard        *cb;
 
@@ -166,7 +166,7 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, gpo
  * recieved, the provided callback is called with a TRUE / FALSE
  * result.
  *
- * \param [in] w_current   The current GSCHEM_TOPLEVEL.
+ * \param [in] w_current   The current GschemToplevel.
  * \param [in] callback    The callback to recieve the response.
  * \param [in] userdata    Arbitrary data to pass the callback.
  *
@@ -176,7 +176,7 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, gpo
  *
  */
 void
-x_clipboard_query_usable (GSCHEM_TOPLEVEL *w_current,
+x_clipboard_query_usable (GschemToplevel *w_current,
                           void (*callback) (int, void *), void *userdata)
 {
   static int watch_dog;
@@ -199,7 +199,7 @@ x_clipboard_query_usable (GSCHEM_TOPLEVEL *w_current,
   }
   else {
     if (watch_dog == 2) { /* Should never get here */
-      fprintf(stderr, "gschem x_clipboard_query_usable: error: releasing block on clipboard query");
+      fprintf(stderr, "gschem x_clipboard_query_usable: releasing block on clipboard query");
       G_LOCK(got_answer);
         got_answer = TRUE; /* Is hack, should somehow tell gtk to forget it */
       G_UNLOCK(got_answer);
@@ -216,13 +216,13 @@ x_clipboard_query_usable (GSCHEM_TOPLEVEL *w_current,
  * Sets the system clipboard to contain the gschem objects listed in \a
  * object_list.
  *
- * \param [in,out] w_current   The current GSCHEM_TOPLEVEL.
+ * \param [in,out] w_current   The current GschemToplevel.
  * \param [in]     object_list The objects to put in the clipboard.
  *
  * \return TRUE if the clipboard is successfully set.
  */
 bool
-x_clipboard_set (GSCHEM_TOPLEVEL *w_current, const GList *object_list)
+x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
 {
   TOPLEVEL      *toplevel;
   GtkClipboard  *cb;
@@ -256,13 +256,13 @@ x_clipboard_set (GSCHEM_TOPLEVEL *w_current, const GList *object_list)
  *  \par Function Description
  * If the system clipboard contains schematic data, retrieve it.
  *
- * \param [in,out] w_current   The current GSCHEM_TOPLEVEL.
+ * \param [in,out] w_current   The current GschemToplevel.
  *
  * \returns Any OBJECTs retrieved from the system clipboard, or NULL
  *          if none were available.
  */
 GList *
-x_clipboard_get (GSCHEM_TOPLEVEL *w_current)
+x_clipboard_get (GschemToplevel *w_current)
 {
   TOPLEVEL            *toplevel;
   GtkClipboard        *cb;
@@ -285,29 +285,23 @@ x_clipboard_get (GSCHEM_TOPLEVEL *w_current)
   if (selection_data == NULL) return FALSE;
 
   /* Convert the data buffer to OBJECTs */
-#if GTK_CHECK_VERSION(2,14,0)
+  #if GTK_CHECK_VERSION(2,14,0)
   buf = gtk_selection_data_get_data (selection_data);
-#else
+  #else
   buf = selection_data->data;
-#endif
+  #endif
 
   object_list = o_read_buffer (toplevel, object_list,
                                (char *) buf, -1, "Clipboard", &err);
 
   if (err) {
-    GtkWidget * dialog = gtk_message_dialog_new_with_markup
-      (GTK_WINDOW (w_current->main_window),
-       GTK_DIALOG_DESTROY_WITH_PARENT,
-       GTK_MESSAGE_ERROR,
-       GTK_BUTTONS_OK,
-       _("<b>Invalid schematic on clipboard.</b>\n\nAn error occurred while inserting clipboard data: %s."),
-       err->message);
-    gtk_window_set_title (GTK_WINDOW (dialog), _("Clipboard insertion failed"));
-
-     gtk_dialog_run (GTK_DIALOG (dialog));
-     gtk_widget_destroy (dialog);
-     g_error_free(err);
+    s_log_message(_("x_clipboard_get: Invalid schematic on clipboard. %s\n"), err->message);
+    char *errmsg = g_strdup_printf ( _("An error occurred while inserting clipboard data: %s."), err->message);
+    titled_pango_error_dialog ( _("<b>Invalid schematic on clipboard.</b>"), errmsg, _("Clipboard Insertion Failed") );
+    g_free(errmsg);
+    g_error_free(err);
   }
+
   gtk_selection_data_free (selection_data);
   return object_list;
 }

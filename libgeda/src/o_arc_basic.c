@@ -15,8 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
 /*! \file o_arc_basic.c
@@ -45,7 +44,7 @@
  *
  *  All dimensions are in world unit, except start_angle and
  *  end_angle in degrees.
- *  
+ *
  *  A new object of type OBJECT is allocated. Its type and color
  *  are initilized. The description of the arc characteristics
  *  are stored in a new ARC structure.
@@ -62,18 +61,17 @@
  *  \param [in] end_angle
  *  \return
  */
-OBJECT *o_arc_new(TOPLEVEL *toplevel,
-		  char type, int color,
-		  int x, int y, int radius, int start_angle, int end_angle)
+OBJECT *o_arc_new(TOPLEVEL *toplevel, char type, int color, int x, int y,
+                  int radius, int start_angle, int end_angle)
 {
 
   OBJECT *new_node;
 
-  new_node = s_basic_new_object(type, "arc");
+  new_node        = s_basic_new_object(type, "arc");
 
   new_node->color = color;
 
-  new_node->arc = (ARC *) g_malloc(sizeof(ARC));
+  new_node->arc   = (ARC *) g_malloc(sizeof(ARC));
 
   /*! \note
    *  The ARC structure is initialized with the parameters.
@@ -92,10 +90,10 @@ OBJECT *o_arc_new(TOPLEVEL *toplevel,
   /* must check the sign of start_angle, end_angle ... */
   if(end_angle < 0) {
     start_angle = start_angle + end_angle;
-    end_angle = -end_angle;
+    end_angle   = -end_angle;
   }
   if(start_angle < 0) start_angle = 360 + start_angle;
-  
+
   new_node->arc->start_angle = start_angle;
   new_node->arc->end_angle   = end_angle;
 
@@ -282,7 +280,7 @@ OBJECT *o_arc_read (TOPLEVEL *toplevel, const char buf[],
   if (color < 0 || color > MAX_COLORS) {
     s_log_message(_("Found an invalid color [ %s ]\n"), buf);
     s_log_message(_("Setting color to default color\n"));
-    color = DEFAULT_COLOR_INDEX;
+    color = DEFAULT_ARC_COLOR_INDEX;
   }
 
   /* Allocation and initialization */

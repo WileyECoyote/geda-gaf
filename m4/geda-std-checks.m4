@@ -59,14 +59,16 @@ m4_define([AX_GEDA_MATH],
 
   echo "Checking for Math functions used by gEDA programs"
   dnl Check for rint & lrint in math library.
-  AC_CHECK_FUNCS([rint])               dnl used by gschem & libgedacairo
-  AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
-  AC_CHECK_FUNCS([floor])              dnl used by pango
+
   AC_CHECK_LIB([m], [lrint],
      AC_DEFINE([HAVE_LRINT], 1,
                [If your math library has lrint in it, define this]))
 
   AC_CHECK_LIB([m], [atan2])
+
+  AC_CHECK_FUNCS([rint])               dnl used by gschem & libgedacairo
+  AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
+  AC_CHECK_FUNCS([floor])              dnl used by pango
 
   []dnl
 ])dnl AX_GEDA_MATH
@@ -81,10 +83,15 @@ m4_define([AX_GEDA_MEMORY],
 
   AC_CHECK_HEADERS([malloc.h])
 
-  AC_FUNC_ALLOCA
-  AC_FUNC_MALLOC
+#  AC_FUNC_ALLOCA
+#  AC_FUNC_MALLOC
+#  AC_FUNC_REALLOC
+
+  AC_CHECK_FUNCS([alloc])
+  AC_CHECK_FUNCS([malloc])
+  AC_CHECK_FUNCS([realloc])
+
   AC_FUNC_MMAP
-  AC_FUNC_REALLOC
 
   []dnl
 ])dnl AX_GEDA_MEMORY

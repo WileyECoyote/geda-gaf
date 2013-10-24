@@ -1468,7 +1468,7 @@ geda_font_dialog_add_widgets(GedaFontDialog *dialog)
   gtk_widget_pop_composite_child();
   gtk_widget_show (table);
 
-  g_signal_connect (dialog->size_entry, "activate",
+  g_signal_connect (dialog->size_entry, "process-entry",
                     G_CALLBACK (callback_size_entry_activate),
                     dialog);
 

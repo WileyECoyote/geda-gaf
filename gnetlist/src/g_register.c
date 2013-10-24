@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,20 +15,11 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
-
-#include <stdio.h>
-#include <sys/stat.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
 
 #include <libgeda/libgeda.h>
 
@@ -36,10 +27,10 @@
 #include "../include/prototype.h"
 
 struct gsubr_t {
-  char* name;
-  int req;
-  int opt;
-  int rst;
+  char *name;
+  int   req;
+  int   opt;
+  int   rst;
   SCM (*fnc)();
 };
 
@@ -76,7 +67,6 @@ static struct gsubr_t gnetlist_funcs[] = {
 
   { "gnetlist:get-all-package-attributes", 2, 0, 0, g_get_all_package_attributes },
   { "gnetlist:get-toplevel-attribute", 1, 0, 0, g_get_toplevel_attribute },
-  /* { "gnetlist:set-netlist-mode", 1, 0, 0, g_set_netlist_mode }, no longer needed */
   { "gnetlist:get-renamed-nets",    1, 0, 0, g_get_renamed_nets },
   { "gnetlist:get-attribute-by-pinseq",    3, 0, 0, g_get_attribute_by_pinseq },
   { "gnetlist:get-attribute-by-pinnumber", 3, 0, 0, g_get_attribute_by_pinnumber },
@@ -85,7 +75,6 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "gnetlist:graphical-objs-in-net-with-attrib-get-attrib",    
     3, 0, 0, g_graphical_objs_in_net_with_attrib_get_attrib },
 
-  /* SDB -- 9.1.2003 */
   { "gnetlist:get-backend-arguments", 0, 0, 0, g_get_backend_arguments },
   { "gnetlist:get-input-files",     0, 0, 0, g_get_input_files },
   { NULL,                           0, 0, 0, NULL } };

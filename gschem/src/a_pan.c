@@ -34,39 +34,39 @@
  *  \par Function Description
  *
  */
-void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
-		   double relative_zoom_factor,int flags)
+void a_pan_general(GschemToplevel *w_current, double world_cx, double world_cy,
+                   double relative_zoom_factor,int flags)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   /* see libgeda/include/defines.h for flags */
   /*if the borders should be ignored always, remove, outcomment or changes
-    the flags in the function-calls*/
+   *   the flags in the function-calls*/
   /*	flags |= A_PAN_IGNORE_BORDERS;
    */
   /* think it's better that the zoomfactor is defined as pix/mills
-     this will be the same as w_current->page_current->to_screen_x/y_constant*/
+   *    this will be the same as w_current->page_current->to_screen_x/y_constant*/
   int zoom_max = 5;
   int diff;
   double zx, zy, zoom_old, zoom_new, zoom_min;
 
-#if DEBUG
+  #if DEBUG
   printf("a_pan_general(): world_cx=%f, world_cy=%f\n",world_cx, world_cy);
-#endif
+  #endif
 
   /* calc minimum zoomfactors and choose the smaller one. They are equal
-     if the aspectratio of the world is the same as the screen ratio */
+   *    if the aspectratio of the world is the same as the screen ratio */
   zx = (double) toplevel->width / (toplevel->init_right -
-                                    toplevel->init_left);
+  toplevel->init_left);
   zy = (double) toplevel->height / (toplevel->init_bottom -
-                                     toplevel->init_top);
+  toplevel->init_top);
   zoom_min = zx < zy ? zx : zy;
 
-#if DEBUG
+  #if DEBUG
   printf("  zx_min=%f, zy_min=%f , flags=%d\n ",zx, zy, flags);
-#endif
+  #endif
 
   /* to_screen_x_constant and to_screen_y_constant are almost the same.
-     lets use to_screen_y_constant */
+   *    lets use to_screen_y_constant */
   zoom_old = toplevel->page_current->to_screen_y_constant;
 
   /* calc new zooming factor */
@@ -84,33 +84,33 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
 
   /* calculate the new visible area; adding 0.5 to round */
   toplevel->page_current->left = world_cx - (double) toplevel->width
-    / 2 / zoom_new + 0.5;
+  / 2 / zoom_new + 0.5;
   toplevel->page_current->right = world_cx + (double) toplevel->width
-    / 2 / zoom_new + 0.5;
+  / 2 / zoom_new + 0.5;
   toplevel->page_current->top = world_cy - (double) toplevel->height
-    / 2 / zoom_new + 0.5;
+  / 2 / zoom_new + 0.5;
   toplevel->page_current->bottom = world_cy + (double) toplevel->height
-    / 2 / zoom_new + 0.5;
+  / 2 / zoom_new + 0.5;
 
   /* and put it back to the borders */
   if (!(flags & A_PAN_IGNORE_BORDERS)) {
     /* check right border */
     if (toplevel->page_current->right > toplevel->init_right) {
       toplevel->page_current->left += toplevel->init_right -
-                                       toplevel->page_current->right;
+      toplevel->page_current->right;
       toplevel->page_current->right = toplevel->init_right;
     }
     /* check left border */
     if (toplevel->page_current->left < toplevel->init_left) {
       toplevel->page_current->right += toplevel->init_left -
-                                        toplevel->page_current->left;
+      toplevel->page_current->left;
       toplevel->page_current->left = toplevel->init_left;
     }
 
     /* If there is any slack, center the view */
     diff = (toplevel->page_current->right -
-            toplevel->page_current->left) -
-           (toplevel->init_right - toplevel->init_left);
+    toplevel->page_current->left) -
+    (toplevel->init_right - toplevel->init_left);
     if (diff > 0) {
       toplevel->page_current->left -= diff / 2;
       toplevel->page_current->right -= diff / 2;
@@ -119,20 +119,20 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
     /* check bottom border */
     if (toplevel->page_current->bottom > toplevel->init_bottom) {
       toplevel->page_current->top += toplevel->init_bottom -
-                                      toplevel->page_current->bottom;
+      toplevel->page_current->bottom;
       toplevel->page_current->bottom = toplevel->init_bottom;
     }
     /* check top border */
     if (toplevel->page_current->top < toplevel->init_top) {
       toplevel->page_current->bottom += toplevel->init_top -
-                                         toplevel->page_current->top;
+      toplevel->page_current->top;
       toplevel->page_current->top = toplevel->init_top;
     }
 
     /* If there is any slack, center the view */
     diff = (toplevel->page_current->bottom -
-            toplevel->page_current->top) -
-           (toplevel->init_bottom - toplevel->init_top);
+    toplevel->page_current->top) -
+    (toplevel->init_bottom - toplevel->init_top);
     if (diff > 0) {
       toplevel->page_current->top -= diff / 2;
       toplevel->page_current->bottom -= diff / 2;
@@ -140,17 +140,17 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
 
   }
 
-#if DEBUG
+  #if DEBUG
   printf("zoom_old: %f, zoom_new: %f \n ",zoom_old, zoom_new);
   printf("left: %d, right: %d, top: %d, bottom: %d\n",
          toplevel->page_current->left, toplevel->page_current->right,
-	 toplevel->page_current->top, toplevel->page_current->bottom);
+         toplevel->page_current->top, toplevel->page_current->bottom);
   printf("aspect: %f\n",
          (float) fabs(toplevel->page_current->right
-		      - toplevel->page_current->left) /
+         - toplevel->page_current->left) /
          (float) fabs(toplevel->page_current->bottom
-		      - toplevel->page_current->top ));
-#endif
+         - toplevel->page_current->top ));
+  #endif
 
   /* set_window */
   set_window(toplevel, toplevel->page_current,
@@ -172,10 +172,10 @@ void a_pan_general(GSCHEM_TOPLEVEL *w_current, double world_cx, double world_cy,
  *  \brief
  *  \par Function Description
  */
-void a_pan(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void a_pan(GschemToplevel *w_current, int w_x, int w_y)
 {
   /* make mouse to the new world-center;
-     attention: there are information looses because of type cast in mil_x */
+   *    attention: there are information looses because of type cast in mil_x */
 
   a_pan_general(w_current, w_x, w_y, 1, 0);
 
@@ -192,7 +192,7 @@ void a_pan(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void a_pan_mouse(GSCHEM_TOPLEVEL *w_current, int diff_x, int diff_y)
+void a_pan_mouse(GschemToplevel *w_current, int diff_x, int diff_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   double world_cx, world_cy;

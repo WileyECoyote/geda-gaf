@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
@@ -131,8 +132,8 @@ struct autonumber_text_t {
   /** @brief Pointer to the dialog */
   GtkWidget *dialog;
 
-  /** @brief Pointer to the GSCHEM_TOPLEVEL struct */
-  GSCHEM_TOPLEVEL *w_current;
+  /** @brief Pointer to the GschemToplevel struct */
+  GschemToplevel *w_current;
 
   /* variables used while autonumbering */
   char * current_searchtext;
@@ -433,7 +434,7 @@ int autonumber_match(AUTONUMBER_TEXT *autotext, OBJECT *o_current, int *number)
  *  multislotted symbols, that were used only partially.
  *  The criterias are derivated from the autonumber dialog entries.
  */
-void autonumber_get_used(GSCHEM_TOPLEVEL *w_current, AUTONUMBER_TEXT *autotext)
+void autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
 {
   int number, numslots, slotnr, i;
   OBJECT *o_current, *o_parent;
@@ -692,7 +693,7 @@ void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   GList *searchtext_list=NULL;
   GList *text_item, *obj_item, *page_item;
   OBJECT *o_current;
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
   char *searchtext;
   char *scope_text;
   char *new_searchtext;
@@ -883,7 +884,7 @@ void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
  *  Load all bitmaps for the combobox and store them together with the label
  *  in a GtkListStore.
  */
-void autonumber_sortorder_create(GSCHEM_TOPLEVEL *w_current)
+void autonumber_sortorder_create(GschemToplevel *w_current)
 {
   GtkListStore *store;
   GtkTreeIter iter;
@@ -938,7 +939,7 @@ void autonumber_sortorder_create(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *  This function creates a GtkMenu with different scope options.
  */
-static GtkWidget *create_scope_menu (GSCHEM_TOPLEVEL *w_current)
+static GtkWidget *create_scope_menu (GschemToplevel *w_current)
 {
   GtkWidget *menu;
   GSList *group;
@@ -1253,7 +1254,7 @@ static void switch_responder(GtkWidget *widget, ControlID *Control)
  * @param w_current Pointer to the top level struct.
  * @return Pointer to the dialog window.
  */
-GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
+GtkWidget* autonumber_create_dialog(GschemToplevel *w_current)
 {
   GtkWidget *ThisDialog;
   GtkWidget *vbox1;
@@ -1325,7 +1326,7 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
   gtk_misc_set_alignment (GTK_MISC (label4), 0, 0.5);
 
   ScopeTextCombo = gtk_combo_box_entry_new_text();
-  gtk_tooltips_set_tip (tooltips, ScopeTextCombo, _TOOLTIP(ScopeText), NULL);
+  gtk_widget_set_tooltip_text ( ScopeTextCombo, _TOOLTIP(ScopeText));
   gtk_entry_set_activates_default(GTK_ENTRY(gtk_bin_get_child(GTK_BIN(ScopeTextCombo))), TRUE);
   gtk_widget_show (ScopeTextCombo);
   gtk_table_attach (GTK_TABLE (table1), ScopeTextCombo, 1, 2, 0, 1,
@@ -1401,7 +1402,7 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
   gtk_misc_set_alignment (GTK_MISC (label13), 0, 0.5);
 
   SortOrderCombo = gtk_combo_box_new();
-  gtk_tooltips_set_tip (tooltips, SortOrderCombo, _TOOLTIP(SortOrder), NULL);
+  gtk_widget_set_tooltip_text ( SortOrderCombo, _TOOLTIP(SortOrder));
   gtk_widget_show (SortOrderCombo);
   gtk_table_attach (GTK_TABLE (table3), SortOrderCombo, 1, 2, 1, 2,
                     (GtkAttachOptions) (GTK_FILL),
@@ -1426,7 +1427,7 @@ GtkWidget* autonumber_create_dialog(GSCHEM_TOPLEVEL *w_current)
  *
  *  @param w_current Pointer to the top level struct
  */
-void autonumber_text_dialog(GSCHEM_TOPLEVEL *w_current)
+void autonumber_text_dialog(GschemToplevel *w_current)
 {
   static AUTONUMBER_TEXT *autotext = NULL;
 
@@ -1435,7 +1436,7 @@ void autonumber_text_dialog(GSCHEM_TOPLEVEL *w_current)
     autotext=autonumber_init_state();
   }
 
-  /* set the GSCHEM_TOPLEVEL always. Can it be changed between the calls??? */
+  /* set the GschemToplevel always. Can it be changed between the calls??? */
   autotext->w_current = w_current;
 
   if(autotext->dialog == NULL) {

@@ -8,11 +8,10 @@ dnl directory.
 # Set up configuration system
 #####################################################################
 
-AC_INIT([gEDA/gaf], [2.0.7.3], [https://bugs.launchpad.net/geda], [geda-gaf])
+AC_INIT([gEDA/gaf], [2.0.7.7], [https://bugs.launchpad.net/geda], [geda-gaf])
 AC_PREREQ([2.60])
 
 AC_CONFIG_SRCDIR([version.h.in])
-#AC_CONFIG_SRCDIR([libgeda/src/libgeda.c])
 AC_CONFIG_AUX_DIR([build-tools])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_HEADERS([config.h])
@@ -22,7 +21,7 @@ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
 # 'serial-tests' option disables support for parallel testsuites present
 #  in recent versions of Automake. serial-tests
-AM_INIT_AUTOMAKE([ parallel-tests color-tests nostdinc -Woverride  -Wportability -Wsyntax -Wunsupported])
+AM_INIT_AUTOMAKE([ parallel-tests color-tests])
 
 AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 
@@ -30,10 +29,10 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 # Do version number magic
 #####################################################################
 
-AX_GIT_VERSION([20130414])
+AX_GIT_VERSION([20131017])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20130414])
+AC_SUBST([CHANGELOG_BASE], [1.0-20131017])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
@@ -61,6 +60,9 @@ m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
 # Temporaily Turn Warnings into errors with -Werror option
 #AX_GCC_FLAGS([-Wall -Werror])
 AX_GCC_FLAGS([-O2 -Wall])
+AX_GCC_FLAGS([-D_FORTIFY_SOURCE=2])
+AX_GCC_FLAGS([-fstack-protector])
+AX_GCC_FLAGS([-Wformat-security])
 
 AC_PROG_MKDIR_P
 AM_PROG_LEX
@@ -69,17 +71,11 @@ AC_PATH_PROGS([M4], [gm4 m4], [m4])
 AC_PROG_YACC
 AX_PROG_AWK
 
-# Linker flags...
+#####################################################################
+# Check for Standard Header files & particular functions
+#####################################################################
 
-  # Have linker produce read-only relocations, if it knows how
-  AC_MSG_CHECKING([linker tolerates -z relro])
-  geda_gaf_LDFLAGS="$LDFLAGS"
-  LDFLAGS="-Wl,-z,relro $LDFLAGS"
-  AC_LINK_IFELSE([AC_LANG_PROGRAM([])], [geda_gaf_ok=yes], [geda_gaf_ok=no])
-  AC_MSG_RESULT([$geda_gaf_ok])
-  if test "x$geda_gaf_ok" != "xyes"; then
-    LDFLAGS="$geda_gaf_LDFLAGS"
-fi
+AX_GEDA_STD_CHECKS
 
 #####################################################################
 # Internationalisation
@@ -89,6 +85,11 @@ AM_NLS
 AM_GNU_GETTEXT
 AM_GNU_GETTEXT_VERSION([0.16])
 AX_DESKTOP_I18N
+
+#####################################################################
+# Linker flags...
+#####################################################################
+AX_CHECK_LD_FLAGS
 
 #####################################################################
 # Check for libraries that use pkg-config
@@ -126,12 +127,6 @@ AX_CHECK_PANGO
 # Multitasking and Threading ( Not checked by GTK above )
 #####################################################################
 AC_PATH_X             # used for inclusion of X11.h, XInitThreads();
-
-#####################################################################
-# Check for Standard Header files & particular functions
-#####################################################################
-
-AX_GEDA_STD_CHECKS
 
 #####################################################################
 # Optional things
@@ -198,6 +193,9 @@ AC_CONFIG_FILES([Makefile
 
                  gaf/Makefile
                  gaf/po/Makefile.in
+                 gaf/docs/Makefile
+                 gaf/include/Makefile
+                 gaf/src/Makefile
 
                  gschem/Makefile
                  gschem/po/Makefile.in
@@ -235,6 +233,7 @@ AC_CONFIG_FILES([Makefile
                  gsymcheck/Makefile
 
                  gnetlist/Makefile
+                 gnetlist/po/Makefile.in
                  gnetlist/src/Makefile
                  gnetlist/include/Makefile
                  gnetlist/scheme/Makefile

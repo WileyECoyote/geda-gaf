@@ -28,9 +28,6 @@
 
 #define INVALIDATE_MARGIN 1
 
-extern COLOR display_colors[MAX_COLORS];
-extern COLOR display_outline_colors[MAX_COLORS];
-
 /*! \todo Lots of Gross code... needs lots of cleanup - mainly
  * readability issues
  */
@@ -40,29 +37,31 @@ extern COLOR display_outline_colors[MAX_COLORS];
  *  \par Function Description
  *
  */
-void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
+void o_redraw_rects (GschemToplevel *w_current,
                      GdkRectangle *rectangles, int n_rectangles)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
+
   bool draw_selected;
-  int grip_half_size;
-  int cue_half_size;
-  int bloat;
-  int i;
-  int zoom;
   bool is_only_text;
+
+  int bloat;
+  int cue_half_size;
+  int grip_half_size;
+  int i;
+  int render_flags;
+  int zoom;
 
   GList *obj_list;
   GList *iter;
-  BOX *world_rects;
-
-  int render_flags;
-
+  BOX   *world_rects;
   EdaRenderer *renderer;
 
-  GArray *render_color_map = NULL;
+  GArray *render_color_map         = NULL;
   GArray *render_outline_color_map = NULL;
   cairo_matrix_t render_mtx;
+
+
 
   for (i = 0; i < n_rectangles; i++) {
     x_repaint_background_region (w_current, rectangles[i].x, rectangles[i].y,
@@ -72,9 +71,9 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   g_return_if_fail (toplevel != NULL);
   g_return_if_fail (toplevel->page_current != NULL);
 
-  /* grip_half_size = GRIP_PIXEL_SIZE / 2; */
+  grip_half_size = w_current->grip_pixel_size / 2;
 
-  grip_half_size = o_grips_half_size (w_current, NULL);
+  /*grip_half_size = o_grips_half_size (w_current, NULL); */
 
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
@@ -100,18 +99,22 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   g_free (world_rects);
 
   is_only_text = TRUE;
-  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+
+  /* Set up renderer based on configuration in w_current and list */
+  render_flags = EDA_RENDERER_FLAG_HINTING;
+  if (toplevel->show_hidden_text) {
+    render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+  }
+
+  iter = g_list_first(obj_list);
+  while(iter != NULL) {
     OBJECT *object = iter->data;
     if (object->type != OBJ_TEXT) {
        is_only_text = FALSE;
        break;
     }
+    NEXT(iter);
   }
-
-  /* Set up renderer based on configuration in w_current and list */
-  render_flags = EDA_RENDERER_FLAG_HINTING;
-  if (toplevel->show_hidden_text) render_flags
-    |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
 
   if (w_current->fast_mousepan && w_current->doing_pan) {
     render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE
@@ -119,26 +122,23 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
   }
   else {
     zoom = toplevel->page_current->to_world_x_constant;
-    if ((w_current->text_feedback != ALWAYS_FEEDBACK) &&
-        (zoom > w_current->text_display_zoomfactor))
+    if ((zoom > w_current->text_display_zoomfactor) &&
+        (w_current->text_feedback != ALWAYS_FEEDBACK))
        render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
   }
 
-  if ((!is_only_text) &&
+  if ((is_only_text) &&
       ( w_current->text_feedback != ALWAYS_FEEDBACK) &&
       ( w_current->inside_action))
      render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
 
-  /* This color map is used for "normal" rendering. */
-  render_color_map = g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
-  render_color_map = g_array_append_vals (render_color_map, display_colors, MAX_COLORS);
+  /* The display color map is used for "normal" rendering. */
+  render_color_map = x_color_get_display_color_map();
 
-  /* This color map is used for rendering rubberbanding nets and
-     buses, and objects which are in the process of being placed. */
-  render_outline_color_map =  g_array_sized_new (FALSE, FALSE, sizeof(COLOR), MAX_COLORS);
-  render_outline_color_map =  g_array_append_vals (render_outline_color_map,
-                                                   display_outline_colors,
-                                                   MAX_COLORS);
+  /* Retrive a copy pf the outine color map used for rendering rubber
+   * banding nets and buses, and objects which are in the process of
+   * being placed. */
+  render_outline_color_map = x_color_get_outline_color_map();
 
   /* Set up renderer */
   renderer = g_object_ref (w_current->renderer);
@@ -170,7 +170,7 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
                    (w_current->event_state == ENDMOVE)));
 
   /* First pass -- render non-selected objects */
-  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = obj_list; iter != NULL; NEXT(iter)) {
     OBJECT *o_current = iter->data;
     if (!(o_current->dont_redraw || o_current->selected)) {
       o_style_set_object(toplevel, o_current);
@@ -178,15 +178,16 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
     }
   }
 
-  /* Second pass -- render cues */
-  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
-    if (!(o_current->dont_redraw || o_current->selected)) {
-      o_style_set_object(toplevel, o_current);
-      eda_renderer_draw_cues (renderer, o_current);
+  if (!is_only_text) {
+    /* Second pass -- render cues */
+    for (iter = obj_list; iter != NULL; NEXT(iter)) {
+      OBJECT *o_current = iter->data;
+      if (!(o_current->dont_redraw || o_current->selected)) {
+        /* o_style_set_object(toplevel, o_current); cues dont have style yet*/
+        eda_renderer_draw_cues (renderer, o_current);
+      }
     }
   }
-
   /* Third pass -- render selected objects, cues & grips. This is
    * done in a separate pass to non-selected items to make sure that
    * the selection and grips are never obscured by other objects. */
@@ -194,7 +195,7 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
 
     g_object_set (G_OBJECT (renderer), "override-color", SELECT_COLOR, NULL);
     for (iter = geda_list_get_glist (toplevel->page_current->selection_list);
-         iter != NULL; iter = g_list_next (iter)) {
+         iter != NULL; NEXT(iter)) {
       OBJECT *o_current = iter->data;
       if (!o_current->dont_redraw) {
         o_style_set_object(toplevel, o_current);
@@ -202,9 +203,8 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
         eda_renderer_draw_cues (renderer, o_current);
         if (w_current->renderer->draw_grips ) {
           /* get the dynamic size of the grip */
-          grip_half_size = o_grips_half_size (w_current, o_current);
-          g_object_set (G_OBJECT (renderer), "grip-size",
-           ((double) grip_half_size * toplevel->page_current->to_world_x_constant), NULL);
+          //grip_half_size = o_grips_half_size (w_current, o_current);
+          //g_object_set (G_OBJECT (renderer), "grip-size",((double) grip_half_size * toplevel->page_current->to_world_x_constant), NULL);
           eda_renderer_draw_grips (renderer, o_current);
         }
       }
@@ -345,7 +345,7 @@ void o_redraw_rects (GSCHEM_TOPLEVEL *w_current,
  *  \par Function Description
  *
  */
-int o_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+int o_invalidate_rubber (GschemToplevel *w_current)
 {
   /* return FALSE if it did not erase anything */
 
@@ -420,7 +420,7 @@ int o_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
  *  screen.
  *  Usually a intermediate select state would clean (redraw) the screen.
  */
-int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
+int o_redraw_cleanstates(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   /* returns FALSE if the function was'nt nessecary */
@@ -538,23 +538,23 @@ int o_redraw_cleanstates(GSCHEM_TOPLEVEL *w_current)
  *  A further, larger margin is added to account for invalidating the
  *  size occupied by an object's grips.
  *
- *  If the GSCHEM_TOPLEVEL in question is not rendering to a GDK_WINDOW,
+ *  If the GschemToplevel in question is not rendering to a GDK_WINDOW,
  *  (e.g. image export), this function call is a no-op. A test is used:
  *  GDK_IS_WINDOW(), which should be safe since in either case,
  *  w_current->window is a GObject. This is really a _HACK_,
  *  and should be fixed with a re-worked drawing model.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL who's drawing area is being invalidated.
+ *  \param [in] w_current  The GschemToplevel who's drawing area is being invalidated.
  *  \param [in] x1         X coord for corner 1 (SCREEN units)
  *  \param [in] y1         Y coord for corner 1 (SCREEN units)
  *  \param [in] x2         X coord for corner 2 (SCREEN units)
  *  \param [in] y2         Y coord for corner 2 (SCREEN units)
  */
-void o_invalidate_rect (GSCHEM_TOPLEVEL *w_current,
+void o_invalidate_rect (GschemToplevel *w_current,
                         int x1, int y1, int x2, int y2)
 {
   GdkRectangle rect;
-  int grip_half_size = MAX_GRIP_PIXELS / 2; /* is faster & safer */
+  int grip_half_size; //= MAX_GRIP_PIXELS / 2; /* is faster & safer */
   int cue_half_size;
   int bloat;
 
@@ -563,7 +563,8 @@ void o_invalidate_rect (GSCHEM_TOPLEVEL *w_current,
   if (!GDK_IS_WINDOW( w_current->window ))
     return;
 
-  /* grip_half_size = o_grips_half_size (w_current); */
+  grip_half_size = w_current->grip_pixel_size / 2;
+  //grip_half_size = o_grips_half_size (w_current, NULL);
 
   cue_half_size  = SCREENabs (w_current, CUE_BOX_SIZE);
 
@@ -584,9 +585,9 @@ void o_invalidate_rect (GSCHEM_TOPLEVEL *w_current,
  *  This function calls gdk_window_invalidate_rect() with a rect
  *  of NULL, causing the entire drawing area to be invalidated.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  */
-void o_invalidate_all (GSCHEM_TOPLEVEL *w_current)
+void o_invalidate_all (GschemToplevel *w_current)
 {
   gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
 }
@@ -598,10 +599,10 @@ void o_invalidate_all (GSCHEM_TOPLEVEL *w_current)
  *  This function calls o_invalidate_rect() with the bounds of the
  *  passed OBJECT, converted to screen coordinates.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] object     The OBJECT invalidated on screen.
  */
-void o_invalidate (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+void o_invalidate (GschemToplevel *w_current, OBJECT *object)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int left, top, bottom, right;
@@ -621,25 +622,23 @@ void o_invalidate (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
  *  This function calls o_invalidate_rect() with the bounds of the
  *  passed GList, converted to screen coordinates.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] list       The glist objects invalidated on screen.
  */
-void o_invalidate_glist (GSCHEM_TOPLEVEL *w_current, GList *list)
+void o_invalidate_glist (GschemToplevel *w_current, GList *list)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
   if (world_get_object_glist_bounds (toplevel, list, &left,  &top,
                                                      &right, &bottom)) {
-    WORLDtoSCREEN (w_current, left, top, &s_left, &s_top);
+    WORLDtoSCREEN (w_current, left,  top,    &s_left, &s_top);
     WORLDtoSCREEN (w_current, right, bottom, &s_right, &s_bottom);
     o_invalidate_rect (w_current, s_left, s_top, s_right, s_bottom);
   }
 }
 
-
 /*! \brief Returns the color an object should be drawn in
- *
  *  \par Function Description
  *  This function looks up and returns either the SELECT_COLOR, or the
  *  OBJECT's natural colour, as appropriate. If toplevel->override_color
@@ -653,12 +652,14 @@ void o_invalidate_glist (GSCHEM_TOPLEVEL *w_current, GList *list)
  *  x_color_lookup(), so that code is not duplicated in each drawing
  *  function.
  *
- *  \param [in] w_current   The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current   The GschemToplevel object.
  *  \param [in] object      The OBJECT whos color to return.
  *
  *  \param [out] index      Index of color to use for this object.
+ *
+ *  \remarks The function is not currently use in gschem
  */
-int o_drawing_color (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
+int o_drawing_color (GschemToplevel *w_current, OBJECT *object)
 {
   int color_idx;
   OBJECT *temp;
@@ -680,4 +681,132 @@ int o_drawing_color (GSCHEM_TOPLEVEL *w_current, OBJECT *object)
     color_idx = w_current->toplevel->override_color;
 
   return color_idx;
+}
+
+/*! \brief Update a component.
+ *
+ * \par Function Description
+ * Updates \a o_current to the latest version of the symbol available
+ * in the symbol library, while preserving any attributes set in the
+ * current schematic. On success, returns the new OBJECT which
+ * replaces \a o_current on the page; \a o_current is deleted. On
+ * failure, returns NULL, and \a o_current is left unchanged.
+ *
+ * \param [in]     w_current The GschemToplevel object.
+ * \param [in,out] o_current The OBJECT to be updated.
+ *
+ * \return the new OBJECT that replaces \a o_current.
+ *
+ * TODO: This function retains attribute positions. If an attribute
+ * position was what changed between symbols versions then using
+ * this "update" function will have no effect.
+ */
+OBJECT *
+o_update_component (GschemToplevel *w_current, OBJECT *o_current)
+{
+  TOPLEVEL *toplevel = w_current->toplevel;
+  OBJECT   *o_new;
+  OBJECT   *attr_old;
+  PAGE  *page;
+  GList *new_attribs;
+  GList *old_attribs;
+  GList *iter;
+  const CLibSymbol *clib;
+
+  g_return_val_if_fail (o_current != NULL, NULL);
+  g_return_val_if_fail (o_current->type == OBJ_COMPLEX, NULL);
+  g_return_val_if_fail (o_current->complex_basename != NULL, NULL);
+
+  page = o_get_page (toplevel, o_current);
+
+  /* Force symbol data to be reloaded from source */
+  clib = s_clib_get_symbol_by_name (o_current->complex_basename);
+  s_clib_symbol_invalidate_data (clib);
+
+  if (clib == NULL) {
+    s_log_message (_("Could not find symbol [%s] in library. Update failed.\n"),
+                   o_current->complex_basename);
+    return NULL;
+  }
+
+  /* Unselect the old object. */
+  o_selection_remove (toplevel, page->selection_list, o_current);
+
+  /* Create new object and set embedded */
+  o_new = o_complex_new (toplevel, OBJ_COMPLEX, DEFAULT_COLOR_INDEX,
+                         o_current->complex->x,
+                         o_current->complex->y,
+                         o_current->complex->angle,
+                         o_current->complex->mirror,
+                         clib, o_current->complex_basename,
+                         1);
+  if (o_complex_is_embedded (o_current)) {
+    o_embed (toplevel, o_new);
+  }
+
+  new_attribs = o_complex_promote_attribs (toplevel, o_new);
+
+  /* Cull any attributes from new COMPLEX that are already attached to
+   * old COMPLEX. Note that the new_attribs list is kept consistent by
+   * setting GList data pointers to NULL if their OBJECTs are
+   * culled. At the end, the new_attribs list is updated by removing
+   * all list items with NULL data. This is slightly magic, but
+   * works. */
+  for (iter = new_attribs; iter != NULL; NEXT(iter)) {
+    OBJECT *attr_new = iter->data;
+    char *name;
+    char *old_value;
+    char *new_value;
+
+    if (attr_new->type != OBJ_TEXT) {
+      s_log_message("Internal Error: <o_update_component> "
+                    "detected attr_new->type != OBJ_TEXT\n");
+    }
+    else {
+
+      o_attrib_get_name_value (attr_new, &name, &new_value);
+
+      old_value = o_attrib_search_attached_attribs_by_name (o_current, name, 0);
+
+      if (old_value != NULL) {
+        if ( strcmp(name, "symversion") == 0 ) {
+          attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+          o_attrib_set_value (attr_old, name,  new_value);
+        }
+        o_attrib_remove (toplevel, &o_new->attribs, attr_new);
+        s_delete_object (toplevel, attr_new);
+        iter->data = NULL;
+      }
+
+      g_free (name);
+      g_free (old_value);
+      g_free (new_value);
+    }
+  }
+  new_attribs = g_list_remove_all (new_attribs, NULL);
+
+  /* Detach attributes from old OBJECT and attach to new OBJECT */
+  old_attribs = g_list_copy (o_current->attribs);
+  o_attrib_detach_all (toplevel, o_current);
+  o_attrib_attach_list (toplevel, old_attribs, o_new, 1);
+  g_list_free (old_attribs);
+
+  /* Add new attributes to page */
+  s_page_append_list (toplevel, page, new_attribs);
+
+  /* Update pinnumbers for current slot */
+  s_slot_update_object (toplevel, o_new);
+
+  /* Replace old OBJECT with new OBJECT */
+  s_page_replace_object (toplevel, page, o_current, o_new);
+  s_delete_object (toplevel, o_current);
+
+  /* Select new OBJECT */
+  o_selection_add (toplevel, page->selection_list, o_new);
+
+  /* mark the page as modified */
+  toplevel->page_current->CHANGED = 1;
+  o_undo_savestate (w_current, UNDO_ALL);
+
+  return o_new;
 }

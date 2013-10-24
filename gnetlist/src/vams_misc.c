@@ -22,11 +22,6 @@
 #include <config.h>
 #include <missing.h>
 
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
@@ -34,14 +29,15 @@
 
 SCM vams_get_attribs_list (OBJECT *object)
 {
-  SCM list = SCM_EOL;
-  OBJECT *o_current;
-  GList *a_iter;
-  OBJECT *a_current;
-  int val;
-  char* found_name = NULL;
 
-  o_current = object;
+  OBJECT *o_current;
+  GList  *a_iter;
+  OBJECT *a_current;
+  int     val;
+
+  char* found_name = NULL;
+  SCM list         = SCM_EOL;
+  o_current        = object;
 
   /* search outside the symbol (attached attributes only) */
   a_iter = o_current->attribs;

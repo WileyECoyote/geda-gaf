@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -36,7 +36,7 @@
  *  \par Function Description
  *
  */
-void o_complex_prepare_place(GSCHEM_TOPLEVEL *w_current, const CLibSymbol *sym)
+void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *temp_list;
@@ -46,8 +46,7 @@ void o_complex_prepare_place(GSCHEM_TOPLEVEL *w_current, const CLibSymbol *sym)
   GError *err = NULL;
 
   /* remove the old place list if it exists */
-  s_delete_object_glist(toplevel, toplevel->page_current->place_list);
-  toplevel->page_current->place_list = NULL;
+  s_place_free_place_list(toplevel);
 
   /* Insert the new object into the buffer at world coordinates (0,0).
    * It will be translated to the mouse coordinates during placement. */
@@ -79,8 +78,7 @@ void o_complex_prepare_place(GSCHEM_TOPLEVEL *w_current, const CLibSymbol *sym)
     }
 
     /* Take the added objects */
-    toplevel->page_current->place_list =
-      g_list_concat (toplevel->page_current->place_list, temp_list);
+    s_place_set_place_list(toplevel, temp_list);
 
   } else { /* if (w_current->include_complex) {..} else { */
     OBJECT *new_object;
@@ -125,10 +123,10 @@ void o_complex_prepare_place(GSCHEM_TOPLEVEL *w_current, const CLibSymbol *sym)
  *  The complex place list is usually used when placing new components
  *  in the schematic. This function should be called whenever that list
  *  is modified.
- *  \param [in] w_current GSCHEM_TOPLEVEL structure.
+ *  \param [in] w_current GschemToplevel structure.
  *
  */
-void o_complex_place_changed_run_hook(GSCHEM_TOPLEVEL *w_current) {
+void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *ptr = NULL;
 
@@ -158,7 +156,7 @@ void o_complex_place_changed_run_hook(GSCHEM_TOPLEVEL *w_current) {
  *  \note
  *  don't know if this belongs yet
  */
-void o_complex_translate_all(GSCHEM_TOPLEVEL *w_current, int offset)
+void o_complex_translate_all(GschemToplevel *w_current, int offset)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int w_rleft, w_rtop, w_rright, w_rbottom;

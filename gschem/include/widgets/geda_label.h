@@ -1,4 +1,33 @@
 
+/* GTK - The GIMP Toolkit
+ * Copyright (C) 1995-1997 Peter Mattis, Spencer Kimball and Josh MacDonald
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+ * Boston, MA 02111-1307, USA.
+ *
+ * Modified by the GTK+ Team and others 1997-2000.  See the AUTHORS
+ * file for a list of people on the GTK+ Team.  See the ChangeLog
+ * files for a list of changes.  These files are distributed with
+ * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
+ *
+ * THIS FILE IS LGPL LICENSED, gEDA AS A WHOLE IS GPL LICENSED
+ *
+ * Adapted for gEDA by Wiley Edward Hill <wileyhill@gmail.com> with
+ * modifications, see the corresponding source file for details.
+ *
+ */
 #ifndef __GEDA_LABEL_H__
 #define __GEDA_LABEL_H__
 
@@ -88,10 +117,15 @@ GtkWidget  *geda_aligned_mnemonic_label_new         (const char     *str, int x,
 
 GtkWidget  *geda_aligned_visible_mnemonic_label_new (const char     *str, int x, int y) __attribute__((warn_unused_result));
 
-// Properties
+/* Properties */
 void           geda_label_set_text                  (GedaLabel      *label,
                                                      const char     *str);
 const char*    geda_label_get_text                  (GedaLabel      *label);
+
+void           geda_label_widget_set_text           (GtkWidget      *widget,
+                                                     const char     *str);
+const char*    geda_label_widget_get_text           (GtkWidget      *widget);
+
 void           geda_label_set_attributes            (GedaLabel      *label,
                                                      PangoAttrList  *attrs);
 PangoAttrList *geda_label_get_attributes            (GedaLabel      *label);
@@ -103,6 +137,11 @@ void           geda_label_set_markup                (GedaLabel      *label,
 bool           geda_label_get_use_markup            (GedaLabel      *label);
 void           geda_label_set_use_markup            (GedaLabel      *label,
                                                      bool            setting);
+
+bool           geda_label_widget_get_use_markup     (GtkWidget      *widget);
+void           geda_label_widget_set_use_markup     (GtkWidget      *widget,
+                                                     bool            setting);
+
 bool           geda_label_get_use_underline         (GedaLabel      *label);
 void           geda_label_set_use_underline         (GedaLabel      *label,
                                                      bool            setting);
@@ -135,6 +174,7 @@ void           geda_label_set_width_chars           (GedaLabel      *label,
 int            geda_label_widget_get_width_chars    (GtkWidget      *widget);
 void           geda_label_widget_set_width_chars    (GtkWidget      *widget,
                                                      int             n_chars);
+
 int            geda_label_get_max_width_chars       (GedaLabel      *label);
 void           geda_label_set_max_width_chars       (GedaLabel      *label,
                                                      int             n_chars);

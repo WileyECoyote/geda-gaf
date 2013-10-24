@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 #include <stdio.h>
@@ -31,7 +31,7 @@
  *  \par Function Description
  *
  */
-void o_place_start (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_place_start (GschemToplevel *w_current, int w_x, int w_y)
 {
   w_current->second_wx = w_x;
   w_current->second_wy = w_y;
@@ -45,19 +45,21 @@ void o_place_start (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \par Function Description
  *
  */
-void o_place_end (GSCHEM_TOPLEVEL *w_current,
+void o_place_end (GschemToplevel *w_current,
                   int w_x, int w_y,
                   int continue_placing,
                   GList **ret_new_objects,
                   const char* hook_name)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
-  int w_diff_x, w_diff_y;
+
   OBJECT *o_current;
-  PAGE *p_current;
-  GList *temp_dest_list = NULL;
-  GList *connected_objects = NULL;
-  GList *iter;
+  PAGE   *p_current;
+  GList  *temp_dest_list = NULL;
+  GList  *connected_objects = NULL;
+  GList  *iter;
+
+  int w_diff_x, w_diff_y;
 
   /* erase old image */
   /* o_place_invaidate_rubber (w_current, FALSE); */
@@ -75,7 +77,8 @@ void o_place_end (GSCHEM_TOPLEVEL *w_current,
     temp_dest_list = o_glist_copy_all (toplevel,
                                        toplevel->page_current->place_list,
                                        temp_dest_list);
-  } else {
+  }
+  else {
     /* Otherwise just take it */
     temp_dest_list = toplevel->page_current->place_list;
     toplevel->page_current->place_list = NULL;
@@ -91,7 +94,7 @@ void o_place_end (GSCHEM_TOPLEVEL *w_current,
    * connectivity and add the new objects to the selection list.*/
   p_current = toplevel->page_current;
 
-  for (iter = temp_dest_list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = temp_dest_list; iter != NULL; NEXT(iter)) {
     o_current = iter->data;
 
     s_page_append_object (toplevel, p_current, o_current);
@@ -122,7 +125,7 @@ void o_place_end (GSCHEM_TOPLEVEL *w_current,
  *  \par Function Description
  *
  */
-void o_place_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_place_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   if (w_current->rubber_visible)
     o_place_invalidate_rubber (w_current, FALSE);
@@ -161,11 +164,11 @@ void o_place_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  * no mode / constraint changes were made between the pair, it is not
  * harmful to call the draw operation with "drawing=FALSE".
  *
- *  \param [in] w_current   GSCHEM_TOPLEVEL which we're drawing for.
+ *  \param [in] w_current   GschemToplevel which we're drawing for.
  *  \param [in] drawing     Set to FALSE for undraw operations to ensure
  *                            matching conditions to a previous draw operation.
  */
-void o_place_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
+void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   int diff_x, diff_y;
@@ -245,11 +248,11 @@ void o_place_invalidate_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
  * no mode / constraint changes were made between the pair, it is not
  * harmful to call the draw operation with "drawing=FALSE".
  *
- *  \param [in] w_current   GSCHEM_TOPLEVEL which we're drawing for.
+ *  \param [in] w_current   GschemToplevel which we're drawing for.
  *  \param [in] drawing     Set to FALSE for undraw operations to ensure
  *                            matching conditions to a previous draw operation.
  */
-void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
+void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
@@ -297,12 +300,14 @@ void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
 
     /* Draw box outline */
     eda_cairo_box (cr, flags, 0, left, top, right, bottom);
+
     eda_cairo_set_source_color (cr, BOUNDINGBOX_COLOR, map);
+
     eda_cairo_stroke (cr, flags, TYPE_SOLID, END_NONE, 0, -1, -1);
-  } else {
+  }
+  else {
     GList *iter;
-    for (iter = toplevel->page_current->place_list; iter != NULL;
-         iter = g_list_next (iter)) {
+    for (iter = Place_List; iter != NULL; NEXT(iter)) {
       eda_renderer_draw (w_current->renderer, (OBJECT *) iter->data);
     }
   }
@@ -315,7 +320,7 @@ void o_place_draw_rubber (GSCHEM_TOPLEVEL *w_current, int drawing)
  *  \par Function Description
  *
  */
-void o_place_rotate (GSCHEM_TOPLEVEL *w_current)
+void o_place_rotate (GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 

@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  *
  * Date: December 31, 2012
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
@@ -32,7 +32,7 @@
 #endif
 
 #include <gtk/gtkentrybuffer.h>
-#include <gtk/gtkentrycompletion.h>
+#include "widgets/geda_completion.h"
 
 G_BEGIN_DECLS
 
@@ -84,12 +84,46 @@ struct _GedaEntryClass
         GtkEntryClass   parent_class;
 
   /* Action signals */
-  void (* activate)         (GtkEntry       *entry);
+  void (* activate)           (GedaEntry        *entry);
 
   /* Hook to customize right-click popup */
-  void (* populate_popup)   (GtkEntry       *entry,
-                             GtkMenu        *menu);
+  void (* populate_popup)     (GedaEntry         *entry,
+                               GtkMenu           *menu);
 
+  /* Source side drag signals */
+  void (* drag_begin)         (GtkWidget         *widget,
+                               GdkDragContext    *context);
+  void (* drag_end)           (GtkWidget         *widget,
+                               GdkDragContext    *context);
+  void (* drag_data_get)      (GtkWidget         *widget,
+                               GdkDragContext    *context,
+                               GtkSelectionData  *selection_data,
+                               unsigned int       info,
+                               unsigned int       time_);
+  void (* drag_data_delete)   (GtkWidget         *widget,
+                               GdkDragContext    *context);
+
+  /* Target side drag signals */
+  void (* drag_leave)         (GtkWidget         *widget,
+                               GdkDragContext    *context,
+                               unsigned int       time_);
+  bool (* drag_motion)        (GtkWidget         *widget,
+                               GdkDragContext    *context,
+                               int                x,
+                               int                y,
+                               unsigned int       time_);
+  bool (* drag_drop)          (GtkWidget         *widget,
+                               GdkDragContext    *context,
+                               int                x,
+                               int                y,
+                               unsigned int       time_);
+  void (* drag_data_received) (GtkWidget         *widget,
+                               GdkDragContext    *context,
+                               int                x,
+                               int                y,
+                               GtkSelectionData  *selection_data,
+                               unsigned int       info,
+                               unsigned int       time_);
 };
 
 GType      geda_entry_get_type               (void) G_GNUC_CONST;
@@ -113,7 +147,7 @@ bool geda_entry_get_input_case               (GedaEntry *entry);
 void geda_entry_set_activates_default        (GedaEntry *entry, bool  setting);
 bool geda_entry_get_activates_default        (GedaEntry *entry);
 
-void geda_entry_widget_modify_color          (GtkWidget    *widget,
+void geda_entry_widget_modify_color   (GtkWidget    *widget,
                                               GtkRcFlags    component,
                                               GtkStateType  state,
                                         const GdkColor     *color);

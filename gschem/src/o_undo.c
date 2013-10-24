@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -35,7 +35,6 @@
 #endif
 
 static int undo_file_index=0;
-static int prog_pid=0;
 
 static char* tmp_path = NULL;
 
@@ -49,7 +48,7 @@ static char* tmp_path = NULL;
  *  This function obtains the process ID and temporary directory path for
  *  later use, and retrieves user settings affecting the UNDO system.
  */
-void o_undo_init(GSCHEM_TOPLEVEL *w_current)
+void o_undo_init(GschemToplevel *w_current)
 {
   EdaConfig *cfg = eda_config_get_user_context ();
 
@@ -82,7 +81,7 @@ void o_undo_init(GSCHEM_TOPLEVEL *w_current)
  *    <DT>*</DT><DD>UNDO_VIEWPORT_ONLY
  *  </DL>
  */
-void o_undo_savestate(GSCHEM_TOPLEVEL *w_current, int flag)
+void o_undo_savestate(GschemToplevel *w_current, int flag)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   char     *filename = NULL;
@@ -306,7 +305,7 @@ GList *o_undo_find_prev_object_head (UNDO *start)
  *    <DT>*</DT><DD>REDO_ACTION
  *  </DL>
  */
-void o_undo_callback(GSCHEM_TOPLEVEL *w_current, int type)
+void o_undo_callback(GschemToplevel *w_current, int type)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   UNDO *u_current;
@@ -493,7 +492,7 @@ void o_undo_finalize(void)
  *  \par Function Description
  *
  */
-void o_undo_remove_last_undo(GSCHEM_TOPLEVEL *w_current)
+void o_undo_remove_last_undo(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   if (toplevel->page_current->undo_current == NULL) {

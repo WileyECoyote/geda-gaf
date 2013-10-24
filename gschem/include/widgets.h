@@ -24,6 +24,7 @@
 #ifndef __GSCHEM_WIDGETS_H__
 #define __GSCHEM_WIDGETS_H__
 
+#include "widgets/geda_comboboxtext.h"
 #include "widgets/geda_entry.h"
 #include "widgets/geda_font_dialog.h"
 #include "widgets/geda_handlebox.h"
@@ -31,6 +32,7 @@
 #include "widgets/geda_menu_button.h"
 #include "widgets/gschem_accel_label.h"
 #include "widgets/gschem_action.h"
+#include "widgets/gschem_page_view.h"
 #include "widgets/gschem_font_button.h"
 #include "widgets/gschem_toggle_action.h"
 

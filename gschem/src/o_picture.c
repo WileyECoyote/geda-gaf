@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2011 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 #include <math.h>
@@ -49,11 +50,11 @@
  *  The other corner will be saved in (<B>w_current->second_wx</B>,
  *  <B>w_current->second_wy</B>).
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_picture_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   /* init first_w[x|y], second_w[x|y] to describe box */
   w_current->first_wx = w_current->second_wx = w_x;
@@ -74,11 +75,11 @@ void o_picture_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  initialized and linked to the object list ; The object is finally
  *  drawn on the current sheet.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-void o_picture_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *new_obj;
@@ -132,11 +133,11 @@ void o_picture_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  width, height and left and top values are recomputed by the corresponding
  *  macros.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_picture_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
 #if DEBUG
   printf("o_picture_rubberbox called\n");
@@ -172,7 +173,7 @@ void o_picture_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  \note
  * used in button cancel code in x_events.c
  */
-void o_picture_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_picture_invalidate_rubber (GschemToplevel *w_current)
 {
   int left, top, width, height;
 
@@ -188,17 +189,17 @@ void o_picture_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
   o_invalidate_rect (w_current, left, top + height, left + width, top + height);
 }
 
-/*! \brief Draw picture from GSCHEM_TOPLEVEL object.
+/*! \brief Draw picture from GschemToplevel object.
  *  \par Function Description
- *  This function draws the box from the variables in the GSCHEM_TOPLEVEL
+ *  This function draws the box from the variables in the GschemToplevel
  *  structure <B>*w_current</B>.
  *  One corner of the box is at (<B>w_current->first_wx</B>,
  *  <B>w_current->first_wy</B>) and the second corner is at
  *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  */
-void o_picture_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_picture_draw_rubber (GschemToplevel *w_current)
 {
   int left, top, width, height;
   double wwidth = 0;
@@ -221,21 +222,19 @@ void o_picture_draw_rubber (GSCHEM_TOPLEVEL *w_current)
  * \par Function Description
  * Replaces all pictures in the current selection with a new image.
  *
- * \param [in] w_current  The GSCHEM_TOPLEVEL object
+ * \param [in] w_current  The GschemToplevel object
  * \param [in] filename   The filename of the new picture
  * \param [out] error     The location to return error information.
  * \return TRUE on success, FALSE on failure.
  */
-bool o_picture_exchange (GSCHEM_TOPLEVEL *w_current,
+bool o_picture_exchange (GschemToplevel *w_current,
                     const gchar *filename, GError **error)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GList *iter;
 
-  for (iter = geda_list_get_glist (toplevel->page_current->selection_list);
-       iter != NULL;
-       iter = g_list_next (iter)) {
-
+  for (iter = geda_list_get_glist (Top_Selection); iter != NULL; NEXT(iter))
+  {
     OBJECT *object = (OBJECT *) iter->data;
     if (object == NULL) {
       s_log_message("Internal Error Detected: <o_picture_exchange> object = NULL\n");
@@ -243,7 +242,8 @@ bool o_picture_exchange (GSCHEM_TOPLEVEL *w_current,
     }
 
     if (object->type == OBJ_PICTURE) {
-      gboolean status;
+
+      bool status;
 
       /* Erase previous picture */
       o_invalidate (w_current, object);
@@ -265,13 +265,13 @@ bool o_picture_exchange (GSCHEM_TOPLEVEL *w_current,
  *
  *  \todo Maybe merge this dialog function with picture_selection_dialog()
  */
-void picture_change_filename_dialog (GSCHEM_TOPLEVEL *w_current)
+void picture_change_filename_dialog (GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkWidget *dialog;
   char *filename;
   gboolean result;
-  GError *error = NULL;
+  GError *err = NULL;
 
   dialog = gtk_file_chooser_dialog_new (_("Select a picture file..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -285,58 +285,56 @@ void picture_change_filename_dialog (GSCHEM_TOPLEVEL *w_current)
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-					  GTK_RESPONSE_ACCEPT,
-					  GTK_RESPONSE_CANCEL,
-					  -1);
+                                          GTK_RESPONSE_ACCEPT,
+                                          GTK_RESPONSE_CANCEL,
+                                          -1);
 
   if (w_current->pixbuf_filename)
     gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
-				  w_current->pixbuf_filename);
+                                  w_current->pixbuf_filename);
 
-  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
+    if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
 
-    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-    gtk_widget_destroy(dialog);
-    dialog=NULL;
-
-    /* Actually update the pictures */
-    result = o_picture_exchange (w_current, filename, &error);
-
-    if (!result) {
-      GtkWidget *dialog;
-
-      dialog = gtk_message_dialog_new (GTK_WINDOW (w_current->main_window),
-				       GTK_DIALOG_DESTROY_WITH_PARENT,
-				       GTK_MESSAGE_ERROR,
-				       GTK_BUTTONS_CLOSE,
-				       _("Failed to replace pictures: %s"),
-				       error->message);
-      /* Wait for any user response */
-      gtk_dialog_run (GTK_DIALOG (dialog));
-
-      g_error_free (error);
+      filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
       gtk_widget_destroy(dialog);
-    } else {
-      toplevel->page_current->CHANGED=1;
-    }
-    g_free (filename);
-  }
+      dialog=NULL;
 
-  if (dialog) {
-    gtk_widget_destroy(dialog);
-    dialog=NULL;
-  }
+      /* Actually update the pictures */
+      result = o_picture_exchange (w_current, filename, &err);
+
+      if (!result) {
+
+        /* Log the error */
+        s_log_message( _("picture_change_filename_dialog: Failed to replace picture: %s"),
+        err->message);
+
+        /* inform the user */
+        pango_error_dialog ( _("<b>Failed to replace picture</b>"), err->message );
+
+        /* clear error */
+        g_error_free(err);
+      }
+      else {
+        toplevel->page_current->CHANGED=1;
+      }
+      g_free (filename);
+    }
+
+    if (dialog) {
+      gtk_widget_destroy(dialog);
+      dialog=NULL;
+    }
 }
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] pixbuf
  *  \param [in] filename
  */
-void o_picture_set_pixbuf(GSCHEM_TOPLEVEL *w_current,
+void o_picture_set_pixbuf(GschemToplevel *w_current,
                           GdkPixbuf *pixbuf, char *filename)
 {
 

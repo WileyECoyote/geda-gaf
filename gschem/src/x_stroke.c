@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -86,12 +87,12 @@ x_stroke_free (void)
  *
  * The footprint is updated and the new point is drawn on the drawing area.
  *
- *  \param [in] w_current The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current The GschemToplevel object.
  *  \param [in] x        The X coord of the new point.
  *  \param [in] Y        The X coord of the new point.
  */
 void
-x_stroke_record (GSCHEM_TOPLEVEL *w_current, int x, int y)
+x_stroke_record (GschemToplevel *w_current, int x, int y)
 {
   if (stroke_points != NULL) {
 
@@ -121,7 +122,7 @@ x_stroke_record (GSCHEM_TOPLEVEL *w_current, int x, int y)
  *  action. It returns 0 if libstroke failed to transform the stroke
  *  or there is no action attached to the stroke.
  *
- *  \param [in] w_current The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current The GschemToplevel object.
  *  \returns 1 on success, 0 otherwise, or -1 if error.
  *
  *  \note WEH: Revised eval-stroke so as to return the action rather
@@ -130,7 +131,7 @@ x_stroke_record (GSCHEM_TOPLEVEL *w_current, int x, int y)
  *  rather than the stroke.
  */
 int
-x_stroke_translate_and_execute (GSCHEM_TOPLEVEL *w_current)
+x_stroke_translate_and_execute (GschemToplevel *w_current)
 {
   char sequence[STROKE_MAX_SEQUENCE];
   StrokePoint *point;

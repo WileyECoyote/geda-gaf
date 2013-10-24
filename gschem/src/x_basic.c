@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -34,13 +35,11 @@
  *  within a rectangular region given by specific parameters.
  * 
  */
-void x_repaint_background_region (GSCHEM_TOPLEVEL *w_current,
+void x_repaint_background_region (GschemToplevel *w_current,
                                   int x, int y, int width, int height)
 {
-  TOPLEVEL *toplevel = w_current->toplevel;
-
   gdk_gc_set_foreground (w_current->gc,
-                         x_get_color (toplevel->background_color));
+                         x_get_color (w_current->background_color));
 
   gdk_draw_rectangle (w_current->drawable,
                       w_current->gc, TRUE, x, y, width, height);
@@ -54,7 +53,7 @@ void x_repaint_background_region (GSCHEM_TOPLEVEL *w_current,
  *  horizontal scroll bar to the left of right values of the
  *  drawing area.
  */
-void x_hscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
+void x_hscrollbar_set_ranges(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment        *hadjustment;
@@ -75,7 +74,7 @@ void x_hscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *   This functions updates the scale of horizontal scroll bar.
  */
-void x_hscrollbar_update(GSCHEM_TOPLEVEL *w_current)
+void x_hscrollbar_update(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment *hadjustment;
@@ -113,7 +112,7 @@ void x_hscrollbar_update(GSCHEM_TOPLEVEL *w_current)
  *  vertical scroll bar to the top of bottom values of the
  *  drawing area.
  */
-void x_vscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
+void x_vscrollbar_set_ranges(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment *vadjustment;
@@ -133,7 +132,7 @@ void x_vscrollbar_set_ranges(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *   This functions updates the scale of vertical scroll bar.
  */
-void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current)
+void x_vscrollbar_update(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   GtkAdjustment *vadjustment;
@@ -171,7 +170,7 @@ void x_vscrollbar_update(GSCHEM_TOPLEVEL *w_current)
  *   This functions calls the preceding functions; x_hscrollbar_update
  *   and v_hscrollbar_update to update the individual bars.
  */
-void x_scrollbars_update(GSCHEM_TOPLEVEL *w_current)
+void x_scrollbars_update(GschemToplevel *w_current)
 {
   if (w_current->scrollbars == FALSE) {
     return;
@@ -207,7 +206,8 @@ void x_basic_warp_cursor (GtkWidget* widget, int x, int y)
   gdk_display_warp_pointer (display, screen, window_x + x, window_y + y);
 }
 
-/* WEH: Credit for the next two functions goes to The Geeqie Team
+/* WEH: Credit for the next two functions goes to The Geeqie Team, but
+ * I added the test for iter.stamp to surpress gtk's non-sense.
  *
  * (SLIK) SimpLIstic sKin functions
  * (C) 2004 John Ellis
@@ -231,34 +231,40 @@ int tree_view_row_get_visibility(GtkTreeView *tree_view, GtkTreeIter *iter,
   GtkTreeModel *model;
   GtkTreePath *path, *start_path, *end_path;
   int ret = 0;
+  bool valid;
 
-  if (!gtk_tree_view_get_visible_range(tree_view, &start_path, &end_path)) return -1;
-  /* we will most probably scroll down, needed for tree_view_row_make_visible */
+  valid = ( iter->stamp != 0 ? TRUE : FALSE);
 
-  model = gtk_tree_view_get_model(tree_view);
-  path = gtk_tree_model_get_path(model, iter);
+  if (valid) {
+    if (!gtk_tree_view_get_visible_range(tree_view, &start_path, &end_path)) return -1;
+    /* we will most probably scroll down, needed for tree_view_row_make_visible */
 
-  if (fully_visible) {
-    if (gtk_tree_path_compare(path, start_path) <= 0) {
-      ret = -1;
-    }
-    else if (gtk_tree_path_compare(path, end_path) >= 0) {
-      ret = 1;
-    }
-  }
-  else {
-    if (gtk_tree_path_compare(path, start_path) < 0) {
-      ret = -1;
-    }
-    else
-      if (gtk_tree_path_compare(path, end_path) > 0) {
+    model = gtk_tree_view_get_model(tree_view);
+    path = gtk_tree_model_get_path(model, iter);
+
+    if (fully_visible) {
+      if (gtk_tree_path_compare(path, start_path) <= 0) {
+        ret = -1;
+      }
+      else if (gtk_tree_path_compare(path, end_path) >= 0) {
         ret = 1;
       }
-  }
+    }
+    else {
+      if (gtk_tree_path_compare(path, start_path) < 0) {
+        ret = -1;
+      }
+      else
+        if (gtk_tree_path_compare(path, end_path) > 0) {
+          ret = 1;
+        }
+    }
 
-  gtk_tree_path_free(path);
-  gtk_tree_path_free(start_path);
-  gtk_tree_path_free(end_path);
+    gtk_tree_path_free(path);
+    gtk_tree_path_free(start_path);
+    gtk_tree_path_free(end_path);
+  }
+  else ret = -1;
   return ret;
 }
 
@@ -273,7 +279,11 @@ int tree_view_row_make_visible(GtkTreeView *tree_view, GtkTreeIter *iter,
 {
   GtkTreePath *path;
   int visible;
+  bool valid;
 
+  valid = ( iter->stamp != 0 ? TRUE : FALSE);
+
+  if (valid) {
   visible = tree_view_row_get_visibility(tree_view, iter, TRUE);
 
   path = gtk_tree_model_get_path(gtk_tree_view_get_model(tree_view), iter);
@@ -290,5 +300,9 @@ int tree_view_row_make_visible(GtkTreeView *tree_view, GtkTreeIter *iter,
 
   gtk_tree_path_free(path);
 
+  }
+  else {
+    visible = -1;
+  }
   return visible;
 }

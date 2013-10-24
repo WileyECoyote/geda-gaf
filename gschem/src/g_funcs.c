@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 #include <missing.h>
@@ -74,18 +74,19 @@ SCM g_funcs_print(SCM scm_filename)
  */
 SCM g_funcs_pdf (SCM scm_filename)
 {
-  char *filename;
-  bool status;
-  GSCHEM_TOPLEVEL *w_current;
+  bool            status;
+  char           *filename;
+  GschemToplevel *w_current;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-pdf");
   w_current= g_current_window ();
   if (output_filename) {
     status = x_print_export_pdf (w_current, output_filename);
-  } else  {
+  }
+  else  {
     filename = scm_to_utf8_string(scm_filename);
-    status = x_print_export_pdf (w_current, filename);
+    status   = x_print_export_pdf (w_current, filename);
     free(filename);
   }
 
@@ -98,17 +99,20 @@ SCM g_funcs_pdf (SCM scm_filename)
  */
 SCM g_funcs_postscript(SCM scm_filename)
 {
-  char *filename;
-  TOPLEVEL *toplevel = edascm_c_current_toplevel ();
+  char     *filename;
+  TOPLEVEL *toplevel;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-postscript");
+
+  toplevel = edascm_c_current_toplevel ();
 
   if (output_filename) {
     if (f_print_file (toplevel, toplevel->page_current,
                       output_filename))
       return SCM_BOOL_F;
-  } else  {
+  }
+  else  {
     filename = scm_to_utf8_string(scm_filename);
     if (f_print_file (toplevel, toplevel->page_current, filename)) {
       free(filename);
@@ -128,7 +132,7 @@ SCM g_funcs_postscript(SCM scm_filename)
 SCM g_funcs_image(SCM scm_filename)
 {
   char *filename;
-  GSCHEM_TOPLEVEL *w_current;
+  GschemToplevel *w_current;
 
   SCM_ASSERT (scm_is_string (scm_filename), scm_filename,
               SCM_ARG1, "gschem-image");
@@ -139,15 +143,19 @@ SCM g_funcs_image(SCM scm_filename)
     x_image_lowlevel (w_current, output_filename,
                       w_current->image_width,
                       w_current->image_height,
-		      "png",
-                      Image_All);
+                      "png",
+                      Image_All,
+                      0,          /* Don't use print colors */
+                      0 );        /* Dont invert bw only */
   } else  {
     filename = scm_to_utf8_string (scm_filename);
     x_image_lowlevel (w_current, filename,
                       w_current->image_width,
                       w_current->image_height,
-		      "png",
-                      Image_All);
+                      "png",
+                      Image_All,
+                      0,
+                      0 );
     free(filename);
   }
 
@@ -161,6 +169,7 @@ SCM g_funcs_image(SCM scm_filename)
  */
 SCM g_funcs_exit(void)
 {
+  fprintf (stderr, "<g_funcs_exit> Scheme terminated program");
   exit(0);
 }
 
@@ -235,10 +244,10 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   SCM v;
 
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg,
-	      SCM_ARG1, "gschem-filesel");
+              SCM_ARG1, "gschem-filesel");
 
   SCM_ASSERT (scm_is_string (scm_templ), scm_templ,
-	      SCM_ARG2, "gschem-filesel");
+              SCM_ARG2, "gschem-filesel");
 
   /*! \bug FIXME -- how to deal with conflicting flags?
    * Should I throw a scheme error?  Just deal in the c code?

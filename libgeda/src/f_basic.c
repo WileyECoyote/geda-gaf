@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file f_basic.c
@@ -66,24 +67,34 @@
  */
 char *f_get_autosave_filename (const char *filename)
 {
-  char *result, *basename, *new_basename, *dirname;
-  if (filename== NULL) {
-    result = NULL;
+  char       *autosave_name, *path_spec, *new_basename;
+  const char *old_basename;
+
+  if (filename == NULL) {
+    autosave_name = NULL;
   }
   else {
-    basename = g_path_get_basename(filename);
-    dirname = g_path_get_dirname(filename);
-    new_basename = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING,
-                                 basename);
-    result = g_build_filename(dirname, new_basename, NULL);
+    old_basename  = geda_basename(filename);
+    path_spec     = g_path_get_dirname(filename);
+    new_basename  = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
+    autosave_name = g_build_filename(path_spec, new_basename, NULL);
 
-    g_free(basename);
     g_free(new_basename);
-    g_free(dirname);
+    g_free(path_spec);
   }
-  return result;
+  return autosave_name;
 }
 
+void f_set_backup_loader_query_func (TOPLEVEL *toplevel, void *func, ...)
+{
+  if (toplevel) {
+    va_list argp;
+    va_start (argp, func);
+    toplevel->load_newer_backup_func = func;
+    toplevel->load_newer_backup_data = va_arg(argp, void*);
+    va_end (argp);
+  }
+}
 /*! \brief Check if a file has an active autosave file
  *  \par Function Description
  *  Checks whether an autosave file exists for the \a filename passed
@@ -175,14 +186,14 @@ bool f_has_active_autosave (const char *filename, GError **err)
 int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
                  const int flags, GError **err)
 {
-  int   opened = FALSE;
-  char *full_filename = NULL;
-  char *full_rcfilename = NULL;
-  char *file_directory = NULL;
-  char *saved_cwd = NULL;
-  char *backup_filename = NULL;
-  char  load_backup_file = 0;
-  GError *tmp_err = NULL;
+  int   opened               = FALSE;
+  char *full_filename        = NULL;
+  char *full_rcfilename      = NULL;
+  char *file_directory       = NULL;
+  char *saved_cwd            = NULL;
+  char *backup_filename      = NULL;
+  char  load_backup_file     = 0;
+  GError *tmp_err            = NULL;
 
   /* has the head been freed yet?  probably not hack PAGE */
   set_window(toplevel, page,
@@ -211,12 +222,13 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
 
   /* Before we open the page, let's load the corresponding gafrc. */
   /* First cd into file's directory. */
-  file_directory = g_dirname (full_filename);
+  file_directory = g_path_get_dirname (full_filename);
 
   if (file_directory) {
     if (chdir (file_directory)) {
       /* Error occurred with chdir */
-      fprintf(stderr, "ERROR, f_open_flags: Could not changed to directory:[%s]",file_directory );
+      fprintf(stderr, _("ERROR, <libgeda>: Could not changed current directory to %s:%s"),
+              file_directory, g_strerror (errno));
       return 0;
     }
   }
@@ -229,7 +241,7 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
     if (tmp_err != NULL) {
       /* RC files are allowed to be missing or skipped; check for this. */
       if (!g_error_matches (tmp_err, G_FILE_ERROR, G_FILE_ERROR_NOENT) &&
-          !g_error_matches (tmp_err, EDA_ERROR, EDA_ERROR_RC_TWICE)) {
+          !g_error_matches (tmp_err, EDA_ERROR,    EDA_ERROR_RC_TWICE)) {
         s_log_message ("%s\n", tmp_err->message);
       }
       g_error_free (tmp_err);
@@ -243,14 +255,17 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
     /* Check if there is a newer autosave backup file */
     GString *message;
     bool active_backup = f_has_active_autosave (full_filename, &tmp_err);
-    backup_filename = f_get_autosave_filename (full_filename);
+    backup_filename    = f_get_autosave_filename (full_filename);
 
-    if (tmp_err != NULL) g_warning ("%s\n", tmp_err->message);
+    if (tmp_err != NULL) {
+      g_warning ("%s\n", tmp_err->message);
+    }
+
     if (active_backup) {
       message = g_string_new ("");
       g_string_append_printf(message, _("\nWARNING: Found an autosave backup file:\n  %s.\n\n"), backup_filename);
       if (tmp_err != NULL) {
-        g_string_append(message, _("Could not guess if it is newer, so you have to do it manually.\n"));
+        g_string_append(message, _("Could not detemine which file is newer, so you should do this manually.\n"));
       } else {
         g_string_append(message, _("The backup copy is newer than the schematic, so it seems you should load it instead of the original file.\n"));
       }
@@ -258,9 +273,11 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
       if (toplevel->load_newer_backup_func == NULL) {
         g_warning ("%s", message->str);
         g_warning (_("\nRun gschem and correct the situation.\n\n"));
-      } else {
-        /* Ask the user if load the backup or the original file */
-          if (toplevel->load_newer_backup_func( message)) {
+      }
+      else {
+          /* Ask the user which file should be loaded */
+          if (toplevel->load_newer_backup_func( message,
+              toplevel->load_newer_backup_data)) {
           /* Load the backup file */
           load_backup_file = 1;
         }
@@ -306,7 +323,8 @@ int f_open_flags(TOPLEVEL *toplevel, PAGE *page, const char *filename,
    * called. */
   if (flags & F_OPEN_RESTORE_CWD) {
     if (chdir (saved_cwd)) {
-      fprintf(stderr, "ERROR, f_open_flags: Could not restore current directory to:[%s]",saved_cwd );
+      fprintf(stderr, _("ERROR, <libgeda>: Could not restore current directory to %s:%s"),
+              saved_cwd, g_strerror (errno));
     }
     free(saved_cwd);
   }
@@ -403,26 +421,28 @@ bool f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
 
     /* Do a backup if it's not an undo file backup and it was never saved.
      * Only do a backup if backup files are enabled */
-    if (page->saved_since_first_loaded == 0 && toplevel->make_backup_files == TRUE) {
+    if (page->saved_since_first_loaded == 0 &&
+      toplevel->make_backup_files == TRUE) {
       if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
         (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
       {
         backup_filename = g_strdup_printf("%s%c%s~", dirname,
-        G_DIR_SEPARATOR, only_filename);
-        s_log_message ("attempting to create backup file: %s.\n", backup_filename);
+                                          G_DIR_SEPARATOR, only_filename);
+        s_log_message (_("attempting to create backup file: %s.\n"), backup_filename);
         /* Make the backup file read-write before saving a new one */
         if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
           (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR))) {
           if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
-            s_log_message (_("Could NOT set previous backup file [%s] read-write\n"),
-            backup_filename);
+            s_log_message (_("Could not set previous backup file [%s] read-write:%s\n"),
+                           backup_filename, g_strerror (errno));
           }
           else
             remove (backup_filename); /* delete backup from previous session */
           }
 
           if (fcopy(real_filename, backup_filename) != 0) {
-            s_log_message (_("Can't create backup file: %s."), backup_filename);
+            s_log_message (_("Can not create backup file: %s: %s"),
+                           backup_filename, g_strerror (errno));
           }
           else {
             /* Make backup readonly so a 'rm *' will ask user before deleting */
@@ -430,42 +450,42 @@ bool f_save(TOPLEVEL *toplevel, PAGE *page, const char *filename, GError **err)
           }
           g_free(backup_filename);
       }
-    }
-    /* If there is not an existing file with that name, compute the
-     * permissions and uid/gid that we will use for the newly-created file.
-     */
-
-    g_free (dirname);
-    g_free (only_filename);
-
-    if (o_save (toplevel, s_page_objects (page), real_filename, &tmp_err)) {
-
-      page->saved_since_first_loaded = 1;
-
-      /* Reset the last saved timer */
-      g_get_current_time (&page->last_load_or_save_time);
-      page->ops_since_last_backup = 0;
-      page->do_autosave_backup = 0;
-
-      /* Restore permissions. */
-      chmod (real_filename, st_ActiveFile.st_mode);
-
-      #ifdef HAVE_CHOWN
-      if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
-        /* Either the current user has permissioin to change ownership
-         * or they didn't. */
       }
-      #endif
-      g_free (real_filename);
-      return 1;
-    }
-    else {
-      g_set_error (err, tmp_err->domain, tmp_err->code,
-                   _("Could NOT save file: %s"), tmp_err->message);
-                   g_clear_error (&tmp_err);
-                   g_free (real_filename);
-                   return 0;
-    }
+      /* If there is not an existing file with that name, compute the
+       * permissions and uid/gid that we will use for the newly-created file.
+       */
+
+      g_free (dirname);
+      g_free (only_filename);
+
+      if (o_save (toplevel, s_page_objects (page), real_filename, &tmp_err)) {
+
+        page->saved_since_first_loaded = 1;
+
+        /* Reset the last saved timer */
+        g_get_current_time (&page->last_load_or_save_time);
+        page->ops_since_last_backup = 0;
+        page->do_autosave_backup = 0;
+
+        /* Restore permissions. */
+        chmod (real_filename, st_ActiveFile.st_mode);
+
+        #ifdef HAVE_CHOWN
+        if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
+          /* Either the current user has permissioin to change ownership
+           * or they didn't. */
+        }
+        #endif
+        g_free (real_filename);
+        return 1;
+      }
+      else {
+        g_set_error (err, tmp_err->domain, tmp_err->code,
+                     _("Could NOT save file: %s"), tmp_err->message);
+                     g_clear_error (&tmp_err);
+                     g_free (real_filename);
+                     return 0;
+      }
 }
 
 /*! \brief Builds an absolute pathname.
@@ -527,7 +547,8 @@ char *f_normalize_filename (const char *name, GError **error)
 
   if (len == 0 || len > MAX_PATH - 1) {
     result = g_strdup (name);
-  } else {
+  }
+  else {
     /* The file system is case-preserving but case-insensitive,
      * canonicalize to lowercase, using the codepage associated
      * with the process locale.  */
@@ -536,8 +557,7 @@ char *f_normalize_filename (const char *name, GError **error)
   }
 
   /* Test that the file actually exists, and fail if it doesn't.  We
-   * do this to be consistent with the behaviour on POSIX
-   * platforms. */
+   * do this to be consistent with the behaviour on POSIX platforms. */
   if (!g_file_test (result, G_FILE_TEST_EXISTS)) {
     g_set_error (error, G_FILE_ERROR, G_FILE_ERROR_NOENT,
                  "%s", g_strerror (ENOENT));
@@ -547,7 +567,7 @@ char *f_normalize_filename (const char *name, GError **error)
   return result;
 
 #else
-#define ROOT_MARKER_LEN 1
+#define ROOT_MARKER_LEN 1 /* What the ?*/
 
   rpath = g_string_sized_new (strlen (name));
 
@@ -576,15 +596,18 @@ char *f_normalize_filename (const char *name, GError **error)
 
     if (end - start == 0) {
       break;
-    } else if (end - start == 1 && start[0] == '.') {
+    }
+    else if (end - start == 1 && start[0] == '.') {
       /* nothing */;
-    } else if (end - start == 2 && start[0] == '.' && start[1] == '.') {
+    }
+    else if (end - start == 2 && start[0] == '.' && start[1] == '.') {
       /* back up to previous component, ignore if at root already.  */
       if (rpath->len > ROOT_MARKER_LEN) {
         while (!G_IS_DIR_SEPARATOR (rpath->str[(--rpath->len) - 1]));
         g_string_set_size (rpath, rpath->len);
       }
-    } else {
+    }
+    else {
       /* path component, copy to new path */
       if (!G_IS_DIR_SEPARATOR (rpath->str[rpath->len - 1])) {
         g_string_append_c (rpath, G_DIR_SEPARATOR);
@@ -596,7 +619,8 @@ char *f_normalize_filename (const char *name, GError **error)
         g_set_error (error,G_FILE_ERROR, G_FILE_ERROR_NOENT,
                      "%s", g_strerror (ENOENT));
         goto error;
-      } else if (!g_file_test (rpath->str, G_FILE_TEST_IS_DIR) &&
+      }
+      else if (!g_file_test (rpath->str, G_FILE_TEST_IS_DIR) &&
                  *end != '\0') {
         g_set_error (error,G_FILE_ERROR, G_FILE_ERROR_NOTDIR,
                      "%s", g_strerror (ENOTDIR));

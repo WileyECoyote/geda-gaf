@@ -33,7 +33,7 @@
  *  \brief
  *  \par Function Description
  */
-void o_line_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_line_invalidate_rubber (GschemToplevel *w_current)
 {
   int x1, y1, x2, y2;
 
@@ -56,11 +56,11 @@ void o_line_invalidate_rubber (GSCHEM_TOPLEVEL *w_current)
  *  A temporary line is drawn during the process with the selection color
  *  and changed according to the position of the mouse pointer.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_line_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_line_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   /* init first_w[x|y], second_w[x|y] to describe line */
   w_current->first_wx = w_current->second_wx = w_x;
@@ -80,11 +80,11 @@ void o_line_start(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  adds a new initialized line object to the list of object of the current
  *  sheet.
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        (unused)
  *  \param [in] w_y        (unused)
  */
-void o_line_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_line_end(GschemToplevel *w_current, int w_x, int w_y)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   OBJECT *new_obj;
@@ -128,16 +128,16 @@ void o_line_end(GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
  *  (<B>second_wx</B>,<B>second_wy</B>).
  *  The first end is constant. The second end is updated to the (<B>w_x</B>,<B>w_y</B>).
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] w_x        Current x coordinate of pointer in world units.
  *  \param [in] w_y        Current y coordinate of pointer in world units.
  */
-void o_line_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
+void o_line_motion (GschemToplevel *w_current, int w_x, int w_y)
 {
   int diff_x, diff_y;
 
   if (w_current->inside_action == 0) {
-    s_log_message ("Internal Error: <%s><o_line_motion>"
+    fprintf (stderr,"Internal Error: <%s><o_line_motion>"
                     "Not inside action, line %d.\n", __FILE__, __LINE__);
     return;
   }
@@ -169,16 +169,16 @@ void o_line_motion (GSCHEM_TOPLEVEL *w_current, int w_x, int w_y)
   w_current->rubber_visible = 1;
 }
 
-/*! \brief Draw line from GSCHEM_TOPLEVEL object.
+/*! \brief Draw line from GschemToplevel object.
  *  \par Function Description
  *  This function draws a line with an exclusive or function over the sheet.
  *  The color of the box is <B>SELECT_COLOR</B>. The line is
  *  described by the two points (<B>w_current->first_wx</B>,
  *  <B>w_current->first_wy</B>) and (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
  *
- *  \param [in] w_current  The GSCHEM_TOPLEVEL object.
+ *  \param [in] w_current  The GschemToplevel object.
  */
-void o_line_draw_rubber (GSCHEM_TOPLEVEL *w_current)
+void o_line_draw_rubber (GschemToplevel *w_current)
 {
   int width = o_style_get_line_width(w_current->toplevel);
   cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
@@ -204,7 +204,7 @@ void o_line_draw_rubber (GSCHEM_TOPLEVEL *w_current)
  *  \param [in] y2
  *  \return int
 
-int o_line_visible (GSCHEM_TOPLEVEL *w_current, LINE *line,
+int o_line_visible (GschemToplevel *w_current, LINE *line,
                     int *x1, int *y1, int *x2, int *y2)
 {
   *x1 = line->x[0];  *y1 = line->y[0];

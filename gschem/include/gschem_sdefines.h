@@ -41,6 +41,9 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 08/24/13 | Changed IDS_SINGLE_ATTRRI to IDS_SINGLE_ATTRIR and
 ;;                | updated to type modeless.
+;; ------------------------------------------------------------------
+;; WEH | 10/16/13 | Remove string for Schematic's and Symbols and relocated
+;;                | to include/libgeda/defines.h.
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -52,20 +55,15 @@
 #define s_log_message g_message
 
 /* Can use like: msgbox("example = [%d]", g_list_length(geda_list_get_glist(toplevel->pages))) */
-#define msgbox(...)gschem_message_dialog(g_strdup_printf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
+#define    msgbox(...)gschem_message_dialog(g_strdup_printf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
 
 #endif
 
 #define EDA_CONFIG_GROUP           "gschem";
+
+#define GEDA_TYPE_OBJECTS          "application/x-geda-objects"
 #define MIME_TYPE_SCHEMATIC        "application/x-geda-schematic"
-
-#define SCHEMATIC_FILE_SUFFIX      "sch"
-#define SCHEMATIC_FILE_DOT_SUFFIX  ".sch"
-#define SCHEMATIC_FILTER           "*.sch"
-
-#define SYMBOL_FILE_SUFFIX         "sym"
-#define SYMBOL_FILE_DOT_SUFFIX     ".sym"
-#define SYMBOL_FILTER              "*.sym"
+#define MIME_TYPE_SYMBOL           "application/x-geda-symbol"
 
 #define TITLE_BLOCK_PATH           "/sym/titleblock"
 #define DEFAULT_TITLEBLOCK         "title-B.sym"

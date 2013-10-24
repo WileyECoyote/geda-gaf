@@ -94,6 +94,7 @@ void edascm_init_page ();
 void edascm_init_attrib ();
 void edascm_init_os ();
 void edascm_init_config ();
+void edascm_init_closure (void);
 void edascm_init_deprecated ();
 
 /* ---------------------------------------- */
@@ -107,12 +108,13 @@ extern scm_t_bits geda_smob_tag;
 
 /*! The flags used to determine which C structure a smob contains. */
 enum geda_smob_flags {
-  GEDA_SMOB_TOPLEVEL = 0,
-  GEDA_SMOB_PAGE = 1,
-  GEDA_SMOB_OBJECT = 2,
-  GEDA_SMOB_CONFIG = 3,
+  GEDA_SMOB_TOPLEVEL  = 0,
+  GEDA_SMOB_PAGE      = 1,
+  GEDA_SMOB_OBJECT    = 2,
+  GEDA_SMOB_CONFIG    = 3,
+  GEDA_SMOB_CLOSURE   = 4,
   GEDA_SMOB_TYPE_MASK = 0xf,
-  GEDA_SMOB_GC_FLAG = 0x100,
+  GEDA_SMOB_GC_FLAG   = 0x100,
 };
 
 /*! Retrieve the type flags for a gEDA smob. */
@@ -159,6 +161,9 @@ SCM edascm_from_toplevel (TOPLEVEL *toplevel);
 /*! Tests whether a Scheme value is an EdaConfig smob. */
 #define EDASCM_OBJECTP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_OBJECT)
 
+/*! Tests whether a Scheme value is a C closure smob. */
+#define EDASCM_CLOSUREP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_CLOSURE)
+
 /*! Tests whether a Scheme value is an OBJECT smob. */
 #define EDASCM_CONFIGP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_CONFIG)
 
@@ -188,8 +193,7 @@ SCM edascm_from_toplevel (TOPLEVEL *toplevel);
 
 /* ---------------------------------------- */
 
-GList *edascm_to_object_glist (SCM objs, const char *subr)
-  G_GNUC_WARN_UNUSED_RESULT;
+GList *edascm_to_object_glist (SCM objs, const char *subr) G_GNUC_WARN_UNUSED_RESULT;
 SCM edascm_from_object_glist (const GList *objs);
 int edascm_is_object_type (SCM smob, int type);
 
@@ -200,3 +204,7 @@ extern inline void o_page_changed (TOPLEVEL *t, OBJECT *o);
 /* ---------------------------------------- */
 
 extern SCM edascm_object_state_sym;
+
+/* ---------------------------------------- */
+
+SCM edascm_from_closure (SCM (*func)(SCM, gpointer), gpointer user_data);

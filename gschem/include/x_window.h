@@ -1,8 +1,8 @@
-/* -*- geda-c -*-
+/* -*- x_window-h -*-
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,12 +16,23 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+ * 
+ *  Date: October, 11, 2013
+ *  Contributing Author: Wiley Edward Hill
  */
 
 #ifndef __X_WINDOW_H__
 #define __X_WINDOW_H__
 
-#define GTR_SETTINGS_PANEL_SWITCHER_STYLE               "panel-switcher-style"
+#define MainWindow  w_current->main_window
+#define DrawingArea w_current->drawing_area
+
+#define HorizontalScroll       w_current->h_scrollbar
+#define VerticalScroll         w_current->v_scrollbar
+#define HorizontalScrollRange  GTK_RANGE(HorizontalScroll)
+#define VerticalScrollRange    GTK_RANGE(VerticalScroll)
+
+#define GSE_HANDLER(f) ((GschemDrawEvent) (f))
 
 #endif

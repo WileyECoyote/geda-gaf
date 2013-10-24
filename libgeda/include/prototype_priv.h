@@ -6,7 +6,9 @@ void f_print_set_line_width(FILE *fp, int width);
 int  f_print_set_color(TOPLEVEL *toplevel, FILE *fp, int color);
 int  f_print_header(TOPLEVEL *toplevel, PAGE *page, FILE *fp, int paper_size_x, int paper_size_y, int eps, bool landscape);
 void f_print_footer(FILE *fp);
-void f_print_objects(TOPLEVEL *toplevel, FILE *fp, const GList *obj_list, int start_x, int start_y, float scale, int unicode_count, gunichar *unicode_table);
+void f_print_objects(TOPLEVEL *toplevel, FILE *fp, const GList *obj_list,
+                     int start_x, int start_y, float scale,
+                     int unicode_count, gunichar *unicode_table);
 int  f_print_initialize_glyph_table(void);
 
 /* g_rc.c */
@@ -51,7 +53,7 @@ void g_register_libgeda_dirs (void);
 
 /* m_bounds.c */
 void m_bounds_init(BOUNDS *bounds);
-void m_bounds_of_points(BOUNDS *bounds, sPOINT points[], int count);
+void m_bounds_of_points(BOUNDS *bounds, POINT points[], int count);
 
 /* m_box.c */
 double m_box_shortest_distance (BOX *box, int x, int y, int solid);
@@ -60,13 +62,13 @@ double m_box_shortest_distance (BOX *box, int x, int y, int solid);
 double m_circle_shortest_distance (CIRCLE *circle, int x, int y, int solid);
 
 /* m_hatch.c */
-void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines);
+void   m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines);
 
 /* m_line.c */
 double m_line_shortest_distance (LINE *circle, int x, int y);
 
 /* m_polygon.c */
-bool m_polygon_interior_point(GArray *points, int x, int y);
+bool   m_polygon_interior_point(GArray *points, int x, int y);
 double m_polygon_shortest_distance(GArray *points, int x, int y, bool closed);
 
 /* m_transform.c */
@@ -216,7 +218,7 @@ bool o_text_get_position(TOPLEVEL *toplevel, int *x, int *y, OBJECT *object);
 void s_clib_init (void);
 
 /* s_color.c */
-void s_color_init(void);
+void  s_color_init(void);
 char *s_color_ps_string(int color);
 
 /* s_conn.c */
@@ -232,7 +234,7 @@ char* s_encoding_base64_encode (char* src, guint srclen, guint* dstlenp, bool st
 char* s_encoding_base64_decode (char* src, guint srclen, guint* dstlenp);
 
 /* s_path.c */
-int s_path_to_polygon(PATH *path, GArray *points);
+int    s_path_to_polygon(PATH *path, GArray *points);
 double s_path_shortest_distance (PATH *path, int x, int y, int solid);
 
 /* s_textbuffer.c */

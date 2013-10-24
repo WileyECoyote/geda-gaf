@@ -18,9 +18,16 @@
 ;;
 
 (define-module (gschem action)
+  #:use-module (gschem core gettext)
   #:use-module (gschem window)
-  #:use-module (ice-9 optargs))
+  #:use-module (gschem hook)
+  #:use-module (ice-9 optargs)
+  #:export-syntax (define-action))
 
+(or (defined? 'define-syntax)
+    (use-modules (ice-9 syncase)))
+
+(define last-action (make-fluid))
 (define current-action-position (make-fluid))
 
 ;; Define an eval-in-currentmodule procedure
@@ -33,21 +40,37 @@
 ;; executed to be repeated.
 (define-public (eval-action! action)
   (define (invalid-action-error)
-    (error "~S is not a valid gschem action." action))
+    (error (_ "~S is not a valid gschem action.") action))
 
-  (cond
+  (define (eval-action!/recursive a)
 
-   ;; Normal actions
-   ((symbol? action)
-    (let ((proc (false-if-exception (eval-cm action))))
-      (if (thunk? proc)
-          (begin
-            (proc)
-            #t)
-          (invalid-action-error))))
+    (cond
+     ;; Handle repeat-last-command
+     ((equal? 'repeat-last-command a)
+      ;; N.b. must call eval-action! rather than
+      ;; eval-action!/recursive here, so that the last-action doesn't
+      ;; get set to 'repeat-last-command.
+      (eval-action! (fluid-ref last-action)))
 
-   ;; Otherwise, fail
-   (else (invalid-action-error))))
+     ;; Sometimes you get a first-class action
+     ((action? a)
+      (eval-action!/recursive (false-if-exception (action-thunk a))))
+
+     ;; Sometimes actions are specified just by a symbol naming them
+     ((symbol? a)
+      (eval-action!/recursive (false-if-exception (eval-cm a))))
+
+     ;; Eventually you just end up with a thunk.
+     ((thunk? a)
+      (begin 
+        (fluid-set! last-action action)
+        (a) ;; Actually execute the action
+        #t))
+
+     ;; Otherwise, fail
+     (else (invalid-action-error))))
+
+  (eval-action!/recursive action))
 
 ;; Evaluate an action at a particular point on the schematic plane.
 ;; If the point is omitted, the action is evaluated at the current
@@ -64,3 +87,70 @@
 ;; eval-action-at-point!).
 (define-public (action-position)
   (fluid-ref current-action-position))
+
+;; -------------------------------------------------------------------
+;; First-class actions
+
+;; Make a symbol that's guaranteed to be unique in this session.
+(define %cookie (make-symbol "gschem-action-cookie"))
+
+(define-public (action? proc)
+  (false-if-exception
+   (eq? %cookie (procedure-property proc 'gschem-cookie))))
+
+(define-syntax define-action
+  (syntax-rules ()
+    ((_ (name . args) . forms)
+     (define name (make-action (lambda () . forms) . args)))))
+
+(define-public (make-action thunk . props)
+  ;; The action is a magical procedure that does nothing but call
+  ;; eval-action! *on itself*.  This allows you to invoke an action
+  ;; just by calling it like a normal function.
+  (letrec ((action (lambda () (eval-action! action))))
+
+    ;; The action data is stored in procedure properties -- most
+    ;; importantly, the actual thunk that the action wraps
+    (let ((sp! (lambda (k v) (set-procedure-property! action k v))))
+      (sp! 'gschem-cookie %cookie)
+      (sp! 'gschem-thunk thunk)
+      (sp! 'gschem-properties '()))
+
+    ;; Deal with any properties.  props should contain arguments in
+    ;; pairs, where the first element of each pair is a keyword naming
+    ;; a procedure property (e.g. #:icon) and the second element in
+    ;; the corresponding value (e.g. "insert-text").
+    (let loop ((lst props))
+      (and (< 1 (length lst))
+           (set-action-property! action
+                                 (keyword->symbol (list-ref lst 0))
+                                 (list-ref lst 1))
+           (loop (list-tail lst 2))))
+
+    action))
+
+(define (action-thunk action)
+  (procedure-property action 'gschem-thunk))
+
+(define (action-properties action)
+  (procedure-property action 'gschem-properties))
+(define (set-action-properties! action alist)
+  (set-procedure-property! action 'gschem-properties alist))
+
+(define-public (set-action-property! action key value)
+  (set-action-properties! action
+   (assq-set! (action-properties action) key value))
+  (run-hook action-property-hook action key value))
+(define-public (action-property action key)
+  (assq-ref (action-properties action) key))
+
+;; -------------------------------------------------------------------
+;; Special actions that operate on actions
+
+;; Note that here we pass "repeat-last-command" as a *symbol* rather
+;; than wrapping the action around an actual procedure.  This is to
+;; trigger the magical recursive behaviour of eval-action! in such
+;; away that the previous successfully-evaluated action gets invoked.
+(define-public &repeat-last-action
+  (make-action 'repeat-last-command
+               #:label (_ "Repeat Last Action") #:icon "gtk-redo"))

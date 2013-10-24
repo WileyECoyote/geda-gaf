@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,26 +15,24 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #include <config.h>
 #include <version.h>
 #include <missing.h>
 
-#include <stdio.h>
 #include <sys/param.h>
 #include <sys/types.h>
+
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
+
 #include <dirent.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+
+#include <gettext.h>
 
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
@@ -42,9 +40,9 @@
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
-//#ifdef HAVE_LIBDMALLOC
-//#include <dmalloc.h>
-//#endif
+#ifdef HAVE_LIBDMALLOC
+#include <dmalloc.h>
+#endif
 
 void gnetlist_quit(void)
 {
@@ -79,9 +77,10 @@ gnetlist_backends (TOPLEVEL *pr_current)
   s_load_path = scm_variable_ref (scm_c_lookup ("%load-path"));
 
   for ( ; s_load_path != SCM_EOL; s_load_path = scm_cdr (s_load_path)) {
-    SCM s_dir_name = scm_car (s_load_path);
-    char *dir_name;
-    DIR *dptr;
+
+    SCM    s_dir_name = scm_car (s_load_path);
+    char  *dir_name;
+    DIR   *dptr;
     struct dirent *dentry;
 
     /* Get directory name from Scheme */
@@ -92,8 +91,8 @@ gnetlist_backends (TOPLEVEL *pr_current)
     /* Open directory */
     dptr = opendir (dir_name);
     if (dptr == NULL) {
-      g_warning ("Can't open directory %s: %s\n",
-                 dir_name, strerror (errno));
+    fprintf (stderr, _("ERROR: Can not open directory [%s:] %s\n"),
+             dir_name, strerror (errno));
       continue;
     }
     free (dir_name);
@@ -124,7 +123,7 @@ gnetlist_backends (TOPLEVEL *pr_current)
   /* Sort the list of backends */
   backend_names = g_list_sort (backend_names, (GCompareFunc) strcmp);
 
-  printf ("List of available backends: \n\n");
+  printf (_("List of available backends: \n\n"));
 
   for (iter = backend_names; iter != NULL; iter = g_list_next (iter)) {
     printf ("%s\n", (char *) iter->data);
@@ -137,13 +136,20 @@ gnetlist_backends (TOPLEVEL *pr_current)
 
 void main_prog(void *closure, int argc, char *argv[])
 {
-  int i;
-  int argv_index;
+  int   i;
+  int   argv_index;
   char *cwd;
   char *str;
   char *filename;
 
   TOPLEVEL *pr_current;
+
+#if ENABLE_NLS
+
+  /* This must be the same for all locales */
+  setlocale(LC_NUMERIC, "C");
+
+#endif
 
   /* set default output filename */
   output_filename = g_strdup("output.net");
@@ -173,14 +179,14 @@ void main_prog(void *closure, int argc, char *argv[])
   s_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
                 PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
   s_log_message
-  ("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n");
+  (_("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n"));
   s_log_message
-  ("This is free software, and you are welcome to redistribute it under certain\n");
+  (_("This is free software, and you are welcome to redistribute it under certain\n"));
   s_log_message
-  ("conditions; please see the COPYING file for more details.\n\n");
+  (_("conditions; please see the COPYING file for more details.\n\n"));
 
   #if defined(__MINGW32__) && defined(DEBUG)
-  fprintf(stderr, "This is the MINGW32 port.\n\n");
+  printf( "This is the MINGW32 port.\n\n");
   #endif
 
   /* register guile (scheme) functions */
@@ -221,16 +227,15 @@ void main_prog(void *closure, int argc, char *argv[])
     }
 
     if (!quiet_mode) {
-      s_log_message ("Loading schematic [%s]\n", filename);
-      printf ("Loading schematic [%s]\n", filename);
+      s_log_message (_("Loading schematic <%s>\n"), filename);
     }
 
     s_page_goto (pr_current, s_page_new (pr_current, filename));
 
     if (!f_open (pr_current, pr_current->page_current, filename, &err)) {
       g_warning ("%s\n", err->message);
-      fprintf (stderr, "ERROR: Failed to load '%s': %s\n",
-               filename, err->message);
+      fprintf (stderr, _("ERROR: Failed to load [%s]: %s\n"), filename,
+               err->message);
       g_error_free (err);
       exit(2);
     }
@@ -247,14 +252,15 @@ void main_prog(void *closure, int argc, char *argv[])
   /* in the current directory.  Having the output go to a different */
   /* directory will confuse the user (confused me, at first). */
   if (chdir (cwd)) {
-    fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
+    fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
+             cwd, strerror (errno));
     exit(1);
   }
   /* free(cwd); - Defered; see below */
 
   if (argv[argv_index] == NULL) {
-    fprintf (stderr, "ERROR: No schematics files specified for processing.\n");
-    fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
+    fprintf (stderr, _("ERROR: No schematics files specified for processing.\n"));
+    fprintf (stderr, _("\nRun `%s --help' for more information.\n"), argv[0]);
     exit (1);
   }
 
@@ -275,10 +281,10 @@ void main_prog(void *closure, int argc, char *argv[])
 
     /* If it couldn't be found, fail. */
     if (scm_is_false (s_backend_path)) {
-      fprintf (stderr, "ERROR: Could not find backend `%s' in load path.\n",
+      fprintf (stderr, _("ERROR: Could not find backend `%s' in load path.\n"),
                guile_proc);
       fprintf (stderr,
-               "\nRun `%s --list-backends' for a full list of available backends.\n",
+             _("\nRun `%s --list-backends' for a full list of available backends.\n"),
                argv[0]);
       exit (1);
     }
@@ -297,7 +303,8 @@ void main_prog(void *closure, int argc, char *argv[])
   /* because the s_traverse functions can change the Current Working Directory. */
   if (chdir (cwd)) {
     /* Error occured with chdir */
-    fprintf (stderr, "ERROR: File System, could change to directory [%s]\n", cwd);
+    fprintf (stderr, _("ERROR: File System, could change to directory [%s:] %s\n"),
+             cwd, strerror (errno));
     exit(1);
   }
   g_free(cwd);
@@ -314,9 +321,9 @@ void main_prog(void *closure, int argc, char *argv[])
   } else if (interactive_mode) {
     scm_c_eval_string ("(set-repl-prompt! \"gnetlist> \")");
     scm_shell (0, NULL);
-  } else {
-    fprintf(stderr,
-            "You gave neither backend to execute nor interactive mode!\n");
+  }
+  else {
+    printf(_("Either specify a backend to execute or interactive mode!\n"));
   }
 
   gnetlist_quit();

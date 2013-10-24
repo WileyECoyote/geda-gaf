@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 #include <config.h>
 
@@ -24,19 +24,21 @@
 
 #include "gschem.h"
 #include "x_menu.h"
-#include "x_drag.h"
 
 #include <stdio.h>
 #include <errno.h>
 
 #include <x_window.h>
+#include "widgets.h"
+
+typedef bool (*GschemDrawEvent) (GtkWidget*, void*, GschemToplevel*);
 
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
  */
-void x_window_setup (GSCHEM_TOPLEVEL *w_current)
+void x_window_setup (GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 
@@ -46,7 +48,7 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
   /* Initialize the autosave callback */
   s_page_autosave_init(toplevel);
 
-  /* x_window_setup_world() - BEGIN */
+  /* setup world */
   toplevel->init_left = -45;
   toplevel->init_top  = -45;
   /* init_right and _bottom are set before this function is called */
@@ -56,7 +58,6 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
 
   w_current->win_width  = toplevel->width;
   w_current->win_height = toplevel->height;
-  /* x_window_setup_world() - END */
 
   /* Add to the list of windows */
   global_window_list = g_list_append (global_window_list, w_current);
@@ -66,6 +67,7 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
 
   x_window_create_main (w_current);
   x_window_restore_settings(w_current);
+
   x_menu_attach_recent_files_submenu(w_current);
 
   /* Initialize the clipboard callback */
@@ -73,26 +75,44 @@ void x_window_setup (GSCHEM_TOPLEVEL *w_current)
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Create Graphic Context for Drawing Area
  *  \par Function Description
- *
+ *   This function trys to create a new Graphic Context associated
+ *  with the GdKWindow'ed Drawing Area for later use by low level
+ *  drawing routines, but not libgedacairo.
  */
-void x_window_setup_gc(GSCHEM_TOPLEVEL *w_current)
+bool x_window_setup_gc(GschemToplevel *w_current)
 {
-  w_current->gc = gdk_gc_new(w_current->window);
-
-  if (w_current->gc == NULL) {
-    g_critical(_("Couldn't allocate gc\n"));
+  bool result = FALSE;
+  if (!w_current) {
+    g_critical(_("Couldn't allocate gc, w_current is NULL\n"));
   }
+  else {
+
+    if ( (w_current->window) && GDK_IS_WINDOW(w_current->window)) {
+
+      w_current->gc = gdk_gc_new(w_current->window);
+
+      if (w_current->gc == NULL) {
+        g_critical(_("Couldn't allocate gc, is window \n"));
+      }
+      else {
+        result = TRUE;
+      }
+    }
+    else {
+      g_critical(_("Couldn't allocate gc, w_current->window is not a valid GdkWindow\n"));
+    }
+  }
+  return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Free the Graphic Context
  *  \par Function Description
- *
+ *  We don't actually free the graphic context, we just
+ *  dereference here, which result in it's destruction.
  */
-void x_window_free_gc(GSCHEM_TOPLEVEL *w_current)
+void x_window_free_gc(GschemToplevel *w_current)
 {
   gdk_gc_unref(w_current->gc);
 }
@@ -106,24 +126,26 @@ void x_window_free_gc(GSCHEM_TOPLEVEL *w_current)
  * \param [in] w_current The toplevel environment.
  */
 static
-void x_window_create_drawing_area (GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_current)
+void x_window_create_drawing_area (GtkWidget *window, GschemToplevel *w_current)
 {
   /* drawing next */
-  w_current->drawing_area = gtk_drawing_area_new ();
+  //DrawingArea = gtk_drawing_area_new ();
+  DrawingArea = GTK_WIDGET (gschem_page_view_new ());
   /* Set the size here.  Be sure that it has an aspect ratio of 1.333
    * We could calculate this based on root window size, but for now
    * lets just set it to:
    * Width = root_width*3/4   Height = Width/1.3333333333
    * 1.3333333 is the desired aspect ratio!
    */
-  gtk_drawing_area_size (GTK_DRAWING_AREA (w_current->drawing_area),
+  gtk_drawing_area_size (GTK_DRAWING_AREA (DrawingArea),
                          w_current->win_width,
                          w_current->win_height);
-  gtk_container_add(GTK_CONTAINER(drawbox), w_current->drawing_area);
-  gtk_widget_set_can_focus(w_current->drawing_area, TRUE);
-  gtk_widget_grab_focus (w_current->drawing_area);
-  g_object_set ( w_current->drawing_area, "visible", TRUE,
-                                          "name",    "GschemDrawingArea", NULL);
+  gtk_container_add(GTK_CONTAINER(window), DrawingArea);
+  gtk_widget_set_can_focus(DrawingArea, TRUE);
+  gtk_widget_grab_focus (DrawingArea);
+  char *unique_name = g_strdup_printf("GschemDrawingArea:%i", prog_pid);
+  g_object_set (DrawingArea, "visible", TRUE, "name",  unique_name, NULL);
+  g_free(unique_name);
 }
 
 /*! \brief Save Window Geometry
@@ -131,9 +153,13 @@ void x_window_create_drawing_area (GtkWidget *drawbox, GSCHEM_TOPLEVEL *w_curren
  *  This functions retrieves the given window size, and position on the
  *  screen and writes the settings to the key file.
  *
- *  \param [in] window     The Window whose size and position is to be saved.
+ *  \param [in] window  The Window whose size and position is to be saved.
+ *
+ *  \note: Settings are also saved in other modules, generally, only
+ *  settings related to the Window are saved here. We can not save this
+ *  data in an at_exit because w_current was destroyed by x_window_close()!
  */
-void x_window_save_settings(GSCHEM_TOPLEVEL *w_current)
+void x_window_save_settings(GschemToplevel *w_current)
 {
   GtkWindow  *window;
   EdaConfig  *cfg;
@@ -144,7 +170,7 @@ void x_window_save_settings(GSCHEM_TOPLEVEL *w_current)
   v_log_message(_("Saving main window geometry and settings.\n"));
 
   /* Get the Window Geometry - Restored by x_window_restore_settings */
-  window = GTK_WINDOW(w_current->main_window);
+  window = GTK_WINDOW(MainWindow);
   cfg    = eda_config_get_user_context ();
   gtk_window_get_position (window, &x, &y);
   gtk_window_get_size (window, &width, &height);
@@ -207,14 +233,14 @@ void x_window_save_settings(GSCHEM_TOPLEVEL *w_current)
 
 }
 
-/*! \brief Restore Window Geometry
+/*! \brief Restore Window Geometry and Cursor
  *  \par Function Description
  *  This functions retrieves the given window size and position from the
  *  key file and sets the given window to the retrived values.
  *
  *  \param [in] window     The Window to restore the size and position.
  */
-void x_window_restore_settings(GSCHEM_TOPLEVEL *w_current)
+void x_window_restore_settings(GschemToplevel *w_current)
 {
   GtkWindow *window;
   EdaConfig  *cfg;
@@ -226,7 +252,7 @@ void x_window_restore_settings(GSCHEM_TOPLEVEL *w_current)
 
   v_log_message(_("Retrieving Window geometry and settings.\n"));
 
-  window = GTK_WINDOW(w_current->main_window);
+  window = GTK_WINDOW(MainWindow);
   cfg    = eda_config_get_user_context ();
 
   x = eda_config_get_integer (cfg, group_name, "window-x-position", &err);
@@ -264,59 +290,54 @@ void x_window_restore_settings(GSCHEM_TOPLEVEL *w_current)
 
 }
 
-
-
-/*! \brief Setup X-Events
+/*! \brief Setup X-Events Event Handlers
  *  \par Function Description
- *
+ *   This function configures events for the Drawing Area and connects
+ *   callback functions in x_event.c for both the Drawing Area and the
+ *   Main window. Lastly, x_dnd_setup_event_handlers is called to setup
+ *   Drag-and-Drop events for the drawing area.
  */
-void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
+static void x_window_setup_event_handlers(GschemToplevel *w_current)
 {
   struct event_reg_t {
-    char *detailed_signal;
-    GCallback c_handler;
+    char            *detailed_signal;
+    unsigned long    hid;
+    GschemDrawEvent  handler;
   };
 
   struct event_reg_t drawing_area_events[] = {
-    { "expose_event",         G_CALLBACK (x_event_expose)          },
-    { "button_press_event",   G_CALLBACK (x_event_button_pressed)  },
-    { "button_release_event", G_CALLBACK (x_event_button_released) },
-    { "motion_notify_event",  G_CALLBACK (x_event_motion)          },
-    { "configure_event",      G_CALLBACK (x_event_configure)       },
-    { "key_press_event",      G_CALLBACK (x_event_key)             },
-    { "key_release_event",    G_CALLBACK (x_event_key)             },
+    { "expose_event",         0, GSE_HANDLER( x_event_expose          )},
+    { "button_press_event",   0, GSE_HANDLER( x_event_button_pressed  )},
+    { "button_release_event", 0, GSE_HANDLER( x_event_button_released )},
+    { "motion_notify_event",  0, GSE_HANDLER( x_event_motion          )},
+    { "configure_event",      0, GSE_HANDLER( x_event_configure       )},
+    { "key_press_event",      0, GSE_HANDLER( x_event_key             )},
+    { "key_release_event",    0, GSE_HANDLER( x_event_key             )},
+    { "scroll_event",         0, GSE_HANDLER( x_event_scroll          )},
+    {  NULL,                  0, NULL }
+  };
 
-    { NULL,                   NULL                                 } };
-
-  struct event_reg_t main_window_events[] = {
-    { "enter_notify_event",   G_CALLBACK(x_event_enter)           },
-    { "scroll_event",         G_CALLBACK(x_event_scroll)          },
-    { NULL,                   NULL                                } };
   struct event_reg_t *tmp;
 
   /* is the configure event type missing here? hack */
-  gtk_widget_set_events (w_current->drawing_area,
-                         GDK_EXPOSURE_MASK |
-                         GDK_POINTER_MOTION_MASK |
+  gtk_widget_set_events (DrawingArea,
                          GDK_BUTTON_PRESS_MASK   |
-                         GDK_ENTER_NOTIFY_MASK |
-                         GDK_KEY_PRESS_MASK |
-                         GDK_BUTTON_RELEASE_MASK);
+                         GDK_BUTTON_RELEASE_MASK |
+                         GDK_EXPOSURE_MASK       |
+                         GDK_KEY_PRESS_MASK      |
+                         GDK_POINTER_MOTION_MASK |
+                         GDK_SCROLL_MASK );
 
   for (tmp = drawing_area_events; tmp->detailed_signal != NULL; tmp++) {
-    g_signal_connect (w_current->drawing_area,
-                      tmp->detailed_signal,
-                      tmp->c_handler,
-                      w_current);
+   tmp->hid = g_signal_connect (DrawingArea,
+                                    tmp->detailed_signal,
+                                    G_CALLBACK(tmp->handler),
+                                    w_current);
   }
 
-  for (tmp = main_window_events; tmp->detailed_signal != NULL; tmp++) {
-    g_signal_connect (w_current->main_window,
-                      tmp->detailed_signal,
-                      tmp->c_handler,
-                      w_current);
-  }
+  x_dnd_setup_event_handlers(w_current);
 }
+
 
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -325,7 +346,7 @@ void x_window_setup_draw_events(GSCHEM_TOPLEVEL *w_current)
  */
 static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
 {
-  GSCHEM_TOPLEVEL *w_current = userdata;
+  GschemToplevel *w_current = userdata;
   SCM interpreter;
 
   interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
@@ -337,34 +358,39 @@ static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
   scm_dynwind_end ();
 
   gtk_widget_hide(w_current->macro_box);
-  gtk_widget_grab_focus(w_current->drawing_area);
+  gtk_widget_grab_focus(DrawingArea);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Create Main Window
  *  \par Function Description
- *
+ *  This function is called from x_window_setup to create the
+ *  Main window and it's contents. This function creates mostly
+ *  high-level containers, calling auxiliary functions to populate
+ *  the containers with the menus and toolbars.
  */
-void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
+void x_window_create_main(GschemToplevel *w_current)
 {
-  TOPLEVEL  *toplevel = w_current->toplevel;
-  GtkWidget *label=NULL;
-  GtkWidget *center_hbox;
-  GtkWidget *center_vbox;
-  GtkWidget *drawbox=NULL;
-  GtkWidget *bottom_box=NULL;
+  TOPLEVEL  *toplevel     = w_current->toplevel;
 
-  GtkWidget *main_box=NULL;
-  GtkWidget *menubar=NULL;
-  GtkWidget *handlebox=NULL;
+  GtkPolicyType policy;
+
+  GtkWidget *label        = NULL;
+  GtkWidget *center_hbox  = NULL;
+  GtkWidget *center_vbox  = NULL;
+  GtkWidget *draw_window  = NULL;
+  GtkWidget *bottom_box   = NULL;
+
+  GtkWidget *main_box     = NULL;
+  GtkWidget *menubar      = NULL;
+  GtkWidget *handlebox    = NULL;
 
   /* used to signify that the window isn't mapped yet */
-  w_current->window = NULL;
+  w_current->window       = NULL;
 
-  w_current->main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
+  MainWindow = GTK_WIDGET (gschem_main_window_new ());
 
-  gtk_widget_set_name (w_current->main_window, "gschem");
-  gtk_window_set_resizable (GTK_WINDOW(w_current->main_window), TRUE);
+  gtk_widget_set_name (MainWindow, "gschem");
+  gtk_window_set_resizable (GTK_WINDOW(MainWindow), TRUE);
 
   /* We want the widgets to flow around the drawing area, so we don't
    * set a size of the main window.  The drawing area's size is fixed,
@@ -374,35 +400,36 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
    * override this.  Hence "auto_place_mode".
    */
   if( auto_place_mode )
-    gtk_widget_set_uposition (w_current->main_window, 10, 10);
+    gtk_widget_set_uposition (MainWindow, 10, 10);
 
   /* this should work fine */
-  g_signal_connect (G_OBJECT (w_current->main_window), "delete_event",
+  g_signal_connect (G_OBJECT (MainWindow), "delete_event",
                     G_CALLBACK (i_callback_close_wm),
                     w_current);
 
   /* Containers first */
   main_box = gtk_vbox_new(FALSE, 1);
   gtk_container_border_width(GTK_CONTAINER(main_box), 0);
-  gtk_container_add(GTK_CONTAINER(w_current->main_window), main_box);
+  gtk_container_add(GTK_CONTAINER(MainWindow), main_box);
   g_object_set (main_box, "visible", TRUE, NULL);
 
   /* Main Menu */
-  menubar = x_menu_setup_ui (w_current);
+  if (GTK_IS_MENU_BAR(menubar = x_menu_setup_ui (w_current))) {
 
-  if (w_current->handleboxes) {
-    handlebox = gtk_handle_box_new ();
-    gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
-    gtk_container_add (GTK_CONTAINER (handlebox), menubar);
-    g_object_set (handlebox, "visible", TRUE, NULL);
-  } else {
-    gtk_box_pack_start(GTK_BOX(main_box), menubar, FALSE, FALSE, 0);
+    if (w_current->handleboxes) {
+      handlebox = gtk_handle_box_new ();
+      gtk_box_pack_start(GTK_BOX(main_box), handlebox, FALSE, FALSE, 0);
+      gtk_container_add (GTK_CONTAINER (handlebox), menubar);
+      g_object_set (handlebox, "visible", TRUE, NULL);
+    } else {
+      gtk_container_add(GTK_CONTAINER(main_box), menubar);
+    }
+    g_object_set (menubar, "visible", TRUE, NULL);
   }
-  g_object_set (menubar, "visible", TRUE, NULL);
 
   x_menu_set_toggle(w_current, RESET_TOGGLERS, 0);
 
-  gtk_widget_realize (w_current->main_window);
+  gtk_widget_realize (MainWindow);
   /* End Main Menu */
 
   if (w_current->handleboxes && w_current->toolbars) {
@@ -428,139 +455,169 @@ void x_window_create_main(GSCHEM_TOPLEVEL *w_current)
   gtk_container_add(GTK_CONTAINER(center_hbox), center_vbox);
   g_object_set (center_vbox, "visible", TRUE, NULL);
 
-  drawbox = gtk_hbox_new(FALSE, 0);
-  gtk_container_border_width(GTK_CONTAINER(drawbox), 0);
-  gtk_container_add(GTK_CONTAINER(center_vbox), drawbox);
-  g_object_set (drawbox, "visible", TRUE, NULL);
+  /*! Setup the Scroll bars
+   * The scroll-bars are constructed here if w_current->scrollbars is
+   * enabled. The visibility is intentionaly not set here. This is set
+   * near the end of this procedure.
+   */
+  {
+    GtkScrolledWindow *scroll_window;
+    GtkAdjustment     *h_adjustment;
+    GtkAdjustment     *v_adjustment;
 
-  x_window_create_drawing_area ( drawbox, w_current);
-  x_window_setup_draw_events(w_current);
+    h_adjustment = GTK_ADJUSTMENT( gtk_adjustment_new (0.0, 0.0,
+                                                       toplevel->init_right,
+                                                       100.0, 100.0, 10.0));
 
-  if (w_current->scrollbars == TRUE) {
-    /* setup scroll bars */
-    w_current->v_adjustment = GTK_ADJUSTMENT (
-      gtk_adjustment_new (toplevel->init_bottom, 0.0, toplevel->init_bottom,
-                          100.0, 100.0, 10.0));
+    v_adjustment = GTK_ADJUSTMENT( gtk_adjustment_new (toplevel->init_bottom,
+                                                       0.0,
+                                                       toplevel->init_bottom,
+                                                       100.0, 100.0, 10.0));
 
-    w_current->v_scrollbar = gtk_vscrollbar_new (w_current->v_adjustment);
+    draw_window = gtk_scrolled_window_new (h_adjustment, v_adjustment);
 
-    gtk_range_set_update_policy (GTK_RANGE (w_current->v_scrollbar),
-                                 GTK_UPDATE_CONTINUOUS);
+    gtk_container_border_width(GTK_CONTAINER(draw_window), 0);
+    g_object_set (draw_window, "visible", TRUE, NULL);
+    gtk_container_add(GTK_CONTAINER(center_vbox), draw_window);
 
-    gtk_box_pack_start (GTK_BOX (drawbox), w_current->v_scrollbar,FALSE, FALSE, 0);
+    scroll_window    = GTK_SCROLLED_WINDOW (draw_window);
+    HorizontalScroll = gtk_scrolled_window_get_hscrollbar(scroll_window);
+    VerticalScroll   = gtk_scrolled_window_get_vscrollbar(scroll_window);
 
-    g_signal_connect (w_current->v_adjustment,
-                      "value_changed",
-                      G_CALLBACK (x_event_vschanged),
-                      w_current);
+    policy = (w_current->scrollbars) ? GTK_POLICY_ALWAYS : GTK_POLICY_NEVER;
 
-    w_current->h_adjustment = GTK_ADJUSTMENT (
-      gtk_adjustment_new (0.0, 0.0, toplevel->init_right, 100.0, 100.0, 10.0));
+    gtk_scrolled_window_set_policy (scroll_window, policy, policy);
 
-    w_current->h_scrollbar = gtk_hscrollbar_new (w_current->h_adjustment);
+    gtk_range_set_update_policy (GTK_RANGE (HorizontalScroll), GTK_UPDATE_CONTINUOUS);
+    gtk_range_set_update_policy (GTK_RANGE (VerticalScroll),   GTK_UPDATE_CONTINUOUS);
 
-    gtk_range_set_update_policy (GTK_RANGE (w_current->h_scrollbar),
-                                 GTK_UPDATE_CONTINUOUS);
-
-    gtk_box_pack_start (GTK_BOX (center_vbox), w_current->h_scrollbar, FALSE, FALSE, 0);
-
-    g_signal_connect (w_current->h_adjustment,
-                      "value_changed",
+    g_signal_connect (h_adjustment, "value_changed",
                       G_CALLBACK (x_event_hschanged),
                       w_current);
+
+    g_signal_connect (v_adjustment, "value_changed",
+                      G_CALLBACK (x_event_vschanged),
+                      w_current);
   }
+
+  x_window_create_drawing_area(draw_window, w_current);
+
+  x_window_setup_event_handlers(w_current);
+
   if (w_current->handleboxes && w_current->toolbars) {
      x_toolbars_init_bottom(w_current, main_box);
   }
 
   /* macro box */
   w_current->macro_entry = gtk_entry_new();
+
   g_signal_connect(w_current->macro_entry, "activate",
                    G_CALLBACK(&x_window_invoke_macro), w_current);
 
+  label = geda_visible_label_new (_("Evaluate:"));
   w_current->macro_box = gtk_hbox_new(FALSE, 0);
-  gtk_box_pack_start(GTK_BOX (w_current->macro_box),
-                     gtk_label_new (_("Evaluate:")), FALSE, FALSE, 2);
-  gtk_box_pack_start(GTK_BOX(w_current->macro_box), w_current->macro_entry,
-                     TRUE, TRUE, 2);
-  gtk_container_border_width(GTK_CONTAINER(w_current->macro_box), 1);
-  gtk_box_pack_start (GTK_BOX (main_box), w_current->macro_box,
-                      FALSE, FALSE, 0);
 
-  /* bottom box */
+  gtk_box_pack_start(GTK_BOX (w_current->macro_box), label, FALSE, FALSE, 2);
+  gtk_box_pack_start(GTK_BOX(w_current->macro_box), w_current->macro_entry,TRUE, TRUE, 2);
+
+  gtk_container_border_width(GTK_CONTAINER(w_current->macro_box), 1);
+  g_object_set (w_current->macro_entry, "visible", TRUE, NULL);
+
+  gtk_box_pack_start (GTK_BOX (main_box), w_current->macro_box, FALSE, FALSE, 0);
+
+  /* bottom_box */
   bottom_box = gtk_hbox_new(FALSE, 0);
   gtk_container_border_width(GTK_CONTAINER(bottom_box), 1);
   gtk_box_pack_start (GTK_BOX (main_box), bottom_box, FALSE, FALSE, 0);
+  g_object_set (bottom_box, "visible", TRUE, NULL);
 
   /* label = gtk_label_new ("Mouse buttons:");
         gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 10);
   */
 
-  label = gtk_label_new (" ");
+  label = geda_visible_label_new (" "); /* Also known as a 2k Spacer */
   gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 2);
 
-  w_current->left_label = gtk_label_new (_("Pick"));
-  gtk_box_pack_start (GTK_BOX (bottom_box), w_current->left_label,
-                      FALSE, FALSE, 0);
+  w_current->left_label = geda_visible_label_new (_("Pick"));
+  gtk_box_pack_start (GTK_BOX (bottom_box), w_current->left_label, FALSE, FALSE, 0);
 
-  label = gtk_label_new ("|");
+  label = geda_visible_label_new ("|"); /* with matching 2k vertical line */
   gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 5);
 
+  w_current->middle_label = geda_visible_label_new (_("none"));
 
-  w_current->middle_label = gtk_label_new ("middle");
-  i_update_middle_button(w_current, "none");
-  gtk_box_pack_start (GTK_BOX (bottom_box), w_current->middle_label,
-                      FALSE, FALSE, 0);
+  gtk_box_pack_start (GTK_BOX (bottom_box), w_current->middle_label, FALSE, FALSE, 0);
 
-  label = gtk_label_new ("|");
+  label = geda_visible_label_new ("|");  /* 3 bytes just cost 6k */
   gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 5);
 
   if (default_third_button == POPUP_ENABLED) {
-    w_current->right_label = gtk_label_new (_("Menu/Cancel"));
+    w_current->right_label = geda_visible_label_new (_("Menu/Cancel"));
   } else {
-    w_current->right_label = gtk_label_new (_("Pan/Cancel"));
+    w_current->right_label = geda_visible_label_new (_("Pan/Cancel"));
   }
   gtk_box_pack_start (GTK_BOX (bottom_box), w_current->right_label,
                       FALSE, FALSE, 0);
 
-  label = gtk_label_new (" ");
+  /* excuse me, while I go buy more RAM, we need another spacer */
+  label = geda_visible_label_new (" ");
   gtk_box_pack_start (GTK_BOX (bottom_box), label, FALSE, FALSE, 5);
 
-  w_current->grid_label = gtk_label_new (" ");
+  w_current->grid_label = geda_visible_label_new (" ");
+
+  /* yea, that's right, we just consumed >10k of RAM for 20 bits, not
+   * counting the NULL's or the Atk objects. On the bright side, each
+   * of the spaces and verticle lines have their own code for embeded
+   * WEB links, complete with "visited history", mnemonics, drag&drop,
+   * we can even apply styles to the spaces and copy them to the clip
+   * board. May need to spend a little more time on this.
+   */
   gtk_box_pack_start (GTK_BOX (bottom_box), w_current->grid_label,
                       FALSE, FALSE, 10);
 
-  w_current->status_label = gtk_label_new (_("Select Mode"));
+  w_current->status_label = geda_visible_label_new (_("Select Mode"));
   gtk_box_pack_end (GTK_BOX (bottom_box), w_current->status_label, FALSE,
                     FALSE, 10);
 
-  gtk_widget_show_all (w_current->main_window);
+  gtk_widget_show(MainWindow);
 
-  /* The preceeding show_all revealed Everything, so
-   * turn-off widgets that should be hidden */
+  /*! The preceeding "show" used to be "show_all", which revealed Everything,
+   *  including somethings we did't want to show. These had to be turned-off
+   *  in the code below. This is not the case now, but we keep these here as
+   *  a reminder of the painful agony "show_all" caused us, and of how hard
+   *  it was to hide all those little "red" x's in the handle boxes, just to
+   *  discover this "show_all". And maybe somebody will get bored and devise
+   *  a geda_show_widget_list!
+   */
   gtk_widget_hide(w_current->macro_box);
 
-  /* hide the little red x's in the toolbars */
-
+  /* Hide the little red x's in the toolbars */
   x_toolbars_finialize(w_current);
 
-  /* hide the srollbars based on user settings */
-  if (w_current->scrollbars == TRUE &&
-      w_current->scrollbars_visible == FALSE ) {
-    gtk_widget_hide(w_current->v_scrollbar);
-    gtk_widget_hide(w_current->h_scrollbar);
+  /*! Set visibility of the scroll-bars based on user settings, noting that
+   *  the bars could be enabled so that the mouse wheel work but visibility
+   *  turned off, presumably so the user can maximize the drawing area.
+   */
+  if (w_current->scrollbars == TRUE ) {
+    g_object_set (VerticalScroll, "visible",
+                 (w_current->scrollbars_visible != FALSE), NULL);
+    g_object_set (HorizontalScroll, "visible",
+                 (w_current->scrollbars_visible != FALSE), NULL);
+
   }
 
-  w_current->window = w_current->drawing_area->window;
+  /* Not sure why we need two pointer to GdkWindow */
+  w_current->window   = DrawingArea->window;
   w_current->drawable = w_current->window;
   x_window_setup_gc(w_current);
 
 }
+
 /*! \brief Close all open Dialogs
  *  \par Function Description
  *   This function close any dialog boxes that are currently open.
  */
-static void x_window_close_all_dialogs(GSCHEM_TOPLEVEL *w_current){
+static void x_window_close_all_dialogs(GschemToplevel *w_current){
   /* close all the dialog boxes */
 
   if (w_current->sowindow)
@@ -614,7 +671,7 @@ static void x_window_close_all_dialogs(GSCHEM_TOPLEVEL *w_current){
  *  \par Function Description
  *
  */
-void x_window_close(GSCHEM_TOPLEVEL *w_current)
+void x_window_close(GschemToplevel *w_current)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   bool last_window = FALSE;
@@ -678,7 +735,7 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
   }
 
   /* finally close the main window */
-  gtk_widget_destroy(w_current->main_window);
+  gtk_widget_destroy(MainWindow);
 
   s_toplevel_delete (toplevel);
   global_window_list = g_list_remove (global_window_list, w_current);
@@ -696,14 +753,14 @@ void x_window_close(GSCHEM_TOPLEVEL *w_current)
  *  \par Function Description
  *
  */
-void x_window_close_all(GSCHEM_TOPLEVEL *w_current)
+void x_window_close_all(GschemToplevel *w_current)
 {
-  GSCHEM_TOPLEVEL *current;
+  GschemToplevel *current;
   GList *list_copy, *iter;
 
   iter = list_copy = g_list_copy (global_window_list);
   while (iter != NULL ) {
-    current = (GSCHEM_TOPLEVEL *)iter->data;
+    current = (GschemToplevel *)iter->data;
     iter = g_list_next (iter);
     x_window_close (current);
   }
@@ -735,7 +792,7 @@ void x_window_close_all(GSCHEM_TOPLEVEL *w_current)
  *
  */
 PAGE*
-x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
+x_window_open_page (GschemToplevel *w_current, const char *filename)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE     *old_current, *page;
@@ -922,7 +979,7 @@ x_window_open_page (GSCHEM_TOPLEVEL *w_current, const char *filename)
  *  \param [in] page      The page to become current page.
  */
 void
-x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
+x_window_set_current_page (GschemToplevel *w_current, PAGE *page)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
 
@@ -965,7 +1022,7 @@ x_window_set_current_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
  *  \returns 1 on success, 0 otherwise.
  */
 int
-x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename)
+x_window_save_page (GschemToplevel *w_current, PAGE *page, const char *filename)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *old_current;
@@ -989,7 +1046,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
     log_msg   = _("Could NOT save page [%s]\n");
     state_msg = _("Error while trying to save");
 
-    titled_error_dialog(err->message, "Failed to save file");
+    titled_error_dialog("Failed to save file", "Error: %s", err->message);
 
     g_clear_error (&err);
   }
@@ -1035,7 +1092,7 @@ x_window_save_page (GSCHEM_TOPLEVEL *w_current, PAGE *page, const char *filename
  *  \param [in] page      The page to close.
  */
 void
-x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
+x_window_close_page (GschemToplevel *w_current, PAGE *page)
 {
   TOPLEVEL *toplevel = w_current->toplevel;
   PAGE *new_current = NULL;
@@ -1098,12 +1155,12 @@ x_window_close_page (GSCHEM_TOPLEVEL *w_current, PAGE *page)
   }
 }
 
-void x_window_set_cursor(GSCHEM_TOPLEVEL *w_current, int cursor_id)
+void x_window_set_cursor(GschemToplevel *w_current, int cursor_id)
 {
 
   GdkWindow *draw_window;
 
-  draw_window = gtk_widget_get_window(w_current->drawing_area);
+  draw_window = gtk_widget_get_window(DrawingArea);
 
   if(draw_window){
     if (w_current->cursor) {
@@ -1129,7 +1186,7 @@ void x_window_set_cursor(GSCHEM_TOPLEVEL *w_current, int cursor_id)
  * containing the toolbar.
  */
 void x_window_add_toolbar_toggle(GtkWidget *widget,
-                                      GSCHEM_TOPLEVEL *w_current)
+                                      GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1145,7 +1202,7 @@ void x_window_add_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar.
  */
 void x_window_attribute_toolbar_toggle(GtkWidget *widget,
-                                       GSCHEM_TOPLEVEL *w_current)
+                                       GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1161,7 +1218,7 @@ void x_window_attribute_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar.
  */
 void x_window_gridsnap_toolbar_toggle(GtkWidget *widget,
-                                       GSCHEM_TOPLEVEL *w_current)
+                                       GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1177,7 +1234,7 @@ void x_window_gridsnap_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar.
  */
 void x_window_edit_toolbar_toggle(GtkWidget *widget,
-                                      GSCHEM_TOPLEVEL *w_current)
+                                      GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1193,7 +1250,7 @@ void x_window_edit_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar.
  */
 void x_window_page_toolbar_toggle(GtkWidget *widget,
-                                      GSCHEM_TOPLEVEL *w_current)
+                                      GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1209,7 +1266,7 @@ void x_window_page_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar.
  */
 void x_window_standard_toolbar_toggle(GtkWidget *widget,
-                                      GSCHEM_TOPLEVEL *w_current)
+                                      GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1226,7 +1283,7 @@ void x_window_standard_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar.
  */
 void x_window_select_toolbar_toggle(GtkWidget *widget,
-                                      GSCHEM_TOPLEVEL *w_current)
+                                      GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
@@ -1242,7 +1299,7 @@ void x_window_select_toolbar_toggle(GtkWidget *widget,
  * containing the toolbar
  */
 void x_window_zoom_toolbar_toggle(GtkWidget *widget,
-                                      GSCHEM_TOPLEVEL *w_current)
+                                      GschemToplevel *w_current)
 {
   bool show = gtk_check_menu_item_get_active(GTK_CHECK_MENU_ITEM(widget));
   if(show)
