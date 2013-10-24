@@ -3,6 +3,8 @@ Makefile
 Makefile.in
 gschem
 gschem.exe
+*.swp
+*.bak
 *.o
 *.x
 *~

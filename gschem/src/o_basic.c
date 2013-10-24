@@ -728,6 +728,8 @@ o_update_component (GschemToplevel *w_current, OBJECT *o_current)
                    o_current->complex_basename);
     return NULL;
   }
+  else
+    q_log_message (_("Updating symbol [%s]\n"), o_current->complex_basename);
 
   /* Unselect the old object. */
   o_selection_remove (toplevel, page->selection_list, o_current);

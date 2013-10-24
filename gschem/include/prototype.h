@@ -276,151 +276,152 @@ void i_callback_page_discard               I_CALLBACK_ARGUMENTS;
 
 void i_callback_cancel                     I_CALLBACK_ARGUMENTS;
 
-bool i_callback_close_wm(GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
+bool i_callback_close_wm           (GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
 
 /* i_command.c */
-void i_command_engage(GschemToplevel *w_current);
-void i_command_disengage(bool immediate, bool wait_return);
-void i_command_get_action_list(GList** list);
-void i_command_get_command_list(GList** list);
-bool i_command_is_valid(const char *command);
-void i_command_process(GschemToplevel *w_current, const char* command, int narg, char *arg, EID_ACTION_ORIGIN who);
+void i_command_engage              (GschemToplevel *w_current);
+void i_command_disengage           (bool immediate, bool wait_return);
+void i_command_get_action_list     (GList** list);
+void i_command_get_command_list    (GList** list);
+bool i_command_is_valid            (const char *command);
+void i_command_process             (GschemToplevel *w_current, const char* command, int narg, char *arg, EID_ACTION_ORIGIN who);
 
 /* i_vars.c */
-char *i_var_get_gschem_config_string(EdaConfig *cfg, char *str);
-void  i_var_restore_gschem_boolean(EdaConfig *cfg, char *key, int *var, bool def_val);
-void  i_var_restore_gschem_integer(EdaConfig *cfg, char *key, int *var, int def_val);
-void  i_var_restore_gschem_color(EdaConfig *cfg, char *key, GdkColor *var, int index);
+char *i_var_get_gschem_config_string (EdaConfig *cfg, char *str);
+void  i_var_restore_gschem_boolean   (EdaConfig *cfg, char *key, int *var, bool def_val);
+void  i_var_restore_gschem_integer   (EdaConfig *cfg, char *key, int *var, int def_val);
+void  i_var_restore_gschem_color     (EdaConfig *cfg, char *key, GdkColor *var, int index);
 
-void i_vars_set(GschemToplevel *w_current);
-void i_vars_freenames();
-void i_vars_init (GschemToplevel *w_current);
-void i_vars_atexit_save_user_config (gpointer user_data);
+void i_vars_set                      (GschemToplevel *w_current);
+void i_vars_freenames                (void);
+void i_vars_init                     (GschemToplevel *w_current);
+void i_vars_atexit_save_user_config  (gpointer user_data);
 
  /* m_basic.c */
-int mil_x(GschemToplevel *w_current, int val);
-int mil_y(GschemToplevel *w_current, int val);
-int pix_x(GschemToplevel *w_current, int val);
-int pix_y(GschemToplevel *w_current, int val);
-void WORLDtoSCREEN(GschemToplevel *w_current, int x,  int y,  int *px, int *py);
-void SCREENtoWORLD(GschemToplevel *w_current, int mx, int my, int *x,  int *y);
-int snap_grid(GschemToplevel *w_current, int input);
-int SCREENabs(GschemToplevel *w_current, int val);
-int WORLDabs(GschemToplevel  *w_current, int val);
-int WORLDclip_change(GschemToplevel *w_current, int *x1,   int *y1,  int *x2,    int *y2);
-int clip_nochange(GschemToplevel    *w_current, int x1,    int y1,   int x2,     int y2);
-int visible(GschemToplevel          *w_current, int wleft, int wtop, int wright, int wbottom);
-double round_5_2_1(double unrounded);
+int mil_x                          (GschemToplevel *w_current, int val);
+int mil_y                          (GschemToplevel *w_current, int val);
+int pix_x                          (GschemToplevel *w_current, int val);
+int pix_y                          (GschemToplevel *w_current, int val);
+void WORLDtoSCREEN                 (GschemToplevel *w_current, int x,  int y,  int *px, int *py);
+void SCREENtoWORLD                 (GschemToplevel *w_current, int mx, int my, int *x,  int *y);
+int snap_grid                      (GschemToplevel *w_current, int input);
+int SCREENabs                      (GschemToplevel *w_current, int val);
+int WORLDabs                       (GschemToplevel  *w_current, int val);
+int WORLDclip_change               (GschemToplevel *w_current, int *x1,   int *y1,  int *x2,    int *y2);
+int clip_nochange                  (GschemToplevel    *w_current, int x1,    int y1,   int x2,     int y2);
+int visible                        (GschemToplevel          *w_current, int wleft, int wtop, int wright, int wbottom);
+double round_5_2_1                 (double unrounded);
 
 /* o_arc.c */
-void o_arc_invalidate_rubber(GschemToplevel *w_current);
-void o_arc_start(GschemToplevel  *w_current, int x, int y);
-void o_arc_end1(GschemToplevel   *w_current, int x, int y);
-void o_arc_end4(GschemToplevel   *w_current, int radius, int start_angle, int end_angle);
-void o_arc_motion(GschemToplevel *w_current, int x, int y, int whichone);
-void o_arc_draw_rubber(GschemToplevel *w_current);
+void o_arc_invalidate_rubber       (GschemToplevel *w_current);
+void o_arc_start                   (GschemToplevel  *w_current, int x, int y);
+void o_arc_end1                    (GschemToplevel   *w_current, int x, int y);
+void o_arc_end4                    (GschemToplevel   *w_current, int radius, int start_angle, int end_angle);
+void o_arc_motion                  (GschemToplevel *w_current, int x, int y, int whichone);
+void o_arc_draw_rubber             (GschemToplevel *w_current);
 
 /* o_attrib.c */
-void o_attrib_add_selected(GschemToplevel *w_current, SELECTION *selection, OBJECT *selected);
-void o_attrib_deselect_invisible(GschemToplevel *w_current, SELECTION *selection, OBJECT *selected);
-void o_attrib_select_invisible(GschemToplevel *w_current, SELECTION *selection, OBJECT *selected);
-void o_attrib_toggle_visibility(GschemToplevel *w_current, OBJECT *object);
-void o_attrib_toggle_show_name_value(GschemToplevel *w_current, OBJECT *object, int new_show_name_value);
-OBJ *o_attrib_add_attrib(GschemToplevel *w_current, const char *text_string, int visibility, int show_name_value, OBJECT *object);
+void o_attrib_add_selected         (GschemToplevel *w_current, SELECTION *selection, OBJECT *selected);
+void o_attrib_deselect_invisible   (GschemToplevel *w_current, SELECTION *selection, OBJECT *selected);
+void o_attrib_select_invisible     (GschemToplevel *w_current, SELECTION *selection, OBJECT *selected);
+void o_attrib_toggle_visibility      (GschemToplevel *w_current, OBJECT *object);
+void o_attrib_toggle_show_name_value (GschemToplevel *w_current, OBJECT *object, int new_show_name_value);
+OBJ *o_attrib_add_attrib             (GschemToplevel *w_current, const char *text_string, int visibility,
+                                      int show_name_value, OBJECT *object);
 
 /* o_basic.c */
-void o_redraw_rects(GschemToplevel *w_current, GdkRectangle *rectangles, int n_rectangles);
-int  o_invalidate_rubber(GschemToplevel *w_current);
-int  o_redraw_cleanstates(GschemToplevel *w_current);
-void o_invalidate_rect(GschemToplevel *w_current, int x1, int y1, int x2, int y2);
-void o_invalidate_all(GschemToplevel *w_current);
-void o_invalidate(GschemToplevel *w_current, OBJECT *object);
-void o_invalidate_glist(GschemToplevel *w_current, GList *list);
-int  o_drawing_color (GschemToplevel *w_current, OBJECT *object);
-OBJ *o_update_component(GschemToplevel *w_current, OBJECT *o_current);
+void o_redraw_rects                (GschemToplevel *w_current, GdkRectangle *rectangles, int n_rectangles);
+int  o_invalidate_rubber           (GschemToplevel *w_current);
+int  o_redraw_cleanstates          (GschemToplevel *w_current);
+void o_invalidate_rect             (GschemToplevel *w_current, int x1, int y1, int x2, int y2);
+void o_invalidate_all              (GschemToplevel *w_current);
+void o_invalidate                  (GschemToplevel *w_current, OBJECT *object);
+void o_invalidate_glist            (GschemToplevel *w_current, GList *list);
+int  o_drawing_color               (GschemToplevel *w_current, OBJECT *object);
+OBJ *o_update_component            (GschemToplevel *w_current, OBJECT *o_current);
 
 /* o_box.c */
-void o_box_invalidate_rubber(GschemToplevel *w_current);
-void o_box_start(GschemToplevel *w_current, int x, int y);
-void o_box_end(GschemToplevel *w_current, int x, int y);
-void o_box_motion(GschemToplevel *w_current, int x, int y);
-void o_box_draw_rubber(GschemToplevel *w_current);
+void o_box_invalidate_rubber       (GschemToplevel *w_current);
+void o_box_start                   (GschemToplevel *w_current, int x, int y);
+void o_box_end                     (GschemToplevel *w_current, int x, int y);
+void o_box_motion                  (GschemToplevel *w_current, int x, int y);
+void o_box_draw_rubber             (GschemToplevel *w_current);
 
 /* o_buffer.c */
-void o_buffer_copy(GschemToplevel *w_current, int buf_num);
-void o_buffer_cut(GschemToplevel *w_current, int buf_num);
-bool o_buffer_paste_start(GschemToplevel *w_current, int x, int y, int buf_num);
-void o_buffer_init(void);
-void o_buffer_free(GschemToplevel *w_current);
+void o_buffer_copy                 (GschemToplevel *w_current, int buf_num);
+void o_buffer_cut                  (GschemToplevel *w_current, int buf_num);
+bool o_buffer_paste_start          (GschemToplevel *w_current, int x, int y, int buf_num);
+void o_buffer_init                 (void);
+void o_buffer_free                 (GschemToplevel *w_current);
 
 /* o_bus.c */
-void o_bus_invalidate_rubber(GschemToplevel *w_current);
-void o_bus_start(GschemToplevel *w_current, int x, int y);
-int  o_bus_end(GschemToplevel *w_current, int x, int y);
-void o_bus_motion(GschemToplevel *w_current, int x, int y);
-void o_bus_draw_rubber (GschemToplevel *w_current);
+void o_bus_invalidate_rubber       (GschemToplevel *w_current);
+void o_bus_start                   (GschemToplevel *w_current, int x, int y);
+int  o_bus_end                     (GschemToplevel *w_current, int x, int y);
+void o_bus_motion                  (GschemToplevel *w_current, int x, int y);
+void o_bus_draw_rubber             (GschemToplevel *w_current);
 
 /* o_circle.c */
-void o_circle_invalidate_rubber(GschemToplevel *w_current);
-void o_circle_start(GschemToplevel *w_current, int x, int y);
-void o_circle_end(GschemToplevel *w_current, int x, int y);
-void o_circle_motion(GschemToplevel *w_current, int x, int y);
-void o_circle_draw_rubber (GschemToplevel *w_current);
+void o_circle_invalidate_rubber    (GschemToplevel *w_current);
+void o_circle_start                (GschemToplevel *w_current, int x, int y);
+void o_circle_end                  (GschemToplevel *w_current, int x, int y);
+void o_circle_motion               (GschemToplevel *w_current, int x, int y);
+void o_circle_draw_rubber          (GschemToplevel *w_current);
 
 /* o_complex.c */
-void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym);
-void o_complex_place_changed_run_hook(GschemToplevel *w_current);
-void o_complex_translate_all(GschemToplevel *w_current, int offset);
+void o_complex_prepare_place          (GschemToplevel *w_current, const CLibSymbol *sym);
+void o_complex_place_changed_run_hook (GschemToplevel *w_current);
+void o_complex_translate_all          (GschemToplevel *w_current, int offset);
 
 /* o_copy.c */
-void o_copy_start(GschemToplevel *w_current, int x, int y);
-void o_copy_cancel(GschemToplevel *w_current);
-void o_copy_end(GschemToplevel *w_current);
-void o_copy_multiple_end(GschemToplevel *w_current);
+void o_copy_start                  (GschemToplevel *w_current, int x, int y);
+void o_copy_cancel                 (GschemToplevel *w_current);
+void o_copy_end                    (GschemToplevel *w_current);
+void o_copy_multiple_end           (GschemToplevel *w_current);
 
 /* o_delete.c */
-void o_delete(GschemToplevel *w_current, OBJECT *object);
-void o_delete_selected(GschemToplevel *w_current);
+void o_delete                      (GschemToplevel *w_current, OBJECT *object);
+void o_delete_selected             (GschemToplevel *w_current);
 
 /* o_find.c */
-bool o_find_object(GschemToplevel *w_current, int x, int y, bool deselect_afterwards);
-OBJ *o_find_selected_object(GschemToplevel *w_current, int x, int y);
+bool o_find_object                 (GschemToplevel *w_current, int x, int y, bool deselect_afterwards);
+OBJ *o_find_selected_object        (GschemToplevel *w_current, int x, int y);
 
 /* o_grips.c */
-OBJ *o_grips_search_world(GschemToplevel *w_current, int x, int y, int *whichone);
-OBJ *o_grips_search_arc_world(GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
-OBJ *o_grips_search_box_world(GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
-OBJ *o_grips_search_path_world(GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
-OBJ *o_grips_search_picture_world(GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
-OBJ *o_grips_search_circle_world(GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
-OBJ *o_grips_search_line_world(GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
-int  o_grips_start(GschemToplevel *w_current, int x, int y);
-void o_grips_motion(GschemToplevel *w_current, int x, int y);
-void o_grips_end(GschemToplevel *w_current);
-void o_grips_cancel(GschemToplevel *w_current);
-int  o_grips_half_size(GschemToplevel *w_current, OBJECT *o_current);
-void o_grips_draw_rubber(GschemToplevel *w_current);
+OBJ *o_grips_search_world          (GschemToplevel *w_current, int x, int y, int *whichone);
+OBJ *o_grips_search_arc_world      (GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
+OBJ *o_grips_search_box_world      (GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
+OBJ *o_grips_search_path_world     (GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
+OBJ *o_grips_search_picture_world  (GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
+OBJ *o_grips_search_circle_world   (GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
+OBJ *o_grips_search_line_world     (GschemToplevel *w_current, OBJECT *o_current, int x, int y, int size, int *whichone);
+int  o_grips_start                 (GschemToplevel *w_current, int x, int y);
+void o_grips_motion                (GschemToplevel *w_current, int x, int y);
+void o_grips_end                   (GschemToplevel *w_current);
+void o_grips_cancel                (GschemToplevel *w_current);
+int  o_grips_half_size             (GschemToplevel *w_current, OBJECT *o_current);
+void o_grips_draw_rubber           (GschemToplevel *w_current);
 
 /* o_line.c */
-void o_line_invalidate_rubber(GschemToplevel *w_current);
-void o_line_start(GschemToplevel *w_current, int x, int y);
-void o_line_end(GschemToplevel *w_current, int x, int y);
-void o_line_motion(GschemToplevel *w_current, int x, int y);
-void o_line_draw_rubber(GschemToplevel *w_current);
-int  o_line_visible(GschemToplevel *w_current, LINE *line, int *x1, int *y1, int *x2, int *y2);
+void o_line_invalidate_rubber      (GschemToplevel *w_current);
+void o_line_start                  (GschemToplevel *w_current, int x, int y);
+void o_line_end                    (GschemToplevel *w_current, int x, int y);
+void o_line_motion                 (GschemToplevel *w_current, int x, int y);
+void o_line_draw_rubber            (GschemToplevel *w_current);
+int  o_line_visible                (GschemToplevel *w_current, LINE *line, int *x1, int *y1, int *x2, int *y2);
 
 /* o_misc.c */
-void o_edit(GschemToplevel *w_current, GList *list, int who);
-void o_lock(GschemToplevel *w_current);
-void o_unlock(GschemToplevel *w_current);
-void o_rotate_world_update(GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
-void o_mirror_world_update(GschemToplevel *w_current, int centerx, int centery, GList *list);
-void o_edit_show_hidden_lowlevel(GschemToplevel *w_current, const GList *o_list);
-void o_edit_show_hidden(GschemToplevel *w_current, const GList *o_list);
-int  o_edit_find_text(GschemToplevel *w_current, const GList *o_list, char *stext, int descend, int skip);
-void o_edit_hide_specific_text(GschemToplevel *w_current, const GList *o_list, char *stext);
-void o_edit_show_specific_text(GschemToplevel *w_current, const GList *o_list, char *stext);
-void o_autosave_backups(GschemToplevel *w_current);
+void o_edit                        (GschemToplevel *w_current, GList *list, int who);
+void o_lock                        (GschemToplevel *w_current);
+void o_unlock                      (GschemToplevel *w_current);
+void o_rotate_world_update         (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
+void o_mirror_world_update         (GschemToplevel *w_current, int centerx, int centery, GList *list);
+void o_edit_show_hidden_lowlevel   (GschemToplevel *w_current, const GList *o_list);
+void o_edit_show_hidden            (GschemToplevel *w_current, const GList *o_list);
+int  o_edit_find_text              (GschemToplevel *w_current, const GList *o_list, char *stext, int descend, int skip);
+void o_edit_hide_specific_text     (GschemToplevel *w_current, const GList *o_list, char *stext);
+void o_edit_show_specific_text     (GschemToplevel *w_current, const GList *o_list, char *stext);
+void o_autosave_backups            (GschemToplevel *w_current);
 
 /* o_move.c */
 void o_move_start(GschemToplevel *w_current, int x, int y);
@@ -606,30 +607,30 @@ void snap_size_dialog (GschemToplevel *w_current);
 void text_size_dialog (GschemToplevel *w_current);
 
 /* Editing-Dialogs */
-void x_dialog_edit_arc_angle(GschemToplevel *w_current, OBJECT *arc_object);
-void x_dialog_edit_fill_type(GschemToplevel *w_current);
-void x_dialog_edit_line_type(GschemToplevel *w_current);
-void x_dialog_edit_slot (GschemToplevel *w_current, const char *string);
-void x_dialog_find_text (GschemToplevel *w_current);
-void x_dialog_hide_text (GschemToplevel *w_current);
-void x_dialog_show_text (GschemToplevel *w_current);
-void x_dialog_text_input (GschemToplevel *w_current);
-void x_dialog_translate (GschemToplevel *w_current);
+void x_dialog_edit_arc_angle (GschemToplevel *w_current, OBJECT *arc_object);
+void x_dialog_edit_fill_type (GschemToplevel *w_current);
+void x_dialog_edit_line_type (GschemToplevel *w_current);
+void x_dialog_edit_slot      (GschemToplevel *w_current, const char *string);
+void x_dialog_find_text      (GschemToplevel *w_current);
+void x_dialog_hide_text      (GschemToplevel *w_current);
+void x_dialog_show_text      (GschemToplevel *w_current);
+void x_dialog_text_input     (GschemToplevel *w_current);
+void x_dialog_translate      (GschemToplevel *w_current);
 
 /* Systemic-Dialogs */
-void x_dialog_hotkeys (GschemToplevel *w_current);
-bool x_dialog_close_changed_page (GschemToplevel *w_current, PAGE *page);
-bool x_dialog_close_window (GschemToplevel *w_current);
-void x_dialog_raise_all (GschemToplevel *w_current);
-void x_dialog_symbol_changed (GschemToplevel* w_current);
-int  x_dialog_validate_attribute (GtkWindow* parent, char *attribute);
+void x_dialog_hotkeys              (GschemToplevel *w_current);
+bool x_dialog_close_changed_page   (GschemToplevel *w_current, PAGE *page);
+bool x_dialog_close_window         (GschemToplevel *w_current);
+void x_dialog_raise_all            (GschemToplevel *w_current);
+void x_dialog_symbol_changed       (GschemToplevel* w_current);
+int  x_dialog_validate_attribute   (GtkWindow* parent, char *attribute);
 
 /* Gschem-Generic-Dialogs */
-int   gschem_confirm_dialog(const char *, gEDA_MessageType context);
-char *gschem_filesel_dialog(const char *, const char *, int);
-void  gschem_message_dialog(const char *, gEDA_MessageType context, const char *title);
-void  gschem_markup_message_dialog(const char *msg1, const char *msg2,
-                                   gEDA_MessageType context, const char *title);
+int   gschem_confirm_dialog        (const char *, gEDA_MessageType context);
+char *gschem_filesel_dialog        (const char *, const char *, int);
+void  gschem_message_dialog        (const char *, gEDA_MessageType context, const char *title);
+void  gschem_markup_message_dialog (const char *msg1, const char *msg2,
+                                    gEDA_MessageType context, const char *title);
 /* x_attrib.c */
 int option_menu_get_history(GtkOptionMenu *option_menu);
 /*   attrib_edit_dialog_ok(GtkWidget *w, GschemToplevel *w_current);*/

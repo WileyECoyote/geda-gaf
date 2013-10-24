@@ -461,6 +461,94 @@ static void geda_entry_validate_input (GtkEntry    *entry,
   g_free (result);
 }
 
+static void
+geda_entry_drag_begin (GtkWidget      *widget,
+                       GdkDragContext *context)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+}
+
+static void
+geda_entry_drag_end (GtkWidget      *widget,
+                     GdkDragContext *context)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+
+}
+
+static void geda_entry_drag_leave (GtkWidget        *widget,
+                                   GdkDragContext   *context,
+                                   unsigned int      time)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  gtk_widget_queue_draw (widget);
+}
+
+static bool geda_entry_drag_drop (GtkWidget      *widget,
+                                  GdkDragContext *context,
+                                  int x, int y,
+                                  unsigned int time)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+
+
+  return FALSE; /* No continue */
+}
+
+static bool geda_entry_drag_motion (GtkWidget       *widget,
+                                    GdkDragContext  *context,
+                                    int              x,
+                                    int              y,
+                                    unsigned int     time)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+  return FALSE; /* not here */
+}
+
+static void
+geda_entry_drag_data_received (GtkWidget        *widget,
+                               GdkDragContext   *context,
+                               int              x,
+                               int              y,
+                               GtkSelectionData *selection_data,
+                               unsigned int     info,
+                               unsigned int     time)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+}
+
+static void
+geda_entry_drag_data_get (GtkWidget        *widget,
+                          GdkDragContext   *context,
+                          GtkSelectionData *selection_data,
+                          unsigned int      info,
+                          unsigned int      time)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+}
+
+static void
+geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
+{
+  GedaEntry   *geda_entry = GEDA_ENTRY   (widget);
+  if(geda_entry->enable_drag_n_drop)
+   g_print ("TODO: geda_entry_drag_data_get\n" );
+}
+
 static void geda_entry_class_init (GedaEntryClass *class)
 {
   GParamSpec     *params;
@@ -493,6 +581,15 @@ static void geda_entry_class_init (GedaEntryClass *class)
   class->drag_data_get        = widget_class->drag_data_get;
   class->drag_data_delete     = widget_class->drag_data_delete;
 
+  widget_class->drag_begin         = geda_entry_drag_begin;
+  widget_class->drag_end           = geda_entry_drag_end;
+  widget_class->drag_drop          = geda_entry_drag_drop;
+  widget_class->drag_motion        = geda_entry_drag_motion;
+  widget_class->drag_leave         = geda_entry_drag_leave;
+  widget_class->drag_data_received = geda_entry_drag_data_received;
+  widget_class->drag_data_get      = geda_entry_drag_data_get;
+  widget_class->drag_data_delete   = geda_entry_drag_data_delete;
+  
   params = g_param_spec_boolean ("activates-default",
                                _("Activates default"),
                                _("Whether to activate the default widget when Enter is pressed"),
@@ -634,6 +731,7 @@ static void geda_entry_init (GedaEntry *entry)
 
   /* set initial flag state for popup menu*/
   set_auto_complete           = FALSE;
+  entry->enable_drag_n_drop   = FALSE;
   entry->validation_mode      = ACCEPT_ALL_ASCII;
   entry->text_case            = BOTH_CASES;
   entry->activates_default    = FALSE;

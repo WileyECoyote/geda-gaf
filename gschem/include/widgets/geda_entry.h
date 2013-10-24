@@ -71,6 +71,7 @@ struct _GedaEntry
 {
         GtkEntry          parent;
         GedaEntryAccept   validation_mode;
+        volatile int      enable_drag_n_drop   : 1;
         volatile int      activates_default    : 1;
         volatile int      auto_complete        : 1;
         volatile int      history_index;

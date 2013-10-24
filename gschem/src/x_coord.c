@@ -1,6 +1,6 @@
 
 #include "x_dnd.h"
-#define DEBUG_DND_EVENTS 1
+#define DEBUG_DND_EVENTS 0
 
 /*!**** \section Coordinates-Dialog ( Coordinates Systemic-Dialogs) *****/
 
@@ -22,9 +22,9 @@ static unsigned int dnd_ntargets = G_N_ELEMENTS (dnd_target_list);
 
 /*! \brief When Drag Received from the Source
  *  \par Function Description
- * Called when the data has been received from the source. It should check
+ * Called when the data has been received from the source. We should check
  * the GtkSelectionData sent by the source, and do something with it. Finally
- * it needs to finish the operation by calling gtk_drag_finish, which will emit
+ * we need to finish the operation by calling gtk_drag_finish, which will emit
  * the "data-delete" signal if told to.
 */
 void
@@ -38,16 +38,16 @@ x_dialog_coord_dnd_drag_receive
   GtkWidget  *world_entry;
   GError     *err;
   char       *buffer;
-  const char *WidgetId;
+
 
   bool dnd_success           = FALSE;
   bool delete_selection_data = FALSE;
 
+#if DEBUG  || DEBUG_DND_EVENTS
+  const char *WidgetId;
   WidgetId = gtk_widget_get_name (widget);
-
-  #if DEBUG  || DEBUG_DND_EVENTS
   g_print ("%s: x_dialog_coord_dnd_drag_receive:", WidgetId);
-  #endif
+#endif
 
   toplevel = w_current->toplevel;
   err = NULL;
@@ -112,13 +112,13 @@ x_dialog_coord_dnd_drag_receive
              g_print (" Received TARGET_OBJECTS data while inside_action. save_state=%d\n", w_current->dnd_save_state);
              switch (w_current->dnd_save_state) {
              case ENDMOVE:  /* Dragged-Moved something to the coord entry */
-               g_print (" Set state to Moving data.\n");
+g_print (" Set state to Moving data.\n");
                i_set_state (w_current, ENDDND_MOVE_OBJ);
                break;
              case STARTCOPY:
              case ENDCOPY:
              case ENDCOMP:
-               g_print (" Set state to Copying data.\n");
+g_print (" Set state to Copying data.\n");
                i_set_state (w_current, ENDDND_COPY_OBJ);
              default:
                break;
@@ -126,7 +126,7 @@ x_dialog_coord_dnd_drag_receive
              w_current->dnd_state = w_current->event_state;
           }
           else {
-            g_print (" Received TARGET_OBJECTS but when not inside an action.\n");
+g_print (" Received TARGET_OBJECTS but when not inside an action.\n");
             w_current->inside_action = 1;
             i_set_state (w_current, ENDDND_COPY_OBJ);
           }
@@ -146,9 +146,9 @@ x_dialog_coord_dnd_drag_receive
     gtk_widget_grab_focus (world_entry);
   }
 
-  #if DEBUG  || DEBUG_DND_EVENTS
+#if DEBUG  || DEBUG_DND_EVENTS
   g_print ("\n");
-  #endif
+#endif
 }
 
 /*! \brief When Drag Motion over the Destination
@@ -188,15 +188,15 @@ bool x_dialog_coord_drag_drop
 
 #if DEBUG || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
-  g_print ("%s: x_dialog_coord_drag_drop", name);
+  g_print ("%s: x_dialog_coord_drag_drop\n", name);
 #endif
 
   /* Check to see if (x,y) is a valid drop site within widget */
   is_valid_drop_site = TRUE;
+  targets = NULL;
 
   /* If the source offers a target */
   if (gdk_drag_context_list_targets (context)) {
-
     /* Get a list of target types to choose from */
     targets = gdk_drag_context_list_targets(context);
 
@@ -206,10 +206,13 @@ bool x_dialog_coord_drag_drop
     index  = dnd_ntargets - 1;
     /* For each of our targets, look backwards to see if we find a match */
     for (target_entry = &dnd_target_list[index]; index > -1 ; index--) {
+      target_entry = &dnd_target_list[index];
       for (iter = targets; iter != NULL; iter = g_list_next (iter)) {
         target_type = GDK_POINTER_TO_ATOM(iter->data);
         if (!strcasecmp (target_entry->target, gdk_atom_name(target_type))) {
+#if DEBUG || DEBUG_DND_EVENTS
           g_print ("x_dialog_coord_drag_drop, requesting a %s\n", gdk_atom_name(target_type));
+#endif
           index = -1;
           break;
         }
@@ -236,6 +239,7 @@ bool x_dialog_coord_drag_drop
 #endif
 
   }
+
   return  is_valid_drop_site;
 }
 
@@ -342,9 +346,10 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
 
       w_current = Dialog->w_current;
       toplevel = w_current->toplevel;
-
-      g_print ("begin: <co_on_entry_activate> inside_action=%d, event_state=%d, dnd_save_state=%d\n", w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
-
+      
+#if DEBUG || DEBUG_DND_EVENTS
+g_print ("begin: <co_on_entry_activate> inside_action=%d, event_state=%d, dnd_save_state=%d\n", w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
+#endif
       /* If we were not in an action the just set the pointer to X,Y location */
       if (!w_current->inside_action) {
         x_event_set_pointer_position (w_current, x, y);
@@ -367,7 +372,7 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
           case ENDDND_COPY_OBJ:
             /* Object data is being copied, the objects in the buffer represent
              * new objects so set a flag so that we do not delete them! */
-            g_print ("co_on_entry_activate: setting no delete flag list\n" );
+            g_print ("co_on_entry_activate: setting no delete flag\n" );
             do_delete = FALSE;
 
             /* fall through */
@@ -384,12 +389,12 @@ static void co_on_entry_activate (GedaEntry *entry, GschemDialog *Dialog)
               }
 
               valid = TRUE;
-
+              //g_print ("co_on_entry_activate: fall thru ENDDND_MOVE_OBJ\n" );
               /* keep falling through */
 
               default:
                 if (do_delete) {
-                  g_print ("co_on_entry_activate: deleting the buff\n" );
+                  //g_print ("co_on_entry_activate: deleting the buff\n" );
                   s_delete_object_glist(toplevel, object_buffer[DND_BUFFER]);
                 }
                 if (!valid)

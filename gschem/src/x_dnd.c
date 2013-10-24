@@ -37,7 +37,7 @@
  * This implementation uses a different strategy, one that allows us to
  * utilize our current functionality. We manually initiate gtk_drag_begin
  * based on the leave_notify_event signal and our state variables. This
- * seem to solve most of our problems. The new coordinates dialog is also
+ * seems to solve most of our problems. The new coordinates dialog is
  * also a drop site, and not just for us but also for other instances.
  * We manage this by using a set of DND state flags, see x_coord.c.
  * 
@@ -420,7 +420,6 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer
   int   tail;
   int   len;
 
-  fprintf(stderr, "\n");
   result = FALSE;
 
   if (buffer) {
@@ -664,8 +663,10 @@ bool x_dnd_drag_drop
   GList          *iter;
   int             index;
 
+#if DEBUG  || DEBUG_DND_EVENTS
   const char *name = gtk_widget_get_name (widget);
   g_print ("\n%s: x_dnd_drag_drop, site is ", name);
+#endif
 
   /* Check to see if (x,y) is a valid drop site within widget */
   is_valid_drop_site = TRUE;
@@ -806,7 +807,6 @@ void x_dnd_drag_delete
   return;
 }
 
-//#if DEBUG  || DEBUG_DND_EVENTS
 /* Emitted when DnD begins. This is often used to present custom graphics. */
 void
 x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_current)
@@ -816,10 +816,9 @@ x_dnd_drag_begin (GtkWidget *widget, GdkDragContext *context, GschemToplevel *w_
   fflush(stdout);
   g_print ("%s: x_dnd_drag_begin, ia=%d, state=%d, dnd_save_state=%d\n", name, w_current->inside_action, w_current->event_state, w_current->dnd_save_state );
 #endif
- // gtk_drag_set_icon_stock(context, "geda-component", 0, 0);
+
   w_current->dnd_state = SELECT;
 }
-//#endif
 
 /*! \brief When Pointer Leaves the Drawing Area
  *  \par Function Description
