@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -92,8 +92,8 @@ s_symstruct_print(SYMCHECK *s_current)
       msg = (char *) list->data;
       /* printf("found info: %s\n", msg); */
       if (msg) {
-        s_log_message("Info: %s", msg);
-        g_free(msg);
+        u_log_message("Info: %s", msg);
+        GEDA_FREE(msg);
       }
 
       list = g_list_next(list);
@@ -107,8 +107,8 @@ s_symstruct_print(SYMCHECK *s_current)
 
       /* printf("found warning: %s\n", msg); */
       if (msg) {
-        s_log_message("Warning: %s", msg);
-        g_free(msg);
+        u_log_message("Warning: %s", msg);
+        GEDA_FREE(msg);
       }
 
       list = g_list_next(list);
@@ -122,8 +122,8 @@ s_symstruct_print(SYMCHECK *s_current)
 
       /* printf("found error: %s\n", msg); */
       if (msg && verbose_mode) {
-        s_log_message("ERROR: %s", msg);
-        g_free(msg);
+        u_log_message("ERROR: %s", msg);
+        GEDA_FREE(msg);
       }
 
       list = g_list_next(list);
@@ -136,8 +136,8 @@ s_symstruct_free(SYMCHECK *s_current)
 {
   if (s_current) {
 
-    g_free(s_current->device_attribute);
+    GEDA_FREE(s_current->device_attribute);
 
-    g_free(s_current);
+    GEDA_FREE(s_current);
   }
 }

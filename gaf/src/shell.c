@@ -74,7 +74,7 @@ static void
 cmd_shell_impl (void *data, int argc, char **argv)
 {
   int c, interactive = 1;
-  TOPLEVEL *toplevel;
+  GedaToplevel *toplevel;
 
   #include "shell.x"
 
@@ -109,13 +109,13 @@ cmd_shell_impl (void *data, int argc, char **argv)
 
   libgeda_init ();
   scm_dynwind_begin (0);
-  toplevel = s_toplevel_new ();
+  toplevel = geda_toplevel_new ();
   edascm_dynwind_toplevel (toplevel);
 
   /* Interactive, so enable readline support and print an abbreviated
    * version message. */
   if (interactive) {
-    printf ("gEDA %s (g%.7s)\n", PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
+    fprintf (stderr, "gEDA %s (g%.7s)\n", PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
     SCM expr = scm_list_3 (sym_begin,
                            scm_list_2 (sym_use_modules,
                                        scm_list_2 (sym_ice_9, sym_readline)),
@@ -126,7 +126,7 @@ cmd_shell_impl (void *data, int argc, char **argv)
 
   /* Now load rc files, if necessary */
   if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
-    g_rc_parse (toplevel, "gaf shell", NULL, NULL);
+    g_rc_parse ("gaf shell", NULL, NULL);
   }
   i_vars_libgeda_set (toplevel); /* Ugh */
 

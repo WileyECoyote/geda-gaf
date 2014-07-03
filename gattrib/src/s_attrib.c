@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -63,10 +63,10 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 
     local_name = u_basic_breakup_string(local_list_item->data, '=', 0);
     if (strcmp(local_name, name) == 0) {
-      g_free (local_name);
+      GEDA_FREE (local_name);
       return TRUE;
     }
-    g_free (local_name);
+    GEDA_FREE (local_name);
   }
   return FALSE;
 }
@@ -82,12 +82,12 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
  *         it returns a refdes of the form
  *         refdes.slot. If no refdes is found, it returns NULL.
  */
-char *s_attrib_get_refdes(OBJECT *object)
+char *s_attrib_get_refdes(Object *object)
 {
   char *temp_uref;
   char *numslots;
   char *slot_value;
-  OBJECT *slot_text_object;
+  Object *slot_text_object;
 
   /*------ Try to get the refdes -----*/
   temp_uref = o_attrib_search_object_attribs_by_name (object, "refdes", 0);

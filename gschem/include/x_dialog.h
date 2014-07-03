@@ -30,6 +30,8 @@
   g_object_set_data_full (G_OBJECT (component), name, \
   gtk_widget_ref (widget), (GDestroyNotify) gtk_widget_unref)
 
+#include "geda_dialog_controls.h"
+
 /* Define spacings for dialogs. Defines are in a sperate header,
  * some dialog use only the define, for example x_compselect
  */
@@ -40,8 +42,6 @@
  * for that */
 #include "gschem_dialog.h"
 
-//#include "x_compselect.h"
-//#include "x_dialog.h"
 #include "x_console.h"
 #include "x_multiattrib.h"
 #include "x_pagesel.h"
@@ -73,17 +73,17 @@ struct st_fill_type_data {
 };
 struct st_pin_type_data {
 
-  GtkWidget *pin_type;
+  GtkWidget *node_type;
   GtkWidget *number_spin;
   GtkWidget *sequence_spin;
   GtkWidget *label_entry;
-  GtkWidget *pin_attribute;
+  GtkWidget *pin_electrical;
+  GtkWidget *pin_mechanical;
 
-  GtkWidget *set_type;
-  GtkWidget *set_attributes;
+  GtkWidget *set_node_type;
+  GtkWidget *set_elect_type;
+  GtkWidget *set_mech_type;
   GtkWidget *auto_number;
   GtkWidget *auto_sequence;
-
-
 };
 #endif /* __X_DIALOG_H__ */

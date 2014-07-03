@@ -1,7 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
- *
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 2010-2013 gEDA Contributors (see ChangeLog for details)
+ * 
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
@@ -14,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #ifndef __X_MULTIATTRIB_H__
@@ -40,7 +42,13 @@ struct _MultiattribClass {
 struct _Multiattrib {
   GschemDialog parent_instance;
 
-  OBJECT *object;
+  GedaList *object_list;
+  int       total_num_in_list;
+  int       num_complex_in_list;
+  int       num_pins_in_list;
+  int       num_nets_in_list;
+  int       num_buses_in_list;
+  int       num_lone_attribs_in_list;
 
   GtkTreeView    *treeview;
 
@@ -54,12 +62,16 @@ struct _Multiattrib {
 
   GdkColor       value_normal_text_color;   /* Workaround for lameness in GtkTextView */
   GdkColor       insensitive_text_color;
+  GdkColor       not_identical_value_text_color;
+  GdkColor       not_present_in_all_text_color;
+
+  GList         *model_rows;
+
+  unsigned long  object_list_changed_id;
 };
 
 
-GType multiattrib_get_type (void);
-
-void multiattrib_update (Multiattrib *multiattrib);
+unsigned int multiattrib_get_type (void);
 
 /* CellTextView */
 
@@ -85,7 +97,7 @@ struct _CellTextView {
 };
 
 
-GType celltextview_get_type (void);
+unsigned int celltextview_get_type (void);
 
 
 /* CellRendererMultiLineText */
@@ -111,13 +123,13 @@ struct _CellRendererMultiLineText {
   /*< private >*/
   unsigned int  focus_out_id;
   unsigned int  in_buffer_menu;
-  unsigned long populate_popup_id;
-  unsigned long buffer_menu_popdown_timeout;
+  //unsigned long populate_popup_id;
+  //unsigned long buffer_menu_popdown_timeout;
 
   GtkWidget *buffer;
 };
 
-GType cellrenderermultilinetext_get_type (void);
+unsigned int cellrenderermultilinetext_get_type (void);
 
 #define CR_SINGLE_LINE GTK_TYPE_CELL_RENDERER_TEXT
 #define CR_MULTI_LINE  TYPE_CELL_RENDERER_MULTI_LINE_TEXT

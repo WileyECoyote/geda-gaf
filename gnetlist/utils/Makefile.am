@@ -1,4 +1,5 @@
 ## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 bin_PROGRAMS = mk_verilog_syms
 

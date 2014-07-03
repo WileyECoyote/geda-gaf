@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2013 Ales Hvezda
+ * Copyright (C) 1998-2014 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -82,11 +82,11 @@ struct _GschemDialog {
   GtkWindow       *parent_window;
   GschemToplevel  *w_current;
   SELECTION       *selection;
-  void (*func) (GschemToplevel *w_current, OBJECT *object);
+  void (*func) (GschemToplevel *w_current, Object *object);
 };
 
 
-GType gschem_dialog_get_type (void);
+unsigned int gschem_dialog_get_type (void);
 GtkWidget* gschem_dialog_new_empty (const char           *title,
                                           GtkWindow      *parent,
                                           GtkDialogFlags  flags,

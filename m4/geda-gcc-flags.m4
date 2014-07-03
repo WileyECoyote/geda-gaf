@@ -1,8 +1,8 @@
 # geda-gcc-flags.m4                                     -*-Autoconf-*-
-# serial 1.0
+# serial 1.1
 
 dnl Add GCC-specific C compiler flags
-dnl Copyright (C) 2009  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
 # Adds the argument to GCC_CFLAGS if the compiler is GCC.
 AC_DEFUN([AX_GCC_FLAGS],
@@ -29,4 +29,5 @@ AC_DEFUN([AX_GCC_FLAGS],
   fi
 
   AC_SUBST([GCC_CFLAGS])
-])
+ []dnl
+])dnl

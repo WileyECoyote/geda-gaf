@@ -362,7 +362,7 @@ void parse_component(int fd1,int fd2)
         break;
     }
   } else {
-    fprintf(stderr,"Couldn't find symbol %s in file: %s\n"
+    fprintf(stderr,"Could nit find symbol %s in file: %s\n"
     "Position on sheet will be uncertain\n", partname, full_filename);
   }
 
@@ -371,8 +371,8 @@ void parse_component(int fd1,int fd2)
   fprintf(stdout,"{\n");
 
 #if 0
-  /* For sarlacc debugging purposes, it's useful to see
-   *       if a component is mirrored and how much it's rotated */
+  /* For sarlacc debugging purposes, it is useful to see
+   *       if a component is mirrored and how much it is rotated */
   fprintf(stdout,"T %d %d %d %d %d 1 0 0\nmirror=%d\n",
           refx,refy,GRAPHIC_COLOR,TEXTSIZE,0,mirror);
   fprintf(stdout,"T %d %d %d %d %d 1 0 0\nrotation=%d\n",

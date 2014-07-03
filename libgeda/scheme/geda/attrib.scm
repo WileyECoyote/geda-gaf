@@ -51,7 +51,8 @@
   (if (component? object)
       (filter! (lambda (x) (and (attribute? x) (not (attrib-attachment x))))
                (component-contents object))
-      '()))
+      '()
+) )
 
 (define-public (promote-attribs! object)
   (let ((p (or (object-page object)

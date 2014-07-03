@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * 
- * Copyright (C) 2012 Wiley Edward Hill
+ * Copyright (C) 2012-2014 Wiley Edward Hill
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -71,28 +71,28 @@ struct _GattribDialogClass {
 
   void (*geometry_save)    (GattribDialog *dialog,
                             GKeyFile *key_file,
-                            gchar *group_name);
+                            char *group_name);
   void (*geometry_restore) (GattribDialog *dialog,
                             GKeyFile *key_file,
-                            gchar *group_name);
+                            char *group_name);
 };
 
 struct _GattribDialog {
   GtkDialog parent_instance;
 
-  gchar *settings_name;
-  TOPLEVEL *pr_current;
+  char *settings_name;
+  GedaToplevel *pr_current;
 };
 
 
-GType gattrib_dialog_get_type (void);
+unsigned int gattrib_dialog_get_type (void);
 GtkWidget* gattrib_dialog_new_empty (const char            *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
                                            const char *settings_name);
 
 GtkWidget* gattrib_dialog_new_with_buttons (const char *title, GtkWindow *parent, GtkDialogFlags flags,
-                                            const char *settings_name, const gchar *first_button_text, ...);
+                                            const char *settings_name, const char *first_button_text, ...);
 
 /* Prototypes for Dialogs */
 GtkWidget* create_geda_switch(GtkWidget *Dialog, GtkWidget *parent,

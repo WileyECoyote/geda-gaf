@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  *
- * Copyright (C) 2003-2013 Stuart D. Brorson.
- * Copyright (C) 2003-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 
 /*------------------------------------------------------------------*/
@@ -42,7 +43,6 @@
 #include <gdk/gdk.h>
 #include <gdk/gdkkeysyms.h>
 
-
 #include <glib.h>
 #include <glib-object.h>
 
@@ -53,6 +53,8 @@
 #include "gtksheet.h"
 
 #include "gattrib.h"  /* include Gattrib specific headers  */
+#include "geda_gui_funcs.h"
+#include "geda_widgets.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -138,7 +140,7 @@ static int popup_activated(GtkWidget *widget, IDS_Popup_items* selection)
         gtk_sheet_range_clear(sheet, &sheet->range);
         break;
       default:
-          s_log_message("button_responder(): UKNOWN BUTTON ID: %d\n", WhichItem);
+          u_log_message("button_responder(): UKNOWN BUTTON ID: %d\n", WhichItem);
     } /* End Switch WhichItem */
 
     gtk_widget_destroy(popup);
@@ -223,7 +225,9 @@ static GtkWidget *build_menu(GtkWidget *sheet)
  * is released the build_menu function is called to create the mouse
  * menu.
  *
- *  \param [in] sheet is the active sheet widget
+ *  \param [in] widget is the active sheet widget
+ *  \param [in] event  the mouse event record
+ *  \param [in] data   NULL, this parameter is not used
  */
 static int on_mouse_button_press(GtkWidget *widget,
                                  GdkEventButton *event, gpointer data)
@@ -248,11 +252,13 @@ static int on_mouse_button_press(GtkWidget *widget,
     }
     return (FALSE);
 }
+
 /*! \brief Callback for key-press event
  *
  *  \par Function Description
  *
- *  \param [in] sheet is the active sheet widget
+ *  \param [in] widget is the active sheet widget
+ *  \param [in] key    Keyboard Event record
  */
 static int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
 {
@@ -344,10 +350,10 @@ static void on_change(GtkWidget *widget, int row, int col, gpointer data)
  * This function is call each time a cell is selected. This function
  * copies the cell text to a temporary string buffer.
  *
- *  \param [in] sheet is the active sheet widget
- *  \param [in] row integer value of the row of the selected cell
- *  \param [in] col integer value of the column of the selected cell
- *  \param [in] data NULL, this parameter is not used
+ *  \param [in] widget is the active sheet widget
+ *  \param [in] row    integer value of the row of the selected cell
+ *  \param [in] col    integer value of the column of the selected cell
+ *  \param [in] data   NULL, this parameter is not used
  *
  *  \retval [out] TRUE
  */
@@ -374,10 +380,10 @@ static bool on_activate_cell(GtkWidget *widget, int row, int col, gpointer data)
  * If the strings are not equal the the CHANGE flag is set and the
  * x_window_update_title is called.
  *
- *  \param [in] sheet is the active sheet widget
- *  \param [in] row integer value of the row of the selected cell
- *  \param [in] col integer value of the column of the selected cell
- *  \param [in] Sheet_data Pointer to data structure
+ *  \param [in] widget    is the active sheet widget
+ *  \param [in] row       integer value of the row of the selected cell
+ *  \param [in] col       integer value of the column of the selected cell
+ *  \param [in] PageData  Pointer to page data structure
  *
  *  \retval [out] TRUE
  */
@@ -420,8 +426,9 @@ static bool on_traverse(GtkWidget *widget,
  * This function is  setup the callbacks for the Component sheet.
  * Note that we only use 3 before returing. The others are listed
  * for possiable future.
+ *
  *  \param [in] sheet is the active sheet widget
- *  \param [in] Sheet_data Pointer to data structure
+ *  \param [in] PageData Pointer to data structure
  *
  */
 void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
@@ -467,33 +474,7 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
                     (GtkSignalFunc) on_traverse,
                     NULL);
 }
-/*! \brief Call Back on cell de-activate
- *
- *  \par Function Description
- * This function is Not used
- *
- *  \param [in] widget is the active sheet widget
- *  \param [in] insert ptr to text string
- *  \param [in] text_length integer length of text string
- *  \param [in] position integer not used, dunno
- *  \param [in] data pointer to unknown not used
- *
 
-void set_cell(GtkWidget *widget, char *insert, int text_length,
-              int position, gpointer data)
-{
-  const char *text;
-  GtkEntry *sheet_entry;
-
-  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(GTK_SHEET(widget)));
-
-  if((text = gtk_entry_get_text (sheet_entry))) {
-    gtk_entry_set_text(GTK_ENTRY(entry), text);
-  }
-  GTK_WIDGET_UNSET_FLAGS(entry, GTK_HAS_FOCUS);
-  GTK_WIDGET_SET_FLAGS(GTK_SHEET(widget)->sheet_entry, GTK_HAS_FOCUS);
-}
- */
 /* Call back for Entry Combo "change" signal*/
 void show_sheet_entry(GtkWidget *widget, gpointer data)
 {
@@ -506,8 +487,8 @@ void show_sheet_entry(GtkWidget *widget, gpointer data)
  sheet=x_gtksheet_get_current_sheet();
  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
- if((text=gtk_entry_get_text (GTK_ENTRY(entry)))){
-   gtk_entry_set_text(sheet_entry, text);
+ if((text = GetEntryText(sheet_entry))){
+   SetEntryText(sheet_entry, text);
  }
 }
 /*! \brief Call back for Entry Combo activate*/
@@ -526,8 +507,7 @@ void activate_sheet_entry(GtkWidget *widget, gpointer data)
   if(GTK_IS_ITEM_ENTRY(sheet_entry))
          justification = GTK_ITEM_ENTRY(sheet_entry)->justification;
 
-  gtk_sheet_set_cell(sheet, row, col, justification,
-		     gtk_entry_get_text (sheet_entry));
+  gtk_sheet_set_cell(sheet, row, col, justification, GetEntryText(sheet_entry));
 
 }
 /*! \brief Call back for "change" signal from embeded Entry widget */
@@ -542,39 +522,39 @@ void show_entry(GtkWidget *widget, gpointer data)
  sheet=x_gtksheet_get_current_sheet();
  sheet_entry = gtk_sheet_get_entry(sheet);
 
- if((text=gtk_entry_get_text (GTK_ENTRY(sheet_entry))))
-			  gtk_entry_set_text(GTK_ENTRY(entry), text);
+ if((text=GetEntryText (sheet_entry)))
+   SetEntryText(entry, text);
 
 }
 /*! \brief Call back for "activate" signal from sheet cell array widget */
 int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
 {
-  GtkSheet *sheet;
-  GtkEntry *sheet_entry;
-  char cell[100];
-  const char *text;
   GtkSheetCellAttr attributes;
+  GtkSheet   *sheet;
+  GtkEntry   *sheet_entry;
+  char        cell[100];
+  const char *text;
 
   sheet=GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
   if(GTK_SHEET(widget)->column[column].name)
-   sprintf(cell,"  %s:%d  ",GTK_SHEET(widget)->column[column].name, row);
+    sprintf(cell,"  %s:%d  ",GTK_SHEET(widget)->column[column].name, row);
   else
-   sprintf(cell, "R:%d C: %d", row, column);
+    sprintf(cell, "R:%d C: %d", row, column);
 
   gtk_label_set(GTK_LABEL(location), cell);
 
   gtk_entry_set_max_length(GTK_ENTRY(entry),
-	GTK_ENTRY(sheet_entry)->text_max_length);
+                           GTK_ENTRY(sheet_entry)->text_max_length);
 
-  if((text=gtk_entry_get_text(GTK_ENTRY(gtk_sheet_get_entry(sheet)))))
-			  gtk_entry_set_text(GTK_ENTRY(entry), text);
+  if ( ( text = GetEntryText(gtk_sheet_get_entry(sheet))))
+    SetEntryText(entry, text);
   else
-			  gtk_entry_set_text(GTK_ENTRY(entry), "");
+    SetEntryText(entry, "");
 
   gtk_sheet_get_attributes(sheet,sheet->active_cell.row,
-				sheet->active_cell.col, &attributes);
+                           sheet->active_cell.col, &attributes);
 
   gtk_entry_set_editable(GTK_ENTRY(entry), attributes.is_editable);
 
@@ -909,11 +889,12 @@ void x_gtksheet_set_cell_bgcolor(GtkSheet *sheet, int row, int col,
  * attribute.
  *
  * \param sheet GtkSheet to add the cell item to
- * \param i
- * \param j
+ * \param row
+ * \param col
  * \param text
  * \param visibility
  * \param show_name_value
+ * \param is_inherited
  */
 void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
                               int visibility, int show_name_value, int is_inherited)
@@ -938,7 +919,9 @@ void x_gtksheet_add_cell_item(GtkSheet *sheet, int row, int col, char *text,
  * Get the first column selected in the GtkSheet
  * Returns the index of the first column selected, or -1 if
  *         no column is selected.
+ *
  * \param sheet GtkSheet to query
+ *
  * \returns index of the first column selected, or -1 if
  *          no column is selected.
  */
@@ -953,7 +936,9 @@ int x_gtksheet_get_min_col(GtkSheet *sheet) {
 /*! \brief Get the last column selected in the GtkSheet
  *  \par Function Description
  * Get the last column selected in the GtkSheet
- * \param GtkSheet to query
+ *
+ * \param sheet The GtkSheet object to query
+ *
  * \returns the index of the last column selected, or -1 if
  *         no column is selected.
  */
@@ -966,6 +951,7 @@ int x_gtksheet_get_max_col(GtkSheet *sheet) {
 }
 
 /*! \brief Copy a GtkSheet Range
+ *
  *  \par Function Description
  * This functions set the integer values in the Target Ranges to
  * the values in the Source Range
@@ -983,11 +969,14 @@ void x_gtksheet_range_copy(GtkSheetRange *s_range, GtkSheetRange *t_range)
 }
 
 /*! \brief Set Range to Maxium value
+ *
  *  \par Function Description
  * This function set the values in a Range structure from the first cell
  * on a sheet to the last cell on the sheet.
  *
- * \param GtkSheet to query
+ * \param sheet The GtkSheet object to query
+ * \param range pointer to a source Range structure
+ *
  * \returns the index of the last column selected, or -1 if
  *         no column is selected.
  */

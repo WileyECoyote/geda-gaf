@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ *  MA 02110-1301 USA
  */
 
 #include <config.h>
@@ -34,10 +35,10 @@
 #include "../include/prototype.h"
 #include "../include/gettext.h"
 
-int s_check_all(TOPLEVEL *pr_current)
+int s_check_all(GedaToplevel *pr_current)
 {
   GList *iter;
-  PAGE *p_current;
+  Page *p_current;
   int return_status=0;
 
 
@@ -45,13 +46,13 @@ int s_check_all(TOPLEVEL *pr_current)
        iter != NULL;
   iter = g_list_next( iter ) ) {
 
-    p_current = (PAGE *)iter->data;
+    p_current = (Page *)iter->data;
 
-    if (s_page_objects (p_current)) {
+    if (s_page_get_objects (p_current)) {
       return_status = return_status +
       s_check_symbol (pr_current, p_current,
-                      s_page_objects (p_current));
-      if (!quiet_mode) s_log_message("\n");
+                      s_page_get_objects (p_current));
+      if (!quiet_mode) u_log_message("\n");
     }
   }
 
@@ -60,7 +61,7 @@ int s_check_all(TOPLEVEL *pr_current)
 
 
 int
-s_check_symbol (TOPLEVEL *pr_current, PAGE *p_current, const GList *obj_list)
+s_check_symbol (GedaToplevel *pr_current, Page *p_current, const GList *obj_list)
 {
   SYMCHECK *s_symcheck=NULL;
   int errors=0, warnings=0;
@@ -68,7 +69,7 @@ s_check_symbol (TOPLEVEL *pr_current, PAGE *p_current, const GList *obj_list)
   s_symcheck = s_symstruct_init();
 
   if (!quiet_mode) {
-    s_log_message(_("Checking: %s\n"), p_current->page_filename);
+    u_log_message(_("Checking: %s\n"), p_current->filename);
   }
 
   /* overal symbol structure test */
@@ -120,30 +121,30 @@ s_check_symbol (TOPLEVEL *pr_current, PAGE *p_current, const GList *obj_list)
     s_symstruct_print(s_symcheck);
 
     if (s_symcheck->warning_count > 0) {
-      s_log_message(_("%d warnings found "), s_symcheck->warning_count);
+      u_log_message(_("%d warnings found "), s_symcheck->warning_count);
       if (verbose_mode < 2) {
-        s_log_message(_("(use -vv to view details)\n"));
+        u_log_message(_("(use -vv to view details)\n"));
       } else {
-        s_log_message("\n");
+        u_log_message("\n");
       }
     }
 
     if (s_symcheck->error_count == 0) {
-      s_log_message(_("No errors found\n"));
+      u_log_message(_("No errors found\n"));
     } else if (s_symcheck->error_count == 1) {
-      s_log_message(_("1 ERROR found "));
+      u_log_message(_("1 ERROR found "));
       if (verbose_mode < 1) {
-        s_log_message(_("(use -v to view details)\n"));
+        u_log_message(_("(use -v to view details)\n"));
       } else {
-        s_log_message("\n");
+        u_log_message("\n");
       }
 
     } else if (s_symcheck->error_count > 1) {
-      s_log_message(_("%d ERRORS found "), s_symcheck->error_count);
+      u_log_message(_("%d ERRORS found "), s_symcheck->error_count);
       if (verbose_mode < 1) {
-        s_log_message(_("(use -v to view details)\n"));
+        u_log_message(_("(use -v to view details)\n"));
       } else {
-        s_log_message("\n");
+        u_log_message("\n");
       }
     }
   }
@@ -179,7 +180,7 @@ void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
   char **tokens;
 
   char *valid_pin_attributes[] = {"pinlabel", "pintype",
-  "pinseq", "pinnumber",
+  "pinseq", "pinnumber", "electtype", "mechtype",
   NULL};
   /*
    * const char* DefaultAttributeList[] = { "source", "model-name", "model",
@@ -197,7 +198,7 @@ void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
   /* pin# ?, slot# ? */
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT) {
       tokens = g_strsplit(o_current->text->string,"=", 2);
@@ -260,7 +261,7 @@ void
 s_check_text (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  OBJECT *o_current;
+  Object *o_current;
   bool overbar_started, escape, leave_parser;
   char *message;
   char *text_string, *ptr;
@@ -349,7 +350,7 @@ s_check_graphical (const GList *obj_list, SYMCHECK *s_current)
 
   if (temp) {
     s_current->graphical_symbol=TRUE;
-    g_free(temp);
+    GEDA_FREE(temp);
   }
 }
 
@@ -391,7 +392,7 @@ s_check_device (const GList *obj_list, SYMCHECK *s_current)
     s_current->warning_count++;
   }
 
-  g_free(temp);
+  GEDA_FREE(temp);
 }
 
 
@@ -412,7 +413,7 @@ s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN)
     {
@@ -458,14 +459,14 @@ s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
             s_current->error_count++;
         }
 
-        g_free(string);
+        GEDA_FREE(string);
 
         /* this is the first attribute found */
         if (!found_first) {
           found_numbers = g_list_append(found_numbers, number);
           found_first=TRUE;
         } else {
-          g_free(number);
+          GEDA_FREE(number);
         }
 
         counter++;
@@ -514,7 +515,7 @@ s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
   ptr1 = found_numbers;
   while (ptr1)
   {
-    g_free(ptr1->data);
+    GEDA_FREE(ptr1->data);
     ptr1 = g_list_next(ptr1);
   }
   g_list_free(found_numbers);
@@ -577,7 +578,7 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
                                                message);
       s_current->numnetpins++;
     }
-    g_free(net);
+    GEDA_FREE(net);
     g_strfreev(net_tokens);
     g_strfreev(pin_tokens);
   }
@@ -605,7 +606,7 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
 
   /* collect all pin numbers */
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
       s_current->numpins++;
@@ -632,7 +633,7 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
                                                   message);
         multiple_pinnumber_attrib_sum++;
         s_current->error_count++;
-        g_free(string);
+        GEDA_FREE(string);
       }
                                                              }
 
@@ -683,7 +684,7 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
     if (i == 0) {
       if (!quiet_mode && verbose_mode > 0) {
 
-        s_log_message(_("Notice: net attribute using defined pin number [%s]\n"),
+        u_log_message(_("Notice: net attribute using defined pin number [%s]\n"),
                       (char*) cur->data);
       }
       cur = g_list_next(cur);
@@ -715,7 +716,7 @@ s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
       x1 = o_current->line->x[0];
@@ -727,7 +728,7 @@ s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
         message = g_strdup_printf(_("Found offgrid pin at location"
         " (x1=%d,y1=%d)\n"), x1, y1);
         /* error if it is the whichend, warning if not */
-        if (o_current->whichend == 0) {
+        if (o_current->pin->whichend == 0) {
           s_current->error_messages = g_list_append(s_current->error_messages,
                                                     message);
           s_current->error_count++;
@@ -742,7 +743,7 @@ s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
         message = g_strdup_printf(_("Found offgrid pin at location"
         " (x2=%d,y2=%d)\n"), x2, y2);
         /* error when whichend, warning if not */
-        if (o_current-> whichend != 0) {
+        if (o_current->pin->whichend != 0) {
           s_current->error_messages = g_list_append(s_current->error_messages,
                                                     message);
           s_current->error_count++;
@@ -791,7 +792,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
   s_current->numslots=atoi(value);
   sprintf(numslots_str, "%d", s_current->numslots);
-  g_free(value);
+  GEDA_FREE(value);
 
   message = g_strdup_printf (_("Found numslots=%s attribute\n"), numslots_str);
   s_current->info_messages = g_list_append(s_current->info_messages,
@@ -854,7 +855,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     }
 
     slot = atoi(slotnum);
-    g_free(slotnum);
+    GEDA_FREE(slotnum);
 
     /* make sure that the slot # is less than the number of slots */
     if (slot > s_current->numslots) {
@@ -923,7 +924,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     j = 0;
     do {
       if (temp) {
-        g_free(temp);
+        GEDA_FREE(temp);
         temp = NULL;
       }
 
@@ -948,7 +949,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
                                                     message);
           s_current->error_count++;
           s_current->slotting_errors++;
-          g_free(temp);
+          GEDA_FREE(temp);
           temp = NULL;
           break;
       }
@@ -965,9 +966,9 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
       j++;
     } while (temp);
 
-    g_free(temp);
+    GEDA_FREE(temp);
 
-    g_free(slotdef);
+    GEDA_FREE(slotdef);
     slotdef = NULL;
 
     i++;
@@ -1015,7 +1016,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
                 cmp = u_basic_breakup_string(pinlist[j], ',', m);
                 if (cmp && *cmp) {
                   match = (0 == strcmp (pin, cmp));
-                  g_free(cmp);
+                  GEDA_FREE(cmp);
                 }
               }
             }
@@ -1023,7 +1024,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
               /* If they don't match, then increase the number of pins */
               s_current->numslotpins++;
             }
-            g_free(pin);
+            GEDA_FREE(pin);
           }
         }
       }
@@ -1034,13 +1035,13 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     }
   }
 
-  g_free(slotdef);
+  GEDA_FREE(slotdef);
   if (pinlist) {
     /* Free the pinlist */
     for (i = 0; i < s_current->numslots; i++) {
-      g_free(pinlist[i]);
+      GEDA_FREE(pinlist[i]);
     }
-    g_free(pinlist);
+    GEDA_FREE(pinlist);
   }
 
   return;
@@ -1057,7 +1058,7 @@ s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT)
     {
@@ -1129,7 +1130,7 @@ s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_TEXT)
     {
@@ -1196,7 +1197,7 @@ s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_NET)
     {
@@ -1228,7 +1229,7 @@ s_check_connections (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->conn_list) {
       message =
@@ -1242,7 +1243,7 @@ s_check_connections (const GList *obj_list, SYMCHECK *s_current)
 }
 
 void
-s_check_missing_attribute(OBJECT *object, char *attribute, SYMCHECK *s_current)
+s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current)
 {
   char *string;
   int found_first=FALSE;
@@ -1287,7 +1288,7 @@ s_check_missing_attribute(OBJECT *object, char *attribute, SYMCHECK *s_current)
         found_first=TRUE;
     }
 
-    g_free(string);
+    GEDA_FREE(string);
 
     counter++;
     string = o_attrib_search_object_attribs_by_name (object, attribute, counter);
@@ -1302,7 +1303,7 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN)
     {
@@ -1376,7 +1377,7 @@ void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
   NULL};
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
 
@@ -1396,8 +1397,8 @@ void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
         s_current->error_count++;
       }
 
-      g_free(pintype);
-                                                              }
+      GEDA_FREE(pintype);
+      }
     }
   }
 }

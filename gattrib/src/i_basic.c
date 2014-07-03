@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib - gEDA gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 1998-2012 Ales V. Hvezda
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 1998-2014 Ales V. Hvezda
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@
  *
  * ------------------------------------------------------------- */
 #if 0 /* not used, but leaving it here in case we need it later */
-static void i_update_status(TOPLEVEL *toplevel, const char *string)
+static void i_update_status(GedaToplevel *toplevel, const char *string)
 {
   if (!toplevel->status_label) {
     return;

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ *  MA 02110-1301 USA
  */
 
 #ifdef HAVE_STRING_H
@@ -47,7 +48,7 @@ main_prog(void *closure, int argc, char *argv[])
   int exit_status;
   char *cwd;
 
-  TOPLEVEL *pr_current;
+  GedaToplevel *pr_current;
 
   argv_index = parse_commandline(argc, argv);
   cwd = g_get_current_dir();
@@ -57,7 +58,7 @@ main_prog(void *closure, int argc, char *argv[])
   /* create log file right away */
   /* even if logging is enabled */
   x_log_update_func = s_log_update;
-  s_log_init ("gsymcheck");
+  u_log_init ("gsymcheck");
 
   log_destiny=STDOUT_TTY;
 
@@ -70,8 +71,8 @@ main_prog(void *closure, int argc, char *argv[])
   /* register guile (scheme) functions */
   g_register_funcs();
 
-  pr_current = s_toplevel_new ();
-  g_rc_parse (pr_current, argv[0], "gsymcheckrc", rc_filename);
+  pr_current = geda_toplevel_new ();
+  g_rc_parse (argv[0], "gsymcheckrc", rc_filename);
 
   i_vars_set(pr_current);
 
@@ -94,7 +95,7 @@ main_prog(void *closure, int argc, char *argv[])
 
     if (!f_open (pr_current,
       pr_current->page_current,
-      pr_current->page_current->page_filename,
+      pr_current->page_current->filename,
       &err)) {
       /* Not being able to load a file is apparently a fatal error */
       log_destiny = STDOUT_TTY;
@@ -105,7 +106,7 @@ main_prog(void *closure, int argc, char *argv[])
         g_message (_("Loaded file [%s]\n"), filename);
       }
       i++;
-      g_free (filename);
+      GEDA_FREE (filename);
   }
 
   if (argv[argv_index] == NULL) {
@@ -113,7 +114,7 @@ main_prog(void *closure, int argc, char *argv[])
     usage(argv[0]);
   }
 
-  g_free(cwd);
+  GEDA_FREE(cwd);
 
   log_destiny=STDOUT_TTY;
 
@@ -121,7 +122,7 @@ main_prog(void *closure, int argc, char *argv[])
   s_page_print_all(pr_current);
 #endif
 
-  if (!quiet_mode) s_log_message("\n");
+  if (!quiet_mode) u_log_message("\n");
 
   exit_status = s_check_all(pr_current);
 

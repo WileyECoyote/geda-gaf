@@ -25,7 +25,7 @@ G_BEGIN_DECLS
 
 /* ---------------------------------------------------------------- */
 
-/*! \class GschemHotkeyStore gschemhotkeystore.h "gschemhotkeystore.h"
+/*! \class GschemHotkeyStore gschem_hotkeystore.h "gschem_hotkeystore.h"
  * \brief GtkTreeModel that contains keybinding data.
  *
  * A GtkListStore that contains a list of user editing actions with
@@ -34,12 +34,12 @@ G_BEGIN_DECLS
  * changed.
  */
 
-#define GSCHEM_TYPE_HOTKEY_STORE           (gschem_hotkey_store_get_type ())
-#define GSCHEM_HOTKEY_STORE(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj),        GSCHEM_TYPE_HOTKEY_STORE, GschemHotkeyStore))
-#define GSCHEM_HOTKEY_STORE_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass),         GSCHEM_TYPE_HOTKEY_STORE, GschemHotkeyStoreClass))
-#define GSCHEM_IS_HOTKEY_STORE(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj),        GSCHEM_TYPE_HOTKEY_STORE))
-#define GSCHEM_IS_HOTKEY_STORE_CLASS       (klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSCHEM_TYPE_HOTKEY_STORE))
-#define GSCHEM_HOTKEY_STORE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),         GSCHEM_TYPE_HOTKEY_STORE, GschemHotkeyStoreClass))
+#define GSCHEM_TYPE_HOTKEY_STORE (gschem_hotkey_store_get_type ())
+#define GSCHEM_HOTKEY_STORE(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), GSCHEM_TYPE_HOTKEY_STORE, GschemHotkeyStore))
+#define GSCHEM_HOTKEY_STORE_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), GSCHEM_TYPE_HOTKEY_STORE, GschemHotkeyStoreClass))
+#define GSCHEM_IS_HOTKEY_STORE(obj) (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GSCHEM_TYPE_HOTKEY_STORE))
+#define GSCHEM_IS_HOTKEY_STORE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GSCHEM_TYPE_HOTKEY_STORE))
+#define GSCHEM_HOTKEY_STORE_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj), GSCHEM_TYPE_HOTKEY_STORE, GschemHotkeyStoreClass))
 
 enum {
   GSCHEM_HOTKEY_STORE_COLUMN_ICON  = 0,
@@ -66,7 +66,7 @@ struct _GschemHotkeyStore
   guint rebuild_source_id;
 };
 
-GType gschem_hotkey_store_get_type (void) G_GNUC_CONST;
+unsigned int gschem_hotkey_store_get_type (void) G_GNUC_CONST;
 
 GschemHotkeyStore *gschem_hotkey_store_new (void) G_GNUC_WARN_UNUSED_RESULT;
 

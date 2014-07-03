@@ -1,3 +1,5 @@
+## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
 
 EXTRA_DIST = buses.sym connections1.sym connections2.sym connections3.sym \
 	     correct.sym duplicate_pinnumber.sym duplicate_pinseq.sym \

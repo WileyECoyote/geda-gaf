@@ -5,8 +5,6 @@ gafrcddir = $(GEDADATADIR)/gafrc.d
 dist_gafrcd_DATA = geda-clib.scm
 
 datasymdir = $(GEDADATADIR)/sym
-nobase_dist_datasym_DATA = \
-	simulation/vhdl/verilog2vhdl.sh simulation/vhdl/script.sed
 
 EXTRA_DIST = ChangeLog ChangeLog-1.0 \
 	     README AUTHORS
@@ -69,7 +67,7 @@ uninstall-local:
 
 # Since there are no makefile in the symbol subfolders, each must be include here
 # with ./*/*~
-MOSTLYCLEANFILES = *.log *~ ./*~ ./*/*~ ./*/*/*~
-CLEANFILES = *.log *~ ./*~ ./*/*~ ./*/*/*~
-DISTCLEANFILES = *.log core FILE *~ ./*~ ./*/*~ ./*/*/*~
-MAINTAINERCLEANFILES = *.log *~ ./*~ ./*/*~  ./*/*/*~ Makefile.in ChangeLog
+MOSTLYCLEANFILES     = *.log *~ ./*~ ./*/*~ ./*/*/*~
+CLEANFILES           = *.log *~ ./*~ ./*/*~ ./*/*/*~
+DISTCLEANFILES       = *.log *~ ./*~ ./*/*~ ./*/*/*~ core FILE
+MAINTAINERCLEANFILES = *.log *~ ./*~ ./*/*~ ./*/*/*~ Makefile.in ChangeLog

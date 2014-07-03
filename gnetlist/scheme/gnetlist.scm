@@ -355,3 +355,19 @@ REFDES. As a result, slots may be repeated in the returned list."
 (define (gnetlist:get-command-line)
   "Return the command line used to invoke the program."
   (string-join (program-arguments)))
+
+(define (gnetlist:stdout? output-filename)
+  (string=? output-filename "-"))
+
+;; If the output file name is "-", use stdout instead
+(define (gnetlist:output-port output-filename)
+  (if (gnetlist:stdout? output-filename)
+    (current-output-port)
+    (open-output-file output-filename)))
+
+;; Where to output messages for the user
+(define message-port (current-error-port))
+;; Procedure to output messages to message-port
+(define (message output-string)
+  (display output-string message-port)
+  )

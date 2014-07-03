@@ -49,6 +49,6 @@ struct _PrintDialog
   GtkComboBox *orientcbox, *typecbox, *papercbox;
 };
 
-GType print_dialog_get_type ();
+unsigned int print_dialog_get_type ();
 
 #endif /* !__X_PRINT_H__ */

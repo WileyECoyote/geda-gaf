@@ -1,9 +1,9 @@
 # pcb-data-dirs.m4                                      -*-Autoconf-*-
-# serial 2
+# serial 2.3
 
 dnl PCB prefix and m4 library directory (needed by gnetlist)
-dnl Copyright (C) 2009  Peter Brett <peter@peter-b.co.uk>
-dnl Copyright (C) 2011  Peter Clifton <pcjc2@cam.ac.uk>
+dnl Copyright (C) 2009-2014  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2011-2014  Peter Clifton <pcjc2@cam.ac.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -17,10 +17,13 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
-# Check where to look for PCB footprints.
-# FIXME All of this should be done at runtime.
+dnl Check where to look for PCB footprints.
+dnl FIXME All of this should be done at runtime. (WEH: Note that gsch2pcb.c
+dnl is the ONLY file that even refernces PCBDATADIR or PCBLIBPATH.
+dnl PCBM4DIR was not referenced so commented out 10/31/13)
+
 AC_DEFUN([AX_PCB_DIRS],
 [
   AC_PREREQ([2.60])dnl
@@ -63,4 +66,5 @@ AC_DEFUN([AX_PCB_DIRS],
       fi ], [])
   AC_MSG_RESULT([$PCBLIBPATH])
   AC_SUBST([PCBLIBPATH])
+  []dnl
 ])dnl AX_PCB_DIRS

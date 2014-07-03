@@ -21,10 +21,10 @@
 #include <libgeda/libgeda.h>
 int default_force_boundingbox = 0;
 
-void i_vars_set(TOPLEVEL * pr_current)
+void i_vars_set(GedaToplevel * pr_current)
 { 
     i_vars_libgeda_set(pr_current);
 
-    pr_current->force_boundingbox = default_force_boundingbox;
+    //pr_current->force_boundingbox = default_force_boundingbox;
 }
 

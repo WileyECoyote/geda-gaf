@@ -612,7 +612,7 @@ FIXED:	Pan doesn't always give perfectly square aspects
 MOSTLY:	Well there is still an aspect bug going to the far right/top bottom
 	corner (still a bug with text size though)
 
-GONE	Nasty constants in a_pan.c
+GONE	Nasty constants in i_pan_world.c
 
 FIXED	pan bug with interface.  Select pan on the interface window, and then
 	pick a point which will center an object.  That object will be 

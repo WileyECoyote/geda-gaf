@@ -24,4 +24,4 @@ device=none
 T 500 200 8 10 0 1 0 0 1
 refdes=none
 T 0 550 9 10 0 0 0 0 1
-footprint=unknown
+footprint=none

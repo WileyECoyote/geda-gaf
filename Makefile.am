@@ -2,8 +2,14 @@
 if ENABLE_GATTRIB
 GATTRIB_DIR=gattrib
 endif
-SUBDIRS = bitmaps include intl libgeda libgedacairo gaf ${GATTRIB_DIR} \
-          gschem gsymcheck gnetlist utils symbols docs examples
+
+SUBDIRS = bitmaps include intl libgeda libgedacairo libgedauio \
+	  libgedathon gaf ${GATTRIB_DIR} \
+	  gschem gsymcheck gnetlist utils symbols docs examples
+
+# See doxygen below (in this same file) - these all have configs.dox
+DOXDIRS = gattrib gschem gnetlist libgeda libgedacairo libgedauio \
+	  libgedathon gsymcheck utils
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -14,13 +20,13 @@ ACLOCAL_AMFLAGS = -I m4
 # groff.
 false=/bin/sh -c '! :'
 DISTCHECK_CONFIGURE_FLAGS = \
-	GIT="$(false)" \
-	GROFF="$(false)" \
-	--disable-update-xdg-database
+		GIT="$(false)" \
+		GROFF="$(false)" \
+		--disable-update-xdg-database
 
 BUILT_SOURCES = version.h
 
-EXTRA_DIST =    COPYING.LGPL \
+EXTRA_DIST  =   COPYING.LGPL \
 		HACKING \
 		autogen.sh \
 		config.h \
@@ -67,11 +73,12 @@ stamp-git:
 endif HAVE_GIT_REPO
 
 doxygen:
+
+# call 'make doxygen' for each directory in our list, aka all with ".dox" files
 if ENABLE_DOXYGEN
-	@for subdir in gattrib/docs gschem/docs gnetlist/docs \
-	  libgeda/docs gsymcheck/docs utils/docs ; do \
-	  (cd $$subdir; $(MAKE) doxygen) || exit 1; \
-        done
+	@for subdir in $(DOXDIRS); do \
+	  (cd $$subdir/docs; $(MAKE) doxygen) || exit 1; \
+	done
 else
 	@echo 'configure was not run with the --enable-doxygen switch.'
 	@echo 'The documentation cannot be built from the sources.'
@@ -79,3 +86,4 @@ endif
 
 DISTCLEANFILES = stamp-git
 MAINTAINERCLEANFILES=Makefile.in aclocal.m4 config.h.in configure
+

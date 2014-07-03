@@ -81,10 +81,10 @@ extern int optind;
 #define MAX_POINTS       1024
 
 /* gEDA enumerators */
-/* enumerators OBJECT_END's, OBJECT_TYPE's and  OBJECT_FILLING types were
+/* enumerators LINE_END's, LINE_TYPE's and  OBJECT_FILLING types were
  * moved to (top-src)include/geda_enum.h */
 
-typedef enum {NORMAL_PIN, BUS_PIN} OBJECT_PINTYPE;
+typedef enum {NORMAL_PIN, BUS_PIN} Object_PINTYPE;
 
 /* Viewdraw Colours
  *
@@ -223,8 +223,8 @@ struct FillStyle fillmap[26] =
 /* Line style structure */
 struct LineStyle {
   int line_width;             /* width of line */
-  OBJECT_END line_capstyle;   /* gEDA line cap style (end style) */
-  OBJECT_TYPE line_dashstyle; /* gEDA line dash style */
+  LINE_END line_capstyle;   /* gEDA line cap style (end style) */
+  LINE_TYPE line_dashstyle; /* gEDA line dash style */
   int line_dashlength;        /* length of line dashes */
   int line_dashspace;         /* space between line dashes */
 };
@@ -317,7 +317,7 @@ void line_object(int x1, int y1, int x2, int y2, unsigned int color,
 void circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
                    struct LineStyle *linestyle, struct FillStyle *fillstyle);
 void pin_object(int x1, int y1, int x2, int y2, unsigned int color,
-                OBJECT_PINTYPE pintype, unsigned int whichend);
+                Object_PINTYPE pintype, unsigned int whichend);
 void box_object(int x1, int y1, unsigned int width, unsigned int height,
             unsigned int color, struct LineStyle *linestyle,
                 struct FillStyle *fillstyle);
@@ -994,7 +994,7 @@ do_pin(FILE *fp)
   unsigned int bdiameter = 2*bradius;
   unsigned int bcolor = LOGIC_BUBBLE_COLOR;
   int x1, y1, x2, y2, bx, by, bx1, by1, bx2, by2;
-  OBJECT_PINTYPE pintype;
+  Object_PINTYPE pintype;
   unsigned int whichend;
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
@@ -1512,7 +1512,7 @@ do_instance(FILE *fp)
   reset_attributes();
 
   /* a component instance has the following format
-   *  I #instance LIB:NAME #PAGE #X #Y #ROTATION #MAGNIFICATION '
+   *  I #instance LIB:NAME #Page #X #Y #ROTATION #MAGNIFICATION '
    */
 
   text[0] = 0;
@@ -1934,7 +1934,7 @@ circle_object(int bx, int by, unsigned int radius, unsigned int bcolor,
 
 void
 pin_object(int x1, int y1, int x2, int y2, unsigned int color,
-           OBJECT_PINTYPE pintype, unsigned int whichend)
+           Object_PINTYPE pintype, unsigned int whichend)
 {
     printf("P %d %d %d %d %u %u %u\n", x1, y1, x2, y2, color,
            pintype, whichend);

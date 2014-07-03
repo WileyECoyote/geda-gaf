@@ -1,3 +1,7 @@
+2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Add AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/ChangeLog-1.0: Created new change log file!

@@ -56,9 +56,9 @@ GType gtk_plot_projection_get_type (void);
 #define GTK_TYPE_PLOT_PROJECTION (gtk_plot_projection_get_type())
 /* enumerations from "gtkplotpc.h" */
 GType gtk_plot_page_size_get_type (void);
-#define GTK_TYPE_PLOT_PAGE_SIZE (gtk_plot_page_size_get_type())
+#define GTK_TYPE_PLOT_Page_SIZE (gtk_plot_page_size_get_type())
 GType gtk_plot_page_orientation_get_type (void);
-#define GTK_TYPE_PLOT_PAGE_ORIENTATION (gtk_plot_page_orientation_get_type())
+#define GTK_TYPE_PLOT_Page_ORIENTATION (gtk_plot_page_orientation_get_type())
 GType gtk_plot_units_get_type (void);
 #define GTK_TYPE_PLOT_UNITS (gtk_plot_units_get_type())
 /* enumerations from "gtkplotsegment.h" */

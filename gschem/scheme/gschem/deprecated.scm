@@ -323,7 +323,7 @@
 ;; Called each time a pin is added to the schematic.  Argument is the
 ;; pin itself.
 (define-public add-pin-hook (make-hook 1))
-(add-hook!/filter add-objects-hook add-pin-hook pin?)
+;;(add-hook!/filter add-objects-hook add-pin-hook pin?)
 
 ;; mirror-component-object-hook
 ;;

@@ -23,4 +23,4 @@ L 800 0 200 0 3 0 0 0 -1 -1
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+footprint=none

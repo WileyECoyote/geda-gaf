@@ -20,7 +20,7 @@ footprint=TO220
 P 0 200 200 200 1 0 0
 {
 T 100 300 5 10 0 1 0 4 1
-pinnumber=G
+pinnumber=1
 T 100 300 9 10 0 1 0 4 1
 pinlabel=G
 T 100 400 5 10 0 1 0 0 1
@@ -31,7 +31,7 @@ pintype=pas
 P 500 700 500 800 1 0 1
 {
 T 300 725 5 10 0 1 0 0 1
-pinnumber=C
+pinnumber=2
 T 300 725 9 10 0 1 0 0 1
 pinlabel=C
 T 600 800 5 10 0 1 0 3 1
@@ -42,7 +42,7 @@ pintype=pas
 P 500 100 500 0 1 0 1
 {
 T 300 -50 5 10 0 1 0 0 1
-pinnumber=E
+pinnumber=3
 T 300 -50 9 10 0 1 0 0 1
 pinlabel=E
 T 600 0 5 10 0 1 0 3 1

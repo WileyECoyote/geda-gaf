@@ -1,6 +1,5 @@
 ## $Id$
 ## Process this file with automake to produce Makefile.in
-AUTOMAKE_OPTIONS = 1.7 subdir-objects
 
 bin_SCRIPTS = gxyrs
 
@@ -24,7 +23,7 @@ gxyrs: $(srcdir)/gxyrs.pl
 	sed -e "s#GEDADATADIR#$(GEDADATADIR)#" $(srcdir)/gxyrs.pl | sed -e "s#GEDARCDIR#$(GEDARCDIR)#" > tmp$@
 	chmod a+x tmp$@
 	mv -f tmp$@ $@
-	
+
 MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~
 DISTCLEANFILES       = *.log *.ps core FILE *~ gxyrs

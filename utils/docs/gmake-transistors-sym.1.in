@@ -15,7 +15,7 @@ gmake-transistors-sym \- Make gEDA Transitor Symbols
 .B gmake-transistors-sym
 Make gEDA Transitor Symbols
 
-This script is for 'batch' production of transistor symbols for the geda=gaf project. The script requires a template symbol file and a parameter file. Parameters read from the file are used in the output symbol file name or used as replacement values for pre-set variables in the symbol template file.
+gmake-transistors-sym is for 'batch' production of transistor symbols for the geda-gaf project. The script requires a template symbol file and a parameter file. Parameters read from the file are used in the output symbol file name or used as replacement values for pre-set variables in the symbol template file.
 
 .SH QUICK
 .B usage: [-h, --help] | [--version] | [options] template[.sym] parameters[.spm]

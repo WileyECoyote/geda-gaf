@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -174,17 +174,17 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
 
   for (x = 0; x < col_count; x++) {
     for (y = 0; y < row_count; y++) {
-      g_free( (table[x][y]).attrib_value );
-      g_free( (table[x][y]).row_name );
-      g_free( (table[x][y]).col_name );
+      GEDA_FREE( (table[x][y]).attrib_value );
+      GEDA_FREE( (table[x][y]).row_name );
+      GEDA_FREE( (table[x][y]).col_name );
     }
   }
 
   for (x = 0; x < col_count; x++) {
-    g_free( table[x] );
+    GEDA_FREE( table[x] );
   }
 
-  g_free(table);
+  GEDA_FREE(table);
   table = NULL;
 
   return;
@@ -265,7 +265,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
       attrib_value = (table[col][row]).attrib_value;
       name_value_pair = g_strconcat(attrib_name, "=", attrib_value, NULL);
       s_string_list_add_item(attrib_pair_list, &count, name_value_pair);
-      g_free(name_value_pair);
+      GEDA_FREE(name_value_pair);
     }
   }
 
@@ -295,12 +295,12 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
   
   const GList *o_iter;
   GList  *a_iter;
-  OBJECT *a_current;
+  Object *a_current;
   STRING_LIST *AttachedAttributes;
   
   /* ----- Iterate through all objects found on page ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
     /* ----- Now process objects found on page ----- */
     if (o_current->type == OBJ_COMPLEX &&
@@ -326,7 +326,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
             attrib_text = g_strdup(a_current->text->string);
             attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
             attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
-            old_visibility = o_is_visible (pr_current, a_current) ? VISIBLE : INVISIBLE;
+            old_visibility = o_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
             old_show_name_value = a_current->show_name_value;
 
             /* Don't include "refdes" or "slot" because they form the row name. */
@@ -363,9 +363,9 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                 }
               }
             }
-            g_free(attrib_name);
-            g_free(attrib_text);
-            g_free(attrib_value);
+            GEDA_FREE(attrib_name);
+            GEDA_FREE(attrib_text);
+            GEDA_FREE(attrib_value);
           }
           a_iter = g_list_next (a_iter);
         } /* while (a_iter != NULL) */
@@ -381,7 +381,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
               attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
               
               if(!s_string_list_in_list(AttachedAttributes, attrib_name)) {
-                old_visibility = o_is_visible (pr_current, a_current) ? VISIBLE : INVISIBLE;
+                old_visibility = o_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
                 old_show_name_value = a_current->show_name_value;
 
               /* Don't include "refdes" or "slot" because they form the row name. */
@@ -417,9 +417,9 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   }
                 }
               }
-              g_free(attrib_name);
-              g_free(attrib_text);
-              g_free(attrib_value);
+              GEDA_FREE(attrib_name);
+              GEDA_FREE(attrib_text);
+              GEDA_FREE(attrib_value);
             }
           }
           a_iter = g_list_next (a_iter);
@@ -446,10 +446,10 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
  *
  * \todo Why do the calling semantics of this function disagree with
  *       s_table_add_tems_to_pin_table()?  That function
- *       takes a GList, this one takes a pointer to OBJECT.
+ *       takes a GList, this one takes a pointer to Object.
  */
-void s_table_add_items_to_net_table(OBJECT *start_obj) {
-  OBJECT *o_current;
+void s_table_add_items_to_net_table(Object *start_obj) {
+  Object *o_current;
   char *temp_netname;
   int row, col;
   char *attrib_text;
@@ -499,14 +499,14 @@ void s_table_add_items_to_net_table(OBJECT *start_obj) {
             ((sheet_head->net_table)[col][row]).col_name = g_strdup(attrib_name);
             ((sheet_head->net_table)[col][row]).attrib_value = g_strdup(attrib_value);
           }
-          g_free(attrib_name);
-          g_free(attrib_text);
-          g_free(attrib_value);
+          GEDA_FREE(attrib_name);
+          GEDA_FREE(attrib_text);
+          GEDA_FREE(attrib_value);
         }
         a_current = a_current->next;
  
       }  /* while (a_current != NULL) */
-      g_free(temp_netname);
+      GEDA_FREE(temp_netname);
  
     }    /*--- if (o_current->type == OBJ_NET)   ---*/
        
@@ -545,7 +545,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
   const GList *o_iter;
   GList *a_iter;
   GList *o_lower_iter;
-  OBJECT *pin_attrib;
+  Object *pin_attrib;
 
   if (verbose_mode) {
     printf(_("- Starting internal pin TABLE creation\n"));
@@ -557,7 +557,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page  ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
 #ifdef DEBUG
       printf("   ---> In s_table_add_tems_to_pin_table, examining o_current->name = %s\n", o_current->name);
@@ -577,7 +577,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
         for (o_lower_iter = o_current->complex->prim_objs;
              o_lower_iter != NULL;
              o_lower_iter = g_list_next (o_lower_iter)) {
-          OBJECT *o_lower_current = o_lower_iter->data;
+          Object *o_lower_current = o_lower_iter->data;
 
 	  if (o_lower_current->type == OBJ_PIN) {
 	    /* -----  Found a pin.  First get its pinnumber.  then get attrib head and loop on attribs.  ----- */
@@ -625,21 +625,21 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                     }
                   }
                 }
-		g_free(attrib_name);
-		g_free(attrib_text);
-		g_free(attrib_value);
+		GEDA_FREE(attrib_name);
+		GEDA_FREE(attrib_text);
+		GEDA_FREE(attrib_value);
 	      }
 	      a_iter = g_list_next (a_iter);
            
 	    }  /* while (pin_attrib != NULL) */
-	    g_free(pinnumber);
-	    g_free(row_label);
+	    GEDA_FREE(pinnumber);
+	    GEDA_FREE(row_label);
 	  }
 
         }
       }
 
-      g_free(temp_uref);
+      GEDA_FREE(temp_uref);
     }
 
   }
@@ -656,7 +656,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
  * \param X     The index of the attribute column to be removed
  */
 #define data_table sheet_head->component_table
-#define free_if(field) if(((data_table)[X][Y]).field) g_free(((data_table)[X][Y]).field);
+#define free_if(field) if(((data_table)[X][Y]).field) GEDA_FREE(((data_table)[X][Y]).field);
 #define col_count sheet_head->comp_attrib_count
 bool s_table_remove_attribute(TABLE **table, int X) {
   bool result = FALSE;
@@ -676,7 +676,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
   free_column(X);
   
   if ( X == col_count ) {     /* if the last record */
-    g_free( table[X - 1] );
+    GEDA_FREE( table[X - 1] );
   }
   else {
     for (Xi = X; Xi < col_count - 1; Xi++) {
@@ -692,7 +692,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
         table[Xi][Y].is_promoted = table[Xi + 1][Y].is_promoted;
       }
     }
-    g_free( table[col_count - 1] );
+    GEDA_FREE( table[col_count - 1] );
   }
   return TRUE;
 }
@@ -811,7 +811,7 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
 
 #if 0
       if (strlen(attrib_value) == 0) {
-	/* g_free(attrib_value);  */   /* sometimes we have spurious, zero length strings creep */
+	/* GEDA_FREE(attrib_value);  */   /* sometimes we have spurious, zero length strings creep */
 	attrib_value = NULL;    /* into the GtkSheet                                     */
       }
 #endif
@@ -826,7 +826,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 #if DEBUG
       fprintf(stderr,"     Updating attrib_value %s\n", attrib_value);
 #endif
-      g_free( local_table[col][row].attrib_value );
+      GEDA_FREE( local_table[col][row].attrib_value );
       if (attrib_value != NULL) {
 	local_table[col][row].attrib_value = (char *) g_strdup(attrib_value);
       } else {
@@ -837,7 +837,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 #ifdef DEBUG
       printf("     Updating row_name %s\n", row_title);
 #endif
-      g_free( local_table[col][row].row_name );
+      GEDA_FREE( local_table[col][row].row_name );
       if (row_title != NULL) {
 	local_table[col][row].row_name = (char *) g_strdup(row_title);
       } else {
@@ -848,7 +848,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 #ifdef DEBUG
       printf("     Updating col_name %s\n", col_title);
 #endif
-      g_free( local_table[col][row].col_name );
+      GEDA_FREE( local_table[col][row].col_name );
       if (col_title != NULL) {
 	local_table[col][row].col_name = (char *) g_strdup(col_title);
       } else {
@@ -874,7 +874,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
  */
 void s_table_load_new_page(PageDataSet *PageData) {
   GList *iter;
-  PAGE *p_local;
+  Page *p_local;
   
   PageData->component_table = s_table_new(PageData->comp_count, PageData->comp_attrib_count);
   PageData->net_table = s_table_new(PageData->net_count, PageData->net_attrib_count);
@@ -884,12 +884,12 @@ void s_table_load_new_page(PageDataSet *PageData) {
   for ( iter = geda_list_get_glist( pr_current->pages );
         iter != NULL;
         iter = g_list_next( iter ) ) {
-    p_local = (PAGE *)iter->data;
+    p_local = (Page *)iter->data;
 
     /* only traverse pages which are toplevel */
     if (p_local->page_control == 0) {
       /* adds all components from page to comp_table */
-      s_table_add_items_to_comp_table (s_page_objects (p_local));
+      s_table_add_items_to_comp_table (s_page_get_objects (p_local));
 #if 0
       /* Note that this must be changed.  We need to input the entire project
        * before doing anything with the nets because we need to first
@@ -900,7 +900,7 @@ void s_table_load_new_page(PageDataSet *PageData) {
 #endif
 
       /* adds all pins from page to pin_table */
-      s_table_add_tems_to_pin_table (s_page_objects (p_local));
+      s_table_add_tems_to_pin_table (s_page_get_objects (p_local));
     }
   } /* for loop over pages */
 }

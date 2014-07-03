@@ -49,10 +49,10 @@ struct _EdaRendererClass
   GObjectClass parent_class;
 
   /* Virtual public methods */
-  void (*draw)         (EdaRenderer *renderer, OBJECT *object);
-  void (*draw_grips)   (EdaRenderer *renderer, OBJECT *object);
-  void (*draw_cues)    (EdaRenderer *renderer, OBJECT *object);
-  int  (*user_bounds)  (EdaRenderer *renderer, OBJECT *object,
+  void (*draw)         (EdaRenderer *renderer, Object *object);
+  void (*draw_grips)   (EdaRenderer *renderer, Object *object);
+  void (*draw_cues)    (EdaRenderer *renderer, Object *object);
+  int  (*user_bounds)  (EdaRenderer *renderer, Object *object,
                         double *left,  double *top,
                         double *right, double *bottom);
 };
@@ -67,7 +67,7 @@ struct _EdaRenderer
   GdkColor grip_stroke_color;
   GdkColor grip_fill_color;
 
-  int      min_width;
+  /* TODO int      min_width; */
 
   int      junction_size;
   GdkColor junction_color;     /* The stroke color to be used for rendering junctions */
@@ -110,16 +110,16 @@ GType eda_renderer_flags_get_type (void) G_GNUC_CONST;
 EdaRenderer *eda_renderer_new     (cairo_t *cr, PangoContext *pc) G_GNUC_WARN_UNUSED_RESULT;
 void         eda_renderer_destroy (EdaRenderer *renderer);
 
-void eda_renderer_draw            (EdaRenderer *renderer, OBJECT *object);
-void eda_renderer_draw_grips      (EdaRenderer *renderer, OBJECT *object);
+void eda_renderer_draw            (EdaRenderer *renderer, Object *object);
+void eda_renderer_draw_grips      (EdaRenderer *renderer, Object *object);
 void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *objects);
-void eda_renderer_draw_cues       (EdaRenderer *renderer, OBJECT *object);
+void eda_renderer_draw_cues       (EdaRenderer *renderer, Object *object);
 
-int  eda_renderer_get_user_bounds (EdaRenderer *renderer, OBJECT *object,
+int  eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
                                    double *left, double *top,
                                    double *right, double *bottom);
 
-int  eda_renderer_get_text_user_bounds (EdaRenderer *renderer, OBJECT *object,
+int  eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
                                         double *left, double *top,
                                         double *right, double *bottom);
 
@@ -131,7 +131,7 @@ int      eda_renderer_get_cairo_flags   (EdaRenderer *renderer);
 
 const
 char    *eda_renderer_get_font_name     (EdaRenderer *renderer);
-void     eda_renderer_set_font_name     (EdaRenderer *renderer, char *name);
+void     eda_renderer_set_font_name     (EdaRenderer *renderer, const char *name);
 
 bool     eda_renderer_set_flags   (EdaRenderer *renderer, int flags);
 int      eda_renderer_get_flags   (EdaRenderer *renderer);

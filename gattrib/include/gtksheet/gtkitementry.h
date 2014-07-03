@@ -53,7 +53,7 @@ struct _GtkItemEntryClass
   GtkEntryClass parent_class;
 };
 
-GType    gtk_item_entry_get_type       (void);
+unsigned int gtk_item_entry_get_type       (void);
 GtkWidget* gtk_item_entry_new            (void);
 GtkWidget* gtk_item_entry_new_with_max_length (gint   max);
 void       gtk_item_entry_set_text            (GtkItemEntry *entry, 

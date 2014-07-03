@@ -7,15 +7,11 @@ L 800 400 200 0 3 0 0 0 -1 -1
 T 825 150 5 8 0 0 0 0 1
 device=TL062
 T 500 300 5 10 0 1 0 0 1
-numslots=4
+numslots=2
 T 675 1050 5 10 0 0 0 0 1
-slotdef=1:1,2,3
+slotdef=1:1,2,3,4,8
 T 675 900 5 10 0 0 0 0 1
-slotdef=2:7,6,5
-T 675 750 5 10 0 0 0 0 1
-slotdef=3:8,9,10
-T 675 600 5 10 0 0 0 0 1
-slotdef=4:14,13,12
+slotdef=2:7,6,5,4,8
 T 1225 450 5 10 0 0 0 0 1
 slot=1
 P 800 400 1000 400 1 0 1
@@ -65,7 +61,7 @@ pinlabel=Vcc
 P 500 200 500 0 1 0 1
 {
 T 525 50 5 8 1 1 0 0 1
-pinnumber=11
+pinnumber=8
 T 525 50 5 8 0 0 0 0 1
 pinseq=5
 T 525 50 5 8 0 1 0 0 1
@@ -76,4 +72,4 @@ pinlabel=GND
 T 200 900 8 10 1 1 0 0 1
 refdes=U?
 T 600 100 9 10 0 0 0 0 1
-footprint=DIP14
+footprint=SO8

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@
 #endif
 
 void
-s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
+s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
                      NETLIST  *netlist)
 {
   char *attrib;
@@ -46,8 +46,8 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
   int   loaded_flag          = FALSE;
   int   graphical            = FALSE;
 
-  PAGE *p_current;
-  PAGE *child_page;
+  Page *p_current;
+  Page *child_page;
 
   attrib = o_attrib_search_attached_attribs_by_name (o_current, "source", 0);
 
@@ -67,7 +67,7 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
     /* Do not bother traversing the hierarchy if the symbol has an */
     /* graphical attribute attached to it. */
     if (attrib) {
-      g_free(attrib);
+      GEDA_FREE(attrib);
       attrib = NULL;
     }
   }
@@ -81,7 +81,7 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
     /* loop over all filenames */
     while (current_filename != NULL) {
 
-      s_log_message(_("Going to traverse source [%s]\n"),
+      u_log_message(_("Going to traverse source [%s]\n"),
                     current_filename);
 
       /* guts here */
@@ -120,7 +120,7 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
         /* can't do the following, don't know why... HACK TODO */
         /*netlist->hierarchy_tag = u_basic_strdup (netlist->component_uref);*/
         s_traverse_sheet (pr_current,
-                          s_page_objects (pr_current->page_current),
+                          s_page_get_objects (pr_current->page_current),
                           netlist->component_uref);
 
         verbose_print("^");
@@ -128,14 +128,14 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
 
       pr_current->page_current = p_current;
 
-      g_free(current_filename);
+      GEDA_FREE(current_filename);
       pcount++;
       current_filename = u_basic_breakup_string(attrib, ',', pcount);
     }
 
-    g_free(attrib);
+    GEDA_FREE(attrib);
 
-    g_free(current_filename);
+    GEDA_FREE(current_filename);
 
     count++;
 
@@ -170,7 +170,7 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
       /* Do not bother looking further in the hierarchy if the symbol */
       /* has an graphical attribute attached to it. */
       if (attrib) {
-        g_free(attrib);
+        GEDA_FREE(attrib);
         attrib = NULL;
       }
     }
@@ -178,7 +178,7 @@ s_hierarchy_traverse(TOPLEVEL *pr_current, OBJECT *o_current,
 }
 
 
-void s_hierarchy_post_process(TOPLEVEL *pr_current, NETLIST *head)
+void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
@@ -252,7 +252,7 @@ void s_hierarchy_post_process(TOPLEVEL *pr_current, NETLIST *head)
 }
 
 int
-s_hierarchy_setup_rename(TOPLEVEL *pr_current, NETLIST *head, char *uref,
+s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref,
                          char *label, char *new_name)
 {
   NETLIST  *nl_current;
@@ -328,7 +328,7 @@ void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable)
             n_current->connected_to);
 #endif
             /* can't do frees, since some names are links */
-            /* 		g_free(n_current->connected_to);*/
+            /* 		GEDA_FREE(n_current->connected_to);*/
             n_current->connected_to = NULL;
           }
         }
@@ -369,7 +369,7 @@ void s_hierarchy_remove_compsite_all(NETLIST *head)
 
 }
 
-char *s_hierarchy_create_uref(TOPLEVEL *pr_current, char *basename,
+char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
                               char *hierarchy_tag)
 {
   char *return_value = NULL;
@@ -420,7 +420,7 @@ char *s_hierarchy_create_uref(TOPLEVEL *pr_current, char *basename,
   return (return_value);
 }
 
-char *s_hierarchy_create_netname(TOPLEVEL *pr_current, char *basename,
+char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
                                  char *hierarchy_tag)
 {
   char *return_value = NULL;
@@ -484,7 +484,7 @@ char *s_hierarchy_create_netname(TOPLEVEL *pr_current, char *basename,
   return (return_value);
 }
 
-char *s_hierarchy_create_netattrib(TOPLEVEL *pr_current, char *basename,
+char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
                                    char *hierarchy_tag)
 {
   char *return_value = NULL;
@@ -543,7 +543,7 @@ char *s_hierarchy_create_netattrib(TOPLEVEL *pr_current, char *basename,
 }
 
 void
-s_hierarchy_remove_uref_mangling(TOPLEVEL *pr_current, NETLIST *head)
+s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head)
 {
   NETLIST  *nl_current;
   CPINLIST *pl_current;
@@ -560,7 +560,7 @@ s_hierarchy_remove_uref_mangling(TOPLEVEL *pr_current, NETLIST *head)
       new_uref =
       s_hierarchy_return_baseuref(pr_current,
                                   nl_current->component_uref);
-      g_free(nl_current->component_uref);
+      GEDA_FREE(nl_current->component_uref);
       nl_current->component_uref = new_uref;
     }
 
@@ -576,7 +576,7 @@ s_hierarchy_remove_uref_mangling(TOPLEVEL *pr_current, NETLIST *head)
           new_uref =
           s_hierarchy_return_baseuref(pr_current, uref);
           new_connected_to = g_strdup_printf("%s %s", new_uref, pin);
-          g_free(n_current->connected_to);
+          GEDA_FREE(n_current->connected_to);
           n_current->connected_to = new_connected_to;
         }
         n_current = n_current->next;
@@ -589,7 +589,7 @@ s_hierarchy_remove_uref_mangling(TOPLEVEL *pr_current, NETLIST *head)
 }
 
 
-char *s_hierarchy_return_baseuref(TOPLEVEL *pr_current, char *uref)
+char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
 {
   char *return_value = NULL;
   char *start_of_base = NULL;
@@ -633,14 +633,14 @@ char *s_hierarchy_return_baseuref(TOPLEVEL *pr_current, char *uref)
   return (return_value);
 }
 
-int s_hierarchy_graphical_search (OBJECT* o_current, int count)
+int s_hierarchy_graphical_search (Object* o_current, int count)
 {
   char *graphical_attrib;
   graphical_attrib =
   o_attrib_search_object_attribs_by_name (o_current, "graphical", count);
 
   if (graphical_attrib) {
-    g_free (graphical_attrib);
+    GEDA_FREE (graphical_attrib);
     return TRUE;
   }
 

@@ -2,7 +2,7 @@
  * libgeda - gEDA's Library
  * Copyright (C) 1998-2013 Ales Hvezda
  * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
- * 
+ *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
  * License as published by the Free Software Foundation; either
@@ -15,28 +15,36 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
-#ifndef SIMPLE_STRUCT_H
-#define SIMPLE_STRUCT_H
+#ifndef STRUCT_STRUCT_H
+#define STRUCT_STRUCT_H
 
-/* gschem structures (gschem) */
-typedef struct st_arc          ARC;
-typedef struct st_bezier       BEZIER;
+/* Structures for grapical shapes and objects */
+
+typedef struct st_bezier        BEZIER;
+typedef struct st_box           RECTANGLE;
+typedef struct st_fill_options  FILL_OPTIONS;
+typedef struct st_line          LINE;
+typedef struct st_line_options  LINE_OPTIONS;
+typedef struct st_point         POINT;
+typedef struct st_path_section  PATH_SECTION;
+
+/* Structures for user interface objects */
+typedef struct st_menu_item    MENU;
+
+/* Structures for mathmatical stuff */
 typedef struct st_bounds       BOUNDS;
-typedef struct st_box          BOX;
-typedef struct st_bus_ripper   BUS_RIPPER;
-
-typedef struct st_circle       CIRCLE;
-typedef struct st_color        COLOR;
-typedef struct st_line         LINE;
-typedef struct st_point        POINT;        /* intentionally out of order */
-typedef struct st_path_section PATH_SECTION;
-typedef struct st_path         PATH;
 typedef struct st_transform    TRANSFORM;
+
+/* Non-categorized structures */
+typedef struct st_bus_ripper   BUS_RIPPER;
+typedef struct st_color        COLOR;
 typedef struct st_TextBuffer   TextBuffer;     /* For Managed text buffers */
-typedef struct st_text         TEXT;
+
+/** ********** structures for grapical shapes and objects ***********/
 
 /*------------------------------------------------------------------
  *                             ARC
@@ -65,21 +73,11 @@ struct st_bezier {
 };
 
 /*------------------------------------------------------------------
- *                           BOUNDS
- *------------------------------------------------------------------*/
-struct st_bounds {
-  int min_x;
-  int min_y;
-  int max_x;
-  int max_y;
-};
-
-/*------------------------------------------------------------------
  *                             BOX
  *------------------------------------------------------------------*/
 struct st_box {
   /* upper is considered the origin */
-  int upper_x, upper_y; /* world */     
+  int upper_x, upper_y; /* world */
   int lower_x, lower_y;
 };
 
@@ -89,22 +87,10 @@ struct st_box {
 #define BOX_LOWER_LEFT 3
 
 /*------------------------------------------------------------------
- *                          BUS_RIPPER
- *------------------------------------------------------------------*/
-/*! \brief This structure is used in gschem to add rippers when drawing
- *          nets it is never stored in any object, it is only temporary.
- */
-struct st_bus_ripper
-{
-  int x[2];
-  int y[2];
-};
-
-/*------------------------------------------------------------------
  *                            CIRCLE
  *------------------------------------------------------------------*/
 struct st_circle {
-  /* shouldn't these just x & y like the rest of the world? */
+  /* shouldn't these just be x & y like the rest of the world? */
   int center_x, center_y; /* world */
   int radius;
 };
@@ -113,11 +99,15 @@ struct st_circle {
 #define CIRCLE_RADIUS 1
 
 /*------------------------------------------------------------------
- *                            COLOR
+ *                         HATCH_OPTIONS
  *------------------------------------------------------------------*/
-struct st_color {
-  uint8_t r, g, b, a;
-  bool enabled;
+struct st_fill_options {
+  OBJECT_FILLING fill_type;
+  int            fill_width;
+  int            fill_angle1;
+  int            fill_pitch1;
+  int            fill_angle2;
+  int            fill_pitch2;
 };
 
 /*------------------------------------------------------------------
@@ -126,6 +116,17 @@ struct st_color {
 struct st_line {
   int x[2];
   int y[2];
+};
+
+/*------------------------------------------------------------------
+ *                         LINE_OPTIONS
+ *------------------------------------------------------------------*/
+struct st_line_options {
+  LINE_END  line_end;
+  LINE_TYPE line_type;
+  int       line_width;
+  int       line_space;
+  int       line_length;
 };
 
 /*------------------------------------------------------------------
@@ -174,10 +175,79 @@ struct st_text {
 
   char *string;           /* text stuff */
   char *disp_string;
-  int length;
-  int size;
-  int alignment;        
-  int angle;
+  int   length;
+  int   size;
+  int   alignment;
+  int   angle;
+};
+
+/** ************ Structures for user interface objects **************/
+
+/*------------------------------------------------------------------
+ *                            MENU
+ *------------------------------------------------------------------*/
+/*! \brief */
+struct st_menu_item {
+  char *menu_name;
+  char *menu_action;
+  char *menu_icon;
+  char *menu_tooltip;
+};
+
+/*------------------------------------------------------------------
+ *                         RC FILE ENTRY
+ *------------------------------------------------------------------*/
+/* -- Miscellaneous Structures without defines here -- */
+/* used by the rc loading mechanisms */
+typedef struct {
+  int   m_val;
+  char *m_str;
+} vstbl_entry;
+
+/** ************ Structures for mathmatical stuff *******************/
+
+/*------------------------------------------------------------------
+ *                           BOUNDS
+ *------------------------------------------------------------------*/
+struct st_bounds {
+  int min_x;
+  int min_y;
+  int max_x;
+  int max_y;
+};
+
+/*------------------------------------------------------------------
+ *                           TRANSFORM
+ *------------------------------------------------------------------*/
+/*! \brief  A structure to store a 2D affine transform.
+ *  \par   The transforms get stored in a 3x3 matrix. Code assumes the
+ *         bottom row to remain constant at [0 0 1].
+ */
+struct st_transform {
+  double m[2][3];         /* m[row][column] */
+};
+
+/** ****************** Non Categorized Structures *******************/
+
+/*------------------------------------------------------------------
+ *                          BUS_RIPPER
+ *------------------------------------------------------------------*/
+/*! \remarks
+ *   This structure is used in gschem to add rippers when drawing
+ *   nets, it is never stored in any object, it is only temporary.
+ */
+struct st_bus_ripper
+{
+  int x[2];
+  int y[2];
+};
+
+/*------------------------------------------------------------------
+ *                            COLOR
+ *------------------------------------------------------------------*/
+struct st_color {
+  unsigned char r, g, b, a;
+  bool enabled;
 };
 
 /*------------------------------------------------------------------
@@ -195,25 +265,4 @@ struct st_TextBuffer
 };
 #define TEXT_BUFFER_LINE_SIZE 1024
 
-/*------------------------------------------------------------------
- *                           TRANSFORM
- *------------------------------------------------------------------*/
-/*! \brief  A structure to store a 2D affine transform.
- *  \par   The transforms get stored in a 3x3 matrix. Code assumes the
- *         bottom row to remain constant at [0 0 1].
- */
-struct st_transform {
-  double m[2][3];         /* m[row][column] */
-};
-
-/* -- Miscellaneous Structures without defines here -- */
-/* used by the rc loading mechanisms */
-typedef struct {
-  int   m_val;
-  char *m_str;
-} vstbl_entry;
-
-/* Used by g_rc_parse_handler() */
-typedef void (*ConfigParseErrorFunc)(GError **, void *);
-
-#endif
+#endif /* STRUCT_STRUCT_H */

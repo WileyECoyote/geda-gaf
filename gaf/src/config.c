@@ -104,7 +104,7 @@ cmd_config (int argc, char **argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      cfg = eda_config_get_system_context ();
+      cfg = eda_config_get_system_context ("geda");
       break;
 
     case 'u':

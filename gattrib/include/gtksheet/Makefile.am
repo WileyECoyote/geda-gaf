@@ -7,8 +7,8 @@ noinst_HEADERS =   gtksheet-version.h \
         	   gtkitementry.h
 
 
-MOSTLYCLEANFILES     = *.log core FILE *~ #*#
-CLEANFILES           = *.log core FILE *~ #*#
-DISTCLEANFILES       = *.log core FILE *~ #*#
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in #*#
+MOSTLYCLEANFILES     = *.log core FILE *~
+CLEANFILES           = *.log core FILE *~
+DISTCLEANFILES       = *.log core FILE *~
+MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
 

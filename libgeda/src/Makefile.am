@@ -1,7 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-AUTOMAKE_OPTIONS = 1.7 subdir-objects
-
-VPATH = $(srcdir)
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 # Build a libtool library for installation in libdir.
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
@@ -13,103 +11,39 @@ GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 lib_LTLIBRARIES = libgeda.la
 
 BUILT_SOURCES = \
-	scheme_init.x \
-	scheme_smob.x \
-	scheme_toplevel.x \
-	scheme_object.x \
-	scheme_complex.x \
-	scheme_color.x \
-	scheme_page.x \
-	scheme_attrib.x \
-	scheme_os.x \
-	scheme_config.x \
-	scheme_closure.x \
-	scheme_deprecated.x
+	scheme/scheme_init.x \
+	scheme/scheme_smob.x \
+	scheme/scheme_toplevel.x \
+	scheme/scheme_object.x \
+	scheme/scheme_complex.x \
+	scheme/scheme_color.x \
+	scheme/scheme_page.x \
+	scheme/scheme_attrib.x \
+	scheme/scheme_os.x \
+	scheme/scheme_config.x \
+	scheme/scheme_closure.x \
+	scheme/scheme_deprecated.x
 
-scheme_api_sources = \
-	scheme_init.c \
-	scheme_smob.c \
-	scheme_toplevel.c \
-	scheme_object.c \
-	scheme_complex.c \
-	scheme_color.c \
-	scheme_os.c \
-	scheme_page.c \
-	scheme_attrib.c \
-	scheme_config.c \
-	scheme_closure.c \
-	scheme_deprecated.c \
-	edascmhookproxy.c
+libgeda_la_SOURCES =
 
-libgeda_la_SOURCES = \
-	$(scheme_api_sources) \
-	a_basic.c \
-	edaconfig.c \
-	edaerrors.c \
-	f_basic.c \
-	f_print.c \
-	f_utilities.c \
-	g_basic.c \
-	geda_list.c \
-	g_rc.c \
-	g_register.c \
-	i_vars.c \
-	libgeda.c \
-	m_basic.c \
-	m_bounds.c \
-	m_box.c \
-	m_circle.c \
-	m_hatch.c \
-	m_line.c \
-	m_polygon.c \
-	m_transform.c \
-	o_arc_basic.c \
-	o_attrib.c \
-	o_basic.c \
-	o_box_basic.c \
-	o_bus_basic.c \
-	o_circle_basic.c \
-	o_color.c \
-	o_complex_basic.c \
-	o_embed.c \
-	o_line_basic.c \
-	o_list.c \
-	o_net_basic.c \
-	o_path_basic.c \
-	o_picture.c \
-	o_pin_basic.c \
-	o_selection.c \
-	o_style.c \
-	o_text_basic.c \
-	s_attrib.c \
-	s_basic.c \
-	s_clib.c \
-	s_color.c \
-	s_conn.c \
-	s_cue.c \
-	s_encoding.c \
-	s_hierarchy.c \
-	s_log.c \
-	s_menu.c \
-	s_page.c \
-	s_papersizes.c \
-	s_path.c \
-	s_place.c \
-	s_slib.c \
-	s_slot.c \
-	s_textbuffer.c \
-	s_tile.c \
-	s_toplevel.c \
-	s_undo.c \
-	s_weakref.c \
-	u_basic.c
+# Include partial makefiles from subdirectories
+include scheme/Makefile_insert
+include file/Makefile_insert
+include geda/Makefile_insert
+include guile/Makefile_insert
+include iface/Makefile_insert
+include math/Makefile_insert
+include object/Makefile_insert
+include struct/Makefile_insert
+include utility/Makefile_insert
+include Makefile_insert
 
 # Probably not the correct way but all's fair in Love, War and Distchecks
 EXTRA_DIST = $(BUILT_SOURCES)
 
 AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 
-libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\"  $(DATADIR_DEFS)
+libgeda_la_CPPFLAGS  = -DLOCALEDIR=\"$(localedir)\" $(DATADIR_DEFS)
 
 libgeda_la_CFLAGS    = $(AM_CFLAGS)   $(GUILE_CFLAGS) $(GCC_CFLAGS)   \
 	               $(GLIB_CFLAGS) $(MINGW_CFLAGS) $(GDK_PIXBUF_CFLAGS)
@@ -125,12 +59,12 @@ SUFFIXES = .x
 snarf_cpp_opts       = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	               $(libgeda_la_CPPFLAGS) $(libgeda_la_CFLAGS)
 .c.x:
-	CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
+	@CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
-MOSTLYCLEANFILES     = *.log core FILE *~
-CLEANFILES           = *.log core FILE *~ $(BUILT_SOURCES)
-DISTCLEANFILES       = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
+MOSTLYCLEANFILES     = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~
+CLEANFILES           = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~ $(BUILT_SOURCES)
+DISTCLEANFILES       = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~
+MAINTAINERCLEANFILES = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~ Makefile.in
 
 # Unfortunately, in order to test libtool thoroughly, we need access
 # to its private directory.

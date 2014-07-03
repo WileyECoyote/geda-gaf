@@ -1,3 +1,15 @@
+2014-03-30  Wiley E. Hill <wileyhill@gmail.com>
+
+	* /: release 2.0.8 Major updates, New libraries libgedathon, libgedauio.
+
+2014-02-20  Wiley E. Hill <wileyhill@gmail.com>
+
+	* /lib: Rename 'lib" directories containing scheme rc files to "etc",
+          as this seems more descriptive of the content.
+
+        * clean.sh: Added new utility script to assist in cleaning the source
+          tree.
+
 2013-04-15  Wiley E. Hill <wileyhill@gmail.com>
 
 	* configure.ac: removed gnetlist/scripts/annotate.sh gnetlist/scripts/

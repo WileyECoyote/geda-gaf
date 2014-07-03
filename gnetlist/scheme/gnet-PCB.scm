@@ -33,22 +33,21 @@
 ;(define (PCB:display-connections nets)
 ;  (if (not (null? nets))
 ;      (string-append
-;       (car (car nets)) "-" (car (cdr (car nets))) " " 
+;       (car (car nets)) "-" (car (cdr (car nets))) " "
 ;       (PCB:display-connections (cdr nets)))
 ;      "\n"))
 
 
-(define (PCB:write-net netnames port)
+(define (PCB:write-net netnames)
   (if (not (null? netnames))
       (let ((netname (car netnames)))
-	(display netname port)
-	(display "\t" port)
-	(display (gnetlist:wrap (PCB:display-connections (gnetlist:get-all-connections netname)) 200 " \\") port)
-	(PCB:write-net (cdr netnames) port))))
+	(display netname)
+	(display "\t")
+	(display (gnetlist:wrap (PCB:display-connections (gnetlist:get-all-connections netname)) 200 " \\"))
+	(PCB:write-net (cdr netnames)))))
 
 
 (define (PCB output-filename)
-  (let ((port (open-output-file output-filename)))
-    (PCB:write-net (gnetlist:get-all-unique-nets "dummy") port)
-    (close-output-port port)))
-
+  (set-current-output-port (gnetlist:output-port output-filename))
+  (PCB:write-net (gnetlist:get-all-unique-nets "dummy"))
+  (close-output-port (current-output-port)))

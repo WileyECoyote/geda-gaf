@@ -93,19 +93,19 @@ eda_pango_renderer_class_init (EdaPangoRendererClass *klass)
   g_type_class_add_private (object_class, sizeof (EdaPangoRendererPrivate));
 
   /* Register functions with base class */
-  object_class->constructor = eda_pango_renderer_constructor;
+  object_class->constructor  = eda_pango_renderer_constructor;
   object_class->set_property = eda_pango_renderer_set_property;
   object_class->get_property = eda_pango_renderer_get_property;
-  object_class->finalize = eda_pango_renderer_finalize;
+  object_class->finalize     = eda_pango_renderer_finalize;
 
   /* Register functions with parent class */
-  parent_class->draw_glyphs = eda_pango_renderer_draw_glyphs;
-  parent_class->draw_rectangle = eda_pango_renderer_draw_rectangle;
+  parent_class->draw_glyphs          = eda_pango_renderer_draw_glyphs;
+  parent_class->draw_rectangle       = eda_pango_renderer_draw_rectangle;
   parent_class->draw_error_underline = eda_pango_renderer_draw_error_underline;
-  parent_class->part_changed = eda_pango_renderer_part_changed;
-  parent_class->begin = eda_pango_renderer_begin;
-  parent_class->end = eda_pango_renderer_end;
-  parent_class->prepare_run = eda_pango_renderer_prepare_run;
+  parent_class->part_changed         = eda_pango_renderer_part_changed;
+  parent_class->begin                = eda_pango_renderer_begin;
+  parent_class->end                  = eda_pango_renderer_end;
+  parent_class->prepare_run          = eda_pango_renderer_prepare_run;
 
   /* Install properties */
   g_object_class_install_property (object_class, PROP_CAIRO_CONTEXT,

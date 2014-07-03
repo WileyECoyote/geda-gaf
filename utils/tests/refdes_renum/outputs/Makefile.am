@@ -1,3 +1,5 @@
+## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
 
 # ls *.sch | sort | awk '{printf("\t%s \\\n", $0)}' >> Makefile.am
 
@@ -36,7 +38,7 @@ EXTRA_DIST= \
 	some_new_pgskip2-someold3.sch \
 	some_old_refdeses-someold1.sch \
 	some_old_refdeses1-someold1.sch \
-	some_old_refdeses2-someold1.sch 
+	some_old_refdeses2-someold1.sch
 
 MOSTLYCLEANFILES = *.log core FILE *~
 CLEANFILES = *.log core FILE *~

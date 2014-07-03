@@ -17,6 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
  */
 
+#include <libgeda/edascmvaluetypes.h>
 #include <libgeda/edascmhookproxy.h>
 
 /*!
@@ -29,30 +30,30 @@
 /* Initialise the Scheme API. */
 void edascm_init ();
 
-/* Get the value of the #TOPLEVEL fluid. */
-TOPLEVEL *edascm_c_current_toplevel ();
+/* Get the value of the #GedaToplevel fluid. */
+GedaToplevel *edascm_c_current_toplevel ();
 
-/* Set the #TOPLEVEL fluid in the current dynamic context. */
-void edascm_dynwind_toplevel (TOPLEVEL *toplevel);
+/* Set the #GedaToplevel fluid in the current dynamic context. */
+void edascm_dynwind_toplevel (GedaToplevel *toplevel);
 
-/* Set the current #TOPLEVEL temporarily. */
-SCM edascm_c_with_toplevel (TOPLEVEL *toplevel, SCM (*func)(void *),
+/* Set the current #GedaToplevel temporarily. */
+SCM edascm_c_with_toplevel (GedaToplevel *toplevel, SCM (*func)(void *),
                             void *user_data);
 
 /* Create a Guile value from a page structure. */
-SCM edascm_from_page (PAGE *page);
+SCM edascm_from_page (Page *page);
 
 /* Create a Guile value from an object structure. */
-SCM edascm_from_object (OBJECT *object);
+SCM edascm_from_object (Object *object);
 
 /* Create a Guile value from a configuration context structure. */
 SCM edascm_from_config (EdaConfig *cfg);
 
 /* Retrieve a page structure from a Guile value. */
-PAGE *edascm_to_page (SCM smob);
+Page *edascm_to_page (SCM smob);
 
 /* Retrieve an object structure from a Guile value. */
-OBJECT *edascm_to_object (SCM smob);
+Object *edascm_to_object (SCM smob);
 
 /* Retrieve an configuration context structure from a Guile value. */
 EdaConfig *edascm_to_config (SCM smob);

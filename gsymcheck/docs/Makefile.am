@@ -1,7 +1,46 @@
 
-EXTRA_DIST = $(html_man_files) gsymcheck.dox logo.png \
-	     gsymcheck-main.txt what-is-geda.html what-is-gsymcheck.html \
-	gsymcheck.1.in
+# These "extra" files are mostly for the Doxygen source documentation
+GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
+	      what-is-geda.tex
+
+LOCAL_DOX   = gsymcheck.dox gsymcheck-main.txt
+
+LOCAL_HTML  = $(html_man_files) what-is-gsymcheck.html
+
+LOCAL_MAN   = gsymcheck.1.in
+
+LOCAL_TEX   = what-is-gsymcheck.tex
+
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
+
+all:
+	@echo 'Type: make doxygen to create doxygen documentation for gsymcheck'
+
+# When generating doxygen documentation we check for the existence of the
+# output directory and create if needed. After doxygen executes, we check
+# for the latex directory is skip the latex if the diretory does not exist.
+doxygen: gsymcheck.dox
+	@echo 'Creating doxygen documentation for gsymcheck...'
+if ENABLE_DOXYGEN
+	@if test "X@DOXYGEN_PATH_OUT@" != "X./" ; then \
+	    DOXYGEN_OUTDIR=@DOXYGEN_PATH_OUT@/gsymcheck; \
+	    test -d "$$DOXYGEN_OUTDIR" || $(MKDIR_P) "$$DOXYGEN_OUTDIR"; \
+	    export "DOXYGEN_OUTDIR=$$DOXYGEN_OUTDIR"; \
+	    $(DOXYGEN) gsymcheck.dox; \
+	    echo "Doxygen output generated in $$DOXYGEN_OUTDIR"; \
+	    test -d "$$DOXYGEN_OUTDIR"/latex && \
+	    (cd $$DOXYGEN_OUTDIR/latex && $(MAKE)) || : ; \
+	else \
+	    DOXYGEN_OUTDIR="./"; \
+	    $(DOXYGEN) gsymcheck.dox; \
+	    test -d latex && (cd latex && $(MAKE)) || : ;\
+	fi
+
+#	-(cd ..)
+else
+	@echo 'configure was not run with the --enable-doxygen switch.'
+	@echo 'The documentation cannot be built from the sources.'
+endif
 
 dist_man_MANS = gsymcheck.1
 
@@ -27,20 +66,9 @@ else
 	@! :
 endif
 
-doxygen: gsymcheck.dox
-	@echo 'Creating doxygen documentation for gsymcheck...'
-if ENABLE_DOXYGEN
-	$(DOXYGEN) gsymcheck.dox
-else
-	@echo 'configure was not run with the --enable-doxygen switch.'
-	@echo 'The documentation cannot be built from the sources.'
-endif
-
-
-
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~ gsymcheck.html
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~ gsymcheck.html
+DISTCLEANFILES       = *.log *~ core FILE
 MAINTAINERCLEANFILES = *.log *~ Makefile.in $(html_man_files)
 
 distclean-local:

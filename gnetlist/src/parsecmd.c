@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,13 +71,13 @@ void usage(char *cmd)
     "General options:\n"
     "  -q              Quiet mode.\n"
     "  -v, --verbose   Verbose mode.\n"
-    "  -o FILE         Filename for netlist data output.\n"
-    "  -L DIR          Add DIR to Scheme search path.\n"
-    "  -g BACKEND      Specify netlist backend to use.\n"
-    "  -O STRING       Pass an option string to backend.\n"
-    "  -l FILE         Load Scheme file before loading backend.\n"
-    "  -m FILE         Load Scheme file after loading backend.\n"
-    "  -c EXPR         Evaluate Scheme expression at startup.\n"
+    "  -o <filename>   Filename for netlist data output.\n"
+    "  -L <directory>  Add DIR to Scheme search path.\n"
+    "  -g <backend>    Specify netlist backend to use.\n"
+    "  -O <string>     Pass an option string to backend.\n"
+    "  -l <file.scm>   Load Scheme file before loading backend.\n"
+    "  -m <file.scm>   Load Scheme file after loading backend.\n"
+    "  -c <expresion>  Evaluate Scheme expression at startup.\n"
     "  -i              Enter interactive Scheme REPL after loading.\n"
     "  --list-backends Print a list of available netlist backends.\n"
     "  -h, --help      Help; this message.\n"
@@ -100,7 +100,7 @@ version ()
 {
   printf(
     "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2013 gEDA developers\n"
+    "Copyright (C) 1998-2014 gEDA developers\n"
     "This is free software, and you are welcome to redistribute it under\n"
     "certain conditions. For details, see the file `COPYING', which is\n"
     "included in the gEDA distribution.\n"
@@ -190,7 +190,7 @@ parse_commandline (int argc, char *argv[])
           break;
 
         case 'o':
-          g_free(output_filename);
+          GEDA_FREE(output_filename);
           output_filename = g_strdup(optarg);
           break;
 

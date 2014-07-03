@@ -101,8 +101,8 @@ struct st_sheet_data {
  * st_table defined what is held in a spreadsheet cell for both 
  * comp and net spreadsheets.  Holds pointer to individual comp/net name, and 
  * pointer to attrib list.  Ideally, the name pointer points to the 
- * refdes/netname string held in the TOPLEVEL data structure, so that 
- * when SHEET_DATA is manipulated, so is TOPLEVEL.
+ * refdes/netname string held in the GedaToplevel data structure, so that
+ * when SHEET_DATA is manipulated, so is GedaToplevel.
  */
 /* -------------------------------------------------------------------- */
 struct st_table {

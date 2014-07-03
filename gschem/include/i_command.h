@@ -2,10 +2,10 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013 Ales Hvezda
- * Copyright (C) 2013 Wiley Edward Hill
+ * Copyright (C) 2013-2014 Ales Hvezda
+ * Copyright (C) 2013-2014 Wiley Edward Hill
  *
- * Copyright (C) 2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,11 +87,6 @@ enum ActionFlag
         COMMAND ( do_copy_clip )
         COMMAND ( do_paste_clip )
         COMMAND ( do_delete )
-        COMMAND ( do_select )
-        COMMAND ( do_select_all )
-        COMMAND ( do_select_invert )
-        COMMAND ( do_deselect )
-        COMMAND ( do_deselect_all )
         COMMAND ( do_copy )
         COMMAND ( do_mcopy )
         COMMAND ( do_move )
@@ -113,6 +108,12 @@ enum ActionFlag
         COMMAND ( do_unembed )
         COMMAND ( do_update )
 
+        COMMAND ( do_select )
+        COMMAND ( do_select_all )
+        COMMAND ( do_select_invert )
+        COMMAND ( do_deselect )
+        COMMAND ( do_deselect_all )
+
         COMMAND ( do_view )
         COMMAND ( do_redraw )
         COMMAND ( do_pan )
@@ -124,6 +125,7 @@ enum ActionFlag
         COMMAND ( do_zoom_all )
         COMMAND ( do_documentation )
         COMMAND ( do_show_hidden )
+        COMMAND ( do_show_inherited )
         COMMAND ( do_show_nets )
         COMMAND ( do_dark_colors )
         COMMAND ( do_light_colors )
@@ -289,13 +291,13 @@ enum ActionFlag
 enum {
         cmd_unknown,
 
-#endif   /* COMMAND was not defined when the header was loaded so enumerate */
+#endif  /* COMMAND was not defined when the header was loaded so enumerate */
 
 #else   /* I_DO_DECLARE was not defined so filling a command structure */
 
 /* MACRO( string-to-look-for, 0=once OR 1=recursive, not used, handler function base name */
  #define COMMAND(action, rstr, flags, func) extern void i_cmd_##func(GschemToplevel *w_current);
-#endif
+#endif  /* I_DO_DECLARE */
 
 #include "i_actions.h" /* Note: We need to resolve action strings on this pass */
 
@@ -322,11 +324,11 @@ enum {
  *           in x_image_setup and x_fileselect_load_backup.
  *           Or use USE_INLINE_MODE. (WEH: So far I have been able to avoid
  *           USE_INLINE_MODE by fixing the problem or using wrappers!)
- * 
+ *
  *           We could use scm_init_guile (which does not seem to work)
  *           for threading but manual states that this is not portable.
  *           (WEH: maybe some propeller-head can fix!)
- * 
+ *
  *           Action handlers, of any type, are not reentrant. They will wait
  *           up to MAX_WAIT_FOR_ACTION for the code to become available before
  *           reporting an issues, and then give up, see function BlockThread.
@@ -356,12 +358,6 @@ enum {
      COMMAND ( EDIT_CB_COPY,        "copy",             USE_MAIN_LOOP,          do_copy_clip)
      COMMAND ( EDIT_CB_PASTE,       "paste",            USE_XY_WORKER,          do_paste_clip)
      COMMAND ( EDIT_DELETE,         "delete",           USE_MAIN_LOOP,          do_delete)     /* work inline*/
-     COMMAND ( EDIT_SELECT,         NULL,               USE_MAIN_LOOP,          do_select)
-     COMMAND ( EDIT_SELECT_ALL,     "select all",       USE_MAIN_LOOP,          do_select_all)
-     COMMAND ( EDIT_INVERT,         "invert",           USE_MAIN_LOOP,          do_select_invert)
-     COMMAND ( EDIT_DESELECT,       "deselect",         USE_MAIN_LOOP,          do_deselect)
-     COMMAND ( EDIT_DESELECT_ALL,   "deselect-all",     USE_MAIN_LOOP,          do_deselect_all)
-
      COMMAND ( EDIT_COPY,           "copy mode",        USE_XY_WORKER,          do_copy)
      COMMAND ( EDIT_MCOPY,          "multi-copy",       USE_XY_WORKER,          do_mcopy)
      COMMAND ( EDIT_MOVE,           "move",             USE_XY_WORKER,          do_move)
@@ -383,6 +379,12 @@ enum {
      COMMAND ( EDIT_UNEMBED,        "unembed",          USE_WORKER_THREAD,      do_unembed)
      COMMAND ( EDIT_UPDATE,         "update",           USE_MAIN_LOOP,          do_update)
 
+     COMMAND ( EDIT_SELECT,         NULL,               USE_MAIN_LOOP,          do_select)
+     COMMAND ( EDIT_SELECT_ALL,     "select all",       USE_MAIN_LOOP,          do_select_all)
+     COMMAND ( EDIT_INVERT,         "invert",           USE_MAIN_LOOP,          do_select_invert)
+     COMMAND ( EDIT_DESELECT,       "deselect",         USE_MAIN_LOOP,          do_deselect)
+     COMMAND ( EDIT_DESELECT_ALL,   "deselect-all",     USE_MAIN_LOOP,          do_deselect_all)
+
      COMMAND ( view,                NULL,               USE_WORKER_THREAD,      do_view)
      COMMAND ( VIEW_REDRAW,         "redraw",           USE_MAIN_LOOP,          do_redraw)
      COMMAND ( VIEW_PAN,            "pan",              USE_MAIN_LOOP,          do_pan)
@@ -394,20 +396,21 @@ enum {
      COMMAND ( VIEW_ZOOM_ALL,       NULL,               USE_MAIN_LOOP,          do_zoom_all)
      COMMAND ( VIEW_DOCUMENT,       "documentation",    USE_MAIN_LOOP,          do_documentation)
      COMMAND ( VIEW_HIDDEN,         "show hidden",      USE_MAIN_LOOP,          do_show_hidden)
+     COMMAND ( VIEW_INHERITED,      "show inherited",   USE_MAIN_LOOP,          do_show_inherited)
      COMMAND ( VIEW_NETS,           "show nets",        USE_MAIN_LOOP,          do_show_nets)
      COMMAND ( VIEW_DARK,           NULL,               USE_MAIN_LOOP,          do_dark_colors)
      COMMAND ( VIEW_LIGHT,          NULL,               USE_MAIN_LOOP,          do_light_colors)
      COMMAND ( VIEW_BLACK_WHITE,    NULL,               USE_MAIN_LOOP,          do_bw_colors)
 
      COMMAND ( page,                NULL,               USE_WORKER_THREAD,      do_page)
-     COMMAND ( PAGE_MANAGER,        "page manager",     USE_MAIN_LOOP,          do_page_manager)
-     COMMAND ( PAGE_PREV,           NULL,               USE_MAIN_LOOP,          do_page_prev)
-     COMMAND ( PAGE_NEXT,           NULL,               USE_MAIN_LOOP,          do_page_next)
-     COMMAND ( PAGE_NEW,            NULL,               USE_MAIN_LOOP,          do_page_new)
-     COMMAND ( PAGE_PRINT,          "page print",       USE_MAIN_LOOP,          do_page_print)
-     COMMAND ( PAGE_REVERT,         "revert",           USE_MAIN_LOOP,          do_page_revert)
-     COMMAND ( PAGE_CLOSE,          "close",            USE_MAIN_LOOP,          do_page_close)
-     COMMAND ( PAGE_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
+     COMMAND ( Page_MANAGER,        "page manager",     USE_MAIN_LOOP,          do_page_manager)
+     COMMAND ( Page_PREV,           NULL,               USE_MAIN_LOOP,          do_page_prev)
+     COMMAND ( Page_NEXT,           NULL,               USE_MAIN_LOOP,          do_page_next)
+     COMMAND ( Page_NEW,            NULL,               USE_MAIN_LOOP,          do_page_new)
+     COMMAND ( Page_PRINT,          "page print",       USE_MAIN_LOOP,          do_page_print)
+     COMMAND ( Page_REVERT,         "revert",           USE_MAIN_LOOP,          do_page_revert)
+     COMMAND ( Page_CLOSE,          "close",            USE_MAIN_LOOP,          do_page_close)
+     COMMAND ( Page_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
 
      COMMAND ( add,                 NULL,               USE_XY_WORKER,          do_add)
      COMMAND ( ADD_COMPONENT,       "component",        USE_XY_WORKER,          do_add_component)
@@ -435,8 +438,8 @@ enum {
      COMMAND ( ATTRIB_VISIBILITY,   "toggle visible",   USE_MAIN_LOOP,          do_toggle_visibility)
 
      COMMAND ( ATTRIB_FIND,         "find text",        USE_MAIN_LOOP,          do_find_text)
-     COMMAND ( ATTRIB_HIDE,         "show text",        USE_MAIN_LOOP,          do_hide_text)
-     COMMAND ( ATTRIB_SHOW,         "hide text",        USE_MAIN_LOOP,          do_show_text)
+     COMMAND ( ATTRIB_HIDE,         "hide text",        USE_MAIN_LOOP,          do_hide_text)
+     COMMAND ( ATTRIB_SHOW,         "show text",        USE_MAIN_LOOP,          do_show_text)
      COMMAND ( ATTRIB_EDIT,         "edit attrib",      USE_WORKER_THREAD,      do_attributes)
      COMMAND ( ATTRIB_AUTONUM,      "autonumber",       USE_MAIN_LOOP,          do_autonumber)
 

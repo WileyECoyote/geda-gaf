@@ -29,8 +29,8 @@
  * this module are called.  Normally, this will be called
  * automatically by libgeda_init().
  *
- * The Scheme API requires a libgeda #TOPLEVEL context to be available
- * at any given time.  The #TOPLEVEL can be set on a per-thread basis
+ * The Scheme API requires a libgeda #GedaToplevel context to be available
+ * at any given time.  The #GedaToplevel can be set on a per-thread basis
  * using the edascm_dynwind_toplevel() or edascm_c_with_toplevel()
  * functions.  For example:
  *
@@ -40,7 +40,7 @@
  *   // ...run Scheme code and/or call Scheme API C functions...
  * }
  *
- * void myfunc(TOPLEVEL *toplevel)
+ * void myfunc(GedaToplevel *toplevel)
  * {
  *   void *mydata;
  *
@@ -62,16 +62,16 @@
  * Manual.
  *
  * The remaining functions in this module allow you to convert gEDA
- * #OBJECT and #PAGE structures to and from Scheme values ("smobs").
+ * #Object and #Page structures to and from Scheme values ("smobs").
  *
- * When an #OBJECT is created by Scheme code, it is permitted to be
+ * When an #Object is created by Scheme code, it is permitted to be
  * garbage-collected if all references to it are lost; this is an
  * important part of allowing Scheme programmers to write efficient
- * code.  However, because #OBJECT instances are not reference
- * counted, each Scheme object that contains an #OBJECT has a flag
+ * code.  However, because #Object instances are not reference
+ * counted, each Scheme object that contains an #Object has a flag
  * that indicates whether it is wholly owned by Scheme or whether
  * there are any remaining references to it from C code.  If you use
- * edascm_from_object() to create a Scheme value for an #OBJECT that
+ * edascm_from_object() to create a Scheme value for an #Object that
  * has no remaining references from other C structures, you should use
  * edascm_c_set_gc() to mark it as garbage-collectable.
  */
@@ -150,7 +150,7 @@ enum geda_smob_flags {
 #endif
 
 /* Create a Guile value from a TOPLEVEL structure. */
-SCM edascm_from_toplevel (TOPLEVEL *toplevel);
+SCM edascm_from_toplevel (GedaToplevel *toplevel);
 
 /*! Tests whether a Scheme value is a TOPLEVEL smob. */
 #define EDASCM_TOPLEVELP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_TOPLEVEL)
@@ -158,14 +158,14 @@ SCM edascm_from_toplevel (TOPLEVEL *toplevel);
 /*! Tests whether a Scheme value is a PAGE smob. */
 #define EDASCM_PAGEP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_PAGE)
 
-/*! Tests whether a Scheme value is an EdaConfig smob. */
+/*! Tests whether a Scheme value is an OBJECT smob. */
 #define EDASCM_OBJECTP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_OBJECT)
+
+/*! Tests whether a Scheme value is an EdaConfig smob. */
+#define EDASCM_CONFIGP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_CONFIG)
 
 /*! Tests whether a Scheme value is a C closure smob. */
 #define EDASCM_CLOSUREP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_CLOSURE)
-
-/*! Tests whether a Scheme value is an OBJECT smob. */
-#define EDASCM_CONFIGP(x) EDASCM_SMOB_TYPEP(x, GEDA_SMOB_CONFIG)
 
 /*!
  * \brief Test whether a structure may be garbage-collected
@@ -199,7 +199,7 @@ int edascm_is_object_type (SCM smob, int type);
 
 
 /*! \brief Flag an object's page as having been changed. */
-extern inline void o_page_changed (TOPLEVEL *t, OBJECT *o);
+extern inline void o_page_changed (GedaToplevel *t, Object *o);
 
 /* ---------------------------------------- */
 

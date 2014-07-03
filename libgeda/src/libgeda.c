@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  * Copyright (C) 1998, 1999, 2000 Kazu Hirata / Ales Hvezda
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-201 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 #define GLIB_DISABLE_DEPRECATION_WARNINGS
 #include <config.h>
@@ -35,19 +36,41 @@
 #include "libgeda_priv.h"
 #include "libgeda/libgedaguile.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+/*! \brief Perform Guile runtime initialization of libgeda library.
+ *  \par Function Description
+ *  This function is called internally by libgeda_init using the
+ *  scm_with_guile function to initialize <b>Guile</b> runtime
+ *  routines. This function does not require any arguments, nor
+ *  does the function return a meaning value. The argument and
+ *  return pointer is a requirement of the scm_with_guile
+ *  function.
+ *
+ *  \sa libgeda_init
+ *
+ */
+static void *libgeda_guile_init(void *lame)
+{
+  g_register_libgeda_funcs();
+  g_register_libgeda_dirs();
+
+  edascm_init ();
+  return lame;
+}
 
 /*! \brief Perform runtime initialization of libgeda library.
  *  \par Function Description
- *  This function is responsible for making sure that any runtime
- *  initialization is done for all the libgeda routines.  It should
- *  be called before any other libgeda functions are called.
+ *  This function calls "satellite" initialization functions in
+ *  various modules to initialize data structures for runtime.
+ *  This function should normally be called before any other
+ *  libgeda functions are called. The call scm_with_guile is
+ *  used to ensure we are in guile mode, regardless of whether
+ *  the client is in guile mode.
  *
  */
 void libgeda_init(void)
 {
+  int lame;
+
 #ifdef ENABLE_NLS
   /* Initialise gettext */
   bindtextdomain (LIBGEDA_GETTEXT_DOMAIN, LOCALEDIR);
@@ -59,19 +82,26 @@ void libgeda_init(void)
   g_type_init();
 #endif
 
-  s_path_sys_data ();
-  s_path_sys_config ();
+  f_path_sys_data ();
+  f_path_sys_config ();
 
   s_clib_init();
   s_slib_init();
-  s_menu_init();
+  i_menu_init();
   s_attrib_init();
-  s_color_init();
+  u_color_init();
+  s_conn_init();
 
-  g_register_libgeda_funcs();
-  g_register_libgeda_dirs();
-
-  edascm_init ();
+  /* Initialize scheme even if client has not booted Guile */
+  scm_with_guile(libgeda_guile_init, &lame);
 }
 
-
+void libgeda_release(void)
+{
+  f_path_free();
+  s_clib_free();
+  s_slib_free();
+  s_attrib_free();
+  s_papersizes_free();
+  i_vars_libgeda_freenames();
+}

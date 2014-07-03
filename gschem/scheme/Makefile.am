@@ -8,19 +8,21 @@ nobase_dist_scmdata_DATA = \
 	list-keys.scm \
 	print-NB-attribs.scm \
 	auto-place-attribs.scm \
+	auto-place-netname.scm \
 	pcb.scm \
+	gschem-tools-menu.scm \
 	default-attrib-positions.scm \
-	gschem/core/gettext.scm \
-	gschem/gschemdoc.scm \
-	gschem/window.scm \
-	gschem/selection.scm \
-	gschem/deprecated.scm \
-	gschem/hook.scm \
-	gschem/attrib.scm \
-	gschem/keymap.scm \
-	gschem/util.scm \
 	gschem/action.scm \
-	gschem/gschem-tools-menu.scm
+	gschem/attrib.scm \
+	gschem/builtins.scm \
+	gschem/deprecated.scm \
+	gschem/gschemdoc.scm \
+	gschem/hook.scm \
+	gschem/keymap.scm \
+	gschem/selection.scm \
+	gschem/util.scm \
+	gschem/window.scm \
+	gschem/core/gettext.scm
 
 MOSTLYCLEANFILES = *.log *~
 CLEANFILES = *.log *~

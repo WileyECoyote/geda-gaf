@@ -45,17 +45,19 @@ struct _GedaListClass {
   GObjectClass parent;
 };
 
-GType geda_list_get_type (void);
+unsigned int geda_list_get_type (void);
 
 /* It would be nice to add const qualifiers to some of these, but GLib
  * is buggy in this respect, and doesn't have const where necessary. */
-GedaList *geda_list_new( void );
-void geda_list_add( GedaList *list, gpointer item );
-void geda_list_add_glist( GedaList *list, GList *items );
-int  geda_glist_is_homogeneous_objects ( GList *list);
-void geda_list_remove( GedaList *list, gpointer item );
+GedaList *geda_list_new                     ( void );
+void      geda_list_add                     ( GedaList *list, void *item );
+void      geda_list_add_glist               ( GedaList *list, GList *items );
+GList    *geda_list_copy_glist              ( GedaList *list );
+int       geda_glist_is_homogeneous_objects ( GList *list);
+void      geda_list_remove                  ( GedaList *list, void *item );
+
 /*void geda_list_remove_glist( GedaList *list, GList *items ); */ /* Undemanded as yet */
-void geda_list_remove_all( GedaList *list );
+void      geda_list_remove_all              ( GedaList *list );
 
 /*const GList *geda_list_get_glist( GedaList *list ); */
 //#define geda_list_get_glist(list) (list->glist)

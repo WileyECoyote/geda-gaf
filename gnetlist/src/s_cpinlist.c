@@ -39,61 +39,60 @@
 /* update object_tail or any list of that matter */
 CPINLIST *s_cpinlist_return_tail(CPINLIST * head)
 {
-    CPINLIST *pl_current = NULL;
-    CPINLIST *ret_struct = NULL;
+  CPINLIST *pl_current = NULL;
+  CPINLIST *ret_struct = NULL;
 
-    pl_current = head;
-    while (pl_current != NULL) {	/* goto end of list */
-	ret_struct = pl_current;
-	pl_current = pl_current->next;
-    }
+  pl_current = head;
+  while (pl_current != NULL) {	/* goto end of list */
+    ret_struct = pl_current;
+    pl_current = pl_current->next;
+  }
 
-    return (ret_struct);
+  return (ret_struct);
 }
 
 /* hack rename this to be s_return_head */
 /* update object_tail or any list of that matter */
 CPINLIST *s_cpinlist_return_head(CPINLIST * tail)
 {
-    CPINLIST *pl_current = NULL;
-    CPINLIST *ret_struct = NULL;
+  CPINLIST *pl_current = NULL;
+  CPINLIST *ret_struct = NULL;
 
-    pl_current = tail;
-    while (pl_current != NULL) {	/* goto end of list */
-	ret_struct = pl_current;
-	pl_current = pl_current->prev;
-    }
+  pl_current = tail;
+  while (pl_current != NULL) {	/* goto end of list */
+    ret_struct = pl_current;
+    pl_current = pl_current->prev;
+  }
 
-    return (ret_struct);
+  return (ret_struct);
 }
-
 
 /* returns new node */
 CPINLIST *s_cpinlist_add(CPINLIST * ptr)
 {
-    CPINLIST *new_node;
+  CPINLIST *new_node;
 
-    new_node = (CPINLIST *) g_malloc(sizeof(CPINLIST));
+  new_node = (CPINLIST *) g_malloc(sizeof(CPINLIST));
 
-    /* setup node information */
-    new_node->plid = 0;
-    new_node->type = PIN_TYPE_NET;
-    new_node->pin_number = NULL;
-    new_node->pin_label = NULL;
-    new_node->net_name = NULL;
-    new_node->nets = NULL;
+  /* setup node information */
+  new_node->plid = 0;
+  new_node->node_type  = PIN_NET_NODE;
+  new_node->pin_number = NULL;
+  new_node->pin_label  = NULL;
+  new_node->net_name   = NULL;
+  new_node->nets       = NULL;
 
-    /* Setup link list stuff */
-    new_node->next = NULL;
+  /* Setup link list stuff */
+  new_node->next       = NULL;
 
-    if (ptr == NULL) {
-	new_node->prev = NULL;	/* setup previous link */
-	return (new_node);
-    } else {
-	new_node->prev = ptr;	/* setup previous link */
-	ptr->next = new_node;
-	return (ptr->next);
-    }
+  if (ptr == NULL) {
+    new_node->prev = NULL;	/* setup previous link */
+    return (new_node);
+  } else {
+    new_node->prev = ptr;	/* setup previous link */
+    ptr->next = new_node;
+    return (ptr->next);
+  }
 }
 
 void s_cpinlist_print(CPINLIST * ptr)

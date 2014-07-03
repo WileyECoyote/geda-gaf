@@ -35,7 +35,7 @@ MOSTLYCLEANFILES = 	*.log *~
 CLEANFILES = 		*.log *~
 DISTCLEANFILES = 	*.log core FILE *~ \
 			*.dvi *.info *.info-* *.aux *.fn \
-			*.fns *.cp *.ky *.pg *.toc *.tp *.vrs *.vr 
+			*.fns *.cp *.ky *.pg *.toc *.tp *.vrs *.vr
 MAINTAINERCLEANFILES = *.log *~ Makefile.in $(html_man_files)
 
 distclean-local:

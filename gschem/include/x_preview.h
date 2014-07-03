@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2014 Ales Hvezda
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -21,10 +21,6 @@
 #ifndef __X_PREVIEW_H__
 #define __X_PREVIEW_H__
 
-/*
- * Preview
- */
-
 #define TYPE_PREVIEW         (preview_get_type())
 #define PREVIEW(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PREVIEW, Preview))
 #define PREVIEW_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PREVIEW, PreviewClass))
@@ -33,7 +29,6 @@
 typedef struct _PreviewClass PreviewClass;
 typedef struct _Preview      Preview;
 
-
 struct _PreviewClass {
   GtkDrawingAreaClass parent_class;
 };
@@ -41,17 +36,15 @@ struct _PreviewClass {
 struct _Preview {
   GtkDrawingArea parent_instance;
 
-  GschemToplevel *preview_w_current;
+  GschemToplevel *preview_window;
+  char *filename;
+  char *buffer;
 
-  gchar *filename;
-  gchar *buffer;
+  bool active;
 
-  gboolean active;
-  
 };
 
-
-GType preview_get_type (void);
+unsigned int preview_get_type (void);
 
 
 #endif /* __X_PREVIEW_H__ */

@@ -474,11 +474,11 @@ struct _GtkSheetClass
                                  guint height);
 
 };
-  
-GType gtk_sheet_get_type (void);
-GType gtk_sheet_range_get_type (void);
-GType gtk_sheet_cell_border_get_type (void);
-GType gtk_sheet_cell_attr_get_type (void);
+
+unsigned int gtk_sheet_get_type (void);
+unsigned int gtk_sheet_range_get_type (void);
+unsigned int gtk_sheet_cell_border_get_type (void);
+unsigned int gtk_sheet_cell_attr_get_type (void);
 
 /* create a new sheet */
 GtkWidget *

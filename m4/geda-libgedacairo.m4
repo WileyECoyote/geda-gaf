@@ -2,7 +2,7 @@
 # serial 1
 
 dnl libgedacairo-specific setup
-dnl Copyright (C) 2010-2013  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2010-2014  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
-# Work out the gettext domain that libgeda should use
+# Work out the gettext domain that libgedacairo should use
 AC_DEFUN([AX_LIBGEDACAIRO],
 [
   AC_PREREQ([2.60])dnl

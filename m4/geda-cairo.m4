@@ -44,4 +44,5 @@ AC_DEFUN([AX_CHECK_CAIRO],
       AC_MSG_ERROR([Cairo 1.8.0 or later is required.]))
   fi
   AC_SUBST([CAIRO_PKG])
-])# AX_CHECK_CAIRO
+  []dnl
+])dnl AX_CHECK_CAIRO

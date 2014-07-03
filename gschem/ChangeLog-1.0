@@ -1,3 +1,81 @@
+2014-03-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/o_undo: Added call to o_add_change_notify after new page created
+          in function o_undo_callback.
+
+        * src/x_compselect.c: Replace gtk_label_new with geda_label_new in
+          compselect_constructor
+
+        * src/x_autonumber.c: Replace gtk_label_new with geda_label_new in
+          autonumber_create_dialog.
+
+        * src/x_dialog.c: Replace gtk_label_new with geda_label_new in
+
+        * src/g_action.c: Fixed leak in g_process_action, freed action_str
+
+2014-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*: Source directory structure re-vamped. Sub-directories created for
+          gschem, guile, iface, math, object, view, and x.
+
+        * src/widgets: Files were relocate to a seperate compilation unit for new
+          library libgedauio.
+
+        * src/i_pan_world.c: Rename to v_pan.c and relocated to new view subdirectory
+
+        * src/a_zoom.c: Rename to v_zoom.c and relocated to new view subdirectory
+
+        * src/a_zoom.c: parsecmd.c renamed  src/gschem/gschem_parsecmd.c and renamed
+          function parse_commandline to gschem_parse_commandline for consistency with
+          other compilation units, is not totally consistence but should be intuitive
+          enough.
+
+        * src/s_stretch.c: This file was eliminated, the code contents were originaly
+          added to gschem to support implicit drag-moves, and each of the containing
+          functions were only being call once, and all by functions within o_move.c,
+          therefore the code was relocated to the o_move.c file with the functions
+          being renamed o_move_stretch_xxx.
+
+2014-03-07 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/i_pan_world.c: Add conditional in i_pan_world_general() so i_update_grid_info
+          is only called if the zoom changed. Without the conditional, function
+          were being called when the view was only panned, which does not require
+          updating the status.
+
+        * src/i_basic.c: Functionality of i_update_grid_info is now performed by
+          the status-bar object, i_update_grid_info now calls the function
+          x_status_bar_update_grid_label in x_status_bar.c, which emits a signal
+          on the status-bar object if an update is required.
+
+        * src/g_rc.c: Revised g_rc_parse_gtkrc to log status of gschem-gtkrc
+          processing (this may have been once upon-a-time but was somewhat
+          annoying) using v_log_message and q_log_message.
+
+        * etc/gschem-gtkrc: Commented out the setting of the font (again)
+ 
+        * src/gschem.c: Relocated call to function i_vars_libgeda_freenames to
+          libgeda.c function libgeda_release();
+
+        * *: Created new GschemToplevel gobject for w_current rather than using
+          a static structure and revised all code throughout the project as needed.
+          This does not seem to be as usefull as with the libgeda because Gschem
+          was resolving dynamically allocated memory when shutdown. Seemly, the
+          only real benifit is the ability to use GSCHEM_IS_TOPLEVEL as oppose
+          to checking for w_current == NULL. tanto opere, tam parum lucratus.
+
+        * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+
+        * tests/Makefile.am: Added AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+          $(GEDA_AUTOMAKE_TEST_OPTIONS)
+
+        * src/o_misc.c: Added const quailifier to third argument of functions
+          o_edit_find_text, o_edit_hide_specific_text, and o_edit_show
+          _specific_text.
+
+        * src/x_settings_dialog.c: In function GatherSettings, changing tmpstr
+          to const char*.
+
 2013-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/globals.h: New macro Current_Page =  w_current->
@@ -953,11 +1031,11 @@
           the source files and headers as the number of file is ever increasing.
 
         * src/x_menu.c: Revised get_main_menu function, changing the toggle
-          options to menu toggle action object with new GschemToggleAction
+          options to menu toggle action object with new GedaToggleAction
           type (so the accelorators would be added to the menu). Added support
           routines for Toolbar and Menu Toggle (a lot of work!).
 
-        * src/widget/gschem_toggle_action.c: New file.
+        * src/widget/geda_toggle_action.c: New file.
 
         * src/i_callbacks.c: Added callback documentation for c api for component
           documentation, which was eliminated and the menu redirected to schema
@@ -1509,7 +1587,7 @@
                 * include/prototype.h, src/o_grips.c: Changed to use world
                   coordinates internally for region checking.
 
-                * src/a_pan.c, src/i_callbacks.c, src/o_buffer.c,
+                * src/i_pan_world.c, src/i_callbacks.c, src/o_buffer.c,
                   src/o_complex.c, src/o_copy.c, src/o_move.c,
                   src/x_attribedit.c, src/x_dialog.c, src/x_event.c:
                   Add manual grid-snapping after calls to SCREENtoWORLD()
@@ -2653,7 +2731,7 @@
 
 2006-07-08 Jason Childs <oblivian@users.sourceforge.net>
 
-        * noweb/a_pan.nw, noweb/a_zoom.nw, noweb/g_funcs.nw, noweb/g_hook.nw,
+        * noweb/i_pan_world.nw, noweb/a_zoom.nw, noweb/g_funcs.nw, noweb/g_hook.nw,
           noweb/g_keys.nw, noweb/g_rc.nw, noweb/g_register.nw,
           noweb/globals.nw, noweb/gschem.nw, noweb/i_basic.nw,
           noweb/i_callbacks.nw, noweb/i_vars.nw, noweb/o_arc.nw,
@@ -2860,13 +2938,13 @@
           o_arc_rubberband(), simplified the function.
           this fixes bug 1468682
 
-        * noweb/a_pan.nw: set loc_x/y to 0 in a_pan_general,
+        * noweb/i_pan_world.nw: set loc_x/y to 0 in i_pan_world_general,
           this fixes a zoom-while-drawing error
 
 2006-04-14 Werner Hoch <werner.ho@gmx.de>
 
-        * noweb/a_zoom.nw, noweb/a_pan.nw: rubberband redrawing changed
-          moved coordinate calculations to a_pan_general()
+        * noweb/a_zoom.nw, noweb/i_pan_world.nw: rubberband redrawing changed
+          moved coordinate calculations to i_pan_world_general()
 
         * noweb/i_callback.nw: removed limitations of paning while drawing
         * noweb/o_basic.nw: small fix for moving while drawing
@@ -2893,10 +2971,10 @@
         * noweb/x_dialog.nw: find_text_dialog(): moved the descend
           checkbutton from the action_area to the vbox.
 
-        * noweb/a_pan.nw: a_pan(), a_pan_mouse() rewritten, they'll use
-          a_pan_general() now, a_pan_calc() removed.
+        * noweb/i_pan_world.nw: i_pan_world(), i_pan_world_mouse() rewritten, they'll use
+          i_pan_world_general() now, i_pan_world_calc() removed.
 
-        * noweb/a_pan, noweb/a_zoom.nw, noweb/i_callbacks.nw, noweb/o_misc.nw,
+        * noweb/i_pan_world, noweb/a_zoom.nw, noweb/i_callbacks.nw, noweb/o_misc.nw,
           noweb/x_event.nw: bugfix for "[ 1443804 ] gschem scrollbars not
           updating in all cases", added missing scrollbar updates, removed
           duplicate o_redraw_all_fast() calls.
@@ -3508,7 +3586,7 @@
 
 2005-02-04 04:39  danmc
 
-        * configure.ac, noweb/a_pan.nw, noweb/a_zoom.nw, noweb/g_funcs.nw,
+        * configure.ac, noweb/i_pan_world.nw, noweb/a_zoom.nw, noweb/g_funcs.nw,
           noweb/g_hook.nw, noweb/g_keys.nw, noweb/g_rc.nw,
           noweb/g_register.nw, noweb/globals.nw, noweb/gschem.nw,
           noweb/i_basic.nw, noweb/i_callbacks.nw, noweb/i_vars.nw,
@@ -5313,7 +5391,7 @@
         * noweb/gschem.nw: Removed the "This is alpha software" message and
           added the standard gpl/gnu software message
 
-        * noweb/a_pan.nw: Oops, if you mouse pan around in a corner you get
+        * noweb/i_pan_world.nw: Oops, if you mouse pan around in a corner you get
           really weird aspect ratio changes.  Fixed.
 
         * noweb/o_basic.nw: Added a parameter to o_drawbounding which controls
@@ -5655,7 +5733,7 @@
 
 2000-12-15  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/a_pan.c: Changed o_redraw_all call to o_redraw_all_fast just
+        * src/i_pan_world.c: Changed o_redraw_all call to o_redraw_all_fast just
           to speed things up a bit
 
         * src/gschem.c: Changed o_redraw_all call to o_redraw_all_fast just
@@ -5735,7 +5813,7 @@
         * src/*.c: Removed some of the DONT_REDRAW from the code (the
           DONT_* are total hacks)
 
-        * src/i_callbacks.c, a_zoom.c, a_pan.c and friends: Added a flag
+        * src/i_callbacks.c, a_zoom.c, i_pan_world.c and friends: Added a flag
           to a_zoom_* to control if the display is redraw or not (augmenting
           the current DONT_REDRAW).  Need to fix this properly soon
 
@@ -5743,11 +5821,11 @@
 
         * configure.in: Slightly rearranged things to make cygwin port happy
 
-        * src/a_pan.c: Integrated changes by Werner Hoch, Panning is now done
-          using a_pan_general
+        * src/i_pan_world.c: Integrated changes by Werner Hoch, Panning is now done
+          using i_pan_world_general
 
         * src/a_zoom.c: Integrated changes by Werner Hoch, Panning is now done
-          using a_pan_general
+          using i_pan_world_general
 
         * src/i_callbacks.c: Integrated changes by Werner Hoch, Bunch of
           code cleanup, removed some redundant code
@@ -5764,7 +5842,7 @@
         * src/x_window.c: Integrated changes by Werner Hoch, changed some
           init variables relating to scrollbars
 
-        * src/a_pan.c: Put in some code to bound the left and top borders
+        * src/i_pan_world.c: Put in some code to bound the left and top borders
           when mouse panning
 
 2000-12-02  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -5855,10 +5933,10 @@
 
 2000-10-29  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/a_pan.c src/a_zoom.c: Integrated bug fixes and much needed
+        * src/i_pan_world.c src/a_zoom.c: Integrated bug fixes and much needed
           improvement to zoom / pan functions (patch by Werner Hoch) Thanks
 
-        * src/a_pan.c: Fixed a long standing annoyance with mouse pan: near
+        * src/i_pan_world.c: Fixed a long standing annoyance with mouse pan: near
           the borders the display would jitter, very annoying
 
         * src/g_register.c etc...: Added support for hotkey for edit_filltype
@@ -6191,7 +6269,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 /* NOT DONE */
 /***********************************************************************/
 
-        * src/a_zoom.c, src/a_pan.c: Moved some of the redraw functions
+        * src/a_zoom.c, src/i_pan_world.c: Moved some of the redraw functions
           around
 
         * src/x_event.c: Changed one of the o_redraw_all_fast functions to be a
@@ -6201,7 +6279,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
           I could improve the net_conn drawing problems.  Not much success
           though (probably broke things)
 
-        * src/a_pan.c, src/a_zoom.c, src/x_event.c, src/i_callbacks.c:
+        * src/i_pan_world.c, src/a_zoom.c, src/x_event.c, src/i_callbacks.c:
           Removed o_undo_savestate from zoom and pan functions (for now,
           eventually routines need to go back in)
 
@@ -6242,7 +6320,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         * src/*.c: Added an o_undo_savestate after all code which causes a
           schematic change
 
-        * src/a_zoom.c, src/a_pan.c, src/x_events.c: Added an o_undo_savestate
+        * src/a_zoom.c, src/i_pan_world.c, src/x_events.c: Added an o_undo_savestate
           after all zoom/pan type code
 
 2000-06-22  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -6512,7 +6590,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         * src/o_basic.c: Added o_redraw_all_fast (which is a faster version
            of o_redraw_all)
 
-        * src/a_pan.c: Made mouse pan use the above routine
+        * src/i_pan_world.c: Made mouse pan use the above routine
 
         * src/x_event.c src/o_text.c: Added code to increase the speed of the
           mouse pan (by not drawing all the text)
@@ -7410,7 +7488,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 7/13/99 Cleaned up i_callbacks.c (by Kazu Hirata)
 
-7/12/99 Moved the core of a_pan into a_pan_calc
+7/12/99 Moved the core of i_pan_world into i_pan_world_calc
 
         Implemented the zoom and pan to where the mouse is (center at the
         current mouse location).  Only works with the hotkeys.
@@ -7422,7 +7500,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Cleaned up gschem.c and i_basic.c. (by Kazu Hirata)
 
-7/11/99 Cleaned up a_pan.c, a_zoom.c, g_key.c, g_funcs.c. (by Kazu Hirata)
+7/11/99 Cleaned up i_pan_world.c, a_zoom.c, g_key.c, g_funcs.c. (by Kazu Hirata)
 
 7/10/99        Updated a few places where it's important to call set_window
         (part of the math speed improvements)
@@ -7995,7 +8073,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 11/5/98 Added paper-size to gschemrc file (changes to g_rc, g_register)
 
-10/30/98 Cleaned up (indentation, long lines) a_zoom and a_pan code a lot
+10/30/98 Cleaned up (indentation, long lines) a_zoom and i_pan_world code a lot
 
 10/28/98 Rearranged View menu a bit
 

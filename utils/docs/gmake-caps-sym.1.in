@@ -11,7 +11,7 @@ gmake-caps-sym \- Make gEDA Capacitor Symbols
 .B gmake-caps-sym
 Make gEDA Capacitor Symbols
 
-This script is for 'batch' production of capacitor symbols for the geda=gaf project. The script requires a template symbol file and a parameter file. Parameters read from the file are used in the output symbol file name or used as replacement values for pre-set variables in the symbol template file.
+gmake-caps-sym is for 'batch' production of capacitor symbols for the geda-gaf project. The script requires a template symbol file and a parameter file. Parameters read from the file are used in the output symbol file name or used as replacement values for pre-set variables in the symbol template file.
 
 .SH QUICK
 .B usage: [-h, --help] | [--version] | [options] template[.sym] parameters[.spm]
@@ -57,7 +57,7 @@ Wiley Edward Hill < wileyhill dot gmail dot com >
 
 .SH COPYRIGHT
 .nf
-Copyright \(co 2012-2013 Wiley Edward Hill.  License GPLv2+: GNU GPL
+Copyright \(co 2012-2014 Wiley Edward Hill.  License GPLv2+: GNU GPL
 version 2 or later.  Please see the `COPYING' file included with this
 program for full details.
 .PP

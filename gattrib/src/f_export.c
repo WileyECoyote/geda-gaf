@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -76,7 +76,7 @@ void f_export_components(char *filename)
 #endif
   fp = fopen(filename, "wb");
   if (fp == NULL) {
-    s_log_message(_("o_save: Could not open [%s]\n"), filename);
+    u_log_message(_("o_save: Could not open [%s]\n"), filename);
     /* XXXXX Throw up error message  in window */
     return;
   }
@@ -94,13 +94,13 @@ void f_export_components(char *filename)
     text = g_strdup( s_string_list_get_data_at_index(
 		       sheet_head->master_comp_attrib_list_head, j) );
     fprintf(fp, "%s, ", text);
-    g_free(text);
+    GEDA_FREE(text);
   }
   /*  Print out last attrib name with no comma and with \n.  */
   text = g_strdup( s_string_list_get_data_at_index(
 		     sheet_head->master_comp_attrib_list_head, j) );
   fprintf(fp, "%s\n", text);
-  g_free(text);
+  GEDA_FREE(text);
 
 
   /*  Now export the contents of the sheet  */
@@ -114,7 +114,7 @@ void f_export_components(char *filename)
   printf("In f_export_components, output component refdes %s.\n", text);
 #endif
     fprintf(fp, "%s, ",text);
-    g_free(text);
+    GEDA_FREE(text);
 
     /*  Now export the attrib values for first n-1 cols */
     for (j = 0; j < num_cols-1; j++) {
@@ -131,7 +131,7 @@ void f_export_components(char *filename)
         if(havecomma) fprintf(fp, "\"");
         fprintf(fp, ", ");
 
-	g_free(text);
+	GEDA_FREE(text);
       } else {                                                  /* no attrib string */
 #ifdef DEBUG
   printf("In f_export_components, output blank attrib space\n");
@@ -153,7 +153,7 @@ void f_export_components(char *filename)
       if(havecomma) fprintf(fp, "\"");
       fprintf(fp, "\n");
 
-      g_free(text);
+      GEDA_FREE(text);
     } else {                                                  /* no attrib string */
 #ifdef DEBUG
   printf("In f_export_components, output blank at end of line.\n");

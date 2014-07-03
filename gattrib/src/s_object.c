@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  *
- * Copyright (C) 2003-2013 Stuart D. Brorson.
- * Copyright (C) 2003-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +21,11 @@
 
 /*------------------------------------------------------------------*/
 /*! \file
- * \brief Functions for manipulating OBJECTs.
+ * \brief Functions for manipulating Objects.
  *
- * This file holds functions involved in manipulating the OBJECT data
- * structure.  OBJECT is defined in libgeda.  An OBJECT is a graphical
- * primitive normally used in gschem.  Example OBJECTs: some text,
+ * This file holds functions involved in manipulating the Object data
+ * structure.  Object is defined in libgeda.  An Object is a graphical
+ * primitive normally used in gschem.  Example Objects: some text,
  * a component (complex), a pin, a line, etc.
  *
  * The functions herein are functions which I wrote as wrappers to the
@@ -46,7 +46,6 @@
 #include <dmalloc.h>
 #endif
 
-
 /*------------------------------------------------------------------
  * Gattrib specific defines
  *------------------------------------------------------------------*/
@@ -56,7 +55,7 @@
 /* ===================  Public Functions  ====================== */
 
 /*------------------------------------------------------------------*/
-/*! \brief Add an attribute to an OBJECT
+/*! \brief Add an attribute to an Object
  *
  * This fcn adds a new attrib to o_current, when o_current is a
  * component.  It does it in the following
@@ -65,8 +64,8 @@
  * -# It gets the position info from o_current's refdes attrib and
  *    calls o_text_new() to add position info and name=value string
  *    to attrib_graphic.
- * -# It calls o_attrib_add() to wrap attrib_graphic with (attribute OBJECT )
- * \param toplevel TOPLEVEL structure
+ * -# It calls o_attrib_add() to wrap attrib_graphic with (attribute Object )
+ * \param toplevel GedaToplevel structure
  * \param o_current pointer to object to add attribute to
  * \param new_attrib_name name of the attribute to add
  * \param new_attrib_value value of the attribute to add
@@ -74,8 +73,8 @@
  * \param show_name_value Control visibility of name and value.
  */
 void
-s_object_add_comp_attrib_to_object (TOPLEVEL *toplevel,
-                                    OBJECT *o_current,
+s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
+                                    Object *o_current,
                                     char *new_attrib_name,
                                     char *new_attrib_value,
                                     int visibility,
@@ -104,8 +103,8 @@ s_object_add_comp_attrib_to_object (TOPLEVEL *toplevel,
  * \todo This needs to be filled in.
  */
 void
-s_object_add_net_attrib_to_object (TOPLEVEL *toplevel,
-                                   OBJECT *o_current,
+s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
+                                   Object *o_current,
                                    char *new_attrib_name,
                                    char *new_attrib_value)
 {
@@ -114,26 +113,29 @@ s_object_add_net_attrib_to_object (TOPLEVEL *toplevel,
 
 
 /*------------------------------------------------------------------*/
-/*! \brief Add a new attribute to an pin OBJECT
+/*! \brief Add a new attribute to an pin Object
  *
- * Add a new attribute to o_current, when o_current is a
- * pin.  It does it in the following
- * way:
- * -# It creates an object -- "attrib_graphic" -- and fills it in.
- * -# It gets the position info from o_current's refdes attrib and
- *    calls o_text_new() to add position info and name=value string
- *    to attrib_graphic.
- * -# It calls o_attrib_add() to wrap attrib_graphic with (attribute OBJECT )
- * \param toplevel TOPLEVEL structure
- * \param o_current Pointer to pin object
- * \param new_attrib_name Name of attribute to add
- * \parma new_attrib_value Value of attribute to add
- * \todo Do I really need separate fcns for comps, nets, and
- * pins???
+ *  \par Function Description
+ *
+ *  This function adds a new attribute to o_current, when o_current is
+ *  a pin using the following technique:
+ *
+ * -# creates an object -- "attrib_graphic" -- and fills it in.
+ * -# gets the position info from o_current's refdes attrib and
+ *    calls o_text_new() to add position info and name=value string to
+ *    attrib_graphic.
+ * -# calls o_attrib_add() to wrap attrib_graphic with (attribute Object )
+ *
+ * \param toplevel         GedaToplevel structure
+ * \param o_current        Pointer to pin object
+ * \param new_attrib_name  Name of attribute to add
+ * \param new_attrib_value Value of attribute to add
+ *
+ * \todo Do I really need separate fcns for comps, nets, and pins???
  */
 void
-s_object_add_pin_attrib_to_object (TOPLEVEL *toplevel,
-                                   OBJECT *o_current,
+s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
+                                   Object *o_current,
                                    char *new_attrib_name,
                                    char *new_attrib_value)
 {
@@ -152,28 +154,30 @@ s_object_add_pin_attrib_to_object (TOPLEVEL *toplevel,
   return;
 }
 
-
 /*------------------------------------------------------------------*/
 /*! \brief Replace attribute value in object
  *
- * Find the instance of attrib_name on o_current, and
- * replace its value with the new_attrib_value.
- * \param toplevel TOPLEVEL object
- * \param o_current object to operate on
- * \param new_attrib_name name of attribute to replace
- * \param new_attrib_value value to set attribute to
- * \param visibility set visibility of attribute
- * \param show_name_value set visibility of attribute name and value
+ *  \par Function Description
+ *
+ *  Find the instance of attrib_name on o_current, and replace the
+ *  value with the new_attrib_value.
+ *
+ *  \param toplevel         GedaToplevel object
+ *  \param o_current        object to operate on
+ *  \param new_attrib_name  name of attribute to replace
+ *  \param new_attrib_value value to set attribute to
+ *  \param visibility       set visibility of attribute
+ *  \param show_name_value  set visibility of attribute name and value
  */
-void s_object_replace_attrib_in_object(TOPLEVEL *toplevel,
-				       OBJECT *o_current,
-				       char *new_attrib_name,
-				       char *new_attrib_value,
-				       int visibility,
-				       int show_name_value)
+void
+s_object_replace_attrib_in_object(GedaToplevel *toplevel, Object *o_current,
+                                  char *new_attrib_name,
+                                  char *new_attrib_value,
+                                  int visibility,
+                                  int show_name_value)
 {
   GList *a_iter;
-  OBJECT *a_current;
+  Object *a_current;
   char *old_attrib_text;
   char *old_attrib_name;
   char *new_attrib_text;
@@ -183,128 +187,131 @@ void s_object_replace_attrib_in_object(TOPLEVEL *toplevel,
   while (a_iter != NULL) {
     a_current = a_iter->data;
     if (a_current->type == OBJ_TEXT
-	&& a_current->text != NULL) {  /* found an attribute */
+      && a_current->text != NULL) {  /* found an attribute */
 
       /* may need to check more thoroughly here. . . . */
       old_attrib_text = g_strdup(a_current->text->string);
-      old_attrib_name = u_basic_breakup_string(old_attrib_text, '=', 0);
+    old_attrib_name = u_basic_breakup_string(old_attrib_text, '=', 0);
 
-      if (strcmp(old_attrib_name, new_attrib_name) == 0) {
-	/* create attrib=value text string & stuff it back into toplevel */
-	new_attrib_text = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
-	g_free(a_current->text->string);   /* remove old attrib string */
-	a_current->text->string = g_strdup(new_attrib_text);   /* insert new attrib string */
-	if (visibility != LEAVE_VISIBILITY_ALONE)
-	  o_set_visibility (toplevel, a_current, visibility);
-	if (show_name_value != LEAVE_NAME_VALUE_ALONE)
-	  a_current->show_name_value = show_name_value;
-	g_free(new_attrib_text);
-	g_free(old_attrib_text);
-	g_free(old_attrib_name);
-	return;     /* we are done -- leave. */
-      } else {
-	g_free(old_attrib_text);
-	g_free(old_attrib_name);
-      }  /* if (strcmp . . . . */
-    } /* if (a_current . . . . */
+    if (strcmp(old_attrib_name, new_attrib_name) == 0) {
+      /* create attrib=value text string & stuff it back into toplevel */
+      new_attrib_text = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
+      GEDA_FREE(a_current->text->string);   /* remove old attrib string */
+      a_current->text->string = g_strdup(new_attrib_text);   /* insert new attrib string */
+      if (visibility != LEAVE_VISIBILITY_ALONE)
+        o_set_visibility (a_current, visibility);
+      if (show_name_value != LEAVE_NAME_VALUE_ALONE)
+        a_current->show_name_value = show_name_value;
+      GEDA_FREE(new_attrib_text);
+      GEDA_FREE(old_attrib_text);
+      GEDA_FREE(old_attrib_name);
+      return;     /* we are done -- leave. */
+    } else {
+      GEDA_FREE(old_attrib_text);
+      GEDA_FREE(old_attrib_name);
+    }  /* if (strcmp . . . . */
+  } /* if (a_current . . . . */
 
-    a_iter = g_list_next (a_iter);
-  }  /* while */
+  a_iter = g_list_next (a_iter);
+}  /* while */
 
-  /* if we get here, it's because we have failed to find the attrib on the component.
-   * This is an error condition. */
-  fprintf(stderr,
-	 _("In s_object_replace_attrib_in_object, we have failed to find the attrib %s on the component.  Exiting . . .\n"),
-	 new_attrib_name);
-  return;
-}
+/* if we get here, it's because we have failed to find the attrib on the component.
+ * This is an error condition. */
+fprintf(stderr,
+        _("In s_object_replace_attrib_in_object, we have failed to find the attrib %s on the component.  Exiting . . .\n"),
+                                         new_attrib_name);
+      return;
+      }
 
 
 /*------------------------------------------------------------------*/
 /*!
  * \brief Remove attribute from object
  *
- * Remove an attribute from an object.
- * \param toplevel TOPLEVEL structure
- * \param o_current Object to remove attribute from
+ * \par Function Description
+ *
+ *  Remove an attribute from an object.
+ *
+ * \param toplevel        GedaToplevel structure
+ * \param o_current       Object to remove attribute from
  * \param new_attrib_name Name of attribute to remove
  */
 void
-s_object_remove_attrib_in_object (TOPLEVEL *toplevel,
-                                  OBJECT *o_current,
+s_object_release_attrib_in_object (GedaToplevel *toplevel,
+                                  Object *o_current,
                                   char *new_attrib_name)
 {
   GList *a_iter;
-  OBJECT *a_current;
-  OBJECT *attribute_object;
+  Object *a_current;
+  Object *attribute_object;
   char *old_attrib_text;
   char *old_attrib_name;
 
   a_iter = o_current->attribs;
   while (a_iter != NULL) {
     a_current = a_iter->data;
-    if (a_current->type == OBJ_TEXT
-	&& a_current->text != NULL) {  /* found an attribute */
+    if (a_current->type == OBJ_TEXT && a_current->text != NULL) {  /* found an attribute */
 
       /* may need to check more thoroughly here. . . . */
       old_attrib_text = g_strdup(a_current->text->string);
       old_attrib_name = u_basic_breakup_string(old_attrib_text, '=', 0);
 
       if (strcmp(old_attrib_name, new_attrib_name) == 0) {
-	/* We've found the attrib.  Delete it and then return. */
 
-#ifdef DEBUG
-	printf("In s_object_remove_attrib_in_object, removing attrib with name = %s\n", old_attrib_name);
-#endif
+        /* We've found the attrib.  Delete it and then return. */
 
-	attribute_object = a_current;
-	s_object_delete_text_object_in_object (toplevel, attribute_object);
+        #ifdef DEBUG
+        printf("In s_object_release_attrib_in_object, removing attrib with name = %s\n", old_attrib_name);
+        #endif
 
-	g_free(old_attrib_text);
-	g_free(old_attrib_name);
-	return;     /* we are done -- leave. */
+        attribute_object = a_current;
+        s_object_delete_text_object_in_object (toplevel, attribute_object);
+
+        GEDA_FREE(old_attrib_text);
+        GEDA_FREE(old_attrib_name);
+        return;     /* we are done -- leave. */
       }
-    g_free(old_attrib_text);
-    g_free(old_attrib_name);
+      GEDA_FREE(old_attrib_text);
+      GEDA_FREE(old_attrib_name);
     }
     a_iter = g_list_next (a_iter);
   }
 
   /* if we get here, it's because we have failed to find the attrib on the component.
    * This is an error condition. */
-  fprintf(stderr,
-	 _("In s_object_remove_attrib_in_object, we have failed to find the attrib %s on the component.  Exiting . . .\n"),
-	 new_attrib_name);
-  return;
+  BUG_MSG("failed to find the attrib");
+  fprintf(stderr, "%s\n", new_attrib_name);
 }
-
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Attach attribute to object.
  *
- * Attach the name=value pair to the OBJECT "object". This function
- * was stolen from gschem/src/o_attrib.c:o_attrib_add_attrib and
- * hacked for gattrib.
- * \param toplevel TOPLEVEL to operate on
+ * \par Function Description
+ *
+ * Attach the name=value pair to the Object "object". This function was
+ * re-used from gschem/src/o_attrib.c:o_attrib_add_attrib and hacked for
+ * gattrib.
+ *
+ * \param toplevel          GedaToplevel to operate on
  * \param text_string
  * \param visibility
  * \param show_name_value
  * \param object
+ *
  * \returns TRUE if the attribute was added, else FALSE
  */
 bool
-s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
+s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                       char *text_string,
                                       int visibility,
                                       int show_name_value,
-                                      OBJECT * object)
+                                      Object * object)
 {
   int world_x = -1, world_y = -1;
   int color;
   int left, right, top, bottom;
-  OBJECT *o_current;
-  OBJECT *new_obj;
+  Object *o_current;
+  Object *new_obj;
 
   color = DETACHED_ATTRIBUTE_COLOR;
 
@@ -330,9 +337,9 @@ s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
       fprintf(stderr, _("In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex or non-net!\n"));
       return FALSE;
     }
-  } else {    /* This must be a floating attrib, but what is that !?!?!?!?!  */
-    world_get_object_glist_bounds (toplevel,
-                                   s_page_objects (toplevel->page_current),
+  }
+  else {    /* This must be a floating attrib, but what is that !?!?!?!?!  */
+    world_get_object_glist_bounds (s_page_get_objects (toplevel->page_current),
                                    &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
@@ -348,27 +355,26 @@ s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
   printf("===  In s_object_attrib_add_attrib_in_object, about to attach new text attrib with properties:\n");
   printf("     color = %d\n", color);
   printf("     text_string = %s \n", text_string);
-  printf("     text_size = %d \n", toplevel->text_size);
+ // printf("     text_size = %d \n", toplevel->text_size);
   printf("     visibility = %d \n", visibility);
   printf("     show_name_value = %d \n", show_name_value);
 #endif
 
-  new_obj = o_text_new (toplevel, OBJ_TEXT, color, world_x, world_y,
+  new_obj = o_text_new (color, world_x, world_y,
                         LOWER_LEFT, 0, /* zero is angle */
                         text_string, DEFAULT_TEXT_SIZE,
                         visibility, show_name_value);
-  s_page_append_object(toplevel, toplevel->page_current, new_obj);
+  s_page_append_object(toplevel->page_current, new_obj);
 
   /* now toplevel->page_current->object_tail contains new text item */
 
   /* now attach the attribute to the object (if o_current is not NULL) */
   /* remember that o_current contains the object to get the attribute */
   if (o_current) {
-    o_attrib_attach (toplevel, new_obj, o_current, FALSE);
+    o_attrib_attach (new_obj, o_current, FALSE);
   }
 
-  o_selection_add (toplevel,
-                   toplevel->page_current->selection_list, new_obj);
+  o_selection_add (toplevel->page_current->selection_list, new_obj);
 
 
   toplevel->page_current->CHANGED = 1;
@@ -376,40 +382,40 @@ s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
   return TRUE;
 }
 
-
-
-
 /*------------------------------------------------------------------*/
 /*! \brief Delete text object
  *
- * Delete the text object pointed to by text_object.  This function
- * was shamelessly stolen from gschem/src/o_delete.c and hacked
- * for gattrib by SDB.
- * \param toplevel TOPLEVEL to be operated on
- * \param test_object text object to be deleted
+ *  \par Function Description
+ *
+ *  Delete the text object pointed to by text_object. This function
+ *  was shamelessly stolen from gschem/src/o_delete.c and hacked
+ *  for gattrib by SDB.
+ *
+ *  \param toplevel    GedaToplevel to be operated on
+ *  \param text_object text object to be deleted
  */
 void
-s_object_delete_text_object_in_object (TOPLEVEL *toplevel,
-                                       OBJECT * text_object)
+s_object_delete_text_object_in_object (GedaToplevel *toplevel,
+                                       Object * text_object)
 {
-  s_page_remove_object (toplevel, toplevel->page_current, text_object);
-  s_delete_object (toplevel, text_object);
+  s_page_remove_object (toplevel->page_current, text_object);
+  s_object_release (text_object);
   toplevel->page_current->CHANGED = 1;
 }
-
 
 /*------------------------------------------------------------------*/
 /*! \brief Ensure object has a symbol file
  *
- * This verifies that the object has a non-null symbol file.
+ *  \par Function Description
+ *  This verifies that the object has a non-null symbol file.
  *
  * \returns 0 = valid symbol file, 1 = no symbol file found.
  */
-int s_object_has_sym_file(OBJECT *object)
+int s_object_has_sym_file(Object *object)
 {
   char *filename;
 
-  filename = object->complex_basename;
+  filename = object->complex->filename;
   if (filename != NULL) {
 #ifdef DEBUG
     printf("In s_object_has_sym_file, object has sym file = %s.\n", filename);

@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
- * Copyright (C) 2011-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2011-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,66 @@
 #ifndef __EDA_CONFIG_H__
 #define __EDA_CONFIG_H__
 
+/* \note
+ * W.E.Hill Feb 24, 2014 relocated defines for configuration from
+ * geda_config.c because it does not make sense for one library in
+ * the suite to horde this information. Applications are allowed to
+ * manage configuration data (but would be wise to NOT write to these
+ * files). If Appilcations are to write configuration data it should
+ * be to other files within this same sub-directory.
+ */
+//#define GEDA_USE_XDG 1
+//#define GEDA_USE_HOME_ETC 1
+//#define GEDA_USE_DOT_GEDA 1
+
+/*! Default value for Non XDG system configuration found. */
+#define DEFAULT_CONFIG_DIR        "/etc"
+
+#define STD_USER_CONFIG_DIRS      ".config"
+
+/*! Default value for XDG_CONFIG_DIRS if no system configuration found. */
+#define XDG_CONFIG_DIRS_DEFAULT   "/etc/xdg/"
+
+/*! Subdirectory of XDG directories (config, data, cache etc.) to check
+ * for gEDA files. */
+#define XDG_SUBDIR                GEDA_CONFIG_DIR
+
+#if defined (GEDA_USE_HOME_ETC)
+ #define USER_CONFIG_DIRS          DEFAULT_CONFIG_DIR
+#else
+ #define USER_CONFIG_DIRS          STD_USER_CONFIG_DIRS
+#endif
+
+#define GEDA_CONFIG_DIR           "gEDA"
+
+#define GEDA_CONFIG_DOT           ".gEDA"
+
+#define DEFAULT_CONTEXT           "geda"
+
+/*! Filename for gEDA system configuration files */
+#define SYSTEM_CONFIG_FILE        "geda-system.conf"
+
+/*! Filename for gEDA user configuration files */
+#define USER_CONFIG_FILE          "geda-user.conf"
+
+/*! Filename for gEDA local configuration files */
+#define LOCAL_CONFIG_FILE         "geda.conf"
+#define LOCAL_CONFIG_FILE_ALT     "gafrc"
+
+#define GEDA_CONFIG_SYS_SUFFIX    "-system.conf"
+#define GEDA_CONFIG_USER_SUFFIX   "-user.conf"
+
+#if defined (GEDA_USE_XDG)
+  #define GEDA_CONFIG_SYSDIR      XDG_CONFIG_DIRS_DEFAULT
+  #define USER_CONFIG_DIR         STD_USER_CONFIG_DIRS, XDG_SUBDIR
+#elif defined (GEDA_USE_DOT_GEDA)
+  #define GEDA_CONFIG_SYSDIR      DEFAULT_CONFIG_DIR, GEDA_CONFIG_DIR
+  #define USER_CONFIG_DIR         GEDA_CONFIG_DOT
+#else
+  #define GEDA_CONFIG_SYSDIR      DEFAULT_CONFIG_DIR, GEDA_CONFIG_DIR
+  #define USER_CONFIG_DIR         USER_CONFIG_DIRS, GEDA_CONFIG_DIR
+#endif
+
 G_BEGIN_DECLS
 
 /* ---------------------------------------------------------------- */
@@ -27,23 +87,22 @@ G_BEGIN_DECLS
 /*! \class EdaConfig edaconfig.h "libgeda/edaconfig.h"
  * \brief Hierarchical configuration context for gEDA configuration data.
  *
- * Configuration parameters in gEDA are always evaluated within a
- * configuration context.  Each context is associated with a
- * configuration file (although the file does not necessarily need to
- * exist).
+ * Configuration parameters in gEDA are evaluated within a configuration
+ * context. Each context is associated with a configuration file (although
+ * the file does not necessarily need to exist).
  *
- * Each configuration context may have a parent context.  If, when
- * looking up a parameter, it has no value set in the selected
- * context, the parent context is checked, and so on.
+ * Each configuration context may have a parent context. When retrieving
+ * parameter values, the value of the parameter in the parent context will
+ * be returned if the value was not set in the selected context.
  *
- * Configuration contexts are represented by instances of the
- * #EdaConfig class. Since this is a a subclass of #GObject, the
- * instances are reference counted.  You can increment and decrement
- * their reference counters using g_object_ref() and g_object_unref().
+ * Configuration contexts are represented by instances of the #EdaConfig
+ * class. Since this is a a subclass of GObject, the instances are reference
+ * counted.  You can increment and decrement their reference counters using
+ * g_object_ref() and g_object_unref().
  *
- * Normally, you shouldn't create a configuration context directly;
- * you should obtain the configuration context associated with a path
- * using eda_config_get_context_for_path().
+ * Normally, a configuration context should not be created directly; a
+ * context can be obtained that is associated with a path using the function
+ * eda_config_get_context_for_path().
  */
 
 /*! Domain for errors relating to EdaConfig operations. */
@@ -79,6 +138,7 @@ struct _EdaConfigClass
 
   /* signals */
   void (*config_changed)(EdaConfig *cfg, const char *group, const char *key);
+
 };
 
 struct _EdaConfig
@@ -87,20 +147,21 @@ struct _EdaConfig
 
   /* Private members */
   EdaConfigPrivate *priv;
+
+  GList *RC_list;            /* List of RC files which have been read in. */
 };
 
 GType eda_config_get_type (void) G_GNUC_CONST;
 
 /* ---------------------------------------------------------------- */
 
-EdaConfig *eda_config_get_context_for_file (GFile *path) G_GNUC_WARN_UNUSED_RESULT;
-EdaConfig *eda_config_get_context_for_path (const char *path) G_GNUC_WARN_UNUSED_RESULT;
+EdaConfig *eda_config_get_context_for_file  (const char *file) G_GNUC_WARN_UNUSED_RESULT;
+EdaConfig *eda_config_get_context_for_path  (const char *path) G_GNUC_WARN_UNUSED_RESULT;
 
-EdaConfig *eda_config_get_default_context (void);
-EdaConfig *eda_config_get_system_context (void);
-EdaConfig *eda_config_get_user_context (void);
+EdaConfig *eda_config_get_default_context   (void);
+EdaConfig *eda_config_get_system_context    (const char *context);
+EdaConfig *eda_config_get_user_context      (void);
 
-GFile *eda_config_get_file (EdaConfig *cfg);
 const char *eda_config_get_filename (EdaConfig *cfg);
 bool eda_config_load (EdaConfig *cfg, GError **err);
 bool eda_config_is_loaded (EdaConfig *cfg);

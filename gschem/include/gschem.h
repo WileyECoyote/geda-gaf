@@ -11,10 +11,16 @@
 #include "gschem_idefines.h"       /* integer defines */
 #include "gschem_sdefines.h"       /* string defines  */
 #include "gschem_struct.h"
+#include "gschem_status_bar.h"
+#include "gschem_toplevel.h"
+#include "gschem_page_geometry.h"
+#include "gschem_page_view.h"
 #include "gschem_hotkeystore.h"
+#include "gschem_macro_widget.h"
 #include "gschem_main_window.h"
 #include "i_vars.h"                /* declarations of structures */
 #include "x_preview.h"
+#include "x_status_bar.h"
 
 #include "globals.h"
 #include "prototype.h"

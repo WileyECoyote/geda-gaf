@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
  */
 
 #include <libgeda/libgeda.h>
-void i_vars_set(TOPLEVEL * pr_current)
+void i_vars_set(GedaToplevel * pr_current)
 {
   i_vars_libgeda_set(pr_current);
 }

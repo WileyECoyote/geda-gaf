@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -87,7 +87,7 @@ static void callBack_toolbar0 (GtkWidget *widget, IDS_Toolbar *Control)
       x_menu_file_save_as();
       break;
     default:
-     s_log_message("toolbar0(): Button ID %d\n", button);
+     u_log_message("toolbar0(): Button ID %d\n", button);
   }
 
   return;
@@ -119,7 +119,7 @@ static void callBack_Searchbar (GtkWidget *widget, IDS_Toolbar *Control)
       x_find_refdes();
       break;
     default:
-     s_log_message("toolbar0(): Button ID %d\n", button);
+     u_log_message("toolbar0(): Button ID %d\n", button);
   }
 
   return;
@@ -163,7 +163,7 @@ static void callBack_AttributeBar0(GtkWidget *widget, IDS_Toolbar *Control)
       s_properties_set_name_and_value();
       break;
     default:
-     s_log_message("toolbar0(): Button ID %d\n", button);
+     u_log_message("toolbar0(): Button ID %d\n", button);
   }
 
   return;

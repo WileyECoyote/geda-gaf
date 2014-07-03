@@ -2,7 +2,7 @@
 # serial 1.0
 
 dnl Optionally disable assertions
-dnl Copyright (C) 2009  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -18,7 +18,7 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 
-# Check if assertions should be disabled.
+dnl Check if assertions should be disabled.
 AC_DEFUN([AX_OPTION_ASSERT],
 [
   AC_PREREQ([2.60])dnl
@@ -36,4 +36,6 @@ AC_DEFUN([AX_OPTION_ASSERT],
     AC_DEFINE([NDEBUG], 1, [Define to 1 if assertions should be disabled.])
     AC_DEFINE([G_DISABLE_ASSERT], 1, [Define to 1 if GLib assertions should be disabled.])
   fi
-])dnl AX_OPTION_ASSERT
+  []dnl
+])dnl AX_OPTION_ASSERT # or does this need to be load for defines?
+

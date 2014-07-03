@@ -25,7 +25,7 @@
  *  Date Contributed: February, 02, 2013
  *
  */
-/*! \file i_action.h
+/*! \file i_actions.h
  *
  *  \brief List all Builtin User Interface Commands/Actions
  *  \par Description
@@ -78,12 +78,6 @@
 #define EDIT_BUF_paste   clipboard-paste
 #define EDIT_CB_PASTE    clipboard-paste
 #define EDIT_DELETE      edit-delete
-#define EDIT_SELECT      edit-select
-#define EDIT_SELECT_ALL  edit-select-all
-#define EDIT_INVERT      edit-select-invert
-#define EDIT_DESELECT     edit-deselect
-#define EDIT_DESELECT_ALL edit-deselect-all
-
 #define EDIT_COPY        edit-copy
 #define EDIT_MCOPY       edit-mcopy
 #define EDIT_MOVE        edit-move
@@ -105,6 +99,12 @@
 #define EDIT_UNEMBED     edit-unembed
 #define EDIT_UPDATE      edit-update
 
+#define EDIT_SELECT      edit-select
+#define EDIT_SELECT_ALL  edit-select-all
+#define EDIT_INVERT      edit-select-invert
+#define EDIT_DESELECT     edit-deselect
+#define EDIT_DESELECT_ALL edit-deselect-all
+
 #define VIEW_REDRAW      view-redraw
 #define VIEW_PAN         view-pan
 #define VIEW_BOX         view-zoom-box
@@ -115,19 +115,20 @@
 #define VIEW_ZOOM_ALL    view-zoom-all
 #define VIEW_DOCUMENT    view-documentation
 #define VIEW_HIDDEN      view-show-hidden
+#define VIEW_INHERITED   view-show-inherited
 #define VIEW_NETS        view-show-nets
 #define VIEW_DARK        view-dark-colors
 #define VIEW_LIGHT       view-light-colors
 #define VIEW_BLACK_WHITE view-bw-colors
 
-#define PAGE_MANAGER     page-manager
-#define PAGE_PREV        page-prev
-#define PAGE_NEXT        page-next
-#define PAGE_NEW         page-new
-#define PAGE_PRINT       page-print
-#define PAGE_REVERT      page-revert
-#define PAGE_CLOSE       page-close
-#define PAGE_DISCARD     page-discard
+#define Page_MANAGER     page-manager
+#define Page_PREV        page-prev
+#define Page_NEXT        page-next
+#define Page_NEW         page-new
+#define Page_PRINT       page-print
+#define Page_REVERT      page-revert
+#define Page_CLOSE       page-close
+#define Page_DISCARD     page-discard
 
 #define ADD_COMPONENT    add-component
 #define ADD_NET          add-net

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2013-01-07 17:54-0600\n"
+"POT-Creation-Date: 2014-07-03 03:48-0500\n"
 "PO-Revision-Date: 2012-12-01 17:01+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gaf/gaf.c:65
+#: gaf/src/gaf.c:66
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
@@ -50,11 +50,11 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden aan %s.\n"
 
-#: gaf/gaf.c:88
-#, c-format
+#: gaf/src/gaf.c:86
+#, fuzzy, c-format
 msgid ""
 "gEDA/gaf %s (g%.7s)\n"
-"Copyright (C) 1998-2012 gEDA developers\n"
+"Copyright (C) 1998-2013 gEDA developers\n"
 "This is free software, and you are welcome to redistribute it under\n"
 "certain conditions. For details, see the file `COPYING', which is\n"
 "included in the gEDA distribution.\n"
@@ -67,7 +67,7 @@ msgstr ""
 "de gEDA distributie is bijgevoegd.\n"
 "Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
 
-#: gaf/gaf.c:136
+#: gaf/src/gaf.c:134
 #, c-format
 msgid ""
 "\n"
@@ -76,7 +76,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/gaf.c:148
+#: gaf/src/gaf.c:146
 #, c-format
 msgid ""
 "ERROR: You must specify a command to run.\n"
@@ -87,7 +87,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/gaf.c:166
+#: gaf/src/gaf.c:164
 #, c-format
 msgid ""
 "ERROR: Unrecognised command `%s'.\n"
@@ -98,7 +98,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/config.c:47
+#: gaf/src/config.c:47
 #, c-format
 msgid ""
 "Usage: gaf config [OPTION] [GROUP KEY [VALUE]]\n"
@@ -120,7 +120,7 @@ msgid ""
 "Please report bugs to %s.\n"
 msgstr ""
 
-#: gaf/config.c:68
+#: gaf/src/config.c:68
 #, fuzzy
 msgid ""
 "\n"
@@ -129,31 +129,31 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/config.c:69
+#: gaf/src/config.c:69
 msgid "ERROR: You may only specify a single configuration store.\n"
 msgstr ""
 
-#: gaf/config.c:158
+#: gaf/src/config.c:158
 #, c-format
 msgid "WARNING: Could not load '%s': %s.\n"
 msgstr ""
 
-#: gaf/config.c:170
+#: gaf/src/config.c:170
 #, c-format
 msgid "ERROR: You must specify both configuration group and key.\n"
 msgstr ""
 
-#: gaf/config.c:182 gaf/config.c:196 gaf/export.c:318
+#: gaf/src/config.c:182 gaf/src/config.c:196 gaf/src/export.c:320
 #, c-format
 msgid "ERROR: %s.\n"
 msgstr ""
 
-#: gaf/export.c:146
+#: gaf/src/export.c:148
 #, c-format
 msgid "ERROR: Bad argument '%s' to %s option.\n"
 msgstr ""
 
-#: gaf/export.c:147
+#: gaf/src/export.c:149
 #, fuzzy
 msgid ""
 "\n"
@@ -162,37 +162,37 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/export.c:188
+#: gaf/src/export.c:190
 #, c-format
 msgid "ERROR: Cannot infer output format from filename '%s'.\n"
 msgstr ""
 
-#: gaf/export.c:205
+#: gaf/src/export.c:207
 #, c-format
 msgid "ERROR: Cannot find supported format for filename '%s'.\n"
 msgstr ""
 
-#: gaf/export.c:210
+#: gaf/src/export.c:212
 #, c-format
 msgid "ERROR: Unsupported output format '%s'.\n"
 msgstr ""
 
-#: gaf/export.c:222
+#: gaf/src/export.c:224
 #, c-format
 msgid "ERROR: Selected output format does not support multipage output\n"
 msgstr ""
 
-#: gaf/export.c:234
+#: gaf/src/export.c:236
 #, c-format
 msgid "ERROR: Failed to load '%s': %s\n"
 msgstr ""
 
-#: gaf/export.c:240
+#: gaf/src/export.c:242
 #, c-format
 msgid "ERROR: Failed to change directory to '%s': %s\n"
 msgstr ""
 
-#: gaf/export.c:904
+#: gaf/src/export.c:906
 #, c-format
 msgid ""
 "Usage: gaf export [OPTION ...] -o OUTPUT [--] FILE ...\n"
@@ -218,12 +218,12 @@ msgid ""
 "Please report bugs to %s.\n"
 msgstr ""
 
-#: gaf/export.c:1083
+#: gaf/src/export.c:1085
 #, c-format
 msgid "ERROR: You must specify at least one input filename.\n"
 msgstr ""
 
-#: gaf/export.c:1092
+#: gaf/src/export.c:1094
 #, fuzzy, c-format
 msgid "ERROR: You must specify an output filename.\n"
 msgstr ""
@@ -231,7 +231,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/shell.c:46
+#: gaf/src/shell.c:46
 #, c-format
 msgid ""
 "Usage: gaf shell [OPTION ...]\n"
@@ -269,7 +269,7 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden aan %s.\n"
 
-#: gaf/shell.c:102
+#: gaf/src/shell.c:102
 #, c-format
 msgid ""
 "\n"

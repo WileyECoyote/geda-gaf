@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,16 +28,6 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
-
-SCM g_scm_c_get_uref (TOPLEVEL *toplevel, OBJECT *object)
-{
-  SCM func = scm_variable_ref (scm_c_lookup ("get-uref"));
-  SCM object_smob = edascm_from_object (object);
-  SCM exp = scm_list_2 (func, object_smob);
-
-  return g_scm_eval_protected (exp, SCM_UNDEFINED);
-}
-
 
 /* this function will only return a unique list of packages */
 SCM g_get_packages(SCM level)
@@ -291,8 +281,8 @@ SCM g_get_all_connections(SCM scm_netname)
         connlist = scm_cons (pairlist, connlist);
       }
 
-      g_free(uref);
-      g_free(pin);
+      GEDA_FREE(uref);
+      GEDA_FREE(pin);
     }
     n_current = n_current->next;
   }
@@ -371,10 +361,7 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
              strlen
              (n_current->
              connected_to));
-             uref =
-             (char *) g_malloc(sizeof(char) *
-             strlen(n_current->
-             connected_to));
+             uref = (char *) g_malloc(sizeof(char) *strlen(n_current->connected_to));
 
              sscanf(n_current->connected_to,
                     "%s %s", uref, pin);
@@ -385,15 +372,16 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
              pinslist = scm_cons (pairlist, pinslist);
 
-             g_free(uref);
-             g_free(pin);
+             GEDA_FREE(uref);
+             GEDA_FREE(pin);
              }
              }
   }
 
   if (net_name != NULL) {
     outerlist = scm_cons (scm_from_utf8_string (net_name), pinslist);
-  } else {
+  }
+  else {
     outerlist = scm_cons (scm_from_utf8_string ("ERROR_INVALID_PIN"),
                           outerlist);
     fprintf(stderr, _("Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"),
@@ -510,7 +498,7 @@ SCM g_get_all_package_attributes(SCM scm_uref, SCM scm_wanted_attrib)
 
         ret = scm_cons (value ? scm_from_utf8_string (value) : SCM_BOOL_F, ret);
 
-        g_free (value);
+        GEDA_FREE (value);
       }
     }
     nl_current = nl_current->next;
@@ -533,7 +521,7 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq,
   char *pinseq;
   char *wanted_attrib;
   char *return_value = NULL;
-  OBJECT *o_pin_object;
+  Object *o_pin_object;
 
   SCM_ASSERT(scm_is_string (scm_uref),
              scm_uref, SCM_ARG1, "gnetlist:get-attribute-by-pinseq");
@@ -615,7 +603,7 @@ scm_wanted_attrib)
 {
   SCM scm_return_value;
   NETLIST *nl_current;
-  OBJECT *pin_object;
+  Object *pin_object;
   char *uref;
   char *pin;
   char *wanted_attrib;
@@ -703,11 +691,11 @@ scm_wanted_attrib)
 SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 {
   const GList *p_iter;
-  PAGE *p_current;
+  Page *p_current;
   char *wanted_attrib;
   char *attrib_value = NULL;
   SCM scm_return_value;
-  TOPLEVEL *toplevel = edascm_c_current_toplevel ();
+  GedaToplevel *toplevel = edascm_c_current_toplevel ();
 
   SCM_ASSERT(scm_is_string (scm_wanted_attrib),
              scm_wanted_attrib, SCM_ARG1, "gnetlist:get-toplevel-attribute");
@@ -720,7 +708,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 
   /* only look for first occurrance of the attribute on each page */
   attrib_value =
-  o_attrib_search_floating_attribs_by_name (s_page_objects (p_current),
+  o_attrib_search_floating_attribs_by_name (s_page_get_objects (p_current),
                                             wanted_attrib, 0);
 
   /* Stop when we find the first one */
@@ -732,7 +720,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
 
        if (attrib_value != NULL) {
          scm_return_value = scm_from_utf8_string (attrib_value);
-         g_free (attrib_value);
+         GEDA_FREE (attrib_value);
        } else {
          scm_return_value = scm_from_utf8_string ("not found");
        }
@@ -846,17 +834,17 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
             if ( ((has_attrib_value == NULL) && (attrib_value == NULL)) ||
               ((has_attrib_value != NULL) && (attrib_value != NULL) &&
               (strcmp(attrib_value, has_attrib_value) == 0)) ) {
-              g_free (attrib_value);
+              GEDA_FREE (attrib_value);
             attrib_value =
             o_attrib_search_object_attribs_by_name (nl_current->object_ptr,
                                                     wanted_attrib, 0);
             if (attrib_value) {
               list = scm_cons (scm_from_utf8_string (attrib_value), list);
             }
-            g_free (attrib_value);
+            GEDA_FREE (attrib_value);
               }
-              g_free (has_attrib_name);
-              g_free (has_attrib_value);
+              GEDA_FREE (has_attrib_name);
+              GEDA_FREE (has_attrib_value);
             }
         }
       }

@@ -3,8 +3,8 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2013 Ales Hvezda
-;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2014 Ales Hvezda
+;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
 ;;
 ;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
@@ -49,17 +49,27 @@
 #ifndef _GSCHEM_SDEFINES_H_INCL
 #define _GSCHEM_SDEFINES_H_INCL
 
-#ifndef _WIN32
+#ifndef OS_WIN32_NATIVE
 
 /* Logs a normal message. */
-#define s_log_message g_message
+#define u_log_message g_message
 
 /* Can use like: msgbox("example = [%d]", g_list_length(geda_list_get_glist(toplevel->pages))) */
 #define    msgbox(...)gschem_message_dialog(g_strdup_printf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
 
 #endif
 
-#define EDA_CONFIG_GROUP           "gschem";
+#define GSCHEM_EDA_STORE           "geda" /* "gschem" */
+
+/* Names of retention files for Saving Window Geometry */
+#define DIALOG_CONFIG_STORE        "gschem-dialog-user.conf"
+
+#define TOOLBAR_CONFIG_STORE       "gschem-toolbar-user.conf"
+//#define WINDOW_GEOMETRY_STORE      "gschem-window"
+
+#define IVAR_CONFIG_GROUP          "global"
+#define MENU_CONFIG_GROUP          "menu"
+#define WINDOW_CONFIG_GROUP        "window"
 
 #define GEDA_TYPE_OBJECTS          "application/x-geda-objects"
 #define MIME_TYPE_SCHEMATIC        "application/x-geda-schematic"
@@ -87,14 +97,9 @@
 /* For x_icons.c */
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
 
-#define MSG_SELECT_OBJECT_1ST      "Select object first"
+#define MSG_SELECT_Object_1ST      "Select object first"
 
 /* -----------------  Strings for Dialogs Boxes  ---------------- */
-
-/* Names of retention files for Saving Window Geometry */
-#define DIALOG_GEOMETRY_STORE  "gschem-dialog-geometry"
-#define TOOLBAR_GEOMETRY_STORE "gschem-toolbar-geometry"
-#define WINDOW_GEOMETRY_STORE  "gschem-window-geometry"
 
 /* Identifcation Strings for Saving & Restoring Window Geometry */
 #define IDS_SNAP_SIZE          "snap-size"  /* Type: MODAL  */

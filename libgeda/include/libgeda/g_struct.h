@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Boston, MA 02111-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 #ifndef G_STRUCT_H
@@ -39,14 +40,12 @@ typedef struct st_CacheEntry CacheEntry;
 
 /* -- gschem structures (gschem) -- */
 typedef struct st_complex COMPLEX;
-typedef struct st_object OBJECT;     /* uses glist, simple struct */
-typedef struct st_conn CONN;         /* uses type OBJECT */
+//typedef struct st_object Object;     /* uses glist, simple struct */
+typedef struct st_conn CONN;         /* uses type Object */
 
 typedef struct st_picture PICTURE;
 typedef struct st_tile TILE;         /* uses glist */
-typedef struct st_page PAGE;         /* uses glist, SELECTION, UNDO, GTimeVal*/
 
-typedef struct st_toplevel TOPLEVEL;
 typedef struct st_undo UNDO;
 
 /* -- netlist structures (gnetlist) -- */
@@ -60,25 +59,7 @@ typedef struct st_schcheck SCHCHECK;
 
 /* Wrappers around a new list mechanism */
 typedef struct _GedaList SELECTION;
-typedef struct _GedaList GedaPageList;
-
-/*! \brief Type of callback function for calculating text bounds */
-typedef int(*RenderedBoundsFunc)(void *, OBJECT *, int *, int *, int *, int *);
-
-/*! \brief Type of callback function for object damage notification */
-typedef int(*ChangeNotifyFunc)(void *, OBJECT *);
-
-/*! \brief Type of callback function for notification when a new TOPLEVEL is created */
-typedef void(*NewToplevelFunc)(TOPLEVEL *, void *);
-
-/*! \brief Type of callback function for notification when an object's attributes change */
-typedef void(*AttribsChangedFunc)(void *, OBJECT *);
-
-/*! \brief Type of callback function for notification when an object's connections change */
-typedef void(*ConnsChangedFunc)(void *, OBJECT *);
-
-/*! \brief Type of callback function for querying loading of backups  */
-typedef bool(*LoadBackupQueryFunc)( GString *, void *);
+typedef struct _GedaList PageList;
 
 /* -------------- Start Structure Definitions -------------*/
 
@@ -96,7 +77,7 @@ enum CLibSourceType {
 
 /*! \brief Stores data about a particular component source
  *
- * \Remarks The strings for category and groups are optional
+ * \remarks The strings for category and groups are optional
  * and do not necessarily represent functional characteristics,
  * these are used for organizing the associates symbols when
  * sorting and displaying libraries.
@@ -172,93 +153,7 @@ struct st_complex {
   /* complex */
 };
 
-struct st_object {
-  int   type;                           /* Basic information */
-  int    sid;                           /* sequence id ?? */
-  char *name;
-
-  PAGE *page;                           /* Parent page */
-
-  int w_top;                            /* Bounding box information */
-  int w_left;                           /* in world coords */
-  int w_right;
-  int w_bottom;
-  TOPLEVEL *w_bounds_valid_for;
-
-  COMPLEX *complex;
-  LINE    *line;
-  CIRCLE  *circle;
-  ARC     *arc;
-  BOX     *box;
-  TEXT    *text;
-  PICTURE *picture;
-  PATH    *path;
-
-  GList   *tiles;                       /* tiles */
-
-  GList   *conn_list;                   /* List of connections */
-                                        /* to and from this object */
-
-  /* every graphical primitive have more or less the same options. */
-  /* depending on its nature a primitive is concerned with one or more */
-  /* of these fields. If not, value must be ignored. */
-  OBJECT_END  line_end;
-  OBJECT_TYPE line_type;
-  int         line_width;
-  int         line_space;
-  int         line_length;
-
-  OBJECT_FILLING fill_type;
-  int            fill_width;
-  int            fill_angle1, fill_pitch1;
-  int            fill_angle2, fill_pitch2;
-
-  bool    complex_embedded;             /* is embedded component? */
-  char   *complex_basename;             /* Component Library Symbol name */
-  OBJECT *parent;                       /* Parent object pointer */
-
-  int color;                            /* Which color */
-  int dont_redraw;                      /* Flag to skip redrawing */
-  int selectable;                       /* object selectable flag */
-  int selected;                         /* object selected flag */
-  int locked_color;                     /* Locked color (used to save */
-  /* the object's real color */
-  /* when the object is locked) */
-
-  /* controls which direction bus rippers go */
-  /* it is either 0 for un-inited, */
-  /* 1 for right, -1 for left (horizontal bus) */
-  /* 1 for up, -1 for down (vertial bus) */
-  int    bus_ripper_direction;          /* only valid on buses */
-
-  int    font_text_size;                /* used only with fonts defs */
-  GList *font_prim_objs;                /* used only with fonts defs */
-
-  int whichend;         /* for pins only, either 0 or 1 */
-  PIN_TYPE pin_type;    /* for pins only, either NET or BUS */
-
-  /* Tracking total number of entities connected by this net */
-  int  net_num_connected;         /* for nets only */
-  bool valid_num_connected;       /* for nets only */
-
-  GList  *attribs;                /* attribute stuff */
-  int     show_name_value;
-  int     visibility;
-  OBJECT *attached_to;            /* when object is an attribute */
-  OBJECT *copied_to;              /* used when copying attributes */
-
-  GList   *weak_refs;             /* Weak references */
-
-  /* Attribute notification handling */
-  int attrib_notify_freeze_count;
-  int attrib_notify_pending;
-
-  /* Connection notification handling */
-  int conn_notify_freeze_count;
-  int conn_notify_pending;
-};
-
-/*! \brief Structure for connections between OBJECTs
+/*! \brief Structure for connections between Objects
  *
  * The st_conn structure contains a single connection
  * to another object.
@@ -266,7 +161,7 @@ struct st_object {
  */
 struct st_conn {
   /*! \brief The "other" object connected to this one */
-  OBJECT *other_object;
+  Object *other_object;
   /*! \brief type of connection. Always in reference to how the "other"
     object is connected to the current one */
   int type;
@@ -281,19 +176,20 @@ struct st_conn {
 };
 
 struct st_picture {
-  GdkPixbuf *pixbuf;
-  char *file_content;
+
+  GdkPixbuf   *pixbuf;
+  char        *file_content;
   unsigned int file_length;
 
   double ratio;
-  char *filename;
-  int angle;
-  char mirrored;
-  char embedded;
+  char  *filename;
+  int    angle;
+  bool   mirrored;
+  bool   embedded;
 
   /* upper is considered the origin */
-  int upper_x, upper_y; /* world */
-  int lower_x, lower_y;
+  int    upper_x, upper_y; /* world */
+  int    lower_x, lower_y;
 
 };
 
@@ -309,56 +205,10 @@ struct st_picture {
  *  See s_tile.c for further informations.
  */
 struct st_tile {
+
   GList *objects;
 
   int top, left, right, bottom;
-};
-
-struct st_page {
-
-  int pid;
-
-  GList     *_object_list;             /* Glist of all object on this page*/
-  SELECTION *selection_list;           /* new selection mechanism */
-  GList     *place_list;
-  OBJECT    *object_lastplace;         /* the last found item */
-
-  char *page_filename;
-  int   CHANGED;                       /* changed flag */
-
-  /*int zoom_factor; no longer used*/
-  int left, right, top, bottom;        /* World coord limits */
-  double coord_aspectratio;            /* Real worldcoords ratio (?) */
-
-  float to_screen_x_constant;
-  float to_screen_y_constant;
-
-  float to_world_x_constant;
-  float to_world_y_constant;
-
-  TILE world_tiles[MAX_TILES_X][MAX_TILES_Y];
-
-  /* Undo/Redo Stacks and pointers */
-  /* needs to go into page mechanism actually */
-  UNDO *undo_bottom;
-  UNDO *undo_current;
-  UNDO *undo_tos;                      /* Top Of Stack */
-
-  /* up and down the hierarchy */
-  /* this holds the pid of the parent page */
-  int up;
-  /* int down; not needed */
-
-  /* used to control which pages are viewable when moving around */
-  int page_control;
-
-  /* backup variables */
-  GTimeVal last_load_or_save_time;
-  char saved_since_first_loaded;
-  int  ops_since_last_backup;
-  char do_autosave_backup;
-
-  GList *weak_refs; /* Weak references - to or from What?*/
 };
 
 struct st_undo {
@@ -376,6 +226,7 @@ struct st_undo {
 
   /* up and down the hierarchy */
   int up;
+
   /* used to control which pages are viewable when moving around */
   int page_control;
 
@@ -383,18 +234,19 @@ struct st_undo {
   UNDO *next;
 };
 
-/* ------------- structures below are for gnetlist -------------- */
+/* -------- structures below are for mostly for netlist --------- */
 
 /* for every pin on a component */
 struct st_cpinlist {
-  int  plid;
-  int  type;                            /* PIN_TYPE_NET or PIN_TYPE_BUS */
 
-  char *pin_number;
-  char *net_name;                       /* this is resolved at very end */
-  char *pin_label;
+  int       plid;
+  PIN_NODE  node_type;             /* PIN_NET_NODE or PIN_BUS_NODE */
 
-  NET *nets;
+  char     *pin_number;
+  char     *net_name;              /* this is resolved at very end */
+  char     *pin_label;
+
+  NET      *nets;
 
   CPINLIST *prev;
   CPINLIST *next;
@@ -403,74 +255,79 @@ struct st_cpinlist {
 /* the net run connected to a pin */
 struct st_net {
 
-  int nid;
+  int   nid;
 
-  int net_name_has_priority;
+  int   net_name_has_priority;
   char *net_name;
   char *pin_label;
 
-  char *connected_to; /* new to replace above */
+  char *connected_to;
 
-  NET *prev;
-  NET *next;
+  /* Tracking total number of entities connected by this net */
+  int  net_num_connected;         /* for nets only */
+  bool valid_num_connected;       /* for nets only */
+
+  NET  *prev;
+  NET  *next;
 };
 
 /* for every component in the object database */
 struct st_netlist {
 
-  int nlid;
+  int         nlid;
 
-  char *component_uref;
+  char       *component_uref;
 
-  OBJECT *object_ptr;
+  Object     *object_ptr;
 
-  CPINLIST *cpins;
+  CPINLIST   *cpins;
 
-  char *hierarchy_tag;
-  int composite_component;
+  char       *hierarchy_tag;
+  int         composite_component;
 
-  NETLIST *prev;
-  NETLIST *next;
+  NETLIST    *prev;
+  NETLIST    *next;
 };
 
 /* By Jamil Khatib */
 /* typedef struct st_chkerrs CHKERRS; */
 struct st_chkerrs{
 
-  OBJECT  *err_obj;
-  CHKERRS *next;
+  Object     *err_obj;
+  CHKERRS    *next;
 };
 
 /* Schem check struct */
 struct st_schcheck {
-  int no_errors;                /* Number of Errors */
-  int no_warnings;              /* Number of Warnings */
 
-  CHKERRS *sheet_errs;
+  int         no_errors;        /* Number of Errors */
+  int         no_warnings;      /* Number of Warnings */
 
-  CHKERRS *float_nets;          /* Header of the list of floating nets */
-  int net_errs;                 /* Number of floating nets */
+  CHKERRS    *sheet_errs;
 
-  OBJECT *float_pins;           /* Header of List of floating pins*/
-  int pin_errs;                 /* Number of floating pins */
+  CHKERRS    *float_nets;       /* Header of the list of floating nets */
+  int         net_errs;         /* Number of floating nets */
 
-  int net_names;                /* Number of mismatched net names */
+  Object     *float_pins;       /* Header of List of floating pins*/
+  int         pin_errs;         /* Number of floating pins */
+
+  int         net_names;        /* Number of mismatched net names */
 };
 
 /* These do not have type defines in header of this file */
 struct st_attrib_smob {
-  TOPLEVEL *world;   /* We need this when updating schematic */
-  OBJECT   *attribute;
+  GedaToplevel *world;          /* We need this when updating schematic */
+  Object       *attribute;
 };
 
 struct st_object_smob {
-  TOPLEVEL *world;   /* We need this when updating schematic */
-  OBJECT   *object;
+  GedaToplevel *world;          /* We need this when updating schematic */
+  Object       *object;
 };
 
 struct st_page_smob {
-  TOPLEVEL *world;   /* We need this when updating schematic */
-  PAGE     *page;
+  GedaToplevel *world;          /* We need this when updating schematic */
+  Page         *page;
 };
 
 #endif

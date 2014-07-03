@@ -1,3 +1,26 @@
+2014-04-07 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/geda-stroke.m4: 2 Corrections:LIBSTROKE_CPPFLAGS to LIBSTROKE_CFLAGS in
+          AC_SUBST and value in AC_DEFINE.
+
+        * m4/geda-debug.m4: New file with content NOT relocated from existing file. The
+          name should be self explanatory.
+ 
+2014-03-12 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/geda-libgeda.m4: Moved out-of-place general checks to geda-std-checks.m4
+
+2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/*: Add new files: as-ac-expand.m4, geda-directories.m4
+          geda-python.m4, removed file geda-data-dirs.m4 with functionality relocated
+          to geda-directories.m4
+
+2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/*: Add new files: geda-automake-options.m4, geda-libgedathon.m4,
+          geda-python.m4
+
 2013-01-24 Wiley E Hill  <wileyhill@gmail.com>
 
         * m4/geda-gtk.m4: Add new mcro file and relocate modules checks for GTK and

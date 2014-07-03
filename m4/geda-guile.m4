@@ -31,6 +31,7 @@ AC_DEFUN([AX_CHECK_GUILE],
 
   dnl Argument is the minimum guile version.  For example
   dnl AX_CHECK_GUILE([1.8.0]) makes sure we have at least version 1.8.0
+
   GUILE_MIN_VER=[$1]
   GUILE_MIN_MAJOR=`echo ${GUILE_MIN_VER} | sed 's;\..*;;g'`
   dnl the double brackets are to get past m4's expansion
@@ -128,5 +129,5 @@ configure.])
   dnl Restore build-related variables
   CFLAGS="${save_CFLAGS}"
   LIBS="${save_LIBS}"
-
-])# AX_CHECK_GUILE
+  []dnl
+])dnl AX_CHECK_GUILE

@@ -1,5 +1,5 @@
 # geda-gtk.m4              -*-Autoconf-*-
-# serial 1.0
+# serial 1.2
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
@@ -17,7 +17,7 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
 
 dnl##################################################################
@@ -28,19 +28,35 @@ AC_DEFUN([AX_CHECK_GTK],
   AC_PREREQ([2.50])dnl
   echo "Checking for installed versions of GTK and gdk_pixbuff"
 
-  PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= 2.16.0], ,
-  AC_MSG_ERROR([GTK+ 2.16.0 or later is required.]))
+  PKG_CHECK_MODULES(GTK, [gtk+-2.0 >= $1], ,
+  AC_MSG_ERROR([GTK+ $1 or later is required.]))
 
    # Search for gthread
-   PKG_CHECK_MODULES(GTHREAD, gthread-2.0, GTHREAD="yes", no_GTHREAD="yes")
-   if test "$GTHREAD" = "yes"
-   then
+  PKG_CHECK_MODULES(GTHREAD, gthread-2.0, GTHREAD="yes", no_GTHREAD="yes")
+  if test "$GTHREAD" = "yes"
+  then
        AC_DEFINE(HAVE_GTHREAD, 1, [If gthread support is installed, define this])
-   fi
+  fi
 
-  PKG_CHECK_MODULES(GDK_PIXBUF, [gdk-pixbuf-2.0 >= 2.16.0], ,
-  AC_MSG_ERROR([GDK_PIXBUF 2.16.0 or later is required.]))
+  PKG_CHECK_MODULES(GDK_PIXBUF, [gdk-pixbuf-2.0 >= $1], ,
+  AC_MSG_ERROR([GDK_PIXBUF $1 or later is required.]))
 
+  AC_ARG_ENABLE(
+        [deprecated],
+        AC_HELP_STRING(
+                [--disable-deprecated],
+                [enable/disable deprecated functions (e.g. Glib/Gtk) @<:@default=yes@:>@]
+        ),
+        [
+         if test "x$enableval" = "xno"; then
+                 CFLAGS="$CFLAGS -DG_DISABLE_SINGLE_INCLUDES -DGTK_DISABLE_SINGLE_INCLUDES"
+                 CFLAGS="$CFLAGS -DGDK_DISABLE_DEPRECATED -DGDK_PIXBUF_DISABLE_DEPRECATED"
+                 CFLAGS="$CFLAGS -DG_DISABLE_DEPRECATED"
+                 CFLAGS="$CFLAGS -DGTK_DISABLE_DEPRECATED"
+                 CFLAGS="$CFLAGS -DGSEAL_ENABLE"
+         fi
+        ]
+  )
   []dnl
 ])dnl AX_CHECK_GTK
 

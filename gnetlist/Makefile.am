@@ -1,5 +1,5 @@
 
-SUBDIRS = po src include utils lib scheme examples scripts tests docs
+SUBDIRS = po src include utils etc scheme examples scripts tests docs
 
 EXTRA_DIST = BUGS ChangeLog ChangeLog-1.0
 
@@ -8,7 +8,17 @@ ChangeLog: $(top_builddir)/stamp-git
 	(cd $(srcdir) && $(GIT) log --pretty=medium $(CHANGELOG_BASE).. -- .) > $@
 endif HAVE_GIT_REPO
 
-MOSTLYCLEANFILES     = *.log core FILE *~ 
-CLEANFILES           = *.log core FILE *~ 
+doxygen:
+
+# call 'make doxygen' for gnetist
+if ENABLE_DOXYGEN
+	(cd docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch.'
+	@echo 'The documentation cannot be built from the sources.'
+endif
+
+MOSTLYCLEANFILES     = *.log core FILE *~
+CLEANFILES           = *.log core FILE *~
 DISTCLEANFILES       = *.log core FILE *~
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in ChangeLog

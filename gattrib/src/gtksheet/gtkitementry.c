@@ -1633,7 +1633,7 @@ typedef struct _CursorInfo CursorInfo;
 
 struct _CursorInfo
 {
-  GType for_type;
+  unsigned int for_type;
   GdkGC *primary_gc;
   GdkGC *secondary_gc;
 };

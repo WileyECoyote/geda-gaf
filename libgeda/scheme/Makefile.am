@@ -1,4 +1,3 @@
-
 scmdatadir = $(GEDADATADIR)/scheme
 nobase_dist_scmdata_DATA = \
 	geda.scm geda-deprecated-config.scm color-map.scm \
@@ -11,11 +10,13 @@ check-am: update-gaf-tool
 # Unit test support.  The unit tests are run using the geda-batch
 # program, with config loading disabled (-q) so that user config
 # already on the system can't interfere with the test process.
-#GAF_SHELL = $(builddir)/../shell/geda-shell -q
+
+#GAF_SHELL = $(top_builddir)/gaf/src/gaf --no-rcfiles shell
 
 # The new commanline tool uses --no-rcfiles
 GAF_SHELL = $(builddir)/../shell/geda-shell -q
-TEST_EXTENSIONS = .scm
+
+TEST_EXTENSIONS  = .scm
 SCM_LOG_COMPILER = $(GAF_SHELL)
 AM_SCM_LOG_FLAGS = -L $(srcdir) -L $(builddir) \
 	-c '(use-modules (unit-test)) (load (list-ref (command-line) 1)) (exit (if (tests-passed?) 0 1))'
@@ -34,10 +35,11 @@ TESTS = unit-tests/t0001-geda-conf-lib.scm \
 	unit-tests/t0110-object-transform.scm \
 	unit-tests/t0111-object-path.scm \
 	unit-tests/t0112-object-picture.scm \
+	unit-tests/t0113-object-library.scm \
 	unit-tests/t0200-page.scm \
-	unit-tests/t0201-page-dirty.scm \
-	unit-tests/t0202-page-string.scm \
-	unit-tests/t0203-page-string-syntax.scm \
+	unit-tests/t0201-page-remove.scm \
+	unit-tests/t0202-page-dirty.scm \
+	unit-tests/t0203-page-string.scm \
 	unit-tests/t0204-page-parse-ordering.scm \
 	unit-tests/t0205-page-parse-unterminated-attribute-list.scm \
 	unit-tests/t0206-page-parse-garbage-attribute.scm \
@@ -70,7 +72,8 @@ update-gaf-tool:
 
 .PHONY: update-gaf-tool
 
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~ geda/core/gettext.scm
-DISTCLEANFILES = *.log core FILE *~
+MOSTLYCLEANFILES     = *.log *~
+CLEANFILES           = *.log *~ geda/core/gettext.scm
+DISTCLEANFILES       = *.log *~ core FILE
 MAINTAINERCLEANFILES = *.log *~ Makefile.in
+

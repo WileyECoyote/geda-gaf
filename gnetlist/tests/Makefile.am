@@ -1,4 +1,5 @@
 ## Process this file with automake to produce Makefile.in
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
 
 SUBDIRS = hierarchy hierarchy2 drc2 scripts
 # common
@@ -32,19 +33,19 @@ notest:
 	mkdir $(BUILDDIR)/devfiles
 	cp -f $(srcdir)/gnetlistrc.orig $(builddir)/gnetlistrc
 
-# netattrib gEDA 
+# netattrib gEDA
 	$(SRCDIR)/runtest.sh $(SRCDIR)/netattrib.sch geda \
 		$(BUILDDIR) $(SRCDIR)
 
-# stack gEDA 
+# stack gEDA
 	$(SRCDIR)/runtest.sh $(SRCDIR)/../examples/stack_1.sch geda \
 		$(BUILDDIR) $(SRCDIR)
 
-# singlenet gEDA 
+# singlenet gEDA
 	$(SRCDIR)/runtest.sh $(SRCDIR)/singlenet.sch geda \
 		$(BUILDDIR) $(SRCDIR)
 
-# singlenet PCB 
+# singlenet PCB
 	$(SRCDIR)/runtest.sh $(SRCDIR)/singlenet.sch PCB \
 		$(BUILDDIR) $(SRCDIR)
 
@@ -100,7 +101,7 @@ notest:
 	$(SRCDIR)/runtest.sh $(SRCDIR)/powersupply.sch liquidpcb \
 		$(BUILDDIR) $(SRCDIR)
 
-# multiple equals in attributes SPICE-SDB 
+# multiple equals in attributes SPICE-SDB
 	$(SRCDIR)/runtest.sh $(SRCDIR)/multiequal.sch spice-sdb \
 		$(BUILDDIR) $(SRCDIR)
 
@@ -112,52 +113,6 @@ notest:
 	rm -f $(BUILDDIR)/new_*
 	rm -rf $(BUILDDIR)/devfiles
 	rm -f $(builddir)/gnetlistrc
-
-
-# These tests are internal to Ales and will not work without the schematics
-# which I am unable to distribute (due to copyright laws).
-tests_ales:
-
-# cleanup
-	rm -f $(BUILDDIR)/new_*
-	rm -rf $(BUILDDIR)/devfiles
-	mkdir $(BUILDDIR)/devfiles
-
-# amp SPICE 
-	$(SRCDIR)/runtest.sh $(HOME)/gEDA/alesch/amp.sch spice \
-		$(BUILDDIR) $(SRCDIR)
-
-# darlington SPICE 
-	$(SRCDIR)/runtest.sh $(HOME)/gEDA/alesch/darlington.sch spice \
-		$(BUILDDIR) $(SRCDIR)
-
-# amp SPICE SDB
-	$(SRCDIR)/runtest.sh $(HOME)/gEDA/alesch/amp.sch spice-sdb \
-		$(BUILDDIR) $(SRCDIR) 
-
-# darlington SPICE SDB
-	$(SRCDIR)/runtest.sh $(HOME)/gEDA/alesch/darlington.sch spice-sdb \
-		$(BUILDDIR) $(SRCDIR)
-
-# switcap (does not work with make distcheck due to local test.ana file)
-	$(GNETLIST) -L $(top_srcdir)/libgeda/scheme \
-		-L $(top_builddir)/libgeda/scheme \
-		-o $(BUILDDIR)/new_skt.switcap -g switcap \
-		$(SRCDIR)/../examples/switcap/ckt.sch \
-		$(SRCDIR)/../examples/switcap/clocks.sch \
-		$(SRCDIR)/../examples/switcap/analysis.sch
-	diff $(SRCDIR)/skt.switcap $(BUILDDIR)/new_skt.switcap
-	diff $(SRCDIR)/../examples/switcap/example.scn $(SRCDIR)/new_skt.switcap
-
-# 7447 VHDL
-	cp -f $(SRCDIR)/gnetlistrc.vhdl $(BUILDDIR)/gnetlistrc
-	$(SRCDIR)/runtest.sh $(SRCDIR)/../examples/7447.sch vhdl \
-		$(BUILDDIR) $(SRCDIR)
-	rm -f $(BUILDDIR)/gnetlistrc
-
-# cleanup
-	rm -f $(BUILDDIR)/new_*
-	rm -rf $(BUILDDIR)/devfiles
 
 MOSTLYCLEANFILES = new_* core *.log FILE *.ps *~
 CLEANFILES = new_* core *.log FILE *.ps *~

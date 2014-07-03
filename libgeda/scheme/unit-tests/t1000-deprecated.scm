@@ -47,7 +47,18 @@
     (for-each (lambda (o) (component-append! C o)) (list p x y z))
     (attach-attribs! p x y z)
 
-    (assert-equal (list "y" "x") (get-attrib-value-by-attrib-name p "name"))))
+    (assert-equal (list "y" "x") (get-attrib-value-by-attrib-name p "name"))
+
+    ;;WEH The next test is not a valid test because set-text will set the would
+    ;;be attribute to be a text object but is still in the the object's attribute
+    ;;list, e.g. is set-text- not set-attribute. There is no automatic attribute
+    ;;demotion mechanism in Libgeda.
+
+    ; make an invalid atribute
+    (set-text! y '(0 . 0) 'lower-left 0 "name=" 10 #t 'both)
+    (assert-equal (list "x") (get-attrib-value-by-attrib-name p "name"))
+  )
+)
 
 (begin-test 'get-object-type
   (let ((C (make-component "testcomponent" '(0 . 0) 0 #f #f))
@@ -62,8 +73,9 @@
 (begin-test 'get-line-width
   (let ((p (make-net-pin '(0 . 0) '(100 . 0))))
 
-    ; This will break if you change PIN_WIDTH_NET in defines.h
-    (assert-equal 10 (get-line-width p))))
+    ; In order to pass the numeric value on the left must be equal to
+    ; the DEFAULT_THICK_LINE_WIDTH width in defines.h
+    (assert-equal 30 (get-line-width p))))
 
 (define P (make-page "/test/page/A"))
 

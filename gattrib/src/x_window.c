@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 
 /*------------------------------------------------------------------*/
@@ -45,6 +46,7 @@
 #include <gtksheet.h>
 
 #include <gattrib.h>  /* include Gattrib specific headers  */
+#include <geda_widgets.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -58,7 +60,7 @@
 /*! \brief Set application icon
  * \par Function Description
  * This function sets the default window icon by name, to be found in
- * the current icon theme. The name used is #defined by the directive
+ * the current icon theme. The name used is defined by the directive
  * GATTRIB_THEME_ICON_NAME.
  */
 static void x_window_set_default_icon( void )
@@ -71,16 +73,16 @@ static void x_window_set_default_icon( void )
  * This function obtains the filename for the toplevel and set the
  * Title for the main window. If the PageData->CHANGED is set then
  * the title is prefixed with an asterisk.
- * 
+ *
  *  \param [in] toplevel pointer to toplevel (pr_current)
  *  \param [in] PageData pointer to Sheet_data structure
  */
-void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData)
+void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData)
 {
   char *filename;
   char buffer[MAX_WINDOW_TITLE];
 
-  filename = toplevel->page_current->page_filename;
+  filename = toplevel->page_current->filename;
 
   if (filename != NULL) {
     if (PageData->CHANGED) {
@@ -101,11 +103,11 @@ void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData)
  * \par Function Description
  * This function is call from the menu and toolbar callbacks to processes
  * Cut, Copy, Paste.
- * 
+ *
  *  \param [in] do_what Enumerated integer ID of operation to perform
  */
 void x_window_clipboard_handler(int do_what) {
-  
+
   GtkWidget *widget = gtk_window_get_focus(GTK_WINDOW(main_window));
   switch (do_what ) {
     case cut:
@@ -126,7 +128,7 @@ void x_window_clipboard_handler(int do_what) {
 	x_window_update_title(pr_current, sheet_head);
       break;
     default:
-     s_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
+     u_log_message("clipboardhandler: Ignoring unknown ID [%d]\n", do_what);
   }
 }
 /** @brief on_notebook_switch_page in X_Windows_Support_Functions */
@@ -152,11 +154,11 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
     x_toolbar_set_sensitivities(ComponentToolbarButtons, FALSE);
     break;
   default:
-    s_log_message("notebook_switch_page(): BAD_TAB ID %d\n", page_num);
+    u_log_message("notebook_switch_page(): BAD_TAB ID %d\n", page_num);
   }
 
   return;
-} 
+}
 /*! \brief Initializes the Main Window
  * \par Function Description
  * This function creates and initializes the Main window. The
@@ -174,25 +176,25 @@ void x_window_init()
   x_window_set_default_icon();
 
   /*  window is a global declared in globals.h.  */
-  main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);  
+  main_window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
 
-  gtk_window_set_default_size(GTK_WINDOW(main_window), 1000, 600);  
+  gtk_window_set_default_size(GTK_WINDOW(main_window), 1000, 600);
 
   gtk_signal_connect (GTK_OBJECT (main_window), "delete_event",
                       GTK_SIGNAL_FUNC (gattrib_really_quit), 0);
 
-  /* -----  Now create main_vbox container to hold everthing ----- */   
+  /* -----  Now create main_vbox container to hold everthing ----- */
   main_vbox = gtk_vbox_new(FALSE,1);
   gtk_container_set_border_width(GTK_CONTAINER(main_vbox), 1);
   gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_vbox) );
   gtk_widget_show( GTK_WIDGET(main_vbox));
 
-  /* -----  Now create menu bar  ----- */  
+  /* -----  Now create menu bar  ----- */
   menu_bar = x_menu_create_menu(GTK_WINDOW(main_window));
   gtk_box_pack_start(GTK_BOX (main_vbox), menu_bar, FALSE, TRUE, 0);
 
-   /* -----  Initialize the Toolbar Module ----- */   
-  x_toolbars_init(main_vbox);  
+   /* -----  Initialize the Toolbar Module ----- */
+  x_toolbars_init(main_vbox);
 
   edit_box=gtk_hbox_new(FALSE, 1);
   gtk_container_set_border_width(GTK_CONTAINER(edit_box),0);
@@ -200,18 +202,18 @@ void x_window_init()
   gtk_widget_show(edit_box);
 
    /* This is the RC box in the top left cell */
-  location=gtk_label_new(""); 
-  gtk_widget_size_request(location, &request); 
+  location = gtk_label_new("");
+  gtk_widget_size_request(location, &request);
   gtk_widget_set_usize(location, 150, request.height);
   gtk_box_pack_start(GTK_BOX(edit_box), location, FALSE, TRUE, 0);
   gtk_widget_show(location);
 
-  entry=gtk_entry_new(); 
-  gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0); 
+  entry=gtk_entry_new();
+  gtk_box_pack_start(GTK_BOX(edit_box), entry, TRUE, TRUE, 0);
   gtk_widget_show(entry);
 
   /* TODO togglable legend ? */
-  /* -----  Now init notebook widget  ----- */  
+  /* -----  Now init notebook widget  ----- */
   notebook = gtk_notebook_new();
   gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
   gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
@@ -219,7 +221,7 @@ void x_window_init()
   g_signal_connect ((gpointer) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
-  /* -----  Now malloc -- but don't fill out -- space for sheets  ----- */  
+  /* -----  Now malloc -- but don't fill out -- space for sheets  ----- */
   /* This basically sets up the overhead for the sheets, as I understand
    * it.  The memory for the actual sheet cells is allocated later,
    * when gtk_sheet_new is invoked, I think.  */
@@ -236,11 +238,11 @@ void x_window_init()
  * to load a file. This allows gattrib to startup without the initial
  * file-open dialog.
  */
-void x_window_blank_document(TOPLEVEL *toplevel, PageDataSet *PageData)
+void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData)
 {
   s_sheet_data_load_blank(PageData);
   toplevel->page_current = s_page_new (toplevel, toplevel->untitled_name);
-  toplevel->page_current->page_filename = toplevel->untitled_name;
+  toplevel->page_current->filename = toplevel->untitled_name;
 }
 
 /*! \brief Add all items to the top level window
@@ -295,7 +297,7 @@ void x_window_add_items(PageDataSet *PageData)
         is_inherited = (PageData->component_table)[col][row].is_inherited;
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[Components]), row, col, text,
                                   visibility, show_name_value, is_inherited);
-        g_free(text);
+        GEDA_FREE(text);
       }
     }
   }
@@ -308,7 +310,7 @@ void x_window_add_items(PageDataSet *PageData)
         visibility = (PageData->net_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
-        g_free(text);
+        GEDA_FREE(text);
       }
     }
   }
@@ -320,13 +322,13 @@ void x_window_add_items(PageDataSet *PageData)
         text = g_strdup( (PageData->pin_table)[col][row].attrib_value );
         /* pins have no visibility attributes, must therefore provide default. */
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), row, col, text,  VISIBLE, SHOW_VALUE, 0);
-        g_free(text);
+        GEDA_FREE(text);
       }
     }
   }
 }
 /*!
- * \brief Complete startup initialization for Main Window 
+ * \brief Complete startup initialization for Main Window
  * \par Function Description
  *      This function is called from the main-line after the GTKSheet is up.
  * The function calls the previous function, x_window_add_items to load
@@ -403,7 +405,7 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
 
   bool show = gtk_toggle_action_get_active(action);
   int count = sheet->maxcol;
-  
+
   for( i = 0; i <= count; i++) {
     if (show) {
       toggle = TRUE;
@@ -429,7 +431,7 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
   gtk_window_get_size(GTK_WINDOW(main_window), &x, &y);
   x =  (show) ? x - TOGGLE_ATTACH_X_OFFSET : x + TOGGLE_ATTACH_X_OFFSET;
   gtk_window_resize(GTK_WINDOW(main_window), x, y);
-  
+
   /* TODO: WEH: save the toggle setting */
   //config_file_set_bool(PREFS_ATTACHED_VISIBLE, show);
 }
@@ -440,15 +442,15 @@ void x_window_attached_toggle(GtkToggleAction *action, GtkWindow *main_window)
  * delete or restore attribute values if the attribute is inherited.
  */
 void x_window_inherited_toggle(GtkToggleAction *action, GtkWindow *main_window) {
-  
+
   bool show = gtk_toggle_action_get_active(action);
-  
+
   char *text;
-  
+
   int maxcol = sheet_head->comp_attrib_count;
   int maxrow = sheet_head->comp_count;
   int row, col;
-  
+
   for( col = 0; col < maxcol; col++) {
     for( row = 0; row < maxrow; row++) {
       if (sheet_head->component_table[col][row].is_inherited) {

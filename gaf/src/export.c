@@ -1,6 +1,6 @@
 /*
  * gEDA/gaf command-line utility
- * Copyright (C) 2012 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2012-2014 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,12 +45,12 @@
 #include <cairo-ps.h>
 
 static int export_text_rendered_bounds (void *user_data,
-                                        OBJECT *object,
+                                        Object *object,
                                         int *left, int *top,
                                         int *right, int *bottom);
-static void export_layout_page (PAGE *page, cairo_rectangle_t *extents,
+static void export_layout_page (Page *page, cairo_rectangle_t *extents,
                                 cairo_matrix_t *mtx);
-static void export_draw_page (PAGE *page);
+static void export_draw_page (Page *page);
 
 static void export_png (void);
 static void export_postscript (bool is_eps);
@@ -75,7 +75,7 @@ static void export_command_line (int argc, char * const *argv);
 #define DEFAULT_MARGIN 18
 
 enum ExportFormatFlags {
-  OUTPUT_MULTIPAGE = 1,
+  OUTPUT_MULTIPage = 1,
   OUTPUT_POINTS = 2,
   OUTPUT_PIXELS = 4,
 };
@@ -116,15 +116,15 @@ struct ExportSettings {
 static struct ExportFormat formats[] =
   {
     {"Portable Network Graphics (PNG)", "png", OUTPUT_PIXELS, export_png},
-    {"Postscript (PS)", "ps", OUTPUT_POINTS | OUTPUT_MULTIPAGE, export_ps},
+    {"Postscript (PS)", "ps", OUTPUT_POINTS | OUTPUT_MULTIPage, export_ps},
     {"Encapsulated Postscript (EPS)", "eps", OUTPUT_POINTS, export_eps},
-    {"Portable Document Format (PDF)", "pdf", OUTPUT_POINTS | OUTPUT_MULTIPAGE, export_pdf},
+    {"Portable Document Format (PDF)", "pdf", OUTPUT_POINTS | OUTPUT_MULTIPage, export_pdf},
     {"Scalable Vector Graphics (SVG)", "svg", OUTPUT_POINTS, export_svg},
     {NULL, NULL, 0, NULL},
   };
 
 static EdaRenderer *renderer = NULL;
-static TOPLEVEL *toplevel = NULL;
+static GedaToplevel *toplevel = NULL;
 
 static struct ExportSettings settings = {
   0,
@@ -164,12 +164,12 @@ cmd_export (int argc, char **argv)
   scm_init_guile ();
   libgeda_init ();
   scm_dynwind_begin (0);
-  toplevel = s_toplevel_new ();
+  toplevel = geda_toplevel_new ();
   edascm_dynwind_toplevel (toplevel);
 
   /* Now load rc files, if necessary */
   if (g_getenv ("GAF_INHIBIT_RCFILES") == NULL) {
-    g_rc_parse (toplevel, "gaf export", NULL, NULL);
+    g_rc_parse ("gaf export", NULL, NULL);
   }
   i_vars_libgeda_set (toplevel); /* Ugh */
 
@@ -215,11 +215,11 @@ cmd_export (int argc, char **argv)
       exit (1);
     }
   }
-  g_free (tmp);
+  GEDA_FREE (tmp);
 
   /* If more than one schematic/symbol file was specified, check that
    * exporter supports multipage output. */
-  if ((settings.infilec > 1) && !(exporter->flags & OUTPUT_MULTIPAGE)) {
+  if ((settings.infilec > 1) && !(exporter->flags & OUTPUT_MULTIPage)) {
     fprintf (stderr,
              _("ERROR: Selected output format does not support multipage output\n"));
     exit (1);
@@ -227,7 +227,7 @@ cmd_export (int argc, char **argv)
 
   /* Load schematic files */
   while (optind < argc) {
-    PAGE *page;
+    Page *page;
     tmp = argv[optind++];
 
     page = s_page_new (toplevel, tmp);
@@ -240,7 +240,7 @@ cmd_export (int argc, char **argv)
     if (g_chdir (original_cwd) != 0) {
       fprintf (stderr,
                _("ERROR: Failed to change directory to '%s': %s\n"),
-               original_cwd, g_strerror (errno));
+               original_cwd, strerror (errno));
       exit (1);
     }
   }
@@ -253,9 +253,9 @@ cmd_export (int argc, char **argv)
 
   /* Make sure libgeda knows how to calculate the bounds of text
    * taking into account font etc. */
-  o_text_set_rendered_bounds_func (toplevel,
-                                   export_text_rendered_bounds,
-                                   renderer);
+  s_toplevel_set_rendered_bounds_func(toplevel,
+                                      export_text_rendered_bounds,
+                                      renderer);
 
   /* Create color map */
   render_color_map =
@@ -297,7 +297,7 @@ cmd_export (int argc, char **argv)
  * "rendered bounds" function isn't provided, text objects don't get
  * used when calculating the extents of the drawing. */
 static int
-export_text_rendered_bounds (void *user_data, OBJECT *object,
+export_text_rendered_bounds (void *user_data, Object *object,
                              int *left, int *top, int *right, int *bottom)
 {
   int result;
@@ -329,7 +329,7 @@ export_cairo_check_error (cairo_status_t status)
  * Takes into account all of the margin/orientation/paper settings,
  * and the size of the drawing itself. */
 static void
-export_layout_page (PAGE *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
+export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 {
   cairo_matrix_t tmp_mtx;
   cairo_rectangle_t drawable;
@@ -347,13 +347,13 @@ export_layout_page (PAGE *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
   if (page == NULL) {
     const GList *pages = geda_list_get_glist (toplevel->pages);
     g_assert (pages != NULL && pages->data != NULL);
-    page = (PAGE *) pages->data;
+    page = (Page *) pages->data;
   }
 
   /* Calculate extents of objects within page */
   cairo_matrix_init (&tmp_mtx, 1, 0, 0, -1, -1, -1); /* Very vague approximation */
   cairo_set_matrix (cr, &tmp_mtx);
-  world_get_object_glist_bounds (toplevel, s_page_objects (page),
+  world_get_object_glist_bounds (s_page_get_objects (page),
                                  &wx_min, &wy_min, &wx_max, &wy_max);
   w_width = wx_max - wx_min;
   w_height = wy_max - wy_min;
@@ -451,7 +451,7 @@ export_layout_page (PAGE *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 
 /* Actually draws a page.  If page is NULL, uses the first open page. */
 static void
-export_draw_page (PAGE *page)
+export_draw_page (Page *page)
 {
   const GList *contents;
   GList *iter;
@@ -462,7 +462,7 @@ export_draw_page (PAGE *page)
   if (page == NULL) {
     const GList *pages = geda_list_get_glist (toplevel->pages);
     g_assert (pages != NULL && pages->data != NULL);
-    page = (PAGE *) pages->data;
+    page = (Page *) pages->data;
   }
 
   /* Draw background */
@@ -471,11 +471,11 @@ export_draw_page (PAGE *page)
   cairo_paint (cr);
 
   /* Draw objects & cues */
-  contents = s_page_objects (page);
+  contents = s_page_get_objects (page);
   for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
-    eda_renderer_draw (renderer, (OBJECT *) iter->data);
+    eda_renderer_draw (renderer, (Object *) iter->data);
   for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
-    eda_renderer_draw_cues (renderer, (OBJECT *) iter->data);
+    eda_renderer_draw_cues (renderer, (Object *) iter->data);
 }
 
 static void
@@ -547,7 +547,7 @@ export_postscript (bool is_eps)
   for (iter = geda_list_get_glist (toplevel->pages);
        iter != NULL;
        iter = g_list_next (iter)) {
-    PAGE *page = (PAGE *) iter->data;
+    Page *page = (Page *) iter->data;
 
     export_layout_page (page, &extents, &mtx);
     cairo_ps_surface_set_size (surface, extents.width, extents.height);
@@ -589,7 +589,7 @@ export_pdf (void)
   for (iter = geda_list_get_glist (toplevel->pages);
        iter != NULL;
        iter = g_list_next (iter)) {
-    PAGE *page = (PAGE *) iter->data;
+    Page *page = (Page *) iter->data;
 
     export_layout_page (page, &extents, &mtx);
     cairo_pdf_surface_set_size (surface, extents.width, extents.height);
@@ -817,12 +817,12 @@ export_config (void)
   /* Parse orientation */
   str = eda_config_get_string (cfg, "export", "layout", NULL);
   export_parse_layout (str); /* Don't care if it works */
-  g_free (str);
+  GEDA_FREE (str);
 
   /* Parse paper size */
   str = eda_config_get_string (cfg, "export", "paper", NULL);
   export_parse_paper (str);
-  g_free (str);
+  GEDA_FREE (str);
 
   /* Parse specific size setting -- always in points */
   if (eda_config_has_key (cfg, "export", "size", NULL)) {
@@ -831,7 +831,7 @@ export_config (void)
       if (n >= 2) {
         memcpy (settings.size, lst, 2*sizeof(double));
       }
-      g_free (lst);
+      GEDA_FREE (lst);
     }
     /* Since a specific size was provided, ditch the paper size
      * setting */
@@ -847,7 +847,7 @@ export_config (void)
     if (n >= 4) { /* In the config file all four sides must be specified */
       memcpy (settings.margins, lst, 4*sizeof(double));
     }
-    g_free (lst);
+    GEDA_FREE (lst);
   }
 
   /* Parse alignment */
@@ -856,7 +856,7 @@ export_config (void)
     if (n >= 2) { /* Both halign and valign must be specified */
       memcpy (settings.align, lst, 2*sizeof(double));
     }
-    g_free (lst);
+    GEDA_FREE (lst);
   }
 
   /* Parse dpi */
@@ -876,7 +876,7 @@ export_config (void)
 
   str = eda_config_get_string (cfg, "export", "font", NULL);
   if (str != NULL) {
-    g_free (settings.font);
+    GEDA_FREE (settings.font);
     settings.font = str;
   }
 }
@@ -973,7 +973,7 @@ export_command_line (int argc, char * const *argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      g_free (str);
+      GEDA_FREE (str);
       break;
 
     case 'c':
@@ -990,13 +990,13 @@ export_command_line (int argc, char * const *argv)
       break;
 
     case 'f':
-      g_free (settings.format);
+      GEDA_FREE (settings.format);
       settings.format = export_command_line__utf8_check (optarg, "-f,--format");
       break;
 
     case 'F':
       str = export_command_line__utf8_check (optarg, "-F,--font");
-      g_free (settings.font);
+      GEDA_FREE (settings.font);
       settings.font = str;
       break;
 
@@ -1011,7 +1011,7 @@ export_command_line (int argc, char * const *argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      g_free (str);
+      GEDA_FREE (str);
       /* Since a specific scale was provided, ditch the paper size
        * setting */
       if (settings.paper != NULL) {
@@ -1036,7 +1036,7 @@ export_command_line (int argc, char * const *argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      g_free (str);
+      GEDA_FREE (str);
       break;
 
     case 'o':
@@ -1050,7 +1050,7 @@ export_command_line (int argc, char * const *argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      g_free (str);
+      GEDA_FREE (str);
       break;
 
     case 's':
@@ -1060,7 +1060,7 @@ export_command_line (int argc, char * const *argv)
         fprintf (stderr, see_help_msg);
         exit (1);
       }
-      g_free (str);
+      GEDA_FREE (str);
       /* Since a specific size was provided, ditch the paper size
        * setting */
       if (settings.paper != NULL) {

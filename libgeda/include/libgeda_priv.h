@@ -9,21 +9,39 @@
 
 /* Public libgeda headers */
 #include <defines.h>
+
+#include <g_types.h>
+#include <o_types.h>
+
 #include <s_struct.h>
 #include <g_struct.h>
-#include <s_toplevel.h>
+
+#include <f_types.h>
 
 #include <edaconfig.h>
 #include <edaerrors.h>
 
 #include <globals.h>
-#include <o_types.h>
+
 #include <geda_colors.h>
 #include <papersizes.h>
 #include <prototype.h>
-#include <funcs.h>
 
 #include <geda_list.h>
+#include <geda_object.h>
+#include <geda_page.h>
+#include <geda_line.h>
+#include <geda_arc.h>
+#include <geda_box.h>
+#include <geda_bus.h>
+#include <geda_circle.h>
+#include <geda_complex.h>
+#include <geda_net.h>
+#include <geda_path.h>
+#include <geda_picture.h>
+#include <geda_pin.h>
+#include <geda_text.h>
+#include <geda_toplevel.h>
 
 /* Private libgeda headers */
 #include "struct_priv.h"

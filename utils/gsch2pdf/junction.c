@@ -23,8 +23,8 @@
 
 #include <libgeda/libgeda.h>
 
-extern gboolean o_pin_get_position (TOPLEVEL *toplevel, gint *x, gint *y,
-                             OBJECT *object);
+extern gboolean o_pin_get_position (GedaToplevel *toplevel, gint *x, gint *y,
+                             Object *object);
 
 typedef struct st_sweep_event SWEEP_EVENT;
 typedef struct st_sweep_status SWEEP_STATUS;
@@ -51,7 +51,7 @@ static gint compare_points(gconstpointer a, gconstpointer b)
 
 /*! \brief Locate all the junctions on a schematic
  *
- *  \param [in] current the TOPLEVEL object
+ *  \param [in] current the GedaToplevel object
  *  \param [in] objects The objects on the schematic
  *  \param [in,out] junctions A GArray of POINT to contain the coordinates
  *  of junctions.  This function appends new junctions to the GArray and leaves
@@ -60,7 +60,7 @@ static gint compare_points(gconstpointer a, gconstpointer b)
  *  of unconnected endpoints.  This function appends new endpoints to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions, GArray *unconnected)
+void junction_locate(GedaToplevel *current, const GList *objects, GArray *junctions, GArray *unconnected)
 {
   const GList *node = objects;
 
@@ -69,13 +69,18 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
   GArray *status = g_array_new(FALSE, FALSE, sizeof(SWEEP_STATUS));
 
   while (node != NULL) {
-    OBJECT *object = (OBJECT*) node->data;
+    Object *object = (Object*) node->data;
     if (object->type == OBJ_NET) {
       SWEEP_EVENT event;
       POINT point;
       event.y0 = min(object->line->y[0], object->line->y[1]);
       event.status.y1 = max(object->line->y[0], object->line->y[1]);
-      event.status.line = *(object->line);
+      LINE sline;
+      sline.x[0] = object->line->x[0];
+      sline.y[0] = object->line->y[0];
+      sline.x[1] = object->line->x[1];
+      sline.y[1] = object->line->y[1];
+      event.status.line = sline;
       g_array_append_val(events, event);
       point.x = object->line->x[0];
       point.y = object->line->y[0];
@@ -83,14 +88,16 @@ void junction_locate(TOPLEVEL *current, const GList *objects, GArray *junctions,
       point.x = object->line->x[1];
       point.y = object->line->y[1];
       g_array_append_val(points, point);
-    } else if (object->type == OBJ_PIN) {
+    }
+    else if (object->type == OBJ_PIN) {
       POINT point;
       o_pin_get_position(current, &point.x, &point.y, object);
       g_array_append_val(points, point);
-    } else if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
+    }
+    else if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
       const GList *node2 = object->complex->prim_objs;
       while (node2 != NULL) {
-        OBJECT *object2 = (OBJECT*) node2->data;
+        Object *object2 = (Object*) node2->data;
         if (object2->type == OBJ_PIN) {
           POINT point2;
           o_pin_get_position(current, &point2.x, &point2.y, object2);

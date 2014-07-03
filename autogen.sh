@@ -22,10 +22,10 @@
 #####################################################################
 
 ac_script=configure.ac
-am_version=1.11.0
+am_version=1.11.6
 aclocal_flags="$ACLOCAL_FLAGS -I m4"
 tooldir=build-tools
-podirs="libgeda/po gaf/po gschem/po gattrib/po gaf/po gnetlist/po gsymcheck/po"
+podirs="libgeda/po libgedauio/po gaf/po gattrib/po gnetlist/po gschem/po gaf/po  gsymcheck/po"
 
 srcdir=`dirname $0`
 if test "x$srcdir" = x ; then srcdir=.; fi
@@ -79,7 +79,7 @@ check_tool() {
       cat >&2 <<EOF
 
 If your operating system distribution doesn't provide a package, you
-can get download it from <$3>.
+can download from <$3>.
 
 EOF
     fi

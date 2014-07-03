@@ -10,8 +10,8 @@ noinst_HEADERS =  gtksheet.h \
 		  i_vars.h \
 		  struct.h
 
-MOSTLYCLEANFILES     = *.log core FILE *~ #*#
-CLEANFILES           = *.log core FILE *~ #*#
-DISTCLEANFILES       = *.log core FILE *~ #*#
-MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in #*#
+MOSTLYCLEANFILES     = *.log core FILE *~
+CLEANFILES           = *.log core FILE *~
+DISTCLEANFILES       = *.log core FILE *~
+MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
 

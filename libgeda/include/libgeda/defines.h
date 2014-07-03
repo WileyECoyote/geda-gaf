@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file defines.h
@@ -24,10 +25,6 @@
 
 #ifndef _DEFINES_H_INCL
 #define _DEFINES_H_INCL
-
-/* Utility macro to report code errors */
-#define BUG_MSG( fun, msg) fprintf (stderr, "Internal Error: <%s>, <%s> line %d: " \
-                                             msg, fun, __FILE__, __LINE__);
 
 /* Current schematic/symbol file format */
 #define FILEFORMAT_VERSION     2
@@ -52,7 +49,6 @@
 /* FIX-1.0.0.20060906. */
 #define PREPEND_VERSION_STRING ""
 
-
 /* W.E.Hill Oct 16, 2013 relocated "these" defines from gschem so gaf's
  * can all reference.
  */
@@ -75,6 +71,21 @@
 #define DEFAULT_BITMAP_DIRECTORY   "../lib/bitmaps"
 #define DEFAULT_POSTSCRIPT_PROLOG  "prolog.ps"
 #define DEFAULT_UNTITLED_NAME      "untitled"
+
+/*! \def INIT_STR(w, name, str) */
+#define INIT_STR(w, name, str) {                                        \
+        if((w)->name) g_free((w)->name);                                \
+        (w)->name = g_strdup(((default_ ## name) != NULL) ?             \
+                             (default_ ## name) : (str));               \
+}
+
+#define GEDA_FREE(ptr) do { g_free(ptr); (ptr) = NULL; } while (0);
+#define GEDA_MEM_ALLOC(amount) g_malloc(amount);
+
+#define DISK_BUFFER_SIZE        4096
+
+#define DEFAULT_PAGE_WIDTH      121000
+#define DEFAULT_PAGE_HEIGHT     90750
 
 /* for color mechanism used in gschem */
 #define MAX_COLORS 25
@@ -108,7 +119,7 @@
 #define DEFAULT_PIN_STYLE       STYLE_NONE
 
 /* various thicknesses (in mils) */
-#define MIN_LINE_WIDTH_THRESHOLD 2
+#define MIN_LINE_WIDTH_THRESHOLD 10
 #define MIN_BUS_WIDTH            0
 #define MIN_LINE_WIDTH           0
 #define MIN_NET_WIDTH            0
@@ -127,10 +138,6 @@
 
 #define DEFAULT_THIN_PIN_WIDTH   10
 #define DEFAULT_THICK_PIN_WIDTH  30
-
-/* for pin_type */
-//#define PIN_TYPE_NET      0
-//#define PIN_TYPE_BUS      1
 
 /* various visual cue sizes (in mils) */
 #define CUE_BOX_SIZE            30
@@ -272,7 +279,7 @@
 #endif
 
 /* Logs a normal message. */
-#define s_log_message g_message
+#define u_log_message g_message
 
 /* Backup filename creation string */
 #define AUTOSAVE_BACKUP_FILENAME_STRING "#%s#"

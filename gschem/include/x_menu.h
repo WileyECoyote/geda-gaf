@@ -25,7 +25,7 @@
  /* Menu Paths */
 #define OPT_STDBAR_MENU_PATH   "_View/_Toolbars/_Standard"
 #define OPT_SELBAR_MENU_PATH   "_View/_Toolbars/Se_lect"
-#define OPT_PAGEBAR_MENU_PATH  "_View/_Toolbars/_Page"
+#define OPT_PageBAR_MENU_PATH  "_View/_Toolbars/_Page"
 #define OPT_ADDBAR_MENU_PATH   "_View/_Toolbars/_Add"
 #define OPT_ZOOMBAR_MENU_PATH  "_View/_Toolbars/_Zoom"
 #define OPT_EDITBAR_MENU_PATH  "_View/_Toolbars/_Edit"

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * 
- * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,10 +28,10 @@
  *
  *  \par Function Description
  *  Returns TRUE if the string is an element of the GLIST.
- * 
- *  \param [in] GList* containing strings to be search
- *  \param [in] char*  string is the string to search for
- * 
+ *
+ *  \param [in] list*  GList containing strings to be search
+ *  \param [in] string pointer the string to search for
+ *
  *  \retval TRUE if string is in GLIST data, otherwise FALSE.
  */
 bool g_list_str_inlist(GList *list, char *string)
@@ -56,10 +56,10 @@ bool g_list_str_inlist(GList *list, char *string)
  *  \par Function Description
  *  Returns TRUE if there is an equivalent string element in
  *  the GLIST.
- * 
- *  \param [in] GList* containing strings to be search
- *  \param [in] char*  string is the string to search for
- * 
+ *
+ *  \param [in] list   A GList containing strings to be search
+ *  \param [in] string pointer the string to search for
+ *
  *  \retval TRUE if equivalent string is found in GLIST,
  *               otherwise FALSE.
  */
@@ -68,9 +68,9 @@ bool g_list_stri_inlist(GList *list, char *string)
   bool answer = FALSE;
   char* str;
   int i, len;
-  
+
   len = g_list_length(list);
-  
+
   for(i=0; i<len; i++){
     str = (char*) g_list_nth_data(list, i);
     if (stricmp( str, string)==0) {

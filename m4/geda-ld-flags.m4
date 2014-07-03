@@ -3,7 +3,7 @@
 
 dnl gEDA Prebuild checks for Library Headers and Functions
 dnl
-dnl Copyright (C) 2013  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2013-2014  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -23,15 +23,15 @@ dnl MA 02110-1301 USA
 m4_define([AX_LD_FLAG],
 [
 
-  geda_gaf_LDFLAGS="$LDFLAGS"
+  original_LDFLAGS="$LDFLAGS"
 
   LDFLAGS="$LDFLAGS $1"
 
   AC_LINK_IFELSE([AC_LANG_PROGRAM([])], [ld_flags_ok=yes], [ld_flags_ok=no])
   if test "x$ld_flags_ok" != "xyes"; then
-    LDFLAGS="$1 $geda_gaf_LDFLAGS"
+    LDFLAGS="$1 $original_LDFLAGS"
   else
-    LDFLAGS="$geda_gaf_LDFLAGS"
+    LDFLAGS="$original_LDFLAGS"
   fi
   []dnl
 ])dnl AX_LD_FLAG

@@ -1,4 +1,3 @@
-
 #ifdef __GNUC__
 
   #define WARN_UNUSED __attribute__((warn_unused_result))
@@ -25,6 +24,10 @@
 #define STDOUT_TTY		1
 #define BOTH_CONWIN_STDOUT	2
 
+#define DEFAULT_TEXT_SIZE   10
+
+#define DEFAULT_ATTRIBUTE_OFFSET 50
+#define DEFAULT_ATTRIBUTE_SIZE   8
 
 /* for text cap style */
 #define LOWER_CASE      0
@@ -33,3 +36,4 @@
 
 /* Flag for defaults to detect keywords absent from RC files */
 #define RC_NIL -1
+

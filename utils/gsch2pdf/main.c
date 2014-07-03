@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2012 Ales Hvezda
- * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2013 Ales Hvezda
+ * Copyright (C) 2002-2013 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -49,13 +49,13 @@
 #include "rc-config.h"
 
 static PrintSettings *print_settings = NULL;
-static void print_object_list(TOPLEVEL *current, cairo_t *cairo, const GList *objects);
+static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList *objects);
 
-static void print_arc(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_line_width(
         cairo,
-        object->line_width > 10.0 ? object->line_width : 10.0
+        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
     cairo_set_source_rgb(
@@ -93,7 +93,7 @@ static void print_arc(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_source_rgb(
         cairo,
@@ -102,21 +102,24 @@ static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
         0.0
         );
 
-    if ((object->fill_type == FILLING_HATCH) || (object->fill_type == FILLING_MESH))
+    if ((object->fill_options->fill_type == FILLING_HATCH) ||
+        (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
         GArray *lines = g_array_new (FALSE, FALSE, sizeof (LINE));
 
-        m_hatch_box(object->box, object->fill_angle1, object->fill_pitch1, lines);
+        m_hatch_box(object->box, object->fill_options->fill_angle1,
+                                 object->fill_options->fill_pitch1, lines);
 
-        if (object->fill_type == FILLING_MESH)
+        if (object->fill_options->fill_type == FILLING_MESH)
         {
-            m_hatch_box(object->box, object->fill_angle2, object->fill_pitch2, lines);
+            m_hatch_box(object->box, object->fill_options->fill_angle2,
+                                     object->fill_options->fill_pitch2, lines);
         }
 
         cairo_set_line_width(
             cairo,
-            object->fill_width > 5.0 ? object->fill_width : 5.0
+            object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
             );
 
         for (index=0; index<lines->len; index++)
@@ -139,7 +142,7 @@ static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_set_line_width(
         cairo,
-        object->line_width > 10.0 ? object->line_width : 10.0
+        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
     cairo_move_to(
@@ -168,7 +171,7 @@ static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_close_path(cairo);
 
-    if (object->fill_type == FILLING_FILL)
+    if (object->fill_options->fill_type == FILLING_FILL)
     {
         cairo_fill_preserve(cairo);
     }
@@ -176,7 +179,7 @@ static void print_box(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_bus(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_bus(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
 
     cairo_set_line_width(
@@ -206,7 +209,7 @@ static void print_bus(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_source_rgb(
         cairo,
@@ -215,21 +218,24 @@ static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
         0.0
         );
 
-    if ((object->fill_type == FILLING_HATCH) || (object->fill_type == FILLING_MESH))
+    if ((object->fill_options->fill_type == FILLING_HATCH) ||
+         (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
         GArray *lines = g_array_new (FALSE, FALSE, sizeof (LINE));
 
-        m_hatch_circle(object->circle, object->fill_angle1, object->fill_pitch1, lines);
+        m_hatch_circle(object->circle, object->fill_options->fill_angle1,
+                       object->fill_options->fill_pitch1, lines);
 
-        if (object->fill_type == FILLING_MESH)
+        if (object->fill_options->fill_type == FILLING_MESH)
         {
-            m_hatch_circle(object->circle, object->fill_angle2, object->fill_pitch2, lines);
+            m_hatch_circle(object->circle, object->fill_options->fill_angle2,
+                           object->fill_options->fill_pitch2, lines);
         }
 
         cairo_set_line_width(
             cairo,
-            object->fill_width > 5.0 ? object->fill_width : 5.0
+            object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
             );
 
 
@@ -253,7 +259,7 @@ static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_set_line_width(
         cairo,
-        object->line_width > 10.0 ? object->line_width : 10.0
+        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
     cairo_new_sub_path(cairo);
@@ -267,7 +273,7 @@ static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
         2.0 * M_PI
         );
 
-    if (object->fill_type == FILLING_FILL)
+    if (object->fill_options->fill_type == FILLING_FILL)
     {
         cairo_fill(cairo);
     }
@@ -275,12 +281,12 @@ static void print_circle(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_complex(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_complex(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     print_object_list(current, cairo, object->complex->prim_objs);
 }
 
-static void print_junctions(TOPLEVEL *current, cairo_t *cairo, const GArray *junctions)
+static void print_junctions(GedaToplevel *current, cairo_t *cairo, const GArray *junctions)
 {
     int index;
 
@@ -307,11 +313,11 @@ static void print_junctions(TOPLEVEL *current, cairo_t *cairo, const GArray *jun
   }
 }
 
-static void print_line(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_line(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_line_width(
         cairo,
-        object->line_width > 10.0 ? object->line_width : 10.0
+        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
     cairo_set_source_rgb(
@@ -336,7 +342,7 @@ static void print_line(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_net(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_net(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_line_width(
         cairo,
@@ -365,7 +371,7 @@ static void print_net(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_path(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_path(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     int index;
 
@@ -376,21 +382,24 @@ static void print_path(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
         0.0
         );
 
-    if ((object->fill_type == FILLING_HATCH) || (object->fill_type == FILLING_MESH))
+    if ((object->fill_options->fill_type == FILLING_HATCH) ||
+        (object->fill_options->fill_type == FILLING_MESH))
     {
         int index;
         GArray *lines = g_array_new (FALSE, FALSE, sizeof (LINE));
 
-        m_hatch_path(object->path, object->fill_angle1, object->fill_pitch1, lines);
+        m_hatch_path(object->path, object->fill_options->fill_angle1,
+                     object->fill_options->fill_pitch1, lines);
 
-        if (object->fill_type == FILLING_MESH)
+        if (object->fill_options->fill_type == FILLING_MESH)
         {
-            m_hatch_path(object->path, object->fill_angle2, object->fill_pitch2, lines);
+            m_hatch_path(object->path, object->fill_options->fill_angle2,
+                         object->fill_options->fill_pitch2, lines);
         }
 
         cairo_set_line_width(
             cairo,
-            object->fill_width > 5.0 ? object->fill_width : 5.0
+            object->fill_options->fill_width > 5.0 ? object->fill_options->fill_width : 5.0
             );
 
         for (index=0; index<lines->len; index++)
@@ -456,10 +465,10 @@ static void print_path(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
 
     cairo_set_line_width(
         cairo,
-        object->line_width > 10.0 ? object->line_width : 10.0
+        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
-    if (object->fill_type == FILLING_FILL)
+    if (object->fill_options->fill_type == FILLING_FILL)
     {
         cairo_fill_preserve(cairo);
     }
@@ -467,11 +476,11 @@ static void print_path(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_pin(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_pin(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     cairo_set_line_width(
         cairo,
-        object->line_width > 10.0 ? object->line_width : 10.0
+        object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
     cairo_set_source_rgb(
@@ -496,7 +505,7 @@ static void print_pin(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     cairo_stroke(cairo);
 }
 
-static void print_text(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_text(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
     if (object->text->disp_string != NULL)
     {
@@ -680,9 +689,9 @@ static void print_text(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     }
 }
 
-static void print_object(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
+static void print_object(GedaToplevel *current, cairo_t *cairo, Object *object)
 {
-    if (o_is_visible(current, object))
+    if (o_get_is_visible(object))
     {
         switch (object->type)
         {
@@ -733,13 +742,13 @@ static void print_object(TOPLEVEL *current, cairo_t *cairo, OBJECT *object)
     }
 }
 
-static void print_object_list(TOPLEVEL *current, cairo_t *cairo, const GList *objects)
+static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList *objects)
 {
     const GList *node = objects;
 
     while (node != NULL)
     {
-        OBJECT *object = (OBJECT*) node->data;
+        Object *object = (Object*) node->data;
 
         print_object(current, cairo, object);
 
@@ -747,11 +756,11 @@ static void print_object_list(TOPLEVEL *current, cairo_t *cairo, const GList *ob
     }
 }
 
-static void print_page(TOPLEVEL *current, cairo_t *cairo, PAGE *page)
+static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 {
     cairo_save(cairo);
 
-    const GList *list = s_page_objects(page);
+    const GList *list = s_page_get_objects(page);
 
     cairo_surface_t *surface = cairo_recording_surface_create(CAIRO_CONTENT_COLOR_ALPHA, NULL);
 
@@ -816,7 +825,7 @@ static void print_page(TOPLEVEL *current, cairo_t *cairo, PAGE *page)
 
 static void main2(void *closure, int argc, char *argv[])
 {
-    TOPLEVEL *current;
+    GedaToplevel *current;
     int i;
     cairo_surface_t *surface = NULL;
     cairo_t *cairo = NULL;
@@ -826,20 +835,20 @@ static void main2(void *closure, int argc, char *argv[])
 
     libgeda_init();
 
-    s_log_init ("gsch2pdf");
+    u_log_init ("gsch2pdf");
 
-    current = s_toplevel_new();
+    current = geda_toplevel_new();
 
     rc_config_init();
     rc_config_set_print_settings(print_settings);
 
-    g_rc_parse(current, argv[0], "gsch2pdfrc", NULL);
+    g_rc_parse(argv[0], "gsch2pdfrc", NULL);
 
     i_vars_libgeda_set(current);
 
     for (i=1; i<argc; i++)
     {
-        PAGE *page = s_page_new(current, argv[i]);
+        Page *page = s_page_new(current, argv[i]);
 
         int success = f_open(current, page, argv[i], NULL);
 

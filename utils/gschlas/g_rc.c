@@ -56,7 +56,7 @@ SCM g_rc_gschlas_version(SCM scm_version)
     return ret;
 }
 
-
+/*
 SCM 
 g_rc_force_boundingbox(SCM mode)
 {
@@ -67,6 +67,6 @@ g_rc_force_boundingbox(SCM mode)
 
   RETURN_G_RC_MODE("force-boundingbox", default_force_boundingbox, 2);
 }
-
+*/
 
 /*************************** GUILE end done *********************************/

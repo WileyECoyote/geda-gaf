@@ -29,7 +29,7 @@
                      (string-append " " (car net) "(" (car (cdr net)) ")"))
                    nets))
     (string-append k ";\n")))
-    
+
 ;;
 ;; Wrap a string into lines no longer than wrap-length
 ;; (from Stefan Petersen)
@@ -42,8 +42,8 @@
                (display "Couldn't wrap string  at requested position\n")
                " Wrap error!")
               (else
-               (string-append 
-                (substring string-to-wrap 0 pos) 
+               (string-append
+                (substring string-to-wrap 0 pos)
                 ",\n          "
                 (calay:wrap (substring string-to-wrap (+ pos 1)) wrap-length)))))))
 
@@ -55,21 +55,19 @@
     (if pos (calay:translate (string-append (substring string-to-translate 0
     pos) "-" (substring string-to-translate (+ 1 pos)))) string-to-translate)))
 
-(define (calay:write-net netnames port)
+(define (calay:write-net netnames)
   (if (not (null? netnames))
       (let ((netname (car netnames)))
-      	(display "/" port)
-	(display (gnetlist:alias-net netname) port)
-	(display "\t" port)
-	(display (calay:wrap (calay:display-connections
-	  (gnetlist:get-all-connections netname)) 66) port)
-	(calay:write-net (cdr netnames) port))))
+        (display "/")
+        (display (gnetlist:alias-net netname))
+        (display "\t")
+        (display (calay:wrap (calay:display-connections
+          (gnetlist:get-all-connections netname)) 66))
+        (calay:write-net (cdr netnames)))))
 
 
 (define (calay output-filename)
-  (let ((port (open-output-file output-filename)))
-    (gnetlist:build-net-aliases calay:translate all-unique-nets)
-    (calay:write-net (gnetlist:get-all-unique-nets "dummy") port)
-    (close-output-port port)))
-
-
+  (set-current-output-port (gnetlist:output-port output-filename))
+  (gnetlist:build-net-aliases calay:translate all-unique-nets)
+  (calay:write-net (gnetlist:get-all-unique-nets "dummy"))
+  (close-output-port (current-output-port)))

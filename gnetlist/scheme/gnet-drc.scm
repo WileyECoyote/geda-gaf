@@ -37,64 +37,67 @@
           '()))))
 
 (define drc:attriblist
-  (drc:parseconfig 
-    (open-input-file "attribs")))
+  ((lambda (filename)
+     (if (file-exists? filename)
+       (drc:parseconfig
+         (open-input-file filename))
+       ((message (string-append "ERROR: Attribute file '" filename "' not found.\n"))
+        (primitive-exit 1))))
+   "attribs"))
 
-(define drc
-  (lambda (output-filename)
-    (let ((port (open-output-file output-filename)))
-      (drc:device-rules drc:attriblist packages port)
-      (drc:net-rules (gnetlist:get-all-unique-nets "dummy") port)
-      (drc:pin-rules packages port)
-      (close-output-port port))))
+(define (drc output-filename)
+  (set-current-output-port (gnetlist:output-port output-filename))
+  (drc:device-rules drc:attriblist packages)
+  (drc:net-rules (gnetlist:get-all-unique-nets "dummy"))
+  (drc:pin-rules packages)
+  (close-output-port (current-output-port)))
 
 
 (define drc:net-rules
-  (lambda(nets port)
-    (cond 
+  (lambda(nets)
+    (cond
       ((null? nets) #t)
       ((null? (gnetlist:get-all-connections (car nets)))
           (begin
-            (display "Net " port)
-            (display (car nets) port)
-            (display " has no connected pins\n" port)
-            (drc:net-rules (cdr nets) port)
+            (display "Net ")
+            (display (car nets))
+            (display " has no connected pins\n")
+            (drc:net-rules (cdr nets))
             #f))
       ((null? (cdr (gnetlist:get-all-connections (car nets))))
           (begin
-            (display "Net " port)
-            (display (car nets) port)
-            (display " has only 1 connected pin\n" port)
-            (drc:net-rules (cdr nets) port)
+            (display "Net ")
+            (display (car nets))
+            (display " has only 1 connected pin\n")
+            (drc:net-rules (cdr nets))
             #f))
-      (#t (drc:net-rules (cdr nets) port)))))
+      (#t (drc:net-rules (cdr nets))))))
 
 (define drc:pin-rules
-  (lambda(packages port)
+  (lambda(packages)
     #t))
 
 (define drc:device-rules
-  (lambda (attriblist packages port)
+  (lambda (attriblist packages)
     (if (not (null? packages))
       (begin
-        (drc:has-attributes? attriblist (car packages) port)
-        (drc:device-rules attriblist (cdr packages) port)))))
+        (drc:has-attributes? attriblist (car packages))
+        (drc:device-rules attriblist (cdr packages))))))
 
 (define drc:has-attributes?
-  (lambda (attriblist uref port)
-    (if (not (null? attriblist)) 
+  (lambda (attriblist uref)
+    (if (not (null? attriblist))
       (begin
         (if (string=? "unknown" (gnetlist:get-package-attribute uref (car attriblist)))
           (begin
-            (display uref port)
-            (display " Does not have attribute: " port)
-            (display (car attriblist) port)
-            (newline port)))
-        (drc:has-attributes? (cdr attriblist) uref port)))))
+            (display uref)
+            (display " Does not have attribute: ")
+            (display (car attriblist))
+            (newline)))
+        (drc:has-attributes? (cdr attriblist) uref)))))
 
 
 ;;
 ;; DRC backend written by Matt Ettus ends here
 ;;
 ;; --------------------------------------------------------------------------
-

@@ -93,12 +93,16 @@
   "([[:alnum:]_]+)-([[:digit:]]+).([[:alpha:]]+)$")
 
 (define (makedepend:split-filename makedepend-scheme name)
-  (let* ((match (string-match makedepend-scheme name))
-         (base (match:substring match 1))
-         (page (match:substring match 2))
-         (ext  (match:substring match 3))
-         )
-    (list base page ext)
+  (let ((match (string-match makedepend-scheme name)))
+    (if match
+      (let* ((base (match:substring match 1))
+             (page (match:substring match 2))
+             (ext  (match:substring match 3)))
+        (list base page ext))
+      (begin
+        (display "ERROR: Schematic file name must take the form: BASE-PAGENUM.EXT\n"
+                 (current-error-port))
+        (primitive-exit 1)))
   )
 )
 
@@ -122,7 +126,7 @@
 
 
 
-(define (makedepend:output-make-command input-files sources files port)
+(define (makedepend:output-make-command input-files sources files)
   (let* (;lazy version, use first filename only for naming scheme
          (scheme-split (makedepend:split-filename makedepend-scheme (car input-files)))
          (base (first scheme-split))
@@ -131,12 +135,12 @@
         )
 
     ;schematic deps
-    (format port "~a: ~a\n"
+    (format #t "~a: ~a\n"
             (string-join input-files " ")
             (string-join sources " "))
 
     ;netlist deps
-    (format port "~a.cir: ~a ~a\n"
+    (format #t "~a.cir: ~a ~a\n"
             base
             (string-join input-files " ")
             (string-join files " "))
@@ -146,14 +150,15 @@
 
 
 (define (makedepend output-filename)
-  (let* ((port (open-output-file output-filename))
+  (set-current-output-port (gnetlist:output-port output-filename))
+  (let* (
          (source-attrs (makedepend:get-all-attr-values "source" packages))
          (file-attrs (makedepend:get-all-attr-values "file" packages))
          (input-files (gnetlist:get-input-files))
         )
-    (makedepend:output-make-command input-files source-attrs file-attrs port)
-    (close-output-port port)
+    (makedepend:output-make-command input-files source-attrs file-attrs)
   )
+  (close-output-port (current-output-port))
 )
 
 ;; vim:shiftwidth=2

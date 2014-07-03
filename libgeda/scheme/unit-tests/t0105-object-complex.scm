@@ -31,7 +31,8 @@
     (assert-true (component-locked? a))
 
     (assert-thrown 'misc-error
-                   (set-component! a '(3 . 4) 45 #f #t))))
+                   (set-component! a '(3 . 4) 45 #f #t)))
+)
 
 (begin-test 'component-append
   (let ((A (make-component "test component" '(1 . 2) 0 #t #f))
@@ -51,7 +52,8 @@
     (assert-equal (list x y) (component-contents A))
 
     (assert-thrown 'object-state
-                   (component-append! B x))))
+                   (component-append! B x)))
+)
 
 (begin-test 'component-remove
   (let ((A (make-component "test component" '(1 . 2) 0 #t #f))
@@ -75,8 +77,8 @@
     (assert-equal (list y) (component-contents A))
 
     (assert-thrown 'object-state
-                   (component-remove! B y))))
-
+                   (component-remove! B y)))
+)
 (begin-test 'component-append/page
   (let ((P (make-page "/test/page/A"))
         (A (make-component "test component" '(1 . 2) 0 #t #f))
@@ -98,7 +100,8 @@
 
      (lambda ()
        (close-page! P)))
-    ))
+    )
+)
 
 (begin-test 'component-remove/page
   (let ((P (make-page "/test/page/A"))
@@ -127,7 +130,8 @@
 
      (lambda ()
        (close-page! P)))
-    ))
+    )
+)
 
 (begin-test 'component-translate
   (let* ((A (make-component "test component" '(0 . 0) 0 #t #f))
@@ -136,45 +140,25 @@
     (component-append! A x)
     (set-component! A '(1 . 1) 0 #t #f)
     (assert-equal '(1 . 3) (box-top-left x))
-    (assert-equal '(3 . 1) (box-bottom-right x))))
+    (assert-equal '(3 . 1) (box-bottom-right x)))
+)
 
 (begin-test 'component-remove-attrib
-  (let ((comp (make-component "test component" '(1 . 2) 0 #t #f))
-        (pin (make-net-pin '(0 . 0) '(100 . 0)))
-        (attrib (make-text '(0 . 0) 'lower-left 0 "name=x" 10 #t 'both)))
+  (let ((comp   (make-component "test component" '(1 . 2) 0 #t #f))
+        (pin    (make-net-pin '(0 . 0) '(100 . 0)))
+        (attrib (make-text '(0 . 0) 'lower-left 0 "name=x" 10 #t 'both))
+       )
     (component-append! comp pin attrib)
     (attach-attribs! pin attrib)
     (assert-thrown 'object-state (component-remove! comp pin))
-    (assert-thrown 'object-state (component-remove! comp attrib))))
-
-
-;; Set up component library, making blatant assumptions about the
-;; directory layout.
-(component-library (string-join (list (getenv "srcdir") "../../../symbols/passive/resistor") "/")
-                   "Basic devices")
-
-(begin-test 'component/library
-  (let ((A (make-component/library "resistor-1.sym" '(1 . 2) 0 #t #f))
-        (B (make-component/library "invalid-component-name" '(1 . 2) 0 #t #f)))
-
-    (assert-true A)
-    (assert-equal '(1 . 2) (component-position A))
-    (assert-equal 0 (component-angle A))
-    (assert-true (component-mirror? A))
-    (assert-true (not (component-locked? A)))
-
-    (assert-equal "resistor-1.sym" (component-basename A))
-
-    (assert-true (not (null? (component-contents A))))
-
-    (assert-true (not B))))
-
-;; Clear component library again
-(reset-component-library)
+    (assert-thrown 'object-state (component-remove! comp attrib))
+  )
+)
 
 (begin-test 'object-component
   (let* ((A (make-component "test component" '(0 . 0) 0 #t #f))
          (x (make-box '(0 . 2) '(2 . 0))))
     (assert-equal #f (object-component x))
     (component-append! A x)
-    (assert-equal A (object-component x))))
+    (assert-equal A (object-component x)))
+)

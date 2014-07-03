@@ -42,7 +42,7 @@ struct _GschemMainWindow
   GtkWindow parent;
 };
 
-GType
+unsigned int
 gschem_main_window_get_type();
 
 GschemMainWindow*

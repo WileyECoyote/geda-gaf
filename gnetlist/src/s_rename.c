@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -67,17 +67,17 @@ void s_rename_destroy_all(void)
   RENAME * temp;
   void * to_free;
 
-  for (; first_set;) {
+  while (first_set) {
     for (temp = first_set->first_rename; temp;) {
-      g_free(temp->src);
-      g_free(temp->dest);
+      GEDA_FREE(temp->src);
+      GEDA_FREE(temp->dest);
       to_free = temp;
       temp = temp->next;
-      g_free(to_free);
+      GEDA_FREE(to_free);
     }
     to_free = first_set;
     first_set = first_set->next_set;
-    g_free(to_free);
+    GEDA_FREE(to_free);
   }
   last_set = NULL;
 }
@@ -275,7 +275,7 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
   }
 }
 
-void s_rename_all(TOPLEVEL * pr_current, NETLIST * netlist_head)
+void s_rename_all(GedaToplevel * pr_current, NETLIST * netlist_head)
 {
   RENAME * temp;
 

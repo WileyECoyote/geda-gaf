@@ -1,3 +1,14 @@
+2014-01-16 Wiley E. Hill <wileyhill@gmail.com>
+
+        * docs/gsymcheck.dox: Update Doxyfile from 1.4.6 to 1.8.3.1
+
+2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+
+        * tests/Makefile.am: Added AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+          $(GEDA_AUTOMAKE_TEST_OPTIONS)
+
 2013-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*.c General review and updated copyright date. Converted TAB to

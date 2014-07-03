@@ -1,6 +1,6 @@
 /*
  * geda-shell: Batch processing for gEDA
- * Copyright (C) 2010 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2010-2014 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -100,7 +100,7 @@ shell_main (void *data, int argc, char **argv)
   int interactive = 1;
   int inhibit_rc = 0;
   int status;
-  TOPLEVEL *toplevel;
+  GedaToplevel *toplevel;
 
   #include "shell.x"
 
@@ -179,7 +179,7 @@ shell_main (void *data, int argc, char **argv)
 
       printf (
         "gEDA " PACKAGE_GIT_VERSION "\n"
-        "Copyright (C) 1998-2010 gEDA developers\n"
+        "Copyright (C) 1998-2014 gEDA developers\n"
         "This is free software, and you are welcome to redistribute it under\n"
         "certain conditions. For details, see the file `COPYING', which is\n"
         "included in the gEDA distribution.\n"
@@ -187,7 +187,8 @@ shell_main (void *data, int argc, char **argv)
       );
     }
 
-  } else {
+  }
+  else {
     run_lst = scm_cons (scm_list_1 (sym_quit), run_lst);
   }
 
@@ -198,7 +199,7 @@ shell_main (void *data, int argc, char **argv)
   /* Initialise libgeda */
   libgeda_init ();
   scm_dynwind_begin (0);
-  toplevel = s_toplevel_new ();
+  toplevel = geda_toplevel_new ();
   edascm_dynwind_toplevel (toplevel);
 
   /* First run the setup list */
@@ -209,13 +210,14 @@ shell_main (void *data, int argc, char **argv)
 
   /* Now load rc files, if necessary */
   if (!inhibit_rc)
-    g_rc_parse (toplevel, argv[0], NULL, NULL);
+    g_rc_parse (argv[0], NULL, NULL);
 
   i_vars_libgeda_set (toplevel); /* Ugh */
 
   /* Finally evaluate run list */
   run_lst = scm_cons (sym_begin, run_lst);
   status = scm_exit_status (scm_eval_x (run_lst, scm_current_module ()));
+
   exit (status);
 
   scm_dynwind_end ();

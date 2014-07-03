@@ -68,9 +68,7 @@ eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
   COLOR c;
 
   if (map == NULL) {
-    fprintf (stderr, "Internal Error: "
-                     "<%s> line <%d>, <eda_cairo_set_source_color>"
-                     "map = NULL.\n", __FILE__, __LINE__);
+    BUG_MSG ("map = NULL");
     return;
   }
   if ( (color < 0) || (color > map->len - 1)) {
@@ -154,8 +152,8 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
   x2 += xoffset; y2 += yoffset;
   cairo_device_to_user (cr, &x1, &y1);
   cairo_device_to_user (cr, &x2, &y2);
-  cairo_move_to (cr, x1, y1);
-  cairo_line_to (cr, x2, y2);
+  cairo_move_to (cr, x1, y1);  cairo_line_to (cr, x2, y2);
+
 }
 
 

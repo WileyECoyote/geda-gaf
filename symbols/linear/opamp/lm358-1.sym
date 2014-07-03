@@ -16,16 +16,16 @@ T 675 750 5 10 0 0 0 0 1
 slot=1
 T 700 1350 5 10 0 0 0 0 1
 footprint=DIP8
-P 200 600 0 600 1 0 1
+P 800 400 1000 400 1 0 1
 {
-T 50 625 5 8 1 1 0 0 1
-pinnumber=3
-T 50 625 5 8 0 0 0 0 1
+T 875 425 5 8 1 1 0 0 1
+pinnumber=1
+T 875 425 5 8 0 0 0 0 1
 pinseq=1
-T 50 625 5 8 0 1 0 0 1
-pintype=in
-T 50 625 5 8 0 1 0 0 1
-pinlabel=IN+
+T 875 425 5 8 0 1 0 0 1
+pintype=out
+T 875 425 5 8 0 1 0 0 1
+pinlabel=OUT
 }
 P 200 200 0 200 1 0 1
 {
@@ -38,16 +38,16 @@ pintype=in
 T 50 225 5 8 0 1 0 0 1
 pinlabel=IN-
 }
-P 800 400 1000 400 1 0 1
+P 200 600 0 600 1 0 1
 {
-T 875 425 5 8 1 1 0 0 1
-pinnumber=1
-T 875 425 5 8 0 0 0 0 1
+T 50 625 5 8 1 1 0 0 1
+pinnumber=3
+T 50 625 5 8 0 0 0 0 1
 pinseq=3
-T 875 425 5 8 0 1 0 0 1
-pintype=out
-T 875 425 5 8 0 1 0 0 1
-pinlabel=OUT
+T 50 625 5 8 0 1 0 0 1
+pintype=in
+T 50 625 5 8 0 1 0 0 1
+pinlabel=IN+
 }
 P 500 200 500 0 1 0 1
 {

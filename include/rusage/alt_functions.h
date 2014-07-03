@@ -32,3 +32,4 @@ char *ALT_hstrerror(int sig);
 int ALT_posix_openpt(int flags);
 
 #endif
+

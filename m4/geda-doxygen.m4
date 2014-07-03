@@ -1,8 +1,8 @@
 # geda-doxygen.m4                                       -*-Autoconf-*-
-# serial 2
+# serial 3
 
 dnl Optional Doxygen API documentation support
-dnl Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2009-2014  Peter Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -16,13 +16,39 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+
+m4_define([AX_DOXYGEN_DIRS],
+[
+  # Check where Doxygen should generate output files.
+  AC_MSG_CHECKING([where to install Doxygen output files])
+  AC_ARG_WITH([doxygen-out], AS_HELP_STRING([--with-doxygen-out[[[=DIR]]]],
+    [install Doxygen output files under DIR]),
+
+    [ #action-if-present which implicates enable_doxygen
+       DOXYGEN_PATH_OUT="$withval"
+       enable_doxygen="yes"
+       mesg="using location:$DOXYGEN_PATH_OUT"
+    ],
+
+    [#action-if-not-present
+       DOXYGEN_PATH_OUT="./"
+       mesg="inside docs dirs"
+    ]
+  )
+  AC_SUBST([DOXYGEN_PATH_OUT])
+  AC_MSG_RESULT([$mesg])
+
+  []dnl
+])dnl AX_RC_DIRS
 
 # Check if doxygen documentation is requested, and if so, find doxygen program.
 AC_DEFUN([AX_OPTION_DOXYGEN],
 [
   AC_PREREQ([2.60])dnl
   AC_ARG_VAR([DOXYGEN], [Path to doxygen executable])
+
+  AX_DOXYGEN_DIRS
 
   # Check if the user enabled Doxygen
   AC_MSG_CHECKING([whether to enable generation of Doxygen API documentation])
@@ -39,6 +65,13 @@ AC_DEFUN([AX_OPTION_DOXYGEN],
 found. Ensure it is installed and in your path, or configure without
 --enable-doxygen.])
     fi
+
+    # TODO: Not sure but I think image conversion is not needed for html version
+    # so the latex should be diabled not doxygen. Could use something like
+    # ( cat Doxyfile ; echo "GENERATE_LATEX = NO" ) | $(DOXYGEN)
+    # Win32 machine might need:
+    # ( type Doxyfile ; echo "GENERATE_LATEX = NO" ) | $(DOXYGEN)
+    # or use same technique as is done for DOXYGEN_OUTDIR
 
     # Check for Inkscape
     AC_CHECK_PROG([INKSCAPE], [inkscape], [inkscape], [no])
@@ -77,4 +110,5 @@ found.  Ensure it is installed and in your path, or configure without
   AC_SUBST([DOXYGEN])
   AC_SUBST([INKSCAPE])
   AC_SUBST([CONVERT])
+  []dnl
 ])dnl AX_OPTION_DOXYGEN

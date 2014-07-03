@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -27,6 +27,8 @@
 #define MAX_KEYWORD              48
 #define MAX_RECENT_FILES         10  /* Some day */
 #define MESSAGE_BUFFER_SIZE    2048
+
+#define DEFAULT_RAISE_TIMER     100 /* milliseconds */
 
 /*-------- Color & Image Stuff ------- */
 
@@ -136,9 +138,6 @@
  * constants, so be sure not to clash with those */
 #define LAST_DRAWB_MODE_NONE   -1
 
-/* For add_attribute_offset */
-#define DEFAULT_ATTRIBUTE_OFFSET 50
-
 /* For auto_load_last */
 #define DEFAULT_AUTO_LOAD_LAST    1
 
@@ -215,9 +214,9 @@
 /* for selected_from */
 #define DONTCARE		0
 
-/* for a_pan_general and a_zoom */
-#define A_PAN_IGNORE_BORDERS 	1
-#define A_PAN_DONT_REDRAW 	2
+/* for v_pan_general and v_zoom */
+#define I_PAN_IGNORE_BORDERS 	1
+#define I_PAN_DONT_REDRAW 	2
 
 /* selection types */
 /* used in o_select_object */
@@ -249,7 +248,9 @@
 #define DEFAULT_TEXT_MARKER_COLOR LOCK_COLOR
 
 /* text_size */
-#define DEFAULT_TEXT_SIZE       10
+#ifndef DEFAULT_TEXT_SIZE
+  #define DEFAULT_TEXT_SIZE       10
+#endif
 #define MIN_TEXT_SIZE           1
 #define MAX_TEXT_SIZE           99
 

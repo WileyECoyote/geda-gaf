@@ -84,20 +84,21 @@ typedef struct
 
 #define GEDA_PACK_TOOLBOX( parent, bar) \
   gtk_box_pack_start (GTK_BOX (parent), bar, FALSE, FALSE, 0); \
-  g_object_set (bar, "visible", TRUE, NULL);
+  g_object_set (bar, "visible", TRUE, NULL); \
+  gtk_widget_show(bar);
 
 /* ------------------------- Entry Level -------------------------------- */
-/*! \brief ToolBar Macros with GSCHEM_TOPLEVEL *w_current call-back data */
+/*! \brief ToolBar Macro with GSCHEM_TOPLEVEL *w_current call-back data */
 #define TOOLBAR_GEDA_BUTTON( bar, name, type, icon, func, data) \
    GtkWidget *name##_button __attribute__ ((unused)); /* maybe mv comment for tb devel */ \
    TOOLBAR_BUTTON_DATA( bar##_Toolbar, name, type, icon, name##_button, func, data)
 
-/*! \brief ToolBar Macros with Enumerated Control call-back data */
+/*! \brief ToolBar Macro with Enumerated Control call-back data */
 #define TOOLBAR_STD_BUTTON( bar, name, type, icon, func) \
    GtkWidget *name##_button; \
    TOOLBAR_BUTTON( bar##_Toolbar, name, type, icon, name##_button, func, name)
 
-/*! \brief ToolBar Macros with Enumerated Control and Assumed call-back func */
+/*! \brief ToolBar Macro with Enumerated Control and Assumed call-back func */
 #define TOOLBAR_STD_FUNC( bar, name, type, icon) \
    GtkWidget *name##_button; \
    TOOLBAR_BUTTON( bar##_Toolbar, name, type, icon, name##_button, callBack_##bar##Bar, name)
@@ -107,12 +108,14 @@ typedef struct
 #define TOOLBAR_BUTTON( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, ENUM, icon, button, func, data) \
         GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_WIDGET(name)) \
+        g_object_set (button, "visible", TRUE, NULL); \
 }
 
 /*! \brief 1st LeveL Intermediate ToolBar Macro with *w_current data */
 #define TOOLBAR_BUTTON_DATA( bar, name, type, icon, button, func, data) { \
         TOOLBAR_BUTTON_##type (bar, name, GEDA, icon, button, func, data) \
         GEDA_TOOLBAR_BUTTON_ATK(bar, button, TB_TOOLTIP (name), TB_WIDGET(name)) \
+        g_object_set (button, "visible", TRUE, NULL); \
 }
 
 /* --------------------------- 2nd Level -------------------------------- */
@@ -145,6 +148,12 @@ typedef struct
    next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
    g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
 
+/*! \brief 2nd Level Intermediate ToolBar Macro with Action Theme Icon */
+#define TOOLBAR_BUTTON_THEME(bar, name, next, icon, button, func, data) \
+   GtkWidget *name##_ICN = gtk_image_new_from_icon_name(TB_ICON_NAME(name), GTK_ICON_SIZE_BUTTON); \
+   next##_TOOLBAR_BUTTON(bar, name##_ICN, button, _(TB_LABEL (name)), _(TB_TOOLTIP (name)), _(TB_PRIVATE (name)), func, data) \
+   g_object_set_data ((GObject*) button, "action", (void*)TB_WIDGET(name));
+
 /*! \brief 2nd Level Intermediate ToolBar Macro with Local Stock Icon */
 #define TOOLBAR_BUTTON_LOCAL_STK(bar, name, next, icon, button, func, data) \
    GtkWidget *name##_ICN = gtk_image_new_from_stock(STOCK_MAP(icon), GTK_ICON_SIZE_SMALL_TOOLBAR); \
@@ -162,6 +171,7 @@ typedef struct
 
 /* --------------------------- 3rd Level -------------------------------- */
 #define ENUM_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
+   g_object_set (icon, "visible", TRUE, NULL); \
    button = gtk_toolbar_append_item( GTK_TOOLBAR(bar), txt, \
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
@@ -169,6 +179,7 @@ typedef struct
                                      GUINT_TO_POINTER (data)); /* ptr to IDS_xxxx_Toolbar enumerator */
 
 #define GEDA_TOOLBAR_BUTTON(bar, icon, button, txt, tip, priv, func, data) \
+   g_object_set (icon, "visible", TRUE, NULL); \
    button = gtk_toolbar_append_item( GTK_TOOLBAR(bar), txt, \
                                      tip, priv, \
                                      GTK_WIDGET(icon), /* GtkWidget */ \
@@ -209,3 +220,4 @@ typedef struct
      g_free(str); \
    }
 #endif
+

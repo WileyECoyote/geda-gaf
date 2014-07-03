@@ -97,7 +97,7 @@ refdes=U?
 T 300 2650 5 10 0 0 0 0 1
 footprint=MSOP8
 T 300 2850 5 10 0 0 0 0 1
-description= 2.2  CMOS ± 5 V/5V, SPST Switch
+description= 2.2  CMOS +/- 5 V/5V, SPST Switch
 T 300 1450 9 10 1 0 0 0 1
 ADG602
 T 300 2050 5 10 0 0 0 0 1

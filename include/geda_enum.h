@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*!
@@ -30,23 +31,26 @@
 #define __GEDA_ENUMERATED__
 
 /*! \brief line end style for an open line of an object */
-typedef enum {END_NONE, END_SQUARE, END_ROUND, END_VOID} OBJECT_END;
+typedef enum {END_NONE, END_SQUARE, END_ROUND, END_VOID} LINE_END;
 
 /*! \brief line style of lines, rect, circles, arcs */
-typedef enum {TYPE_SOLID, TYPE_DOTTED, TYPE_DASHED, TYPE_CENTER, TYPE_PHANTOM, TYPE_ERASE} OBJECT_TYPE;
+typedef enum {TYPE_SOLID, TYPE_DOTTED, TYPE_DASHED, TYPE_CENTER, TYPE_PHANTOM, TYPE_ERASE} LINE_TYPE;
 
 /*! \brief fill style of objects like cirle, rect, path */
 typedef enum {FILLING_HOLLOW, FILLING_FILL, FILLING_MESH, FILLING_HATCH, FILLING_VOID} OBJECT_FILLING;
 
-/*! \brief pin type styles */
-typedef enum {PIN_TYPE_NET, PIN_TYPE_BUS, PIN_TYPE_BUMP, PIN_TYPE_BALL,
-              PIN_TYPE_WEDGE, PIN_TYPE_RIBBON, PIN_TYPE_VOID} PIN_TYPE;
-
 /*! \brief pin type attributes */
-typedef enum {PIN_ATTRIB_IN,  PIN_ATTRIB_OUT, PIN_ATTRIB_IO,  PIN_ATTRIB_OC,
-              PIN_ATTRIB_OE,  PIN_ATTRIB_PAS, PIN_ATTRIB_TP,  PIN_ATTRIB_TRI,
-              PIN_ATTRIB_CLK, PIN_ATTRIB_PWR, PIN_ATTRIB_VOID
-} PIN_ATTRIBUTE;
+typedef enum {PIN_NET_NODE, PIN_BUS_NODE} PIN_NODE;
+
+typedef enum {PIN_MECH_LEAD,  PIN_MECH_BODY, PIN_MECH_PAD, PIN_MECH_BUMP,
+              PIN_MECH_BALL,  PIN_MECH_WEDGE, PIN_MECH_RIBBON, PIN_MECH_VOID
+} PIN_MECH;
+
+/*! \brief pin electrical type attributes */
+typedef enum {PIN_ELECT_IN,  PIN_ELECT_OUT, PIN_ELECT_IO,
+              PIN_ELECT_OC,  PIN_ELECT_OE,  PIN_ELECT_PAS, PIN_ELECT_TP,
+              PIN_ELECT_TRI, PIN_ELECT_CLK, PIN_ELECT_PWR, PIN_ELECT_VOID
+} PIN_ELECT;
 
 typedef enum { png_image, tiff_image, bmp_image, ico_image, jpeg_image,
                eps_image, pdf_image, last_image
@@ -97,7 +101,7 @@ typedef enum
  * @GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH: Prefer height-for-width geometry management
  * @GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT: Prefer width-for-height geometry management
  * @GEDA_SIZE_REQUEST_CONSTANT_SIZE: Dont trade height-for-width or width-for-height
- * 
+ *
  * Specifies a preference for height-for-width or
  * width-for-height geometry management.
  */

@@ -251,34 +251,34 @@ T 14500 13400 9 10 1 0 0 0 1
 pulse-var
 T 16100 13400 9 10 1 0 0 0 1
 pushbutton
-C 25500 12400 1 0 0 spdt.sym
-C 12700 10800 1 0 0 spst.sym
-C 7900 10800 1 0 0 split-2.sym
-C 9500 10800 1 0 0 split-3.sym
+C 25500 12400 1 0 0 switch_spdt-1.sym
+C 12700 10800 1 0 0 switch_spst-1.sym
+C 7900  10800 1 0 0 split-2.sym
+C 9500  10800 1 0 0 split-3.sym
 C 11100 10800 1 0 0 split-4.sym
 C 15900 10800 1 0 0 square-up.sym
 C 17500 12400 1 0 0 sampler.sym
-C 19100 12400 1 0 0 sp3t.sym
-C 22300 12400 1 0 0 sp4t.sym
-C 24100 12400 1 0 0 sp4t-noblock.sym
-C 14500 11100 1 0 0 spst-noblock.sym
-C 27300 12500 1 0 0 spdt-noblock.sym
-C 20900 12500 1 0 0 sp3t-noblock.sym
+C 19100 12400 1 0 0 switch_sp3t-1.sym
+C 22300 12400 1 0 0 switch_sp4t-1.sym
+C 24100 12400 1 0 0 switch_sp4t-2.sym
+C 14500 11100 1 0 0 switch_spst-1.sym
+C 27300 12500 1 0 0 switch_spdt-2.sym
+C 20900 12500 1 0 0 switch_sp3t-2.sym
 C 17700 10700 1 0 0 switch-5port.sym
 T 17700 13400 9 10 1 0 0 0 1
 sampler
 T 19300 13400 9 10 1 0 0 0 1
-sp3t
+switch_sp3t-1
 T 20900 13400 9 10 1 0 0 0 1
-sp3t-noblock
+switch_sp3t-2
 T 24100 13400 9 10 1 0 0 0 1
-sp4t-noblock
+switch_sp4t-2
 T 22500 13400 9 10 1 0 0 0 1
-sp4t
+switch_sp4t-1
 T 25700 13400 9 10 1 0 0 0 1
-spdt
+switch_spdt-1
 T 27300 13400 9 10 1 0 0 0 1
-spdt-noblock
+switch_spdt-2
 T 8100 11800 9 10 1 0 0 0 1
 split-2
 T 9700 11800 9 10 1 0 0 0 1
@@ -288,7 +288,7 @@ split-4
 T 12900 11800 9 10 1 0 0 0 1
 spst
 T 14400 11800 9 10 1 0 0 0 1
-spst-noblock
+switch_spst-1
 T 16100 11800 9 10 1 0 0 0 1
 square-up
 T 17700 11800 9 10 1 0 0 0 1
@@ -302,7 +302,7 @@ transformer
 C 22300 10600 1 0 0 up-converter.sym
 T 22500 11800 9 10 1 0 0 0 1
 up-converter
-C 16100 12700 1 0 0 pushbutton.sym
+C 16100 12700 1 0 0 switch_pushbutton-no-1.sym
 T 26200 6600 9 10 1 0 0 0 1
 Roger Williams
 T 26200 6900 9 10 1 0 0 0 1

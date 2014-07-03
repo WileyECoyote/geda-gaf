@@ -26,4 +26,4 @@ numslots=0
 T 600 100 5 10 0 1 0 0 1
 refdes=none
 T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+footprint=none

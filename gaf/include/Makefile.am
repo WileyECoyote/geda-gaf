@@ -6,7 +6,7 @@ noinst_HEADERS = \
 		builtins.h \
 		gettext.h
 
-MOSTLYCLEANFILES     = *~ #*#
-CLEANFILES           = *~ #*#
-DISTCLEANFILES       = *~ #*#
-MAINTAINERCLEANFILES = *~ #*# Makefile.in
+MOSTLYCLEANFILES      = *~
+CLEANFILES             = *~
+DISTCLEANFILES        = *~
+MAINTAINERCLEANFILES = *~ Makefile.in

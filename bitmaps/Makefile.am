@@ -54,8 +54,10 @@ bitmapdata_DATA    = close_box.png                      \
 		     geda_switch_64x48_off.png          \
 		     geda_switch_64x48_on.png           \
                      geda-unlock.png                    \
+		     geda-unselect-all.png              \
                      geda-zoom-box.png                  \
-                     geda-zoom-pan.png
+                     geda-zoom-pan.png                  \
+		     geda-zoom-selection.png
 
 bitmapdata_16_DATA = geda_find_16x16.xpm	  	\
 		     geda_find_and_replace_16x16.xpm	\
@@ -370,7 +372,8 @@ bitmapdata_128_DATA = gaf_pdf_128x128.xpm               \
 		      geda_find_and_replace_128x128.xpm \
 		      geda_man_128x128.xpm              \
 		      geda_redcross_128x128.xpm         \
-		      geda_tools_128x128.xpm
+		      geda_tools_128x128.xpm            \
+		      geda_zoom_selection_128x128.png
 
 bitmapdata_256_DATA = ghost_invisible_256x256.xpm       \
                       geda_value_256x256.png

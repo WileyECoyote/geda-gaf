@@ -89,6 +89,10 @@ PRE,1,dot,B,1
 /****************************************************/
 #endif
 
+/* TODO: this program does not accept standard command line arguments such
+ *       --help
+ */
+
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 1998-2012 Ales Hvezda
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 
 #include <config.h>
@@ -50,17 +51,17 @@ create_pixmap (const char *filename)
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE ,
                                       GTK_ICON_SIZE_INVALID);
 
-  pathname = g_build_filename (s_path_sys_data (), "bitmap", filename, NULL);
+  pathname = g_build_filename (f_path_sys_data (), "bitmap", filename, NULL);
 
   if (!pathname)
     {
-      s_log_message("Could not find image at file: %s.\n", filename);
+      u_log_message("Could not find image at file: %s.\n", filename);
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
                                       GTK_ICON_SIZE_INVALID);
     }
 
   pixmap = gtk_image_new_from_file (pathname);
-  g_free (pathname);
+  GEDA_FREE (pathname);
   return pixmap;
 }
 
@@ -147,7 +148,7 @@ gattrib_marshal_VOID__POINTER_STRING (GClosure     *closure,
 
 enum {
   PROP_SETTINGS_NAME = 1,
-  PROP_GATTRIB_TOPLEVEL
+  PROP_GATTRIB_GedaToplevel
 };
 
 
@@ -179,11 +180,11 @@ static void save_geometry_to_file(gpointer user_data)
   g_assert( dialog_geometry != NULL );
 
   data = g_key_file_to_data(dialog_geometry, NULL, NULL);
-  file = g_build_filename(s_path_user_config (), DIALOG_GEOMETRY_STORE,
+  file = g_build_filename(f_path_user_config (), DIALOG_GEOMETRY_STORE,
         NULL);
   g_file_set_contents(file, data, -1, NULL);
-  g_free(data);
-  g_free(file);
+  GEDA_FREE(data);
+  GEDA_FREE(file);
 }
 
 
@@ -245,7 +246,7 @@ static void setup_keyfile ()
   if (dialog_geometry != NULL)
     return;
 
-  char *file = g_build_filename (s_path_user_config (),
+  char *file = g_build_filename (f_path_user_config (),
                                   DIALOG_GEOMETRY_STORE, NULL);
 
   dialog_geometry = g_key_file_new();
@@ -254,7 +255,7 @@ static void setup_keyfile ()
   geda_atexit(save_geometry_to_file, NULL);
 
   if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
-    g_mkdir (s_path_user_config (), S_IRWXU | S_IRWXG);
+    g_mkdir (f_path_user_config (), S_IRWXU | S_IRWXG);
 
     g_file_set_contents (file, "", -1, NULL);
   }
@@ -263,11 +264,11 @@ static void setup_keyfile ()
     /* error opening key file, create an empty one and try again */
     g_file_set_contents (file, "", -1, NULL);
     if ( !g_key_file_load_from_file (dialog_geometry, file, G_KEY_FILE_NONE, NULL)) {
-       g_free (file);
+       GEDA_FREE (file);
        return;
     }
   }
-  g_free (file);
+  GEDA_FREE (file);
 }
 
 
@@ -341,7 +342,7 @@ static void gattrib_dialog_finalize (GObject *object)
 {
   GattribDialog *dialog = GATTRIB_DIALOG (object);
 
-  g_free (dialog->settings_name);
+  GEDA_FREE (dialog->settings_name);
 
   G_OBJECT_CLASS (gattrib_dialog_parent_class)->finalize (object);
 }
@@ -365,11 +366,11 @@ static void gattrib_dialog_set_property (GObject *object, guint property_id, con
 
   switch(property_id) {
     case PROP_SETTINGS_NAME:
-      g_free (dialog->settings_name);
+      GEDA_FREE (dialog->settings_name);
       dialog->settings_name = g_strdup (g_value_get_string (value));
       break;
-    case PROP_GATTRIB_TOPLEVEL:
-      dialog->pr_current = (TOPLEVEL*)g_value_get_pointer (value);
+    case PROP_GATTRIB_GedaToplevel:
+      dialog->pr_current = (GedaToplevel*)g_value_get_pointer (value);
       break;
     default:
       G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -398,7 +399,7 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
       case PROP_SETTINGS_NAME:
         g_value_set_string (value, dialog->settings_name);
         break;
-      case PROP_GATTRIB_TOPLEVEL:
+      case PROP_GATTRIB_GedaToplevel:
         g_value_set_pointer (value, (gpointer)dialog->pr_current);
         break;
       default:
@@ -408,10 +409,10 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
 }
 
 
-/*! \brief GType class initialiser for GattribDialog
+/*! \brief Type class initialiser for GattribDialog
  *
  *  \par Function Description
- *  GType class initialiser for GattribDialog. We override our parent
+ *  Type class initialiser for GattribDialog. We override our parent
  *  virtual class methods as needed and register our GObject properties.
  *
  *  \param [in]  klass       The GattribDialogClass we are initialising
@@ -469,7 +470,7 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
                          NULL,
                          G_PARAM_CONSTRUCT_ONLY | G_PARAM_READWRITE));
   g_object_class_install_property (
-    gobject_class, PROP_GATTRIB_TOPLEVEL,
+    gobject_class, PROP_GATTRIB_GedaToplevel,
     g_param_spec_pointer ("gattrib-toplevel",
                           "",
                           "",
@@ -477,18 +478,18 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
 }
 
 
-/*! \brief Function to retrieve GattribDialog's GType identifier.
+/*! \brief Function to retrieve GattribDialog's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GattribDialog's GType identifier.
+ *  Function to retrieve GattribDialog's Type identifier.
  *  Upon first call, this registers the GattribDialog in the GType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the GType identifier associated with GattribDialog.
+ *  \return the Type identifier associated with GattribDialog.
  */
-GType gattrib_dialog_get_type ()
+unsigned int gattrib_dialog_get_type ()
 {
-  static GType gattrib_dialog_type = 0;
+  static unsigned int gattrib_dialog_type = 0;
 
   if (!gattrib_dialog_type) {
     static const GTypeInfo gattrib_dialog_info = {
@@ -603,7 +604,6 @@ static void gattrib_dialog_add_buttons_valist (GtkDialog     *dialog,
  *  \param [in]  parent             The GtkWindow which will parent this dialog
  *  \param [in]  flags              The GtkDialogFlags to use when setting up the dialog
  *  \param [in]  settings_name      The name gattrib should use to store this dialog's settings
- *  \param [in]  w_current          The GSCHEM_TOPLEVEL object this dialog is associated with
  *  \param [in]  first_button_text  The text string for the first button
  *  \param [in]  ...                A variable number of arguments with the remaining button strings
  *

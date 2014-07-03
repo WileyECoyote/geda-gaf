@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2012 Ales Hvezda
- * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2014 Ales Hvezda
+ * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,23 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
+#include <config.h>
 
 #include <stdio.h>
+#ifdef HAVE_STRING_H
+#include <string.h>
+#endif
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
 
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
+#include "../include/prototype.h"
 
 #define OPTIONS "hqveu"
 
@@ -31,14 +40,29 @@ extern char *optarg;
 extern int optind;
 #endif
 
+#ifdef HAVE_GETOPT_H
+#include <getopt.h>
+#endif
+
+#ifdef HAVE_GETOPT_LONG
+struct option long_options[] = 
+  {
+    {"embed",   0, 0, 'e'},
+    {"unembed", 0, 0, 'u'},
+    {"quiet",   0, 0, 'q'},
+    {"verbose", 0, 0, 'v'},
+    {"help",    0, 0, 'h'}
+  };
+#endif
+
 void usage(char *cmd)
 {
-    printf("Usage: %s [OPTIONS] filename1 ... filenameN\n", cmd);
-    printf("  -e  		Embed all components/pictures\n");
-    printf("  -u  		Unembed all components/pictures\n");
-    printf("  -q  		Quiet mode\n");
-    printf("  -v  		Verbose mode on\n");
-    printf("  -h  		This message\n");
+    printf("Usage: %s [OPTIONS] filename1 ... filenameN\n\n", cmd);
+    printf("  -e, --embed       Embed all components/pictures\n");
+    printf("  -u, --unembed     Unembed all components/pictures\n");
+    printf("  -q, --quiet       Quiet mode\n");
+    printf("  -v, --verbose     Verbose mode on\n");
+    printf("  -h, --help        This message\n");
     printf("\n");
     exit(0);
 }
@@ -47,8 +71,12 @@ int parse_commandline(int argc, char *argv[])
 {
     int ch;
 
+#ifdef HAVE_GETOPT_LONG
+    while ((ch = getopt_long (argc, argv, OPTIONS, long_options, NULL)) != -1) {
+#else
     while ((ch = getopt(argc, argv, OPTIONS)) != -1) {
-	switch (ch) {
+#endif
+        switch (ch) {
 
 	case 'v':
 	    verbose_mode = TRUE;

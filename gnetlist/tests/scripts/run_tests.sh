@@ -51,7 +51,7 @@ for Arg in $*; do
      answer=$(diff "$Arg" "$Arg.org")
      if [ ! -z $answer ] ; then
        echo "Failed piping mode, check $Arg and $Arg.org, suppose to be the exactly the same"
-       result++;
+       ((result++))
      else
        rm $Arg.new
        rm $Arg.org

@@ -28,7 +28,7 @@ libgtksheet_a_CFLAGS   = $(GLIB_CFLAGS) $(GTK_CFLAGS)
 
 EXTRA_LIBRARIES = libgtksheet.a
 
-MOSTLYCLEANFILES = *.log *.ps core FILE *~ #*#
-CLEANFILES = *.a *.log *.ps core FILE *~ #*#
-DISTCLEANFILES = *.log core FILE *~ #*#
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in #*#
+MOSTLYCLEANFILES     = *.log *.ps core FILE *~
+CLEANFILES           = *.a *.log *.ps core FILE *~
+DISTCLEANFILES       = *.log core FILE *~
+MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in

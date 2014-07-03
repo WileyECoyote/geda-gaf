@@ -1,9 +1,9 @@
-# geda-std-checks.m4              -*-Autoconf-*-
-# serial 1.0
+# geda-std-checks.m4                                  -*-Autoconf-*-
+# serial 1.1
 
 dnl gEDA Prebuild checks for Library Headers and Functions
 dnl
-dnl Copyright (C) 2013  Wiley Edward Hill <wileyhill@gmail.com>
+dnl Copyright (C) 2013-2014  Wiley Edward Hill <wileyhill@gmail.com>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
 dnl ####################################################################
 #   ***  Checks for typedefs, structures, and compiler characteristics ***
@@ -41,8 +41,7 @@ m4_define([AX_GEDA_TYPES],
   AC_TYPE_UINT32_T
 
   AC_TYPE_SIZE_T
-  AC_TYPE_SSIZE_T
-
+  AC_TYPE_SSIZE_T     dnl scheme_object.c
   AC_TYPE_MODE_T      dnl Used in gschem/src/o_misc.c
 
   AC_CHECK_TYPES([ptrdiff_t])
@@ -69,6 +68,7 @@ m4_define([AX_GEDA_MATH],
   AC_CHECK_FUNCS([rint])               dnl used by gschem & libgedacairo
   AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
   AC_CHECK_FUNCS([floor])              dnl used by pango
+  AC_CHECK_FUNCS([sqrt])
 
   []dnl
 ])dnl AX_GEDA_MATH
@@ -83,14 +83,10 @@ m4_define([AX_GEDA_MEMORY],
 
   AC_CHECK_HEADERS([malloc.h])
 
-#  AC_FUNC_ALLOCA
-#  AC_FUNC_MALLOC
-#  AC_FUNC_REALLOC
-
   AC_CHECK_FUNCS([alloc])
   AC_CHECK_FUNCS([malloc])
   AC_CHECK_FUNCS([realloc])
-
+  AC_CHECK_FUNCS([memmove])
   AC_FUNC_MMAP
 
   []dnl
@@ -111,6 +107,14 @@ m4_define([AX_GEDA_FSC],
 
   AC_CHECK_FUNCS([mkdir])
 
+  AC_FUNC_CHOWN                         # used to manipulate ownership in f_basic.c
+
+  AC_CHECK_FUNCS([getlogin])            # used in f_print.c
+
+  AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK # used by f_basic.c
+
+  AC_CHECK_FUNCS([realpath])            # used by geda_config.c (and libtool)
+
   []dnl
 ])dnl AX_GEDA_FSC
 
@@ -126,6 +130,9 @@ m4_define([AX_GEDA_STR_FUNCS],
   AC_CHECK_HEADERS([string.h strings.h])
 
   AC_FUNC_STRTOD
+
+  AC_CHECK_FUNCS([strerror strstr])
+
   AC_CHECK_FUNCS([strrchr strndup])
 
   []dnl
@@ -146,6 +153,9 @@ m4_define([AX_GEDA_MISC],
   dnl without a locale.h?  We do need to include locale.h on some systems
   dnl to be able to build gschem/src/gschem.c
   AC_CHECK_HEADERS([locale.h])
+
+  dnl Used in gschem/x/x_misc.c
+  AC_HEADER_SYS_WAIT
 
   dnl Used by utils/src/gmk_sym.c & libgeda/src/o_basic.c
   AC_CHECK_HEADERS([sys/time.h])
@@ -173,6 +183,6 @@ AC_DEFUN([AX_GEDA_STD_CHECKS],
   AX_GEDA_FSC
   AX_GEDA_STR_FUNCS
   AX_GEDA_MISC
-
+  []dnl
 ])dnl AX_GEDA_STD_CHECKS
 

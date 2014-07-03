@@ -30,7 +30,7 @@ void g_register_funcs(void)
 
   /* gsymcheckrc functions */
   scm_c_define_gsubr ("gschlas-version", 1, 0, 0, g_rc_gschlas_version);
-  scm_c_define_gsubr ("force-boundingbox", 1, 0, 0, g_rc_force_boundingbox);
+  //scm_c_define_gsubr ("force-boundingbox", 1, 0, 0, g_rc_force_boundingbox);
 }
 
 SCM g_quit(void)

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  *
- * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 #include "config.h"
 
@@ -45,7 +46,7 @@ static void toolbar_display_both( void );
  */
 void x_menu_file_save()
 {
-  s_toplevel_gtksheet_to_toplevel(pr_current);   /* Dumps sheet data into TOPLEVEL */
+  s_toplevel_gtksheet_to_toplevel(pr_current);   /* Dumps sheet data into GedaToplevel */
   s_page_save_all(pr_current);                   /* saves all pages in design */
   sheet_head->CHANGED = FALSE;                   /* reset the status flag */
   x_window_update_title(pr_current, sheet_head); /* remove the asterisk from title */
@@ -63,11 +64,11 @@ void x_menu_file_save_as()
 
   if (filename) {
     if (x_fileselect(filename)) {
-      /* Dumps sheet data into TOPLEVEL */
+      /* Dumps sheet data into GedaToplevel */
       s_toplevel_gtksheet_to_toplevel(pr_current);
       /* replace page filename with new one, do not free filename */
-      g_free (pr_current->page_current->page_filename);
-      pr_current->page_current->page_filename = filename;
+      GEDA_FREE (pr_current->page_current->filename);
+      pr_current->page_current->filename = filename;
       s_page_save_all(pr_current);
       /* reset the changed flag of current page*/
       pr_current->page_current->CHANGED = FALSE;
@@ -77,7 +78,7 @@ void x_menu_file_save_as()
   }
   else
     fprintf(stderr, "gattrib file_save_as: Memory allocation error\n");
-     //s_log_message("gattrib file_save_as: Memory allocation error\n");
+     //u_log_message("gattrib file_save_as: Memory allocation error\n");
 }
 /*!
  * \brief File Open menu
@@ -118,7 +119,7 @@ void x_menu_file_open()
     x_window_update_title(pr_current, sheet_head);
   }
 #ifdef DEBUG
-    fprintf(stderr, "open file canceled:%s\n", (gchar*) g_slist_nth_data(file_list,0));
+    fprintf(stderr, "open file canceled:%s\n", (char*) g_slist_nth_data(file_list,0));
 #endif
   if (file_list != NULL ){
     g_slist_foreach(file_list, (GFunc)g_free, NULL);
@@ -263,8 +264,8 @@ static void on_recent_selection (GtkRecentChooser *chooser)
 
   menu_open_recent(filename);
 
-  g_free(uri);
-  g_free(filename);
+  GEDA_FREE(uri);
+  GEDA_FREE(filename);
 }
 /*! \brief Set Senitivity of Menu Items.
  *  \par Function Description
@@ -501,8 +502,10 @@ static void x_menu_get_collections (GtkUIManager *ui_man) {
  *  description. Finally, the GtkAccelGroup is added to the
  *  main window to enable keyboard accelerators and a pointer
  *  to the menu bar is retrieved from the GtkUIManager object.
- * \param window Window to add the menubar to
- * \param [out] menubar Created menubar
+ *
+ * \param main_window Window to add the menubar to
+ *
+ * \return menubar The Created menubar
  */
 /*
  * 11/05/12 WEH Revised to include toggle_actions group
@@ -529,7 +532,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
   gtk_ui_manager_insert_action_group(menu_manager, action_group, 0);
   gtk_ui_manager_insert_action_group(menu_manager, recent_group, 0);
 
-  menu_file = g_build_filename(s_path_sys_data (), "gattrib-menus.xml", NULL);
+  menu_file = g_build_filename(f_path_sys_data (), "gattrib-menus.xml", NULL);
 
   gtk_ui_manager_add_ui_from_file(menu_manager, menu_file, &error);
   if(error != NULL) {
@@ -538,7 +541,7 @@ GtkWidget* x_menu_create_menu(GtkWindow *main_window)
     exit(1);
   }
 
-  g_free(menu_file);
+  GEDA_FREE(menu_file);
 
   gtk_window_add_accel_group (main_window, gtk_ui_manager_get_accel_group(menu_manager));
 

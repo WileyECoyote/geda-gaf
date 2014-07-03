@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,14 +44,10 @@
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
 #include "../include/i_vars.h"     /* This holds all the guile variable defs */
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 /*------------------------------------------------------------------*/
 /*! \brief Test the version of gattrib and gEDA/gaf
  * 
- * \param version Version being tested
+ * \param scm_version Version being tested
  * \returns false if incorrect version, true if OK
  */
 SCM g_rc_gattrib_version(SCM scm_version)

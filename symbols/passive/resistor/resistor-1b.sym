@@ -41,6 +41,6 @@ numslots=0
 T 600 200 9 10 0 0 0 0 1
 device=none
 T 600 200 9 10 0 0 0 0 1
-footprint=unknown
+footprint=0603
 L 150 100 100 100 3 0 0 0 -1 -1
 L 800 100 750 100 3 0 0 0 -1 -1

@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2013 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -71,7 +71,7 @@ void s_string_list_free(STRING_LIST *strlist) {
     while (strlist != NULL) {
       data = strlist->data;
       if (data != NULL) {
-        g_free(data);
+        GEDA_FREE(data);
       }
       strlist = strlist->next;
     }
@@ -103,7 +103,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
   while (local_string_list != NULL) {
     data = g_strdup(local_string_list->data);
     s_string_list_add_item(new_string_list, &count, data);
-    g_free(data);
+    GEDA_FREE(data);
     local_string_list = local_string_list->next;
   }
 
@@ -149,10 +149,10 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
     trial_item = (char *) g_strdup(list->data);
     if (strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
-      g_free(trial_item);
+      GEDA_FREE(trial_item);
       return;
     }
-    g_free(trial_item);
+    GEDA_FREE(trial_item);
     prev = list;
     list = list->next;
   }
@@ -223,7 +223,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
 	/* at list's beginning */
 	next_item->prev = NULL;
 	(*list) = next_item;         /* also need to fix pointer to list head */
-	/*  g_free(list);  */
+	/*  GEDA_FREE(list);  */
       } else {
 	/* normal case of element in middle of list */
 	prev_item->next = next_item;
@@ -233,20 +233,20 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
 #ifdef DEBUG
     printf("In s_string_list_delete_item, now free list_item\n");
 #endif
-      g_free(list_item);  /* free current list item */
+      GEDA_FREE(list_item);  /* free current list item */
       (*count)--;       /* decrement count */
       /* Do we need to re-number the list? */
 
 #ifdef DEBUG
     printf("In s_string_list_delete_item, now free trial_item\n");
 #endif
-      g_free(trial_item); /* free trial item before returning */
+      GEDA_FREE(trial_item); /* free trial item before returning */
 #ifdef DEBUG
     printf("In s_string_list_delete_item, returning . . . .\n");
 #endif
       return;
     }
-    g_free(trial_item);
+    GEDA_FREE(trial_item);
     list_item = list_item->next;
   }
 
@@ -362,16 +362,19 @@ char *s_string_list_get_data_at_index(STRING_LIST *list, int index)
   return local_item->data;
 }
 
-
 /*------------------------------------------------------------------*/
+
 /*! \brief Sort the master component list
  *
- * Takes the master comp list
- * sheet_head->master_comp_list_head
+ *  \par Function Description
+ * Takes the master comp list sheet_head->master_comp_list_head
  * and sorts it in this order:
- * <all refdeses in alphabetical order>
+ *
+ * all refdeses in alphabetical order
+ *
  * Right now it does nothing other than fill in the "position"
  * and "length" variables.
+ *
  */
 void s_string_list_sort_master_comp_list() {
   int i = 0;
@@ -427,7 +430,9 @@ static struct {
  * Take the master comp attrib list
  * sheet_head->master_comp_attrib_list_head
  * and sort it in this order:
- * <all refdeses in alphabetical order>
+ *
+ * all refdeses in alphabetical order
+ *
  * Right now it does nothing other than fill in the "position"
  * and "length" variables.
  */
@@ -476,7 +481,9 @@ void s_string_list_sort_master_comp_attrib_list() {
  * This fcn takes the master net list
  * sheet_head->master_net_list_head
  * and sorts it in this order:
- * <all nets in alphabetical order>
+ *
+ * all nets in alphabetical order
+ *
  */
 void s_string_list_sort_master_net_list() {
   int i = 0;
@@ -501,7 +508,7 @@ void s_string_list_sort_master_net_list() {
  * sheet_head->master_net_attrib_list_head
  * and sort it in this order:
  * value, footprint, model-name, file,
- * <all other attributes in alphabetical order>
+ * all other attributes in alphabetical order
  */
 /*------------------------------------------------------------------*/
 void s_string_list_sort_master_net_attrib_list() {
@@ -526,7 +533,9 @@ void s_string_list_sort_master_net_attrib_list() {
  * Take the master pin list
  * sheet_head->master_pin_list_head
  * and sorts it in this order:
- * <all refdeses in alphabetical order>
+ *
+ * all refdeses in alphabetical order
+ *
  * Right now it does nothing other than fill in the "position"
  * and "length" variables.
  */
@@ -569,7 +578,9 @@ void s_string_list_sort_master_pin_list() {
  * Takes the master pin attrib list
  * sheet_head->master_pin_attrib_list_head
  * and sorts it in this order:
- * <all pin attribs in alphabetical order>
+ *
+ * all pin attribs in alphabetical order
+ *
  * Right now it does nothing other than fill in the "position"
  * and "length" variables.
  */

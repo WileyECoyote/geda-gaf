@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -40,10 +40,6 @@
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 void gnetlist_quit(void)
 {
     s_clib_free();
@@ -65,10 +61,10 @@ void gnetlist_quit(void)
  * is considered to be a gnetlist backend if its basename begins with
  * "gnet-" and ends with ".scm".
  *
- * \param pr_current  Current #TOPLEVEL structure.
+ * \param pr_current  Current #GedaToplevel structure.
  */
 void
-gnetlist_backends (TOPLEVEL *pr_current)
+gnetlist_backends (GedaToplevel *pr_current)
 {
   SCM s_load_path;
   GList *backend_names = NULL, *iter = NULL;
@@ -86,6 +82,7 @@ gnetlist_backends (TOPLEVEL *pr_current)
     /* Get directory name from Scheme */
     g_assert (scm_is_true (scm_list_p (s_load_path))); /* Sanity check */
     g_assert (scm_is_string (scm_car (s_load_path))); /* Sanity check */
+
     dir_name = scm_to_utf8_string (s_dir_name);
 
     /* Open directory */
@@ -142,12 +139,15 @@ void main_prog(void *closure, int argc, char *argv[])
   char *str;
   char *filename;
 
-  TOPLEVEL *pr_current;
+  GedaToplevel *pr_current;
 
 #if ENABLE_NLS
 
-  /* This must be the same for all locales */
-  setlocale(LC_NUMERIC, "C");
+  setlocale (LC_ALL, "");
+  setlocale (LC_NUMERIC, "C"); /* This must be the same for all locales */
+  bindtextdomain ("geda-gnetlist", LOCALEDIR);
+  textdomain ("geda-gnetlist");
+  bind_textdomain_codeset("geda-gnetlist", "UTF-8");
 
 #endif
 
@@ -174,15 +174,15 @@ void main_prog(void *closure, int argc, char *argv[])
 
   /* create log file right away */
   /* even if logging is enabled */
-  s_log_init ("gnetlist");
+  u_log_init ("gnetlist");
 
-  s_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
+  u_log_message("gEDA/gnetlist version %s%s.%s\n", PREPEND_VERSION_STRING,
                 PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
-  s_log_message
+  u_log_message
   (_("gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more details.\n"));
-  s_log_message
+  u_log_message
   (_("This is free software, and you are welcome to redistribute it under certain\n"));
-  s_log_message
+  u_log_message
   (_("conditions; please see the COPYING file for more details.\n\n"));
 
   #if defined(__MINGW32__) && defined(DEBUG)
@@ -193,15 +193,16 @@ void main_prog(void *closure, int argc, char *argv[])
   g_register_funcs();
 
   scm_dynwind_begin (0);
-  pr_current = s_toplevel_new ();
+  pr_current = geda_toplevel_new ();
   edascm_dynwind_toplevel (pr_current);
 
   /* Evaluate Scheme expressions that need to be run before rc files
    * are loaded. */
   scm_eval (pre_rc_list, scm_current_module ());
 
-  g_rc_parse (pr_current, argv[0], "gnetlistrc", rc_filename);
-  /* immediately setup user params */
+  g_rc_parse (argv[0], "gnetlistrc", rc_filename);
+  /* immediately setup configuration and user params */
+  i_vars_init_gnetlist_defaults ();
   i_vars_set (pr_current);
 
   s_rename_init();
@@ -227,7 +228,8 @@ void main_prog(void *closure, int argc, char *argv[])
     }
 
     if (!quiet_mode) {
-      s_log_message (_("Loading schematic <%s>\n"), filename);
+      u_log_message (_("Loading schematic <%s>\n"), filename);
+      fprintf (stderr, _("Loading schematic [%s]\n"), filename);
     }
 
     s_page_goto (pr_current, s_page_new (pr_current, filename));
@@ -237,6 +239,7 @@ void main_prog(void *closure, int argc, char *argv[])
       fprintf (stderr, _("ERROR: Failed to load [%s]: %s\n"), filename,
                err->message);
       g_error_free (err);
+      GEDA_FREE (filename);
       exit(2);
     }
 
@@ -244,7 +247,7 @@ void main_prog(void *closure, int argc, char *argv[])
     input_files = g_slist_append(input_files, argv[i]);
 
     i++;
-    g_free (filename);
+    GEDA_FREE (filename);
   }
 
   /* Change back to the directory where we started.  This is done */
@@ -277,7 +280,7 @@ void main_prog(void *closure, int argc, char *argv[])
     /* Search for backend scm file in load path */
     str = g_strdup_printf("gnet-%s.scm", guile_proc);
     s_backend_path = scm_sys_search_load_path (scm_from_locale_string (str));
-    g_free (str);
+    GEDA_FREE (str);
 
     /* If it couldn't be found, fail. */
     if (scm_is_false (s_backend_path)) {
@@ -297,6 +300,7 @@ void main_prog(void *closure, int argc, char *argv[])
   }
 
   s_traverse_init();
+
   s_traverse_start(pr_current);
 
   /* Change back to the directory where we started AGAIN.  This is done */
@@ -307,7 +311,7 @@ void main_prog(void *closure, int argc, char *argv[])
              cwd, strerror (errno));
     exit(1);
   }
-  g_free(cwd);
+  GEDA_FREE(cwd);
 
   /* Run post-traverse code. */
   scm_primitive_load_path (scm_from_utf8_string ("gnetlist-post.scm"));
@@ -316,7 +320,7 @@ void main_prog(void *closure, int argc, char *argv[])
     /* check size here hack */
     str = g_strdup_printf ("(%s \"%s\")", guile_proc, output_filename);
     scm_c_eval_string (str);
-    g_free (str);
+    GEDA_FREE (str);
     /* gh_eval_str_with_stack_saving_handler (input_str); */
   } else if (interactive_mode) {
     scm_c_eval_string ("(set-repl-prompt! \"gnetlist> \")");

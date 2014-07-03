@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
  *
  * This file holds functions involved in manipulating an entire
  * SHEET_DATA structure.  The SHEET_DATA structure is the intermediate
- * structure between TOPLEVEL (gEDA's native format) and the graphical
+ * structure between GedaToplevel (gEDA's native format) and the graphical
  * gtksheet widget (from gtkextra), which is the spreadsheet widget
  * displaying the attribs.
  */
@@ -71,11 +71,11 @@ SHEET_DATA *s_sheet_data_new()
   new_data_set->master_comp_list_head = (STRING_LIST *) s_string_list_new();
   new_data_set->master_comp_attrib_list_head = (STRING_LIST *) s_string_list_new();
   new_data_set->attached_attrib = (STRING_LIST *) s_string_list_new();
-    
+
   new_data_set->comp_count = 0;
   new_data_set->comp_attrib_count = 0;
   new_data_set->attached_attrib_count = 0;
-    
+
   new_data_set->master_net_list_head = (STRING_LIST *) s_string_list_new();
   new_data_set->master_net_attrib_list_head = (STRING_LIST *) s_string_list_new();
   new_data_set->net_count = 0;
@@ -128,10 +128,10 @@ bool s_sheet_data_reset(PageDataSet *PageData)
  * names and simplified parameters to improve readability of those functions.
  * These functions are also used by the s_sheet_data_load_blank function
  * below.
- * 
- * \param [IN] PageData pointer to sheet_head structure.
- * \param [IN] xxx_str_name pointer to string to be added to the associated
- *                          string list
+ *
+ * \param PageData           pointer to sheet_head structure.
+ * \param component_str_name pointer to string to be added to the associated
+ *                           string list
  * 
  */
 static void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name) {
@@ -150,11 +150,11 @@ static void s_sheet_data_attached_attrib(PageDataSet *PageData, char *comp_attri
                          comp_attrib_str_name);
 }
 static void s_sheet_data_add_net(PageDataSet *PageData, char *net_str_name) {
-  s_string_list_add_item(PageData->master_net_list_head, 
+  s_string_list_add_item(PageData->master_net_list_head,
                        &(PageData->net_count), net_str_name);
 }
 static void s_sheet_data_add_net_attrib(PageDataSet *PageData, char *net_attrib_str_name) {
-  s_string_list_add_item(PageData->master_net_attrib_list_head, 
+  s_string_list_add_item(PageData->master_net_attrib_list_head,
                        &(PageData->net_attrib_count),net_attrib_str_name);
 }
 
@@ -162,7 +162,7 @@ static void s_sheet_data_add_pin(PageDataSet *PageData, char *pin_str_name) {
   s_string_list_add_item (PageData->master_pin_list_head, &(PageData->pin_count), pin_str_name);
 }
 static void s_sheet_data_add_pin_attrib(PageDataSet *PageData, char *pin_attrib_str_name) {
-  s_string_list_add_item(PageData->master_pin_attrib_list_head, 
+  s_string_list_add_item(PageData->master_pin_attrib_list_head,
                        &(PageData->pin_attrib_count), pin_attrib_str_name);
 }
 /*------------------------------------------------------------------*/
@@ -215,7 +215,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
  * Add to the master list of components refdeses by iterating through
  * the components and selectively recording discovered comp refdeses.
  * This list is used for the column label on the component sheet. The
- * Data struct being searched  is: OBJECT->attribs(->next. . .)
+ * Data struct being searched  is: Object->attribs(->next. . .)
  * ->object->text->string
  * 
  * \param obj_list pointer to the component list to be added.
@@ -236,7 +236,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
   for (iter = obj_list;
        iter != NULL;
        iter = g_list_next (iter)) {
-    OBJECT *o_current = iter->data;
+    Object *o_current = iter->data;
 
 #ifdef DEBUG
       printf("In s_sheet_data_add_master_comp_list_items, examining o_current->name = %s\n", o_current->name);
@@ -247,7 +247,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 
 #if DEBUG
 	printf("In s_sheet_data_add_master_comp_list_items; found component on page\n");
-	printf(". . . . complex_basename = %s.\n", o_current->complex_basename);
+	printf(". . . . filename = %s.\n", o_current->filename);
 #endif
 	temp_uref = s_attrib_get_refdes(o_current);
 #if DEBUG
@@ -263,7 +263,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 #endif
           s_sheet_data_add_comp(sheet_head, temp_uref);
 
-	  g_free(temp_uref);
+	  GEDA_FREE(temp_uref);
 	}
       } /*  if (o_current->type == OBJ_COMPLEX . . . . .) */
   }
@@ -286,7 +286,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
   char *attrib_name;
   const GList *o_iter;
   GList *a_iter;
-  OBJECT *a_current;
+  Object *a_current;
   GList *object_attribs;
   
   bool is_attached;
@@ -297,7 +297,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components (OBJ_COMPLEX) ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
 #ifdef DEBUG
     printf("In s_sheet_data_add_master_comp_attrib_list_items, examining o_current->name = %s\n", o_current->name);
@@ -337,8 +337,8 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 #endif
              s_sheet_data_add_comp_attrib(sheet_head, attrib_name);
 	  }
-	  g_free(attrib_name);
-	  g_free(attrib_text);
+	  GEDA_FREE(attrib_name);
+	  GEDA_FREE(attrib_text);
 	}
       } /* Next attribute_iter*/
       
@@ -412,7 +412,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components  ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
 #ifdef DEBUG
     printf ("In s_sheet_data_add_master_pin_list_items, examining o_current->name = %s\n", o_current->name);
@@ -428,7 +428,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
         for (o_lower_iter = o_current->complex->prim_objs;
              o_lower_iter != NULL;
              o_lower_iter = g_list_next (o_lower_iter)) {
-          OBJECT *o_lower_current = o_lower_iter->data;
+          Object *o_lower_current = o_lower_iter->data;
 #if DEBUG
           printf ("In s_sheet_data_add_master_pin_list_items, examining object name %s\n", o_lower_current->name);
 #endif
@@ -447,17 +447,17 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
               fprintf (stderr, ". . . . refdes = %s.\n", temp_uref);
 #endif
             }
-            g_free (temp_pinnumber);
+            GEDA_FREE (temp_pinnumber);
           }
         }
 
       } else {          /* didn't find refdes.  Report error to log. */
 #ifdef DEBUG
         fprintf (stderr, "In s_sheet_data_add_master_pin_list_items, found component with no refdes.\n");
-        fprintf (stderr, ". . . . complex_basename = %s.\n", o_current->complex_basename);
+        fprintf (stderr, ". . . . filename = %s.\n", o_current->filename);
 #endif
       }
-      g_free (temp_uref);
+      GEDA_FREE (temp_uref);
 
     }  /*  if (o_current->type == OBJ_COMPLEX)  */
   }
@@ -489,7 +489,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
   char *attrib_value;
   const GList *o_iter;
   GList *o_lower_iter, *a_iter;
-  OBJECT *pin_attrib;
+  Object *pin_attrib;
   
 #ifdef DEBUG
   fflush(stderr);
@@ -503,7 +503,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 
   /* -----  Iterate through all objects found on page looking for components  ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
 #ifdef DEBUG
       printf("In s_sheet_data_add_master_pin_attrib_list_items, examining o_current->name = %s\n", o_current->name);
@@ -517,7 +517,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
           for (o_lower_iter = o_current->complex->prim_objs;
                o_lower_iter != NULL;
                o_lower_iter = g_list_next (o_lower_iter)) {
-            OBJECT *o_lower_current = o_lower_iter->data;
+            Object *o_lower_current = o_lower_iter->data;
 #if DEBUG
 	    printf("In s_sheet_data_add_master_pin_attrib_list_items, examining component refdes =  %s\n", temp_uref);
 #endif
@@ -544,16 +544,16 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
                     s_sheet_data_add_pin_attrib(sheet_head, attrib_name);
 
 		  }   /* if (strcmp(attrib_name, "pinnumber") != 0) */ 
-		  g_free(attrib_value);
-		  g_free(attrib_name);
-		  g_free(attrib_text);
+		  GEDA_FREE(attrib_value);
+		  GEDA_FREE(attrib_name);
+		  GEDA_FREE(attrib_text);
 		}
 		a_iter = g_list_next (a_iter);
 	      }   /*   while (pin_attrib != NULL)  */
 	    }
 	  }
 
-	  g_free(temp_uref);
+	  GEDA_FREE(temp_uref);
 	}  /*  if (temp_uref != NULL )  */
 	
       }  /* if (o_current->type == OBJ_COMPLEX)  */

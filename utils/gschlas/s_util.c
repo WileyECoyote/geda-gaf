@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2012 Ales Hvezda
- * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2013 Ales Hvezda
+ * Copyright (C) 2002-2013 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@
  * 
  *  You should have received a copy of the GNU General Public License
  *  along with this program; if  not, write to the Free Software
- *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ *  02110-1301 USA
  */
 
 #include <libgeda/libgeda.h>
@@ -23,22 +24,22 @@
 /* If embed_mode is true, then embed all components in all pages, */
 /* otherwise unembed all components in all pages */
 void
-s_util_embed(TOPLEVEL *pr_current, int embed_mode)
+s_util_embed(GedaToplevel *pr_current, int embed_mode)
 {
   GList *p_iter, *o_iter;
 
   for (p_iter = geda_list_get_glist (pr_current->pages);
        p_iter != NULL;
        p_iter = g_list_next (p_iter)) {
-    PAGE *p_current = p_iter->data;
+    Page *p_current = p_iter->data;
 
     /* Cast removes const qualifier from return value of
-     * s_page_objects() */
-    for (o_iter = (GList *) s_page_objects (p_current);
+     * s_page_get_objects() */
+    for (o_iter = (GList *) s_page_get_objects (p_current);
          o_iter != NULL;
          o_iter = g_list_next (o_iter)) {
 
-      OBJECT *o_current = o_iter->data;
+      Object *o_current = o_iter->data;
 
       if (o_current->type == OBJ_COMPLEX ||
                 o_current->type == OBJ_PICTURE) {

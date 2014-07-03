@@ -16,7 +16,7 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
 # Check if gattrib should be disabled
 
@@ -37,5 +37,5 @@ AC_DEFUN([AX_OPTION_GATTRIB],
   fi
 
   AM_CONDITIONAL([ENABLE_GATTRIB], test "X$enable_gattrib" = "Xyes")
-
+  []dnl
 ])dnl AX_OPTION_GATTRIB

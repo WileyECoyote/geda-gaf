@@ -1,6 +1,7 @@
 # geda-pango.m4                                           -*-Autoconf-*-
 # serial 1
-dnl Check for PANGO
+
+dnl Prebuild Check for PANGO
 dnl
 dnl gEDA - GPL Electronic Design Automation
 dnl

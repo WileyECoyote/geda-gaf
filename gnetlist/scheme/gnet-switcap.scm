@@ -36,12 +36,12 @@
 (define switcap:map-net-names
   (lambda (net-name)
     (let ((rx (make-regexp "^unnamed_net"))
-	  (net-alias net-name)
+          (net-alias net-name)
           )
       ;; XXX we should use a dynamic regexp based on the current value
       ;; for the unnamed net base string.
 
-      (cond 
+      (cond
        ;; Change "GND" to "0"
        ((string=? net-name "GND") (set! net-alias "0"))
        ;; remove the 'unnamed_net' part
@@ -51,8 +51,8 @@
 
       ;; Truncate to 7 characters
       (if (> (string-length net-alias) 7)
-	  (set! net-alias (substring net-alias 0 7))
-	  )
+          (set! net-alias (substring net-alias 0 7))
+          )
       ;; Convert to all upper case
       (string-upcase net-alias)
 
@@ -82,77 +82,77 @@
 
       ;; Make sure the first character is correct for
       ;; this component type
-      (cond   
+      (cond
        ( (string=? (get-device refdes) "SWITCAP-switch")
-	 (if (not (string=? (substring refdes-alias 0 1) "S"))
-	     (set! refdes-alias (string-append "S" refdes-alias))))
+         (if (not (string=? (substring refdes-alias 0 1) "S"))
+             (set! refdes-alias (string-append "S" refdes-alias))))
 
-       ( (string=? (get-device refdes) "SWITCAP-capacitor") 
-	 (if (not (string=? (substring refdes-alias 0 1) "C"))
-	     (set! refdes-alias (string-append "C" refdes-alias))))
+       ( (string=? (get-device refdes) "SWITCAP-capacitor")
+         (if (not (string=? (substring refdes-alias 0 1) "C"))
+             (set! refdes-alias (string-append "C" refdes-alias))))
 
-       ( (string=? (get-device refdes) "SWITCAP-vcvs") 
-	 (if (not (string=? (substring refdes-alias 0 1) "E"))
-	     (set! refdes-alias (string-append "E" refdes-alias))))
+       ( (string=? (get-device refdes) "SWITCAP-vcvs")
+         (if (not (string=? (substring refdes-alias 0 1) "E"))
+             (set! refdes-alias (string-append "E" refdes-alias))))
 
-       ( (string=? (get-device refdes) "SWITCAP-vsrc") 
-	 (if (not (string=? (substring refdes-alias 0 1) "V"))
-	     (set! refdes-alias (string-append "V" refdes-alias))))
+       ( (string=? (get-device refdes) "SWITCAP-vsrc")
+         (if (not (string=? (substring refdes-alias 0 1) "V"))
+             (set! refdes-alias (string-append "V" refdes-alias))))
 
        )
-      
-      ;; Truncate to 8 characters (1 for the first character and 
+
+      ;; Truncate to 8 characters (1 for the first character and
       ;; 7 for the identifier)
       (if (> (string-length refdes-alias) 8)
-	  (set! refdes-alias (substring refdes-alias 0 8))
-	  )
+          (set! refdes-alias (substring refdes-alias 0 8))
+          )
 
       ;; set to #t for debugging
       (if #f
-	  (let ()
-	    (display "(switcap:map-refdes ")
-	    (display refdes)
-	    (display ") ===> " )
-	    (display refdes-alias )
-	    (display "\n")
-	    )
-	  )
+          (let ()
+            (display "(switcap:map-refdes ")
+            (display refdes)
+            (display ") ===> " )
+            (display refdes-alias )
+            (display "\n")
+            )
+          )
 
       refdes-alias
       )
     )
   )
 
-;; 
-;; Given a reference designator, pin number, and output port
+;;
+;; Given a reference designator and pin number
 ;; write out the net name
 ;;
 (define switcap:write-pin-net
-  (lambda (package pin port)
-    (display (gnetlist:alias-net (car (gnetlist:get-nets package pin))) port)
+  (lambda (package pin)
+    (display (gnetlist:alias-net (car (gnetlist:get-nets package pin))))
     )
   )
 
-;; 
-;; Given a reference designator, attribute name, and output port
+;;
+;; Given a reference designator and attribute name
 ;; write out the attribute with warnings if the attribute has
 ;; not been set
 ;;
 (define switcap:write-attrib
-  (lambda (package attrib port)
+  (lambda (package attrib)
       (let ((val (gnetlist:get-package-attribute package attrib)))
-        (if (string=? val "unknown") 
-	    (begin
-	      (display "*** WARNING ***\n")
-	      (display "Required attribute \"")
-	      (display attrib)
-	      (display "\" is not set on component \"")
-	      (display package)
-	      (display "\".  Please correct this.\n\n")
-	      ))
-	(display val port)
-	val
-	)))
+        (if (string=? val "unknown")
+            (begin
+              (display "*** WARNING ***\n")
+              (display "Required attribute \"")
+              (display attrib)
+              (display "\" is not set on component \"")
+              (display package)
+              (display "\".  Please correct this.\n\n")
+              ))
+        (display val)
+        val
+        )))
 
 ;; ----------------------------------------------------------------------------
 ;; Individual component netlist functions
@@ -165,28 +165,28 @@
 ;;
 ;; C### (N1 N2) value;
 ;;
-;; 
+;;
 (define switcap:write-cap
-  (lambda (package port)            
+  (lambda (package)
     ( begin
       ;; Write out the refdes
-      (display "     " port)
-      (display (gnetlist:alias-refdes package) port)
-      (display " " port)
+      (display "     ")
+      (display (gnetlist:alias-refdes package))
+      (display " ")
 
       ;; Write out the nodes
       ;; Write out the nodes
-      (display "(" port)
-      (switcap:write-pin-net package "1" port)
-      (display " " port)
-      (switcap:write-pin-net package "2" port)
-      (display ") " port)
+      (display "(")
+      (switcap:write-pin-net package "1")
+      (display " ")
+      (switcap:write-pin-net package "2")
+      (display ") ")
 
       ;; Write the value
-      (switcap:write-attrib package "value" port)
-      
+      (switcap:write-attrib package "value")
+
       ;; finish the line
-      (display ";\n" port)
+      (display ";\n")
       )))
 
 ;;
@@ -196,27 +196,27 @@
 ;;
 ;; S### (N1 N2) clk;
 ;;
-;; 
+;;
 (define switcap:write-switch
-  (lambda (package port)            
+  (lambda (package)
     ( begin
       ;; Write out the refdes
-      (display "     " port)
-      (display (gnetlist:alias-refdes package) port)
-      (display " " port)
+      (display "     ")
+      (display (gnetlist:alias-refdes package))
+      (display " ")
 
       ;; Write out the nodes
-      (display "(" port)
-      (switcap:write-pin-net package "1" port)
-      (display " " port)
-      (switcap:write-pin-net package "2" port)
-      (display ") " port)
+      (display "(")
+      (switcap:write-pin-net package "1")
+      (display " ")
+      (switcap:write-pin-net package "2")
+      (display ") ")
 
       ;; Write the clock
-      (switcap:write-attrib package "clock" port)
+      (switcap:write-attrib package "clock")
 
       ;; finish the line
-      (display ";\n" port)
+      (display ";\n")
       )))
 
 ;;
@@ -226,31 +226,31 @@
 ;;
 ;; E### (OUTP OUTM INP INM) gain;
 ;;
-;; 
+;;
 (define switcap:write-vcvs
-  (lambda (package port)            
+  (lambda (package)
     ( begin
       ;; Write out the refdes
-      (display "     " port)
-      (display (gnetlist:alias-refdes package) port)
-      (display " " port)
+      (display "     ")
+      (display (gnetlist:alias-refdes package))
+      (display " ")
 
       ;; Write out the nodes
-      (display "(" port)
-      (switcap:write-pin-net package "1" port)
-      (display " " port)
-      (switcap:write-pin-net package "2" port)
-      (display " " port)
-      (switcap:write-pin-net package "3" port)
-      (display " " port)
-      (switcap:write-pin-net package "4" port)
-      (display ") " port)
+      (display "(")
+      (switcap:write-pin-net package "1")
+      (display " ")
+      (switcap:write-pin-net package "2")
+      (display " ")
+      (switcap:write-pin-net package "3")
+      (display " ")
+      (switcap:write-pin-net package "4")
+      (display ") ")
 
       ;; Write the clock
-      (switcap:write-attrib package "gain" port)
+      (switcap:write-attrib package "gain")
 
       ;; finish the line
-      (display ";\n" port)
+      (display ";\n")
       )))
 
 ;;
@@ -260,24 +260,24 @@
 ;;
 ;; V### (OUTP OUTM);
 ;;
-;; 
+;;
 (define switcap:write-vsrc
-  (lambda (package port)            
+  (lambda (package)
     ( begin
       ;; Write out the refdes
-      (display "     " port)
-      (display (gnetlist:alias-refdes package) port)
-      (display " " port)
+      (display "     ")
+      (display (gnetlist:alias-refdes package))
+      (display " ")
 
       ;; Write out the nodes
-      (display "(" port)
-      (switcap:write-pin-net package "1" port)
-      (display " " port)
-      (switcap:write-pin-net package "2" port)
-      (display ")" port)
+      (display "(")
+      (switcap:write-pin-net package "1")
+      (display " ")
+      (switcap:write-pin-net package "2")
+      (display ")")
 
       ;; finish the line
-      (display ";\n" port)
+      (display ";\n")
       )))
 
 ;;
@@ -287,18 +287,18 @@
 ;;
 ;; CLOCK clock_name period (phi_start phi_stop)
 ;;
-;; 
+;;
 (define switcap:write-clock
-  (lambda (package port)            
+  (lambda (package)
     ( begin
-      (display "     CLOCK " port)
-      (display (string-append package " ") port)
-      (switcap:write-attrib package "PERIOD" port)
-      (display " (" port)
-      (switcap:write-attrib package "PSTART" port)
-      (display " " port)
-      (switcap:write-attrib package "PSTOP" port)
-      (display ");\n" port)
+      (display "     CLOCK ")
+      (display (string-append package " "))
+      (switcap:write-attrib package "PERIOD")
+      (display " (")
+      (switcap:write-attrib package "PSTART")
+      (display " ")
+      (switcap:write-attrib package "PSTOP")
+      (display ");\n")
       )))
 
 ;;
@@ -308,15 +308,15 @@
 ;;
 ;; PERIOD clock_period;
 ;;
-;; 
+;;
 (define switcap:write-timing
-  (lambda (package port)            
+  (lambda (package)
     ( begin
-      (display "     PERIOD " port)
-      (switcap:write-attrib package "PERIOD" port)
+      (display "     PERIOD ")
+      (switcap:write-attrib package "PERIOD")
 
       ;; finish the line
-      (display ";\n" port)
+      (display ";\n")
       )))
 
 ;;
@@ -326,16 +326,16 @@
 ;;
 ;; TITLE: my title;
 ;;
-;; Can only have 64 characters in the title 
+;; Can only have 64 characters in the title
 ;; XXX - need to truncate to 64 chars
 (define switcap:write-title
-  (lambda (package port)            
+  (lambda (package)
     ( begin
-      (display "TITLE:" port)
-      (switcap:write-attrib package "TITLE" port)
+      (display "TITLE:")
+      (switcap:write-attrib package "TITLE")
 
       ;; finish the line
-      (display ";\n\n" port)
+      (display ";\n\n")
       )))
 
 ;;
@@ -352,13 +352,13 @@
 ;;   NOOVRLAY
 ;;   GRID
 (define switcap:write-options
-  (lambda (package port)            
+  (lambda (package)
     ( begin
-      (display "OPTIONS; " port)
-      (switcap:write-attrib package "OPTIONS" port)
+      (display "OPTIONS; ")
+      (switcap:write-attrib package "OPTIONS")
 
       ;; finish the line
-      (display " END;\n\n" port)
+      (display " END;\n\n")
       )))
 
 ;;
@@ -368,23 +368,26 @@
 ;; and including that via a switcap-analysis-1.sym instantiation
 ;;
 (define switcap:write-analysis
-  (lambda (package port)            
-    (display "/* reading analysis from \"" port)
-    (let ((fname (switcap:write-attrib package "file" port)))
-      (display "\" */ \n" port)
-      (switcap:cat-file (open-input-file fname) port)
-      )))
+  (lambda (package)
+    (display "/* reading analysis from \"")
+    (let ((fname (switcap:write-attrib package "file")))
+      (display "\" */\n")
+      (if (file-exists? fname)
+        (switcap:cat-file (open-input-file fname))
+        ((display (string-append "ERROR: Analysis file '" fname "' not found.\n"))
+         (primitive-exit 1))
+        ))))
 
 (define switcap:cat-file
   (lambda (ip op)
     (define line "")
     (set! line (read-line ip))
     (if (not (eof-object? line))
-	(begin 
-	  (write-line line op)
-	  (switcap:cat-file ip op)
-	)
-	(close-port ip))
+        (begin
+          (write-line line op)
+          (switcap:cat-file ip op)
+        )
+        (close-port ip))
     ))
 
 ;; ----------------------------------------------------------------------------
@@ -392,15 +395,15 @@
 ;; ----------------------------------------------------------------------------
 
 
-;; 
+;;
 ;; Switcap netlist header
 ;;
 (define switcap:write-top-header
-  (lambda (port)
-    (display "/* Switcap netlist produced by gnetlist (part of gEDA)     */\n" port)
-    (display "/* See http://www.geda-project.org/ for more information.  */\n" port)
-    (display "/* Switcap backend written by Dan McMahill                 */\n" port)
-    (display "\n\n" port)
+  (lambda ()
+    (display "/* Switcap netlist produced by gnetlist (part of gEDA)     */\n")
+    (display "/* See http://www.geda-project.org/ for more information.  */\n")
+    (display "/* Switcap backend written by Dan McMahill                 */\n")
+    (display "\n\n")
     )
   )
 
@@ -408,90 +411,90 @@
 ;; The main TITLE and OPTIONS block dispatcher
 ;;
 (define switcap:write-title-block
-  (lambda (port ls)
+  (lambda (ls)
      (if (not (null? ls))
       (let ((package (car ls)))
-        (cond   
+        (cond
           ( (string=? (get-device package) "SWITCAP-options")
-              (switcap:write-options package port))
+              (switcap:write-options package))
           ( (string=? (get-device package) "SWITCAP-title")
-              (switcap:write-title package port))
-	  )
-        (switcap:write-title-block port (cdr ls)) ))))  
+              (switcap:write-title package))
+          )
+        (switcap:write-title-block (cdr ls)) ))))
 
 ;;
 ;; The main TIMING block dispatcher
 ;;
 (define switcap:write-timing-block
-  (lambda (port ls)
+  (lambda (ls)
      (if (not (null? ls))
       (let ((package (car ls)))
-        (cond   
+        (cond
           ( (string=? (get-device package) "SWITCAP-clock")
-              (switcap:write-clock package port))
+              (switcap:write-clock package))
           ( (string=? (get-device package) "SWITCAP-timing")
-              (switcap:write-timing package port))
-	  )
-        (switcap:write-timing-block port (cdr ls)) ))))  
+              (switcap:write-timing package))
+          )
+        (switcap:write-timing-block (cdr ls)) ))))
 
 ;;
-;; The main CIRCUIT block netlist dispatcher.  
+;; The main CIRCUIT block netlist dispatcher.
 ;;
 (define switcap:write-netlist
-  (lambda (port ls)
+  (lambda (ls)
      (if (not (null? ls))
       (let ((package (car ls)))
-        (cond   
+        (cond
           ( (string=? (get-device package) "SWITCAP-switch")
-              (switcap:write-switch package port))
-          ( (string=? (get-device package) "SWITCAP-capacitor") 
-              (switcap:write-cap package port))
-          ( (string=? (get-device package) "SWITCAP-vcvs") 
-              (switcap:write-vcvs package port))
-          ( (string=? (get-device package) "SWITCAP-vsrc") 
-              (switcap:write-vsrc package port))
-	  )
-        (switcap:write-netlist port (cdr ls)) ))))  
+              (switcap:write-switch package))
+          ( (string=? (get-device package) "SWITCAP-capacitor")
+              (switcap:write-cap package))
+          ( (string=? (get-device package) "SWITCAP-vcvs")
+              (switcap:write-vcvs package))
+          ( (string=? (get-device package) "SWITCAP-vsrc")
+              (switcap:write-vsrc package))
+          )
+        (switcap:write-netlist (cdr ls)) ))))
 
 ;;
 ;; The main ANALYSIS block dispatcher
 ;;
 (define switcap:write-analysis-block
-  (lambda (port ls)
+  (lambda (ls)
      (if (not (null? ls))
       (let ((package (car ls)))
-        (cond   
+        (cond
           ( (string=? (get-device package) "SWITCAP-analysis")
-              (switcap:write-analysis package port))
-	  )
-        (switcap:write-analysis-block port (cdr ls)) ))))  
+              (switcap:write-analysis package))
+          )
+        (switcap:write-analysis-block (cdr ls)) ))))
 
 
 ;; ----------------------------------------------------------------------------
 ;; Switcap netlist generation -- top level
 ;; ----------------------------------------------------------------------------
-(define switcap
-  (lambda (output-filename)
-    (let ((port (open-output-file output-filename)))
+(define (switcap output-filename)
+  (set-current-output-port (gnetlist:output-port output-filename))
 
-      ;; initialize the net-name aliasing
-      (gnetlist:build-net-aliases switcap:map-net-names all-unique-nets)
+  ;; initialize the net-name aliasing
+  (gnetlist:build-net-aliases switcap:map-net-names all-unique-nets)
 
-      ;; initialize the refdes aliasing
-      (gnetlist:build-refdes-aliases switcap:map-refdes packages)
+  ;; initialize the refdes aliasing
+  (gnetlist:build-refdes-aliases switcap:map-refdes packages)
 
-      (switcap:write-top-header port)
-      (switcap:write-title-block port packages)
-      (display "TIMING;\n" port)
-      (switcap:write-timing-block port packages)
-      (display "END;\n\n" port)
-      (display "CIRCUIT;\n" port)
-      (switcap:write-netlist port packages)
-      (display "END;\n\n" port)
-      (switcap:write-analysis-block port packages)
-      (display "\n\n/* End of SWITCAP netlist */\n" port)
-      (display "END;\n" port)
-      (close-output-port port))))
+  (switcap:write-top-header)
+  (switcap:write-title-block packages)
+  (display "TIMING;\n")
+  (switcap:write-timing-block packages)
+  (display "END;\n\n")
+  (display "CIRCUIT;\n")
+  (switcap:write-netlist packages)
+  (display "END;\n\n")
+  (switcap:write-analysis-block packages)
+  (display "\n\n/* End of SWITCAP netlist */\n")
+  (display "END;\n")
+
+  (close-output-port (current-output-port)))
 
 
 ;; --------------------------------------------------------------------------

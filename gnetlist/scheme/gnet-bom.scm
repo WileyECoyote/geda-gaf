@@ -38,37 +38,38 @@
   (lambda (options)
     (let ((filename (backend-option-ref options 'attrib_file "attribs")))
       (if (file-exists? filename)
-	  (open-input-file filename)
-	  (if (backend-option-ref options 'attribs) #f
+          (open-input-file filename)
+          (if (backend-option-ref options 'attribs) #f
               (begin
-                (display (string-append "ERROR: Attribute file '" filename "' not found. You must do one of the following:\n"))
-                (display "         - Create an 'attribs' file\n")
-                (display "         - Specify an attribute file using -Oattrib_file=<filename>\n")
-                (display "         - Specify which attributes to include using -Oattribs=attrib1,attrib2,... (no spaces)\n")
-                #f))))))
+                (format (current-error-port)
+"ERROR: Attribute file '~A' not found. You must do one of the following:\n"
+"         - Create an 'attribs' file\n"
+"         - Specify an attribute file using -Oattrib_file=<filename>\n"
+"         - Specify which attributes to include using -Oattribs=attrib1,attrib2,... (no spaces)\n"
+filename)
+                (primitive-exit 1)))))))
 
 (define bom
   (lambda (output-filename)
     (let* ((options (backend-getopt
                      (gnetlist:get-backend-arguments)
                      '((attrib_file (value #t)) (attribs (value #t)))))
-           (port (if (string=? "-" output-filename)
-                     (current-output-port)
-                     (open-output-file output-filename)))
            (attriblist (bom:parseconfig (bom:open-input-file options) options)))
+      (set-current-output-port (gnetlist:output-port output-filename))
       (and attriblist
-           (begin (bom:printlist (cons 'refdes attriblist) port)
-                  (bom:components port packages attriblist)
-                  (close-output-port port))))))
+           (begin (bom:printlist (cons 'refdes attriblist))
+                  (bom:components packages attriblist)
+                  ))
+      (close-output-port (current-output-port)))))
 
 (define bom:printlist
-  (lambda (ls port)
+  (lambda (ls)
     (if (null? ls)
-	(newline port)
-	(begin
-	  (display (car ls) port)
-	  (write-char #\tab port)
-	  (bom:printlist (cdr ls) port)))))
+        (newline)
+        (begin
+          (display (car ls))
+          (write-char #\tab)
+          (bom:printlist (cdr ls))))))
 
 ; Parses attrib file or argument. Returns a list of read attributes.
 (define bom:parseconfig
@@ -85,25 +86,24 @@
                         (cons read-from-file (bom:parseconfig port options))))))))))
 
 (define bom:components
-  (lambda (port ls attriblist)
+  (lambda (ls attriblist)
     (if (not (null? ls))
-	(let ((package (car ls)))
+        (let ((package (car ls)))
           (if (not (string=? "1" (gnetlist:get-package-attribute package "nobom")))
               (begin
-                (display package port)
-                (write-char #\tab port)
-                (bom:printlist (bom:find-attribs package attriblist) port)))
-	  (bom:components port (cdr ls) attriblist)))))
+                (display package)
+                (write-char #\tab)
+                (bom:printlist (bom:find-attribs package attriblist))))
+          (bom:components (cdr ls) attriblist)))))
 
 (define bom:find-attribs
   (lambda (package attriblist)
     (if (null? attriblist)
-	'()
-	(cons (gnetlist:get-package-attribute package (car attriblist))
-	      (bom:find-attribs package (cdr attriblist))))))
+        '()
+        (cons (gnetlist:get-package-attribute package (car attriblist))
+              (bom:find-attribs package (cdr attriblist))))))
 
 ;;
 ;; Bill of Material backend written by Matt Ettus ends here
 ;;
 ;; --------------------------------------------------------------------------
-

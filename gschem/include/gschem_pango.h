@@ -44,7 +44,7 @@ typedef struct _GschemPangoRendererPrivate GschemPangoRendererPrivate;
 /**
  * GschemPangoRenderer:
  *
- * #GschemPangoRenderer is a subclass of #PangoRenderer used for rendering
+ * #GschemPangoRenderer is a subclass of PangoRenderer used for rendering
  * text of gschem TEXT objects.
  *
  * Pango functions like pango_renderer_draw_layout() and
@@ -66,7 +66,7 @@ struct _GschemPangoRendererClass
   PangoRendererClass parent_class;
 };
 
-GType gschem_pango_renderer_get_type (void) G_GNUC_CONST;
+unsigned int gschem_pango_renderer_get_type (void) G_GNUC_CONST;
 
 PangoRenderer *gschem_pango_renderer_new      (cairo_t *cr);
 

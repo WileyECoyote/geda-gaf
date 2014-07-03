@@ -19,15 +19,15 @@
  */
 
 typedef enum {
-  PAGESEL_RESPONSE_CLOSE  = 1,
-  PAGESEL_RESPONSE_UPDATE = 2
+  PageSEL_RESPONSE_CLOSE  = 1,
+  PageSEL_RESPONSE_UPDATE = 2
 } PageselResponseType;
 
 
-#define TYPE_PAGESEL         (pagesel_get_type())
-#define PAGESEL(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PAGESEL, Pagesel))
-#define PAGESEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PAGESEL, PageselClass))
-#define IS_PAGESEL(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PAGESEL))
+#define TYPE_PageSEL         (pagesel_get_type())
+#define PageSEL(obj)         (G_TYPE_CHECK_INSTANCE_CAST ((obj), TYPE_PageSEL, Pagesel))
+#define PageSEL_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), TYPE_PageSEL, PageselClass))
+#define IS_PageSEL(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), TYPE_PageSEL))
 
 
 typedef struct _PageselClass PageselClass;
@@ -45,6 +45,6 @@ struct _Pagesel {
 };
 
 
-GType pagesel_get_type (void);
+unsigned int pagesel_get_type (void);
 
 void pagesel_update (Pagesel *pagesel);

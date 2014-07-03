@@ -1,3 +1,16 @@
+2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gschlas/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+        * gsch2pdf/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+        * gsch2pdf/Makefile.am: Removed AUTOMAKE_OPTIONS
+        * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+        * /tests/gxyrs:  Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+          $(GEDA_AUTOMAKE_TEST_OPTIONS)
+        * /tests/gxyrs:  Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+          $(GEDA_AUTOMAKE_TEST_OPTIONS)
+        * /tests/refdes_renum:  Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+          $(GEDA_AUTOMAKE_TEST_OPTIONS)
+
 2013-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
         * utils/src/convert_sym.c: In function convert_file, switch

@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
- * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 
 /*------------------------------------------------------------------*/
@@ -50,8 +51,10 @@
 #endif
 
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
-#include <geda_dialog_controls.h>
-#include <gattrib_dialog.h>
+#include "geda_dialog_controls.h"
+#include "geda_widgets.h"
+
+#include "gattrib_dialog.h"
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
@@ -84,10 +87,12 @@ void generic_msg_dialog (const char *msg)
 /***************** Start of generic confirm dialog box *******************/
 
 /*! \brief Generic Confirmation Dialog
+ *
  *  \par Function Description
  *       Display a basic dialog with okay/cancel buttons
  *
- *  \param Char * message pointer to message to be displayed
+ *  \param msg    pointer to message to be displayed
+ *  \param type   The context type of the message
  *
  *  \returns True if user select OKAY, False if user select CANCEL
  *
@@ -134,7 +139,7 @@ char *x_dialog_new_attrib()
   gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_OK);
 
   /*  Create a text label for the dialog window */
-  label = gtk_label_new (_("Enter new attribute name"));
+  label = geda_label_new (_("Enter new attribute name"));
   gtk_box_pack_start (GTK_BOX(GTK_DIALOG(dialog)->vbox), label,
 		      FALSE, FALSE, 0);
 
@@ -148,7 +153,7 @@ char *x_dialog_new_attrib()
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_OK:
-      entry_text = g_strdup( gtk_entry_get_text((GtkEntry *)attrib_entry) );
+      entry_text = g_strdup( GetEntryText(attrib_entry) );
       break;
     case GTK_RESPONSE_CANCEL:
     default:
@@ -219,7 +224,7 @@ void x_dialog_delete_attrib()
 void x_dialog_missing_sym()
 {
   GtkWidget *dialog;
-  const char *string = _("One or more components have been found with missing symbol files!\n\nThis probably happened because gattrib couldn't find your component libraries, perhaps because your gafrc or gattribrc files are misconfigured.\n\nChose \"Quit\" to leave gattrib and fix the problem, or\n\"Forward\" to continue working with gattrib.\n");
+  const char *string = _("One or more components have been found with missing symbol files!\n\nThis probably happened because gattrib could not find your component libraries, perhaps because your gafrc or gattribrc files are misconfigured.\n\nChoose \"Quit\" to leave gattrib and fix the problem, or\n\"Forward\" to continue working with gattrib.\n");
 
   /* Create the dialog */
   dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
@@ -250,13 +255,13 @@ void x_dialog_missing_sym()
 }
 int x_dialog_file_not_saved()
 {
-  GtkWidget *dialog;
-  char *tmp;
+  GtkWidget  *dialog;
+  const char *tmp;
   char *str;
   int result;
 
   tmp = _("Save the changes before closing?");
-  str = g_strconcat (_("<big><b>"), tmp, _("</b></big>"), NULL);
+  str = g_strconcat (N_("<big><b>"), tmp, N_("</b></big>"), NULL);
 
   tmp = _("If you don't save, all your changes will be permanently lost.");
   str = g_strconcat (str, "\n\n", tmp, NULL);
@@ -302,7 +307,7 @@ void x_dialog_unsaved_data()
     }
     case GTK_RESPONSE_YES:
     {
-      s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into TOPLEVEL */
+      s_toplevel_gtksheet_to_toplevel(pr_current);  /* Dumps sheet data into GedaToplevel */
       s_page_save_all(pr_current);  /* saves all pages in design */
       sheet_head->CHANGED = FALSE;
       gattrib_quit(0);
@@ -325,7 +330,7 @@ void x_dialog_unsaved_data()
 void x_dialog_unimplemented_feature()
 {
   GtkWidget *dialog;
-  const char *string = _("Sorry -- you have chosen a feature which has net been\nimplemented yet.\n\nGattrib is an open-source program which\nI work on as a hobby.  It is still a work in progress.\nIf you wish to contribute (perhaps by implementing this\nfeature), please do so!  Please send patches to gattrib\nto Stuart Brorson: sdb@cloud9.net.\n\nOtherwise, just hang tight -- I'll implement this feature soon!\n");
+  const char *string = _("Sorry -- you have chosen a feature which has nоt been\nimplemented yet.\n\nGattrib is an open-source program which\nI work on as a hobby. It is still a work in progress.\nIf you wish to contribute (perhaps by implementing this\nfeature), please do so! Please send patches to gattrib\nto Stuart Brorson: sdb@cloud9.net.\n\nOtherwise, just hang tight -- I'll implement this feature soon!\n");
 
   /* Create the dialog */
   dialog = gtk_message_dialog_new (NULL, GTK_DIALOG_MODAL,
@@ -415,7 +420,7 @@ void x_dialog_export_file()
       filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
       if(filename != NULL) {
         f_export_components(filename);
-        g_free(filename);
+        GEDA_FREE(filename);
       }
       break;
 
@@ -467,8 +472,7 @@ char *x_dialog_get_search_text(char* prompt)
     GtkWidget *vbox = dialog->vbox;
     gtk_box_set_spacing((GtkBox*)vbox, DIALOG_V_SPACING);
 
-    GtkWidget *label = gtk_label_new(_(prompt));
-    gtk_misc_set_alignment(GTK_MISC(label), 0, 0);
+    GtkWidget *label = geda_aligned_label_new(_(prompt), 0, 0);
     gtk_box_pack_start((GtkBox*)vbox, label, TRUE, TRUE, 0);
 
     textentry = gtk_entry_new_with_max_length(32);
@@ -481,7 +485,7 @@ char *x_dialog_get_search_text(char* prompt)
     r = gtk_dialog_run ((GtkDialog*)dialog);
 
     if (r ==  GTK_RESPONSE_ACCEPT)
-      text = g_strdup(gtk_entry_get_text (GTK_ENTRY (textentry)));
+      text = g_strdup( GetEntryText(textentry) );
     gtk_widget_destroy (GTK_WIDGET(dialog));
   }
   return text;
@@ -556,7 +560,7 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
 
   /*!@brief Add new text to Search History List */
   void add_search_history(char *new_text) {
-    /*! \Note: String added to search_history is freed at program exit */
+    /*! \note: String added to search_history is freed at program exit */
     if (!g_list_stri_inlist(search_history, new_text)) {
       search_history = g_list_prepend(search_history, g_strdup(new_text));
     }
@@ -575,7 +579,7 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
   case GTK_RESPONSE_REJECT: /* Don't replace find next */
     unload_dialog();
     Search->Found = x_find_main_search(search_text, NULL);
-    if(search_text) g_free(search_text);
+    if(search_text) GEDA_FREE(search_text);
     break;
   case GTK_RESPONSE_APPLY: /*"Replace All and close dialog"*/
     Search->ReplaceAll = TRUE;
@@ -584,8 +588,8 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
     replacement_text = g_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
     add_search_history(replacement_text);
     Search->Found = x_find_main_search(search_text, replacement_text);
-    if(search_text) g_free(search_text);
-    if(replacement_text) g_free(replacement_text);
+    if(search_text) GEDA_FREE(search_text);
+    if(replacement_text) GEDA_FREE(replacement_text);
     break;
   case GTK_RESPONSE_DELETE_EVENT:
   case GTK_RESPONSE_CANCEL:
@@ -647,7 +651,7 @@ static void search_replace_combo_responder(GtkWidget *widget, gpointer data)
     }
     break;
   default:
-    s_log_message("combo_responder(): Warning, Unknown Combo Id: %d\n",WhichComboBox);
+    u_log_message("combo_responder(): Warning, Unknown Combo Id: %d\n",WhichComboBox);
   }
 
  return;
@@ -677,7 +681,7 @@ static void search_replace_switch_responder(GtkWidget *widget, int response,  Co
    case WrapAround:
      break;
    default:
-    s_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", response);
+    u_log_message("toggle_switch(): UKNOWN SWITCH ID: %d\n", response);
    }
 
    return;

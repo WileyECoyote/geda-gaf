@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's Library
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Library General Public
@@ -28,18 +28,40 @@
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
 #include <geda.h>
+
 #include <libgeda/defines.h>
+#include <libgeda/g_types.h>
+#include <libgeda/o_types.h>
+
 #include <libgeda/s_struct.h>
 #include <libgeda/g_struct.h>
-#include <libgeda/s_toplevel.h>
-#include <libgeda/globals.h>
-#include <libgeda/o_types.h>
-#include <libgeda/funcs.h>
-#include <libgeda/geda_colors.h>
-#include <libgeda/papersizes.h>
-#include <libgeda/prototype.h>
+
+#include <libgeda/f_types.h>
+
 #include <libgeda/edaconfig.h>
 #include <libgeda/edaerrors.h>
-#include <libgeda/geda_list.h>
 
+#include <libgeda/globals.h>
+
+#include <libgeda/geda_colors.h>
+#include <libgeda/papersizes.h>
+#include <libgeda/geda_list.h>
+#include <libgeda/geda_object.h>
+#include <libgeda/geda_page.h>
+
+#include <libgeda/geda_line.h>
+#include <libgeda/geda_arc.h>
+#include <libgeda/geda_box.h>
+#include <libgeda/geda_bus.h>
+#include <libgeda/geda_circle.h>
+#include <libgeda/geda_complex.h>
+#include <libgeda/geda_net.h>
+#include <libgeda/geda_path.h>
+#include <libgeda/geda_picture.h>
+#include <libgeda/geda_pin.h>
+#include <libgeda/geda_text.h>
+
+
+#include <libgeda/geda_toplevel.h>
+#include <libgeda/prototype.h>
 #endif

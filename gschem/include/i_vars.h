@@ -27,6 +27,8 @@ extern int default_warp_cursor;
 extern int default_zoom_gain;
 extern int default_zoom_with_pan;
 
+extern int default_world_right;
+extern int default_world_bottom;
 /* Logging */
 extern int default_logging;
 extern int default_log_destiny;
@@ -92,8 +94,6 @@ extern int default_image_color;
 extern int default_invert_images;
 extern int default_image_width;
 extern int default_image_height;
-extern int default_init_right;
-extern int default_init_bottom;
 extern int default_paper_width;
 extern int default_paper_height;
 extern float default_postscript_font_scale;

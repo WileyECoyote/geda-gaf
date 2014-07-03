@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -47,21 +47,21 @@
  * Define the vars we'll use later
  *------------------------------------------------------------------*/
 int   default_paper_width = 11000; /*!< width for letter paper (landscape)
-				    * \todo Can this be const? */
+* \todo Can this be const? */
 int   default_paper_height = 85000;/*!< height for letter paper (landscape)
-				    * \todo Can this be const? */
+* \todo Can this be const? */
 
 
 /*------------------------------------------------------------------*/
-/*! \brief Initialise variables in the TOPLEVEL
+/*! \brief Initialise variables in the GedaToplevel
  *
  * Initialize the variables in toplevel. In practice, this is only
  * the paper size for the sheet.
- * \param toplevel pointer to the TOPLEVEL to set paper size in.
+ * \param toplevel pointer to the GedaToplevel to set paper size in.
  */
-void i_vars_set (TOPLEVEL *toplevel)
+void i_vars_set (GedaToplevel *toplevel)
 {
-  i_vars_libgeda_set (toplevel);
+  //i_vars_libgeda_set (toplevel);
 
   toplevel->paper_width = default_paper_width;
   toplevel->paper_height = default_paper_height;

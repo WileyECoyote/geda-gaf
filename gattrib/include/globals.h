@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2010 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,30 +23,30 @@
  *
  * \section sdb_note SDB note about philosophy behind globals
  *
- * I made the "TOPLEVEL project" and all the GTK window stuff into
+ * I made the "GedaToplevel project" and all the GTK window stuff into
  * global variables.  I know that this is supposedly bad programming form.
  * However, here are some observations:
- * - I wanted to use gEDA's TOPLEVEL structure as much as possible, at
+ * - I wanted to use gEDA's GedaToplevel structure as much as possible, at
  *    least to hold info about the design's netlist & components.
- *    The TOPLEVEL strucuture is architected to hold info about gschem's
+ *    The GedaToplevel strucuture is architected to hold info about gschem's
  *    window also.  HOwever, gschem's windows are architected differently
  *    than mine in gattrib.  This is because my windowing system does
  *    completely different things, and also uses the GtkSheet widget, which
- *    is architected completely differently from TOPLEVEL.
+ *    is architected completely differently from GedaToplevel.
  * - Since I couldn't easily or naturally cram my windowing scheme into
- *    TOPLEVEL (or so I think), I decided to use a separate set of windows
- *    from those defined under TOPLEVEL for my application.
+ *    GedaToplevel (or so I think), I decided to use a separate set of windows
+ *    from those defined under GedaToplevel for my application.
  * - The problem arises when using callbacks.  Callbacks from GTK allow
  *    only one argument to be passed.  Given the way I set up the menu bar,
  *    I didn't have easy acces to the information inside both the GtkSHeet
- *    objects *and* the TOPLEVEL stuff while only having one callback
+ *    objects *and* the GedaToplevel stuff while only having one callback
  *    argument.  This makes it hard to have access to e.g. a GtkSheet window
- *    and a list of files (in TOPLEVEL) simultaneously.
- * - Therefore, I decided to make both the window stuff and TOPLEVEL
+ *    and a list of files (in GedaToplevel) simultaneously.
+ * - Therefore, I decided to make both the window stuff and GedaToplevel
  *    globals.
  * - Similarly, because I couldn't cram the SHEET_DATA struct into any
- *    hook in TOPLEVEL, I just made it a global also.
- * - Finally, in my defense, in gschem and gnetlist, (TOPLEVEL *w_current
+ *    hook in GedaToplevel, I just made it a global also.
+ * - Finally, in my defense, in gschem and gnetlist, (GedaToplevel *w_current
  *    or pr_current) is passed  to almost every function.  Since it
  *    is just a pointer to a huge struct of stuff, manipulating
  *    the stuff in the struct has a global
@@ -57,21 +57,34 @@
  *    Since pr_current is a very uncommon name, this should not be a
  *    problem here.  Therefore, I decided
  *    to make life easy for myself dealing with callbacks by making both
- *    the windows and TOPLEVEL global variables.
+ *    the windows and GedaToplevel global variables.
  *
  * If there is a better way to solve this problem, I'd like to hear it.
  *
  */
 /* ------------------------------------------------------------------ */
 
-#ifndef __GLOBALS__
-#define __GLOBALS__
+#ifndef __GATTRIB_GLOBALS__
+#define __GATTRIB_GLOBALS__
+
+/* i18n */
+#include "gettext.h"
+#ifdef ENABLE_NLS
+# ifdef gettext_noop
+#  define N_(String) gettext_noop (String)
+# else
+#  define N_(String) (String)
+# endif
+#else
+# define N_(String) (String)
+#endif
+
 /*------------------------------------------------------------------*/
 /*!
  * The main data structure from gEDA is defined in libgeda/structs.h
  */
 /*------------------------------------------------------------------*/
-TOPLEVEL *pr_current;
+GedaToplevel *pr_current;
 
 /*------------------------------------------------------------------*/
 /*!

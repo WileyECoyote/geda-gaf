@@ -625,10 +625,10 @@ gtk_sheet_range_free (GtkSheetRange *range)
   g_free (range);
 }
 
-GType
+unsigned int
 gtk_sheet_range_get_type (void)
 {
-  static GType sheet_range_type=0;
+  static unsigned int sheet_range_type=0;
 
   if(sheet_range_type == 0)
   {
@@ -655,10 +655,10 @@ gtk_sheet_cell_border_copy(const GtkSheetCellBorder *other)
     return border;
 }
 
-GType
+unsigned int
 gtk_sheet_cell_border_get_type (void)
 {
-  static GType our_type = 0;
+  static unsigned int our_type = 0;
 
   if (our_type == 0)
     our_type = g_boxed_type_register_static ("GtkSheetCellBorder",
@@ -688,10 +688,10 @@ gtk_sheet_cell_attr_copy(const GtkSheetCellAttr *other)
     return attrs;
 }
 
-GType
+unsigned int
 gtk_sheet_cell_attr_get_type (void)
 {
-  static GType our_type = 0;
+  static unsigned int our_type = 0;
 
   if (our_type == 0)
     our_type = g_boxed_type_register_static ("GtkSheetCellAttr",

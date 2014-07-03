@@ -1,3 +1,66 @@
+2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/geda/geda_config.c: In function eda_config_get_context_for_file
+        add check for gafrc if geda.conf is not cound before creating a new
+        configuration context.
+
+2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o-complex_basic.c: remove "continue" from for loop in
+        function o_complex_get_promotable, return g_list_reverse directly.
+        Fixed leak in o_complex_promote_attribs by adding 
+
+2014-04-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        scheme/unit-tests/t0105-object-complex.scm: moved; component-library
+        to seperate module, t0113-object-library.scm and changed relative path
+        to symbols; ../../symbols/passive/resistor.
+
+2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/geda/geda_config.c: Even more Major changes: revised edaconfig
+        eliminating dependency on GIO system (gvfs) because some systems do
+        not allow user space, aka virtual, file systems to exist, specifically
+        mine.
+
+        * src/file/f_path.c: Major revisions, mostly to take into account the build
+        configuration. This was done before but has been enhanced. All path are
+        now stored in dynamically allocated memory rather than relying on static locals
+        pointing to semi-static environments variables. New function f_path_free()
+        was added to free the memory when the library is released.
+
+2013-12-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * libgeda/*: More Major changes: all pertinent files/functions adjusted,
+         edited, revised, and or revamped to use new gobjects. briefly...
+
+        * libgeda/*: Converted Objects types, Arc, Box, Circles, ...etc to gobjects.
+        The new gobjects are derived from the Object type (a lot of work).
+
+        * libgeda/*: Creates gobjects types for Bus, Net, formally these did not exist,
+        the structures were just lines maquarading as buses and line. Note that the
+        new objects are derived from line type objects, (was no easy feat).
+
+        * libgeda/*: New functionality added a needed to expand capabilites of libgeda.
+ 
+2013-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+        *: Major changes, to numerous to detail. Most of the changes involve
+        converting structures to gobjects and reoganizing files and functions,
+        briefly...
+
+        * src/*: Modified build system so as to organize source files into
+        seperate subfolders; file. geda, guile ... etc.
+
+        * libgeda/*: Converted Toplevel, Object (formally OBJECT) and Page (PAGE)
+        to gobjects.
+
+        * include/libgeda/prototype.h: Cleanup
+
+2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+
 2013-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/libgeda/defines.h: Relocated defines for schematic and
@@ -215,7 +278,7 @@
         file would be left with the wrong ownership, group setting and
         permissions and the backup file would incorrectly belong to the
         orginal owner. The new algorythms create a backup by copying the
-        orginal file, using a new fcopy function located in f_utilities.c
+        orginal file, using a new f_copy function located in f_utilities.c
         so that the orginal ownership, group and permission data is
         preserved and the backup belongs to the user as it should.
 

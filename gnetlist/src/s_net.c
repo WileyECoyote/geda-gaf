@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -127,11 +127,11 @@ void s_net_print(NET * ptr)
 
 
 /* object being a pin */
-char *s_net_return_connected_string(TOPLEVEL * pr_current, OBJECT * object,
-                                    char *hierarchy_tag)
+char *s_net_return_connected_string(GedaToplevel *pr_current,
+                                    Object       *object,
+                                    char         *hierarchy_tag)
 {
-  OBJECT *o_current;
-  SCM     scm_uref;
+  Object *o_current;
 
   char *pinnum    = NULL;
   char *uref      = NULL;
@@ -147,14 +147,18 @@ char *s_net_return_connected_string(TOPLEVEL * pr_current, OBJECT * object,
   printf("found pinnum: %s\n", pinnum);
 #endif
 
-  scm_uref = g_scm_c_get_uref(pr_current, o_current->parent);
+  temp_uref = o_attrib_search_object_attribs_by_name (o_current->parent_object, "refdes", 0);
 
-  if (scm_is_string( scm_uref )) {
-    temp_uref = scm_to_utf8_string (scm_uref);
+  if (temp_uref) {
+    if (stricmp(temp_uref,"none") == 0) {
+       GEDA_FREE(temp_uref);
+       temp_uref = NULL;
+    }
   }
 
   /* apply the hierarchy name to the uref */
   uref = s_hierarchy_create_uref(pr_current, temp_uref, hierarchy_tag);
+  GEDA_FREE(temp_uref);
 
   if (uref && pinnum) {
     string = g_strdup_printf("%s %s", uref, pinnum);
@@ -162,15 +166,16 @@ char *s_net_return_connected_string(TOPLEVEL * pr_current, OBJECT * object,
   else {
     if (pinnum) {
       string = s_netattrib_pinnum_get_connected_string (pinnum);
-      s_netattrib_check_connected_string (string);
+
+      //s_netattrib_check_connected_string (string);
     }
     else {
       if (hierarchy_tag) {
-        misc =
-        s_hierarchy_create_uref(pr_current, "U?", hierarchy_tag);
+        misc = s_hierarchy_create_uref(pr_current, "U?", hierarchy_tag);
         string = g_strdup_printf("%s ?", misc);
-        g_free(misc);
-      } else {
+        GEDA_FREE(misc);
+      }
+      else {
         string = g_strdup("U? ?");
       }
 
@@ -178,11 +183,8 @@ char *s_net_return_connected_string(TOPLEVEL * pr_current, OBJECT * object,
     }
   }
 
-  g_free(pinnum);
-
-  g_free(uref);
-
-  g_free(temp_uref);
+  GEDA_FREE(pinnum);
+  GEDA_FREE(uref);
 
   return (string);
 }
@@ -202,13 +204,17 @@ int s_net_find(NET * net_head, NET * node)
   return (FALSE);
 }
 
-char *s_net_name_search(TOPLEVEL * pr_current, NET * net_head)
+char *s_net_name_search(GedaToplevel * pr_current, NET * net_head)
 {
-  NET *n_current;
-  char *name = NULL;
+  NET       *n_current;
+  EdaConfig *cfg;
+  char      *name = NULL;
+  int        naming_priority;
 
   n_current = net_head;
 
+  cfg = eda_config_get_context_for_file (NULL);
+  naming_priority = eda_config_get_integer (cfg, "gnetlist", "net-naming-priority", NULL);
 
   while (n_current != NULL) {
 
@@ -228,11 +234,9 @@ char *s_net_name_search(TOPLEVEL * pr_current, NET * net_head)
                 name, n_current->net_name);
 #endif
 
-
-        /* only rename if this net name has priority */
-        /* AND, you are using net= attributes as the */
-        /* netnames which have priority */
-        if (pr_current->net_naming_priority == NETATTRIB_ATTRIBUTE) {
+        /* only rename if this net name has priority  AND, we are
+         * using net= attributes as the netnames which have priority */
+        if (naming_priority == NETATTRIB_ATTRIBUTE) {
 
 #if DEBUG
           printf("\nNETATTRIB_ATTRIBUTE\n");
@@ -329,8 +333,8 @@ char *s_net_name_search(TOPLEVEL * pr_current, NET * net_head)
   }
 }
 
-char *s_net_name (TOPLEVEL * pr_current, NETLIST * netlist_head,
-                  NET * net_head, char *hierarchy_tag, int type)
+char *s_net_name (GedaToplevel * pr_current, NETLIST * netlist_head,
+                  NET * net_head, char *hierarchy_tag, int node_type)
 {
 
   NET      *n_start;
@@ -406,17 +410,17 @@ char *s_net_name (TOPLEVEL * pr_current, NETLIST * netlist_head,
 
   }
 
-  switch (type) {
-    case PIN_TYPE_NET:
+  switch (node_type) {
+    case PIN_NET_NODE:
       unnamed_counter = &unnamed_net_counter;
       unnamed_string = pr_current->unnamed_netname;
       break;
-    case PIN_TYPE_BUS:
+    case PIN_BUS_NODE:
       unnamed_counter = &unnamed_bus_counter;
       unnamed_string = pr_current->unnamed_busname;
       break;
     default:
-      g_critical (_("Incorrect connectivity type %i in s_name_nets()\n"), type);
+      g_critical (_("s_net_name: incorrect node type %i\n"), node_type);
       return NULL;
   }
 
@@ -430,7 +434,7 @@ char *s_net_name (TOPLEVEL * pr_current, NETLIST * netlist_head,
       temp = g_strdup_printf ("%s%d", unnamed_string, (*unnamed_counter)++);
       if (hierarchy_tag) {
         string = s_hierarchy_create_netname (pr_current, temp, hierarchy_tag);
-        g_free (temp);
+        GEDA_FREE (temp);
       } else {
         string = temp;
       }

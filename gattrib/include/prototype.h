@@ -1,6 +1,6 @@
 /*! \file
  * This file holds all function prototypes for the entire gattrib
- * project.  It should be #include'ed after struct.h.
+ * project. The file should be included after struct.h.
  */
 
 /* ---------------- gattrib.c ---------------- */
@@ -39,42 +39,42 @@ bool g_list_stri_inlist(GList *list, char *string);
 
 /* ------------- s_attrib.c ------------- */
 int   s_attrib_name_in_list(STRING_LIST *name_value_list, char *name);
-char *s_attrib_get_refdes(OBJECT *object);
+char *s_attrib_get_refdes(Object *object);
 
 /* ------------- s_object.c ------------- */
-void s_object_add_comp_attrib_to_object (TOPLEVEL *toplevel,
-                                         OBJECT *o_current,
+void s_object_add_comp_attrib_to_object (GedaToplevel *toplevel,
+                                         Object *o_current,
                                          char *new_attrib_name,
                                          char *new_attrib_value,
                                          int visibility,
                                          int show_name_value);
-void s_object_add_net_attrib_to_object (TOPLEVEL *toplevel,
-                                        OBJECT *o_current,
+void s_object_add_net_attrib_to_object (GedaToplevel *toplevel,
+                                        Object *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value);
-void s_object_add_pin_attrib_to_object (TOPLEVEL *toplevel,
-                                        OBJECT *o_current,
+void s_object_add_pin_attrib_to_object (GedaToplevel *toplevel,
+                                        Object *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value);
 
-void s_object_replace_attrib_in_object (TOPLEVEL *toplevel,
-                                        OBJECT *o_current,
+void s_object_replace_attrib_in_object (GedaToplevel *toplevel,
+                                        Object *o_current,
                                         char *new_attrib_name,
                                         char *new_attrib_value,
                                         int visibility,
                                         int show_name_value);
-void s_object_remove_attrib_in_object (TOPLEVEL *toplevel,
-                                       OBJECT *o_current,
+void s_object_release_attrib_in_object (GedaToplevel *toplevel,
+                                       Object *o_current,
                                        char *new_attrib_name);
 
-bool s_object_attrib_add_attrib_in_object (TOPLEVEL *toplevel,
+bool s_object_attrib_add_attrib_in_object (GedaToplevel *toplevel,
                                            char *text_string,
                                            int visibility,
                                            int show_name_value,
-                                           OBJECT * object);
+                                           Object * object);
 
-void s_object_delete_text_object_in_object(TOPLEVEL *toplevel, OBJECT *test_object);
-int  s_object_has_sym_file(OBJECT *object);
+void s_object_delete_text_object_in_object(GedaToplevel *toplevel, Object *test_object);
+int  s_object_has_sym_file(Object *object);
 
 /* ------------- s_misc.c ------------- */
 void verbose_print(char *string);
@@ -103,7 +103,7 @@ void s_rename_print(void);
 int  s_rename_search(char *src, char *dest, int quiet_flag);
 void s_rename_add(char *src, char *dest);
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest);
-void s_rename_all(TOPLEVEL *toplevel, NETLIST *netlist_head);
+void s_rename_all(GedaToplevel *toplevel, NETLIST *netlist_head);
 
 /* ------------- s_sheet_data.c ------------- */
 SHEET_DATA *s_sheet_data_new();
@@ -168,30 +168,30 @@ void s_table_load_new_page(PageDataSet *PageData);
 
 /* ------------- s_toplevel.c ------------- */
 void s_toplevel_close(PageDataSet *PageData);
-int  s_toplevel_read_page(TOPLEVEL *toplevel, char *filename);
-void s_toplevel_verify_design(TOPLEVEL *toplevel);
-void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel);
+int  s_toplevel_read_page(GedaToplevel *toplevel, char *filename);
+void s_toplevel_verify_design(GedaToplevel *toplevel);
+void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel);
 void s_toplevel_add_new_attrib(int column_location);
 void s_toplevel_delete_attrib_col(GtkSheet *sheet);
-void s_toplevel_sheetdata_to_toplevel(TOPLEVEL *toplevel, PAGE *page);
+void s_toplevel_sheetdata_to_toplevel(GedaToplevel *toplevel, Page *page);
 
 STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes);
 void s_toplevel_update_component_attribs_in_toplevel(
-					    TOPLEVEL *toplevel,
-					    OBJECT *o_current,
+					    GedaToplevel *toplevel,
+					    Object *o_current,
 					    STRING_LIST *new_comp_attrib_list);
 STRING_LIST *s_toplevel_get_net_attribs_in_sheet(char *netname);
-void s_toplevel_update_net_attribs_in_toplevel(OBJECT *o_current,
+void s_toplevel_update_net_attribs_in_toplevel(Object *o_current,
 					 STRING_LIST *new_net_attrib_list);
-STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin);
-void s_toplevel_update_pin_attribs_in_toplevel(TOPLEVEL *toplevel,
-					 char *refdes, OBJECT *pin,
+STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin);
+void s_toplevel_update_pin_attribs_in_toplevel(GedaToplevel *toplevel,
+					 char *refdes, Object *pin,
 					 STRING_LIST *new_pin_attrib_list);
-void s_toplevel_init_data_set(TOPLEVEL *toplevel, PageDataSet *PageData);
+void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData);
 
 /* ------------- i_vars.c ------------- */
-void i_vars_set(TOPLEVEL *toplevel);
-void i_window_vars_set(TOPLEVEL *toplevel);
+void i_vars_set(GedaToplevel *toplevel);
+void i_window_vars_set(GedaToplevel *toplevel);
 
 /* ------------- x_dialog.c ------------- */
 void generic_msg_dialog (const char *msg);
@@ -260,10 +260,10 @@ void x_toolbars_init(GtkWidget *parent_container);
 void x_toolbar_set_sensitivities(GSList *ListToolBarItems, int sensitive);
 
 /* ------------- x_window.c ------------- */
-void x_window_update_title(TOPLEVEL *toplevel, PageDataSet *PageData);
+void x_window_update_title(GedaToplevel *toplevel, PageDataSet *PageData);
 void x_window_clipboard_handler(int do_what);
 void x_window_init();
-void x_window_blank_document(TOPLEVEL *toplevel, PageDataSet *PageData);
+void x_window_blank_document(GedaToplevel *toplevel, PageDataSet *PageData);
 void x_window_add_items(PageDataSet *PageData);
 void x_window_finalize_startup(GtkWindow *w_current, PageDataSet *PageData);
 

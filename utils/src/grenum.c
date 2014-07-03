@@ -89,7 +89,7 @@ int main(int argc, char *argv[])
 				printver();
 				return 0;
 			case 'p':
-				flags|=PAGEJUMP; /*Set the pagejump flag*/
+				flags|=PageJUMP; /*Set the pagejump flag*/
 				break;
 			}
 		}
@@ -107,10 +107,10 @@ int main(int argc, char *argv[])
 
 	for(pages=1;optind<argc;++optind,++pages)
 		{
-		if((flags&PAGEJUMP)==PAGEJUMP)	/*pagejumps*/
+		if((flags&PageJUMP)==PageJUMP)	/*pagejumps*/
 			{
 			for(c=0;c<MAX_PREFIX_COUNT;++c)
-				refdes_db[c].value=PAGE_JMP*pages+COUNT_START;	/*Reset the counters according to page numbers*/
+				refdes_db[c].value=Page_JMP*pages+COUNT_START;	/*Reset the counters according to page numbers*/
 			}
 		strcpy(&infilename[0],argv[optind]);	/*Copy the filename to the buffer*/
 		if((infile=fopen(infilename, "r")) == NULL)	/*Open file, use r+ for read and write*/

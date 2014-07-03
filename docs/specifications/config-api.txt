@@ -192,7 +192,7 @@ System context
 
 C function::
 
-  EdaConfig *eda_config_get_system_context ()
+  EdaConfig *eda_config_get_system_context (char *context)
 
 Scheme function::
 
@@ -200,7 +200,7 @@ Scheme function::
 
 The system context is used for system-wide configuration.  It is located:
 
-1. By searching ``${XDG_CONFIG_DIRS}`` for a ``gEDA/geda-system.conf``
+1. By searching ``${XDG_CONFIG_DIRS}`` for a ``gEDA/<context>-system.conf``
    configuration file.
 
 2. By checking ``${sysconfdir}/gEDA`` for a configuration file.
@@ -208,7 +208,7 @@ The system context is used for system-wide configuration.  It is located:
 Its parent context is the `default context`_.
 
 The configuration context returned by
-``eda_config_get_system_context()`` is owned by the library, and
+``eda_config_get_system_context`` is owned by the library, and
 should not be disposed of with ``g_object_unref()``.
 
 User context
@@ -223,7 +223,7 @@ Scheme function::
   user-config-context
 
 The user context is used for user-specific configuration, and is
-loaded from ``${XDG_CONFIG_HOME}/gEDA/geda-user.conf`` [XDGDIRS]_.
+loaded from ``${XDG_CONFIG_HOME}/gEDA/<program>-user.conf`` [XDGDIRS]_.
 Its parent context is the `system context`_.
 
 The configuration context returned by

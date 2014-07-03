@@ -3,10 +3,10 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;;
-;;; Copyright (C) 1998-2013 Ales Hvezda
-;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2014 Ales Hvezda
+;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
 ;;
-;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
+;;; Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -51,15 +51,21 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 09/20/13 | Added GEDA_FRAME to extend macro library
 ;; ------------------------------------------------------------------
-;; WEH | 09/27/13 | replaced older gtk_tooltips_set_tip function with
+;; WEH | 09/27/13 | Replaced older gtk_tooltips_set_tip function with
 ;;                | newer gtk_widget_set_tooltip_text function.
 ;; ------------------------------------------------------------------
-;; WEH | 10/06/13 |
+;; WEH | 10/06/13 | Relocated function macros to geda_gui_funcs.h
 ;;                |
-;;
+;; ------------------------------------------------------------------
+;; WEH | 06/23/14 | Replaced gtk_label with geda_label_new or variants.
+;;                |
 */
 
 #pragma once
+
+#ifndef GetEntryText
+  #include "geda_gui_funcs.h"
+#endif
 
 #define DialogFont "Monospace 13.3"
 
@@ -134,8 +140,7 @@ typedef struct
   gtk_container_add (GTK_CONTAINER (notebook), name##Tab_vbox);
 
 #define GTK_END_TAB(name) \
-  GtkWidget *name##Tab = gtk_label_new (_(#name));     \
-  g_object_set (name##Tab, "visible", TRUE, NULL);     \
+  GtkWidget *name##Tab = geda_visible_label_new (_TAB_LABEL(name));     \
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (notebook), \
                               gtk_notebook_get_nth_page (GTK_NOTEBOOK (notebook), name), \
                               name##Tab);
@@ -302,31 +307,30 @@ typedef struct
         SET_WIDGET_SIZE ( name##_vbox, -1, ysize)
 
 /*  Label Widget */
-#define GTK_NEW_LABEL(name, isexpandable, isfilled, type) \
-        name##Label = gtk_label_new (_(LABEL (name)));    \
-                      g_object_set (name##Label, "visible", TRUE, NULL);      \
+#define GEDA_NEW_LABEL(name, isexpandable, isfilled, type) \
+        name##Label = geda_visible_label_new (_(LABEL (name)));    \
                       PACK_BOX(name##_##type##box, name##Label, isexpandable, \
                                isfilled, DEFAULT_WIDGET_SPACING)
 
-#define GTK_PADDED_LABEL(name, hpad, vpad, isexpandable, isfilled, type) \
-        GTK_NEW_LABEL (name, isexpandable, isfilled, type);              \
+#define GEDA_PADDED_LABEL(name, hpad, vpad, isexpandable, isfilled, type) \
+        GEDA_NEW_LABEL (name, isexpandable, isfilled, type);              \
         SET_WIDGET_PADDING( name##Label, hpad, vpad);
 
-#define GTK_C0_LABEL(name) GTK_PADDED_LABEL (name, 0, 0, TRUE, TRUE, v); \
-        gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_CENTER);
+#define GTK_C0_LABEL(name) GEDA_PADDED_LABEL (name, 0, 0, TRUE, TRUE, v); \
+        geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_CENTER);
 
-#define GTK_R5_LABEL(name) GTK_PADDED_LABEL (name, 5, 0, FALSE, FALSE, h) \
-        gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_RIGHT);
+#define GTK_R5_LABEL(name) GEDA_PADDED_LABEL (name, 5, 0, FALSE, FALSE, h) \
+        geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_RIGHT);
 
-#define GTK_R10_LABEL(name) GTK_PADDED_LABEL (name, 10, 0, FALSE, FALSE, h) \
-        gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_RIGHT);
+#define GTK_R10_LABEL(name) GEDA_PADDED_LABEL (name, 10, 0, FALSE, FALSE, h) \
+        geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_RIGHT);
 
 #define GTK_RS_LABEL(name, spacing) \
-        GTK_PADDED_LABEL (name, spacing, 0, FALSE, FALSE, h) \
-        gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_RIGHT);
+        GEDA_PADDED_LABEL (name, spacing, 0, FALSE, FALSE, h) \
+        geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_RIGHT);
 
-#define PANGO_R5_LABEL(name) GTK_PADDED_LABEL (name, 5, 0, FALSE, FALSE, h) \
-        gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_RIGHT); \
+#define PANGO_R5_LABEL(name) GEDA_PADDED_LABEL (name, 5, 0, FALSE, FALSE, h) \
+        geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_RIGHT); \
         gtk_widget_modify_font (name##Label, pango_font_description_from_string (DialogFont));
 
 /* Combine Label and Box */
@@ -336,11 +340,10 @@ typedef struct
 
 #define CSECTION_OPTIONS(parent, name, ysize, pad, type) \
           type##ZSECTION(parent, name##Options, -1, ysize) \
-          GtkWidget *name##Label=gtk_label_new (_(LABEL (name))); \
-          g_object_set (name##Label, "visible", TRUE, NULL); \
+          GtkWidget *name##Label=geda_visible_label_new (_(LABEL (name))); \
           gtk_widget_set_tooltip_text ( name##Label, _(TOOLTIP (name))); \
           type##PACK_BOX (name##Options, name##Label, FALSE, FALSE, pad); \
-          gtk_label_set_justify (GTK_LABEL (name##Label), GTK_JUSTIFY_CENTER);
+          geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_CENTER);
 
 #define GTK_NEW_SCROLL( parent, name, spacing, xsize, ysize, bars, theme) \
           GtkWidget *name = gtk_scrolled_window_new (NULL, NULL); \
@@ -435,13 +438,14 @@ typedef struct
         GTK_NEW_BUTTON (parent, name, TRUE, TRUE, TRUE, DIALOG_BUTTON_SPACING) \
         GTK_ICALLBACK_BUTT (name)
 
-#define GEDA_COLOR_BUTTON(parent, name, spacing) \
+#define GEDA_COLOR_BUTTON(parent, name, width, height, spacing) \
         GtkWidget *name##_hbox=NULL;                    \
         GtkWidget *name##Label=NULL;                    \
         NEW_HCONTROL_BOX (parent, name, spacing)        \
         PANGO_R5_LABEL (name)                           \
         name##Butt = gtk_color_button_new ();  \
         gtk_color_button_set_title((GtkColorButton*)name##Butt, _(WIDGET (name)));\
+        SET_WIDGET_SIZE(name##Butt, width, height) \
         g_object_set ( name##Butt, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX ( name##_hbox), name##Butt, FALSE, FALSE, DIALOG_BUTTON_SPACING); \
         gtk_widget_set_tooltip_text ( name##Butt, _(TOOLTIP (name))); \
@@ -459,7 +463,7 @@ typedef struct
         name##Combo = gtk_combo_box_entry_new_text(); \
         g_object_set ( name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
-        SET_WIDGET_SIZE ( name##Combo, width, -1) \
+        SET_WIDGET_SIZE ( name##Combo, width, 32) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
         GTK_ICALLBACK_COMBO (name) \
 }
@@ -470,7 +474,7 @@ typedef struct
         name##Combo = gtk_combo_box_entry_new_text(); \
         g_object_set (name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
-        SET_WIDGET_SIZE ( name##Combo, width, -1) \
+        SET_WIDGET_SIZE ( name##Combo, width, 34) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
         GTK_ICALLBACK_COMBO (name)
 
@@ -496,7 +500,7 @@ typedef struct
 #define GTK_RADIO_GROUP( group, dir) \
         GSList *group##Group = NULL; \
         GtkWidget *group##Label=NULL;         /* define Label */ \
-        GTK_PADDED_LABEL (group, 5, 0, FALSE, FALSE, h); \
+        GEDA_PADDED_LABEL (group, 5, 0, FALSE, FALSE, h); \
         gtk_widget_set_tooltip_text ( group##Label, _(TOOLTIP (group)));  \
         LOCAL_BASE_BOX(group##Group, dir, TRUE, 0) \
         PACK_BOX(group##_hbox, group##Group##_##dir##box, FALSE, TRUE, DEFAULT_WIDGET_SPACING)
@@ -542,8 +546,7 @@ typedef struct
         g_object_set (LightOff, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOff, FALSE, FALSE, 0); \
         GTK_HOOKUP_OBJECT (ThisDialog, LightOff, "Off"); \
-        GtkWidget *name##Label = gtk_label_new (_(LABEL (name))); \
-        g_object_set ( name##Label, "visible", TRUE, NULL); \
+        GtkWidget *name##Label = geda_visible_label_new (_(LABEL (name))); \
         gtk_box_pack_start (GTK_BOX (hbox), name##Label, FALSE, FALSE, 0); \
         gtk_misc_set_padding (GTK_MISC (name##Label), 0, 0); }\
         HOOKUP_GEDA_OBJECT(name, Radio) \
@@ -633,6 +636,7 @@ typedef struct
         GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
         name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \
         g_object_set (name##Spin, "visible", TRUE, NULL); \
+        SET_WIDGET_SIZE (name##Spin, -1, 33)  \
         PACK_hBOX(name, name##Spin, FALSE, TRUE, 0) \
         gtk_spin_button_set_numeric (GTK_SPIN_BUTTON (name##Spin), TRUE); \
         HOOKUP_GEDA_OBJECT(name, Spin) \
@@ -704,3 +708,4 @@ typedef struct
         connect_list_view( ThisDialog, GTK_TREE_VIEW(name##View)); \
         SET_WIDGET_SIZE ( name##View, xsize, ysize)  \
         HOOKUP_GEDA_OBJECT(name, View)
+

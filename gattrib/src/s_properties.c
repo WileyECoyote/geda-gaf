@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -117,14 +117,15 @@ void s_properties_set_cell_visibility(int row, int col, int visibility)
 }
 /*! \brief set Show Name Value of an individual cell
  *
+ *  \par Function Description
  * Set the value of the Show Name flag for the cell identified by (row, col)
  * to the passed value. The function is called by the range handler in this
  * module. The value of the Show Name flag determines whether editor should
  * display the Attribute Name, the Value or Both.
  * 
- * \param row Row index of target cell
- * \param col Column index of target cell
- * \param visibility value to set the Show Name flag
+ * \param row             Row index of target cell
+ * \param col             Column index of target cell
+ * \param show_name_value value to set the Show Name flag
  */
  
 void s_properties_set_cell_show_name(int row, int col, int show_name_value)

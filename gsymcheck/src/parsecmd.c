@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gsymcheck - gEDA Symbol Check 
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -18,33 +18,54 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
+#include <config.h>
+
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
+#include <stdio.h>
+
 #include <libgeda/libgeda.h>
+
+#include "../include/struct.h"
 #include "../include/globals.h"
+#include "../include/prototype.h"
 #include "../include/gettext.h"
 
 #define OPTIONS "qvh"
 
 #ifndef OPTARG_IN_UNISTD
-extern char *optarg;
-extern int optind;
+  extern char *optarg;
+  extern int optind;
+#endif
+
+#ifdef HAVE_GETOPT_H
+#include <getopt.h>
+#endif
+
+#ifdef HAVE_GETOPT_LONG
+struct option long_options[] = 
+  {
+    {"help",    0, 0, 'h'},
+    {"quiet",   0, 0, 'q'},
+    {"verbose", 0, 0, 'v'}
+  };
 #endif
 
 void
 usage(char *cmd)
 {
-        printf(_(
-            "Usage: %s [OPTIONS] filename1 ... filenameN\n"
-            "  -h            Print usage\n"
-            "  -q            Quiet mode\n"
-            "  -v            Verbose mode (cumulative: errors, warnings, info)\n"
-            "                Use this to get the actual symbol error messages\n"
-            "\nfilename1 ... filenameN are the symbols to check\n"
-            "\n"), cmd);
-        exit(0);
+  printf(_(
+"Usage: %s [OPTIONS] filename1 ... filenameN\n"
+"  -h, --help        Print usage\n"
+"  -q, --quiet       Quiet mode\n"
+"  -v, --verbose     Verbose mode (cumulative: errors, warnings, info)\n"
+"                    Use this to get the actual symbol error messages\n"
+"\nfilename1 ... filenameN are the symbols to check\n"
+"\n"),
+      cmd);
+  exit(0);
 }
 
 int
@@ -52,7 +73,11 @@ parse_commandline(int argc, char *argv[])
 {
   int ch;
 
+#ifdef HAVE_GETOPT_LONG
+  while ((ch = getopt_long (argc, argv, OPTIONS, long_options, NULL)) != -1) {
+#else    
   while ((ch = getopt (argc, argv, OPTIONS)) != -1) {
+#endif
     switch (ch) {
 
       case 'v':

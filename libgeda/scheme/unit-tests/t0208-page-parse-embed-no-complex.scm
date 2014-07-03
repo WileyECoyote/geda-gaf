@@ -6,12 +6,11 @@
              (geda page))
 
 (define test-page
-"v 20130414 2
+"v 20111231 2
 [
 L 0 0 1000 0 3 0 0 0 -1 -1
 ]
 ")
 
 (begin-test 'parse-embedded-section-without-component
-  (assert-thrown 'string-format (string->page "test/page/A" test-page))
-)
+  (assert-thrown 'string-format (string->page "test/page/A" test-page)))

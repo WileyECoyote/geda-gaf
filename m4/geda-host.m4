@@ -2,7 +2,7 @@
 # serial 1
 
 dnl Checks for host platform and features
-dnl Copyright (C) 2011  Peter TB Brett <peter@peter-b.co.uk>
+dnl Copyright (C) 2011-2014  Peter TB Brett <peter@peter-b.co.uk>
 dnl
 dnl This program is free software; you can redistribute it and/or modify
 dnl it under the terms of the GNU General Public License as published by
@@ -16,7 +16,8 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+dnl MA 02110-1301 USA
 
 AC_DEFUN([AX_HOST],
 [

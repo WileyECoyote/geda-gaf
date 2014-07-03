@@ -7,37 +7,48 @@ icondir = $(GEDADATADIR)/icons/$(theme)
 iconsvg = gschem-icons.svg
 
 action_icons = \
-	insert-box \
-	insert-line \
-	insert-circle \
-	insert-arc \
-	insert-path \
-	insert-symbol \
-	insert-net \
-	insert-bus \
-	insert-pin \
-	insert-attribute \
-	insert-text \
-	select \
-	symbol-datasheet \
-	attribute-attach \
-	attribute-detach \
-	attribute-show-value \
-	attribute-show-name \
-	attribute-show-both \
-	clone \
-	multi-clone \
-	deselect
+	gschem-insert-box \
+	gschem-insert-line \
+	gschem-insert-circle \
+	gschem-insert-arc \
+	gschem-insert-path \
+	gschem-insert-symbol \
+	gschem-insert-net \
+	gschem-insert-bus \
+	gschem-insert-pin \
+	gschem-insert-attribute \
+	gschem-insert-text \
+	gschem-datasheet \
+	gschem-attribute-attach \
+	gschem-attribute-detach \
+	gschem-show-value \
+	gschem-show-name \
+	gschem-show-both \
+	gschem-clone \
+	gschem-multi-clone
+
+action_icons2 = \
+	gschem-deselect \
+	gschem-insert-bus \
+	gschem-show-hidden \
+	gschem-show-inherited \
+	gschem-insert-text \
+	gschem-insert-symbol \
+	gschem-insert-net \
+	gschem-select \
+	gschem-unselect-all \
+	gschem-zoom-extents \
+	gschem-zoom-fit \
+	gschem-zoom-in \
+	gschem-zoom-out \
+	gschem-zoom-selection
 
 action_icon_files = \
 	$(action_icons:%=%-16.png) \
+	$(action_icons2:%=%-16.png) \
+	$(action_icons2:%=%-22.png) \
 	attribute-visibility-28.png \
-	attribute-visibility-22.png \
-	insert-symbol-22.png \
-	insert-net-22.png \
-	insert-bus-22.png \
-	insert-text-22.png \
-	select-22.png
+	attribute-visibility-22.png
 
 regen-svg-icons: $(iconsvg)
 	if test -x "`which inkscape`"; then \
@@ -96,6 +107,7 @@ install_icons_exec = \
 	-b $(icondir) \
 	-m "$(mkinstalldirs)" \
 	-x "$(INSTALL_DATA)"
+
 install_theme_icons_exec = \
 	$(ICON_THEME_INSTALLER) \
 	-t $(theme) \
@@ -123,7 +135,7 @@ endif
 	$(install_theme_icons_exec) -u $(theme_icons)
 
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
-DISTCLEANFILES = $(desktop_DATA)
-EXTRA_DIST = $(iconsvg) $(action_icon_files) \
-             $(app_icon_files) \
-             $(desktop_in_files) $(desktop_DATA)
+DISTCLEANFILES       = $(desktop_DATA)
+EXTRA_DIST           = $(iconsvg) $(action_icon_files) \
+             	       $(app_icon_files) \
+             	       $(desktop_in_files) $(desktop_DATA)

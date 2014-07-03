@@ -1,3 +1,7 @@
+2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+
 2013-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/gtksheet/*: Replaced GTK_WIDGET_SET_FLAGS with equivenlent

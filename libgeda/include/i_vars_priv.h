@@ -1,6 +1,6 @@
 
-extern int default_init_right;
-extern int default_init_bottom;
+//extern int default_init_right;
+//extern int default_init_bottom;
 
 extern int default_bus_style;
 extern int default_net_style;
@@ -15,6 +15,19 @@ extern int default_thin_bus_width;
 extern int default_thin_line_width;
 extern int default_thin_net_width;
 extern int default_thin_pin_width;
+
+extern int default_line_end;
+extern int default_line_type;
+extern int default_line_width;
+extern int default_line_space;
+extern int default_line_length;
+
+extern int default_fill_type;
+extern int default_fill_width;
+extern int default_fill_pitch1;
+extern int default_fill_angle1;
+extern int default_fill_pitch2;
+extern int default_fill_angle2;
 
 extern char *default_untitled_name;
 extern char *default_bitmap_directory;

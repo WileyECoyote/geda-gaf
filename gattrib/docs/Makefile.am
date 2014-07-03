@@ -1,13 +1,41 @@
-EXTRA_DIST = gattrib.dox what-is-gattrib.html what-is-geda.html \
-	     gattrib-main.txt logo.png gattrib.1.in
+# These "extra" files are mostly for the Doxygen source documentation
+GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
+	      what-is-geda.tex
 
-all: 
-	@echo 'Type: make doxygen  to create doxygen documentation for gattrib'
+LOCAL_DOX   = gattrib.dox gattrib-main.txt
 
+LOCAL_HTML  = $(html_man_files) what-is-gattrib.html
+
+LOCAL_MAN   = gattrib.1.in
+
+LOCAL_TEX   = what-is-gattrib.tex
+
+EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_MAN) $(LOCAL_TEX)
+
+all:
+	@echo 'Type: make doxygen to create doxygen documentation for gattrib'
+
+# When generating doxygen documentation we check for the existence of the
+# output directory and create if needed. After doxygen executes, we check
+# for the latex directory is skip the latex if the diretory does not exist.
 doxygen: gattrib.dox
 	@echo 'Creating doxygen documentation for gattrib...'
 if ENABLE_DOXYGEN
-	$(DOXYGEN) gattrib.dox
+	@if test "X@DOXYGEN_PATH_OUT@" != "X./" ; then \
+	    DOXYGEN_OUTDIR=@DOXYGEN_PATH_OUT@/gattrib; \
+	    test -d "$$DOXYGEN_OUTDIR" || $(MKDIR_P) "$$DOXYGEN_OUTDIR"; \
+	    export "DOXYGEN_OUTDIR=$$DOXYGEN_OUTDIR"; \
+	    $(DOXYGEN) gattrib.dox; \
+	    echo "Doxygen output generated in $$DOXYGEN_OUTDIR"; \
+	    test -d "$$DOXYGEN_OUTDIR"/latex && \
+	    (cd $$DOXYGEN_OUTDIR/latex && $(MAKE)) || : ; \
+	else \
+	    DOXYGEN_OUTDIR="./"; \
+	    $(DOXYGEN) gattrib.dox; \
+	    test -d latex && (cd latex && $(MAKE)) || : ;\
+	fi
+
+#	-(cd ..)
 else
 	@echo 'configure was not run with the --enable-doxygen switch.'
 	@echo 'The documentation cannot be built from the sources.'
@@ -37,9 +65,9 @@ else
 	@! :
 endif
 
-MOSTLYCLEANFILES = 	*.log *~
-CLEANFILES = 		*.log *~
-DISTCLEANFILES =        *.log
+MOSTLYCLEANFILES     = 	*.log *~
+CLEANFILES           =  *.log *~
+DISTCLEANFILES       =  *.log core FILE *~
 MAINTAINERCLEANFILES = 	*.log *~ Makefile.in
 
 distclean-local:

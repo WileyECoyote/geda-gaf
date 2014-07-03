@@ -3,8 +3,8 @@
 ;;
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2013 Ales Hvezda
-;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2014 Ales Hvezda
+;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
 ;;;
 ;;; Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
 ;;
@@ -119,14 +119,14 @@ typedef struct
 extern gschem_rc_options rc_options;
 
 typedef enum {
-       General,
-       Edit,
-       Pointer,
-       Window,
-       Text,
-       Styles,
-       Attributes,
-       Library,
+       GeneralPref,
+       EditPref,
+       PointerPref,
+       WindowPref,
+       TextPref,
+       StylesPref,
+       AttributesPref,
+       LibraryPref,
 } DialogTabs;
 
 typedef enum {
@@ -153,7 +153,7 @@ typedef enum {
         TextMarkerColor,
 
     /* Styles TAB */
-        JunctionColor,
+        JunctionColor,  /* 13 */
 
 /* 10 Combo Controls  */
         TitleBlock,

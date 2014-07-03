@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
- * Copyright (C) 2012-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
+ * Copyright (C) 2012-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,10 @@
 
 /*------------------------------------------------------------------*/
 /*! \file
- *  \brief Functions to manipulate the TOPLEVEL struct.
+ *  \brief Functions to manipulate the GedaToplevel struct.
  *
- * This file holds functions involved in manipulating the TOPLEVEL data
- * structure.  TOPLEVEL is the data structure inherited from gEDA's
+ * This file holds functions involved in manipulating the GedaToplevel data
+ * structure.  GedaToplevel is the data structure inherited from gEDA's
  * other programs, and holds all info about a project in a form
  * native to gEDA.
  */
@@ -64,22 +64,22 @@ void s_toplevel_close(PageDataSet *PageData) {
  * Reads in a schematic page & calls f_open, which fills out the
  * toplevel structure.
  *
- *  \param toplevel TOPLEVEL structure
+ *  \param toplevel GedaToplevel structure
  *  \param filename file to be opened
  *  \returns 1 on success, 0 on failure
  */
-int s_toplevel_read_page(TOPLEVEL *toplevel, char *filename)
+int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
 {
 
   GError *err = NULL;
   int result;
 
   /* Set the new filename */
-  toplevel->page_current->page_filename = g_strdup(filename);
+  toplevel->page_current->filename = g_strdup(filename);
 
   /* read in and fill out toplevel using f_open and its callees */
   if(!f_open (toplevel, toplevel->page_current, filename, &err)) {
-    s_log_message ("%s\n", err->message);
+    u_log_message ("%s\n", err->message);
     result = 0;
     g_error_free (err);
   }
@@ -99,7 +99,7 @@ int s_toplevel_read_page(TOPLEVEL *toplevel, char *filename)
  *
  *  \param toplevel pointer to the toplevel object to be verified
  */
-void s_toplevel_verify_design (TOPLEVEL *toplevel)
+void s_toplevel_verify_design (GedaToplevel *toplevel)
 {
   GList *p_iter;
   const GList *o_iter;
@@ -109,12 +109,12 @@ void s_toplevel_verify_design (TOPLEVEL *toplevel)
   for (p_iter = geda_list_get_glist (toplevel->pages);
        p_iter != NULL;
        p_iter = g_list_next (p_iter)) {
-    PAGE *p_current = p_iter->data;
+    Page *p_current = p_iter->data;
 
-    for (o_iter = s_page_objects (p_current);
+    for (o_iter = s_page_get_objects (p_current);
          o_iter != NULL;
          o_iter = g_list_next (o_iter)) {
-      OBJECT *o_current = o_iter->data;
+      Object *o_current = o_iter->data;
 
       /* --- look for object, and verify that it has a symbol file attached. ---- */
       if (o_current->type == OBJ_PLACEHOLDER) {
@@ -129,18 +129,18 @@ void s_toplevel_verify_design (TOPLEVEL *toplevel)
 }
 
 /*------------------------------------------------------------------*/
-/*! \brief Copy data from gtksheet into TOPLEVEL struct
+/*! \brief Copy data from gtksheet into GedaToplevel struct
  *
  * Called when the user invokes "save".  It first
  * places all data from gtksheet into SHEET_DATA.  Then it
  * loops through all pages & calls s_toplevel_sheetdata_to_toplevel()
  * to place all
- * stuff in SHEET_DATA into the libgeda TOPLEVEL structure.
+ * stuff in SHEET_DATA into the libgeda GedaToplevel structure.
  */
-void s_toplevel_gtksheet_to_toplevel(TOPLEVEL *toplevel)
+void s_toplevel_gtksheet_to_toplevel(GedaToplevel *toplevel)
 {
   GList *iter;
-  PAGE *p_current;
+  Page *p_current;
 g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
   /* read data from gtksheet into SHEET_DATA */
   s_table_gtksheet_to_all_tables();
@@ -150,7 +150,7 @@ g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
         iter != NULL;
         iter = g_list_next( iter ) ) {
 
-    p_current = (PAGE *)iter->data;
+    p_current = (Page *)iter->data;
     /*toplevel->page_current = p_current;*/
     if(s_page_set_current (toplevel, p_current)) {
       /* only traverse pages which are toplevel */
@@ -160,7 +160,7 @@ g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
     }
     else {
        strcpy(msg_buffer, "Unknown error selecting page <");
-       strcat(msg_buffer, p_current->page_filename);
+       strcat(msg_buffer, p_current->filename);
        strcat(msg_buffer, ">, \n!");
        generic_msg_dialog( msg_buffer );
     }
@@ -178,7 +178,8 @@ g_print("s_toplevel_gtksheet_to_toplevel, begin\n");
  *  -# It adds the new attrib to the master lists.
  *  -# It creates a new table with the new attrib.
  *  -# It then adds the appropriate col to the gtksheet.
- * \param new_attrib_name attribute to be added
+ *
+ * \param column_location The column the attribute is to be added
  */
 void s_toplevel_add_new_attrib(int column_location) {
 
@@ -189,66 +190,67 @@ void s_toplevel_add_new_attrib(int column_location) {
 
   new_attrib_name = x_dialog_new_attrib();
 
-  if (!new_attrib_name) return; /* user canceled or closed window with no value in entry */
+  if (new_attrib_name) { /* user di NOT cancel or close window with no value in entry */
 
-  cur_tab = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
-  sheet = sheets[cur_tab];
+    cur_tab = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
+    sheet = sheets[cur_tab];
 
-  if(column_location < 0) column_location = sheet->maxcol + 1;
+    if(column_location < 0) column_location = sheet->maxcol + 1;
 
-  switch (cur_tab) {
-  case Components:  /* component attribute sheet */
+    switch (cur_tab) {
+      case Components:  /* component attribute sheet */
 
-    if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
-       strcpy(msg_buffer, "Can not add \"");
-       strcat(msg_buffer, new_attrib_name);
-       strcat(msg_buffer, "\", \nAttribute name are ready exist!");
-       generic_msg_dialog( msg_buffer );
-       g_free(new_attrib_name);
-       return;
-    }
+        if (s_string_list_in_list(sheet_head->master_comp_attrib_list_head, new_attrib_name)) {
+          strcpy(msg_buffer, "Can not add \"");
+          strcat(msg_buffer, new_attrib_name);
+          strcat(msg_buffer, "\", \nAttribute name are ready exist!");
+          generic_msg_dialog( msg_buffer );
+          GEDA_FREE(new_attrib_name);
+          return;
+        }
 
-     /* Fill out new sheet with new stuff from gtksheet */
-    gtk_sheet_insert_columns(sheet, column_location, 1);
+        /* Fill out new sheet with new stuff from gtksheet */
+        gtk_sheet_insert_columns(sheet, column_location, 1);
 
-    s_string_list_add_item(sheet_head->attached_attrib,
-                           &sheet_head->attached_attrib_count,
-                           new_attrib_name);
+        s_string_list_add_item(sheet_head->attached_attrib,
+                               &sheet_head->attached_attrib_count,
+                               new_attrib_name);
 
-    s_string_list_insert(sheet_head->master_comp_attrib_list_head,
-                        &sheet_head->comp_attrib_count,
-                         column_location, new_attrib_name);
+        s_string_list_insert(sheet_head->master_comp_attrib_list_head,
+                             &sheet_head->comp_attrib_count,
+                             column_location, new_attrib_name);
 
-    x_gtksheet_add_col_labels(sheet,
-                              sheet_head->comp_attrib_count,
-                              sheet_head->master_comp_attrib_list_head);
+        x_gtksheet_add_col_labels(sheet,
+                                  sheet_head->comp_attrib_count,
+                                  sheet_head->master_comp_attrib_list_head);
 
-    s_string_list_sort_master_comp_attrib_list();
+        s_string_list_sort_master_comp_attrib_list();
 
-    /* resize table to accomodate new attrib col      */
-    sheet_head->component_table = s_table_add_column(sheet_head->component_table,  /* Table */
-		                  sheet_head->comp_count,             /* number of rows */
-		                  column_location, sheet_head->comp_attrib_count-1);
+        /* resize table to accomodate new attrib col      */
+        sheet_head->component_table = s_table_add_column(sheet_head->component_table,  /* Table */
+                                                         sheet_head->comp_count,             /* number of rows */
+                                                         column_location, sheet_head->comp_attrib_count-1);
 
-    break;
-  case 1:  /* net attribute  */
-    /* insert into net attribute list  */
-    break;
+        break;
+      case 1:  /* net attribute  */
+        /* insert into net attribute list  */
+        break;
 
-  case 2:  /* pin attribute  */
-    /* insert into pin attribute list  */
-    break;
-  }  /* switch  */
+      case 2:  /* pin attribute  */
+        /* insert into pin attribute list  */
+        break;
+    }  /* switch  */
 
 #if DEBUG
-  int i; char* str;
-  for ( i = 0; i < sheet_head->comp_attrib_count; i++) {
-    str = s_string_list_get_data_at_index(sheet_head->master_comp_attrib_list_head, i);
-    fprintf(stderr, "s_string comp_attrib[%d] = [%s]\n",i , str);
-  }
+    int i; char* str;
+    for ( i = 0; i < sheet_head->comp_attrib_count; i++) {
+      str = s_string_list_get_data_at_index(sheet_head->master_comp_attrib_list_head, i);
+      fprintf(stderr, "s_string comp_attrib[%d] = [%s]\n",i , str);
+    }
 #endif
 
-if (new_attrib_name) g_free(new_attrib_name);
+    GEDA_FREE(new_attrib_name);
+  }
   return;
 }
 
@@ -286,7 +288,7 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
   s_string_list_delete_item(&(sheet_head->master_comp_attrib_list_head),
                             &(sheet_head->comp_attrib_count),
                               attrib_name);
-  g_free(attrib_name);
+  GEDA_FREE(attrib_name);
 
 #ifdef DEBUG
   printf("In s_toplevel_delete_attrib_col, about to delete col in gtksheet.\n");
@@ -306,7 +308,7 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
 /*! \brief Copy SHEET_DATA content to TOP_LEVEL
  *
  * This function
- * loops through all objects on (PAGE page)->(OBJECT *start_obj).
+ * loops through all objects on (Page page)->(Object *start_obj).
  * It takes the updated SHEET_DATA->TABLE data and then updates the
  * objects with the new attribs & attrib values.
  * For each component, it updates the attached
@@ -315,11 +317,11 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
  * -# First find and update component attribs.
  * -# Then find and update net attribs.
  * -# Finally find and update pin attribs.
- * \param toplevel TOPLEVEL structure
+ * \param toplevel GedaToplevel structure
  * \param page schematic page to copy
  */
 void
-s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
+s_toplevel_sheetdata_to_toplevel (GedaToplevel *toplevel, Page *page)
 {
   GList *copy_list;
   GList *o_iter, *prim_iter;
@@ -336,7 +338,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
    * from the list during iteration over the list.
    */
   /* NB: g_list_copy doesn't declare its input const, so we cast */
-  copy_list = g_list_copy ((GList *)s_page_objects (page));
+  copy_list = g_list_copy ((GList *)s_page_get_objects (page));
 
   /* Iterate backwards since attributes are attached after their
    * parent objects in the list. Attributes can get deleted during
@@ -346,7 +348,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
        o_iter != NULL;
        o_iter = g_list_previous (o_iter)) {
 
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
     /* ------- Object is a component.  Handle component attributes. ------- */
     if (o_current->type == OBJ_COMPLEX) {    /* Note that OBJ_COMPLEX = component + attribs */
@@ -374,7 +376,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
 	s_toplevel_update_component_attribs_in_toplevel(toplevel,
 							o_current,
 							new_comp_attrib_pair_list);
-	g_free(temp_uref);
+	GEDA_FREE(temp_uref);
       } else {
 #ifdef DEBUG
 	fprintf(stderr, "In s_toplevel_sheetdata_to_toplevel, found complex with no refdes. name = %s\n",
@@ -402,12 +404,12 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
    * deleted from the list during its iteration.
    */
   /* NB: g_list_copy doesn't declare its input const, so we cast */
-  copy_list = g_list_copy ((GList *)s_page_objects (page));
+  copy_list = g_list_copy ((GList *)s_page_get_objects (page));
 
   for (o_iter = g_list_last (copy_list);
        o_iter != NULL;
        o_iter = g_list_previous (o_iter)) {
-    OBJECT *o_current = o_iter->data;
+    Object *o_current = o_iter->data;
 
     /* ------- Object is a complex.  Handle pins by looking ------ */
     /* ------- for all pins attached to a component.        ------ */
@@ -419,7 +421,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
        *      used in searching TABLE.
        *  3.  Search TABLE using refdes:pinnumber as key, and get list of
        *      attribs corresponding to this refdes:pinnumber
-       *  4.  Stick the attribs into the TOPLEVEL data structure.
+       *  4.  Stick the attribs into the GedaToplevel data structure.
        */
       temp_uref =  s_attrib_get_refdes(o_current);
       if ( (temp_uref != NULL) &&
@@ -430,7 +432,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
         for (prim_iter = o_current->complex->prim_objs;
              prim_iter != NULL;
              prim_iter = g_list_next (prim_iter)) {
-          OBJECT *comp_prim_obj = prim_iter->data;
+          Object *comp_prim_obj = prim_iter->data;
 
           if (comp_prim_obj->type == OBJ_PIN) {
             new_pin_attrib_list = s_toplevel_get_pin_attribs_in_sheet (temp_uref, comp_prim_obj);
@@ -442,7 +444,7 @@ s_toplevel_sheetdata_to_toplevel (TOPLEVEL *toplevel, PAGE *page)
         }
       }     /* if(temp_uref  */
 
-      g_free(temp_uref);
+      GEDA_FREE(temp_uref);
     }
   }
   g_list_free (copy_list);
@@ -497,13 +499,13 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
     if ( ((sheet_head->component_table)[i][row]).attrib_value ) {
       new_attrib_value = g_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
       name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
-      g_free(new_attrib_value);
+      GEDA_FREE(new_attrib_value);
     } else {
       name_value_pair = g_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */
-    g_free(new_attrib_name);
-    g_free(name_value_pair);
+    GEDA_FREE(new_attrib_name);
+    GEDA_FREE(name_value_pair);
 
     /* Sanity check */
     if (count != i+1) {
@@ -539,15 +541,15 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
  * -# If the attribs doesn't exist on o_current, but is non-null in
  *    the name=value pair, create an attrib object and add it to the part
  *    on o_current.
- * \param toplevel TOPLEVEL structure
+ * \param toplevel GedaToplevel structure
  * \param o_current Component (complex) to be updated.
  * \param new_comp_attrib_list list of name=value attribute pairs
  *                             from SHEET_DATA.
  */
 void
 s_toplevel_update_component_attribs_in_toplevel (
-                                        TOPLEVEL *toplevel,
-                                        OBJECT *o_current,
+                                        GedaToplevel *toplevel,
+                                        Object *o_current,
                                         STRING_LIST *new_comp_attrib_list)
 {
   STRING_LIST *local_list;
@@ -559,7 +561,7 @@ s_toplevel_update_component_attribs_in_toplevel (
   char *old_attrib_value;
   char *refdes;
   GList *a_iter;
-  OBJECT *a_current;
+  Object *a_current;
   int count = 0;  /* This is to fake out a function called later */
   int row, col;
   int visibility = 0;
@@ -609,12 +611,12 @@ s_toplevel_update_component_attribs_in_toplevel (
 	       (s_attrib_name_in_list(new_comp_attrib_list, old_attrib_name) == FALSE) ) {
 	    s_string_list_add_item(complete_comp_attrib_list, &count, old_name_value_pair);
           }
-	  g_free (old_attrib_name);
-	  g_free (old_attrib_value);
+	  GEDA_FREE (old_attrib_name);
+	  GEDA_FREE (old_attrib_value);
 	}
       }
-      g_free(old_name_value_pair);
-      g_free(old_attrib_name);
+      GEDA_FREE(old_name_value_pair);
+      GEDA_FREE(old_attrib_name);
     }
     a_iter = g_list_next (a_iter);
   }  /* while (a_current != NULL) */
@@ -679,7 +681,7 @@ s_toplevel_update_component_attribs_in_toplevel (
     visibility = sheet_head->component_table[col][row].visibility;
     show_name_value = sheet_head->component_table[col][row].show_name_value;
   }
-  g_free(refdes);
+  GEDA_FREE(refdes);
 
 
     /* -------  Four cases to consider: Case 1 ----- */
@@ -707,7 +709,7 @@ s_toplevel_update_component_attribs_in_toplevel (
       printf("     -- In s_toplevel_update_component_attribs_in_toplevel, about to remove old attrib with name= %s, value= %s\n",
 	     old_attrib_name, old_attrib_value);
 #endif
-      s_object_remove_attrib_in_object (toplevel, o_current, old_attrib_name);
+      s_object_release_attrib_in_object (toplevel, o_current, old_attrib_name);
     }
 
     /* -------  Four cases to consider: Case 3 ----- */
@@ -738,10 +740,10 @@ s_toplevel_update_component_attribs_in_toplevel (
 
 
     /* free everything and iterate */
-    g_free(new_attrib_name);
-    g_free(new_attrib_value);
-    g_free(old_attrib_name);
-    g_free(old_attrib_value);
+    GEDA_FREE(new_attrib_name);
+    GEDA_FREE(new_attrib_value);
+    GEDA_FREE(old_attrib_name);
+    GEDA_FREE(old_attrib_value);
     local_list = local_list->next;
   }   /*   while (local_list != NULL)  */
   return;
@@ -763,7 +765,7 @@ STRING_LIST *s_toplevel_get_net_attribs_in_sheet(char *netname)
 /*!
  * \todo Function doesn't do anything - candidate for removal?
  */
-void s_toplevel_update_net_attribs_in_toplevel(OBJECT *o_current,
+void s_toplevel_update_net_attribs_in_toplevel(Object *o_current,
 				   STRING_LIST *new_net_attrib_list)
 {
   /* must be filled in */
@@ -774,7 +776,7 @@ void s_toplevel_update_net_attribs_in_toplevel(OBJECT *o_current,
 /*------------------------------------------------------------------*/
 /*! \brief Get pin attributes
  *
- * This function takes a pointer to the OBJECT pin, and returns a list
+ * This function takes a pointer to the Object pin, and returns a list
  * of attribs found attached to the pin.  The returned list is a
  * STRING_LIST where the ->data holds a name=value string.
  * The algorithm is as follows:
@@ -788,7 +790,7 @@ void s_toplevel_update_net_attribs_in_toplevel(OBJECT *o_current,
  * \param pin Pin object
  * \returns name=value pair as a STRING_LIST
  */
-STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
+STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
 {
   STRING_LIST *new_attrib_list;
   STRING_LIST *local_attrib_list;
@@ -838,14 +840,14 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
     if ( ((sheet_head->pin_table)[i][row]).attrib_value ) {
       new_attrib_value = g_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
       name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
-      g_free(new_attrib_value);
+      GEDA_FREE(new_attrib_value);
     } else {
       name_value_pair = g_strconcat(new_attrib_name, "=", NULL);  /* empty attrib */
     }
 
     s_string_list_add_item(new_attrib_list, &count, name_value_pair);  /* add name=value to new list */
-    g_free(new_attrib_name);
-    g_free(name_value_pair);
+    GEDA_FREE(new_attrib_name);
+    GEDA_FREE(name_value_pair);
 
     /* Sanity check */
     if (count != i+1) {
@@ -876,15 +878,15 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, OBJECT *pin)
  *    delete the attrib.
  * -# If the attribs doesn't exist on pin, but is non-null in
  *    the name=value pair, create an attrib object and add it to the pin.
- * \param toplevel TOPLEVEL structure
+ * \param toplevel GedaToplevel structure
  * \param refdes Unused - needs refactored out
  * \param [in,out] o_pin pin to update
  * \param [in] new_pin_attrib_list New pin attribute list to apply
  */
 void
-s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
+s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
                                            char *refdes,
-                                           OBJECT *o_pin,
+                                           Object *o_pin,
                                            STRING_LIST *new_pin_attrib_list)
 {
   STRING_LIST *local_list;
@@ -909,7 +911,7 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
   new_attrib_value = u_basic_breakup_string(new_name_value_pair, '=', 1);
 
   if (strlen(new_attrib_value) == 0) {
-    g_free(new_attrib_value);
+    GEDA_FREE(new_attrib_value);
     new_attrib_value = NULL;  /* s_misc_remaining_string doesn't return NULL for empty substring. */
   }
   old_attrib_value = o_attrib_search_attached_attribs_by_name (o_pin, new_attrib_name, 0);
@@ -936,7 +938,7 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
       printf("In s_toplevel_update_pin_attribs_in_toplevel, about to remove old attrib with name= %s, value= %s\n",
              new_attrib_name, old_attrib_value);
 #endif
-      s_object_remove_attrib_in_object (toplevel, o_pin, new_attrib_name);
+      s_object_release_attrib_in_object (toplevel, o_pin, new_attrib_name);
     }
 
     /* -------  Four cases to consider: Case 3: No old attrib, new one exists. ----- */
@@ -962,17 +964,17 @@ s_toplevel_update_pin_attribs_in_toplevel (TOPLEVEL *toplevel,
     }
 
     /* free everything and iterate */
-    g_free(new_name_value_pair);
-    g_free(new_attrib_name);
-    g_free(new_attrib_value);
-    g_free(old_attrib_value);
+    GEDA_FREE(new_name_value_pair);
+    GEDA_FREE(new_attrib_name);
+    GEDA_FREE(new_attrib_value);
+    GEDA_FREE(old_attrib_value);
     local_list = local_list->next;
   }   /*   while (local_list != NULL)  */
 
   return;
 }
 
-void s_toplevel_init_data_set(TOPLEVEL *toplevel, PageDataSet *PageData) {
+void s_toplevel_init_data_set(GedaToplevel *toplevel, PageDataSet *PageData) {
 
   /* ---------- Sort the Headers  ---------- */
   //s_string_list_sort_all_list();

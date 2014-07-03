@@ -1,4 +1,4 @@
-# geda-awk.m4                                           -*-Autoconf-*-
+# geda-awk.m4                                            -*-Autoconf-*-
 # serial 1
 
 dnl Improved checks for awk executable path and features
@@ -17,7 +17,7 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
 AC_DEFUN([AX_PROG_AWK],
 [
@@ -29,6 +29,7 @@ AC_DEFUN([AX_PROG_AWK],
     AC_MSG_ERROR([The awk tool could not be found. Ensure it is installed and in your
 path.])
   fi
+  []dnl
 ])dnl AX_PROG_AWK
 
 dnl AX_AWK_IFELSE (PROGRAM, INPUT, [ACTION-IF-TRUE], [ACTION-IF-FALSE])
@@ -57,6 +58,7 @@ $3])
            [rm -fr conftest*;
 $4])
   fi
+  []dnl
 ])dnl AX_AWK_IFELSE
 
 dnl Check for some miscellaneous Awk features used by gEDA.
@@ -79,4 +81,5 @@ AC_DEFUN([AX_AWK_FEATURES],
     AC_MSG_ERROR([Your awk ($AWK) is missing the `gsub' and/or `toupper' functions.
 Consider installing gawk.])
   fi
+  []dnl
 ])dnl AX_AWK_FEATURES

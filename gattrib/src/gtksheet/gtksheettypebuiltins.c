@@ -5,10 +5,10 @@
 #include "gtksheet.h"
 
 /* enumerations from "gtksheetwidget.h" */
-GType
+unsigned int
 gtk_sheet_attr_type_get_type (void)
 {
-  static GType etype = 0;
+  static unsigned int etype = 0;
   if (etype == 0) {
     static const GEnumValue values[] = {
       { GTK_SHEET_FOREGROUND, "GTK_SHEET_FOREGROUND", "foreground" },
@@ -25,10 +25,10 @@ gtk_sheet_attr_type_get_type (void)
   }
   return etype;
 }
-GType
+unsigned int
 gtk_sheet_state_get_type (void)
 {
-  static GType etype = 0;
+  static unsigned int etype = 0;
   if (etype == 0) {
     static const GEnumValue values[] = {
       { GTK_SHEET_NORMAL, "GTK_SHEET_NORMAL", "normal" },
@@ -41,10 +41,10 @@ gtk_sheet_state_get_type (void)
   }
   return etype;
 }
-GType
+unsigned int
 gtk_sheet_border_flags_get_type (void)
 {
-  static GType etype = 0;
+  static unsigned int etype = 0;
   if (etype == 0) {
     static const GFlagsValue values[] = {
       { GTK_SHEET_LEFT_BORDER, "GTK_SHEET_LEFT_BORDER", "left-border" },

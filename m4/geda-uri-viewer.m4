@@ -1,5 +1,5 @@
 # geda-uri-viewer.m4                                    -*-Autoconf-*-
-# serial 1
+# serial 1.1
 
 dnl Checks for default URI launcher method
 dnl Copyright (C) 2011-2013  Peter TB Brett <peter@peter-b.co.uk>
@@ -17,7 +17,7 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
 AC_DEFUN([AX_OPTION_URI_VIEWER],
 [
@@ -66,5 +66,5 @@ AC_DEFUN([AX_OPTION_URI_VIEWER],
   AC_DEFINE_UNQUOTED([SHOW_URI_COMMAND], ["$URI_VIEWER"],
                      [Command to launch default application for a URI.])
   AC_MSG_RESULT([$URI_VIEWER])
-
-])
+  []dnl
+])dnl AX_OPTION_URI_VIEWER

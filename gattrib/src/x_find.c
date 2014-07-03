@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * 
- * Copyright (C) 2012 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -29,9 +29,6 @@
 #include <gtk/gtk.h>
 #include <gattrib.h>  /* include Gattrib specific headers  */
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
 #define MAX_SEARCH_STRING 128
 #define SEARCH_ALL 0
 
@@ -41,10 +38,10 @@ static SearchRecord Search;
 static void x_find_set_search_parameters()
 {
   int cur_page;
-    
+
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   Search.sheet = sheets[cur_page];
-  
+
   x_gtksheet_range_copy(&Search.sheet->range, &Search.range);  
   if (Search.sheet->state==GTK_SHEET_COLUMN_SELECTED)
      Search.mode = Search.sheet->range.col0;
@@ -56,7 +53,6 @@ static void x_find_set_search_parameters()
        x_gtksheet_set_max_range(Search.sheet, &Search.range);
     }
 
-     
   /* STUB: Load Previous Settings */
   Search.Case      = FALSE;
   Search.Whole     = TRUE;
@@ -64,7 +60,7 @@ static void x_find_set_search_parameters()
   Search.Wrap      = TRUE;
   Search.Found     = FALSE;
   Search.count     = 0;
-  
+
 }
 
 static void x_find_notify_not_found(char* text)
@@ -83,12 +79,12 @@ bool x_find_main_search(char* text, char *replacement) {
   int first_cell;
   int inc; /* increment */
   void (*search_func)();
-  
+
   char *cell_text;
   bool found = FALSE;
-  
+
   gtk_sheet_get_active_cell (Search.sheet, &srow, &scol);
-  
+
   int ishit( ) {
     if (!cell_text) return 0;
     if (Search.Whole)
@@ -105,7 +101,7 @@ bool x_find_main_search(char* text, char *replacement) {
   void do_replace_text(int row, int col) {
     char *new;
     new = malloc(strlen (cell_text) - strlen (text) + strlen (replacement) +2 );
-    
+
     if (Search.Whole)
         strcpy(new, replacement);
     else {
@@ -115,7 +111,7 @@ bool x_find_main_search(char* text, char *replacement) {
       else
         strisubst(new, text, replacement);
     }
-      
+
     gtk_sheet_set_cell_text(Search.sheet, row, col, new);
     free(new);
   }
@@ -160,7 +156,7 @@ bool x_find_main_search(char* text, char *replacement) {
         srow = Search.range.row0; /* for subsequent rows start at the beginning*/
     }
   }
-  
+
   if (Search.Backword) {
     inc = -1;
     search_func = search_range_backword;
@@ -200,7 +196,7 @@ bool x_find_main_search(char* text, char *replacement) {
       scol = (Search.mode < 0) ? Search.mode : Search.range.col0;     
     }
     search_func();                 /* and try again */
-  } 
+  }
   return found;
 }
 
@@ -218,6 +214,7 @@ void x_find_replace_attrib_value()
   Search.FindOnlyMode=FALSE;
   x_dialog_search_replace(&Search);
 }
+
 void x_find_attribute()
 {
   GtkSheet *sheet;
@@ -225,7 +222,7 @@ void x_find_attribute()
   int cur_page;
   int count;
   int i;
-  
+
   char *text = x_dialog_get_search_text("Find Attribute:");
   if (text) {
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -235,12 +232,12 @@ void x_find_attribute()
     for( i = 0; i <= count; i++) {
       if (strcmp(sheet->column[i].name, text) == 0) {
         found = TRUE;
-	gtk_sheet_select_column(sheet,i);
-	break;
+        gtk_sheet_select_column(sheet,i);
+        break;
       }
     }
     if (!found) x_find_notify_not_found(text);
-    g_free(text);
+    GEDA_FREE(text);
   }
 }
 void x_find_refdes()
@@ -250,7 +247,7 @@ void x_find_refdes()
   int cur_page;
   int count;
   int i;
-  
+
   char * text = x_dialog_get_search_text("Find Designator:");
   if (text) {
     cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
@@ -260,12 +257,11 @@ void x_find_refdes()
     for( i = 0; i <= count; i++) {
       if (strcmp(sheet->row[i].name, text) == 0) {
         found = TRUE;
-	gtk_sheet_select_row(sheet,i);
-	break;
+        gtk_sheet_select_row(sheet,i);
+        break;
       }
     }
     if (!found) x_find_notify_not_found(text);
-    g_free(text);
+    GEDA_FREE(text);
   }
 }
-

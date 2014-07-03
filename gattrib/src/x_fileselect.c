@@ -1,8 +1,8 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  *
- * Copyright (C) 2003-2012 Stuart D. Brorson.
- * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 /*------------------------------------------------------------------*/
 /*! \file
@@ -74,7 +75,9 @@
 /*! \brief Set up file filter for the file chooser
  *
  * This fcn creates and sets the file filter for the filechooser.
+ *
  * \param filechooser GtkFileChooser to set up
+ *
  */
 static void
 x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
@@ -104,14 +107,17 @@ x_fileselect_setup_filechooser_filters (GtkFileChooser *filechooser)
   gtk_file_chooser_add_filter (filechooser, filter);
 
 }
+
 /*------------------------------------------------------------------*/
+
 /*! \brief Generic File Dialog
  *
  *  This function opens a file chooser dialog and waits for the user to
  *  select a folder and enter a filename. The user can also select an
  *  existing filename or cancel.
  *
- *  \param char *filename a pointer to a buffer to receive the string.
+ *  \param filename  char pointer to a buffer to receive the string.
+ *
  *  \returns boolean ture of dialog accepted input. returns false if
  *           the user cancels.
  */
@@ -143,8 +149,8 @@ bool x_fileselect ( char* filename )
   x_fileselect_setup_filechooser_filters (GTK_FILE_CHOOSER (dialog));
 
   /* preset a directory name */
-  if (pr_current->page_current->page_filename != NULL) {
-    cwd = g_strdup(pr_current->page_current->page_filename);
+  if (pr_current->page_current->filename != NULL) {
+    cwd = g_strdup(pr_current->page_current->filename);
     gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog), cwd);
 #ifdef DEBUG
     fprintf(stderr, "Going to use file name=%s\n", cwd);
@@ -160,7 +166,7 @@ bool x_fileselect ( char* filename )
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     fname = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
     strcpy(filename,fname);
-    g_free(fname); /* GTK actually does this when dialog is destroyed */
+    GEDA_FREE(fname); /* GTK actually does this when dialog is destroyed */
     result = TRUE;
   }
   else {
@@ -186,17 +192,17 @@ bool x_fileselect_load_file (char *filename) {
   const GList *Objects;
 
   if (!quiet_mode) {
-    s_log_message(_("Loading file [%s]\n"), filename);
+    u_log_message(_("Loading file [%s]\n"), filename);
   }
 
   s_page_goto (pr_current, s_page_new (pr_current, filename));
 
   if(s_toplevel_read_page(pr_current, filename) == 0) {
-     fprintf(stderr, _("Couldn't load schematic [%s]\n"), filename);
+     fprintf(stderr, _("Could not load schematic [%s]\n"), filename);
      return FALSE;
   }
 
-  Objects = s_page_objects (pr_current->page_current);
+  Objects = s_page_get_objects (pr_current->page_current);
 
   /* Now add all items found to the master lists */
   s_sheet_data_add_master_comp_list_items (Objects);

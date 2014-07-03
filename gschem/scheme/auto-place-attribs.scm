@@ -1,7 +1,7 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gschem - gEDA Schematic Capture
-;;; Copyright (C) 1998-2013 Ales Hvezda
-;;; Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+;;; Copyright (C) 1998-2010 Ales Hvezda
+;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -18,7 +18,8 @@
 ;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
 ;;; MA 02111-1301 USA.
 
-(use-modules (ice-9 regex))
+(use-modules (ice-9 regex)
+             (geda object))
 
 ;; --------------------------------------------------------------------------
 ;;
@@ -422,27 +423,28 @@
                ; Calcule the offset for vertical pins.
                (if (or (string=? pin-direction "^")
                    (string=? pin-direction "v") )
-                   (begin
+                 (begin
                  (if (string-index move-direction #\<)
-                     (set! x_offset
-                       (- (- (get-point-of-bound
-                          "min-x"
-                          pins-bounds)
-2                         (get-point-of-bound
-                          "max-x"
-                          new-attrib-bounds-adjusted)
-                         )
-                          spacing )) ;; add spacing
+                     (set! x_offset (- (- (get-point-of-bound
+                                            "min-x" pins-bounds)
+                                           2 (get-point-of-bound
+                                               "max-x"
+                                                new-attrib-bounds-adjusted)
+                                       )
+                                       spacing ;; add spacing
+                     )              )
+
                      (if (string-index move-direction #\>)
-                     (set! x_offset
+                         (set! x_offset
                            (+ (- (get-point-of-bound
-                              "max-x"
-                              pins-bounds)
-                             (get-point-of-bound
-                              "min-x"
-                              new-attrib-bounds-adjusted)
-                             )
-                          spacing))))
+                                   "max-x"
+                                   pins-bounds)
+                                 (get-point-of-bound
+                                  "min-x"
+                                   new-attrib-bounds-adjusted)
+                              )
+                              spacing
+                 )  )  ) )
 
                  ; If the offset is zero, there is probably
                  ; an overlap with pin connections, so add
@@ -458,22 +460,29 @@
                  ; Snap the offset to the grid.
                  (set! x_offset (snap-coord-to-grid x_offset))
 
-                 ; Set the new attrib bounds.
-                 (set! new-attrib-bounds-adjusted
-                       (cons (cons (+ (get-point-of-bound
+                   ; Set the new attrib bounds.
+                   (set! new-attrib-bounds-adjusted
+                     (cons
+                       (cons
+                           (+ (get-point-of-bound
                                "min-x"
                                new-attrib-bounds-adjusted)
                               x_offset)
                            (+ (get-point-of-bound
                                "max-x"
                                new-attrib-bounds-adjusted)
-                              x_offset))
-                         (cons (get-point-of-bound
-                            "min-y"
+                              x_offset)
+                       )
+                       (cons
+                         (get-point-of-bound
+                           "min-y"
                             new-attrib-bounds-adjusted)
-                           (get-point-of-bound
-                            "max-y"
-                            new-attrib-bounds-adjusted))))
+                         (get-point-of-bound
+                           "max-y"
+                            new-attrib-bounds-adjusted)
+                       )
+                     )
+                   )
                  )
                    ; Calcule the offset for horizontal pins.
                    (if (or (string=? pin-direction "<")
@@ -718,30 +727,28 @@
              (set-object-color! attribute new-color))
         )
       )
-
+     )
     )
-    (set-default-position object attribute direction
-                  (cdr defaults)) ; process the rest
-    ))
-  ) ; End of definition of set-default-position
+  )
+) ; End of definition of set-default-position
 
 ; This function processes the attribute list and calls
 ; set-default-position for each attribute
-(define autoplace-text
-  (lambda (object direction attrib-list)
-    (if (not (eq? (length attrib-list) 0))
-    (begin
-      (set-default-position object (car attrib-list) direction
-                default-position-of-text-attributes)
-      (autoplace-text object direction (cdr attrib-list))
-      )))) ; End of definition of autoplace-pin-text
-
+(define (autoplace-text object direction attrib-list)
+  (map
+    (lambda (attrib)
+      (set-default-position object attrib direction default-position-of-text-attributes)
+    ) attrib-list
+  )
+) ; End of definition of autoplace-pin-text
 
 ; Autoplace the attributes of the given pin object.
 (define (autoplace-pin-attributes pin)
   (let ((pin-direction (get-pin-direction pin))
-    (attribute-list (get-object-attributes pin)) )
-    (autoplace-text pin pin-direction attribute-list)))
+        (attribute-list (get-object-attributes pin)))
+       (autoplace-text pin pin-direction attribute-list)
+  )
+)
 
 
 ; Get the pin directions of the given list of pins.

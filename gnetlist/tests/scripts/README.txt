@@ -7,7 +7,7 @@ fixed.
 
 Seems to me, tests in the gEDA-gaf suite are way too complex. At least
 for me, Wiley. Some don't have the necessary schematics, and even ones
-that do don't work. Who knows how to fix? Where is the documentation?
+that do, don't work. Who knows how to fix? Where is the documentation?
 Since I don't know how to create such complex schemes, and I'm not sure
 that I even want to, I just created a simple scheme to run some tests
 for scripts that I modified in this suite. It's very simple. Even the

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -13,8 +13,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
@@ -57,14 +57,14 @@ void s_netattrib_check_connected_string (const char *str)
   if (s_netattrib_connected_string_get_pinnum (str) == NULL) return;
 
   fprintf (stderr,
-         _("ERROR: `%s' is reserved for internal use."), PIN_NET_PREFIX);
+         _("ERROR: `%s' is reserved for internal use.\n"), PIN_NET_PREFIX);
            exit (1);
 }
 
 /* things to do here : */
 /* write the net alias function */
 
-/* be sure to g_free returned string */
+/* be sure to GEDA_FREE returned string */
 char *s_netattrib_extract_netname(char *value)
 {
   char *return_value = NULL;
@@ -91,7 +91,7 @@ char *s_netattrib_extract_netname(char *value)
 
 /* if this function creates a cpinlist list, it will not have a head node */
 void
-s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
+s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
                         NETLIST * netlist, char *value, char *hierarchy_tag)
 {
   NETLIST  *netlist_tail  = NULL;
@@ -134,7 +134,7 @@ s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
         if (old_cpin->nets->net_name) {
           fprintf(stderr, _("Found a cpinlist head with a netname! [%s]\n"),
                   old_cpin->nets->net_name);
-          g_free(old_cpin->nets->net_name);
+          GEDA_FREE(old_cpin->nets->net_name);
         }
 
 
@@ -147,7 +147,7 @@ s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
                                        current_pin);
         old_cpin->nets->connected_to = g_strdup(connected_to);
         old_cpin->nets->nid = o_current->sid;
-        g_free(connected_to);
+        GEDA_FREE(connected_to);
       }
       else {
 
@@ -177,7 +177,7 @@ s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
                hierarchy_tag);
 #endif
 
-        g_free(connected_to);
+        GEDA_FREE(connected_to);
       }
 
     } else {		/* no uref, means this is a special component */
@@ -185,11 +185,11 @@ s_netattrib_create_pins(TOPLEVEL * pr_current, OBJECT * o_current,
     }
     current_pin = strtok(NULL, DELIMITERS);
   }
-  g_free(net_name);
+  GEDA_FREE(net_name);
 }
 
 void
-s_netattrib_handle (TOPLEVEL * pr_current, OBJECT * o_current,
+s_netattrib_handle (GedaToplevel * pr_current, Object * o_current,
                     NETLIST * netlist, char *hierarchy_tag)
 {
   char *value;
@@ -206,7 +206,7 @@ s_netattrib_handle (TOPLEVEL * pr_current, OBJECT * o_current,
 
     s_netattrib_create_pins (pr_current, o_current,
                              netlist, value, hierarchy_tag);
-    g_free (value);
+    GEDA_FREE (value);
   }
 
   /* now look outside the component */
@@ -220,11 +220,11 @@ s_netattrib_handle (TOPLEVEL * pr_current, OBJECT * o_current,
 
     s_netattrib_create_pins (pr_current, o_current,
                              netlist, value, hierarchy_tag);
-    g_free (value);
+    GEDA_FREE (value);
   }
 }
 
-char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
+char *s_netattrib_net_search (Object * o_current, const char *wanted_pin)
 {
   char *value             = NULL;
   char *char_ptr          = NULL;
@@ -252,7 +252,7 @@ char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
       fprintf (stderr,
      _("Got an invalid net= attrib [net=%s]\nMissing : in net= attrib\n"),
               value);
-      g_free (value);
+      GEDA_FREE (value);
       return NULL;
     }
 
@@ -267,7 +267,7 @@ char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
       current_pin = strtok (NULL, DELIMITERS);
     }
 
-    g_free (value);
+    GEDA_FREE (value);
   }
 
   /* now look outside the component */
@@ -284,7 +284,7 @@ char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
       fprintf (stderr,
           _("Got an invalid net= attrib [net=%s]\nMissing : in net= attrib\n"),
               value);
-      g_free (value);
+      GEDA_FREE (value);
       return NULL;
     }
 
@@ -294,19 +294,19 @@ char *s_netattrib_net_search (OBJECT * o_current, const char *wanted_pin)
     current_pin = strtok (start_of_pinlist, DELIMITERS);
     while (current_pin) {
       if (strcmp (current_pin, wanted_pin) == 0) {
-        g_free (return_value);
+        GEDA_FREE (return_value);
         return net_name;
       }
       current_pin = strtok (NULL, DELIMITERS);
     }
 
-    g_free (value);
+    GEDA_FREE (value);
   }
 
   return return_value;
 }
 
-char *s_netattrib_return_netname(TOPLEVEL * pr_current, OBJECT * o_current,
+char *s_netattrib_return_netname(GedaToplevel * pr_current, Object * o_current,
                                  char *pinnumber, char *hierarchy_tag)
 {
   const char *current_pin;
@@ -317,7 +317,7 @@ char *s_netattrib_return_netname(TOPLEVEL * pr_current, OBJECT * o_current,
   if (current_pin == NULL) return NULL;
 
   /* use hierarchy tag here to make this net uniq */
-  temp_netname = s_netattrib_net_search(o_current->parent,
+  temp_netname = s_netattrib_net_search(o_current->parent_object,
                                         current_pin);
 
   netname =

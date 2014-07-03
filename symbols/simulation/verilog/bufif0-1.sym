@@ -3,27 +3,27 @@ L 300 800 800 500 3 0 0 0 -1 -1
 L 800 500 300 200 3 0 0 0 -1 -1
 L 300 800 300 500 3 0 0 0 -1 -1
 L 300 500 300 200 3 0 0 0 -1 -1
-P 300 500 0 500 1 0 1
-{
-T 0 600 5 8 0 1 0 0 1
-pinnumber=INW
-T 0 600 5 8 0 0 0 0 1
-pinseq=1
-T 0 600 5 8 0 1 0 0 1
-pintype=io
-T 0 600 5 8 0 1 0 0 1
-pinlabel=n_a
-}
 P 1100 500 800 500 1 0 0
 {
 T 915 600 5 8 0 1 0 0 1
 pinnumber=OUTW
 T 915 600 5 8 0 0 0 0 1
-pinseq=2
+pinseq=1
 T 915 600 5 8 0 1 0 0 1
 pintype=io
 T 915 600 5 8 0 1 0 0 1
-pinlabel=n_a
+pinlabel=OUTW
+}
+P 300 500 0 500 1 0 1
+{
+T 0 600 5 8 0 1 0 0 1
+pinnumber=INW
+T 0 600 5 8 0 0 0 0 1
+pinseq=2
+T 0 600 5 8 0 1 0 0 1
+pintype=io
+T 0 600 5 8 0 1 0 0 1
+pinlabel=INW
 }
 V 600 700 50 6 0 0 0 -1 -1 0 0 -1 -1 -1 -1
 P 0 900 600 900 1 0 0
@@ -35,7 +35,7 @@ pinseq=3
 T 50 950 5 10 0 1 0 0 1
 pintype=io
 T 50 950 5 10 0 1 0 0 1
-pinlabel=n_a
+pinlabel=CONTROLW
 }
 L 600 900 600 750 3 0 0 0 -1 -1
 T 700 750 2 10 0 0 0 0 1

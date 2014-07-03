@@ -2,21 +2,21 @@
  'gschem and Friends' Electronic Design Suite
 ==============================================
 
-Copyright (C) 1998-2012 gEDA Developers
+Copyright (C) 2010-2014 gEDA Developers
 
 Cairo-based schematic and symbol renderer
 =========================================
 
-The libgedacairo library provides a renderer for schematics and
-symbols based on the Cairo vector graphics library and the Pango font
-library.  Data for rendering is loaded using libgeda.
+The libgedacairo library provides a renderer for schematics and symbols
+based on the Cairo vector graphics library and the Pango font library.
+Data for rendering is loaded using libgeda.
 
-The library does *not* provide a rendering widget for programs
-(although it could be used to implement one).  It is intended for more
+The library does *not* provide a rendering widget for programs, although
+it could be used to implement one. The library is intended for more
 general rendering usage, e.g. to screen, to printers, or to various
 image formats.
 
-The library is based on Peter Clifton's preexisting gschem rendering
+Libgedacairo is based on Peter Clifton's preexisting gschem rendering
 code.
 
 Please submit bug reports and patches to

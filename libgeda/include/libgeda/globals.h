@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2013 Ales Hvezda
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,5 +27,8 @@
 
 /* Size of a tab in characters */
 extern int tab_in_chars;
+
+/* Color map for printing */
+extern COLOR print_colors[MAX_COLORS];
 
 #endif

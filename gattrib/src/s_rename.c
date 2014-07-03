@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * Copyright (C) 2003-2012 Stuart D. Brorson.
+ * Copyright (C) 2003-2014 Stuart D. Brorson.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -80,40 +80,40 @@ void s_rename_init(void)
 
 /*! \brief Free all data referred to by the rename pairs
  *
- * Runs through the rename pairs and calls g_free() on the non-NULL
+ * Runs through the rename pairs and calls GEDA_FREE() on the non-NULL
  * entries, then sets the entry to NULL.
  */
 void s_rename_destroy_all(void)
 {
-    int i, j;
+  int i, j;
 
-    for (i = 0; i < MAX_SETS; i++) {
-	for (j = 0; j < MAX_RENAME; j++) {
+  for (i = 0; i < MAX_SETS; i++) {
+    for (j = 0; j < MAX_RENAME; j++) {
 
-	    if (rename_pairs[i][j].src) {
-		g_free(rename_pairs[i][j].src);
-		rename_pairs[i][j].src = NULL;
-	    }
+      if (rename_pairs[i][j].src) {
+        g_free(rename_pairs[i][j].src);
+        rename_pairs[i][j].src = NULL;
+      }
 
-	    if (rename_pairs[i][j].dest) {
-		g_free(rename_pairs[i][j].dest);
-		rename_pairs[i][j].dest = NULL;
-	    }
-	}
+      if (rename_pairs[i][j].dest) {
+        g_free(rename_pairs[i][j].dest);
+        rename_pairs[i][j].dest = NULL;
+      }
     }
-    rename_counter = 0;
-    cur_set = 0;
+  }
+  rename_counter = 0;
+  cur_set = 0;
 }
 
 void s_rename_next_set(void)
 {
-    if (cur_set == MAX_SETS) {
-	fprintf(stderr,
-		_("Increase number of rename_pair sets in s_net.c\n"));
-	return;
-    }
-    cur_set++;
-    rename_counter = 0;
+  if (cur_set == MAX_SETS) {
+    fprintf(stderr,
+            _("Increase number of rename_pair sets in s_net.c\n"));
+            return;
+  }
+  cur_set++;
+  rename_counter = 0;
 }
 
 /*! \brief Print all rename sets
@@ -255,7 +255,7 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 			/* this is a bad idea */
 			/* because inside nets-> */
 			/* there is another pointer */
-			/*g_free(pl_current->net_name); */
+			/*GEDA_FREE(pl_current->net_name); */
 
 			pl_current->net_name =
 			    g_strdup(dest);
@@ -270,7 +270,7 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 
 }
 
-void s_rename_all (TOPLEVEL *toplevel, NETLIST * netlist_head)
+void s_rename_all (GedaToplevel *toplevel, NETLIST * netlist_head)
 {
     int i;
 

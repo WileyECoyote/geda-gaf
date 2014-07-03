@@ -1,6 +1,6 @@
 /*
  * gEDA/gaf command-line utility
- * Copyright (C) 2012-2013 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2012-2014 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
+
 #include <version.h>
 
 #include <unistd.h>
@@ -81,12 +82,13 @@ usage (void)
 static void
 version (void)
 {
+
   printf(_("gEDA/gaf %s (g%.7s)\n"
-"Copyright (C) 1998-2013 gEDA developers\n"
-"This is free software, and you are welcome to redistribute it under\n"
-"certain conditions. For details, see the file `COPYING', which is\n"
-"included in the gEDA distribution.\n"
-"There is NO WARRANTY, to the extent permitted by law.\n"),
+  "Copyright (C) 1998-2013 gEDA developers\n"
+  "This is free software, and you are welcome to redistribute it under\n"
+  "certain conditions. For details, see the file `COPYING', which is\n"
+  "included in the gEDA distribution.\n"
+  "There is NO WARRANTY, to the extent permitted by law.\n"),
          PACKAGE_DOTTED_VERSION, PACKAGE_GIT_COMMIT);
   exit (0);
 }
@@ -105,7 +107,7 @@ main (int argc, char **argv)
   setlocale (LC_ALL, "");
   bindtextdomain ("geda-gaf", LOCALEDIR);
   textdomain ("geda-gaf");
-  bind_textdomain_codeset ("geda-gschem", "UTF-8");
+  bind_textdomain_codeset ("geda-gaf", "UTF-8");
 #endif
 
   while (-1 != (c = getopt_long (argc, argv, short_options,

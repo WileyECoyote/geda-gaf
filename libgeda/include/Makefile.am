@@ -3,13 +3,29 @@
 libgedaincludedir = $(includedir)/libgeda
 
 libgedainclude_HEADERS = \
-	libgeda/geda_colors.h \
 	libgeda/defines.h \
 	libgeda/edaconfig.h \
 	libgeda/edaerrors.h \
 	libgeda/edascmhookproxy.h \
-	libgeda/funcs.h \
+	libgeda/edascmvaluetypes.h \
+	libgeda/f_types.h \
+	libgeda/g_types.h \
+	libgeda/geda_arc.h \
+	libgeda/geda_box.h \
+	libgeda/geda_bus.h \
+	libgeda/geda_colors.h\
+	libgeda/geda_circle.h \
+	libgeda/geda_complex.h \
+	libgeda/geda_line.h \
 	libgeda/geda_list.h \
+	libgeda/geda_net.h \
+	libgeda/geda_object.h \
+	libgeda/geda_page.h \
+	libgeda/geda_path.h \
+	libgeda/geda_picture.h \
+	libgeda/geda_pin.h \
+	libgeda/geda_text.h \
+	libgeda/geda_toplevel.h \
 	libgeda/globals.h \
 	libgeda/libgeda.h \
 	libgeda/o_types.h \

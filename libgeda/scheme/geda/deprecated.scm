@@ -46,12 +46,11 @@
    (filter!
     string?
     (map (lambda (x)
-           (let ((name-value (parse-attrib x)))
-             (if (string=? name (car name-value))
+           (let ((name-value (false-if-exception (parse-attrib x))))
+             (if (and name-value (string=? name (car name-value)))
                  (cdr name-value)
                  #f)))
          (object-attribs object)))))
-
 
 (define-public (get-object-type object)
   (case (object-type object)

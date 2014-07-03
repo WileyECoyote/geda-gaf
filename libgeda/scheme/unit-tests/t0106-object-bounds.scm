@@ -23,7 +23,7 @@
     (assert-true (not (object-bounds t)))
 
     ;; Empty components should have no bounds...
-    (assert-equal '() (component-contents C))
+    ;;(assert-equal '() (component-contents C))
     (assert-true (not (object-bounds C)))
 
     ;; ... but they should get bounds when you add stuff to them.
@@ -51,3 +51,4 @@
       (assert-equal a (fold-bounds #f a))
       (assert-equal a (fold-bounds a #f))
       (assert-equal #f (fold-bounds #f #f)))))
+

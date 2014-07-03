@@ -204,11 +204,17 @@
                   ("microchip"       "Manufacturers/Microchip")
                   ("minicircuits"    "Manufacturers/Mini-Circuits")
                   ("mitsubishi"      "Manufacturers/Mitsubishi Electric")
+                     ("mitsubishi/logic"               "Manufacturers/Logic")
+                  ("moto"            "Manufacturers/Motorola")
                   ("national"        "Manufacturers/National Semiconductor")
                   ("panasonic"       "Manufacturers/Panasonic")
                      ("panasonic/fc-electrolytic"      "Manufacturers/FC Series Capacitors")
                      ("panasonic/hd-electrolytic"      "Manufacturers/HD Series Capacitors")
                      ("panasonic/resistors"            "Manufacturers/Resistors")
+                     ("panasonic/ERA2-resistors"       "Manufacturers/ERA2 Resistors") 
+                     ("panasonic/ERA3-resistors"       "Manufacturers/ERA3 Resistors") 
+                     ("panasonic/ERA6-resistors"       "Manufacturers/ERA6 Resistors") 
+                     ("panasonic/ERA8-resistors"       "Manufacturers/ERA8 Resistors") 
                   ("philips"         "Manufacturers/Philips Electronics")
                   ("st"              "Manufacturers/ST Microelectronics")
                   ("ti"              "Manufacturers/Texas Instruments")
@@ -234,6 +240,13 @@
                      ("vishay/nmosfet"         "Manufacturers/N-Channel MOSFET")
                      ("vishay/pmosfet"         "Manufacturers/P-Channel MOSFET")
                      ("vishay/dual_pmos"       "Manufacturers/Dual P-MOSFET")
+                     ("vishay/dual_nmos"       "Manufacturers/Dual N-MOSFET")
+                     ("vishay/CCF02-resistors" "Manufacturers/CCF02 Resistors")
+                     ("vishay/CCF50-resistors" "Manufacturers/CCF50 Resistors")
+                     ("vishay/CCF55-resistors" "Manufacturers/CCF55 Resistors")
+                     ("vishay/CCF60-resistors" "Manufacturers/CCF60 Resistors")
+                     ("vishay/CPF-resistors"   "Manufacturers/CPF Resistors")
+
                   ("xilinx"                    "Manufacturers/Xilinx")
 
 ; Electro-Mechanical
@@ -256,7 +269,7 @@
                   ("power"           "Power Systems")
                   ("graphic"         "Graphical symbols")
                   ("misc"            "Misc. unsorted symbols")
-                  ("titleblock"      "Titleblocks/titleblock")
+                  ("titleblock"      "Standard/titleblock")
 
 ; Simulation
                   ("simulation" "Simulation/Simulation")

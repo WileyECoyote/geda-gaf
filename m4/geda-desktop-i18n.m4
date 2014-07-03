@@ -61,6 +61,7 @@ gettext is correctly installed, and rerun configure.])
   _IT_SUBST([DESKTOP_I18N_LANGS_RULE])
   _IT_SUBST([DESKTOP_I18N_DESKTOP_RULE])
   _IT_SUBST([DESKTOP_I18N_XML_RULE])
+  []dnl
 ])dnl AX_DESKTOP_I18N
 
 # _IT_SUBST(VARIABLE)
@@ -69,6 +70,7 @@ gettext is correctly installed, and rerun configure.])
 # Stolen from intltool.m4 (GPL v2)
 AC_DEFUN([_IT_SUBST],
 [
-AC_SUBST([$1])
-m4_ifdef([_AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE([$1])])
+  AC_SUBST([$1])
+  m4_ifdef([_AM_SUBST_NOTMAKE], [_AM_SUBST_NOTMAKE([$1])])
+  []dnl
 ])dnl _IT_SUBST

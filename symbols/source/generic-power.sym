@@ -7,9 +7,9 @@ T 250 50 5 6 0 1 0 0 1
 pinnumber=1
 T 250 50 5 6 0 0 0 0 1
 pinseq=1
-T 250 50 5 6 0 1 0 0 1 
+T 250 50 5 6 0 1 0 0 1
 pinlabel=1
-T 250 50 5 6 0 1 0 0 1 
+T 250 50 5 6 0 1 0 0 1
 pintype=pwr
 }
 L 50 200 350 200 3 0 0 0 -1 -1
@@ -22,4 +22,4 @@ device=none
 T 200 300 8 10 0 1 0 0 1
 refdes=none
 T 600 100 9 10 0 0 0 0 1
-footprint=unknown
+footprint=none

@@ -1,5 +1,5 @@
 ## Process this file with automake to produce Makefile.in
-AUTOMAKE_OPTIONS = 1.7 subdir-objects
+AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
 INC_LOCAL =  -I$(srcdir)/../include

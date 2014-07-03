@@ -2,12 +2,45 @@
  'gschem and Friends' Electronic Design Suite
 ==============================================
 
-Copyright (C) 1998-2013 gEDA Developers
+Copyright (C) 1998-2014 gEDA Developers
 
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
 Notable changes in gEDA/gaf 2.0.8 - Rampage Edition
+
+* Gschem has improved performances, additional toolbars, improved stability,
+  enhanced appearance and improved memory management. The main menu has been
+  revised to improve clarity and organization. New features have been added
+  such a Invert Selection, Zoom-To Selection,
+
+* Libgeda extensively revised to provide a more generic API. The library
+  has improved performance from previous versions and uses less memory,
+  The was mostly achieved by eliminating the needless passing of parameters.
+  All Object types are now object oriented to improve memory management
+  by off-loading responsibility to glib. The API has been extended to
+  provide more functionality for applications. The configuration storage
+  systems provided by Libgeda have been revised, mostly the new system,
+  which no longer utilizes gnome based virtual file systems, aka gvfs. The
+  use of GFile exponentially increased dependencies and was eliminated.
+
+* Symbol libraries significantly expanded.
+
+* A new library, Libgedathon provides an API for Python scripts.
+
+* A new library, Libgedawidget provides an "Gtk" like widgets to enhance
+  geda-gaf applications and extend support of code obsoleted by Gtk
+  developers.
+
+* The build system has been "heavily" modified and the source code
+  completely reorganized. New macros provide better organization and
+  greater flexibility.
+
+* New install scripts, geda-install and geda-install-bin facilitate
+  installation from local builds. (Note that geda-install-bin replaces
+  ginstall_local)
+
+Notable changes in gEDA/gaf 2.0.7.8 - Rampage Edition
 
 * The Coordinates Dialog allows direct entering of World Coordinates.
   If an XY coordinate is "entered" when not in an Action, the cursor
@@ -57,7 +90,9 @@ Notable changes in gEDA/gaf 2.0.7 - Rampage Edition
   color selector dialog. In addition the size of grips, markers and
   cues can be customized by the user in the Preferences dialog.
 
-* "Save As" can now optionaly add the ".sch" file extension.
+* Gschem no longer closes the GUI when the last file is closed.
+
+* Gschem's "Save As" can now optionaly add the ".sch" file extension.
 
 * Refdes number are reset when using buffers and the clipboard.
 

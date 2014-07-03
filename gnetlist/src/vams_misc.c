@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gnetlist - gEDA Netlist
- * Copyright (C) 1998-2010 Ales Hvezda
- * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,12 +27,12 @@
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
-SCM vams_get_attribs_list (OBJECT *object)
+SCM vams_get_attribs_list (Object *object)
 {
 
-  OBJECT *o_current;
+  Object *o_current;
   GList  *a_iter;
-  OBJECT *a_current;
+  Object *a_current;
   int     val;
 
   char* found_name = NULL;
@@ -50,7 +50,7 @@ SCM vams_get_attribs_list (OBJECT *object)
         list = scm_cons (scm_from_utf8_string (found_name), list);
       }
 
-      g_free (found_name);
+      GEDA_FREE (found_name);
     }
     a_iter = g_list_next (a_iter);
   }
