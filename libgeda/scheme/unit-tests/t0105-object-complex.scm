@@ -79,6 +79,28 @@
     (assert-thrown 'object-state
                    (component-remove! B y)))
 )
+
+(begin-test 'component-remove-attrib
+  (let ((comp   (make-component "test component" '(1 . 2) 0 #t #f))
+        (pin    (make-net-pin '(0 . 0) '(100 . 0)))
+        (attrib (make-text '(0 . 0) 'lower-left 0 "name=x" 10 #t 'both))
+       )
+
+    (component-append! comp pin attrib)
+    (attach-attribs! pin attrib)
+    (assert-thrown 'object-state (component-remove! comp pin))
+    (assert-thrown 'object-state (component-remove! comp attrib))
+  )
+)
+
+(begin-test 'object-component
+  (let* ((A (make-component "test component" '(0 . 0) 0 #t #f))
+         (x (make-box '(0 . 2) '(2 . 0))))
+    (assert-equal #f (object-component x))
+    (component-append! A x)
+    (assert-equal A (object-component x)))
+)
+
 (begin-test 'component-append/page
   (let ((P (make-page "/test/page/A"))
         (A (make-component "test component" '(1 . 2) 0 #t #f))
@@ -87,20 +109,22 @@
     (dynamic-wind
      (lambda () #t)
      (lambda ()
+
        (page-append! P x)
-       (assert-thrown 'object-state
-                      (component-append! A x))
+
+       (assert-thrown 'object-state (component-append! A x))
 
        (page-append! P A)
-       (assert-thrown 'object-state
-                      (component-append! A x))
+
+       (assert-thrown 'object-state (component-append! A x))
 
        (component-append! A y)
        (assert-equal (list y) (component-contents A)))
 
      (lambda ()
-       (close-page! P)))
+       (close-page! P))
     )
+  )
 )
 
 (begin-test 'component-remove/page
@@ -129,36 +153,7 @@
        (assert-equal '() (component-contents A)))
 
      (lambda ()
-       (close-page! P)))
+       (close-page! P))
     )
-)
-
-(begin-test 'component-translate
-  (let* ((A (make-component "test component" '(0 . 0) 0 #t #f))
-         (x (make-box '(0 . 2) '(2 . 0))))
-
-    (component-append! A x)
-    (set-component! A '(1 . 1) 0 #t #f)
-    (assert-equal '(1 . 3) (box-top-left x))
-    (assert-equal '(3 . 1) (box-bottom-right x)))
-)
-
-(begin-test 'component-remove-attrib
-  (let ((comp   (make-component "test component" '(1 . 2) 0 #t #f))
-        (pin    (make-net-pin '(0 . 0) '(100 . 0)))
-        (attrib (make-text '(0 . 0) 'lower-left 0 "name=x" 10 #t 'both))
-       )
-    (component-append! comp pin attrib)
-    (attach-attribs! pin attrib)
-    (assert-thrown 'object-state (component-remove! comp pin))
-    (assert-thrown 'object-state (component-remove! comp attrib))
   )
-)
-
-(begin-test 'object-component
-  (let* ((A (make-component "test component" '(0 . 0) 0 #t #f))
-         (x (make-box '(0 . 2) '(2 . 0))))
-    (assert-equal #f (object-component x))
-    (component-append! A x)
-    (assert-equal A (object-component x)))
 )

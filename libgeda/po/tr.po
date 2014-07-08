@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-03 02:48-0500\n"
+"POT-Creation-Date: 2014-07-07 23:22-0500\n"
 "PO-Revision-Date: 2012-01-31 12:11+0000\n"
 "Last-Translator: Peter TB Brett <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -1108,25 +1108,29 @@ msgstr ""
 msgid "Invalid complex angle ~A. Must be 0, 90, 180, or 270 degrees"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:278
+#: libgeda/src/scheme/scheme_complex.c:276
+msgid "Object ~A is already on a page"
+msgstr ""
+
+#: libgeda/src/scheme/scheme_complex.c:284
 #: libgeda/src/scheme/scheme_page.c:252
 msgid "Object ~A is already attached to something"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:337
+#: libgeda/src/scheme/scheme_complex.c:344
 msgid "Object ~A is attached to a different complex"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:344
+#: libgeda/src/scheme/scheme_complex.c:351
 msgid "Object ~A is attached to a page"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:351
+#: libgeda/src/scheme/scheme_complex.c:358
 #: libgeda/src/scheme/scheme_page.c:300
 msgid "Object ~A is attached as an attribute"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_complex.c:358
+#: libgeda/src/scheme/scheme_complex.c:365
 #: libgeda/src/scheme/scheme_page.c:307
 msgid "Object ~A has attributes"
 msgstr ""

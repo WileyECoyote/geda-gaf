@@ -18,7 +18,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <version.h>
+#include "version.h"
 
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>

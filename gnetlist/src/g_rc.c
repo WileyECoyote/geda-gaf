@@ -1,5 +1,5 @@
 /* gEDA - GPL Electronic Design Automation
- * gnetlist - gEDA Netlist 
+ * gnetlist - gEDA Netlist
  * Copyright (C) 1998-2012 Ales Hvezda
  * Copyright (C) 1998-2012 gEDA Contributors (see ChangeLog for details)
  *
@@ -20,7 +20,7 @@
 
 #include <config.h>
 #include <missing.h>
-#include <version.h>
+#include "version.h"
 
 #include <stdio.h>
 //#include <ctype.h>
@@ -52,7 +52,7 @@ SCM g_rc_gnetlist_version(SCM scm_version)
   version = scm_to_utf8_string (scm_version);
   if (strcmp (version, PACKAGE_DATE_VERSION) != 0) {
     fprintf(stderr,
-	    "You are running gEDA/gaf version [%s%s.%s],\n", 
+	    "You are running gEDA/gaf version [%s%s.%s],\n",
             PREPEND_VERSION_STRING, PACKAGE_DOTTED_VERSION,
             PACKAGE_DATE_VERSION);
     fprintf(stderr,

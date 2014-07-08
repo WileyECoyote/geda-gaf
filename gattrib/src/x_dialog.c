@@ -31,7 +31,7 @@
 #include "config.h"
 #endif
 
-#include <version.h>
+#include "version.h"
 
 /*------------------------------------------------------------------
  * Includes required to run graphical widgets.

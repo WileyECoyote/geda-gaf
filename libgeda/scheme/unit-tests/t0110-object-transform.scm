@@ -89,44 +89,12 @@
     (assert-equal '(1 . 2) (line-start b))
     (assert-equal '(3 . 4) (line-end b)) ))
 
-;; New symbol library with one component containing only one
-;; line primitive
-(component-library-funcs
-  (lambda ()       ; list-symbol-names function
-    '("line.sym"))
-  (lambda (name)   ; get-symbol-by-name function
-    (let ((page (make-page "/test/page/line")))
-      (page-append! page (make-line '(1 . 2) '(3 . 4)))
-      (let ((s (page->string page)))
-        (close-page! page)
-        s)))
-  "Test symbols"   ; Library name
-  )
+(begin-test 'component-translate
+  (let* ((A (make-component "test component" '(0 . 0) 0 #t #f))
+         (x (make-box '(0 . 2) '(2 . 0))))
 
-;; Test the 'set-component!' procedure (the 'page-append!' procedure also
-;; invokes it). This test includes testing of mirroring and rotation of a
-;; component's primitives.
-
-(begin-test 'component/library-transform
-  (let ((P (make-page "/test/page/A"))
-        (C (make-component/library "line.sym" '(0 . 0) 90 #f #f)))
-
-    (dynamic-wind
-      (lambda () #t)
-      (lambda ()
-        (page-append! P C)
-
-        (assert-equal '(-2 . 1) (line-start (car (component-contents C))))
-        (assert-equal '(-4 . 3) (line-end   (car (component-contents C))))
-
-        (set-component! C '(0 . 0) 90 #t #f)
-
-        (assert-equal '(-2 . -1) (line-start (car (component-contents C))))
-        (assert-equal '(-4 . -3) (line-end   (car (component-contents C))))
-        )
-      (lambda ()
-        (close-page! P)))
-    ))
-
-;; Clear component library again
-(reset-component-library)
+    (component-append! A x)
+    (set-component! A '(1 . 1) 0 #t #f)
+    (assert-equal '(1 . 3) (box-top-left x))
+    (assert-equal '(3 . 1) (box-bottom-right x)))
+)

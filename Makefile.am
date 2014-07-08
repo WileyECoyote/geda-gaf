@@ -26,7 +26,8 @@ DISTCHECK_CONFIGURE_FLAGS = \
 
 BUILT_SOURCES = version.h
 
-EXTRA_DIST  =   COPYING.LGPL \
+EXTRA_DIST    = $(BUILT_SOURCES) \
+		COPYING.LGPL \
 		HACKING \
 		autogen.sh \
 		config.h \

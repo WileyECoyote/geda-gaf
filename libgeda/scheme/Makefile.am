@@ -11,9 +11,9 @@ check-am: update-gaf-tool
 # program, with config loading disabled (-q) so that user config
 # already on the system can't interfere with the test process.
 
+# The new commanline tool uses --no-rcfiles
 #GAF_SHELL = $(top_builddir)/gaf/src/gaf --no-rcfiles shell
 
-# The new commanline tool uses --no-rcfiles
 GAF_SHELL = $(builddir)/../shell/geda-shell -q
 
 TEST_EXTENSIONS  = .scm

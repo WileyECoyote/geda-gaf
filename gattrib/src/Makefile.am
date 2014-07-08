@@ -47,9 +47,8 @@ AM_CFLAGS        = $(GEDA_INCLUDES) -I$(includedir)
 
 gattrib_CPPFLAGS =
 
-gattrib_CFLAGS   =  $(GCC_CFLAGS)     $(GLIB_CFLAGS) $(GTK_CFLAGS) \
-		    $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) \
-		    $(MINGW_CFLAGS)   $(AM_CFLAGS)
+gattrib_CFLAGS   =  $(AM_CFLAGS) $(GCC_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS) \
+		    $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) $(MINGW_CFLAGS)   
 
 gattrib_LDFLAGS  =  $(GLIB_LIBS)  $(GTK_LIBS) $(GTHREAD_LIBS) \
 		    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)

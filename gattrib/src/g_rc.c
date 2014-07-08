@@ -26,7 +26,7 @@
 
 #include <config.h>
 
-#include <version.h>
+#include "version.h"
 
 #include <stdio.h>
 #include <sys/stat.h>
@@ -46,7 +46,7 @@
 
 /*------------------------------------------------------------------*/
 /*! \brief Test the version of gattrib and gEDA/gaf
- * 
+ *
  * \param scm_version Version being tested
  * \returns false if incorrect version, true if OK
  */

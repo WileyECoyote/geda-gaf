@@ -2,7 +2,7 @@
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
  * Copyright (C) 2003-2014 Stuart D. Brorson.
  * Copyright (C) 2012-2014 gEDA Contributors (see ChangeLog for details)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -100,14 +100,14 @@
  */
 #define GLIB_DISABLE_DEPRECATION_WARNINGS
 #include <config.h>
-#include <version.h>
+#include "version.h"
 
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
 
 /*------------------------------------------------------------------*/
-/* Includes originally from testgtksheet -- stuff needed to deal with 
+/* Includes originally from testgtksheet -- stuff needed to deal with
  * spreadsheet widget.
  *------------------------------------------------------------------*/
 #include <stdio.h>
@@ -170,7 +170,7 @@ void geda_atexit(geda_atexit_func func, void* data)
  * x_window_init() and attached to the File->Quit menu item in
  * x_window_create_menu().  On execution, the function checks for
  * unsaved changes before calling gattrib_quit() to quit the program.
- *  
+ *
  *  \return value 0 to the shell to denote a successful quit.
  */
 bool gattrib_really_quit(void)
@@ -208,7 +208,7 @@ int gattrib_quit(int return_code)
   }
   g_list_free(exit_functions);
 
-  if (search_history) g_list_free(search_history);   
+  if (search_history) g_list_free(search_history);
 
   /*   s_clib_cache_free(); */
   s_clib_free();
@@ -275,7 +275,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   verbose_mode=FALSE;
   quiet_mode=FALSE;
-  /* Note that argv_index holds index to first non-flag command line option 
+  /* Note that argv_index holds index to first non-flag command line option
    * (that is, to the first file name) */
   argv_index = parse_commandline(argc, argv);
 
@@ -300,7 +300,7 @@ void gattrib_main(void *closure, int argc, char *argv[])
 
   gtk_init(&argc, &argv);
 
-  x_window_init();  
+  x_window_init();
 
   /* Construct the list of filenames from the command line.
    * argv_index holds the position of the first filename  */

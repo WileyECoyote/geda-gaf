@@ -23,7 +23,7 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
-#include <version.h>
+#include "version.h"
 
 #include <unistd.h>
 #include <stdio.h>
@@ -96,6 +96,7 @@ shell_main (void *data, int argc, char **argv)
 {
   SCM setup_lst = SCM_EOL; /* We reverse! this before using it. */
   SCM run_lst = SCM_EOL;   /* We reverse! this before using it. */
+  SCM scm_status;
   int c;
   int interactive = 1;
   int inhibit_rc = 0;
@@ -208,21 +209,25 @@ shell_main (void *data, int argc, char **argv)
     scm_eval_x (setup_lst, scm_current_module ());
   }
 
-  /* Now load rc files, if necessary */
-  if (!inhibit_rc)
+  /* Load rc files, unless command-line over-ride */
+  if (!inhibit_rc) {
     g_rc_parse (argv[0], NULL, NULL);
+  }
 
   i_vars_libgeda_set (toplevel); /* Ugh */
 
   /* Finally evaluate run list */
   run_lst = scm_cons (sym_begin, run_lst);
-  status = scm_exit_status (scm_eval_x (run_lst, scm_current_module ()));
 
-  exit (status);
+  scm_status = scm_eval_x (run_lst, scm_current_module ());
+
+  status = scm_exit_status (scm_status);
 
   scm_dynwind_end ();
 
   scm_remember_upto_here_2 (setup_lst, run_lst);
+
+  exit (status);
 }
 
 /* This just starts guile, which calls shell_main back */

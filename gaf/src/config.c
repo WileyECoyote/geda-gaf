@@ -19,7 +19,7 @@
 #ifdef HAVE_CONFIG_H
 #  include <config.h>
 #endif
-#include <version.h>
+#include "version.h"
 
 #include <unistd.h>
 #include <stdio.h>

@@ -20,7 +20,7 @@
  */
 
 #include <config.h>
-#include <version.h>
+#include "version.h"
 #include <missing.h>
 
 #include <sys/param.h>
