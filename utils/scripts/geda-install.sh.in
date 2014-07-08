@@ -1,0 +1,328 @@
+#!/bin/bash
+
+VER=0.5
+
+# Author: Wiley Edward Hill
+# Date: 02/23/14
+#
+
+me=`basename $0`
+
+BIN_DIR=@prefix@/bin
+SHARE_DIR=@prefix@/share
+
+LOCAL_SHARE=/usr/local/share
+INFO_TARGET=/usr/share/info
+
+ERR_FILE_NOT_FOUND=2
+ERR_PATH_NOT_FOUND=3
+ERR_BAD_ARGS=65
+
+LAST_ARG=""
+BeVerbose=false
+BeQuiet=false
+UseForce=false
+
+OVERRIDE_SHARE=false
+OVERRIDE_DESTINY=false
+DO_TRIM=true
+
+vecho()
+{
+   if [[ ! $1 = "" ]] ; then
+     if $BeVerbose ; then
+      echo -e $*
+     fi
+   fi
+}
+
+qecho()
+{
+   if [[ ! $1 = "" ]] ; then
+     if ! $BeQuiet ; then
+      echo -e $*
+     fi
+   fi
+}
+
+nfvecho()
+{
+  if ! $BeQuiet ; then
+    if $BeVerbose ; then
+      opt="-e"
+    else
+      opt="-e -n"
+    fi
+    echo $opt $*
+  fi
+}
+
+do_show_usage() 
+{
+   echo Usage: `basename $0` '[OPTIONS] [-d folder_with_programs ] [-l folder_in_path ]'
+}
+
+do_show_help(){
+echo
+echo Quick:   `basename $0` 'just run without in arguments after compiling a geda-gaf pkg'
+echo
+echo "Abstract: geda-install is for creating shortcut links, usually referred to as soft"
+echo "          links, for files in the geda package folder; icons, man pages, info, etc"
+echo "          to local folders. geda-install uses geda-install-bin to install executables"
+echo "          This is useful after installing from the source as oppose to a distrobution"
+echo "          when the --prefix arguments was given during configuration and can be ran"
+echo "          after \"make install\" completes successfully to add links in local folders"
+echo "          User that install geda-gaf from a distrobution package should NOT normally"
+echo "          use this script. This allows local builds to an alternate directory such as"
+echo "          /opt/gEDA.9 (using configure --prefix=/opt/gEDA.9) to remain \"intact\"."
+echo
+echo "Options: -h, --help       Show this information"
+echo "         -f, --force      Just do it"
+echo "         -u, --usage      Show basic usage information"
+echo "         -v, --verbose    Display extra information during processing"
+echo "         -q, --quiet      Suppress extraneous messages"
+echo "             --version    Display software version information"
+echo
+echo "         -d, --directory  folder containing files to be linked"
+echo "         -l, --location   folder where links are to be created"
+echo "         -n, --no-trim    do not trim extensions"
+}
+
+ParseCommandLine(){
+   for Arg in $*; do
+      case $Arg in
+         --help | -h) do_show_help  ; exit 0                          ;;
+        --force | -f) UseForce=true                                   ;;
+        --usage | -u) do_show_usage ; exit 0                          ;;
+      --verbose | -v) BeVerbose=true                                  ;;
+        --quiet | -q) BeQuiet=true                                    ;;
+           --version) echo `basename $0` "Version $VER" ; exit        ;;
+
+    --directory | -d) OVERRIDE_SHARE=true                             ;;
+     --location | -l) OVERRIDE_DESTINY=true                           ;;
+      --no-trim | -n) DO_TRIM=false                                   ;;
+    	            *) case $LAST_ARG in
+                       --directory | -d) DesiredDir="$Arg"            ;;
+                        --location | -l) DesiredDestiny="$Arg"        ;;
+                    *) do_show_usage ; exit $ERR_BAD_ARGS             ;;
+                       esac                                           ;;
+      esac
+      LAST_ARG=$Arg
+   done
+}
+
+# ------------------------ Parse Command Line ---------------------
+# Excute the function we just defined!
+ParseCommandLine $*
+
+if $OVERRIDE_SHARE ; then
+  if [ -d "$DesiredDir" ] ; then
+    SHARE_DIR="$DesiredDir"
+  else
+    echo "Error: $DesiredDir does not exist!"
+    exit $ERR_PATH_NOT_FOUND;
+  fi
+fi
+
+if $OVERRIDE_DESTINY ; then
+  if [ -d "$DesiredDestiny" ] ; then
+    LOCAL_SHARE="$DesiredDestiny"
+  else
+    echo -n "$DesiredDestiny does not exist!, attempting to create..."
+    mkdir -p $LOCAL_SHARE;
+    if [ $? != 0 ]; then
+       echo "$me: fail, maybe try sudo"
+       exit $?
+    else
+       echo success
+    fi
+  fi
+fi
+
+do_install_manuals(){
+
+  local src_path="$SHARE_DIR/man/man1"
+  nfvecho "$me: installing man pages..."
+  if [ "$(ls -A $src_path/*.1)" ] ; then
+    mkdir -p "$LOCAL_SHARE/man/man1"
+    for file in $src_path/*.1; do
+
+      filename=$(basename ${file})
+      target=$LOCAL_SHARE/man/man1/$filename
+
+      if [ ! -f $target ] && [ ! -h $target ] ; then
+        vecho "linking ${target} to ${file}"
+        cp -s ${file} $LOCAL_SHARE/man/man1/
+        if [ $? != 0 ]; then return $? ; fi
+      elif $UseForce ; then
+        vecho "forcing ${target} to ${file}"
+        cp -fs ${file} $LOCAL_SHARE/man/man1/ >/dev/null 2>&1
+      else # TODO make sure the link is ours
+        vecho "skipping ${file}, ${target} already exist"
+      fi
+    done
+  else
+    echo "No bueno: there are no manuals in ${src_path}"
+    return 1;
+  fi
+  echo okay
+  return 0;
+}
+
+do_install_info(){
+
+  local installer
+  local src_path
+  local -i result=0
+
+  src_path="$SHARE_DIR/info"
+
+  installer=$(which install-info)
+
+  if [[ $installer = "" ]] ; then
+    qecho "$me: \"install-info\" program was not found, not installing info pages"
+    result=1;
+  elif [ ! -f "$src_path/dir" ] ; then
+    qecho "$me: \"$src_path/dir)\" file missing, not installing info pages"
+    result=1;
+  else
+    nfvecho "$me: installing info pages..."
+    if [ "$(ls -A $src_path/*.info)" ] ; then
+      mkdir -p "$LOCAL_SHARE/info"
+      for file in $src_path/*.info; do
+        filename=$(basename ${file})
+        target=/usr/share/info/${filename}
+        if [ ! -f ${target} ] && [ ! -h ${target} ] ; then
+          vecho "installing ${file} to ${target}"
+          cp -s --no-clobber ${file} /usr/share/info/
+          install-info --info-file=${file} --dir-file=/usr/share/info/dir
+        elif $UseForce ; then
+          vecho "forcing ${file} to ${target}"
+          cp -sf ${file} /usr/share/info/ >/dev/null 2>&1
+          install-info --info-file=${file} --dir-file=/usr/share/info/dir
+        else # TODO make sure the link is ours
+          vecho "skipping ${file}, ${target} already exist"
+        fi
+      done
+    else
+      echo "No bueno: there are no pages in $src_path" >&2
+      result=1;
+    fi
+    qecho okay
+  fi
+  return $result;
+}
+
+link_io(){
+
+  if $UseForce ; then
+    cp -fRs ${1} ${2} >/dev/null 2>&1
+  else
+    cp -Rs --no-clobber ${1} ${2} >/dev/null 2>&1
+  fi
+
+}
+
+do_install_locales(){
+  qecho -n "$me: installing locales data..."
+  link_io $SHARE_DIR/locale/* /usr/share/locale/
+  qecho okay
+}
+
+do_install_icons(){
+  qecho -n "$me: installing icons..."
+  link_io $SHARE_DIR/icons/* $LOCAL_SHARE/icons/
+  qecho okay
+}
+
+do_install_desktop(){
+
+  local -i result=0;
+  local src_path="$SHARE_DIR/applications"
+  local updater;
+
+  nfvecho "$me: installing desktop data..."
+
+  if [ "$(ls -A $src_path/*.desktop)" ] ; then
+    mkdir -p "$LOCAL_SHARE/applications"
+    for file in $src_path/*.desktop; do
+      filename=$(basename $file)
+      target=$LOCAL_SHARE/applications/$filename
+      if [ ! -f $target ] && [ ! -h $target ] ; then
+        vecho "installing ${file} to ${target}"
+        cp -s --no-clobber ${file} ${target}
+      elif $UseForce ; then
+        vecho "forcing  ${file} to ${target}"
+        cp -fs $file /usr/share/info/ >/dev/null 2>&1
+      else # TODO make sure the link is ours
+        vecho 'skipping' "${file}, ${target} already exist"
+      fi
+    done
+    #this works on a debian system
+    updater=$(which update-menus)
+    if [[ $updater != "" ]] ; then
+      update-menus
+    fi
+  else
+    echo "No bueno: there are no desktop files in $src_path" >&2
+    result=1;
+  fi
+  qecho okay
+  return $result;
+}
+
+do_install_mine(){
+
+  qecho -n "$me: installing mine data..."
+
+  mkdir -p "$LOCAL_SHARE/mime/application"
+  for file in  $SHARE_DIR/mime/application/*.xml ; do
+    link_io $file $LOCAL_SHARE/mime/application/
+  done
+
+  mkdir -p "$LOCAL_SHARE/mime/packages"
+  link_io $SHARE_DIR/mime/packages/* $LOCAL_SHARE/mime/packages/
+
+  qecho okay
+}
+
+do_install_bin(){
+  local installer
+
+  if [ -x "$BIN_DIR/geda-install-bin" ] ; then
+    if $DO_TRIM ; then
+      installer=$BIN_DIR/geda-install-bin 
+    else
+      installer=$BIN_DIR/geda-install-bin --no-trim
+    fi
+  else
+    installer=$(which geda-install-bin)
+    if [[ $installer = "" ]] ; then
+      installer='return 1'
+    else
+    if $DO_TRIM ; then
+      installer=geda-install-bin 
+    else
+      installer=geda-install-bin --no-trim
+    fi
+    fi
+  fi
+  eval $installer
+  return $?
+}
+
+
+if [ $? = 0 ] || $UseForce ; then
+  do_install_manuals
+  do_install_info
+  do_install_locales
+  do_install_icons
+  do_install_desktop
+  do_install_mine
+else
+  echo "$me: geda-install-bin returned failure, not continuing" >&2
+fi
+
+exit 0;
+
+

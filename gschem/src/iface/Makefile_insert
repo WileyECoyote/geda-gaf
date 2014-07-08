@@ -1,0 +1,11 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+@echo 'export FRAGMENTS=iface'
+
+gschem_SOURCES += \
+		iface/i_basic.c \
+		iface/i_callbacks.c \
+		iface/i_command.c \
+		iface/i_pan_world.c \
+		iface/i_vars.c \
+		iface/i_zoom_world.c

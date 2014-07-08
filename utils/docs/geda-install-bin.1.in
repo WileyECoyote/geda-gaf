@@ -1,0 +1,68 @@
+.TH geda-install-bin 1 "@DATE@" "gEDA Project" @VERSION@
+
+.SH NAME
+geda-install-bin \- Install gEDA binaries to local bin folder
+
+.SH SYNOPSIS
+.B geda-install-bin
+.RI [ OPTIONS ] [-d folder_with_programs ] [-l folder_in_path ]
+
+.SH DESCRIPTION
+.B geda-install-bin
+Install gEDA binaries to local bin folder
+
+geda-install-bin is used to create shortcut links, usually referred to as soft links, in the local/bin folder for executables in the geda bin folder, both scripts and binaries. By default, extensions are removed from the script names. This is useful after installing from the source, rather than a distribution and can be ran after "make install" completes successfully to add links in the command path. This would NOT normally be necessary if geda-gaf was installed from a distribution package or if the --prefix option was NOT used during configure.
+
+.SH QUICK
+just run without in arguments after compiling geda-gaf if a configure prefix was used and was not "usr"
+.B usage: [-h, --help] | [--version] | [options] [-d folder_with_programs ] [-l folder_in_path ]
+example:
+geda-install-bin /opt/gEDA/bin /usr/loca/bin<ENTER>.
+.SH PARAMETERS
+.SH INFORMATION
+Use of the following options displays information related to geda-install-bin
+but does install file or create any links:
+.IP "-h, --help"
+Show information about the advanced usage of this command.
+.IP "-u, --usage"
+Displays information on basic usage"
+.IP "--version"
+Displays software version information"
+
+.SH DIRECTIVES
+.IP "-v, --verbose"
+Include additional information during processing.
+
+.SH OPTIONS
+.IP "-d, --directory"
+Specify the folder containing files to be linked. The default is the bin directory under "prefix", aka where the executables were installed by "make install", so this option would not normally be needed.
+
+.IP "-l, --location"
+Specify the target folder where the links are to be created. The default is /usr/local/bin, which should be suitable for most installation. Some user may prefer ~/bin.
+
+.IP "-n, --no-trim"
+By default geda-install-bin will trim extensions from scripts, like ".sh" or ".pl" because, well, they are annoying. The justification for this is that geda-gaf utilizes different types of scripts and user should not be required to "remember" the language used for each script. This option disables this feature so that sextension are preserved during creation of the links.
+
+.SH HOMEPAGE
+http://www.gpleda.org/
+
+.SH BUGS
+You can report bugs at the Launchpad site of geda-install-bin:
+https://bugs.launchpad.net/geda/geda-install-bin/+filebug
+
+.SH AUTHOR
+Wiley Edward Hill < wileyhill dot gmail dot com >
+
+.SH SEE ALSO
+.BR geda-install-bin (1)
+
+.SH COPYRIGHT
+.nf
+Copyright \(co 2012-2014 Wiley Edward Hill.  License GPLv2+: GNU GPL
+version 2 or later.  Please see the `COPYING' file included with this
+program for full details.
+.PP
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+.

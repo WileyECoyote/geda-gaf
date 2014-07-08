@@ -1,0 +1,20 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+FRAGMENTS=widgets
+
+libgedauio_la_SOURCES += \
+			${FRAGMENTS}/geda_accel_label.c       \
+			${FRAGMENTS}/geda_action.c            \
+			${FRAGMENTS}/geda_comboboxtext.c      \
+			${FRAGMENTS}/geda_completion.c        \
+			${FRAGMENTS}/geda_entry.c             \
+			${FRAGMENTS}/geda_font_button.c       \
+			${FRAGMENTS}/geda_font_dialog.c       \
+			${FRAGMENTS}/geda_handlebox.c         \
+			${FRAGMENTS}/geda_imagemenuitem.c     \
+			${FRAGMENTS}/geda_label.c		 \
+			${FRAGMENTS}/geda_menu_button.c       \
+			${FRAGMENTS}/geda_swatch_renderer.c   \
+			${FRAGMENTS}/geda_toggle_action.c
+
+

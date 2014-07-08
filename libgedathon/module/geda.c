@@ -1,0 +1,2174 @@
+/* C source                                                 -*- geda.c -*- */
+/*!
+ * \file geda.c
+ *
+ * gEDA - GPL Electronic Design Automation
+ * libgedathon - gEDA's Python API Extension library
+ *
+ * Copyright (C) 2013-2014 Wiley Edward Hill
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
+ *
+ *  Contributing Author: Wiley Edward Hill
+ *  Date Contributed: November, 17, 2013
+ */
+
+#include <config.h>
+#include <Python.h>
+#include "structmember.h"
+
+#include <dlfcn.h>
+#include <unistd.h>
+
+#define FIRST_PASS_METHODS(func) static PyObject *do_##func(PyObject *self, PyObject *args)
+
+#include "geda.h"
+#include "geda_module.h"
+#include "geda_capsule.h"
+
+#include "libgeda/o_types.h"
+#include "libgedathon.h"
+
+#include "geda_py_struct.h"
+#include "geda_py_page.h"
+#include "geda_py_object.h"
+
+extern PyTypeObject PageObjectType;
+
+static PyObject *GedaError;
+static char     *libgedapath;
+
+#ifdef OS_WIN32_NATIVE
+static HMODULE libgedathon
+#else
+static void *libgedathon;
+#endif
+static char *LIB_LOCATION_ERROR = "error";
+
+/* Note: LIBGEDATHON_PATH was defined during compilation
+ * with trialing spaces for the file extension to be filled in */
+static char installed_library_path[] = LIBGEDATHON_PATH;
+
+static union { GedaCloserFunc func; void * obj; } closer;
+static union { GedaLibInitializer func; void * obj; } initializer;
+
+#define METHOD(symbol, aflag ) [ e##symbol ] = \
+ { ASSOCIATED_METHOD(symbol), aflag, symbol##_docs },
+
+/* Methods Table */
+static struct {
+   const char  *name;
+   PyCFunction  func;
+   int          aflag;
+   const char  *docstring;
+
+} GedaMethods[METHOD_COUNT + 1] = {
+ [ method_unknown ] = { "unknown", do_unknown, 0, ""},
+ #include "geda_module.h"
+};
+
+/*! \brief Add Libgedathon suffix
+ *  \par Function Description
+ *  This is function adds the extension characters of the filename to a
+ *  preset string that was statically allocated with enough space for these
+ *  additional bytes.
+ */
+static const char *suffix_installed_library(const char *ext)
+{
+  char *ptr;
+  libgedapath = installed_library_path;
+  if (ext != NULL) {
+    if (!strstr (installed_library_path, ext)) {
+      ptr = installed_library_path;
+      while ( *ptr != '\0') ptr++;
+      ptr = ptr - 4;
+      while ( *ext != '\0') *ptr++ = *ext++;
+      *ptr = '\0';
+    }
+  }
+  return libgedapath;
+}
+
+/*! \brief Find Libgedathon on a Window system
+ *  \par Function Description
+ *  This is a tempory function intended to locate libgedathon.so on
+ *  linux system. At this time, the function returns the "installed"
+ *  location of the library.
+ *
+ * \return [out] string file name of the library including the extension.
+ */
+#ifdef OS_WIN32_NATIVE
+static const char *find_library(void) {
+  suffix_installed_library(".dll");
+  if(libgedapath == NULL)
+    libgedapath = LIB_LOCATION_ERROR;
+  return libgedapath;
+}
+#endif
+
+/*! \brief Find Libgedathon on a Linux system
+ *  \par Function Description
+ *  This is a tempory function intended to locate libgedathon.so on
+ *  linux system. At this time, the function returns the "installed"
+ *  location of the library.
+ *
+ * \return [out] string file name of the library including the extension.
+ */
+#ifdef OS_LINUX
+static const char *find_library(void) {
+  suffix_installed_library(".so");
+  if(libgedapath == NULL)
+    libgedapath = LIB_LOCATION_ERROR;
+  return libgedapath;
+}
+#endif
+
+/*! \brief Open Libgedathon
+ *  \par Function Description
+ *  This is function attempts to establish a dynamic link to Libgedathon.
+ *  This unconvientional for nix's but the primary method used on Windows
+ *  systems. Upon success, the static unions initializer and closer are
+ *  assigned functional address "values". Otherwise the unions are set to
+ *  NULL pointers.
+ *
+ * \return [out] True if successful, otherwise False.
+ */
+static int open_library (void)
+{
+  int result;
+#ifdef OS_WIN32_NATIVE
+  libgedathon = LoadLibrary("libgedathon.dll");
+  if (libgedathon == NULL) {
+    libgedathon = LoadLibrary(find_library());
+  }
+  if (libgedathon != NULL) {
+    /* is long* (LPFNDLLFUNC1) */
+    initializer.obj = GetProcAddress(libgedathon, "initialize");
+    if (initializer.obj != NULL) {
+      result = 1;
+      closer.obj = FreeLibrary;
+    }
+    else {
+      FreeLibrary(libgedathon);
+      closer.obj  = NULL;
+      libgedathon = NULL;
+      fprintf(stderr, "Error Could not initialize library: libgedathon.dll\n");
+      result = 0;
+    }
+  }
+  else
+#elif defined OS_LINUX
+  libgedathon = dlopen("libgedathon.so", RTLD_LAZY);
+  if (libgedathon == NULL) {
+    libgedathon = dlopen(find_library(), RTLD_LAZY);
+    if (libgedathon == NULL) {
+      fprintf(stderr, "Error dlopen: %s\n", dlerror());
+    }
+  }
+  if (libgedathon != NULL) {
+
+    initializer.obj = dlsym(libgedathon, "initialize");
+
+    if (initializer.obj != NULL) {
+      result = 1;
+      closer.obj = dlclose;
+    }
+    else {
+      dlclose(libgedathon);
+      closer.obj  = NULL;
+      libgedathon = NULL;
+      fprintf(stderr, "Error Could not initialize library: %s\n", find_library());
+      result = 0;
+    }
+  }
+  else
+#endif
+  {
+    fprintf(stderr, "Error Could not load library:libgedathon\n");
+    result = 0;
+  }
+  return result;
+}
+
+/*! \brief Close the Library Module
+ *  \par Function Description
+ *  This is function calls the shutdown method in this module and then
+ *  the libgedathon closer function.
+ */
+static void close_library (void)
+{
+  do_shutdown(NULL, NULL);
+  if (closer.obj != NULL)
+    closer.func(libgedathon);
+}
+
+static API_FunctionTable PyGeda_API[METHOD_COUNT];
+
+#ifndef PyMODINIT_FUNC  /* declarations for DLL import/export */
+#define PyMODINIT_FUNC void
+#endif
+/*! \brief Geda Python Module Initializer
+ *  \par Function Description
+ *  This is function serves to initialize the Python module and all
+ *  sub-modules. The function registers methods and calls the initializer
+ *  in Libgedathon passing a method table to be filled in by the library.
+ *  This function is the only function symbolically exported from the
+ *  module.
+ */
+PyMODINIT_FUNC
+initgeda(void)
+{
+  static PyObject *module;
+
+  GedaMethods[METHOD_COUNT].name = NULL;
+
+  if (!open_library())
+    return;
+
+  atexit(close_library);
+
+  initializer.func(PyGeda_API);
+
+  module = Py_InitModule("geda", (PyMethodDef*)GedaMethods);
+  if (module == NULL)
+    return;
+
+  initConstants(module);
+  initPage(module);
+  initGedaObject(module);
+  initFunctions(module);
+
+  GedaError = PyErr_NewException("Geda.error", NULL, NULL);
+  Py_INCREF(GedaError);
+
+  /* Register Object Types */
+  PyModule_AddObject(module, "error", GedaError);
+}
+
+/*! \brief BlockMethod function in Geda Libgedathon API Library
+ *  \par Function Description
+ *
+ *  This is an internal function called at the beginning of each method
+ *  with the use of the ON_METHOD_ENTRY macro. The function blocks calling
+ *  threads until any existing thread complete execution of the method and
+ *  this allow the module to be somewhat re-entrant. After a pre-determine
+ *  time period the function will give up and return to the caller, assuming
+ *  the thread is locked by a dead thread.
+ */
+static inline void BlockMethod (int index)
+{
+  int deadman = 0;
+  while (PyGeda_API[index]->status && METHOD_ACTIVE) {
+    sleep (MODULE_WAIT_INTERVAL); /* sleep for Some time for action to complete. */
+    deadman++;
+    if (deadman == MAX_WAIT_FOR_MODULE) {
+      fprintf (stderr, "Error: Method <%s> is not releasing status flag, likely is hung\n", PyGeda_API[index]->name);
+      return;
+    }
+  }
+  PyGeda_API[index]->status |= METHOD_ACTIVE; /* Block this Method */
+}
+#define METHOD_HELP(symbol)GedaMethods[e##symbol].docstring
+#define METHOD(func) static PyObject *do_##func(PyObject *self, PyObject *args)
+
+#define ON_METHOD_ENTRY(returns, token, needs) BlockMethod(e##token); \
+        union { PyGeda_##returns##_##needs##_type func; void * obj; } library; \
+        library.obj = PyGeda_API[e##token]->func;
+
+#define ON_METHOD_EXIT(token) \
+        PyGeda_API[e##token]->status &= ~METHOD_ACTIVE; /* Unblock this Method */
+
+#define TYPE_INT_C1(symbol)            ON_METHOD_ENTRY(int, symbol, c1)
+#define TYPE_INT_INT(symbol)           ON_METHOD_ENTRY(int, symbol, i1)
+#define TYPE_INT_P1(symbol)            ON_METHOD_ENTRY(int, symbol, p1)
+#define TYPE_INT_P3(symbol)            ON_METHOD_ENTRY(int, symbol, p3)
+
+#define TYPE_PYOBJECT_I1(symbol)       ON_METHOD_ENTRY(pyobject, symbol, i1)
+#define TYPE_PYOBJECT_I2(symbol)       ON_METHOD_ENTRY(pyobject, symbol, i2)
+#define TYPE_PYOBJECT_I3P1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, i3p1)
+#define TYPE_PYOBJECT_I4P1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, i4p1)
+#define TYPE_PYOBJECT_I5P1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, i5p1)
+
+#define TYPE_PYOBJECT_C1(symbol)       ON_METHOD_ENTRY(pyobject, symbol, c1)
+#define TYPE_PYOBJECT_C1I1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i1)
+#define TYPE_PYOBJECT_C1I4P1(symbol)   ON_METHOD_ENTRY(pyobject, symbol, c1i4p1)
+#define TYPE_PYOBJECT_C1I5(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i5)
+#define TYPE_PYOBJECT_C1I5P1(symbol)   ON_METHOD_ENTRY(pyobject, symbol, c1i5p1)
+#define TYPE_PYOBJECT_C1I6(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i6)
+#define TYPE_PYOBJECT_C1I7(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i7)
+#define TYPE_PYOBJECT_C1I9(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i9)
+#define TYPE_PYOBJECT_C2I6P1(symbol)   ON_METHOD_ENTRY(pyobject, symbol, c2i6p1)
+
+#define TYPE_PYOBJECT_P1(symbol)       ON_METHOD_ENTRY(pyobject, symbol, p1)
+#define TYPE_PYOBJECT_P1I2(symbol)     ON_METHOD_ENTRY(pyobject, symbol, p1i2)
+#define TYPE_PYOBJECT_P1C1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, p1c1)
+
+#define TYPE_PYOBJECT_P2C2I1(symbol)   ON_METHOD_ENTRY(pyobject, symbol, p2c2i1)
+
+#define TYPE_PYOBJECT_V1(symbol)       ON_METHOD_ENTRY(pyobject, symbol, v1)
+
+#define TYPE_VOID_V1(symbol)           ON_METHOD_ENTRY(void, symbol, v1)
+
+/** *********************** Begin Wrapper Functions **************************/
+
+typedef int       (*PyGeda_int_c1_type)          ( const char* );
+typedef int       (*PyGeda_int_i1_type)          ( int );
+typedef int       (*PyGeda_int_p1_type)          ( PyObject * );
+typedef int       (*PyGeda_int_p3_type)          ( PyObject *, PyObject *, PyObject * );
+
+typedef PyObject* (*PyGeda_pyobject_i1_type)     ( int pid );
+typedef PyObject* (*PyGeda_pyobject_i2_type)     ( int, int);
+typedef PyObject* (*PyGeda_pyobject_i3p1_type)   ( int, int, int, PyObject *);
+typedef PyObject* (*PyGeda_pyobject_i4p1_type)   ( int, int, int, int, PyObject * );
+typedef PyObject* (*PyGeda_pyobject_i5p1_type)   ( int, int, int, int, int, PyObject * );
+
+typedef PyObject* (*PyGeda_pyobject_c1_type)     ( const char* );
+typedef PyObject* (*PyGeda_pyobject_c1i1_type)   ( const char*, int);
+typedef PyObject* (*PyGeda_pyobject_c1i4p1_type) ( const char*, int, int, int, int, PyObject * );
+typedef PyObject* (*PyGeda_pyobject_c1i5_type)   ( const char*, int, int, int, int, int);
+typedef PyObject* (*PyGeda_pyobject_c1i5p1_type) ( const char*, int, int, int, int, int, PyObject * );
+typedef PyObject* (*PyGeda_pyobject_c1i6_type)   ( const char*, int, int, int, int, int, int);
+typedef PyObject* (*PyGeda_pyobject_c1i7_type)   ( const char*, int, int, int, int, int, int, int);
+typedef PyObject* (*PyGeda_pyobject_c1i9_type)   ( const char*, int, int, int, int, int, int, int, int, int);
+typedef PyObject* (*PyGeda_pyobject_c2i6p1_type) ( const char*, const char*, int, int, int, int, int, int, PyObject * );
+
+typedef PyObject* (*PyGeda_pyobject_p1_type)     ( PyObject * );
+typedef PyObject* (*PyGeda_pyobject_p1i2_type)   ( PyObject *, int, int);
+typedef PyObject* (*PyGeda_pyobject_p1c1_type)   ( PyObject *, const char*);
+
+typedef PyObject* (*PyGeda_pyobject_p2c2i1_type)   ( PyObject *, PyObject *, const char*, const char*, int);
+
+typedef PyObject* (*PyGeda_pyobject_v1_type)     ( void );
+
+typedef void      (*PyGeda_void_v1_type)         ( void );
+
+/*! \defgroup Python_API_Methods Geda Python Module API Methods
+ *  @{
+ */
+
+/*! \brief Unknown function Geda Libgedathon API Library
+ *  \par Function Description
+ *
+ *  This function is a place holder in the Module's function table and
+ *  would be only bed called if a NULL function pointer was used to access
+ *  a method within this module.
+ *
+ * \warning Do not call this method!.
+ */
+METHOD(unknown)
+{
+  fprintf(stderr, "unknown method handler\n");
+  return Py_None;
+}
+
+/*! \brief Shutdown the Geda Libgedathon API Library
+ *  \par Function Description
+ *
+ *  This function is automatically called by Python when the program is
+ *  terminated, either normally or due to an error condition.
+ *
+ * \warning Do not call this method!.
+ */
+METHOD(shutdown)
+{
+  TYPE_VOID_V1(shutdown)
+  library.func();
+  ON_METHOD_EXIT(shutdown);
+  return Py_None;
+}
+
+/*! \brief Append a Path to the Library Search Path
+ *  \par Method Description
+ *
+ *    This function provides a method to add a directory to the library's
+ *  search path. This will remains valid for the current session of the library.
+ *
+ * \sa declare_local_sym
+ *
+ * param [in] path String, a valid directory path.
+ *
+ * \return [out] True if successful, otherwise False.
+ *
+ * example: geda.append_symbol_path(p1sym/)  # create a "p1sym/" folder and local rc file
+ *
+ * \note 1. The gafrc files are only acknowledged when a schematic file is opened
+ *          in the same directory. The new gafrc fill will contain a single line:
+ *
+ *          (component-library "./p1sym")
+ *
+ *          Other configuration items can also be set using the gafrc files, see
+ *          the document for LibGeda for details on RC files.
+ */
+METHOD(append_symbol_path)
+{
+  TYPE_INT_C1(append_symbol_path);
+  const char *path;
+  int         status;
+
+  if (!PyArg_ParseTuple(args, "s:geda.append_symbol_path", &path)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: append_symbol_path(path)");
+    return Py_None;
+  }
+
+  status = library.func(path);
+
+  ON_METHOD_EXIT(append_symbol_path);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Declare Local Symbols
+ *  \par Method Description
+ *
+ *    This function provides a convenience method to create both a directory in
+ *  the current working directory with the given name and to create a file with
+ *  the name "gafrc" in the current directory. This will cause geda application
+ *  to automatically add the sub-directory to the Symbol Library search path. If
+ *  the directory name argument is not specified then the directory will be named
+ *  "sym". The purpose of gafrc files is to dynamically modify configuration
+ *  environments, in this case to allow custom symbols.
+ *
+ * \sa append_symbol_path
+ *
+ *  Optional argument:
+ *
+ *  param [in] directory String, a directory where "gafrc" file be created.
+ *
+ * \return [out] Returns FALSE if the path was appended, a non-zero returned value
+ *               indicates and error occured.
+ *
+ * example: geda.declare_local_sym()  # create a "sym/" folder and local rc file
+ *
+ * \note 1. The gafrc files are only acknowledged when a schematic file is opened
+ *          in the same directory. The new gafrc fill will contain a single line:
+ *
+ *          (component-library "./sym")
+ *
+ *          Other configuration items can also be set using the gafrc files, see
+ *          the document for LibGeda for details on RC files.
+ */
+METHOD(declare_local_sym)
+{
+  TYPE_INT_C1(declare_local_sym);
+  const char *directory = NULL;
+  int         status;
+
+  if (!PyArg_ParseTuple(args, "|s:geda.declare_local_sym", &directory)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: declare_local_sym([folder])");
+    return Py_None;
+  }
+
+  status = library.func(directory);
+
+  ON_METHOD_EXIT(declare_local_sym);
+  if (status != 0) {
+    PyErr_SetString(PyExc_StandardError, strerror(status));
+  }
+  Py_RETURN_FALSE;
+}
+
+/*! \brief Get a list of all Pages open by the Library
+ *  \par Method Description
+ *
+ *    This function provides a method to get a list of Page objects of
+ *  all of the currently opened pages.
+ *
+ * \sa goto_page
+ *
+ * \return [out] Returns a PyList of Geda Page objects.
+ *
+ */
+METHOD(get_pages)
+{
+  TYPE_PYOBJECT_V1(get_pages);
+  PyObject *py_input_list;
+  PyObject *py_output_list;
+
+  py_input_list  = library.func();
+  py_output_list = PyList_New(0);
+
+  if ( PyList_Check(py_input_list)) {
+    int i, count;
+    count = (int) PyList_GET_SIZE(py_input_list);
+
+    for (i = 0; i < count ; i++)
+    {
+      PyObject *page_info;
+      PyObject *py_page;
+
+      page_info  = PyList_GET_ITEM(py_input_list, i);
+      py_page      = PyObject_CallObject((PyObject *) PageObjectClass(), page_info);
+      if(py_page && PyObject_Type(py_page))
+        PyList_Append(py_output_list, py_page);
+    }
+  }
+
+  Py_XDECREF(py_input_list);  /* Destroy the input list */
+  ON_METHOD_EXIT(get_pages);  /* re-enable this method */
+  return py_output_list;      /* return the Python list of page Objects */
+}
+
+/*! \brief Get the Active Page
+ *  \par Method Description
+ *
+ *    This function provides a method to get Page object representing the
+ *  current active page.
+ *
+ * \sa goto_page
+ *
+ * \return [out] Returns a Geda Page object or Py_None if there no pages
+ *               a currently opened.
+ *
+ */
+METHOD(get_active_page)
+{
+  TYPE_PYOBJECT_V1(get_active_page);
+  PyObject *info;
+  PyObject *page;
+
+  info = library.func();
+  if (info) {
+    page = PyObject_CallObject((PyObject *) PageObjectClass(), info);
+  }
+  else {
+    page = Py_None;
+  }
+  ON_METHOD_EXIT(get_active_page);
+  return page;
+}
+
+/*! \brief Set an Existing Page to be the Active Page
+ *  \par Method Description
+ *    This function provides a method to set a page object to be the
+ *  Active Page Object. This method is similar to goto_page but does
+ *  not restore the current working directory of the page.
+ *
+ * \sa goto_page
+ *
+ * [in] page    A GedaPage object.
+ *
+ * \return [out] True if successful, otherwise False.
+ *
+ * \note 1. Although this Library feature is utilize in Geda application
+ *          like gschem, the Python API library does not currently exploit
+ *          this feature. All methods requiring a Page object must be passed
+ *          a Page object, no assumption is made regarding which Page object
+ *          to use for a particular operation.
+ *
+ * TODO: change to also except an integer PID
+ */
+METHOD(set_active_page)
+{
+  TYPE_INT_INT(set_active_page);
+  PyObject *page;
+  int       pid;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.set_active_page", PageObjectClass(), &page)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: set_active_page(PageObject)");
+    return NULL;
+  }
+  pid = ((PageObject*)page)->pid;
+  status = library.func(pid);
+
+  ON_METHOD_EXIT(set_active_page);
+  if (!status) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
+/*! \brief Set an Existing Page to be the Current Page
+ *  \par Method Description
+ *    This function provides a method to set a page object to be the
+ *  Current Page Object. This method is similar to set_active_page but
+ *  unlike set_active_page, this method this restore the current working
+ *  directory of the page.
+ *
+ *  \sa set_active_page
+ *
+ *  [in] page    A GedaPage object.
+ *
+ *  \return [out] True if successfull, otherwise False.
+ *
+ *  \note 1. Although this Library feature is utilize in Geda application
+ *           like gschem, the Python API library does not currently exploit
+ *           this feature. All methods requiring a Page object must be passed
+ *           a Page object, no assumption is made regarding which Page object
+ *           is to be used for a particular operation.
+ */
+METHOD(goto_page)
+{
+  TYPE_INT_INT(goto_page);
+  PyObject *page;
+  int       pid;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.goto_page", PageObjectClass(), &page)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: goto_page(PageObject)"); 
+    return NULL;
+  }
+  pid = ((PageObject*)page)->pid;
+  status = library.func(pid);
+
+  ON_METHOD_EXIT(goto_page);
+  if (!status) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
+/*! \brief Open an Existing Page
+ *  \par Method Description
+ *    This function provides a method to open a existing schematic or symbol
+ *   file. If file name is not provide a default name will be used, usually
+ *   "untitled".
+ *
+ *  \sa close_page
+ *
+ *  [in] name    String file name of the file to open
+ *
+ *  \return [out] page  A GedaPage object.
+ *
+ *  example: schematic = geda.open_page("~/geda/filters/lowpass/butherworth.sch")
+ *
+ */
+METHOD(open_page)
+{
+  TYPE_PYOBJECT_C1(open_page);
+
+  const char *filename = NULL;
+  PyObject   *info;
+  PyObject   *page;
+
+  if (!PyArg_ParseTuple(args, "|s:geda.open_page", &filename)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: open_page(filename)");
+    return Py_None;
+  }
+
+  info = library.func(filename);
+  page = PyObject_CallObject((PyObject *) PageObjectClass(), info);
+
+  ON_METHOD_EXIT(open_page);
+  return page;
+}
+
+/*! \brief Create a New Page Object
+ *  \par Method Description
+ *    This function provides a method to create a new empty Page object.
+ *
+ *  [in] page PyGedaPage Object to be closed
+ *
+ * optional argument:
+ *
+ *  [in] save Integer flag, if True then the page is saved before closing
+ *
+ *  \return [out] status True if success, otherwise False.
+ *
+ *  \note 1. If the overwrite flag is not provide, any existing file might still
+ *           be backed-up depending on the configuration variable "make_backup_files",
+ *           which default to True. However, use of the overwrite flag will over-ride
+ *           the configuration setting, so if the second argument evaluate to True
+ *           then any existing files will be over-written without making a backup.
+ *
+ *  example: geda.close_page(schematic)
+ *
+ */
+METHOD(close_page)
+{
+  TYPE_INT_INT(close_page);
+  PyObject *page;
+  int       do_save = 0;
+  int       status  = 1;
+
+  if(!PyArg_ParseTuple(args, "O!|i:geda.close_page", PageObjectClass(), &page, &do_save)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: close_page(PageObject [, save])");
+    return NULL;
+  }
+
+  if (do_save) {
+    status = PyInt_AsLong(do_save_page(self, page));
+  }
+
+  if (status) {
+    status = library.func(((PageObject*)page)->pid);
+  }
+
+  ON_METHOD_EXIT(close_page);
+  if (status != 0) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
+/*! \brief Create a New Page Object
+ *  \par Method Description
+ *    This function provides a method to create a new empty Page object.
+ *
+ *  [in] file     String name if the file for the Page
+ *
+ *  optional argument:
+ *
+ *  [in] overwrite Integer flag if existing file should be over-written
+ *
+ *  \return [out] A GedaPage Object if success, otherwise Py_None.
+ *
+ *  \note 1. If the overwrite flag is not provided, an existing file might still
+ *           be backed-up depending on the configuration variable "make_backup_files",
+ *           which default to True. However, use of the overwrite flag will over-ride
+ *           the configuration setting, so if the second argument evaluate to True
+ *           then any existing files will be over-written without making a backup.
+ *
+ *  example: schematic = geda.new_page("~/sch/oscillator.sch", True)
+ *
+ */
+METHOD(new_page)
+{
+  TYPE_PYOBJECT_C1I1(new_page);
+
+  const char *filename;
+  PyObject   *info;
+  PyObject   *page;
+
+  int   over_write = -1;
+
+  if (!PyArg_ParseTuple(args, "|si:geda.new_page", &filename, &over_write))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_page([filename] [, over_write])");
+    return Py_None;
+  }
+
+  info = library.func(filename, over_write);
+
+#if DEBUG
+  char *name;
+  int   pid;
+  if (PyArg_ParseTuple(info, "si:geda.new_page", &name, &pid))
+    fprintf(stderr, "new_page: info filename=%s, pid=%d\n", name, pid);
+#endif
+
+  page = PyObject_CallObject((PyObject *) PageObjectClass(), info);
+
+  ON_METHOD_EXIT(new_page);
+  return page;
+}
+
+/*! \brief Save Page Objects
+ *  \par Method Description
+ *    This function provides a method to save a Page type objects to
+ *  disk.
+ *
+ *  [in] PyPage page A GedaPAge Object
+ *
+ *  \return [out] status True if success, otherwise False.
+ *
+ */
+METHOD(save_page)
+{
+  TYPE_INT_INT(save_page);
+  PyObject *page;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.save_page", PageObjectClass(), &page)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: save_page(PageObject)");
+    return NULL;
+  }
+
+  status = library.func(((PageObject*)page)->pid);
+
+  ON_METHOD_EXIT(save_page);
+  if (status != 0) {
+    Py_RETURN_FALSE;
+  }
+  Py_RETURN_TRUE;
+}
+
+/*! \brief Save All Page Objects
+ *  \ingroup Python_API_Methods
+ *  \par Method Description
+ *    This function provides a method to save all Page type objects
+ *  that are opened or optionally, all Page objects in a given list.
+ *
+ *  [in] PyList Optional list of Page objects
+ *
+ *  \return [out] integer equal to the number of errors, FALSE means there
+ *                were no errors.
+ *
+ */
+METHOD(save_all_pages)
+{
+  TYPE_INT_P1(save_all_pages);
+  PyObject *pages;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "|O!:geda.save_all_pages", &PyList_Type, &pages)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: save_all_pages(PyList_Type[PageObject,...])");
+    return NULL;
+  }
+  else{
+    pages = Py_None;
+  }
+
+  status = library.func(pages);
+
+  ON_METHOD_EXIT(save_all_pages);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Determine if object is a type of GedaCapsule Object
+ *  \par Method Description
+ *    This function provides a method to check an object is a GedaCapsule type.
+ *  This method is used by other methods internally and is not normally used by
+ *  Python programs.
+ *
+ *  [in] PyObject object PyObject to be checked
+ *
+ *  \return [out] True if the object is GedaCapsule, otherwise False.
+ *
+ */
+METHOD(GedaCapsule_Type)
+{
+  TYPE_INT_P1(GedaCapsule_Type);
+
+  int answer = library.func(args);
+
+  ON_METHOD_EXIT(GedaCapsule_Type);
+  return Py_BuildValue("i", answer);
+}
+
+/*! \brief Get an Object from GedaCapsuleObject
+ *  \par Method Description
+ *    This function provides a method to create PyGedaObjects from a GedaCapsule
+ *  object but is not normally need directly. This method is used by other methods
+ *  to get an Python version of the object contained within a Geda capsule.
+ *
+ *  [in] PyObject capsule  The container object
+ *
+ *  \return [out] A GedaObject.
+ *
+ */
+METHOD(get_object)
+{
+  TYPE_PYOBJECT_P1(get_object);
+
+  GedaCapsule *py_capsule;
+  PyObject    *object_data;
+  PyObject    *py_object;
+  int type;
+
+  if (!do_GedaCapsule_Type(self, args)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");;
+    return NULL;
+  }
+  py_capsule = (GedaCapsule*)args;
+
+  object_data = library.func(args);
+
+  type = ((GedaCapsule*)py_capsule)->type;
+
+  switch (type) {
+    case OBJ_PLACEHOLDER:
+    case OBJ_COMPLEX:
+      py_object = PyObject_CallObject((PyObject *) ComplexObjectClass(), object_data);
+      break;
+    case OBJ_TEXT:
+      py_object = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+      break;
+    case OBJ_NET:
+      py_object = PyObject_CallObject((PyObject *) NetObjectClass(), object_data);
+      break;
+    case OBJ_LINE:
+      py_object = PyObject_CallObject((PyObject *) LineObjectClass(), object_data);
+      break;
+    case OBJ_PATH:
+      py_object = PyObject_CallObject((PyObject *) PathObjectClass(), object_data);
+      break;
+    case OBJ_BOX:
+      py_object = PyObject_CallObject((PyObject *) BoxObjectClass(), object_data);
+      break;
+    case OBJ_PICTURE:
+      py_object = PyObject_CallObject((PyObject *) PictureObjectClass(), object_data);
+      break;
+    case OBJ_CIRCLE:
+      py_object = PyObject_CallObject((PyObject *) CircleObjectClass(), object_data);
+      break;
+    case OBJ_BUS:
+      py_object = PyObject_CallObject((PyObject *) BusObjectClass(), object_data);
+      break;
+    case OBJ_PIN:
+      py_object = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);
+      break;
+    case OBJ_ARC:
+      py_object = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
+      break;
+    default:
+      py_object = NULL;
+  }
+  ON_METHOD_EXIT(get_object);
+  return py_object;
+}
+
+/*! \brief Get a List Objects from an Object
+ *  \par Method Description
+ *    This function provides a method to get a list of existing objects from another
+ *  object. The source object can be a Page or another object. Returned capsule items
+ *  can be extracted and converted to GedaObject using the get_object method.
+ *
+ *    Encapsulation of objects is performed for efficiency and memory management.
+ *  If real PyGedaObjects had to be created with a statement like the one used in
+ *  example 1, the time required for Python to manage the memory for large schematics,
+ *  would approach "hard-disk" access times. And when the list was later dereferenced,
+ *  similar delays would occur while Python was performing garbage collection.
+ *
+ *  [in] PyObject source  The object from which to obtain the sub-objects
+ *
+ *  \return [out] PyList list of GedaCapsule Objects or Py_None if the source object
+ *                       did not contain any objects.
+ *
+ *  example: objects = geda.get_objects(schematic)
+ *           print("objects on page with ID={0}, filename={1}".format(schematic.pid,schematic.filename()))
+ *           print objects # prints information for all object on a page
+ *
+ *  \note 1. The GedaCapsules contained in the returned list indirectly references
+ *           objects. Destroying the capsule does not destroy the objects referenced
+ *           within. GedaCapsule are not derived from Python Capsules, but instead are
+ *           derived from Python's base class, PyObject. There is no reason to explicitly
+ *           destroy a GedaCapsule object. The dynamically allocated memory referenced
+ *           within a GedaCapsule is managed by LibGeda and not by Python. All such
+ *           memory is released though gobject destructor mechanisms.
+ *
+ */
+METHOD(get_objects)
+{
+  TYPE_PYOBJECT_I2(get_objects);
+  PyObject *unknown;
+  PyObject *list;
+  int       pid;
+  int       sid;
+
+  if(!PyArg_ParseTuple(args, "O:geda.get_objects", &unknown)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_objects(PageObject | GedaObject )");
+    return NULL;
+  }
+
+  if (PyObject_TypeCheck(unknown, PageObjectClass())) {
+    pid = ((PageObject*)unknown)->pid;
+    sid = -1;
+  }
+  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {
+    pid = ((GedaObject*)unknown)->pid; /* which could be -1 (not on a page) */
+    sid = ((GedaObject*)unknown)->sid;
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_objects(PageObject | GedaObject )");
+    return NULL;
+  }
+
+  list = library.func(pid, sid);
+
+  ON_METHOD_EXIT(get_objects);
+  return list;
+}
+
+/*! \brief Add an Object to an Object
+ *  \par Method Description
+ *  This function provides a method to add an existing object to another object.
+ *  The target a object can be a Page or another object.
+ *
+ *  [in] PyObject parent The Geda object to receive the child
+ *  [in] PyObject child The Geda object to be add to the parent
+ *
+ *  \return [out] status True if successful, otherwise False.
+ *
+ *  example 1. geda.add_object(schematic, titleblock) # Add titleblock complex to a Page object
+ *
+ *  example 2. geda.add_object(pin, pinlabel) # Add label (text) attribute to Pin object
+ *
+ *  \note 1. At this time, only attributes, aka Text Objects, can be added to other
+ *           other objects. The parent object need not be a Complex, attributes can
+ *           be attached to other object type including Graphical objects.
+ *
+ *  \note 2. For symbol files, objects that comprise the symbol, like pins, circles, lines,
+ *           etc., are added to the page not a complex.
+ *
+ */
+METHOD(add_object)
+{
+  TYPE_INT_P3(add_object);
+  PyObject *page;
+  PyObject *py_object_A;
+  PyObject *py_object_B;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "OO!:geda.add_object",
+                       &py_object_A,
+                       GedaObjectClass(), &py_object_B))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: add_object(Page || GedaObject, GedaObject)");
+    return NULL;
+  }
+
+  page = NULL;
+
+  if (PyObject_TypeCheck(py_object_A, PageObjectClass())) {
+    page = py_object_A;
+    py_object_A = NULL;
+  }
+  else {
+    if (!PyObject_TypeCheck(py_object_A, GedaObjectClass())) {
+      PyErr_SetString(PyExc_TypeError, "parameter 1 is not a Page nor a GedaObject");
+    }
+  }
+
+  status = library.func(page, py_object_A, py_object_B);
+
+  ON_METHOD_EXIT(add_object);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Add Objects to an Object
+ *  \par Method Description
+ *  This function provides a method to add a list of existing object to another
+ *  object. The target object can be a Page or another object.
+ *
+ *  \sa add_object
+ *
+ *  [in] PyObject parent The Geda object to receive the child
+ *  [in] PyList   list   The list of Geda objects to be add to the parent
+ *
+ *  \return [out] status True if successful, otherwise False.
+ *
+ *  example 1. geda.add_objects(schematic, ResistorList)
+ *
+ */
+METHOD(add_objects)
+{
+  TYPE_INT_P3(add_objects);
+  PyObject *page;
+  PyObject *py_object_A;
+  PyObject *py_object_B;
+  int       status;
+
+  if (!PyArg_ParseTuple(args, "OO!:geda.add_objects, Object PyList",
+                        &py_object_A, &PyList_Type, &py_object_B))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: add_objects(Page || GedaObject, PyList_Type[GedaObject,...])");
+    return NULL;
+  }
+
+  if (PyObject_TypeCheck(py_object_A, PageObjectClass())) {
+    page = py_object_A;
+    py_object_A = NULL;
+  }
+  else {
+    page = NULL;
+  }
+
+  status = library.func(page, py_object_A, py_object_B);
+  ON_METHOD_EXIT(add_objects);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Copy an Object
+ *  \par Method Description
+ *  This function provides a method to Copy an existing object. The Object
+ *  does not have to be on a Page. The object argument can be and actual
+ *  GedaObject, such as ComplexObject_type, or the object can be a GedaCapsule
+ *  object, such as those return by get_objects.
+ *
+ *  [in] PyObject The Geda object to be copied
+ *
+ *  Optional arguments:
+ *
+ *  [in] x  Integer X offset relative to the source object's location
+ *  [ib] y  Integer X offset relative to the source object's location
+ *
+ *  \note 1. The target offset arguments are mutually optional, either both must be
+ *           provided or neither. If offsets arguments are not provide the copy will
+ *           coincide with the original.
+ *
+ *  \return [out] PyObject if successful otherwise False. The returned GedaObject
+ *                is the real instance of the copied object, even if the argument
+ *                was a capsule object.
+ *
+ *  example 1. amp2 = amp1.copy(4800, -200)
+ *
+ *  example 2. x = RightSpeaker.x
+ *             y = RightSpeaker.y + 1000
+ *             LeftSpeaker = geda.copy_object(RightSpeaker, x, y)
+ */
+METHOD(copy_object)
+{
+  TYPE_PYOBJECT_P1I2(copy_object);
+  PyObject *py_capsule;
+  PyObject *py_object;
+  PyObject *py_object_A;
+  PyObject *py_object_B;
+  int       dx = -1;
+  int       dy = -1;
+  int       destroy = 0;
+
+  if (!PyArg_ParseTuple(args, "O|ii:geda.copy_object, Object PyList",
+                        &py_object, &dx, &dy))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
+    return NULL;
+  }
+
+  if (PyObject_TypeCheck(py_object, GedaObjectClass())) {
+    py_object_A = py_object;
+  }
+  else {
+    if (do_GedaCapsule_Type(self, py_object)) {
+      py_object_A = do_get_object(self, py_object);
+      destroy++;
+    }
+    else {
+      PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
+      return NULL;
+    }
+  }
+
+  py_capsule = library.func(py_object_A, dx, dy);
+
+  if (py_capsule) {
+
+    py_object_B = do_get_object(self, py_capsule);
+    Py_DECREF(py_capsule);
+    if (destroy)
+      Py_XDECREF(py_object_A);
+
+    if (!py_object_B) {
+      PyErr_SetString(PyExc_RuntimeError, "copy_object: library function returned unknown error");
+    }
+  }
+  else {
+    PyErr_SetString(PyExc_RuntimeError, "copy_object: library function returned unknown error");
+    py_object_B = NULL;
+  }
+
+  ON_METHOD_EXIT(copy_object);
+  return py_object_B;
+}
+
+/*! \brief Remove an Object from a Page
+ *  \par Method Description
+ *  This function provides a method to remove an existing object from
+ *  the page which the object is associated. Removing an object does
+ *  not destroy the object.
+ *
+ *  [in] PyObject The Geda object to be removed
+ *
+ *  \return [out] status True if success otherwise False, False
+ *                would only be returned if an object did not exist.
+ *
+ *  example 1. geda.remove_object(py_symbol)
+ *
+ */
+METHOD(remove_object)
+{
+  TYPE_INT_P1(remove_object);
+  PyObject *py_object;
+  int       status;
+
+  if (!PyArg_ParseTuple(args, "O:geda.remove_object", &py_object))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: remove_object(GedaObject || GedaCapsuleObject)");
+    return NULL;
+  }
+
+  status = library.func(py_object);
+  ON_METHOD_EXIT(remove_object);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Remove a PyList of Objects from a Page
+ *  \par Method Description
+ *  This function provides a method to remove a list of existing objects from
+ *  a page which the objects are associated. The objects in the list do not
+ *  have to be the same page and removing an object from a page does not
+ *  destroy the object. (But, a reference to the objects must be maintained
+ *  or Python will destroy the objects when collecting garbage)
+ *
+ *  [in] PyList Of Geda objects to be removed
+ *
+ *  \return [out] status True if success otherwise False, False
+ *                would only be returned if an object did not exist.
+ *
+ *  example 1. geda.remove_objects(ObjectList)
+ *
+ */
+METHOD(remove_objects)
+{
+  TYPE_INT_P1(remove_objects);
+  PyObject *objects;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.remove_objects, Bad Argument", &PyList_Type, &objects)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: remove_objects(PyList of GedaObjects)");
+    return NULL;
+  }
+
+  status = library.func(objects);
+
+  ON_METHOD_EXIT(remove_objects);
+  return Py_BuildValue("i", status);
+}
+
+/* End Page level Methods */
+
+/*! \brief Delete an Object
+ *  \par Method Description
+ *  This function provides a method to delete an object
+ *
+ *  [in] PyObject The Geda object to be deleted
+ *
+ *  \return [out] status True if success otherwise False, False
+ *                would only be returned if an object did not exist.
+ *
+ *  example 1. geda.delete_objects(Old_Objects)
+ *
+ */
+METHOD(delete_object)
+{
+  TYPE_INT_P1(delete_object);
+  PyObject  *object;
+  int        status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.delete_object, Bad Argument", GedaObjectClass(), &object)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: delete_object(GedaObject)");
+    return NULL;
+  }
+
+  status = library.func(object);
+
+  if (status > 0)
+    Py_DECREF(object);
+  ON_METHOD_EXIT(delete_object);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Delete a List of Objects
+ *  \par Method Description
+ *  This function provides a method to delete a list objects
+ *
+ *  [in] PyObject of type PyList container with PyGedaObjects
+ *
+ *  \return [out] status True if success otherwise False, False
+ *                would only be returned if an object in the list
+ *                did not exist.
+ *
+ *  example 1. geda.delete_objects(Old_Objects)
+ *
+ */
+METHOD(delete_objects)
+{
+  TYPE_INT_P1(delete_objects);
+  PyObject *objects;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.delete_objects, Bad Argument", &PyList_Type, &objects)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: delete_objects(PyList of GedaObjects)");
+    return NULL;
+  }
+  status = library.func(objects);
+
+  ON_METHOD_EXIT(delete_objects);
+  return Py_BuildValue("i", status);
+}
+
+/*! \brief Delete a List of Objects
+ *  \par Method Description
+ *  This function provides a method to delete a list objects
+ *
+ *  [in] PyObject of type PyList container with PyGedaObjects
+ *
+ *  \return [out] status True if success otherwise False, False
+ *                would only be returned if an object in the list
+ *                did not exist.
+ *
+ *  example 1. geda.delete_objects(Old_Objects)
+ *
+ */
+METHOD(sync_object)
+{
+  TYPE_INT_P1(sync_object);
+  PyObject *py_object;
+  int       status;
+
+  if (!PyArg_ParseTuple(args, "O:geda.sync_object", &py_object))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: sync_object(GedaObject)");
+    return NULL;
+  }
+
+  status = library.func(py_object);
+  ON_METHOD_EXIT(sync_object);
+  return Py_BuildValue("i", status);
+}
+
+
+/*! \defgroup Python_API_Create_Methods  Geda Python Module API Creation Methods
+ *  @{
+ */
+
+/*! \brief Create a New Arc Object
+ *  \par Method Description
+ *  This function provides a method to create new Arc. An Arc is a
+ *  graphical figure. Arcs have line-type properties.
+ *
+ *  [in] x           Integer center X location
+ *  [in] y           Integer center Y location
+ *  [in] radius      Integer radius of the arc sector
+ *  [in] start_angle Integer start angle of the sector
+ *  [in] end_angle   Integer ending angle of the sector
+ *
+ *  Optional argument:
+ *
+ *  [in] color PyObject a color object (not fully implemented yet)
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. arc = geda.new_arc(4000, 3300, 500, 0, 90)
+ *
+ */
+METHOD(new_arc)
+{
+  TYPE_PYOBJECT_I5P1(new_arc);
+
+  PyObject *py_arc;
+  PyObject *py_color = NULL;
+  PyObject *object_data;
+
+  int x; int y; int radius; int start_angle; int end_angle;
+
+  if(!PyArg_ParseTuple(args, "iiiii|O:geda.new_arc, Bad Arc Arguments", &x, &y, &radius,
+                       &start_angle, &end_angle, &py_color)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_arc(x, y, radius, start_angle, end_angle [, color])");
+    return NULL;
+  }
+
+  object_data = library.func(x, y, radius, start_angle, end_angle, py_color);
+
+  py_arc = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_arc);
+  return py_arc;
+}
+
+/*! \brief Create a New Box Object
+ *  \par Method Description
+ *  This function provides a method to create new Box. A Box is closes
+ *  graphical figure. Boxes have line-type properties and can be filled
+ *  with a fill pattern or not.
+ *
+ *  [in] lower_x  Integer lower X corner
+ *  [in] lower_y  Integer lower Y corner
+ *  [in] upper_x  Integer upper X corner
+ *  [in] upper_y  Integer upper Y corner
+ *
+ *  Optional argument:
+ *
+ *  [in] color PyObject a color object (not fully implemented yet)
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. frame1 = geda.new_box(7200, 5500, 7800, 5500)
+ *
+ */
+METHOD(new_box)
+{
+  TYPE_PYOBJECT_I4P1(new_box);
+
+  PyObject *py_box;
+  PyObject *py_color = NULL;
+  PyObject *object_data;
+
+  int lower_x; int lower_y; int upper_x; int upper_y;
+
+  if(!PyArg_ParseTuple(args, "iiii|O:geda.new_box, Bad Arguments",
+                       &lower_x, &lower_y, &upper_x, &upper_y, &py_color)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_box( lower_x, lower_y, upper_x, upper_y [, color])");
+    return NULL;
+  }
+
+  object_data = library.func(lower_x, lower_y, upper_x, upper_y, py_color);
+
+  py_box = PyObject_CallObject((PyObject *) BoxObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_box);
+  return py_box;
+}
+
+/*! \brief Create a New Bus Object
+ *  \par Method Description
+ *  This function provides a method to create new Bus. A Bus is a line that
+ *  basically represent an electrical path, like wires.A bus is simular to
+ *  a Net object but represent mutible wires, not just one.
+ *
+ *  [in] x1  Integer from X location
+ *  [in] y1  Integer from Y location
+ *  [in] x2  Integer to X location
+ *  [in] y2  Integer to Y location
+ *
+ *  Optional arguments:
+ *
+ *  [in] name string bus_name attribute
+ *  [in] color PyObject a color object (not fully implemented yet)
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. bus = geda.new_bus(7200, 5500, 7800, 5500)
+ *
+ */
+METHOD(new_bus)
+{
+  TYPE_PYOBJECT_C1I4P1(new_bus);
+
+  PyObject *py_bus;
+  PyObject *py_color   = NULL;
+  PyObject *object_data;
+  const char *bus_name = NULL;
+  int x1; int y1; int x2; int y2;
+
+  if(!PyArg_ParseTuple(args, "iiii|sO:geda.new_bus, Bad Arguments",
+                       &x1, &y1, &x2, &y2, &bus_name, &py_color)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_bus(x1, y1, x2, y2 [, bus_name [, color]])");
+    return NULL;
+  }
+  object_data = library.func(bus_name, x1, y1, x2, y2, py_color);
+
+  py_bus = PyObject_CallObject((PyObject *) BusObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_bus);
+  return py_bus;
+}
+
+/*! \brief Create a New Circle Object
+ *  \par Method Description
+ *  This function provides a method to create new Circle. Circle objects
+ *  are graphical drawing objects. Circle have line-type properties and
+ *  can be filled with fill patterns or not.
+ *
+ *  [in] x       Integer center X location
+ *  [in] y       Integer center Y location
+ *  [in] radius  Integer to X location
+ *
+ *  optional:
+ *
+ *  [in] color  PyObject a color object (not implemented yet)
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. circle = geda.new_circle(7200, 5200, 1000)
+ *
+ */
+METHOD(new_circle)
+{
+  TYPE_PYOBJECT_I3P1(new_circle);
+
+  PyObject *py_circle;
+  PyObject *py_color   = NULL;
+  PyObject *object_data;
+
+  int x; int y; int radius;
+
+  if(!PyArg_ParseTuple(args, "iii|O:geda.new_circle, Bad Arguments",
+                       &x, &y, &radius, &py_color)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_circle(x, y, radius [, color])");
+    return NULL;
+  }
+
+  object_data = library.func(x, y, radius, py_color);
+
+  py_circle = PyObject_CallObject((PyObject *) CircleObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_circle);
+  return py_circle;
+}
+
+/*! \brief Create a New Complex Object
+ *  \par Method Description
+ *  This function provides a method to create new Complex object. A Complex
+ *  is a symbol to known to the Library that normally represents a component.
+ *
+ *  [in] basename string  The base file name of the symbol without the extension
+ *  [in] x        Integer X insertion location
+ *  [in] y        Integer Y insertion location
+ *
+ *  Optional arguments:
+ *
+ *  [in] angle    integer orientation property
+ *  [in] mirror   integer property whether to mirror the symbol
+ *  [in] embedded integer property whether to embed the symbol data
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  \note 1. Preceeding optional arguments must be provided, use a value of
+ *           -1 for defaults when it is not desired to "set" the proceeding
+ *           arguments.
+ *
+ *  example 1. titleblock = geda.new_complex("title-B", 1000, 1000)
+ *              titleblock.locked = True
+ *
+ *  example 2. amp1 = geda.new_complex("lm2902-1", 1000, 4000, -1, 1)
+ */
+METHOD(new_complex)
+{
+  TYPE_PYOBJECT_C1I5(new_complex);
+
+  PyObject   *py_complex;
+  PyObject   *object_data;
+  const char *basename = NULL;
+
+  int x; int y; int angle; int mirror; bool embed;
+
+  angle  = -1;
+  mirror = -1;
+  embed  = -1;
+
+  if (! PyArg_ParseTuple(args, "sii|iii:geda.new_complex, Bad Arguments",
+                         &basename, &x, &y, &angle, &mirror, &embed))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_complex(name, x, y [, angle [, mirror [, embed]])");
+    return NULL;
+  }
+
+  object_data = library.func(basename, x, y, angle, mirror, embed);
+
+  if (object_data != NULL ) {
+    py_complex = PyObject_CallObject((PyObject *) ComplexObjectClass(), object_data);
+    Py_DECREF(object_data);
+  }
+  else {
+    PyErr_Format(GedaError, "<new_complex>, An error occured, object was not created, name=%s\n", basename);
+    py_complex = NULL;
+  }
+
+  ON_METHOD_EXIT(new_complex);
+  return py_complex;
+}
+
+/*! \brief Create a New Line Object
+ *  \par Method Description
+ *  This function provides a method to create new Line. Line object are
+ *  graphical drawing objects and do not represent an electrical path,
+ *  although lines are used inside of symbols to indicate signal paths
+ *  or internal connections but these lines are never associated with
+ *  nodes within a schematic.
+ *
+ *  [in] x1  Integer from X location
+ *  [in] y1  Integer from Y location
+ *  [in] x2  Integer to X location
+ *  [in] y2  Integer to Y location
+ *
+ *  Optional argument:
+ *
+ *  [in] color PyObject a color object (not fully implemented yet)
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. line = geda.new_line(7200, 5200, 7800, 5200)
+ *
+ */
+METHOD(new_line)
+{
+  TYPE_PYOBJECT_I4P1(new_line);
+
+  PyObject *py_line;
+  PyObject *py_color    = NULL;
+  PyObject *object_data;
+
+  int x1; int y1; int x2; int y2;
+
+  if(!PyArg_ParseTuple(args, "iiii|O:geda.new_line, Bad Arguments",
+                       &x1, &y1, &x2, &y2, &py_color)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_line(x1, y1, x2, y2 [, color])");
+    return NULL;
+  }
+
+  object_data = library.func(x1, y1, x2, y2, py_color);
+
+  py_line = PyObject_CallObject((PyObject *) LineObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_line);
+  return py_line;
+}
+
+/*! \brief Create a New Net Object
+ *  \par Method Description
+ *  This function provides a method to create new Net. A Net is a line that
+ *  basically represent an electrical path, like a wire. One or more Net
+ *  object are need to describe the electrical connection between pins and
+ *  other nets.
+ *
+ *  [in] x1  Integer from X location
+ *  [in] y1  Integer from Y location
+ *  [in] x2  Integer to X location
+ *  [in] y2  Integer to Y location
+ *
+ *  Optional arguments:
+ *
+ *  [in] name  string net_name attribute
+ *  [in] color A ColorObject or Integer color code
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. net = geda.new_net(7200, 5500, 7800, 5500)
+ *              geda.add_object(schematic, net)
+ */
+METHOD(new_net)
+{
+  TYPE_PYOBJECT_C1I4P1(new_net);
+
+  PyObject *py_net;
+  PyObject *py_color    = NULL;
+  PyObject *object_data;
+  const char *net_name  = NULL;
+
+  int x1; int y1; int x2; int y2;
+
+  if(!PyArg_ParseTuple(args, "iiii|sO:geda.new_net, Bad Arguments",
+                       &x1, &y1, &x2, &y2, &net_name, &py_color)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_net(x1, y1, x2, y2 [, net_name [, color]])");
+    return NULL;
+  }
+
+  object_data = library.func(net_name, x1, y1, x2, y2, py_color);
+
+  py_net = PyObject_CallObject((PyObject *) NetObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_net);
+  return py_net;
+}
+
+/*! \brief Create a New Path Object
+ *  \par Method Description
+ *  This function provides a method to create new Path. A Path object is
+ *  graphical figure and does not represent an electrical path. Path have
+ *  line-type properties and can have fill-patterns when the path is closed.
+ *
+ *  [in] path string  The SVG path string
+ *
+ *  Optional argument:
+ *
+ *  [in] color A ColorObject or Integer color code
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  example 1. path = geda.new_path("M 1000 2500 L 2000 3500")
+ *
+ */
+METHOD(new_path)
+{
+  TYPE_PYOBJECT_C1(new_path);
+
+  PyObject *py_color = NULL;
+  PyObject *py_path;
+  PyObject *object_data;
+
+  const char *path_string = NULL;
+
+  if(!PyArg_ParseTuple(args, "s|O:geda.new_path, Bad Arguments", &path_string, &py_color))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_path(path_string [, color])");
+    return NULL;
+  }
+
+  object_data = library.func(path_string);
+
+  if (object_data != NULL ) {
+    py_path = PyObject_CallObject((PyObject *) PathObjectClass(), object_data);
+    Py_DECREF(object_data);
+  }
+  else {
+    PyErr_Format(GedaError, "<new_path>, An error occured, object was not created, path=%s\n", path_string);
+    py_path = NULL;
+  }
+
+  ON_METHOD_EXIT(new_path);
+  return py_path;
+}
+
+/*! \brief Create a New Picture Object
+ *  \par Method Description
+ *  This function provides a method to create new Picture.
+ *
+ *  [in] filepath string  The file name of the image
+ *  [in] x1       Integer lower left X location
+ *  [in] y1       Integer lower left Y location
+ *  [in] x2       Integer top right X location
+ *  [in] y2       Integer top right Y location
+ *
+ *  Optional arguments:
+ *
+ *  [in] angle    integer orientation property
+ *  [in] mirror   integer property whether to mirror the image
+ *  [in] embedded integer property whether to embed the image data
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  \note   Preceeding optional arguments must be provided, use a value of
+ *          -1 for defaults when it is not desired to "set" the proceeding
+ *          arguments.
+ *
+ *  example 1. picture = geda.new_picture("/home/pictures/1377395281.jpg", 5200, 5000, 8200, 2000)
+ *              picture.locked = True
+ *
+ */
+METHOD(new_picture)
+{
+  TYPE_PYOBJECT_C1I7(new_picture);
+
+  PyObject   *py_picture;
+  PyObject   *object_data;
+  const char *filepath = NULL;
+
+  int x1; int y1; int x2; int y2; int angle; int mirror; bool embedded;
+
+  angle    = -1;
+  mirror   = -1;
+  embedded = -1;
+
+  if (! PyArg_ParseTuple(args, "siiii|iii:geda.new_picture, Bad Arguments",
+                               &filepath, &x1, &y1, &x2, &y2, &angle, &mirror, &embedded))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_picture(filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]])");
+    return NULL;
+  }
+
+  object_data = library.func(filepath, x1, y1, x2, y2, angle, mirror, embedded);
+
+  if (object_data != NULL ) {
+    py_picture = PyObject_CallObject((PyObject *) PictureObjectClass(), object_data);
+    Py_DECREF(object_data);
+  }
+  else {
+    PyErr_Format(GedaError, "<new_picture>, An error occured, object was not created, filepath=%s\n", filepath);
+    py_picture = NULL;
+  }
+
+  ON_METHOD_EXIT(new_picture);
+  return py_picture;
+}
+
+/*! \brief Create a New Pin Object
+ *  \par Method Description
+ *  This function provides a method to create a new Pin Object.
+ *
+ *  [in] x1     Integer from X location
+ *  [in] y1     Integer from Y location
+ *  [in] x2     Integer to X location
+ *  [in] y2     Integer to Y location
+ *
+ *  Optional arguments:
+ *
+ *  [in] whichend Integer Which end gets connected (either 0 or 1)
+ *  [in] number   Integer pin number attribute
+ *  [in] label    String  pin label attribute
+ *  [in] etype    Integer electrical type attribute (formally pin type)
+ *  [in] mtype    Integer mechanical type attribute
+ *  [in] ntype    Integer node type property ( 0=normal, 1=bus type)
+ *
+ *  \return [out] PyObject Or NULL if an error occurs.
+ *
+ *  \note 1. Preceeding optional arguments must be provided, use a value of
+ *           -1 for defaults when it is not desired to "set" the proceeding
+ *           arguments.
+ *
+ *  \note 2. New Pin objects are created with the auto-attributes property set to
+ *           True, in which case all "normal" pin attribute objects are automatically
+ *           created and attached to the pin when the pin is commited to a page. If
+ *           auto-attributes is turned off by using something like pin.auto-attributes
+ *            = False, the pin attributes must be create separately and attached to the
+ *           pin object. Another options is to leave attributes turned on and modify the
+ *           attributes after the pin has been committed to a Page object, see example 2
+ *           below.
+ *
+ *  example 1. pin = geda.new_pin(900, 200, 700, 200, 0, 2, "2", PIN_ELECT_PAS, 0, 0)
+ *
+ *  example 2. pin = geda.new_pin(0, 100, 100, 100, 0, 1, "1", PIN_ELECT_PAS, 0, 0)
+ *              geda.add_object(resistor, pin)
+ *              butes = geda.get_attribs(pin)
+ *              for attrib in butes:
+ *                  if attrib.name() == "pinlabel":
+ *                      attrib.visible = 0
+ *                  if attrib.name() == "pinnumber":
+ *                      attrib.visible = 0
+ *
+ */
+METHOD(new_pin)
+{
+  TYPE_PYOBJECT_C1I9(new_pin);
+
+  PyObject   *py_pin;
+  PyObject   *object_data;
+
+  int x1; int y1; int x2; int y2;
+
+  int number        = -1;
+  int whichend      = -1;
+  int etype         = -1;
+  int mtype         = -1;
+  int ntype         = -1;
+
+  const char *label = NULL;
+
+  if (! PyArg_ParseTuple(args, "iiii|iisiii:geda.new_pin, Bad Arguments",
+                         &x1, &y1, &x2, &y2, &whichend, &number, &label, &etype, &mtype, &ntype))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_pin(x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]])");
+    return NULL;
+  }
+
+  object_data = library.func(label, x1, y1, x2, y2, whichend, number, etype, mtype, ntype);
+
+  if (object_data != NULL ) {
+    py_pin = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);
+    Py_DECREF(object_data);
+  }
+  else {
+    PyErr_SetString(GedaError, "<new_pin>, An error occured, object was not created\n");
+    py_pin = NULL;
+  }
+
+  ON_METHOD_EXIT(new_pin);
+  return py_pin;
+}
+
+/*! \brief Create a New Text Object
+ *  \par Method Description
+ *  This function provides a method to create a new Text Object.
+ *
+ *  [in] text  String for the name property
+ *  [in] x     Integer X location
+ *  [in] y     Integer Y location
+ *
+ *  optional:
+ *
+ *  [in] size    integer font size property
+ *  [in] align   integer alignment property
+ *  [in] angle   integer orientation property
+ *  [in] color   A ColorObject or Integer color code
+ *
+ *  \return [out] PyObject or NULL if an error occurs.
+ *
+ *  \note  Preceeding optional arguments must be provided, use a value of
+ *         -1 for defaults when it is not desired to "set" the proceeding
+ *         arguments.
+ *
+ *  example 1. text = geda.new_text("Gyro", 2800, 3000, -1, 0, 90)
+ *              text.locked = True
+ *              geda.add_object(schematic, text)
+ *
+ *  example 2. text = geda.new_text("LM353", 250, 350, 8)
+ *              geda.add_object(opamp, text)
+ *
+ */
+METHOD(new_text)
+{
+  TYPE_PYOBJECT_C1I5P1(new_text);
+
+  PyObject   *py_color      = NULL;
+  PyObject   *py_text;
+  PyObject   *object_data;
+
+  const char *text;
+  int x; int y;
+
+  int size   = -1;
+  int align  = -1;
+  int angle  = -1;
+
+  if (!PyArg_ParseTuple(args, "sii|iiiO:geda.new_text, Bad Argument",
+                        &text, &x, &y, &size, &align, &angle, &py_color))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_text(string, x, y, [, size [, align [, angle] [, color]]}");
+    return NULL;
+  }
+
+  object_data = library.func(text, x, y, size, align, angle, py_color);
+
+  py_text = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_text);
+  return py_text;
+}
+
+/*! \brief Create a New Attribute Object
+ *  \par Method Description
+ *  This function provides a method to a new attribute Text Object. The new_text
+ *  method could also be used to create a new Text but this method is more
+ *  convenience for Text object that are to be used as Attributes as indicated
+ *  by the parameter arguments.
+ *
+ *  [in] Name  String for the name property
+ *  [in] Value String for the Value property
+ *  [in] x     Integer X location
+ *  [in] y     Integer Y location
+ *
+ *  optional:
+ *
+ *  [in] visible Boolean visibility property
+ *  [in] show    integer show-name-value property
+ *  [in] align   integer alignment property
+ *  [in] angle   integer orientation property
+ *  [in] color   A ColorObject or Integer color code
+ *
+ *  \return [out] GedaTextObject
+ *
+ *  \note  Preceeding optional arguments must be provided, use a value of
+ *         -1 for defaults when it is not desired to "set" the proceeding
+ *          arguments.
+ *
+ *  example 1. device = geda.new_attrib("device", "resistor", x, y)
+ *
+ *  example 2. pinlabel = geda.new_attrib("pinlabel", "2", x, y1, -1, -1, LOWER_RIGHT)
+ *
+ */
+METHOD(new_attrib)
+{
+  TYPE_PYOBJECT_C2I6P1(new_attrib);
+
+  PyObject   *py_text;
+  PyObject   *object_data;
+  PyObject   *py_color     = NULL;
+  const char *name         = NULL;
+  const char *value        = NULL; 
+
+  int x; int y;
+
+  int visible = -1;
+  int show    = -1;
+  int align   = -1;
+  int angle   = -1;
+
+  if (! PyArg_ParseTuple(args, "ssii|iiiiO:geda.new_attrib, Bad Argument",
+                         &name, &value, &x, &y, &visible, &show, &align, &angle, &py_color))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: new_attrib(name, value, x, y, [, visible [, show-option [, align [, angle [, color]]]]]}");
+    return NULL;
+  }
+
+  object_data = library.func(name, value, x, y, visible, show, align, angle, py_color);
+
+  py_text = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+
+  Py_XDECREF(object_data);
+  ON_METHOD_EXIT(new_attrib);
+  return py_text;
+}
+/** @} END Group Python_API_Create_Methods */
+
+/*! \defgroup Python_Attribute_Handlers  Geda Python Module API Attribute Manipulators
+ *  @{
+ */
+
+/*! \brief Get a Single Attribute Object by Name
+ *  \par Method Description
+ *  This function provides a method to get a single attribute associated with
+ *  a given Gedaobject. If found, the returned attribute may be attached or
+ *  floating.
+ *
+ *  [in] py_parent GedaObject to be search for the attribute
+ *  [in] name      string name of the attribute to be returned
+ *
+ *  \return [out] Pyattribute if found or Py_None if an attribute was not found
+ *                with the given name.
+ */
+METHOD(get_attrib)
+{
+  TYPE_PYOBJECT_P1C1(get_attrib);
+  PyObject *py_parent;
+  PyObject *object_data;
+  PyObject *py_attrib = Py_None;
+  const char *name;
+
+  if(!PyArg_ParseTuple(args, "Os:geda.get_attrib", GedaObjectClass(), &py_parent, &name)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_attrib(GedaObject, name)");
+    return NULL;
+  }
+
+  object_data  = library.func(py_parent, name);
+
+  if (object_data) {
+    py_attrib = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+    Py_DECREF(object_data);
+  }
+  else
+    py_attrib = Py_None;
+
+  ON_METHOD_EXIT(get_attrib);
+  return py_attrib;
+}
+
+/*! \brief Get Attribute Objects Value
+ *  \par Method Description
+ *  This function provides a method to get all of the attributes attached to
+ *  given Gedaobject.
+ *
+ *  [in] PyGedaObject whose attributes are to be returned
+ *
+ *  \return [out] PyList of Pyattributes attached to the PyObject.
+ */
+METHOD(get_attribs)
+{
+  TYPE_PYOBJECT_P1(get_attribs);
+  PyObject *parent;
+  PyObject *py_input_list;
+  PyObject *py_output_list;
+  PyObject *py_text;
+
+  int i, count;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.get_attribs", GedaObjectClass(), &parent)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_attribs(GedaObject)");
+    return NULL;
+  }
+
+  py_input_list  = library.func(parent);
+  py_output_list = PyList_New(0);
+
+  if ( PyList_Check(py_input_list)) {
+
+    count = (int) PyList_GET_SIZE(py_input_list);
+
+    for (i = 0; i < count ; i++)
+    {
+      PyObject *object_data;
+
+      object_data  = PyList_GET_ITEM(py_input_list, i);
+      py_text      = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+      if(py_text && PyObject_Type(py_text))
+        PyList_Append(py_output_list, py_text);
+    }
+  }
+
+  Py_XDECREF(py_input_list);
+  ON_METHOD_EXIT(get_attribs);
+  return py_output_list;
+}
+
+/*! \brief Set Attribute Objects Value
+ *  \par Method Description
+ *  This function provides a method to set the value of an attribute given it
+ *  name. If the Attribute being set is a floating type, then the attribute is
+ *  promoted, also referred to as being attached, to the parent.
+ *
+ *  If the Attribute does not exist, whether inherited or not, a new attribute
+ *  is created and attached to the parent.
+ *
+ *  [in] py_object PyObject Complex or Text object for which attribute is to be set
+ *  [in] name      PyString name of the attribute which is to be set or created
+ *  [in] py_value  PyString or PyInt value of the attribute
+ *  [in] ret_obj   PyBoolean if True the attribute will be returned
+ *
+ *  \return PyAttribute object associated with the changes if the 4th argument
+ *          evaluated as True, otherwise Py_None is returned.
+ */
+METHOD(set_attrib)
+{
+  TYPE_PYOBJECT_P2C2I1(set_attrib);
+  PyObject *py_object_A;
+  PyObject *py_object_B = NULL; /* appease compiler */
+  PyObject *py_value;           /* convertible */
+  PyObject *object_data;
+  PyObject *py_ret      = NULL;
+
+  const char *name;
+  const char *value;
+  int         ret_obj = 0;
+
+  if(!PyArg_ParseTuple(args, "OsO|i:set_attrib.get_attrib", &py_object_A, &name, &py_value, &ret_obj))
+  {
+    PyErr_SetString(PyExc_TypeError, "syntax: set_attrib(GedaObject, name, value [, return-object])");
+    return NULL;
+  }
+  if (PyObject_TypeCheck(py_object_A, ComplexObjectClass())) {
+    py_object_B = NULL;
+  }
+  else if (PyObject_TypeCheck(py_object_A, TextObjectClass())) {
+    py_object_B = py_object_A;
+    py_object_A = NULL;
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, "parameter 1 is not a GedaObject or Attribute object");
+    return NULL;
+  }
+
+  if (PyInt_Check(py_value)) {
+    long long_val        = PyInt_AsLong(py_value);
+    PyObject *py_tmp_val = PyString_FromFormat("%ld", long_val);
+    Py_XDECREF(py_value);
+    py_value = py_tmp_val;
+  }
+
+  value = PyString_AsString(py_value);
+
+  object_data  = library.func(py_object_A, py_object_B, name, value, ret_obj);
+
+  if (ret_obj && object_data) {
+    py_ret = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+    Py_DECREF(object_data);
+  }
+  else {
+    py_ret = Py_None;
+  }
+
+  //Py_XDECREF(py_value);
+  ON_METHOD_EXIT(set_attrib);
+
+  return py_ret;
+}
+
+/*! \brief Refresh Attribute Objects Method
+ *  \par Method Description
+ *  This function provides a method to update attributes that were modified
+ * in Python scripts after a complex object associates with the attributes was
+ * placed (on a page). If the attribute was modified before committing to a
+ * page, or if a new attribute is created and added to a complex then it is
+ * not required to use this method. If applicable attributes are modified
+ * without calling this function, only the Python version of the object is
+ * modified, hence the changes will not be saved when the file is saved.
+ *
+ *  [in] PyObject Complex for which attributes are to be synchronized
+ *
+ *  \return status True on success, otherwise False.
+ */
+METHOD(refresh_attribs)
+{
+  TYPE_INT_P1(refresh_attribs);
+  PyObject *object;
+  int       status;
+
+  if(!PyArg_ParseTuple(args, "O!:geda.refresh_attribs", GedaObjectClass(), &object)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: refresh_attribs(GedaObject)");
+    return NULL;
+  }
+
+  status = library.func(object);
+  ON_METHOD_EXIT(refresh_attribs);
+  return Py_BuildValue("i", status);
+}
+/** @} END Group Python_Attribute_Handlers */
+
+/** @} END Group Python_Method_Handlers */

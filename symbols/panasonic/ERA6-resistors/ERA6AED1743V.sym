@@ -1,0 +1,60 @@
+v 20131031 2
+T 0 1300 8 10 0 0 0 0 1
+author=AutoTron
+T 1400 1300 5 8 0 0 0 0 1
+symversion=0.1
+T 2500 1300 5 8 0 0 0 0 1
+dist-license=GPL3
+T 0 1150 9 8 0 0 0 0 1
+documentation=http://www.panasonic.com/industrial/electronic-components/resistive-products
+T 800 850 5 8 0 0 0 0 1
+device=resistor
+T 0 700 5 8 0 0 0 0 1
+description=resistor, metal-film, high reliability, 25ppm/K
+T 0 850 5 8 0 0 0 0 1
+numslots=0
+P 100 300 0 300 1 0 1
+{
+T 50 350 5 8 0 1 0 6 1
+pinlabel=1
+T 50 350 5 8 0 1 0 6 1
+pinnumber=1
+T 50 350 5 8 0 1 0 6 1
+pinseq=1
+T 0 250 5 8 0 1 0 8 1
+pintype=pas
+T 100 250 5 8 0 1 0 8 1
+mechtype=body
+}
+P 800 300 900 300 1 0 1
+{
+T 850 350 5 8 0 1 0 0 1
+pinlabel=2
+T 850 350 5 8 0 1 0 0 1
+pinnumber=2
+T 850 350 5 8 0 1 0 0 1
+pinseq=2
+T 900 250 5 8 0 1 0 2 1
+pintype=pas
+T 800 250 5 8 0 1 0 2 1
+mechtype=body
+}
+L 100 300 150 300 3 0 0 0 100 100
+L 750 300 800 300 3 0 0 0 100 100
+L 150 300 200 400 3 0 0 0 100 100
+L 200 400 300 200 3 0 0 0 100 100
+L 300 200 400 400 3 0 0 0 100 100
+L 400 400 500 200 3 0 0 0 100 100
+L 500 200 600 400 3 0 0 0 100 100
+L 600 400 700 200 3 0 0 0 100 100
+L 700 200 750 300 3 0 0 0 100 100
+T 0 1000 5 8 0 0 0 0 1
+footprint=0805
+T 200 500 5 10 1 1 0 0 1
+refdes=R?
+T 50 0 5 10 1 1 0 0 1
+value=174k
+T 750 0 5 10 1 1 0 0 1
+value=1/8W
+T 550 500 5 10 1 1 0 0 1
+value=MF 0.5%

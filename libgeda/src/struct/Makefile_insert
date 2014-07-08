@@ -1,0 +1,25 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_utility_sources
+
+libgeda_la_SOURCES += \
+			struct/s_attrib.c \
+			struct/s_basic.c \
+			struct/s_clib.c \
+			struct/s_conn.c \
+			struct/s_cue.c \
+			struct/s_encoding.c \
+			struct/s_hierarchy.c \
+			struct/s_object.c \
+			struct/s_page.c \
+			struct/s_papersizes.c \
+			struct/s_path.c \
+			struct/s_place.c \
+			struct/s_slib.c \
+			struct/s_slot.c \
+			struct/s_textbuffer.c \
+			struct/s_tile.c \
+			struct/s_toplevel.c \
+			struct/s_undo.c \
+			struct/s_weakref.c
+

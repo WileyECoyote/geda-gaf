@@ -1,0 +1,29 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+@echo 'export FRAGMENTS=object'
+
+gschem_SOURCES += \
+		object/o_arc.c \
+		object/o_attrib.c \
+		object/o_basic.c \
+		object/o_box.c \
+		object/o_buffer.c \
+		object/o_bus.c \
+		object/o_circle.c \
+		object/o_complex.c \
+		object/o_copy.c \
+		object/o_delete.c \
+		object/o_find.c \
+		object/o_grips.c \
+		object/o_line.c \
+		object/o_misc.c \
+		object/o_move.c \
+		object/o_net.c \
+		object/o_path.c \
+		object/o_picture.c \
+		object/o_pin.c \
+		object/o_place.c \
+		object/o_select.c \
+		object/o_slot.c \
+		object/o_text.c \
+		object/o_undo.c

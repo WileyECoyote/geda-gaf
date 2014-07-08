@@ -1,0 +1,32 @@
+\subsection*{Including libgedacairo}
+
+
+  To use the library in GNU Autotools-based program, add: \\ 
+\\ 
+ PKG\_PROG\_PKG\_CONFIG\\ 
+ PKG\_CHECK\_MODULES([GEDACAIRO], [libgedacairo], [], [])\\ 
+\\ 
+ to your `configure.ac', and then add: \\ 
+\\ 
+ AM\_CFLAGS = \$(GEDACAIRO\_CFLAGS\\ 
+ AM\_LDFLAGS = \$(GEDACAIRO\_LDFLAGS)\\ 
+\\ 
+ to your `Makefile.am'.\\ 
+
+
+
+  To compile a very simple program without using a GNU Autotools, one could use a command like:\\ 
+
+cc `pkg-config --cflags --libs libgedacairo` -o myprog myprog.c
+\subsubsection*{Header files}
+ The main header file for the library is `libgedacairo.h'. There are two main groups of API functions and and types available; the main EdaRenderer class (based on GObject), and a set of hinted rendering functions. 
+\subsubsection*{In Source Tree}
+ To include libgedacairo in applications within the geda-gaf source do this:\\ 
+\\ 
+ In the app `Makefile.am' use:\\ 
+\\ 
+app\_CFLAGS += -I\$(top\_srcdir)/libgedacairo/include
+\\ 
+app\_LDADD += \$(top\_builddir)/libgedacairo/src/libgedacairo.la
+
+

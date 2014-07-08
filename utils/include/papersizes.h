@@ -1,16 +1,16 @@
 /* gEDA - GPL Electronic Design Automation
  * utils - gEDA Utilities
- * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2014 Ales Hvezda
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the * Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the * Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
 /* this file is no longer used */
 
 #define MILS_PER	1000
-#define BORDER 		1000	
+#define BORDER 		1000
 /* if you change this one you must recalc correction factors */
 /* perhaps we will do this in the code ! */
 

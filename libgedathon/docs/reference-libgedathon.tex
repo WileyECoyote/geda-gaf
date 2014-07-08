@@ -1,0 +1,41 @@
+\textbf{High-Level-Adders}
+ - These all return a reference to a Python GedaObject 
+
+ \begin{itemize}
+\item AddArc (Page, x, y, radius, start-angle, end-angle [, color])
+\item AddAttribute (page, name, value, x, y [, visible [, show [, alignment [, angle]]]])
+\item AddBox (Page, upper\_x, upper\_y, lower\_x, lower\_y [, color])
+\item AddBus (Page, x1, y1, x2, y2, [, name [, color]])
+\item AddComponent (Page, name, refdes, x, y [, angle [, mirror [, embed]]]) 
+\item AddCapacitor (Page, x, y, value [,refdes [, angle [, mirror [, embed]]]])
+\item AddCircle (Page, x, y, radius [, color])
+\item AddElectrolytic (Page, x, y, value [,refdes [, angle [, mirror [, embed]]]])
+\item AddInductor (Page, x, y, value [,refdes [, angle [, mirror [, embed]]]])
+\item AddLine (Page, x1, y1, x2, y2, [, color]])
+\item AddNet (Page, x1, y1, x2, y2, [, name [, color]])
+\item AddOpAmp (Page, x, y, [refdes [slot [, angle [, mirror [, embed]]]]])
+\item AddPath (Page, path-string [, color])
+\item AddPicture (Page, name, x1, y1, x2, y2 [, angle [, mirror [, embed]]])
+\item AddPin (Page, x1, y1, x2, y2, [, name [, color]])
+\item AddResistor (Page, x, y, value [,refdes [, angle [, mirror [, embed]])
+\item AddSource (Page, name, x, y [, angle [, mirror [, embed]])
+\item AddText (page, string, x, y [, size [, alignment [, angle]]])
+\item AddTitleblock (page, x, y [, embed])
+
+\end{itemize}
+
+
+ \textbf{Default Setters/Getters}
+ - These all accept and return a PyString 
+
+
+ \begin{itemize}
+\item DefaultCapacitorSymbol ([string]) \# Get or Set the default symbol for capacitors
+\item DefaultElectrolyticSymbol ([string]) \# Get or Set the default symbol for electrolytic capacitors
+\item DefaultInductorSymbol ([string]) \# Get or Set the default symbol for inductors
+\item DefaultOpAmpSymbol ([string]) \# Get or Set the default operational amplifier symbol
+\item DefaultResistorSymbol ([string]) \# Get or Set the default symbol for resistors
+\item DefaultTitleblockSymbol ([string]) \# Get or Set the default titleblock symbol
+
+\end{itemize}
+

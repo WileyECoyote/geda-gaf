@@ -1,0 +1,17 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+@echo 'export FRAGMENTS=base'
+
+# gschem_hotkeystore.c gschem_swatch_renderer.c
+
+gschem_SOURCES += \
+		base/gschem.c \
+		base/gschem_dialog.c \
+		base/gschem_macro_widget.c \
+		base/gschem_main_window.c \
+		base/gschem_page_geometry.c \
+		base/gschem_page_view.c \
+		base/gschem_parsecmd.c \
+		base/gschem_status_bar.c \
+		base/gschem_toplevel.c
+

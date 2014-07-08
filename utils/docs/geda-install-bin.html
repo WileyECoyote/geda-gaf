@@ -1,0 +1,214 @@
+<!-- Creator     : groff version 1.21 -->
+<!-- CreationDate: Mon Feb 24 14:16:30 2014 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p       { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       pre     { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       table   { margin-top: 0; margin-bottom: 0; vertical-align: top }
+       h1      { text-align: center }
+</style>
+<title>geda-install-bin</title>
+
+</head>
+<body>
+
+<h1 align="center">geda-install-bin</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSIS">SYNOPSIS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#QUICK">QUICK</a><br>
+<a href="#PARAMETERS">PARAMETERS</a><br>
+<a href="#INFORMATION">INFORMATION</a><br>
+<a href="#DIRECTIVES">DIRECTIVES</a><br>
+<a href="#OPTIONS">OPTIONS</a><br>
+<a href="#HOMEPAGE">HOMEPAGE</a><br>
+<a href="#BUGS">BUGS</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#COPYRIGHT">COPYRIGHT</a><br>
+
+<hr>
+
+
+<h2>NAME
+<a name="NAME"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">geda-install-bin
+&minus; Install gEDA binaries to local bin folder</p>
+
+<h2>SYNOPSIS
+<a name="SYNOPSIS"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>geda-install-bin</b>
+[<i>OPTIONS</i>]<i>[-d</i>folder_with_programs<i>]</i>[-l<i>folder_in_path</i>]</p>
+
+<h2>DESCRIPTION
+<a name="DESCRIPTION"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>geda-install-bin</b>
+Install gEDA binaries to local bin folder</p>
+
+
+<p style="margin-left:11%; margin-top: 1em">geda-install-bin
+is used to create shortcut links, usually referred to as
+soft links, in the local/bin folder for executables in the
+geda bin folder, both scripts and binaries. By default,
+extensions are removed from the script names. This is useful
+after installing from the source, rather than a distribution
+and can be ran after &quot;make install&quot; completes
+successfully to add links in the command path. This would
+NOT normally be necessary if geda-gaf was installed from a
+distribution package or if the --prefix option was NOT used
+during configure.</p>
+
+<h2>QUICK
+<a name="QUICK"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">just run
+without in arguments after compiling geda-gaf if a configure
+prefix was used and was not &quot;usr&quot; <b>usage: [-h,
+--help] | [--version] | [options] [-d folder_with_programs ]
+[-l folder_in_path ]</b> example: geda-install-bin
+/opt/gEDA/bin /usr/loca/bin&lt;ENTER&gt;.</p>
+
+<h2>PARAMETERS
+<a name="PARAMETERS"></a>
+</h2>
+
+
+<h2>INFORMATION
+<a name="INFORMATION"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Use of the
+following options displays information related to
+geda-install-bin but does install file or create any links:
+<br>
+-h, --help</p>
+
+<p style="margin-left:22%;">Show information about the
+advanced usage of this command.</p>
+
+<p style="margin-left:11%;">-u, --usage</p>
+
+<p style="margin-left:22%;">Displays information on basic
+usage&quot;</p>
+
+<p style="margin-left:11%;">--version</p>
+
+<p style="margin-left:22%;">Displays software version
+information&quot;</p>
+
+<h2>DIRECTIVES
+<a name="DIRECTIVES"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">-v,
+--verbose</p>
+
+<p style="margin-left:22%;">Include additional information
+during processing.</p>
+
+<h2>OPTIONS
+<a name="OPTIONS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">-d,
+--directory</p>
+
+<p style="margin-left:22%;">Specify the folder containing
+files to be linked. The default is the bin directory under
+&quot;prefix&quot;, aka where the executables were installed
+by &quot;make install&quot;, so this option would not
+normally be needed.</p>
+
+<p style="margin-left:11%;">-l, --location</p>
+
+<p style="margin-left:22%;">Specify the target folder where
+the links are to be created. The default is /usr/local/bin,
+which should be suitable for most installation. Some user
+may prefer ~/bin.</p>
+
+<p style="margin-left:11%;">-n, --no-trim</p>
+
+<p style="margin-left:22%;">By default geda-install-bin
+will trim extensions from scripts, like &quot;.sh&quot; or
+&quot;.pl&quot; because, well, they are annoying. The
+justification for this is that geda-gaf utilizes different
+types of scripts and user should not be required to
+&quot;remember&quot; the language used for each script. This
+option disables this feature so that sextension are
+preserved during creation of the links.</p>
+
+<h2>HOMEPAGE
+<a name="HOMEPAGE"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">http://www.gpleda.org/</p>
+
+<h2>BUGS
+<a name="BUGS"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">You can report
+bugs at the Launchpad site of geda-install-bin:
+https://bugs.launchpad.net/geda/geda-install-bin/+filebug</p>
+
+<h2>AUTHOR
+<a name="AUTHOR"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Wiley Edward
+Hill &lt; wileyhill dot gmail dot com &gt;</p>
+
+<h2>SEE ALSO
+<a name="SEE ALSO"></a>
+</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>geda-install-bin</b>(1)</p>
+
+<h2>COPYRIGHT
+<a name="COPYRIGHT"></a>
+</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright
+&copy; 2012-2014 Wiley Edward Hill. License GPLv2+: GNU GPL
+<br>
+version 2 or later. Please see the &rsquo;COPYING&rsquo;
+file included with this <br>
+program for full details.</p>
+
+<p style="margin-left:11%; margin-top: 1em">This is free
+software: you are free to change and redistribute it. <br>
+There is NO WARRANTY, to the extent permitted by law.</p>
+<hr>
+</body>
+</html>

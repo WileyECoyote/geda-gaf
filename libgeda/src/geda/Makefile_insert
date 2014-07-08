@@ -1,0 +1,23 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_gobject_sources
+
+libgeda_la_SOURCES += \
+			geda/geda_config.c \
+			geda/geda_errors.c \
+			geda/geda_list.c \
+			geda/geda_arc.c \
+			geda/geda_box.c \
+			geda/geda_bus.c \
+			geda/geda_circle.c \
+			geda/geda_complex.c \
+			geda/geda_line.c \
+			geda/geda_net.c \
+			geda/geda_path.c \
+			geda/geda_picture.c \
+			geda/geda_pin.c \
+			geda/geda_text.c \
+			geda/geda_object.c \
+			geda/geda_page.c \
+			geda/geda_toplevel.c
+

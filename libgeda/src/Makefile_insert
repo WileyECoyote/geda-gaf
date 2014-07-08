@@ -1,0 +1,3 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+libgeda_la_SOURCES += libgeda.c

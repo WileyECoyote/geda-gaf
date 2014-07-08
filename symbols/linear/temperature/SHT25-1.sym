@@ -1,0 +1,58 @@
+v 20140330 2
+B 0 300 1100 1100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 400 1700 400 1400 1 0 0
+{
+T 400 1700 5 10 0 1 180 0 1
+pintype=pwr
+T 255 1300 5 10 1 1 180 6 1
+pinlabel=Vdd
+T 270 1450 5 8 1 1 0 0 1
+pinnumber=5
+T 275 1450 5 8 0 1 0 0 1
+pinseq=1
+}
+P 400 0 400 300 1 0 0
+{
+T 400 -200 5 10 0 0 270 0 1
+pintype=pwr
+T 545 400 5 10 1 1 0 6 1
+pinlabel=Gnd
+T 295 150 5 8 1 1 0 0 1
+pinnumber=2
+T 400 -200 5 10 0 0 270 0 1
+pinseq=2
+}
+P 1400 1100 1100 1100 1 0 0
+{
+T 600 1100 5 10 0 0 180 0 1
+pintype=pwr
+T 705 995 5 10 1 1 0 0 1
+pinlabel=SDA
+T 1255 1145 5 8 1 1 0 6 1
+pinnumber=1
+T 600 1100 5 10 0 0 180 0 1
+pinseq=3
+}
+P 1400 600 1100 600 1 0 0
+{
+T 1400 600 5 10 0 1 180 0 1
+pintype=clk
+T 755 545 5 10 1 1 0 0 1
+pinlabel=SCL
+T 1255 645 5 8 1 1 0 6 1
+pinnumber=6
+T 1600 625 5 10 0 1 180 0 1
+pinseq=4
+}
+T 895 1500 8 10 1 1 0 0 1
+refdes=U?
+T 195 748 8 10 1 1 0 0 1
+device=SHT25
+T -305 96 8 10 0 1 0 0 1
+footprint=QFN-6-3
+T -1290 3360 5 10 0 0 0 0 1
+author=AutoTron
+T -1290 2960 5 10 0 0 0 0 1
+documentation=http://www.sensirion.com/en/products/humidity-temperature/humidity-sensor-sht25/
+T -1290 3160 5 10 0 0 0 0 1
+description=I2C humidity and temperature sensor

@@ -424,6 +424,7 @@ void o_rotate_world_update        (GschemToplevel *w_current, int centerx, int c
 void o_mirror_world_update        (GschemToplevel *w_current, int centerx, int centery, GList *list);
 //void o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
 void o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
+void o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
 int  o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
 void o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);

@@ -1,0 +1,29 @@
+ Inclusion of the geda module. 
+
+  By default the geda module is installed to the local Python module directory. On Linux machines this might be something like ``/usr/local/lib/python2.7/site-packages/geda''. To import the module, the module must be located within the search path of the interpreter. If the module was installed to a non-standard location, such as dist-packages, the importer might not find the geda module. The Python search path can be set using various methods. A common method is to use the environment variable PYTHONPATH, which may contain a colon-separated list of directories. The PYTHONPATH variable can be appended using something like:\\ 
+\\ 
+  export PYTHONPATH=\$PYTHONPATH:THE/PATH/TO/GEDA\\ 
+\\ 
+ Other methods can be used to modify the Python search path, such as using sys.path.append('/path/to/search') or site.addsitedir. See the Python documentation for more information on using such methods. 
+\\ 
+  To include the geda module use: \\ 
+\\ 
+from geda import geda\\ 
+\\ 
+  The high level functions can be imported using: \\ 
+\\ 
+from geda.functions import *\\ 
+\\ 
+  The high level functions provide an interface to the base module with minimal type checking and no defaulting. The base module provides defaults for all optional parameters. 
+\\ 
+  It is also convenience to include all of the constants separately with: \\ 
+\\ 
+from geda.constants import *\\ 
+\\ 
+  It is not required to directly import the high level functions and constants separately, but doing so is more convenience. Submodules could be referenced using statements like: \\ 
+\\ 
+geda.functions.AddCapacitor(schematic, 6700, 8600, ``20nF'')\\ 
+ or\\ 
+sheet1 = geda.constants.SHOW\_NAME\_VALUE\\ 
+ or even\\ 
+sheet1 = geda.SHOW\_NAME\_VALUE\\ 

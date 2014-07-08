@@ -1,0 +1,15 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+@echo 'export FRAGMENTS=guile'
+
+gschem_SOURCES += \
+		guile/g_action.c \
+		guile/g_attrib.c \
+		guile/g_funcs.c \
+		guile/g_hook.c \
+		guile/g_keys.c \
+		guile/g_rc.c \
+		guile/g_register.c \
+		guile/g_select.c \
+		guile/g_util.c \
+		guile/g_window.c

@@ -1,0 +1,12 @@
+.deps
+Makefile
+Makefile.in
+gschem
+gschem.exe
+*.swp
+*-swp
+*.bak
+*.o
+*.x
+*~
+TAGS

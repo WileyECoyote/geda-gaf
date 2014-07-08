@@ -1,0 +1,6 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+@echo 'export FRAGMENTS=math'
+
+gschem_SOURCES += \
+		math/m_basic.c

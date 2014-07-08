@@ -1,0 +1,15 @@
+2014-03-11 Wiley E. Hill <wileyhill@gmail.com>
+
+	*: New library Libgedawidgets created for widgets previously built in
+	the gschem subtres. Some of these widgets are custom widget directly
+        derived from the cooresponding gtk version. Some widgets are replacements
+        forked from the gtk sources in	order to eliminate depreciation warnings,
+        even though gtk continues to maintain. Some of these widgets provide GTK3
+        functionality where none exist in GTK2. Libgedawidgets is linked against
+        GTK2 and is intended to provide "gtk" like resources to geda-gaf any
+        application without depreciating the entire free world.
+
+
+
+
+

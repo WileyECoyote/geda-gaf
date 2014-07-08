@@ -1,0 +1,11 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+#FRAGMENTS=geda_file_sources
+
+libgeda_la_SOURCES += \
+			file/f_basic.c \
+			file/f_path.c \
+			file/f_print.c \
+			file/f_utilities.c
+
+

@@ -1,0 +1,104 @@
+v 20140330 2
+T 10 1310 5 10 0 0 0 0 1
+description=1-Mbit nonvolatile memory 
+B 300 0 1200 1000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 300 1050 5 10 0 1 0 0 1
+device=FM24V10
+T 300 1050 9 10 1 0 0 0 1
+FM24V10
+P 0 800 300 800 1 0 0
+{
+T 112 840 5 10 1 1 0 0 1
+pinnumber=1
+T 112 840 5 10 0 0 0 0 1
+pinseq=1
+T 350 750 3 10 1 1 0 0 1
+pinlabel=NC
+T 112 840 5 10 0 1 0 0 1
+pintype=io
+}
+P 300 600 0 600 1 0 1
+{
+T 100 650 5 10 1 1 0 0 1
+pinnumber=2
+T 100 650 5 10 0 0 0 0 1
+pinseq=2
+T 350 550 3 10 1 1 0 0 1
+pinlabel=A1
+T 100 650 5 10 0 1 0 0 1
+pintype=in
+}
+P 300 400 0 400 1 0 1
+{
+T 100 450 5 10 1 1 0 0 1
+pinnumber=3
+T 100 450 5 10 0 0 0 0 1
+pinseq=3
+T 350 350 3 10 1 1 0 0 1
+pinlabel=A2
+T 100 450 5 10 0 1 0 0 1
+pintype=in
+}
+P 300 200 0 200 1 0 1
+{
+T 100 250 5 10 1 1 0 0 1
+pinnumber=4
+T 100 250 5 10 0 0 0 0 1
+pinseq=4
+T 350 150 3 10 1 1 0 0 1
+pinlabel=Vss
+T 100 250 5 10 0 1 0 0 1
+pintype=pwr
+}
+P 1500 200 1800 200 1 0 1
+{
+T 1600 250 5 10 1 1 0 0 1
+pinnumber=5
+T 1600 250 5 10 0 0 0 0 1
+pinseq=5
+T 1425 150 3 10 1 1 0 6 1
+pinlabel=SDA
+T 1600 250 5 10 0 1 0 0 1
+pintype=io
+}
+P 1500 400 1800 400 1 0 1
+{
+T 1600 450 5 10 1 1 0 0 1
+pinnumber=6
+T 1600 450 5 10 0 0 0 0 1
+pinseq=6
+T 1425 350 3 10 1 1 0 6 1
+pinlabel=SCL
+T 1600 450 5 10 0 1 0 0 1
+pintype=in
+}
+P 1500 600 1800 600 1 0 1
+{
+T 1600 650 5 10 1 1 0 0 1
+pinnumber=7
+T 1600 650 5 10 0 0 0 0 1
+pinseq=7
+T 1425 550 3 10 1 1 0 6 1
+pinlabel=WP
+T 1600 650 5 10 0 1 0 0 1
+pintype=in
+}
+P 1500 800 1800 800 1 0 1
+{
+T 1600 850 5 10 1 1 0 0 1
+pinnumber=8
+T 1600 850 5 10 0 0 0 0 1
+pinseq=8
+T 1425 750 3 10 1 1 0 6 1
+pinlabel=Vdd
+T 1600 850 5 10 0 1 0 0 1
+pintype=pwr
+}
+T 650 -500 8 10 0 1 0 0 1
+footprint=SOIC8
+T 1200 1050 8 10 1 1 0 0 1
+refdes=U?
+T 600 -700 9 10 0 0 0 0 1
+numslots=0
+T 10 1460 5 10 0 0 0 0 1
+author=AutoTron

@@ -1,0 +1,51 @@
+==============================================
+ 'gschem and Friends' Electronic Design Suite
+==============================================
+
+Copyright (C) 2014 gEDA Developers
+
+Gtk-based Widget Library
+=========================================
+
+The libgedauio library provides a collection of user interface objects
+intended for geda-gaf, though any application could like against the
+library.
+
+Please submit bug reports and patches to
+<http://bugs.launchpad.net/geda>, using the `libgedauio' tag.
+
+Using libgedauio in applications
+-----------------------------------
+
+To use the library in GNU Autotools-based applications, add:
+
+  PKG_PROG_PKG_CONFIG
+  PKG_CHECK_MODULES([GEDAWIDGET], [libgedauio], [], [])
+
+to your `configure.ac', and then add:
+
+  AM_CFLAGS = $(GEDAWIDGETS_CFLAGS
+  AM_LDFLAGS = $(GEDAWIDGETS_LDFLAGS)
+
+to your `Makefile.am'.
+
+To compile a very simple program without using a GNU Autotools, you
+could use a command like:
+
+  cc `pkg-config --cflags --libs libgedauio` -o myprog myprog.c
+
+Header files
+------------
+
+The main header files for the library are installed to ${libdir}/
+/libgedauio.
+
+
+The Documentation
+---------------------
+None.
+
+
+
+
+

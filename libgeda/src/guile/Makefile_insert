@@ -1,0 +1,11 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_guile_sources
+
+libgeda_la_SOURCES += \
+			guile/g_basic.c \
+			guile/g_rc.c \
+			guile/g_rc_parse.c \
+			guile/g_register.c
+
+

@@ -1,0 +1,2539 @@
+# Polish translation for geda
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the geda package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2014-07-03 02:48-0500\n"
+"PO-Revision-Date: 2012-02-04 00:18+0000\n"
+"Last-Translator: Krzysztof Kościuszkiewicz <Unknown>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedauio/src/widgets/geda_entry.c:627
+msgid "Activates default"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:628
+msgid "Whether to activate the default widget when Enter is pressed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:635
+#: libgedauio/src/widgets/geda_label.c:903
+msgid "Attributes"
+msgstr "Atrybuty"
+
+#: libgedauio/src/widgets/geda_entry.c:636
+msgid "A list of style attributes to apply to the text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:643
+msgid "Auto-Completion"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:644
+msgid "Enable Auto-completion, if installed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:651
+msgid "FALSE Auto-Completion in NOT case sensitive"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:652
+msgid "if Auto-completion is enabled, set case compare function"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:659
+msgid "Set case of input"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:660
+#: libgedauio/src/widgets/geda_entry.c:670
+msgid "0 = lower, 1 lower, 2 don't change the case"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:669
+msgid "Set maxium history"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:679
+msgid "Set valid input type"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:680
+msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:1103
+#, fuzzy
+msgid "Auto Complete"
+msgstr "/Dodaj element..."
+
+#: libgedauio/src/widgets/geda_entry.c:1110
+#, fuzzy
+msgid "On"
+msgstr "Otwórz"
+
+#: libgedauio/src/widgets/geda_entry.c:1114
+msgid "Off"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1048
+#: libgedauio/src/widgets/geda_font_button.c:724
+msgid "Title"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1049
+#: libgedauio/src/widgets/geda_font_button.c:725
+msgid "The title of the font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1050
+#: libgedauio/src/widgets/geda_font_button.c:726
+msgid "Pick a Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1056
+#: libgedauio/src/widgets/geda_font_button.c:1403
+msgid "Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1057
+msgid "The GdkFont that is currently selected"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1064
+msgid "Font description"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1065
+msgid "Pango Font Description struct"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1072
+#: libgedauio/src/widgets/geda_font_button.c:735
+msgid "Font name"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1073
+msgid "The string that represents this font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1083
+#: libgedauio/src/widgets/geda_font_button.c:796
+#, fuzzy
+msgid "Set Size"
+msgstr "Rozmiar czcionki"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1084
+#: libgedauio/src/widgets/geda_font_button.c:797
+msgid "Set point size of the font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1094
+#, fuzzy
+msgid "Preview text"
+msgstr "Podgląd"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1095
+msgid "The text to display in order to demonstrate the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1102
+msgid "Show preview text entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1103
+msgid "Whether the preview text entry is displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1245
+msgid "Select the desired font family"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1246
+msgid "Select the style to apply to the font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1247
+#, fuzzy
+msgid "Current font size"
+msgstr "Bieżącej stronie"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1248
+msgid "Select the desired font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1249
+msgid "Editable sample preview of the currently selected font settings"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1257
+msgid "_Family:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1262
+msgid "_Style:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1267
+msgid "Si_ze:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1320
+msgid "Family"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1360
+#: libgedauio/src/widgets/geda_font_dialog.c:1400
+msgid "Face"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1434
+#, fuzzy
+msgid "_Preview:"
+msgstr "Podgląd"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1461
+msgid "Font scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1465
+msgid "Font style scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1469
+msgid "Font size scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1473
+msgid "Font preview text entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1606
+#, fuzzy
+msgid "_Select"
+msgstr "Zaznaczanie"
+
+#: libgedauio/src/widgets/geda_handlebox.c:193
+#: libgedauio/src/widgets/geda_handlebox.c:202
+msgid "Appearance of the shadow that surrounds the container"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:211
+msgid "Position of the handle relative to the child widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:220
+msgid ""
+"Side of the handlebox that's lined up with the docking point to dock the "
+"handlebox"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:229
+msgid ""
+"Whether to use the value from the snap_edge property or a value derived from "
+"handle_position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:237
+msgid ""
+"A boolean value indicating whether the handlebox's child is attached or "
+"detached."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:793
+msgid "move-cursor"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:813
+#, fuzzy
+msgid "copy-clipboard"
+msgstr "Kopiuj do schowka"
+
+#: libgedauio/src/widgets/geda_label.c:834
+msgid "populate-popup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:896
+#: libgedauio/src/widgets/geda_label.c:1392
+#: libgedauio/src/widgets/geda_menu_button.c:1043
+msgid "Label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:897
+msgid "The text of the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:904
+msgid "A list of style attributes to apply to the text of the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:910
+msgid "Use markup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:911
+msgid "The text of the label includes XML markup. See pango_parse_markup()"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:917
+msgid "Use underline"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:918
+msgid ""
+"If set, underline in text indicates the next character is mnemonic for "
+"accelerator key"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:923
+#, fuzzy
+msgid "Justification"
+msgstr "Lokalizacja docelowa"
+
+#: libgedauio/src/widgets/geda_label.c:924
+msgid ""
+"The alignment of the lines in the text of the label relative to each other. "
+"This does NOT affect the alignment of the label within its allocation. See "
+"GtkMisc::xalign for that"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:931
+msgid "Pattern"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:932
+msgid ""
+"A string with _ characters in positions correspond to characters in the text "
+"to underline"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:938
+#, fuzzy
+msgid "Line wrap"
+msgstr "Linię"
+
+#: libgedauio/src/widgets/geda_label.c:939
+msgid "If set, wrap lines if the text becomes too wide"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:953
+#, fuzzy
+msgid "Line wrap mode"
+msgstr "Tryb linii"
+
+#: libgedauio/src/widgets/geda_label.c:954
+msgid "If wrap is set, controls how linewrapping is done"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:961
+#, fuzzy
+msgid "Selectable"
+msgstr "Zaznaczanie"
+
+#: libgedauio/src/widgets/geda_label.c:962
+msgid "Whether the label text can be selected with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:968
+msgid "Mnemonic key"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:969
+msgid "The mnemonic accelerator key for this label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:977
+msgid "Mnemonic widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:978
+msgid "The widget to be activated when the label's mnemonic key is pressed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:985
+msgid "Cursor Position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:986
+msgid "The current position of the insertion cursor in chars"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:994
+#, fuzzy
+msgid "Selection Bound"
+msgstr "Zaznaczenie"
+
+#: libgedauio/src/widgets/geda_label.c:995
+msgid ""
+"The position of the opposite end of the selection from the cursor in chars"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1019
+msgid "Ellipsize"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1020
+msgid "The preferred place to break the string, if ellipes needed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1038
+msgid "Width In Characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1039
+msgid "The desired width of the label, in characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1057
+#, fuzzy
+msgid "Single Line Mode"
+msgstr "Tryb linii"
+
+#: libgedauio/src/widgets/geda_label.c:1058
+msgid "Whether the label is in single line mode"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1073
+#, fuzzy
+msgid "Angle"
+msgstr "Kąt linii 1:"
+
+#: libgedauio/src/widgets/geda_label.c:1074
+msgid "Angle at which the label is rotated"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1093
+msgid "Maximum Width In Characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1094
+msgid "The desired maximum width of the label, in characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1110
+msgid "Track visited links"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1111
+msgid "Whether visited links should be tracked"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1927
+msgid "gtk-mnemonic-menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:5719
+msgid "gtk-signal"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:5843
+#, fuzzy
+msgid "_Open Link"
+msgstr "Otwórz plik..."
+
+#: libgedauio/src/widgets/geda_label.c:5855
+msgid "Copy _Link Address"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1036
+msgid "Menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1037
+msgid "The dropdown menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1044
+msgid ""
+"Text of the label widget inside the button, if the button contains a label "
+"widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1051
+msgid "Use stock"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1052
+msgid ""
+"If set, the label is used to pick a stock item instead of being displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1059
+msgid "Focus on click"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1060
+msgid "Whether the button grabs focus when it is clicked with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1067
+msgid "Border relief"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1068
+msgid "The border relief style"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1076
+msgid "Arrow Border relief"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1077
+msgid "The arrow border relief style"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1086
+#, fuzzy
+msgid "Image widget"
+msgstr "Typ obrazu"
+
+#: libgedauio/src/widgets/geda_menu_button.c:1087
+msgid "Child widget to appear next to the button text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1095
+msgid "Image position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1096
+msgid "The position of the image relative to the text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1110
+msgid "Default Spacing"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1111
+msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1124
+#, fuzzy
+msgid "Default Outside Spacing"
+msgstr "Z_mniejsz siatkę przyciągania"
+
+#: libgedauio/src/widgets/geda_menu_button.c:1125
+msgid ""
+"Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
+"the border"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1135
+#, fuzzy
+msgid "Inner Border"
+msgstr "Kolejność plików"
+
+#: libgedauio/src/widgets/geda_menu_button.c:1136
+msgid "Border between button edges and child."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:213
+msgid "multikey-accelerator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:214
+msgid "A string with characters in positions key characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:221
+msgid "icon-identification"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:222
+msgid "String name of the icon image"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:736
+msgid "The name of the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:747
+msgid "Use font in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:748
+msgid "Whether the label is drawn in the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:759
+msgid "Use size in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:760
+msgid "Whether the label is drawn with the selected font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:772
+#, fuzzy
+msgid "Show style"
+msgstr "Pokazuj _wartość"
+
+#: libgedauio/src/widgets/geda_font_button.c:773
+msgid "Whether the selected font style is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:785
+#, fuzzy
+msgid "Show size"
+msgstr "Pokaż ukryte"
+
+#: libgedauio/src/widgets/geda_font_button.c:786
+msgid "Whether selected font size is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:817
+msgid "font-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:825
+msgid "size-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:844
+msgid "Open font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:882
+msgid "Font button"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_swatch_renderer.c:144
+#: libgedauio/src/widgets/geda_swatch_renderer.c:145
+#, fuzzy
+msgid "Swatch Color"
+msgstr "Kolor"
+
+#: libgedauio/src/widgets/geda_swatch_renderer.c:151
+#: libgedauio/src/widgets/geda_swatch_renderer.c:152
+msgid "Swatch Enabled"
+msgstr ""
+
+#~ msgid "Zoom too small!  Cannot zoom further.\n"
+#~ msgstr "Zbyt mały obszar! Osiągnięto maksymalny stopień powiększenia.\n"
+
+#~ msgid "Object ~A is not included in the current gschem page."
+#~ msgstr "Obiekt ~A nie występuje w bieżącym arkuszu."
+
+#~ msgid "Invalid text name/value visibility ~A."
+#~ msgstr "Nieprawidłowe ustawienie widoczności tekstu: ~A."
+
+#~ msgid "Invalid size [%d] passed to text-size\n"
+#~ msgstr "Nieprawidłowy rozmiar [%d] przekazany do funkcji text-size\n"
+
+#~ msgid "Invalid size [%d] passed to snap-size\n"
+#~ msgstr "Nieprawidłowy rozmiar [%d] przekazany do funkcji snap-size\n"
+
+#~ msgid "Invalid num levels [%d] passed to undo-levels\n"
+#~ msgstr ""
+#~ "Nieprawidłowa liczba poziomów [%d] przekazana do funkcji undo-levels\n"
+
+#~ msgid "Invalid size [%d] passed to bus-ripper-size\n"
+#~ msgstr "Nieprawidłowy rozmiar [%d] przekazany do funkcji bus-ripper-size\n"
+
+#~ msgid "Invalid dot size [%d] passed to dots-grid-dot-size\n"
+#~ msgstr ""
+#~ "Nieprawidłowy rozmiar punktu [%d] przekazany do funkcji dots-grid-dot-"
+#~ "size\n"
+
+#~ msgid "Invalid pixel spacing [%d] passed to dots-grid-fixed-threshold\n"
+#~ msgstr ""
+#~ "Nieprawidłowy odstęp pikseli [%d] przekazany do funkcji dots-grid-fixed-"
+#~ "threshold\n"
+
+#~ msgid "Invalid pixel spacing [%d] passed to mesh-grid-display-threshold\n"
+#~ msgstr ""
+#~ "Nieprawidłowy odstęp pikseli [%d] przekazany do funkcji mesh-grid-display-"
+#~ "threshold\n"
+
+#~ msgid "Invalid offset [%d] passed to add-attribute-offset\n"
+#~ msgstr ""
+#~ "Nieprawidłowy offset [%d] przekazany do funkcji add-attribute-offset\n"
+
+#~ msgid "Invalid number of seconds [%d] passed to auto-save-interval\n"
+#~ msgstr ""
+#~ "Nieprawidłowa liczba sekund [%d] przekazana do funkcji auto-save-"
+#~ "interval\n"
+
+#~ msgid "Invalid gain [%d] passed to mousepan-gain\n"
+#~ msgstr "Nieprawidłowa wartość [%d] przekazana do funkcji mousepan-gain\n"
+
+#~ msgid "Invalid gain [%d] passed to keyboardpan-gain\n"
+#~ msgstr "Nieprawidłowa wartość [%d] przekazana do funkcji keyboardpan-gain\n"
+
+#~ msgid "Invalid number of pixels [%d] passed to select-slack-pixels\n"
+#~ msgstr ""
+#~ "Nieprawidłowa ilość pikseli [%d] przekazana do funkcji select-slack-"
+#~ "pixels\n"
+
+#~ msgid "Invalid gain [%d] passed to zoom-gain\n"
+#~ msgstr "Nieprawidłowa wartość [%d] przekazana do funkcji zoom-gain\n"
+
+#~ msgid "Invalid number of steps [%d] scrollpan-steps\n"
+#~ msgstr "Niepoprawna liczba kroków [%d] w funkcji scrollpan-steps\n"
+
+#~ msgid "Object ~A is not directly included in a page."
+#~ msgstr "Obiekt ~A nie jest przypisany do arkusza"
+
+#~ msgid "Could not launch URI ~S: ~A"
+#~ msgstr "Nie można otworzyć adresu URI ~S: ~A"
+
+#~ msgid "Found invalid gschem window smob ~S"
+#~ msgstr "Nieprawidłowy obiekt reprezentujący okno gschem: ~S"
+
+#~ msgid "gEDA/gschem version %s%s.%s\n"
+#~ msgstr "gEDA/gschem, wersja %s%s.%s\n"
+
+#~ msgid ""
+#~ "gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
+#~ "details.\n"
+#~ msgstr ""
+#~ "Autorzy gEDA/gschem nie udzielają ŻADNYCH gwarancji; szczegóły (w języku "
+#~ "angielskim) w pliku o nazwie COPYING .\n"
+
+#~ msgid ""
+#~ "This is free software, and you are welcome to redistribute it under "
+#~ "certain\n"
+#~ msgstr ""
+#~ "Ten program jest dostępny jako wolne oprogramowanie, można go "
+#~ "rozprowadzać\n"
+
+#~ msgid ""
+#~ "conditions; please see the COPYING file for more details.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "pod pewnymi warunkami. Szczegóły (w języku angielskim) znajdują się w "
+#~ "pliku COPYING.\n"
+#~ "\n"
+
+#~ msgid "This is the MINGW32 port.\n"
+#~ msgstr "Ta wersja programu została skompilowana na MINGW32.\n"
+
+#~ msgid "Current locale settings: %s\n"
+#~ msgstr "Bieżące ustawienia lokalizacji: %s\n"
+
+#~ msgid ""
+#~ "You must set the GEDADATA environment variable!\n"
+#~ "\n"
+#~ "gschem cannot locate its data files. You must set the GEDADATA\n"
+#~ "environment variable to point to the correct location.\n"
+#~ msgstr ""
+#~ "Wymagane ustawienie wartości zmiennej środowiskowej GEDADATA!\n"
+#~ "\n"
+#~ "gschem nie może odnaleźć plików z danymi. Należy wskazać lokalizację\n"
+#~ "plików poprzez zmienną środowiskową GEDADATA.\n"
+
+#~ msgid "Couldn't find init scm file [%s]\n"
+#~ msgstr "Nie znaleziono pliku inicjalizacyjnego scm [%s]\n"
+
+#~ msgid "Read init scm file [%s]\n"
+#~ msgstr "Wczytano plik inicjalizacji scm [%s]\n"
+
+#~ msgid "Failed to read init scm file [%s]\n"
+#~ msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "ERROR: Failed to load or evaluate startup script.\n"
+#~ "\n"
+#~ "The gschem log may contain more information.\n"
+#~ msgstr ""
+#~ "%s\n"
+#~ "\n"
+#~ "Logi programu mogą zawierać dodatkowe informacje."
+
+#~ msgid "Select Mode"
+#~ msgstr "Tryb zaznaczania"
+
+#~ msgid "Component Mode"
+#~ msgstr "Tryb elementów"
+
+#~ msgid "Text Mode"
+#~ msgstr "Tryb tekstu"
+
+#~ msgid "Copy Mode"
+#~ msgstr "Tryb kopiowania"
+
+#~ msgid "Move Mode"
+#~ msgstr "Tryb przesuwania"
+
+#~ msgid "Rotate Mode"
+#~ msgstr "Tryb obrotu"
+
+#~ msgid "Mirror Mode"
+#~ msgstr "Tryb odbijania"
+
+#~ msgid "Zoom Box"
+#~ msgstr "Dopasuj do fragmentu"
+
+#~ msgid "Pan Mode"
+#~ msgstr "Tryb przesuwania widoku"
+
+#~ msgid "Paste %d Mode"
+#~ msgstr "Tryb wklejania z bufora %d"
+
+#~ msgid "Magnetic Net Mode"
+#~ msgstr "Tryb \"magnetycznych\" połączeń"
+
+#~ msgid "Net Mode"
+#~ msgstr "Tryb połączeń"
+
+#~ msgid "Bus Mode"
+#~ msgstr "Tryb magistrali"
+
+#, fuzzy
+#~ msgid "Path Mode"
+#~ msgstr "Tryb przesuwania widoku"
+
+#~ msgid "Box Mode"
+#~ msgstr "Tryb prostokątów"
+
+#~ msgid "Picture Mode"
+#~ msgstr "Tryb obrazów"
+
+#~ msgid "Circle Mode"
+#~ msgstr "Tryb okręgów"
+
+#~ msgid "Arc Mode"
+#~ msgstr "Tryb łuków"
+
+#~ msgid "Pin Mode"
+#~ msgstr "Tryb pinów"
+
+#~ msgid "Copy"
+#~ msgstr "Kopiuj"
+
+#~ msgid "Move"
+#~ msgstr "Przesuń"
+
+#~ msgid "Multiple Copy"
+#~ msgstr "Kopiuj wielokrotnie"
+
+#~ msgid "Multiple Copy Mode"
+#~ msgstr "Duplikuj wielokrotnie"
+
+#~ msgid "Snap Off"
+#~ msgstr "Wyłącz przyciąganie"
+
+#~ msgid "Action"
+#~ msgstr "Czynność"
+
+#~ msgid "Stroke"
+#~ msgstr "Gest"
+
+#~ msgid "none"
+#~ msgstr "brak"
+
+#~ msgid "Repeat/"
+#~ msgstr "Powtórz/"
+
+#~ msgid "OFF"
+#~ msgstr "WYŁĄCZONE"
+
+#~ msgid "NONE"
+#~ msgstr "BRAK"
+
+#~ msgid "Grid(%s, %s)"
+#~ msgstr "Siatka(%s, %s)"
+
+#~ msgid "New page created [%s]\n"
+#~ msgstr "Utworzono nowy arkusz [%s]\n"
+
+#~ msgid "New Window created [%s]\n"
+#~ msgstr "Utworzono nowe okno [%s]\n"
+
+#~ msgid "Failed to Save All"
+#~ msgstr "Zapisanie wszystkich dokumentów nie powiodło się"
+
+#~ msgid "Saved All"
+#~ msgstr "Zapisano wszystkie dokumenty"
+
+#~ msgid "Closing Window\n"
+#~ msgstr "Zamykanie okna\n"
+
+#~ msgid "Select objs first"
+#~ msgstr "Wpierw wybierz obiekty"
+
+#~ msgid "Delete"
+#~ msgstr "Usuń"
+
+#~ msgid "Edit"
+#~ msgstr "Edycja"
+
+#~ msgid "Edit pin type"
+#~ msgstr "Edytuj rodzaj pinu"
+
+#~ msgid "Edit Text"
+#~ msgstr "Edytuj tekst"
+
+#~ msgid "Slot"
+#~ msgstr "Slot"
+
+#~ msgid "Color"
+#~ msgstr "Kolor"
+
+#~ msgid "Rotate"
+#~ msgstr "Obróć"
+
+#~ msgid "Mirror"
+#~ msgstr "Lustrzane odbicie"
+
+#~ msgid "Lock"
+#~ msgstr "Zablokuj"
+
+#~ msgid "Unlock"
+#~ msgstr "Odblokuj"
+
+#~ msgid "Translate"
+#~ msgstr "Tłumacz"
+
+#~ msgid "WARNING: Snap grid size is not equal to 100!\n"
+#~ msgstr "UWAGA: Rozmiar siatki przyciągania jest inny niż 100!\n"
+
+#~ msgid "Embed"
+#~ msgstr "Osadź"
+
+#~ msgid "Unembed"
+#~ msgstr "Cofnij osadzanie"
+
+#~ msgid "Update"
+#~ msgstr "Aktualizuj"
+
+#~ msgid "ShowHidden"
+#~ msgstr "Wyśw. ukryte"
+
+#~ msgid "Pan"
+#~ msgstr "Przesuń widok"
+
+#~ msgid "Really revert page?"
+#~ msgstr "Czy na pewno przywrócić arkusz?"
+
+#~ msgid "Cut to clipboard"
+#~ msgstr "Wytnij do schowka"
+
+#~ msgid "Paste from clipboard"
+#~ msgstr "Wklej ze schowka"
+
+#, fuzzy
+#~ msgid "Empty clipboard"
+#~ msgstr "Kopiuj do schowka"
+
+#, fuzzy
+#~ msgid "Copy %i"
+#~ msgstr "Kopiuj do 1"
+
+#, fuzzy
+#~ msgid "Cut %i"
+#~ msgstr "Wytnij do 1"
+
+#, fuzzy
+#~ msgid "Paste %i"
+#~ msgstr "Wklej z 1"
+
+#~ msgid "Empty buffer"
+#~ msgstr "Schowek jest pusty"
+
+#~ msgid "Component"
+#~ msgstr "Element"
+
+#~ msgid "Attribute"
+#~ msgstr "Atrybut"
+
+#~ msgid "Net"
+#~ msgstr "Połączenie"
+
+#~ msgid "Bus"
+#~ msgstr "Magistralę"
+
+#~ msgid "Box"
+#~ msgstr "Prostokąt"
+
+#~ msgid "Circle"
+#~ msgstr "Okrąg"
+
+#~ msgid "Arc"
+#~ msgstr "Łuk"
+
+#~ msgid "Pin"
+#~ msgstr "Pin"
+
+#~ msgid "Searching for source [%s]\n"
+#~ msgstr "Szukam źródła [%s]\n"
+
+#, fuzzy
+#~ msgid ""
+#~ "Failed to descend hierarchy into '%s': %s\n"
+#~ "\n"
+#~ "The gschem log may contain more information."
+#~ msgstr ""
+#~ "%s\n"
+#~ "\n"
+#~ "Logi programu mogą zawierać dodatkowe informacje."
+
+#, fuzzy
+#~ msgid "Failed to descend into '%s': %s\n"
+#~ msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
+
+#, fuzzy
+#~ msgid "Failed to descend hierarchy."
+#~ msgstr "Szukaj również wewnątrz elementów"
+
+#~ msgid "Searching for symbol [%s]\n"
+#~ msgstr "Szukam symbolu [%s]\n"
+
+#~ msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
+#~ msgstr "Symbol nie jest plikiem. Nie można wczytać symbolu.\n"
+
+#~ msgid "Cannot find any schematics above the current one!\n"
+#~ msgstr "Nie znaleziono żadnego schematu wyżej w hierarchii!\n"
+
+#~ msgid "Attach"
+#~ msgstr "Dołącz"
+
+#~ msgid "Detach"
+#~ msgstr "Odłącz"
+
+#~ msgid "ShowN"
+#~ msgstr "Wyśw. nazwę"
+
+#~ msgid "ShowV"
+#~ msgstr "Wyśw. wartość"
+
+#~ msgid "ShowB"
+#~ msgstr "Wyśw. oba"
+
+#~ msgid "VisToggle"
+#~ msgstr "Przeł. widoczność"
+
+#~ msgid "Sorry but this is a non-functioning menu option\n"
+#~ msgstr "Niestety to polecenie jeszcze nie działa\n"
+
+#~ msgid "Action feedback mode set to OUTLINE\n"
+#~ msgstr "Tryb wyświetlania przemieszczanych elementów\n"
+
+#~ msgid "Action feedback mode set to BOUNDINGBOX\n"
+#~ msgstr "Tryb wyświetlania obwiedni przemieszczanych elementów\n"
+
+#~ msgid "Grid OFF\n"
+#~ msgstr "Siatka: włączona\n"
+
+#~ msgid "Dot grid selected\n"
+#~ msgstr "Siatka kropkowana\n"
+
+#~ msgid "Mesh grid selected\n"
+#~ msgstr "Siatka z linii\n"
+
+#~ msgid "Snap OFF (CAUTION!)\n"
+#~ msgstr "Przyciąganie do siatki: wyłączone (OSTROŻNIE!)\n"
+
+#~ msgid "Snap ON\n"
+#~ msgstr "Przyciąganie do siatki: włączone\n"
+
+#~ msgid "Rubber band OFF \n"
+#~ msgstr "Uzupełnianie połączeń przy przesuwaniu: włączone \n"
+
+#~ msgid "Rubber band ON\n"
+#~ msgstr "Uzupełnianie połączeń przy przesuwaniu: wyłączone\n"
+
+#~ msgid "magnetic net mode: ON\n"
+#~ msgstr "tryb \"magnesu\": włączony\n"
+
+#~ msgid "magnetic net mode: OFF\n"
+#~ msgstr "tryb \"magnesu\": wyłączony\n"
+
+#~ msgid "o_buffer_copy: Invalid buffer %i\n"
+#~ msgstr "o_buffer_copy: Nieprawidłowy bufor %i\n"
+
+#~ msgid "o_buffer_cut: Invalid buffer %i\n"
+#~ msgstr "o_buffer_cut: Nieprawidłowy bufor%i\n"
+
+#~ msgid "Got an invalid buffer_number [o_buffer_paste_start]\n"
+#~ msgstr ""
+#~ "Nieprawidłowy parametr buffer_number przekazany do funkcji "
+#~ "o_buffer_paste_start\n"
+
+#, fuzzy
+#~ msgid "Delete locked object?"
+#~ msgid_plural "Delete %u locked objects?"
+#~ msgstr[0] "Zaznaczonych elementach"
+#~ msgstr[1] "Zaznaczonych elementach"
+
+#~ msgid "Got an unexpected NULL in o_edit\n"
+#~ msgstr "Niespodziewany wskaźnik NULL w funkcji o_edit\n"
+
+#~ msgid "Object already locked\n"
+#~ msgstr "Obiekt jest już zablokowany\n"
+
+#~ msgid "Object already unlocked\n"
+#~ msgstr "Obiekt jest już odblokowany\n"
+
+#~ msgid "Hidden text is now visible\n"
+#~ msgstr "Ukryty tekst jest teraz widoczny\n"
+
+#~ msgid "Hidden text is now invisible\n"
+#~ msgstr "Ukryty tekst jest teraz niewidoczny\n"
+
+#~ msgid "Could not find symbol [%s] in library. Update failed.\n"
+#~ msgstr ""
+#~ "Nie odnaleziono symbolu [%s] w bibliotece. Aktualizacja nie powiodła "
+#~ "się.\n"
+
+#~ msgid "o_autosave_backups: Can't get the real filename of %s."
+#~ msgstr ""
+#~ "o_autosave_backups: Nie można określić rzeczywistej nazwy pliku dla %s."
+
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
+
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "Nie można ustawić pliku kopii zapasowej w tryb tylko do odczytu [%s].\n"
+
+#~ msgid "Could NOT save backup file [%s]\n"
+#~ msgstr "Zapisywanie kopii zapasowej [%s] nie powiodło się\n"
+
+#~ msgid "ERROR: NULL object in o_move_end!\n"
+#~ msgstr "BŁĄD: objekt NULL w funkcji o_move_end!\n"
+
+#~ msgid "Got a non line object in o_move_check_endpoint\n"
+#~ msgstr ""
+#~ "Obiekt który nie jest linią przekazany do funkcji o_move_check_endpoint\n"
+
+#~ msgid "Warning: Starting net at off grid coordinate\n"
+#~ msgstr "Uwaga: Początek połączenia jest poza siatką\n"
+
+#~ msgid "Warning: Ending net at off grid coordinate\n"
+#~ msgstr "Uwaga: Koniec połączenia jest poza siatką\n"
+
+#, fuzzy
+#~ msgid "Select a picture file..."
+#~ msgstr "Wybierz nazwę pliku PostScript..."
+
+#~ msgid "Failed to load picture: %s"
+#~ msgstr "Wczytanie obrazu %s nie powiodło się"
+
+#~ msgid "Picture"
+#~ msgstr "Obraz"
+
+#~ msgid "Slot attribute malformed\n"
+#~ msgstr "Nieprawidłowa wartość atrybutu \"slot\"\n"
+
+#~ msgid "numslots attribute missing\n"
+#~ msgstr "Brak atrybutu \"numslots\"\n"
+
+#~ msgid "Undo/Redo disabled in rc file\n"
+#~ msgstr ""
+#~ "Funkcjonalność Cofnij/Powtórz zostały wyłączone w pliku konfiguracyjnym\n"
+
+#~ msgid "Got invalid show option; defaulting to show both\n"
+#~ msgstr ""
+#~ "Nieprawidłowa opcja; przyjmuję domyślną wartość \"wyświetlaj nazwę i "
+#~ "wartość\"\n"
+
+#~ msgid "ERROR: NULL object!\n"
+#~ msgstr "BŁĄD: obiekt NULL!\n"
+
+#~ msgid "Single Attribute Editor"
+#~ msgstr "Edycja pojedyńczego atrybutu"
+
+#~ msgid "<b>Edit Attribute</b>"
+#~ msgstr "<b>Edytuj atrybut</b>"
+
+#~ msgid "<b>Add Attribute</b>"
+#~ msgstr "<b>Dodaj atrybut</b>"
+
+#~ msgid "Name:"
+#~ msgstr "Nazwa:"
+
+#~ msgid "Value:"
+#~ msgstr "Wartość:"
+
+#~ msgid "Visible"
+#~ msgstr "Widoczny"
+
+#~ msgid "Show Value Only"
+#~ msgstr "Wyświetlaj wartość"
+
+#~ msgid "Show Name Only"
+#~ msgstr "Wyświetlaj nazwę"
+
+#~ msgid "Show Name & Value"
+#~ msgstr "Wyświetlaj nazwę i wartość"
+
+#~ msgid "<b>Attach Options</b>"
+#~ msgstr "<b>Opcje dołączenia</b>"
+
+#~ msgid "All"
+#~ msgstr "Wszystko"
+
+#~ msgid "Components"
+#~ msgstr "Elementy"
+
+#~ msgid "Nets"
+#~ msgstr "Połączenia"
+
+#~ msgid "Replace existing attributes"
+#~ msgstr "Zastąp istniejące atrybuty"
+
+#~ msgid "No searchstring given in autonumber text.\n"
+#~ msgstr "Nie podano tekstu wyszukiwania.\n"
+
+#~ msgid "No '*' or '?' given at the end of the autonumber text.\n"
+#~ msgstr "Brak '*' lub '?' na końcu tekstu do automatycznej numeracji.\n"
+
+#~ msgid "Diagonal"
+#~ msgstr "Po przekątnej"
+
+#~ msgid "Top to bottom"
+#~ msgstr "Od góry do dołu"
+
+#~ msgid "Bottom to top"
+#~ msgstr "Od dołu do góry"
+
+#~ msgid "Left to right"
+#~ msgstr "Od lewej do prawej"
+
+#~ msgid "Right to left"
+#~ msgstr "Od prawej do lewej"
+
+#~ msgid "Autonumber text"
+#~ msgstr "Automatyczna numeracja"
+
+#~ msgid "<b>Scope</b>"
+#~ msgstr "<b>Zakres</b>"
+
+#~ msgid "Search for:"
+#~ msgstr "Wyszukiwany tekst:"
+
+#~ msgid "Autonumber text in:"
+#~ msgstr "Automatycznie numeruj w:"
+
+#~ msgid "Skip numbers found in:"
+#~ msgstr "Pomiń numery znalezione w:"
+
+#~ msgid "Selected objects"
+#~ msgstr "Zaznaczonych elementach"
+
+#~ msgid "Whole hierarchy"
+#~ msgstr "Całej hierarchii"
+
+#~ msgid "Overwrite existing numbers"
+#~ msgstr "Zastępuj istniejącą numerację"
+
+#~ msgid "<b>Options</b>"
+#~ msgstr "<b>Opcje</b>"
+
+#~ msgid "Starting number:"
+#~ msgstr "Numer początkowy"
+
+#~ msgid "Sort order:"
+#~ msgstr "Kolejność:"
+
+#~ msgid "Remove numbers"
+#~ msgstr "Usuń numery"
+
+#~ msgid ""
+#~ "<b>Invalid schematic on clipboard.</b>\n"
+#~ "\n"
+#~ "An error occurred while inserting clipboard data: %s."
+#~ msgstr ""
+#~ "<b>Niepoprawny format schematu w schowku.</b>\n"
+#~ "\n"
+#~ "Wystąpił błąd podczas wklejania danych ze schowka: %s."
+
+#~ msgid "Clipboard insertion failed"
+#~ msgstr "Błąd podczas wklejania"
+
+#~ msgid "Could not allocate the color %s!\n"
+#~ msgstr "Nieudana alokacja koloru %s!\n"
+
+#~ msgid "black"
+#~ msgstr "czarny"
+
+#~ msgid "white"
+#~ msgstr "biały"
+
+#~ msgid "Could not allocate display color %i!\n"
+#~ msgstr "Nie udało się przydzielić koloru %i!\n"
+
+#~ msgid "Could not allocate outline color %i!\n"
+#~ msgstr "Nie udało się przydzielić koloru obwiedni %i!\n"
+
+#~ msgid "Tried to get an invalid color: %d\n"
+#~ msgstr "Próba użycia nieprawidłowego koloru: %d\n"
+
+#~ msgid "Tried to get an invalid outline color: %d\n"
+#~ msgstr "Próba użycia nieprawidłowego koloru obwiedni: %d\n"
+
+#~ msgid "Filter:"
+#~ msgstr "Filtr:"
+
+#~ msgid "Name"
+#~ msgstr "Nazwa"
+
+#~ msgid "Value"
+#~ msgstr "Wartość"
+
+#~ msgid "Default behavior - reference component"
+#~ msgstr "Domyślnie - użyj odniesiena do pliku elementu"
+
+#~ msgid "Embed component in schematic"
+#~ msgstr "Osadź element w pliku schematu"
+
+#~ msgid "Include component as individual objects"
+#~ msgstr "Wstaw element jako indywidualne obiekty składowe"
+
+#~ msgid "Select Component..."
+#~ msgstr "Wybierz element..."
+
+#~ msgid "In Use"
+#~ msgstr "W użyciu"
+
+#~ msgid "Libraries"
+#~ msgstr "Biblioteki"
+
+#~ msgid "Arc Params"
+#~ msgstr "Parametry łuku"
+
+#~ msgid "Arc Radius:"
+#~ msgstr "Promień łuku:"
+
+#~ msgid "Start Angle:"
+#~ msgstr "Kąt początkowy:"
+
+#~ msgid "Degrees of Sweep:"
+#~ msgstr "Kąt rozwarcia"
+
+#~ msgid "Enter new text size:"
+#~ msgstr "Wprowadź nowy rozmiar czcionki:"
+
+#~ msgid "Snap Size"
+#~ msgstr "Odległość przyciągania"
+
+#~ msgid "Enter new snap grid spacing:"
+#~ msgstr "Wprowadź nową odległość przyciągania"
+
+#~ msgid "%s (g%.7s)"
+#~ msgstr "%s (g%.7s)"
+
+#~ msgid "About gschem"
+#~ msgstr "O programie"
+
+#~ msgid "gEDA: GPL Electronic Design Automation"
+#~ msgstr "gEDA: GPL Electronic Design Automation"
+
+#, fuzzy
+#~ msgid ""
+#~ "Copyright © 1998-2011 Ales Hvezda <ahvezda@geda.seul.org>\n"
+#~ "Copyright © 1998-2011 gEDA Contributors (see ChangeLog for details)"
+#~ msgstr ""
+#~ "Copyright © 1998-2012 Ales Hvezda <ahvezda@geda.seul.org>\n"
+#~ "Copyright © 1998-2012 Kontrybutorzy gEDA (szczegóły w pliku ChangeLog)"
+
+#~ msgid "Coords"
+#~ msgstr "Współrzędne"
+
+#~ msgid "Screen"
+#~ msgstr "Ekran"
+
+#~ msgid "World"
+#~ msgstr "Świat"
+
+#~ msgid "Hotkeys"
+#~ msgstr "Klawisze skrótów"
+
+#~ msgid "Keystroke(s)"
+#~ msgstr "Klawisz(e)"
+
+#~ msgid "Find Text"
+#~ msgstr "Znajdź tekst"
+
+#~ msgid "Text to find:"
+#~ msgstr "Szukany tekst:"
+
+#~ msgid "descend into hierarchy"
+#~ msgstr "Szukaj również wewnątrz elementów"
+
+#~ msgid "Hide Text"
+#~ msgstr "Ukryj tekst"
+
+#~ msgid "Hide text starting with:"
+#~ msgstr "Ukryj tekst zaczynający się od:"
+
+#~ msgid "Show Text"
+#~ msgstr "Wyświetl tekst"
+
+#~ msgid "Show text starting with:"
+#~ msgstr "Wyświetl tekst zaczynający się od:"
+
+#, fuzzy
+#~ msgid "Symbol"
+#~ msgstr "Symbole"
+
+#~ msgid "S_elect the schematics you want to save:"
+#~ msgstr "Wybi_erz schematy, które chcesz zapisać:"
+
+#~ msgid "Save the changes to schematic \"%s\" before closing?"
+#~ msgstr "Zapisać zmiany w schemacie \"%s\" przed wyjściem?"
+
+#~ msgid ""
+#~ "There are %d schematics with unsaved changes. Save changes before closing?"
+#~ msgstr "Niezapisane zmiany w %d schematach. Zapisać zmiany przed wyjściem?"
+
+#~ msgid "If you don't save, all your changes will be permanently lost."
+#~ msgstr ""
+#~ "Jeżeli nie zapiszesz, wszystkie zmiany zostaną bezpowrotnie utracone."
+
+#, fuzzy
+#~ msgid "Close _without saving"
+#~ msgstr "_Zamknij bez zapisywania"
+
+#~ msgid ""
+#~ "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is "
+#~ "invalid\n"
+#~ "Please correct in order to continue</span>\n"
+#~ "\n"
+#~ "The name and value must be non-empty.\n"
+#~ "The name cannot end with a space.\n"
+#~ "The value cannot start with a space."
+#~ msgstr ""
+#~ "<span weight=\"bold\" size=\"larger\">Atrybut \"%s\" jest nieprawidłowy</"
+#~ "span>\n"
+#~ "\n"
+#~ "Nazwa i wartość nie mogą być puste.\n"
+#~ "Nazwa nie może zaczynać się od spacji.\n"
+#~ "Wartość nie może zaczynać się od spacji."
+
+#~ msgid "Invalid Attribute"
+#~ msgstr "Nieprawidłowy atrybut"
+
+#~ msgid "Schematics"
+#~ msgstr "Schematy"
+
+#~ msgid "Symbols"
+#~ msgstr "Symbole"
+
+#~ msgid "Schematics and symbols"
+#~ msgstr "Schematy i symbole"
+
+#~ msgid "All files"
+#~ msgstr "Wszystkie pliki"
+
+#~ msgid "Open..."
+#~ msgstr "Otwórz..."
+
+#~ msgid "Save as..."
+#~ msgstr "Zapisz jako..."
+
+#~ msgid ""
+#~ "The selected file `%s' already exists.\n"
+#~ "\n"
+#~ "Would you like to overwrite it?"
+#~ msgstr ""
+#~ "Plik %s już istnieje.\n"
+#~ "\n"
+#~ "Czy chcesz go zastąpić bieżącym schematem?"
+
+#~ msgid "Overwrite file?"
+#~ msgstr "Zastąpić plik?"
+
+#~ msgid "Save cancelled on user request\n"
+#~ msgstr "Zapis anulowany na życzenie użytkownika\n"
+
+#~ msgid "x_image_lowlevel: Unable to write %s file %s.\n"
+#~ msgstr "x_image_lowlevel: Nieudany zapis pliku %s o nazwie %s.\n"
+
+#~ msgid ""
+#~ "There was the following error when saving image with type %s to "
+#~ "filename:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "%s.\n"
+#~ msgstr ""
+#~ "Wystąpił błąd podczas zapisywania obrazu %s do pliku:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "%s.\n"
+
+#~ msgid "Wrote color image to [%s] [%d x %d]\n"
+#~ msgstr "Zapisano kolorowy obraz do [%s] [%d x %d]\n"
+
+#~ msgid "Wrote black and white image to [%s] [%d x %d]\n"
+#~ msgstr "Zapisano czarno-biały obraz do [%s] [%d x %d]\n"
+
+#~ msgid "x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"
+#~ msgstr "x_image_lowlevel: Nieudane pobranie obrazu z okna gschem.\n"
+
+#~ msgid "Width x Height"
+#~ msgstr "Szerokość x Wysokość"
+
+#~ msgid "Write image..."
+#~ msgstr "Zapisz jako obraz..."
+
+#~ msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+#~ msgstr ""
+#~ "** Nieprawidłowy znak UTF-8 w komunikacie. Zobacz standardowe wyjście "
+#~ "błędów lub plik gschem.log.\n"
+
+#~ msgid "Status"
+#~ msgstr "Stan"
+
+#, fuzzy
+#~ msgid "Add Net"
+#~ msgstr "/Dodaj połączenie"
+
+#~ msgid "Add Attribute"
+#~ msgstr "Dodaj atrybut"
+
+#, fuzzy
+#~ msgid "Add Bus"
+#~ msgstr "/Dodaj magistralę"
+
+#, fuzzy
+#~ msgid "Add Text"
+#~ msgstr "/Dodaj tekst"
+
+#, fuzzy
+#~ msgid "Zoom In"
+#~ msgstr "/Powiększ"
+
+#, fuzzy
+#~ msgid "Zoom Out"
+#~ msgstr "/Pomniejsz"
+
+#, fuzzy
+#~ msgid "Zoom Extents"
+#~ msgstr "/Dopasuj do ekranu"
+
+#~ msgid "Edit..."
+#~ msgstr "Edytuj..."
+
+#, fuzzy
+#~ msgid "Edit Pin Type..."
+#~ msgstr "/Edytuj typ pinu..."
+
+#, fuzzy
+#~ msgid "Down Schematic"
+#~ msgstr "/Wgłąb schematu"
+
+#, fuzzy
+#~ msgid "Down Symbol"
+#~ msgstr "/Wgłąb symbolu"
+
+#, fuzzy
+#~ msgid "Up"
+#~ msgstr "/Do góry"
+
+#~ msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
+#~ msgstr "Próba aktywacji nieistniejącego elementu menu '%s'\n"
+
+#~ msgid "The operating system is out of memory or resources."
+#~ msgstr "Brak pamięci lub innych zasobów systemu operacyjnego."
+
+#~ msgid "%s failed to launch URI"
+#~ msgstr "Program %s nie mógł otworzyć adresu URI"
+
+#~ msgid "Attributes with empty name are not allowed. Please set a name."
+#~ msgstr "Atrybuty bez nazwy nie są dozwolone. Podaj prawidłową nazwę."
+
+#~ msgid "Show Value only"
+#~ msgstr "Wyświetlaj wartość"
+
+#~ msgid "Show Name only"
+#~ msgstr "Wyświetlaj nazwę"
+
+#~ msgid "Promote"
+#~ msgstr "Promuj"
+
+#~ msgid "Duplicate"
+#~ msgstr "Duplikuj"
+
+#~ msgid "Edit Attributes"
+#~ msgstr "Zmodyfikuj atrybuty"
+
+#~ msgid "Vis?"
+#~ msgstr "Widoczny?"
+
+#~ msgid "N"
+#~ msgstr "N"
+
+#~ msgid "V"
+#~ msgstr "W"
+
+#~ msgid "Show inherited attributes"
+#~ msgstr "Pokaż odziedziczone atrybuty"
+
+#, fuzzy
+#~ msgid "Edit Attributes - %s"
+#~ msgstr "Zmodyfikuj atrybuty"
+
+#~ msgid "New Page"
+#~ msgstr "Nowy arkusz"
+
+#~ msgid "Open Page..."
+#~ msgstr "Otwórz arkusz"
+
+#~ msgid "Save Page"
+#~ msgstr "Zapisz arkusz"
+
+#~ msgid "Close Page"
+#~ msgstr "Zamknij arkusz"
+
+#~ msgid "Page Manager"
+#~ msgstr "Zarządzanie arkuszami"
+
+#~ msgid "Filename"
+#~ msgstr "Nazwa pliku"
+
+#~ msgid "Changed"
+#~ msgstr "Zmieniono"
+
+#~ msgid "Right click on the filename for more options..."
+#~ msgstr ""
+#~ "Kliknij prawym przyciskiem myszy na nazwie pliku aby zobaczyć opcje..."
+
+#, fuzzy
+#~ msgid "Failed to write PDF to '%s': %s\n"
+#~ msgstr "Błąd podczas wczytywania pliku inicjalizacji scm [%s]\n"
+
+#~ msgid ""
+#~ "ERROR: An unknown error occurred while parsing configuration files.\n"
+#~ msgstr ""
+#~ "BŁĄD: Wystąpił nieznany błąd podczas przetwarzania plików "
+#~ "konfiguracyjnych.\n"
+
+#~ msgid ""
+#~ "An unknown error occurred while parsing configuration files.\n"
+#~ "\n"
+#~ "The gschem log may contain more information."
+#~ msgstr ""
+#~ "Wystąpił nieznany błąd podczas przetwarzania plików konfiguracyjnych."
+
+#~ msgid "ERROR: %s\n"
+#~ msgstr "BŁĄD: %s\n"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "\n"
+#~ "The gschem log may contain more information."
+#~ msgstr ""
+#~ "%s\n"
+#~ "\n"
+#~ "Logi programu mogą zawierać dodatkowe informacje."
+
+#~ msgid "Cannot load gschem configuration."
+#~ msgstr "Nie można wczytać konfiguracji gschem."
+
+#~ msgid "Execute Script..."
+#~ msgstr "Wykonaj skrypt..."
+
+#~ msgid "Executing guile script [%s]\n"
+#~ msgstr "Wykonywanie skryptu guile [%s]\n"
+
+#~ msgid "Couldn't allocate gc\n"
+#~ msgstr "Błąd podczas alokacji kontekstu graficznego \"gc\"\n"
+
+#~ msgid "New"
+#~ msgstr "Nowy"
+
+#~ msgid "New file"
+#~ msgstr "Nowy plik"
+
+#~ msgid "Open file..."
+#~ msgstr "Otwórz plik..."
+
+#~ msgid "Save"
+#~ msgstr "Zapisz"
+
+#~ msgid "Save file"
+#~ msgstr "Zapisz plik"
+
+#~ msgid "Undo"
+#~ msgstr "Cofnij"
+
+#~ msgid "Undo last operation"
+#~ msgstr "Cofnij ostatnią operację"
+
+#~ msgid "Redo"
+#~ msgstr "Przywróć"
+
+#~ msgid "Redo last undo"
+#~ msgstr "Przywróć ostatnią operację"
+
+#~ msgid ""
+#~ "Add component...\n"
+#~ "Select library and component from list, move the mouse into main window, "
+#~ "click to place\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "Dodaj element...\n"
+#~ "Wybierz bibliotekę i element z listy, przenieś kursor do głównego okna, "
+#~ "kliknij aby umieścić element\n"
+#~ "Anuluj prawym przyciskiem myszy"
+
+#~ msgid ""
+#~ "Add nets mode\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "Tryb dodawania połączeń\n"
+#~ "Anuluj prawym przyciskiem myszy"
+
+#~ msgid ""
+#~ "Add buses mode\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "Tryb dodawania magistral\n"
+#~ "Anuluj prawym przyciskiem myszy"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Add Text..."
+#~ msgstr "Dodaj tekst..."
+
+#~ msgid "Select mode"
+#~ msgstr "Tryb zaznaczania"
+
+#~ msgid "Pick"
+#~ msgstr "Wybierz"
+
+#~ msgid "Repeat/none"
+#~ msgstr "Powtórz/brak"
+
+#~ msgid "Menu/Cancel"
+#~ msgstr "Menu/Anuluj"
+
+#~ msgid "Pan/Cancel"
+#~ msgstr "Przesuń widok/Anuluj"
+
+#~ msgid "Loading schematic [%s]\n"
+#~ msgstr "Wczytywanie schematu [%s]\n"
+
+#~ msgid ""
+#~ "<b>An error occurred while loading the requested file.</b>\n"
+#~ "\n"
+#~ "Loading from '%s' failed: %s. The gschem log may contain more information."
+#~ msgstr ""
+#~ "<b>Wystąpił błąd podczas wczytywania pliku.</b>\n"
+#~ "\n"
+#~ "Wczytywanie z pliku '%s' nie powiodło się: %s. Log programu może zawierać "
+#~ "dodatkowe informacje."
+
+#~ msgid "Failed to load file"
+#~ msgstr "Otwarcie pliku nie powiodło się"
+
+#~ msgid "New file [%s]\n"
+#~ msgstr "Nowy plik [%s]\n"
+
+#~ msgid "Could NOT save page [%s]\n"
+#~ msgstr "Zapisanie arkusza [%s] nie powiodło się\n"
+
+#~ msgid "Error while trying to save"
+#~ msgstr "Błąd podczas próby zapisania"
+
+#~ msgid "Failed to save file"
+#~ msgstr "Zapisanie pliku nie powiodło się"
+
+#~ msgid "Saved as [%s]\n"
+#~ msgstr "Zapisano jako [%s]\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Zapisano [%s]\n"
+
+#~ msgid "Saved"
+#~ msgstr "Zapisano"
+
+#~ msgid "Discarding page [%s]\n"
+#~ msgstr "Porzucanie arkusza [%s]\n"
+
+#~ msgid "Closing [%s]\n"
+#~ msgstr "Zamykanie [%s]\n"
+
+#~ msgid "gEDA Schematic Editor"
+#~ msgstr "gEDA Edytor Schematów"
+
+#~ msgid "Create and edit electrical schematics and symbols with gschem"
+#~ msgstr ""
+#~ "Projektuj i edytuj schematy i symbole elektroniczne za pomocą gschem"
+
+#~ msgid "_New"
+#~ msgstr "_Nowy"
+
+#~ msgid "_Open..."
+#~ msgstr "_Otwórz..."
+
+#~ msgid "Open Recen_t"
+#~ msgstr "Otwórz os_tatnio używane"
+
+#~ msgid "_Save"
+#~ msgstr "Zapi_sz"
+
+#~ msgid "Save _As..."
+#~ msgstr "Zapisz j_ako..."
+
+#~ msgid "Save All"
+#~ msgstr "Zapisz _wszystkie"
+
+#~ msgid "_Revert"
+#~ msgstr "P_rzywróć"
+
+#~ msgid "_Print..."
+#~ msgstr "_Drukuj..."
+
+#~ msgid "Write _image..."
+#~ msgstr "Zap_isz obraz..."
+
+#~ msgid "New Window"
+#~ msgstr "Nowe o_kno"
+
+#~ msgid "_Quit"
+#~ msgstr "Za_kończ"
+
+#~ msgid "_Undo"
+#~ msgstr "_Cofnij"
+
+#~ msgid "_Redo"
+#~ msgstr "_Ponów"
+
+#~ msgid "Cu_t"
+#~ msgstr "Wy_tnij"
+
+#~ msgid "_Copy"
+#~ msgstr "_Kopiuj"
+
+#~ msgid "_Paste"
+#~ msgstr "_Wklej"
+
+#~ msgid "_Delete"
+#~ msgstr "_Usuń"
+
+#~ msgid "Deselect"
+#~ msgstr "Odznacz"
+
+#~ msgid "Rotate 90 Mode"
+#~ msgstr "Obróć o 90 stopni"
+
+#~ msgid "Edit Text..."
+#~ msgstr "Edytuj tekst..."
+
+#~ msgid "Slot..."
+#~ msgstr "Slot..."
+
+#~ msgid "Color..."
+#~ msgstr "Kolor..."
+
+#~ msgid "Line Width & Type..."
+#~ msgstr "Styl linii..."
+
+#~ msgid "Fill Type..."
+#~ msgstr "Styl wypełnienia..."
+
+#, fuzzy
+#~ msgid "Pin Type..."
+#~ msgstr "Styl wypełnienia..."
+
+#~ msgid "Symbol Translate..."
+#~ msgstr "Tłumaczenie symbolu..."
+
+#~ msgid "Invoke Macro"
+#~ msgstr "Wykonaj makro"
+
+#~ msgid "Embed Component/Picture"
+#~ msgstr "Osadź element/obraz"
+
+#~ msgid "Unembed Component/Picture"
+#~ msgstr "Cofnij osadzanie elem./obr."
+
+#~ msgid "Update Component"
+#~ msgstr "Aktualizuj element"
+
+#~ msgid "Show/Hide Inv Text"
+#~ msgstr "Wyświetlaj/ukryj niewidoczny tekst"
+
+#~ msgid "Copy into 1"
+#~ msgstr "Kopiuj do 1"
+
+#~ msgid "Copy into 2"
+#~ msgstr "Kopiuj do 2"
+
+#~ msgid "Copy into 3"
+#~ msgstr "Kopiuj do 3"
+
+#~ msgid "Copy into 4"
+#~ msgstr "Kopiuj do 4"
+
+#~ msgid "Copy into 5"
+#~ msgstr "Kopiuj do 5"
+
+#~ msgid "Cut into 1"
+#~ msgstr "Wytnij do 1"
+
+#~ msgid "Cut into 2"
+#~ msgstr "Wytnij do 2"
+
+#~ msgid "Cut into 3"
+#~ msgstr "Wytnij do 3"
+
+#~ msgid "Cut into 4"
+#~ msgstr "Wytnij do 4"
+
+#~ msgid "Cut into 5"
+#~ msgstr "Wytnij do 5"
+
+#~ msgid "Paste from 1"
+#~ msgstr "Wklej z 1"
+
+#~ msgid "Paste from 2"
+#~ msgstr "Wklej z 2"
+
+#~ msgid "Paste from 3"
+#~ msgstr "Wklej z 3"
+
+#~ msgid "Paste from 4"
+#~ msgstr "Wklej z 4"
+
+#~ msgid "Paste from 5"
+#~ msgstr "Wklej z 5"
+
+#~ msgid "_Redraw"
+#~ msgstr "_Aktualizuj"
+
+#~ msgid "_Pan"
+#~ msgstr "_Przesuń"
+
+#~ msgid "Zoom _Box"
+#~ msgstr "Powiększ _obszar"
+
+#~ msgid "Zoom _Extents"
+#~ msgstr "_Dopasuj widok"
+
+#~ msgid "Zoom _In"
+#~ msgstr "Pow_iększ"
+
+#~ msgid "Zoom _Out"
+#~ msgstr "P_omniejsz"
+
+#~ msgid "Zoom _Full"
+#~ msgstr "Maksymalne pomniejszenie"
+
+#~ msgid "_Dark color scheme"
+#~ msgstr "_Ciemny zestaw kolorów"
+
+#~ msgid "_Light color scheme"
+#~ msgstr "_Jasny zestaw kolorów"
+
+#~ msgid "_Manager..."
+#~ msgstr "_Zarządzaj..."
+
+#~ msgid "_Previous"
+#~ msgstr "_Poprzedni"
+
+#~ msgid "_Next"
+#~ msgstr "_Następny"
+
+#~ msgid "_Close"
+#~ msgstr "_Zamknij"
+
+#~ msgid "_Component..."
+#~ msgstr "_Element..."
+
+#~ msgid "_Net"
+#~ msgstr "_Sieć"
+
+#~ msgid "B_us"
+#~ msgstr "_Magistrala"
+
+#~ msgid "_Attribute..."
+#~ msgstr "_Atrybut..."
+
+#~ msgid "_Text..."
+#~ msgstr "_Tekst..."
+
+#~ msgid "_Line"
+#~ msgstr "_Linia"
+
+#~ msgid "_Box"
+#~ msgstr "Pros_tokąt"
+
+#~ msgid "C_ircle"
+#~ msgstr "_Okrąg"
+
+#~ msgid "A_rc"
+#~ msgstr "Ł_uk"
+
+#~ msgid "_Pin"
+#~ msgstr "_Pin"
+
+#~ msgid "Pictu_re..."
+#~ msgstr "Ob_raz..."
+
+#~ msgid "_Down Schematic"
+#~ msgstr "W głąb _schematu"
+
+#~ msgid "Down _Symbol"
+#~ msgstr "W głąb _elementu"
+
+#~ msgid "_Up"
+#~ msgstr "W _górę"
+
+#~ msgid "D_ocumentation..."
+#~ msgstr "Do_kumentacja..."
+
+#~ msgid "_Attach"
+#~ msgstr "_Dołącz"
+
+#~ msgid "_Detach"
+#~ msgstr "_Odłącz"
+
+#~ msgid "Show _Name"
+#~ msgstr "Pokazuj _nazwę"
+
+#~ msgid "Show _Both"
+#~ msgstr "Pokazuj o_bie"
+
+#~ msgid "_Toggle Visibility"
+#~ msgstr "Przełącz _widoczność"
+
+#~ msgid "_Find Specific Text..."
+#~ msgstr "_Szukaj tekstu..."
+
+#~ msgid "_Hide Specific Text..."
+#~ msgstr "_Ukryj wybrany tekst..."
+
+#~ msgid "_Show Specific Text..."
+#~ msgstr "_Pokazuj wybrany tekst..."
+
+#~ msgid "A_utonumber Text..."
+#~ msgstr "A_utomatycznie numeruj..."
+
+#~ msgid "_Text Size..."
+#~ msgstr "Rozmiar _tekstu..."
+
+#~ msgid "Cycle _grid styles"
+#~ msgstr "Przełącz styl _siatki"
+
+#~ msgid "Toggle _Snap On/Off"
+#~ msgstr "Przełącz _przyciąganie"
+
+#~ msgid "Snap Grid S_pacing..."
+#~ msgstr "_Odstęp przyciągania..."
+
+#~ msgid "Scale _down Grid Spacing"
+#~ msgstr "Z_większ siatkę przyciągania"
+
+#~ msgid "Toggle _Outline/Box"
+#~ msgstr "Przełącz wyświetlanie _konturów"
+
+#~ msgid "Toggle Net _Rubberband"
+#~ msgstr "Przełącz _rozciąganie połączeń"
+
+#~ msgid "Toggle _Magnetic Net"
+#~ msgstr "Przełącz \"_magnes\" połączeń"
+
+#~ msgid "Show _Log Window..."
+#~ msgstr "Pokaż okno komunikatów..."
+
+#~ msgid "Show _Coord Window..."
+#~ msgstr "Pokaż okno współrzędnych..."
+
+#, fuzzy
+#~ msgid "gschem User _Guide..."
+#~ msgstr "_FAQ gschem..."
+
+#~ msgid "gschem _FAQ..."
+#~ msgstr "_FAQ gschem..."
+
+#~ msgid "gEDA Docu_mentation..."
+#~ msgstr "Doku_mentacja gEDA..."
+
+#~ msgid "gEDA _Wiki..."
+#~ msgstr "_Wiki gEDA..."
+
+#~ msgid "Component D_ocumentation..."
+#~ msgstr "Dokumentacja _elementu..."
+
+#~ msgid "_Hotkeys..."
+#~ msgstr "Skróty _klawiszowe..."
+
+#~ msgid "_About..."
+#~ msgstr "_O programie..."
+
+#~ msgid "_File"
+#~ msgstr "_Plik"
+
+#~ msgid "_Edit"
+#~ msgstr "_Edycja"
+
+#~ msgid "_View"
+#~ msgstr "_Widok"
+
+#~ msgid "_Page"
+#~ msgstr "_Arkusz"
+
+#~ msgid "_Add"
+#~ msgstr "_Dodaj"
+
+#~ msgid "Hie_rarchy"
+#~ msgstr "Hie_rarchia"
+
+#~ msgid "A_ttributes"
+#~ msgstr "A_trybuty"
+
+#~ msgid "_Options"
+#~ msgstr "_Ustawienia"
+
+#~ msgid "_Help"
+#~ msgstr "_Pomoc"
+
+#, fuzzy
+#~ msgid "~S is not a valid gschem action."
+#~ msgstr "Nie można wczytać konfiguracji gschem."
+
+#, fuzzy
+#~ msgid "New File"
+#~ msgstr "Nowy plik"
+
+#, fuzzy
+#~ msgid "Save As"
+#~ msgstr "Zapisz _wszystkie"
+
+#, fuzzy
+#~ msgid "Print"
+#~ msgstr "Drukuj..."
+
+#, fuzzy
+#~ msgid "Close Window"
+#~ msgstr "Zamykanie okna\n"
+
+#, fuzzy
+#~ msgid "Quit"
+#~ msgstr "Za_kończ"
+
+#~ msgid "Edit Line Width & Type"
+#~ msgstr "Edycja stylu linii"
+
+#~ msgid "Edit Fill Type"
+#~ msgstr "Edytuj typ wypełnienia"
+
+#, fuzzy
+#~ msgid "Edit Pin Type"
+#~ msgstr "Edytuj rodzaj pinu"
+
+#, fuzzy
+#~ msgid "Translate Symbol"
+#~ msgstr "Tłumacz"
+
+#, fuzzy
+#~ msgid "Embed Component/Pictore"
+#~ msgstr "Osadź element/obraz"
+
+#, fuzzy
+#~ msgid "Show/Hide Invisible Text"
+#~ msgstr "Wyświetlaj/ukryj niewidoczny tekst"
+
+#, fuzzy
+#~ msgid "Cut"
+#~ msgstr "Wy_tnij"
+
+#, fuzzy
+#~ msgid "Paste"
+#~ msgstr "_Wklej"
+
+#, fuzzy
+#~ msgid "Redraw"
+#~ msgstr "_Aktualizuj"
+
+#, fuzzy
+#~ msgid "Pan Left"
+#~ msgstr "Tryb przesuwania widoku"
+
+#, fuzzy
+#~ msgid "Pan Right"
+#~ msgstr "Na górze po prawej"
+
+#, fuzzy
+#~ msgid "Pan Down"
+#~ msgstr "Tryb przesuwania widoku"
+
+#, fuzzy
+#~ msgid "Zoom Full"
+#~ msgstr "Maksymalne pomniejszenie"
+
+#, fuzzy
+#~ msgid "Revert Changes"
+#~ msgstr "Czy na pewno przywrócić arkusz?"
+
+#, fuzzy
+#~ msgid "Previous Page"
+#~ msgstr "_Poprzedni"
+
+#, fuzzy
+#~ msgid "Next Page"
+#~ msgstr "Nowy arkusz"
+
+#, fuzzy
+#~ msgid "Add Line"
+#~ msgstr "Linię"
+
+#, fuzzy
+#~ msgid "Add Path"
+#~ msgstr "/Dodaj połączenie"
+
+#, fuzzy
+#~ msgid "Add Box"
+#~ msgstr "/Dodaj magistralę"
+
+#, fuzzy
+#~ msgid "Add Circle"
+#~ msgstr "Okrąg"
+
+#, fuzzy
+#~ msgid "Add Arc"
+#~ msgstr "Dodaj atrybut"
+
+#, fuzzy
+#~ msgid "Add Picture"
+#~ msgstr "Obraz"
+
+#, fuzzy
+#~ msgid "Show Hotkeys"
+#~ msgstr "Klawisze skrótów"
+
+#, fuzzy
+#~ msgid "Component Documentation"
+#~ msgstr "Dokumentacja _elementu..."
+
+#, fuzzy
+#~ msgid "gschem User Guide"
+#~ msgstr "_FAQ gschem..."
+
+#, fuzzy
+#~ msgid "gschem FAQ"
+#~ msgstr "_FAQ gschem..."
+
+#, fuzzy
+#~ msgid "gEDA wiki"
+#~ msgstr "_Wiki gEDA..."
+
+#~ msgid "Function"
+#~ msgstr "Funkcja"
+
+#~ msgid "/Add Attribute..."
+#~ msgstr "/Dodaj atrybut..."
+
+#~ msgid "/Zoom Box"
+#~ msgstr "/Powiększ fragment"
+
+#~ msgid "/Select"
+#~ msgstr "/Zaznacz"
+
+#~ msgid "/Edit..."
+#~ msgstr "/Edytuj..."
+
+#~ msgid "/Copy"
+#~ msgstr "/Kopiuj"
+
+#~ msgid "/Move"
+#~ msgstr "/Przesuń"
+
+#~ msgid "/Delete"
+#~ msgstr "/Usuń"
+
+#~ msgid "Popup_menu_item_factory doesn't exist!\n"
+#~ msgstr "Popup_menu_item_factory nie istnieje!\n"
+
+#~ msgid "Tried to set the sensitivity on a non-existent popup menu_item\n"
+#~ msgstr "Próba aktywacji nieistniejącego elementu menu kontekstowego\n"
+
+#~ msgid "Ne_w"
+#~ msgstr "No_wy"
+
+#~ msgid "_Buffer"
+#~ msgstr "_Schowek"
+
+#~ msgid "Invalid zoomfactor [%d] passed to %s\n"
+#~ msgstr "Nieprawidłowa skala powiększenia [%d] przekazana do funkcji %s\n"
+
+#~ msgid "Copy 2"
+#~ msgstr "Kopiuj do 2"
+
+#~ msgid "Copy 3"
+#~ msgstr "Kopiuj do 3"
+
+#~ msgid "Copy 4"
+#~ msgstr "Kopiuj do 4"
+
+#~ msgid "Copy 5"
+#~ msgstr "Kopiuj do 5"
+
+#~ msgid "Cut 2"
+#~ msgstr "Wytnij do 2"
+
+#~ msgid "Cut 3"
+#~ msgstr "Wytnij do 3"
+
+#~ msgid "Cut 4"
+#~ msgstr "Wytnij do 4"
+
+#~ msgid "Cut 5"
+#~ msgstr "Wytnij do 5"
+
+#~ msgid "Paste 2"
+#~ msgstr "Wklej z 2"
+
+#~ msgid "Paste 3"
+#~ msgstr "Wklej z 3"
+
+#~ msgid "Paste 4"
+#~ msgstr "Wklej z 4"
+
+#~ msgid "Paste 5"
+#~ msgstr "Wklej z 5"
+
+#~ msgid "Text Entry..."
+#~ msgstr "Wprowadzanie tekstu..."
+
+#~ msgid ""
+#~ "Enter text, click apply,\n"
+#~ "move cursor into window, click to place text.\n"
+#~ "Middle button to rotate while placing."
+#~ msgstr ""
+#~ "Wprowadź tekst, kliknij \"Zastosuj\",\n"
+#~ "przenieś kursor do głownego okna, kliknij aby umieścić tekst.\n"
+#~ "Środkowy przycisk obraca tekst przed umieszczeniem."
+
+#~ msgid "Upper Left"
+#~ msgstr "Na górze po lewej"
+
+#~ msgid "Upper Middle"
+#~ msgstr "Na środku powyżej"
+
+#~ msgid "Middle Left"
+#~ msgstr "Na środku po lewej"
+
+#~ msgid "Middle Middle"
+#~ msgstr "Pośrodku"
+
+#~ msgid "Middle Right"
+#~ msgstr "Na środku po prawej"
+
+#~ msgid "Lower Left"
+#~ msgstr "Na dole po lewej"
+
+#~ msgid "Lower Middle"
+#~ msgstr "Na środku poniżej"
+
+#~ msgid "Lower Right"
+#~ msgstr "Na dole po prawej"
+
+#~ msgid "Edit Text Properties"
+#~ msgstr "Edycja właściwości tekstu"
+
+#~ msgid "<b>Text Content</b>"
+#~ msgstr "<b>Treść tekstu</b>"
+
+#~ msgid "<b>Text Properties</b>"
+#~ msgstr "<b>Właściwości tekstu</b>"
+
+#~ msgid "Color:"
+#~ msgstr "Kolor:"
+
+#~ msgid "Size:"
+#~ msgstr "Rozmiar:"
+
+#~ msgid "Alignment:"
+#~ msgstr "Punkt odniesienia:"
+
+#~ msgid "Solid"
+#~ msgstr "Jednolita"
+
+#~ msgid "Dotted"
+#~ msgstr "Kropki"
+
+#~ msgid "Dashed"
+#~ msgstr "Kreski"
+
+#~ msgid "Center"
+#~ msgstr "Kropka-kreska"
+
+#~ msgid "Phantom"
+#~ msgstr "Kropka-kropka-kreska"
+
+#~ msgid "*unchanged*"
+#~ msgstr "*bez zmian*"
+
+#~ msgid "Type:"
+#~ msgstr "Rodzaj:"
+
+#~ msgid "Width:"
+#~ msgstr "Szerokość:"
+
+#~ msgid "Dash Length:"
+#~ msgstr "Długość kreski"
+
+#~ msgid "Dash Space:"
+#~ msgstr "Długość przerwy"
+
+#~ msgid "Hollow"
+#~ msgstr "Brak"
+
+#~ msgid "Filled"
+#~ msgstr "Pełne"
+
+#~ msgid "Mesh"
+#~ msgstr "Siatka"
+
+#~ msgid "Hatch"
+#~ msgstr "Kreskowanie"
+
+#~ msgid "Fill Type:"
+#~ msgstr "Typ wypełnienia:"
+
+#~ msgid "Line Width:"
+#~ msgstr "Szerokość linii:"
+
+#~ msgid "Pitch 1:"
+#~ msgstr "Odstęp między liniami 1:"
+
+#~ msgid "Angle 2:"
+#~ msgstr "Kąt linii 2:"
+
+#~ msgid "Pitch 2:"
+#~ msgstr "Odstęp między liniami 2:"
+
+#~ msgid "Background"
+#~ msgstr "Tło"
+
+#~ msgid "Net endpoint"
+#~ msgstr "Koniec połączeni"
+
+#~ msgid "Graphic"
+#~ msgstr "Graficzne"
+
+#~ msgid "Logic bubble"
+#~ msgstr "Negacja logiczna"
+
+#~ msgid "Grid point"
+#~ msgstr "Punkt siatki"
+
+#~ msgid "Detached attribute"
+#~ msgstr "Odłączony atrybut"
+
+#~ msgid "Bounding box"
+#~ msgstr "Obwiednia"
+
+#~ msgid "Zoom box"
+#~ msgstr "Obszar powiększenia"
+
+#~ msgid "Output background"
+#~ msgstr "Tło wydruku"
+
+#~ msgid "Net junction"
+#~ msgstr "Połączenie przewodów"
+
+#~ msgid "Mesh grid major"
+#~ msgstr "Siatka zgrubna"
+
+#~ msgid "Mesh grid minor"
+#~ msgstr "Siatka dokładna"
+
+#~ msgid "Unknown"
+#~ msgstr "Nieznane"
+
+#~ msgid "ERROR: NULL object in color_edit_dialog_apply!\n"
+#~ msgstr "BŁĄD: obiekt NULL w funkcji color_edit_dialog_apply!\n"
+
+#~ msgid "Color Edit"
+#~ msgstr "Edycja koloru"
+
+#~ msgid "Object color:"
+#~ msgstr "Kolor obiektu:"
+
+#~ msgid "Discard Page"
+#~ msgstr "Porzuć arkusz"
+
+#~ msgid "_Discard"
+#~ msgstr "Po_rzuć"
+
+#~ msgid "Unknown end for line (%d)\n"
+#~ msgstr "Nieznany koniec dla linii (%d)\n"
+
+#~ msgid "Unknown type for stroke (%d) !\n"
+#~ msgstr "Niepoprawny styl linii (%d) !\n"
+
+#~ msgid "cairo context"
+#~ msgstr "kontekst cairo"
+
+#~ msgid "the cairo context for the renderer"
+#~ msgstr "kontekst cairo do renderowania"
+
+#~ msgid "Cannot find source [%s]\n"
+#~ msgstr "Nie można odnaleźć źródła [%s]\n"
+
+#~ msgid "Unknown type for box (fill)!\n"
+#~ msgstr "Nieznany typ dla prostokąta (wypełnienie)!\n"
+
+#~ msgid "Unknown type for circle (fill)!\n"
+#~ msgstr "Nieznany typ dla okręgu (wypełnienie)!\n"
+
+#~ msgid "Encapsulated Postscript"
+#~ msgstr "Encapsulated Postscript"
+
+#~ msgid "x_image_lowlevel: Unable to write eps file %s.\n"
+#~ msgstr "x_image_lowlevel: Nie można zapisać pliku eps %s.\n"
+
+#~ msgid "Extents with margins"
+#~ msgstr "Cały arkusz wraz z marginesami"
+
+#~ msgid "Extents no margins"
+#~ msgstr "Cały arkusz bez marginesów"
+
+#~ msgid "Current Window"
+#~ msgstr "Bieżący widok"
+
+#~ msgid "Landscape"
+#~ msgstr "Poziome"
+
+#~ msgid "Portrait"
+#~ msgstr "Pionowe"
+
+#~ msgid "Settings"
+#~ msgstr "Ustawienia"
+
+#~ msgid "Output paper size:"
+#~ msgstr "Rozmiar papieru:"
+
+#~ msgid "Orientation:"
+#~ msgstr "Ułożenie papieru:"
+
+#~ msgid "File:"
+#~ msgstr "Plik:"
+
+#~ msgid "Command:"
+#~ msgstr "Polecenie:"
+
+#~ msgid "No print destination specified\n"
+#~ msgstr "Nie podano lokalizacji docelowej wydruku\n"
+
+#~ msgid "Cannot print current schematic to [%s]\n"
+#~ msgstr "Nie można wydrukować bieżącego arkusza do [%s]\n"
+
+#~ msgid ""
+#~ "Error printing to file '%s'\n"
+#~ "Check the log window for more information"
+#~ msgstr ""
+#~ "Błąd wydruku do pliku '%s'\n"
+#~ "Więcej szczegółów w oknie komunikatów"
+
+#~ msgid "Printed current schematic to [%s]\n"
+#~ msgstr "Wydrukowano bieżący arkusz do [%s]\n"

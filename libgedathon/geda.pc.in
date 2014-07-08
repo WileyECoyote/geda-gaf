@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: geda
+Description: gEDA/gaf Python Extension Library Module
+Requires: libgedathon
+Requires.private:
+Version: @DATE_VERSION@
+Libs: -L${libdir} -lgeda -lm
+Libs.private:
+Cflags: -I${includedir}

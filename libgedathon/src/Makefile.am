@@ -1,0 +1,54 @@
+## Process this file with automake to produce Makefile.in
+# Currently not using the CAIRO_CFLAGS or PANGO_CFLAGS but libgedathon is still
+# in infancy, leaving for now. GDK_CFLAGS added due to inclusion of GDK_PIXBUF
+# _CFLAGS, which are include because libgedathon includes headers for libgeda,
+# whose proto-type include GdkPixbuf.
+
+#REF: (geda-python.m4).PYTHON_CFLAGS  = -Wstrict-prototypes -pthread -fno-strict-aliasing -fwrapv -fPIC
+#REF: (geda-python.m4).PYTHON_LDFLAGS = -shared -Bsymbolic-functions
+#REF: (geda-python.m4).PYTHON_LIBS    = -lpython$PYTHON_VERSION
+
+#DEBUGGING               = --debug --verbose
+
+AUTOMAKE_OPTIONS         = $(GEDA_AUTO_MAKE_OPTIONS)
+
+INC_GEDA                 = -I$(top_srcdir)/include -I$(top_srcdir)/intl
+INC_LOCAL                = -I$(srcdir)/../include
+INC_LIBGEDA              = -I$(top_srcdir)/libgeda/include
+
+GEDA_INCLUDES            = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
+
+PY_INCLUDES              = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
+
+PY_LIBFLAGS              = $(PYTHON_LDFLAGS) $(PYTHON_LIBS) -export-symbols-regex initialize
+
+AM_CFLAGS                = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS) \
+	             	   $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+
+AM_LDFLAGS               = -version-info $(LIBGEDATHON_SHLIB_VERSION) $(GLIB_LIBS) \
+		           		 $(MINGW_LDFLAGS) $(WINDOWS_LIBTOOL_FLAGS) $(GDK_PIXBUF_LIBS)
+
+lib_LTLIBRARIES          = libgedathon.la
+
+libgedathon_la_SOURCES   = update_objects.c geda_capsule.c libgedathon.c
+
+libgedathon_la_CFLAGS    = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS) $(PY_INCLUDES)
+
+#libgedathon_la_CPPFLAGS  = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
+
+libgedathon_la_LDFLAGS   = $(DEBUGGING) $(PY_LIBFLAGS) $(AM_LDFLAGS) $(LDFLAGS)
+
+libgedathon_la_DEPENDENCIES = $(top_builddir)/libgeda/src/libgeda.la
+
+libgedathon_la_LIBADD       = $(top_builddir)/libgeda/src/libgeda.la
+
+LIBTOOL                  = @LIBTOOL@ --silent
+
+MOSTLYCLEANFILES         = *.log core FILE *~
+CLEANFILES               = *.log core FILE *~
+DISTCLEANFILES           = *.log core FILE *~
+MAINTAINERCLEANFILES     = *.log core FILE *~ Makefile.in
+
+# Unfortunately, in order to test libtool thoroughly, we need access
+# to its private directory.
+objdir = `sed -n -e 's/^objdir=\"\(.*\)\"$$/\1/p' ./libtool`

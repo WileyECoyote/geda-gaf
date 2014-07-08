@@ -1,0 +1,17 @@
+Metadata-Version: 1.0
+Name: geda-gaf
+Version: 1.0
+Summary: Python package for writing scripts around geda-gaf
+Home-page: http://www.gpleda.org/
+Author: Wiley E. Hill
+Author-email: <wileyhill@gmail.com>
+License: GNU GPL2
+Description: 
+        This package provides a number of scripts that are used to perform a variety of
+        tasks involving manipulation of schematic data task, either in conjuction with
+        a geda-gaf graphical interface tool or without.
+
+        See documentation for a full list of the scripts and their role:
+        http://gpleda.org/geda/doc/gpleda.org-scripts.html
+        
+Platform: LINUX

@@ -1,0 +1,38 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+@echo 'export FRAGMENTS=x'
+
+gschem_SOURCES += \
+		x/x_attrib.c \
+		x/x_autonumber.c \
+		x/x_basic.c \
+		x/x_clipboard.c \
+		x/x_color.c \
+		x/x_compselect.c \
+		x/x_console.c \
+		x/x_coord.c \
+		x/x_dialog.c \
+		x/x_dnd.c \
+		x/x_edit_color.c \
+		x/x_edit_pin.c \
+		x/x_edit_text.c \
+		x/x_event.c \
+		x/x_fileselect.c \
+		x/x_grid.c \
+		x/x_icons.c \
+		x/x_image.c \
+		x/x_menus.c \
+		x/x_misc.c \
+		x/x_multiattrib.c \
+		x/x_pagesel.c \
+		x/x_preview.c \
+		x/x_print.c \
+		x/x_rc.c \
+		x/x_scroll.c \
+		x/x_settings.c \
+		x/x_settings_dialog.c \
+		x/x_status_bar.c \
+		x/x_stroke.c \
+		x/x_toolbars.c \
+		x/x_window.c
+

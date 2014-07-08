@@ -1,0 +1,26 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=object_manipulators_sources
+
+libgeda_la_SOURCES += \
+			object/o_arc_basic.c \
+			object/o_attrib.c \
+			object/o_basic.c \
+			object/o_box_basic.c \
+			object/o_bus_basic.c \
+			object/o_circle_basic.c \
+			object/o_color.c \
+			object/o_complex_basic.c \
+			object/o_embed.c \
+			object/o_get.c \
+			object/o_line_basic.c \
+			object/o_list.c \
+			object/o_net_basic.c \
+			object/o_notify.c \
+			object/o_path_basic.c \
+			object/o_picture.c \
+			object/o_pin_basic.c \
+			object/o_selection.c \
+			object/o_set.c \
+			object/o_style.c \
+			object/o_text_basic.c

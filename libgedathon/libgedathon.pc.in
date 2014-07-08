@@ -1,0 +1,13 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libgedathon
+Description: gEDA/gaf Python Application Interface library
+Requires: libgeda
+Requires.private:
+Version: @DATE_VERSION@
+Libs: -L${libdir} -lgedathon -lm
+Libs.private:
+Cflags: -I${includedir}

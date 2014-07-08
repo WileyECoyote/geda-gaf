@@ -1,0 +1,2807 @@
+# Russian translation for gEDA gschem
+# This file is distributed under the same license as the gschem package.
+#
+# Copyright (C) 
+# Andy Shevchenko <andy@smile.org.ua>, 2003-2008.
+# Sergey Alyoshin <alyoshin.s@gmail.com>, 2009, 2012.
+# Vladimir Zhbanov <vzhbanov@gmail.com>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda gschem ru\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2014-07-03 02:48-0500\n"
+"PO-Revision-Date: 2012-12-04 01:55+0400\n"
+"Last-Translator: Sergey Alyoshin <alyoshin.s@gmail.com>\n"
+"Language-Team: geda-user@delorie.com\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: libgedauio/src/widgets/geda_entry.c:627
+msgid "Activates default"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:628
+msgid "Whether to activate the default widget when Enter is pressed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:635
+#: libgedauio/src/widgets/geda_label.c:903
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: libgedauio/src/widgets/geda_entry.c:636
+msgid "A list of style attributes to apply to the text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:643
+msgid "Auto-Completion"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:644
+msgid "Enable Auto-completion, if installed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:651
+msgid "FALSE Auto-Completion in NOT case sensitive"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:652
+msgid "if Auto-completion is enabled, set case compare function"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:659
+msgid "Set case of input"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:660
+#: libgedauio/src/widgets/geda_entry.c:670
+msgid "0 = lower, 1 lower, 2 don't change the case"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:669
+msgid "Set maxium history"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:679
+msgid "Set valid input type"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:680
+msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:1103
+#, fuzzy
+msgid "Auto Complete"
+msgstr "/Добавить компонент..."
+
+#: libgedauio/src/widgets/geda_entry.c:1110
+#, fuzzy
+msgid "On"
+msgstr "Открыть"
+
+#: libgedauio/src/widgets/geda_entry.c:1114
+msgid "Off"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1048
+#: libgedauio/src/widgets/geda_font_button.c:724
+msgid "Title"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1049
+#: libgedauio/src/widgets/geda_font_button.c:725
+msgid "The title of the font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1050
+#: libgedauio/src/widgets/geda_font_button.c:726
+msgid "Pick a Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1056
+#: libgedauio/src/widgets/geda_font_button.c:1403
+msgid "Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1057
+msgid "The GdkFont that is currently selected"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1064
+msgid "Font description"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1065
+msgid "Pango Font Description struct"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1072
+#: libgedauio/src/widgets/geda_font_button.c:735
+msgid "Font name"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1073
+msgid "The string that represents this font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1083
+#: libgedauio/src/widgets/geda_font_button.c:796
+#, fuzzy
+msgid "Set Size"
+msgstr "Размер текста"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1084
+#: libgedauio/src/widgets/geda_font_button.c:797
+msgid "Set point size of the font"
+msgstr ""
+
+# Можно "Предварительный просмотр", но занимает много места на экране
+#: libgedauio/src/widgets/geda_font_dialog.c:1094
+#, fuzzy
+msgid "Preview text"
+msgstr "Предпросмотр"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1095
+msgid "The text to display in order to demonstrate the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1102
+msgid "Show preview text entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1103
+msgid "Whether the preview text entry is displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1245
+msgid "Select the desired font family"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1246
+msgid "Select the style to apply to the font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1247
+#, fuzzy
+msgid "Current font size"
+msgstr "Текущая страница"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1248
+msgid "Select the desired font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1249
+msgid "Editable sample preview of the currently selected font settings"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1257
+msgid "_Family:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1262
+msgid "_Style:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1267
+msgid "Si_ze:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1320
+msgid "Family"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1360
+#: libgedauio/src/widgets/geda_font_dialog.c:1400
+msgid "Face"
+msgstr ""
+
+# Можно "Предварительный просмотр", но занимает много места на экране
+#: libgedauio/src/widgets/geda_font_dialog.c:1434
+#, fuzzy
+msgid "_Preview:"
+msgstr "Предпросмотр"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1461
+msgid "Font scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1465
+msgid "Font style scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1469
+msgid "Font size scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1473
+msgid "Font preview text entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1606
+#, fuzzy
+msgid "_Select"
+msgstr "Выделение"
+
+#: libgedauio/src/widgets/geda_handlebox.c:193
+#: libgedauio/src/widgets/geda_handlebox.c:202
+msgid "Appearance of the shadow that surrounds the container"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:211
+msgid "Position of the handle relative to the child widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:220
+msgid ""
+"Side of the handlebox that's lined up with the docking point to dock the "
+"handlebox"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:229
+msgid ""
+"Whether to use the value from the snap_edge property or a value derived from "
+"handle_position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:237
+msgid ""
+"A boolean value indicating whether the handlebox's child is attached or "
+"detached."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:793
+msgid "move-cursor"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:813
+#, fuzzy
+msgid "copy-clipboard"
+msgstr "Копирование в буфер"
+
+#: libgedauio/src/widgets/geda_label.c:834
+msgid "populate-popup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:896
+#: libgedauio/src/widgets/geda_label.c:1392
+#: libgedauio/src/widgets/geda_menu_button.c:1043
+msgid "Label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:897
+msgid "The text of the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:904
+msgid "A list of style attributes to apply to the text of the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:910
+msgid "Use markup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:911
+msgid "The text of the label includes XML markup. See pango_parse_markup()"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:917
+msgid "Use underline"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:918
+msgid ""
+"If set, underline in text indicates the next character is mnemonic for "
+"accelerator key"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:923
+msgid "Justification"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:924
+msgid ""
+"The alignment of the lines in the text of the label relative to each other. "
+"This does NOT affect the alignment of the label within its allocation. See "
+"GtkMisc::xalign for that"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:931
+msgid "Pattern"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:932
+msgid ""
+"A string with _ characters in positions correspond to characters in the text "
+"to underline"
+msgstr ""
+
+# В обеих функциях речь идёт о вводе линии, но для единообразия с выводом
+# статуса повторения для других объектов (шина, атрибут, соединение, вывод,
+# ...), для которых эта строка используется ещё и в диалоге выбора цветов,
+# придётся оставить как есть.
+#: libgedauio/src/widgets/geda_label.c:938
+#, fuzzy
+msgid "Line wrap"
+msgstr "Линия"
+
+#: libgedauio/src/widgets/geda_label.c:939
+msgid "If set, wrap lines if the text becomes too wide"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:953
+#, fuzzy
+msgid "Line wrap mode"
+msgstr "Ввод линий"
+
+#: libgedauio/src/widgets/geda_label.c:954
+msgid "If wrap is set, controls how linewrapping is done"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:961
+#, fuzzy
+msgid "Selectable"
+msgstr "Выделение"
+
+#: libgedauio/src/widgets/geda_label.c:962
+msgid "Whether the label text can be selected with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:968
+msgid "Mnemonic key"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:969
+msgid "The mnemonic accelerator key for this label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:977
+msgid "Mnemonic widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:978
+msgid "The widget to be activated when the label's mnemonic key is pressed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:985
+msgid "Cursor Position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:986
+msgid "The current position of the insertion cursor in chars"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:994
+#, fuzzy
+msgid "Selection Bound"
+msgstr "Выделение"
+
+#: libgedauio/src/widgets/geda_label.c:995
+msgid ""
+"The position of the opposite end of the selection from the cursor in chars"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1019
+msgid "Ellipsize"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1020
+msgid "The preferred place to break the string, if ellipes needed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1038
+msgid "Width In Characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1039
+msgid "The desired width of the label, in characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1057
+#, fuzzy
+msgid "Single Line Mode"
+msgstr "Ввод линий"
+
+#: libgedauio/src/widgets/geda_label.c:1058
+msgid "Whether the label is in single line mode"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1073
+#, fuzzy
+msgid "Angle"
+msgstr "Угол 1:"
+
+#: libgedauio/src/widgets/geda_label.c:1074
+msgid "Angle at which the label is rotated"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1093
+msgid "Maximum Width In Characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1094
+msgid "The desired maximum width of the label, in characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1110
+msgid "Track visited links"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1111
+msgid "Whether visited links should be tracked"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1927
+msgid "gtk-mnemonic-menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:5719
+msgid "gtk-signal"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:5843
+#, fuzzy
+msgid "_Open Link"
+msgstr "Открыть файл..."
+
+#: libgedauio/src/widgets/geda_label.c:5855
+msgid "Copy _Link Address"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1036
+msgid "Menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1037
+msgid "The dropdown menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1044
+msgid ""
+"Text of the label widget inside the button, if the button contains a label "
+"widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1051
+msgid "Use stock"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1052
+msgid ""
+"If set, the label is used to pick a stock item instead of being displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1059
+msgid "Focus on click"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1060
+msgid "Whether the button grabs focus when it is clicked with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1067
+msgid "Border relief"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1068
+msgid "The border relief style"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1076
+msgid "Arrow Border relief"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1077
+msgid "The arrow border relief style"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1086
+#, fuzzy
+msgid "Image widget"
+msgstr "Формат"
+
+#: libgedauio/src/widgets/geda_menu_button.c:1087
+msgid "Child widget to appear next to the button text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1095
+msgid "Image position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1096
+msgid "The position of the image relative to the text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1110
+msgid "Default Spacing"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1111
+msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1124
+#, fuzzy
+msgid "Default Outside Spacing"
+msgstr "У_величить шаг сетки"
+
+#: libgedauio/src/widgets/geda_menu_button.c:1125
+msgid ""
+"Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
+"the border"
+msgstr ""
+
+# По порядку нахождения элементов в тексте файла, то есть по порядку их
+# добавления
+#: libgedauio/src/widgets/geda_menu_button.c:1135
+#, fuzzy
+msgid "Inner Border"
+msgstr "По порядку в файле"
+
+#: libgedauio/src/widgets/geda_menu_button.c:1136
+msgid "Border between button edges and child."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:213
+msgid "multikey-accelerator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:214
+msgid "A string with characters in positions key characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:221
+msgid "icon-identification"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:222
+msgid "String name of the icon image"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:736
+msgid "The name of the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:747
+msgid "Use font in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:748
+msgid "Whether the label is drawn in the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:759
+msgid "Use size in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:760
+msgid "Whether the label is drawn with the selected font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:772
+#, fuzzy
+msgid "Show style"
+msgstr "Показать _значение"
+
+#: libgedauio/src/widgets/geda_font_button.c:773
+msgid "Whether the selected font style is shown in the label"
+msgstr ""
+
+# См. примечание выше для "Copy"
+#: libgedauio/src/widgets/geda_font_button.c:785
+#, fuzzy
+msgid "Show size"
+msgstr "Отображение скрытого текста"
+
+#: libgedauio/src/widgets/geda_font_button.c:786
+msgid "Whether selected font size is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:817
+msgid "font-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:825
+msgid "size-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:844
+msgid "Open font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:882
+msgid "Font button"
+msgstr ""
+
+# Отображение последнего действия для повтора
+#: libgedauio/src/widgets/geda_swatch_renderer.c:144
+#: libgedauio/src/widgets/geda_swatch_renderer.c:145
+#, fuzzy
+msgid "Swatch Color"
+msgstr "Правка цвета"
+
+#: libgedauio/src/widgets/geda_swatch_renderer.c:151
+#: libgedauio/src/widgets/geda_swatch_renderer.c:152
+msgid "Swatch Enabled"
+msgstr ""
+
+#~ msgid "Zoom too small!  Cannot zoom further.\n"
+#~ msgstr "Масштаб слишком мал! Дальнейшее изменение невозможно.\n"
+
+#~ msgid "Object ~A is not included in the current gschem page."
+#~ msgstr "Объект ~A не принадлежит текущей странице."
+
+#~ msgid "Invalid text name/value visibility ~A."
+#~ msgstr "Недопустимое сочетание видимости имени/значения ~A."
+
+#~ msgid "Invalid size [%d] passed to text-size\n"
+#~ msgstr ""
+#~ "text-size (размер текста по умолчанию): недопустимое значение [%d]\n"
+
+#~ msgid "Invalid size [%d] passed to snap-size\n"
+#~ msgstr "snap-size (размер сетки привязки): недопустимое значение [%d]\n"
+
+#~ msgid "Invalid num levels [%d] passed to undo-levels\n"
+#~ msgstr ""
+#~ "undo-levels (количество шагов отмены): недопустимое значение [%d] \n"
+
+#~ msgid "Invalid size [%d] passed to bus-ripper-size\n"
+#~ msgstr ""
+#~ "bus-ripper-size (размер ответвления от шины): недопустимое значение [%d]\n"
+
+#~ msgid "Invalid dot size [%d] passed to dots-grid-dot-size\n"
+#~ msgstr ""
+#~ "dots-grid-dot-size (размер точки сетки): недопустимое значение [%d]\n"
+
+#~ msgid "Invalid pixel spacing [%d] passed to dots-grid-fixed-threshold\n"
+#~ msgstr ""
+#~ "dots-grid-fixed-threshold (мин. интервал между точками сетки в пикселах): "
+#~ "недопустимое значение [%d]\n"
+
+#~ msgid "Invalid pixel spacing [%d] passed to mesh-grid-display-threshold\n"
+#~ msgstr ""
+#~ "mesh-grid-display-threshold (мин. интервал между линиями сетки в "
+#~ "пикселах): недопустимое значение [%d]\n"
+
+#~ msgid "Invalid offset [%d] passed to add-attribute-offset\n"
+#~ msgstr ""
+#~ "add-attribute-offset (отступ атрибута от объекта при его добавлении): "
+#~ "недопустимое значение [%d]\n"
+
+#~ msgid "Invalid number of seconds [%d] passed to auto-save-interval\n"
+#~ msgstr ""
+#~ "auto-save-interval (интервал автосохранения в секундах): недопустимое "
+#~ "значение [%d]\n"
+
+#~ msgid "Invalid gain [%d] passed to mousepan-gain\n"
+#~ msgstr ""
+#~ "mousepan-gain (смещение при панорамировании мышью): недопустимое значение "
+#~ "[%d]\n"
+
+#~ msgid "Invalid gain [%d] passed to keyboardpan-gain\n"
+#~ msgstr ""
+#~ "keyboardpan-gain (смещение при панорамировании клавишами): недопустимое "
+#~ "значение [%d]\n"
+
+#~ msgid "Invalid number of pixels [%d] passed to select-slack-pixels\n"
+#~ msgstr ""
+#~ "select-slack-pixels (число соседних пикселов для выделения): недопустимое "
+#~ "значение [%d]\n"
+
+#~ msgid "Invalid gain [%d] passed to zoom-gain\n"
+#~ msgstr ""
+#~ "zoom-gain (процент увеличения масштаба): недопустимое значение [%d]\n"
+
+#~ msgid "Invalid number of steps [%d] scrollpan-steps\n"
+#~ msgstr ""
+#~ "scrollpan-steps (число шагов сдвига области просмотра): недопустимое "
+#~ "значение [%d]\n"
+
+# Данная ошибка возникает, например, в случае попытки отдельного выделения
+# объекта, не являющегося самостоятельной частью страницы, а входящего в
+# состав какого-то символа, то есть включенного в страницу косвенно.
+#~ msgid "Object ~A is not directly included in a page."
+#~ msgstr "Объект ~A непосредственно в данных страницы не содержится. "
+
+#~ msgid "Could not launch URI ~S: ~A"
+#~ msgstr "Не удалось открыть URI ~S: ~A"
+
+# smob -- представление данных объекта для Scheme
+#~ msgid "Found invalid gschem window smob ~S"
+#~ msgstr "Обнаружена недопустимая структура данных smob окна gschem ~S"
+
+#~ msgid "gEDA/gschem version %s%s.%s\n"
+#~ msgstr "gEDA/gschem версии %s%s.%s\n"
+
+#~ msgid ""
+#~ "gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
+#~ "details.\n"
+#~ msgstr ""
+#~ "gEDA/gschem поставляется БЕЗ КАКИХ БЫ ТО НИ БЫЛО ГАРАНТИЙ; подробности "
+#~ "см. в файле COPYING.\n"
+
+#~ msgid ""
+#~ "This is free software, and you are welcome to redistribute it under "
+#~ "certain\n"
+#~ msgstr ""
+#~ "Это свободное программное обеспечение, и его можно распространять при "
+#~ "определённых\n"
+
+#~ msgid ""
+#~ "conditions; please see the COPYING file for more details.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "условиях. Подробности см. в файле COPYING.\n"
+#~ "\n"
+
+#~ msgid "This is the MINGW32 port.\n"
+#~ msgstr "Это версия для MINGW32.\n"
+
+#~ msgid "Current locale settings: %s\n"
+#~ msgstr "Текущие настройки локализации: %s\n"
+
+#~ msgid ""
+#~ "You must set the GEDADATA environment variable!\n"
+#~ "\n"
+#~ "gschem cannot locate its data files. You must set the GEDADATA\n"
+#~ "environment variable to point to the correct location.\n"
+#~ msgstr ""
+#~ "Необходимо установить переменную окружения GEDADATA!\n"
+#~ "\n"
+#~ "gschem не может найти свои файлы данных. Необходимо задать\n"
+#~ "их местоположение в переменной окружения GEDADATA.\n"
+
+#~ msgid "Couldn't find init scm file [%s]\n"
+#~ msgstr "Не удалось найти scm-файл инициализации [%s]\n"
+
+#~ msgid "Read init scm file [%s]\n"
+#~ msgstr "Чтение scm-файла инициализации [%s]\n"
+
+#~ msgid "Failed to read init scm file [%s]\n"
+#~ msgstr "Не удалось прочесть scm-файл инициализации [%s]\n"
+
+#~ msgid ""
+#~ "ERROR: Failed to load or evaluate startup script.\n"
+#~ "\n"
+#~ "The gschem log may contain more information.\n"
+#~ msgstr ""
+#~ "ОШИБКА: не удалось загрузить или выполнить скрипт при запуске.\n"
+#~ "\n"
+#~ "В журнале gschem может быть больше информации.\n"
+
+#~ msgid "Select Mode"
+#~ msgstr "Выделение"
+
+#~ msgid "Component Mode"
+#~ msgstr "Вставка компонентов"
+
+#~ msgid "Text Mode"
+#~ msgstr "Ввод текста"
+
+#~ msgid "Copy Mode"
+#~ msgstr "Копирование"
+
+#~ msgid "Move Mode"
+#~ msgstr "Перемещение"
+
+#~ msgid "Rotate Mode"
+#~ msgstr "Поворот"
+
+#~ msgid "Mirror Mode"
+#~ msgstr "Зеркальное отражение"
+
+#~ msgid "Zoom Box"
+#~ msgstr "Масштаб на область"
+
+# Перевод в соответствии с пунктом меню
+#~ msgid "Pan Mode"
+#~ msgstr "Центрирование"
+
+#~ msgid "Paste %d Mode"
+#~ msgstr "Вставка из %d"
+
+#~ msgid "Magnetic Net Mode"
+#~ msgstr "Магнитные соединения"
+
+#~ msgid "Net Mode"
+#~ msgstr "Ввод соединений"
+
+#~ msgid "Bus Mode"
+#~ msgstr "Ввод шин"
+
+# Перевод в соответствии с пунктом меню
+#, fuzzy
+#~ msgid "Path Mode"
+#~ msgstr "Центрирование"
+
+#~ msgid "Box Mode"
+#~ msgstr "Ввод прямоугольников"
+
+#~ msgid "Picture Mode"
+#~ msgstr "Вставка изображений"
+
+#~ msgid "Circle Mode"
+#~ msgstr "Ввод окружностей"
+
+#~ msgid "Arc Mode"
+#~ msgstr "Ввод дуг"
+
+#~ msgid "Pin Mode"
+#~ msgstr "Добавление выводов"
+
+# Это используется только в функциях обновления строки состояния, поэтому
+# переводится как существительное, а не глагол, так как означает режим работы.
+#~ msgid "Copy"
+#~ msgstr "Копирование"
+
+# См. примечание выше для "Copy"
+#~ msgid "Move"
+#~ msgstr "Перемещение"
+
+# См. примечание выше для "Copy"
+#~ msgid "Multiple Copy"
+#~ msgstr "Многократное копирование"
+
+#~ msgid "Multiple Copy Mode"
+#~ msgstr "Многократное копирование"
+
+#~ msgid "Snap Off"
+#~ msgstr "Привязка отключена"
+
+#~ msgid "Resnap Active"
+#~ msgstr "Режим перепривязки"
+
+#~ msgid "Action"
+#~ msgstr "Действие"
+
+#~ msgid "Stroke"
+#~ msgstr "Жест"
+
+# Эта строка выводится в режиме ввода жестов, когда библиотека жестов не
+# подключена.
+#~ msgid "none"
+#~ msgstr "---"
+
+# Функция средней кнопки мыши.
+# За этой строкой следует название действия
+#~ msgid "Repeat/"
+#~ msgstr "Повтор: "
+
+#~ msgid "OFF"
+#~ msgstr "ОТКЛ"
+
+# Этот случай используется, когда задано недопустимое значение для сетки
+#~ msgid "NONE"
+#~ msgstr "НЕТ"
+
+#~ msgid "Grid(%s, %s)"
+#~ msgstr "Сетка (%s, %s)"
+
+#~ msgid "New page created [%s]\n"
+#~ msgstr "Создана новая страница [%s]\n"
+
+#~ msgid "New Window created [%s]\n"
+#~ msgstr "Создано новое окно [%s]\n"
+
+#~ msgid "Failed to Save All"
+#~ msgstr "Не удалось сохранить все файлы"
+
+#~ msgid "Saved All"
+#~ msgstr "Все файлы сохранены"
+
+#~ msgid "Closing Window\n"
+#~ msgstr "Закрытие окна\n"
+
+#~ msgid "Select objs first"
+#~ msgstr "Сначала что-нибудь выделите"
+
+#~ msgid "Delete"
+#~ msgstr "Удалить"
+
+#~ msgid "Edit"
+#~ msgstr "Правка"
+
+#~ msgid "Edit pin type"
+#~ msgstr "Правка типа вывода"
+
+#~ msgid "Edit Text"
+#~ msgstr "Правка текста"
+
+# Отображение последнего действия для повтора
+#~ msgid "Slot"
+#~ msgstr "Правка секции"
+
+# Отображение последнего действия для повтора
+#~ msgid "Color"
+#~ msgstr "Правка цвета"
+
+#~ msgid "Rotate"
+#~ msgstr "Поворот"
+
+#~ msgid "Mirror"
+#~ msgstr "Отражение"
+
+#~ msgid "Lock"
+#~ msgstr "Блокировка"
+
+#~ msgid "Unlock"
+#~ msgstr "Разблокировка"
+
+#~ msgid "Translate"
+#~ msgstr "Смещение"
+
+#~ msgid "WARNING: Do not translate with snap off!\n"
+#~ msgstr "ВНИМАНИЕ: Не производите смещение с отключенной привязкой!\n"
+
+#~ msgid "WARNING: Turning snap on and continuing with translate.\n"
+#~ msgstr "ВНИМАНИЕ: Включите привязку и повторите смещение.\n"
+
+#~ msgid "WARNING: Snap grid size is not equal to 100!\n"
+#~ msgstr "ВНИМАНИЕ: Размер сетки привязки не равен 100!\n"
+
+#~ msgid ""
+#~ "WARNING: If you are translating a symbol to the origin, the snap grid "
+#~ "size should be set to 100\n"
+#~ msgstr ""
+#~ "ВНИМАНИЕ: Если символ смещается в начало координат, размер сетки привязки "
+#~ "должен быть установлен в 100\n"
+
+#~ msgid "Embed"
+#~ msgstr "Внедрение"
+
+#~ msgid "Unembed"
+#~ msgstr "Исключение"
+
+#~ msgid "Update"
+#~ msgstr "Обновление"
+
+# Как и прочие строки в gschem/src/i_callbacks.c данная строка используется
+# для показа последнего действия, которое будет использоваться при повторе. В
+# данном случае текст при повторе будет то скрываться, то отображаться
+#~ msgid "ShowHidden"
+#~ msgstr "Отображение/скрытие текста"
+
+#~ msgid "Pan"
+#~ msgstr "Центрирование"
+
+#~ msgid "Really revert page?"
+#~ msgstr "Действительно вернуть сохранённую страницу?"
+
+#~ msgid "Cut to clipboard"
+#~ msgstr "Вырезание в буфер"
+
+#~ msgid "Paste from clipboard"
+#~ msgstr "Вставка из буфера"
+
+#, fuzzy
+#~ msgid "Empty clipboard"
+#~ msgstr "Копирование в буфер"
+
+#, fuzzy
+#~ msgid "Copy %i"
+#~ msgstr "Копирование в 1"
+
+#, fuzzy
+#~ msgid "Cut %i"
+#~ msgstr "Вырезание в 1"
+
+#, fuzzy
+#~ msgid "Paste %i"
+#~ msgstr "Вставка из 1"
+
+# Здесь на самом деле не действие, а состояние. Поэтому не "Очистить буфер", а
+# "Буфер пуст".
+#~ msgid "Empty buffer"
+#~ msgstr "Буфер пуст"
+
+# В обеих функциях речь идёт о добавлении компонента
+#~ msgid "Component"
+#~ msgstr "Добавление компонента"
+
+#~ msgid "Attribute"
+#~ msgstr "Атрибут"
+
+#~ msgid "Net"
+#~ msgstr "Соединение"
+
+#~ msgid "Bus"
+#~ msgstr "Шина"
+
+#~ msgid "Box"
+#~ msgstr "Прямоугольник"
+
+#~ msgid "Circle"
+#~ msgstr "Окружность"
+
+#~ msgid "Arc"
+#~ msgstr "Ввод дуги"
+
+#~ msgid "Pin"
+#~ msgstr "Вывод"
+
+#~ msgid "Searching for source [%s]\n"
+#~ msgstr "Поиск источника данных [%s]\n"
+
+#~ msgid ""
+#~ "Failed to descend hierarchy into '%s': %s\n"
+#~ "\n"
+#~ "The gschem log may contain more information."
+#~ msgstr ""
+#~ "Не удалось перейти к подсхеме «%s»: %s\n"
+#~ "\n"
+#~ "В журнале gschem может быть больше информации."
+
+# Квадратные скобки добавлены для единообразия
+#~ msgid "Failed to descend into '%s': %s\n"
+#~ msgstr "Не удалось перейти к подсхеме «%s»: %s\n"
+
+# Почти дословно "Спускаться по иерархии", подразумевается, что поиск ведётся
+# во всей иерархической структуре, корнем которой является данная страница
+#~ msgid "Failed to descend hierarchy."
+#~ msgstr "Не удалось перейти к подсхеме."
+
+#~ msgid "Searching for symbol [%s]\n"
+#~ msgstr "Поиск символа [%s]\n"
+
+#~ msgid "Symbol is not a real file. Symbol cannot be loaded.\n"
+#~ msgstr "Нет реального файла для символа. Символ не может быть загружен.\n"
+
+#~ msgid "Cannot find any schematics above the current one!\n"
+#~ msgstr ""
+#~ "Для текущей схемы не удалось найти схему, вышестоящую по иерархии!\n"
+
+#~ msgid "Attach"
+#~ msgstr "Прикрепление"
+
+#~ msgid "Detach"
+#~ msgstr "Отделение"
+
+#~ msgid "ShowN"
+#~ msgstr "Отображение имени"
+
+#~ msgid "ShowV"
+#~ msgstr "Отображение значения"
+
+#~ msgid "ShowB"
+#~ msgstr "Отображение имя=значение"
+
+#~ msgid "VisToggle"
+#~ msgstr "Переключение видимости"
+
+#~ msgid "Sorry but this is a non-functioning menu option\n"
+#~ msgstr "Извините, но это этот пункт меню не работает\n"
+
+#~ msgid "Action feedback mode set to OUTLINE\n"
+#~ msgstr "При выполнении действий объекты будут отрисовываться полностью\n"
+
+#~ msgid "Action feedback mode set to BOUNDINGBOX\n"
+#~ msgstr ""
+#~ "При выполнении действий вместо объектов будет отрисовываться рамка\n"
+
+#~ msgid "Grid OFF\n"
+#~ msgstr "Сетка отключена\n"
+
+#~ msgid "Dot grid selected\n"
+#~ msgstr "Выбрана сетка из точек\n"
+
+#~ msgid "Mesh grid selected\n"
+#~ msgstr "Выбрана сетка из линий\n"
+
+#~ msgid "Snap OFF (CAUTION!)\n"
+#~ msgstr "ВНИМАНИЕ! Привязка отключена!\n"
+
+#~ msgid "Snap ON\n"
+#~ msgstr "Привязка включена\n"
+
+#~ msgid "Snap back to the grid (CAUTION!)\n"
+#~ msgstr "ВНИМАНИЕ! Включите привязку к сетке!\n"
+
+#~ msgid "Rubber band OFF \n"
+#~ msgstr "Режим «резиновых» соединений отключен \n"
+
+#~ msgid "Rubber band ON\n"
+#~ msgstr "Режим «резиновых» соединений включен \n"
+
+#~ msgid "magnetic net mode: ON\n"
+#~ msgstr "Режим «магнитных» соединений включен\n"
+
+#~ msgid "magnetic net mode: OFF\n"
+#~ msgstr "Режим «магнитных» соединений отключен\n"
+
+#~ msgid "o_buffer_copy: Invalid buffer %i\n"
+#~ msgstr "o_buffer_copy: недопустимый номер буфера %i\n"
+
+#~ msgid "o_buffer_cut: Invalid buffer %i\n"
+#~ msgstr "o_buffer_cut: недопустимый номер буфера %i\n"
+
+# Используется такая же функция проверки, как и для двух предыдущих случаев.
+# Поэтому вывод унифицирован с ними.
+#~ msgid "Got an invalid buffer_number [o_buffer_paste_start]\n"
+#~ msgstr "o_buffer_paste_start: недопустимый номер буфера\n"
+
+#~ msgid "Translating schematic [%d %d]\n"
+#~ msgstr "Смещение схемы [%d %d]\n"
+
+#~ msgid "Delete locked object?"
+#~ msgid_plural "Delete %u locked objects?"
+#~ msgstr[0] "Удалить %u заблокированный объект?"
+#~ msgstr[1] "Удалить %u заблокированных объекта?"
+#~ msgstr[2] "Удалить %u заблокированных объектов?"
+
+#~ msgid "Got an unexpected NULL in o_edit\n"
+#~ msgstr "o_edit: неожиданный NULL вместо объекта\n"
+
+#~ msgid "Object already locked\n"
+#~ msgstr "Объект уже заблокирован\n"
+
+#~ msgid "Object already unlocked\n"
+#~ msgstr "Объект уже разблокирован\n"
+
+#~ msgid "Hidden text is now visible\n"
+#~ msgstr "Скрытый текст теперь видим\n"
+
+#~ msgid "Hidden text is now invisible\n"
+#~ msgstr "Скрытый текст теперь невидим\n"
+
+#~ msgid "Could not find symbol [%s] in library. Update failed.\n"
+#~ msgstr "Символ [%s] в библиотеке не найден. Обновление не выполнено.\n"
+
+# Квадратные скобки добавлены для единообразия
+#~ msgid "o_autosave_backups: Can't get the real filename of %s."
+#~ msgstr ""
+#~ "o_autosave_backups: не удалось определить имя реального файла для [%s]."
+
+#~ msgid "Could NOT set previous backup file [%s] read-write\n"
+#~ msgstr ""
+#~ "Не удалось установить режим доступа на чтение-запись для предыдущей "
+#~ "резервной копии файла [%s]\n"
+
+#~ msgid "Could NOT set backup file [%s] readonly\n"
+#~ msgstr ""
+#~ "Не удалось установить режим доступа только на чтение для файла резервной "
+#~ "копии [%s]\n"
+
+#~ msgid "Could NOT save backup file [%s]\n"
+#~ msgstr "Не удалось сохранить файл резервной копии [%s]\n"
+
+#~ msgid "ERROR: NULL object in o_move_end!\n"
+#~ msgstr "o_move_end: ОШИБКА! NULL вместо объекта\n"
+
+# whichone -- флаг, определяющий подключаемый конец для соединения
+#~ msgid "DOH! tried to find the whichone, but didn't find it!\n"
+#~ msgstr ""
+#~ "Ох! Попытка найти точку подключения для соединения оказалась "
+#~ "безуспешной!\n"
+
+# Имеется в виду, что объект не является соединением, выводом или шиной
+#~ msgid "Got a non line object in o_move_check_endpoint\n"
+#~ msgstr "o_move_check_endpoint: задан объект, не являющийся линейным\n"
+
+#~ msgid "Warning: Starting net at off grid coordinate\n"
+#~ msgstr "Внимание: начальная точка соединения не совпадает с узлом сетки\n"
+
+#~ msgid "Warning: Ending net at off grid coordinate\n"
+#~ msgstr "Внимание: конечная точка соединения не совпадает с узлом сетки\n"
+
+#~ msgid "Tried to add more than two bus rippers. Internal gschem error.\n"
+#~ msgstr ""
+#~ "Попытка добавить более двух ответвлений шины. Внутренняя ошибка gschem.\n"
+
+#~ msgid "Bus ripper symbol [%s] was not found in any component library\n"
+#~ msgstr ""
+#~ "Символ ответвления шины [%s] не найден ни в одной из библиотек "
+#~ "компонентов\n"
+
+# Заголовок окна выбора файла изображения
+#~ msgid "Select a picture file..."
+#~ msgstr "Выберите файл изображения"
+
+# Квадратные скобки добавлены для единообразия
+#~ msgid "Failed to load picture: %s"
+#~ msgstr "Не удалось загрузить изображение: [%s]"
+
+# Используется для вывода действия повтора в строке состояния
+#~ msgid "Picture"
+#~ msgstr "Вставка изображения"
+
+# Квадратные скобки добавлены для единообразия
+#~ msgid "Failed to replace pictures: %s"
+#~ msgstr "Не удалось заменить изображение: [%s]"
+
+#~ msgid "Slot attribute malformed\n"
+#~ msgstr "Недопустимый формат атрибута ‘slot’\n"
+
+# Используется в паре со следующей строкой
+#~ msgid "numslots attribute missing\n"
+#~ msgstr "Атрибут ‘numslots’ отсутствует\n"
+
+# Используется в паре с предыдущей строкой
+#~ msgid "Slotting not allowed for this component\n"
+#~ msgstr "Нумерация секций для этого компонента невозможна\n"
+
+#~ msgid "New slot number out of range\n"
+#~ msgstr "Новый номер секции вне допустимого диапазона\n"
+
+#~ msgid "Undo/Redo disabled in rc file\n"
+#~ msgstr "Отмена/повтор отключены в файле настроек\n"
+
+#~ msgid ""
+#~ "Usage: %s [OPTION ...] [--] [FILE ...]\n"
+#~ "\n"
+#~ "Interactively edit gEDA schematics or symbols.  If one or more FILEs\n"
+#~ "are specified, open them for editing; otherwise, create a new, empty\n"
+#~ "schematic.\n"
+#~ "\n"
+#~ "Options:\n"
+#~ "  -q, --quiet              Quiet mode.\n"
+#~ "  -v, --verbose            Verbose mode.\n"
+#~ "  -r, --config-file=FILE   Additional configuration file to load.\n"
+#~ "  -L DIR                   Add DIR to Scheme search path.\n"
+#~ "  -c EXPR                  Scheme expression to run at startup.\n"
+#~ "  -s FILE                  Scheme script to run at startup.\n"
+#~ "  -o, --output=FILE        Output filename (for printing).\n"
+#~ "  -p                       Automatically place the window.\n"
+#~ "  -V, --version            Show version information.\n"
+#~ "  -h, --help               Help; this message.\n"
+#~ "  --                       Treat all remaining arguments as filenames.\n"
+#~ "\n"
+#~ "Report bugs at <https://bugs.launchpad.net/geda>\n"
+#~ "gEDA/gaf homepage: <http://www.geda-project.org/>\n"
+#~ msgstr ""
+#~ "Использование: %s [КЛЮЧ ...] [--] [ФАЙЛ ...]\n"
+#~ "\n"
+#~ "Интерактивное редактирование принципиальных схем и символов gEDA.\n"
+#~ "Если указан один или более ФАЙЛов, они открываются для редактирования;\n"
+#~ "в противном случае создаётся новый пустой файл.\n"
+#~ "\n"
+#~ "Ключи:\n"
+#~ "  -q, --quiet              Без вывода информации.\n"
+#~ "  -v, --verbose            Подробный вывод.\n"
+#~ "  -r, --config-file=ФАЙЛ   Загрузка дополнительного файла настройки.\n"
+#~ "  -L КАТАЛОГ               Добавление каталога к пути поиска Scheme.\n"
+#~ "  -c ВЫРАЖЕНИЕ             Вызов выражения Scheme при запуске.\n"
+#~ "  -s ФАЙЛ                  Вызов файла Scheme-скрипта при запуске.\n"
+#~ "  -o, --output=ФАЙЛ        Имя выходного файла (для печати в файл).\n"
+#~ "  -p                       Автоматическое размещение окна.\n"
+#~ "  -V, --version            Информация о версии.\n"
+#~ "  -h, --help               Справка; данная информация.\n"
+#~ "  --                       Считать все последующие аргументы именами "
+#~ "файлов.\n"
+#~ "\n"
+#~ "Отчёты об ошибках отправляйте по адресу <https://bugs.launchpad.net/"
+#~ "geda>\n"
+#~ "Домашняя страница gEDA/gaf: <http://www.geda-project.org/>\n"
+
+#~ msgid ""
+#~ "gEDA %s (g%.7s)\n"
+#~ "Copyright (C) 1998-2011 gEDA developers\n"
+#~ "This is free software, and you are welcome to redistribute it under\n"
+#~ "certain conditions. For details, see the file `COPYING', which is\n"
+#~ "included in the gEDA distribution.\n"
+#~ "There is NO WARRANTY, to the extent permitted by law.\n"
+#~ msgstr ""
+#~ "gEDA %s (g%.7s)\n"
+#~ "Это свободное программное обеспечение, и его можно распространять при\n"
+#~ "определённых условиях. Подробности см. в файле COPYING\n"
+#~ "в дистрибутиве gEDA.\n"
+#~ "Нет НИКАКИХ ГАРАНТИЙ в рамках, допустимых имеющимся\n"
+#~ "законодательством.\n"
+
+#~ msgid "Got invalid show option; defaulting to show both\n"
+#~ msgstr ""
+#~ "Выбран недопустимый способ отображения, установка отображения имени и "
+#~ "значения\n"
+
+#~ msgid "ERROR: NULL object!\n"
+#~ msgstr "ОШИБКА! NULL вместо объекта\n"
+
+#~ msgid "Single Attribute Editor"
+#~ msgstr "Редактор атрибута"
+
+# Надпись в редакторе атрибута. "Изменить атрибут" было бы излишне, так как
+# там далее идут поля "Имя" и "Значение". Т.е. "изменить ... имя"
+# представляется красивше, чем "изменить атрибут ... имя", т.к. и так известно
+# (из заголовка окна), что меняется атрибут.
+#~ msgid "<b>Edit Attribute</b>"
+#~ msgstr "<b>Изменить</b>"
+
+# См. выше. Но тут слово "атрибут" необходимо. Иначе получается "добавить ... имя" или
+# "значение", а не "атрибут".
+#~ msgid "<b>Add Attribute</b>"
+#~ msgstr "<b>Добавить атрибут</b>"
+
+#~ msgid "Name:"
+#~ msgstr "Имя:"
+
+#~ msgid "Value:"
+#~ msgstr "Значение:"
+
+#~ msgid "Visible"
+#~ msgstr "Отображать"
+
+#~ msgid "Show Value Only"
+#~ msgstr "Значение"
+
+#~ msgid "Show Name Only"
+#~ msgstr "Имя"
+
+#~ msgid "Show Name & Value"
+#~ msgstr "Имя и значение"
+
+#~ msgid "<b>Attach Options</b>"
+#~ msgstr ""
+#~ "<b>Объекты, к которым следует\n"
+#~ " прикрепить атрибут:</b>"
+
+#~ msgid "All"
+#~ msgstr "Все"
+
+#~ msgid "Components"
+#~ msgstr "Компоненты"
+
+#~ msgid "Nets"
+#~ msgstr "Соединения"
+
+# Здесь под "существующими" понимаются, конечно же, одноимённые
+#~ msgid "Replace existing attributes"
+#~ msgstr "Заместить одноимённые атрибуты"
+
+#~ msgid ""
+#~ "slotted object without slot attribute may cause problems when "
+#~ "autonumbering slots\n"
+#~ msgstr ""
+#~ "Многосекционный объект без атрибута ‘slot’ может вызвать проблемы при "
+#~ "автонумерации секций\n"
+
+#~ msgid ""
+#~ "duplicate slot may cause problems: [symbolname=%s, number=%d, slot=%d]\n"
+#~ msgstr ""
+#~ "Дублирование секций может вызвать проблемы: [symbolname=%s, number=%d, "
+#~ "slot=%d]\n"
+
+#~ msgid "No searchstring given in autonumber text.\n"
+#~ msgstr "Не задано выражение для автонумерации.\n"
+
+#~ msgid "No '*' or '?' given at the end of the autonumber text.\n"
+#~ msgstr "В конце выражения для автонумерации не задан символ ‘*’ или ‘?’.\n"
+
+#~ msgid "Diagonal"
+#~ msgstr "По диагонали"
+
+#~ msgid "Top to bottom"
+#~ msgstr "Сверху вниз"
+
+#~ msgid "Bottom to top"
+#~ msgstr "Снизу вверх"
+
+#~ msgid "Left to right"
+#~ msgstr "Слева направо"
+
+#~ msgid "Right to left"
+#~ msgstr "Справа налево"
+
+#~ msgid "Autonumber text"
+#~ msgstr "Автонумерация"
+
+#~ msgid "<b>Scope</b>"
+#~ msgstr "<b>Ограничения</b>"
+
+#~ msgid "Search for:"
+#~ msgstr "Выражение:"
+
+#~ msgid "Autonumber text in:"
+#~ msgstr "Область автонумерации:"
+
+# Здесь определяется область, уже имеющиеся номера в которой для новой
+# автонумерации использоваться не должны
+#~ msgid "Skip numbers found in:"
+#~ msgstr "Пропуск номеров, уже имеющихся в области:"
+
+#~ msgid "Selected objects"
+#~ msgstr "Выделенные объекты"
+
+#~ msgid "Whole hierarchy"
+#~ msgstr "Вся иерархия"
+
+#~ msgid "Overwrite existing numbers"
+#~ msgstr "Перезаписывать уже имеющиеся номера"
+
+#~ msgid "<b>Options</b>"
+#~ msgstr "<b>Настройки</b>"
+
+#~ msgid "Starting number:"
+#~ msgstr "Начальный номер:"
+
+# "Порядок сортировки:" не очень подходит в данном случае
+#~ msgid "Sort order:"
+#~ msgstr "Порядок нумерации:"
+
+#~ msgid "Remove numbers"
+#~ msgstr "Удалить все номера"
+
+#~ msgid "Automatic slotting"
+#~ msgstr "Автоматически нумеровать секции"
+
+#~ msgid ""
+#~ "<b>Invalid schematic on clipboard.</b>\n"
+#~ "\n"
+#~ "An error occurred while inserting clipboard data: %s."
+#~ msgstr ""
+#~ "<b>Недопустимые данные схемы в системном буфере обмена.</b>\n"
+#~ "\n"
+#~ "Ошибка при вставке данных из буфера: %s."
+
+# Заголовок окна ошибки
+#~ msgid "Clipboard insertion failed"
+#~ msgstr "Ошибка вставки данных из буфера обмена"
+
+# Здесь я написал "Не удалось выделить цвет" вместо "назначить", так
+# как речь идёт о резервировании поля в colormap.
+# %s разместил по-другому, потому что будет выдаваться, например, "чёрный
+# цвет".
+#~ msgid "Could not allocate the color %s!\n"
+#~ msgstr "Не удалось выделить %s цвет!\n"
+
+#~ msgid "black"
+#~ msgstr "чёрный"
+
+#~ msgid "white"
+#~ msgstr "белый"
+
+# См. перевод выше.
+# В этом случае речь идёт о выделении поля для цвета с указанным индексом.
+# Про "display color" и "outline color" см. примечания ниже
+#~ msgid "Could not allocate display color %i!\n"
+#~ msgstr "Не удалось выделить цвет для индекса %i!\n"
+
+# "outline" ни к каким контурам отношения не имеет. Более того, ввиду ошибок
+# реализации вообще малоинформативное сообщение. См. примечания к
+# нижеследующим переводам.
+#~ msgid "Could not allocate outline color %i!\n"
+#~ msgstr "Невозможно выделить цвет контура %i!\n"
+
+# "color" в данном случае означает цвет некоторых объектов
+# (точек соединения, маркеров привязки, ...), который в третьем случае
+# использования берётся из массива display_colors[]. Но в первых двух случаях
+# он берётся из двух разных таблиц цветов, первая из которых используется для
+# инициализации display_colors[], вторая для display_outline_colors[]. Так что
+# бессмысленно здесь делать какие-то различения.
+# См. также примечание к следующему переводу.
+#~ msgid "Tried to get an invalid color: %d\n"
+#~ msgstr "Запрос недопустимого цвета: %d\n"
+
+# "outline color" в данном случае означает цвет разных отрисовываемых объектов
+# (линий, дуг, прямоугольников и т.д.), который берётся из массива
+# display_outline_colors[].
+# Но на самом деле в исходном коде цвета выбираются то из массива
+# display_colors[], то из display_outline_colors[], так что бывают проблемы с
+# отображением цветов при смене таблицы цветов пользователем.
+# С учётом примечания к предыдущему переводу нет смысла использовать для этой
+# ошибки специального текста. Просто дублирую указанный выше.
+#~ msgid "Tried to get an invalid outline color: %d\n"
+#~ msgstr "Запрос недопустимого цвета: %d\n"
+
+#~ msgid "Filter:"
+#~ msgstr "Фильтр:"
+
+#~ msgid "Name"
+#~ msgstr "Имя"
+
+#~ msgid "Value"
+#~ msgstr "Значение"
+
+#~ msgid "Default behavior - reference component"
+#~ msgstr "Вставить как ссылку (по умолчанию)"
+
+#~ msgid "Embed component in schematic"
+#~ msgstr "Внедрить в схему"
+
+#~ msgid "Include component as individual objects"
+#~ msgstr "Вставить как отдельные объекты"
+
+#~ msgid "Select Component..."
+#~ msgstr "Выбор компонента"
+
+#~ msgid "In Use"
+#~ msgstr "Используемые"
+
+# Можно просто "Библиотеки", но вместе с "Используемые", думаю будет лучше так
+#~ msgid "Libraries"
+#~ msgstr "Библиотечные"
+
+#~ msgid "Arc Params"
+#~ msgstr "Параметры дуги"
+
+#~ msgid "Arc Radius:"
+#~ msgstr "Радиус:"
+
+#~ msgid "Start Angle:"
+#~ msgstr "Начальный угол:"
+
+#~ msgid "Degrees of Sweep:"
+#~ msgstr "Угол разворота:"
+
+#~ msgid ""
+#~ "Offset to translate?\n"
+#~ "(0 for origin)"
+#~ msgstr ""
+#~ "Задайте относительное смещение схемы\n"
+#~ "(или 0 для смещения в начало координат)"
+
+#~ msgid "Enter new text size:"
+#~ msgstr "Введите новый размер текста:"
+
+#~ msgid "Snap Size"
+#~ msgstr "Шаг привязки"
+
+#~ msgid "Enter new snap grid spacing:"
+#~ msgstr "Введите новый шаг привязки:"
+
+#~ msgid "Edit slot number"
+#~ msgstr "Правка номера секции"
+
+#~ msgid "Edit slot number:"
+#~ msgstr "Введите номер секции:"
+
+#~ msgid "%s (g%.7s)"
+#~ msgstr "%s (g%.7s)"
+
+#~ msgid "About gschem"
+#~ msgstr "О программе..."
+
+#~ msgid "gEDA: GPL Electronic Design Automation"
+#~ msgstr "gEDA: САПР электроники под лицензией GPL"
+
+#~ msgid ""
+#~ "Copyright © 1998-2011 Ales Hvezda <ahvezda@geda.seul.org>\n"
+#~ "Copyright © 1998-2011 gEDA Contributors (see ChangeLog for details)"
+#~ msgstr ""
+#~ "Copyright © 1998-2011 Ales Hvezda <ahvezda@geda.seul.org>\n"
+#~ "Copyright © 1998-2011 gEDA Contributors (подробности см. в файле "
+#~ "ChangeLog)"
+
+#~ msgid "Coords"
+#~ msgstr "Координаты"
+
+#~ msgid "Screen"
+#~ msgstr "Отображаемая область"
+
+#~ msgid "World"
+#~ msgstr "Вся рабочая область"
+
+#~ msgid "Hotkeys"
+#~ msgstr "Горячие клавиши"
+
+#~ msgid "Keystroke(s)"
+#~ msgstr "Сочетание клавиш"
+
+#~ msgid "Find Text"
+#~ msgstr "Найти"
+
+#~ msgid "Text to find:"
+#~ msgstr "Текст:"
+
+# Почти дословно "Спускаться по иерархии", подразумевается, что поиск ведётся
+# во всей иерархической структуре, корнем которой является данная страница
+#~ msgid "descend into hierarchy"
+#~ msgstr "Искать в том числе в подсхемах"
+
+#~ msgid "Hide Text"
+#~ msgstr "Скрыть"
+
+#~ msgid "Hide text starting with:"
+#~ msgstr "Скрыть текст, начинающийся с:"
+
+#~ msgid "Show Text"
+#~ msgstr "Показать"
+
+#~ msgid "Show text starting with:"
+#~ msgstr "Показать текст, начинающийся с:"
+
+#~ msgid "Major symbol changes detected."
+#~ msgstr "Обнаружено значительное изменение символа."
+
+#~ msgid ""
+#~ "Changes have occurred to the symbols shown below.\n"
+#~ "\n"
+#~ "Be sure to verify each of these symbols."
+#~ msgstr ""
+#~ "Приведённые ниже символы были изменены.\n"
+#~ "\n"
+#~ "Удостоверьтесь, что проверили каждый из них."
+
+#~ msgid "Symbol"
+#~ msgstr "Символ"
+
+#~ msgid "S_elect the schematics you want to save:"
+#~ msgstr "_Выберите сохраняемые схемы:"
+
+#~ msgid "Save the changes to schematic \"%s\" before closing?"
+#~ msgstr "Сохранить изменения в схеме «%s» перед закрытием?"
+
+#~ msgid ""
+#~ "There are %d schematics with unsaved changes. Save changes before closing?"
+#~ msgstr ""
+#~ "В %d схемах есть несохранённые изменения. Сохранить их перед закрытием?"
+
+#~ msgid "If you don't save, all your changes will be permanently lost."
+#~ msgstr "Если их не сохранить, все изменения будут безвозвратно утрачены."
+
+#~ msgid "Close _without saving"
+#~ msgstr "_Закрыть без сохранения"
+
+#~ msgid ""
+#~ "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is "
+#~ "invalid\n"
+#~ "Please correct in order to continue</span>\n"
+#~ "\n"
+#~ "The name and value must be non-empty.\n"
+#~ "The name cannot end with a space.\n"
+#~ "The value cannot start with a space."
+#~ msgstr ""
+#~ "<span weight=\"bold\" size=\"larger\">Недопустимое определение атрибута "
+#~ "«%s».\n"
+#~ "Исправьте его, прежде чем продолжить</span>\n"
+#~ "\n"
+#~ "Имя и значение обязательно должны быть заданы.\n"
+#~ "Имя не должно заканчиваться пробелом.\n"
+#~ "Значение не должно начинаться с пробела."
+
+#~ msgid "Invalid Attribute"
+#~ msgstr "Недопустимый атрибут"
+
+# Диалоговое окно правки типа вывода (вызывается из всплывающего меню)
+#~ msgid "Pin type"
+#~ msgstr "Тип вывода"
+
+#~ msgid "Net pin"
+#~ msgstr "Вывод соединения"
+
+#~ msgid "Bus pin (graphical)"
+#~ msgstr "Вывод шины (графический)"
+
+#~ msgid "Schematics"
+#~ msgstr "Схемы"
+
+#~ msgid "Symbols"
+#~ msgstr "Символы"
+
+#~ msgid "Schematics and symbols"
+#~ msgstr "Схемы и символы"
+
+#~ msgid "All files"
+#~ msgstr "Все файлы"
+
+# Заголовок окна выбора файла при открывании существующего файла
+#~ msgid "Open..."
+#~ msgstr "Выберите файл"
+
+# Заголовок окна выбора файла при сохранении
+#~ msgid "Save as..."
+#~ msgstr "Введите имя файла для сохранения"
+
+#~ msgid ""
+#~ "The selected file `%s' already exists.\n"
+#~ "\n"
+#~ "Would you like to overwrite it?"
+#~ msgstr ""
+#~ "Файл «%s» уже существует.\n"
+#~ "\n"
+#~ "Перезаписать?"
+
+# Заголовок окна
+#~ msgid "Overwrite file?"
+#~ msgstr "Перезаписать файл?"
+
+#~ msgid "Save cancelled on user request\n"
+#~ msgstr "Сохранение отменено по команде пользователя\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "If you load the original file, the backup file will be overwritten in the "
+#~ "next autosave timeout and it will be lost.\n"
+#~ "\n"
+#~ "Do you want to load the backup file?\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Если загрузить оригинальный файл, файл резервной копии будет перезаписан "
+#~ "при следующем автоматическом сохранении и будет утрачен.\n"
+#~ "\n"
+#~ "Загрузить файл резервной копии?\n"
+
+#~ msgid "x_image_lowlevel: Unable to write %s file %s.\n"
+#~ msgstr "x_image_lowlevel: не удалось записать %s-файл %s.\n"
+
+#~ msgid ""
+#~ "There was the following error when saving image with type %s to "
+#~ "filename:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "%s.\n"
+#~ msgstr ""
+#~ "Ошибка сохранения изображения в формате %s под именем:\n"
+#~ "%s\n"
+#~ "\n"
+#~ "%s.\n"
+
+#~ msgid "Wrote color image to [%s] [%d x %d]\n"
+#~ msgstr "Записано цветное изображение в [%s] [%d×%d]\n"
+
+#~ msgid "Wrote black and white image to [%s] [%d x %d]\n"
+#~ msgstr "Записано чёрно-белое изображение в [%s] [%d×%d]\n"
+
+#~ msgid "x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"
+#~ msgstr ""
+#~ "x_image_lowlevel: не удалось получить растровую копию окна gschem.\n"
+
+#~ msgid "Width x Height"
+#~ msgstr "Ширина × высота"
+
+#~ msgid "Write image..."
+#~ msgstr "Введите имя файла для изображения"
+
+#~ msgid "** Invalid UTF-8 in log message. See stderr or gschem.log.\n"
+#~ msgstr ""
+#~ "** Недопустимый символ в кодировке UTF-8 в окне журнала. См. stderr или "
+#~ "gschem.log.\n"
+
+#~ msgid "Status"
+#~ msgstr "Журнал"
+
+# Контекстное меню, вызываемое по правой кнопке в основном окне.
+#, fuzzy
+#~ msgid "Add Net"
+#~ msgstr "/Добавить соединение"
+
+#~ msgid "Add Attribute"
+#~ msgstr "Добавить атрибут"
+
+#, fuzzy
+#~ msgid "Add Bus"
+#~ msgstr "/Добавить шину"
+
+#, fuzzy
+#~ msgid "Add Text"
+#~ msgstr "/Добавить текст"
+
+#, fuzzy
+#~ msgid "Zoom In"
+#~ msgstr "/Увеличить"
+
+#, fuzzy
+#~ msgid "Zoom Out"
+#~ msgstr "/Уменьшить"
+
+#, fuzzy
+#~ msgid "Zoom Extents"
+#~ msgstr "/Уместить в окне"
+
+#~ msgid "Edit..."
+#~ msgstr "Правка..."
+
+#, fuzzy
+#~ msgid "Edit Pin Type..."
+#~ msgstr "Правка типа вывода..."
+
+#, fuzzy
+#~ msgid "Down Schematic"
+#~ msgstr "/Войти в подсхему"
+
+#, fuzzy
+#~ msgid "Down Symbol"
+#~ msgstr "/Войти в символ"
+
+#, fuzzy
+#~ msgid "Up"
+#~ msgstr "/Наверх"
+
+#~ msgid "Tried to set the sensitivity on non-existent menu item '%s'\n"
+#~ msgstr ""
+#~ "Попытка установки чувствительности несуществующего элемента меню ‘%s’\n"
+
+#~ msgid "The operating system is out of memory or resources."
+#~ msgstr "Операционной системе не хватает памяти или ресурсов."
+
+#~ msgid "%s failed to launch URI"
+#~ msgstr "Не удалось открыть URI с помощью %s"
+
+#~ msgid "Attributes with empty name are not allowed. Please set a name."
+#~ msgstr "Отсутствие имени у атрибута не допускается. Введите имя."
+
+#~ msgid "Show Value only"
+#~ msgstr "Значение"
+
+#~ msgid "Show Name only"
+#~ msgstr "Имя"
+
+#~ msgid "Promote"
+#~ msgstr "Вынести"
+
+#~ msgid "Duplicate"
+#~ msgstr "Дублировать"
+
+#~ msgid "Edit Attributes"
+#~ msgstr "Правка атрибутов"
+
+#~ msgid "Vis?"
+#~ msgstr "Видимый"
+
+#~ msgid "N"
+#~ msgstr "И"
+
+#~ msgid "V"
+#~ msgstr "З"
+
+#~ msgid "Show inherited attributes"
+#~ msgstr "Показать унаследованные атрибуты"
+
+#~ msgid "Edit Attributes - %s"
+#~ msgstr "Правка атрибутов — %s"
+
+#~ msgid "New Page"
+#~ msgstr "Новая страница"
+
+#~ msgid "Open Page..."
+#~ msgstr "Открыть страницу..."
+
+#~ msgid "Save Page"
+#~ msgstr "Сохранить страницу"
+
+#~ msgid "Close Page"
+#~ msgstr "Закрыть страницу"
+
+#~ msgid "Page Manager"
+#~ msgstr "Менеджер страниц"
+
+#~ msgid "Filename"
+#~ msgstr "Имя файла"
+
+#~ msgid "Changed"
+#~ msgstr "Изменён"
+
+#~ msgid "Right click on the filename for more options..."
+#~ msgstr ""
+#~ "Щёлкните по имени файла правой кнопкой для выбора дополнительных действий."
+
+#~ msgid "Preview Buffer"
+#~ msgstr "Буфер предпросмотра"
+
+# Квадратные скобки добавлены для единообразия
+#~ msgid "Failed to write PDF to '%s': %s\n"
+#~ msgstr "Не удалось записать PDF в «%s»: %s\n"
+
+#~ msgid ""
+#~ "Error printing file:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Ошибка печати файла:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "ERROR: An unknown error occurred while parsing configuration files.\n"
+#~ msgstr "ОШИБКА: неизвестная ошибка при анализе файлов настроек.\n"
+
+#~ msgid ""
+#~ "An unknown error occurred while parsing configuration files.\n"
+#~ "\n"
+#~ "The gschem log may contain more information."
+#~ msgstr ""
+#~ "Неизвестная ошибка при анализе файлов настроек.\n"
+#~ "\n"
+#~ "В журнале gschem может быть больше информации."
+
+#~ msgid "ERROR: %s\n"
+#~ msgstr "ОШИБКА: %s\n"
+
+#~ msgid ""
+#~ "%s\n"
+#~ "\n"
+#~ "The gschem log may contain more information."
+#~ msgstr ""
+#~ "%s\n"
+#~ "\n"
+#~ "В журнале gschem может быть больше информации."
+
+#~ msgid "Cannot load gschem configuration."
+#~ msgstr "Не удалось загрузить файлы настроек gschem"
+
+#~ msgid "Execute Script..."
+#~ msgstr "Выполнить скрипт..."
+
+#~ msgid "Executing guile script [%s]\n"
+#~ msgstr "Запуск guile-скрипта [%s]\n"
+
+#~ msgid "Couldn't allocate gc\n"
+#~ msgstr "Не удалось выделить структуру графического контекста\n"
+
+# Подписи к кнопкам панели инструментов
+#~ msgid "New"
+#~ msgstr "Новый"
+
+#~ msgid "New file"
+#~ msgstr "Новый файл"
+
+#~ msgid "Open file..."
+#~ msgstr "Открыть файл..."
+
+#~ msgid "Save"
+#~ msgstr "Сохранить"
+
+#~ msgid "Save file"
+#~ msgstr "Сохранить файл"
+
+#~ msgid "Undo"
+#~ msgstr "Отменить"
+
+#~ msgid "Undo last operation"
+#~ msgstr "Отменить последнее действие"
+
+#~ msgid "Redo"
+#~ msgstr "Повторить"
+
+#~ msgid "Redo last undo"
+#~ msgstr "Повторить отменённое действие"
+
+#~ msgid ""
+#~ "Add component...\n"
+#~ "Select library and component from list, move the mouse into main window, "
+#~ "click to place\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "Добавление компонентов\n"
+#~ "Выберите библиотеку и компонент из списка, переместите мышь в главное "
+#~ "окно, для добавления щёлкните левой кнопкой в нужном месте.\n"
+#~ "Щелчок правой кнопкой отменяет операцию"
+
+#~ msgid ""
+#~ "Add nets mode\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "Ввод соединений\n"
+#~ "Щелчок правой кнопкой отменяет операцию"
+
+#~ msgid ""
+#~ "Add buses mode\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "Ввод шин\n"
+#~ "Щелчок правой кнопкой отменяет операцию"
+
+#~ msgid "Text"
+#~ msgstr "Текст"
+
+#~ msgid "Add Text..."
+#~ msgstr "Ввод текста..."
+
+#~ msgid "Select mode"
+#~ msgstr "Режим выделения"
+
+# Можно было бы перевести как "Оценить", но в этом случае не только
+# оцениваются выражения Scheme, но и можно выполнять встроенные процедуры
+#~ msgid "Evaluate:"
+#~ msgstr "Выполнить:"
+
+# Функция левой кнопки мыши.
+# Имеется в виду выбор чего угодно -- объектов, пунктов меню и т.д.
+#~ msgid "Pick"
+#~ msgstr "Выбор"
+
+# Функция средней кнопки мыши.
+# Должно соответствовать переводам строк "Repeat/" и "none", указанным выше
+#~ msgid "Repeat/none"
+#~ msgstr "Повтор: ---"
+
+#~ msgid "Menu/Cancel"
+#~ msgstr "Меню/Отмена действия"
+
+#~ msgid "Pan/Cancel"
+#~ msgstr "Прокрутка/Отмена действия"
+
+#~ msgid "Loading schematic [%s]\n"
+#~ msgstr "Загрузка схемы [%s]\n"
+
+# Если оставить '. В журнале', то получим '. ' в начале строки.
+#~ msgid ""
+#~ "<b>An error occurred while loading the requested file.</b>\n"
+#~ "\n"
+#~ "Loading from '%s' failed: %s. The gschem log may contain more information."
+#~ msgstr ""
+#~ "<b>При загрузке указанного файла произошла ошибка.</b>\n"
+#~ "\n"
+#~ "Не удалось загрузить файл «%s»: %s\n"
+#~ "В журнале gschem может быть больше информации."
+
+#~ msgid "Failed to load file"
+#~ msgstr "Не удалось загрузить файл"
+
+#~ msgid "New file [%s]\n"
+#~ msgstr "Новый файл [%s]\n"
+
+#~ msgid "Could NOT save page [%s]\n"
+#~ msgstr "Не удалось сохранить страницу [%s]\n"
+
+#~ msgid "Error while trying to save"
+#~ msgstr "Ошибка при попытке сохранения"
+
+#~ msgid "Failed to save file"
+#~ msgstr "Не удалось сохранить файл"
+
+#~ msgid "Saved as [%s]\n"
+#~ msgstr "Файл сохранён под именем [%s]\n"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "Файл [%s] сохранён\n"
+
+#~ msgid "Saved"
+#~ msgstr "Файл сохранён"
+
+#~ msgid "Discarding page [%s]\n"
+#~ msgstr "Закрытие [%s] без сохранения изменений\n"
+
+#~ msgid "Closing [%s]\n"
+#~ msgstr "Закрытие [%s]\n"
+
+#~ msgid "gEDA Schematic Editor"
+#~ msgstr "Схемотехнический редактор gEDA"
+
+#~ msgid "Create and edit electrical schematics and symbols with gschem"
+#~ msgstr "Создание и редактирование электрических схем и символов в gschem"
+
+#~ msgid "_New"
+#~ msgstr "_Новый"
+
+#~ msgid "_Open..."
+#~ msgstr "_Открыть..."
+
+#~ msgid "Open Recen_t"
+#~ msgstr "Открыть не_давние"
+
+#~ msgid "_Save"
+#~ msgstr "_Сохранить"
+
+#~ msgid "Save _As..."
+#~ msgstr "Сохранить _как..."
+
+#~ msgid "Save All"
+#~ msgstr "Сохранить все"
+
+#~ msgid "_Revert"
+#~ msgstr "_Возвратить"
+
+#~ msgid "_Print..."
+#~ msgstr "_Печать..."
+
+#~ msgid "Write _image..."
+#~ msgstr "Сохранить _изображение..."
+
+#~ msgid "New Window"
+#~ msgstr "Новое окно"
+
+#~ msgid "_Close Window"
+#~ msgstr "_Закрыть окно"
+
+#~ msgid "_Quit"
+#~ msgstr "В_ыход"
+
+#~ msgid "_Undo"
+#~ msgstr "_Отменить"
+
+#~ msgid "_Redo"
+#~ msgstr "_Повторить"
+
+#~ msgid "Cu_t"
+#~ msgstr "_Вырезать"
+
+#~ msgid "_Copy"
+#~ msgstr "С_копировать"
+
+#~ msgid "_Paste"
+#~ msgstr "В_ставить"
+
+#~ msgid "_Delete"
+#~ msgstr "_Удалить"
+
+#~ msgid "Select All"
+#~ msgstr "Выделить всё"
+
+#~ msgid "Deselect"
+#~ msgstr "Снять выделение"
+
+# Можно было бы перевести как "Повернуть на 90°", но большинство соседних
+# пунктов меню переведены как существительные, так как они используются и для
+# отображения в строке состояния.
+#~ msgid "Rotate 90 Mode"
+#~ msgstr "Поворот на 90°"
+
+#~ msgid "Edit Text..."
+#~ msgstr "Правка текста..."
+
+#~ msgid "Slot..."
+#~ msgstr "Секция..."
+
+#~ msgid "Color..."
+#~ msgstr "Цвет..."
+
+#~ msgid "Line Width & Type..."
+#~ msgstr "Свойства линии..."
+
+#~ msgid "Fill Type..."
+#~ msgstr "Заполнение..."
+
+#, fuzzy
+#~ msgid "Pin Type..."
+#~ msgstr "Заполнение..."
+
+#~ msgid "Symbol Translate..."
+#~ msgstr "Смещение символа..."
+
+#~ msgid "Invoke Macro"
+#~ msgstr "Выполнить макрос"
+
+#~ msgid "Embed Component/Picture"
+#~ msgstr "Внедрить компонент/изображение"
+
+#~ msgid "Unembed Component/Picture"
+#~ msgstr "Исключить компонент/изображение"
+
+#~ msgid "Update Component"
+#~ msgstr "Обновить компонент"
+
+#~ msgid "Show/Hide Inv Text"
+#~ msgstr "Показать/скрыть невидимый текст"
+
+#~ msgid "Copy into 1"
+#~ msgstr "Скопировать в 1"
+
+#~ msgid "Copy into 2"
+#~ msgstr "Скопировать в 2"
+
+#~ msgid "Copy into 3"
+#~ msgstr "Скопировать в 3"
+
+#~ msgid "Copy into 4"
+#~ msgstr "Скопировать в 4"
+
+#~ msgid "Copy into 5"
+#~ msgstr "Скопировать в 5"
+
+#~ msgid "Cut into 1"
+#~ msgstr "Вырезать в 1"
+
+#~ msgid "Cut into 2"
+#~ msgstr "Вырезать в 2"
+
+#~ msgid "Cut into 3"
+#~ msgstr "Вырезать в 3"
+
+#~ msgid "Cut into 4"
+#~ msgstr "Вырезать в 4"
+
+#~ msgid "Cut into 5"
+#~ msgstr "Вырезать в 5"
+
+#~ msgid "Paste from 1"
+#~ msgstr "Вставить из 1"
+
+#~ msgid "Paste from 2"
+#~ msgstr "Вставить из 2"
+
+#~ msgid "Paste from 3"
+#~ msgstr "Вставить из 3"
+
+#~ msgid "Paste from 4"
+#~ msgstr "Вставить из 4"
+
+#~ msgid "Paste from 5"
+#~ msgstr "Вставить из 5"
+
+#~ msgid "_Redraw"
+#~ msgstr "Пе_рерисовать"
+
+#~ msgid "_Pan"
+#~ msgstr "_Центрировать"
+
+#~ msgid "Zoom _Box"
+#~ msgstr "Об_ласть масштабирования"
+
+#~ msgid "Zoom _Extents"
+#~ msgstr "_Уместить в окне"
+
+#~ msgid "Zoom _In"
+#~ msgstr "У_величить"
+
+#~ msgid "Zoom _Out"
+#~ msgstr "Уме_ньшить"
+
+#~ msgid "Zoom _Full"
+#~ msgstr "_Показать всё"
+
+#~ msgid "_Dark color scheme"
+#~ msgstr "_Тёмная цветовая схема"
+
+#~ msgid "_Light color scheme"
+#~ msgstr "_Светлая цветовая схема"
+
+#~ msgid "B_W color scheme"
+#~ msgstr "_Чёрно-белая цветовая схема"
+
+#~ msgid "_Manager..."
+#~ msgstr "_Менеджер..."
+
+#~ msgid "_Previous"
+#~ msgstr "_Предыдущая"
+
+#~ msgid "_Next"
+#~ msgstr "_Следующая"
+
+#~ msgid "_Close"
+#~ msgstr "_Закрыть"
+
+#~ msgid "_Component..."
+#~ msgstr "_Компонент..."
+
+#~ msgid "_Net"
+#~ msgstr "_Соединение"
+
+#~ msgid "B_us"
+#~ msgstr "_Шину"
+
+#~ msgid "_Attribute..."
+#~ msgstr "_Атрибут..."
+
+#~ msgid "_Text..."
+#~ msgstr "_Текст..."
+
+#~ msgid "_Line"
+#~ msgstr "_Линию"
+
+#~ msgid "_Box"
+#~ msgstr "_Прямоугольник"
+
+#~ msgid "C_ircle"
+#~ msgstr "_Окружность"
+
+#~ msgid "A_rc"
+#~ msgstr "_Дугу"
+
+#~ msgid "_Pin"
+#~ msgstr "_Вывод"
+
+#~ msgid "Pictu_re..."
+#~ msgstr "_Изображение..."
+
+#~ msgid "_Down Schematic"
+#~ msgstr "Войти в _подсхему"
+
+#~ msgid "Down _Symbol"
+#~ msgstr "Войти в _символ"
+
+#~ msgid "_Up"
+#~ msgstr "На_верх"
+
+#~ msgid "D_ocumentation..."
+#~ msgstr "_Документация"
+
+#~ msgid "_Attach"
+#~ msgstr "_Прикрепить"
+
+#~ msgid "_Detach"
+#~ msgstr "_Отделить"
+
+#~ msgid "Show _Name"
+#~ msgstr "Показать _имя"
+
+#~ msgid "Show _Both"
+#~ msgstr "По_казать имя и значение"
+
+#~ msgid "_Toggle Visibility"
+#~ msgstr "Переключить _видимость"
+
+#~ msgid "_Find Specific Text..."
+#~ msgstr "_Найти текст..."
+
+#~ msgid "_Hide Specific Text..."
+#~ msgstr "_Скрыть текст..."
+
+#~ msgid "_Show Specific Text..."
+#~ msgstr "Показать _текст..."
+
+#~ msgid "A_utonumber Text..."
+#~ msgstr "_Автонумерация..."
+
+#~ msgid "_Text Size..."
+#~ msgstr "Размер _текста..."
+
+#~ msgid "Cycle _grid styles"
+#~ msgstr "Стиль _сетки"
+
+#~ msgid "Toggle _Snap On/Off"
+#~ msgstr "Переключить _привязку"
+
+#~ msgid "Snap Grid S_pacing..."
+#~ msgstr "_Шаг сетки привязки..."
+
+#~ msgid "Scale _down Grid Spacing"
+#~ msgstr "Уме_ньшить шаг сетки"
+
+# Можно сказать "Контуры объектов/рамка". Но чаще всего, когда не используется
+# заполнение, контуры по виду эквивалентны самим объектам. Плюс так короче. А
+# "Контуры/рамка" было бы непонятнее.
+#~ msgid "Toggle _Outline/Box"
+#~ msgstr "_Объекты/рамка"
+
+#~ msgid "Toggle Net _Rubberband"
+#~ msgstr "_Резиновое соединение вкл/откл"
+
+#~ msgid "Toggle _Magnetic Net"
+#~ msgstr "_Магнитное соединение вкл/откл"
+
+#~ msgid "Show _Log Window..."
+#~ msgstr "Окно _журнала..."
+
+#~ msgid "Show _Coord Window..."
+#~ msgstr "Окно _координат..."
+
+#~ msgid "gschem User _Guide..."
+#~ msgstr "_Руководство пользователя gschem..."
+
+#~ msgid "gschem _FAQ..."
+#~ msgstr "gschem _FAQ..."
+
+#~ msgid "gEDA Docu_mentation..."
+#~ msgstr "Документация _gEDA..."
+
+#~ msgid "gEDA _Wiki..."
+#~ msgstr "gEDA _Wiki..."
+
+#~ msgid "Component D_ocumentation..."
+#~ msgstr "Документация на _компонент..."
+
+#~ msgid "_Hotkeys..."
+#~ msgstr "_Горячие клавиши"
+
+#~ msgid "_About..."
+#~ msgstr "_О программе..."
+
+#~ msgid "_File"
+#~ msgstr "_Файл"
+
+#~ msgid "_Edit"
+#~ msgstr "_Правка"
+
+#~ msgid "_View"
+#~ msgstr "_Вид"
+
+#~ msgid "_Page"
+#~ msgstr "Ст_раница"
+
+#~ msgid "_Add"
+#~ msgstr "_Добавить"
+
+#~ msgid "Hie_rarchy"
+#~ msgstr "_Иерархия"
+
+#~ msgid "A_ttributes"
+#~ msgstr "_Атрибуты"
+
+#~ msgid "_Options"
+#~ msgstr "_Настройки"
+
+#~ msgid "_Help"
+#~ msgstr "_Справка"
+
+#, fuzzy
+#~ msgid "~S is not a valid gschem action."
+#~ msgstr "Недопустимая комбинация клавиш ~S."
+
+#, fuzzy
+#~ msgid "New File"
+#~ msgstr "Новый файл"
+
+#, fuzzy
+#~ msgid "Save As"
+#~ msgstr "Сохранить все"
+
+#, fuzzy
+#~ msgid "Print"
+#~ msgstr "_Печать..."
+
+#, fuzzy
+#~ msgid "Close Window"
+#~ msgstr "_Закрыть окно"
+
+#, fuzzy
+#~ msgid "Quit"
+#~ msgstr "В_ыход"
+
+# В соответствии с текстом пункта меню
+#~ msgid "Edit Line Width & Type"
+#~ msgstr "Свойства линии"
+
+#~ msgid "Edit Fill Type"
+#~ msgstr "Изменение заполнения"
+
+#, fuzzy
+#~ msgid "Edit Pin Type"
+#~ msgstr "Правка типа вывода"
+
+#, fuzzy
+#~ msgid "Translate Symbol"
+#~ msgstr "Смещение"
+
+#, fuzzy
+#~ msgid "Embed Component/Pictore"
+#~ msgstr "Внедрить компонент/изображение"
+
+#, fuzzy
+#~ msgid "Show/Hide Invisible Text"
+#~ msgstr "Показать/скрыть невидимый текст"
+
+#, fuzzy
+#~ msgid "Cut"
+#~ msgstr "_Вырезать"
+
+#, fuzzy
+#~ msgid "Paste"
+#~ msgstr "В_ставить"
+
+#, fuzzy
+#~ msgid "Redraw"
+#~ msgstr "Пе_рерисовать"
+
+# Перевод в соответствии с пунктом меню
+#, fuzzy
+#~ msgid "Pan Left"
+#~ msgstr "Центрирование"
+
+#, fuzzy
+#~ msgid "Pan Right"
+#~ msgstr "справа сверху"
+
+# Перевод в соответствии с пунктом меню
+#, fuzzy
+#~ msgid "Pan Down"
+#~ msgstr "Центрирование"
+
+#, fuzzy
+#~ msgid "Zoom Full"
+#~ msgstr "_Показать всё"
+
+#, fuzzy
+#~ msgid "Revert Changes"
+#~ msgstr "Действительно вернуть сохранённую страницу?"
+
+#, fuzzy
+#~ msgid "Previous Page"
+#~ msgstr "_Предыдущая"
+
+#, fuzzy
+#~ msgid "Next Page"
+#~ msgstr "Новая страница"
+
+# В обеих функциях речь идёт о вводе линии, но для единообразия с выводом
+# статуса повторения для других объектов (шина, атрибут, соединение, вывод,
+# ...), для которых эта строка используется ещё и в диалоге выбора цветов,
+# придётся оставить как есть.
+#, fuzzy
+#~ msgid "Add Line"
+#~ msgstr "Линия"
+
+# Контекстное меню, вызываемое по правой кнопке в основном окне.
+#, fuzzy
+#~ msgid "Add Path"
+#~ msgstr "/Добавить соединение"
+
+#, fuzzy
+#~ msgid "Add Box"
+#~ msgstr "/Добавить шину"
+
+#, fuzzy
+#~ msgid "Add Circle"
+#~ msgstr "Окружность"
+
+#, fuzzy
+#~ msgid "Add Arc"
+#~ msgstr "Добавить атрибут"
+
+# Используется для вывода действия повтора в строке состояния
+#, fuzzy
+#~ msgid "Add Picture"
+#~ msgstr "Вставка изображения"
+
+#, fuzzy
+#~ msgid "Show Hotkeys"
+#~ msgstr "Горячие клавиши"
+
+#, fuzzy
+#~ msgid "Component Documentation"
+#~ msgstr "Документация на _компонент..."
+
+#, fuzzy
+#~ msgid "gschem User Guide"
+#~ msgstr "_Руководство пользователя gschem..."
+
+#, fuzzy
+#~ msgid "gschem FAQ"
+#~ msgstr "gschem _FAQ..."
+
+#, fuzzy
+#~ msgid "gEDA wiki"
+#~ msgstr "gEDA _Wiki..."
+
+#~ msgid "Invalid text alignment ~A."
+#~ msgstr "Недопустимое выравнивание текста ~A."
+
+#~ msgid "No documentation found"
+#~ msgstr "Документация не найдена"
+
+#~ msgid "~S is not a valid key combination."
+#~ msgstr "Недопустимая комбинация клавиш ~S."
+
+#~ msgid "~S is not a prefix key sequence."
+#~ msgstr "~S не является префиксом клавишной последовательности."
+
+#~ msgid "Function"
+#~ msgstr "Функция"
+
+#~ msgid "/Add Attribute..."
+#~ msgstr "/Добавить атрибут..."
+
+#~ msgid "/Zoom Box"
+#~ msgstr "/Масштаб на область"
+
+#~ msgid "/Select"
+#~ msgstr "/Выделить"
+
+#~ msgid "/Edit..."
+#~ msgstr "/Правка..."
+
+#~ msgid "/Copy"
+#~ msgstr "/Копировать"
+
+#~ msgid "/Move"
+#~ msgstr "/Переместить"
+
+#~ msgid "/Delete"
+#~ msgstr "/Удалить"
+
+#~ msgid "Popup_menu_item_factory doesn't exist!\n"
+#~ msgstr "Popup_menu_item_factory не существует!\n"
+
+#~ msgid "Tried to set the sensitivity on a non-existent popup menu_item\n"
+#~ msgstr ""
+#~ "Попытка установки чувствительности для несуществующего элемента "
+#~ "контекстного меню\n"
+
+#~ msgid "Ne_w"
+#~ msgstr "_Новая"
+
+#~ msgid "_Buffer"
+#~ msgstr "_Буфер"
+
+#~ msgid "Invalid zoomfactor [%d] passed to %s\n"
+#~ msgstr "Недопустимое значение коэффициента масштабирования [%d] для %s\n"
+
+#~ msgid "Copy 2"
+#~ msgstr "Копирование в 2"
+
+#~ msgid "Copy 3"
+#~ msgstr "Копирование в 3"
+
+#~ msgid "Copy 4"
+#~ msgstr "Копирование в 4"
+
+#~ msgid "Copy 5"
+#~ msgstr "Копирование в 5"
+
+#~ msgid "Cut 2"
+#~ msgstr "Вырезание в 2"
+
+#~ msgid "Cut 3"
+#~ msgstr "Вырезание в 3"
+
+#~ msgid "Cut 4"
+#~ msgstr "Вырезание в 4"
+
+#~ msgid "Cut 5"
+#~ msgstr "Вырезание в 5"
+
+#~ msgid "Paste 2"
+#~ msgstr "Вставка из 2"
+
+#~ msgid "Paste 3"
+#~ msgstr "Вставка из 3"
+
+#~ msgid "Paste 4"
+#~ msgstr "Вставка из 4"
+
+#~ msgid "Paste 5"
+#~ msgstr "Вставка из 5"
+
+#~ msgid "Text Entry..."
+#~ msgstr "Ввод текста"
+
+#~ msgid ""
+#~ "Enter text, click apply,\n"
+#~ "move cursor into window, click to place text.\n"
+#~ "Middle button to rotate while placing."
+#~ msgstr ""
+#~ "Введите текст, нажмите «Применить», \n"
+#~ "переместите курсор в окно и щёлкните левой кнопкой в месте вставки.\n"
+#~ "Перед вставкой текст можно повернуть щелчком средней кнопки мыши."
+
+#~ msgid "Upper Left"
+#~ msgstr "слева сверху"
+
+#~ msgid "Upper Middle"
+#~ msgstr "по центру сверху"
+
+#~ msgid "Middle Left"
+#~ msgstr "слева по центру"
+
+#~ msgid "Middle Middle"
+#~ msgstr "по центру"
+
+#~ msgid "Middle Right"
+#~ msgstr "справа по центру"
+
+#~ msgid "Lower Left"
+#~ msgstr "слева снизу"
+
+#~ msgid "Lower Middle"
+#~ msgstr "по центру снизу"
+
+#~ msgid "Lower Right"
+#~ msgstr "справа снизу"
+
+#~ msgid "Edit Text Properties"
+#~ msgstr "Правка свойств текста"
+
+#~ msgid "<b>Text Content</b>"
+#~ msgstr "<b>Текст</b>"
+
+# Тут, в общем-то, такой перевод, так как речь идёт не о тексте, а об объекте
+#~ msgid "<b>Text Properties</b>"
+#~ msgstr "<b>Свойства текстового объекта</b>"
+
+#~ msgid "Color:"
+#~ msgstr "Цвет:"
+
+#~ msgid "Size:"
+#~ msgstr "Размер:"
+
+#~ msgid "Alignment:"
+#~ msgstr "Выравнивание:"
+
+#~ msgid "Solid"
+#~ msgstr "сплошная"
+
+#~ msgid "Dotted"
+#~ msgstr "пунктирная"
+
+#~ msgid "Dashed"
+#~ msgstr "штриховая"
+
+#~ msgid "Center"
+#~ msgstr "штрих-пунктирная"
+
+#~ msgid "Phantom"
+#~ msgstr "двойной штрих-пунктир"
+
+#~ msgid "*unchanged*"
+#~ msgstr "*без изменения*"
+
+#~ msgid "Butt"
+#~ msgstr "усечённые"
+
+#~ msgid "Square"
+#~ msgstr "квадратные"
+
+#~ msgid "Round"
+#~ msgstr "круглые"
+
+#~ msgid "Type:"
+#~ msgstr "Тип:"
+
+#~ msgid "Width:"
+#~ msgstr "Толщина:"
+
+#~ msgid "Dash Length:"
+#~ msgstr "Длина штриха:"
+
+# Не "интервал штриха", так как используется и для пунктира тоже
+#~ msgid "Dash Space:"
+#~ msgstr "Интервал:"
+
+#~ msgid "Cap style:"
+#~ msgstr "Концы:"
+
+#~ msgid "Hollow"
+#~ msgstr "без заполнения"
+
+#~ msgid "Filled"
+#~ msgstr "сплошная заливка"
+
+#~ msgid "Mesh"
+#~ msgstr "в клетку"
+
+#~ msgid "Hatch"
+#~ msgstr "в линейку"
+
+#~ msgid "Fill Type:"
+#~ msgstr "Тип заполнения:"
+
+#~ msgid "Line Width:"
+#~ msgstr "Толщина линии:"
+
+#~ msgid "Pitch 1:"
+#~ msgstr "Шаг 1:"
+
+#~ msgid "Angle 2:"
+#~ msgstr "Угол 2:"
+
+#~ msgid "Pitch 2:"
+#~ msgstr "Шаг 2:"
+
+#~ msgid "Background"
+#~ msgstr "Фон"
+
+#~ msgid "Net endpoint"
+#~ msgstr "Метка конца соединения"
+
+#~ msgid "Graphic"
+#~ msgstr "Графический объект"
+
+#~ msgid "Logic bubble"
+#~ msgstr "Логическая инверсия"
+
+#~ msgid "Grid point"
+#~ msgstr "Точка сетки"
+
+#~ msgid "Detached attribute"
+#~ msgstr "Неприкреплённый атрибут"
+
+#~ msgid "Bounding box"
+#~ msgstr "Ограничительная рамка"
+
+# "Рамка выбора области просмотра" -- слишком длинно
+#~ msgid "Zoom box"
+#~ msgstr "Рамка выбора области"
+
+# Можно было бы "Фон распечатки", но можно вывести и в файл...
+#~ msgid "Output background"
+#~ msgstr "Фон вывода на печать"
+
+#~ msgid "Net junction"
+#~ msgstr "Соединительная точка"
+
+#~ msgid "Mesh grid major"
+#~ msgstr "Линии основной сетки"
+
+#~ msgid "Mesh grid minor"
+#~ msgstr "Линии вспомогательной сетки"
+
+# Имеется в виду цвет
+#~ msgid "Unknown"
+#~ msgstr "Неизвестный"
+
+#~ msgid "ERROR: NULL object in color_edit_dialog_apply!\n"
+#~ msgstr "color_edit_dialog_apply: ОШИБКА! NULL вместо объекта\n"
+
+#~ msgid "Color Edit"
+#~ msgstr "Правка цвета"
+
+# Так, думаю, лучше звучит, чем просто "Цвет объекта:"
+#~ msgid "Object color:"
+#~ msgstr "Выберите цвет объекта:"
+
+#~ msgid "Discard Page"
+#~ msgstr "Отвергнуть страницу"
+
+#~ msgid "_Discard"
+#~ msgstr "_Отвергнуть"

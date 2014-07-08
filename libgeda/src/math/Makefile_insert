@@ -1,0 +1,13 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=geda_gobject_sources
+
+libgeda_la_SOURCES += \
+			math/m_basic.c \
+			math/m_bounds.c \
+			math/m_box.c \
+			math/m_circle.c \
+			math/m_hatch.c \
+			math/m_line.c \
+			math/m_polygon.c \
+			math/m_transform.c

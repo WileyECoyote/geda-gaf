@@ -1,0 +1,7 @@
+## Makefile.am fragment sourced by Makefile.am.
+
+## FRAGMENTS=iface_sources
+
+libgeda_la_SOURCES += \
+			iface/i_vars.c \
+			iface/i_menu.c

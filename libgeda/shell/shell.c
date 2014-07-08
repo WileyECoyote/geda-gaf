@@ -68,7 +68,7 @@ version ()
 {
   printf(
     "gEDA %s (g%.7s)\n"
-    "Copyright (C) 1998-2010 gEDA developers\n"
+    "Copyright (C) 1998-2014 gEDA developers\n"
     "This is free software, and you are welcome to redistribute it under\n"
     "certain conditions. For details, see the file `COPYING', which is\n"
     "included in the gEDA distribution.\n"
