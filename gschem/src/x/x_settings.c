@@ -525,8 +525,6 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   outputfile = g_strconcat (f_path_user_config (), DIR_SEPARATOR_S,
                             rcname, ".tmp", NULL);
 
-  u_log_message("Writing configuration to [%s]\n", outputfile);
-
   if (( input = fopen (inputfile, "r" )) == NULL) {
     u_log_message("File open for read-only error: \"%s\", %s\n", inputfile, strerror( errno ));
     result = errno;
@@ -572,8 +570,10 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
       result = EXIT_SUCCESS;
     }
   if (result == EXIT_SUCCESS) {
-    if ((result = remove(inputfile)) == 0)
+    if ((result = remove(inputfile)) == 0) {
       result = rename(outputfile, inputfile);
+      u_log_message("Writing configuration to [%s]\n", inputfile);
+    }
     else {
       u_log_message("File error: \"%s\", %s\n", inputfile, strerror( errno ));
       result = errno;

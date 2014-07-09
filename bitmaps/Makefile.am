@@ -49,6 +49,7 @@ bitmapdata_DATA    = close_box.png                      \
                      geda-slot.png                      \
                      geda-snap-off.png                  \
                      geda-snap-on.png                   \
+                     geda-show-nets.png                 \
 		     geda_switch_48x36_off.png          \
 		     geda_switch_48x36_on.png           \
 		     geda_switch_64x48_off.png          \

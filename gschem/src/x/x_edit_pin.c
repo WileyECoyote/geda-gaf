@@ -187,20 +187,26 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, in
   menuitem = gtk_menu_get_active(GTK_MENU(menu));
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
-  if (number == -1)
+  if (number == -1) {
     gtk_widget_set_sensitive(pin_data->number_spin, FALSE);
-  else
+  }
+  else {
     gtk_spin_button_set_value (GTK_SPIN_BUTTON(pin_data->number_spin), number);
+  }
 
-  if (sequence == -1)
+  if (sequence == -1) {
     gtk_widget_set_sensitive(pin_data->sequence_spin, FALSE);
-  else
+  }
+  else {
     gtk_spin_button_set_value (GTK_SPIN_BUTTON(pin_data->sequence_spin), sequence);
+  }
 
-  if (label == NULL)
+  if (label == NULL) {
     SetEntryText( pin_data->label_entry, _("*missing*") );
-  else
+  }
+  else {
     SetEntryText( pin_data->label_entry, label );
+  }
 
   gtk_option_menu_set_history(GTK_OPTION_MENU(pin_data->pin_electrical), elect_type);
   menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(pin_data->pin_electrical));

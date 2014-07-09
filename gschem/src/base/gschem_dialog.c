@@ -121,6 +121,12 @@ geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char* group_name)
   }
 }
 
+bool is_a_gschem_dialog (void *dialog)
+{
+  GschemDialog *ptr = (GschemDialog*)dialog;
+  return ptr && (GSCHEM_TYPE_DIALOG == ptr->tail_marker);
+}
+
 /* Begin Call Back Selection Handler */
 
 /*! \brief Update the editing dialog when the page's selection changes.
@@ -491,7 +497,21 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                          NULL,
                          G_PARAM_READWRITE));
 }
+/*! \brief GType instance initialiser for a GschemDialog object
+ *
+ *  \par Function Description
+ *  GType instance initialiser for an Object, initializes a new empty
+ *  Object by setting the head and tail markers to the GTYPE value.
+ *
+ *  \param [in]  instance  The Object being initialising.
+ *  \param [in]  g_class   The class of the type the instance is created for.
+ */
+static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
+{
+  GschemDialog *dialog  = (GschemDialog*)instance;
 
+  dialog->tail_marker   = GSCHEM_TYPE_DIALOG;
+}
 /*! \brief Function to retrieve GschemDialog's Type identifier.
  *
  *  \par Function Description
@@ -508,14 +528,14 @@ unsigned int gschem_dialog_get_type ()
   if (!gschem_dialog_type) {
     static const GTypeInfo gschem_dialog_info = {
       sizeof(GschemDialogClass),
-      NULL, /* base_init */
-      NULL, /* base_finalize */
+      NULL,                        /* base_init */
+      NULL,                        /* base_finalize */
       (GClassInitFunc) gschem_dialog_class_init,
-      NULL, /* class_finalize */
-      NULL, /* class_data */
+      NULL,                        /* class_finalize */
+      NULL,                        /* class_data */
       sizeof(GschemDialog),
-      0,    /* n_preallocs */
-      NULL, /* instance_init */
+      0,                           /* n_preallocs */
+      gschem_dialog_instance_init  /* instance_init */
     };
 
     gschem_dialog_type = g_type_register_static (GTK_TYPE_DIALOG,

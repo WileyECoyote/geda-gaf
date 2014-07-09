@@ -623,6 +623,7 @@ void o_net_refresh_conn_cache(Object *o_current)
   GList          *stack = NULL;
   Object         *obj;
   void           *key;
+  char           *result;
 
   g_return_if_fail (o_current);
   g_return_if_fail (o_current->type == OBJ_NET);
@@ -640,10 +641,10 @@ void o_net_refresh_conn_cache(Object *o_current)
   g_hash_table_insert (visited, o_current, o_current);
 
   /* Check if a netname= is attached to the starting net segment */
-  if (NULL != o_attrib_search_object_attribs_by_name (o_current,
-                                                      "netname",
-                                                      0)) {
-    num_conns += 1;
+  result = o_attrib_search_object_attribs_by_name (o_current, "netname", 0);
+  if (result != NULL) {
+     GEDA_FREE(result);
+     num_conns += 1;
   }
 
   /* Keep track of connections to search at each net segment in a stack.
@@ -658,7 +659,7 @@ void o_net_refresh_conn_cache(Object *o_current)
   while (stack != NULL) {
     /* At start of the loop, take a new connection from the stack. */
     GList *conn_list = (GList*) stack->data;
-    CONN *conn;
+    CONN  *conn;
 
     if (conn_list == NULL) {
       /* No more connections to check at this level. Pop the stack. */
@@ -690,10 +691,11 @@ void o_net_refresh_conn_cache(Object *o_current)
       case OBJ_NET:
         if (NULL == g_hash_table_lookup (visited, obj)) {
           g_hash_table_insert (visited, obj, obj);
+
           /* Check if a netname= is attached to this net segment */
-          if (NULL != o_attrib_search_object_attribs_by_name (obj,
-                                                              "netname",
-                                                              0)) {
+          result = o_attrib_search_object_attribs_by_name (obj, "netname", 0);
+          if (result != NULL) {
+            GEDA_FREE(result);
             num_conns += 1;
           }
           /* Push new list of connections to check onto the stack */

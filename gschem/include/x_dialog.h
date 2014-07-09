@@ -48,6 +48,11 @@
 #include "x_print.h"
 #include "x_states.h"
 
+#define TRANSLATE_DIALOG_MAX_ENTRY 10
+#define FIND_DIALOG_MAX_ENTRY      20
+#define HIDE_DIALOG_MAX_ENTRY      20
+#define SHOW_TEXT_DIALOG_MAX_ENTRY 20
+
 typedef struct st_line_type_data line_type_data;
 typedef struct st_fill_type_data fill_type_data;
 typedef struct st_pin_type_data  pin_type_data;

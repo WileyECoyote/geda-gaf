@@ -1,6 +1,11 @@
+2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/x_gtksheet.c: Eliminate text variable in activate_sheet_cell,
+       simplify SetEntryText in show_sheet_entry;
+
 2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+     * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 2013-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

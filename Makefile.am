@@ -85,6 +85,6 @@ else
 	@echo 'The documentation cannot be built from the sources.'
 endif
 
-DISTCLEANFILES = stamp-git
-MAINTAINERCLEANFILES=Makefile.in aclocal.m4 config.h.in configure
+DISTCLEANFILES       = stamp-git
+MAINTAINERCLEANFILES = Makefile.in aclocal.m4 config.h.in configure
 

@@ -56,7 +56,24 @@ static int x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fd);
 static void x_dialog_edit_fill_type_ok(GtkWidget *w, fill_type_data *fd);
 
 /* string buffer used by dialogs: show_text, find_text and hide_text */
-char General_textstring[256] = "refdes=R";
+static char text_buffer[256] = "refdes=R";
+
+static void set_text_buffer(const char *string)
+{
+  int length;
+
+  if (string != NULL) {
+    memset(text_buffer, 0, sizeof(text_buffer)-1);
+    length = strlen(string);
+    memcpy(text_buffer, string, length);
+    text_buffer[length] = '\0';
+    //strncpy (text_buffer, string, sizeof(text_buffer)-1);
+    //text_buffer[sizeof(text_buffer)-1] = '\0';
+  }
+  else {
+    memset(text_buffer, 0, sizeof(text_buffer)-1);
+  }
+}
 
 /*! \defgroup Dialog-Utilities Common Dialog Utlities
  *  @{\par This Group contains utility functions used by various dialogs
@@ -2132,45 +2149,52 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
   int done=0, close=0;
   int start_find;
 
-  if (w_current->ftwindow == NULL) {
-    w_current->ftwindow = Dialog;
+  if (remember_page == NULL) {
+    remember_page = w_current->toplevel->page_current;
     start_find = TRUE;
   }
-  else
+  else {
     start_find = FALSE;
+  }
 
   switch (response) {
-  case GTK_RESPONSE_ACCEPT:
-    textentry = g_object_get_data(G_OBJECT(Dialog), IDS_FIND_TEXT);
-    string = GetEntryText( textentry );
-    checkdescend = g_object_get_data(G_OBJECT(Dialog), "checkdescend");
+    case GTK_RESPONSE_ACCEPT:
 
-    strncpy(General_textstring, string, sizeof(General_textstring)-1);
-    General_textstring[sizeof(General_textstring)-1] = '\0';
+      checkdescend = g_object_get_data(G_OBJECT(Dialog), "checkdescend");
 
-    if (remember_page != toplevel->page_current) {
-      s_page_goto(toplevel, remember_page);
-    }
-    done =
+      /* Get the stored pointer to the entry object */
+      textentry = g_object_get_data(G_OBJECT(Dialog), IDS_FIND_TEXT);
+
+      /* Retrieve the text string from the Entry widget */
+      string = GetEntryText( textentry );
+
+      /* Save the string in the shared buffer */
+      set_text_buffer(string);
+
+      if (remember_page != toplevel->page_current) {
+        s_page_goto(toplevel, remember_page);
+      }
+      done =
       o_edit_find_text (w_current,
                         s_page_get_objects (remember_page),
                         string,
                         gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON
-                                                    (checkdescend)),
+                        (checkdescend)),
                         !start_find);
-    if (done) {
-      o_invalidate_all (w_current);
-      close = 1;
-    }
-    start_find = 0;
-    break;
-  case GTK_RESPONSE_REJECT:
-  case GTK_RESPONSE_DELETE_EVENT:
-    close = 1;
-    break;
-  default:
-    printf("x_dialog_find_text_response(): strange signal %d\n", response);
+      if (done) {
+        o_invalidate_all (w_current);
+        close = TRUE;
+      }
+      start_find = FALSE;
+      break;
+    case GTK_RESPONSE_REJECT:
+    case GTK_RESPONSE_DELETE_EVENT:
+      close = TRUE;
+      break;
+    default:
+      printf("x_dialog_find_text_response(): strange signal %d\n", response);
   }
+
   if (close) {
     gtk_widget_destroy(Dialog);
     w_current->ftwindow = NULL;
@@ -2180,32 +2204,37 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 /*! \brief Create the text find dialog
  *  \par Function Description
  *  This function creates the text find dialog.
+ *
+ *  \note remember_page is also used as a flag to indicate the search
+ *  should start from the beginning, as opose to continue searching.
  */
 void x_dialog_find_text(GschemToplevel *w_current)
 {
-  static GtkWidget *ThisDialog;
-  GtkWidget *label = NULL;
-  GtkWidget *vbox;
-  GtkWidget *checkdescend;
-  GtkWidget *textentry;
-  Object    *object = NULL;
-  Page      *remember_page;
+  GtkWidget  *ThisDialog;
+  GtkWidget  *label = NULL;
+  GtkWidget  *vbox;
+  GtkWidget  *checkdescend;
+  GtkWidget  *textentry;
+  Object     *object = NULL;
+  Page       *remember_page;
+  const char *string;
 
-  remember_page = w_current->toplevel->page_current;
+  remember_page = NULL;
+
   if ((object = o_select_return_first_object(w_current)) != NULL) {
     if (object->type == OBJ_TEXT) {
-      strncpy (General_textstring,
-               o_text_get_string (object),
-               sizeof(General_textstring)-1);
-      General_textstring[sizeof(General_textstring)-1] = '\0';
+      string = o_text_get_string (object);
+      set_text_buffer(string);
     }
   }
 
-  if (GTK_IS_DIALOG(ThisDialog)) {
+  if (w_current->ftwindow) {
     /* dialog already created */
-    gtk_window_present(GTK_WINDOW(ThisDialog));
+    gtk_window_present(GTK_WINDOW(w_current->ftwindow));
+    ThisDialog = w_current->ftwindow;
   }
   else {
+
     ThisDialog = gschem_dialog_new_with_buttons(_("Find Text"),
                             GTK_WINDOW(w_current->main_window),
        /* nonmodal Editing Dialog */    GSCHEM_MODELESS_DIALOG,
@@ -2231,7 +2260,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
     label = geda_aligned_label_new(_("Text to find:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
 
-    textentry = gtk_entry_new_with_max_length(20);
+    textentry = gtk_entry_new_with_max_length(FIND_DIALOG_MAX_ENTRY);
     gtk_editable_select_region(GTK_EDITABLE(textentry), 0, -1);
     gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
@@ -2252,8 +2281,8 @@ void x_dialog_find_text(GschemToplevel *w_current)
 
   /* always select the text string in the entry */
   textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_FIND_TEXT);
-  SetEntryText   ( textentry, General_textstring );
-  EntrySelectAll (textentry );
+  SetEntryText   (textentry, text_buffer);
+  EntrySelectAll (textentry);
 }
 
 /*********** End of find text dialog box *******/
@@ -2279,11 +2308,15 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
+
+    /* Get the stored pointer to the entry object */
     textentry = g_object_get_data(G_OBJECT(Dialog), IDS_HIDE_TEXT);
 
+    /* Retrieve the text string from the Entry widget */
     string = GetEntryText( textentry );
-    strncpy(General_textstring, string, sizeof(General_textstring)-1);
-    General_textstring[sizeof(General_textstring)-1] = '\0';
+
+    /* Save the string in the shared buffer */
+    set_text_buffer(string);
 
     o_edit_hide_specific_text (w_current,
                                s_page_get_objects (w_current->toplevel->page_current),
@@ -2337,7 +2370,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
     label = geda_aligned_label_new(_("Hide text starting with:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
 
-    textentry = gtk_entry_new_with_max_length(20);
+    textentry = gtk_entry_new_with_max_length(HIDE_DIALOG_MAX_ENTRY);
     gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
@@ -2358,7 +2391,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
   /* always select the text in the search entry */
   textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_HIDE_TEXT);
-  SetEntryText   ( textentry, General_textstring );
+  SetEntryText   ( textentry, text_buffer );
   EntrySelectAll (textentry );
 }
 
@@ -2385,11 +2418,16 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
 
   switch (response) {
   case GTK_RESPONSE_ACCEPT:
+
+    /* Get the stored pointer to the entry object */
     textentry = g_object_get_data(G_OBJECT(Dialog),IDS_SHOW_TEXT);
+
+    /* Retrieve the text string from the Entry widget */
     string    = GetEntryText( textentry );
 
-    strncpy(General_textstring, string, sizeof(General_textstring)-1);
-    General_textstring[sizeof(General_textstring)-1] = '\0';
+    /* Save the string in the shared buffer */
+    set_text_buffer(string);
+
     o_edit_show_specific_text (w_current,
                                s_page_get_objects (w_current->toplevel->page_current),
                                string);
@@ -2442,7 +2480,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
     label = geda_aligned_label_new(_("Show text starting with:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
 
-    textentry = gtk_entry_new_with_max_length(20);
+    textentry = gtk_entry_new_with_max_length(SHOW_TEXT_DIALOG_MAX_ENTRY);
     gtk_box_pack_start(GTK_BOX(vbox), textentry, FALSE, FALSE, 0);
     gtk_entry_set_activates_default(GTK_ENTRY(textentry), TRUE);
     gtk_widget_grab_focus(textentry);
@@ -2463,7 +2501,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
 
   /* always select the text in the entry */
   textentry = g_object_get_data (G_OBJECT (ThisDialog), IDS_SHOW_TEXT);
-  SetEntryText   ( textentry, General_textstring );
+  SetEntryText   ( textentry, text_buffer );
   EntrySelectAll ( textentry );
 }
 
@@ -2723,7 +2761,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     label = geda_aligned_label_new(_("Offset to translate?\n(0 for origin)"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
 
-    textentry = gtk_entry_new_with_max_length (10);
+    textentry = gtk_entry_new_with_max_length (TRANSLATE_DIALOG_MAX_ENTRY);
     SetEntryText( textentry, "0" );
     EntrySelectAll(textentry);
 

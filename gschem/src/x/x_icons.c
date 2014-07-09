@@ -23,7 +23,7 @@
  *
  * Date: Jan, 31, 2013
  * Contributing Author: Wiley Edward Hill
- * 
+ *
  */
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
@@ -53,7 +53,8 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-line-type", "geda-lock",         "geda-net",          "geda-magnet",
   "geda-mesh",      "geda-mirror",       "geda-move",         "geda-multi",
   "geda-new",       "geda-open-recent",  "geda-path",         "geda-pin",
-  "geda-pin-type",  "geda-slot",         "geda-snap-off",     "geda-snap-on",
+  "geda-pin-type",  "geda-show-nets",    "geda-slot",
+  "geda-snap-off",  "geda-snap-on",
   "geda-rotate",    "geda-unlock",       "geda-unselect-all", "geda-zoom-box",
   "geda-zoom-pan",  "geda-zoom-selection",
   NULL
@@ -85,7 +86,7 @@ const char* IDS_THEME_ICONS[] = {
  *  \par Function Description
  *  Sets the default window icon by name, to be found in the current icon
  *  theme path.
- * 
+ *
  *  \note The default icon name is \#defined in sdefines.h as
  *        GSCHEM_THEME_ICON_NAME.
  */

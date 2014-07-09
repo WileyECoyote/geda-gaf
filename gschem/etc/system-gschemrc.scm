@@ -1682,7 +1682,7 @@
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")
         (,(N_ "Show/Hide Inv Text")  view-show-hidden        "gtk-find-and-replace" ,(N_ "Toggle hidden text attributes"))
-        (,(N_ "Show/Hide Net Names") view-show-nets          "gtk-ok")
+        (,(N_ "Show/Hide Net Names") view-show-nets          "geda-show-nets" ,      (N_ "Toggle hidden net name attributes"))
 
         ("SEPARATOR"                #f                       #f)
         (,(N_ "_Dark color scheme")  view-dark-colors        #f                   ,(N_ "Set the color map to the Dark set"))
@@ -1814,7 +1814,7 @@
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 
 ;; Add Paul Tan's tools utility menu
-(load-from-path "gschem-tools-menu.scm")
+;;(load-from-path "gschem-tools-menu.scm")
 
 (add-menu (N_ "_Options") options-menu-items)
 (add-menu (N_ "_Help") help-menu-items)

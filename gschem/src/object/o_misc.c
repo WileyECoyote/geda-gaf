@@ -294,6 +294,24 @@ void o_mirror_world_update(GschemToplevel *w_current, int centerx, int centery, 
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
+/* This is a utility function to report the number of objects whose
+ * visibility was changed, this function is called by:
+ *
+ *      o_edit_show_inherited_attrib,
+ *      o_edit_show_hidden_attrib,
+ *      o_edit_show_netnames
+ */
+static void log_visibility (int set_hidden, int set_visible)
+{
+  if (set_hidden > 0) {
+    q_log_message(_("%d attributes were hidden\n"), set_hidden);
+  }
+
+  if (set_visible > 0) {
+    q_log_message(_("%d hidden attributes were revealed\n"), set_visible);
+  }
+}
+
 /*! \brief Reveal Complexes Inheritied Attributes attached to
  *  \par Function Description
  *   This function causes hidden text for inherited attributes to be redrawn,
@@ -308,8 +326,10 @@ static GList*
 o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
 {
   Object *o_current;
-  GList  *iter   = (GList*)o_list;
-  GList  *redraw = NULL;
+  GList  *iter        = (GList*)o_list;
+  GList  *redraw      = NULL;
+  int     set_hidden  = 0;
+  int     set_visible = 0;
 
   while (iter != NULL) {
 
@@ -325,14 +345,16 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
       for(iter2 = o_current->complex->prim_objs; iter2; NEXT(iter2)) {
         Object *sub_obj = iter2->data;
         if (sub_obj->type == OBJ_TEXT) {
-          if (sub_obj->visibility == 0) {
+          if (sub_obj->visibility == INVISIBLE) {
             sub_obj->visibility = 2;
             redraw = g_list_prepend(redraw, sub_obj);
+            ++set_visible;
           }
           else if (sub_obj->visibility == 2) {
-            sub_obj->visibility = 0;
+            sub_obj->visibility = INVISIBLE;
             /* Since now invisible, renderer won't return a bounds, so... */
             o_invalidate_force(w_current, sub_obj);
+            ++set_hidden;
           }
         }
       }
@@ -341,6 +363,7 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
     NEXT(iter);
   }
 
+  log_visibility (set_hidden, set_visible);
   return redraw;
 }
 
@@ -349,17 +372,19 @@ o_edit_show_inherited_attrib (GschemToplevel *w_current,  const GList *o_list)
  *   This function causes hidden text for invisible attributes to be redrawn,
  *   This is accomplished by setting the object visibility to 2, which results
  *   in o_get_is_visible returning true to the renderer, but is not saved when
- *   the schematic is saved. The function returns a list object that were set
- *   to be displayed, which does not include objects set to invisible, since
+ *   the schematic is saved. The function returns a list of objects that were
+ *   set to be displayed, which does not include objects set to invisible, since
  *   these would not be redrawn. Instead, when text.object.visibility is set to
- *   0, the area is redrawn immediately by calling o_invalidate_force.
+ *   INVISIBLE, the area is redrawn immediately by calling o_invalidate_force.
  */
 static GList*
 o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
 {
   Object *o_current;
-  GList  *iter   = (GList*)o_list;
-  GList  *redraw = NULL;
+  GList  *iter        = (GList*)o_list;
+  GList  *redraw      = NULL;
+  int     set_hidden  = 0;
+  int     set_visible = 0;
 
   while (iter != NULL) {
 
@@ -381,14 +406,16 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
             if (p_attrib->type == OBJ_TEXT) {
               if(strncmp(p_attrib->text->string, "pinseq", 6) == 0)
                 continue;
-              if (p_attrib->visibility == 0) {
+              if (p_attrib->visibility == INVISIBLE) {
                 p_attrib->visibility = 2;
                 redraw = g_list_prepend(redraw, p_attrib);
+                ++set_visible;
               }
               else if (p_attrib->visibility == 2) {
-                p_attrib->visibility = 0;
+                p_attrib->visibility = INVISIBLE;
                 /* Invisible set, renderer won't return a bounds, so... */
                 o_invalidate_force(w_current, p_attrib);
+                ++set_hidden;
               }
             }
           }
@@ -403,26 +430,32 @@ o_edit_show_hidden_attrib (GschemToplevel *w_current,  const GList *o_list)
         continue;
       }
 
-      if (o_current->visibility == 0) {
+      if (o_current->visibility == INVISIBLE) {
         o_current->visibility = 2;
         redraw = g_list_prepend(redraw, o_current);
+        ++set_visible;
       }
       else if (o_current->visibility == 2) {
-        o_current->visibility = 0;
+        o_current->visibility = INVISIBLE;
         /* Since now invisible, renderer won't return a bounds, so... */
         o_invalidate_force(w_current, o_current);
+        ++set_hidden;
       }
     }
     NEXT(iter);
   }
 
+  log_visibility (set_hidden, set_visible);
   return redraw;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Toggle Visibility of Hidden Attributes
  *  \par Function Description
+ *  The function causes the object visibility property of all
+ *  attribute text objects in the given list to be modified,
+ *  based on the current visibility and the inherited flag.
  *
+ *  \sa o_edit_show_hidden_attrib
  */
 void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inherited)
 {
@@ -453,12 +486,29 @@ void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
   }
 }
 
+/*! \brief Toggle Visibility of Hidden Netname Attribute
+ *  \par Function Description
+ *  The function modifies the object visibilty property of all
+ *  netname attribute text objects in the given list, searching
+ *  each complex for a netname attribute. If the visibility is
+ *  #INVISIBLE the value is set to 2 and vise-versa. If the text
+ *  is VISIBLE the attribute is not modified.
+ *
+ *  \sa o_edit_show_hidden_attrib
+ *
+ *  \param w_current  Pointer to GschemToplevel object
+ *  \param o_list     Pointer to a GList of object to check for
+ *                    netname attributes
+ *
+ */
 void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
 {
-  GList  *iter   = (GList*)o_list;
-  GList  *redraw = NULL;
-  Object *o_current;
+  GList  *iter        = (GList*)o_list;
+  GList  *redraw      = NULL;
   Object *a_current;
+  Object *o_current;
+  int     set_hidden  = 0;
+  int     set_visible = 0;
   char   *name;
   char   *value;
 
@@ -472,14 +522,16 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
       if (o_current->attached_to && o_current->attached_to->selectable) {
         if (o_attrib_string_get_name_value(o_current->text->string, &name, &value)) {
           if( strcmp(name, "netname") == 0) {
-            if (o_current->visibility == 0) {
+            if (o_current->visibility == INVISIBLE) {
               o_current->visibility = 2;
               redraw = g_list_prepend(redraw, o_current);
+              ++set_visible;
             }
             else if (o_current->visibility == 2) {
-              o_current->visibility = 0;
+              o_current->visibility = INVISIBLE;
               /* Since now invisible, renderer won't return a bounds, so... */
               o_invalidate_force(w_current, o_current);
+              ++set_hidden;
             }
           }
           GEDA_FREE(name);
@@ -490,20 +542,23 @@ void o_edit_show_netnames (GschemToplevel *w_current, const GList *o_list)
     else if (o_current->type == OBJ_COMPLEX) {
       a_current = o_attrib_first_attrib_by_name (o_current, "netname");
       if ( a_current != NULL) {
-        if (a_current->visibility == 0) {
+        if (a_current->visibility == INVISIBLE) {
           a_current->visibility = 2;
           redraw = g_list_prepend(redraw, a_current);
+          ++set_visible;
         }
         else if (a_current->visibility == 2) {
-          a_current->visibility = 0;
+          a_current->visibility = INVISIBLE;
           /* Since now invisible, renderer won't return a bounds, so... */
           o_invalidate_force(w_current, a_current);
+          ++set_hidden;
         }
       }
     }
     NEXT(iter);
   }
 
+  log_visibility (set_hidden, set_visible);
   o_invalidate_glist(w_current, (GList*)redraw);
 }
 
@@ -520,7 +575,7 @@ int skiplast;
 int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
                       const char     *stext,       int descend, int skip)
 {
-  GedaToplevel *toplevel         = w_current->toplevel;
+  GedaToplevel *toplevel     = w_current->toplevel;
   Page     *parent           = NULL;
   char     *attrib           = NULL;
   char     *current_filename = NULL;
@@ -530,7 +585,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
   int       rv;
   int       text_screen_height;
 
-  const GList *iter;
+  const     GList *iter;
 
   Object *o_current;
 
@@ -619,6 +674,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
       return 1;
     }
   }
+
   return (iter == NULL);
 }
 

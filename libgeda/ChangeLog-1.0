@@ -1,14 +1,20 @@
-2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
+2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_net_basic.c: freed return value from  function
+        o_attrib_search_object_attribs_by_name in o_net_refresh_conn_cache,
+        twice.
+
+2014-07-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/geda/geda_config.c: In function eda_config_get_context_for_file
-        add check for gafrc if geda.conf is not cound before creating a new
+        add check for gafrc if geda.conf is not found before creating a new
         configuration context.
 
-2014-02-22 Wiley E. Hill <wileyhill@gmail.com>
+2014-06-30 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/object/o-complex_basic.c: remove "continue" from for loop in
         function o_complex_get_promotable, return g_list_reverse directly.
-        Fixed leak in o_complex_promote_attribs by adding 
+        Fixed leak in o_complex_promote_attribs by adding
 
 2014-04-03 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -42,7 +48,7 @@
         new objects are derived from line type objects, (was no easy feat).
 
         * libgeda/*: New functionality added a needed to expand capabilites of libgeda.
- 
+
 2013-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
         *: Major changes, to numerous to detail. Most of the changes involve

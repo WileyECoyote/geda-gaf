@@ -22,7 +22,7 @@
  *  \brief Functions to manipulate the TABLE structure
  *
  * This file holds functions involved in manipulating the TABLE structure,
- * which is subsidiary to SHEET_DATA.  TABLE is a 2 dimensional array 
+ * which is subsidiary to SHEET_DATA.  TABLE is a 2 dimensional array
  * of structs; each struct corresponds to the data about an element
  * in a single cell of the spreadsheet.
  * \todo TABLE should also store its dimensions in its own data
@@ -56,7 +56,7 @@
  * this function was YX but was changed to X,Y so memory could be allocated
  * and deallocated in terms of the number of attributes AND not the number
  * of components in the design.
- * 
+ *
  * (Parens used only for clarity.  It works without parens.)
  * \param rows Number of rows required in the new table
  * \param cols Number of columns required in the new table
@@ -68,14 +68,14 @@ TABLE **s_table_new( int rows, int cols)
   int x, y;
 
   /* Create a 2 dimensional array of structs */
-  
+
   new_table = (TABLE **) g_malloc(cols*sizeof(TABLE *));
 
   for (x = 0; x < cols; x++) {
     new_table[x] = (TABLE *) g_malloc(rows * sizeof(TABLE));
     /* Should checks be here to verify that malloc was successful*/
   }
-  
+
   /* Now pre-load the table with NULLs */
   for (x = 0; x < cols; x++) {
     for (y = 0; y < rows; y++) {
@@ -84,7 +84,7 @@ TABLE **s_table_new( int rows, int cols)
       (new_table[x][y]).col_name = NULL;
       (new_table[x][y]).row = y;
       (new_table[x][y]).col = x;
-      (new_table[x][y]).visibility = VISIBLE; 
+      (new_table[x][y]).visibility = VISIBLE;
       (new_table[x][y]).show_name_value = SHOW_VALUE;
     }
   }
@@ -100,7 +100,7 @@ TABLE **s_table_new( int rows, int cols)
  * allocated memory and initialized the new column record. If the coloumn
  * is inserted rather than appended, existing record are relocated to
  * make room for the insertion.
- * 
+ *
  * \param table Table to resize
  * \param rows Number of rows in the table
  * \param Xa Where to add the new column
@@ -111,7 +111,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
 {
   int x, y;
   TABLE **new_table;
-  
+
   void init_new_record(col) {
     for (y = 0; y < rows; y++) {
       (table[col][y]).attrib_value = NULL;
@@ -130,7 +130,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   new_table = (TABLE **) realloc(table, Xt * sizeof(TABLE *) );
   /* TODO: Fix this:*/
   if (new_table == NULL) return NULL;  /* die if failed to realloc new memory */
-    
+
   new_table[Xt] = (TABLE *) g_malloc(rows * sizeof(TABLE));;
 
   if (Xa == Xt) { /* if appending a column */
@@ -140,7 +140,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
     for (x = Xt; x > Xa; x--) {
       for (y = 0; y < rows; y++) {
         table[x][y].row = table[x-1][y].row;
-        table[x][y].col = table[x-1][y].col;       
+        table[x][y].col = table[x-1][y].col;
         table[x][y].row_name = table[x-1][y].row_name;
         table[x][y].col_name = table[x-1][y].col_name;
         table[x][y].attrib_value = table[x-1][y].attrib_value;
@@ -193,10 +193,10 @@ void s_table_destroy(TABLE **table, int row_count, int col_count)
 /*------------------------------------------------------------------*/
 /*! \brief Get a string index number
  *  \par Function Description
- * This function returns the index number when given a STRING_LIST and a 
+ * This function returns the index number when given a STRING_LIST and a
  * string to match.  It finds the index number by iterating through the
  * master  list.
- * 
+ *
  * \param local_list
  * \param local_string
  * \returns the index of the string
@@ -235,8 +235,8 @@ int s_table_get_index(STRING_LIST *local_list, char *local_string) {
  * \param num_attribs
  * \returns STRING_LIST of name=value pairs
  */
-STRING_LIST *s_table_create_attrib_pair(char *row_name, 
-                                        TABLE **table, 
+STRING_LIST *s_table_create_attrib_pair(char *row_name,
+                                        TABLE **table,
                                         STRING_LIST *row_list,
                                         int num_attribs)
 {
@@ -246,7 +246,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
   int count = 0;
   int is_inherited;
   int is_promoted;
-  
+
   attrib_pair_list = s_string_list_new();
 
   row = s_table_get_index(row_list, row_name);
@@ -282,7 +282,7 @@ STRING_LIST *s_table_create_attrib_pair(char *row_name,
 * \param obj_list pointer to GList containing objects on this page
 */
 void s_table_add_items_to_comp_table (const GList *obj_list) {
-  
+
   char *temp_uref;
   char *attrib_text;
   char *attrib_name;
@@ -292,12 +292,12 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
   int old_visibility, old_show_name_value;
   int counter;
   bool is_attached;
-  
+
   const GList *o_iter;
   GList  *a_iter;
   Object *a_current;
   STRING_LIST *AttachedAttributes;
-  
+
   /* ----- Iterate through all objects found on page ----- */
   for (o_iter = obj_list; o_iter != NULL; o_iter = g_list_next (o_iter)) {
     Object *o_current = o_iter->data;
@@ -308,7 +308,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
 
       /* ---- Don't process part if it lacks a refdes ----- */
       temp_uref = s_attrib_get_refdes(o_current);
-    
+
       /* Don't add graphical objects or pin label designators*/
       if ((temp_uref) &&
           (strcmp (temp_uref, "none")) &&
@@ -334,7 +334,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
             if ((strcmp(attrib_name, "refdes") != 0) &&
                 (strcmp(attrib_name, "net") != 0) &&
                 (strcmp(attrib_name, "slot") != 0) ) {
-               
+
               /* Get row and col where to put this attrib */
               row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
               col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
@@ -379,7 +379,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
               attrib_text = g_strdup(a_current->text->string);
               attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
               attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
-              
+
               if(!s_string_list_in_list(AttachedAttributes, attrib_name)) {
                 old_visibility = o_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
                 old_show_name_value = a_current->show_name_value;
@@ -389,7 +389,7 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                 if ((strcmp(attrib_name, "refdes") != 0) &&
                     (strcmp(attrib_name, "net") != 0) &&
                     (strcmp(attrib_name, "slot") != 0) ) {
-               
+
                     /* Get row and col where to put this attrib */
                   row = s_table_get_index(sheet_head->master_comp_list_head, temp_uref);
                   col = s_table_get_index(sheet_head->master_comp_attrib_list_head, attrib_name);
@@ -428,11 +428,11 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
       } /* if (temp_uref) */
     } /* if (o_current->type == OBJ_COMPLEX) */
   }
- 
+
   verbose_done();
- 
+
 }
- 
+
 #if 0
 /*------------------------------------------------------------------*/
 /*! \brief Add nets to net table
@@ -456,11 +456,11 @@ void s_table_add_items_to_net_table(Object *start_obj) {
   char *attrib_name;
   char *attrib_value;
   ATTRIB *a_current;
- 
+
   /* -----  Iterate through all objects found on page  ----- */
   o_current = start_obj;
   while (o_current != NULL) {
- 
+
     /* -----  Now process objects found on page  ----- */
     if (o_current->type == OBJ_NET) {
 #if DEBUG
@@ -469,7 +469,7 @@ void s_table_add_items_to_net_table(Object *start_obj) {
       printf("In s_table_add_items_to_net_table, Found net on page\n");
 #endif
       verbose_print(" N");
- 
+
       /* Having found a net, we stick it into the table. */
       a_current = o_current->attribs;
       while (a_current != NULL) {
@@ -481,7 +481,7 @@ void s_table_add_items_to_net_table(Object *start_obj) {
           attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
           if (strcmp(attrib_name, "netname") != 0) {
             /* Don't include "netname" */
-             
+
             /* Get row and col where to put this attrib */
             row = s_table_get_index(sheet_head->master_net_list_head, temp_netname);
             col = s_table_get_index(sheet_head->master_net_attrib_list_head, attrib_name);
@@ -504,24 +504,24 @@ void s_table_add_items_to_net_table(Object *start_obj) {
           GEDA_FREE(attrib_value);
         }
         a_current = a_current->next;
- 
+
       }  /* while (a_current != NULL) */
       GEDA_FREE(temp_netname);
- 
+
     }    /*--- if (o_current->type == OBJ_NET)   ---*/
-       
- 
+
+
     o_current = o_current->next;  /* iterate to next object on page */
   }  /* while o_current != NULL */
- 
+
   verbose_done();
- 
+
 #if DEBUG
   fflush(stderr);
   fflush(stdout);
   printf("In s_table_add_items_to_net_table -- we are about to return\n");
 #endif
- 
+
 }
 #endif
 
@@ -531,7 +531,7 @@ void s_table_add_items_to_net_table(Object *start_obj) {
  *  \par Function Description
  * This function iterates over adds all items found on this page
  * looking for pins.  WHen it finds a pin, it gathers all
- * pin attribs and sticks them into the pin table. 
+ * pin attribs and sticks them into the pin table.
  * \param obj_list List of objects on page
  */
 void s_table_add_tems_to_pin_table (const GList *obj_list) {
@@ -596,8 +596,8 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 		attrib_text = g_strdup(pin_attrib->text->string);
 		attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
 		attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
- 
-		if ( (strcmp(attrib_name, "pinnumber") != 0) 
+
+		if ( (strcmp(attrib_name, "pinnumber") != 0)
 		     && (attrib_value != 0) ) {
 		  /* Don't include "pinnumber" because it is already in other master list.
 		   * Also must ensure that value is non-null; certain symbols are not well formed.
@@ -630,7 +630,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 		GEDA_FREE(attrib_value);
 	      }
 	      a_iter = g_list_next (a_iter);
-           
+
 	    }  /* while (pin_attrib != NULL) */
 	    GEDA_FREE(pinnumber);
 	    GEDA_FREE(row_label);
@@ -643,7 +643,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
     }
 
   }
- 
+
   verbose_done();
 }
 
@@ -651,7 +651,7 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
  *  \par Function Description
  * This function deletes an attribute record in the component and releases
  * the associated memory.
- * 
+ *
  * \param table Component Table containing record to remove
  * \param X     The index of the attribute column to be removed
  */
@@ -662,7 +662,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
   bool result = FALSE;
   int Y;
   int Xi;
-  
+
   void free_column(X) {
     for (Y = 0; Y < sheet_head->comp_count; Y++) {
       free_if (row_name)
@@ -670,11 +670,11 @@ bool s_table_remove_attribute(TABLE **table, int X) {
       free_if (attrib_value)
     }
   }
-  
+
   if ( X > col_count ) return result;
 
   free_column(X);
-  
+
   if ( X == col_count ) {     /* if the last record */
     GEDA_FREE( table[X - 1] );
   }
@@ -682,7 +682,7 @@ bool s_table_remove_attribute(TABLE **table, int X) {
     for (Xi = X; Xi < col_count - 1; Xi++) {
       for (Y = 0; Y < sheet_head->comp_count; Y++) {
         table[Xi][Y].row = table[Xi + 1][Y].row;
-        table[Xi][Y].col = table[Xi + 1][Y].col;       
+        table[Xi][Y].col = table[Xi + 1][Y].col;
         table[Xi][Y].row_name = table[Xi + 1][Y].row_name;
         table[Xi][Y].col_name = table[Xi + 1][Y].col_name;
         table[Xi][Y].attrib_value = table[Xi + 1][Y].attrib_value;
@@ -714,7 +714,7 @@ void s_table_gtksheet_to_all_tables() {
   STRING_LIST *master_col_list;
   TABLE **local_table;
   GtkSheet *local_gtk_sheet;
-  
+
   /* First handle component sheet */
   num_rows = sheet_head->comp_count;
   num_cols = sheet_head->comp_attrib_count;
@@ -729,10 +729,10 @@ void s_table_gtksheet_to_all_tables() {
   printf("In s_table_gtksheet_to_all_tables, now about to fill out new component table.\n");
 #endif
 
-  s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
+  s_table_gtksheet_to_table(local_gtk_sheet, master_row_list,
                             master_col_list, local_table,
                             num_rows, num_cols);
-  
+
 #ifdef UNIMPLEMENTED_FEATURES
   /* Next handle net sheet */
   num_rows = sheet_head->net_count;
@@ -742,7 +742,7 @@ void s_table_gtksheet_to_all_tables() {
   master_col_list = sheet_head->master_net_attrib_list_head;
   local_table = sheet_head->net_table;
 
-  s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
+  s_table_gtksheet_to_table(local_gtk_sheet, master_row_list,
 		       master_col_list, local_table,
 		       num_rows, num_cols);
 #endif
@@ -756,7 +756,7 @@ void s_table_gtksheet_to_all_tables() {
   /*  local_table = s_table_new(num_rows, num_cols);  */
   local_table = sheet_head->pin_table;
 
-  s_table_gtksheet_to_table(local_gtk_sheet, master_row_list, 
+  s_table_gtksheet_to_table(local_gtk_sheet, master_row_list,
 		       master_col_list, local_table,
 		       num_rows, num_cols);
   return;
@@ -779,10 +779,10 @@ void s_table_gtksheet_to_all_tables() {
  * \param num_cols Number of columns in table
  */
 void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
-                               STRING_LIST *master_row_list, 
+                               STRING_LIST *master_row_list,
 			       STRING_LIST *master_col_list,
                                TABLE **local_table,
-			       int num_rows, int num_cols) 
+			       int num_rows, int num_cols)
 {
   int row, col;
 
@@ -791,7 +791,7 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
 
   STRING_LIST *col_list_item;
   char *col_title;
-  
+
   char *attrib_value;
 
 #ifdef DEBUG
@@ -818,7 +818,7 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
 
 
 #if DEBUG
-fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n", 
+fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell row=%d, col=%d\n",
 	     attrib_value, row, col);
 #endif
 
@@ -875,11 +875,11 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 void s_table_load_new_page(PageDataSet *PageData) {
   GList *iter;
   Page *p_local;
-  
+
   PageData->component_table = s_table_new(PageData->comp_count, PageData->comp_attrib_count);
   PageData->net_table = s_table_new(PageData->net_count, PageData->net_attrib_count);
   PageData->pin_table = s_table_new(PageData->pin_count, PageData->pin_attrib_count);
-  
+
   /* iterate over all pages in design */
   for ( iter = geda_list_get_glist( pr_current->pages );
         iter != NULL;

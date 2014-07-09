@@ -487,7 +487,8 @@ void show_sheet_entry(GtkWidget *widget, gpointer data)
  sheet=x_gtksheet_get_current_sheet();
  sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
 
- if((text = GetEntryText(sheet_entry))){
+ text = GetEntryText(sheet_entry);
+ if (text != NULL){
    SetEntryText(sheet_entry, text);
  }
 }
@@ -510,22 +511,26 @@ void activate_sheet_entry(GtkWidget *widget, gpointer data)
   gtk_sheet_set_cell(sheet, row, col, justification, GetEntryText(sheet_entry));
 
 }
+
 /*! \brief Call back for "change" signal from embeded Entry widget */
 void show_entry(GtkWidget *widget, gpointer data)
 {
- const char *text;
- GtkSheet *sheet;
- GtkWidget * sheet_entry;
+  const char *text;
+  GtkSheet   *sheet;
+  GtkWidget  *sheet_entry;
 
- if(!GTK_WIDGET_HAS_FOCUS(widget)) return;
+  if (GTK_WIDGET_HAS_FOCUS(widget)) {
 
- sheet=x_gtksheet_get_current_sheet();
- sheet_entry = gtk_sheet_get_entry(sheet);
+    sheet       = x_gtksheet_get_current_sheet();
+    sheet_entry = gtk_sheet_get_entry(sheet);
+    text        = GetEntryText (sheet_entry);
 
- if((text=GetEntryText (sheet_entry)))
-   SetEntryText(entry, text);
-
+    if (text != NULL) {
+      SetEntryText(entry, text);
+    }
+  }
 }
+
 /*! \brief Call back for "activate" signal from sheet cell array widget */
 int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
 {
@@ -533,7 +538,6 @@ int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
   GtkSheet   *sheet;
   GtkEntry   *sheet_entry;
   char        cell[100];
-  const char *text;
 
   sheet=GTK_SHEET(widget);
   sheet_entry = GTK_ENTRY(gtk_sheet_get_entry(sheet));
@@ -548,10 +552,7 @@ int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
   gtk_entry_set_max_length(GTK_ENTRY(entry),
                            GTK_ENTRY(sheet_entry)->text_max_length);
 
-  if ( ( text = GetEntryText(gtk_sheet_get_entry(sheet))))
-    SetEntryText(entry, text);
-  else
-    SetEntryText(entry, "");
+  SetEntryText(entry, GetEntryText(gtk_sheet_get_entry(sheet)));
 
   gtk_sheet_get_attributes(sheet,sheet->active_cell.row,
                            sheet->active_cell.col, &attributes);

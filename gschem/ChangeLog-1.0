@@ -1,3 +1,20 @@
+2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/base/gschem_dialog.c: Added tail_marker to check for instance,
+          function gschem_dialog_instance_init, and is_a_gschem_dialog, which
+          is wrapped by GSCHEM_IS_DIALOG macro.
+
+        * src/x/x_dialog.c: Changed arguments to gtk_entry_new_with_max_length
+          to defined constants defined in x_dialog.h. Changed x_dialog_find_text
+          to use remember_page instead of w_current->ftwindow as new (start) flag.
+
+        * src/x/x_edit_pin.c: Added brackets for conditionals is function
+          x_dialog_edit_pin_type_set_values
+
+2014-07-07 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_misc.c: Implement show net names (toggle).
+
 2014-03-14 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/o_undo: Added call to o_add_change_notify after new page created
@@ -23,7 +40,7 @@
 
         * src/i_pan_world.c: Rename to v_pan.c and relocated to new view subdirectory
 
-        * src/a_zoom.c: Rename to v_zoom.c and relocated to new view subdirectory
+Rename to v_zoom.c and relocated to new view subdirectory
 
         * src/a_zoom.c: parsecmd.c renamed  src/gschem/gschem_parsecmd.c and renamed
           function parse_commandline to gschem_parse_commandline for consistency with
@@ -53,7 +70,7 @@
           annoying) using v_log_message and q_log_message.
 
         * etc/gschem-gtkrc: Commented out the setting of the font (again)
- 
+
         * src/gschem.c: Relocated call to function i_vars_libgeda_freenames to
           libgeda.c function libgeda_release();
 
@@ -225,7 +242,7 @@
           dragging TO and dropping on the coordinate world entry widget,
           not the Drawing Area. The DrawingArea has it's own algorithms
           that do not induce new states, but utilize existing ones. All
-          string inputs are processed by algorithms in the DND module. 
+          string inputs are processed by algorithms in the DND module.
 
         * src/x_window.c: Oops, did not finish resolving the visibility
           got side tracked, is now finished, I hope. Cleanup on aisle 5,
