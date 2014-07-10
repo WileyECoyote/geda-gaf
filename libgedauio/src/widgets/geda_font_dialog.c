@@ -286,11 +286,13 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
 static void
 geda_font_dialog_ref_family (GedaFontDialog *dialog, PangoFontFamily *family)
 {
-  if (family)
+  if (family) {
     family = g_object_ref (family);
+  }
 
-  if ( G_IS_OBJECT(dialog->family))
+  if (G_IS_OBJECT(dialog->family)) {
     g_object_unref (dialog->family);
+  }
 
   dialog->family = family;
 }
@@ -301,8 +303,9 @@ geda_font_dialog_ref_face (GedaFontDialog *dialog, PangoFontFace *face)
   if (face)
     face = g_object_ref (face);
 
-  if ( G_IS_OBJECT(dialog->face) )
+  if (G_IS_OBJECT(dialog->face)) {
     g_object_unref (dialog->face);
+  }
 
   dialog->face = face;
 }
@@ -868,8 +871,9 @@ callback_select_family (GtkTreeSelection *selection, gpointer data)
     gtk_tree_model_get (model, &iter, FAMILY_COLUMN, &family, -1);
     if ( family != dialog->family )
     {
-      if (dialog->family)
+      if (dialog->family) {
         g_object_unref (dialog->family);
+      }
 
       dialog->family = g_object_ref (family);
       g_object_unref (family);

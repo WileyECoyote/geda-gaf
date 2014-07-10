@@ -340,7 +340,7 @@ void o_picture_set_pixbuf(GschemToplevel *w_current,
   }
 
   if (w_current->current_pixbuf != NULL) {
-    g_object_unref(w_current->current_pixbuf);
+    GEDA_UNREF(w_current->current_pixbuf);
     w_current->current_pixbuf=NULL;
   }
 

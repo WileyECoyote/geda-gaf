@@ -83,7 +83,7 @@ void s_path_free(Path * path)
   g_return_if_fail (GEDA_IS_PATH(path));
 
   GEDA_FREE (path->sections);
-  g_object_unref (path);
+  GEDA_UNREF (path);
 }
 
 

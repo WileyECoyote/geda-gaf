@@ -1140,7 +1140,7 @@ static void o_grips_end_picture(GschemToplevel *w_current, Object *o_current,
 
   o_picture_modify(o_current, w_current->second_wx, w_current->second_wy, whichone);
 
-  g_object_unref (w_current->current_pixbuf);
+  GEDA_UNREF (w_current->current_pixbuf);
   w_current->current_pixbuf = NULL;
   GEDA_FREE (w_current->pixbuf_filename);
   w_current->pixbuf_filename = NULL;

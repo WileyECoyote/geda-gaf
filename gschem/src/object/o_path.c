@@ -516,7 +516,7 @@ o_path_end(GschemToplevel *w_current, int w_x, int w_y)
     Object *new_obj = o_path_copy(GEDA_OBJECT(path));
 
     /* Release tmp path and and clean up path drawing state */
-    g_object_unref(path);
+    GEDA_UNREF (path);
     w_current->temp_path = NULL;
     w_current->first_wx  = -1;
     w_current->first_wy  = -1;
@@ -590,7 +590,7 @@ o_path_draw_rubber (GschemToplevel *w_current)
   eda_renderer_draw (renderer, object);
 
   /* Get rid of temp object */
-  g_object_unref(object);
+  GEDA_UNREF (object);
 
   /* Throw away the added sections again */
   w_current->temp_path->num_sections -= added_sections;
@@ -665,6 +665,6 @@ o_path_draw_rubber_grips (GschemToplevel *w_current)
   eda_renderer_draw (w_current->renderer, object);
 
   /* Get rid of temp object */
-  g_object_unref(object);
+  GEDA_UNREF(object);
 }
 

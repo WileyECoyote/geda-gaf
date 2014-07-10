@@ -1430,7 +1430,7 @@ load_symbols: /* It Works! */
                                           lib_model_filter_visible_func,
                                           compselect,
                                           NULL);
-  g_object_unref (store);
+  GEDA_UNREF (store);
 
   return model;
 }
@@ -1483,7 +1483,7 @@ compselect_refresh_tree_views (Compselect *compselect)
 
     GtkTreeSelection *selection;
 
-    g_object_unref (gtk_tree_view_get_model ( tree_view ));
+    GEDA_UNREF (gtk_tree_view_get_model ( tree_view ));
 
     model = create_lib_tree_model (compselect, data_set);
 
@@ -1515,7 +1515,7 @@ compselect_refresh_tree_views (Compselect *compselect)
   set_tree_view_model(compselect->simtreeview, SIM_TAB);
 
   /* Refresh the "In Use" view */
-  g_object_unref (gtk_tree_view_get_model (compselect->inusetreeview));
+  GEDA_UNREF (gtk_tree_view_get_model (compselect->inusetreeview));
   model = create_inuse_tree_model (compselect);
 
   /* Here we can update the model without blocking signals
@@ -1751,7 +1751,7 @@ compselect_refresh_inuse_view (GtkWidget *widget, gpointer user_data)
   GtkTreeModel  *model;
 
   tree_view = compselect->inusetreeview;
-  g_object_unref (gtk_tree_view_get_model (tree_view));
+  GEDA_UNREF (gtk_tree_view_get_model (tree_view));
   model = create_inuse_tree_model (compselect);
   gtk_tree_view_set_model (compselect->inusetreeview, model);
 

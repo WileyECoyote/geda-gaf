@@ -307,11 +307,11 @@ static void gschem_toplevel_finalize( GObject *object )
   }
 
   if (w_current->renderer != NULL) {
-    g_object_unref (w_current->renderer);
+    GEDA_UNREF (w_current->renderer);
     w_current->renderer = NULL;
   }
   if (w_current->pl != NULL) {
-    g_object_unref (w_current->pl);
+    GEDA_UNREF (w_current->pl);
     w_current->pl = NULL;
   }
   if (w_current->cr != NULL) {
@@ -385,7 +385,7 @@ void gschem_toplevel_free(GschemToplevel *w_current)
 {
   if ( GSCHEM_IS_TOPLEVEL(w_current)) {
     s_toplevel_release (w_current->toplevel);
-    g_object_unref (w_current);
+    GEDA_UNREF (w_current);
   }
   else
     BUG_MSG("w_current no bueno")

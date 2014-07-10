@@ -230,7 +230,7 @@ static void geda_toplevel_finalize(GObject *object)
   s_page_delete_list (toplevel);
 
   /* Delete the page list */
-  g_object_unref(toplevel->pages);
+  GEDA_UNREF (toplevel->pages);
 
   if (toplevel->always_promote_attributes != NULL) {
     g_list_foreach(toplevel->always_promote_attributes, (GFunc) g_free, NULL);

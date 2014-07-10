@@ -114,7 +114,7 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
       relation     = atk_relation_new (obj_array, 1, ATK_RELATION_LABELLED_BY);
       atk_relation_set_add (relation_set, relation);
     }
-    g_object_unref (relation_set);
+    GEDA_UNREF (relation_set);
 
     relation_set = atk_object_ref_relation_set (atk_label);
     relation     = atk_relation_set_get_relation_by_type (relation_set,
@@ -127,7 +127,7 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
       relation = atk_relation_new (obj_array, 1, ATK_RELATION_LABEL_FOR);
       atk_relation_set_add (relation_set, relation);
     }
-    g_object_unref (relation_set);
+    GEDA_UNREF (relation_set);
   }
   else
     atk_obj = NULL;
@@ -265,7 +265,7 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
 
   if (layout != NULL) {
     pango_layout_get_pixel_size (layout, &tab_width, NULL);
-    g_object_unref (G_OBJECT (layout));
+    GEDA_UNREF (G_OBJECT (layout));
   } else
   tab_width = -1;
 
@@ -353,7 +353,7 @@ void about_dialog (GschemToplevel *w_current)
 
   GEDA_FREE (version_string);
   GEDA_FREE (comments);
-  if (logo) g_object_unref (logo);
+  if (logo) GEDA_UNREF (logo);
 
 }
 
@@ -3414,7 +3414,7 @@ static void close_confirmation_dialog_finalize (GObject *object)
 
   if (GTK_IS_LIST_STORE(dialog->store_unsaved_pages)) {
     gtk_list_store_clear (dialog->store_unsaved_pages);
-    g_object_unref(dialog->store_unsaved_pages);
+    GEDA_UNREF(dialog->store_unsaved_pages);
   }
 
   G_OBJECT_CLASS (close_confirmation_dialog_parent_class)->finalize (object);

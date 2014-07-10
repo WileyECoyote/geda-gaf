@@ -294,10 +294,8 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
 
   GEDA_FREE(real_filename);
 
-  if (G_IS_OBJECT(page->selection_list)) {
-     /* Free the selection object */
-     g_object_unref( page->selection_list );
-  }
+  /* Free the selection object */
+  GEDA_UNREF( page->selection_list );
 
   /* then delete objects of page */
   s_page_delete_objects (page);

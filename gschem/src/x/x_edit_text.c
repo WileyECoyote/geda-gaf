@@ -517,7 +517,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     gtk_cell_layout_pack_start(GTK_CELL_LAYOUT(combobox), cell, TRUE);
     gtk_cell_layout_set_attributes(GTK_CELL_LAYOUT(combobox),
                                    cell, "text", 0, NULL);
-    g_object_unref (align_menu_model);
+    GEDA_UNREF (align_menu_model);
     gtk_table_attach_defaults(GTK_TABLE(table), combobox, 1,2,0,1);
     gtk_widget_set_tooltip_text (GTK_WIDGET(combobox), text_align_tip);
 

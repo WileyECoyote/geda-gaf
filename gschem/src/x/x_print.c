@@ -946,7 +946,7 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
 
   cairo_restore (cr);
 
-  g_object_unref (renderer);
+  GEDA_UNREF (renderer);
   g_array_free (color_map, TRUE);
 }
 
@@ -986,7 +986,7 @@ draw_page__print_operation (GtkPrintOperation *print,
                      width, height, is_color, FALSE);
 
   /* Clean up */
-  g_object_unref (pc);
+  GEDA_UNREF (pc);
 }
 
 /*! \brief Export a print-style PDF file of the current page.
@@ -1046,7 +1046,7 @@ x_print_export_pdf_page (GschemToplevel *w_current, const char *filename)
     return FALSE;
   }
 
-  g_object_unref (setup);
+  GEDA_UNREF (setup);
   cairo_surface_destroy (surface);
   return TRUE;
 }
@@ -1159,11 +1159,11 @@ void x_print (GschemToplevel *w_current)
   else if (res == GTK_PRINT_OPERATION_RESULT_APPLY) {
     /* We're supposed to store the print settings, so do that */
     if (settings != NULL) {
-      g_object_unref (settings);
+      GEDA_UNREF (settings);
     }
     settings = g_object_ref (gtk_print_operation_get_print_settings (print));
   }
 
   /* Clean up */
-  g_object_unref (print);
+  GEDA_UNREF (print);
 }

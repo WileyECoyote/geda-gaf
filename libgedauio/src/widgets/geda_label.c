@@ -3261,8 +3261,9 @@ static void geda_label_finalize (GObject *object)
   g_free (label->label);
   g_free (label->text);
 
-  if (label->layout)
+  if (label->layout) {
     g_object_unref (label->layout);
+  }
 
   if (label->attrs)
     pango_attr_list_unref (label->attrs);
@@ -3285,11 +3286,10 @@ static void geda_label_finalize (GObject *object)
 static void
 geda_label_clear_layout (GedaLabel *label)
 {
-  if (label->layout)
-    {
-      g_object_unref (label->layout);
-      label->layout = NULL;
-    }
+  if (label->layout){
+    g_object_unref (label->layout);
+    label->layout = NULL;
+  }
 }
 
 static void

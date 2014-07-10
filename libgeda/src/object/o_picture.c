@@ -884,7 +884,7 @@ void o_picture_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   fprintf(fp, "grestore\n");
   fprintf(fp, "\n");
 
-  g_object_unref (image);
+  GEDA_UNREF (image);
   GEDA_FREE(rgb_data);
   GEDA_FREE(mask_data);
 }
@@ -997,7 +997,7 @@ double o_picture_shortest_distance (Object *object,
  * the picture could not be loaded.
  *
  * The returned value should have its reference count decremented with
- * g_object_unref() when no longer needed.
+ * GEDA_UNREF() when no longer needed.
  *
  * \param object    The picture #Object to inspect.
  * \return A GdkPixbuf for the picture.
@@ -1066,11 +1066,11 @@ o_picture_set_from_buffer (Object *object,
    * changes to the object. */
   stream = G_INPUT_STREAM (g_memory_input_stream_new_from_data (data, len, NULL));
   pixbuf = gdk_pixbuf_new_from_stream (stream, NULL, error);
-  g_object_unref (stream);
+  GEDA_UNREF (stream);
   if (pixbuf == NULL) return FALSE;
 
   if (object->picture->pixbuf != NULL) {
-    g_object_unref (object->picture->pixbuf);
+    GEDA_UNREF (object->picture->pixbuf);
   }
   object->picture->pixbuf = pixbuf;
 
@@ -1144,7 +1144,7 @@ o_picture_get_filename (Object *object)
  * \par Function Description
  * Returns a pixbuf containing the fallback image to be used if a
  * picture object fails to load.  The returned pixbuf should be freed
- * with g_object_unref() when no longer needed.
+ * with GEDA_UNREF() when no longer needed.
  *
  * \return a GdkPixbuf containing a warning image.
  */

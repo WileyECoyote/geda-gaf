@@ -927,7 +927,7 @@ static void ma_callback_edited_name(GtkCellRendererText *cellrenderertext,
 
   o_undo_savestate (w_current, UNDO_ALL);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
   GEDA_FREE (value);
   GEDA_FREE (newtext);
 
@@ -999,7 +999,7 @@ static void ma_callback_edited_value(GtkCellRendererText *cell_renderer,
       GEDA_FREE (newtext);
     }
 
-    g_object_unref (attr_list);
+    GEDA_UNREF (attr_list);
     GEDA_FREE (name);
     GEDA_FREE (old_value);
   }
@@ -1056,7 +1056,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
 
   o_undo_savestate (w_current, UNDO_ALL);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 
   w_current->toplevel->page_current->CHANGED = 1;
 }
@@ -1123,7 +1123,7 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
 
   o_undo_savestate (w_current, UNDO_ALL);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 
   w_current->toplevel->page_current->CHANGED = 1;
 }
@@ -1197,7 +1197,7 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
 
   o_undo_savestate (w_current, UNDO_ALL);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 
   w_current->toplevel->page_current->CHANGED = 1;
 }
@@ -1241,7 +1241,7 @@ static bool multiattrib_callback_key_pressed(GtkWidget   *widget,
     /* update the treeview contents */
     multiattrib_update (ThisDialog);
 
-    g_object_unref (attr_list);
+    GEDA_UNREF (attr_list);
   }
   return FALSE;
 }
@@ -1339,7 +1339,7 @@ multiattrib_callback_popup_duplicate(GtkMenuItem *menuitem, void *user_data)
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 }
 
 /*! \brief Multi-attribute Dialog Display Popup Do Promote Attributes
@@ -1371,7 +1371,7 @@ multiattrib_callback_popup_promote (GtkMenuItem *menuitem, void *user_data)
   /* update the treeview contents */
   g_object_set (G_OBJECT (ThisDialog), "object_list", Current_Selection, NULL);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 }
 
 /*! \brief  Multi-attribute Dialog Display Popup Do Delete Attributes
@@ -1403,7 +1403,7 @@ multiattrib_callback_popup_delete(GtkMenuItem *menuitem, void *user_data)
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
 
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 }
 
 /*! \todo Finish function documentation
@@ -1431,7 +1431,7 @@ multiattrib_callback_popup_copy_to_all (GtkMenuItem *menuitem,
                       COLUMN_ATTRIBUTE_GEDALIST, &attr_list,
                       -1);
   multiattrib_action_copy_attribute_to_all (ThisDialog, geda_list_get_glist (attr_list));
-  g_object_unref (attr_list);
+  GEDA_UNREF (attr_list);
 
   /* update the treeview contents */
   multiattrib_update (ThisDialog);
@@ -2494,8 +2494,8 @@ multiattrib_populate_liststore (Multiattrib *ThisDialog, GList *model_rows)
                         COLUMN_ATTRIBUTE_GEDALIST,   model_row->attribute_gedalist,
                         -1);
 
-    /* Drop our ref on the GedaList so it is freed when the model has done with it */
-    /* g_object_unref (model_row->attribute_gedalist); */
+    /* Drop our ref on the GedaList so it is freed when the model is done with it */
+    /* GEDA_UNREF (model_row->attribute_gedalist); */
   }
 }
 
@@ -2565,8 +2565,8 @@ static void free_row_record (void *data_record, void *user_data)
 
   g_free(model_row->name);
   g_free(model_row->value);
-  //geda_list_remove_all(model_row->attribute_gedalist);
-  g_object_unref (model_row->attribute_gedalist);
+  /*geda_list_remove_all(model_row->attribute_gedalist); */
+  GEDA_UNREF (model_row->attribute_gedalist);
   model_row->attribute_gedalist = NULL;
   g_free(model_row);
 }

@@ -3,7 +3,7 @@
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * 
+ *
  * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -54,7 +54,7 @@
  * ------------------------------------------------------------------
  * WEH | 03/13/14 | Fix: case JunctionColor did not have break in
  *                | color_butt_responder, oops.
- * 
+ *
 */
 /*! \remarks To add a new variable or control:
  *
@@ -598,7 +598,7 @@ void initialize_tree_View(GtkTreeView *list, int list_item,
 
   gtk_tree_view_set_model(GTK_TREE_VIEW(list), GTK_TREE_MODEL(store));
 
-  g_object_unref(store);
+  GEDA_UNREF(store);
 }
 
 /*  \par

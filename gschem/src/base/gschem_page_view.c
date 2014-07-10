@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2010 Ales Hvezda
+ * Copyright (C) 1998-2010 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -305,9 +305,7 @@ gschem_page_view_set_hadjustment (GschemPageView *view, GtkAdjustment *hadjustme
 {
   g_return_if_fail (view != NULL);
 
-  if (view->hadjustment != NULL) {
-    g_object_unref (view->hadjustment);
-  }
+  GEDA_UNREF (view->hadjustment);
 
   view->hadjustment = hadjustment;
 
@@ -384,9 +382,7 @@ gschem_page_view_set_vadjustment (GschemPageView *view, GtkAdjustment *vadjustme
 {
   g_return_if_fail (view != NULL);
 
-  if (view->vadjustment != NULL) {
-    g_object_unref (view->vadjustment);
-  }
+  GEDA_UNREF (view->vadjustment);
 
   view->vadjustment = vadjustment;
 

@@ -75,7 +75,7 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   result = eda_renderer_get_text_user_bounds (renderer, o_current, &l, &t, &r, &b);
 
   /* Clean up */
-  g_object_unref (renderer);
+  GEDA_UNREF (renderer);
   cairo_destroy (cr);
 
   /* Round bounds to nearest integer */

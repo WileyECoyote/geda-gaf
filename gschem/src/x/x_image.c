@@ -69,7 +69,7 @@ static WidgetStringData DialogStrings[] = {
 static char *x_image_sizes[] = {"320x240", "640x480", "800x600", "1200x768",
                                 "1280x960", "1600x1200", "3200x2400", NULL};
 
-const char *ImageTypeStrings[] = { "png", "tiff", "bmp", "ico", "jpeg", "eps", "pdf" };
+const char *ImageTypeStrings[] = { "ico", "bmp", "tiff", "jpeg", "png", "eps", "pdf" };
 
 static int last_extents;
 static int last_image_size;
@@ -136,7 +136,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
   GtkWidget   *combo = geda_combo_box_text_new();
 
   /* If we were told use last, and last is NOT set */
-  if (default_type == last_image && last_image_type < 0) {
+  if ((default_type == last_image) && (last_image_type < 0)) {
     default_type = png_image;                             /* default to png */
   }
   else {
@@ -181,7 +181,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
   geda_combo_box_text_widget_append(combo, "Encapsulated Postscript");
   geda_combo_box_text_widget_append(combo, "Portable Document Format");
 
-  if (default_index < 0) default_index = 0;
+  if (default_index < 0) default_index = 4;
 
   /* Set the default menu */
   geda_combo_box_text_widget_set_active(combo, default_index);
@@ -483,8 +483,9 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
           }
         }
         GEDA_FREE(filetype);
-        if (pixbuf != NULL)
-          g_object_unref(pixbuf);
+        if (pixbuf != NULL) {
+          GEDA_UNREF(pixbuf);
+        }
       }
       else {
         u_log_message(_("x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"));
@@ -710,10 +711,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   switch_vbox = gtk_vbox_new(FALSE, 0);
 
-  image_extents = last_extents = -1 ? Image_Display : last_extents;
+  image_extents = (last_extents = -1) ? Image_Display : last_extents;
 
 #if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: Creating check button\n");
+  fprintf(stderr, "x_image_setup: Creating check buttons\n");
 #endif
 
   /* This two check buttons are for color imaging only */
@@ -784,7 +785,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   x_image_update_dialog_filename(GTK_COMBO_BOX(type_combo), w_current);
 
 #if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: configuring the dialog window\n");
+  fprintf(stderr, "%s: configuring the dialog window\n", __func__);
 #endif
 
   gtk_dialog_set_default_response((GtkDialog*) ThisDialog,
@@ -804,7 +805,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   if (gtk_dialog_run((GtkDialog*)ThisDialog) == GTK_RESPONSE_ACCEPT) {
 
 #if DEBUG || DEBUG_IMAGING
-fprintf(stderr, "x_image_setup: Dialog GTK_RESPONSE_ACCEPT \n");
+  fprintf(stderr, "%s: Dialog GTK_RESPONSE_ACCEPT \n", __func__);
 #endif
 
     /* Retrieve values from the dialog controls */
@@ -818,6 +819,7 @@ fprintf(stderr, "x_image_setup: Dialog GTK_RESPONSE_ACCEPT \n");
     geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(type_combo));
     last_image_type = gtk_combo_box_get_active(GTK_COMBO_BOX(type_combo));
     image_type = x_image_get_type_from_description(image_type_descr);
+
     GEDA_FREE(image_type_descr);
 
     filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(ThisDialog));
@@ -1105,7 +1107,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   if (new_w_current->cr != NULL) cairo_destroy (new_w_current->cr);
 
   if (new_w_current->window != NULL) {
-    g_object_unref(new_w_current->window);
+    GEDA_UNREF (new_w_current->window);
   }
 
   free (toplevel);

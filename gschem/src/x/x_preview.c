@@ -576,14 +576,14 @@ preview_finalize (GObject *self)
 
     if (toplevel) {
       s_page_delete (toplevel, toplevel->page_current);
-      g_object_unref (preview_window->toplevel);
+      GEDA_UNREF (preview_window->toplevel);
       preview_window->toplevel = NULL;
     }
 
-    g_object_unref (preview_window->drawing_area);
+    GEDA_UNREF (preview_window->drawing_area);
     preview_window->drawing_area = NULL;
     x_window_free_gc (preview_window);
-    g_object_unref (preview_window);
+    GEDA_UNREF (preview_window);
     preview->preview_window = NULL;
   }
 

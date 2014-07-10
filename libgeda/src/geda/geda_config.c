@@ -219,7 +219,7 @@ eda_config_set_property (GObject *object, unsigned int property_id,
         g_signal_handler_disconnect (priv->parent,
                                      priv->parent_handler_id);
       }
-      g_object_unref (priv->parent);
+      GEDA_UNREF (priv->parent);
       priv->parent_handler_id = 0;
     }
     if (parent != NULL) {

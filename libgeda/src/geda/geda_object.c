@@ -492,7 +492,7 @@ Object *geda_object_new (int type, char const *name)
  *
  *  example   if (is_a_geda_object(MyComplex))
  *
- *  example   if (GEDA_IS_OBJECT(MyComplex)) 
+ *  example   if (GEDA_IS_OBJECT(MyComplex))
  *
  *  \return boolean.
  */

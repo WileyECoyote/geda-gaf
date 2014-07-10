@@ -133,7 +133,7 @@ smob_free (SCM smob)
     break;
 
   case GEDA_SMOB_CONFIG:
-    g_object_unref (G_OBJECT (obj));
+    GEDA_UNREF (G_OBJECT (obj));
     break;
 
   case GEDA_SMOB_CLOSURE:
@@ -481,13 +481,13 @@ edascm_c_set_gc (SCM smob, int gc)
         break;
 
       case GEDA_SMOB_CONFIG:
-        g_object_unref (G_OBJECT (obj));
+        GEDA_UNREF (G_OBJECT (obj));
         break;
 
       case GEDA_SMOB_CLOSURE:
         break;
       default:
-        // This should REALLY definitely never be run 
+        // This should REALLY definitely never be run
         g_critical ("%s: received bad smob flags.", __FUNCTION__);
     }
   }*/

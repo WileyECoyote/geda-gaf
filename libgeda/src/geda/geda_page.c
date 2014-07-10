@@ -154,11 +154,10 @@ geda_page_remove_all_objects(Page *page)
     while ((iter = g_list_last(page->_object_list))) {
       object = GEDA_OBJECT(iter->data);
       if (object) {
-        g_object_unref(object);
+        GEDA_UNREF (object);
       }
     }
-       // _eda_object_set_page(object, NULL);
-       // p = g_list_delete_link(p, p);
+
     page->_object_list = NULL;
 }
 

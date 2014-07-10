@@ -386,17 +386,17 @@ eda_renderer_dispose (GObject *object)
   EdaRenderer *renderer = (EdaRenderer *) object;
 
   if (renderer->priv->pc != NULL) {
-    g_object_unref (renderer->priv->pc);
+    GEDA_UNREF (renderer->priv->pc);
     renderer->priv->pc = NULL;
   }
 
   if (renderer->priv->pl != NULL) {
-    g_object_unref (renderer->priv->pl);
+    GEDA_UNREF (renderer->priv->pl);
     renderer->priv->pl = NULL;
   }
 
   if (renderer->priv->pr != NULL) {
-    g_object_unref (renderer->priv->pr);
+    GEDA_UNREF (renderer->priv->pr);
     renderer->priv->pr = NULL;
   }
 
@@ -570,7 +570,7 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
     cairo_destroy (renderer->priv->cr);
     renderer->priv->cr = NULL;
     if (renderer->priv->pr != NULL) {
-      g_object_unref (renderer->priv->pr);
+      GEDA_UNREF (renderer->priv->pr);
       renderer->priv->pr = NULL;
     }
 
@@ -578,11 +578,11 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
      * context, it needs destroying too. */
     if (renderer->priv->pc_from_cr) {
       if (renderer->priv->pc != NULL) {
-        g_object_unref (renderer->priv->pc);
+        GEDA_UNREF (renderer->priv->pc);
         renderer->priv->pc = NULL;
       }
       if (renderer->priv->pl != NULL) {
-        g_object_unref (renderer->priv->pl);
+        GEDA_UNREF (renderer->priv->pl);
         renderer->priv->pl = NULL;
       }
     }
@@ -592,11 +592,11 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
 
   if (new_pc != NULL) {
     if (renderer->priv->pc != NULL) {
-      g_object_unref (G_OBJECT (renderer->priv->pc));
+      GEDA_UNREF (G_OBJECT (renderer->priv->pc));
       renderer->priv->pc = NULL;
     }
     if (renderer->priv->pl != NULL) {
-      g_object_unref (G_OBJECT (renderer->priv->pl));
+      GEDA_UNREF (G_OBJECT (renderer->priv->pl));
       renderer->priv->pl = NULL;
     }
 
@@ -1203,7 +1203,7 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
   cairo_paint (renderer->priv->cr);
 
   cairo_restore (renderer->priv->cr);
-  g_object_unref (pixbuf);
+  GEDA_UNREF (pixbuf);
 }
 
 /* ================================================================
@@ -1710,7 +1710,7 @@ void
 eda_renderer_destroy (EdaRenderer *renderer)
 {
   if (G_IS_OBJECT(renderer)) {
-  g_object_unref (G_OBJECT (renderer));
+    g_object_unref (G_OBJECT (renderer));
   }
   else {
     BUG_MSG("Bad pointer to EdaRenderer, is it aleady dead?");

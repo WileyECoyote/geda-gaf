@@ -95,12 +95,12 @@ gschem_hotkey_store_dispose (GObject *object)
   GschemHotkeyStore *store = GSCHEM_HOTKEY_STORE (object);
 
   if (store->action_hook_proxy) {
-    g_object_unref (store->action_hook_proxy);
+    GEDA_UNREF (store->action_hook_proxy);
     store->action_hook_proxy = NULL;
   }
 
   if (store->keymap_hook_proxy) {
-    g_object_unref (store->keymap_hook_proxy);
+    GEDA_UNREF (store->keymap_hook_proxy);
     store->keymap_hook_proxy = NULL;
   }
 

@@ -329,7 +329,7 @@ o_redraw_rects (GschemToplevel *w_current, GdkRectangle *rectangles, int n_recta
   }
 
   g_list_free (obj_list);
-  g_object_unref (G_OBJECT (renderer));
+  GEDA_UNREF (renderer);
   g_array_free (render_color_map, TRUE);
   g_array_free (render_outline_color_map, TRUE);
 
