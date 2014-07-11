@@ -1,3 +1,8 @@
+2014-07-11 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/x_dialog.c: Force gtk_file_chooser_dialog to start in current
+       directory.
+
 2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
      * src/x_gtksheet.c: Eliminate text variable in activate_sheet_cell,

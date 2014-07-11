@@ -157,10 +157,10 @@ bool x_fileselect ( char* filename )
 #endif
   }
   else { /* no filename then get current working dir */
-    cwd = getcwd(0,0);
+    cwd = g_get_current_dir();
     gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
   }
-  free (cwd);
+  GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {

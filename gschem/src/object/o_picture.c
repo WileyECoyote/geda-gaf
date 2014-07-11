@@ -263,10 +263,13 @@ bool o_picture_exchange (GschemToplevel *w_current,
 void o_picture_change_filename_dialog (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  GtkWidget *dialog;
-  char *filename;
-  gboolean result;
-  GError *err = NULL;
+  GError       *err      = NULL;
+  GtkWidget    *dialog;
+
+  char  *cwd;
+  char  *filename;
+  bool   result;
+
 
   dialog = gtk_file_chooser_dialog_new (_("Select a picture file..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -284,41 +287,47 @@ void o_picture_change_filename_dialog (GschemToplevel *w_current)
                                           GTK_RESPONSE_CANCEL,
                                           -1);
 
-  if (w_current->pixbuf_filename)
+  if (w_current->pixbuf_filename) {
     gtk_file_chooser_set_filename(GTK_FILE_CHOOSER(dialog),
                                   w_current->pixbuf_filename);
+  }
+  else { /* no filename then get current working dir */
+    cwd = getcwd(0,0);
+    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+    free (cwd);
+  }
 
-    if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
+  if (gtk_dialog_run (GTK_DIALOG (dialog)) == GTK_RESPONSE_ACCEPT) {
 
-      filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
-      gtk_widget_destroy(dialog);
-      dialog=NULL;
+    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    gtk_widget_destroy(dialog);
+    dialog=NULL;
 
-      /* Actually update the pictures */
-      result = o_picture_exchange (w_current, filename, &err);
+    /* Actually update the pictures */
+    result = o_picture_exchange (w_current, filename, &err);
 
-      if (!result) {
+    if (!result) {
 
-        /* Log the error */
-        u_log_message( _("picture_change_filename_dialog: Failed to replace picture: %s"),
-        err->message);
+      /* Log the error */
+      u_log_message( _("picture_change_filename_dialog: Failed to replace picture: %s"),
+                       err->message);
 
-        /* inform the user */
-        pango_error_dialog ( _("<b>Failed to replace picture</b>"), err->message );
+      /* inform the user */
+      pango_error_dialog ( _("<b>Failed to replace picture</b>"), err->message );
 
-        /* clear error */
-        g_error_free(err);
-      }
-      else {
-        toplevel->page_current->CHANGED=1;
-      }
-      GEDA_FREE (filename);
+      /* clear error */
+      g_error_free(err);
     }
-
-    if (dialog) {
-      gtk_widget_destroy(dialog);
-      dialog=NULL;
+    else {
+      toplevel->page_current->CHANGED=1;
     }
+    GEDA_FREE (filename);
+  }
+
+  if (dialog) {
+    gtk_widget_destroy(dialog);
+    dialog=NULL;
+  }
 }
 
 /*! \todo Finish function documentation!!!

@@ -52,7 +52,7 @@ typedef enum {PIN_ELECT_IN,  PIN_ELECT_OUT, PIN_ELECT_IO,
               PIN_ELECT_TRI, PIN_ELECT_CLK, PIN_ELECT_PWR, PIN_ELECT_VOID
 } PIN_ELECT;
 
-typedef enum { png_image, tiff_image, bmp_image, ico_image, jpeg_image,
+typedef enum { ico_image, bmp_image, tiff_image, jpeg_image, png_image,
                eps_image, pdf_image, last_image
 } IMAGE_TYPES;
 

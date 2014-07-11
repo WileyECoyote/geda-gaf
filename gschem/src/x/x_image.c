@@ -136,15 +136,8 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
   GtkWidget   *combo = geda_combo_box_text_new();
 
   /* If we were told use last, and last is NOT set */
-  if ((default_type == last_image) && (last_image_type < 0)) {
-    default_type = png_image;                             /* default to png */
-  }
-  else {
-  /* If we were told use last, and last IS set */
-    if (default_type == last_image) {
-      default_type = last_image_type;                     /* use last */
-    }
-    /* else we will default to the type we were passed */
+  if (default_type == last_image) {
+    default_type = last_image_type;       /* default to png */
   }
 
   formats = gdk_pixbuf_get_formats ();
@@ -365,14 +358,14 @@ void x_image_write_eps(GschemToplevel *w_current, const char* filename)
  *  This function is used to set module level globals that are
  *  use to retain the user choices on a per session basis.
  *  The settings here are not considered important enough to
- *  retain between sessions. We set the values to -1 here to
- *  a new session.
+ *  retain between sessions. We set the values to our default
+ *  choices.
  */
 void x_image_init (void)
 {
-  last_extents    = -1;
+  last_extents    = Image_All;
   last_image_size = -1;
-  last_image_type = -1;
+  last_image_type = png_image;
 
   widget_list     = NULL;
 }
@@ -631,6 +624,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   GtkWidget *use_print;
   GtkWidget *invert_bw;
 
+  char *cwd;
   char *image_type_descr;
   char *filename;
   char *image_size;
@@ -665,6 +659,11 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
       GTK_RESPONSE_ACCEPT,
       GTK_RESPONSE_CANCEL,
       -1);
+
+  /* force start in current working directory, NOT in 'Recently Used' */
+  cwd = g_get_current_dir ();
+  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  GEDA_FREE (cwd);
 
   hbox = gtk_hbox_new(FALSE, 0);
 
@@ -711,8 +710,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   switch_vbox = gtk_vbox_new(FALSE, 0);
 
-  image_extents = (last_extents = -1) ? Image_Display : last_extents;
-
 #if DEBUG || DEBUG_IMAGING
   fprintf(stderr, "x_image_setup: Creating check buttons\n");
 #endif
@@ -731,7 +728,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   /* Create switches, aka check boxes with custom images */
   /* Add Switch widget for "extents or Display using Switch_Responder */
-  GTK_SWITCH  (switch_vbox, Extents, 10, image_extents);
+  GTK_SWITCH  (switch_vbox, Extents, 10, last_extents);
 
   /* Create Toggle Switch widget for Color or B/W with independent callback */
   GEDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, EnableColor, 0, image_color_save);

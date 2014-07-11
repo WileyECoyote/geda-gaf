@@ -163,9 +163,9 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
  */
 void x_fileselect_open(GschemToplevel *w_current)
 {
-  Page *page = NULL;
+  Page      *page = NULL;
   GtkWidget *dialog;
-  char *cwd;
+  char      *cwd;
 
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
                                         GTK_WINDOW(w_current->main_window),
@@ -195,7 +195,7 @@ void x_fileselect_open(GschemToplevel *w_current)
   /* add file filters to dialog */
   x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
 
-  /* force start in current working directory, not in 'Recently Used' */
+  /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
   gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
   GEDA_FREE (cwd);

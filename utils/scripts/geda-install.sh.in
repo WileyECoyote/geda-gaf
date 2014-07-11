@@ -57,7 +57,7 @@ nfvecho()
   fi
 }
 
-do_show_usage() 
+do_show_usage()
 {
    echo Usage: `basename $0` '[OPTIONS] [-d folder_with_programs ] [-l folder_in_path ]'
 }
@@ -291,7 +291,7 @@ do_install_bin(){
 
   if [ -x "$BIN_DIR/geda-install-bin" ] ; then
     if $DO_TRIM ; then
-      installer=$BIN_DIR/geda-install-bin 
+      installer=$BIN_DIR/geda-install-bin
     else
       installer=$BIN_DIR/geda-install-bin --no-trim
     fi
@@ -301,7 +301,7 @@ do_install_bin(){
       installer='return 1'
     else
     if $DO_TRIM ; then
-      installer=geda-install-bin 
+      installer=geda-install-bin
     else
       installer=geda-install-bin --no-trim
     fi

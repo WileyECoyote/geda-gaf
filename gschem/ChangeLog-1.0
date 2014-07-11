@@ -1,3 +1,14 @@
+2014-07-11 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_picture.c: Force gtk_file_chooser_dialog to start in
+          current directory.
+
+        * src/x/x_image.c: Fix last_extents and last_image_type. Force
+          gtk_file_chooser_dialog to start in current directory.
+
+        * src/x/x_print.c: Force gtk_file_chooser_dialog to start in
+          current directory.
+
 2014-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*: Use new macro GEDA_UREF instead if g_object_unref where

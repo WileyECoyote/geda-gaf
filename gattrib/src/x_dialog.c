@@ -404,6 +404,7 @@ void x_dialog_about_dialog()
  */
 void x_dialog_export_file()
 {
+  char *cwd;
   char *filename;
   GtkWidget *dialog;
 
@@ -414,6 +415,11 @@ void x_dialog_export_file()
       NULL);
 
   gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
+
+  /* force start in current working directory, NOT in 'Recently Used' */
+  cwd = getcwd(0,0);
+  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  free (cwd);
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_ACCEPT:

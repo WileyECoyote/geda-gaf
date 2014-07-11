@@ -85,10 +85,11 @@ static void print_dialog_class_init (PrintDialogClass *class);
  *  \par Private callback function, should not be called by any code
  *  outside x_print.c
  */
-static void print_dialog_action_choosefile (GtkWidget * w,
-                                            PrintDialog * dialog)
+static void print_dialog_action_choosefile (GtkWidget   *w,
+                                            PrintDialog *dialog)
 {
   GtkWidget  *filechooser;
+        char *cwd;
   const char *filename;
   const char *newfilename;
 
@@ -108,6 +109,11 @@ static void print_dialog_action_choosefile (GtkWidget * w,
 
   filename = GetEntryText( dialog->fnfield );
   gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (filechooser), filename);
+
+  /* force start in current working directory, NOT in 'Recently Used' */
+  cwd = getcwd(0,0);
+  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  free (cwd);
 
   gtk_dialog_set_default_response(GTK_DIALOG(filechooser),
                                   GTK_RESPONSE_ACCEPT);

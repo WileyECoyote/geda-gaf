@@ -173,7 +173,7 @@ GdkColor *x_get_color(int color)
  *  \par Function Documentation
  *   Returns a pointer to a new Garray containing a copy of the
  *   current color-map allocations.
- * 
+ *
  *  \note the returned color-map MUST be freed using g_array_free.
  */
 GArray *x_color_get_display_color_map()
