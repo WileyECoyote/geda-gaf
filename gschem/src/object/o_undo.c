@@ -59,9 +59,9 @@ void o_undo_init(GschemToplevel *w_current)
   i_var_restore_global_boolean(cfg, "undo-panzoom", &w_current->undo_panzoom, FALSE);
   i_var_restore_global_boolean(cfg, "undo-type",    &w_current->undo_type,    UNDO_DISK);
 
-  tmp_path = g_strdup (g_getenv("TMP"));
+  tmp_path = geda_strdup (g_getenv("TMP"));
   if (tmp_path == NULL) {
-     tmp_path = g_strdup ("/tmp");
+     tmp_path = geda_strdup ("/tmp");
   }
 #if DEBUG
   printf("%s\n", tmp_path);
@@ -354,7 +354,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   }
 
   /* save filename */
-  save_filename = g_strdup (Current_Page->filename);
+  save_filename = geda_strdup (Current_Page->filename);
 
   /* save structure so it's not nuked */
   save_bottom = Current_Page->undo_bottom;

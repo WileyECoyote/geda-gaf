@@ -63,17 +63,17 @@ static struct st_slib slib[MAX_SLIBS];
  *  \par Function Description
  *
  */
-int s_slib_add_entry(char *new_path) 
+int s_slib_add_entry(char *new_path)
 {
   if (new_path == NULL) {
-    return(-1); 
+    return(-1);
   }
 
   if (slib_index >= MAX_SLIBS) {
-    return(-1); 
+    return(-1);
   }
 
-  slib[slib_index].dir_name = g_strdup (new_path);
+  slib[slib_index].dir_name = geda_strdup (new_path);
 
   slib_index++;
   return(slib_index);
@@ -91,8 +91,8 @@ int s_slib_search_for_dirname(char *dir_name)
 
   for (i = 0; i < slib_index; i++) {
     if (strcmp(slib[i].dir_name, dir_name) == 0) {
-      return(1);	
-    }	
+      return(1);
+    }
   }
 
   return(0);
@@ -130,7 +130,7 @@ char *s_slib_search_dirs(const char *basename)
 
       /* Do a substring comp for a match */
       if (strstr(dptr->d_name, basename) == 0)  {
-        slib_path = g_strdup (slib[i].dir_name);
+        slib_path = geda_strdup (slib[i].dir_name);
 
         if (ptr) {
           closedir(ptr);
@@ -159,7 +159,7 @@ char *s_slib_search_dirs(const char *basename)
  *  \warning
  *  Caller must GEDA_FREE returned pointer.
  */
-char *s_slib_search_lowlevel(const char *basename) 
+char *s_slib_search_lowlevel(const char *basename)
 {
   char *slib_path=NULL;
   char *full_path=NULL;
@@ -183,7 +183,7 @@ char *s_slib_search_lowlevel(const char *basename)
  *  This function takes a raw file name and returns a processed file name.
  *  It takes the raw file name and copies everything up to the first period
  *  and removes any _# (where # is any number of digits.
- *  
+ *
  *  \param [in] rawname  Character string with the raw file name to parse.
  *  \return The base file name in a character string.
  *
@@ -309,8 +309,8 @@ void s_slib_init()
 {
   int i;
   for (i = 0; i < MAX_SLIBS; i++) {
-    slib[i].dir_name = NULL;	
-  } 
+    slib[i].dir_name = NULL;
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -325,7 +325,7 @@ char *s_slib_getdir(int index)
 {
   if (slib[index].dir_name != NULL)
     return(slib[index].dir_name);
-  else 
+  else
     return(NULL);
 }
 
@@ -419,7 +419,7 @@ char *s_slib_getfiles(char *directory, int flag)
           /* hack */
           if (count < 256) {
 
-            whole_dir[count] = g_strdup (dptr->d_name);
+            whole_dir[count] = geda_strdup (dptr->d_name);
             count++;
           } else {
             g_error ("uggg. too many files in s_slib_getfiles!\n");
@@ -476,7 +476,7 @@ int s_slib_uniq(char *path)
 {
   if (s_slib_search_for_dirname(path)) {
 
-#if DEBUG 
+#if DEBUG
     printf("found\n");
 #endif
     return(0);

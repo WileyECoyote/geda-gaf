@@ -1572,7 +1572,7 @@ compselect_callback_refresh_views (GtkWidget *widget, gpointer user_data)
     gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
     if (is_symbol) {
        gtk_tree_model_get ( model, &iter, LVC_ROW_DATA, &symbol, -1);
-       sym_name = g_strdup(symbol->name);
+       sym_name = geda_strdup(symbol->name);
        gtk_tree_model_iter_parent (model, &parent, &iter);
        at_boundary = FALSE;
     }
@@ -1584,10 +1584,10 @@ compselect_callback_refresh_views (GtkWidget *widget, gpointer user_data)
        g_copy_tree_iter(&iter, &parent);
     }
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
-    src_name = g_strdup(source->name);
+    src_name = geda_strdup(source->name);
     if (gtk_tree_model_iter_parent (model, &iter, &parent)) {
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
-      gp_src_name = g_strdup(source->name);
+      gp_src_name = geda_strdup(source->name);
     }
     do_restore = TRUE;
   }

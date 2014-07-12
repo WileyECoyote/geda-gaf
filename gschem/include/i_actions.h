@@ -2,10 +2,9 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2013 Ales Hvezda
- * Copyright (C) 2013 Wiley Edward Hill
+ * Copyright (C) 2013-2014 Wiley Edward Hill
  *
- * Copyright (C) 2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,7 +36,7 @@
  *   "permissions" and there is no control over the contents of
  *   these files. Maybe the Menu definitions need their own file
  *   instead of mixing with global RC options.
- * 
+ *
  *   This file provides a common "compiled-in list that's ensures
  *   UI actions generated from input systems, such as the toolbars
  *   or Menus, will pass a valid action string to the command
@@ -67,6 +66,7 @@
 #define FILE_WRITE_PDF   write-pdf
 #define FILE_RUN_SCRIPT  file-run-script
 #define FILE_CLOSE       file-close
+#define FILE_CLOSE_ALL   file-close-all
 #define FILE_QUIT        file-quit
 
 #define EDIT_UNDO        edit-undo

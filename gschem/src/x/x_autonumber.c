@@ -1047,7 +1047,7 @@ AUTONUMBER_TEXT *autonumber_init_state()
   t=default_text;
   while(*t!=NULL) {
     autotext->scope_text=g_list_append(autotext->scope_text,
-                                       g_strdup(*t));
+                                       geda_strdup(*t));
     t++;
   }
 
@@ -1143,7 +1143,7 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 
   /* Search text history */
   widget = gtk_bin_get_child(GTK_BIN(ScopeTextCombo));
-  text = g_strdup( GetEntryText(widget));
+  text = geda_strdup( GetEntryText(widget));
 
   autotext->scope_text = autonumber_history_add(autotext->scope_text, text);
 

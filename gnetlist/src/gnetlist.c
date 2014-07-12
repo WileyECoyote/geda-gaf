@@ -108,7 +108,7 @@ gnetlist_backends (GedaToplevel *pr_current)
 
       /* Copy filename and remove prefix & suffix.  Add to list of
        * backend names. */
-      name = g_strdup (dentry->d_name + 5);
+      name = geda_strdup (dentry->d_name + 5);
       name[strlen(name)-4] = '\0';
       backend_names = g_list_prepend (backend_names, name);
     }
@@ -152,7 +152,7 @@ void main_prog(void *closure, int argc, char *argv[])
 #endif
 
   /* set default output filename */
-  output_filename = g_strdup("output.net");
+  output_filename = geda_strdup("output.net");
 
   argv_index = parse_commandline(argc, argv);
   cwd = g_get_current_dir();
@@ -222,7 +222,7 @@ void main_prog(void *closure, int argc, char *argv[])
 
     if (g_path_is_absolute(argv[i])) {
       /* Path is already absolute so no need to do any concat of cwd */
-      filename = g_strdup (argv[i]);
+      filename = geda_strdup (argv[i]);
     } else {
       filename = g_build_filename (cwd, argv[i], NULL);
     }

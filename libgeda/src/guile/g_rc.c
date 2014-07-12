@@ -101,7 +101,7 @@ SCM g_rc_component_groups(SCM stringlist)
     SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
 
     str = scm_to_utf8_string(elem);
-    attr = g_strdup(str);
+    attr = geda_strdup(str);
     free(str);
     list = g_list_prepend(list, attr);
   }
@@ -792,7 +792,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
     for (i=0; attr2[i] != NULL; i++) {
       if (strlen(attr2[i]) > 0) {
-        list = g_list_prepend(list, g_strdup(attr2[i]));
+        list = g_list_prepend(list, geda_strdup(attr2[i]));
       }
     }
     g_strfreev(attr2);
@@ -807,7 +807,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
                  scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
                _("always-promote-attribute: list element is not a string"));
       temp = scm_to_utf8_string (scm_list_ref (attrlist, scm_from_int (i)));
-      attr = g_strdup(temp);
+      attr = geda_strdup(temp);
       free (temp);
       list = g_list_prepend(list, attr);
     }
@@ -1012,7 +1012,7 @@ SCM g_rc_untitled_name(SCM name)
   GEDA_FREE(default_untitled_name);
 
   temp = scm_to_utf8_string (name);
-  default_untitled_name = g_strdup (temp);
+  default_untitled_name = geda_strdup (temp);
   free (temp);
 
   return SCM_BOOL_T;

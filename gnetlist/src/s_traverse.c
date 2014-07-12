@@ -218,7 +218,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
       }
       else {
         if (hierarchy_tag) {
-          netlist->component_uref = g_strdup (hierarchy_tag);
+          netlist->component_uref = geda_strdup (hierarchy_tag);
         }
         else {
           netlist->component_uref = NULL;
@@ -226,7 +226,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
       }
 
       if (hierarchy_tag) {
-        netlist->hierarchy_tag = g_strdup (hierarchy_tag);
+        netlist->hierarchy_tag = geda_strdup (hierarchy_tag);
       }
 
       netlist->object_ptr = o_current;
@@ -245,7 +245,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
             o_current->complex->filename, net_name);
 
-          netlist->component_uref = g_strdup("U?");
+          netlist->component_uref = geda_strdup("U?");
         } else {
 #if DEBUG
           printf("yeah... found a power symbol\n");

@@ -422,8 +422,8 @@ GArray* g_keys_dump_keymap (void)
     g_return_val_if_fail (SCM_CONSP (scm_keymap_entry) &&
     SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
     scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
-    keymap_entry.action = g_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
-    keymap_entry.keyseq = g_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
+    keymap_entry.action = geda_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
+    keymap_entry.keyseq = geda_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
     ret = g_array_append_val (ret, keymap_entry);
   }
 

@@ -1,3 +1,12 @@
+2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c: Replace g_strdup with geda_strdup
+
+        * src/iface/i_command.?: Add new action "file-close-all" as file
+          menu item.
+
+        * src/*/*.c:
+
 2014-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/object/o_picture.c: Force gtk_file_chooser_dialog to start in

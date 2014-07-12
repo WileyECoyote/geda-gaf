@@ -381,7 +381,7 @@ eda_config_get_system_context (const char *context)
     char *filespec = NULL;
 
     if ( context == NULL) {
-      filename=g_strdup(SYSTEM_CONFIG_FILE);
+      filename=geda_strdup(SYSTEM_CONFIG_FILE);
     }
     else {
       filename = g_strconcat(context, GEDA_CONFIG_SYS_SUFFIX, NULL);
@@ -522,7 +522,7 @@ eda_config_get_user_context ()
 char *
 find_project_root (const char *path, char *filename)
 {
-  char *root_dir = g_strdup (path);
+  char *root_dir = geda_strdup (path);
   char *dir      = root_dir;
   int   found    = 0;
 
@@ -533,7 +533,7 @@ find_project_root (const char *path, char *filename)
   while (dir && strlen(dir) > 1){
       char *filespec = g_strconcat(dir, filename, NULL);
       if (g_file_test (filespec, G_FILE_TEST_EXISTS)) {
-        root_dir = g_strdup (dir);
+        root_dir = geda_strdup (dir);
         found = 1;
         break;
       }
@@ -543,7 +543,7 @@ find_project_root (const char *path, char *filename)
 
   if (!found) {
     g_free(root_dir);
-    root_dir = g_strdup (path);
+    root_dir = geda_strdup (path);
   }
   return root_dir;
 }
@@ -873,7 +873,7 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
   else {
 
     filename = cfg->priv->filename;
-    scratch  = g_strdup(filename);
+    scratch  = geda_strdup(filename);
 
     /* First try and make the directory, if necessary. */
     dir = dirname (scratch);

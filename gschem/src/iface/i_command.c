@@ -317,7 +317,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
       /* Fill in parameter arguments for this task */
       command_struc[i].narg      = narg;
       command_struc[i].who       = who;
-      command_struc[i].sarg      = (unsigned char *) g_strdup(arg);
+      command_struc[i].sarg      = (unsigned char *) geda_strdup(arg);
       command_struc[i].w_current = w_current;
 
 #ifdef PERFORMANCE
@@ -372,7 +372,7 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 {
   char *arg;
   if (command_struc[index].sarg != NULL ) {
-    arg  = g_strdup((char *)command_struc[index].sarg);
+    arg  = geda_strdup((char *)command_struc[index].sarg);
     GEDA_FREE(command_struc[index].sarg);
     arg  = strstr_rep(arg, "  ", " ");
    *argv = g_strsplit (g_strstrip(arg), " ", 0);
@@ -654,6 +654,69 @@ COMMAND ( do_close ) {
   EXIT_COMMAND(do_close);
 }
 
+/** @brief i_cmd_do_close_all in i_command_File_Actions */
+COMMAND ( do_close_all ) {
+  BEGIN_W_COMMAND(do_close_all);
+  GList *iter;
+  GList *pages;
+  Page  *p_current;
+  bool   can_close  = TRUE;
+  bool   close_all;
+
+  if (w_current->inside_action &&
+    (w_current->event_state == MOVE || w_current->event_state == ENDMOVE))
+  {
+    o_move_cancel (w_current);
+  }
+
+  x_window_close_all_dialogs(w_current);
+
+  pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
+
+  /* Loop through all the pages looking for unsaved pages */
+  for ( iter = pages; iter != NULL; NEXT(iter))
+  {
+    /* get ptr to a page */
+    p_current = (Page*)iter->data;
+
+    /* if flag set */
+    if (p_current->CHANGED) {
+      can_close = FALSE;
+      break;                 /* if at least one page */
+    }
+  }
+
+  if (!can_close) {         /* Ask to save unsaved pages */
+
+    close_all = x_dialog_close_window (w_current);
+    if (!close_all) {       /* user cancelled the close */
+      v_log_message("Close all canceled");
+    }
+  }
+  else {
+    close_all = TRUE;       /* There were no unsaved pages */
+  }
+
+  if (close_all) {          /* Still want to close all? */
+
+    q_log_message(_("Closing all documents\n"));
+
+    /* Loop through all the pages */
+    for ( iter = pages; iter != NULL; NEXT(iter))
+    {
+      /* get ptr to a page */
+      p_current = (Page*)iter->data;
+      if (p_current->filename) {
+        x_window_close_page (w_current, p_current);
+      }
+    }
+  }
+
+  g_list_free (pages);
+
+  EXIT_COMMAND(do_close_all);
+}
+
 /** @brief i_cmd_do_quit in i_command_File_Actions */
 COMMAND ( do_quit ) {
   BEGIN_NO_ARGUMENT(do_file_new_window);
@@ -740,7 +803,7 @@ COMMAND ( do_print ) {
     base = g_strndup(filename, strlen(filename) - strlen(".sch"));
   } else {
     /* the filename does not end with .sch */
-    base = g_strdup (filename);
+    base = geda_strdup (filename);
   }
 
   /* add ".ps" tp the base filename */
@@ -1905,7 +1968,7 @@ COMMAND ( do_page_revert ) {
   if (answer == GTK_RESPONSE_YES ) {
 
     /* save this for later */
-    filename = g_strdup (Current_Page->filename);
+    filename = geda_strdup (Current_Page->filename);
     page_control = Current_Page->page_control;
     up = Current_Page->up;
 

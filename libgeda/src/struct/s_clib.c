@@ -261,7 +261,7 @@ static void free_symbol_cache_entry (void *data)
 /*! \brief Utility function to Release a Source.
  *  \par Function Description
  *  Utility function to release the
- * 
+ *
  */
 static void free_source (CLibSource *source)
 {
@@ -511,7 +511,7 @@ static char *get_unique_source_name (const char *name)
   int i = 0;
 
   if (s_clib_get_source_by_name (name) == NULL) {
-    return g_strdup (name);
+    return geda_strdup (name);
   }
 
   do {
@@ -645,7 +645,7 @@ static void refresh_directory (CLibSource *source)
     /* Create and add new symbol record */
     symbol = g_new0 (CLibSymbol, 1);
     symbol->source = source;
-    symbol->name = g_strdup(entry);
+    symbol->name = geda_strdup(entry);
 
     /* Prepend because it's faster and it doesn't matter what order we
      * add them. */
@@ -698,7 +698,7 @@ static void refresh_command (CLibSource *source)
     if (line == NULL) break;
     if (line[0] == '.') continue;  /* TODO is this sane? */
 
-    name = remove_nl(g_strdup(line));
+    name = remove_nl(geda_strdup(line));
 
     /* skip symbols already known about */
     if (source_has_symbol (source, name) != NULL) {
@@ -768,7 +768,7 @@ static void refresh_scm (CLibSource *source)
       /* Need to make sure that the correct free() function is called
        * on strings allocated by Guile. */
       tmp = scm_to_utf8_string (symname);
-      symbol->name = g_strdup(tmp);
+      symbol->name = geda_strdup(tmp);
       free (tmp);
 
       /* Prepend because it's faster and it doesn't matter what order we
@@ -917,22 +917,22 @@ const CLibSource *s_clib_add_directory (const char *directory,
   ptr_dir3 =  basename (pbuff);
 
   if ( strcmp( "sym", ptr_dir3 ) == 0) {
-    group = g_strdup(ptr_dir2);
+    group = geda_strdup(ptr_dir2);
   }
   else
     if ( strcmp( "sym", ptr_dir2 ) == 0) {
-      group = g_strdup(ptr_dir1);
+      group = geda_strdup(ptr_dir1);
     }
     else
       if ( strcmp( "sym", ptr_dir1 ) == 0) {
          if ( name  != NULL )  {
-           group = g_strdup(basename(name));
+           group = geda_strdup(basename(name));
          }
          else
-           group = g_strdup( ptr_dir2 );
+           group = geda_strdup( ptr_dir2 );
       }
       else
-        group = g_strdup( ptr_dir2 );
+        group = geda_strdup( ptr_dir2 );
 
   if (name != NULL) {
     int count = 0;
@@ -941,13 +941,13 @@ const CLibSource *s_clib_add_directory (const char *directory,
     }
     switch ( count ) {
       case 0:
-        tmpstr   = g_strdup (name);
+        tmpstr   = geda_strdup (name);
         break;
       case 1:
       default:
         str = strstr(name, "/");
         category = g_strndup(name, str - name);
-        tmpstr = g_strdup (str + 1);
+        tmpstr = geda_strdup (str + 1);
         break;
     }
   }
@@ -956,7 +956,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
 
   if( category == NULL) {
-    category = g_strdup("Standard");
+    category = geda_strdup("Standard");
   }
 /*
   if ( source_name_exist(tmpstr) ) {
@@ -968,7 +968,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
 */
   source = g_new0 (CLibSource, 1);
   source->type = CLIB_DIR;
-  source->directory = g_strdup (directory);
+  source->directory = geda_strdup (directory);
   source->name =  tmpstr;
   source->category = category;
   source->group = group;
@@ -1022,8 +1022,8 @@ const CLibSource *s_clib_add_command (const char *list_cmd,
   source->type = CLIB_CMD;
   source->name = unique_name;
 
-  source->list_cmd = g_strdup (list_cmd);
-  source->get_cmd = g_strdup (get_cmd);
+  source->list_cmd = geda_strdup (list_cmd);
+  source->get_cmd = geda_strdup (get_cmd);
 
   refresh_command (source);
 
@@ -1256,7 +1256,7 @@ static char *get_data_scm (const CLibSymbol *symbol)
   /* Need to make sure that the correct free() function is called
    * on strings allocated by Guile. */
   tmp = scm_to_utf8_string (symdata);
-  result = g_strdup(tmp);
+  result = geda_strdup(tmp);
   free (tmp);
 
   return result;
@@ -1290,7 +1290,7 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
   cached = g_hash_table_lookup (clib_symbol_cache, symptr);
   if (cached != NULL) {
     cached->accessed = time(NULL);
-    return g_strdup(cached->data);
+    return geda_strdup(cached->data);
   }
 
   /* If the symbol wasn't found in the cache, get it directly. */
@@ -1316,7 +1316,7 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
   /* Cache the symbol data */
   cached = g_new (CacheEntry, 1);
   cached->ptr = (CLibSymbol *) symptr;
-  cached->data = g_strdup (data);
+  cached->data = geda_strdup (data);
   cached->accessed = time (NULL);
   g_hash_table_insert (clib_symbol_cache, symptr, cached);
 

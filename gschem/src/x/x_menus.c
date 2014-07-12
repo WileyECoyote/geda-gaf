@@ -115,7 +115,7 @@ static void x_menu_toggle_tips(GtkWidget  *widget, GSList* list);
  * process instead, this eliminates the c=>scheme=>c. This improves
  * efficiency and provides better stability.
  */
-static void g_menu_execute(GtkAction *action, gpointer user_data)
+static void g_menu_execute(GtkAction *action, void *user_data)
 {
   GschemToplevel *w_current    = (GschemToplevel *) user_data;
   const char     *action_name  = gtk_action_get_name (action);
@@ -400,7 +400,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             is_a_toggle = TRUE;
             toggler_data                 = g_new0 (ToggleMenuData, 1);
             toggler_data->w_current      = w_current;
-            toggler_data->menu_item_name = g_strdup(menu_item_name);
+            toggler_data->menu_item_name = geda_strdup(menu_item_name);
             toggler_data->menu_path      = g_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
             menu_item_name = menu_item_name + 7;                 /* is just for label */
             /* TODO: Tooltip don't work here, we will fix them later*/
@@ -832,8 +832,8 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
  */
 void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
 {
-  GtkWidget* item=NULL;
-  GtkWidget* menubar;
+  GtkWidget *item=NULL;
+  GtkWidget *menubar;
   static int sensitivity_errors = 0;
 
   if (!buf) {
@@ -1212,7 +1212,7 @@ static void update_recent_files_menus(void)
 /*! \brief Remove all entries from the recent files
  *         list and update all toplevels.
  */
-static void clear_recent_file_list(gpointer data)
+static void clear_recent_file_list(void *data)
 {
    GList *p;
 
@@ -1228,11 +1228,11 @@ static void clear_recent_file_list(gpointer data)
 }
 
 static void
-recent_file_free_menu_data (gpointer data, GClosure *closure) {
+recent_file_free_menu_data (void *data, GClosure *closure) {
   GEDA_FREE (data);
 }
 
-static void recent_file_clicked(GtkMenuItem *menuitem, gpointer user_data)
+static void recent_file_clicked(GtkMenuItem *menuitem, void *user_data)
 {
    FILE *fp;
    Page *page;
@@ -1345,7 +1345,7 @@ void recent_files_add(const char *filename)
    /* Normalize the filename. */
    save_fn = f_normalize_filename (filename, &err);
    if (err != NULL) {
-     save_fn = g_strdup (filename);
+     save_fn = geda_strdup (filename);
      g_error_free (err);
    }
 
@@ -1395,7 +1395,7 @@ static void recent_files_create_empty()
  *
  *  \param [in] user_data unused
  */
-void recent_files_save(gpointer user_data)
+void recent_files_save(void *user_data)
 {
    char *files[MAX_RECENT_FILES];
    int num = 0;

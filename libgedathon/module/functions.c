@@ -645,7 +645,7 @@ FUNCTION(DefaultTitleblockSymbol)
 
 /** @} END Group Python_API_Symbols_For_GedaFunctions */
 
-/*! \brief Create and Add an Arc Object Python API Function 
+/*! \brief Create and Add an Arc Object Python API Function
  *  \par Function Description
  *  This function calls Geda API Library routines to create a new
  *  <b>ArcObject</b> and attaches the Arc to the Page object, which must

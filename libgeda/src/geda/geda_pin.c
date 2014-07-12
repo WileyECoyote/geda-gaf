@@ -348,7 +348,7 @@ void geda_pin_set_electrical(Pin *pin, const char *electrical)
 {
   g_return_if_fail(GEDA_IS_PIN(pin));
   GEDA_FREE(pin->electrical);
-  pin->electrical = g_strdup(electrical);
+  pin->electrical = geda_strdup(electrical);
 
   /* Check if there is a code associated with the description */
   PIN_ELECT current_type = geda_pin_lookup_etype(electrical);
@@ -367,7 +367,7 @@ void geda_pin_set_label(Pin *pin, const char *label)
 {
   g_return_if_fail(GEDA_IS_PIN(pin));
   GEDA_FREE(pin->label);
-  pin->label = g_strdup(label);
+  pin->label = geda_strdup(label);
 }
 const char*
 geda_pin_get_mechanical(Pin *pin)
@@ -379,7 +379,7 @@ void geda_pin_set_mechanical(Pin *pin, const char *mechanical)
 {
   g_return_if_fail(GEDA_IS_PIN(pin));
   GEDA_FREE(pin->mechanical);
-  pin->mechanical = g_strdup(mechanical);
+  pin->mechanical = geda_strdup(mechanical);
 
   /* Check if there is a code associated with the description */
   PIN_MECH current_type = geda_pin_lookup_mtype(mechanical);

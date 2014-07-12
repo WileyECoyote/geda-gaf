@@ -125,7 +125,7 @@ char *s_misc_remaining_string(char *string, char delimiter, int count)
   }
 
   /* copy remainder into allocated return string */
-  return_value = g_strdup(remaining);
+  return_value = geda_strdup(remaining);
 
   /* return string */
   return (return_value);

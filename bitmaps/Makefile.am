@@ -25,6 +25,7 @@ bitmapdata_DATA    = close_box.png                      \
 		     geda_bulb_24x26_on.png             \
 		     geda-circle.png                    \
 		     geda-circles.png                   \
+		     geda-close-all.png                 \
 		     geda-component.png                 \
                      geda-copy.png                      \
 		     geda-display.png                   \

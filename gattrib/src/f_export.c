@@ -44,7 +44,7 @@
 /* \brief Export components to CSV
  *
  * This function is invoked when the user selects file ->
- * export from the pull-down menu.  It writes out a CSV file 
+ * export from the pull-down menu.  It writes out a CSV file
  * of the design for external processing.
  *
  * \param filename The name of the file to export to
@@ -64,8 +64,8 @@ void f_export_components(char *filename)
   if (cur_page != 0) {
     /* We only export the component table */
     /* XXXXX  Maybe throw up error message in window instead? */
-    x_dialog_unimplemented_feature(); 
-    return;    
+    x_dialog_unimplemented_feature();
+    return;
 
   }
 
@@ -82,7 +82,7 @@ void f_export_components(char *filename)
   }
 
 
-  /* -----  Now write out data  ----- */    
+  /* -----  Now write out data  ----- */
   num_rows = sheet_head->comp_count;
   num_cols = sheet_head->comp_attrib_count;
 
@@ -91,14 +91,14 @@ void f_export_components(char *filename)
   fprintf(fp, "refdes, ");
   /*  Print out optional attrib names  */
   for (j = 0; j < num_cols-1; j++) {
-    text = g_strdup( s_string_list_get_data_at_index(
-		       sheet_head->master_comp_attrib_list_head, j) );
+    text = geda_strdup( s_string_list_get_data_at_index(
+                        sheet_head->master_comp_attrib_list_head, j) );
     fprintf(fp, "%s, ", text);
     GEDA_FREE(text);
   }
   /*  Print out last attrib name with no comma and with \n.  */
-  text = g_strdup( s_string_list_get_data_at_index(
-		     sheet_head->master_comp_attrib_list_head, j) );
+  text = geda_strdup( s_string_list_get_data_at_index(
+                      sheet_head->master_comp_attrib_list_head, j) );
   fprintf(fp, "%s\n", text);
   GEDA_FREE(text);
 
@@ -107,7 +107,7 @@ void f_export_components(char *filename)
   for (i = 0; i < num_rows; i++) {
 
     /*  First output the component refdes  */
-    text = g_strdup( s_string_list_get_data_at_index(
+    text = geda_strdup( s_string_list_get_data_at_index(
 		       sheet_head->master_comp_list_head, i) );
 #ifdef DEBUG
   printf("In f_export_components, getting refes, i = %d.\n", i);
@@ -166,6 +166,6 @@ void f_export_components(char *filename)
   }  /* close of for over rows */
 
   fclose(fp);
-  
+
 return;
 }

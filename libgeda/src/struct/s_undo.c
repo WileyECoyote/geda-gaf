@@ -117,7 +117,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
 
   u_new = (UNDO *) g_malloc(sizeof(UNDO));
 
-  u_new->filename = g_strdup (filename);
+  u_new->filename = geda_strdup (filename);
 
   u_new->object_list = object_list;
 

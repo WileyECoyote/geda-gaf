@@ -119,26 +119,26 @@ static void update_disp_string (Object *object)
   if (o_attrib_get_name_value (object, &name, &value)) {
     switch (object->show_name_value) {
       case (SHOW_NAME_VALUE):
-        text->disp_string = g_strdup (text->string);
+        text->disp_string = geda_strdup (text->string);
         break;
 
       case (SHOW_NAME):
         if (name[0] != '\0') {
-          text->disp_string = g_strdup (name);
+          text->disp_string = geda_strdup (name);
         } else {
           g_critical ("Got an improper attribute: %s\n",
                       text->string);
-          text->disp_string = g_strdup ("invalid");
+          text->disp_string = geda_strdup ("invalid");
         }
         break;
 
       case (SHOW_VALUE):
         if (value[0] != '\0') {
-          text->disp_string = g_strdup(value);
+          text->disp_string = geda_strdup(value);
         } else {
           g_critical ("Got an improper attribute: %s\n",
                       text->string);
-          text->disp_string = g_strdup ("invalid");
+          text->disp_string = geda_strdup ("invalid");
         }
         break;
     }
@@ -147,7 +147,7 @@ static void update_disp_string (Object *object)
     GEDA_FREE(value);
   }
   else {
-    text->disp_string = g_strdup (text->string);
+    text->disp_string = geda_strdup (text->string);
   }
 }
 
@@ -237,7 +237,7 @@ o_text_new(int color, int x, int y, int alignment, int angle, const char *string
 
   text = GEDA_TEXT(new_obj);
 
-  text->string      = g_strdup (string);
+  text->string      = geda_strdup (string);
   text->disp_string = NULL; /* We'll fix this up later */
   text->length      = strlen(string);
   text->size        = size;
@@ -649,28 +649,28 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
   if (o_attrib_get_name_value (o_current, &name, &value)) {
     switch(o_current->show_name_value) {
       case(SHOW_NAME_VALUE):
-        output_string = g_strdup(o_current->text->string);
+        output_string = geda_strdup(o_current->text->string);
         break;
 
       case(SHOW_NAME):
         if (name[0] != '\0') {
-          output_string = g_strdup(name);
+          output_string = geda_strdup(name);
         } else {
           fprintf(stderr,"Got an improper attribute: %s\n",
                   o_current->text->string);
-          output_string = g_strdup("invalid");
+          output_string = geda_strdup("invalid");
         }
         break;
 
       case(SHOW_VALUE):
         if (value[0] != '\0') {
-          output_string = g_strdup(value);
+          output_string = geda_strdup(value);
         } else {
           /* you probably can remove this now... */
           /* since improper attributes will never get here */
           fprintf(stderr, "Got an improper attribute: %s\n",
                   o_current->text->string);
-          output_string = g_strdup("invalid");
+          output_string = geda_strdup("invalid");
         }
         break;
 
@@ -679,7 +679,7 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
 
     }
   } else {
-    output_string = g_strdup(o_current->text->string);
+    output_string = geda_strdup(o_current->text->string);
   }
 
   /* Apply alignment map to apply when text is 180 degrees rotated.
@@ -1007,7 +1007,7 @@ o_text_set_string (Object *object, const char *new_string)
   g_return_if_fail (new_string != NULL);
 
   GEDA_FREE (object->text->string);
-  object->text->string = g_strdup (new_string);
+  object->text->string = geda_strdup (new_string);
 
   o_text_recreate (object);
 

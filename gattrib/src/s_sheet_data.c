@@ -110,7 +110,7 @@ bool s_sheet_data_reset(PageDataSet *PageData)
 
     s_string_list_free(PageData->master_pin_list_head);
     s_string_list_free(PageData->master_pin_attrib_list_head);
-   
+
     free(PageData);
     PageData = NULL;
   }
@@ -122,8 +122,8 @@ bool s_sheet_data_reset(PageDataSet *PageData)
 /* ------------ s_sheet_data interface to s_string_list --------- */
 
 /*! \brief Add Data to string list in sheet-head structures
- *  \par Description 
- *       The next 6 functions are  called from the 
+ *  \par Description
+ *       The next 6 functions are  called from the
  * s_sheet_data_add_yada-yada_list_items functions below but have "reduced"
  * names and simplified parameters to improve readability of those functions.
  * These functions are also used by the s_sheet_data_load_blank function
@@ -132,7 +132,7 @@ bool s_sheet_data_reset(PageDataSet *PageData)
  * \param PageData           pointer to sheet_head structure.
  * \param component_str_name pointer to string to be added to the associated
  *                           string list
- * 
+ *
  */
 static void s_sheet_data_add_comp(PageDataSet *PageData, char *component_str_name) {
   s_string_list_add_item(PageData->master_comp_list_head,
@@ -179,18 +179,18 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
   char tmp_str[5];
   char none[6];
   char *str;
-  
+
   if (PageData != NULL) {
     for (blank=0; blank<5; blank++) {
       str = int2str(blank, tmp_str, 10);
- 
+
       s_sheet_data_add_comp (PageData, str);
       s_sheet_data_add_comp_attrib(PageData, comp_attrib[blank]);
       s_sheet_data_attached_attrib(PageData, comp_attrib[blank]);
-      
+
       strcpy(none, "none");
       s_sheet_data_add_net(PageData, strcat(none, str));
-      strcpy(none, "node"); 
+      strcpy(none, "node");
       s_sheet_data_add_net_attrib(PageData, strcat(none, str));
 
       s_sheet_data_add_pin(PageData, str);
@@ -206,7 +206,7 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
    * bassing and need to load the dummy data we just put in sheet_data.
    */
   s_table_load_new_page(PageData);
-  
+
   return;
 }
 /*------------------------------------------------------------------*/
@@ -217,13 +217,13 @@ void s_sheet_data_load_blank(PageDataSet *PageData)
  * This list is used for the column label on the component sheet. The
  * Data struct being searched  is: Object->attribs(->next. . .)
  * ->object->text->string
- * 
+ *
  * \param obj_list pointer to the component list to be added.
  */
 void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
   char *temp_uref;
   const GList *iter;
-  
+
 #ifdef DEBUG
   printf("=========== Just entered  s_sheet_data_add_master_comp_list_items!  ==============\n");
 #endif
@@ -267,7 +267,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
 	}
       } /*  if (o_current->type == OBJ_COMPLEX . . . . .) */
   }
-  
+
   return;
 }
 
@@ -278,7 +278,7 @@ void s_sheet_data_add_master_comp_list_items (const GList *obj_list) {
  * are obtained by iterating through each component on the page, selectively
  * recording discovered attributes.The data struct being searched  is:
  * sheet_head->component_list_head->attrib->name;
- * 
+ *
  * \param obj_list pointer to list of objects
  */
 void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
@@ -288,9 +288,9 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
   GList *a_iter;
   Object *a_current;
   GList *object_attribs;
-  
+
   bool is_attached;
-  
+
   if (verbose_mode) {
     printf(_("- Starting master comp attrib list creation.\n"));
   }
@@ -310,21 +310,21 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
       for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter)) {
         a_current = a_iter->data;
 
-	  if (a_current->type == OBJ_TEXT ) { /* WEH: Are there attributes that are not text? */ 
+	  if (a_current->type == OBJ_TEXT ) { /* WEH: Are there attributes that are not text? */
 	  /* found an attribute */
-	  attrib_text = g_strdup(a_current->text->string);
+	  attrib_text = geda_strdup(a_current->text->string);
 	  attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
-	  
+
 	  /* Don't include "refdes" or "slot" because they form the row name */
 	  /* Also don't include "net" per bug found by Steve W. -- 4.3.2007, SDB */
 	  //WEH: use instr and gang strings?
 	  if ((strcmp(attrib_name, "graphical") != 0) &&
               (strcmp(attrib_name, "refdes") != 0) &&
 	      (strcmp(attrib_name, "net") != 0) &&
-	      (strcmp(attrib_name, "slot") != 0) ) { 
-            
+	      (strcmp(attrib_name, "slot") != 0) ) {
+
 	     is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
-          
+
 	     if (is_attached) {
 #if DEBUG
                printf("adding an attached attrib to master attrib list, attrib = %s\n", attrib_text);
@@ -341,7 +341,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
 	  GEDA_FREE(attrib_text);
 	}
       } /* Next attribute_iter*/
-      
+
     } /* if (o_current->type == OBJ_COMPLEX) */
   }
 
@@ -353,7 +353,7 @@ void s_sheet_data_add_master_comp_attrib_list_items (const GList *obj_list) {
  *  \par Function Description
  * Build the master list of net names by running
  * through the individual cells and recording the net refdeses
- * it discovers. 
+ * it discovers.
  * It's currently empty, waiting for implementation of net
  * attributes.
  */
@@ -423,7 +423,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
       if ( (temp_uref) &&
 	 (strcmp (temp_uref, "none")) &&
 	 (strcmp (temp_uref, "pinlabel")) ){
-	
+
         /* -----  Now iterate through lower level objects looking for pins.  ----- */
         for (o_lower_iter = o_current->complex->prim_objs;
              o_lower_iter != NULL;
@@ -461,7 +461,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 
     }  /*  if (o_current->type == OBJ_COMPLEX)  */
   }
-      
+
   return;
 }
 
@@ -469,7 +469,7 @@ void s_sheet_data_add_master_pin_list_items (const GList *obj_list) {
 /*! \brief Add pin attributes to master list.
  *  \par Function Description
  * Build the master
- * list of pin attributes.  It writes 
+ * list of pin attributes.  It writes
  * each attrib name into the master pin attrib list.
  * Algorithm:
  * -# Loop on o_current looking for OBJ_COMPLEX
@@ -490,7 +490,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
   const GList *o_iter;
   GList *o_lower_iter, *a_iter;
   Object *pin_attrib;
-  
+
 #ifdef DEBUG
   fflush(stderr);
   fflush(stdout);
@@ -512,7 +512,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
       if (o_current->type == OBJ_COMPLEX) {
 	temp_uref = s_attrib_get_refdes(o_current);
 	if (temp_uref != NULL) {      /* make sure object complex has a refdes  */
-	  
+
 	  /* -----  Now iterate through lower level objects looking for pins.  ----- */
           for (o_lower_iter = o_current->complex->prim_objs;
                o_lower_iter != NULL;
@@ -528,12 +528,12 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 		pin_attrib = a_iter->data;
 		if (pin_attrib->type == OBJ_TEXT
 		    && pin_attrib->text != NULL) {  /* found an attribute */
-		  attrib_text = g_strdup(pin_attrib->text->string);
+		  attrib_text = geda_strdup(pin_attrib->text->string);
 		  attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
 		  attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
-		if ( (strcmp(attrib_name, "pinnumber") != 0) 
-		//  if ( (strcmp(attrib_name, "pinnumber") == 0) 
-		       && (attrib_value != NULL) ) {  
+		if ( (strcmp(attrib_name, "pinnumber") != 0)
+		//  if ( (strcmp(attrib_name, "pinnumber") == 0)
+		       && (attrib_value != NULL) ) {
 		    /* Don't include "pinnumber" because it is already in other master list.
 		     * Also guard against pathalogical symbols which have non-attrib text inside pins. */
 
@@ -543,7 +543,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 #endif
                     s_sheet_data_add_pin_attrib(sheet_head, attrib_name);
 
-		  }   /* if (strcmp(attrib_name, "pinnumber") != 0) */ 
+		  }   /* if (strcmp(attrib_name, "pinnumber") != 0) */
 		  GEDA_FREE(attrib_value);
 		  GEDA_FREE(attrib_name);
 		  GEDA_FREE(attrib_text);
@@ -555,7 +555,7 @@ void s_sheet_data_add_master_pin_attrib_list_items (const GList *obj_list) {
 
 	  GEDA_FREE(temp_uref);
 	}  /*  if (temp_uref != NULL )  */
-	
+
       }  /* if (o_current->type == OBJ_COMPLEX)  */
   }
   return;

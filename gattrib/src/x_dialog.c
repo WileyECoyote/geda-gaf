@@ -153,7 +153,7 @@ char *x_dialog_new_attrib()
 
   switch(gtk_dialog_run(GTK_DIALOG(dialog))) {
     case GTK_RESPONSE_OK:
-      entry_text = g_strdup( GetEntryText(attrib_entry) );
+      entry_text = geda_strdup( GetEntryText(attrib_entry) );
       break;
     case GTK_RESPONSE_CANCEL:
     default:
@@ -491,7 +491,7 @@ char *x_dialog_get_search_text(char* prompt)
     r = gtk_dialog_run ((GtkDialog*)dialog);
 
     if (r ==  GTK_RESPONSE_ACCEPT)
-      text = g_strdup( GetEntryText(textentry) );
+      text = geda_strdup( GetEntryText(textentry) );
     gtk_widget_destroy (GTK_WIDGET(dialog));
   }
   return text;
@@ -568,13 +568,13 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
   void add_search_history(char *new_text) {
     /*! \note: String added to search_history is freed at program exit */
     if (!g_list_stri_inlist(search_history, new_text)) {
-      search_history = g_list_prepend(search_history, g_strdup(new_text));
+      search_history = g_list_prepend(search_history, geda_strdup(new_text));
     }
   }
 
   /*!@brief Retrieve values and settings from Search Dialog controls */
   void unload_dialog() {
-    search_text      = g_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (SearchTextCombo)));
+    search_text      = geda_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (SearchTextCombo)));
     Search->Case     = !GET_SWITCH_STATE (IgnoreCaseSwitch);
     Search->Whole    =  GET_SWITCH_STATE (WholeWordSwitch);
     Search->Backword =  GET_SWITCH_STATE (SearchBackwordSwitch);
@@ -591,7 +591,7 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
     Search->ReplaceAll = TRUE;
   case GTK_RESPONSE_ACCEPT: /* Replace*/
     unload_dialog();
-    replacement_text = g_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
+    replacement_text = geda_strdup(gtk_combo_box_get_active_text (GTK_COMBO_BOX (ReplaceTextCombo)));
     add_search_history(replacement_text);
     Search->Found = x_find_main_search(search_text, replacement_text);
     if(search_text) GEDA_FREE(search_text);

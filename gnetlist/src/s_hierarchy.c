@@ -411,7 +411,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
     }
   } else {
     if (basename) {
-      return_value = g_strdup (basename);
+      return_value = geda_strdup (basename);
     } else {
       return_value = NULL;
     }
@@ -427,7 +427,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
 
   if (pr_current->hierarchy_netname_mangle == FALSE) {
     if (basename) {
-      return (g_strdup (basename));
+      return (geda_strdup (basename));
     } else {
       return (NULL);
     }
@@ -475,7 +475,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
     }
   } else {
     if (basename) {
-      return_value = g_strdup (basename);
+      return_value = geda_strdup (basename);
     } else {
       return_value = NULL;
     }
@@ -491,7 +491,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
 
   if (pr_current->hierarchy_netattrib_mangle == FALSE) {
     if (basename) {
-      return (g_strdup (basename));
+      return (geda_strdup (basename));
     } else {
       return (NULL);
     }
@@ -533,7 +533,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
     }
   } else {
     if (basename) {
-      return_value = g_strdup (basename);
+      return_value = geda_strdup (basename);
     } else {
       return_value = NULL;
     }
@@ -610,17 +610,17 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     start_of_base = strrchr(uref, '/');	/* separator is always '/' */
 
     if (start_of_base == NULL) {
-      return (g_strdup (uref));
+      return (geda_strdup (uref));
     }
 
-    return_value = g_strdup (start_of_base + 1);
+    return_value = geda_strdup (start_of_base + 1);
 
   } else if (pr_current->hierarchy_uref_order == PREPEND) {
 
     end_of_base = strchr(uref, '/');
 
     if (end_of_base == NULL) {
-      return (g_strdup (uref));
+      return (geda_strdup (uref));
     }
 
     return_value = g_strndup(uref, end_of_base - uref);

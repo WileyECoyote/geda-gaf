@@ -178,7 +178,7 @@ geda_image_menu_item_class_init (GedaImageMenuItemClass *klass)
    * setting and always show the image, if available.
    *
    * Use this property if the menuitem would be useless or hard to use
-   * without the image. 
+   * without the image.
    *
    **/
   g_object_class_install_property (gobject_class,
@@ -418,7 +418,7 @@ geda_image_menu_item_recalculate (GedaImageMenuItem *image_menu_item)
 
 }
 
-static void 
+static void
 geda_image_menu_item_set_label (GtkMenuItem *menu_item,
                                 const char  *label)
 {
@@ -586,7 +586,7 @@ geda_image_menu_item_forall (GtkContainer   *container,
 }
 
 
-static void 
+static void
 geda_image_menu_item_activatable_interface_init (GtkActivatableIface  *iface)
 {
   parent_activatable_iface = g_type_interface_peek_parent (iface);
@@ -670,7 +670,7 @@ geda_image_menu_item_update (GtkActivatable *activatable,
     activatable_update_icon_name (image_menu_item, action);
 }
 
-static void 
+static void
 geda_image_menu_item_sync_action_properties (GtkActivatable *activatable,
                                              GtkAction      *action)
 {
@@ -774,7 +774,7 @@ geda_image_menu_item_new_with_mnemonic (const char *label)
  *  \ingroup GedaImageMenuItem
  *  \par Function Description
  *
- * Creates a new #GedaImageMenuItem containing the image and text from a 
+ * Creates a new #GedaImageMenuItem containing the image and text from a
  * stock item. Some stock ids have preprocessor macros like GTK_STOCK_OK
  * and GTK_STOCK_APPLY.
  *
@@ -886,7 +886,7 @@ geda_image_menu_item_set_show_image (GedaImageMenuItem *image_menu_item,
  *  \par Function Description
  * Returns whether the menu item will ignore the GtkSettings:
  * gtk-menu-images setting and always show the image, if available.
- * 
+ *
  * \param [in] image_menu_item: a #GedaImageMenuItem
  *
  * \returns: %TRUE if the menu item will always show the image
@@ -1038,7 +1038,7 @@ geda_image_menu_item_remove (GtkContainer *container,
 }
 
 /*
-static void 
+static void
 show_image_change_notify (GedaImageMenuItem *image_menu_item)
 {
   if (image_menu_item->image){

@@ -398,7 +398,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, gpointer user_data)
     s_ptr =  e_ptr = cl;
     while ( *e_ptr != ASCII_NUL) ++e_ptr;
     while (  s_ptr != e_ptr) if (*s_ptr == ASCII_SPACE) break; else ++s_ptr;
-    if (s_ptr == e_ptr) return g_strdup(cl);
+    if (s_ptr == e_ptr) return geda_strdup(cl);
     return g_strndup(cl, s_ptr - cl );
   }
 
@@ -438,7 +438,7 @@ static const char *x_console_get_input_data(void) {
 
   console_input_mode = CONSOLE_INPUT_MODE;
 
-  string = g_strdup(GetEntryText(console_entry));
+  string = geda_strdup(GetEntryText(console_entry));
 
   gtk_widget_grab_focus(console_entry);
 

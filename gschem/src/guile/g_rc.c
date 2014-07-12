@@ -791,7 +791,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
     SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
 
     str = scm_to_utf8_string(elem);
-    attr = g_strdup(str);
+    attr = geda_strdup(str);
     free(str);
     list = g_list_prepend(list, attr);
   }
@@ -1139,7 +1139,7 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
   GEDA_FREE(default_bus_ripper_symname);
 
   temp = scm_to_utf8_string (scmsymname);
-  default_bus_ripper_symname = g_strdup (temp);
+  default_bus_ripper_symname = geda_strdup (temp);
   free (temp);
 
   return SCM_BOOL_T;
@@ -1370,7 +1370,7 @@ SCM g_rc_print_command(SCM scm_command)
   command = scm_to_utf8_string (scm_command);
 
   GEDA_FREE (default_print_command);
-  default_print_command = g_strdup (command);
+  default_print_command = geda_strdup (command);
   free (command);
 
   return SCM_BOOL_T;

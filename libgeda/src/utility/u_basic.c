@@ -210,6 +210,8 @@ char *geda_strndup(const char *str, size_t n)
 
 char *geda_strdup(const char *str)
 {
+  if (!str) return NULL;
+
   size_t len = 1 + strlen(str);
   char  *ptr = GEDA_MEM_ALLOC(len);
 

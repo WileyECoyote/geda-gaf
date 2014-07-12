@@ -32,7 +32,6 @@
 
 #include "x_window.h"
 
-//#include <geda_widgets.h>
 #include "geda_dialog_controls.h"
 
 typedef bool (*GschemDrawEvent) (GtkWidget*, void*, GschemToplevel*);
@@ -611,7 +610,8 @@ void x_window_create_main(GschemToplevel *w_current)
  *  \par Function Description
  *   This function close any dialog boxes that are currently open.
  */
-static void x_window_close_all_dialogs(GschemToplevel *w_current){
+void x_window_close_all_dialogs(GschemToplevel *w_current)
+{
   /* close all the dialog boxes */
 
   if (w_current->sowindow)
@@ -834,7 +834,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
   /* Create an empty page with optional filename */
   inline Page* empty_page( const char *name ) {
     char     *fname;
-    fname = g_strdup ( name ? name : generate_untitled() );
+    fname = geda_strdup ( name ? name : generate_untitled() );
     new_page(fname);
     if (!quiet_mode)
       u_log_message (_("New file [%s]\n"),
@@ -1108,7 +1108,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
     /* change page name if necessary and prepare log message */
     if (g_ascii_strcasecmp (page->filename, filename) != 0) {
       GEDA_FREE (page->filename);
-      page->filename = g_strdup (filename);
+      page->filename = geda_strdup (filename);
 
       log_msg = _("Saved as [%s] Okay\n");
     }
@@ -1182,9 +1182,11 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
 
       if ( g_list_previous( iter ) ) {
         new_current = (Page *)g_list_previous( iter )->data;
-      } else if ( g_list_next( iter ) ) {
+      }
+      else if ( g_list_next( iter ) ) {
         new_current = (Page *)g_list_next( iter )->data;
-      } else {
+      }
+      else {
         /* need to add a new untitled page */
         new_current = NULL;
       }

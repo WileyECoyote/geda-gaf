@@ -2228,7 +2228,7 @@ void GatherSettings(GschemToplevel *w_current) {
   if (tmp_int != rc_options.ripper_symbol_index) {
     GEDA_FREE(w_current->bus_ripper_symname);
     w_current->bus_ripper_symname =
-    g_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
+    geda_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
     strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
   }
 

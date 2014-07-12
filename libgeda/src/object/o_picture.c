@@ -110,7 +110,7 @@ Object *o_picture_read (const char *first_line,
 
   }
 
-  filename = g_strdup(s_textbuffer_next_line(tb));
+  filename = geda_strdup(s_textbuffer_next_line(tb));
   filename = remove_last_nl(filename);
 
   /* Handle empty filenames */
@@ -676,7 +676,7 @@ Object *o_picture_copy(Object *o_current)
   }
 
   new_picture->file_length = old_picture->file_length;
-  new_picture->filename    = g_strdup (old_picture->filename);
+  new_picture->filename    = geda_strdup (old_picture->filename);
   new_picture->ratio       = old_picture->ratio;
   new_picture->angle       = old_picture->angle;
   new_picture->mirrored    = old_picture->mirrored;
@@ -1077,7 +1077,7 @@ o_picture_set_from_buffer (Object *object,
   object->picture->ratio = (gdk_pixbuf_get_width(pixbuf) /
                             gdk_pixbuf_get_height(pixbuf));
 
-  tmp = g_strdup (filename);
+  tmp = geda_strdup (filename);
   GEDA_FREE (object->picture->filename);
   object->picture->filename = tmp;
 

@@ -89,7 +89,7 @@ int i_menu_add_entry(char *new_menu, SCM menu_items)
     return(-1);
   }
 
-  menu[menu_index].menu_name = g_strdup (new_menu);
+  menu[menu_index].menu_name = geda_strdup (new_menu);
   scm_gc_protect_object (menu_items);
   menu[menu_index].menu_items = menu_items;
   menu_index++;

@@ -800,6 +800,7 @@ void x_window_restore_settings         (GschemToplevel *w_current);
 void x_window_save_settings            (GschemToplevel *w_current);
 /*void x_window_setup_draw_events      (GschemToplevel *w_current);*/
 void x_window_create_main              (GschemToplevel *w_current);
+void x_window_close_all_dialogs        (GschemToplevel *w_current);
 void x_window_close                    (GschemToplevel *w_current);
 void x_window_close_all                (GschemToplevel *w_current);
 Page *x_window_open_page               (GschemToplevel *w_current, const char *filename);

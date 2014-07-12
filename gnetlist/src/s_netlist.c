@@ -13,8 +13,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
@@ -172,7 +172,7 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
             if (pl_current->net_name && pl_current->nets) {
               if (pl_current->nets->next) {
                 pl_current->nets->next->net_name =
-                g_strdup (pl_current->net_name);
+                geda_strdup (pl_current->net_name);
               }
             }
           }
@@ -251,7 +251,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
             n_current = n_current->next;
           }
           if (net_name != NULL) {
-            pl_current->net_name = g_strdup(net_name);
+            pl_current->net_name = geda_strdup(net_name);
           }
         }
         pl_current = pl_current->next;
@@ -284,7 +284,7 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
         n_current = pl_current->nets;
         while (n_current != NULL) {
           if (n_current->nid == net_id) {
-            return (g_strdup(n_current->net_name));
+            return (geda_strdup(n_current->net_name));
           }
           n_current = n_current->next;
         }

@@ -178,7 +178,7 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 'o':
-        output_filename = g_strdup (optarg);
+        output_filename = geda_strdup (optarg);
         break;
 
       case 'p':
@@ -190,7 +190,7 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 'r':
-        rc_filename = g_strdup (optarg);
+        rc_filename = geda_strdup (optarg);
         break;
 
       case 's':

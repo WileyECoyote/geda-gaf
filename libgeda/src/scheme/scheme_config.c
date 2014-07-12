@@ -957,7 +957,7 @@ SCM_DEFINE (set_config_x, "%set-config!", 4, 0, 0,
                                   SCM_F_WIND_EXPLICITLY);
       for (curr_s = value_s; !scm_is_null (curr_s); curr_s = scm_cdr (curr_s)) {
         char *tmp = scm_to_utf8_string (scm_car (curr_s));
-        value [i++] = g_strdup (tmp);
+        value [i++] = geda_strdup (tmp);
         free (tmp);
       }
       eda_config_set_string_list (cfg, group, key,

@@ -2,6 +2,12 @@
 
         * src/*: Use new macro GEDA_UREF instead if g_object_unref where
           applicable.
+2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src//utility/u_basic.c: Revised (fixed) geda_strdup to handle
+        NULL argument;
+
+        * src/*/*.c: Replace g_strdup with geda_strdup
 
 2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
 

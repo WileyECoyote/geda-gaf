@@ -1425,6 +1425,7 @@
 (map-keys "F I"        "file-write-image")
 (map-keys "F T"        "file-run-script")
 (map-keys "F C"        "file-close")
+(map-keys "<Shift>C A" "file-close-all")
 (map-keys "F Q"        "file-quit")
 
 (map-keys "H A"        "help-show-about")
@@ -1590,6 +1591,7 @@
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Close")            file-close           "gtk-close"           ,(N_ "Close the current document"))
+        (,(N_ "_Close All")        file-close-all       "geda-close-all"      ,(N_ "Close all open documents"))
         (,(N_ "_Quit")             file-quit            "gtk-quit"            ,(N_ "Quit gschem and exit"))
       )
 )

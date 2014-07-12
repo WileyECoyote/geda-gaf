@@ -176,7 +176,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
         GEDA_FREE(misc);
       }
       else {
-        string = g_strdup("U? ?");
+        string = geda_strdup("U? ?");
       }
 
       fprintf(stderr, _("Missing Attributes (refdes and pin number)\n"));

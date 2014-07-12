@@ -184,53 +184,52 @@ int s_rename_search(char *src, char *dest, int quiet_flag)
 
 void s_rename_add(char *src, char *dest)
 {
-    int flag;
-    int i;
+  int flag;
+  int i;
 
-    if (src == NULL || dest == NULL) {
-	return;
-    }
+  if (src == NULL || dest == NULL) {
+    return;
+  }
 
-    flag = s_rename_search(src, dest, FALSE);
+  flag = s_rename_search(src, dest, FALSE);
 
-    if (flag) {
-        // Rename_counter may be incremented within this loop, so it cannot
-	// be used in the loop exit condition.  Just iterate over the number
-	// of renames that were in the list at the start of the loop.
-        int orig_rename_counter = rename_counter;
-	for (i = 0; i < orig_rename_counter; i++) {
-	    if (rename_pairs[cur_set][i].src
-		&& rename_pairs[cur_set][i].dest) {
-		if (strcmp(dest, rename_pairs[cur_set][i].src) == 0) {
+  if (flag) {
+    // Rename_counter may be incremented within this loop, so it cannot
+    // be used in the loop exit condition.  Just iterate over the number
+    // of renames that were in the list at the start of the loop.
+    int orig_rename_counter = rename_counter;
+    for (i = 0; i < orig_rename_counter; i++) {
+      if (rename_pairs[cur_set][i].src
+        && rename_pairs[cur_set][i].dest)
+      {
+        if (strcmp(dest, rename_pairs[cur_set][i].src) == 0) {
 #if DEBUG
-		    printf
-			("Found dest [%s] in src [%s] and that had a dest as: [%s]\nSo you want rename [%s] to [%s]\n",
-			 dest, rename_pairs[cur_set][i].src,
-			 rename_pairs[cur_set][i].dest,
-			 src, rename_pairs[cur_set][i].dest);
+          printf
+          ("Found dest [%s] in src [%s] and that had a dest as: [%s]\nSo you want rename [%s] to [%s]\n",
+           dest, rename_pairs[cur_set][i].src,
+           rename_pairs[cur_set][i].dest,
+           src, rename_pairs[cur_set][i].dest);
 #endif
 
-		    rename_pairs[cur_set][rename_counter].src =
-			g_strdup(src);
-		    rename_pairs[cur_set][rename_counter].dest =
-			g_strdup(rename_pairs[cur_set][i].dest);
-		    rename_counter++;
-		}
-	    }
-	}
-    } else {
+          rename_pairs[cur_set][rename_counter].src = geda_strdup(src);
+          rename_pairs[cur_set][rename_counter].dest =
+          geda_strdup(rename_pairs[cur_set][i].dest);
+          rename_counter++;
+        }
+      }
+    }
+  }
+  else {
 
-	rename_pairs[cur_set][rename_counter].src =
-	    g_strdup(src);
-	rename_pairs[cur_set][rename_counter].dest =
-	    g_strdup(dest);
-	rename_counter++;
-    }
-    if (rename_counter == MAX_RENAME) {
-	fprintf(stderr,
-		_("Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"));
-	return;
-    }
+    rename_pairs[cur_set][rename_counter].src = geda_strdup(src);
+    rename_pairs[cur_set][rename_counter].dest = geda_strdup(dest);
+    rename_counter++;
+  }
+  if (rename_counter == MAX_RENAME) {
+    fprintf(stderr,
+            _("Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"));
+    return;
+  }
 
 }
 
@@ -238,35 +237,34 @@ void s_rename_add(char *src, char *dest)
 
 void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
 {
-    NETLIST *nl_current = NULL;
-    CPINLIST *pl_current;
+  NETLIST *nl_current = NULL;
+  CPINLIST *pl_current;
 
-    nl_current = netlist_head;
+  nl_current = netlist_head;
 
-    while (nl_current != NULL) {
-	if (nl_current->cpins) {
-	    pl_current = nl_current->cpins;
-	    while (pl_current != NULL) {
+  while (nl_current != NULL) {
+    if (nl_current->cpins) {
+      pl_current = nl_current->cpins;
+      while (pl_current != NULL) {
 
-		if (pl_current->net_name != NULL) {
+        if (pl_current->net_name != NULL) {
 
-		    if (strcmp(pl_current->net_name, src) == 0) {
+          if (strcmp(pl_current->net_name, src) == 0) {
 
-			/* this is a bad idea */
-			/* because inside nets-> */
-			/* there is another pointer */
-			/*GEDA_FREE(pl_current->net_name); */
+            /* this is a bad idea */
+            /* because inside nets-> */
+            /* there is another pointer */
+            /*GEDA_FREE(pl_current->net_name); */
 
-			pl_current->net_name =
-			    g_strdup(dest);
-		    }
-		}
+            pl_current->net_name = geda_strdup(dest);
+          }
+        }
 
-		pl_current = pl_current->next;
-	    }
-	}
-	nl_current = nl_current->next;
+        pl_current = pl_current->next;
+      }
     }
+    nl_current = nl_current->next;
+  }
 
 }
 

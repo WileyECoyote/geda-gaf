@@ -858,7 +858,7 @@ void initialize( API_FunctionTable* user_table)
   setup_source_library();
   if(toplevel->always_promote_attributes == NULL ) {
     for ( i = 0; promote_list[i]; i++) {
-     apa_list = g_list_prepend(apa_list, g_strdup(promote_list[i]));
+     apa_list = g_list_prepend(apa_list, geda_strdup(promote_list[i]));
     }
   }
   floating_objects = NULL;
@@ -1158,7 +1158,7 @@ PyGeda_open_page( const char *filename )
   /* Create an empty page with optional filename */
   inline Page* empty_page( const char *name ) {
     char *fname;
-    fname = g_strdup ( name ? name : generate_untitled() );
+    fname = geda_strdup ( name ? name : generate_untitled() );
     page = s_page_new (toplevel, fname);
     s_page_goto (toplevel, page);
     GEDA_FREE (fname);
@@ -1194,7 +1194,7 @@ PyGeda_open_page( const char *filename )
          * occurs then we have to delete this page but s_page_delete is
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
-        page = s_page_new (toplevel, g_strdup (filename));
+        page = s_page_new (toplevel, geda_strdup (filename));
         s_page_goto (toplevel, page);
         /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
@@ -2086,12 +2086,12 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
 
   if(busname) { /* then create a text attribute for netname */
     Object *net_attrib;
-    object->bus->bus_name  = g_strdup(busname);
+    object->bus->bus_name  = geda_strdup(busname);
     net_attrib = o_attrib_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
   }
   else
-    object->bus->bus_name  = g_strdup(object->name);
+    object->bus->bus_name  = geda_strdup(object->name);
 
   object->bus->bus_ripper_direction = o_bus_get_direction(object);
 
@@ -2254,12 +2254,12 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   /* Set in the gobject so the memory will be freed later */
   if(netname) { /* then create a text attribute for netname */
     Object *net_attrib;
-    object->net->net_name  = g_strdup(netname);
+    object->net->net_name  = geda_strdup(netname);
     net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
   }
   else
-    object->net->net_name  = g_strdup(object->name);
+    object->net->net_name  = geda_strdup(object->name);
 
   object->net->nid = object->sid;
 
@@ -2382,9 +2382,9 @@ PyGeda_new_pin (const char *label, int x1, int y1, int x2, int y2, int whichend,
   object = o_pin_new(PIN_COLOR, x1, y1, x2, y2, 0, conn2);
 
   if(label)
-    object->pin->label = g_strdup(label);
+    object->pin->label = geda_strdup(label);
   else
-    object->pin->label = g_strdup("unknown");
+    object->pin->label = geda_strdup("unknown");
 
   if (etype < 0) {
     o_pin_set_elect_type(object, PIN_ELECT_VOID);

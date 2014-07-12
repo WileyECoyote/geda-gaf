@@ -22,7 +22,7 @@
  *  \brief list derived from GList with GObject properties
  *
  *  This GedaList with the GObject properties can use the signaling
- *  mechanisms of GObject now. 
+ *  mechanisms of GObject now.
  */
 
 #include <config.h>
@@ -167,7 +167,7 @@ void geda_list_add( GedaList *list, gpointer item )
  *  \par Function Description
  *  Adds the given glist of items to the GedaList
  *  A copy is made, so the original GList is not modified.
- * 
+ *
  *  \param [in] list Pointer to the GedaList
  *  \param [in] items GList of items to add to the GedaList.
  */

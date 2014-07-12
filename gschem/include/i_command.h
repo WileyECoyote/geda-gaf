@@ -78,6 +78,7 @@ enum ActionFlag
         COMMAND ( do_write_pdf )
         COMMAND ( do_run_script )
         COMMAND ( do_close )
+        COMMAND ( do_close_all )
         COMMAND ( do_quit )
 
         COMMAND ( do_edit )
@@ -349,6 +350,8 @@ enum {
      COMMAND ( FILE_WRITE_PDF,      "write_pdf",        USE_WORKER_THREAD,      do_write_pdf)
      COMMAND ( FILE_RUN_SCRIPT,     "run_script",       USE_MAIN_LOOP,          do_run_script)
      COMMAND ( FILE_CLOSE,          "close",            USE_WORKER_THREAD,      do_close)
+     COMMAND ( FILE_CLOSE_ALL,      "close all",        USE_WORKER_THREAD,      do_close_all)
+
      COMMAND ( FILE_QUIT,           NULL,               USE_WORKER_THREAD,      do_quit)
 
      COMMAND ( edit,                NULL,               USE_WORKER_THREAD,      do_edit)

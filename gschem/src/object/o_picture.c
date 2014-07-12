@@ -309,8 +309,7 @@ void o_picture_change_filename_dialog (GschemToplevel *w_current)
     if (!result) {
 
       /* Log the error */
-      u_log_message( _("picture_change_filename_dialog: Failed to replace picture: %s"),
-                       err->message);
+      u_log_message( _("%d: Failed to replace picture: %s"), __func__, err->message);
 
       /* inform the user */
       pango_error_dialog ( _("<b>Failed to replace picture</b>"), err->message );
@@ -359,7 +358,7 @@ void o_picture_set_pixbuf(GschemToplevel *w_current,
   }
 
   w_current->current_pixbuf = pixbuf;
-  w_current->pixbuf_filename = (char *) g_strdup(filename);
+  w_current->pixbuf_filename = (char *) geda_strdup(filename);
 
   w_current->pixbuf_wh_ratio = gdk_pixbuf_get_width(pixbuf) /
                                         gdk_pixbuf_get_height(pixbuf);

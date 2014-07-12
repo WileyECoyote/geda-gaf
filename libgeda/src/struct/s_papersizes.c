@@ -22,7 +22,7 @@
 #include <stdio.h>
 #include <sys/types.h>
 #ifdef HAVE_STDLIB_H
-#include <stdlib.h> 
+#include <stdlib.h>
 #endif
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -48,7 +48,7 @@ static int papersizes_index=0;
 
 /*! \brief
  * and eventually make this unlimited
- * hack hack 
+ * hack hack
  */
 static struct st_papersizes_names papersizes[MAX_PageSIZES];
 
@@ -57,17 +57,17 @@ static struct st_papersizes_names papersizes[MAX_PageSIZES];
  *  \par Function Description
  *  width and height in portrait mode
  */
-int s_papersizes_add_entry(char *new_papersize, int width, int height) 
+int s_papersizes_add_entry(char *new_papersize, int width, int height)
 {
   if (new_papersize == NULL) {
-    return(-1); 
+    return(-1);
   }
 
   if (papersizes_index >= MAX_PageSIZES) {
-    return(-1); 
+    return(-1);
   }
 
-  papersizes[papersizes_index].papersize_name = g_strdup (new_papersize);
+  papersizes[papersizes_index].papersize_name = geda_strdup (new_papersize);
 
   papersizes[papersizes_index].width = width;
   papersizes[papersizes_index].height = height;
@@ -133,8 +133,8 @@ void s_papersizes_init()
 {
   int i;
   for (i = 0; i < MAX_PageSIZES; i++) {
-    papersizes[i].papersize_name = NULL;	
-  } 
+    papersizes[i].papersize_name = NULL;
+  }
 }
 
 /*! \todo Finish function documentation!!!
@@ -156,7 +156,7 @@ char *s_papersizes_get(int counter)
  *  \par Function Description
  *
  */
-void s_papersizes_get_size(char *string, int *width, int *height) 
+void s_papersizes_get_size(char *string, int *width, int *height)
 {
   int i;
 

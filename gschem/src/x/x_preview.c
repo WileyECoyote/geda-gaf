@@ -490,7 +490,7 @@ preview_set_property (GObject *object, unsigned int property_id,
           g_object_notify (object, "buffer");
         }
         GEDA_FREE (preview->filename);
-        preview->filename = g_strdup (g_value_get_string (value));
+        preview->filename = geda_strdup (g_value_get_string (value));
         preview_update (preview);
         break;
 
@@ -501,7 +501,7 @@ preview_set_property (GObject *object, unsigned int property_id,
           g_object_notify (object, "filename");
         }
         GEDA_FREE (preview->buffer);
-        preview->buffer = g_strdup (g_value_get_string (value));
+        preview->buffer = geda_strdup (g_value_get_string (value));
         preview_update (preview);
         break;
 

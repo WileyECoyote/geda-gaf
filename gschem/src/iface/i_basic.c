@@ -520,7 +520,7 @@ void i_set_filename(GschemToplevel *w_current, const char *string)
  * i_command.c:2674   i_cmd_do_grid_mesh()
  * i_command.c:2683   i_cmd_do_grid_off()
  * i_command.c:2705   i_cmd_do_cycle_grid()
- * 
+ *
  */
 void i_update_grid_info (GschemToplevel *w_current)
 {

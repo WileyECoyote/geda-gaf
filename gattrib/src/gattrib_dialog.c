@@ -38,7 +38,7 @@
  *  \par Function Description
  *  This is an internally used function to create pixmaps.
  *  The default bitmap directory is prefixed to the filename
- *  and if is valid then the image widget is created and returned. GtkWidget *widget, 
+ *  and if is valid then the image widget is created and returned. GtkWidget *widget,
  */
 
 GtkWidget*
@@ -367,7 +367,7 @@ static void gattrib_dialog_set_property (GObject *object, guint property_id, con
   switch(property_id) {
     case PROP_SETTINGS_NAME:
       GEDA_FREE (dialog->settings_name);
-      dialog->settings_name = g_strdup (g_value_get_string (value));
+      dialog->settings_name = geda_strdup (g_value_get_string (value));
       break;
     case PROP_GATTRIB_GedaToplevel:
       dialog->pr_current = (GedaToplevel*)g_value_get_pointer (value);

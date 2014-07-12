@@ -71,7 +71,7 @@ char *s_netattrib_extract_netname(char *value)
   int i = 0;
 
   /* a bit larger than needed ... */
-  return_value = g_strdup (value);
+  return_value = geda_strdup (value);
 
   while (value[i] != ':' && value[i] != '\0') {
     return_value[i] = value[i];
@@ -80,7 +80,7 @@ char *s_netattrib_extract_netname(char *value)
 
   if (value[i] != ':') {
     fprintf(stderr, _("Found malformed net attribute\n"));
-    return (g_strdup ("unknown"));
+    return (geda_strdup ("unknown"));
   }
 
   return_value[i] = '\0';
@@ -145,7 +145,7 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
         connected_to = g_strdup_printf("%s %s",
                                        netlist->component_uref,
                                        current_pin);
-        old_cpin->nets->connected_to = g_strdup(connected_to);
+        old_cpin->nets->connected_to = geda_strdup(connected_to);
         old_cpin->nets->nid = o_current->sid;
         GEDA_FREE(connected_to);
       }
@@ -154,7 +154,7 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
 
         new_cpin = s_cpinlist_add(cpinlist_tail);
 
-        new_cpin->pin_number = g_strdup (current_pin);
+        new_cpin->pin_number = geda_strdup (current_pin);
         new_cpin->net_name = NULL;
 
         new_cpin->plid = o_current->sid;
@@ -168,7 +168,7 @@ s_netattrib_create_pins(GedaToplevel * pr_current, Object * o_current,
         connected_to = g_strdup_printf("%s %s",
                                        netlist->component_uref,
                                        current_pin);
-        new_cpin->nets->connected_to = g_strdup(connected_to);
+        new_cpin->nets->connected_to = geda_strdup(connected_to);
         new_cpin->nets->nid = o_current->sid;
 
 #if DEBUG

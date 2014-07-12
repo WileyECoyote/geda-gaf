@@ -148,11 +148,11 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
       if (gdk_pixbuf_format_is_writable (ptr->data)) {
 
         /* Get the format description and add it to the menu */
-        buf = g_strdup (gdk_pixbuf_format_get_description(ptr->data));
+        buf = geda_strdup (gdk_pixbuf_format_get_description(ptr->data));
         geda_combo_box_text_widget_append (combo, buf);
 
         /* Compare the name with default and store the index */
-        buf = g_strdup (gdk_pixbuf_format_get_name(ptr->data));
+        buf = geda_strdup (gdk_pixbuf_format_get_name(ptr->data));
 
 #if DEBUG || DEBUG_IMAGING
         fprintf(stderr, "default_type=[%d], buf=[%s]\n",default_type, buf);
@@ -208,17 +208,17 @@ static char *x_image_get_type_from_description(char *descr) {
   if (descr != NULL) {
 
     if (strcmp(descr, _("Encapsulated Postscript")) == 0) {
-      ret_val = g_strdup("eps");
+      ret_val = geda_strdup("eps");
     }
     else if (strcmp(descr, "Portable Document Format") == 0) {
-      ret_val = g_strdup("pdf");
+      ret_val = geda_strdup("pdf");
     }
     else {
       formats = gdk_pixbuf_get_formats ();
       while (formats) {
         ptr_descr = gdk_pixbuf_format_get_description (formats->data);
         if (ptr_descr && (strcasecmp(ptr_descr, descr) == 0)) {
-          ret_val = g_strdup(gdk_pixbuf_format_get_name(formats->data));
+          ret_val = geda_strdup(gdk_pixbuf_format_get_name(formats->data));
           break;
         }
         formats = formats->next;

@@ -509,10 +509,10 @@ o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
   complex =  GEDA_COMPLEX(new_obj);
 
   if (clib != NULL) {
-    complex->filename = g_strdup (s_clib_symbol_get_name (clib));
+    complex->filename = geda_strdup (s_clib_symbol_get_name (clib));
   }
   else {
-    complex->filename = g_strdup (basename);
+    complex->filename = geda_strdup (basename);
   }
 
   /* get the symbol data */
@@ -594,7 +594,7 @@ Object *o_complex_new_embedded(int x, int y, int angle, int mirror,
   complex->angle = angle;
   complex->mirror = mirror;
 
-  complex->filename = g_strdup(basename);
+  complex->filename = geda_strdup(basename);
 
   complex->is_embedded = TRUE;
 
@@ -768,7 +768,7 @@ Object *o_complex_copy(Object *o_current)
   new_complex = GEDA_COMPLEX(o_new);
   old_complex = GEDA_COMPLEX(o_current);
 
-  new_complex->filename    = g_strdup(old_complex->filename);
+  new_complex->filename    = geda_strdup(old_complex->filename);
   new_complex->is_embedded = old_complex->is_embedded;
   new_complex->x           = old_complex->x;
   new_complex->y           = old_complex->y;
@@ -976,7 +976,7 @@ o_complex_check_symversion(Object* object)
   refdes = o_attrib_search_object_attribs_by_name(object, "refdes", 0);
   if (!refdes)
   {
-    refdes = g_strdup ("unknown");
+    refdes = geda_strdup ("unknown");
   }
 
   if (inside)

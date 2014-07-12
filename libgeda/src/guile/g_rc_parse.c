@@ -305,7 +305,7 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
 
   /* If path isn't a directory, get the dirname. */
   if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
-    dir = g_strdup (path);
+    dir = geda_strdup (path);
   }
   else {
     dir = g_path_get_dirname (path);
@@ -439,7 +439,7 @@ void g_rcname_parse_handler (const char *rcname,
   /* Application-specific rcname. */
   if (rcname != NULL) {
     g_rc_parse_system (rcname, &err);       HANDLER_DISPATCH;
-    g_rc_parse_user   (rcname, &err);       HANDLER_DISPATCH; 
+    g_rc_parse_user   (rcname, &err);       HANDLER_DISPATCH;
     g_rc_parse_local  (rcname, NULL, &err); HANDLER_DISPATCH;
   }
 

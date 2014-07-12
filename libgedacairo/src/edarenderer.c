@@ -348,7 +348,7 @@ eda_renderer_init (EdaRenderer *renderer)
 
   /* Setup default options */
   if (renderer->priv->font_name == NULL) {
-    renderer->priv->font_name = g_strdup (EDAR_DEFAULT_FONT_NAME);
+    renderer->priv->font_name = geda_strdup (EDAR_DEFAULT_FONT_NAME);
   }
 
   renderer->priv->override_color = -1;
@@ -1753,7 +1753,7 @@ const char *eda_renderer_get_font_name(EdaRenderer *renderer)
 void eda_renderer_set_font_name(EdaRenderer *renderer, const char *fontname)
 {
   GEDA_FREE(renderer->priv->font_name);
-  renderer->priv->font_name = g_strdup (fontname);
+  renderer->priv->font_name = geda_strdup (fontname);
 }
 
 bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
