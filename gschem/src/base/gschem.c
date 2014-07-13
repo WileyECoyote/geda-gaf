@@ -290,7 +290,7 @@ void gschem( int argc, char *argv[])
     if( access( filename, F_OK ) == -1 ) {
 
       /* See if user left off our file suffixes */
-      const char *ext = get_filename_ext(filename);
+      const char *ext = f_get_filename_ext(filename);
       if (!ext) {
         memset(tmpfilename, 0, sizeof(tmpfilename));
         /* Check if file name is valid if ".sch" is added */

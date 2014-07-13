@@ -1217,7 +1217,7 @@ int setup_titleblock_combo( char *titleblock ){
      /* Maybe someone really smart can fix */
      sort_string_array(strBuffer, sizeof(strBuffer));
 
-     remove_ext_from_basename(titleblock);
+     f_remove_extension(titleblock);
 
      i = 0;
      while (i < number_of_buffers){

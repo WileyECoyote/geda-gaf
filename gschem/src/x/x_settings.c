@@ -347,7 +347,7 @@ int get_titleblock_cnt(void) {
   {
      /* get all the files within directory */
      while ((ent = readdir (dirp)) != NULL) {
-       suffix = get_filename_ext(ent->d_name);
+       suffix = f_get_filename_ext(ent->d_name);
        if ( suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
          count++;
        }
@@ -391,7 +391,7 @@ bool get_titleblock_list(char **Buffer) {
      /* get all the files within directory */
      while ((ent = readdir (dirp)) != NULL)
      {
-       suffix = get_filename_ext(ent->d_name);
+       suffix = f_get_filename_ext(ent->d_name);
        if ( suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
        {
           strcpy(tmpbuff, basename(ent->d_name));

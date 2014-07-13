@@ -37,6 +37,9 @@
 #endif
 #include <malloc.h>
 #include <stdio.h>
+#include <sys/types.h>
+#include <dirent.h>
+
 #include <glib.h>
 
 #include <errno.h>
@@ -62,7 +65,7 @@ extern int errno;
  *  \param [in] filename The filename to search.
  *  \return offset if found, otherwise NULL.
  */
-const char *get_filename_ext(const char *filename) {
+const char *f_get_filename_ext(const char *filename) {
     const char *dot = strrchr(filename, '.');
     if(!dot || dot == filename) return NULL;
     return dot + 1;
@@ -78,7 +81,7 @@ const char *geda_basename(const char *path)
 }
 
 /* warning: MUST not be const char */
-void remove_ext_from_basename(char *filename) {
+void f_remove_extension(char *filename) {
 
   int i = 0;
   int n = 0;
@@ -195,3 +198,68 @@ int f_copy(const char *source, const char *target)
 
 }
 
+/*! \brief Get list of file in Given directory
+ *  \par Function Description
+ *  This function collect the names of files contain in the
+ *  specified path using the optional extension filter. The
+ *  list of file is return in a single linked list.
+ *
+ * \retval Returns GSList of files or NULL if no matching files
+*/
+GSList *f_get_dir_list_files(char *path, char *filter)
+{
+
+        GSList *files = NULL;
+        char   *filename;
+  const char   *suffix;
+
+  DIR        *dirp;
+  struct      dirent *ent;
+
+  dirp = opendir (path);
+  if (dirp != NULL) {
+
+    /* get all the files within directory */
+    while ((ent = readdir (dirp)) != NULL) {
+      if (filter) {
+        suffix = f_get_filename_ext(ent->d_name);
+        if ( suffix && strcmp (suffix, filter) == 0) {
+          filename = geda_strdup(ent->d_name);
+          files = g_slist_append(files, filename);
+        }
+      }
+      else {
+        filename = geda_strdup(ent->d_name);
+        files = g_slist_append(files, filename);
+      }
+    }
+    closedir (dirp);
+  }
+  else { /* could not open directory */
+    u_log_message(_("%s: error accessing: %s\n"), __func__, path);
+  }
+
+  return files;
+}
+
+/*! \brief Remove File
+ *  \par Function Description
+ *  This function calls the standard remove function after setting
+ *  the system error number to 0.
+ *
+ * \retval Returns result of remove function
+*/
+int f_file_remove (const char *pathname)
+{
+  int result;
+
+  errno = 0;
+
+  if (pathname != NULL) {
+    result = remove(pathname);
+  }
+  else {
+    result = -1;
+  }
+  return result;
+}

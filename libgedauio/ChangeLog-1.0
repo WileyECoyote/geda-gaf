@@ -1,6 +1,6 @@
 2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
-	*: Redu .gitignore files
+	*: Redo .gitignore files
 
 	*dialog/*: Add new directory and file geda_input_dialog.c for generic input
          dialogs.

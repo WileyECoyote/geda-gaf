@@ -327,7 +327,7 @@ x_fileselect_save (GschemToplevel *w_current)
     auto_ext = gtk_toggle_button_get_active ((GtkToggleButton*)cb_add_ext);
     tmpname  = NULL;
     if (auto_ext && (filebase != NULL)) {
-      if (!get_filename_ext(filebase)) {
+      if (!f_get_filename_ext(filebase)) {
         filter = gtk_file_chooser_get_filter( GTK_FILE_CHOOSER(dialog));
         type = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(filter), "id" ));
         if (type == FILTER_SCHEMATIC)

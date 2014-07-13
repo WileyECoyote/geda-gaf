@@ -201,7 +201,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
 const char *s_page_get_file_extension (Page *page)
 {
   if (page != NULL && page->filename != NULL) {
-    return get_filename_ext(page->filename);
+    return f_get_filename_ext(page->filename);
   }
   return NULL;
 }
