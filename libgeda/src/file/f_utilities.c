@@ -195,6 +195,3 @@ int f_copy(const char *source, const char *target)
 
 }
 
-
-
-

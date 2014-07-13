@@ -458,22 +458,22 @@ char *x_dialog_get_search_text(char* prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
   }
 
-   dialog = (GtkDialog*)gtk_dialog_new_with_buttons (_("Find Text"),
-					            GTK_WINDOW(main_window),
-                                                    GTK_DIALOG_MODAL,
-					            GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                                    GTK_STOCK_FIND, GTK_RESPONSE_ACCEPT,
-						    NULL);
+  dialog = (GtkDialog*)gtk_dialog_new_with_buttons (_("Find Text"),
+                                                      GTK_WINDOW(main_window),
+                                                      GTK_DIALOG_MODAL,
+                                                      GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
+                                                      GTK_STOCK_FIND, GTK_RESPONSE_ACCEPT,
+                                                      NULL);
 
   if (dialog) {
-   /* Set the alternative button order (ok, cancel, help) for other systems */
+    /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(dialog,
-					    GTK_RESPONSE_ACCEPT,
+                                            GTK_RESPONSE_ACCEPT,
                                             GTK_RESPONSE_REJECT,
                                             -1);
     gtk_dialog_set_default_response(dialog, GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_SPACING);
+    gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_WIDTH);
 
     GtkWidget *vbox = dialog->vbox;
     gtk_box_set_spacing((GtkBox*)vbox, DIALOG_V_SPACING);
@@ -862,7 +862,7 @@ void x_dialog_search_replace(SearchRecord *Search) {
                     GTK_SIGNAL_FUNC(search_replace_dialog_response), Search);
 
   gtk_container_border_width (GTK_CONTAINER(ThisDialog),
-                                DIALOG_BORDER_SPACING);
+                                DIALOG_BORDER_WIDTH);
 
   gtk_widget_show(ThisDialog);
 }

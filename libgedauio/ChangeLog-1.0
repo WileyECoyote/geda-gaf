@@ -1,3 +1,10 @@
+2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+	*: Redu .gitignore files
+
+	*dialog/*: Add new directory and file geda_input_dialog.c for generic input
+         dialogs.
+
 2014-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
 	*: New library Libgedawidgets created for widgets previously built in

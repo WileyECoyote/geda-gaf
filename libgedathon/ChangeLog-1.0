@@ -1,3 +1,7 @@
+2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
+
+	*: Redu .gitignore files
+
 2010-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * libgedathon: New library for Python interface.

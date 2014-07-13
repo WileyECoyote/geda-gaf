@@ -452,12 +452,8 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
                                             GTK_RESPONSE_ACCEPT,
                                             GTK_RESPONSE_REJECT,
                                             -1);
-
     /* Create the Dialog */
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_container_set_border_width(GTK_CONTAINER(ThisDialog),
-                                   DIALOG_BORDER_SPACING);
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     /* Text Contents Label */
     text_label = geda_aligned_label_new (_("<b>Text Content</b>"), 0, 0);

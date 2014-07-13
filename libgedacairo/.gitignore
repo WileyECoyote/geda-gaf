@@ -1,6 +1,9 @@
 Makefile
 Makefile.in
+TAGS
 *~
+*#
 *.txt
 *.bak
-TAGS
+ChangeLog
+libgedacairo.pc

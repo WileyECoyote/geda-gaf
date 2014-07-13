@@ -186,10 +186,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
     gtk_dialog_set_default_response (GTK_DIALOG (Dialog),
                                      GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(Dialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(Dialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new(_("Object color:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, FALSE, FALSE, 0);

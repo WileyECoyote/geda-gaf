@@ -1,4 +1,5 @@
 /* gEDA - GPL Electronic Design Automation
+ *
  * gschem - gEDA Schematic Capture
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
@@ -1275,7 +1276,7 @@ GtkWidget* autonumber_create_dialog(GschemToplevel *w_current)
 
   ThisDialog = gschem_dialog_new_with_buttons(_("Autonumber text"),
                                               GTK_WINDOW(w_current->main_window),
-                                              /* modal-less */                  GSCHEM_MODELESS_DIALOG,
+            /* modal-less */                  GSCHEM_MODELESS_DIALOG,
                                               "autonumber", w_current,
                                               GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
                                               GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
@@ -1289,10 +1290,7 @@ GtkWidget* autonumber_create_dialog(GschemToplevel *w_current)
 
   /* gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);*/
 
-  gtk_container_border_width(GTK_CONTAINER(ThisDialog),
-                             DIALOG_BORDER_SPACING);
   vbox1 = GTK_DIALOG(ThisDialog)->vbox;
-  gtk_box_set_spacing(GTK_BOX(vbox1), DIALOG_V_SPACING);
 
   /* scope section */
   label1 = geda_aligned_visible_label_new(_("<b>Scope</b>"), 0, 0);

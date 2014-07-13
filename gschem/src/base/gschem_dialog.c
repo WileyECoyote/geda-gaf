@@ -28,6 +28,7 @@
 #include <gdk/gdkkeysyms.h>
 
 #include <gschem_dialog.h>
+#include <gschem_xdefines.h>
 
 /* Signal marshaller based on generated code from glib-genmarshal */
 static void
@@ -511,6 +512,9 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
   GschemDialog *dialog  = (GschemDialog*)instance;
 
   dialog->tail_marker   = GSCHEM_TYPE_DIALOG;
+
+  gtk_container_border_width(GTK_CONTAINER(dialog), DIALOG_BORDER_WIDTH);
+  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (dialog)->vbox), DIALOG_V_SPACING);
 }
 /*! \brief Function to retrieve GschemDialog's Type identifier.
  *
@@ -600,34 +604,34 @@ static void gschem_dialog_add_buttons_valist (GtkDialog     *dialog,
  GtkWidget* gschem_dialog_new_empty (const char            *title,
                                            GtkWindow       *parent,
                                            GtkDialogFlags   flags,
-                                           const char *settings_name,
-                                           GschemToplevel *w_current)
-{
-  GschemDialog *dialog;
+                                           const char      *settings_name,
+                                           GschemToplevel  *w_current)
+ {
+   GschemDialog *dialog;
 
-  dialog = g_object_new (GSCHEM_TYPE_DIALOG,
-                         "settings-name",   settings_name,
-                         "gschem-toplevel", w_current,
-                         NULL);
+   dialog = g_object_new (GSCHEM_TYPE_DIALOG,
+                          "settings-name",   settings_name,
+                          "gschem-toplevel", w_current,
+                          NULL);
 
-  if (title)
-    gtk_window_set_title (GTK_WINDOW (dialog), _(title));
+   if (title)
+     gtk_window_set_title (GTK_WINDOW (dialog), _(title));
 
-  if (parent)
-    gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
+   if (parent)
+     gtk_window_set_transient_for (GTK_WINDOW (dialog), parent);
 
-  if (flags & GTK_DIALOG_MODAL)
-    gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
+   if (flags & GTK_DIALOG_MODAL)
+     gtk_window_set_modal (GTK_WINDOW (dialog), TRUE);
 
-  gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
+   gtk_window_set_destroy_with_parent (GTK_WINDOW (dialog), TRUE);
 
-  if (flags & GTK_DIALOG_NO_SEPARATOR)
-    gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
+   if (flags & GTK_DIALOG_NO_SEPARATOR)
+     gtk_dialog_set_has_separator (GTK_DIALOG (dialog), FALSE);
 
-    gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
+   gtk_window_set_type_hint (GTK_WINDOW (dialog), GDK_WINDOW_TYPE_HINT_DIALOG);
 
-  return GTK_WIDGET (dialog);
-}
+   return GTK_WIDGET (dialog);
+ }
 
 
 /*! \brief GTK function modified from GTK+-2.4.14 gtkdialog.c

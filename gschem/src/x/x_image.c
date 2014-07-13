@@ -792,7 +792,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
       GTK_WIN_POS_MOUSE);
 
   gtk_container_set_border_width(GTK_CONTAINER(ThisDialog),
-      DIALOG_BORDER_SPACING);
+      DIALOG_BORDER_WIDTH);
 
   gtk_box_set_spacing(GTK_BOX(((GtkDialog*)ThisDialog)->vbox),
       DIALOG_V_SPACING);

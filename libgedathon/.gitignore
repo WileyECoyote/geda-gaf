@@ -1,8 +1,10 @@
-.deps
-.libs
-*.la
-*.lo
+Makefile
+Makefile.in
+TAGS
+*~
+*#
+*.txt
+*.bak
 ChangeLog
 libgedathon.pc
-stash/
-stash/*
+

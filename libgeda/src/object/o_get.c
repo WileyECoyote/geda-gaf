@@ -75,20 +75,25 @@ bool o_get_fill_options(Object *object,
                         int *pitch1, int *angle1,
                         int *pitch2, int *angle2)
 {
-  g_return_val_if_fail((GEDA_IS_CIRCLE(object) ||
-                        GEDA_IS_ARC(object)    ||
-                        GEDA_IS_BOX(object)    ||
-                        GEDA_IS_PATH(object)),
-                        FALSE);
+  bool answer;
 
-  *type   = object->fill_options->fill_type;
-  *width  = object->fill_options->fill_width;
-  *pitch1 = object->fill_options->fill_pitch1;
-  *angle1 = object->fill_options->fill_angle1;
-  *pitch2 = object->fill_options->fill_pitch2;
-  *angle2 = object->fill_options->fill_angle2;
+  if (GEDA_IS_CIRCLE(object) || GEDA_IS_ARC(object)    ||
+    GEDA_IS_BOX(object)    || GEDA_IS_PATH(object))
+  {
 
-  return TRUE;
+    *type   = object->fill_options->fill_type;
+    *width  = object->fill_options->fill_width;
+    *pitch1 = object->fill_options->fill_pitch1;
+    *angle1 = object->fill_options->fill_angle1;
+    *pitch2 = object->fill_options->fill_pitch2;
+    *angle2 = object->fill_options->fill_angle2;
+
+    return answer = TRUE;
+  }
+  else {
+    answer = FALSE;
+  }
+  return answer;
 }
 
 /*! \brief Checks if an object is bus, or a bus pin

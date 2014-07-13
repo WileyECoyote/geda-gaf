@@ -1,12 +1,8 @@
-*.lo
-.deps
-.libs
 Makefile
 Makefile.in
-libgeda.la
-*.o
-*.x
 *~
+*#
+*.bak
 *.swp
 *-swp
 

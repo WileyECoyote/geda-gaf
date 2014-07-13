@@ -1,6 +1,6 @@
 /* GTK - The GIMP Toolkit
  *
- * Copyright (C) 2010 Christian Dywan
+ * Copyright (C) 2010-2014 Christian Dywan
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -36,7 +36,7 @@
 #include "config.h"
 #include <geda.h>
 
-#include "gtk/gtk.h"
+#include <gtk/gtk.h>
 
 #include <string.h>
 

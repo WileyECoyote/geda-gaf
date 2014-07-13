@@ -438,10 +438,7 @@ void snap_size_dialog (GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(Dialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(Dialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new (_("Enter new snap grid spacing:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
@@ -548,10 +545,7 @@ void text_size_dialog (GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(Dialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(Dialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new (_("Enter new text size:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
@@ -757,9 +751,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
     gtk_dialog_set_default_response(GTK_DIALOG(Dialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(Dialog), DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(Dialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     alignment = gtk_alignment_new(0,0,1,1);
     gtk_alignment_set_padding(GTK_ALIGNMENT(alignment), 0, 0,
@@ -1359,9 +1351,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
 
   gtk_dialog_set_default_response(GTK_DIALOG(Dialog), GTK_RESPONSE_ACCEPT);
 
-  gtk_container_border_width(GTK_CONTAINER(Dialog), DIALOG_BORDER_SPACING);
   vbox = GTK_DIALOG(Dialog)->vbox;
-  gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
   table = gtk_table_new (6, 2, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
@@ -1861,9 +1851,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
 
   gtk_dialog_set_default_response (GTK_DIALOG (Dialog), GTK_RESPONSE_ACCEPT);
 
-  gtk_container_border_width(GTK_CONTAINER(Dialog), DIALOG_BORDER_SPACING);
   vbox = GTK_DIALOG(Dialog)->vbox;
-  gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
   table = gtk_table_new (4, 2, FALSE);
   gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
@@ -2083,12 +2071,7 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
     gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog),
                                      GTK_RESPONSE_ACCEPT);
 
-
-
-    gtk_container_border_width(GTK_CONTAINER(ThisDialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new (_("Edit slot number:"), 0, 0);
     gtk_box_pack_start(GTK_BOX (vbox), label, FALSE, FALSE, 0);
@@ -2252,10 +2235,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                      GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(ThisDialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new(_("Text to find:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
@@ -2362,10 +2342,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(ThisDialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new(_("Hide text starting with:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
@@ -2472,10 +2449,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(ThisDialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new(_("Show text starting with:"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
@@ -2624,10 +2598,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER (ThisDialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox),DIALOG_V_SPACING);
 
     label = geda_aligned_label_new (_("Enter text, click apply,\n"
                                       "move cursor into window, click to place text.\n"
@@ -2753,10 +2724,7 @@ void x_dialog_translate (GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width(GTK_CONTAINER(ThisDialog),
-                               DIALOG_BORDER_SPACING);
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     label = geda_aligned_label_new(_("Offset to translate?\n(0 for origin)"), 0, 0);
     gtk_box_pack_start(GTK_BOX(vbox), label, TRUE, TRUE, 0);
@@ -2843,13 +2811,10 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
     gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
                                     GTK_RESPONSE_ACCEPT);
 
-    gtk_container_border_width (GTK_CONTAINER (ThisDialog),
-                                DIALOG_BORDER_SPACING);
 
     gtk_widget_set_usize(ThisDialog, 300,300);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
-    gtk_box_set_spacing(GTK_BOX(vbox), DIALOG_V_SPACING);
 
     scrolled_win = gtk_scrolled_window_new (NULL, NULL);
     gtk_box_pack_start (GTK_BOX (vbox), scrolled_win, TRUE, TRUE, 0);
@@ -4227,7 +4192,7 @@ void gschem_markup_message_dialog (const char *msg1, const char *msg2,
     msg_2_has_markup = TRUE;
 
   dialog = g_object_new (GTK_TYPE_MESSAGE_DIALOG,
-                         /* "message-border",       DIALOG_BORDER_SPACING,*/
+                         "border-width",         DIALOG_BORDER_WIDTH,
                          "message-type",         context,
                          "text",                 msg1,
                          "use-markup",           msg_1_has_markup,

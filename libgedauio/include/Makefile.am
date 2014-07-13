@@ -15,11 +15,13 @@ libgedauio_HEADERS = \
 			geda_font_dialog.h       \
 			geda_handlebox.h         \
 			geda_imagemenuitem.h     \
+			geda_input_dialog.h      \
 			geda_label.h             \
 			geda_menu_button.h       \
 			geda_swatch_renderer.h   \
 			geda_toggle_action.h     \
-			geda_widgets.h 
+			geda_dialogs.h           \
+			geda_widgets.h
 
 MOSTLYCLEANFILES     = *~ *.log core FILE
 CLEANFILES           = *~ *.log core FILE

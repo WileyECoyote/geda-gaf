@@ -1981,7 +1981,6 @@ static void multiattrib_init(Multiattrib *ThisDialog)
 
   /* dialog initialization */
   g_object_set (G_OBJECT (ThisDialog), /* GtkContainer */
-                "border-width",    DIALOG_BORDER_SPACING,
                 /* GtkWindow */
                 "title",           _("Edit Attributes"),
                 "default-width",   320,
@@ -1994,8 +1993,6 @@ static void multiattrib_init(Multiattrib *ThisDialog)
                 NULL);
 
   ThisDialog->object_list   = NULL;
-
-  gtk_box_set_spacing (GTK_BOX (GTK_DIALOG (ThisDialog)->vbox), DEFAULT_DIALOG_SPACING);
 
   /* create the attribute list frame */
   frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, /* GtkFrame */

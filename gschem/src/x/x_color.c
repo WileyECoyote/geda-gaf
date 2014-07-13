@@ -322,7 +322,7 @@ int x_load_color_scheme(char* scheme) {
   char *strBuffer;
   char *inputfile;
   char *rc_path;
-  int result = FALSE;
+  int   result = FALSE;
 
   SCM s_result;
 

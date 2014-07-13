@@ -1,11 +1,20 @@
+2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/gschem_xdefines.h: Rename DIALOG_BORDER_SPACING to
+          DIALOG_BORDER_WIDTH.
+
+        * src/x/*dialog.c: Relocate gtk_container_border_width and
+          gtk_box_set_spacing to base class for type GschemDialog to
+          reduce redundent coding.
+
+        * src/x/x_settings.c: Add gettext to u_log_messages.
+
 2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Replace g_strdup with geda_strdup
 
         * src/iface/i_command.?: Add new action "file-close-all" as file
           menu item.
-
-        * src/*/*.c:
 
 2014-07-11 Wiley E. Hill <wileyhill@gmail.com>
 

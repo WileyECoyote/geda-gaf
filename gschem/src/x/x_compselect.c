@@ -1870,13 +1870,13 @@ static GtkWidget* create_inuse_treeview (Compselect *compselect)
   /* vertical box for component selection and search entry */
   GTK_NEW_vBOX(inuse, FALSE, DEFAULT_DIALOG_SPACING);
   gtk_container_set_border_width( GTK_CONTAINER(inuse_vbox),
-                                  DIALOG_BORDER_SPACING);
+                                  DIALOG_BORDER_WIDTH);
 
   /* Create a scrolled window to accomodate the treeview */
   scrolled_win = GTK_WIDGET (
     g_object_new (GTK_TYPE_SCROLLED_WINDOW,
                   /* GtkContainer */
-                  "border-width", 5,
+                  "border-width", DIALOG_BORDER_WIDTH,
                   /* GtkScrolledWindow */
                   "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
                   "vscrollbar-policy", GTK_POLICY_ALWAYS,
@@ -2233,7 +2233,7 @@ static GtkWidget *create_treeview_box (Compselect   *compselect,
   GTK_NEW_vBOX(view, FALSE, DEFAULT_DIALOG_SPACING);
 
   gtk_container_set_border_width(GTK_CONTAINER(view_vbox),
-                                 DIALOG_BORDER_SPACING);
+                                 DIALOG_BORDER_WIDTH);
 
   model  = create_lib_tree_model (compselect, data_set);
 

@@ -34,8 +34,6 @@
 
 #include <gdk/gdk.h>
 
-//#include <geda.h>
-
 #include "gschem.h"
 #include "x_dialog.h"
 
@@ -625,7 +623,7 @@ x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
 }
 
 /*! \brief Emit GTK_RESPONSE_REJECT response signal */
-static void on_close_butt_clicked(GtkButton *button, gpointer user_data)
+static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
@@ -634,7 +632,7 @@ static void on_close_butt_clicked(GtkButton *button, gpointer user_data)
 }
 
 /*! \brief Emit GTK_RESPONSE_ACCEPT response signal */
-static void on_apply_butt_clicked(GtkButton *button, gpointer user_data)
+static void on_apply_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
@@ -642,7 +640,7 @@ static void on_apply_butt_clicked(GtkButton *button, gpointer user_data)
                            user_data);
 }
 
-/*! \brief Creates Action Area on the Pin Type Dialog
+/*! \brief Creates Action Area for the Pin Type Dialog
  *  \par Function Description
  *  We create our own "Action Area", because; 1.) GTK's entire
  * concept of an action area is more of a hindrance then it is
@@ -729,10 +727,10 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   GtkWidget *seq_label;
   GtkWidget *pin_label;
 
-  GtkWidget *SetPinNodeTypeSwitch    = NULL;
-  GtkWidget *SetElectricalSwitch = NULL;
-  GtkWidget *AutoNumberSwitch    = NULL;
-  GtkWidget *AutoSequenceSwitch  = NULL;
+  GtkWidget *SetPinNodeTypeSwitch = NULL;
+  GtkWidget *SetElectricalSwitch  = NULL;
+  GtkWidget *AutoNumberSwitch     = NULL;
+  GtkWidget *AutoSequenceSwitch   = NULL;
 
   const char *type_combo_tip;
   const char *attrib_combo_tip;
@@ -754,9 +752,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
                                     IDS_PIN_EDIT,
                                     w_current);
 
-  gtk_container_border_width(GTK_CONTAINER(ThisDialog), DIALOG_BORDER_SPACING);
   main_vbox = GTK_DIALOG (ThisDialog)->vbox;
-  gtk_box_set_spacing (GTK_BOX(main_vbox), DIALOG_V_SPACING);
   g_object_set (main_vbox, "visible", TRUE, NULL);
 
   table = gtk_table_new (5, 3, FALSE);

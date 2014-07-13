@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * 
+ *
  * Copyright (C) 2012-2014 Wiley Edward Hill
  *
  * This library is free software; you can redistribute it and/or
@@ -17,7 +17,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA
- * 
+ *
  * WEH: Minor Tweak from gschem_dialog.h
  */
 
@@ -25,7 +25,7 @@
 #ifndef __GATTRIB_DIALOG_H__
 #define __GATTRIB_DIALOG_H__
 
-#define DIALOG_BORDER_SPACING 5
+#define DIALOG_BORDER_WIDTH 5
 #define DEFAULT_WIDGET_SPACING 2
 #define DIALOG_V_SPACING 2
 #define DEFAULT_BUTTON_WIDTH 122
@@ -50,7 +50,7 @@
 /* Date: Aug 12, 2012
  * Who:  Wiley E. Hill
  * What  MACRO: NEW_GATTRIB_DIALOG
- * Why:  This Macro facilitate creating new Dialog Boxes. 
+ * Why:  This Macro facilitate creating new Dialog Boxes.
 */
 #define NEW_GATTRIB_DIALOG(title, flags, identifier, ptrWindowWidget) \
   gattrib_dialog_new_empty(title, GTK_WINDOW(main_window), \

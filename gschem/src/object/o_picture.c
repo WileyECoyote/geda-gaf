@@ -309,7 +309,7 @@ void o_picture_change_filename_dialog (GschemToplevel *w_current)
     if (!result) {
 
       /* Log the error */
-      u_log_message( _("%d: Failed to replace picture: %s"), __func__, err->message);
+      u_log_message( _("%s: Failed to replace picture: %s"), __func__, err->message);
 
       /* inform the user */
       pango_error_dialog ( _("<b>Failed to replace picture</b>"), err->message );

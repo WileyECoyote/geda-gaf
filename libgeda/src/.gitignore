@@ -1,9 +1,9 @@
-*.lo
-.deps
-.libs
 Makefile
 Makefile.in
-libgeda.la
+.deps
+.libs
+*.la
+*.lo
 *.o
 *.x
 *~

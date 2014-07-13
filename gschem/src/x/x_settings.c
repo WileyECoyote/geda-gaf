@@ -251,9 +251,6 @@ void x_configure_settings (GschemToplevel* w_current)
   g_signal_connect (GTK_OBJECT (w_current->cpwindow), "response",
                     GTK_SIGNAL_FUNC(configure_dialog_response), w_current);
 
-  gtk_container_border_width (GTK_CONTAINER(w_current->cpwindow),
-                                DIALOG_BORDER_SPACING);
-
   gtk_widget_show(w_current->cpwindow);
 
   return;
@@ -358,7 +355,7 @@ int get_titleblock_cnt(void) {
      closedir (dirp);
   } else
   { /* could not open directory */
-     u_log_message("get_titleblock_cnt: error opening: %s\n", TitleBlockPath);
+     u_log_message(_("get_titleblock_cnt: error opening: %s\n"), TitleBlockPath);
      count--; /* decement to -1 */
   }
   return count;
@@ -408,7 +405,7 @@ bool get_titleblock_list(char **Buffer) {
      closedir (dirp);
   } else
   { /* could not open directory */
-      u_log_message("get_titleblock_list: error opening: %s\n", TitleBlockPath);
+      u_log_message(_("get_titleblock_list: error opening: %s\n"), TitleBlockPath);
       result = FALSE;
   }
 
@@ -517,7 +514,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   }
 
   if (inputfile == NULL) {
-    u_log_message("File Name error! system-%s\n", rcname);
+    u_log_message(_("File Name error! system-%s\n"), rcname);
     return -1;
   }
 
@@ -525,13 +522,13 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
                             rcname, ".tmp", NULL);
 
   if (( input = fopen (inputfile, "r" )) == NULL) {
-    u_log_message("File open for read-only error: \"%s\", %s\n", inputfile, strerror( errno ));
+    u_log_message(_("File open for read-only error: \"%s\", %s\n"), inputfile, strerror( errno ));
     result = errno;
   }
   else
     if (( output = fopen (outputfile, "w" )) == NULL)
     {
-      u_log_message("Error, opening output \"%s\", %s\n", inputfile, strerror( errno ));
+      u_log_message(_("Error, opening output \"%s\", %s\n"), inputfile, strerror( errno ));
       fclose(input);
       result = -1;
     }
@@ -571,10 +568,10 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   if (result == EXIT_SUCCESS) {
     if ((result = remove(inputfile)) == 0) {
       result = rename(outputfile, inputfile);
-      u_log_message("Writing configuration to [%s]\n", inputfile);
+      u_log_message(_("Writing configuration to [%s]\n"), inputfile);
     }
     else {
-      u_log_message("File error: \"%s\", %s\n", inputfile, strerror( errno ));
+      u_log_message(_("File error: \"%s\", %s\n"), inputfile, strerror( errno ));
       result = errno;
     }
   }

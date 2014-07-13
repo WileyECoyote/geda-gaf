@@ -38,7 +38,7 @@
 
 static void x_pagesel_callback_response (GtkDialog *dialog,
                                          gint arg1,
-                                         gpointer user_data);
+                                         void *user_data);
 
 
 
@@ -117,7 +117,7 @@ void x_pagesel_update (GschemToplevel *w_current)
  *  \param [in] user_data  Pointer to relevant GschemToplevel structure.
  */
 static void
-x_pagesel_callback_response (GtkDialog *dialog, int arg1, gpointer user_data)
+x_pagesel_callback_response (GtkDialog *dialog, int arg1, void *user_data)
 {
   GschemToplevel *w_current;
 
@@ -157,14 +157,15 @@ static void pagesel_init       (Pagesel *pagesel);
 static void pagesel_popup_menu (Pagesel *pagesel,
                                 GdkEventButton *event);
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Page Manager Dialog Tree View Page Selected
  *  \par Function Description
- *
+ *  This function is called whenever a row is selected in the
+ *  treeview. The page associated with the selected row is set
+ *  to be the Current page.
  */
 static void
 pagesel_callback_selection_changed (GtkTreeSelection *selection,
-                                    gpointer user_data)
+                                    void *user_data)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
@@ -189,14 +190,15 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Page Manager Dialog Treeview button Press Event
  *  \par Function Description
- *
+ *  This function is called when the user clicks a mouse button while
+ *  over a treeview row. If the event was a "right-click" then a
+ *  a the pagesel_popup_menu () function is called to present a menu.
  */
 static bool pagesel_callback_button_pressed (GtkWidget *widget,
                                              GdkEventButton *event,
-                                             gpointer user_data)
+                                             void *user_data)
 {
   Pagesel *pagesel = (Pagesel*)user_data;
   bool ret = FALSE;
@@ -214,20 +216,20 @@ static bool pagesel_callback_button_pressed (GtkWidget *widget,
  *  \par Function Description
  *
  */
-static gboolean pagesel_callback_popup_menu (GtkWidget *widget,
-					     gpointer user_data)
+static bool pagesel_callback_popup_menu (GtkWidget *widget,
+                                         void      *user_data)
 {
   Pagesel *pagesel = (Pagesel*)user_data;
 
   pagesel_popup_menu (pagesel, NULL);
-  
+
   return TRUE;
 }
 
 #define DEFINE_POPUP_CALLBACK(name, action)                       \
 static void                                                       \
 pagesel_callback_popup_ ## name (GtkMenuItem *menuitem,           \
-                                 gpointer user_data)              \
+                                 void *user_data)              \
 {                                                                 \
   i_callback_ ## action (GSCHEM_DIALOG (user_data)->w_current, 0, NULL); \
 }
@@ -267,10 +269,10 @@ static void pagesel_popup_menu (Pagesel *pagesel,
     { N_("Discard Page"), G_CALLBACK (pagesel_callback_popup_discard_page) },
     { NULL,               NULL                                             } };
   struct menuitem_t *tmp;
-  
+
   if (event != NULL &&
       gtk_tree_view_get_path_at_pos (pagesel->treeview,
-                                     (gint)event->x, 
+                                     (gint)event->x,
                                      (gint)event->y,
                                      &path, NULL, NULL, NULL)) {
     GtkTreeSelection *selection;
@@ -300,7 +302,7 @@ static void pagesel_popup_menu (Pagesel *pagesel,
   gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
                   (event != NULL) ? event->button : 0,
                   gdk_event_get_time ((GdkEvent*)event));
-  
+
 }
 
 
@@ -317,7 +319,7 @@ static void pagesel_popup_menu (Pagesel *pagesel,
  */
 static void notify_gschem_toplevel_cb (GObject    *gobject,
                                        GParamSpec *arg1,
-                                       gpointer    user_data)
+                                       void       *user_data)
 {
   Pagesel *pagesel = PageSEL( gobject );
 
@@ -350,12 +352,12 @@ unsigned int pagesel_get_type()
       0,    /* n_preallocs */
       (GInstanceInitFunc) pagesel_init,
     };
-		
+
     pagesel_type = g_type_register_static (GSCHEM_TYPE_DIALOG,
                                            "Pagesel",
                                            &pagesel_info, 0);
   }
-  
+
   return pagesel_type;
 }
 
@@ -406,7 +408,7 @@ static void pagesel_init (Pagesel *pagesel)
   scrolled_win = GTK_WIDGET (
     g_object_new (GTK_TYPE_SCROLLED_WINDOW,
                   /* GtkContainer */
-                  "border-width",      5,
+                  "border-width",      DIALOG_BORDER_WIDTH,
                   /* GtkScrolledWindow */
                   "hscrollbar-policy", GTK_POLICY_AUTOMATIC,
                   "vscrollbar-policy", GTK_POLICY_ALWAYS,
@@ -427,12 +429,11 @@ static void pagesel_init (Pagesel *pagesel)
                     G_CALLBACK (pagesel_callback_popup_menu),
                     pagesel);
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
-  gtk_tree_selection_set_mode (selection,
-                               GTK_SELECTION_SINGLE);
+  gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
   g_signal_connect (selection,
                     "changed",
                     G_CALLBACK (pagesel_callback_selection_changed),
-                    pagesel); 
+                    pagesel);
   /*   - first column: page name */
   renderer = GTK_CELL_RENDERER (
     g_object_new (GTK_TYPE_CELL_RENDERER_TEXT,
@@ -464,7 +465,7 @@ static void pagesel_init (Pagesel *pagesel)
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
   gtk_tree_view_column_add_attribute (column, renderer, "active", COLUMN_CHANGED);
   gtk_tree_view_append_column (GTK_TREE_VIEW (treeview), column);
-      
+
   /* add the treeview to the scrolled window */
   gtk_container_add (GTK_CONTAINER (scrolled_win), treeview);
   /* set treeview of pagesel */
@@ -524,9 +525,8 @@ static void add_page (GtkTreeModel *model, GtkTreeIter *parent,
   GList *p_iter;
 
   /* add the page to the store */
-  gtk_tree_store_append (GTK_TREE_STORE (model),
-                         &iter,
-                         parent);
+  gtk_tree_store_append (GTK_TREE_STORE (model), &iter, parent);
+
   gtk_tree_store_set (GTK_TREE_STORE (model),
                       &iter,
                       COLUMN_Page, page,
@@ -590,10 +590,10 @@ void pagesel_update (Pagesel *pagesel)
 {
 
   GschemToplevel *w_current;
-  GedaToplevel        *toplevel;
-  Page            *p_current;
-  GtkTreeModel    *model;
-  GList           *iter;
+  GedaToplevel   *toplevel;
+  Page           *p_current;
+  GtkTreeModel   *model;
+  GList          *iter;
 
   if (!IS_PageSEL (pagesel)) {
     BUG_MSG ("pagesel is wrong object");
@@ -622,6 +622,6 @@ void pagesel_update (Pagesel *pagesel)
   }
 
   /* select the current page in the treeview */
-  select_page (pagesel->treeview, NULL, toplevel->page_current);  
+  select_page (pagesel->treeview, NULL, toplevel->page_current);
 }
 

@@ -507,7 +507,6 @@ st_callback_selection_changed_view(GtkTreeSelection *selection,
   if (gtk_tree_selection_get_selected( selection, &model, &iter)) {
     gtk_tree_model_get(model, &iter, 0, &value,  -1);
     /* gtk_label_set_text( label, value); */
-    u_log_message("Tree Widget selected:%s.\n", value);
     GEDA_FREE(value);
   }
 }
@@ -2350,4 +2349,3 @@ void GatherSettings(GschemToplevel *w_current) {
 }
 
 /** @} END Group X_Settings_Dialog_Unload_Variables */
-

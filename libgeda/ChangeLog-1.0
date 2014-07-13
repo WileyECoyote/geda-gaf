@@ -1,3 +1,8 @@
+2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_get.c: Eliminate g_return_val_if_fail in function
+          o_get_fill_options to reduce G-noise.
+
 2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/utility/u_basic.c: Revised (fixed) geda_strdup to handle

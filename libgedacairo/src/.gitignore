@@ -1,6 +1,12 @@
+Makefile
+Makefile.in
 .deps
 .libs
 *.la
 *.lo
-ChangeLog
-libgedacairo.pc
+*.o
+*.x
+*~
+*.swp
+*-swp
+

@@ -5,7 +5,7 @@
  * gschem - gEDA Schematic Capture
 
  *
- * Copyright (C) 2012-2013 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@
  *
 */
 
-#define DIALOG_BORDER_SPACING 5
+#define DIALOG_BORDER_WIDTH 5
 #define DIALOG_V_SPACING 2
 #define DIALOG_H_SPACING 5
 #define DEFAULT_DIALOG_SPACING 0
