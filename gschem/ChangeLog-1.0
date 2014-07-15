@@ -29,7 +29,8 @@
 
         * src/x/x_sessions.c: New source containing dialog routines to
           support the new Session feature, including a "manager" dialog
-          to delete, rename and export sessions.
+          to delete, rename and export sessions. Still need to valid and
+          and finalize session-at-startup.
 
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
