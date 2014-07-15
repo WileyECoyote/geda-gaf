@@ -42,7 +42,9 @@
 
 #include <stdio.h>
 #include <sys/types.h>
-#include <sys/stat.h>
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
@@ -83,7 +85,7 @@ static ConsoleInputMode console_input_mode;
 
 static GObjectClass *console_parent_class = NULL;
 
-static void x_console_callback_response (GtkDialog *dialog, int arg1, gpointer user_data);
+static void x_console_callback_response (GtkDialog *dialog, int arg1, void * user_data);
 static void log_message (Console *console, const char *message, const char *style);
 
 void q_log_message(const char *format, ...)
@@ -124,7 +126,7 @@ void v_log_message(const char *format, ...)
  *
  *  If the Console dialog instance does exist, present it to the user.
  */
-void x_console_destroy_command_buffer(gpointer user_data) {
+void x_console_destroy_command_buffer(void * user_data) {
   if (command_buffer) {
       v_log_message("destroying history\n");
       g_list_foreach(command_buffer, (GFunc)g_free, NULL);
@@ -210,8 +212,7 @@ void x_console_open (GschemToplevel *w_current)
     contents = u_log_read ();
 
     /* u_log_read can return NULL if the log file cannot be written to */
-    if (contents == NULL)
-    {
+    if (contents == NULL) {
       return;
     }
 
@@ -220,8 +221,9 @@ void x_console_open (GschemToplevel *w_current)
 
     x_log_update_func = x_log_message;
 
-    if( auto_place_mode )
+    if ( auto_place_mode ) {
       gtk_widget_set_uposition ( console_dialog, 10, 10);
+    }
     gtk_widget_show (console_dialog);
   }
   else {
@@ -258,7 +260,7 @@ void x_console_close ()
  *  Callback function for the Console window. Only used to close the window.
  */
 static void x_console_callback_response (GtkDialog *dialog, int arg1,
-                                         gpointer user_data)
+                                         void      *user_data)
 {
   switch (arg1) {
     case GTK_RESPONSE_DELETE_EVENT:
@@ -383,7 +385,7 @@ unsigned int console_get_type ()
   return console_type;
 }
 
-void x_console_eval_command (GedaEntry *entry, int arg1, gpointer user_data)
+void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
 {
   char *command;
   char *command_echo;
@@ -426,7 +428,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, gpointer user_data)
   SetEntryText( entry, "");
 }
 
-static void x_console_on_activate (GedaEntry *entry, int arg1, gpointer user_data)
+static void x_console_on_activate (GedaEntry *entry, int arg1, void * user_data)
 {
 
   if(console_input_mode == CONSOLE_COMMAND_MODE)

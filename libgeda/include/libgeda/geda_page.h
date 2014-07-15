@@ -89,7 +89,7 @@ struct _GedaPage {
   int up;                    /* pid of the parent page */
 
   /* used to control which pages are viewable when moving around */
-  int page_control; /* WEH sounds hokey */
+  int page_control; /* WEH sound's hokey */
 
   /* Flag to indicate if hidden text should be displayed */
   int show_hidden_text;

@@ -1707,6 +1707,12 @@
 
         ("SEPARATOR"              #f                      #f)
         (,(N_ "_Discard")          page-discard            "gtk-discard"          ,(N_ "Close the current page without saving"))
+
+        ("SEPARATOR"              #f                      #f)
+        (,(N_ "_Down Schematic")   hierarchy-down-schematic "gtk-go-down"       ,(N_ "Descend down in the schematic hierarchy"))
+        (,(N_ "Down _Symbol")      hierarchy-down-symbol    "gtk-goto-bottom"   ,(N_ "Descend down in the symbol hierarchy"))
+        (,(N_ "_Up")               hierarchy-up             "gtk-go-up"         ,(N_ "ascend up in the schematic hierarchy"))
+        (,(N_ "D_ocumentation...") hierarchy-documentation  "gtk-info"          ,(N_ "Find component documentation"))
       )
 )
 
@@ -1731,14 +1737,18 @@
       )
 )
 
-(define hierarchy-menu-items
+(define sessions-menu-items
 ;;
 ;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Down Schematic")   hierarchy-down-schematic  "gtk-go-down"       ,(N_ "Descend down in the schematic hierarchy"))
-        (,(N_ "Down _Symbol")      hierarchy-down-symbol     "gtk-goto-bottom"   ,(N_ "Descend down in the symbol hierarchy"))
-        (,(N_ "_Up")               hierarchy-up              "gtk-go-up"         ,(N_ "ascend up in the schematic hierarchy"))
-        (,(N_ "D_ocumentation...") hierarchy-documentation   "gtk-info"          ,(N_ "Find component documentation"))
+     `( (,(N_ "_New")             session-new              "gtk-go-down"       ,(N_ "Create a new session"))
+        (,(N_ "_Open...")         session-open             "geda-open-recent"  ,(N_ "Launch the open Session dialog"))
+        (,(N_ "_Restore")         #f                       "gtk-go-up"         ,(N_ "Restore an existing Session"))
+        ("SEPARATOR"              #f                      #f)
+        (,(N_ "_Save")            session-save             "gtk-info"          ,(N_ "Save the current Session"))
+        (,(N_ "Save _As...")      session-save-as          "geda-open-recent"  ,(N_ "Save the current Session to another name"))
+        ("SEPARATOR"              #f                      #f)
+        (,(N_ "_Manage...")       session-manage           "gtk-properties"    ,(N_ "Open the Session Manager dialog"))
       )
 )
 
@@ -1812,7 +1822,7 @@
 (add-menu (N_ "_View")       view-menu-items)
 (add-menu (N_ "_Page")       page-menu-items)
 (add-menu (N_ "_Add")        add-menu-items)
-(add-menu (N_ "Hie_rarchy")  hierarchy-menu-items)
+(add-menu (N_ "Sessio_ns")   sessions-menu-items)
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 
 ;; Add Paul Tan's tools utility menu

@@ -55,10 +55,10 @@
 #define ASCII_CP        0x29     /* ) closing parenthesis */
 #define ASCII_AST       0x2A            /* * asterisk  */
 
-#define ASCII_PLUS      0x2B     /* * Plus sign  */
-#define ASCII_MINUS     0x2D     /* * Minus sign */
-#define ASCII_PERIOD    0x2E     /* * Period  */
-#define ASCII_FSLASH    0x2F     /* * Forward Slash  */
+#define ASCII_PLUS      0x2B     /* + Plus sign  */
+#define ASCII_MINUS     0x2D     /* - Minus sign */
+#define ASCII_PERIOD    0x2E     /* . Period  */
+#define ASCII_FSLASH    0x2F     /* / Forward Slash  */
 
 #define CARRIAGE_RETURN  ASCII_CR
 #define SYNCHRONOUS_IDLE ASCII_SYN

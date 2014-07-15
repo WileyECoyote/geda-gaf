@@ -21,7 +21,11 @@
 #include <config.h>
 
 #include <stdio.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
@@ -71,16 +75,17 @@ static unsigned int log_handler_id;
 void u_log_init (const char *prefix)
 {
   /* FIXME we assume that the prefix is in the filesystem encoding. */
+  GSList    *files           = NULL;
+  char      *dir_path        = NULL;
+  char      *filename        = NULL;
+  char      *full_prefix     = NULL;
+  size_t     full_prefix_len = 0;
+  struct     tm *nowtm;
+  time_t     nowt;
 
-  time_t nowt;
-  struct tm *nowtm;
-  char *full_prefix = NULL;
-  size_t full_prefix_len = 0;
-  char *dir_path = NULL;
-  char *filename = NULL;
-  int s, i;
-  int last_exist_logn = 0;
-  GDir *logdir = NULL;
+  int last_exist_logn;
+  int logcount;
+  int i;
 
   /* Somebody called for initialization, therefore */
   is_logging = TRUE;
@@ -99,71 +104,76 @@ void u_log_init (const char *prefix)
                                  nowtm->tm_mday);
   full_prefix_len = strlen (full_prefix);
 
-  /* Find/create the directory where we're going to put the logs.
+  /* Find/create the directory where we are going to put the logs.
    * FIXME should this be configured somehow? WEH:Yes it should!
    *
    * Then run through it finding the "biggest" existing filename with
    * a matching prefix & date. */
   dir_path = g_build_filename (f_path_user_config (), "logs", NULL);
+
   /* Try to create the directory. */
-  s = g_mkdir_with_parents (dir_path, 0777/*octal*/);
-  if (s != 0) {
-    /* It's okay to use the logging functions from here, because
-     * there's already a default handler. */
+  if (f_create_path (dir_path, 0777 /*octal*/ ) != 0) {
+    /* It is okay to use the logging functions from here, because
+     * there is already a default handler. */
     g_warning ("Could not create log directory %s: %s\n",
                dir_path, strerror (errno));
-    GEDA_FREE (dir_path);
-    GEDA_FREE (full_prefix);
-    return;
-  }
-
-  logdir = g_dir_open (dir_path, 0, NULL);
-  while (TRUE) {
-    const char *file = g_dir_read_name (logdir);
-    int n;
-    if (file == NULL) break;
-    if (strncmp (full_prefix, file, full_prefix_len)) continue;
-
-    s = sscanf (file + full_prefix_len, "%i", &n);
-    if (s != 1) continue;
-
-    if (n > last_exist_logn) last_exist_logn = n;
-  }
-  g_dir_close(logdir);
-
-  /* Now try and create a new file. When we fail, increment the number. */
-  i = 0;
-  while (logfile_fd == -1 && (LOG_OPEN_ATTEMPTS > i++)) {
-    filename = g_strdup_printf ("%s%s%s%i.log", dir_path,
-                                DIR_SEPARATOR_S, full_prefix,
-                                ++last_exist_logn);
-    logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);
-
-    if (logfile_fd == -1 && (errno != EEXIST)) break;
-  }
-
-  if (logfile_fd != -1) {
-
-    /* install the log handler */
-    log_handler_id = g_log_set_handler (NULL,
-                                        CATCH_LOG_LEVELS,
-                                        u_log_handler,
-                                        NULL);
-
   }
   else {
-    /* It's okay to use the logging functions from here, because
-     * there's already a default handler. */
-    if (errno == EEXIST) {
-      g_warning ("Could not create unique log filename in %s\n", dir_path);
+
+    GSList *iter;
+
+    last_exist_logn = 0;
+
+    files = f_get_dir_list_files(dir_path, "log");
+
+    for ( iter = files; iter != NULL; iter = iter->next) {
+
+      const char *file = iter->data;
+      int n;
+
+      if (strncmp (full_prefix, file, full_prefix_len)) continue;
+      if (sscanf (file + full_prefix_len, "%i", &n) != 1) continue;
+      if (n > last_exist_logn) last_exist_logn = n;
+    }
+
+    logcount = g_slist_length (files);
+    logcount = logcount;                 /* stub */
+    g_slist_free_full (files, g_free);
+
+    /* Now try and create a new file. When we fail, increment the number. */
+    i = 0;
+    while (logfile_fd == -1 && (LOG_OPEN_ATTEMPTS > i++)) {
+      filename = g_strdup_printf ("%s%s%s%i.log", dir_path,
+                                  DIR_SEPARATOR_S, full_prefix,
+      ++last_exist_logn);
+      logfile_fd = open (filename, O_RDWR|O_CREAT|O_EXCL, 0600);
+
+      if (logfile_fd == -1 && (errno != EEXIST)) break;
+    }
+
+    if (logfile_fd != -1) {
+
+      /* install the log handler */
+      log_handler_id = g_log_set_handler (NULL,
+                                          CATCH_LOG_LEVELS,
+                                          u_log_handler,
+                                          NULL);
+
     }
     else {
-      g_warning ("Could not create log file in %s: %s\n",
-                 dir_path, strerror (errno));
+      /* It's okay to use the logging functions from here, because
+       * there's already a default handler. */
+      if (errno == EEXIST) {
+        g_warning ("Could not create unique log filename in %s\n", dir_path);
+      }
+      else {
+        g_warning ("Could not create log file in %s: %s\n",
+        dir_path, strerror (errno));
+      }
     }
-  }
 
-  GEDA_FREE (filename);
+    GEDA_FREE (filename);
+  }
   GEDA_FREE (dir_path);
   GEDA_FREE (full_prefix);
 }

@@ -25,7 +25,11 @@
 #endif
 
 #include <unistd.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #include <gtk/gtk.h>
 
 #include <gschem.h>           /* include gschem specific headers  */
@@ -147,10 +151,10 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ADD_PICTURE),        "Picture",    TBTS_ADD_PICTURE,        "Private"},
 
   /* Page Toolbar */
-  { ACTION(Page_PREV),          "Prev",       TBTS_Page_PREV,          "Private"},
-  { ACTION(Page_NEXT),          "next",       TBTS_Page_NEXT,          "Private"},
-  { ACTION(Page_NEW),           "New",        TBTS_Page_NEW,           "Private"},
-  { ACTION(Page_MANAGER),       "Manage",     TBTS_Page_MANAGER,       "Private"},
+  { ACTION(PAGE_PREV),          "Prev",       TBTS_PAGE_PREV,          "Private"},
+  { ACTION(PAGE_NEXT),          "next",       TBTS_PAGE_NEXT,          "Private"},
+  { ACTION(PAGE_NEW),           "New",        TBTS_PAGE_NEW,           "Private"},
+  { ACTION(PAGE_MANAGER),       "Manage",     TBTS_PAGE_MANAGER,       "Private"},
 
   { ACTION(DOWN_SCHEMATIC),     "Down",       TBTS_DOWN_SCHEMATIC,     "Private"},
   { ACTION(DOWN_SYMBOL),        "Down",       TBTS_DOWN_SYMBOL,        "Private"},
@@ -1563,6 +1567,9 @@ void x_toolbars_activate_select ( GschemToplevel *w_current) {
  *  to be depressed, without emitting a signal. Where as if the Edit/Arc
  *  menu option is selected then the invisible "none" mode button should
  *  be "activated". And so forth.
+ *
+ *  \note This does not set the sensitivities of regular buttons, that is
+ *        done by x_toolbars_set_sensitivities.
  *
  *  \param [in] w_current GschemToplevel structure
  */

@@ -20,7 +20,11 @@
 #include <config.h>
 
 #include <stdio.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif

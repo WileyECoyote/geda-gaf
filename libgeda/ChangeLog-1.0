@@ -1,3 +1,18 @@
+2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * file/f_path.c: Add new functions; f_create_dir (improved mkdir),
+          and f_create_path (snazzy g_mkdir_with_parents)
+
+        * file/f_utilities.c: Added documentation for function geda_basename.
+
+        * utility/u_log.c: In function u_log_init, change g_mkdir_with_parents
+          to f_create_path, eliminate varible with descriptive name "int s"
+          and eliminate GDir (using new f_get_dir_list_files instead).
+
+        * src/*/*.c: Conditionally include <sys/stat.h>
+
+        * src/struc/*c: Updated copyright information.
+
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
         * f_utilities.c: Add new functions; f_get_dir_list_files and

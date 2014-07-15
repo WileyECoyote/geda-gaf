@@ -27,8 +27,11 @@
 #endif
 #include <libgen.h>
 
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #include <sys/types.h>
-#include <sys/stat.h>
 #include <unistd.h>
 
 #include "gschem.h"

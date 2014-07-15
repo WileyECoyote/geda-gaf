@@ -94,6 +94,12 @@
 #define BW_COLOR_MAP               "gschem-colormap-bw"
 #define CUSTOM_COLOR_MAP           "gschem-colormap-custom"
 
+/* Sessions */
+#define SESSIONS_DIRECTORY         "sessions"
+#define SESSIONS_FILE_SUFFIX       "session"
+#define SESSIONS_FILE_DOT_SUFFIX   ".session"
+#define SESSIONS_RESTORE_SUBMENU   "Sessio_ns/_Restore"
+
 /* For x_icons.c */
 #define GSCHEM_THEME_ICON_NAME     "geda-gschem"
 

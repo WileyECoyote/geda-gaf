@@ -1,3 +1,40 @@
+2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_window.c: New function x_window_close_edit_dialogs to
+          close almost dialog boxes. Revise x_window_close_all_dialogs to
+          call x_window_close_edit_dialogs. Use q_log_message instead of
+          "if verbose" in function x_window_open_page and verbose_mode
+          instead of quiet_mode in empty_page when create file names for
+          blank documents.
+
+          Revise function x_window_close_page to not log closing "untitled"
+          unless verbose_mode.
+
+          The preceed changes reduce log "noise" for untitled, aka blank,
+          documents and allow the console and coordinate dialog to stay
+          open when closing and opening documents. This is in support of
+          the new "Session" feature.
+
+        * src/iface/i_command.c: Add i_set_state(SELECT) in functions;
+          do_close, do_close_all,
+
+        * src/iface/i_basic.c: Revamp function i_set_filename.
+
+        * src/iface/i_sessions.c: New source containing core algorithms
+          for sessions to be saved and loaded. This new features allows
+          users to save the names of all open documents in "session"
+          configuration files, stored in the "configuration"/session
+          directory. When sessions are recalled, the collection of files,
+          if they exist, are opened - I like, WEH.
+
+        * src/x/x_sessions.c: New source containing dialog routines to
+          support the new Session feature, including a "manager" dialog
+          to delete, rename and export sessions.
+
+2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c: Conditionally include <sys/stat.h>
+
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/gschem_xdefines.h: Rename DIALOG_BORDER_SPACING to

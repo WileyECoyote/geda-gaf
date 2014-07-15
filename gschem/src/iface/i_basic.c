@@ -280,6 +280,8 @@ selected_complex_object(GschemToplevel *w_current)
  *  Update sensitivity of relevant menu & toolbar items.
  *
  *  \param [in] w_current GschemToplevel structure
+ *
+ * TODO: Get rid of this ludicrousness
  */
 void i_update_sensitivities(GschemToplevel *w_current)
 {
@@ -326,9 +328,9 @@ void i_update_sensitivities(GschemToplevel *w_current)
     /* These strings should NOT be internationalized */
     if ( is_complex_selected ) {
 
-      x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", TRUE);
-      x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", TRUE);
-      x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", TRUE);
+      x_menus_sensitivity(w_current, "_Page/_Down Schematic", TRUE);
+      x_menus_sensitivity(w_current, "_Page/Down _Symbol", TRUE);
+      x_menus_sensitivity(w_current, "_Page/D_ocumentation...", TRUE);
       x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
       x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
 
@@ -437,9 +439,9 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4", FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5", FALSE);
 
-    x_menus_sensitivity(w_current, "Hie_rarchy/_Down Schematic", FALSE);
-    x_menus_sensitivity(w_current, "Hie_rarchy/Down _Symbol", FALSE);
-    x_menus_sensitivity(w_current, "Hie_rarchy/D_ocumentation...", FALSE);
+    x_menus_sensitivity(w_current, "_Page/_Down Schematic", FALSE);
+    x_menus_sensitivity(w_current, "_Page/Down _Symbol", FALSE);
+    x_menus_sensitivity(w_current, "_Page/D_ocumentation...", FALSE);
 
     x_menus_sensitivity(w_current, "A_ttributes/_Attach", FALSE);
     x_menus_sensitivity(w_current, "A_ttributes/_Detach", FALSE);
@@ -488,22 +490,36 @@ void i_update_sensitivities(GschemToplevel *w_current)
  */
 void i_set_filename(GschemToplevel *w_current, const char *string)
 {
-  char *print_string=NULL;
-  char *filename=NULL;
+  const char *filename=NULL;
+  char       *print_string=NULL;
 
-  if (!w_current->main_window)
-    return;
-  if (string == NULL)
-    return;
+  if (w_current->main_window) {
 
-  filename = g_path_get_basename(string);
+    if (string == NULL) {
 
-  print_string = g_strdup_printf("%s - gschem", filename);
+      if (w_current->toplevel && Current_Page) {
 
-  gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
+        if (Current_Page->filename) {
+          filename = geda_basename(Current_Page->filename);
+        }
+        else {
+          filename = "undefined"; /* aka BUG */
+        }
+      }
+      else {
+        filename = "loading"; /* Should never happen */
+      }
+    }
+    else {
+      filename = geda_basename(string);
+    }
 
-  GEDA_FREE(print_string);
-  GEDA_FREE(filename);
+    print_string = geda_sprintf("%s - gschem", filename);
+
+    gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
+
+    GEDA_FREE(print_string);
+  }
 }
 
 /*! \brief Update the Grid and Snap Display on the gschem Status-Bar

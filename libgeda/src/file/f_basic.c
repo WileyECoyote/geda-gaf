@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -35,11 +35,16 @@
 #include <limits.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/types.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
-#include <sys/types.h>
-#include <sys/stat.h>
+
 #include <fcntl.h>
 
 #ifdef HAVE_STRING_H
@@ -88,6 +93,7 @@ char *f_get_autosave_filename (const char *filename)
     GEDA_FREE(new_basename);
     GEDA_FREE(path_spec);
   }
+
   return autosave_name;
 }
 

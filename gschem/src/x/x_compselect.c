@@ -26,7 +26,9 @@
 #ifdef HAVE_SYS_PARAM_H
 #include <sys/param.h>
 #endif
-#include <sys/stat.h>
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
@@ -429,7 +431,7 @@ inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
                               GtkCellRenderer   *cell,
                               GtkTreeModel      *tree_model,
                               GtkTreeIter       *iter,
-                              gpointer           data)
+                              void              *data)
 {
   CLibSymbol *symbol;
 
@@ -451,7 +453,7 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
                             GtkCellRenderer   *cell,
                             GtkTreeModel      *tree_model,
                             GtkTreeIter       *iter,
-                            gpointer           data)
+                            void              *data)
 {
   CLibSource *source;
   CLibSymbol *symbol;
@@ -563,7 +565,7 @@ lib_model_filter_visible_func (GtkTreeModel *model,
  *  \param [in] dialog    The component selection dialog.
  */
 static void tree_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
-                                GtkTreeViewColumn *column, gpointer dialog)
+                                GtkTreeViewColumn *column, void *dialog)
 {
   GtkTreeModel *model;
   GtkTreeIter iter;
@@ -767,7 +769,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
  */
 static void
 cs_callback_tree_selection_changed (GtkTreeSelection *selection,
-                                    gpointer          user_data)
+                                    void             *user_data)
 {
   GtkTreeView  *view;
   GtkTreeModel *model;
@@ -868,7 +870,7 @@ static void cs_apply_filter_tree_view (Compselect  *Dialog,
  *  \param [in] data The component selection dialog.
  *  \returns FALSE to remove the timeout.
  */
-static bool compselect_filter_timeout (gpointer data)
+static bool compselect_filter_timeout (void *data)
 {
   Compselect  *Dialog = COMPSELECT (data);
   GtkTreeView *view;
@@ -907,7 +909,7 @@ static bool compselect_filter_timeout (gpointer data)
  */
 static void
 compselect_callback_filter_entry_changed (GtkEditable *editable,
-                                          gpointer  user_data)
+                                          void        *user_data)
 {
   Compselect *compselect = COMPSELECT (user_data);
   GtkWidget *button;
@@ -1132,7 +1134,7 @@ compselect_popup_toggle_style( GtkCheckMenuItem *button, Compselect *compselect)
  */
 static void
 compselect_callback_behavior_changed (GtkOptionMenu *optionmenu,
-                                      gpointer user_data)
+                                      void *user_data)
 {
   Compselect *compselect = (Compselect*)user_data;
   GtkWidget *menuitem;
@@ -1449,7 +1451,7 @@ load_symbols: /* It Works! */
  */
 static void
 compselect_callback_clear_filter_clicked (GtkButton *button,
-                                          gpointer   user_data)
+                                          void      *user_data)
 {
   Compselect *Dialog = COMPSELECT (user_data);
 
@@ -1540,7 +1542,7 @@ compselect_refresh_tree_views (Compselect *compselect)
  *
  */
 static void
-compselect_callback_refresh_views (GtkWidget *widget, gpointer user_data)
+compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 {
   Compselect *compselect = COMPSELECT (user_data);
 
@@ -1743,7 +1745,7 @@ compselect_on_refresh_tree_views (Compselect *compselect)
  *
  */
 static void
-compselect_refresh_inuse_view (GtkWidget *widget, gpointer user_data)
+compselect_refresh_inuse_view (GtkWidget *widget, void *user_data)
 {
   Compselect *compselect = COMPSELECT (user_data);
 
@@ -1764,7 +1766,7 @@ compselect_refresh_inuse_view (GtkWidget *widget, gpointer user_data)
  * the tree views.
  */
 static void
-compselect_callback_rescan_libraries (GtkButton *button, gpointer user_data)
+compselect_callback_rescan_libraries (GtkButton *button, void *user_data)
 {
   /* Rescan the libraries for symbols */
   s_clib_refresh ();
@@ -1781,7 +1783,7 @@ compselect_callback_rescan_libraries (GtkButton *button, gpointer user_data)
  * there an optional callback protocol?
  */
 static void
-compselect_callback_collapse_all(GtkButton *button, gpointer user_data)
+compselect_callback_collapse_all(GtkButton *button, void *user_data)
 {
   Compselect  *compselect = COMPSELECT (user_data);
   GtkTreeView *view       = get_active_tree_view (compselect);
@@ -1802,7 +1804,7 @@ compselect_callback_collapse_all(GtkButton *button, gpointer user_data)
  * there an optional callback protocol?
  */
 static void
-compselect_callback_expand_all(GtkButton *button, gpointer user_data)
+compselect_callback_expand_all(GtkButton *button, void *user_data)
 {
   Compselect  *compselect = COMPSELECT (user_data);
   GtkTreeView *view       = get_active_tree_view (compselect);
@@ -1814,7 +1816,7 @@ compselect_callback_expand_all(GtkButton *button, gpointer user_data)
 }
 
 /*! \brief Emit GTK_RESPONSE_CLOSE signal.*/
-static void on_close_butt_clicked(GtkButton *button, gpointer user_data)
+static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
@@ -1823,7 +1825,7 @@ static void on_close_butt_clicked(GtkButton *button, gpointer user_data)
 }
 
 /*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.*/
-static void on_okay_butt_clicked(GtkButton *button, gpointer user_data)
+static void on_okay_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
                            "response",
@@ -2208,7 +2210,7 @@ compselect_view_onPopupMenu (GtkWidget *treeview, Compselect *compselect)
 }
 
 bool SearchTreeView (GtkTreeModel *model, int column, const char *key,
-                     GtkTreeIter *iter, gpointer search_data)
+                     GtkTreeIter *iter, void *search_data)
 {
     CLibSymbol *sym;
 

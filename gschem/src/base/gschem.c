@@ -189,6 +189,7 @@ void gschem( int argc, char *argv[])
   w_current->toplevel = geda_toplevel_new ();
   toplevel            = w_current->toplevel;
 
+  /* Initialize the Undo system */
   o_undo_init(w_current);
 
   f_set_backup_loader_query_func  (toplevel, x_fileselect_load_backup,
@@ -266,13 +267,17 @@ void gschem( int argc, char *argv[])
   /* At end, complete set up of window. */
   x_color_allocate();
 
-  x_image_init();
-
+  /*! \internal Bring up the GUI */
   x_window_setup (w_current);
+
+  x_image_init();
 
 #ifdef HAVE_LIBSTROKE
   x_stroke_init ();
 #endif /* HAVE_LIBSTROKE */
+
+  /*! \internal Initialize Sessions */
+  i_sessions_init(w_current);
 
   cwd = g_get_current_dir();
   for (i = argv_index; i < argc; i++) {
@@ -333,7 +338,6 @@ void gschem( int argc, char *argv[])
   GEDA_FREE(cwd);
 
   /*! \brief Auto-Load */
-
   /* Retrive the setting for auto-load-last */
   auto_load_last = default_auto_load_last;
 

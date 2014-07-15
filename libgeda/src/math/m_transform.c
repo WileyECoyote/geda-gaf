@@ -67,7 +67,7 @@ void m_transform_init(TRANSFORM *transform)
  */
 void m_transform_invert(TRANSFORM *transform, TRANSFORM *inverse)
 {
-  gdouble d;
+  double d;
 
   g_return_if_fail(transform!=NULL);
   g_return_if_fail(inverse!=NULL);
@@ -103,7 +103,7 @@ void m_transform_line(TRANSFORM *transform, Line *line)
  */
 void m_transform_lines(TRANSFORM *transform, GArray *lines)
 {
-  gint index;
+  int index;
 
   g_return_if_fail(transform!=NULL);
   g_return_if_fail(lines!=NULL);
@@ -120,10 +120,10 @@ void m_transform_lines(TRANSFORM *transform, GArray *lines)
  *  \param y [inout] The y coordinate to transform.
  *  \param transform [in] The transform function.
  */
-void m_transform_point(TRANSFORM *transform, gint *x, gint *y)
+void m_transform_point(TRANSFORM *transform, int *x, int *y)
 {
-  gdouble tx;
-  gdouble ty;
+  double tx;
+  double ty;
 
   g_return_if_fail(transform!=NULL);
   g_return_if_fail(x!=NULL);
@@ -143,7 +143,7 @@ void m_transform_point(TRANSFORM *transform, gint *x, gint *y)
  */
 void m_transform_points(TRANSFORM *transform, GArray *points)
 {
-  gint index;
+  int index;
 
   g_return_if_fail(transform!=NULL);
   g_return_if_fail(points!=NULL);
@@ -159,11 +159,11 @@ void m_transform_points(TRANSFORM *transform, GArray *points)
  *  \param transform [inout] The given matrix
  *  \param angle [in] The angle to rotate
  */
-void m_transform_rotate(TRANSFORM *transform, gdouble angle)
+void m_transform_rotate(TRANSFORM *transform, double angle)
 {
-  gdouble r = G_PI*angle/180.0;
-  gdouble c = cos(r);
-  gdouble s = sin(r);
+  double r = G_PI*angle/180.0;
+  double c = cos(r);
+  double s = sin(r);
   TRANSFORM temp;
 
   g_return_if_fail(transform!=NULL);
@@ -182,7 +182,7 @@ void m_transform_rotate(TRANSFORM *transform, gdouble angle)
  *  \param factor [in] The amount to scale the transform.  This parameter must
  *  not be zero, or the matrix becomes singular.
  */
-void m_transform_scale(TRANSFORM *transform, gdouble factor)
+void m_transform_scale(TRANSFORM *transform, double factor)
 {
   g_return_if_fail(transform!=NULL);
   g_return_if_fail(factor!=0);
@@ -199,7 +199,7 @@ void m_transform_scale(TRANSFORM *transform, gdouble factor)
  *  \param dx [in] The amount to translate on the x axis.
  *  \param dy [in] The amount to translate on the y axis.
  */
-void m_transform_translate(TRANSFORM *transform, gdouble dx, gdouble dy)
+void m_transform_translate(TRANSFORM *transform, double dx, double dy)
 {
   g_return_if_fail(transform!=NULL);
 

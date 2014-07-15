@@ -23,8 +23,7 @@
 #include "version.h"
 
 #include <stdio.h>
-//#include <ctype.h>
-//#include <sys/stat.h>
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif

@@ -99,15 +99,17 @@
  *
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
+#include <config.h>
 
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
+
+#include <sys/types.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
@@ -1561,7 +1563,7 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
 bool load_settings_dialog (GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  EdaConfig    *cfg      = eda_config_get_user_context ();
+  EdaConfig    *cfg      = eda_config_get_user_context();
   const char   *group    = IVAR_CONFIG_GROUP;
 
   char *tmpstr;

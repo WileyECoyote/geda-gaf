@@ -18,7 +18,6 @@
  *  MA 02110-1301 USA
  */
 
-
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -30,7 +29,12 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
+#include <libgeda/libgeda.h>
 
 #define GSC2PCB_VERSION "1.8"
 
@@ -219,10 +223,10 @@ build_and_run_command (const char *format, ...)
     if (verbose)
       printf ("\n%s", SEP_STRING);
 
-    g_free(standard_error);
-    g_free(standard_output);
+    GEDA_FREE(standard_error);
+    GEDA_FREE(standard_output);
 
-    g_free (args);
+    GEDA_FREE (args);
 
     /* free the list, but leave data untouched */
     g_list_free (tmp);
@@ -316,10 +320,10 @@ run_gnetlist (char * pins_file, char * net_file, char * pcb_file,
       char *backend;
       if (!s2) {
         out_file = g_strconcat (basename, ".", s, NULL);
-        backend = g_strdup (s);
+        backend = geda_strdup (s);
       } else {
-        out_file = g_strdup (s2 + 4);
-        backend = g_strndup (s, s2 - s);
+        out_file = geda_strdup (s2 + 4);
+        backend = geda_strndup (s, s2 - s);
       }
 
       if (!build_and_run_command ("%s %l -g %s -o %s %l %l",
@@ -330,8 +334,8 @@ run_gnetlist (char * pins_file, char * net_file, char * pcb_file,
         extra_gnetlist_arg_list,
         largs))
         return FALSE;
-      g_free (out_file);
-      g_free (backend);
+      GEDA_FREE (out_file);
+      GEDA_FREE (backend);
     }
 
     g_list_free (args1);
@@ -352,7 +356,7 @@ token (char * string, char ** next, _Bool * quoted_ret)
   if (!str || !*str) {
     if (next)
       *next = str;
-    return g_strdup ("");
+    return geda_strdup ("");
   }
   while (*str == ' ' || *str == '\t' || *str == ',' || *str == '\n')
     ++str;
@@ -370,7 +374,7 @@ token (char * string, char ** next, _Bool * quoted_ret)
          *s && (*s != ' ' && *s != '\t' && *s != ',' && *s != '\n'); ++s);
   }
 
-  ret = g_strndup (str, s - str);
+  ret = geda_strndup (str, s - str);
   str = (quoted && *s) ? s + 1 : s;
   if (next)
     *next = str;
@@ -424,7 +428,7 @@ pcb_element_line_parse (char * line)
   if (*s == '[')
     el->hi_res_format = TRUE;
   else if (*s != '(') {
-    g_free (el);
+    GEDA_FREE (el);
     return NULL;
   }
 
@@ -439,7 +443,7 @@ pcb_element_line_parse (char * line)
   el->x = token (NULL, NULL, NULL);
   el->y = token (NULL, &t, NULL);
 
-  el->tail = g_strdup (t ? t : "");
+  el->tail = geda_strdup (t ? t : "");
   if ((s = strrchr (el->tail, (int) '\n')) != NULL)
     *s = '\0';
 
@@ -477,17 +481,17 @@ pcb_element_free (PcbElement * el)
 {
   if (!el)
     return;
-  g_free (el->flags);
-  g_free (el->description);
-  g_free (el->changed_description);
-  g_free (el->changed_value);
-  g_free (el->refdes);
-  g_free (el->value);
-  g_free (el->x);
-  g_free (el->y);
-  g_free (el->tail);
-  g_free (el->pkg_name_fix);
-  g_free (el);
+  GEDA_FREE (el->flags);
+  GEDA_FREE (el->description);
+  GEDA_FREE (el->changed_description);
+  GEDA_FREE (el->changed_value);
+  GEDA_FREE (el->refdes);
+  GEDA_FREE (el->value);
+  GEDA_FREE (el->x);
+  GEDA_FREE (el->y);
+  GEDA_FREE (el->tail);
+  GEDA_FREE (el->pkg_name_fix);
+  GEDA_FREE (el);
 }
 
 static void
@@ -525,11 +529,11 @@ pcb_element_exists (PcbElement * el_test, _Bool record)
       continue;
     if (strcmp (el_test->description, el->description)) { /* footprint */
       if (record)
-        el->changed_description = g_strdup (el_test->description);
+        el->changed_description = geda_strdup (el_test->description);
     } else {
       if (record) {
         if (strcmp (el_test->value, el->value))
-          el->changed_value = g_strdup (el_test->value);
+          el->changed_value = geda_strdup (el_test->value);
         el->still_exists = TRUE;
       }
       return el;
@@ -566,64 +570,65 @@ insert_element (FILE * f_out, char * element_file,
 {
   FILE *f_in;
   PcbElement *el;
-  char *fmt, *s, buf[1024];
+  char *fmt, *str, buf[1024];
   _Bool retval = FALSE;
 
   if ((f_in = fopen (element_file, "r")) == NULL) {
-    s = g_strdup_printf ("insert_element() can't open %s", element_file);
-    perror (s);
-    g_free (s);
-    return FALSE;
+    str = geda_sprintf ("insert_element() can't open %s", element_file);
+    perror (str);
+    GEDA_FREE (str);
   }
-
-  /* Scan the file to detect whether it's actually a PCB
-   * layout. Assumes that a PCB layout will have a "PCB" line. */
-  while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
-    for (s = buf; *s == ' ' || *s == '\t'; ++s);
-    s[3] = 0;                   /* Truncate line */
-    if (strncmp ("PCB", s, sizeof (buf)) == 0) {
-      printf ("Warning: %s appears to be a PCB layout file. Skipping.\n",
-              element_file);
-      fclose (f_in);
-      return FALSE;
+  else {
+    /* Scan the file to detect whether it is actually a PCB
+     * layout. Assumes that a PCB layout will have a "PCB" line. */
+    while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+      for (str = buf; *str == ' ' || *str == '\t'; ++str);
+      str[3] = 0;                   /* Truncate line */
+      if (strncmp ("PCB", str, sizeof (buf)) == 0) {
+        printf ("Warning: %s appears to be a PCB layout file. Skipping.\n",
+        element_file);
+        fclose (f_in);
+        return FALSE;
+      }
     }
-  }
-  rewind (f_in);
+    rewind (f_in);
 
-  /* Copy the file element lines.  Substitute new parameters into the
-   * Element() or Element[] line and strip comments.
-   */
-  while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
-    for (s = buf; *s == ' ' || *s == '\t'; ++s);
-    if ((el = pcb_element_line_parse (s)) != NULL) {
-      simple_translate (el);
-      fmt = el->quoted_flags ?
+    /* Copy the file element lines.  Substitute new parameters into the
+     * Element() or Element[] line and strip comments.
+     */
+    while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
+      for (str = buf; *str == ' ' || *str == '\t'; ++str);
+      if ((el = pcb_element_line_parse (str)) != NULL) {
+        simple_translate (el);
+        fmt = el->quoted_flags ?
         "Element%c\"%s\" \"%s\" \"%s\" \"%s\" %s %s%s\n" :
         "Element%c%s \"%s\" \"%s\" \"%s\" %s %s%s\n";
 
-      fprintf (f_out, fmt,
-               el->res_char, el->flags, footprint, refdes, value,
-               el->x, el->y, el->tail);
-      retval = TRUE;
-    } else if (*s != '#')
-      fputs (buf, f_out);
-    pcb_element_free (el);
+        fprintf (f_out, fmt,
+                 el->res_char, el->flags, footprint, refdes, value,
+                 el->x, el->y, el->tail);
+        retval = TRUE;
+      }
+      else if (*str != '#') {
+        fputs (buf, f_out);
+      }
+      pcb_element_free (el);
+    }
+    fclose (f_in);
   }
-  fclose (f_in);
   return retval;
 }
-
 
 char *
 find_element (char * dir_path, char * element)
 {
   GDir *dir;
-  char *path, *name, *s, *found = NULL;
+  char *path, *name, *str, *found = NULL;
 
   if ((dir = g_dir_open (dir_path, 0, NULL)) == NULL) {
-    s = g_strdup_printf ("find_element can't open dir \"%s\"", dir_path);
-    perror (s);
-    g_free (s);
+    str = geda_sprintf ("find_element can't open dir \"%s\"", dir_path);
+    perror (str);
+    GEDA_FREE (str);
     return NULL;
   }
   if (verbose > 1)
@@ -640,19 +645,21 @@ find_element (char * dir_path, char * element)
     else {
       if (verbose > 1)
         printf ("\t           : %s\t", name);
-      if (!strcmp (name, element))
-        found = g_strdup (path);
+      if (!strcmp (name, element)) {
+        found = geda_strdup (path);
+      }
       else {
         char *tmps;
         tmps = g_strconcat (element, ".fp", NULL);
-        if (!strcmp (name, tmps))
-          found = g_strdup (path);
-        g_free (tmps);
+        if (!strcmp (name, tmps)) {
+          found = geda_strdup (path);
+        }
+        GEDA_FREE (tmps);
       }
       if (verbose > 1)
         printf ("%s\n", found ? "Yes" : "No");
     }
-    g_free (path);
+    GEDA_FREE (path);
     if (found)
       break;
   }
@@ -664,7 +671,7 @@ char *
 search_element_directories (PcbElement * el)
 {
   GList *list;
-  char *s, *elname = NULL, *dir_path, *path = NULL;
+  char *str, *elname = NULL, *dir_path, *path = NULL;
   int n1, n2;
 
   /* See comment before pkg_to_element() */
@@ -672,15 +679,15 @@ search_element_directories (PcbElement * el)
     if (strchr (el->description, '-')) {
       n1 = strlen (el->description);
       n2 = strlen (el->pkg_name_fix);
-      s = el->description + n1 - n2 - 1;
+      str = el->description + n1 - n2 - 1;
 
 // printf("n1=%d n2=%d desc:%s fix:%s s:%s\n",
-//  n1, n2, el->description, el->pkg_name_fix, s);
+//  n1, n2, el->description, el->pkg_name_fix, str);
 
-      if (n1 > 0 && n2 < n1 && *s == '-' && *(s + 1) == *el->pkg_name_fix) {
-        s = g_strndup (el->description, n1 - n2 - 1);
-        elname = g_strconcat (s, " ", el->pkg_name_fix, NULL);
-        g_free (s);
+      if (n1 > 0 && n2 < n1 && *str == '-' && *(str + 1) == *el->pkg_name_fix) {
+        str = geda_strndup (el->description, n1 - n2 - 1);
+        elname = g_strconcat (str, " ", el->pkg_name_fix, NULL);
+        GEDA_FREE (str);
       }
     }
     if (!elname) {
@@ -692,10 +699,10 @@ search_element_directories (PcbElement * el)
     }
   }
   if (!elname)
-    elname = g_strdup (el->description);
+    elname = geda_strdup (el->description);
 
   if (!strcmp (elname, "unknown")) {
-    g_free (elname);
+    GEDA_FREE (elname);
     return NULL;
   }
   if (verbose > 1)
@@ -711,7 +718,7 @@ search_element_directories (PcbElement * el)
       break;
     }
   }
-  g_free (elname);
+  GEDA_FREE (elname);
   return path;
 }
 
@@ -760,9 +767,9 @@ pkg_to_element (FILE * f, char * pkg_line)
   fix_spaces (args[2]);
 
   el = g_new0 (PcbElement, 1);
-  el->description = g_strdup (args[0]);
-  el->refdes = g_strdup (args[1]);
-  el->value = g_strdup (args[2]);
+  el->description = geda_strdup (args[0]);
+  el->refdes = geda_strdup (args[1]);
+  el->value = geda_strdup (args[2]);
   if ((s = strchr (el->value, (int) ')')) != NULL)
     *s = '\0';
 
@@ -789,17 +796,17 @@ pkg_to_element (FILE * f, char * pkg_line)
   if (n_extra_args == n_dashes + 1) { /* Assume there was a comma in the value, eg "1K, 1%" */
     s = el->value;
     el->value = g_strconcat (s, ",", fix_spaces (args[n]), NULL);
-    g_free (s);
+    GEDA_FREE (s);
     if ((s = strchr (el->value, (int) ')')) != NULL)
       *s = '\0';
     n = 4;
   }
   if (args[n]) {
-    el->pkg_name_fix = g_strdup (args[n]);
+    el->pkg_name_fix = geda_strdup (args[n]);
     for (n += 1; args[n] != NULL; ++n) {
       s = el->pkg_name_fix;
       el->pkg_name_fix = g_strconcat (s, " ", args[n], NULL);
-      g_free (s);
+      GEDA_FREE (s);
     }
     if ((s = strchr (el->pkg_name_fix, (int) ')')) != NULL)
       *s = '\0';
@@ -853,7 +860,7 @@ add_elements (char * pcb_file)
   tmp_file = g_strconcat (pcb_file, ".tmp", NULL);
   if ((f_out = fopen (tmp_file, "wb")) == NULL) {
     fclose (f_in);
-    g_free (tmp_file);
+    GEDA_FREE (tmp_file);
     return 0;
   }
   while ((fgets (buf, sizeof (buf), f_in)) != NULL) {
@@ -921,7 +928,7 @@ add_elements (char * pcb_file)
           fputs (buf, f_out);   /* Copy PKG_ line */
         }
       }
-      g_free (p);
+      GEDA_FREE (p);
     }
     if (is_m4) {
       fputs (buf, f_out);
@@ -942,7 +949,7 @@ add_elements (char * pcb_file)
     build_and_run_command ("rm %s", tmp_file);
   else
     build_and_run_command ("mv %s %s", tmp_file, pcb_file);
-  g_free (tmp_file);
+  GEDA_FREE (tmp_file);
   return total;
 }
 
@@ -999,7 +1006,7 @@ update_element_descriptions (char * pcb_file, char * bak)
   }
 
   build_and_run_command ("mv %s %s", tmp, pcb_file);
-  g_free (tmp);
+  GEDA_FREE (tmp);
 }
 
 static void
@@ -1082,7 +1089,7 @@ prune_elements (char * pcb_file, char * bak)
   }
 
   build_and_run_command ("mv %s %s", tmp, pcb_file);
-  g_free (tmp);
+  GEDA_FREE (tmp);
 }
 
 static void
@@ -1091,11 +1098,11 @@ add_m4_file (char * arg)
   char *s;
 
   if (!m4_files)
-    m4_files = g_strdup (arg);
+    m4_files = geda_strdup (arg);
   else {
     s = m4_files;
     m4_files = g_strconcat (m4_files, " ", arg, NULL);
-    g_free (s);
+    GEDA_FREE (s);
   }
 }
 
@@ -1107,7 +1114,7 @@ expand_dir (char * dir)
   if (*dir == '~')
     s = g_build_filename ((char *) g_get_home_dir (), dir + 1, NULL);
   else
-    s = g_strdup (dir);
+    s = geda_strdup (dir);
   return s;
 }
 
@@ -1122,7 +1129,7 @@ add_default_m4_files (void)
 
   if (g_file_test (path, G_FILE_TEST_IS_REGULAR))
     add_m4_file (path);
-  g_free (path);
+  GEDA_FREE (path);
 
   if (g_file_test (DEFAULT_PCB_INC, G_FILE_TEST_IS_REGULAR))
     add_m4_file (DEFAULT_PCB_INC);
@@ -1133,9 +1140,9 @@ static void
 add_schematic (char * sch)
 {
   const char* s;
-  schematics = g_list_append (schematics, g_strdup (sch));
+  schematics = g_list_append (schematics, geda_strdup (sch));
   if (!sch_basename && (s = g_strrstr (sch, ".sch")) != NULL && strlen(s) == 4)
-    sch_basename = g_strndup (sch, s - sch);
+    sch_basename = geda_strndup (sch, s - sch);
 }
 
 static void
@@ -1153,10 +1160,9 @@ add_multiple_schematics (char * sch)
       add_schematic (args[i]);
     }
     g_strfreev (args);
-  } else {
-    fprintf (stderr,
-             "invalid `schematics' option: %s\n",
-             error->message);
+  }
+  else {
+    fprintf (stderr, "invalid `schematics' option: %s\n", error->message);
     g_error_free (error);
   }
 }
@@ -1165,6 +1171,7 @@ static int
 parse_config (char * config, char * arg)
 {
   char *s;
+  int   result;
 
   /* remove trailing white space otherwise strange things can happen */
   if ((arg != NULL) && (strlen (arg) >= 1)) {
@@ -1182,49 +1189,71 @@ parse_config (char * config, char * arg)
     remove_unfound_elements = TRUE;
     return 0;
   }
+
   if (!strcmp (config, "keep-unfound") || !strcmp (config, "k")) {
     remove_unfound_elements = FALSE;
     return 0;
   }
+
   if (!strcmp (config, "quiet") || !strcmp (config, "q")) {
     quiet_mode = TRUE;
     return 0;
   }
+
   if (!strcmp (config, "preserve") || !strcmp (config, "p")) {
     preserve = TRUE;
     return 0;
   }
+
   if (!strcmp (config, "use-files") || !strcmp (config, "f")) {
     force_element_files = TRUE;
     return 0;
   }
+
   if (!strcmp (config, "skip-m4") || !strcmp (config, "s")) {
     use_m4 = FALSE;
     return 0;
   }
+
+  result = 1;
+
   if (!strcmp (config, "elements-dir") || !strcmp (config, "d")) {
     if (verbose > 1)
       printf ("\tAdding directory to file element directory list: %s\n",
               expand_dir (arg));
-    element_directory_list =
+      element_directory_list =
       g_list_prepend (element_directory_list, expand_dir (arg));
-  } else if (!strcmp (config, "output-name") || !strcmp (config, "o"))
-    sch_basename = g_strdup (arg);
-  else if (!strcmp (config, "schematics"))
-    add_multiple_schematics (arg);
-  else if (!strcmp (config, "m4-pcbdir")) {
-    g_free (m4_pcbdir);
-    m4_pcbdir = g_strdup (arg);
-  } else if (!strcmp (config, "m4-file"))
-    add_m4_file (arg);
-  else if (!strcmp (config, "gnetlist"))
-    extra_gnetlist_list = g_list_append (extra_gnetlist_list, g_strdup (arg));
-  else if (!strcmp (config, "empty-footprint"))
-    empty_footprint_name = g_strdup (arg);
-  else
-    return -1;
-
-  return 1;
+  }
+  else if (!strcmp (config, "output-name") || !strcmp (config, "o")) {
+    sch_basename = geda_strdup (arg);
+  }
+  else {
+    if (!strcmp (config, "schematics")) {
+      add_multiple_schematics (arg);
+    }
+    else {
+      if (!strcmp (config, "m4-pcbdir")) {
+        GEDA_FREE (m4_pcbdir);
+        m4_pcbdir = geda_strdup (arg);
+      }
+      else if (!strcmp (config, "m4-file")) {
+        add_m4_file (arg);
+      }
+      else {
+        if (!strcmp (config, "gnetlist")) {
+          extra_gnetlist_list = g_list_append (extra_gnetlist_list, geda_strdup (arg));
+        }
+        else {
+          if (!strcmp (config, "empty-footprint")) {
+            empty_footprint_name = geda_strdup (arg);
+          }
+          else
+            result = -1;
+        }
+      }
+    }
+  }
+  return result;
 }
 
 static void
@@ -1264,7 +1293,7 @@ load_extra_project_files (void)
   path = g_build_filename ((char *) g_get_home_dir (), ".gEDA",
                            "gsch2pcb", NULL);
   load_project (path);
-  g_free (path);
+  GEDA_FREE (path);
 
   done = TRUE;
 }
@@ -1390,7 +1419,7 @@ get_args (int argc, char ** argv)
       }
       else if (!strcmp (opt, "gnetlist-arg")) {
         extra_gnetlist_arg_list =
-          g_list_append (extra_gnetlist_arg_list, g_strdup (arg));
+          g_list_append (extra_gnetlist_arg_list, geda_strdup (arg));
         i++;
         continue;
       }
@@ -1447,7 +1476,7 @@ main (int argc, char ** argv)
     m4_pcbdir = g_strconcat (pcbdata_path, "/m4", NULL);
   }
 
-  default_m4_pcbdir = g_strdup (m4_pcbdir);
+  default_m4_pcbdir = geda_strdup (m4_pcbdir);
 
   get_args (argc, argv);
 
@@ -1466,36 +1495,36 @@ main (int argc, char ** argv)
   if (verbose)
     printf ("Processing PCBLIBPATH=\"%s\"\n", PCBLIBPATH);
 
-  path = g_strdup (PCBLIBPATH);
+  path = geda_strdup (PCBLIBPATH);
   for (p = strtok (path, PCB_PATH_DELIMETER); p && *p;
        p = strtok (NULL, PCB_PATH_DELIMETER)) {
     if (g_file_test (p, G_FILE_TEST_IS_DIR)) {
       if (verbose)
         printf ("Adding %s to the newlib search path\n", p);
       element_directory_list = g_list_append (element_directory_list,
-                                              g_strdup (p));
+                                              geda_strdup (p));
     }
   }
-  g_free (path);
+  GEDA_FREE (path);
 
   pins_file_name = g_strconcat (sch_basename, ".cmd", NULL);
   net_file_name = g_strconcat (sch_basename, ".net", NULL);
   pcb_file_name = g_strconcat (sch_basename, ".pcb", NULL);
   bak_file_name = g_strconcat (sch_basename, ".pcb.bak", NULL);
-  tmp = g_strdup (bak_file_name);
+  tmp = geda_strdup (bak_file_name);
 
   for (i = 0; g_file_test (bak_file_name, G_FILE_TEST_EXISTS); ++i) {
-    g_free (bak_file_name);
-    bak_file_name = g_strdup_printf ("%s%d", tmp, i);
+    GEDA_FREE (bak_file_name);
+    bak_file_name = geda_sprintf ("%s%d", tmp, i);
   }
-  g_free (tmp);
+  GEDA_FREE (tmp);
 
   if (g_file_test (pcb_file_name, G_FILE_TEST_EXISTS)) {
     initial_pcb = FALSE;
     pcb_new_file_name = g_strconcat (sch_basename, ".new.pcb", NULL);
     get_pcb_element_list (pcb_file_name);
   } else
-    pcb_new_file_name = g_strdup (pcb_file_name);
+    pcb_new_file_name = geda_strdup (pcb_file_name);
 
   if (!run_gnetlist (pins_file_name, net_file_name, pcb_new_file_name,
 		     sch_basename, schematics)) {
@@ -1606,10 +1635,10 @@ main (int argc, char ** argv)
     }
   }
 
-  g_free (net_file_name);
-  g_free (pins_file_name);
-  g_free (pcb_file_name);
-  g_free (bak_file_name);
+  GEDA_FREE (net_file_name);
+  GEDA_FREE (pins_file_name);
+  GEDA_FREE (pcb_file_name);
+  GEDA_FREE (bak_file_name);
 
   return 0;
 }

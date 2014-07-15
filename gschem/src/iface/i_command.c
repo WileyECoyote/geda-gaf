@@ -650,7 +650,7 @@ COMMAND ( do_close ) {
     q_log_message(_("Closing Window\n"));
     x_window_close_page (w_current, Current_Page);
   }
-
+  i_set_state(w_current, SELECT);
   EXIT_COMMAND(do_close);
 }
 
@@ -669,7 +669,7 @@ COMMAND ( do_close_all ) {
     o_move_cancel (w_current);
   }
 
-  x_window_close_all_dialogs(w_current);
+  x_window_close_edit_dialogs(w_current);
 
   pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
 
@@ -711,6 +711,8 @@ COMMAND ( do_close_all ) {
       }
     }
   }
+
+  i_set_state(w_current, SELECT);
 
   g_list_free (pages);
 
@@ -2021,6 +2023,223 @@ COMMAND ( do_page_discard )
 
 }
 
+/* ------------------ Hierarchy ---------------- */
+
+/*! \defgroup i_command_Hierarchy_Actions Hierarchy Actions under the Page Menu
+ * @{
+ * TODO: Need hierarchy command
+ */
+
+COMMAND ( do_down_schematic )
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_down_schematic);
+
+  Object *object           = NULL;
+  Page   *child            = NULL;
+  Page   *save_first_page  = NULL;
+
+  bool    loaded_flag      = FALSE;
+  bool    looking_inside   = FALSE;
+
+  char   *attrib           = NULL;
+  char   *current_filename = NULL;
+
+  int     count            = 0;
+  int     page_control     = 0;
+  int     pcount           = 0;
+
+  object = o_select_return_first_object(w_current);
+
+  /* only allow going into symbols */
+  if (object == NULL || object->type != OBJ_COMPLEX)
+    return;
+
+  attrib = o_attrib_search_attached_attribs_by_name (object, "source", count);
+
+  /* if above is null, then look inside symbol */
+  if (attrib == NULL) {
+    attrib =
+      o_attrib_search_inherited_attribs_by_name (object, "source", count);
+    looking_inside = TRUE;
+#if DEBUG
+    printf("going to look inside now\n");
+#endif
+  }
+
+  while (attrib) {
+
+    /* look for source=filename,filename, ... */
+    pcount = 0;
+    current_filename = u_basic_breakup_string(attrib, ',', pcount);
+
+    /* loop over all filenames */
+    while(current_filename != NULL) {
+      GError *err = NULL;
+      u_log_message(_("Searching for source [%s]\n"), current_filename);
+      child = s_hierarchy_down_schematic_single(w_current->toplevel,
+                                                current_filename,
+                                                Current_Page,
+                                                page_control,
+                                                HIERARCHY_NORMAL_LOAD,
+                                                &err);
+
+      /* s_hierarchy_down_schematic_single() will not zoom the loaded page */
+      if (child != NULL) {
+        s_page_goto (w_current->toplevel, child);
+        i_zoom_world_extents(w_current, s_page_get_objects (Current_Page),
+                       I_PAN_DONT_REDRAW);
+        o_undo_savestate(w_current, UNDO_ALL);
+        s_page_goto (w_current->toplevel, Current_Page);
+      }
+
+      /* save the first page */
+      if ( !loaded_flag && (child != NULL)) {
+        save_first_page = child;
+      }
+
+      /* now do some error reporting */
+      if (child == NULL) {
+
+        const char *msg = (err != NULL) ? err->message : "Unknown error.";
+
+        u_log_message(_("Failed to descend into '%s': %s\n"),
+                         current_filename, msg);
+
+        char *secondary = g_strdup_printf (
+                         _("Failed to descend hierarchy into '%s': %s"),
+                            current_filename, msg);
+
+        titled_pango_error_dialog("<b>Failed to descend hierarchy</b>",
+                                  secondary, _("Hierarchy Error"));
+        GEDA_FREE (secondary);
+        g_error_free (err);
+
+      }
+      else {
+        /* this only signifies that we tried */
+        loaded_flag = TRUE;
+        page_control = child->page_control;
+      }
+
+      GEDA_FREE(current_filename);
+      pcount++;
+      current_filename = u_basic_breakup_string(attrib, ',', pcount);
+    }
+
+    GEDA_FREE(attrib);
+    GEDA_FREE(current_filename);
+
+    count++;
+
+    /* continue looking outside first */
+    if (!looking_inside) {
+      attrib =
+        o_attrib_search_attached_attribs_by_name (object, "source", count);
+    }
+
+    /* okay we were looking outside and didn't find anything,
+     * so now we need to look inside the symbol */
+    if (!looking_inside && attrib == NULL && !loaded_flag ) {
+      looking_inside = TRUE;
+#if DEBUG
+      printf("switching to go to look inside\n");
+#endif
+    }
+
+    if (looking_inside) {
+#if DEBUG
+      printf("looking inside\n");
+#endif
+      attrib =
+        o_attrib_search_inherited_attribs_by_name (object, "source", count);
+    }
+  }
+
+  if (loaded_flag && (save_first_page != NULL)) {
+    x_window_set_current_page (w_current, save_first_page);
+  }
+}
+
+/*! \bug may cause problems with non-directory symbols */
+COMMAND ( do_down_symbol )
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_down_symbol);
+
+  Object *object;
+  const CLibSymbol *sym;
+
+  object = o_select_return_first_object(w_current);
+  if (object != NULL) {
+    /* only allow going into symbols */
+    if (object->type == OBJ_COMPLEX) {
+      u_log_message(_("Searching for symbol [%s]\n"),
+                    object->complex->filename);
+      sym = s_clib_get_symbol_by_name (object->complex->filename);
+      if (sym == NULL)
+        return;
+      if (s_clib_symbol_get_filename(sym) == NULL) {
+        u_log_message(_("Symbol is not a real file."
+                        " Symbol cannot be loaded.\n"));
+        return;
+      }
+      s_hierarchy_down_symbol(w_current->toplevel, sym, Current_Page);
+
+      /* s_hierarchy_down_symbol() will not zoom the loaded page */
+      i_zoom_world_extents(w_current,
+                     s_page_get_objects (Current_Page),
+                     I_PAN_DONT_REDRAW);
+      o_undo_savestate(w_current, UNDO_ALL);
+      x_window_set_current_page(w_current, Current_Page);
+    }
+  }
+}
+
+COMMAND ( do_hierarchy_up )
+{
+  NOT_NULL(w_current);
+  NOT_NULL(w_current->toplevel);
+  NOT_NULL(w_current->toplevel->pages);
+  NOT_NULL(w_current->toplevel->page_current);
+
+  BEGIN_NO_ARGUMENT(do_hierarchy_up);
+
+  Page *up_page;
+
+  up_page = s_hierarchy_find_up_page (w_current->toplevel->pages, Current_Page);
+
+  if (up_page == NULL) {
+    u_log_message(_("Cannot find any schematics above the current one!\n"));
+  }
+  else {
+    int answer = TRUE;
+    if (Current_Page->CHANGED){
+      answer = x_dialog_close_changed_page (w_current, Current_Page);
+    }
+    if(answer == TRUE) {
+      x_window_set_current_page(w_current, up_page);
+      x_window_close_page (w_current, Current_Page);
+    }
+  }
+}
+/*
+COMMAND ( do_hierarchy_documentation )
+{
+  BEGIN_COMMAND(do_hierarchy_documentation);
+  u_log_message("in hierarchy_documentation command handler");
+  EXIT_COMMAND(do_hierarchy_documentation);
+}
+*/
+
+/*! @} endgroup i_command_Hierarchy_Actions */
+
 /*! @} endgroup i_command_Page_Actions */
 
 /* ------------------ Add ---------------- */
@@ -2372,223 +2591,98 @@ COMMAND ( do_add_picture )
 
 /*! @} endgroup i_command_Add_Actions */
 
-/* ------------------ Hierarchy ---------------- */
-
-/*! \defgroup i_command_Hierarchy_Actions Actions under the Hierarchy Menu
+/* ------------------- Sessions ---------------- */
+/*! \defgroup i_command_Sessions_Actions Actions Under the Sessions Menu
  * @{
- * TODO: Need hierarchy command
- * \remark: tobe relocated in 2.09
  */
 
-COMMAND ( do_down_schematic )
+COMMAND ( do_session_new )
 {
-  NOT_NULL(w_current);
-  NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
+  BEGIN_W_COMMAND(do_session_new);
 
-  BEGIN_NO_ARGUMENT(do_down_schematic);
+  o_redraw_cleanstates (w_current);
+  o_invalidate_rubber (w_current);
 
-  Object *object           = NULL;
-  Page   *child            = NULL;
-  Page   *save_first_page  = NULL;
+  x_sessions_new_dialog (w_current);
 
-  bool    loaded_flag      = FALSE;
-  bool    looking_inside   = FALSE;
+  w_current->inside_action = 0;
+  i_set_state(w_current, SELECT);
 
-  char   *attrib           = NULL;
-  char   *current_filename = NULL;
+  EXIT_COMMAND(do_session_new);
 
-  int     count            = 0;
-  int     page_control     = 0;
-  int     pcount           = 0;
-
-  object = o_select_return_first_object(w_current);
-
-  /* only allow going into symbols */
-  if (object == NULL || object->type != OBJ_COMPLEX)
-    return;
-
-  attrib = o_attrib_search_attached_attribs_by_name (object, "source", count);
-
-  /* if above is null, then look inside symbol */
-  if (attrib == NULL) {
-    attrib =
-      o_attrib_search_inherited_attribs_by_name (object, "source", count);
-    looking_inside = TRUE;
-#if DEBUG
-    printf("going to look inside now\n");
-#endif
-  }
-
-  while (attrib) {
-
-    /* look for source=filename,filename, ... */
-    pcount = 0;
-    current_filename = u_basic_breakup_string(attrib, ',', pcount);
-
-    /* loop over all filenames */
-    while(current_filename != NULL) {
-      GError *err = NULL;
-      u_log_message(_("Searching for source [%s]\n"), current_filename);
-      child = s_hierarchy_down_schematic_single(w_current->toplevel,
-                                                current_filename,
-                                                Current_Page,
-                                                page_control,
-                                                HIERARCHY_NORMAL_LOAD,
-                                                &err);
-
-      /* s_hierarchy_down_schematic_single() will not zoom the loaded page */
-      if (child != NULL) {
-        s_page_goto (w_current->toplevel, child);
-        i_zoom_world_extents(w_current, s_page_get_objects (Current_Page),
-                       I_PAN_DONT_REDRAW);
-        o_undo_savestate(w_current, UNDO_ALL);
-        s_page_goto (w_current->toplevel, Current_Page);
-      }
-
-      /* save the first page */
-      if ( !loaded_flag && (child != NULL)) {
-        save_first_page = child;
-      }
-
-      /* now do some error reporting */
-      if (child == NULL) {
-
-        const char *msg = (err != NULL) ? err->message : "Unknown error.";
-
-        u_log_message(_("Failed to descend into '%s': %s\n"),
-                         current_filename, msg);
-
-        char *secondary = g_strdup_printf (
-                         _("Failed to descend hierarchy into '%s': %s"),
-                            current_filename, msg);
-
-        titled_pango_error_dialog("<b>Failed to descend hierarchy</b>",
-                                  secondary, _("Hierarchy Error"));
-        GEDA_FREE (secondary);
-        g_error_free (err);
-
-      }
-      else {
-        /* this only signifies that we tried */
-        loaded_flag = TRUE;
-        page_control = child->page_control;
-      }
-
-      GEDA_FREE(current_filename);
-      pcount++;
-      current_filename = u_basic_breakup_string(attrib, ',', pcount);
-    }
-
-    GEDA_FREE(attrib);
-    GEDA_FREE(current_filename);
-
-    count++;
-
-    /* continue looking outside first */
-    if (!looking_inside) {
-      attrib =
-        o_attrib_search_attached_attribs_by_name (object, "source", count);
-    }
-
-    /* okay we were looking outside and didn't find anything,
-     * so now we need to look inside the symbol */
-    if (!looking_inside && attrib == NULL && !loaded_flag ) {
-      looking_inside = TRUE;
-#if DEBUG
-      printf("switching to go to look inside\n");
-#endif
-    }
-
-    if (looking_inside) {
-#if DEBUG
-      printf("looking inside\n");
-#endif
-      attrib =
-        o_attrib_search_inherited_attribs_by_name (object, "source", count);
-    }
-  }
-
-  if (loaded_flag && (save_first_page != NULL)) {
-    x_window_set_current_page (w_current, save_first_page);
-  }
 }
 
-/*! \bug may cause problems with non-directory symbols */
-COMMAND ( do_down_symbol )
+COMMAND ( do_session_open )
 {
-  NOT_NULL(w_current);
-  NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->page_current);
+  BEGIN_W_COMMAND(do_session_open);
 
-  BEGIN_NO_ARGUMENT(do_down_symbol);
+  o_redraw_cleanstates (w_current);
+  o_invalidate_rubber (w_current);
 
-  Object *object;
-  const CLibSymbol *sym;
+  x_sessions_open_dialog (w_current);
 
-  object = o_select_return_first_object(w_current);
-  if (object != NULL) {
-    /* only allow going into symbols */
-    if (object->type == OBJ_COMPLEX) {
-      u_log_message(_("Searching for symbol [%s]\n"),
-                    object->complex->filename);
-      sym = s_clib_get_symbol_by_name (object->complex->filename);
-      if (sym == NULL)
-        return;
-      if (s_clib_symbol_get_filename(sym) == NULL) {
-        u_log_message(_("Symbol is not a real file."
-                        " Symbol cannot be loaded.\n"));
-        return;
-      }
-      s_hierarchy_down_symbol(w_current->toplevel, sym, Current_Page);
+  w_current->inside_action = 0;
+  i_set_state(w_current, SELECT);
 
-      /* s_hierarchy_down_symbol() will not zoom the loaded page */
-      i_zoom_world_extents(w_current,
-                     s_page_get_objects (Current_Page),
-                     I_PAN_DONT_REDRAW);
-      o_undo_savestate(w_current, UNDO_ALL);
-      x_window_set_current_page(w_current, Current_Page);
-    }
-  }
+  EXIT_COMMAND(do_session_open);
 }
 
-COMMAND ( do_hierarchy_up )
+COMMAND ( do_session_save )
 {
-  NOT_NULL(w_current);
-  NOT_NULL(w_current->toplevel);
-  NOT_NULL(w_current->toplevel->pages);
-  NOT_NULL(w_current->toplevel->page_current);
+  BEGIN_W_COMMAND(do_session_save);
 
-  BEGIN_NO_ARGUMENT(do_hierarchy_up);
+  o_redraw_cleanstates (w_current);
+  o_invalidate_rubber (w_current);
 
-  Page *up_page;
-
-  up_page = s_hierarchy_find_up_page (w_current->toplevel->pages, Current_Page);
-
-  if (up_page == NULL) {
-    u_log_message(_("Cannot find any schematics above the current one!\n"));
+  if (w_current->session_name == NULL) {
+    x_sessions_new_dialog (w_current);
   }
   else {
-    int answer = TRUE;
-    if (Current_Page->CHANGED){
-      answer = x_dialog_close_changed_page (w_current, Current_Page);
-    }
-    if(answer == TRUE) {
-      x_window_set_current_page(w_current, up_page);
-      x_window_close_page (w_current, Current_Page);
-    }
+    i_sessions_save_session (w_current, NULL);
   }
-}
-/*
-COMMAND ( do_hierarchy_documentation )
-{
-  BEGIN_COMMAND(do_hierarchy_documentation);
-  u_log_message("in hierarchy_documentation command handler");
-  EXIT_COMMAND(do_hierarchy_documentation);
-}
-*/
 
-/*! @} endgroup i_command_Hierarchy_Actions */
+  w_current->inside_action = 0;
+  i_set_state(w_current, SELECT);
+
+  EXIT_COMMAND(do_session_save);
+}
+
+COMMAND ( do_session_save_as )
+{
+  BEGIN_W_COMMAND(do_session_save_as);
+
+  o_redraw_cleanstates(w_current);
+  o_invalidate_rubber (w_current);
+
+  if (w_current->session_name == NULL) {
+    x_sessions_new_dialog (w_current);
+  }
+  else {
+    x_sessions_save_as_dialog (w_current);
+  }
+
+  w_current->inside_action = 0;
+  i_set_state(w_current, SELECT);
+
+  EXIT_COMMAND(do_session_save_as);
+}
+
+COMMAND ( do_session_manage )
+{
+  BEGIN_W_COMMAND(do_session_manage);
+
+  o_redraw_cleanstates (w_current);
+  o_invalidate_rubber (w_current);
+
+  x_sessions_manage_dialog (w_current);
+
+  w_current->inside_action = 0;
+  i_set_state(w_current, SELECT);
+
+  EXIT_COMMAND(do_session_manage);
+}
+
+/*! @} endgroup i_command_Page_Actions */
 
 /* ------------------ Attributes ---------------- */
 

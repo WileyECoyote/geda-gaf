@@ -606,11 +606,12 @@ void x_window_create_main(GschemToplevel *w_current)
 
 }
 
-/*! \brief Close all open Dialogs
+/*! \brief Close All Edit Dialogs
  *  \par Function Description
- *   This function close any dialog boxes that are currently open.
+ *   This function close any currently open editing dialog boxes
+ *   This includes the edit preference dialog.
  */
-void x_window_close_all_dialogs(GschemToplevel *w_current)
+void x_window_close_edit_dialogs(GschemToplevel *w_current)
 {
   /* close all the dialog boxes */
 
@@ -645,20 +646,30 @@ void x_window_close_all_dialogs(GschemToplevel *w_current)
   if (w_current->iwindow)
   gtk_widget_destroy(w_current->iwindow);
 
-  if (w_current->hkwindow)
-  gtk_widget_destroy(w_current->hkwindow);
-
-  if (w_current->cowindow)
-  gtk_widget_destroy(w_current->cowindow);
-
   if (w_current->clwindow)
   gtk_widget_destroy(w_current->clwindow);
 
   if (w_current->sewindow)
   gtk_widget_destroy(w_current->sewindow);
 
-  x_console_close();
+}
 
+/*! \brief Close all open Dialogs
+ *  \par Function Description
+ *   This function closes all currently open dialog windows.
+ *   This called in preperation for program shutdown.
+ */
+void x_window_close_all_dialogs(GschemToplevel *w_current)
+{
+  x_window_close_edit_dialogs(w_current);
+
+  if (w_current->hkwindow) /* Help/Hotkeys */
+    gtk_widget_destroy(w_current->hkwindow);
+
+  if (w_current->cowindow)
+    gtk_widget_destroy(w_current->cowindow);
+
+  x_console_close();
 }
 /*! \todo Finish function documentation!!!
  *  \brief
@@ -820,6 +831,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
     while ( g_file_test (str, G_FILE_TEST_EXISTS)) unique_untitled ();
     return str;
   }
+
   /* Create an empty page with optional filename */
   inline Page* new_page( const char *fname ) {
     page = s_page_new (toplevel, fname);
@@ -836,7 +848,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
     char     *fname;
     fname = geda_strdup ( name ? name : generate_untitled() );
     new_page(fname);
-    if (!quiet_mode)
+    if (!verbose_mode)
       u_log_message (_("New file [%s]\n"),
                      toplevel->page_current->filename);
     GEDA_FREE (fname);
@@ -859,6 +871,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
     page = empty_page(NULL); /* and were done */
   }
   else {
+
     old_current = toplevel->page_current; /* save fallback point */
     if ( g_file_test (filename, G_FILE_TEST_EXISTS)) {
 
@@ -883,9 +896,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
-          if (!quiet_mode) {
-            u_log_message (_("Loading schematic \"%s\"\n"), filename);
-          }
+          q_log_message (_("Loading schematic \"%s\"\n"), filename);
           recent_files_add (filename);
         }
       }
@@ -942,6 +953,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
       }
     }
   }
+
   /* Damage notifications should invalidate the object on screen */
   o_add_change_notify (page,
                       (ChangeNotifyFunc) o_invalidate,
@@ -1194,8 +1206,13 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
     /* new_current will be the new current page at the end of the function */
   }
 
-  u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
-                 page->filename);
+  if ((strncmpi(geda_basename(page->filename), "untitled", 8) != 0) ||
+       verbose_mode)
+  {
+    u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
+                   page->filename);
+  }
+
   /* remove page from toplevel list of page and free */
   s_page_delete (toplevel, page);
 

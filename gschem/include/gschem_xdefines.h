@@ -3,7 +3,6 @@
  *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
-
  *
  * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
@@ -19,7 +18,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02111-1301 USA
  *
  * Date: December, 26, 2012
  * Contributing Author: Wiley Edward Hill
@@ -30,7 +30,8 @@
  * ------------------------------------------------------------------
  * WEH | 09/17/12 |  Inital release.
  * ------------------------------------------------------------------
- *
+ * WEH | 07/12/14 | Renamed DIALOG_BORDER_SPACING DIALOG_BORDER_WIDTH,
+ *                | seems more appropriate
 */
 
 #define DIALOG_BORDER_WIDTH 5

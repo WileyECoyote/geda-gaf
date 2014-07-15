@@ -110,7 +110,7 @@ void m_polygon_append_point (GArray *points, int x, int y)
  *  \returns TRUE if the point lies inside the polygon, FALSE if the point lies
  *  outside the polygon.
  */
-gboolean m_polygon_interior_point (GArray *points, int x, int y)
+bool m_polygon_interior_point (GArray *points, int x, int y)
 {
   int count = 0;
 
@@ -154,7 +154,7 @@ gboolean m_polygon_interior_point (GArray *points, int x, int y)
  */
 double m_polygon_shortest_distance (GArray *points, int x, int y, gboolean closed)
 {
-  gdouble shortest = G_MAXDOUBLE;
+  double shortest = G_MAXDOUBLE;
 
   if (points->len > 0) {
     int i = 0;

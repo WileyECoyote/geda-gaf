@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,8 +22,8 @@
  *  \brief utilility file functions
  */
 
-/*! TODO: review function s_slib_getbasename could other modules use this
- *       function, if so then should relocate to this module */
+/*! TODO: review function s_slib_getbasename. Could other modules use this
+ *       function? if so then should relocate to this module */
 #include <config.h>
 #if defined(_LINUX)
  #include <sys/sendfile>
@@ -71,11 +71,20 @@ const char *f_get_filename_ext(const char *filename) {
     return dot + 1;
 }
 
-const char *geda_basename(const char *path)
+/*! \brief Return pointer to base file name
+ *  \par Function description
+ *  Returns a pointer to the characters after the right most
+ *  seperator or NULL if no sting was passed. The returned
+ *  pointer points to the given string, and not reallocated.
+ *
+ *  \param [in] filename The filename to search.
+ *  \return offset if found, otherwise NULL.
+ */
+char *geda_basename(const char *path)
 {
   if (path) {
     char *base = strrchr(path, DIR_SEPARATOR);
-    return base ? base+1 : path;
+    return base ? base+1 : (char*)path;
   }
   return NULL;
 }
@@ -100,7 +109,6 @@ void f_remove_extension(char *filename) {
       filename[i] = '\0';
     }
 }
-
 
 
 int f_copy(const char *source, const char *target)
@@ -208,29 +216,33 @@ int f_copy(const char *source, const char *target)
 */
 GSList *f_get_dir_list_files(char *path, char *filter)
 {
-
         GSList *files = NULL;
         char   *filename;
+  const char   *real_filter;
   const char   *suffix;
 
   DIR        *dirp;
   struct      dirent *ent;
+
+  real_filter = filter;
+
+  if (*real_filter == 0x2E ) real_filter++; /* skip over Period  */
 
   dirp = opendir (path);
   if (dirp != NULL) {
 
     /* get all the files within directory */
     while ((ent = readdir (dirp)) != NULL) {
-      if (filter) {
+      if (real_filter) {
         suffix = f_get_filename_ext(ent->d_name);
-        if ( suffix && strcmp (suffix, filter) == 0) {
+        if ( suffix && strcmp (suffix, real_filter) == 0) {
           filename = geda_strdup(ent->d_name);
-          files = g_slist_append(files, filename);
+          files = g_slist_prepend(files, filename);
         }
       }
       else {
         filename = geda_strdup(ent->d_name);
-        files = g_slist_append(files, filename);
+        files = g_slist_prepend(files, filename);
       }
     }
     closedir (dirp);
@@ -239,7 +251,7 @@ GSList *f_get_dir_list_files(char *path, char *filter)
     u_log_message(_("%s: error accessing: %s\n"), __func__, path);
   }
 
-  return files;
+  return g_slist_reverse(files);
 }
 
 /*! \brief Remove File
@@ -247,7 +259,7 @@ GSList *f_get_dir_list_files(char *path, char *filter)
  *  This function calls the standard remove function after setting
  *  the system error number to 0.
  *
- * \retval Returns result of remove function
+ * \retval Returns result of remove = zero on success -1 if error
 */
 int f_file_remove (const char *pathname)
 {

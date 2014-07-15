@@ -25,7 +25,10 @@
 #include <config.h>
 
 #include <stdio.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
@@ -73,7 +76,7 @@ SCM g_quit(void)
   printf("In g_quit, calling exit(0)\n");
 #endif
 
-  gattrib_quit(0); 
+  gattrib_quit(0);
   /*  exit(0);  */  /* Necessary? */
 
   /* we don't really get here, but otherwise gcc complains */

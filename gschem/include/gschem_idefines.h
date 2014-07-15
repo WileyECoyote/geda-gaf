@@ -21,6 +21,9 @@
 #ifndef _GSCHEM_IDEFINES_H_INCL
 #define _GSCHEM_IDEFINES_H_INCL
 
+/*! \brief different kind of snapping mechanisms used in GedaToplevel */
+typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
+
 /* used by x_rc_parse_gschem */
 #define MAX_RC_ATTEMPTS           3
 

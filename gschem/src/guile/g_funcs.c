@@ -21,7 +21,11 @@
 #include <missing.h>
 
 #include <stdio.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #include <ctype.h>
 #ifdef HAVE_STRING_H
 #include <string.h>

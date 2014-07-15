@@ -121,14 +121,17 @@
 #define VIEW_LIGHT       view-light-colors
 #define VIEW_BLACK_WHITE view-bw-colors
 
-#define Page_MANAGER     page-manager
-#define Page_PREV        page-prev
-#define Page_NEXT        page-next
-#define Page_NEW         page-new
-#define Page_PRINT       page-print
-#define Page_REVERT      page-revert
-#define Page_CLOSE       page-close
-#define Page_DISCARD     page-discard
+#define PAGE_MANAGER     page-manager
+#define PAGE_PREV        page-prev
+#define PAGE_NEXT        page-next
+#define PAGE_NEW         page-new
+#define PAGE_PRINT       page-print
+#define PAGE_REVERT      page-revert
+#define PAGE_CLOSE       page-close
+#define PAGE_DISCARD     page-discard
+#define DOWN_SCHEMATIC   hierarchy-down-schematic
+#define DOWN_SYMBOL      hierarchy-down-symbol
+#define HIERARCHY_UP     hierarchy-up
 
 #define ADD_COMPONENT    add-component
 #define ADD_NET          add-net
@@ -143,9 +146,11 @@
 #define ADD_PIN          add-pin
 #define ADD_PICTURE      add-picture
 
-#define DOWN_SCHEMATIC   hierarchy-down-schematic
-#define DOWN_SYMBOL      hierarchy-down-symbol
-#define HIERARCHY_UP     hierarchy-up
+#define SESSION_NEW      session-new
+#define SESSION_OPEN     session-open
+#define SESSION_SAVE     session-save
+#define SESSION_SAVE_AS  session-save-as
+#define SESSION_MANAGE   session-manage
 
 #define ATTRIB_ATTACH    attributes-attach
 #define ATTRIB_DETACH    attributes-detach

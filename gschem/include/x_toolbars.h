@@ -124,10 +124,10 @@ typedef struct {
 #define TBTS_ADD_PICTURE        "Insert an image"
 
   /* Page Toolbar */
-#define TBTS_Page_PREV          "Switch to the previous page"
-#define TBTS_Page_NEXT          "Switch to the next page"
-#define TBTS_Page_NEW           "Create a new page"
-#define TBTS_Page_MANAGER       "Open the Page Manager"
+#define TBTS_PAGE_PREV          "Switch to the previous page"
+#define TBTS_PAGE_NEXT          "Switch to the next page"
+#define TBTS_PAGE_NEW           "Create a new page"
+#define TBTS_PAGE_MANAGER       "Open the Page Manager"
 
 #define TBTS_DOWN_SCHEMATIC     "Lower schematic hierarchy"
 #define TBTS_DOWN_SYMBOL        "Lower symbol hierarchy"

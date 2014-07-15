@@ -1,0 +1,10 @@
+Makefile
+Makefile.in
+TAGS
+*~
+*#
+*.txt
+*.bak
+ChangeLog
+libgedauio.pc
+

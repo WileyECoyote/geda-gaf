@@ -2,6 +2,7 @@
 #define GLT GList   /* Only for this file!    */
 #define OBJ Object  /* to improve readability */
 #define EHP EdascmHookProxy
+#define GAY GArray
 
 /* gschem_toplevel.c - refer to gschem_toplevel.h */
 //GschemToplevel *gschem_toplevel_new();
@@ -220,7 +221,7 @@ void i_set_state_msg(GschemToplevel *w_current, enum x_states newstate, const ch
 
 void i_update_toolbar(GschemToplevel *w_current);
 void i_update_sensitivities(GschemToplevel *w_current);
-void i_set_filename(GschemToplevel *w_current, const gchar *string);
+void i_set_filename(GschemToplevel *w_current, const char *string);
 void i_update_grid_info(GschemToplevel *w_current);
 
 /*! \note WEH: MACRO: I_CALLBACK_ARGUMENTS is left defined and is without a
@@ -275,6 +276,21 @@ void  i_pan_world_general(GschemToplevel *w_current, double world_cx, double wor
                           double relativ_zoom_factor, int flags);
 void  i_pan_world(GschemToplevel *w_current, int x, int y);
 void  i_pan_world_mouse(GschemToplevel *w_current, int diff_x, int diff_y);
+
+/* i_sessions.c */
+int  i_sessions_delete_session         (GschemToplevel *w_current, const char *name);
+int  i_sessions_export_session         (const char *name, const char *filename);
+int  i_sessions_new_session            (GschemToplevel *w_current, const char *name);
+bool i_sessions_open_session           (GschemToplevel *w_current, const char *name);
+int  i_sessions_rename_session         (GschemToplevel *w_current, const char *old_name, const char *new_name);
+int  i_sessions_save_session           (GschemToplevel *w_current, const char *name);
+GAY *i_sessions_get_sessions           (void);
+bool i_sessions_is_enabled             (void);
+bool i_sessions_get_show_at_startup    (void);
+void i_sessions_set_show_at_startup    (bool show);
+bool i_sessions_present_at_startup     (void);
+void i_sessions_update_menus           (GschemToplevel *w_current);
+void i_sessions_init                   (GschemToplevel *w_current);
 
 /* i_vars.c */
 void  i_var_restore_color              (EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index);
@@ -479,7 +495,7 @@ void o_picture_end                     (GschemToplevel *w_current, int x, int y)
 void o_picture_motion                  (GschemToplevel *w_current, int x, int y);
 void o_picture_invalidate_rubber       (GschemToplevel *w_current);
 void o_picture_draw_rubber             (GschemToplevel *w_current);
-bool o_picture_exchange                (GschemToplevel *w_current, const gchar *filename, GError **error);
+bool o_picture_exchange                (GschemToplevel *w_current, const char *filename, GError **error);
 void o_picture_change_filename_dialog  (GschemToplevel *w_current);
 void o_picture_set_pixbuf              (GschemToplevel *w_current, GdkPixbuf *pixbuf, char *filename);
 
@@ -661,7 +677,6 @@ bool x_event_button_released      (GtkWidget     *widget, GdkEventButton    *eve
 bool x_event_configure            (GtkWidget     *widget, GdkEventConfigure *event, GschemToplevel *w_current);
 void x_event_governor             (GschemToplevel *w_current);
 bool x_event_expose               (GtkWidget     *widget, GdkEventExpose    *event, GschemToplevel *w_current);
-/*int  x_event_expose             (GschemPageView *widget, GdkEventExpose   *event, GschemToplevel *w_current);*/
 bool x_event_key                  (GtkWidget     *widget, GdkEventKey       *event, GschemToplevel *w_current);
 bool x_event_motion               (GtkWidget     *widget, GdkEventMotion    *event, GschemToplevel *w_current);
 bool x_event_scroll               (GtkWidget     *widget, GdkEventScroll    *event, GschemToplevel *w_current);
@@ -754,6 +769,12 @@ void x_vscrollbar_set_ranges           (GschemToplevel *w_current);
 void x_vscrollbar_update               (GschemToplevel *w_current);
 void x_scrollbars_update               (GschemToplevel *w_current);
 
+/* x_sessions.c */
+void x_sessions_manage_dialog          (GschemToplevel *w_current);
+void x_sessions_open_dialog            (GschemToplevel *w_current);
+void x_sessions_new_dialog             (GschemToplevel *w_current);
+void x_sessions_save_as_dialog         (GschemToplevel *w_current);
+
 /* x_settings.c */
 void x_configure_settings              (GschemToplevel *w_current);
 void x_settings_save_settings          (GschemToplevel *w_current);
@@ -800,6 +821,7 @@ void x_window_restore_settings         (GschemToplevel *w_current);
 void x_window_save_settings            (GschemToplevel *w_current);
 /*void x_window_setup_draw_events      (GschemToplevel *w_current);*/
 void x_window_create_main              (GschemToplevel *w_current);
+void x_window_close_edit_dialogs       (GschemToplevel *w_current);
 void x_window_close_all_dialogs        (GschemToplevel *w_current);
 void x_window_close                    (GschemToplevel *w_current);
 void x_window_close_all                (GschemToplevel *w_current);
@@ -817,6 +839,7 @@ void x_window_page_toolbar_toggle      (GtkWidget *widget, GschemToplevel *w_cur
 void x_window_standard_toolbar_toggle  (GtkWidget *widget, GschemToplevel *w_current);
 void x_window_select_toolbar_toggle    (GtkWidget *widget, GschemToplevel *w_current);
 void x_window_zoom_toolbar_toggle      (GtkWidget *widget, GschemToplevel *w_current);
+#undef GAY
 #undef EHP
 #undef GLT
 #undef OBJ

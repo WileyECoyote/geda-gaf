@@ -21,9 +21,15 @@
 
 #include <stdio.h>
 #include <ctype.h>
+
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
@@ -265,3 +271,97 @@ const char *f_path_user_config () {
   return user_config_path;
 }
 
+/* ------------------ Directory Utility Functions --------------- */
+
+/*! \defgroup libgeda-dir-utilities
+ *  @{ \par This Group contains utilities to manipulate directories.
+*/
+
+#ifdef HAVE_MKDIR
+
+/*! \brief Make a Directory
+ *  \par Function description
+ *  This is an internal function used by the f_create_path below.
+ *  This function creates a new non-nested directory entry with the
+ *  given permission attribute.
+ *
+ *  \Author Jonathan Leffler
+ *  \copyright (C) JLSS 1990-2012
+ *
+ *  \param path Pointer to string path to be created
+ *  \param mode is valid mode_t permission integer
+ *
+ *  \retval 0 on success or -1 if and error was encountered
+ */
+static int f_create_dir(const char *path, mode_t mode)
+{
+    struct stat stat_buf;
+    int         status = 0;
+
+    if (stat(path, &stat_buf) != 0)
+    {
+        /* Directory does not exist. EEXIST for race condition */
+        if (mkdir(path, mode) != 0 && errno != EEXIST)
+            status = -1;
+    }
+    else if (!S_ISDIR(stat_buf.st_mode))
+    {
+        errno = ENOTDIR;
+        status = -1;
+    }
+
+    return(status);
+}
+
+/*! \brief Create a Directory Path
+ *  \par Function description
+ *  Ensure all directories in path exist, these algorithm takes the
+ *  pessimistic view and works top-down to ensure each directory in
+ *  path exists, rather than optimistically creating the last element
+ *  and working backwards.
+ *
+ *  \Author Jonathan Leffler
+ *  \copyright (C) JLSS 1990-2012
+ *
+ *  \param path Pointer to string path to be created
+ *  \param mode valid mode_t integer permission attribute
+ *
+ *  \retval 0 on success or -1 if and error was encountered
+ *
+ *  \remark WEH Tweeked for libgeda, mode should be a valid mode_t
+ *  integer but is not declared
+ */
+int f_create_path(const char *path, mode_t mode)
+{
+    char           *pp;
+    char           *sp;
+    int             status;
+    char           *copypath = geda_strdup(path);
+
+    status = 0;
+    pp = copypath;
+    while (status == 0 && (sp = strchr(pp, '/')) != 0)
+    {
+        if (sp != pp)
+        {
+            /* Neither root nor double slash in path */
+            *sp = '\0';
+            status = f_create_dir(copypath, mode);
+            *sp = '/';
+        }
+        pp = sp + 1;
+    }
+    if (status == 0) {
+        status = f_create_dir(path, mode);
+    }
+    GEDA_FREE(copypath);
+    return (status);
+}
+#else
+int f_create_path(const char *path, mode_t mode)
+{
+  return g_mkdir_with_parents (path, mode);
+}
+#endif
+
+/*! @} endgroup libgeda-dir-utilities */

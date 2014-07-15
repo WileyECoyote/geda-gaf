@@ -428,8 +428,10 @@ static void pagesel_init (Pagesel *pagesel)
                     "popup-menu",
                     G_CALLBACK (pagesel_callback_popup_menu),
                     pagesel);
+
   selection = gtk_tree_view_get_selection (GTK_TREE_VIEW (treeview));
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
+
   g_signal_connect (selection,
                     "changed",
                     G_CALLBACK (pagesel_callback_selection_changed),

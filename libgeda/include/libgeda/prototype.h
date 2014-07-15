@@ -18,20 +18,21 @@ const char  *f_path_sys_data               (void);
 const char  *f_path_sys_doc                (void);
 const char  *f_path_sys_config             (void);
 const char  *f_path_user_config            (void);
+      int    f_create_path                 (const char *path, mode_t mode);
 
 /* f_print.c */
-      int   f_print_file                    (GedaToplevel *toplevel, Page *page, const char *filename);
-      int   f_print_command                 (GedaToplevel *toplevel, Page *page, const char *command);
-      int   f_print_stream                  (GedaToplevel *toplevel, Page *page, FILE *fp);
-      void  f_print_set_type                (GedaToplevel *toplevel, int type);
+      int    f_print_file                  (GedaToplevel *toplevel, Page *page, const char *filename);
+      int    f_print_command               (GedaToplevel *toplevel, Page *page, const char *command);
+      int    f_print_stream                (GedaToplevel *toplevel, Page *page, FILE *fp);
+      void   f_print_set_type              (GedaToplevel *toplevel, int type);
 
 /* f_utilities.c */
-      int     f_copy                        (const char *source, const char *target);
-const char   *f_get_filename_ext            (const char *filename);
-const char   *geda_basename                 (const char *path);
-      void    f_remove_extension            (char *filename);
-      GSList *f_get_dir_list_files          (char *path, char *filter);
-      int     f_file_remove                 (const char *pathname);
+      int    f_copy                        (const char *source, const char *target);
+const char  *f_get_filename_ext            (const char *filename);
+      char  *geda_basename                 (const char *path);
+      void   f_remove_extension            (char *filename);
+    GSList  *f_get_dir_list_files          (char *path, char *filter);
+      int    f_file_remove                 (const char *pathname);
 
 /* g_basic.c */
       SCM  g_scm_eval_protected                  (SCM exp, SCM module_or_state);

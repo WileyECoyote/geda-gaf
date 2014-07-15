@@ -26,8 +26,9 @@ convert_sym_LDFLAGS	= -lm
 gsch2pcb_SOURCES	= gsch2pcb.c
 gsch2pcb_CPPFLAGS 	= -DPCBDATADIR=\"$(PCBDATADIR)\" \
 			  -DPCBLIBPATH=\"$(PCBLIBPATH)\"
-gsch2pcb_CFLAGS 	= $(AM_CFLAGS)
+gsch2pcb_CFLAGS 	= $(AM_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 gsch2pcb_LDFLAGS 	= $(GLIB_LIBS)
+gsch2pcb_LDADD   	= $(top_builddir)/libgeda/src/libgeda.la
 
 sarlacc_schem_SOURCES 	= sarlacc_schem.c
 sarlacc_schem_CPPFLAGS  = $(GDK_PIXBUF_CFLAGS)

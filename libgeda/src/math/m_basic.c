@@ -37,16 +37,16 @@
  */
 void rotate_point(int x, int y, int angle, int *newx, int *newy)
 {
-  double costheta, sintheta;
+  double cos_theta, sin_theta;
   double rad;
 
   rad = angle*M_PI/180;
 
-  costheta = cos(rad);
-  sintheta = sin(rad);
+  cos_theta = cos(rad);
+  sin_theta = sin(rad);
 
-  *newx = x * costheta - y * sintheta;
-  *newy = x * sintheta + y * costheta;
+  *newx = x * cos_theta - y * sin_theta;
+  *newy = x * sin_theta + y * cos_theta;
 }
 
 /*! \brief Rotate point in 90 degree increments only.

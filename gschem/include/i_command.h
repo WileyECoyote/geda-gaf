@@ -1,4 +1,5 @@
 /* -*- i_command.h -*-
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
@@ -142,6 +143,10 @@ enum ActionFlag
         COMMAND ( do_page_close )
         COMMAND ( do_page_discard )
 
+        COMMAND ( do_down_schematic )
+        COMMAND ( do_down_symbol )
+        COMMAND ( do_hierarchy_up )
+
         COMMAND ( do_add )
         COMMAND ( do_add_component )
         COMMAND ( do_add_net )
@@ -156,9 +161,11 @@ enum ActionFlag
         COMMAND ( do_add_path )
         COMMAND ( do_add_picture )
 
-        COMMAND ( do_down_schematic )
-        COMMAND ( do_down_symbol )
-        COMMAND ( do_hierarchy_up )
+        COMMAND ( do_session_new )
+        COMMAND ( do_session_open )
+        COMMAND ( do_session_save )
+        COMMAND ( do_session_save_as )
+        COMMAND ( do_session_manage )
 
         COMMAND ( do_attach )
         COMMAND ( do_detach )
@@ -406,14 +413,18 @@ enum {
      COMMAND ( VIEW_BLACK_WHITE,    NULL,               USE_MAIN_LOOP,          do_bw_colors)
 
      COMMAND ( page,                NULL,               USE_WORKER_THREAD,      do_page)
-     COMMAND ( Page_MANAGER,        "page manager",     USE_MAIN_LOOP,          do_page_manager)
-     COMMAND ( Page_PREV,           NULL,               USE_MAIN_LOOP,          do_page_prev)
-     COMMAND ( Page_NEXT,           NULL,               USE_MAIN_LOOP,          do_page_next)
-     COMMAND ( Page_NEW,            NULL,               USE_MAIN_LOOP,          do_page_new)
-     COMMAND ( Page_PRINT,          "page print",       USE_MAIN_LOOP,          do_page_print)
-     COMMAND ( Page_REVERT,         "revert",           USE_MAIN_LOOP,          do_page_revert)
-     COMMAND ( Page_CLOSE,          "close",            USE_MAIN_LOOP,          do_page_close)
-     COMMAND ( Page_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
+     COMMAND ( PAGE_MANAGER,        "page manager",     USE_MAIN_LOOP,          do_page_manager)
+     COMMAND ( PAGE_PREV,           NULL,               USE_MAIN_LOOP,          do_page_prev)
+     COMMAND ( PAGE_NEXT,           NULL,               USE_MAIN_LOOP,          do_page_next)
+     COMMAND ( PAGE_NEW,            NULL,               USE_MAIN_LOOP,          do_page_new)
+     COMMAND ( PAGE_PRINT,          "page print",       USE_MAIN_LOOP,          do_page_print)
+     COMMAND ( PAGE_REVERT,         "revert",           USE_MAIN_LOOP,          do_page_revert)
+     COMMAND ( PAGE_CLOSE,          "close",            USE_MAIN_LOOP,          do_page_close)
+     COMMAND ( PAGE_DISCARD,        NULL,               USE_MAIN_LOOP,          do_page_discard)
+
+     COMMAND ( DOWN_SCHEMATIC,      "hierarchy down",   USE_WORKER_THREAD,      do_down_schematic)
+     COMMAND ( DOWN_SYMBOL,         "hierarchy down",   USE_WORKER_THREAD,      do_down_symbol)
+     COMMAND ( HIERARCHY_UP,        "hierarchy up",     USE_WORKER_THREAD,      do_hierarchy_up)
 
      COMMAND ( add,                 NULL,               USE_XY_WORKER,          do_add)
      COMMAND ( ADD_COMPONENT,       "component",        USE_XY_WORKER,          do_add_component)
@@ -429,9 +440,11 @@ enum {
      COMMAND ( ADD_PATH,            "Path Mode",        USE_XY_WORKER,          do_add_path)
      COMMAND ( ADD_PICTURE,         "picture",          USE_XY_WORKER,          do_add_picture)
 
-     COMMAND ( DOWN_SCHEMATIC,      "hierarchy down",   USE_WORKER_THREAD,      do_down_schematic)
-     COMMAND ( DOWN_SYMBOL,         "hierarchy down",   USE_WORKER_THREAD,      do_down_symbol)
-     COMMAND ( HIERARCHY_UP,        "hierarchy up",     USE_WORKER_THREAD,      do_hierarchy_up)
+     COMMAND ( SESSION_NEW,         "new session",      USE_XY_WORKER,          do_session_new)
+     COMMAND ( SESSION_OPEN,        "open session",     USE_XY_WORKER,          do_session_open)
+     COMMAND ( SESSION_SAVE,        "save session",     USE_XY_WORKER,          do_session_save)
+     COMMAND ( SESSION_SAVE_AS,     "save session as",  USE_XY_WORKER,          do_session_save_as)
+     COMMAND ( SESSION_MANAGE,      "manage sessions",  USE_XY_WORKER,          do_session_manage)
 
      COMMAND ( ATTRIB_ATTACH,       "attach",           USE_MAIN_LOOP,          do_attach)
      COMMAND ( ATTRIB_DETACH,       "detach",           USE_MAIN_LOOP,          do_detach)

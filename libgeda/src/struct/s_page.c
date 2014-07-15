@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
- * Copyright (C) 1998-2013 Ales Hvezda
- * Copyright (C) 1998-2013 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,20 +37,24 @@
 #include <config.h>
 
 #include <stdio.h>
+
 #ifdef HAVE_STDLIB_H
 #include <stdlib.h>
 #endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+
 #ifdef HAVE_STRING_H
 #include <string.h>
 #endif
 
 #include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
 
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
+#ifdef HAVE_UNISTD_H
+#include <unistd.h>
+#endif
 #include "libgeda_priv.h"
 
 

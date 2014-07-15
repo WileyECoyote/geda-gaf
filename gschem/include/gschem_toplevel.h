@@ -125,14 +125,11 @@ struct _GschemToplevel {
   char      *pixbuf_filename;
 
   /* ------------------  Drawing surfaces  ---------------- */
-  GdkGC *gc;                            /* graphics context */
+  GdkGC       *gc;                      /* graphics context */
   GdkWindow   *window;                  /* drawing_area's X drawable */
   GdkPixmap   *drawable;                /* drawable to paint onto */
   cairo_t     *cr;                      /* Cairo surface */
   PangoLayout *pl;                      /* Pango layout */
-
-//  int          redraw_enabled;
-//  int          throttle;
 
   int world_left;
   int world_right;
@@ -197,6 +194,9 @@ struct _GschemToplevel {
   int last_drawb_mode;                  /* last above mode */
   int min_zoom;                         /* minimum zoom factor */
   int max_zoom;                         /* maximum zoom factor */
+
+  /* Sessions */
+  char *session_name;                   /* Name of active session */
 
   /* ----------------- rc/user parameters ----------------- */
 

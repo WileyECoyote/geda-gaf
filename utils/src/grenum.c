@@ -1,7 +1,7 @@
 /* $Id$ */
 /*	This is grenum, an advanced refdes renumber utility for gEDA's gschem.
  *
- *	Copyright (C) 2005-2010  Levente Kovacs
+ *	Copyright (C) 2005-2014  Levente Kovacs
  *
  *	This program is free software; you can redistribute it and/or modify
  *	it under the terms of the GNU General Public License as published by
@@ -322,7 +322,7 @@ int parse_refdes(struct refdes_ *refdes, char *ref_str)
 	cp=strstr(ref_str,"?");
 /*refdes=U1		refdes=IC?
  *      |		         |
- *    *cpr		        cp            
+ *    *cpr		        cp
  */
 	if(cp!=NULL)
 		{	/*Not renumbered yet*/
@@ -393,7 +393,7 @@ void printhelp()
 void printver()
 	{
 	printf("This is grenum, an advanced refdes renumber utility for gEDA's gschem.\n");
-	printf("Version %s.  gEDA/gaf version %s.%s\n",GRVERSION, 
+	printf("Version %s.  gEDA/gaf version %s.%s\n",GRVERSION,
                PACKAGE_DOTTED_VERSION, PACKAGE_DATE_VERSION);
 	printf("Compiled on %s at %s\n",COMP_DATE,COMP_TIME);
 	}

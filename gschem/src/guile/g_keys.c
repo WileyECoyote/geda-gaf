@@ -20,7 +20,11 @@
 #include <config.h>
 
 #include <stdio.h>
-#include <sys/stat.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
+
 #include <ctype.h>
 #ifdef HAVE_STRING_H
 #include <string.h>
@@ -35,11 +39,6 @@
 #include "gschem.h"
 #include "i_actions.h"
 
-/*
- * #ifdef HAVE_LIBDMALLOC
- * #include <dmalloc.h>
- * #endif
- */
 #include <gdk/gdkkeysyms.h>
 
 #define DEFINE_H_KEYS(name)                       \

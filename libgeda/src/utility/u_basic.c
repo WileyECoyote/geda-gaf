@@ -41,12 +41,16 @@
 
 #include "libgeda_priv.h"
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Remove Line Feed and Carriage Return Characters from string
  *  \par Function Description
+ *  This function search a string and replace all occurences of 0x0D
+ *  and 0x0A, Carriage Return and Line feed characters respectively,
+ *  with a NULL.
  *
+ *  \sa remove_last_nl
+ *
+ *  \note used by o_text_read
  */
-/* used by o_text_read */
 char *remove_nl(char *string)
 {
   int i;
@@ -64,10 +68,14 @@ char *remove_nl(char *string)
   return(string);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Remove Last Line Feed and Carriage Return from string
  *  \par Function Description
+ *  This function replaces trailing 0x0D and 0x0A, Carriage Return
+ *  and Line feed characters respectively, with a NULL.
  *
+ *  \sa remove_nl
+ *
+ *  \note used by o_text_read
  */
 /* used by o_text_read */
 char *remove_last_nl(char *string)
@@ -330,7 +338,7 @@ int stricmp(const char *str1, const char *str2)
  *
  *  \par Function Description
  *  Another garden varity string compare using toupper
- *  on both inputs. This is somthimes found in standard.
+ *  on both inputs. This is somthimes found in standard
  *  libraries but not always.
  *
  *  \param [in] str1  is the string to be search

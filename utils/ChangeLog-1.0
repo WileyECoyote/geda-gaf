@@ -1,3 +1,11 @@
+2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gsch2pcb.c: Replace g_strdup with geda_strdup, replace g_strndup with
+          geda_strndup, replace g_strdup_printf with geda_sprintf, replace g_free
+          with GEDA_FREE
+
+        * src/Makefile.am: Link gsch2pcb against libgeda.
+
 2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
         * gschlas/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
@@ -38,7 +46,7 @@
         * scripts/: Updated address for FSF and copyright dates in;
                     pads_backannotate, pcb_backannotate, refdes_renum
                     gnet_hier_verilog.sh, sw2asc.in
-        * scripts/: Updated address for FSF in convert_sym.awk, 
+        * scripts/: Updated address for FSF in convert_sym.awk,
 
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -47,27 +55,27 @@
 
 2007-04-21 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* tests/refdes_renum/outputs/Makefile.am: Fixed filenames to 
-	have a dash instead of a colon 
+	* tests/refdes_renum/outputs/Makefile.am: Fixed filenames to
+	have a dash instead of a colon
 
 2007-04-21 Carlos Nieves Onega <cnieves (AT) iespana (DOT) net>
 
-	* configure.ac, scripts/Makefile.am, scripts/gschemdoc.sh, 
+	* configure.ac, scripts/Makefile.am, scripts/gschemdoc.sh,
 	  scripts/config.sh.in: Applied patch by Peter Brett.
-	
+
 	  Moved gschemdoc from utils/scripts to gschem/scripts.
 
-	* scripts/gschemdoc.sh: Apply patch from Peter Brett to 
+	* scripts/gschemdoc.sh: Apply patch from Peter Brett to
 	allow gschemdoc to access wiki pages with -w .
 
-	The original patch initially tries to find a local export 
-	of the wiki; on failure, it falls back to the online wiki 
+	The original patch initially tries to find a local export
+	of the wiki; on failure, it falls back to the online wiki
 	at the gEDA website.
 
-	Since the online wiki and the user's geda version may not 
+	Since the online wiki and the user's geda version may not
 	be the same, I commented out the part to display the online
 	wiki if the file is not locally available. Thanks!
-	
+
 2007-04-20 18:32  Dan McMahill <danmc>
 
 	* tests/refdes_renum/: run_tests.sh,
@@ -132,10 +140,10 @@
 2007-04-15 Stuart Brorson <sdb (AT) cloud9 (DOT) net>
 	* refdes_renum: Made --gentle default behavior of refdes_renum.
 	Modified test suite to account for this new behavior.
-	
+
 2007-04-14 Stuart Brorson <sdb (AT) cloud9 (DOT) net>
 	* Added a bunch of regression tests to the suite for refdes_renum.
-	
+
 2007-04-14 Stuart Brorson <sdb (AT) cloud9 (DOT) net>
 	* refdes_renum: modified refdes_renum to incorporate --gentle
 	flag which won't overwrite refdeses already numbered.
@@ -185,10 +193,10 @@
 
 2007-02-10 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/gsch2pcb.c: Applied patch by Jeff Mallatt to fix a typo 
+	* src/gsch2pcb.c: Applied patch by Jeff Mallatt to fix a typo
 	in some helpful output for pcb's Disperse all elements. Thanks.
 
-	* scripts/gschemdoc.sh: Applied patch by Charles Lepple [ 1590587 ] 
+	* scripts/gschemdoc.sh: Applied patch by Charles Lepple [ 1590587 ]
 	gschemdoc additions for Mac OS X.  Thanks!
 
 	* src/convert_sym.c: Applied patch by Hans N. [ 1581813 ] Patch
@@ -202,7 +210,7 @@
 	Thanks!  Fixed some of the headers to be correct (copyright
 	in particular).
 
-	* man/grenum.1:  Updated the man page a little for bug: 
+	* man/grenum.1:  Updated the man page a little for bug:
 	[ 1556064 ] man page version out of date
 
 	* configure.ac: Bumped package version to 20070216.
@@ -255,16 +263,16 @@
 
 2006-09-27 Carlos Nieves Onega <cnieves@iespana.es>
 
-	* configure.ac : Applied patch #1564796 by Cesar Strauss, 
+	* configure.ac : Applied patch #1564796 by Cesar Strauss,
 	enabling Cygwin's compilation. Thanks.
 
 	* src/gmk_sym.c: Do not redefine stricmp. Work based on patch
 	#1564805 by Cesar Strauss and comments by Peter Brett. Thanks.
-	Use strcasecmp by default instead of stricmp. 
-	If strcasecmp is not available, but stricmp is, then define 
+	Use strcasecmp by default instead of stricmp.
+	If strcasecmp is not available, but stricmp is, then define
 	strcasecmp as stricmp.
 
-	* scripts/gschemdoc.sh: Applied (partially) patch #1511658 by 
+	* scripts/gschemdoc.sh: Applied (partially) patch #1511658 by
 	Cesar Strauss. The rest of the patch was already covered by
 	patches #1564796 and #1564805. Thanks.
 
@@ -285,7 +293,7 @@
 
 	  With this fix, gschem->Help->Manual and
 	  gschem->Help->Component now work in Cygwin."
-	  
+
 2006-09-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated program version to 20060906.
@@ -300,7 +308,7 @@
 	were causing a warning from configure: config.status: WARNING:
 	scripts/config.sh contains a reference to the variable `datarootdir'
 
-	* scripts/Makefile.am: Added $(srcdir) to gschemdoc.sh to make 
+	* scripts/Makefile.am: Added $(srcdir) to gschemdoc.sh to make
 	distcheck happy.  Also misc cleanup.
 
 2006-08-21 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -315,7 +323,7 @@
 
 2006-08-02 Mike Jarabek  <mjarabek@istop.com>
 
-	* src/convert_sym.c: Added power pin handling patch from 
+	* src/convert_sym.c: Added power pin handling patch from
 	Patrick Doyle.
 
 2006-07-15 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -355,7 +363,7 @@
 	* src/globals.c: Added setting of load_newer_backup_func to NULL.
 	It is needed now libgeda checks for autosave backup files when
 	opening a schematic.
-	
+
 2005-09-27 18:46  Dan McMahill <danmc>
 
         * gschlas/g_rc.c, gschlas/gschlas.c, src/convert_sym.c,
@@ -376,15 +384,15 @@
 
 2005-08-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/convert_sym.c: Integrated Jeff McLamb's greatly updated 
+	* src/convert_sym.c: Integrated Jeff McLamb's greatly updated
 	ViewDraw converter.  Thanks.  Changes include:
 	- Updated to support gEDA file format version 1
 	- Added capability to import more graphic styles from ViewDraw
-	- Corrected bug associated with absense of library reference in local 
+	- Corrected bug associated with absense of library reference in local
           ViewDraw symbols
 	- Removed command-line option -s; no longer necessary
 	- Mapped ViewDraw "SIGNAL" attribute to gEDA "net" attribute
-	- Mapped ViewDraw "HETERO" attribute to a new "split" attribute 
+	- Mapped ViewDraw "HETERO" attribute to a new "split" attribute
 	  (netlister to be later updated to support this)
 	- Mapped ViewDraw "PINTYPE" attributes to correct gEDA pintypes
 
@@ -396,15 +404,15 @@
 	src/Makefile.am, doc/Makefile.am, man/*:
 	Incorporated grenum into geda-utils.  Grenum is a
 	refdes generation utility by Levente Kovacs
-	
+
 2005-08-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated package version to 20050814.  This is a 
+        * configure.ac: Updated package version to 20050814.  This is a
         temporary version and not a real release number.
 
 2005-08-02 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* ChangeLog.gsch2pcb, src/gsch2pcb.c: Update to Bill Wilson's gsch2pcb 
+	* ChangeLog.gsch2pcb, src/gsch2pcb.c: Update to Bill Wilson's gsch2pcb
 	version 1.5.
 
 2005-04-16 Carlos Nieves Onega <cnieves@iespana.es>
@@ -413,7 +421,7 @@
 
 2005-03-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error 
+        * configure.ac: Removed all tests for gtk+ 1.2.x and fixed error
         message if gtk+ 2.2.x is not found.
 
 2005-03-08 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -442,7 +450,7 @@
 
 	* configure.ac, gschlas/gschlas.c: Removed call to gtk_init().
 	  GDK is now initialized in libgeda if it's a non-graphical app.
-	
+
 2005-02-22 22:13  Dan McMahill <danmc>
 
 	* configure.ac, src/Makefile.am: if we're using gcc then turn on
@@ -454,15 +462,15 @@
 
 2005-02-19  Carlos Nieves Onega <cnieves@iespana.es>
 
-	* gschlas/globals.c: Added definition of picture_draw_func after 
+	* gschlas/globals.c: Added definition of picture_draw_func after
 	adding picture support to libgeda.
 
-	* configure.ac, gschlas/gschlas.c: Added call to gtk_init() 
-	  since gdk-pixbuf needs it if called.	  
-	
+	* configure.ac, gschlas/gschlas.c: Added call to gtk_init()
+	  since gdk-pixbuf needs it if called.
+
 2005-02-11  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* gschlas/gschlas.c (main_prog): Adapted for new toplevel and page 
+	* gschlas/gschlas.c (main_prog): Adapted for new toplevel and page
 	APIs in libgeda.
 
 2005-02-08 12:15  danmc
@@ -495,22 +503,22 @@
 
 2005-02-04  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* gschlas/gschlas.c: Made it use GLib's G_DIR_SEPARATOR* instead of 
+	* gschlas/gschlas.c: Made it use GLib's G_DIR_SEPARATOR* instead of
 	libgeda's *_SEPARATER_*.
-	Replaced u_basic_strdup() and u_basic_strdup_multiple() by GLib 
+	Replaced u_basic_strdup() and u_basic_strdup_multiple() by GLib
 	functions.
 
 2005-01-29  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-	* gschlas/gschlas.c (gschlas_quit): Adapted for new component library 
+	* gschlas/gschlas.c (gschlas_quit): Adapted for new component library
 	code.
 
 2005-27-01 Stuart Brorson <sdb@cloud9.net>
 
 	* gschlas/gschlas.c: Changes made to enable correct opening
 	of schematics in foreign directories.  Changes detailed in libgeda
-	ChangeLog.  
-	
+	ChangeLog.
+
 2004-12-28 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* scripts/gsymfix.pl: Added symbol cleanup script by Mike Skerritt.
@@ -527,7 +535,7 @@
 	The removed code was moved into libgeda.
 
         * configure.ac: Updated version to 20040710
-	
+
 2004-01-17 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * config.h.in: Remove machine generated file.
@@ -535,16 +543,16 @@
 2004-01-12 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* scripts/Makefile.am: Changed the sed command when building garchive
-	to work with more sed versions hopefully.  
+	to work with more sed versions hopefully.
 
 2004-01-11 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated version to 20040111
 
-	* src/gsch2pcb.c, examples/gsch2pcb/project.sample: Upgraded to 
+	* src/gsch2pcb.c, examples/gsch2pcb/project.sample: Upgraded to
 	Bill Wilson's latest version (1.4) (1.3 skipped)
 
-	* Makefile.am: Oops forgot to remove references to the README.* 
+	* Makefile.am: Oops forgot to remove references to the README.*
 	files when they were moved, so make dist broke.  Fixed.
 
 2004-01-06 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -553,7 +561,7 @@
 
 2004-01-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/gsch2pcb.c, examples/gsch2pcb/project.sample: Upgraded to 
+	* src/gsch2pcb.c, examples/gsch2pcb/project.sample: Upgraded to
 	Bill Wilson's latest version (1.2)
 
 	* scripts/gsymupdate: Found a last minute critical bug which
@@ -571,7 +579,7 @@
 	* docs/README.*: Moved all the readmes into the docs subdirectory.
 
 	* docs/Makefile.am: Added code to install all the readme files
-        into the documentation directory.  
+        into the documentation directory.
 
 2003-12-31 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -584,7 +592,7 @@
 
 	* ChangeLog.gsch2pcb, src/glib12-compat.c, src/gsch2pcb.c:
 	Included Bill Wilson's latest gsch2pcb (version 1.1)
-	
+
 2003-12-29 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.ac: Added checks for gtk+ 2.2.x and 1.2.x.  This was
@@ -617,15 +625,15 @@
 
 2003-10-02 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/gsch2pcb.c, ChangeLog.gsch2pcb: Updated to Bill Wilson's 
+	* src/gsch2pcb.c, ChangeLog.gsch2pcb: Updated to Bill Wilson's
 	version 1.0.1
 
 2003-09-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* ChangeLog.gsch2pcb, README.gsch2pcb, examples/gsch2pcb/.cvsignore,
 	examples/gsch2pcb/Makefile.am, examples/gsch2pcb/project.sample,
-	examples/Makefile.am, src/glib12-compat.c, src/gsch2pcb.c, 
-	configure.ac, README: Updated Bill Wilson's gsch2pcb to his 1.0 
+	examples/Makefile.am, src/glib12-compat.c, src/gsch2pcb.c,
+	configure.ac, README: Updated Bill Wilson's gsch2pcb to his 1.0
 	version.
 
 2003-09-20 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -653,7 +661,7 @@
 	* configure.ac: Renamed from configure.in.
 
 	* configure.ac: Bunch of cleanup to start using pkg-config for all
-	libraries.  Unfortunately, gnetlist now links against libgtk*.  I 
+	libraries.  Unfortunately, gnetlist now links against libgtk*.  I
 	might fix that in the future.
 
 	* *.in, *.h, etc: Removed a bunch of old unneeded auto* files.
@@ -677,7 +685,7 @@
 
 2003-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/sarlacc_schem.c: Initalized some variables to make compiler 
+	* src/sarlacc_schem.c: Initalized some variables to make compiler
 	happy.
 
 	* configure.in: Applied Wojciech Kazubski's --with-docdir patch
@@ -688,7 +696,7 @@
 
 2003-05-13 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/sarlacc_schem.c: Applied patch by Charles Lepple to fix a 
+	* src/sarlacc_schem.c: Applied patch by Charles Lepple to fix a
 	build problem on OSX.
 
 2003-02-23 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -717,12 +725,12 @@
         a few minor mods.
 
 2003-01-26 Ales Hvezda   <ahvezda@geda.seul.org>
-		
+
 	* src/Makefile.am: Added liberty to all targets for mingw
 
 2003-01-11 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* Makefile.am: Fixed the distclean-local target. 
+	* Makefile.am: Fixed the distclean-local target.
 
 2002-12-30 Chris Ellec <chris @ gtx.seul.org>
 
@@ -746,12 +754,12 @@
 	to increase the likelyhood of getting the datasheet.  Suggested by
 	Antonio A Todo Bom.
 
-	* scripts/gschemdoc.sh: Applied the patch by Gabriel Paubert to 
+	* scripts/gschemdoc.sh: Applied the patch by Gabriel Paubert to
 	this file to fix the which problems reported on geda-dev.  Thanks.
 
 2002-11-04 Egil Kvaleberg       <egil@kvaleberg.no>
 
-	* configure.in: Changed AC_PROG_LEX to AM_PROG_LEX to cater for 
+	* configure.in: Changed AC_PROG_LEX to AM_PROG_LEX to cater for
 	automake 1.6.3. Note that this also requires that autoreconf is
 	run.
 
@@ -785,7 +793,7 @@
 
 2002-10-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure and friends: Ran "autoreconf --force --install -v" 
+	* configure and friends: Ran "autoreconf --force --install -v"
 	to really upgrade to the newest version of the auto* tools.
 
 	* scripts/gschemdoc: Applied Egil's patch to remove the -- for
@@ -799,11 +807,11 @@
 2002-10-19 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.in, *.m4: Upgraded to automake 1.7.1 and autoconf 2.54
-	
+
 2002-10-17 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure.in, scripts/Makefile.am, scripts/config.sh.in, 
-	scripts/gschemdoc.sh: Added find documentation patch from Egil 
+	* configure.in, scripts/Makefile.am, scripts/config.sh.in,
+	scripts/gschemdoc.sh: Added find documentation patch from Egil
 	Kvaleberg.  Thanks.
 
 2002-10-07 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -832,7 +840,7 @@
 2002-09-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* utils/convert_sym.c: Updated code to attach pinseq= and pinnumber=
-	instead of pin#=#  
+	instead of pin#=#
 
 	* utils/convert_sym.c: Updated code to attach netname= instead of
 	label=
@@ -856,12 +864,12 @@
 
 2002-08-14 Chris Ellec   <chris @ gtx.seul.org >
 
-	* utils/gmk_sym.c: Check for multiple instances of the same pin 
+	* utils/gmk_sym.c: Check for multiple instances of the same pin
      	number and quit when this happens, give Fatal error messsage.
 
 2002-07-30 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* scripts/gsymupdate: Added code to properly convert type= and label= 
+	* scripts/gsymupdate: Added code to properly convert type= and label=
 	to pintype= and pinlabel=
 
 2002-07-29 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -877,15 +885,15 @@
 
 2002-07-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/convert_sym.awk, convert_sym.c, gmk_sym.c, sarlacc_schem.c, 
+	* src/convert_sym.awk, convert_sym.c, gmk_sym.c, sarlacc_schem.c,
 	sarlacc_sym:  Changed all user visible references of uref to
 	refdes.
 
 	* gsymupdate, gschupdate: Added code to convert uref= to refdes=
-	
+
 	* gsymupdate, gschupdate: Bunch of code to make these programs
 	a lot more robust and useful.
-	
+
 2002-07-07 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* src/gsymupdate, gschupdate: Added simple perl scripts to convert
@@ -902,11 +910,11 @@
 
 2002-04-08 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/gmk_sym.c: Fixed a #ifndef to be MINGW32 correct 
+	* src/gmk_sym.c: Fixed a #ifndef to be MINGW32 correct
 
 2002-04-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure.in and friends: More work on getting the upgrade of 
+	* configure.in and friends: More work on getting the upgrade of
 	autoconf, automake, and libtool to behave correctly.
 
 	* configure.in: Added PATHSEP variable which holds the proper path
@@ -916,12 +924,12 @@
 
 2002-02-02 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/sarlacc_schem.c: Put in placed the updated files from 
+	* src/sarlacc_schem.c: Put in placed the updated files from
 	Dave Lawrence.  Bug fixes
-	
+
 2001-07-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* src/char_width.c: Added patch by Dan Mcmahill for 64-bit 
+	* src/char_width.c: Added patch by Dan Mcmahill for 64-bit
 	  architectures.
 
 2001-07-19 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -942,7 +950,7 @@
         * Removed all Makefile.in files and configure
 
 2001-03-17 Ales Hvezda   <ahvezda@geda.seul.org>
-        
+
         * Got make dist and make distcheck working (means all files which are
           in CVS are in some Makefile)
 
@@ -950,9 +958,9 @@
 
 2001-03-04  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/gmk_sym.c: Patched file according to the fixes which 
+	* src/gmk_sym.c: Patched file according to the fixes which
 	  Rolf Fiedler provided (polarity bubbles and clock symbols are
-	  not attached as attributes), also fixed the orientation of 
+	  not attached as attributes), also fixed the orientation of
 	  text for top and bottom pins.
 
         * configure.in: Updated version
@@ -960,7 +968,7 @@
 2001-02-23  Ales Hvezda  <ahvezda@geda.seul.org>
 
 	* src/gmk_sym.c: Added #include <time.h> to see if that solves
-	  Hamish's build problem.  
+	  Hamish's build problem.
 
 2000-12-03  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -978,7 +986,7 @@
 	  All text now has text origin info.  (Not intelligent yet)
 	  Added class and pins attributes for allegro netlister
 	  Added uref attribute and optional footprint
-	  Dots and clock symbols for pins are now attached to pin, 
+	  Dots and clock symbols for pins are now attached to pin,
 	  in preparation for (hoping for :) gschem handling this.
 
 2000-07-04  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -987,7 +995,7 @@
 
 2000-02-20  Ales Hvezda  <ahvezda@geda.seul.org>
 
-	* src/*.txt: Added bunch of sample gmk_sym txt files by Marcus 
+	* src/*.txt: Added bunch of sample gmk_sym txt files by Marcus
 	  Isaksson
 
 2000-02-19  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -1002,7 +1010,7 @@
 
 1999-10-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * configure.in src/Makefile.am: Now searching for libgeda-config 
+        * configure.in src/Makefile.am: Now searching for libgeda-config
 	  and added an include (-I) for libgeda includes (requested by Mike)
 
 10/6/99	Moved Project Sarlacc into CVS
@@ -1021,7 +1029,7 @@
 ----------- New seperate build system starts here -----------
 
 
-5/6/99 	Added the latest gmk_sym (includes char_width.c and mk_char_tab.pl) 
+5/6/99 	Added the latest gmk_sym (includes char_width.c and mk_char_tab.pl)
         from Jerry O'Keefe
 
 	Added char_width.c to Makefile.am, removed it from being an included
@@ -1033,14 +1041,14 @@
 	minor type with snprintf)
 
 3/26/99 Added 8031.txt as an example file for mk_sym
-	
+
 	Put the latest version of mk_sym in place
 
 3/25/99 #if 0'ed some code in convert_sym.c out just to make a -Wall -Werror
 	compile happy, can be put back in; doesn't matter to me.
 
 3/23/99 Integrated new C version of the ViewLogic utils by Mike in the
-	./configure/build mechanism 
+	./configure/build mechanism
 
 	Added more info related to these files to the README
 
@@ -1054,4 +1062,4 @@
 	Removed some // from mk_sym.c
 
 	Created a README for the utils in this directory
-	
+
