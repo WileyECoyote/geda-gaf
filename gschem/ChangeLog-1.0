@@ -1,3 +1,28 @@
+2014-07-15 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/base/gschem/gschem.c: New function load_documents, with
+          code relocated from function gschem(), in order to better
+          organize and clarify coding.
+
+        * src/base/gschem_parsecmd.c: Change comman-line characters to
+          more sensible values:
+
+                 -c EXPR -> -x
+                 -r      -> -c, --config-file=FILE
+                 -s FILE -> -r, --run (is really like --config-file)
+
+          Added new variables: override_autoload and start_session to
+          support new comman-line options.
+
+        * docs/gschem.1.in: Updated command line arguments
+
+        * src/x/x_window.c: Eliminate g_return_if_fail if page is NULL in
+          x_window_close_page(), change to conditional with BUG message,
+          the "CRITICAL" is too alarming.
+
+        * src/iface/i_sessions.c: Added conditional to only  call x_window
+          _close_page() if page is not NULL.
+
 2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x/x_window.c: New function x_window_close_edit_dialogs to

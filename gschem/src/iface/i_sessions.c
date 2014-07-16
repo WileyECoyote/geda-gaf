@@ -318,12 +318,18 @@ i_session_load_session(GschemToplevel *w_current, Session *record)
       iter = g_slist_next(iter);
     }
 
-    x_window_close_page (w_current, blank);
+    /* Note: blank coule be NULL if x_window_set_current_page was not
+    *  call after loading a blank "dummy" page */
+    if (blank != NULL) {
+      x_window_close_page (w_current, blank);
+    }
     q_log_message(_("Session %s, opened %d of %d documents\n"), record->session_name, load_count, exist_count);
 
-    /* Maybe should just call x_window_set_current_page */
+    /* Update the window for the current page */
     i_update_sensitivities(w_current);
     i_set_filename (w_current, NULL);
+
+    //x_window_set_current_page( w_current, toplevel->page_current );
 
     w_current->session_name = record->session_name;
     g_slist_free (iter);
@@ -1168,7 +1174,7 @@ void i_sessions_init(GschemToplevel *w_current)
 {
    i_sessions_load_data();
    geda_atexit((geda_atexit_func)i_sessions_destroy_sessions, NULL);
-   w_current->session_name = NULL; /* means no session */
+   w_current->session_name = NULL;     /* means no session */
    i_sessions_update_menus(w_current);
    v_log_message(_("Session system initialized!\n"));
 }

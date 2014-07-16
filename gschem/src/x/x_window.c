@@ -996,24 +996,23 @@ x_window_set_current_page (GschemToplevel *w_current, Page *page)
 
   g_return_if_fail (toplevel != NULL);
 
-  if(page == NULL)
-    return;
+  if (page) {
 
-  o_redraw_cleanstates (w_current);
+    o_redraw_cleanstates (w_current);
 
-  s_page_goto (toplevel, page);
-  //gschem_page_view_set_page (GSCHEM_PAGE_VIEW (w_current->drawing_area), page);
-  i_update_sensitivities (w_current);
+    s_page_goto (toplevel, page);
+    //gschem_page_view_set_page (GSCHEM_PAGE_VIEW (w_current->drawing_area), page);
+    i_update_sensitivities (w_current);
 
-  i_set_filename (w_current, page->filename);
-  x_pagesel_update (w_current);
-  x_multiattrib_update (w_current);
+    i_set_filename (w_current, page->filename);
+    x_pagesel_update (w_current);
+    x_multiattrib_update (w_current);
 
-  x_manual_resize (w_current);
-  x_hscrollbar_update (w_current);
-  x_vscrollbar_update (w_current);
-  o_invalidate_all (w_current);
-
+    x_manual_resize (w_current);
+    x_hscrollbar_update (w_current);
+    x_vscrollbar_update (w_current);
+    o_invalidate_all (w_current);
+  }
 }
 
 /*! \brief Set the contraints for the current page.
@@ -1166,66 +1165,73 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
   GList *iter;
 
   g_return_if_fail (toplevel != NULL);
-  g_return_if_fail (page     != NULL);
 
-  if (page->pid == -1) {
-    u_log_message ("Internal Error: <%s><x_window_close_page>"
-                   "invalid page ID=<%d>, line %d.\n",
-                   __FILE__, page->pid, __LINE__);
-    return;
-  }
+  if (page != NULL) {
 
-  /* If we're closing whilst inside a move action, re-wind the
-   * page contents back to their state before we started */
-  if (w_current->inside_action &&
-      (w_current->event_state == MOVE ||
-       w_current->event_state == ENDMOVE)) {
-    o_move_cancel (w_current);
-  }
+    if (page->pid == -1) {
+      u_log_message ("Internal Error: <%s><x_window_close_page>"
+      "invalid page ID=<%d>, line %d.\n",
+      __FILE__, page->pid, __LINE__);
+    }
+    else {
 
-  if (page == toplevel->page_current) {
-    /* as it will delete current page, select new current page */
-    /* first look up in page hierarchy */
-    new_current = s_page_search_by_page_id (toplevel->pages, page->up);
-
-    if (new_current == NULL) {
-      /* no up in hierarchy, choice is prev, next, new page */
-      iter = g_list_find( geda_list_get_glist( toplevel->pages ), page );
-
-      if ( g_list_previous( iter ) ) {
-        new_current = (Page *)g_list_previous( iter )->data;
+      /* If we're closing whilst inside a move action, re-wind the
+       * page contents back to their state before we started */
+      if (w_current->inside_action &&
+        (w_current->event_state == MOVE ||
+        w_current->event_state == ENDMOVE))
+      {
+        o_move_cancel (w_current);
       }
-      else if ( g_list_next( iter ) ) {
-        new_current = (Page *)g_list_next( iter )->data;
+
+      if (page == toplevel->page_current) {
+        /* as it will delete current page, select new current page */
+        /* first look up in page hierarchy */
+        new_current = s_page_search_by_page_id (toplevel->pages, page->up);
+
+        if (new_current == NULL) {
+          /* no up in hierarchy, choice is prev, next, new page */
+          iter = g_list_find( geda_list_get_glist( toplevel->pages ), page );
+
+          if ( g_list_previous( iter ) ) {
+            new_current = (Page *)g_list_previous( iter )->data;
+          }
+          else if ( g_list_next( iter ) ) {
+            new_current = (Page *)g_list_next( iter )->data;
+          }
+          else {
+            /* need to add a new untitled page */
+            new_current = NULL;
+          }
+        }
+        /* new_current will be the new current page at the end of the function */
       }
-      else {
-        /* need to add a new untitled page */
-        new_current = NULL;
+
+      if ((strncmpi(geda_basename(page->filename), "untitled", 8) != 0) ||
+        verbose_mode)
+      {
+        u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
+        page->filename);
+      }
+
+      /* remove page from toplevel list of page and free */
+      s_page_delete (toplevel, page);
+
+      /* Switch to a different page if we just removed the current */
+      if (toplevel->page_current == NULL) {
+
+        /* Create a new page if there wasn't another to switch to */
+        if (new_current == NULL) {
+          new_current = x_window_open_page (w_current, NULL);
+        }
+
+        /* change to new_current and update display */
+        x_window_set_current_page (w_current, new_current);
       }
     }
-    /* new_current will be the new current page at the end of the function */
   }
-
-  if ((strncmpi(geda_basename(page->filename), "untitled", 8) != 0) ||
-       verbose_mode)
-  {
-    u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
-                   page->filename);
-  }
-
-  /* remove page from toplevel list of page and free */
-  s_page_delete (toplevel, page);
-
-  /* Switch to a different page if we just removed the current */
-  if (toplevel->page_current == NULL) {
-
-    /* Create a new page if there wasn't another to switch to */
-    if (new_current == NULL) {
-      new_current = x_window_open_page (w_current, NULL);
-    }
-
-    /* change to new_current and update display */
-    x_window_set_current_page (w_current, new_current);
+  else {
+    BUG_MSG("page should not be NULL");
   }
 }
 

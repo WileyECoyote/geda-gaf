@@ -23,13 +23,7 @@ schematics.
 
 .SH OPTIONS
 .TP 8
-\fB-q\fR, \fB--quiet\fR
-Quiet mode. Turn off all warnings/notes/messages.
-.TP 8
-\fB-v\fR, \fB--verbose\fR
-Verbose mode.  Output all diagnostic information.
-.TP 8
-\fB-r\fR, \fB--config-file\fR=\fIFILE\fR
+\fB-c\fR, \fB--config-file\fR=\fIFILE\fR
 Specify an additional configuration file.  Normally \fBgschem\fR
 searches for the system configuration file, then
 `$HOME/.gEDA/gschemrc', and finally for a `gschemrc' file in the
@@ -37,18 +31,27 @@ current working directory.  This option allows the user to specify an
 additional rc file which is read after all the other rc files have
 been are read.
 .TP 8
+\fB-h\fR, \fB--help\fR
+Print a help message.
+.TP 8
 \fB-L\fR \fIDIRECTORY\fR
 Prepend \fIDIRECTORY\fR to the list of directories to be searched for
 Scheme files.
 .TP 8
-\fB-s\fR \fIFILE\fR
-Specify a Scheme script to be executed at startup.
-.TP 8
 \fB-m\fR, \fB--safe-mode\fR
 Run gschem in single task mode.
 .TP 8
-\fB-c\fR \fIEXPR\fR
-Specify a Scheme expression to be evaluated at startup.
+\fB-n\fR, \fB--no-auto\fR
+No auto load last document. This over-rides the current auto-load-last configuration setting.
+.TP 8
+\fB-q\fR, \fB--quiet\fR
+Quiet mode. Turn off some warnings/notes/messages.
+.TP 8
+\fB-r\fR, \fB--run\fR \fIFILE\fR
+Specify a Scheme script to be executed at startup.
+.TP 8
+\fB-s\fR, \fB--start NAME\fR
+Startup using the named session. This over-rides the current auto-load-last configuration setting.
 .TP 8
 \fB-o\fR, \fB--output\fR=\fIFILE\fR
 Specify a filename for PostScript output.  This command line argument
@@ -60,11 +63,14 @@ box.
 Automatically place the window. This may be useful if running \fBgschem\fR
 from the command line and generating output.
 .TP 8
-\fB-h\fR, \fB--help\fR
-Print a help message.
-.TP 8
 \fB-V\fR, \fB--version\fR
 Print \fBgschem\fR version information.
+.TP 8
+\fB-v\fR, \fB--verbose\fR
+Verbose mode.  Output all diagnostic information.
+.TP 8
+\fB-x\fR \fIEXPR\fR
+Specify a Scheme expression to be evaluated at startup.
 .TP 8
 \fB--\fR
 Treat all remaining arguments as schematic or symbol filenames.  Use

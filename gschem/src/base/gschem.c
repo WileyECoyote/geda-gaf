@@ -56,6 +56,9 @@
 extern SCM s_pre_load_expr;
 extern SCM s_post_load_expr;
 
+extern int   override_autoload;
+extern char *start_session;
+
 typedef struct {
   void (*func)(void*);
   void* arg;
@@ -133,18 +136,120 @@ void gschem_quit(void)
 
 }
 
-void gschem( int argc, char *argv[])
+void load_documents(GschemToplevel *w_current, int argv_index, int argc, char *argv[])
 {
   int   i;
-  int   argv_index;
-  int   first_page = 1;
-  char *cwd = NULL;
-  char *input_str = NULL;
+  int   load_last     = FALSE;
+  int   page_loaded   = FALSE;
+  char *cwd           = NULL;
   char *filename;
   char  tmpfilename[MAX_PATH];
 
+  cwd = g_get_current_dir();
+
+  /* Load any file listed on command-line */
+  for (i = argv_index; i < argc; i++) {
+
+    if (g_path_is_absolute(argv[i]))
+    {
+      /* Path is already absolute so no need to do any concat of cwd */
+      filename = geda_strdup (argv[i]);
+    }
+    else {
+      filename = g_build_filename (cwd, argv[i], NULL);
+    }
+
+    /* if filename is not valid, check if user left off extension */
+    if( access( filename, F_OK ) == -1 ) {
+
+      /* See if user left off our file suffixes */
+      const char *ext = f_get_filename_ext(filename);
+      if (!ext) {
+        memset(tmpfilename, 0, sizeof(tmpfilename));
+        /* Check if file name is valid if ".sch" is added */
+        strcpy(tmpfilename, filename);
+        if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+          filename = tmpfilename;
+          if(verbose_mode) {
+            v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
+          }
+        }
+        else {
+          /* Check if file name is valid if ".sym" is added */
+          strcpy(tmpfilename, filename);
+          if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
+            filename = tmpfilename;
+            if(verbose_mode) {
+              v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
+            }
+          }
+        }
+      }
+    }
+
+    /*
+     * \notes SDB: at this point the filename might be unnormalized, like
+     * /path/to/foo/../bar/baz.sch. Bad filenames will be normalized in
+     * f_open, called by x_window_open_page. This works for Linux and MINGW32.
+     */
+
+    if (x_window_open_page(w_current, filename)) {
+      ++page_loaded;
+    }
+
+    /* Free the pointer if we did not redirected */
+    if ( filename != tmpfilename ) {
+      GEDA_FREE (filename);
+    }
+  }
+  GEDA_FREE(cwd);
+
+  if (!page_loaded) { /* If no files have been loaded, then ... */
+
+    /*! \brief Sessions */
+    if (start_session) { /* If session specified on command line */
+      i_sessions_open_session(w_current, start_session);
+      GEDA_FREE(start_session);
+    }
+    else if (i_sessions_present_at_startup()) {
+      /* Open a blank document */
+      x_window_open_page( w_current, NULL );
+      x_sessions_open_dialog(w_current);
+    }
+    else {
+
+      /*! \brief Auto-Load */
+      /* Retrieve the setting for auto-load-last */
+      auto_load_last = default_auto_load_last;
+
+      load_last = auto_load_last && !override_autoload;
+
+      /* Check and do Auto Load if file recordered */
+      if ((load_last) && (recent_files_last() != NULL)) {
+        q_log_message("Auto loading . . .%s\n", recent_files_last()); /* maybe Log what we're doing */
+        x_window_open_page(w_current, recent_files_last());
+      }
+      else {
+
+        /* Lastly, if still no page has been loaded, start with blank page */
+        if ( !page_loaded ) {
+          x_window_open_page( w_current, NULL );
+        }
+      }
+    }
+  }
+  /* Update the window to show the current page */
+  x_window_set_current_page( w_current, Current_Page);
+
+}
+
+void gschem( int argc, char *argv[])
+{
+  int   argv_index;
+  char *input_str     = NULL;
+
   GschemToplevel *w_current = NULL;
-  GedaToplevel       *toplevel;
+  GedaToplevel   *toplevel;
 
   SCM scm_tmp;
 
@@ -279,84 +384,7 @@ void gschem( int argc, char *argv[])
   /*! \internal Initialize Sessions */
   i_sessions_init(w_current);
 
-  cwd = g_get_current_dir();
-  for (i = argv_index; i < argc; i++) {
-
-    if (g_path_is_absolute(argv[i]))
-    {
-      /* Path is already absolute so no need to do any concat of cwd */
-      filename = geda_strdup (argv[i]);
-    }
-    else {
-      filename = g_build_filename (cwd, argv[i], NULL);
-    }
-
-    /* if filename is not valid, check if user left off extension */
-    if( access( filename, F_OK ) == -1 ) {
-
-      /* See if user left off our file suffixes */
-      const char *ext = f_get_filename_ext(filename);
-      if (!ext) {
-        memset(tmpfilename, 0, sizeof(tmpfilename));
-        /* Check if file name is valid if ".sch" is added */
-        strcpy(tmpfilename, filename);
-        if( access( strcat(tmpfilename, SCHEMATIC_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
-          filename = tmpfilename;
-          if(verbose_mode) {
-            v_log_message("Assumming schematic file suffix for [%s]\n", basename (filename));
-          }
-        }
-        else {
-          /* Check if file name is valid if ".sym" is added */
-          strcpy(tmpfilename, filename);
-          if( access( strcat(tmpfilename, SYMBOL_FILE_DOT_SUFFIX), F_OK ) != -1 ) {
-            filename = tmpfilename;
-            if(verbose_mode) {
-              v_log_message("Assumming symbol file suffix for [%s]\n", basename (filename));
-            }
-          }
-        }
-      }
-    }
-
-    if ( first_page )
-      first_page = 0;
-
-    /*
-     * SDB notes:  at this point the filename might be unnormalized, like
-     * /path/to/foo/../bar/baz.sch.  Bad filenames will be normalized in
-     * f_open (called by x_window_open_page). This works for Linux and MINGW32.
-     */
-
-    x_window_open_page(w_current, filename);
-
-    /* Free the pointer if we did not redirected */
-    if ( filename != tmpfilename ) {
-        GEDA_FREE (filename);
-    }
-  }
-  GEDA_FREE(cwd);
-
-  /*! \brief Auto-Load */
-  /* Retrive the setting for auto-load-last */
-  auto_load_last = default_auto_load_last;
-
-
-  /* Check and do Auto Load - only works if empty commandline */
-  if((argc == 1) && (auto_load_last) && (recent_files_last() != NULL)) {
-    q_log_message("Auto loading . . .%s\n", recent_files_last()); /* maybe Log what we're doing */
-    x_window_open_page(w_current, recent_files_last());
-  }
-  else
-  {   /* If no page has been loaded (wasn't specified in the command line.) */
-      /* Then create an untitled page */
-    if ( first_page ) {
-        x_window_open_page( w_current, NULL );
-     }
-  }
-
-  /* Update the window to show the current page */
-  x_window_set_current_page( w_current, toplevel->page_current );
+  load_documents(w_current, argv_index, argc, argv);
 
 #if DEBUG
   scm_c_eval_string ("(display \"hello guile\n\")");

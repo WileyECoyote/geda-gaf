@@ -30,12 +30,16 @@
 
 #include "gschem.h"
 
-#define GETOPT_OPTIONS "c:hmL:o:pqr:s:vV"
+/* Colon after character means the argument expects a parameter strings */
+#define GETOPT_OPTIONS "c:hL:mno:p:qr:s:vVx:"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
-extern int optind;
+extern int   optind;
 #endif
+
+int   override_autoload;
+char *start_session;
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
@@ -44,12 +48,15 @@ extern int optind;
 #ifdef HAVE_GETOPT_LONG
 struct option long_options[] =
   {
+    {"config-file", 0, 0, 'c'},
     {"help",        0, 0, 'h'},
     {"safe-mode",   0, 0, 'm'},
+    {"no-auto",     0, 0, 'n'},
     {"output",      0, 0, 'o'},
-    {"config-file", 0, 0, 'r'},
     {"version",     0, 0, 'V'},
     {"quiet",       0, 0, 'q'},
+    {"run",         0, 0, 'r'},
+    {"start",       0, 0, 's'},
     {"verbose",     0, 0, 'v'},
     {0, 0, 0, 0}
   };
@@ -84,17 +91,19 @@ usage(char *cmd)
     "schematic.\n"
     "\n"
     "Options:\n"
-    "  -c EXPR                  Scheme expression to run at startup.\n"
+    "  -c, --config-file=FILE   Additional configuration file to load.\n"
     "  -h, --help               Help; this message.\n"
     "  -L DIR                   Add DIR to Scheme search path.\n"
     "  -m, --safe-mode          Safe Mode.\n"
+    "  -n, --no-auto            No auto load last document.\n"
     "  -o, --output=FILE        Output filename (for printing).\n"
     "  -p                       Automatically place the window.\n"
     "  -q, --quiet              Quiet mode.\n"
-    "  -r, --config-file=FILE   Additional configuration file to load.\n"
-    "  -s FILE                  Scheme script to run at startup.\n"
+    "  -r, --run FILE           Scheme script to run at startup.\n"
+    "  -s, --start name         Startup using the given session name.\n"
     "  -v, --verbose            Verbose mode.\n"
     "  -V, --version            Show version information.\n"
+    "  -x EXPR                  Scheme expression to run at startup.\n"
     "  --                       Treat all remaining arguments as filenames.\n"
     "\n"
     "Report bugs at <https://bugs.launchpad.net/geda>\n"
@@ -129,12 +138,14 @@ version ()
  *
  * \param argc Number of command-line arguments.
  * \param argv Array of command-line arguments.
+ *
  * \return index into \a argv of first non-option argument.
  */
 int
 gschem_parse_commandline(int argc, char *argv[])
 {
   int ch;
+
   SCM sym_cons        = scm_from_utf8_symbol ("cons");
   SCM sym_set_x       = scm_from_utf8_symbol ("set!");
   SCM sym_load_path   = scm_from_utf8_symbol ("%load-path");
@@ -142,20 +153,21 @@ gschem_parse_commandline(int argc, char *argv[])
   SCM sym_load        = scm_from_utf8_symbol ("load");
   SCM sym_eval_string = scm_from_utf8_symbol ("eval-string");
 
+  override_autoload   = FALSE;
+  start_session       = NULL;
+
 #ifdef HAVE_GETOPT_LONG
   while ((ch = getopt_long (argc, argv, GETOPT_OPTIONS, long_options, NULL)) != -1) {
 #else
   while ((ch = getopt (argc, argv, GETOPT_OPTIONS)) != -1) {
 #endif
+
     switch (ch) {
+
       case 'c':
-        /* Argument is a Scheme expression to be evaluated on gschem
-         * load.  Add the necessary expression to be evaluated after
-         * loading. */
-        s_post_load_expr = scm_cons (scm_list_2 (sym_eval_string,
-                           scm_from_locale_string (optarg)),
-                           s_post_load_expr);
+        rc_filename = geda_strdup (optarg);
         break;
+
       case 'h':
         usage(argv[0]);
         break;
@@ -177,6 +189,10 @@ gschem_parse_commandline(int argc, char *argv[])
         run_mode = 1;
         break;
 
+      case 'n':
+        override_autoload = 1;
+        break;
+
       case 'o':
         output_filename = geda_strdup (optarg);
         break;
@@ -190,16 +206,16 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 'r':
-        rc_filename = geda_strdup (optarg);
-        break;
-
-      case 's':
         /* Argument is filename of a Scheme script to be run on gschem
          * load.  Add the necessary expression to be evaluated after
          * loading. */
         s_post_load_expr = scm_cons (scm_list_2 (sym_load,
                            scm_from_locale_string (optarg)),
                            s_post_load_expr);
+        break;
+
+      case 's':
+        start_session = geda_strdup (optarg);
         break;
 
       case 'v':
@@ -226,6 +242,16 @@ gschem_parse_commandline(int argc, char *argv[])
         fprintf (stderr, "\nRun `%s --help' for more information.\n", argv[0]);
         exit (1);
         break;
+
+      case 'x':
+        /* Argument is a Scheme expression to be evaluated on gschem
+         * load.  Add the necessary expression to be evaluated after
+         * loading. */
+        s_post_load_expr = scm_cons (scm_list_2 (sym_eval_string,
+                           scm_from_locale_string (optarg)),
+                           s_post_load_expr);
+        break;
+
       default:
         fprintf (stderr, "<parse_commandline> unhandler case for <%c>.\n", ch);
     }
@@ -240,6 +266,7 @@ gschem_parse_commandline(int argc, char *argv[])
   scm_gc_protect_object (s_pre_load_expr);
   s_post_load_expr = scm_cons (sym_begin, scm_reverse_x (s_post_load_expr, SCM_UNDEFINED));
   scm_gc_protect_object (s_post_load_expr);
+
   return(optind);
 }
 
