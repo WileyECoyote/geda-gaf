@@ -724,7 +724,7 @@ o_picture_rgb_data(GdkPixbuf *image)
   int height = gdk_pixbuf_get_height(image);
   int rowstride = gdk_pixbuf_get_rowstride(image);
   int size = height*rowstride;
-  uint8 *rgb_pixels = g_malloc(size);
+  uint8 *rgb_pixels = GEDA_MEM_ALLOC(size);
 
   if (gdk_pixbuf_get_has_alpha(image)) {
     uint8 *pixels = gdk_pixbuf_get_pixels(image);
@@ -774,7 +774,7 @@ o_picture_mask_data(GdkPixbuf *image)
   size = gdk_pixbuf_get_width(image)*
     gdk_pixbuf_get_height(image);
 
-  mask = g_malloc(size);
+  mask = GEDA_MEM_ALLOC(size);
 
   /* Pick every fourth byte (the alpha channel) into mask */
   for (i = 0; i < size; i++)

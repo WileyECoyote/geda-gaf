@@ -1,3 +1,7 @@
+2014-07-16
+
+        * */*: Update copyright.
+
 2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
         * gsch2pcb.c: Replace g_strdup with geda_strdup, replace g_strndup with

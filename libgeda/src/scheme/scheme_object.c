@@ -2032,7 +2032,7 @@ SCM_DEFINE (set_picture_data_vector_x, "%set-picture-data/vector!",
   size_t len;
   ssize_t inc; /* Assuming we have it */
   const scm_t_int8 *elt = scm_s8vector_elements (vec_s, &handle, &len, &inc);
-  char *buf = g_malloc (len);
+  char *buf = GEDA_MEM_ALLOC (len);
   int i;
 
   scm_dynwind_unwind_handler (g_free, buf, SCM_F_WIND_EXPLICITLY);

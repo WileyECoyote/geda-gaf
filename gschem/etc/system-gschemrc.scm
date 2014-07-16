@@ -1629,10 +1629,9 @@
         (,(N_ "Unlock")             edit-unlock            "geda-unlock"      ,(N_ "Unlock selected objects"))
 
         ("SEPARATOR"               #f                     #f)
-        (,(N_ "Invoke Macro")       edit-invoke-macro      "gtk-execute"      ,(N_ "Invoke a macro"))
-        (,(N_ "Embed Component/Picture")    edit-embed    #f                  ,(N_ "Embed a component or image object"))
-        (,(N_ "Unembed Component/Picture")  edit-unembed   "gtk-clear"        ,(N_ "Unembed a component or image object"))
-        (,(N_ "Update Component")   edit-update            "gtk-refresh"      ,(N_ "Reload definition of selected component"))
+        (,(N_ "Update Component")          edit-update     "gtk-refresh"      ,(N_ "Reload definition of selected component"))
+        (,(N_ "Embed Component/Picture")   edit-embed     #f                  ,(N_ "Embed a component or image object"))
+        (,(N_ "Unembed Component/Picture") edit-unembed    "gtk-clear"        ,(N_ "Unembed a component or image object"))
       )
 )
 
@@ -1772,6 +1771,16 @@
       )
 )
 
+(define tools-menu-items
+;;
+;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
+;;
+     `( (,(N_ "Show Coord _Window...")     options-show-coordinates #f                  ,(N_ "Display coordinates"))
+        ("SEPARATOR"                      #f                        #f)
+        (,(N_ "Invoke Macro")              edit-invoke-macro       "gtk-execute"        ,(N_ "Invoke a macro"))
+      )
+)
+
 (define options-menu-items
 ;;
 ;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
@@ -1824,7 +1833,7 @@
 (add-menu (N_ "_Add")        add-menu-items)
 (add-menu (N_ "Sessio_ns")   sessions-menu-items)
 (add-menu (N_ "A_ttributes") attributes-menu-items)
-
+(add-menu (N_ "_Tools")      tools-menu-items)
 ;; Add Paul Tan's tools utility menu
 ;;(load-from-path "gschem-tools-menu.scm")
 

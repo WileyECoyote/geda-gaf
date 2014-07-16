@@ -68,7 +68,7 @@ NETLIST *s_netlist_add(NETLIST * ptr)
 {
   NETLIST *new_node;
 
-  new_node = (NETLIST *) g_malloc(sizeof(NETLIST));
+  new_node = (NETLIST *) GEDA_MEM_ALLOC(sizeof(NETLIST));
 
   /* setup node information */
   new_node->nlid = 0;

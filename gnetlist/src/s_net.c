@@ -74,7 +74,7 @@ NET *s_net_add(NET * ptr)
 {
   NET *new_node;
 
-  new_node = (NET *) g_malloc(sizeof(NET));
+  new_node = (NET *) GEDA_MEM_ALLOC(sizeof(NET));
 
   /* setup node information */
   new_node->net_name = NULL;

@@ -1,8 +1,13 @@
+2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c:replace g_malloc with  GEDA_MEM_ALLOC
+
 2014-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/base/gschem/gschem.c: New function load_documents, with
-          code relocated from function gschem(), in order to better
-          organize and clarify coding.
+        * src/base/gschem.c: New function load_documents, with code
+          relocated from function gschem(), in order to better organize
+          and clarify coding. Auto-load-last now will work if command
+          line options are used.
 
         * src/base/gschem_parsecmd.c: Change comman-line characters to
           more sensible values:

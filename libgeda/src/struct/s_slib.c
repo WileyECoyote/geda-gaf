@@ -205,7 +205,7 @@ char *s_slib_getbasename(const char *rawname)
 
   len = strlen(rawname)+1;
 
-  return_filename = (char *) g_malloc(sizeof(char)*len);
+  return_filename = (char *) GEDA_MEM_ALLOC(sizeof(char)*len);
 
   i = 0;
   /* first get everything up to the leading dot */

@@ -2,7 +2,7 @@
  *
  *     Break a Viewlogic metafile into a million little pieces
  *
- * Copyright (C) 1998-2013 Mike Jarabek
+ * Copyright (C) 1998-2014 Mike Jarabek
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by

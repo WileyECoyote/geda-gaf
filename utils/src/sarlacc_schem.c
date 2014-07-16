@@ -1,5 +1,5 @@
 /*   Orcad.c  v 0.92
- *   Copyright (C) 1999-2013 Matthew Ettus
+ *   Copyright (C) 1999-2014 Matthew Ettus
  *   For more info email matt@ettus.com
  *   Ths code is released under the terms of the GNU GPL
  *   See www.fsf.org for a copy of the license

@@ -35,7 +35,6 @@
  * are moved. Adds \a object to \a list if \a object is not already
  * in \a list
  *
- * 03/11/2014 WEH replaced g_malloc with GEDA_MEM_ALLOC macro
  */
 GList *o_move_stretch_add (GList *list, Object *object, int whichone)
 {

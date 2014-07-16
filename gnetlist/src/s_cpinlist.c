@@ -13,8 +13,8 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License 
- * along with this program; if not, write to the Free Software 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
@@ -72,7 +72,7 @@ CPINLIST *s_cpinlist_add(CPINLIST * ptr)
 {
   CPINLIST *new_node;
 
-  new_node = (CPINLIST *) g_malloc(sizeof(CPINLIST));
+  new_node = (CPINLIST *) GEDA_MEM_ALLOC(sizeof(CPINLIST));
 
   /* setup node information */
   new_node->plid = 0;

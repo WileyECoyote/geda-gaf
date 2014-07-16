@@ -78,7 +78,7 @@ UNDO *s_undo_new_head(void)
 {
   UNDO *u_new;
 
-  u_new = (UNDO *) g_malloc(sizeof(UNDO));
+  u_new = (UNDO *) GEDA_MEM_ALLOC(sizeof(UNDO));
   u_new->type = -1;
   u_new->filename = NULL;
   u_new->object_list = NULL;
@@ -115,7 +115,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
   UNDO *tail;
   UNDO *u_new;
 
-  u_new = (UNDO *) g_malloc(sizeof(UNDO));
+  u_new = (UNDO *) GEDA_MEM_ALLOC(sizeof(UNDO));
 
   u_new->filename = geda_strdup (filename);
 

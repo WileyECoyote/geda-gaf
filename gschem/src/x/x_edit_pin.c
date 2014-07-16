@@ -880,7 +880,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   }
 
   /* Allocate memory for a structure to hold pointers to our Widgets */
-  pin_data = (pin_type_data*) g_malloc (sizeof (struct st_pin_type_data));
+  pin_data = (pin_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_pin_type_data));
 
   /* populate the data structure */
   pin_data->node_type      = optionmenu;

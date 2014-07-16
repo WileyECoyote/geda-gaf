@@ -807,7 +807,7 @@ Path *path_copy_modify (Path *path, int dx, int dy,
   path_string = s_path_string_from_path (path);
   new_path = (Path*)o_path_new (object->color, path_string);
 
-  new_path->sections = g_malloc (path->num_sections * sizeof (PATH_SECTION));
+  new_path->sections = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
   new_path->num_sections = path->num_sections;
   new_path->num_sections_max = path->num_sections;
 

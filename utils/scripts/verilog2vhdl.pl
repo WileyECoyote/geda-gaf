@@ -1,6 +1,6 @@
 #!/usr/bin/perl
-# 
-# Copyright (C) 2013 Robert Zeegers ( geda at myken dot nl)
+#
+# Copyright (C) 2013-2014 Robert Zeegers ( geda at myken dot nl)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,13 +16,13 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #
-# Usage: 
+# Usage:
 # cd $PREFIX/gEDA/sym/vhdl
-# ./verilog2vhdl.pl 
+# ./verilog2vhdl.pl
 #
 
-use strict; 
-use warnings; 
+use strict;
+use warnings;
 
 sub SetToInvisible {
 # wrote this sub routing because I couldn't find a other way of changing the fifth character of the line.
@@ -51,13 +51,13 @@ my $verilogdir = "../verilog";
         # We only want files
         next unless (-f "$verilogdir/$verilogfile");
 
-        # Use a regular expression to find files ending in 
+        # Use a regular expression to find files ending in
 		# (n)and-1.sym or (x|n)or-1.sym or ipad-1.sym or opad-1.sym or iopad-1.sym
         next unless ($verilogfile =~ m/(^(a|na)nd[0-9]|^(o|no|xo)r[0-9]|ipad|opad|iopad)-1\.sym$/i);
 
 		# get the number of ports from the symbol file name
-		(my $portnumber) = $verilogfile =~ /(\d+)/; # in case of ipad, opad and iopad the port number will be set to 1 
-		       										# extracted from the -1.sym. This no problem since we will not use the 
+		(my $portnumber) = $verilogfile =~ /(\d+)/; # in case of ipad, opad and iopad the port number will be set to 1
+		       										# extracted from the -1.sym. This no problem since we will not use the
 													# $portnumber variable with ipad, opad or iopad symbols.
 		# Check if the file realy exists.
 		if (-e $verilogfile) {
@@ -65,7 +65,7 @@ my $verilogdir = "../verilog";
 
 			open(VERILOGFILE, "$verilogdir/$verilogfile") or die "cannot open verilog symbol file: $verilogfile : $!\n";
 			open(VHDLFILE, "> $verilogfile") or die "cannot open vhdl symbol file: $verilogfile : $!\n";
-		
+
 			# For the next part I concatenate lines containing a text and attributes object type
 			# Like:
 			# T 1000 600 5 8 0 0 0 0 1
@@ -76,7 +76,7 @@ my $verilogdir = "../verilog";
 			# This process will break if a file contains a text and attribute object that spans more than 2 lines.
 			# Like:
 			# T 1000 600 5 8 0 0 0 0 1
-			# Last summer we drove 
+			# Last summer we drove
 			# to the river.
 			#
 			# TODO: Check the num_lines field and account for multiple lines.

@@ -36,7 +36,7 @@ s_symstruct_init(void)
 {
   SYMCHECK *s_symcheck;
 
-  s_symcheck = (SYMCHECK *) g_malloc(sizeof(SYMCHECK));
+  s_symcheck = (SYMCHECK *) GEDA_MEM_ALLOC(sizeof(SYMCHECK));
 
   s_symcheck->info_messages = NULL;
   s_symcheck->warning_messages = NULL;
@@ -96,7 +96,7 @@ s_symstruct_print(SYMCHECK *s_current)
         GEDA_FREE(msg);
       }
 
-      list = g_list_next(list);
+      NEXT(list);
     }
   }
 
@@ -111,7 +111,7 @@ s_symstruct_print(SYMCHECK *s_current)
         GEDA_FREE(msg);
       }
 
-      list = g_list_next(list);
+      NEXT(list);
     }
   }
 
@@ -126,7 +126,7 @@ s_symstruct_print(SYMCHECK *s_current)
         GEDA_FREE(msg);
       }
 
-      list = g_list_next(list);
+      NEXT(list);
     }
   }
 }

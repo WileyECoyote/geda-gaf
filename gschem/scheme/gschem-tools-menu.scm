@@ -18,8 +18,6 @@
 ;(define tools:editor "kwrite")
 (define tools:editor "gedit")
 
-(define tools:version "20071128")
-;;
 ;; ======================== Utilities code  ========================
 ;; Get the current input schematic/sym filepath when called
 (define (tools:ifpath) (get-selected-filename))
@@ -78,18 +76,6 @@
 
 ;; ==================================================================
 
-;; ----------------- tools:about ------------------------------------
-(define (tools:about)
-  (gschem-msg (string-append
-        "gschem Tools menu version: " tools:version "\n\n"
-        "This is the Tools-menu mode for gschem.\n"
-        "***** WARNING *****\n"
-        "This is highly experimental\n"
-        "You should save your work often\n"
-        "and keep backup copies.  You have\n"
-        "been warned.\n"
-        )
-))
 ;; ----------------- tools:open-editor -------------------------------
 (define (tools:open-editor)
   (system (string-append tools:editor " &")))
@@ -134,8 +120,7 @@
 ;;
 ;;    menu item name        menu scheme action        menu hot-key
 ;;
-  '(("About..."             tools:about              #f)
-    ("Open Editor"          tools:open-editor        #fr)
+  '(("Open Editor"          tools:open-editor        #fr)
     ("Run DRC2"             tools:run-drc2           #f)
     ("SEPARATOR"                #f                   #f)
     ("=====  Netlisting  ===="  #f                   #f)

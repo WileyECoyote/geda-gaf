@@ -631,7 +631,7 @@ Object *o_complex_read (GedaToplevel *toplevel,
   int x1, y1;
   int angle;
 
-  char *basename = g_malloc (1 + strlen (buf));
+  char *basename = GEDA_MEM_ALLOC (1 + strlen (buf));
 
   int selectable;
   int mirror;

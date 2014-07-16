@@ -61,7 +61,7 @@ TextBuffer *s_textbuffer_new (const char *data, const int size)
   result->size = realsize;
 
   result->linesize = TEXT_BUFFER_LINE_SIZE;
-  result->line = g_malloc(result->linesize);
+  result->line = GEDA_MEM_ALLOC(result->linesize);
 
   return result;
 }

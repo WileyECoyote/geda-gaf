@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# Copyright (C) 2008-2013 Werner Hoch <werner.ho@gmx.de>
+# Copyright (C) 2008-2014 Werner Hoch <werner.ho@gmx.de>
 # Released under the terms of the GNU General Public License, version 2
 
 # usage: gclean-symbol old_symbol_file [ROTATE]> beautyfied_symbol_file

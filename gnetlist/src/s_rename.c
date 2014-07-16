@@ -86,7 +86,7 @@ void s_rename_next_set(void)
 {
   SET * new_set;
 
-  new_set = g_malloc(sizeof(SET));
+  new_set = GEDA_MEM_ALLOC(sizeof(SET));
   memset(new_set,0,sizeof(SET));
   if (first_set) {
     last_set->next_set = new_set;
@@ -148,7 +148,7 @@ static void s_rename_add_lowlevel (const char *src, const char *dest)
 
   g_return_if_fail(last_set != NULL);
 
-  new_rename = g_malloc(sizeof (RENAME));
+  new_rename = GEDA_MEM_ALLOC(sizeof (RENAME));
 
   g_return_if_fail(new_rename != NULL);
 
@@ -227,11 +227,11 @@ void s_rename_add(char *src, char *dest)
     /* Check for a valid set */
     if (first_set == NULL)
     {
-      new_set = g_malloc(sizeof(SET));
+      new_set = GEDA_MEM_ALLOC(sizeof(SET));
       memset(new_set,0,sizeof(SET));
       first_set = last_set = new_set;
     }
-    new_rename = g_malloc(sizeof(RENAME));
+    new_rename = GEDA_MEM_ALLOC(sizeof(RENAME));
     new_rename->next = NULL;
     new_rename->src = geda_strdup(src);
     new_rename->dest = geda_strdup(dest);

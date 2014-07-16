@@ -56,7 +56,7 @@
 STRING_LIST *s_string_list_new() {
   STRING_LIST *local_string_list;
 
-  local_string_list = g_malloc(sizeof(STRING_LIST));
+  local_string_list = GEDA_MEM_ALLOC(sizeof(STRING_LIST));
   local_string_list->data = NULL;
   local_string_list->next = NULL;
   local_string_list->prev = NULL;
@@ -160,7 +160,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* If we are here, it's 'cause we didn't find the item pre-existing in the list. */
   /* In this case, we insert it. */
 
-  local_list = (STRING_LIST *) g_malloc(sizeof(STRING_LIST));  /* allocate space for this list entry */
+  local_list = (STRING_LIST *) GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
   local_list->data = geda_strdup(item);   /* copy data into list */
   local_list->next = NULL;
   local_list->prev = prev;  /* point this item to last entry in old list */

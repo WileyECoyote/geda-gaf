@@ -1407,7 +1407,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), pitch2_entry, 1,2,5,6);
   SetWidgetTip(pitch2_entry, _("Spacing for the secondary filler lines"));
 
-  fill_data = (fill_type_data*) g_malloc (sizeof (struct st_fill_type_data));
+  fill_data = (fill_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_fill_type_data));
 
   /* populate the data structure */
   fill_data->fill_type    = optionmenu;
@@ -1893,7 +1893,7 @@ GtkWidget *x_dialog_line_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach_defaults(GTK_TABLE(table), space_entry, 1,2,3,4);
   SetWidgetTip(space_entry, _("Set spacing between dashes in the line"));
 
-  line_data = (line_type_data*) g_malloc (sizeof (struct st_line_type_data));
+  line_data = (line_type_data*) GEDA_MEM_ALLOC (sizeof (struct st_line_type_data));
 
   /* populate the data structure */
   line_data->width_entry  = width_entry;

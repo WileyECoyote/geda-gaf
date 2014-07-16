@@ -161,7 +161,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
   #define PROLOG_BUFFER_SIZE 8192
 
   /* Don't check this (succeeds or aborts) */
-  buf = g_malloc(PROLOG_BUFFER_SIZE);
+  buf = GEDA_MEM_ALLOC(PROLOG_BUFFER_SIZE);
 
   /* Check for prolog file */
   prologfile = geda_strdup(toplevel->postscript_prolog);

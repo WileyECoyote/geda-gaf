@@ -14,8 +14,8 @@ AM_CFLAGS		= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
 			  $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
 
 gmk_sym_SOURCES 	= gmk_sym.c char_width.c
-smash_megafile_SOURCES 	= smash_megafile.c
 grenum_SOURCES		= grenum.c grenum.h
+smash_megafile_SOURCES 	= smash_megafile.c
 
 olib_SOURCES		= olib.l geda_sym_format.h
 olib_LDFLAGS		= -lm

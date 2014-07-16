@@ -1,3 +1,7 @@
+2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c:replace g_malloc with GEDA_MEM_ALLOC
+
 2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
 
         * file/f_path.c: Add new functions; f_create_dir (improved mkdir),

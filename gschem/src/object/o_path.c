@@ -45,7 +45,7 @@ static Path *path_copy_modify (Path *path, int dx, int dy,
   int grip_no = 0;
 
   new_path = (Path*)geda_path_new ();
-  new_path->sections = g_malloc (path->num_sections * sizeof (PATH_SECTION));
+  new_path->sections = GEDA_MEM_ALLOC (path->num_sections * sizeof (PATH_SECTION));
   new_path->num_sections = path->num_sections;
   new_path->num_sections_max = path->num_sections;
 

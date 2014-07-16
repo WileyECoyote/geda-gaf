@@ -69,10 +69,10 @@ TABLE **s_table_new( int rows, int cols)
 
   /* Create a 2 dimensional array of structs */
 
-  new_table = (TABLE **) g_malloc(cols*sizeof(TABLE *));
+  new_table = (TABLE **) GEDA_MEM_ALLOC(cols*sizeof(TABLE *));
 
   for (x = 0; x < cols; x++) {
-    new_table[x] = (TABLE *) g_malloc(rows * sizeof(TABLE));
+    new_table[x] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));
     /* Should checks be here to verify that malloc was successful*/
   }
 
@@ -131,7 +131,7 @@ TABLE **s_table_add_column(TABLE **table, int rows, int Xa, int Xt)
   /* TODO: Fix this:*/
   if (new_table == NULL) return NULL;  /* die if failed to realloc new memory */
 
-  new_table[Xt] = (TABLE *) g_malloc(rows * sizeof(TABLE));;
+  new_table[Xt] = (TABLE *) GEDA_MEM_ALLOC(rows * sizeof(TABLE));;
 
   if (Xa == Xt) { /* if appending a column */
      init_new_record(Xt);
