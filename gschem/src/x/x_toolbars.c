@@ -206,7 +206,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE)},
   { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private"},
   { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,        "Private"},
-  { ACTION(ATTRIB_AUTONUM),     "Auto #",     TBTS_ATTRIB_AUTONUM,     "Private"},
+  { ACTION(ATTRIB_AUTONUM),     "Auto #",     TBTS_ATTRIB_AUTONUM,     "geda-autonum-blue"},
 
   { ACTION(OPT_GRID_DOT),       "Dots",       TBTS_OPT_GRID_DOT,       "geda-grid-dot"},
   { ACTION(OPT_GRID_MESH),      "Mesh",       TBTS_OPT_GRID_MESH,      "geda-grid-mesh"},
@@ -1316,7 +1316,7 @@ void x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_contain
   TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_PIX, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_FAC, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
 
   TEXT_ObjectS_LIST = g_slist_append ( TEXT_ObjectS_LIST, TB_BUTTON ( etb_attach     ));
   TEXT_ObjectS_LIST = g_slist_append ( TEXT_ObjectS_LIST, TB_BUTTON ( etb_detach     ));

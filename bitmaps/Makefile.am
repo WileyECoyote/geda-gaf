@@ -20,6 +20,9 @@ bitmapdata_DATA    = close_box.png                      \
 		     geda-bus.png                       \
 		     geda-arc.png                       \
 		     geda-arc-edit.png                  \
+		     geda-autonum-blue.png              \
+		     geda-autonum-green.png             \
+		     geda-autonum-red.png               \
 		     geda-box.png                       \
 		     geda_bulb_24x26_off.png            \
 		     geda_bulb_24x26_on.png             \

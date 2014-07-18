@@ -47,16 +47,17 @@
 static GtkIconFactory* gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
-  "geda-arc",       "geda-arc-edit",     "geda-box",          "geda-bus",
-  "geda-circle",    "geda-circles",      "geda-close-all",    "geda-component",
-  "geda-copy",      "geda-display",      "geda-grid-dot",     "geda-grid-mesh",
-  "geda-line",      "geda-line-type",    "geda-lock",         "geda-net",
-  "geda-magnet",    "geda-mesh",         "geda-mirror",       "geda-move",
-  "geda-multi",     "geda-new",          "geda-open-recent",  "geda-path",
-  "geda-pin",       "geda-pin-type",     "geda-show-nets",    "geda-slot",
-  "geda-snap-off",  "geda-snap-on",      "geda-text-editor",
-  "geda-rotate",    "geda-unlock",       "geda-unselect-all", "geda-zoom-box",
-  "geda-zoom-pan",  "geda-zoom-selection",
+  "geda-arc",          "geda-arc-edit",
+  "geda-autonum-blue", "geda-autonum-green", "geda-autonum-red",  "geda-box",
+  "geda-bus",          "geda-circle",        "geda-circles",      "geda-close-all",
+  "geda-component",    "geda-copy",          "geda-display",      "geda-grid-dot",
+  "geda-grid-mesh",    "geda-line",          "geda-line-type",    "geda-lock",
+  "geda-net",          "geda-magnet",        "geda-mesh",         "geda-mirror",
+  "geda-move",         "geda-multi",         "geda-new",          "geda-open-recent",
+  "geda-path",         "geda-pin",           "geda-pin-type",     "geda-show-nets",
+  "geda-slot",         "geda-snap-off",      "geda-snap-on",      "geda-text-editor",
+  "geda-rotate",       "geda-unlock",        "geda-unselect-all", "geda-zoom-box",
+  "geda-zoom-pan",     "geda-zoom-selection",
   NULL
 };
 

@@ -1774,8 +1774,8 @@
 ;;
 ;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "A_utonumber Text...")     attributes-autonumber   #f                     ,(N_ "Open Auto Number dialog"))
-        (,(N_ "Show _Console Window...")  options-show-console     #f ,(N_ "Display the console"))
+     `( (,(N_ "A_utonumber Text...")     attributes-autonumber     "geda-autonum-blue"  ,(N_ "Open Auto Number dialog"))
+        (,(N_ "Show _Console Window...")  options-show-console      #f                  ,(N_ "Display the console"))
         (,(N_ "Show Coord _Window...")     options-show-coordinates #f                  ,(N_ "Display coordinates"))
         ("SEPARATOR"                      #f                        #f)
         (,(N_ "Invoke Macro")              edit-invoke-macro       "gtk-execute"        ,(N_ "Invoke a macro"))
