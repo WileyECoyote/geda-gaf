@@ -1015,7 +1015,7 @@ edascm_config_event_dispatcher (EdaConfig *cfg, const char *group,
                          edascm_from_config (cfg),
                          scm_from_utf8_string (group),
                          scm_from_utf8_string (key));
-
+  fprintf(stderr, "%s begin\n",__func__);
   g_scm_eval_protected (expr, scm_interaction_environment ());
   scm_remember_upto_here_1 (expr);
 }

@@ -54,7 +54,7 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-magnet",    "geda-mesh",         "geda-mirror",       "geda-move",
   "geda-multi",     "geda-new",          "geda-open-recent",  "geda-path",
   "geda-pin",       "geda-pin-type",     "geda-show-nets",    "geda-slot",
-  "geda-snap-off",  "geda-snap-on",
+  "geda-snap-off",  "geda-snap-on",      "geda-text-editor",
   "geda-rotate",    "geda-unlock",       "geda-unselect-all", "geda-zoom-box",
   "geda-zoom-pan",  "geda-zoom-selection",
   NULL

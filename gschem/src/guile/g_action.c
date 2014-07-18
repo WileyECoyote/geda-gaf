@@ -58,7 +58,6 @@ g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
   SCM s_result;
   bool result;
 
-
   if (w_current == NULL) {
     BUG_MSG ("w_current = NULL");
     return FALSE;
@@ -82,9 +81,11 @@ g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
                                    scm_from_utf8_symbol (action_name)));
   /* Evaluate and get return value */
   s_result = g_scm_eval_protected (s_expr, SCM_UNDEFINED);
+
   result = scm_is_true (s_result);
 
   scm_dynwind_end ();
+
   return result;
 }
 

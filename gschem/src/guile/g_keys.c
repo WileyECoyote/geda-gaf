@@ -382,6 +382,7 @@ g_keys_reset (GschemToplevel *w_current)
   /* Reset the Scheme keybinding state */
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
+
   g_scm_eval_protected (s_expr, scm_interaction_environment ());
   scm_dynwind_end ();
 }
@@ -513,6 +514,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
     scm_dynwind_begin (0);
     g_dynwind_window (w_current);
     s_expr = scm_list_2 (press_key_sym, s_key);
+
     s_retval = g_scm_eval_protected (s_expr, scm_interaction_environment ());
     scm_dynwind_end ();
 
@@ -534,8 +536,8 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
     return !scm_is_false (s_retval);
 }
 /* Search the global keymap for a particular symbol and return the
- * keys which execute this hotkey, as a string suitable for display to
- * the user. This is used by the gschem menu system.
+ * keys which execute this hotkey, as a string suitable for display
+ * to the user. This is used by the gschem menu system.
  *
  * example: (find-key (quote file-new))
  *
@@ -543,10 +545,11 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
 char *g_find_key (char *func_name) {
   SCM s_expr;
   SCM s_iter;
-  SCM s_lst;
-  char *keys=NULL;
+  SCM s_lst  = NULL;
+  char *keys = NULL;
   char *ret_keys;
 
+  //s_lst = SCM_UNDEFINED;
   /* Call Scheme procedure to dump global keymap into list */
   s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
   s_lst = g_scm_eval_protected (s_expr, scm_interaction_environment ());
@@ -581,7 +584,7 @@ char *g_find_key (char *func_name) {
   else {
     ret_keys = NULL;
   }
-//fprintf(stderr, "%s returning %s\n", __func__, ret_keys);
+
   return ret_keys;
 }
 

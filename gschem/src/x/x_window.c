@@ -366,23 +366,6 @@ static void x_window_setup_event_handlers(GschemToplevel *w_current)
  *  \brief
  *  \par Function Description
  *
-
-static void x_window_invoke_macro(GtkEntry *entry, void *userdata)
-{
-  GschemToplevel *w_current = userdata;
-  SCM interpreter;
-
-  interpreter = scm_list_2(scm_from_utf8_symbol("invoke-macro"),
-                           scm_from_utf8_string(GetEntryText(entry)));
-
-  scm_dynwind_begin (0);
-  g_dynwind_window (w_current);
-  g_scm_eval_protected(interpreter, SCM_UNDEFINED);
-  scm_dynwind_end ();
-
-  gtk_widget_hide(w_current->macro_box);
-  gtk_widget_grab_focus(DrawingArea);
-}
  */
 static void
 x_window_invoke_macro (GtkWidget *widget, int response, GschemToplevel *w_current)

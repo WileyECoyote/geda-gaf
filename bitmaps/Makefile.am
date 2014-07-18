@@ -55,11 +55,12 @@ bitmapdata_DATA    = close_box.png                      \
 		     geda_switch_48x36_on.png           \
 		     geda_switch_64x48_off.png          \
 		     geda_switch_64x48_on.png           \
+		     geda-text-editor.png               \
                      geda-unlock.png                    \
 		     geda-unselect-all.png              \
                      geda-zoom-box.png                  \
                      geda-zoom-pan.png                  \
-		     geda-zoom-selection.png
+                     geda-zoom-selection.png
 
 bitmapdata_16_DATA = geda_find_16x16.xpm	  	\
 		     geda_find_and_replace_16x16.xpm	\

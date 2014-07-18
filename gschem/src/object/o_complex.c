@@ -141,6 +141,7 @@ void o_complex_place_changed_run_hook(GschemToplevel *w_current) {
       SCM expr = scm_list_3 (scm_from_utf8_symbol ("run-hook"),
                              complex_place_list_changed_hook,
                              edascm_from_object ((Object *) ptr->data));
+
       g_scm_eval_protected (expr, scm_interaction_environment ());
       ptr = g_list_next(ptr);
     }

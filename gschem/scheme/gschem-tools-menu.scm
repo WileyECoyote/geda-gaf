@@ -118,23 +118,22 @@
 ;; ==================================================================
 (define tools:menu-items
 ;;
-;;    menu item name        menu scheme action        menu hot-key
+;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("Open Editor"          tools:open-editor        #fr)
+  '(("SEPARATOR"                #f                   #f)
+    ("_Open Editor"         tools:open-editor        "geda-text-editor"   "Open text editor")
     ("Run DRC2"             tools:run-drc2           #f)
     ("SEPARATOR"                #f                   #f)
-    ("=====  Netlisting  ===="  #f                   #f)
-    ("gEDA netlist"         tools:geda-netlist       #f)
+    ("gEDA netlist"         tools:geda-netlist       "gschem-net")
     ("Verilog netlist"      tools:verilog-netlist    #f)
     ("Spice-sdb netlist"    tools:spice-sdb-netlist  #f)
     ("VHDL netlist"         tools:vhdl-sch-netlist   #f)
     ("SEPARATOR"                #f                   #f)
-    ("===  Other scripts ===="  #f                   #f)
     ("gnet_hier_verilog"    tools:gnet_hier_verilog  #f)
   )
 )
 
-(add-menu "Tools" tools:menu-items)
+(add-menu "_Tools" tools:menu-items)
 ;; ==================================================================
 ;;
 

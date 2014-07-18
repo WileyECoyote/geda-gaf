@@ -1767,7 +1767,6 @@
         (,(N_ "_Show Specific Text...")  attributes-show-text    #f                     ,(N_ "Show a specific attribute value"))
         ("SEPARATOR"                    #f                       #f)
         (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent"           ,(N_ "Open the Attibutes Editor Dialog"))
-        (,(N_ "A_utonumber Text...")     attributes-autonumber   #f                     ,(N_ "Open Auto Number dialog"))
       )
 )
 
@@ -1775,7 +1774,9 @@
 ;;
 ;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "Show Coord _Window...")     options-show-coordinates #f                  ,(N_ "Display coordinates"))
+     `( (,(N_ "A_utonumber Text...")     attributes-autonumber   #f                     ,(N_ "Open Auto Number dialog"))
+        (,(N_ "Show _Console Window...")  options-show-console     #f ,(N_ "Display the console"))
+        (,(N_ "Show Coord _Window...")     options-show-coordinates #f                  ,(N_ "Display coordinates"))
         ("SEPARATOR"                      #f                        #f)
         (,(N_ "Invoke Macro")              edit-invoke-macro       "gtk-execute"        ,(N_ "Invoke a macro"))
       )
@@ -1789,14 +1790,13 @@
         (,(N_ "Scale _up Grid Spacing")   scale-up-snap-size       "gtk-media-previous" ,(N_ "Increase the snap size"))
         (,(N_ "Scale _down Grid Spacing") scale-down-snap-size     "gtk-media-next"     ,(N_ "Increase the snap size"))
         (,(N_ "S_nap Grid Spacing...")    options-snap-size        "gtk-media-rewind"   ,(N_ "Adjust snap size"))
+
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "Toggle _Snap On-Off")      options-cycle-snap       #f ,(N_ "Toggle the object snap mode"))
         (,(N_ "Toggle _Outline-Box")      options-action-feedback  #f ,(N_ "Toggle action feedback"))
         (,(N_ "Toggle _Rubberband")       options-rubberband       #f ,(N_ "Toggle rubberband mode"))
         (,(N_ "Toggle _Magnetic Net")     options-magneticnet      #f ,(N_ "Toggle magnetic net mode"))
-        ("SEPARATOR"                     #f                        #f)
-        (,(N_ "Show _Console Window...")  options-show-console     #f ,(N_ "Display the console"))
-        (,(N_ "Show Coord _Window...")    options-show-coordinates #f ,(N_ "Display coordinates"))
+
         ("SEPARATOR"                     #f                        #f)
         (,(N_ "_Text Size...")            options-show-text-size   #f                ,(N_ "Open the Text Size settings"))
         (,(N_ "_Preferences...")          options-show-settings    "gtk-preferences" ,(N_ "Open the Preferences dialog"))
@@ -1834,6 +1834,7 @@
 (add-menu (N_ "Sessio_ns")   sessions-menu-items)
 (add-menu (N_ "A_ttributes") attributes-menu-items)
 (add-menu (N_ "_Tools")      tools-menu-items)
+
 ;; Add Paul Tan's tools utility menu
 ;;(load-from-path "gschem-tools-menu.scm")
 

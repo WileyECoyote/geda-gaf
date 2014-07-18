@@ -171,21 +171,22 @@ SCM g_scm_eval_protected (SCM exp, SCM module_or_state)
                         &stack                         /* pre data */
                         );
 
-  scm_remember_upto_here_2 (g_scm_eval_protected, stack);
+  scm_remember_upto_here_2 (body_data, stack);
+
   return result;
 }
 
-/*! \brief Evaluate a C string as a Scheme expression safely
+/*! \brief Evaluate a string as a Scheme expression safely
  *  \par Function Description
  *
- *  Evaluates a C string like scm_c_eval_string().  Simple wrapper for
+ *  Evaluates string like scm_c_eval_string().  Simple wrapper for
  *  g_scm_eval_string_protected().
  *
  *  \param str  String to evaluate.
  *
  *  \returns Evaluation results or SCM_BOOL_F if exception caught.
  */
-SCM g_scm_c_eval_string_protected (const gchar *str) {
+SCM g_scm_c_eval_string_protected (const char *str) {
   SCM s_str;
   g_return_val_if_fail ((str != NULL), SCM_BOOL_F);
   s_str = scm_from_utf8_string (str);

@@ -137,7 +137,8 @@ static void g_menu_execute(GtkAction *action, void *user_data)
 #if DEBUG
     fprintf(stderr, "passing action to guile %s\n", action_name);
 #endif
-    g_action_eval_by_name (w_current, action_name);
+    SCM s_expr = scm_from_utf8_symbol (action_name);
+    g_scm_eval_protected (s_expr, SCM_UNDEFINED);
     }
   }
 }
@@ -220,7 +221,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   EdaConfig    *cfg;
   const char   *group = MENU_CONFIG_GROUP;
 
-  GedaAction *action;
+  GedaAction   *action;
   GtkWidget    *image;
   GtkWidget    *menu_item;
   GtkWidget    *root_menu;
@@ -300,7 +301,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
     scm_items = i_menu_return_entry(i, raw_menu_name);
 
     if (*raw_menu_name == NULL) {
-      g_warning("Oops.. got a NULL menu name in get_main_menu()\n");
+      g_warning(_("Oops.. got a NULL menu name in get_main_menu()\n"));
       return NULL;
     }
     /* Glib-2.40 generates console noise from gtk-lib */
@@ -323,9 +324,9 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
       /* Check the first member */
       if ( !scm_is_string(scm_item_name)) {
         if ( !menus_broken ) /* Issue message only for first occurence */
-          g_warning ("Error reading menu item <%d>, Bad string", i);
+          g_warning (_("Error reading menu item <%d>, Bad string\n"), i);
         else
-          u_log_message("Error reading menu item <%d>, Bad string", i);
+          u_log_message(_("Error reading menu item <%d>, Bad string\n"), i);
         menus_broken = TRUE;
         continue;
       }

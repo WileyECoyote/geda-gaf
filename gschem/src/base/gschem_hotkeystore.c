@@ -227,6 +227,7 @@ gschem_hotkey_store_bind_keys_handler (GschemHotkeyStore *store,
     global_keymap_sym =
       scm_permanent_object (scm_from_utf8_symbol ("%global-keymap"));
   }
+
   /* Rather brute-force approach to checking whether the affected
    * keymap is the global keymap */
   rebuild = (scm_is_eq (scm_car (s_args),

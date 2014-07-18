@@ -74,27 +74,58 @@ SCM i_menu_return_entry(int index, char **menu_name)
   return(menu[index].menu_items);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add Menu Record Entry
  *  \par Function Description
- *
+ *  This function checks the static menu array and appends
+ *  menu_items to existing records or adds a new record with
+ *  for the menu_items if a not found.
  */
-int i_menu_add_entry(char *new_menu, SCM menu_items)
+int i_menu_add_entry(char *menu_name, SCM menu_items)
 {
-  if (new_menu == NULL) {
-    return(-1);
+  int index;
+  int found;
+  SCM new_list;
+  SCM old_list;
+
+  if (menu_name == NULL) {
+    index = -1;
+  }
+  else if (menu_index >= MAX_MENUS) {
+    index = -1;
+  }
+  else {
+
+    found = FALSE;
+
+    for (index = 0; index < menu_index; index++) {
+
+      /* Check if this menu item already exist */
+      if (strcmp(menu[index].menu_name, menu_name) == 0) {
+
+        old_list = menu[index].menu_items;
+
+        scm_gc_unprotect_object (old_list);
+
+        new_list = scm_append_x(scm_list_2(old_list, menu_items));
+
+        menu[index].menu_items = scm_gc_protect_object (new_list);
+
+        found = TRUE;
+        break;
+      }
+    }
+
+    if (!found) { /* If item did not exist then add */
+
+      menu[menu_index].menu_name = geda_strdup (menu_name);
+
+      menu[menu_index].menu_items = scm_gc_protect_object (menu_items);
+
+      index = ++menu_index;
+    }
   }
 
-  if (menu_index >= MAX_MENUS) {
-    return(-1);
-  }
-
-  menu[menu_index].menu_name = geda_strdup (new_menu);
-  scm_gc_protect_object (menu_items);
-  menu[menu_index].menu_items = menu_items;
-  menu_index++;
-
-  return(menu_index);
+  return index;
 }
 
 /*! \todo Finish function documentation!!!
@@ -113,10 +144,11 @@ void i_menu_print()
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Free All Menu Records
  *  \par Function Description
- *
+ *   The function index through the Menu array data
+ *   structure and frees memory for the strings and call
+ *   scm_gc_unprotect_object to unprotect the guile objects.
  */
 void i_menu_free()
 {
@@ -125,7 +157,6 @@ void i_menu_free()
   for (i = 0; i < menu_index; i++) {
     if (menu[i].menu_name) {
       GEDA_FREE(menu[i].menu_name);
-      menu[i].menu_name = NULL;
       scm_gc_unprotect_object (menu[i].menu_items);
     }
   }

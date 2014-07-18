@@ -1,6 +1,12 @@
+2014-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/base/gschem.c: Add conditional with scm_is_null to check
+          for pre and post procedure to eliminate call to g_scm_eval
+          _protected when expressions are absent from command-line.
+
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c:replace g_malloc with  GEDA_MEM_ALLOC
+        * src/*/*.c: Replace g_malloc with GEDA_MEM_ALLOC
 
 2014-07-15 Wiley E. Hill <wileyhill@gmail.com>
 

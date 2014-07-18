@@ -307,9 +307,10 @@ void gschem( int argc, char *argv[])
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
 
-  /* Run pre-load Scheme expressions */
-  g_scm_eval_protected (s_pre_load_expr, scm_current_module ());
-
+  /* Check for and run pre-load Scheme expressions */
+  if (scm_is_null(s_post_load_expr)) {
+    g_scm_eval_protected (s_pre_load_expr, scm_current_module ());
+  }
   /* By this point, libgeda should have setup the Guile load path.
    * Note that the log system is not initialized yet so any messages
    * will go to the console or null */
@@ -391,8 +392,9 @@ void gschem( int argc, char *argv[])
 #endif
 
   /* Run post-load expressions */
-  g_scm_eval_protected (s_post_load_expr, scm_current_module ());
-
+  if (scm_is_null(s_post_load_expr)) {
+    g_scm_eval_protected (s_post_load_expr, scm_current_module ());
+  }
   scm_dynwind_end ();
 
   /* if there were any symbols which had major changes, show error dialog */
