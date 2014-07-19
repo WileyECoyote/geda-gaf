@@ -41,7 +41,7 @@
  *  This function is called internally by libgeda_init using the
  *  scm_with_guile function to initialize <b>Guile</b> runtime
  *  routines. This function does not require any arguments, nor
- *  does the function return a meaning value. The argument and
+ *  does the function return a meaningful value. The argument and
  *  return pointer is a requirement of the scm_with_guile
  *  function.
  *

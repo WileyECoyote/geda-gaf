@@ -128,6 +128,35 @@ static SCM protected_body_eval (void *data)
   return scm_eval (scm_car (args), scm_cadr (args));
 }
 
+typedef struct st_eval_task eval_task;
+
+struct st_eval_task {
+  SCM stack;
+  SCM body_data;
+};
+
+void *g_scm_do_eval (void *data)
+{
+  SCM result;
+
+  eval_task *task = (eval_task*)data;
+
+  task->stack = SCM_BOOL_T;
+
+  result = scm_c_catch (SCM_BOOL_T,                    /* SCM tag */
+                        protected_body_eval,           /* scm_t_catch_body */
+                        &task->body_data,              /* body data */
+                        protected_post_unwind_handler, /* post scm_t_catch_handler */
+                        &task->stack,                  /* post handler data */
+                        protected_pre_unwind_handler,  /* pre scm_t_catch_handler */
+                        &task->stack                   /* pre data */
+                        );
+
+  scm_remember_upto_here (result);
+  GEDA_FREE(task);
+
+  return result;
+}
 /*! \brief Evaluate a Scheme expression safely.
  *  \par Function Description
  *
@@ -151,29 +180,24 @@ static SCM protected_body_eval (void *data)
  */
 SCM g_scm_eval_protected (SCM exp, SCM module_or_state)
 {
-  SCM stack = SCM_BOOL_T;
-  SCM body_data;
-  SCM result;
+
+  eval_task *task = g_new0 (eval_task, 1);
 
   if (module_or_state == SCM_UNDEFINED) {
-    body_data = scm_list_2 (exp, scm_interaction_environment());
+    task->body_data = scm_list_2 (exp, scm_interaction_environment());
   }
   else {
-    body_data = scm_list_2 (exp, module_or_state);
+    task->body_data = scm_list_2 (exp, module_or_state);
   }
 
-  result = scm_c_catch (SCM_BOOL_T,                    /* SCM tag */
-                        protected_body_eval,           /* scm_t_catch_body */
-                        &body_data,                    /* body data */
-                        protected_post_unwind_handler, /* post scm_t_catch_handler */
-                        &stack,                        /* post handler data */
-                        protected_pre_unwind_handler,  /* pre scm_t_catch_handler */
-                        &stack                         /* pre data */
-                        );
+  return scm_with_guile(g_scm_do_eval, task);
+}
 
-  scm_remember_upto_here_2 (body_data, stack);
-
-  return result;
+/* Actually carries out evaluation for protected eval-string */
+static SCM protected_body_eval_string (void *data)
+{
+  SCM str = *((SCM *)data);
+  return scm_eval_string (str);
 }
 
 /*! \brief Evaluate a string as a Scheme expression safely
@@ -208,11 +232,26 @@ SCM g_scm_c_eval_string_protected (const char *str) {
  */
 SCM g_scm_eval_string_protected (SCM str)
 {
-  SCM expr = scm_list_2 (scm_from_utf8_symbol ("eval-string"),
-                         str);
+  /*
+  SCM expr = scm_list_2 (scm_from_utf8_symbol ("eval-string"), str);
 
   return g_scm_eval_protected (expr, SCM_UNDEFINED);
+  */
+  SCM stack = SCM_BOOL_T;
+  SCM result;
 
+  result = scm_c_catch (SCM_BOOL_T,
+                        protected_body_eval_string,    /* catch body */
+                        &str,                          /* body data */
+                        protected_post_unwind_handler, /* post handler */
+                        &stack,                        /* post data */
+                        protected_pre_unwind_handler,  /* pre handler */
+                        &stack                         /* pre data */
+                        );
+
+  scm_remember_upto_here_1 (stack);
+
+  return result;
 }
 
 /* Data to be passed to g_read_scheme_file()'s worker functions. */
@@ -285,6 +324,8 @@ bool g_read_scheme_file(const char *filename, GError **err)
   if (data.err == NULL) return TRUE;
 
   g_propagate_error (err, data.err);
+
+  free(data.filename);
 
   return FALSE;
 }

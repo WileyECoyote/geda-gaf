@@ -85,8 +85,8 @@
   (let	((fout   (string-append (tools:ifbase) "_drc2.txt")))
     (if (tools:check-ext "sch")
       (begin
-        (system (string-append
-            "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
+        (format #t "tools:run-drc2 calling fout~%")
+        (system (string-append "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
         (tools:open-editor? fout)
 ))))
 

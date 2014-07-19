@@ -1,3 +1,8 @@
+2014-07-17 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/guile/g_basic.c: Work in progress; unsimplfy
+          g_scm_eval_string_protected
+
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Replace g_malloc with GEDA_MEM_ALLOC

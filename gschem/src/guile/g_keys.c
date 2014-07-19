@@ -549,11 +549,14 @@ char *g_find_key (char *func_name) {
   char *keys = NULL;
   char *ret_keys;
 
-  //s_lst = SCM_UNDEFINED;
-  /* Call Scheme procedure to dump global keymap into list */
-  s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
-  s_lst = g_scm_eval_protected (s_expr, scm_interaction_environment ());
-
+  if (run_mode == 2) {
+    /* Call Scheme procedure to dump global keymap into list */
+    s_expr = scm_list_1 (scm_from_utf8_symbol ("dump-global-keymap"));
+    s_lst = g_scm_eval_protected (s_expr, scm_interaction_environment ());
+  }
+  else {
+    s_lst = SCM_UNDEFINED;
+  }
   if (scm_is_true (scm_list_p (s_lst))) {
 
     for (s_iter = s_lst; !scm_is_null (s_iter); s_iter = scm_cdr (s_iter)) {
