@@ -16,7 +16,6 @@ intl
 libtool
 stamp-git
 stamp-h1
-version.h
 INSTALL
 autoscan.log
 configure.scan
