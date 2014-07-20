@@ -1,3 +1,8 @@
+2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+        *src/object/o_pin_basic.c: Change conditional to e_type >= 0 and
+         m_type >= 0 in o_pin_set_attributes
+
 2014-07-18 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/guile/g_basic.c: Rename file/module to g_evaluate.c Added

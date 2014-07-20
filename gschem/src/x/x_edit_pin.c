@@ -237,8 +237,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   bool    changed_something  = FALSE;
   int     num_selected;
 
-  PIN_NODE  ntype, ontype;
-  PIN_ELECT etype, oetype;
+  PIN_NODE  ntype, ontype;  /* bus, net*/
+  PIN_ELECT etype, oetype;  /* in, out, io, pwr, etc ... */
   PIN_MECH  omtype;
 
   int number,   onumber;
@@ -300,17 +300,29 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         changed_something = TRUE;
         ontype = ntype;
       }
+
       if (etype != oetype) {
         changed_something = TRUE;
         oetype = etype;
       }
+      else {
+        oetype = -1;
+      }
+
       if (number != onumber) {
         changed_something = TRUE;
         onumber = number;
       }
+      else {
+        onumber = -1;
+      }
+
       if (sequence != osequence) {
         changed_something = TRUE;
         osequence = sequence;
+      }
+      else {
+        osequence = -1;
       }
 
       if (olabel_str == NULL) {

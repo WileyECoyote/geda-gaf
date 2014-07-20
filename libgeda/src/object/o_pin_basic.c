@@ -737,7 +737,7 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
       }
     }
 
-    if ((int)e_type > 0) {
+    if ((int)e_type >= 0) {
       const char *electrical = geda_pin_lookup_estring(e_type);
       if (pin->electrical == NULL || (strcmp(pin->electrical, electrical) != 0))
         geda_pin_set_electrical(pin, electrical);
@@ -748,7 +748,7 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
       }
     }
 
-    if ((int)m_type > 0) {
+    if ((int)m_type >= 0) {
       const char *mechanical = geda_pin_lookup_mstring(m_type);
       if (pin->mechanical == NULL || (strcmp(pin->mechanical, mechanical) != 0))
         geda_pin_set_mechanical(pin, mechanical);
