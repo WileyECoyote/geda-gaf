@@ -44,7 +44,7 @@ static void edascm_hook_proxy_get_property        (GObject *object, guint proper
                                                    GValue *value, GParamSpec *pspec);
 static void edascm_hook_proxy_default_run_handler (EdascmHookProxy *proxy,
                                                    SCM args);
-static SCM edascm_hook_proxy_closure              (SCM args, gpointer user_data);
+static SCM edascm_hook_proxy_closure              (SCM args, void *user_data);
 static void edascm_hook_proxy_connect             (EdascmHookProxy *proxy, SCM hook);
 static void edascm_hook_proxy_disconnect          (EdascmHookProxy *proxy);
 static void cclosure_marshal_VOID__SCM            (GClosure *closure,
@@ -170,7 +170,7 @@ edascm_hook_proxy_get_property (GObject *object, guint property_id,
 
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
-    break;    
+    break;
   }
 }
 
@@ -208,7 +208,7 @@ edascm_hook_proxy_disconnect (EdascmHookProxy *proxy)
 
 /*! Emit a signal on an EdascmHookProxy whenever its target hook is run. */
 static SCM
-edascm_hook_proxy_closure (SCM args, gpointer user_data) {
+edascm_hook_proxy_closure (SCM args, void *user_data) {
   g_signal_emit_by_name (user_data,
                          "run",
                          SCM_UNPACK (args));
@@ -225,12 +225,12 @@ edascm_hook_proxy_closure (SCM args, gpointer user_data) {
  */
 static void
 edascm_hook_proxy_default_run_handler (EdascmHookProxy *proxy,
-                                       SCM args)
+                                       SCM unpacked_args)
 {
   g_return_if_fail (EDASCM_IS_HOOK_PROXY (proxy));
 
   /* Do the most basic of sanity checking on the argument list! */
-  g_return_if_fail (scm_is_true (scm_list_p (args)));
+  g_return_if_fail (scm_is_true (scm_list_p (unpacked_args)));
 }
 
 /*! \brief Callback marshal function for run signals.
@@ -245,7 +245,7 @@ static void
  void *invocation_hint,
  void *marshal_data)
 {
- typedef void (*MarshalFunc_VOID__SCM) (gpointer data1,
+ typedef void (*MarshalFunc_VOID__SCM) (void *data1,
  SCM arg_1,
  void *data2);
  register MarshalFunc_VOID__SCM callback;

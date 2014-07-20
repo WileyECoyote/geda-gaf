@@ -77,7 +77,7 @@ const char *f_get_filename_ext(const char *filename) {
  *  seperator or NULL if no sting was passed. The returned
  *  pointer points to the given string, and not reallocated.
  *
- *  \param [in] filename The filename to search.
+ *  \param [in] path The path to search.
  *  \return offset if found, otherwise NULL.
  */
 char *geda_basename(const char *path)

@@ -54,15 +54,16 @@ void s_place_free_place_list(GedaToplevel *toplevel)
 }
 
 /*! \brief Set Place List
- *  \par
- *   The functions can be used to either set or clear the place list
- *   associated with the given GedaToplevel object. If the place references
- *   data, s_place_free_place_list is called to release the current list
- *   before adding any new object. No error is genereated of the new place
- *   list is NULL.
+ *  \par Function Description
+ *   This functions can be used to either set or clear the place list
+ *   associated with the given GedaToplevel object. If new_place_list
+ *   references data, s_place_free_place_list is called to release the
+ *   current list before adding new objects. No error is generated if
+ *   the new place list is NULL.
  *
- *  \param [in] toplevel pointer to GedaToplevel object
- *
+ *  \param [in] toplevel       pointer to GedaToplevel object
+ *  \param [in] new_place_list Glist of objects to append or NULL to clear
+ *                             the current place list.
  */
 void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list )
 {
@@ -83,11 +84,3 @@ void s_place_set_place_list(GedaToplevel *toplevel, GList *new_place_list )
     BUG_MSG("TopLevel is NULL\n");
   }
 }
-
-
-
-
-
-
-
-

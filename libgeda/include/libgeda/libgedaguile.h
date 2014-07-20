@@ -71,4 +71,4 @@ int edascm_is_config (SCM smob);
 void edascm_c_set_gc (SCM smob, int gc);
 
 /* Create a Scheme closure around a C function. */
-SCM edascm_c_make_closure (SCM (*func)(SCM, gpointer), gpointer user_data);
+SCM edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data);

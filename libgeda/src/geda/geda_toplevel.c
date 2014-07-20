@@ -92,7 +92,7 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
  *  \param [in]  instance  The GedaToplevel being initialising.
  *  \param [in]  g_class   The class of the type the instance is created for.
  */
-static void geda_toplevel_instance_init( GTypeInstance *instance, gpointer g_class )
+static void geda_toplevel_instance_init( GTypeInstance *instance, void *g_class )
 {
   GedaToplevel *toplevel           = (GedaToplevel *)instance;
 
@@ -268,7 +268,7 @@ static void geda_toplevel_finalize(GObject *object)
  *  \param [in]  g_class       The GedaToplevel we are initialising
  *  \param [in]  g_class_data  (unused)
  */
-static void geda_toplevel_class_init( gpointer g_class, gpointer g_class_data )
+static void geda_toplevel_class_init (void *g_class, void *g_class_data )
 {
   GedaToplevelClass *klass    = GEDA_TOPLEVEL_CLASS( g_class );
   GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
@@ -317,21 +317,28 @@ GedaToplevel *geda_toplevel_new (void) {
 }
 
 /*! \brief Determine if object is Geda GedaToplevel Object.
- *
  *  \par Function Description
  *  Returns true if the argument is a GedaToplevel object.
+ *  This function use signatures embed in the structure
+ *  to verify the object type as the gobject system appears
+ *  unreliable and can return false results.
+ *
+ * \param [in] toplevel  Pointer to GedaToplevel Object
  *
  *  \return boolean.
  */
-bool is_a_geda_toplevel (GedaToplevel *tl)
+bool is_a_geda_toplevel (GedaToplevel *toplevel)
 {
-  return tl && (GEDA_TYPE_TOPLEVEL == (tl->head_marker & tl->tail_marker));
+  return toplevel &&
+  (GEDA_TYPE_TOPLEVEL == (toplevel->head_marker & toplevel->tail_marker));
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Decrements
+/*! \brief Decrement Reference Count of Toplevel Object
  *  \par Function Description
+ *  Calls g_object_unref for the given top-level object, generally
+ *  this destroys the object.
  *
+ * \param [in] toplevel  Pointer to GedaToplevel Object
  */
 void geda_toplevel_unref(GedaToplevel *toplevel)
 {
@@ -346,7 +353,7 @@ void geda_toplevel_unref(GedaToplevel *toplevel)
  * \a weak_refs. Should be called during destruction of an structure
  * that allows weak references.
  *
- * \param [in] object  Pointer to Object being destroyed.
+ * \param [in] toplevel  Pointer to Object being destroyed.
  *
  */
 void

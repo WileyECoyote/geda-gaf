@@ -24,8 +24,7 @@ G_BEGIN_DECLS
 
 /* ---------------------------------------------------------------- */
 /* GValue support */
-
-/*! \class EdascmSCM edascmvalue.h "libgeda/edascmvalue.h"
+/*! \class EdascmSCM edascmvaluetypes.h "libgeda/edascmvaluetypes.h"
  * \ingroup guile_c_iface
  * \brief Fundamental GType for Guile Scheme objects.
  *
@@ -43,12 +42,10 @@ GType edascm_scm_get_type (void) G_GNUC_CONST;
 void edascm_value_set_scm (GValue *value, SCM v_scm);
 SCM edascm_value_get_scm (const GValue *value);
 
-
-
 /* ---------------------------------------------------------------- */
 /* GParamSpec support */
 
-/*! \class EdascmParamSCM edascmvalue.h "libgeda/edascmvalue.h"
+/*! \class EdascmParamSCM edascmvaluetypes.h "libgeda/edascmvaluetypes.h"
  * \ingroup guile_c_iface
  * \brief Parameter specification metadata type for Guile Scheme objects.
  *

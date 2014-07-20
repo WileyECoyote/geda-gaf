@@ -55,8 +55,8 @@ edascm_closure_marshal (SCM args, SCM smob) {
 #endif
   EDASCM_ASSERT_SMOB_VALID (smob);
 
-  SCM (*func)(SCM, gpointer) = (SCM (*)(SCM, gpointer)) SCM_SMOB_DATA (smob);
-  gpointer *user_data = (gpointer) SCM_SMOB_DATA_2 (smob);
+  SCM (*func)(SCM, void*) = (SCM (*)(SCM, void*)) SCM_SMOB_DATA (smob);
+  void **user_data = (void*) SCM_SMOB_DATA_2 (smob);
 
   return func (args, user_data);
 }
@@ -89,7 +89,7 @@ edascm_closure_marshal (SCM args, SCM smob) {
  * \since 1.10.
  */
 SCM
-edascm_c_make_closure (SCM (*func)(SCM, gpointer), gpointer user_data)
+edascm_c_make_closure (SCM (*func)(SCM, void *), void *user_data)
 {
   SCM smob = SCM_UNDEFINED;
   SCM expr;

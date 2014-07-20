@@ -427,7 +427,7 @@ edascm_to_config (SCM smob)
  * \return a C closure smob.
  */
 SCM
-edascm_from_closure (SCM (*func)(SCM, gpointer), gpointer user_data)
+edascm_from_closure (SCM (*func)(SCM, void*), void *user_data)
 {
  SCM smob;
  SCM_NEWSMOB2 (smob, geda_smob_tag, func, user_data);

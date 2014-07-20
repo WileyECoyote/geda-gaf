@@ -39,7 +39,7 @@ G_BEGIN_DECLS
  *
  * \code
  * void
- * my_handler (EdascmHookProxy *proxy, SCM args, gpointer user_data)
+ * my_handler (EdascmHookProxy *proxy, SCM args, void *user_data)
  * {
  *   // ... //
  * }

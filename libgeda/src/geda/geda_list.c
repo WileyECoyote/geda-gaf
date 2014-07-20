@@ -48,7 +48,7 @@ static GObjectClass *geda_list_parent_class = NULL;
  *  \param [in]  instance       The GedaList we are initialising.
  *  \param [in]  g_class        The class of the type the instance is created for.
  */
-static void geda_list_instance_init( GTypeInstance *instance, gpointer g_class )
+static void geda_list_instance_init( GTypeInstance *instance, void *g_class )
 {
   GedaList *list = (GedaList *)instance;
 
@@ -83,7 +83,7 @@ static void geda_list_finalize( GObject *object )
  *  \param [in]  g_class       The GedaList we are initialising
  *  \param [in]  g_class_data  (unused)
  */
-static void geda_list_class_init( gpointer g_class, gpointer g_class_data )
+static void geda_list_class_init(void *g_class, void *g_class_data )
 {
   GedaListClass *klass        = GEDA_LIST_CLASS( g_class );
   GObjectClass *gobject_class = G_OBJECT_CLASS( klass );
@@ -155,7 +155,7 @@ GedaList *geda_list_new( void ) {
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item item to add to the GedaList.
  */
-void geda_list_add( GedaList *list, gpointer item )
+void geda_list_add( GedaList *list, void *item )
 {
   list->glist = g_list_append(list->glist, item );
   g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
@@ -229,7 +229,7 @@ int geda_glist_is_homogeneous_objects ( GList *list)
  *  \param [in] list Pointer to the GedaList
  *  \param [in] item to remove from the GedaList.
  */
-void geda_list_remove( GedaList *list, gpointer item )
+void geda_list_remove( GedaList *list, void *item )
 {
   if (g_list_find(list->glist, item) == NULL)
     return;

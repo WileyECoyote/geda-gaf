@@ -207,4 +207,4 @@ extern SCM edascm_object_state_sym;
 
 /* ---------------------------------------- */
 
-SCM edascm_from_closure (SCM (*func)(SCM, gpointer), gpointer user_data);
+SCM edascm_from_closure (SCM (*func)(SCM, void *), void *user_data);
