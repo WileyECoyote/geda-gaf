@@ -11,7 +11,7 @@ gnet_hier_verilog.sh \- generate a non-flattened hierarchical Verilog netlist.
 .B gnet_hier_verilog.sh
 is a simple script to produce a
 hierarchical verilog netlist in a single file.
-It gathers hierarchical information from a list of
+gnet_hier_verilog gathers hierarchical information from a list of
 unique symbols/schematics originating from the top level
 schematic all the way down to the lowest level of the
 design hierarchy. It then successively invokes the

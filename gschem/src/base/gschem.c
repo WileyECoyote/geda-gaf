@@ -417,7 +417,7 @@ void main_prog(void *closure, int argc, char *argv[])
      geda_mem_set_vtable();
 #  endif
 
-#  if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION <= 33 ))
+#  if (( GLIB_MAJOR_VERSION >= 2 ) && ( GLIB_MINOR_VERSION <= 33 ))
      g_slice_set_config(G_SLICE_CONFIG_ALWAYS_MALLOC, 1);
 #endif
 
@@ -430,8 +430,7 @@ void main_prog(void *closure, int argc, char *argv[])
      g_thread_init (NULL);
 #  endif
 
-  if (g_thread_supported ()) {
-    gdk_threads_init();
+  if (gschem_threads_init()) {
     run_mode = 2;
   }
 #else
@@ -466,11 +465,10 @@ void main_prog(void *closure, int argc, char *argv[])
 
     if (g_main_loop_is_running (main_loop))
     {
-      GDK_THREADS_LEAVE ();
-
+      gschem_threads_leave();  /* I know, seems backwards */
       /* enter main loop */
       g_main_loop_run(main_loop);
-      GDK_THREADS_ENTER ();
+      gschem_threads_enter();
       gdk_flush ();
     }
 

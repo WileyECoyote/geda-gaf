@@ -4000,7 +4000,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context, bool threa
   int response;
 
   if (thread) {
-    gdk_threads_enter();
+    gschem_threads_enter();
   }
 
   dialog = gtk_message_dialog_new (NULL,
@@ -4032,7 +4032,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context, bool threa
   gtk_widget_destroy (dialog);
 
   if (thread) {
-    gdk_threads_leave();
+    gschem_threads_leave();
   }
   return response;
 }

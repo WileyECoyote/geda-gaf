@@ -400,7 +400,7 @@ int x_fileselect_load_backup(GString *message, GschemToplevel *w_current)
   window = w_current ? GTK_WINDOW(w_current->main_window) : NULL;
 
   g_string_append(message, _("\nIf you load the original file, the backup file will be overwritten in the next autosave timeout and it will be lost.\n\nDo you want to load the backup file?\n"));
-  gdk_threads_enter();
+  gschem_threads_enter();
 
   dialog = gtk_message_dialog_new (window,
                                    GTK_DIALOG_MODAL,
@@ -428,6 +428,6 @@ int x_fileselect_load_backup(GString *message, GschemToplevel *w_current)
      result = 0; /* Aka No */
   }
   gtk_widget_destroy(dialog);
-  gdk_threads_leave();
+  gschem_threads_leave();
   return result;
 }

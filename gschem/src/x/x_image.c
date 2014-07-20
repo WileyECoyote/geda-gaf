@@ -644,7 +644,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   fprintf(stderr, "x_image_setup: back o_select_unselect_all\n");
 #endif
 
-  gdk_threads_enter();
+  gschem_threads_enter();
 
   /* Create the dialog */
   ThisDialog = gtk_file_chooser_dialog_new (_("Write image..."),
@@ -851,7 +851,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   }
 
   gtk_widget_destroy (ThisDialog);
-  gdk_threads_leave();
+  gschem_threads_leave();
   g_list_free (widget_list);
   widget_list = NULL;
 

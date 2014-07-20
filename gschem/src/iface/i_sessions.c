@@ -27,18 +27,17 @@
  */
 /*! \file i_sessions.c
  *  \remarks
- *     1.) w_current->session_name should not be referenced outside of this
+ *     1.) w_current->session_name should not be modified outside of this
  *         module! w_current->session_name is type char* that is either NULL
  *         to indicate a "session" is not active or w_current->session_name
  *         points to a string in the session structure, and therefore
- *         should only be manipulated by routine within this module.
+ *         should only be manipulated by routines within this module.
  *         Do not free w_current->session_name!
  *
  *     2.) i_sessions_init must be called first to initialize the array
  *         data from files found in the session configuration directory.
- *
- *     3.) i_sessions_update_menus should be called after the main
- *         menu is contructed.
+ *         i_sessions_init calls i_sessions_update_menus so i_sessions_init
+ *         should only be called after the main menu is contructed.
  *
  *     4.) i_session_is_enabled, which return TRUE is at least one session
  *         is defined, should be used in conjuction with the configuration
@@ -46,7 +45,7 @@
  *         determine is the Sessions Open dialog should be presented
  *         after program startup, see x_sessions_open_dialog for more
  *         details. The function i_sessions_show_at_startup facilitates
- *         usage of this feature.
+ *         usage of this operation.
  */
 
 #include <config.h>

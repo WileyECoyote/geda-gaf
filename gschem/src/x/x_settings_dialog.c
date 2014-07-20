@@ -959,7 +959,7 @@ static void clear_attributes( void ){
  */
 static void filter_list_set_default( void )
 {
-  char *question = _("Clear attributes and restore default filter list?");
+  const char *question = _("Clear attributes and restore default filter list?");
   int response = gschem_confirm_dialog(question, GTK_MESSAGE_INFO, FALSE);
   if (response == GTK_RESPONSE_YES) {
     clear_attributes();

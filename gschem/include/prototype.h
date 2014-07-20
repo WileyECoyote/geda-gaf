@@ -292,6 +292,11 @@ bool i_sessions_present_at_startup     (void);
 void i_sessions_update_menus           (GschemToplevel *w_current);
 void i_sessions_init                   (GschemToplevel *w_current);
 
+/* i_threads.c */
+void gschem_threads_enter (void);
+void gschem_threads_leave (void);
+bool gschem_threads_init (void);
+
 /* i_vars.c */
 void  i_var_restore_color              (EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index);
 char *i_var_get_global_config_string   (EdaConfig *cfg, char *str);

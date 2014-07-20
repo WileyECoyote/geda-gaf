@@ -1,3 +1,25 @@
+2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/base/gschem.c: Replace GDK_THREADS_ENTER and GDK_THREADS_LEAVE
+          macros with gschem_threads_enter gschem_threads_leave for main loop.
+
+        * src/iface/i_threads.c: New module/file.
+
+        * src/iface/i_command.c: Replace gdk_threads_enter and gdk_threads_leave
+          with gschem_threads_enter gschem_threads_leave and remove  call to
+          gdk_flush() in i_command_router, since gschem_threads_leave does makes
+          this call.
+
+        * src/x/x_dialog.c: Replace gdk_threads_enter and gdk_threads_leave with
+          gschem_threads_enter gschem_threads_leave in gschem_confirm_dialog.
+
+        * src/x/x_fileselect.c: Replace gdk_threads_enter and gdk_threads_leave
+          with gschem_threads_enter gschem_threads_leave in x_fileselect_load_
+          backup.
+
+        * src/x/x_image.c: Replace gdk_threads_enter and gdk_threads_leave with
+          gschem_threads_enter gschem_threads_leave in x_image_setup.
+
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
         * etc/system-gschemrc.scm: Incoorperate gschem-tools-menu.scm to add

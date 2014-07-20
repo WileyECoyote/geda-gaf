@@ -187,10 +187,9 @@ void i_command_router(char* command, GschemToplevel *w_current)
       g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
     }
     else /* USE_WORKER_THREAD */ {
-      gdk_threads_enter();
+      gschem_threads_enter();
       command_struc[i].func(command_struc[i].w_current);
-      gdk_flush ();
-      gdk_threads_leave();
+      gschem_threads_leave();
     }
   }
 
@@ -466,7 +465,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
 {
   GtkWidget *dialog;
   int r;
-  gdk_threads_enter();
+  gschem_threads_enter();
   dialog =  gtk_dialog_new_with_buttons ("GSCHEM Internal Diagnostics",
                                         (GtkWindow*) w_current->main_window,
                                          GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -479,7 +478,7 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   r = gtk_dialog_run (GTK_DIALOG (dialog));
 
   gtk_widget_destroy (dialog);
-  gdk_threads_leave();
+  gschem_threads_leave();
   return r;
 }
 /* -------------------- Begin Handler Functions ------------------- */
@@ -854,13 +853,13 @@ COMMAND ( do_write_pdf ) {
 COMMAND ( do_run_script ) {
   BEGIN_W_COMMAND(do_run_script);
   char* filename = NULL;
-  gdk_threads_enter();
+  gschem_threads_enter();
   filename = gschem_filesel_dialog("Execute Script...", filename, FSB_LOAD );
   if(filename != NULL) { /* if user did not cancel */
     g_read_scheme_file(filename, NULL);
     GEDA_FREE(filename);
   }
-  gdk_threads_leave();
+  gschem_threads_leave();
   EXIT_COMMAND(do_run_script);
 }
 

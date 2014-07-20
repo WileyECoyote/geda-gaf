@@ -1,6 +1,6 @@
 #!/bin/bash
 # gEDA - GPL Electronic Design Automation
-# Copyright (C) 2007-2012 Paul Tan (pt75234 at users.sourceforge.net)
+# Copyright (C) 2007-2014 Paul Tan (pt75234 at users.sourceforge.net)
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,56 +26,57 @@
 # Please set tab = 2 for readability
 # Written by Paul Tan
 # ========================================================
-# 1) This is a simple draft bash script to produce a
-#    hierarchical verilog netlist in a single file.
-#    It gathers hierarchical information from a list of
-#    unique symbols/schematics originating from the top level
-#    schematic all the way down to the lowest level of the
-#    design hierarchy. It then successively invokes the
-#    existing gEDA verilog netlister to produce each single
-#    level netlists, and concatinates all the unique
-#    module netlists into one single hierarchical netlist
-#    file.
-# 2) Currently, it assumes that one or more hierarchical symbol
-#    can be represented by a single schematic file. If needed,
-#    feature for mutiple schematic files mapped to a single symbol
-#    can be easily added. In that case, multiple source attrib
-#    are used in that symbol.
-# 3) It checks the follwoing errors while traversing down
-#    the hierarchy and terminates the netlisting if error
-#    is found.
-#    a) if a symbol's source attribute indicated schematic can not
-#       be found in the search paths defined by gafrc.
+# 1) This is a simple draft bash script to produce a hierarchical verilog
+#    netlist in a single file. The script gathers hierarchical information
+#    from a list of unique symbols/schematics originating from the top level
+#    schematic all the way down to the lowest level of the design hierarchy.
+#    The script then successively invokes the existing gEDA verilog netlister
+#    to produce each single level netlists, and concatinates all the unique
+#    module netlists into one single hierarchical netlist file.
+#
+# 2) Currently, this script assumes that one or more hierarchical symbol
+#    can be represented by a single schematic file. If needed, feature for
+#    mutiple schematic files mapped to a single symbol can be easily added.
+#    In that case, multiple source attrib are used in that symbol.
+#
+# 3) The script checks the follwoing errors while traversing down the
+#    hierarchy and terminates the netlisting if error is found.
+#    a) if a symbol's source attribute indicated schematic can not be
+#       found in the search paths defined by gafrc.
 #    b) if a symbol's device attribute value does not match its
 #       corresponding schematic's module_name attribute value.
-# 4) This script assumes that there are no other errors in the
-#    entire hierarchy, and that the user has already run the
-#    DRC. Moreover, it assumes that the user has run the single
-#    level verilog netlister on each schematic in the hierarchy
-#    without any error. it also assumes that the hierarchy-traverse
-#    is disabled in gnetlistrc, thus disables flatten hierarchical
-#    netlist generation.
+#
+# 4) This script assumes that there are no other errors in the entire
+#    hierarchy, and that the user has already run the DRC. Moreover, this
+#    script assumes that the user has run the single level verilog netlister
+#    on each schematic in the hierarchy without any error. Another assumption
+#    is that the hierarchy-traverse is disabled in gnetlistrc, this disables
+#    flatten hierarchical netlist generation.
+#
 # 5) Netlist of modules are listed from top down, can easily be
 #    changed to do bottom up.
+#
 # 6) Symbol must contain "source=????.sch" attribute to have its
 #    schematic netlisted. Otherwise, symbol is treated just as
 #    primitive instances in the netlist.
-# 7) It only uses the gafrc file in the folder where the top level
-#    schematic resides. The search path for the symbols and
-#    schematics should be defined in that gafrc file. The
-#    current implementation searches from the beginning
-#    of the file, it will be changed to conform to the gEDA
-#    practice of searching from the bottom first.
+#
+# 7) The script only uses the gafrc file in the folder where the top level
+#    schematic resides. The search path for symbols and schematics should
+#    be defined in that gafrc file.
+#
 # 8) Hierarchy info is output to a report file for reference.
-# 9)This script is optimized for readability only, I hope.
-# 10)Array variables are suffixed with A, e,g,, HLineA[]
+#
+# 9) This script is optimized for readability only, I hope.
+#
+# 10) Array variables are suffixed with A, e,g,, HLineA[]
+#
 # ========================================================
 #             To do list
 # -------------------------------------------------------
 # 1) Multi-page sch per symbol support
 # 2) Use the "file" attrib to include user defined netlist
 # 3) Include .gnetlistrc and other config files info to search
-# 4) Change search order for sym/sch libs to LIFO (last in fisrt out)
+# 4) Change search order for sym/sch libs to LIFO (last in first out)
 # 5) Recode the script in C or scheme ?
 # 6) Add CL args to support VHDL and Spice hier netlist
 # 7) Add error checks:
@@ -146,8 +147,8 @@ fi
 # ---------------------------------------
 if [ $my_error == 1 ]; then
 	echo "Error:"
-	echo -n "Please include a gEDA schematic file"
-	echo " as its argument."
+	echo -n "Please include a gEDA schematic file as an argument."
+	echo ""
 	echo " Usage:"
 	echo "   [path]gnet_hier_verilog.sh [path]FileName.sch"
 	exit 1
@@ -169,10 +170,10 @@ if [ $My_Debug == 1 ]
 	then
 		echo
 		echo '======== Start Debug ==========='
-		echo "TopDir = $TopDir"
+		echo "TopDir      = $TopDir"
 		echo "TopBaseFile = $TopBaseFile"
-		echo "CurSchFile = $CurSchFile"
-		echo "ReportFile = $ReportFile"
+		echo "CurSchFile  = $CurSchFile"
+		echo "ReportFile  = $ReportFile"
 fi
 # ----------------------------------------------
 #
@@ -293,13 +294,14 @@ do
 			fi
 		done
 
-		if [ $found == 1 ]; then continue
+		if [ $found == 1 ]; then
+                  continue
 		fi
 		# ===================================
 		# Find the Symbol file and its folder
-		found=0
 		for i in "${SymDirListA[@]}"; do
 			TsymPath=`echo "$i/$Tsym"`
+                         echo "Looking in : $i for $Tsym"
 			if [ -e $TsymPath ]; then
 				found=1
 				TsymDir=$i

@@ -69,7 +69,7 @@ pinnumber=10
 T 300 -900 5 10 0 0 90 0 1
 pinseq=6
 T 255 205 5 10 0 1 90 6 1
-pintype=in
+pintype=pas
 }
 T -100 4900 8 10 0 0 0 0 1
 device=AD7705
