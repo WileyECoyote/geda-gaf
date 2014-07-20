@@ -494,7 +494,7 @@ void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
  *  The function modifies the object visibilty property of all
  *  netname attribute text objects in the given list, searching
  *  each complex for a netname attribute. If the visibility is
- *  #INVISIBLE the value is set to 2 and vise-versa. If the text
+ *  <b>INVISIBLE</b> the value is set to 2 and vise-versa. If the text
  *  is VISIBLE the attribute is not modified.
  *
  *  \sa o_edit_show_hidden_attrib
@@ -682,14 +682,14 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 }
 
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Hide Specified Text
  *  \par Function Description
- *
+ *  Searches string component of Text Objects and calls for
+ *  o_set_visibility string matching the given text.
  */
 void o_edit_hide_specific_text (GschemToplevel *w_current,
-                                const GList *o_list,
-                                const char *stext)
+                                const GList    *o_list,
+                                const char     *stext)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object   *o_current;

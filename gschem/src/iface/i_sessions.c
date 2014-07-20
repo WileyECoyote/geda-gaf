@@ -73,13 +73,13 @@ static char *advance2char(const char *string)
   return (char*)ptr;
 }
 
-/*! \defgroup Gschem-Session-System
+/*! \defgroup Gschem-Session-System Gschem Session System
  *  @{ \par This Group contains core Routine for Sessions.
 */
 
 static GArray *sessions;
 
-/*! \defgroup sessions-internal
+/*! \defgroup sessions-internal Sessions Internal Functions
  *  @{ \par This Group contains core Routine for Sessions.
 */
 
@@ -503,7 +503,8 @@ session_free_menu_data (void *data, GClosure *closure) {
  *   This function is called when a menu item under the Sessions/
  *   Restore submenu is activated.
  *
- *  \param w_current Pointer to #GschemToplevel Object
+ *  \param menuitem  Pointer to Session menu item (with embed data)
+ *  \param user_data Pointer to embed SessionMenuData structure
  */
 static void session_menu_item_clicked(GtkMenuItem *menuitem, void *user_data)
 {
@@ -760,7 +761,7 @@ static void i_sessions_destroy_sessions(void)
 
 /*! @} endgroup sessions-internal */
 
-/*! \defgroup sessions-global-functions
+/*! \defgroup sessions-global-functions Sessions Global Functions
  *  @{ \par This Group contains global routines for Sessions System
  */
 
@@ -771,7 +772,7 @@ static void i_sessions_destroy_sessions(void)
  *  regenerate the restore submenu.
  *
  *  \param w_current Pointer to #GschemToplevel Object
- *  \param new_name  Pointer to the name of session to be deleted
+ *  \param name      Pointer to the name of session to be deleted
  *
  *  \retval TRUE on success, otherwise FALSE
  */
@@ -824,8 +825,8 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
  *  This function copies a stored file to a specified location. This
  *  is useful for creating project files.
  *
- *  \param new_name  Pointer to the name of the session to be export
- *  \param new_name  Pointer to file name session is to be export to.
+ *  \param name      Pointer to the name of the session to be export
+ *  \param filename  Pointer to file name session is to be export to.
  *
  *  \retval result of fcopy function
  */
@@ -843,7 +844,7 @@ int i_sessions_export_session(const char *name, const char *filename)
  *  updated.
  *
  *  \param w_current Pointer to #GschemToplevel Object
- *  \param new_name  Pointer to the name for the new session
+ *  \param name      Pointer to the name for the new session
  *
  *  \retval count of the files associated with the new session
  */
@@ -885,7 +886,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
  *   associated with the given session.
  *
  *  \param w_current Pointer to #GschemToplevel Object
- *  \param new_name  Pointer to session name to be saved
+ *  \param name      Pointer to session name to be saved
  *
  *  \return TRUE on success otherwise FALSE
  */
@@ -1052,7 +1053,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
   return count;
 }
 
-/*! \defgroup sessions-global-utilities
+/*! \defgroup sessions-global-utilities Sessions Global Utilities
  *  @{ \par Contains system-level utilities for Sessions.
 */
 

@@ -1,5 +1,17 @@
 2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/iface/i_sessions.c: Revised and completed Doxygen documentatio.
+
+        * src/x/x_sessions.c: Revised and completed Doxygen documentatio.
+
+2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/iface/i_sessions.c: Update strings, add some gettext
+
+        * src/x/x_sessions.c: Update strings, add some gettext
+
+2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/base/gschem.c: Replace GDK_THREADS_ENTER and GDK_THREADS_LEAVE
           macros with gschem_threads_enter gschem_threads_leave for main loop.
 
