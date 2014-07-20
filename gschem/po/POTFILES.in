@@ -30,6 +30,7 @@ gschem/src/guile/g_window.x
 gschem/src/iface/i_basic.c
 gschem/src/iface/i_callbacks.c
 gschem/src/iface/i_command.c
+gschem/src/iface/i_sessions.c
 gschem/src/iface/i_pan_world.c
 gschem/src/iface/i_vars.c
 gschem/src/iface/i_zoom_world.c
@@ -86,6 +87,7 @@ gschem/src/x/x_preview.c
 gschem/src/x/x_print.c
 gschem/src/x/x_rc.c
 gschem/src/x/x_scroll.c
+gschem/src/x/x_sessions.c
 gschem/src/x/x_settings.c
 gschem/src/x/x_settings_dialog.c
 gschem/src/x/x_status_bar.c

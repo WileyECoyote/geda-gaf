@@ -187,7 +187,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
     close_all = x_dialog_close_window (w_current);
     if (!close_all) {       /* user cancelled the close */
-      v_log_message("Close all canceled");
+      v_log_message(_("Close all canceled"));
     }
   }
   else {
@@ -267,7 +267,7 @@ static GSList *i_sessions_get_file_list(Session *record)
 
     while (bad) {
       fname = bad->data;
-      fprintf(stderr, "file: <%s> is not accessible\n", fname);
+      u_log_message("file: <%s> is not accessible\n", fname);
       bad = g_slist_remove(bad, fname);
       free(fname);
     }
@@ -322,13 +322,14 @@ i_session_load_session(GschemToplevel *w_current, Session *record)
     if (blank != NULL) {
       x_window_close_page (w_current, blank);
     }
-    q_log_message(_("Session %s, opened %d of %d documents\n"), record->session_name, load_count, exist_count);
+    q_log_message(_("Session %s, opened %d of %d documents\n"),
+                  record->session_name, load_count, exist_count);
 
     /* Update the window for the current page */
     i_update_sensitivities(w_current);
     i_set_filename (w_current, NULL);
 
-    //x_window_set_current_page( w_current, toplevel->page_current );
+    /* x_window_set_current_page( w_current, toplevel->page_current ); */
 
     w_current->session_name = record->session_name;
     g_slist_free (iter);
@@ -1032,7 +1033,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
 
   if (err) {
 
-    msg = geda_sprintf ( _("An error occurred attemting to save session %s: %s."), name, err->message);
+    msg = geda_sprintf (_("An error occurred attemting to save session %s: %s."), name, err->message);
 
     u_log_message( "%s", msg); /* Log the error */
 

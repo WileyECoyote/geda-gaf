@@ -103,7 +103,8 @@ on_rename_butt_clicked (GtkWidget *button, void *user_data)
   const char        *old_name;
         char        *new_name;
 
-  new_name = geda_dialog_get_string("Rename Session", "Specify new name for Session:");
+  new_name = geda_dialog_get_string(_("Rename Session"),
+                                    _("Specify new name for Session:"));
 
   if (new_name != NULL) { /* If  user did not cancel */
 
@@ -159,7 +160,7 @@ on_export_butt_clicked (GtkWidget *button, void *user_data)
 
     gtk_tree_model_get (model, &iter, COLUMN_NAME, &name, -1);
 
-    filename = gschem_filesel_dialog("Select export file", name, FSB_SAVE);
+    filename = gschem_filesel_dialog(_("Select export file"), name, FSB_SAVE);
 
     if(filename != NULL) { /* if user did not cancel */
       i_sessions_export_session(name, filename);
@@ -311,8 +312,6 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   startup = i_sessions_get_show_at_startup();
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton), startup);
 
-
-
   /* Create and connect the Close and Apply Buttons */
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
   GtkWidget *open_butt  = gtk_button_new_from_stock (GTK_STOCK_OPEN);
@@ -342,8 +341,6 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
                                           GTK_RESPONSE_ACCEPT,
                                           GTK_RESPONSE_REJECT,
                                           -1);
-
-  //gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog), GTK_RESPONSE_ACCEPT);
 
   GSCHEM_HOOKUP_OBJECT(ThisDialog, open_butt,  "open-butt");
   GSCHEM_HOOKUP_OBJECT(ThisDialog, close_butt, "close-butt");
@@ -415,7 +412,7 @@ x_sessions_get_treeview (GtkWidget *Dialog)
                                               NULL));
 
   column = GTK_TREE_VIEW_COLUMN (g_object_new (GTK_TYPE_TREE_VIEW_COLUMN,
-                                              "title", _("Count"),
+                                              "title", _("File Count"),
                                               "sizing", GTK_TREE_VIEW_COLUMN_FIXED,
                                                NULL));
   gtk_tree_view_column_pack_start (column, renderer, TRUE);
@@ -637,22 +634,25 @@ void x_sessions_open_dialog(GschemToplevel *w_current)
 
   gtk_widget_show (ThisDialog);
 }
+
 void x_sessions_new_dialog (GschemToplevel *w_current)
 {
   char *name;
 
-  name = geda_dialog_get_string("New Session", "Specify new name for Session:");
+  name = geda_dialog_get_string(_("New Session"),
+                                _("Specify new name for Session:"));
 
   if (name != NULL) { /* If  user did not cancel */
     i_sessions_new_session (w_current, name);
     GEDA_FREE(name);
   }
 }
+
 void x_sessions_save_as_dialog (GschemToplevel *w_current)
 {
   char *name;
 
-  name = geda_dialog_get_string("Save Session As", "Specify new name for Session:");
+  name = geda_dialog_get_string(_("Save Session As"), _("Specify new name for Session:"));
 
   if (name != NULL) { /* If  user did not cancel */
     i_sessions_save_session (w_current, name);

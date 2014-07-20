@@ -392,7 +392,7 @@ bool get_titleblock_list(char **Buffer) {
      while ((ent = readdir (dirp)) != NULL)
      {
        suffix = f_get_filename_ext(ent->d_name);
-       if ( suffix && strcmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
+       if ( suffix && stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
        {
           strcpy(tmpbuff, basename(ent->d_name));
           namelen = strlen( tmpbuff) - 4; /* substract the extension */
@@ -403,9 +403,9 @@ bool get_titleblock_list(char **Buffer) {
        }
      }
      closedir (dirp);
-  } else
-  { /* could not open directory */
-      u_log_message(_("get_titleblock_list: error opening: %s\n"), TitleBlockPath);
+  }
+  else { /* could not open directory */
+      u_log_message(_("Failed to open [%s]: %s\n"), TitleBlockPath, strerror(errno));
       result = FALSE;
   }
 
