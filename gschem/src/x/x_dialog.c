@@ -3994,11 +3994,15 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
 /*! \brief General Purpose Confirmation Dialog
  *  \remarks TODO: derive this from gschem dialog class
  */
-int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
+int gschem_confirm_dialog (const char *msg, gEDA_MessageType context, bool thread)
 {
   GtkWidget *dialog;
-  int r;
-  gdk_threads_enter();
+  int response;
+
+  if (thread) {
+    gdk_threads_enter();
+  }
+
   dialog = gtk_message_dialog_new (NULL,
                                    GTK_DIALOG_MODAL |
                                    GTK_DIALOG_DESTROY_WITH_PARENT,
@@ -4024,11 +4028,13 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context)
 
   gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[GEDA_MESSAGE_QUESTON]));
 
-  r = gtk_dialog_run (GTK_DIALOG (dialog));
+  response = gtk_dialog_run (GTK_DIALOG (dialog));
   gtk_widget_destroy (dialog);
 
-  gdk_threads_leave();
-  return r;
+  if (thread) {
+    gdk_threads_leave();
+  }
+  return response;
 }
 
 /****************** End of General confirm dialog box ********************/

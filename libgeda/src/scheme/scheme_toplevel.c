@@ -75,9 +75,7 @@ GedaToplevel *
 edascm_c_current_toplevel ()
 {
   SCM s_toplevel = edascm_current_toplevel ();
-
   EDASCM_ASSERT_SMOB_VALID(s_toplevel);
-
   return (GedaToplevel *) SCM_SMOB_DATA (s_toplevel);
 }
 

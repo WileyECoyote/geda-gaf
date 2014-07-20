@@ -4,7 +4,7 @@
 ;;
 ;; =================================================================
 ;;
-;; File:  gsch-tools-menu.scm     by Paul Tan
+;; File:  gsch-tools-menu.scm  by Paul Tan
 ;;
 ;; (1) Put this file in /usr/share/gEDA/scheme/ directory.
 ;; (2) Add the following line (without the semi-colon) at the end of
@@ -58,7 +58,8 @@
         "Open " filename " with " tools:editor "?\n"
         "Click Cancel if you do not want to open " filename ".\n"))
     (system (string-append tools:editor " " filename))
-))
+  )
+)
 
 ;; ----------------- tools:sch-netlist-0 ---------------------------
 ;; Can call this template code, if needed form is:
@@ -85,8 +86,7 @@
   (let	((fout   (string-append (tools:ifbase) "_drc2.txt")))
     (if (tools:check-ext "sch")
       (begin
-        (format #t "tools:run-drc2 calling fout~%")
-        (system (string-append "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
+        ;(system (string-append "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
         (tools:open-editor? fout)
 ))))
 
@@ -111,8 +111,7 @@
   (let  ((fout  (string-append (tools:ifbase) ".v")))
     (if (tools:check-ext "sch")
       (begin
-        (system (string-append
-            "gnet_hier_verilog.sh " (tools:ifpath)))
+        (system (string-append "gnet_hier_verilog " (tools:ifpath)))
         (tools:open-editor? fout)
 ))))
 ;; ==================================================================

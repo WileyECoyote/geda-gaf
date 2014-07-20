@@ -16,53 +16,53 @@
 # along with this program; if  not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 # ========================================================
-# Description:  
+# Description:
 #   Generate non-flatten hierarchical Verilog netlist
 # gnet_hier_verilog.sh
 # version 0.0.2
-# Usage: 
+# Usage:
 #   [path]gnet_hier_verilog.sh [path]FileName.sch
 # Requires gawk and gEDA's gnetlist gnet-verilog.scm
 # Please set tab = 2 for readability
 # Written by Paul Tan
 # ========================================================
 # 1) This is a simple draft bash script to produce a
-#    hierarchical verilog netlist in a single file. 
-#    It gathers hierarchical information from a list of 
+#    hierarchical verilog netlist in a single file.
+#    It gathers hierarchical information from a list of
 #    unique symbols/schematics originating from the top level
-#    schematic all the way down to the lowest level of the 
+#    schematic all the way down to the lowest level of the
 #    design hierarchy. It then successively invokes the
-#    existing gEDA verilog netlister to produce each single 
-#    level netlists, and concatinates all the unique 
-#    module netlists into one single hierarchical netlist 
-#    file. 
+#    existing gEDA verilog netlister to produce each single
+#    level netlists, and concatinates all the unique
+#    module netlists into one single hierarchical netlist
+#    file.
 # 2) Currently, it assumes that one or more hierarchical symbol
-#    can be represented by a single schematic file. If needed, 
-#    feature for mutiple schematic files mapped to a single symbol 
+#    can be represented by a single schematic file. If needed,
+#    feature for mutiple schematic files mapped to a single symbol
 #    can be easily added. In that case, multiple source attrib
 #    are used in that symbol.
-# 3) It checks the follwoing errors while traversing down 
-#    the hierarchy and terminates the netlisting if error 
+# 3) It checks the follwoing errors while traversing down
+#    the hierarchy and terminates the netlisting if error
 #    is found.
 #    a) if a symbol's source attribute indicated schematic can not
 #       be found in the search paths defined by gafrc.
 #    b) if a symbol's device attribute value does not match its
 #       corresponding schematic's module_name attribute value.
-# 4) This script assumes that there are no other errors in the 
+# 4) This script assumes that there are no other errors in the
 #    entire hierarchy, and that the user has already run the
 #    DRC. Moreover, it assumes that the user has run the single
 #    level verilog netlister on each schematic in the hierarchy
 #    without any error. it also assumes that the hierarchy-traverse
-#    is disabled in gnetlistrc, thus disables flatten hierarchical 
+#    is disabled in gnetlistrc, thus disables flatten hierarchical
 #    netlist generation.
-# 5) Netlist of modules are listed from top down, can easily be 
+# 5) Netlist of modules are listed from top down, can easily be
 #    changed to do bottom up.
 # 6) Symbol must contain "source=????.sch" attribute to have its
-#    schematic netlisted. Otherwise, symbol is treated just as 
+#    schematic netlisted. Otherwise, symbol is treated just as
 #    primitive instances in the netlist.
-# 7) It only uses the gafrc file in the folder where the top level 
+# 7) It only uses the gafrc file in the folder where the top level
 #    schematic resides. The search path for the symbols and
-#    schematics should be defined in that gafrc file. The 
+#    schematics should be defined in that gafrc file. The
 #    current implementation searches from the beginning
 #    of the file, it will be changed to conform to the gEDA
 #    practice of searching from the bottom first.
@@ -91,7 +91,7 @@
 # under the top schematics and all its underlying schematics.
 # This master record list will be output to a text file
 # for reference.
-# Then we'll invoke the gnetlist program to netlist each of 
+# Then we'll invoke the gnetlist program to netlist each of
 # the schematics representing the symbols on the list,
 # concatinating each netlist into the top level netlist.
 #
@@ -104,7 +104,7 @@
 # $CurIndex   $CurFlag  $CurSym   $CurDir  $CurSch   ; In master
 # $EndIndex   $Tflag    $Tsym     $TschDir $Tsch     ; To add
 # -------------------------------------------------------
-# The Flag is used to indicate if a schematic needs to 
+# The Flag is used to indicate if a schematic needs to
 # be netlisted.
 #    Flag = 0 means NOT to netlist the schematic.
 #    Flag = 1 means to netlist the schematic.
@@ -120,7 +120,7 @@
 # ========================================================
 # Configurable items
 # ---------------------------------------
-# Define the symbol's attribute to be used for its 
+# Define the symbol's attribute to be used for its
 #   associated schematic.
 src_attrib="source"
 # ---------------------------------------
@@ -139,7 +139,7 @@ fi
 if [ $my_error == 0 ]; then
 	TopSchFile=$1
 	my_ext=${TopSchFile#*.}
-	if [ "$my_ext" != "sch" ]; then 
+	if [ "$my_ext" != "sch" ]; then
 		my_error=1
 	fi
 fi
@@ -167,7 +167,7 @@ echo "Starting Hierarchical Verilog Netlister version ${ver} ....."
 # ===============================================
 if [ $My_Debug == 1 ]
 	then
-		echo 
+		echo
 		echo '======== Start Debug ==========='
 		echo "TopDir = $TopDir"
 		echo "TopBaseFile = $TopBaseFile"
@@ -182,10 +182,10 @@ iN=0; iFlag=1; iSym=2; iSchDir=3; iSch=4
 # ----------------------------------------------
 # Initialize master list HierListA[]'s first record
 CurIndex=0
-EndIndex=0 
+EndIndex=0
 Tflag=1
-Tsym="${TopBaseFile}.sym" 
-Tsch="${TopBaseFile}.sch" 
+Tsym="${TopBaseFile}.sym"
+Tsch="${TopBaseFile}.sch"
 TschDir="."
 # Fields in each row of record
 HLineA[$iN]=$EndIndex
@@ -233,7 +233,7 @@ do
 	CurFlag=${CurA[$iFlag]}
 	CurSchFile=${CurA[$iSch]}
 	CurSchDir=${CurA[$iSchDir]}
-	if [ "$CurSchDir" == "." ] 
+	if [ "$CurSchDir" == "." ]
 		then CurSchPath=$CurSchFile
 		else CurSchPath=`echo "$CurSchDir/$CurSchFile"`
 	fi
@@ -255,7 +255,7 @@ do
 	# Get all instances of any symbols from current schematic
 	# into TempSymListA[]
 	TempSymListA=( `
-		gawk '(NF==7)&&($1=="C") {printf("%s\n",$7)}' $CurSchPath 
+		gawk '(NF==7)&&($1=="C") {printf("%s\n",$7)}' $CurSchPath
 	`)
 	# ----------------------------------------------
 	# Make a unique symbol list from it
@@ -265,7 +265,7 @@ do
 	for i in "${TempSymListA[@]}"; do
 		found=0
 		for j in "${TSymListA[@]}"; do
-			if [ "$i" == "$j" ]; then 
+			if [ "$i" == "$j" ]; then
 				found=1
 				break
 			fi
@@ -276,6 +276,7 @@ do
 		TSymListA[$k]=$i
 	done # for i
 	unset TempSymListA
+
 	# ===============================================
 	# Check if Tsym already exist in the master list
 	# if not on list, add to the list
@@ -303,7 +304,7 @@ do
 				found=1
 				TsymDir=$i
 				break
-			fi 
+			fi
 		done
 
 		if [ $found == 0 ]; then
@@ -314,12 +315,12 @@ do
 		fi
 		# ---------------------------------
 		# Find the schematic file name for the symbol from:
-		#   1) The "source" attribute in the symbol file of 
+		#   1) The "source" attribute in the symbol file of
 		#      the $TsymDir folder.
 		#   2) If no "source", use the symbol basename as the schematic
-		#      basename?  For now, must use "source". 
-		#   3) Note that the sch file must contain "module_name" 
-		#      attrubute whose value must match the value of the 
+		#      basename?  For now, must use "source".
+		#   3) Note that the sch file must contain "module_name"
+		#      attrubute whose value must match the value of the
 		#      "device" attribute from the sym file. This script
 		#      checks for this condition.
 		# Given the schematic file name, search its folder path in:
@@ -348,7 +349,7 @@ do
 			fi
 		done
 		# ---------------------------------
-		if [ "$Tsch" == "" ]; then 
+		if [ "$Tsch" == "" ]; then
 				Tsch="None"; Tflag=0
 			else
 				# ---------------------------------
@@ -357,7 +358,7 @@ do
 				for HLineA in "${HierListA[@]}"; do
 					HierA=( `echo $HLineA` )
 					HierSch=${HierA[$iSch]}
-					if [ "$Tsch" == "$HierSch" ]; then	
+					if [ "$Tsch" == "$HierSch" ]; then
 						found=1
 						break
 					fi
@@ -370,14 +371,14 @@ do
 		# ---------------------------------
 		# if sch not on list, search for sch path
 		if [ $Tflag == 2 ]; then
-			found=0		
+			found=0
 			for i in "${SrcDirListA[@]}"; do
 				TschPath=`echo "$i/$Tsch"`
 				if [ -e $TschPath ]; then
 					found=1
 					TschDir=$i
 					break
-				fi 
+				fi
 			done
 			# if can't find sch path, error and exit
 			if [ $found == 0 ]; then
@@ -399,8 +400,8 @@ do
 						printf("%s\n", $2); exit}' $TschPath` )
 			# ---------------------------------
 			# Check if module_name = device from SymAttribListA[]
-			# ---------------------------------	
-			Tdev=""		
+			# ---------------------------------
+			Tdev=""
 			for i in "${SymAttribListA[@]}"; do
 				if [ "${i%=*}" == "device" ]; then
 					Tdev=${i#*=}; break
@@ -409,7 +410,7 @@ do
 			# ---------------------------------
 			if [[ "$TModule" != "" ]] && [[ "$TModule" == "$Tdev" ]]
 				then Tflag=1
-				else 
+				else
 					echo "Error: "
 					echo "  $Tsym Symbol's device attribute $Tdev does not match"
 					echo "  $Tsch schematic's module_name attribute $TModule."
@@ -495,7 +496,7 @@ do
 	# To be changed: add multi-page netlist
 	# --------------------------------
 	if [ "$CurIndex" -eq 0 ]
-		then 
+		then
 			gnetlist -g verilog -o $TopVFile $TopSchFile
 		else
 			gnetlist -g verilog -o $TemptFile $CurSchPath
@@ -517,4 +518,4 @@ echo
 echo "Hierarchical Verilog netlist successfully completed."
 echo
 
- 	  	 
+

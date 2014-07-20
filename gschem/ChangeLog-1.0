@@ -1,3 +1,16 @@
+2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+        * etc/system-gschemrc.scm: Incoorperate gschem-tools-menu.scm to add
+          tool menu subitems, so netlist can be generated directly from gschem
+
+        * src/guile/g_action.c: Call new function action_body_eval() instead
+          of g_scm_eval_protected in g_action_eval_by_name.
+
+        * src/x/x_dialog.c: Add thread flag to gschem_confirm_dialog as tmp
+          fix.
+
+        * scheme/gschem-tools-menu.scm: remove ".sh" from gnet_hier_verilog
+
 2014-07-17 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/base/gschem.c: Add conditional with scm_is_null to check

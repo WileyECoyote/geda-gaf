@@ -1,3 +1,7 @@
+2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+        * /Makefile.am: Clean top of source
+
 2014-03-30  Wiley E. Hill <wileyhill@gmail.com>
 
 	* /: release 2.0.8 Major updates, New libraries libgedathon, libgedauio.
@@ -22,7 +26,7 @@
           inclusions and to some what "standardize" the use of automake flags.
           Various fixes, see change indivual change-logs. Entire code tree once
           again compiles without ANY errors or warnings. Added AM_INIT_AUTOMAKE
-          ([nostdinc -Woverride -Wportability -Wsyntax -Wunsupported]), 
+          ([nostdinc -Woverride -Wportability -Wsyntax -Wunsupported]),
           AM_PROG_CC_C_O option m4_ifdef([AM_SILENT_RULES],[AM_SILENT_RULES([yes])])
           and AX_CHECK_PANGO to configure.ac. Also added final echoing of
           configuration summary.

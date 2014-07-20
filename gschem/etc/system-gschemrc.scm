@@ -1836,7 +1836,7 @@
 (add-menu (N_ "_Tools")      tools-menu-items)
 
 ;; Add Paul Tan's tools utility menu
-;;(load-from-path "gschem-tools-menu.scm")
+(load-from-path "gschem-tools-menu.scm")
 
 (add-menu (N_ "_Options") options-menu-items)
 (add-menu (N_ "_Help") help-menu-items)

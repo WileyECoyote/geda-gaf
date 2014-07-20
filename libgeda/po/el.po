@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-07 23:22-0500\n"
+"POT-Creation-Date: 2014-07-19 19:50-0500\n"
 "PO-Revision-Date: 2012-09-01 18:46+0000\n"
 "Last-Translator: Panos Bouklis <panos@echidna-band.com>\n"
 "Language-Team: Greek <el@li.org>\n"
@@ -42,62 +42,62 @@ msgstr "Σχεδιάγραμμα Κυκλώματος gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Σύμβολο Σχεδίου gEDA"
 
-#: libgeda/src/file/f_basic.c:126
+#: libgeda/src/file/f_basic.c:132
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:137
+#: libgeda/src/file/f_basic.c:143
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
 
-#: libgeda/src/file/f_basic.c:148
+#: libgeda/src/file/f_basic.c:154
 #, fuzzy, c-format
 msgid "File \"%s\" is too large"
 msgstr "Το αρχείο %s είναι μόνο για ανάγνωση"
 
-#: libgeda/src/file/f_basic.c:205
+#: libgeda/src/file/f_basic.c:211
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:225
+#: libgeda/src/file/f_basic.c:231
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Αποτυχία φορτώματος του συμβόλου από το αρχείο [%s]: %s\n"
 
-#: libgeda/src/file/f_basic.c:284
+#: libgeda/src/file/f_basic.c:290
 #, fuzzy, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/file/f_basic.c:298
+#: libgeda/src/file/f_basic.c:304
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:315
+#: libgeda/src/file/f_basic.c:321
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/file/f_basic.c:375 libgeda/src/file/f_basic.c:388
+#: libgeda/src/file/f_basic.c:381 libgeda/src/file/f_basic.c:394
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:448
+#: libgeda/src/file/f_basic.c:454
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Αδυναμία εύρεσης του αρχείου %s: %s"
 
-#: libgeda/src/file/f_basic.c:465
+#: libgeda/src/file/f_basic.c:471
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:501
+#: libgeda/src/file/f_basic.c:507
 #, c-format
 msgid ""
 "\n"
@@ -110,7 +110,7 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:503
+#: libgeda/src/file/f_basic.c:509
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
@@ -118,7 +118,7 @@ msgstr ""
 "Δεν μπόρεσα να καταλάβω αν είναι νεότερο, οπότε πρέπει να το κάνετε με το "
 "χέρι.\n"
 
-#: libgeda/src/file/f_basic.c:505
+#: libgeda/src/file/f_basic.c:511
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -126,7 +126,7 @@ msgstr ""
 "Το αντίγραφο ασφαλείας είναι νεότερο από το σχεδιάγραμμα, άρα μάλλον πρέπει "
 "να φορτώσετε αυτό αντί για το αρχικό αρχείο.\n"
 
-#: libgeda/src/file/f_basic.c:507
+#: libgeda/src/file/f_basic.c:513
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -135,7 +135,7 @@ msgstr ""
 "Το gschem συνήθως δημιουργεί αντίγραφα ασφαλείας αυτόματα, και αυτή η "
 "περίπτωση συμβαίνει όταν κατέρρευσε ή έγινε βίαιη έξοδος.\n"
 
-#: libgeda/src/file/f_basic.c:510
+#: libgeda/src/file/f_basic.c:516
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -143,37 +143,37 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:561
+#: libgeda/src/file/f_basic.c:567
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:610
+#: libgeda/src/file/f_basic.c:616
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s: %s"
 
-#: libgeda/src/file/f_basic.c:621 libgeda/src/object/o_basic.c:251
+#: libgeda/src/file/f_basic.c:627 libgeda/src/object/o_basic.c:251
 #, c-format
 msgid "File %s is read-only"
 msgstr "Το αρχείο %s είναι μόνο για ανάγνωση"
 
-#: libgeda/src/file/f_basic.c:653
+#: libgeda/src/file/f_basic.c:659
 #, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:661
+#: libgeda/src/file/f_basic.c:667
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s"
 msgstr "Αδυναμία αποθήκευσης αντιγράφου ασφαλείας: %s."
 
-#: libgeda/src/file/f_basic.c:703
+#: libgeda/src/file/f_basic.c:709
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "ΔΕΝ ήταν δυνατή η αποθήκευση του αρχείου: %s"
 
-#: libgeda/src/file/f_basic.c:956
+#: libgeda/src/file/f_basic.c:962
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
@@ -229,28 +229,33 @@ msgstr "Δεν ήταν δυνατή η εκτέλεση της εντολής [
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Πάρα πολλοί χαρακτήρες UTF-8, δεν είναι δυνατή η εκτύπωση\n"
 
-#: libgeda/src/file/f_utilities.c:114
+#: libgeda/src/file/f_utilities.c:125
 #, c-format
 msgid "File error: \"%s\", %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_utilities.c:125
+#: libgeda/src/file/f_utilities.c:136
 msgid "File error(strerror): Memory Allocation Error!\n"
 msgstr ""
 
-#: libgeda/src/file/f_utilities.c:131
+#: libgeda/src/file/f_utilities.c:142
 #, c-format
 msgid "File error(strerror[source]): \"%s\", %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_utilities.c:137
+#: libgeda/src/file/f_utilities.c:148
 #, c-format
 msgid "File error(strerror)[source]: \"%s\", %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_utilities.c:145 libgeda/src/file/f_utilities.c:149
+#: libgeda/src/file/f_utilities.c:156 libgeda/src/file/f_utilities.c:160
 #, c-format
 msgid "File lock error(strerror): \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_utilities.c:251
+#, c-format
+msgid "%s: error accessing: %s\n"
 msgstr ""
 
 #: libgeda/src/geda/geda_config.c:92
@@ -418,148 +423,148 @@ msgstr ""
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/guile/g_basic.c:71
+#: libgeda/src/guile/g_evaluate.c:75
 msgid ""
 "\n"
 "Backtrace:\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:291
+#: libgeda/src/guile/g_rc.c:298
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:338 libgeda/src/guile/g_rc.c:347
+#: libgeda/src/guile/g_rc.c:345 libgeda/src/guile/g_rc.c:354
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:439
+#: libgeda/src/guile/g_rc.c:446
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:440 libgeda/src/guile/g_rc.c:446
-#: libgeda/src/guile/g_rc.c:476 libgeda/src/guile/g_rc.c:482
-#: libgeda/src/guile/g_rc.c:514 libgeda/src/guile/g_rc.c:520
-#: libgeda/src/guile/g_rc.c:552 libgeda/src/guile/g_rc.c:558
-#: libgeda/src/guile/g_rc.c:583 libgeda/src/guile/g_rc.c:607
-#: libgeda/src/guile/g_rc.c:631 libgeda/src/guile/g_rc.c:656
-#: libgeda/src/guile/g_rc.c:681 libgeda/src/guile/g_rc.c:706
-#: libgeda/src/guile/g_rc.c:731 libgeda/src/guile/g_rc.c:756
+#: libgeda/src/guile/g_rc.c:447 libgeda/src/guile/g_rc.c:453
+#: libgeda/src/guile/g_rc.c:483 libgeda/src/guile/g_rc.c:489
+#: libgeda/src/guile/g_rc.c:521 libgeda/src/guile/g_rc.c:527
+#: libgeda/src/guile/g_rc.c:559 libgeda/src/guile/g_rc.c:565
+#: libgeda/src/guile/g_rc.c:590 libgeda/src/guile/g_rc.c:614
+#: libgeda/src/guile/g_rc.c:638 libgeda/src/guile/g_rc.c:663
+#: libgeda/src/guile/g_rc.c:688 libgeda/src/guile/g_rc.c:713
+#: libgeda/src/guile/g_rc.c:738 libgeda/src/guile/g_rc.c:763
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:445
+#: libgeda/src/guile/g_rc.c:452
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:475
+#: libgeda/src/guile/g_rc.c:482
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:481
+#: libgeda/src/guile/g_rc.c:488
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:513
+#: libgeda/src/guile/g_rc.c:520
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:519
+#: libgeda/src/guile/g_rc.c:526
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:551
+#: libgeda/src/guile/g_rc.c:558
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:557
+#: libgeda/src/guile/g_rc.c:564
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:582
+#: libgeda/src/guile/g_rc.c:589
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:606
+#: libgeda/src/guile/g_rc.c:613
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:630
+#: libgeda/src/guile/g_rc.c:637
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:655
+#: libgeda/src/guile/g_rc.c:662
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:680
+#: libgeda/src/guile/g_rc.c:687
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:705
+#: libgeda/src/guile/g_rc.c:712
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:730
+#: libgeda/src/guile/g_rc.c:737
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:755
+#: libgeda/src/guile/g_rc.c:762
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:808
+#: libgeda/src/guile/g_rc.c:815
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:119
+#: libgeda/src/guile/g_rc_parse.c:125
 #, fuzzy
 msgid "RC file already loaded"
 msgstr "Το αρχείο ρυθμίσεων έχει ήδη φορτωθεί"
 
-#: libgeda/src/guile/g_rc_parse.c:163
+#: libgeda/src/guile/g_rc_parse.c:169
 #, fuzzy, c-format
 msgid "Failed to load config from '%s': %s\n"
 msgstr "Αδυναμία φορτώματος εικόνας από [%s]: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:193
+#: libgeda/src/guile/g_rc_parse.c:199
 #, fuzzy, c-format
 msgid "Loaded RC file [%s]\n"
 msgstr "Η εντολή της βιβλιοθήκης απέτυχε [%s]\n"
 
-#: libgeda/src/guile/g_rc_parse.c:199
+#: libgeda/src/guile/g_rc_parse.c:205
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:332
+#: libgeda/src/guile/g_rc_parse.c:338
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:345 libgeda/src/guile/g_rc_parse.c:346
+#: libgeda/src/guile/g_rc_parse.c:351 libgeda/src/guile/g_rc_parse.c:352
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "ΣΦΑΛΜΑ: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:352
+#: libgeda/src/guile/g_rc_parse.c:358
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "ΣΦΑΛΜΑ: Η καταγραφή %s μπορεί να περιέχει περισσότερες πληροφορίες.\n"
@@ -1304,22 +1309,22 @@ msgstr "Δεν υπάρχουν σχεδιαγράμματα πάνω από τ�
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Αδυναμία ανοίγματος καταλόγου [%s]: %s\n"
 
-#: libgeda/src/struct/s_page.c:276
+#: libgeda/src/struct/s_page.c:280
 #, c-format
 msgid "s_page_delete: Can't get the real filename of %s."
 msgstr "s_page_delete: Αδυναμία λήψης του πραγματικού ονόματος αρχείου του %s."
 
-#: libgeda/src/struct/s_page.c:287
+#: libgeda/src/struct/s_page.c:291
 #, c-format
 msgid "s_page_delete: Unable to delete backup file %s."
 msgstr "s_page_delete: Αδυναμία διαγραφής αντιγράφου ασφαλείας %s."
 
-#: libgeda/src/struct/s_page.c:516
+#: libgeda/src/struct/s_page.c:518
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Αποθηκεύτηκε [%s]\n"
 
-#: libgeda/src/struct/s_page.c:521
+#: libgeda/src/struct/s_page.c:523
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "ΔΕΝ αποθηκεύτηκε [%s]\n"

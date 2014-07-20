@@ -646,7 +646,7 @@ void x_dialog_symbol_changed      (GschemToplevel* w_current);
 int  x_dialog_validate_attribute  (GtkWindow* parent, char *attribute);
 
 /* Gschem-Generic-Dialogs */
-int   gschem_confirm_dialog            (const char *, gEDA_MessageType context);
+int   gschem_confirm_dialog            (const char *, gEDA_MessageType context, bool thread);
 char *gschem_filesel_dialog            (const char *, const char *, int);
 void  gschem_message_dialog            (const char *, gEDA_MessageType context, const char *title);
 void  gschem_markup_message_dialog     (const char *msg1, const char *msg2,

@@ -959,7 +959,8 @@ static void clear_attributes( void ){
  */
 static void filter_list_set_default( void )
 {
-  int response = gschem_confirm_dialog("Clear attributes and restore default filter list?", GTK_MESSAGE_INFO);
+  char *question = _("Clear attributes and restore default filter list?");
+  int response = gschem_confirm_dialog(question, GTK_MESSAGE_INFO, FALSE);
   if (response == GTK_RESPONSE_YES) {
     clear_attributes();
     load_tree_view_str(GTK_TREE_VIEW (SelectedAttributesView), View2DefaultData);

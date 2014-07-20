@@ -76,13 +76,11 @@ g_action_eval_by_name (GschemToplevel *w_current, const char *action_name)
                                            "eval-action!"));
   /* Build expression to evaluate */
   /* FIXME use SCM_SYMBOL for quote */
-
   s_expr = scm_list_2 (s_eval_action_proc,
                        scm_list_2 (scm_from_utf8_symbol ("quote"),
                                    scm_from_utf8_symbol (action_name)));
   /* Evaluate and get return value */
-  s_result = g_scm_eval_protected (s_expr, SCM_UNDEFINED);
-
+  s_result = g_scm_eval_action (s_expr);
   result = scm_is_true (s_result);
 
   scm_dynwind_end ();

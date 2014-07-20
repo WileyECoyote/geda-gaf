@@ -1965,7 +1965,7 @@ COMMAND ( do_page_revert ) {
   int up;
   int answer;
 
-  answer = gschem_confirm_dialog (_("Really revert page?"), GTK_MESSAGE_QUESTION);
+  answer = gschem_confirm_dialog (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
 
   if (answer == GTK_RESPONSE_YES ) {
 

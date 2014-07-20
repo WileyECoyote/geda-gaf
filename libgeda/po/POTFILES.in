@@ -26,7 +26,7 @@ libgeda/src/geda/geda_object.c
 libgeda/src/geda/geda_page.c
 libgeda/src/geda/geda_toplevel.c
 
-libgeda/src/guile/g_basic.c
+libgeda/src/guile/g_evaluate.c
 libgeda/src/guile/g_rc.c
 libgeda/src/guile/g_rc_parse.c
 libgeda/src/guile/g_register.c
@@ -102,10 +102,9 @@ libgeda/src/struct/s_weakref.c
 libgeda/src/utility/u_basic.c
 libgeda/src/utility/u_color.c
 libgeda/src/utility/u_log.c
+libgeda/src/utility/u_program.c
 
 libgeda/scheme/geda/attrib.scm
-
-
 
 intl/plural.c
 

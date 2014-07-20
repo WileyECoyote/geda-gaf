@@ -221,16 +221,16 @@ SCM g_funcs_msg(SCM scm_msg)
  */
 SCM g_funcs_confirm(SCM scm_msg)
 {
-  int r;
+  int response;
   char *msg;
 
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-msg");
 
   msg = scm_to_utf8_string (scm_msg);
-  r = gschem_confirm_dialog (msg, GTK_MESSAGE_INFO);
+  response = gschem_confirm_dialog (msg, GTK_MESSAGE_INFO, FALSE);
   free(msg);
 
-  if (r)
+  if (response == GTK_RESPONSE_YES)
     return SCM_BOOL_T;
   else
     return SCM_BOOL_F;

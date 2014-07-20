@@ -1,3 +1,13 @@
+2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_check.c Add Macros ADD_ERROR_MESSAGE, ADD_INFO_MESSAGE, and
+          ADD_WARN_MESSAGE
+
+2014-07-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gsch2pcb.c: Replace g_malloc with GEDA_MEM_ALLOC, replace
+          g_strdup_printf with geda_sprintf.
+
 2014-01-16 Wiley E. Hill <wileyhill@gmail.com>
 
         * docs/gsymcheck.dox: Update Doxyfile from 1.4.6 to 1.8.3.1

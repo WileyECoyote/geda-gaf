@@ -139,6 +139,7 @@ static void g_menu_execute(GtkAction *action, void *user_data)
 #endif
     g_action_eval_by_name (w_current, action_name);
     //SCM s_expr = scm_from_utf8_symbol (action_name);
+        //scm_eval (s_expr, scm_interaction_environment ());
     //g_scm_eval_protected (s_expr, SCM_UNDEFINED);
     }
   }

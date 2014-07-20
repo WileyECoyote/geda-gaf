@@ -531,8 +531,7 @@ char *u_basic_breakup_string(char *string, char delimiter, int count)
   int done=FALSE;
   char *return_value;
 
-  g_return_val_if_fail ((string != NULL),
-                        NULL);
+  g_return_val_if_fail ((string != NULL), NULL);
 
   /* skip over any leading white space */
   while(string[i] == ' ' && !string[i]) {
@@ -540,14 +539,14 @@ char *u_basic_breakup_string(char *string, char delimiter, int count)
   }
 
   /* Allocate space for temp string storage (+1 for null character) */
-  return_value = malloc(sizeof(char)*(strlen(string) + 1));
+  return_value = GEDA_MEM_ALLOC(sizeof(char)*(strlen(string) + 1));
 
   while(!done) {
 
     /* oops, ran out of string before we found what we were */
     /* looking for */
     if (i > strlen(string)) {
-      free(return_value);
+      GEDA_FREE(return_value);
       return(NULL);
     }
 

@@ -35,6 +35,13 @@
 #include "../include/prototype.h"
 #include "../include/gettext.h"
 
+/* TODO: Seems like it would just be easier to use g_list length rather than keeping count */
+#define ADD_ERROR_MESSAGE(msg) s_current->error_messages = g_list_append(s_current->error_messages, msg); \
+                               s_current->error_count++;
+#define ADD_INFO_MESSAGE(msg)  s_current->info_messages = g_list_append(s_current->info_messages, message);
+#define ADD_WARN_MESSAGE(msg)  s_current->warning_messages = g_list_append(s_current->warning_messages, message); \
+                               s_current->warning_count++;
+
 int s_check_all(GedaToplevel *pr_current)
 {
   GList *iter;
@@ -206,50 +213,38 @@ void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
         if (s_check_list_has_item(forbidden_attributes, tokens[0])) {
           message = geda_sprintf (_("Found forbidden %s= attribute: [%s=%s]\n"),
                                      tokens[0], tokens[0], tokens[1]);
-          s_current->error_messages =
-          g_list_append(s_current->error_messages, message);
-          s_current->error_count++;
+          ADD_ERROR_MESSAGE(message);
         }
         else if (s_check_list_has_item(obsolete_attributes, tokens[0])) {
           message = geda_sprintf (_("Found obsolete %s= attribute: [%s=%s]\n"),
                                      tokens[0], tokens[0], tokens[1]);
-          s_current->warning_messages =
-          g_list_append(s_current->warning_messages, message);
-          s_current->warning_count++;
+          ADD_WARN_MESSAGE(message);
         }
         else if (s_check_list_has_item(valid_pin_attributes, tokens[0])) {
           if (o_current->attached_to == NULL
-            || o_current->attached_to->type != OBJ_PIN) {
-            message = geda_sprintf (_("Found misplaced pin attribute:"
-            " [%s=%s]\n"), tokens[0], tokens[1]);
-          s_current->error_messages =
-          g_list_append(s_current->error_messages, message);
-          s_current->error_count++;
+            || o_current->attached_to->type != OBJ_PIN)
+          {
+            message = geda_sprintf (_("Found misplaced pin attribute: [%s=%s]\n"), tokens[0], tokens[1]);
+            ADD_ERROR_MESSAGE(message);
             }
         }
         else if (!s_check_list_has_item(valid_attributes, tokens[0])) {
           message = geda_sprintf (_("Found unknown %s= attribute: [%s=%s]\n"),
                                      tokens[0], tokens[0], tokens[1]);
-          s_current->warning_messages =
-          g_list_append(s_current->warning_messages, message);
-          s_current->warning_count++;
+          ADD_WARN_MESSAGE(message);
         }
         else if (o_current->attached_to != NULL) {
           message = geda_sprintf (_("Found incorrectly attached attribute: "
           "[%s=%s]\n"),
           tokens[0], tokens[1]);
-          s_current->error_messages =
-          g_list_append(s_current->error_messages, message);
-          s_current->error_count++;
+          ADD_ERROR_MESSAGE(message);
         }
       } else { /* object is not an attribute */
         if (o_current->show_name_value != SHOW_NAME_VALUE) {
           message = geda_sprintf (_("Found a simple text object with only SHOW_NAME"
           " or SHOW_VALUE set [%s]\n"),
           o_current->text->string);
-          s_current->warning_messages =
-          g_list_append(s_current->warning_messages, message);
-          s_current->warning_count++;
+          ADD_WARN_MESSAGE(message);
         }
       }
       g_strfreev(tokens);
@@ -310,11 +305,8 @@ s_check_text (const GList *obj_list, SYMCHECK *s_current)
         default:
           if (escape == TRUE) {
             message = geda_sprintf (_("Found text with a '\\' in it: consider"
-            " to escape it with '\\\\' [%s]\n"),
-            text_string);
-            s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                        message);
-            s_current->warning_count++;
+            " to escape it with '\\\\' [%s]\n"), text_string);
+            ADD_WARN_MESSAGE(message);
             escape = FALSE;
           }
       }
@@ -324,18 +316,14 @@ s_check_text (const GList *obj_list, SYMCHECK *s_current)
       message = geda_sprintf (_("Found text with a trailing '\': consider to "
       "escape it with '\\\\' [%s]\n"),
       text_string);
-      s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                  message);
-      s_current->warning_count++;
+      ADD_WARN_MESSAGE(message);
     }
 
     if (overbar_started == TRUE) {
       message = geda_sprintf (_("Found text with unbalanced overbar "
       "markers '\\_' in it' [%s]\n"),
       text_string);
-      s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                  message);
-      s_current->warning_count++;
+      ADD_WARN_MESSAGE(message);
     }
   }
 }
@@ -365,31 +353,27 @@ s_check_device (const GList *obj_list, SYMCHECK *s_current)
   if (!temp) {
     /* did not find device= attribute */
     message = geda_strdup (_("Missing device= attribute\n"));
-    s_current->error_messages = g_list_append(s_current->error_messages,
-                                              message);
+    ADD_ERROR_MESSAGE(message);
     s_current->missing_device_attrib=TRUE;
-    s_current->error_count++;
-  } else {
+  }
+  else {
     /* found device= attribute */
     s_current->missing_device_attrib=FALSE;
     s_current->device_attribute = geda_strdup (temp);
     message = geda_sprintf (_("Found device=%s\n"), temp);
-    s_current->info_messages = g_list_append(s_current->info_messages,
-                                             message);
+    ADD_INFO_MESSAGE(message);
   }
 
   /* check for device = none for graphical symbols */
   if (temp && s_current->graphical_symbol && (strcmp(temp, "none") == 0)) {
     s_current->device_attribute_incorrect=FALSE;
     message = geda_strdup (_("Found graphical symbol, device=none\n"));
-    s_current->info_messages = g_list_append(s_current->info_messages,
-                                             message);
-  } else if (s_current->graphical_symbol) {
+    ADD_INFO_MESSAGE(message);
+  }
+  else if (s_current->graphical_symbol) {
     s_current->device_attribute_incorrect=TRUE;
     message = geda_strdup (_("Found graphical symbol, device= should be set to none\n"));
-    s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                message);
-    s_current->warning_count++;
+    ADD_WARN_MESSAGE(message);
   }
 
   GEDA_FREE(temp);
@@ -427,36 +411,29 @@ s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
       if (!string)
       {
         message = geda_strdup (_("Missing pinseq= attribute\n"));
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
+        ADD_ERROR_MESSAGE(message);
         missing_pinseq_attrib_sum++;
-        s_current->error_count++;
       }
 
       while (string)
       {
 
         message = geda_sprintf (_("Found pinseq=%s attribute\n"), string);
-        s_current->info_messages = g_list_append(s_current->info_messages,
-                                                 message);
+        ADD_INFO_MESSAGE(message);
 
         number = geda_strdup (string);
 
         if (strcmp(number, "0") == 0) {
           message = geda_strdup (_("Found pinseq=0 attribute\n"));
-          s_current->error_messages = g_list_append(s_current->error_messages,
-                                                    message);
-          s_current->error_count++;
+          ADD_ERROR_MESSAGE(message);
         }
 
         if (found_first) {
           message = geda_sprintf (
             _("Found multiple pinseq=%s attributes on one pin\n"),
               string);
-            s_current->error_messages = g_list_append(s_current->error_messages,
-                                                      message);
+            ADD_ERROR_MESSAGE(message);
             multiple_pinseq_attrib_sum++;
-            s_current->error_count++;
         }
 
         GEDA_FREE(string);
@@ -501,11 +478,8 @@ s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
     if (found > 1)
     {
       message = geda_sprintf (
-        _("Found duplicate pinseq=%s attribute in the symbol\n"),
-          string);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        _("Found duplicate pinseq=%s attribute in the symbol\n"), string);
+        ADD_ERROR_MESSAGE(message);
         s_current->duplicate_pinseq_attrib++;
     }
 
@@ -519,9 +493,7 @@ s_check_pinseq (const GList *obj_list, SYMCHECK *s_current)
     ptr1 = g_list_next(ptr1);
   }
   g_list_free(found_numbers);
-
 }
-
 
 void
 s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
@@ -543,27 +515,21 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   char *net = NULL;
 
   /* collect all net pins */
-  for (counter = 0;
-       (net = o_attrib_search_floating_attribs_by_name (obj_list, "net", counter)) != NULL;
-  counter++) {
+  for (counter = 0; (net = o_attrib_search_floating_attribs_by_name (obj_list, "net", counter)) != NULL; counter++)
+  {
     message = geda_sprintf (_("Found net=%s attribute\n"), net);
-    s_current->info_messages = g_list_append(s_current->info_messages,
-                                             message);
+    ADD_INFO_MESSAGE(message);
 
     net_tokens = g_strsplit(net,":", -1);
     /* length of net tokens have to be 2 */
     if (net_tokens[1] == NULL) {
       message = geda_sprintf (_("Bad net= attribute [net=%s]\n"), net);
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      ADD_ERROR_MESSAGE(message);
       g_strfreev(net_tokens);
       continue;
     } else if (net_tokens[2] != NULL) { /* more than 2 tokens */
       message = geda_sprintf (_("Bad net= attribute [net=%s]\n"), net);
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      ADD_ERROR_MESSAGE(message);
       g_strfreev(net_tokens);
       continue;
     }
@@ -573,11 +539,11 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
     for (i = 0; pin_tokens[i] != NULL; i++) {
       net_numbers = g_list_append(net_numbers, geda_strdup(pin_tokens[i]));
       message = geda_sprintf (_("Found pin number %s in net attribute\n"),
-                                 pin_tokens[i]);
-      s_current->info_messages = g_list_append(s_current->info_messages,
-                                               message);
+                              pin_tokens[i]);
+      ADD_INFO_MESSAGE(message);
       s_current->numnetpins++;
     }
+
     GEDA_FREE(net);
     g_strfreev(net_tokens);
     g_strfreev(pin_tokens);
@@ -586,26 +552,22 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   /* check for duplicate net pin numbers */
   net_numbers = g_list_sort(net_numbers, (GCompareFunc)strcmp);
 
-  for (cur = net_numbers;
-       cur != NULL && g_list_next(cur) != NULL;
-  cur = g_list_next(cur)) {
+  for (cur = net_numbers; cur != NULL && g_list_next(cur) != NULL; NEXT(cur)) {
+
     if (strcmp((char*)cur->data, (char*) cur->next->data) == 0) {
       message = geda_sprintf (_("Found duplicate pin in net= "
       "attributes [%s]\n"), (char*) cur->data);
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      ADD_ERROR_MESSAGE(message);
     }
     if (strcmp((char*) cur->data, "0") == 0) {
       message = geda_strdup ("Found pinnumber 0 in net= attribute\n");
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      ADD_ERROR_MESSAGE(message);
     }
   }
 
   /* collect all pin numbers */
-  for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+  for (iter = obj_list; iter != NULL; NEXT(iter)) {
+
     Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
@@ -614,39 +576,31 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
       missing_pinnumber_attrib_sum = 0;
       multiple_pinnumber_attrib_sum = 0;
 
-      for (counter = 0;
-           (string = o_attrib_search_object_attribs_by_name (o_current, "pinnumber",
-                                                             counter)) != NULL;
-                                                             counter++) {
+      for (counter = 0; (string = o_attrib_search_object_attribs_by_name (o_current, "pinnumber", counter)) != NULL; counter++)
+      {
 
         message = geda_strdup (_("Found pinnumber 0 in net= attribute\n"));
-      s_current->info_messages = g_list_append(s_current->info_messages,
-                                               message);
+        ADD_INFO_MESSAGE(message);
 
-      if (counter == 0) { /* collect the first appearance */
-        pin_numbers = g_list_append(pin_numbers, string);
+        if (counter == 0) { /* collect the first appearance */
+          pin_numbers = g_list_append(pin_numbers, string);
+        }
+        if (counter >= 1) {
+          message = geda_sprintf (_("Found multiple pinnumber=%s attributes on one pin\n"), string);
+          ADD_ERROR_MESSAGE(message);
+          multiple_pinnumber_attrib_sum++;
+          GEDA_FREE(string);
+        }
       }
-      if (counter >= 1) {
-        message = geda_sprintf (_("Found multiple pinnumber=%s attributes"
-        " on one pin\n"), string);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        multiple_pinnumber_attrib_sum++;
-        s_current->error_count++;
-        GEDA_FREE(string);
+
+      if (counter == 0) {
+        message = geda_strdup (_("Missing pinnumber= attribute\n"));
+        ADD_ERROR_MESSAGE(message);
+        missing_pinnumber_attrib_sum++;
       }
-                                                             }
 
-                                                             if (counter == 0) {
-                                                               message = geda_strdup (_("Missing pinnumber= attribute\n"));
-                                                               s_current->error_messages = g_list_append(s_current->error_messages,
-                                                                                                         message);
-                                                               missing_pinnumber_attrib_sum++;
-                                                               s_current->error_count++;
-                                                             }
-
-                                                             s_current->missing_pinnumber_attrib += missing_pinnumber_attrib_sum;
-                                                             s_current->multiple_pinnumber_attrib += multiple_pinnumber_attrib_sum;
+      s_current->missing_pinnumber_attrib += missing_pinnumber_attrib_sum;
+      s_current->multiple_pinnumber_attrib += multiple_pinnumber_attrib_sum;
     }
   }
 
@@ -656,18 +610,13 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
        cur != NULL && g_list_next(cur) != NULL;
   cur = g_list_next(cur)) {
     if (strcmp((char*)cur->data, (char*) cur->next->data) == 0) {
-      message = geda_sprintf (_("Found duplicate pinnumber=%s attribute "
-      "in the symbol\n"), (char*) cur->data);
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      message = geda_sprintf (_("Found duplicate pinnumber=%s attribute in the symbol\n"), (char*) cur->data);
+      ADD_ERROR_MESSAGE(message);
       s_current->duplicate_pinnumber_attrib++;
     }
     if (strcmp((char*) cur->data, "0") == 0) {
       message = geda_strdup (_("Found pinnumber=0 attribute\n"));
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      ADD_ERROR_MESSAGE(message);
     }
   }
 
@@ -697,10 +646,8 @@ s_check_pinnumber (const GList *obj_list, SYMCHECK *s_current)
   }
   /* FIXME: this is not correct if a pinnumber is defined as pinnumber and
    *     inside a net. We have to calculate the union set */
-  message = geda_sprintf (_("Found %d pins inside symbol\n"),
-                             s_current->numpins + s_current->numnetpins);
-  s_current->info_messages = g_list_append(s_current->info_messages,
-                                           message);
+  message = geda_sprintf (_("Found %d pins inside symbol\n"), s_current->numpins + s_current->numnetpins);
+  ADD_INFO_MESSAGE(message);
 
   g_list_foreach(pin_numbers, (GFunc) g_free, NULL);
   g_list_free(pin_numbers);
@@ -725,33 +672,23 @@ s_check_pin_ongrid (const GList *obj_list, SYMCHECK *s_current)
       y2 = o_current->line->y[1];
 
       if (x1 % 100 != 0 || y1 % 100 != 0) {
-        message = geda_sprintf(_("Found offgrid pin at location"
-        " (x1=%d,y1=%d)\n"), x1, y1);
+        message = geda_sprintf(_("Found offgrid pin at location (x1=%d,y1=%d)\n"), x1, y1);
         /* error if it is the whichend, warning if not */
         if (o_current->pin->whichend == 0) {
-          s_current->error_messages = g_list_append(s_current->error_messages,
-                                                    message);
-          s_current->error_count++;
+          ADD_ERROR_MESSAGE(message);
         }
         else {
-          s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                      message);
-          s_current->warning_count++;
+          ADD_WARN_MESSAGE(message);
         }
       }
       if (x2 % 100 != 0 || y2 % 100 != 0) {
-        message = geda_sprintf(_("Found offgrid pin at location"
-        " (x2=%d,y2=%d)\n"), x2, y2);
+        message = geda_sprintf(_("Found offgrid pin at location (x2=%d,y2=%d)\n"), x2, y2);
         /* error when whichend, warning if not */
         if (o_current->pin->whichend != 0) {
-          s_current->error_messages = g_list_append(s_current->error_messages,
-                                                    message);
-          s_current->error_count++;
+          ADD_ERROR_MESSAGE(message);
         }
         else {
-          s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                      message);
-          s_current->warning_count++;
+          ADD_WARN_MESSAGE(message);
         }
       }
     }
@@ -795,50 +732,43 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
   GEDA_FREE(value);
 
   message = geda_sprintf (_("Found numslots=%s attribute\n"), numslots_str);
-  s_current->info_messages = g_list_append(s_current->info_messages,
-                                           message);
+
+  ADD_INFO_MESSAGE(message);
 
   if (s_current->numslots == 0) {
     message = geda_strdup (_("numslots set to zero, symbol does not have slots\n"));
-    s_current->info_messages = g_list_append(s_current->info_messages, message);
+    ADD_INFO_MESSAGE(message);
     return;
   }
 
-
-  pinlist = (char**)GEDA_MEM_ALLOC(sizeof(*pinlist) * s_current->numslots);
+  pinlist = (char**)GEDA_MEM_ALLOC0(sizeof(*pinlist) * s_current->numslots);
 
   i = 0;
   /* get the slotdef attribute */
   slotdef = o_attrib_search_floating_attribs_by_name (obj_list, "slotdef", 0);
+
   while ((slotdef != NULL) && (!error_parsing))
   {
-
     if (i > s_current->numslots-1) {
 
       sprintf(tempstr1, "%d", i+1); /* i starts at zero */
       message = geda_sprintf (
         _("Found %s slotdef= attributes.  Expecting %s slotdef= attributes\n"),
           tempstr1, numslots_str);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-
-        s_current->error_count++;
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
     }
 
     message = geda_sprintf (_("Found slotdef=%s attribute\n"), slotdef);
-    s_current->info_messages = g_list_append(s_current->info_messages,
-                                             message);
+    ADD_INFO_MESSAGE(message);
 
     slotnum = u_basic_breakup_string(slotdef, ':', 0);
+
     if (!slotnum)
     {
       message = geda_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"),
-          slotdef);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
         error_parsing = TRUE;
         continue;
@@ -848,9 +778,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
       message = geda_sprintf (
         _("Found a zero slot in slotdef=%s\n"),
           slotdef);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        ADD_ERROR_MESSAGE(message);
     }
 
     slot = atoi(slotnum);
@@ -862,10 +790,7 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
       message = geda_sprintf (
         _("Slot %s is larger then the maximum number (%s) of slots\n"),
           tempstr1, numslots_str);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-
-        s_current->error_count++;
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
     }
 
@@ -873,23 +798,18 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     pins = strchr(slotdef, ':');
     if (!pins) {
       message = geda_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"),
-          slotdef);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
         error_parsing = TRUE;
         continue;
     }
+
     pins++;  /* get past that : */
     if (!pins) {
       message = geda_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"),
-          slotdef);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
         error_parsing = TRUE;
         continue;
@@ -897,26 +817,22 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
     if (*pins == '\0') {
       message = geda_sprintf (
-        _("Invalid slotdef=%s attributes, not continuing\n"),
-          slotdef);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        _("Invalid slotdef=%s attributes, not continuing\n"), slotdef);
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
         error_parsing = TRUE;
         continue;
     }
 
     if ((slot > 0) && (slot <= s_current->numslots)) {
+
       if (pinlist[slot-1]) {
         message = geda_sprintf (
-          _("Duplicate slot number in slotdef=%s\n"),
-                                     slotdef);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+          _("Duplicate slot number in slotdef=%s\n"), slotdef);
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
-      } else {
+      }
+      else {
         pinlist[slot-1] = geda_sprintf(",%s,", pins);
       }
     }
@@ -932,22 +848,16 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
       if (!temp && j < s_current->numpins) {
         message = geda_sprintf (
-          _("Not enough pins in slotdef=%s\n"),
-            slotdef);
-          s_current->error_messages = g_list_append(s_current->error_messages,
-                                                    message);
-          s_current->error_count++;
+          _("Not enough pins in slotdef=%s\n"), slotdef);
+          ADD_ERROR_MESSAGE(message);
           s_current->slotting_errors++;
           break;
       }
 
       if (j > s_current->numpins) {
         message = geda_sprintf (
-          _("Too many pins in slotdef=%s\n"),
-            slotdef);
-          s_current->error_messages = g_list_append(s_current->error_messages,
-                                                    message);
-          s_current->error_count++;
+          _("Too many pins in slotdef=%s\n"), slotdef);
+          ADD_ERROR_MESSAGE(message);
           s_current->slotting_errors++;
           GEDA_FREE(temp);
           temp = NULL;
@@ -956,11 +866,8 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
       if (temp && strcmp(temp, "0") == 0) {
         message = geda_sprintf (
-          _("Found a zero pin in slotdef=%s\n"),
-            slotdef);
-          s_current->error_messages = g_list_append(s_current->error_messages,
-                                                    message);
-          s_current->error_count++;
+          _("Found a zero pin in slotdef=%s\n"), slotdef);
+          ADD_ERROR_MESSAGE(message);
       }
 
       j++;
@@ -977,13 +884,11 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
 
   if (!slotdef && i < s_current->numslots) {
     message = geda_sprintf (
-      _("Missing slotdef= (there should be %s slotdef= attributes)\n"),
-        numslots_str);
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
-      s_current->error_count++;
+      _("Missing slotdef= (there should be %s slotdef= attributes)\n"), numslots_str);
+      ADD_ERROR_MESSAGE(message);
       s_current->slotting_errors++;
-  } else {
+  }
+  else {
 
     /* Validate that pinslist does not contain a null entry.  If any entry */
     /* is null, that means the slotdef= attribute was malformed to start */
@@ -997,17 +902,21 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
     if (errors_found) {
       message = geda_sprintf(
         _("Malformed slotdef= (the format is #:#,#,#,...)\n"));
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        ADD_ERROR_MESSAGE(message);
         s_current->slotting_errors++;
-    } else {
-      /* Now compare each pin with the rest */
+    }
+    else {
+
+      /* Compare each pin with the rest */
       s_current->numslotpins = 0;
+
       for (i = 0; i < s_current->numslots; i++) {
+
         for (n = 1; n <= s_current->numpins; n++) {
-          /* Get the number of one pin */
+
+         /* Get the number of one pin */
           pin = u_basic_breakup_string(pinlist[i], ',', n);
+
           if (pin && *pin) {
             match = FALSE;
             for (j = i - 1; j >= 0 && !match; j--) {
@@ -1028,10 +937,10 @@ s_check_slotdef (const GList *obj_list, SYMCHECK *s_current)
           }
         }
       }
+
       message = geda_sprintf (_("Found %d distinct pins in slots\n"),
                                    s_current->numslotpins);
-      s_current->info_messages = g_list_append(s_current->info_messages,
-                                               message);
+      ADD_INFO_MESSAGE(message);
     }
   }
 
@@ -1106,12 +1015,8 @@ s_check_oldpin (const GList *obj_list, SYMCHECK *s_current)
           message = geda_sprintf (
             _("Found old pin#=# attribute: %s\n"),
               o_current->text->string);
-            s_current->error_messages = g_list_append(s_current->error_messages,
-                                                      message);
-
+            ADD_ERROR_MESSAGE(message);
             s_current->found_oldpin_attrib += found_old;
-            s_current->error_count++;
-
         }
       }
     }
@@ -1178,11 +1083,8 @@ s_check_oldslot (const GList *obj_list, SYMCHECK *s_current)
           message = geda_sprintf (
             _("Found old slot#=# attribute: %s\n"),
               o_current->text->string);
-            s_current->error_messages = g_list_append(s_current->error_messages,
-                                                      message);
+            ADD_ERROR_MESSAGE(message);
             s_current->found_oldslot_attrib += found_old;
-            s_current->error_count++;
-
         }
       }
     }
@@ -1203,20 +1105,16 @@ s_check_nets_buses (const GList *obj_list, SYMCHECK *s_current)
     {
       message =
       geda_strdup (_("Found a net inside a symbol\n"));
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
+      ADD_ERROR_MESSAGE(message);
       s_current->found_net++;
-      s_current->error_count++;
     }
 
     if (o_current->type == OBJ_BUS)
     {
       message =
       geda_strdup (_("Found a bus inside a symbol\n"));
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
+      ADD_ERROR_MESSAGE(message);
       s_current->found_bus++;
-      s_current->error_count++;
     }
 
   }
@@ -1234,10 +1132,8 @@ s_check_connections (const GList *obj_list, SYMCHECK *s_current)
     if (o_current->conn_list) {
       message =
       geda_strdup (_("Found a connection inside a symbol\n"));
-      s_current->error_messages = g_list_append(s_current->error_messages,
-                                                message);
+      ADD_ERROR_MESSAGE(message);
       s_current->found_connection++;
-      s_current->error_count++;
     }
   }
 }
@@ -1260,9 +1156,7 @@ s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current)
     message = geda_sprintf (
       _("Missing %s= attribute\n"),
         attribute);
-      s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                  message);
-      s_current->warning_count++;
+      ADD_WARN_MESSAGE(message);
   }
 
   while (string)
@@ -1272,19 +1166,15 @@ s_check_missing_attribute(Object *object, char *attribute, SYMCHECK *s_current)
       message = geda_sprintf (
         _("Found multiple %s=%s attributes on one pin\n"),
           attribute, string);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
+        ADD_ERROR_MESSAGE(message);
     }
 
     /* this is the first attribute found */
     if (!found_first) {
 
       message = geda_sprintf (
-        _("Found %s=%s attribute\n"),
-          attribute, string);
-        s_current->info_messages = g_list_append(s_current->info_messages,
-                                                 message);
+        _("Found %s=%s attribute\n"), attribute, string);
+        ADD_INFO_MESSAGE(message);
         found_first=TRUE;
     }
 
@@ -1315,19 +1205,15 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
     {
       if (strstr(o_current->text->string, "footprint=")) {
         message = geda_sprintf (
-          _("Found %s attribute\n"),
-            o_current->text->string);
-          s_current->info_messages = g_list_append(s_current->info_messages,
-                                                   message);
+          _("Found %s attribute\n"), o_current->text->string);
+          ADD_INFO_MESSAGE(message);;
           s_current->found_footprint++;
       }
 
       if (strstr(o_current->text->string, "refdes=")) {
         message = geda_sprintf (
-          _("Found %s attribute\n"),
-            o_current->text->string);
-          s_current->info_messages = g_list_append(s_current->info_messages,
-                                                   message);
+          _("Found %s attribute\n"), o_current->text->string);
+          ADD_INFO_MESSAGE(message);
           s_current->found_refdes++;
       }
 
@@ -1336,32 +1222,22 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 
   if (s_current->found_footprint == 0) {
     message = geda_strdup (_("Missing footprint= attribute\n"));
-    s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                message);
-    s_current->warning_count++;
+    ADD_WARN_MESSAGE(message);
   }
 
   if (s_current->found_footprint > 1) {
     message = geda_strdup (_("Multiple footprint= attributes found\n"));
-    s_current->error_messages = g_list_append(s_current->error_messages,
-                                              message);
-    s_current->error_count++;
-
+    ADD_ERROR_MESSAGE(message);
   }
 
   if (s_current->found_refdes == 0) {
     message = geda_strdup (_("Missing refdes= attribute\n"));
-    s_current->warning_messages = g_list_append(s_current->warning_messages,
-                                                message);
-    s_current->warning_count++;
-
+    ADD_WARN_MESSAGE(message);
   }
 
   if (s_current->found_refdes > 1) {
     message = geda_strdup (_("Multiple refdes= attributes found\n"));
-    s_current->error_messages = g_list_append(s_current->error_messages,
-                                              message);
-    s_current->error_count++;
+    ADD_ERROR_MESSAGE(message);
   }
 
 }
@@ -1381,23 +1257,17 @@ void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 
     if (o_current->type == OBJ_PIN) {
 
-      for (counter = 0;
-           (pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype",
-                                                              counter)) != NULL;
-                                                              counter++) {
-
+      for (counter = 0; (pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter)) != NULL; counter++)
+      {
         message = geda_sprintf(_("Found pintype=%s attribute\n"), pintype);
-      s_current->info_messages = g_list_append(s_current->info_messages,
-                                               message);
+        ADD_INFO_MESSAGE(message);
 
-      if ( ! s_check_list_has_item(pintypes, pintype)) {
-        message = geda_sprintf (_("Invalid pintype=%s attribute\n"), pintype);
-        s_current->error_messages = g_list_append(s_current->error_messages,
-                                                  message);
-        s_current->error_count++;
-      }
+        if ( ! s_check_list_has_item(pintypes, pintype)) {
+          message = geda_sprintf (_("Invalid pintype=%s attribute\n"), pintype);
+          ADD_ERROR_MESSAGE(message);
+        }
 
-      GEDA_FREE(pintype);
+        GEDA_FREE(pintype);
       }
     }
   }
