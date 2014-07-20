@@ -132,6 +132,8 @@
 #endif
 
 #include <time.h>
+#include <sys/types.h>
+#include <dirent.h>
 
 #include "libgeda_priv.h"
 #include <libgeda/g_struct.h>
@@ -517,7 +519,7 @@ static char *get_unique_source_name (const char *name)
   do {
     GEDA_FREE (newname);
     i++;
-    newname = g_strdup_printf ("%s-%i", name, i);
+    newname = geda_sprintf ("%s-%i", name, i);
   } while (s_clib_get_source_by_name (newname) != NULL);
 
   u_log_message (_("Library name [%s] already in use.  Using [%s].\n"),
@@ -596,12 +598,12 @@ bool s_clib_source_path_exist (const char *path)
 static void refresh_directory (CLibSource *source)
 {
   CLibSymbol *symbol;
-  GDir *dir;
-  const char *entry;
-  char *low_entry;
-  char *fullpath;
-  gboolean isfile;
-  GError *e = NULL;
+  const char *suffix;
+        char *tail;
+        char  tmpname[MAX_PATH];
+
+  DIR    *dirp;
+  struct dirent *entry;
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == CLIB_DIR);
@@ -612,48 +614,55 @@ static void refresh_directory (CLibSource *source)
   source->symbols = NULL;
 
   /* Open the directory for reading. */
-  dir = g_dir_open (source->directory, 0, &e);
+  dirp = opendir (source->directory);
 
-  if (e != NULL) {
-    u_log_message (_("Failed to open directory [%s]: %s\n"),
-                   source->directory, e->message);
-    g_error_free (e);
+  if (dirp != NULL) {
+
+    strcpy(tmpname, source->directory);
+    tail = &tmpname[0];
+    while (*tail != '\0') tail++;
+           *tail++ = DIR_SEPARATOR;
+
+    /* get all the files within directory */
+    while ((entry = readdir (dirp)) != NULL)
+    {
+      if (entry->d_name[0] == '.') {
+        continue;
+      }
+
+      /* tag filename to end of directory */
+      strcpy(tail, entry->d_name);
+
+      /* skip subdirectories (for now) */
+      if (g_file_test (&tmpname[0], G_FILE_TEST_IS_REGULAR)) {
+
+        suffix = f_get_filename_ext(entry->d_name);
+        if ( suffix && stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0) {
+
+          /* skip filenames that we already know about. */
+          if (source_has_symbol (source, entry->d_name) == NULL) {
+
+          /* Create and add new symbol record */
+          symbol         = g_new0 (CLibSymbol, 1);
+          symbol->source = source;
+          symbol->name   = geda_strdup(entry->d_name);
+
+          /* Prepend is faster, order does not matter. */
+          source->symbols = g_list_prepend (source->symbols, symbol);
+          }
+          else {
+            u_log_message(_("Duplicate symbol: <%s>, location <%s>\n"),
+                           entry->d_name, source->directory);
+          }
+        }
+      }
+    }
+    closedir (dirp);
+  }
+  else {
+    u_log_message (_("Failed to open [%s]: %s\n"), source->directory, strerror(errno));
     return;
   }
-
-  while ((entry = g_dir_read_name (dir)) != NULL) {
-    /* skip ".", ".." & hidden files */
-    if (entry[0] == '.') continue;
-
-    /* skip subdirectories (for now) */
-    fullpath = g_build_filename (source->directory, entry, NULL);
-    isfile = g_file_test (fullpath, G_FILE_TEST_IS_REGULAR);
-    GEDA_FREE (fullpath);
-    if (!isfile) continue;
-
-    /* skip filenames that we already know about. */
-    if (source_has_symbol (source, entry) != NULL) continue;
-
-    /* skip filenames which don't have the right suffix. */
-    low_entry = g_utf8_strdown (entry, -1);
-    if (!g_str_has_suffix (low_entry, SYMBOL_FILE_DOT_SUFFIX)) {
-      GEDA_FREE (low_entry);
-      continue;
-    }
-    GEDA_FREE (low_entry);
-
-    /* Create and add new symbol record */
-    symbol = g_new0 (CLibSymbol, 1);
-    symbol->source = source;
-    symbol->name = geda_strdup(entry);
-
-    /* Prepend because it's faster and it doesn't matter what order we
-     * add them. */
-    source->symbols = g_list_prepend (source->symbols, symbol);
-  }
-
-  entry = NULL;
-  g_dir_close (dir);
 
   /* Now sort the list of symbols by name. */
   source->symbols = g_list_sort (source->symbols,
@@ -706,12 +715,11 @@ static void refresh_command (CLibSource *source)
       continue;
     }
 
-    symbol = g_new0 (CLibSymbol, 1);
+    symbol         = g_new0 (CLibSymbol, 1);
     symbol->source = source;
-    symbol->name = name;
+    symbol->name   = name;
 
-    /* Prepend because it's faster and it doesn't matter what order we
-     * add them. */
+    /* Prepend is faster, order does not matter. */
     source->symbols = g_list_prepend (source->symbols, symbol);
   }
 
@@ -735,10 +743,10 @@ static void refresh_command (CLibSource *source)
  */
 static void refresh_scm (CLibSource *source)
 {
-  SCM symlist;
-  SCM symname;
   CLibSymbol *symbol;
-  char *tmp;
+  char       *tmp;
+  SCM         symlist;
+  SCM         symname;
 
   g_return_if_fail (source != NULL);
   g_return_if_fail (source->type == CLIB_SCM);
@@ -761,18 +769,17 @@ static void refresh_scm (CLibSource *source)
     if (!scm_is_string (symname)) {
       u_log_message (_("Non-string symbol name while scanning library [%s]\n"),
                      source->name);
-    } else {
-      symbol = g_new0 (CLibSymbol, 1);
+    }
+    else {
+      symbol         = g_new0 (CLibSymbol, 1);
       symbol->source = source;
 
-      /* Need to make sure that the correct free() function is called
-       * on strings allocated by Guile. */
-      tmp = scm_to_utf8_string (symname);
-      symbol->name = geda_strdup(tmp);
+      /* Use free function on strings allocated by Guile. */
+      tmp            = scm_to_utf8_string (symname);
+      symbol->name   = geda_strdup(tmp);
       free (tmp);
 
-      /* Prepend because it's faster and it doesn't matter what order we
-       * add them. */
+      /* Prepend is faster, order does not matter. */
       source->symbols = g_list_prepend (source->symbols, symbol);
     }
 
@@ -798,16 +805,13 @@ static void refresh_scm (CLibSource *source)
  */
 void s_clib_refresh ()
 {
-  GList *sourcelist;
   CLibSource *source;
+  GList      *sourcelist;
 
-  for (sourcelist = clib_sources;
-       sourcelist != NULL;
-       sourcelist = g_list_next(sourcelist)) {
-
+  for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist))
+  {
     source = (CLibSource *) sourcelist->data;
-    switch (source->type)
-      {
+    switch (source->type) {
       case CLIB_DIR:
         refresh_directory(source);
         break;
@@ -818,10 +822,9 @@ void s_clib_refresh ()
         refresh_scm (source);
         break;
       default:
-        g_critical("s_clib_refresh: source %p has bad source type %i\n",
-                   source, (int) source->type);
+        BUG_IMSG("source has bad source type %i\n", source->type);
         break;
-      }
+    }
   }
 }
 /*! \brief Get a named component source.
@@ -835,16 +838,22 @@ void s_clib_refresh ()
  */
 const CLibSource *s_clib_get_source_by_name (const char *name)
 {
-  GList *sourcelist;
   CLibSource *source;
+  GList      *sourcelist;
 
-  for (sourcelist = clib_sources;
-       sourcelist != NULL;
-       sourcelist = g_list_next(sourcelist)) {
+  g_return_val_if_fail (name != NULL, NULL);
 
+  for (sourcelist = clib_sources; sourcelist != NULL; NEXT(sourcelist))
+  {
     source = (CLibSource *) sourcelist->data;
-    if (strcmp (source->name, name) == 0) {
-      return source;
+
+    if (name) {
+      if (strcmp (source->name, name) == 0) {
+        return source;
+      }
+    }
+    else {
+      BUG_MSG("NULL name in source list\n");
     }
   }
 
@@ -916,16 +925,16 @@ const CLibSource *s_clib_add_directory (const char *directory,
   /* get 3rd level dir */
   ptr_dir3 =  basename (pbuff);
 
-  if ( strcmp( "sym", ptr_dir3 ) == 0) {
+  if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir3 ) == 0) {
     group = geda_strdup(ptr_dir2);
   }
   else
-    if ( strcmp( "sym", ptr_dir2 ) == 0) {
+    if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir2 ) == 0) {
       group = geda_strdup(ptr_dir1);
     }
     else
-      if ( strcmp( "sym", ptr_dir1 ) == 0) {
-         if ( name  != NULL )  {
+      if ( strcmp( SYMBOL_FILE_SUFFIX, ptr_dir1 ) == 0) {
+         if ( name != NULL )  {
            group = geda_strdup(basename(name));
          }
          else
@@ -937,7 +946,7 @@ const CLibSource *s_clib_add_directory (const char *directory,
   if (name != NULL) {
     int count = 0;
     for( str = name; *str != '\0'; str++) {
-      if(*str == '/') ++count;
+      if (*str == DIR_SEPARATOR) ++count;
     }
     switch ( count ) {
       case 0:
@@ -945,9 +954,9 @@ const CLibSource *s_clib_add_directory (const char *directory,
         break;
       case 1:
       default:
-        str = strstr(name, "/");
+        str      = strstr(name, DIR_SEPARATOR_S);
         category = g_strndup(name, str - name);
-        tmpstr = geda_strdup (str + 1);
+        tmpstr   = geda_strdup (str + 1);
         break;
     }
   }
@@ -966,12 +975,12 @@ const CLibSource *s_clib_add_directory (const char *directory,
   }
   unique_name = get_unique_source_name (tmpstr);
 */
-  source = g_new0 (CLibSource, 1);
-  source->type = CLIB_DIR;
+  source            = g_new0 (CLibSource, 1);
+  source->type      = CLIB_DIR;
   source->directory = geda_strdup (directory);
-  source->name =  tmpstr;
-  source->category = category;
-  source->group = group;
+  source->name      = tmpstr;
+  source->category  = category;
+  source->group     = group;
 
   /* GEDA_FREE (tmpstr); */
 
@@ -1018,12 +1027,12 @@ const CLibSource *s_clib_add_command (const char *list_cmd,
                    unique_name);
   }
 
-  source = g_new0 (CLibSource, 1);
-  source->type = CLIB_CMD;
-  source->name = unique_name;
+  source           = g_new0 (CLibSource, 1);
+  source->type     = CLIB_CMD;
+  source->name     = unique_name;
 
   source->list_cmd = geda_strdup (list_cmd);
-  source->get_cmd = geda_strdup (get_cmd);
+  source->get_cmd  = geda_strdup (get_cmd);
 
   refresh_command (source);
 
@@ -1059,22 +1068,23 @@ const CLibSource *s_clib_add_scm (SCM listfunc, SCM getfunc, const char *name)
 
   unique_name = get_unique_source_name (name);
 
-  if (scm_is_false (scm_procedure_p (listfunc))
-    && scm_is_false (scm_procedure_p (getfunc))) {
+  if (scm_is_false (scm_procedure_p (listfunc)) &&
+      scm_is_false (scm_procedure_p (getfunc)))
+  {
     u_log_message (_("Cannot add Scheme-library [%s]: callbacks must be closures\n"),
                    unique_name);
     return NULL;
-    }
+  }
 
-    source = g_new0 (CLibSource, 1);
-  source->type = CLIB_SCM;
-  source->name = unique_name;
-  source->list_fn = scm_gc_protect_object (listfunc);
-  source->get_fn = scm_gc_protect_object (getfunc);
+  source           = g_new0 (CLibSource, 1);
+  source->type     = CLIB_SCM;
+  source->name     = unique_name;
+  source->list_fn  = scm_gc_protect_object (listfunc);
+  source->get_fn   = scm_gc_protect_object (getfunc);
 
   refresh_scm (source);
 
-  clib_sources = g_list_prepend (clib_sources, source);
+  clib_sources     = g_list_prepend (clib_sources, source);
 
   return source;
 }
@@ -1175,9 +1185,9 @@ const CLibSource *s_clib_symbol_get_source (const CLibSymbol *symbol)
  */
 static char *get_data_directory (const CLibSymbol *symbol)
 {
-  char *filename = NULL;
-  char *data = NULL;
-  GError *e = NULL;
+  char   *filename = NULL;
+  char   *data     = NULL;
+  GError *err      = NULL;
 
   g_return_val_if_fail ((symbol != NULL), NULL);
   g_return_val_if_fail ((symbol->source->type == CLIB_DIR), NULL);
@@ -1185,12 +1195,12 @@ static char *get_data_directory (const CLibSymbol *symbol)
   filename = g_build_filename(symbol->source->directory,
                               symbol->name, NULL);
 
-  g_file_get_contents (filename, &data, NULL, &e);
+  g_file_get_contents (filename, &data, NULL, &err);
 
-  if (e != NULL) {
+  if (err != NULL) {
     u_log_message (_("Failed to load symbol from file [%s]: %s\n"),
-                   filename, e->message);
-    g_error_free (e);
+                   filename, err->message);
+    g_error_free (err);
   }
 
   GEDA_FREE (filename);
@@ -1215,8 +1225,7 @@ static char *get_data_command (const CLibSymbol *symbol)
   g_return_val_if_fail ((symbol != NULL), NULL);
   g_return_val_if_fail ((symbol->source->type == CLIB_CMD), NULL);
 
-  command = g_strdup_printf ("%s %s", symbol->source->get_cmd,
-                          symbol->name);
+  command = geda_sprintf ("%s %s", symbol->source->get_cmd, symbol->name);
 
   result = run_source_command ( command );
 
@@ -1293,7 +1302,7 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
     return geda_strdup(cached->data);
   }
 
-  /* If the symbol wasn't found in the cache, get it directly. */
+  /* If the symbol was not found in the cache, get it directly. */
   switch (symbol->source->type)
     {
     case CLIB_DIR:
@@ -1306,21 +1315,21 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
       data = get_data_scm (symbol);
       break;
     default:
-      g_critical("s_clib_symbol_get_data: source %p has bad source type %i\n",
-                 symbol->source, (int) symbol->source->type);
+       BUG_IMSG("source has bad source type %i\n", symbol->source->type);
       return NULL;
     }
 
   if (data == NULL) return NULL;
 
   /* Cache the symbol data */
-  cached = g_new (CacheEntry, 1);
-  cached->ptr = (CLibSymbol *) symptr;
-  cached->data = geda_strdup (data);
+  cached           = g_new (CacheEntry, 1);
+  cached->ptr      = (CLibSymbol *) symptr;
+  cached->data     = geda_strdup (data);
   cached->accessed = time (NULL);
+
   g_hash_table_insert (clib_symbol_cache, symptr, cached);
 
-  /* Clean out the cache if it's too full */
+  /* Clean out the cache if it is too full */
   n = g_hash_table_size (clib_symbol_cache);
   if (n > CLIB_MAX_SYMBOL_CACHE) {
     for ( ; n > CLIB_MIN_SYMBOL_CACHE; n--) {
@@ -1358,18 +1367,21 @@ char *s_clib_symbol_get_data (const CLibSymbol *symbol)
  */
 GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
 {
+  GPatternSpec *globpattern = NULL;
+
+  GList *result = NULL;
   GList *sourcelist;
   GList *symlist;
-  GList *result = NULL;
+
   CLibSource *source;
   CLibSymbol *symbol;
-  GPatternSpec *globpattern = NULL;
+
   char *key;
   char keytype;
 
   if (pattern == NULL) return NULL;
 
-  /* Use different cache keys depending on what sort of search is being done */
+  /* Use different cache keys based on search mode */
   switch (mode)
   {
     case CLIB_GLOB:
@@ -1382,7 +1394,7 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
       g_critical ("s_clib_search: Bad search mode %i\n", mode);
       return NULL;
   }
-  key = g_strdup_printf("%c%s", keytype, pattern);
+  key = geda_sprintf("%c%s", keytype, pattern);
 
   /* Check to see if the query is already in the cache */
   result = (GList *) g_hash_table_lookup (clib_search_cache, key);
@@ -1431,16 +1443,15 @@ GList *s_clib_search (const char *pattern, const CLibSearchMode mode)
   }
 
   g_hash_table_insert (clib_search_cache, key, g_list_copy (result));
-  /* __don't__ free key here, it's stored by the hash table! */
-
+  /* Do NOT free key here, it is stored by the hash table! */
   return result;
 }
 
 /*! \brief Flush the symbol name lookup cache.
  *  \par Function Description
  *  Clears the hashtable which caches the results of s_clib_search().
- *  You shouldn't ever need to call this, as all functions which
- *  invalidate the cache are supposed to make sure it's flushed.
+ *  You should not ever need to call this, as all functions which
+ *  invalidate the cache are supposed to make sure it is flushed.
  */
 void s_clib_flush_search_cache ()
 {
@@ -1451,8 +1462,8 @@ void s_clib_flush_search_cache ()
 /*! \brief Flush the symbol data cache.
  *  \par Function Description
  *  Clears the hashtable which caches the results of s_clib_symbol_get_data().
- *  You shouldn't ever need to call this, as all functions which
- *  invalidate the cache are supposed to make sure it's flushed.
+ *  You should not ever need to call this, as all functions which
+ *  invalidate the cache are supposed to make sure it is flushed.
  */
 void s_clib_flush_symbol_cache ()
 {
@@ -1546,39 +1557,43 @@ GList *s_toplevel_get_symbols (const GedaToplevel *toplevel)
 {
   GList  *result  = NULL;
   GList  *iter    = NULL;
-  Object *object = NULL;
-  Page   *page;
-  GList  *symlist  = NULL;
+  Object *object  = NULL;
+  GList  *symlist = NULL;
 
-  CLibSymbol *sym = NULL;
+  CLibSymbol  *sym = NULL;
   const GList *p_iter;
   const GList *o_iter;
+        Page  *page;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
 
-  for ( p_iter = geda_list_get_glist( toplevel->pages );
-        p_iter != NULL;
-        p_iter = g_list_next( p_iter )) {
-    page = (Page *)p_iter->data;
+  for ( p_iter = geda_list_get_glist( toplevel->pages ); p_iter != NULL; NEXT(p_iter))
+  {
+
+    page = (Page*)p_iter->data;
+
     for (o_iter = s_page_get_objects (page); o_iter != NULL; NEXT(o_iter)) {
+
       object = (Object *)o_iter->data;
+
       if (object->type != OBJ_COMPLEX) continue;
+
       if (object->complex->filename == NULL)  continue;
 
-      /* Since we're not looking at embedded symbols, the first
-       * component with the given name will be the one we need.
-       * N.b. we don't use s_clib_get_symbol_by_name() because it's
-       * spammeh. */
+      /* Since we are not looking at embedded symbols, the first component
+       * with the given name will be the one we need. N.b. we do not use
+       * s_clib_get_symbol_by_name() because it's spammeh. */
       symlist = s_clib_search (object->complex->filename, CLIB_EXACT);
+
       if (symlist == NULL) continue;
+
       sym = (CLibSymbol *) symlist->data;
       g_list_free (symlist);
 
-      /* We do the list insertion by evilly comparing pointers.  This
-       * is okay, because we always take the first symbol with the
-       * given name, and symbol pointers don't change while this
-       * function is running (we hope).  Note that this creates a
-       * sorted list.*/
+      /* We do the list insertion by evilly comparing pointers. This is
+       * okay, because we always take the first symbol with the given
+       * name, and symbol pointers don't change while this function
+       * is running (we hope).  Note that this creates a sorted list.*/
       for (iter = result; iter != NULL; NEXT(iter)) {
         if (iter->data == sym) {
           break; /* Already in list */

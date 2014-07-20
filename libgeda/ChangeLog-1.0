@@ -1,6 +1,21 @@
+2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/struct/s_clib.c: Revamp function refresh_directory to use
+          opendir and readdir instead of g_dir_open and g_dir_read_name
+          allow with a local char buffer for reduced memory operations
+          and significantly improve performance. Add conditionals in
+          s_clib_get_source_by_name to check for NULL source->name, add
+          g_return_val_if_fail. Replace "sym" with SYMBOL_FILE_SUFFIX,
+          '/' with DIR_SEPARATOR, and "/" with DIR_SEPARATOR_S in
+          s_clib_add_directory, g_strdup_printf with geda_sprintf in
+          get_data_command, s_clib_search, and get_unique_source_name.
+
+          Replace g_critical with BUG_IMSG in case defaults.
+          General clean-up.
+
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
-        *src/object/o_pin_basic.c: Change conditional to e_type >= 0 and
+        * src/object/o_pin_basic.c: Change conditional to e_type >= 0 and
          m_type >= 0 in o_pin_set_attributes
 
 2014-07-18 Wiley E. Hill <wileyhill@gmail.com>
