@@ -16,7 +16,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 /*! \todo STILL NEED to clean up line lengths in aa and tr */
 #include <config.h>
@@ -47,37 +48,20 @@ const char* IDS_MESSEAGE_TITLES[] = {
   NULL
 };
 
-static GtkWidget* create_menu_linetype (GschemToplevel *w_current);
-static int x_dialog_edit_line_type_change (GtkWidget *w, line_type_data *ld);
-static void x_dialog_edit_line_type_ok (GtkWidget *w, line_type_data *ld);
 
-static GtkWidget* create_menu_filltype (GschemToplevel *w_current);
-static int x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fd);
-static void x_dialog_edit_fill_type_ok(GtkWidget *w, fill_type_data *fd);
+/*!   \defgroup Dialog-Utilities Common Dialog Utlities
+ *  @{\par This Group contains utilities used by various Gschem dialogs
+ */
 
-/* string buffer used by dialogs: show_text, find_text and hide_text */
-static char text_buffer[256] = "refdes=R";
-
-static void set_text_buffer(const char *string)
-{
-  int length;
-
-  if (string != NULL) {
-    memset(text_buffer, 0, sizeof(text_buffer)-1);
-    length = strlen(string);
-    memcpy(text_buffer, string, length);
-    text_buffer[length] = '\0';
-    //strncpy (text_buffer, string, sizeof(text_buffer)-1);
-    //text_buffer[sizeof(text_buffer)-1] = '\0';
-  }
-  else {
-    memset(text_buffer, 0, sizeof(text_buffer)-1);
-  }
-}
-
-/*! \defgroup Dialog-Utilities Common Dialog Utlities
+/*!   \defgroup General-Dialog-Utilities General Dialog Utilities
  *  @{\par This Group contains utility functions used by various dialogs
-*/
+ *    \ingroup (Dialog-Utilities)
+ */
+
+/*!   \defgroup Atk-Dialog-Utilities Atk Dialog Utilities
+ *  @{\par This Group contains utility functions used by various dialogs
+ *    \ingroup (General-Dialog-Utilities)
+ */
 
 /*! \brief Create AtkObject widget and Link Label with Widget
  *  \par Function Description
@@ -135,6 +119,8 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
   return atk_obj;
 }
 
+/** @} endgroup Atk-Dialog-Utilities */
+
 /*! \brief Create pixmap widget for dialogs boxes.
  *  \par Function Description
  *  This is an internally used function to create pixmaps.
@@ -167,14 +153,15 @@ GtkWidget* create_pixmap (const char *filename)
   return pixmap;
 }
 
-/*! \brief Distroy Window Function
- *  \par Function Description
- *
+/** @} endgroup General-Dialog-Utilities */
+
+/** \defgroup Dialog-Toggle-Switches Switch Manipulators for Dialogs
+ *  @{
+ *  \ingroup (Dialog-Utilities)
+ *  \par
+ *       Contains function change the images for checkboxes, aka Switches for
+ *       for the on and off state.
  */
-void destroy_window(GtkWidget *widget, GtkWidget **window)
-{
-  *window = NULL;
-}
 
 GtkWidget* get_geda_switch_image (bool WhichState)
 {
@@ -188,7 +175,7 @@ GtkWidget* get_geda_switch_image (bool WhichState)
    return image;
 }
 
-/*! \brief Function to create a GTK switch image control / widget.
+/*! \brief Function to create a Geda switch image control / widget.
  *  \par Function Description
  *  This function creates a Check Box widget using an image, the Check
  *  Box indicator is disabled so only the images is displayed. This creates
@@ -221,6 +208,115 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
 
   return widget;
 }
+
+/** @} endgroup Dialog-Toggle-Switches */
+
+/** \defgroup Dialog-Radio-Bulbs Manipulator for Radio Controls on Dialogs
+ *  @{
+ *  \ingroup (Dialog-Utilities)
+ *  \par
+ *  The Bulb widgets are nothing more than ordinary radio buttons with
+ *  their indicators set to invisible. Both ON and the Off images are
+ *  embed into the widget when bulb widgets are created and then each
+ *  image is set visible or invisible based on the state of the radio
+ *  widgets. This groups contain functions to work with widgets. Note
+ *  that the actual creation is done with a macro, see \a GEDA_BULB.
+ */
+
+GtkWidget*
+get_bulb_image (bool WhichState)
+{
+   GtkWidget* image;
+
+   if (WhichState)
+     image = create_pixmap (GEDA_BITMAP_BULB_ON );
+   else
+     image = create_pixmap (GEDA_BITMAP_BULB_OFF);
+
+   return image;
+}
+void set_bulb_on( GtkWidget *widget) {
+
+  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
+  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
+  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
+
+  GtkWidget* BulbOnImage  = lightbox->data;
+  lightbox                = lightbox->next;
+  GtkWidget* BulbOffImage = lightbox->data;
+
+  g_object_set (BulbOnImage, "visible", TRUE, NULL);
+  g_object_set (BulbOffImage, "visible", FALSE, NULL);
+
+  g_list_free(lightbox);
+  g_list_free(align);
+  g_list_free(button);
+}
+
+void set_bulb_off( GtkWidget *widget) {
+
+  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
+  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
+  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
+
+  GtkWidget* BulbOnImage = lightbox->data;
+  lightbox = lightbox->next;
+  GtkWidget* BulbOffImage = lightbox->data;
+
+  g_object_set (BulbOnImage, "visible", FALSE, NULL);
+  g_object_set (BulbOffImage, "visible", TRUE, NULL);
+
+  g_list_free(lightbox);
+  g_list_free(align);
+  g_list_free(button);
+}
+
+void bulb_group_set_active(GSList *RadioGroupList, int value)
+{
+  GtkToggleButton *button;
+  int length;
+  int index;
+  int pos = GPOINTER_TO_UINT(value);
+  int j;
+
+  /* Get number of buttons in group */
+  length = g_slist_length (RadioGroupList);
+
+  /* new buttons are *prepended* to the list, so buttons added as
+   * first have last position in the list and using glist reverse
+   * confuses gtk */
+  index = (length - 1) - pos;
+
+  if (index < 0 || index >= length) {
+
+     return;
+  } /* should not to happen */
+
+  for (j = 0; j < length; j++) {
+     button = GTK_TOGGLE_BUTTON (g_slist_nth_data (RadioGroupList, j));
+     if (button == NULL) return;
+     if ( j == index) {
+       if (gtk_toggle_button_get_active (button) == FALSE) {
+           gtk_toggle_button_set_active (button, TRUE);
+       }
+           set_bulb_on(GTK_WIDGET(button));
+     }
+     else {
+       set_bulb_off(GTK_WIDGET(button));
+     }
+  }
+
+  return;
+}
+
+/** @} endgroup Dialog-Radio-Bulbs */
+
+/** \defgroup Text-View-Utilities Utility Functions for TextView Widgets
+ *  @{
+ *  \ingroup (Dialog-Utilities)
+ *  \par
+ *  Generic utility functions for textview widgets.
+ */
 
 /*! \brief Selects all text in a TextView widget
  *  \par Function Description
@@ -270,16 +366,15 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
   tab_width = -1;
 
   return tab_width;
-
 }
+/** @} endgroup Text-View-Utilities */
+/** @} endgroup Dialog-Utilities */
 
-/*! @} endgroup Dialog-Utilities */
-
-/*! \defgroup Standard-Dialogs Standard Program Dialogs
+/** \defgroup Standard-Dialogs Standard Program Dialogs
  *  @{ \par This Group contains Functions for Standard Dialogs
 */
 
-/*! \defgroup Help-About-Dialog Help About Dialog Functions
+/** \defgroup Help-About-Dialog Help About Dialog Functions
  *  @{
 */
 
@@ -359,9 +454,9 @@ void about_dialog (GschemToplevel *w_current)
 
 /*!****************** End of help/about dialog box **********************/
 
-/*! @} endgroup Help-About-Dialog */
+/** @} endgroup Help-About-Dialog */
 
-/*! \defgroup Snap-Size-Dialog Snap Size Dialog Functions
+/** \defgroup Snap-Size-Dialog Snap Size Dialog
  *  @{
 */
 
@@ -470,9 +565,9 @@ void snap_size_dialog (GschemToplevel *w_current)
 
 /*!******************* End of Snap size dialog box **********************/
 
-/*! @} endgroup Snap-Size-Dialog */
+/** @} endgroup Snap-Size-Dialog */
 
-/*! \defgroup Text-Size-Dialog Text Size Dialog Functions
+/** \defgroup Text-Size-Dialog Text Size Dialog
  *  @{
 */
 
@@ -576,11 +671,11 @@ void text_size_dialog (GschemToplevel *w_current)
 
 /*!******************** End of Text size dialog box *********************/
 
-/*! @} endgroup Text-Size-Dialog */
+/** @} endgroup Text-Size-Dialog */
 
-/*! @} endgroup Standard-Dialogs */
+/** @} endgroup Standard-Dialogs */
 
-/*! \defgroup Editing-Dialogs X-Dialogs for Editing Object Properties
+/** \defgroup Editing-Dialogs X-Dialogs for Editing Object Properties
  *  @{
  *  \brief This Group contains Dialogs routines for Editing Objects
  *  \details
@@ -592,7 +687,36 @@ void text_size_dialog (GschemToplevel *w_current)
  * to stay open while other editing is performed.
  */
 
-/*! \defgroup Arc-Edit-Dialog Arc Edit Dialog Functions
+static      GtkWidget* create_menu_linetype (GschemToplevel *w_current);
+static int  x_dialog_edit_line_type_change  (GtkWidget *w, line_type_data *ld);
+static void x_dialog_edit_line_type_ok      (GtkWidget *w, line_type_data *ld);
+
+static      GtkWidget* create_menu_filltype (GschemToplevel *w_current);
+static int  x_dialog_edit_fill_type_change  (GtkWidget *w, fill_type_data *fd);
+static void x_dialog_edit_fill_type_ok      (GtkWidget *w, fill_type_data *fd);
+
+/* string buffer used by dialogs: show_text, find_text and hide_text */
+static char text_buffer[256] = "refdes=R";
+
+/* Local function used in this module to load the text_buffer */
+static void set_text_buffer(const char *string)
+{
+  int length;
+
+  if (string != NULL) {
+    memset(text_buffer, 0, sizeof(text_buffer)-1);
+    length = strlen(string);
+    memcpy(text_buffer, string, length);
+    text_buffer[length] = '\0';
+    //strncpy (text_buffer, string, sizeof(text_buffer)-1);
+    //text_buffer[sizeof(text_buffer)-1] = '\0';
+  }
+  else {
+    memset(text_buffer, 0, sizeof(text_buffer)-1);
+  }
+}
+
+/** \defgroup Arc-Edit-Dialog Arc Edit Dialog Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -815,9 +939,9 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
 
 /********************** End of Arc dialog box ***************************/
 
-/*! @} end group Arc-Angle-Dialog */
+/** @} end group Arc-Angle-Dialog */
 
-/*! \defgroup Common-Edit-Dialog Common Routines Editing Dialogs
+/** \defgroup Common-Edit-Dialog Common Routines Editing Dialogs
  *  @{
  */
 
@@ -921,9 +1045,9 @@ GtkWidget *create_color_menu (GschemToplevel *w_current, int color_index)
   return GTK_WIDGET (cbox);
 }
 
-/*! @} end group Common-Edit-Dialog */
+/** @} end group Common-Edit-Dialog */
 
-/*! \defgroup Fill-Type-Dialog Fill Type Editing-Dialog Functions
+/** \defgroup Fill-Type-Dialog Fill Type Editing-Dialog Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -1465,9 +1589,9 @@ void x_dialog_edit_fill_type(GschemToplevel *w_current)
 
 /******************* End of Fill Type dialog box ************************/
 
-/*! @} end group Fill-Type-Dialog */
+/** @} end group Fill-Type-Dialog */
 
-/*! \defgroup Line-Type-Dialog Line Type Editing-Dialog Functions
+/** \defgroup Line-Type-Dialog Line Type Editing-Dialog Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -1950,9 +2074,9 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
 
 /***************** End of Line Type / Width dialog box ****************/
 
-/*! @} end group Line-Type-Dialog */
+/** @} end group Line-Type-Dialog */
 
-/*! \defgroup Edit-Slots-Dialog Slots Editing-Dialogs Functions
+/** \defgroup Edit-Slots-Dialog Slots Editing-Dialogs Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2112,7 +2236,7 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
 /******************** End of Slot Edit dialog box ***********************/
 /** @} End Group Edit-Slots-Dialog */
 
-/*! \defgroup Find-Text-Dialog Find Text Editing-Dialogs Functions
+/** \defgroup Find-Text-Dialog Find Text Editing-Dialogs Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2269,7 +2393,7 @@ void x_dialog_find_text(GschemToplevel *w_current)
 
 /** @} End Group Find-Text-Dialog */
 
-/*! \defgroup Edit-Hide-Text-Dialog Hide Text Editing-Dialogs Functions
+/** \defgroup Edit-Hide-Text-Dialog Hide Text Editing-Dialogs Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2376,7 +2500,7 @@ void x_dialog_hide_text(GschemToplevel * w_current)
 
 /** @} End Group Find-Text-Dialog */
 
-/*! \defgroup Show-Text-Dialog Show Text Dialogs Functions
+/** \defgroup Show-Text-Dialog Show Text Dialogs Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2483,7 +2607,7 @@ void x_dialog_show_text(GschemToplevel * w_current)
 
 /** @} End Group Show-Text-Dialog */
 
-/*! \defgroup Text-Input-Dialog Text-Input Dialogs Functions
+/** \defgroup Text-Input-Dialog Text-Input Dialogs Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2656,7 +2780,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
 
 /** @} End Group Text-Input-Dialog */
 
-/*! \defgroup Translate-Dialog Translate Dialogs Functions
+/** \defgroup Translate-Dialog Translate Dialogs Functions
  *  @{ \memberof Editing-Dialogs
  */
 
@@ -2755,13 +2879,13 @@ void x_dialog_translate (GschemToplevel *w_current)
 
 /** @} End Group Translate-Dialog */
 
-/*! @} endgroup Editing-Dialogs */
+/** @} endgroup Editing-Dialogs */
 
-/*! \defgroup Systemic-Dialogs System Related Dialog
+/** \defgroup Systemic-Dialogs System Related Dialog
  *  @{ \par This Group contains Functions for System Level Dialogs
 */
 
-/*! \defgroup Hotkeys-Dialog  Hotkeys Dialog Functions
+/** \defgroup Hotkeys-Dialog  Hotkeys Dialog Functions
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -2862,9 +2986,9 @@ void x_dialog_hotkeys (GschemToplevel *w_current)
 
 /******************* End of help/keymapping dialog box ******************/
 
-/*! @} endgroup Hotkeys-Dialog */
+/** @} endgroup Hotkeys-Dialog */
 
-/*! \defgroup Confirm-Exit-Dialog Confirm Exit Dialog Functions
+/** \defgroup Confirm-Exit-Dialog Confirm Exit Dialog Functions
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -3686,11 +3810,11 @@ x_dialog_close_window (GschemToplevel *w_current)
 
 /****************** End of Close Confirmation dialog box ****************/
 
-/*! @} endgroup Confirm-Exit-Dialog */
+/** @} endgroup Confirm-Exit-Dialog */
 
 //#include "x_coord.c"
 
-/*! \defgroup Raise-All-Dialog Utility Function
+/** \defgroup Raise-All-Dialog Utility Function
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -3777,9 +3901,9 @@ void x_dialog_raise_all(GschemToplevel *w_current)
   }
 }
 
-/*! @} endgroup Raise-All-Dialog */
+/** @} endgroup Raise-All-Dialog */
 
-/*! \defgroup Symbol-Changed-Dialog Symbol Changed Dialog Functions
+/** \defgroup Symbol-Changed-Dialog Symbol Changed Dialog Functions
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -3941,10 +4065,10 @@ void x_dialog_symbol_changed(GschemToplevel* w_current)
 
 /****************** End of major symbol changed dialog box **************/
 
-/*! @} endgroup Symbol-Changed-Dialog */
+/** @} endgroup Symbol-Changed-Dialog */
 
 
-/*! \defgroup Invalid-Dialog Invalid attribute Dialog Functions
+/** \defgroup Invalid-Dialog Invalid attribute Dialog Functions
  *  @{ \memberof Systemic-Dialogs
 */
 
@@ -3977,17 +4101,17 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
   return TRUE;
 }
 
-/*! @} endgroup Invalid-Dialog */
+/** @} endgroup Invalid-Dialog */
 
 /************** End of misc support functions for dialog boxes **********/
 
-/*! @} endgroup Systemic-Dialogs */
+/** @} endgroup Systemic-Dialogs */
 
-/*! \defgroup Gschem-General-Dialogs General Dialogs
+/** \defgroup Gschem-General-Dialogs General Dialogs
  *  @{ \par This Group contains General Utility Dialogs
 */
 
-/*! \defgroup Confirmation-Dialog Confirmation Dialog Functions
+/** \defgroup Confirmation-Dialog Confirmation Dialog Functions
  *  @{ \memberof Gschem-General-Dialogs
 */
 
@@ -4039,9 +4163,9 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context, bool threa
 
 /****************** End of General confirm dialog box ********************/
 
-/*! @} endgroup Confirmation-Dialog */
+/** @} endgroup Confirmation-Dialog */
 
-/*! \defgroup File-Select-File-Dialog Select File Dialog Functions
+/** \defgroup File-Select-File-Dialog Select File Dialog Functions
  *  @{ \memberof Gschem-General-Dialogs
 */
 
@@ -4143,9 +4267,9 @@ char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
 
 /***************** End of General file select dialog box ****************/
 
-/*! @} endgroup File-Select-File-Dialog */
+/** @} endgroup File-Select-File-Dialog */
 
-/*! \defgroup Message-Dialogs Message Dialogs Functions
+/** \defgroup Message-Dialogs Message Dialogs Functions
  *  @{ \memberof Gschem-General-Dialogs
 */
 
@@ -4220,6 +4344,6 @@ void gschem_markup_message_dialog (const char *msg1, const char *msg2,
 }
 
 /******************* End of General message dialogs **********************/
-/*! @} endgroup Message-Dialogs */
+/** @} endgroup Message-Dialogs */
 
-/*! @} endgroup Gschem-General-Dialogs */
+/** @} endgroup Gschem-General-Dialogs */

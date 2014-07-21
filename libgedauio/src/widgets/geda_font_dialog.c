@@ -1854,4 +1854,4 @@ geda_font_dialog_set_show_preview (GedaFontDialog *dialog,
   g_object_set (dialog->preview_entry, "visible", show_preview, NULL);
 
 }
-/*! @} end group GedaFontDialog */
+/** @} end group GedaFontDialog */

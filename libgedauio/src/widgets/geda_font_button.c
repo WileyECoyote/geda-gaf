@@ -5,7 +5,7 @@
  *
  * Rewrite for gEDA by Wiley Edward Hill <wileyhill@gmail.com>
  *
- * Based on gtkfontbutton: 
+ * Based on gtkfontbutton:
  *     Copyright (C) 1998, David Abilleira Freijeiro <odaf@nexo.es>
  *     by David Abilleira Freijeiro, based on gnome-color-picker by
  *     Federico Mena <federico@nuclecu.unam.mx>. Modifed by the
@@ -1424,4 +1424,4 @@ geda_font_button_create_widgets (GedaFontButton *font_button)
   return widget;
 }
 #undef FONT_NAME
-/*! @} end group GedaFontButton */
+/** @} end group GedaFontButton */

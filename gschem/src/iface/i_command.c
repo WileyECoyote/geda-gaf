@@ -525,7 +525,7 @@ COMMAND (do_debug)
 
 /*!\warning: { Do not point to another CMD_OPTIONS unless you know what your doing }*/
 
-/*! \defgroup i_command_Command_Handlers Action Handler Functions
+/** \defgroup i_command_Command_Handlers Action Handler Functions
  *  @{ \par
  *      Functions in the group process all of the actions generated from
  *      various sources, such as menus, toolbars, and the keyboard. The
@@ -538,7 +538,7 @@ COMMAND (do_debug)
  *      circumstances this does not happen.
  */
 
-/*! \defgroup i_command_Action_Functions Action Handler Function
+/** \defgroup i_command_Action_Functions Action Handler Function
  *  @{ \remark Yes, repeat is a command, not just an action
  */
 
@@ -565,7 +565,7 @@ COMMAND (do_file)
 
 /* ------------------ Edit ---------------- */
 
-/*! \defgroup i_command_File_Actions Actions under the File Menu
+/** \defgroup i_command_File_Actions Actions under the File Menu
  * @{
  */
 
@@ -863,7 +863,7 @@ COMMAND ( do_run_script ) {
   EXIT_COMMAND(do_run_script);
 }
 
-/*! @} endgroup i_command_File_Actions */
+/** @} endgroup i_command_File_Actions */
 
 /* ------------------ Edit ---------------- */
 
@@ -877,7 +877,7 @@ COMMAND ( do_edit )
   EXIT_COMMAND(do_edit);
 }
 
-/*! \defgroup i_command_Edit_Actions Actions under the Edit Menu
+/** \defgroup i_command_Edit_Actions Actions under the Edit Menu
  * @{*/
 
 COMMAND ( do_undo )
@@ -1477,11 +1477,11 @@ COMMAND (do_update)
   EXIT_COMMAND(do_update);
 }
 
-/*! @} endgroup i_command_Edit_Actions */
+/** @} endgroup i_command_Edit_Actions */
 
 /* ------------------ Select ---------------- */
 
-/*! \defgroup i_command_Select_Actions Actions under the Select Menu
+/** \defgroup i_command_Select_Actions Actions under the Select Menu
  * @{*/
 COMMAND ( do_select )
 {
@@ -1572,7 +1572,7 @@ COMMAND ( do_deselect_all )
   EXIT_COMMAND(do_deselect_all);
 }
 
-/*! @} endgroup i_command_Select_Actions */
+/** @} endgroup i_command_Select_Actions */
 
 /* ------------------ View ---------------- */
 
@@ -1583,7 +1583,7 @@ COMMAND ( do_view )
   EXIT_COMMAND(do_view);
 }
 
-/*! \defgroup i_command_View_Actions Actions under the View Menu
+/** \defgroup i_command_View_Actions Actions under the View Menu
  * @{*/
 
 COMMAND ( do_redraw )
@@ -1818,7 +1818,7 @@ COMMAND ( do_bw_colors )
   EXIT_COMMAND(do_bw_colors);
 }
 
-/*! @} endgroup i_command_View_Actions */
+/** @} endgroup i_command_View_Actions */
 
 /* ------------------ Page ---------------- */
 
@@ -1829,7 +1829,7 @@ COMMAND ( do_page )
   EXIT_COMMAND(do_page);
 }
 
-/*! \defgroup i_command_Page_Actions Actions under the Page Menu
+/** \defgroup i_command_Page_Actions Actions under the Page Menu
  * @{*/
 
 COMMAND ( do_page_manager )
@@ -2024,7 +2024,7 @@ COMMAND ( do_page_discard )
 
 /* ------------------ Hierarchy ---------------- */
 
-/*! \defgroup i_command_Hierarchy_Actions Hierarchy Actions under the Page Menu
+/** \defgroup i_command_Hierarchy_Actions Hierarchy Actions under the Page Menu
  * @{
  * TODO: Need hierarchy command
  */
@@ -2237,9 +2237,9 @@ COMMAND ( do_hierarchy_documentation )
 }
 */
 
-/*! @} endgroup i_command_Hierarchy_Actions */
+/** @} endgroup i_command_Hierarchy_Actions */
 
-/*! @} endgroup i_command_Page_Actions */
+/** @} endgroup i_command_Page_Actions */
 
 /* ------------------ Add ---------------- */
 
@@ -2250,7 +2250,7 @@ COMMAND ( do_add )
   EXIT_COMMAND(do_add_component);
 }
 
-/*! \defgroup i_command_Add_Actions Actions under the Add Menu
+/** \defgroup i_command_Add_Actions Actions under the Add Menu
  * @{
  */
 
@@ -2588,10 +2588,10 @@ COMMAND ( do_add_picture )
   EXIT_COMMAND(do_add_picture);
 }
 
-/*! @} endgroup i_command_Add_Actions */
+/** @} endgroup i_command_Add_Actions */
 
 /* ------------------- Sessions ---------------- */
-/*! \defgroup i_command_Sessions_Actions Actions Under the Sessions Menu
+/** \defgroup i_command_Sessions_Actions Actions Under the Sessions Menu
  * @{
  */
 
@@ -2681,11 +2681,11 @@ COMMAND ( do_session_manage )
   EXIT_COMMAND(do_session_manage);
 }
 
-/*! @} endgroup i_command_Page_Actions */
+/** @} endgroup i_command_Page_Actions */
 
 /* ------------------ Attributes ---------------- */
 
-/*! \defgroup i_command_Attribute_Actions Actions Under the Attributes Menu
+/** \defgroup i_command_Attribute_Actions Actions Under the Attributes Menu
  * @{
  */
 
@@ -2978,11 +2978,11 @@ COMMAND ( do_autonumber )
   }
 }
 
-/*! @} endgroup i_command_Attribute_Actions */
+/** @} endgroup i_command_Attribute_Actions */
 
 /* ------------------ Options ---------------- */
 
-/*! \defgroup i_command_Option_Actions Actions Under the Options Menu
+/** \defgroup i_command_Option_Actions Actions Under the Options Menu
  * @{
  */
 
@@ -3242,11 +3242,11 @@ COMMAND ( do_show_settings )
   EXIT_COMMAND(do_show_settings);
 }
 
-/*! @} endgroup i_command_Option_Actions */
+/** @} endgroup i_command_Option_Actions */
 
 /* ------------------ Help ---------------- */
 
-/*! \defgroup i_command_Help_Actions Actions Under the Help Menu
+/** \defgroup i_command_Help_Actions Actions Under the Help Menu
  * @{
  */
 
@@ -3331,11 +3331,11 @@ COMMAND ( do_show_about )
   about_dialog(w_current);
 }
 
-/*! @} endgroup i_command_Help_Actions */
+/** @} endgroup i_command_Help_Actions */
 
 /** @} END Group i_command_Action_Functions */
 
-/*! \defgroup i_command_Variable_Handlers Handlers for Preference Variables
+/** \defgroup i_command_Variable_Handlers Handlers for Preference Variables
  *  @{
  *  TODO: Currently i_command_Variable_Handlers only display the
  *        value of varible, should also be able to set the variables

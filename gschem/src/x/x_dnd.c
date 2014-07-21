@@ -56,7 +56,7 @@
 /****************************** Drag-N-Drop **********************************/
 //#define DEBUG_DND_EVENTS 1
 
-/*! \defgroup Drag-N-Drop Gschem Main Drag and Drop Module
+/** \defgroup Drag-N-Drop Gschem Drag and Drop Module
  *  @{ \par
  *   This module contains functions and data to support Drag-N-Drop events
  *   Other modules supporting Drag&Drop may use portions of this module
@@ -515,7 +515,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
   return result;
 }
 
-/*! \defgroup Drag-N-Drop-Destination Signal Handlers
+/** \defgroup Drag-N-Drop-Destination Signal Handlers
  *  @{ \par This sub-group contains routines to handle signals receivable by
  *          the Drawing Area as the destination
 */
@@ -730,12 +730,12 @@ bool x_dnd_drag_drop
   return  is_valid_drop_site;
 }
 
-/*! @} end-subgroup Drag-N-Drop-Destination  */
+/** @} end-subgroup Drag-N-Drop-Destination  */
 
 /******************************************************************************/
 /* Signals receivable by source */
 
-/*! \defgroup Drag-N-Drop-Source Drag N Drop Source (Originator) Functions
+/** \defgroup Drag-N-Drop-Source Drag N Drop Source (Originator) Functions
  *  @{ \par This sub-group contains routines to handle signals receivable by the
  *          Source
 */
@@ -890,7 +890,7 @@ void x_dnd_drag_end
   g_print (" on exit: %s w_current->event_state =%d\n", name, w_current->event_state);
 #endif
 }
-/*! @} end-subgroup Drag-N-Drop-Source  */
+/** @} end-subgroup Drag-N-Drop-Source  */
 
 /*! \brief When Pointer Leaves the Drawing Area
  *
@@ -1024,5 +1024,5 @@ void x_dnd_setup_event_handlers (GschemToplevel *w_current)
   }
 }
 
-/*! @} endgroup Drag-N-Drop */
+/** @} endgroup Drag-N-Drop */
 /******************************************************************************/

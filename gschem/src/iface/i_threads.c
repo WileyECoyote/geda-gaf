@@ -41,8 +41,10 @@
 
 #include "gschem.h"
 
-/*
- */
+/** \defgroup Gschem-Thread-System Gschem Thread System
+ *  @{ \par This Group contains core Routines for Thread.
+*/
+
 /*! Non-zero if the gschem threads has been initialised. */
 static unsigned int init_called = 0;
 
@@ -135,3 +137,4 @@ gschem_threads_init (void)
   }
   return result;
 }
+/** @} endgroup Gschem-Thread-System */

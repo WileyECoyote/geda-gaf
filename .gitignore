@@ -19,4 +19,6 @@ stamp-h1
 INSTALL
 autoscan.log
 configure.scan
+build-geda.log
+build-doxygen.log
 *.swp

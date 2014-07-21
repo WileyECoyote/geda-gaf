@@ -79,6 +79,18 @@
 #include "x_settings.h"
 #include "keywords.h"
 
+/** \defgroup Settings-Auxillary-Module Settings Auxiliary Module
+ *  @{
+ *  \ingroup (Settings-Dialog)
+ *  \par This module contains routines for the user's preference settings,
+ *       primarily support functions for the preference Settings dialog.
+ *       This module is reponsible for generating or regenerating user
+ *       RC scripts/files that serve to establish program settings
+ *       during startup as well as saving all settings restored by
+ *       i_vars.c but not the settings restored by x_windows.c, which
+ *       saves all settings that it restores.
+ */
+
 #define RC_INPUT_BUFFER_SIZE 256
 
 #ifdef __GNUC__
@@ -145,95 +157,6 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
 
 /* ----------------- Start Attribute TAB Support Functions ------------------ */
 
-/* \defgroup X_Settings_Attribute Read and Write RC File
- *  @{
- */
-
-/*              Bulb */
-GtkWidget*
-get_geda_bulb_image (bool WhichState)
-{
-   GtkWidget* image;
-
-   if (WhichState)
-     image = create_pixmap (GEDA_BITMAP_BULB_ON );
-   else
-     image = create_pixmap ( GEDA_BITMAP_BULB_OFF);
-
-   return image;
-}
-void bulb_on( GtkWidget *widget) {
-
-  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
-  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
-
-  GtkWidget* BulbOnImage  = lightbox->data;
-  lightbox                = lightbox->next;
-  GtkWidget* BulbOffImage = lightbox->data;
-
-  g_object_set (BulbOnImage, "visible", TRUE, NULL);
-  g_object_set (BulbOffImage, "visible", FALSE, NULL);
-
-  g_list_free(lightbox);
-  g_list_free(align);
-  g_list_free(button);
-}
-
-void bulb_off( GtkWidget *widget) {
-
-  GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
-  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
-
-  GtkWidget* BulbOnImage = lightbox->data;
-  lightbox = lightbox->next;
-  GtkWidget* BulbOffImage = lightbox->data;
-
-  g_object_set (BulbOnImage, "visible", FALSE, NULL);
-  g_object_set (BulbOffImage, "visible", TRUE, NULL);
-
-  g_list_free(lightbox);
-  g_list_free(align);
-  g_list_free(button);
-}
-
-void gtk_bulb_group_set_active(GSList *RadioGroupList, int value)
-{
-  GtkToggleButton *button;
-  int length;
-  int index;
-  int pos = GPOINTER_TO_UINT(value);
-  int j;
-
-  /* Get number of buttons in group */
-  length = g_slist_length (RadioGroupList);
-
-  /* new buttons are *prepended* to the list, so buttons added as
-   * first have last position in the list and using glist reverse
-   * confuses gtk */
-  index = (length - 1) - pos;
-
-  if (index < 0 || index >= length) {
-
-     return;
-  } /* should not to happen */
-
-  for (j = 0; j < length; j++) {
-     button = GTK_TOGGLE_BUTTON (g_slist_nth_data (RadioGroupList, j));
-     if (button == NULL) return;
-     if ( j == index) {
-       if (gtk_toggle_button_get_active (button) == FALSE) {
-           gtk_toggle_button_set_active (button, TRUE);
-       }
-           bulb_on(GTK_WIDGET(button));
-     }
-     else bulb_off(GTK_WIDGET(button));
-  }
-
-  return;
-}
-
 /*! \brief Create the configure_settings dialog and activates it
  *  \par Function Description
  *  This function is call to creates the configure_settings dialog.
@@ -294,6 +217,7 @@ void x_settings_save_settings(GschemToplevel *w_current)
   eda_config_set_boolean (cfg, group_name, "undo-panzoom", w_current->undo_panzoom);
   eda_config_set_boolean (cfg, group_name, "undo-type",    w_current->undo_type);
 }
+
 /** @brief function change_default_titleblock in GatherSettings */
 bool x_settings_set_scm_int(char *symbol_name, int value ) {
 
@@ -317,10 +241,15 @@ bool x_settings_set_scm_int(char *symbol_name, int value ) {
   return TRUE;
 }
 
+/** @} endgroup X_Settings_Attribute */
+
 /* ------------------ End Attribute TAB Support Functions ------------------ */
 
-/* \defgroup X_Settings_Attribute Attribute Settings File Support Functions
+/** \defgroup Settings-Dialog-Titleblock Auxillary Support for Titleblocks
  *  @{
+ *  \ingroup (Settings-Auxillary-Module)
+ *  \par Contains function to provide additional support for titleblock
+ *       related items on the Settings Dialog
  */
 
 /*! \brief Returns count files in title-block directory.
@@ -412,14 +341,17 @@ bool get_titleblock_list(char **Buffer) {
   return result;
 }
 
-/** @} END Group X_Settings_Attribute */
+/** @} endgroup Settings-Dialog-Titleblock */
 
 /* --------------------- Begin Read and Write RC File -------------------- */
 
-/* \defgroup X_Settings_Read_Write Read and Write RC File
+/** \defgroup Settings-Read-Write Settings Read Write RC File
  *  @{
+ *  \ingroup (Settings-Auxillary-Module)
+ *  \par Read and Write RC File
  */
-/** @brief function process_rc_buffer in X_Settings_Read_Write
+
+/** @brief function process_rc_buffer in Settings-Read-Write
  * \par Function Description
  *      Pre-parser to check input line read in from template rc file. This
  *      function performs an inital interrogation of lines read in from a
@@ -471,7 +403,7 @@ static int process_rc_buffer(char *strbuffer, char *keyword) {
 
 }
 
-/** @brief function generate_rc in X_Settings_Read_Write */
+/** @brief function generate_rc in Settings-Read-Write */
 /*! \brief Main function generate new RC file.
  *  \par Function Description
  *       This function reads an RC file passed as an argument. The entire file
@@ -578,7 +510,7 @@ int generate_rc(GschemToplevel *w_current, const char *rcname)
   return result;
 }
 
-/** @brief function is_enabled in X_Settings_Read_Write
+/** @brief function is_enabled in Settings-Read-Write
  *  \par Function Description
  *       Utility function used by keyword handlers to check for an
  *       initial semicolon. Returns TRUE is a semicolon is the first
@@ -591,19 +523,23 @@ static bool is_enabled(const char* ptr) {
     return TRUE;
   return FALSE;
 }
-/** @} END Group X_Settings_Read_Write */
+/** @} endgroup Settings-Read-Write */
 
 #define KEYWORD(func) void do_kw_##func(GschemToplevel *w_current, FILE* input, FILE* output)
 
 /* --------------------- Begin Keyword Handler Functions ------------------- */
 
-/* \defgroup X_Settings_Keyword_Handlers Read and Write RC File Keywords
+/** \defgroup Settings-Keyword-Handlers Settings Keyword Handlers
  *  @{
+ *  \ingroup (Settings-Auxillary-Module)
+ *  \par
+ *  Read and Write RC File Keywords
+ *
  */
 
 /*!\warning: { Do not point to another KEY_BUFFER unless you know what your doing }*/
 
-/** @brief function do_kw_load_in_rc in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_load_in_rc in Settings-Keyword-Handlers */
 /*! \brief keyword handler functions to process "load" entries in RC file.
  *  \par Function Description
  *       Currently supports load entries for color maps, but could be expanded
@@ -655,7 +591,7 @@ KEYWORD (load_in_rc) {
 }
 #undef map_index
 
-/** @brief function do_kw_define_in_rc in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_define_in_rc in Settings-Keyword-Handlers */
 KEYWORD (define_in_rc) {
 
   char Terminator[]= LineTerminator;
@@ -675,71 +611,71 @@ KEYWORD (define_in_rc) {
   fputs(output_buffer, output);  /* write line to output file*/
 }
 
-/** @brief function do_kw_draw_grips in X_Settings_Keyword_Handlers  */
+/** @brief function do_kw_draw_grips in Settings-Keyword-Handlers  */
 KEYWORD (draw_grips) {
   RC_BOOLEAN_ROUT (draw_grips);
 }
 
 
-/** @brief function do_kw_logging in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_logging in Settings-Keyword-Handlers */
 KEYWORD (logging) {
   RC_BOOLEAN_GOUT (logging);
 }
 
-/** @brief function do_kw_grid_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_grid_mode in Settings-Keyword-Handlers */
 KEYWORD (grid_mode) {
   RC_GRID_MODE_STRINGS;
   RC_STRING_TABLE_W3OUT (grid_mode);
 }
 
-/** @brief function do_kw_dots_grid_dot_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_dots_grid_dot_size in Settings-Keyword-Handlers */
 KEYWORD (dots_grid_dot_size) {
   RC_INTEGER_TRIAD_WOUT (dots_grid_dot_size, 1, 2, 3);
 }
 
-/** @brief function do_kw_dots_grid_fixed_threshold in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_dots_grid_fixed_threshold in Settings-Keyword-Handlers */
 KEYWORD (dots_grid_fixed_threshold) {
   RC_INTEGER_WOUT (dots_grid_fixed_threshold);
 }
 
-/** @brief function do_kw_dots_grid_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_dots_grid_mode in Settings-Keyword-Handlers */
 KEYWORD (dots_grid_mode) {
   RC_DOTS_GRID_MODE_STRINGS
   RC_STRING_TABLE_W2OUT (dots_grid_mode)
 }
 
-/** @brief function do_kw_mesh_grid_threshold in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_mesh_grid_threshold in Settings-Keyword-Handlers */
 KEYWORD (mesh_grid_threshold) {
   RC_INTEGER_WOUT (mesh_grid_threshold);
 }
 
-/** @brief function do_kw_object_clipping in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_object_clipping in Settings-Keyword-Handlers */
 KEYWORD (object_clipping) {
   RC_BOOLEAN_WOUT (object_clipping);
 }
 
-/** @brief function do_kw_scrollbars in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_scrollbars in Settings-Keyword-Handlers */
 KEYWORD (scrollbars) {
   RC_BOOLEAN_WOUT (scrollbars);
 }
 
-/** @brief function do_kw_scrollbar_update in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_scrollbar_update in Settings-Keyword-Handlers */
 KEYWORD (scrollbar_update) {
   RC_BARS_UPDATE_STRINGS
   RC_STRING_TABLE_W2OUT (scrollbar_update)
 }
 
-/** @brief function do_kw_scrollpan_steps in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_scrollpan_steps in Settings-Keyword-Handlers */
 KEYWORD (scrollpan_steps) {
   RC_INTEGER_WOUT (scrollpan_steps);
 }
 
-/** @brief function do_kw_warp_cursor in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_warp_cursor in Settings-Keyword-Handlers */
 KEYWORD (warp_cursor) {
   RC_BOOLEAN_WOUT (warp_cursor);
 }
 
-/** @brief function do_kw_window_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_window_size in Settings-Keyword-Handlers */
 KEYWORD (window_size) {
   char *strings[] = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650,
                      RC_STR_WINDOW_W950H712, RC_STR_WINDOW_W1100H825};
@@ -757,66 +693,66 @@ KEYWORD (window_size) {
   }
 }
 
-/** @brief function do_kw_world_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_world_size in Settings-Keyword-Handlers */
 KEYWORD (world_size) {
   RC_WORLD_SIZE_STRINGS
   RC_STRING_TABLE_NQ_ROUT (world_size);
 }
 
-/** @brief function do_kw_zoom_gain in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_zoom_gain in Settings-Keyword-Handlers */
 KEYWORD (zoom_gain) {
   RC_INTEGER_WOUT (zoom_gain);
 }
 
-/** @brief function do_kw_zoom_with_pan in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_zoom_with_pan in Settings-Keyword-Handlers */
 KEYWORD (zoom_with_pan) {
   RC_BOOLEAN_WOUT (zoom_with_pan);
 }
 
-/** @brief function do_kw_log_destiny in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_log_destiny in Settings-Keyword-Handlers */
 KEYWORD (log_destiny) {
   RC_LOG_DESTINY_STRINGS;
   RC_STRING_TABLE_G3OUT (log_destiny);
 }
 
-/** @brief function do_kw_console_window in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_console_window in Settings-Keyword-Handlers */
 KEYWORD (console_window) {
   RC_BOOLEAN_GOUT (console_window);
 }
 
-/** @brief function do_kw_console_window_type in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_console_window_type in Settings-Keyword-Handlers */
 KEYWORD (console_window_type) {
   RC_CONSOLE_WINTYPE_STRINGS
   RC_STRING_TABLE_G2OUT (console_window_type)
 }
 
-/** @brief function do_kw_action_feedback_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_action_feedback_mode in Settings-Keyword-Handlers */
 KEYWORD (action_feedback_mode) {
   RC_ACTION_FEEDBACK_STRINGS
   RC_STRING_TABLE_W2OUT (action_feedback_mode)
 }
 
-/** @brief function do_kw_add_attribute_offset in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_add_attribute_offset in Settings-Keyword-Handlers */
 KEYWORD (add_attribute_offset) {
   RC_INTEGER_WOUT (add_attribute_offset);
 }
 
-/** @brief function do_kw_auto_load_last in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_auto_load_last in Settings-Keyword-Handlers */
 KEYWORD (auto_load_last) {
   RC_BOOLEAN_GOUT (auto_load_last);
 }
 
-/** @brief function do_kw_auto_save_interval in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_auto_save_interval in Settings-Keyword-Handlers */
 KEYWORD (auto_save_interval) {
   RC_INTEGER_TOUT (auto_save_interval);
 }
 
-/** @brief function do_kw_attribute_placement_grid in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_attribute_placement_grid in Settings-Keyword-Handlers */
 KEYWORD (attribute_placement_grid) {
   RC_INTEGER_WOUT (attribute_placement_grid);
 }
 
-/** @brief function do_kw_component_dialog_attributes in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_component_dialog_attributes in Settings-Keyword-Handlers */
 KEYWORD (component_dialog_attributes) {
 
   static int list_length;
@@ -952,94 +888,94 @@ KEYWORD (component_dialog_attributes) {
   }
 }
 
-/** @brief function do_kw_continue_component_place in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_continue_component_place in Settings-Keyword-Handlers */
 KEYWORD (continue_component_place) {
   RC_BOOLEAN_WOUT (continue_component_place);
 }
 
-/** @brief function do_kw_embed_components in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_embed_components in Settings-Keyword-Handlers */
 KEYWORD (embed_components) {
   RC_BOOLEAN_WOUT (embed_components);
 }
 
-/** @brief function do_kw_enforce_hierarchy in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_enforce_hierarchy in Settings-Keyword-Handlers */
 KEYWORD (enforce_hierarchy) {
   RC_BOOLEAN_WOUT (enforce_hierarchy);
 }
 
-/** @brief function do_kwfile_preview in X_Settings_Keyword_Handlers */
+/** @brief function do_kwfile_preview in Settings-Keyword-Handlers */
 KEYWORD (file_preview) {
   RC_BOOLEAN_WOUT (file_preview);
 }
 
-/** @brief function do_kw_force_boundingbox in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_force_boundingbox in Settings-Keyword-Handlers */
 KEYWORD (force_boundingbox) {
   RC_BOOLEAN_WOUT (force_boundingbox);
 }
 
-/** @brief function do_kw_keyboardpan_gain in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_keyboardpan_gain in Settings-Keyword-Handlers */
 KEYWORD (keyboardpan_gain) {
   RC_INTEGER_WOUT (keyboardpan_gain);
 }
 
-/** @brief function do_kw_magnetic_net_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_magnetic_net_mode in Settings-Keyword-Handlers */
 KEYWORD (magnetic_net_mode) {
   RC_BOOLEAN_WOUT (magnetic_net_mode);
 }
 
-/** @brief function do_kw_netconn_rubberband in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_netconn_rubberband in Settings-Keyword-Handlers */
 KEYWORD (netconn_rubberband) {
   RC_BOOLEAN_WOUT (netconn_rubberband);
 }
 
-/** @brief function do_kw_raise_dialog_boxes in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_raise_dialog_boxes in Settings-Keyword-Handlers */
 KEYWORD (raise_dialog_boxes) {
   RC_BOOLEAN_WOUT (raise_dialog_boxes);
 }
 
-/** @brief function do_kw_select_slack_pixels in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_select_slack_pixels in Settings-Keyword-Handlers */
 KEYWORD (select_slack_pixels) {
   RC_INTEGER_WOUT (select_slack_pixels);
 }
 
-/** @brief function do_kw_snap_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_snap_size in Settings-Keyword-Handlers */
 KEYWORD (snap_size) {
   RC_INTEGER_WOUT (snap_size);
 }
 
-/** @brief function do_kw_sort_component_library in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_sort_component_library in Settings-Keyword-Handlers */
 KEYWORD (sort_component_library) {
   RC_BOOLEAN_WOUT (sort_component_library);
 }
 
-/** @brief function do_kw_untitled_name in X_Settings_Keyword_Handlers
+/** @brief function do_kw_untitled_name in Settings-Keyword-Handlers
 KEYWORD(untitled_name) {
   RC_STRING_TOUT(untitled_name)
 }
   */
-/** @brief function do_kw_net_consolidate in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_net_consolidate in Settings-Keyword-Handlers */
 KEYWORD (net_consolidate) {
   RC_BOOLEAN_TOUT (net_consolidate);
 }
 
-/** @brief function do_kw_net_endpoint_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_net_endpoint_mode in Settings-Keyword-Handlers */
 KEYWORD (net_endpoint_mode) {
   RC_NET_MAKER_STRINGS;
   RC_STRING_TABLE_W3OUT (net_endpoint_mode);
 }
 
-/** @brief function do_kw_net_midpoint_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_net_midpoint_mode in Settings-Keyword-Handlers */
 KEYWORD (net_midpoint_mode) {
   RC_NET_MAKER_STRINGS;
   RC_STRING_TABLE_W3OUT (net_midpoint_mode);
 }
 
-/** @brief function do_kw_net_direction_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_net_direction_mode in Settings-Keyword-Handlers */
 KEYWORD (net_direction_mode) {
   RC_BOOLEAN_WOUT (net_direction_mode);
 }
 
-/** @brief function do_kw_net_selection_mode in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_net_selection_mode in Settings-Keyword-Handlers */
 KEYWORD (net_selection_mode) {
   int net_selection_mode = w_current->net_selection_mode;
   net_selection_mode = net_selection_mode == 0 ? 0 : (net_selection_mode -1);
@@ -1047,172 +983,172 @@ KEYWORD (net_selection_mode) {
   RC_STRING_TABLE_G3OUT (net_selection_mode)
 }
 
-/** @brief function do_kw_bus_style in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_bus_style in Settings-Keyword-Handlers */
 KEYWORD ( bus_style ) {
   RC_STYLES_STRINGS
   RC_STRING_TABLE_T3OUT ( bus_style )
 }
-/** @brief function do_kw_net_style in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_net_style in Settings-Keyword-Handlers */
 KEYWORD ( net_style ) {
   RC_STYLES_STRINGS
   RC_STRING_TABLE_T3OUT ( net_style )
 }
-/** @brief function do_kw_pin_style in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_pin_style in Settings-Keyword-Handlers */
 KEYWORD ( pin_style ) {
   RC_STYLES_STRINGS
   RC_STRING_TABLE_T3OUT ( pin_style )
 }
-/** @brief function do_kw_line_style in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_line_style in Settings-Keyword-Handlers */
 KEYWORD ( line_style ) {
   RC_STYLES_STRINGS
   RC_STRING_TABLE_T3OUT ( line_style )
 }
-/** @brief function do_kw_thick_bus_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thick_bus_width in Settings-Keyword-Handlers */
 KEYWORD ( thick_bus_width ) {
   RC_INTEGER_TOUT ( thick_bus_width )
 }
-/** @brief function do_kw_thick_line_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thick_line_width in Settings-Keyword-Handlers */
 KEYWORD ( thick_line_width ) {
   RC_INTEGER_TOUT ( thick_line_width )
 }
-/** @brief function do_kw_thick_line_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thick_line_width in Settings-Keyword-Handlers */
 KEYWORD ( thick_net_width ) {
   RC_INTEGER_TOUT ( thick_net_width )
 }
-/** @brief function do_kw_thick_pin_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thick_pin_width in Settings-Keyword-Handlers */
 KEYWORD ( thick_pin_width ) {
   RC_INTEGER_TOUT ( thick_pin_width )
 }
-/** @brief function do_kw_thick_line_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thick_line_width in Settings-Keyword-Handlers */
 KEYWORD ( thin_bus_width ) {
   RC_INTEGER_TOUT ( thin_bus_width )
 }
-/** @brief function do_kw_thin_line_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thin_line_width in Settings-Keyword-Handlers */
 KEYWORD ( thin_line_width ) {
   RC_INTEGER_TOUT ( thin_line_width )
 }
-/** @brief function do_kw_thin_net_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thin_net_width in Settings-Keyword-Handlers */
 KEYWORD ( thin_net_width ) {
   RC_INTEGER_TOUT ( thin_net_width )
 }
-/** @brief function do_kw_thin_pin_width in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_thin_pin_width in Settings-Keyword-Handlers */
 KEYWORD ( thin_pin_width ) {
   RC_INTEGER_TOUT ( thin_pin_width )
 }
 
-/** @brief function do_kw_bus_ripper_rotation in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_bus_ripper_rotation in Settings-Keyword-Handlers */
 KEYWORD ( bus_ripper_rotation ) {
   RC_RIPPER_ROTATION_STRINGS
   RC_STRING_TABLE_W2OUT (bus_ripper_rotation)
 }
 
-/** @brief function do_kw_bus_ripper_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_bus_ripper_size in Settings-Keyword-Handlers */
 KEYWORD ( bus_ripper_size ) {
   RC_INTEGER_WOUT ( bus_ripper_size )
 }
-/** @brief function do_kw_bus_ripper_type in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_bus_ripper_type in Settings-Keyword-Handlers */
 KEYWORD ( bus_ripper_type ) {
   RC_RIPPER_TYPE_STRINGS
   RC_STRING_TABLE_W2OUT (bus_ripper_type)
 }
-/** @brief function do_kw_bus_ripper_symname in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_bus_ripper_symname in Settings-Keyword-Handlers */
 KEYWORD(bus_ripper_symname) {
   RC_STRING_WOUT(bus_ripper_symname)
 }
 
-/** @brief function do_kw_fast_mousepan in X_Settings_Keyword_Handlers  */
+/** @brief function do_kw_fast_mousepan in Settings-Keyword-Handlers  */
 KEYWORD ( fast_mousepan ) {
   RC_BOOLEAN_WOUT (fast_mousepan)
 }
 
-/** @brief function do_kw_drag_can_move in X_Settings_Keyword_Handlers  */
+/** @brief function do_kw_drag_can_move in Settings-Keyword-Handlers  */
 KEYWORD ( drag_can_move ) {
   RC_BOOLEAN_WOUT (drag_can_move)
 }
 
-/** @brief function do_kw_middle_button in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_middle_button in Settings-Keyword-Handlers */
 KEYWORD ( middle_button ) {
   RC_MIDDLE_MOUSE_STRINGS
   RC_STRING_TABLE_W4OUT(middle_button)
 }
 
-/** @brief function do_kw_third_button in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_third_button in Settings-Keyword-Handlers */
 KEYWORD ( third_button ) {
   RC_3RD_BUTT_STRINGS
   RC_STRING_TABLE_W2OUT (third_button)
 }
 
-/** @brief function do_kw_mousepan_gain in X_Settings_Keyword_Handlers  */
+/** @brief function do_kw_mousepan_gain in Settings-Keyword-Handlers  */
 KEYWORD ( mousepan_gain ) {
   RC_INTEGER_WOUT (mousepan_gain)
 }
 
-/** @brief function do_kw_scroll_wheel in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_scroll_wheel in Settings-Keyword-Handlers */
 KEYWORD ( scroll_wheel ) {
   RC_SCROLL_STRINGS
   RC_STRING_TABLE_W2OUT (scroll_wheel)
 }
 
-/** @brief function do_kw_image_color in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_image_color in Settings-Keyword-Handlers */
 KEYWORD (image_color) {
   RC_BOOLEAN_TOUT (image_color)
 }
-/** @brief function do_kw_invert_images in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_invert_images in Settings-Keyword-Handlers */
 KEYWORD (invert_images) {
   RC_BOOLEAN_TOUT (invert_images)
 }
-/** @brief function do_kw_text_case in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_case in Settings-Keyword-Handlers */
 KEYWORD ( text_case ) {
   RC_TEXT_CASE_STRINGS
   RC_STRING_TABLE_W3OUT (text_case)
 }
 
-/** @brief function do_kw_text_display_zoomfactor in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_display_zoomfactor in Settings-Keyword-Handlers */
 KEYWORD ( text_display_zoomfactor ) {
   RC_INTEGER_WOUT (text_display_zoomfactor)
 }
 
-/** @brief function do_kw_text_feedback in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_feedback in Settings-Keyword-Handlers */
 KEYWORD ( text_feedback ) {
   RC_TXT_FEEDBACK_STRINGS
   RC_STRING_TABLE_W2OUT (text_feedback)
 }
 
-/** @brief function do_kw_text_origin_marker in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_origin_marker in Settings-Keyword-Handlers */
 KEYWORD ( text_origin_marker ) {
   RC_BOOLEAN_ROUT (text_origin_marker)
 }
-/** @brief function do_kw_text_marker_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_marker_size in Settings-Keyword-Handlers */
 KEYWORD ( text_marker_size ) {
   RC_INTEGER_ROUT (text_marker_size)
 }
-/** @brief function do_kw_text_size in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_text_size in Settings-Keyword-Handlers */
 KEYWORD ( text_size ) {
   RC_INTEGER_WOUT (text_size)
 }
 
-/** @brief function do_kw_undo_control in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_undo_control in Settings-Keyword-Handlers */
 KEYWORD ( undo_control ) {
   RC_BOOLEAN_WOUT (undo_control)
 }
 
-/** @brief function do_kw_undo_levels in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_undo_levels in Settings-Keyword-Handlers */
 KEYWORD ( undo_levels ) {
   RC_INTEGER_WOUT (undo_levels)
 }
 
-/** @brief function do_kw_undo_type in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_undo_type in Settings-Keyword-Handlers */
 KEYWORD ( undo_type ) {
   RC_UNDO_TYPE_STRINGS
   RC_STRING_TABLE_W2OUT (undo_type)
 }
 
-/** @brief function do_kw_undo_panzoom in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_undo_panzoom in Settings-Keyword-Handlers */
 KEYWORD ( undo_panzoom ) {
   RC_BOOLEAN_WOUT (undo_panzoom)
 }
 
-/** @brief function do_kw_attribute_name in X_Settings_Keyword_Handlers */
+/** @brief function do_kw_attribute_name in Settings-Keyword-Handlers */
 KEYWORD ( attribute_name ) {
   int count;
   int i;
@@ -1233,7 +1169,9 @@ KEYWORD ( attribute_name ) {
     RC_STRING_GOUT(attribute_name, s_attrib_get(i))
   }
 }
-/** @} END Group X_Settings_Keyword_Handlers */
+
+/** @} endgroup Settings-Keyword-Handlers */
+/** @} endgroup Settings-Auxillary-Module */
 
 #undef RC_INPUT_BUFFER_SIZE
 #undef FilterList

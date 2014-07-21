@@ -42,7 +42,17 @@ libgedathon_la_DEPENDENCIES = $(top_builddir)/libgeda/src/libgeda.la
 
 libgedathon_la_LIBADD       = $(top_builddir)/libgeda/src/libgeda.la
 
-LIBTOOL                  = @LIBTOOL@ --silent
+LIBTOOL                     = @LIBTOOL@ --silent
+
+doxygen:
+# Change to the docs directory and 'make doxygen' for libgedathon
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for libgedathon, run configure with the'
+	@echo '--enable-doxygen switch in the top of the source tree and try again'
+endif
 
 MOSTLYCLEANFILES         = *.log core FILE *~
 CLEANFILES               = *.log core FILE *~

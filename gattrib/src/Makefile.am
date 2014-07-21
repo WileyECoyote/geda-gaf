@@ -12,7 +12,7 @@ INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA)
 
-bin_PROGRAMS = gattrib
+bin_PROGRAMS   = gattrib
 
 gattrib_SOURCES = \
 		globals.c \
@@ -47,18 +47,28 @@ AM_CFLAGS        = $(GEDA_INCLUDES) -I$(includedir)
 
 gattrib_CPPFLAGS =
 
-gattrib_CFLAGS   =  $(AM_CFLAGS) $(GCC_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS) \
-		    $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) $(MINGW_CFLAGS)   
+gattrib_CFLAGS   = $(AM_CFLAGS) $(GCC_CFLAGS) $(GLIB_CFLAGS) $(GTK_CFLAGS) \
+		   $(GTHREAD_CFLAGS) $(GUILE_CFLAGS) $(MINGW_CFLAGS)   
 
-gattrib_LDFLAGS  =  $(GLIB_LIBS)  $(GTK_LIBS) $(GTHREAD_LIBS) \
-		    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
+gattrib_LDFLAGS  = $(GLIB_LIBS)  $(GTK_LIBS) $(GTHREAD_LIBS) \
+		   $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 
-gattrib_LDADD	  = $(LIB_GTKSHEET)/libgtksheet.a \
-		    $(top_builddir)/libgedauio/src/libgedauio.la \
-		    $(top_builddir)/libgeda/src/libgeda.la
+gattrib_LDADD	 = $(LIB_GTKSHEET)/libgtksheet.a \
+		   $(top_builddir)/libgedauio/src/libgedauio.la \
+		   $(top_builddir)/libgeda/src/libgeda.la
 
-localedir            = @datadir@/locale
-DEFS                 = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+localedir        = @datadir@/locale
+DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+
+doxygen:
+# Change to the docs directory and 'make doxygen' for gattrib
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for gattrib, run configure with --enable-doxygen'
+	@echo 'in the top of the source tree and then try again'
+endif
 
 MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~

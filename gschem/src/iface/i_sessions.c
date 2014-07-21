@@ -73,13 +73,13 @@ static char *advance2char(const char *string)
   return (char*)ptr;
 }
 
-/*! \defgroup Gschem-Session-System Gschem Session System
- *  @{ \par This Group contains core Routine for Sessions.
+/** \defgroup Gschem-Session-System Gschem Sessions System
+ *  @{ \par This Group contains core Routines for Sessions.
 */
 
 static GArray *sessions;
 
-/*! \defgroup sessions-internal Sessions Internal Functions
+/** \defgroup sessions-internal Sessions Internal Functions
  *  @{ \par This Group contains core Routine for Sessions.
 */
 
@@ -483,7 +483,7 @@ i_sessions_save(GschemToplevel *w_current, GError *err)
   return count;
 }
 
-/*! \defgroup sessions-menu Sessions Menu Support Functions
+/** \defgroup sessions-menu Sessions Menu Support Functions
  *  @{ \remark
  */
 
@@ -623,7 +623,7 @@ static void update_sessions_menus(GschemToplevel *w_current)
    }
 }
 
-/*! @} endgroup sessions-menu */
+/** @} endgroup sessions-menu */
 
 /*! \brief Get Count of Documents for Session
  *  \par Function Description
@@ -759,9 +759,9 @@ static void i_sessions_destroy_sessions(void)
   }
 }
 
-/*! @} endgroup sessions-internal */
+/** @} endgroup sessions-internal */
 
-/*! \defgroup sessions-global-functions Sessions Global Functions
+/** \defgroup sessions-global-functions Sessions Global Functions
  *  @{ \par This Group contains global routines for Sessions System
  */
 
@@ -1053,7 +1053,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
   return count;
 }
 
-/*! \defgroup sessions-global-utilities Sessions Global Utilities
+/** \defgroup sessions-global-utilities Sessions Global Utilities
  *  @{ \par Contains system-level utilities for Sessions.
 */
 
@@ -1179,6 +1179,6 @@ void i_sessions_init(GschemToplevel *w_current)
    i_sessions_update_menus(w_current);
    v_log_message(_("Session system initialized!\n"));
 }
-/*! @} endgroup sessions-global-utilities */
-/*! @} endgroup sessions-global-functions */
-/*! @} endgroup Gschem-Session-System */
+/** @} endgroup sessions-global-utilities */
+/** @} endgroup sessions-global-functions */
+/** @} endgroup Gschem-Sessions-System */

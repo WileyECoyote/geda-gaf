@@ -48,8 +48,11 @@
 #include <geda_dialog_controls.h>
 #include "x_dialog.h"
 
-/*! \defgroup Edit-Color-Dialog Edit-Color Dialogs Functions
+/** \defgroup Edit-Color-Dialog Edit Color Dialog
  *  @{
+ *  \ingroup (Editing-Dialogs)
+ *
+ *  \par This Group contains routines for the Edit Color dialog.
  */
 
 /*! \brief Handle selection change event for x_dialog_edit_color
@@ -220,4 +223,4 @@ void x_dialog_edit_color (GschemToplevel *w_current)
 }
 
 /******************** End of color edit dialog box **********************/
-/*! @} end group Edit-Color-Dialog */
+/** @} end group Edit-Color-Dialog */

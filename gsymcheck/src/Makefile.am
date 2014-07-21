@@ -29,6 +29,16 @@ gsymcheck_LDFLAGS    = $(LIBSTROKE_LDFLAGS) $(GLIB_LIBS) $(GTK_LIBS) \
 		       $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS)
 gsymcheck_LDADD      = $(top_builddir)/libgeda/src/libgeda.la @LIBINTL@
 
+doxygen:
+# Change to the docs directory and 'make doxygen' for gsymcheck
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for gsymcheck, run configure with --enable-doxygen'
+	@echo 'in the top of the source tree and then try again'
+endif
+
 MOSTLYCLEANFILES     = *.log *.ps core FILE *~
 CLEANFILES           = *.log *.ps core FILE *~
 DISTCLEANFILES       = *.log      core FILE *~

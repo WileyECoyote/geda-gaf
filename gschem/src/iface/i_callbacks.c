@@ -125,7 +125,7 @@ DEFINE_I_CALLBACK(view_pan_down)
 }
 
 
-/*! \defgroup file-menu File Menu Callback Functions
+/** \defgroup file-menu File Menu Callback Functions
  * @{
  */
 
@@ -161,7 +161,7 @@ DEFINE_I_CALLBACK(file_save)
   i_command_process(w_current, "file-save", 0, NULL, ID_ORIGIN_SCM);
 }
 
-/*! @} end group file-menu */
+/** @} end group file-menu */
 
 /*! \brief Page Close
  *  \par Function Description
@@ -244,7 +244,7 @@ DEFINE_I_CALLBACK(cancel)
   w_current->inside_action=0;
 }
 
-/*! \defgroup help-menu Help Menu Callback Functions
+/** \defgroup help-menu Help Menu Callback Functions
  * @{
  */
 
@@ -301,7 +301,7 @@ DEFINE_I_CALLBACK(help_show_about)
   i_command_process(w_current, "help-show-about", 0, NULL, ID_ORIGIN_SCM);
 }
 
-/*! @} end group help-menu */
+/** @} end group help-menu */
 
 /* This is a special wrapper function which cannot use the above */
 /* DEFINE_I_CALLBACK macro */

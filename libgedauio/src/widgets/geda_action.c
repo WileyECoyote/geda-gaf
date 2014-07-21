@@ -427,4 +427,4 @@ void geda_action_set_icon_name (GedaAction *action,
     }
   }
 }
-/*! @} end group GedaAction */
+/** @} end group GedaAction */

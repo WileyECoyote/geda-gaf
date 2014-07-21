@@ -33,6 +33,16 @@ libgedauio_la_DEPENDENCIES =
 
 LIBTOOL                    = @LIBTOOL@ --silent
 
+doxygen:
+# Change to the docs directory and 'make doxygen' for libgedauio
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for libgedauio, run configure with the'
+	@echo '--enable-doxygen switch in the top of the source tree and try again'
+endif
+
 MOSTLYCLEANFILES           = *.log core FILE dialogs/*~ widgets/*~ *~
 CLEANFILES                 = *.log core FILE dialogs/*~ widgets/*~ *~
 DISTCLEANFILES             = *.log core FILE dialogs/*~ widgets/*~ *~

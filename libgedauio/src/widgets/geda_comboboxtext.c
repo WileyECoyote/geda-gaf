@@ -631,4 +631,4 @@ int geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
   return gtk_combo_box_get_active ((GtkComboBox*)widget);
 }
-/*! @} end group GedaComboBoxText */
+/** @} end group GedaComboBoxText */

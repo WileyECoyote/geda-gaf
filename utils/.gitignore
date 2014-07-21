@@ -16,5 +16,6 @@ missing
 mkinstalldirs
 compile
 *~
+*.swp
 ylwrap
 ChangeLog

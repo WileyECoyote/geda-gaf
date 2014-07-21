@@ -355,7 +355,7 @@ typedef PyObject* (*PyGeda_pyobject_v1_type)     ( void );
 
 typedef void      (*PyGeda_void_v1_type)         ( void );
 
-/*! \defgroup Python_API_Methods Geda Python Module API Methods
+/** \defgroup Python_API_Methods Geda Python Module API Methods
  *  @{
  */
 
@@ -617,7 +617,7 @@ METHOD(goto_page)
   int       status;
 
   if(!PyArg_ParseTuple(args, "O!:geda.goto_page", PageObjectClass(), &page)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: goto_page(PageObject)"); 
+    PyErr_SetString(PyExc_TypeError, "syntax: goto_page(PageObject)");
     return NULL;
   }
   pid = ((PageObject*)page)->pid;
@@ -1320,7 +1320,7 @@ METHOD(sync_object)
 }
 
 
-/*! \defgroup Python_API_Create_Methods  Geda Python Module API Creation Methods
+/** \defgroup Python_API_Create_Methods  Geda Python Module API Creation Methods
  *  @{
  */
 
@@ -1953,7 +1953,7 @@ METHOD(new_attrib)
   PyObject   *object_data;
   PyObject   *py_color     = NULL;
   const char *name         = NULL;
-  const char *value        = NULL; 
+  const char *value        = NULL;
 
   int x; int y;
 
@@ -1979,7 +1979,7 @@ METHOD(new_attrib)
 }
 /** @} END Group Python_API_Create_Methods */
 
-/*! \defgroup Python_Attribute_Handlers  Geda Python Module API Attribute Manipulators
+/** \defgroup Python_Attribute_Handlers  Geda Python Module API Attribute Manipulators
  *  @{
  */
 

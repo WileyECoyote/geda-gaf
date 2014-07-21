@@ -1493,4 +1493,4 @@ GedaMenuButton *geda_menu_button_new_with_mnemonic(const char *label)
                        "menu-relief", GTK_RELIEF_NONE,
                        "use-underline", TRUE,  NULL);;
 }
-/*! @} end group GedaMenuButton */
+/** @} end group GedaMenuButton */

@@ -291,18 +291,12 @@ typedef enum {
 
 /* Defined in x_settings.c */
 
-GtkWidget* get_geda_bulb_image (gboolean WhichState);
-
-void bulb_on( GtkWidget *widget);
-void bulb_off( GtkWidget *widget);
-void gtk_bulb_group_set_active(GSList *RadioGroupList, int value);
-
 void configure_dialog_response(GtkWidget *w, gint response, GschemToplevel *w_current);
 
-int get_titleblock_cnt(void);
+int  get_titleblock_cnt(void);
 bool get_titleblock_list(char **Buffer);
 
-int generate_rc(GschemToplevel *w_current, const char *rcname);
+int  generate_rc(GschemToplevel *w_current, const char *rcname);
 
 /* Defined in x_settings_dialog.c */
 bool gtk_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter);

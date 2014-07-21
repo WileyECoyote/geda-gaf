@@ -66,7 +66,7 @@ static PyGedaFunc FunctionTable[] = {
  #include "geda_module.h"
 };
 
-/*! \defgroup Python_API_Library_Internal Python API Internal Functions
+/** \defgroup Python_API_Library_Internal Python API Internal Functions
  *  @{
  */
 
@@ -879,7 +879,7 @@ void initialize( API_FunctionTable* user_table)
 
 /** @} END Group Python_API_Library_Internal */
 
-/*! \defgroup Python_API_Library  Python API Functions
+/** \defgroup Python_API_Library  Python API Functions
  *  @{
  */
 
@@ -1990,7 +1990,7 @@ PyGeda_sync_object( PyObject *py_object )
   return status;
 }
 
-/*! \defgroup Python_API_Create_Functions  Python API Creation Functions
+/** \defgroup Python_API_Create_Functions  Python API Creation Functions
  *  @{
  */
 
@@ -2478,7 +2478,7 @@ PyGeda_new_text( const char *text, int x, int y, int size, int align, int angle,
 
 /** @} END Group Python_API_Create_Functions */
 
-/*! \defgroup Python_API_Attribute_Functions  Python API Attribute Functions
+/** \defgroup Python_API_Attribute_Functions  Python API Attribute Functions
  *  @{
  */
 

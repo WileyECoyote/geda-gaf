@@ -1484,7 +1484,7 @@ SCM g_rc_setpagedevice_pagesize(SCM mode)
 
 /* ----------------- System -----------------*/
 
-/*! \defgroup System-User-RC-Options RC keywork Handler Functions
+/** \defgroup System-User-RC-Options RC keywork Handler Functions
  *  @{ \par
  *      These function are registered with Guile and are
  *      called when ever a System type key-word is encountered
@@ -1596,7 +1596,7 @@ SCM g_rc_toolbars_mode(SCM mode)
 
 /* --------------- Scrollbar ----------------*/
 
-/*! \defgroup RC-Scrollbar-Options Scrollbar Options RC Functions
+/** \defgroup RC-Scrollbar-Options Scrollbar Options RC Functions
  *  @{
  */
 
@@ -1841,6 +1841,4 @@ SCM g_rc_undo_type(SCM mode)
                    default_undo_type,
                    2);
 }
-/*! @} end group System-User-RC-Options */
-
-
+/** @} end group System-User-RC-Options */

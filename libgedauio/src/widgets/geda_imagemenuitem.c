@@ -1106,4 +1106,4 @@ geda_image_menu_item_screen_changed (GtkWidget *widget,
   show_image_change_notify (GEDA_IMAGE_MENU_ITEM (widget));
 }
 */
-/*! @} end group GedaImageMenuItem */
+/** @} end group GedaImageMenuItem */

@@ -35,9 +35,16 @@
 
 #define DEBUG_DND_EVENTS 0
 
-/*! \defgroup Coordinates-Dialog ( Coordinates Systemic-Dialogs)
- *  @{ \par This group contains functions and data for Drag-N-Drop events
+/** \defgroup Coordinates-Dialog Coordinates Dialog
+ *  @{
+ *  \ingroup (Systemic-Dialogs)
+ *
+ *  \par
+ *   This group contains routines for the coordinates dialog and handles
+ *   Drag-N-Drop events on the coordinates world entry widget.
+ *
  */
+
 static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_NONE,
     GSCHEM_TARGET_TEXT,
@@ -47,7 +54,7 @@ static GtkTargetEntry dnd_target_list[] = {
     GSCHEM_TARGET_OBJECTS,
 };
 
-/*! \defgroup Coordinates-Drag-N-Drop-Destination Coordinates Dialog Drag-N-Drop
+/** \defgroup Coordinates-Drag-N-Drop-Destination Coordinates Dialog Drag-N-Drop
  *  @{ \par
  *          This sub-group contains routines to handle signals receivable by
  *          the Coordinates-Dialog as the destination. The  Coordinates-Dialog
@@ -284,7 +291,7 @@ bool x_dialog_coord_drag_drop
   return  is_valid_drop_site;
 }
 
-/*! @} end-subgroup Coordinates-Drag-N-Drop-Destination  */
+/** @} end-subgroup Coordinates-Drag-N-Drop-Destination  */
 
 /*! \brief Response function for the coord dialog
  *
@@ -564,5 +571,5 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
   /* always update the coords when the dialog is requested */
   x_dialog_coord_update_display(w_current, x, y);
 }
-/*! @} end-subgroup Coordinates-Dialog  */
+/** @} end-subgroup Coordinates-Dialog  */
 /***************** End of coord dialog box **************************/

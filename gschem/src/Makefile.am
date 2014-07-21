@@ -64,10 +64,20 @@ snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
 		   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
 
 .c.x:
-	      @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
+	     @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
 
-localedir       = @datadir@/locale
-DEFS            = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+localedir        = @datadir@/locale
+DEFS             = -DLOCALEDIR=\"$(localedir)\" @DEFS@
+
+doxygen:
+# Change to the docs directory and 'make doxygen' for gschem
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for gschem, run configure with --enable-doxygen'
+	@echo 'in the top of the source tree and then try again'
+endif
 
 MOSTLYCLEANFILES     = *.log core FILE *~ ./*/*~
 CLEANFILES           = *.log core FILE *~ ./*/*~ $(BUILT_SOURCES)

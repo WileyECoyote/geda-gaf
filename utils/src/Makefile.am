@@ -35,6 +35,16 @@ sarlacc_schem_CPPFLAGS  = $(GDK_PIXBUF_CFLAGS)
 sarlacc_schem_LDFLAGS 	= $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
 sarlacc_schem_LDADD   	= $(top_builddir)/libgeda/src/libgeda.la
 
+doxygen:
+# Change to the docs directory and 'make doxygen' for geda utilities
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for geda utilities, run configure with the'
+	@echo '--enable-doxygen switch in the top of the source tree and try again'
+endif
+
 MOSTLYCLEANFILES	= *.log core FILE *~
 CLEANFILES		= *.log core FILE *~ $(BUILT_SOURCES)
 DISTCLEANFILES		= *.log core FILE *~

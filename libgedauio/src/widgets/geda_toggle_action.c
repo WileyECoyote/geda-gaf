@@ -253,7 +253,7 @@ unsigned int geda_toggle_action_get_type ()
  * \param [in] name:     A unique name for the action
  * \param [in] label:    The label displayed in menu items and on buttons, or %NULL
  * \param [in] tooltip:  A tooltip for the action, or %NULL
- * \param [in] stock_id: The stock icon to display in widgets representing the action, or %NULL
+ * \param [in] icon_id:  The stock icon to display in widgets representing the action, or %NULL
  * \param [in] multikey_accel: The accel char string
  *
  * Return value: a new GedaToggleAction
@@ -286,4 +286,4 @@ geda_toggle_action_new (const char *name,
   return action;
 }
 
-/*! @} end group GedaToggleAction */
+/** @} end group GedaToggleAction */

@@ -1,8 +1,19 @@
+2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+        * *: More work on Doxygen documentation, added groups, reorganized
+          existing groups. Added additional documentation, mostly group and
+          file level comments. Changed group delimiters to use a different
+          style than function documentation, add and end group use the double
+          asterisk, as oppose to the asterisk exclamation pair so as to allow
+          independent indexing and while searching documentation/comments.
+
+        * src/x/x_dialog.c: Relocate code for "bulbs" from x_settings.c.
+
 2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/iface/i_sessions.c: Revised and completed Doxygen documentatio.
+        * src/iface/i_sessions.c: Revised and completed Doxygen documentation.
 
-        * src/x/x_sessions.c: Revised and completed Doxygen documentatio.
+        * src/x/x_sessions.c: Revised and completed Doxygen documentation.
 
 2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
 

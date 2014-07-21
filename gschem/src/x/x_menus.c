@@ -688,7 +688,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   return MENU_BAR;
 }
 
-/*! \defgroup Main-Context-Menu Mouse Menu Functions */
+/** \defgroup Main-Context-Menu Mouse Menu Functions */
 
 /*! \brief Setup Main Popup Context Menu
  *  \par Function Description
@@ -823,7 +823,7 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
 
 /** @} END Group Main-Context-Menu (the main popup menu) */
 
-/*! \defgroup Main-Menu-Support Functions to support the Main Menu
+/** \defgroup Main-Menu-Support Functions to support the Main Menu
  *  @{ \par
  *         The functions in this group, mostly callbacks, support
  *         main menu.
@@ -1046,7 +1046,7 @@ static void x_menu_toggle_tips(GtkWidget *widget, GSList* list)
   }
 }
 
-/*! \defgroup menu-toggle-action Menu Toggle Action Support Functions
+/** \defgroup menu-toggle-action Menu Toggle Action Support Functions
  *
  *  \par
  *     The Menu toggles buttons need the "activate" signal blocked
@@ -1164,11 +1164,11 @@ void x_menu_set_toolbar_toggle(GschemToplevel *w_current, int toggle_id, bool st
   return;
 }
 
-/*! @} end group menu-toggle-action  */
+/** @} end group menu-toggle-action  */
 
 /* ---------------- Recent Files Menu ---------------- */
 
-/*! \defgroup recent-file-menu Recent Files Menu Support Functions
+/** \defgroup recent-file-menu Recent Files Menu Support Functions
  *
  *  @{ \remark This is the old method, as appose to the GTK Recent
  *  Chooser Manger version. This method seems to work better on Debian
@@ -1491,5 +1491,5 @@ const char *recent_files_last(void) {
 
 }
 
-/*! @} end group recent-file-menu */
-/*! @} end group Main-Menu-Support */
+/** @} end group recent-file-menu */
+/** @} end group Main-Menu-Support */

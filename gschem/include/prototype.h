@@ -621,9 +621,13 @@ void x_dialog_coord_dialog                  (GschemToplevel *w_current, int x, i
 /* Dialog-Utility functions */
 AtkObject* atk_widget_linked_label_new           (GtkWidget *label, GtkWidget *linkto);
 GtkWidget* create_pixmap                         (const char *filename);
-void       destroy_window                        (GtkWidget *widget, GtkWidget **window);
-int        text_view_calculate_real_tab_width    (GtkTextView *textview, int tab_size);
+void       destroy_gschem_dialog                 (GtkWidget *widget, GtkWidget **window);
+GtkWidget* get_bulb_image                        (bool WhichState);
+void       set_bulb_on                           (GtkWidget *widget);
+void       set_bulb_off                          (GtkWidget *widget);
+void       bulb_group_set_active                 (GSList *RadioGroupList, int value);
 void       select_all_text_in_textview           (GtkTextView *textview);
+int        text_view_calculate_real_tab_width    (GtkTextView *textview, int tab_size);
 GtkWidget *create_color_menu                     (GschemToplevel * w_current, int color_index);
 
 /* Standard-Dialogs */

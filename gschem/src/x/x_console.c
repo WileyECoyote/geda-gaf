@@ -162,7 +162,7 @@ void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
 /*! ====================== Console Dialog-Handlers ==================== */
 
-/*! \defgroup Console-Dialog-Handlers Console Dialog Support Functions
+/** \defgroup Console-Dialog-Handlers Console Dialog Support Functions
  *  @{
  */
 
@@ -274,7 +274,7 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
 
 /*! ===================== Console Logging-Handlers ==================== */
 
-/*! \defgroup Logging-Handlers Console Dialog Logging Functions
+/** \defgroup Logging-Handlers Console Dialog Logging Functions
  *  @{
  */
 
@@ -342,12 +342,12 @@ static void log_message (Console *console, const char *message, const char *styl
   gtk_text_buffer_delete_mark (buffer, mark);
 }
 
-/*! @} end group Logging-Handlers */
-/*! @} end group Console-Dialog-Handlers */
+/** @} end group Logging-Handlers */
+/** @} end group Console-Dialog-Handlers */
 
 /*! ============ Console-Class Initializers & Constructors ============ */
 
-/*! \defgroup Console-Class Console Dialog Class Functions
+/** \defgroup Console-Class Console Dialog Class Functions
  *  @{
  */
 
@@ -677,4 +677,4 @@ static void console_init (Console *console) /* *Self */
   gtk_widget_grab_focus(console_entry); /* Not the Close the Button */
 }
 
-/*! @} end group Console-Class */
+/** @} end group Console-Class */

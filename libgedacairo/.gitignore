@@ -3,7 +3,7 @@ Makefile.in
 TAGS
 *~
 *#
-*.txt
 *.bak
+*.swp
 ChangeLog
 libgedacairo.pc

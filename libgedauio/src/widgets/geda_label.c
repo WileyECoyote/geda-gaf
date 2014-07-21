@@ -6153,4 +6153,4 @@ _geda_label_get_selection_bound (GedaLabel *label)
 
   return 0;
 }
-/*! @} end group GedaLabel */
+/** @} end group GedaLabel */

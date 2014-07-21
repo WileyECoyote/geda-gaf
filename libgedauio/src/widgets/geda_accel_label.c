@@ -373,4 +373,4 @@ geda_accel_label_class_init (GedaAccelLabelClass *class)
                                                         NULL,
                                                         G_PARAM_READWRITE));
 }
-/*! @} endgroup GedaAccelLabel */
+/** @} endgroup GedaAccelLabel */

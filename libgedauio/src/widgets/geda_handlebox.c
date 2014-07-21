@@ -1457,4 +1457,4 @@ geda_handle_box_end_drag (GedaHandleBox *handlebox, unsigned int time)
                                         G_CALLBACK (geda_handle_box_grab_event),
                                         handlebox);
 }
-/*! @} end group GedaHandleBox */
+/** @} end group GedaHandleBox */

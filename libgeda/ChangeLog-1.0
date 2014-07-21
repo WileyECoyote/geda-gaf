@@ -1,3 +1,11 @@
+2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+        * *: More work on Doxygen documentation; Changed group delimiters to
+          use a different style than function documentation, add and end group
+          use the double asterisk, as oppose to the asterisk exclamation pair
+          so as to allow independent indexing and while searching documentation
+          comments.
+
 2014-07-20 Wiley E. Hill <wileyhill@gmail.com>
 
         * */*/*: Revise, updated or corrected Doxygen documentation for;

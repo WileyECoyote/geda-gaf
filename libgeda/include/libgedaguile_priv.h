@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library - Scheme API
- * Copyright (C) 2010-2013 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2010-2014 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,7 +17,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
  */
 
-/*! \defgroup guile_c_iface gEDA Scheme API: C interface
+/** \defgroup guile_c_iface gEDA Scheme API: C interface
  * \brief Interface to the gEDA Scheme API for programs written in C.
  *
  * This module contains a variety of functions for use in applications

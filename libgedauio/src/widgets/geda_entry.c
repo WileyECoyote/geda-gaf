@@ -1083,7 +1083,7 @@ static bool geda_entry_tab_complete (GtkEntry *entry)
 
 }
 
-/*! \defgroup GedaEntry-Popup-Menu GedaEntry Popup Menu
+/** \defgroup GedaEntry-Popup-Menu GedaEntry Popup Menu
  *  @{
  */
 
@@ -1150,11 +1150,11 @@ popup_menu_callback (GtkMenuItem *item, void    *data)
         break;
   }
 }
-/*! @} endgroup Entry-Popup-Menu */
+/** @} endgroup Entry-Popup-Menu */
 
 /* --------------------- Widget Style Functions ----------------- */
 
-/*! \defgroup GedaEntry-Style GedaEntry Style Functions
+/** \defgroup GedaEntry-Style GedaEntry Style Functions
  *  @{
  */
 
@@ -1234,11 +1234,11 @@ void geda_entry_modify_bg (GedaEntry      *entry,
   geda_entry_widget_modify_color (GTK_WIDGET (entry), GTK_RC_BG, state, color);
 }
 
-/*! @} endgroup Entry-Style */
+/** @} endgroup Entry-Style */
 
 /* -------------------------------------------------------------- */
 
-/*! \defgroup GedaEntry-Creators GedaEntry Creator Functions
+/** \defgroup GedaEntry-Creators GedaEntry Creator Functions
  *  @{
  */
 
@@ -1288,5 +1288,5 @@ geda_entry_new_with_buffer (GtkEntryBuffer *buffer)
   return g_object_new  (GEDA_TYPE_ENTRY, "buffer", buffer, NULL);
 }
 
-/*! @} endgroup Entry-Creators */
-/*! @} end group GedaEntry */
+/** @} endgroup Entry-Creators */
+/** @} end group GedaEntry */

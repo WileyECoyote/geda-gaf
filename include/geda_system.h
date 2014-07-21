@@ -16,7 +16,7 @@
 
 #elif defined(__linux__) || defined(UNIX)
 
-#define DIR_SEPARATOR '/'
+#define DIR_SEPARATOR 0x2F
 #define DIR_SEPARATOR_S "/"
 #define IS_DIR_SEPARATOR(c) ((c) == DIR_SEPARATOR)
 #define SEARCHPATH_SEPARATOR ':'

@@ -44,8 +44,17 @@
 #include <dmalloc.h>
 #endif
 
-/*! \defgroup Edit-Text-Dialog Edit Text Editing-Dialog Functions
+/*!
+ * \file x_edit_text.c
+ *
+ * \brief A dialog box for creating and editing Text Objects.
+ */
+
+/** \defgroup Edit-Text-Dialog Edit Text Editing-Dialog Functions
  *  @{
+ *  \ingroup (Editing-Dialogs)
+ *
+ *  \par This Group contains Routines for the Edit Text dialog.
  */
 
 /** @brief Enumerate Control IDs. */
@@ -622,4 +631,4 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
 }
 
 /******************* End of Text Edit dialog box ************************/
-/*! @} end group Edit-Text-Dialog */
+/** @} end group Edit-Text-Dialog */

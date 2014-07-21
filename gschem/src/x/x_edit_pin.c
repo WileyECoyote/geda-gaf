@@ -44,8 +44,17 @@
 #include <dmalloc.h>
 #endif
 
-/*! \defgroup Edit-Pin-Dialog Pin Properties Editing-Dialogs Functions
+/*!
+ * \file x_edit_pin.c
+ *
+ * \brief A dialog box for editing Pin Object properties.
+ */
+
+/** \defgroup Edit-Pin-Dialog Edit Pin Properties Dialog
  *  @{
+ *  \ingroup (Editing-Dialogs)
+ *
+ *  \par This Group contains routines for the Edit Pin dialog.
  */
 
 /** @brief Enumerate Control IDs. */
@@ -960,4 +969,4 @@ void x_dialog_edit_pin_type (GschemToplevel *w_current)
 }
 
 /****************** End of pin type edit dialog box *********************/
-/*! @} end group Edit-Pin-Dialog */
+/** @} end group Edit-Pin-Dialog */

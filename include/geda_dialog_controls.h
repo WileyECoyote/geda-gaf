@@ -106,7 +106,7 @@ typedef struct
 #define SetSwitch( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Switch), var);
 #define SetRadio( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Radio), var);
 #define SetRadioGroup(group, var) gtk_radio_group_set_active(group##RadioGroup, var);
-#define SetBulbGroup(group, var) gtk_bulb_group_set_active(group##RadioGroup, var);
+#define SetBulbGroup(group, var) bulb_group_set_active(group##RadioGroup, var);
 #define SetSpin( name, var) gtk_spin_button_set_value (GTK_SPIN_BUTTON (name##Spin), var);\
 
 /* This macro helps reduce line length */
@@ -539,10 +539,10 @@ typedef struct
         hbox = gtk_hbox_new (FALSE, 2);                             /* Create new Box container */ \
         g_object_set (hbox, "visible", TRUE, NULL); \
         gtk_container_add (GTK_CONTAINER (alignment), hbox);        /* Put box container inside the Alignment */ \
-        LightOn = get_geda_bulb_image(TRUE); \
+        LightOn = get_bulb_image(TRUE); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOn, FALSE, FALSE, 0); /* Put both images inside box container */ \
         GTK_HOOKUP_OBJECT (ThisDialog, LightOn, "On"); \
-        LightOff = get_geda_bulb_image(FALSE); \
+        LightOff = get_bulb_image(FALSE); \
         g_object_set (LightOff, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (hbox), LightOff, FALSE, FALSE, 0); \
         GTK_HOOKUP_OBJECT (ThisDialog, LightOff, "Off"); \
@@ -559,7 +559,7 @@ typedef struct
         GEDA_BULB (group, group##R2, dir); \
         GEDA_BULB (group, group##R3, dir); \
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
-        bulb_on(group##Default##Radio); \
+        set_bulb_on(group##Default##Radio); \
         group##RadioGroup=group##Group; \
 }
 
@@ -581,7 +581,7 @@ typedef struct
         GEDA_BULB (group, group##R3, dir); \
         GEDA_BULB (group, group##R4, dir); \
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
-        bulb_on(group##Default##Radio); \
+        set_bulb_on(group##Default##Radio); \
         group##RadioGroup=group##Group; \
 }
 #define GTK_QUAD_RADIO(parent, group, dir, spacing, R1, R2, R3, R4, Default) { \

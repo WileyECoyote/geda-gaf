@@ -273,7 +273,7 @@ const char *f_path_user_config () {
 
 /* ------------------ Directory Utility Functions --------------- */
 
-/*! \defgroup libgeda-dir-utilities Libgeda Directory Utilities
+/** \defgroup libgeda-dir-utilities Libgeda Directory Utilities
  *  @{ \par This Group contains utilities to manipulate directories.
 */
 
@@ -364,4 +364,4 @@ int f_create_path(const char *path, mode_t mode)
 }
 #endif
 
-/*! @} endgroup libgeda-dir-utilities */
+/** @} endgroup libgeda-dir-utilities */

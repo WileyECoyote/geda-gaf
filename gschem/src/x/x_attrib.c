@@ -38,7 +38,29 @@
 #include <dmalloc.h>
 #endif
 
+/*!
+ * \file x_attrib.c
+ *
+ * \brief A dialog box for editing Attribute Text objects.
+ */
+
 /***************** Start of Attrib Edit dialog box ********************/
+
+/** \defgroup Mini-Attrib-Edit-Dialog Mini-Attribute Editor Dialog
+ *  @{
+ *  \ingroup (Editing-Dialogs)
+ *
+ *  \par This Group contains routines for the Mini-Attribute Editor dialog.
+ *
+ *  \remarks The Mini Attribute dialog doubles as the Add Attribute Dialog
+ *           based on a flag passed to the constructor. The Mini Attribute
+ *           dialog is also referred to the Small Attribute Editor and this
+ *           refers to the size of the dialog box, and is not related to the
+ *           text size of attributes. This same dialog was formally known as
+ *           the Single Attribute Editor dialog but this would no longer be
+ *           appropriate since the dialog is suppose to handle multiple
+ *           selections but this functionality needs more work.
+ */
 
 typedef enum
 {
@@ -46,10 +68,6 @@ typedef enum
   SAE_EDIT_MODE,
   SAE_ADD_MODE
 } AttributeEditMode;
-
-/*! \defgroup attrib-edit-dialog-box Attrib Edit Dialog Box
- *  @{ \par
- */
 
 /*! \brief Callback for Editing Text Properties
  *  \par Function Description
@@ -59,7 +77,7 @@ typedef enum
  *
  */
 static void x_dialog_attrib_edit_update_selection (GschemToplevel *w_current,
-                                                   Object *object)
+                                                   Object         *object)
 {
   GtkWidget *ThisDialog;
   GtkWidget *widget;
@@ -312,11 +330,13 @@ GtkWidget *x_attrib_option_menu_new()
 
   return options_menu;
 }
+
 /*! \brief Create the attribute add/edit dialog
  *  \par Function Description
  *  This function creates the single attribute edit dialog. This dialog
  *  is special in that it can be either an "add" new attribute or an
- *  "Edit" (existing) attribute dialog.
+ *  "Edit" (existing) attribute dialog depending on the value of the
+ *   flag argument.
  *
  */
 static
@@ -556,4 +576,4 @@ void x_attrib_edit_dialog (GschemToplevel *w_current, Object *object)
 }
 #undef ThisDialog
 /***************** End of Attrib Edit dialog box **********************/
-/*! @} end group attrib-edit-dialog-box  */
+/** @} endgroup Mini-Attrib-Edit-Dialog  */

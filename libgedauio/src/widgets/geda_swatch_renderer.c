@@ -328,4 +328,4 @@ geda_swatch_renderer_new()
 
   return swatch;
 }
-/*! @} endgroup GedaSwatchRenderer */
+/** @} endgroup GedaSwatchRenderer */

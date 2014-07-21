@@ -23,7 +23,7 @@
 
 #include "gschem.h"
 
-/*! \defgroup Stretch Stretch While Dragging during Move Operations
+/** \defgroup Stretch Stretch While Dragging during Move Operations
  *  @{
  */
 

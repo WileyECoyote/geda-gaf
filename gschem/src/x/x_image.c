@@ -18,6 +18,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+
+/*!
+ * \file x_image.c
+ *
+ * \brief A dialog box for creating output images.
+ *
+ */
+
 #include <config.h>
 
 #include <stdio.h>
@@ -45,6 +53,14 @@
 
 #define ThisDialog dialog
 #define Switch_Responder switch_responder
+//#define DEBUG_IMAGING 1
+
+/** \defgroup Write-Image-Dialog Write-Image Dialog
+ *  @{
+ *  \ingroup (Standard-Dialogs)
+ *
+ *  \par This Group contains routines for the Write Image dialog.
+ */
 
 #define X_IMAGE_DEFAULT_SIZE_INDEX 2
 
@@ -52,7 +68,6 @@
 #define X_IMAGE_TYPE_MENU_NAME "image_type_menu"
 
 #define X_IMAGE_DEFAULT_TYPE "PNG"
-//#define DEBUG_IMAGING 1
 
 /* Enumerate Control IDs */
 typedef enum {
@@ -501,7 +516,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
 #endif
 }
 
-/*! \defgroup X-Image-Switch-Callback Switch Callback Functions
+/** \defgroup X-Image-Switch-Callback Switch Callback Functions
  *  @{ \par
  *          Support functions for toggle buttons on the export
  *          image dialog.
@@ -1116,5 +1131,8 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
 
   return(pixbuf);
 }
+
+/** @} endgroup Write-Image-Dialog */
+
 #undef ThisDialog
 #undef Switch_Responder

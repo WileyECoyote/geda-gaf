@@ -27,22 +27,32 @@
  */
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 01/31/13 |  Inital release, new file.
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 09/10/13 | Added more icons, seperate geda &  gschem (to
  *                | reduce the lists to smaller sizes, in anticipation
  *                | adding more icons).
  *                | to support routines not using embed labels.
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 09/16/13 | Relocated _set_default_icon from x_window to this
  *                | module (improvement to general code organization).
  *                | Added new function x_icons_add_search_path from
  *                | master branch ([with new name] as feature update).
  *                | Consolidated icon intialization to new function
  *                | x_icons_initialize (for better code organization).
+ * ---------------|--------------------------------------------------
+ * WEH | 07/20/14 | Added Doxygen grouping wrapper fo this module (to
+ *                | to improve source documentation).
  */
 #include <gschem.h>
+
+/** \defgroup Gschem-Icons Gschem-Icons
+ *  @{
+ *  \par This module contains routines for icons images
+ *  in support of Gschem's GUI subsystems such as menus and toolbars.
+ *  This support primarily consist of an Gtk icon factory.
+ */
 
 static GtkIconFactory* gschem_factory;
 
@@ -193,7 +203,6 @@ static void x_icons_setup_factory()
   }
 }
 
-
 /*! \brief Setup icon search paths.
  * \par Function Description
  * Add the icons installed by gschem to the search path for the
@@ -208,3 +217,4 @@ void x_icons_initialize (void)
   x_icons_setup_factory();
 
 }
+/** @} endgroup Gschem-Icons */

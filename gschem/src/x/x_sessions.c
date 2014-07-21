@@ -32,6 +32,20 @@
 #include <geda_dialogs.h>
 #include "x_dialog.h"
 
+/** \defgroup Gschem-Sessions-Dialogs Gschem Sessions Dialogs
+ *  @{
+ *  \ingroup (Gschem-Session-System Systemic-Dialogs)
+ *
+ *  \par This Group contains core Routines for Sessions Dialogs.
+ *   This group contains routines for 4 dialogs to support Geschem
+ *   Sessions, the Sessions dialogs are:
+ *
+ *              1. Manages Sessions
+ *              2. Open Session
+ *              3. New Session
+ *              4. Save Session As
+ */
+
 #define TreeSelection GtkTreeSelection
 
 enum {
@@ -789,4 +803,5 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
   }
 }
 
+/** @} endgroup Gschem-Sessions-Dialogs */
 #undef TreeSelection

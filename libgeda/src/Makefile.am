@@ -10,19 +10,19 @@ GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 lib_LTLIBRARIES = libgeda.la
 
-BUILT_SOURCES = \
-	scheme/scheme_init.x \
-	scheme/scheme_smob.x \
-	scheme/scheme_toplevel.x \
-	scheme/scheme_object.x \
-	scheme/scheme_complex.x \
-	scheme/scheme_color.x \
-	scheme/scheme_page.x \
-	scheme/scheme_attrib.x \
-	scheme/scheme_os.x \
-	scheme/scheme_config.x \
-	scheme/scheme_closure.x \
-	scheme/scheme_deprecated.x
+BUILT_SOURCES   = \
+		scheme/scheme_init.x \
+		scheme/scheme_smob.x \
+		scheme/scheme_toplevel.x \
+		scheme/scheme_object.x \
+		scheme/scheme_complex.x \
+		scheme/scheme_color.x \
+		scheme/scheme_page.x \
+		scheme/scheme_attrib.x \
+		scheme/scheme_os.x \
+		scheme/scheme_config.x \
+		scheme/scheme_closure.x \
+		scheme/scheme_deprecated.x
 
 libgeda_la_SOURCES =
 
@@ -60,6 +60,16 @@ snarf_cpp_opts       = $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	               $(libgeda_la_CPPFLAGS) $(libgeda_la_CFLAGS)
 .c.x:
 	@CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)
+
+doxygen:
+# Change to the docs directory and 'make doxygen' for libgeda
+if ENABLE_DOXYGEN
+	(cd ../docs; $(MAKE) doxygen) || exit 1;
+else
+	@echo 'configure was not run with the --enable-doxygen switch. To generate'
+	@echo 'Doxygen documentation for libgeda, run configure with --enable-doxygen'
+	@echo 'in the top of the source tree and then try again'
+endif
 
 MOSTLYCLEANFILES     = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~
 CLEANFILES           = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~ $(BUILT_SOURCES)

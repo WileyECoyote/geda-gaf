@@ -28,35 +28,44 @@
 */
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 09/17/12 |  Inital release.
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 12/02/12 |  Added call to x_settings_set_scm_int in function
  *                |  GatherSettings (to support renaming of autoplace-
  *                |  attribute-grid to attribute_placement_grid).
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 12/04/12 |  Added switch for EnableColorImaging
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 12/30/12 |  Changed "Log" to "Console"
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 01/06/13 | Added spinner RipperSize, switches RipperRotation
  *                | RipperType, and combo RipperSymbol, (to extend
  *                | functionality)
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 07/20/13 | Added Font Name Combo (to extend functionality)
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 09/20/13 | Added PointerCurso Combo (to extend functionality)
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 09/25/13 | Added GripStrokeColor, GripFillColor,TextMarkerColor,
  *                | TextOriginMarker, TextMarkerSize, JunctionColor,
  *                | TextMarkerSize and JunctionSize, NetEndpointColor,
  *                | ScrollBarsVisible
- * ------------------------------------------------------------------
+ * ---------------|--------------------------------------------------
  * WEH | 03/13/14 | Fix: case JunctionColor did not have break in
  *                | color_butt_responder, oops.
+ * ---------------|--------------------------------------------------
+ * WEH | 07/20/14 | Make-over for Doxygen Documentation/Comments in order
+ *                | to improve source documentation.
  *
-*/
-/*! \remarks To add a new variable or control:
+ */
+
+/*!
+ * \file x_settings_dialog.c
+ *
+ * \brief A dialog box for setting program preferences.
+ *
+ * \remarks To add a new variable or control:
  *
  * 1. The variable should be valid and readable in the RC system, but
  *    this is not a requirement to add the widget.
@@ -97,6 +106,8 @@
  *      a.) value changes when manually changed in the RC file.
  *      b.) values are properly written and formated correctly.
  *
+ * \note: The main responder for the Settings dialog in not in this
+ *        modules, see x_settings.c
 */
 
 #include <config.h>
@@ -123,6 +134,14 @@
 #include <gschem_dialog.h>              /* Definition the base Dialog Class */
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
+
+/** \defgroup Settings-Dialog Settings Dialog
+ *  @{
+ *  \ingroup (Standard-Dialogs)
+ *
+ *  \par This Group contains routines for the Preferences dialog.
+ */
+
 #include <x_settings.h>                 /* Common Declarations and Enumerators */
 #include <x_settings_dialog.h>          /* Dialog String Data */
 
@@ -198,9 +217,14 @@ void load_combo_str( GtkComboBox *combo, const char *list[])
 }
 
 /* --------------------------- Global Variables ---------------------------- */
-/* \defgroup X_Settings_Dialog_Globals Global Variables
+
+/** \defgroup Settings-Dialog-Globals Global Variables
  *  @{
+ *  \memberof (Settings-Dialog)
+ *  \par
+ *   This group contains global variables for the Settings Dialog.
  */
+
 gschem_rc_options rc_options={
         1,  /* display_color_map flag */
         0,  /* color_scheme_index */
@@ -343,31 +367,41 @@ static GtkWidget *ZoomPanSwitch=NULL;
 static GtkWidget *PotentialAttributesView=NULL;
 static GtkWidget *SelectedAttributesView=NULL;
 
-/** @} END Group X_Settings_Dialog_Globals */
+/** @} endgroup Settings-Dialog-Globals */
 
 /* --------------------------- Support Functions --------------------------- */
 
-/*! \defgroup X_Settings_Dialog_Support_Functions X Settings Dialog Support Functions
+/** \defgroup Settings-Dialog-Support Settings Dialog Support Functions
  *  @{
-          1. Inhibitor Support Functions
-          2. Attributes Support ~ Group 1 & Group 2
-          3. Button Support
-          4. ComboBox Support
-          5. Multi Widget Calllback Responders
-*/
+ *  \memberof (Settings-Dialog)
+ *  \par
+ *   Support functions for the Settings dialog are subgroup into categories
+ *   as follows:
+ *
+ *        1. Inhibitor Support Functions
+ *        2. Attributes Support ~ Group 1 & Group 2
+ *        3. Button Support
+ *        4. ComboBox Support
+ *        5. Multi Widget Calllback Responders
+ */
+
 /* ---------------------- Inhibitor Support Functions ---------------------- */
 
-/*!
+/** \defgroup Settings-Dialog-Inhibitors Settings Dialog Inhibitors Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Support)
+ *  \par
  *   The Inhibitors enable and disable Widgets based on other selections.
- */
-/*
-        1. enable_attribute_list_controls        called in callback functions
-        2. enable_color_map_controls
-        3. enable_color_map_scheme
-        4. enable_log_controls
-        5. enable_undo_controls
-        6. on_notebook_switch_page                is a callback handler
+ *   This groups is comprised of the following functions:
+ *
+ *      1. enable_attribute_list_controls        called in callback functions
+ *      2. enable_color_map_controls
+ *      3. enable_color_map_scheme
+ *      4. enable_log_controls
+ *      5. enable_undo_controls
+ *      6. on_notebook_switch_page               is a callback handler
 */
+
 /*! \brief Set Attribute list crontols based on the value of the
  *         component_select_attrlist.
  *  \par Function Description: This functions enables and disables buttons and
@@ -475,16 +509,33 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
   return;
 }
 
+/** @} endgroup Settings-Dialog-Inhibitors */
+
+/** \defgroup Settings-Dialog-Attributes Attribute Support Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Support)
+ *  \par
+ *  Settings dialog attribute support functions are divided into two sub-groups.
+ */
+
 /* -------------------- Attributes Support Functions Group 1 ----------------*/
-/*
-   1. st_callback_selection_changed_view  Single click callback
-   2. st_tree_row_activated               Double click callback
-   3. connect_list_view                   Setup callbacks for list views
-   4. initialize_tree_View                Initial widget setup
-   5. add_to_list                         Called in load_tree_view_xxx
-   6. load_tree_view_gl                   Load view from glist
-   7. load_tree_view_str                  Load view from string array
+
+/*!
+ *  \defgroup Settings-Dialog-Attributes-Group-1 Attribute Support Group 1 Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Attributes)
+ *  \par
+ *  The functions to support attribute settings in group 1 are:
+ *
+ *      1. st_callback_selection_changed_view  Single click callback
+ *      2. st_tree_row_activated               Double click callback
+ *      3. connect_list_view                   Setup callbacks for list views
+ *      4. initialize_tree_View                Initial widget setup
+ *      5. add_to_list                         Called in load_tree_view_xxx
+ *      6. load_tree_view_gl                   Load view from glist
+ *      7. load_tree_view_str                  Load view from string array
 */
+
 static void st_callback_selection_changed_view(GtkTreeSelection *selection,
                                                GtkWidget *Dialog)__attribute__((unused));
 
@@ -602,14 +653,12 @@ void initialize_tree_View(GtkTreeView *list, int list_item,
   GEDA_UNREF(store);
 }
 
-/*  \par
- *
- *  Abstract:
+/*! \remarks:
  *
  *  There are two attribute list referenced in the initialization file.
  *  The first is a filter list used by the Add Component dialog. This
  *  list is stored in a Glist array. The second list is used by the Add
- *  Attributes routines and is stored in a static struc in Libgeda.
+ *  Attributes routines and is stored in a static structure in Libgeda.
  *  Without overloads, we direct loading to one of the functions below
  *  to load Treeviews, the first for Glist, the second for arrays.
  *
@@ -618,7 +667,9 @@ void initialize_tree_View(GtkTreeView *list, int list_item,
  *  maintained in an anonymous array of arrays, see load_tree_view_str
  *  function for more details.
  *
+ * \sa load_tree_view_str
 */
+
 /*! \brief add_to_list 'in Tree View'
  *  \par Function Description
  *   This functions appends a string to a list in a given Treeview
@@ -632,6 +683,7 @@ static void add_to_list(GtkTreeView *list, const char *str)
   gtk_list_store_append(store, &iter);
   gtk_list_store_set(store, &iter, 0, str, -1); /* Column 0 */
 }
+
 /*! \brief Load Tree View with string data from GList.
  *  \par Function Description
  *  This function does not actually load the data to the Liststore. The
@@ -661,7 +713,7 @@ void load_tree_view_gl( GtkTreeView *TreeView, GList *list)
 */
 void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
 {
-  int i=0;
+  int i = 0;
   const char *string;
 
   const char* array ( int i) {
@@ -677,18 +729,27 @@ void load_tree_view_str( GtkTreeView *TreeView, const char *list[])
   }
 }
 
+/** @} endgroup Settings-Dialog-Attributes-Group-1 */
+
 /* -------------------- Attributes Support Functions Group 2 ----------------*/
-/*
-   1. GetAttributeFilterMode
-   2. SaveAttributeFilterList       Save List in the Filter Viewtree
-   3. SavePotentialAttributes       Save list all attibutes, is left Viewtree
-   4. is_not_in_list                called by add_selected_attribute
-   5. decrement_selected_attribute  Move selected attribute down in the list
-   6. increment_selected_attribute  Move selected attribute up in the list
-   7. add_selected_attribute        Add selected attribute up in the list
-   8. remove_selected_attribute
-   9. clear_attributes
-  10. filter_list_set_default
+
+/*!
+ *  \defgroup Settings-Dialog-Attributes-Group-2 Attribute Support Group 2 Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Attributes)
+ *  \par
+ *  The second group of functions to support attribute settings are:
+ *
+ *      1. GetAttributeFilterMode
+ *      2. SaveAttributeFilterList       Save List in the Filter Viewtree
+ *      3. SavePotentialAttributes       Save list all attibutes, is left Viewtree
+ *      4. is_not_in_list                called by add_selected_attribute
+ *      5. decrement_selected_attribute  Move selected attribute down in the list
+ *      6. increment_selected_attribute  Move selected attribute up in the list
+ *      7. add_selected_attribute        Add selected attribute up in the list
+ *      8. remove_selected_attribute
+ *      9. clear_attributes
+ *     10. filter_list_set_default
 */
 
 /*! \brief Function GetAttributeFilterMode
@@ -817,7 +878,7 @@ static int SavePotentialAttributes(GschemToplevel *w_current) {
 static bool is_not_in_list(GtkTreeView *list, const char *str)
 {
   GtkListStore *store;
-  gboolean answer = FALSE;
+  bool answer = FALSE;
 
   gboolean foreach_func (GtkTreeModel *model, GtkTreePath  *path,
                          GtkTreeIter  *iter,  gpointer      user_data)
@@ -918,7 +979,7 @@ static void add_selected_attribute( void ) {
       gtk_list_store_set(r_store, &n_iter, 0, value, -1); /* Column 0 */
 
     }
-    GEDA_FREE(value); /* Don't free unless we use it, less we be cursed */
+    GEDA_FREE(value); /* Don't free unless we used it, less we be cursed */
   } /* endif there was an attribute selected in the left list */
 }
 
@@ -967,10 +1028,37 @@ static void filter_list_set_default( void )
   }
 }
 
+/** @} endgroup Settings-Dialog-Attributes-Group-2 */
+/** @} endgroup Settings-Dialog-Attributes */
+
 /* ------------------------ Button Support Functions ------------------------*/
+
+/*!
+ *  \defgroup Settings-Dialog-Buttons Settings Dialog Button Support Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Support)
+ *  \par
+ *  Settings dialog button support functions are divided into two sub-groups.
+ */
+
+/* --------------------- Button Support Functions Group 1 -------------------*/
+
+/*!
+ *  \defgroup Settings-Dialog-Buttons-Group-1 Button Support Group 1 Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Buttons)
+ *  \weakgroup Settings-Dialog-Attributes
+ *  \par
+ *  The only member of this groups is a button repsonder to handler signals
+ *  generated from buttons on the Attributes TAB.
+ *
+ *      1. butt_responder
+*/
+
 /*! \brief Function butt_responder
- *  \par Function Description: This callback function is used to execute
- *       support functions that manipulate the Attribute Viewtrees.
+ *  \par Function Description: This callback function response to signals
+ *       generated from buttons on the Attribute TAB, (the ones between the
+ *       Viewtrees).
  */
 static
 void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control)
@@ -1015,10 +1103,32 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
   }
 }
 
+/** @} endgroup Settings-Dialog-Buttons-Group-1 */
+
 /* -------------------------- End Attributes Support ------------------------*/
 
-/*! \defgroup Popup-Menu Popmenu to restore default colors
+/* --------------------- Button Support Functions Group 2 -------------------*/
+/*!
+ *  \defgroup Settings-Dialog-Buttons-Group-2 Button Support Group 2 Functions
  *  @{
+ *  \memberof (Settings-Dialog-Buttons)
+ *  \par
+ *  Currently, the remainder of the buttons on the Settings dialog are for
+ *  setting color preferences. These color buttons have a supporting utility
+ *  menu acciable from the right mouse buttons that can be used to restore
+ *  default colors. Popup menu support for the color buttons are all in
+ *  Settings-Dialog-Buttons-Group-2
+*/
+/*!
+ *  \defgroup Settings-Dialog-Color-Popup Color Button Popup Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Buttons-Group-2)
+ *  \par
+ *  The functions to support color buttons are:
+ *
+ *      1. color_button_popup_menu_callback
+ *      2. default_color_button_popup
+ *      3. color_butt_responder
 */
 
 static GtkWidget *popup_menu; /* Seems safer to use a global for this */
@@ -1140,10 +1250,26 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
   return resolved;
 }
 
+/** @} endgroup Settings-Dialog-Color-Popup */
+
 /* ---------------------------- End Button Support --------------------------*/
-/*! @} endgroup Popup-Menu */
+
+/** @} endgroup Settings-Dialog-Buttons-Group-2 */
+/** @} endgroup Settings-Dialog-Buttons */
 
 /* ------------------------ ComboBox Support Functions ----------------------*/
+/*!
+ *  \defgroup Settings-Dialog-ComboBox Settings Dialog ComboBox Support Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Support)
+ *  \par
+ *  The functions to support ComboBox on the settings dialog:
+ *
+ *      1. combo_responder
+ *      2. setup_titleblock_combo
+ *      3. setup_font_name_combo
+ *      4. setup_ripper_symbol_combo
+*/
 
 /*! \brief Function combo_responder
  *  \par Function Description: This callback function is used to set the
@@ -1290,9 +1416,24 @@ void setup_ripper_symbol_combo(char* cur_name) {
   gtk_combo_box_set_active((GtkComboBox *)RipperSymbolCombo, rc_options.ripper_symbol_index);
 
 }
+
+/** @} endgroup Settings-Dialog-ComboBox */
+
 /* -------------------------- End Combo Box Support -------------------------*/
 
 /* --------------------- Multi Control Callback Resonders -------------------*/
+
+/*!
+ *  \defgroup Settings-Dialog-MultiWidget-Responders Multi-Widget Support Functions
+ *  @{
+ *  \memberof (Settings-Dialog-Support)
+ *  \par
+ *  The functions in this groups are callback responders to handle signal from
+ *  radio buttons and switches (check) buttons on all Settings dialog TABs.
+ *
+ *      1. radio_responder
+ *      2. switch_responder
+*/
 
 /*! \brief Function to toggle radio images
  *  \par Function Description: This function changes the images of
@@ -1300,159 +1441,159 @@ void setup_ripper_symbol_combo(char* cur_name) {
  *       state, i.e. if ON use OFF image and if OFF use ON image.
  */
 static void
-radio_responder(GtkWidget *widget,  gint response, ControlID *Control)
+radio_responder(GtkWidget *widget,  int response, ControlID *Control)
 {
   bool state = GET_SWITCH_STATE (widget);
 
   if ((GTK_IS_BUTTON(widget)) && (state != TRUE)) {
 
-    bulb_on(widget);
+    set_bulb_on(widget);
 
     switch ( response ) {
     /* General TAB */
       case LogDestinyWindow:
-        bulb_off(LogDestinyTTYRadio); bulb_off(LogDestinyBothRadio);
+        set_bulb_off(LogDestinyTTYRadio); set_bulb_off(LogDestinyBothRadio);
         break;
       case LogDestinyTTY:
-        bulb_off(LogDestinyWindowRadio); bulb_off(LogDestinyBothRadio);
+        set_bulb_off(LogDestinyWindowRadio); set_bulb_off(LogDestinyBothRadio);
         break;
       case LogDestinyBoth:
-        bulb_off(LogDestinyWindowRadio); bulb_off(LogDestinyTTYRadio);
+        set_bulb_off(LogDestinyWindowRadio); set_bulb_off(LogDestinyTTYRadio);
         break;
    /* Edit TAB */
       case NetEndPointNone:
-        bulb_off(NetEndPointFilledRadio); bulb_off(NetEndPointEmptyRadio);
+        set_bulb_off(NetEndPointFilledRadio); set_bulb_off(NetEndPointEmptyRadio);
         break;
       case NetEndPointFilled:
-        bulb_off(NetEndPointNoneRadio); bulb_off(NetEndPointEmptyRadio);
+        set_bulb_off(NetEndPointNoneRadio); set_bulb_off(NetEndPointEmptyRadio);
         break;
       case NetEndPointEmpty:
-        bulb_off(NetEndPointNoneRadio); bulb_off(NetEndPointFilledRadio);
+        set_bulb_off(NetEndPointNoneRadio); set_bulb_off(NetEndPointFilledRadio);
         break;
       case NetMidPointNone:
-        bulb_off(NetMidPointFilledRadio); bulb_off(NetMidPointEmptyRadio);
+        set_bulb_off(NetMidPointFilledRadio); set_bulb_off(NetMidPointEmptyRadio);
         break;
       case NetMidPointFilled:
-        bulb_off(NetMidPointNoneRadio); bulb_off(NetMidPointEmptyRadio);
+        set_bulb_off(NetMidPointNoneRadio); set_bulb_off(NetMidPointEmptyRadio);
         break;
       case NetMidPointEmpty:
-        bulb_off(NetMidPointNoneRadio); bulb_off(NetMidPointFilledRadio);
+        set_bulb_off(NetMidPointNoneRadio); set_bulb_off(NetMidPointFilledRadio);
         break;
       case NetSelectionNone:
-        bulb_off(NetSelectionNetRadio); bulb_off(NetSelectionAllRadio);
+        set_bulb_off(NetSelectionNetRadio); set_bulb_off(NetSelectionAllRadio);
         break;
       case NetSelectionNet:
-        bulb_off(NetSelectionNoneRadio); bulb_off(NetSelectionAllRadio);
+        set_bulb_off(NetSelectionNoneRadio); set_bulb_off(NetSelectionAllRadio);
         break;
       case NetSelectionAll:
-        bulb_off(NetSelectionNoneRadio); bulb_off(NetSelectionNetRadio);
+        set_bulb_off(NetSelectionNoneRadio); set_bulb_off(NetSelectionNetRadio);
         break;
   /* Styles TAB */
       case BusStyleNone:
-        bulb_off(BusStyleThinRadio); bulb_off(BusStyleThickRadio);
+        set_bulb_off(BusStyleThinRadio); set_bulb_off(BusStyleThickRadio);
         break;
       case BusStyleThin:
-        bulb_off(BusStyleNoneRadio); bulb_off(BusStyleThickRadio);
+        set_bulb_off(BusStyleNoneRadio); set_bulb_off(BusStyleThickRadio);
         break;
       case BusStyleThick:
-        bulb_off( BusStyleNoneRadio); bulb_off(BusStyleThinRadio);
+        set_bulb_off( BusStyleNoneRadio); set_bulb_off(BusStyleThinRadio);
         break;
       case NetStyleNone:
-        bulb_off(NetStyleThinRadio); bulb_off(NetStyleThickRadio);
+        set_bulb_off(NetStyleThinRadio); set_bulb_off(NetStyleThickRadio);
         break;
       case NetStyleThin:
-        bulb_off(NetStyleNoneRadio); bulb_off(NetStyleThickRadio);
+        set_bulb_off(NetStyleNoneRadio); set_bulb_off(NetStyleThickRadio);
         break;
       case NetStyleThick:
-        bulb_off( NetStyleNoneRadio); bulb_off(NetStyleThinRadio);
+        set_bulb_off( NetStyleNoneRadio); set_bulb_off(NetStyleThinRadio);
         break;
       case LineStyleNone:
-        bulb_off(LineStyleThinRadio); bulb_off(LineStyleThickRadio);
+        set_bulb_off(LineStyleThinRadio); set_bulb_off(LineStyleThickRadio);
         break;
       case LineStyleThin:
-        bulb_off(LineStyleNoneRadio); bulb_off(LineStyleThickRadio);
+        set_bulb_off(LineStyleNoneRadio); set_bulb_off(LineStyleThickRadio);
         break;
       case LineStyleThick:
-        bulb_off( LineStyleNoneRadio); bulb_off(LineStyleThinRadio);
+        set_bulb_off( LineStyleNoneRadio); set_bulb_off(LineStyleThinRadio);
         break;
       case PinStyleNone:
-        bulb_off(PinStyleThinRadio); bulb_off(PinStyleThickRadio);
+        set_bulb_off(PinStyleThinRadio); set_bulb_off(PinStyleThickRadio);
         break;
       case PinStyleThin:
-        bulb_off(PinStyleNoneRadio); bulb_off(PinStyleThickRadio);
+        set_bulb_off(PinStyleNoneRadio); set_bulb_off(PinStyleThickRadio);
         break;
       case PinStyleThick:
-        bulb_off( PinStyleNoneRadio); bulb_off(PinStyleThinRadio);
+        set_bulb_off( PinStyleNoneRadio); set_bulb_off(PinStyleThinRadio);
         break;
   /* Text TAB */
       case CapsStyleLower:
-        bulb_off(CapsStyleUpperRadio); bulb_off(CapsStyleBothRadio);
+        set_bulb_off(CapsStyleUpperRadio); set_bulb_off(CapsStyleBothRadio);
         break;
       case CapsStyleUpper:
-        bulb_off(CapsStyleLowerRadio); bulb_off(CapsStyleBothRadio);
+        set_bulb_off(CapsStyleLowerRadio); set_bulb_off(CapsStyleBothRadio);
         break;
       case CapsStyleBoth:
-        bulb_off( CapsStyleLowerRadio); bulb_off(CapsStyleUpperRadio);
+        set_bulb_off( CapsStyleLowerRadio); set_bulb_off(CapsStyleUpperRadio);
         break;
       case TextFeedbackDefault:
-        bulb_off(TextFeedbackReadableRadio); bulb_off(TextFeedbackAlwaysRadio);
+        set_bulb_off(TextFeedbackReadableRadio); set_bulb_off(TextFeedbackAlwaysRadio);
         break;
       case TextFeedbackReadable:
-        bulb_off(TextFeedbackDefaultRadio); bulb_off(TextFeedbackAlwaysRadio);
+        set_bulb_off(TextFeedbackDefaultRadio); set_bulb_off(TextFeedbackAlwaysRadio);
         break;
       case TextFeedbackAlways:
-        bulb_off(TextFeedbackDefaultRadio); bulb_off(TextFeedbackReadableRadio);
+        set_bulb_off(TextFeedbackDefaultRadio); set_bulb_off(TextFeedbackReadableRadio);
         break;
   /* Windows TAB */
       case GridDotSizeOne:
-        bulb_off(GridDotSizeTwoRadio); bulb_off(GridDotSizeThreeRadio);
+        set_bulb_off(GridDotSizeTwoRadio); set_bulb_off(GridDotSizeThreeRadio);
         break;
       case GridDotSizeTwo:
-        bulb_off(GridDotSizeOneRadio); bulb_off(GridDotSizeThreeRadio);
+        set_bulb_off(GridDotSizeOneRadio); set_bulb_off(GridDotSizeThreeRadio);
         break;
       case GridDotSizeThree:
-        bulb_off(GridDotSizeOneRadio); bulb_off(GridDotSizeTwoRadio);
+        set_bulb_off(GridDotSizeOneRadio); set_bulb_off(GridDotSizeTwoRadio);
         break;
       case GridModeNone:
-        bulb_off(GridModeDotsRadio); bulb_off(GridModeMeshRadio);
+        set_bulb_off(GridModeDotsRadio); set_bulb_off(GridModeMeshRadio);
         break;
       case GridModeDots:
-        bulb_off(GridModeNoneRadio); bulb_off(GridModeMeshRadio);
+        set_bulb_off(GridModeNoneRadio); set_bulb_off(GridModeMeshRadio);
         break;
       case GridModeMesh:
-        bulb_off(GridModeNoneRadio); bulb_off(GridModeDotsRadio);
+        set_bulb_off(GridModeNoneRadio); set_bulb_off(GridModeDotsRadio);
         break;
-      case WindowSizeW650H487:       bulb_off(WindowSizeW900H650Radio);
-        bulb_off(WindowSizeW950H712Radio); bulb_off(WindowSizeW1100H825Radio);
+      case WindowSizeW650H487:       set_bulb_off(WindowSizeW900H650Radio);
+        set_bulb_off(WindowSizeW950H712Radio); set_bulb_off(WindowSizeW1100H825Radio);
         break;
-      case WindowSizeW900H650:       bulb_off(WindowSizeW650H487Radio);
-        bulb_off(WindowSizeW950H712Radio); bulb_off(WindowSizeW1100H825Radio);
+      case WindowSizeW900H650:       set_bulb_off(WindowSizeW650H487Radio);
+        set_bulb_off(WindowSizeW950H712Radio); set_bulb_off(WindowSizeW1100H825Radio);
         break;
-      case WindowSizeW950H712:       bulb_off(WindowSizeW650H487Radio);
-        bulb_off(WindowSizeW900H650Radio); bulb_off(WindowSizeW1100H825Radio);
+      case WindowSizeW950H712:       set_bulb_off(WindowSizeW650H487Radio);
+        set_bulb_off(WindowSizeW900H650Radio); set_bulb_off(WindowSizeW1100H825Radio);
         break;
-      case WindowSizeW1100H825:      bulb_off(WindowSizeW650H487Radio);
-        bulb_off(WindowSizeW900H650Radio); bulb_off(WindowSizeW950H712Radio);
+      case WindowSizeW1100H825:      set_bulb_off(WindowSizeW650H487Radio);
+        set_bulb_off(WindowSizeW900H650Radio); set_bulb_off(WindowSizeW950H712Radio);
         break;
       case WorldSizeSmall:
-        bulb_off(WorldSizeMediumRadio); bulb_off(WorldSizeLargeRadio);
+        set_bulb_off(WorldSizeMediumRadio); set_bulb_off(WorldSizeLargeRadio);
         break;
       case WorldSizeMedium:
-        bulb_off(WorldSizeSmallRadio); bulb_off(WorldSizeLargeRadio);
+        set_bulb_off(WorldSizeSmallRadio); set_bulb_off(WorldSizeLargeRadio);
         break;
       case WorldSizeLarge:
-        bulb_off(WorldSizeSmallRadio); bulb_off(WorldSizeMediumRadio);
+        set_bulb_off(WorldSizeSmallRadio); set_bulb_off(WorldSizeMediumRadio);
         break;
       case DialogListAttributesAll:
         enable_attribute_list_controls(FALSE);
-        bulb_off(DialogListAttributesNoneRadio); bulb_off(DialogListAttributesListRadio);
+        set_bulb_off(DialogListAttributesNoneRadio); set_bulb_off(DialogListAttributesListRadio);
         break;
       case DialogListAttributesNone:
         enable_attribute_list_controls(FALSE);
-        bulb_off(DialogListAttributesAllRadio); bulb_off(DialogListAttributesListRadio);
+        set_bulb_off(DialogListAttributesAllRadio); set_bulb_off(DialogListAttributesListRadio);
         break;
       case DialogListAttributesList:
-        bulb_off(DialogListAttributesAllRadio); bulb_off(DialogListAttributesNoneRadio);
+        set_bulb_off(DialogListAttributesAllRadio); set_bulb_off(DialogListAttributesNoneRadio);
         enable_attribute_list_controls(TRUE);
         break;
       default:
@@ -1548,13 +1689,18 @@ static void switch_responder(GtkWidget *widget, int response,  ControlID *Contro
 
    return;
 }
+
+/** @} endgroup Settings-Dialog-MultiWidget-Responders */
+
 /* ------------------- End Multi Control Callback Resonders -----------------*/
 
-/** @} END Group X_Settings_Dialog_Support_Functions */
+/** @} endgroup Settings-Dialog-Support */
 
-/* \defgroup X_Settings_Dialog_Load_Variables
+/** \defgroup Settings-Dialog-Loader Settings Dialog Loader
  *  @{
+ *  \memberof (Settings-Dialog-Support)
  */
+
 /*! \brief Function load_settings_dialog
  *  \par Function Description: This function sets the value of controls after
  *       the dialog is created based on the current settings, in so much as
@@ -1718,9 +1864,10 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSwitch(WarpCursor, w_current->warp_cursor);
   SetSwitch(ZoomPan, w_current->zoom_with_pan);
 
-/* Radio (15) */
+/* Radios (15) */
   /* General TAB */
   SetBulbGroup (LogDestiny, log_destiny);
+
   /* Edit Tab */
   SetBulbGroup (NetEndPoint, w_current->net_endpoint_mode);
   SetBulbGroup (NetMidPoint, w_current->net_midpoint_mode);
@@ -1773,7 +1920,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
 /* Attributes TAB */
   SetBulbGroup(DialogListAttributes, GetAttributeFilterMode(w_current));
 
-/* The Spin Controls Alphabetically (23) */
+/* The Spin Controls - Alphabetically (23) */
   SetSpin (AttributeOffset, w_current->add_attribute_offset);
   SetSpin (AutoPlacementGrid, w_current->attribute_placement_grid);
   SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
@@ -1807,15 +1954,15 @@ bool load_settings_dialog (GschemToplevel *w_current)
   return TRUE;
 }
 
-/** @} END Group X_Settings_Dialog_load_Variables */
+/** @} endgroup Settings-Dialog-Loader */
 
-/* \defgroup X_Settings_Dialog
+/** \defgroup Settings-Dialog-Creator Settings Dialog Creator
  *  @{
- */
-/* Note! Local Module Main, before "macrolization" the function
- * create_settings_dialog was > 148kbytes. The macros somewhat
- * obsures base coding but is much more manageable then 100K+
- * lines of gtk_xxx's and does not depend on Glade.
+ *  \memberof (Settings-Dialog)
+ * \remarks This is the "Local Module Main" routine, before "macrolization"
+ * the function create_settings_dialog was > 148kbytes without supporting
+ * functions. The macros somewhat obsures base coding but is much more
+ * manageable then 100K+ lines of gtk_xxx's and does not depend on Glade.
  */
 GtkWidget*
 create_settings_dialog (GschemToplevel *w_current)
@@ -2140,15 +2287,21 @@ create_settings_dialog (GschemToplevel *w_current)
                     NULL);
   return ThisDialog;
 }
-/** @} END Group X_Settings_Dialog */
 
+/** @} endgroup Settings-Dialog-Creator */
+
+/** \defgroup Settings-Dialog-Unloader Settings Dialog Unloader
+ *  @{
+ *  \memberof (Settings-Dialog)
+ *  \defgroup Settings-Dialog-Unloader-Utilities Settings Dialog Unloader
+ *  @{
+ *  \memberof (Settings-Dialog-Unloader)
+ */
 int x_settings_lookup_cursor(int offset) {
   return DrawingCursorsInt[offset];
 }
 
-/*! \defgroup X_Settings_Dialog_Unload_Variables Load Variables X Settings Dialog
- *  @{
- */
+/** @} endgroup Settings-Dialog-Unloader-Utilities */
 
 /*! \brief Post Dialog procedure to retrieves values in dialog controls.
  *  \par Function Description
@@ -2350,5 +2503,6 @@ void GatherSettings(GschemToplevel *w_current) {
    SaveAttributeFilterList(w_current); /* SelectedAttributes */
 
 }
-
-/** @} END Group X_Settings_Dialog_Unload_Variables */
+/** @} endgroup Settings-Dialog-Unloader */
+/** @} endgroup X_Settings_Dialog_Unload_Variables */
+/** @} endgroup Settings-Dialog */

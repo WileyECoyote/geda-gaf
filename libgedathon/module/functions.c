@@ -336,7 +336,7 @@ PyObject *call_module_4ISO(char *method, PyObject *O1, PyObject *O2, PyObject *O
     free(syntax); \
     return NULL;
 
-/*! \defgroup Python_Geda_Module_Functions Geda Python API Module Functions
+/** \defgroup Python_Geda_Module_Functions Geda Python API Module Functions
  *  @{
  */
 
@@ -380,7 +380,7 @@ FUNCTION(unknown)
  *
  */
 
-/*! \defgroup Python_API_Symbols_For_GedaFunctions Geda Python Module Symbol Functions
+/** \defgroup Python_API_Symbols_For_GedaFunctions Geda Python Module Symbol Functions
  *  @{
  */
 
