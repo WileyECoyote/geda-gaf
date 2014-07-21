@@ -64,7 +64,8 @@ void x_pagesel_open (GschemToplevel *w_current)
                       w_current);
 
     gtk_widget_show (w_current->pswindow);
-  } else {
+  }
+  else {
     gdk_window_raise (w_current->pswindow->window);
   }
 
@@ -81,7 +82,6 @@ void x_pagesel_close (GschemToplevel *w_current)
   if (w_current->pswindow) {
     if (IS_PageSEL (w_current->pswindow)) {
       gtk_widget_destroy (w_current->pswindow);
-      w_current->pswindow = NULL;
     }
     else {
       BUG_MSG ("pswindow is wrong object");
@@ -131,7 +131,6 @@ x_pagesel_callback_response (GtkDialog *dialog, int arg1, void *user_data)
       case PageSEL_RESPONSE_CLOSE:
         if (IS_PageSEL (w_current->pswindow)) {
           gtk_widget_destroy (GTK_WIDGET (dialog));
-          w_current->pswindow = NULL;
         }
         else {
           BUG_MSG ("pswindow is wrong object");

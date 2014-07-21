@@ -630,7 +630,6 @@ x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy (Dialog);
     GEDA_FREE (pin_data);
-    w_current->ptwindow = NULL;
     break;
   case GTK_RESPONSE_ACCEPT:
     x_dialog_edit_pin_type_ok(Dialog, pin_data);

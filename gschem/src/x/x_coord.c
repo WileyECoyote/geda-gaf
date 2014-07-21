@@ -303,7 +303,6 @@ void
 x_dialog_coord_dialog_response(GtkWidget *Dialog, int response, GschemToplevel *w_current)
 {
   gtk_widget_destroy(Dialog);
-  w_current->cowindow = NULL;
   w_current->world_entry = NULL;
   w_current->screen_entry = NULL;
 }

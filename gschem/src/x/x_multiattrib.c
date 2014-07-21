@@ -77,13 +77,12 @@ multiattrib_callback_response (GtkDialog *dialog,
                                int arg1,
                                void *user_data)
 {
-  GschemToplevel *w_current = GSCHEM_TOPLEVEL (user_data);
+/* GschemToplevel *w_current = GSCHEM_TOPLEVEL (user_data); */
 
   switch (arg1) {
       case GTK_RESPONSE_CLOSE:
       case GTK_RESPONSE_DELETE_EVENT:
         gtk_widget_destroy (GTK_WIDGET (dialog));
-        w_current->mawindow = NULL;
         break;
   }
 }

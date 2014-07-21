@@ -153,6 +153,8 @@ GtkWidget* create_pixmap (const char *filename)
   return pixmap;
 }
 
+
+
 /** @} endgroup General-Dialog-Utilities */
 
 /** \defgroup Dialog-Toggle-Switches Switch Manipulators for Dialogs
@@ -182,7 +184,7 @@ GtkWidget* get_geda_switch_image (bool WhichState)
  *  a control similar to a GTK3 Switch, using a standard GTK2 widget. The
  *  On or Off images is controlled by the istate variable.
  *
- *  Returns: Newly created widget
+ *  \returns Newly created widget
  */
 GtkWidget*
 create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
@@ -492,7 +494,6 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   /* clean up */
   i_set_state(w_current, SELECT);
   gtk_widget_destroy(Dialog);
-  w_current->sswindow = NULL;
 }
 
 /*! \brief Create the snap size dialog
@@ -600,7 +601,6 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   /* clean up */
   i_set_state(w_current, SELECT);
   gtk_widget_destroy(Dialog);
-  w_current->tswindow = NULL;
 }
 
 /*! \brief Create the text size dialog
@@ -658,7 +658,6 @@ void text_size_dialog (GschemToplevel *w_current)
     w_current->tswindow = Dialog;
     gtk_widget_show_all(Dialog);
   }
-
   else { /* dialog already created */
     gtk_window_present(GTK_WINDOW(Dialog));
   }
@@ -819,7 +818,6 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
-    w_current->aawindow = NULL;
     break;
   case GTK_RESPONSE_ACCEPT:
     x_dialog_edit_arc_angle_apply(Dialog, w_current);
@@ -1400,7 +1398,6 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
     gtk_grab_remove (Dialog);
     gtk_widget_destroy (Dialog);
     GEDA_FREE (fill_data);
-    w_current->hpwindow = NULL;
     break;
   case GTK_RESPONSE_ACCEPT:
     x_dialog_edit_fill_type_ok(Dialog, fill_data);
@@ -1895,7 +1892,6 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy (Dialog);
     GEDA_FREE (line_data);
-    w_current->ltwindow = NULL;
     break;
   case GTK_RESPONSE_ACCEPT:
     x_dialog_edit_line_type_ok(Dialog, line_data);
@@ -2097,7 +2093,6 @@ void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(ThisDialog);
-    w_current->sewindow = NULL;
     i_set_state(w_current, SELECT);
     break;
   case GTK_RESPONSE_ACCEPT:
@@ -2304,7 +2299,6 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
 
   if (close) {
     gtk_widget_destroy(Dialog);
-    w_current->ftwindow = NULL;
   }
 }
 
@@ -2428,8 +2422,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
     break;
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
-    gtk_widget_destroy(Dialog);
-    w_current->htwindow = NULL;
+    gtk_widget_destroy(Dialog);;
     break;
   default:
     printf("x_dialog_show_text_response(): strange signal %d\n",response);
@@ -2536,7 +2529,6 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
-    w_current->stwindow = NULL;
     break;
   default:
     printf("x_dialog_show_text_response(): strange signal %d\n",response);
@@ -2674,7 +2666,6 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
   case GTK_RESPONSE_DELETE_EVENT:
     i_set_state(w_current, SELECT);
     gtk_widget_destroy(Dialog);
-    w_current->tiwindow=NULL;
     break;
   default:
     printf("x_dialog_edit_text_response(): strange signal %d\n", response);
@@ -2813,7 +2804,6 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
 
   i_set_state(w_current, SELECT);
   gtk_widget_destroy(Dialog);
-  w_current->trwindow=NULL;
 }
 
 /*! \brief Create the translate dialog
@@ -2906,7 +2896,6 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
   }
   /* clean up */
   gtk_widget_destroy(Dialog);
-  w_current->hkwindow = NULL;
 }
 
 /*! \brief Creates the hotkeys dialog

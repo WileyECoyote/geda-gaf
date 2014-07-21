@@ -309,6 +309,82 @@ static void unmap_handler (GtkWidget *widget)
   GTK_WIDGET_CLASS (gschem_dialog_parent_class)->unmap (widget);
 }
 
+/*! \brief Set w_current dialog pointer to NULL
+ *  \par Function Description
+ *  This function automatically sets the toplevel entry for a
+ *  GschemDialog to NULL when the dialog is destroyed. Note
+ *  that if the dialog code set the toplevel entry to NULL
+ *  this function has not effect.
+ */
+void set_gschem_dialog_null(void *dialog)
+{
+    GschemToplevel *w_current = ((GschemDialog*)dialog)->w_current;
+
+    if (dialog == w_current->sswindow) {      /* Snap Size */
+        w_current->sswindow = NULL;
+    }
+    else if (dialog == w_current->tswindow) { /* Text size */
+        w_current->tswindow = NULL;
+    }
+    else if (dialog == w_current->aawindow) { /* Arc Attrib */
+        w_current->aawindow = NULL;
+    }
+    else if (dialog == w_current->clwindow) { /* Color Edit */
+        w_current->clwindow = NULL;
+    }
+    else if (dialog == w_current->hpwindow) { /* Hatch Pattern */
+        w_current->hpwindow = NULL;
+    }
+    else if (dialog == w_current->ltwindow) { /* Line Type */
+        w_current->ltwindow = NULL;
+    }
+    else if (dialog == w_current->ptwindow) { /* Pin Type */
+        w_current->ptwindow = NULL;
+    }
+    else if (dialog == w_current->sewindow) { /* Slot Edit */
+        w_current->sewindow = NULL;
+    }
+    else if (dialog == w_current->tewindow) { /* Text Edit */
+        w_current->tewindow = NULL;
+    }
+    else if (dialog == w_current->ftwindow) { /* Find Text */
+        w_current->ftwindow = NULL;
+    }
+    else if (dialog == w_current->htwindow) { /* Hide Text */
+        w_current->htwindow = NULL;
+     }
+    else if (dialog == w_current->stwindow) { /* Show Text */
+        w_current->stwindow = NULL;
+    }
+    else if (dialog == w_current->tiwindow) { /* Text Input */
+        w_current->tiwindow = NULL;
+    }
+    else if (dialog == w_current->trwindow) { /* Translate */
+        w_current->trwindow = NULL;
+    }
+    else if (dialog == w_current->hkwindow) { /* HotKeys */
+        w_current->hkwindow = NULL;
+    }
+    else if (dialog == w_current->cowindow) { /* Coordinates */
+        w_current->cowindow = NULL;
+    }
+    else if (dialog == w_current->aewindow) { /* Attribute Edit */
+        w_current->aewindow = NULL;
+    }
+    else if (dialog == w_current->cpwindow) { /* Configuration Preferences */
+        w_current->cpwindow = NULL;
+    }
+    else if (dialog == w_current->cswindow) { /* component select */
+        w_current->cswindow = NULL;
+    }
+    else if (dialog == w_current->mawindow) { /* multi attribute */
+        w_current->mawindow = NULL;
+    }
+    else if (dialog == w_current->pswindow) { /* page select */
+        w_current->pswindow = NULL;
+    }
+}
+
 /*! \brief GObject finalise handler
  *
  *  \par Function Description
@@ -320,6 +396,9 @@ static void unmap_handler (GtkWidget *widget)
 static void gschem_dialog_finalize (GObject *object)
 {
   GschemDialog *dialog = GSCHEM_DIALOG (object);
+
+  /* Make sure w_current entry is set to NULL */
+  set_gschem_dialog_null(dialog);
 
   GEDA_FREE (dialog->settings_name);
 

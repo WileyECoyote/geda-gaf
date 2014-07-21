@@ -134,8 +134,7 @@ x_dialog_edit_color_response(GtkWidget *Dialog, int response,
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     /* cut link from dialog to selection */
-    gtk_widget_destroy(w_current->clwindow);
-    w_current->clwindow = NULL;
+    gtk_widget_destroy(Dialog);
     break;
   case GTK_RESPONSE_ACCEPT:
     x_dialog_edit_color_apply(Dialog, w_current);
@@ -168,6 +167,7 @@ void x_dialog_edit_color (GschemToplevel *w_current)
     color_index = ATTRIBUTE_COLOR;
 
   Dialog = w_current->clwindow;
+
   if (!Dialog) {
     Dialog = gschem_dialog_new_with_buttons(_("Color Edit"),
                                             GTK_WINDOW(w_current->main_window),

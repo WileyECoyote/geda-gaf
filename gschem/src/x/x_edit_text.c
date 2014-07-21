@@ -379,7 +379,6 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, Object *object)
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(Dialog);
-    w_current->tewindow = NULL;
     break;
   default:
     printf("x_dialog_edit_text_response(): strange signal %d\n", response);

@@ -146,7 +146,6 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
   }
 
   gtk_widget_destroy(w_current->cpwindow);
-  w_current->cpwindow = NULL;
 
   /* Call to update the middle-mouse label on the status bar, which may or
    * may not need updating, is not worth tracking here. If the middle mouse

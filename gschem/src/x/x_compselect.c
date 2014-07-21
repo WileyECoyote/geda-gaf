@@ -239,7 +239,6 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
           if(GTK_IS_DIALOG(dialog)) {
             gtk_widget_destroy (GTK_WIDGET (dialog));
           }
-          w_current->cswindow = NULL;
         }
         if (w_current->event_state == ENDCOMP) {
           /* Cancel the place operation currently in progress */

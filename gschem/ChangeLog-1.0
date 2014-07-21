@@ -1,5 +1,23 @@
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/base/gschem_dialog.c: Add function set_gschem_dialog_null
+        so that pointers in GschemToplevel are automatically set to NULL
+        when GschemDialog objects are destroyed.
+        Removed w->current->xxwindow from (hopefully) all GschemDialogs
+        in files:
+                  src/x/x_attrib.c
+                  src/x/x_compselect.c
+                  src/x/x_coord.c
+                  src/x/x_dialog.c
+                  src/x/x_edit_color.c
+                  src/x/x_edit_pin.c
+                  src/x/x_edit_text.c
+                  src/x/x_multiattrib.c
+                  src/x/x_pagesel.c
+                  src/x/x_settings_dialog.c
+
+2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
         * *: More work on Doxygen documentation, added groups, reorganized
           existing groups. Added additional documentation, mostly group and
           file level comments. Changed group delimiters to use a different

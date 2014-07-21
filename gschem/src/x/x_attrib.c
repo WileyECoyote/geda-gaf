@@ -264,15 +264,17 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
     case GTK_RESPONSE_APPLY:
       attrib_edit_dialog_ok ( SAE_EDIT_MODE, w_current);
       break;
+
     case GTK_RESPONSE_ACCEPT:
       attrib_edit_dialog_ok ( SAE_ADD_MODE, w_current);
       gtk_grab_remove(ThisDialog);
       break;
+
     case GTK_RESPONSE_REJECT:
     case GTK_RESPONSE_DELETE_EVENT:
       gtk_widget_destroy(ThisDialog);
-      w_current->aewindow = NULL;
       break;
+
     default:
       printf("attrib_edit_dialog_response(): strange signal %d\n", response);
   }
