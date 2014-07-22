@@ -51,40 +51,46 @@ const char* IDS_Popup_Actions[] = {
 
 static PopupEntry popup_items[] = {
 
-  { N_("Add Net"),           x_menu_popup_execute, pop_add_net,        1, "gschem-net",     NULL},
-  { N_("Add Attribute..."),  x_menu_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), NULL},
-  { N_("Add Component..."),  x_menu_popup_execute, pop_add_component,  1, "geda-component", NULL},
-  { N_("Add Bus"),           x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     NULL},
-  { N_("Add Text"),          x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       NULL},
-
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-
-  { N_("Zoom In"),           x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    NULL},
-  { N_("Zoom Out"),          x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL},
-  { N_("Zoom Box"),          x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL},
-  { N_("Zoom Extents"),      x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL},
-
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-
   { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",   NULL},
+
+  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
+
+  { N_("Add"),               NULL,                 1,                  0,  NULL,            NULL },
+  { N_("Net"),               x_menu_popup_execute, pop_add_net,        1, "gschem-net",     NULL},
+  { N_("Attribute..."),      x_menu_popup_execute, pop_add_attribute,  0,  GAF_MAP(ADD_ATTRIBUTE), NULL},
+  { N_("Component..."),      x_menu_popup_execute, pop_add_component,  1, "geda-component", NULL},
+  { N_("Bus"),               x_menu_popup_execute, pop_add_bus,        1, "gschem-bus",     NULL},
+  { N_("Text"),              x_menu_popup_execute, pop_add_text,       1, "gtk-bold",       NULL},
+
+  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
+
+  { N_("Zoom"),              NULL,                 1,                  0,  NULL,            NULL },
+  { N_("In"),                x_menu_popup_execute, pop_zoom_in,        1, "gtk-zoom-in",    NULL},
+  { N_("Out"),               x_menu_popup_execute, pop_zoom_out,       1, "gtk-zoom-out",   NULL},
+  { N_("Box"),               x_menu_popup_execute, pop_zoom_box,       1, "geda-zoom-box",  NULL},
+  { N_("Extents"),           x_menu_popup_execute, pop_zoom_extents,   1, "gtk-zoom-fit",   NULL},
+
+  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
+
   { N_("Edit..."),           x_menu_popup_execute, pop_edit_butes,     1, "gtk-indent",      NULL},
   { N_("Edit pin type..."),  x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",   NULL},
   { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete"},
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
+  { "SEPARATOR",             NULL,                 0,                  0,  NULL,             NULL },
 
+  { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL },
   {N_("Down Schematic"),     x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
   {N_("Down Symbol"),        x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
   {N_("Up"),                 x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       NULL},
 
   /* Menu items for clip-board added by WEH 07.20.2013 */
+  { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-
   {N_("Cut"),                x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",   NULL },
   {N_("Copy"),               x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",  NULL },
   {N_("Paste"),              x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste", NULL },
-  {NULL}
+  {NULL} /* sentinel */
 };
 
 /* These must be in the same order as ID_GSCHEM_Toolbar in x_toolbars.c */
@@ -490,7 +496,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   if( menu_item != NULL) {
 
     GtkContainer *menu = GTK_CONTAINER (gtk_widget_get_parent (menu_item));
-    GtkWidget *toggle_menu;
+    GtkWidget    *toggle_menu;
 
     if( w_current->toolbars == TRUE ) {
 
@@ -692,21 +698,21 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
 /*! \brief Setup Main Popup Context Menu
  *  \par Function Description
- *  Creates the main context pop-up menu and connects callback
- *  to options in the main menu to control icons and tool-tip
- *  visibility. The menu is created using the data in popup_items
- *  structure. A pointer to each menu-item widget is saved in
- *  the single-linked list menu_data->popup_items using the macro
- *  POPUP_ITEMS_LIST. A pointer to the menu is saved in menu_data
- *  ->popup_menu using the macro POPUP_MENU.
+ *  Creates the main context pop-up menu and connects callback to options in
+ *  the main menu to control icons and tool-tip  visibility. The popup menu
+ *  is created using the data in popup_items structure. A pointer to each
+ *  menu-item widget is saved in the single-linked list menu_data->popup_
+ *  items using the macro POPUP_ITEMS_LIST. A pointer to the menu is saved
+ *  in menu_data->popup_menu using the macro POPUP_MENU.
  */
 int x_menu_setup_popup (GschemToplevel *w_current)
 {
   EdaConfig    *cfg   = NULL;
   const char   *group = MENU_CONFIG_GROUP;
-
   GtkWidget    *menu;
   GtkWidget    *menu_item;
+  GtkWidget    *submenu;
+  GtkWidget    *save_nest;
   GtkWidget    *image;
 
   bool show_pop_icons;
@@ -719,20 +725,46 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   /* We will assume the main menu has already alocated a structure */
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  menu = gtk_menu_new ();
+  menu             = gtk_menu_new ();
   POPUP_ITEMS_LIST = NULL;
+  save_nest        = NULL;
 
-  cfg = eda_config_get_user_context ();
-  show_pop_icons  = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
-  show_pop_tips   = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
+  /* Retrieve preference settings */
+  cfg              = eda_config_get_user_context ();
+  show_pop_icons   = eda_config_get_boolean (cfg, group, "show-popup-icons", NULL);
+  show_pop_tips    = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
 
   for (i = 0; popup_items[i].name != NULL; i++) {
 
     PopupEntry item = popup_items[i];
 
-    /* No action --> add a separator */
     if (item.func == NULL) {
-      menu_item = gtk_menu_item_new();
+
+      /* Then is not an action item */
+      if (item.action_id == 1) {
+        /* Create and add the pop-out submenu item */
+        submenu = gtk_menu_item_new_with_label(_(item.name));
+        g_object_set (submenu, "visible", TRUE, NULL);
+        gtk_container_add (GTK_CONTAINER (menu), submenu);
+
+        /* Save the current menu and create the new sub menu */
+        save_nest = menu;
+        menu = gtk_menu_new ();
+
+        gtk_menu_item_set_submenu (GTK_MENU_ITEM( submenu ), menu) ;
+        g_object_set (menu, "visible", TRUE, NULL);
+        continue;
+      }
+      else {
+        if (save_nest != NULL) {
+          menu = save_nest;
+          save_nest = NULL;
+          continue;
+        }
+        else {  /* add a separator */
+          menu_item = gtk_menu_item_new();
+        }
+      }
     }
     else {
 
@@ -1272,8 +1304,8 @@ void x_menu_attach_recent_files_submenu(GschemToplevel *w_current)
    GtkWidget *label;
 
    menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
-   recent_menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(
-            MENU_BAR), "_File/Open Recen_t");
+   recent_menu_item = (GtkWidget *) gtk_object_get_data(GTK_OBJECT(MENU_BAR),
+                                                        "_File/Open Recen_t");
    if(recent_menu_item == NULL)
       return;
 
