@@ -47,6 +47,7 @@
 #define SENSITIVITY_ERROR_LIMIT 5
 
 typedef enum {
+  pop_edit_select,
   pop_add_net,
   pop_add_attribute,
   pop_add_component,
@@ -56,7 +57,6 @@ typedef enum {
   pop_zoom_out,
   pop_zoom_box,
   pop_zoom_extents,
-  pop_edit_select,
   pop_edit_butes,
   pop_edit_pintype,
   pop_edit_delete,

@@ -24,7 +24,7 @@ nobase_dist_scmdata_DATA = \
 	gschem/window.scm \
 	gschem/core/gettext.scm
 
-MOSTLYCLEANFILES = *.log *~
-CLEANFILES = *.log *~
-DISTCLEANFILES = *.log core FILE *~
-MAINTAINERCLEANFILES = *.log *~ Makefile.in
+MOSTLYCLEANFILES     = *.log *~ gschem/*~
+CLEANFILES           = *.log *~ gschem/*~
+DISTCLEANFILES       = *.log *~ gschem/*~ core FILE
+MAINTAINERCLEANFILES = *.log *~ gschem/*~ Makefile.in

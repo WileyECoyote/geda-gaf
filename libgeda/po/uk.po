@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-19 19:50-0500\n"
+"POT-Creation-Date: 2014-07-22 00:53-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
@@ -1194,79 +1194,84 @@ msgstr ""
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:425
+#: libgeda/src/struct/s_clib.c:427
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:430
+#: libgeda/src/struct/s_clib.c:432
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:434
+#: libgeda/src/struct/s_clib.c:436
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:435
+#: libgeda/src/struct/s_clib.c:437
 #, c-format
 msgid ""
 "Error output was:\n"
 "%s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:523
+#: libgeda/src/struct/s_clib.c:525
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:618
+#: libgeda/src/struct/s_clib.c:654
 #, c-format
-msgid "Failed to open directory [%s]: %s\n"
+msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:754
+#: libgeda/src/struct/s_clib.c:663
+#, fuzzy, c-format
+msgid "Failed to open [%s]: %s\n"
+msgstr "Не можу знайти файл %s: %s"
+
+#: libgeda/src/struct/s_clib.c:762
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:762
+#: libgeda/src/struct/s_clib.c:770
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1009 libgeda/src/struct/s_clib.c:1056
+#: libgeda/src/struct/s_clib.c:1018 libgeda/src/struct/s_clib.c:1065
 msgid "Cannot add library: name not specified\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1016
+#: libgeda/src/struct/s_clib.c:1025
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1064
+#: libgeda/src/struct/s_clib.c:1074
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1191
+#: libgeda/src/struct/s_clib.c:1201
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1251
+#: libgeda/src/struct/s_clib.c:1260
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1491
+#: libgeda/src/struct/s_clib.c:1502
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1497
+#: libgeda/src/struct/s_clib.c:1508
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""

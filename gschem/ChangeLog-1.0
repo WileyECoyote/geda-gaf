@@ -1,5 +1,18 @@
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
+        * scheme/Makefile.am: Add gschem/*~ to cleaning lists
+
+        * include/i_command.h: Change actions VIEW_SELECTED, VIEW_EXTENTS,
+          VIEW_ZOOM_ALL from USE_MAIN_LOOP to USE_WORKER_THREAD, changed
+          VIEW_ZOOM_IN and VIEW_ZOOM_OUT from USE_MAIN_LOOP to USE_XY_WORKER.
+
+2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_menus.c: Revise Popup creator x_menu_setup_popup and use
+          column 3 in popup structure to nest Add, Zoom and Hierarchy
+
+2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/base/gschem_dialog.c: Add function set_gschem_dialog_null
         so that pointers in GschemToplevel are automatically set to NULL
         when GschemDialog objects are destroyed.

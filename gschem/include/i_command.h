@@ -309,7 +309,7 @@ enum {
 
 #include "i_actions.h" /* Note: We need to resolve action strings on this pass */
 
-/*! \note #1 set arg1 = 0 for a worker thread or arg1 = 1 to run in Gtk
+/*! \note #1 set aflag = 0 for a worker thread or aflag = 1 to run in Gtk
  *           main-loop thread, i.e. if guile is to be called use 1, else use
  *           0, or their corresponding XY versions if the action can come from
  *           either ID_ORIGIN_KEYBOARD or ID_ORIGIN_MOUSE. If all else fails,
@@ -399,11 +399,11 @@ enum {
      COMMAND ( VIEW_REDRAW,         "redraw",           USE_MAIN_LOOP,          do_redraw)
      COMMAND ( VIEW_PAN,            "pan",              USE_MAIN_LOOP,          do_pan)
      COMMAND ( VIEW_BOX,            NULL,               USE_XY_MAIN_LOOP,       do_zoom_box)
-     COMMAND ( VIEW_SELECTED,       NULL,               USE_MAIN_LOOP,          do_zoom_selected)
-     COMMAND ( VIEW_EXTENTS,        NULL,               USE_MAIN_LOOP,          do_zoom_extents)
-     COMMAND ( VIEW_ZOOM_IN,        NULL,               USE_MAIN_LOOP,          do_zoom_in)
-     COMMAND ( VIEW_ZOOM_OUT,       NULL,               USE_MAIN_LOOP,          do_zoom_out)
-     COMMAND ( VIEW_ZOOM_ALL,       NULL,               USE_MAIN_LOOP,          do_zoom_all)
+     COMMAND ( VIEW_SELECTED,       NULL,               USE_WORKER_THREAD,      do_zoom_selected)
+     COMMAND ( VIEW_EXTENTS,        NULL,               USE_WORKER_THREAD,      do_zoom_extents)
+     COMMAND ( VIEW_ZOOM_IN,        NULL,               USE_XY_WORKER,          do_zoom_in)
+     COMMAND ( VIEW_ZOOM_OUT,       NULL,               USE_XY_WORKER,          do_zoom_out)
+     COMMAND ( VIEW_ZOOM_ALL,       NULL,               USE_WORKER_THREAD,      do_zoom_all)
      COMMAND ( VIEW_DOCUMENT,       "documentation",    USE_MAIN_LOOP,          do_documentation)
      COMMAND ( VIEW_HIDDEN,         "show hidden",      USE_MAIN_LOOP,          do_show_hidden)
      COMMAND ( VIEW_INHERITED,      "show inherited",   USE_MAIN_LOOP,          do_show_inherited)
