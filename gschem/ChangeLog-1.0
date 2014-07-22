@@ -1,3 +1,13 @@
+2014-07-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * /include/globals.h: Enumerate EID_ZOOM_DIRECTIVE and EID_PAN_DIRECTIVES,
+           these were previously compiler defines located in gschem_idefines.h.
+
+        * src/iface/i_zoom_world.c: Function i_zoom_world: Changed second argument
+          to enumerated type ZOOM_DIRECTIVE, third argument to enumerated type
+          EID_ACTION_ORIGIN, forth and final argument to enumerated type
+          EID_PAN_DIRECTIVES.
+
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * scheme/Makefile.am: Add gschem/*~ to cleaning lists

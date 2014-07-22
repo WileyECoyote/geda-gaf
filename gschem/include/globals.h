@@ -120,6 +120,27 @@ typedef enum { ID_ORIGIN_MENU       = -32, /* can't pass paramerter */
                ID_ORIGIN_COMMAND,  /* -24     could pass paramerter */
 } EID_ACTION_ORIGIN;
 
+/*! \brief Enumerated Pan Directive - EID_PAN_DIRECTIVES
+ *  \par Description
+ *  Directives used as arguments to zoom and pan routines that indicate
+ *  whether to invalidate screen regions, resulting in screen redraws and
+ *  or whether borders should be ignored.
+ */
+typedef enum { I_PAN_REDRAW,
+               I_PAN_IGNORE_BORDERS,
+               I_PAN_DONT_REDRAW
+} EID_PAN_DIRECTIVES;
+
+/*! \brief Enumerated Zoom Directive - ZOOM_DIRECTIVE
+ *  \par Description
+ *  Zoom Directives are used as an argument to i_zoom_world to indicate
+ *  the polarity and magnitude for the relative zoom factor.
+ */
+typedef enum { ZOOM_OUT_DIRECTIVE,
+               ZOOM_IN_DIRECTIVE,
+               ZOOM_FULL_DIRECTIVE
+} EID_ZOOM_DIRECTIVE;
+
 /* These macros are used to help reduce lines lengths */
 #define Current_Page      w_current->toplevel->page_current
 #define Current_Selection w_current->toplevel->page_current->selection_list

@@ -531,7 +531,7 @@ void i_set_filename(GschemToplevel *w_current, const char *string)
  *  \param [in] w_current GschemToplevel structure
  */
 /*
- * i_pan_world.c:159        i_pan_world_general()
+ * i_pan_world.c:159  i_pan_world_general()
  * i_command.c:2665   i_cmd_do_grid_dots()
  * i_command.c:2674   i_cmd_do_grid_mesh()
  * i_command.c:2683   i_cmd_do_grid_off()

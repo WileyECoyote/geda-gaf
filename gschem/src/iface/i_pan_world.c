@@ -28,21 +28,19 @@
 #include <dmalloc.h>
 #endif
 
-
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
  *
+ *  see gschem_idefines.h for flags
+ *  if the borders should be ignored always, remove, outcomment or changes
+ *  the flags in the function-calls flags |= I_PAN_IGNORE_BORDERS;
  */
 void i_pan_world_general(GschemToplevel *w_current, double world_cx, double world_cy,
-                   double relative_zoom_factor,int flags)
+                         double relative_zoom_factor,int flags)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  /* see libgeda/include/defines.h for flags */
-  /*if the borders should be ignored always, remove, outcomment or changes
-   *   the flags in the function-calls*/
-  /*    flags |= i_pan_world_IGNORE_BORDERS;
-   */
+
   /* think it's better that the zoomfactor is defined as pix/mills
    *    this will be the same as w_current->page_current->to_screen_x/y_constant*/
   int zoom_max = 5;
@@ -69,7 +67,7 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
 
   /* calc new zooming factor */
   /* check if there's a zoom_full (relative_zoom_factor == -1) */
-  if (relative_zoom_factor <0)  {
+  if (relative_zoom_factor < 0)  {
     zoom_new = zoom_min;
   }
   else {

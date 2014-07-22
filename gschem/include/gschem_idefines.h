@@ -45,10 +45,6 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 
 #define ZOOM_EXTENTS_PADDING_PX 5
 
-#define ZOOM_OUT_DIRECTIVE 0
-#define ZOOM_IN_DIRECTIVE 1
-#define ZOOM_FULL_DIRECTIVE 2
-
 /* For Grid */
 #define GRID_NONE               0
 #define GRID_DOTS               1
@@ -217,10 +213,10 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* for selected_from */
 #define DONTCARE		0
 
-/* for v_pan_general and v_zoom */
+/* for v_pan_general and v_zoom
 #define I_PAN_IGNORE_BORDERS 	1
 #define I_PAN_DONT_REDRAW 	2
-
+ */
 /* selection types */
 /* used in o_select_object */
 #define SINGLE                  0

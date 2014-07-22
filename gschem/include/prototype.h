@@ -272,10 +272,10 @@ bool i_command_is_valid           (const char *command);
 void i_command_process            (GschemToplevel *w_current, const char* command, int narg, char *arg, EID_ACTION_ORIGIN who);
 
 /* i_pan_world.c */
-void  i_pan_world_general(GschemToplevel *w_current, double world_cx, double world_cy,
-                          double relativ_zoom_factor, int flags);
-void  i_pan_world(GschemToplevel *w_current, int x, int y);
-void  i_pan_world_mouse(GschemToplevel *w_current, int diff_x, int diff_y);
+void i_pan_world_general          (GschemToplevel *w_current, double world_cx, double world_cy,
+                                   double relativ_zoom_factor, int flags);
+void i_pan_world                  (GschemToplevel *w_current, int x, int y);
+void i_pan_world_mouse            (GschemToplevel *w_current, int diff_x, int diff_y);
 
 /* i_sessions.c */
 int  i_sessions_delete_session         (GschemToplevel *w_current, const char *name);
@@ -313,15 +313,17 @@ void  i_vars_init                      (GschemToplevel *w_current);
 void  i_vars_atexit_save_user_config   (gpointer user_data);
 
 /* i_zoom_world.c */
-void i_zoom_world(GschemToplevel *w_current, int dir, int selected_from, int pan_flags);
-void i_zoom_world_extents(GschemToplevel *w_current, const GList *list, int pan_flags);
-void i_zoom_world_box(GschemToplevel *w_current, int pan_flags);
-void i_zoom_world_box_start(GschemToplevel *w_current, int x, int y);
-void i_zoom_world_box_end(GschemToplevel *w_current, int x, int y);
-void i_zoom_world_box_motion(GschemToplevel *w_current, int x, int y);
+void i_zoom_world                      (GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
+                                                                   EID_ACTION_ORIGIN  selected_from,
+                                                                   EID_PAN_DIRECTIVES pan_flags);
+void i_zoom_world_extents              (GschemToplevel *w_current, const GList *list, int pan_flags);
+void i_zoom_world_box                  (GschemToplevel *w_current, int pan_flags);
+void i_zoom_world_box_start            (GschemToplevel *w_current, int x, int y);
+void i_zoom_world_box_end              (GschemToplevel *w_current, int x, int y);
+void i_zoom_world_box_motion           (GschemToplevel *w_current, int x, int y);
 void i_zoom_world_box_invalidate_rubber(GschemToplevel *w_current);
-void i_zoom_world_box_draw_rubber(GschemToplevel *w_current);
-void correct_aspect(GschemToplevel *w_current);
+void i_zoom_world_box_draw_rubber      (GschemToplevel *w_current);
+void correct_aspect                    (GschemToplevel *w_current);
 
  /* m_basic.c */
 int mil_x                         (GschemToplevel *w_current, int val);
@@ -332,17 +334,17 @@ void WORLDtoSCREEN                (GschemToplevel *w_current, int x,  int y,  in
 void SCREENtoWORLD                (GschemToplevel *w_current, int mx, int my, int *x,  int *y);
 int snap_grid                     (GschemToplevel *w_current, int input);
 int SCREENabs                     (GschemToplevel *w_current, int val);
-int WORLDabs                      (GschemToplevel  *w_current, int val);
+int WORLDabs                      (GschemToplevel *w_current, int val);
 int WORLDclip_change              (GschemToplevel *w_current, int *x1,   int *y1,  int *x2,    int *y2);
-int clip_nochange                 (GschemToplevel    *w_current, int x1,    int y1,   int x2,     int y2);
-int visible                       (GschemToplevel          *w_current, int wleft, int wtop, int wright, int wbottom);
+int clip_nochange                 (GschemToplevel *w_current, int x1,    int y1,   int x2,     int y2);
+int visible                       (GschemToplevel *w_current, int wleft, int wtop, int wright, int wbottom);
 double round_5_2_1                (double unrounded);
 
 /* o_arc.c */
 void o_arc_invalidate_rubber      (GschemToplevel *w_current);
-void o_arc_start                  (GschemToplevel  *w_current, int x, int y);
-void o_arc_end1                   (GschemToplevel   *w_current, int x, int y);
-void o_arc_end4                   (GschemToplevel   *w_current, int radius, int start_angle, int end_angle);
+void o_arc_start                  (GschemToplevel *w_current, int x, int y);
+void o_arc_end1                   (GschemToplevel *w_current, int x, int y);
+void o_arc_end4                   (GschemToplevel *w_current, int radius, int start_angle, int end_angle);
 void o_arc_motion                 (GschemToplevel *w_current, int x, int y, int whichone);
 void o_arc_draw_rubber            (GschemToplevel *w_current);
 

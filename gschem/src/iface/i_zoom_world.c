@@ -51,9 +51,15 @@
  *  \brief
  *  \par Function Description
  *
+ * \param w_current     GschemToplevel object
+ * \param dir           #EID_ZOOM_DIRECTIVE to indicate direction and or magnitude
+ * \param selected_from #EID_ACTION_ORIGIN flag indicating where action originated
+ * \param pan_flags     #EID_PAN_DIRECTIVES
  */
-/* dir is either ZOOM_IN_DIRECTIVE, ZOOM_OUT_DIRECTIVE or ZOOM_FULL which are defined in globals.h */
-void i_zoom_world(GschemToplevel *w_current, int dir, int selected_from, int pan_flags)
+
+void i_zoom_world(GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
+                                             EID_ACTION_ORIGIN  selected_from,
+                                             EID_PAN_DIRECTIVES pan_flags)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   double world_pan_center_x, world_pan_center_y, relative_zoom_factor = - 1;
@@ -80,13 +86,16 @@ void i_zoom_world(GschemToplevel *w_current, int dir, int selected_from, int pan
      virtual center if warp_cursor is disabled */
   if (w_current->zoom_with_pan == TRUE &&
      ((selected_from == ID_ORIGIN_KEYBOARD) ||
-       (selected_from == ID_ORIGIN_MOUSE))) {
-    if (!x_event_get_pointer_position(w_current, FALSE, &start_x, &start_y))
+       (selected_from == ID_ORIGIN_MOUSE)))
+  {
+    if (!x_event_get_pointer_position(w_current, FALSE, &start_x, &start_y)) {
       return;
+    }
     if ( w_current->warp_cursor ) {
       world_pan_center_x = start_x;
       world_pan_center_y = start_y;
-    } else {
+    }
+    else {
       left = ((toplevel->page_current->left - start_x)
               * (1/relative_zoom_factor) + start_x);
       right = ((toplevel->page_current->right - start_x)
@@ -112,10 +121,9 @@ void i_zoom_world(GschemToplevel *w_current, int dir, int selected_from, int pan
          world_pan_center_x, world_pan_center_y);
 #endif
 
-
   /* calculate new window and draw it */
   i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
-                relative_zoom_factor, pan_flags);
+                      relative_zoom_factor, pan_flags);
 
   /* Before warping the cursor, filter out any consecutive scroll events
    * from the event queue.  If the program receives more than one scroll
@@ -138,7 +146,7 @@ void i_zoom_world(GschemToplevel *w_current, int dir, int selected_from, int pan
   /* warp the cursor to the right position */
   if (w_current->warp_cursor) {
      WORLDtoSCREEN (w_current, world_pan_center_x, world_pan_center_y,
-           &start_x, &start_y);
+                    &start_x, &start_y);
      x_basic_warp_cursor (w_current->drawing_area, start_x, start_y);
   }
 }
