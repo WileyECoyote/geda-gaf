@@ -92,8 +92,8 @@ char *geda_basename(const char *path)
 /* warning: MUST not be const char */
 void f_remove_extension(char *filename) {
 
-  int i = 0;
-  int n = 0;
+  int i   = 0;
+  int n   = 0;
   int len = 0;
 
   while(filename[len] != '\0') { len++; } /* get length of filename */

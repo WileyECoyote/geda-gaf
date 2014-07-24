@@ -158,8 +158,8 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
   if (cfg == NULL) {
     cfg = eda_config_get_context_for_path (rcfile);
 
-    /* If the configuration wasn't loaded yet, attempt to load
-     * it. Config loading is on a best-effort basis; if we fail, just
+    /* If the configuration wasn't loaded yet, attempt to load it
+     * Config loading is on a best-effort basis; if we fail, just
      * print a warning. WEH: changed previous conditional so that we
      * only do this if the cfg was NULL */
     if (!eda_config_is_loaded (cfg)) {
@@ -276,6 +276,7 @@ g_rc_parse_user (const char *rcname, GError **err)
 
   rcfile = g_build_filename (f_path_user_config (), rcname, NULL);
   status = g_rc_parse_file (rcfile, eda_config_get_user_context (), err);
+
   GEDA_FREE (rcfile);
   return status;
 }
@@ -300,31 +301,46 @@ g_rc_parse_local (const char *rcname, const char *path, GError **err)
 {
   bool  status;
   char *dir      = NULL;
+  char *ptr;
   char *rcfile   = NULL;
 
   EdaConfig *cfg = NULL;
 
+  char  buffer[PATH_MAX];
+
   /* Default to gafrc */
   rcname = (rcname != NULL) ? rcname : "gafrc";
-  /* Default to cwd */
-  path = (path != NULL) ? path : ".";
 
-  /* If path isn't a directory, get the dirname. */
-  if (g_file_test (path, G_FILE_TEST_IS_DIR)) {
-    dir = geda_strdup (path);
+  if (path != NULL) {
+
+    dir = strcpy (&buffer[0], path);
+
+    /* If path isn't a directory, get the dirname. */
+    if (!g_file_test (path, G_FILE_TEST_IS_DIR)) {
+      ptr = dir;
+      while (*ptr != '\0') ++ptr;
+      while (*ptr != DIR_SEPARATOR && ptr > dir) --ptr;
+      *ptr = '\0';
+    }
+    else {
+      while (*dir != '\0') ++dir;
+    }
   }
   else {
-    dir = g_path_get_dirname (path);
+    /* Default to cwd */
+    dir = realpath (".", &buffer[0]);
+    while (*dir != '\0') ++dir;
   }
 
-  rcfile = g_build_filename (dir, rcname, NULL);
+  cfg = eda_config_get_context_for_path(&buffer[0]);
 
-  cfg = eda_config_get_context_for_path(path);
+  *dir++ = DIR_SEPARATOR;
+  *dir = '\0';
+
+  rcfile = strcat (&buffer[0], rcname);
 
   status = g_rc_parse_file (rcfile, cfg, err);
 
-  GEDA_FREE (dir);
-  GEDA_FREE (rcfile);
   return status;
 }
 
@@ -421,6 +437,7 @@ void g_gafrc_parse_handler (const char *dummy,
   g_rc_parse_system (NULL, &err);       HANDLER_DISPATCH;
   g_rc_parse_user   (NULL, &err);       HANDLER_DISPATCH;
   g_rc_parse_local  (NULL, NULL, &err); HANDLER_DISPATCH;
+
 }
 
 /*! \brief General RC file parsing function.
@@ -448,7 +465,6 @@ void g_rcname_parse_handler (const char *rcname,
     g_rc_parse_user   (rcname, &err);       HANDLER_DISPATCH;
     g_rc_parse_local  (rcname, NULL, &err); HANDLER_DISPATCH;
   }
-
 }
 /*! \brief General RC file parsing function.
  * \par Function Description

@@ -1,3 +1,8 @@
+2014-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/guile/g_rc_parse.c: Redo function g_rc_parse_local, contexts
+          in eda_config needed real name/path for retention, not ".".
+
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * *: More work on Doxygen documentation; Changed group delimiters to

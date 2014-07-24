@@ -14,7 +14,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
  */
 /* 02/27/14 WEH Revamp: Eliminate GFile due to unnecessary dependencies,
  *          and assumes the installed target allow vfs, which mine does
@@ -643,7 +644,6 @@ eda_config_get_context_for_file (const char *path)
                               "parent", cfg,
                               "trusted", FALSE,
                                NULL);
-        //     eda_config_load (config, NULL);
         g_hash_table_insert (local_contexts, file, config);
       }
     }
@@ -656,7 +656,7 @@ eda_config_get_context_for_file (const char *path)
     /* The file does not exist so return the default context */
       config = g_object_new (EDA_TYPE_CONFIG,
                              "file", NULL,
-                             "parent", eda_config_get_user_context (),
+                             "parent", eda_config_get_default_context(),
                              "trusted", FALSE, NULL);
   }
 
