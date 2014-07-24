@@ -1232,7 +1232,8 @@ PyGeda_open_page( const char *filename )
             errno = NO_ERROR;
           }
           else {
-            fprintf(stderr,"Path \"%s\": is not accessible: %s\n", path, strerror(errno));
+            fprintf(stderr, "Path \"%s\": is not accessible: %s\n",
+                    path, strerror(errno));
           }
         }
 
