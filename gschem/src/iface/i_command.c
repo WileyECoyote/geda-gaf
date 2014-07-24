@@ -300,16 +300,37 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 
       /* Check and set pointer coordinates if task bit 3 is set */
       if ( command_struc[i].aflag & XY_ActionMask ) {
-        int wx, wy;
-        if (x_event_get_pointer_position (w_current, TRUE, &wx, &wy)) {
+
+        int wx, wy, check_magnet = FALSE;
+
+        if ( who != ID_ORIGIN_MOUSE ) {
+
+          /*  If not mouse, then likely is keyboard, this is intended to
+           *  handle all except the mouse */
+          if (x_event_get_pointer_position (w_current, TRUE, &wx, &wy)) {
+            command_struc[i].point.x = wx;
+            command_struc[i].point.y = wy;
+            check_magnet = TRUE;
+          }
+          else {
+            command_struc[i].point.x = 0;
+            command_struc[i].point.y = 0;
+            //w_current->first_wx      = -1; /* is the right thing to do? */
+            //w_current->first_wy      = -1;
+          }
+        }
+        else { /* Must have been ID_ORIGIN_MOUSE*/
+
+          SCREENtoWORLD (w_current, w_current->pointer_sx, w_current->pointer_sy, &wx, &wy);
           command_struc[i].point.x = wx;
           command_struc[i].point.y = wy;
+          check_magnet = TRUE;
         }
-        else {
-          command_struc[i].point.x = 0;
-          command_struc[i].point.y = 0;
-          w_current->first_wx      = -1; /* is the right thing to do? */
-          w_current->first_wy      = -1;
+        /* could check action but all current action that also
+         * use "hot" seem magnet-able candidates */
+        if (check_magnet && w_current->magnetic_net_mode) {
+          command_struc[i].point.x = snap_grid (w_current, wx);
+          command_struc[i].point.y = snap_grid (w_current, wy);
         }
       }
 
@@ -2296,7 +2317,7 @@ COMMAND ( do_add_net )
   }
 
   i_set_state(w_current, state);
-  /* somewhere you need to nearest point locking... */
+
   EXIT_COMMAND(do_add_net);
 }
 /*! \brief Action Add Bus in i_command_Add_Actions
@@ -2316,7 +2337,6 @@ COMMAND ( do_add_bus )
 
     /* need to click */
     i_set_state(w_current, STARTDRAWBUS);
-
     o_bus_start( w_current, CMD_X(do_add_bus), CMD_Y(do_add_bus) );
     w_current->inside_action = 1;
     state = DRAWBUS;
@@ -2328,8 +2348,6 @@ COMMAND ( do_add_bus )
 
   i_set_state(w_current, state);
 
-  /* somewhere we need nearest point locking... */
-  w_current->inside_action = 0;
   EXIT_COMMAND(do_add_bus);
 }
 

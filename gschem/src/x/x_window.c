@@ -70,7 +70,6 @@ void x_window_setup (GschemToplevel *w_current)
 
   x_window_create_main (w_current);
   x_window_restore_settings(w_current);
-
   x_menu_attach_recent_files_submenu(w_current);
 
   /* Initialize the clipboard callback */
@@ -586,7 +585,6 @@ void x_window_create_main(GschemToplevel *w_current)
   w_current->window = DrawingArea->window;
   w_current->drawable = w_current->window;
   x_window_setup_gc(w_current);
-
 }
 
 /*! \brief Close All Edit Dialogs
@@ -831,6 +829,8 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
     char     *fname;
     fname = geda_strdup ( name ? name : generate_untitled() );
     new_page(fname);
+    /* Hack: There is not page so status bar did not get updated */
+    x_status_bar_update_grid_label(w_current);
     if (!verbose_mode)
       u_log_message (_("New file [%s]\n"),
                      toplevel->page_current->filename);

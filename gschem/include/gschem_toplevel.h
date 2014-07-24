@@ -78,13 +78,7 @@ struct _GschemToplevel {
   GtkWidget *macro_widget;
 
   GtkWidget *status_bar;
-/*
-  GtkWidget *left_label;
-  GtkWidget *middle_label;
-  GtkWidget *right_label;
-  GtkWidget *grid_label;
-  GtkWidget *status_label;
-*/
+
   char *keyaccel_string;       /* visual feedback when pressing
                                          keyboard accelerators */
   bool keyaccel_ssid;          /* event source ID used by above */
@@ -194,6 +188,10 @@ struct _GschemToplevel {
   int last_drawb_mode;                  /* last above mode */
   int min_zoom;                         /* minimum zoom factor */
   int max_zoom;                         /* maximum zoom factor */
+
+  /* Pointer Device */
+  int pointer_sx;                       /* screen x coordinates */
+  int pointer_sy;                       /* screen y coordinates */
 
   /* Sessions */
   char *session_name;                   /* Name of active session */

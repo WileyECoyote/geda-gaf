@@ -277,6 +277,7 @@ int snap_grid(GschemToplevel *w_current, int input)
  */
 int SCREENabs(GschemToplevel *w_current, int val)
 {
+;
   if ((w_current == NULL) ||
       (w_current->toplevel == NULL) ||
       (w_current->toplevel->page_current == NULL))
@@ -297,7 +298,6 @@ int SCREENabs(GschemToplevel *w_current, int val)
 #endif
 
   return(j);
-
 }
 
 /*! \brief Get absolute WORLD coordinate.
@@ -732,7 +732,9 @@ double round_5_2_1(double unrounded)
 
   /*only using the automatic cast */
   digits = log10(unrounded);
+
   /* creates numbers between 1 and 10 */
+
   betw_1_10 = unrounded / pow(10,digits);
 
   if (betw_1_10 < 1.5) {
@@ -747,4 +749,5 @@ double round_5_2_1(double unrounded)
   else {
     return(10*pow(10,digits));
   }
+
 }

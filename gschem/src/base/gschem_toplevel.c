@@ -183,6 +183,10 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, gpointer g_c
   w_current->min_zoom                     = 0;
   w_current->max_zoom                     = 8;
 
+  /* Pointer Device */
+  w_current->pointer_sx                   = 0;
+  w_current->pointer_sy                   = 0;
+
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */

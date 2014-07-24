@@ -1,3 +1,12 @@
+2014-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/iface/i_command.c: Fix bug in do_add_bus() by removing superfluous
+          w_current->inside_action = 0.
+
+        * src/x/x_window.c: Bug fix: Grid/snap was not being update in the status
+          bar after starup with new "empty" blank page, added call in function
+          empty_page() to x_status_bar_update_grid_label.
+
 2014-07-22 Wiley E. Hill <wileyhill@gmail.com>
 
         * /include/globals.h: Enumerate EID_ZOOM_DIRECTIVE and EID_PAN_DIRECTIVES,

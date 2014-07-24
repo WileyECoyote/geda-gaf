@@ -53,25 +53,35 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
   GedaToplevel *toplevel = w_current->toplevel;
   int incr, screen_incr;
 
-  if (w_current->dots_grid_mode == DOTS_GRID_VARIABLE_MODE) {
-    /* In the variable mode around every (DOTS_VARIABLE_MODE_SPACING)'th
-     * screenpixel will be grid-point. */
-    /* adding 0.1 for correct cast*/
-    incr = round_5_2_1 (toplevel->page_current->to_world_x_constant *
-                        DOTS_VARIABLE_MODE_SPACING) + 0.1;
+  g_return_val_if_fail(w_current != NULL, -1);
+  g_return_val_if_fail(w_current->toplevel != NULL, -1);
 
-    /* limit minimum grid spacing to grid to snap_size */
-    if (incr < w_current->snap_size) {
+  if (GEDA_IS_PAGE(toplevel->page_current)) {
+    if (w_current->dots_grid_mode == DOTS_GRID_VARIABLE_MODE) {
+
+      /* In the variable mode around every (DOTS_VARIABLE_MODE_SPACING)'th
+       * screenpixel will be grid-point. adding 0.1 for correct cast*/
+      incr = round_5_2_1 (toplevel->page_current->to_world_x_constant *
+      DOTS_VARIABLE_MODE_SPACING) + 0.1;
+
+      /* limit minimum grid spacing to grid to snap_size */
+      if (incr < w_current->snap_size) {
+        incr = w_current->snap_size;
+      }
+    }
+    else {
+      /* Fixed size grid in world coorinates */
       incr = w_current->snap_size;
+      screen_incr = SCREENabs (w_current, incr);
+      if (screen_incr < w_current->dots_grid_fixed_threshold) {
+        /* No grid drawn if the on-screen spacing is less than the threshold */
+        incr = -1;
+      }
     }
-  } else {
-    /* Fixed size grid in world coorinates */
-    incr = w_current->snap_size;
-    screen_incr = SCREENabs (w_current, incr);
-    if (screen_incr < w_current->dots_grid_fixed_threshold) {
-      /* No grid drawn if the on-screen spacing is less than the threshold */
-      incr = -1;
-    }
+  }
+  else {
+    BUG_MSG("page_current == NULL");
+    incr = -1;
   }
   return incr;
 }
@@ -100,6 +110,8 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
 
   int incr = query_dots_grid_spacing (w_current);
 
+  /* Note: Previous call to query_dots_grid_spacing checked
+   * w_current & toplevel for NULL values, so we do not */
   if (incr == -1)
     return;
 

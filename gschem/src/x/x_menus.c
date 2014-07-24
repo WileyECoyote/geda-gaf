@@ -51,7 +51,7 @@ const char* IDS_Popup_Actions[] = {
 
 static PopupEntry popup_items[] = {
 
-  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",   NULL},
+  { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  NULL},
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
@@ -72,13 +72,13 @@ static PopupEntry popup_items[] = {
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Edit..."),           x_menu_popup_execute, pop_edit_butes,     1, "gtk-indent",      NULL},
-  { N_("Edit pin type..."),  x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",   NULL},
+  { N_("Edit..."),           x_menu_popup_execute, pop_edit_butes,     1, "gtk-indent",     NULL},
+  { N_("Edit pin type..."),  x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL},
   { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete"},
 
-  /* Menu items for hierarchy added by SDB 1.9.2005. */
-  { "SEPARATOR",             NULL,                 0,                  0,  NULL,             NULL },
+  { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
+  /* Menu items for hierarchy added by SDB 1.9.2005. */
   { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL },
   {N_("Down Schematic"),     x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
   {N_("Down Symbol"),        x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
@@ -87,9 +87,9 @@ static PopupEntry popup_items[] = {
   /* Menu items for clip-board added by WEH 07.20.2013 */
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-  {N_("Cut"),                x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",   NULL },
-  {N_("Copy"),               x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",  NULL },
-  {N_("Paste"),              x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste", NULL },
+  {N_("Cut"),                x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        NULL },
+  {N_("Copy"),               x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       NULL },
+  {N_("Paste"),              x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      NULL },
   {NULL} /* sentinel */
 };
 
@@ -163,7 +163,7 @@ static void
 x_menu_popup_execute(GtkObject *widget, int action_id)
 {
   GschemToplevel *w_current;
-  const char      *action;
+  const char     *action;
 
   w_current  = gtk_object_get_data(widget, "top-level");
   action     = IDS_Popup_Actions[action_id];
@@ -792,7 +792,6 @@ int x_menu_setup_popup (GschemToplevel *w_current)
     }
 
     g_object_set (menu_item, "visible", TRUE, NULL);
-    //gtk_menu_append( GTK_MENU(menu), menu_item);
     gtk_container_add (GTK_CONTAINER (menu), menu_item);
   }
 
@@ -847,9 +846,12 @@ int x_menu_display_popup (GschemToplevel *w_current, GdkEventButton *event)
   if (menu == NULL) {
     g_warning( "Internal Error, <do_popup> got null popup menu\n");
   }
-  else
+  else {
+    w_current->pointer_sx = event->x;
+    w_current->pointer_sy = event->y;
     gtk_menu_popup (GTK_MENU (menu), NULL, NULL, NULL, NULL,
                     event->button, event->time);
+  }
   return FALSE;
 }
 

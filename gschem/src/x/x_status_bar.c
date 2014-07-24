@@ -65,7 +65,6 @@ x_status_bar_update_grid_label (GschemToplevel *w_current)
                 (StatusBar->snap_size - snap_size);
 
     if ( do_update ) {
-
       StatusBar->grid_mode = grid_mode;
       StatusBar->grid_size = grid_size;
       StatusBar->snap_mode = snap_mode;
