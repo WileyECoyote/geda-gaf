@@ -71,7 +71,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* for console-window-type */
 #define MAX_JUNCTION_SIZE       100
 #define MIN_JUNCTION_SIZE         0
-#define DEFAULT_JUNCTION_SIZE    10
+#define DEFAULT_JUNCTION_SIZE    40
 #define DEFAULT_JUNCTION_COLOR  JUNCTION_COLOR
 
 /* For Both Scrollbars and Mousewheel */

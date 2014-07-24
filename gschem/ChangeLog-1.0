@@ -1,5 +1,11 @@
 2014-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
+        * include/gschem_idefines.h: Change DEFAULT_JUNCTION_SIZE gtom 10 to 40;
+
+        * src/x/x_settings_dialog.c: Add missing junction_size in unloader.
+
+2014-07-23 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/iface/i_command.c: Fix bug in do_add_bus() by removing superfluous
           w_current->inside_action = 0.
 

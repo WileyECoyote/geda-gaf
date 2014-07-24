@@ -2449,6 +2449,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);
   w_current->dots_grid_fixed_threshold  = GET_SPIN_IVALUE (DotGridThresholdSpin);
   w_current->grip_pixel_size            = GET_SPIN_IVALUE (GripPixelSizeSpin);
+  w_current->renderer->junction_size    = GET_SPIN_IVALUE (JunctionSizeSpin);
   w_current->keyboardpan_gain           = GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        = GET_SPIN_IVALUE (MeshGridThresholdSpin);
   w_current->mousepan_gain              = GET_SPIN_IVALUE (MousePanGainSpin);
