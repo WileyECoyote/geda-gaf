@@ -1,3 +1,9 @@
+2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * /src/libgedathon.c: Replace mkdir with f_create_path in function
+          Modified error message to include reason path creation failed.
+          Not changing library revision because the change is insignificant.
+
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * *: More work on Doxygen documentation; Changed group delimiters to

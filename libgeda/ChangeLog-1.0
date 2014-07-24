@@ -1,3 +1,11 @@
+2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        *src/file/f_path.c: In function f_create_dir and f_create_path;
+         change 0, zeros, to NO_ERROR.
+
+        * src/geda/geda_config.c: Replace mkdir with f_create_path in function
+          eda_config_save.
+
 2014-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/guile/g_rc_parse.c: Redo function g_rc_parse_local, contexts

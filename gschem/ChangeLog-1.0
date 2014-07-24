@@ -1,5 +1,14 @@
 2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_toolbars.c: Replace mkdir with f_create_path in function
+          x_toolbars_save_state.
+
+        * /src/x/x_window.c: Replace mkdir with f_create_path in function
+          x_toolbars_save_state and remove inclusion of glib/gstdio.h.
+          Modified error message to include reason path creation failed.
+
+2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/x/x_menus.c: Replace g_mkdir with f_create_path in function
           recent_files_load.
 

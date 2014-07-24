@@ -883,7 +883,7 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
       errno = 0;
       if (!g_file_test (filename, G_FILE_TEST_EXISTS)) {
         if (!g_file_test (dir, G_FILE_TEST_EXISTS)) {
-          mkdir (dir, S_IRWXU | S_IRWXG);
+          f_create_path (dir, S_IRWXU | S_IRWXG);
           g_set_error(error, G_FILE_ERROR, status,
                       _("file <%s> %s"), filename, strerror(errno));
         }

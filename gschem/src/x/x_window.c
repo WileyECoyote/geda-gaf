@@ -20,11 +20,14 @@
  */
 #include <config.h>
 
-#include <glib/gstdio.h>   /* mkdir */
 #include <libgen.h>        /* dirname */
 
 #include <stdio.h>
 #include <errno.h>
+
+#ifdef HAVE_SYS_STAT_H
+# include <sys/stat.h>
+#endif
 
 #include "gschem.h"
 
@@ -903,18 +906,18 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
         page = empty_page(filename);
       }
       else { /* Houston, we have problem */
-        /* Filename was specified and but path error, so we still
+        /* Filename was specified but path error, so we still
          * don't know if base name is okay. Break down filespec and try
          * to sort out the problem:
          */
         if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if( mkdir (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
-            u_log_message("Path \"%s\": does not exist\n, successfully created\n", path);
+          if( f_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+            u_log_message("Path \"%s\": did not exist\n, successfully created\n", path);
             page = empty_page(filename);
             errno = NO_ERROR;
           }
           else {
-            u_log_message("Path \"%s\": is not accessible!\n", path);
+            u_log_message("Path \"%s\": is not accessible: %s\n", path, strerror (errno));
           }
         }
 

@@ -1227,12 +1227,12 @@ PyGeda_open_page( const char *filename )
          * to sort out the problem:
          */
         if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if( mkdir (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+          if( f_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             page = empty_page(filename);
             errno = NO_ERROR;
           }
           else {
-            fprintf(stderr, "Path \"%s\": is not accessible!\n", path);
+            fprintf(stderr,"Path \"%s\": is not accessible: %s\n", path, strerror(errno));
           }
         }
 

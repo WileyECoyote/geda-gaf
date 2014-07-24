@@ -291,26 +291,24 @@ const char *f_path_user_config () {
  *  \param path Pointer to string path to be created
  *  \param mode is valid mode_t permission integer
  *
- *  \retval 0 on success or -1 if and error was encountered
+ *  \retval NO_ERROR on success or -1 if and error was encountered
  */
 static int f_create_dir(const char *path, mode_t mode)
 {
     struct stat stat_buf;
-    int         status = 0;
+    int         status = NO_ERROR;
 
-    if (stat(path, &stat_buf) != 0)
-    {
+    if (stat(path, &stat_buf) != 0) {
         /* Directory does not exist. EEXIST for race condition */
         if (mkdir(path, mode) != 0 && errno != EEXIST)
             status = -1;
     }
-    else if (!S_ISDIR(stat_buf.st_mode))
-    {
+    else if (!S_ISDIR(stat_buf.st_mode)) {
         errno = ENOTDIR;
         status = -1;
     }
 
-    return(status);
+    return (status);
 }
 
 /*! \brief Create a Directory Path
@@ -326,10 +324,9 @@ static int f_create_dir(const char *path, mode_t mode)
  *  \param path Pointer to string path to be created
  *  \param mode valid mode_t integer permission attribute
  *
- *  \retval 0 on success or -1 if and error was encountered
+ *  \retval NO_ERROR on success or -1 if and error was encountered
  *
- *  \remark WEH Tweeked for libgeda, mode should be a valid mode_t
- *  integer but is not declared
+ *  \remark WEH Tweeked for libgeda
  */
 int f_create_path(const char *path, mode_t mode)
 {
@@ -338,9 +335,9 @@ int f_create_path(const char *path, mode_t mode)
     int             status;
     char           *copypath = geda_strdup(path);
 
-    status = 0;
+    status = NO_ERROR;
     pp = copypath;
-    while (status == 0 && (sp = strchr(pp, '/')) != 0)
+    while (status == NO_ERROR && (sp = strchr(pp, '/')) != 0)
     {
         if (sp != pp)
         {
@@ -351,7 +348,7 @@ int f_create_path(const char *path, mode_t mode)
         }
         pp = sp + 1;
     }
-    if (status == 0) {
+    if (status == NO_ERROR) {
         status = f_create_dir(path, mode);
     }
     GEDA_FREE(copypath);
