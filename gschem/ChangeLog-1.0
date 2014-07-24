@@ -1,3 +1,8 @@
+2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_menus.c: Replace g_mkdir with f_create_path in function
+          recent_files_load.
+
 2014-07-23 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/gschem_idefines.h: Change DEFAULT_JUNCTION_SIZE gtom 10 to 40;

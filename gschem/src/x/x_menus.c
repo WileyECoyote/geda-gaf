@@ -1474,7 +1474,7 @@ void recent_files_load()
    char *file = g_build_filename(f_path_user_config (), RECENT_FILES_STORE, NULL);
 
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
-     g_mkdir(f_path_user_config (), S_IRWXU | S_IRWXG);
+     f_create_path(f_path_user_config (), S_IRWXU | S_IRWXG);
 
       recent_files_create_empty();
    }
