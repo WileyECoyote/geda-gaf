@@ -18,20 +18,9 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <libgeda/libgeda.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include "common.h"
 #include "print-settings.h"
+#include <geda_debug.h>
 
 struct PrintSettings
 {

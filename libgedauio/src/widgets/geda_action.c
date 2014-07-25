@@ -260,15 +260,15 @@ static void geda_action_init (GedaAction *action)
 /*! \brief Function to retrieve GedaAction's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaAction's Type identifier.
- *  Upon first call, this registers the GedaAction in the GType system.
+ *  Function to retrieve GedaAction's Type identifier. On the first
+ *  call, this registers the GedaAction in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the Type identifier associated with GedaAction.
+ *  \return the GedaType identifier associated with GedaAction.
  */
-unsigned int geda_action_get_type ()
+GedaType geda_action_get_type ()
 {
-  static unsigned int geda_action_type = 0;
+  static GedaType geda_action_type = 0;
 
   if (!geda_action_type) {
     static const GTypeInfo geda_action_info = {

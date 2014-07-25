@@ -1,5 +1,13 @@
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
+        * include/gnetlist.h: New header file used by all gnetlist source files
+          to  include libgeda.h and local prototype.h and globals.h. The header
+          defines define WITHOUT_GDK_PIX_BUFFER so that:
+
+        * src/Makefile.am: Eliminated GDK_PIXBUF_* cflags lib flags
+
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/*/*.c: Redo inclusion of header files
 
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>

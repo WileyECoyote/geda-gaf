@@ -2935,12 +2935,12 @@ compselect_class_init (CompselectClass *class)
  * defined function function a called to create portions. Those
  * function above have "create-" in the function name.
  *
- *  \param [in] type                   The gobject type
+ *  \param [in] type                   The GedaType type
  *  \param [in] n_construct_properties The number of inital parameters?
  *  \param [in] construct_params       Inital g_object property values
  */
 static GObject*
-compselect_constructor (GType type,
+compselect_constructor (GedaType type,
                         unsigned int n_construct_properties,
                         GObjectConstructParam *construct_params)
 {

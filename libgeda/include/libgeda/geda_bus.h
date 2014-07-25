@@ -61,7 +61,7 @@ struct _GedaBus {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GType    geda_bus_get_type        (void);
+GedaType   geda_bus_get_type        (void);
 bool     is_a_geda_bus_object     (Bus *object);
 
 Object  *geda_bus_new             (void);

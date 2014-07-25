@@ -98,10 +98,10 @@ geda_path_bounds (Object *object)
   return found_bound;
 }
 
-/*! \brief GType instance initialiser for Path
+/*! \brief GedaType instance initialiser for Path
  *
  *  \par Function Description
- *  GType instance initialiser for Path, initializes a new empty
+ *  GedaType instance initialiser for Path, initializes a new empty
  *  Path object by setting pointers to NULL and numbers to zero,
  *  the path PID variable is set to the next path index.
  *
@@ -161,10 +161,10 @@ static void geda_path_finalize(GObject *object)
   GEDA_OBJECT_CLASS( geda_path_parent_class )->finalize(object);
 }
 
-/*! \brief GType class initialiser for Path
+/*! \brief GedaType class initialiser for Path
  *
  *  \par Function Description
- *  GType class initialiser for Path. We override our parents
+ *  GedaType class initialiser for Path. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The Path we are initialising

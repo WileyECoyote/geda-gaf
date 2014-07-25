@@ -77,7 +77,7 @@ struct _GedaMenuButtonClass
 
 };
 
-GType           geda_menu_button_get_type (void) G_GNUC_CONST;
+GedaType          geda_menu_button_get_type (void) G_GNUC_CONST;
 
 GedaMenuButton *geda_menu_button_new            (GtkWidget     *icon_widget,  const char *label);
 GedaMenuButton *geda_menu_button_new_from_stock (const char    *stock_id);

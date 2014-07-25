@@ -1,11 +1,28 @@
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Redo inclusion of header files
+2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/libgeda/g_struct.h: Modified to allow linking to Libgeda
+          without <gdk-pixbuf/gdk-pixbuf.h> by using conditional reference
+          to GdkPixbuf
+
+        * include/libgeda/geda_picture.h: Modified to allow linking to Libgeda
+          without <gdk-pixbuf/gdk-pixbuf.h> by temporily defining to void
+
+        * include/libgeda/prototype.h: Modified to allow linking to Libgeda
+          without <gdk-pixbuf/gdk-pixbuf.h> by using conditional declarations
+          for o_picture_get_pixbuf and o_picture_get_fallback_pixbuf
+
+        * libgeda/src/Makefile.am: Eliminate GDK_PIXBUF_* cflags lib flags
+
+        * libgeda/shell/shell.c: Add define for WITHOUT_GDK_PIX_BUFFER before
+          including libgeda.h.
 
 2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
-        *src/file/f_path.c: In function f_create_dir and f_create_path;
-         change 0, zeros, to NO_ERROR.
+        * src/file/f_path.c: In function f_create_dir and f_create_path;
+          change 0, zeros, to NO_ERROR.
 
         * src/geda/geda_config.c: Replace mkdir with f_create_path in function
           eda_config_save.

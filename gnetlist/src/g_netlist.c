@@ -19,14 +19,9 @@
  */
 
 #include <config.h>
-#include <missing.h>
-#include <gettext.h>
-
-#include <libgeda/libgeda.h>
+#include "gnetlist.h"
 #include <libgeda/libgedaguile.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
+#include <gettext.h>
 #include <geda_debug.h>
 
 /* this function will only return a unique list of packages */

@@ -288,10 +288,10 @@ set_property (GObject      *object,
 
 /*! \brief Get/register Swatchcr type.
  */
-unsigned int
+GedaType
 geda_swatch_renderer_get_type()
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
 
   if (type == 0) {
     static const GTypeInfo info = {

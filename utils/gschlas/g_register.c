@@ -18,9 +18,7 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <libgeda/libgeda.h>
-
-#include "../include/prototype.h"
+#include "common.h"
 
 void g_register_funcs(void)
 {
@@ -30,7 +28,7 @@ void g_register_funcs(void)
 
   /* gsymcheckrc functions */
   scm_c_define_gsubr ("gschlas-version", 1, 0, 0, g_rc_gschlas_version);
-  //scm_c_define_gsubr ("force-boundingbox", 1, 0, 0, g_rc_force_boundingbox);
+
 }
 
 SCM g_quit(void)

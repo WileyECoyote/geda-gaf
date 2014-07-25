@@ -263,12 +263,15 @@ const char   *o_file_format_header     (void);
       void       o_picture_translate_world  (int dx, int dy, Object *object);
       Object    *o_picture_copy             (Object *o_current) G_GNUC_WARN_UNUSED_RESULT;
       bool       o_picture_is_embedded      (Object *object);
-      GdkPixbuf *o_picture_get_pixbuf       (Object *object) G_GNUC_WARN_UNUSED_RESULT;
 const char      *o_picture_get_data         (Object *object, size_t *len);
       bool       o_picture_set_from_buffer  (Object *object, const char *filename, const char *data, size_t len, GError  **error);
       bool       o_picture_set_from_file    (Object *object, const char *filename, GError **error);
 const char      *o_picture_get_filename     (Object *object);
+
+#ifdef GDK_PIXBUF_H
+      GdkPixbuf *o_picture_get_pixbuf          (Object *object) G_GNUC_WARN_UNUSED_RESULT;
       GdkPixbuf *o_picture_get_fallback_pixbuf (GedaToplevel *toplevel) G_GNUC_WARN_UNUSED_RESULT;
+#endif
 
 /* o_pin_basic.c */
       Object    *o_pin_new                  (int color, int x1, int y1, int x2, int y2, PIN_NODE node_type, int whichend);

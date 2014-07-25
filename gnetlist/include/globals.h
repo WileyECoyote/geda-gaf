@@ -18,6 +18,8 @@
  * MA 02110-1301 USA
  */
 
+#define WITHOUT_GDK_PIX_BUFFER 1
+
 extern char *rc_filename;
 
 extern          int logfile_fd;
@@ -26,7 +28,7 @@ extern volatile int log_destiny;
 
 /* gnetlist specific stuff */
 extern NETLIST *netlist_head;
-extern NETLIST *graphical_netlist_head; /* Special objects with 
+extern NETLIST *graphical_netlist_head; /* Special objects with
                                            graphical=1 attribute */
 extern char *guile_proc;
 extern int   list_backends;

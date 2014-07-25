@@ -59,7 +59,7 @@ struct _GedaCircle {
   unsigned int tail_marker;       /* structure type signature */
 };
 
-GType    geda_circle_get_type     (void);
+GedaType   geda_circle_get_type     (void);
 bool     is_a_geda_circle_object  (Circle *object);
 Object  *geda_circle_new          (void);
 

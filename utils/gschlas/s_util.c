@@ -19,7 +19,7 @@
  *  02110-1301 USA
  */
 
-#include <libgeda/libgeda.h>
+#include "common.h"
 
 /* If embed_mode is true, then embed all components in all pages, */
 /* otherwise unembed all components in all pages */

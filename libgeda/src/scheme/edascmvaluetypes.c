@@ -166,14 +166,14 @@ value_lcopy_scm (const GValue *value,
 }
 
 /* ---------------------------------------------------------------- */
-/* Public functions related to low-level GType / GValue support. */
+/* Public functions related to low-level GedaType / GValue support. */
 
-GType
+GedaType
 edascm_scm_get_type (void)
 {
-  static GType edascm_scm_type = 0;
+  static GedaType edascm_scm_type = 0;
   if (g_once_init_enter (&edascm_scm_type)) {
-    GType type;
+    GedaType type;
 
     static const GTypeValueTable value_table = {
       value_init_scm,    /* value_init */
@@ -276,12 +276,12 @@ param_scm_values_cmp (GParamSpec *pspec,
 /* ---------------------------------------------------------------- */
 /* Public functions related to GParamSpec support. */
 
-GType
+GedaType
 edascm_param_spec_scm_get_type (void)
 {
-  static GType edascm_param_spec_scm_type = 0;
+  static GedaType edascm_param_spec_scm_type = 0;
   if (g_once_init_enter (&edascm_param_spec_scm_type)) {
-    GType type;
+    GedaType type;
     const GParamSpecTypeInfo pspec_info = {
       sizeof (EdascmParamSpecSCM), /* instance_size */
       0, /* n_preallocs */

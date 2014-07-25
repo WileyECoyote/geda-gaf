@@ -468,18 +468,18 @@ static void gattrib_dialog_class_init (GattribDialogClass *klass)
 }
 
 
-/*! \brief Function to retrieve GattribDialog's Type identifier.
+/*! \brief Function to retrieve GattribDialog's GedaType identifier.
  *
  *  \par Function Description
- *  Function to retrieve GattribDialog's Type identifier.
- *  Upon first call, this registers the GattribDialog in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve GattribDialog's Type identifier. On first call,
+ *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
  *
- *  \return the Type identifier associated with GattribDialog.
+ *  \return GedaType identifier associated with GattribDialog.
  */
-unsigned int gattrib_dialog_get_type ()
+GedaType gattrib_dialog_get_type ()
 {
-  static unsigned int gattrib_dialog_type = 0;
+  static GedaType gattrib_dialog_type = 0;
 
   if (!gattrib_dialog_type) {
     static const GTypeInfo gattrib_dialog_info = {

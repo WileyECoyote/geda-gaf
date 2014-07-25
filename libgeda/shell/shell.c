@@ -20,16 +20,11 @@
 /* A simple batch processing interface to libgeda based on a Scheme
  * REPL (Read-Eval-Print Loop). */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
+#define WITHOUT_GDK_PIX_BUFFER 1
+
+#include <geda_standard.h>
 #include "version.h"
-
-#include <unistd.h>
-#include <stdio.h>
-#include <string.h>
 #include <ctype.h>
-
 #include <libgeda/libgeda.h>
 #include <libgeda/libgedaguile.h>
 

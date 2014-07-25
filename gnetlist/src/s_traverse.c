@@ -20,15 +20,8 @@
  */
 
 #include <config.h>
-#include <missing.h>
-
+#include "gnetlist.h"
 #include <gettext.h>
-
-#include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
-
 #include <geda_debug.h>
 
 /*! Tracks which Objects have been visited so far, and how many times.

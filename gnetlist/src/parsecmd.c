@@ -19,14 +19,11 @@
  * MA 02110-1301 USA
  */
 
+#define WITHOUT_GDK_PIX_BUFFER 1
+
 #include <config.h>
 #include "version.h"
-#include <missing.h>
-
-#include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
+#include "gnetlist.h"
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>

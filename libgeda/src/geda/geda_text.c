@@ -96,10 +96,10 @@ geda_text_bounds(Object *o_current)
   return result;
 }
 
-/*! \brief GType instance initialiser for Text
+/*! \brief GedaType instance initialiser for Text
  *
  *  \par Function Description
- *  GType instance initialiser for Text, initializes a new empty
+ *  GedaType instance initialiser for Text, initializes a new empty
  *  Text object by setting pointers to NULL and numbers to zero,
  *  the text PID variable is set to the next text index.
  *
@@ -160,10 +160,10 @@ static void geda_text_finalize(GObject *object)
   GEDA_OBJECT_CLASS( geda_text_parent_class )->finalize(object);
 }
 
-/*! \brief GType class initialiser for Text
+/*! \brief GedaType class initialiser for Text
  *
  *  \par Function Description
- *  GType class initialiser for Text. We override our parents
+ *  GedaType class initialiser for Text. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The Text we are initialising

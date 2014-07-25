@@ -234,15 +234,16 @@ celltextview_start_editing (GtkCellEditable *cell_editable, GdkEvent *event)
 /*! \brief Function to retrieve CellTextView's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve CellTextView's Type identifier.
- *  Upon first call, this registers the CellTextView in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve CellTextView's Type identifier. On the first
+ *  call, this registers the CellTextView in the GedaType system.
+ *  Subsequently the function returns the saved value from its first
+ *  execution.
  *
  *  \return the Type identifier associated with CellTextView.
  */
-unsigned int celltextview_get_type()
+GedaType celltextview_get_type()
 {
-  static unsigned int celltextview_type = 0;
+  static GedaType celltextview_type = 0;
 
   if (!celltextview_type) {
     static const GTypeInfo celltextview_info = {
@@ -426,9 +427,9 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
  *  \par Function Description
  *
  */
-GType cellrenderermultilinetext_get_type()
+GedaType cellrenderermultilinetext_get_type()
 {
-  static unsigned int cellrenderermultilinetext_type = 0;
+  static GedaType cellrenderermultilinetext_type = 0;
 
   if (!cellrenderermultilinetext_type) {
     static const GTypeInfo cellrenderermultilinetext_info = {
@@ -1719,19 +1720,19 @@ multiattrib_geometry_restore (GschemDialog *dialog, EdaConfig *cfg, char *group_
   SetSwitch ((MULTIATTRIB (dialog))->ShowInherited, show_inherited);
 }
 
-/*! \brief Function to retrieve Multiattrib's GType identifier.
+/*! \brief Function to retrieve Multiattrib's GedaType identifier.
  *
  *  \par Function Description
  *
- *  Function to retrieve Multiattrib's GType identifier.
- *  Upon first call, this registers Multiattrib in the GType system.
+ *  Function to retrieve Multiattrib's GedaType identifier.
+ *  Upon first call, this registers Multiattrib in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the GType identifier associated with Multiattrib.
+ *  \return the GedaType identifier associated with Multiattrib.
  */
-GType multiattrib_get_type()
+GedaType multiattrib_get_type()
 {
-  static unsigned int multiattrib_type = 0;
+  static GedaType multiattrib_type = 0;
 
   if (!multiattrib_type) {
     static const GTypeInfo multiattrib_info = {
@@ -1860,7 +1861,7 @@ multiattrib_finalize (GObject *object)
 
   G_OBJECT_CLASS (multiattrib_parent_class)->finalize (object);
 }
-/*! \brief GType class initialiser for Multiattrib
+/*! \brief GedaType class initialiser for Multiattrib
  *
  *  \par Function Description
  *
@@ -1948,11 +1949,11 @@ static void multiattrib_show_inherited_toggled (GtkWidget   *widget,
 #define ColumnResizable    column_def[i].is_resizable
 #define ColumnDataFunc     column_def[i].data_func
 
-/*! \brief GType instance initialiser for Multiattrib
+/*! \brief GedaType instance initialiser for Multiattrib
  *
  *  \par Function Description
  *
- *  GType instance initialiser for Multiattrib. Create
+ *  GedaType instance initialiser for Multiattrib. Create
  *  and setup the widgets which make up the dialog.
  *
  *  \param [in] multiattrib The Multiattrib we are initialising
@@ -2040,7 +2041,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gtk_tree_selection_set_mode (selection, GTK_SELECTION_SINGLE);
 
   struct {
-    GType          renderer_type;
+    GedaType       renderer_type;
     const char    *signal;
     void         (*notify_func)(void);
     const char    *title;

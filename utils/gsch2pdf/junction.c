@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
-#include <libgeda/libgeda.h>
+#include "common.h"
 
 extern gboolean o_pin_get_position (GedaToplevel *toplevel, gint *x, gint *y,
                              Object *object);

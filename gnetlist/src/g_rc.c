@@ -19,14 +19,9 @@
  */
 
 #include <config.h>
-#include <missing.h>
 #include "version.h"
-
-#include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
+#include "gnetlist.h"
 #include "../include/i_vars.h"
-#include "../include/prototype.h"
 #include <geda_debug.h>
 
 SCM g_rc_gnetlist_version(SCM scm_version)

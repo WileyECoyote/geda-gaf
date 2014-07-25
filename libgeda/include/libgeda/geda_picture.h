@@ -36,6 +36,10 @@
 #define GEDA_IS_PICTURE_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE((klass),  GEDA_TYPE_PICTURE))
 #define GEDA_PICTURE_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),  GEDA_TYPE_PICTURE, PictureClass))
 
+#ifndef GDK_PIXBUF_H
+#define GdkPixbuf void
+#endif
+
 G_BEGIN_DECLS
 
 typedef struct _GedaPictureClass PictureClass;
@@ -74,6 +78,9 @@ bool         is_a_geda_picture_object  (Picture *object);
 
 Object      *geda_picture_new          (void);
 
-
 G_END_DECLS
+
+#ifndef GDK_PIXBUF_H
+#undef GdkPixbuf
+#endif
 #endif /* __GEDA_PICTURE_H__ */

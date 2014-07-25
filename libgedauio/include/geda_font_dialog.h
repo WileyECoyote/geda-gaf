@@ -104,7 +104,7 @@ struct _GedaFontDialogClass
   GtkDialogClass parent_class;
 };
 
-GType geda_font_dialog_get_type (void);
+GedaType   geda_font_dialog_get_type (void);
 
 GtkWidget* geda_font_dialog_new (void);
 GtkWidget* geda_font_dialog_new_with_title (char *title);

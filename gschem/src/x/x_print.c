@@ -602,15 +602,15 @@ print_dialog_class_init (PrintDialogClass * class)
 /*! \brief Function to retrieve PrintDialog's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve PrintDialog's Type identifier.
- *  Upon first call, this registers the PrintDialog in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve PrintDialog's Type identifier. On the first call,
+ *  this registers the pagesel in the GedaTypesystem. Subsequently
+ *  the functions returns the saved value from its first execution.
  *
  *  \return the Type identifier associated with PrintDialog.
  */
-unsigned int print_dialog_get_type ()
+GedaType print_dialog_get_type ()
 {
-  static unsigned int print_dialog_type = 0;
+  static GedaType print_dialog_type = 0;
 
   if (!print_dialog_type)
   {

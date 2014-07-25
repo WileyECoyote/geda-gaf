@@ -40,10 +40,10 @@ static unsigned int geda_list_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *geda_list_parent_class = NULL;
 
 
-/*! \brief GType instance initialiser for GedaList
+/*! \brief GedaType instance initialiser for GedaList
  *
- *  \par Function Description
- *  GType instance initialiser for GedaList.
+ *  GedaType Function Description
+ *  GedaType instance initialiser for GedaList.
  *
  *  \param [in]  instance       The GedaList we are initialising.
  *  \param [in]  g_class        The class of the type the instance is created for.
@@ -74,10 +74,10 @@ static void geda_list_finalize( GObject *object )
 }
 
 
-/*! \brief GType class initialiser for GedaList
+/*! \brief GedaType class initialiser for GedaList
  *
  *  \par Function Description
- *  GType class initialiser for GedaList. We override our parents
+ *  GedaType class initialiser for GedaList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The GedaList we are initialising
@@ -108,15 +108,15 @@ static void geda_list_class_init(void *g_class, void *g_class_data )
 /*! \brief Function to retrieve GedaList's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaList's Type identifier.
- *  Upon first call, this registers the GedaList in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve GedaList's Type identifier. On the first call,
+ *  this registers the pagesel in the GedaType system. Subsequently
+ *  the functions returns the saved value from its first execution..
  *
  *  \return the Type identifier associated with GedaList.
  */
-unsigned int geda_list_get_type(void)
+GedaType geda_list_get_type(void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof (GedaListClass),

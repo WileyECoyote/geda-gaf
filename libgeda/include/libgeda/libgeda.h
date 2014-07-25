@@ -22,12 +22,17 @@
 #ifndef LIBGEDA_H
 #define LIBGEDA_H
 
-#include <glib.h>
-#include <libguile.h>
-#include <gdk-pixbuf/gdk-pixbuf.h>
-
 #include <geda_standard.h>
 #include <geda.h>
+
+#include <glib.h>
+#include <glib-object.h>
+
+#include <libguile.h>
+
+#ifndef WITHOUT_GDK_PIX_BUFFER
+# include <gdk-pixbuf/gdk-pixbuf.h>
+#endif
 
 #include <libgeda/defines.h>
 #include <libgeda/g_types.h>
@@ -62,5 +67,6 @@
 #include <libgeda/geda_text.h>
 
 #include <libgeda/geda_toplevel.h>
+
 #include <libgeda/prototype.h>
 #endif

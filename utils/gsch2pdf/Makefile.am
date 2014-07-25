@@ -30,9 +30,9 @@ gsch2pdf_CPPFLAGS    =
 
 gsch2pdf_CFLAGS      = $(AM_CFLAGS)         $(GCC_CFLAGS)  $(GLIB_CFLAGS) \
 		       $(MINGW_CFLAGS)      $(GUILE_CFLAGS) \
-	 	       $(GDK_PIXBUF_CFLAGS) $(PANGOCAIRO_CFLAGS)
+	 	       $(PANGOCAIRO_CFLAGS)
 
-gsch2pdf_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS) $(PANGOCAIRO_LIBS) $(GDK_PIXBUF_LIBS)
+gsch2pdf_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS) $(PANGOCAIRO_LIBS)
 
 gsch2pdf_LDADD       = $(top_builddir)/libgeda/src/libgeda.la
 

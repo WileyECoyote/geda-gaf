@@ -76,11 +76,11 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
   new_toplevel_hooks = g_list_append (new_toplevel_hooks, new_hook);
 }
 
-/*! \brief GType instance initialiser for GedaToplevel
+/*! \brief GedaType instance initialiser for GedaToplevel
  *
  *  \par Function Description
- *  GType instance initialiser for GedaToplevel,  initializes a new
- *  GedaToplevel object with sensible default properties.
+ *  GedaType instance initialiser for GedaToplevel,  initializes a
+ *  new GedaToplevel object with sensible default properties.
  *
  *  \param [in]  instance  The GedaToplevel being initialising.
  *  \param [in]  g_class   The class of the type the instance is created for.
@@ -252,10 +252,10 @@ static void geda_toplevel_finalize(GObject *object)
   G_OBJECT_CLASS( geda_toplevel_parent_class )->finalize( object );
 }
 
-/*! \brief GType class initialiser for GedaToplevel
+/*! \brief GedaType class initialiser for GedaToplevel
  *
  *  \par Function Description
- *  GType class initialiser for GedaToplevel. We override our parents
+ *  GedaType class initialiser for GedaToplevel. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The GedaToplevel we are initialising
@@ -272,15 +272,15 @@ static void geda_toplevel_class_init (void *g_class, void *g_class_data )
 /*! \brief Function to retrieve GedaToplevel's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GedaToplevel's Type identifier.
- *  Upon first call, this registers the GedaToplevel in the GType system.
+ *  Function to retrieve GedaToplevel's Type identifier. On first call,
+ *  the functions registers the GedaToplevel in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
  *  \return the Type identifier associated with GedaToplevel.
  */
-unsigned int geda_toplevel_get_type(void)
+GedaType geda_toplevel_get_type(void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof (GedaToplevelClass),

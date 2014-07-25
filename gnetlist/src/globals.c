@@ -20,11 +20,7 @@
  */
 
 #include <config.h>
-
-#include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
+#include "gnetlist.h"
 #include <geda_debug.h>
 
 char *rc_filename = NULL;

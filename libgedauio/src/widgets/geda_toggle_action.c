@@ -220,14 +220,15 @@ static void geda_toggle_action_init (GedaToggleAction *action)
  *
  *  \par Function Description
  *  Function to retrieve GedaAction's Type identifier.
- *  Upon first call, this registers the GedaAction in the GType system.
+ *  On the first call, this registers the GedaAction in the GedaType
+ *  system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the unsigned int identifier associated with GedaAction.
+ *  \return GedaType identifier associated with GedaAction.
  */
-unsigned int geda_toggle_action_get_type ()
+GedaType geda_toggle_action_get_type ()
 {
-  static unsigned int geda_toggle_action_type = 0;
+  static GedaType geda_toggle_action_type = 0;
 
   if (!geda_toggle_action_type) {
     static const GTypeInfo geda_toggle_action_info = {

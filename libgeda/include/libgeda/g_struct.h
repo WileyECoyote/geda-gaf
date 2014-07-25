@@ -23,8 +23,12 @@
 
 /* Prerequisites:
  * #include <glib.h>  for GList.
+ * Conditional:
  * #include <gdk-pixbuf/gdk-pixbuf.h> for GdkPixbuf
  */
+#ifndef GDK_PIXBUF_H
+#define GdkPixbuf void
+#endif
 
 /* used by world_tiles to set the size of the array */
 #define MAX_TILES_X             10
@@ -178,6 +182,7 @@ struct st_conn {
 struct st_picture {
 
   GdkPixbuf   *pixbuf;
+
   char        *file_content;
   unsigned int file_length;
 
@@ -330,4 +335,7 @@ struct st_page_smob {
   Page         *page;
 };
 
+#ifndef GDK_PIXBUF_H
+#undef GdkPixbuf
+#endif
 #endif

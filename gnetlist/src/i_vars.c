@@ -19,10 +19,7 @@
  */
 
 #include <config.h>
-
-#include <libgeda/libgeda.h>
-
-#include "../include/prototype.h"
+#include "gnetlist.h"
 #include <geda_debug.h>
 
 #define DEFAULT_HIERARCHY_NETNAME_SEPARATOR "/"

@@ -570,11 +570,11 @@ static void gschem_dialog_class_init (GschemDialogClass *klass)
                          NULL,
                          G_PARAM_READWRITE));
 }
-/*! \brief GType instance initialiser for a GschemDialog object
+/*! \brief GedaType instance initialiser for a GschemDialog object
  *
  *  \par Function Description
- *  GType instance initialiser for an Object, initializes a new empty
- *  Object by setting the head and tail markers to the GTYPE value.
+ *  GedaType instance initialiser for an Object, initializes a new empty
+ *  Object by setting the head and tail markers to the GedaType value.
  *
  *  \param [in]  instance  The Object being initialising.
  *  \param [in]  g_class   The class of the type the instance is created for.
@@ -591,15 +591,15 @@ static void gschem_dialog_instance_init(GTypeInstance *instance, void *g_class)
 /*! \brief Function to retrieve GschemDialog's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GschemDialog's Type identifier.
- *  Upon first call, this registers the GschemDialog in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve GattribDialog's Type identifier. On first call,
+ *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
  *
- *  \return the unsigned int identifier associated with GschemDialog.
+ *  \return GedaType identifier associated with GschemDialog.
  */
-unsigned int gschem_dialog_get_type ()
+GedaType gschem_dialog_get_type ()
 {
-  static unsigned int gschem_dialog_type = 0;
+  static GedaType gschem_dialog_type = 0;
 
   if (!gschem_dialog_type) {
     static const GTypeInfo gschem_dialog_info = {

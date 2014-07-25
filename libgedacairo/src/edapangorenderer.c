@@ -46,13 +46,13 @@ struct _EdaPangoRendererPrivate
   bool overbar;
 };
 
-static GObject *eda_pango_renderer_constructor (GType type,
-                                                guint n_construct_properties,
+static GObject *eda_pango_renderer_constructor (GedaType type,
+                                                unsigned int n_construct_properties,
                                                 GObjectConstructParam *construct_params);
-static void eda_pango_renderer_set_property    (GObject *object, guint prop_id,
+static void eda_pango_renderer_set_property    (GObject *object, unsigned int prop_id,
                                                 const GValue *value,
                                                 GParamSpec *pspec);
-static void eda_pango_renderer_get_property    (GObject *object, guint prop_id,
+static void eda_pango_renderer_get_property    (GObject *object, unsigned int prop_id,
                                                 GValue *value, GParamSpec *pspec);
 static void eda_pango_renderer_finalize        (GObject *object);
 
@@ -128,8 +128,8 @@ eda_pango_renderer_init (EdaPangoRenderer *renderer)
 }
 
 static GObject *
-eda_pango_renderer_constructor (GType type,
-                                guint n_construct_properties,
+eda_pango_renderer_constructor (GedaType type,
+                                unsigned int n_construct_properties,
                                 GObjectConstructParam *construct_params)
 {
   GObject *object;

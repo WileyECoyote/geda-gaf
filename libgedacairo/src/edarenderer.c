@@ -117,7 +117,7 @@ EDA_RENDERER_STROKE_WIDTH (EdaRenderer *r,  double line_width) {
   return fmax (line_width, MIN_LINE_WIDTH_THRESHOLD);
 }
 
-static GObject *eda_renderer_constructor (GType type,
+static GObject *eda_renderer_constructor (GedaType type,
                                           unsigned int n_construct_properties,
                                           GObjectConstructParam *construct_params);
 
@@ -176,8 +176,8 @@ G_DEFINE_TYPE (EdaRenderer, eda_renderer, G_TYPE_OBJECT);
 /*! \brief Function to retrieve EdaRendererFlags's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve EdaRendererFlags's Type identifier.
- *  Upon first call, this registers the EdaRendererFlags in the GType
+ *  Function to retrieve EdaRendererFlags's Type identifier. Upon
+ *  first call, this registers the EdaRendererFlags in the GedaType
  *  system.  Subsequently it returns the saved value from its first
  *  execution.
  *
@@ -367,7 +367,7 @@ eda_renderer_init (EdaRenderer *renderer)
 }
 
 static GObject *
-eda_renderer_constructor (GType type,
+eda_renderer_constructor (GedaType type,
                           unsigned int n_construct_properties,
                           GObjectConstructParam *construct_params) {
   GObject *object;

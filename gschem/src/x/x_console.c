@@ -342,13 +342,15 @@ static void log_message (Console *console, const char *message, const char *styl
  *
  *  \par Function Description
  *
- * On first call, registers the Console class with the GType dynamic type system.
- * On subsequent calls, returns the saved value from first execution.
- * \returns the type identifier for the Console class
+ * On first call, registers the Console class with the GedaType dynamic
+ * type system. On subsequent calls, returns the saved value from first
+ * execution.
+ *
+ * \returns GedaType identifier for the Console class
  */
-unsigned int console_get_type ()
+GedaType console_get_type ()
 {
-  static unsigned int console_type = 0;
+  static GedaType console_type = 0;
 
   if (!console_type) {
     static const GTypeInfo console_info = {

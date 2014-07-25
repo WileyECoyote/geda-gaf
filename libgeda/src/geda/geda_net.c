@@ -32,10 +32,10 @@
 
 G_DEFINE_TYPE (Net, geda_net, GEDA_TYPE_LINE);
 
-/*! \brief GType instance initialiser for Net
+/*! \brief GedaType instance initialiser for Net
  *
  *  \par Function Description
- *  GType instance initialiser for Net, initializes a new empty
+ *  GedaType instance initialiser for Net, initializes a new empty
  *  Net object by setting pointers to NULL and numbers to zero,
  *  the net PID variable is set to the next net index.
  *
@@ -99,10 +99,10 @@ static void geda_net_finalize(GObject *object)
   GEDA_LINE_CLASS( geda_net_parent_class )->finalize(object);
 }
 
-/*! \brief GType class initialiser for Net
+/*! \brief GedaType class initialiser for Net
  *
  *  \par Function Description
- *  GType class initialiser for Net. We override our parents
+ *  GedaType class initialiser for Net. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The Net we are initialising

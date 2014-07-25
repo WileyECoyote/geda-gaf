@@ -161,10 +161,10 @@ geda_page_remove_all_objects(Page *page)
     page->_object_list = NULL;
 }
 
-/*! \brief GType instance initialiser for Page
+/*! \brief GedaType instance initialiser for Page
  *
  *  \par Function Description
- *  GType instance initialiser for Page, initializes a new empty
+ *  GedaType instance initialiser for Page, initializes a new empty
  *  Page object by setting pointers to NULL and numbers to zero,
  *  the page PID variable is set to the next page index.
  *
@@ -285,10 +285,10 @@ static void geda_page_finalize(GObject *object)
   G_OBJECT_CLASS( geda_page_parent_class )->finalize(object);
 }
 
-/*! \brief GType class initialiser for Page
+/*! \brief GedaType class initialiser for Page
  *
  *  \par Function Description
- *  GType class initialiser for Page. We override our parents
+ *  GedaType class initialiser for Page. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The Page we are initialising
@@ -305,14 +305,14 @@ static void geda_page_class_init( void *g_class, void *g_class_data )
 
 }
 
-/*! \brief Function to retrieve Page's GType identifier.
+/*! \brief Function to retrieve Page's GedaType identifier.
  *
  *  \par Function Description
- *  Function to retrieve Page's GType identifier.
- *  Upon first call, this registers the Page in the GType system.
+ *  Function to retrieve Page's GedaType identifier.
+ *  Upon first call, this registers the Page in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
- *  \return the GType identifier associated with Page.
+ *  \return the GedaType identifier associated with Page.
  */
 unsigned int geda_page_get_type(void)
 {

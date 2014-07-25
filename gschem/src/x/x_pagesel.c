@@ -318,9 +318,9 @@ static void notify_gschem_toplevel_cb (GObject    *gobject,
 /*! \brief Function to retrieve pagesel's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve pagesel's Type identifier.
- *  Upon first call, this registers the pagesel in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve pagesel's Type identifier. On the first call,
+ *  this registers the pagesel in the GedaTypesystem.  Subsequently
+ *  the functions returns the saved value from its first execution.
  *
  *  \return the Type identifier associated with pagesel.
  */

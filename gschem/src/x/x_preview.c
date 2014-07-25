@@ -287,9 +287,9 @@ preview_update (Preview *preview)
 /*! \brief Function to retrieve PreviewClass's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve PreviewClass's Type identifier.
- *  Upon first call, this registers the PreviewClass in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve PreviewClass's Type identifier. On the first call,
+ *  this registers the pagesel in the GedaTypesystem.  Subsequently
+ *  the functions returns the saved value from its first execution.
  *
  *  \return the Type identifier associated with PreviewClass.
  */

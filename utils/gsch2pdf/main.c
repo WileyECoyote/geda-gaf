@@ -20,21 +20,14 @@
 
 #include <pango/pangocairo.h>
 #include <cairo-pdf.h>
-
-#include <libgeda/libgeda.h>
-
 #include <math.h>
 
-#include "../include/globals.h"
-#include "../include/prototype.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include "common.h"
 #include "junction.h"
 #include "print-settings.h"
 #include "rc-config.h"
+
+#include <geda_debug.h>
 
 static PrintSettings *print_settings = NULL;
 static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList *objects);

@@ -18,11 +18,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <libgeda/libgeda.h>
+#include "common.h"
+
 int default_force_boundingbox = 0;
 
 void i_vars_set(GedaToplevel * pr_current)
-{ 
+{
     i_vars_libgeda_set(pr_current);
 
     //pr_current->force_boundingbox = default_force_boundingbox;

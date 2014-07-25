@@ -39,7 +39,7 @@ typedef enum
 } GtkActionHelperRole;
 
 G_GNUC_INTERNAL
-GType                   gtk_action_helper_get_type                      (void);
+GedaType                  gtk_action_helper_get_type                      (void);
 
 G_GNUC_INTERNAL
 GtkActionHelper *       gtk_action_helper_new                           (GtkActionable   *widget);

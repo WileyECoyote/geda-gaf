@@ -152,7 +152,7 @@ struct _EdaConfig
   GList *RC_list;            /* List of RC files which have been read in. */
 };
 
-GType eda_config_get_type (void) G_GNUC_CONST;
+GedaType eda_config_get_type (void) G_GNUC_CONST;
 
 /* ---------------------------------------------------------------- */
 

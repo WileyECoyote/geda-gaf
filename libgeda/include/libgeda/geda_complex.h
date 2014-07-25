@@ -65,7 +65,7 @@ struct _GedaComplex {
   unsigned int tail_marker;  /* structure type signature */
 };
 
-GType    geda_complex_get_type    (void);
+GedaType   geda_complex_get_type    (void);
 bool     is_a_geda_complex_object (Complex *object);
 
 Object  *geda_complex_new         (void);

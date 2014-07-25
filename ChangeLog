@@ -1,5 +1,12 @@
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
+        * include/common.h: new header file common to gsch2pdf, gschlas used to
+          include libgeda.h and local prototype.h and globals.h
+
+        * src/smash_megafile.c: Include <libgeda/libgeda.h>
+
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/*/*.c: Redo inclusion of header files through-out source tree.
 
         * include/: Three new headers: geda_debug.h, geda_standard.h, geda_stat.h

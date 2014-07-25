@@ -213,10 +213,10 @@ int geda_object_get_next_sid(void)
   return global_sid++;
 }
 
-/*! \brief GType instance initialiser for a Geda Object
+/*! \brief GedaType instance initialiser for a Geda Object
  *
  *  \par Function Description
- *  GType instance initialiser for an Object, initializes a new empty
+ *  GedaType instance initialiser for an Object, initializes a new empty
  *  Object by setting pointers to NULL and numbers to zero or default
  *  values, the object SID variable is set to the next Object index.
  *
@@ -331,10 +331,10 @@ static void geda_object_finalize(GObject *gobject)
   G_OBJECT_CLASS( geda_object_parent_class )->finalize(gobject);
 }
 
-/*! \brief GType class initialiser for Object
+/*! \brief GedaType class initialiser for Object
  *
  *  \par Function Description
- *  GType class initialiser for Object. We override our parents
+ *  GedaType class initialiser for Object. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  g_class       The Object we are initialising
@@ -430,19 +430,19 @@ static void geda_object_class_init(void *g_class, void *class_data)
   g_object_class_install_property (gobject_class, OBJECT_VISIBLE, params);
 }
 
-/*! \brief Function to retrieve Object's GType identifier.
+/*! \brief Function to retrieve Object's GedaType identifier.
  *
  *  \par Function Description
- *  Function to retrieve Object's type identifier.
- *  Upon first call, this registers the Object in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve Object's Type identifier. On first call, the
+ *  function registers the Object in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
  *
- *  \return the GType identifier associated with Object.
+ *  \return the GedaType identifier associated with Object.
  */
 
-unsigned int geda_gobject_get_type(void)
+GedaType geda_gobject_get_type(void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof (ObjectClass),

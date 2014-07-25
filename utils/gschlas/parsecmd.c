@@ -20,18 +20,7 @@
  */
 #include <config.h>
 
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
+#include "common.h"
 
 #define OPTIONS "hqveu"
 
@@ -45,7 +34,7 @@ extern int optind;
 #endif
 
 #ifdef HAVE_GETOPT_LONG
-struct option long_options[] = 
+struct option long_options[] =
   {
     {"embed",   0, 0, 'e'},
     {"unembed", 0, 0, 'u'},
@@ -110,8 +99,8 @@ int parse_commandline(int argc, char *argv[])
     }
 
     if (embed_mode && unembed_mode) {
-	fprintf(stderr, 
-	        "Cannot specify both -e and -u at the same time (ignoring both flags)\n");	
+	fprintf(stderr,
+	        "Cannot specify both -e and -u at the same time (ignoring both flags)\n");
 	embed_mode = FALSE;
 	unembed_mode = FALSE;
     }

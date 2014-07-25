@@ -57,10 +57,10 @@ geda_line_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief GType instance initialiser for Line
+/*! \brief GedaType instance initialiser for Line
  *
  *  \par Function Description
- *  GType instance initialiser for Line, initializes a new empty
+ *  GedaType instance initialiser for Line, initializes a new empty
  *  Line object by setting pointers to NULL and numbers to zero,
  *  the line PID variable is set to the next line index.
  *
@@ -107,10 +107,10 @@ static void geda_line_finalize(GObject *object)
   GEDA_OBJECT_CLASS( geda_line_parent_class )->finalize(object);
 }
 
-/*! \brief GType class initialiser for Line
+/*! \brief GedaType class initialiser for Line
  *
  *  \par Function Description
- *  GType class initialiser for Line. We override our parents
+ *  GedaType class initialiser for Line. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The Line we are initialising

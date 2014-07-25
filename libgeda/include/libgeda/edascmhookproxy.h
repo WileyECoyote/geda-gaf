@@ -81,7 +81,7 @@ struct _EdascmHookProxy
   EdascmHookProxyPrivate *priv;
 };
 
-GType edascm_hook_proxy_get_type (void) G_GNUC_CONST;
+GedaType edascm_hook_proxy_get_type (void) G_GNUC_CONST;
 
 EdascmHookProxy *edascm_hook_proxy_new_with_hook (SCM hook_s) G_GNUC_WARN_UNUSED_RESULT;
 

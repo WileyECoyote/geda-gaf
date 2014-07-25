@@ -102,10 +102,10 @@ int geda_complex_bounds(Object *object)
   return result;
 }
 
-/*! \brief GType instance initialiser for Complex
+/*! \brief GedaType instance initialiser for Complex
  *
  *  \par Function Description
- *  GType instance initialiser for Complex, initializes a new empty
+ *  GedaType instance initialiser for Complex, initializes a new empty
  *  Complex object by setting pointers to NULL and numbers to zero,
  *  the complex PID variable is set to the next complex index.
  *
@@ -167,10 +167,10 @@ static void geda_complex_finalize(GObject *object)
   GEDA_OBJECT_CLASS( geda_complex_parent_class )->finalize(object);
 }
 
-/*! \brief GType class initialiser for Complex
+/*! \brief GedaType class initialiser for Complex
  *
  *  \par Function Description
- *  GType class initialiser for Complex. We override our parents
+ *  GedaType class initialiser for Complex. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The Complex we are initialising

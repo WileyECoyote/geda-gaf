@@ -19,10 +19,7 @@
  *  MA 02110-1301 USA
  */
 
-#include <libgeda/libgeda.h>
-
-#include "../include/globals.h"
-#include "../include/prototype.h"
+#include "common.h"
 
 void gschlas_quit(void)
 {

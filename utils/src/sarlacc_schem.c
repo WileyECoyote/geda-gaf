@@ -34,9 +34,7 @@
 
 #include <libgeda/geda_colors.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*
  *  command line options

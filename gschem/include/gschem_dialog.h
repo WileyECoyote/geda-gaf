@@ -88,7 +88,7 @@ struct _GschemDialog {
 };
 
 
-unsigned int gschem_dialog_get_type       (void);
+GedaType     gschem_dialog_get_type       (void);
 bool         is_a_gschem_dialog           (void *dialog);
 
 GtkWidget* gschem_dialog_new_empty (const char           *title,

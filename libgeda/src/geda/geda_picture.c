@@ -53,10 +53,10 @@ geda_picture_bounds(Object *object)
   return TRUE;
 }
 
-/*! \brief GType instance initialiser for Picture
+/*! \brief GedaType instance initialiser for Picture
  *
  *  \par Function Description
- *  GType instance initialiser for Picture, initializes a new empty
+ *  GedaType instance initialiser for Picture, initializes a new empty
  *  Picture object by setting pointers to NULL and numbers to zero,
  *  the picture PID variable is set to the next picture index.
  *
@@ -114,10 +114,10 @@ static void geda_picture_finalize(GObject *object)
 
 }
 
-/*! \brief GType class initialiser for Picture
+/*! \brief GedaType class initialiser for Picture
  *
  *  \par Function Description
- *  GType class initialiser for Picture. We override our parents
+ *  GedaType class initialiser for Picture. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
  *  \param [in]  class       The Picture we are initialising

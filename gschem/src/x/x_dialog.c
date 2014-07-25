@@ -3028,15 +3028,15 @@ GList *close_confirmation_dialog_get_selected_pages (CloseConfirmationDialog *di
 /*! \brief Function to retrieve CloseConfirmationDialog's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve CloseConfirmationDialog's Type identifier.
- *  Upon first call, this registers the CloseConfirmationDialog in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve CloseConfirmationDialog's Type identifier. On the
+ *  first call, this registers the CloseConfirmationDialog in the GedaType
+ *  system. Subsequently it returns the saved value from its first execution.
  *
- *  \return the Type identifier associated with CloseConfirmationDialog.
+ *  \return GedaType identifier associated with CloseConfirmationDialog.
  */
-unsigned int close_confirmation_dialog_get_type ()
+GedaType close_confirmation_dialog_get_type ()
 {
-  static unsigned int close_confirmation_dialog_type = 0;
+  static GedaType close_confirmation_dialog_type = 0;
 
   if (!close_confirmation_dialog_type) {
     static const GTypeInfo close_confirmation_dialog_info = {
@@ -3316,7 +3316,7 @@ close_confirmation_dialog_build_page_list (CloseConfirmationDialog *dialog)
 }
 
 static GObject*
-close_confirmation_dialog_constructor (GType type,
+close_confirmation_dialog_constructor (GedaType type,
                                        unsigned int n_construct_properties,
                                        GObjectConstructParam *construct_params)
 {

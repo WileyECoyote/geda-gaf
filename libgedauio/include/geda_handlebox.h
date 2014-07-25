@@ -72,7 +72,7 @@ struct _GedaHandleBoxClass
 
 };
 
-GType           geda_handle_box_get_type             (void) G_GNUC_CONST;
+GedaType          geda_handle_box_get_type             (void) G_GNUC_CONST;
 GtkWidget*      geda_handle_box_new                  (void);
 void            geda_handle_box_dock                 (GedaHandleBox *handlebox);
 void            geda_handle_box_set_shadow_type      (GedaHandleBox *handlebox, GtkShadowType    type);

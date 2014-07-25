@@ -18,6 +18,8 @@
  *  MA 02110-1301 USA
  */
 
+#define WITHOUT_GDK_PIX_BUFFER 1
+
 #include <geda_stat.h>
 #include <libgeda/libgeda.h>
 

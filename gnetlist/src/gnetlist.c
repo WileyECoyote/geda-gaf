@@ -21,20 +21,17 @@
 
 #include <config.h>
 #include "version.h"
-#include <missing.h>
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
 #include <dirent.h>
-#include <gettext.h>
 
-#include <libgeda/libgeda.h>
+#include "gnetlist.h"
 #include <libgeda/libgedaguile.h>
 
-#include "../include/globals.h"
-#include "../include/prototype.h"
+#include <gettext.h>
 #include <geda_debug.h>
 
 void gnetlist_quit(void)

@@ -346,15 +346,15 @@ static void gschem_toplevel_class_init( void *g_class, void *g_class_data )
 /*! \brief Function to retrieve GschemToplevel's Type identifier.
  *
  *  \par Function Description
- *  Function to retrieve GschemToplevel's Type identifier.
- *  Upon first call, this registers the GschemToplevel in the GType system.
- *  Subsequently it returns the saved value from its first execution.
+ *  Function to retrieve GschemToplevel's Type identifier. On first call,
+ *  this registers the GattribDialog in the GedaType system. Subsequently
+ *  the function returns the saved value from its first execution.
  *
- *  \return the Type identifier associated with GschemToplevel.
+ *  \return GedaType identifier associated with GschemToplevel.
  */
-unsigned int gschem_toplevel_get_type(void)
+GedaType gschem_toplevel_get_type(void)
 {
-  static unsigned int type = 0;
+  static GedaType type = 0;
   if (type == 0) {
     static const GTypeInfo info = {
       sizeof (GschemToplevelClass),

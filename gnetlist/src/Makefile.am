@@ -32,9 +32,9 @@ AM_CFLAGS            = $(GEDA_INCLUDES) -I$(includedir)
 
 gnetlist_CPPFLAGS    =
 gnetlist_CFLAGS      = $(AM_CFLAGS)    $(GLIB_CFLAGS)  $(GCC_CFLAGS) \
-		       $(MINGW_CFLAGS) $(GUILE_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+		       $(MINGW_CFLAGS) $(GUILE_CFLAGS)
 
-gnetlist_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS) $(GDK_PIXBUF_LIBS)
+gnetlist_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS)
 gnetlist_LDADD       = $(top_builddir)/libgeda/src/libgeda.la
 
 localedir            = @datadir@/locale

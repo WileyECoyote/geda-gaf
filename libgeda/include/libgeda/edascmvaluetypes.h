@@ -26,9 +26,9 @@ G_BEGIN_DECLS
 /* GValue support */
 /*! \class EdascmSCM edascmvaluetypes.h "libgeda/edascmvaluetypes.h"
  * \ingroup guile_c_iface
- * \brief Fundamental GType for Guile Scheme objects.
+ * \brief Fundamental GedaType for Guile Scheme objects.
  *
- * This GType provides an easy way for Guile's SCM values to be used
+ * This GedaType provides an easy way for Guile's SCM values to be used
  * directly with the GValue polymorphic type system.
  *
  * \since 1.10.
@@ -37,7 +37,7 @@ G_BEGIN_DECLS
 #define EDASCM_TYPE_SCM (edascm_scm_get_type ())
 #define EDASCM_VALUE_HOLDS_SCM(value) (G_TYPE_CHECK_VALUE_TYPE ((value), EDASCM_TYPE_SCM))
 
-GType edascm_scm_get_type (void) G_GNUC_CONST;
+GedaType edascm_scm_get_type (void) G_GNUC_CONST;
 
 void edascm_value_set_scm (GValue *value, SCM v_scm);
 SCM edascm_value_get_scm (const GValue *value);
@@ -60,7 +60,7 @@ SCM edascm_value_get_scm (const GValue *value);
 #define EDASCM_IS_PARAM_SPEC_SCM(pspec) (G_TYPE_CHECK_INSTANCE_TYPE ((pspec), EDASCM_TYPE_PARAM_SCM))
 #define EDASCM_PARAM_SPEC_SCM(pspec) (G_TYPE_CHECK_INSTANCE_CAST ((pspec), EDASCM_TYPE_PARAM_SCM, EdascmParamSpecSCM))
 
-GType edascm_param_spec_scm_get_type (void) G_GNUC_CONST;
+GedaType edascm_param_spec_scm_get_type (void) G_GNUC_CONST;
 
 typedef struct _EdascmParamSpecSCM EdascmParamSpecSCM;
 

@@ -104,8 +104,8 @@ enum _EdaRendererFlags
 
 };
 
-GType eda_renderer_get_type       (void) G_GNUC_CONST;
-GType eda_renderer_flags_get_type (void) G_GNUC_CONST;
+GedaType eda_renderer_get_type       (void) G_GNUC_CONST;
+GedaType eda_renderer_flags_get_type (void) G_GNUC_CONST;
 
 EdaRenderer *eda_renderer_new     (cairo_t *cr, PangoContext *pc) G_GNUC_WARN_UNUSED_RESULT;
 void         eda_renderer_destroy (EdaRenderer *renderer);

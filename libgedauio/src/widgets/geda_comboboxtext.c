@@ -98,14 +98,14 @@ static void geda_combo_box_text_buildable_custom_finished   (GtkBuildable      *
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
-void g_type_ensure(GType type){return;};
+void g_type_ensure(GedaType type){return;};
 
 G_DEFINE_TYPE_WITH_CODE (GedaComboBoxText, geda_combo_box_text, GTK_TYPE_COMBO_BOX,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
                          geda_combo_box_text_buildable_interface_init));
 
 static GObject *
-geda_combo_box_text_constructor (unsigned int           type,
+geda_combo_box_text_constructor (GedaType               type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {
