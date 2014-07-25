@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
- * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
+/* C header                                           -*- geda_enum.h -*-
+ * file: geda_enum.h
+ *
+ * gEDA - GPL Electronic Design Automation
+ *
  * Copyright (C) 2013-2014 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify

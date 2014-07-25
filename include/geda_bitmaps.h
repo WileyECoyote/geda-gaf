@@ -1,4 +1,6 @@
-/* -*- geda_bitmaps-h -*-
+/* C header                                           -*- geda_bitmaps.h -*-
+ * file: geda_bitmaps.h
+ *
  * gEDA - GPL Electronic Design Automation
  *
  * Copyright (C) 2012-2013 Wiley Edward Hill

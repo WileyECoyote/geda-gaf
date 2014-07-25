@@ -1,7 +1,9 @@
-/* -*- toolbars-h -*-
+/* C header                                           -*- toolbars.h -*-
+ * file: toolbars.h
+ *
  * gEDA - GPL Electronic Design Automation
  *
- * Copyright (C) 2013 Wiley Edward Hill
+ * Copyright (C) 2013-2014 Wiley Edward Hill
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +26,6 @@
  * \brief Global variable declarations
  *
  * \section
- *
  *
  */
 /* ------------------------------------------------------------------ */
