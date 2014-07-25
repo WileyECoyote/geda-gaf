@@ -23,18 +23,9 @@
  * \brief
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "gschem.h"
+#include <gschem.h>
 #include <gdk/gdkkeysyms.h>
+#include <geda_debug.h>
 
 static void
 get_property (GObject *object, guint param_id, GValue *value, GParamSpec *pspec);

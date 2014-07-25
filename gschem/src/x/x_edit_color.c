@@ -26,27 +26,13 @@
  * \brief A dialog box for adding editing object color.
  */
 
-#include <config.h>
-
-#include <stdio.h>
-
-#ifdef HAVE_STDLIB_H
-# include <stdlib.h>
-#endif
-
-#ifdef HAVE_STRING_H
-# include <string.h>
-#endif
-
 #include "gschem.h"
-#include <geda_widgets.h>
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-#include <geda_dialog_controls.h>
 #include "x_dialog.h"
+
+#include <geda_widgets.h>
+#include <geda_dialog_controls.h>
+
+#include <geda_debug.h>
 
 /** \defgroup Edit-Color-Dialog Edit Color Dialog
  *  @{

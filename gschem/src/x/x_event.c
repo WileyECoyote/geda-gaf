@@ -18,14 +18,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
-
-#include <stdio.h>
 
 #include "gschem.h"
 #include "x_window.h"
 
 #include <gdk/gdkkeysyms.h>
+
+#include <geda_debug.h>
 
 /* used by mouse pan */
 int start_pan_x, start_pan_y;
@@ -35,8 +34,6 @@ int throttle = 0;
 #ifdef HAVE_LIBSTROKE
 static int DOING_STROKE = FALSE;
 #endif /* HAVE_LIBSTROKE */
-
-//#define DEBUG_EVENTS 1
 
 /*! \brief Button Press Event Handler
  *  \par Function Description

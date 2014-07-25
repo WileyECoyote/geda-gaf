@@ -24,21 +24,19 @@
  * GTK+ at ftp://ftp.gtk.org/pub/gtk/.
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
-
-#include <string.h>
+#endif
 
 #include <geda.h>
-
+#include <geda_standard.h>
 #include "geda_imagemenuitem.h"
 
 #include <gtk/gtk.h>
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /**
  * \brief GedaImageMenuItem - A Menu Item with and Image Widget

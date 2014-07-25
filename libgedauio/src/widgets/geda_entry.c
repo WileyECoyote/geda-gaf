@@ -21,15 +21,16 @@
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
-#include <geda.h>
-#include <ascii.h>
+#endif
 
-#include <string.h>
+#include <geda.h>
+#include <geda_standard.h>
+
 #include <ctype.h>
 
 #include <gtk/gtk.h>
-
 #include <gdk/gdkkeysyms.h>
 
 #include "geda_entry.h"
@@ -37,9 +38,7 @@
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 #define MAX_ICONS 2
 

@@ -23,22 +23,12 @@
  * \brief A widget for viewing a schematic page
  */
 
-#include <config.h>
+#include <gschem.h>
 
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <math.h>
-
-#include "gschem.h"
 #include <gdk/gdkkeysyms.h>
+#include <gtk/gtkmarshal.h>
 
-#include "gtk/gtkmarshal.h"
+#include <geda_debug.h>
 
 #define INVALIDATE_MARGIN 1
 

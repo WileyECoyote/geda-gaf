@@ -17,22 +17,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
-#include <math.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gschem.h>
+#include <geda_debug.h>
 
 static int undo_file_index=0;
 

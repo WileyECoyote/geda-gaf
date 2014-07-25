@@ -24,32 +24,16 @@
  */
 
 #include <config.h>
-
+#include <geda_stat.h>
 #include <stdio.h>
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
 #include <sys/param.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <time.h>
-#include <sys/types.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
 #include <fcntl.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 
 # if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 #  define WIN32_LEAN_AND_MEAN
@@ -58,10 +42,6 @@
 # endif
 
 #include "libgeda_priv.h"
-
-#ifndef S_ISLNK
-#define S_ISLNK(x) 0
-#endif
 
 #ifndef O_BINARY
 #define O_BINARY 0

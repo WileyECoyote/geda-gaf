@@ -27,30 +27,13 @@
  * (GtkSheet *sheet) itself are held in a different file.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <gattrib.h>
 
-/*------------------------------------------------------------------
- * Includes required to run graphical widgets.
- *------------------------------------------------------------------*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
 #include <gtk/gtk.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#include <glib-object.h>
 #include <gtksheet.h>
 
-#include <gattrib.h>  /* include Gattrib specific headers  */
 #include <geda_widgets.h>
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*------------------------------------------------------------------
  * Gattrib specific defines

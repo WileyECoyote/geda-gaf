@@ -18,17 +18,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
+
+#include <gschem.h>
 #include "version.h"
-#include <missing.h>
-
-#include <stdio.h>
-#include <ctype.h>
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include "gschem.h"
+#include <geda_debug.h>
 
 /* Colon after character means the argument expects a parameter strings */
 #define GETOPT_OPTIONS "c:hL:mno:p:qr:s:vVx:"

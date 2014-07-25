@@ -21,27 +21,12 @@
  *
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <geda_standard.h>
 
 #include "version.h"
 
-#include <stdio.h>
-#include <stdlib.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-//#define _GNU_SOURCE
-
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
-#endif
-
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
 #endif
 
 #include <errno.h>

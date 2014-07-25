@@ -25,6 +25,7 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 struct gsubr_t {
   char *name;

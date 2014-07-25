@@ -32,25 +32,13 @@
  * fcns in libgeda.
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#include <math.h>
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /*------------------------------------------------------------------
  * Gattrib specific defines
  *------------------------------------------------------------------*/
 #define DEFAULT_TEXT_SIZE 10
-
 
 /* ===================  Public Functions  ====================== */
 

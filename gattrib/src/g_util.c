@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * 
+ *
  * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,12 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  * Date: November, 17, 2012
  * Contributing Author: Wiley Edward Hill
  */
 
 #include <gattrib.h>
+#include <geda_debug.h>
 
 /*-------------------------- g_list_helper -----------------------*/
 /*! \brief Compare strings in Glist to string.
@@ -39,16 +40,16 @@ bool g_list_str_inlist(GList *list, char *string)
   bool answer = FALSE;
   char* str;
   int i, len;
-  
+
   len = g_list_length(list);
-  
+
   for(i=0; i<len; i++){
     str = (char*) g_list_nth_data(list, i);
     if (strequal( str, string)) {
       answer = TRUE;
       break;
     }
-  } 
+  }
   return answer;
 }
 /*! \brief Compare strings in Glist to string, ignoring case
@@ -77,7 +78,7 @@ bool g_list_stri_inlist(GList *list, char *string)
       answer = TRUE;
       break;
     }
-  } 
+  }
   return answer;
 }
 

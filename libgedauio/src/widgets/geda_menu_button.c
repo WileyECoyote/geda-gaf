@@ -27,10 +27,9 @@
 #endif
 
 #include <geda.h>
+#include <geda_standard.h>
 
 #include <glib.h>
-#include <string.h>
-
 #include <gtk/gtk.h>
 #include <gtk/gtkprivate.h>
 
@@ -38,9 +37,7 @@
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /**
  * \brief GedaMenuButton - A Button Widget for Menus

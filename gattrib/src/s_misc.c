@@ -21,20 +21,8 @@
  *  \brief Miscellaneous STRING_LIST functions
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#include <math.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /*------------------------------------------------------------------
  * The below fcns identical to those defined in

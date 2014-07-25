@@ -18,16 +18,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
-#include <missing.h>
 
-#include <stdio.h>
-#include <math.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include <geda_standard.h>
 
 #include "libgeda_priv.h"
+#include <geda_debug.h>
 
 COLOR print_colors[MAX_COLORS];
 

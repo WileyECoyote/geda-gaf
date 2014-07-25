@@ -26,11 +26,12 @@
  *
  */
 
-#include <config.h>
-
-#include <gschem.h>
-#include <geda_dialogs.h>
+#include "gschem.h"
 #include "x_dialog.h"
+
+#include <geda_dialogs.h>
+
+#include <geda_debug.h>
 
 /** \defgroup Gschem-Sessions-Dialogs Gschem Sessions Dialogs
  *  @{

@@ -18,24 +18,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
-#include <config.h>
 
+#include <errno.h>
 #include <libgen.h>        /* dirname */
 
-#include <stdio.h>
-#include <errno.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
+#include <geda_stat.h>
 
 #include "gschem.h"
-
 #include "x_menu.h"
-
 #include "x_window.h"
-
-#include "geda_dialog_controls.h"
+#include <geda_dialog_controls.h>
 
 typedef bool (*GschemDrawEvent) (GtkWidget*, void*, GschemToplevel*);
 

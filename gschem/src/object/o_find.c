@@ -18,17 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <math.h>
-#include <stdio.h>
-
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <gschem.h>
+#include <geda_debug.h>
 
 /*! \brief Tests a if a given Object was hit at a given set of coordinates
  *

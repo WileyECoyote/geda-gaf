@@ -55,18 +55,14 @@
  * ------------------------------------------------------------------
 */
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
-
 #define USE_POSIX
 
-#include <stdio.h>
+#include <config.h>
 
-#include <stdlib.h>
+#include <geda_standard.h>
+#include <geda_stat.h>
+
 #include <errno.h>
-#include <string.h>
-#include <ascii.h>
 
 #include <gtk/gtk.h>
 
@@ -78,6 +74,8 @@
 
 #include "x_settings.h"
 #include "keywords.h"
+
+#include <geda_debug.h>
 
 /** \defgroup Settings-Auxillary-Module Settings Auxiliary Module
  *  @{

@@ -30,16 +30,20 @@
  *
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
-#include <geda.h>
-#include <stdlib.h>
+#endif
 
+#include <geda.h>
+#include <geda_standard.h>
 #include "geda_handlebox.h"
 
 #include <gtk/gtk.h>
 #include <gtk/gtkwindow.h>
 
 #include "gettext.h"
+
+#include <geda_debug.h>
 
 /**
  * \brief GedaHandleBox - A Container Widget for toolbars

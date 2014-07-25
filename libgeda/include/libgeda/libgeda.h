@@ -23,10 +23,10 @@
 #define LIBGEDA_H
 
 #include <glib.h>
-#include <stdio.h>
 #include <libguile.h>
 #include <gdk-pixbuf/gdk-pixbuf.h>
 
+#include <geda_standard.h>
 #include <geda.h>
 
 #include <libgeda/defines.h>
@@ -60,7 +60,6 @@
 #include <libgeda/geda_picture.h>
 #include <libgeda/geda_pin.h>
 #include <libgeda/geda_text.h>
-
 
 #include <libgeda/geda_toplevel.h>
 #include <libgeda/prototype.h>

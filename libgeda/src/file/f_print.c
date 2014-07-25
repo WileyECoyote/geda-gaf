@@ -27,9 +27,6 @@
 #include "version.h"
 
 #include <stdio.h>
-#include <unistd.h>
-#include <time.h>
-#include <math.h>
 
 #include "libgeda_priv.h"
 

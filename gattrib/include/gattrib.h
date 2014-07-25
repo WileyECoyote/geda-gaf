@@ -23,6 +23,10 @@
  * \brief Gattrib specific includes.
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <libgeda/libgeda.h>       /* geda library functions  */
 #include "../include/struct.h"     /* typdef and struct declarations */
 #include "../include/globals.h"

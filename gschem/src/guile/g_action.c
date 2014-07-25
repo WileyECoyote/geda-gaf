@@ -22,11 +22,8 @@
  * \brief Functions relating to working with gschem actions.
  */
 
-#include <config.h>
-#include <missing.h>
-
-#include "gschem.h"
-
+#include <gschem.h>
+#include <geda_debug.h>
 
 SCM g_process_action(SCM action)
 {

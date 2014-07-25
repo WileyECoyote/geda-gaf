@@ -5,7 +5,7 @@
  *  accept one argument, the name of the file to
  *  convert, converted output is displayed on stdout.
  *
- *     Copyright (C) 1999-2010  Mike Jarabek
+ *     Copyright (C) 1999-2014  Mike Jarabek
  *
  *     CHANGE HISTORY:
  *
@@ -36,21 +36,15 @@
  *       $Id$
  */
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
+#include <geda_standard.h>
+
 #include <ctype.h>
 #include <math.h>
-
-#include <config.h>
 
 #include <geda.h>
 #include <libgeda/geda_colors.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*
  * make it so we can use __attribute__((unused)) on gcc without

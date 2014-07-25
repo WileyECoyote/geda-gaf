@@ -18,24 +18,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
+
 #include "config.h"
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <unistd.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
+#include <geda_stat.h>
 
 #include <gtk/gtk.h>
 
-#include <gschem.h>           /* include gschem specific headers  */
-#include <x_menu.h>
-
-#define DEBUG_TOOLBARS 0
+#include "gschem.h"           /* include gschem specific headers  */
+#include "x_menu.h"
 
 #define TOOLBAR_STYLE w_current->toolbars_mode           /* per window style variable  */
 #define DEFAULT_TOOLBAR_STYLE GTK_TOOLBAR_ICONS          /* default style */
@@ -48,8 +38,11 @@
 
 #include <geda_handlebox.h>
 #include <geda_toolbars.h>
+
 #include "x_toolbars.h"
 #include "i_actions.h"
+
+#include <geda_debug.h>
 
 /* convenience macros */
 #define CAN_PASTE_LIST       bar_widgets->can_paste

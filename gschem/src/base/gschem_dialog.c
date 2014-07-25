@@ -18,17 +18,10 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
-#include <config.h>
-#include <glib.h>
-
-#include <glib-object.h>
-#include <glib/gstdio.h>
-
 #include <gschem.h>
-#include <gdk/gdkkeysyms.h>
-
 #include <gschem_dialog.h>
 #include <gschem_xdefines.h>
+#include <geda_debug.h>
 
 /* Signal marshaller based on generated code from glib-genmarshal */
 static void

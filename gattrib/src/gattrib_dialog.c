@@ -19,21 +19,11 @@
  * 02110-1301 USA
  */
 
-#include <config.h>
-#include <glib.h>
-
-#include <glib-object.h>
-#include <glib/gstdio.h>
-
-#include "gattrib.h"
-#include <gdk/gdkkeysyms.h>
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-
+#include <gattrib.h>
 #include "gattrib_dialog.h"
+#include <geda_stat.h>
+#include <geda_debug.h>
+
 /*! \brief Create pixmap widget for dialogs boxes.
  *  \par Function Description
  *  This is an internally used function to create pixmaps.

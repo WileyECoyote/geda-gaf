@@ -24,18 +24,13 @@
  * Date Contributed: April, 06, 2014
  */
 
-#include <config.h>
-
-#include <execinfo.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include <geda_standard.h>
 
 #include <glib.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <execinfo.h>
+
+#include <geda_debug.h>
 
 #define BACK_TRACE_SIZE 20
 

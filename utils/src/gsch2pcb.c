@@ -18,23 +18,12 @@
  *  MA 02110-1301 USA
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <geda_stat.h>
+#include <libgeda/libgeda.h>
 
 #include <glib.h>
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
-#include <unistd.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
-#include <libgeda/libgeda.h>
 
 #define GSC2PCB_VERSION "1.8"
 

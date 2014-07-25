@@ -20,7 +20,6 @@
 
 #include <config.h>
 #include <missing.h>
-
 #include <gettext.h>
 
 #include <libgeda/libgeda.h>
@@ -28,6 +27,7 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 /* this function will only return a unique list of packages */
 SCM g_get_packages(SCM level)

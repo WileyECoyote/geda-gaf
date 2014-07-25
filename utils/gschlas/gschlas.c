@@ -20,15 +20,14 @@
  */
 
 #include <libgeda/libgeda.h>
+
 #include "../include/globals.h"
 #include "../include/prototype.h"
-void
-gschlas_quit(void)
-{
 
+void gschlas_quit(void)
+{
   s_clib_free();
   s_slib_free();
-
 }
 
 void
@@ -67,7 +66,7 @@ main_prog(void *closure, int argc, char *argv[])
   i = argv_index;
   while (argv[i] != NULL) {
 
-    gchar *filename;
+    char *filename;
     GError *err = NULL;
 
     if (g_path_is_absolute(argv[i]))

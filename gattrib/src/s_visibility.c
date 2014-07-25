@@ -26,50 +26,10 @@
  *       a good candidate for refactoring.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
-/*------------------------------------------------------------------
- * Includes required to run graphical widgets.
- *------------------------------------------------------------------*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <gtk/gtk.h>
-#include <gdk/gdk.h>
-#include <gdk/gdkkeysyms.h>
-
-#include <glib.h>
-#include <glib-object.h>
-
-#include <sys/types.h>
-
-#ifdef HAVE_SYS_PARAM_H
-#include <sys/param.h>
-#endif
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endifinclude <sys/stat.h>
-
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /* ----- s_visibility stuff begins here ----- */
-
-
 
 /* ---------------------------------------------------------------------- */
 /* \brief Set the selected cells to INVISIBLE

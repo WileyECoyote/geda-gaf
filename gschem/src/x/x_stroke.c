@@ -20,14 +20,12 @@
  */
 #include <config.h>
 
-#include "gschem.h"
+#include <gschem.h>
 
 #ifdef HAVE_LIBSTROKE
 #include <stroke.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*
  * <B>stroke_points</B> is an array of points for the stroke
@@ -39,7 +37,7 @@
  * number of points of a stroke provided by libstroke).
  */
 typedef struct {
-  gint x, y;
+  int x, y;
 } StrokePoint;
 
 static GArray *stroke_points = NULL;

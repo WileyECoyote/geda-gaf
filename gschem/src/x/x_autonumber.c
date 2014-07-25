@@ -22,25 +22,16 @@
 
 #include <config.h>
 
-#include <stdio.h>
 #include <ctype.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 
 #include "gschem.h"
 #include <gdk/gdkkeysyms.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
 #include "x_dialog.h"
 #include "geda_dialog_controls.h"
 #include "geda_widgets.h"
+
+#include <geda_debug.h>
 
 #define ThisDialog autonumber_text
 #define Switch_Responder switch_responder

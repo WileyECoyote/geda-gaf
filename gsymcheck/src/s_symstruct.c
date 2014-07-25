@@ -20,10 +20,6 @@
 
 #include <config.h>
 
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"

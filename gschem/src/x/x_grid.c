@@ -18,24 +18,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
-
-#include <math.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 
 #include "gschem.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 #define DOTS_POINTS_ARRAY_SIZE       5000
 #define DOTS_VARIABLE_MODE_SPACING   30
 
 #define MESH_COARSE_GRID_MULTIPLIER  5
-
 
 /*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
  *

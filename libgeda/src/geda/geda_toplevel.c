@@ -27,14 +27,7 @@
  *  Date Contributed: November, 4, 2013
  */
 #include <config.h>
-
 #include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
 
 #include "libgeda_priv.h"
 

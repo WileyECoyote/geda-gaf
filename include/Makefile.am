@@ -6,11 +6,14 @@
 noinst_HEADERS  = ascii.h \
                   geda.h \
                   geda_bitmaps.h \
+                  geda_debug.h \
                   geda_dialog_controls.h \
                   geda_enum.h \
                   geda_gui_funcs.h \
                   geda_idefines.h \
                   geda_macros.h \
+                  geda_standard.h \
+		  geda_stat.h \
                   geda_struct.h \
 		  geda_system.h \
                   geda_toolbars.h \

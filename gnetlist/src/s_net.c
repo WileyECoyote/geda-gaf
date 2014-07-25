@@ -22,14 +22,13 @@
 #include <config.h>
 #include <missing.h>
 
-#include <ctype.h>
-
 #include <gettext.h>
 
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 static int unnamed_net_counter = 1;
 static int unnamed_bus_counter = 1;

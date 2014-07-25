@@ -19,29 +19,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-/*! \todo STILL NEED to clean up line lengths in aa and tr */
-#include <config.h>
-#include "version.h"
-#include <missing.h>
-#include <ascii.h>
 
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-# include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-# include <string.h>
-#endif
+/*! \todo STILL NEED to clean up line lengths in aa and tr */
+
 #include <ctype.h>
+
 #include "gschem.h"
+#include "version.h"
+#include "x_dialog.h"
 
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
-#include "x_dialog.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 const char* IDS_MESSEAGE_TITLES[] = {
   "Information", "Warning", "Confirmation", "Error", "gschem", /* Message Title Strings*/

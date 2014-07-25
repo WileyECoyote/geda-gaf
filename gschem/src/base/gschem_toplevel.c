@@ -24,13 +24,11 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
  */
-#include <config.h>
 
-#include "gschem.h"
-
+#include <gschem.h>
 #include <glib-object.h>
-
 #include "gschem_toplevel.h"
+#include <geda_debug.h>
 
 enum {
   CHANGED,

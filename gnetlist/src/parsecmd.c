@@ -23,24 +23,17 @@
 #include "version.h"
 #include <missing.h>
 
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#ifdef HAVE_GETOPT_H
-#include <getopt.h>
-#endif
-
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
+#ifdef HAVE_GETOPT_H
+#include <getopt.h>
+#endif
+
 #include <gettext.h>
+#include <geda_debug.h>
 
 #define OPTIONS "c:g:hil:L:m:o:O:qvV"
 

@@ -110,30 +110,23 @@
  *        modules, see x_settings.c
 */
 
-#include <config.h>
-
-#include <string.h>
-#include <stdio.h>
-#include <unistd.h>
+#include <geda_standard.h>
+#include <geda_stat.h>
 
 #include <sys/types.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
 
 #include <gdk/gdkkeysyms.h>
 #include <gtk/gtk.h>
 
 #include <guile/gh.h>
 
-#include <gschem.h>
-#include <ascii.h>
+#include "gschem.h"
+#include "gschem_xdefines.h"            /* Define dialog default internal spacing */
+#include "gschem_dialog.h"              /* Definition the base Dialog Class */
 
-#include <gschem_xdefines.h>            /* Define dialog default internal spacing */
-#include <gschem_dialog.h>              /* Definition the base Dialog Class */
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
+#include <geda_debug.h>
 
 /** \defgroup Settings-Dialog Settings Dialog
  *  @{

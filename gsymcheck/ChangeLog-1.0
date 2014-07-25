@@ -1,3 +1,7 @@
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c: Redo inclusion of header files
+
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/s_check.c Add Macros ADD_ERROR_MESSAGE, ADD_INFO_MESSAGE, and

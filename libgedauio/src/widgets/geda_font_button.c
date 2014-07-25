@@ -13,15 +13,15 @@
  */
 
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 #include <geda.h>
+#include <geda_standard.h>
 
 #include <gtk/gtk.h>
 #include <gdk/gdk.h>
-
-#include <string.h>
-#include <stdio.h>
 
 #include "geda_label.h"
 #include "geda_font_button.h"
@@ -29,9 +29,7 @@
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 #define GEDA_FONT_BUTTON_GET_PRIVATE(obj) (G_TYPE_INSTANCE_GET_PRIVATE ((obj), GEDA_TYPE_FONT_BUTTON, GedaFontButtonPrivate))
 

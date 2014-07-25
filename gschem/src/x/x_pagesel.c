@@ -20,21 +20,10 @@
  */
 #include <config.h>
 
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include "gschem.h"
 #include "x_dialog.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <geda_debug.h>
 
 static void x_pagesel_callback_response (GtkDialog *dialog,
                                          gint arg1,

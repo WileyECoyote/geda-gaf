@@ -40,38 +40,24 @@
 
 #include <config.h>
 
-#include <stdio.h>
-#include <sys/types.h>
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include <geda_standard.h>
+#include <geda_stat.h>
+
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
 #endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+
 #include <errno.h>
 #include <ctype.h>
 
-#include <ascii.h>
 #include "gschem.h"
 #include "x_dialog.h"
 #include "geda_dialog_controls.h"
 
-#define MAX_COMMAND_LENGTH 128
-
 #include <geda_entry.h>
+#include <geda_debug.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#define MAX_COMMAND_LENGTH 128
 
 static void console_class_init (ConsoleClass *class);
 static void console_init       (Console      *console);

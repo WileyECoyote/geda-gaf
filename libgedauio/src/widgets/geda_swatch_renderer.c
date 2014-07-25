@@ -24,24 +24,19 @@
  * \brief A cell renderer for color swatches.
  */
 
-#include <config.h>
-#include <geda.h>
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include <geda.h>
+#include <geda_standard.h>
+
 #include <gtk/gtk.h>
 #include "geda_swatch_renderer.h"
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /* The width of the border around the swatch, in pixels. */
 #define SWATCH_BORDER_WIDTH (1.0)

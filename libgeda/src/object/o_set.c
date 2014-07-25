@@ -44,7 +44,6 @@
  */
 
 #include <config.h>
-
 #include <stdio.h>
 
 #include "libgeda_priv.h"

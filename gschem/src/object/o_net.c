@@ -18,12 +18,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
+#include <gschem.h>
 #include <math.h>
-
-#include "gschem.h"
+#include <geda_debug.h>
 
 /* magnetic options */
 /* half size of the magnetic marker on the screen. */

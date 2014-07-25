@@ -23,25 +23,9 @@
  *
  * Functions to rename STRING_LIST contents
  */
-#include <config.h>
 
-#include <stdio.h>
-#include <ctype.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_ASSERT_H
-#include <assert.h>
-#endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gattrib.h>
+#include <geda_debug.h>
 
 typedef struct {
     char *src;

@@ -31,7 +31,10 @@
  *                | to libgedauio (to declutter gschems src and more
  *                | importantly to make available to all geda-gaf programs.
  */
-#include <config.h>
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
 
 #include <geda.h>
 
@@ -42,9 +45,7 @@
 #include "geda_imagemenuitem.h"
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /**
  * \brief GedaAction Action - An Action Widget for Menus

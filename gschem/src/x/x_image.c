@@ -26,34 +26,17 @@
  *
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#include <unistd.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include <errno.h>
-#include <glib.h>
 
 #include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-#include "geda_dialog_controls.h"
-#include <geda_widgets.h>
-
 #include "x_dialog.h"
+
+#include <geda_dialog_controls.h>
+#include <geda_widgets.h>
+#include <geda_debug.h>
 
 #define ThisDialog dialog
 #define Switch_Responder switch_responder
-//#define DEBUG_IMAGING 1
 
 /** \defgroup Write-Image-Dialog Write-Image Dialog
  *  @{

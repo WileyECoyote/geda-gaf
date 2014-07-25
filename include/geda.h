@@ -5,6 +5,7 @@
 */
 
 #include <missing.h>
+
 #include <geda_system.h>
 #include <geda_idefines.h>
 #include <geda_types.h>

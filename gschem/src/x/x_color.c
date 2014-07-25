@@ -19,19 +19,8 @@
  * MA 02110-1301 USA
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#include <math.h>
-
 #include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 COLOR display_colors[MAX_COLORS];
 COLOR outline_colors[MAX_COLORS];

@@ -18,16 +18,9 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-#include <config.h>
 
+#include <config.h>
 #include <stdio.h>
-#include <sys/types.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 
 #include "libgeda_priv.h"
 

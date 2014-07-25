@@ -25,17 +25,21 @@
  *
  */
 
+#include <gschem.h>
+
+#include "x_menu.h"
+#include "i_command.h"
+
+#include <geda_debug.h>
+
 //#define PERFORMANCE
 #ifdef PERFORMANCE
 # include <sys/time.h>
 # include <sys/resource.h>
 # include "rusage/tlpi_hdr.h"
 #endif
-#define NUMBER_REDRAW_TEST     100
 
-#ifdef HAVE_CONFIG_H
-#  include <config.h>
-#endif
+#define NUMBER_REDRAW_TEST     100
 
 #define USE_POSIX
 #define MAX_THREADS              12
@@ -45,17 +49,11 @@
 #define TASK_WAIT_INTERVAL      100   /* microseconds */
 #define MAX_WAIT_FOR_TASK        10   /* X x TASK_WAIT_INTERVAL */
 
-#include "gschem.h"
-#include "x_menu.h"
-#include "i_command.h"
-
 #define Renderer w_current->renderer
 #define Toplevel w_current->toplevel
 
 #define COMMAND(symbol, repeat, aflag,  func) [ cmd_##func ] = \
 { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, {0, 0}, 0, 0, 0},
-
-#define DEBUG 1
 
 static bool performance_diagnostics = FALSE;
 
@@ -320,7 +318,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
           }
         }
         else { /* Must have been ID_ORIGIN_MOUSE*/
-
+          /* low levels should do this */
           SCREENtoWORLD (w_current, w_current->pointer_sx, w_current->pointer_sy, &wx, &wy);
           command_struc[i].point.x = wx;
           command_struc[i].point.y = wy;

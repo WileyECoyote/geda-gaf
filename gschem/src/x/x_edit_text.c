@@ -20,29 +20,16 @@
  * MA 02110-1301 USA
  */
 
-#include <config.h>
-#include "version.h"
-#include <missing.h>
-
-#include <stdio.h>
-#ifdef HAVE_STDLIB_H
-# include <stdlib.h>
-#endif
-#ifdef HAVE_STRING_H
-# include <string.h>
-#endif
-
 #include <gdk/gdk.h>
 
 #include "gschem.h"
+#include "version.h"
 #include "x_dialog.h"
 
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*!
  * \file x_edit_text.c

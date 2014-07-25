@@ -35,16 +35,17 @@
  * Boston, MA 02110-1301 USA
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
+#endif
 
 #include <geda.h>
 
 #include <gtk/gtkaccellabel.h>
+
 #include "geda_accel_label.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 #define P_(x) (x)
 

@@ -32,7 +32,7 @@
  */
 
 #include <Python.h>
-#include <stdio.h>
+
 #include <libgen.h>        /* dirname */
 #include <dirent.h>
 #include <errno.h>

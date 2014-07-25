@@ -18,33 +18,20 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
+#include <geda_standard.h>
 
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
 #ifdef HAVE_FCNTL_H
 #include <fcntl.h>
 #endif
+
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
 #endif
 
 #include "libgeda_priv.h"
 
-#include <time.h>
+#include <geda_debug.h>
 
 /*! Default setting for log update callback function. */
 void (*x_log_update_func)() = NULL;

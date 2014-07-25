@@ -50,14 +50,18 @@
  * @{
  */
 
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #define GTK_COMPILATION 1
+
 #include <geda.h>
+#include <geda_standard.h>
 
 #include <glib.h>
 #include <glib-object.h>
 
-#include <string.h>
-#include <stdio.h>
 #include <math.h>
 
 #include <gtk/gtk.h>
@@ -68,10 +72,7 @@
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <geda_debug.h>
 
 /* GLIB < 2.30 */
 #ifndef G_VALUE_INIT

@@ -18,15 +18,17 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
-#include <glib/gstdio.h>
 
-#include <gschem.h>
+#include "gschem.h"
+#include <geda_stat.h>
+
 #include <x_menu.h>
 
 #include <geda_widgets.h>
 
 #include <i_actions.h>
+
+#include <geda_debug.h>
 
 #define MENU_BAR         menu_data->menu_bar
 #define POPUP_MENU       menu_data->popup_menu

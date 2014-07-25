@@ -24,16 +24,7 @@
  * information.
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
+#include <gattrib.h>
 
 #ifdef HAVE_GETOPT_H
 #include <getopt.h>
@@ -52,11 +43,7 @@ extern int optind;
 #endif
 #endif   /* Checking for getopt_long  */
 
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*!
  * \brief Print usage message
@@ -133,26 +120,26 @@ int parse_commandline(int argc, char *argv[])
 #endif
 
       switch (ch) {
-	
+
       case 'v':
 	verbose_mode = TRUE;
 	break;
-	
+
       case 'q':
 	quiet_mode = TRUE;
 	break;
-	
+
       case 'h':
 	usage(argv[0]);
 	break;
-	
+
       case '?':
       default:
 	usage(argv[0]);
 	break;
       }
     }
-    
+
     if (quiet_mode) {
 	verbose_mode = FALSE;
     }

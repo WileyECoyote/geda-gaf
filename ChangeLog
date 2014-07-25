@@ -1,3 +1,9 @@
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c: Redo inclusion of header files through-out source tree.
+
+        * include/: Three new headers: geda_debug.h, geda_standard.h, geda_stat.h
+
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
         * /Makefile.am: Clean top of source

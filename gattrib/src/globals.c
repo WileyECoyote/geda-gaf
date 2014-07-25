@@ -23,14 +23,8 @@
  * Global declarations
  */
 
-#include <config.h>
-#include <stdio.h>
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /* command line arguments */
 int verbose_mode; //!< Reflects the value of the command line flag

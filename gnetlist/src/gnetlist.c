@@ -23,15 +23,11 @@
 #include "version.h"
 #include <missing.h>
 
-#include <sys/param.h>
-#include <sys/types.h>
-
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
 #include <dirent.h>
-
 #include <gettext.h>
 
 #include <libgeda/libgeda.h>
@@ -39,6 +35,7 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 void gnetlist_quit(void)
 {

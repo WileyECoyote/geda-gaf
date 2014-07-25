@@ -19,8 +19,8 @@
  */
 
 #include <libgeda/libgeda.h>
+
 void i_vars_set(GedaToplevel * pr_current)
 {
   i_vars_libgeda_set(pr_current);
 }
-

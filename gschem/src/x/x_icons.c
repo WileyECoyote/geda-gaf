@@ -42,10 +42,12 @@
  *                | Consolidated icon intialization to new function
  *                | x_icons_initialize (for better code organization).
  * ---------------|--------------------------------------------------
- * WEH | 07/20/14 | Added Doxygen grouping wrapper fo this module (to
+ * WEH | 07/20/14 | Added Doxygen grouping wrapper for this module (to
  *                | to improve source documentation).
  */
+
 #include <gschem.h>
+#include <geda_debug.h>
 
 /** \defgroup Gschem-Icons Gschem-Icons
  *  @{

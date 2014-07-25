@@ -19,13 +19,12 @@
  */
 
 #include <config.h>
-
-#include <ctype.h>
-
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+
+#include <geda_debug.h>
 
 /* used by the extract functions below */
 #define DELIMITERS ",; "

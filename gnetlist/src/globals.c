@@ -1,5 +1,5 @@
 /* gEDA - GPL Electronic Design Automation
- * gnetlist - gEDA Netlist 
+ * gnetlist - gEDA Netlist
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -25,8 +25,9 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
-char *rc_filename = NULL; 
+char *rc_filename = NULL;
 int   logfile_fd  = -1;
 
 volatile int log_destiny=CONSOLE_WINDOW;
@@ -36,7 +37,7 @@ NETLIST *netlist_head=NULL;
 
 /* Special objects with graphical=1 attribute */
 NETLIST *graphical_netlist_head=NULL;
-char *guile_proc=NULL; 
+char *guile_proc=NULL;
 
 /* command line arguments */
 int list_backends=FALSE;
@@ -62,4 +63,4 @@ SCM post_backend_list = SCM_EOL;
 GSList *input_files;
 
 /* Parameters passed to the backend from the command line */
-GSList *backend_params = NULL;  
+GSList *backend_params = NULL;

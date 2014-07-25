@@ -26,6 +26,7 @@
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 SCM vams_get_attribs_list (Object *object)
 {

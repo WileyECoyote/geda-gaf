@@ -111,16 +111,9 @@
  *  gEDA symbol data in a string, or \b \#f if not known.
  */
 
-#include <config.h>
-#include <missing.h>
+#include <geda_standard.h>
 
-#include <stdio.h>
 #include <glib.h>
-#include <ascii.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 
 #ifdef HAVE_SYS_WAIT_H
 #include <sys/wait.h>
@@ -131,8 +124,6 @@
 #define WEXITSTATUS(x) 0
 #endif
 
-#include <time.h>
-#include <sys/types.h>
 #include <dirent.h>
 
 #include "libgeda_priv.h"
@@ -428,7 +419,8 @@ static char *run_source_command (const char *command)
                    e->message);
     g_error_free (e);
 
-  } else if (WIFSIGNALED(exit_status)) {
+  }
+  else if (WIFSIGNALED(exit_status)) {
     u_log_message (_("Library command failed [%s]: Uncaught signal %i.\n"),
                    command, WTERMSIG(exit_status));
 

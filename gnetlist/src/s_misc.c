@@ -20,12 +20,11 @@
 
 #include <config.h>
 
-#include <stdio.h>
-
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 static int char_index = 0;
 

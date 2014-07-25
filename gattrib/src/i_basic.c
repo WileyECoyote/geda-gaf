@@ -24,25 +24,15 @@
  *       for removal?
  */
 
-#include <config.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-
 /*------------------------------------------------------------------
  * Gattrib specific includes.  Note that include order is important.
  *------------------------------------------------------------------*/
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
+#include <gattrib.h>
 
 /* --- This is necessary for i_basic.c --- */
 #include "../include/x_states.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <geda_debug.h>
 
 /* ------------------------------------------------------------- *
  *

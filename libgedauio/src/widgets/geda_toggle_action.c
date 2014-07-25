@@ -26,7 +26,11 @@
  *        (because We really Like them, otherwise we could have just used
  *         the stock gtk_toggle_action.)
  */
-#include <config.h>
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
 #include <geda.h>
 
 #include <glib.h>
@@ -36,6 +40,7 @@
 #include "geda_widgets.h"
 
 #include "gettext.h"
+#include <geda_debug.h>
 
 /**
  * \brief GedaToggleAction - A Button Widget for Menus

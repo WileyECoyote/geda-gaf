@@ -1,3 +1,14 @@
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c: Redo inclusion of header files
+
+2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/i_vars.h: Remove file, no content.
+
+        * gsch2pdf;gschlas/;src/*.c: gschlas: Clean-up header inclusion. Use
+          #include <geda_standard.h> to simplify.
+
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
         * */*: Update copyright.

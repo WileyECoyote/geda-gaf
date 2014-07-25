@@ -37,9 +37,9 @@
  *      internal Gdk calls are redirected to our gschem_threads_enter and
  *      gschem_threads_leave handlers.
  */
-#include <config.h>
 
-#include "gschem.h"
+#include <gschem.h>
+#include <geda_debug.h>
 
 /** \defgroup Gschem-Thread-System Gschem Thread System
  *  @{ \par This Group contains core Routines for Thread.

@@ -19,9 +19,8 @@
  * MA 02111-1301 USA.
  */
 
-#include <config.h>
-#include <missing.h>
-#include "gschem.h"
+#include <gschem.h>
+#include <geda_debug.h>
 
 enum {
   COLUMN_ICON = 0,

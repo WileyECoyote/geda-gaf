@@ -53,8 +53,9 @@
 #include "x_window.h"
 #include "x_dnd.h"
 
+#include <geda_debug.h>
+
 /****************************** Drag-N-Drop **********************************/
-//#define DEBUG_DND_EVENTS 1
 
 /** \defgroup Drag-N-Drop Gschem Drag and Drop Module
  *  @{ \par

@@ -1,3 +1,7 @@
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/*/*.c: Redo inclusion of header files
+
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/g_netlist.c Add missing function; get-verbosity

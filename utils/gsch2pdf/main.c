@@ -18,20 +18,12 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include <pango/pangocairo.h>
+#include <cairo-pdf.h>
 
 #include <libgeda/libgeda.h>
+
+#include <math.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
@@ -39,12 +31,6 @@
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>
 #endif
-
-#include <stdlib.h>
-#include <math.h>
-
-#include <pango/pangocairo.h>
-#include <cairo-pdf.h>
 
 #include "junction.h"
 #include "print-settings.h"

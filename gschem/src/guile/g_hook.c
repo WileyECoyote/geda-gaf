@@ -18,9 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
-#include <config.h>
-
-#include "gschem.h"
+#include <gschem.h>
+#include <geda_debug.h>
 
 SCM_SYMBOL (at_sym,       "@");
 SCM_SYMBOL (gschem_sym,   "gschem");

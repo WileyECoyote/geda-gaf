@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-22 00:53-0500\n"
+"POT-Creation-Date: 2014-07-25 00:10-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -42,62 +42,62 @@ msgstr "гЕДА — шема електричних кола"
 msgid "gEDA Schematic Symbol"
 msgstr "гЕДА — симбол шеме"
 
-#: libgeda/src/file/f_basic.c:132
+#: libgeda/src/file/f_basic.c:112
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:143
+#: libgeda/src/file/f_basic.c:123
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "Не могу да пронађем датотеку „%s“: %s"
 
-#: libgeda/src/file/f_basic.c:154
+#: libgeda/src/file/f_basic.c:134
 #, c-format
 msgid "File \"%s\" is too large"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:211
+#: libgeda/src/file/f_basic.c:191
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:231
+#: libgeda/src/file/f_basic.c:211
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
 
-#: libgeda/src/file/f_basic.c:290
+#: libgeda/src/file/f_basic.c:270
 #, fuzzy, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Нисам успео да отворим директоријум (%s): %s\n"
 
-#: libgeda/src/file/f_basic.c:304
+#: libgeda/src/file/f_basic.c:284
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:321
+#: libgeda/src/file/f_basic.c:301
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
 
-#: libgeda/src/file/f_basic.c:381 libgeda/src/file/f_basic.c:394
+#: libgeda/src/file/f_basic.c:361 libgeda/src/file/f_basic.c:374
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Нисам успео да направим статистику (%s): %s"
 
-#: libgeda/src/file/f_basic.c:454
+#: libgeda/src/file/f_basic.c:434
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Не могу да пронађем датотеку „%s“: %s"
 
-#: libgeda/src/file/f_basic.c:471
+#: libgeda/src/file/f_basic.c:451
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:507
+#: libgeda/src/file/f_basic.c:487
 #, c-format
 msgid ""
 "\n"
@@ -110,14 +110,14 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:509
+#: libgeda/src/file/f_basic.c:489
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr ""
 "Не могу да погодим да ли је новија, зато ви морате то да урадите ручно.\n"
 
-#: libgeda/src/file/f_basic.c:511
+#: libgeda/src/file/f_basic.c:491
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -125,7 +125,7 @@ msgstr ""
 "Резервни примерак је новији од шеме, зато изгледа да треба да га учитате "
 "уместо оригиналне датотеке.\n"
 
-#: libgeda/src/file/f_basic.c:513
+#: libgeda/src/file/f_basic.c:493
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -134,7 +134,7 @@ msgstr ""
 "Гшема обично самостално прави резервне примерке, а до ове ситуације је дошло "
 "када се урушио или је био приморан да нагло изађе.\n"
 
-#: libgeda/src/file/f_basic.c:516
+#: libgeda/src/file/f_basic.c:496
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -142,90 +142,90 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:567
+#: libgeda/src/file/f_basic.c:547
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:616
+#: libgeda/src/file/f_basic.c:596
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:627 libgeda/src/object/o_basic.c:251
+#: libgeda/src/file/f_basic.c:607 libgeda/src/object/o_basic.c:251
 #, c-format
 msgid "File %s is read-only"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:659
+#: libgeda/src/file/f_basic.c:639
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr "НЕ могу да подесим читање-писање претходног резервног примерка (%s)\n"
 
-#: libgeda/src/file/f_basic.c:667
+#: libgeda/src/file/f_basic.c:647
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s"
 msgstr "Не могу да сачувам датотеку резервног примерка: %s."
 
-#: libgeda/src/file/f_basic.c:709
+#: libgeda/src/file/f_basic.c:689
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:962
+#: libgeda/src/file/f_basic.c:942
 #, c-format
 msgid "%s: %s"
 msgstr "„%s“: %s"
 
-#: libgeda/src/file/f_print.c:128
+#: libgeda/src/file/f_print.c:125
 msgid "Unable to get time of day in f_print_header()\n"
 msgstr "Не могу да добавим време дана у „f_print_header()“\n"
 
-#: libgeda/src/file/f_print.c:173
+#: libgeda/src/file/f_print.c:170
 #, fuzzy, c-format
 msgid "f_print_header: Unable to locate prolog file [%s]\n"
 msgstr "s_page_delete: Не могу да избришем датотеку резервног примерка „%s“."
 
-#: libgeda/src/file/f_print.c:178
+#: libgeda/src/file/f_print.c:175
 #, c-format
 msgid "f_print_header: using prolog file [%s]\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:182
+#: libgeda/src/file/f_print.c:179
 #, fuzzy, c-format
 msgid "f_print_header: Unable to open the prolog file \"%s\" for reading\n"
 msgstr ""
 "Не могу да отворим пролог датотеку „%s“ за читање у „f_print_header()“\n"
 
-#: libgeda/src/file/f_print.c:193
+#: libgeda/src/file/f_print.c:190
 #, c-format
 msgid "f_print_header: Error while writing prolog \"%s\" \n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:199
+#: libgeda/src/file/f_print.c:196
 #, c-format
 msgid "f_print_header: Error reading prolog file \"%s\"\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:204
+#: libgeda/src/file/f_print.c:201
 msgid "f_print_header: Error writing postscript output file\n"
 msgstr ""
 
-#: libgeda/src/file/f_print.c:217
+#: libgeda/src/file/f_print.c:214
 msgid "Giving up on printing\n"
 msgstr "Одустајем од штампања\n"
 
-#: libgeda/src/file/f_print.c:392
+#: libgeda/src/file/f_print.c:389
 #, c-format
 msgid "Could not open [%s] for printing\n"
 msgstr "Не могу да отворим (%s) за штампање\n"
 
-#: libgeda/src/file/f_print.c:426
+#: libgeda/src/file/f_print.c:423
 #, c-format
 msgid "Could not execute command [%s] for printing\n"
 msgstr "Не могу да извршим наредбу (%s) за штампање\n"
 
-#: libgeda/src/file/f_print.c:693
+#: libgeda/src/file/f_print.c:690
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Превише УТФ-8 знакова, не могу да штампам\n"
 
@@ -258,11 +258,11 @@ msgstr ""
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:92
+#: libgeda/src/geda/geda_config.c:93
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:93
+#: libgeda/src/geda/geda_config.c:94
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
@@ -423,147 +423,147 @@ msgstr ""
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:75
+#: libgeda/src/guile/g_evaluate.c:56
 msgid ""
 "\n"
 "Backtrace:\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:298
+#: libgeda/src/guile/g_rc.c:276
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:345 libgeda/src/guile/g_rc.c:354
+#: libgeda/src/guile/g_rc.c:323 libgeda/src/guile/g_rc.c:332
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:446
+#: libgeda/src/guile/g_rc.c:424
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:447 libgeda/src/guile/g_rc.c:453
-#: libgeda/src/guile/g_rc.c:483 libgeda/src/guile/g_rc.c:489
-#: libgeda/src/guile/g_rc.c:521 libgeda/src/guile/g_rc.c:527
-#: libgeda/src/guile/g_rc.c:559 libgeda/src/guile/g_rc.c:565
-#: libgeda/src/guile/g_rc.c:590 libgeda/src/guile/g_rc.c:614
-#: libgeda/src/guile/g_rc.c:638 libgeda/src/guile/g_rc.c:663
-#: libgeda/src/guile/g_rc.c:688 libgeda/src/guile/g_rc.c:713
-#: libgeda/src/guile/g_rc.c:738 libgeda/src/guile/g_rc.c:763
+#: libgeda/src/guile/g_rc.c:425 libgeda/src/guile/g_rc.c:431
+#: libgeda/src/guile/g_rc.c:461 libgeda/src/guile/g_rc.c:467
+#: libgeda/src/guile/g_rc.c:499 libgeda/src/guile/g_rc.c:505
+#: libgeda/src/guile/g_rc.c:537 libgeda/src/guile/g_rc.c:543
+#: libgeda/src/guile/g_rc.c:568 libgeda/src/guile/g_rc.c:592
+#: libgeda/src/guile/g_rc.c:616 libgeda/src/guile/g_rc.c:641
+#: libgeda/src/guile/g_rc.c:666 libgeda/src/guile/g_rc.c:691
+#: libgeda/src/guile/g_rc.c:716 libgeda/src/guile/g_rc.c:741
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:452
+#: libgeda/src/guile/g_rc.c:430
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:482
+#: libgeda/src/guile/g_rc.c:460
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:488
+#: libgeda/src/guile/g_rc.c:466
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:520
+#: libgeda/src/guile/g_rc.c:498
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:526
+#: libgeda/src/guile/g_rc.c:504
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:558
+#: libgeda/src/guile/g_rc.c:536
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:564
+#: libgeda/src/guile/g_rc.c:542
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:589
+#: libgeda/src/guile/g_rc.c:567
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:613
+#: libgeda/src/guile/g_rc.c:591
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:637
+#: libgeda/src/guile/g_rc.c:615
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:662
+#: libgeda/src/guile/g_rc.c:640
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:687
+#: libgeda/src/guile/g_rc.c:665
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:712
+#: libgeda/src/guile/g_rc.c:690
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:737
+#: libgeda/src/guile/g_rc.c:715
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:762
+#: libgeda/src/guile/g_rc.c:740
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:815
+#: libgeda/src/guile/g_rc.c:793
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:125
+#: libgeda/src/guile/g_rc_parse.c:105
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:169
+#: libgeda/src/guile/g_rc_parse.c:149
 #, fuzzy, c-format
 msgid "Failed to load config from '%s': %s\n"
 msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:199
+#: libgeda/src/guile/g_rc_parse.c:179
 #, fuzzy, c-format
 msgid "Loaded RC file [%s]\n"
 msgstr "Није успела наредба библиотеке (%s)\n"
 
-#: libgeda/src/guile/g_rc_parse.c:205
+#: libgeda/src/guile/g_rc_parse.c:185
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:338
+#: libgeda/src/guile/g_rc_parse.c:334
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:351 libgeda/src/guile/g_rc_parse.c:352
+#: libgeda/src/guile/g_rc_parse.c:347 libgeda/src/guile/g_rc_parse.c:348
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:358
+#: libgeda/src/guile/g_rc_parse.c:354
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
@@ -578,21 +578,21 @@ msgid "Found a zero radius arc [ %c %d, %d, %d, %d, %d, %d ]\n"
 msgstr "Пронашао сам лук нултог полупречника ( %c %d, %d, %d, %d, %d, %d )\n"
 
 #: libgeda/src/object/o_arc_basic.c:260 libgeda/src/object/o_box_basic.c:307
-#: libgeda/src/object/o_bus_basic.c:142
+#: libgeda/src/object/o_bus_basic.c:141
 #: libgeda/src/object/o_circle_basic.c:246
-#: libgeda/src/object/o_line_basic.c:240 libgeda/src/object/o_net_basic.c:153
-#: libgeda/src/object/o_path_basic.c:209 libgeda/src/object/o_pin_basic.c:174
-#: libgeda/src/object/o_text_basic.c:353
+#: libgeda/src/object/o_line_basic.c:239 libgeda/src/object/o_net_basic.c:151
+#: libgeda/src/object/o_path_basic.c:206 libgeda/src/object/o_pin_basic.c:173
+#: libgeda/src/object/o_text_basic.c:344
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
 msgstr "Пронашао сам неисправну боју ( %s )\n"
 
 #: libgeda/src/object/o_arc_basic.c:261 libgeda/src/object/o_box_basic.c:308
-#: libgeda/src/object/o_bus_basic.c:143
+#: libgeda/src/object/o_bus_basic.c:142
 #: libgeda/src/object/o_circle_basic.c:247
-#: libgeda/src/object/o_line_basic.c:241 libgeda/src/object/o_net_basic.c:154
-#: libgeda/src/object/o_path_basic.c:210 libgeda/src/object/o_pin_basic.c:175
-#: libgeda/src/object/o_text_basic.c:354
+#: libgeda/src/object/o_line_basic.c:240 libgeda/src/object/o_net_basic.c:152
+#: libgeda/src/object/o_path_basic.c:207 libgeda/src/object/o_pin_basic.c:174
+#: libgeda/src/object/o_text_basic.c:345
 msgid "Setting color to default color\n"
 msgstr "Подешавам боју на основну боју\n"
 
@@ -705,25 +705,25 @@ msgstr ""
 msgid "Found a zero width/height box [ %c %d %d %d %d %d ]\n"
 msgstr "Пронашао сам поље нулте ширине/висине ( %c %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_bus_basic.c:120 libgeda/src/object/o_bus_basic.c:127
+#: libgeda/src/object/o_bus_basic.c:119 libgeda/src/object/o_bus_basic.c:126
 msgid "Failed to parse bus object"
 msgstr ""
 
-#: libgeda/src/object/o_bus_basic.c:133
+#: libgeda/src/object/o_bus_basic.c:132
 #, c-format
 msgid "Found a zero length bus [ %c %d %d %d %d %d ]\n"
 msgstr "Пронашао сам магистралу нулте дужине ( %c %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_bus_basic.c:148
+#: libgeda/src/object/o_bus_basic.c:147
 #, c-format
 msgid "Found an invalid bus ripper direction [ %s ]\n"
 msgstr "Пронашао сам неисправан смер извлачивача магистрале ( %s )\n"
 
-#: libgeda/src/object/o_bus_basic.c:149
+#: libgeda/src/object/o_bus_basic.c:148
 msgid "Resetting direction to neutral (no direction)\n"
 msgstr "Враћам правац на неутралан (без правца)\n"
 
-#: libgeda/src/object/o_bus_basic.c:257
+#: libgeda/src/object/o_bus_basic.c:256
 #, c-format
 msgid "null in o_bus_print\n"
 msgstr ""
@@ -746,7 +746,7 @@ msgstr ""
 msgid "Setting radius to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:432
+#: libgeda/src/object/o_complex_basic.c:425
 #, c-format
 msgid ""
 "Component not found:\n"
@@ -755,21 +755,21 @@ msgstr ""
 "Нисам пронашао компоненту:\n"
 " %s"
 
-#: libgeda/src/object/o_complex_basic.c:641
+#: libgeda/src/object/o_complex_basic.c:634
 msgid "Failed to parse complex object"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:654
+#: libgeda/src/object/o_complex_basic.c:647
 #, c-format
 msgid "Found a component with an invalid rotation [ %c %d %d %d %d %d %s ]\n"
 msgstr ""
 "Пронашао сам компоненту са неисправном ротацијом ( %c %d %d %d %d %d %s )\n"
 
-#: libgeda/src/object/o_complex_basic.c:655 libgeda/src/object/o_picture.c:107
+#: libgeda/src/object/o_complex_basic.c:648 libgeda/src/object/o_picture.c:104
 msgid "Setting angle to 0\n"
 msgstr "Подешавам угао на 0\n"
 
-#: libgeda/src/object/o_complex_basic.c:667
+#: libgeda/src/object/o_complex_basic.c:660
 #, c-format
 msgid ""
 "Found a component with an invalid mirror flag [ %c %d %d %d %d %d %s ]\n"
@@ -777,11 +777,11 @@ msgstr ""
 "Пронашао сам компоненту са неисправном заставицом огледала ( %c %d %d %d %d "
 "%d %s )\n"
 
-#: libgeda/src/object/o_complex_basic.c:668
+#: libgeda/src/object/o_complex_basic.c:661
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:989
+#: libgeda/src/object/o_complex_basic.c:982
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -790,7 +790,7 @@ msgstr ""
 "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
 "\t  Не могу да анализирам датотеку издање_симбола=„%s“\n"
 
-#: libgeda/src/object/o_complex_basic.c:993
+#: libgeda/src/object/o_complex_basic.c:986
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -799,7 +799,7 @@ msgstr ""
 "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
 "\t  Не могу да анализирам датотеку издање_симбола=\n"
 
-#: libgeda/src/object/o_complex_basic.c:1010
+#: libgeda/src/object/o_complex_basic.c:1003
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -808,7 +808,7 @@ msgstr ""
 "УПОЗОРЕЊЕ: Грешка при анализи издања симбола на рефдес-у „%s“:\n"
 "\t  Не могу да анализирам приложено издање_симбола=„%s“\n"
 
-#: libgeda/src/object/o_complex_basic.c:1036
+#: libgeda/src/object/o_complex_basic.c:1029
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -819,7 +819,7 @@ msgstr ""
 "\t  издање_симбола=%s је приложено инстанцном симболу, али нема "
 "издања_симбола= унутар датотеке симбола\n"
 
-#: libgeda/src/object/o_complex_basic.c:1050
+#: libgeda/src/object/o_complex_basic.c:1043
 #, c-format
 msgid ""
 "WARNING: Symbol version mismatch on refdes %s (%s):\n"
@@ -828,17 +828,17 @@ msgstr ""
 "УПОЗОРЕЊЕ: Неслагање издања симбола на рефдес-у „%s“ (%s):\n"
 "\t  Симбол у библиотеци је новији од инстанцног симбола\n"
 
-#: libgeda/src/object/o_complex_basic.c:1082
+#: libgeda/src/object/o_complex_basic.c:1075
 #, c-format
 msgid "\tMAJOR VERSION CHANGE (file %.3f, instantiated %.3f, %s)!\n"
 msgstr "\tИЗМЕНА ГЛАВНОГ ИЗДАЊА (датотека „%.3f“, инстанцирана „%.3f“, %s)!\n"
 
-#: libgeda/src/object/o_complex_basic.c:1100
+#: libgeda/src/object/o_complex_basic.c:1093
 #, c-format
 msgid "\tMinor version change (file %.3f, instantiated %.3f)\n"
 msgstr "\tИзмена нижег издања (датотека „%.3f“, инстанцирано „%.3f“)\n"
 
-#: libgeda/src/object/o_complex_basic.c:1111
+#: libgeda/src/object/o_complex_basic.c:1104
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -866,138 +866,138 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Компонента (%s) је успешно избачена\n"
 
-#: libgeda/src/object/o_line_basic.c:204 libgeda/src/object/o_line_basic.c:223
+#: libgeda/src/object/o_line_basic.c:203 libgeda/src/object/o_line_basic.c:222
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_basic.c:235
+#: libgeda/src/object/o_line_basic.c:234
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Пронашао сам линију нулте дужине ( %c %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_net_basic.c:138
+#: libgeda/src/object/o_net_basic.c:136
 msgid "Failed to parse net object"
 msgstr ""
 
-#: libgeda/src/object/o_net_basic.c:143
+#: libgeda/src/object/o_net_basic.c:141
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Пронашао сам мрежу нулте дужине ( %c %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_path_basic.c:203
+#: libgeda/src/object/o_path_basic.c:200
 msgid "Failed to parse path object"
 msgstr ""
 
-#: libgeda/src/object/o_path_basic.c:221
+#: libgeda/src/object/o_path_basic.c:218
 msgid "Unexpected end-of-file when reading path"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:74
+#: libgeda/src/object/o_picture.c:71
 msgid "Failed to parse picture definition"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:79
+#: libgeda/src/object/o_picture.c:76
 #, c-format
 msgid "Found a zero width/height picture [ %c %d %d %d %d ]\n"
 msgstr "Пронашао сам слику нулте ширине/висине ( %c %d %d %d %d )\n"
 
-#: libgeda/src/object/o_picture.c:84
+#: libgeda/src/object/o_picture.c:81
 #, c-format
 msgid "Found a picture with a wrong 'mirrored' parameter: %d.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:86
+#: libgeda/src/object/o_picture.c:83
 msgid "Setting mirrored to 0\n"
 msgstr "Подешавам пресликано на 0\n"
 
-#: libgeda/src/object/o_picture.c:91
+#: libgeda/src/object/o_picture.c:88
 #, c-format
 msgid "Found a picture with a wrong 'embedded' parameter: %d.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:93
+#: libgeda/src/object/o_picture.c:90
 msgid "Setting embedded to 0\n"
 msgstr "Подешавам уграђено на 0\n"
 
-#: libgeda/src/object/o_picture.c:106
+#: libgeda/src/object/o_picture.c:103
 #, c-format
 msgid "Found an unsupported picture angle [ %d ]\n"
 msgstr "Пронашао сам неподржан угао слике ( %d )\n"
 
-#: libgeda/src/object/o_picture.c:118
+#: libgeda/src/object/o_picture.c:115
 msgid "Found an image with no filename."
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:149
+#: libgeda/src/object/o_picture.c:146
 #, c-format
 msgid "Failed to load image from embedded data [%s]: %s\n"
 msgstr "Нисам успео да учитам слику из уграђених података (%s): %s\n"
 
-#: libgeda/src/object/o_picture.c:150
+#: libgeda/src/object/o_picture.c:147
 msgid "Base64 decoding failed."
 msgstr "Није успело декодирање базе64."
 
-#: libgeda/src/object/o_picture.c:151
+#: libgeda/src/object/o_picture.c:148
 msgid "Falling back to file loading. Picture unembedded.\n"
 msgstr "Пребацујем се назад на учитавање слике. Слика је избачена.\n"
 
-#: libgeda/src/object/o_picture.c:210
+#: libgeda/src/object/o_picture.c:207
 msgid "ERROR: o_picture_save: unable to encode the picture.\n"
 msgstr "ГРЕШКА: о_сачувај_слику: не могу да шифрујем слику.\n"
 
-#: libgeda/src/object/o_picture.c:313
+#: libgeda/src/object/o_picture.c:310
 #, c-format
 msgid "Failed to load buffer image [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:327
+#: libgeda/src/object/o_picture.c:324
 #, c-format
 msgid "Failed to load image from [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:382
+#: libgeda/src/object/o_picture.c:379
 #, c-format
 msgid "Picture %p has invalid angle %i\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:911
+#: libgeda/src/object/o_picture.c:908
 #, c-format
 msgid "Picture [%s] has no image data.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:912
+#: libgeda/src/object/o_picture.c:909
 msgid "Falling back to file loading. Picture is still unembedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:920
+#: libgeda/src/object/o_picture.c:917
 #, c-format
 msgid "Picture [%s] has been embedded\n"
 msgstr "Слика (%s) је уграђена\n"
 
-#: libgeda/src/object/o_picture.c:946
+#: libgeda/src/object/o_picture.c:943
 #, c-format
 msgid "Failed to load image from file [%s]: %s\n"
 msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
 
-#: libgeda/src/object/o_picture.c:948
+#: libgeda/src/object/o_picture.c:945
 msgid "Picture is still embedded.\n"
 msgstr ""
 
-#: libgeda/src/object/o_picture.c:956
+#: libgeda/src/object/o_picture.c:953
 #, c-format
 msgid "Picture [%s] has been unembedded\n"
 msgstr "Слика (%s) је избачена\n"
 
-#: libgeda/src/object/o_picture.c:1166
+#: libgeda/src/object/o_picture.c:1163
 #, c-format
 msgid "Failed to load fallback image %s: %s.\n"
 msgstr ""
 
-#: libgeda/src/object/o_pin_basic.c:148 libgeda/src/object/o_pin_basic.c:158
+#: libgeda/src/object/o_pin_basic.c:147 libgeda/src/object/o_pin_basic.c:157
 msgid "Failed to parse pin object"
 msgstr ""
 
-#: libgeda/src/object/o_pin_basic.c:164
+#: libgeda/src/object/o_pin_basic.c:163
 #, fuzzy
 msgid ""
 "Found a pin which did not have the whichend field set.\n"
@@ -1006,48 +1006,48 @@ msgstr ""
 "Пронашао сам ножицу која нема подешено поље „који“.\n"
 "Проверите и исправите ручно.\n"
 
-#: libgeda/src/object/o_pin_basic.c:168
+#: libgeda/src/object/o_pin_basic.c:167
 #, c-format
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr "Пронашао сам неисправан „који крај“ на ножици (враћам на нулу): %d\n"
 
-#: libgeda/src/object/o_set.c:78
+#: libgeda/src/object/o_set.c:77
 #, fuzzy, c-format
 msgid "Invalid space specified, setting to default=%d\n"
 msgstr "Наведен је неисправан простор, подешавам на 100\n"
 
-#: libgeda/src/object/o_set.c:87
+#: libgeda/src/object/o_set.c:86
 #, fuzzy, c-format
 msgid "Invalid length specified, setting to default=%d\n"
 msgstr "Наведена је неисправна дужина, подешавам на 100\n"
 
-#: libgeda/src/object/o_set.c:92
+#: libgeda/src/object/o_set.c:91
 #, fuzzy, c-format
 msgid "Invalid space specified, setting to  default=%d\n"
 msgstr "Наведен је неисправан простор, подешавам на 100\n"
 
-#: libgeda/src/object/o_text_basic.c:299 libgeda/src/object/o_text_basic.c:310
-#: libgeda/src/object/o_text_basic.c:320
+#: libgeda/src/object/o_text_basic.c:290 libgeda/src/object/o_text_basic.c:301
+#: libgeda/src/object/o_text_basic.c:311
 msgid "Failed to parse text object"
 msgstr ""
 
-#: libgeda/src/object/o_text_basic.c:327
+#: libgeda/src/object/o_text_basic.c:318
 #, c-format
 msgid "Found a zero size text string [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Пронашао сам ниску текста нулте величине ( %c %d %d %d %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_text_basic.c:345
+#: libgeda/src/object/o_text_basic.c:336
 #, c-format
 msgid "Found an unsupported text alignment [ %c %d %d %d %d %d %d %d %d ]\n"
 msgstr ""
 "Пронашао сам неподржано поравнање текста ( %c %d %d %d %d %d %d %d %d )\n"
 
-#: libgeda/src/object/o_text_basic.c:347
+#: libgeda/src/object/o_text_basic.c:338
 msgid "Setting alignment to LOWER_LEFT\n"
 msgstr "Подешавам поравнање на НИЖЕ_ЛЕВО\n"
 
-#: libgeda/src/object/o_text_basic.c:367
+#: libgeda/src/object/o_text_basic.c:358
 #, c-format
 msgid "Unexpected end-of-file after %d lines"
 msgstr ""
@@ -1232,22 +1232,22 @@ msgstr ""
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:427
+#: libgeda/src/struct/s_clib.c:418
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr "Није успела наредба библиотеке (%s): %s\n"
 
-#: libgeda/src/struct/s_clib.c:432
+#: libgeda/src/struct/s_clib.c:424
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr "Није успела наредба библиотеке (%s): Неухваћени сигнал „%i“.\n"
 
-#: libgeda/src/struct/s_clib.c:436
+#: libgeda/src/struct/s_clib.c:428
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr "Није успела наредба библиотеке (%s)\n"
 
-#: libgeda/src/struct/s_clib.c:437
+#: libgeda/src/struct/s_clib.c:429
 #, c-format
 msgid ""
 "Error output was:\n"
@@ -1256,37 +1256,37 @@ msgstr ""
 "Излаз грешке беше:\n"
 "%s\n"
 
-#: libgeda/src/struct/s_clib.c:525
+#: libgeda/src/struct/s_clib.c:517
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr "Назив библиотеке (%s) је већ у употреби.  Користим (%s).\n"
 
-#: libgeda/src/struct/s_clib.c:654
+#: libgeda/src/struct/s_clib.c:646
 #, c-format
 msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:663
+#: libgeda/src/struct/s_clib.c:655
 #, fuzzy, c-format
 msgid "Failed to open [%s]: %s\n"
 msgstr "Нисам успео да отворим директоријум (%s): %s\n"
 
-#: libgeda/src/struct/s_clib.c:762
+#: libgeda/src/struct/s_clib.c:754
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 "Нисам успео да прегледам библиотеку (%s): Функција шеме није вратила списак\n"
 
-#: libgeda/src/struct/s_clib.c:770
+#: libgeda/src/struct/s_clib.c:762
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr "Назив симбола не-ниске за време прегледања библиотеке (%s)\n"
 
-#: libgeda/src/struct/s_clib.c:1018 libgeda/src/struct/s_clib.c:1065
+#: libgeda/src/struct/s_clib.c:1010 libgeda/src/struct/s_clib.c:1057
 msgid "Cannot add library: name not specified\n"
 msgstr "Не могу да додам библиотеку: назив није наведен\n"
 
-#: libgeda/src/struct/s_clib.c:1025
+#: libgeda/src/struct/s_clib.c:1017
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
@@ -1294,29 +1294,29 @@ msgstr ""
 "Не могу да додам библиотеку (%s): морају бити наведене наредбе и „списак“ и "
 "„добави“.\n"
 
-#: libgeda/src/struct/s_clib.c:1074
+#: libgeda/src/struct/s_clib.c:1066
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 "Не могу да додам библиотеку шеме (%s): повратни позиви морају бити "
 "затварајући\n"
 
-#: libgeda/src/struct/s_clib.c:1201
+#: libgeda/src/struct/s_clib.c:1193
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Нисам успео да учитам симбол из датотеке (%s): %s\n"
 
-#: libgeda/src/struct/s_clib.c:1260
+#: libgeda/src/struct/s_clib.c:1252
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Нисам успео да учитам податак симбола (%s) из извора (%s)\n"
 
-#: libgeda/src/struct/s_clib.c:1502
+#: libgeda/src/struct/s_clib.c:1494
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Нисам пронашао компоненту (%s) у библиотеци компоненти\n"
 
-#: libgeda/src/struct/s_clib.c:1508
+#: libgeda/src/struct/s_clib.c:1500
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Пронашао сам више од једне компоненте са називом (%s)\n"
@@ -1374,7 +1374,7 @@ msgstr ""
 msgid "component missing pinseq= attribute\n"
 msgstr ""
 
-#: libgeda/src/utility/u_color.c:196
+#: libgeda/src/utility/u_color.c:191
 msgid "Color index out of range"
 msgstr "Индекс боје је изван опсега"
 

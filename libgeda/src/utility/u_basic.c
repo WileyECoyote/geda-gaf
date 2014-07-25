@@ -26,20 +26,12 @@
  * Contributing Author: Wiley Edward Hill
  */
 
-#include <config.h>
-
-#include <stdio.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
+#include <geda_standard.h>
 #include <ctype.h>
-#include <ascii.h>
 
 #include "libgeda_priv.h"
+
+#include <geda_debug.h>
 
 /*! \brief Remove Line Feed and Carriage Return Characters from string
  *  \par Function Description

@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * gschlas - gEDA Load and Save
- * Copyright (C) 2002-2012 Ales Hvezda
- * Copyright (C) 2002-2012 gEDA Contributors (see ChangeLog for details)
+ * Copyright (C) 2002-2014 Ales Hvezda
+ * Copyright (C) 2002-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,19 +18,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <stdio.h>
 #include <geda.h>
-char *rc_filename = NULL; 
 
-int logfile_fd=-1;
-int log_destiny=CONSOLE_WINDOW;
+char *rc_filename      = '\0';
+
+int logfile_fd         = -1;
+int log_destiny        = CONSOLE_WINDOW;
 
 /* command line arguments */
 int verbose_mode=0;
-int interactive_mode=0;
-int quiet_mode=0;
-int embed_mode=0; 
-int unembed_mode=0;
+int interactive_mode   = 0;
+int quiet_mode         = 0;
+int embed_mode         = 0;
+int unembed_mode       = 0;
 
 
 

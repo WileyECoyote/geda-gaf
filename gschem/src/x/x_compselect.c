@@ -18,29 +18,14 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
-#include <ascii.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#ifdef HAVE_SYS_PARAM_H
-#include <sys/param.h>
-#endif
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+
+#include <gdk/gdkkeysyms.h>
 
 #include "gschem.h"
-#include <gdk/gdkkeysyms.h>
 
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
 #include "gschem_dialog.h"
+
 #include "geda_dialog_controls.h"       /* Macros for Dialogs */
 #include "geda_widgets.h"
 
@@ -48,6 +33,8 @@
 
 #include "x_preview.h"
 #include "x_compselect.h"
+
+#include <geda_debug.h>
 
 /*! \def COMPSELECT_FILTER_INTERVAL
  *  \brief The time interval between request and actual filtering

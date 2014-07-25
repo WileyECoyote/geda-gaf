@@ -25,27 +25,7 @@
  */
 
 #include <config.h>
-#include <missing.h>
-
-#include <errno.h>
 #include <stdio.h>
-#include <ctype.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
 
 #include "libgeda_priv.h"
 #include "libgedaguile.h"

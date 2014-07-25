@@ -19,9 +19,8 @@
  * MA 02110-1301 USA
  */
 
-#include <config.h>
-
-#include "gschem.h"
+#include <gschem.h>
+#include <geda_debug.h>
 #include <geda_label.h>
 
 /*! \brief Update status bar string

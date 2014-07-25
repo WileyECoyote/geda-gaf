@@ -18,15 +18,11 @@
  *  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-#include <config.h>
+#include <libgeda/libgeda.h>
+
 #include "version.h"
 
-#include <libguile.h>
-#include <missing.h>
-
-#include <libgeda/libgeda.h>
 #include "../include/globals.h"
-#include "../include/i_vars.h"
 #include "../include/prototype.h"
 
 SCM g_rc_gschlas_version(SCM scm_version)

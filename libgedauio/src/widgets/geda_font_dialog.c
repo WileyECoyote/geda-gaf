@@ -15,12 +15,12 @@
  * License along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifdef HAVE_CONFIG_H
 #include "config.h"
-#include <geda.h>
+#endif
 
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include <geda.h>
+#include <geda_standard.h>
 
 #include <atk/atk.h>
 #include <gtk/gtk.h>
@@ -31,9 +31,7 @@
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /**
  * \brief GedaFontDialog - A Widget for setting Font Parameters

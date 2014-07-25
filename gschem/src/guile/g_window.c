@@ -16,9 +16,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111 USA
  */
-#include <config.h>
 
-#include "gschem.h"
+#include <gschem.h>
+#include <geda_debug.h>
 
 SCM scheme_window_fluid = SCM_UNDEFINED;
 

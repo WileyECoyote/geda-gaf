@@ -23,24 +23,14 @@
  * Functions for variable setting.
  */
 
-#include <config.h>
-
-#include <stdio.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 /*------------------------------------------------------------------
  * Gattrib specific includes.  Note that include order is important.
  *------------------------------------------------------------------*/
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
+#include <gattrib.h>
 
 #include "../include/i_vars.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
 /*

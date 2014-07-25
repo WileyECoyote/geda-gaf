@@ -93,18 +93,9 @@ PRE,1,dot,B,1
  *       --help
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
+#include <geda_standard.h>
 
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <string.h>
 #include <ctype.h>
-#include <sys/time.h>
-#include <time.h>
-#include <errno.h>
 
 #ifdef HAVE_LIBDMALLOC
 #include <dmalloc.h>

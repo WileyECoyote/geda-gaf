@@ -20,16 +20,10 @@
 
 #include <config.h>
 
-#include <stdio.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include <libgeda/libgeda.h>
 
-#include "../include/papersizes.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 #define DEFAULT_HIERARCHY_NETNAME_SEPARATOR "/"
 #define DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR "/"

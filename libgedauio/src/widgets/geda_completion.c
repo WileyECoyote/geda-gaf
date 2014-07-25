@@ -21,10 +21,10 @@
  * Modified by the GLib Team and others 1997-2000.  See the AUTHORS
  * file for a list of people on the GLib Team.  See the ChangeLog
  * files for a list of changes.  These files are distributed with
- * GLib at ftp://ftp.gtk.org/pub/gtk/. 
+ * GLib at ftp://ftp.gtk.org/pub/gtk/.
  */
 
-/* 
+/*
  * MT safe
  */
 
@@ -123,7 +123,7 @@ static void completion_check_cache (GedaCompletion* cmp,
  *
  * Returns: the new #GedaCompletion.
  */
-GedaCompletion* 
+GedaCompletion*
 geda_completion_new (GedaCompletionFunc func)
 {
   GedaCompletion* gcomp;
@@ -146,7 +146,7 @@ geda_completion_new (GedaCompletionFunc func)
  * \param [in] cmp:   A #GedaCompletion object.
  * \param [in] items: List of items to add.
  */
-void 
+void
 geda_completion_add_items (GedaCompletion* cmp, GList* items)
 {
   GList* it;
@@ -185,7 +185,7 @@ geda_completion_add_items (GedaCompletion* cmp, GList* items)
  * \param [in] items: List of items to remove.
  *
  */
-void 
+void
 geda_completion_remove_items (GedaCompletion* cmp, GList* items)
 {
   GList* it;
@@ -216,7 +216,7 @@ geda_completion_remove_items (GedaCompletion* cmp, GList* items)
  *
  * \param [in] cmp A #GedaCompletion object.
  */
-void 
+void
 geda_completion_clear_items (GedaCompletion* cmp)
 {
   g_return_if_fail (cmp != NULL);
@@ -233,7 +233,7 @@ static void
 completion_check_cache (GedaCompletion* cmp, char** new_prefix)
 {
   register GList* list;
-  register gsize len;  
+  register gsize len;
   register gsize i;
   register gsize plen;
   char    *postfix;
@@ -363,7 +363,7 @@ geda_completion_complete (GedaCompletion *cmp,
     {
       plen = strlen (cmp->prefix);
       if (plen <= len && ! cmp->strncmp_func (prefix, cmp->prefix, plen))
-	{ 
+	{
 	  /* use the cache */
 	  list = cmp->cache;
 	  while (list)
@@ -417,7 +417,7 @@ geda_completion_complete (GedaCompletion *cmp,
  *
  * \param [in] cmp A #GedaCompletion object.
  */
-void 
+void
 geda_completion_free (GedaCompletion* cmp)
 {
   g_return_if_fail (cmp != NULL);
@@ -497,4 +497,4 @@ main (int   argc,
   return 0;
 }
 #endif
-/*! @} end group GedaCompletion */
+/** @} end group GedaCompletion */

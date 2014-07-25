@@ -27,38 +27,12 @@
  * Functions used to display dialog boxes.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
-
+#include <gattrib.h>
 #include "version.h"
-
-/*------------------------------------------------------------------
- * Includes required to run graphical widgets.
- *------------------------------------------------------------------*/
-#include <stdio.h>
-#include <stdlib.h>
-#include <gtk/gtk.h>
-#include <gdk/gdk.h>
-#include <gdk/gdkkeysyms.h>
-
-#include <glib.h>
-#include <glib-object.h>
-
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
 #include "geda_dialog_controls.h"
 #include "geda_widgets.h"
-
 #include "gattrib_dialog.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /***************** Start of generic message dialog box *******************/
 

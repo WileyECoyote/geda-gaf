@@ -18,27 +18,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
+#include <gschem.h>
+#include <geda_stat.h>
+
 #include <ctype.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
 #include <libgen.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
 #include <sys/types.h>
-#include <unistd.h>
 
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /* break with the tradition here and input a list */
 /*! \todo probably should go back and do the same for o_copy o_move

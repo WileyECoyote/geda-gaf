@@ -29,19 +29,8 @@
  * multi select case
  */
 
-#include <config.h>
-
-#include <math.h>
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gschem.h>
+#include <geda_debug.h>
 
 typedef enum { DESELECT_HOOK, SELECT_HOOK} HOOKS;
 

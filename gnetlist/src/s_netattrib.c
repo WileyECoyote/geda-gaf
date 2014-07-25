@@ -20,15 +20,13 @@
  */
 
 #include <config.h>
-
-#include <ctype.h>
-
 #include <gettext.h>
 
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 /* Used by the connected string functions */
 #define PIN_NET_PREFIX "__netattrib_power_pin "

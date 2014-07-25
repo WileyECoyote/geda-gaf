@@ -22,31 +22,8 @@
  * Functions to register Scheme functions
  */
 
-#include <config.h>
-
-#include <stdio.h>
-
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_ASSERT_H
-#include <assert.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-/* GtkWidget *w_main; */
-
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /* ---------------------------------------------------------------------- */
 /*! \brief Register Scheme functions

@@ -33,19 +33,8 @@
  *       the list is significant at all. GDE
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#include <math.h>
-
-#include "gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
 /*! \brief Return a pointer to a new STRING_LIST

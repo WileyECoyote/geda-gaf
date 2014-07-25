@@ -60,19 +60,10 @@
  *  collected from the font character objects.
  */
 
-#include <config.h>
-#include <missing.h>
+#include <geda_standard.h>
 
-#include <stdio.h>
-#include <ctype.h>
-#include <math.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
+#include <ctype.h>         /* isdigit */
+#include <math.h>          /* sqrt */
 
 #include "libgeda_priv.h"
 

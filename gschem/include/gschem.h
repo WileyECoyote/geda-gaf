@@ -1,3 +1,7 @@
+#  ifdef HAVE_CONFIG_H
+#    include "config.h"
+#  endif
+
 /* System headers which gschem headers rely on */
 #include <glib.h>
 #include <gtk/gtk.h>

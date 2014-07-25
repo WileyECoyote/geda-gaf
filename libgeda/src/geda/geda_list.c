@@ -36,7 +36,7 @@ enum {
   LAST_SIGNAL
 };
 
-static guint geda_list_signals[ LAST_SIGNAL ] = { 0 };
+static unsigned int geda_list_signals[ LAST_SIGNAL ] = { 0 };
 static GObjectClass *geda_list_parent_class = NULL;
 
 

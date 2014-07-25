@@ -17,7 +17,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
-#include <config.h>
+
+#include "gschem.h"
 
 #ifdef OS_WIN32
 # define STRICT
@@ -25,15 +26,7 @@
 # undef STRICT
 #endif
 
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
-#endif
+#include <geda_debug.h>
 
 #if defined (OS_WIN32)
 

@@ -19,28 +19,9 @@
  * MA 02110-1301 USA
  */
 #include <config.h>
-#include <missing.h>
-
 #include <stdio.h>
 
-#ifdef HAVE_SYS_STAT_H
-# include <sys/stat.h>
-#endif
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include "libgeda_priv.h"
-#include "libgedaguile.h"
 
 static void process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err);
 

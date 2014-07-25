@@ -27,8 +27,6 @@
 #include <config.h>
 #include <missing.h>
 
-#include <ctype.h>
-
 #include <gettext.h>
 
 #include <libgeda/libgeda.h>
@@ -36,9 +34,7 @@
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 typedef struct {
     void * next;

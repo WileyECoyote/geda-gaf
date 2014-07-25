@@ -22,23 +22,12 @@
 #include <missing.h>
 #include "version.h"
 
-#include <stdio.h>
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/i_vars.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 SCM g_rc_gnetlist_version(SCM scm_version)
 {

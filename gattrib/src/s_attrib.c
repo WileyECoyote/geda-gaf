@@ -25,19 +25,8 @@
  * STRING_LIST structs.
  */
 
-#include <config.h>
-
-#include <stdio.h>
-#include <math.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include "../include/gattrib.h"  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <gattrib.h>
+#include <geda_debug.h>
 
 /*------------------------------------------------------------------*/
 /*! \brief Detect "name" in STRING_LIST
@@ -74,7 +63,7 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
 
 /*------------------------------------------------------------------*/
 /*! \brief Locate the refdes associated with an object.
- * 
+ *
  * This fcn takes an object, finds its refdes and returns it.
  * \param object Pointer to the object to search for.
  * \return For normal components, it returns a pointer to a

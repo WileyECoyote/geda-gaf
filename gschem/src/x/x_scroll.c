@@ -18,11 +18,13 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+
 #include <config.h>
-#include <stdio.h>
 #include <math.h>
 
 #include "gschem.h"
+#include <geda_debug.h>
+
 /*! \brief Set Horizontal Scroll Bar Range
  *  \par Function Description
  *   This functions sets the upper and lower limits of the

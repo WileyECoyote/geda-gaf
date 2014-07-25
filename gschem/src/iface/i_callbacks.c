@@ -18,25 +18,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
-#include "gschem.h"
-#include "x_menu.h"
+#include <gschem.h>
+#include <geda_debug.h>
 
 #define I_DO_DECLARE
 #include "i_command.h"
+#include "x_menu.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*! \brief */
 #define DELIMITERS ", "

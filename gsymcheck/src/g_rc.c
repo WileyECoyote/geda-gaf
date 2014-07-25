@@ -20,13 +20,6 @@
 
 #include "version.h"
 
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
 #include <libgeda/libgeda.h>
 #include "../include/globals.h"
 #include "../include/gettext.h"

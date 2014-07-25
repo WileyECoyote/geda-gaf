@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * gattrib -- gEDA component and net attribute manipulation using spreadsheet.
- * 
+ *
  * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
@@ -16,18 +16,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
- * 
+ *
  * Date: November, 17, 2012
  * Contributing Author: Wiley Edward Hill
  */
-#include "config.h"
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
-#include <gtk/gtk.h>
-#include <gattrib.h>  /* include Gattrib specific headers  */
+#include <gattrib.h>
+#include <geda_debug.h>
 
 #define MAX_SEARCH_STRING 128
 #define SEARCH_ALL 0
@@ -42,7 +37,7 @@ static void x_find_set_search_parameters()
   cur_page = gtk_notebook_get_current_page(GTK_NOTEBOOK(notebook));
   Search.sheet = sheets[cur_page];
 
-  x_gtksheet_range_copy(&Search.sheet->range, &Search.range);  
+  x_gtksheet_range_copy(&Search.sheet->range, &Search.range);
   if (Search.sheet->state==GTK_SHEET_COLUMN_SELECTED)
      Search.mode = Search.sheet->range.col0;
   else
@@ -165,9 +160,9 @@ bool x_find_main_search(char* text, char *replacement) {
   else {
     inc = 1;
     search_func = search_range_forward;
-    first_cell = 0; 
+    first_cell = 0;
   }
-  /* How we start depends on whether we are replacing AND if 
+  /* How we start depends on whether we are replacing AND if
    * the current cell is a target, so get current cell value */
   cell_text = gtk_sheet_cell_get_text(Search.sheet, srow, scol);
   if ((replacement) && (ishit() > 0) && (!Search.ReplaceAll)) { /* if need to replace */
@@ -193,7 +188,7 @@ bool x_find_main_search(char* text, char *replacement) {
     }
     else {
       srow = (Search.mode < 0) ? abs(Search.mode) : Search.range.row0;
-      scol = (Search.mode < 0) ? Search.mode : Search.range.col0;     
+      scol = (Search.mode < 0) ? Search.mode : Search.range.col0;
     }
     search_func();                 /* and try again */
   }
@@ -205,7 +200,7 @@ void x_find_attribute_value(void)
   x_find_set_search_parameters();
   gtk_sheet_unselect_range(Search.sheet);
   Search.FindOnlyMode=TRUE;
-  x_dialog_search_replace(&Search); 
+  x_dialog_search_replace(&Search);
 }
 void x_find_replace_attrib_value()
 {

@@ -19,21 +19,11 @@
  */
 
 #include <config.h>
-
-#include <stdio.h>
-#include <ctype.h>
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-
 #include <libgeda/libgeda.h>
 
 #include "../include/globals.h"
 #include "../include/prototype.h"
+#include <geda_debug.h>
 
 /* hack rename this to be s_return_tail */
 /* update object_tail or any list of that matter */

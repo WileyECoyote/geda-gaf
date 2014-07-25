@@ -19,9 +19,6 @@
  */
 
 #include <config.h>
-
-#include <math.h>
-
 #include <gettext.h>
 
 #include <libgeda/libgeda.h>
@@ -29,9 +26,7 @@
 #include "../include/globals.h"
 #include "../include/prototype.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 void
 s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,

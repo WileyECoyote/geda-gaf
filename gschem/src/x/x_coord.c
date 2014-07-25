@@ -20,20 +20,15 @@
  * MA 02110-1301 USA
  */
 
-#include <config.h>
-
-#include <ascii.h>
 #include <ctype.h>
 
 #include "gschem.h"
+#include "x_dialog.h"
+#include "x_dnd.h"
 
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
-#include "x_dialog.h"
-
-#include "x_dnd.h"
-
-#define DEBUG_DND_EVENTS 0
+#include <geda_debug.h>
 
 /** \defgroup Coordinates-Dialog Coordinates Dialog
  *  @{

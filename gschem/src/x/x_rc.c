@@ -17,12 +17,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
+
 #include <config.h>
 #include "gschem.h"
 
-#ifdef HAVE_LOCALE_H
-#include <locale.h>
-#endif
+#include <geda_debug.h>
 
 /*! \brief This Function is used to Recover from Unbound Variables.
  *  \par Function Description

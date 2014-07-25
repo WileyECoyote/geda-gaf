@@ -19,13 +19,7 @@
  *  MA 02110-1301 USA
  */
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
-#ifdef HAVE_UNISTD_H
-#include <unistd.h>
-#endif
-
+#include <config.h>
 #include <libgeda/libgeda.h>
 
 #include "../include/struct.h"

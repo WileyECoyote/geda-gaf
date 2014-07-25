@@ -17,20 +17,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
-#include "config.h"
 
-#ifdef HAVE_STRING_H
-#include <string.h>
-#endif
+#include <gattrib.h>
 
 #include <gtk/gtk.h>
 
 #include <geda_toolbars.h>
-#include <gattrib.h>  /* include Gattrib specific headers  */
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 static ToolbarStringData ToolbarStrings[] = {
    /* Standard Toolbar*/

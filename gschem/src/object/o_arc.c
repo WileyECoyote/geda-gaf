@@ -18,15 +18,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor,
  * Boston, MA 02110-1301 USA
  */
-#include <config.h>
-#include <stdio.h>
+
+#include <gschem.h>
 #include <math.h>
-
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*! \todo Finish function documentation!!!
  *  \brief

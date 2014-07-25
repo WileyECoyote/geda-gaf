@@ -17,16 +17,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
+#include <gschem.h>
 #include <math.h>
-
-#include "gschem.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 #define GET_BOX_WIDTH(w)  abs((w)->second_wx - (w)->first_wx)
 #define GET_BOX_HEIGHT(w) abs((w)->second_wy - (w)->first_wy)

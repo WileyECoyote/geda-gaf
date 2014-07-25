@@ -18,12 +18,8 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA
  */
-#include <stdio.h>
 
-/*
 #include <config.h>
-
-*/
 #include <libgeda/libgeda.h>
 #include "globals.h"
 

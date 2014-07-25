@@ -18,18 +18,12 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-#include <config.h>
 
-#include <stdio.h>
-#include <math.h>
-#include <cairo.h>
-
-#include "gschem.h"
+#include <gschem.h>
+#include <geda_debug.h>
 
 #define NUM_BEZIER_SEGMENTS 100
-
 #define NUM_BEZIER_SEGMENTS 100
-
 
 typedef void (*FILL_FUNC) (GschemToplevel *w_current,
                            COLOR *color, Path *path,

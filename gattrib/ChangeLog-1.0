@@ -1,11 +1,15 @@
+2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/*/*.c: Redo inclusion of header files
+
 2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/gattrib_dialog.c: Replace g_mkdir with f_create_path in function
-          setup_keyfile.
+     * src/gattrib_dialog.c: Replace g_mkdir with f_create_path in function
+       setup_keyfile.
 
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c:replace g_malloc with  GEDA_MEM_ALLOC
+     * src/*/*.c:replace g_malloc with  GEDA_MEM_ALLOC
 
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
