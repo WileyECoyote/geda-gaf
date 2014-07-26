@@ -41,8 +41,12 @@
 
 typedef enum { FALSE, TRUE } Boolean;
 
+#ifndef min
 #define min(m,n) ((m) < (n) ? (m) : (n))
+#endif
+#ifndef max
 #define max(m,n) ((m) > (n) ? (m) : (n))
+#endif
 
 /* Some systems don't define 'socklen_t' */
 
