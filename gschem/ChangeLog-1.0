@@ -1,5 +1,10 @@
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
+        * include/globals.h, src/iface/i_basic.c, src/x/x_toolbars.c: fixed
+          unintentional camel case for EID_SENITIVITY_MODE enumerators.
+
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
         * include/gschem_idefines.h: Change DEFAULT_TEXT_MARKER_SIZE
           from 20 to 10, at least for now.
 

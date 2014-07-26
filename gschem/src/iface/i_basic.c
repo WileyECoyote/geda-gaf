@@ -345,7 +345,7 @@ void i_update_sensitivities(GschemToplevel *w_current)
     }
 
     if(have_text_selected) {
-        x_toolbars_set_sensitivities(w_current, TEXT_ObjectS, TRUE);
+        x_toolbars_set_sensitivities(w_current, TEXT_OBJECTS, TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/Show _Value", TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/Show _Name", TRUE);
         x_menus_sensitivity(w_current, "A_ttributes/Show _Both", TRUE);
@@ -471,10 +471,10 @@ void i_update_sensitivities(GschemToplevel *w_current)
   x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[5] != NULL));
 
   /* Update sensitivities on the Toolbars */
-  x_toolbars_set_sensitivities (w_current, SOME_ObjectS,    anything_is_selected);
-  x_toolbars_set_sensitivities (w_current, COMPLEX_ObjectS, is_complex_selected);
-  x_toolbars_set_sensitivities (w_current, HAVE_PageS,      have_mutil_pages);
-  x_toolbars_set_sensitivities (w_current, TEXT_ObjectS,    have_text_selected);
+  x_toolbars_set_sensitivities (w_current, SOME_OBJECTS,    anything_is_selected);
+  x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECTS, is_complex_selected);
+  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,      have_mutil_pages);
+  x_toolbars_set_sensitivities (w_current, TEXT_OBJECTS,    have_text_selected);
 
 }
 

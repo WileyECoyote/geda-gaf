@@ -96,8 +96,8 @@ typedef enum  { Image_Display, Image_All,} ImageExtent;
  *  be passed to x_toolbars_set_sensitivities to enable or disable the
  *  items.
  */
-typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PageS, COMPLEX_ObjectS,
-               SOME_ObjectS, TEXT_ObjectS
+typedef enum { CAN_PASTE, CAN_UNDO, CAN_REDO, HAVE_PAGES, COMPLEX_OBJECTS,
+               SOME_OBJECTS, TEXT_OBJECTS
 } EID_SENITIVITY_MODE;
 
 /*! \brief Enumerated Action Origin - EID_ACTION_ORIGIN
