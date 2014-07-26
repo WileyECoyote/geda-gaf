@@ -161,26 +161,18 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
   if (object->visibility == VISIBLE) {
-    /* only erase if we are not showing hidden text */
-    if (!Current_Page->show_hidden_text) {
-      o_invalidate (w_current, object);
-    }
+
+    /* Must hide before changing or libgedacairo will not redraw */
+    o_invalidate (w_current, object);
 
     o_set_visibility (object, INVISIBLE);
 
     if (Current_Page->show_hidden_text) {
-      /* draw text so that little I is drawn */
       o_invalidate (w_current, object);
     }
 
   }
   else {
-
-    /* if we are in the special show hidden mode, then erase text first */
-    /* to get rid of the little I */
-    if (Current_Page->show_hidden_text) {
-      o_invalidate (w_current, object);
-    }
 
     o_set_visibility (object, VISIBLE);
 

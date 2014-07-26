@@ -1,5 +1,10 @@
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/object/o_attrib.c: Remove conditional in visible clause
+          in function o_attrib_toggle_visibility
+
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/object/o_text.c: Pass pointers to integer instead of pointers
           to double, change fmin/fmax to min, max in o_text_get_rendered_bounds
           function.
