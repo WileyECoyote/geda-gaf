@@ -301,13 +301,13 @@ export_text_rendered_bounds (void *user_data, Object *object,
                              int *left, int *top, int *right, int *bottom)
 {
   int result;
-  double t, l, r, b;
+  int t, l, r, b;
   EdaRenderer *renderer = EDA_RENDERER (user_data);
-  result = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
-  *left = lrint (fmin (l,r));
-  *top = lrint (fmin (t, b));
-  *right = lrint (fmax (l, r));
-  *bottom = lrint (fmax (t, b));
+  result  = eda_renderer_get_user_bounds (renderer, object, &l, &t, &r, &b);
+ *left   = lrint (min (l,r));
+ *top    = lrint (min (t, b));
+ *right  = lrint (max (l, r));
+ *bottom = lrint (max (t, b));
   return result;
 }
 

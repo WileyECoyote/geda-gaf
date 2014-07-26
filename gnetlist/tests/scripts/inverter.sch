@@ -1,4 +1,4 @@
-v 20130414 2
+v 20140720 2
 C 0 0 0 0 0 title-B.sym
 C 12600 5800 1 0 0 transformer-3.sym
 {
@@ -12,7 +12,7 @@ C 925 10050 1 0 0 12V-plus-1.sym
 C 14200 4100 1 0 0 receptacle-110V-15A-1.sym
 {
 T 14350 6400 5 10 0 0 0 0 1
-symversion=1.0
+symversion=1.1
 T 15600 5200 5 10 0 0 0 0 1
 device=darlington, NPN
 T 15600 4800 5 10 0 0 0 0 1
@@ -217,7 +217,7 @@ N 7400 7375 7500 7375 4
 C 14200 2500 1 0 0 receptacle-110V-15A-1.sym
 {
 T 14350 4800 5 10 0 0 0 0 1
-symversion=1.0
+symversion=1.1
 T 15600 3600 5 10 0 0 0 0 1
 device=darlington, NPN
 T 15600 3200 5 10 0 0 0 0 1

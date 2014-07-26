@@ -1050,7 +1050,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
                            "cairo-context", new_w_current->cr,
                            "pango-context", context,
                            "color-map",     color_map,
-                           "render-flags", TRUE ? EDA_RENDERER_FLAG_HINTING : 0,
+                           "render-flags",  EDA_RENDERER_FLAG_HINTING,
                            NULL);
 
   new_w_current->renderer = renderer;

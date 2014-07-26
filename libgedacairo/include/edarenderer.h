@@ -53,8 +53,8 @@ struct _EdaRendererClass
   void (*draw_grips)   (EdaRenderer *renderer, Object *object);
   void (*draw_cues)    (EdaRenderer *renderer, Object *object);
   int  (*user_bounds)  (EdaRenderer *renderer, Object *object,
-                        double *left,  double *top,
-                        double *right, double *bottom);
+                        int *left,  int *top,
+                        int *right, int *bottom);
 };
 
 struct _EdaRenderer
@@ -116,12 +116,12 @@ void eda_renderer_draw_grips_list (EdaRenderer *renderer, GList *objects);
 void eda_renderer_draw_cues       (EdaRenderer *renderer, Object *object);
 
 int  eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
-                                   double *left, double *top,
-                                   double *right, double *bottom);
+                                   int *left,   int *top,
+                                   int *right,  int *bottom);
 
 int  eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
-                                        double *left, double *top,
-                                        double *right, double *bottom);
+                                        int *left,   int *top,
+                                        int *right,  int *bottom);
 
 GArray  *eda_renderer_get_color_map (EdaRenderer *renderer);
 void     eda_renderer_set_color_map (EdaRenderer *renderer, GArray *map);

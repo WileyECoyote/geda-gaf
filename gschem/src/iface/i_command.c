@@ -32,7 +32,7 @@
 
 #include <geda_debug.h>
 
-//#define PERFORMANCE
+#define PERFORMANCE
 #ifdef PERFORMANCE
 # include <sys/time.h>
 # include <sys/resource.h>
@@ -533,7 +533,7 @@ COMMAND (do_debug)
     average = total / 10;
     count   = g_list_length((GList*)s_page_get_objects(Current_Page));
     per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
-    results = g_strdup_printf("Average per 10 redraws=%.4f seconds, or %.5f ms per object", average, per_obj);
+    results = g_strdup_printf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
     printf ("file=%s, has %d objects: %s\n", Current_Page->filename, count, results);
     printf ("Test complete, resumming normal mode\n");
     g_free(results);

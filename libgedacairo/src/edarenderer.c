@@ -98,6 +98,8 @@ struct _EdaRendererPrivate
 
   GArray      *color_map;
 
+  /* Cache of font metrics for different font sizes. */
+  //GHashTable *metrics_cache;
 };
 
 static inline bool EDA_RENDERER_CHECK_FLAG (EdaRenderer *r, int f)
@@ -168,8 +170,8 @@ static void eda_renderer_default_draw_cues  (EdaRenderer *renderer, Object *obje
 static void eda_renderer_draw_cues_list     (EdaRenderer *renderer, GList *objects);
 
 static int eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *object,
-                                                 double *left, double *top,
-                                                 double *right, double *bottom);
+                                                 int *left,   int *top,
+                                                 int *right,  int *bottom);
 
 G_DEFINE_TYPE (EdaRenderer, eda_renderer, G_TYPE_OBJECT);
 
@@ -333,7 +335,8 @@ eda_renderer_class_init (EdaRendererClass *class)
                           _("Text Marker size"),
                           _("Size to draw text markers."),
                              EDAR_MIN_TEXT_MARKER_SIZE,
-                             EDAR_MAX_TEXT_MARKER_SIZE, 15,
+                             EDAR_MAX_TEXT_MARKER_SIZE,
+                             EDAR_DEFAULT_TEXT_MARKER_SIZE,
                              param_flags);
 
   g_object_class_install_property (gobject_class, PROP_TEXT_MARKER_SIZE, params);
@@ -362,8 +365,10 @@ eda_renderer_init (EdaRenderer *renderer)
   gdk_color_parse(EDAR_DEFAULT_ENDPOINT_COLOR,     &EDAR_NET_ENDPOINT_COLOR);
   gdk_color_parse(EDAR_DEFAULT_TEXT_MARKER_COLOR,  &EDAR_TEXT_MARKER_COLOR);
 
-  /* Font metrics are expensive to compute, so we need to cache them. */
-
+  /* Font metrics are expensive to compute, so we need to cache them.
+  renderer->priv->metrics_cache =
+    g_hash_table_new_full (g_int_hash, g_int_equal, g_free,
+                           (GDestroyNotify) pango_font_metrics_unref);  */
 }
 
 static GObject *
@@ -408,7 +413,10 @@ static void
 eda_renderer_finalize (GObject *object)
 {
   EdaRenderer *renderer = (EdaRenderer *) object;
-
+/*
+  g_hash_table_destroy (renderer->priv->metrics_cache);
+  renderer->priv->metrics_cache = NULL;
+*/
   cairo_destroy (renderer->priv->cr);
   renderer->priv->cr = NULL;
 
@@ -442,6 +450,8 @@ eda_renderer_set_property (GObject *object, guint property_id,
     if (renderer->priv->font_name != NULL)
       GEDA_FREE (renderer->priv->font_name);
     renderer->priv->font_name = g_value_dup_string (value);
+    /* Clear font metrics cache */
+    //g_hash_table_remove_all (renderer->priv->metrics_cache);
     break;
 
   case PROP_COLOR_MAP:
@@ -683,7 +693,7 @@ eda_renderer_set_color (EdaRenderer *renderer, int color)
     color = renderer->priv->override_color;
   }
   if (color == -1) {
-    fprintf(stderr,"eda_renderer_set_color, calling eda_cairo_set_source_color, with color = %d\n", color);
+    BUG_IMSG("color = %d\n", color);
   }
   eda_cairo_set_source_color (renderer->priv->cr, color,
                               renderer->priv->color_map);
@@ -982,8 +992,8 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
   int descent;
 
   / Lookup the font size in the metrics cache, and get the metrics
-  / from there if available. Otherwise, calculate the metrics and
-  / cache them.
+   / from there if available. Otherwise, calculate the metrics and
+   / cache them.
   metrics = g_hash_table_lookup (renderer->priv->metrics_cache, &size);
   if (metrics == NULL) {
     metrics = pango_context_get_metrics (renderer->priv->pc, desc, NULL);
@@ -994,7 +1004,7 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
 
   return pango_font_metrics_get_descent (metrics);
   descent = pango_font_metrics_get_descent (metrics);
-  //pango_font_metrics_unref(metrics);
+
   return descent ;
 }
 */
@@ -1015,6 +1025,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
   options = cairo_font_options_create ();
 
   cairo_font_options_set_hint_metrics (options, CAIRO_HINT_METRICS_OFF);
+
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
     cairo_font_options_set_hint_style (options, CAIRO_HINT_STYLE_MEDIUM);
   }
@@ -1599,8 +1610,8 @@ eda_renderer_draw_cues (EdaRenderer *renderer, Object *object)
 
 int
 eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
-                                      double *left, double *top,
-                                      double *right, double *bottom)
+                              int *left,     int *top,
+                              int *right,    int *bottom)
 {
   g_return_val_if_fail (EDA_IS_RENDERER (renderer), FALSE);
 
@@ -1611,8 +1622,8 @@ eda_renderer_get_user_bounds (EdaRenderer *renderer, Object *object,
 
 int
 eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *object,
-                                      double *left, double *top,
-                                      double *right, double *bottom)
+                                      int *left,   int *top,
+                                      int *right,  int *bottom)
 {
   g_return_val_if_fail ((object != NULL), FALSE);
   g_return_val_if_fail ((renderer->priv->cr != NULL), FALSE);
@@ -1635,17 +1646,17 @@ eda_renderer_default_get_user_bounds (EdaRenderer *renderer, Object *object,
     /* No rendered bounds available for most Object types. */
     return FALSE;
   default:
-    fprintf(stderr, "object->type=%c\n", object->type);
+    BUG_IMSG("object->type=%c\n", object->type);
     g_return_val_if_reached (FALSE);
   }
 }
 
 int
 eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
-                                   double *left, double *top,
-                                   double *right, double *bottom)
+                                   int         *left,     int *top,
+                                   int         *right,    int *bottom)
 {
-  PangoRectangle inked_rect, logical_rect;
+  PangoRectangle inked_rect; /* logical_rect; */
   int ret_val = FALSE;
   int visible;
 
@@ -1663,22 +1674,31 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
       if (eda_renderer_prepare_text (renderer, object)) {
 
         if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
-          /* Figure out the bounds, send them back.  Note that Pango thinks in
-           * device coordinates, but we need world coordinates. */
-          pango_layout_get_pixel_extents (renderer->priv->pl,
-                                          &inked_rect, &logical_rect);
-          *left   = (double) inked_rect.x;
-          *top    = (double) inked_rect.y;
-          *right  = (double) inked_rect.x + inked_rect.width;
-          *bottom = (double) inked_rect.y + inked_rect.height;
 
-          cairo_user_to_device (renderer->priv->cr, left, top);
-          cairo_user_to_device (renderer->priv->cr, right, bottom);
+          /* Figure out the bounds, send them back. Note that Pango thinks
+           * in device coordinates, but we need world coordinates. */
+          pango_layout_get_pixel_extents (renderer->priv->pl, &inked_rect, NULL);
+
+
+          double dleft   = (double) inked_rect.x;
+          double dtop    = (double) inked_rect.y;
+          double dright  = (double) inked_rect.x + inked_rect.width;
+          double dbottom = (double) inked_rect.y + inked_rect.height;
+
+          /* Does it does make sense to describe bounds in terms of 14
+           * decimal places? Or even 2 decimal place? */
+          cairo_user_to_device (renderer->priv->cr, &dleft,  &dtop);
+          cairo_user_to_device (renderer->priv->cr, &dright, &dbottom);
 
           cairo_restore (renderer->priv->cr);
 
-          cairo_device_to_user (renderer->priv->cr, left, top);
-          cairo_device_to_user (renderer->priv->cr, right, bottom);
+          cairo_device_to_user (renderer->priv->cr, &dleft,  &dtop);
+          cairo_device_to_user (renderer->priv->cr, &dright, &dbottom);
+
+          *left   = lrint(dleft);
+          *top    = lrint(dtop);
+          *right  = lrint(dright);
+          *bottom = lrint(dbottom);
 
           ret_val = TRUE;
         }
@@ -1688,6 +1708,11 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
       }
     }
   }
+
+#ifdef DEBUG_RENDER_TEXT
+  else
+    fprintf(stderr, "skippping %s\n", object->text->disp_string);
+#endif
 
   return ret_val;
 }

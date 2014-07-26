@@ -29,18 +29,18 @@
  *
  */
 int o_text_get_rendered_bounds (void *user_data, Object *o_current,
-                                int *min_x, int *min_y,
-                                int *max_x, int *max_y)
+                                int  *min_x, int *min_y,
+                                int  *max_x, int *max_y)
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
   EdaRenderer    *renderer;
   cairo_t *cr;
   cairo_matrix_t render_mtx;
   int result, render_flags = 0;
-  double t= 0;
-  double l = 0;
-  double r = 0;
-  double b = 0;
+  int t = 0;
+  int l = 0;
+  int r = 0;
+  int b = 0;
 
   g_return_val_if_fail ((w_current != NULL), FALSE);
 
@@ -48,11 +48,14 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
 
   /* Set up renderer based on configuration in w_current. Note that we
    * *don't* enable hinting, because if its enabled the calculated
-   * bounds are zoom-level-dependent. */
-  //if (Current_Page->show_hidden_text)
-  //  render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+   * bounds are zoom-level-dependent.
+  if (o_current->visibility != INVISIBLE) {
+    render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+  }
+ */
 
   renderer = g_object_ref (w_current->renderer);
+
   g_object_set (G_OBJECT (renderer),
                 "cairo-context", cr,
                 "render-flags", render_flags,
@@ -63,17 +66,17 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   cairo_set_matrix (cr, &render_mtx);
 
   /* Use the renderer to calculate text bounds */
-  result = eda_renderer_get_text_user_bounds (renderer, o_current, &l, &t, &r, &b);
+  result = eda_renderer_get_user_bounds (renderer, o_current, &l, &t, &r, &b);
 
   /* Clean up */
-  GEDA_UNREF (renderer);
+  eda_renderer_destroy (renderer);
   cairo_destroy (cr);
 
   /* Round bounds to nearest integer */
-  *min_x = lrint (fmin (l, r));
-  *min_y = lrint (fmin (t, b));
-  *max_x = lrint (fmax (l, r));
-  *max_y = lrint (fmax (t, b));
+  *min_x = min (l, r);
+  *min_y = min (t, b);
+  *max_x = max (l, r);
+  *max_y = max (t, b);
 
   return result;
 }

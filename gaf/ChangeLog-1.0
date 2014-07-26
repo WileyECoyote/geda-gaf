@@ -1,3 +1,9 @@
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/export.c: Pass pointers to integer instead of pointers to
+          double, change fmin/fmax to min, max in o_text_get_rendered_bounds
+          function.
+
 2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Add AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)

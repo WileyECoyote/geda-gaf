@@ -1,3 +1,9 @@
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_text.c: Pass pointers to integer instead of pointers
+          to double, change fmin/fmax to min, max in o_text_get_rendered_bounds
+          function.
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Redo inclusion of header files
