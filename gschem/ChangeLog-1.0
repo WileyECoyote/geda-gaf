@@ -1,5 +1,10 @@
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
+        * include/gschem_idefines.h: Change DEFAULT_TEXT_MARKER_SIZE
+          from 20 to 10, at least for now.
+
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/object/o_attrib.c: Remove conditional in visible clause
           in function o_attrib_toggle_visibility
 

@@ -1657,6 +1657,7 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
                                    int         *right,    int *bottom)
 {
   PangoRectangle inked_rect; /* logical_rect; */
+  int adjustment;
   int ret_val = FALSE;
   int visible;
 
@@ -1699,6 +1700,12 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
           *top    = lrint(dtop);
           *right  = lrint(dright);
           *bottom = lrint(dbottom);
+
+          /* If not normal visible text, account for the little "I" */
+          if (object->visibility != 1) {
+             adjustment = 2 * EDAR_TEXT_MARKER_SIZE + MIN_LINE_WIDTH_THRESHOLD;
+            *bottom = *bottom - adjustment;
+          }
 
           ret_val = TRUE;
         }

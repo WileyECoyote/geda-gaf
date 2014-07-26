@@ -1,5 +1,11 @@
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/edarenderer.c: Add adjustment factor in eda_renderer_get_text_
+          user_bounds to account for the little "I" with larger text marker
+          size (>12).
+
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/edarenderer.c: Pass pointers to integer instead of pointers
           to double, add lrint in eda_renderer_get_text_user_bounds
           function. Change fprintf to BUG_MSG macro.
