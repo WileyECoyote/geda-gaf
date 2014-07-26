@@ -117,12 +117,13 @@ void x_console_destroy_command_buffer(void * user_data) {
       v_log_message("destroying history\n");
       g_list_foreach(command_buffer, (GFunc)g_free, NULL);
       g_list_free (command_buffer);
-      command_buffer=NULL; /* This is not optional */
+      command_buffer = NULL; /* This is not optional */
   }
 }
+
 void x_console_init_commands(GschemToplevel *w_current, int mode) {
 
-  command_buffer=NULL;
+  command_buffer = NULL;
 
 #ifdef HAVE_GTHREAD
 
@@ -235,7 +236,7 @@ void x_console_close ()
       console_dialog = NULL;
     }
     else
-      u_log_message("Internal Error: <x_console_close> object is not a console\n");
+      BUG_MSG("object is not a console\n");
   }
 }
 
@@ -254,7 +255,7 @@ static void x_console_callback_response (GtkDialog *dialog, int arg1,
     x_console_close ();
     break;
     default:
-      g_critical("Internal Error: <x_console_callback_response> unhandled case\n");
+      BUG_MSG("unhandled case\n");
   }
 }
 
@@ -280,9 +281,11 @@ void x_log_message (const char *log_domain, GLogLevelFlags log_level, const char
 
   if (log_level & (G_LOG_LEVEL_CRITICAL | G_LOG_LEVEL_ERROR)) {
     style = "critical";
-  } else if (log_level & G_LOG_LEVEL_WARNING) {
+  }
+  else if (log_level & G_LOG_LEVEL_WARNING) {
     style = "warning";
-  } else {
+  }
+  else {
     style = "message";
   }
 

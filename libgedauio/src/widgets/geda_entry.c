@@ -129,7 +129,8 @@ static int strncmpi(char *str1, char *str2, int n);
 
 static GList  *history_list;
 static GList **history_list_arg;
-static bool    have_history;
+        bool   have_history;
+
 static GList  *complete_list;
 static GList **old_complete_list;
 
@@ -720,9 +721,9 @@ static void geda_entry_class_init (GedaEntryClass *class)
   widget_class->grab_focus = geda_entry_grab_focus;
   widget_class->realize    = geda_entry_realize;
 
-#ifdef DEBUG_GEDA_ENTRY
-  fprintf(stderr, "new geda_entry created: history=%d, completion=%d\n",
-          have_history, have_auto_complete );
+#if DEBUG_GEDA_ENTRY
+  fprintf(stderr, "%s created: history=%d, completion=%d\n",
+          __func__, have_history, have_auto_complete );
 #endif
 }
 
@@ -733,8 +734,10 @@ static void geda_entry_init (GedaEntry *entry)
   entry->priv->font_map = pango_cairo_font_map_get_default();
 
   g_signal_connect_after (G_OBJECT (entry), "key_press_event", G_CALLBACK (geda_entry_key_press), NULL);
+
+  entry->have_history = have_history;
+
   if(have_history) {
-    //g_signal_connect     (G_OBJECT (entry), "activate",        G_CALLBACK (geda_entry_activate), NULL);
     g_signal_connect     (G_OBJECT (entry), "process-entry",   G_CALLBACK (geda_entry_activate), NULL);
     if(history_list_arg) {
       history_list = *history_list_arg;
@@ -756,8 +759,9 @@ static void geda_entry_init (GedaEntry *entry)
     geda_completion_add_items (entry->priv->command_completion, complete_list);
     entry->auto_complete = TRUE;
   }
-  else
+  else {
     entry->auto_complete = FALSE;
+  }
 
   /* set initial flag state for popup menu*/
   set_auto_complete           = FALSE;
@@ -768,7 +772,10 @@ static void geda_entry_init (GedaEntry *entry)
   entry->priv->case_sensitive = FALSE;
 
   entry->priv->attrs          = NULL;
-
+#if DEBUG_GEDA_ENTRY
+  fprintf(stderr, "%s exit: history=%d, completion=%d\n",
+          __func__, entry->have_history, have_auto_complete );
+#endif
 }
 
 static void geda_entry_finalize (GObject *object)
@@ -782,7 +789,7 @@ static void geda_entry_finalize (GObject *object)
   }
 
   /* Save history to caller's glist*/
-  if (have_history)
+  if (entry->have_history)
     *history_list_arg  = history_list;
 
   G_OBJECT_CLASS (parent_class)->finalize (object);
@@ -817,7 +824,7 @@ geda_entry_real_activate (GedaEntry *entry)
   GtkWidget *default_widget, *focus_widget;
   GtkWidget *toplevel;
   GtkWidget *widget;
-#ifdef DEBUG_GEDA_ENTRY
+#if DEBUG_GEDA_ENTRY
   fprintf(stderr, "<geda_entry_real_activate> in over-ride: got <activate> signal\n");
 #endif
   widget = GTK_WIDGET (entry);
@@ -852,13 +859,13 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
 
   switch (event->keyval) {
     case GDK_Down:
-      if ((state == 0) && (have_history)) {
+      if ((state == 0) && (entry->have_history)) {
         geda_entry_history_down (entry);
         handled = TRUE;
       }
       break;
     case GDK_Up:
-      if ((state == 0) && (have_history)) {
+      if ((state == 0) && (entry->have_history)) {
         geda_entry_history_up (entry);
         handled = TRUE;
       }
@@ -1132,14 +1139,14 @@ popup_menu_callback (GtkMenuItem *item, void    *data)
   switch(menu_option) {
       case AUTO_COMPLETE_ON:
 
-#ifdef DEBUG_GEDA_ENTRY
+#if DEBUG_GEDA_ENTRY
         fprintf(stderr, "setting auto complete on\n");
 #endif
         set_auto_complete = TRUE;
         do_auto_complete  = TRUE;
         break;
       case AUTO_COMPLETE_OFF:
-#ifdef DEBUG_GEDA_ENTRY
+#if DEBUG_GEDA_ENTRY
         fprintf(stderr, "disabling auto complete\n");
 #endif
         set_auto_complete = TRUE;
@@ -1243,12 +1250,14 @@ void geda_entry_modify_bg (GedaEntry      *entry,
 
 GtkWidget *geda_entry_new (GList** history, GList** complete)
 {
+
   if ((int)history == -1)
     have_history = FALSE;
   else {
     history_list_arg = history;
     have_history = TRUE;
   }
+
   if((int)complete == -1)
     have_auto_complete = FALSE;
   else {

@@ -1,3 +1,7 @@
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * configure.ac: Bumped library versions.
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/common.h: new header file common to gsch2pdf, gschlas used to

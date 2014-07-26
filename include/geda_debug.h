@@ -31,6 +31,9 @@
 #define DEBUG_IMAGING    0
 #define DEBUG_TOOLBARS   0
 
+/* libgedauio*/
+#define DEBUG_GEDA_ENTRY 0
+
 #  ifdef HAVE_LIBDMALLOC
 #    include <dmalloc.h>
 #  endif

@@ -1,3 +1,8 @@
+2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/widgets/geda_entry.c: Fix history, again. Added have_history to
+          to entry struc (but kept the old history for construction purposes).
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Redo inclusion of header files
