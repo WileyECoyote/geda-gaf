@@ -25,6 +25,7 @@ bitmapdata_DATA    = close_box.png                      \
 		     geda-autonum-blue.png              \
 		     geda-autonum-green.png             \
 		     geda-autonum-red.png               \
+		     geda-bed.png                       \
 		     geda-box.png                       \
 		     geda_bulb_24x26_off.png            \
 		     geda_bulb_24x26_on.png             \
@@ -44,6 +45,7 @@ bitmapdata_DATA    = close_box.png                      \
                      geda-grid-dot.png                  \
                      geda-grid-mesh.png                 \
 		     geda-icprint.png                   \
+		     geda-inbed.png                     \
                      geda-line.png                      \
                      geda-line-type.png                 \
                      geda-lock.png                      \
