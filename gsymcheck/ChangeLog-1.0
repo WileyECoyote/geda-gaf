@@ -1,3 +1,10 @@
+2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_check.c: Eliminate local string structure and call to
+          s_check_list_has_item, call libgeda::geda_pin_lookup_etype
+          to validate pintype string. Change pintype error to warning
+          instead of error.
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Redo inclusion of header files

@@ -1238,30 +1238,39 @@ s_check_missing_attributes (const GList *obj_list, SYMCHECK *s_current)
 void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
 {
   const GList *iter;
-  int counter=0;
+  int   counter;
+  bool  done;
   char *pintype;
   char *message;
-  char *pintypes[] = {"in", "out", "io", "oc", "oe",
-  "pas", "tp", "tri", "clk", "pwr",
-  NULL};
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
+
     Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
 
-      for (counter = 0; (pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter)) != NULL; counter++)
-      {
-        message = geda_sprintf(_("Found pintype=%s attribute\n"), pintype);
-        ADD_INFO_MESSAGE(message);
+      counter = 0;
+      done    = FALSE;
+      do {
 
-        if ( ! s_check_list_has_item(pintypes, pintype)) {
-          message = geda_sprintf (_("Invalid pintype=%s attribute\n"), pintype);
-          ADD_ERROR_MESSAGE(message);
+        pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter);
+
+        if (pintype != NULL) {
+          message = geda_sprintf(_("Found pintype=%s attribute\n"), pintype);
+          ADD_INFO_MESSAGE(message);
+
+          if (geda_pin_lookup_etype(pintype) == PIN_ELECT_VOID) {
+            message = geda_sprintf (_("Unknown pintype=%s attribute\n"), pintype);
+            ADD_WARN_MESSAGE(message);
+          }
+
+          GEDA_FREE(pintype);
         }
-
-        GEDA_FREE(pintype);
-      }
+        else {
+          done = TRUE;
+        }
+        counter++;
+      } while (!done);
     }
   }
 }
