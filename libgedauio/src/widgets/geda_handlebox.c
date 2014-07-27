@@ -35,11 +35,12 @@
 #endif
 
 #include <geda.h>
-#include <geda_standard.h>
-#include "geda_handlebox.h"
 
 #include <gtk/gtk.h>
 #include <gtk/gtkwindow.h>
+
+#include <geda_standard.h>
+#include "geda_handlebox.h"
 
 #include "gettext.h"
 
@@ -391,11 +392,12 @@ static void geda_handle_box_map (GtkWidget *widget)
      !gtk_widget_get_mapped (bin->child))
     gtk_widget_map (bin->child);
 
-  if (handlebox->child_detached && !handlebox->float_window_mapped)
-    {
-      gdk_window_show (handlebox->float_window);
-      handlebox->float_window_mapped = TRUE;
-    }
+  if (handlebox->child_detached && !handlebox->float_window_mapped) {
+
+    /* This would be true only after revealing a hidden toolbar */
+    gdk_window_show (handlebox->float_window);
+    handlebox->float_window_mapped = TRUE;
+  }
 
   gdk_window_show (handlebox->bin_window);
   gdk_window_show (widget->window);
@@ -478,7 +480,11 @@ static void geda_handle_box_realize (GtkWidget *widget)
                                      &attributes, attributes_mask);
   gdk_window_set_user_data (handlebox->float_window, widget);
   gdk_window_set_decorations (handlebox->float_window, 0);
-  gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_TOOLBAR);
+  gdk_window_set_type_hint (handlebox->float_window, GDK_WINDOW_TYPE_HINT_TOOLBAR |
+                                                     GDK_WINDOW_TYPE_HINT_DOCK);
+  /* Use to work fine, then gtk erratica. Added DOCK hint above and next two lines */
+  GtkWidget *topwindow = gtk_widget_get_toplevel (widget);
+  gdk_window_set_transient_for (handlebox->float_window,GDK_WINDOW(topwindow->window));
 
   widget->style = gtk_style_attach (widget->style, widget->window);
   gtk_style_set_background (widget->style, widget->window, gtk_widget_get_state (widget));

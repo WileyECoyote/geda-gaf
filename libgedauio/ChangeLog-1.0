@@ -1,3 +1,11 @@
+2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/widgets/geda_handlebox.c: Floating tool-bars were not staying on
+        top, used to work fine, Gtk must have "fixed". Added HINT GDK_WINDOW_
+        TYPE_HINT_DOCK in function geda_handle_box_realize, also added gdk_
+        window_set_transient_for in attempt to by-pass Gtk and work with Gdk
+        directly, seems to work again.
+
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/widgets/geda_entry.c: Fix history, again. Added have_history to
