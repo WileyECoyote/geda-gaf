@@ -59,17 +59,25 @@
 static GtkIconFactory* gschem_factory;
 
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
-  "geda-arc",          "geda-arc-edit",
-  "geda-autonum-blue", "geda-autonum-green", "geda-autonum-red",  "geda-box",
-  "geda-bus",          "geda-circle",        "geda-circles",      "geda-close-all",
-  "geda-component",    "geda-copy",          "geda-display",      "geda-grid-dot",
-  "geda-grid-mesh",    "geda-line",          "geda-line-type",    "geda-lock",
-  "geda-net",          "geda-magnet",        "geda-mesh",         "geda-mirror",
-  "geda-move",         "geda-multi",         "geda-new",          "geda-open-recent",
-  "geda-path",         "geda-pin",           "geda-pin-type",     "geda-show-nets",
-  "geda-slot",         "geda-snap-off",      "geda-snap-on",      "geda-text-editor",
-  "geda-rotate",       "geda-unlock",        "geda-unselect-all", "geda-zoom-box",
-  "geda-zoom-pan",     "geda-zoom-selection",
+  "geda-arc",           "geda-arc-edit",      "geda-analysis",     "geda-autonum-blue",
+  "geda-autonum-green", "geda-autonum-red",   "geda-bed",          "geda-box",
+  "geda-bus",           "geda-circle",        "geda-circles",      "geda-close-all",
+  "geda-calculate",     "geda-component",     "geda-copy",         "geda-design",
+  "geda-design1",       "geda-design2",       "geda-design3",      "geda-design4",
+  "geda-display",       "geda-draft",         "geda-grid-dot",     "geda-grid-mesh",
+  "geda-icprint",       "geda-inbed",
+  "geda-line",          "geda-line-type",     "geda-lock",         "geda-net",
+  "geda-marker",        "geda-magnet",        "geda-mesh",         "geda-mirror",
+  "geda-molecule",      "geda-move",          "geda-multi",        "geda-nand",
+  "geda-nand3",         "geda-new",           "geda-node",         "geda-npn",
+  "geda-open-recent",   "geda-path",          "geda-pin",          "geda-pin-type",
+  "geda-plot",          "geda-probe",         "geda-probe2",       "geda-save-image",
+  "geda-schem2",        "geda-schem",         "geda-scope2",       "geda-scopehairs",
+  "geda-scope",         "geda-show-nets",     "geda-simulate",     "geda-sinx",
+  "geda-slot",          "geda-snap-off",      "geda-wave",         "geda-waves",
+  "geda-snap-on",       "geda-spectrum",      "geda-text-editor",  "geda-rotate",
+  "geda-unlock",        "geda-unselect-all",  "geda-zoom-box",     "geda-zoom-pan",
+  "geda-zoom-selection",
   NULL
 };
 

@@ -1584,7 +1584,7 @@
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "_Print...")         file-print           "gtk-print"           ,(N_ "Print the current document"))
-        (,(N_ "Write _image...")   file-write-image     "gtk-print"           ,(N_ "This is a dummy tip"))
+        (,(N_ "Write _image...")   file-write-image     "geda-save-image"     ,(N_ "This is a dummy tip"))
 
         ("SEPARATOR"               #f                   #f            #f)
         (,(N_ "Execute Script...") file-run-script      "gtk-execute"         ,(N_ "Execute a script file"))
@@ -1630,8 +1630,8 @@
 
         ("SEPARATOR"               #f                     #f)
         (,(N_ "Update Component")          edit-update     "gtk-refresh"      ,(N_ "Reload definition of selected component"))
-        (,(N_ "Embed Component/Picture")   edit-embed     #f                  ,(N_ "Embed a component or image object"))
-        (,(N_ "Unembed Component/Picture") edit-unembed    "gtk-clear"        ,(N_ "Unembed a component or image object"))
+        (,(N_ "Embed Component/Picture")   edit-embed      "geda-inbed"       ,(N_ "Embed a component or image object"))
+        (,(N_ "Unembed Component/Picture") edit-unembed    "geda-bed"         ,(N_ "Unembed a component or image object"))
       )
 )
 
@@ -1763,7 +1763,7 @@
         ("SEPARATOR"                    #f                       #f)
         (,(N_ "_Toggle Visibility")      attributes-visibility   "attribute-visibility" ,(N_ "Toggle attribute visibilty"))
         (,(N_ "_Find Specific Text...")  attributes-find-text    "gtk-find-and-replace" ,(N_ "Find an attribute"))
-        (,(N_ "_Hide Specific Text...")  attributes-hide-text    #f                     ,(N_ "Hide selected attribute"))
+        (,(N_ "_Hide Specific Text...")  attributes-hide-text    "gtk-clear"            ,(N_ "Hide selected attribute"))
         (,(N_ "_Show Specific Text...")  attributes-show-text    #f                     ,(N_ "Show a specific attribute value"))
         ("SEPARATOR"                    #f                       #f)
         (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent"           ,(N_ "Open the Attibutes Editor Dialog"))
