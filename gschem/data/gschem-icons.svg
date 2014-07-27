@@ -7714,13 +7714,13 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.2556824"
-     inkscape:cx="411.41618"
+     inkscape:cx="858.1824"
      inkscape:cy="411.9868"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1920"
-     inkscape:window-height="990"
+     inkscape:window-height="985"
      inkscape:window-x="0"
      inkscape:window-y="31"
      inkscape:window-maximized="1"
@@ -7789,7 +7789,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -10557,7 +10557,7 @@
     </g>
     <g
        id="gschem-zoom-fit-16"
-       inkscape:export-filename="gschem-zoom-fit-16.png"
+       inkscape:export-filename="../gschem-zoom-fit-16.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path
@@ -11420,7 +11420,7 @@
     <g
        transform="matrix(1.3750281,0,0,1.3749731,-236.64565,-230.36908)"
        id="gschem-zoom-fit-22"
-       inkscape:export-filename="gschem-zoom-fit-22.png"
+       inkscape:export-filename="../gschem-zoom-fit-22.png"
        inkscape:export-xdpi="90"
        inkscape:export-ydpi="90">
       <path

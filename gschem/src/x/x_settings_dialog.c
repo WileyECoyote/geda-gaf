@@ -452,7 +452,7 @@ static void enable_undo_controls( bool state ){
  */
 static void
 on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
-                         guint        page_num, gpointer    user_data)
+                         guint        page_num, void *    user_data)
 {
   bool state;
   switch ( page_num ) {
@@ -874,7 +874,7 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
   bool answer = FALSE;
 
   gboolean foreach_func (GtkTreeModel *model, GtkTreePath  *path,
-                         GtkTreeIter  *iter,  gpointer      user_data)
+                         GtkTreeIter  *iter,  void *      user_data)
   {
     char *attribute;
 
@@ -1131,7 +1131,7 @@ static GtkWidget *popup_menu; /* Seems safer to use a global for this */
  *       on the "restore default color" mini menu is selected. If
 */
 static void
-color_button_popup_menu_callback (GtkMenuItem *item, gpointer data)
+color_button_popup_menu_callback (GtkMenuItem *item, void * data)
 {
   bool restore_default_color;
   int  color_index;
@@ -1268,7 +1268,7 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
  *  \par Function Description: This callback function is used to set the
  *       sensitivity of other controls based on combo-box selections.
  */
-void combo_responder(GtkWidget *widget, gpointer data)
+void combo_responder(GtkWidget *widget, void * data)
 {
   int WhichComboBox = (int)(long*) data;
 /*
@@ -2275,7 +2275,7 @@ create_settings_dialog (GschemToplevel *w_current)
 
   gtk_widget_grab_default (CancelButt);
 
-  g_signal_connect ((gpointer) notebook, "switch-page",
+  g_signal_connect ((void *) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
   return ThisDialog;

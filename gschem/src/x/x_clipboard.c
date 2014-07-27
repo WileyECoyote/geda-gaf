@@ -38,7 +38,7 @@ struct query_usable {
  */
 static void
 clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
-                          gpointer user_data)
+                          void * user_data)
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
 
@@ -47,7 +47,7 @@ clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
 
 static void
 clip_get (GtkClipboard *cb,  GtkSelectionData *selection_data,
-          unsigned int info, gpointer user_data_or_owner)
+          unsigned int info, void * user_data_or_owner)
 {
   GschemToplevel *w_current;
   GdkAtom         type;
@@ -70,7 +70,7 @@ clip_get (GtkClipboard *cb,  GtkSelectionData *selection_data,
 }
 
 static void
-clip_clear (GtkClipboard *cb, gpointer user_data_or_owner)
+clip_clear (GtkClipboard *cb, void * user_data_or_owner)
 {
   GschemToplevel *w_current = user_data_or_owner;
 
@@ -128,7 +128,7 @@ x_clipboard_finish (GschemToplevel *w_current)
  * the TRUE / FALSE answer to whether we can paste from the clipboard.
  */
 static void
-query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, gpointer data)
+query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, void * data)
 {
     struct query_usable *callback_info = data;
 

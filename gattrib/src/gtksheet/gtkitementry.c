@@ -241,12 +241,12 @@ G_DEFINE_TYPE_EXTENDED(GtkItemEntry,
 static void
 gtk_item_entry_class_init (GtkItemEntryClass *klass)
 {
-  GtkWidgetClass *widget_class; 
-  GtkEntryClass *entry_class; 
-  GObjectClass *gobject_class; 
+  GtkWidgetClass *widget_class;
+  GtkEntryClass *entry_class;
+  GObjectClass *gobject_class;
 
   entry_class = (GtkEntryClass *) klass;
-  widget_class = (GtkWidgetClass*) klass; 
+  widget_class = (GtkWidgetClass*) klass;
   gobject_class = G_OBJECT_CLASS (klass);
 
   gobject_class->set_property = gtk_item_entry_set_property;
@@ -1236,7 +1236,7 @@ update_im_cursor_location (GtkEntry *entry)
 }
 
 static gboolean
-recompute_idle_func (gpointer data)
+recompute_idle_func (void * data)
 {
   GtkEntry *entry;
 
@@ -1384,13 +1384,13 @@ gtk_entry_create_layout (GtkEntry *entry,
   guint n_bytes = gtk_entry_buffer_get_bytes (buffer);
   PangoLayout *layout = gtk_widget_create_pango_layout (GTK_WIDGET (entry), NULL);
   PangoAttrList *tmp_attrs = pango_attr_list_new ();
-  
+
   gchar *preedit_string = NULL;
   gint preedit_length = 0;
   PangoAttrList *preedit_attrs = NULL;
 
   pango_layout_set_single_paragraph_mode (layout, TRUE);
-  
+
   if (include_preedit)
     {
       gtk_im_context_get_preedit_string (entry->im_context,
@@ -1401,9 +1401,9 @@ gtk_entry_create_layout (GtkEntry *entry,
   if (preedit_length)
     {
       GString *tmp_string = g_string_new (NULL);
-      
+
       gint cursor_index = g_utf8_offset_to_pointer (entry->text, entry->current_pos) - entry->text;
-      
+
       if (entry->visible)
         {
           g_string_prepend_len (tmp_string, entry->text, n_bytes);
@@ -1414,7 +1414,7 @@ gtk_entry_create_layout (GtkEntry *entry,
           gint ch_len;
           gint preedit_len_chars;
           gunichar invisible_char;
-          
+
           ch_len = g_utf8_strlen (entry->text, n_bytes);
           preedit_len_chars = g_utf8_strlen (preedit_string, -1);
           ch_len += preedit_len_chars;
@@ -1423,9 +1423,9 @@ gtk_entry_create_layout (GtkEntry *entry,
             invisible_char = entry->invisible_char;
           else
             invisible_char = ' '; /* just pick a char */
-          
+
           append_char (tmp_string, invisible_char, ch_len);
-          
+
           /* Fix cursor index to point to invisible char corresponding
            * to the preedit, fix preedit_length to be the length of
            * the invisible chars representing the preedit
@@ -1437,12 +1437,12 @@ gtk_entry_create_layout (GtkEntry *entry,
             preedit_len_chars *
             g_unichar_to_utf8 (invisible_char, NULL);
         }
-      
+
       pango_layout_set_text (layout, tmp_string->str, tmp_string->len);
-      
+
       pango_attr_list_splice (tmp_attrs, preedit_attrs,
 			      cursor_index, preedit_length);
-      
+
       g_string_free (tmp_string, TRUE);
     }
   else
@@ -1455,25 +1455,25 @@ gtk_entry_create_layout (GtkEntry *entry,
         {
           GString *str = g_string_new (NULL);
           gunichar invisible_char;
-          
+
           if (entry->invisible_char != 0)
             invisible_char = entry->invisible_char;
           else
             invisible_char = ' '; /* just pick a char */
-          
+
           append_char (str, invisible_char, entry->text_length);
           pango_layout_set_text (layout, str->str, str->len);
           g_string_free (str, TRUE);
         }
     }
-#endif      
+#endif
   pango_layout_set_attributes (layout, tmp_attrs);
 
   if (preedit_string)
     g_free (preedit_string);
   if (preedit_attrs)
     pango_attr_list_unref (preedit_attrs);
-      
+
   pango_attr_list_unref (tmp_attrs);
 
   return layout;
@@ -2259,7 +2259,7 @@ static void
 primary_get_cb (GtkClipboard     *clipboard,
 		GtkSelectionData *selection_data,
 		guint             info,
-		gpointer          data)
+		void *          data)
 {
   GtkEntry *entry = GTK_ENTRY (data);
   gint start, end;
@@ -2274,7 +2274,7 @@ primary_get_cb (GtkClipboard     *clipboard,
 
 static void
 primary_clear_cb (GtkClipboard *clipboard,
-		  gpointer      data)
+		  void *      data)
 {
   GtkEntry *entry = GTK_ENTRY (data);
 
@@ -2529,7 +2529,7 @@ hide_cursor (GtkEntry *entry)
  * Blink!
  */
 static gint
-blink_cb (gpointer data)
+blink_cb (void * data)
 {
   GtkEntry *entry;
 

@@ -63,21 +63,22 @@ set_scroll_adjustments (GschemPageView *view, GtkAdjustment *hadjustment, GtkAdj
 * more recent version of GTK+, this function will no longer be needed.
 */
 static void
-cclosure_marshal_VOID__OBJECT_OBJECT (GClosure *closure,
-                                      GValue *return_value G_GNUC_UNUSED,
-                                      guint n_param_values,
+cclosure_marshal_VOID__OBJECT_OBJECT (GClosure     *closure,
+                                      GValue       *return_value G_GNUC_UNUSED,
+                                      unsigned int  n_param_values,
                                       const GValue *param_values,
-                                      gpointer invocation_hint G_GNUC_UNUSED,
-                                      gpointer marshal_data)
+                                      void         *invocation_hint G_GNUC_UNUSED,
+                                      void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (gpointer data1,
-                                                    gpointer arg_1,
-                                                    gpointer arg_2,
-                                                    gpointer data2);
+  typedef void (*GMarshalFunc_VOID__OBJECT_OBJECT) (void *data1,
+                                                    void *arg_1,
+                                                    void *arg_2,
+                                                    void *data2);
 
   register GMarshalFunc_VOID__OBJECT_OBJECT callback;
   register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  register void *data1;
+  register void *data2;
 
   g_return_if_fail (n_param_values == 3);
 

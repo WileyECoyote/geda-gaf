@@ -1,11 +1,11 @@
 /* Date part of package version string. */
-#define PACKAGE_DATE_VERSION "20140720"
+#define PACKAGE_DATE_VERSION "20140728"
 
 /* Dotted part of package version string. */
-#define PACKAGE_DOTTED_VERSION "2.0.8.7"
+#define PACKAGE_DOTTED_VERSION "2.0.8.8"
 
 /* Current git commit. */
-#define PACKAGE_GIT_COMMIT "4d1e42f0cc41f4673ae0211ffd639795a99aa7c6"
+#define PACKAGE_GIT_COMMIT "17877c1ec0ed1c7d743be48e9013fc78584ae3ca"
 
 /* Current 'git describe' version string. */
-#define PACKAGE_GIT_VERSION "1.7.2-20111231-244-g4d1e42f"
+#define PACKAGE_GIT_VERSION "1.7.2-20111231-249-g17877c1"

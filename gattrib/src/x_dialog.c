@@ -588,7 +588,7 @@ static void search_replace_dialog_response(GtkWidget *ThisDialog,
  *  \par Function Description: This callback function is used to set the
  *       sensitivity of other controls based on combo-box input.
  */
-static void search_replace_combo_responder(GtkWidget *widget, gpointer data)
+static void search_replace_combo_responder(GtkWidget *widget, void * data)
 {
   int WhichComboBox = GPOINTER_TO_UINT (data);
 

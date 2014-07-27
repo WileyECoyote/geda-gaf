@@ -211,7 +211,7 @@ static GtkWidget *build_menu(GtkWidget *sheet)
  *  \param [in] data   NULL, this parameter is not used
  */
 static int on_mouse_button_press(GtkWidget *widget,
-                                 GdkEventButton *event, gpointer data)
+                                 GdkEventButton *event, void * data)
 {
     GdkModifierType mods;
     GtkWidget *sheet = GTK_WIDGET(widget);
@@ -265,7 +265,7 @@ static int clipboard_handler(GtkWidget *widget, GdkEventKey *key)
  *  This function is not used.
  */
 static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
-                    GtkSheetRange *new_range, gpointer data)
+                    GtkSheetRange *new_range, void * data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
                                     old_range->rowi, old_range->coli);
@@ -277,7 +277,7 @@ static void on_resize(GtkWidget *widget, GtkSheetRange *old_range,
  *  This function is not used.
  */
 static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
-		  GtkSheetRange *new_range, gpointer data)
+		  GtkSheetRange *new_range, void * data)
 {
   printf("OLD SELECTION: %d %d %d %d\n",old_range->row0, old_range->col0,
                                     old_range->rowi, old_range->coli);
@@ -291,7 +291,7 @@ static void on_move(GtkWidget *widget, GtkSheetRange *old_range,
  */
 bool change_entry(GtkWidget *widget,
 		  int row, int col, int *new_row, int *new_col,
-                  gpointer data)
+                  void * data)
 {
   GtkSheet *sheet;
 
@@ -321,7 +321,7 @@ bool change_entry(GtkWidget *widget,
  * signal is emitted even when the data in the cell has not been
  * changed.
  */
-static void on_change(GtkWidget *widget, int row, int col, gpointer data)
+static void on_change(GtkWidget *widget, int row, int col, void * data)
 {
 
 }
@@ -338,7 +338,7 @@ static void on_change(GtkWidget *widget, int row, int col, gpointer data)
  *
  *  \retval [out] TRUE
  */
-static bool on_activate_cell(GtkWidget *widget, int row, int col, gpointer data)
+static bool on_activate_cell(GtkWidget *widget, int row, int col, void * data)
 {
 
   char *celltext;
@@ -395,7 +395,7 @@ static bool on_deactivate_cell(GtkWidget *widget, int row, int col,
  */
 static bool on_traverse(GtkWidget *widget,
                     int row, int col, int *new_row, int *new_col,
-                    gpointer data)
+                    void * data)
 {
  printf("TRAVERSE: %d %d %d %d\n",row,col,*new_row,*new_col);
  return TRUE;
@@ -457,7 +457,7 @@ void SetupCSheetHandlers(GtkSheet *sheet, PageDataSet *PageData)
 }
 
 /* Call back for Entry Combo "change" signal*/
-void show_sheet_entry(GtkWidget *widget, gpointer data)
+void show_sheet_entry(GtkWidget *widget, void * data)
 {
  const char *text;
  GtkSheet *sheet;
@@ -474,7 +474,7 @@ void show_sheet_entry(GtkWidget *widget, gpointer data)
  }
 }
 /*! \brief Call back for Entry Combo activate*/
-void activate_sheet_entry(GtkWidget *widget, gpointer data)
+void activate_sheet_entry(GtkWidget *widget, void * data)
 {
   GtkSheet *sheet;
   GtkEntry *sheet_entry;
@@ -494,7 +494,7 @@ void activate_sheet_entry(GtkWidget *widget, gpointer data)
 }
 
 /*! \brief Call back for "change" signal from embeded Entry widget */
-void show_entry(GtkWidget *widget, gpointer data)
+void show_entry(GtkWidget *widget, void * data)
 {
   const char *text;
   GtkSheet   *sheet;
@@ -513,7 +513,7 @@ void show_entry(GtkWidget *widget, gpointer data)
 }
 
 /*! \brief Call back for "activate" signal from sheet cell array widget */
-int activate_sheet_cell(GtkWidget *widget, int row, int column, gpointer data)
+int activate_sheet_cell(GtkWidget *widget, int row, int column, void * data)
 {
   GtkSheetCellAttr attributes;
   GtkSheet   *sheet;

@@ -72,7 +72,7 @@ x_fileselect_setup_file_filters (GtkFileChooser *filechooser)
  */
 static void
 x_fileselect_callback_update_preview (GtkFileChooser *chooser,
-                                      gpointer user_data)
+                                      void * user_data)
 {
   Preview *preview = PREVIEW (user_data);
   char *filename, *preview_filename = NULL;

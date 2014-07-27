@@ -377,7 +377,7 @@ static gint gtk_sheet_expose 			(GtkWidget * widget,
 static void gtk_sheet_forall 			(GtkContainer *container,
                               			 gboolean include_internals,
                               			 GtkCallback  callback,
-                              			 gpointer  callback_data);
+                              			 void *  callback_data);
 
 static void gtk_sheet_set_scroll_adjustments	(GtkSheet *sheet,
 						 GtkAdjustment *hadjustment,
@@ -406,8 +406,8 @@ static gint gtk_sheet_cell_isvisible 		(GtkSheet * sheet,
 			  			 gint row, gint column);
 /* Clipped Range */
 
-static gint gtk_sheet_scroll			(gpointer data);
-static gint gtk_sheet_flash			(gpointer data);
+static gint gtk_sheet_scroll			(void * data);
+static gint gtk_sheet_flash			(void * data);
 
 /* Drawing Routines */
 
@@ -453,7 +453,7 @@ static void gtk_sheet_draw_corners		(GtkSheet *sheet,
 /* Active Cell handling */
 
 static void gtk_sheet_entry_changed		(GtkWidget *widget,
-						 gpointer data);
+						 void * data);
 static gboolean gtk_sheet_deactivate_cell	(GtkSheet *sheet);
 //void gtk_sheet_hide_active_cell	                (GtkSheet *sheet);
 static gboolean gtk_sheet_activate_cell		(GtkSheet *sheet,
@@ -475,13 +475,13 @@ static void gtk_sheet_draw_backing_pixmap	(GtkSheet *sheet,
 
 static void adjust_scrollbars 			(GtkSheet * sheet);
 static void vadjustment_changed		 	(GtkAdjustment * adjustment,
-			       			 gpointer data);
+			       			 void * data);
 static void hadjustment_changed 		(GtkAdjustment * adjustment,
-			       			 gpointer data);
+			       			 void * data);
 static void vadjustment_value_changed 		(GtkAdjustment * adjustment,
-				     		 gpointer data);
+				     		 void * data);
 static void hadjustment_value_changed 		(GtkAdjustment * adjustment,
-				     		 gpointer data);
+				     		 void * data);
 
 
 static void draw_xor_vline 			(GtkSheet * sheet);
@@ -500,7 +500,7 @@ static guint new_row_height 			(GtkSheet * sheet,
 
 static void create_global_button		(GtkSheet *sheet);
 static void global_button_clicked		(GtkWidget *widget,
-						 gpointer data);
+						 void * data);
 /* Sheet Entry */
 
 static void create_sheet_entry			(GtkSheet *sheet);
@@ -3485,7 +3485,7 @@ gtk_sheet_in_clip (GtkSheet *sheet)
 
 
 static gint
-gtk_sheet_flash(gpointer data)
+gtk_sheet_flash(void * data)
 {
   GtkSheet *sheet;
   gint x,y,width,height;
@@ -3754,10 +3754,10 @@ gtk_sheet_set_vadjustment (GtkSheet      *sheet,
 
       g_signal_connect (GTK_OBJECT (sheet->vadjustment), "changed",
 			  (GCallback) vadjustment_changed,
-			  (gpointer) sheet);
+			  (void *) sheet);
       g_signal_connect (GTK_OBJECT (sheet->vadjustment), "value_changed",
 			  (GCallback) vadjustment_value_changed,
-			  (gpointer) sheet);
+			  (void *) sheet);
     }
 
   if (!sheet->vadjustment || !old_adjustment)
@@ -3809,10 +3809,10 @@ gtk_sheet_set_hadjustment (GtkSheet      *sheet,
 
       g_signal_connect (GTK_OBJECT (sheet->hadjustment), "changed",
 			  (GCallback) hadjustment_changed,
-			  (gpointer) sheet);
+			  (void *) sheet);
       g_signal_connect (GTK_OBJECT (sheet->hadjustment), "value_changed",
 			  (GCallback) hadjustment_value_changed,
-			  (gpointer) sheet);
+			  (void *) sheet);
     }
 
   if (!sheet->hadjustment || !old_adjustment)
@@ -4133,7 +4133,7 @@ create_global_button(GtkSheet *sheet)
    g_signal_connect (GTK_OBJECT (sheet->button),
 		      "pressed",
 		      (GCallback) global_button_clicked,
-		      (gpointer) sheet);
+		      (void *) sheet);
 }
 
 static void
@@ -4156,7 +4156,7 @@ size_allocate_global_button(GtkSheet *sheet)
 }
 
 static void
-global_button_clicked(GtkWidget *widget, gpointer data)
+global_button_clicked(GtkWidget *widget, void * data)
 {
   gboolean veto;
 
@@ -5041,7 +5041,7 @@ static void
 gtk_sheet_real_cell_clear (GtkSheet *sheet, gint row, gint column, gboolean delete)
 {
   gchar *text;
-  gpointer link;
+  void * link;
 
   if(row > sheet->maxallocrow || column > sheet->maxalloccol) return;
   if(!sheet->data[row]) return;
@@ -5169,7 +5169,7 @@ gtk_sheet_cell_get_text (GtkSheet *sheet, gint row, gint col)
  * Link pointer to a cell.
  */
 void
-gtk_sheet_link_cell(GtkSheet *sheet, gint row, gint col, gpointer link)
+gtk_sheet_link_cell(GtkSheet *sheet, gint row, gint col, void * link)
 {
  g_return_if_fail (sheet != NULL);
  g_return_if_fail (GTK_IS_SHEET (sheet));
@@ -5192,7 +5192,7 @@ gtk_sheet_link_cell(GtkSheet *sheet, gint row, gint col, gpointer link)
  * Get link pointer from a cell.
  * Return value: pointer linked to the cell
  */
-gpointer
+void *
 gtk_sheet_get_link(GtkSheet *sheet, gint row, gint col)
 {
  g_return_val_if_fail (sheet != NULL, NULL);
@@ -5430,7 +5430,7 @@ gtk_sheet_get_active_cell (GtkSheet *sheet, gint *row, gint *column)
 }
 
 static void
-gtk_sheet_entry_changed(GtkWidget *widget, gpointer data)
+gtk_sheet_entry_changed(GtkWidget *widget, void * data)
 {
  GtkSheet *sheet;
  gint row,col;
@@ -6540,7 +6540,7 @@ gtk_sheet_button_press (GtkWidget * widget,
 }
 
 static gint
-gtk_sheet_scroll(gpointer data)
+gtk_sheet_scroll(void * data)
 {
  GtkSheet *sheet;
  gint x,y,row,column;
@@ -8283,7 +8283,7 @@ adjust_scrollbars (GtkSheet * sheet)
 
 static void
 vadjustment_changed (GtkAdjustment * adjustment,
-			       gpointer data)
+			       void * data)
 {
   GtkSheet *sheet;
 
@@ -8296,7 +8296,7 @@ vadjustment_changed (GtkAdjustment * adjustment,
 
 static void
 hadjustment_changed (GtkAdjustment * adjustment,
-			       gpointer data)
+			       void * data)
 {
   GtkSheet *sheet;
 
@@ -8310,7 +8310,7 @@ hadjustment_changed (GtkAdjustment * adjustment,
 
 static void
 vadjustment_value_changed (GtkAdjustment * adjustment,
-				     gpointer data)
+				     void * data)
 {
   GtkSheet *sheet;
   gint diff, value, old_value;
@@ -8417,7 +8417,7 @@ vadjustment_value_changed (GtkAdjustment * adjustment,
 
 static void
 hadjustment_value_changed (GtkAdjustment * adjustment,
-			   gpointer data)
+			   void * data)
 {
   GtkSheet *sheet;
   gint i, diff, value, old_value;
@@ -10514,7 +10514,7 @@ static void
 gtk_sheet_forall (GtkContainer *container,
                   gboolean      include_internals,
                   GtkCallback   callback,
-                  gpointer      callback_data)
+                  void *      callback_data)
 {
   GtkSheet *sheet;
   GtkSheetChild *child;

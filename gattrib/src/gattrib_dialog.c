@@ -103,19 +103,20 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
 /* Signal marshaller based on generated code from glib-genmarshal */
 static void
 gattrib_marshal_VOID__POINTER_STRING (GClosure     *closure,
-                                     GValue       *return_value,
-                                     guint         n_param_values,
-                                     const GValue *param_values,
-                                     gpointer      invocation_hint,
-                                     gpointer      marshal_data)
+                                      GValue       *return_value,
+                                      guint         n_param_values,
+                                      const GValue *param_values,
+                                      void         *invocation_hint,
+                                      void         *marshal_data)
 {
-  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (gpointer     data1,
-                                                     gpointer     arg_1,
-                                                     gpointer     arg_2,
-                                                     gpointer     data2);
+  typedef void (*GMarshalFunc_VOID__POINTER_STRING) (void *     data1,
+                                                     void *     arg_1,
+                                                     void *     arg_2,
+                                                     void *     data2);
   register GMarshalFunc_VOID__POINTER_STRING callback;
   register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  register void *data1;
+  register void *data2;
 
   g_return_if_fail (n_param_values == 3);
 
@@ -163,7 +164,7 @@ static GKeyFile *dialog_geometry = NULL;
  *
  *  \param [in] user_data unused
  */
-static void save_geometry_to_file(gpointer user_data)
+static void save_geometry_to_file(void * user_data)
 {
   char *data, *file;
 
@@ -390,7 +391,7 @@ static void gattrib_dialog_get_property (GObject *object, guint property_id, GVa
         g_value_set_string (value, dialog->settings_name);
         break;
       case PROP_GATTRIB_GedaToplevel:
-        g_value_set_pointer (value, (gpointer)dialog->pr_current);
+        g_value_set_pointer (value, (void *)dialog->pr_current);
         break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);

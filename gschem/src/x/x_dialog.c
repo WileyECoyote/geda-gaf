@@ -370,7 +370,7 @@ text_view_calculate_real_tab_width(GtkTextView *textview, int tab_size)
  *  @{
 */
 
-static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, gpointer data)
+static void dialog_link_cb(GtkAboutDialog *dialog, const char *link, void * data)
 {
    x_show_uri(link);
 }

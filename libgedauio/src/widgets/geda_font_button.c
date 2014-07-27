@@ -117,11 +117,11 @@ static void geda_font_button_clicked           (GtkButton          *button);
 
 /* Dialog response functions */
 static void dialog_ok_clicked                    (GtkWidget         *widget,
-                                                  gpointer           data);
+                                                  void *           data);
 static void dialog_cancel_clicked                (GtkWidget         *widget,
-                                                  gpointer           data);
+                                                  void *           data);
 static void dialog_destroy                       (GtkWidget         *widget,
-                                                  gpointer           data);
+                                                  void *           data);
 
 /* Auxiliary functions */
 static GtkWidget *geda_font_button_create_widgets  (GedaFontButton  *gfs);
@@ -594,7 +594,7 @@ geda_font_button_finalize (GObject *object)
 
 /* Dialog Callback functions */
 static void
-dialog_ok_clicked (GtkWidget *dialog_apply_button, gpointer data)
+dialog_ok_clicked (GtkWidget *dialog_apply_button, void * data)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (data);
@@ -630,7 +630,7 @@ dialog_ok_clicked (GtkWidget *dialog_apply_button, gpointer data)
 }
 
 static void
-dialog_cancel_clicked (GtkWidget *widget, gpointer data)
+dialog_cancel_clicked (GtkWidget *widget, void * data)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (data);
@@ -639,7 +639,7 @@ dialog_cancel_clicked (GtkWidget *widget, gpointer data)
 }
 
 static void
-dialog_destroy (GtkWidget *widget, gpointer data)
+dialog_destroy (GtkWidget *widget, void * data)
 {
   GedaFontButton *font_button;
   font_button = GEDA_FONT_BUTTON (data);

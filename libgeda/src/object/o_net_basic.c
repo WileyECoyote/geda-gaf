@@ -667,7 +667,7 @@ void o_net_refresh_conn_cache(Object *o_current)
 
     /* Extract the next connected object and advance the connection list. */
     conn = (CONN*) conn_list->data;
-    stack->data = (gpointer) g_list_next (conn_list);
+    stack->data = (void *) g_list_next (conn_list);
 
     if (conn == NULL)
         /* should not happen */

@@ -179,7 +179,7 @@ preview_callback_expose (GtkWidget      *widget,
 static bool
 preview_callback_button_press (GtkWidget *widget,
                                GdkEventButton *event,
-                               gpointer user_data)
+                               void * user_data)
 {
   Preview *preview = PREVIEW (widget);
   GschemToplevel *preview_window = preview->preview_window;

@@ -1,3 +1,11 @@
+2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * */*: Get rid of gpointer, looks stupid.
+
+2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * bitmaps/: More icons.
+
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * configure.ac: Bumped library versions.

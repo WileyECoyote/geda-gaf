@@ -123,7 +123,7 @@ void x_window_clipboard_handler(int do_what) {
  */
 static void
 on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
-                         unsigned int page_num, gpointer    user_data)
+                         unsigned int page_num, void *    user_data)
 {
 
   switch ( page_num ) {
@@ -201,7 +201,7 @@ void x_window_init()
   gtk_notebook_set_tab_pos(GTK_NOTEBOOK(notebook), GTK_POS_BOTTOM);
   gtk_box_pack_start(GTK_BOX(main_vbox), notebook, TRUE, TRUE, 0);
 
-  g_signal_connect ((gpointer) notebook, "switch-page",
+  g_signal_connect ((void *) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
   /* -----  Now malloc -- but don't fill out -- space for sheets  ----- */

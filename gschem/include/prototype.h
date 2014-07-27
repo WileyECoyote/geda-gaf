@@ -5,8 +5,6 @@
 #define GAY GArray
 
 /* gschem_toplevel.c - refer to gschem_toplevel.h */
-//GschemToplevel *gschem_toplevel_new();
-//void gschem_toplevel_free (GschemToplevel *w_current);
 
 /* g_action.c */
 SCM  g_process_action(SCM action);
@@ -208,8 +206,8 @@ void g_init_window ();
 
 /* globals.c */
 /* gschem.c */
-typedef void (*geda_atexit_func)(gpointer data);
-void geda_atexit(geda_atexit_func func, gpointer data);
+typedef void (*geda_atexit_func)(void * data);
+void geda_atexit(geda_atexit_func func, void * data);
 void main_prog(void *closure, int argc, char *argv[]);
 int  main(int argc, char *argv[]);
 void shut_down_gui(void);
@@ -310,7 +308,7 @@ void  i_var_restore_window_color       (EdaConfig *cfg, char *key, GdkColor *var
 void  i_vars_set                       (GschemToplevel *w_current);
 void  i_vars_freenames                 (void);
 void  i_vars_init                      (GschemToplevel *w_current);
-void  i_vars_atexit_save_user_config   (gpointer user_data);
+void  i_vars_atexit_save_user_config   (void * user_data);
 
 /* i_zoom_world.c */
 void i_zoom_world                      (GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,

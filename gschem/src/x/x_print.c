@@ -952,7 +952,7 @@ static void
 draw_page__print_operation (GtkPrintOperation *print,
                             GtkPrintContext *context,
                             int page_nr,
-                            gpointer user_data)
+                            void * user_data)
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
   Page *page;

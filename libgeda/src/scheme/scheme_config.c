@@ -1060,7 +1060,7 @@ SCM_DEFINE (add_config_event_x, "%add-config-event!", 2, 0, 0,
                            0,
                            NULL,
                            edascm_config_event_dispatcher,
-                           (gpointer) proc_s);
+                           (void *) proc_s);
   if (handler_id) {
     return cfg_s;
   }
@@ -1068,7 +1068,7 @@ SCM_DEFINE (add_config_event_x, "%add-config-event!", 2, 0, 0,
   /* Protect proc_s against garbage collection */
   g_signal_connect (cfg, "config-changed",
                     G_CALLBACK (edascm_config_event_dispatcher),
-                    (gpointer) scm_gc_protect_object (proc_s));
+                    (void *) scm_gc_protect_object (proc_s));
   return cfg_s;
 }
 
@@ -1103,7 +1103,7 @@ SCM_DEFINE (remove_config_event_x, "%remove-config-event!", 2, 0, 0,
                                           0,
                                           NULL,
                                           edascm_config_event_dispatcher,
-                                          (gpointer) proc_s);
+                                          (void *) proc_s);
   g_warn_if_fail (found < 2);
   if (found) {
     scm_gc_unprotect_object (proc_s);

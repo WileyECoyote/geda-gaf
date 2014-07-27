@@ -88,13 +88,13 @@ static bool geda_combo_box_text_buildable_custom_tag_start  (GtkBuildable      *
                                                              GObject           *child,
                                                              const char        *tagname,
                                                              GMarkupParser     *parser,
-                                                             gpointer          *data);
+                                                             void *          *data);
 
 static void geda_combo_box_text_buildable_custom_finished   (GtkBuildable      *buildable,
                                                              GtkBuilder        *builder,
                                                              GObject           *child,
                                                              const char        *tagname,
-                                                             gpointer           user_data);
+                                                             void *           user_data);
 
 static GtkBuildableIface *buildable_parent_iface = NULL;
 
@@ -177,7 +177,7 @@ item_start_element (GMarkupParseContext *context,
                     const char          *element_name,
                     const char         **names,
                     const char         **values,
-                    gpointer             user_data,
+                    void *             user_data,
                     GError             **error)
 {
   ItemParserData *data = (ItemParserData*)user_data;
@@ -218,7 +218,7 @@ item_start_element (GMarkupParseContext *context,
 static void item_text (GMarkupParseContext *context,
                        const char          *text,
                        gsize                text_len,
-                       gpointer             user_data,
+                       void *             user_data,
                        GError             **error)
 {
   ItemParserData *data = (ItemParserData*)user_data;
@@ -243,7 +243,7 @@ char *geda_builder_parser_translate (const char *domain,
 }
 static void item_end_element (GMarkupParseContext *context,
                               const char          *element_name,
-                              gpointer             user_data,
+                              void *             user_data,
                               GError             **error)
 {
   ItemParserData *data = (ItemParserData*)user_data;
@@ -291,7 +291,7 @@ geda_combo_box_text_buildable_custom_tag_start (GtkBuildable     *buildable,
                                                 GObject          *child,
                                                 const char      *tagname,
                                                 GMarkupParser    *parser,
-                                                gpointer         *data)
+                                                void *         *data)
 {
   if (buildable_parent_iface->custom_tag_start (buildable, builder, child,
                                                 tagname, parser, data))
@@ -318,7 +318,7 @@ geda_combo_box_text_buildable_custom_finished (GtkBuildable *buildable,
                                                GtkBuilder   *builder,
                                                GObject      *child,
                                                const char  *tagname,
-                                               gpointer      user_data)
+                                               void *      user_data)
 {
   ItemParserData *data;
 

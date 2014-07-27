@@ -33,7 +33,7 @@ static GHashTable *visit_table = NULL;
 
 /*! Trivial function used when clearing#visit_table. */
 static bool
-returns_true (gpointer key, gpointer value, gpointer user_data)
+returns_true (void * key, void * value, void * user_data)
 {
   return TRUE;
 }
@@ -42,8 +42,8 @@ returns_true (gpointer key, gpointer value, gpointer user_data)
 static inline int
 is_visited(Object *obj)
 {
-  gpointer val;
-  gpointer orig_key;
+  void * val;
+  void * orig_key;
   bool exist = g_hash_table_lookup_extended (visit_table,
                                                  obj,
                                                  &orig_key,
@@ -55,7 +55,7 @@ is_visited(Object *obj)
 static inline int
 visit(Object *obj)
 {
-  gpointer val = GINT_TO_POINTER(is_visited (obj) + 1);
+  void * val = GINT_TO_POINTER(is_visited (obj) + 1);
   g_hash_table_replace (visit_table, obj, val);
   return GPOINTER_TO_INT (val);
 }

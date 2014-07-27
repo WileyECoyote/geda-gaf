@@ -358,7 +358,7 @@ geda_font_dialog_scroll_to_selection (GedaFontDialog *dialog)
 }
 
 static void
-callback_scroll_on_map (GtkWidget *widget, gpointer data)
+callback_scroll_on_map (GtkWidget *widget, void * data)
 {
   geda_font_dialog_scroll_to_selection (GEDA_FONT_DIALOG (data));
 }
@@ -528,7 +528,7 @@ int valid_font_size (int new_size)
   return font_size;
 }
 /* This is called when a size is selected in the list. */
-static void callback_select_size (GtkTreeSelection *selection, gpointer data)
+static void callback_select_size (GtkTreeSelection *selection, void * data)
 {
   GedaFontDialog *dialog;
   GtkTreeModel *model;
@@ -654,7 +654,7 @@ geda_font_dialog_show_available_styles (GedaFontDialog *dialog)
 
 /* This is called when a style is selected in the list. */
 static void
-callback_select_style (GtkTreeSelection *selection, gpointer data)
+callback_select_style (GtkTreeSelection *selection, void * data)
 {
   GedaFontDialog *dialog;
   GtkTreeIter     iter;
@@ -850,7 +850,7 @@ geda_font_dialog_show_available_fonts (GedaFontDialog *dialog)
 }
 
 static void
-callback_select_family (GtkTreeSelection *selection, gpointer data)
+callback_select_family (GtkTreeSelection *selection, void * data)
 {
   GedaFontDialog *dialog;
   GtkTreeModel   *model;
@@ -1135,7 +1135,7 @@ static bool list_row_activated (GtkWidget *widget)
 /* If the user hits return in the font size entry, we change to the new font
    size. */
 static void
-callback_size_entry_activate (GtkWidget *w, gpointer data)
+callback_size_entry_activate (GtkWidget *w, void * data)
 {
   GedaFontDialog *dialog;
   int new_size;
@@ -1161,7 +1161,7 @@ callback_size_entry_activate (GtkWidget *w, gpointer data)
 
 static bool callback_size_entry_focus_out (GtkWidget     *w,
                                              GdkEventFocus *event,
-                                             gpointer       data)
+                                             void *       data)
 {
   callback_size_entry_activate (w, data);
 

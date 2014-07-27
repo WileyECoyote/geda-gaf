@@ -731,7 +731,7 @@ geda_menu_button_finish_activate (GedaMenuButton *button, bool do_it)
 }
 
 static bool
-button_activate_timeout (gpointer data)
+button_activate_timeout (void * data)
 {
   geda_menu_button_finish_activate (data, TRUE);
 

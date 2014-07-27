@@ -27,7 +27,7 @@
 static void
 gschem_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                      GValue       *return_value,
-                                     guint         n_param_values,
+                                     unsigned int  n_param_values,
                                      const GValue *param_values,
                                      void         *invocation_hint,
                                      void         *marshal_data)
@@ -38,7 +38,8 @@ gschem_marshal_VOID__POINTER_STRING (GClosure     *closure,
                                                      void *data2);
   register GMarshalFunc_VOID__POINTER_STRING callback;
   register GCClosure *cc = (GCClosure*) closure;
-  register gpointer data1, data2;
+  register void *data1;
+  register void *data2;
 
   g_return_if_fail (n_param_values == 3);
 
@@ -133,7 +134,7 @@ bool is_a_gschem_dialog (void *dialog)
  *  \param [in] selection  The SELECTION object of page being edited.
  *  \param [in] user_data  The multi-attribute editor dialog.
  */
-static void gd_callback_selection_changed (SELECTION *selection, gpointer user_data)
+static void gd_callback_selection_changed (SELECTION *selection, void * user_data)
 {
   GschemDialog   *Dialog    = GSCHEM_DIALOG(user_data);
   GschemToplevel *w_current = Dialog->w_current;
@@ -181,7 +182,7 @@ static void gd_callback_selection_changed (SELECTION *selection, gpointer user_d
  *  \param [in] where_the_object_was  Pointer to where the object was
  *                                    just destroyed
  */
-static void gd_callback_selection_finalized (gpointer data, GObject *where_the_object_was)
+static void gd_callback_selection_finalized (void * data, GObject *where_the_object_was)
 {
   GschemDialog *Dialog = GSCHEM_DIALOG(data);
   g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
@@ -466,7 +467,7 @@ static void gschem_dialog_get_property (GObject *object, guint property_id, GVal
         g_value_set_string (value, Dialog->settings_name);
         break;
       case PROP_GSCHEM_TOPLEVEL:
-        g_value_set_pointer (value, (gpointer)Dialog->w_current);
+        g_value_set_pointer (value, (void *)Dialog->w_current);
         break;
       case PROP_PARENT_WINDOW:
         g_value_set_pointer (value, Dialog->parent_window);

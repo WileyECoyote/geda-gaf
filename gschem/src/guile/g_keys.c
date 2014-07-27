@@ -331,7 +331,7 @@ SCM_SYMBOL (prefix_sym,     "prefix");
  * \param [in] data a pointer to the GschemToplevel to update.
  * \return FALSE (this is a one-shot timer).
  */
-static bool clear_keyaccel_string(gpointer data)
+static bool clear_keyaccel_string(void * data)
 {
   GschemToplevel *w_current = data;
 

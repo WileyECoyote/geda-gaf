@@ -33,7 +33,7 @@ G_BEGIN_DECLS
 
 typedef struct _GedaCompletion     GedaCompletion;
 
-typedef char* (*GedaCompletionFunc)      (gpointer);
+typedef char* (*GedaCompletionFunc)      (void *);
 
 /* GedaCompletion */
 
@@ -45,7 +45,7 @@ struct _GedaCompletion
 {
   GList *items;
   GedaCompletionFunc func;
- 
+
   char  *prefix;
   GList *cache;
   GedaStrCompareNFunc strncmp_func;

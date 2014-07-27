@@ -48,7 +48,7 @@ static GObjectClass *gschem_toplevel_parent_class = NULL;
  *  \param [in]  instance       The GschemToplevel we are initialising.
  *  \param [in]  g_class        The class of the type the instance is created for.
  */
-static void gschem_toplevel_instance_init( GTypeInstance *instance, gpointer g_class )
+static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_class )
 {
   GschemToplevel *w_current = (GschemToplevel *)instance;
 

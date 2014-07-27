@@ -265,13 +265,13 @@ static bool geda_label_buildable_custom_tag_start (GtkBuildable      *buildable,
                                                    GObject           *child,
                                                    const char        *tagname,
                                                    GMarkupParser     *parser,
-                                                   gpointer          *data);
+                                                   void *          *data);
 
 static void geda_label_buildable_custom_finished  (GtkBuildable      *buildable,
                                                    GtkBuilder        *builder,
                                                    GObject           *child,
                                                    const char        *tagname,
-                                                   gpointer           user_data);
+                                                   void *           user_data);
 
 static void connect_mnemonics_visible_notify      (GedaLabel         *label);
 static bool separate_uline_pattern                (const char        *str,
@@ -549,7 +549,7 @@ geda_label_update_layout_width (GedaLabel *label)
 }
 
 static bool
-pango_attribute_merge_filter (PangoAttribute *attribute, gpointer list)
+pango_attribute_merge_filter (PangoAttribute *attribute, void * list)
 {
   pango_attr_list_change (list, pango_attribute_copy (attribute));
   return FALSE;
@@ -1675,7 +1675,7 @@ geda_label_buildable_custom_tag_start (GtkBuildable     *buildable,
                                        GObject          *child,
                                        const char      *tagname,
                                        GMarkupParser    *parser,
-                                       gpointer         *data)
+                                       void *         *data)
 {
   if (buildable_parent_iface->custom_tag_start (buildable, builder, child,
     tagname, parser, data))
@@ -1700,7 +1700,7 @@ geda_label_buildable_custom_finished (GtkBuildable *buildable,
                                       GtkBuilder   *builder,
                                       GObject      *child,
                                       const char  *tagname,
-                                      gpointer      user_data)
+                                      void *      user_data)
 {
   PangoParserData *data;
 
@@ -1938,7 +1938,7 @@ label_shortcut_setting_apply (GedaLabel *label)
 
 static void
 label_shortcut_setting_traverse_container (GtkWidget *widget,
-                                           gpointer   data)
+                                           void *   data)
 {
   if (GEDA_IS_LABEL (widget))
     label_shortcut_setting_apply (GEDA_LABEL (widget));
@@ -1985,7 +1985,7 @@ mnemonics_visible_apply (GtkWidget *widget,
 
 static void
 label_mnemonics_visible_traverse_container (GtkWidget *widget,
-                                            gpointer   data)
+                                            void *   data)
 {
   bool mnemonics_visible = GPOINTER_TO_INT (data);
 
@@ -2007,7 +2007,7 @@ _geda_label_mnemonics_visible_apply_recursively (GtkWidget *widget,
 static void
 label_mnemonics_visible_changed (GtkWindow  *window,
                                  GParamSpec *pspec,
-                                 gpointer    data)
+                                 void *    data)
 {
   bool mnemonics_visible;
 
@@ -2054,7 +2054,7 @@ geda_label_screen_changed (GtkWidget *widget, GdkScreen *old_screen)
 
 
 static void
-label_mnemonic_widget_weak_notify (gpointer data, GObject *where_the_object_was)
+label_mnemonic_widget_weak_notify (void * data, GObject *where_the_object_was)
 {
   GedaLabel *label = data;
   GedaLabelPrivate *priv = label->priv;
@@ -2401,7 +2401,7 @@ start_element_handler (GMarkupParseContext  *context,
                        const char          *element_name,
                        const char         **attribute_names,
                        const char         **attribute_values,
-                       gpointer              user_data,
+                       void *              user_data,
                        GError              **error)
 {
   GedaLabelPrivate *priv;
@@ -2497,7 +2497,7 @@ start_element_handler (GMarkupParseContext  *context,
 static void
 end_element_handler (GMarkupParseContext  *context,
                      const char          *element_name,
-                     gpointer              user_data,
+                     void *              user_data,
                      GError              **error)
 {
   UriParserData *pdata = user_data;
@@ -2519,7 +2519,7 @@ static void
 text_handler (GMarkupParseContext  *context,
               const char          *text,
               gsize                 text_len,
-              gpointer              user_data,
+              void *              user_data,
               GError              **error)
 {
   UriParserData *pdata = user_data;
@@ -4488,7 +4488,7 @@ geda_label_create_drag_icon (GtkWidget *widget, char *text, unsigned int len)
   return drawable;
 }
 static void
-drag_begin_cb (GtkWidget *widget, GdkDragContext *context, gpointer data)
+drag_begin_cb (GtkWidget *widget, GdkDragContext *context, void * data)
 {
   GedaLabel *label         = GEDA_LABEL (widget);
   GedaLabelPrivate *priv   = label->priv;
@@ -4971,13 +4971,13 @@ static void
 get_text_callback (GtkClipboard     *clipboard,
                    GtkSelectionData *selection_data,
                    unsigned int      info,
-                   gpointer          user_data_or_owner)
+                   void *          user_data_or_owner)
 {
   geda_label_set_selection_text (GEDA_LABEL (user_data_or_owner), selection_data);
 }
 
 static void
-clear_text_callback (GtkClipboard *clipboard, gpointer user_data_or_owner)
+clear_text_callback (GtkClipboard *clipboard, void * user_data_or_owner)
 {
   GedaLabel *label;
   GedaLabelSelectionInfo *info;
@@ -5742,7 +5742,7 @@ popup_position_func (GtkMenu   *menu,
                      int       *x,
                      int       *y,
                      bool      *push_in,
-                     gpointer user_data)
+                     void * user_data)
 {
   GedaLabel *label;
   GtkWidget *widget;

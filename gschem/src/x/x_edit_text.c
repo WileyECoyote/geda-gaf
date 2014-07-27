@@ -379,7 +379,7 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, Object *object)
  *
  */
 static void
-widget_value_modified (GtkWidget *widget, gpointer user_data)
+widget_value_modified (GtkWidget *widget, void * user_data)
 {
   gtk_widget_set_can_default (widget, TRUE);
 }
