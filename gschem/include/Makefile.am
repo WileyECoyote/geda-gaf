@@ -12,7 +12,6 @@ noinst_HEADERS = \
 		gschem_main_window.h     \
 		gschem_page_geometry.h   \
 		gschem_page_view.h       \
-		gschem_pango.h		 \
 		gschem_sdefines.h	 \
 		gschem_status_bar.h      \
 		gschem_struct.h          \
