@@ -619,12 +619,6 @@ COMMAND (do_file_new_window)
                                        o_text_get_rendered_bounds,
                                        new_window);
 
-  /* This gets done in x_windows */
-  /* Damage notifications should invalidate the object on screen */
-  o_add_change_notify (new_window->toplevel->page_current,
-                      (ChangeNotifyFunc) o_invalidate,
-                      (ChangeNotifyFunc) o_invalidate, new_window);
-
   page = x_window_open_page (new_window, NULL);
   x_window_set_current_page (new_window, page);
 
