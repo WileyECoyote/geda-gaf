@@ -125,9 +125,9 @@ static GObject *eda_renderer_constructor (GedaType type,
 
 static void eda_renderer_finalize (GObject *object);
 static void eda_renderer_dispose  (GObject *object);
-static void eda_renderer_set_property (GObject *object, guint property_id,
+static void eda_renderer_set_property (GObject *object, unsigned int property_id,
                                        const GValue *value, GParamSpec *pspec);
-static void eda_renderer_get_property (GObject *object, guint property_id,
+static void eda_renderer_get_property (GObject *object, unsigned int property_id,
                                        GValue *value, GParamSpec *pspec);
 static void eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
                                           PangoContext *new_pc);
@@ -395,7 +395,7 @@ eda_renderer_dispose (GObject *object)
     renderer->priv->pc = NULL;
   }
 
-  if (renderer->priv->pl != NULL) {
+  if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
     GEDA_UNREF (renderer->priv->pl);
     renderer->priv->pl = NULL;
   }
@@ -429,7 +429,7 @@ eda_renderer_finalize (GObject *object)
 }
 
 static void
-eda_renderer_set_property (GObject *object, guint property_id,
+eda_renderer_set_property (GObject *object, unsigned int property_id,
                            const GValue *value, GParamSpec *pspec)
 {
   EdaRenderer *renderer = EDA_RENDERER (object);
@@ -505,7 +505,7 @@ eda_renderer_set_property (GObject *object, guint property_id,
 }
 
 static void
-eda_renderer_get_property (GObject *object, guint property_id,
+eda_renderer_get_property (GObject *object, unsigned int property_id,
                            GValue *value, GParamSpec *pspec)
 {
   EdaRenderer *renderer = EDA_RENDERER (object);
@@ -591,7 +591,7 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
         GEDA_UNREF (renderer->priv->pc);
         renderer->priv->pc = NULL;
       }
-      if (renderer->priv->pl != NULL) {
+      if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
         GEDA_UNREF (renderer->priv->pl);
         renderer->priv->pl = NULL;
       }
@@ -605,7 +605,7 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
       GEDA_UNREF (G_OBJECT (renderer->priv->pc));
       renderer->priv->pc = NULL;
     }
-    if (renderer->priv->pl != NULL) {
+    if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
       GEDA_UNREF (G_OBJECT (renderer->priv->pl));
       renderer->priv->pl = NULL;
     }
