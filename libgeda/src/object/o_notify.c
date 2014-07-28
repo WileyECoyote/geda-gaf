@@ -130,8 +130,7 @@ o_change_notify_remove_all (Page *page)
  *
  * \param object   #Object structure to emit notifications for.
  */
-void
-o_emit_pre_change_notify (Object *object)
+void o_emit_pre_change_notify (Object *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 

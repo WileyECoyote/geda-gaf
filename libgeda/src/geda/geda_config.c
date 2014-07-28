@@ -856,6 +856,7 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
   char *data;
   char *filename;
   char *scratch;
+  FILE *fp;
 
   g_return_val_if_fail (EDA_IS_CONFIG (cfg), TRUE);
 
@@ -891,12 +892,20 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
 
       errno = 0;
       if ((access(filename, W_OK) == 0) || (errno == ENOENT)) {
-        status = g_file_set_contents (filename, "", -1, error);
+        errno = 0;
+        fp = fopen(filename, "w");
+        if (fp) {
+          status = TRUE;
+        }
+        else {
+          status = FALSE;
+        }
       }
 
-       if ( !errno && status) {
+      if (!errno && status) {
         data = g_key_file_to_data(cfg->priv->keyfile, NULL, NULL);
-        g_file_set_contents(filename, data, -1, NULL);
+        fprintf(fp, "%s", data);
+        fclose(fp);
         GEDA_FREE(data);
         cfg->priv->changed = FALSE;
       }
@@ -904,7 +913,7 @@ bool eda_config_save (EdaConfig *cfg, GError **error)
         if(error != NULL) {
           g_set_error(error, G_FILE_ERROR,
                       g_file_error_from_errno (errno),
-                      _("bad path in file %s"), filename);
+                      strerror(errno), filename);
         }
         else {
           fprintf(stderr, "Error saving configuration to %s, %s\n",

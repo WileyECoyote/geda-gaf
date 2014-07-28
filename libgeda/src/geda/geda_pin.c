@@ -49,6 +49,23 @@ static char *e_strings[] = { "in",  "out", "io",  "oc", "oe", "pas", "tp",
 static char *m_strings[] = { "lead", "body",  "pad", "bump",
                              "ball", "wedge", "ribbon", NULL };
 
+/*! \brief Look up Pin Electrical Type from String Code
+ *
+ *  \par Function Description
+ *  Compares e_str to each entry in e_strings and returns the index,
+ *  if found. The index is the PIN_ELECT associated with e_str or
+ *  PIN_ELECT_VOID if e_str was not found in e_strings.
+ *
+ *  \note e_strings must always be in the same order as the PIN_ELECT
+ *        enumeration found in "geda_enum.h"
+ *
+ *  \param [in]  e_str Pointer to pin-type string to lookup.
+ *
+ *  \retval PIN_ELECT
+ *
+ *  \remarks Libgeda does not treat pin-type PIN_ELECT_VOID as an
+ *           error.
+ */
 PIN_ELECT geda_pin_lookup_etype(const char *e_str) {
 
   PIN_ELECT index;

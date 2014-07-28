@@ -1,6 +1,13 @@
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/geda/geda_config.c: Get rid of g_file_set_contents in function
+          eda_config_save, because g_file_set_contents does not preserve file
+          permissions and this is totally aggravating me.
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Redo inclusion of header files
+
 2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/libgeda/g_struct.h: Modified to allow linking to Libgeda
