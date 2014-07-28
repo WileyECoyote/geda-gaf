@@ -24,7 +24,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #------------------------------------------------------------------
 
-VER=1.0.0
+VER=1.0.1
 
 VERBOSE=false
 QUIET=false
@@ -99,11 +99,13 @@ do_Assimilate_Arguments(){
 }
 
 do_report_stats() {
-if [ -d $1 ] ; then
-  count=(`ls $1/$FILTER -1 | grep -v ^l | wc -l`)
-  echo "FINAL_ARGUMENT:$1    Symbols:$count"
-fi
+  if [ -d $1 ] ; then
+    count=(`ls $1/$FILTER -1 | grep -v ^l | wc -l`)
+    echo "FINAL_ARGUMENT:$1    Symbols:$count"
+  fi
+  return $count;
 }
+
 do_report_only(){
   local result=0;
   if [ "$FINAL_ARGUMENT" = "" ] ; then
@@ -114,30 +116,37 @@ do_report_only(){
   else
     if [ -d $FINAL_ARGUMENT ] ; then
       do_report_stats $FINAL_ARGUMENT
+      result=$?;
     else
       echo "Error, Could not access [$FINAL_ARGUMENT], recheck"
-      result=1;
+      result=-1;
     fi
   fi
   exit $result;
 }
 
-do_check_all_containers (){
+do_check_all_containers () {
+  local result=0;
   exist=$(which $PROGRAM)
   SRC_DIRS=(`find * -maxdepth 0 -type d -printf "%f "`)
   if [[ ! $exist = "" ]] ; then
     for subdir in "${SRC_DIRS[@]}" ; do
-    $PROGRAM $OPT $subdir/$FILTER
-    if $REPORT ; then
-      do_report_stats $subdir
-    fi
+      $PROGRAM $OPT $subdir/$FILTER
+      if [ $? -ne 0 ] ; then
+        result=1;
+      fi
+      if $REPORT ; then
+        do_report_stats $subdir
+      fi
     done
   else
     echo "Error, recheck installation. Could not find [$mand]"
   fi
+  return $result;
 }
 
 # ----------------------- Parse Command Line ----------------------
+
 do_Assimilate_Arguments $*
 vecho "Checking:$FINAL_ARGUMENT/$FILTER"
 if [ "$FINAL_ARGUMENT" != "" ] && [ -d $FINAL_ARGUMENT ] ; then
@@ -150,7 +159,7 @@ if [ "$FINAL_ARGUMENT" != "" ] && [ -d $FINAL_ARGUMENT ] ; then
     $PROGRAM $OPT $FINAL_ARGUMENT/${FILTER}
   fi
 else
+  vecho "Checking all containers ..."
   do_check_all_containers
 fi
-exit 0
-
+exit

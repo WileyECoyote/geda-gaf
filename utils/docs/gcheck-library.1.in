@@ -23,13 +23,13 @@ Displays examples on usage"
 Displays software version information"
 .SH OPTIONS
 .IP "-n, --no_report"
-do not perform report statistics'
+do not perform report statistics.'
 .IP "-r, --report"
-report statistic only, do not perform checking'
+report statistic only, do not perform checking. If the no report options is used then the exit code will be the number of symbol files or -1 if an error occurred.'
 .SH DIRECTIVES
 .IP "-v, --verbose"
 Include additional information during processing.
-Directives affect the mode and operation of the gcheck-library utility and.
+Directives affecting the mode and operation of the gcheck-library utility.
 .IP "-a, --all"
 file search pattern is changed from *.sym to *'.
 .IP "-e, --extra"
