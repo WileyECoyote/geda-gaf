@@ -188,7 +188,8 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
           w_current->rubber_visible = 0;
           s_place_free_place_list(toplevel);
 
-        } else {
+        }
+        else {
           /* Cancel whatever other action is currently in progress */
           o_redraw_cleanstates (w_current);
         }
@@ -218,7 +219,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 
       case GTK_RESPONSE_CLOSE:
       case GTK_RESPONSE_DELETE_EVENT:
-        if (GTK_WIDGET (dialog) == w_current->cswindow){
+        if (GTK_WIDGET (dialog) == w_current->cswindow) {
           if(ThisDialog->style_menu_widgets) {
             g_slist_free(ThisDialog->style_menu_widgets);
           }
@@ -228,6 +229,8 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
           }
         }
         if (w_current->event_state == ENDCOMP) {
+          /* Can not wait for base class todo this*/
+          w_current->cswindow = NULL;
           /* Cancel the place operation currently in progress */
           o_redraw_cleanstates (w_current);
           /* return to the default state */
@@ -296,33 +299,33 @@ void x_compselect_open (GschemToplevel *w_current)
 void x_compselect_deselect (GschemToplevel *w_current)
 {
   Compselect *compselect = COMPSELECT (w_current->cswindow);
-  if (compselect == NULL) {
-  return;
-  }
 
-  switch (compselect->active_tab) {
-  case IN_USE_TAB:
-    gtk_tree_selection_unselect_all (
-      gtk_tree_view_get_selection (compselect->inusetreeview));
-    break;
-  case STD_TAB:
-    gtk_tree_selection_unselect_all (
-      gtk_tree_view_get_selection (compselect->stdtreeview));
-    break;
-  case MAN_TAB:
-    gtk_tree_selection_unselect_all (
-      gtk_tree_view_get_selection (compselect->mantreeview));
-    break;
-  case SIM_TAB:
-    gtk_tree_selection_unselect_all (
-      gtk_tree_view_get_selection (compselect->simtreeview));
-    break;
-  case LOCAL_TAB:
-    gtk_tree_selection_unselect_all (
-      gtk_tree_view_get_selection (compselect->localtreeview));
-    break;
-  default:
-    BUG_MSG("ignoring Invalid Tab Id");
+  if (compselect != NULL) {
+
+    switch (compselect->active_tab) {
+      case IN_USE_TAB:
+        gtk_tree_selection_unselect_all (
+          gtk_tree_view_get_selection (compselect->inusetreeview));
+        break;
+      case STD_TAB:
+        gtk_tree_selection_unselect_all (
+          gtk_tree_view_get_selection (compselect->stdtreeview));
+        break;
+      case MAN_TAB:
+        gtk_tree_selection_unselect_all (
+          gtk_tree_view_get_selection (compselect->mantreeview));
+        break;
+      case SIM_TAB:
+        gtk_tree_selection_unselect_all (
+          gtk_tree_view_get_selection (compselect->simtreeview));
+        break;
+      case LOCAL_TAB:
+        gtk_tree_selection_unselect_all (
+          gtk_tree_view_get_selection (compselect->localtreeview));
+        break;
+      default:
+        BUG_MSG("ignoring Invalid Tab Id");
+    }
   }
 }
 
@@ -1801,7 +1804,11 @@ compselect_callback_expand_all(GtkButton *button, void *user_data)
     BUG_MSG("bad TreeView");
 }
 
-/*! \brief Emit GTK_RESPONSE_CLOSE signal.*/
+/*! \brief Emit GTK_RESPONSE_CLOSE signal.
+ *  \par Function Description
+ *  This function is called when the Close button on the Component
+ *  Select dialog is pressed.
+ */
 static void on_close_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
@@ -1810,7 +1817,11 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
                            user_data);
 }
 
-/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.*/
+/*! \brief Emit COMPSELECT_RESPONSE_HIDE signal.
+ *  \par Function Description
+ *  This function is called when the Okay button on the Component
+ *  Select dialog is pressed.
+ */
 static void on_okay_butt_clicked(GtkButton *button, void *user_data)
 {
     g_signal_emit_by_name (GTK_DIALOG (user_data),
