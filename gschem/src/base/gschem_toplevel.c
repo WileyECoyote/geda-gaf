@@ -115,7 +115,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->window             = NULL;
   w_current->drawable           = NULL;
   w_current->cr                 = NULL;
-  w_current->pl                 = NULL;
 
 //  w_current->redraw_enabled     = 1;
 //  w_current->throttle           = 7; /* milliseconds */
@@ -312,10 +311,7 @@ static void gschem_toplevel_finalize( GObject *object )
     GEDA_UNREF (w_current->renderer);
     w_current->renderer = NULL;
   }
-  if (w_current->pl != NULL) {
-    GEDA_UNREF (w_current->pl);
-    w_current->pl = NULL;
-  }
+
   if (w_current->cr != NULL) {
     cairo_destroy (w_current->cr);
     w_current->cr = NULL;

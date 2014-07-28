@@ -90,16 +90,12 @@ bool x_window_setup_gc(GschemToplevel *w_current)
 
       w_current->gc = gdk_gc_new(w_current->window);
       w_current->cr = gdk_cairo_create(w_current->drawing_area->window);
-      w_current->pl = pango_cairo_create_layout(w_current->cr);
 
       if (w_current->gc == NULL) {
         g_critical(_("Could not allocate gc, is window?\n"));
       }
       else if (w_current->cr == NULL) {
         g_critical(_("Could not create a Cairo context, is window drawable?\n"));
-      }
-      else if (w_current->pl == NULL) {
-        g_critical(_("Could not create a Pango layout, is window drawable?\n"));
       }
       else {
         result = TRUE;

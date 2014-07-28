@@ -1,3 +1,40 @@
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * *: w_current->pl: A good riddance.
+
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/gschem_pango.h: Remove file, obsolete
+
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_text.c: In function o_text_edit_end, add calls to
+          o_invalidate (w_current, object), before making changes, if old
+          text should be erased because this was leaving remnants on the
+          screen and use flag "invalidated" so o_invalidate is not called
+          multiple times.
+
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/iface/i_command.c: Eliminate call to o_add_change_notify from
+          do_file_new_window because this is done in x_window_open_page.
+
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_text.c: Remove setting the page changed flag in
+        functions o_text_change and o_text_edit_end because libgeda does
+        this in o_text_recreate, eliminated toplevel varible in o_text_
+        change because this was only used to reference the changed flag.
+
+2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_compselect.c: In function x_compselect_callback_response,
+          add back the set cswindow=NULL, because later in the same function
+          o_redraw_cleanstates, which calls x_compselect_deselect before the
+          base class has opportunity to set cswindow=NULL. Note, was add back
+          on in the condition to call o_redraw_cleanstates since the base class
+          is still going to execute these instructions.
+
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/globals.h, src/iface/i_basic.c, src/x/x_toolbars.c: fixed

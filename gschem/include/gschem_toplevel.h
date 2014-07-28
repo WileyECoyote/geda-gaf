@@ -123,7 +123,6 @@ struct _GschemToplevel {
   GdkWindow   *window;                  /* drawing_area's X drawable */
   GdkPixmap   *drawable;                /* drawable to paint onto */
   cairo_t     *cr;                      /* Cairo surface */
-  PangoLayout *pl;                      /* Pango layout */
 
   int world_left;
   int world_right;
