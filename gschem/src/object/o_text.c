@@ -167,22 +167,29 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
   Object *object;
   GList  *s_current;
   bool    changed_something;
+  bool    invalidated;
 
   /* skip over head */
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
 
   changed_something = FALSE;
+
   while(s_current != NULL) {
     object = (Object *) s_current->data;
 
     if (object) {
+
       if (object->type == OBJ_TEXT) {
+
+
+        invalidated = FALSE;
 
         /* Text string is only applicable if string has length */
         if ( string && strlen (string) != 0 ) {
           if (strcmp(object->text->string, string) != 0) {
             o_text_set_string (object, string);
             changed_something = TRUE;
+            invalidated = TRUE;
             /* handle slot= attribute, it's a special case */
             if (object->attached_to != NULL &&
               g_ascii_strncasecmp (string, "slot=", 5) == 0) {
@@ -191,14 +198,28 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
           }
         }
 
+        /* \note: if the string was replaced then the old text was erased
+         *        else if other changes are made, the old text may need to
+         *        be erased BEFORE commiting the changes */
+
         /* Change Size */
         if( text_size >= 0 && object->text->size != text_size) {
+          if (!invalidated && text_size < object->text->size) {
+            /* New size is smaller, make sure old text gets erased */
+            o_invalidate (w_current, object);
+            invalidated = TRUE;
+          }
           object->text->size = text_size;
           changed_something = TRUE;
         }
 
         /* Change Alignment */
         if(text_align >= 0 && object->text->alignment != text_align) {
+          if (!invalidated) {
+            /* Make sure text with old alignment gets erased */
+            o_invalidate (w_current, object);
+            invalidated = TRUE;
+          }
           object->text->alignment = text_align;
           changed_something = TRUE;
         }
@@ -208,8 +229,14 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
           object->color = text_color;
           changed_something = TRUE;
         }
+
         /* Change Rotation */
         if (rotate >= 0 && object->text->angle != rotate) {
+          if (!invalidated) {
+            /* Make sure text with old text gets erased */
+            o_invalidate (w_current, object);
+            invalidated = TRUE;
+          }
           object->text->angle = rotate;
           changed_something = TRUE;
         }
