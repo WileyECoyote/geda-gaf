@@ -1,7 +1,7 @@
-v 20070626 1
+v 20140728 2
 T 300 4200 8 10 0 0 0 0 1
-Copyright Dan Fekete
-T 2000 3200 9 10 1 1 0 6 1
+author=Dan Fekete
+T 2000 3200 9 10 1 0 0 0 1
 Boarduino
 T 300 4000 8 10 0 0 0 0 1
 description=Low-power AVR 8-bit Microcontroller
@@ -9,7 +9,7 @@ T 300 3800 8 10 0 0 0 0 1
 footprint=CUSTOM
 T 2100 3500 8 10 1 1 0 6 1
 refdes=U?
-T 1700 3500 8 10 0 1 0 6 1
+T 300 3600 8 10 0 0 0 0 1
 numslots=0
 T 700 2050 5 10 0 1 0 0 1
 net=Vcc:18,20

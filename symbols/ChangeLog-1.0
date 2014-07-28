@@ -1,3 +1,13 @@
+2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * fairchild/BAT54S-2.sym: Fix pin off grid
+
+        * arduino/boarduino.sym: Bad attributes for floating text
+
+2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * io/ball;ribbon;wedge.sym: Change pintype to passive
+
 2013-12-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * symbols/*.sym: Added roughly 10k new symbols.

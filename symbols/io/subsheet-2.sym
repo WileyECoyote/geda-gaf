@@ -1,9 +1,9 @@
 v 20111231 2
 B 300 900 2400 2800 3 10 2 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 3800 8 10 1 1 0 0 1
-refdes=?
-T 1500 1000 8 10 1 1 0 4 1
-source=subsheet-foo-bar.sch
+refdes=subsheet-foo-bar.sch
+#T 1500 1000 8 10 1 1 0 4 1
+#source=subsheet-foo-bar.sch
 T 400 3400 8 20 1 1 0 1 1
 description=name
 B 300 400 2400 500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

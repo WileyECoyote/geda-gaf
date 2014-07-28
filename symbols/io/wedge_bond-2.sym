@@ -8,7 +8,7 @@ pinnumber=1
 T 100 0 9 8 0 1 0 4 1
 pinlabel=b1
 T 100 0 5 8 0 1 0 0 1
-pintype=wedge
+pintype=pas
 }
 P 100 300 100 200 1 0 0
 {
@@ -19,7 +19,7 @@ pinnumber=2
 T 100 300 9 8 0 1 0 4 1
 pinlabel=b2
 T 100 300 5 8 0 1 0 0 1
-pintype=wedge
+pintype=pas
 }
 L 100 100 100 200 2 25 1 0 -1 -1
 T 150 0 9 8 1 1 0 0 1
