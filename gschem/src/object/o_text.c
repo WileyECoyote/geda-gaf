@@ -145,8 +145,7 @@ o_text_edit(GschemToplevel *w_current, Object *o_current)
  *    This function is called by x_dialog_edit_text_ok if the OKAY button was
  *  pressed. There may or by not have been any changes so we will loop thru
  *  all of the selected objects and make changes when there is a difference.
- *  If we changed something we recreate that object and set the document
- *  CHANGED flag and undate UNDO.
+ *  If we changed something we recreate that object and undate UNDO.
  *
  *  \param [in] w_current  Ptr to Window specific data structure
  *  \param [in] string     Ptr to new char string  or NULL if multible selection
@@ -182,8 +181,8 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
         /* Text string is only applicable if string has length */
         if ( string && strlen (string) != 0 ) {
           if (strcmp(object->text->string, string) != 0) {
-            changed_something = TRUE;
             o_text_set_string (object, string);
+            changed_something = TRUE;
             /* handle slot= attribute, it's a special case */
             if (object->attached_to != NULL &&
               g_ascii_strncasecmp (string, "slot=", 5) == 0) {
@@ -225,7 +224,6 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
   }
 
   if (changed_something) {
-    toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
 
@@ -243,8 +241,6 @@ void
 o_text_change(GschemToplevel *w_current, Object *object,
               char *string, int visibility, int show)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-
   if (object == NULL) {
     BUG_MSG("object == NULL");
   }
@@ -265,7 +261,6 @@ o_text_change(GschemToplevel *w_current, Object *object,
       {
         o_slot_end (w_current, object->attached_to, string);
       }
-      toplevel->page_current->CHANGED = 1;
     }
   }
 }

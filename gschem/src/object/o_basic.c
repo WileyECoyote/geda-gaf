@@ -426,6 +426,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
   switch (w_current->event_state) {
     /* all states with something on the dc */
     case ( ENDCOMP ):
+
       /* De-select the lists in the component selector */
       x_compselect_deselect (w_current);
 
