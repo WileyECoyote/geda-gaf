@@ -1,4 +1,4 @@
-v 20130214 2
+v 20140728 2
 P 100 100 100 300 1 0 1
 {
 T 25 100 5 4 0 1 0 0 1
@@ -15,8 +15,8 @@ T 225 300 8 10 0 0 0 0 1
 net=GND:1
 T 25 500 5 10 0 0 0 0 1
 device=none
-T 25 700 5 10 0 0 0 0 1
-description=Ground
+T 25 700 5 10 1 0 0 0 1
+description=Chasis Ground
 T 25 900 5 10 0 0 0 0 1
 author=AutoTron
 T 25 1075 5 10 0 0 0 0 1
