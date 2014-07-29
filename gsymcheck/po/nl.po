@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gsymcheck\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-25 00:14-0500\n"
+"POT-Creation-Date: 2014-07-29 01:02-0500\n"
 "PO-Revision-Date: 2012-12-09 15:10+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -379,15 +379,18 @@ msgstr "Ontbrekend refdes= attribuut\n"
 msgid "Multiple refdes= attributes found\n"
 msgstr "Meerdere refdes= attributen gevonden\n"
 
-#: gsymcheck/src/s_check.c:1255
+#: gsymcheck/src/s_check.c:1260
 #, c-format
 msgid "Found pintype=%s attribute\n"
 msgstr "pintype=%s attribuut gevonden\n"
 
-#: gsymcheck/src/s_check.c:1259
-#, c-format
-msgid "Invalid pintype=%s attribute\n"
-msgstr "Ongeldig pintype=%s attribuut\n"
+#: gsymcheck/src/s_check.c:1264
+#, fuzzy, c-format
+msgid "Unknown pintype=%s attribute\n"
+msgstr "pintype=%s attribuut gevonden\n"
+
+#~ msgid "Invalid pintype=%s attribute\n"
+#~ msgstr "Ongeldig pintype=%s attribuut\n"
 
 #~ msgid "Found pinnumber=%s attribute\n"
 #~ msgstr "pinnumber=%s attribuut gevonden\n"

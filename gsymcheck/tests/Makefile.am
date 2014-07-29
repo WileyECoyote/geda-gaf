@@ -51,7 +51,7 @@ tests:
 	pass=0 ; \
 	for file in $(SRCDIR)/*.sym; do \
 	  base=`basename $$file`; \
-	  GEDADATARC=$(builddir)/../lib \
+	  GEDADATARC=$(builddir)/../etc \
 	  $(SHELL) $(SRCDIR)/runtest.sh $$file $(BUILDDIR) $(SRCDIR); \
           if [ $$? -ne 0 ]; then \
 	     echo "$$base FAILED!"; \
@@ -65,13 +65,10 @@ tests:
 	echo "failed: $$fail" ; \
 	exit $$fail
 
-
 # Cleanup
 #	rm -f $(BUILDDIR)/new_*
 
-
-
-MOSTLYCLEANFILES = *.log *~ new_*
-CLEANFILES = *.log *~ new_*
-DISTCLEANFILES = *.log core FILE *~ new_*
+MOSTLYCLEANFILES     = *.log *~ new_*
+CLEANFILES           = *.log *~ new_*
+DISTCLEANFILES       = *.log *~ new_* core FILE
 MAINTAINERCLEANFILES = *.log *~ Makefile.in

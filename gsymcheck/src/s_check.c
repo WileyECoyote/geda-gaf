@@ -1244,24 +1244,25 @@ void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
   char *message;
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
-
     Object *o_current = iter->data;
 
     if (o_current->type == OBJ_PIN) {
 
       counter = 0;
       done    = FALSE;
+
       do {
 
         pintype = o_attrib_search_object_attribs_by_name (o_current, "pintype", counter);
 
         if (pintype != NULL) {
+
           message = geda_sprintf(_("Found pintype=%s attribute\n"), pintype);
           ADD_INFO_MESSAGE(message);
 
           if (geda_pin_lookup_etype(pintype) == PIN_ELECT_VOID) {
             message = geda_sprintf (_("Unknown pintype=%s attribute\n"), pintype);
-            ADD_WARN_MESSAGE(message);
+            ADD_ERROR_MESSAGE(message);
           }
 
           GEDA_FREE(pintype);
@@ -1271,6 +1272,7 @@ void s_check_pintype (const GList *obj_list, SYMCHECK *s_current)
         }
         counter++;
       } while (!done);
+
     }
   }
 }
