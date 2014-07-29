@@ -5,3 +5,4 @@ gnetlist
 gnetlist.exe
 *.o
 *~
+*.swp

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-25 00:11-0500\n"
+"POT-Creation-Date: 2014-07-28 21:41-0500\n"
 "PO-Revision-Date: 2012-01-27 14:18+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -18,69 +18,69 @@ msgstr ""
 "X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
 "X-Generator: Launchpad (build 16265)\n"
 
-#: libgedauio/src/widgets/geda_entry.c:626
+#: libgedauio/src/widgets/geda_entry.c:627
 msgid "Activates default"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:627
+#: libgedauio/src/widgets/geda_entry.c:628
 msgid "Whether to activate the default widget when Enter is pressed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:634
+#: libgedauio/src/widgets/geda_entry.c:635
 #: libgedauio/src/widgets/geda_label.c:904
 msgid "Attributes"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:635
+#: libgedauio/src/widgets/geda_entry.c:636
 msgid "A list of style attributes to apply to the text"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:642
+#: libgedauio/src/widgets/geda_entry.c:643
 msgid "Auto-Completion"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:643
+#: libgedauio/src/widgets/geda_entry.c:644
 msgid "Enable Auto-completion, if installed"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:650
+#: libgedauio/src/widgets/geda_entry.c:651
 msgid "FALSE Auto-Completion in NOT case sensitive"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:651
+#: libgedauio/src/widgets/geda_entry.c:652
 msgid "if Auto-completion is enabled, set case compare function"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:658
+#: libgedauio/src/widgets/geda_entry.c:659
 msgid "Set case of input"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:659
-#: libgedauio/src/widgets/geda_entry.c:669
+#: libgedauio/src/widgets/geda_entry.c:660
+#: libgedauio/src/widgets/geda_entry.c:670
 msgid "0 = lower, 1 lower, 2 don't change the case"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:668
+#: libgedauio/src/widgets/geda_entry.c:669
 msgid "Set maxium history"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:678
+#: libgedauio/src/widgets/geda_entry.c:679
 msgid "Set valid input type"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:679
+#: libgedauio/src/widgets/geda_entry.c:680
 msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1102
+#: libgedauio/src/widgets/geda_entry.c:1109
 msgid "Auto Complete"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1109
+#: libgedauio/src/widgets/geda_entry.c:1116
 msgid "On"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_entry.c:1113
+#: libgedauio/src/widgets/geda_entry.c:1120
 msgid "Off"
 msgstr ""
 
@@ -216,28 +216,28 @@ msgstr ""
 msgid "_Select"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:197
-#: libgedauio/src/widgets/geda_handlebox.c:206
+#: libgedauio/src/widgets/geda_handlebox.c:198
+#: libgedauio/src/widgets/geda_handlebox.c:207
 msgid "Appearance of the shadow that surrounds the container"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:215
+#: libgedauio/src/widgets/geda_handlebox.c:216
 msgid "Position of the handle relative to the child widget"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:224
+#: libgedauio/src/widgets/geda_handlebox.c:225
 msgid ""
 "Side of the handlebox that's lined up with the docking point to dock the "
 "handlebox"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:233
+#: libgedauio/src/widgets/geda_handlebox.c:234
 msgid ""
 "Whether to use the value from the snap_edge property or a value derived from "
 "handle_position"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_handlebox.c:241
+#: libgedauio/src/widgets/geda_handlebox.c:242
 msgid ""
 "A boolean value indicating whether the handlebox's child is attached or "
 "detached."

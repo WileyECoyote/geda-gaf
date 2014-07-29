@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-25 00:10-0500\n"
+"POT-Creation-Date: 2014-07-28 21:41-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -265,88 +265,88 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:755 libgeda/src/geda/geda_config.c:867
+#: libgeda/src/geda/geda_config.c:755 libgeda/src/geda/geda_config.c:868
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:888
+#: libgeda/src/geda/geda_config.c:889
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:907 libgeda/src/geda/geda_config.c:919
+#: libgeda/src/geda/geda_config.c:928
 #, fuzzy, c-format
 msgid "bad path in file %s"
 msgstr "Nie odnaleziono pliku %s: %s"
 
-#: libgeda/src/geda/geda_config.c:1211
+#: libgeda/src/geda/geda_config.c:1220
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1275
+#: libgeda/src/geda/geda_config.c:1284
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1289
+#: libgeda/src/geda/geda_config.c:1298
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:260
+#: libgeda/src/geda/geda_pin.c:277
 msgid "Electrical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:261
+#: libgeda/src/geda/geda_pin.c:278
 msgid "Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:267
+#: libgeda/src/geda/geda_pin.c:284
 msgid "Label"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:268
+#: libgeda/src/geda/geda_pin.c:285
 msgid "A Label for the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:274
+#: libgeda/src/geda/geda_pin.c:291
 msgid "Number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:275
+#: libgeda/src/geda/geda_pin.c:292
 msgid "The pin number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:281
+#: libgeda/src/geda/geda_pin.c:298
 msgid "Mechanical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:282
+#: libgeda/src/geda/geda_pin.c:299
 msgid "Mechanical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:288
+#: libgeda/src/geda/geda_pin.c:305
 msgid "Sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:289
+#: libgeda/src/geda/geda_pin.c:306
 msgid "The pin sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:295
+#: libgeda/src/geda/geda_pin.c:312
 msgid "Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:296
+#: libgeda/src/geda/geda_pin.c:313
 msgid "Either Mechanical or Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:302
+#: libgeda/src/geda/geda_pin.c:319
 msgid "Whichend"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:303
+#: libgeda/src/geda/geda_pin.c:320
 msgid "Which end of the pin gets connected"
 msgstr ""
 

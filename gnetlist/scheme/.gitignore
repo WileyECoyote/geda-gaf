@@ -2,3 +2,4 @@ Makefile
 Makefile.in
 gnet-gsch2pcb.scm
 *~
+*.swp

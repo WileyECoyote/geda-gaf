@@ -4,3 +4,4 @@ annotate.sh
 bom_xref.sh
 bompp.sh
 *~
+*.swp
