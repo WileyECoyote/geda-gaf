@@ -1,4 +1,4 @@
-v 20130214 2
+v 20140729 3
 T 0 2300 5 10 0 0 0 0 1
 author=AutoTron
 T 0 2150 5 10 0 0 0 0 1
@@ -8,7 +8,7 @@ use-license=unrestricted
 T 0 1850 5 10 0 0 0 0 1
 symversion=1.0
 T 0 1700 5 10 0 0 0 0 1
-description=NPN Transistor
+description=PNP Transistor
 T 0 1550 9 10 0 0 0 0 1
 numslots=0
 P 0 500 200 500 1 0 0
@@ -56,12 +56,12 @@ T 900 500 8 10 1 1 0 0 1
 refdes=Q?
 T 900 300 9 10 0 1 0 0 1
 value=60V, 90W
-T 900 100 9 10 0 0 0 0 1
+T 900 100 9 10 0 1 0 0 1
 footprint=TO-447
 T 0 1400 5 10 0 0 0 0 1
 footprints=TO92
 T 0 1250 5 10 0 0 0 0 1
-spicetype=BJT NPN
+spicetype=BJT PNP
 L 425 375 500 350 3 0 0 0 -1 -1
 L 425 375 450 300 3 0 0 0 -1 -1
 L 500 350 450 300 3 0 0 0 -1 -1

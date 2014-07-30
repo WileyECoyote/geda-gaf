@@ -1,4 +1,4 @@
-v 20130214 2
+v 20140729 3
 P 600 200 600 0 1 0 1
 {
 T 450 50 5 8 0 1 0 0 1
@@ -41,7 +41,7 @@ L 425 375 497 339 3 10 0 0 -1 -1
 L 497 339 461 303 3 10 0 0 -1 -1
 T 200 900 8 10 1 1 0 4 1
 refdes=Q?
-T 925 225 8 10 0 0 0 0 1
+T 925 225 9 10 0 1 0 0 1
 footprint=TO-526
 T 920 370 8 10 0 1 0 0 1
 value=80V, 1.5A
@@ -58,8 +58,8 @@ numslots=0
 T 0 1200 5 10 0 0 0 0 1
 footprints=TO92
 T 0 1050 5 10 0 0 0 0 1
-spicetype=BJT NPN
+spicetype=BJT PNP
 T 0 1475 5 10 0 0 0 0 1
-description=NPN Transistor
+description=PNP Transistor
 T 900 625 8 10 1 1 0 0 1
 device=BD140

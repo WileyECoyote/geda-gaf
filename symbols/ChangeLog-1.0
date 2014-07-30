@@ -1,3 +1,8 @@
+2014-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+        * transistors/*.sym: General cleaning and corrections, added missing
+          style-5 for npn-thru
+
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * fairchild/BAT54S-2.sym: Fix pin off grid
