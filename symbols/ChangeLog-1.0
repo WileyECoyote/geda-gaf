@@ -1,3 +1,15 @@
+2014-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * sources/*.sym: General cleaning and corrections
+
+2014-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * IEC417/*.sym: Added missing attributes
+
+2014-07-30 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/TM4C1292NCPDT-1.sym: Major corrections.
+
 2014-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
         * transistors/*.sym: General cleaning and corrections, added missing
