@@ -5,7 +5,7 @@
  *  symbols created:  and[2-9], nand[2-9], nor[2-9], or[2-9], nor[2-9],
  *  xor[2-9], xnor[2-9].
  *
- * Copyright (C) 1999-2010 Mike Jarabek
+ * Copyright (C) 1999-2014 Mike Jarabek
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,12 +23,12 @@
  * MA 02111-1301 USA
  */
 
-#include <stdio.h>
-#include <math.h>
+#include <config.h>
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <stdio.h>
+#include <math.h>             /* need for sqrt */
+
+#include <geda_debug.h>
 
 /* local defines */
 

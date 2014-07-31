@@ -1,3 +1,9 @@
+2014-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+        * tests/old_symbol.output, pintypes.output: Change "Invalid" to
+          "Unknown" in unit test because error type was down-graded in
+          gsymcheck.
+
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/s_check.c: Eliminate local string structure and call to

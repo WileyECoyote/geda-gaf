@@ -1,3 +1,10 @@
+2014-07-29 Wiley E. Hill <wileyhill@gmail.com>
+
+        * utils/Makefile.am: Add top-level, top-level include and include/
+          libgeda in the <include> path
+
+        * utils/mk_verilog_syms.c: Revised header inclusion
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/gnetlist.h: New header file used by all gnetlist source files
