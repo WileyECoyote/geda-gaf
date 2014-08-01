@@ -711,7 +711,7 @@ static void set_text_buffer(const char *string)
 
 /*! \brief Handle selection change event for x_dialog_edit_arc_angle
  *  \par Function Description
- *  Updates the combobox when the selection changes.
+ *  Updates the comboboxes when the selection changes.
  *
  *  \param w_current pointer to GschemToplevel context
  *  \param object    pointer to a selected Object.
@@ -719,29 +719,29 @@ static void set_text_buffer(const char *string)
 static void
 x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, Object *object)
 {
-  GtkWidget *radius, *spin_start, *spin_sweep;
+  GtkWidget *spin_radius, *spin_start, *spin_sweep;
 
   GtkWidget *Dialog = w_current->aawindow;
 
-  radius     = g_object_get_data(G_OBJECT(Dialog), "radius");
-  spin_start = g_object_get_data(G_OBJECT(Dialog), "spin_start");
-  spin_sweep = g_object_get_data(G_OBJECT(Dialog), "spin_sweep");
+  spin_radius = g_object_get_data(G_OBJECT(Dialog), "radius");
+  spin_start  = g_object_get_data(G_OBJECT(Dialog), "spin_start");
+  spin_sweep  = g_object_get_data(G_OBJECT(Dialog), "spin_sweep");
 
   if (object == NULL) {
-    gtk_spin_button_set_value(GTK_SPIN_BUTTON(radius), w_current->distance);
+    gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_radius), w_current->distance);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_start),0);
     gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_sweep), 90);
   }
   else {
     if (object->type == OBJ_ARC) {
-      gtk_spin_button_set_value(GTK_SPIN_BUTTON(radius),
+      gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_radius),
                                 object->arc->width / 2);
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_start),
                                 object->arc->start_angle);
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_sweep),
                                 object->arc->end_angle);
 
-      gtk_widget_grab_focus(radius);
+      gtk_widget_grab_focus(spin_radius);
     }
   }
 }
@@ -761,16 +761,20 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
   int        start_angle;
   int        sweep_angle;
 
-
-  s_current = geda_list_get_glist( Current_Selection );
+  if (w_current->event_state == DRAWARC) {
+    s_current   = NULL;
+  }
+  else {
+    s_current = geda_list_get_glist( Current_Selection );
+  }
 
   /* Get ptr to the spinner widgets */
-  spinentry   = g_object_get_data(G_OBJECT(Dialog),"radius");
-  radius      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
-  spinentry   = g_object_get_data(G_OBJECT(Dialog),"spin_start");
-  start_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
-  spinentry   = g_object_get_data(G_OBJECT(Dialog),"spin_sweep");
-  sweep_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
+  spin_entry  = g_object_get_data(G_OBJECT(Dialog),"radius");
+  radius      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
+  spin_entry  = g_object_get_data(G_OBJECT(Dialog),"spin_start");
+  start_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
+  spin_entry  = g_object_get_data(G_OBJECT(Dialog),"spin_sweep");
+  sweep_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spin_entry));
 
   if (s_current != NULL) {
 
@@ -782,6 +786,7 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
       }
       else {
         if(object->type == OBJ_ARC) {
+          /* invalidate the old arc object */
           o_invalidate (w_current, object);
           o_arc_modify(object, radius,      0, ARC_RADIUS);
           o_arc_modify(object, start_angle, 0, ARC_START_ANGLE);
@@ -850,6 +855,7 @@ void x_dialog_edit_arc_angle (GschemToplevel *w_current, Object *arc_object)
   GtkWidget *Dialog = w_current->aawindow;
 
   if (!Dialog) {
+
     Dialog = gschem_dialog_new_with_buttons(_("Arc Params"),
                                             GTK_WINDOW(w_current->main_window),
                                             GSCHEM_MODELESS_DIALOG,
@@ -1402,7 +1408,7 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
     x_dialog_edit_fill_type_ok(Dialog, fill_data);
     break;
   default:
-    printf("x_dialog_edit_line_type_response(): strange signal %d\n",response);
+    BUG_IMSG("strange signal %d\n",response);
   }
 
   i_set_state (w_current, SELECT);
@@ -1805,6 +1811,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
   /* get the selection */
   if (!o_select_is_selection(w_current))
     return;
+
   selection = geda_list_get_glist(Current_Selection);
 
   /* get the new values from the text entries of the dialog */
@@ -1819,8 +1826,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
                         line_data->line_type))))), "linetype"));
-  if (type == TYPE_ERASE)
+  if (type == TYPE_ERASE) {
     type = -1;
+  }
 
   /* convert the options to integers (-1 means unchanged) */
   width =  g_ascii_strcasecmp (width_str,
@@ -1831,7 +1839,9 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
                          _("*unchanged*")) ? atoi (space_str)  : -1;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
+
     object = (Object *) iter->data;
+
     if (! o_get_line_options(object, &oend, &otype,
                              &owidth, &olength, &ospace))
       continue;
@@ -1862,9 +1872,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
       if (olength < 1) line_options.line_length = toplevel->default_line_length;
       break;
     default:
-      u_log_message ("Internal Error: <%s><x_dialog_edit_line_type_ok>"
-                     "unhandlered case for <%d>, line %d.\n",
-                     __FILE__, otype, __LINE__);
+      BUG_IMSG("unhandlered case for <%d>", otype);
     }
 
     o_set_line_options (object, &line_options);

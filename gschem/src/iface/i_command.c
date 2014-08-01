@@ -2503,7 +2503,13 @@ COMMAND ( do_add_circle )
 
 /*! \brief Action Add Arc Mode in i_command_Add_Actions
  *  \par Function Description
- *  This is the command function for the Add Arc action.
+ *  This is the command function for the Add Arc action. An ARC is
+ *  slightly different than other adder, an Arc requires users to
+ *  draw the radius and then a dialog obtain further input, the
+ *  dialog is also the Edit Arc and will react to all currently
+ *  selected Arc objects, therefore this routine deselects all
+ *  if needed.
+ *
  */
 COMMAND ( do_add_arc )
 {

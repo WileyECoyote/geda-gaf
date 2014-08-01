@@ -436,7 +436,7 @@ enum {
      COMMAND ( ADD_PIN,             "Pin Mode",         USE_XY_WORKER,          do_add_pin)
      COMMAND ( ADD_BOX,             "Box Mode",         USE_XY_WORKER,          do_add_box)
      COMMAND ( ADD_CIRCLE,          "Circle Mode",      USE_XY_WORKER,          do_add_circle)
-     COMMAND ( ADD_ARC,             "Arc Mode",         USE_XY_WORKER,          do_add_arc)
+     COMMAND ( ADD_ARC,             "Arc Mode",         USE_XY_MAIN_LOOP,       do_add_arc)
      COMMAND ( ADD_PATH,            "Path Mode",        USE_XY_WORKER,          do_add_path)
      COMMAND ( ADD_PICTURE,         "picture",          USE_XY_WORKER,          do_add_picture)
 

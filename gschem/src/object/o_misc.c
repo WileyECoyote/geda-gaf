@@ -51,7 +51,7 @@ void o_edit(GschemToplevel *w_current, GList *list, int who)
 
   o_current = (Object *) list->data;
   if (o_current == NULL) {
-    fprintf(stderr, _("o_edit: Got an unexpected NULL in o_edit\n"));
+    BUG_MSG("unexpected NULL\n");
     return;
   }
 

@@ -538,7 +538,8 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
  *  w_current->window is a GObject. This is really a _HACK_,
  *  and should be fixed with a re-worked drawing model.
  *
- *  \param [in] w_current  The GschemToplevel who's drawing area is being invalidated.
+ *  \param [in] w_current  The GschemToplevel who's drawing area is being
+ *                         invalidated.
  *  \param [in] x1         X coord for corner 1 (SCREEN units)
  *  \param [in] y1         Y coord for corner 1 (SCREEN units)
  *  \param [in] x2         X coord for corner 2 (SCREEN units)

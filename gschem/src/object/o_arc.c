@@ -107,7 +107,7 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
   printf("DIST: %d\n", w_current->distance);
 #endif
 
-  /* open a dialog to input the start and end angle */
+  /* Open dialog to input the start and end angle */
   x_dialog_edit_arc_angle(w_current, NULL);
 }
 

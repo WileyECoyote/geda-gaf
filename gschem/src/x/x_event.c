@@ -496,7 +496,7 @@ bool x_event_button_released (GtkWidget      *widget,
   g_return_val_if_fail ((w_current != NULL), 0);
 
 #if DEBUG || DEBUG_EVENTS
-  printf("x_event_button_released: entry! %d \n", w_current->event_state);
+  printf("%s: entry! %d \n", __func__, w_current->event_state);
 #endif
 
   w_current->SHIFTKEY   = (event->state & GDK_SHIFT_MASK  ) ? 1 : 0;

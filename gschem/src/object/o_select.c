@@ -493,8 +493,10 @@ void o_select_unselect_all(GschemToplevel *w_current)
     }
     else {
       object = removed->data;
-      o_selection_remove(selection, object);
-      g_run_hook_object(w_current, "%deselect-objects-hook", object);
+      if (GEDA_IS_OBJECT(object)) {
+        o_selection_remove(selection, object);
+        g_run_hook_object(w_current, "%deselect-objects-hook", object);
+      }
     }
     g_list_free(removed);
   }

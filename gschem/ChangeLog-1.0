@@ -1,3 +1,19 @@
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * etc/system-gschemrc.scm: Include module "gschem hook". This is not
+          currently done in system-gschemrc, but potential could be.
+
+        * include/i_command.h: Change do_add_arc from USE_XY_WORKER to
+          USE_XY_MAIN_LOOP, for guile, potentially could be an issue.
+
+        * src/x/x_dialog.c: Add check for DRAWARC event_state in x_dialog_edit
+          _arc_angle_apply to distinguish editing from creation of new arcs.
+
+2014-07-31 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_dialog.c: Add o_invalidate in x_dialog_edit_arc_angle_apply
+          so that arc objects are updated on the screen during apply.
+
 2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
         * *: w_current->pl: A good riddance.

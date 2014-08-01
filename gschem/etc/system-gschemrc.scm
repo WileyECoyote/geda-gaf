@@ -1015,7 +1015,7 @@
 ;
 ; Start of hooks
 ;
-(use-modules (gschem deprecated))
+(use-modules (gschem deprecated) (gschem hook))
 
 ;; Uncomment this scheme code if you want automatic numbering when
 ;; placing new component and copying components.
