@@ -215,6 +215,11 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
       o_invalidate (w_current, new);
       new->text->x = w_current->first_wx;
       new->text->y = w_current->first_wy;
+
+      if (strncmp(newtext, "pinlabel", 8) == 0){
+        new->color = TEXT_COLOR;
+      }
+
       o_text_recreate(new);
       toplevel->page_current->CHANGED = 1;
       o_undo_savestate(w_current, UNDO_ALL);
