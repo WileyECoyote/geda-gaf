@@ -870,7 +870,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
-          q_log_message (_("Loading schematic \"%s\"\n"), filename);
+          q_log_message (_("Loading \"%s\"\n"), filename);
           recent_files_add (filename);
         }
       }
