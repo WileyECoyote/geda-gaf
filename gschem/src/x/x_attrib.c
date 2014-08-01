@@ -271,8 +271,9 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
 static void
 callback_attrib_entry_activate (GtkWidget *w, GtkWidget *value_entry)
 {
-  if ( GTK_IS_ENTRY(value_entry))
+  if ( GTK_IS_ENTRY(value_entry)) {
     gtk_widget_grab_focus(value_entry);
+  }
 }
 
 GtkWidget *x_attrib_option_menu_new()
@@ -337,6 +338,8 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
   GtkWidget  *attrib_combo_entry;
   GtkWidget  *value_entry;
   GtkWidget  *visbutton;
+
+  GList      *focus_chain; /* Aka Tab Order */
 
   GtkEntryCompletion *attrib_combo_entry_completion;
   GtkResponseType     response;
@@ -423,7 +426,8 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
                       (GtkAttachOptions) (GTK_FILL),
                       (GtkAttachOptions) (GTK_FILL), 0, 0);
 
-    attrib_combo_box_entry = gtk_combo_box_entry_new_text ();
+    attrib_combo_box_entry = geda_combo_box_text_new_with_entry ();
+
     attrib_combo_entry = gtk_bin_get_child(GTK_BIN(attrib_combo_box_entry));
     gtk_table_attach (GTK_TABLE (table), attrib_combo_box_entry, 1, 2, 0, 1,
                       (GtkAttachOptions) (GTK_EXPAND | GTK_FILL),
@@ -460,6 +464,14 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
     gtk_table_attach (GTK_TABLE (table), show_options, 1, 2, 2, 3,
                       (GtkAttachOptions) (GTK_FILL | GTK_EXPAND),
                       (GtkAttachOptions) (0), 0, 0);
+
+    focus_chain = NULL;
+    focus_chain = g_list_append (focus_chain, attrib_combo_box_entry);
+    focus_chain = g_list_append (focus_chain, value_entry);
+    focus_chain = g_list_append (focus_chain, visbutton);
+    focus_chain = g_list_append (focus_chain, show_options);
+    gtk_container_set_focus_chain (GTK_CONTAINER (table), focus_chain);
+    g_list_free (focus_chain);
 
     /** Set the relationships between the label and their Widgets **/
     geda_label_set_mnemonic_widget (GEDA_LABEL (name_label),  attrib_combo_entry);
@@ -525,7 +537,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
 
     gtk_widget_show_all(ThisDialog);
 
-    if (flag == ID_ORIGIN_KEYBOARD) {
+    if (SAE_ADD_MODE == flag) {
       gtk_widget_grab_focus(attrib_combo_entry);
     }
     else {
