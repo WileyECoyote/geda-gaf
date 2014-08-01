@@ -1,3 +1,13 @@
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/geda_comboboxtext.h: Add GtkWidget *button variable to
+        _GedaComboBoxText structure, eliminate variable 'priv" because this
+        was not being used.
+
+        * src/widgets/geda_comboboxtext.c: Add callback function to save
+        a pointer to the internal button object. Set the button to not be
+        focusable by default, this was annoying.
+
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/widgets/geda_handlebox.c: Floating tool-bars were not staying on

@@ -44,9 +44,7 @@
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /**
  * \brief GedaComboBoxText - A text-only combo box
@@ -104,31 +102,43 @@ G_DEFINE_TYPE_WITH_CODE (GedaComboBoxText, geda_combo_box_text, GTK_TYPE_COMBO_B
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
                          geda_combo_box_text_buildable_interface_init));
 
+static void FixGtkCrap(GtkWidget *widget, void *combo)
+{
+  if (GTK_IS_BUTTON(widget)) {
+    /* Unlike Gtk, we default to no focus for the internal button */
+    gtk_widget_set_can_focus(widget, FALSE);
+    /* And also unlike Gtk, we provide access to the internal button */
+    (GEDA_COMBO_BOX_TEXT(combo))->button = widget;
+  }
+}
+
 static GObject *
 geda_combo_box_text_constructor (GedaType               type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {
-  GObject  *object;
-  const int text_column = 0;
+  GObject   *self;
+  const int  text_column = 0;
 
-  object = G_OBJECT_CLASS (geda_combo_box_text_parent_class)->constructor
-                          (type, n_construct_properties, construct_properties);
+  self = G_OBJECT_CLASS (geda_combo_box_text_parent_class)->constructor
+  (type, n_construct_properties, construct_properties);
 
-  gtk_combo_box_set_entry_text_column (GTK_COMBO_BOX (object), text_column);
+  gtk_combo_box_set_entry_text_column (GTK_COMBO_BOX (self), text_column);
 
-  if (!gtk_combo_box_get_has_entry (GTK_COMBO_BOX (object)))
-    {
-      GtkCellRenderer *cell;
+  if (!gtk_combo_box_get_has_entry (GTK_COMBO_BOX (self))) {
 
-      cell = gtk_cell_renderer_text_new ();
-      gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (object), cell, TRUE);
-      gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (object), cell,
-                                      "text", text_column,
-                                      NULL);
-    }
+    GtkCellRenderer *cell;
 
-  return object;
+    cell = gtk_cell_renderer_text_new ();
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (self), cell, TRUE);
+    gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (self), cell,
+                                    "text", text_column,
+                                    NULL);
+  }
+
+  gtk_container_forall (GTK_CONTAINER (self), FixGtkCrap, self);
+
+  return self;
 }
 
 static void

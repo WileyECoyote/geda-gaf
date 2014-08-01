@@ -16,7 +16,7 @@
  * License along with this library; if not, write to the
  * Free Software Foundation, Inc., 59 Temple Place - Suite 330,
  * Boston, MA 02111-1307, US, <http://www.gnu.org/licenses/>.
- * 
+ *
  * THIS FILE IS LGPL LICENSED, gEDA AS A WHOLE IS GPL LICENSED
  *
  * Adapted for gEDA by Wiley Edward Hill <wileyhill@gmail.com> with
@@ -24,7 +24,7 @@
  * file for details.
  */
 
-#include <gtk/gtk.h> 
+#include <gtk/gtk.h>
 
 #ifndef __GEDA_COMBO_BOX_TEXT_H__
 #define __GEDA_COMBO_BOX_TEXT_H__
@@ -48,7 +48,8 @@ struct _GedaComboBoxText
   GtkComboBox parent_instance;
 
   int count;
-  GedaComboBoxTextPrivate *priv;
+
+  GtkWidget *button;
 };
 
 struct _GedaComboBoxTextClass
