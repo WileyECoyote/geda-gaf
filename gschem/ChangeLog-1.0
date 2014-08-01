@@ -1,7 +1,12 @@
 2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_dialog.c: Add o_invalidate in x_dialog_edit_line_type_ok
+          so display is updated when apply button is pressed.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
         * etc/system-gschemrc.scm: Include module "gschem hook". This is not
-          currently done in system-gschemrc, but potential could be.
+          currently done in system-gschemrc, but potentially could be.
 
         * include/i_command.h: Change do_add_arc from USE_XY_WORKER to
           USE_XY_MAIN_LOOP, for guile, potentially could be an issue.

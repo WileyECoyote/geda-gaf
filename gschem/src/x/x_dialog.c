@@ -1876,6 +1876,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
     }
 
     o_set_line_options (object, &line_options);
+    o_invalidate (w_current, object);
   }
 
   toplevel->page_current->CHANGED = 1;
