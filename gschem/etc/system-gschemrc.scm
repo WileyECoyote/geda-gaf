@@ -1066,16 +1066,16 @@
 (add-hook! add-pin-hook add-default-pin-attributes)
 
 ; Comment in this to load the functions to place attributes automatically.
-(load-from-path "auto-place-attribs.scm")
+;(load-from-path "auto-place-attribs.scm")
 
 ; Autoplace pin text attributes hook.
 ; Comment in these if you want the pin attributes to be automatically placed.
 ; There are different hooks for situations like adding a new pin and rotating
 ; or mirroring an existing one.
 ; The #t at the end means that function is appended to the end of the hook.
-(add-hook! add-pin-hook    (lambda (pin) (autoplace-pin-attributes pin )) #t)
-(add-hook! rotate-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
-(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+;(add-hook! add-pin-hook    (lambda (pin) (autoplace-pin-attributes pin )) #t)
+;(add-hook! rotate-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+;(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 
 ; Autoplace component/net/buses text attributes hook.
 ; Comment in these if you want the component attributes to be

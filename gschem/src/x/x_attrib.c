@@ -532,16 +532,17 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
 
     gtk_window_set_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);
 
-    gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
-                                    GTK_RESPONSE_APPLY);
-
     gtk_widget_show_all(ThisDialog);
 
     if (SAE_ADD_MODE == flag) {
       gtk_widget_grab_focus(attrib_combo_entry);
+      gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
+                                      GTK_RESPONSE_ACCEPT);
     }
     else {
       gtk_widget_grab_focus(value_entry);
+      gtk_dialog_set_default_response(GTK_DIALOG(ThisDialog),
+                                      GTK_RESPONSE_APPLY);
     }
 
     /* Tell our inherited on-selection change callback handler which
@@ -554,7 +555,6 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
     }
 
     w_current->aewindow = ThisDialog;
-
   }
   else { /* dialog already there */
     gtk_window_present(GTK_WINDOW(ThisDialog));

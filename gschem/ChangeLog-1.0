@@ -1,5 +1,25 @@
 2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_attrib.c: Conditionally set default response so callback
+          can identify mode (either SAE_ADD_MODE or SAE_EDIT_MODE)
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_attrib.c: geda_combo_box_text_new_with_entry instead of
+          gtk_combo_box_entry_new_text.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_window.c: In function x_window_open_page, change
+          "Loading schematic" to just "Loading" because the same routine
+          loads both schematics and symbols.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_attrib.c: Explicitly set focus order for dialog.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/x/x_dialog.c: Add o_invalidate in x_dialog_edit_line_type_ok
           so display is updated when apply button is pressed.
 
