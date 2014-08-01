@@ -753,41 +753,50 @@ x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, Object *object)
 static void
 x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
 {
-  GtkWidget *spinentry;
-  int radius, start_angle, sweep_angle;
-  GList  *s_current = NULL;
-  Object *object = NULL;
+  GtkWidget *spin_entry;
+  GList     *s_current   = NULL;
+  Object    *object      = NULL;
+
+  int        radius;
+  int        start_angle;
+  int        sweep_angle;
+
 
   s_current = geda_list_get_glist( Current_Selection );
 
   /* Get ptr to the spinner widgets */
-  spinentry = g_object_get_data(G_OBJECT(Dialog),"radius");
-  radius = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
-  spinentry = g_object_get_data(G_OBJECT(Dialog),"spin_start");
+  spinentry   = g_object_get_data(G_OBJECT(Dialog),"radius");
+  radius      = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
+  spinentry   = g_object_get_data(G_OBJECT(Dialog),"spin_start");
   start_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
-  spinentry = g_object_get_data(G_OBJECT(Dialog),"spin_sweep");
+  spinentry   = g_object_get_data(G_OBJECT(Dialog),"spin_sweep");
   sweep_angle = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(spinentry));
 
-  if(s_current != NULL) {
+  if (s_current != NULL) {
+
     while(s_current != NULL) {
 
       object = (Object *) s_current->data;
       if (object == NULL) {
-        fprintf(stderr, _("ERROR: NULL object in x_dialog_edit_arc_angle_apply!\n"));
+        BUG_MSG("NULL object");
       }
       else {
         if(object->type == OBJ_ARC) {
+          o_invalidate (w_current, object);
           o_arc_modify(object, radius,      0, ARC_RADIUS);
           o_arc_modify(object, start_angle, 0, ARC_START_ANGLE);
           o_arc_modify(object, sweep_angle, 0, ARC_END_ANGLE);
+          o_invalidate (w_current, object);
         }
       }
       NEXT(s_current);
     }
   }
   else {
+    /* When arc is a new object */
     o_arc_end4(w_current, radius, start_angle, sweep_angle);
   }
+
   w_current->toplevel->page_current->CHANGED = 1;
   o_undo_savestate(w_current, UNDO_ALL);
 
@@ -813,7 +822,7 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
     x_dialog_edit_arc_angle_apply(Dialog, w_current);
     break;
   default:
-    printf("x_dialog_edit_arc_angle_response(): strange signal %d\n",response);
+    BUG_IMSG("strange signal %d\n",response);
   }
 }
 
