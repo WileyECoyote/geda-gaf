@@ -64,44 +64,56 @@
 void o_set_line_options(Object *object, LINE_OPTIONS *line_options)
 {
   g_return_if_fail( GEDA_IS_LINE(object)   ||
-                    GEDA_IS_CIRCLE(object) ||
-                    GEDA_IS_ARC(object)    ||
-                    GEDA_IS_BOX(object)    ||
-                    GEDA_IS_PATH(object));
+  GEDA_IS_CIRCLE(object) ||
+  GEDA_IS_ARC(object)    ||
+  GEDA_IS_BOX(object)    ||
+  GEDA_IS_PATH(object));
+
+  int line_length = line_options->line_length;
+  int line_space  = line_options->line_space;
 
   /* do some error checking / correcting */
   switch(line_options->line_type) {
-    case(TYPE_DOTTED):
-    if (line_options->line_space < 1) {
-      line_options->line_space = default_line_space;
-      u_log_message (_("Invalid space specified, setting to default=%d\n"),
-                     default_line_space);
-    }
-    break;
+
     case(TYPE_DASHED):
     case(TYPE_CENTER):
     case(TYPE_PHANTOM):
-    if (line_options->line_length < 1) {
-      line_options->line_length = default_line_length;
-      u_log_message (_("Invalid length specified, setting to default=%d\n"),
-                     default_line_length);
-    }
-    if (line_options->line_space < 1) {
-      line_options->line_space = default_line_space;
-      u_log_message (_("Invalid space specified, setting to  default=%d\n"),
-                     default_line_space);
-    }
-    break;
-    default:
 
-    break;
+      if (line_length < 1) {
+        if (object->line_options->line_length < 1) {
+          line_length = default_line_length;
+          u_log_message(_("Setting line length to default=%d\n"), line_length);
+        }
+        else { /* Use current value */
+          line_length = object->line_options->line_length;
+        }
+      }
+
+    case(TYPE_DOTTED):
+
+      if (line_space < 1) {
+
+        if (object->line_options->line_space < 1) {
+          line_space = default_line_space;
+          u_log_message(_("Setting line space to default=%d\n"), line_space);
+        }
+        else { /* Use current value */
+          line_space = object->line_options->line_space;
+        }
+
+      }
+
+      break;
+
+    default:
+      break;
   }
 
   object->line_options->line_width  = line_options->line_width;
   object->line_options->line_end    = line_options->line_end;
   object->line_options->line_type   = line_options->line_type;
-  object->line_options->line_length = line_options->line_length;
-  object->line_options->line_space  = line_options->line_space;
+  object->line_options->line_length = line_length;
+  object->line_options->line_space  = line_space;
 
 }
 

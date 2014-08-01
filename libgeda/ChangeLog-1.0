@@ -1,3 +1,8 @@
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_set.c: Redo o_set_line_options, use old line space
+          and line length if set and passed values < 0.
+
 2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/geda/geda_config.c: Get rid of g_file_set_contents in function
