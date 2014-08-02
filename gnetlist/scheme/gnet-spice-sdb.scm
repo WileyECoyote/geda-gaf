@@ -192,24 +192,25 @@
 ;; check the correctness of the spice code in the file -- you're on your own!
 ;;---------------------------------------------------------------------------
 (define spice-sdb:insert-text-file
-  (lambda (model-filename)
+  (lambda (model-filename port)
     (if (file-exists? model-filename)
     (let ((model-file (open-input-file model-filename)) )
-      (display (string-append "*vvvvvvvv  Included SPICE model from " model-filename " vvvvvvvv\n"))
+      (display (string-append "*vvvvvvvv  Included SPICE model from " model-filename " vvvvvvvv\n") port)
       (let while ((model-line (read-line model-file)))
           (if (not (eof-object? model-line))
                    (begin
-                     (display (string-append model-line "\n"))
+                     (display (string-append model-line "\n") port)
+                     ;; (display (string-append "-- model-line = " model-line "\n")) ;; super debug statement
                      (while (read-line model-file))
                    )  ;; end of inner begin
           ) ;; end of if
         )  ;; end of inner let
         (close-port model-file)
-        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n"))
-        (display (string-append "*\n"))
+        (display (string-append "*^^^^^^^^  End of included SPICE model from " model-filename " ^^^^^^^^\n") port)
+        (display (string-append "*\n") port)
      ) ;; end of outer let
     (begin
-      (message (string-append "ERROR: File '" model-filename "' not found.\n"))
+      (display (string-append "ERROR: File '" model-filename "' not found.\n"))
       (primitive-exit 1))
     )
   )

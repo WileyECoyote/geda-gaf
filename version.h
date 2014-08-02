@@ -5,7 +5,7 @@
 #define PACKAGE_DOTTED_VERSION "2.0.8.8"
 
 /* Current git commit. */
-#define PACKAGE_GIT_COMMIT "f2c23f8701ceea1648976471c788e37f0396d769"
+#define PACKAGE_GIT_COMMIT "a139c87a4ec1baa2823f3007d2086f560a4593ad"
 
 /* Current 'git describe' version string. */
-#define PACKAGE_GIT_VERSION "1.7.2-20111231-278-gf2c23f8"
+#define PACKAGE_GIT_VERSION "1.7.2-20111231-280-ga139c87"

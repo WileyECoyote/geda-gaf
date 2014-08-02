@@ -352,7 +352,7 @@ void o_select_connected_nets(GschemToplevel *w_current, Object* o_net)
   int     count;
 
   if (o_net->type != OBJ_NET) {
-    u_log_message("Internal Error Detected: <o_select_connected_nets> Not a Net type object\n");
+    BUG_MSG("Object is not a Net type\n");
     return;
   }
 

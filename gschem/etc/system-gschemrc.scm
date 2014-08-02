@@ -854,7 +854,7 @@
 ;
 ; Controls if Icons, Text, or both are displayed on toolbars. This keyword
 ; will over-ride the settings in gtkrc's. This may be required in certain
-; enviroments. gschem does not default this value so the setting will be
+; environments. gschem does not default this value so the setting will be
 ; determined by gtk if this keyword is not set. The last mode, "retention"
 ; will cause each toolbar to be restored with values preserved from the
 ; last shutdown when save-ui-settings was "enabled".
@@ -1041,7 +1041,7 @@
 ;   - Show_list:  a list containing what to show, using
 ;                 elements like "name" or "value", or an empty list.
 (define default-pin-attributes
-       '(("pintype"   "unknown" #f ())
+       '(("pintype"   "pas" #f ())
          ("pinlabel"  "unknown" #t ("value"))
          ("pinnumber" "0"       #t ("value"))
          ("pinseq"    "0"       #f ())))
@@ -1065,15 +1065,15 @@
 ; each newly placed pin
 (add-hook! add-pin-hook add-default-pin-attributes)
 
-; Comment in this to load the functions to place attributes automatically.
-;(load-from-path "auto-place-attribs.scm")
+; Comment in this to load the functions to place the attributes automatically.
+(load-from-path "auto-place-attribs.scm")
 
 ; Autoplace pin text attributes hook.
 ; Comment in these if you want the pin attributes to be automatically placed.
 ; There are different hooks for situations like adding a new pin and rotating
 ; or mirroring an existing one.
 ; The #t at the end means that function is appended to the end of the hook.
-;(add-hook! add-pin-hook    (lambda (pin) (autoplace-pin-attributes pin )) #t)
+(add-hook! add-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 ;(add-hook! rotate-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 ;(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 

@@ -1,3 +1,19 @@
+2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_pin.c: Remove set page changed in o_pin_end, this
+          already gets done in libgeda when the pin is appended to the
+          page.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_edit_pin.c: Connect apply callback to pin label entry so
+          that pressing enter updates the pin object.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_attrib.c: In function attrib_edit_dialog_ok, set new pin
+          label attributes to color TEXT_COLOR, instead of ATTRIBUTE_COLOR.
+
 2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x/x_attrib.c: Conditionally set default response so callback

@@ -43,8 +43,6 @@ T 400 -100 5 10 1 1 0 2 1
 refdes=U?
 T 400 100 5 8 0 0 0 0 1
 device=or2
-T 0 1100 5 8 0 0 0 0 1
-comment=VERILOG_PORTS=POSITIONAL
 T 0 900 9 10 0 0 0 0 1
 numslots=0
 T 0 700 9 10 0 0 0 0 1
