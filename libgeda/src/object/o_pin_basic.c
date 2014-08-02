@@ -770,6 +770,30 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
   }
 }
 
+/*! \brief Create a New Pin Label Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for a pin label. If the
+ *  optional top-level object is present, the attribute offset will be
+ *  set based on global top-level settings, otherwise the text position
+ *  will be a fixed default offset relative to the X and Y arguments, if
+ *  X and Y are both not less than zero, otherwise the off set will be
+ *  relative to the active end of the given pin object. If label string
+ *  is NULL then NULL is returned. The text angle and justification will
+ *  be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] label    The attribute object being attached to the pin
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new pinlabel attribute or NULL if label was NULL
+ *
+ *  \example o_pin_create_label_attrib (toplevel, object, label_str, -1, -1);
+ *
+ *  \sa o_pin_create_number_attrib o_pin_create_seq_attrib
+ */
 Object*
 o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *label, int x, int y)
 {
@@ -866,6 +890,31 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
   return new_bute;
 }
 
+/*! \brief Create a New Pin Number Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for a pin number. If the
+ *  optional top-level object is present, the attribute offset will be
+ *  set based on global top-level settings, otherwise the text position
+ *  will be at a fixed default offset relative to the X and Y arguments,
+ *  if X and Y are both not less than zero, otherwise the offset will
+ *  be relative to the active end of the given pin object. If the number
+ *  is less then zero then the pin number will be set to the count of
+ *  pin objects attached to object. The text angle and justification
+ *  will be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] number   Integer value of the pin number
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new pinnumber attribute or NULL if label was NULL
+ *
+ *  \example o_pin_create_number_attrib (toplevel, object, pnum, -1, -1);
+ *
+ *  \sa o_pin_create_label_attrib o_pin_create_seq_attrib
+ */
 Object*
 o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, int number, int x, int y)
 {
@@ -966,6 +1015,30 @@ o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, int number, i
   return new_bute;
 }
 
+/*! \brief Create a New Pin Sequence Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for a pin sequence. If
+ *  the optional top-level object is present, the attribute offset will
+ *  be set based on global top-level settings, otherwise the text will be
+ *  position at a fixed default offset relative to the X and Y arguments,
+ *  if X and Y are both not less than zero, otherwise the offset will be
+ *  relative to the active end of the given pin object. If label string
+ *  is NULL then NULL is returned. The text angle and justification will
+ *  be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] sequence Integer value of the pin sequence
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new pinseq attribute or NULL if label was NULL
+ *
+ *  \example o_pin_create_number_attrib (NULL, object, seq, -1, -1);
+ *
+ *  \sa o_pin_create_seq_attrib o_pin_create_number_attrib
+ */
 Object*
 o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, int x, int y)
 {
@@ -1072,6 +1145,30 @@ o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, in
   return new_bute;
 }
 
+/*! \brief Create a New Pin Electrical Type Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for the pintype. If the
+ *  optional top-level object is present, the attribute offset will be
+ *  set based on global top-level settings, otherwise the text will be
+ *  positioned at a fixed default offset relative to the X and Y arguments,
+ *  if X and Y are both not less than zero, otherwise the offset will be
+ *  relative to the active end of the given pin object. If descr string
+ *  is NULL then NULL is returned. The text angle and justification will
+ *  be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] descr    Normally a member of #e_strings
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new pintype attribute or NULL if label was NULL
+ *
+ *  \example o_pin_create_elect_attrib (NULL, object, "pas", -1, -1);
+ *
+ *  \sa o_pin_create_mech_attrib
+ */
 Object*
 o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object, const char *descr, int x, int y)
 {
@@ -1156,6 +1253,30 @@ o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object, const char *de
   return new_bute;
 }
 
+/*! \brief Create a New Pin Mechanical Type Attribute for Object
+ *
+ *  \par Function Description
+ *  This function creates a new text attribute for the mechtype. If the
+ *  optional top-level object is present, the attribute offset will be
+ *  set based on global top-level settings, otherwise the text will be
+ *  positioned at a fixed default offset relative to the X and Y arguments,
+ *  if X and Y are both not less than zero, otherwise the offset will be
+ *  relative to the active end of the given pin object. If descr string
+ *  is NULL then NULL is returned. The text angle and justification will
+ *  be set based on the orientation of the pin.
+ *
+ *  \param [in] toplevel The GedaToplevel object, can be NULL
+ *  \param [in] object   The pin object for which the attribute was being added.
+ *  \param [in] descr    Normally a member of #m_strings
+ *  \param [in] x        Desired X location for the label
+ *  \param [in] y        Desired Y location for the label
+ *
+ *  \returns Pointer to new mechtype attribute or NULL if label was NULL
+ *
+ *  \example o_pin_create_mech_attrib (NULL, object, "lead", -1, -1);
+ *
+ *  \sa o_pin_create_elect_attrib
+ */
 Object*
 o_pin_create_mech_attrib(GedaToplevel *toplevel, Object *object, const char *descr, int x, int y)
 {

@@ -186,4 +186,3 @@ o_set_visibility (Object *object, int visibility)
     BUG_TRACE ("object is not a GedaObject");
   }
 }
-

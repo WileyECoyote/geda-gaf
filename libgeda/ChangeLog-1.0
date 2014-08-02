@@ -1,3 +1,13 @@
+2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_pin_basic.c: Updated source documentation.
+
+2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_pin_basic.c: In function o_pin_set_attributes, create
+          a new pin label object if a pin label string was given and the
+          object does not already have a pinlabel attribute.
+
 2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/object/o_set.c: Redo o_set_line_options, use old line space
