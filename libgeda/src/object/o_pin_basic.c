@@ -693,6 +693,7 @@ o_pin_get_attributes(Object *object,  const char **label, int *number, int *sequ
 void o_pin_set_attributes(Object *object, const char *label_str, int number, int sequence,
                           PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE n_type)
 {
+
   if (object != NULL && object->type == OBJ_PIN) {
 
     Pin *pin = object->pin;
@@ -734,6 +735,13 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
         o_attrib_set_value(bute, "pinlabel", (char*)label_str);
         o_text_recreate(bute);
       }
+      else {
+        bute = o_pin_create_label_attrib (NULL, object, label_str, -1, -1);
+        if (bute && object->page) {
+          s_page_append_object(object->page, bute);
+          bute->page = object->page;
+        }
+      }
     }
 
     if ((int)e_type >= 0) {
@@ -760,11 +768,10 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
     s_conn_update_linear_object (object);
     o_attrib_thaw_hooks (object);
   }
-
 }
 
 Object*
-o_pin_create_label_attribute(GedaToplevel *toplevel, Object *object, const char *label, int x, int y)
+o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *label, int x, int y)
 {
   Object *new_bute;
   char   *text;
@@ -1244,7 +1251,7 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, Object *object)
   if (o_pin_get_attributes(object, &label_str, &number, &sequence, &etype, &mtype, &ntype)) {
 
     if (label_str == NULL) {
-      attrib = o_pin_create_label_attribute(toplevel, object, NULL, -1, -1);
+      attrib = o_pin_create_label_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;
