@@ -342,6 +342,7 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
       BUG_MSG("got FALSE pin object\n");
   }
   else { /* More than 1 pin is selected */
+
     set_node_type  = GET_SWITCH_STATE(pin_data->set_node_type);
     set_elect_type = GET_SWITCH_STATE(pin_data->set_elect_type);
     auto_number    = GET_SWITCH_STATE(pin_data->auto_number);
@@ -910,6 +911,10 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
                                    (GtkWidget*) main_vbox);
 
   gtk_widget_show_all (action_area);
+
+  g_signal_connect (label_entry, "activate",
+                    G_CALLBACK (on_apply_butt_clicked),
+                    ThisDialog);
 
   g_signal_connect (G_OBJECT (ThisDialog), "response",
                     G_CALLBACK (x_dialog_edit_pin_type_response),
