@@ -693,7 +693,7 @@ get_pin_object_data(Object *object)
 
   int line_width   = object->line_options->line_width;
 
-  data = Py_BuildValue("siiiiiisssiiiiiiiiiii",  name, type, pid, sid, lock,
+  data = Py_BuildValue("siiiiiissssiiiiiiiiii",  name, type, pid, sid, lock,
                        cid, nid, elect_type, mech_type, label,
                        number, sequence, whichend, x1, y1, x2, y2,
                        e_type, m_type, n_type, line_width);
@@ -1624,6 +1624,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
               NEXT (butes);
             }; /* wend*/
         }
+
         /* Check if this object has any attributes and add them too */
         int i;
         PyObject *py_list = geda_pyobject->attributes;
@@ -1631,15 +1632,22 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
         if (py_list) {
 
           count = (int) PyList_GET_SIZE(py_list);
+
           for (i = 0; i < count ; i++) {
+
             GedaCapsule *py_capsule;
 
             py_capsule = (GedaCapsule*)PyList_GET_ITEM(py_list, i);
-            object = NULL;
-            object = retrieve_floating_object(py_capsule->sid);
+            object     = NULL;
+            object     = retrieve_floating_object(py_capsule->sid);
 
             if (object) {
-              //s_object_add(parent, object);
+              /* We get here when an object was added to a page and the object
+               * had attributes and these "children" need to be referenced by
+               * the parent object. Note that when the capsule was retrieved
+               * the, they are removed from the the list of "floating" objects.
+               */
+              s_object_add(parent, object);
               if (geda_pyobject->auto_attributes == TRUE) {
                 if (parent->type == OBJ_PIN) {
                   o_pin_realize_attributes(toplevel, parent);
@@ -1661,6 +1669,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
     if (page && (GEDA_IS_PAGE(page))) {
       parent = geda_page_get_object(page, geda_pyparent->sid);
       object = retrieve_floating_object(sid);
+
       if (PyGeda_update_object(object, geda_pyobject)) {
         s_object_add(parent, object);
       }
@@ -2428,10 +2437,10 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
 
 #if DEBUG
   int  elect_type = object->pin->elect_type;
-  int  mech_type = object->pin->mech_type;;
-  int  node_type = = object->pin->node_type;
-  fprintf(stderr, "PyGeda_new_pin: name=%s, elect_type=%d mech_type=%d, node_type=%d\n",
-          object->name, elect_type, mech_type, node_type);
+  int  mech_type  = object->pin->mech_type;
+  int  node_type  = object->pin->node_type;
+  fprintf(stderr, "PyGeda_new_pin: name=%s, number=%s, elect_type=%d mech_type=%d, node_type=%d\n",
+          object->name, object->pin->number, elect_type, mech_type, node_type);
 #endif
   return get_pin_object_data(object);
 }

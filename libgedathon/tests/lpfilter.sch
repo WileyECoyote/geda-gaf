@@ -1,4 +1,4 @@
-v 20140330 2
+v 20140728 2
 C 1000 1000 0 0 0 title-B.sym
 {
 T 1900 2800 5 10 0 0 0 0 1
@@ -239,60 +239,60 @@ C 12800 10300 1 0 0 12V-plus-1.sym
 T 12800 11025 5 10 0 0 0 0 1
 device=none
 T 12800 10850 5 10 0 0 0 0 1
-footprint=unknown
+footprint=none
 }
 C 8400 5100 1 180 0 12V-minus-1.sym
 {
 T 8400 4375 5 10 0 0 180 0 1
 device=none
 T 8400 4550 5 10 0 0 180 0 1
-footprint=unknown
+footprint=none
 }
 C 9000 3700 1 0 0 gnd-1.sym
 {
 T 9600 3800 5 10 0 0 0 0 1
 device=none
 T 9600 3800 5 10 0 0 0 0 1
-footprint=unknown
+footprint=none
 }
 C 12100 3700 1 0 0 gnd-1.sym
 {
 T 12700 3800 5 10 0 0 0 0 1
 device=none
 T 12700 3800 5 10 0 0 0 0 1
-footprint=unknown
+footprint=none
 }
 C 7300 3700 1 0 0 gnd-1.sym
 {
 T 7900 3800 5 10 0 0 0 0 1
 device=none
 T 7900 3800 5 10 0 0 0 0 1
-footprint=unknown
+footprint=none
 }
 C 14400 8400 1 0 0 gnd-1.sym
 {
 T 15000 8500 5 10 0 0 0 0 1
 device=none
 T 15000 8500 5 10 0 0 0 0 1
-footprint=unknown
+footprint=none
 }
 C 2300 7800 1 0 0 in-1.sym
 {
 T 2300 9000 5 8 0 0 0 0 1
 symversion=1.0
-T 2300 8100 5 10 0 0 0 0 1
+T 2300 8200 5 10 0 0 0 0 1
 device=INPUT
 T 2900 7900 5 10 0 0 0 0 1
-footprint=none
+footprint=JUMPER-1
 }
 C 15600 7400 1 0 0 out-1.sym
 {
-T 15600 8600 5 8 0 0 0 0 1
+T 15600 8700 5 8 0 0 0 0 1
 symversion=1.0
-T 15600 7700 5 10 0 0 0 0 1
+T 15600 7700 5 8 0 0 0 0 1
 device=OUTPUT
 T 16200 7500 5 10 0 0 0 0 1
-footprint=none
+footprint=JUMPER-1
 }
 N 12200 5500 12200 7300 4
 N 12200 7300 12500 7300 4

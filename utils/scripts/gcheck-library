@@ -52,7 +52,7 @@ do_show_help()
               echo "Use the follow options to control behavior:"
               echo
               echo   '  -a | --all       file pattern is changed from *.sym to *'
-              echo   '  -c | --clip      Check geda-clib.scm for errors'
+              echo   '  -c | --clip      Check geda-clib.scm for errors and references'
               echo   '  -f | --filter <pattern>   filter pattern is changed to pattern'
               echo   '  -n | --no_report do not perform report statistic'
               echo   '  -r | --report    report statistic only, do not perform checking'
@@ -147,6 +147,29 @@ do_check_all_containers () {
   return $result;
 }
 
+do_check_clib_references () {
+
+  local found=0;
+  local clibfile=$1;
+  local symdir=$2;
+  local result=0;
+
+  cd "$symdir"
+
+  SYM_DIRS=(`find * -maxdepth 1 -type d ! -name doc -printf "%f "`)
+  
+  for subdir in "${SYM_DIRS[@]}" ; do
+    vecho "Checking reference to $subdir"
+    found=$(cat $clibfile | grep $subdir)
+    if [[ -z $found ]] ; then
+      missing=$(find * -maxdepth 1 -type d -name "$subdir")
+      echo "$missing is not referenced by $filename"
+      result=1;
+    fi
+  done
+  return $result;
+}
+
 do_check_clib () {
   local result=0;
   local filename;
@@ -156,11 +179,23 @@ do_check_clib () {
 
     if [ -f "geda-clib.scm" ] ; then
       filename="$PWD/geda-clib.scm"
-      $PROGRAM2 shell -c (load "$filename") &> /dev/null
-      if [ $? eq 0 ] ; then
-         echo  "$filename is Okay!"
+      result=$($PROGRAM2 "shell" "-c" "(load \"$filename\")" &> /dev/null)
+      if [ $? -ne 0 ] ; then
+         echo "$filename contains Errors!"
+         result=1;
       else
-         echo  "$filename contains Errors!"
+         echo "$filename is Okay!"
+         #savedir=$PWD
+         cd ..
+         #TODO maybe use @symbol_dirs@
+         if [ -d "symbols" ] ; then
+           do_check_clib_references $filename "symbols"
+         elif [ -d "sym" ] ; then
+           do_check_clib_references $filename "sym"
+         else
+           vecho "Not checking for symbol directory references"
+         fi
+         #cd "$savedir"
       fi
     else
       echo "Error, geda-clib.scm must be in the current directory"
@@ -194,3 +229,4 @@ else
   fi
 fi
 exit
+

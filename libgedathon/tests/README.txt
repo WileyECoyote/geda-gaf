@@ -10,5 +10,14 @@ For now, the  resulting "lpfilter.sch" file is compared to the prebuilt
 version. If the scripts exit with code 0, we passed. If the scripts exit
 with any value other 0, we did not pass.
 
+Use "make tester" to update the reference schematic.
+
+Note: If "make tests" reports "ImportError: No module named geda" check
+the PYTHONPATH environment variable. If you are root, then try as normal
+user; the PYTHONPATH variable will not likely be exported when elevating
+privileges
+
+
+
 
 

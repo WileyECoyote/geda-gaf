@@ -1,5 +1,5 @@
 <!-- Creator     : groff version 1.21 -->
-<!-- CreationDate: Mon Jul 28 00:39:30 2014 -->
+<!-- CreationDate: Sun Aug  3 05:09:42 2014 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -132,10 +132,23 @@ operation of the gcheck-library utility.</p>
 <p style="margin-left:22%;">file search pattern is changed
 from *.sym to *&rsquo;.</p>
 
-<p style="margin-left:11%;">-e, --extra</p>
+<p style="margin-left:11%;">-c, --clip</p>
 
-<p style="margin-left:22%;">Perform extra checks. This
-directive is passed on toe gsymcheck.</p>
+<p style="margin-left:22%;">Performs advanced checks on
+geda-clib.scm. This directive is not intended for regular
+users. When enabled, symbol files are not checked, instead,
+gcheck-library will perform checked related to geda-clib.scm
+in two stages. The first check is for the syntax of
+geda-clib.scm. The gaf utility&rsquo;s shell feature is
+utilized to load the file in guile, this is a pass or fail
+check. The results are reported. The second stage checks for
+references to the names of symbol folders in geda-clib.scm,
+which uses the &quot;component-library&quot; function to
+load the main library, so any folder names reported as being
+unreferenced will not appear in the component selection
+dialog in gschem. Note that this directive can only be used
+in the installed location of the geda-clib.scm or in the
+source directory containing the geda-clib.scm.</p>
 
 <p style="margin-left:11%;">-f, --filter</p>
 

@@ -1,6 +1,32 @@
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/libgedathon.c: Uncommented s_object_add for children in
+          PyGeda_add_object, don't remember why I did that, but was bug.
+          Attributes added to floating pin objects were not being added
+          to the object when the pin was commited to the page. Fixed Now.
+          Did not affect pins whose attributes were added after the pin
+          was committed to the page. Add in source comments and additional
+          information in README.txt regarding being root.
+
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * module/geda.c: Revised module function new_pin, to accept either
+          a string or an integer for the pin number argument using Python
+          functions (sense the module does not have access to Libgeda).
+          Previous commits changed the 6th argument from integer to type
+          string. Now can be either and I think this is more convenient.
+          This does however, makes new_pin unique in that it is the only
+          module API function that derives a Python argument, other than
+          the PyColor arguments, (not currently implemented).
+
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * docs/guide-libgedathon.html: Fixed numerous grammatical errors in
+          documentation, minor rephrasing to improved clarity or conciseness.
+
 2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
-        * *: Redo Redo entire API library and modules allow pins number
+        * *: Redo entire API library and modules allow pins number
           as string, rather than integers, in libgeda.
 
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
