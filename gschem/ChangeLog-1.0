@@ -1,5 +1,10 @@
 2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_edit_pin.c: Redo Edit Pin dialog to allow for alphanumeric
+          pin numbers, rather than only integers.
+
+2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/object/o_pin.c: Remove set page changed in o_pin_end, this
           already gets done in libgeda when the pin is appended to the
           page.

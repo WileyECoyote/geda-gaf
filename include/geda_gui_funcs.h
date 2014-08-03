@@ -34,6 +34,7 @@
             }
 
 #define GetEntryText(widget) gtk_entry_get_text ((GtkEntry *) widget)
+#define GetEntryLength(widget) gtk_entry_get_text_length ((GtkEntry *) widget)
 #define SetEntryText(widget, text) \
             if (text == NULL) \
               gtk_entry_set_text((GtkEntry *) widget, ""); \

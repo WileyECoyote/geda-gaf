@@ -1670,7 +1670,7 @@ FUNCTION(AddPicture)
  *  Optional parameters:
  *
  *  [in] whichend     Boolean Which end gets connected (either 0 or 1)
- *  [in] number       integer pin number attribute
+ *  [in] number       string  pin number attribute
  *  [in] label        string  pin label attribute
  *  [in] elect_type   integer electrical type attribute (formally pin type)
  *  [in] mech_type    integer mechanical type attribute
@@ -1680,7 +1680,7 @@ FUNCTION(AddPicture)
  *
  *  example 1: AddPin(resistor, 0, 100, 100, 100)
  *
- *  example 2: pin = AddPin(symbol, 0, 100, 100, 100, 0, 1, "1", PIN_ELECT_PAS, 0, 0)
+ *  example 2: pin = AddPin(symbol, 0, 100, 100, 100, 0, "1", "1", PIN_ELECT_PAS, 0, 0)
  *
  */
 FUNCTION(AddPin)
@@ -1690,23 +1690,23 @@ FUNCTION(AddPin)
   PyObject *py_y1;
   PyObject *py_x2;
   PyObject *py_y2;
-  PyObject *py_pin  = NULL;
+  PyObject *py_pin   = NULL;
 
-  int whichend      = -1;
-  int number        = -1;
+  int whichend       = -1;
 
-  int etype         = -1;
-  int mtype         = -1;
-  int ntype         = -1;
+  int etype          = -1;
+  int mtype          = -1;
+  int ntype          = -1;
 
-  const char *label = NULL;
+  const char *label  = NULL;
+  const char *number = NULL;
 
   static char *kwlist[] = {"page", "x1", "y1", "x2", "y2",
                            "whichend", "number", "label",
                            "elect_type", "mech_type", "node_type",
                             NULL};
 
-  if (!PyArg_ParseTupleAndKeywords(args, kwds, "OOOOO|iisiii:AddPin, Bad Arguments",
+  if (!PyArg_ParseTupleAndKeywords(args, kwds, "OOOOO|issiii:AddPin, Bad Arguments",
                                    kwlist, &py_page, &py_x1, &py_y1, &py_x2, &py_y2,
                                    &whichend, &number, &label,
                                    &etype, &mtype, &ntype))
@@ -1716,39 +1716,61 @@ FUNCTION(AddPin)
 
   if (ntype > 0) {
     PyObject *py_label;
+    PyObject *py_number;
     if (label)
        py_label = PyString_FromString(label);
     else
        py_label = PyString_FromString("");
+    if (number)
+       py_number = PyString_FromString(number);
+    else
+       py_number = PyString_FromString("");
     py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiOiii", py_x1, py_y1, py_x2, py_y2,
-                                 whichend, number, py_label, etype, mtype, ntype);
+                                 whichend, py_number, py_label, etype, mtype, ntype);
   }
   else if (mtype > 0) {
     PyObject *py_label;
+    PyObject *py_number;
     if (label)
        py_label = PyString_FromString(label);
     else
        py_label = PyString_FromString("");
+    if (number)
+       py_number = PyString_FromString(number);
+    else
+       py_number = PyString_FromString("");
     py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiOii", py_x1, py_y1, py_x2, py_y2,
-                                 whichend, number, py_label, etype, mtype);
+                                 whichend, py_number, py_label, etype, mtype);
   }
   else if (etype > 0) {
     PyObject *py_label;
+    PyObject *py_number;
     if (label)
        py_label = PyString_FromString(label);
     else
        py_label = PyString_FromString("");
+    if (number)
+       py_number = PyString_FromString(number);
+    else
+       py_number = PyString_FromString("");
     py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiOi", py_x1, py_y1, py_x2, py_y2,
-                                 whichend, number, py_label, etype);
+                                 whichend, py_number, py_label, etype);
   }
   else if (label != NULL) {
     PyObject *py_label = PyString_FromString(label);
+    PyObject *py_number;
+    if (number)
+       py_number = PyString_FromString(number);
+    else
+       py_number = PyString_FromString("");
     py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiO", py_x1, py_y1, py_x2, py_y2,
-                                 whichend, number, py_label);
+                                 whichend, py_number, py_label);
   }
-  else if (number > 0) {
+  else if (number!= NULL)
+  {
+    PyObject *py_number = PyString_FromString(number);
     py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOii", py_x1, py_y1, py_x2, py_y2,
-                                 whichend, number);
+                                 whichend, py_number);
   }
   else if (whichend > 0) {
     py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOi", py_x1, py_y1, py_x2, py_y2,

@@ -36,7 +36,7 @@ SCM_SYMBOL (list_sym,     "list");
  * \param name name of hook to lookup.
  * \return value found in the (gschem core hook) module.
  */
-static SCM
+SCM
 g_get_hook_by_name (const char *name)
 {
 #if DEBUG || DEBUG_HOOKS

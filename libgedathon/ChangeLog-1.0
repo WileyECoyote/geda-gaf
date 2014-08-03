@@ -1,3 +1,8 @@
+2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+        * *: Redo Redo entire API library and modules allow pins number
+          as string, rather than integers, in libgeda.
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/*/*.c: Redo inclusion of header files

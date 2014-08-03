@@ -310,6 +310,7 @@ static inline void BlockMethod (int index)
 #define TYPE_PYOBJECT_C1I6(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i6)
 #define TYPE_PYOBJECT_C1I7(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i7)
 #define TYPE_PYOBJECT_C1I9(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c1i9)
+#define TYPE_PYOBJECT_C2I8(symbol)     ON_METHOD_ENTRY(pyobject, symbol, c2i8)
 #define TYPE_PYOBJECT_C2I6P1(symbol)   ON_METHOD_ENTRY(pyobject, symbol, c2i6p1)
 
 #define TYPE_PYOBJECT_P1(symbol)       ON_METHOD_ENTRY(pyobject, symbol, p1)
@@ -343,6 +344,7 @@ typedef PyObject* (*PyGeda_pyobject_c1i5p1_type) ( const char*, int, int, int, i
 typedef PyObject* (*PyGeda_pyobject_c1i6_type)   ( const char*, int, int, int, int, int, int);
 typedef PyObject* (*PyGeda_pyobject_c1i7_type)   ( const char*, int, int, int, int, int, int, int);
 typedef PyObject* (*PyGeda_pyobject_c1i9_type)   ( const char*, int, int, int, int, int, int, int, int, int);
+typedef PyObject* (*PyGeda_pyobject_c2i8_type)   ( const char*, const char*, int, int, int, int, int, int, int, int);
 typedef PyObject* (*PyGeda_pyobject_c2i6p1_type) ( const char*, const char*, int, int, int, int, int, int, PyObject * );
 
 typedef PyObject* (*PyGeda_pyobject_p1_type)     ( PyObject * );
@@ -1782,7 +1784,7 @@ METHOD(new_picture)
  *  Optional arguments:
  *
  *  [in] whichend Integer Which end gets connected (either 0 or 1)
- *  [in] number   Integer pin number attribute
+ *  [in] number   String  pin number attribute
  *  [in] label    String  pin label attribute
  *  [in] etype    Integer electrical type attribute (formally pin type)
  *  [in] mtype    Integer mechanical type attribute
@@ -1803,9 +1805,9 @@ METHOD(new_picture)
  *           attributes after the pin has been committed to a Page object, see example 2
  *           below.
  *
- *  example 1. pin = geda.new_pin(900, 200, 700, 200, 0, 2, "2", PIN_ELECT_PAS, 0, 0)
+ *  example 1. pin = geda.new_pin(900, 200, 700, 200, 0, "2", "2", PIN_ELECT_PAS, 0, 0)
  *
- *  example 2. pin = geda.new_pin(0, 100, 100, 100, 0, 1, "1", PIN_ELECT_PAS, 0, 0)
+ *  example 2. pin = geda.new_pin(0, 100, 100, 100, 0, "1", "1", PIN_ELECT_PAS, 0, 0)
  *              geda.add_object(resistor, pin)
  *              butes = geda.get_attribs(pin)
  *              for attrib in butes:
@@ -1817,29 +1819,29 @@ METHOD(new_picture)
  */
 METHOD(new_pin)
 {
-  TYPE_PYOBJECT_C1I9(new_pin);
+  TYPE_PYOBJECT_C2I8(new_pin);
 
   PyObject   *py_pin;
   PyObject   *object_data;
 
   int x1; int y1; int x2; int y2;
 
-  int number        = -1;
   int whichend      = -1;
   int etype         = -1;
   int mtype         = -1;
   int ntype         = -1;
 
+  const char *number = NULL;
   const char *label = NULL;
 
-  if (! PyArg_ParseTuple(args, "iiii|iisiii:geda.new_pin, Bad Arguments",
+  if (! PyArg_ParseTuple(args, "iiii|issiii:geda.new_pin, Bad Arguments",
                          &x1, &y1, &x2, &y2, &whichend, &number, &label, &etype, &mtype, &ntype))
   {
     PyErr_SetString(PyExc_TypeError, "syntax: new_pin(x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]])");
     return NULL;
   }
 
-  object_data = library.func(label, x1, y1, x2, y2, whichend, number, etype, mtype, ntype);
+  object_data = library.func(label, number, x1, y1, x2, y2, whichend, etype, mtype, ntype);
 
   if (object_data != NULL ) {
     py_pin = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);

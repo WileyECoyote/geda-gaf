@@ -606,7 +606,7 @@ void o_pin_set_node_type (Object *o_current, PIN_NODE node_type)
  *  \return TRUE on succes, FALSE otherwise
  */
 bool
-o_pin_get_attributes(Object *object,  const char **label, int *number, int *sequence,
+o_pin_get_attributes(Object *object,  const char **label, const char **number, int *sequence,
                      PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *n_type)
 {
   bool        result;
@@ -640,7 +640,7 @@ o_pin_get_attributes(Object *object,  const char **label, int *number, int *sequ
           ptr++;            /* pointer offset to first char of value */
           if(strncmp(str, "pinnumber", length) == 0 ) {
             pinnumber_str = ptr;
-           *number = atoi(pinnumber_str);
+           *number = pinnumber_str;
           }
           else {
             if(strncmp(str, "pinseq", length) == 0) {
@@ -673,7 +673,7 @@ o_pin_get_attributes(Object *object,  const char **label, int *number, int *sequ
     }
   }
   if(!pinnumber_str)
-    *number = -1;
+    *number = NULL;
 
   if(!pinseq_str)
     *sequence = -1;
@@ -690,8 +690,11 @@ o_pin_get_attributes(Object *object,  const char **label, int *number, int *sequ
   return result;
 }
 
-void o_pin_set_attributes(Object *object, const char *label_str, int number, int sequence,
-                          PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE n_type)
+void o_pin_set_attributes(Object     *object,
+                          const char *label_str,
+                          const char *number,
+                          int         sequence,
+                          PIN_ELECT   e_type, PIN_MECH m_type, PIN_NODE n_type)
 {
 
   if (object != NULL && object->type == OBJ_PIN) {
@@ -704,32 +707,44 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
     Object *bute;
     pin->node_type = n_type;
 
-    if(number > 0) {
-      if(pin->number != number)
-        pin->number = number;
+    /* pin number */
+    if (geda_pin_set_number(pin, number)) {
       bute = o_attrib_first_attrib_by_name (object, "pinnumber");
       if(bute != NULL) {
-        o_attrib_set_value(bute, "pinnumber",  g_strdup_printf ("%d", number));
+
+        o_attrib_set_value(bute, "pinnumber",  number);
         o_text_recreate(bute);
+      }
+      else {
+        bute = o_pin_create_number_attrib (NULL, object, number, -1, -1);
+        if (bute && object->page) {
+          s_page_append_object(object->page, bute);
+          bute->page = object->page;
+        }
       }
     }
 
-    if(sequence > 0) {
-      if(pin->sequence != sequence)
-        pin->sequence = sequence;
+    /* pin sequence */
+    char *str_seq = g_strdup_printf ("%d", sequence);
+    if (geda_pin_set_sequence(pin, str_seq)) {
       bute = o_attrib_first_attrib_by_name (object, "pinseq");
       if(bute !=NULL) {
-        o_attrib_set_value(bute, "pinseq",  g_strdup_printf ("%d", sequence));
+        o_attrib_set_value(bute, "pinseq", str_seq);
         o_text_recreate(bute);
       }
-    }
-
-    if (label_str != NULL) {
-      /* First set the pin->label property of the pin object */
-      if (pin->label == NULL || (strcmp(pin->label, label_str) != 0)) {
-        geda_pin_set_label(pin, label_str);
+      else {
+        bute = o_pin_create_seq_attrib (NULL, object, sequence, -1, -1);
+        if (bute && object->page) {
+          s_page_append_object(object->page, bute);
+          bute->page = object->page;
+        }
       }
+    }
+    GEDA_FREE(str_seq);
 
+    /* pin label */
+    if (geda_pin_set_label(pin, label_str)) {
+fprintf(stderr, "<%s> geda_pin_set_label said change %s\n", __func__, label_str);
       bute = o_attrib_first_attrib_by_name (object, "pinlabel");
       if(bute !=NULL && bute->type == OBJ_TEXT) {
         o_attrib_set_value(bute, "pinlabel", (char*)label_str);
@@ -777,10 +792,9 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
  *  optional top-level object is present, the attribute offset will be
  *  set based on global top-level settings, otherwise the text position
  *  will be a fixed default offset relative to the X and Y arguments, if
- *  X and Y are both not less than zero, otherwise the off set will be
- *  relative to the active end of the given pin object. If label string
- *  is NULL then NULL is returned. The text angle and justification will
- *  be set based on the orientation of the pin.
+ *  X and Y are both not less than zero, otherwise the offset will be
+ *  relative to the active end of the given pin object. The text angle
+ *  and justification will be set based on the orientation of the pin.
  *
  *  \param [in] toplevel The GedaToplevel object, can be NULL
  *  \param [in] object   The pin object for which the attribute was being added.
@@ -788,7 +802,7 @@ void o_pin_set_attributes(Object *object, const char *label_str, int number, int
  *  \param [in] x        Desired X location for the label
  *  \param [in] y        Desired Y location for the label
  *
- *  \returns Pointer to new pinlabel attribute or NULL if label was NULL
+ *  \returns Pointer to new pinlabel attribute or NULL no label string is set
  *
  *  \example o_pin_create_label_attrib (toplevel, object, label_str, -1, -1);
  *
@@ -905,7 +919,7 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
  *
  *  \param [in] toplevel The GedaToplevel object, can be NULL
  *  \param [in] object   The pin object for which the attribute was being added.
- *  \param [in] number   Integer value of the pin number
+ *  \param [in] number   Pointer to string value of the pin number
  *  \param [in] x        Desired X location for the label
  *  \param [in] y        Desired Y location for the label
  *
@@ -916,15 +930,19 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
  *  \sa o_pin_create_label_attrib o_pin_create_seq_attrib
  */
 Object*
-o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, int number, int x, int y)
+o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, const char *number, int x, int y)
 {
-  Object *new_bute;
-  char   *text;
+  Object     *new_bute;
+  const char *str_num;
+        char *text;
+        char  s_val[6];
+
   int     value;
   int     align = -1;
   int     offset;
   int     size;
   int     x_pos, y_pos;
+
 
   if (toplevel) { /* if was passed a toplevel configuration */
     offset = toplevel->attribute_offset;
@@ -986,24 +1004,26 @@ o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, int number, i
   if ( x_pos < 0 ) x_pos = object->line->x[!object->pin->whichend];
   if ( y_pos < 0 ) y_pos = object->line->y[!object->pin->whichend];
 
-  if (number < 1) {
-    if (object->pin->number < 1) {
+  if (number == NULL) {
+    if (object->pin->number == NULL) {
       if(GEDA_IS_COMPLEX(object->parent_object)) {
         value = g_list_length(object->parent_object->complex->pin_objs);
+        int2str(value, s_val, 10);
+        str_num = &s_val[0];
       }
       else {
-        value = 1;
+        str_num = "1";
       }
     }
     else {
-      value = object->pin->number;
+      str_num = object->pin->number;
     }
   }
   else {
-    value = number;
+    str_num = number;
   }
 
-  text = g_strdup_printf("pinnumber=%d", value);
+  text = g_strdup_printf("pinnumber=%s", str_num);
 
   new_bute = o_text_new (ATTRIBUTE_COLOR, x_pos, y_pos, align, 0,
                          text, size, VISIBLE, SHOW_VALUE);
@@ -1112,7 +1132,7 @@ o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, in
 
   if (sequence < 1) {
     if (object->pin->sequence < 1) {
-      if (object->pin->number < 1) {
+      if (object->pin->number == NULL) {
         if(GEDA_IS_COMPLEX(object->parent_object)) {
           value = g_list_length(object->parent_object->complex->pin_objs);
         }
@@ -1121,7 +1141,7 @@ o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, in
         }
       }
       else {
-        object->pin->sequence = object->pin->number;
+        object->pin->sequence = atoi(object->pin->number);
         value = object->pin->sequence;
       }
     }
@@ -1366,8 +1386,9 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, Object *object)
   PIN_MECH  mtype;
   PIN_NODE  ntype;  /* Does not get attribute but need for get_attributes */
 
-  int number, sequence;
   const char *label_str;
+  const char *number;
+        int   sequence;
 
   if (o_pin_get_attributes(object, &label_str, &number, &sequence, &etype, &mtype, &ntype)) {
 
@@ -1378,8 +1399,8 @@ GList *o_pin_realize_attributes(GedaToplevel *toplevel, Object *object)
         attrib->page = object->page;
       }
     }
-    if (number < 0) {
-      attrib = o_pin_create_number_attrib(toplevel, object, -1, -1, -1);
+    if (number == NULL) {
+      attrib = o_pin_create_number_attrib(toplevel, object, NULL, -1, -1);
       if (attrib && object->page) {
         s_page_append_object(object->page, attrib);
         attrib->page = object->page;

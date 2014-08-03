@@ -125,7 +125,7 @@ static void geda_pin_init(Pin *pin)
   Line   *line      = &pin->parent_instance;
   Object *object    = &line->parent_instance;
 
-  pin->number       = -1;
+  pin->number       = NULL;
   pin->whichend     = 0;    /* either 0 or 1 */
 
   pin->elect_type   = PIN_ELECT_VOID; /* electrical type code */
@@ -203,7 +203,7 @@ geda_pin_get_property (GObject *object, unsigned int  prop_id,
       break;
 
     case PROP_NUMBER:
-      g_value_set_string (value, int2str( pin->number, s_val, 10 ));
+      g_value_set_string (value, pin->number);
       break;
 
     case PROP_SEQUENCE:
@@ -247,7 +247,9 @@ static void geda_pin_finalize(GObject *object)
     GEDA_FREE(pin->mechanical);
     pin->mechanical = NULL;
   }
+
   GEDA_FREE(pin->label);
+  GEDA_FREE(pin->number);
 
   GEDA_LINE_CLASS( geda_pin_parent_class )->finalize(object);
 }
@@ -361,85 +363,168 @@ geda_pin_get_electrical(Pin *pin)
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->electrical;
 }
-void geda_pin_set_electrical(Pin *pin, const char *electrical)
+
+bool geda_pin_set_electrical(Pin *pin, const char *electrical)
 {
-  g_return_if_fail(GEDA_IS_PIN(pin));
-  GEDA_FREE(pin->electrical);
-  pin->electrical = geda_strdup(electrical);
+  g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
-  /* Check if there is a code associated with the description */
-  PIN_ELECT current_type = geda_pin_lookup_etype(electrical);
+  bool      changed = FALSE;
+  PIN_ELECT current_type;
 
-  /* Update the code if discrepant */
-  if (current_type != pin->elect_type)
-    current_type = pin->elect_type;
+  if ( electrical != NULL ) {
+
+    if (pin->electrical) {
+      if (strcmp(pin->electrical, electrical) != 0) {
+        changed = TRUE;
+        GEDA_FREE(pin->electrical);
+      }
+    }
+    else {
+      changed = TRUE;
+    }
+
+    if (changed) {
+      pin->electrical = geda_strdup(electrical);
+
+      /* Check if there is a code associated with the description */
+      current_type = geda_pin_lookup_etype(electrical);
+
+      /* Update the code if discrepant */
+      if (current_type != pin->elect_type)
+        current_type = pin->elect_type;
+    }
+  }
+  return changed;
 }
+
 const char*
 geda_pin_get_label(Pin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->label;
 }
-void geda_pin_set_label(Pin *pin, const char *label)
+
+bool geda_pin_set_label(Pin *pin, const char *label)
 {
-  g_return_if_fail(GEDA_IS_PIN(pin));
-  GEDA_FREE(pin->label);
-  pin->label = geda_strdup(label);
+  g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
+
+  bool changed = FALSE;
+
+  if ( label != NULL ) {
+    if (pin->label) {
+      if (strcmp(pin->label, label) != 0) {
+        changed = TRUE;
+        GEDA_FREE(pin->label);
+      }
+    }
+    else {
+      changed = TRUE;
+    }
+
+    if (changed) {
+      pin->label = geda_strdup(label);
+    }
+  }
+
+  return changed;
 }
+
 const char*
 geda_pin_get_mechanical(Pin *pin)
 {
   g_return_val_if_fail(GEDA_IS_PIN(pin), NULL);
   return pin->mechanical;
 }
-void geda_pin_set_mechanical(Pin *pin, const char *mechanical)
+
+bool geda_pin_set_mechanical(Pin *pin, const char *mechanical)
 {
-  g_return_if_fail(GEDA_IS_PIN(pin));
-  GEDA_FREE(pin->mechanical);
-  pin->mechanical = geda_strdup(mechanical);
+  g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
-  /* Check if there is a code associated with the description */
-  PIN_MECH current_type = geda_pin_lookup_mtype(mechanical);
+  bool    changed = FALSE;
+  PIN_MECH current_type;
 
-  /* Update the code if discrepant */
-  if (current_type != pin->mech_type)
-    current_type = pin->mech_type;
+  if ( mechanical != NULL ) {
+
+    if (pin->mechanical) {
+      if (strcmp(pin->mechanical, mechanical) != 0) {
+        changed = TRUE;
+        GEDA_FREE(pin->mechanical);
+      }
+    }
+    else {
+      changed = TRUE;
+    }
+
+    if (changed) {
+      pin->mechanical = geda_strdup(mechanical);
+
+      /* Check if there is a code associated with the description */
+      current_type = geda_pin_lookup_mtype(mechanical);
+
+      /* Update the code if discrepant */
+      if (current_type != pin->mech_type)
+        current_type = pin->mech_type;
+    }
+  }
+
+  return changed;
 }
 
-/* TODO: This does not allow BGA or LGA letter numbers, going to
- * have to fix someday and handle pin number as strings */
-void geda_pin_set_number(Pin *pin, const char *number)
+bool geda_pin_set_number(Pin *pin, const char *number)
 {
-  const char *ptr = number;
+  g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
-  g_return_if_fail(GEDA_IS_PIN(pin));
+  bool changed = FALSE;
+
+  if ( number != NULL ) {
+
+    if (pin->number) {
+      if (strcmp(pin->number, number) != 0) {
+        changed = TRUE;
+        GEDA_FREE(pin->number);
+      }
+    }
+    else {
+      changed = TRUE;
+    }
+    if (changed) {
+      pin->number = geda_strdup(number);
+    }
+  }
+
+  return changed;
+}
+
+bool geda_pin_set_sequence(Pin *pin, const char *sequence)
+{
+  const char *ptr     = sequence;
+        bool  changed = FALSE;
+        bool  valid   = TRUE;
+        int   ivalue;
+
+  g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
 
   while (*ptr) {
-    if(!isdigit(*ptr)) {
-      fprintf(stderr, "<geda_pin_set_number>invalid number character[%s]\n", number);
-      return;
+    if ( !isdigit(*ptr) ) {
+      valid = FALSE;
+      break;
     }
     ptr++;
   }
-  pin->number = atoi(number);
-}
-void geda_pin_set_sequence(Pin *pin, const char *sequence)
-{
-  const char *ptr = sequence;
 
-  g_return_if_fail(GEDA_IS_PIN(pin));
-
-  while (*ptr) {
-    if(!isdigit(*ptr)) {
-      fprintf(stderr, "<geda_pin_set_sequence>invalid sequence character[%s]\n", sequence);
-      return;
+  if (valid) {
+    ivalue = atoi(sequence);
+    if ( ivalue != pin->sequence ) {
+      pin->sequence = ivalue;
+      changed = TRUE;
     }
-    ptr++;
   }
-  pin->sequence = atoi(sequence);
+  return changed;
 }
-void geda_pin_set_whichend(Pin *pin, int whichend)
+
+bool geda_pin_set_whichend(Pin *pin, int whichend)
 {
-  g_return_if_fail(GEDA_IS_PIN(pin));
+  g_return_val_if_fail(GEDA_IS_PIN(pin), FALSE);
   pin->whichend = whichend;
+  return TRUE;
 }

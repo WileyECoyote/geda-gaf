@@ -678,7 +678,7 @@ get_pin_object_data(Object *object)
   char *mech_type  = object->pin->mechanical;
   char *label      = object->pin->label;
 
-  int   number     = object->pin->number;
+  char *number     = object->pin->number;
   int   sequence   = object->pin->sequence;
   int   whichend   = object->pin->whichend;
 
@@ -700,7 +700,7 @@ get_pin_object_data(Object *object)
 
 #if DEBUG
   fprintf(stderr, "gpod: name=%s, pid=%d, sid=%d, cid=%d, nid=%d from (%d,%d) to (%d,%d)\n", name, pid, sid, cid, nid, x1, y1, x2, y2);
-  fprintf(stderr, "      label=%s, number=%d, sequence=%d, whichend=%d, line_width=%d\n", label, number, sequence, whichend, line_width);
+  fprintf(stderr, "      label=%s, number=%s, sequence=%d, whichend=%d, line_width=%d\n", label, number, sequence, whichend, line_width);
   fprintf(stderr, "      e_type (%d=%s), m_type (%d=%s), n_type=%d,\n", e_type, elect_type, m_type, mech_type, n_type);
 #endif
 
@@ -2358,14 +2358,14 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
  *  version of the object.
  *
  *  \param [in] label  string  pin label attribute
+ *  \param [in] number   string  pin number attribute
  *  \param [in] x1     integer from X location
  *  \param [in] y1     integer from Y location
  *  \param [in] x2     integer to X location
  *  \param [in] y2     integer to Y location
  *
  *  \param [in] whichend integer Which gets connected (either 0 or 1)
- *  \param [in] number   integer pin number attribute
-
+ *
  *  \param [in] etype    integer electrical type attribute (formally pin type)
  *  \param [in] mtype    integer mechanical type attribute
  *  \param [in] ntype    integer node type property ( 0=normal, 1=bus type)
@@ -2373,8 +2373,8 @@ PyGeda_new_picture (const char *filepath, int x1, int y1, int x2, int y2,
  *  \return [out] PinObject construction data.
  */
 PyObject*
-PyGeda_new_pin (const char *label, int x1, int y1, int x2, int y2, int whichend,
-                int number, int etype, int mtype, int ntype)
+PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, int y2,
+                int whichend, int etype, int mtype, int ntype)
 {
   Object   *object;
 
@@ -2419,16 +2419,15 @@ PyGeda_new_pin (const char *label, int x1, int y1, int x2, int y2, int whichend,
     }
   }
 
-  if (number < 0) {
-    object->pin->number = 1;
-  }
-  else {
-    object->pin->number = number;
-  }
+  if(number)
+    object->pin->number = geda_strdup(number);
+  else
+    object->pin->number = geda_strdup("");
+
   floating_objects = g_list_append(floating_objects, object);
 
 #if DEBUG
-  int elect_type = object->pin->elect_type;
+  int  elect_type = object->pin->elect_type;
   int  mech_type = object->pin->mech_type;;
   int  node_type = = object->pin->node_type;
   fprintf(stderr, "PyGeda_new_pin: name=%s, elect_type=%d mech_type=%d, node_type=%d\n",

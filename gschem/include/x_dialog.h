@@ -79,7 +79,7 @@ struct st_fill_type_data {
 struct st_pin_type_data {
 
   GtkWidget *node_type;
-  GtkWidget *number_spin;
+  GtkWidget *number_entry;
   GtkWidget *sequence_spin;
   GtkWidget *label_entry;
   GtkWidget *pin_electrical;

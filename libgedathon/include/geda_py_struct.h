@@ -325,6 +325,7 @@ struct st_py_pin {
 
  /* Pin specific admistrative data members */
     bool dirty_label;
+    bool dirty_number;
     bool dirty_electrical;
     bool dirty_mechanical;
 
@@ -335,7 +336,6 @@ struct st_py_pin {
     int       nid;       /* net ID, < 0 then the pin is not connected  */
 
  /* read-write fields */
-    int       number;
     int       sequence;
     int       x[2];
     int       y[2];
@@ -346,6 +346,7 @@ struct st_py_pin {
     PIN_NODE    node_type;      /* either NET or BUS */;
 
     PyObject *label;
+    PyObject *number;
     PyObject *electrical;
     PyObject *mechanical;
 

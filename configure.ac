@@ -196,13 +196,13 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([50:1:0])
+AX_LIBGEDA([50:2:0])
 
 # Set up libgedacairo with the correct ld version number
 AX_LIBGEDACAIRO([1:2:0])
 
 # Set up libgedathon with the correct ld version number
-AX_LIBGEDATHON([0:1:0])
+AX_LIBGEDATHON([0:2:0])
 
 # Set up libgedauio with the correct ld version number
 AX_LIBGEDAUIO([0:1:0])

@@ -66,27 +66,28 @@ Pin_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
 
   if (self != NULL) {
 
-    self->dirty_label      = 0;
     self->dirty_electrical = 0;
+    self->dirty_label      = 0;
     self->dirty_mechanical = 0;
+    self->dirty_number     = 0;
 
     ALLOC_EMPTY_PY_STRING(electrical)
-    ALLOC_EMPTY_PY_STRING(mechanical)
     ALLOC_EMPTY_PY_STRING(label)
+    ALLOC_EMPTY_PY_STRING(mechanical)
+    ALLOC_EMPTY_PY_STRING(number)
 
     self->cid      = -1;
     self->nid      = -1;
-    self->number   = -1;
     self->sequence = -1;
 
-    self->whichend = 1; /* get connected grapically */
+    self->whichend = 1; /* get connected graphically */
 
     self->x[0]     = 0;
     self->y[0]     = 0;
     self->x[1]     = 0;
     self->y[1]     = 0;
 
- /* Generic Graphical Attributes Applicable to Pines */
+ /* Generic Graphical Attributes Applicable to Pins */
     self->color.r         = default_color.r;
     self->color.g         = default_color.g;
     self->color.b         = default_color.b;
@@ -114,6 +115,8 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
   PyObject *py_electrical = NULL;
   PyObject *py_mechanical = NULL;
   PyObject *py_label      = NULL;
+  PyObject *py_number     = NULL;
+
   PyObject *tmp;
   int       type;
   int       pid;
@@ -121,16 +124,16 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
   int       locked;
 
   static char *kwlist[] = {"name", "type", "pid", "sid", "locked", "cid", "nid",
-                           "electrical", "mechanical", "label",
-                           "number", "sequence", "whichend",
+                           "electrical", "mechanical", "label", "number",
+                           "sequence", "whichend",
                            "x1", "y1", "x2", "y2",
                            "elect_type", "mech_type", "node_type", "line_width",
                             NULL};
 
-  if (! PyArg_ParseTupleAndKeywords(args, kwds, "|SiiiiiiSSSiiiiiiiiiii:geda.Pin.__init__",
+  if (! PyArg_ParseTupleAndKeywords(args, kwds, "|SiiiiiiSSSSiiiiiiiiii:geda.Pin.__init__",
                                     kwlist, &py_name, &type, &pid, &sid, &locked,
                                     &self->cid, &self->nid, &py_electrical, &py_mechanical,
-                                    &py_label, &self->number,&self->sequence, &self->whichend,
+                                    &py_label, &py_number,&self->sequence, &self->whichend,
                                     &self->x[0], &self->y[0], &self->x[1], &self->y[1],
                                     &self->elect_type, &self->mech_type, &self->node_type,
                                     &self->line_width))
@@ -142,6 +145,7 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
   SWAP_PY_TMP_OBJECT(electrical)
   SWAP_PY_TMP_OBJECT(mechanical)
   SWAP_PY_TMP_OBJECT(label)
+  SWAP_PY_TMP_OBJECT(number)
 
   py_base_params = Py_BuildValue("Siiii", py_name, type, pid, sid, locked);
   if (GedaObjectClass()->tp_init((PyObject *)self, py_base_params, NULL) < 0)
@@ -155,17 +159,20 @@ Pin_init(PinObject *self, PyObject *args, PyObject *kwds)
 static int
 PinObject_print(PinObject *pin, FILE *file, int flags)
 {
-  const char *name;
-  const char *label;
   const char *elect;
+  const char *label;
+  const char *name;
+  const char *number;
+
   int   x1, y1, x2, y2;
   int   color_code;
-  int   node_type, number, whichend;
+  int   node_type, whichend;
   int   ret_val = 1;
 
-  name  = PyString_AsString(pin->object.name);
-  label = PyString_AsString(pin->label);
-  elect = PyString_AsString(pin->electrical);
+  elect  = PyString_AsString(pin->electrical);
+  label  = PyString_AsString(pin->label);
+  name   = PyString_AsString(pin->object.name);
+  number = PyString_AsString(pin->number);
 
   x1 = pin->x[0];
   y1 = pin->y[0];
@@ -176,10 +183,9 @@ PinObject_print(PinObject *pin, FILE *file, int flags)
 
   /* description of the pin */
   node_type  = pin->node_type;
-  number     = pin->number;
   whichend   = pin->whichend;
 
-  if (fprintf(file, "<<%s> <%d %d %d %d> <label=%s> <number=%d> <pin-type=%s> <color=%d> <node-type=%d> <connect=%d>>",
+  if (fprintf(file, "<<%s> <%d %d %d %d> <label=%s> <number=%s> <pin-type=%s> <color=%d> <node-type=%d> <connect=%d>>",
               name, x1, y1, x2, y2, label, number, elect, color_code, node_type, whichend))
     ret_val = 0;
   return ret_val;
@@ -190,7 +196,6 @@ PinObject_print(PinObject *pin, FILE *file, int flags)
 static PyMemberDef Pin_members[] = {
   {"cid",        T_INT, offsetof(PinObject, cid),       RO, "Pin Complex Identifier"},
   {"nid",        T_INT, offsetof(PinObject, nid),       RO, "Pin Net identifier"},
-  {"number",     T_INT, offsetof(PinObject, number),     0, "Pin Number"},
   {"sequence",   T_INT, offsetof(PinObject, sequence),   0, "Pin Sequence index"},
   {"whichend",   T_INT, offsetof(PinObject, whichend),   0, "Which point gets connect?"},
 
@@ -375,10 +380,45 @@ Pin_set_label(PinObject *self, PyObject *value, void *closure)
 
   return 0;
 }
+
+static PyObject *
+Pin_get_number(PinObject *self, void *closure)
+{
+  Py_INCREF(self->number);
+  return self->number;
+}
+
+static int
+Pin_set_number(PinObject *self, PyObject *value, void *closure)
+{
+  if (value == NULL) {
+    PyErr_SetString(PyExc_TypeError, "Cannot delete the pin number attribute");
+    return -1;
+  }
+
+  if (! PyString_Check(value)) {
+    PyErr_SetString(PyExc_TypeError,
+                    "The pin number attribute value must be a string");
+    return -1;
+  }
+
+  Py_DECREF(self->number);
+  Py_INCREF(value);
+  self->number = value;
+
+  self->dirty_number = 1;
+  self->object.dirty = 1;
+  if(self->object.pid >= 0)
+    PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
+
+  return 0;
+}
+
 static PyGetSetDef Pin_getseters[] = {
-  {"electrical", (getter)Pin_get_elect, (setter)Pin_set_elect, "pin_electrical_docs", NULL},
-  {"mechanical", (getter)Pin_get_mech,  (setter)Pin_set_mech,  "pin_mechanical_docs", NULL},
-  {"label",      (getter)Pin_get_label, (setter)Pin_set_label, "pin_label_docs",      NULL},
+  {"electrical", (getter)Pin_get_elect,  (setter)Pin_set_elect,  "pin_electrical_docs", NULL},
+  {"mechanical", (getter)Pin_get_mech,   (setter)Pin_set_mech,   "pin_mechanical_docs", NULL},
+  {"label",      (getter)Pin_get_label,  (setter)Pin_set_label,  "pin_label_docs",      NULL},
+  {"number",     (getter)Pin_get_number, (setter)Pin_set_number, "pin_number_docs",     NULL},
   {NULL}  /* Sentinel */
 };
 

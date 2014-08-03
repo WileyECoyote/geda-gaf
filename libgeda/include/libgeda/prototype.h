@@ -285,12 +285,12 @@ const char      *o_picture_get_filename     (Object *object);
       bool       o_pin_set_elect_type       (Object *o_current, PIN_ELECT e_type);
       bool       o_pin_set_mech_type        (Object *o_current, PIN_MECH m_type);
       void       o_pin_set_node_type        (Object *o_current, PIN_NODE node_type);
-      bool       o_pin_get_attributes       (Object *object, const char **label, int *number, int *sequence,
+      bool       o_pin_get_attributes       (Object *object, const char **label, const char **number, int *sequence,
                                              PIN_ELECT *e_type, PIN_MECH *m_type, PIN_NODE *type);
-      void       o_pin_set_attributes       (Object *object, const char *label_str, int number, int sequence,
+      void       o_pin_set_attributes       (Object *object, const char *label_str, const char *number, int sequence,
                                              PIN_ELECT e_type, PIN_MECH m_type, PIN_NODE type);
       Object    *o_pin_create_label_attrib  (GedaToplevel *toplevel, Object *object, const char *label, int x, int y);
-      Object    *o_pin_create_number_attrib (GedaToplevel *toplevel, Object *object, int number, int x, int y);
+      Object    *o_pin_create_number_attrib (GedaToplevel *toplevel, Object *object, const char *number, int x, int y);
       Object    *o_pin_create_seq_attrib    (GedaToplevel *toplevel, Object *object, int sequence, int x, int y);
       Object    *o_pin_create_elect_attrib  (GedaToplevel *toplevel, Object *object, const char *descr, int x, int y);
       Object    *o_pin_create_mech_attrib   (GedaToplevel *toplevel, Object *object, const char *descr, int x, int y);

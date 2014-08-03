@@ -90,8 +90,8 @@ PyObject *PyGeda_new_net            ( const char *netname, int x1, int y1, int x
 PyObject *PyGeda_new_path           ( const char *path_string );
 PyObject *PyGeda_new_picture        ( const char *filepath, int x1, int y1, int x2, int y2,
                                       int angle, int mirror,int embedded );
-PyObject *PyGeda_new_pin            ( const char *label, int x1, int y1, int x2, int y2,
-                                      int whichend, int number, int etype, int mtype, int ntype);
+PyObject *PyGeda_new_pin            ( const char *label, const char *number, int x1, int y1, int x2, int y2,
+                                      int whichend, int etype, int mtype, int ntype);
 PyObject *PyGeda_new_text           ( const char *text, int x, int y, int size, int align, int angle, PyObject *color);
 PyObject *PyGeda_new_attrib         ( const char *name, const char *value, int x, int y, int visible, int show, int align, int angle, PyObject *color);
 PyObject *PyGeda_get_attrib         ( PyObject *py_object, const char *name);

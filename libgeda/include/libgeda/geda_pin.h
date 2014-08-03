@@ -51,7 +51,7 @@ struct _GedaPin {
 
   unsigned int head_marker;       /* structure type signature */
 
-  int         number;
+  char       *number;
   int         sequence;
   int         whichend;      /* either 0 or 1 */
 
@@ -73,14 +73,14 @@ bool         is_a_geda_pin_object        (Pin *object);
 
 Object     *geda_pin_new                 (void);
 const char *geda_pin_get_electrical      (Pin *pin);
-void        geda_pin_set_electrical      (Pin *pin, const char *electrical);
+bool        geda_pin_set_electrical      (Pin *pin, const char *electrical);
 const char *geda_pin_get_label           (Pin *pin);
-void        geda_pin_set_label           (Pin *pin, const char *label);
+bool        geda_pin_set_label           (Pin *pin, const char *label);
 const char *geda_pin_get_mechanical      (Pin *pin);
-void        geda_pin_set_mechanical      (Pin *pin, const char *mechanical);
-void        geda_pin_set_number          (Pin *pin, const char *number);
-void        geda_pin_set_sequence        (Pin *pin, const char *sequence);
-void        geda_pin_set_whichend        (Pin *pin, int   whichend);
+bool        geda_pin_set_mechanical      (Pin *pin, const char *mechanical);
+bool        geda_pin_set_number          (Pin *pin, const char *number);
+bool        geda_pin_set_sequence        (Pin *pin, const char *sequence);
+bool        geda_pin_set_whichend        (Pin *pin, int   whichend);
 
 PIN_ELECT   geda_pin_lookup_etype     (const char *e_str);
 const char *geda_pin_lookup_estring   (PIN_ELECT   e_type);

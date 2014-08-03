@@ -41,43 +41,46 @@ void o_pin_start(GschemToplevel *w_current, int w_x, int w_y)
 void o_pin_end(GschemToplevel *w_current, int x, int y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object *new_obj;
-  int color;
+  Object       *new_obj;
+  int           color;
 
   if (w_current->inside_action == 0) {
-    u_log_message("Internal Error Detected: <o_pin_end> Not inside action\n");
-    return;
+    BUG_MSG("Not inside action\n");
   }
+  else {
 
-  if (w_current->override_pin_color == -1) {
-    color = PIN_COLOR;
-  } else {
-    color = w_current->override_pin_color;
+    if (w_current->override_pin_color == -1) {
+      color = PIN_COLOR;
+    }
+    else {
+      color = w_current->override_pin_color;
+    }
+
+    /* undraw rubber line */
+    /* o_pin_invalidate_rubber (w_current); */
+    w_current->rubber_visible = 0;
+
+    /* don't allow zero length pins */
+    if ((w_current->first_wx == w_current->second_wx) &&
+        (w_current->first_wy == w_current->second_wy))
+    {
+      return;
+    }
+
+    new_obj = o_pin_new(color,
+                        w_current->first_wx, w_current->first_wy,
+                        w_current->second_wx, w_current->second_wy,
+                        PIN_NET_NODE, 0);
+
+    new_obj->line_options->line_width = o_style_get_pin_width(toplevel, PIN_NET_NODE);
+
+    s_page_append_object (toplevel->page_current, new_obj);
+
+    /* Call add-objects-hook */
+    g_run_hook_object (w_current, "%add-objects-hook", new_obj);
+
+    o_undo_savestate(w_current, UNDO_ALL);
   }
-
-  /* undraw rubber line */
-  /* o_pin_invalidate_rubber (w_current); */
-  w_current->rubber_visible = 0;
-
-  /* don't allow zero length pins */
-  if ((w_current->first_wx == w_current->second_wx) &&
-      (w_current->first_wy == w_current->second_wy)) {
-    return;
-  }
-
-  new_obj = o_pin_new(color,
-                      w_current->first_wx, w_current->first_wy,
-                      w_current->second_wx, w_current->second_wy,
-                      PIN_NET_NODE, 0);
-
-  new_obj->line_options->line_width = o_style_get_pin_width(toplevel, PIN_NET_NODE);
-
-  s_page_append_object (toplevel->page_current, new_obj);
-
-  /* Call add-objects-hook */
-  g_run_hook_object (w_current, "%add-objects-hook", new_obj);
-
-  o_undo_savestate(w_current, UNDO_ALL);
 }
 
 /*! \todo Finish function documentation!!!

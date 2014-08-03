@@ -171,7 +171,7 @@ static GtkWidget *create_menu_pin_type ( void )
  *  \param [in]   node_type  node type - either NET or BUS
  */
 static void
-x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, int number, int sequence,
+x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, const char *number, int sequence,
                                   PIN_ELECT elect_type, PIN_MECH mech_type, PIN_NODE node_type)
 {
   GtkWidget *menu, *menuitem;
@@ -181,11 +181,11 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, in
   menuitem = gtk_menu_get_active(GTK_MENU(menu));
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
-  if (number == -1) {
-    gtk_widget_set_sensitive(pin_data->number_spin, FALSE);
+  if (number == NULL) {
+    SetEntryText( pin_data->number_entry, _("*missing*") );
   }
   else {
-    gtk_spin_button_set_value (GTK_SPIN_BUTTON(pin_data->number_spin), number);
+    SetEntryText( pin_data->number_entry, number );
   }
 
   if (sequence == -1) {
@@ -209,6 +209,23 @@ x_dialog_edit_pin_type_set_values(pin_type_data *pin_data, const char *label, in
 
 }
 
+static const char *get_pin_entry_string(GtkWidget *entry)
+{
+  const char *string;
+
+  if ( GetEntryLength(entry) == 0) {
+    string = NULL;
+  }
+  else {
+    string = GetEntryText( entry );
+    if (strcmp(string, "*missing*") == 0) {
+      string = NULL;
+    }
+  }
+
+  return string;
+}
+
 /*! \brief Apply function for the Pin Properties Editor Dialog
  *  \par Function Description
  *  The function retrieves the values in the Pin Editor dialog
@@ -228,26 +245,24 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
 
   bool    set_node_type      = FALSE;
   bool    set_elect_type     = FALSE;
-  bool    auto_number        = FALSE;
   bool    auto_sequence      = FALSE;
   bool    changed_something  = FALSE;
+  int     auto_number;
   int     num_selected;
 
   PIN_NODE  ntype, ontype;  /* bus, net*/
   PIN_ELECT etype, oetype;  /* in, out, io, pwr, etc ... */
   PIN_MECH  omtype;
 
-  int number,   onumber;
+  const char *label_str,  *olabel_str;
+  const char *number_str, *onumber_str;
   int sequence, osequence;
-
-  const char *label_str, *olabel_str;
 
   /* Initialize variables */
   w_current   = GSCHEM_DIALOG(Dialog)->w_current;
   toplevel    = w_current->toplevel;
   iter        = NULL;
   pin_objects = NULL;
-  number      = 0;
 
   /* if nothing selected then get out */
   if (!o_select_is_selection(w_current))
@@ -277,20 +292,21 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   if (etype == PIN_ELECT_VOID)
     titled_information_dialog(_("Pin Properties"), "%s", _("Ignoring Pin electrical VOID"));
 
-  number = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->number_spin));
   sequence = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->sequence_spin));
 
   /* Get the current selected pin objects and the count */
-  pin_objects = o_select_get_list_selected(w_current, OBJ_PIN);
-  num_selected  = g_list_length( pin_objects);
+  pin_objects  = o_select_get_list_selected(w_current, OBJ_PIN);
+  num_selected = g_list_length( pin_objects);
 
   if (num_selected == 1) {
-    object = (Object *) g_list_nth_data(pin_objects, 0);
-    if (o_pin_get_attributes(object, &olabel_str, &onumber, &osequence, &oetype, &omtype, &ontype))
-    {
 
-      /* get the new label from the dialog */
-      label_str   = GetEntryText( pin_data->label_entry );
+    object = (Object*) g_list_nth_data(pin_objects, 0);
+
+    if (o_pin_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
+    {
+      /* get the new strings from the dialog */
+      label_str  = get_pin_entry_string (pin_data->label_entry);
+      number_str = get_pin_entry_string (pin_data->number_entry);
 
       if (ntype != ontype) {
         changed_something = TRUE;
@@ -305,14 +321,6 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         oetype = -1;
       }
 
-      if (number != onumber) {
-        changed_something = TRUE;
-        onumber = number;
-      }
-      else {
-        onumber = -1;
-      }
-
       if (sequence != osequence) {
         changed_something = TRUE;
         osequence = sequence;
@@ -321,38 +329,59 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
         osequence = -1;
       }
 
-      if (olabel_str == NULL) {
+      if (onumber_str == NULL && number_str != NULL) {
+        changed_something = TRUE;
+        onumber_str = number_str;
+      }
+      else if (onumber_str != NULL && number_str != NULL ) {
+        if (strcmp(number_str, onumber_str) != 0) {
+          changed_something = TRUE;
+          onumber_str = number_str;
+        }
+      }
+
+      if (olabel_str == NULL && label_str != NULL) {
         changed_something = TRUE;
         olabel_str = label_str;
       }
-      else {
-        if ( strcmp(label_str, olabel_str) != 0) {
+      else if (olabel_str != NULL && label_str != NULL ) {
+        if (strcmp(label_str, olabel_str) != 0) {
           changed_something = TRUE;
           olabel_str = label_str;
         }
-        else {
-          olabel_str = NULL; /* Don't recreate string if unchanged */
-        }
       }
+
       if(changed_something) {
-        o_pin_set_attributes (object, olabel_str, onumber, osequence, oetype, omtype, ontype);
+        o_pin_set_attributes (object, olabel_str, onumber_str, osequence, oetype, omtype, ontype);
       }
+
     }
     else
       BUG_MSG("got FALSE pin object\n");
   }
   else { /* More than 1 pin is selected */
 
+    char s_val[10];
+
     set_node_type  = GET_SWITCH_STATE(pin_data->set_node_type);
     set_elect_type = GET_SWITCH_STATE(pin_data->set_elect_type);
     auto_number    = GET_SWITCH_STATE(pin_data->auto_number);
     auto_sequence  = GET_SWITCH_STATE(pin_data->auto_sequence);
 
-    for (iter = pin_objects; iter != NULL; iter = g_list_next(iter)) {
-      object = (Object *) iter->data;
-      if (!o_pin_get_attributes(object, &olabel_str, &onumber, &osequence, &oetype, &omtype, &ontype))
-        continue; /* Should never happen */
+    if (auto_number) {
+      number_str = get_pin_entry_string (pin_data->number_entry);
+      if (number_str) {
+        auto_number = atoi(number_str);
+      }
+      /* else autonumber = switch TRUE = 1 = default starting number */
+    }
 
+    for (iter = pin_objects; iter != NULL; iter = g_list_next(iter)) {
+
+      object = (Object *) iter->data;
+
+      if (o_pin_get_attributes(object, &olabel_str, &onumber_str, &osequence, &oetype, &omtype, &ontype))
+      {
         if(set_node_type) {
           if (ontype == -1 || ntype != ontype) {
             changed_something = TRUE;
@@ -365,13 +394,15 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
             oetype = etype;
           }
         }
+
         if(auto_number) {
-          if (number != onumber) {
+          if (auto_number != atoi(onumber_str)) {
             changed_something = TRUE;
-            onumber = number;
+            onumber_str = int2str( auto_number, s_val, 10 );
           }
-          number++;
+          auto_number++;
         }
+
         if(auto_sequence) {
           if (sequence != osequence) {
             changed_something = TRUE;
@@ -379,13 +410,16 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
           }
           sequence++;
         }
-        o_pin_set_attributes (object, olabel_str, onumber, osequence, oetype, -1, ontype);
+        o_pin_set_attributes (object, olabel_str, onumber_str, osequence, oetype, -1, ontype);
+      }
     }
   }
+
   if(changed_something) {
     toplevel->page_current->CHANGED = 1;
     o_undo_savestate(w_current, UNDO_ALL);
   }
+
   g_list_free (pin_objects);
 }
 
@@ -441,15 +475,15 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
 
     /* Disable all input widgets */
     gtk_widget_set_sensitive (pin_data->node_type,       FALSE);
-    gtk_widget_set_sensitive (pin_data->pin_electrical,   FALSE);
-    gtk_widget_set_sensitive (pin_data->number_spin,     FALSE);
+    gtk_widget_set_sensitive (pin_data->pin_electrical,  FALSE);
+    gtk_widget_set_sensitive (pin_data->number_entry,    FALSE);
     gtk_widget_set_sensitive (pin_data->sequence_spin,   FALSE);
     gtk_widget_set_sensitive (pin_data->label_entry,     FALSE);
 
     /* Disable all of the Tooltips for input widgets */
     g_object_set (pin_data->node_type,      "has-tooltip", FALSE, NULL);
     g_object_set (pin_data->pin_electrical, "has-tooltip", FALSE, NULL);
-    g_object_set (pin_data->number_spin,    "has-tooltip", FALSE, NULL);
+    g_object_set (pin_data->number_entry,    "has-tooltip", FALSE, NULL);
     g_object_set (pin_data->sequence_spin,  "has-tooltip", FALSE, NULL);
     g_object_set (pin_data->label_entry,    "has-tooltip", FALSE, NULL);
   }
@@ -470,14 +504,14 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
     /* Enable all input widgets */
     gtk_widget_set_sensitive (pin_data->node_type,       TRUE);
     gtk_widget_set_sensitive (pin_data->pin_electrical,   TRUE);
-    gtk_widget_set_sensitive (pin_data->number_spin,     TRUE);
+    gtk_widget_set_sensitive (pin_data->number_entry,     TRUE);
     gtk_widget_set_sensitive (pin_data->sequence_spin,   TRUE);
     gtk_widget_set_sensitive (pin_data->label_entry,     TRUE);
 
     /* Enable all the Tooltips for input widgets */
     g_object_set (pin_data->node_type,      "has-tooltip", TRUE, NULL);
     g_object_set (pin_data->pin_electrical, "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->number_spin,    "has-tooltip", TRUE, NULL);
+    g_object_set (pin_data->number_entry,    "has-tooltip", TRUE, NULL);
     g_object_set (pin_data->sequence_spin,  "has-tooltip", TRUE, NULL);
     g_object_set (pin_data->label_entry,    "has-tooltip", TRUE, NULL);
 
@@ -506,10 +540,10 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
     gtk_widget_set_sensitive (pin_data->pin_electrical, state);
     g_object_set (pin_data->pin_electrical, "has-tooltip", state, NULL);
 
-    /* The Pin Number Spinner Entry widget */
+    /* The Pin Number Entry widget */
     state = GET_SWITCH_STATE (pin_data->auto_number);
-    gtk_widget_set_sensitive (pin_data->number_spin, state);
-    g_object_set (pin_data->number_spin,   "has-tooltip", state, NULL);
+    gtk_widget_set_sensitive (pin_data->number_entry, state);
+    g_object_set (pin_data->number_entry,  "has-tooltip", state, NULL);
 
     /* The Sequence Number Spinner Entry widget */
     state = GET_SWITCH_STATE (pin_data->auto_sequence);
@@ -556,10 +590,10 @@ x_dialog_pin_type_update_selection (GschemToplevel *w_current, Object *object)
 {
   GschemDialog *Dialog;
 
-  int number;
   int sequence;
 
   const char *label;
+  const char *number;
 
   PIN_ELECT      elect_type;
   PIN_MECH       mech_type;
@@ -568,7 +602,6 @@ x_dialog_pin_type_update_selection (GschemToplevel *w_current, Object *object)
 
   /* Initialize variables */
   label      = NULL;
-  number     = 1;                        /* default value */
   sequence   = -1;
   elect_type = PIN_ELECT_PAS;
   node_type  = PIN_NET_NODE;
@@ -721,7 +754,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
 
   GtkWidget *action_area    = NULL;
   GtkWidget *optionmenu     = NULL;
-  GtkWidget *number_spin    = NULL;
+  GtkWidget *number_entry   = NULL;
   GtkWidget *sequence_spin  = NULL;
   GtkWidget *label_entry    = NULL;
   GtkWidget *attributemenu  = NULL;
@@ -740,17 +773,11 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   GtkWidget *AutoNumberSwitch     = NULL;
   GtkWidget *AutoSequenceSwitch   = NULL;
 
-  const char *type_combo_tip;
-  const char *attrib_combo_tip;
-  const char *num_spin_tip;
-  const char *seq_spin_tip;
-  const char *label_entry_tip;
-
-  type_combo_tip     = _TOOLTIP(PinNodeType);
-  attrib_combo_tip   = _TOOLTIP(PinElectrical);
-  num_spin_tip       = _TOOLTIP(PinNumber);
-  seq_spin_tip       = _TOOLTIP(PinSequence);
-  label_entry_tip    = _TOOLTIP(PinLabel);
+  const char *type_combo_tip      = _TOOLTIP(PinNodeType);
+  const char *attrib_combo_tip    = _TOOLTIP(PinElectrical);
+  const char *num_entry_tip       = _TOOLTIP(PinNumber);
+  const char *seq_spin_tip        = _TOOLTIP(PinSequence);
+  const char *label_entry_tip     = _TOOLTIP(PinLabel);
 
   pin_type_data *pin_data; /* Structure is allocated after widget creation */
 
@@ -799,11 +826,11 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   gtk_widget_set_tooltip_text(attributemenu,  attrib_combo_tip);
   g_object_set (attributemenu, "visible", TRUE, NULL);
 
-  number_spin = gtk_spin_button_new_with_range(1, 100000, 1);
-  gtk_entry_set_activates_default(GTK_ENTRY(number_spin), TRUE);
-  gtk_table_attach_defaults(GTK_TABLE(table), number_spin, 1,2,2,3);
-  gtk_widget_set_tooltip_text(number_spin, num_spin_tip);
-  g_object_set (number_spin, "visible", TRUE, NULL);
+  number_entry = gtk_entry_new();
+  gtk_entry_set_activates_default(GTK_ENTRY(number_entry), TRUE);
+  gtk_table_attach_defaults(GTK_TABLE(table), number_entry, 1,2,2,3);
+  gtk_widget_set_tooltip_text(number_entry, num_entry_tip);
+  g_object_set (number_entry, "visible", TRUE, NULL);
 
   sequence_spin = gtk_spin_button_new_with_range(1, 100000, 1);
   gtk_entry_set_activates_default(GTK_ENTRY(sequence_spin), TRUE);
@@ -846,7 +873,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoSequence,  2, 4, FALSE)
 
   /* Setup callback for Switch widget */
-  GEDA_CALLBACK_SWITCH (SetPinNodeType,    xd_edit_pin_switch_toggled, ThisDialog)
+  GEDA_CALLBACK_SWITCH (SetPinNodeType,   xd_edit_pin_switch_toggled, ThisDialog)
   GEDA_CALLBACK_SWITCH (SetElectrical, xd_edit_pin_switch_toggled, ThisDialog)
   GEDA_CALLBACK_SWITCH (AutoNumber,    xd_edit_pin_switch_toggled, ThisDialog)
   GEDA_CALLBACK_SWITCH (AutoSequence,  xd_edit_pin_switch_toggled, ThisDialog)
@@ -856,13 +883,13 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
     /** Set the relationships between the label and their Widgets **/
   geda_label_set_mnemonic_widget (GEDA_LABEL (type_label),   optionmenu);
   geda_label_set_mnemonic_widget (GEDA_LABEL (attrib_label), attributemenu);
-  geda_label_set_mnemonic_widget (GEDA_LABEL (num_label),    number_spin);
+  geda_label_set_mnemonic_widget (GEDA_LABEL (num_label),    number_entry);
   geda_label_set_mnemonic_widget (GEDA_LABEL (seq_label),    sequence_spin);
   geda_label_set_mnemonic_widget (GEDA_LABEL (pin_label),    label_entry);
 
   atk_type_obj   = atk_widget_linked_label_new (type_label,   optionmenu);
   atk_attrib_obj = atk_widget_linked_label_new (attrib_label, attributemenu);
-  atk_num_obj    = atk_widget_linked_label_new (num_label,    number_spin);
+  atk_num_obj    = atk_widget_linked_label_new (num_label,    number_entry);
   atk_seq_obj    = atk_widget_linked_label_new (seq_label,    sequence_spin);
   atk_label_obj  = atk_widget_linked_label_new (pin_label,    label_entry);
 
@@ -876,7 +903,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   }
   if ( atk_num_obj ) {
     atk_object_set_name        ( atk_num_obj,    _("Pin Number"));
-    atk_object_set_description ( atk_num_obj,       num_spin_tip );
+    atk_object_set_description ( atk_num_obj,       num_entry_tip );
   }
   if ( atk_seq_obj ) {
     atk_object_set_name        ( atk_seq_obj,    _("Sequence Number"));
@@ -893,7 +920,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   /* populate the data structure */
   pin_data->node_type      = optionmenu;
   pin_data->pin_electrical = attributemenu;
-  pin_data->number_spin    = number_spin;
+  pin_data->number_entry   = number_entry;
   pin_data->sequence_spin  = sequence_spin;
   pin_data->label_entry    = label_entry;
 
@@ -903,7 +930,7 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   pin_data->auto_sequence  = AutoSequenceSwitch;
 
   /* fill in the fields of the dialog */
-  x_dialog_edit_pin_type_set_values(pin_data, NULL, 1, 1, PIN_ELECT_PAS, PIN_MECH_LEAD, PIN_NET_NODE);
+  x_dialog_edit_pin_type_set_values(pin_data, NULL, NULL, 1, PIN_ELECT_PAS, PIN_MECH_LEAD, PIN_NET_NODE);
 
   g_object_set_data (G_OBJECT(ThisDialog), IDS_PIN_EDIT, pin_data);
 

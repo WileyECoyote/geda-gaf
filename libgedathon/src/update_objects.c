@@ -207,13 +207,20 @@ PyGeda_update_pin(Object *object, GedaObject *py_object )
     py_pin->dirty_label = 0;
   }
 
+  if (py_pin->dirty_label) {
+    str = PyString_AsString(py_pin->label);
+    geda_pin_set_label(object->pin, str);
+    py_pin->dirty_label = 0;
+  }
+
   if (py_pin->dirty_mechanical) {
     str = PyString_AsString(py_pin->mechanical);
     geda_pin_set_label(object->pin, str);
     py_pin->dirty_mechanical = 0;
   }
 
-  object->pin->number              = py_pin->number;
+
+
   object->pin->sequence            = py_pin->sequence;
   object->pin->whichend            = py_pin->whichend;   /* either 0 or 1 */
   object->pin->node_type           = py_pin->node_type;  /* either NET or BUS */;
@@ -310,8 +317,8 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
 {
   //PinObject *py_pin           = (PinObject*)py_object;
   Object    *attrib;
-  int        number;
   char      *value;
+  int        number;
 
   inline bool is_number(char *str) {
     char *ptr = str;
@@ -328,10 +335,9 @@ PyGeda_update_pin_butes(Object *object, GedaObject *py_object )
   if (attrib) {
     value = strstr(attrib->text->string, "=");
     value++;
-    if (is_number(value)) {
-      number = atoi(value);
-      if (number != object->pin->number) {
-        o_attrib_set_integer_value(attrib, "pinnumber", object->pin->number);
+    if (value != NULL) {
+      if ( strcmp(object->pin->number, value) != 0) {
+        o_attrib_set_value(attrib, "pinlabel", object->pin->number);
         o_text_recreate(attrib);
       }
     }
