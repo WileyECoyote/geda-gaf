@@ -1,3 +1,16 @@
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/: Add three new symbols for battery chargers and
+          energy havesters:
+
+             BQ24210-1.sym
+             BQ24650-1.sym
+             BQ25504-1.sym
+
+2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/LM3724-?.sym: Replaced with cleaner versions.
+
 2014-07-31 Wiley E. Hill <wileyhill@gmail.com>
 
         * sources/*.sym: General cleaning and corrections
