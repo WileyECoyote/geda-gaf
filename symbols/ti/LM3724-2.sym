@@ -1,0 +1,73 @@
+v 20140728 2
+T 1400 1300 8 10 1 1 0 0 1
+refdes=U?
+T 500 1000 9 10 1 0 0 0 1
+LM3724
+T 0 1850 8 10 0 0 0 0 1
+device=LM3724
+T 0 2050 8 10 0 0 0 0 1
+footprint=SOT23-5
+T 0 2250 8 10 0 0 0 0 1
+author=AutoTron
+T 0 2450 8 10 0 0 0 0 1
+documentation=www.ti.com/lit/ds/symlink/lm3724.pdf
+T 0 2650 8 10 0 0 0 0 1
+description=Microprocessor Reset Circuit
+T 0 2850 8 10 0 0 0 0 1
+numslots=0
+P 600 0 600 300 1 0 0
+{
+T 675 150 5 8 1 1 0 0 1
+pinnumber=1
+T 675 150 5 8 0 1 180 8 1
+pinseq=1
+T 450 400 9 8 1 1 0 0 1
+pinlabel=GND
+T 525 150 5 8 0 1 90 4 1
+pintype=pwr
+}
+P 1000 0 1000 300 1 0 0
+{
+T 1050 150 5 8 1 1 0 0 1
+pinnumber=2
+T 1050 150 5 8 0 1 180 8 1
+pinseq=2
+T 850 400 9 8 1 1 0 0 1
+pinlabel=GND
+T 925 150 5 8 0 1 90 4 1
+pintype=pwr
+}
+P 0 600 300 600 1 0 0
+{
+T 200 650 5 8 1 1 0 6 1
+pinnumber=4
+T 200 650 5 8 0 1 0 6 1
+pinseq=4
+T 350 600 9 8 1 1 0 0 1
+pinlabel=\_MR\_
+T 125 575 5 8 0 1 0 2 1
+pintype=in
+}
+P 1000 1800 1000 1500 1 0 0
+{
+T 1100 1600 5 8 1 1 0 0 1
+pinnumber=3
+T 1100 1600 5 8 0 1 0 0 1
+pinseq=3
+T 800 1300 9 8 1 1 0 0 1
+pinlabel=\_RESET\_
+T 925 1750 5 8 0 1 90 6 1
+pintype=out
+}
+P 600 1800 600 1500 1 0 0
+{
+T 650 1600 5 8 1 1 0 0 1
+pinnumber=5
+T 650 1600 5 8 0 1 0 0 1
+pinseq=5
+T 450 1300 9 8 1 1 0 0 1
+pinlabel=VCC
+T 525 1775 5 8 0 1 90 6 1
+pintype=pwr
+}
+B 300 300 1000 1200 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
