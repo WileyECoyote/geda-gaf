@@ -32,8 +32,14 @@ Include additional information during processing.
 Directives affecting the mode and operation of the gcheck-library utility.
 .IP "-a, --all"
 file search pattern is changed from *.sym to *'.
-.IP "-e, --extra"
-Perform extra checks. This directive is passed on toe gsymcheck.
+.IP "-c, --clip"
+Performs advanced checks on geda-clib.scm. This directive is not intended for regular users. When enabled, symbol files are
+not checked, instead, gcheck-library will perform checked related to geda-clib.scm in two stages. The first check is for the
+syntax of geda-clib.scm. The gaf utility's shell feature is utilized to load the file in guile, this is a pass or fail check.
+The results are reported. The second stage checks for references to the names of symbol folders in geda-clib.scm, which
+uses the "component-library" function to load the main library, so any folder names reported as being unreferenced will not
+appear in the component selection dialog in gschem. Note that this directive can only be used in the installed location
+of the geda-clib.scm or in the source directory containing the geda-clib.scm.
 .IP "-f, --filter"
 The Filter directive is intended to over-ride the internal default symbol file type.
 .SH DIAGNOSTICS

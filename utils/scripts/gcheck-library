@@ -24,14 +24,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
 #------------------------------------------------------------------
 
-VER=1.0.1
+VER=1.1.0
 
 VERBOSE=false
 QUIET=false
 REPORT=true
-
+CHECK_CLIB=false
 FILTER="*.sym"
-PROGRAM="gsymcheck"
+PROGRAM1="gsymcheck"
+PROGRAM2="gaf"
 OPT=""
 FINAL_ARGUMENT="${@: -1}"
 
@@ -51,7 +52,7 @@ do_show_help()
               echo "Use the follow options to control behavior:"
               echo
               echo   '  -a | --all       file pattern is changed from *.sym to *'
-              echo   '  -e | --extra     perform extra checks'
+              echo   '  -c | --clip      Check geda-clib.scm for errors'
               echo   '  -f | --filter <pattern>   filter pattern is changed to pattern'
               echo   '  -n | --no_report do not perform report statistic'
               echo   '  -r | --report    report statistic only, do not perform checking'
@@ -87,7 +88,8 @@ do_Assimilate_Arguments(){
            --version) echo `basename $0` "Version $VER" ; exit        ;;
         --quiet | -q) QUIET=true  ; OPT="-q"                          ;;
           --all | -a) FILTER="*"                                      ;;
-    -n | --no_report) REPORT=false                                  ;;
+         --clip | -c) CHECK_CLIB=true                                 ;;
+    -n | --no_report) REPORT=false                                    ;;
        -r | --report) do_report_only                                  ;;
     	           *) case $PREVIOUS_ARGUMENT in
        --filter | -f) FILTER="$Arg"                                   ;;
@@ -127,11 +129,11 @@ do_report_only(){
 
 do_check_all_containers () {
   local result=0;
-  exist=$(which $PROGRAM)
+  exist=$(which $PROGRAM1)
   SRC_DIRS=(`find * -maxdepth 0 -type d -printf "%f "`)
   if [[ ! $exist = "" ]] ; then
     for subdir in "${SRC_DIRS[@]}" ; do
-      $PROGRAM $OPT $subdir/$FILTER
+      $PROGRAM1 $OPT $subdir/$FILTER
       if [ $? -ne 0 ] ; then
         result=1;
       fi
@@ -140,26 +142,55 @@ do_check_all_containers () {
       fi
     done
   else
-    echo "Error, recheck installation. Could not find [$mand]"
+    echo "Error, recheck installation. Could not find [$PROGRAM1]"
   fi
   return $result;
 }
 
+do_check_clib () {
+  local result=0;
+  local filename;
+
+  exist=$(which $PROGRAM2)
+  if [[ ! $exist = "" ]] ; then
+
+    if [ -f "geda-clib.scm" ] ; then
+      filename="$PWD/geda-clib.scm"
+      $PROGRAM2 shell -c (load "$filename") &> /dev/null
+      if [ $? eq 0 ] ; then
+         echo  "$filename is Okay!"
+      else
+         echo  "$filename contains Errors!"
+      fi
+    else
+      echo "Error, geda-clib.scm must be in the current directory"
+    fi
+
+  else
+    echo "Error, recheck installation. Could not find [$PROGRAM2]"
+  fi
+  return $result;
+}
 # ----------------------- Parse Command Line ----------------------
 
 do_Assimilate_Arguments $*
-vecho "Checking:$FINAL_ARGUMENT/$FILTER"
-if [ "$FINAL_ARGUMENT" != "" ] && [ -d $FINAL_ARGUMENT ] ; then
-  if $QUIET ; then
-    $PROGRAM $OPT $FINAL_ARGUMENT/${FILTER}
-  else
-    if $REPORT ; then
-      do_report_stats $FINAL_ARGUMENT
-    fi
-    $PROGRAM $OPT $FINAL_ARGUMENT/${FILTER}
-  fi
+
+if $CHECK_CLIB ; then 
+  do_check_clib
 else
-  vecho "Checking all containers ..."
-  do_check_all_containers
+  if [ "x$FINAL_ARGUMENT" != "x" ] && [ -d $FINAL_ARGUMENT ] ; then
+    vecho "Checking:$FINAL_ARGUMENT/$FILTER"
+    if $QUIET ; then
+      $PROGRAM1 $OPT $FINAL_ARGUMENT/${FILTER}
+    else
+      if $REPORT ; then
+        do_report_stats $FINAL_ARGUMENT
+      fi
+      $PROGRAM1 $OPT $FINAL_ARGUMENT/${FILTER}
+    fi
+  else
+    vecho "Looking in all containers for $FILTER"
+    do_check_all_containers
+  fi
 fi
 exit

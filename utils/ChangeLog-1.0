@@ -1,3 +1,11 @@
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * scripts/gcheck-library.sh: Extended functionality, adding checks for
+          the geda-clib.scm file. This proved useful; the toshiba/npn-power-1
+          folder was being referenced twice, and this was detected after gcheck
+          -library with the new -c option reported that toshiba/pnp-power-1 was
+          not being referenced.
+
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * scripts/gcheck-library.sh: Make gcheck-library.sh return exit codes;
