@@ -1823,6 +1823,7 @@ METHOD(new_pin)
 
   PyObject   *py_pin;
   PyObject   *object_data;
+  PyObject   *py_number;
 
   int x1; int y1; int x2; int y2;
 
@@ -1830,15 +1831,25 @@ METHOD(new_pin)
   int etype         = -1;
   int mtype         = -1;
   int ntype         = -1;
+  int inumber;
 
   const char *number = NULL;
   const char *label = NULL;
 
-  if (! PyArg_ParseTuple(args, "iiii|issiii:geda.new_pin, Bad Arguments",
-                         &x1, &y1, &x2, &y2, &whichend, &number, &label, &etype, &mtype, &ntype))
+  if (! PyArg_ParseTuple(args, "iiii|iOsiii:geda.new_pin, Bad Arguments",
+                         &x1, &y1, &x2, &y2, &whichend, &py_number, &label, &etype, &mtype, &ntype))
   {
     PyErr_SetString(PyExc_TypeError, "syntax: new_pin(x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]])");
     return NULL;
+  }
+
+  if (PyInt_Check(py_number)) {
+    inumber   = PyInt_AS_LONG(py_number);
+    py_number = PyString_FromFormat("%d", inumber);
+  }
+
+  if (PyString_Check(py_number)) {
+    number = PyString_AsString(py_number);
   }
 
   object_data = library.func(label, number, x1, y1, x2, y2, whichend, etype, mtype, ntype);

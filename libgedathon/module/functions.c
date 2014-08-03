@@ -1725,7 +1725,7 @@ FUNCTION(AddPin)
        py_number = PyString_FromString(number);
     else
        py_number = PyString_FromString("");
-    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiOiii", py_x1, py_y1, py_x2, py_y2,
+    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiOOiii", py_x1, py_y1, py_x2, py_y2,
                                  whichend, py_number, py_label, etype, mtype, ntype);
   }
   else if (mtype > 0) {
@@ -1739,7 +1739,7 @@ FUNCTION(AddPin)
        py_number = PyString_FromString(number);
     else
        py_number = PyString_FromString("");
-    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiOii", py_x1, py_y1, py_x2, py_y2,
+    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiOOii", py_x1, py_y1, py_x2, py_y2,
                                  whichend, py_number, py_label, etype, mtype);
   }
   else if (etype > 0) {
@@ -1753,7 +1753,7 @@ FUNCTION(AddPin)
        py_number = PyString_FromString(number);
     else
        py_number = PyString_FromString("");
-    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiOi", py_x1, py_y1, py_x2, py_y2,
+    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiOOi", py_x1, py_y1, py_x2, py_y2,
                                  whichend, py_number, py_label, etype);
   }
   else if (label != NULL) {
@@ -1763,13 +1763,13 @@ FUNCTION(AddPin)
        py_number = PyString_FromString(number);
     else
        py_number = PyString_FromString("");
-    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiiO", py_x1, py_y1, py_x2, py_y2,
+    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiOO", py_x1, py_y1, py_x2, py_y2,
                                  whichend, py_number, py_label);
   }
   else if (number!= NULL)
   {
     PyObject *py_number = PyString_FromString(number);
-    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOii", py_x1, py_y1, py_x2, py_y2,
+    py_pin = PyObject_CallMethod(geda_module, "new_pin", "OOOOiO", py_x1, py_y1, py_x2, py_y2,
                                  whichend, py_number);
   }
   else if (whichend > 0) {
