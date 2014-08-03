@@ -1,5 +1,12 @@
 2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
+        * tests/run_tests.sh: Improve units test for Libgedathon.
+          unit test now checks each of the three symbols files
+          created for insertion into lpbf.sch for compliance using
+          gsymcheck.
+
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/libgedathon.c: Uncommented s_object_add for children in
           PyGeda_add_object, don't remember why I did that, but was bug.
           Attributes added to floating pin objects were not being added

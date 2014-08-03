@@ -35,16 +35,30 @@ let result=0;
        echo "<lpbf.py> did not produce tmp/lpfilter.sch"
        exit 1;
      else
+       # Check that each of the symbol files are compliant
+       answer=$(`gsymcheck -q tmp/sym/capacitor-py.sym`)
+       if [ $? -ne 0 ] ; then
+         echo "Failed capacitor-py.sym, see gsymcheck -v tmp/sym/capacitor-py.sym"
+         ((result++))
+       fi
+       answer=$(`gsymcheck -q tmp/sym/resistor-py.sym`)
+       if [ $? -ne 0 ] ; then
+         echo "Failed resistor-py.sym, see gsymcheck -v tmp/sym/resistor-py.sym"
+         ((result++))
+       fi
+       answer=$(`gsymcheck -q tmp/sym/dual-opamp-py.sym`)
+       if [ $? -ne 0 ] ; then
+         echo "Failed dual-opamp-py.sym, see gsymcheck -v tmp/sym/dual-opamp-py.sym"
+         ((result++))
+       fi
        answer=$(diff "lpfilter.sch" "tmp/lpfilter.sch")
        if [ ! -z "$answer" ] ; then
          echo "Failed diff, lpfilter.sch and tmp/lpfilter.sch are suppose to be the exactly the same"
          echo "check $answer";
          ((result++))
-#       rm -rf $Arg.new
-#       rm $Arg.org
        fi
      fi
    fi
 
-echo "Completed tests for libgedathon scripts!"
+echo "Completed tests for libgedathon!"
 exit $result;
