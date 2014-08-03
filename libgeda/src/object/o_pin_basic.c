@@ -804,7 +804,7 @@ fprintf(stderr, "<%s> geda_pin_set_label said change %s\n", __func__, label_str)
  *
  *  \returns Pointer to new pinlabel attribute or NULL no label string is set
  *
- *  \example o_pin_create_label_attrib (toplevel, object, label_str, -1, -1);
+ *  example: o_pin_create_label_attrib (toplevel, object, label_str, -1, -1);
  *
  *  \sa o_pin_create_number_attrib o_pin_create_seq_attrib
  */
@@ -925,7 +925,7 @@ o_pin_create_label_attrib(GedaToplevel *toplevel, Object *object, const char *la
  *
  *  \returns Pointer to new pinnumber attribute or NULL if label was NULL
  *
- *  \example o_pin_create_number_attrib (toplevel, object, pnum, -1, -1);
+ *  example: o_pin_create_number_attrib (toplevel, object, pnum, -1, -1);
  *
  *  \sa o_pin_create_label_attrib o_pin_create_seq_attrib
  */
@@ -1055,9 +1055,9 @@ o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, const char *n
  *
  *  \returns Pointer to new pinseq attribute or NULL if label was NULL
  *
- *  \example o_pin_create_number_attrib (NULL, object, seq, -1, -1);
+ *  example: o_pin_create_seq_attrib (NULL, object, seq, -1, -1);
  *
- *  \sa o_pin_create_seq_attrib o_pin_create_number_attrib
+ *  \sa o_pin_create_label_attrib o_pin_create_number_attrib
  */
 Object*
 o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, int x, int y)
@@ -1185,7 +1185,7 @@ o_pin_create_seq_attrib(GedaToplevel *toplevel, Object *object, int sequence, in
  *
  *  \returns Pointer to new pintype attribute or NULL if label was NULL
  *
- *  \example o_pin_create_elect_attrib (NULL, object, "pas", -1, -1);
+ *  example: o_pin_create_elect_attrib (NULL, object, "pas", -1, -1);
  *
  *  \sa o_pin_create_mech_attrib
  */
@@ -1293,7 +1293,7 @@ o_pin_create_elect_attrib(GedaToplevel *toplevel, Object *object, const char *de
  *
  *  \returns Pointer to new mechtype attribute or NULL if label was NULL
  *
- *  \example o_pin_create_mech_attrib (NULL, object, "lead", -1, -1);
+ *  example: o_pin_create_mech_attrib (NULL, object, "lead", -1, -1);
  *
  *  \sa o_pin_create_elect_attrib
  */
