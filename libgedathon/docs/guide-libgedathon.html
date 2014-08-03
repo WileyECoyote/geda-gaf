@@ -3,9 +3,9 @@
   <p/>
   Libgedathon is automatically initialized by the geda module when the module is imported. All functions
   and methods are available immediately. LibgEDA is initialized by Libgedathon, including the processing of the
-  system-gafrc file. There are no specific Python configuration files. While LibgEDA is a shared static library,
+  system-gafrc file. There are no Python specific configuration files. While LibgEDA is a shared static library,
   Libgedathon is dynamically linked, even on Linux machines. The full symbol library will be available from
-  from the installed library path. This path is append-able using the Libgedathon API. There is also utility
+  the installed library path. This path is append-able using the Libgedathon API. There are also utility
   functions to create local "gafrc" files, which are typically used to append the library search path.
   <p/>
   In general, programs will start either by opening existing files, schematic or symbols, or creating new
@@ -15,18 +15,18 @@
 	 or<br />
 	<dd><code>sheet1 = geda.open_page(path + "sheet1")</code></dd>
   <p/>
-  The returned objects represent the page. This object must be supplied to most methods, such all methods in the
-  Creation group, as Libgedathon does not currently support the "current page" scheme supported by LibgEDA. With
+  The returned objects represent the page. This object must be supplied to most methods, such as all methods in the
+  Creation group. Libgedathon does not currently support the "current page" scheme supported by LibgEDA. With
   Libgedathon the page must always be specified.
   <p/>
-  Pages should be saved before closing using either a module level function or the objects methods. Using the page
+  Pages should be saved before closing using either a module level function or the page object's methods. Using the page
   names from the preceding example, the page could be saved and closed using either of these methods:
   <br />
 	<dd><code>geda.save_page(schematic)</code></dd>
 	  or<br />
 	<dd><code>sheet1.save()</code></dd>
   <p/>
-	Files and can also be saved when closing by suppling an optional integer flag:
+	Files can also be saved when closing by supplying an optional integer flag:
 	<br />
 	<dd><code>geda.close_page(sheet1, True)</code></dd>
   <p/>
@@ -37,7 +37,7 @@
 	<dd><code>pinlabel = geda.new_attrib("pinlabel", "2", x, y1, INVISIBLE, SHOW_VALUE, LOWER_RIGHT)</code></dd>
   <p/>
   Note that the proceeding example uses three constants defined in the constants submodule. This object can now
-  be added to another object, in this example the label is being added to a GedaPin object:
+  be added to another object, in the following example the label is being added to a GedaPin object:
   <br />
 	<dd><code>geda.add_object(pin, pinlabel)</code></dd>
   <p/>
@@ -58,7 +58,7 @@
   a lower level. High-level functions also except keyword arguments.
   	<br />
    <p/>
-  The high-level Adder functions, such as the one in the previous example, AddCapacitor, use default symbols. The
+  The high-level Adder functions, such as the one in the previous example, AddCapacitor, can use default symbols. The
   default symbol names are read-writable and can be changed on an as needed basis using the corresponding setter
   functions, as show in these examples:
   <br />
@@ -66,7 +66,7 @@
   <br />
   	<dd><code>DefaultOpAmpSymbol("dual-opamp-py")</code></dd>
    <p/>
-	The default settings are not saved between sessions. These examples actually show the "real" default symbol name,
+	The default settings are not saved between sessions. The preceding examples actually show the "real" default symbol name,
 	but could name any valid symbol name. Typically a 	program would set the symbol name and then insert, or at least
 	create, all symbols of that type before changing	to a different	symbol. To get the name of the current symbol use
 	the return value from the same function without an	argument:
@@ -74,8 +74,8 @@
 	<dd><code>current_titleblock = DefaultTitleblockSymbol()</code></dd>
 	<p/>	
 	Default symbols are only applicable to basic component types such as capacitors, resistors, and transistors. Complex
-	types must supply a valid system name. Complexes can be created and added using either the geda module or functions
-	in the high-level submodule:
+	types must supply a valid symbol name. Complexes can be created and added using either the geda module or functions
+	in the high-level sub-module:
 	<br />
 	<dd><code>titleblock = geda.new_complex("title-B", 1000, 1000)<br />
 		titleblock.locked = True<br />
@@ -90,13 +90,13 @@
 	<dd><code>AddComponent(sheet1, titleblock, , 1000, 1000)</code></dd>
   <p/>
    In this case, since there is no reference to the object, the Python version of the object will be destroyed immediately,
-   but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method was used,
-   Libgedathon maintained a reference to the Python object but released the reference when the object was added to the
-   Page, in the example above using geda.add_object. The program could have saved a reference using the module method
+   but the gobject version still exist in LibgEDA and is referenced by the page. When the geda module method new_complex
+   was used, Libgedathon maintained a reference to the Python object but released the reference when the object was added
+   to the Page, in the example above using geda.add_object. Programs can save a reference using the module method
    just as easily by referencing the object returned from geda.add_object, aka tb=geda.add_object.
   <p/>
    Note that in the previous examples for AddComponent, the third parameter, which is for the reference designator, was
-   left blank. This is because titleblocks are not normally assigned designators but the positional syntax was used as
+   left blank. This is because titleblocks are not normally assigned designators but positional syntax was used as
    oppose to using keywords. To illustrate the difference, the following example using mixed-mode syntax is equivalent
    to the preceding example:
   <br />
@@ -145,7 +145,7 @@
    schematic design for a 4th-order low-pass Butterworth filter with the default title-block and the three local
    symbols using Python.
 	<p/>
-   Detailed information on gEDA Python API properties, methods and functions can be obtain from the doxygen generated
+   Detailed information on gEDA Python API properties, methods and functions can be obtained from the doxygen generated
    documents. Basic syntax and descriptions can also be obtained for all functions and methods via the Python help
    interface.
 </body>
