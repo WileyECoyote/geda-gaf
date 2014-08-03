@@ -3,3 +3,4 @@ Makefile.in
 system-gnetlistrc
 *~
 *.swp
+*-swp

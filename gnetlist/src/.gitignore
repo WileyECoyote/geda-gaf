@@ -6,3 +6,4 @@ gnetlist.exe
 *.o
 *~
 *.swp
+*-swp

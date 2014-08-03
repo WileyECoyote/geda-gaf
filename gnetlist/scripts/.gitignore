@@ -5,3 +5,4 @@ bom_xref.sh
 bompp.sh
 *~
 *.swp
+*-swp

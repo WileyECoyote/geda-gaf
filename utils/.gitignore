@@ -17,5 +17,6 @@ mkinstalldirs
 compile
 *~
 *.swp
+*-swp
 ylwrap
 ChangeLog

@@ -10,5 +10,6 @@ Makefile.in
 *#
 *.bak
 *.swp
+*-swp
 
 

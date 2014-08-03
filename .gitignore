@@ -22,3 +22,4 @@ configure.scan
 build-geda.log
 build-doxygen.log
 *.swp
+*-swp

@@ -29,3 +29,4 @@ gschem.log
 .desktop-i18n
 ChangeLog
 *.swp
+*-swp

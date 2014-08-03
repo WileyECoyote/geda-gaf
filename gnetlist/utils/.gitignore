@@ -6,3 +6,4 @@ mk_verilog_syms.exe
 *.o
 *~
 *.swp
+*-swp

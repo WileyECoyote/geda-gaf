@@ -7,4 +7,4 @@ gnetlist.html
 mk_verilog_syms.1
 mk_verilog_syms.html
 *~
-*.swp
+*-swp
