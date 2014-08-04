@@ -148,6 +148,67 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
 
 }
 
+/*! \brief Opens a file chooser and selection of document to open.
+ *  \par Function Description
+ *  This function opens a file chooser dialog and waits for the user to
+ *  select at least one file to load. A single-linked list of selected
+ *  files is returned or NULL to indicate the user is canceling the
+ *  operation.
+ *
+ *  \param [in] w_current The GschemToplevel environment.
+ *
+ *  \return list of filenames selected by the user, single-linked or
+ *          NULL if no files were selected
+ *
+ *  \sa x_fileselect_list
+ *
+ *  \remark: is remnant, replaced by x_fileselect_list
+ */
+GSList *x_fileselect_list(GschemToplevel *w_current)
+{
+  GtkWidget *dialog;
+  GSList    *filenames;
+  char      *cwd;
+
+  dialog = gtk_file_chooser_dialog_new (_("Open..."),
+                                        GTK_WINDOW(w_current->main_window),
+                                        GTK_FILE_CHOOSER_ACTION_OPEN,
+                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                        GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,
+                                        NULL);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
+                                          GTK_RESPONSE_ACCEPT,
+                                          GTK_RESPONSE_CANCEL,
+                                          -1);
+
+  /* Conditionally add the file previewer */
+  if(w_current->file_preview == TRUE) {
+    x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
+  }
+
+  g_object_set (dialog, "select-multiple", TRUE, NULL);
+
+  /* Add file filters to dialog */
+  x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
+
+  /* force start in current working directory, NOT in 'Recently Used' */
+  cwd = g_get_current_dir ();
+  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  GEDA_FREE (cwd);
+
+  gtk_widget_show (dialog);
+  if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+    filenames =  gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+  }
+  else {
+    filenames = NULL;
+  }
+  gtk_widget_destroy (dialog);
+  return filenames;
+}
+
 /*! \brief Opens a file chooser for opening one or more schematics.
  *  \par Function Description
  *  This function opens a file chooser dialog and wait for the user to
@@ -159,11 +220,15 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
  *  is set to the page of the last loaded page.
  *
  *  \param [in] w_current The GschemToplevel environment.
+ *
+ *  \note: is remnant, replaced by x_fileselect_list
+ *
+ *  \sa x_fileselect_list
  */
 void x_fileselect_open(GschemToplevel *w_current)
 {
-  Page      *page = NULL;
   GtkWidget *dialog;
+  GSList    *filenames;
   char      *cwd;
 
   dialog = gtk_file_chooser_dialog_new (_("Open..."),
@@ -201,31 +266,38 @@ void x_fileselect_open(GschemToplevel *w_current)
 
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
+    filenames =  gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+  }
+  else {
+    filenames = NULL;
+  }
+  gtk_widget_destroy (dialog);
 
-    GSList *tmp, *filenames =
-    gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+  /* open each file */
+  if (filenames) {
 
-    /* open each file */
-    for (tmp = filenames; tmp != NULL; tmp = g_slist_next (tmp)) {
+    GSList *iter;
+    Page   *page = NULL;
 
-      if(tmp->data != NULL) {
-        page = x_window_open_page (w_current, (char*)tmp->data);
+    for (iter = filenames; iter != NULL; iter = g_slist_next (iter)) {
+
+      if(iter->data != NULL) {
+        page = x_window_open_page (w_current, (char*)iter->data);
       }
       else {
-        u_log_message("<x_window_open_page> error: file name should not be NULL");
+        BUG_MSG("file name should not be NULL");
       }
     }
+
     /* Switch to the last page opened */
-    if ( page != NULL )
+    if ( page != NULL ) {
       x_window_set_current_page (w_current, page);
+    }
 
     /* free the list of filenames */
     g_slist_foreach (filenames, (GFunc)g_free, NULL);
     g_slist_free (filenames);
   }
-
-  gtk_widget_destroy (dialog);
-
 }
 
 /*! \brief Opens a file chooser for saving the current page.

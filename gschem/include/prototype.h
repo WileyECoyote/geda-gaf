@@ -1,6 +1,7 @@
 /* $Id$ */
-#define GLT GList   /* Only for this file!    */
-#define OBJ Object  /* to improve readability */
+#define GLT GList   /* Only for this file,     */
+#define GSL GSList  /* to improve readability! */
+#define OBJ Object
 #define EHP EdascmHookProxy
 #define GAY GArray
 
@@ -698,6 +699,7 @@ void x_event_set_pointer_position (GschemToplevel *w_current, int wx, int wy);
 void x_manual_resize              (GschemToplevel *w_current);
 
 /* x_fileselect.c */
+GSL *x_fileselect_list            (GschemToplevel *w_current);
 void x_fileselect_open            (GschemToplevel *w_current);
 void x_fileselect_save            (GschemToplevel *w_current);
 bool x_fileselect_load_backup     (GString *message, GschemToplevel *w_current);
@@ -850,5 +852,6 @@ void x_window_select_toolbar_toggle    (GtkWidget *widget, GschemToplevel *w_cur
 void x_window_zoom_toolbar_toggle      (GtkWidget *widget, GschemToplevel *w_current);
 #undef GAY
 #undef EHP
+#undef GSL
 #undef GLT
 #undef OBJ

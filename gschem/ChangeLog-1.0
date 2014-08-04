@@ -1,3 +1,29 @@
+2014-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
+        * iface/i_command.c: Add union to gschem_task so binary functions
+          can be tasked, (structure had two arguments but only allowed for
+          usage of one).
+          Revised function cmd_do_open to open each file name returned by
+          x_fileselect_list using separate task in the main context, and
+          added idle handler support to release the memory involved in the
+          operation. This seems to have given gschem a hole new "snap", not
+          just when opening multiple schematics, but even for a single
+          document. No data, but perception is that this is dramatic change.
+          But the real reason for all of this is so a worker thread can be
+          used to spawn multiple task in the main loop so that when guile
+          is used by libgeda, the scheme runs in the main context, aka fix
+          stack over-flows.
+
+        * src/x/x_fileselect.c: New function x_fileselect_list, is like
+          x_fileselect_open, but returns the list of file names instead
+          of opening them.
+
+2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/?/?.c: replace if !quiet with q_log_message in:
+                gschem.c::gschem()
+                x_window.c::x_window_open_page()
+
 2014-08-02 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x/x_edit_pin.c: Redo Edit Pin dialog to allow for alphanumeric
@@ -120,7 +146,7 @@
 
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c: Redo inclusion of header files
+        * src/.c: Redo inclusion of header files
 
 2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -163,7 +189,7 @@
 
 2014-07-21 Wiley E. Hill <wileyhill@gmail.com>
 
-        * scheme/Makefile.am: Add gschem/*~ to cleaning lists
+        * scheme/Makefile.am: Add gschem/ *~ to cleaning lists
 
         * include/i_command.h: Change actions VIEW_SELECTED, VIEW_EXTENTS,
           VIEW_ZOOM_ALL from USE_MAIN_LOOP to USE_WORKER_THREAD, changed
@@ -224,8 +250,8 @@
 
         * src/iface/i_command.c: Replace gdk_threads_enter and gdk_threads_leave
           with gschem_threads_enter gschem_threads_leave and remove  call to
-          gdk_flush() in i_command_router, since gschem_threads_leave does makes
-          this call.
+          gdk_flush() in i_command_router, since gschem_threads_leave makes this
+          call.
 
         * src/x/x_dialog.c: Replace gdk_threads_enter and gdk_threads_leave with
           gschem_threads_enter gschem_threads_leave in gschem_confirm_dialog.
@@ -258,7 +284,7 @@
 
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c: Replace g_malloc with GEDA_MEM_ALLOC
+        * src/all/.c: Replace g_malloc with GEDA_MEM_ALLOC
 
 2014-07-15 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -322,14 +348,14 @@
 
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c: Conditionally include <sys/stat.h>
+        * src/all/all.c: Conditionally include <sys/stat.h>
 
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/gschem_xdefines.h: Rename DIALOG_BORDER_SPACING to
           DIALOG_BORDER_WIDTH.
 
-        * src/x/*dialog.c: Relocate gtk_container_border_width and
+        * src/x/?dialog.c: Relocate gtk_container_border_width and
           gtk_box_set_spacing to base class for type GschemDialog to
           reduce redundent coding.
 
@@ -337,7 +363,7 @@
 
 2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*/*.c: Replace g_strdup with geda_strdup
+        * src/all/all.c: Replace g_strdup with geda_strdup
 
         * src/iface/i_command.?: Add new action "file-close-all" as file
           menu item.
@@ -355,7 +381,7 @@
 
 2014-07-10 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*: Use new macro GEDA_UREF instead if g_object_unref where
+        * src/all: Use new macro GEDA_UREF instead if g_object_unref where
           applicable.
 
 2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
@@ -392,7 +418,7 @@
 
 2014-03-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/*: Source directory structure re-vamped. Sub-directories created for
+        * src/all: Source directory structure re-vamped. Sub-directories created for
           gschem, guile, iface, math, object, view, and x.
 
         * src/widgets: Files were relocate to a seperate compilation unit for new

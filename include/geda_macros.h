@@ -38,6 +38,9 @@
 #define NEXT(i) i = GLIST_NEXT(i)
 #define PREVIOUS(i) i = GLIST_PREVIOUS(i)
 
+#define SOURCE_CONTINUE  TRUE
+#define SOURCE_REMOVE    FALSE
+
 #define BUG_MSG(mesg) fprintf (stderr, "File %s, <%s> at line %d: %s\n", \
                                      __FILE__, __func__, __LINE__, mesg);
 

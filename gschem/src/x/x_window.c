@@ -943,7 +943,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
    * needed to add it into the page manager. Otherwise, it will
    * get done in x_window_set_current_page.
    */
-  x_pagesel_update (w_current); /* ??? */
+  x_pagesel_update (w_current); /* If dialog open, update tree */
   o_invalidate_all(w_current);
 
   return page;

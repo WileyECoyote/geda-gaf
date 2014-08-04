@@ -36,7 +36,7 @@
 
 #define MAX_FILENAME 64
 
-#define NO_ERROR 0
+#define NO_ERROR    0
 
 #define BITS_BYTE   8
 #define BITS_WORD   16

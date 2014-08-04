@@ -1,6 +1,6 @@
 2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
-        * tests/run_tests.sh: Improve units test for Libgedathon.
+        * tests/run_tests.sh: Improve unit-test for Libgedathon.
           unit test now checks each of the three symbols files
           created for insertion into lpbf.sch for compliance using
           gsymcheck.

@@ -94,7 +94,6 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
   }
   if (!EDA_IS_CONFIG (cfg)) {
     BUG_MSG("EDA_IS_CONFIG (cfg) failed");
-    /**/
     return TRUE;
   }
 
@@ -107,7 +106,6 @@ static bool g_rc_try_mark_read (EdaConfig *cfg, char *filename, GError **err)
   }
 
   cfg->RC_list = g_list_append (cfg->RC_list, filename);
-
   return TRUE;
 }
 
@@ -187,7 +185,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
         GEDA_FREE (name_norm); /* was not successful so not stored */
       }
     }
-    else {
+    else { /* Can not access name_norm for reading */
       if(err != NULL) {
         g_set_error(err, G_FILE_ERROR,
                     g_file_error_from_errno (errno),
@@ -200,6 +198,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       GEDA_FREE (name_norm);
     }
   }
+
   return status;
 }
 

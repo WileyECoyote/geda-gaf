@@ -1,7 +1,15 @@
 
+typedef struct st_idle_task_data IdleTaskData;
 typedef struct st_session Session;
 typedef struct st_session_menu_data SessionMenuData;
 typedef struct st_stretch STRETCH;
+
+struct st_idle_task_data {
+  unsigned int    source_id;
+  GschemToplevel *w_current;
+  void           *data;
+  int             retry;
+};
 
 struct st_session {
   int   page_count;

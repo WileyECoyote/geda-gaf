@@ -87,7 +87,10 @@ void printRusage(const char *leader, const struct rusage *ru)
 #endif /*PERFORMANCE */
 
 typedef struct {
-  void (*func)(void*);
+  union {
+  void (*F1)(void*);
+  void (*F2)(void*, void*);
+  } func;
   void* arg1;
   void* arg2;
 } gschem_task;
@@ -163,7 +166,8 @@ static bool i_command_dispatch(gschem_task *task)
 {
   scm_dynwind_begin (0);
   g_dynwind_window (task->arg1); /* w_current */
-  task->func(task->arg1);
+  if (task->arg2) task->func.F2(task->arg1,task->arg2);
+  else task->func.F1(task->arg1);
   scm_dynwind_end ();
   GEDA_FREE(task);
   return FALSE;
@@ -180,7 +184,7 @@ void i_command_router(char* command, GschemToplevel *w_current)
     /* see note #1 in i_command.h */
     if ((command_struc[i].aflag & ActionTaskMask) == USE_MAIN_LOOP) {
       task = g_new( gschem_task, 1);
-      task->func = (void*)command_struc[i].func;
+      task->func.F1 = (void*)command_struc[i].func;
       task->arg1 = command_struc[i].w_current;
       g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
     }
@@ -641,12 +645,117 @@ COMMAND (do_file_new)
 
 }
 
-/** @brief i_cmd_do_open in i_command_File_Actions */
+/**   \defgroup open-files-command Open File Action
+ *  @{\par This group contains functions to open documents
+ *    \ingroup (i_command_File_Actions)
+ */
+/* This does not do anything productive, is a delay, the destroy
+ * notifier, open_command_idle_notify, does do all the work.
+ * This is a low priority main-loop task, instigated after higher
+ * priority main-loop task were delegated to opening files */
+static bool
+open_command_idle_callback (void *data)
+{
+  IdleTaskData *packet    = data;
+  bool          status    = SOURCE_CONTINUE;
+  char         *last_file = g_slist_last(packet->data)->data;
+
+  if (s_page_search(packet->w_current->toplevel, last_file)) {
+    status = SOURCE_REMOVE;
+  }
+  else if (packet->retry == 1) {
+    status = SOURCE_REMOVE;
+  }
+  else {
+    packet->retry++;
+  }
+
+  return status;
+}
+
+/* open_command_idle_notify is a callback handler notifying
+ * us that the main loop source open_command_idle_callback
+ * has been destoryed, which is of no particulary interest.
+ * The idles threads were to release the memory associated
+ * with x_fileselect_list */
+static void
+open_command_idle_notify (void *data)
+{
+  IdleTaskData *packet = data;
+  GSList       *files  = packet->data;
+  char    *last_file   = g_slist_last(files)->data;
+  Page    *page;
+
+  page = s_page_search(packet->w_current->toplevel, last_file);
+  if (GEDA_IS_PAGE(page)) {
+    x_window_set_current_page (packet->w_current, page);
+  }
+
+  GSource *source;
+  source = g_main_context_find_source_by_id (NULL, packet->source_id);
+  if (source) {
+    g_source_destroy (source);
+    fprintf(stderr, "had to g_source_destroy\n");
+  }
+
+  /* free the list of filenames */
+  g_slist_foreach (files, (GFunc)g_free, NULL);
+  /* free the list that held pointers to filenames */
+  g_slist_free (files);
+  /* free the IdleTaskData structure */
+  GEDA_FREE(data);
+}
+
+/** @brief i_cmd_do_open in i_command_File_Actions
+ *  \par Function Description
+ *  Calls x_fileselect_list to display a standard system file
+ *  open dialog, if not canceled, the dialog returns a single
+ *  linked list of file names. A task to be ran in the main
+ *  context is created for each file. A low priority idle task
+ *  is assigned to clean up details, mainly to release memory
+ *  allocated by x_fileselect_list.
+ *  This is worker thread that spawns main-loop threads, the
+ *  main reason for this is that, eventually libgeda will be
+ *  called and guile will used to process gafrc files and these
+ *  guile routines need to be ran in the main context.
+ *  As a bonus, our multi-document load performance increased
+ *  dramatically, compared to the old sequential loading.
+ */
 COMMAND ( do_open ) {
   BEGIN_W_COMMAND(do_open);
-    x_fileselect_open (w_current);
+
+  GSList       *files;
+  gschem_task  *task;
+  IdleTaskData *packet;
+  int           count = 0;
+
+  if ( NULL != (files = x_fileselect_list (w_current))) {
+
+    w_current->toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
+
+    lambda (void *filename) {
+      task          = g_new(gschem_task, 1);
+      task->func.F2 = (void*)x_window_open_page;
+      task->arg1    = command_struc[cmd_do_open].w_current;
+      task->arg2    = filename;
+      g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
+      count++;
+      return FALSE;
+    }
+    mapcar(files);
+  }
+
+  packet            = g_new(IdleTaskData, 1);
+  packet->w_current = command_struc[cmd_do_open].w_current;
+  packet->data      = files;
+  packet->retry     = FALSE;
+  packet->source_id = g_idle_add_full (G_PRIORITY_LOW + count,
+                                       open_command_idle_callback,
+                                       packet,
+                                       open_command_idle_notify);
   EXIT_COMMAND(do_open);
 }
+/** @} endgroup open-files-command */
 
 /** @brief i_cmd_do_close in i_command_File_Actions */
 COMMAND ( do_close ) {

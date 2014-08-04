@@ -274,6 +274,8 @@ static GSList *i_sessions_get_file_list(Session *record)
  *  \param record    Pointer to the session record to be opened
  *
  *  \return count of the number of pages opened
+ *
+ * TODO: See cmd_do_open in i_command.c
  */
 static int
 i_session_load_session(GschemToplevel *w_current, Session *record)

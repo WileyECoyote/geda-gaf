@@ -164,14 +164,14 @@ struct _GschemToplevel {
   /* ---------------- Gschem internal state --------------- */
 
   /* Buffer Related */
-  int    buffer_number;        /* current paste buffer in use */
-  GList *clipboard_buffer;     /* buffer for system clipboard integration */
+  int    buffer_number;                 /* current paste buffer in use */
+  GList *clipboard_buffer;              /* buffer for system clipboard integration */
 
   /* Drag&Drop */
-  GdkEvent *drag_event;        /* copy of motion event for Drag&Drop */
-  int drag_action;             /* Controls the GdkDragAction for Drag&Drop */
-  int dnd_state;               /* */
-  int dnd_save_state;
+  GdkEvent *drag_event;                 /* copy of motion event for Drag&Drop */
+  int drag_action;                      /* Controls the GdkDragAction for Drag&Drop */
+  int dnd_state;                        /* */
+  int dnd_save_state;                   /* what we were doing when pointer left window */
 
   /* Key States */
   int CONTROLKEY;                       /* control key pressed? */
