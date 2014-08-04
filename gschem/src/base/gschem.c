@@ -308,10 +308,9 @@ void gschem( int argc, char *argv[])
   else {
     input_str = scm_to_utf8_string (scm_tmp);
     if (g_read_scheme_file(input_str, NULL)) {
-      if(!quiet_mode) {
-        u_log_message(_("Read init scm file [%s]\n"), input_str);
-      }
-    } else {
+      q_log_message(_("Read init scm file [%s]\n"), input_str);
+    }
+    else {
       u_log_message(_("Failed to read init scm file [%s]\n"), input_str);
     }
   }

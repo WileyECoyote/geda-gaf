@@ -861,6 +861,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
          * we have to make a copy here for the maybe future page */
         page = new_page(filename);
         /* Try to load the file */
+
         if (!f_open (toplevel, page, (char *) filename, &err)) {
           g_warning ("%s\n", err->message);
           fprintf(stderr, "Error loading file:%s\n", err->message);
@@ -887,9 +888,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
       path = dirname(path);                    /* g_path_get_dirname() */
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
-        if (!quiet_mode) {
-          u_log_message("Creating new file \"%s\"\n", filename);
-        }
+        q_log_message("Creating new file \"%s\"\n", filename);
        /* Filespec may not exist but user has authority to create */
         page = empty_page(filename);
       }
