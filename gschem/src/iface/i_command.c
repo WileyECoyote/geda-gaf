@@ -743,14 +743,15 @@ COMMAND ( do_open ) {
       return FALSE;
     }
     mapcar(files);
-  packet            = g_new(IdleTaskData, 1);
-  packet->w_current = command_struc[cmd_do_open].w_current;
-  packet->data      = files;
-  packet->retry     = FALSE;
-  packet->source_id = g_idle_add_full (G_PRIORITY_LOW + count,
-                                       open_command_idle_callback,
-                                       packet,
-                                       open_command_idle_notify);
+
+    packet            = g_new(IdleTaskData, 1);
+    packet->w_current = command_struc[cmd_do_open].w_current;
+    packet->data      = files;
+    packet->retry     = FALSE;
+    packet->source_id = g_idle_add_full (G_PRIORITY_LOW + (10 * count),
+                                         open_command_idle_callback,
+                                         packet,
+                                         open_command_idle_notify);
   }
   EXIT_COMMAND(do_open);
 }
