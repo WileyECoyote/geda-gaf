@@ -18,8 +18,8 @@
 
 #include <f_types.h>
 
-#include <edaconfig.h>
-#include <edaerrors.h>
+#include <geda_config.h>
+#include <geda_errors.h>
 
 #include <globals.h>
 

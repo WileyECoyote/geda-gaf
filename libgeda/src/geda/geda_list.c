@@ -1,7 +1,7 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  * Copyright (C) 1998-2000 Ales Hvezda
- * Copyright (C) 2007-2010 Peter Clifton
+ * Copyright (C) 2007-2014 Peter Clifton
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,14 +15,18 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file geda_list.c
  *  \brief list derived from GList with GObject properties
  *
- *  This GedaList with the GObject properties can use the signaling
- *  mechanisms of GObject now.
+ *  GedaList provides a GOBJECT wrapper for GLIST which provides
+ *  the ability to use GObject signaling mechanisms with GedaList.
+ */
+/** \defgroup geda-list-object Geda List
+ *  @{
  */
 
 #include <config.h>
@@ -252,4 +256,4 @@ void geda_list_remove_all( GedaList *list )
   list->glist = NULL;
   g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
 }
-
+/** @} endgroup geda-list-object */

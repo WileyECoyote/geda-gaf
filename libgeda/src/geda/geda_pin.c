@@ -25,6 +25,21 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_pin.c
+ *  \brief Geda Pin Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-pin-object Geda Pin Object
+ *  @{
+ */
+/*! \class Pin geda_pin.h "include/libgeda/geda_pin.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Pin Objects.
+ *  A Geda Pin Object is symbol for electrical object used to represent
+ *  a potential connection node in higher level assemblies. Pin objects
+ *  one node point that can represent a single node (PIN_NET_NODE) or
+ *  many nodes (PIN_BUS_NODE).
+ */
+
 #include <config.h>
 #include <ctype.h>
 
@@ -528,3 +543,4 @@ bool geda_pin_set_whichend(Pin *pin, int whichend)
   pin->whichend = whichend;
   return TRUE;
 }
+/** @} endgroup geda-pin-object */

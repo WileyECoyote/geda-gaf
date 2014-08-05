@@ -26,6 +26,19 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_bus.c
+ *  \brief Geda Bus Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-bus-object Geda Bus Object
+ *  @{
+ */
+/*! \class Bus geda_bus.h "include/libgeda/geda_bus.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Bus Objects.
+ *  A Geda Bus Object is similar to net objects but are intended to
+ *  represent multiple conductors.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -128,3 +141,4 @@ bool is_a_geda_bus_object (Bus *bus)
 {
   return bus && (GEDA_TYPE_BUS == (bus->head_marker & bus->tail_marker));
 }
+/** @} endgroup geda-bus-object */

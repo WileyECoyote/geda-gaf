@@ -4,8 +4,6 @@ libgedaincludedir = $(includedir)/libgeda
 
 libgedainclude_HEADERS = \
 	libgeda/defines.h \
-	libgeda/edaconfig.h \
-	libgeda/edaerrors.h \
 	libgeda/edascmhookproxy.h \
 	libgeda/edascmvaluetypes.h \
 	libgeda/f_types.h \
@@ -16,6 +14,8 @@ libgedainclude_HEADERS = \
 	libgeda/geda_colors.h\
 	libgeda/geda_circle.h \
 	libgeda/geda_complex.h \
+	libgeda/geda_config.h \
+	libgeda/geda_errors.h \
 	libgeda/geda_line.h \
 	libgeda/geda_list.h \
 	libgeda/geda_net.h \

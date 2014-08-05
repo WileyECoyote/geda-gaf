@@ -26,6 +26,19 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_picture.c
+ *  \brief Geda Picture Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-picture-object Geda Picture Object
+ *  @{
+ */
+/*! \class Picture geda_picture.h "include/libgeda/geda_picture.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Picture Objects.
+ *  A Geda Picture Object is a type graphical object used to insert images
+ *  such as graphs or photos.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -162,3 +175,4 @@ bool is_a_geda_picture_object (Picture *pic)
 {
   return pic && (GEDA_TYPE_PICTURE == (pic->head_marker & pic->tail_marker));
 }
+/** @} endgroup geda-picture-object */

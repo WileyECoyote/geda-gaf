@@ -26,6 +26,19 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
  */
+/*! \file geda_object.c
+ *  \brief Geda Object Class derived from the base GObject Class
+ */
+/** \defgroup geda-object Geda Object
+ *  @{
+ */
+/*! \class Object geda_object.h "include/libgeda/geda_object.h"
+ *  \brief Base Class for all Geda Object types
+ *  The Geda Object base class provides the foundation for all Geda
+ *  objects. Information such as page, object hierarchy, hooks and
+ *  geometric bounds are stored in the base Object class.
+ */
+
 #include <config.h>
 #include <ascii.h>
 #include "libgeda_priv.h"
@@ -647,3 +660,4 @@ Page *geda_object_get_page (Object *object)
 
   return NULL;
 }
+/** @} endgroup geda-object */

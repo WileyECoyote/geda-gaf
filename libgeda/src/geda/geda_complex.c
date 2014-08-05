@@ -26,6 +26,22 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_complex.c
+ *  \brief Geda Complex Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-complex-object Geda Complex Object
+ *  @{
+ */
+/*! \class Complex geda_complex.h "include/libgeda/geda_complex.h"
+ *  \implements geda-complex-object
+ *  \brief This is an implementaion class for GEDA Complex.
+ *  A Geda Complex Object is a graphical symbol used to represent
+ *  components or module information and are generally associated
+ *  with another file. Information from Complexes, such as ordinary
+ *  symbols, can optionally be embedded into schematics.
+ */
+/** @} endgroup geda-complex-object */
+
 #include <config.h>
 
 #include "libgeda_priv.h"

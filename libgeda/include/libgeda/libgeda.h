@@ -43,8 +43,8 @@
 
 #include <libgeda/f_types.h>
 
-#include <libgeda/edaconfig.h>
-#include <libgeda/edaerrors.h>
+#include <libgeda/geda_config.h>
+#include <libgeda/geda_errors.h>
 
 #include <libgeda/globals.h>
 

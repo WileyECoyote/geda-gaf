@@ -26,6 +26,18 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
  */
+/*! \file geda_page.c
+ *  \brief Geda Page Object Class derived from the base GObject Class
+ */
+/** \defgroup geda-page Geda Page Data Structure
+ *  @{
+ */
+/*! \class Page geda_page.h "include/libgeda/geda_page.h"
+ *  \brief
+ *  A Geda Page Data Structure is use to manage information related
+ *  to a single opened document.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -114,9 +126,9 @@ Object *geda_page_get_object(Page *page, int sid)
  *
  *  \par Function Description
  *  The function decreases the reference count of object. The object's page
- * must be @page. Increase its reference count prior to calling this function
+ *   must be @page. Increase its reference count prior to calling this function
  *
- * Emits the remove-object signal.
+ *   Emits the remove-object signal.
  *
  *  \sa eda_page_remove_object
  *
@@ -484,3 +496,4 @@ GedaToplevel *geda_page_get_toplevel (Page *page)
   g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
   return page->toplevel;
 }
+/** @} endgroup geda-page */

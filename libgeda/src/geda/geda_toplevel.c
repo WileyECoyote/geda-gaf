@@ -26,6 +26,20 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 4, 2013
  */
+/*! \file geda_toplevel.c
+ *  \brief Geda Toplevel Object Class derived from the base GObject Class
+ */
+/** \defgroup geda-toplevel Geda Toplevel Data Structure
+ *  @{
+ */
+/*! \class GedaToplevel geda_toplevel.h "include/libgeda/geda_toplevel.h"
+ *  \brief
+ *  A GedaToplevel Data Structure contains information used to coordinate
+ *  configuration and session information with applications such as default
+ *  object properties and page hierarchy. Libgeda loads and manages all
+ *  schematic and symbol documents using data stored in toplevel structures.
+ */
+
 #include <config.h>
 #include <stdio.h>
 
@@ -454,3 +468,4 @@ Page* geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)
 
   return found_page;
 }
+/** @} endgroup geda-toplevel */

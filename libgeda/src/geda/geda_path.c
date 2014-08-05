@@ -25,6 +25,19 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_path.c
+ *  \brief Geda Path Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-path-object Geda Path Object
+ *  @{
+ */
+/*! \class Path geda_path.h "include/libgeda/geda_path.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Path Objects.
+ *  A Geda Path Object is a graphical object that does not involve electrical
+ *  interconnections. A Path object has line-type and fill-type properties.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -209,3 +222,4 @@ bool is_a_geda_path_object (Path *path)
 {
   return path && (GEDA_TYPE_PATH == (path->head_marker & path->tail_marker));
 }
+/** @} endgroup geda-path-object */

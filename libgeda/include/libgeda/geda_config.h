@@ -85,7 +85,7 @@ G_BEGIN_DECLS
 
 /* ---------------------------------------------------------------- */
 
-/*! \class EdaConfig edaconfig.h "libgeda/edaconfig.h"
+/*! \class EdaConfig geda_config.h "libgeda/geda_config.h"
  * \brief Hierarchical configuration context for gEDA configuration data.
  *
  * Configuration parameters in gEDA are evaluated within a configuration

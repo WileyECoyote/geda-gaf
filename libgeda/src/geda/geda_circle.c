@@ -26,6 +26,20 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_circle.c
+ *  \brief Geda Circle Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-circle-object Geda Circle Object
+ *  @{
+ */
+/*! \class Circle geda_circle.h "include/libgeda/geda_circle.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Arc Objects.
+ *  A Geda Circle Object is a graphical object that does not involve
+ *  electrical interconnections. Circles have line-type and fill-type
+ *  properties.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -166,3 +180,4 @@ bool is_a_geda_circle_object (Circle *cir)
 {
   return cir && (GEDA_TYPE_CIRCLE == (cir->head_marker & cir->tail_marker));
 }
+/** @} endgroup geda-circle-object */

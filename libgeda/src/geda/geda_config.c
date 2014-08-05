@@ -23,6 +23,14 @@
  *          view.
  *
  */
+/*! \file geda_config.c
+ *  \brief EdaConfig Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-config Geda Configuration Object
+ *  @{
+ *  \implements EdaConfig
+ */
+
 #include <config.h>
 
 #include <errno.h>
@@ -1897,3 +1905,4 @@ eda_config_error_quark (void)
 {
   return g_quark_from_static_string ("eda-config-error-quark");
 }
+/** @} endgroup geda-config */

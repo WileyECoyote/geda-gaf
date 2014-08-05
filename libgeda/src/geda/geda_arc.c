@@ -26,6 +26,20 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+
+/*! \file geda_arc.c
+ *  \brief Geda Arc Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-arc-object Geda Arc Object
+ *  @{
+ */
+/*! \class Arc geda_arc.h "include/libgeda/geda_arc.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Arc Objects.
+ *  A Geda Arc Object is a graphical object, do not involve electrical
+ *  interconnections. Arcs have line-type and fill-type properties.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -33,8 +47,7 @@
 
 G_DEFINE_TYPE (Arc, geda_arc, GEDA_TYPE_OBJECT);
 
-
-/*! \brief
+/*! \brief Geda Arc Bounds
  *  \par Function Description
  *  This function calculates the smallest rectangle the arc can be drawn into.
  *  The <B>Object</B> pointed by object is assumed to be an arc.
@@ -227,5 +240,4 @@ bool is_a_geda_arc_object (Arc *arc)
   bool head = GEDA_TYPE_ARC == arc->head_marker;
   return arc && head && tail;
 }
-
-
+/** @} endgroup geda-arc-object */

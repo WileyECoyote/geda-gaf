@@ -26,6 +26,19 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_line.c
+ *  \brief Geda Line Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-line-object Geda Line Object
+ *  @{
+ */
+/*! \class Line geda_line.h "include/libgeda/geda_line.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Line Objects.
+ *  A Geda Line Object is a graphical object that does not involve electrical
+ *  interconnections. Lines have line-type properties.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -157,3 +170,4 @@ bool is_a_geda_line_object (Line *lin)
 {
   return lin && (GEDA_TYPE_LINE == (lin->head_marker & lin->tail_marker));
 }
+/** @} endgroup geda-line-object */

@@ -26,6 +26,19 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: November, 18, 2013
  */
+/*! \file geda_net.c
+ *  \brief Geda Net Object Class derived from the GedaObject Class
+ */
+/** \defgroup geda-net-object Geda Net Object
+ *  @{
+ */
+/*! \class Net geda_net.h "include/libgeda/geda_net.h"
+ *  \implements geda-object
+ *  \brief This is an implementaion class for GEDA Net Objects.
+ *  A Geda Net Object represent a conductor or wire, and is used to inter
+ *  connect nodes.
+ */
+
 #include <config.h>
 
 #include "libgeda_priv.h"
@@ -145,3 +158,4 @@ bool is_a_geda_net_object (Net *net)
 {
   return net && (GEDA_TYPE_NET == (net->head_marker & net->tail_marker));
 }
+/** @} endgroup geda-net-object */
