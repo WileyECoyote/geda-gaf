@@ -1,5 +1,11 @@
 2014-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
+        * iface/i_command.c: Fixed cmd_do_open, was not suppose to do release
+          cleanup block if dialog canceled, code block was suppose to be in
+          the conditional, oops.
+
+2014-08-04 Wiley E. Hill <wileyhill@gmail.com>
+
         * iface/i_command.c: Add union to gschem_task so binary functions
           can be tasked, (structure had two arguments but only allowed for
           usage of one).

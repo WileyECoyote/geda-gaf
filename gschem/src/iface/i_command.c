@@ -743,8 +743,6 @@ COMMAND ( do_open ) {
       return FALSE;
     }
     mapcar(files);
-  }
-
   packet            = g_new(IdleTaskData, 1);
   packet->w_current = command_struc[cmd_do_open].w_current;
   packet->data      = files;
@@ -753,6 +751,7 @@ COMMAND ( do_open ) {
                                        open_command_idle_callback,
                                        packet,
                                        open_command_idle_notify);
+  }
   EXIT_COMMAND(do_open);
 }
 /** @} endgroup open-files-command */
