@@ -1,4 +1,4 @@
-v 20130414 2
+v 20140728 2
 P 3800 3800 3500 3800 1 0 0
 {
 T 3900 3800 5 10 0 0 0 0 1
@@ -222,8 +222,8 @@ pinseq=13
 }
 T 3295 4100 8 10 1 1 0 0 1
 refdes=U?
-T 400 4100 9 10 1 0 0 0 1
-XBEE
+T 400 4100 9 10 1 1 0 0 1
+device=XBEE
 T 95 4900 8 10 0 1 0 0 1
 author=Nicholas De Cicco velociostrich@gmail.com
 T 95 4700 8 10 0 0 0 0 1
