@@ -812,8 +812,8 @@
 ;  Controls if the preview area in the File Open/Save As and Component
 ;  dialog boxes is enabled by default or not
 ;
-;(file-preview "enabled")
-(file-preview "disabled")
+(file-preview "enabled")
+;(file-preview "disabled")
 
 ; handleboxes string
 ;

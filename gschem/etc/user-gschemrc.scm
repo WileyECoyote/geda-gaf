@@ -812,8 +812,8 @@
 ;  Controls if the preview area in the File Open/Save As and Component
 ;  dialog boxes is enabled by default or not
 ;
-;(file-preview "enabled")
-(file-preview "disabled")
+(file-preview "enabled")
+;(file-preview "disabled")
 
 ; handleboxes string
 ;
@@ -854,7 +854,7 @@
 ;
 ; Controls if Icons, Text, or both are displayed on toolbars. This keyword
 ; will over-ride the settings in gtkrc's. This may be required in certain
-; enviroments. gschem does not default this value so the setting will be
+; environments. gschem does not default this value so the setting will be
 ; determined by gtk if this keyword is not set. The last mode, "retention"
 ; will cause each toolbar to be restored with values preserved from the
 ; last shutdown when save-ui-settings was "enabled".
@@ -1010,6 +1010,142 @@
 ;----------------------------------------------------------------------------
 ;
 ; End of mode related keywords
+;
+
+;
+; Start of hooks
+;
+(use-modules (gschem deprecated) (gschem hook))
+
+;; Uncomment this scheme code if you want automatic numbering when
+;; placing new component and copying components.
+;
+;(load-from-path "auto-uref.scm")
+;(add-hook! add-component-hook auto-uref)
+;(add-hook! copy-component-hook auto-uref)
+
+;; Define value of page-offset for auto number on insert.
+;; Refdeses will be numbered from integer multiples of page-offset,
+;; depending on the lowest refdes value found on the page.
+;; If lowest value is 323 and page offset is 100, then next refdes
+;; will be 301.
+;; Setting to 0 disables the feature.
+;
+;(auto-uref-set-page-offset 100)
+
+; Define default pin attributes
+; Attributes:
+;   - Attribute name.
+;   - Value of the attribute.
+;   - Visibility: #t (visible) or #f (hidden).
+;   - Show_list:  a list containing what to show, using
+;                 elements like "name" or "value", or an empty list.
+(define default-pin-attributes
+       '(("pintype"   "pas" #f ())
+         ("pinlabel"  "unknown" #t ("value"))
+         ("pinnumber" "0"       #t ("value"))
+         ("pinseq"    "0"       #f ())))
+
+; Convert a character into a string
+(define char2str
+  (lambda (char)
+    (list->string (list char))))
+
+; Load the default position of attributes, for attribute autoplacing
+; functions.
+;(load-from-path "default-attrib-positions.scm")
+
+; Adds the default pin attributes to each newly placed pin.
+;(define (add-default-pin-attributes object)
+;  (for-each
+;    (lambda (a)
+;      (apply add-attribute-to-object object a)) default-pin-attributes))
+
+; Comment in this hook to automatically add the default attributes to
+; each newly placed pin
+;(add-hook! add-pin-hook add-default-pin-attributes)
+
+; Comment in this to load the functions to place the attributes automatically.
+;(load-from-path "auto-place-attribs.scm")
+
+; Autoplace pin text attributes hook.
+; Comment in these if you want the pin attributes to be automatically placed.
+; There are different hooks for situations like adding a new pin and rotating
+; or mirroring an existing one.
+; The #t at the end means that function is appended to the end of the hook.
+;(add-hook! add-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+;(add-hook! rotate-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+;(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
+
+; Autoplace component/net/buses text attributes hook.
+; Comment in these if you want the component attributes to be
+; automatically placed.
+; There are different hooks for situations like adding a new pin, rotating
+; or mirroring an existing one, adding a new attribute or a new component.
+; The #t at the end means that function is appended to the end of the hook.
+;(add-hook! add-component-object-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! rotate-component-object-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! mirror-component-object-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! add-attribute-hook (lambda (object)
+;       (autoplace-object-attributes object)) #t)
+;(add-hook! complex-place-list-changed-hook (lambda (object)
+;         (autoplace-object-attributes object)) #t)
+
+; Autoplace netname= attribute hook.  This autoplaces netname
+; attribute at the time that it's added.
+(load-from-path "auto-place-netname.scm")
+(add-hook! add-objects-hook place-netname-attribute-handler)
+
+;; Automatically place a titleblock (or other components) when creating
+;; a new page.
+;; Comment in these lines if you want gschem to automatically place a titleblock
+;; when you create a new _empty_ page.
+;; Users can customize the default titleblock by adding the following line
+;; (without the semi-colons at the beginning) to the gschemrc file;
+;; (define default-titleblock "title-A4.sym")
+;; Change "title-A4.sym" by the name of your prefered titleblock!
+;
+;; If you don't want a titleblock to be added automatically, then add one of
+;; the following lines to your gschemrc file (without the semicolon).
+;; There are several ways, so just choose one;
+;;   (define default-titleblock "")
+;;   (define default-titleblock '())
+;;   (define default-titleblock #f)
+;
+;(define default-titleblock "title-B.sym")
+
+; Load the regular expressions module
+(if (provided? 'regex)
+    (use-modules (ice-9 regex))
+    (display "Your Guile installation doesn't provide the regex module.\n"))
+
+;(add-hook! (@ (gschem hook) new-page-hook) (lambda (page)
+;   ; Only place the titleblock if there are no objects in the page
+;   ; and the page filename ends in ".sym".
+;   (if (and (null? (get-objects-in-page page))
+;            ; If the guile installation doesn't provide the regex module,
+;            ; don't care about the page filename.
+;            (if (provided? 'regex)
+;                (not (string-match ".*\\.[sS][yY][mM]"
+;                                   (get-page-filename page)))
+;                #t))
+;;      Syntax             Symbol name        X   Y    angle selectable mirrored
+;      (add-component-at-xy page default-titleblock 40000 40000   0       #f       #f))
+
+   ;; After adding titleblock, reset page to mark as unchanged.
+;   ((@ (geda page) set-page-dirty!) (active-page) #f))
+;           #t)
+
+; Evaluate an expression entered in the magic-colon text box.
+; In 20 years this might dispatch to an interpreter for some other language.
+(define (invoke-macro s-expr)
+  (gschem-log (format #f "~s\n" (eval-string-protected s-expr))))
+
+;
+; End of hooks
 ;
 
 ;

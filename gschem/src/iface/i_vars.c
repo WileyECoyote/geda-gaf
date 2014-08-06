@@ -140,7 +140,7 @@ int     default_setpagedevice_orientation = FALSE;
 int     default_setpagedevice_pagesize    = FALSE;
 
 /* System Related */
-int     default_file_preview              = FALSE;
+int     default_file_preview              = TRUE;
 int     default_handleboxes               = TRUE;
 int     default_raise_dialog_boxes        = DEFAULT_RAISE_TIMER;
 int     default_save_ui_settings          = TRUE;

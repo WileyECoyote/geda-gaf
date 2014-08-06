@@ -1,10 +1,17 @@
-2014-08-04 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+        * etc/system-gschemrc.scm, user-gschemrc.scm: Change default to show
+          file preview.
+
+        * src/iface/i_vars.c: Change default to enable file preview.
+
+2014-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
         * iface/i_command.c: Increase load factor to decrease priority of
-          cleanup by magnitude of order, tested with 41 files, okay, all
-          symbols.
+          cleanup by magnitude of order for each file, tested with 41 files,
+          okay, all symbols.
 
-2014-08-04 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
         * iface/i_command.c: Fixed cmd_do_open, was not suppose to do release
           cleanup block if dialog canceled, code block was suppose to be in

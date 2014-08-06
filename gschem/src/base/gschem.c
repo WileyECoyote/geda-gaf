@@ -298,6 +298,7 @@ void gschem( int argc, char *argv[])
   if (scm_is_null(s_post_load_expr)) {
     g_scm_eval_protected (s_pre_load_expr, scm_current_module ());
   }
+
   /* By this point, libgeda should have setup the Guile load path.
    * Note that the log system is not initialized yet so any messages
    * will go to the console or null */
