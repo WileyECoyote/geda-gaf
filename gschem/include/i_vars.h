@@ -29,6 +29,7 @@ extern int default_zoom_with_pan;
 
 extern int default_world_right;
 extern int default_world_bottom;
+
 /* Logging */
 extern int default_logging;
 extern int default_log_destiny;
@@ -41,6 +42,7 @@ extern int default_add_attribute_offset;
 extern int default_auto_load_last;
 extern int default_attribute_placement_grid;
 extern int default_auto_save_interval;
+extern int default_chooser_filter;
 extern GList *default_component_select_attrlist;
 extern int default_continue_component_place;
 extern int default_embed_components;

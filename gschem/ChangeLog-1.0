@@ -1,3 +1,23 @@
+2014-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/Makefile.am: Add link to libgeda.
+
+        * include/i_vars.h: Add new varible "default_chooser_filter".
+
+        * src/iface/i_vars.c: New varibles chooser_filter initialized with
+          new varible default_chooser_filter. Restored in i_vars.c, saved
+          with the windows group by x_window_save_settings.
+
+        * src/x/x_window.c: Add new varible to save in x_window_save_settings,
+          x_window_save_settings using key "chooser-filter".
+
+        * src/x/x_fileselect.c: In x_fileselect_list and x_fileselect_open,
+          set filter of new GedaFileChooser to the retained preference using
+          new top-level variable chooser_filter, and add callback handler for
+          the filter to capture user changes. Set GedaFileChooser filter for
+          save dialog to what ever the current document type, i.e. "sch" for
+          schematics, "sym" if saving a symbol.
+
 2014-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/x_fileselect.h: Remove file, mostly relocate code to

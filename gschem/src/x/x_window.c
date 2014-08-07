@@ -186,6 +186,9 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "window-width",      width );
   eda_config_set_integer (cfg, win_group, "window-height",     height);
 
+  /* Retain Users FileChooser filter preference */
+  eda_config_set_integer (cfg, win_group, "chooser-filter", w_current->chooser_filter);
+
   /* All settings from here down are restored by i_vars_recall_user_settings */
   /* Scrolling Settings */
   eda_config_set_integer (cfg, win_group, "scrollbars",         w_current->scrollbars);

@@ -112,12 +112,21 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
 
 }
 
+static void x_fileselect_save_filter_index (GtkWidget      *chooser,
+                                            GschemToplevel *w_current)
+{
+  w_current->chooser_filter = geda_file_chooser_get_filter(chooser);
+  default_chooser_filter    = w_current->chooser_filter;
+}
+
 /*! \brief Opens a file chooser and selection of document to open.
  *  \par Function Description
- *  This function opens a file chooser dialog and waits for the user to
- *  select at least one file to load. A single-linked list of selected
- *  files is returned or NULL to indicate the user is canceling the
- *  operation.
+ *  This function opens a file chooser dialog and restores the filter
+ *  filter preference, and waits for the user to select at least one
+ *  file to load. A single-linked list of selected files is returned
+ *  or NULL to indicate the user is canceling the operation. If the
+ *  user changes the filter, a callback retains the users preference
+ *  regardless of whether the operation is canceled or not.
  *
  *  \param [in] w_current The GschemToplevel environment.
  *
@@ -137,6 +146,9 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
   dialog = geda_file_chooser_new (w_current->main_window,
                                   GTK_FILE_CHOOSER_ACTION_OPEN);
 
+  /* Set filter to what user last time*/
+  geda_file_chooser_set_filter (dialog, w_current->chooser_filter);
+
   /* Conditionally add the file previewer */
   if(w_current->file_preview == TRUE) {
     x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
@@ -148,6 +160,13 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
+
+  /* This ratains filter, even if canceled, could retrieve in if got
+   * filenames but this seems to work just fine, is saved if changed */
+  g_signal_connect_after(G_OBJECT(dialog), "filter-changed",
+                         G_CALLBACK (x_fileselect_save_filter_index),
+                         w_current);
+
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     filenames =  gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
   }
@@ -160,10 +179,12 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
 
 /*! \brief Opens a file chooser for opening one or more schematics.
  *  \par Function Description
- *  This function opens a file chooser dialog and wait for the user to
- *  select at least one file to load as <B>w_current</B>'s new pages.
- *
- *  The function updates the user interface.
+ *  This function opens a file chooser dialog, restores the user's
+ *  filter preference, and wait for the user to select at least one
+ *  file to load as <B>w_current</B>'s new pages. If the user changes
+ *  the filter, a callback retains the users preference regardless of
+ *  whether the operation is canceled or not. If a document is opened,
+ *  the function updates the user interface.
  *
  *  At the end of the function, the w_current->toplevel's current page
  *  is set to the page of the last loaded page.
@@ -183,6 +204,9 @@ void x_fileselect_open(GschemToplevel *w_current)
   dialog = geda_file_chooser_new (w_current->main_window,
                                   GTK_FILE_CHOOSER_ACTION_OPEN);
 
+  /* Set filter to what user last time*/
+  geda_file_chooser_set_filter (dialog, w_current->chooser_filter);
+
   /* 09/09/12 W. E. Hill: Conditionally add the file previewer */
   if(w_current->file_preview == TRUE)
     x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
@@ -193,6 +217,13 @@ void x_fileselect_open(GschemToplevel *w_current)
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
+
+  /* This ratains filter, even if canceled, could retrieve in if got
+   * filenames but his seems to work just fine, is saved if changed */
+  g_signal_connect_after(G_OBJECT(dialog), "filter-changed",
+                         G_CALLBACK (x_fileselect_save_filter_index),
+                         w_current);
+
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     filenames =  gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
   }
@@ -259,6 +290,13 @@ x_fileselect_save (GschemToplevel *w_current)
 
   dialog = geda_file_chooser_new (w_current->main_window,
                                   GTK_FILE_CHOOSER_ACTION_SAVE);
+
+  if (s_page_is_symbol_file(toplevel->page_current)) {
+    geda_file_chooser_set_filter (dialog, FILTER_SYMBOL);
+  }
+  else {
+    geda_file_chooser_set_filter (dialog, FILTER_SCHEMATIC);
+  }
 
   /* set the current filename or directory name if new document */
   if ((toplevel->page_current->filename != NULL) &&

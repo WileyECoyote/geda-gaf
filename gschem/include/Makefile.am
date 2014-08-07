@@ -27,7 +27,6 @@ noinst_HEADERS = \
 		x_console.h		 \
 		x_dialog.h		 \
 		x_dnd.h                  \
-		x_fileselect.h           \
 		x_menu.h		 \
 		x_multiattrib.h		 \
 		x_pagesel.h		 \

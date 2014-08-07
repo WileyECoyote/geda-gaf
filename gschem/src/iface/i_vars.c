@@ -90,6 +90,7 @@ int     default_add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
 int     default_auto_load_last            = DEFAULT_AUTO_LOAD_LAST;
 int     default_auto_save_interval        = DEFAULT_SAVE_INTERVAL;
 int     default_attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
+int     default_chooser_filter            = FILTER_GSCHEM;
 GList  *default_component_select_attrlist = NULL;
 int     default_continue_component_place  = TRUE;
 int     default_embed_components          = FALSE;
@@ -310,6 +311,9 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_global_integer(cfg, "image-width",   &w_current->image_width,  DEFAULT_IMAGE_WIDTH);
   i_var_restore_global_integer(cfg, "image-height",  &w_current->image_height, DEFAULT_IMAGE_HEIGHT);
 
+  /* User GedaFileChooser filter preference - Saved by: x_window_save_settings */
+  i_var_restore_window_integer(cfg, "chooser-filter",     &w_current->chooser_filter,     FILTER_GSCHEM);
+
   /* Scrolling Settings - Saved by: x_window_save_settings */
   i_var_restore_window_integer(cfg, "scrollbars",         &w_current->scrollbars,         TRUE);
   i_var_restore_window_integer(cfg, "scrollbar-update",   &w_current->scrollbar_update,   TRUE);
@@ -418,6 +422,7 @@ void i_vars_set(GschemToplevel *w_current)
   toplevel->attribute_offset           = default_add_attribute_offset;
   toplevel->auto_save_interval         = default_auto_save_interval;
   w_current->attribute_placement_grid  = default_attribute_placement_grid;
+  w_current->chooser_filter            = default_chooser_filter;
   w_current->component_select_attrlist = default_component_select_attrlist;
   w_current->continue_component_place  = default_continue_component_place;
   w_current->embed_components          = default_embed_components;

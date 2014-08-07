@@ -22,8 +22,10 @@
  *
  * Note this file intentionally does not have a wrapper!
  *
- * If this file gets included twice then it mostly means that the
- * inclusion of headers in the source file in not setup correctly!
+ * If this file gets included twice then it most likely means that
+ * the inclusion of headers in the source file in not setup correctly!
+ *
+ * If header is included by <libgeda/libgeda.h>
 */
 
 #include <missing.h>

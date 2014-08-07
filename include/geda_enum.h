@@ -71,10 +71,18 @@ typedef enum
 /* File System Stuff */
 
 /* f_open behaviour flags.  See documentation for f_open_flags() in f_basic.c. */
-typedef enum { F_OPEN_RC           = 1,
-               F_OPEN_CHECK_BACKUP = 2,
-               F_OPEN_RESTORE_CWD  = 4,
+typedef enum {
+  F_OPEN_RC           = 1,
+  F_OPEN_CHECK_BACKUP = 2,
+  F_OPEN_RESTORE_CWD  = 4,
 } FOpenFlags;
+
+typedef  enum {
+  FILTER_SCHEMATIC,
+  FILTER_SYMBOL,
+  FILTER_GSCHEM,
+  FILTER_NONE
+} IDE_FILTER;
 
 /**
  * @GEDA_STATE_FLAG_NORMAL: State during normal operation.
@@ -99,6 +107,7 @@ typedef enum
   GEDA_STATE_FLAG_FOCUSED      = 1 << 5,
   GEDA_STATE_FLAG_BACKDROP     = 1 << 6
 } GedaStateFlags;
+
 /**
  * GtkSizeRequestMode:
  * @GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH: Prefer height-for-width geometry management
@@ -114,5 +123,5 @@ typedef enum
   GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT,
   GEDA_SIZE_REQUEST_CONSTANT_SIZE
 } GedaSizeRequestMode;
-#endif
 
+#endif
