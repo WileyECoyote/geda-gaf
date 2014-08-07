@@ -1,6 +1,7 @@
 ## Makefile.am fragment included by src/Makefile.am.
 
 libgedauio_la_SOURCES += \
+			dialogs/geda_file_chooser.c \
 			dialogs/geda_input_dialog.c
 
 

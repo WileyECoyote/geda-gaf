@@ -1,3 +1,15 @@
+2014-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+        * geda-clib.scm: Add manufacture Microsemi
+
+        * microsemi/: Add new folder for Microsemi
+
+        * microsemi/ZL70321-1.sym: Add new symbol
+
+2014-08-05 Wiley E. Hill <wileyhill@gmail.com>
+
+        * arduino/xbee-1.sym: Add missing device attribute
+
 2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * ti/: Add three new symbols for battery chargers and

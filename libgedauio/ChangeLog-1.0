@@ -1,3 +1,19 @@
+2014-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+      * dialogs/geda_file_chooser.c: New source file is implementation for
+        GedaFileChooser; a dialog class derived from GtkFileChooserDialog
+        with filters for Geda types (from gschem x_fileselect). The custom
+        class provides direct access to the filter combo button.
+
+      * include/geda_file_filter.h: Header file to support new GedaFile
+        Chooser dialog, formally x_fileselect.h without the enumerators.
+
+      * include/geda_file_chooser.h: New header file to support the new
+        GedaFileChooser class.
+
+      * include/geda_widgets.h: Added geda_file_chooser.h (but not geda_
+        file_filter.h.
+
 2014-08-01 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/geda_comboboxtext.h: Add GtkWidget *button variable to

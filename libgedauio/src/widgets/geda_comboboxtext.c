@@ -304,7 +304,7 @@ geda_combo_box_text_buildable_custom_tag_start (GtkBuildable     *buildable,
                                                 void *         *data)
 {
   if (buildable_parent_iface->custom_tag_start (buildable, builder, child,
-                                                tagname, parser, data))
+                                                tagname,   parser,  data))
     return TRUE;
 
   if (strcmp (tagname, "items") == 0)

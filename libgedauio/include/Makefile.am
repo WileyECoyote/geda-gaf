@@ -4,6 +4,8 @@
 
 libgedauiodir      = $(includedir)/libgedauio
 
+noinst_HEADERS     =	geda_file_filter.h
+
 libgedauio_HEADERS = \
 			geda_accel_label.h       \
 			geda_action.h            \
@@ -11,6 +13,7 @@ libgedauio_HEADERS = \
 			geda_comboboxtext.h      \
 			geda_completion.h        \
 			geda_entry.h             \
+			geda_file_chooser.h      \
 			geda_font_button.h       \
 			geda_font_dialog.h       \
 			geda_handlebox.h         \

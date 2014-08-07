@@ -22,74 +22,38 @@
 #include "config.h"
 #include <geda_stat.h>
 #include "gschem.h"
-#include "x_fileselect.h"
 
+#include <geda_file_chooser.h>
 #include <geda_debug.h>
-
-static GschemFileFilterDataDef filter_data[] = {
-    GSCHEM_FILTER_SCHEMATIC,
-    GSCHEM_FILTER_SYMBOL,
-    GSCHEM_FILTER_BOTH,
-    GSCHEM_FILTER_NONE,
-    GSCHEM_NO_MORE_FILTERS
-};
-
-/*! \brief Creates filter for file chooser.
- *  \par Function Description
- *  This function adds file filters to <B>filechooser</B>.
- *
- *  \param [in] filechooser The file chooser to add filter to.
- */
-static void
-x_fileselect_setup_file_filters (GtkFileChooser *filechooser)
-{
-  GtkFileFilter           *filter;
-  GschemFileFilterDataDef *data;
-  int i;
-
-  for (data = filter_data; data->name != NULL; data++) {
-    filter = gtk_file_filter_new ();
-    gtk_file_filter_set_name(filter, data->name);
-    for (i = 0; data->pattern[i] != '\0'; i++) {
-      const char *ext = data->pattern[i];
-      gtk_file_filter_add_pattern (filter, ext);
-    }
-    g_object_set_data( G_OBJECT(filter), "id", GINT_TO_POINTER(data->id));
-    gtk_file_chooser_add_filter (filechooser, filter);
-  }
-}
 
 /*! \brief Updates the preview when the selection changes.
  *  \par Function Description
  *  This is the callback function connected to the 'update-preview'
- *  signal of the <B>GtkFileChooser</B>.
- *
- *  It updates the preview widget with the name of the newly selected
- *  file.
+ *  signal of the <B>GtkFileChooser</B> that updates the preview
+ *  widget with the name of the newly selected file.
  *
  *  \param [in] chooser   The file chooser to add the preview to.
  *  \param [in] user_data A pointer on the preview widget.
  */
 static void
 x_fileselect_callback_update_preview (GtkFileChooser *chooser,
-                                      void * user_data)
+                                      void           *user_data)
 {
   Preview *preview = PREVIEW (user_data);
   char *filename, *preview_filename = NULL;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
-  if (filename != NULL &&
-    !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
+  if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
     preview_filename = filename;
-    }
+  }
 
-    /* update preview */
-    g_object_set (preview,
-                  "filename", preview_filename,
-                  "active", (preview_filename != NULL),
-                  NULL);
+  /* update preview */
+  g_object_set (preview,
+                "filename", preview_filename,
+                "active", (preview_filename != NULL),
+                NULL);
 
-    GEDA_FREE (filename);
+  GEDA_FREE (filename);
 }
 
 /*! \brief Adds a preview to a file chooser.
@@ -170,28 +134,13 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
   GSList    *filenames;
   char      *cwd;
 
-  dialog = gtk_file_chooser_dialog_new (_("Open..."),
-                                        GTK_WINDOW(w_current->main_window),
-                                        GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,
-                                        NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_CANCEL,
-                                          -1);
+  dialog = geda_file_chooser_new (w_current->main_window,
+                                  GTK_FILE_CHOOSER_ACTION_OPEN);
 
   /* Conditionally add the file previewer */
   if(w_current->file_preview == TRUE) {
     x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
   }
-
-  g_object_set (dialog, "select-multiple", TRUE, NULL);
-
-  /* Add file filters to dialog */
-  x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
@@ -231,33 +180,12 @@ void x_fileselect_open(GschemToplevel *w_current)
   GSList    *filenames;
   char      *cwd;
 
-  dialog = gtk_file_chooser_dialog_new (_("Open..."),
-                                        GTK_WINDOW(w_current->main_window),
-                                        GTK_FILE_CHOOSER_ACTION_OPEN,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_OPEN,   GTK_RESPONSE_ACCEPT,
-                                        NULL);
+  dialog = geda_file_chooser_new (w_current->main_window,
+                                  GTK_FILE_CHOOSER_ACTION_OPEN);
 
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_CANCEL,
-                                          -1);
-
-  /* 09/09/12 W. E. Hill Added conditional to check state of configuration
-   * variable file_preview.
-   *
-   * Conditionally add the file previewer
-   */
+  /* 09/09/12 W. E. Hill: Conditionally add the file previewer */
   if(w_current->file_preview == TRUE)
     x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
-
-  g_object_set (dialog,
-                /* GtkFileChooser */
-                "select-multiple", TRUE,
-                NULL);
-  /* add file filters to dialog */
-  x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
@@ -329,32 +257,8 @@ x_fileselect_save (GschemToplevel *w_current)
 
   auto_ext = eda_config_get_boolean (cfg, IVAR_CONFIG_GROUP, "auto-file-suffix", NULL);
 
-  dialog = gtk_file_chooser_dialog_new (_("Save as..."),
-                                        GTK_WINDOW(w_current->main_window),
-                                        GTK_FILE_CHOOSER_ACTION_SAVE,
-                                        GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                                        GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
-                                        NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_CANCEL,
-                                          -1);
-
-  /* set default response signal. This is usually triggered by the
-   *     "Return" key */
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog),
-                                  GTK_RESPONSE_ACCEPT);
-
-  g_object_set (dialog,
-                /* GtkFileChooser */
-                "select-multiple", FALSE,
-                /* only in GTK 2.8 */
-                /* "do-overwrite-confirmation", TRUE, */
-                NULL);
-  /* add file filters to dialog */
-  x_fileselect_setup_file_filters (GTK_FILE_CHOOSER (dialog));
+  dialog = geda_file_chooser_new (w_current->main_window,
+                                  GTK_FILE_CHOOSER_ACTION_SAVE);
 
   /* set the current filename or directory name if new document */
   if ((toplevel->page_current->filename != NULL) &&
@@ -371,8 +275,6 @@ x_fileselect_save (GschemToplevel *w_current)
     gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog),
                                        toplevel->untitled_name);
   }
-
-  gtk_dialog_set_default_response(GTK_DIALOG(dialog), GTK_RESPONSE_ACCEPT);
 
   /* Add our extra widget to the dialog */
   hbox = gtk_hbox_new(FALSE, 0);

@@ -202,6 +202,7 @@
                   ("lineartech"      "Manufacturers/Linear Technology")
                   ("maxim"           "Manufacturers/Maxim")
                   ("microchip"       "Manufacturers/Microchip")
+                  ("microsemi"       "Manufacturers/Microsemi")
                   ("minicircuits"    "Manufacturers/Mini-Circuits")
                   ("mitsubishi"      "Manufacturers/Mitsubishi Electric")
                      ("mitsubishi/logic"               "Manufacturers/Logic")

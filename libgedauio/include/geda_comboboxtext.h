@@ -45,11 +45,10 @@ typedef struct _GedaComboBoxTextClass        GedaComboBoxTextClass;
 struct _GedaComboBoxText
 {
   /*< private >*/
-  GtkComboBox parent_instance;
+  GtkComboBox  parent_instance;
+  GtkWidget   *button;
 
-  int count;
-
-  GtkWidget *button;
+  int          count;
 };
 
 struct _GedaComboBoxTextClass

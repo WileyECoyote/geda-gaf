@@ -11,6 +11,7 @@ noinst_HEADERS  = ascii.h \
                   geda_enum.h \
                   geda_gui_funcs.h \
                   geda_idefines.h \
+                  geda_sdefines.h \
                   geda_macros.h \
                   geda_standard.h \
 		  geda_stat.h \
@@ -25,7 +26,7 @@ EXTRA_DIST      = $(noinst_HEADERS)
 
 distcheck:
 
-MOSTLYCLEANFILES	= *~
-CLEANFILES 		= *~
-DISTCLEANFILES		= *~
-MAINTAINERCLEANFILES	= *~ Makefile.in ChangeLog
+MOSTLYCLEANFILES        = *~
+CLEANFILES              = *~
+DISTCLEANFILES          = *~
+MAINTAINERCLEANFILES    = *~ Makefile.in ChangeLog

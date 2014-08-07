@@ -26,6 +26,7 @@
 
 #include "geda_comboboxtext.h"
 #include "geda_entry.h"
+#include "geda_file_chooser.h"
 #include "geda_font_dialog.h"
 #include "geda_handlebox.h"
 #include "geda_imagemenuitem.h"

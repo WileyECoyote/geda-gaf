@@ -1,3 +1,14 @@
+2014-08-06 Wiley E. Hill <wileyhill@gmail.com>
+
+        * include/x_fileselect.h: Remove file, mostly relocate code to
+          libgedauio.
+
+        * src/x/x_fileselect.c: Relocated GschemFileFilterDataDef structure to
+          GedaFileFilterDataDef in libgedauio/src/dialogs/geda_file_chooser.c
+          Revised functions; x_fileselect_list, x_fileselect_open and
+          x_fileselect_save to use new GedaFileChooser instead of GtkFileChooser
+          Dialog. Let local library focus on gui stuff.
+
 2014-08-05 Wiley E. Hill <wileyhill@gmail.com>
 
         * etc/system-gschemrc.scm, user-gschemrc.scm: Change default to show

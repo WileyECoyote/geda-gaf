@@ -35,7 +35,6 @@
 
 #define FONT_NAME font_button->priv->font_name
 
-
 /**
  * \brief GedaFontButton - A Widget for selecting Fonts
  * \par

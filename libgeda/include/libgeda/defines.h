@@ -49,17 +49,6 @@
 /* FIX-1.0.0.20060906. */
 #define PREPEND_VERSION_STRING ""
 
-/* W.E.Hill Oct 16, 2013 relocated "these" defines from gschem so gaf's
- * can all reference.
- */
-#define SCHEMATIC_FILE_SUFFIX      "sch"
-#define SCHEMATIC_FILE_DOT_SUFFIX  ".sch"
-#define SCHEMATIC_FILTER           "*.sch"
-
-#define SYMBOL_FILE_SUFFIX         "sym"
-#define SYMBOL_FILE_DOT_SUFFIX     ".sym"
-#define SYMBOL_FILTER              "*.sym"
-
 /* \note
  * Kazu Hirata <kazu@seul.org> on July 16, 1999 - Added these absolute
  * defaults used when default_... is NULL.

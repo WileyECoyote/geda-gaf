@@ -30,6 +30,7 @@
 
 #include <geda_system.h>
 #include <geda_idefines.h>
+#include <geda_sdefines.h>
 #include <geda_types.h>
 #include <geda_bitmaps.h>
 #include <geda_macros.h>
