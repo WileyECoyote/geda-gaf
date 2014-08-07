@@ -252,7 +252,7 @@ void o_net_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *
  *  \param [in] world_centerx x-coord of the rotation center
  *  \param [in] world_centery y-coord of the rotation center
- *  \param [in] angle         The angle to rotat the net object
+ *  \param [in] angle         The angle to rotate the net object
  *  \param [in] object        The net object
  *
  *  \note only steps of 90 degrees are allowed for the \a angle

@@ -279,7 +279,7 @@ o_pin_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
  *
  *  \param [in] world_centerx x-coord of the rotation center
  *  \param [in] world_centery y-coord of the rotation center
- *  \param [in] angle         The angle to rotat the pin object
+ *  \param [in] angle         The angle to rotate the pin object
  *  \param [in] object        The pin object
  *  \note only steps of 90 degrees are allowed for the \a angle
  */

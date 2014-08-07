@@ -282,7 +282,7 @@ o_bus_print(GedaToplevel *toplevel, FILE *fp, Object *o_current, int origin_x, i
  *
  *  \param [in] world_centerx x-coord of the rotation center
  *  \param [in] world_centery y-coord of the rotation center
- *  \param [in] angle         The angle to rotat the bus object
+ *  \param [in] angle         The angle to rotate the bus object
  *  \param [in] object        The bus object
  *  \note only steps of 90 degrees are allowed for the \a angle
  */

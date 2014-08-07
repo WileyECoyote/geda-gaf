@@ -331,18 +331,12 @@ export_cairo_check_error (cairo_status_t status)
 static void
 export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 {
-  cairo_matrix_t tmp_mtx;
-  cairo_rectangle_t drawable;
-  cairo_t *cr;
+cairo_rectangle_t drawable;
   int wx_min, wy_min, wx_max, wy_max, w_width, w_height;
   bool landscape = FALSE;
-  bool size_from_paper = FALSE;
-  bool size_from_drawing = FALSE;
   double m[4]; /* Calculated margins */
   double s; /* Calculated scale */
   double slack[2]; /* Calculated alignment slack */
-
-  cr = eda_renderer_get_cairo_context (renderer);
 
   if (page == NULL) {
     const GList *pages = geda_list_get_glist (toplevel->pages);
@@ -350,9 +344,24 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
     page = (Page *) pages->data;
   }
 
-  /* Calculate extents of objects within page */
-  cairo_matrix_init (&tmp_mtx, 1, 0, 0, -1, -1, -1); /* Very vague approximation */
-  cairo_set_matrix (cr, &tmp_mtx);
+  /* Set the margins. If none were provided by the user, get them
+   * from the paper size (if a paper size is being used) or just use a
+   * sensible default. */
+  if (settings.margins[0] >= 0) {
+    memcpy (m, settings.margins, 4*sizeof(gdouble));
+  } else if (settings.paper != NULL) {
+    m[0] = gtk_paper_size_get_default_top_margin (settings.paper, GTK_UNIT_POINTS);
+    m[1] = gtk_paper_size_get_default_left_margin (settings.paper, GTK_UNIT_POINTS);
+    m[2] = gtk_paper_size_get_default_bottom_margin (settings.paper, GTK_UNIT_POINTS);
+    m[3] = gtk_paper_size_get_default_right_margin (settings.paper, GTK_UNIT_POINTS);
+  } else {
+    m[0] = DEFAULT_MARGIN;
+    m[1] = DEFAULT_MARGIN;
+    m[2] = DEFAULT_MARGIN;
+    m[3] = DEFAULT_MARGIN;
+  }
+
+  /* Now calculate extents of objects within page */
   world_get_object_glist_bounds (s_page_get_objects (page),
                                  &wx_min, &wy_min, &wx_max, &wy_max);
   w_width = wx_max - wx_min;
@@ -362,11 +371,14 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
    * provided.  Fall back to just using the size of the drawing. */
   extents->x = extents->y = 0;
   if (settings.size[0] >= 0) {
+    /* get extents from size */
 
     extents->width = settings.size[0];
     extents->height = settings.size[1];
 
   } else if (settings.paper != NULL) {
+    /* get extents from paper */
+
     double p_width, p_height;
 
     /* Select orientation */
@@ -393,44 +405,21 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
       extents->width = p_width;
       extents->height = p_height;
     }
-
-    size_from_paper = TRUE;
-
   } else {
+    /* get extents from drawing */
 
     extents->width = w_width * settings.scale; /* in points */
     extents->height = w_height * settings.scale; /* in points */
 
-    size_from_drawing = TRUE;
-  }
-
-  /* Now set the margins. If none were provided by the user, get them
-   * from the paper size (if a paper size is being used) or just use a
-   * sensible default. */
-  if (settings.margins[0] >= 0) {
-    memcpy (m, settings.margins, 4*sizeof(double));
-  } else if (size_from_paper) {
-    m[0] = gtk_paper_size_get_default_top_margin (settings.paper, GTK_UNIT_POINTS);
-    m[1] = gtk_paper_size_get_default_left_margin (settings.paper, GTK_UNIT_POINTS);
-    m[2] = gtk_paper_size_get_default_bottom_margin (settings.paper, GTK_UNIT_POINTS);
-    m[3] = gtk_paper_size_get_default_right_margin (settings.paper, GTK_UNIT_POINTS);
-  } else {
-    m[0] = DEFAULT_MARGIN;
-    m[1] = DEFAULT_MARGIN;
-    m[2] = DEFAULT_MARGIN;
-    m[3] = DEFAULT_MARGIN;
+    /* If the extents were obtained from the drawing, grow the extents
+     * rather than shrinking the drawable area.  This ensures that the
+     * overall aspect ratio of the image remains correct. */
+    extents->width += m[1] + m[3];
+    extents->height += m[0] + m[2];
   }
 
   drawable.x = m[1];
   drawable.y = m[0];
-
-  /* If the extents were obtained from the drawing, grow the extents
-   * rather than shrinking the drawable area.  This ensures that the
-   * overall aspect ratio of the image remains correct. */
-  if (size_from_drawing) {
-    extents->width += m[1] + m[3];
-    extents->height += m[0] + m[2];
-  }
 
   drawable.width = extents->width - m[1] - m[3];
   drawable.height = extents->height - m[0] - m[2];
@@ -444,9 +433,8 @@ export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 
   /* Finally, create and set a cairo transformation matrix that
    * centres the drawing into the drawable area. */
-  cairo_matrix_init (mtx, s, 0, 0, -s,
-                     - wx_min * s + drawable.x + slack[0],
-                     (wy_min + w_height) * s + drawable.y + slack[1]);
+  cairo_matrix_init (mtx, s, 0, 0, -s, - wx_min * s + drawable.x + slack[0],
+                    (wy_min + w_height) * s + drawable.y + slack[1]);
 }
 
 /* Actually draws a page.  If page is NULL, uses the first open page. */
@@ -610,16 +598,27 @@ export_svg ()
   cairo_matrix_t mtx;
   cairo_t *cr;
 
-  /* Create a surface. To begin with, we don't know the size. */
-  surface = cairo_svg_surface_create (settings.outfile, 1, 1);
+  /* Create a surface and run export_layout_page() to figure out
+   * the picture extents and set up the cairo transformation
+   * matrix.  The surface is created only in order to force
+   * eda_renderer_default_get_user_bounds() to behave quietly. */
+  surface = cairo_svg_surface_create (settings.outfile, 0, 0);
+  cr = cairo_create (surface);
+  g_object_set (renderer, "cairo-context", cr, NULL);
+  export_layout_page (NULL, &extents, &mtx);
+  cairo_destroy (cr);
+
+  /* Now create a new surface with the known extents. */
+  surface = cairo_svg_surface_create (settings.outfile,
+                                      extents.width,
+                                      extents.height);
   cr = cairo_create (surface);
   g_object_set (renderer, "cairo-context", cr, NULL);
 
-  export_layout_page (NULL, &extents, &mtx);
-  cairo_pdf_surface_set_size (surface, extents.width, extents.height);
   cairo_set_matrix (cr, &mtx);
   export_draw_page (NULL);
 
+  cairo_show_page (cr);
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
 }

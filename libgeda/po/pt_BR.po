@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-07-28 21:41-0500\n"
+"POT-Creation-Date: 2014-08-07 05:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:15+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
@@ -246,168 +246,168 @@ msgstr ""
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:93
+#: libgeda/src/geda/geda_config.c:101
 msgid "Configuration file"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:94
+#: libgeda/src/geda/geda_config.c:102
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:755 libgeda/src/geda/geda_config.c:868
+#: libgeda/src/geda/geda_config.c:763 libgeda/src/geda/geda_config.c:876
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:889
+#: libgeda/src/geda/geda_config.c:897
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:928
+#: libgeda/src/geda/geda_config.c:936
 #, c-format
 msgid "bad path in file %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1220
+#: libgeda/src/geda/geda_config.c:1228
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1284
+#: libgeda/src/geda/geda_config.c:1292
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1298
+#: libgeda/src/geda/geda_config.c:1306
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:277
+#: libgeda/src/geda/geda_pin.c:294
 msgid "Electrical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:278
+#: libgeda/src/geda/geda_pin.c:295
 msgid "Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:284
+#: libgeda/src/geda/geda_pin.c:301
 msgid "Label"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:285
+#: libgeda/src/geda/geda_pin.c:302
 msgid "A Label for the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:291
+#: libgeda/src/geda/geda_pin.c:308
 msgid "Number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:292
+#: libgeda/src/geda/geda_pin.c:309
 msgid "The pin number"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:298
+#: libgeda/src/geda/geda_pin.c:315
 msgid "Mechanical"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:299
+#: libgeda/src/geda/geda_pin.c:316
 msgid "Mechanical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:305
+#: libgeda/src/geda/geda_pin.c:322
 msgid "Sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:306
+#: libgeda/src/geda/geda_pin.c:323
 msgid "The pin sequence"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:312
+#: libgeda/src/geda/geda_pin.c:329
 msgid "Type"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:313
+#: libgeda/src/geda/geda_pin.c:330
 msgid "Either Mechanical or Electrical Properties of the pin"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:319
+#: libgeda/src/geda/geda_pin.c:336
 msgid "Whichend"
 msgstr ""
 
-#: libgeda/src/geda/geda_pin.c:320
+#: libgeda/src/geda/geda_pin.c:337
 msgid "Which end of the pin gets connected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:361
+#: libgeda/src/geda/geda_object.c:374
 msgid "object-type"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:362
+#: libgeda/src/geda/geda_object.c:375
 msgid "Character identifier corresponding to the type of object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:371
+#: libgeda/src/geda/geda_object.c:384
 msgid "sequence-identification"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:372
+#: libgeda/src/geda/geda_object.c:385
 msgid "Sequence identifier created during object construction"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:379
+#: libgeda/src/geda/geda_object.c:392
 msgid "object-name"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:380
+#: libgeda/src/geda/geda_object.c:393
 msgid "Unique name of this object"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:386
+#: libgeda/src/geda/geda_object.c:399
 msgid "Parent"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:387
+#: libgeda/src/geda/geda_object.c:400
 msgid "Pointer to parent object - a Page or a Complex"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:392
+#: libgeda/src/geda/geda_object.c:405
 msgid "Selectable"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:393
+#: libgeda/src/geda/geda_object.c:406
 msgid "Whether the label text can be selected with the mouse"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:399
+#: libgeda/src/geda/geda_object.c:412
 msgid "Redraw"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:400
+#: libgeda/src/geda/geda_object.c:413
 msgid "Whether the object redrawn, used for temporary objects"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:406
+#: libgeda/src/geda/geda_object.c:419
 msgid "Selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:407
+#: libgeda/src/geda/geda_object.c:420
 msgid "Whether the object is currently selected"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:414
+#: libgeda/src/geda/geda_object.c:427
 msgid "Show-Name-Value-flag"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:415
+#: libgeda/src/geda/geda_object.c:428
 msgid "Flag to indicate whether to show the name, value or both"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:423
+#: libgeda/src/geda/geda_object.c:436
 msgid "Visible"
 msgstr ""
 
-#: libgeda/src/geda/geda_object.c:424
+#: libgeda/src/geda/geda_object.c:437
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
@@ -523,35 +523,35 @@ msgstr ""
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:105
+#: libgeda/src/guile/g_rc_parse.c:104
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:149
+#: libgeda/src/guile/g_rc_parse.c:147
 #, c-format
 msgid "Failed to load config from '%s': %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:179
+#: libgeda/src/guile/g_rc_parse.c:177
 #, c-format
 msgid "Loaded RC file [%s]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:185
+#: libgeda/src/guile/g_rc_parse.c:183
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:334
+#: libgeda/src/guile/g_rc_parse.c:333
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:347 libgeda/src/guile/g_rc_parse.c:348
+#: libgeda/src/guile/g_rc_parse.c:346 libgeda/src/guile/g_rc_parse.c:347
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:354
+#: libgeda/src/guile/g_rc_parse.c:353
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
@@ -744,28 +744,28 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:982
+#: libgeda/src/object/o_complex_basic.c:991
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
 "\tCould not parse symbol file symversion=%s\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:986
+#: libgeda/src/object/o_complex_basic.c:995
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
 "\tCould not parse symbol file symversion=\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1003
+#: libgeda/src/object/o_complex_basic.c:1012
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
 "\tCould not parse attached symversion=%s\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1029
+#: libgeda/src/object/o_complex_basic.c:1038
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -773,24 +773,24 @@ msgid ""
 "symbol file\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1043
+#: libgeda/src/object/o_complex_basic.c:1052
 #, c-format
 msgid ""
 "WARNING: Symbol version mismatch on refdes %s (%s):\n"
 "\tSymbol in library is newer than instantiated symbol\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1075
+#: libgeda/src/object/o_complex_basic.c:1084
 #, c-format
 msgid "\tMAJOR VERSION CHANGE (file %.3f, instantiated %.3f, %s)!\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1093
+#: libgeda/src/object/o_complex_basic.c:1102
 #, c-format
 msgid "\tMinor version change (file %.3f, instantiated %.3f)\n"
 msgstr ""
 
-#: libgeda/src/object/o_complex_basic.c:1104
+#: libgeda/src/object/o_complex_basic.c:1113
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -956,19 +956,14 @@ msgstr ""
 msgid "Found an invalid whichend on a pin (reseting to zero): %d\n"
 msgstr ""
 
-#: libgeda/src/object/o_set.c:77
+#: libgeda/src/object/o_set.c:85
 #, c-format
-msgid "Invalid space specified, setting to default=%d\n"
+msgid "Setting line length to default=%d\n"
 msgstr ""
 
-#: libgeda/src/object/o_set.c:86
+#: libgeda/src/object/o_set.c:98
 #, c-format
-msgid "Invalid length specified, setting to default=%d\n"
-msgstr ""
-
-#: libgeda/src/object/o_set.c:91
-#, c-format
-msgid "Invalid space specified, setting to  default=%d\n"
+msgid "Setting line space to default=%d\n"
 msgstr ""
 
 #: libgeda/src/object/o_text_basic.c:290 libgeda/src/object/o_text_basic.c:301
