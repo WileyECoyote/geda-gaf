@@ -1,3 +1,14 @@
+2014-08-07 Wiley E. Hill <wileyhill@gmail.com>
+
+      * dialogs/geda_file_chooser.c: Extend new GedaFileChooser class by
+        adding property getter and setter, just got one property for now:
+        "filter-index". Changed signal type to geda_file_chooser_get_type
+        class id.
+
+      * include/geda_file_chooser.h: Relocated IDE_FILTER, yet again, this
+        time maybe for good, put in include/geda_enum.h so gschem/i_vars.c
+        could access to set default if error retrieving setting.
+
 2014-08-06 Wiley E. Hill <wileyhill@gmail.com>
 
       * dialogs/geda_file_chooser.c: New source file is implementation for

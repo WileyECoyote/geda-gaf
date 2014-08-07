@@ -83,6 +83,7 @@ enum {
   PROCESS_ENTRY,
   LAST_SIGNAL
 };
+
 enum {
   PROP_ACTIVATES_DEFAULT = 1,
   PROP_ATTRIBUTES,
@@ -331,7 +332,8 @@ void geda_entry_set_valid_input (GedaEntry *entry, GedaEntryAccept mode)
 {
   GEDA_ENTRY(entry)->validation_mode = mode;
 }
-/*! \brief GObject property setter function
+
+/*! \brief GObject property setter for a GedaEntry Object
  *
  *  \par Function Description
  *  Setter function for GedaEntry's GObject properties,
@@ -378,7 +380,7 @@ geda_entry_set_property (GObject *object, unsigned int  property_id,
     }
 }
 
-/*! \brief GObject property getter function
+/*! \brief GObject property getter function for a GedaEntry Object
  *
  *  \par Function Description
  *  Getter function for GedaEntry's GObject properties,
@@ -424,6 +426,7 @@ geda_entry_get_property (GObject *object, unsigned int  property_id,
       break;
     }
 }
+
 static void geda_entry_validate_input (GtkEntry    *entry,
                                        const char  *text,
                                        int          length,

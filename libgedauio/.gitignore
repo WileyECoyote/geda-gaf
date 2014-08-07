@@ -5,6 +5,8 @@ TAGS
 *#
 *.txt
 *.bak
+*.swp
+*-swp
 ChangeLog
 libgedauio.pc
 
