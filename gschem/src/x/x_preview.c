@@ -30,7 +30,8 @@
 enum {
   PROP_FILENAME=1,
   PROP_BUFFER,
-  PROP_ACTIVE
+  PROP_ACTIVE,
+  PROP_LARGE,
 };
 
 static GObjectClass *preview_parent_class = NULL;
@@ -353,7 +354,13 @@ preview_class_init (PreviewClass *class)
                           FALSE,
                           G_PARAM_READWRITE));
 
-
+  g_object_class_install_property(
+    gobject_class, PROP_LARGE,
+    g_param_spec_boolean ("large-size",
+                          "",
+                          "",
+                          FALSE,
+                          G_PARAM_WRITABLE));
 }
 
 static bool
@@ -384,6 +391,21 @@ preview_event_scroll (GtkWidget *widget,
   return x_event_scroll (widget, event, PREVIEW (widget)->preview_window);
 }
 
+static void
+preview_set_xy (Preview *preview, int x, int y)
+{
+  GschemToplevel *preview_window = preview->preview_window;
+
+  /* Note: Our World == The Screen */
+  preview_window->toplevel->width      = x;
+  preview_window->toplevel->height     = y;
+  preview_window->screen_width         = x;
+  preview_window->screen_height        = y;
+
+  g_object_set (GTK_WIDGET (preview), "width-request",  x,
+                                      "height-request", y,
+                                       NULL);
+}
 
 static void
 preview_init (Preview *preview)
@@ -411,7 +433,7 @@ preview_init (Preview *preview)
   i_vars_set (preview_window);
 
   /* Don't need backups or rc files */
-  preview_window->toplevel->open_flags = F_OPEN_RESTORE_CWD;
+  preview_window->toplevel->open_flags = F_OPEN_RC | F_OPEN_RESTORE_CWD;
 
   /* be sure to turn off scrollbars */
   preview_window->scrollbars           = FALSE;
@@ -423,19 +445,10 @@ preview_init (Preview *preview)
   preview_window->handleboxes          = FALSE;
   preview_window->toolbars             = FALSE;
 
-  /* Note: Our World == The Screen */
-  preview_window->toplevel->width      = 160;
-  preview_window->toplevel->height     = 120;
-  preview_window->screen_width         = preview_window->toplevel->width;
-  preview_window->screen_height        = preview_window->toplevel->height;
-
   preview_window->drawing_area         = GTK_WIDGET (preview);
   preview->preview_window              = preview_window;
 
-  g_object_set (GTK_WIDGET (preview),
-                "width-request", preview_window->toplevel->width,
-                "height-request", preview_window->toplevel->height,
-                 NULL);
+  preview_set_xy (preview, 160, 120);
 
   preview->active   = FALSE;
   preview->filename = NULL;
@@ -453,6 +466,24 @@ preview_init (Preview *preview)
                       tmp->c_handler,
                       NULL);
   }
+}
+
+static void
+preview_resize (Preview *preview, bool large)
+{
+  int x;
+  int y;
+
+  if (large) {
+    x = 320;
+    y = 240;
+  }
+  else {
+    x = 160;
+    y = 120;
+  }
+
+  preview_set_xy (preview, x, y);
 }
 
 static void
@@ -497,10 +528,13 @@ preview_set_property (GObject *object, unsigned int property_id,
         preview->active = g_value_get_boolean (value);
         preview_update (preview);
         break;
+      case PROP_LARGE:
+        preview_resize (preview, g_value_get_boolean (value));
+        preview_update (preview);
+        break;
       default:
         G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
-
 }
 
 static void
@@ -578,4 +612,3 @@ preview_finalize (GObject *self)
   G_OBJECT_CLASS (preview_parent_class)->dispose (self);
 
 }
-

@@ -26,7 +26,7 @@ dnl added without editing any build files,name the Makefile.am in the symbol
 dnl source directory. (The current implementation requires editing geda-clib
 dnl .scm or some other initialization file so the directories are scan in at
 dnl runtime).
- 
+
 # Get list of symbol directories.
 AC_DEFUN([AX_SYM_DIRS],
 [

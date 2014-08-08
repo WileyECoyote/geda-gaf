@@ -1026,7 +1026,7 @@ gschem_status_bar_set_status_text (GtkWidget *widget, const char *text)
       BUG_MSG("widget is not a GschemStatusBar");
     }
   }
-#endif 
+#endif
 }
 
 

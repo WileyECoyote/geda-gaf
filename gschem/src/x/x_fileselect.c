@@ -22,7 +22,7 @@
 #include "config.h"
 #include <geda_stat.h>
 #include "gschem.h"
-
+#include <geda_gui_funcs.h>
 #include <geda_file_chooser.h>
 #include <geda_debug.h>
 
@@ -39,8 +39,9 @@ static void
 x_fileselect_callback_update_preview (GtkFileChooser *chooser,
                                       void           *user_data)
 {
-  Preview *preview = PREVIEW (user_data);
-  char *filename, *preview_filename = NULL;
+  Preview *preview          = PREVIEW (user_data);
+  char    *preview_filename = NULL;
+  char    *filename;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
   if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
@@ -54,6 +55,15 @@ x_fileselect_callback_update_preview (GtkFileChooser *chooser,
                 NULL);
 
   GEDA_FREE (filename);
+}
+
+static void
+x_fileselect_callback_update_size (GtkToggleButton *button,
+                                   void            *user_data)
+{
+  Preview *preview = PREVIEW (user_data);
+  int state = GetToggleState(button);
+  g_object_set (preview, "large-size", state, NULL);
 }
 
 /*! \brief Adds a preview to a file chooser.
@@ -79,10 +89,16 @@ static void
 x_fileselect_add_preview (GtkFileChooser *filechooser)
 {
   GtkWidget *alignment, *frame, *preview;
+  GtkWidget *vbox;
+  GtkWidget *cb_size;
+
+  /* Add our extra widget to the dialog */
+  vbox = gtk_vbox_new(FALSE, 0);
 
   frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
                                     "label", _("Preview"),
                                     NULL));
+
   alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
                                         "right-padding", 5,
                                         "left-padding", 5,
@@ -91,25 +107,36 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
                                         "xalign", 0.5,
                                         "yalign", 0.5,
                                         NULL));
+
   preview = GTK_WIDGET (g_object_new (TYPE_PREVIEW,
                                       "active", TRUE,
                                       NULL));
+
   gtk_container_add (GTK_CONTAINER (alignment), preview);
   gtk_container_add (GTK_CONTAINER (frame), alignment);
+  gtk_container_add (GTK_CONTAINER (vbox), frame);
   gtk_widget_show_all (frame);
 
-  g_object_set (filechooser,
-                /* GtkFileChooser */
-                "use-preview-label", FALSE,
-                "preview-widget", frame,
-                NULL);
+  cb_size = gtk_check_button_new_with_label (_("Large"));
+  gtk_widget_set_tooltip_text(cb_size, _("Enable to enlagre the preview"));
+  gtk_toggle_button_set_active ((GtkToggleButton*)cb_size, FALSE);
+  g_object_set (cb_size, "visible", TRUE, NULL);
 
-  /* connect callback to update preview */
-  g_signal_connect (filechooser,
-                    "update-preview",
+  gtk_box_pack_start (GTK_BOX(vbox), cb_size, FALSE, FALSE, 0);
+
+  g_object_set (filechooser, "use-preview-label", FALSE,
+                             "preview-widget", vbox,
+                              NULL);
+
+  /* connect callback to update preview image */
+  g_signal_connect (filechooser, "update-preview",
                     G_CALLBACK (x_fileselect_callback_update_preview),
                     preview);
 
+  /* connect callback to update preview size */
+  g_signal_connect (cb_size, "toggled",
+                    G_CALLBACK (x_fileselect_callback_update_size),
+                    preview);
 }
 
 static void x_fileselect_save_filter_index (GtkWidget      *chooser,

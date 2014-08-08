@@ -1,5 +1,15 @@
 2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_preview.c: Add boolean property PROP_LARGE, default FASLE.
+          Add new functions preview_set_xy and preview_resize.
+
+        * src/x/x_fileselect.c: In function x_fileselect_add_preview, nested
+          frame in new vbox with check_button, added new function x_fileselect
+          _callback_update_size, just toggle large or not - is better than
+          fixed preview.
+
+2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/x/x_fileselect.c: Swap gtk_file_chooser_* for geda_file_chooser_*
           functions. Use filter index instead of GtkFileFilter in x_fileselect_save.
 
