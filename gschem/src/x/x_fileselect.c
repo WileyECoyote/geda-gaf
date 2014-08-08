@@ -144,7 +144,7 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
   char      *cwd;
 
   dialog = geda_file_chooser_new (w_current->main_window,
-                                  GTK_FILE_CHOOSER_ACTION_OPEN);
+                                  FILE_CHOOSER_ACTION_OPEN);
 
   /* Set filter to what user last time*/
   geda_file_chooser_set_filter (dialog, w_current->chooser_filter);
@@ -156,7 +156,7 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  geda_file_chooser_set_current_folder (dialog, cwd);
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
@@ -168,7 +168,7 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
                          w_current);
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    filenames =  gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+    filenames =  geda_file_chooser_get_filenames (dialog);
   }
   else {
     filenames = NULL;
@@ -202,7 +202,7 @@ void x_fileselect_open(GschemToplevel *w_current)
   char      *cwd;
 
   dialog = geda_file_chooser_new (w_current->main_window,
-                                  GTK_FILE_CHOOSER_ACTION_OPEN);
+                                  FILE_CHOOSER_ACTION_OPEN);
 
   /* Set filter to what user last time*/
   geda_file_chooser_set_filter (dialog, w_current->chooser_filter);
@@ -213,7 +213,7 @@ void x_fileselect_open(GschemToplevel *w_current)
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+  geda_file_chooser_set_current_folder (dialog, cwd);
   GEDA_FREE (cwd);
 
   gtk_widget_show (dialog);
@@ -225,7 +225,7 @@ void x_fileselect_open(GschemToplevel *w_current)
                          w_current);
 
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
-    filenames =  gtk_file_chooser_get_filenames (GTK_FILE_CHOOSER (dialog));
+    filenames =  geda_file_chooser_get_filenames (dialog);
   }
   else {
     filenames = NULL;
@@ -289,7 +289,7 @@ x_fileselect_save (GschemToplevel *w_current)
   auto_ext = eda_config_get_boolean (cfg, IVAR_CONFIG_GROUP, "auto-file-suffix", NULL);
 
   dialog = geda_file_chooser_new (w_current->main_window,
-                                  GTK_FILE_CHOOSER_ACTION_SAVE);
+                                  FILE_CHOOSER_ACTION_SAVE);
 
   if (s_page_is_symbol_file(toplevel->page_current)) {
     geda_file_chooser_set_filter (dialog, FILTER_SYMBOL);
@@ -302,16 +302,14 @@ x_fileselect_save (GschemToplevel *w_current)
   if ((toplevel->page_current->filename != NULL) &&
        g_file_test (toplevel->page_current->filename,
        G_FILE_TEST_EXISTS)) {
-    gtk_file_chooser_set_filename (GTK_FILE_CHOOSER (dialog),
-                                   toplevel->page_current->filename);
+    geda_file_chooser_set_filename (dialog, toplevel->page_current->filename);
   }
   else {
     cwd = g_get_current_dir ();
     /* force save in current working dir */
-    gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+    geda_file_chooser_set_current_folder (dialog, cwd);
     GEDA_FREE (cwd);
-    gtk_file_chooser_set_current_name (GTK_FILE_CHOOSER (dialog),
-                                       toplevel->untitled_name);
+    geda_file_chooser_set_current_name (dialog, toplevel->untitled_name);
   }
 
   /* Add our extra widget to the dialog */
@@ -323,28 +321,26 @@ x_fileselect_save (GschemToplevel *w_current)
   gtk_box_pack_start (GTK_BOX(hbox), cb_add_ext, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(cb_add_ext, _("Automatically append the file extension"));
   gtk_toggle_button_set_active ((GtkToggleButton*)cb_add_ext, auto_ext);
-  gtk_file_chooser_set_extra_widget (GTK_FILE_CHOOSER(dialog), hbox);
+  geda_file_chooser_set_extra_widget (dialog, hbox);
 
   gtk_widget_show (dialog);
   if (gtk_dialog_run ((GtkDialog*)dialog) == GTK_RESPONSE_ACCEPT) {
     char          *filename;
     char          *filebase;
     char          *tmpname;
-    GtkFileFilter *filter;
-    int            type;
+    int            index;
 
-    filename = gtk_file_chooser_get_filename (GTK_FILE_CHOOSER (dialog));
+    filename = geda_file_chooser_get_filename (dialog);
     filebase = basename(filename);
     auto_ext = gtk_toggle_button_get_active ((GtkToggleButton*)cb_add_ext);
     tmpname  = NULL;
     if (auto_ext && (filebase != NULL)) {
       if (!f_get_filename_ext(filebase)) {
-        filter = gtk_file_chooser_get_filter( GTK_FILE_CHOOSER(dialog));
-        type = GPOINTER_TO_INT( g_object_get_data(G_OBJECT(filter), "id" ));
-        if (type == FILTER_SCHEMATIC)
+        index = geda_file_chooser_get_filter(dialog);
+        if (index == FILTER_SCHEMATIC)
           tmpname = g_strconcat(filename, SCHEMATIC_FILE_DOT_SUFFIX, NULL);
         else
-          if (type == FILTER_SYMBOL)
+          if (index == FILTER_SYMBOL)
            tmpname = g_strconcat(filename, SYMBOL_FILE_DOT_SUFFIX, NULL);
         if (tmpname) {
           GEDA_FREE (filename);

@@ -29,17 +29,17 @@
 
 G_BEGIN_DECLS
 
-#define GEDA_TYPE_MENU_BUTTON		        (geda_menu_button_get_type ())
-#define GEDA_MENU_BUTTON(obj)		        (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton))
-#define GEDA_MENU_BUTTON_CONST(obj)	        (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton const))
-#define GEDA_MENU_BUTTON_CLASS(klass)	        (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
-#define GEDA_IS_MENU_BUTTON(obj)		(G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_MENU_BUTTON))
-#define GEDA_IS_MENU_BUTTON_CLASS(klass)	(G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_MENU_BUTTON))
-#define GEDA_MENU_BUTTON_GET_CLASS(obj)	        (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
+#define GEDA_TYPE_MENU_BUTTON             (geda_menu_button_get_type ())
+#define GEDA_MENU_BUTTON(obj)             (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton))
+#define GEDA_MENU_BUTTON_CONST(obj)       (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_MENU_BUTTON, GedaMenuButton const))
+#define GEDA_MENU_BUTTON_CLASS(klass)     (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
+#define GEDA_IS_MENU_BUTTON(obj)          (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_MENU_BUTTON))
+#define GEDA_IS_MENU_BUTTON_CLASS(klass)  (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_MENU_BUTTON))
+#define GEDA_MENU_BUTTON_GET_CLASS(obj)   (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_MENU_BUTTON, GedaMenuButtonClass))
 
-typedef struct _GedaMenuButton		GedaMenuButton;
-typedef struct _GedaMenuButtonClass	GedaMenuButtonClass;
-typedef struct _GedaMenuButtonPrivate	GedaMenuButtonPrivate;
+typedef struct _GedaMenuButton           GedaMenuButton;
+typedef struct _GedaMenuButtonClass      GedaMenuButtonClass;
+typedef struct _GedaMenuButtonPrivate    GedaMenuButtonPrivate;
 
 struct _GedaMenuButton
 {

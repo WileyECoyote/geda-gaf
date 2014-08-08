@@ -259,8 +259,9 @@ static void show_handler (GtkWidget *widget)
         g_signal_emit (dialog, gschem_dialog_signals[ GEOMETRY_RESTORE ], 0,
                        cfg, group);
     }
-    else
-      fprintf(stderr, "<show_handler> Error: cfg=NULL, could not save dialog geometry\n");
+    else {
+         BUG_MSG("cfg=NULL, could not restore dialog geometry\n");
+    }
   }
 
   /* Let GTK show the window */

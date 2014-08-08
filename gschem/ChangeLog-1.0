@@ -1,3 +1,8 @@
+2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_fileselect.c: Swap gtk_file_chooser_* for geda_file_chooser_*
+          functions. Use filter index instead of GtkFileFilter in x_fileselect_save.
+
 2014-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Add link to libgeda.
@@ -12,7 +17,7 @@
           x_window_save_settings using key "chooser-filter".
 
         * src/x/x_fileselect.c: In x_fileselect_list and x_fileselect_open,
-          set filter of new GedaFileChooser to the retained preference using
+          set filter of new GedaFileChooser to the retained preferences using
           new top-level variable chooser_filter, and add callback handler for
           the filter to capture user changes. Set GedaFileChooser filter for
           save dialog to what ever the current document type, i.e. "sch" for

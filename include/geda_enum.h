@@ -85,14 +85,14 @@ typedef  enum {
 } IDE_FILTER;
 
 /**
- * @GEDA_STATE_FLAG_NORMAL: State during normal operation.
- * @GEDA_STATE_FLAG_ACTIVE: Widget is active.
- * @GEDA_STATE_FLAG_PRELIGHT: Widget has a mouse pointer over it.
- * @GEDA_STATE_FLAG_SELECTED: Widget is selected.
- * @GEDA_STATE_FLAG_INSENSITIVE: Widget is insensitive.
+ * @GEDA_STATE_FLAG_NORMAL:       State during normal operation.
+ * @GEDA_STATE_FLAG_ACTIVE:       Widget is active.
+ * @GEDA_STATE_FLAG_PRELIGHT:     Widget has a mouse pointer over it.
+ * @GEDA_STATE_FLAG_SELECTED:     Widget is selected.
+ * @GEDA_STATE_FLAG_INSENSITIVE:  Widget is insensitive.
  * @GEDA_STATE_FLAG_INCONSISTENT: Widget is inconsistent.
- * @GEDA_STATE_FLAG_FOCUSED: Widget has the keyboard focus.
- * @GEDA_STATE_FLAG_BACKDROP: Widget is in a background toplevel window.
+ * @GEDA_STATE_FLAG_FOCUSED:      Widget has the keyboard focus.
+ * @GEDA_STATE_FLAG_BACKDROP:     Widget is in a background toplevel window.
  *
  * Describes a widget state.
  */

@@ -1,3 +1,14 @@
+
+2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+      * dialogs/geda_file_chooser.c: In get EdaConfig in save and restore and
+        eliminate as parameter, ditch custom marshal, and for god sake, block
+        GtkFileChooserDialog from resizing the dialog. Implement save and
+        restore unfunctionality using Libgeda.
+
+      * include/geda_file_chooser.h: Add declarations for new function, and
+        FileChooserAction enumerators.
+
 2014-08-07 Wiley E. Hill <wileyhill@gmail.com>
 
       * dialogs/geda_file_chooser.c: Extend new GedaFileChooser class by

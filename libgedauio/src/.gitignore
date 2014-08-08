@@ -7,7 +7,6 @@ Makefile.in
 *.o
 *.x
 *~
-*~
 *#
 *.swp
 *-swp
