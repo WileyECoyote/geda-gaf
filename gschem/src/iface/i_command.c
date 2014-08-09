@@ -586,11 +586,26 @@ COMMAND (do_file)
   EXIT_COMMAND(do_file);
 }
 
-/* ------------------ Edit ---------------- */
+/* ------------------ File ---------------- */
 
 /** \defgroup i_command_File_Actions Actions under the File Menu
  * @{
  */
+
+/** @brief i_cmd_do_new in i_command_File_Actions */
+COMMAND (do_file_new)
+{
+  BEGIN_W_COMMAND(do_file_new);
+  Page *page;
+
+  /* create a new page */
+  page = x_window_open_page (w_current, NULL);
+  x_window_set_current_page (w_current, page);
+  q_log_message (_("New page created [%s]\n"), page->filename);
+
+  EXIT_COMMAND(do_file_new);
+
+}
 
 /*! \brief File New Window Action
  *
@@ -630,27 +645,12 @@ COMMAND (do_file_new_window)
 
 }
 
-/** @brief i_cmd_do_new in i_command_File_Actions */
-COMMAND (do_file_new)
-{
-  BEGIN_W_COMMAND(do_file_new);
-  Page *page;
-
-  /* create a new page */
-  page = x_window_open_page (w_current, NULL);
-  x_window_set_current_page (w_current, page);
-  q_log_message (_("New page created [%s]\n"), page->filename);
-
-  EXIT_COMMAND(do_file_new);
-
-}
-
 /**   \defgroup open-files-command Open File Action
  *  @{\par This group contains functions to open documents
  *    \ingroup (i_command_File_Actions)
  */
 /* This does not do anything productive, is a delay, the destroy
- * notifier, open_command_idle_notify, does do all the work.
+ * notifier, open_command_idle_notify, does all the work.
  * This is a low priority main-loop task, instigated after higher
  * priority main-loop task were delegated to opening files */
 static bool
@@ -675,8 +675,8 @@ open_command_idle_callback (void *data)
 
 /* open_command_idle_notify is a callback handler notifying
  * us that the main loop source open_command_idle_callback
- * has been destoryed, which is of no particulary interest.
- * The idles threads were to release the memory associated
+ * has been destroyed, which is of no particulary interest.
+ * These idle threads were to release the memory associated
  * with x_fileselect_list */
 static void
 open_command_idle_notify (void *data)
@@ -756,96 +756,6 @@ COMMAND ( do_open ) {
   EXIT_COMMAND(do_open);
 }
 /** @} endgroup open-files-command */
-
-/** @brief i_cmd_do_close in i_command_File_Actions */
-COMMAND ( do_close ) {
-  BEGIN_W_COMMAND(do_close);
-  bool can_close;
-  can_close = TRUE;
-
-  if (Current_Page->CHANGED ) {
-    can_close = x_dialog_close_changed_page (w_current, Current_Page);
-  }
-
-  if (can_close) {
-    q_log_message(_("Closing Window\n"));
-    x_window_close_page (w_current, Current_Page);
-  }
-  i_set_state(w_current, SELECT);
-  EXIT_COMMAND(do_close);
-}
-
-/** @brief i_cmd_do_close_all in i_command_File_Actions */
-COMMAND ( do_close_all ) {
-  BEGIN_W_COMMAND(do_close_all);
-  GList *iter;
-  GList *pages;
-  Page  *p_current;
-  bool   can_close  = TRUE;
-  bool   close_all;
-
-  if (w_current->inside_action &&
-    (w_current->event_state == MOVE || w_current->event_state == ENDMOVE))
-  {
-    o_move_cancel (w_current);
-  }
-
-  x_window_close_edit_dialogs(w_current);
-
-  pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
-
-  /* Loop through all the pages looking for unsaved pages */
-  for ( iter = pages; iter != NULL; NEXT(iter))
-  {
-    /* get ptr to a page */
-    p_current = (Page*)iter->data;
-
-    /* if flag set */
-    if (p_current->CHANGED) {
-      can_close = FALSE;
-      break;                 /* if at least one page */
-    }
-  }
-
-  if (!can_close) {         /* Ask to save unsaved pages */
-
-    close_all = x_dialog_close_window (w_current);
-    if (!close_all) {       /* user cancelled the close */
-      v_log_message("Close all canceled");
-    }
-  }
-  else {
-    close_all = TRUE;       /* There were no unsaved pages */
-  }
-
-  if (close_all) {          /* Still want to close all? */
-
-    q_log_message(_("Closing all documents\n"));
-
-    /* Loop through all the pages */
-    for ( iter = pages; iter != NULL; NEXT(iter))
-    {
-      /* get ptr to a page */
-      p_current = (Page*)iter->data;
-      if (p_current->filename) {
-        x_window_close_page (w_current, p_current);
-      }
-    }
-  }
-
-  i_set_state(w_current, SELECT);
-
-  g_list_free (pages);
-
-  EXIT_COMMAND(do_close_all);
-}
-
-/** @brief i_cmd_do_quit in i_command_File_Actions */
-COMMAND ( do_quit ) {
-  BEGIN_NO_ARGUMENT(do_file_new_window);
-  v_log_message(_("gschem: starting shut-down\n"));
-  x_window_close_all(w_current);
-}
 
 /** @brief i_cmd_do_save in i_command_File_Actions */
 /*! \brief Save File As command action handler function
@@ -983,6 +893,97 @@ COMMAND ( do_run_script ) {
   }
   gschem_threads_leave();
   EXIT_COMMAND(do_run_script);
+}
+
+
+/** @brief i_cmd_do_close in i_command_File_Actions */
+COMMAND ( do_close ) {
+  BEGIN_W_COMMAND(do_close);
+  bool can_close;
+  can_close = TRUE;
+
+  if (Current_Page->CHANGED ) {
+    can_close = x_dialog_close_changed_page (w_current, Current_Page);
+  }
+
+  if (can_close) {
+    q_log_message(_("Closing Window\n"));
+    x_window_close_page (w_current, Current_Page);
+  }
+  i_set_state(w_current, SELECT);
+  EXIT_COMMAND(do_close);
+}
+
+/** @brief i_cmd_do_close_all in i_command_File_Actions */
+COMMAND ( do_close_all ) {
+  BEGIN_W_COMMAND(do_close_all);
+  GList *iter;
+  GList *pages;
+  Page  *p_current;
+  bool   can_close  = TRUE;
+  bool   close_all;
+
+  if (w_current->inside_action &&
+    (w_current->event_state == MOVE || w_current->event_state == ENDMOVE))
+  {
+    o_move_cancel (w_current);
+  }
+
+  x_window_close_edit_dialogs(w_current);
+
+  pages = g_list_copy(geda_list_get_glist(w_current->toplevel->pages));
+
+  /* Loop through all the pages looking for unsaved pages */
+  for ( iter = pages; iter != NULL; NEXT(iter))
+  {
+    /* get ptr to a page */
+    p_current = (Page*)iter->data;
+
+    /* if flag set */
+    if (p_current->CHANGED) {
+      can_close = FALSE;
+      break;                 /* if at least one page */
+    }
+  }
+
+  if (!can_close) {         /* Ask to save unsaved pages */
+
+    close_all = x_dialog_close_window (w_current);
+    if (!close_all) {       /* user cancelled the close */
+      v_log_message("Close all canceled");
+    }
+  }
+  else {
+    close_all = TRUE;       /* There were no unsaved pages */
+  }
+
+  if (close_all) {          /* Still want to close all? */
+
+    q_log_message(_("Closing all documents\n"));
+
+    /* Loop through all the pages */
+    for ( iter = pages; iter != NULL; NEXT(iter))
+    {
+      /* get ptr to a page */
+      p_current = (Page*)iter->data;
+      if (p_current->filename) {
+        x_window_close_page (w_current, p_current);
+      }
+    }
+  }
+
+  i_set_state(w_current, SELECT);
+
+  g_list_free (pages);
+
+  EXIT_COMMAND(do_close_all);
+}
+
+/** @brief i_cmd_do_quit in i_command_File_Actions */
+COMMAND ( do_quit ) {
+  BEGIN_NO_ARGUMENT(do_file_new_window);
+  v_log_message(_("gschem: starting shut-down\n"));
+  x_window_close_all(w_current);
 }
 
 /** @} endgroup i_command_File_Actions */
@@ -1345,17 +1346,29 @@ COMMAND ( do_edit_butes )
   EXIT_COMMAND(do_edit_butes);
 }
 
+COMMAND ( do_edit_ponent )
+{
+  BEGIN_W_COMMAND(do_edit_butes);
+  Object *o_current;
+
+  o_current = o_select_return_first_object(w_current);
+
+  if (o_current && (o_current->type == OBJ_COMPLEX)) {
+    x_dialog_edit_properties(w_current, o_current);
+  }
+
+  EXIT_COMMAND(do_edit_butes);
+}
+
 /*! \brief Edit Text in i_command_Edit_Actions */
 COMMAND ( do_edit_text )
 {
   BEGIN_W_COMMAND(do_edit_text);
-  Object *object;
+  Object *o_current;
 
-  object = o_select_return_first_object(w_current);
-  if (object) {
-    if (object->type == OBJ_TEXT) {
-      o_text_edit(w_current, object);
-    }
+  o_current = o_select_return_first_object(w_current);
+  if (o_current && (o_current->type == OBJ_TEXT)) {
+      o_text_edit(w_current, o_current);
   }
   EXIT_COMMAND(do_edit_text);
 }
@@ -1364,26 +1377,14 @@ COMMAND ( do_edit_text )
 COMMAND ( do_edit_slot )
 {
   BEGIN_W_COMMAND(do_edit_slot);
-  Object *object;
+  Object *o_current;
 
-  object = o_select_return_first_object(w_current);
+  o_current = o_select_return_first_object(w_current);
 
-  if (object) {
-    o_slot_start(w_current, object);
+  if (o_current && (o_current->type == OBJ_COMPLEX)) {
+    o_slot_start(w_current, o_current);
   }
   EXIT_COMMAND(do_edit_slot);
-}
-
-/*! \brief Edit Arc in i_command_Edit_Actions */
-COMMAND ( do_edit_arc )
-{
-  BEGIN_W_COMMAND(do_edit_arc);
-  Object *object;
-  object = o_select_return_first_object(w_current);
-  if ( object && object->type == OBJ_ARC ) {
-    x_dialog_edit_arc_angle(w_current, NULL);
-  }
-  EXIT_COMMAND(do_edit_arc);
 }
 
 /*! \brief Edit Color in i_command_Edit_Actions */
@@ -1392,6 +1393,18 @@ COMMAND ( do_edit_color )
   BEGIN_W_COMMAND(do_edit_color);
   x_dialog_edit_color (w_current);
   EXIT_COMMAND(do_edit_color);
+}
+
+/*! \brief Edit Arc in i_command_Edit_Actions */
+COMMAND ( do_edit_arc )
+{
+  BEGIN_W_COMMAND(do_edit_arc);
+  Object *o_current;
+  o_current = o_select_return_first_object(w_current);
+  if ( o_current && o_current->type == OBJ_ARC ) {
+    x_dialog_edit_arc_angle(w_current, o_current);
+  }
+  EXIT_COMMAND(do_edit_arc);
 }
 
 /*! \brief Edit Pin-Type in i_command_Edit_Actions */
@@ -1416,31 +1429,6 @@ COMMAND ( do_filltype )
   BEGIN_W_COMMAND(do_filltype);
   x_dialog_edit_fill_type(w_current);
   EXIT_COMMAND(do_filltype);
-}
-
-/*! \brief Edit Translate in i_command_Edit_Actions */
-COMMAND ( do_translate )
-{
-  BEGIN_W_COMMAND(do_translate);
-
-  if (w_current->snap == SNAP_OFF) {
-    u_log_message(_("WARNING: Do not translate with snap off!\n"));
-    u_log_message(_("WARNING: Turning snap on and continuing "
-                    "with translate.\n"));
-    w_current->snap = SNAP_GRID;
-    i_show_state(w_current, NULL); /* update status on screen */
-  }
-
-  if (w_current->snap_size != 100) {
-    u_log_message(_("WARNING: Snap grid size is "
-                    "not equal to 100!\n"));
-    u_log_message(_("WARNING: If you are translating a symbol "
-                    "to the origin, the snap grid size should be "
-                    "set to 100\n"));
-  }
-
-  x_dialog_translate (w_current);
-  EXIT_COMMAND(do_translate);
 }
 
 /*! \brief Lock in i_command_Edit_Actions
@@ -1473,132 +1461,6 @@ COMMAND ( do_unlock )
     o_unlock(w_current);
   }
   EXIT_COMMAND(do_unlock);
-}
-
-/*! \brief Toggle Macro Entry Area
- *
- *  @brief i_cmd_do_macro in i_command_Edit_Actions
- *
- *  \par Function Description
- *  This function set the macro widget to visable and set focus to
- *  to the entry object member.
- *
- */
-COMMAND ( do_macro )
-{
-  BEGIN_W_COMMAND(do_macro);
-  GtkWidget *widget = w_current->macro_widget;
-  if (gtk_widget_get_visible (widget)) {
-    gtk_widget_hide(widget);
-  }
-  else {
-    gtk_widget_show (widget);
-    gtk_widget_grab_focus (gschem_macro_widget_get_entry(widget));
-  }
-  EXIT_COMMAND(do_macro);
-}
-
-COMMAND ( do_embed )
-{
-  BEGIN_W_COMMAND(do_embed);
-  Object *o_current;
-
-  /* anything selected ? */
-  if (o_select_is_selection(w_current)) {
-    /* yes, embed each selected component */
-    GList *s_current = geda_list_get_glist( Current_Selection );
-
-    while (s_current != NULL) {
-      o_current = (Object *) s_current->data;
-      if(o_current != NULL) {
-        if ( (o_current->type == OBJ_COMPLEX) ||
-             (o_current->type == OBJ_PICTURE)) {
-          o_embed (w_current->toplevel, o_current);
-        }
-      }
-      NEXT(s_current);
-    }
-    o_undo_savestate(w_current, UNDO_ALL);
-  } else {
-    /* nothing selected, go back to select state */
-    o_redraw_cleanstates(w_current);
-    w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
-  }
-  EXIT_COMMAND(do_embed);
-}
-
-/** @brief i_cmd_unembed in i_command_Edit_Actions */
-COMMAND ( do_unembed )
-{
-  BEGIN_W_COMMAND(do_unembed);
-  Object *o_current;
-
-  /* anything selected ? */
-  if (o_select_is_selection(w_current)) {
-    /* yes, unembed each selected component */
-    GList *s_current =
-      geda_list_get_glist( Current_Selection );
-
-    while (s_current != NULL) {
-      o_current = (Object *) s_current->data;
-      if (o_current != NULL) {
-        if ( (o_current->type == OBJ_COMPLEX) ||
-             (o_current->type == OBJ_PICTURE) ) {
-          o_unembed (w_current->toplevel, o_current);
-        }
-      }
-      NEXT(s_current);
-    }
-    o_undo_savestate(w_current, UNDO_ALL);
-  } else {
-    /* nothing selected, go back to select state */
-    o_redraw_cleanstates(w_current);
-    w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
-  }
-  EXIT_COMMAND(do_unembed);
-}
-/** @brief i_cmd_update in i_command_Edit_Actions */
-COMMAND (do_update)
-{
-  BEGIN_W_COMMAND(do_update);
-
-  GedaToplevel *toplevel = w_current->toplevel;
-  GList *selection;
-  GList *selected_components = NULL;
-  GList *iter;
-
-  if (o_select_is_selection(w_current)) {
-
-    /* Updating components modifies the selection. Therefore, create a
-     * new list of only the Objects we want to update from the current
-     * selection, then iterate over that new list to perform the
-     * update. */
-    selection = geda_list_get_glist (toplevel->page_current->selection_list);
-    for (iter = selection; iter != NULL; NEXT(iter)) {
-      Object *o_current = (Object *) iter->data;
-      if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
-        selected_components = g_list_prepend (selected_components, o_current);
-      }
-    }
-
-    for (iter = selected_components; iter != NULL; NEXT(iter)) {
-      Object *o_current = (Object *) iter->data;
-      iter->data = o_update_component (w_current, o_current);
-    }
-
-    g_list_free (selected_components);
-
-  } else {
-    /* nothing selected, go back to select state */
-    u_log_message("Nothing selected\n");
-    o_redraw_cleanstates(w_current);
-    w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
-  }
-
-  EXIT_COMMAND(do_update);
 }
 
 /** @} endgroup i_command_Edit_Actions */
@@ -1767,9 +1629,10 @@ COMMAND ( do_zoom_selected )
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   EXIT_COMMAND(do_zoom_selected);
 }
+
 /*! \brief Zoom Extents Action Function in i_command_View_Actions
  *  \par Function Description
- *  This is a callback function for the Zoom Extents action.
+ *  This is a callback function for the view-zoom-extents action.
  */
 COMMAND ( do_zoom_extents )
 {
@@ -1780,6 +1643,11 @@ COMMAND ( do_zoom_extents )
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   EXIT_COMMAND(do_zoom_extents);
 }
+
+/*! \brief Zoom In Action Function in i_command_View_Actions
+ *  \par Function Description
+ *  This is a callback function for the view-zoom-in action.
+ */
 COMMAND ( do_zoom_in )
 {
   BEGIN_W_COMMAND(do_zoom_in);
@@ -1791,6 +1659,11 @@ COMMAND ( do_zoom_in )
 
   EXIT_COMMAND(do_zoom_in);
 }
+
+/*! \brief Zoom Out Action Function in i_command_View_Actions
+ *  \par Function Description
+ *  This is a callback function for the view-zoom-out action.
+ */
 COMMAND ( do_zoom_out )
 {
   BEGIN_W_COMMAND(do_zoom_out);
@@ -1802,6 +1675,11 @@ COMMAND ( do_zoom_out )
 
   EXIT_COMMAND(do_zoom_out);
 }
+
+/*! \brief Zoom All Action Function in i_command_View_Actions
+ *  \par Function Description
+ *  This is a callback function for the view-zoom-all action.
+ */
 COMMAND ( do_zoom_all)
 {
   BEGIN_W_COMMAND(do_zoom_all);
@@ -1812,6 +1690,11 @@ COMMAND ( do_zoom_all)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   EXIT_COMMAND(do_zoom_all);
 }
+
+/*! \brief View Documentation Action Function in i_command_View_Actions
+ *  \par Function Description
+ *  This is a callback function for the view-documentation action.
+ */
 COMMAND ( do_documentation)
 {
   BEGIN_W_COMMAND(do_documentation);
@@ -1866,6 +1749,7 @@ COMMAND ( do_show_hidden )
   }
   EXIT_COMMAND(do_show_hidden);
 }
+
 COMMAND ( do_show_inherited )
 {
   BEGIN_W_COMMAND(do_show_inherited);
@@ -1887,6 +1771,7 @@ COMMAND ( do_show_inherited )
   }
   EXIT_COMMAND(do_show_inherited);
 }
+
 COMMAND ( do_show_nets )
 {
   BEGIN_COMMAND(do_show_nets);
@@ -1960,12 +1845,15 @@ COMMAND ( do_page )
 /** \defgroup i_command_Page_Actions Actions under the Page Menu
  * @{*/
 
+/** @brief i_cmd_do_page_manager in i_command_Command_Functions */
 COMMAND ( do_page_manager )
 {
   BEGIN_W_COMMAND(do_page_manager);
   x_pagesel_open (w_current);
   EXIT_COMMAND(do_page_manager);
 }
+
+/** @brief i_cmd_do_page_prev in i_command_Command_Functions */
 COMMAND ( do_page_prev )
 {
   NOT_NULL(w_current);
@@ -1998,6 +1886,8 @@ COMMAND ( do_page_prev )
     }
   }
 }
+
+/** @brief i_cmd_do_page_next in i_command_Command_Functions */
 COMMAND ( do_page_next )
 {
   NOT_NULL(w_current);
@@ -2029,6 +1919,7 @@ COMMAND ( do_page_next )
   }
 }
 
+/** @brief i_cmd_do_page_new in i_command_Command_Functions */
 /* This is simular to file new accept we add new page hook*/
 COMMAND ( do_page_new )
 {
@@ -2074,6 +1965,7 @@ COMMAND ( do_page_new )
   EXIT_COMMAND(do_page_new);
 }
 
+/** @brief i_cmd_do_page_print in i_command_Command_Functions */
 COMMAND ( do_page_print ) {
   NOT_NULL(w_current);
   NOT_NULL(w_current->toplevel);
@@ -2081,6 +1973,7 @@ COMMAND ( do_page_print ) {
   s_page_print_all(w_current->toplevel);
   EXIT_COMMAND(do_page_print);
 }
+
 /** @brief i_cmd_do_revert in i_command_Command_Functions */
 COMMAND ( do_page_revert ) {
 
@@ -2116,6 +2009,8 @@ COMMAND ( do_page_revert ) {
 
   EXIT_COMMAND(do_page_revert);
 }
+
+/** @brief i_cmd_do_page_close in i_command_Command_Functions */
 COMMAND ( do_page_close )
 {
   NOT_NULL(w_current);
@@ -2138,6 +2033,8 @@ COMMAND ( do_page_close )
   }
   EXIT_COMMAND(do_page_close);
 }
+
+/** @brief i_cmd_do_page_discard in i_command_Command_Functions */
 COMMAND ( do_page_discard )
 {
   NOT_NULL(w_current);
@@ -2356,14 +2253,6 @@ COMMAND ( do_hierarchy_up )
     }
   }
 }
-/*
-COMMAND ( do_hierarchy_documentation )
-{
-  BEGIN_COMMAND(do_hierarchy_documentation);
-  u_log_message("in hierarchy_documentation command handler");
-  EXIT_COMMAND(do_hierarchy_documentation);
-}
-*/
 
 /** @} endgroup i_command_Hierarchy_Actions */
 
@@ -2382,6 +2271,10 @@ COMMAND ( do_add )
  * @{
  */
 
+/*! \brief Action Add Component in i_command_Add_Actions
+ *  \par Function Description
+ *  This is a callback function for the #ADD_COMPONENT action.
+ */
 COMMAND ( do_add_component )
 {
   BEGIN_W_COMMAND(do_add_component);
@@ -2395,7 +2288,7 @@ COMMAND ( do_add_component )
 
 /*! \brief Action Add Net in i_command_Add_Actions
  *  \par Function Description
- *  This is a callback function for the Add Net action.
+ *  This is a callback function for the #ADD_NET action.
  */
 COMMAND ( do_add_net )
 {
@@ -2423,9 +2316,10 @@ COMMAND ( do_add_net )
 
   EXIT_COMMAND(do_add_net);
 }
+
 /*! \brief Action Add Bus in i_command_Add_Actions
  *  \par Function Description
- *  This is a callback function for the Add Bus action.
+ *  This is a callback function for the #ADD_BUS action.
  */
 COMMAND ( do_add_bus )
 {
@@ -2456,7 +2350,7 @@ COMMAND ( do_add_bus )
 
 /*! \brief Action Add Attribute in i_command_Add_Actions
  *  \par Function Description
- *  This is the action handler function for Add Attribute.
+ *  This is the action handler function for #ADD_ATTRIB action.
  *  \note This function calls the attrib_edit_dialog passing
  *  the integer who, which is a flag to indicate whether the
  *  Small Attribute Editor is creating a new attribute or
@@ -2482,7 +2376,7 @@ COMMAND ( do_add_attribute )
 
 /*! \brief Add Text Mode in i_command_Add_Actions
  *  \par Function Description
- *  This is the action handler function for Add Text.
+ *  This is the action handler function for #ADD_TEXT.
  */
 COMMAND ( do_add_text )
 {
@@ -2502,7 +2396,7 @@ COMMAND ( do_add_text )
 
 /*! \brief Add Line Mode  in i_command_Add_Actions
  *  \par Function Description
- *  This is the action handler function for Add Line.
+ *  This is the action handler function for #ADD_LINE.
  */
 /** @brief i_cmd_do_add_line in i_command_Command_Functions */
 COMMAND (do_add_line)
@@ -2528,31 +2422,31 @@ COMMAND (do_add_line)
   EXIT_COMMAND(do_add_line);
 }
 
-/*! \brief Action Add Path Mode in i_command_Add_Actions
+/*! \brief Action Add Pin Mode in i_command_Add_Actions
  *  \par Function Description
- *  This is the command function for the Add Path action.
+ *  This is the command function for the #ADD_PIN hotkey action.
  */
-COMMAND ( do_add_path )
+COMMAND ( do_add_pin )
 {
-  BEGIN_W_COMMAND(do_add_path);
+  BEGIN_W_COMMAND(do_add_pin);
 
   int state;
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  if HOT_ACTION (do_add_path) {
-    o_path_start( w_current, CMD_X(do_add_path), CMD_Y(do_add_path) );
+  if HOT_ACTION (do_add_pin) {
+    o_pin_start( w_current, CMD_X(do_add_pin), CMD_Y(do_add_pin));
     w_current->inside_action = 1;
-    state = ENDPATH;
+    state = ENDPIN;
   }
   else {
-    state = DRAWPATH;
+    state = DRAWPIN;
     w_current->inside_action = 0;
   }
 
   i_set_state(w_current, state);
-  EXIT_COMMAND(do_add_path);
+  EXIT_COMMAND(do_add_pin);
 }
 
 /*! \brief Action Add Box Mode initiated by Keyboard Hotkey
@@ -2560,7 +2454,7 @@ COMMAND ( do_add_path )
  *  @brief i_cmd_do_add_bix in i_command_Add_Actions
  *
  *  \par Function Description
- *  This is the command function for the Add Box action.
+ *  This is the command function for the #ADD_BOX action.
  *
  */
 COMMAND ( do_add_box )
@@ -2585,9 +2479,10 @@ COMMAND ( do_add_box )
   i_set_state(w_current, state);
   EXIT_COMMAND(do_add_box);
 }
+
 /*! \brief Action Add Circle Mode in i_command_Add_Actions
  *  \par Function Description
- *  This is the command function for the Add Circle action.
+ *  This is the command function for the #ADD_CIRCLE action.
  */
 COMMAND ( do_add_circle )
 {
@@ -2614,9 +2509,9 @@ COMMAND ( do_add_circle )
 
 /*! \brief Action Add Arc Mode in i_command_Add_Actions
  *  \par Function Description
- *  This is the command function for the Add Arc action. An ARC is
- *  slightly different than other adder, an Arc requires users to
- *  draw the radius and then a dialog obtain further input, the
+ *  This is the command function for the #ADD_ARC action. An ARC
+ *  is slightly different than other adder, an Arc requires users
+ *  to draw the radius and then a dialog obtain further input, the
  *  dialog is also the Edit Arc and will react to all currently
  *  selected Arc objects, therefore this routine deselects all
  *  if needed.
@@ -2645,32 +2540,37 @@ COMMAND ( do_add_arc )
   EXIT_COMMAND(do_add_arc);
 }
 
-/*! \brief Action Add Pin Mode in i_command_Add_Actions
+/*! \brief Action Add Path Mode in i_command_Add_Actions
  *  \par Function Description
- *  This is the command function for the Add Pin hotkey action.
+ *  This is the command function for the #ADD_PATH action.
  */
-COMMAND ( do_add_pin )
+COMMAND ( do_add_path )
 {
-  BEGIN_W_COMMAND(do_add_pin);
+  BEGIN_W_COMMAND(do_add_path);
 
   int state;
 
   o_redraw_cleanstates(w_current);
   o_invalidate_rubber (w_current);
 
-  if HOT_ACTION (do_add_pin) {
-    o_pin_start( w_current, CMD_X(do_add_pin), CMD_Y(do_add_pin));
+  if HOT_ACTION (do_add_path) {
+    o_path_start( w_current, CMD_X(do_add_path), CMD_Y(do_add_path) );
     w_current->inside_action = 1;
-    state = ENDPIN;
+    state = ENDPATH;
   }
   else {
-    state = DRAWPIN;
+    state = DRAWPATH;
     w_current->inside_action = 0;
   }
 
   i_set_state(w_current, state);
-  EXIT_COMMAND(do_add_pin);
+  EXIT_COMMAND(do_add_path);
 }
+
+/*! \brief Action Add Path Mode in i_command_Add_Actions
+ *  \par Function Description
+ *  This is the command function for the #ADD_PICTURE action.
+ */
 COMMAND ( do_add_picture )
 {
   BEGIN_W_COMMAND(do_add_picture);
@@ -2726,6 +2626,10 @@ COMMAND ( do_add_picture )
  * @{
  */
 
+/*! \brief Create a New Session in i_command_Sessions_Actions
+ *  \par Function Description
+ *  This is the action handler function for #SESSION_NEW.
+ */
 COMMAND ( do_session_new )
 {
   BEGIN_W_COMMAND(do_session_new);
@@ -2742,6 +2646,10 @@ COMMAND ( do_session_new )
 
 }
 
+/*! \brief Open an Existing Session in i_command_Sessions_Actions
+ *  \par Function Description
+ *  This is the action handler function for #SESSION_OPEN.
+ */
 COMMAND ( do_session_open )
 {
   BEGIN_W_COMMAND(do_session_open);
@@ -2757,6 +2665,13 @@ COMMAND ( do_session_open )
   EXIT_COMMAND(do_session_open);
 }
 
+/*! \brief Save Session in i_command_Sessions_Actions
+ *  \par Function Description
+ *  This is the action handler function for #SESSION_SAVE.
+ *
+ * \note If the there is not current session then this option
+ *       becomes a session-save-as
+ */
 COMMAND ( do_session_save )
 {
   BEGIN_W_COMMAND(do_session_save);
@@ -2777,6 +2692,10 @@ COMMAND ( do_session_save )
   EXIT_COMMAND(do_session_save);
 }
 
+/*! \brief Save Session As in i_command_Sessions_Actions
+ *  \par Function Description
+ *  This is the action handler function for #SESSION_SAVE_AS.
+ */
 COMMAND ( do_session_save_as )
 {
   BEGIN_W_COMMAND(do_session_save_as);
@@ -2797,6 +2716,10 @@ COMMAND ( do_session_save_as )
   EXIT_COMMAND(do_session_save_as);
 }
 
+/*! \brief Open Session Manager in i_command_Sessions_Actions
+ *  \par Function Description
+ *  This is the action handler function for #SESSION_MANAGE.
+ */
 COMMAND ( do_session_manage )
 {
   BEGIN_W_COMMAND(do_session_manage);
@@ -2812,7 +2735,7 @@ COMMAND ( do_session_manage )
   EXIT_COMMAND(do_session_manage);
 }
 
-/** @} endgroup i_command_Page_Actions */
+/** @} endgroup i_command_Sessions_Actions */
 
 /* ------------------ Attributes ---------------- */
 
@@ -2874,6 +2797,7 @@ COMMAND ( do_attach )
 
   EXIT_COMMAND(do_attach);
 }
+
 /*! \brief Detach Selected Attributes
  *  \par Function Description
  *  This is the action handler function to detach selected attributes
@@ -3090,6 +3014,7 @@ COMMAND ( do_show_text )
     x_dialog_show_text(w_current);
   }
 }
+
 /*! @brief Launch the Multi-Attributes Dialog */
 COMMAND ( do_attributes )
 {
@@ -3099,6 +3024,11 @@ COMMAND ( do_attributes )
     x_multiattrib_open(w_current);
   }
 }
+
+/** @} endgroup i_command_Attribute_Actions */
+
+/* ------------------- Tools ----------------- */
+
 /*! @brief Launch the Auto Number Dialog */
 COMMAND ( do_autonumber )
 {
@@ -3109,7 +3039,189 @@ COMMAND ( do_autonumber )
   }
 }
 
-/** @} endgroup i_command_Attribute_Actions */
+
+/*! \brief Launch the Log Console Dialog Action Responder
+ *
+ *  @brief i_cmd_do_show_console in i_command_Option_Actions
+ *
+ *  \par Function Description
+ *  This is a callback function to launch the Console Dialog.
+ *
+ */
+COMMAND ( do_show_console )
+{
+  BEGIN_COMMAND(do_show_console);
+  x_console_open (w_current);
+  EXIT_COMMAND(do_show_console);
+}
+
+/*! \brief Launch the Coordinates Dialog Action Responder
+ *
+ *  @brief i_cmd_do_show_coordinates in i_command_Option_Actions
+ *
+ *  \par Function Description
+ *  This is a callback function to launch the Coordinates Dialog.
+ *
+ *  TODO: Slated to be relocated in 2.09
+ */
+COMMAND ( do_show_coordinates )
+{
+  BEGIN_COMMAND(do_show_coordinates);
+  x_dialog_coord_dialog (w_current, 0, 0);
+  EXIT_COMMAND(do_show_coordinates);
+}
+
+/*! \brief Toggle Macro Entry Area
+ *
+ *  @brief i_cmd_do_macro in i_command_Edit_Actions
+ *
+ *  \par Function Description
+ *  This function set the macro widget to visable and set focus to
+ *  to the entry object member.
+ *
+ */
+COMMAND ( do_macro )
+{
+  BEGIN_W_COMMAND(do_macro);
+  GtkWidget *widget = w_current->macro_widget;
+  if (gtk_widget_get_visible (widget)) {
+    gtk_widget_hide(widget);
+  }
+  else {
+    gtk_widget_show (widget);
+    gtk_widget_grab_focus (gschem_macro_widget_get_entry(widget));
+  }
+  EXIT_COMMAND(do_macro);
+}
+
+/*! \brief Edit Translate in i_command_Edit_Actions */
+COMMAND ( do_translate )
+{
+  BEGIN_W_COMMAND(do_translate);
+
+  if (w_current->snap == SNAP_OFF) {
+    u_log_message(_("WARNING: Do not translate with snap off!\n"));
+    u_log_message(_("WARNING: Turning snap on and continuing "
+                    "with translate.\n"));
+    w_current->snap = SNAP_GRID;
+    i_show_state(w_current, NULL); /* update status on screen */
+  }
+
+  if (w_current->snap_size != 100) {
+    u_log_message(_("WARNING: Snap grid size is "
+                    "not equal to 100!\n"));
+    u_log_message(_("WARNING: If you are translating a symbol "
+                    "to the origin, the snap grid size should be "
+                    "set to 100\n"));
+  }
+
+  x_dialog_translate (w_current);
+  EXIT_COMMAND(do_translate);
+}
+
+COMMAND ( do_embed )
+{
+  BEGIN_W_COMMAND(do_embed);
+  Object *o_current;
+
+  /* anything selected ? */
+  if (o_select_is_selection(w_current)) {
+    /* yes, embed each selected component */
+    GList *s_current = geda_list_get_glist( Current_Selection );
+
+    while (s_current != NULL) {
+      o_current = (Object *) s_current->data;
+      if(o_current != NULL) {
+        if ( (o_current->type == OBJ_COMPLEX) ||
+             (o_current->type == OBJ_PICTURE)) {
+          o_embed (w_current->toplevel, o_current);
+        }
+      }
+      NEXT(s_current);
+    }
+    o_undo_savestate(w_current, UNDO_ALL);
+  } else {
+    /* nothing selected, go back to select state */
+    o_redraw_cleanstates(w_current);
+    w_current->inside_action = 0;
+    i_set_state(w_current, SELECT);
+  }
+  EXIT_COMMAND(do_embed);
+}
+
+/** @brief i_cmd_unembed in i_command_Edit_Actions */
+COMMAND ( do_unembed )
+{
+  BEGIN_W_COMMAND(do_unembed);
+  Object *o_current;
+
+  /* anything selected ? */
+  if (o_select_is_selection(w_current)) {
+    /* yes, unembed each selected component */
+    GList *s_current =
+      geda_list_get_glist( Current_Selection );
+
+    while (s_current != NULL) {
+      o_current = (Object *) s_current->data;
+      if (o_current != NULL) {
+        if ( (o_current->type == OBJ_COMPLEX) ||
+             (o_current->type == OBJ_PICTURE) ) {
+          o_unembed (w_current->toplevel, o_current);
+        }
+      }
+      NEXT(s_current);
+    }
+    o_undo_savestate(w_current, UNDO_ALL);
+  } else {
+    /* nothing selected, go back to select state */
+    o_redraw_cleanstates(w_current);
+    w_current->inside_action = 0;
+    i_set_state(w_current, SELECT);
+  }
+  EXIT_COMMAND(do_unembed);
+}
+
+/** @brief i_cmd_update in i_command_Edit_Actions */
+COMMAND (do_update)
+{
+  BEGIN_W_COMMAND(do_update);
+
+  GedaToplevel *toplevel = w_current->toplevel;
+  GList *selection;
+  GList *selected_components = NULL;
+  GList *iter;
+
+  if (o_select_is_selection(w_current)) {
+
+    /* Updating components modifies the selection. Therefore, create a
+     * new list of only the Objects we want to update from the current
+     * selection, then iterate over that new list to perform the
+     * update. */
+    selection = geda_list_get_glist (toplevel->page_current->selection_list);
+    for (iter = selection; iter != NULL; NEXT(iter)) {
+      Object *o_current = (Object *) iter->data;
+      if (o_current != NULL && o_current->type == OBJ_COMPLEX) {
+        selected_components = g_list_prepend (selected_components, o_current);
+      }
+    }
+
+    for (iter = selected_components; iter != NULL; NEXT(iter)) {
+      Object *o_current = (Object *) iter->data;
+      iter->data = o_update_component (w_current, o_current);
+    }
+
+    g_list_free (selected_components);
+
+  } else {
+    /* nothing selected, go back to select state */
+    u_log_message("Nothing selected\n");
+    o_redraw_cleanstates(w_current);
+    w_current->inside_action = 0;
+    i_set_state(w_current, SELECT);
+  }
+
+  EXIT_COMMAND(do_update);
+}
 
 /* ------------------ Options ---------------- */
 
@@ -3314,37 +3426,6 @@ COMMAND ( do_toggle_magneticnet )
   i_show_state(w_current, NULL);
 }
 
-/*! \brief Launch the Log Console Dialog Action Responder
- *
- *  @brief i_cmd_do_show_console in i_command_Option_Actions
- *
- *  \par Function Description
- *  This is a callback function to launch the Console Dialog.
- *
- */
-COMMAND ( do_show_console )
-{
-  BEGIN_COMMAND(do_show_console);
-  x_console_open (w_current);
-  EXIT_COMMAND(do_show_console);
-}
-
-/*! \brief Launch the Coordinates Dialog Action Responder
- *
- *  @brief i_cmd_do_show_coordinates in i_command_Option_Actions
- *
- *  \par Function Description
- *  This is a callback function to launch the Coordinates Dialog.
- *
- *  TODO: Slated to be relocated in 2.09
- */
-COMMAND ( do_show_coordinates )
-{
-  BEGIN_COMMAND(do_show_coordinates);
-  x_dialog_coord_dialog (w_current, 0, 0);
-  EXIT_COMMAND(do_show_coordinates);
-}
-
 /*! @brief Launch the Show Text Dialog */
 COMMAND ( do_show_text_size )
 {
@@ -3407,6 +3488,7 @@ COMMAND ( do_show_hotkeys )
   x_dialog_hotkeys(w_current);
   EXIT_COMMAND(do_show_hotkeys);
 }
+
 /*! @brief Spawn the Help FAQ in Browser */
 COMMAND ( do_show_faq )
 {
@@ -3423,6 +3505,7 @@ COMMAND ( do_show_faq )
   }
   EXIT_COMMAND(do_show_faq);
 }
+
 /*! @brief Spawn the Help Geda in Browser */
 COMMAND ( do_show_geda )
 {
@@ -3439,6 +3522,7 @@ COMMAND ( do_show_geda )
   }
   EXIT_COMMAND(do_show_geda);
 }
+
 /*! @brief Spawn the Help Wiki in Browser */
 COMMAND ( do_show_wiki )
 {
@@ -3455,6 +3539,7 @@ COMMAND ( do_show_wiki )
   }
   EXIT_COMMAND(do_show_wiki);
 }
+
 /*! @brief Launch the Help About Dialog */
 COMMAND ( do_show_about )
 {
@@ -3476,11 +3561,6 @@ COMMAND ( do_show_about )
 /** @brief i_cmd_draw_grips in i_command_Variable_Handlers */
 COMMAND (draw_grips) {
   SHOW_VARIABLE(draw_grips, R);
-}
-
-/** @brief i_cmd_logging in i_command_Variable_Handlers */
-COMMAND (logging) {
-  SHOW_VARIABLE(logging, G);
 }
 
 /** @brief i_cmd_grid_mode in i_command_Variable_Handlers */
@@ -3559,6 +3639,11 @@ COMMAND (zoom_gain) {
 COMMAND (zoom_with_pan) {
 
   SHOW_VARIABLE(zoom_gain, W);
+}
+
+/** @brief i_cmd_logging in i_command_Variable_Handlers */
+COMMAND (logging) {
+  SHOW_VARIABLE(logging, G);
 }
 
 /** @brief i_cmd_log_destiny in i_command_Variable_Handlers */
