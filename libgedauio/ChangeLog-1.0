@@ -1,3 +1,10 @@
+2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_comboboxtext.h: Add geda_combo_box_text_set_activate_default
+        and geda_combo_box_text_get_entry, expose entry.
+
+      * src/widgets/geda_comboboxtext.c: Add new function geda_combo_box_text
+        _set_activate_default and geda_combo_box_text_get_entry.
 
 2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
 

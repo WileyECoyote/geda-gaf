@@ -110,6 +110,9 @@ static void FixGtkCrap(GtkWidget *widget, void *combo)
     /* And also unlike Gtk, we provide access to the internal button */
     (GEDA_COMBO_BOX_TEXT(combo))->button = widget;
   }
+  else if (GTK_IS_ENTRY(widget)) {
+    (GEDA_COMBO_BOX_TEXT(combo))->entry = widget;
+  }
 }
 
 static GObject *
@@ -117,28 +120,35 @@ geda_combo_box_text_constructor (GedaType               type,
                                  unsigned int           n_construct_properties,
                                  GObjectConstructParam *construct_properties)
 {
-  GObject   *self;
+  GObject          *object;
+  GedaComboBoxText *self;
+
   const int  text_column = 0;
 
-  self = G_OBJECT_CLASS (geda_combo_box_text_parent_class)->constructor
-  (type, n_construct_properties, construct_properties);
+  object = G_OBJECT_CLASS (geda_combo_box_text_parent_class)->constructor
+                           (type, n_construct_properties, construct_properties);
 
-  gtk_combo_box_set_entry_text_column (GTK_COMBO_BOX (self), text_column);
+  self = GEDA_COMBO_BOX_TEXT(object);
 
-  if (!gtk_combo_box_get_has_entry (GTK_COMBO_BOX (self))) {
+  gtk_combo_box_set_entry_text_column (GTK_COMBO_BOX (object), text_column);
+
+  if (!gtk_combo_box_get_has_entry (GTK_COMBO_BOX (object))) {
 
     GtkCellRenderer *cell;
 
     cell = gtk_cell_renderer_text_new ();
-    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (self), cell, TRUE);
-    gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (self), cell,
+    gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (object), cell, TRUE);
+    gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (object), cell,
                                     "text", text_column,
                                     NULL);
   }
 
-  gtk_container_forall (GTK_CONTAINER (self), FixGtkCrap, self);
+  self->button = NULL;
+  self->entry  = NULL;
 
-  return self;
+  gtk_container_forall (GTK_CONTAINER (object), FixGtkCrap, object);
+
+  return object;
 }
 
 static void
@@ -606,7 +616,9 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
   else
     return NULL;
 }
-void geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
+
+void
+geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
 {
   gtk_combo_box_set_active((GtkComboBox*)combo_box, position);
 }
@@ -615,13 +627,41 @@ int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
   return gtk_combo_box_get_active ((GtkComboBox*)combo_box);
 }
 
+void
+geda_combo_box_text_set_activate_default (GedaComboBoxText *combo_box, bool setting)
+{
+  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
+
+    if (GTK_IS_ENTRY(combo_box->entry)) {
+      gtk_entry_set_activates_default (GTK_ENTRY(combo_box->entry), setting);
+    }
+  }
+}
+
+
+GtkWidget*
+geda_combo_box_text_get_entry (GedaComboBoxText *combo_box)
+{
+  GtkWidget *entry = NULL;
+
+  if (GEDA_COMBO_BOX_TEXT (combo_box)) {
+    if (GTK_IS_ENTRY(combo_box->entry)) {
+      entry = combo_box->entry;
+    }
+  }
+  return entry;
+}
+
 /* These are probably more practical, but have longer names */
-void geda_combo_box_text_widget_append (GtkWidget *widget, const char *text)
+void
+geda_combo_box_text_widget_append (GtkWidget *widget, const char *text)
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), -1, text);
 }
-void geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
-                                        const char *text)
+
+void
+geda_combo_box_text_widget_insert (GtkWidget  *widget, int position,
+                                   const char *text)
 {
   geda_combo_box_text_insert (GEDA_COMBO_BOX_TEXT(widget), position, text);
 }
