@@ -136,26 +136,11 @@
 (define-action-public (&edit-pin-type #:label (_ "Edit Pin Type"))
   (%edit-pin-type))
 
-(define-action-public (&edit-translate #:label (_ "Translate Symbol"))
-  (%edit-translate))
-
 (define-action-public (&edit-lock #:label (_ "Lock"))
   (%edit-lock))
 
 (define-action-public (&edit-unlock #:label (_ "Unlock"))
   (%edit-unlock))
-
-(define-action-public (&edit-invoke-macro #:label (_ "Invoke Macro"))
-  (%edit-invoke-macro))
-
-(define-action-public (&edit-embed #:label (_ "Embed Component/Picture"))
-  (%edit-embed))
-
-(define-action-public (&edit-unembed #:label (_ "Unembed Component/Picture"))
-  (%edit-unembed))
-
-(define-action-public (&edit-update #:label (_ "Update Component") #:icon "gtk-refresh")
-  (%edit-update))
 
 (define-action-public (&edit-show-hidden #:label (_ "Show/Hide Invisible Text"))
   (%edit-show-hidden))
@@ -307,8 +292,8 @@
 (define-action-public (&attributes-show-both #:label (_ "Show Name & Value") #:icon "gschem-show-both")
   (%attributes-show-both))
 
-(define-action-public (&attributes-visibility-toggle #:label (_ "Toggle Text Visibility"))
-  (%attributes-visibility-toggle))
+(define-action-public (&attributes-visibility #:label (_ "Toggle Text Visibility"))
+  (%attributes-visibility))
 
 (define-action-public (&edit-find-text #:label (_ "Find Specific Text") #:icon "gtk-find")
   (%edit-find-text))
@@ -319,8 +304,32 @@
 (define-action-public (&edit-show-text #:label (_ "Show Specific Text"))
   (%edit-show-text))
 
-(define-action-public (&edit-autonumber #:label (_ "Autonumber Text"))
-  (%edit-autonumber))
+;; -------------------------------------------------------------------
+;;;; Tools actions
+(define-action-public (&tools-autonumber #:label (_ "Autonumber Text"))
+  (%tools-autonumber))
+
+(define-action-public (&tools-show-console #:label (_ "Show Console Window"))
+  (%tools-show-console))
+
+(define-action-public (&tools-show-coordinates #:label (_ "Show Coordinate Window"))
+  (%tools-show-coordinates))
+
+(define-action-public (&tools-invoke-macro #:label (_ "Invoke Macro"))
+  (%tools-invoke-macro))
+
+(define-action-public (&tools-translate #:label (_ "Translate Symbol"))
+  (%tools-translate))
+
+(define-action-public (&tools-embed #:label (_ "Embed Component/Picture"))
+  (%tools-embed))
+
+(define-action-public (&tools-unembed #:label (_ "Unembed Component/Picture"))
+  (%tools-unembed))
+
+(define-action-public (&tools_update #:label (_ "Update Component") #:icon "gtk-refresh")
+  (%tools_update))
+
 
 ;; -------------------------------------------------------------------
 ;;;; Configuration actions
@@ -354,12 +363,6 @@
 
 (define-action-public (&options-magneticnet #:label (_ "Toggle Magnetic Nets"))
   (%options-magneticnet))
-
-(define-action-public (&options-show-log-window #:label (_ "Show Log Window"))
-  (%options-show-log-window))
-
-(define-action-public (&options-show-coord-window #:label (_ "Show Coordinate Window"))
-  (%options-show-coord-window))
 
 ;; -------------------------------------------------------------------
 ;;;; Documentation-related actions

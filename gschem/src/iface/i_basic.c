@@ -335,13 +335,14 @@ void i_update_sensitivities(GschemToplevel *w_current)
 
       x_menus_sensitivity(w_current, "_Edit/Slot...", TRUE);
       x_menus_sensitivity(w_current, "_Edit/Edit Pin...", TRUE);
-      x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", TRUE);
-      x_menus_sensitivity(w_current, "_Edit/Update Component", TRUE);
 
       x_menus_popup_sensitivity(w_current, "Edit pin type...", TRUE);
       x_menus_popup_sensitivity(w_current, "Down Schematic", TRUE);
       x_menus_popup_sensitivity(w_current, "Down Symbol", TRUE);
       /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
+
+      x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", TRUE);
+      x_menus_sensitivity(w_current, "_Tools/Update Component", TRUE);
     }
 
     if(have_text_selected) {
@@ -424,8 +425,6 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Unlock", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Fill Type...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Unembed Component/Picture", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Update Component", FALSE);
 
     x_menus_sensitivity(w_current, "_Buffer/Copy into 1", FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 2", FALSE);
@@ -448,6 +447,9 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "A_ttributes/Show _Name", FALSE);
     x_menus_sensitivity(w_current, "A_ttributes/Show _Both", FALSE);
     x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", FALSE);
+
+    x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", FALSE);
+    x_menus_sensitivity(w_current, "_Tools/Update Component", FALSE);
 
     /*  Menu items for hierarchy added by SDB 1.9.2005.  */
     x_menus_popup_sensitivity(w_current, "Down Schematic", FALSE);

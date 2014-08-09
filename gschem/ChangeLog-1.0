@@ -1,5 +1,21 @@
 2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
+        * etc/system-gschemrc.scm: Re-arrange menu items and hot-key assignments,
+          renamed various actions reloated to under the Tools menu.
+
+        * include/i_actions.h: Rename actions to correspond to menu action names
+
+        * include/x_toolbars.h: Resequenced actions and renamed tool-tip macros,
+          for the sake of organization.
+
+        * src/x/x_toolbars.c: Rename actions and resequenced.
+
+        * scheme/gschem/builtins.scm: Updated action names.
+
+        * src/iface/i_basic.c: Updated menu item strings.
+
+2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/x/x_preview.c: Add boolean property PROP_LARGE, default FASLE.
           Add new functions preview_set_xy and preview_resize.
 

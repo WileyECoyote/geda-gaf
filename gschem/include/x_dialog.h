@@ -56,6 +56,7 @@
 typedef struct st_line_type_data line_type_data;
 typedef struct st_fill_type_data fill_type_data;
 typedef struct st_pin_type_data  pin_type_data;
+typedef struct st_property_data  property_data;
 
 struct st_line_type_data {
 
@@ -76,6 +77,17 @@ struct st_fill_type_data {
   GtkWidget *pitch2_entry;
 
 };
+
+struct st_property_data {
+
+  GtkWidget *symbol_entry;
+  GtkWidget *author_entry;
+  GtkWidget *version_entry;
+  GtkWidget *ulicense_entry;
+  GtkWidget *dlicense_entry;
+  GtkWidget *model_entry;
+};
+
 struct st_pin_type_data {
 
   GtkWidget *node_type;

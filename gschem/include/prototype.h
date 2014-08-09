@@ -674,6 +674,9 @@ void x_dialog_edit_color          (GschemToplevel *w_current);
 /* x_edit_pin.c */
 void x_dialog_edit_pin_type       (GschemToplevel *w_current);
 
+/* x_edit_property.c */
+void x_dialog_edit_properties     (GschemToplevel *w_current);
+
 /* x_edit_text.c */
 void x_dialog_edit_text           (GschemToplevel *w_current, Object *object);
 

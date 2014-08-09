@@ -108,20 +108,21 @@
 /* -----------------  Strings for Dialogs Boxes  ---------------- */
 
 /* Identifcation Strings for Saving & Restoring Window Geometry */
-#define IDS_SNAP_SIZE          "snap-size"  /* Type: MODAL  */
-#define IDS_TEXT_SIZE          "text-size"  /* Type: MODAL  */
-#define IDS_ARC_ANGLE          "arc-angle"  /* Type: MODELESS */
-#define IDS_COLOR_EDIT         "color-edit" /* Type: MODELESS */
-#define IDS_FILL_TYPE          "fill-type"  /* Type: MODELESS */
-#define IDS_LINE_TYPE          "line-type"  /* Type: MODELESS */
-#define IDS_PIN_EDIT           "pin-edit"   /* Type: MODELESS */
-#define IDS_SLOT_EDIT          "slot-edit"  /* Type: MODELESS */
-#define IDS_TEXT_EDIT          "text-edit"  /* Type: MODELESS */
-#define IDS_FIND_TEXT          "find-text"  /* Type: MODELESS */
-#define IDS_HIDE_TEXT          "hide-text"  /* Type: MODELESS */
-#define IDS_SHOW_TEXT          "show-text"  /* Type: MODELESS */
-#define IDS_TEXT_INPUT         "text-input" /* Type: MODELESS */
-#define IDS_TRANSLATE          "translate"  /* Type: MODAL    */
+#define IDS_SNAP_SIZE          "snap-size"   /* Type: MODAL  */
+#define IDS_TEXT_SIZE          "text-size"   /* Type: MODAL  */
+#define IDS_ARC_ANGLE          "arc-angle"   /* Type: MODELESS */
+#define IDS_COLOR_EDIT         "color-edit"  /* Type: MODELESS */
+#define IDS_FILL_TYPE          "fill-type"   /* Type: MODELESS */
+#define IDS_LINE_TYPE          "line-type"   /* Type: MODELESS */
+#define IDS_PIN_EDIT           "pin-edit"    /* Type: MODELESS */
+#define IDS_PROP_EDIT          "prop-edit"   /* Type: MODELESS */
+#define IDS_SLOT_EDIT          "slot-edit"   /* Type: MODELESS */
+#define IDS_TEXT_EDIT          "text-edit"   /* Type: MODELESS */
+#define IDS_FIND_TEXT          "find-text"   /* Type: MODELESS */
+#define IDS_HIDE_TEXT          "hide-text"   /* Type: MODELESS */
+#define IDS_SHOW_TEXT          "show-text"   /* Type: MODELESS */
+#define IDS_TEXT_INPUT         "text-input"  /* Type: MODELESS */
+#define IDS_TRANSLATE          "translate"   /* Type: MODAL    */
 
 #define IDS_HOTKEYS            "hotkeys"      /* Type: MODELESS */
 #define IDS_COORDINATES        "coordinates"  /* Type: MODELESS */

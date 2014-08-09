@@ -91,13 +91,8 @@
 #define EDIT_PIN         edit-pintype
 #define EDIT_LINE        edit-linetype
 #define EDIT_FILL        edit-filltype
-#define EDIT_TRANSLATE   edit-translate
 #define EDIT_LOCK        edit-lock
 #define EDIT_UNLOCK      edit-unlock
-#define EDIT_MACRO       edit-invoke-macro
-#define EDIT_EMBED       edit-embed
-#define EDIT_UNEMBED     edit-unembed
-#define EDIT_UPDATE      edit-update
 
 #define EDIT_SELECT      edit-select
 #define EDIT_SELECT_ALL  edit-select-all
@@ -152,18 +147,28 @@
 #define SESSION_SAVE_AS  session-save-as
 #define SESSION_MANAGE   session-manage
 
-#define ATTRIB_ATTACH    attributes-attach
-#define ATTRIB_DETACH    attributes-detach
-#define ATTRIB_VALUE     attributes-show-value
-#define ATTRIB_NAME      attributes-show-name
-#define ATTRIB_BOTH         attributes-show-both
-#define ATTRIB_VISIBILITY   attributes-visibility
+#define ATTRIB_ATTACH        attributes-attach
+#define ATTRIB_DETACH        attributes-detach
+#define ATTRIB_VALUE         attributes-show-value
+#define ATTRIB_NAME          attributes-show-name
+#define ATTRIB_BOTH          attributes-show-both
+#define ATTRIB_VISIBILITY    attributes-visibility
 
-#define ATTRIB_FIND      attributes-find-text
-#define ATTRIB_HIDE      attributes-hide-text
-#define ATTRIB_SHOW      attributes-show-text
-#define ATTRIB_EDIT      attributes-editor
-#define ATTRIB_AUTONUM   attributes-autonumber
+#define ATTRIB_FIND          attributes-find-text
+#define ATTRIB_HIDE          attributes-hide-text
+#define ATTRIB_SHOW          attributes-show-text
+#define ATTRIB_EDIT          attributes-editor
+
+/* Tools */
+#define TOOLS_AUTONUM        tools-autonumber
+#define TOOLS_CONSOLE        tools-show-console
+#define TOOLS_COORDINATES    tools-show-coordinates
+#define TOOLS_MACRO          tools-invoke-macro
+#define TOOLS_TRANSLATE      tools-translate
+
+#define TOOLS_EMBED          tools-embed
+#define TOOLS_UNEMBED        tools-unembed
+#define TOOLS_UPDATE         tools_update
 
 /* Grid */
 #define OPT_GRID_DOT     options-grid-dot
@@ -184,8 +189,6 @@
 #define TOGGLE_RUBBER    options-rubberband
 #define TOGGLE_MAGNETIC  options-magneticnet
 
-#define OPT_CONSOLE      options-show-console
-#define OPT_COORDINATES  options-show-coordinates
 #define OPT_TEXT_SIZE    options-show-text-size
 #define OPT_SETTINGS     options-show-settings
 

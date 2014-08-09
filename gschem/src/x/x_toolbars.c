@@ -66,17 +66,18 @@ static ToolBarInfo ActiveToolBar;
  *            must be added to the cooresponding position in the other.
  *
  *  \note #2: etb_none is a dummy member used in the add mode radio group.
- *         The group is a collection of radio button and when don't want
- *         any of them selected then we set etb_none to be the active
- *         radio button.
+ *            The group is a collection of radio button and when don't want
+ *            any of them selected then we set etb_none to be the active
+ *            radio button.
  */
 typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_print, etb_write_pdf, etb_cut, etb_copy, etb_paste,
-                etb_undo, etb_redo, etb_configure, etb_selector, etb_deselector,
-                etb_unselect_all, etb_none, etb_select_all, etb_select_invert,
-                etb_add_component, etb_add_net, etb_add_bus, etb_add_attribute,
-                etb_add_text, etb_add_line, etb_add_box, etb_add_circle,
-                etb_add_arc, etb_add_path, etb_add_pin, etb_insert_pic,
+                etb_undo, etb_redo,
+                etb_selector, etb_deselector, etb_unselect_all,
+                etb_none, etb_select_all, etb_select_invert, etb_add_component,
+                etb_add_net, etb_add_bus, etb_add_attribute, etb_add_text,
+                etb_add_line, etb_add_box, etb_add_circle, etb_add_arc,
+                etb_add_path, etb_add_pin, etb_insert_pic,
                 etb_prev_page, etb_next_page, etb_new_page, etb_page_manager,
                 etb_down_schematic, etb_down_symbol, etb_hierarchy_up,
                 etb_view_document, etb_view_redraw, etb_zoom_pan, etb_zoom_box,
@@ -85,13 +86,14 @@ typedef enum  { etb_new, etb_open, etb_save, etb_save_as, etb_close,
                 etb_edit_copy, etb_multi_copy, etb_move, etb_rotate, etb_mirror,
                 etb_edit_butes, etb_edit_color, etb_edit_text, etb_edit_slot,
                 etb_edit_pin, etb_edit_line, etb_edit_fill, etb_edit_arc,
-                etb_translate, etb_lock, etb_unlock, etb_update,
+                etb_lock, etb_unlock,
                 etb_attach, etb_detach, etb_show_value, etb_show_name,
                 etb_show_both, etb_visibilty, etb_show_hidden, etb_show_inherited,
-                etb_find_text, etb_hide_text, etb_show_specific, etb_auto_number,
+                etb_find_text, etb_hide_text, etb_show_specific,
+                etb_auto_number, etb_translate, etb_update,
                 etb_grid_dot, etb_grid_mesh, etb_grid_off,
                 etb_snap_up, etb_snap_down, etb_snap_set, etb_snap_off,
-                etb_snap_on,
+                etb_snap_on, etb_configure,
 } IDE_GSCHEM_Toolbar;
 
 /* Important: See IDS_Menu_Toolbar_Toggles in x_menu.c */
@@ -117,7 +119,6 @@ static ToolbarStringData ToolbarStrings[] = {
 
   { ACTION(EDIT_UNDO),          "Undo",       TBTS_EDIT_UNDO,           GSCHEM_MAP(UNDO)},
   { ACTION(EDIT_REDO),          "Redo",       TBTS_EDIT_REDO,           GSCHEM_MAP(REDO)},
-  { ACTION(OPT_SETTINGS),       "Config",     TBTS_OPT_SETTINGS,        GEDA_MAP(TOOLS)},
 
   { ACTION(EDIT_SELECT),        "Select",      TBTS_EDIT_SELECT,       "gschem-select"},
   { ACTION(EDIT_DESELECT),      "Deselect",    TBTS_EDIT_DESELECT,     "gschem-unselect"},
@@ -182,10 +183,8 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(EDIT_FILL),          "Fill",       TBTS_EDIT_FILL,           GEDA_MAP(MESH)},
   { ACTION(EDIT_ARC),           "Arcs",       TBTS_EDIT_ARC,           "geda-arc-edit"},
 
-  { ACTION(EDIT_TRANSLATE),     "Translate",  TBTS_EDIT_TRANSLATE,      GEDA_MAP(TRANSLATE)},
   { ACTION(EDIT_LOCK),          "Lock",       TBTS_EDIT_LOCK,          "Private"},
   { ACTION(EDIT_UNLOCK),        "Unlock",     TBTS_EDIT_UNLOCK,        "Private"},
-  { ACTION(EDIT_UPDATE),        "Update",     TBTS_EDIT_UPDATE,        "Private"},
 
   /* Attribute Toolbar */
   { ACTION(ATTRIB_ATTACH),      "Promote",    TBTS_ATTRIB_ATTACH,      "Private"},
@@ -199,7 +198,10 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(ATTRIB_FIND),        "Find",       TBTS_ATTRIB_FIND,         GEDA_MAP(FIND_ATTRIBUTE)},
   { ACTION(ATTRIB_HIDE),        "Hide",       TBTS_ATTRIB_HIDE,        "Private"},
   { ACTION(ATTRIB_SHOW),        "Show",       TBTS_ATTRIB_SHOW,        "Private"},
-  { ACTION(ATTRIB_AUTONUM),     "Auto #",     TBTS_ATTRIB_AUTONUM,     "geda-autonum-blue"},
+
+  { ACTION(TOOLS_AUTONUM),      "Auto #",     TBTS_TOOLS_AUTONUM,      "geda-autonum-blue"},
+  { ACTION(TOOLS_TRANSLATE),    "Translate",  TBTS_TOOLS_TRANSLATE,     GEDA_MAP(TRANSLATE)},
+  { ACTION(TOOLS_UPDATE),       "Update",     TBTS_TOOLS_UPDATE,        "Private"},
 
   { ACTION(OPT_GRID_DOT),       "Dots",       TBTS_OPT_GRID_DOT,       "geda-grid-dot"},
   { ACTION(OPT_GRID_MESH),      "Mesh",       TBTS_OPT_GRID_MESH,      "geda-grid-mesh"},
@@ -211,6 +213,7 @@ static ToolbarStringData ToolbarStrings[] = {
   { ACTION(OPT_SNAP_OFF),       "Snap Off",   TBTS_OPT_SNAP_OFF,       "geda-snap-off"},
   { ACTION(OPT_SNAP_ON),        "Snap On",    TBTS_OPT_SNAP_ON,        "geda-snap-on"},
 
+  { ACTION(OPT_SETTINGS),       "Config",     TBTS_OPT_SETTINGS,        GEDA_MAP(TOOLS)},
   { NULL, NULL, NULL},
 };
 

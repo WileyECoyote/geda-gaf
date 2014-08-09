@@ -1582,10 +1582,12 @@ COMMAND (do_update)
         selected_components = g_list_prepend (selected_components, o_current);
       }
     }
+
     for (iter = selected_components; iter != NULL; NEXT(iter)) {
       Object *o_current = (Object *) iter->data;
       iter->data = o_update_component (w_current, o_current);
     }
+
     g_list_free (selected_components);
 
   } else {

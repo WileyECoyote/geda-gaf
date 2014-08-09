@@ -99,7 +99,6 @@ typedef struct {
 
 #define TBTS_EDIT_UNDO          "Undo the last operation"
 #define TBTS_EDIT_REDO          "Redo the last undo"
-#define TBTS_OPT_SETTINGS       "Set configuration preferences"
 
 #define TBTS_EDIT_SELECT        "Activate Select mode"
 #define TBTS_EDIT_DESELECT      "Activate UnSelect mode"
@@ -162,10 +161,8 @@ typedef struct {
 #define TBTS_EDIT_FILL          "Edit Hatch pattern"
 #define TBTS_EDIT_ARC           "Edit Arc parameters"
 
-#define TBTS_EDIT_TRANSLATE     "Translate component positions"
 #define TBTS_EDIT_LOCK          "Lock Objects"
 #define TBTS_EDIT_UNLOCK        "Unlock Objects"
-#define TBTS_EDIT_UPDATE        "Reload Component from library"
 
   /* Attribute Toolbar */
 #define TBTS_ATTRIB_ATTACH      "Attach selected attribute"
@@ -179,7 +176,6 @@ typedef struct {
 #define TBTS_ATTRIB_FIND        "Find attribute"
 #define TBTS_ATTRIB_HIDE        "Hide selected attribute"
 #define TBTS_ATTRIB_SHOW        "Show a specific attribute value"
-#define TBTS_ATTRIB_AUTONUM     "Open Auto Number dialog"
 
 #define TBTS_OPT_GRID_DOT       "Set the Grid Display to Dots Mode"
 #define TBTS_OPT_GRID_MESH      "Set the Grid Display to Mesh Mode"
@@ -190,6 +186,13 @@ typedef struct {
 #define TBTS_OPT_SNAP_SIZE      "Open the Snap Size dialog"
 #define TBTS_OPT_SNAP_OFF       "Turn Snap mode off"
 #define TBTS_OPT_SNAP_ON        "Turn Snap mode on"
+
+#define TBTS_OPT_SETTINGS       "Set configuration preferences"
+
+#define TBTS_TOOLS_AUTONUM      "Open Auto Number dialog"
+#define TBTS_TOOLS_TRANSLATE    "Translate component positions"
+#define TBTS_TOOLS_UPDATE       "Reload Component from library"
+
 #endif /* __X_TOOLBARS_H__ */
 
 

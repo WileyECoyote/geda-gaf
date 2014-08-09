@@ -91,6 +91,7 @@ struct _GschemToplevel {
   GtkWidget *clwindow;          /* Color edit, settings: IDS_COLOR_EDIT */
   GtkWidget *hpwindow;          /* Fill Type,  settings: IDS_FILL_TYPE  */
   GtkWidget *ltwindow;          /* Line Type,  settings: IDS_LINE_TYPE  */
+  GtkWidget *prwindow;          /* Prop edit,  settings: IDS_PROP_EDIT  */
   GtkWidget *ptwindow;          /* Pin Type,   settings: IDS_PIN_EDIT   */
   GtkWidget *sewindow;          /* Slot edit   settings: IDS_SLOT_EDIT  */
   GtkWidget *tewindow;          /* text edit   settings: IDS_TEXT_EDIT  */

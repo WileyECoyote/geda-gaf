@@ -333,7 +333,10 @@ void set_gschem_dialog_null(void *dialog)
     else if (dialog == w_current->ltwindow) { /* Line Type */
         w_current->ltwindow = NULL;
     }
-    else if (dialog == w_current->ptwindow) { /* Pin Type */
+    else if (dialog == w_current->prwindow) { /* Line Type */
+        w_current->prwindow = NULL;
+    }
+    else if (dialog == w_current->ptwindow) { /* Prop edit */
         w_current->ptwindow = NULL;
     }
     else if (dialog == w_current->sewindow) { /* Slot Edit */

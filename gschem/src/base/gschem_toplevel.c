@@ -81,6 +81,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->clwindow           = NULL;
   w_current->hpwindow           = NULL;
   w_current->ltwindow           = NULL;
+  w_current->prwindow           = NULL;
   w_current->ptwindow           = NULL;
   w_current->sewindow           = NULL;
   w_current->tewindow           = NULL;

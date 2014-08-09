@@ -102,13 +102,8 @@ enum ActionFlag
         COMMAND ( do_pintype )
         COMMAND ( do_linetype )
         COMMAND ( do_filltype )
-        COMMAND ( do_translate )
         COMMAND ( do_lock )
         COMMAND ( do_unlock )
-        COMMAND ( do_macro  )
-        COMMAND ( do_embed )
-        COMMAND ( do_unembed )
-        COMMAND ( do_update )
 
         COMMAND ( do_select )
         COMMAND ( do_select_all )
@@ -178,8 +173,18 @@ enum ActionFlag
         COMMAND ( do_hide_text )
         COMMAND ( do_show_text )
         COMMAND ( do_attributes )
-        COMMAND ( do_autonumber )
 
+/* Tools */
+        COMMAND ( do_autonumber )
+        COMMAND ( do_show_console )
+        COMMAND ( do_show_coordinates )
+        COMMAND ( do_macro )
+        COMMAND ( do_translate )
+        COMMAND ( do_embed )
+        COMMAND ( do_unembed )
+        COMMAND ( do_update )
+
+/* Options */
 /* Grid Snap */
         COMMAND ( do_grid_dots )
         COMMAND ( do_grid_mesh )
@@ -199,8 +204,6 @@ enum ActionFlag
         COMMAND ( do_toggle_rubberband )
         COMMAND ( do_toggle_magneticnet )
 
-        COMMAND ( do_show_console )
-        COMMAND ( do_show_coordinates )
         COMMAND ( do_show_text_size )
         COMMAND ( do_show_settings )
 
@@ -381,13 +384,8 @@ enum {
      COMMAND ( EDIT_PIN,            "pin type",         USE_WORKER_THREAD,      do_pintype)
      COMMAND ( EDIT_LINE,           "line type",        USE_WORKER_THREAD,      do_linetype)
      COMMAND ( EDIT_FILL,           "fill type",        USE_WORKER_THREAD,      do_filltype)
-     COMMAND ( EDIT_TRANSLATE,      "translate",        USE_WORKER_THREAD,      do_translate)
      COMMAND ( EDIT_LOCK,           "lock",             USE_MAIN_LOOP,          do_lock)
      COMMAND ( EDIT_UNLOCK,         "unlock",           USE_WORKER_THREAD,      do_unlock)
-     COMMAND ( EDIT_MACRO,          "macro",            USE_MAIN_LOOP,          do_macro )
-     COMMAND ( EDIT_EMBED,          "embed",            USE_WORKER_THREAD,      do_embed)
-     COMMAND ( EDIT_UNEMBED,        "unembed",          USE_WORKER_THREAD,      do_unembed)
-     COMMAND ( EDIT_UPDATE,         "update",           USE_MAIN_LOOP,          do_update)
 
      COMMAND ( EDIT_SELECT,         NULL,               USE_MAIN_LOOP,          do_select)
      COMMAND ( EDIT_SELECT_ALL,     "select all",       USE_MAIN_LOOP,          do_select_all)
@@ -457,7 +455,16 @@ enum {
      COMMAND ( ATTRIB_HIDE,         "hide text",        USE_MAIN_LOOP,          do_hide_text)
      COMMAND ( ATTRIB_SHOW,         "show text",        USE_MAIN_LOOP,          do_show_text)
      COMMAND ( ATTRIB_EDIT,         "edit attrib",      USE_WORKER_THREAD,      do_attributes)
-     COMMAND ( ATTRIB_AUTONUM,      "autonumber",       USE_MAIN_LOOP,          do_autonumber)
+
+/* Tools */
+     COMMAND ( TOOLS_AUTONUM,       "autonumber",       USE_MAIN_LOOP,          do_autonumber)
+     COMMAND ( TOOLS_CONSOLE,       NULL,               USE_MAIN_LOOP,          do_show_console)
+     COMMAND ( TOOLS_COORDINATES,   NULL,               USE_WORKER_THREAD,      do_show_coordinates)
+     COMMAND ( TOOLS_MACRO,         "macro",            USE_MAIN_LOOP,          do_macro )
+     COMMAND ( TOOLS_TRANSLATE,     "translate",        USE_WORKER_THREAD,      do_translate)
+     COMMAND ( TOOLS_EMBED,         "embed",            USE_WORKER_THREAD,      do_embed)
+     COMMAND ( TOOLS_UNEMBED,       "unembed",          USE_WORKER_THREAD,      do_unembed)
+     COMMAND ( TOOLS_UPDATE,        "update",           USE_MAIN_LOOP,          do_update)
 
 /* Options */
 
@@ -479,8 +486,6 @@ enum {
      COMMAND ( TOGGLE_RUBBER,       "rubberband",       USE_WORKER_THREAD,      do_toggle_rubberband)
      COMMAND ( TOGGLE_MAGNETIC,     "magnetic net",     USE_WORKER_THREAD,      do_toggle_magneticnet)
 
-     COMMAND ( OPT_CONSOLE,         NULL,               USE_MAIN_LOOP,          do_show_console)
-     COMMAND ( OPT_COORDINATES,     NULL,               USE_WORKER_THREAD,      do_show_coordinates)
      COMMAND ( OPT_TEXT_SIZE,       NULL,               USE_WORKER_THREAD,      do_show_text_size)
      COMMAND ( OPT_SETTINGS,        "Preferences",      USE_MAIN_LOOP,          do_show_settings)
 
