@@ -1,3 +1,7 @@
+2014-08-10 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_attrib.c: Add function o_attrib_get_attached_attribs
+
 2014-08-04 Wiley E. Hill <wileyhill@gmail.com>
 
         * Add Doxygen grouping for object type, config, page,toplevel

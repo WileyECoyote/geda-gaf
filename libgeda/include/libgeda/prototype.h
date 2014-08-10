@@ -98,6 +98,7 @@ const char  *f_get_filename_ext            (const char *filename);
 
 /* o_attrib.c */
       void    o_attrib_add                              (Object *object, Object *item);
+      GList  *o_attrib_get_attached_attribs             (Object *object);
       bool    o_attrib_is_attached                      (Object *attrib, Object *object);
       void    o_attrib_attach                           (Object *attrib, Object *object, int set_color);
       void    o_attrib_attach_list                      (GList  *attr_list, Object *object, int set_color);

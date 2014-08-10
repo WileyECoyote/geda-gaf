@@ -67,6 +67,19 @@ void o_attrib_add(Object *object, Object *item)
   o_attrib_emit_attribs_changed (object);
 }
 
+/*! \brief Get List of Attributes Attached to Object
+ *  \par Function Description
+ *  return the Object-atrribs glist assocaiated with the given object.
+ *
+ *  \param [in]  object The Object from which to get the attribute list.
+ *
+ *  \return List of attached attributes.
+ */
+GList *o_attrib_get_attached_attribs (Object *object)
+{
+  return object->attribs;
+}
+
 /*! \brief Check whether a attrib is attached to another object
  *  \par Function Description
  *  This function checks whether the object \a attrib is attached to
