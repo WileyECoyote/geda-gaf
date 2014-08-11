@@ -1,44 +1,50 @@
-v 20121031 2
-T 10 10 5 10 0 0 0 0 1
+v 20140728 2
+T 700 1600 8 10 0 0 0 0 1
 author=AutoTron
-T 700 650 8 10 1 1 0 0 1
-refdes=none
-T 700 850 5 10 0 0 0 0 1
-spice-type=V
-T 700 1250 5 10 0 0 0 0 1
+T 700 1450 8 10 0 0 0 0 1
+dist-license=GPL3
+T 700 1300 8 10 0 0 0 0 1
+use-license=unlimited
+T 700 1150 8 10 0 0 0 0 1
 numslots=0
-T 700 1050 5 10 0 0 0 0 1
+T 700 1000 8 10 0 0 0 0 1
 footprint=none
-T 700 1450 5 10 0 0 0 0 1
-description=dc power source
+T 675 700 5 10 0 1 0 0 1
+description=DC voltage-source
 P 300 1200 300 900 1 0 0
 {
 T 350 1000 5 8 0 1 0 0 1
 pinnumber=1
-T 350 1000 5 8 0 1 0 2 1
+T 350 1000 5 8 0 1 0 0 1
 pinseq=1
-T 300 850 9 8 0 1 0 5 1
+T 175 800 9 8 0 1 0 5 1
 pinlabel=n+
-T 300 700 5 8 0 1 0 5 1
+T 250 1000 5 8 0 1 0 6 1
 pintype=pwr
 }
 P 300 0 300 300 1 0 0
 {
 T 350 100 5 8 0 1 0 0 1
 pinnumber=2
-T 350 100 5 8 0 1 0 2 1
+T 350 100 5 8 0 1 0 0 1
 pinseq=2
-T 300 350 9 8 0 1 0 3 1
+T 425 425 9 8 0 1 0 3 1
 pinlabel=n-
-T 300 500 5 8 0 1 0 3 1
+T 250 100 5 8 0 1 0 6 1
 pintype=pwr
 }
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 700 450 5 10 1 1 0 0 1
-value=DC +1V
-T 300 900 9 10 1 0 0 5 1
+T 150 525 9 12 1 0 0 0 1
+DC
+T 300 850 9 10 1 0 0 5 1
 +
-T 300 300 9 10 1 0 0 3 1
+T 300 325 9 10 1 0 0 3 1
 -
-T 600 100 9 10 0 0 0 0 1
+T 675 850 9 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
+T 700 500 8 10 1 1 0 0 1
+refdes=V?
+T 700 150 5 10 0 0 0 0 1
+spice-type=V
+T 700 325 5 10 1 1 0 0 1
+value=DC +1V
