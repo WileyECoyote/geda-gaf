@@ -77,7 +77,7 @@ description=SPI serial cmos eeprom
 T 300 2150 8 10 0 0 0 0 1
 numslots=0
 T 300 1750 8 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 300 1950 8 10 0 0 0 0 1
 net=GND:4
 T 300 950 9 8 1 0 0 0 1

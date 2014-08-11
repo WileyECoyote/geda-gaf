@@ -60,7 +60,7 @@ footprint=TO-126
 T 0 1400 5 10 0 0 0 0 1
 footprints=TO-92
 T 0 1250 5 10 0 0 0 0 1
-spicetype=BJT PNP
+spice-type=BJT PNP
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 425,375
 L 500,350

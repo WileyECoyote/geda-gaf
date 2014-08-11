@@ -60,7 +60,7 @@ footprint=SOT883
 T 0 1400 5 10 0 0 0 0 1
 footprints=SOT-23, SOT-323
 T 0 1250 5 10 0 0 0 0 1
-spicetype=BJT PNP
+spice-type=BJT PNP
 L 425 375 500 350 3 0 0 0 -1 -1
 L 425 375 450 300 3 0 0 0 -1 -1
 L 500 350 450 300 3 0 0 0 -1 -1

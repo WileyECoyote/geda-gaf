@@ -6,7 +6,7 @@ device=Atmega128
 T 400 12650 8 10 0 0 0 0 1
 footprint=TQFP64
 T 400 12850 8 10 0 0 0 0 1
-net=Vcc:21,52
+net=VCC:21,52
 T 400 13050 8 10 0 0 0 0 1
 net=GND:22,53
 T 400 13250 8 10 0 0 0 0 1

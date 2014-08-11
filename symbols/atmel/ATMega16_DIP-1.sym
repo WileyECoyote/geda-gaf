@@ -6,7 +6,7 @@ device=ATmega16_DIP
 T 400 7850 8 10 0 0 0 0 1
 footprint=DIP40
 T 400 8050 8 10 0 0 0 0 1
-net=Vcc:10
+net=VCC:10
 T 400 8250 8 10 0 0 0 0 1
 net=GND:11
 T 400 8450 8 10 0 0 0 0 1

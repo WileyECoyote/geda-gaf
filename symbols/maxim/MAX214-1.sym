@@ -267,7 +267,7 @@ numslots=0
 T 300 7150 5 10 0 0 0 0 1
 net=GND:13
 T 300 7350 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 7550 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX214.pdf
 T 300 6150 9 8 1 0 0 0 1

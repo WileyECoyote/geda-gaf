@@ -191,13 +191,13 @@ description=low-power, 8-channel, serial 12-bit ADC
 T 300 6250 5 10 0 0 0 0 1
 numslots=0
 T 300 6650 5 10 0 0 0 0 1
-net=Vdd:20
+net=VDD:20
 T 300 6850 5 10 0 0 0 0 1
 net=AGND:13
 T 300 7050 5 10 0 0 0 0 1
 net=DGND:14
 T 300 7250 5 10 0 0 0 0 1
-net=Vss:9
+net=VSS:9
 T 300 7650 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX186-MAX188.pdf
 T 300 5850 9 10 1 0 0 0 1

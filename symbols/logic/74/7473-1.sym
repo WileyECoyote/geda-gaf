@@ -82,7 +82,7 @@ refdes=U?
 T 2100 1950 5 10 0 0 0 0 1
 description=2 JK-flip-flops with clear
 T 2100 2150 5 10 0 0 0 0 1
-net=Vcc:4
+net=VCC:4
 T 2100 2350 5 10 0 0 0 0 1
 net=GND:11
 T 300 1740 9 10 1 0 0 0 1

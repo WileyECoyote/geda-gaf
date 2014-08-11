@@ -1,27 +1,33 @@
-v 20121031 2
-T 10 10 5 10 0 0 0 0 1
+v 20140810 2
+T 0 1450 8 10 0 0 0 0 1
 author=AutoTron
+T 0 1300 8 10 0 0 0 0 1
+dist-license=GPL3
+T 0 1150 8 10 0 0 0 0 1
+use-license=unlimited
+T 0 1000 8 10 0 0 0 0 1
+numslots=0
+T 0 850 8 10 0 0 0 0 1
+footprint=none
+T 0 700 9 10 0 0 0 0 1
+description=ground node
 P 100 100 100 300 1 0 1
 {
-T 158 161 5 4 0 1 0 0 1
+T 50 175 5 6 0 1 0 6 1
 pinnumber=1
-T 158 161 5 4 0 0 0 0 1
+T 50 175 5 6 0 1 0 6 1
 pinseq=1
-T 158 161 5 4 0 1 0 0 1
-pinlabel=1
-T 158 161 5 4 0 1 0 0 1
+T 200 350 5 10 0 1 0 0 1
+pinlabel=GND
+T 200 250 5 6 0 1 0 0 1
 pintype=pwr
 }
 L 0 100 200 100 3 0 0 0 -1 -1
+T 200 100 8 10 0 0 0 0 1
+net=GND:1
+T 0 500 5 10 0 0 0 0 1
+device=GROUND_NODE
+T 200 350 8 10 0 1 0 0 1
+refdes=GND
 L 55 50 145 50 3 0 0 0 -1 -1
 L 80 10 120 10 3 0 0 0 -1 -1
-T 300 50 8 10 0 0 0 0 1
-net=GND:1
-T 600 100 9 10 0 0 0 0 1
-numslots=0
-T 600 100 9 10 0 0 0 0 1
-device=none
-T 200 300 8 10 0 1 0 0 1
-refdes=none
-T 600 100 9 10 0 0 0 0 1
-footprint=none

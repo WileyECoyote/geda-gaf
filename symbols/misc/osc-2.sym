@@ -24,6 +24,6 @@ T 400 300 9 10 1 1 0 1 1
 pinlabel=OUT
 }
 T 208 400 3 10 0 1 0 0 1
-net=Vcc:8
+net=VCC:8
 T 182 50 3 10 0 1 0 0 1
 net=GND:4

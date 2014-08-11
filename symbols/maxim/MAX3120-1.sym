@@ -69,7 +69,7 @@ numslots=0
 T 300 2250 5 10 0 0 0 0 1
 net=GND:3,6
 T 300 2450 5 10 0 0 0 0 1
-net=Vcc:2
+net=VCC:2
 T 300 2650 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX3120.pdf
 T 300 1250 9 10 1 0 0 0 1

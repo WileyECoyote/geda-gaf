@@ -53,7 +53,7 @@ comment=class=IC
 T 600 3100 5 10 0 0 0 0 1
 net=GND:7
 T 600 2900 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 3300 5 10 0 0 0 0 1
 footprint=SO14
 T 600 3500 5 10 0 0 0 0 1

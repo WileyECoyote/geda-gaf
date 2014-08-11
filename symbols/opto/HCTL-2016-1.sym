@@ -11,7 +11,7 @@ description=Quadrature Decoder/Counter Interface
 T 400 3400 5 10 0 0 0 0 1
 numslots=0
 T 708 2500 3 10 0 1 0 0 1
-net=Vcc:16
+net=VCC:16
 T 682 50 3 10 0 1 0 0 1
 net=GND:8
 P 1700 2400 2000 2400 1 0 1

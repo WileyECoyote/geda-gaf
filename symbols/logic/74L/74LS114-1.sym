@@ -147,7 +147,7 @@ refdes=U?
 T 300 3950 5 10 0 0 0 0 1
 description=2 JK-flipflops with preset and common clock, clear
 T 300 4150 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 4350 5 10 0 0 0 0 1
 net=GND:7
 T 300 3340 9 10 1 0 0 0 1

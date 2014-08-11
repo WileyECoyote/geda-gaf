@@ -163,7 +163,7 @@ refdes=U?
 T 300 4350 5 10 0 0 0 0 1
 description=4-bit binary full adder with carry
 T 300 4550 5 10 0 0 0 0 1
-net=Vcc:5
+net=VCC:5
 T 300 4750 5 10 0 0 0 0 1
 net=GND:12
 T 300 3740 9 10 1 0 0 0 1

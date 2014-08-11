@@ -72,7 +72,7 @@ L 400,440
 L 500,400
 z
 T 0 1000 8 8 0 0 0 0 1
-spicetype=M
+spice-type=M
 T 900 1000 8 8 0 0 0 0 1
 net=VSS:S
 T 800 0 9 6 0 0 0 0 1

@@ -75,9 +75,9 @@ T 2550 800 5 8 0 1 0 8 1
 pintype=io
 }
 T 300 2350 5 10 0 0 0 0 1
-net=Vdd:1
+net=VDD:1
 T 300 2550 5 10 0 0 0 0 1
-net=Vss:8
+net=VSS:8
 T 300 1950 5 10 0 0 0 0 1
 description=8-bit CMOS microcontroller
 T 300 2150 5 10 0 0 0 0 1

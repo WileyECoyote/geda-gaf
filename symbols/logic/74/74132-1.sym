@@ -62,7 +62,7 @@ footprint=DIP14
 T 300 2700 5 10 0 0 0 0 1
 description=4 NAND gates with 2 Schmitt-trigger inputs
 T 300 2900 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 3100 5 10 0 0 0 0 1
 net=GND:7
 T 300 0 9 8 1 0 0 0 1

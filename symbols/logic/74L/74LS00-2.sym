@@ -60,7 +60,7 @@ footprint=DIP14
 T 400 2250 5 10 0 0 0 0 1
 description=4 NAND gates with 2 inputs
 T 400 2650 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 400 2850 5 10 0 0 0 0 1
 net=GND:7
 T 400 2450 5 10 0 0 0 0 1

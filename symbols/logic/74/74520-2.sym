@@ -209,7 +209,7 @@ T 300 4250 5 10 0 0 0 0 1
 description=8-bit comparator with totem pole output
 V 2150 3300 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 4450 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 4650 5 10 0 0 0 0 1
 net=GND:10
 T 305 3650 3 10 1 0 0 0 1

@@ -98,7 +98,7 @@ refdes=U?
 T 300 2350 5 10 0 0 0 0 1
 description=divide-by-twelfe counter, div2 and div6
 T 300 2550 5 10 0 0 0 0 1
-net=Vcc:5
+net=VCC:5
 T 300 2750 5 10 0 0 0 0 1
 net=GND:10
 T 300 1740 9 10 1 0 0 0 1

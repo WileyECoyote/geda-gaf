@@ -132,7 +132,7 @@ numslots=0
 T 800 2950 5 10 0 0 0 0 1
 net=GND:6,7
 T 800 3150 5 10 0 0 0 0 1
-net=Vcc:13,14
+net=VCC:13,14
 T 800 3350 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX3483-MAX3491.pdf
 T 800 1950 9 10 1 0 0 0 1

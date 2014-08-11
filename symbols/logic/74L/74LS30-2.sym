@@ -122,7 +122,7 @@ pintype=in
 T 500 600 5 10 0 0 0 0 1
 net=GND:7
 T 500 800 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 500 0 5 10 0 0 0 0 1
 footprint=DIP14
 T 500 200 5 10 0 0 0 0 1

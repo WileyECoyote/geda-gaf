@@ -59,7 +59,7 @@ footprint=SOT-323
 T 0 1400 5 10 0 0 0 0 1
 footprints=SOT-23, SOT-323
 T 0 1250 5 10 0 0 0 0 1
-spicetype=BJT NPN
+spice-type=BJT NPN
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 575,225
 L 500,250

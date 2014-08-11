@@ -95,7 +95,7 @@ refdes=U?
 T 2100 2350 5 10 0 0 0 0 1
 description=2 JK-flip-flop with preset and clear
 T 2100 2550 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 2100 2750 5 10 0 0 0 0 1
 net=GND:8
 L 375 200 300 250 3 0 0 0 -1 -1

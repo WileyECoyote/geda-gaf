@@ -1,10 +1,14 @@
-v 20121031 2
-T 10 10 5 10 0 0 0 0 1
+v 20140728 2
+T 0 1950 8 10 0 0 0 0 1
 author=AutoTron
-T 700 650 8 10 1 1 0 0 1
-refdes=none
-T 700 850 5 10 0 0 0 0 1
-spicetype=V
+T 0 1800 8 10 0 0 0 0 1
+dist-license=GPL3
+T 0 1650 8 10 0 0 0 0 1
+use-license=unlimited
+T 0 1500 8 10 0 0 0 0 1
+numslots=0
+T 0 1300 5 10 0 0 0 0 1
+footprint=none
 T 700 1450 5 10 0 0 0 0 1
 description=piece-wise linear signal source
 P 300 1200 300 900 1 0 0
@@ -30,10 +34,6 @@ T 300 500 5 8 0 1 0 3 1
 pintype=pas
 }
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 700 450 5 10 1 1 0 0 1
-comment=voltage=pwl 100n 0 200n 1
-T 700 250 5 10 0 1 0 0 1
-comment=syntax: pwl t1 v1 t2 v2 ...
 L 120 500 200 720 3 0 0 0 -1 -1
 L 200 720 200 620 3 0 0 0 -1 -1
 L 200 620 360 640 3 0 0 0 -1 -1
@@ -44,8 +44,12 @@ T 300 900 9 10 1 0 0 5 1
 T 300 300 9 10 1 0 0 3 1
 -
 T 600 100 9 10 0 0 0 0 1
-numslots=0
-T 600 100 9 10 0 0 0 0 1
-device=none
-T 600 100 9 10 0 0 0 0 1
-footprint=none
+device=VOLTAGE_SOURCE
+T 700 850 5 10 0 0 0 0 1
+spice-type=V
+T 700 650 8 10 1 1 0 0 1
+refdes=none
+T 700 450 5 10 1 1 0 0 1
+comment=voltage=pwl 100n 0 200n 1
+T 700 250 5 10 0 1 0 0 1
+comment=syntax: pwl t1 v1 t2 v2 ...

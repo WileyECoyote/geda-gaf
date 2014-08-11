@@ -1,17 +1,17 @@
 v 20140728 2
-T 10 10 5 10 0 0 0 0 1
+T 0 1950 8 10 0 0 0 0 1
 author=AutoTron
-T 700 650 8 10 0 1 0 0 1
-refdes=none
-T 700 850 5 10 0 0 0 0 1
-spicetype=V
+T 0 1800 8 10 0 0 0 0 1
+dist-license=GPL3
+T 0 1650 8 10 0 0 0 0 1
+use-license=unlimited
+T 0 1500 8 10 0 0 0 0 1
+numslots=0
+T 0 1300 5 10 0 0 0 0 1
+footprint=none
 T 700 1350 5 10 0 0 0 0 1
 description=pulse power source, generator
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
-T 700 450 5 10 1 1 0 0 1
-comment=voltage=pulse 0 1 10n 10n 100n 1u 2u
-T 700 250 5 10 0 1 0 0 1
-comment=syntax: pulse v1 v2 td tr tf pw per
 L 375 675 225 675 3 0 0 0 -1 -1
 L 375 675 375 525 3 0 0 0 -1 -1
 L 375 525 500 525 3 0 0 0 -1 -1
@@ -43,9 +43,13 @@ T 300 900 9 10 1 0 0 5 1
 +
 T 300 300 9 10 1 0 0 3 1
 -
-T 700 1150 9 10 0 0 0 0 1
-numslots=0
 T 700 1000 9 10 0 0 0 0 1
-device=none
-T 600 100 9 10 0 0 0 0 1
-footprint=none
+device=VOLTAGE_SOURCE
+T 700 850 5 10 0 0 0 0 1
+spice-type=V
+T 700 650 8 10 0 1 0 0 1
+refdes=none
+T 700 450 5 10 1 1 0 0 1
+comment=voltage=pulse 0 1 10n 10n 100n 1u 2u
+T 700 250 5 10 0 1 0 0 1
+comment=syntax: pulse v1 v2 td tr tf pw per

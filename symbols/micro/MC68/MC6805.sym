@@ -13,7 +13,7 @@ numslots=0
 T 300 8450 5 10 0 0 0 0 1
 author=Alexander Kurz
 T 300 7650 5 10 0 0 0 0 1
-net=Vcc:4
+net=VCC:4
 T 300 7850 5 10 0 0 0 0 1
 net=GND:1
 T 300 7050 9 10 1 0 0 0 1

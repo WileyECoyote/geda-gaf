@@ -25,7 +25,7 @@ description=Peripheral drivers for high-current switching at very high speeds
 T 500 2700 5 10 0 0 0 0 1
 net=GND:4
 T 500 2900 5 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 500 3100 5 10 0 0 0 0 1
 documentation=http://focus.ti.com/docs/prod/folders/print/sn75451b.html
 P 1000 500 1300 500 1 0 1

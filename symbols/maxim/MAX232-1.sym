@@ -165,7 +165,7 @@ description=5V-powered dual RS-232 driver/receiver
 T 300 4050 5 10 0 0 0 0 1
 numslots=0
 T 300 3650 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 3850 5 10 0 0 0 0 1
 net=GND:15
 T 300 2850 9 10 1 0 0 0 1

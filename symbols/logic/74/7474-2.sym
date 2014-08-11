@@ -84,7 +84,7 @@ refdes=U?
 T 2100 2000 5 10 0 0 0 0 1
 description=2 D-flip-flops with preset and clear
 T 2100 2200 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 2100 2400 5 10 0 0 0 0 1
 net=GND:7
 T 300 1740 9 10 1 0 0 0 1

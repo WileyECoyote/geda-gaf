@@ -409,7 +409,7 @@ description=8-bit CMOS microcontroller with A/D converter
 T 300 7750 5 10 0 0 0 0 1
 numslots=0
 T 300 8150 5 10 0 0 0 0 1
-net=Vcc:11,32
+net=VCC:11,32
 T 300 8350 5 10 0 0 0 0 1
 net=GND:12,31
 T 300 7350 9 10 1 0 0 0 1

@@ -257,7 +257,7 @@ numslots=0
 T 300 5050 8 10 0 0 0 0 1
 author=Jens-Peter Kaps <kapsATwpi.de>
 T 300 5650 8 10 0 0 0 0 1
-net=Vcc:24
+net=VCC:24
 T 300 5450 8 10 0 0 0 0 1
 net=GND:12
 T 300 4550 9 10 1 0 0 0 1

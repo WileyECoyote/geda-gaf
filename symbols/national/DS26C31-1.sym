@@ -192,7 +192,7 @@ description=Quad Differential Line Driver
 T 0 4550 5 10 0 0 0 0 1
 documentation=TBD
 T 0 4750 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 0 4950 5 10 0 0 0 0 1
 net=GND:8
 T 0 5200 5 10 0 0 0 0 1

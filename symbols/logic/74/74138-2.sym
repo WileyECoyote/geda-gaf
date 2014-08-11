@@ -175,7 +175,7 @@ description=3 to 8 decoder/demultiplexer
 T 300 4550 5 10 0 0 0 0 1
 numslots=0
 T 300 4150 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 4350 5 10 0 0 0 0 1
 net=GND:8
 T 300 4750 5 10 0 0 0 0 1

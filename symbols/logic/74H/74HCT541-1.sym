@@ -209,7 +209,7 @@ footprint=DIP20
 T 300 3550 5 10 0 0 0 0 1
 description=8 bit bus transceiver
 T 300 3750 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 3950 5 10 0 0 0 0 1
 net=GND:10
 T 300 2950 9 10 1 0 0 0 1

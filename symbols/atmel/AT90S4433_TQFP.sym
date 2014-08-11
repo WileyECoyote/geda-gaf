@@ -6,7 +6,7 @@ device=AT90S4433_TQFP
 T 400 6250 5 10 0 0 0 0 1
 footprint=TQFP32
 T 400 6450 5 10 0 0 0 0 1
-net=Vcc:4
+net=VCC:4
 T 400 6650 5 10 0 0 0 0 1
 net=GND:5
 T 400 6850 5 10 0 0 0 0 1

@@ -11,7 +11,7 @@ description=Programmable Logic Device
 T 300 4400 5 10 0 0 0 0 1
 numslots=0
 T 1808 3800 3 8 0 1 0 0 1
-net=Vcc:24
+net=VCC:24
 T 1782 50 3 8 0 1 0 0 1
 net=GND:12
 P 300 3600 0 3600 1 0 1

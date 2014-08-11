@@ -75,7 +75,7 @@ refdes=U?
 T 300 1950 5 10 0 0 0 0 1
 description=2 frequency dividers, div5 and div10
 T 300 2150 5 10 0 0 0 0 1
-net=Vcc:2
+net=VCC:2
 T 300 2350 5 10 0 0 0 0 1
 net=GND:4
 T 300 1340 9 10 1 0 0 0 1

@@ -54,7 +54,7 @@ refdes=U?
 T 1750 100 5 10 0 0 0 0 1
 documentation=http://www.onsemi.com/pub/Collateral/MC100ELT23-D.PDF
 T 1750 650 5 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 1750 300 5 10 0 0 0 0 1
 net=GND:5
 T 1750 450 5 10 0 0 0 0 1

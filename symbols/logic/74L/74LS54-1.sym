@@ -131,7 +131,7 @@ refdes=U?
 T 300 5950 5 10 0 0 0 0 1
 description=combined AND/NOR gates
 T 300 6150 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 6350 5 10 0 0 0 0 1
 net=GND:7
 T 300 6550 5 10 0 0 0 0 1

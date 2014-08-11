@@ -59,7 +59,7 @@ footprint=DIP14
 T 700 2500 5 10 0 0 0 0 1
 description=4 XOR gates with 2 inputs
 T 700 2700 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 700 2900 5 10 0 0 0 0 1
 net=GND:7
 T 300 0 9 8 1 0 0 0 1

@@ -204,7 +204,7 @@ net=AGND:13
 T 300 5350 5 10 0 0 0 0 1
 net=GND:14
 T 300 5550 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 5150 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX146-MAX147.pdf
 T 300 4150 9 8 1 0 0 0 1

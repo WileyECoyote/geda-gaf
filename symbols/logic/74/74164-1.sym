@@ -144,7 +144,7 @@ description=8-bit serial-in/parallel-out shift register
 T 300 3850 5 10 0 0 0 0 1
 numslots=0
 T 300 3450 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 3650 5 10 0 0 0 0 1
 net=GND:7
 T 300 2640 9 10 1 0 0 0 1

@@ -63,7 +63,7 @@ description=4 OR gates with 2 inputs
 T 600 2700 5 10 0 0 0 0 1
 net=GND:7
 T 600 2900 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 3100 5 10 0 0 0 0 1
 documentation=http://www-s.ti.com/sc/ds/sn74hc32.pdf
 V 1050 500 51 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

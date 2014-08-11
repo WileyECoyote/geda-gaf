@@ -170,7 +170,7 @@ description=8-bit micro controller for low power applications (FAIRCHILD)
 T 300 3850 5 10 0 0 0 0 1
 net=GND:13
 T 300 4050 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 2850 9 8 1 0 0 0 1
 ACE1202LN14
 T 300 4250 5 10 0 0 0 0 1

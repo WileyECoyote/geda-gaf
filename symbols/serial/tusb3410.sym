@@ -107,7 +107,7 @@ T 450 4700 5 8 0 1 0 2 1
 pintype=io
 }
 T 400 15550 5 10 0 0 0 0 1
-net=Vcc:3,25
+net=VCC:3,25
 B 400 0 2900 5900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 400 15750 5 10 0 0 0 0 1
 description=TUSB3410, USB to Serial Port Controller

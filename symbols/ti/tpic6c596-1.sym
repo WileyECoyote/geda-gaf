@@ -177,7 +177,7 @@ description=Power Logic 8-Bit Shift Register
 T 300 5300 5 10 0 0 0 0 1
 numslots=0
 T 300 5500 5 10 0 0 0 0 1
-net=Vcc:1
+net=VCC:1
 T 300 5700 5 10 0 0 0 0 1
 net=GND:16
 T 300 5900 5 10 0 0 0 0 1

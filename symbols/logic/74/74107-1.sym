@@ -85,7 +85,7 @@ footprint=DIP14
 T 1800 2200 5 10 0 0 0 0 1
 description=2 JK-flip-flops with clear (edge triggered)
 T 1800 2400 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 1800 2600 5 10 0 0 0 0 1
 net=GND:7
 T 300 1950 9 8 1 0 0 0 1

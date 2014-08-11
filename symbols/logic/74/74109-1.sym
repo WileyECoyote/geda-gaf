@@ -100,7 +100,7 @@ footprint=DIP16
 T 1800 2200 5 10 0 0 0 0 1
 description=2 JK-flip-flops with preset and clear
 T 1800 2400 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 1800 2600 5 10 0 0 0 0 1
 net=GND:8
 T 950 250 9 8 1 0 0 2 1

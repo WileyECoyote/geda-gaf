@@ -40,5 +40,5 @@ use-license=unlimited
 T 600 0 8 10 0 0 0 0 1
 net=GND:5
 T 600 700 8 10 0 0 0 0 1
-net=Vcc:2
+net=VCC:2
 L 200 300 300 300 3 0 1 0 -1 -1

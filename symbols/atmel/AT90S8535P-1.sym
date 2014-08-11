@@ -426,7 +426,7 @@ pintype=pwr
 T 300 6600 5 10 0 0 0 0 1
 net=GND:11
 T 300 6800 5 10 0 0 0 0 1
-net=Vcc:10
+net=VCC:10
 T 300 7300 5 10 0 0 0 0 1
 footprint=DIP40
 T 300 7500 5 10 0 0 0 0 1

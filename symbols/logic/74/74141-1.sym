@@ -175,7 +175,7 @@ description=BCD to decimaldecoder with open collector output
 T 300 5350 5 10 0 0 0 0 1
 numslots=0
 T 300 4950 5 10 0 0 0 0 1
-net=Vcc:5
+net=VCC:5
 T 300 5150 5 10 0 0 0 0 1
 net=GND:12
 T 300 4140 9 10 1 0 0 0 1

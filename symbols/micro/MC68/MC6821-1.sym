@@ -431,7 +431,7 @@ comment=dont_use this symbol: nonstandard symwidth, bad graphic
 T 300 8550 5 10 0 0 0 0 1
 net=GND:1
 T 300 8750 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 8350 5 10 0 0 0 0 1
 footprint=DIP40
 T 300 8950 5 10 0 0 0 0 1

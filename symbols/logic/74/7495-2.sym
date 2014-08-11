@@ -130,7 +130,7 @@ refdes=U?
 T 300 3950 5 10 0 0 0 0 1
 description=4-bit shift register, parallel load, right and left shift
 T 300 4150 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 4350 5 10 0 0 0 0 1
 net=GND:7
 V 250 600 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

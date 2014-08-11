@@ -43,7 +43,7 @@ pintype=io
 T 700 600 8 10 1 1 0 0 1
 refdes=Q?
 T -100 1000 8 8 0 0 0 0 1
-spicetype=M
+spice-type=M
 T -100 1150 8 8 0 0 0 0 1
 comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.85
 T 800 1000 8 8 0 1 0 0 1

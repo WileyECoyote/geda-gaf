@@ -48,7 +48,7 @@ documentation=http://www.onsemi.com/pub/Collateral/MC10ELT24-D.PDF
 T 900 1800 5 10 0 0 0 0 1
 net=GND:5
 T 900 1600 5 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 600 100 9 10 0 0 0 0 1
 numslots=0
 T 600 100 9 10 0 0 0 0 1

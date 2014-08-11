@@ -103,9 +103,9 @@ description=Dallas Semiconductor 1-Wire Serial Line Driver w/Load Sensor (Travis
 T 300 2650 5 10 0 0 0 0 1
 net=GND:1
 T 300 3050 5 10 0 0 0 0 1
-net=Vdd:4
+net=VDD:4
 T 300 2850 5 10 0 0 0 0 1
-net=Vpp:5
+net=VPP:5
 T 300 3250 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/DS2480B.pdf
 T 300 1650 9 8 1 0 0 0 1

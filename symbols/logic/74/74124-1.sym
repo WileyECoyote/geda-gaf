@@ -76,7 +76,7 @@ refdes=U?
 T 300 2750 5 10 0 0 0 0 1
 description=2 VCOs (voltage controlled oscillators)
 T 300 2950 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 3150 5 10 0 0 0 0 1
 net=GND:9
 T 300 3350 5 10 0 0 0 0 1

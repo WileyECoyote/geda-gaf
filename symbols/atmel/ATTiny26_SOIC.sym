@@ -6,7 +6,7 @@ device=ATtiny28_TQFP
 T 400 6250 5 10 0 0 0 0 1
 footprint=TQFP
 T 400 6450 5 10 0 0 0 0 1
-net=Vcc:4,18
+net=VCC:4,18
 T 400 6650 5 10 0 0 0 0 1
 net=GND:5,21
 T 400 6850 5 10 0 0 0 0 1

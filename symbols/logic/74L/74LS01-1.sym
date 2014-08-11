@@ -62,4 +62,4 @@ description=2 NAND gates with 2 inputs and open collector output
 T 500 2700 5 10 0 0 0 0 1
 net=GND:7
 T 500 2900 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14

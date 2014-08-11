@@ -98,7 +98,7 @@ refdes=U?
 T 300 2750 5 10 0 0 0 0 1
 description=monoflop with schmitt-trigger input
 T 300 2950 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 3150 5 10 0 0 0 0 1
 net=GND:7
 T 300 2140 9 10 1 0 0 0 1

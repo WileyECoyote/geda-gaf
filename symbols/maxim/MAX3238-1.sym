@@ -446,7 +446,7 @@ description=+3.0V to +5.5V, 1uA, up to 250kbps, True RS-232 TRANSCEIVER with AUT
 T 450 7425 5 10 0 0 0 0 1
 net=GND:2
 T 425 7175 5 10 0 0 0 0 1
-net=Vcc:26
+net=VCC:26
 T 425 8850 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/MAX3238.pdf
 T 450 7650 5 10 0 0 0 0 1

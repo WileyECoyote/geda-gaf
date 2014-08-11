@@ -6,7 +6,7 @@ numslots=0
 T 0 950 8 8 0 0 0 0 1
 pins=2
 T 0 800 5 10 0 0 0 0 1
-spicetype=L
+spice-type=L
 T 0 650 9 10 0 0 0 0 1
 footprint=unknown
 P 900 100 800 100 1 0 0

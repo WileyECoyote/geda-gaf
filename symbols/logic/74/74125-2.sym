@@ -62,7 +62,7 @@ footprint=DIP14
 T 1200 2700 5 10 0 0 0 0 1
 net=GND:7
 T 1200 2900 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 1200 3100 5 10 0 0 0 0 1
 documentation=http://www-s.ti.com/sc/ds/sn74hc125.pdf
 T 3600 0 8 10 0 0 0 0 1

@@ -144,7 +144,7 @@ description=low voltage step-down controller
 T 300 4100 5 10 0 0 0 0 1
 numslots=0
 T 300 4500 5 10 0 0 0 0 1
-net=Vcc:9
+net=VCC:9
 T 300 4700 5 10 0 0 0 0 1
 net=GND:8
 T 300 5100 5 10 0 0 0 0 1

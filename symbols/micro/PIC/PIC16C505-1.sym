@@ -145,7 +145,7 @@ numslots=0
 T 300 3450 5 10 0 0 0 0 1
 documentation=http://www.microchip.com/download/lit/pline/picmicro/families/16c5x/40192c.pdf
 T 300 2850 5 10 0 0 0 0 1
-net=Vcc:1
+net=VCC:1
 T 300 3050 5 10 0 0 0 0 1
 net=GND:14
 T 300 2040 9 10 1 0 0 0 1

@@ -52,7 +52,7 @@ footprint=DIP14
 T 600 2900 5 10 0 0 0 0 1
 description=6 inverters with open collector output
 T 600 3100 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 3300 5 10 0 0 0 0 1
 net=GND:7
 T 300 0 9 8 1 0 0 0 1

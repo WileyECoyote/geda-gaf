@@ -81,7 +81,7 @@ refdes=U?
 T 400 3250 5 10 0 0 0 0 1
 description=2 retriggerable monoflops with clear
 T 400 3450 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 400 3650 5 10 0 0 0 0 1
 net=GND:8
 T 400 1840 9 10 1 0 0 0 1

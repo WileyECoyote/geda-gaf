@@ -49,7 +49,7 @@ refdes=U?
 T 600 2900 5 10 0 0 0 0 1
 net=GND:7
 T 600 2700 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 3100 5 10 0 0 0 0 1
 footprint=DIP14
 T 600 3300 5 10 0 0 0 0 1

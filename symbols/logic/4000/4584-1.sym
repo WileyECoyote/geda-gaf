@@ -54,7 +54,7 @@ refdes=U?
 T 300 2800 8 10 0 0 0 0 1
 net=GND:7
 T 300 3000 8 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 3200 8 10 0 0 0 0 1
 footprint=DIP14
 T 300 3400 8 10 0 0 0 0 1

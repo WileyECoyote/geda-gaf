@@ -153,6 +153,6 @@ dist-license=GPL
 T 300 4500 5 10 0 0 0 0 1
 use-license=unlimited
 T 300 4700 5 10 0 0 0 0 1
-net=Vcc:1
+net=VCC:1
 T 300 4900 5 10 0 0 0 0 1
 net=GND:14

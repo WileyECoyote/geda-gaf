@@ -316,7 +316,7 @@ description=Atmel 8-bit microcontrollr
 T 300 5400 5 10 0 0 0 0 1
 numslots=0
 T 300 5600 5 10 0 0 0 0 1
-net=Vcc:4,6
+net=VCC:4,6
 T 300 5800 5 10 0 0 0 0 1
 net=GND:3,5,21
 T 0 0 8 10 0 0 0 0 1

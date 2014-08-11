@@ -65,8 +65,8 @@ slotdef=1:1,4,7
 T 0 900 8 10 0 0 0 0 1
 slot=1
 T 1125 900 8 10 0 0 0 0 1
-net=Vss:12
+net=VSS:12
 T 1125 1050 8 10 0 0 0 0 1
-net=Vdd:3
+net=VDD:3
 T 0 2100 9 10 0 0 0 0 1
 footprint=DIP14

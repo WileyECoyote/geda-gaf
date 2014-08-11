@@ -63,7 +63,7 @@ footprint=DIP14
 T 700 2500 5 10 0 0 0 0 1
 description=4 AND gates with 2 inputs
 T 700 2700 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 700 2900 5 10 0 0 0 0 1
 net=GND:7
 T 700 3100 5 10 0 0 0 0 1

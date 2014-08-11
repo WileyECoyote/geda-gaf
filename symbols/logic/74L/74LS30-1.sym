@@ -114,7 +114,7 @@ pintype=in
 T 600 700 5 10 0 0 0 0 1
 net=GND:7
 T 600 900 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 100 5 10 0 0 0 0 1
 footprint=DIP14
 T 600 300 5 10 0 0 0 0 1

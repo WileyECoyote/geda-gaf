@@ -79,7 +79,7 @@ author=Bjørnar Ness bjornar.nessATsubdimension.com
 T 310 3374 5 10 0 0 0 0 1
 net=GND:4
 T 310 3174 5 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 300 2350 5 10 0 0 0 0 1
 numslots=0
 T 300 2100 9 10 1 0 0 2 1

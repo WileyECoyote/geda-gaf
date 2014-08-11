@@ -6,7 +6,7 @@ device=AT90S8535
 T 400 7850 5 10 0 0 0 0 1
 footprint=DIP40
 T 400 8050 5 10 0 0 0 0 1
-net=Vcc:10
+net=VCC:10
 T 400 8250 5 10 0 0 0 0 1
 net=GND:11
 T 400 8450 5 10 0 0 0 0 1

@@ -1,19 +1,19 @@
 v 20041228 1
 B 400 100 3800 15500 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 600 16000 8 10 0 0 0 0 1
-net=Vdd:11,23,41,51,71
+net=VDD:11,23,41,51,71
 T 600 18400 8 10 0 0 0 0 1
 author=Jim Duchek <jrduchek@blueridge.net>
 T 600 18200 8 10 0 0 0 0 1
 description=8-bit 8051 compatible microcontroller w/USB (Atmel)
 T 600 16200 8 10 0 0 0 0 1
-net=Vss:15,24,42,52,72
+net=VSS:15,24,42,52,72
 T 600 16600 8 10 0 0 0 0 1
-net=PVss:14
+net=PVSS:14
 T 600 16400 8 10 0 0 0 0 1
 net=PVdd:12
 T 600 17000 8 10 0 0 0 0 1
-net=AVss:34
+net=AVSS:34
 T 600 16800 8 10 0 0 0 0 1
 net=AVdd:33
 T 600 17800 8 10 0 0 0 0 1
@@ -25,9 +25,9 @@ numslots=0
 T 4000 15700 3 8 0 1 0 0 1
 refdes=U?
 T 600 17400 8 10 0 0 0 0 1
-net=UVss:20
+net=UVSS:20
 T 600 17200 8 10 0 0 0 0 1
-net=UVdd:19
+net=UVDD:19
 T 600 15600 9 10 1 0 0 0 1
 AT89C5132
 P 100 15100 400 15100 1 0 0

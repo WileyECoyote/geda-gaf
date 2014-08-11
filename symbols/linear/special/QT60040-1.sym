@@ -14,7 +14,7 @@ footprint=DIL 14 300
 T 300 4300 5 10 0 0 0 0 1
 numslots=0
 T 300 4000 5 10 0 0 0 0 1
-net=Vcc:1
+net=VCC:1
 T 300 3700 5 10 0 0 0 0 1
 net=GND:14
 T 2293 3300 8 10 1 1 0 6 1

@@ -53,6 +53,6 @@ footprint=DIP14
 T 600 2900 5 10 0 0 0 0 1
 description=6 noninverting drivers with open collector outputs
 T 600 3100 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 3300 5 10 0 0 0 0 1
 net=GND:7

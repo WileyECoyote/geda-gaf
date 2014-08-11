@@ -10,7 +10,7 @@ description=80C32 compatible micro controller
 T 400 9250 5 10 0 0 0 0 1
 net=GND:20
 T 400 9450 5 10 0 0 0 0 1
-net=Vcc:40
+net=VCC:40
 P 2700 4800 2400 4800 1 0 0
 {
 T 2500 4850 5 8 1 1 0 0 1

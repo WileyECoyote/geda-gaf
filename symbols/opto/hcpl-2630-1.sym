@@ -6,7 +6,7 @@ device=HCPL-2630
 T 300 1150 5 10 0 0 0 0 1
 footprint=DIP8
 T 300 1350 5 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 300 1550 5 10 0 0 0 0 1
 net=GND:5
 P 300 500 0 500 1 0 1

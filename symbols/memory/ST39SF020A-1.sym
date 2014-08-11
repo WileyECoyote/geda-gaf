@@ -337,7 +337,7 @@ author=Werner Hoch <werner.hoATgmx.de>
 T 300 7450 5 10 0 0 0 0 1
 net=GND:16
 T 300 7650 5 10 0 0 0 0 1
-net=Vcc:32
+net=VCC:32
 T 300 6650 9 10 1 0 0 0 1
 ST39SF020A
 T 300 8250 5 10 0 0 0 0 1

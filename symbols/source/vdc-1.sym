@@ -4,9 +4,11 @@ author=AutoTron
 T 700 650 8 10 1 1 0 0 1
 refdes=none
 T 700 850 5 10 0 0 0 0 1
-spicetype=V
+spice-type=V
 T 700 1250 5 10 0 0 0 0 1
 numslots=0
+T 700 1050 5 10 0 0 0 0 1
+footprint=none
 T 700 1450 5 10 0 0 0 0 1
 description=dc power source
 P 300 1200 300 900 1 0 0
@@ -33,12 +35,10 @@ pintype=pwr
 }
 V 300 600 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 700 450 5 10 1 1 0 0 1
-value=1V
+value=DC +1V
 T 300 900 9 10 1 0 0 5 1
 +
 T 300 300 9 10 1 0 0 3 1
 -
 T 600 100 9 10 0 0 0 0 1
-device=none
-T 600 100 9 10 0 0 0 0 1
-footprint=none
+device=VOLTAGE_SOURCE

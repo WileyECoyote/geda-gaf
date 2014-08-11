@@ -122,7 +122,7 @@ description=quad transceiver (tristate)
 T 300 3150 5 10 0 0 0 0 1
 numslots=0
 T 300 2750 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 2950 5 10 0 0 0 0 1
 net=GND:7
 T 300 1950 9 10 1 0 0 0 1

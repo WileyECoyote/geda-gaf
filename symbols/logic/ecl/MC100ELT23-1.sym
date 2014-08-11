@@ -79,7 +79,7 @@ refdes=U?
 T 2100 1200 5 10 0 0 0 0 1
 net=GND:5
 T 2100 1400 5 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 2100 2140 5 10 0 0 0 0 1
 documentation=http://www.onsemi.com/pub/Collateral/MC100ELT23-D.PDF
 T 600 100 9 10 0 0 0 0 1

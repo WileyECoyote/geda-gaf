@@ -167,7 +167,7 @@ description=4 bit D-register with tristate outputs
 T 300 5350 5 10 0 0 0 0 1
 numslots=0
 T 300 4950 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 5150 5 10 0 0 0 0 1
 net=GND:8
 T 300 4140 9 10 1 0 0 0 1

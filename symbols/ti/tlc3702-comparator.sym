@@ -61,8 +61,8 @@ slotdef=1:3,2,1
 T 150 900 8 10 0 0 0 0 1
 slot=1
 T 150 1700 8 10 0 0 0 0 1
-net=Vee:4
+net=VEE:4
 T 150 1900 8 10 0 0 0 0 1
-net=Vcc:8
+net=VCC:8
 T 150 2100 9 10 0 0 0 0 1
 footprint=DIP8

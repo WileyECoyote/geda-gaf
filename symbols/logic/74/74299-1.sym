@@ -132,7 +132,7 @@ description=8-bit universal shift/storage registers
 T 300 5150 5 10 0 0 0 0 1
 numslots=0
 T 300 4750 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 4950 5 10 0 0 0 0 1
 net=GND:10
 T 300 3940 9 10 1 0 0 0 1

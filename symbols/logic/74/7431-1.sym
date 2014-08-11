@@ -167,9 +167,9 @@ T 300 3340 9 10 1 0 0 0 1
 T 1700 3400 8 10 1 1 0 6 1
 refdes=U?
 T 300 3950 5 10 0 0 0 0 1
-description=6 DELAY circuits: 6ns, 23ns, 45ns 
+description=6 DELAY circuits: 6ns, 23ns, 45ns
 T 300 4150 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 4350 5 10 0 0 0 0 1
 net=GND:8
 T 300 4550 5 10 0 0 0 0 1

@@ -52,7 +52,7 @@ pinseq=7
 T 0 5200 5 10 0 1 0 0 1
 pintype=in
 T 360 5200 9 8 1 1 0 0 1
-pinlabel=A5 
+pinlabel=A5
 }
 P 0 5500 300 5500 1 0 0
 {
@@ -118,7 +118,7 @@ pinseq=13
 T 2300 6700 5 10 0 1 0 0 1
 pintype=tri
 T 2060 6700 9 8 1 1 0 0 1
-pinlabel=D0 
+pinlabel=D0
 }
 P 2300 6400 2600 6400 1 0 1
 {
@@ -339,7 +339,7 @@ T 360 1300 9 8 1 1 0 0 1
 pinlabel=A18
 }
 T 2400 7400 5 10 0 0 0 0 1
-net=Vcc:32
+net=VCC:32
 T 2400 7600 5 10 0 0 0 0 1
 numslots=0
 T 2400 7200 5 10 0 0 0 0 1

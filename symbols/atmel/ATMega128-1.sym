@@ -6,7 +6,7 @@ device=Atmega128
 T 400 12650 8 10 0 0 0 0 1
 footprint=TQFP64
 T 400 12850 8 10 0 0 0 0 1
-net=Vcc:21,52
+net=VCC:21,52
 T 400 13050 8 10 0 0 0 0 1
 net=GND:22,53
 T 400 13250 8 10 0 0 0 0 1
@@ -385,7 +385,7 @@ pinnumber=54
 T 3700 2150 5 8 0 1 0 2 1
 pinseq=34
 T 3550 2200 9 8 1 1 0 6 1
-pinlabel=PF7 (ADC7/TDI) 
+pinlabel=PF7 (ADC7/TDI)
 T 3550 2200 5 8 0 1 0 8 1
 pintype=io
 }
@@ -396,7 +396,7 @@ pinnumber=55
 T 3700 2550 5 8 0 1 0 2 1
 pinseq=35
 T 3550 2600 9 8 1 1 0 6 1
-pinlabel=PF6 (ADC6/TDO) 
+pinlabel=PF6 (ADC6/TDO)
 T 3550 2600 5 8 0 1 0 8 1
 pintype=io
 }
@@ -407,7 +407,7 @@ pinnumber=56
 T 3700 2950 5 8 0 1 0 2 1
 pinseq=36
 T 3550 3000 9 8 1 1 0 6 1
-pinlabel=PF5 (ADC5/TMS) 
+pinlabel=PF5 (ADC5/TMS)
 T 3550 3000 5 8 0 1 0 8 1
 pintype=io
 }
@@ -418,7 +418,7 @@ pinnumber=57
 T 3700 3350 5 8 0 1 0 2 1
 pinseq=37
 T 3550 3400 9 8 1 1 0 6 1
-pinlabel=PF4 (ADC4/TCK) 
+pinlabel=PF4 (ADC4/TCK)
 T 3550 3400 5 8 0 1 0 8 1
 pintype=io
 }
@@ -429,7 +429,7 @@ pinnumber=58
 T 3700 3750 5 8 0 1 0 2 1
 pinseq=38
 T 3550 3800 9 8 1 1 0 6 1
-pinlabel=PF3 (ADC3) 
+pinlabel=PF3 (ADC3)
 T 3550 3800 5 8 0 1 0 8 1
 pintype=io
 }
@@ -440,7 +440,7 @@ pinnumber=59
 T 3700 4150 5 8 0 1 0 2 1
 pinseq=39
 T 3550 4200 9 8 1 1 0 6 1
-pinlabel=PF2 (ADC2) 
+pinlabel=PF2 (ADC2)
 T 3550 4200 5 8 0 1 0 8 1
 pintype=io
 }
@@ -451,7 +451,7 @@ pinnumber=60
 T 3700 4550 5 8 0 1 0 2 1
 pinseq=40
 T 3550 4600 9 8 1 1 0 6 1
-pinlabel=PF1 (ADC1) 
+pinlabel=PF1 (ADC1)
 T 3550 4600 5 8 0 1 0 8 1
 pintype=io
 }
@@ -462,7 +462,7 @@ pinnumber=61
 T 3700 4950 5 8 0 1 0 2 1
 pinseq=41
 T 3550 5000 9 8 1 1 0 6 1
-pinlabel=PF0 (ADC0) 
+pinlabel=PF0 (ADC0)
 T 3550 5000 5 8 0 1 0 8 1
 pintype=io
 }
@@ -473,7 +473,7 @@ pinnumber=42
 T 3700 5550 5 8 0 1 0 2 1
 pinseq=42
 T 3550 5600 9 8 1 1 0 6 1
-pinlabel=PC7 (A15) 
+pinlabel=PC7 (A15)
 T 3550 5600 5 8 0 1 0 8 1
 pintype=io
 }
@@ -495,7 +495,7 @@ pinnumber=40
 T 3700 6350 5 8 0 1 0 2 1
 pinseq=44
 T 3550 6400 9 8 1 1 0 6 1
-pinlabel=PC5 (A13) 
+pinlabel=PC5 (A13)
 T 3550 6400 5 8 0 1 0 8 1
 pintype=io
 }
@@ -561,7 +561,7 @@ pinnumber=44
 T 3700 8950 5 8 0 1 0 2 1
 pinseq=50
 T 3550 9000 9 8 1 1 0 6 1
-pinlabel=PA7 (AD7) 
+pinlabel=PA7 (AD7)
 T 3550 9000 5 8 0 1 0 8 1
 pintype=io
 }

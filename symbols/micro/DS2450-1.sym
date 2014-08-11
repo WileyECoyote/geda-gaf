@@ -103,7 +103,7 @@ description=Dallas Semiconductor 1-Wire A/D Converter (Travis Sawyer)
 T 400 2650 5 10 0 0 0 0 1
 net=GND:4
 T 400 2850 5 10 0 0 0 0 1
-net=Vcc:1
+net=VCC:1
 T 400 3050 5 10 0 0 0 0 1
 documentation=http://pdfserv.maxim-ic.com/en/ds/DS2450.pdf
 T 400 1650 9 8 1 0 0 0 1

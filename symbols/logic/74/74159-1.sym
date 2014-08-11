@@ -255,7 +255,7 @@ description=4-bit binary decoder/demultiplexer with open collector outputs
 T 300 7750 5 10 0 0 0 0 1
 numslots=0
 T 300 7350 5 10 0 0 0 0 1
-net=Vcc:24
+net=VCC:24
 T 300 7550 5 10 0 0 0 0 1
 net=GND:12
 V 1750 6200 50 6 0 0 0 -1 -1 0 -1 -1 -1 -1 -1

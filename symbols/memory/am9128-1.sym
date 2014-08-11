@@ -258,7 +258,7 @@ numslots=0
 T 300 6250 5 10 0 0 0 0 1
 author=Werner Hoch <werner.hoATgmx.de>
 T 300 5650 5 10 0 0 0 0 1
-net=Vcc:24
+net=VCC:24
 T 300 5850 5 10 0 0 0 0 1
 net=GND:12
 T 300 4850 9 10 1 0 0 0 1

@@ -117,7 +117,7 @@ footprint=DIP20
 T 300 3150 5 10 0 0 0 0 1
 description=octal buffer/line driver (tristate)
 T 300 3350 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 3550 5 10 0 0 0 0 1
 net=GND:10
 T 300 1750 9 10 1 0 0 0 1

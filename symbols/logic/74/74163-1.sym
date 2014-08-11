@@ -167,7 +167,7 @@ description=synchronous programmable 4-bit binary counter with sync. clear
 T 300 4950 5 10 0 0 0 0 1
 numslots=0
 T 300 4550 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 4750 5 10 0 0 0 0 1
 net=GND:8
 L 375 600 300 650 3 0 0 0 -1 -1

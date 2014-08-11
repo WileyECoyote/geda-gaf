@@ -18,7 +18,7 @@ numslots=0
 T 1800 8150 5 10 0 0 0 0 1
 author=Alexander Kurz
 T 1800 7550 5 10 0 0 0 0 1
-net=Vcc:22
+net=VCC:22
 T 1800 7750 5 10 0 0 0 0 1
 net=GND:21,23
 T 300 3950 9 10 1 0 0 0 1

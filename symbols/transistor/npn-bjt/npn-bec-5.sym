@@ -59,7 +59,7 @@ numslots=0
 T 0 1200 5 8 0 0 0 0 1
 footprints=SOT-23, SOT-323
 T 0 1050 5 8 0 0 0 0 1
-spicetype=BJT NPN
+spice-type=BJT NPN
 T 0 1475 5 8 0 0 0 0 1
 description=NPN Transistor
 T 900 625 8 10 1 1 0 0 1

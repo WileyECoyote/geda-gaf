@@ -60,7 +60,7 @@ footprint=IXGT16N170
 T 0 1400 5 10 0 0 0 0 1
 footprints=TO-268, TO-247
 T 0 1250 5 10 0 0 0 0 1
-spicetype=IGBT NPN
+spice-type=IGBT NPN
 H 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1 5
 M 575,225
 L 500,250

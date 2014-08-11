@@ -174,7 +174,7 @@ description=dual 2-line to 4-line decoders/demultiplexers
 T 300 6250 5 10 0 0 0 0 1
 numslots=0
 T 300 5850 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 6050 5 10 0 0 0 0 1
 net=GND:8
 T 300 5050 9 10 1 0 0 0 1

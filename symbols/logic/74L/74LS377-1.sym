@@ -210,7 +210,7 @@ description=8 D-type flip-flops with enable
 T 300 4450 5 10 0 0 0 0 1
 numslots=0
 T 300 4050 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 300 4250 5 10 0 0 0 0 1
 net=GND:10
 T 300 3240 9 10 1 0 0 0 1

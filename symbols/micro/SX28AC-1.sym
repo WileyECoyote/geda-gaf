@@ -276,7 +276,7 @@ description=8-bit configurable communication controller
 T 300 4850 5 10 0 0 0 0 1
 numslots=0
 T 300 5450 5 10 0 0 0 0 1
-net=Vcc:2
+net=VCC:2
 T 300 5650 5 10 0 0 0 0 1
 net=GND:4
 T 300 4450 9 10 1 0 0 0 1

@@ -292,7 +292,7 @@ description=High Voltage Dual Synchronous Buck Converter with Oscillator Synch
 T 300 6700 5 10 0 0 0 0 1
 numslots=0
 T 300 6900 5 10 0 0 0 0 1
-net=Vcc:22
+net=VCC:22
 T 300 7100 5 10 0 0 0 0 1
 net=GND:8,21
 T 0 0 8 10 0 0 0 0 1

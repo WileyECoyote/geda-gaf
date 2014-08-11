@@ -216,6 +216,6 @@ description=16v8 Programmable Logic Device
 T 400 5200 5 10 0 0 0 0 1
 numslots=0
 T 400 5400 5 10 0 0 0 0 1
-net=Vcc:20
+net=VCC:20
 T 400 5600 5 10 0 0 0 0 1
 net=GND:10

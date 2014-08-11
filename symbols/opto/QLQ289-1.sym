@@ -4,7 +4,7 @@ author=AutoTron
 T 0 2450 5 8 0 0 0 0 1
 description=Photovoltaic Optocoupler
 T 0 2150 8 8 0 0 0 0 1
-spicetype=M
+spice-type=M
 T 0 2300 8 8 0 1 0 0 1
 comment=model=PV
 T 0 2600 9 8 0 0 0 0 1

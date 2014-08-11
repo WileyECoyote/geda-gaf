@@ -167,7 +167,7 @@ description=8-to-1 multiplexer
 T 300 5350 5 10 0 0 0 0 1
 numslots=0
 T 300 4950 5 10 0 0 0 0 1
-net=Vcc:16
+net=VCC:16
 T 300 5150 5 10 0 0 0 0 1
 net=GND:8
 T 300 4150 9 10 1 0 0 0 1

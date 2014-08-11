@@ -256,7 +256,7 @@ description=16-bit serial-in/parallel-out shift register
 T 300 7850 5 10 0 0 0 0 1
 numslots=0
 T 300 7450 5 10 0 0 0 0 1
-net=Vcc:24
+net=VCC:24
 T 300 7650 5 10 0 0 0 0 1
 net=GND:12
 T 300 6650 3 10 1 0 0 0 1

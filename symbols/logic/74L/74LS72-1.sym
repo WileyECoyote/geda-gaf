@@ -133,7 +133,7 @@ refdes=U?
 T 300 4350 5 10 0 0 0 0 1
 description=JK-master-slave flip-flop with 3 AND-ed J and K inputs
 T 300 4550 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 300 4750 5 10 0 0 0 0 1
 net=GND:7
 T 300 3740 9 10 1 0 0 0 1

@@ -71,6 +71,6 @@ footprint=DIP14
 T 600 2300 5 10 0 0 0 0 1
 description=3 NAND gates with 3 inputs and open collector outputs
 T 600 2500 5 10 0 0 0 0 1
-net=Vcc:14
+net=VCC:14
 T 600 2700 5 10 0 0 0 0 1
 net=GND:7

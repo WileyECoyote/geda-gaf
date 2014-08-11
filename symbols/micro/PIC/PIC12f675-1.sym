@@ -83,6 +83,6 @@ PIC12F675
 T 300 2350 8 10 0 0 0 0 1
 net=GND:8
 T 300 2550 8 10 0 0 0 0 1
-net=Vcc:1
+net=VCC:1
 T 300 2750 8 10 0 0 0 0 1
 symversion=1.0
