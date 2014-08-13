@@ -1,4 +1,13 @@
-2014-08-10 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
+        * Added include <errno.h> to:
+
+              file/f_path.c
+              guile/g_rc.c
+              guile/g_rc_parse.c
+              struct/s_clib.c
+
+2014-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/geda/geda_toplevel.c: Add private function geda_toplevel_set
           _bounds used for establishing bounds of placeholder when normal

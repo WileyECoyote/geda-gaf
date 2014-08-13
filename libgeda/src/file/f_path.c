@@ -20,6 +20,10 @@
 #include <config.h>
 #include <stdio.h>
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include <pwd.h>
 
 #include "libgeda_priv.h"
