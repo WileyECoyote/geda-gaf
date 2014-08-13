@@ -1,5 +1,9 @@
 2014-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/geda/geda_object.c: Use g_value_get_char to support glib <=2.30
+
+2014-08-13 Wiley E. Hill <wileyhill@gmail.com>
+
         * Added include <errno.h> to:
 
               file/f_path.c
