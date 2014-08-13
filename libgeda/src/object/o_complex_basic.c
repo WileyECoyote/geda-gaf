@@ -359,7 +359,7 @@ GList *o_complex_promote_attribs (GedaToplevel *toplevel, Object *object)
  *
  *  \par Function Description
  *  Deletes or hides promotable attributes from the passed Object.
- *  This is used when loading symbols during the load of a schematic from
+ *  This is used when loading symbols while loading a schematic from
  *  disk. The schematic will already contain local copies of symbol's
  *  promotable objects, so we delete or hide the symbol's copies.
  *
@@ -395,15 +395,19 @@ static void o_complex_remove_promotable_attribs (GedaToplevel *toplevel, Object 
   g_list_free (promotable);
 }
 
-Object*
-create_placeholder(Complex *complex, int x, int y, int angle, int mirror)
+static Object*
+create_placeholder(GedaToplevel *toplevel, Complex *complex, int x, int y, int angle, int mirror)
 {
   Object      *new_prim_obj;
   LINE_OPTIONS line_options;
 
   char *not_found_text = NULL;
 
-  int left, right, top, bottom;
+  int left   = 0;
+  int top    = 0;
+  int right  = 0;
+  int bottom = 0;
+
   int x_offset, y_offset;
 
   line_options.line_end    = END_ROUND;
@@ -433,8 +437,11 @@ create_placeholder(Complex *complex, int x, int y, int angle, int mirror)
   complex->prim_objs = g_list_prepend (complex->prim_objs, new_prim_obj);
   GEDA_FREE(not_found_text);
 
-  /* figure out where to put the hazard triangle */
-  world_get_single_object_bounds (new_prim_obj, &left, &top, &right, &bottom);
+  /* figure out where to put the hazard triangle, we could only be here during
+   * a read failure, there is not page so we can not use normal bounds routines
+   * instead we will try ...*/
+  geda_toplevel_set_bounds (toplevel, new_prim_obj);
+
   x_offset = (right - left) / 4;
   y_offset = bottom - top + 100;  /* 100 is just an additional offset */
 
@@ -515,7 +522,7 @@ o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
 
   if (clib == NULL || buffer == NULL) {
     new_obj->type = OBJ_PLACEHOLDER;
-    return create_placeholder(complex, x, y, angle, mirror);
+    return create_placeholder(toplevel, complex, x, y, angle, mirror);
   }
   else {
     GError * err = NULL;
@@ -535,7 +542,7 @@ o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
       g_error_free(err);
       /* If reading fails, change object to a placeholder type */
       new_obj->type = OBJ_PLACEHOLDER;
-      return create_placeholder(complex, x, y, angle, mirror);
+      return create_placeholder(toplevel, complex, x, y, angle, mirror);
     }
     else {
 

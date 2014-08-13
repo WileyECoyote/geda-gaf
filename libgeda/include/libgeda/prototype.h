@@ -106,7 +106,7 @@ const char  *f_get_filename_ext            (const char *filename);
       Object *o_attrib_new_attached                     (Object *object, const char *name, const char *value, int visibility, int show_name_value);
       void    o_attrib_print                            (GList  *attributes);
       void    o_attrib_remove                           (GList **list, Object *remove);
-      bool    o_attrib_string_get_name_value            ( const char *string, char **name_ptr, char **value_ptr);
+      bool    o_attrib_string_get_name_value            (const char *string, char **name_ptr, char **value_ptr);
       bool    o_attrib_get_name_value                   (Object *attrib, char **name_ptr,  char **value_ptr);
       void    o_attrib_set_value                        (Object *attrib, const char  *name_ptr, const char *value_ptr);
       void    o_attrib_set_integer_value                (Object *attrib, char  *name_ptr,  int   value);

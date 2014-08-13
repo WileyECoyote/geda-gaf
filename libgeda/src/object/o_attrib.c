@@ -581,12 +581,15 @@ o_attrib_string_get_name_value (const char *string,
 
 /*! \brief Get name and value from an attribute Object
  *  \par Function Description
- *  See o_attrib_string_get_name_value() for more details
+ *  Calls o_attrib_get_name_value to do the work
  *
  *  \param [in]  attrib     The attribute Object whos name/value to return.
  *  \param [out] name_ptr   The return location for the name, or NULL.
  *  \param [out] value_ptr  The return location for the value, or NULL.
+ *
  *  \return TRUE on success, FALSE otherwise.
+ *
+ *  \sa o_attrib_string_get_name_value()
  */
 bool
 o_attrib_get_name_value (Object *attrib, char **name_ptr, char **value_ptr)
