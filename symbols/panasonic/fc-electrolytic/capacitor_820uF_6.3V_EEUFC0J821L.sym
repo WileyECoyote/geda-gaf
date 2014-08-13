@@ -25,7 +25,7 @@ L 400 500 0 500 3 15 0 0 -1 -1
 L 200 200 200 400 3 15 0 0 -1 -1
 L 200 500 200 700 3 15 0 0 -1 -1
 T 500 200 5 8 1 1 0 0 1
-device=EEUFC0J821L
+comment=EEUFC0J821L
 A 200 -300 700 75 30 3 15 0 0 -1 -1
 L 125 625 25 625 3 15 0 0 -1 -1
 L 75 575 75 675 3 15 0 0 -1 -1
@@ -51,3 +51,5 @@ T 800 700 9 8 0 0 0 0 1
 comment=FC Series,  Type A
 T 800 550 9 8 0 0 0 0 1
 comment=See catalog for optional leading spacing
+T 500 50 9 10 0 0 0 0 1
+device=POLARIZED_CAPACITOR

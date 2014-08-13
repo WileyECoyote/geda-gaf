@@ -30,4 +30,4 @@ net=SGND:1
 T 0 500 5 10 0 0 0 0 1
 device=GROUND_NODE
 T 200 350 8 10 0 1 0 0 1
-refdes=GND
+refdes=none

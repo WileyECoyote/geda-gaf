@@ -25,7 +25,7 @@ L 400 500 0 500 3 15 0 0 -1 -1
 L 200 200 200 400 3 15 0 0 -1 -1
 L 200 500 200 700 3 15 0 0 -1 -1
 T 500 200 5 8 1 1 0 0 1
-device=EEEHD1H2R2R
+comment=EEEHD1H2R2R
 A 200 -300 700 75 30 3 15 0 0 -1 -1
 L 125 625 25 625 3 15 0 0 -1 -1
 L 75 575 75 675 3 15 0 0 -1 -1
@@ -51,3 +51,5 @@ T 800 700 9 8 0 0 0 0 1
 comment=HD Series,  Type V
 T 800 550 9 8 0 0 0 0 1
 comment=High temperature Lead-Free reflow use suffix A
+T 500 50 9 10 0 0 0 0 1
+device=POLARIZED_CAPACITOR

@@ -1,5 +1,7 @@
-Makefile
-Makefile.in
 doc/
 doc/*
 *~
+*-swp
+*.swp
+*.bak
+

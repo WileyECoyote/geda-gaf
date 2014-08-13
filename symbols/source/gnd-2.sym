@@ -28,6 +28,6 @@ net=PGND:1
 T 0 500 5 10 0 0 0 0 1
 device=GROUND_NODE
 T 200 350 8 10 0 1 0 0 1
-refdes=GND
+refdes=none
 L 55 50 145 50 3 0 0 0 -1 -1
 L 80 10 120 10 3 0 0 0 -1 -1

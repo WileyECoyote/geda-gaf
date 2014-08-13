@@ -1,10 +1,14 @@
+2014-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
+   * panasonic/??-electrolytic: Fix device-attributes
+
 2014-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * passive/electrolytic/electrolytic-2*.sym: More cleaning.
+   * passive/electrolytic/electrolytic-2*.sym: More cleaning.
 
 2014-08-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * source/*.sym: Much editing, cleaning. Added
+   * source/*.sym: Much editing, cleaning. Added
 
              1.3V-plus-1.sym
              1.5V-plus-1.sym
