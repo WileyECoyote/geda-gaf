@@ -1,5 +1,14 @@
 2014-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
+        * opto/: some cleaning, add four new symbols:
+
+             TIL111-1.sym
+             TIL114-1.sym
+             TIL116-1.sym
+             TIL117-1.sym
+
+2014-08-12 Wiley E. Hill <wileyhill@gmail.com>
+
    * panasonic/??-electrolytic: Fix device-attributes
 
 2014-08-11 Wiley E. Hill <wileyhill@gmail.com>
