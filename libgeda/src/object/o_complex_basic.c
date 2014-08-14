@@ -558,10 +558,14 @@ o_complex_new(GedaToplevel *toplevel, int x, int y, int angle,
 
   }
 
-  /* set the parent field now */
+  complex->pin_objs = NULL;
+  /* set the parent field now and check for pins */
   for (iter = complex->prim_objs; iter != NULL; iter = g_list_next (iter)) {
-    Object *tmp = iter->data;
-    tmp->parent_object = new_obj;
+    Object *sub_object = iter->data;
+    sub_object->parent_object = new_obj;
+    if (sub_object->type == OBJ_PIN) {
+      complex->pin_objs = g_list_append(complex->pin_objs, sub_object);
+    }
   }
 
   return new_obj;

@@ -234,20 +234,19 @@ bool o_get_line_options(Object *object,
  */
 
 GList*
-o_get_objects_by_type (const GList *olist, int type)
+o_get_objects_by_type (GList *olist, int type)
 {
   GList  *objects = NULL;
-  GList  *iter;
-  Object *object;
 
-  g_return_val_if_fail(g_list_length((GList*)olist), NULL);
-
-  for (iter = (GList*)olist; olist; NEXT(olist)) {
-    object = iter->data;
+  lambda (Object *object)
+  {
     if (object->type == type) {
       objects = g_list_append(objects, object);
     }
+    return FALSE;
   }
+  foreach (olist);
+
   return objects;
 }
 

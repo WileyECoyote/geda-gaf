@@ -1,3 +1,13 @@
+2014-08-14 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_basic.c: Remove setting pin_objs in o_read_buffer.
+
+        * src/object/o_complex_basic.c: Add pin_objs while looping to set
+          parent.
+
+        * src/object/o_get.c: Change for next to foreach lambda in function
+          o_get_objects_by_type.
+
 2014-08-13 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/geda/geda_object.c: Use g_value_get_char to support glib <=2.30

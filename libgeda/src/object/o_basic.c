@@ -387,8 +387,6 @@ o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
         if (new_obj == NULL)
           goto error;
 
-        /* maybe should be in o_complex_read o_complex_basic.c */
-        new_obj->complex->pin_objs = o_get_objects_by_type(new_obj->complex->prim_objs, OBJ_PIN);
         new_object_list = g_list_prepend (new_object_list, new_obj);
 
         /* last_complex is used for verifying symversion attribute */
