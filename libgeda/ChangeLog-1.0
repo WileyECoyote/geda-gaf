@@ -1,3 +1,8 @@
+2014-08-15 Wiley E. Hill <wileyhill@gmail.com>
+
+        * utility/u_refdes.c: Add new file with static read-only structures
+          for reference designators.
+
 2014-08-14 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/object/o_basic.c: Remove setting pin_objs in o_read_buffer.
