@@ -1,3 +1,8 @@
+2014-08-15 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_comboboxtext.c: Set store directly in function
+        geda_combo_box_text_insert, no need to call gtk_combo_box_insert_text.
+
 2014-08-08 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_comboboxtext.h: Add geda_combo_box_text_set_activate_default
