@@ -1,0 +1,196 @@
+v 20140728 2
+T 0 4500 5 10 0 0 0 0 1
+author=AutoTron
+T 1000 1750 5 10 1 1 0 0 1
+device=TPS62141
+T 0 4350 5 10 0 0 0 0 1
+dist-license=GPLv3
+T 0 4200 5 10 0 0 0 0 1
+use-license=unlimited
+T 2600 3550 8 10 1 1 0 0 1
+refdes=U?
+T 2600 3400 5 10 0 1 0 0 1
+footprint=QFN-16-3
+T 0 4050 5 10 0 0 0 0 1
+numslots=0
+T 0 3900 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/TPS62140
+T 0 3750 5 10 0 0 0 0 1
+description=DC-DC Step-Down Converter
+B 300 0 2200 3400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 0 3100 300 3100 1 0 0
+{
+T 200 3150 5 8 1 1 0 6 1
+pinnumber=12
+T 200 3150 5 8 0 1 0 6 1
+pinseq=12
+T 350 3100 9 8 1 1 0 1 1
+pinlabel=PVIN
+T 50 3050 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 0 2300 300 2300 1 0 0
+{
+T 200 2350 5 8 1 1 0 6 1
+pinnumber=10
+T 200 2350 5 8 0 1 0 6 1
+pinseq=10
+T 350 2300 9 8 1 1 0 1 1
+pinlabel=AVIN
+T 50 2250 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 0 1900 300 1900 1 0 0
+{
+T 200 1950 5 8 1 1 0 6 1
+pinnumber=13
+T 200 1950 5 8 0 1 0 6 1
+pinseq=13
+T 350 1900 9 8 1 1 0 1 1
+pinlabel=EN
+T 75 1850 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 1500 300 1500 1 0 0
+{
+T 200 1550 5 8 1 1 0 6 1
+pinnumber=9
+T 200 1550 5 8 0 1 0 6 1
+pinseq=9
+T 350 1500 9 8 1 1 0 1 1
+pinlabel=SS/TR
+T 75 1450 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 1100 300 1100 1 0 0
+{
+T 200 1150 5 8 1 1 0 6 1
+pinnumber=8
+T 200 1150 5 8 0 1 0 6 1
+pinseq=8
+T 350 1100 9 8 1 1 0 1 1
+pinlabel=DEF
+T 75 950 5 8 0 1 0 0 1
+pintype=in
+}
+P 0 700 300 700 1 0 0
+{
+T 200 750 5 8 1 1 0 6 1
+pinnumber=7
+T 200 750 5 8 0 1 0 6 1
+pinseq=7
+T 365 700 9 8 1 1 0 1 1
+pinlabel=FSW
+T 75 550 5 8 0 1 0 0 1
+pintype=in
+}
+P 2800 300 2500 300 1 0 0
+{
+T 2575 350 5 8 1 1 0 0 1
+pinnumber=15
+T 2575 350 5 8 0 1 0 0 1
+pinseq=15
+T 2450 300 9 8 1 1 0 7 1
+pinlabel=PGND
+T 2550 150 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 2800 1100 2500 1100 1 0 0
+{
+T 2600 1150 5 8 1 1 0 0 1
+pinnumber=5
+T 2600 1150 5 8 0 1 0 0 1
+pinseq=5
+T 2450 1100 9 8 1 1 0 7 1
+pinlabel=FB
+T 2575 1050 5 8 0 1 0 2 1
+pintype=in
+}
+P 0 300 300 300 1 0 0
+{
+T 200 350 5 8 1 1 0 6 1
+pinnumber=6
+T 200 350 5 8 1 1 0 6 1
+pinseq=6
+T 350 300 9 8 1 1 180 7 1
+pinlabel=AGND
+T 250 225 5 8 0 1 180 0 1
+pintype=pwr
+}
+P 2800 1500 2500 1500 1 0 0
+{
+T 2600 1550 5 8 1 1 0 0 1
+pinnumber=4
+T 2600 1550 5 8 0 1 0 0 1
+pinseq=4
+T 2450 1500 9 8 1 1 0 7 1
+pinlabel=PG
+T 2575 1450 5 8 0 1 0 2 1
+pintype=out
+}
+P 2500 1900 2800 1900 1 0 1
+{
+T 2600 1950 5 8 1 1 0 0 1
+pinnumber=14
+T 2600 1950 5 8 0 1 0 0 1
+pinseq=14
+T 2450 1900 9 8 1 1 0 7 1
+pinlabel=VOS
+T 2625 1850 5 8 0 1 0 2 1
+pintype=in
+}
+P 2800 3100 2500 3100 1 0 0
+{
+T 2600 3150 5 8 1 1 0 0 1
+pinnumber=1
+T 2600 3150 5 8 0 1 0 0 1
+pinseq=1
+T 2425 3100 9 8 1 1 0 7 1
+pinlabel=SW
+T 2600 3050 5 8 0 1 0 2 1
+pintype=out
+}
+P 2800 2700 2500 2700 1 0 0
+{
+T 2600 2750 5 8 1 1 0 0 1
+pinnumber=2
+T 2600 2750 5 8 0 1 0 0 1
+pinseq=2
+T 2425 2700 9 8 1 1 0 7 1
+pinlabel=SW
+T 2600 2650 5 8 0 1 0 2 1
+pintype=out
+}
+P 2800 2300 2500 2300 1 0 0
+{
+T 2600 2350 5 8 1 1 0 0 1
+pinnumber=3
+T 2600 2350 5 8 0 1 0 0 1
+pinseq=3
+T 2400 2300 9 8 1 1 0 7 1
+pinlabel=SW
+T 2600 2250 5 8 0 1 0 2 1
+pintype=out
+}
+P 0 2700 300 2700 1 0 0
+{
+T 200 2750 5 8 1 1 0 6 1
+pinnumber=11
+T 200 2750 5 8 0 1 0 6 1
+pinseq=11
+T 350 2700 9 8 1 1 0 1 1
+pinlabel=PVIN
+T 50 2650 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 2800 700 2500 700 1 0 0
+{
+T 2575 750 5 8 1 1 0 0 1
+pinnumber=16
+T 2575 750 5 8 0 1 0 0 1
+pinseq=16
+T 2450 700 9 8 1 1 0 7 1
+pinlabel=PGND
+T 2550 550 5 8 0 1 0 0 1
+pintype=pwr
+}

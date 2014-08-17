@@ -1,3 +1,13 @@
+2014-08-16 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/: five new symbols DC-DC Step-Down Converters:
+
+             TPS62140-1.sym
+             TPS62140A-1.sym
+             TPS62141-1.sym
+             TPS62142-1.sym
+             TPS62143-1.sym
+
 2014-08-12 Wiley E. Hill <wileyhill@gmail.com>
 
         * opto/: some cleaning, add four new symbols:
