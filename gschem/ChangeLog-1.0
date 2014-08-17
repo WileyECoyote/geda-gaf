@@ -1,5 +1,10 @@
 2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_edit_pin.c: Use gtk_spin_button_update to work-around
+          defective functionality of GtkEntry.
+
+2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/x/x_image.c: gtk_combo_text_box -> geda_combo_box_text
 
         * src/x/x_attrib.c:  gtk_combo_text_box -> geda_combo_box_text

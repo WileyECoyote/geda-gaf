@@ -76,7 +76,7 @@ static WidgetStringData DialogStrings[] = {
   {"pin-sequence",        "_Sequence:",      "Set the sequence number"},
   {"pin-label",           "_Label:",         "Enter pin name or description"},
 
-  {"SetPinNodeTypeSwitch",    "      Type:",     "Enable to set all selected attributes to the prescribed type"},
+  {"SetPinNodeTypeSwitch",    "      Type:", "Enable to set all selected attributes to the prescribed type"},
   {"SetElectricalSwitch", "Attributes:",     "Enable to set all selected attributes to the prescribed value"},
 
   {"AutoNumberSwitch",    "Number:", "Enable or disable renumbering pin numbers, Number will be the starting pin number"},
@@ -292,6 +292,8 @@ x_dialog_edit_pin_type_ok(GtkWidget *Dialog, pin_type_data *pin_data)
   if (etype == PIN_ELECT_VOID)
     titled_information_dialog(_("Pin Properties"), "%s", _("Ignoring Pin electrical VOID"));
 
+  /* GtkEntry does not emit "active" properly, so tell spinner to check entry */
+  gtk_spin_button_update (GTK_SPIN_BUTTON (pin_data->sequence_spin));
   sequence = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON (pin_data->sequence_spin));
 
   /* Get the current selected pin objects and the count */
@@ -511,7 +513,7 @@ static void xd_edit_pin_set_sensitivity(GschemDialog *Dialog)
     /* Enable all the Tooltips for input widgets */
     g_object_set (pin_data->node_type,      "has-tooltip", TRUE, NULL);
     g_object_set (pin_data->pin_electrical, "has-tooltip", TRUE, NULL);
-    g_object_set (pin_data->number_entry,    "has-tooltip", TRUE, NULL);
+    g_object_set (pin_data->number_entry,   "has-tooltip", TRUE, NULL);
     g_object_set (pin_data->sequence_spin,  "has-tooltip", TRUE, NULL);
     g_object_set (pin_data->label_entry,    "has-tooltip", TRUE, NULL);
 
@@ -867,16 +869,16 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
   gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
 
   /* Create Toggle Switch widgets */
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, SetPinNodeType,    1, 2, FALSE)
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, SetElectrical, 2, 2, FALSE)
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoNumber,    1, 4, FALSE)
-  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoSequence,  2, 4, FALSE)
+  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, SetPinNodeType, 1, 2, FALSE)
+  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, SetElectrical,  2, 2, FALSE)
+  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoNumber,     1, 4, FALSE)
+  GSCHEM_SWITCH((GTK_WIDGET(ThisDialog)), table, AutoSequence,   2, 4, FALSE)
 
   /* Setup callback for Switch widget */
   GEDA_CALLBACK_SWITCH (SetPinNodeType,   xd_edit_pin_switch_toggled, ThisDialog)
-  GEDA_CALLBACK_SWITCH (SetElectrical, xd_edit_pin_switch_toggled, ThisDialog)
-  GEDA_CALLBACK_SWITCH (AutoNumber,    xd_edit_pin_switch_toggled, ThisDialog)
-  GEDA_CALLBACK_SWITCH (AutoSequence,  xd_edit_pin_switch_toggled, ThisDialog)
+  GEDA_CALLBACK_SWITCH (SetElectrical,    xd_edit_pin_switch_toggled, ThisDialog)
+  GEDA_CALLBACK_SWITCH (AutoNumber,       xd_edit_pin_switch_toggled, ThisDialog)
+  GEDA_CALLBACK_SWITCH (AutoSequence,     xd_edit_pin_switch_toggled, ThisDialog)
 
   GSCHEM_HOOKUP_OBJECT(ThisDialog, table, "over-rides");
 
@@ -938,6 +940,14 @@ GtkWidget *x_dialog_pin_type_create_dialog(GschemToplevel *w_current)
                                    (GtkWidget*) main_vbox);
 
   gtk_widget_show_all (action_area);
+
+  g_signal_connect (number_entry, "activate",
+                    G_CALLBACK (on_apply_butt_clicked),
+                    ThisDialog);
+
+  g_signal_connect (sequence_spin, "activate",
+                    G_CALLBACK (on_apply_butt_clicked),
+                    ThisDialog);
 
   g_signal_connect (label_entry, "activate",
                     G_CALLBACK (on_apply_butt_clicked),
