@@ -132,38 +132,48 @@ bool is_a_gschem_dialog (void *dialog)
  *  first selected object..
  *
  *  \param [in] selection  The SELECTION object of page being edited.
- *  \param [in] user_data  The multi-attribute editor dialog.
+ *  \param [in] user_data  The dialog.
  */
 static void gd_callback_selection_changed (SELECTION *selection, void * user_data)
 {
-  GschemDialog   *Dialog    = GSCHEM_DIALOG(user_data);
-  GschemToplevel *w_current = Dialog->w_current;
+  GschemDialog   *Dialog;
+  GschemToplevel *w_current;
   GList  *iter;
   Object *object;
   int object_count = 0;
 
-  if (w_current != NULL) {
+  if (GSCHEM_IS_DIALOG(user_data)) {
 
-    for (iter = geda_list_get_glist (selection); iter != NULL; iter = g_list_next (iter)) {
-      object = (Object *)iter->data;
-      if(object != NULL);
+    Dialog    = GSCHEM_DIALOG(user_data);
+    w_current = Dialog->w_current;
+
+    if (w_current != NULL) {
+
+      for (iter = geda_list_get_glist (selection); iter != NULL; iter = g_list_next (iter)) {
+        object = (Object *)iter->data;
+        if(object != NULL);
         object_count++;
-    }
-
-    if (object_count == 0) {
-      object = NULL;
-    }
-    else
-      if (object_count == 1) {
-        Dialog->func (w_current, object);
       }
-      else {
-        object = o_select_return_first_object (w_current);
-        Dialog->func (w_current, object);
+
+      if (object_count == 0) {
+        object = NULL;
+      }
+      else
+        if (object_count == 1) {
+          Dialog->func (w_current, object);
+        }
+        else {
+          object = o_select_return_first_object (w_current);
+          Dialog->func (w_current, object);
+        }
+    }
+    else {
+      BUG_MSG("GedaToplevel not set in Dialog\n");
     }
   }
-  else
-    fprintf(stderr, "Error gd_callback_selection_changed:GedaToplevel not set;\n");
+  else {
+    BUG_MSG("Bad pointer to Dialog\n");
+  }
 }
 
 /*! \brief Update the dialog when the current page's SELECTION object
@@ -182,10 +192,17 @@ static void gd_callback_selection_changed (SELECTION *selection, void * user_dat
  *  \param [in] where_the_object_was  Pointer to where the object was
  *                                    just destroyed
  */
-static void gd_callback_selection_finalized (void * data, GObject *where_the_object_was)
+static void gd_callback_selection_finalized (void *data, GObject *where_the_object_was)
 {
-  GschemDialog *Dialog = GSCHEM_DIALOG(data);
-  g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
+  GschemDialog *Dialog;
+  if (GSCHEM_IS_DIALOG(data)) {
+    Dialog = (GschemDialog*)data;
+    Dialog->selection = NULL;
+    g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
+  }
+  else {
+    BUG_MSG("Bad pointer to Dialog\n");
+  }
 }
 
 /*! \brief Add link between modeless dialog and current selection.
@@ -196,11 +213,28 @@ static void gd_callback_selection_finalized (void * data, GObject *where_the_obj
  *
  *  \param [in] Dialog  Pointer to a GschemDialog dialog.
  */
-static void gd_connect_selection (GschemDialog *Dialog)
+static void gd_connect_selection (void *maybe)
 {
-  Dialog->selection = Dialog->w_current->toplevel->page_current->selection_list;
-  g_object_weak_ref (G_OBJECT (Dialog->selection), gd_callback_selection_finalized, Dialog);
-  g_signal_connect (Dialog->selection, "changed", (GCallback)gd_callback_selection_changed, Dialog);
+  GschemDialog *Dialog;
+
+  if (GSCHEM_IS_DIALOG(maybe)) {
+
+    Dialog = maybe;
+
+    Dialog->selection = Dialog->w_current->toplevel->page_current->selection_list;
+
+    if (Dialog->selection && G_IS_OBJECT(Dialog->selection)) {
+      g_object_weak_ref (G_OBJECT (Dialog->selection), gd_callback_selection_finalized, Dialog);
+      g_signal_connect (Dialog->selection, "changed", (GCallback)gd_callback_selection_changed, Dialog);
+    }
+    else {
+      Dialog->selection = NULL;
+    }
+    g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, Dialog->selection);
+  }
+  else {
+    BUG_MSG("Bad pointer to Dialog\n");
+  }
 }
 
 /*! \brief Remove the link between Dialog and selection.
@@ -212,25 +246,30 @@ static void gd_connect_selection (GschemDialog *Dialog)
  *  \param [in] Dialog  The Multiattrib dialog.
  */
 static void gd_disconnect_selection (GschemDialog *Dialog) {
-  SELECTION *selection;
+
+  SELECTION *selection = Dialog->selection;
+
+  if (selection && G_IS_OBJECT(selection)) {
+
+    g_signal_handlers_disconnect_matched (selection,
+                                          G_SIGNAL_MATCH_FUNC |
+                                          G_SIGNAL_MATCH_DATA,
+                                          0, 0, NULL,
+                                          gd_callback_selection_changed,
+                                          Dialog);
+
+    Dialog->selection = NULL;
+  }
 
   /* get selection watched from dialog data */
   selection = (SELECTION*)g_object_get_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION);
-  selection = Dialog->selection;
-  if (selection == NULL) {
-    /* no selection watched */
-    return;
-  }
 
-  g_signal_handlers_disconnect_matched (selection,
-                                        G_SIGNAL_MATCH_FUNC |
-                                        G_SIGNAL_MATCH_DATA,
-                                        0, 0, NULL,
-                                        gd_callback_selection_changed,
-                                        Dialog);
-  g_object_weak_unref (G_OBJECT (selection),
-                       gd_callback_selection_finalized,
-                       Dialog);
+  if (selection && G_IS_OBJECT(selection)) {
+
+      g_object_weak_unref (G_OBJECT (selection),
+                           gd_callback_selection_finalized,
+                           Dialog);
+  }
 
   /* reset Dialog data */
   g_object_set_data (G_OBJECT (Dialog), DIALOG_DATA_SELECTION, NULL);
@@ -418,7 +457,7 @@ static void gschem_dialog_finalize (GObject *object)
  *  \param [in]  pspec        A GParamSpec describing the property being set
  */
 static void
-gschem_dialog_set_property (GObject *object, guint property_id,
+gschem_dialog_set_property (GObject *object, unsigned int property_id,
                             const GValue *value, GParamSpec *pspec)
 {
   GschemDialog *Dialog = GSCHEM_DIALOG (object);
