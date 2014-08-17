@@ -1,5 +1,11 @@
 2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/x/x_image.c: gtk_combo_text_box -> geda_combo_box_text
+
+        * src/x/x_attrib.c:  gtk_combo_text_box -> geda_combo_box_text
+
+2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/base/gschem_dialog.c: Redo selection callback mechanism.
 
 2014-08-08 Wiley E. Hill <wileyhill@gmail.com>

@@ -242,7 +242,7 @@ static char *x_image_get_type_from_description(char *descr) {
  *
  */
 static void
-x_image_update_dialog_filename(GtkComboBox     *combo,
+x_image_update_dialog_filename(GedaComboBox     *combo,
                                GschemToplevel *w_current)
 {
   GedaToplevel *toplevel       = w_current->toplevel;
@@ -256,7 +256,7 @@ x_image_update_dialog_filename(GtkComboBox     *combo,
   GtkWidget *file_chooser;
 
 #if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_update_dialog_filename: begin\n");
+  fprintf(stderr, "%s: begin\n", __func__);
 #endif
 
   image_type_descr =
@@ -300,7 +300,7 @@ x_image_update_dialog_filename(GtkComboBox     *combo,
         new_image_filename);
   }
   else {
-    u_log_message("x_image_update_dialog_filename: No parent file chooser found!.\n");
+    u_log_message("%s: No parent file chooser found!.\n", __func__);
   }
 
   GEDA_FREE(file_name);
@@ -308,7 +308,7 @@ x_image_update_dialog_filename(GtkComboBox     *combo,
   GEDA_FREE(new_image_filename);
 
 #if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_update_dialog_filename: exit\n");
+  fprintf(stderr, "%s: exit\n", __func__);
 #endif
 }
 
@@ -777,7 +777,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   NULL);
 
   /* Update the filename */
-  x_image_update_dialog_filename(GTK_COMBO_BOX(type_combo), w_current);
+  x_image_update_dialog_filename(GEDA_COMBO_BOX(type_combo), w_current);
 
 #if DEBUG || DEBUG_IMAGING
   fprintf(stderr, "%s: configuring the dialog window\n", __func__);
@@ -806,13 +806,13 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     /* Retrieve values from the dialog controls */
     image_size =
     geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(size_combo));
-    last_image_size = gtk_combo_box_get_active(GTK_COMBO_BOX(size_combo));
+    last_image_size = geda_combo_box_get_active(GEDA_COMBO_BOX(size_combo));
     sscanf(image_size, "%ix%i", &width, &height);
     GEDA_FREE(image_size);
 
     image_type_descr =
     geda_combo_box_text_get_active_text (GEDA_COMBO_BOX_TEXT(type_combo));
-    last_image_type = gtk_combo_box_get_active(GTK_COMBO_BOX(type_combo));
+    last_image_type = geda_combo_box_get_active(GEDA_COMBO_BOX(type_combo));
     image_type = x_image_get_type_from_description(image_type_descr);
 
     GEDA_FREE(image_type_descr);
