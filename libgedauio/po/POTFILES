@@ -1,0 +1,13 @@
+     ../../libgedauio/src/widgets/geda_accel_label.c \
+     ../../libgedauio/src/widgets/geda_comboboxtext.c \
+     ../../libgedauio/src/widgets/geda_completion.c \
+     ../../libgedauio/src/widgets/geda_entry.c \
+     ../../libgedauio/src/widgets/geda_font_dialog.c \
+     ../../libgedauio/src/widgets/geda_handlebox.c \
+     ../../libgedauio/src/widgets/geda_label.c \
+     ../../libgedauio/src/widgets/geda_menu_button.c \
+     ../../libgedauio/src/widgets/geda_accel_label.c \
+     ../../libgedauio/src/widgets/geda_action.c \
+     ../../libgedauio/src/widgets/geda_font_button.c \
+     ../../libgedauio/src/widgets/geda_swatch_renderer.c \
+     ../../libgedauio/src/widgets/geda_toggle_action.c

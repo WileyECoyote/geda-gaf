@@ -40,6 +40,7 @@
 
 #include <string.h>
 
+#include <geda_combobox.h>
 #include <geda_comboboxtext.h>
 
 #include "gettext.h"
@@ -49,7 +50,7 @@
 /**
  * \brief GedaComboBoxText - A text-only combo box
  * \par
- * A GedaComboBoxText is a simple variant of GtkComboBox that hides the
+ * A GedaComboBoxText is a simple variant of GedaComboBox that hides the
  * model-view complexity for simple text-only use cases. To create a
  * GedaComboBoxText, use geda_combo_box_text_new() or
  * geda_combo_box_text_new_with_entry().
@@ -63,7 +64,7 @@
  * The entry itself can be accessed by calling gtk_bin_get_child() on the
  * combo box.
  * \par
- * You should not call gtk_combo_box_set_model() or attempt to pack more cells
+ * You should not call geda_combo_box_set_model() or attempt to pack more cells
  * into this combo box via its GtkCellLayout interface.
  *
  * \brief GedaComboBoxText as GtkBuildable
@@ -96,7 +97,7 @@ static GtkBuildableIface *buildable_parent_iface = NULL;
 
 void g_type_ensure(GedaType type){return;};
 
-G_DEFINE_TYPE_WITH_CODE (GedaComboBoxText, geda_combo_box_text, GTK_TYPE_COMBO_BOX,
+G_DEFINE_TYPE_WITH_CODE (GedaComboBoxText, geda_combo_box_text, GEDA_TYPE_COMBO_BOX,
                          G_IMPLEMENT_INTERFACE (GTK_TYPE_BUILDABLE,
                          geda_combo_box_text_buildable_interface_init));
 
@@ -128,9 +129,9 @@ geda_combo_box_text_constructor (GedaType               type,
 
   self = GEDA_COMBO_BOX_TEXT(object);
 
-  gtk_combo_box_set_entry_text_column (GTK_COMBO_BOX (object), text_column);
+  geda_combo_box_set_entry_text_column (GEDA_COMBO_BOX (object), text_column);
 
-  if (!gtk_combo_box_get_has_entry (GTK_COMBO_BOX (object))) {
+  if (!geda_combo_box_get_has_entry (GEDA_COMBO_BOX (object))) {
 
     GtkCellRenderer *cell;
 
@@ -163,7 +164,7 @@ geda_combo_box_text_init (GedaComboBoxText *combo_box)
   GtkListStore *store;
 
   store  = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
-  gtk_combo_box_set_model (GTK_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
+  geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
   combo_box->count = 0;
   combo_box->store = store;
 
@@ -183,10 +184,10 @@ geda_combo_box_text_class_init (GedaComboBoxTextClass *klass)
 static void
 geda_combo_box_text_buildable_interface_init (GtkBuildableIface *iface)
 {
-  buildable_parent_iface = g_type_interface_peek_parent (iface);
+  buildable_parent_iface  = g_type_interface_peek_parent (iface);
 
   iface->custom_tag_start = geda_combo_box_text_buildable_custom_tag_start;
-  iface->custom_finished = geda_combo_box_text_buildable_custom_finished;
+  iface->custom_finished  = geda_combo_box_text_buildable_custom_finished;
 }
 
 typedef struct {
@@ -325,8 +326,7 @@ geda_combo_box_text_buildable_custom_tag_start (GtkBuildable     *buildable,
                                                 tagname,   parser,  data))
     return TRUE;
 
-  if (strcmp (tagname, "items") == 0)
-    {
+  if (strcmp (tagname, "items") == 0) {
       ItemParserData *parser_data;
 
       parser_data          = g_slice_new0 (ItemParserData);
@@ -367,7 +367,7 @@ geda_combo_box_text_buildable_custom_finished (GtkBuildable *buildable,
 /*! \brief Create a New GedaComboBoxText
  *  \par Function Description
  *
- * Creates a new #GedaComboBoxText, which is a GtkComboBox just
+ * Creates a new #GedaComboBoxText, which is a GedaComboBox just
  * displaying strings.
  *
  * \return new #GedaComboBoxText
@@ -381,7 +381,7 @@ GtkWidget *geda_combo_box_text_new ()
 /*! \brief Create a New GedaComboBoxText with Entry
  *  \par Function Description
  *
- * Creates a new #GedaComboBoxText, which is a GtkComboBox just displaying
+ * Creates a new #GedaComboBoxText, which is a GedaComboBox just displaying
  * strings. The combo box created by this function has an entry.
  *
  * \return new #GedaComboBoxText
@@ -390,6 +390,22 @@ GtkWidget *geda_combo_box_text_new ()
 GtkWidget *geda_combo_box_text_new_with_entry ()
 {
   return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE, NULL);
+}
+
+/*! \brief Create a New GedaComboBoxText with Entry
+ *  \par Function Description
+ *
+ * Creates a new #GedaComboBoxText, which is a GedaComboBox just displaying
+ * strings. The combo box created by this function has an entry.
+ *
+ * \return new #GedaComboBoxText
+ *
+ */
+GtkWidget *geda_combo_box_text_list_new()
+{
+  return g_object_new (GEDA_TYPE_COMBO_BOX_TEXT, "has-entry", TRUE,
+                                                 "appear-as-list", TRUE,
+                       NULL);
 }
 
 void
@@ -469,10 +485,10 @@ geda_combo_box_text_remove (GedaComboBoxText *combo_box,
   GtkListStore *store;
   GtkTreeIter   iter;
 
-  g_return_if_fail (GTK_IS_COMBO_BOX_TEXT (combo_box));
+  g_return_if_fail (GEDA_IS_COMBO_BOX_TEXT (combo_box));
   g_return_if_fail (position >= 0);
 
-  model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo_box));
+  model = geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box));
 
   store = GTK_LIST_STORE (model);
   g_return_if_fail (GTK_IS_LIST_STORE (store));
@@ -496,9 +512,9 @@ geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
 {
   GtkListStore *store;
 
-  g_return_if_fail (GTK_IS_COMBO_BOX_TEXT (combo_box));
+  g_return_if_fail (GEDA_IS_COMBO_BOX_TEXT (combo_box));
 
-  store = GTK_LIST_STORE (gtk_combo_box_get_model (GTK_COMBO_BOX (combo_box)));
+  store = GTK_LIST_STORE (geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box)));
   gtk_list_store_clear (store);
   combo_box->count = 0;
 }
@@ -595,21 +611,21 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 
   if (GEDA_IS_COMBO_BOX_TEXT (combo_box)) {
 
-    if (gtk_combo_box_get_has_entry (GTK_COMBO_BOX (combo_box)))
+    if (geda_combo_box_get_has_entry (GEDA_COMBO_BOX (combo_box)))
     {
       GtkWidget *entry;
 
       entry = gtk_bin_get_child (GTK_BIN (combo_box));
       text = g_strdup (gtk_entry_get_text (GTK_ENTRY (entry)));
     }
-    else if (gtk_combo_box_get_active_iter (GTK_COMBO_BOX (combo_box), &iter))
+    else if (geda_combo_box_get_active_iter (GEDA_COMBO_BOX (combo_box), &iter))
     {
       GtkTreeModel *model;
       int text_column;
       int column_type;
 
-      model = gtk_combo_box_get_model (GTK_COMBO_BOX (combo_box));
-      text_column = gtk_combo_box_get_entry_text_column (GTK_COMBO_BOX (combo_box));
+      model = geda_combo_box_get_model (GEDA_COMBO_BOX (combo_box));
+      text_column = geda_combo_box_get_entry_text_column (GEDA_COMBO_BOX (combo_box));
       g_return_val_if_fail (text_column >= 0, NULL);
       column_type = gtk_tree_model_get_column_type (model, text_column);
       g_return_val_if_fail (column_type == G_TYPE_STRING, NULL);
@@ -625,11 +641,12 @@ geda_combo_box_text_get_active_text (GedaComboBoxText *combo_box)
 void
 geda_combo_box_text_set_active (GedaComboBoxText *combo_box, int position)
 {
-  gtk_combo_box_set_active((GtkComboBox*)combo_box, position);
+  geda_combo_box_set_active((GedaComboBox*)combo_box, position);
 }
+
 int geda_combo_box_text_get_active (GedaComboBoxText *combo_box)
 {
-  return gtk_combo_box_get_active ((GtkComboBox*)combo_box);
+  return geda_combo_box_get_active ((GedaComboBox*)combo_box);
 }
 
 void
@@ -680,10 +697,10 @@ void geda_combo_box_text_widget_remove (GtkWidget *widget, int position)
 }
 void geda_combo_box_text_widget_set_active (GtkWidget *widget, int position)
 {
-  gtk_combo_box_set_active((GtkComboBox*)widget, position);
+  geda_combo_box_set_active((GedaComboBox*)widget, position);
 }
 int geda_combo_box_text_widget_get_active (GtkWidget *widget)
 {
-  return gtk_combo_box_get_active ((GtkComboBox*)widget);
+  return geda_combo_box_get_active ((GedaComboBox*)widget);
 }
 /** @} end group GedaComboBoxText */

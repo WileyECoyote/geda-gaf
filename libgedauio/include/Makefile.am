@@ -10,6 +10,7 @@ libgedauio_HEADERS = \
 			geda_accel_label.h       \
 			geda_action.h            \
 			geda_actionhelper.h      \
+			geda_combobox.h          \
 			geda_comboboxtext.h      \
 			geda_completion.h        \
 			geda_entry.h             \

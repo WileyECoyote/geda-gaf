@@ -37,8 +37,8 @@
 #include <gtk/gtk.h>
 #include <gtk/gtkprivate.h>
 
-#include "geda_widgets.h"
-
+#include "geda_toggle_action.h"
+#include "geda_accel_label.h"
 #include "gettext.h"
 #include <geda_debug.h>
 

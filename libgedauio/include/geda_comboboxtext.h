@@ -45,20 +45,23 @@ typedef struct _GedaComboBoxTextClass        GedaComboBoxTextClass;
 struct _GedaComboBoxText
 {
   /*< private >*/
-  GtkComboBox  parent_instance;
-  GtkWidget   *button;
-  GtkWidget   *entry;
-  int          count;
+  GedaComboBox   parent_instance;
+  GtkListStore *store;
+  GtkWidget    *tree;
+  GtkWidget    *button;
+  GtkWidget    *entry;
+  int           count;
 };
 
 struct _GedaComboBoxTextClass
 {
-  GtkComboBoxClass parent_class;
+  GedaComboBoxClass parent_class;
 };
 
 unsigned int geda_combo_box_text_get_type              (void) G_GNUC_CONST;
-GtkWidget*   geda_combo_box_text_new                   (void);
-GtkWidget*   geda_combo_box_text_new_with_entry        (void);
+GtkWidget   *geda_combo_box_text_new                   (void);
+GtkWidget   *geda_combo_box_text_new_with_entry        (void);
+GtkWidget   *geda_combo_box_text_list_new              (void);
 
 /* Short-hand versions */
 void         geda_combo_box_text_append                (GedaComboBoxText   *combo_box,
@@ -67,7 +70,7 @@ void         geda_combo_box_text_insert                (GedaComboBoxText   *comb
                                                         int                 position,
                                                         const char         *text);
 void         geda_combo_box_text_prepend               (GedaComboBoxText   *combo_box,
-                                                       const char          *text);
+                                                        const char          *text);
 void         geda_combo_box_text_remove                (GedaComboBoxText   *combo_box,
                                                         int                 position);
 void         geda_combo_box_text_remove_all            (GedaComboBoxText   *combo_box);
@@ -97,17 +100,18 @@ GtkWidget   *geda_combo_box_text_get_entry             (GedaComboBoxText   *comb
 
 /* Widget Receptors - it had better be a GedaComboBoxText widget */
 void         geda_combo_box_text_widget_append         (GtkWidget          *widget,
-                                                       const char          *text);
+                                                        const char         *text);
 void         geda_combo_box_text_widget_insert         (GtkWidget          *widget,
                                                         int                 position,
-                                                       const char          *text);
+                                                        const char         *text);
 void         geda_combo_box_text_widget_prepend        (GtkWidget          *widget,
-                                                       const char          *text);
+                                                        const char         *text);
 void         geda_combo_box_text_widget_remove         (GtkWidget          *widget,
                                                         int                 position);
 void         geda_combo_box_text_widget_set_active     (GtkWidget          *widget,
                                                         int                 position);
 int          geda_combo_box_text_widget_get_active     (GtkWidget          *widget);
+
 G_END_DECLS
 
 #endif /* __GEDA_COMBO_BOX_TEXT_H__ */

@@ -3,6 +3,7 @@
 libgedauio_la_SOURCES += \
 			widgets/geda_accel_label.c       \
 			widgets/geda_action.c            \
+			widgets/geda_combobox.c          \
 			widgets/geda_comboboxtext.c      \
 			widgets/geda_completion.c        \
 			widgets/geda_entry.c             \
