@@ -2,6 +2,12 @@
 
         * ti/: new symbol motor control/drive:
 
+             DRV8313-1.sym
+
+2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/: new symbol motor control/drive:
+
              DRV8301-1.sym
 
 2014-08-16 Wiley E. Hill <wileyhill@gmail.com>
