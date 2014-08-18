@@ -1,4 +1,15 @@
-2014-08-15 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-18 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_comboboxtext.c: Enhanced widget; add FORMAT_ENTRY_TEXT.
+        and other updates from gtk-3.4
+
+      * src/functions: New module group with inaugural modules geda_accumulate.c
+        and geda_marshal.c.
+
+      * include/geda_uio_functions.h: New header includes uio the functions, can
+        be included without having to include the entire library.
+
+2014-08-16 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_comboboxtext.c: New file, provides replacement for
         GtkComboBox.

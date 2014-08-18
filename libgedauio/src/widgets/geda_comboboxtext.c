@@ -163,7 +163,7 @@ geda_combo_box_text_init (GedaComboBoxText *combo_box)
 {
   GtkListStore *store;
 
-  store  = gtk_list_store_new (2, G_TYPE_STRING, G_TYPE_STRING);
+  store  = gtk_list_store_new (3, G_TYPE_STRING, G_TYPE_STRING, G_TYPE_STRING);
   geda_combo_box_set_model (GEDA_COMBO_BOX (combo_box), GTK_TREE_MODEL (store));
   combo_box->count = 0;
   combo_box->store = store;
@@ -408,10 +408,11 @@ GtkWidget *geda_combo_box_text_list_new()
                        NULL);
 }
 
-void
-geda_combo_box_text_insert (GedaComboBoxText *combo_box,
-                                 int          position,
-                                 const char  *text)
+static void
+geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
+                                 int               position,
+                                 const char       *text,
+                                 const char       *text2)
 {
   GtkTreeIter   iter;
   GtkListStore *store;
@@ -426,11 +427,34 @@ geda_combo_box_text_insert (GedaComboBoxText *combo_box,
   store = GTK_LIST_STORE (combo_box->store);
 
   gtk_list_store_insert (store, &iter, position);
-  gtk_list_store_set (store, &iter, 0, text, -1);
+
+  if (text2 != NULL)
+    gtk_list_store_set (store, &iter, 0, text, 2, text2, -1);
+  else {
+    gtk_list_store_set (store, &iter, 0, text, -1);
+  }
 
   combo_box->count++;
 }
 
+/*! \brief GedaComboBoxText Text Append
+ *  \par Function Description
+ *
+ * Appends text to the list of strings stored in combo_box.
+ *
+ * This is the same as calling geda_combo_box_text_insert() with a
+ * position of -1.
+ *
+ * \param [in] combo_box A #GedaComboBoxText object.
+ * \param [in] text      Pointer to string to display.
+ */
+void
+geda_combo_box_text_insert (GedaComboBoxText *combo_box,
+                            int               position,
+                            const char       *text)
+{
+  geda_combo_box_text_real_insert (combo_box, position, text, NULL);
+}
 
 /*! \brief GedaComboBoxText Text Append
  *  \par Function Description
@@ -445,9 +469,9 @@ geda_combo_box_text_insert (GedaComboBoxText *combo_box,
  */
 void
 geda_combo_box_text_append (GedaComboBoxText *combo_box,
-                           const char        *text)
+                            const char       *text)
 {
-  geda_combo_box_text_insert (combo_box, -1, text);
+  geda_combo_box_text_real_insert (combo_box, -1, text, NULL);
 }
 
 
@@ -466,7 +490,7 @@ void
 geda_combo_box_text_prepend (GedaComboBoxText *combo_box,
                              const char       *text)
 {
-  geda_combo_box_text_insert (combo_box, 0, text);
+  geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
 }
 
 /*! \brief GedaComboBoxText Remove Text at Index Position
@@ -519,6 +543,25 @@ geda_combo_box_text_remove_all (GedaComboBoxText *combo_box)
   combo_box->count = 0;
 }
 
+void geda_combo_box_text_list_append (GedaComboBoxText   *combo_box,
+                                      const char         *text,
+                                      const char         *text2)
+{
+  geda_combo_box_text_real_insert (combo_box, -1, text, text2);
+}
+void geda_combo_box_text_list_insert (GedaComboBoxText   *combo_box,
+                                      int                 position,
+                                      const char         *text,
+                                      const char         *text2)
+{
+  geda_combo_box_text_real_insert (combo_box, position, text, text2);
+}
+void geda_combo_box_text_list_prepend (GedaComboBoxText   *combo_box,
+                                       const char         *text,
+                                       const char         *text2)
+{
+  geda_combo_box_text_real_insert (combo_box, 0, text, text2);
+}
 
 /*! \brief GedaComboBoxText Append Text
  *  \par Function Description
@@ -535,7 +578,7 @@ void
 geda_combo_box_text_append_text (GedaComboBoxText *combo_box,
                                  const char       *text)
 {
-  geda_combo_box_text_insert (combo_box, -1, text);
+  geda_combo_box_text_real_insert (combo_box, -1, text, NULL);
 }
 
 /*! \brief GedaComboBoxText Insert Text
@@ -554,10 +597,10 @@ geda_combo_box_text_append_text (GedaComboBoxText *combo_box,
  */
 void
 geda_combo_box_text_insert_text (GedaComboBoxText *combo_box,
-                                int                position,
-                                const char        *text)
+                                 int                position,
+                                 const char        *text)
 {
-  geda_combo_box_text_insert (combo_box, position, text);
+  geda_combo_box_text_real_insert (combo_box, position, text, NULL);
 }
 
 /*! \brief GedaComboBoxText Prepend Text
@@ -576,7 +619,7 @@ void
 geda_combo_box_text_prepend_text (GedaComboBoxText *combo_box,
                                   const char       *text)
 {
-  geda_combo_box_text_insert (combo_box, 0, text);
+  geda_combo_box_text_real_insert (combo_box, 0, text, NULL);
 }
 
 void geda_combo_box_text_remove_text (GedaComboBoxText *combo_box,

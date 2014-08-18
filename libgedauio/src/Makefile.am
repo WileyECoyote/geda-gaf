@@ -12,15 +12,18 @@ INC_LIBGEDA                  = -I$(top_srcdir)/libgeda/include
 GEDA_INCLUDES                = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-	             	       $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+	             	           $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS                   = -version-info $(LIBGEDAUIO_SHLIB_VERSION) $(GLIB_LIBS)     $(GTK_LIBS) \
-					     $(WINDOWS_LIBTOOL_FLAGS)    $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+					           $(WINDOWS_LIBTOOL_FLAGS)    $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedauio.la
 
+libgedauio_extra_sources     = functions/geda-marshal.list
+
 libgedauio_la_SOURCES        =
 
+include functions/Makefile_insert
 include dialogs/Makefile_insert
 include widgets/Makefile_insert
 

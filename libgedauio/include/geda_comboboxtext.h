@@ -45,7 +45,7 @@ typedef struct _GedaComboBoxTextClass        GedaComboBoxTextClass;
 struct _GedaComboBoxText
 {
   /*< private >*/
-  GedaComboBox   parent_instance;
+  GedaComboBox  parent_instance;
   GtkListStore *store;
   GtkWidget    *tree;
   GtkWidget    *button;
@@ -75,6 +75,17 @@ void         geda_combo_box_text_remove                (GedaComboBoxText   *comb
                                                         int                 position);
 void         geda_combo_box_text_remove_all            (GedaComboBoxText   *combo_box);
 
+void         geda_combo_box_text_list_append           (GedaComboBoxText   *combo_box,
+                                                        const char         *text,
+                                                        const char         *text2);
+void         geda_combo_box_text_list_insert           (GedaComboBoxText   *combo_box,
+                                                        int                 position,
+                                                        const char         *text,
+                                                        const char         *text2);
+void         geda_combo_box_text_list_prepend          (GedaComboBoxText   *combo_box,
+                                                        const char         *text,
+                                                        const char         *text2);
+
 /* These exist to be consistent with Gtk function naming */
 void         geda_combo_box_text_append_text           (GedaComboBoxText   *combo_box,
                                                        const char          *text);
@@ -87,8 +98,8 @@ void         geda_combo_box_text_remove_text           (GedaComboBoxText   *comb
                                                         int                 position);
 void         geda_combo_box_text_remove_all_text       (GedaComboBoxText   *combo_box);
 
-
 char        *geda_combo_box_text_get_active_text       (GedaComboBoxText   *combo_box);
+
 void         geda_combo_box_text_set_active            (GedaComboBoxText   *combo_box,
                                                         int                 position);
 int          geda_combo_box_text_get_active            (GedaComboBoxText   *combo_box);

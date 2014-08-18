@@ -25,6 +25,7 @@ libgedauio_HEADERS = \
 			geda_swatch_renderer.h   \
 			geda_toggle_action.h     \
 			geda_dialogs.h           \
+			geda_uio_functions.h     \
 			geda_widgets.h
 
 MOSTLYCLEANFILES     = *~ *.log core FILE

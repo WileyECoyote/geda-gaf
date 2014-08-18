@@ -39,6 +39,8 @@ struct _GedaComboBox
   GtkBin parent_instance;
 
   /*< private >*/
+  int tip_column;
+
   GedaComboBoxPrivate *priv;
 };
 
@@ -47,10 +49,11 @@ struct _GedaComboBoxClass
   GtkBinClass parent_class;
 
   /* signals */
-  void     (* changed)          (GedaComboBox *combo_box);
+  void     (* changed)           (GedaComboBox *combo_box);
+  char  *  (* format_entry_text) (GedaComboBox *combo_box, const char *path);
 
   /* vfuncs */
-  char *  (* get_active_text)  (GedaComboBox *combo_box);
+  char  *  (* get_active_text)   (GedaComboBox *combo_box);
 
 };
 
@@ -76,13 +79,16 @@ bool          geda_combo_box_get_add_tearoffs       (GedaComboBox *combo_box);
 void          geda_combo_box_set_add_tearoffs       (GedaComboBox *combo_box,
                                                      bool          add_tearoffs);
 
-const char *  geda_combo_box_get_title              (GedaComboBox *combo_box);
-void                  geda_combo_box_set_title      (GedaComboBox *combo_box,
+const char   *geda_combo_box_get_title              (GedaComboBox *combo_box);
+void          geda_combo_box_set_title              (GedaComboBox *combo_box,
                                                      const char   *title);
 
 bool          geda_combo_box_get_focus_on_click     (GedaComboBox *combo);
 void          geda_combo_box_set_focus_on_click     (GedaComboBox *combo,
                                                      bool          focus_on_click);
+
+void          geda_combo_box_set_tooltip_column     (GedaComboBox *combo,
+                                                     int           column);
 
 /* get/set active item */
 int           geda_combo_box_get_active       (GedaComboBox   *combo_box);
