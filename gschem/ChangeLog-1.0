@@ -1,3 +1,8 @@
+2014-08-19 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/object/o_attrib.c: Remove setting page->CHANGED in function
+          o_attrib_add_attrib, this is done by libgeda::s_page_append_object.
+
 2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/x/x_edit_pin.c: Use gtk_spin_button_update to work-around

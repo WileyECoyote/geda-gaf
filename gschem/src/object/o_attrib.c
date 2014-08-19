@@ -213,8 +213,10 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
  * \note This function no longer returns NULL, instead the new object,
  * aka text item, is always return */
 Object *o_attrib_add_attrib(GschemToplevel *w_current,
-                            const char *text_string, int visibility,
-                            int show_name_value, Object *parent)
+                            const char     *text_string,
+                            int             visibility,
+                            int             show_name_value,
+                            Object         *parent)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Page *page;
@@ -359,8 +361,6 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   /* Call add-objects-hook. */
   g_run_hook_object (w_current, "%add-objects-hook", new_obj);
   g_run_hook_object (w_current, "%select-objects-hook", new_obj);
-
-  page->CHANGED = 1;
 
   return new_obj;
 }
