@@ -918,7 +918,7 @@ x_toolbars_add_closer(GschemToplevel *w_current, GtkWidget *HandleBar, GtkWidget
 
 void x_toolbars_init_window(GschemToplevel *w_current) {
 
-  ToolBarWidgets *bar_widgets = g_new0 (ToolBarWidgets, 1);
+  ToolBarWidgets *bar_widgets = GEDA_MEM_ALLOC0(sizeof(ToolBarWidgets));
 
   TheToolBars          = NULL;
 
