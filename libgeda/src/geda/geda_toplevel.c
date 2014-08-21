@@ -83,7 +83,7 @@ void geda_toplevel_append_new_hook (NewToplevelFunc func, void *data)
 {
   NewToplevelHook *new_hook;
 
-  new_hook = g_new0 (NewToplevelHook, 1);
+  new_hook = GEDA_MEM_ALLOC0 (sizeof(NewToplevelHook));
   new_hook->func = func;
   new_hook->data = data;
 
