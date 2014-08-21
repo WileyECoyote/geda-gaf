@@ -2339,7 +2339,7 @@ object_attributes_to_model_rows (Multiattrib *ThisDialog, Object *object)
   for (a_iter = object_attribs; a_iter != NULL; a_iter = g_list_next (a_iter))
   {
     Object *a_current = a_iter->data;
-    MODEL_ROW *m_row = g_new0 (MODEL_ROW, 1);
+    MODEL_ROW *m_row = GEDA_MEM_ALLOC0 (sizeof(MODEL_ROW));
     GList *m_iter;
 
     o_attrib_get_name_value (a_current, &m_row->name, &m_row->value);
