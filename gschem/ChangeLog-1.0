@@ -1,3 +1,8 @@
+2014-08-20 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/x/x_menus.c: Replace g_new0 GEDA_MEM_ALLOC0 three places in
+          function x_menu_setup_ui.
+
 2014-08-19 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/object/o_attrib.c: Remove setting page->CHANGED in function

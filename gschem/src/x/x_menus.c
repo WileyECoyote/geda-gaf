@@ -267,14 +267,14 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   ToggleMenuData *toggler_data;
 
   /* Glib-2.40 generates console noise from gtk-lib */
-  MenuData *menu_data = g_new0 (MenuData, 1);
+  MenuData *menu_data = GEDA_MEM_ALLOC0 (sizeof(MenuData));
   MENU_BAR = gtk_menu_bar_new ();
   MENU_ITEMS_LIST = NULL;
 
   void setup_radio(GtkCheckMenuItem *radio_button, void *func) {
     RadioMenuData *radio_data;
 
-    radio_data            = g_new0 (RadioMenuData, 1);
+    radio_data            = GEDA_MEM_ALLOC0 (sizeof(RadioMenuData));
     radio_data->w_current = w_current;
     radio_data->widget    = (GtkCheckMenuItem *)radio_button;
 
@@ -409,7 +409,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           is_a_toggle = FALSE;
           if (strncmp (menu_item_name, "Toggle", 6) == 0 ) {
             is_a_toggle = TRUE;
-            toggler_data                 = g_new0 (ToggleMenuData, 1);
+            toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
             toggler_data->menu_item_name = geda_strdup(menu_item_name);
             toggler_data->menu_path      = g_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
