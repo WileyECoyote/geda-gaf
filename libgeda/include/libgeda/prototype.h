@@ -200,7 +200,7 @@ const char   *o_file_format_header     (void);
       bool        o_get_is_visible          (Object *object);
       LINE_END    o_get_line_end            (int capstyle);
       bool        o_get_line_options        (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
-      GList      *o_get_objects_by_type     (const GList *object_list, int type);
+      GList      *o_get_objects_by_type     (GList *object_list, int type);
       Page       *o_get_page                (Object *obj);
       Object     *o_get_parent              (Object *object);
       int         o_get_parent_id           (Object *object);
@@ -328,7 +328,6 @@ const char      *o_pin_get_mechanical       (Object *object);
       void    o_text_recreate               (Object *o_current);
       void    o_text_translate_world        (int dx, int dy, Object *o_current);
       Object *o_text_copy                   (Object *o_current);
-      void    o_text_reset_refdes           (Object *object);
       void    o_text_rotate_world           (int world_centerx, int world_centery, int angle, Object *object);
       void    o_text_mirror_world           (int world_centerx, int world_centery, Object *object);
 
@@ -549,4 +548,9 @@ const char   *stristr                  (const char *str1, const char *str2);
       void    geda_backtrace           (void);
       void    geda_mem_set_vtable      (void);
 
+/* u_refdes.c */
+const GedaRefDes* u_refdes_get_standard_designators (void);
+const GedaRefDes* u_refdes_get_spice_designators    (void);
+const GedaRefDes* u_refdes_get_ieee_designators     (void);
+      void        u_refdes_reset                    (Object *object);
 G_END_DECLS

@@ -62,7 +62,6 @@
 
 #include <geda_standard.h>
 
-#include <ctype.h>         /* isdigit */
 #include <math.h>          /* sqrt */
 
 #include "libgeda_priv.h"
@@ -502,47 +501,6 @@ Object *o_text_copy(Object *o_current)
                                      text_obj->rendered_text_bounds_data);
   }
   return new_obj;
-}
-/*! \brief Reset the refdes number back to a question mark
- *
- *  \par If this text object represents a refdes attribute,
- *  then this function resets the refdes number back to the
- *  question mark. In other cases, this function does
- *  nothing.
- *
- *  \param [in] object      The text object
- */
-void o_text_reset_refdes(Object *object)
-{
-  int   len;
-  int   index;
-  char  buffer[16] = "refdes=\0";
-  char *ptr;
-
-  g_return_if_fail (GEDA_IS_TEXT(object));
-
-  len   = 0;
-  index = 7;
-
-  ptr   = object->text->string;
-
-  if ( strncmp ( ptr, &buffer[0], index) == 0 ) {
-
-    len = strlen (object->text->string);
-
-    for ( ; index < len; index++) {
-      if ( isdigit(ptr[index]) ) {
-        GEDA_FREE (object->text->string);
-        buffer[index] = '?';
-        buffer[++index] = '\0';
-        object->text->string= strdup(&buffer[0]);
-        o_text_recreate (object);
-        break;
-      }
-      else
-        buffer[index] = ptr[index];
-    }
-  }
 }
 
 /*! \brief write a text string to a postscript file

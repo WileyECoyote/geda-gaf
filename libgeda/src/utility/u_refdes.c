@@ -24,7 +24,10 @@
  * Date Contributed: April, 06, 2014
  */
 
+#include <ctype.h>         /* isdigit */
+
 #include <geda_struct.h>
+#include "libgeda.h"
 
 static
 GedaRefDes StdRefDes[] = {
@@ -157,4 +160,46 @@ const GedaRefDes*
 u_refdes_get_ieee_designators()
 {
   return IeeeRefDes;
+}
+
+/*! \brief Reset the refdes number back to a question mark
+ *
+ *  \par If this text object represents a refdes attribute,
+ *  then this function resets the refdes number back to the
+ *  question mark. In other cases, this function does
+ *  nothing.
+ *
+ *  \param [in] object      The text object
+ */
+void u_refdes_reset(Object *object)
+{
+  int   len;
+  int   index;
+  char  buffer[16] = "refdes=\0";
+  char *ptr;
+
+  g_return_if_fail (GEDA_IS_TEXT(object));
+
+  len   = 0;
+  index = 7;
+
+  ptr   = object->text->string;
+
+  if ( strncmp ( ptr, &buffer[0], index) == 0 ) {
+
+    len = strlen (object->text->string);
+
+    for ( ; index < len; index++) {
+      if ( isdigit(ptr[index]) ) {
+        GEDA_FREE (object->text->string);
+        buffer[index] = '?';
+        buffer[++index] = '\0';
+        object->text->string= strdup(&buffer[0]);
+        o_text_recreate (object);
+        break;
+      }
+      else
+        buffer[index] = ptr[index];
+    }
+  }
 }

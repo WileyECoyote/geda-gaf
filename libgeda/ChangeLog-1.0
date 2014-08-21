@@ -1,5 +1,10 @@
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
+        * utility/u_refdes.c: Relocate o_text_reset_refdes and rename to
+          u_refdes_reset.
+
+2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/geda/geda_toplevel.c: Replace g_new0 with GEDA_MEM_ALLOC0
 
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
