@@ -1,3 +1,34 @@
+2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/geda/geda_object.c: Replace g_new0 with GEDA_MEM_ALLOC0
+
+        * src/geda/geda_page.c: Replace g_new0 with GEDA_MEM_ALLOC0
+
+2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/geda/geda_page.c: Modified geda_page_weak_ref and geda_page_weak_unref
+          after gobject error message, backtrace report:
+
+(gdb) bt
+#0  0xb7759970 in geda_page_weak_unref (page=page@entry=0x856e188, notify_func=notify_func@entry=0xb7740ea0 <smob_weakref_notify>,
+    user_data=user_data@entry=0xb698db10) at geda/geda_page.c:445
+#1  0xb7741576 in smob_free (smob=0xb698db10) at scheme/scheme_smob.c:120
+#2  0xb750d017 in scm_i_sweep_card () from /usr/lib/libguile.so.17
+#3  0xb750bc38 in scm_i_sweep_some_cards () from /usr/lib/libguile.so.17
+#4  0xb750c038 in scm_i_sweep_some_segments () from /usr/lib/libguile.so.17
+#5  0xb750b09b in scm_gc_for_newcell () from /usr/lib/libguile.so.17
+#6  0xb752ecea in scm_cons () from /usr/lib/libguile.so.17
+#7  0xb74fb4dc in ?? () from /usr/lib/libguile.so.17
+#8  0xb74fb482 in ?? () from /usr/lib/libguile.so.17
+#9  0xb74fb54d in scm_copy_tree () from /usr/lib/libguile.so.17
+#10 0xb75057d6 in scm_i_eval () from /usr/lib/libguile.so.17
+#11 0xb75058cb in scm_primitive_eval () from /usr/lib/libguile.so.17
+#12 0xb7505934 in scm_eval () from /usr/lib/libguile.so.17
+#13 0xb775a816 in protected_body_eval (data=0xbfffe90c) at guile/g_evaluate.c:109
+
+          Appears having "global" varibles in guile is worst than having globals
+          in C.
+
 2014-08-15 Wiley E. Hill <wileyhill@gmail.com>
 
         * utility/u_refdes.c: Add new file with static read-only structures

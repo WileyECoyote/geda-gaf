@@ -95,7 +95,7 @@ void geda_object_append_new_hook (NewObjectFunc func, void *data)
 {
   NewObjectHook *new_hook;
 
-  new_hook = g_new0 (NewObjectHook, 1);
+  new_hook = GEDA_MEM_ALLOC0 (sizeof(NewObjectHook));
   new_hook->func = func;
   new_hook->data = data;
 

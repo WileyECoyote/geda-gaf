@@ -86,7 +86,7 @@ void geda_page_append_new_hook (NewPageFunc func, void *data)
 {
   NewPageHook *new_hook;
 
-  new_hook = g_new0 (NewPageHook, 1);
+  new_hook = GEDA_MEM_ALLOC0(sizeof(NewPageHook));
   new_hook->func = func;
   new_hook->data = data;
 
@@ -379,8 +379,9 @@ bool is_a_geda_page (Page *page)
  */
 void geda_page_unref(Page *page)
 {
-  g_return_if_fail (GEDA_IS_PAGE(page));
-  g_object_unref ((GObject*)page);
+  if (GEDA_IS_PAGE(page)) {
+    g_object_unref ((GObject*)page);
+  }
 }
 
 /*! \brief Notify weak reference watchers that a structure is dead.
@@ -396,8 +397,7 @@ void geda_page_unref(Page *page)
 void
 geda_page_weakref_notify (Page *page)
 {
-  unsigned int type  = G_TYPE_FROM_INSTANCE (page);
-  if  ( type == geda_page_get_type()) {
+  if (GEDA_IS_PAGE(page)) {
     s_weakref_notify(page, page->weak_refs);
     page->weak_refs = NULL;
   }
@@ -422,8 +422,7 @@ geda_page_weakref_notify (Page *page)
  */
 void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data)
 {
-  unsigned int type  = G_TYPE_FROM_INSTANCE (page);
-  if  ( type == geda_page_get_type()) {
+  if (GEDA_IS_PAGE(page) && notify_func !=NULL ) {
     page->weak_refs = s_weakref_add (page->weak_refs, notify_func, user_data);
   }
 }
@@ -442,8 +441,7 @@ void geda_page_weak_ref (Page *page, WeakNotifyFunc notify_func, void *user_data
  */
 void geda_page_weak_unref (Page *page, WeakNotifyFunc notify_func, void *user_data)
 {
-  unsigned int type  = G_TYPE_FROM_INSTANCE (page);
-  if  ( type == geda_page_get_type()) {
+  if (GEDA_IS_PAGE(page) && notify_func !=NULL ) {
     page->weak_refs = s_weakref_remove (page->weak_refs, notify_func, user_data);
   }
 }
@@ -476,9 +474,11 @@ void geda_page_add_weak_ptr (Page *page, void *weak_pointer_loc)
  */
 void geda_page_remove_weak_ptr (Page *page, void *weak_pointer_loc)
 {
-  g_return_if_fail (GEDA_IS_PAGE(page));
-  g_object_remove_weak_pointer ((GObject*)page, weak_pointer_loc);
+  if (GEDA_IS_PAGE(page) && weak_pointer_loc !=NULL ) {
+    g_object_remove_weak_pointer ((GObject*)page, weak_pointer_loc);
+  }
 }
+
 
 /* For now, the toplevel should only be set once, we don't have a
  * low-level clone or copy method and the hooks are holding pointer
