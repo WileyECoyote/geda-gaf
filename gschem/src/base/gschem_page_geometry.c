@@ -342,7 +342,7 @@ gschem_page_geometry_new_with_values (int screen_width,
                                       int world_right,
                                       int world_bottom)
 {
-  GschemPageGeometry *geometry = g_new0 (GschemPageGeometry, 1);
+  GschemPageGeometry *geometry = GEDA_MEM_ALLOC0 (sizeof(GschemPageGeometry));
 
   gschem_page_geometry_set_values (geometry,
                                    screen_width,
