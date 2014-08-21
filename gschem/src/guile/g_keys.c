@@ -158,7 +158,7 @@ g_make_key (unsigned int keyval, GdkModifierType modifiers)
 {
   SCM result = SCM_BOOL_F;
   if (g_key_is_valid (keyval, modifiers)) {
-    GschemKey *k = g_new0 (GschemKey, 1);
+    GschemKey *k = GEDA_MEM_ALLOC0 (sizeof(GschemKey));
     k->keyval = keyval;
     k->modifiers = modifiers & GDK_MODIFIER_MASK;
     SCM_NEWSMOB (result, g_key_smob_tag, k);
