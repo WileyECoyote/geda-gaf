@@ -432,9 +432,9 @@ static void     geda_combo_box_child_show                     (GtkWidget       *
 static void     geda_combo_box_child_hide                     (GtkWidget       *widget,
                                                                GedaComboBox    *combo_box);
 
-/* GedaComboBox:has-entry callbacks */
+/* GedaComboBox:has-entry callbacks
 static void     geda_combo_box_entry_contents_changed         (GtkEntry        *entry,
-                                                               void            *user_data);
+                                                               void            *user_data);*/
 static void     geda_combo_box_entry_active_changed           (GedaComboBox    *combo_box,
                                                                void            *user_data);
 
@@ -544,10 +544,7 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    * item is changed. The can be due to the user selecting
    * a different item from the list, or due to a
    * call to geda_combo_box_set_active_iter().
-   * It will also be emitted while typing into a GedaComboBoxEntry,
-   * as well as when selecting an item from the GedaComboBoxEntry's list.
-   *
-   * Since: 2.4
+   * It will NOT be emitted while typing into a GedaComboBoxEntry.
    */
   combo_box_signals[CHANGED] =
   g_signal_new (_("changed"),
@@ -565,8 +562,6 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    * The ::move-active signal is a
    * <link linkend="keybinding-signals">keybinding signal</link>
    * which gets emitted to move the active selection.
-   *
-   * Since: 2.12
    */
   combo_box_signals[MOVE_ACTIVE] =
   g_signal_new_class_handler (_("move-active"),
@@ -588,7 +583,6 @@ geda_combo_box_class_init (GedaComboBoxClass *class)
    *
    * The default binding for this signal is Alt+Down.
    *
-   * Since: 2.12
    */
   combo_box_signals[POPUP] =
   g_signal_new_class_handler (_("popup"),
@@ -1383,11 +1377,11 @@ geda_combo_box_add (GtkContainer *container,
       /* this flag is a hack to tell the entry to fill its allocation.
        */
       GTK_ENTRY (widget)->is_cell_renderer = TRUE;
-
+/*
       g_signal_connect (widget, "changed",
 			G_CALLBACK (geda_combo_box_entry_contents_changed),
 			combo_box);
-
+*/
       gtk_entry_set_has_frame (GTK_ENTRY (widget), priv->has_frame);
     }
 }
@@ -1407,10 +1401,10 @@ geda_combo_box_remove (GtkContainer *container,
 
       child_widget = gtk_bin_get_child (GTK_BIN (container));
       if (widget && widget == child_widget)
-	{
+	{/*
 	  g_signal_handlers_disconnect_by_func (widget,
 						geda_combo_box_entry_contents_changed,
-						container);
+						container);*/
 	  GTK_ENTRY (widget)->is_cell_renderer = FALSE;
 	}
     }
@@ -5638,24 +5632,24 @@ geda_combo_box_destroy (GtkObject *object)
   GTK_OBJECT_CLASS (geda_combo_box_parent_class)->destroy (object);
   combo_box->priv->cell_view = NULL;
 }
-
+/*
 static void
 geda_combo_box_entry_contents_changed (GtkEntry *entry,
                                       void      *user_data)
 {
   GedaComboBox *combo_box = GEDA_COMBO_BOX (user_data);
 
-  /*
+  / *
    *  Fixes regression reported in bug #574059. The old functionality relied on
    *  bug #572478.  As a bugfix, we now emit the "changed" signal ourselves
    *  when the selection was already set to -1.
-   */
+   * /
   if (geda_combo_box_get_active(combo_box) == -1)
     g_signal_emit_by_name (combo_box, "changed");
   else
     geda_combo_box_set_active (combo_box, -1);
 }
-
+*/
 static void
 geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
                                      void         *user_data)
@@ -5676,21 +5670,21 @@ geda_combo_box_entry_active_changed (GedaComboBox *combo_box,
       model    = geda_combo_box_get_model (combo_box);
       path     = gtk_tree_model_get_path (model, &iter);
       path_str = gtk_tree_path_to_string (path);
-
+/*
       g_signal_handlers_block_by_func (entry,
                                        geda_combo_box_entry_contents_changed,
                                        combo_box);
-
+*/
 
       g_signal_emit (combo_box, combo_box_signals[FORMAT_ENTRY_TEXT], 0,
                      path_str, &text);
 
       gtk_entry_set_text (entry, text);
-
+/*
       g_signal_handlers_unblock_by_func (entry,
                                          geda_combo_box_entry_contents_changed,
                                          combo_box);
-
+*/
       gtk_tree_path_free (path);
       g_free (text);
       g_free (path_str);
