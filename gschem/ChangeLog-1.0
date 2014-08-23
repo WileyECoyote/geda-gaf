@@ -1,5 +1,11 @@
 2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/include/x_menus.h: Add GHashTable to st_menu_data structure.
+
+    * src/x/x_menus.c: Use HashTable for popup menu items.
+
+2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_attrib.c: Use Current_Page, eliminate variable toplevel
       in function o_attrib_add_attrib.
 

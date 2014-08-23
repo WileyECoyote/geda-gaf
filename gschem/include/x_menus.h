@@ -79,11 +79,12 @@ typedef struct st_menu_radio_data       RadioMenuData;
 typedef struct st_popup_menu_entry      PopupEntry;
 
 struct st_menu_data {
-  GtkWidget *menu_bar;
-  GtkWidget *popup_menu;
-  GSList    *menu_items;    /* Single Linked list of all non-toggle menu items */
-  GSList    *popup_items;   /* Single Linked list of all non-toggle popup-menu items */
-  GSList    *menu_togglers;
+  GtkWidget  *menu_bar;
+  GtkWidget  *popup_menu;
+  GSList     *menu_items;    /* Single Linked list of all non-toggle menu items */
+  GSList     *popup_items;   /* Single Linked list of all non-toggle popup-menu items */
+  GSList     *menu_togglers;
+  GHashTable *popup_hash;
 };
 
 struct st_recent_file_menu_data {

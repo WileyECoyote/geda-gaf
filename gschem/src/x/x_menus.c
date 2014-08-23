@@ -22,7 +22,7 @@
 #include "gschem.h"
 #include <geda_stat.h>
 
-#include <x_menu.h>
+#include <x_menus.h>
 
 #include <geda_widgets.h>
 
@@ -35,6 +35,7 @@
 #define MENU_ITEMS_LIST  menu_data->menu_items
 #define POPUP_ITEMS_LIST menu_data->popup_items
 #define TOGGLERS_LIST    menu_data->menu_togglers
+#define POPUP_HASH_TABLE menu_data->popup_hash
 
 static void
 x_menu_popup_execute(GtkObject *widget,int action_id);
@@ -82,16 +83,16 @@ static PopupEntry popup_items[] = {
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
   { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL },
-  {N_("Down Schematic"),     x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
-  {N_("Down Symbol"),        x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
-  {N_("Up"),                 x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       NULL},
+  { N_("Down Schematic"),    x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
+  { N_("Down Symbol"),       x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
+  { N_("Up"),                x_menu_popup_execute, pop_hierarchy_up,   1, "gtk-go-up",       NULL},
 
   /* Menu items for clip-board added by WEH 07.20.2013 */
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-  {N_("Cut"),                x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        NULL },
-  {N_("Copy"),               x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       NULL },
-  {N_("Paste"),              x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      NULL },
+  { N_("Cut"),               x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        NULL },
+  { N_("Copy"),              x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       NULL },
+  { N_("Paste"),             x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      NULL },
   {NULL} /* sentinel */
 };
 
@@ -133,7 +134,7 @@ static void g_menu_execute(GtkAction *action, void *user_data)
 #if DEBUG
     fprintf(stderr, "Bypassing, guile for menu action %s\n",action_name);
 #endif
-      i_command_process(w_current, action_name, 0, NULL, ID_ORIGIN_MENU);
+    i_command_process(w_current, action_name, 0, NULL, ID_ORIGIN_MENU);
   }
   else {
     if (strncmp (action_name, "buffer-", 7) == 0 ) {
@@ -143,12 +144,9 @@ static void g_menu_execute(GtkAction *action, void *user_data)
     }
     else {
 #if DEBUG
-    fprintf(stderr, "passing action to guile %s\n", action_name);
+      fprintf(stderr, "passing action to guile %s\n", action_name);
 #endif
-    g_action_eval_by_name (w_current, action_name);
-    //SCM s_expr = scm_from_utf8_symbol (action_name);
-        //scm_eval (s_expr, scm_interaction_environment ());
-    //g_scm_eval_protected (s_expr, SCM_UNDEFINED);
+      g_action_eval_by_name (w_current, action_name);
     }
   }
 }
@@ -182,7 +180,6 @@ static void free_toggler (void *data_record, void *user_data)
   g_free(toggler_data->toggle_name);
   g_free(toggler_data->menu_item_name);
   g_free(toggler_data->menu_path);
-
   g_free(toggler_data);
 }
 
@@ -198,6 +195,7 @@ void x_menu_free_all() {
     g_slist_free (POPUP_ITEMS_LIST);
     g_slist_foreach(TOGGLERS_LIST, free_toggler, NULL);
     g_slist_free (TOGGLERS_LIST);
+    g_hash_table_unref (POPUP_HASH_TABLE);
     g_free(menu_data);
     return FALSE;
   }
@@ -440,7 +438,6 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           free(action_name);
 
           if (action_keys) {
-            //fprintf(stderr, "%d freeing \"%s\", with len=%d\n", i, action_keys, strlen(action_keys));
             g_free(action_keys);
             action_keys = NULL;
           }
@@ -698,14 +695,25 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
 /** \defgroup Main-Context-Menu Mouse Menu Functions */
 
+static bool strhashcmp (const void *a, const void *b) {
+  int answer = 0;
+  if (((char*)a != '\0') && ((char*)b != '\0')) {
+     answer = strcmp ((const char*) a, (const char*) b) == 0;
+  }
+  return answer;
+}
+
 /*! \brief Setup Main Popup Context Menu
  *  \par Function Description
  *  Creates the main context pop-up menu and connects callback to options in
- *  the main menu to control icons and tool-tip  visibility. The popup menu
- *  is created using the data in popup_items structure. A pointer to each
- *  menu-item widget is saved in the single-linked list menu_data->popup_
- *  items using the macro POPUP_ITEMS_LIST. A pointer to the menu is saved
- *  in menu_data->popup_menu using the macro POPUP_MENU.
+ *  the main menu to control icons and tool-tip visibility. The pop-up menu
+ *  is created using the data in the popup_items data structure. A pointer
+ *  to each menu-item widget is saved in the single-linked list menu_data->
+ *  popup_items using the macro POPUP_ITEMS_LIST. The POPUP_ITEMS_LIST list
+ *  is used to toggle visibility of icon images and tool-tip on all of the
+ *  pop-up menu items.
+ *  A pointer to the menu is saved in menu_data->popup_menu using the macro
+ *  POPUP_MENU.
  */
 int x_menu_setup_popup (GschemToplevel *w_current)
 {
@@ -730,6 +738,8 @@ int x_menu_setup_popup (GschemToplevel *w_current)
   menu             = gtk_menu_new ();
   POPUP_ITEMS_LIST = NULL;
   save_nest        = NULL;
+  POPUP_HASH_TABLE = g_hash_table_new_full (g_str_hash, (GEqualFunc) strhashcmp,
+                                            NULL, NULL);
 
   /* Retrieve preference settings */
   cfg              = eda_config_get_user_context ();
@@ -791,6 +801,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
       g_object_set_data( G_OBJECT(menu_item), "top-level", w_current);
       POPUP_ITEMS_LIST = g_slist_append(POPUP_ITEMS_LIST, menu_item);
+      g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, menu_item);
     }
 
     g_object_set (menu_item, "visible", TRUE, NULL);
@@ -911,32 +922,30 @@ void x_menus_sensitivity (GschemToplevel *w_current, const char *buf, int flag)
  *  This function sets the sensitivity of the items in the right button
  *  popup.
  *
- *  \note
- *  1.9.2005 -- SDB.
  */
-void x_menus_popup_sensitivity (GschemToplevel *w_current, const char *mpath, int flag)
+void x_menus_popup_sensitivity (GschemToplevel *w_current, const char *name, int flag)
 {
   GtkWidget *menu_item;
-  MenuData *menu_data;
+  MenuData  *menu_data;
 
   menu_data = g_slist_nth_data (ui_list, w_current->ui_index);
 
-  if (!mpath) {
-    return;
-  }
-
   if (!POPUP_MENU) {
     g_warning(_("Popup menu widget doesn't exist!\n"));
-    return;
   }
-  return;
+  else {
 
-  if (menu_item) {
-    gtk_widget_set_sensitive(GTK_WIDGET(menu_item), flag);
-  } else {
-    u_log_message( _("Can not set sensitivity for <%s>, non-existent popup item\n"), mpath);
+    menu_item = (GtkWidget*) g_hash_table_lookup (POPUP_HASH_TABLE, name);
+
+    if (menu_item) {
+      gtk_widget_set_sensitive(GTK_WIDGET(menu_item), flag);
+    }
+    else {
+      fprintf(stderr, "%s popup item non-existent <%s>\n", __func__, name);
+    }
   }
 }
+
 
 /*! \brief Save the State of Main Menu Toggle Options
  *  \brief *  \par Function Description
