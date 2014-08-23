@@ -1,5 +1,10 @@
 2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Use Current_Page, eliminate variable toplevel
+      in function o_attrib_add_attrib.
+
+2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/x_menus.h: Rename headerfile to match source file (menus with s)
 
 2014-08-22 Wiley E. Hill <wileyhill@gmail.com>

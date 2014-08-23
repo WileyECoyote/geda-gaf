@@ -218,7 +218,6 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
                             int             show_name_value,
                             Object         *parent)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   Page *page;
   int world_x, world_y;
   int align;
@@ -317,7 +316,7 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
 
     color = DETACHED_ATTRIBUTE_COLOR;
 
-    world_get_object_glist_bounds (s_page_get_objects (toplevel->page_current),
+    world_get_object_glist_bounds (s_page_get_objects (Current_Page),
                                    &left, &top, &right, &bottom);
 
     /* this really is the lower left hand corner */
@@ -334,19 +333,19 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
                        visibility, show_name_value);
 
 
-  /* now attach the attribute to the object (if parent is not NULL) */
+  /* Attach the new attribute to the object if parent is not NULL */
   /* remember that parent contains the object to get the attribute */
   if (parent) {
     if (parent->page) {
       page = parent->page;
     }
     else {
-      page = toplevel->page_current;
+      page = Current_Page;
     }
     o_attrib_attach (new_obj, parent, FALSE);
   }
   else {
-    page = toplevel->page_current;
+    page = Current_Page;
     o_selection_add (Current_Selection, new_obj);
   }
 
