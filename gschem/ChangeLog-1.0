@@ -1,6 +1,15 @@
+2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_basic.c: Improve state of sensitivities; Add functions
+      hatchable_object_selected and selected_at_least_one_pin_object, modify
+      selected_at_least_one_text_object and selected_complex_object to accept
+      GList (of selected objects). Implement functions in i_update_sensitivities
+      with new varibles have_hatchable and is_pin_selected, eliminate redundent
+      calls to x_menus_sensitivity (in if have anything clause).
+
 2014-08-20 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/x/x_menus.c: Replace g_new0 GEDA_MEM_ALLOC0 three places in
+        * src/x/x_menus.c: Replace g_new0 with GEDA_MEM_ALLOC0 three places in
           function x_menu_setup_ui.
 
 2014-08-19 Wiley E. Hill <wileyhill@gmail.com>
