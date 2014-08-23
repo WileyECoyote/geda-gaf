@@ -1,15 +1,22 @@
-2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_basic.c: Improve state of sensitivities; add sub functions
+      set_sensitivity_for_complexes and set_sensitivity_for_text and else clause
+      in i_update_sensitivities to conditionaly disable menu item in the "if have
+      something" clause.
+
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * gschem/include/x_menus.h: Add GHashTable to st_menu_data structure.
 
     * src/x/x_menus.c: Use HashTable for popup menu items.
 
-2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Use Current_Page, eliminate variable toplevel
       in function o_attrib_add_attrib.
 
-2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/x_menus.h: Rename headerfile to match source file (menus with s)
 

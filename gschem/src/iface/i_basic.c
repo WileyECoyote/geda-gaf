@@ -19,9 +19,11 @@
  * MA 02110-1301 USA
  */
 
-#include <gschem.h>
-#include <geda_debug.h>
+#include "gschem.h"
+#include "x_menus.h"
+
 #include <geda_label.h>
+#include <geda_debug.h>
 
 /*! \brief Update status bar string
  *
@@ -239,7 +241,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
   GschemToplevel *w_current = userdata;
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
   x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
-  x_menus_popup_sensitivity (w_current, "/Paste", usable);
+  x_menus_popup_sensitivity (w_current, "Paste", usable);
 }
 
 static bool
@@ -327,6 +329,32 @@ void i_update_sensitivities(GschemToplevel *w_current)
   bool is_editing_symbol;
   bool is_pin_selected;
 
+  void set_sensitivity_for_complexes (bool state) {
+
+    x_menus_sensitivity(w_current, "_Page/_Down Schematic",   state);
+    x_menus_sensitivity(w_current, "_Page/Down _Symbol",      state);
+    x_menus_sensitivity(w_current, "_Page/D_ocumentation...", state);
+
+    x_menus_sensitivity(w_current, "A_ttributes/_Attach",     state);
+    x_menus_sensitivity(w_current, "A_ttributes/_Detach",     state);
+    x_menus_sensitivity(w_current, "_Edit/Edit Component...", state);
+    x_menus_sensitivity(w_current, "_Edit/Slot...",           state);
+
+    x_menus_popup_sensitivity(w_current, "Down Schematic",    state);
+    x_menus_popup_sensitivity(w_current, "Down Symbol",       state);
+    /* x_menus_popup_sensitivity(w_current, "Up", state); */
+
+    x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", state);
+    x_menus_sensitivity(w_current, "_Tools/Update Component", state);
+  }
+
+  void set_sensitivity_for_text (bool state) {
+    x_menus_sensitivity(w_current, "A_ttributes/Show _Value", state);
+    x_menus_sensitivity(w_current, "A_ttributes/Show _Name",  state);
+    x_menus_sensitivity(w_current, "A_ttributes/Show _Both",   state);
+    x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", state);
+  }
+
   GedaToplevel *toplevel = w_current->toplevel;
   GList *list = geda_list_get_glist(toplevel->page_current->selection_list);
 
@@ -369,21 +397,10 @@ void i_update_sensitivities(GschemToplevel *w_current)
 
     /* since one or more objects are selected, we set these TRUE */
     if ( is_complex_selected ) {
-
-      x_menus_sensitivity(w_current, "_Page/_Down Schematic",   TRUE);
-      x_menus_sensitivity(w_current, "_Page/Down _Symbol",      TRUE);
-      x_menus_sensitivity(w_current, "_Page/D_ocumentation...", TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/_Attach",     TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/_Detach",     TRUE);
-      x_menus_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
-      x_menus_sensitivity(w_current, "_Edit/Slot...",           TRUE);
-
-      x_menus_popup_sensitivity(w_current, "Down Schematic", TRUE);
-      x_menus_popup_sensitivity(w_current, "Down Symbol", TRUE);
-      /* x_menus_popup_sensitivity(w_current, "/Up", TRUE); */
-
-      x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", TRUE);
-      x_menus_sensitivity(w_current, "_Tools/Update Component", TRUE);
+      set_sensitivity_for_complexes (TRUE);
+    }
+    else {
+      set_sensitivity_for_complexes (FALSE);
     }
 
     if (is_pin_selected) {
@@ -392,15 +409,14 @@ void i_update_sensitivities(GschemToplevel *w_current)
     }
     else {
         x_menus_sensitivity(w_current, "_Edit/Edit Pin...", FALSE);
-        x_menus_popup_sensitivity(w_current, "Edit pin type...", FALSE);
+        x_menus_popup_sensitivity(w_current,  "Edit pin type...", FALSE);
     }
 
     if (have_text_selected) {
-      x_toolbars_set_sensitivities(w_current, TEXT_OBJECTS,     TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/Show _Value", TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/Show _Name",  TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/Show _Both",   TRUE);
-      x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility", TRUE);
+      set_sensitivity_for_text (TRUE);
+    }
+    else {
+      set_sensitivity_for_text (FALSE);
     }
 
     x_menus_sensitivity(w_current, "_Edit/Cu_t", TRUE);
@@ -436,15 +452,18 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5", TRUE);
 
-    x_menus_popup_sensitivity(w_current, "Cut", TRUE);
-    x_menus_popup_sensitivity(w_current, "Copy", TRUE);
+    x_menus_popup_sensitivity(w_current, "Cut",     TRUE);
+    x_menus_popup_sensitivity(w_current, "Copy",    TRUE);
     x_menus_popup_sensitivity(w_current, "Edit...", TRUE);
-    x_menus_popup_sensitivity(w_current, "Duplicate", TRUE);
-    x_menus_popup_sensitivity(w_current, "Move", TRUE);
+    //x_menus_popup_sensitivity(w_current, "Duplicate", TRUE);
+    //x_menus_popup_sensitivity(w_current, "Move",      TRUE);
     x_menus_popup_sensitivity(w_current, "Delete", TRUE);
 
   }
   else { /* Nothing is selected, grey these out */
+
+    set_sensitivity_for_complexes (FALSE);
+    set_sensitivity_for_text (FALSE);
 
     x_menus_sensitivity(w_current, "_Edit/Cu_t", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", FALSE);
@@ -456,8 +475,7 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Mirror Mode", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Edit...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Edit Text...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Slot...", FALSE);
-    x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
+
     x_menus_sensitivity(w_current, "_Edit/Color...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Edit Pin...", FALSE);
     x_menus_sensitivity(w_current, "_Edit/Lock", FALSE);
@@ -476,30 +494,11 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4",  FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5",  FALSE);
 
-    x_menus_sensitivity(w_current, "_Page/_Down Schematic",   FALSE);
-    x_menus_sensitivity(w_current, "_Page/Down _Symbol",      FALSE);
-    x_menus_sensitivity(w_current, "_Page/D_ocumentation...", FALSE);
-
-    x_menus_sensitivity(w_current, "A_ttributes/_Attach",     FALSE);
-    x_menus_sensitivity(w_current, "A_ttributes/_Detach",     FALSE);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Value", FALSE);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Name",  FALSE);
-    x_menus_sensitivity(w_current, "A_ttributes/Show _Both",  FALSE);
-    x_menus_sensitivity(w_current, "A_ttributes/_Toggle Visibility",   FALSE);
-
-    x_menus_sensitivity(w_current, "_Tools/Unembed Component/Picture", FALSE);
-    x_menus_sensitivity(w_current, "_Tools/Update Component",          FALSE);
-
-    /*  Menu items for hierarchy added by SDB 1.9.2005.  */
-    x_menus_popup_sensitivity(w_current, "Down Schematic",   FALSE);
-    x_menus_popup_sensitivity(w_current, "Down Symbol",      FALSE);
-    /* x_menus_popup_sensitivity(w_current, "/Up", FALSE);	*/
-
     x_menus_popup_sensitivity(w_current, "Edit...",          FALSE);
     x_menus_popup_sensitivity(w_current, "Edit pin type...", FALSE);
-    x_menus_popup_sensitivity(w_current, "Duplicate", FALSE);
-    x_menus_popup_sensitivity(w_current, "Move",      FALSE);
-    x_menus_popup_sensitivity(w_current, "Delete",    FALSE);
+    //x_menus_popup_sensitivity(w_current, "Duplicate",        FALSE);
+    //x_menus_popup_sensitivity(w_current, "Move",             FALSE);
+    x_menus_popup_sensitivity(w_current,  "Delete",          FALSE);
 
     x_menus_popup_sensitivity(w_current, "Cut",  FALSE);
     x_menus_popup_sensitivity(w_current, "Copy", FALSE);
