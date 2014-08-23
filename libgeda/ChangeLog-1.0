@@ -1,3 +1,7 @@
+2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
+
+        * utility/u_refdes.c: Add new function u_refdes_return_numeric
+
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * utility/u_refdes.c: Relocate o_text_reset_refdes and rename to

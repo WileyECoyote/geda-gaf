@@ -203,3 +203,48 @@ void u_refdes_reset(Object *object)
     }
   }
 }
+
+/*! \brief Return first numeris portionof a refdes
+ *
+ *  \par This function accepts both plain text and GedaText objects
+ *  Text Objects should be a reference designator attribute, other
+ *  wise just pass in the raw text. The return pointer point to a
+ *  char in the passed string and should not be freed directly.
+ *
+ *  \param [in] text Either Text object or a string.
+ *
+ *  \returns pointer to the first numeric text character in the text
+ *
+ *  example 1:
+ *
+ *       text_digits = u_refdes_return_numeric (object);
+ *
+ *  example 2:
+ *
+ *       text_digits = u_refdes_return_numeric (attrib->text->string);
+ *
+ *  \sa u_refdes_reset
+ */
+char *u_refdes_return_numeric(void *text)
+{
+  char *ptr;
+  char *str_out = NULL;
+
+  if (text != NULL) {
+
+    if (GEDA_IS_TEXT(text)) {
+      ptr   = ((Object*)text)->text->string;
+    }
+    else {
+      ptr = text;
+    }
+
+    while ( *ptr && !isdigit(*ptr) ) ptr++;
+
+    if (isdigit(*ptr)) {
+      str_out = ptr;
+    }
+  }
+
+  return str_out;
+}

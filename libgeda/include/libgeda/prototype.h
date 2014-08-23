@@ -549,8 +549,10 @@ const char   *stristr                  (const char *str1, const char *str2);
       void    geda_mem_set_vtable      (void);
 
 /* u_refdes.c */
-const GedaRefDes* u_refdes_get_standard_designators (void);
-const GedaRefDes* u_refdes_get_spice_designators    (void);
-const GedaRefDes* u_refdes_get_ieee_designators     (void);
+const GedaRefDes *u_refdes_get_standard_designators (void);
+const GedaRefDes *u_refdes_get_spice_designators    (void);
+const GedaRefDes *u_refdes_get_ieee_designators     (void);
       void        u_refdes_reset                    (Object *object);
+      char       *u_refdes_return_numeric           (void *text);
+
 G_END_DECLS
