@@ -1,26 +1,31 @@
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_program.c: Rename geda_backtrace u_program_backtrace,
+      geda_mem_set_vtable u_program_mem_set_vtable
+
 2014-08-22 Wiley E. Hill <wileyhill@gmail.com>
 
-        * utility/u_refdes.c: Add new function u_refdes_return_numeric
+    * src/utility/u_refdes.c: Add new function u_refdes_return_numeric
 
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
-        * utility/u_refdes.c: Relocate o_text_reset_refdes and rename to
-          u_refdes_reset.
+    * src/utility/u_refdes.c: Relocate o_text_reset_refdes and rename to
+      u_refdes_reset.
 
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/geda/geda_toplevel.c: Replace g_new0 with GEDA_MEM_ALLOC0
+    * src/geda/geda_toplevel.c: Replace g_new0 with GEDA_MEM_ALLOC0
 
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/geda/geda_object.c: Replace g_new0 with GEDA_MEM_ALLOC0
+    * src/geda/geda_object.c: Replace g_new0 with GEDA_MEM_ALLOC0
 
-        * src/geda/geda_page.c: Replace g_new0 with GEDA_MEM_ALLOC0
+    * src/geda/geda_page.c: Replace g_new0 with GEDA_MEM_ALLOC0
 
 2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/geda/geda_page.c: Modified geda_page_weak_ref and geda_page_weak_unref
-          after gobject error message, backtrace report:
+    * src/geda/geda_page.c: Modified geda_page_weak_ref and geda_page_weak_unref
+      after gobject error message, backtrace report:
 
 (gdb) bt
 #0  0xb7759970 in geda_page_weak_unref (page=page@entry=0x856e188, notify_func=notify_func@entry=0xb7740ea0 <smob_weakref_notify>,

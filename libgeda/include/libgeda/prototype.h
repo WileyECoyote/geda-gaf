@@ -545,8 +545,8 @@ const char   *stristr                  (const char *str1, const char *str2);
       char   *u_log_read               (void);
 
 /* u_program.c */
-      void    geda_backtrace           (void);
-      void    geda_mem_set_vtable      (void);
+      void    u_program_backtrace      (void);
+      void    u_program_mem_set_vtable (void);
 
 /* u_refdes.c */
 const GedaRefDes *u_refdes_get_standard_designators (void);
