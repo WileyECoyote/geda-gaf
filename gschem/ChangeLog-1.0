@@ -1,3 +1,8 @@
+2014-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: In function o_attrib_add_attrib, only add new
+      attribute to selection of parent is selected.
+
 2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_basic.c: Improve state of sensitivities; add sub functions

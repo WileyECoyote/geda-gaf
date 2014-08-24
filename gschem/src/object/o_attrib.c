@@ -48,7 +48,7 @@ void o_attrib_add_selected(GschemToplevel *w_current, SELECTION *selection,
   GList *selected_objects = NULL;
 
   if (selection == NULL) {
-    u_log_message(_("Internal Error Detected: <o_attrib_add_selected> selection == NULL\n"));
+    u_log_message(_("Internal Error Detected: <%s> selection == NULL\n"), __func__);
     return;
   }
 
@@ -346,7 +346,6 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   }
   else {
     page = Current_Page;
-    o_selection_add (Current_Selection, new_obj);
   }
 
   s_page_append_object (page, new_obj);
@@ -355,6 +354,9 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   if (parent != NULL &&
     g_ascii_strncasecmp (text_string, "slot=", 5) == 0) {
     o_slot_end (w_current, parent, text_string);
+  }
+  else if (parent && parent->selected) {
+    o_selection_add (Current_Selection, new_obj);
   }
 
   /* Call add-objects-hook. */
