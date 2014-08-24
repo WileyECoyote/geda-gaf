@@ -222,8 +222,8 @@ bool o_get_line_options(Object *object,
 /*! \brief Get List of Objects in List by Object Type.
  *
  * \par Function Description
- * Returns a glist of objects, that are member of the given
- * glist that match the given type..
+ * Returns a glist of objects, that are member of the given glist that
+ * match the given type. The returned glist must be freed with g_list_free.
  *
  * \param [in] olist A GList of Objects to search
  * \param [in] type  The object type to search for

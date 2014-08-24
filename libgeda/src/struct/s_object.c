@@ -65,7 +65,7 @@ s_object_release(Object *o_current)
   if (GEDA_IS_OBJECT(o_current)) {
 
     /* If currently attached to a page, remove it from the page */
-    if (o_current->page != NULL) {
+    if (GEDA_IS_PAGE(o_current->page)) {
       s_page_remove_object (o_current->page, o_current);
     }
     else if ( o_current->conn_list != NULL ) {
@@ -108,7 +108,7 @@ s_object_release_objects(GList *list)
 
   /* do the delete backwards */
   while(ptr != NULL) {
-    o_current = (Object *) ptr->data;
+    o_current = GEDA_OBJECT(ptr->data);
     s_object_release(o_current);
     ptr = g_list_previous (ptr);
   }

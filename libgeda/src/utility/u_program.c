@@ -72,7 +72,7 @@ static void inline traceback(void)  /* "static" means don't export the symbol...
  * means to locate errent routines.
  *
  */
-void geda_backtrace(void)
+void u_program_backtrace(void)
 {
   traceback();
 }
@@ -92,7 +92,7 @@ void geda_backtrace(void)
  * GLIBC.
  *
  */
-void geda_mem_set_vtable(void)
+void u_program_mem_set_vtable(void)
 {
    memvtable.malloc      = malloc;
    memvtable.realloc     = realloc;
@@ -102,3 +102,4 @@ void geda_mem_set_vtable(void)
    memvtable.try_realloc = 0;
    g_mem_set_vtable (&memvtable);
 }
+

@@ -369,7 +369,7 @@ Object *geda_pin_new (void)
  */
 bool is_a_geda_pin_object (Pin *pin)
 {
-  return pin && (GEDA_TYPE_PIN == (pin->head_marker & pin->tail_marker));
+  return GEDA_IS_OBJECT(pin) && (GEDA_TYPE_PIN == (pin->head_marker & pin->tail_marker));
 }
 
 const char*

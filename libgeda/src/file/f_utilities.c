@@ -80,7 +80,7 @@ const char *f_get_filename_ext(const char *filename) {
  *  \param [in] path The path to search.
  *  \return offset if found, otherwise NULL.
  */
-char *geda_basename(const char *path)
+char *f_basename(const char *path)
 {
   if (path) {
     char *base = strrchr(path, DIR_SEPARATOR);

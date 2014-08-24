@@ -23,9 +23,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*! \brief Returns a pointer to a new SELECTION object
  *

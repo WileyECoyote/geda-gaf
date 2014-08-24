@@ -157,16 +157,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
   geda_page_set_toplevel(page, toplevel);
 
   page->up = -2;
-/*
-  if (toplevel->init_bottom == 0) {
-    return page;
-  }
-*/
 
-/*
-  page->coord_aspectratio = (
-    ((float) toplevel->init_right) / ((float) toplevel->init_bottom));
-*/
   /* Init tile array */
   s_tile_init (page);
 
@@ -176,11 +167,6 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
   /* init undo struct pointers */
   s_undo_init(page);
 
-/*
-  set_window (toplevel, page,
-              toplevel->init_left, toplevel->init_right,
-              toplevel->init_top,  toplevel->init_bottom);
-*/
   /* Backup variables */
   g_get_current_time (&page->last_load_or_save_time);
   page->ops_since_last_backup    = 0;
@@ -795,24 +781,30 @@ s_page_objects_in_regions (Page *page, RECTANGLE *rects, int n_rects)
   GList *list = NULL;
   int i;
 
-  for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
-    Object *object = iter->data;
-    int left, top, right, bottom;
-    if (world_get_single_object_bounds (object, &left, &top, &right, &bottom))
-    {
-      for (i = 0; i < n_rects; i++) {
-        if (right  >= rects[i].lower_x &&
+  if (GEDA_IS_PAGE(page)) {
+
+    for (iter = page->_object_list; iter != NULL; NEXT(iter)) {
+      Object *object = iter->data;
+      int left, top, right, bottom;
+      if (world_get_single_object_bounds (object, &left, &top, &right, &bottom))
+      {
+        for (i = 0; i < n_rects; i++) {
+          if (right  >= rects[i].lower_x &&
             left   <= rects[i].upper_x &&
             top    <= rects[i].upper_y &&
             bottom >= rects[i].lower_y) {
-          list = g_list_prepend (list, object);
+            list = g_list_prepend (list, object);
           break;
+            }
         }
       }
     }
-  }
 
-  list = g_list_reverse (list);
+    list = g_list_reverse (list);
+  }
+  else {
+    BUG_MSG("Invalid Page object");
+  }
   return list;
 }
 

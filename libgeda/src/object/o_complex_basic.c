@@ -48,7 +48,7 @@ int world_get_single_object_bounds(Object *o_current, int *rleft, int *rtop,
 {
   int result = 0;
 
-  if(GEDA_IS_OBJECT(o_current)) {
+  if (GEDA_IS_OBJECT(o_current)) {
 
     result = geda_object_bounds(o_current);
 
@@ -828,7 +828,7 @@ void o_complex_reset_refdes(Object *object)
     Object *attrib = (Object*) iter->data;
 
     if (attrib->type == OBJ_TEXT) {
-      o_text_reset_refdes(attrib);
+      u_refdes_reset(attrib);
     }
 
     iter = g_list_next (iter);

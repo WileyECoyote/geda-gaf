@@ -369,7 +369,8 @@ Page *geda_page_new (void)
  */
 bool is_a_geda_page (Page *page)
 {
-  return page && (GEDA_TYPE_PAGE == (page->head_marker & page->tail_marker));
+  return ((unsigned long)page > 0x7FFFE) &&
+  (GEDA_TYPE_PAGE == (page->head_marker & page->tail_marker));
 }
 
 /*! \todo Finish function documentation!!!

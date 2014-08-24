@@ -107,7 +107,6 @@ geda_text_bounds(Object *o_current)
     o_current->right  = right;
     o_current->bottom = bottom;
   }
-
   return result;
 }
 
@@ -221,6 +220,6 @@ Object *geda_text_new (void)
  */
 bool is_a_geda_text_object (Text *txt)
 {
-  return txt && (GEDA_TYPE_TEXT == (txt->head_marker & txt->tail_marker));
+  return GEDA_IS_OBJECT(txt) && (GEDA_TYPE_TEXT == (txt->head_marker & txt->tail_marker));
 }
 /** @} endgroup geda-text-object */

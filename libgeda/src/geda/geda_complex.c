@@ -229,5 +229,5 @@ Object *geda_complex_new (void)
  */
 bool is_a_geda_complex_object (Complex *cpx)
 {
-  return cpx && (GEDA_TYPE_COMPLEX == (cpx->head_marker & cpx->tail_marker));
+  return GEDA_IS_OBJECT(cpx) && (GEDA_TYPE_COMPLEX == (cpx->head_marker & cpx->tail_marker));
 }

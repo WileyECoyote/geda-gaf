@@ -6,6 +6,7 @@ libgeda_la_SOURCES += \
 			utility/u_basic.c \
 			utility/u_color.c \
 			utility/u_log.c \
-			utility/u_program.c
+			utility/u_program.c \
+			utility/u_refdes.c
 
 

@@ -513,9 +513,10 @@ Object *geda_object_new (int type, char const *name)
  *
  *  \return boolean.
  */
-bool is_a_geda_object (Object *obj)
+bool is_a_geda_object (void *object)
 {
   bool answer;
+  Object *obj = object;
 
   if ((unsigned long)obj > 0x7FFFE) {
     answer = (GEDA_TYPE_OBJECT == (obj->head_marker & obj->tail_marker));

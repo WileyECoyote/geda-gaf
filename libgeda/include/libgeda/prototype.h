@@ -29,7 +29,7 @@ const char  *f_path_user_config            (void);
 /* f_utilities.c */
       int    f_copy                        (const char *source, const char *target);
 const char  *f_get_filename_ext            (const char *filename);
-      char  *geda_basename                 (const char *path);
+      char  *f_basename                    (const char *path);
       void   f_remove_extension            (char *filename);
     GSList  *f_get_dir_list_files          (char *path, char *filter);
       int    f_file_remove                 (const char *pathname);

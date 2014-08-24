@@ -29,11 +29,13 @@
 
 #include <sys/param.h>
 
+#ifdef HAVE_FCNTL_H
+#include <fcntl.h>
+#endif
+
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
-
-#include <fcntl.h>
 
 # if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
 #  define WIN32_LEAN_AND_MEAN
@@ -65,7 +67,7 @@ char *f_get_autosave_filename (const char *filename)
     autosave_name = NULL;
   }
   else {
-    old_basename  = geda_basename(filename);
+    old_basename  = f_basename(filename);
     path_spec     = g_path_get_dirname(filename);
     new_basename  = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
     autosave_name = g_build_filename(path_spec, new_basename, NULL);

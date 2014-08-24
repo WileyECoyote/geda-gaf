@@ -167,5 +167,5 @@ Object *geda_box_new (void)
  */
 bool is_a_geda_box_object (Box *box)
 {
-  return box && (GEDA_TYPE_BOX == (box->head_marker & box->tail_marker));
+  return GEDA_IS_OBJECT(box) && (GEDA_TYPE_BOX == (box->head_marker & box->tail_marker));
 }

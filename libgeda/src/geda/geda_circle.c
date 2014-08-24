@@ -178,6 +178,6 @@ Object *geda_circle_new (void)
  */
 bool is_a_geda_circle_object (Circle *cir)
 {
-  return cir && (GEDA_TYPE_CIRCLE == (cir->head_marker & cir->tail_marker));
+  return GEDA_IS_OBJECT(cir) && (GEDA_TYPE_CIRCLE == (cir->head_marker & cir->tail_marker));
 }
 /** @} endgroup geda-circle-object */

@@ -139,6 +139,6 @@ Object *geda_bus_new (void)
  */
 bool is_a_geda_bus_object (Bus *bus)
 {
-  return bus && (GEDA_TYPE_BUS == (bus->head_marker & bus->tail_marker));
+  return GEDA_IS_OBJECT(bus) && (GEDA_TYPE_BUS == (bus->head_marker & bus->tail_marker));
 }
 /** @} endgroup geda-bus-object */

@@ -168,6 +168,6 @@ Object *geda_line_new (void)
  */
 bool is_a_geda_line_object (Line *lin)
 {
-  return lin && (GEDA_TYPE_LINE == (lin->head_marker & lin->tail_marker));
+  return GEDA_IS_OBJECT(lin) && (GEDA_TYPE_LINE == (lin->head_marker & lin->tail_marker));
 }
 /** @} endgroup geda-line-object */

@@ -236,8 +236,6 @@ Object *geda_arc_new (void)
  */
 bool is_a_geda_arc_object (Arc *arc)
 {
-  bool tail = GEDA_TYPE_ARC == arc->tail_marker;
-  bool head = GEDA_TYPE_ARC == arc->head_marker;
-  return arc && head && tail;
+  return GEDA_IS_OBJECT(arc) && (GEDA_TYPE_ARC == (arc->head_marker & arc->tail_marker));
 }
 /** @} endgroup geda-arc-object */
