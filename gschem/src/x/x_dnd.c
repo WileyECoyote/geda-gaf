@@ -596,7 +596,7 @@ x_dnd_drag_receive
           o_redraw_cleanstates (w_current);
           if (o_buffer_paste_start (w_current, x, y, DND_BUFFER)) {
             w_current->inside_action = 1;
-            i_set_state (w_current, ENDPASTE);
+            i_status_set_state (w_current, ENDPASTE);
             dnd_success = TRUE;
           }
           else {

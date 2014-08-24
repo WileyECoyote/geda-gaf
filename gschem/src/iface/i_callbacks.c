@@ -223,7 +223,7 @@ DEFINE_I_CALLBACK(cancel)
   /* leave this on for now... but it might have to change */
   /* this is problematic since we don't know what the right mode */
   /* (when you cancel inside an action) should be */
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   /* clear the key guile command-sequence */
   g_keys_reset (w_current);

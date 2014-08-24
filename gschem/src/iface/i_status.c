@@ -25,6 +25,83 @@
 #include <geda_label.h>
 #include <geda_debug.h>
 
+/*! \brief Set filename as gschem window title
+ *
+ *  \par Function Description
+ *  Set filename as gschem window title using
+ *  the gnome HID format style.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *  \param [in] string The filename
+ */
+void i_status_set_filename(GschemToplevel *w_current, const char *string)
+{
+  const char *filename=NULL;
+  char       *print_string=NULL;
+
+  if (w_current->main_window) {
+
+    if (string == NULL) {
+
+      if (w_current->toplevel && Current_Page) {
+
+        if (Current_Page->filename) {
+          filename = f_basename(Current_Page->filename);
+        }
+        else {
+          filename = "undefined"; /* aka BUG */
+        }
+      }
+      else {
+        filename = "loading"; /* Should never happen */
+      }
+    }
+    else {
+      filename = f_basename(string);
+    }
+
+    print_string = geda_sprintf("%s - gschem", filename);
+
+    gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
+
+    GEDA_FREE(print_string);
+  }
+}
+
+/*! \brief Set new state, then show state field including some
+ *         message
+ *
+ *  \par Function Description
+ *  Set new state, then show state field including some
+ *  message.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *  \param [in] newstate The new state
+ *  \param [in] message Message to be shown
+ *   *EK* Egil Kvaleberg
+ */
+void i_status_set_state_msg(GschemToplevel *w_current, enum x_states newstate, const char *message)
+{
+  w_current->event_state = newstate;
+  x_toolbars_update(w_current);
+  i_status_show_state(w_current, message);
+}
+
+/*! \brief Set new state, then show state field
+ *
+ *  \par Function Description
+ *  Set new state, then show state field.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *  \param [in] newstate The new state
+ *   *EK* Egil Kvaleberg
+ */
+void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
+{
+  i_status_set_state_msg(w_current, newstate, NULL);
+}
+
+
 /*! \brief Update status bar string
  *
  *  \par Function Description
@@ -33,7 +110,8 @@
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] string The new string to be shown in the status bar
  */
-static void i_update_status(GschemToplevel *w_current, const char *string)
+static void
+i_status_update_status(GschemToplevel *w_current, const char *string)
 {
   if (!StatusBar->status_label)
     return;
@@ -143,7 +221,7 @@ static const char *i_status_string(GschemToplevel *w_current)
       return _("Multiple Copy Mode");
   }
 #if DEBUG
-  fprintf(stderr, "i_status_string: Invalid state <%d>\n", w_current->event_state);
+  fprintf(stderr, "%s: Invalid state <%d>\n", __func__, w_current->event_state);
 #endif
 
   return ""; /* should not happen */
@@ -152,13 +230,13 @@ static const char *i_status_string(GschemToplevel *w_current)
 /*! \brief Show state field
  *
  *  \par Function Description
- *  Show state field on screen, possibly with the
- *  addition of an extra message
+ *  Show state field in the status bar, possibly with the addition
+ *  of an extra message.
  *
  *  \param [in] w_current GschemToplevel structure
  *  \param [in] message The string to be displayed
  */
-void i_show_state(GschemToplevel *w_current, const char *message)
+void i_status_show_state(GschemToplevel *w_current, const char *message)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   char *what_to_say;
@@ -193,45 +271,32 @@ void i_show_state(GschemToplevel *w_current, const char *message)
      GEDA_FREE(p);
   }
 
-  i_update_status(w_current, what_to_say);
+  i_status_update_status(w_current, what_to_say);
   GEDA_FREE(what_to_say);
 }
 
-/*! \brief Set new state, then show state field including some
- *         message
+/*! \brief Update the Grid and Snap Display on the gschem Status-Bar
  *
  *  \par Function Description
- *  Set new state, then show state field including some
- *  message.
+ *  This function calls the appropriate interface to update the Grid/Snap
+ *  label on the status bar.
  *
  *  \param [in] w_current GschemToplevel structure
- *  \param [in] newstate The new state
- *  \param [in] message Message to be shown
- *   *EK* Egil Kvaleberg
  */
-void i_set_state_msg(GschemToplevel *w_current, enum x_states newstate, const char *message)
-{
-  w_current->event_state = newstate;
-  x_toolbars_update(w_current);
-  i_show_state(w_current, message);
-}
-
-/*! \brief Set new state, then show state field
+/*
+ * i_pan_world.c:159  i_pan_world_general()
+ * i_command.c:2665   i_cmd_do_grid_dots()
+ * i_command.c:2674   i_cmd_do_grid_mesh()
+ * i_command.c:2683   i_cmd_do_grid_off()
+ * i_command.c:2705   i_cmd_do_cycle_grid()
  *
- *  \par Function Description
- *  Set new state, then show state field.
- *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] newstate The new state
- *   *EK* Egil Kvaleberg
  */
-void i_set_state(GschemToplevel *w_current, enum x_states newstate)
+void i_status_update_grid_info (GschemToplevel *w_current)
 {
-  i_set_state_msg(w_current, newstate, NULL);
+  x_status_bar_update_grid_label (w_current);
 }
 
 /*! \brief Update sensitivity of the Edit/Paste menu item
- *
  *  \par Function Description
  *  Asynchronous callback to update sensitivity of the Edit/Paste
  *  menu item.
@@ -244,6 +309,11 @@ static void clipboard_usable_cb (int usable, void *userdata)
   x_menus_popup_sensitivity (w_current, "Paste", usable);
 }
 
+/*! \brief Can anything selected be hatched for filled?
+ *  \par Function Description
+ * i_status_update_sensitivities helper function to determine
+ * if any selected objects can be hatched or filled
+ */
 static bool
 hatchable_object_selected(GList *list)
 {
@@ -261,6 +331,34 @@ hatchable_object_selected(GList *list)
   return FALSE;
 }
 
+/*! \brief Does anything selected have line-type properties?
+ *  \par Function Description
+ * i_status_update_sensitivities helper function to determine
+ * if any selected objects have line-type properties
+ */
+static bool
+linetype_object_selected(GList *list)
+{
+  Object *obj;
+
+  while(list != NULL) {
+    obj = (Object *) list->data;
+    if (obj->type == OBJ_LINE   || obj->type == OBJ_BOX ||
+        obj->type == OBJ_CIRCLE || obj->type == OBJ_ARC ||
+        obj->type == OBJ_PATH)
+    {
+      return TRUE;
+    }
+    NEXT(list);
+  }
+  return FALSE;
+}
+
+/*! \brief Is at least one Text object selected?
+ *  \par Function Description
+ * i_status_update_sensitivities helper function to determine
+ * if any selected objects are Text objects
+ */
 static bool
 selected_at_least_one_text_object(GList *list)
 {
@@ -276,6 +374,11 @@ selected_at_least_one_text_object(GList *list)
   return FALSE;
 }
 
+/*! \brief Is at least one Complex object selected?
+ *  \par Function Description
+ * i_status_update_sensitivities helper function to determine
+ * if any selected objects are Complex objects
+ */
 static bool
 selected_complex_object(GList *list)
 {
@@ -291,6 +394,11 @@ selected_complex_object(GList *list)
   return FALSE;
 }
 
+/*! \brief Is at least one Pin object selected?
+ *  \par Function Description
+ * i_status_update_sensitivities helper function to determine
+ * if any selected objects are Pin objects
+ */
 static bool
 selected_at_least_one_pin_object(GList *list)
 {
@@ -317,14 +425,15 @@ selected_at_least_one_pin_object(GList *list)
  *  path NOT the displayed menu text, therefore these strings
  *  should NOT be internationalized
  *
- * TODO: Get rid of this ludicrousness
+ * TODO: Fix this ludicrousness
  */
-void i_update_sensitivities(GschemToplevel *w_current)
+void i_status_update_sensitivities(GschemToplevel *w_current)
 {
   bool anything_is_selected;
   bool have_hatchable;
-  bool have_text_selected;
+  bool have_line_editable;
   bool have_mutil_pages;
+  bool have_text_selected;
   bool is_complex_selected;
   bool is_editing_symbol;
   bool is_pin_selected;
@@ -358,12 +467,12 @@ void i_update_sensitivities(GschemToplevel *w_current)
   GList *list = geda_list_get_glist(toplevel->page_current->selection_list);
 
   if (w_current == NULL) {
-    u_log_message("Internal Error Detected: <i_update_sensitivities> w_current == NULL\n");
+    u_log_message("Internal Error Detected: <i_status_update_sensitivities> w_current == NULL\n");
     return;
   }
 
   if (toplevel->page_current == NULL) {
-    u_log_message("Internal Error Detected: <i_update_sensitivities> toplevel->page_current == NULL\n");
+    u_log_message("Internal Error Detected: <i_status_update_sensitivities> toplevel->page_current == NULL\n");
     return;
   }
 
@@ -374,6 +483,7 @@ void i_update_sensitivities(GschemToplevel *w_current)
 
   anything_is_selected = o_select_is_selection (w_current);
   have_hatchable       = hatchable_object_selected(list);
+  have_line_editable   = linetype_object_selected(list);
   have_mutil_pages     = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
   have_text_selected   = selected_at_least_one_text_object(list);
   is_complex_selected  = selected_complex_object(list);
@@ -435,7 +545,13 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Color...", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Lock", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Unlock", TRUE);
-    x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
+
+    if (have_line_editable) {
+      x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
+    }
+    else {
+      x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
+    }
 
     if (have_hatchable) {
       x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
@@ -467,6 +583,13 @@ void i_update_sensitivities(GschemToplevel *w_current)
 
     set_sensitivity_for_complexes (FALSE);
     set_sensitivity_for_text (FALSE);
+
+    /* Handle special cases first, then follow menu order */
+
+    if (! is_editing_symbol) {
+      /* This is not handled in complex because of conditional */
+      x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
+    }
 
     x_menus_sensitivity(w_current, "_Edit/Cu_t", FALSE);
     x_menus_sensitivity(w_current, "_Edit/_Copy", FALSE);
@@ -521,68 +644,3 @@ void i_update_sensitivities(GschemToplevel *w_current)
 
 }
 
-/*! \brief Set filename as gschem window title
- *
- *  \par Function Description
- *  Set filename as gschem window title using
- *  the gnome HID format style.
- *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] string The filename
- */
-void i_set_filename(GschemToplevel *w_current, const char *string)
-{
-  const char *filename=NULL;
-  char       *print_string=NULL;
-
-  if (w_current->main_window) {
-
-    if (string == NULL) {
-
-      if (w_current->toplevel && Current_Page) {
-
-        if (Current_Page->filename) {
-          filename = f_basename(Current_Page->filename);
-        }
-        else {
-          filename = "undefined"; /* aka BUG */
-        }
-      }
-      else {
-        filename = "loading"; /* Should never happen */
-      }
-    }
-    else {
-      filename = f_basename(string);
-    }
-
-    print_string = geda_sprintf("%s - gschem", filename);
-
-    gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
-
-    GEDA_FREE(print_string);
-  }
-}
-
-/*! \brief Update the Grid and Snap Display on the gschem Status-Bar
- *
- *  \par Function Description
- *  This function calls the appropriate interface to update the Grid/Snap
- *  label on the status bar.
- *
- *  \param [in] w_current GschemToplevel structure
- */
-/*
- * i_pan_world.c:159  i_pan_world_general()
- * i_command.c:2665   i_cmd_do_grid_dots()
- * i_command.c:2674   i_cmd_do_grid_mesh()
- * i_command.c:2683   i_cmd_do_grid_off()
- * i_command.c:2705   i_cmd_do_cycle_grid()
- *
- */
-void i_update_grid_info (GschemToplevel *w_current)
-{
-
-  x_status_bar_update_grid_label (w_current);
-
-}

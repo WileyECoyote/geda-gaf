@@ -42,7 +42,7 @@ clip_handle_owner_change (GtkClipboard *cb, GdkEvent *event,
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
 
-  i_update_sensitivities (w_current);
+  i_status_update_sensitivities (w_current);
 }
 
 static void

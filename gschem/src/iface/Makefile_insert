@@ -3,11 +3,11 @@
 @echo 'export FRAGMENTS=iface'
 
 gschem_SOURCES += \
-		iface/i_basic.c \
-		iface/i_callbacks.c \
-		iface/i_command.c \
-		iface/i_pan_world.c \
-		iface/i_sessions.c \
-		iface/i_threads.c \
-		iface/i_vars.c \
-		iface/i_zoom_world.c
+				iface/i_callbacks.c \
+				iface/i_command.c \
+				iface/i_pan_world.c \
+				iface/i_sessions.c \
+				iface/i_status.c \
+				iface/i_threads.c \
+				iface/i_vars.c \
+				iface/i_zoom_world.c

@@ -343,7 +343,7 @@ static bool clear_keyaccel_string(void * data)
   GEDA_FREE(w_current->keyaccel_string);
   w_current->keyaccel_string = NULL;
   w_current->keyaccel_ssid = 0;
-  i_show_state(w_current, NULL);
+  i_status_show_state(w_current, NULL);
   return FALSE;
 }
 
@@ -362,7 +362,7 @@ g_keys_reset (GschemToplevel *w_current)
   /* Reset the status bar */
   GEDA_FREE (w_current->keyaccel_string);
   w_current->keyaccel_string = NULL;
-  i_show_state(w_current, NULL);
+  i_status_show_state(w_current, NULL);
 
   /* Reset the Scheme keybinding state */
   scm_dynwind_begin (0);
@@ -493,7 +493,7 @@ int g_keys_execute(GschemToplevel *w_current, GdkEventKey *event)
     }
 
     /* Update status bar */
-    i_show_state(w_current, NULL);
+    i_status_show_state(w_current, NULL);
 
     /* Build and evaluate Scheme expression. */
     scm_dynwind_begin (0);

@@ -337,7 +337,7 @@ x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
     BUG_IMSG("strange signal %d\n", response);
   }
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
 
 }
 

@@ -361,7 +361,7 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, Object *object)
   switch(response) {
   case GTK_RESPONSE_ACCEPT:
     x_dialog_edit_text_ok(w_current, object);
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     break;
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:

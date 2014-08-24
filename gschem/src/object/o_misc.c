@@ -45,7 +45,7 @@ void o_edit(GschemToplevel *w_current, GList *list, int who)
 
   if (list == NULL) {
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     return;
   }
 
@@ -137,7 +137,7 @@ void o_lock(GschemToplevel *w_current)
 
   if (!w_current->SHIFTKEY) o_select_unselect_all(w_current);
   o_undo_savestate(w_current, UNDO_ALL);
-  i_update_sensitivities(w_current);
+  i_status_update_sensitivities(w_current);
 }
 
 /*! \todo Finish function documentation!!!
@@ -196,7 +196,7 @@ void o_rotate_world_update(GschemToplevel *w_current,
   /* this is okay if you just hit rotate and have nothing selected */
   if (list == NULL) {
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     return;
   }
 
@@ -250,7 +250,7 @@ void o_mirror_world_update(GschemToplevel *w_current, int centerx, int centery, 
 
   if (list == NULL) {
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     return;
   }
 
@@ -467,7 +467,7 @@ void o_edit_show_hidden (GschemToplevel *w_current, const GList *o_list, int inh
   o_invalidate_glist(w_current, (GList*)o_list);
 
   Current_Page->show_hidden_text = ! Current_Page->show_hidden_text;
-  i_show_state(w_current, NULL); /* update screen status */
+  i_status_show_state(w_current, NULL); /* update screen status */
 
   if (Current_Page->show_hidden_text) {
     q_log_message(_("Hidden text is now visible\n"));

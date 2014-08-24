@@ -110,7 +110,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   g_list_free (temp_dest_list);
 
   o_undo_savestate (w_current, UNDO_ALL);
-  i_update_sensitivities (w_current);
+  i_status_update_sensitivities (w_current);
 }
 
 /*! \todo Finish function documentation!!!

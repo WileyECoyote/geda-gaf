@@ -425,7 +425,7 @@ x_dialog_edit_properties_response(GtkWidget     *Dialog,
     BUG_IMSG("strange signal %d\n",response);
   }
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
 
 }
 

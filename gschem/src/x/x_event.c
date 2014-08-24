@@ -77,7 +77,7 @@ int x_event_button_pressed(GtkWidget      *widget,
     o_find_object(w_current, w_x, w_y, TRUE);
     if (o_select_is_selection (w_current)) {
       o_edit(w_current, geda_list_get_glist( Top_Selection ), ID_ORIGIN_EVENT);
-      i_set_state(w_current, SELECT);
+      i_status_set_state(w_current, SELECT);
       return(0);
     }
   }
@@ -245,7 +245,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           else { /* cleanup and start a new net */
             o_net_invalidate_rubber (w_current);
             o_net_reset(w_current);
-            i_set_state(w_current, STARTDRAWNET);
+            i_status_set_state(w_current, STARTDRAWNET);
             w_current->inside_action = FALSE;
           }
           break;
@@ -259,7 +259,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           }
           else {
             w_current->inside_action = FALSE;
-            i_set_state(w_current, STARTDRAWBUS);
+            i_status_set_state(w_current, STARTDRAWBUS);
           }
           break;
         case(ENDCOMP):
@@ -267,14 +267,14 @@ int x_event_button_pressed(GtkWidget      *widget,
                       NULL, "%add-objects-hook");
           if (!w_current->continue_component_place) {
             w_current->inside_action = FALSE;
-            i_set_state(w_current, SELECT);
+            i_status_set_state(w_current, SELECT);
           }
           break;
 
         case(ENDPASTE):
           o_place_end(w_current, w_x, w_y, FALSE, NULL, "%paste-objects-hook");
           w_current->inside_action = FALSE;
-          i_set_state(w_current, SELECT);
+          i_status_set_state(w_current, SELECT);
           break;
 
         case(ENDROTATEP):
@@ -282,7 +282,7 @@ int x_event_button_pressed(GtkWidget      *widget,
                                 geda_list_get_glist(Current_Selection));
 
           w_current->inside_action = FALSE;
-          i_set_state(w_current, SELECT);
+          i_status_set_state(w_current, SELECT);
           break;
 
         case(ENDMIRROR):
@@ -290,25 +290,25 @@ int x_event_button_pressed(GtkWidget      *widget,
                                 geda_list_get_glist(Current_Selection));
 
           w_current->inside_action = FALSE;
-          i_set_state(w_current, SELECT);
+          i_status_set_state(w_current, SELECT);
           break;
 
         case(ENDTEXT):
           o_place_end(w_current, w_x, w_y, FALSE, NULL, "%add-objects-hook");
           w_current->inside_action = FALSE;
-          i_set_state(w_current, SELECT);
+          i_status_set_state(w_current, SELECT);
           break;
 
         case(STARTPAN):
           i_pan_world(w_current, w_x, w_y);
-          i_set_state(w_current, SELECT);
+          i_status_set_state(w_current, SELECT);
           break;
 
         case(ZOOMBOXSTART):
           o_redraw_cleanstates(w_current);
           i_zoom_world_box_start(w_current, unsnapped_wx, unsnapped_wy);
           w_current->inside_action = TRUE;
-          i_set_state(w_current, ZOOMBOXEND);
+          i_status_set_state(w_current, ZOOMBOXEND);
           break;
 
       }
@@ -345,18 +345,18 @@ int x_event_button_pressed(GtkWidget      *widget,
           if (!o_select_is_selection(w_current)) {
             /* this means the above find did not find anything */
             w_current->inside_action = FALSE;
-            i_set_state(w_current, SELECT);
+            i_status_set_state(w_current, SELECT);
             goto end_button_pressed;
           }
 
           if (w_current->ALTKEY) {
             o_copy_start(w_current, w_x, w_y);
             w_current->inside_action = TRUE;
-            i_set_state(w_current, COPY);
+            i_status_set_state(w_current, COPY);
           } else {
             o_move_start(w_current, w_x, w_y);
             w_current->inside_action = TRUE;
-            i_set_state(w_current, MOVE);
+            i_status_set_state(w_current, MOVE);
           }
           break;
 
@@ -383,7 +383,7 @@ int x_event_button_pressed(GtkWidget      *widget,
     else if (event->button == 3) {
       if (!w_current->inside_action) {
         if (w_current->third_button == POPUP_ENABLED) {
-          i_update_sensitivities(w_current);  /* update menus before popup  */
+          i_status_update_sensitivities(w_current);  /* update menus before popup  */
           x_menu_display_popup(w_current, event);
         }
         else {
@@ -401,7 +401,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           case(DRAWNET):
           case(NETCONT):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, STARTDRAWNET);
+            i_status_set_state(w_current, STARTDRAWNET);
             o_net_invalidate_rubber (w_current);
             o_net_reset(w_current);
             break;
@@ -410,21 +410,21 @@ int x_event_button_pressed(GtkWidget      *widget,
           case(DRAWBUS):
           case(BUSCONT):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, STARTDRAWBUS);
+            i_status_set_state(w_current, STARTDRAWBUS);
             o_bus_invalidate_rubber (w_current);
             break;
 
           case(DRAWPIN):
           case(ENDPIN):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, DRAWPIN);
+            i_status_set_state(w_current, DRAWPIN);
             o_pin_invalidate_rubber (w_current);
             break;
 
           case(DRAWLINE):
           case(ENDLINE):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, DRAWLINE);
+            i_status_set_state(w_current, DRAWLINE);
             o_line_invalidate_rubber (w_current);
             break;
 
@@ -432,35 +432,35 @@ int x_event_button_pressed(GtkWidget      *widget,
           case PATHCONT:
           case ENDPATH:
             w_current->inside_action = FALSE;
-            i_set_state (w_current, DRAWPATH);
+            i_status_set_state (w_current, DRAWPATH);
             o_path_invalidate_rubber (w_current);
             break;
 
           case(DRAWBOX):
           case(ENDBOX):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, DRAWBOX);
+            i_status_set_state(w_current, DRAWBOX);
             o_box_invalidate_rubber (w_current);
             break;
 
           case(DRAWPICTURE):
           case(ENDPICTURE):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, DRAWPICTURE);
+            i_status_set_state(w_current, DRAWPICTURE);
             o_picture_invalidate_rubber (w_current);
             break;
 
           case(DRAWCIRCLE):
           case(ENDCIRCLE):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, DRAWCIRCLE);
+            i_status_set_state(w_current, DRAWCIRCLE);
             o_circle_invalidate_rubber (w_current);
             break;
 
           case(DRAWARC):
           case(ENDARC):
             w_current->inside_action = FALSE;
-            i_set_state(w_current, DRAWARC);
+            i_status_set_state(w_current, DRAWARC);
             o_arc_invalidate_rubber (w_current);
             break;
 
@@ -533,7 +533,7 @@ bool x_event_button_released (GtkWidget      *widget,
       case(GRIPS):
         o_grips_end(w_current);
         w_current->inside_action = FALSE;
-        i_set_state(w_current, SELECT);
+        i_status_set_state(w_current, SELECT);
         break;
       case(ENDMOVE):
         if (w_current->drag_event) {
@@ -542,13 +542,13 @@ bool x_event_button_released (GtkWidget      *widget,
         }
         o_move_end(w_current);
         w_current->inside_action = FALSE;
-        i_set_state(w_current, SELECT);
+        i_status_set_state(w_current, SELECT);
         break;
 
       case(ENDCOPY):
         o_copy_end(w_current);
         w_current->inside_action = FALSE;
-        i_set_state(w_current, SELECT);
+        i_status_set_state(w_current, SELECT);
         break;
 
       case(ENDMCOPY):
@@ -556,20 +556,20 @@ bool x_event_button_released (GtkWidget      *widget,
         /* having this stay in copy was driving me nuts*/
         w_current->inside_action = TRUE;
         /* Keep the state and the inside_action, as the copy has not finished. */
-        i_set_state(w_current, ENDMCOPY);
+        i_status_set_state(w_current, ENDMCOPY);
         o_undo_savestate(w_current, UNDO_ALL);
         break;
 
       case(SBOX):
         o_select_box_end(w_current, unsnapped_wx, unsnapped_wy);
         w_current->inside_action = FALSE;
-        i_set_state(w_current, SELECT);
+        i_status_set_state(w_current, SELECT);
         break;
 
       case(ZOOMBOXEND):
         i_zoom_world_box_end(w_current, unsnapped_wx, unsnapped_wy);
         w_current->inside_action = FALSE;
-        i_set_state(w_current, SELECT);
+        i_status_set_state(w_current, SELECT);
         break;
       case(STARTDESELECT):
         object = o_find_selected_object(w_current, unsnapped_wx, unsnapped_wy);
@@ -651,13 +651,13 @@ bool x_event_button_released (GtkWidget      *widget,
           case(MOVE):
             o_move_end(w_current);
             w_current->inside_action = FALSE;
-            i_set_state(w_current, SELECT);
+            i_status_set_state(w_current, SELECT);
             break;
 
           case(COPY):
             o_copy_end(w_current);
             w_current->inside_action = FALSE;
-            i_set_state(w_current, SELECT);
+            i_status_set_state(w_current, SELECT);
             break;
         }
         break;
@@ -679,7 +679,7 @@ bool x_event_button_released (GtkWidget      *widget,
             /* if you mouse pan, you will be thrown out of the current mode. */
             /* not good */
             w_current->inside_action = FALSE;
-            i_set_state(w_current, SELECT);
+            i_status_set_state(w_current, SELECT);
             break;
     }
 
@@ -695,7 +695,7 @@ bool x_event_button_released (GtkWidget      *widget,
       /* This needs to be REDONE, if user mouse pans, the user will be
        * thrown out of the current mode. Not good */
       w_current->inside_action = FALSE;
-      i_set_state(w_current, SELECT);
+      i_status_set_state(w_current, SELECT);
     }
   }
 

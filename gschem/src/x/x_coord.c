@@ -123,7 +123,7 @@ x_dialog_coord_dnd_drag_receive
           /* don't free(buffer) here! leave pointer for our entry to sort */
           object_buffer[DND_BUFFER] = g_list_prepend(object_buffer[DND_BUFFER], buffer);
           w_current->inside_action = 1;
-          i_set_state (w_current, ENDDNDSTR);
+          i_status_set_state (w_current, ENDDNDSTR);
           dnd_success = TRUE;
         }
         break;
@@ -152,13 +152,13 @@ x_dialog_coord_dnd_drag_receive
              switch (w_current->dnd_save_state) {
              case ENDMOVE:  /* Dragged-Moved something to the coord entry */
 
-               i_set_state (w_current, ENDDND_MOVE_OBJ);
+               i_status_set_state (w_current, ENDDND_MOVE_OBJ);
                break;
              case STARTCOPY:
              case ENDCOPY:
              case ENDCOMP:
 
-               i_set_state (w_current, ENDDND_COPY_OBJ);
+               i_status_set_state (w_current, ENDDND_COPY_OBJ);
              default:
                break;
              }
@@ -166,7 +166,7 @@ x_dialog_coord_dnd_drag_receive
           }
           else {
             w_current->inside_action = 1;
-            i_set_state (w_current, ENDDND_COPY_OBJ);
+            i_status_set_state (w_current, ENDDND_COPY_OBJ);
           }
           dnd_success = TRUE;
         }
@@ -447,7 +447,7 @@ g_print ("begin: <co_on_entry_activate> inside_action=%d, event_state=%d, dnd_sa
       object_buffer[DND_BUFFER] = NULL;
       w_current->dnd_save_state = NONE;
       o_invalidate_all (w_current);
-      i_set_state (w_current, SELECT);
+      i_status_set_state (w_current, SELECT);
     }
   }
 }

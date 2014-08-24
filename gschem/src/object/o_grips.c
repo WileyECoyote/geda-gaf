@@ -1343,7 +1343,7 @@ void o_grips_end(GschemToplevel *w_current)
   if (!object) {
     /* actually this is an error condition hack */
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     return;
   }
 

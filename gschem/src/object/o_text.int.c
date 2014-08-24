@@ -119,7 +119,7 @@ void o_text_prepare_place(GschemToplevel *w_current, char *text)
     g_list_append(toplevel->page_current->place_list,object);
 
   w_current->inside_action = 1;
-  i_set_state (w_current, ENDTEXT);
+  i_status_set_state (w_current, ENDTEXT);
 }
 
 /*! \brief Launch the Edit Text Dialog

@@ -661,7 +661,7 @@ x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
     printf("x_dialog_edit_pin_type_response(): strange signal %d\n",response);
   }
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
 
 }
 

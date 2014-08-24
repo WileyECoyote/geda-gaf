@@ -436,7 +436,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   /* Let the caller to decide if redraw or not */
   o_invalidate_all (w_current);
-  i_update_sensitivities(w_current);
+  i_status_update_sensitivities(w_current);
 
   /* restore saved undo structures */
   Current_Page->undo_bottom  = save_bottom;

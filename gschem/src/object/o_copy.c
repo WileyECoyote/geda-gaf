@@ -45,7 +45,7 @@ void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
     s_place_set_place_list(toplevel, s_current );
 
     w_current->inside_action = 1;
-    i_set_state(w_current, COPY);
+    i_status_set_state(w_current, COPY);
     o_place_start (w_current, w_x, w_y);
   }
 }
@@ -60,7 +60,7 @@ void o_copy_cancel(GschemToplevel *w_current)
   s_place_free_place_list(w_current->toplevel);
 
   w_current->inside_action = 0;
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
 }
 
 /*! \todo Finish function documentation!!!

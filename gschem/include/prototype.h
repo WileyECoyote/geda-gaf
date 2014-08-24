@@ -1,4 +1,4 @@
-/* $Id$ */
+/* $Id$  indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 */
 #define GLT GList   /* Only for this file,     */
 #define GSL GSList  /* to improve readability! */
 #define OBJ Object
@@ -8,32 +8,32 @@
 /* gschem_toplevel.c - refer to gschem_toplevel.h */
 
 /* g_action.c */
-SCM  g_process_action(SCM action);
-bool g_action_eval_by_name (GschemToplevel *w_current, const char *action_name);
-bool g_action_get_position (bool snap, int *x, int *y);
+SCM   g_process_action       (SCM action);
+bool  g_action_eval_by_name  (GschemToplevel *w_current, const char *action_name);
+bool  g_action_get_position  (bool snap, int *x, int *y);
 
 /* g_attrib.c */
-void g_init_attrib ();
+void  g_init_attrib ();
 
 /* g_funcs.c */
-SCM g_funcs_print            (SCM filename);
-SCM g_funcs_pdf              (SCM filename);
-SCM g_funcs_postscript       (SCM filename);
-SCM g_funcs_image            (SCM filename);
-SCM g_funcs_exit             (void);
-SCM g_funcs_log              (SCM msg);
-SCM g_funcs_msg              (SCM msg);
-SCM g_funcs_confirm               (SCM msg);
-SCM g_funcs_filesel               (SCM msg, SCM templ, SCM flags);
-SCM g_funcs_use_rc_values              (void);
-SCM get_selected_component_attributes  (GschemToplevel *w_current);
+SCM   g_funcs_print          (SCM filename);
+SCM   g_funcs_pdf            (SCM filename);
+SCM   g_funcs_postscript     (SCM filename);
+SCM   g_funcs_image          (SCM filename);
+SCM   g_funcs_exit           (void);
+SCM   g_funcs_log            (SCM msg);
+SCM   g_funcs_msg            (SCM msg);
+SCM   g_funcs_confirm        (SCM msg);
+SCM   g_funcs_filesel        (SCM msg, SCM templ, SCM flags);
+SCM   g_funcs_use_rc_values              (void);
+SCM   get_selected_component_attributes  (GschemToplevel *w_current);
 
 /* g_hook.c */
-void g_init_hook                  (void);
-void g_run_hook_object            (GschemToplevel *w_current, const char *name, Object *obj);
-void g_run_hook_object_list       (GschemToplevel *w_current, const char *name, GList *obj_lst);
-void g_run_hook_page              (GschemToplevel *w_current, const char *name, Page *page);
-EHP *g_hook_new_proxy_by_name     (const char *name);
+void  g_init_hook                  (void);
+void  g_run_hook_object            (GschemToplevel *w_current, const char *name, Object *obj);
+void  g_run_hook_object_list       (GschemToplevel *w_current, const char *name, GList *obj_lst);
+void  g_run_hook_page              (GschemToplevel *w_current, const char *name, Page *page);
+EHP * g_hook_new_proxy_by_name     (const char *name);
 
 /* g_keys.c */
 void  g_keys_reset                (GschemToplevel *w_current);
@@ -42,223 +42,221 @@ char *g_find_key                  (char *func_name);
 GtkListStore *g_keys_to_list_store (void);
 
 /* Hoykeys */
-SCM buffer_copy1(SCM action);
-SCM buffer_copy2(SCM action);
-SCM buffer_copy3(SCM action);
-SCM buffer_copy4(SCM action);
-SCM buffer_copy5(SCM action);
+SCM   buffer_copy1           (SCM action);
+SCM   buffer_copy2           (SCM action);
+SCM   buffer_copy3           (SCM action);
+SCM   buffer_copy4           (SCM action);
+SCM   buffer_copy5           (SCM action);
 
-SCM buffer_cut1(SCM action);
-SCM buffer_cut2(SCM action);
-SCM buffer_cut3(SCM action);
-SCM buffer_cut4(SCM action);
-SCM buffer_cut5(SCM action);
+SCM   buffer_cut1            (SCM action);
+SCM   buffer_cut2            (SCM action);
+SCM   buffer_cut3            (SCM action);
+SCM   buffer_cut4            (SCM action);
+SCM   buffer_cut5            (SCM action);
 
-SCM buffer_paste1(SCM action);
-SCM buffer_paste2(SCM action);
-SCM buffer_paste3(SCM action);
-SCM buffer_paste4(SCM action);
-SCM buffer_paste5(SCM action);
+SCM   buffer_paste1          (SCM action);
+SCM   buffer_paste2          (SCM action);
+SCM   buffer_paste3          (SCM action);
+SCM   buffer_paste4          (SCM action);
+SCM   buffer_paste5          (SCM action);
 
-SCM buffer_copy1_menu(SCM rest);
-SCM buffer_copy2_menu(SCM rest);
-SCM buffer_copy3_menu(SCM rest);
-SCM buffer_copy4_menu(SCM rest);
-SCM buffer_copy5_menu(SCM rest);
+SCM   buffer_copy1_menu      (SCM rest);
+SCM   buffer_copy2_menu      (SCM rest);
+SCM   buffer_copy3_menu      (SCM rest);
+SCM   buffer_copy4_menu      (SCM rest);
+SCM   buffer_copy5_menu      (SCM rest);
 
-SCM buffer_cut1_menu(SCM rest);
-SCM buffer_cut2_menu(SCM rest);
-SCM buffer_cut3_menu(SCM rest);
-SCM buffer_cut4_menu(SCM rest);
-SCM buffer_cut5_menu(SCM rest);
+SCM   buffer_cut1_menu       (SCM rest);
+SCM   buffer_cut2_menu       (SCM rest);
+SCM   buffer_cut3_menu       (SCM rest);
+SCM   buffer_cut4_menu       (SCM rest);
+SCM   buffer_cut5_menu       (SCM rest);
 
-SCM buffer_paste1_menu(SCM rest);
-SCM buffer_paste2_menu(SCM rest);
-SCM buffer_paste3_menu(SCM rest);
-SCM buffer_paste4_menu(SCM rest);
-SCM buffer_paste5_menu(SCM rest);
+SCM   buffer_paste1_menu     (SCM rest);
+SCM   buffer_paste2_menu     (SCM rest);
+SCM   buffer_paste3_menu     (SCM rest);
+SCM   buffer_paste4_menu     (SCM rest);
+SCM   buffer_paste5_menu     (SCM rest);
 
-SCM h_keys_view_zoom_in_hotkey(SCM rest);
-SCM h_keys_view_zoom_out_hotkey(SCM rest);
+SCM   h_keys_view_zoom_in_hotkey  (SCM rest);
+SCM   h_keys_view_zoom_out_hotkey (SCM rest);
 
-SCM h_keys_view_pan_hotkey(SCM rest);
-SCM h_keys_view_pan_left(SCM rest);
-SCM h_keys_view_pan_right(SCM rest);
-SCM h_keys_view_pan_up(SCM rest);
-SCM h_keys_view_pan_down(SCM rest);
+SCM   h_keys_view_pan_hotkey (SCM rest);
+SCM   h_keys_view_pan_left   (SCM rest);
+SCM   h_keys_view_pan_right  (SCM rest);
+SCM   h_keys_view_pan_up     (SCM rest);
+SCM   h_keys_view_pan_down   (SCM rest);
 
 /* Menus and Keyboard */
-SCM h_keys_cancel(SCM rest);
-void g_init_keys ();
+SCM   h_keys_cancel          (SCM rest);
+void  g_init_keys            (void);
 
 /* g_rc.c */
-void g_rc_parse_gtkrc();
-int check_and_convert_scm_integer( SCM val2chk, int min_value, int max_value,
-                                   int default_value, char* keyword);
-SCM g_rc_gschem_version(SCM version);
-SCM g_rc_draw_grips(SCM mode);
-SCM g_rc_grid_mode(SCM mode);
-SCM g_rc_dots_grid_dot_size(SCM dotsize);
-SCM g_rc_dots_grid_mode(SCM mode);
-SCM g_rc_dots_grid_fixed_threshold(SCM spacing);
-SCM g_rc_mesh_grid_threshold(SCM spacing);
-SCM g_rc_net_endpoint_mode(SCM mode);
-SCM g_rc_net_midpoint_mode(SCM mode);
-SCM g_rc_net_direction_mode(SCM mode);
-SCM g_rc_net_selection_mode(SCM mode);
-SCM g_rc_action_feedback_mode(SCM mode);
-SCM g_rc_zoom_with_pan(SCM mode);
-SCM g_rc_text_feedback(SCM mode);
-SCM g_rc_text_display_zoomfactor(SCM zoomfactor);
-SCM g_rc_object_clipping(SCM mode);
-SCM g_rc_embed_components(SCM mode);
-SCM g_rc_component_dialog_attributes(SCM stringlist);
-SCM g_rc_text_case(SCM mode);
-SCM g_rc_text_size(SCM size);
-SCM g_rc_snap_size(SCM size);
-SCM g_rc_attribute_name(SCM path);
-SCM g_rc_paper_size(SCM width, SCM height);
-SCM g_rc_paper_sizes(SCM papername, SCM scm_width, SCM scm_height);
-SCM g_rc_output_type(SCM mode);
-SCM g_rc_output_orientation(SCM mode);
-SCM g_rc_image_color(SCM mode);
-SCM g_rc_invert_images(SCM mode);
-SCM g_rc_image_size(SCM width, SCM height);
-SCM g_rc_output_color(SCM mode);
-SCM g_rc_output_capstyle(SCM mode);
-SCM g_rc_logging(SCM mode);
-SCM g_rc_log_destiny(SCM mode);
-SCM g_rc_console_window(SCM mode);
-SCM g_rc_console_window_type(SCM mode);
-SCM g_rc_third_button(SCM mode);
-SCM g_rc_map_keys(SCM keys, SCM action);
-SCM g_rc_middle_button(SCM mode);
-SCM g_rc_scroll_wheel(SCM mode);
-SCM g_rc_pointer_hscroll(SCM mode);
-SCM g_rc_net_consolidate(SCM mode);
-SCM g_rc_enforce_hierarchy(SCM mode);
-SCM g_rc_text_origin_marker(SCM mode);
-SCM g_rc_text_marker_size(SCM mode);
-SCM g_rc_fast_mousepan(SCM mode);
-SCM g_rc_continue_component_place(SCM mode);
-SCM g_rc_undo_levels(SCM levels);
-SCM g_rc_undo_control(SCM mode);
-SCM g_rc_undo_type(SCM mode);
-SCM g_rc_undo_panzoom(SCM mode);
-SCM g_rc_netconn_rubberband(SCM mode);
-SCM g_rc_magnetic_net_mode(SCM mode);
-SCM g_rc_sort_component_library(SCM mode);
-SCM g_rc_add_attribute_offset(SCM offset);
-SCM g_rc_add_menu(SCM menu_name, SCM menu_items);
-SCM g_rc_auto_load_last(SCM mode);
-SCM g_rc_attribute_placement_grid(SCM offset);
-SCM g_rc_auto_save_interval(SCM seconds);
-SCM g_rc_window_size(SCM width, SCM height);
-SCM g_rc_world_size(SCM width, SCM height, SCM border);
-SCM g_rc_warp_cursor(SCM mode);
-SCM g_rc_setpagedevice_orientation(SCM mode);
-SCM g_rc_setpagedevice_pagesize(SCM mode);
-SCM g_rc_bus_ripper_size(SCM size);
-SCM g_rc_bus_ripper_type(SCM mode);
-SCM g_rc_bus_ripper_rotation(SCM mode);
-SCM g_rc_bus_ripper_symname(SCM scmsymname);
-SCM g_rc_force_boundingbox(SCM mode);
-SCM g_rc_drag_can_move(SCM mode);
-SCM g_rc_mousepan_gain(SCM mode);
-SCM g_rc_keyboardpan_gain(SCM mode);
-SCM g_rc_print_command(SCM mode);
-SCM g_rc_select_slack_pixels(SCM pixels);
-SCM g_rc_zoom_gain(SCM gain);
-SCM g_rc_display_color_map (SCM scm_map);
-SCM g_rc_display_outline_color_map (SCM scm_map);
+void  g_rc_parse_gtkrc();
+int   check_and_convert_scm_integer    (SCM val2chk, int min_value, int max_value,
+                                        int default_value, char* keyword);
+SCM   g_rc_gschem_version              (SCM version);
+SCM   g_rc_draw_grips                  (SCM mode);
+SCM   g_rc_grid_mode                   (SCM mode);
+SCM   g_rc_dots_grid_dot_size          (SCM dotsize);
+SCM   g_rc_dots_grid_mode              (SCM mode);
+SCM   g_rc_dots_grid_fixed_threshold   (SCM spacing);
+SCM   g_rc_mesh_grid_threshold         (SCM spacing);
+SCM   g_rc_net_endpoint_mode           (SCM mode);
+SCM   g_rc_net_midpoint_mode           (SCM mode);
+SCM   g_rc_net_direction_mode          (SCM mode);
+SCM   g_rc_net_selection_mode          (SCM mode);
+SCM   g_rc_action_feedback_mode        (SCM mode);
+SCM   g_rc_zoom_with_pan               (SCM mode);
+SCM   g_rc_text_feedback               (SCM mode);
+SCM   g_rc_text_display_zoomfactor     (SCM zoomfactor);
+SCM   g_rc_object_clipping             (SCM mode);
+SCM   g_rc_embed_components            (SCM mode);
+SCM   g_rc_component_dialog_attributes (SCM stringlist);
+SCM   g_rc_text_case                   (SCM mode);
+SCM   g_rc_text_size                   (SCM size);
+SCM   g_rc_snap_size                   (SCM size);
+SCM   g_rc_attribute_name              (SCM path);
+SCM   g_rc_paper_size                  (SCM width, SCM height);
+SCM   g_rc_paper_sizes                 (SCM papername, SCM scm_width, SCM scm_height);
+SCM   g_rc_output_type                 (SCM mode);
+SCM   g_rc_output_orientation          (SCM mode);
+SCM   g_rc_image_color                 (SCM mode);
+SCM   g_rc_invert_images               (SCM mode);
+SCM   g_rc_image_size                  (SCM width, SCM height);
+SCM   g_rc_output_color                (SCM mode);
+SCM   g_rc_output_capstyle             (SCM mode);
+SCM   g_rc_logging                     (SCM mode);
+SCM   g_rc_log_destiny                 (SCM mode);
+SCM   g_rc_console_window              (SCM mode);
+SCM   g_rc_console_window_type         (SCM mode);
+SCM   g_rc_third_button                (SCM mode);
+SCM   g_rc_map_keys                    (SCM keys, SCM action);
+SCM   g_rc_middle_button               (SCM mode);
+SCM   g_rc_scroll_wheel                (SCM mode);
+SCM   g_rc_pointer_hscroll             (SCM mode);
+SCM   g_rc_net_consolidate             (SCM mode);
+SCM   g_rc_enforce_hierarchy           (SCM mode);
+SCM   g_rc_text_origin_marker          (SCM mode);
+SCM   g_rc_text_marker_size            (SCM mode);
+SCM   g_rc_fast_mousepan               (SCM mode);
+SCM   g_rc_continue_component_place    (SCM mode);
+SCM   g_rc_undo_levels                 (SCM levels);
+SCM   g_rc_undo_control                (SCM mode);
+SCM   g_rc_undo_type                   (SCM mode);
+SCM   g_rc_undo_panzoom                (SCM mode);
+SCM   g_rc_netconn_rubberband          (SCM mode);
+SCM   g_rc_magnetic_net_mode           (SCM mode);
+SCM   g_rc_sort_component_library      (SCM mode);
+SCM   g_rc_add_attribute_offset        (SCM offset);
+SCM   g_rc_add_menu                    (SCM menu_name, SCM menu_items);
+SCM   g_rc_auto_load_last              (SCM mode);
+SCM   g_rc_attribute_placement_grid    (SCM offset);
+SCM   g_rc_auto_save_interval          (SCM seconds);
+SCM   g_rc_window_size                 (SCM width, SCM height);
+SCM   g_rc_world_size                  (SCM width, SCM height, SCM border);
+SCM   g_rc_warp_cursor                 (SCM mode);
+SCM   g_rc_setpagedevice_orientation   (SCM mode);
+SCM   g_rc_setpagedevice_pagesize      (SCM mode);
+SCM   g_rc_bus_ripper_size             (SCM size);
+SCM   g_rc_bus_ripper_type             (SCM mode);
+SCM   g_rc_bus_ripper_rotation         (SCM mode);
+SCM   g_rc_bus_ripper_symname          (SCM scmsymname);
+SCM   g_rc_force_boundingbox           (SCM mode);
+SCM   g_rc_drag_can_move               (SCM mode);
+SCM   g_rc_mousepan_gain               (SCM mode);
+SCM   g_rc_keyboardpan_gain            (SCM mode);
+SCM   g_rc_print_command               (SCM mode);
+SCM   g_rc_select_slack_pixels         (SCM pixels);
+SCM   g_rc_zoom_gain                   (SCM gain);
+SCM   g_rc_display_color_map           (SCM scm_map);
+SCM   g_rc_display_outline_color_map   (SCM scm_map);
 
 /* System Options */
-SCM g_rc_file_preview(SCM mode);
-SCM g_rc_handleboxes(SCM mode);
-SCM g_rc_raise_dialog_boxes_on_expose(SCM mode);
-SCM g_rc_save_ui_settings(SCM mode);
-SCM g_rc_toolbars(SCM mode);
-SCM g_rc_toolbars_mode(SCM mode);
+SCM   g_rc_file_preview                (SCM mode);
+SCM   g_rc_handleboxes                 (SCM mode);
+SCM   g_rc_raise_dialog_boxes_on_expose(SCM mode);
+SCM   g_rc_save_ui_settings            (SCM mode);
+SCM   g_rc_toolbars                    (SCM mode);
+SCM   g_rc_toolbars_mode               (SCM mode);
 
 /* Scrollbar Options */
-SCM g_rc_scrollbars(SCM mode);
-SCM g_rc_scrollbar_update(SCM mode);
-SCM g_rc_scrollbars_visible(SCM mode);
-SCM g_rc_scrollpan_steps(SCM steps);
+SCM   g_rc_scrollbars                  (SCM mode);
+SCM   g_rc_scrollbar_update            (SCM mode);
+SCM   g_rc_scrollbars_visible          (SCM mode);
+SCM   g_rc_scrollpan_steps             (SCM steps);
 
 /* g_register.c */
-void g_register_funcs(void);
+void  g_register_funcs   (void);
 
 /* g_select.c */
-void g_init_select ();
+void  g_init_select      (void);
 
 /* g_util.c */
-void g_init_util ();
-int  g_list_find_string(GList* list, char *str);
-void g_list_free_string(void *data);
-GLT* g_list_clear(GList* list);
-void g_copy_tree_iter(GtkTreeIter *iter1, GtkTreeIter *iter2);
-bool g_tree_model_iter_previous (GtkTreeModel *tree_model, GtkTreeIter *iter);
+void  g_init_util ();
+int   g_list_find_string          (GList* list, char *str);
+void  g_list_free_string          (void *data);
+GLT*  g_list_clear                (GList* list);
+void  g_copy_tree_iter            (GtkTreeIter *iter1, GtkTreeIter *iter2);
+bool  g_tree_model_iter_previous  (GtkTreeModel *tree_model, GtkTreeIter *iter);
 
 /* g_window.c */
-GschemToplevel *g_current_window ();
-void g_dynwind_window (GschemToplevel *w_current);
-void g_init_window ();
+GschemToplevel *g_current_window  (void);
+void  g_dynwind_window            (GschemToplevel *w_current);
+void  g_init_window               (void);
 
 /* globals.c */
 /* gschem.c */
 typedef void (*geda_atexit_func)(void * data);
-void geda_atexit(geda_atexit_func func, void * data);
-void main_prog(void *closure, int argc, char *argv[]);
-int  main(int argc, char *argv[]);
-void shut_down_gui(void);
+void geda_atexit   (geda_atexit_func func, void * data);
+void main_prog     (void *closure, int argc, char *argv[]);
+int  main          (int argc, char *argv[]);
+void shut_down_gui (void);
 
-/* i_basic.c */
-void i_show_state(GschemToplevel *w_current, const char *message);
-void i_set_state(GschemToplevel *w_current, enum x_states newstate);
-void i_set_state_msg(GschemToplevel *w_current, enum x_states newstate, const char *message);
-
-void i_update_toolbar(GschemToplevel *w_current);
-void i_update_sensitivities(GschemToplevel *w_current);
-void i_set_filename(GschemToplevel *w_current, const char *string);
-void i_update_grid_info(GschemToplevel *w_current);
+/* i_status.c */
+void i_status_set_filename             (GschemToplevel *w_current, const char *string);
+void i_status_set_state_msg            (GschemToplevel *w_current, enum x_states newstate, const char *message);
+void i_status_set_state                (GschemToplevel *w_current, enum x_states newstate);
+void i_status_show_state               (GschemToplevel *w_current, const char *message);
+void i_status_update_grid_info         (GschemToplevel *w_current);
+void i_status_update_sensitivities     (GschemToplevel *w_current);
 
 /*! \note WEH: MACRO: I_CALLBACK_ARGUMENTS is left defined and is without a
  *             semi-colon. This macro is re-used in the associated source file */
 #define I_CALLBACK_ARGUMENTS (GschemToplevel* w_current, unsigned int callback_action, GtkWidget *widget)
 
 /* i_callbacks.c Hotkeys */
-void i_callback_buffer_copy1               I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_copy2               I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_copy3               I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_copy4               I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_copy5               I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_cut1                I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_cut2                I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_cut3                I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_cut4                I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_cut5                I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_paste1              I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_paste2              I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_paste3              I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_paste4              I_CALLBACK_ARGUMENTS;
-void i_callback_buffer_paste5              I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_copy1           I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_copy2           I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_copy3           I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_copy4           I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_copy5           I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_cut1            I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_cut2            I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_cut3            I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_cut4            I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_cut5            I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_paste1          I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_paste2          I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_paste3          I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_paste4          I_CALLBACK_ARGUMENTS;
+void i_callback_buffer_paste5          I_CALLBACK_ARGUMENTS;
 
-void i_callback_clipboard_paste_hotkey     I_CALLBACK_ARGUMENTS;
+void i_callback_clipboard_paste_hotkey I_CALLBACK_ARGUMENTS;
 
-void i_callback_view_pan_hotkey            I_CALLBACK_ARGUMENTS;
-void i_callback_view_pan_left              I_CALLBACK_ARGUMENTS;
-void i_callback_view_pan_right             I_CALLBACK_ARGUMENTS;
-void i_callback_view_pan_up                I_CALLBACK_ARGUMENTS;
-void i_callback_view_pan_down              I_CALLBACK_ARGUMENTS;
+void i_callback_view_pan_hotkey        I_CALLBACK_ARGUMENTS;
+void i_callback_view_pan_left          I_CALLBACK_ARGUMENTS;
+void i_callback_view_pan_right         I_CALLBACK_ARGUMENTS;
+void i_callback_view_pan_up            I_CALLBACK_ARGUMENTS;
+void i_callback_view_pan_down          I_CALLBACK_ARGUMENTS;
 
-void i_callback_file_new                   I_CALLBACK_ARGUMENTS;
-void i_callback_file_open                  I_CALLBACK_ARGUMENTS;
-void i_callback_file_save                  I_CALLBACK_ARGUMENTS;
-void i_callback_page_close                 I_CALLBACK_ARGUMENTS;
-void i_callback_page_discard               I_CALLBACK_ARGUMENTS;
+void i_callback_file_new               I_CALLBACK_ARGUMENTS;
+void i_callback_file_open              I_CALLBACK_ARGUMENTS;
+void i_callback_file_save              I_CALLBACK_ARGUMENTS;
+void i_callback_page_close             I_CALLBACK_ARGUMENTS;
+void i_callback_page_discard           I_CALLBACK_ARGUMENTS;
 
-void i_callback_cancel                     I_CALLBACK_ARGUMENTS;
+void i_callback_cancel                 I_CALLBACK_ARGUMENTS;
 
 bool i_callback_close_wm          (GtkWidget *widget, GdkEvent *event, GschemToplevel* w_current);
 

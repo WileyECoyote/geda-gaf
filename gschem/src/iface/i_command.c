@@ -368,7 +368,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
 static inline void msg_need_select_1st(GschemToplevel *w_current)
 {
   char *message = MSG_SELECT_Object_1ST;
-  i_set_state_msg(w_current, SELECT, message);
+  i_status_set_state_msg(w_current, SELECT, message);
 }
 
 static inline void null_err(char *var)
@@ -808,13 +808,13 @@ COMMAND ( do_save_all ) {
   BEGIN_NO_ARGUMENT(do_save_all);
 
   if (s_page_save_all(w_current->toplevel)) {
-     i_set_state_msg(w_current, SELECT, _("Failed to Save All"));
+     i_status_set_state_msg(w_current, SELECT, _("Failed to Save All"));
   } else {
-     i_set_state_msg(w_current, SELECT, _("Saved All"));
+     i_status_set_state_msg(w_current, SELECT, _("Saved All"));
   }
 
   x_pagesel_update (w_current);
-  i_update_sensitivities(w_current);
+  i_status_update_sensitivities(w_current);
 }
 
 /** @brief i_cmd_do_print in i_command_File_Actions */
@@ -858,9 +858,9 @@ COMMAND ( do_write_image ) {
   BEGIN_W_COMMAND(do_write_image);
     w_current->inside_action = 0;
     o_redraw_cleanstates (w_current);
-    i_set_state_msg(w_current, SELECT, _("Write Image"));
-    i_set_state(w_current, SELECT);
-    i_update_sensitivities(w_current);
+    i_status_set_state_msg(w_current, SELECT, _("Write Image"));
+    i_status_set_state(w_current, SELECT);
+    i_status_update_sensitivities(w_current);
     x_image_setup(w_current, last_image);
   EXIT_COMMAND(do_write_image);
 }
@@ -874,9 +874,9 @@ COMMAND ( do_write_pdf ) {
   BEGIN_W_COMMAND(do_write_pdf);
     w_current->inside_action = 0;
     o_redraw_cleanstates (w_current);
-    i_set_state_msg(w_current, SELECT, _("Write PDF"));
-    i_set_state(w_current, SELECT);
-    i_update_sensitivities(w_current);
+    i_status_set_state_msg(w_current, SELECT, _("Write PDF"));
+    i_status_set_state(w_current, SELECT);
+    i_status_update_sensitivities(w_current);
   x_image_setup(w_current, pdf_image);
   EXIT_COMMAND(do_write_pdf);
 }
@@ -910,7 +910,7 @@ COMMAND ( do_close ) {
     q_log_message(_("Closing Window\n"));
     x_window_close_page (w_current, Current_Page);
   }
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
   EXIT_COMMAND(do_close);
 }
 
@@ -972,7 +972,7 @@ COMMAND ( do_close_all ) {
     }
   }
 
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   g_list_free (pages);
 
@@ -1049,7 +1049,7 @@ COMMAND ( do_cut_clip )
     if ( narg == 0)
       x_clipboard_set (w_current, object_buffer[narg]);
     else
-      i_update_sensitivities(w_current);
+      i_status_update_sensitivities(w_current);
   }
   EXIT_COMMAND(do_cut_clip);
 }
@@ -1071,7 +1071,7 @@ COMMAND ( do_copy_clip )
     if ( narg == 0) {
       x_clipboard_set (w_current, object_buffer[0]);
     }
-    i_update_sensitivities(w_current);
+    i_status_update_sensitivities(w_current);
   }
   EXIT_COMMAND(do_copy_clip);
 }
@@ -1110,10 +1110,10 @@ COMMAND ( do_paste_clip )
       w_current->inside_action = 0;
       state = STARTPASTE;
     }
-    i_set_state (w_current, state);
+    i_status_set_state (w_current, state);
   }
   else {
-    i_set_state_msg (w_current, SELECT, _("Empty buffer"));
+    i_status_set_state_msg (w_current, SELECT, _("Empty buffer"));
   }
   EXIT_COMMAND(do_paste_clip);
 }
@@ -1129,8 +1129,8 @@ COMMAND ( do_delete )
 
     /* After deletion go into select mode */
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
-    i_update_sensitivities(w_current);
+    i_status_set_state(w_current, SELECT);
+    i_status_update_sensitivities(w_current);
     Current_Page->CHANGED = TRUE;
 
   }
@@ -1150,7 +1150,7 @@ COMMAND ( do_copy )
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_copy) {
-      i_set_state(w_current, COPY);;
+      i_status_set_state(w_current, COPY);;
       o_copy_start(w_current,  CMD_X(do_copy),  CMD_Y(do_copy));
       state = ENDCOPY;
       w_current->inside_action = 1;
@@ -1159,7 +1159,7 @@ COMMAND ( do_copy )
       state = STARTCOPY;
       w_current->inside_action = 0;
     }
-    i_set_state(w_current, state);
+    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);
@@ -1181,7 +1181,7 @@ COMMAND ( do_mcopy )
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_mcopy) {
-      i_set_state(w_current, MCOPY);
+      i_status_set_state(w_current, MCOPY);
       o_copy_start(w_current,  CMD_X(do_mcopy),  CMD_Y(do_mcopy));
       state = ENDMCOPY;
       w_current->inside_action = 1;
@@ -1190,7 +1190,7 @@ COMMAND ( do_mcopy )
       state = STARTMCOPY;
       w_current->inside_action = 0;
     }
-    i_set_state(w_current, state);
+    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);
@@ -1211,7 +1211,7 @@ COMMAND ( do_move )
   if (o_select_return_first_object(w_current)) {
     o_redraw_cleanstates(w_current);
     if HOT_ACTION (do_move) {
-      i_set_state(w_current, MCOPY);
+      i_status_set_state(w_current, MCOPY);
       o_move_start(w_current,  CMD_X(do_move),  CMD_Y(do_move));
       state = ENDMOVE;
       w_current->inside_action = 1;
@@ -1220,7 +1220,7 @@ COMMAND ( do_move )
       state = STARTMOVE;
       w_current->inside_action = 0;
     }
-    i_set_state(w_current, state);
+    i_status_set_state(w_current, state);
   }
   else {
     msg_need_select_1st(w_current);
@@ -1285,7 +1285,7 @@ COMMAND ( do_rotate )
 
     }
     w_current->inside_action = 0;
-    i_set_state(w_current, state);
+    i_status_set_state(w_current, state);
   }
 
   EXIT_COMMAND(do_rotate);
@@ -1323,7 +1323,7 @@ COMMAND ( do_mirror )
   }
 
   w_current->inside_action = 0;
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_mirror);
 }
 
@@ -1477,7 +1477,7 @@ COMMAND ( do_select )
   }
 
   o_redraw_cleanstates(w_current);
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
   w_current->inside_action = 0;
 
   EXIT_COMMAND(do_select);
@@ -1489,9 +1489,9 @@ COMMAND ( do_select_all )
   o_redraw_cleanstates (w_current);
   o_select_visible_unlocked (w_current);
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
   w_current->inside_action = 0;
-  i_update_sensitivities (w_current);
+  i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_select_all);
 }
 /** @brief i_cmd_do_select_invert in i_command_Select_Actions
@@ -1514,7 +1514,7 @@ COMMAND ( do_select_invert )
   }
   g_list_free (list);
   o_redraw_cleanstates(w_current);
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
   w_current->inside_action = 0;
   EXIT_COMMAND(do_select_invert);
 }
@@ -1531,13 +1531,13 @@ COMMAND ( do_deselect )
   o_redraw_cleanstates (w_current);
 
   if (o_select_is_selection (w_current))
-    i_set_state (w_current, DESELECT);
+    i_status_set_state (w_current, DESELECT);
   else /* Automaticaly switch to SELECT mode cause nothing to deselect */
     msg_need_select_1st(w_current);
-    //i_set_state (w_current, SELECT);
+    //i_status_set_state (w_current, SELECT);
 
   w_current->inside_action = 0;
-  i_update_sensitivities (w_current);
+  i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_deselect);
 }
 
@@ -1552,9 +1552,9 @@ COMMAND ( do_deselect_all )
   o_redraw_cleanstates (w_current);
   o_select_unselect_all (w_current);
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
   w_current->inside_action = 0;
-  i_update_sensitivities (w_current);
+  i_status_update_sensitivities (w_current);
   EXIT_COMMAND(do_deselect_all);
 }
 
@@ -1585,7 +1585,7 @@ COMMAND ( do_pan )
   BEGIN_NO_ARGUMENT(do_pan);
   o_redraw_cleanstates(w_current);
   w_current->inside_action = 0;
-  i_set_state(w_current, STARTPAN);
+  i_status_set_state(w_current, STARTPAN);
 }
 
 /*! \brief Zoom Box Action Function in i_command_View_Actions
@@ -1610,7 +1610,7 @@ COMMAND ( do_zoom_box )
     state = ZOOMBOXSTART;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_zoom_box);
 }
 /*! \brief Zoom Extents Action Function in i_command_View_Actions
@@ -2282,7 +2282,7 @@ COMMAND ( do_add_component )
   o_redraw_cleanstates (w_current);
   x_compselect_open (w_current);
 
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
   EXIT_COMMAND(do_add_component);
 }
 
@@ -2302,7 +2302,7 @@ COMMAND ( do_add_net )
 
   if HOT_ACTION (do_add_net) {
     /* need to click */
-    i_set_state(w_current, STARTDRAWNET);
+    i_status_set_state(w_current, STARTDRAWNET);
     o_net_start( w_current, CMD_X(do_add_net), CMD_Y(do_add_net) );
     w_current->inside_action = 1;
     state = DRAWNET;
@@ -2312,7 +2312,7 @@ COMMAND ( do_add_net )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
 
   EXIT_COMMAND(do_add_net);
 }
@@ -2333,7 +2333,7 @@ COMMAND ( do_add_bus )
   if HOT_ACTION (do_add_bus) {
 
     /* need to click */
-    i_set_state(w_current, STARTDRAWBUS);
+    i_status_set_state(w_current, STARTDRAWBUS);
     o_bus_start( w_current, CMD_X(do_add_bus), CMD_Y(do_add_bus) );
     w_current->inside_action = 1;
     state = DRAWBUS;
@@ -2343,7 +2343,7 @@ COMMAND ( do_add_bus )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
 
   EXIT_COMMAND(do_add_bus);
 }
@@ -2369,7 +2369,7 @@ COMMAND ( do_add_attribute )
   else
     x_attrib_add_dialog(w_current, o_current);
 
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND( do_add_attribute);
 }
@@ -2388,7 +2388,7 @@ COMMAND ( do_add_text )
   o_invalidate_rubber (w_current);
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   x_dialog_text_input(w_current);
   EXIT_COMMAND(do_add_text);
@@ -2418,7 +2418,7 @@ COMMAND (do_add_line)
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_line);
 }
 
@@ -2445,7 +2445,7 @@ COMMAND ( do_add_pin )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_pin);
 }
 
@@ -2476,7 +2476,7 @@ COMMAND ( do_add_box )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_box);
 }
 
@@ -2503,7 +2503,7 @@ COMMAND ( do_add_circle )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_circle);
 }
 
@@ -2536,7 +2536,7 @@ COMMAND ( do_add_arc )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_arc);
 }
 
@@ -2563,7 +2563,7 @@ COMMAND ( do_add_path )
     w_current->inside_action = 0;
   }
 
-  i_set_state(w_current, state);
+  i_status_set_state(w_current, state);
   EXIT_COMMAND(do_add_path);
 }
 
@@ -2583,7 +2583,7 @@ COMMAND ( do_add_picture )
   o_invalidate_rubber (w_current);
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   if (w_current->pixbuf_filename) {
     filename = w_current->pixbuf_filename;
@@ -2600,7 +2600,7 @@ COMMAND ( do_add_picture )
       w_current->inside_action = 1;
       o_picture_set_pixbuf(w_current, pixbuf, filename);
       Toplevel->page_current->CHANGED=1;
-      i_set_state(w_current, DRAWPICTURE);
+      i_status_set_state(w_current, DRAWPICTURE);
     }
     else {
       char *errmsg;
@@ -2640,7 +2640,7 @@ COMMAND ( do_session_new )
   x_sessions_new_dialog (w_current);
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_new);
 
@@ -2660,7 +2660,7 @@ COMMAND ( do_session_open )
   x_sessions_open_dialog (w_current);
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_open);
 }
@@ -2687,7 +2687,7 @@ COMMAND ( do_session_save )
   }
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_save);
 }
@@ -2711,7 +2711,7 @@ COMMAND ( do_session_save_as )
   }
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_save_as);
 }
@@ -2730,7 +2730,7 @@ COMMAND ( do_session_manage )
   x_sessions_manage_dialog (w_current);
 
   w_current->inside_action = 0;
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
 
   EXIT_COMMAND(do_session_manage);
 }
@@ -3104,7 +3104,7 @@ COMMAND ( do_translate )
     u_log_message(_("WARNING: Turning snap on and continuing "
                     "with translate.\n"));
     w_current->snap = SNAP_GRID;
-    i_show_state(w_current, NULL); /* update status on screen */
+    i_status_show_state(w_current, NULL); /* update status on screen */
   }
 
   if (w_current->snap_size != 100) {
@@ -3144,7 +3144,7 @@ COMMAND ( do_embed )
     /* nothing selected, go back to select state */
     o_redraw_cleanstates(w_current);
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
   }
   EXIT_COMMAND(do_embed);
 }
@@ -3176,7 +3176,7 @@ COMMAND ( do_unembed )
     /* nothing selected, go back to select state */
     o_redraw_cleanstates(w_current);
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
   }
   EXIT_COMMAND(do_unembed);
 }
@@ -3217,7 +3217,7 @@ COMMAND (do_update)
     u_log_message("Nothing selected\n");
     o_redraw_cleanstates(w_current);
     w_current->inside_action = 0;
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
   }
 
   EXIT_COMMAND(do_update);
@@ -3235,7 +3235,7 @@ COMMAND ( do_grid_dots )
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_grid_dots);
   w_current->grid_mode = GRID_DOTS;
-  i_update_grid_info (w_current);
+  i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
 }
 /*! @brief Set the Grid Display to Mesh Mode */
@@ -3244,7 +3244,7 @@ COMMAND ( do_grid_mesh )
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_grid_mesh);
   w_current->grid_mode = GRID_MESH;
-  i_update_grid_info (w_current);
+  i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
 }
 /*! @brief Turn the Grid Display Off in i_command_Option_Actions */
@@ -3253,7 +3253,7 @@ COMMAND ( do_grid_off )
   NOT_NULL(w_current);
   BEGIN_NO_ARGUMENT(do_grid_off);
   w_current->grid_mode = GRID_NONE;
-  i_update_grid_info (w_current);
+  i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
 }
 
@@ -3275,7 +3275,7 @@ COMMAND ( do_cycle_grid )
     case GRID_MESH: q_log_message (_("Mesh grid selected\n")); break;
   }
 
-  i_update_grid_info (w_current);
+  i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
 
 }
@@ -3287,7 +3287,7 @@ COMMAND ( do_snap_up )
   BEGIN_COMMAND(do_snap_up);
   w_current->snap_size *= 2;
 
-  i_update_grid_info (w_current);
+  i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
   EXIT_COMMAND(do_snap_up);
 }
@@ -3300,7 +3300,7 @@ COMMAND ( do_snap_down )
   if (w_current->snap_size % 2 == 0)
     w_current->snap_size /= 2;
 
-  i_update_grid_info (w_current);
+  i_status_update_grid_info (w_current);
   o_invalidate_all (w_current);
   EXIT_COMMAND(do_snap_down);
 }
@@ -3321,8 +3321,8 @@ COMMAND ( do_snap_off )
   if (w_current->snap != SNAP_OFF)
      w_current->old_snap = w_current->snap;
   w_current->snap = SNAP_OFF;
-  i_show_state(w_current, NULL);  /* update status on screen */
-  i_update_grid_info (w_current); /* update on screen grid status */
+  i_status_show_state(w_current, NULL);  /* update status on screen */
+  i_status_update_grid_info (w_current); /* update on screen grid status */
 
 }
 /*! @brief Turn-On Snap Mode in i_command_Option_Actions */
@@ -3336,8 +3336,8 @@ COMMAND ( do_snap_on )
   else
     w_current->snap = SNAP_GRID;
 
-  i_show_state(w_current, NULL);  /* update status on screen */
-  i_update_grid_info (w_current); /* update on screen grid status */
+  i_status_show_state(w_current, NULL);  /* update status on screen */
+  i_status_update_grid_info (w_current); /* update on screen grid status */
 
 }
 
@@ -3365,8 +3365,8 @@ COMMAND ( do_cycle_snap )
   default:
     g_critical("options_snap: toplevel->snap out of range: %d\n", w_current->snap);
   }
-  i_show_state(w_current, NULL);  /* update status on screen */
-  i_update_grid_info (w_current); /* update on screen grid status */
+  i_status_show_state(w_current, NULL);  /* update status on screen */
+  i_status_update_grid_info (w_current); /* update on screen grid status */
 }
 
 /*! @brief Toggle Action Feedback Mode in i_command_Option_Actions */
@@ -3423,7 +3423,7 @@ COMMAND ( do_toggle_magneticnet )
     q_log_message(_("magnetic net mode: OFF\n"));
   }
   x_menu_set_toggle(w_current, MAGNETIC_TOGGLE, w_current->magnetic_net_mode);
-  i_show_state(w_current, NULL);
+  i_status_show_state(w_current, NULL);
 }
 
 /*! @brief Launch the Show Text Dialog */

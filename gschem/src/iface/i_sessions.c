@@ -314,8 +314,8 @@ i_session_load_session(GschemToplevel *w_current, Session *record)
                   record->session_name, load_count, exist_count);
 
     /* Update the window for the current page */
-    i_update_sensitivities(w_current);
-    i_set_filename (w_current, NULL);
+    i_status_update_sensitivities(w_current);
+    i_status_set_filename (w_current, NULL);
 
     /* x_window_set_current_page( w_current, toplevel->page_current ); */
 

@@ -234,7 +234,7 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
           /* Cancel the place operation currently in progress */
           o_redraw_cleanstates (w_current);
           /* return to the default state */
-          i_set_state (w_current, SELECT);
+          i_status_set_state (w_current, SELECT);
         }
         break;
 

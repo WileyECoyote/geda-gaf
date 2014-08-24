@@ -327,7 +327,7 @@ void o_select_box_search(GschemToplevel *w_current)
   if (count == 0 && !SHIFTKEY && !CONTROLKEY) {
     o_select_unselect_all (w_current);
   }
-  i_update_sensitivities(w_current);
+  i_status_update_sensitivities(w_current);
 
 }
 

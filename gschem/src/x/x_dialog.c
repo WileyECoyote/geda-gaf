@@ -471,7 +471,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
     size = gtk_spin_button_get_value_as_int (GTK_SPIN_BUTTON(snap_size));
 
     w_current->snap_size = size;
-    i_update_grid_info (w_current);
+    i_status_update_grid_info (w_current);
     o_invalidate_all (w_current);
     break;
   case GTK_RESPONSE_REJECT:
@@ -482,7 +482,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   }
 
   /* clean up */
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
   gtk_widget_destroy(Dialog);
 }
 
@@ -589,7 +589,7 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   }
 
   /* clean up */
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
   gtk_widget_destroy(Dialog);
 }
 
@@ -1411,7 +1411,7 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
     BUG_IMSG("strange signal %d\n",response);
   }
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
 
 }
 /*! \brief Handle selection change event for x_dialog_edit_fill_type
@@ -1907,7 +1907,7 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
     printf("x_dialog_edit_line_type_response(): strange signal %d\n",response);
   }
 
-  i_set_state (w_current, SELECT);
+  i_status_set_state (w_current, SELECT);
 
 }
 
@@ -2100,7 +2100,7 @@ void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
     gtk_widget_destroy(ThisDialog);
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     break;
   case GTK_RESPONSE_ACCEPT:
     textentry = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
@@ -2671,7 +2671,7 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
     break;
   case GTK_RESPONSE_REJECT:
   case GTK_RESPONSE_DELETE_EVENT:
-    i_set_state(w_current, SELECT);
+    i_status_set_state(w_current, SELECT);
     gtk_widget_destroy(Dialog);
     break;
   default:
@@ -2809,7 +2809,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
     printf("translate_edit_dialog_response(): strange signal %d\n",response);
   }
 
-  i_set_state(w_current, SELECT);
+  i_status_set_state(w_current, SELECT);
   gtk_widget_destroy(Dialog);
 }
 

@@ -1,3 +1,8 @@
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Rename file i_basic.c, change function names
+      accordingly. Add sensitivities for line-type properties.
+
 2014-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: In function o_attrib_add_attrib, only add new

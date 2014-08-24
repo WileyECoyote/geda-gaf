@@ -99,7 +99,7 @@ find_single_object (GschemToplevel *w_current, Object *object,
   }
 
   w_current->toplevel->page_current->object_lastplace = object;
-  i_update_sensitivities (w_current);
+  i_status_update_sensitivities (w_current);
   return TRUE;
 }
 
@@ -173,7 +173,7 @@ bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
     o_select_unselect_all (w_current);
   }
 
-  i_update_sensitivities(w_current);
+  i_status_update_sensitivities(w_current);
   return FALSE;
 }
 

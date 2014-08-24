@@ -978,9 +978,9 @@ x_window_set_current_page (GschemToplevel *w_current, Page *page)
 
     s_page_goto (toplevel, page);
     //gschem_page_view_set_page (GSCHEM_PAGE_VIEW (w_current->drawing_area), page);
-    i_update_sensitivities (w_current);
+    i_status_update_sensitivities (w_current);
 
-    i_set_filename (w_current, page->filename);
+    i_status_set_filename (w_current, page->filename);
     x_pagesel_update (w_current);
     x_multiattrib_update (w_current);
 
@@ -1117,7 +1117,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
   /* update display and page manager */
   x_window_set_current_page (w_current, old_current);
 
-  i_set_state_msg  (w_current, SELECT, state_msg);
+  i_status_set_state_msg  (w_current, SELECT, state_msg);
 
   return result;
 }

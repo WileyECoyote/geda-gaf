@@ -63,7 +63,7 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
          */
 
       g_error_free(err);
-      i_set_state (w_current, SELECT);
+      i_status_set_state (w_current, SELECT);
       return;
     }
 
@@ -80,7 +80,7 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
       /* If created object is a placeholder, the loading failed and we end the insert action */
 
       s_object_release(new_object);
-      i_set_state (w_current, SELECT);
+      i_status_set_state (w_current, SELECT);
       return;
     }
     else {
@@ -104,7 +104,7 @@ void o_complex_prepare_place(GschemToplevel *w_current, const CLibSymbol *sym)
   o_complex_place_changed_run_hook (w_current);
 
   w_current->inside_action = 1;
-  i_set_state (w_current, ENDCOMP);
+  i_status_set_state (w_current, ENDCOMP);
 }
 
 
@@ -201,5 +201,5 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
   o_invalidate_all (w_current);
   toplevel->page_current->CHANGED=1;
   o_undo_savestate(w_current, UNDO_ALL);
-  i_update_sensitivities(w_current);
+  i_status_update_sensitivities(w_current);
 }

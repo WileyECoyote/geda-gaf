@@ -149,7 +149,7 @@ void i_pan_world_general(GschemToplevel *w_current, double world_cx, double worl
 
   /* update the status bar if the zoom changed */
   if( zoom_new  != zoom_old) {
-    i_update_grid_info (w_current);
+    i_status_update_grid_info (w_current);
   }
 
   /* redraw */
