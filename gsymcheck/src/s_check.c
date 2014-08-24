@@ -186,12 +186,29 @@ void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
    * const char* DefaultAttributeList[] = { "source", "model-name", "model",
    *                                       "file", NULL};
    */
-  char *valid_attributes[] = { "author", "comment", "device", "description",
-  "dist-license", "documentation", "footprint",
-  "footprints", "graphical", "net", "numslots",
-  "pins", "refdes", "slot", "slotdef",
-  "model-name", "spicetype", "symversion",
-  "use-license", "value", NULL};
+  char *valid_attributes[] = {
+                                "device",
+                                "footprint",
+                                "numslots",
+                                "refdes",
+                                "author",
+                                "description",
+                                "documentation",
+                                "symversion",
+                                "dist-license",
+                                "use-license",
+                                "graphical",
+                                "net",
+                                "slot",
+                                "slotdef",
+                                "value",
+                                "comment",
+                                "footprints",
+                                "model-name",
+                                "file",
+                                "pins",
+                                "spice-type",
+                                NULL};
 
   char *obsolete_attributes[] = {"email", "label", "uref", NULL};
   char *forbidden_attributes[] = {"name", "type", NULL};

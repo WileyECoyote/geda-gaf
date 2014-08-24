@@ -21,8 +21,8 @@
  */
 
 /*!
- * \file geda_enum.h
- * \brief Global gEDA Enumerated Semi-Constants
+ * \file geda_struct.h
+ * \brief Global gEDA Structures Definition
  *
  * \section
  *
@@ -31,7 +31,13 @@
 #ifndef __GEDA_STRUCTURES__
 #define __GEDA_STRUCTURES__
 
+typedef struct _GedaRefDes GedaRefDes;
 
+struct _GedaRefDes
+{
+  const char *designator;
+  const char *description;
+};
 
 
 

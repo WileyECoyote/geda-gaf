@@ -325,18 +325,18 @@ void i_zoom_world_box_draw_rubber      (GschemToplevel *w_current);
 void correct_aspect                    (GschemToplevel *w_current);
 
  /* m_basic.c */
-int mil_x                         (GschemToplevel *w_current, int val);
-int mil_y                         (GschemToplevel *w_current, int val);
-int pix_x                         (GschemToplevel *w_current, int val);
-int pix_y                         (GschemToplevel *w_current, int val);
+int  mil_x                        (GschemToplevel *w_current, int val);
+int  mil_y                        (GschemToplevel *w_current, int val);
+int  pix_x                        (GschemToplevel *w_current, int val);
+int  pix_y                        (GschemToplevel *w_current, int val);
 void WORLDtoSCREEN                (GschemToplevel *w_current, int x,  int y,  int *px, int *py);
 void SCREENtoWORLD                (GschemToplevel *w_current, int mx, int my, int *x,  int *y);
-int snap_grid                     (GschemToplevel *w_current, int input);
-int SCREENabs                     (GschemToplevel *w_current, int val);
-int WORLDabs                      (GschemToplevel *w_current, int val);
-int WORLDclip_change              (GschemToplevel *w_current, int *x1,   int *y1,  int *x2,    int *y2);
-int clip_nochange                 (GschemToplevel *w_current, int x1,    int y1,   int x2,     int y2);
-int visible                       (GschemToplevel *w_current, int wleft, int wtop, int wright, int wbottom);
+int  snap_grid                    (GschemToplevel *w_current, int input);
+int  SCREENabs                    (GschemToplevel *w_current, int val);
+int  WORLDabs                     (GschemToplevel *w_current, int val);
+int  WORLDclip_change             (GschemToplevel *w_current, int *x1,   int *y1,  int *x2,    int *y2);
+int  clip_nochange                (GschemToplevel *w_current, int x1,    int y1,   int x2,     int y2);
+int  visible                      (GschemToplevel *w_current, int wleft, int wtop, int wright, int wbottom);
 double round_5_2_1                (double unrounded);
 
 /* o_arc.c */
@@ -545,43 +545,43 @@ void o_slot_end                        (GschemToplevel *w_current, Object *objec
 int  o_text_get_rendered_bounds        (void *user_data, Object *object, int *min_x, int *min_y, int *max_x, int *max_y);
 void o_text_prepare_place              (GschemToplevel *w_current, char *text);
 void o_text_edit                       (GschemToplevel *w_current, Object *o_current);
-void o_text_edit_end    (GschemToplevel *w_current, char *string, int text_align,int text_color, int text_size, int rotate);
-void o_text_change      (GschemToplevel *w_current, Object *object, char *string, int visibility, int show);
+void o_text_edit_end                   (GschemToplevel *w_current, char *string, int text_align,int text_color, int text_size, int rotate);
+void o_text_change                     (GschemToplevel *w_current, Object *object, char *string, int visibility, int show);
 
 /* o_undo.c */
-void  o_undo_init                 (GschemToplevel *w_current);
-void  o_undo_savestate            (GschemToplevel *w_current, int flag);
+void  o_undo_init                      (GschemToplevel *w_current);
+void  o_undo_savestate                 (GschemToplevel *w_current, int flag);
 char *o_undo_find_prev_filename        (UNDO *start);
 GLT  *o_undo_find_prev_object_head     (UNDO *start);
 void  o_undo_callback                  (GschemToplevel *w_current, int type);
-void  o_undo_finalize             (void);
-void  o_undo_remove_last_undo     (GschemToplevel *w_current);
+void  o_undo_finalize                  (void);
+void  o_undo_remove_last_undo          (GschemToplevel *w_current);
 
 /* gschem_parsecmd.c */
-int gschem_parse_commandline      (int argc, char *argv[]);
+int gschem_parse_commandline           (int argc, char *argv[]);
 
 /* x_autonumber.c */
-void autonumber_text_dialog       (GschemToplevel *w_current);
+void autonumber_text_dialog            (GschemToplevel *w_current);
 
 /* x_basic.c */
-void x_repaint_background_region  (GschemToplevel *w_current, int x, int y, int width, int height);
-void x_basic_warp_cursor          (GtkWidget *widget, int x, int y);
+void x_repaint_background_region       (GschemToplevel *w_current, int x, int y, int width, int height);
+void x_basic_warp_cursor               (GtkWidget *widget, int x, int y);
 
-/*TODO: Move these (maybe libgeda widgets*/
-int  tree_view_row_get_visibility (GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);
-int  tree_view_row_make_visible   (GtkTreeView *tree_view, GtkTreeIter *iter, bool center);
+/*TODO: Move these libgedauio widgets*/
+int  tree_view_row_get_visibility      (GtkTreeView *tree_view, GtkTreeIter *iter, bool fully_visible);
+int  tree_view_row_make_visible        (GtkTreeView *tree_view, GtkTreeIter *iter, bool center);
 
 /* x_clipboard.c */
-void x_clipboard_init             (GschemToplevel *w_current);
-void x_clipboard_finish           (GschemToplevel *w_current);
-void x_clipboard_query_usable     (GschemToplevel *w_current, void (*callback) (int, void *), void *userdata);
-bool x_clipboard_set              (GschemToplevel *w_current, const GList *object_list);
-GLT *x_clipboard_get              (GschemToplevel *w_current);
+void x_clipboard_init                  (GschemToplevel *w_current);
+void x_clipboard_finish                (GschemToplevel *w_current);
+void x_clipboard_query_usable          (GschemToplevel *w_current, void (*callback) (int, void *), void *userdata);
+bool x_clipboard_set                   (GschemToplevel *w_current, const GList *object_list);
+GLT *x_clipboard_get                   (GschemToplevel *w_current);
 
 /* x_color.c */
-void      x_color_init            (void);
-void      x_color_free            (void);
-void      x_color_allocate        (void);
+void      x_color_init                 (void);
+void      x_color_free                 (void);
+void      x_color_allocate             (void);
 GdkColor *x_get_color                       (int color);
 GdkColor *x_get_darkcolor                   (int color);
 GArray   *x_color_get_display_color_map     (void);
@@ -675,10 +675,10 @@ void x_dialog_edit_color          (GschemToplevel *w_current);
 void x_dialog_edit_pin_type       (GschemToplevel *w_current);
 
 /* x_edit_property.c */
-void x_dialog_edit_properties     (GschemToplevel *w_current);
+void x_dialog_edit_properties     (GschemToplevel *w_current, Object *o_current);
 
 /* x_edit_text.c */
-void x_dialog_edit_text           (GschemToplevel *w_current, Object *object);
+void x_dialog_edit_text           (GschemToplevel *w_current, Object *o_current);
 
 /* x_dnd.c */
 bool x_dnd_receive_string         (GschemToplevel *w_current, int x, int y, const char *string, int where);
@@ -742,7 +742,7 @@ GtkWidget *x_menu_setup_ui        (GschemToplevel *w_current);
 int  x_menu_setup_popup           (GschemToplevel *w_current);
 int  x_menu_display_popup         (GschemToplevel *w_current, GdkEventButton *event);
 void x_menus_sensitivity          (GschemToplevel *w_current, const char *buf, int flag);
-void x_menus_popup_sensitivity    (GschemToplevel *w_current, const char *buf, int flag);
+void x_menus_popup_sensitivity    (GschemToplevel *w_current, const char *name, int flag);
 void x_menu_save_state            (GschemToplevel *w_current);
 void x_menu_set_icon_visibility   (GschemToplevel *w_current, bool state);
 void x_menu_set_toggle            (GschemToplevel *w_current, int toggle_id, bool state);

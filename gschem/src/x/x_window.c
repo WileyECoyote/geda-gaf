@@ -25,7 +25,7 @@
 #include <geda_stat.h>
 
 #include "gschem.h"
-#include "x_menu.h"
+#include "x_menus.h"
 #include "x_window.h"
 #include <geda_dialog_controls.h>
 
@@ -1183,7 +1183,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         /* new_current will be the new current page at the end of the function */
       }
 
-      if ((strncmpi(geda_basename(page->filename), "untitled", 8) != 0) ||
+      if ((strncmpi(f_basename(page->filename), "untitled", 8) != 0) ||
         verbose_mode)
       {
         u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),

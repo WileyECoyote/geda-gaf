@@ -30,13 +30,6 @@
 #include "gschem_toplevel.h"
 #include <geda_debug.h>
 
-enum {
-  CHANGED,
-  LAST_SIGNAL
-};
-
-//static unsigned int gschem_toplevel_signals[ LAST_SIGNAL ] = { 0 };
-
 static GObjectClass *gschem_toplevel_parent_class = NULL;
 
 

@@ -42,3 +42,9 @@
               gtk_entry_set_text((GtkEntry *) widget, text);
 
 #define GetToggleState(widget) gtk_toggle_button_get_active ((GtkToggleButton*)widget)
+#define SetToggleState(widget, state) gtk_toggle_button_set_active ((GtkToggleButton*)widget, state)
+
+#define SetSpinValue( name, var) gtk_spin_button_set_value ((GtkSpinButton*)name, var);
+
+
+

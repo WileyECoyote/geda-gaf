@@ -67,6 +67,8 @@ enum ActionFlag
 
         COMMAND ( do_debug )
         COMMAND ( do_repeat_last )
+
+/* File */
         COMMAND ( do_file )
         COMMAND ( do_file_new )
         COMMAND ( do_file_new_window )
@@ -82,6 +84,7 @@ enum ActionFlag
         COMMAND ( do_close_all )
         COMMAND ( do_quit )
 
+/* Edit */
         COMMAND ( do_edit )
         COMMAND ( do_undo )
         COMMAND ( do_redo )
@@ -95,6 +98,7 @@ enum ActionFlag
         COMMAND ( do_rotate )
         COMMAND ( do_mirror )
         COMMAND ( do_edit_butes )
+        COMMAND ( do_edit_ponent )
         COMMAND ( do_edit_text )
         COMMAND ( do_edit_slot )
         COMMAND ( do_edit_color )
@@ -105,12 +109,14 @@ enum ActionFlag
         COMMAND ( do_lock )
         COMMAND ( do_unlock )
 
+/* Select */
         COMMAND ( do_select )
         COMMAND ( do_select_all )
         COMMAND ( do_select_invert )
         COMMAND ( do_deselect )
         COMMAND ( do_deselect_all )
 
+/* View */
         COMMAND ( do_view )
         COMMAND ( do_redraw )
         COMMAND ( do_pan )
@@ -128,6 +134,7 @@ enum ActionFlag
         COMMAND ( do_light_colors )
         COMMAND ( do_bw_colors )
 
+/* Page */
         COMMAND ( do_page )
         COMMAND ( do_page_manager )
         COMMAND ( do_page_prev )
@@ -142,6 +149,7 @@ enum ActionFlag
         COMMAND ( do_down_symbol )
         COMMAND ( do_hierarchy_up )
 
+/* Add */
         COMMAND ( do_add )
         COMMAND ( do_add_component )
         COMMAND ( do_add_net )
@@ -156,12 +164,14 @@ enum ActionFlag
         COMMAND ( do_add_path )
         COMMAND ( do_add_picture )
 
+/* Sessions */
         COMMAND ( do_session_new )
         COMMAND ( do_session_open )
         COMMAND ( do_session_save )
         COMMAND ( do_session_save_as )
         COMMAND ( do_session_manage )
 
+/* Attributes */
         COMMAND ( do_attach )
         COMMAND ( do_detach )
         COMMAND ( do_show_value )
@@ -370,13 +380,14 @@ enum {
      COMMAND ( EDIT_CB_CUT,         "cut",              USE_MAIN_LOOP,          do_cut_clip)
      COMMAND ( EDIT_CB_COPY,        "copy",             USE_MAIN_LOOP,          do_copy_clip)
      COMMAND ( EDIT_CB_PASTE,       "paste",            USE_XY_WORKER,          do_paste_clip)
-     COMMAND ( EDIT_DELETE,         "delete",           USE_MAIN_LOOP,          do_delete)     /* work inline*/
+     COMMAND ( EDIT_DELETE,         "delete",           USE_MAIN_LOOP,          do_delete)
      COMMAND ( EDIT_COPY,           "copy mode",        USE_XY_WORKER,          do_copy)
      COMMAND ( EDIT_MCOPY,          "multi-copy",       USE_XY_WORKER,          do_mcopy)
      COMMAND ( EDIT_MOVE,           "move",             USE_XY_WORKER,          do_move)
      COMMAND ( EDIT_ROTATE,         "rotate",           USE_XY_MAIN_LOOP,       do_rotate)
      COMMAND ( EDIT_MIRROR,         "mirror",           USE_XY_WORKER,          do_mirror)
      COMMAND ( EDIT_ATTRIB,         "edit butes",       USE_WORKER_THREAD,      do_edit_butes)
+     COMMAND ( EDIT_COMPONENT,      "edit ponents",     USE_WORKER_THREAD,      do_edit_ponent)
      COMMAND ( EDIT_TEXT,           "edit text",        USE_WORKER_THREAD,      do_edit_text)
      COMMAND ( EDIT_SLOT,           "edit slot",        USE_WORKER_THREAD,      do_edit_slot)
      COMMAND ( EDIT_ARC,            "edit arc",         USE_WORKER_THREAD,      do_edit_arc )
@@ -460,7 +471,7 @@ enum {
      COMMAND ( TOOLS_AUTONUM,       "autonumber",       USE_MAIN_LOOP,          do_autonumber)
      COMMAND ( TOOLS_CONSOLE,       NULL,               USE_MAIN_LOOP,          do_show_console)
      COMMAND ( TOOLS_COORDINATES,   NULL,               USE_WORKER_THREAD,      do_show_coordinates)
-     COMMAND ( TOOLS_MACRO,         "macro",            USE_MAIN_LOOP,          do_macro )
+     COMMAND ( TOOLS_MACRO,         "macro",            USE_MAIN_LOOP,          do_macro)
      COMMAND ( TOOLS_TRANSLATE,     "translate",        USE_WORKER_THREAD,      do_translate)
      COMMAND ( TOOLS_EMBED,         "embed",            USE_WORKER_THREAD,      do_embed)
      COMMAND ( TOOLS_UNEMBED,       "unembed",          USE_WORKER_THREAD,      do_unembed)

@@ -1554,8 +1554,7 @@ GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
                     G_CALLBACK (x_dialog_edit_fill_type_response),
                     fill_data);
 
-  g_object_set (G_OBJECT (Dialog),
-                DIALOG_DATA_SELECTION,
+  g_object_set (G_OBJECT (Dialog), DIALOG_DATA_SELECTION,
                 x_dialog_fill_type_update_selection,
                 NULL);
 

@@ -1,7 +1,7 @@
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_comboboxtext.c: Do NOT emit "changed" when user types
-        in the entry, this renders the signal useless.
+        in the entry, this renders the signal worthless.
 
 2014-08-18 Wiley E. Hill <wileyhill@gmail.com>
 

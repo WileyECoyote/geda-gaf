@@ -24,7 +24,7 @@
 
 #define I_DO_DECLARE
 #include "i_command.h"
-#include "x_menu.h"
+//#include "x_menus.h"
 
 #include <geda_debug.h>
 

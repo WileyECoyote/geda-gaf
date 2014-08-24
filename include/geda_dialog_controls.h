@@ -59,6 +59,9 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 06/23/14 | Replaced gtk_label with geda_label_new or variants.
 ;;                |
+;; ------------------------------------------------------------------
+;; WEH | 08/21/14 | Added GEDA_BULB_x and corresponding cluster type for
+;;                | labeless groups
 */
 
 #pragma once
@@ -107,7 +110,7 @@ typedef struct
 #define SetRadio( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Radio), var);
 #define SetRadioGroup(group, var) gtk_radio_group_set_active(group##RadioGroup, var);
 #define SetBulbGroup(group, var) bulb_group_set_active(group##RadioGroup, var);
-#define SetSpin( name, var) gtk_spin_button_set_value (GTK_SPIN_BUTTON (name##Spin), var);\
+#define SetSpin( name, var) gtk_spin_button_set_value (GTK_SPIN_BUTTON (name##Spin), var);
 
 /* This macro helps reduce line length */
 #define SetWidgetSize( widget, x_size, y_size) \
@@ -398,13 +401,13 @@ typedef struct
 #define GTK_ICALLBACK_CBUTT(name) \
         GTK_ICALLBACK (name##Butt, "button_press_event", Color_Butt_Responder, name)
 
-#define GTK_ICALLBACK_RADIO(name) \
-        GTK_ICALLBACK (name##Radio, "pressed", Radio_Responder, name)
+#define GTK_ICALLBACK_RADIO(name, function) \
+        GTK_ICALLBACK (name##Radio, "pressed", function, name)
 
-#define GTK_ICALLBACK_RTRIAD(name, function, R1, R2, R3) \
-        GTK_ICALLBACK_RADIO (name##R1, function) \
-        GTK_ICALLBACK_RADIO (name##R2, function) \
-        GTK_ICALLBACK_RADIO (name##R3, function)
+#define GTK_CALLBACK_RTRIAD(name, R1, R2, R3, function, data) \
+        GTK_CONNECT_CALLBACK (name##R1, "pressed", function, data) \
+        GTK_CONNECT_CALLBACK (name##R2, "pressed", function, data) \
+        GTK_CONNECT_CALLBACK (name##R3, "pressed", function, data )
 
 #define GTK_ICALLBACK_SWITCH(name) \
         GTK_ICALLBACK (name##Switch, "toggled", Switch_Responder, name)
@@ -497,6 +500,11 @@ typedef struct
         DECLARE_RADIO_TRIAD (group, R1, R2, R3) \
         DECLARE_RADIO(group##R4)
 
+#define GEDA_RADIO_GROUP( group, dir) \
+        GSList *group##Group = NULL; \
+        LOCAL_BASE_BOX(group##Group, dir, TRUE, 0) \
+        PACK_BOX(group##_hbox, group##Group##_##dir##box, FALSE, FALSE, 0)
+
 #define GTK_RADIO_GROUP( group, dir) \
         GSList *group##Group = NULL; \
         GtkWidget *group##Label=NULL;         /* define Label */ \
@@ -520,7 +528,7 @@ typedef struct
  * would be much easier to just manage the button states (while managing images
  * rather than deal with GTK-2 radio groups.
  */
-#define GEDA_BULB( group, name, dir) \
+#define GEDA_BASE_BULB( group, name, dir) \
         name##Radio = gtk_radio_button_new(group##Group); \
         g_object_set (name##Radio, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (group##Group_##dir##box), name##Radio, FALSE, FALSE, 0); \
@@ -549,15 +557,67 @@ typedef struct
         GtkWidget *name##Label = geda_visible_label_new (_(LABEL (name))); \
         gtk_box_pack_start (GTK_BOX (hbox), name##Label, FALSE, FALSE, 0); \
         gtk_misc_set_padding (GTK_MISC (name##Label), 0, 0); }\
-        HOOKUP_GEDA_OBJECT(name, Radio) \
-        GTK_ICALLBACK_RADIO (name)
+        HOOKUP_GEDA_OBJECT(name, Radio)
 
-#define GTK_BULB_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) { \
+#define GTK_BULB( group, name, dir) \
+        GEDA_BASE_BULB( group, name, dir) \
+        GTK_ICALLBACK_RADIO (name, Radio_Responder)
+
+#define GEDA_BULB( group, name, dir) \
+        GEDA_BASE_BULB( group, name, dir) \
+        GTK_ICALLBACK_RADIO (name, Radio_Responder)
+
+/* These are labeless because GEDA_BULB_ type all use GEDA_RADIO_GROUP */
+#define GEDA_BULB_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) \
         HPSECTION (parent, group, spacing); \
-        GTK_RADIO_GROUP (group, dir); \
-        GEDA_BULB (group, group##R1, dir); \
-        GEDA_BULB (group, group##R2, dir); \
-        GEDA_BULB (group, group##R3, dir); \
+        GEDA_RADIO_GROUP (group, dir);      \
+        GEDA_BULB (group, group##R1, dir);  \
+        GEDA_BULB (group, group##R2, dir);  \
+        GEDA_BULB (group, group##R3, dir);  \
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
+        set_bulb_on(group##Default##Radio); \
+        group##RadioGroup=group##Group;
+
+#define GEDA_RADIO_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) \
+        HPSECTION (parent, group, spacing); \
+        GEDA_RADIO_GROUP (group, dir);     { \
+        GTK_RADIO (group, group##R1, dir);  \
+        GTK_RADIO (group, group##R2, dir);  \
+        GTK_RADIO (group, group##R3, dir);  \
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
+        group##RadioGroup=group##Group; \
+}
+
+#define GEDA_QUAD_BULB(parent, group, dir, spacing, R1, R2, R3, R4, Default) \
+        HPSECTION (parent, group, spacing); \
+        GEDA_RADIO_GROUP (group, dir);     { \
+        GEDA_BULB (group, group##R1, dir);  \
+        GEDA_BULB (group, group##R2, dir);  \
+        GEDA_BULB (group, group##R3, dir);  \
+        GEDA_BULB (group, group##R4, dir);  \
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
+        set_bulb_on(group##Default##Radio); \
+        group##RadioGroup=group##Group; \
+}
+
+#define GEDA_QUAD_RADIO(parent, group, dir, spacing, R1, R2, R3, R4, Default) \
+        HPSECTION (parent, group, spacing); \
+        GEDA_RADIO_GROUP (group, dir);     { \
+        GTK_RADIO (group, group##R1, dir);  \
+        GTK_RADIO (group, group##R2, dir);  \
+        GTK_RADIO (group, group##R3, dir);  \
+        GTK_RADIO (group, group##R4, dir);  \
+        gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
+        group##RadioGroup=group##Group; \
+}
+
+/* These have label because GTK_BULB_ types all use GTK_RADIO_GROUP */
+#define GTK_BULB_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) \
+        HPSECTION (parent, group, spacing); \
+        GTK_RADIO_GROUP (group, dir); { \
+        GTK_BULB (group, group##R1, dir); \
+        GTK_BULB (group, group##R2, dir); \
+        GTK_BULB (group, group##R3, dir); \
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
         set_bulb_on(group##Default##Radio); \
         group##RadioGroup=group##Group; \
@@ -576,10 +636,10 @@ typedef struct
 #define GTK_QUAD_BULB(parent, group, dir, spacing, R1, R2, R3, R4, Default) { \
         HPSECTION (parent, group, spacing); \
         GTK_RADIO_GROUP (group, dir); \
-        GEDA_BULB (group, group##R1, dir); \
-        GEDA_BULB (group, group##R2, dir); \
-        GEDA_BULB (group, group##R3, dir); \
-        GEDA_BULB (group, group##R4, dir); \
+        GTK_BULB (group, group##R1, dir); \
+        GTK_BULB (group, group##R2, dir); \
+        GTK_BULB (group, group##R3, dir); \
+        GTK_BULB (group, group##R4, dir); \
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
         set_bulb_on(group##Default##Radio); \
         group##RadioGroup=group##Group; \
@@ -595,6 +655,32 @@ typedef struct
         group##RadioGroup=group##Group; \
 }
 
+/* Clusters of bulbs without a group label */
+#define GEDA_V_BULB_TRIAD(parent, group, spacing, R1, R2, R3, Default) \
+        GTK_BULB_TRIAD (parent, group, v, spacing, R1, R2, R3, Default)
+
+#define GEDA_V_RADIO_TRIAD(parent, group, spacing, R1, R2, R3, Default) \
+        GEDA_RADIO_TRIAD (parent, group, v, spacing, R1, R2, R3, Default)
+
+#define GEDA_V_QUAD_BULB(parent, group, spacing, R1, R2, R3, R4, Default) \
+        GEDA_QUAD_BULB (parent, group, v, spacing, R1, R2, R3, R4, Default)
+
+#define GEDA_V_QUAD_RADIO(parent, group, spacing, R1, R2, R3, R4, Default) \
+        GEDA_QUAD_RADIO (parent, group, v, spacing, R1, R2, R3, R4, Default)
+
+#define GEDA_H_BULB_TRIAD(parent, group, R1, R2, R3, Default) \
+        GEDA_BULB_TRIAD (parent, group, h, DIALOG_V_SPACING, R1, R2, R3, Default)
+
+#define GEDA_H_RADIO_TRIAD(parent, group, R1, R2, R3, Default) \
+        GEDA_RADIO_TRIAD (parent, group, h, DIALOG_V_SPACING, R1, R2, R3, Default)
+
+#define GEDA_H_QUAD_BULB(parent, group, spacing, R1, R2, R3, R4, Default) \
+        GEDA_QUAD_BULB (parent, group, h, spacing, R1, R2, R3, R4, Default)
+
+#define GEDA_H_QUAD_RADIO(parent, group, spacing, R1, R2, R3, R4, Default) \
+        GEDA_QUAD_RADIO (parent, group, h, spacing, R1, R2, R3, R4, Default)
+
+/* Clusters of bulbs with a group label */
 #define GTK_V_BULB_TRIAD(parent, group, spacing, R1, R2, R3, Default) \
         GTK_BULB_TRIAD (parent, group, v, spacing, R1, R2, R3, Default)
 

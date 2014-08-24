@@ -81,11 +81,32 @@ struct st_fill_type_data {
 struct st_property_data {
 
   GtkWidget *symbol_entry;
+  GtkWidget *device_entry;
+
   GtkWidget *author_entry;
   GtkWidget *version_entry;
+
   GtkWidget *ulicense_entry;
   GtkWidget *dlicense_entry;
-  GtkWidget *model_entry;
+
+  GtkWidget *descr_entry;
+  GtkWidget *doc_entry;
+  GtkWidget *comment_entry;
+
+  GtkWidget *electrical_cb;
+  GtkWidget *refdes_combo;
+  GtkWidget *refdes_entry;
+  GtkWidget *slots_spin;
+  GtkWidget *pins_spin;
+
+  GtkWidget *value_entry;
+  GtkWidget *foot_entry;
+  GtkWidget *spice_entry;
+  GtkWidget *mname_entry;
+
+  GtkWidget *elect_table;
+
+  unsigned int ref_handler;
 };
 
 struct st_pin_type_data {

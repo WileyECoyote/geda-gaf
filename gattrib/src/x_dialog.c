@@ -531,9 +531,9 @@ static GtkWidget *WrapAroundSwitch=NULL;
  *  This function processes the "response" signals from the action
  *  buttons in the Search dialogs.
  */
-static void search_replace_dialog_response(GtkWidget *ThisDialog,
-					   int response,
-			                   SearchRecord *Search)
+static void search_replace_dialog_response(GtkWidget    *ThisDialog,
+                                           int           response,
+                                           SearchRecord *Search)
 {
   char* search_text;
   char* replacement_text;

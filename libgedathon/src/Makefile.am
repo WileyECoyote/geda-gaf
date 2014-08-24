@@ -23,10 +23,10 @@ PY_INCLUDES              = $(PYTHON_CFLAGS) $(PYTHON_IFLAGS)
 PY_LIBFLAGS              = $(PYTHON_LDFLAGS) $(PYTHON_LIBS) -export-symbols-regex initialize
 
 AM_CFLAGS                = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS) \
-	             	   $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+						   $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS               = -version-info $(LIBGEDATHON_SHLIB_VERSION) $(GLIB_LIBS) \
-		           		 $(MINGW_LDFLAGS) $(WINDOWS_LIBTOOL_FLAGS) $(GDK_PIXBUF_LIBS)
+							$(MINGW_LDFLAGS) $(WINDOWS_LIBTOOL_FLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES          = libgedathon.la
 

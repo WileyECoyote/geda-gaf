@@ -86,11 +86,12 @@
 #define EDIT_ARC         edit-arc
 #define EDIT_ATTRIB      edit-attributes
 #define EDIT_TEXT        edit-text
-#define EDIT_SLOT        edit-slot
 #define EDIT_COLOR       edit-color
 #define EDIT_PIN         edit-pintype
 #define EDIT_LINE        edit-linetype
 #define EDIT_FILL        edit-filltype
+#define EDIT_SLOT        edit-slot
+#define EDIT_COMPONENT   edit-component
 #define EDIT_LOCK        edit-lock
 #define EDIT_UNLOCK      edit-unlock
 
@@ -134,11 +135,11 @@
 #define ADD_ATTRIB       add-attribute
 #define ADD_TEXT         add-text
 #define ADD_LINE         add-line
-#define ADD_PATH         add-path
+#define ADD_PIN          add-pin
 #define ADD_BOX          add-box
 #define ADD_CIRCLE       add-circle
 #define ADD_ARC          add-arc
-#define ADD_PIN          add-pin
+#define ADD_PATH         add-path
 #define ADD_PICTURE      add-picture
 
 #define SESSION_NEW      session-new

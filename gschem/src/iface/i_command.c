@@ -27,8 +27,8 @@
 
 #include <gschem.h>
 
-#include "x_menu.h"
 #include "i_command.h"
+#include "x_menus.h"
 
 #include <geda_debug.h>
 
@@ -1353,9 +1353,9 @@ COMMAND ( do_edit_ponent )
 
   o_current = o_select_return_first_object(w_current);
 
-  if (o_current && (o_current->type == OBJ_COMPLEX)) {
+  //if (o_current && (o_current->type == OBJ_COMPLEX)) {
     x_dialog_edit_properties(w_current, o_current);
-  }
+  //}
 
   EXIT_COMMAND(do_edit_butes);
 }

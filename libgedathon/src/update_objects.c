@@ -265,7 +265,7 @@ PyGeda_update_text(Object *object, GedaObject *py_object )
 int
 PyGeda_update_object(Object *object, GedaObject *py_object )
 {
-  if(GEDA_IS_OBJECT(object)) {
+  if (GEDA_IS_OBJECT(object)) {
 
     object->selectable = !py_object->locked;
 

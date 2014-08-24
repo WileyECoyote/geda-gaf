@@ -4,12 +4,12 @@ GATTRIB_DIR=gattrib
 endif
 
 SUBDIRS = bitmaps include intl libgeda libgedacairo libgedauio \
-	  libgedathon gaf ${GATTRIB_DIR} \
-	  gschem gsymcheck gnetlist utils symbols docs examples
+		  libgedathon gaf ${GATTRIB_DIR} \
+		  gschem gsymcheck gnetlist utils symbols docs examples
 
 # See doxygen below (in this same file) - these all have configs.dox
 DOXDIRS = gattrib gschem gnetlist libgeda libgedacairo libgedauio \
-	  libgedathon gsymcheck utils
+		  libgedathon gsymcheck utils
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -20,18 +20,18 @@ ACLOCAL_AMFLAGS = -I m4
 # groff.
 false=/bin/sh -c '! :'
 DISTCHECK_CONFIGURE_FLAGS = \
-		GIT="$(false)" \
-		GROFF="$(false)" \
-		--disable-update-xdg-database
+				GIT="$(false)" \
+				GROFF="$(false)" \
+				--disable-update-xdg-database
 
 BUILT_SOURCES = version.h
 
 EXTRA_DIST    = $(BUILT_SOURCES) \
-		COPYING.LGPL \
-		HACKING \
-		autogen.sh \
-		config.h \
-		version.h version.h.in
+				COPYING.LGPL \
+				HACKING \
+				autogen.sh \
+				config.h \
+				version.h version.h.in
 
 #
 # Generate version.h. This works by looking at any git repository that
@@ -84,6 +84,12 @@ else
 	@echo 'configure was not run with the --enable-doxygen switch.'
 	@echo 'The documentation cannot be built from the sources.'
 endif
+
+distclean-local:
+	-rm -rf autom4te.cache
+
+maintainer-clean-local:
+	-rm -rf autom4te.cache
 
 MOSTLYCLEANFILES     = *~
 CLEANFILES           = *~

@@ -1417,7 +1417,7 @@
 (map-keys "E N"        "edit-pintype")
 (map-keys "E W"        "edit-linetype")
 (map-keys "E F"        "edit-filltype")
-
+(map-keys "E P"        "edit-component")
 (map-keys "E <Shift>S" "edit-slot")
 
 (map-keys "F N"        "file-new")
@@ -1626,7 +1626,8 @@
         (,(N_ "Edit Pin...")        edit-pintype           "geda-pin-type"    ,(N_ "Open the Pin Type Dialog"))
         (,(N_ "Line Width & Type...") edit-linetype        "geda-line-type"   ,(N_ "Open the Line Editor Dialog"))
         (,(N_ "Fill Type...")         edit-filltype        "geda-mesh"        ,(N_ "Open the Fill Editor Dialog"))
-        (,(N_ "Slot...")            edit-slot              "geda-slot"        ,(N_ "Open the Slot Editor Dialog"))
+        (,(N_ "Edit Component...")    edit-component       "geda-component"   ,(N_ "Open the Component Editor Dialog"))
+        (,(N_ "Slot...")              edit-slot            "geda-slot"        ,(N_ "Open the Slot Editor Dialog"))
 
         ("SEPARATOR"               #f                     #f                       #f)
         (,(N_ "Lock")               edit-lock              "geda-lock"        ,(N_ "Lock selected objects"))

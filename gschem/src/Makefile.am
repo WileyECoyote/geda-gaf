@@ -13,19 +13,19 @@ INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA) \
-		$(INC_LIBCAIRO)
+				$(INC_LIBCAIRO)
 
 bin_PROGRAMS  = gschem
 
 gschem_CXXFLAGS=$(AM_CXXFLAGS)
 
-BUILT_SOURCES = \
-		guile/g_attrib.x \
-		guile/g_hook.x \
-		guile/g_keys.x \
-		guile/g_util.x \
-		guile/g_window.x \
-		guile/g_select.x
+BUILT_SOURCES  = \
+				guile/g_attrib.x \
+				guile/g_hook.x   \
+				guile/g_keys.x   \
+				guile/g_util.x   \
+				guile/g_window.x \
+				guile/g_select.x
 
 gschem_SOURCES = globals.c
 
@@ -39,29 +39,29 @@ include x/Makefile_insert
 
 # Extra files not mentioned as sources to include in the source tarball
 MAKE_INPUTS	 = base/makefile.in guile/makefile.in iface/makefile.in \
-		   math/makefile.in object/makefile.in x/makefile.in
+		 	   math/makefile.in object/makefile.in x/makefile.in
 
 EXTRA_DIST       = $(BUILT_SOURCES)
 
 AM_CFLAGS        = $(DEBUGGING) $(GEDA_INCLUDES)
 gschem_CPPFLAGS  =
 gschem_CFLAGS    = $(AM_CFLAGS)       $(GCC_CFLAGS)     $(LIBSTROKE_CFLAGS) \
-		   $(GLIB_CFLAGS)     $(GTK_CFLAGS)     $(GUILE_CFLAGS) \
-		   $(GTHREAD_CFLAGS)  $(MINGW_CFLAGS)   $(gschem_CXXFLAGS)
+		   		   $(GLIB_CFLAGS)     $(GTK_CFLAGS)     $(GUILE_CFLAGS) \
+		  		   $(GTHREAD_CFLAGS)  $(MINGW_CFLAGS)   $(gschem_CXXFLAGS)
 
 gschem_LDFLAGS   = $(GLIB_LIBS)       $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
-		   $(GTHREAD_LIBS)    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
-		   $(DEBUGGING)
+				   $(GTHREAD_LIBS)    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
+				   $(DEBUGGING)
 
 gschem_LDADD     = $(top_builddir)/libgedauio/src/libgedauio.la \
-		   $(top_builddir)/libgedacairo/src/libgedacairo.la \
-		   $(top_builddir)/libgeda/src/libgeda.la \
-		   @LIBINTL@
+				   $(top_builddir)/libgedacairo/src/libgedacairo.la \
+				   $(top_builddir)/libgeda/src/libgeda.la \
+				   @LIBINTL@
 
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
 snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
-		   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
+				   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
 
 .c.x:
 	     @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)

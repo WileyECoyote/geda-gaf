@@ -13,10 +13,10 @@ AM_LDFLAGS = -version-info $(LIBGTKSHEET_SO_VERSION)    \
 noinst_LIBRARIES = libgtksheet.a
 
 libgtksheet_a_SOURCES = gtkitementry.c	\
-			gtksheet.c \
-			gtksheet-marshal.c \
-			gtksheettypebuiltins.c	\
-			gtksheetwidget.c
+						gtksheet.c \
+						gtksheet-marshal.c \
+						gtksheettypebuiltins.c	\
+						gtksheetwidget.c
 
 gtksheet_extra_sources = gtksheet-marshal.list
 
@@ -29,6 +29,7 @@ libgtksheet_a_CFLAGS   = $(GLIB_CFLAGS) $(GTK_CFLAGS)
 EXTRA_LIBRARIES = libgtksheet.a
 
 MOSTLYCLEANFILES     = *.log *.ps core FILE *~
-CLEANFILES           = *.a *.log *.ps core FILE *~
-DISTCLEANFILES       = *.log core FILE *~
+CLEANFILES           = *.log *.ps core FILE *~ *.a
+DISTCLEANFILES       = *.log *.ps core FILE *~
 MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
+

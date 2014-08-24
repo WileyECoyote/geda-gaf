@@ -1,3 +1,12 @@
+2014-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_check.c: add "file", why not?
+
+2014-08-11 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/s_check.c: Resequenced valid_attributes, changed "spicetype"
+          to "spice-type"
+
 2014-07-29 Wiley E. Hill <wileyhill@gmail.com>
 
         * tests/old_symbol.output, pintypes.output: Change "Invalid" to

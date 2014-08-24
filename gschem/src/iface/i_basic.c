@@ -337,7 +337,6 @@ void i_update_sensitivities(GschemToplevel *w_current)
 
     x_menus_sensitivity(w_current, "A_ttributes/_Attach",     state);
     x_menus_sensitivity(w_current, "A_ttributes/_Detach",     state);
-    x_menus_sensitivity(w_current, "_Edit/Edit Component...", state);
     x_menus_sensitivity(w_current, "_Edit/Slot...",           state);
 
     x_menus_popup_sensitivity(w_current, "Down Schematic",    state);
@@ -390,10 +389,7 @@ void i_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
   }
 
-  if(is_editing_symbol) {
-    x_menus_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
-  }
-  else if ( anything_is_selected  ) {
+  if ( anything_is_selected  ) {
 
     /* since one or more objects are selected, we set these TRUE */
     if ( is_complex_selected ) {
@@ -401,6 +397,13 @@ void i_update_sensitivities(GschemToplevel *w_current)
     }
     else {
       set_sensitivity_for_complexes (FALSE);
+    }
+
+    if (is_complex_selected  || is_editing_symbol) {
+      x_menus_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
+    }
+    else {
+      x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
     if (is_pin_selected) {
@@ -539,7 +542,7 @@ void i_set_filename(GschemToplevel *w_current, const char *string)
       if (w_current->toplevel && Current_Page) {
 
         if (Current_Page->filename) {
-          filename = geda_basename(Current_Page->filename);
+          filename = f_basename(Current_Page->filename);
         }
         else {
           filename = "undefined"; /* aka BUG */
@@ -550,7 +553,7 @@ void i_set_filename(GschemToplevel *w_current, const char *string)
       }
     }
     else {
-      filename = geda_basename(string);
+      filename = f_basename(string);
     }
 
     print_string = geda_sprintf("%s - gschem", filename);
