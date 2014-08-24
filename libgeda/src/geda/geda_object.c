@@ -515,7 +515,19 @@ Object *geda_object_new (int type, char const *name)
  */
 bool is_a_geda_object (Object *obj)
 {
-  return obj && (GEDA_TYPE_OBJECT == (obj->head_marker & obj->tail_marker));
+  bool answer;
+
+  if ((unsigned long)obj > 0x7FFFE) {
+    answer = (GEDA_TYPE_OBJECT == (obj->head_marker & obj->tail_marker));
+  }
+  else {
+    if (obj != NULL) {
+      fprintf(stderr, "%s: Bad pointer <%p>", __func__, obj);
+    }
+    answer = FALSE;
+  }
+
+  return answer;
 }
 
 /*! \todo Finish function documentation!!!

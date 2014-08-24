@@ -1,5 +1,10 @@
 2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_object.c: Redo type identifier, G_IS_OBJECT does not work
+      properly.
+
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_toplevel.c: Add function geda_toplevel_get_current_page
 
 2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
