@@ -1,3 +1,6 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
+## Process this file with automake to produce Makefile.in
 
 SUBDIRS = docs examples include gmake gsch2pdf gschemdoc gschlas gxyrs \
 	      etc scripts src tests

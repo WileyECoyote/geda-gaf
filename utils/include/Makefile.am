@@ -1,3 +1,5 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
 ## Process this file with automake to produce Makefile.in
 
 noinst_HEADERS = common.h globals.h papersizes.h prototype.h

@@ -1,4 +1,5 @@
-## $Id$
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
 ## Process this file with automake to produce Makefile.in
 
 bin_SCRIPTS = gxyrs
@@ -7,7 +8,7 @@ rcdatadir   = @GEDADATADIR@/perl/lib
 rcdata_DATA = gxyrs.pm
 
 dist_bin_SCRIPTS  = gxyrs.pl \
-	            gxyrs.pm
+					gxyrs.pm
 
 all: gxyrs
 

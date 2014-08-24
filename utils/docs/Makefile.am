@@ -1,3 +1,7 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
+## Process this file with automake to produce Makefile.in
+
 GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
 	      what-is-geda.tex
 

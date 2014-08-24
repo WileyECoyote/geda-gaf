@@ -1,4 +1,7 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
 ## Process this file with automake to produce Makefile.in
+
 AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
@@ -8,10 +11,10 @@ INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 GEDA_INCLUDES 	= $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 bin_PROGRAMS	= gmk_sym smash_megafile convert_sym sarlacc_schem olib \
-	          gsch2pcb grenum
+			      gsch2pcb grenum
 
 AM_CFLAGS		= $(GEDA_INCLUDES) $(GCC_CFLAGS) $(MINGW_CFLAGS) \
-			  $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
+				  $(GLIB_CFLAGS)   $(GUILE_CFLAGS)
 
 gmk_sym_SOURCES 	= gmk_sym.c char_width.c
 grenum_SOURCES		= grenum.c grenum.h
@@ -25,7 +28,7 @@ convert_sym_LDFLAGS	= -lm
 
 gsch2pcb_SOURCES	= gsch2pcb.c
 gsch2pcb_CPPFLAGS 	= -DPCBDATADIR=\"$(PCBDATADIR)\" \
-			  -DPCBLIBPATH=\"$(PCBLIBPATH)\"
+					  -DPCBLIBPATH=\"$(PCBLIBPATH)\"
 gsch2pcb_CFLAGS 	= $(AM_CFLAGS)
 gsch2pcb_LDFLAGS 	= $(GLIB_LIBS)
 gsch2pcb_LDADD   	= $(top_builddir)/libgeda/src/libgeda.la

@@ -1,16 +1,21 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
+## Process this file with automake to produce Makefile.in
+
 SUFFIXES = .sh
 
 bin_SCRIPTS    = gmake-caps-sym \
-		 gmake-set-resistors \
-		 gmake-transistors-sym
+				 gmake-set-resistors \
+				 gmake-transistors-sym
 
 distcheck:
 
 dist_bin_SCRIPTS   = gmake-caps-sym.sh \
-		     gmake-set-resistors.sh \
-		     gmake-transistors-sym.sh
+					 gmake-set-resistors.sh \
+					 gmake-transistors-sym.sh
 
-CLEANFILES           = *.log *~  $(bin_SCRIPTS)
-MOSTLYCLEANFILES     = $(CONFIG_CLEAN) $(bin_SCRIPTS)
-DISTCLEANFILES       = *.log core FILE *~  $(bin_SCRIPTS)
-MAINTAINERCLEANFILES = *.log *~ Makefile.in  $(bin_SCRIPTS)
+MOSTLYCLEANFILES     = *.log core FILE *~ $(bin_SCRIPTS) $(CONFIG_CLEAN)
+CLEANFILES           = *.log core FILE *~ $(bin_SCRIPTS)
+DISTCLEANFILES       = *.log core FILE *~ $(bin_SCRIPTS)
+MAINTAINERCLEANFILES = *.log core FILE *~ $(bin_SCRIPTS) Makefile.in
+

@@ -1,4 +1,7 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
+##
 ## Process this file with automake to produce Makefile.in
+
 AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 INC_GEDA = -I$(top_srcdir) -I$(top_srcdir)/include -I$(top_srcdir)/intl
@@ -7,30 +10,30 @@ INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 
 GEDA_INCLUDES  = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
-rcdatadir 	 = $(GEDARCDIR)
+rcdatadir 	     = $(GEDARCDIR)
 
 bin_PROGRAMS 	 = gsch2pdf
 
 rcdata_DATA 	 = system-gsch2pdfrc
 
 local_HEADERs    = junction.h \
-		   rc-config.h \
-		   print-settings.h
+				   rc-config.h \
+				   print-settings.h
 
 EXTRA_DIST       = $(rcdata_DATA) $(local_HEADERs)
 
 gsch2pdf_SOURCES = main.c \
-		   junction.c \
-		   rc-config.c \
-		   print-settings.c
+				   junction.c \
+				   rc-config.c \
+				   print-settings.c
 
 AM_CFLAGS	     = $(GEDA_INCLUDES) -I$(includedir)
 
 gsch2pdf_CPPFLAGS    =
 
 gsch2pdf_CFLAGS      = $(AM_CFLAGS)         $(GCC_CFLAGS)  $(GLIB_CFLAGS) \
-		       $(MINGW_CFLAGS)      $(GUILE_CFLAGS) \
-	 	       $(PANGOCAIRO_CFLAGS)
+					   $(MINGW_CFLAGS)      $(GUILE_CFLAGS) \
+			 	       $(PANGOCAIRO_CFLAGS)
 
 gsch2pdf_LDFLAGS     = $(GLIB_LIBS) $(GUILE_LIBS) $(PANGOCAIRO_LIBS)
 
