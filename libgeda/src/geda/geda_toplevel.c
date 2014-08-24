@@ -336,7 +336,7 @@ GedaToplevel *geda_toplevel_new (void) {
  */
 bool is_a_geda_toplevel (GedaToplevel *toplevel)
 {
-  return toplevel &&
+  return ((unsigned long)toplevel > 0x7FFFE) &&
   (GEDA_TYPE_TOPLEVEL == (toplevel->head_marker & toplevel->tail_marker));
 }
 
@@ -475,6 +475,14 @@ geda_toplevel_remove_weak_ptr (GedaToplevel *toplevel, void *weak_pointer_loc)
 {
   g_return_if_fail (GEDA_IS_TOPLEVEL(toplevel));
   g_object_remove_weak_pointer((GObject*)toplevel, weak_pointer_loc);
+}
+
+Page* geda_toplevel_get_current_page (GedaToplevel *toplevel)
+{
+  g_return_val_if_fail (GEDA_IS_TOPLEVEL(toplevel), NULL);
+  g_return_val_if_fail (GEDA_IS_PAGE(toplevel->page_current), NULL);
+
+  return toplevel->page_current;
 }
 
 Page* geda_toplevel_get_page (GedaToplevel *toplevel, int page_id)

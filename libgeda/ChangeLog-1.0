@@ -1,5 +1,9 @@
 2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_toplevel.c: Add function geda_toplevel_get_current_page
+
+2014-08-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/utility/u_program.c: Rename geda_backtrace u_program_backtrace,
       geda_mem_set_vtable u_program_mem_set_vtable
 
