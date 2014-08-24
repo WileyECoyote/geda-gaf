@@ -1,4 +1,4 @@
-## $Id$
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ##
 ## Process this file with automake to produce Makefile.in
 SUFFIXES = .pl .py .sh
@@ -35,6 +35,14 @@ noinst_SCRIPTS	 = convert_sym.awk sw2asc.awk $(installer)
 distcheck:
 dist_bin_SCRIPTS = $(PERL_SCRIPTS) $(PY_SCRIPTS) $(SH_SCRIPTS) \
 				   $(noinst_SCRIPTS)
+
+.pl:
+	@for script in $(PERL_SCRIPTS); do \
+		@if test -f $(TARGET_DIR)/$script; then \
+			rm -f $(TARGET_DIR)/$script; \
+			cp -u (srcdir)/$script $(TARGET_DIR)/$script; \
+		fi \
+	done
 
 MOSTLYCLEANFILES     = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)
 CLEANFILES 	         = *.log *.ps core FILE tmp *~ $(bin_SCRIPTS)

@@ -1,3 +1,8 @@
+2014-08-24 Wiley E. Hill <wileyhill@gmail.com>
+
+        * utils/scripts/Makefile.am: Appears auto-tools is handling dist_bin_SCRIPTS
+          improperly during parallel install, added manual over-ride for Perl suffix.
+
 2014-08-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * scripts/gcheck-library.sh: Extended functionality, adding checks for
