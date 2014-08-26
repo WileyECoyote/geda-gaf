@@ -1,5 +1,9 @@
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x_dialog.c: Replaced "strange signal" message with BUG_IMSG macro.
+
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * docs/attrib.dox:  Read library TAGFILES files, redirect errors and
       warnings to log (but can still be done on command-line).
 

@@ -577,7 +577,7 @@ static void search_replace_dialog_response(GtkWidget    *ThisDialog,
     ThisDialog = NULL;
     break;
   default:
-    fprintf(stderr, "search_replace_dialog_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
   Search->ReplaceAll = FALSE; /* This must be enabled by user each loop */
 }
