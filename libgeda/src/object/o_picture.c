@@ -644,7 +644,7 @@ o_picture_translate_world(int dx, int dy, Object *object)
  *
  *  \par Function Description
  *  This function creates a verbatim copy of the object pointed by
- *  <B>o_current</B> describing a picture.
+ *  <B>\a o_current</B> describing a picture.
  *
  *  \param [in]  o_current     Picture Object to copy.
  *  \return The new Object

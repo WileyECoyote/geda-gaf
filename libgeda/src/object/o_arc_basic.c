@@ -96,7 +96,7 @@ Object *o_arc_new(int color, int x, int y, int radius, int start_angle, int end_
  *  \par Function Description
  *  This function creates a new object representing an arc.
  *
- *  The values of the <B>o_current</B> pointed Object are then copied to the new object.
+ *  The values of the <B>\a o_current</B> pointed Object are then copied to the new object.
  *
  *  The arc, the line options are initialized whereas the fill options are
  *  initialized to passive values - as an arc can not be filled.
@@ -283,8 +283,8 @@ o_arc_read (const char buf[], unsigned int release_ver, unsigned int fileformat_
 
 /*! \brief create the string representation of an arc object
  *  \par Function Description
- *  This function formats a string in the buffer <B>*buf</B> to describe
- *  the arc object <B>*object</B>.
+ *  This function formats a string in the <B>buffer</B> to describe
+ *  the #Arc object <B>\a object</B>.
  *  A pointer to the new allocated and formated string is returned.
  *  The string must be freed at some point.
  *
@@ -463,10 +463,10 @@ o_arc_get_position (int *x, int *y, Object *object)
 /*! \brief
  *  \par Function Description
  *  This function writes in a postscript file the arc described by
- *  the <B>o_current</B> pointed object.
- *  The postscript resulting file is described by the <B>fp</B> file pointer.
+ *  the <B>\a o_current</B> pointed object.
+ *  The postscript resulting file is described by the <B>\a fp</B> file pointer.
  *
- *  Parameters of the arc are extracted from object pointed by <B>o_current</B>
+ *  Parameters of the arc are extracted from object pointed by <B>\a o_current</B>
  *  and formatted to suit future calls to specialized arc printing functions.
  *
  *  \param [in] toplevel   The GedaToplevel object.
@@ -499,13 +499,14 @@ o_arc_print(GedaToplevel *toplevel, FILE *fp, Object *object,
   /*! \note
    *  Depending on the type of the line for this particular arc, the
    *  appropriate function is chosen among #o_arc_print_solid(),
-   *  #o_arc_print_dotted(), #o_arc_print_dashed(), #o_arc_print_center() and #o_arc_print_phantom().
+   *  #o_arc_print_dotted(), #o_arc_print_dashed(), #o_arc_print_center()
+   *  and #o_arc_print_phantom().
    *
-   *  The needed parameters for each of these types are extracted from the <B>object</B> object.
-   *  Depending on the type, unused parameters are set to -1.
+   *  The needed parameters for each of these types are extracted from the
+   *  <B>object</B> object. Depending on the type, unused parameters are set to -1.
    *
-   *  In the eventuality of a length and/or space null, the arc is printed solid to avoid and
-   *  endless loop produced by other functions.
+   *  In the eventuality of a length and/or space null, the arc is printed
+   *  solid to avoid and endless loop produced by other functions.
    */
 
   /* 09/08/12 | W.E.Hill Modified algorithms to incorperate both THICK & THIN

@@ -50,7 +50,7 @@
 /**
  * \brief GedaAction Action - An Action Widget for Menus
  * \par
- * A GedaAction is a variant of GtkAction but use a GedaAccelLabel insead
+ * A #GedaAction is a variant of GtkAction but use a GedaAccelLabel insead
  * of a GtkAccelLabel and this allow menu items with multi-key assignments.
  *
  * \defgroup GedaAction Action Object
@@ -67,7 +67,7 @@ static GObjectClass *geda_action_parent_class = NULL;
 /*! \brief GObject finalize handler
  *
  *  \par Function Description
- *  Just before the GtkAction GObject is finalized, free our
+ *  Called just before the GtkAction GObject is destroyed to free our
  *  allocated data, and then chain up to the parent's finalize handler.
  *
  *  \param [in] object The GObject being finalized.

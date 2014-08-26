@@ -48,17 +48,17 @@ static WidgetStringData DialogStrings[] = {
 
 /*! \brief Component Properties Internal Check and Update Attributes
  *  \par Function Description
- *  This function is called with or without and #Object argument, when
- *  the $Object argument is present then attributes searching is limited
- *  to #Object, otherwise all #Text objects on the page are searched.
+ *  This function is called with or without and \a Object argument, when
+ *  the \a object argument is present then attributes searching is limited
+ *  to \a Object, otherwise all <b>Text</b> objects on the page are searched.
  *  If the new value is NULL or has zero length then the function does
  *  nothing. Otherwise the function attempts to find an attribute with
- *  the name #key, and if found the attribute value is compared to new_
+ *  the name key, and if found the attribute value is compared to new_
  *  value and changed if strings are difference. If an attribute is not
  *  found then a new attribute is created with the form key=value.
  *
  *  \param [in] w_current Gschem toplevel structure.
- *  \param [in] object    Pointer to an #Object to search, also used as a flag
+ *  \param [in] object    Pointer to an <b>Object</b> to search, also used as a flag
  *  \param [in] key       The name of the attribute
  *  \param [in] new_value String value that attribute should be assigned
  *
@@ -144,7 +144,7 @@ x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
 
 /*! \brief Component Properties Internal Revise Electrical Attributes
  *  \par Function Description
- *  This function is called with or without and #Object argument, which is
+ *  This function is called with or without and \a Object argument, which is
  *  passed as a flag to x_dialog_ep_check_update_attribs to indicate the
  *  editing mode, with schematic or symbol. The function retrieves strings
  *  from the entries in the lower halve of the dialog, fields controlled by
@@ -153,7 +153,7 @@ x_dialog_ep_check_update_attribs (GschemToplevel *w_current,
  *
  *  \param [in] w_current  Gschem toplevel structure.
  *  \param [in] properties Pointer to a Component Dialog data structure
- *  \param [in] object     Pointer to an #Object to search, also used as a flag
+ *  \param [in] object     Pointer to an<b>Object</b> to search, also used as a flag
  *
  *  \return boolean TRUE is a change was made, otherwise FALSE
  *
@@ -262,7 +262,7 @@ x_dialog_ep_revise_symbol_attribs (GschemToplevel *w_current,
  *  has a value. The function handles the case of exchanging the symbol
  *  and calls helper functions for attribute handling.
  *
- *  \param [in] w_current  Gschem toplevel structure.
+ *  \param [in] dialog     Pointer to a Component Dialog instance.
  *  \param [in] properties Pointer to a Component Dialog data structure
  *
  */

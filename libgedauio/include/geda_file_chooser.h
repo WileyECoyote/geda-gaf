@@ -28,14 +28,14 @@
 
 /*!
  * FileChooserAction:
- * @FILE_CHOOSER_ACTION_OPEN: Indicates open mode.
+ * #FILE_CHOOSER_ACTION_OPEN: Indicates open mode.
  * The file chooser will only let the user pick an existing file.
- * @FILE_CHOOSER_ACTION_SAVE: Indicates save mode.
+ * #FILE_CHOOSER_ACTION_SAVE: Indicates save mode.
  * The file chooser will let the user pick an existing file, or type in a new
  * filename.
- * @FILE_CHOOSER_ACTION_SELECT_FOLDER: Indicates select folder mode.
+ * #FILE_CHOOSER_ACTION_SELECT_FOLDER: Indicates select folder mode.
  * The file chooser will let the user pick an existing folder.
- * @FILE_CHOOSER_ACTION_CREATE_FOLDER: Indicates create folder mode.
+ * #FILE_CHOOSER_ACTION_CREATE_FOLDER: Indicates create folder mode.
  * The file chooser will let the user name an existing or new folder.
  *
  * Describes whether a #GedaFileChooser is being used to open existing files

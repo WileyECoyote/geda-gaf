@@ -36,8 +36,8 @@
   <br />
 	<dd><code>pinlabel = geda.new_attrib("pinlabel", "2", x, y1, INVISIBLE, SHOW_VALUE, LOWER_RIGHT)</code></dd>
   <p/>
-  Note that the proceeding example uses three constants defined in the constants submodule. This object can now
-  be added to another object, in the following example the label is being added to a GedaPin object:
+  Note that the proceeding example uses three constants defined in the constants submodule. The Text object pinlabel can now
+  be added to another object. In the following example the label is being added to a GedaPin object:
   <br />
 	<dd><code>geda.add_object(pin, pinlabel)</code></dd>
   <p/>
@@ -75,7 +75,7 @@
 	<p/>	
 	Default symbols are only applicable to basic component types such as capacitors, resistors, and transistors. Complex
 	types must supply a valid symbol name. Complexes can be created and added using either the geda module or functions
-	in the high-level sub-module:
+	in the high-level sub-module as shown in the following examples:
 	<br />
 	<dd><code>titleblock = geda.new_complex("title-B", 1000, 1000)<br />
 		titleblock.locked = True<br />
@@ -83,7 +83,7 @@
 	  or<br />
 	<dd><code>tb = AddComponent(sheet1, titleblock, , 1000, 1000)</code></dd>
   <p/>
-   In the preceding examples the symbol name was in a variable named titleblock, but could contain any valid symbol name.
+   In the last example the symbol name was in a variable named titleblock, but could contain any valid symbol name.
    The example illustrates the convenience of using the high-level function. The variable "tb" holds a reference to the
    object, which might not be needed for a titleblock, in which case, the previous example could have been reduced to:
   <br />

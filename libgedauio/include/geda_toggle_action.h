@@ -29,12 +29,12 @@
 
 G_BEGIN_DECLS
 
-#define GEDA_TYPE_TOGGLE_ACTION              (geda_toggle_action_get_type ())
-#define GEDA_TOGGLE_ACTION(obj)              (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TOGGLE_ACTION, GedaToggleAction))
-#define GEDA_TOGGLE_ACTION_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GEDA_TYPE_TOGGLE_ACTION, GedaToggleActionClass))
+#define GEDA_TYPE_TOGGLE_ACTION            (geda_toggle_action_get_type ())
+#define GEDA_TOGGLE_ACTION(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_TOGGLE_ACTION, GedaToggleAction))
+#define GEDA_TOGGLE_ACTION_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_TOGGLE_ACTION, GedaToggleActionClass))
 #define GEDA_IS_TOGGLE_ACTION(obj)         (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_TOGGLE_ACTION))
-#define GEDA_IS_TOGGLE_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass), GEDA_TYPE_TOGGLE_ACTION))
-#define GEDA_TOGGLE_ACTION_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GEDA_TYPE_TOGGLE_ACTION, GedaToggleActionClass))
+#define GEDA_IS_TOGGLE_ACTION_CLASS(klass) (G_TYPE_CHECK_CLASS_TYPE ((klass),  GEDA_TYPE_TOGGLE_ACTION))
+#define GEDA_TOGGLE_ACTION_GET_CLASS(obj)  (G_TYPE_INSTANCE_GET_CLASS((obj),   GEDA_TYPE_TOGGLE_ACTION, GedaToggleActionClass))
 
 typedef struct _GedaToggleAction        GedaToggleAction;
 typedef struct _GedaToggleActionPrivate GedaToggleActionPrivate;

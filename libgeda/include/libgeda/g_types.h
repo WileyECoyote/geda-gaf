@@ -31,22 +31,47 @@
 #ifndef _G_TYPES_H_INCL
 #define _G_TYPES_H_INCL
 
+
+
+typedef struct _GedaToplevel     GedaToplevel;
+typedef struct _GedaPage         Page;
+
 /* Object types */
 
+/*! \brief Geda Base Object Structure */
 typedef struct _GedaObject       Object;
-typedef struct _GedaPage         Page;
-typedef struct _GedaToplevel     GedaToplevel;
-typedef struct _GedaArc          Arc;
-typedef struct _GedaBox          Box;
-typedef struct _GedaBus          Bus;
-typedef struct _GedaCircle       Circle;
-typedef struct _GedaComplex      Complex;
-typedef struct _GedaLine         Line;
-typedef struct _GedaNet          Net;
-typedef struct _GedaPath         Path;
-typedef struct _GedaPicture      Picture;
-typedef struct _GedaPin          Pin;
-typedef struct _GedaText         Text;
 
+/*! \brief Geda Arc Object Structure */
+typedef struct _GedaArc          Arc;
+
+/*! \brief Geda Box Object Structure */
+typedef struct _GedaBox          Box;
+
+/*! \brief Geda Bus Object Structure */
+typedef struct _GedaBus          Bus;
+
+/*! \brief Geda Circle Object Structure */
+typedef struct _GedaCircle       Circle;
+
+/*! \brief Geda Complex Object Structure */
+typedef struct _GedaComplex      Complex;
+
+/*! \brief Geda Line Circle Object Structure */
+typedef struct _GedaLine         Line;
+
+/*! \brief Geda Net Circle Object Structure */
+typedef struct _GedaNet          Net;
+
+/*! \brief Geda Path Circle Object Structure */
+typedef struct _GedaPath         Path;
+
+/*! \brief Geda Picture Circle Object Structure */
+typedef struct _GedaPicture      Picture;
+
+/*! \brief Geda Pin Circle Object Structure */
+typedef struct _GedaPin          Pin;
+
+/*! \brief Geda Text Circle Object Structure */
+typedef struct _GedaText         Text;
 
 #endif

@@ -263,8 +263,7 @@ geda_file_chooser_set_property (GObject *object, unsigned int  property_id,
  *  \par Function Description
  *  Restore dialog's last position and size from the passed GKeyFile
  *
- *  \param [in] dialog     The GedaFileChooser to restore the position and size of.
- *  \param [in] cfg        A Geda Configuration object.
+ *  \param [in] chooser    The #GedaFileChooser Dialog to restore geometry.
  *  \param [in] group_name The group name in the key file to find the data under.
  */
 static void
@@ -294,8 +293,7 @@ geda_file_chooser_geometry_restore (GedaFileChooser *chooser, char *group_name)
  *  \par Function Description
  *  Save the dialog's current position and size to the passed GKeyFile
  *
- *  \param [in] dialog     The GedaFileChooser to save the position and size of.
- *  \param [in] cfg        A Geda Configuration object.
+ *  \param [in] chooser    The #GedaFileChooser Dialog to save the geometry.
  *  \param [in] group_name The group name in the key file to store the data under.
  */
 static void
@@ -609,18 +607,19 @@ geda_file_chooser_dialog_new_valist (const char        *title,
   return result;
 }
 
-/*!
- * geda_file_chooser_dialog_new_full:
- * @title: (allow-none): Title of the dialog, or %NULL
- * @parent: (allow-none): Transient parent of the dialog, or %NULL
- * @action: Open or save mode for the dialog
- * @first_button_text: (allow-none): stock ID or text to go in the first button, or %NULL
- * @...: response ID for the first button, then additional (button, id) pairs, ending with %NULL
+/*! \brief Create a New GedaFileChooser specifying Buttons
  *
- * Creates a new #GtkFileChooserDialog.  This function is analogous to
+ *  \par Function Description
+ * Creates a new #GedaFileChooser. This function is analogous to
  * gtk_dialog_new_with_buttons().
  *
- * Return value: a new #GtkFileChooserDialog
+ * \param [in] title  (allow-none): Title of the dialog, or %NULL
+ * \param [in] parent (allow-none): Transient parent of the dialog, or %NULL
+ * \param [in] action Open or save mode for the dialog
+ * \param [in] first_button_text (allow-none): stock ID or text to go in the first button, or %NULL
+ * \param [in] ... response ID for the first button, then additional (button, id) pairs, ending with %NULL
+ *
+ * \return a new #GedaFileChooser
  *
  */
 GtkWidget *

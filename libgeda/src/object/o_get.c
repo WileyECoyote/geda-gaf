@@ -36,7 +36,7 @@
 /*! \brief Get capstyle for printing of an object.
  *  \par Function Description
  *  This function gets the object's capstyle for printing from its line end.
- *  See LINE_END for information on valid line end values.
+ *  See #LINE_END for information on valid line end values.
  *
  *  \param [in]     end        Line end value of the object
  *
@@ -182,12 +182,12 @@ LINE_END o_get_line_end (int capstyle)
  *
  *  \par Function Description
  *  This function get's the #Object's line options.
- *  See LINE_END and LINE_TYPE for information on valid
+ *  See #LINE_END and #LINE_TYPE for information on valid
  *  object end and type values.
  *
  *  \param [in]   object    Object to read the properties
- *  \param [out]  end       An LINE_END.
- *  \param [out]  type      An LINE_TYPE.
+ *  \param [out]  end       An #LINE_END.
+ *  \param [out]  type      An #LINE_TYPE.
  *  \param [out]  width     Line width.
  *  \param [out]  length    Line length.
  *  \param [out]  space     Spacing between dashes/dots.
@@ -222,15 +222,14 @@ bool o_get_line_options(Object *object,
 /*! \brief Get List of Objects in List by Object Type.
  *
  * \par Function Description
- * Returns a glist of objects, that are member of the given glist that
- * match the given type. The returned glist must be freed with g_list_free.
+ * Returns a glist of objects, that are members of the \a olist that match
+ * the given \a type. The returned glist must be freed with g_list_free.
  *
  * \param [in] olist A GList of Objects to search
  * \param [in] type  The object type to search for
  *
- * \return list of Objects if found, or NULL if no member
- *         was the requested type or the input list was
- *         empty.
+ * \return list of Objects if found, or %NULL if no member was the requested
+ *         type or the input list was empty.
  */
 
 GList*
@@ -253,12 +252,12 @@ o_get_objects_by_type (GList *olist, int type)
 /*! \brief Get the Page associated with an Object.
  *
  * \par Function Description
- * If \a object is on a page, the page is return, otherwise NULL
+ * If \a object is on a page, the page is return, otherwise %NULL
  * is returned.
  *
  * \param [in] object    The Object for which to get the Page Object.
  *
- * \return page Object which owns \a object, or NULL.
+ * \return page Object which owns \a object, or %NULL.
  */
 Page *o_get_page (Object *object)
 {
@@ -270,11 +269,11 @@ Page *o_get_page (Object *object)
  *
  * \par Function Description
  * If \a object is part of a complex #Object, returns that
- * #Object. Otherwise, returns NULL.
+ * #Object. Otherwise, returns %NULL.
  *
  * \param [in] object    The Object for which to get the containing Object.
  *
- * \return The complex Object which owns \a object, or NULL.
+ * \return The complex Object which owns \a object, or %NULL.
  */
 Object *o_get_parent (Object *object)
 {
@@ -294,7 +293,7 @@ Object *o_get_parent (Object *object)
  *
  * \param [in] object    The Object for which to get the containing Object.
  *
- * \return The complex Object which owns \a object, or NULL.
+ * \return The complex Object which owns \a object, or %NULL.
  */
 int o_get_parent_id (Object *object)
 {

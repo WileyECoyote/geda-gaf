@@ -38,15 +38,15 @@
 
 /*! \brief Check if point is inside grip.
  *  \par Function Description
- *  This function is used to determine if the (<B>x</B>,<B>y</B>) point is
+ *  This function is used to determine if the (<b>x</b>,<b>y</b>) point is
  *  inside a grip of one of the selected object on the current sheet.
  *  The selected object are in a list starting at
- *  <B>w_current->toplevel->page_current->selection2_head</B>.
- *  The <B>x</B> and <B>y</B> parameters are in world units.
+ *  <b>w_current->toplevel->page_current->selection2_head</b>.
+ *  The <b>x</b> and <b>y</b> parameters are in world units.
  *  If the point is inside one grip, a pointer on the object it belongs to is
- *  returned and <B>*whichone</B> is set according to the position of the grip
+ *  returned and <b>*whichone</b> is set according to the position of the grip
  *  on the object.
- *  Else, <B>*whichone</B> is unchanged and the function returns <B>NULL</B>.
+ *  Else, <b>*whichone</b> is unchanged and the function returns %NULL.
  *
  *  A specific search function is provided for every kind of graphical object.
  *  The list of selected object is covered : each object is tested with the
@@ -144,8 +144,8 @@ Object *o_grips_search_world(GschemToplevel *w_current, int x, int y, int *which
 /*! \brief Check if pointer is inside the grip region.
  *
  *  \par Function Description
- *  This function checks if the point (<B>x</B>,<B>y</B>) is
- *  inside the grip centered at (<B>grip_x</B>,<B>grip_y</B>).
+ *  This function checks if the point (<b>x</b>,<b>y</b>) is
+ *  inside the grip centered at (<b>grip_x</b>,<b>grip_y</b>).
  *
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
@@ -168,29 +168,29 @@ static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
 
 /*! \brief Check if pointer is inside arc grip.
  *  \par Function Description
- *  This function checks if the pointer event occuring at (<B>x</B>,<B>y</B>) is
- *  inside one of the grips of an <B>o_current</B> pointed arc object. If so
- *  the <B>whichone</B> pointed integer is set to the number of this grip and
+ *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>) is
+ *  inside one of the grips of an <b>\a o_current</b> pointed arc object. If so
+ *  the <b>whichone</b> pointed integer is set to the number of this grip and
  *  the return pointer is a pointer on this object. If the point is not
- *  inside a grip the function returns a NULL pointer and the <B>whichone</B>
+ *  inside a grip the function returns a NULL pointer and the <b>whichone</b>
  *  pointed integer is unset.
  *
  *  An arc object has three grips :
  *  <DL>
  *    <DT>*</DT><DD>one at the center of the arc. This grip is used to modify
  *                  the radius of the arc. If this one is selected, the
- *                  <B>whichone</B> pointed integer is set to <B>ARC_RADIUS</B>.
+ *                  <b>whichone</b> pointed integer is set to <b>ARC_RADIUS</b>.
  *    <DT>*</DT><DD>one at one end of the arc. It corresponds to the starting
  *                  angle of the arc. If this one is selected, the
- *                  <B>whichone</B> pointed integer is set to <B>ARC_START_ANGLE</B>.
+ *                  <b>whichone</b> pointed integer is set to <b>ARC_START_ANGLE</b>.
  *    <DT>*</DT><DD>one at the other end of the arc. It corresponds to the
  *                  ending angle of the arc. If this one is selected, the
- *                  <B>whichone</B> pointed integer is set to <B>ARC_END_ANGLE</B>.
+ *                  <b>whichone</b> pointed integer is set to <b>ARC_END_ANGLE</b>.
  *  </DL>
  *
- *  The <B>x</B> and <B>y</B> parameters are in world units.
+ *  The <b>x</b> and <b>y</b> parameters are in world units.
  *
- *  The <B>size</B> parameter is the width (and height) of the square
+ *  The <b>size</b> parameter is the width (and height) of the square
  *  representing a grip in world units.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -242,20 +242,20 @@ Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
 
 /*! \brief Check if pointer is inside box grip.
  *  \par Function Description
- *  This function checks if the pointer event occuring at (<B>x</B>,<B>y</B>) is
- *  inside one of the grips of the <B>o_current</B> pointed box object.
- *  If so, the <B>whichone</B> pointed integer is set to the identifier of
+ *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>) is
+ *  inside one of the grips of the <b>\a o_current</b> pointed box object.
+ *  If so, the <b>whichone</b> pointed integer is set to the identifier of
  *  this grip and the returned pointer is a pointer on this object.
  *  If the point is not inside a grip the function returns a NULL pointer
- *  and the <B>whichone</B> pointed integer is unset.
+ *  and the <b>whichone</b> pointed integer is unset.
  *
  *  A box object has four grips : one at each corner of the box. The
- *  identifiers of each corner are <B>BOX_UPPER_LEFT</B>,
- *  <B>BOX_UPPER_RIGHT</B>, <B>BOX_LOWER_LEFT</B> and <B>BOX_LOWER_RIGHT</B>.
+ *  identifiers of each corner are <b>BOX_UPPER_LEFT</b>,
+ *  <b>BOX_UPPER_RIGHT</b>, <b>BOX_LOWER_LEFT</b> and <b>BOX_LOWER_RIGHT</b>.
  *
- *  The <B>x</B> and <B>y</B> parameters are in world units.
+ *  The <b>x</b> and <b>y</b> parameters are in world units.
  *
- *  The <B>size</B> parameter is half the width (and half the height) of
+ *  The <b>size</b> parameter is half the width (and half the height) of
  *  the square representing a grip in world units.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -306,21 +306,21 @@ Object *o_grips_search_box_world(GschemToplevel *w_current, Object *o_current,
 
 /*! \brief Check if pointer is inside path grip.
  *  \par Function Description
- *  This function checks if the pointer event occuring at (<B>x</B>,<B>y</B>)
- *  is inside one of the grips of the <B>o_current</B> pointed path object.
- *  If so, the <B>whichone</B> pointed integer is set to the identifier of
+ *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>)
+ *  is inside one of the grips of the <b>\a o_current</b> pointed path object.
+ *  If so, the <b>whichone</b> pointed integer is set to the identifier of
  *  this grip and the returned pointer is a pointer on this object.
  *  If the point is not inside a grip the function returns a NULL pointer
- *  and the <B>whichone</B> pointed integer is unset.
+ *  and the <b>whichone</b> pointed integer is unset.
  *
  *  A path object has four grips : one at each corner of the path.
  *  The identifiers of each corner are \a PICTURE_UPPER_LEFT,
  *  \a PICTURE_UPPER_RIGHT, \a PICTURE_LOWER_LEFT and
  *  \a PICTURE_LOWER_RIGHT.
  *
- *  The <B>x</B> and <B>y</B> parameters are in world units.
+ *  The <b>x</b> and <b>y</b> parameters are in world units.
  *
- *  The <B>size</B> parameter is half the width (and half the height) of the
+ *  The <b>size</b> parameter is half the width (and half the height) of the
  *  square representing a grip in world units.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -377,21 +377,21 @@ Object *o_grips_search_path_world(GschemToplevel *w_current, Object *o_current,
 
 /*! \brief Check if pointer is inside picture grip.
  *  \par Function Description
- *  This function checks if the pointer event occuring at (<B>x</B>,<B>y</B>)
- *  is inside one of the grips of the <B>o_current</B> pointed picture object.
- *  If so, the <B>whichone</B> pointed integer is set to the identifier of
+ *  This function checks if the pointer event occuring at (<b>x</b>,<b>y</b>)
+ *  is inside one of the grips of the <b>\a o_current</b> pointed picture object.
+ *  If so, the <b>whichone</b> pointed integer is set to the identifier of
  *  this grip and the returned pointer is a pointer on this object.
  *  If the point is not inside a grip the function returns a NULL pointer
- *  and the <B>whichone</B> pointed integer is unset.
+ *  and the <b>whichone</b> pointed integer is unset.
  *
  *  A picture object has four grips : one at each corner of the picture.
  *  The identifiers of each corner are \a PICTURE_UPPER_LEFT,
  *  \a PICTURE_UPPER_RIGHT, \a PICTURE_LOWER_LEFT and
  *  \a PICTURE_LOWER_RIGHT.
  *
- *  The <B>x</B> and <B>y</B> parameters are in world units.
+ *  The <b>x</b> and <b>y</b> parameters are in world units.
  *
- *  The <B>size</B> parameter is half the width (and half the height) of the
+ *  The <b>size</b> parameter is half the width (and half the height) of the
  *  square representing a grip in world units.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -442,20 +442,20 @@ Object *o_grips_search_picture_world(GschemToplevel *w_current, Object *o_curren
 
 /*! \brief Check if pointer is inside circle grip.
  *  \par Function Description
- *  This function determines if the (<B>x</B>,<B>y</B>) point is inside one of
- *  the grip of the circle object <B>o_current</B>.
- *  It computes the area covered by each grip and check if (<B>x</B>,<B>y</B>)
+ *  This function determines if the (<b>x</b>,<b>y</b>) point is inside one of
+ *  the grip of the circle object <b>\a o_current</b>.
+ *  It computes the area covered by each grip and check if (<b>x</b>,<b>y</b>)
  *  is in one of these areas.
  *  If the event occured in one of the grip, a pointer on the object is
- *  returned and <B>*whichone</B> is set to the identifier of the grip.
- *  If not, the function returns a <B>NULL</B> pointer and <B>*whichone</B>
+ *  returned and <b>*whichone</b> is set to the identifier of the grip.
+ *  If not, the function returns a %NULL pointer and <b>*whichone</b>
  *  is unchanged.
  *
- *  The parameter <B>size</B> is half the size of the grip in world units.
+ *  The parameter <b>size</b> is half the size of the grip in world units.
  *
  *  A circle has only one grip on the lower right corner of the box it
  *  is inscribed in. Moving this grip change the radius of the circle.
- *  The identifier of this grip is <B>CIRCLE_RADIUS</B>.
+ *  The identifier of this grip is <b>CIRCLE_RADIUS</b>.
  *
  *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Circle Object to check.
@@ -482,22 +482,23 @@ Object *o_grips_search_circle_world(GschemToplevel *w_current, Object *o_current
 
 /*! \brief Check if pointer is inside line grip.
  *  \par Function Description
- *  This function determines if the (<B>x</B>,<B>y</B>) point is inside one of
- *  the grip of the line object <B>o_current</B>.
- *  It computes the area covered by each grip and check if (<B>x</B>,<B>y</B>)
- *  is in one of these areas.
+ *  This function determines if the (<b>\a x</b>,<b>\a y</b>) point given by \a x
+ *  \a y is inside one of the grips of the #Line object <b>\a o_current</b>,
+ *  by computing the area covered by each grip and then checks if (<b>x</b>,
+ *  <b>y</b>) is in one of these regions.
  *  If the event occured in one of its grip, a pointer on the object is
- *  returned and <B>*whichone</B> is set to the identifier of the grip. If not,
- *  the function returns <B>NULL</B> pointer and <B>*whichone</B> is unchanged.
+ *  returned and <b>\a whichone</b> is set to the identifier of the grip. If
+ *  not, the function returns %NULL pointer and <b>\a whichone</b> is unchanged.
  *
- *  The parameter <B>size</B> is half the size of the grip in world units.
+ *  The parameter <b>\a size</b> is half the size of the grip in world units.
  *
- *  \param [in]  w_current  The GschemToplevel object.
- *  \param [in]  o_current  Line Object to check.
+ *  \param [in]  w_current  The #GschemToplevel object.
+ *  \param [in]  o_current  A #Line Object to check.
  *  \param [in]  x          Current x coordinate of pointer in world units.
  *  \param [in]  y          Current y coordinate of pointer in world units.
  *  \param [in]  size       Half the width of the grip square in world units.
  *  \param [out] whichone   Which grip point is selected.
+ *
  *  \return Pointer to Object the grip is on, NULL otherwise.
  */
 Object *o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
@@ -525,21 +526,21 @@ Object *o_grips_search_line_world(GschemToplevel *w_current, Object *o_current,
 /*! \brief Initialize grip motion process for an arc.
  *  \par Function Description
  *  This function initializes the grip motion process for an arc.
- *  From the <B>o_current</B> pointed object, it stores into the
+ *  From the <b>\a o_current</b> pointed object, it stores into the
  *  GschemToplevel structure the coordinates of the center, the radius
  *  and the two angle that describes an arc. These variables are used in
  *  the grip process.
  *
  *  The coordinates of the center of the arc on x- and y-axis are stored
- *  into the <B>first_wx</B> and <B>first_wy</B> fields of the GschemToplevel
+ *  into the <b>first_wx</b> and <b>first_wy</b> fields of the GschemToplevel
  *  structure in screen units.
  *
- *  The radius of the center is stored into the <B>distance</B> field of
+ *  The radius of the center is stored into the <b>distance</b> field of
  *  the GschemToplevel structure in screen units.
  *
  *  The two angles describing the arc on a circle are stored into the
- *  <B>second_wx</B> for the starting angle and <B>second_wy</B> for the ending angle.
- *  These angles are expressed in degrees.
+ *  <b>second_wx</b> for the starting angle and <b>second_wy</b> for the
+ *  ending angle. These angles are expressed in degrees.
  *
  *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Arc Object to check.
@@ -570,16 +571,16 @@ static void o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
 /*! \brief Initialize grip motion process for a box.
  *  \par Function Description
  *  This function initializes the grip motion process for a box. From the
- *  <B>o_current</B> pointed object, it stores into the GschemToplevel
+ *  <b>\a o_current</b> pointed object, it stores into the GschemToplevel
  *  structure the .... These variables are used in the grip process.
  *
  *  The function first erases the grips.
  *
  *  The coordinates of the selected corner are put in
- *  (<B>w_current->second_wx</B>,<B>w_current->second_wx</B>).
+ *  (<b>w_current->second_wx</b>,<b>w_current->second_wx</b>).
  *
  *  The coordinates of the opposite corner go in
- *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not suppose
+ *  (<b>w_current->first_wx</b>,<b>w_current->first_wy</b>). They are not suppose
  *  to change during the action.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -632,17 +633,17 @@ static void o_grips_start_box(GschemToplevel *w_current, Object *o_current,
 /*! \brief Initialize grip motion process for a path.
  *  \par Function Description
  *  This function initializes the grip motion process for a path.
- *  From the <B>o_current</B> pointed object, it stores into the
+ *  From the <b>\a o_current</b> pointed object, it stores into the
  *  GschemToplevel structure the ....
  *  These variables are used in the grip process.
  *
  *  The function first erases the grips.
  *
  *  The coordinates of the selected corner are put in
- *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *  (<b>w_current->second_wx</b>,<b>w_current->second_wy</b>).
  *
  *  The coordinates of the opposite corner go in
- *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not
+ *  (<b>w_current->first_wx</b>,<b>w_current->first_wy</b>). They are not
  *  suppose to change during the action.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -703,17 +704,17 @@ static void o_grips_start_path(GschemToplevel *w_current, Object *o_current,
 /*! \brief Initialize grip motion process for a picture.
  *  \par Function Description
  *  This function initializes the grip motion process for a picture.
- *  From the <B>o_current</B> pointed object, it stores into the
+ *  From the <b>\a o_current</b> pointed object, it stores into the
  *  GschemToplevel structure the ....
  *  These variables are used in the grip process.
  *
  *  The function first erases the grips.
  *
  *  The coordinates of the selected corner are put in
- *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *  (<b>w_current->second_wx</b>,<b>w_current->second_wy</b>).
  *
  *  The coordinates of the opposite corner go in
- *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not
+ *  (<b>w_current->first_wx</b>,<b>w_current->first_wy</b>). They are not
  *  suppose to change during the action.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -770,17 +771,17 @@ static void o_grips_start_picture(GschemToplevel *w_current, Object *o_current,
 /*! \brief Initialize grip motion process for a circle.
  *  \par Function Description
  *  This function initializes the grip motion process for a circle.
- *  From the <B>o_current</B> pointed object, it stores into the
+ *  From the <b>\a o_current</b> pointed object, it stores into the
  *  GschemToplevel structure the coordinate of the center and the radius.
  *  These variables are used in the grip process.
  *
  *  The function first erases the grips.
  *
  *  The coordinates of the center are put in
- *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>). They are not suppose
+ *  (<b>w_current->first_wx</b>,<b>w_current->first_wy</b>). They are not suppose
  *  to change during the action.
  *
- *  The radius of the circle is stored in <B>w_current->distance</B>.
+ *  The radius of the circle is stored in <b>w_current->distance</b>.
  *
  *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Circle Object to check.
@@ -806,14 +807,14 @@ static void o_grips_start_circle(GschemToplevel *w_current, Object *o_current,
 
 /*! \brief Initialize grip motion process for a line.
  *  This function starts the move of one of the two grips of the line
- *  object <B>o_current</B>.
+ *  object <b>\a o_current</b>.
  *
  *  During the move of the grip, the line is described by
- *  (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>) and
- *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *  (<b>w_current->first_wx</b>,<b>w_current->first_wy</b>) and
+ *  (<b>w_current->second_wx</b>,<b>w_current->second_wy</b>).
  *
  *  The line end that corresponds to the moving grip is in
- *  (<B>w_current->second_wx</B>,<B>w_current->second_wy</B>).
+ *  (<b>w_current->second_wx</b>,<b>w_current->second_wy</b>).
  *
  *  \param [in]  w_current  The GschemToplevel object.
  *  \param [in]  o_current  Line Object to check.
@@ -840,16 +841,16 @@ static void o_grips_start_line(GschemToplevel *w_current, Object *o_current,
 /*! \brief Start process of modifiying one grip.
  *  \par Function Description
  *  This function starts the process of modifying one grip of an object
- *  on the current sheet. The event occured at (<B>w_x</B>,<B>w_y</B>) in
+ *  on the current sheet. The event occured at (<b>w_x</b>,<b>w_y</b>) in
  *  world unit. If this position is related to a grip of an object, the
  *  function prepares the modification of this grip thanks to the user input.
  *
- *  The function returns <B>FALSE</B> if an error occured or if no grip
- *  have been found under (<B>w_x</B>,<B>w_y</B>). It returns <B>TRUE</B> if a grip
+ *  The function returns <b>FALSE</b> if an error occured or if no grip
+ *  have been found under (<b>w_x</b>,<b>w_y</b>). It returns <b>TRUE</b> if a grip
  *  has been found and modification of the object has been started.
  *
  *  If a grip has been found, this function modifies the GschemToplevel
- *  variables <B>which_grip</B> and <B>which_object</B> with the identifier
+ *  variables <b>which_grip</b> and <b>which_object</b> with the identifier
  *  of the grip and the object it belongs to respectively.
  *
  *  \param [in]  w_current  The GschemToplevel object.
@@ -926,11 +927,11 @@ int o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Modify previously selected object according to mouse position.
  *  \par Function Description
  *  This function modify the previously selected
- *  object according to the mouse position in <B>w_x</B> and <B>w_y</B>.
+ *  object according to the mouse position in <b>w_x</b> and <b>w_y</b>.
  *  The grip under modification is updated and the temporary object displayed.
  *
- *  The object under modification is <B>w_current->which_object</B> and
- *  the grip concerned is <B>w_current->which_grip</B>.
+ *  The object under modification is <b>w_current->which_object</b> and
+ *  the grip concerned is <b>w_current->which_grip</b>.
  *
  *  Depending on the object type, a specific function is used.
  *  It erases the temporary object, updates its internal representation,
@@ -1144,13 +1145,13 @@ static void o_grips_end_picture(GschemToplevel *w_current, Object *o_current,
 /*! \brief End process of modifying circle object with grip.
  *  \par Function Description
  *  This function ends the process of modifying the radius of the circle
- *  object <B>*o_current</B>.
+ *  object <b>*o_current</b>.
  *  The modified circle is finally normally drawn.
  *
  *  A circle with a null radius is not allowed. In this case, the process
  *  is stopped and the circle is left unchanged.
  *
- *  The last value of the radius is in <B>w_current->distance</B> in screen units.
+ *  The last value of the radius is in <b>w_current->distance</b> in screen units.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] o_current  Circle Object to end modification on.
@@ -1175,9 +1176,9 @@ static void o_grips_end_circle(GschemToplevel *w_current, Object *o_current,
 /*! \brief End process of modifying line object with grip.
  *  \par Function Description
  *  This function ends the process of modifying one end of the line
- *  object <B>*o_current</B>.
- *  This end is identified by <B>whichone</B>. The line object is modified
- *  according to the <B>whichone</B> parameter and the last position of the
+ *  object <b>*o_current</b>.
+ *  This end is identified by <b>whichone</b>. The line object is modified
+ *  according to the <b>whichone</b> parameter and the last position of the
  *  line end.
  *  The modified line is finally normally drawn.
  *
@@ -1209,9 +1210,9 @@ static void o_grips_end_line(GschemToplevel *w_current, Object *o_current,
 /*! \brief End process of modifying net object with grip.
  *  \par Function Description
  *  This function ends the process of modifying one end of the net
- *  object <B>*o_current</B>.
- *  This end is identified by <B>whichone</B>. The line object is modified
- *  according to the <B>whichone</B> parameter and the last position of the
+ *  object <b>*o_current</b>.
+ *  This end is identified by <b>whichone</b>. The line object is modified
+ *  according to the <b>whichone</b> parameter and the last position of the
  *  line end.
  *  The connections to the modified net are checked and recreated if neccessary.
  *
@@ -1249,9 +1250,9 @@ static void o_grips_end_net(GschemToplevel *w_current, Object *o_current,
 /*! \brief End process of modifying pin object with grip.
  *  \par Function Description
  *  This function ends the process of modifying one end of the pin
- *  object <B>*o_current</B>.
- *  This end is identified by <B>whichone</B>. The pin object is modified
- *  according to the <B>whichone</B> parameter and the last position of the
+ *  object <b>*o_current</b>.
+ *  This end is identified by <b>whichone</b>. The pin object is modified
+ *  according to the <b>whichone</b> parameter and the last position of the
  *  pin end.
  *  The connections to the modified pin are checked and recreated if neccessary.
  *
@@ -1283,9 +1284,9 @@ static void o_grips_end_pin(GschemToplevel *w_current, Object *o_current,
 /*! \brief End process of modifying bus object with grip.
  *  \par Function Description
  *  This function ends the process of modifying one end of the bus
- *  object <B>*o_current</B>.
- *  This end is identified by <B>whichone</B>. The line object is modified
- *  according to the <B>whichone</B> parameter and the last position of the
+ *  object <b>*o_current</b>.
+ *  This end is identified by <b>whichone</b>. The line object is modified
+ *  according to the <b>whichone</b> parameter and the last position of the
  *  bus end.
  *  The connections to the modified bus are checked and recreated if neccessary.
  *
@@ -1322,8 +1323,8 @@ static void o_grips_end_bus(GschemToplevel *w_current, Object *o_current,
  *  The temporary representation of the object is erased, the object is
  *  modified and finally drawn.
  *
- *  The object under modification is <B>w_current->which_object</B> and
- *  the grip concerned is <B>w_current->which_grip</B>.
+ *  The object under modification is <b>w_current->which_object</b> and
+ *  the grip concerned is <b>w_current->which_grip</b>.
  *
  *  Depending on the object type, a specific function is used. It erases
  *  the temporary object, updates the object and draws the modified object
@@ -1418,7 +1419,7 @@ void o_grips_end(GschemToplevel *w_current)
  *  in screen units, based on the objects width and the zoom factor.
  *  Between the threashold and 0, grippable object with non-zero
  *  width, the size returned is the greater of width - factor and
- *  <B>GRIP_SIZE_ZOOM1</B>. The value returned for "grippables" with
+ *  <b>GRIP_SIZE_ZOOM1</b>. The value returned for "grippables" with
  *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
  *  MAX_GRIP_PIXELS is returned.
  *

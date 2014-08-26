@@ -1,3 +1,17 @@
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+      * docs/libgedauio.dox: Generate TAGFILES files for libgedauio in the
+        output directory. Redirect errors and warnings to log.
+
+      * src/dialogs/geda_file_chooser.c: Reformat Doxygen codes and cleanup
+        source documentation, also general clean-up.
+
+      * src/widgets/geda_combobox.c: Reformat Doxygen codes and cleanup
+        source documentation.
+
+      * src/widgets/geda_comboboxtext.c: Reformat Doxygen codes and cleanup
+        source documentation.
+
 2014-08-21 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_comboboxtext.c: Do NOT emit "changed" when user types

@@ -73,7 +73,7 @@ o_circle_new(int color, int x, int y, int radius)
  *
  *  \par Function Description
  *  The function #o_circle_copy() creates a verbatim copy of the object
- *  pointed by <B>o_current</B> describing a circle.
+ *  pointed by <B>\a o_current</B> describing a circle.
  *
  *  \param [in]  o_current  Circle Object to copy.
  *  \return The new Object
@@ -407,7 +407,7 @@ o_circle_rotate_world(int world_centerx, int world_centery, int angle, Object *o
 /*! \brief Mirror circle using WORLD coordinates.
  *
  *  \par Function Description
- *  This function recalculates the screen coords of the <B>o_current</B> pointed
+ *  This function recalculates the screen coords of the <B>\a o_current</B> pointed
  *  circle object from its world coords.
  *
  *  The circle coordinates and its bounding are recalculated as well as the
@@ -457,15 +457,15 @@ bool o_circle_get_position (int *x, int *y, Object *object)
 
 /*! \brief Print circle to Postscript document.
  *  \par Function Description
- *  This function prints the circle described by the <B>o_current</B>
+ *  This function prints the circle described by the <B>\a o_current</B>
  *  parameter to a Postscript document. It takes into account its line type
  *  and fill type.
  *  The Postscript document is descibed by the file pointer <B>fp</B>.
  *
- *  The validity of the <B>o_current</B> pointer is checked :
+ *  The validity of the <B>\a o_current</B> pointer is checked :
  *  a null pointer causes an error message and a return.
  *
- *  The description of the circle is extracted from the <B>o_current</B>
+ *  The description of the circle is extracted from the <B>\a o_current</B>
  *  parameter : the coordinates of the center of the circle, its radius,
  *  its line type, its fill type.
  *
@@ -505,7 +505,7 @@ o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    * #o_circle_print_center() and #o_circle_print_phantom().
    *
    * The needed parameters for each of these type is extracted from the
-   * <B>o_current</B> object. Depending on the type, unused parameters are
+   * <B>\a o_current</B> object. Depending on the type, unused parameters are
    * set to -1.
    *
    * In the eventuality of a length and/or space null, the line is
@@ -570,7 +570,7 @@ o_circle_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    * If the filling type of the circle is not <B>HOLLOW</B>, the appropriate
    * function is chosen among #o_circle_print_filled(), #o_circle_print_mesh()
    * and #o_circle_print_hatch(). The corresponding parameters are extracted
-   * from the <B>o_current</B> object and corrected afterward.
+   * from the <B>\a o_current</B> object and corrected afterward.
    *
    * The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
    * avoided as it leads to an endless loop in most of the called functions.

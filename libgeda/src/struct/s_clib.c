@@ -112,6 +112,7 @@
  */
 
 #include <geda_standard.h>
+#include <geda_sdefines.h>  /* Explicitly include for doxygen, not preprocessor */
 
 #include <glib.h>
 
@@ -858,7 +859,7 @@ const CLibSource *s_clib_get_source_by_name (const char *name)
 /*! \brief Add a directory of symbol files to the library
  *  \par Function Description
  *  Adds a directory containing symbol files to the library.  Only
- *  files ending with #SYMBOL_FILE_DOT_SUFFIX are considered to be symbol
+ *  files ending with <b>#SYMBOL_FILE_DOT_SUFFIX</b> are considered to be symbol
  *  files.  A \a name may be specified for the source; if \a name is
  *  \b NULL, the basename of the directory as returned by
  *  g_path_get_basename() is used.

@@ -8,8 +8,10 @@ SUBDIRS = bitmaps include intl libgeda libgedacairo libgedauio \
 		  gschem gsymcheck gnetlist utils symbols docs examples
 
 # See doxygen below (in this same file) - these all have configs.dox
-DOXDIRS = gattrib gschem gnetlist libgeda libgedacairo libgedauio \
-		  libgedathon gsymcheck utils
+# including the period which is used to reference the top-level docs
+# directory
+DOXDIRS = .       libgeda libgedacairo libgedauio libgedathon \
+		  gattrib gsymcheck gnetlist gschem utils
 
 ACLOCAL_AMFLAGS = -I m4
 
@@ -91,8 +93,8 @@ distclean-local:
 maintainer-clean-local:
 	-rm -rf autom4te.cache
 
-MOSTLYCLEANFILES     = *~
-CLEANFILES           = *~
-DISTCLEANFILES       = *~ Makefile.in stamp-git
-MAINTAINERCLEANFILES = *~ aclocal.m4 config.h.in configure
+MOSTLYCLEANFILES     = *~ *.log
+CLEANFILES           = *~ *.log
+DISTCLEANFILES       = *~ *.log Makefile.in stamp-git
+MAINTAINERCLEANFILES = *~ *.log aclocal.m4 config.h.in configure
 

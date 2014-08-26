@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_types.h -*-
- * file: geda_types.h
+/* -*- C header file: geda_types.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -21,9 +20,18 @@
  * MA 02110-1301 USA
  */
 
+/** \file geda_types.h
+ *
+ *   \defgroup geda-global-types Global Type Definitions
+ * @{\par This group contains global type definitions
+ *   \ingroup (geda-globals)
+ */
+
 typedef int bool;
 
 typedef unsigned char uint8;
 typedef unsigned long DWORD;
 
 typedef unsigned int GedaType;
+
+/** @} endgroup geda-global-types */

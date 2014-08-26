@@ -78,7 +78,7 @@ o_box_new(int color, int x1, int y1, int x2, int y2)
  *
  *  \par Function Description
  *  The function #o_box_copy() creates a verbatim copy of the object
- *  pointed by <B>o_current</B> describing a box.
+ *  pointed by <B>\a o_current</B> describing a box.
  *
  *  \param [in]      o_current  Box Object to copy.
  *
@@ -569,16 +569,16 @@ o_box_get_position (int *x, int *y, Object *object)
 
 /*! \brief Print Box to Postscript document.
  *  \par Function Description
- *  This function prints the box described by the <B>o_current</B>
+ *  This function prints the box described by the <B>\a o_current</B>
  *  parameter to a Postscript document. It takes into account its line
  *  type and fill type.
  *  The Postscript document is descibed by the file pointer <B>fp</B>.
  *
- *  The validity of the <B>o_current</B> parameter is verified : a null pointer
+ *  The validity of the <B>\a o_current</B> parameter is verified : a null pointer
  *  causes an error message and a return.
  *
  *  The description of the box is extracted from
- *  the <B>o_current</B> parameter :
+ *  the <B>\a o_current</B> parameter :
  *  the coordinates of the box - upper left corner and width and
  *  height of the box -, its line type, its fill type.
  *
@@ -692,7 +692,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *  If the filling type of the box is not <B>HOLLOW</B>, the appropriate
    *  function is chosen among #o_box_print_filled(), #o_box_print_mesh()
    *  and #o_box_print_hatch(). The corresponding parameters are extracted
-   *  from the <B>o_current</B> object and corrected afterward.
+   *  from the <B>\a o_current</B> object and corrected afterward.
    *
    *  The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
    *  avoided as it leads to an endless loop in most of the called functions.

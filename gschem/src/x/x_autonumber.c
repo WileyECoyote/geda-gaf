@@ -643,7 +643,7 @@ void autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
 
 /*! \brief Changes the number <B>Object</B> element. Changes the slot attribute.
  *  \par Function Description
- *  This function updates the text content of the <B>o_current</B> object.
+ *  This function updates the text content of the <B>\a o_current</B> object.
  *  If the <B>slot</B> value is not zero. It updates the slot attribut of the
  *  complex element that is also the parent object of the o_current element.
  *

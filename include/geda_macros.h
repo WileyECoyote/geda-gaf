@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_macros.h -*-
- * file: geda_macros.h
+/* -*- C header file: geda_macros.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -21,8 +20,16 @@
  * MA 02110-1301 USA
  */
 
-/* Need conditional inclusion but holding off since this macros will yelp
-   if there is a double inclusion of a header file */
+/** \file geda_macros.h
+ *
+ *  \remarks Need conditional inclusion but holding off since these macros
+ *           will cause preprocessor to yelp if there is a double inclusion
+ *           of this header file
+ *
+ *    \defgroup geda-global-macros Global General Purpose Macros
+ *  @{\par This group contains general purpose Preprocessor Macros
+ *    \ingroup (geda-globals)
+ */
 
 #ifndef lambda
 #define lambda GFunc lambda_func
@@ -55,3 +62,4 @@
 #define BUG_ITRACE(mesg, val) fprintf (stderr, "File %s, <%s> at line %d: %s=%d\n", \
                                        __FILE__, __func__, __LINE__, mesg, val); \
                                        u_program_backtrace();
+/** @} endgroup geda-global-macros */

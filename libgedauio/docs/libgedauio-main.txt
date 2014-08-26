@@ -1,11 +1,12 @@
 /*! \mainpage libgedauio - The GPL Electronic Design Automation User Interface Objects Library.
 \image html logo_512x208.png
 \image latex logo_512x208.png
-\section geda-intro gEDA Introduction
+\section libgedauio-geda-intro gEDA Introduction
     \htmlinclude what-is-geda.html
     \latexonly
         \input what-is-geda.tex
     \endlatexonly
+\ref geda-gaf "gEDA Suite"
 \section libgedauio-intro libgedauio Introduction
     \htmlinclude what-is-libgedauio.html
     \latexonly

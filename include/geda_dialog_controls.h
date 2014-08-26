@@ -1,67 +1,63 @@
-/* C header
-;  File: geda_dialog_controls.h
-;;
-;;; gEDA - GPL Electronic Design Automation
-;;;
-;;; Copyright (C) 1998-2014 Ales Hvezda
-;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
-;;
-;;; Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
-;;
-;;; This program is free software; you can redistribute it and/or modify
-;;; it under the terms of the GNU General Public License as published by
-;;; the Free Software Foundation; either version 2 of the License, or
-;;; (at your option) any later version.
-;;;
-;;; This program is distributed in the hope that it will be useful,
-;;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;;; GNU General Public License for more details.
-;;;
-;;; You should have received a copy of the GNU General Public License
-;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
-;;
-;;; Date: Aug, 22, 2012
-;;; Contributing Author: Wiley Edward Hill
-;;
+/* -*- C header file: geda_dialog_controls.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * Copyright (C) 2013-2014 Wiley Edward Hill
+ * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
+ *
+ * Date: Aug, 22, 2012
+ * Contributing Author: Wiley Edward Hill
+ *
 */
 /************************ REVISION HISTORY *************************
-;; Who |   When   |  What (Why)
-;; ------------------------------------------------------------------
-;; WEH | 09/17/12 |  Inital release.
-;; ------------------------------------------------------------------
-;; WEH | 11/03/12 |  Added macros GEDA_SWITCH & GEDA_CALLBACK_SWITCH
-;;                | to support routine with passing parameters and
-;;                | having independent callbacks. Added GEDA_NUMERIC_SPIN
-;;                | to support routines not using embed labels.
-;; ------------------------------------------------------------------
-;; WEH | 11/16/12 | Added GEDA_NEW_COMBO macro which is functionally
-;;                | equivalent to GTK_NEW_COMBO but does not have the
-;;                | localization so that the embed widgets, such as the
-;;                | label, are accessible to implementation code.
-;; ------------------------------------------------------------------
-;; WEH | 12/12/12 | Added DialogFont "Monospace 13.3" and PANGO_R5_LABEL,
-;;                | Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary controls
-;;                | use the new PANGO_R5_LABEL macro instead of GTK_R5_LABEL.
-;; ------------------------------------------------------------------
-;; WEH | 09/08/13 | Changed all macros to use g_object_set instead of gtk
-;;                | _widget_show. Added GSCHEM_SWITCH macro for switches
-;;                | in tables.
-;; ------------------------------------------------------------------
-;; WEH | 09/20/13 | Added GEDA_FRAME to extend macro library
-;; ------------------------------------------------------------------
-;; WEH | 09/27/13 | Replaced older gtk_tooltips_set_tip function with
-;;                | newer gtk_widget_set_tooltip_text function.
-;; ------------------------------------------------------------------
-;; WEH | 10/06/13 | Relocated function macros to geda_gui_funcs.h
-;;                |
-;; ------------------------------------------------------------------
-;; WEH | 06/23/14 | Replaced gtk_label with geda_label_new or variants.
-;;                |
-;; ------------------------------------------------------------------
-;; WEH | 08/21/14 | Added GEDA_BULB_x and corresponding cluster type for
-;;                | labeless groups
+ * Who |   When   |  What (Why)
+ * ------------------------------------------------------------------
+ * WEH | 09/17/12 |  Inital release.
+ * ------------------------------------------------------------------
+ * WEH | 11/03/12 |  Added macros GEDA_SWITCH & GEDA_CALLBACK_SWITCH
+ *                | to support routine with passing parameters and
+ *                | having independent callbacks. Added GEDA_NUMERIC_SPIN
+ *                | to support routines not using embed labels.
+ * ------------------------------------------------------------------
+ * WEH | 11/16/12 | Added GEDA_NEW_COMBO macro which is functionally
+ *                | equivalent to GTK_NEW_COMBO but does not have the
+ *                | localization so that the embed widgets, such as the
+ *                | label, are accessible to implementation code.
+ * ------------------------------------------------------------------
+ * WEH | 12/12/12 | Added DialogFont "Monospace 13.3" and PANGO_R5_LABEL,
+ *                | Changed GEDA_SWITCH and GTK_LABEL_HBOX so primary controls
+ *                | use the new PANGO_R5_LABEL macro instead of GTK_R5_LABEL.
+ * ------------------------------------------------------------------
+ * WEH | 09/08/13 | Changed all macros to use g_object_set instead of gtk
+ *                | _widget_show. Added GSCHEM_SWITCH macro for switches
+ *                | in tables.
+ * ------------------------------------------------------------------
+ * WEH | 09/20/13 | Added GEDA_FRAME to extend macro library
+ * ------------------------------------------------------------------
+ * WEH | 09/27/13 | Replaced older gtk_tooltips_set_tip function with
+ *                | newer gtk_widget_set_tooltip_text function.
+ * ------------------------------------------------------------------
+ * WEH | 10/06/13 | Relocated function macros to geda_gui_funcs.h
+ *                |
+ * ------------------------------------------------------------------
+ * WEH | 06/23/14 | Replaced gtk_label with geda_label_new or variants.
+ *                |
+ * ------------------------------------------------------------------
+ * WEH | 08/21/14 | Added GEDA_BULB_x and corresponding cluster type for
+ *                | labeless groups
 */
 
 #pragma once
@@ -70,6 +66,14 @@
   #include "geda_gui_funcs.h"
 #endif
 
+/**
+ * \file geda_dialog_controls.h
+ *   \defgroup geda-dialog-controls gEDA Dialog controls
+ * @{\par This group contains Macros for controls used in Dialogs
+ *   \ingroup (geda-globals)
+ */
+
+/*! \def DialogFont Defines the default font used in gEDA dialogs */
 #define DialogFont "Monospace 13.3"
 
 typedef struct
@@ -783,7 +787,6 @@ typedef struct
 #define GTK_EDITITABLE(widget) \
         gtk_editable_select_region( GTK_EDITABLE (widget), 0, -1);
 
-
 /* View Trees load_tree_view_##source (ThisDialog, GTK_TREE_VIEW(name##View), data);*/
 #define GTK_VIEW_TREE( parent, name, data, source, xsize, ysize) \
         name##View = GTK_WIDGET( gtk_tree_view_new()); \
@@ -795,3 +798,4 @@ typedef struct
         SET_WIDGET_SIZE ( name##View, xsize, ysize)  \
         HOOKUP_GEDA_OBJECT(name, View)
 
+/** @} endgroup geda-dialog-controls */

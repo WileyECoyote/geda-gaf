@@ -1,3 +1,8 @@
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * docs/libgeda.dox: Generate TAGFILES files for libgeda in the
+          output directory. Redirect errors and warnings to log.
+
 2014-08-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_arc.c:     Use GEDA_IS_OBJECT in type identifier.

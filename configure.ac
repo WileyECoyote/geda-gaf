@@ -377,6 +377,7 @@ AC_CONFIG_FILES([Makefile
                  symbols/Makefile
 
                  docs/Makefile
+                 docs/images/Makefile
                  docs/scheme-api/Makefile
                  docs/symbols/Makefile
                  docs/toplevel/Makefile

@@ -236,45 +236,45 @@ symversion=0.1
 }
 C 12800 10300 1 0 0 12V-plus-1.sym
 {
-T 12800 11025 5 10 0 0 0 0 1
-device=none
-T 12800 10850 5 10 0 0 0 0 1
+T 12800 11000 5 10 0 0 0 0 1
 footprint=none
+T 12800 10700 5 10 0 0 0 0 1
+device=VOLTAGE_SOURCE
 }
 C 8400 5100 1 180 0 12V-minus-1.sym
 {
-T 8400 4375 5 10 0 0 180 0 1
-device=none
-T 8400 4550 5 10 0 0 180 0 1
+T 8400 4400 5 10 0 0 180 0 1
 footprint=none
+T 8400 4700 5 10 0 0 180 0 1
+device=VOLTAGE_SOURCE
 }
 C 9000 3700 1 0 0 gnd-1.sym
 {
-T 9600 3800 5 10 0 0 0 0 1
-device=none
-T 9600 3800 5 10 0 0 0 0 1
+T 9000 4550 5 10 0 0 0 0 1
 footprint=none
+T 9000 4200 5 10 0 0 0 0 1
+device=GROUND_NODE
 }
 C 12100 3700 1 0 0 gnd-1.sym
 {
-T 12700 3800 5 10 0 0 0 0 1
-device=none
-T 12700 3800 5 10 0 0 0 0 1
+T 12100 4550 5 10 0 0 0 0 1
 footprint=none
+T 12100 4200 5 10 0 0 0 0 1
+device=GROUND_NODE
 }
 C 7300 3700 1 0 0 gnd-1.sym
 {
-T 7900 3800 5 10 0 0 0 0 1
-device=none
-T 7900 3800 5 10 0 0 0 0 1
+T 7300 4550 5 10 0 0 0 0 1
 footprint=none
+T 7300 4200 5 10 0 0 0 0 1
+device=GROUND_NODE
 }
 C 14400 8400 1 0 0 gnd-1.sym
 {
-T 15000 8500 5 10 0 0 0 0 1
-device=none
-T 15000 8500 5 10 0 0 0 0 1
+T 14400 9250 5 10 0 0 0 0 1
 footprint=none
+T 14400 8900 5 10 0 0 0 0 1
+device=GROUND_NODE
 }
 C 2300 7800 1 0 0 in-1.sym
 {

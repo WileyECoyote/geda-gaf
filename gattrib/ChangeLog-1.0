@@ -1,37 +1,42 @@
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * docs/attrib.dox:  Read library TAGFILES files, redirect errors and
+      warnings to log (but can still be done on command-line).
+
 2014-07-25 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/*/*.c: Redo inclusion of header files
+    * src/*/*.c: Redo inclusion of header files
 
 2014-07-24 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/gattrib_dialog.c: Replace g_mkdir with f_create_path in function
-       setup_keyfile.
+    * src/gattrib_dialog.c: Replace g_mkdir with f_create_path in function
+      setup_keyfile.
 
 2014-07-16 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/*/*.c:replace g_malloc with  GEDA_MEM_ALLOC
+    * src/*/*.c:replace g_malloc with  GEDA_MEM_ALLOC
 
 2014-07-13 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/*/*.c: Conditionally include <sys/stat.h>
+    * src/*/*.c: Conditionally include <sys/stat.h>
 
 2014-07-12 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/*/*.c: Replace g_strdup with geda_strdup
+    * src/*/*.c: Replace g_strdup with geda_strdup
 
 2014-07-11 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/x_dialog.c: Force gtk_file_chooser_dialog to start in current
+    * src/x_dialog.c: Force gtk_file_chooser_dialog to start in current
        directory.
 
 2014-07-08 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/x_gtksheet.c: Eliminate text variable in activate_sheet_cell,
-       simplify SetEntryText in show_sheet_entry;
+    * src/x_gtksheet.c: Eliminate text variable in activate_sheet_cell,
+      simplify SetEntryText in show_sheet_entry;
 
 2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-     * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+    * src/Makefile.am: Changed AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 2013-09-10 Wiley E. Hill <wileyhill@gmail.com>
 

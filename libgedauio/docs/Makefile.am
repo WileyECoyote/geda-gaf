@@ -6,12 +6,9 @@ GEDA_EXTRA  = logo_256x101.png logo_512x208.png what-is-geda.html \
 
 LOCAL_DOX   = libgedauio.dox libgedauio-main.txt
 
-#LOCAL_HTML  = guide-libgedathon.html include-libgedathon.html \
-#	      welcome_libgedathon.png  what-is-libgedauio.html
 LOCAL_HTML  = what-is-libgedauio.html
 
-#LOCAL_TEX   = what-is-libgedauio.tex include-libgedauio.tex \
-#	      guide-libgedauio.tex reference-libgedauio.tex
+LOCAL_TEX   = what-is-libgedauio.tex
 
 EXTRA_DIST  = $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX)
 

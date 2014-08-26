@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_gui_funcs.h -*-
- * file: geda_gui_funcs.h
+/* -*- C header file: geda_gui_funcs.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -45,6 +44,3 @@
 #define SetToggleState(widget, state) gtk_toggle_button_set_active ((GtkToggleButton*)widget, state)
 
 #define SetSpinValue( name, var) gtk_spin_button_set_value ((GtkSpinButton*)name, var);
-
-
-

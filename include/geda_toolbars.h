@@ -1,5 +1,4 @@
-/* C header                                           -*- toolbars.h -*-
- * file: toolbars.h
+/* -*- C header file: toolbars.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -21,17 +20,11 @@
  * MA 02110-1301 USA
  */
 
-/*!
- * \file
- * \brief Global variable declarations
- *
- * \section
- *
- */
 /* ------------------------------------------------------------------ */
 
 #ifndef __GEDA__TOOLBARS__
 #define __GEDA__TOOLBARS__
+
 
 typedef struct
 {

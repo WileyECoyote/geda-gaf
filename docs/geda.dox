@@ -32,7 +32,7 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = utils
+PROJECT_NAME           = gEDA
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
@@ -44,7 +44,7 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = gEDA  Electronics  Design  Utilities
+PROJECT_BRIEF          = Electronics  Design  Automation
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is included in
 # the documentation. The maximum height of the logo should not exceed 55 pixels
@@ -732,7 +732,7 @@ WARN_FORMAT            = "$file:$line: $text"
 # messages should be written. If left blank the output is written to standard
 # error (stderr).
 
-WARN_LOGFILE           = ../../utilities-doxygen.log
+WARN_LOGFILE           = ../geda-doxygen.log
 
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
@@ -744,9 +744,8 @@ WARN_LOGFILE           = ../../utilities-doxygen.log
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = ../src \
-                         ../include \
-                         ../docs/utils-main.txt
+INPUT                  = ../include \
+                         ./geda-main.txt
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -835,7 +834,7 @@ EXAMPLE_RECURSIVE      = NO
 # that contain images that are to be included in the documentation (see the
 # \image command).
 
-IMAGE_PATH             = ../docs
+IMAGE_PATH             = ../docs ./images
 
 # The INPUT_FILTER tag can be used to specify a program that doxygen should
 # invoke to filter for each input file. Doxygen will invoke the filter program
@@ -1629,8 +1628,7 @@ LATEX_FOOTER           =
 # markers available.
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
-LATEX_EXTRA_FILES      = what-is-geda.tex \
-                         what-is-utils.tex
+LATEX_EXTRA_FILES      = what-is-geda.tex
 
 # If the PDF_HYPERLINKS tag is set to YES, the LaTeX that is generated is
 # prepared for conversion to PDF (using ps2pdf or pdflatex). The PDF file will
@@ -1652,10 +1650,15 @@ USE_PDFLATEX           = YES
 # If the LATEX_BATCHMODE tag is set to YES, doxygen will add the \batchmode
 # command to the generated LaTeX files. This will instruct LaTeX to keep running
 # if errors occur, instead of asking the user for help. This option is also used
-# when generating formulas in HTML.
-# The default value is: NO.
+# when generating formulas in HTML. (WEH: And fixing latex processing issue as
+# noted below)
+# The default value is: NO. (WEH: But should probably be YES)
 # This tag requires that the tag GENERATE_LATEX is set to YES.
 
+# Enabling this stopped the "LaTeX Warning" about undefined references, there were
+# warnings for every group). Latex says to ignore the warnings, which should go
+# away on second pass but we only generate once and the console is inundated by
+# the output from Laxtex, setting this to YES seems to mostly fix. 03/24/14 WEH
 LATEX_BATCHMODE        = YES
 
 # If the LATEX_HIDE_INDICES tag is set to YES then doxygen will not include the
@@ -1893,9 +1896,9 @@ PERLMOD_MAKEVAR_PREFIX =
 
 ENABLE_PREPROCESSING   = YES
 
-# If the MACRO_EXPANSION tag is set to YES doxygen will expand all macro names
-# in the source code. If set to NO only conditional compilation will be
-# performed. Macro expansion can be done in a controlled way by setting
+# If the MACRO_EXPANSION tag is set to YES doxygen will expand all macro
+# names in the source code. If set to NO only conditional compilation will
+# be performed. Macro expansion can be done in a controlled way by setting
 # EXPAND_ONLY_PREDEF to YES.
 # The default value is: NO.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
@@ -1903,8 +1906,8 @@ ENABLE_PREPROCESSING   = YES
 MACRO_EXPANSION        = YES
 
 # If the EXPAND_ONLY_PREDEF and MACRO_EXPANSION tags are both set to YES then
-# the macro expansion is limited to the macros specified with the PREDEFINED and
-# EXPAND_AS_DEFINED tags.
+# the macro expansion is limited to the macros specified with the PREDEFINED
+# and EXPAND_AS_DEFINED tags.
 # The default value is: NO.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
@@ -1918,19 +1921,18 @@ EXPAND_ONLY_PREDEF     = NO
 SEARCH_INCLUDES        = YES
 
 # The INCLUDE_PATH tag can be used to specify one or more directories that
-# contain include files that are not input files but should be processed by the
-# preprocessor.
+# contain include files that are not input files but should be processed by
+# the preprocessor.
 # This tag requires that the tag SEARCH_INCLUDES is set to YES.
 
-INCLUDE_PATH           = ../include \
-                         ../../include \
-                         ../../libgeda/include/libgeda \
-                         /usr/include
+INCLUDE_PATH           = ../include
+#                         ../include/libgeda \
+#                         ../../include
 
 # You can use the INCLUDE_FILE_PATTERNS tag to specify one or more wildcard
 # patterns (like *.h and *.hpp) to filter out the header-files in the
-# directories. If left blank, the patterns specified with FILE_PATTERNS will be
-# used.
+# directories. If left blank, the patterns specified with FILE_PATTERNS will
+# be used.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
 INCLUDE_FILE_PATTERNS  = *.h
@@ -1981,14 +1983,16 @@ SKIP_FUNCTION_MACROS   = YES
 # the path). If a tag file is not located in the directory in which doxygen is
 # run, you must also specify the path to the tagfile here.
 
-TAGFILES               = "$(DOXYGEN_OUTDIR)/../geda/geda.tag=../../geda/html" \
-                         "$(DOXYGEN_OUTDIR)/../libgeda/libgeda.tag=../../libgeda/html"
+TAGFILES = "$(DOXYGEN_OUTDIR)/../libgeda/libgeda.tag=../../libgeda/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedacairo/libgedacairo.tag=../../libgedacairo/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedathon/libgedathon.tag=../../libgedathon/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedauio/libgedauio.tag=../../libgedauio/html"
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create a
 # tag file that is based on the input files it reads. See section "Linking to
 # external documentation" for more information about the usage of tag files.
 
-GENERATE_TAGFILE       =
+GENERATE_TAGFILE       = "$(DOXYGEN_OUTDIR)/geda.tag"
 
 # If the ALLEXTERNALS tag is set to YES all external class will be listed in the
 # class index. If set to NO only the inherited external classes will be listed.
@@ -2001,14 +2005,14 @@ ALLEXTERNALS           = NO
 # listed.
 # The default value is: YES.
 
-EXTERNAL_GROUPS        = YES
+EXTERNAL_GROUPS        = NO
 
 # If the EXTERNAL_PAGES tag is set to YES all external pages will be listed in
 # the related pages index. If set to NO, only the current project's pages will
 # be listed.
 # The default value is: YES.
 
-EXTERNAL_PAGES         = NO
+EXTERNAL_PAGES         = YES
 
 # The PERL_PATH should be the absolute path and name of the perl script
 # interpreter (i.e. the result of 'which perl').
@@ -2261,7 +2265,7 @@ DIAFILE_DIRS           =
 # Minimum value: 0, maximum value: 10000, default value: 50.
 # This tag requires that the tag HAVE_DOT is set to YES.
 
-DOT_GRAPH_MAX_NODES    = 50
+DOT_GRAPH_MAX_NODES    = 150
 
 # The MAX_DOT_GRAPH_DEPTH tag can be used to set the maximum depth of the graphs
 # generated by dot. A depth value of 3 means that only nodes reachable from the

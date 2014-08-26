@@ -841,7 +841,6 @@ void o_complex_reset_refdes(Object *object)
  * (\a centerx,\a centery) point by \a angle degrees.
  * The center of rotation is in world units.
  *
- * \param [in] toplevel The toplevel environment.
  * \param [in] centerx  X coordinate of rotation center (world coords).
  * \param [in] centery  Y coordinate of rotation center (world coords).
  * \param [in] angle    Rotation angle in degrees.

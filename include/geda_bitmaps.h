@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_bitmaps.h -*-
- * file: geda_bitmaps.h
+/* -*- C header file: geda_bitmaps.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -23,33 +22,37 @@
 #ifndef __GEDA_BITMAPS_H__
 #define __GEDA_BITMAPS_H__
 
-/*!
- * \file
+/**
+ * \file geda_bitmaps.h
  * \brief Global String Defines for gEDA Bit-Maps
  *
  * \remarks
- * Exported from OpenOfficefile bitmaps/prog/geda_gaf_bitmaps.ods
- * The first section defines all bitmap files. Section two defines selected
- * bitmaps. For most bitmaps the 2nd definition should be used as this will
- * normally be shorter.
+ *  Exported from OpenOfficefile bitmaps/prog/geda_gaf_bitmaps.ods
+ *  The first section defines all bitmap files. Section two defines selected
+ *  bitmaps. For most bitmaps the 2nd definition should be used as this will
+ *  normally be shorter.
+ *
+ *   \defgroup geda-global-bitmaps Global Bitmap String Name
+ * @{\par This group defines strings to reference global bitmap image
+ *   \ingroup (geda-globals)
  */
 
-/* \brief Macro for quoting - Don't use this!*/
+/*! \internal Macro for quoting - Don't use this!*/
 #define QUOTE_BITMAP(name) #name
 
 /*!
  * \brief Bitmap Stringification
  *
- * \example BITMAP(GSCHEM_SELECT_BITMAP)
+ * example BITMAP(GSCHEM_SELECT_BITMAP)
  */
 #define BITMAP(...) QUOTE_BITMAP(__VA_ARGS__)
 
-#define GAF_MAP(image_name) GAF_##image_name##_BITMAP
-#define GEDA_MAP(image_name) GEDA_##image_name##_BITMAP
+#define GAF_MAP(image_name)    GAF_##image_name##_BITMAP
+#define GEDA_MAP(image_name)   GEDA_##image_name##_BITMAP
 #define GSCHEM_MAP(image_name) GSCHEM_##image_name##_BITMAP
-#define STOCK_MAP(image_name) GTK_STOCK_##image_name
+#define STOCK_MAP(image_name)  GTK_STOCK_##image_name
 
-/*! \section Bitmap Files Listing */
+/*! \brief Bitmap Files Listing */
 #define GAF_BITMAP_ADD_ATTRIBUTE_TINY                    "22x22/gaf_add_attribute_22x22.png"
 #define GAF_BITMAP_ADD_ATTRIBUTE_SMALL                   "24x24/gaf_add_attribute_24x24.png"
 #define GAF_BITMAP_ADD_ATTRIBUTE_MEDIUM                  "26x26/gaf_add_attribute_26x26.png"
@@ -395,7 +398,7 @@
 
 #define GSCHEM_BITMAP_WARNING_XXXLARGE                   "gschem_warning.png"
 
-/*!\section Selected Bitmaps defined using above defines! */
+/*!\brief Selected Bitmaps defined using above defines! */
 #define GAF_ADD_ATTRIBUTE_BITMAP        GAF_BITMAP_ADD_ATTRIBUTE_MEDIUM
 #define GAF_TOOLS_BITMAP                GAF_BITMAP_TOOLS_MEDIUM
 #define GAF_PDF_BITMAP                  GAF_BITMAP_PDF_SMALL
@@ -484,7 +487,14 @@
 #define GSCHEM_UNSELECT_BITMAP          GSCHEM_BITMAP_UNSELECT_TINY
 #define GSCHEM_WARNING_BITMAP           GSCHEM_BITMAP_WARNING_XXXLARGE
 
-/*!\section Special-Purpose Bitmaps Definitions */
+/*!\defgroup geda-global-special-bitmaps Global Special Bitmaps
+ * @{\par This group defines strings to reference special bitmap image
+ */
+
+/*! \def CLOSE_TOOLBAR_BITMAP     The little red "x" in each tool-bar */
 #define CLOSE_TOOLBAR_BITMAP            "close_box.png"
+
+/** @} endgroup geda-global-special-bitmaps */
+/** @} endgroup geda-global-bitmaps */
 
 #endif /* __GEDA_BITMAPS_H__ */

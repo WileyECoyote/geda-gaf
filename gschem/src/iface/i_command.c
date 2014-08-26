@@ -2396,7 +2396,7 @@ COMMAND ( do_add_text )
 
 /*! \brief Add Line Mode  in i_command_Add_Actions
  *  \par Function Description
- *  This is the action handler function for #ADD_LINE.
+ *  This is the action handler function for ADD_LINE.
  */
 /** @brief i_cmd_do_add_line in i_command_Command_Functions */
 COMMAND (do_add_line)

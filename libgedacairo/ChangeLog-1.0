@@ -1,3 +1,8 @@
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * docs/libgedacairo.dox: Generate TAGFILES files for libgedacairo
+          in the output directory. Redirect errors and warnings to log.
+
 2014-07-28 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/edarenderer.c: Replace "renderer->priv->pl != NULL: with

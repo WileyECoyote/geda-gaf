@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_system.h -*-
- * file: geda_system.h
+/* -*- C header file: geda_system.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -22,6 +21,13 @@
  */
 #ifndef __GEDA_SYSTEM__
 #define __GEDA_SYSTEM__
+
+/** \file geda_system.h
+ *
+ *   \defgroup geda-global-system Global System Defines
+ * @{\par This group contains system related defines
+ *   \ingroup (geda-globals)
+ */
 
 #if defined(WIN32) || defined(_WIN32)
 
@@ -47,4 +53,5 @@
 #error "No suitable OS defined"
 #endif
 
+/** @} endgroup geda-global-system */
 #endif

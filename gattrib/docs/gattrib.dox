@@ -44,7 +44,7 @@ PROJECT_NUMBER         =
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = gEDA Attribute Editor
+PROJECT_BRIEF          = gEDA  Attribute  Editor
 
 # With the PROJECT_LOGO tag one can specify an logo or icon that is included in
 # the documentation. The maximum height of the logo should not exceed 55 pixels
@@ -732,7 +732,7 @@ WARN_FORMAT            = "$file:$line: $text"
 # messages should be written. If left blank the output is written to standard
 # error (stderr).
 
-WARN_LOGFILE           =
+WARN_LOGFILE           = ../../gattrib-doxygen.log
 
 #---------------------------------------------------------------------------
 # Configuration options related to the input files
@@ -746,7 +746,7 @@ WARN_LOGFILE           =
 
 INPUT                  = ../src \
                          ../include \
-                         ../docs/gattrib-main.txt
+                         ./gattrib-main.txt
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
@@ -1922,7 +1922,10 @@ SEARCH_INCLUDES        = YES
 # preprocessor.
 # This tag requires that the tag SEARCH_INCLUDES is set to YES.
 
-INCLUDE_PATH           = ../include
+INCLUDE_PATH           = ../include \
+                         ../../include \
+                         ../../libgeda/include/libgeda \
+                         /usr/include
 
 # You can use the INCLUDE_FILE_PATTERNS tag to specify one or more wildcard
 # patterns (like *.h and *.hpp) to filter out the header-files in the
@@ -1930,7 +1933,7 @@ INCLUDE_PATH           = ../include
 # used.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-INCLUDE_FILE_PATTERNS  =
+INCLUDE_FILE_PATTERNS  = *.h
 
 # The PREDEFINED tag can be used to specify one or more macro names that are
 # defined before the preprocessor is started (similar to the -D option of e.g.
@@ -1978,7 +1981,11 @@ SKIP_FUNCTION_MACROS   = YES
 # the path). If a tag file is not located in the directory in which doxygen is
 # run, you must also specify the path to the tagfile here.
 
-TAGFILES               =
+TAGFILES = "$(DOXYGEN_OUTDIR)/../geda/geda.tag=../../geda/html" \
+           "$(DOXYGEN_OUTDIR)/../libgeda/libgeda.tag=../../libgeda/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedacairo/libgedacairo.tag=../../libgedacairo/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedathon/libgedathon.tag=../../libgedathon/html" \
+           "$(DOXYGEN_OUTDIR)/../libgedauio/libgedauio.tag=../../libgedauio/html"
 
 # When a file name is specified after GENERATE_TAGFILE, doxygen will create a
 # tag file that is based on the input files it reads. See section "Linking to
@@ -1997,14 +2004,14 @@ ALLEXTERNALS           = NO
 # listed.
 # The default value is: YES.
 
-EXTERNAL_GROUPS        = YES
+EXTERNAL_GROUPS        = NO
 
 # If the EXTERNAL_PAGES tag is set to YES all external pages will be listed in
 # the related pages index. If set to NO, only the current project's pages will
 # be listed.
 # The default value is: YES.
 
-EXTERNAL_PAGES         = YES
+EXTERNAL_PAGES         = NO
 
 # The PERL_PATH should be the absolute path and name of the perl script
 # interpreter (i.e. the result of 'which perl').

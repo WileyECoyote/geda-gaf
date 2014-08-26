@@ -1638,7 +1638,7 @@ static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
  *  If a object property is different to the other objects, then
  *  return -2 in that variable.
  *  \param [in]   selection the selection list
- *  \param [out]  end       LINE_END type
+ *  \param [out]  end       #LINE_END type
  *  \param [out]  type      OBJECT_FILLING type
  *  \param [out]  width     line width
  *  \param [out]  length    length of each line
@@ -1689,8 +1689,8 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
  *  invalid value -2 are set to *unchanged*.
  *
  *  \param [in]   line_data line dialog structure
- *  \param [in]   end       LINE_END type (currently not used)
- *  \param [in]   type      LINE_TYPE type
+ *  \param [in]   end       #LINE_END type (currently not used)
+ *  \param [in]   type      #LINE_TYPE type
  *  \param [in]   width     fill width.
  *  \param [in]   length    length of each line
  *  \param [in]   space     space between points and lines

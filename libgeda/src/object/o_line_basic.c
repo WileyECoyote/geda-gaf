@@ -29,9 +29,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*! \brief Create and add line Object to list
  *
@@ -83,10 +81,10 @@ o_line_new( int color, int x1, int y1, int x2, int y2)
 /*! \brief Create a copy of a line.
  *
  *  \par Function Description
- *  This function creates a copy of the \a Line object pointed
- *  by <B>o_current</B> describing a line. The coordinates of the
- *  ends of the new line are set with the ones of the original
- *  line. The two lines have the same line type
+ *  This function creates a copy of the \a Line object pointed by
+ *  <B>\a o_current</B> describing a line. The coordinates of the ends
+ *  of the new line are set with the ones of the original line.
+ *  The two lines have the same #LINE_TYPE
  *
  *  \param [in]  o_current  Line Object to copy.
  *  \return The new Object
@@ -112,8 +110,8 @@ Object *o_line_copy(Object *o_current)
 /*! \brief Modify the description of a line Object.
  *  \par Function Description
  *  This function modifies the coordinates of one of the two ends of
- *  the line described by <B>*object</B>. The new coordinates of this end,
- *  identified by <B>whichone</B>, are given by <B>x</B> and <B>y</B>
+ *  the line described by <B>\a object</B>. The new coordinates of this end,
+ *  identified by <B>\a whichone</B>, are given by <B>\a x</B> and <B>\a y</B>
  *  in world unit.
  *
  *  The coordinates of the end of line is modified in the world
@@ -126,8 +124,8 @@ Object *o_line_copy(Object *o_current)
  *
  *  <B>whichone</B> can have the following values:
  *  <DL>
- *    <DT>*</DT><DD>LINE_END1
- *    <DT>*</DT><DD>LINE_END2
+ *    <DT>*</DT><DD>#LINE_END1
+ *    <DT>*</DT><DD>#LINE_END2
  *  </DL>
  */
 void
@@ -444,12 +442,12 @@ o_line_get_position (int *x, int *y, Object *object)
 /*! \brief Print line to Postscript document.
  *
  *  \par Function Description
- *  This function prints the line described by the <B>o_current</B>
+ *  This function prints the line described by the <B>\a o_current</B>
  *  parameter to a Postscript document.
  *  The Postscript document is described by the <B>fp</B> file pointer.
  *
  *  Parameters of the line are extracted from object pointed by
- *  <B>o_current</B>.
+ *  <B>\a o_current</B>.
  *
  *  \param [in] toplevel  The GedaToplevel object.
  *  \param [in] fp         FILE pointer to Postscript document.
@@ -485,7 +483,7 @@ void o_line_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    * #o_line_print_center() and #o_line_print_phantom().
    *
    * The needed parameters for each of these types are extracted from the
-   * <B>o_current</B> object. Depending on the type, unused parameters are
+   * <B>\a o_current</B> object. Depending on the type, unused parameters are
    * set to -1.
    *
    * In the eventuality of a length and/or space null, the line is printed

@@ -23,9 +23,7 @@
 #include <stdio.h>
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 typedef void (*DRAW_FUNC) (GedaToplevel *toplevel, FILE *fp, Path *path,
                            int line_width, int length, int space,
@@ -117,7 +115,7 @@ o_path_new_take_path (int color, Path *path_data)
 /*! \brief Create a copy of a path.
  *  \par Function Description
  *  This function creates a verbatim copy of the
- *  object pointed by <B>o_current</B> describing a path. The new object
+ *  object pointed by <B>\a o_current</B> describing a path. The new object
  *  is added at the end of the list following the <B>list_tail</B>
  *  parameter.
  *
@@ -807,7 +805,7 @@ static void o_path_print_mesh (GedaToplevel *toplevel, FILE *fp, Path *path,
 
 /*! \brief Print Path to Postscript document.
  *  \par Function Description
- *  This function prints the path described by the <B>o_current</B>
+ *  This function prints the path described by the <B>\a o_current</B>
  *  parameter to a Postscript document.
  *  The Postscript document is descibed by the file pointer <B>fp</B>.
  *
@@ -833,7 +831,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *  #o_path_print_center() and #o_path_print_phantom().
    *
    *  The needed parameters for each of these type is extracted from the
-   *  <B>o_current</B> object. Depending on the type, unused parameters are
+   *  <B>\a o_current</B> object. Depending on the type, unused parameters are
    *  set to -1.
    *
    *  In the eventuality of a length and/or space null, the line is printed
@@ -898,7 +896,7 @@ void o_path_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
    *  If the filling type of the path is not <B>HOLLOW</B>, the appropriate
    *  function is chosen among #o_path_print_filled(), #o_path_print_mesh()
    *  and #o_path_print_hatch(). The corresponding parameters are extracted
-   *  from the <B>o_current</B> object and corrected afterward.
+   *  from the <B>\a o_current</B> object and corrected afterward.
    *
    *  The case where <B>pitch1</B> and <B>pitch2</B> are null or negative is
    *  avoided as it leads to an endless loop in most of the called functions.

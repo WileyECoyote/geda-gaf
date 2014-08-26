@@ -37,14 +37,17 @@ struct _filter_reg_t {
 
 };
 
+/*! \def GEDA_FILTER_SCHEMATIC #SCHEMATIC_FILE_SUFFIX */
 #define GEDA_FILTER_SCHEMATIC  \
   { FILTER_SCHEMATIC,  "Schematics", (const char* const []) \
   {SCHEMATIC_FILTER, NULL}, }
 
+  /*! \def GEDA_FILTER_SYMBOL #SYMBOL_FILE_SUFFIX */
 #define GEDA_FILTER_SYMBOL     \
   { FILTER_SYMBOL,     "Symbols",    (const char* const []) \
   { SYMBOL_FILTER, NULL} }
 
+/*! \def GEDA_FILTER_GSCHEM #SCHEMATIC_FILE_SUFFIX & #SYMBOL_FILE_SUFFIX */
 #define GEDA_FILTER_GSCHEM       \
   { FILTER_GSCHEM,     "Schematics and symbols", (const char * const []) \
   { SCHEMATIC_FILTER, SYMBOL_FILTER, NULL} }

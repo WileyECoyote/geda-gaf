@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_enum.h -*-
- * file: geda_enum.h
+/* -*- C header file: geda_enum.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -21,44 +20,47 @@
  * MA 02110-1301 USA
  */
 
-/*!
- * \file geda_enum.h
- * \brief Global gEDA Enumerated Semi-Constants
- *
- * \section
- *
- */
 /* ------------------------------------------------------------------ */
 
 #ifndef __GEDA_ENUMERATED__
 #define __GEDA_ENUMERATED__
 
-/*! \brief line end style for an open line of an object */
+/** \file geda_enum.h
+ *
+ *   \defgroup geda-global-enumerators Global Enumerated Semi-Constants
+ * @{\par This group contains Macros for controls used in Dialogs
+ *   \ingroup (geda-globals)
+ */
+
+/*! \enum LINE_END line end style for an open line of an object */
 typedef enum {END_NONE, END_SQUARE, END_ROUND, END_VOID} LINE_END;
 
-/*! \brief line style of lines, rect, circles, arcs */
+/*! \enum LINE_TYPE style of lines, rect, circles, arcs */
 typedef enum {TYPE_SOLID, TYPE_DOTTED, TYPE_DASHED, TYPE_CENTER, TYPE_PHANTOM, TYPE_ERASE} LINE_TYPE;
 
-/*! \brief fill style of objects like cirle, rect, path */
+/*! \enum OBJECT_FILLING style of objects like cirle, rect, path */
 typedef enum {FILLING_HOLLOW, FILLING_FILL, FILLING_MESH, FILLING_HATCH, FILLING_VOID} OBJECT_FILLING;
 
-/*! \brief pin type attributes */
+/*! \enum PIN_NODE type attributes */
 typedef enum {PIN_NET_NODE, PIN_BUS_NODE} PIN_NODE;
 
+/*! \enum PIN_MECH electrical type attributes */
 typedef enum {PIN_MECH_LEAD,  PIN_MECH_BODY, PIN_MECH_PAD, PIN_MECH_BUMP,
               PIN_MECH_BALL,  PIN_MECH_WEDGE, PIN_MECH_RIBBON, PIN_MECH_VOID
 } PIN_MECH;
 
-/*! \brief pin electrical type attributes */
+/*! \enum PIN_ELECT electrical type attributes */
 typedef enum {PIN_ELECT_IN,  PIN_ELECT_OUT, PIN_ELECT_IO,
               PIN_ELECT_OC,  PIN_ELECT_OE,  PIN_ELECT_PAS, PIN_ELECT_TP,
               PIN_ELECT_TRI, PIN_ELECT_CLK, PIN_ELECT_PWR, PIN_ELECT_VOID
 } PIN_ELECT;
 
+/*! \enum IMAGE_TYPES Supported image formats */
 typedef enum { ico_image, bmp_image, tiff_image, jpeg_image, png_image,
                eps_image, pdf_image, last_image
 } IMAGE_TYPES;
 
+/*! \enum gEDA_MessageType Message type */
 typedef enum
 {
   GEDA_MESSAGE_INFO,
@@ -70,13 +72,17 @@ typedef enum
 
 /* File System Stuff */
 
-/* f_open behaviour flags.  See documentation for f_open_flags() in f_basic.c. */
+/*! \enum FOpenFlags flags used by libgeda controling file open events
+ *  \brief f_open behaviour flags. See documentation for f_open_flags()
+ *         in f_basic.c.
+ */
 typedef enum {
   F_OPEN_RC           = 1,
   F_OPEN_CHECK_BACKUP = 2,
   F_OPEN_RESTORE_CWD  = 4,
 } FOpenFlags;
 
+/*! \enum IDE_FILTER Ued to control filter in GedaFileChooser Dialogs */
 typedef  enum {
   FILTER_SCHEMATIC,
   FILTER_SYMBOL,
@@ -84,17 +90,16 @@ typedef  enum {
   FILTER_NONE
 } IDE_FILTER;
 
-/**
- * @GEDA_STATE_FLAG_NORMAL:       State during normal operation.
- * @GEDA_STATE_FLAG_ACTIVE:       Widget is active.
- * @GEDA_STATE_FLAG_PRELIGHT:     Widget has a mouse pointer over it.
- * @GEDA_STATE_FLAG_SELECTED:     Widget is selected.
- * @GEDA_STATE_FLAG_INSENSITIVE:  Widget is insensitive.
- * @GEDA_STATE_FLAG_INCONSISTENT: Widget is inconsistent.
- * @GEDA_STATE_FLAG_FOCUSED:      Widget has the keyboard focus.
- * @GEDA_STATE_FLAG_BACKDROP:     Widget is in a background toplevel window.
- *
- * Describes a widget state.
+/*! \enum GedaStateFlags Used by Libgedauio classes to control widget states
+ *  \brief Describes a widget state.
+ * #GEDA_STATE_FLAG_NORMAL:       State during normal operation.
+ * #GEDA_STATE_FLAG_ACTIVE:       Widget is active.
+ * #GEDA_STATE_FLAG_PRELIGHT:     Widget has a mouse pointer over it.
+ * #GEDA_STATE_FLAG_SELECTED:     Widget is selected.
+ * #GEDA_STATE_FLAG_INSENSITIVE:  Widget is insensitive.
+ * #GEDA_STATE_FLAG_INCONSISTENT: Widget is inconsistent.
+ * #GEDA_STATE_FLAG_FOCUSED:      Widget has the keyboard focus.
+ * #GEDA_STATE_FLAG_BACKDROP:     Widget is in a background toplevel window.
  */
 typedef enum
 {
@@ -108,14 +113,14 @@ typedef enum
   GEDA_STATE_FLAG_BACKDROP     = 1 << 6
 } GedaStateFlags;
 
-/**
- * GtkSizeRequestMode:
- * @GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH: Prefer height-for-width geometry management
- * @GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT: Prefer width-for-height geometry management
- * @GEDA_SIZE_REQUEST_CONSTANT_SIZE: Dont trade height-for-width or width-for-height
+/*! \enum GedaSizeRequestMode Used by Libgedauio classes to control widget allocations
+ *  \brief
+ *   Used to specifies a preference for height-for-width or width-for-height geometry
+ *   management.
+ * #GEDA_SIZE_REQUEST_HEIGHT_FOR_WIDTH: Prefer height-for-width geometry management
+ * #GEDA_SIZE_REQUEST_WIDTH_FOR_HEIGHT: Prefer width-for-height geometry management
+ * #GEDA_SIZE_REQUEST_CONSTANT_SIZE: Dont trade height-for-width or width-for-height
  *
- * Specifies a preference for height-for-width or
- * width-for-height geometry management.
  */
 typedef enum
 {
@@ -124,4 +129,5 @@ typedef enum
   GEDA_SIZE_REQUEST_CONSTANT_SIZE
 } GedaSizeRequestMode;
 
+/** @} endgroup geda-global-enumerators */
 #endif

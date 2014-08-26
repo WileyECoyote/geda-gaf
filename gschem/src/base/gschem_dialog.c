@@ -211,7 +211,7 @@ static void gd_callback_selection_finalized (void *data, GObject *where_the_obje
  *  current selection to let the dialog watch it. It also adds a weak
  *  reference on the selection.
  *
- *  \param [in] Dialog  Pointer to a GschemDialog dialog.
+ *  \param [in] maybe  Pointer to a GschemDialog dialog.
  */
 static void gd_connect_selection (void *maybe)
 {

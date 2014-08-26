@@ -1,5 +1,4 @@
-/* C header                                           -*- geda.h -*-
- * file: geda.h
+/* -*- C header file: geda.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -21,12 +20,20 @@
  * 02110-1301 USA
  *
  * Note this file intentionally does not have a wrapper!
- *
- * If this file gets included twice then it most likely means that
- * the inclusion of headers in the source file in not setup correctly!
- *
  * If header is included by <libgeda/libgeda.h>
 */
+
+/** \defgroup geda-globals Global Defines and Enumerators
+ *
+ * \note    To include explicit references to gEDA globals the include path
+ *          should be in the doxygen INPUT variable in the .dox file, using
+ *          INCLUDE_PATH does not seem to do anything.
+ *
+ * \remarks If this file gets included twice then it most likely means the
+ *          inclusion of headers in the source file in not setup correctly!
+ *
+ * @{\par This contains constants uses through-out the gEDA suite
+ */
 
 #include <missing.h>
 
@@ -38,3 +45,5 @@
 #include <geda_macros.h>
 #include <geda_enum.h>
 #include <geda_struct.h>
+
+/** @} endgroup geda-globals */

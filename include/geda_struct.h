@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_struct.h -*-
- * file: geda_struct.h
+/* -*- C header file: geda_struct.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -20,16 +19,19 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-/*!
- * \file geda_struct.h
- * \brief Global gEDA Structures Definition
- *
- * \section
- *
- */
 /* ------------------------------------------------------------------ */
+
 #ifndef __GEDA_STRUCTURES__
 #define __GEDA_STRUCTURES__
+
+/** \file geda_struct.h
+ *
+ *  \brief Global Structure Definitions
+ *
+ *   \defgroup geda-global-structures Global Structure Constants
+ * @{\par This group defines global structures constants
+ *   \ingroup (geda-globals)
+ */
 
 typedef struct _GedaRefDes GedaRefDes;
 
@@ -39,6 +41,6 @@ struct _GedaRefDes
   const char *description;
 };
 
-
+/** @} endgroup geda-global-structures */
 
 #endif

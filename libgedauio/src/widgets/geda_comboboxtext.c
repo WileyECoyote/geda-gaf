@@ -446,6 +446,7 @@ geda_combo_box_text_real_insert (GedaComboBoxText *combo_box,
  * position of -1.
  *
  * \param [in] combo_box A #GedaComboBoxText object.
+ * \param [in] position  Integer position where text is to be inserted
  * \param [in] text      Pointer to string to display.
  */
 void

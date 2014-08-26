@@ -1,3 +1,11 @@
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/ *.h: Major Doxygen updates.
+
+      * Makefile.am: Resequence DOXDIRS subdirectories so that the libraries
+        are processed first since each of the libraries now generates tag files
+        which can be referenced in client documentation.
+
 2014-07-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * */*: Get rid of gpointer, looks stupid.
@@ -25,7 +33,7 @@
 
 2014-07-19 Wiley E. Hill <wileyhill@gmail.com>
 
-        * /Makefile.am: Clean top of source
+        * Makefile.am: Clean top of source
 
 2014-03-30  Wiley E. Hill <wileyhill@gmail.com>
 

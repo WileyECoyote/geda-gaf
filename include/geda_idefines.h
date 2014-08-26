@@ -1,5 +1,4 @@
-/* C header                                           -*- geda_idefines.h -*-
- * file: geda_idefines.h
+/* -*- C header file: geda_idefines.h indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * gEDA - GPL Electronic Design Automation
  *
@@ -19,6 +18,13 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
+ */
+
+/** \file geda_idefines.h
+ *
+ *   \defgroup geda-global-integers Global Integer Constants
+ * @{\par This group defines global integer constants
+ *   \ingroup (geda-globals)
  */
 
 #ifdef __GNUC__
@@ -60,3 +66,4 @@
 /* Flag for defaults to detect keywords absent from RC files */
 #define RC_NIL -1
 
+/** @} endgroup geda-global-integers */

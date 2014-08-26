@@ -23,11 +23,9 @@
 #include <gtk/gtkapplication.h>
 #include <gtk/gtkactionable.h>
 
-#define GTK_TYPE_ACTION_HELPER                              (gtk_action_helper_get_type ())
-#define GTK_ACTION_HELPER(inst)                             (G_TYPE_CHECK_INSTANCE_CAST ((inst),                      \
-                                                             GTK_TYPE_ACTION_HELPER, GtkActionHelper))
-#define GTK_IS_ACTION_HELPER(inst)                          (G_TYPE_CHECK_INSTANCE_TYPE ((inst),                      \
-                                                             GTK_TYPE_ACTION_HELPER))
+#define GTK_TYPE_ACTION_HELPER     (gtk_action_helper_get_type ())
+#define GTK_ACTION_HELPER(inst)    (G_TYPE_CHECK_INSTANCE_CAST ((inst), GTK_TYPE_ACTION_HELPER, GtkActionHelper))
+#define GTK_IS_ACTION_HELPER(inst) (G_TYPE_CHECK_INSTANCE_TYPE ((inst), GTK_TYPE_ACTION_HELPER))
 
 typedef struct _GtkActionHelper                             GtkActionHelper;
 

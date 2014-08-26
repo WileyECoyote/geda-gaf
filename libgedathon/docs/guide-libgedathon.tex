@@ -28,7 +28,7 @@ geda.close\_page(sheet1, True)
 
 pinlabel = geda.new\_attrib(``pinlabel'', ``2'', x, y1, INVISIBLE, SHOW\_VALUE, LOWER\_RIGHT)
 
-  Note that the proceeding example uses three constants defined in the constants submodule. This object can now be added to another object, in this example the label is being added to a GedaPin object:
+  Note that the proceeding example uses three constants defined in the constants submodule. The Text object pinlabel can now be added to another object. In the following example the label is being added to a GedaPin object:
 
 geda.add\_object(pin, pinlabel)
 
@@ -57,7 +57,7 @@ DefaultOpAmpSymbol(``dual-opamp-py'')
 current\_titleblock = DefaultTitleblockSymbol()
 
 
-  Default symbols are only applicable to basic component types such as capacitors, resistors, and transistors. Complex types must supply a valid system name. Complexes can be created and added using either the geda module or functions in the high-level submodule:
+  Default symbols are only applicable to basic component types such as capacitors, resistors, and transistors. Complex types must supply a valid system name. Complexes can be created and added using either the geda module or functions in the high-level submodule as shown in the following examples:
 
 titleblock = geda.new\_complex(``title-B'', 1000, 1000)\\ 
  titleblock.locked = True\\ 
@@ -66,7 +66,7 @@ titleblock = geda.new\_complex(``title-B'', 1000, 1000)\\
 tb = AddComponent(sheet1, titleblock, , 1000, 1000)
 
 
-  In the preceding examples the symbol name was in a variable named titleblock, but could contain any valid symbol name. The example illustrates the convenience of using the high-level function. The variable ``tb'' holds a reference to the object, which might not be needed for a titleblock, in which case, the previous example could have been reduced to:
+  In the last example the symbol name was in a variable named titleblock, but could contain any valid symbol name. The example illustrates the convenience of using the high-level function. The variable ``tb'' holds a reference to the object, which might not be needed for a titleblock, in which case, the previous example could have been reduced to:
 
 AddComponent(sheet1, titleblock, , 1000, 1000)
 
