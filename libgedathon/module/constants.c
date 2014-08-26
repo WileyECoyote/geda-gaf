@@ -56,7 +56,7 @@ initConstants(PyObject *module)
 
   /* fill style of objects like cirle, rect, path; from OBJECT_FILLING enumerators */
   PyModule_AddIntMacro(self, FILLING_HOLLOW);
-  PyModule_AddIntMacro(self, FILLING_FILL);
+  PyModule_AddIntMacro(self, FILL_SOLID);
   PyModule_AddIntMacro(self, FILLING_MESH);
   PyModule_AddIntMacro(self, FILLING_HATCH);
   PyModule_AddIntMacro(self, FILLING_VOID);

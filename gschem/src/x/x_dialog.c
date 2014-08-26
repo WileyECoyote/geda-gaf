@@ -478,7 +478,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   case GTK_RESPONSE_DELETE_EVENT:
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   /* clean up */
@@ -585,7 +585,7 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
     /* void */
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   /* clean up */
@@ -827,7 +827,7 @@ x_dialog_edit_arc_angle_response(GtkWidget *Dialog, int response, void* data)
     x_dialog_edit_arc_angle_apply(Dialog, w_current);
     break;
   default:
-    BUG_IMSG("strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 
@@ -1924,7 +1924,7 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
     x_dialog_edit_line_type_ok(Dialog, line_data);
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
 
   }
 
@@ -2136,7 +2136,7 @@ void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
     break;
 
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
 }
@@ -2323,7 +2323,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       close = TRUE;
       break;
     default:
-      BUG_IMSG ("unhandled case for <%d>", response);
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   if (close) {
@@ -2454,7 +2454,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy(Dialog);;
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 
@@ -2560,7 +2560,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy(Dialog);
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 
@@ -2697,7 +2697,7 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy(Dialog);
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 
@@ -2828,7 +2828,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
     }
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   i_status_set_state(w_current, SELECT);
@@ -2921,7 +2921,7 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
     /* void */
     break;
   default:
-    BUG_IMSG ("unhandled case for <%d>", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
   /* clean up */
   gtk_widget_destroy(Dialog);

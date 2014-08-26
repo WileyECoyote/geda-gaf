@@ -1198,7 +1198,7 @@ void autonumber_text_response(GtkWidget * widget, int response,
       autotext->dialog = NULL;
       break;
     default:
-      printf("ERROR: autonumber_text_response(): strange signal %d\n",response);
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 

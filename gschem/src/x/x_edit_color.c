@@ -126,8 +126,7 @@ x_dialog_edit_color_response(GtkWidget *Dialog, int response,
     x_dialog_edit_color_apply(Dialog, w_current);
     break;
   default:
-    printf(_("ERROR: <x_dialog_edit_color_response>: strange signal %d\n"),
-           response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 

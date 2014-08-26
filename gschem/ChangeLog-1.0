@@ -1,5 +1,19 @@
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/ *.c: Replaced remaining "strange signal" messages with BUG_IMSG
+      macro in files:
+
+              * src/x/x_attrib.c
+              * src/x/x_autonumber.c
+              * src/x/x_edit_color.c
+              * src/x/x_edit_cprop.c
+              * src/x/x_edit_pin.c
+              * src/x/x_edit_text.c
+              * src/x/x_sessions.c
+              * src/x/x_settings.c
+
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/x_dialog.h: Define constant LEAVE_ALONE = -2
 
     * src/x/x_dialog.c: Fix setting of fill-types in fill-type dialog by using

@@ -129,10 +129,10 @@ void o_set_line_options(Object *object, LINE_OPTIONS *line_options)
 void
 o_set_fill_options(Object *object, FILL_OPTIONS *fill_options)
 {
-  g_return_if_fail( GEDA_IS_BOX(object)    ||
-                    GEDA_IS_CIRCLE(object) ||
-                    GEDA_IS_ARC(object)    ||
-                    GEDA_IS_PATH(object));
+  g_return_if_fail( GEDA_IS_BOX    (object) ||
+                    GEDA_IS_CIRCLE (object) ||
+                    GEDA_IS_ARC    (object) ||
+                    GEDA_IS_PATH   (object) );
 
   object->fill_options->fill_type   = fill_options->fill_type;
   object->fill_options->fill_width  = fill_options->fill_width;

@@ -658,7 +658,7 @@ x_dialog_edit_pin_type_response(GtkWidget *Dialog, int response,
     x_dialog_edit_pin_type_ok(Dialog, pin_data);
     break;
   default:
-    printf("x_dialog_edit_pin_type_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   i_status_set_state (w_current, SELECT);

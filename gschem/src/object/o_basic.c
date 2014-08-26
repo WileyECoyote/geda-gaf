@@ -176,7 +176,7 @@ o_redraw_rects (GschemToplevel *w_current, GdkRectangle *rectangles, int n_recta
     for (iter = obj_list; iter != NULL; NEXT(iter)) {
       Object *o_current = iter->data;
       if (!(o_current->dont_redraw || o_current->selected)) {
-        /* o_style_set_object(toplevel, o_current); cues dont have style yet*/
+        /* o_style_set_object(toplevel, o_current); cues don't have style yet*/
         eda_renderer_draw_cues (renderer, o_current);
       }
     }
@@ -400,7 +400,7 @@ int o_invalidate_rubber (GschemToplevel *w_current)
       return(FALSE);
       break;
   }
-  //w_current->redraw_enabled = 1;
+
   return(TRUE);
 }
 

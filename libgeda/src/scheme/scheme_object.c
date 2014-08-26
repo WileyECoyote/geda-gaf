@@ -531,7 +531,7 @@ SCM_DEFINE (object_fill, "%object-fill", 1, 0, 0,
   SCM type_s;
   switch (type) {
   case FILLING_HOLLOW: type_s = hollow_sym; break;
-  case FILLING_FILL:   type_s = solid_sym;  break;
+  case FILL_SOLID:     type_s = solid_sym;  break;
   case FILLING_MESH:   type_s = mesh_sym;   break;
   case FILLING_HATCH:  type_s = hatch_sym;  break;
   default:
@@ -579,7 +579,7 @@ SCM_DEFINE (set_object_fill_x, "%set-object-fill!", 2, 5, 0,
   FILL_OPTIONS fill_options;
 
   if      (type_s == hollow_sym) {fill_options.fill_type = FILLING_HOLLOW;}
-  else if (type_s == solid_sym)  {fill_options.fill_type = FILLING_FILL;  }
+  else if (type_s == solid_sym)  {fill_options.fill_type = FILL_SOLID;  }
   else if (type_s == hatch_sym)  {fill_options.fill_type = FILLING_HATCH; }
   else if (type_s == mesh_sym)   {fill_options.fill_type = FILLING_MESH;  }
   else {
@@ -638,7 +638,7 @@ SCM_DEFINE (set_object_fill_x, "%set-object-fill!", 2, 5, 0,
     /* This case intentionally falls through */
     break;
   case FILLING_HOLLOW:
-  case FILLING_FILL:
+  case FILL_SOLID:
   case FILLING_VOID:
     break;
   }

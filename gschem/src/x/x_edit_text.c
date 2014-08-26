@@ -368,7 +368,7 @@ x_dialog_edit_text_response(GtkWidget *Dialog, int response, Object *object)
     gtk_widget_destroy(Dialog);
     break;
   default:
-    printf("x_dialog_edit_text_response(): strange signal %d\n", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 

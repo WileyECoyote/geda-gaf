@@ -92,8 +92,8 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
         m_hatch_box(object->box, object->fill_options->fill_angle1,
                                  object->fill_options->fill_pitch1, lines);
 
-        if (object->fill_options->fill_type == FILLING_MESH)
-        {
+        if (object->fill_options->fill_type == FILLING_MESH) {
+
             m_hatch_box(object->box, object->fill_options->fill_angle2,
                                      object->fill_options->fill_pitch2, lines);
         }
@@ -152,8 +152,8 @@ static void print_box(GedaToplevel *current, cairo_t *cairo, Object *object)
 
     cairo_close_path(cairo);
 
-    if (object->fill_options->fill_type == FILLING_FILL)
-    {
+    if (object->fill_options->fill_type == FILL_SOLID) {
+
         cairo_fill_preserve(cairo);
     }
 
@@ -254,7 +254,7 @@ static void print_circle(GedaToplevel *current, cairo_t *cairo, Object *object)
         2.0 * M_PI
         );
 
-    if (object->fill_options->fill_type == FILLING_FILL)
+    if (object->fill_options->fill_type == FILL_SOLID)
     {
         cairo_fill(cairo);
     }
@@ -449,7 +449,7 @@ static void print_path(GedaToplevel *current, cairo_t *cairo, Object *object)
         object->line_options->line_width > 10.0 ? object->line_options->line_width : 10.0
         );
 
-    if (object->fill_options->fill_type == FILLING_FILL)
+    if (object->fill_options->fill_type == FILL_SOLID)
     {
         cairo_fill_preserve(cairo);
     }

@@ -263,7 +263,7 @@ void attribute_edit_dialog_response(GtkWidget *w, int response,
       break;
 
     default:
-      printf("attrib_edit_dialog_response(): strange signal %d\n", response);
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 }
 

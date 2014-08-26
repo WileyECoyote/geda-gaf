@@ -707,7 +707,7 @@ void o_box_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
     pitch2     = box->fill_options.fill_pitch2;
 
     switch(box->fill_options.fill_type) {
-      case(FILLING_FILL):
+      case(FILL_SOLID):
         angle1 = -1; pitch1 = 1;
         angle2 = -1; pitch2 = 1;
         fill_width = -1;

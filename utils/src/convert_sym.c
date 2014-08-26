@@ -161,7 +161,7 @@ struct FillStyle fillmap[26] =
   /* 0  = Hollow, no fill */
   {FILLING_HOLLOW, -1,  -1, -1,  -1, -1},
   /* 1  = Solid, full fill */
-  {FILLING_FILL,   -1,  -1, -1,  -1, -1},
+  {FILL_SOLID,   -1,  -1, -1,  -1, -1},
   /* 2  = Grey92, mostly fill, thick array of empty space */
   {FILLING_MESH,   20,  45, 30, 135, 30},
   /* 3  = Undefined; assume hollow, no fill */

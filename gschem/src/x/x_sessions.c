@@ -334,7 +334,7 @@ x_sessions_response(GtkWidget *Dialog, int response, void *nothing)
   case GTK_RESPONSE_ACCEPT:
     break;
   default:
-    BUG_IMSG("strange signal %d\n", response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   i_status_set_state (w_current, SELECT);

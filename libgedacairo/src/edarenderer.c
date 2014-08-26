@@ -731,27 +731,30 @@ eda_renderer_is_drawable (EdaRenderer *renderer, Object *object)
 static int eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
 {
   GArray *fill_lines;
+
+  int fill_width;
   int i;
+
   g_return_val_if_fail((object->type == OBJ_ARC    ||
                         object->type == OBJ_BOX    ||
                         object->type == OBJ_CIRCLE ||
                         object->type == OBJ_PATH),
                         FALSE);
 
-  int fill_width;
+
 
   fill_lines = m_hatch_object(object);
   fill_width = object->fill_options->fill_width;
-
+//fprintf(stderr, "%s fill_width=%d, count=%d\n",__func__, fill_width, fill_lines->len);
   /* Draw fill pattern */
   for (i = 0; i < fill_lines->len; i++) {
 
     LINE *line = &g_array_index (fill_lines, LINE, i);
 
-    eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), END_NONE,fill_width,
+    eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), END_NONE, fill_width,
                     line->x[0], line->y[0], line->x[1], line->y[1]);
   }
-
+//fprintf(stderr, "%s stroke width=%f\n",__func__, EDA_RENDERER_STROKE_WIDTH (renderer, fill_width));
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), TYPE_SOLID, END_NONE,
                     EDA_RENDERER_STROKE_WIDTH (renderer, fill_width), -1, -1);
 

@@ -422,7 +422,7 @@ x_dialog_edit_properties_response(GtkWidget     *Dialog,
     x_dialog_edit_properties_type_ok(Dialog, properties);
     break;
   default:
-    BUG_IMSG("strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   i_status_set_state (w_current, SELECT);

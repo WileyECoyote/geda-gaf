@@ -140,7 +140,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
     /* void */
     break;
   default:
-    printf("configure_dialog_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
   gtk_widget_destroy(w_current->cpwindow);
