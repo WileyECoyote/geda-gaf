@@ -25,6 +25,7 @@
 #ifndef __X_DIALOG_H__
 #define __X_DIALOG_H__
 
+#define LEAVE_ALONE -2  /* Used as a flag for multible selections */
 
 #define GSCHEM_HOOKUP_OBJECT(component, widget, name) \
   g_object_set_data_full (G_OBJECT (component), name, \

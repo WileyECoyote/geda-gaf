@@ -113,9 +113,9 @@ atk_widget_linked_label_new( GtkWidget *label, GtkWidget *linkto)
 
 /*! \brief Create pixmap widget for dialogs boxes.
  *  \par Function Description
- *  This is an internally used function to create pixmaps.
- *  The default bitmap directory is prefixed to the filename
- *  and if is valid then the image widget is created and returned.
+ *  This is an internally used function to create pixmaps. The
+ *  default bitmap directory is prefixed to the filename and if
+ *  is valid then the image widget is created and returned.
  */
 
 GtkWidget* create_pixmap (const char *filename)
@@ -212,7 +212,7 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
  *  embed into the widget when bulb widgets are created and then each
  *  image is set visible or invisible based on the state of the radio
  *  widgets. This groups contain functions to work with widgets. Note
- *  that the actual creation is done with a macro, see \a GEDA_BULB.
+ *  that the actual creation is done with a macro, see #GEDA_BULB.
  */
 
 GtkWidget*
@@ -478,7 +478,7 @@ snap_size_dialog_response(GtkWidget *Dialog, int response, void* data)
   case GTK_RESPONSE_DELETE_EVENT:
     break;
   default:
-    printf("snap_size_dialog_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 
   /* clean up */
@@ -585,7 +585,7 @@ text_size_dialog_response(GtkWidget *Dialog, int response, void* data)
     /* void */
     break;
   default:
-    printf("text_size_dialog_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 
   /* clean up */
@@ -1066,7 +1066,7 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
     char *str;
     OBJECT_FILLING type;
   } types[] = { { N_("Hollow"), FILLING_HOLLOW },
-                { N_("Filled"), FILLING_FILL },
+                { N_("Filled"), FILL_SOLID },
                 { N_("Mesh"),   FILLING_MESH },
                 { N_("Hatch"),  FILLING_HATCH },
                 { N_("*unchanged*"), FILLING_VOID } };
@@ -1092,11 +1092,12 @@ static GtkWidget *create_menu_filltype (GschemToplevel *w_current)
 
 /*! \brief Get the filltype data from selected objects
  *  \par Function Description
- *  Get filltype information over all selected objects.
- *  If a object property is different to the other objects, then
- *  return -2 in that variable.
+ *  Get filltype information over all selected objects. If an object
+ *  property is different than other objects, then set the value of
+ *  that property equal to -2 to indicate there are mixed values.
+ *
  *  \param [in]   selection the selection list
- *  \param [out]  type      OBJECT_FILLING type
+ *  \param [out]  type      #OBJECT_FILLING type
  *  \param [out]  width     fill width.
  *  \param [out]  pitch1    cross hatch line distance
  *  \param [out]  angle1    cross hatch angle
@@ -1115,29 +1116,31 @@ static bool selection_get_fill_type(GList *selection,
   OBJECT_FILLING otype;
   int owidth, opitch1, oangle1, opitch2, oangle2;
 
-
   for (iter = selection; iter != NULL; NEXT(iter)) {
-    object = (Object *) iter->data;
-    if (! o_get_fill_options(object, &otype, &owidth,
-                             &opitch1, &oangle1, &opitch2, &oangle2))
-      continue;
 
-    if (found == FALSE) {  /* first object with filltype */
-      found = TRUE;
-      *type = otype;
-      *width = owidth;
-      *pitch1 = opitch1;
-      *angle1 = oangle1;
-      *pitch2 = opitch2;
-      *angle2 = oangle2;
-    } else {
-      /* indicate different values with the value -2 */
-      if (*type != otype) *type = -2;
-      if (*width != owidth) *width = -2;
-      if (*pitch1 != opitch1) *pitch1 = -2;
-      if (*angle1 != oangle1) *angle1 = -2;
-      if (*pitch2 != opitch2) *pitch2 = -2;
-      if (*angle2 != oangle2) *angle2 = -2;
+    object = (Object *) iter->data;
+
+    if (o_get_fill_options(object, &otype, &owidth, &opitch1, &oangle1, &opitch2, &oangle2))
+    {
+
+      if (found == FALSE) {  /* first object with filltype */
+        found   = TRUE;
+        *type   = otype;
+        *width  = owidth;
+        *pitch1 = opitch1;
+        *angle1 = oangle1;
+        *pitch2 = opitch2;
+        *angle2 = oangle2;
+      }
+      else {
+        /* indicate mixed values with the value LEAVE_ALONE */
+        if (*type   != otype)   *type   = LEAVE_ALONE;
+        if (*width  != owidth)  *width  = LEAVE_ALONE;
+        if (*pitch1 != opitch1) *pitch1 = LEAVE_ALONE;
+        if (*angle1 != oangle1) *angle1 = LEAVE_ALONE;
+        if (*pitch2 != opitch2) *pitch2 = LEAVE_ALONE;
+        if (*angle2 != oangle2) *angle2 = LEAVE_ALONE;
+      }
     }
   }
 
@@ -1165,14 +1168,15 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   char *text;
   GtkWidget *menu, *menuitem;
 
-  if (type == -2)
+  if (type == LEAVE_ALONE)
     type = FILLING_VOID;
+
   gtk_option_menu_set_history(GTK_OPTION_MENU(fill_data->fill_type), type);
   menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(fill_data->fill_type));
   menuitem = gtk_menu_get_active(GTK_MENU(menu));
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
-  if (width == -2)
+  if (width == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", width);
@@ -1181,7 +1185,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   EntrySelectAll ( fill_data->width_entry );
   GEDA_FREE(text);
 
-  if (pitch1 == -2)
+  if (pitch1 == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", pitch1);
@@ -1190,7 +1194,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   EntrySelectAll ( fill_data->pitch1_entry );
   GEDA_FREE(text);
 
-  if (angle1 == -2)
+  if (angle1 == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", angle1);
@@ -1199,7 +1203,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   EntrySelectAll ( fill_data->angle1_entry );
   GEDA_FREE(text);
 
-  if (pitch2 == -2)
+  if (pitch2 == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", pitch2);
@@ -1208,7 +1212,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   EntrySelectAll ( fill_data->pitch2_entry );
   GEDA_FREE(text);
 
-  if (angle2 == -2)
+  if (angle2 == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", angle2);
@@ -1226,7 +1230,6 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
 static int
 x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
 {
-  //struct fill_type_data *fill_type_data = (struct fill_type_data*) data;
   GtkWidget *menuitem;
   bool activate_width_entry;
   bool activate_anglepitch1_entries;
@@ -1246,7 +1249,7 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
 
   switch(type) {
   case(FILLING_HOLLOW):
-  case(FILLING_FILL):
+  case(FILL_SOLID):
     activate_width_entry         = FALSE;
     activate_anglepitch1_entries = FALSE;
     activate_anglepitch2_entries = FALSE;
@@ -1263,21 +1266,14 @@ x_dialog_edit_fill_type_change(GtkWidget *w, fill_type_data *fill_data)
     activate_anglepitch2_entries = TRUE;
     break;
   default:
-    u_log_message ("Internal Error: <%s><x_dialog_edit_fill_type_change>"
-                    "unhandlered case for <%d>, line %d.\n",
-                   __FILE__, type, __LINE__);
+    BUG_IMSG ("unhandled case for <%d>", type);
   }
 
-  gtk_widget_set_sensitive (fill_data->width_entry,
-                            activate_width_entry);
-  gtk_widget_set_sensitive (fill_data->angle1_entry,
-                            activate_anglepitch1_entries);
-  gtk_widget_set_sensitive (fill_data->pitch1_entry,
-                            activate_anglepitch1_entries);
-  gtk_widget_set_sensitive (fill_data->angle2_entry,
-                            activate_anglepitch2_entries);
-  gtk_widget_set_sensitive (fill_data->pitch2_entry,
-                            activate_anglepitch2_entries);
+  gtk_widget_set_sensitive (fill_data->width_entry,  activate_width_entry);
+  gtk_widget_set_sensitive (fill_data->angle1_entry, activate_anglepitch1_entries);
+  gtk_widget_set_sensitive (fill_data->pitch1_entry, activate_anglepitch1_entries);
+  gtk_widget_set_sensitive (fill_data->angle2_entry, activate_anglepitch2_entries);
+  gtk_widget_set_sensitive (fill_data->pitch2_entry, activate_anglepitch2_entries);
 
   return(0);
 }
@@ -1291,7 +1287,7 @@ static void
 x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
 {
   GschemToplevel *w_current = GSCHEM_DIALOG(Dialog)->w_current;
-  GedaToplevel *toplevel = w_current->toplevel;
+  GedaToplevel   *toplevel  = w_current->toplevel;
 
   GList *selection, *iter;
   Object *object;
@@ -1308,6 +1304,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
   /* get the selection */
   if (!o_select_is_selection(w_current))
     return;
+
   selection = geda_list_get_glist(Current_Selection);
 
   /* get the new values from the text entries of the dialog */
@@ -1324,59 +1321,71 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
                         fill_data->fill_type))))), "filltype"));
-  if (type == FILLING_VOID)
-    type = -1;
 
-  /* convert the options to integers (-1 means unchanged) */
+  if (type == FILLING_VOID)
+    type = LEAVE_ALONE;
+
+  /* convert the options to integers, if string is "*unchanged*"
+   * then there are multible object with different values and
+   * the current value for each object should not be changed.
+   * To indicate this, we set such fields to LEAVE_ALONE */
   width  = g_ascii_strcasecmp (width_str,
-                         _("*unchanged*")) ? atoi (width_str)  : -1;
+                         _("*unchanged*")) ? atoi (width_str)  : LEAVE_ALONE;
   angle1 = g_ascii_strcasecmp (angle1_str,
-                         _("*unchanged*")) ? atoi (angle1_str) : -1;
+                         _("*unchanged*")) ? atoi (angle1_str) : LEAVE_ALONE;
   pitch1 = g_ascii_strcasecmp (pitch1_str,
-                         _("*unchanged*")) ? atoi (pitch1_str) : -1;
+                         _("*unchanged*")) ? atoi (pitch1_str) : LEAVE_ALONE;
   angle2 = g_ascii_strcasecmp (angle2_str,
-                         _("*unchanged*")) ? atoi (angle2_str) : -1;
+                         _("*unchanged*")) ? atoi (angle2_str) : LEAVE_ALONE;
   pitch2 = g_ascii_strcasecmp (pitch2_str,
-                         _("*unchanged*")) ? atoi (pitch2_str) : -1;
+                         _("*unchanged*")) ? atoi (pitch2_str) : LEAVE_ALONE;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
+
     object = (Object *) iter->data;
-    if (! o_get_fill_options(object, &otype, &owidth,
-                             &opitch1, &oangle1, &opitch2, &oangle2))
+
+    if (!o_get_fill_options(object, &otype, &owidth,
+                            &opitch1, &oangle1, &opitch2, &oangle2))
       continue;
 
-    fill_options.fill_type   = type   == -1 ? otype   : type;
-    fill_options.fill_width  = width  == -1 ? owidth  : width;
-    fill_options.fill_pitch1 = pitch1 == -1 ? opitch1 : pitch1;
-    fill_options.fill_angle1 = angle1 == -1 ? oangle1 : angle1;
-    fill_options.fill_pitch2 = pitch2 == -1 ? opitch2 : pitch2;
-    fill_options.fill_angle2 = angle2 == -1 ? oangle2 : angle2;
+    /* if the field is set to LEAVE_ALONE then use the old value,
+     * otherwise use the new value extracted from the dialog */
+    fill_options.fill_type   = type   == LEAVE_ALONE ? otype   : type;
+    fill_options.fill_width  = width  == LEAVE_ALONE ? owidth  : width;
+    fill_options.fill_pitch1 = pitch1 == LEAVE_ALONE ? opitch1 : pitch1;
+    fill_options.fill_angle1 = angle1 == LEAVE_ALONE ? oangle1 : angle1;
+    fill_options.fill_pitch2 = pitch2 == LEAVE_ALONE ? opitch2 : pitch2;
+    fill_options.fill_angle2 = angle2 == LEAVE_ALONE ? oangle2 : angle2;
 
-    /* set all not required options to -1 and
-       set nice parameters if not provided by the user */
-    switch (otype) {
+    /* if the value retrieved from the dialog is -1 then substitute the
+     * default value. Set non-required options to -1 */
+    switch (type) {
     case (FILLING_HOLLOW):
-    case (FILLING_FILL):
+    case (FILL_SOLID):
       fill_options.fill_pitch1 = -1;
       fill_options.fill_angle1 = -1;
       fill_options.fill_pitch2 = -1;
       fill_options.fill_angle2 = -1;
       break;
+
     case (FILLING_HATCH):
-      if (owidth < 1)  fill_options.fill_width  = toplevel->default_fill_width;
-      if (opitch1 < 1) fill_options.fill_pitch1 = toplevel->default_fill_pitch1;
-      fill_options.fill_angle1 = -1;
+      if (fill_options.fill_width  == -1) fill_options.fill_width  = toplevel->default_fill_width;
+      if (fill_options.fill_pitch1 == -1) fill_options.fill_pitch1 = toplevel->default_fill_pitch1;
+      if (fill_options.fill_angle1 == -1) fill_options.fill_angle1 = toplevel->default_fill_angle1;
+      fill_options.fill_pitch2 = -1;
       fill_options.fill_angle2 = -1;
       break;
+
     case (FILLING_MESH):
-      if (owidth < 1)  fill_options.fill_width  = toplevel->default_fill_width;
-      if (opitch1 < 1) fill_options.fill_pitch1 = toplevel->default_fill_pitch1;
-      if (opitch2 < 1) fill_options.fill_pitch2 = toplevel->default_fill_pitch2;
+      if (fill_options.fill_width  == -1) fill_options.fill_width  = toplevel->default_fill_width;
+      if (fill_options.fill_pitch1 == -1) fill_options.fill_pitch1 = toplevel->default_fill_pitch1;
+      if (fill_options.fill_angle1 == -1) fill_options.fill_angle1 = toplevel->default_fill_angle1;
+      if (fill_options.fill_pitch2 == -1) fill_options.fill_pitch2 = toplevel->default_fill_pitch2;
+      if (fill_options.fill_angle2 == -1) fill_options.fill_angle2 = toplevel->default_fill_angle2;
       break;
+
     default:
-      u_log_message ("Internal Error: <%s><x_dialog_edit_fill_type_ok>"
-                     "unhandlered case for <%d>, line %d.\n",
-                     __FILE__, otype, __LINE__);
+      BUG_IMSG ("unhandled case for value <%d>", type);
     }
 
     o_set_fill_options (object, &fill_options);
@@ -1408,7 +1417,7 @@ x_dialog_edit_fill_type_response(GtkWidget *Dialog, int response,
     x_dialog_edit_fill_type_ok(Dialog, fill_data);
     break;
   default:
-    BUG_IMSG("strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for value <%d>", response);
   }
 
   i_status_set_state (w_current, SELECT);
@@ -1436,16 +1445,20 @@ x_dialog_fill_type_update_selection (GschemToplevel *w_current,
   fill_data = g_object_get_data (G_OBJECT (Dialog), IDS_FILL_TYPE);
 
   if (o_select_is_selection(w_current)) {
-    selection = geda_list_get_glist(Current_Selection);
-    if (! selection_get_fill_type(selection, &type, &width,
-      &pitch1, &angle1, &pitch2, &angle2))
-     return;
-    x_dialog_edit_fill_type_set_values(fill_data, type, width,
-                                       pitch1, angle1, pitch2, angle2);
-    /* Set the widget activity according to the current filltype */
-    x_dialog_edit_fill_type_change(fill_data->fill_type, fill_data);
 
-    gtk_widget_grab_focus(fill_data->width_entry);
+    selection = geda_list_get_glist(Current_Selection);
+
+    if (selection_get_fill_type (selection, &type, &width,
+                                 &pitch1, &angle1, &pitch2, &angle2))
+    {
+
+      x_dialog_edit_fill_type_set_values(fill_data, type, width,
+                                         pitch1, angle1, pitch2, angle2);
+      /* Set the widget activity according to the current filltype */
+      x_dialog_edit_fill_type_change(fill_data->fill_type, fill_data);
+
+      gtk_widget_grab_focus(fill_data->width_entry);
+    }
   }
 }
 GtkWidget *x_dialog_fill_type_create_dialog(GschemToplevel *w_current)
@@ -1607,11 +1620,11 @@ static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
   struct line_type {
     char *str;
     LINE_TYPE type;
-  } types[] = { { N_("Solid"),   TYPE_SOLID },
-                { N_("Dotted"),  TYPE_DOTTED },
-                { N_("Dashed"),  TYPE_DASHED },
-                { N_("Center"),  TYPE_CENTER },
-                { N_("Phantom"), TYPE_PHANTOM },
+  } types[] = { { N_("Solid"),       TYPE_SOLID   },
+                { N_("Dotted"),      TYPE_DOTTED  },
+                { N_("Dashed"),      TYPE_DASHED  },
+                { N_("Center"),      TYPE_CENTER  },
+                { N_("Phantom"),     TYPE_PHANTOM },
                 { N_("*unchanged*"), TYPE_ERASE } };
   int i;
 
@@ -1636,7 +1649,7 @@ static GtkWidget *create_menu_linetype (GschemToplevel *w_current)
  *  \par Function Description
  *  Get linetype information over all selected objects.
  *  If a object property is different to the other objects, then
- *  return -2 in that variable.
+ *  return LEAVE_ALONE in that variable.
  *  \param [in]   selection the selection list
  *  \param [out]  end       #LINE_END type
  *  \param [out]  type      OBJECT_FILLING type
@@ -1671,12 +1684,12 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
       *space = ospace;
     }
     else {
-      /* indicate different values with the value -2 */
-      if (*end != oend) *end = -2;
-      if (*type != otype) *type = -2;
-      if (*width != owidth) *width = -2;
-      if (*length != olength) *length = -2;
-      if (*space != ospace) *space = -2;
+      /* indicate mixed values with the value LEAVE_ALONE = -2 */
+      if (*end != oend)       *end    = LEAVE_ALONE;
+      if (*type != otype)     *type   = LEAVE_ALONE;
+      if (*width != owidth)   *width  = LEAVE_ALONE;
+      if (*length != olength) *length = LEAVE_ALONE;
+      if (*space != ospace)   *space  = LEAVE_ALONE;
     }
   }
 
@@ -1686,7 +1699,7 @@ selection_get_line_type(GList *selection, LINE_END *end, LINE_TYPE *type,
 /*! \brief set the linetype in the linetype dialog
  *  \par Function Description
  *  Set all widgets in the linetype dialog. Variables marked with the
- *  invalid value -2 are set to *unchanged*.
+ *  invalid value LEAVE_ALONE (-2) are set to *unchanged*.
  *
  *  \param [in]   line_data line dialog structure
  *  \param [in]   end       #LINE_END type (currently not used)
@@ -1703,14 +1716,14 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   char *text;
   GtkWidget *menu, *menuitem;
 
-  if (type == -2)
+  if (type == LEAVE_ALONE)
     type = TYPE_ERASE;
   gtk_option_menu_set_history(GTK_OPTION_MENU(line_data->line_type), type);
   menu = gtk_option_menu_get_menu(GTK_OPTION_MENU(line_data->line_type));
   menuitem = gtk_menu_get_active(GTK_MENU(menu));
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
-  if (width == -2)
+  if (width == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", width);
@@ -1719,7 +1732,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   EntrySelectAll ( line_data->width_entry );
   GEDA_FREE(text);
 
-  if (length == -2)
+  if (length == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", length);
@@ -1729,7 +1742,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
 
   GEDA_FREE(text);
 
-  if (space == -2)
+  if (space == LEAVE_ALONE)
     text = geda_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", space);
@@ -1825,17 +1838,21 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
           GTK_MENU (gtk_option_menu_get_menu (
                       GTK_OPTION_MENU (
                         line_data->line_type))))), "linetype"));
+
   if (type == TYPE_ERASE) {
-    type = -1;
+    type = LEAVE_ALONE;
   }
 
-  /* convert the options to integers (-1 means unchanged) */
+  /* convert the options to integers, if string is "*unchanged*"
+   * then there are multible object with different values and
+   * the current value for each object should not be changed.
+   * To indicate this, we set such fields to LEAVE_ALONE */
   width =  g_ascii_strcasecmp (width_str,
-                         _("*unchanged*")) ? atoi (width_str)  : -1;
+                         _("*unchanged*")) ? atoi (width_str)  : LEAVE_ALONE;
   length = g_ascii_strcasecmp (length_str,
-                         _("*unchanged*")) ? atoi (length_str) : -1;
+                         _("*unchanged*")) ? atoi (length_str) : LEAVE_ALONE;
   space  = g_ascii_strcasecmp (space_str,
-                         _("*unchanged*")) ? atoi (space_str)  : -1;
+                         _("*unchanged*")) ? atoi (space_str)  : LEAVE_ALONE;
 
   for (iter = selection; iter != NULL; NEXT(iter)) {
 
@@ -1845,33 +1862,36 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
                              &owidth, &olength, &ospace))
       continue;
 
+    /* if the field is set to LEAVE_ALONE then use the old value,
+     * otherwise use the new value extracted from the dialog */
+
     /* oend is not in the dialog, yet */
     line_options.line_end    = oend ;
 
-    line_options.line_type   = type   == -1 ? otype : type;
-    line_options.line_width  = width  == -1 ? owidth : width;
-    line_options.line_length = length == -1 ? olength : length;
-    line_options.line_space  = space  == -1 ? ospace : space;
+    line_options.line_type   = type   == LEAVE_ALONE ? otype   : type;
+    line_options.line_width  = width  == LEAVE_ALONE ? owidth  : width;
+    line_options.line_length = length == LEAVE_ALONE ? olength : length;
+    line_options.line_space  = space  == LEAVE_ALONE ? ospace  : space;
 
-    /* set all not required options to -1 and
-       set nice parameters if not provided by the user */
-    switch (otype) {
+    /* if the value retrieved from the dialog is -1 then substitute the
+     * default value. Set non-required options to -1 */
+    switch (type) {
     case (TYPE_SOLID):
       line_options.line_length = -1;
       line_options.line_space  = -1;
       break;
     case (TYPE_DOTTED):
       line_options.line_length = -1;
-      if (ospace < 1) line_options.line_space = toplevel->default_line_space;
+      if (line_options.line_space == -1) line_options.line_space = toplevel->default_line_space;
       break;
     case (TYPE_DASHED):
     case (TYPE_CENTER):
     case (TYPE_PHANTOM):
-      if (ospace < 1) line_options.line_space = toplevel->default_line_space;
-      if (olength < 1) line_options.line_length = toplevel->default_line_length;
+      if (line_options.line_length == -1) line_options.line_length = toplevel->default_line_length;
+      if (line_options.line_space  == -1) line_options.line_space  = toplevel->default_line_space;
       break;
     default:
-      BUG_IMSG("unhandlered case for <%d>", otype);
+      BUG_IMSG("unhandlered case for <%d>", type);
     }
 
     o_set_line_options (object, &line_options);
@@ -1904,7 +1924,8 @@ x_dialog_edit_line_type_response(GtkWidget *Dialog, int response,
     x_dialog_edit_line_type_ok(Dialog, line_data);
     break;
   default:
-    printf("x_dialog_edit_line_type_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
+
   }
 
   i_status_set_state (w_current, SELECT);
@@ -2113,8 +2134,9 @@ void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
       GEDA_FREE (slot_string);
     }
     break;
+
   default:
-    printf("x_dialog_edit_slot_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 
 }
@@ -2301,7 +2323,7 @@ void x_dialog_find_text_response(GtkWidget *Dialog, int response,
       close = TRUE;
       break;
     default:
-      printf("x_dialog_find_text_response(): strange signal %d\n", response);
+      BUG_IMSG ("unhandled case for <%d>", response);
   }
 
   if (close) {
@@ -2432,7 +2454,7 @@ void x_dialog_hide_text_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy(Dialog);;
     break;
   default:
-    printf("x_dialog_show_text_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 }
 
@@ -2538,7 +2560,7 @@ void x_dialog_show_text_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy(Dialog);
     break;
   default:
-    printf("x_dialog_show_text_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 }
 
@@ -2675,7 +2697,7 @@ void x_dialog_text_input_response(GtkWidget *Dialog, int response,
     gtk_widget_destroy(Dialog);
     break;
   default:
-    printf("x_dialog_edit_text_response(): strange signal %d\n", response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 }
 
@@ -2806,7 +2828,7 @@ void x_dialog_translate_response(GtkWidget *Dialog, int response,
     }
     break;
   default:
-    printf("translate_edit_dialog_response(): strange signal %d\n",response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
 
   i_status_set_state(w_current, SELECT);
@@ -2899,7 +2921,7 @@ void x_dialog_hotkeys_response(GtkWidget *Dialog, int response,
     /* void */
     break;
   default:
-    printf("x_dialog_hotkeys_response(): strange signal %d\n", response);
+    BUG_IMSG ("unhandled case for <%d>", response);
   }
   /* clean up */
   gtk_widget_destroy(Dialog);
@@ -4340,6 +4362,7 @@ void gschem_markup_message_dialog (const char *msg1, const char *msg2,
 }
 
 /******************* End of General message dialogs **********************/
+
 /** @} endgroup Message-Dialogs */
 
 /** @} endgroup Gschem-General-Dialogs */

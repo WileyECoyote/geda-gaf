@@ -1,5 +1,13 @@
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/x_dialog.h: Define constant LEAVE_ALONE = -2
+
+    * src/x/x_dialog.c: Fix setting of fill-types in fill-type dialog by using
+      new constant LEAVE_ALONE, corrected switch variable (otype should have
+      been type. Replaced all "strange signal" messages with BUG_IMSG macro.
+
+2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * docs/gschem.dox: Read library TAGFILES files, redirect errors and
       warnings to log (but can still be done on command-line).
 
