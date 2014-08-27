@@ -731,35 +731,47 @@ eda_renderer_is_drawable (EdaRenderer *renderer, Object *object)
 static int eda_renderer_draw_hatch (EdaRenderer *renderer, Object *object)
 {
   GArray *fill_lines;
+  LINE   *line;
+  int     fill_width;
+  int     index;
+  bool    result;
 
-  int fill_width;
-  int i;
+  g_return_val_if_fail ((object->type == OBJ_ARC    ||
+                         object->type == OBJ_BOX    ||
+                         object->type == OBJ_CIRCLE ||
+                         object->type == OBJ_PATH),
+                         FALSE);
+  result = FALSE;
 
-  g_return_val_if_fail((object->type == OBJ_ARC    ||
-                        object->type == OBJ_BOX    ||
-                        object->type == OBJ_CIRCLE ||
-                        object->type == OBJ_PATH),
-                        FALSE);
+  if (object->fill_options->fill_type != FILLING_HOLLOW) {
 
+    if (object->fill_options->fill_type != FILL_SOLID) {
 
+      fill_lines = m_hatch_object(object);
+      fill_width = object->fill_options->fill_width;
 
-  fill_lines = m_hatch_object(object);
-  fill_width = object->fill_options->fill_width;
-//fprintf(stderr, "%s fill_width=%d, count=%d\n",__func__, fill_width, fill_lines->len);
-  /* Draw fill pattern */
-  for (i = 0; i < fill_lines->len; i++) {
+      /* Draw fill pattern */
+      for (index = 0; index < fill_lines->len; index++) {
 
-    LINE *line = &g_array_index (fill_lines, LINE, i);
+        line = &g_array_index (fill_lines, LINE, index);
 
-    eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), END_NONE, fill_width,
-                    line->x[0], line->y[0], line->x[1], line->y[1]);
+        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                        END_NONE, fill_width,
+                        line->x[0], line->y[0], line->x[1], line->y[1]);
+      }
+
+      eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                        TYPE_SOLID, END_NONE,
+                        EDA_RENDERER_STROKE_WIDTH (renderer, fill_width), -1, -1);
+
+      g_array_free (fill_lines, TRUE);
+    }
+    else {
+      result = TRUE;
+    }
   }
-//fprintf(stderr, "%s stroke width=%f\n",__func__, EDA_RENDERER_STROKE_WIDTH (renderer, fill_width));
-  eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer), TYPE_SOLID, END_NONE,
-                    EDA_RENDERER_STROKE_WIDTH (renderer, fill_width), -1, -1);
 
-  g_array_free (fill_lines, TRUE);
-  return FALSE;
+  return result;
 }
 
 static void
@@ -878,7 +890,9 @@ static void eda_renderer_draw_circle (EdaRenderer *renderer, Object *object)
                  object->line_options->line_width,
                  object->circle->center_x, object->circle->center_y,
                  object->circle->radius, 0, 360);
+
   if (fill_solid) cairo_fill_preserve (renderer->priv->cr);
+
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     object->line_options->line_type, object->line_options->line_end,
                     EDA_RENDERER_STROKE_WIDTH (renderer, object->line_options->line_width),
