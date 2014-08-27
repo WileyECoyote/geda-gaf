@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-24 02:59-0500\n"
+"POT-Creation-Date: 2014-08-27 04:02-0500\n"
 "PO-Revision-Date: 2012-12-01 09:48+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -588,8 +588,8 @@ msgstr "Boog met een straal van nul gevonden [ %c %d, %d, %d, %d, %d, %d ]\n"
 #: libgeda/src/object/o_arc_basic.c:260 libgeda/src/object/o_box_basic.c:307
 #: libgeda/src/object/o_bus_basic.c:141
 #: libgeda/src/object/o_circle_basic.c:246
-#: libgeda/src/object/o_line_basic.c:239 libgeda/src/object/o_net_basic.c:151
-#: libgeda/src/object/o_path_basic.c:206 libgeda/src/object/o_pin_basic.c:174
+#: libgeda/src/object/o_line_basic.c:237 libgeda/src/object/o_net_basic.c:151
+#: libgeda/src/object/o_path_basic.c:204 libgeda/src/object/o_pin_basic.c:174
 #: libgeda/src/object/o_text_basic.c:343
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
@@ -598,8 +598,8 @@ msgstr "Ongeldige kleur [ %s ] gevonden\n"
 #: libgeda/src/object/o_arc_basic.c:261 libgeda/src/object/o_box_basic.c:308
 #: libgeda/src/object/o_bus_basic.c:142
 #: libgeda/src/object/o_circle_basic.c:247
-#: libgeda/src/object/o_line_basic.c:240 libgeda/src/object/o_net_basic.c:152
-#: libgeda/src/object/o_path_basic.c:207 libgeda/src/object/o_pin_basic.c:175
+#: libgeda/src/object/o_line_basic.c:238 libgeda/src/object/o_net_basic.c:152
+#: libgeda/src/object/o_path_basic.c:205 libgeda/src/object/o_pin_basic.c:175
 #: libgeda/src/object/o_text_basic.c:344
 msgid "Setting color to default color\n"
 msgstr "Stel de kleur in op standaard kleur\n"
@@ -790,7 +790,7 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr "Spiegelen op 0 ingesteld\n"
 
-#: libgeda/src/object/o_complex_basic.c:1002
+#: libgeda/src/object/o_complex_basic.c:1001
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -799,7 +799,7 @@ msgstr ""
 "WAARSCHUWING: Symbool versie zoek fout bij refdes %s:\n"
 "\tKan symboolbestand niet doorzoeken symversion=%s\n"
 
-#: libgeda/src/object/o_complex_basic.c:1006
+#: libgeda/src/object/o_complex_basic.c:1005
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -808,7 +808,7 @@ msgstr ""
 "WAARSCHUWING: Symbool versie zoek fout bij refdes %s:\n"
 "\tKan symboolbestand niet doorzoeken symversion=\n"
 
-#: libgeda/src/object/o_complex_basic.c:1023
+#: libgeda/src/object/o_complex_basic.c:1022
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -817,7 +817,7 @@ msgstr ""
 "WAARSCHUWING: Symbool versie zoek fout bij refdes %s:\n"
 "\tKan bijgevoegd symboolbestand niet doorzoeken symversion=%s\n"
 
-#: libgeda/src/object/o_complex_basic.c:1049
+#: libgeda/src/object/o_complex_basic.c:1048
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -828,7 +828,7 @@ msgstr ""
 "\tsymversion=%s bijgevoegd aan bedoelde symbool, maar geen symversion= in "
 "het symbool bestand\n"
 
-#: libgeda/src/object/o_complex_basic.c:1063
+#: libgeda/src/object/o_complex_basic.c:1062
 #, c-format
 msgid ""
 "WARNING: Symbol version mismatch on refdes %s (%s):\n"
@@ -837,17 +837,17 @@ msgstr ""
 "WAARSCHUWING: Symbool versie fout bij refdes %s (%s):\n"
 "\tSymbool in bibliotheek is nieuwer dan bedoelde symbool\n"
 
-#: libgeda/src/object/o_complex_basic.c:1095
+#: libgeda/src/object/o_complex_basic.c:1094
 #, c-format
 msgid "\tMAJOR VERSION CHANGE (file %.3f, instantiated %.3f, %s)!\n"
 msgstr "\tGROTE VERSIE VERANDERING (bestand %.3f, bedoeld %.3f, %s)!\n"
 
-#: libgeda/src/object/o_complex_basic.c:1113
+#: libgeda/src/object/o_complex_basic.c:1112
 #, c-format
 msgid "\tMinor version change (file %.3f, instantiated %.3f)\n"
 msgstr "\tKleine versie verandering (bestand %.3f, bedoeld %.3f)!\n"
 
-#: libgeda/src/object/o_complex_basic.c:1124
+#: libgeda/src/object/o_complex_basic.c:1123
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -875,11 +875,11 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Komponent [%s] is succesvol uitgevoegd\n"
 
-#: libgeda/src/object/o_line_basic.c:203 libgeda/src/object/o_line_basic.c:222
+#: libgeda/src/object/o_line_basic.c:201 libgeda/src/object/o_line_basic.c:220
 msgid "Failed to parse line object"
 msgstr "Faalde bij het ontleden van een lijn object"
 
-#: libgeda/src/object/o_line_basic.c:234
+#: libgeda/src/object/o_line_basic.c:232
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Lijn met een lengte van nul gevonden [ %c %d %d %d %d %d ]\n"
@@ -893,11 +893,11 @@ msgstr "Faalde bij het ontleden van een net object"
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Net met een lengte van nul gevonden [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_path_basic.c:200
+#: libgeda/src/object/o_path_basic.c:198
 msgid "Failed to parse path object"
 msgstr "Faalde bij het ontleden van een pad object"
 
-#: libgeda/src/object/o_path_basic.c:218
+#: libgeda/src/object/o_path_basic.c:216
 msgid "Unexpected end-of-file when reading path"
 msgstr "Onverwacht einde-bestand tijdens het lezen van een pad"
 
@@ -1242,22 +1242,22 @@ msgstr ""
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:421
+#: libgeda/src/struct/s_clib.c:422
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr "Bibliotheek opdracht faalde [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:427
+#: libgeda/src/struct/s_clib.c:428
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr "Bibliotheek opdracht faalde [%s]: Niet opgevangen signaal %i.\n"
 
-#: libgeda/src/struct/s_clib.c:431
+#: libgeda/src/struct/s_clib.c:432
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr "Bibliotheek opdracht faalde [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:432
+#: libgeda/src/struct/s_clib.c:433
 #, c-format
 msgid ""
 "Error output was:\n"
@@ -1266,39 +1266,39 @@ msgstr ""
 "Fout uitvoer was:\n"
 "%s\n"
 
-#: libgeda/src/struct/s_clib.c:520
+#: libgeda/src/struct/s_clib.c:521
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr "Bibliotheeknaam [%s] is al in gebruik.  Gebruik nu [%s].\n"
 
-#: libgeda/src/struct/s_clib.c:649
+#: libgeda/src/struct/s_clib.c:650
 #, c-format
 msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:658
+#: libgeda/src/struct/s_clib.c:659
 #, fuzzy, c-format
 msgid "Failed to open [%s]: %s\n"
 msgstr "Openen van directory faalde [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:757
+#: libgeda/src/struct/s_clib.c:758
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 "Doorzoeken van bibliotheek [%s] faalde: Scheme functie retourneerde non-"
 "list\n"
 
-#: libgeda/src/struct/s_clib.c:765
+#: libgeda/src/struct/s_clib.c:766
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 "Niet string symboolnaam tijdens het doorzoeken van de bibliotheek [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:1013 libgeda/src/struct/s_clib.c:1060
+#: libgeda/src/struct/s_clib.c:1014 libgeda/src/struct/s_clib.c:1061
 msgid "Cannot add library: name not specified\n"
 msgstr "Kan bibliotheek niet toevoegen: naam niet gespecificeerd\n"
 
-#: libgeda/src/struct/s_clib.c:1020
+#: libgeda/src/struct/s_clib.c:1021
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
@@ -1306,30 +1306,30 @@ msgstr ""
 "Kan bibliotheek niet toevoegen [%s]: zowel 'list' en 'get' opdrachten moeten "
 "gespecificeerd zijn.\n"
 
-#: libgeda/src/struct/s_clib.c:1069
+#: libgeda/src/struct/s_clib.c:1070
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 "Kan scheme bibliotheek niet toevoegen [%s]: callbacks moeten afsluitingen "
 "zijn\n"
 
-#: libgeda/src/struct/s_clib.c:1196
+#: libgeda/src/struct/s_clib.c:1197
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Laden van symbool uit bestand faalde [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:1255
+#: libgeda/src/struct/s_clib.c:1256
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Laden van symbool gegevens [%s] uit bron [%s] faalde\n"
 
-#: libgeda/src/struct/s_clib.c:1497
+#: libgeda/src/struct/s_clib.c:1498
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Komponent [%s] is niet in de komponenten bibliotheek gevonden\n"
 
 # Meer dan een symbool
-#: libgeda/src/struct/s_clib.c:1503
+#: libgeda/src/struct/s_clib.c:1504
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Meer dan een komponent gevonden met de naam [%s]\n"

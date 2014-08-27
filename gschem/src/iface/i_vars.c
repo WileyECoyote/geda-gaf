@@ -507,7 +507,7 @@ void i_vars_set(GschemToplevel *w_current)
  */
 void i_vars_freenames()
 {
-  default_component_select_attrlist = g_list_clear(default_component_select_attrlist);
+  default_component_select_attrlist = u_glist_clear(default_component_select_attrlist);
   GEDA_FREE(default_print_command);
   GEDA_FREE(default_bus_ripper_symname);
 }

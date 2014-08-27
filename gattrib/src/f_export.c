@@ -79,13 +79,13 @@ void f_export_components(char *filename)
   fprintf(fp, "refdes, ");
   /*  Print out optional attrib names  */
   for (j = 0; j < num_cols-1; j++) {
-    text = geda_strdup( s_string_list_get_data_at_index(
+    text = u_string_strdup( s_string_list_get_data_at_index(
                         sheet_head->master_comp_attrib_list_head, j) );
     fprintf(fp, "%s, ", text);
     GEDA_FREE(text);
   }
   /*  Print out last attrib name with no comma and with \n.  */
-  text = geda_strdup( s_string_list_get_data_at_index(
+  text = u_string_strdup( s_string_list_get_data_at_index(
                       sheet_head->master_comp_attrib_list_head, j) );
   fprintf(fp, "%s\n", text);
   GEDA_FREE(text);
@@ -95,7 +95,7 @@ void f_export_components(char *filename)
   for (i = 0; i < num_rows; i++) {
 
     /*  First output the component refdes  */
-    text = geda_strdup( s_string_list_get_data_at_index(
+    text = u_string_strdup( s_string_list_get_data_at_index(
 		       sheet_head->master_comp_list_head, i) );
 #ifdef DEBUG
   printf("In f_export_components, getting refes, i = %d.\n", i);

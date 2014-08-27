@@ -50,7 +50,7 @@ int s_attrib_name_in_list(STRING_LIST *name_value_list, char *name)
     if (local_list_item->data == NULL)
       continue;
 
-    local_name = u_basic_breakup_string(local_list_item->data, '=', 0);
+    local_name = u_string_split(local_list_item->data, '=', 0);
     if (strcmp(local_name, name) == 0) {
       GEDA_FREE (local_name);
       return TRUE;

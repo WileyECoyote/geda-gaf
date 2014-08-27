@@ -110,7 +110,7 @@ int i_menu_add_entry(char *menu_name, SCM menu_items)
 
     if (!found) { /* If item did not exist then add */
 
-      menu[menu_index].menu_name = geda_strdup (menu_name);
+      menu[menu_index].menu_name = u_string_strdup (menu_name);
 
       menu[menu_index].menu_items = scm_gc_protect_object (menu_items);
 

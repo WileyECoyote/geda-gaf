@@ -158,7 +158,7 @@ gschem_parse_commandline(int argc, char *argv[])
     switch (ch) {
 
       case 'c':
-        rc_filename = geda_strdup (optarg);
+        rc_filename = u_string_strdup (optarg);
         break;
 
       case 'h':
@@ -187,7 +187,7 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 'o':
-        output_filename = geda_strdup (optarg);
+        output_filename = u_string_strdup (optarg);
         break;
 
       case 'p':
@@ -208,7 +208,7 @@ gschem_parse_commandline(int argc, char *argv[])
         break;
 
       case 's':
-        start_session = geda_strdup (optarg);
+        start_session = u_string_strdup (optarg);
         break;
 
       case 'v':

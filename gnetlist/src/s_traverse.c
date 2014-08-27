@@ -199,7 +199,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
       temp_uref = o_attrib_search_object_attribs_by_name (o_current, "refdes", 0);
 
       if (temp_uref) {
-        if (stricmp(temp_uref,"none") == 0) {
+        if (u_string_stricmp(temp_uref,"none") == 0) {
           GEDA_FREE(temp_uref);
           temp_uref = NULL;
         }
@@ -212,7 +212,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
       }
       else {
         if (hierarchy_tag) {
-          netlist->component_uref = geda_strdup (hierarchy_tag);
+          netlist->component_uref = u_string_strdup (hierarchy_tag);
         }
         else {
           netlist->component_uref = NULL;
@@ -220,7 +220,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
       }
 
       if (hierarchy_tag) {
-        netlist->hierarchy_tag = geda_strdup (hierarchy_tag);
+        netlist->hierarchy_tag = u_string_strdup (hierarchy_tag);
       }
 
       netlist->object_ptr = o_current;
@@ -239,7 +239,7 @@ s_traverse_sheet (GedaToplevel * pr_current, const GList *obj_list, char *hierar
          _("Could not find refdes on component or any special attributes!<%s>, <%s>\n"),
             o_current->complex->filename, net_name);
 
-          netlist->component_uref = geda_strdup("U?");
+          netlist->component_uref = u_string_strdup("U?");
         } else {
 #if DEBUG
           printf("yeah... found a power symbol\n");

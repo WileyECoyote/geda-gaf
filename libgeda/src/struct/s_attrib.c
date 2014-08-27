@@ -64,7 +64,7 @@ int s_attrib_add_entry(char *new_attrib)
     return(-1);
   }
 
-  attrib[attrib_index].attrib_name = geda_strdup (new_attrib);
+  attrib[attrib_index].attrib_name = u_string_strdup (new_attrib);
 
   attrib_index++;
   return(attrib_index);

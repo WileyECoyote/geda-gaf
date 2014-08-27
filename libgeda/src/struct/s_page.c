@@ -132,7 +132,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
 
   if (filename != NULL) {
     if (g_path_is_absolute (filename)) {
-      page->filename = geda_strdup (filename);
+      page->filename = u_string_strdup (filename);
     }
     else {
       char *pwd = getcwd(0,0);
@@ -141,7 +141,7 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
     }
   }
   else {
-    page->filename = geda_strdup (toplevel->untitled_name);
+    page->filename = u_string_strdup (toplevel->untitled_name);
   }
 
   page->width  = toplevel->width;

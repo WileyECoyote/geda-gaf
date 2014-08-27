@@ -441,7 +441,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
   /* write full, absolute filename into page->filename */
   GEDA_FREE(page->filename);
-  page->filename = geda_strdup(full_filename);
+  page->filename = u_string_strdup(full_filename);
 
   /* Before we open the page, let's load the corresponding gafrc. */
   /* First cd into file's directory. */

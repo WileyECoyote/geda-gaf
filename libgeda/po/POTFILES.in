@@ -100,9 +100,12 @@ libgeda/src/struct/s_undo.c
 libgeda/src/struct/s_weakref.c
 
 libgeda/src/utility/u_basic.c
+libgeda/src/utility/u_glist.c
 libgeda/src/utility/u_color.c
 libgeda/src/utility/u_log.c
 libgeda/src/utility/u_program.c
+libgeda/src/utility/u_program.c
+libgeda/src/utility/u_refdes.c
 
 libgeda/scheme/geda/attrib.scm
 

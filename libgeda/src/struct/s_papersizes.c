@@ -67,7 +67,7 @@ int s_papersizes_add_entry(char *new_papersize, int width, int height)
     return(-1);
   }
 
-  papersizes[papersizes_index].papersize_name = geda_strdup (new_papersize);
+  papersizes[papersizes_index].papersize_name = u_string_strdup (new_papersize);
 
   papersizes[papersizes_index].width = width;
   papersizes[papersizes_index].height = height;

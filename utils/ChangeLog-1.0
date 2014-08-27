@@ -1,3 +1,25 @@
+2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * tests/gxyrs: Rename several output file and changed corresponding
+          names in tests.list:
+
+          chunits_units_not_supported-protel_example1_mil.txt-error ->
+          chunits_unupported-protel_example1_mil.txt
+
+          translate_col_R10_value_case_insens-pcb_example1.xy-error ->
+          translate_col_R10_value_icase-pcb_example1.xy-error
+
+          because automake said names were ridculusly long and refuse to copy them
+          them to the _build directory, and for once I almost agree with automake,
+          which also indicated 99 characters tops. Sound reasonable until one
+          considers this includes the paths (in this case was "geda-gaf-2.0.8.10/
+          utils/tests/gxyrs/"). The exact output from AM was
+
+          geda-gaf-2.0.8.10/utils/tests/gxyrs/outputs/chunits_units_not_supported-protel_example1_mil.txt-error: file name is too long (max 99); not dumped
+
+          Which is 102 characters long. Also renamed case_insens file to icase
+          for consistency.
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * docs/gnetlist.dox: Read libgeda TAGFILES files, redirect errors and

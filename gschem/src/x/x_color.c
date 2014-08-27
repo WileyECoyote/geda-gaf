@@ -317,7 +317,7 @@ int x_load_color_scheme(char* scheme) {
   strBuffer = GEDA_MEM_ALLOC( MAX_FILE ); /* be 255 */
 
   if (strBuffer) {
-    rc_path = scm_2_cstring("geda-rc-path");
+    rc_path = u_string_scm2c("geda-rc-path");
     inputfile = g_strconcat (rc_path, DIR_SEPARATOR_S, scheme, NULL);
     free(rc_path);
     if ((access (inputfile, R_OK)) == 0) {

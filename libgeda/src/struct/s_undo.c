@@ -109,7 +109,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
 
   u_new = (UNDO *) GEDA_MEM_ALLOC(sizeof(UNDO));
 
-  u_new->filename = geda_strdup (filename);
+  u_new->filename = u_string_strdup (filename);
 
   u_new->object_list = object_list;
 

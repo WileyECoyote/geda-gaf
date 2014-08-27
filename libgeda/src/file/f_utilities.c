@@ -236,12 +236,12 @@ GSList *f_get_dir_list_files(char *path, char *filter)
       if (real_filter) {
         suffix = f_get_filename_ext(ent->d_name);
         if ( suffix && strcmp (suffix, real_filter) == 0) {
-          filename = geda_strdup(ent->d_name);
+          filename = u_string_strdup(ent->d_name);
           files = g_slist_prepend(files, filename);
         }
       }
       else {
-        filename = geda_strdup(ent->d_name);
+        filename = u_string_strdup(ent->d_name);
         files = g_slist_prepend(files, filename);
       }
     }

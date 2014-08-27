@@ -1,3 +1,7 @@
+2014-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_enum.h: Rename FILLING_FILL to FILL_SOLID
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/ *.h: Major Doxygen updates.

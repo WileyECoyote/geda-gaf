@@ -127,5 +127,6 @@ void          geda_object_remove_weak_ptr    (Object *object, void *weak_pointer
 
 int           geda_object_bounds             (Object *object);
 Page         *geda_object_get_page           (Object *object);
+int           geda_object_get_filltype       (Object *object);
 
 #endif /* __GEDA_OBJECT_H__ */

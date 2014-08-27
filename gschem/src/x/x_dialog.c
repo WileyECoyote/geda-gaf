@@ -1177,7 +1177,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", width);
 
@@ -1186,7 +1186,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (pitch1 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", pitch1);
 
@@ -1195,7 +1195,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (angle1 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", angle1);
 
@@ -1204,7 +1204,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (pitch2 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", pitch2);
 
@@ -1213,7 +1213,7 @@ static void x_dialog_edit_fill_type_set_values(fill_type_data *fill_data,
   GEDA_FREE(text);
 
   if (angle2 == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", angle2);
 
@@ -1724,7 +1724,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   gtk_check_menu_item_set_active(GTK_CHECK_MENU_ITEM(menuitem), TRUE);
 
   if (width == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", width);
 
@@ -1733,7 +1733,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (length == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", length);
 
@@ -1743,7 +1743,7 @@ x_dialog_edit_line_type_set_values(line_type_data *line_data,
   GEDA_FREE(text);
 
   if (space == LEAVE_ALONE)
-    text = geda_strdup(_("*unchanged*"));
+    text = u_string_strdup(_("*unchanged*"));
   else
     text = g_strdup_printf ("%d", space);
   SetEntryText   ( line_data->space_entry, text );
@@ -4254,7 +4254,7 @@ char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
 
   if (shortcuts && *shortcuts) {
     printf ("shortcuts = \"%s\"\n", shortcuts);
-    folder = geda_strdup (shortcuts);
+    folder = u_string_strdup (shortcuts);
     seed = folder;
     while ((folder = strtok (seed, ":")) != NULL) {
       gtk_file_chooser_add_shortcut_folder (GTK_FILE_CHOOSER (dialog),

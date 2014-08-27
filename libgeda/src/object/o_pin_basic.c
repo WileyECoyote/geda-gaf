@@ -1008,7 +1008,7 @@ o_pin_create_number_attrib(GedaToplevel *toplevel, Object *object, const char *n
     if (object->pin->number == NULL) {
       if(GEDA_IS_COMPLEX(object->parent_object)) {
         value = g_list_length(object->parent_object->complex->pin_objs);
-        int2str(value, s_val, 10);
+        u_string_int2str(value, s_val, 10);
         str_num = &s_val[0];
       }
       else {

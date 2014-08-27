@@ -794,7 +794,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
         }
 
       /* Converted and append an integer to the string */
-      tmp = int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
+      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
       str = strcat  ( str, tmp );
 
       /* Append our file extension */
@@ -821,7 +821,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
   /* Create an empty page with optional filename */
   inline Page* empty_page( const char *name ) {
     char     *fname;
-    fname = geda_strdup ( name ? name : generate_untitled() );
+    fname = u_string_strdup ( name ? name : generate_untitled() );
     new_page(fname);
     /* Hack: There is not page so status bar did not get updated */
     x_status_bar_update_grid_label(w_current);
@@ -1095,7 +1095,7 @@ x_window_save_page (GschemToplevel *w_current, Page *page, const char *filename)
     /* change page name if necessary and prepare log message */
     if (g_ascii_strcasecmp (page->filename, filename) != 0) {
       GEDA_FREE (page->filename);
-      page->filename = geda_strdup (filename);
+      page->filename = u_string_strdup (filename);
 
       log_msg = _("Saved as [%s] Okay\n");
     }
@@ -1183,7 +1183,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         /* new_current will be the new current page at the end of the function */
       }
 
-      if ((strncmpi(f_basename(page->filename), "untitled", 8) != 0) ||
+      if ((u_string_strncmpi(f_basename(page->filename), "untitled", 8) != 0) ||
         verbose_mode)
       {
         u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),

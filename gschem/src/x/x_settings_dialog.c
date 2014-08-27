@@ -802,7 +802,7 @@ static int SaveAttributeFilterList(GschemToplevel *w_current) {
          gtk_tree_model_get (store, &iter, 0, &str_new, -1);
          if (index < list_length) {
             str_old = g_list_nth_data (View2Data, index);
-            if ( !strequal( str_old, str_new )) { /* update if they don't match */
+            if ( !u_string_strequal( str_old, str_new )) { /* update if they don't match */
               View2Data = g_list_remove (View2Data, str_old);
               View2Data = g_list_insert(View2Data, str_new, index);
             }
@@ -882,7 +882,7 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
      * the iter on the stack and are already getting the pointer to a tree iter */
     gtk_tree_model_get (model, iter, 0, &attribute, -1);
 
-    answer = strequal( str, attribute);
+    answer = u_string_strequal( str, attribute);
 
     GEDA_FREE(attribute); /* gtk_tree_model_get made copies of strings */
     return answer; /* stop walking the store if found, else call us with next row */
@@ -1337,13 +1337,13 @@ int setup_titleblock_combo( char *titleblock ){
      get_titleblock_list(strBuffer); /* get list of files */
 
      /* Maybe someone really smart can fix */
-     sort_string_array(strBuffer, sizeof(strBuffer));
+     u_string_sort_array(strBuffer, sizeof(strBuffer));
 
      f_remove_extension(titleblock);
 
      i = 0;
      while (i < number_of_buffers){
-        if (strequal(titleblock, strBuffer[i])) pos = i;
+        if (u_string_strequal(titleblock, strBuffer[i])) pos = i;
         LOAD_STD_COMBO (TitleBlock, strBuffer[i++]);
      }
      if (pos >= 0) {
@@ -1384,7 +1384,7 @@ void setup_font_name_combo(char* cur_font) {
 
     pfont = IDS_FONT_NAMES[index];
     GTK_LOAD_COMBO (FontName, pfont);
-    if ( cur_font && strequal(cur_font, pfont)) {
+    if ( cur_font && u_string_strequal(cur_font, pfont)) {
      current = index;
     }
   }
@@ -1396,10 +1396,10 @@ void setup_ripper_symbol_combo(char* cur_name) {
 
   strcpy(rc_options.ripper_symbol_fname, cur_name);
 
-  if (strequal(rc_options.ripper_symbol_fname, DEFAULT_BUS_RIPPER_SYMNAME))
+  if (u_string_strequal(rc_options.ripper_symbol_fname, DEFAULT_BUS_RIPPER_SYMNAME))
     rc_options.ripper_symbol_index = 0;
   else
-    if (strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
+    if (u_string_strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
       rc_options.ripper_symbol_index = 1;
     else {
       LOAD_STD_COMBO(RipperSymbol, rc_options.ripper_symbol_fname);
@@ -2376,7 +2376,7 @@ void GatherSettings(GschemToplevel *w_current) {
   if (tmp_int != rc_options.ripper_symbol_index) {
     GEDA_FREE(w_current->bus_ripper_symname);
     w_current->bus_ripper_symname =
-    geda_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
+    u_string_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
     strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
   }
 

@@ -785,7 +785,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
   g_list_free(default_component_select_attrlist);
 
   scm_dynwind_begin(0);
-  scm_dynwind_unwind_handler(g_list_free_string, (void *) &list, 0);
+  scm_dynwind_unwind_handler(u_glist_free_strings, (void *) &list, 0);
 
   /* convert the scm list into a GList */
   for (i=0; i < length; i++) {
@@ -795,7 +795,7 @@ SCM g_rc_component_dialog_attributes(SCM stringlist)
     SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
 
     str = scm_to_utf8_string(elem);
-    attr = geda_strdup(str);
+    attr = u_string_strdup(str);
     free(str);
     list = g_list_prepend(list, attr);
   }
@@ -1143,7 +1143,7 @@ SCM g_rc_bus_ripper_symname(SCM scmsymname)
   GEDA_FREE(default_bus_ripper_symname);
 
   temp = scm_to_utf8_string (scmsymname);
-  default_bus_ripper_symname = geda_strdup (temp);
+  default_bus_ripper_symname = u_string_strdup (temp);
   free (temp);
 
   return SCM_BOOL_T;
@@ -1374,7 +1374,7 @@ SCM g_rc_print_command(SCM scm_command)
   command = scm_to_utf8_string (scm_command);
 
   GEDA_FREE (default_print_command);
-  default_print_command = geda_strdup (command);
+  default_print_command = u_string_strdup (command);
   free (command);
 
   return SCM_BOOL_T;

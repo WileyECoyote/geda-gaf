@@ -161,7 +161,7 @@ int f_print_header(GedaToplevel *toplevel, Page *page, FILE *fp,
   buf = GEDA_MEM_ALLOC(PROLOG_BUFFER_SIZE);
 
   /* Check for prolog file */
-  prologfile = geda_strdup(toplevel->postscript_prolog);
+  prologfile = u_string_strdup(toplevel->postscript_prolog);
   if(access(prologfile, R_OK) != 0) {
     GEDA_FREE(prologfile);
     prologfile = g_strconcat (f_path_sys_data (), DIR_SEPARATOR_S,

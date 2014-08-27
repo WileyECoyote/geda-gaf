@@ -733,7 +733,7 @@ void x_print_setup (GschemToplevel *w_current, char *filename)
                                     command);
 
           GEDA_FREE (w_current->print_command);
-          w_current->print_command = geda_strdup (command);
+          w_current->print_command = u_string_strdup (command);
         }
         else
         {

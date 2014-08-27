@@ -1,3 +1,11 @@
+2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_glist.c: New file, relocated glist utiliteis from
+      gschem::g_util.c and added gslist counterparts.
+
+    * src/utility/u_string.c: New file, relocated string related functions
+      from u_basic.c to this file.
+
 2014-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_hatch.c: Fix m_hatch_circle and m_hatch_polygon

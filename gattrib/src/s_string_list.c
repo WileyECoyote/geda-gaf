@@ -90,7 +90,7 @@ STRING_LIST *s_string_list_duplicate_string_list(STRING_LIST *old_string_list) {
 
   local_string_list = old_string_list;
   while (local_string_list != NULL) {
-    data = geda_strdup(local_string_list->data);
+    data = u_string_strdup(local_string_list->data);
     s_string_list_add_item(new_string_list, &count, data);
     GEDA_FREE(data);
     local_string_list = local_string_list->next;
@@ -124,7 +124,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* First check to see if list is empty.  Handle insertion of first item
      into empty list separately.  (Is this necessary?) */
   if (list->data == NULL) {
-    list->data = geda_strdup(item);
+    list->data = u_string_strdup(item);
     list->next = NULL;
     list->prev = NULL;  /* this may have already been initialized. . . . */
     list->pos = *count; /* This enumerates the pos on the list.  Value is reset later by sorting. */
@@ -135,7 +135,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* Otherwise, loop through list looking for duplicates */
   prev = list;
   while (list != NULL) {
-    trial_item = geda_strdup(list->data);
+    trial_item = u_string_strdup(list->data);
     if (strcmp(trial_item, item) == 0) {
       /* Found item already in list.  Just return. */
       GEDA_FREE(trial_item);
@@ -150,7 +150,7 @@ void s_string_list_add_item(STRING_LIST *list, int *count, char *item) {
   /* In this case, we insert it. */
 
   local_list = (STRING_LIST *) GEDA_MEM_ALLOC(sizeof(STRING_LIST));  /* allocate space for this list entry */
-  local_list->data = geda_strdup(item);   /* copy data into list */
+  local_list->data = u_string_strdup(item);   /* copy data into list */
   local_list->next = NULL;
   local_list->prev = prev;  /* point this item to last entry in old list */
   prev->next = local_list;  /* make last item in old list point to this one. */
@@ -189,7 +189,7 @@ void s_string_list_delete_item(STRING_LIST **list, int *count, char *item) {
   /* Now loop through list looking for item */
   list_item = (*list);
   while (list_item != NULL) {
-    trial_item = geda_strdup(list_item->data);
+    trial_item = u_string_strdup(list_item->data);
 #ifdef DEBUG
     printf("In s_string_list_delete_item, matching item against trial item = %s from list.\n", trial_item);
 #endif
@@ -271,14 +271,14 @@ void s_string_list_insert (STRING_LIST *list, int *old_count, int pos, char *ite
 
       for ( index = 0; index < pos; index++) {
         str = s_string_list_get_data_at_index(list, index);
-        s_string_list_add_item(new_list, &count, geda_strdup(str));
+        s_string_list_add_item(new_list, &count, u_string_strdup(str));
       }
 
-      s_string_list_add_item(new_list, &count, geda_strdup(item));
+      s_string_list_add_item(new_list, &count, u_string_strdup(item));
 
       for ( index = pos; index < *old_count; index++) {
         str = s_string_list_get_data_at_index(list, index);
-        s_string_list_add_item(new_list, &count, geda_strdup(str));
+        s_string_list_add_item(new_list, &count, u_string_strdup(str));
       }
 
       s_string_list_free(list);

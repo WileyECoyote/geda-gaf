@@ -274,7 +274,7 @@ void x_window_add_items(PageDataSet *PageData)
   for (col = 0; col < PageData->comp_attrib_count; col++) {
     for (row = 0; row < PageData->comp_count; row++) {
       if ( (PageData->component_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text = geda_strdup( (PageData->component_table)[col][row].attrib_value );
+        text = u_string_strdup( (PageData->component_table)[col][row].attrib_value );
         visibility = (PageData->component_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
         is_inherited = (PageData->component_table)[col][row].is_inherited;
@@ -289,7 +289,7 @@ void x_window_add_items(PageDataSet *PageData)
   for (col = 0; col <PageData->net_attrib_count; col++) {
     for (row = 0; row < PageData->net_count; row++) {
       if ( (PageData->net_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text =  geda_strdup( (PageData->net_table)[col][row].attrib_value );
+        text =  u_string_strdup( (PageData->net_table)[col][row].attrib_value );
         visibility = (PageData->net_table)[col][row].visibility;
         show_name_value = (PageData->component_table)[col][row].show_name_value;
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[1]), row, col, text, visibility, show_name_value, 0);
@@ -302,7 +302,7 @@ void x_window_add_items(PageDataSet *PageData)
   for (col = 0; col < PageData->pin_attrib_count; col++) {
     for (row = 0; row < PageData->pin_count; row++) {
       if ( (PageData->pin_table)[col][row].attrib_value ) { /* NULL = no entry */
-        text = geda_strdup( (PageData->pin_table)[col][row].attrib_value );
+        text = u_string_strdup( (PageData->pin_table)[col][row].attrib_value );
         /* pins have no visibility attributes, must therefore provide default. */
         x_gtksheet_add_cell_item( GTK_SHEET(sheets[2]), row, col, text,  VISIBLE, SHOW_VALUE, 0);
         GEDA_FREE(text);

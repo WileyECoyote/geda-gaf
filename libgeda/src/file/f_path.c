@@ -111,7 +111,7 @@ const char *f_path_sys_data () {
     const char *path;
     path = getenv ("GEDADATA");
     if (path != NULL) {
-      sys_data_path = geda_strdup(path);
+      sys_data_path = u_string_strdup(path);
     }
   }
 
@@ -125,7 +125,7 @@ const char *f_path_sys_data () {
     GEDA_FREE (directory);
 # else
     /* On other platforms, use the compiled-in path */
-    sys_data_path = geda_strdup(GEDADATADIR);
+    sys_data_path = u_string_strdup(GEDADATADIR);
 # endif
     setenv ("GEDADATA", sys_data_path, FALSE);
   }
@@ -153,12 +153,12 @@ const char *f_path_sys_doc () {
     const char *path;
     path = getenv ("GEDADOC");
     if (path != NULL) {
-      sys_doc_path = geda_strdup(path);
+      sys_doc_path = u_string_strdup(path);
     }
   }
 
   if (sys_doc_path == NULL) {
-    sys_doc_path = geda_strdup(GEDADOCDIR);
+    sys_doc_path = u_string_strdup(GEDADOCDIR);
     setenv ("GEDADOC", sys_doc_path, FALSE);
   }
   return sys_doc_path;
@@ -188,7 +188,7 @@ const char *f_path_sys_config () {
     const char *path;
     path = getenv ("GEDADATARC");
     if (path != NULL) {
-      sys_config_path = geda_strdup(path);
+      sys_config_path = u_string_strdup(path);
     }
   }
 
@@ -201,10 +201,10 @@ const char *f_path_sys_config () {
 
 #elif defined (GEDARCDIR) && !defined(_WIN32)
     /* If available, use the rc directory set during configure. */
-    sys_config_path = geda_strdup(GEDARCDIR);
+    sys_config_path = u_string_strdup(GEDARCDIR);
 #else
     /* Otherwise, just use the data directory */
-    sys_config_path = geda_strdup(f_path_sys_data ());
+    sys_config_path = u_string_strdup(f_path_sys_data ());
 #endif
 
   }
@@ -251,7 +251,7 @@ const char *f_path_user_config () {
 #endif
 
     if (user_config_path == NULL) {  /* Otherwise, just use the data directory */
-      user_config_path = geda_strdup(f_path_sys_data ());
+      user_config_path = u_string_strdup(f_path_sys_data ());
     }
   }
   return user_config_path;
@@ -319,7 +319,7 @@ int f_create_path(const char *path, mode_t mode)
     char           *pp;
     char           *sp;
     int             status;
-    char           *copypath = geda_strdup(path);
+    char           *copypath = u_string_strdup(path);
 
     status = NO_ERROR;
     pp = copypath;

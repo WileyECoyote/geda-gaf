@@ -194,9 +194,6 @@ void  g_init_select      (void);
 
 /* g_util.c */
 void  g_init_util ();
-int   g_list_find_string          (GList* list, char *str);
-void  g_list_free_string          (void *data);
-GLT*  g_list_clear                (GList* list);
 void  g_copy_tree_iter            (GtkTreeIter *iter1, GtkTreeIter *iter2);
 bool  g_tree_model_iter_previous  (GtkTreeModel *tree_model, GtkTreeIter *iter);
 

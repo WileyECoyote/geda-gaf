@@ -86,12 +86,12 @@ bool x_find_main_search(char* text, char *replacement) {
       if (Search.Case)
         return !(strcmp ( cell_text, text));
       else
-        return !(stricmp ( cell_text, text));
+        return !(u_string_stricmp ( cell_text, text));
     else
       if (Search.Case)
         return (strstr ( cell_text, text)) ? (strlen (strstr ( cell_text, text))) : 0;
       else
-        return (stristr ( cell_text, text)) ? (strlen (stristr ( cell_text, text))) : 0;
+        return (u_stristr ( cell_text, text)) ? (strlen (u_stristr ( cell_text, text))) : 0;
   }
   void do_replace_text(int row, int col) {
     char *new;
@@ -102,9 +102,9 @@ bool x_find_main_search(char* text, char *replacement) {
     else {
       strcpy(new, cell_text);
       if (Search.Case)
-        strsubst(new, text, replacement);
+        u_string_strsubst(new, text, replacement);
       else
-        strisubst(new, text, replacement);
+        u_string_strisubst(new, text, replacement);
     }
 
     gtk_sheet_set_cell_text(Search.sheet, row, col, new);

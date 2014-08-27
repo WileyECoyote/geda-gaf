@@ -409,7 +409,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
             is_a_toggle = TRUE;
             toggler_data                 = GEDA_MEM_ALLOC0(sizeof(ToggleMenuData));
             toggler_data->w_current      = w_current;
-            toggler_data->menu_item_name = geda_strdup(menu_item_name);
+            toggler_data->menu_item_name = u_string_strdup(menu_item_name);
             toggler_data->menu_path      = g_strconcat (*raw_menu_name, "/", raw_menu_item_name, NULL);
             menu_item_name = menu_item_name + 7;                 /* is just for label */
             /* TODO: Tooltip don't work here, we will fix them later*/
@@ -1393,7 +1393,7 @@ void recent_files_add(const char *filename)
    /* Normalize the filename. */
    save_fn = f_normalize_filename (filename, &err);
    if (err != NULL) {
-     save_fn = geda_strdup (filename);
+     save_fn = u_string_strdup (filename);
      g_error_free (err);
    }
 

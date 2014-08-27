@@ -88,7 +88,7 @@ SCM g_rc_component_groups(SCM stringlist)
     SCM_ASSERT(scm_is_string(elem), elem, SCM_ARG1, "list element is not a string");
 
     str = scm_to_utf8_string(elem);
-    attr = geda_strdup(str);
+    attr = u_string_strdup(str);
     free(str);
     list = g_list_prepend(list, attr);
   }
@@ -124,7 +124,7 @@ SCM g_rc_component_library(SCM path, SCM name)
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
-  directory = u_expand_env_variables (temp);
+  directory = u_expand_env_variable (temp);
   scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
   free (temp);
 
@@ -189,14 +189,14 @@ SCM g_rc_component_library_command (SCM listcmd, SCM getcmd,
   /* take care of any shell variables */
   /*! \bug this may be a security risk! */
   tmp_str = scm_to_utf8_string (listcmd);
-  lcmdstr = u_expand_env_variables (tmp_str);
+  lcmdstr = u_expand_env_variable (tmp_str);
   scm_dynwind_unwind_handler (g_free, lcmdstr, SCM_F_WIND_EXPLICITLY);
   free (tmp_str); /* this should stay as free (allocated from guile) */
 
   /* take care of any shell variables */
   /*! \bug this may be a security risk! */
   tmp_str = scm_to_utf8_string (getcmd);
-  gcmdstr = u_expand_env_variables (tmp_str);
+  gcmdstr = u_expand_env_variable (tmp_str);
   scm_dynwind_unwind_handler (g_free, gcmdstr, SCM_F_WIND_EXPLICITLY);
   free (tmp_str); /* this should stay as free (allocated from guile) */
 
@@ -269,7 +269,7 @@ SCM g_rc_source_library(SCM path)
 
   /* take care of any shell variables */
   temp   = scm_to_utf8_string (path);
-  string = u_expand_env_variables (temp);
+  string = u_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
@@ -316,7 +316,7 @@ SCM g_rc_source_library_search(SCM path)
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
-  string = u_expand_env_variables (temp);
+  string = u_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
@@ -779,7 +779,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
 
     for (i=0; attr2[i] != NULL; i++) {
       if (strlen(attr2[i]) > 0) {
-        list = g_list_prepend(list, geda_strdup(attr2[i]));
+        list = g_list_prepend(list, u_string_strdup(attr2[i]));
       }
     }
     g_strfreev(attr2);
@@ -794,7 +794,7 @@ SCM g_rc_always_promote_attributes(SCM attrlist)
                  scm_list_ref(attrlist, scm_from_int(i)), SCM_ARG1,
                _("always-promote-attribute: list element is not a string"));
       temp = scm_to_utf8_string (scm_list_ref (attrlist, scm_from_int (i)));
-      attr = geda_strdup(temp);
+      attr = u_string_strdup(temp);
       free (temp);
       list = g_list_prepend(list, attr);
     }
@@ -840,7 +840,7 @@ SCM g_rc_bitmap_directory(SCM path)
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (path);
-  string = u_expand_env_variables (temp);
+  string = u_expand_env_variable (temp);
   free (temp);
 
   /* invalid path? */
@@ -912,7 +912,7 @@ SCM g_rc_postscript_prolog(SCM scmsymname)
   /* take care of any shell variables */
   temp = scm_to_utf8_string (scmsymname);
   default_postscript_prolog =
-    u_expand_env_variables (temp);
+    u_expand_env_variable (temp);
   free (temp);
 
   return SCM_BOOL_T;
@@ -968,7 +968,7 @@ SCM g_rc_scheme_directory(SCM s_path)
 
   /* take care of any shell variables */
   temp = scm_to_utf8_string (s_path);
-  expanded = u_expand_env_variables (temp);
+  expanded = u_expand_env_variable (temp);
   s_path = scm_from_utf8_string (expanded);
   free (temp);
   GEDA_FREE (expanded);
@@ -999,7 +999,7 @@ SCM g_rc_untitled_name(SCM name)
   GEDA_FREE(default_untitled_name);
 
   temp = scm_to_utf8_string (name);
-  default_untitled_name = geda_strdup (temp);
+  default_untitled_name = u_string_strdup (temp);
   free (temp);
 
   return SCM_BOOL_T;

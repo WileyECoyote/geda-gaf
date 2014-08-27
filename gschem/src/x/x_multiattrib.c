@@ -409,7 +409,7 @@ multiline_text_start_editing(GtkCellRenderer      *cell,
 
   g_object_set_data_full (G_OBJECT (textview),
                           CELL_RENDERER_MULTI_LINE_TEXT_PATH,
-                          geda_strdup (path), g_free);
+                          u_string_strdup (path), g_free);
 
   gtk_widget_show (textview);
 

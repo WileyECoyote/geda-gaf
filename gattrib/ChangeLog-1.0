@@ -1,3 +1,7 @@
+2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/*/*.c: rename geda_strdup u_string_strdup to match libgeda
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x_dialog.c: Replaced "strange signal" message with BUG_IMSG macro.

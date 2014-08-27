@@ -27,7 +27,7 @@
 ;; ------------------------------------------------------------------
 ;; PB  | ??/??/11 |  Inital release.
 ;; ------------------------------------------------------------------
-;; WEH | 10/15/12 | Added int2str, scm_2_cstring function, strequal
+;; WEH | 10/15/12 | Added u_string_int2str, u_string_scm2c function, u_string_strequal
 ;;                | (so that these generic functions could be used
 ;;                | shared rather than defined locally in a module.
 ;;                | Update address for Free Software Foundation.
@@ -96,84 +96,6 @@ void g_init_util ()
   scm_c_define_module ("gschem core util",
                        init_module_gschem_core_util,
                        NULL);
-}
-
-/*! \brief Detect item in list
- *
- * Look for item in the list.
- *
- * \param list pointer to the STRING_LIST struct
- * \param str  string to search for
- *
- * \returns 0 if absent, 1 if present
- */
-int g_list_find_string(GList *list, char *str) {
-
-  int len;
-  int index = -1;
-  char *ptr;
-
-  /* return -1 if list is empty  */
-  len = g_list_length(list);
-  if ( len != 0 ) {
-
-    for (index = 0; index < len; index++) {
-
-      ptr = g_list_nth_data(list, index);
-      if (ptr == NULL ) {
-        index = -1;
-        break;
-      }
-
-      if (strcmp(ptr, str) == 0) {
-      /* Found item already in list.  return index. */
-        break;
-      }
-    }
-  }
-  if (index == len)
-    index = -1;     /* item was not in the list, so return -2 */
-
-  return index;
-
-}
-
-/*! \brief Free a Glist of Strings
- *  \par Function Description
- *  This function will free all strings in a glist.
- *
- */
-void g_list_free_string(void *data)
-{
-  GList *iter, *glst = *((GList **) data);
-
-  for (iter = glst; iter != NULL; iter = g_list_next (iter)) {
-    GEDA_FREE (iter->data);
-  }
-  g_list_free (glst);
-}
-
-/*! \brief Free a Glist completely
- *  \par Function Description
- *  This function will free all of the data in a glist.
- *
- */
-GList* g_list_clear(GList* list){
-
-  if (list != NULL ) {
-
-    g_list_foreach(list, (GFunc)g_free, NULL);
-    lambda (const char* data)
-    {
-      list = g_list_remove( list, data);
-      return FALSE;
-    }
-    foreach (list);
-
-    g_list_free(list);
-    list = NULL;
-  }
-  return list;
 }
 
 /*! \brief Copy a Tree Iter

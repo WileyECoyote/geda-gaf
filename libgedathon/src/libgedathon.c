@@ -858,7 +858,7 @@ void initialize( API_FunctionTable* user_table)
   setup_source_library();
   if(toplevel->always_promote_attributes == NULL ) {
     for ( i = 0; promote_list[i]; i++) {
-     apa_list = g_list_prepend(apa_list, geda_strdup(promote_list[i]));
+     apa_list = g_list_prepend(apa_list, u_string_strdup(promote_list[i]));
     }
   }
   floating_objects = NULL;
@@ -931,7 +931,7 @@ PyGeda_append_symbol_path( const char *path )
   char *namestr    = NULL;
   int result       = 0;
 
-  directory = u_expand_env_variables (path);
+  directory = u_expand_env_variable (path);
 
   /* is invalid path? */
   if (g_file_test (directory, G_FILE_TEST_IS_DIR)) {
@@ -1141,7 +1141,7 @@ PyGeda_open_page( const char *filename )
           str = &untitled[0];
         }
       /* Coverted and append an integer to the string */
-      tmp = int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
+      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
       str = strcat  ( str, tmp );
       /* Append our file extension */
       str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
@@ -1158,7 +1158,7 @@ PyGeda_open_page( const char *filename )
   /* Create an empty page with optional filename */
   inline Page* empty_page( const char *name ) {
     char *fname;
-    fname = geda_strdup ( name ? name : generate_untitled() );
+    fname = u_string_strdup ( name ? name : generate_untitled() );
     page = s_page_new (toplevel, fname);
     s_page_goto (toplevel, page);
     GEDA_FREE (fname);
@@ -1194,7 +1194,7 @@ PyGeda_open_page( const char *filename )
          * occurs then we have to delete this page but s_page_delete is
          * going to free the name, the one passed to us as a constant, so
          * we have to make a copy here for the maybe future page */
-        page = s_page_new (toplevel, geda_strdup (filename));
+        page = s_page_new (toplevel, u_string_strdup (filename));
         s_page_goto (toplevel, page);
         /* Try to load the file */
         if (!f_open (toplevel, page, (char *) filename, &err)) {
@@ -2096,12 +2096,12 @@ PyObject *PyGeda_new_bus (const char *busname, int x1, int y1, int x2, int y2, P
 
   if(busname) { /* then create a text attribute for netname */
     Object *net_attrib;
-    object->bus->bus_name  = geda_strdup(busname);
+    object->bus->bus_name  = u_string_strdup(busname);
     net_attrib = o_attrib_new_attached(object, "netname", busname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
   }
   else
-    object->bus->bus_name  = geda_strdup(object->name);
+    object->bus->bus_name  = u_string_strdup(object->name);
 
   object->bus->bus_ripper_direction = o_bus_get_direction(object);
 
@@ -2264,12 +2264,12 @@ PyObject *PyGeda_new_net (const char *netname, int x1, int y1, int x2, int y2, P
   /* Set in the gobject so the memory will be freed later */
   if(netname) { /* then create a text attribute for netname */
     Object *net_attrib;
-    object->net->net_name  = geda_strdup(netname);
+    object->net->net_name  = u_string_strdup(netname);
     net_attrib = o_attrib_new_attached(object, "netname", netname, INVISIBLE, SHOW_VALUE);
     floating_objects = g_list_append(floating_objects, net_attrib);
   }
   else
-    object->net->net_name  = geda_strdup(object->name);
+    object->net->net_name  = u_string_strdup(object->name);
 
   object->net->nid = object->sid;
 
@@ -2392,9 +2392,9 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
   object = o_pin_new(PIN_COLOR, x1, y1, x2, y2, 0, conn2);
 
   if(label)
-    object->pin->label = geda_strdup(label);
+    object->pin->label = u_string_strdup(label);
   else
-    object->pin->label = geda_strdup("unknown");
+    object->pin->label = u_string_strdup("unknown");
 
   if (etype < 0) {
     o_pin_set_elect_type(object, PIN_ELECT_VOID);
@@ -2429,9 +2429,9 @@ PyGeda_new_pin (const char *label, const char *number, int x1, int y1, int x2, i
   }
 
   if(number)
-    object->pin->number = geda_strdup(number);
+    object->pin->number = u_string_strdup(number);
   else
-    object->pin->number = geda_strdup("");
+    object->pin->number = u_string_strdup("");
 
   floating_objects = g_list_append(floating_objects, object);
 

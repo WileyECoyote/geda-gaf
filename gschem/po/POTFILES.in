@@ -27,7 +27,7 @@ gschem/src/guile/g_select.x
 gschem/src/guile/g_util.x
 gschem/src/guile/g_window.x
 
-gschem/src/iface/i_basic.c
+gschem/src/iface/i_status.c
 gschem/src/iface/i_callbacks.c
 gschem/src/iface/i_command.c
 gschem/src/iface/i_sessions.c

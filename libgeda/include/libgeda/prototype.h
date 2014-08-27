@@ -337,17 +337,17 @@ const char   *o_text_get_string                  (Object *obj);
       void    o_text_set_string                  (Object *obj, const char *new_string);
 
 /* s_attrib.c */
-      int     s_attrib_add_entry       (char *new_attrib);
-      int     s_attrib_count           (void);
-      void    s_attrib_print           (void);
-      int     s_attrib_uniq            (char *name);
-      void    s_attrib_free            (void);
-      void    s_attrib_init            (void);
-      char    *s_attrib_get            (int counter);
+      int     s_attrib_add_entry                 (char *new_attrib);
+      int     s_attrib_count                     (void);
+      void    s_attrib_print                     (void);
+      int     s_attrib_uniq                      (char *name);
+      void    s_attrib_free                      (void);
+      void    s_attrib_init                      (void);
+      char    *s_attrib_get                      (int counter);
 
 /* s_basic.c */
-      void    print_struct_forw        (GList *list);
-      void    print_struct             (Object *ptr);
+      void    print_struct_forw                  (GList *list);
+      void    print_struct                       (Object *ptr);
 
 /* s_clib.c */
       void        s_clib_free                    (void);
@@ -512,26 +512,10 @@ GedaToplevel *s_toplevel_new (void);
     SCM       s_color_map_to_scm       (const COLOR *map);
     void      s_color_map_from_scm     (COLOR *map, SCM lst, const char *scheme_proc_name);
 
-/* ---------------- u_basic.c -------------- */
-      char   *remove_nl                (char *string);
-      char   *remove_last_nl           (char *string);
-      char   *int2str                  (int value, char *str, int radix);
-      char   *geda_sprintf             (const char *format, ...);
-      char   *geda_strdup              (const char *str);
-      char   *geda_strndup             (const char *str, size_t n);
-      int     geda_stristr             (const char *haystack, const char *needle);
-      char   *scm_2_cstring            (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
-      void    sort_string_array        (char *strings[], size_t strings_size);
-      bool    strequal                 (const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
-      char   *strstr_rep               (char *original,   const char *old, const char *new);
-      int     stricmp                  (const char *str1, const char *str2);
-      int     strncmpi                 (const char *str1, const char *str2, int n);
-const char   *stristr                  (const char *str1, const char *str2);
-      char   *strsubst                 (char *source, char *old_str, char *new_str);
-      char   *strisubst                (char *source, char *old_str, char *new_str);
-      char   *u_basic_breakup_string   (char *string, char delimiter, int count);
-      char   *u_expand_env_variables   (const char *string);
-      int     word_count               (char *str);
+/* ---------------- Utilities -------------- */
+
+/* u_basic.c */
+      char   *u_expand_env_variable    (const char *string);
       void    u_print_object           (Object *object);
 
 /* u_color.c */
@@ -539,10 +523,41 @@ const char   *stristr                  (const char *str1, const char *str2);
       bool    u_color_rgba_decode      (const char *rgba, guchar *r, guchar *g, guchar *b, guchar *a);
       char   *u_color_rgba_encode      (uint8 r, uint8 g, uint8 b, uint8 a);
 
+/* u_glist.c */
+      int     u_glist_find_string      (GList* list, char *str);
+      void    u_glist_free_strings     (void *data);
+      GList  *u_glist_clear            (GList* list);
+
+      int     u_gslist_find_string     (GSList* list, char *str);
+      void    u_gslist_free_strings    (void *data);
+      GSList *u_gslist_clear           (GSList* list);
+
 /* u_log.c */
       void    u_log_init               (const char *filename);
       void    u_log_close              (void);
       char   *u_log_read               (void);
+
+/* u_string.c */
+      char   *u_string_remove_nl       (char *string);
+      char   *u_string_remove_last_nl  (char *string);
+      char   *u_string_int2str         (int value, char *str, int radix);
+      char   *u_string_sprintf         (const char *format, ...);
+      char   *u_string_strdup          (const char *str);
+      char   *u_string_strndup         (const char *str, size_t n);
+      int     u_string_stristr         (const char *haystack, const char *needle);
+      char   *u_string_scm2c           (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
+      void    u_string_sort_array      (char *strings[], size_t strings_size);
+      bool    u_string_strequal        (const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
+      char   *u_string_strstr_rep      (char *original,   const char *old, const char *new);
+      int     u_string_stricmp         (const char *str1, const char *str2);
+      int     u_string_strncmpi        (const char *str1, const char *str2, int n);
+const char   *u_stristr                (const char *str1, const char *str2);
+      char   *u_string_strsubst        (char *source, char *old_str, char *new_str);
+      char   *u_string_strisubst       (char *source, char *old_str, char *new_str);
+      char   *u_string_split           (char *string, char delimiter, int count);
+      int     u_string_word_count      (char *str);
+
+
 
 /* u_program.c */
       void    u_program_backtrace      (void);

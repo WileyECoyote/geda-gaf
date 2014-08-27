@@ -225,7 +225,7 @@ bool x_settings_set_scm_int(char *symbol_name, int value ) {
 
   if (symbol_name) {
     strbuff = &buffer[0];
-    str = int2str(value, s_val, 10); /* convert the integer to a string */
+    str = u_string_int2str(value, s_val, 10); /* convert the integer to a string */
     strcpy(strbuff, "(define ");
     strcat(strbuff, symbol_name );
     strcat(strbuff, " " );
@@ -318,7 +318,7 @@ bool get_titleblock_list(char **Buffer) {
      while ((ent = readdir (dirp)) != NULL)
      {
        suffix = f_get_filename_ext(ent->d_name);
-       if ( suffix && stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
+       if ( suffix && u_string_stricmp (suffix, SYMBOL_FILE_SUFFIX) == 0)
        {
           strcpy(tmpbuff, basename(ent->d_name));
           namelen = strlen( tmpbuff) - 4; /* substract the extension */
@@ -598,7 +598,7 @@ KEYWORD (define_in_rc) {
 
   if (rc_options.titleblock_index == -1) {
     if (strstr(ptr, "define default-titleblock" ) != NULL) {
-      /* could do this: ptr = scm_2_cstring( "default-titleblock" ) */
+      /* could do this: ptr = u_string_scm2c( "default-titleblock" ) */
       strcpy (output_buffer, "(define default-titleblock \""); /* add a new semi-colon*/
       strcat (output_buffer, rc_options.titleblock_fname );
       strcat (output_buffer, "\")" );

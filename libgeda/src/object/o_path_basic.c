@@ -222,7 +222,7 @@ Object *o_path_read (const char *first_line, TextBuffer *tb,
 
   /* retrieve the character string from the GString */
   string = g_string_free (pathstr, FALSE);
-  string = remove_last_nl (string);
+  string = u_string_remove_last_nl (string);
 
   /* create a new path */
   new_obj = o_path_new (color, string);

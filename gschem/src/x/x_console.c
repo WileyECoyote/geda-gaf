@@ -391,7 +391,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
     s_ptr =  e_ptr = cl;
     while ( *e_ptr != ASCII_NUL) ++e_ptr;
     while (  s_ptr != e_ptr) if (*s_ptr == ASCII_SPACE) break; else ++s_ptr;
-    if (s_ptr == e_ptr) return geda_strdup(cl);
+    if (s_ptr == e_ptr) return u_string_strdup(cl);
     return g_strndup(cl, s_ptr - cl );
   }
 
@@ -408,7 +408,7 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
     GEDA_FREE (command_echo);
 
     if (i_command_is_valid(command)) {
-      i_command_process(w_current, command, word_count(command_line),
+      i_command_process(w_current, command, u_string_word_count(command_line),
                         command_line, ID_ORIGIN_CONSOLE);
     }
     else
@@ -431,7 +431,7 @@ static const char *x_console_get_input_data(void) {
 
   console_input_mode = CONSOLE_INPUT_MODE;
 
-  string = geda_strdup(GetEntryText(console_entry));
+  string = u_string_strdup(GetEntryText(console_entry));
 
   gtk_widget_grab_focus(console_entry);
 

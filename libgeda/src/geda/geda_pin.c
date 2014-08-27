@@ -222,7 +222,7 @@ geda_pin_get_property (GObject *object, unsigned int  prop_id,
       break;
 
     case PROP_SEQUENCE:
-      g_value_set_string (value, int2str( pin->sequence, s_val, 10 ));
+      g_value_set_string (value, u_string_int2str( pin->sequence, s_val, 10 ));
       break;
 
     case PROP_TYPE:
@@ -399,7 +399,7 @@ bool geda_pin_set_electrical(Pin *pin, const char *electrical)
     }
 
     if (changed) {
-      pin->electrical = geda_strdup(electrical);
+      pin->electrical = u_string_strdup(electrical);
 
       /* Check if there is a code associated with the description */
       current_type = geda_pin_lookup_etype(electrical);
@@ -437,7 +437,7 @@ bool geda_pin_set_label(Pin *pin, const char *label)
     }
 
     if (changed) {
-      pin->label = geda_strdup(label);
+      pin->label = u_string_strdup(label);
     }
   }
 
@@ -471,7 +471,7 @@ bool geda_pin_set_mechanical(Pin *pin, const char *mechanical)
     }
 
     if (changed) {
-      pin->mechanical = geda_strdup(mechanical);
+      pin->mechanical = u_string_strdup(mechanical);
 
       /* Check if there is a code associated with the description */
       current_type = geda_pin_lookup_mtype(mechanical);
@@ -503,7 +503,7 @@ bool geda_pin_set_number(Pin *pin, const char *number)
       changed = TRUE;
     }
     if (changed) {
-      pin->number = geda_strdup(number);
+      pin->number = u_string_strdup(number);
     }
   }
 

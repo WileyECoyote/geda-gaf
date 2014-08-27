@@ -164,7 +164,7 @@ SCM_DEFINE (set_filename_x, "%set-page-filename!", 2, 0, 0,
   if (page->filename != NULL) {
     g_free (page->filename);
   }
-  page->filename = geda_strdup(new_fn);
+  page->filename = u_string_strdup(new_fn);
   free (new_fn);
 
   return page_s;

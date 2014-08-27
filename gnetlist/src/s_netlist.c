@@ -167,7 +167,7 @@ void s_netlist_post_process(GedaToplevel * pr_current, NETLIST * head)
             if (pl_current->net_name && pl_current->nets) {
               if (pl_current->nets->next) {
                 pl_current->nets->next->net_name =
-                geda_strdup (pl_current->net_name);
+                u_string_strdup (pl_current->net_name);
               }
             }
           }
@@ -246,7 +246,7 @@ void s_netlist_name_named_nets (GedaToplevel *pr_current,
             n_current = n_current->next;
           }
           if (net_name != NULL) {
-            pl_current->net_name = geda_strdup(net_name);
+            pl_current->net_name = u_string_strdup(net_name);
           }
         }
         pl_current = pl_current->next;
@@ -279,7 +279,7 @@ char *s_netlist_netname_of_netid (GedaToplevel *pr_current,
         n_current = pl_current->nets;
         while (n_current != NULL) {
           if (n_current->nid == net_id) {
-            return (geda_strdup(n_current->net_name));
+            return (u_string_strdup(n_current->net_name));
           }
           n_current = n_current->next;
         }

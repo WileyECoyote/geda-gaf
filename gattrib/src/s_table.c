@@ -312,8 +312,8 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
           a_current = a_iter->data;
           if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
             /* may need to check more thoroughly here. . . . */
-            attrib_text = geda_strdup(a_current->text->string);
-            attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
+            attrib_text = u_string_strdup(a_current->text->string);
+            attrib_name = u_string_split(attrib_text, '=', 0);
             attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
             old_visibility = o_get_is_visible (a_current) ? VISIBLE : INVISIBLE;
             old_show_name_value = a_current->show_name_value;
@@ -340,14 +340,14 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                   /* Is there a compelling reason for me to put this into a separate fcn? */
                   ((sheet_head->component_table)[col][row]).row = row;
                   ((sheet_head->component_table)[col][row]).col = col;
-                  ((sheet_head->component_table)[col][row]).row_name = geda_strdup(temp_uref);
-                  ((sheet_head->component_table)[col][row]).col_name = geda_strdup(attrib_name);
-                  ((sheet_head->component_table)[col][row]).attrib_value = geda_strdup(attrib_value);
+                  ((sheet_head->component_table)[col][row]).row_name = u_string_strdup(temp_uref);
+                  ((sheet_head->component_table)[col][row]).col_name = u_string_strdup(attrib_name);
+                  ((sheet_head->component_table)[col][row]).attrib_value = u_string_strdup(attrib_value);
                   ((sheet_head->component_table)[col][row]).visibility = old_visibility;
                   ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
                   ((sheet_head->component_table)[col][row]).is_inherited = FALSE;
                   ((sheet_head->component_table)[col][row]).is_promoted = -1;
-                  s_string_list_add_item(AttachedAttributes, &counter, geda_strdup(attrib_name));
+                  s_string_list_add_item(AttachedAttributes, &counter, u_string_strdup(attrib_name));
                   counter++;
                 }
               }
@@ -365,8 +365,8 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
           is_attached = a_current->attached_to == o_current ? TRUE : FALSE;
           if(!is_attached) {
             if (a_current->type == OBJ_TEXT && a_current->text != NULL) { /* found an attribute */
-              attrib_text = geda_strdup(a_current->text->string);
-              attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
+              attrib_text = u_string_strdup(a_current->text->string);
+              attrib_name = u_string_split(attrib_text, '=', 0);
               attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
 
               if(!s_string_list_in_list(AttachedAttributes, attrib_name)) {
@@ -395,9 +395,9 @@ void s_table_add_items_to_comp_table (const GList *obj_list) {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
                       ((sheet_head->component_table)[col][row]).row = row;
                       ((sheet_head->component_table)[col][row]).col = col;
-                      ((sheet_head->component_table)[col][row]).row_name = geda_strdup(temp_uref);
-                      ((sheet_head->component_table)[col][row]).col_name = geda_strdup(attrib_name);
-                      ((sheet_head->component_table)[col][row]).attrib_value = geda_strdup(attrib_value);
+                      ((sheet_head->component_table)[col][row]).row_name = u_string_strdup(temp_uref);
+                      ((sheet_head->component_table)[col][row]).col_name = u_string_strdup(attrib_name);
+                      ((sheet_head->component_table)[col][row]).attrib_value = u_string_strdup(attrib_value);
                       ((sheet_head->component_table)[col][row]).visibility = old_visibility;
                       ((sheet_head->component_table)[col][row]).show_name_value = old_show_name_value;
                       ((sheet_head->component_table)[col][row]).is_inherited = TRUE;
@@ -465,8 +465,8 @@ void s_table_add_items_to_net_table(Object *start_obj) {
         if (a_current->object->type == OBJ_TEXT
             && a_current->object->text != NULL) {  /* found an attribute */
           /* may need to check more thoroughly here. . . . */
-          attrib_text = geda_strdup(a_current->object->text->string);
-          attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
+          attrib_text = u_string_strdup(a_current->object->text->string);
+          attrib_name = u_string_split(attrib_text, '=', 0);
           attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
           if (strcmp(attrib_name, "netname") != 0) {
             /* Don't include "netname" */
@@ -484,9 +484,9 @@ void s_table_add_items_to_net_table(Object *start_obj) {
             /* Is there a compelling reason for me to put this into a separate fcn? */
             ((sheet_head->net_table)[col][row]).row = row;
             ((sheet_head->net_table)[col][row]).col = col;
-            ((sheet_head->net_table)[col][row]).row_name = geda_strdup(temp_netname);
-            ((sheet_head->net_table)[col][row]).col_name = geda_strdup(attrib_name);
-            ((sheet_head->net_table)[col][row]).attrib_value = geda_strdup(attrib_value);
+            ((sheet_head->net_table)[col][row]).row_name = u_string_strdup(temp_netname);
+            ((sheet_head->net_table)[col][row]).col_name = u_string_strdup(attrib_name);
+            ((sheet_head->net_table)[col][row]).attrib_value = u_string_strdup(attrib_value);
           }
           GEDA_FREE(attrib_name);
           GEDA_FREE(attrib_text);
@@ -582,8 +582,8 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
 	      pin_attrib = a_iter->data;
 	      if (pin_attrib->type == OBJ_TEXT
 		  && pin_attrib->text != NULL) {  /* found an attribute */
-		attrib_text = geda_strdup(pin_attrib->text->string);
-		attrib_name = u_basic_breakup_string(attrib_text, '=', 0);
+		attrib_text = u_string_strdup(pin_attrib->text->string);
+		attrib_name = u_string_split(attrib_text, '=', 0);
 		attrib_value = s_misc_remaining_string(attrib_text, '=', 1);
 
 		if ( (strcmp(attrib_name, "pinnumber") != 0)
@@ -608,9 +608,9 @@ void s_table_add_tems_to_pin_table (const GList *obj_list) {
                       /* Is there a compelling reason for me to put this into a separate fcn? */
                       ((sheet_head->pin_table)[col][row]).row = row;
                       ((sheet_head->pin_table)[col][row]).col = col;
-                      ((sheet_head->pin_table)[col][row]).row_name = geda_strdup(row_label);
-                      ((sheet_head->pin_table)[col][row]).col_name = geda_strdup(attrib_name);
-                      ((sheet_head->pin_table)[col][row]).attrib_value = geda_strdup(attrib_value);
+                      ((sheet_head->pin_table)[col][row]).row_name = u_string_strdup(row_label);
+                      ((sheet_head->pin_table)[col][row]).col_name = u_string_strdup(attrib_name);
+                      ((sheet_head->pin_table)[col][row]).attrib_value = u_string_strdup(attrib_value);
                     }
                   }
                 }
@@ -789,11 +789,11 @@ void s_table_gtksheet_to_table(GtkSheet *local_gtk_sheet,
 
   row_list_item = master_row_list;
   for (row = 0; row < num_rows; row++) {
-    row_title = (char *) geda_strdup(row_list_item->data);
+    row_title = (char *) u_string_strdup(row_list_item->data);
 
     col_list_item = master_col_list;
     for (col = 0; col < num_cols; col++) {
-      col_title = (char *) geda_strdup(col_list_item->data);
+      col_title = (char *) u_string_strdup(col_list_item->data);
 
       /* get value of attrib in cell  */
       attrib_value = (char *) gtk_sheet_cell_get_text(GTK_SHEET(local_gtk_sheet), row, col);
@@ -817,7 +817,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 #endif
       GEDA_FREE( local_table[col][row].attrib_value );
       if (attrib_value != NULL) {
-	local_table[col][row].attrib_value = (char *) geda_strdup(attrib_value);
+	local_table[col][row].attrib_value = (char *) u_string_strdup(attrib_value);
       } else {
 	local_table[col][row].attrib_value = NULL;
       }
@@ -828,7 +828,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 #endif
       GEDA_FREE( local_table[col][row].row_name );
       if (row_title != NULL) {
-	local_table[col][row].row_name = (char *) geda_strdup(row_title);
+	local_table[col][row].row_name = (char *) u_string_strdup(row_title);
       } else {
 	local_table[col][row].row_name = NULL;
       }
@@ -839,7 +839,7 @@ fprintf(stderr,"In s_table_gtksheet_to_table, found attrib_value = %s in cell ro
 #endif
       GEDA_FREE( local_table[col][row].col_name );
       if (col_title != NULL) {
-	local_table[col][row].col_name = (char *) geda_strdup(col_title);
+	local_table[col][row].col_name = (char *) u_string_strdup(col_title);
       } else {
 	local_table[col][row].col_name = NULL;
       }

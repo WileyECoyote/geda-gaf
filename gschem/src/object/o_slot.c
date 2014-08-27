@@ -48,7 +48,7 @@ void o_slot_start (GschemToplevel *w_current, Object *object)
   if (slot_value == NULL) {
     /* we didn't find a slot=? attribute, make something up */
     /* for now.. this is an error condition */
-    slot_value = geda_strdup ("1");
+    slot_value = u_string_strdup ("1");
   }
 
   x_dialog_edit_slot (w_current, slot_value);

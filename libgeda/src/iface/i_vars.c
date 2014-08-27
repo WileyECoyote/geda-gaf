@@ -123,12 +123,12 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
   for (iter = default_component_groups; iter != NULL; iter = g_list_next(iter))
   {
     toplevel->component_groups = g_list_append(toplevel->component_groups,
-                                               geda_strdup(iter->data));
+                                               u_string_strdup(iter->data));
   }
 
   for (iter = toplevel->always_promote_attributes; iter != NULL;
        iter = g_list_next(iter))
-    iter->data = geda_strdup(iter->data);
+    iter->data = u_string_strdup(iter->data);
 
   /* you cannot free the default* strings here since new windows */
   /* need them */

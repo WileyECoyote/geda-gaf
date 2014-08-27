@@ -407,8 +407,8 @@ GArray* g_keys_dump_keymap (void)
     g_return_val_if_fail (SCM_CONSP (scm_keymap_entry) &&
     SCM_SYMBOLP (SCM_CAR (scm_keymap_entry)) &&
     scm_is_string (SCM_CDR (scm_keymap_entry)), ret);
-    keymap_entry.action = geda_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
-    keymap_entry.keyseq = geda_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
+    keymap_entry.action = u_string_strdup (SCM_SYMBOL_CHARS (SCM_CAR (scm_keymap_entry)));
+    keymap_entry.keyseq = u_string_strdup (SCM_STRING_CHARS (SCM_CDR (scm_keymap_entry)));
     ret = g_array_append_val (ret, keymap_entry);
   }
 
@@ -565,7 +565,7 @@ char *g_find_key (char *func_name) {
       ret_keys = NULL;
     }
     else {
-      ret_keys = geda_sprintf ("%s", keys);
+      ret_keys = u_string_sprintf ("%s", keys);
     }
     free(keys);
   }

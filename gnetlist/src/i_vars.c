@@ -62,29 +62,29 @@ void i_vars_set(GedaToplevel * pr_current)
     if (pr_current->hierarchy_uref_separator) {
       strcpy(pr_current->hierarchy_uref_separator, "/");
     } else {
-      pr_current->hierarchy_uref_separator = geda_strdup("/");
+      pr_current->hierarchy_uref_separator = u_string_strdup("/");
     }
   }
 
   if (!default_hierarchy_netname_separator) {
     default_hierarchy_netname_separator =
-    geda_strdup (DEFAULT_HIERARCHY_NETNAME_SEPARATOR);
+    u_string_strdup (DEFAULT_HIERARCHY_NETNAME_SEPARATOR);
   }
   if (!default_hierarchy_netattrib_separator) {
     default_hierarchy_netattrib_separator =
-    geda_strdup (DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR);
+    u_string_strdup (DEFAULT_HIERARCHY_NETATTRIB_SEPARATOR);
   }
   if (!default_hierarchy_uref_separator) {
     default_hierarchy_uref_separator =
-    geda_strdup (DEFAULT_HIERARCHY_UREF_SEPARATOR);
+    u_string_strdup (DEFAULT_HIERARCHY_UREF_SEPARATOR);
   }
   if (!default_unnamed_netname) {
     default_unnamed_netname =
-    geda_strdup (DEFAULT_UNNAMED_NETNAME);
+    u_string_strdup (DEFAULT_UNNAMED_NETNAME);
   }
   if (!default_unnamed_busname) {
     default_unnamed_busname =
-    geda_strdup (DEFAULT_UNNAMED_BUSNAME);
+    u_string_strdup (DEFAULT_UNNAMED_BUSNAME);
   }
 
   INIT_STR(pr_current, hierarchy_netname_separator,

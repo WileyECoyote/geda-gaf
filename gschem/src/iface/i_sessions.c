@@ -229,14 +229,14 @@ static GSList *i_sessions_get_file_list(Session *record)
     while ((read = getline(&fname, &len, fp)) != -1) {
       char *ptr = advance2char(&fname[0]);
       if (read > 3 && *ptr != ASCII_NUMBER_SIGN) {
-        remove_last_nl(fname);
+        u_string_remove_last_nl(fname);
         /* Could check file extension here */
         result = access(fname, R_OK );
         if (result == 0) {
-          files = g_slist_append(files, geda_strdup(fname));
+          files = g_slist_append(files, u_string_strdup(fname));
         }
         else {
-          bad = g_slist_append(bad, geda_strdup(fname));
+          bad = g_slist_append(bad, u_string_strdup(fname));
         }
       }
     }
@@ -384,7 +384,7 @@ i_sessions_create(GschemToplevel *w_current, const char *name, GError **err)
 
     record.page_count   = count;
     record.session_file = session_file;
-    record.session_name = geda_strdup(name);
+    record.session_name = u_string_strdup(name);
 
     if (sessions == NULL) {
       sessions = g_array_new (FALSE, FALSE, sizeof(Session));
@@ -703,7 +703,7 @@ static void i_sessions_load_data(void)
           tmpname = f_basename(file);
           f_remove_extension(tmpname);
 
-          record.session_name = geda_strdup(tmpname);
+          record.session_name = u_string_strdup(tmpname);
 
           sessions = g_array_append_val(sessions, record);
         }
@@ -793,7 +793,7 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 
     char    *msg;
 
-    msg = geda_sprintf ("%s, %s", record->session_file, strerror(errno));
+    msg = u_string_sprintf ("%s, %s", record->session_file, strerror(errno));
 
     /* Log the error */
     u_log_message( _("%s: Failed to remove session: %s"), __func__, msg);
@@ -853,7 +853,7 @@ int i_sessions_new_session(GschemToplevel *w_current, const char *name)
   }
   else {
 
-    msg = geda_sprintf ( _("An error occurred attemting to create session %s: %s."),
+    msg = u_string_sprintf ( _("An error occurred attemting to create session %s: %s."),
                          name, err->message);
     /* Log the error */
     u_log_message( _("%s %s"), __func__, msg);
@@ -947,7 +947,7 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
 
   if (rename(record->session_file, new_filename) == 0) {
 
-    str = geda_strdup(new_name);
+    str = u_string_strdup(new_name);
 
     q_log_message(_("Renaming session %s to renamed %s\n"),
                   record->session_name, str);
@@ -971,7 +971,7 @@ int i_sessions_rename_session(GschemToplevel *w_current, const char *old_name,
   }
   else {
 
-    str = geda_sprintf ("%s, %s", record->session_file, strerror(errno));
+    str = u_string_sprintf ("%s, %s", record->session_file, strerror(errno));
 
     /* Log the error */
     u_log_message( _("%s: Failed to rename session: %s"), __func__, str);
@@ -1008,7 +1008,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
 
     if (!err) {
       update_sessions_menus(w_current);
-      msg = geda_sprintf(_("Created session %s with %d documents.\n"), name, count);
+      msg = u_string_sprintf(_("Created session %s with %d documents.\n"), name, count);
     }
   }
   else {
@@ -1016,13 +1016,13 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = i_sessions_save(w_current, err);
 
     if (!err) {
-      msg = geda_sprintf (_("Saved %d documents to session %s\n"), count, w_current->session_name);
+      msg = u_string_sprintf (_("Saved %d documents to session %s\n"), count, w_current->session_name);
     }
   }
 
   if (err) {
 
-    msg = geda_sprintf (_("An error occurred attemting to save session %s: %s."), name, err->message);
+    msg = u_string_sprintf (_("An error occurred attemting to save session %s: %s."), name, err->message);
 
     u_log_message( "%s", msg); /* Log the error */
 

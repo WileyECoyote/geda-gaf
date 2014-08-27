@@ -143,7 +143,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
   temp_uref = o_attrib_search_object_attribs_by_name (o_current->parent_object, "refdes", 0);
 
   if (temp_uref) {
-    if (stricmp(temp_uref,"none") == 0) {
+    if (u_string_stricmp(temp_uref,"none") == 0) {
        GEDA_FREE(temp_uref);
        temp_uref = NULL;
     }
@@ -169,7 +169,7 @@ char *s_net_return_connected_string(GedaToplevel *pr_current,
         GEDA_FREE(misc);
       }
       else {
-        string = geda_strdup("U? ?");
+        string = u_string_strdup("U? ?");
       }
 
       fprintf(stderr, _("Missing Attributes (refdes and pin number)\n"));

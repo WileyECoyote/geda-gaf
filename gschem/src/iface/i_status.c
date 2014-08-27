@@ -60,7 +60,7 @@ void i_status_set_filename(GschemToplevel *w_current, const char *string)
       filename = f_basename(string);
     }
 
-    print_string = geda_sprintf("%s - gschem", filename);
+    print_string = u_string_sprintf("%s - gschem", filename);
 
     gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
 

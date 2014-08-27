@@ -599,7 +599,7 @@ int o_edit_find_text (GschemToplevel *w_current, const GList *o_list,
 
         if (attrib) {
           pcount = 0;
-          current_filename = u_basic_breakup_string(attrib, ',', pcount);
+          current_filename = u_string_split(attrib, ',', pcount);
           if (current_filename != NULL) {
             Page *child_page =
             s_hierarchy_down_schematic_single(toplevel, current_filename, parent, page_control, HIERARCHY_NORMAL_LOAD, NULL);

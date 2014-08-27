@@ -659,13 +659,13 @@ void autonumber_apply_new_text(AUTONUMBER_TEXT * autotext, Object *o_current,
 
   if ( slot > 0) {
     /* update the slot on the owner object */
-    int2str( slot, &string[5], 10);
+    u_string_int2str( slot, &string[5], 10);
     o_slot_end (autotext->w_current, o_current->attached_to, string);
   }
 
   /* replace old text, looks like "set=refdes=U1"*/
   strcpy(string, autotext->current_searchtext);
-  strcat(string, int2str( number, s_val, 10));
+  strcat(string, u_string_int2str( number, s_val, 10));
   o_text_set_string (o_current, string);
 
   autotext->w_current->toplevel->page_current->CHANGED = 1;
@@ -1039,7 +1039,7 @@ AUTONUMBER_TEXT *autonumber_init_state()
   t=default_text;
   while(*t!=NULL) {
     autotext->scope_text=g_list_append(autotext->scope_text,
-                                       geda_strdup(*t));
+                                       u_string_strdup(*t));
     t++;
   }
 
@@ -1135,7 +1135,7 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 
   /* Search text history */
   widget = gtk_bin_get_child(GTK_BIN(ScopeTextCombo));
-  text = geda_strdup( GetEntryText(widget));
+  text = u_string_strdup( GetEntryText(widget));
 
   autotext->scope_text = autonumber_history_add(autotext->scope_text, text);
 

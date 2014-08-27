@@ -1,3 +1,7 @@
+2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/ */ */ *.c: Rename geda_strdup u_string_strdup to match libgeda
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/ *.c: Replaced remaining "strange signal" messages with BUG_IMSG

@@ -416,7 +416,7 @@ print_settings_set_font(PrintSettings *settings, const char *string)
     if (settings->font_string != NULL) {
       GEDA_FREE(settings->font_string);
     }
-    settings->font_string = geda_strdup(string);
+    settings->font_string = u_string_strdup(string);
   }
 }
 

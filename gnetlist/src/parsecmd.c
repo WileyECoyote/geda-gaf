@@ -160,7 +160,7 @@ parse_commandline (int argc, char *argv[])
           break;
 
         case 'g':
-          guile_proc = geda_strdup(optarg);
+          guile_proc = u_string_strdup(optarg);
           break;
 
         case 'l':
@@ -181,7 +181,7 @@ parse_commandline (int argc, char *argv[])
 
         case 'o':
           GEDA_FREE(output_filename);
-          output_filename = geda_strdup(optarg);
+          output_filename = u_string_strdup(optarg);
           break;
 
         case 'O':

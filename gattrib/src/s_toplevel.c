@@ -64,7 +64,7 @@ int s_toplevel_read_page(GedaToplevel *toplevel, char *filename)
   int result;
 
   /* Set the new filename */
-  toplevel->page_current->filename = geda_strdup(filename);
+  toplevel->page_current->filename = u_string_strdup(filename);
 
   /* read in and fill out toplevel using f_open and its callees */
   if(!f_open (toplevel, toplevel->page_current, filename, &err)) {
@@ -261,7 +261,7 @@ void s_toplevel_delete_attrib_col(GtkSheet *sheet) {
   col = sheet->range.col0;
 
   /* Get name of the column to delete */
-  attrib_name = geda_strdup(sheet->column[col].name);
+  attrib_name = u_string_strdup(sheet->column[col].name);
 
   /* Ask user to confirm deletion */
   strcpy(msg_buffer, "Are you sure you want to\n delete the Attribute \"");
@@ -483,10 +483,10 @@ STRING_LIST *s_toplevel_get_component_attribs_in_sheet(char *refdes)
   i = 0;
   local_attrib_list = sheet_head->master_comp_attrib_list_head;
   while (local_attrib_list != NULL) {  /* iterate over all possible attribs */
-    new_attrib_name = geda_strdup(local_attrib_list->data);  /* take attrib name from column headings */
+    new_attrib_name = u_string_strdup(local_attrib_list->data);  /* take attrib name from column headings */
 
     if ( ((sheet_head->component_table)[i][row]).attrib_value ) {
-      new_attrib_value = geda_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
+      new_attrib_value = u_string_strdup( ((sheet_head->component_table)[i][row]).attrib_value );
       name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     }
@@ -579,10 +579,10 @@ s_toplevel_update_component_attribs_in_toplevel (
     if (a_current->type == OBJ_TEXT && a_current->text != NULL) {
       /* found a name=value attribute pair. */
       /* may need to check more thoroughly here. . . . */
-      old_name_value_pair = geda_strdup(a_current->text->string);
+      old_name_value_pair = u_string_strdup(a_current->text->string);
 
       /* Else clause is suggestion from Ales */
-      old_attrib_name = u_basic_breakup_string(old_name_value_pair, '=', 0);
+      old_attrib_name = u_string_split(old_name_value_pair, '=', 0);
       if ( (strcmp(old_attrib_name, "refdes") != 0) &&
 	   (strcmp(old_attrib_name, "net") != 0) &&
 	   (strcmp(old_attrib_name, "slot") != 0) &&
@@ -634,7 +634,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 
   /*  Now get the old attrib name & value from complete_comp_attrib_list
    *  and value from o_current  */
-  old_attrib_name = u_basic_breakup_string(local_list->data, '=', 0);
+  old_attrib_name = u_string_split(local_list->data, '=', 0);
   old_attrib_value = o_attrib_search_attached_attribs_by_name (o_current, old_attrib_name, 0);
 
 #if DEBUG
@@ -645,7 +645,7 @@ s_toplevel_update_component_attribs_in_toplevel (
 #endif
 
   /*  Next try to get this attrib from new_comp_attrib_list  */
-  new_attrib_name = u_basic_breakup_string(local_list->data, '=', 0);
+  new_attrib_name = u_string_split(local_list->data, '=', 0);
   if (s_string_list_in_list(new_comp_attrib_list, local_list->data)) {
     new_attrib_value = s_misc_remaining_string(local_list->data, '=', 1);
   } else {
@@ -661,7 +661,7 @@ s_toplevel_update_component_attribs_in_toplevel (
   /* Now get row and col where this new attrib lives.  Then get
    * visibility of the new attrib stored in the component table */
   /* We'll need this later */
-  refdes = geda_strdup(s_attrib_get_refdes(o_current));
+  refdes = u_string_strdup(s_attrib_get_refdes(o_current));
   row = s_table_get_index(sheet_head->master_comp_list_head, refdes);
   col = s_table_get_index(sheet_head->master_comp_attrib_list_head, new_attrib_name);
   /* if attribute has been deleted from the sheet, here is where we detect that */
@@ -825,10 +825,10 @@ STRING_LIST *s_toplevel_get_pin_attribs_in_sheet(char *refdes, Object *pin)
   i = 0;
   local_attrib_list = sheet_head->master_pin_attrib_list_head;
   while (local_attrib_list != NULL) {  /* iterate over all possible attribs */
-    new_attrib_name = geda_strdup(local_attrib_list->data);  /* take attrib name from column headings */
+    new_attrib_name = u_string_strdup(local_attrib_list->data);  /* take attrib name from column headings */
 
     if ( ((sheet_head->pin_table)[i][row]).attrib_value ) {
-      new_attrib_value = geda_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
+      new_attrib_value = u_string_strdup( ((sheet_head->pin_table)[i][row]).attrib_value );
       name_value_pair = g_strconcat(new_attrib_name, "=", new_attrib_value, NULL);
       GEDA_FREE(new_attrib_value);
     } else {
@@ -892,13 +892,13 @@ s_toplevel_update_pin_attribs_in_toplevel (GedaToplevel *toplevel,
   /* loop on name=value pairs held in new_pin_attrib_list */
   local_list = new_pin_attrib_list;
   while (local_list != NULL) {
-    new_name_value_pair = geda_strdup(local_list->data);
+    new_name_value_pair = u_string_strdup(local_list->data);
 #if DEBUG
   printf("        In s_toplevel_update_pin_attribs_in_toplevel, handling entry in master list %s .\n", new_name_value_pair);
 #endif
 
-  new_attrib_name = u_basic_breakup_string(new_name_value_pair, '=', 0);
-  new_attrib_value = u_basic_breakup_string(new_name_value_pair, '=', 1);
+  new_attrib_name = u_string_split(new_name_value_pair, '=', 0);
+  new_attrib_value = u_string_split(new_name_value_pair, '=', 1);
 
   if (strlen(new_attrib_value) == 0) {
     GEDA_FREE(new_attrib_value);

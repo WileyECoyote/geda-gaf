@@ -357,7 +357,7 @@ enum {
   strcpy(output_buffer, "(" ); \
   strcat(output_buffer, KEY_NAME(variable)); \
   strcat(output_buffer, " "); \
-  strcat(output_buffer, int2str( number, s_val, 10 )); \
+  strcat(output_buffer, u_string_int2str( number, s_val, 10 )); \
   strcat(output_buffer, ")\n"); \
   fputs(output_buffer, output);
 

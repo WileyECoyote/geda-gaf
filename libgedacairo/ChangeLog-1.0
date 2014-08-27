@@ -1,3 +1,7 @@
+2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/*/*.c: rename geda_strdup u_string_strdup to match libgeda
+
 2014-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/edarenderer.c: Fix eda_renderer_draw_hatch not returning TRUE

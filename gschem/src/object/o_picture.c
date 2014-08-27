@@ -356,7 +356,7 @@ void o_picture_set_pixbuf(GschemToplevel *w_current,
   }
 
   w_current->current_pixbuf = pixbuf;
-  w_current->pixbuf_filename = (char *) geda_strdup(filename);
+  w_current->pixbuf_filename = (char *) u_string_strdup(filename);
 
   w_current->pixbuf_wh_ratio = gdk_pixbuf_get_width(pixbuf) /
                                         gdk_pixbuf_get_height(pixbuf);

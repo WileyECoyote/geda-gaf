@@ -1336,7 +1336,7 @@ static GtkTreeModel* create_lib_tree_model (Compselect *compselect,
     at_boundary  = (g_ascii_strcasecmp (previous_grp, source->group) == 0);
 
     if ( (compselect->show_groups == FALSE) &&
-         (g_list_find_string(group_names, source->group) > -1 )) {
+         (u_glist_find_string(group_names, source->group) > -1 )) {
       bypassing  = TRUE;
     }
 
@@ -1563,7 +1563,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
     if (is_symbol) {
        gtk_tree_model_get ( model, &iter, LVC_ROW_DATA, &symbol, -1);
-       sym_name = geda_strdup(symbol->name);
+       sym_name = u_string_strdup(symbol->name);
        gtk_tree_model_iter_parent (model, &parent, &iter);
        at_boundary = FALSE;
     }
@@ -1575,10 +1575,10 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
        g_copy_tree_iter(&iter, &parent);
     }
     gtk_tree_model_get (model, &parent, LVC_ROW_DATA, &source, -1);
-    src_name = geda_strdup(source->name);
+    src_name = u_string_strdup(source->name);
     if (gtk_tree_model_iter_parent (model, &iter, &parent)) {
       gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
-      gp_src_name = geda_strdup(source->name);
+      gp_src_name = u_string_strdup(source->name);
     }
     do_restore = TRUE;
   }
@@ -2212,7 +2212,7 @@ bool SearchTreeView (GtkTreeModel *model, int column, const char *key,
     CLibSymbol *sym;
 
     gtk_tree_model_get (model, iter, LVC_ROW_DATA, &sym, -1);
-    return geda_stristr (sym->name, key);
+    return u_string_stristr (sym->name, key);
 }
 
 /*! \brief Creates the treeview for each notebook Library Tab */

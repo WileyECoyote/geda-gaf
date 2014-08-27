@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-24 02:59-0500\n"
+"POT-Creation-Date: 2014-08-27 04:02-0500\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -580,8 +580,8 @@ msgstr "Napotkano łuk o zerowym promieniu [ %c %d, %d, %d, %d, %d, %d ]\n"
 #: libgeda/src/object/o_arc_basic.c:260 libgeda/src/object/o_box_basic.c:307
 #: libgeda/src/object/o_bus_basic.c:141
 #: libgeda/src/object/o_circle_basic.c:246
-#: libgeda/src/object/o_line_basic.c:239 libgeda/src/object/o_net_basic.c:151
-#: libgeda/src/object/o_path_basic.c:206 libgeda/src/object/o_pin_basic.c:174
+#: libgeda/src/object/o_line_basic.c:237 libgeda/src/object/o_net_basic.c:151
+#: libgeda/src/object/o_path_basic.c:204 libgeda/src/object/o_pin_basic.c:174
 #: libgeda/src/object/o_text_basic.c:343
 #, c-format
 msgid "Found an invalid color [ %s ]\n"
@@ -590,8 +590,8 @@ msgstr "Napotkano niepoprawny kolor [ %s ]\n"
 #: libgeda/src/object/o_arc_basic.c:261 libgeda/src/object/o_box_basic.c:308
 #: libgeda/src/object/o_bus_basic.c:142
 #: libgeda/src/object/o_circle_basic.c:247
-#: libgeda/src/object/o_line_basic.c:240 libgeda/src/object/o_net_basic.c:152
-#: libgeda/src/object/o_path_basic.c:207 libgeda/src/object/o_pin_basic.c:175
+#: libgeda/src/object/o_line_basic.c:238 libgeda/src/object/o_net_basic.c:152
+#: libgeda/src/object/o_path_basic.c:205 libgeda/src/object/o_pin_basic.c:175
 #: libgeda/src/object/o_text_basic.c:344
 msgid "Setting color to default color\n"
 msgstr "Użyję domyślnego koloru\n"
@@ -784,7 +784,7 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr "Przyjmuję 'odbity' równe 0\n"
 
-#: libgeda/src/object/o_complex_basic.c:1002
+#: libgeda/src/object/o_complex_basic.c:1001
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -793,7 +793,7 @@ msgstr ""
 "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
 "\tNiepowodzenie podczas parsowania pliku symbolu symversion=%s\n"
 
-#: libgeda/src/object/o_complex_basic.c:1006
+#: libgeda/src/object/o_complex_basic.c:1005
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -802,7 +802,7 @@ msgstr ""
 "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
 "\tNiepowodzenie podczas parsowania pliku symbolu symversion=\n"
 
-#: libgeda/src/object/o_complex_basic.c:1023
+#: libgeda/src/object/o_complex_basic.c:1022
 #, c-format
 msgid ""
 "WARNING: Symbol version parse error on refdes %s:\n"
@@ -811,7 +811,7 @@ msgstr ""
 "UWAGA: Błąd parsowania wersji symbolu o identyfikatorze %s:\n"
 "\tNiepowodzenie podczas parsowania dołączonego atrybutu symversion=%s\n"
 
-#: libgeda/src/object/o_complex_basic.c:1049
+#: libgeda/src/object/o_complex_basic.c:1048
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -822,7 +822,7 @@ msgstr ""
 "\tAtrybut symversion=%s dołączony do symbolu, ale brak atrybutu symversion= "
 "w pliku symbolu\n"
 
-#: libgeda/src/object/o_complex_basic.c:1063
+#: libgeda/src/object/o_complex_basic.c:1062
 #, c-format
 msgid ""
 "WARNING: Symbol version mismatch on refdes %s (%s):\n"
@@ -831,17 +831,17 @@ msgstr ""
 "UWAGA: Niezgodność wersji symbolu o identyfikatorze %s (%s):\n"
 "\tWersja symbolu w bibliotece jest nowsza niż wersja tej instancji symbolu\n"
 
-#: libgeda/src/object/o_complex_basic.c:1095
+#: libgeda/src/object/o_complex_basic.c:1094
 #, c-format
 msgid "\tMAJOR VERSION CHANGE (file %.3f, instantiated %.3f, %s)!\n"
 msgstr "\tZNACZĄCA ZMIANA WERSJI (plik %.3f, użyto %.3f, %s)!\n"
 
-#: libgeda/src/object/o_complex_basic.c:1113
+#: libgeda/src/object/o_complex_basic.c:1112
 #, c-format
 msgid "\tMinor version change (file %.3f, instantiated %.3f)\n"
 msgstr "\tPomniejsza zmiana wersji (plik %.3f, użyto %.3f)\n"
 
-#: libgeda/src/object/o_complex_basic.c:1124
+#: libgeda/src/object/o_complex_basic.c:1123
 #, c-format
 msgid ""
 "WARNING: Symbol version oddity on refdes %s:\n"
@@ -869,11 +869,11 @@ msgstr ""
 msgid "Component [%s] has been successfully unembedded\n"
 msgstr "Komponent [%s] nie jest już osadzony\n"
 
-#: libgeda/src/object/o_line_basic.c:203 libgeda/src/object/o_line_basic.c:222
+#: libgeda/src/object/o_line_basic.c:201 libgeda/src/object/o_line_basic.c:220
 msgid "Failed to parse line object"
 msgstr ""
 
-#: libgeda/src/object/o_line_basic.c:234
+#: libgeda/src/object/o_line_basic.c:232
 #, c-format
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr "Napotkano linię o zerowej długości [ %c %d %d %d %d %d ]\n"
@@ -887,11 +887,11 @@ msgstr ""
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr "Napotkano połączenie o zerowej długości [ %c %d %d %d %d %d ]\n"
 
-#: libgeda/src/object/o_path_basic.c:200
+#: libgeda/src/object/o_path_basic.c:198
 msgid "Failed to parse path object"
 msgstr ""
 
-#: libgeda/src/object/o_path_basic.c:218
+#: libgeda/src/object/o_path_basic.c:216
 msgid "Unexpected end-of-file when reading path"
 msgstr ""
 
@@ -1236,22 +1236,22 @@ msgstr ""
 msgid "The Scheme-level hook to proxy"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:421
+#: libgeda/src/struct/s_clib.c:422
 #, c-format
 msgid "Library command failed [%s]: %s\n"
 msgstr "Błąd operacji w bibliotece [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:427
+#: libgeda/src/struct/s_clib.c:428
 #, c-format
 msgid "Library command failed [%s]: Uncaught signal %i.\n"
 msgstr "Błąd operacji w bibliotece [%s]: Nieobsługiwany sygnał %i.\n"
 
-#: libgeda/src/struct/s_clib.c:431
+#: libgeda/src/struct/s_clib.c:432
 #, c-format
 msgid "Library command failed [%s]\n"
 msgstr "Błąd operacji w bibliotece [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:432
+#: libgeda/src/struct/s_clib.c:433
 #, c-format
 msgid ""
 "Error output was:\n"
@@ -1260,65 +1260,65 @@ msgstr ""
 "Komunikat o błędzie:\n"
 "%s\n"
 
-#: libgeda/src/struct/s_clib.c:520
+#: libgeda/src/struct/s_clib.c:521
 #, c-format
 msgid "Library name [%s] already in use.  Using [%s].\n"
 msgstr "Nazwa biblioteki [%s] jest już zajęta.  Użyję [%s].\n"
 
-#: libgeda/src/struct/s_clib.c:649
+#: libgeda/src/struct/s_clib.c:650
 #, c-format
 msgid "Duplicate symbol: <%s>, location <%s>\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:658
+#: libgeda/src/struct/s_clib.c:659
 #, fuzzy, c-format
 msgid "Failed to open [%s]: %s\n"
 msgstr "Błąd otwarcia katalogu [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:757
+#: libgeda/src/struct/s_clib.c:758
 #, c-format
 msgid "Failed to scan library [%s]: Scheme function returned non-list\n"
 msgstr ""
 "Błąd przeszukiwania biblioteki [%s]: funkcja Scheme zwróciła nie-listę\n"
 
-#: libgeda/src/struct/s_clib.c:765
+#: libgeda/src/struct/s_clib.c:766
 #, c-format
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 "Napotkano niepoprawną nazwę symbolu podczas przeszukiwania biblioteki [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:1013 libgeda/src/struct/s_clib.c:1060
+#: libgeda/src/struct/s_clib.c:1014 libgeda/src/struct/s_clib.c:1061
 msgid "Cannot add library: name not specified\n"
 msgstr "Nie można dodać biblioteki: nie podano nazwy\n"
 
-#: libgeda/src/struct/s_clib.c:1020
+#: libgeda/src/struct/s_clib.c:1021
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
 msgstr ""
 "Nie można dodać biblioteki [%s]: komendy 'list' i 'get' muszą być podane\n"
 
-#: libgeda/src/struct/s_clib.c:1069
+#: libgeda/src/struct/s_clib.c:1070
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr "Nie można dodać biblioteki Scheme [%s]: callbacks must be closures\n"
 
-#: libgeda/src/struct/s_clib.c:1196
+#: libgeda/src/struct/s_clib.c:1197
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Błąd podczas ładowania symbolu z pliku [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:1255
+#: libgeda/src/struct/s_clib.c:1256
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Odczyt danych symbolu [%s] z pliku [%s] nie powiódł się\n"
 
-#: libgeda/src/struct/s_clib.c:1497
+#: libgeda/src/struct/s_clib.c:1498
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Nie odnaleziono komponentu [%s] w bibliotece komponentów\n"
 
-#: libgeda/src/struct/s_clib.c:1503
+#: libgeda/src/struct/s_clib.c:1504
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Odnaleziono więcej niż jeden komponent o nazwie [%s]\n"

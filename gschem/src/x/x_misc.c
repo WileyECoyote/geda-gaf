@@ -66,7 +66,7 @@ static bool show_uri__win32 (const char *uri, GError **error)
   }
 
   if (status == 0) {
-    msg = geda_strdup (_("The operating system is out of memory or resources."));
+    msg = u_string_strdup (_("The operating system is out of memory or resources."));
   } else {
     LPVOID buf;
     FormatMessage ((FORMAT_MESSAGE_ALLOCATE_BUFFER |
@@ -78,7 +78,7 @@ static bool show_uri__win32 (const char *uri, GError **error)
                    (LPTSTR) &buf,
                    0,
                    NULL);
-    msg = geda_strdup ((gchar *) buf);
+    msg = u_string_strdup ((gchar *) buf);
     LocalFree (buf);
   }
   /* \bug We should specify a domain and error code. */

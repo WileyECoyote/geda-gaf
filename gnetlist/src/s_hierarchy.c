@@ -66,7 +66,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
 
     /* look for source=filename,filename, ... */
     pcount = 0;
-    current_filename = u_basic_breakup_string(attrib, ',', pcount);
+    current_filename = u_string_split(attrib, ',', pcount);
 
     /* loop over all filenames */
     while (current_filename != NULL) {
@@ -120,7 +120,7 @@ s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current,
 
       GEDA_FREE(current_filename);
       pcount++;
-      current_filename = u_basic_breakup_string(attrib, ',', pcount);
+      current_filename = u_string_split(attrib, ',', pcount);
     }
 
     GEDA_FREE(attrib);
@@ -401,7 +401,7 @@ char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename,
     }
   } else {
     if (basename) {
-      return_value = geda_strdup (basename);
+      return_value = u_string_strdup (basename);
     } else {
       return_value = NULL;
     }
@@ -417,7 +417,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
 
   if (pr_current->hierarchy_netname_mangle == FALSE) {
     if (basename) {
-      return (geda_strdup (basename));
+      return (u_string_strdup (basename));
     } else {
       return (NULL);
     }
@@ -465,7 +465,7 @@ char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename,
     }
   } else {
     if (basename) {
-      return_value = geda_strdup (basename);
+      return_value = u_string_strdup (basename);
     } else {
       return_value = NULL;
     }
@@ -481,7 +481,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
 
   if (pr_current->hierarchy_netattrib_mangle == FALSE) {
     if (basename) {
-      return (geda_strdup (basename));
+      return (u_string_strdup (basename));
     } else {
       return (NULL);
     }
@@ -523,7 +523,7 @@ char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename,
     }
   } else {
     if (basename) {
-      return_value = geda_strdup (basename);
+      return_value = u_string_strdup (basename);
     } else {
       return_value = NULL;
     }
@@ -600,17 +600,17 @@ char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref)
     start_of_base = strrchr(uref, '/');	/* separator is always '/' */
 
     if (start_of_base == NULL) {
-      return (geda_strdup (uref));
+      return (u_string_strdup (uref));
     }
 
-    return_value = geda_strdup (start_of_base + 1);
+    return_value = u_string_strdup (start_of_base + 1);
 
   } else if (pr_current->hierarchy_uref_order == PREPEND) {
 
     end_of_base = strchr(uref, '/');
 
     if (end_of_base == NULL) {
-      return (geda_strdup (uref));
+      return (u_string_strdup (uref));
     }
 
     return_value = g_strndup(uref, end_of_base - uref);

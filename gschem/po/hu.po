@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-24 02:59-0500\n"
+"POT-Creation-Date: 2014-08-27 04:11-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: kop <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -277,124 +277,124 @@ msgstr "Nem találom a(z) %s színt!\n"
 msgid "Found invalid gschem window smob ~S"
 msgstr ""
 
-#: gschem/src/iface/i_basic.c:69 gschem/etc/system-gschemrc.scm:1640
+#: gschem/src/iface/i_status.c:147 gschem/etc/system-gschemrc.scm:1640
 #, fuzzy
 msgid "Deselect Mode"
 msgstr "Kiválasztás mód"
 
-#: gschem/src/iface/i_basic.c:74 gschem/src/x/x_status_bar.c:194
+#: gschem/src/iface/i_status.c:152 gschem/src/x/x_status_bar.c:194
 #: gschem/etc/system-gschemrc.scm:1639 gschem/scheme/gschem/builtins.scm:91
 msgid "Select Mode"
 msgstr "Kiválasztás mód"
 
-#: gschem/src/iface/i_basic.c:76
+#: gschem/src/iface/i_status.c:154
 msgid "Component Mode"
 msgstr "Alkatrész mód"
 
-#: gschem/src/iface/i_basic.c:78
+#: gschem/src/iface/i_status.c:156
 msgid "Text Mode"
 msgstr "Szövegbeviteli üzemmód"
 
-#: gschem/src/iface/i_basic.c:81 gschem/etc/system-gschemrc.scm:1616
+#: gschem/src/iface/i_status.c:159 gschem/etc/system-gschemrc.scm:1616
 #: gschem/scheme/gschem/builtins.scm:106
 msgid "Copy Mode"
 msgstr "Másolási mód"
 
-#: gschem/src/iface/i_basic.c:84 gschem/etc/system-gschemrc.scm:1618
+#: gschem/src/iface/i_status.c:162 gschem/etc/system-gschemrc.scm:1618
 #: gschem/scheme/gschem/builtins.scm:103
 msgid "Move Mode"
 msgstr "Mozgatási mód"
 
-#: gschem/src/iface/i_basic.c:86 gschem/scheme/gschem/builtins.scm:112
+#: gschem/src/iface/i_status.c:164 gschem/scheme/gschem/builtins.scm:112
 msgid "Rotate Mode"
 msgstr "Forgatás üzemmód"
 
-#: gschem/src/iface/i_basic.c:88 gschem/etc/system-gschemrc.scm:1620
+#: gschem/src/iface/i_status.c:166 gschem/etc/system-gschemrc.scm:1620
 #: gschem/scheme/gschem/builtins.scm:115
 msgid "Mirror Mode"
 msgstr "Tükrözés"
 
-#: gschem/src/iface/i_basic.c:92 gschem/scheme/gschem/builtins.scm:181
+#: gschem/src/iface/i_status.c:170 gschem/scheme/gschem/builtins.scm:181
 msgid "Zoom Box"
 msgstr "Doboz nagyítás"
 
-#: gschem/src/iface/i_basic.c:96
+#: gschem/src/iface/i_status.c:174
 msgid "Pan Mode"
 msgstr "\"Középre\" üzemmód"
 
-#: gschem/src/iface/i_basic.c:100
+#: gschem/src/iface/i_status.c:178
 #, c-format
 msgid "Paste %d Mode"
 msgstr "Beillesztés %d üzemmód"
 
-#: gschem/src/iface/i_basic.c:106
+#: gschem/src/iface/i_status.c:184
 msgid "Magnetic Net Mode"
 msgstr ""
 
-#: gschem/src/iface/i_basic.c:108
+#: gschem/src/iface/i_status.c:186
 msgid "Net Mode"
 msgstr "Összeköttetés üzemmód"
 
-#: gschem/src/iface/i_basic.c:112
+#: gschem/src/iface/i_status.c:190
 msgid "Bus Mode"
 msgstr "Busz üzemmód"
 
-#: gschem/src/iface/i_basic.c:115
+#: gschem/src/iface/i_status.c:193
 msgid "Line Mode"
 msgstr "Vonal üzemmód"
 
-#: gschem/src/iface/i_basic.c:119
+#: gschem/src/iface/i_status.c:197
 #, fuzzy
 msgid "Path Mode"
 msgstr "\"Középre\" üzemmód"
 
-#: gschem/src/iface/i_basic.c:122
+#: gschem/src/iface/i_status.c:200
 msgid "Box Mode"
 msgstr "Téglalap üzemmód"
 
-#: gschem/src/iface/i_basic.c:125
+#: gschem/src/iface/i_status.c:203
 msgid "Picture Mode"
 msgstr "Kép üzemmód"
 
-#: gschem/src/iface/i_basic.c:128
+#: gschem/src/iface/i_status.c:206
 msgid "Circle Mode"
 msgstr "Kör üzemmód"
 
-#: gschem/src/iface/i_basic.c:131
+#: gschem/src/iface/i_status.c:209
 msgid "Arc Mode"
 msgstr "Ív üzemmód"
 
-#: gschem/src/iface/i_basic.c:134
+#: gschem/src/iface/i_status.c:212
 msgid "Pin Mode"
 msgstr "Alkatrészláb üzemmód"
 
-#: gschem/src/iface/i_basic.c:136 gschem/src/x/x_menus.c:94
+#: gschem/src/iface/i_status.c:214 gschem/src/x/x_menus.c:94
 #: gschem/scheme/gschem/builtins.scm:154
 msgid "Copy"
 msgstr "Másolás"
 
-#: gschem/src/iface/i_basic.c:138
+#: gschem/src/iface/i_status.c:216
 msgid "Move"
 msgstr "Mozgatás"
 
-#: gschem/src/iface/i_basic.c:140
+#: gschem/src/iface/i_status.c:218
 msgid "Multiple Copy"
 msgstr "Többszörös másolás"
 
-#: gschem/src/iface/i_basic.c:143 gschem/etc/system-gschemrc.scm:1617
+#: gschem/src/iface/i_status.c:221 gschem/etc/system-gschemrc.scm:1617
 #: gschem/scheme/gschem/builtins.scm:109
 msgid "Multiple Copy Mode"
 msgstr "Többszörös másolás mód"
 
-#: gschem/src/iface/i_basic.c:172
+#: gschem/src/iface/i_status.c:250
 msgid "Show Hidden"
 msgstr "Rejtett megjelenítése"
 
-#: gschem/src/iface/i_basic.c:175
+#: gschem/src/iface/i_status.c:253
 msgid "Snap Off"
 msgstr ""
 
-#: gschem/src/iface/i_basic.c:177
+#: gschem/src/iface/i_status.c:255
 msgid "Resnap Active"
 msgstr ""
 
@@ -1108,7 +1108,7 @@ msgstr "Alkatrész hozzáadása mint független objektum"
 msgid "Components"
 msgstr "Alkatrészek"
 
-#: gschem/src/x/x_compselect.c:2341 gschem/src/x/x_dialog.c:3303
+#: gschem/src/x/x_compselect.c:2341 gschem/src/x/x_dialog.c:3325
 #: gschem/src/x/x_multiattrib.c:1927 gschem/src/x/x_multiattrib.c:1933
 msgid "Name"
 msgstr "Név"
@@ -1311,166 +1311,166 @@ msgstr "Háló"
 msgid "Hatch"
 msgstr "Sraffozott"
 
-#: gschem/src/x/x_dialog.c:1072 gschem/src/x/x_dialog.c:1176
-#: gschem/src/x/x_dialog.c:1185 gschem/src/x/x_dialog.c:1194
-#: gschem/src/x/x_dialog.c:1203 gschem/src/x/x_dialog.c:1212
-#: gschem/src/x/x_dialog.c:1332 gschem/src/x/x_dialog.c:1334
-#: gschem/src/x/x_dialog.c:1336 gschem/src/x/x_dialog.c:1338
-#: gschem/src/x/x_dialog.c:1340 gschem/src/x/x_dialog.c:1615
-#: gschem/src/x/x_dialog.c:1714 gschem/src/x/x_dialog.c:1723
-#: gschem/src/x/x_dialog.c:1733 gschem/src/x/x_dialog.c:1834
-#: gschem/src/x/x_dialog.c:1836 gschem/src/x/x_dialog.c:1838
+#: gschem/src/x/x_dialog.c:1072 gschem/src/x/x_dialog.c:1180
+#: gschem/src/x/x_dialog.c:1189 gschem/src/x/x_dialog.c:1198
+#: gschem/src/x/x_dialog.c:1207 gschem/src/x/x_dialog.c:1216
+#: gschem/src/x/x_dialog.c:1333 gschem/src/x/x_dialog.c:1335
+#: gschem/src/x/x_dialog.c:1337 gschem/src/x/x_dialog.c:1339
+#: gschem/src/x/x_dialog.c:1341 gschem/src/x/x_dialog.c:1628
+#: gschem/src/x/x_dialog.c:1727 gschem/src/x/x_dialog.c:1736
+#: gschem/src/x/x_dialog.c:1746 gschem/src/x/x_dialog.c:1851
+#: gschem/src/x/x_dialog.c:1853 gschem/src/x/x_dialog.c:1855
 msgid "*unchanged*"
 msgstr "*változatlan*"
 
-#: gschem/src/x/x_dialog.c:1465 gschem/scheme/gschem/builtins.scm:133
+#: gschem/src/x/x_dialog.c:1478 gschem/scheme/gschem/builtins.scm:133
 msgid "Edit Fill Type"
 msgstr "Kitöltés szerkesztése"
 
-#: gschem/src/x/x_dialog.c:1487
+#: gschem/src/x/x_dialog.c:1500
 msgid "Fill Type:"
 msgstr "Kitöltés típusa:"
 
-#: gschem/src/x/x_dialog.c:1490
+#: gschem/src/x/x_dialog.c:1503
 msgid "Line Width:"
 msgstr "Vonalvastagság:"
 
-#: gschem/src/x/x_dialog.c:1493
+#: gschem/src/x/x_dialog.c:1506
 #, fuzzy
 msgid "Angle 1:"
 msgstr "Kezdőszög:"
 
-#: gschem/src/x/x_dialog.c:1496
+#: gschem/src/x/x_dialog.c:1509
 msgid "Pitch 1:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1499
+#: gschem/src/x/x_dialog.c:1512
 #, fuzzy
 msgid "Angle 2:"
 msgstr "Kezdőszög:"
 
-#: gschem/src/x/x_dialog.c:1502
+#: gschem/src/x/x_dialog.c:1515
 msgid "Pitch 2:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1509
+#: gschem/src/x/x_dialog.c:1522
 msgid "Select fill pattern"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1514
+#: gschem/src/x/x_dialog.c:1527
 msgid "Set the width of the filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1519
+#: gschem/src/x/x_dialog.c:1532
 msgid "Primary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1524
+#: gschem/src/x/x_dialog.c:1537
 msgid "Spacing for the primary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1529
+#: gschem/src/x/x_dialog.c:1542
 msgid "Secondary angle for filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1534
+#: gschem/src/x/x_dialog.c:1547
 msgid "Spacing for the secondary filler lines"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1610
+#: gschem/src/x/x_dialog.c:1623
 msgid "Solid"
 msgstr "Folytonos"
 
-#: gschem/src/x/x_dialog.c:1611
+#: gschem/src/x/x_dialog.c:1624
 msgid "Dotted"
 msgstr "Pontvonal"
 
-#: gschem/src/x/x_dialog.c:1612
+#: gschem/src/x/x_dialog.c:1625
 msgid "Dashed"
 msgstr "Szaggatott"
 
-#: gschem/src/x/x_dialog.c:1613
+#: gschem/src/x/x_dialog.c:1626
 msgid "Center"
 msgstr "Középre"
 
-#: gschem/src/x/x_dialog.c:1614
+#: gschem/src/x/x_dialog.c:1627
 msgid "Phantom"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:1965 gschem/scheme/gschem/builtins.scm:130
+#: gschem/src/x/x_dialog.c:1986 gschem/scheme/gschem/builtins.scm:130
 msgid "Edit Line Width & Type"
 msgstr "Vonalvastagság és típus szerkesztése"
 
-#: gschem/src/x/x_dialog.c:1988 gschem/src/x/x_print.c:310
+#: gschem/src/x/x_dialog.c:2009 gschem/src/x/x_print.c:310
 msgid "Type:"
 msgstr "Típus:"
 
-#: gschem/src/x/x_dialog.c:1991
+#: gschem/src/x/x_dialog.c:2012
 msgid "Width:"
 msgstr "Vastagság:"
 
-#: gschem/src/x/x_dialog.c:1994
+#: gschem/src/x/x_dialog.c:2015
 msgid "Dash Length:"
 msgstr "Vonalszakasz hossza:"
 
-#: gschem/src/x/x_dialog.c:1997
+#: gschem/src/x/x_dialog.c:2018
 msgid "Dash Space:"
 msgstr "Kihagyás hossza:"
 
-#: gschem/src/x/x_dialog.c:2009
+#: gschem/src/x/x_dialog.c:2030
 msgid "Set width of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2015
+#: gschem/src/x/x_dialog.c:2036
 msgid "Set \"dash\" length of the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2021
+#: gschem/src/x/x_dialog.c:2042
 msgid "Set spacing between dashes in the line"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2180
+#: gschem/src/x/x_dialog.c:2202
 msgid "Edit slot number"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2202
+#: gschem/src/x/x_dialog.c:2224
 msgid "Edit slot number:"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2346
+#: gschem/src/x/x_dialog.c:2368
 msgid "Find Text"
 msgstr "Szöveg keresése"
 
-#: gschem/src/x/x_dialog.c:2365
+#: gschem/src/x/x_dialog.c:2387
 msgid "Text to find:"
 msgstr "Keresendő szöveg:"
 
-#: gschem/src/x/x_dialog.c:2374
+#: gschem/src/x/x_dialog.c:2396
 msgid "descend into hierarchy"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:2452
+#: gschem/src/x/x_dialog.c:2474
 msgid "Hide Text"
 msgstr "Szöveg elrejtése"
 
-#: gschem/src/x/x_dialog.c:2471
+#: gschem/src/x/x_dialog.c:2493
 msgid "Hide text starting with:"
 msgstr "A következővel kezdődő szöveg elrejtése:"
 
-#: gschem/src/x/x_dialog.c:2558
+#: gschem/src/x/x_dialog.c:2580
 msgid "Show Text"
 msgstr "Szöveg mutatása"
 
-#: gschem/src/x/x_dialog.c:2577
+#: gschem/src/x/x_dialog.c:2599
 msgid "Show text starting with:"
 msgstr "A következővel kezdődő szöveg mutatása:"
 
-#: gschem/src/x/x_dialog.c:2700
+#: gschem/src/x/x_dialog.c:2722
 #, fuzzy
 msgid "Text Entry..."
 msgstr "Szöveg"
 
-#: gschem/src/x/x_dialog.c:2725
+#: gschem/src/x/x_dialog.c:2747
 msgid ""
 "Enter text, click apply,\n"
 "move cursor into window, click to place text.\n"
@@ -1481,11 +1481,11 @@ msgstr ""
 "a szöveg lerakásához.\n"
 "Elforgatás: középső egérgomb."
 
-#: gschem/src/x/x_dialog.c:2829
+#: gschem/src/x/x_dialog.c:2851
 msgid "Translate"
 msgstr "Eltolás"
 
-#: gschem/src/x/x_dialog.c:2850
+#: gschem/src/x/x_dialog.c:2872
 msgid ""
 "Offset to translate?\n"
 "(0 for origin)"
@@ -1493,60 +1493,60 @@ msgstr ""
 "Offszet az eltoláshoz?\n"
 "(0 az origóhoz)"
 
-#: gschem/src/x/x_dialog.c:2924
+#: gschem/src/x/x_dialog.c:2946
 msgid "Hotkeys"
 msgstr "Gyorsbillentyűk"
 
-#: gschem/src/x/x_dialog.c:2954
+#: gschem/src/x/x_dialog.c:2976
 msgid "Function"
 msgstr "Funkció"
 
-#: gschem/src/x/x_dialog.c:2961
+#: gschem/src/x/x_dialog.c:2983
 msgid "Keystroke(s)"
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3326
+#: gschem/src/x/x_dialog.c:3348
 msgid "S_elect the schematics you want to save:"
 msgstr "Válaszd ki a menteni kívánt rajzot:"
 
-#: gschem/src/x/x_dialog.c:3421
+#: gschem/src/x/x_dialog.c:3443
 #, c-format
 msgid "Save the changes to schematic \"%s\" before closing?"
 msgstr "Elmentsem a(z) \"%s\" rajz változásait bezárás előtt?"
 
-#: gschem/src/x/x_dialog.c:3428
+#: gschem/src/x/x_dialog.c:3450
 #, c-format
 msgid ""
 "There are %d schematics with unsaved changes. Save changes before closing?"
 msgstr ""
 "%d megváltoztatott rajz van még megnyitva. Elmentsem őket kilépés előtt?"
 
-#: gschem/src/x/x_dialog.c:3456
+#: gschem/src/x/x_dialog.c:3478
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr "Ha nem menti, akkor az összes változás véglegesen elveszik."
 
-#: gschem/src/x/x_dialog.c:3473
+#: gschem/src/x/x_dialog.c:3495
 #, fuzzy
 msgid "Close without saving"
 msgstr "_Bezárás mentés nélkül"
 
-#: gschem/src/x/x_dialog.c:3964
+#: gschem/src/x/x_dialog.c:3986
 msgid "Major symbol changes detected."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:3991
+#: gschem/src/x/x_dialog.c:4013
 msgid ""
 "Changes have occurred to the symbols shown below.\n"
 "\n"
 "Be sure to verify each of these symbols."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:4019
+#: gschem/src/x/x_dialog.c:4041
 #, fuzzy
 msgid "Symbol"
 msgstr "szimbólumok"
 
-#: gschem/src/x/x_dialog.c:4090
+#: gschem/src/x/x_dialog.c:4112
 #, c-format
 msgid ""
 "<span weight=\"bold\" size=\"larger\">The input attribute \"%s\" is invalid\n"
@@ -1557,7 +1557,7 @@ msgid ""
 "The value cannot start with a space."
 msgstr ""
 
-#: gschem/src/x/x_dialog.c:4092
+#: gschem/src/x/x_dialog.c:4114
 msgid "Invalid Attribute"
 msgstr "Hibás attribútum"
 
@@ -1584,20 +1584,15 @@ msgstr ""
 msgid "ERROR: NULL object in x_dialog_edit_color_apply!\n"
 msgstr ""
 
-#: gschem/src/x/x_edit_color.c:129
-#, c-format
-msgid "ERROR: <x_dialog_edit_color_response>: strange signal %d\n"
-msgstr ""
-
-#: gschem/src/x/x_edit_color.c:158
+#: gschem/src/x/x_edit_color.c:157
 msgid "Color Edit"
 msgstr "Szín szerkesztése"
 
-#: gschem/src/x/x_edit_color.c:180
+#: gschem/src/x/x_edit_color.c:179
 msgid "Object color:"
 msgstr "Objektum színe:"
 
-#: gschem/src/x/x_edit_color.c:186
+#: gschem/src/x/x_edit_color.c:185
 msgid "Select the color for the select objects."
 msgstr ""
 

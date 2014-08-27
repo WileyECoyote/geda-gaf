@@ -1,3 +1,7 @@
+2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/*/*.c: Rename geda_str* u_string_str* to match libgeda
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * docs/gnetlist.dox: Read libgeda TAGFILES files, redirect errors

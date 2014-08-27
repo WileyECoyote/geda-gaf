@@ -73,7 +73,7 @@ int s_slib_add_entry(char *new_path)
     return(-1);
   }
 
-  slib[slib_index].dir_name = geda_strdup (new_path);
+  slib[slib_index].dir_name = u_string_strdup (new_path);
 
   slib_index++;
   return(slib_index);
@@ -130,7 +130,7 @@ char *s_slib_search_dirs(const char *basename)
 
       /* Do a substring comp for a match */
       if (strstr(dptr->d_name, basename) == 0)  {
-        slib_path = geda_strdup (slib[i].dir_name);
+        slib_path = u_string_strdup (slib[i].dir_name);
 
         if (ptr) {
           closedir(ptr);
@@ -419,7 +419,7 @@ char *s_slib_getfiles(char *directory, int flag)
           /* hack */
           if (count < 256) {
 
-            whole_dir[count] = geda_strdup (dptr->d_name);
+            whole_dir[count] = u_string_strdup (dptr->d_name);
             count++;
           } else {
             g_error ("uggg. too many files in s_slib_getfiles!\n");

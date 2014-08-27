@@ -198,12 +198,12 @@ void i_command_router(char* command, GschemToplevel *w_current)
   accelerator = get_last_command();
 
   /* This should almost always happen */
-  if (strequal(command_struc[accelerator].name, command)) {
+  if (u_string_strequal(command_struc[accelerator].name, command)) {
     route(accelerator);
   }
   else {
     for (i = 1; i < COMMAND_COUNT; i++) {
-      if (strequal(command_struc[i].name, command)) {
+      if (u_string_strequal(command_struc[i].name, command)) {
         route(i);
         break;
       }
@@ -269,7 +269,7 @@ bool i_command_is_valid(const char *command)
   int i;
   bool result = FALSE;
   for (i = 1; i < COMMAND_COUNT; i++) {
-    if (strequal(command_struc[i].name, command)) {
+    if (u_string_strequal(command_struc[i].name, command)) {
       result = TRUE;
       break;
     }
@@ -284,7 +284,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
   int i;
 
   for (i = 1; i < COMMAND_COUNT; i++) {
-    if (strequal(command_struc[i].name, command)) {
+    if (u_string_strequal(command_struc[i].name, command)) {
 
       v_log_message("Processing Action Command <%s>, at index %d\n", command_struc[i].name, i);
 
@@ -339,7 +339,7 @@ void i_command_process(GschemToplevel *w_current, const char* command,
       /* Fill in parameter arguments for this task */
       command_struc[i].narg      = narg;
       command_struc[i].who       = who;
-      command_struc[i].sarg      = (unsigned char *) geda_strdup(arg);
+      command_struc[i].sarg      = (unsigned char *) u_string_strdup(arg);
       command_struc[i].w_current = w_current;
 
 #ifdef PERFORMANCE
@@ -394,9 +394,9 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 {
   char *arg;
   if (command_struc[index].sarg != NULL ) {
-    arg  = geda_strdup((char *)command_struc[index].sarg);
+    arg  = u_string_strdup((char *)command_struc[index].sarg);
     GEDA_FREE(command_struc[index].sarg);
-    arg  = strstr_rep(arg, "  ", " ");
+    arg  = u_string_strstr_rep(arg, "  ", " ");
    *argv = g_strsplit (g_strstrip(arg), " ", 0);
    *argc = g_strv_length(*argv);
   }
@@ -836,7 +836,7 @@ COMMAND ( do_print ) {
     base = g_strndup(filename, strlen(filename) - strlen(".sch"));
   } else {
     /* the filename does not end with .sch */
-    base = geda_strdup (filename);
+    base = u_string_strdup (filename);
   }
 
   /* add ".ps" tp the base filename */
@@ -1990,7 +1990,7 @@ COMMAND ( do_page_revert ) {
   if (answer == GTK_RESPONSE_YES ) {
 
     /* save this for later */
-    filename = geda_strdup (Current_Page->filename);
+    filename = u_string_strdup (Current_Page->filename);
     page_control = Current_Page->page_control;
     up = Current_Page->up;
 
@@ -2098,7 +2098,7 @@ COMMAND ( do_down_schematic )
 
     /* look for source=filename,filename, ... */
     pcount = 0;
-    current_filename = u_basic_breakup_string(attrib, ',', pcount);
+    current_filename = u_string_split(attrib, ',', pcount);
 
     /* loop over all filenames */
     while(current_filename != NULL) {
@@ -2151,7 +2151,7 @@ COMMAND ( do_down_schematic )
 
       GEDA_FREE(current_filename);
       pcount++;
-      current_filename = u_basic_breakup_string(attrib, ',', pcount);
+      current_filename = u_string_split(attrib, ',', pcount);
     }
 
     GEDA_FREE(attrib);

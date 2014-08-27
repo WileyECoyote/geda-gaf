@@ -195,9 +195,9 @@ void s_rename_add(char *src, char *dest)
            src, rename_pairs[cur_set][i].dest);
 #endif
 
-          rename_pairs[cur_set][rename_counter].src = geda_strdup(src);
+          rename_pairs[cur_set][rename_counter].src = u_string_strdup(src);
           rename_pairs[cur_set][rename_counter].dest =
-          geda_strdup(rename_pairs[cur_set][i].dest);
+          u_string_strdup(rename_pairs[cur_set][i].dest);
           rename_counter++;
         }
       }
@@ -205,8 +205,8 @@ void s_rename_add(char *src, char *dest)
   }
   else {
 
-    rename_pairs[cur_set][rename_counter].src = geda_strdup(src);
-    rename_pairs[cur_set][rename_counter].dest = geda_strdup(dest);
+    rename_pairs[cur_set][rename_counter].src = u_string_strdup(src);
+    rename_pairs[cur_set][rename_counter].dest = u_string_strdup(dest);
     rename_counter++;
   }
   if (rename_counter == MAX_RENAME) {
@@ -240,7 +240,7 @@ void s_rename_all_lowlevel(NETLIST * netlist_head, char *src, char *dest)
             /* there is another pointer */
             /*GEDA_FREE(pl_current->net_name); */
 
-            pl_current->net_name = geda_strdup(dest);
+            pl_current->net_name = u_string_strdup(dest);
           }
         }
 

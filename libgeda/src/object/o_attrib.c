@@ -309,13 +309,13 @@ o_attrib_new_attached(Object *parent, const char *name, const char *value,
     text = g_strdup_printf("%s=%s", name, value);
   }
   else if (name) {
-    text = geda_strdup(name);
+    text = u_string_strdup(name);
   }
   else if (value) {
-    text = geda_strdup(value);
+    text = u_string_strdup(value);
   }
   else {
-    text = geda_strdup("unknown=empty");
+    text = u_string_strdup("unknown=empty");
   }
   new_obj = o_text_new(color, world_x, world_y,
                        align, angle, text, /* zero is angle */
@@ -572,7 +572,7 @@ o_attrib_string_get_name_value (const char *string,
   }
 
   if (value_ptr != NULL) {
-    *value_ptr = geda_strdup (next_char);
+    *value_ptr = u_string_strdup (next_char);
   }
 
   return TRUE;
