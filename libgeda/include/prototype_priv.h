@@ -94,7 +94,7 @@ double m_polygon_shortest_distance(GArray *points, int x, int y, bool closed);
 void m_transform_combine       (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );
 void m_transform_init          (TRANSFORM *transform);
 void m_transform_invert        (TRANSFORM *transform, TRANSFORM *inverse);
-void m_transform_line          (TRANSFORM *transform, Line *line );
+void m_transform_line          (TRANSFORM *transform, LINE *line );
 void m_transform_lines         (TRANSFORM *transform, GArray *lines);
 void m_transform_point         (TRANSFORM *transform, int *x, int *y);
 void m_transform_points        (TRANSFORM *transform, GArray *points);

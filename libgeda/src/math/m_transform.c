@@ -32,9 +32,9 @@
  */
 void m_transform_combine(TRANSFORM *result, TRANSFORM *a, TRANSFORM *b )
 {
-  g_return_if_fail(result!=NULL);
-  g_return_if_fail(a!=NULL);
-  g_return_if_fail(b!=NULL);
+  g_return_if_fail (result!=NULL);
+  g_return_if_fail (a!=NULL);
+  g_return_if_fail (b!=NULL);
 
   result->m[0][0] = a->m[0][0] * b->m[0][0] + a->m[0][1] * b->m[1][0];
   result->m[0][1] = a->m[0][0] * b->m[0][1] + a->m[0][1] * b->m[1][1];
@@ -50,7 +50,7 @@ void m_transform_combine(TRANSFORM *result, TRANSFORM *a, TRANSFORM *b )
  */
 void m_transform_init(TRANSFORM *transform)
 {
-  g_return_if_fail(transform!=NULL);
+  g_return_if_fail (transform != NULL);
 
   transform->m[0][0] = 1;
   transform->m[0][1] = 0;
@@ -69,8 +69,8 @@ void m_transform_invert(TRANSFORM *transform, TRANSFORM *inverse)
 {
   double d;
 
-  g_return_if_fail(transform!=NULL);
-  g_return_if_fail(inverse!=NULL);
+  g_return_if_fail (transform != NULL);
+  g_return_if_fail (inverse   !=NULL);
 
   d = transform->m[0][0]*transform->m[1][1] - transform->m[1][0]*transform->m[0][1];
 
@@ -87,10 +87,10 @@ void m_transform_invert(TRANSFORM *transform, TRANSFORM *inverse)
  *  \param transform [in] The transform function.
  *  \param line [inout] The line to transform.
  */
-void m_transform_line(TRANSFORM *transform, Line *line)
+void m_transform_line(TRANSFORM *transform, LINE *line)
 {
-  g_return_if_fail(transform!=NULL);
-  g_return_if_fail(line!=NULL);
+  g_return_if_fail (transform != NULL);
+  g_return_if_fail (line      != NULL);
 
   m_transform_point(transform, &(line->x[0]), &(line->y[0]));
   m_transform_point(transform, &(line->x[1]), &(line->y[1]));
@@ -105,11 +105,11 @@ void m_transform_lines(TRANSFORM *transform, GArray *lines)
 {
   int index;
 
-  g_return_if_fail(transform!=NULL);
-  g_return_if_fail(lines!=NULL);
+  g_return_if_fail (transform != NULL);
+  g_return_if_fail (lines != NULL);
 
   for (index=0; index<lines->len; index++) {
-    Line *line = &g_array_index(lines, Line, index);
+    LINE *line = &g_array_index(lines, LINE, index);
     m_transform_line(transform, line);
   }
 }
@@ -125,9 +125,9 @@ void m_transform_point(TRANSFORM *transform, int *x, int *y)
   double tx;
   double ty;
 
-  g_return_if_fail(transform!=NULL);
-  g_return_if_fail(x!=NULL);
-  g_return_if_fail(y!=NULL);
+  g_return_if_fail (transform != NULL);
+  g_return_if_fail (x != NULL);
+  g_return_if_fail (y != NULL);
 
   tx = *x;
   ty = *y;
@@ -145,8 +145,8 @@ void m_transform_points(TRANSFORM *transform, GArray *points)
 {
   int index;
 
-  g_return_if_fail(transform!=NULL);
-  g_return_if_fail(points!=NULL);
+  g_return_if_fail (transform != NULL);
+  g_return_if_fail (points != NULL);
 
   for (index=0; index<points->len; index++) {
     POINT *point = &g_array_index(points, POINT, index);
@@ -166,7 +166,7 @@ void m_transform_rotate(TRANSFORM *transform, double angle)
   double s = sin(r);
   TRANSFORM temp;
 
-  g_return_if_fail(transform!=NULL);
+  g_return_if_fail (transform != NULL);
 
   temp = *transform;
 
@@ -184,8 +184,8 @@ void m_transform_rotate(TRANSFORM *transform, double angle)
  */
 void m_transform_scale(TRANSFORM *transform, double factor)
 {
-  g_return_if_fail(transform!=NULL);
-  g_return_if_fail(factor!=0);
+  g_return_if_fail (transform != NULL);
+  g_return_if_fail (factor != 0);
 
   transform->m[0][0] *= factor;
   transform->m[0][1] *= factor;
@@ -201,7 +201,7 @@ void m_transform_scale(TRANSFORM *transform, double factor)
  */
 void m_transform_translate(TRANSFORM *transform, double dx, double dy)
 {
-  g_return_if_fail(transform!=NULL);
+  g_return_if_fail (transform != NULL);
 
   transform->m[0][2] += dx;
   transform->m[1][2] += dy;

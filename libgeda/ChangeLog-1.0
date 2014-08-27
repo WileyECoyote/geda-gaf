@@ -1,7 +1,16 @@
+2014-08-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_hatch.c: Fix m_hatch_circle and m_hatch_polygon
+      incorrectly adding Line object instead of LINE structures to
+      the arrays.
+
+    * src/math/m_transform.c: Corrected argument to m_transform_line
+      should have been LINE not Line.
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
-        * docs/libgeda.dox: Generate TAGFILES files for libgeda in the
-          output directory. Redirect errors and warnings to log.
+    * docs/libgeda.dox: Generate TAGFILES files for libgeda in the
+      output directory. Redirect errors and warnings to log.
 
 2014-08-24 Wiley E. Hill <wileyhill@gmail.com>
 

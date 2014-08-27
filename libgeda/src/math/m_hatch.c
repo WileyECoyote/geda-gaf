@@ -164,19 +164,21 @@ void m_hatch_circle(Circle *circle, int angle, int pitch, GArray *lines)
   int      sweep_y;
   TRANSFORM transform;
 
-  g_return_if_fail(circle!=NULL);
-  g_return_if_fail(lines!=NULL);
+  g_return_if_fail(circle != NULL);
+  g_return_if_fail(lines != NULL);
 
-  m_transform_init(&transform);
-  m_transform_rotate(&transform, angle);
-  m_transform_scale(&transform, 0.01);
-  m_transform_translate(&transform, circle->center_x, circle->center_y );
+  m_transform_init      (&transform);
+  m_transform_rotate    (&transform, angle);
+  m_transform_scale     (&transform, 0.01);
+  m_transform_translate (&transform, circle->center_x, circle->center_y );
 
   radius = 100 * circle->radius;
   sweep_y = calculate_initial_sweep(100 * pitch, -radius, radius);
 
   while ( sweep_y < radius ) {
-    Line line;
+
+    LINE line;
+
     int x = round(sqrt(pow(radius,2) - pow(sweep_y,2)));
 
     line.x[0] = -x;
@@ -249,9 +251,9 @@ void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
   g_return_if_fail(pitch>0);
   g_return_if_fail(lines!=NULL);
 
-  events = g_array_new(FALSE, FALSE, sizeof(SWEEP_EVENT));
+  events  = g_array_new(FALSE, FALSE, sizeof(SWEEP_EVENT));
   points2 = g_array_sized_new(FALSE, FALSE, sizeof(POINT), points->len);
-  status = g_array_new(FALSE, FALSE, sizeof(SWEEP_STATUS));
+  status  = g_array_new(FALSE, FALSE, sizeof(SWEEP_STATUS));
 
   m_transform_init(&transform);
   m_transform_scale(&transform, 10);
@@ -296,7 +298,8 @@ void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
         SWEEP_STATUS st = event->status;
         g_array_append_val(status, st);
         g_array_remove_index(events, index);
-      } else {
+      }
+      else {
         index++;
       }
     }
@@ -321,7 +324,7 @@ void m_hatch_polygon(GArray *points, int angle, int pitch, GArray *lines)
     /* draw hatch segments */
     index = 0;
     while ( index+1 < status->len ) {
-      Line line;
+      LINE line;
       line.x[0] = g_array_index(status, SWEEP_STATUS, index ).x;
       line.y[0] = sweep_y;
       line.x[1] = g_array_index(status, SWEEP_STATUS, index+1 ).x;
@@ -354,7 +357,7 @@ GArray *m_hatch_object  (Object *object)
                         GEDA_IS_BOX(object)    ||
                         GEDA_IS_CIRCLE(object) ||
                         GEDA_IS_PATH(object)),
-                        fill_lines);
+                        NULL);
 
   fill_type    = object->fill_options->fill_type;
   fill_angle1  = object->fill_options->fill_angle1;
@@ -362,8 +365,8 @@ GArray *m_hatch_object  (Object *object)
   fill_angle2  = object->fill_options->fill_angle2;
   fill_pitch2  = object->fill_options->fill_pitch2;
 
-  if ( fill_pitch1 > 0) /* Handle mesh and hatch fill types */
-  {
+  if ( fill_pitch1 > 0) { /* Handle mesh and hatch fill types */
+
     switch (fill_type)
     {
       case FILLING_MESH:
@@ -398,5 +401,6 @@ GArray *m_hatch_object  (Object *object)
          break;
     }
   }
+
   return fill_lines;
 }
