@@ -39,8 +39,8 @@ del_case_sens1 | pcb_example1.xy | | --eval "return del_line 1, 'R[0-9]+'"| 1
 del_case_sens2 | pcb_example2.xy | | --eval "return del_line 1, 'R[0-9]+'"| 0
 del_case_sens3 | pcb_example1.xy | | --eval "return del_line 1, 'r[0-9]+'"| 0
 del_case_sens4 | pcb_example2.xy | | --eval "return del_line 1, 'r[0-9]+'"| 1
-del_case_insens1 | pcb_example1.xy | | --caseinsensitive --eval "return del_line 1, 'r[0-9]+'"| 1
-del_case_insens2 | pcb_example2.xy | | --caseinsensitive --eval "return del_line 1, 'R[0-9]+'"| 1
+del_icase1 | pcb_example1.xy | | --caseinsensitive --eval "return del_line 1, 'r[0-9]+'"| 1
+del_icase2 | pcb_example2.xy | | --caseinsensitive --eval "return del_line 1, 'R[0-9]+'"| 1
 del_check_cols_return_minus1 | pcb_example1.xy | | --eval "return del_line -1, 'r[0-9]+'" | 255
 del_check_cols_no_match | pcb_example1.xy | | --eval "return del_line 1, 'component[0-9]+'" | 0
 
@@ -48,7 +48,7 @@ del_check_cols_no_match | pcb_example1.xy | | --eval "return del_line 1, 'compon
 # Tests for rotate subroutine in gxyrs package.
 # -----------------------------------------
 rotate_case_sens | pcb_example1.xy | | --eval "return rotate_comp 6, 90, 1, 'R[0-9]+'"| 1
-rotate_case_insens | pcb_example1.xy | | --caseinsensitive --eval "return rotate_comp 6, 90, 1, 'r[0-9]+'"| 1
+rotate_icase | pcb_example1.xy | | --caseinsensitive --eval "return rotate_comp 6, 90, 1, 'r[0-9]+'"| 1
 rotate_check_cols_return_minus1 | pcb_example1.xy | | --eval "return rotate_comp 6, 90, -1, 'r[0-9]+'" | 255
 rotate_check_cols_no_match | pcb_example1.xy | | --eval "return rotate_comp 6, 90, 1, 'component[0-9]+'" | 0
 rotate_real_angle | pcb_example1.xy | | --eval "return rotate_comp 6, 90.0, 1, 'R[0-9]+'"| 1
@@ -82,7 +82,7 @@ chunits_to_mm_6col_tab | protel_example1_mil.txt | | --tabulate --eval "return c
 chunits_2mm_6col_tab_notit | protel_example1_mil.txt | | --tabulate --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mm', 3, 4, 5, 6, 7, 8}"| 1
 chunits_already_done | protel_example1_mil.txt | | --eval "return change_col_units 'mil', 3"| 254
 chunits_done_notitle | protel_example1_mil.txt | | --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mil', 3}"| 0
-chunits_units_not_supported | protel_example1_mil.txt | | --eval "return change_col_units 'gallons', 3"| 255
+chunits_unsupported | protel_example1_mil.txt | | --eval "return change_col_units 'gallons', 3"| 255
 chunits_to_mm | protel_example1_mil.txt | | --eval "return change_col_units 'mm', 3"| 254
 chunits_to_mm_no_title | protel_example1_mil.txt | | --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mm', 3}"| 1
 chunits_to_mil | protel_example1_mm.txt| | --eval "if (\$LINE_NUMBER != \$TITLE_LINE) {return change_col_units 'mil', 3}"| 1
@@ -113,7 +113,7 @@ translate_negative_col_num | pcb_example1.xy | | --eval "return translate_col_va
 translate_col_num_too_high | pcb_example1.xy | | --eval "return translate_col_val 100, '^.([0-9]+)k.$','sprintf(\"%dK\",$1)', 1, 'R[0-9]+'"| 255
 translate_col_chg_all_val_plus_k | pcb_example1.xy | | --eval "return translate_col_val 3, '^.([0-9]+)k.$','sprintf(\"%dK\",\$1)'"| 1
 translate_col_change_R10_value | pcb_example1.xy | | --eval "return translate_col_val 3, '^.([0-9]+)k.$','sprintf(\"%dK\",\$1)', 1, 'R10'"| 1
-translate_col_R10_value_case_insens | pcb_example1.xy | | --caseinsensitive --eval "return translate_col_val 3, '^.([0-9]+)K.$','sprintf(\"%dkilohms\",\$1)', 1, 'R10'"| 1
+translate_col_R10_value_icase | pcb_example1.xy | | --caseinsensitive --eval "return translate_col_val 3, '^.([0-9]+)K.$','sprintf(\"%dkilohms\",\$1)', 1, 'R10'"| 1
 translate_col_no_match1 | pcb_example1.xy | | --eval "return translate_col_val 3, '^.([0-9]+)k.$','sprintf(\"%dK\",\$1)', 1, 'R90'"| 0
 translate_col_no_match2 | pcb_example1.xy | | --eval "return translate_col_val 3, '^.([0-9]+)n.$','sprintf(\"%dnF\",\$1)', 1, 'R10'"| 0
 

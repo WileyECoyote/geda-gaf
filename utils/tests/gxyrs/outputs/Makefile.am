@@ -1,8 +1,3 @@
-## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
-##
-## Process this file with automake to produce Makefile.in
-
-AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS) $(GEDA_AUTOMAKE_TEST_OPTIONS)
 
 # dir | sort | awk '{printf("\t%s \\\n", $0)}' |grep -v Makefile >> Makefile.am
 
@@ -35,12 +30,12 @@ EXTRA_DIST= \
 	chunits_to_mm_no_title-protel_example1_mil.txt-error \
 	chunits_to_mm-protel_example1_mil.txt \
 	chunits_to_mm-protel_example1_mil.txt-error \
-	chunits_units_not_supported-protel_example1_mil.txt \
-	chunits_units_not_supported-protel_example1_mil.txt-error \
-	del_case_insens1-pcb_example1.xy \
-	del_case_insens1-pcb_example1.xy-error \
-	del_case_insens2-pcb_example2.xy \
-	del_case_insens2-pcb_example2.xy-error \
+	chunits_unsupported-protel_example1_mil.txt \
+	chunits_unsupported-protel_example1_mil.txt-error \
+	del_icase1-pcb_example1.xy \
+	del_icase1-pcb_example1.xy-error \
+	del_icase2-pcb_example2.xy \
+	del_icase2-pcb_example2.xy-error \
 	del_case_sens1-pcb_example1.xy \
 	del_case_sens1-pcb_example1.xy-error \
 	del_case_sens2-pcb_example2.xy \
@@ -177,8 +172,8 @@ EXTRA_DIST= \
 	rotate_bad_col_num1-pcb_example1.xy-error \
 	rotate_bad_col_num2-pcb_example1.xy \
 	rotate_bad_col_num2-pcb_example1.xy-error \
-	rotate_case_insens-pcb_example1.xy \
-	rotate_case_insens-pcb_example1.xy-error \
+	rotate_icase-pcb_example1.xy \
+	rotate_icase-pcb_example1.xy-error \
 	rotate_case_sens-pcb_example1.xy \
 	rotate_case_sens-pcb_example1.xy-error \
 	rotate_check_cols_no_match-pcb_example1.xy \
@@ -245,12 +240,12 @@ EXTRA_DIST= \
 	translate_col_no_match2-pcb_example1.xy-error \
 	translate_col_num_too_high-pcb_example1.xy \
 	translate_col_num_too_high-pcb_example1.xy-error \
-	translate_col_R10_value_case_insens-pcb_example1.xy \
-	translate_col_R10_value_case_insens-pcb_example1.xy-error \
+	translate_col_R10_value_icase-pcb_example1.xy \
+	translate_col_R10_value_icase-pcb_example1.xy-error \
 	translate_negative_col_num-pcb_example1.xy \
 	translate_negative_col_num-pcb_example1.xy-error
 
-MOSTLYCLEANFILES     = *.log *.ps core FILE *~
-CLEANFILES           = *.log *.ps core FILE *~
-DISTCLEANFILES       = *.log *.ps core FILE *~
-MAINTAINERCLEANFILES = *.log *.ps core FILE *~ Makefile.in
+MOSTLYCLEANFILES = *.log core FILE *~
+CLEANFILES = *.log core FILE *~
+DISTCLEANFILES = *.log core FILE *~
+MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
