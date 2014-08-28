@@ -165,6 +165,7 @@ static void geda_toplevel_instance_init( GTypeInstance *instance, void *g_class 
   toplevel->keep_invisible                 = default_keep_invisible;
 
   toplevel->make_backup_files              = default_make_backup_files;
+  toplevel->show_full_path                 = default_show_full_path;
 
   toplevel->always_promote_attributes      = NULL;
   toplevel->attribute_offset               = DEFAULT_ATTRIBUTE_OFFSET;

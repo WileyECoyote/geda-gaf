@@ -48,6 +48,7 @@ SCM g_rc_print_color_map (SCM scm_map);
 SCM g_rc_promote_invisible(SCM mode);
 SCM g_rc_scheme_directory(SCM path);
 SCM g_rc_untitled_name(SCM name);
+SCM g_rc_show_full_path(SCM mode);
 
 /* g_register.c */
 void g_register_libgeda_funcs(void);

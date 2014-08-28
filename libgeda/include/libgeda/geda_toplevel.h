@@ -53,11 +53,11 @@ struct _GedaToplevel {
 
   unsigned int head_marker;       /* structure type signature */
 
-  int    open_flags;     /* Control flags for the f_open function. Indexed by FOpenFlags */
+  int    open_flags;              /* Control flags for the f_open function. Indexed by FOpenFlags */
   char  *untitled_name;           /* untitled sch basename */
   int    num_untitled;            /* keep track of untitled pages */
 
-  char *bitmap_directory;         /* path of the bitmaps */
+  char  *bitmap_directory;         /* path of the bitmaps */
 
   /* page system */
   Page     *page_current;
@@ -145,6 +145,9 @@ struct _GedaToplevel {
 
   /* controls the generation of backup (~) files */
   int make_backup_files;
+
+  /* controls whether apps should display the full filename */
+  int show_full_path;
 
   /* List of attributes to always promote */
   GList *always_promote_attributes;

@@ -47,9 +47,6 @@ static struct gsubr_t libgeda_funcs[] = {
   { "reset-component-library",    0, 0, 0, g_rc_reset_component_library },
   { "reset-source-library",       0, 0, 0, g_rc_reset_source_library },
 
- // { "enable-style-zero",        1, 0, 0, g_rc_enable_style_zero },
- // { "component-style",          1, 0, 0, g_rc_component_style },
-
   { "net-style",                  1, 0, 0, g_rc_net_style },
   { "bus-style",                  1, 0, 0, g_rc_bus_style },
   { "pin-style",                  1, 0, 0, g_rc_pin_style },
@@ -74,6 +71,7 @@ static struct gsubr_t libgeda_funcs[] = {
   { "always-promote-attributes",  1, 0, 0, g_rc_always_promote_attributes },
   { "make-backup-files",          1, 0, 0, g_rc_make_backup_files },
   { "print-color-map",            0, 1, 0, g_rc_print_color_map },
+  { "show-full-path",             1, 0, 0, g_rc_show_full_path },
   { "rc-filename",                0, 0, 0, g_rc_rc_filename },
   { "rc-config",                  0, 0, 0, g_rc_rc_config },
   { NULL,                         0, 0, 0, NULL } };

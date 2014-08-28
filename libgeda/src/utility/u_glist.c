@@ -153,12 +153,12 @@ int u_gslist_find_string(GSList *list, char *str) {
  */
 void u_gslist_free_strings(void *data)
 {
-  GSList *iter, *glst = *((GSList **) data);
+  GSList *iter;
 
-  for (iter = glst; iter != NULL; iter = g_slist_next (iter)) {
+  for (iter = data; iter != NULL; iter = g_slist_next (iter)) {
     GEDA_FREE (iter->data);
   }
-  g_slist_free (glst);
+  g_slist_free (data);
 }
 
 /*! \brief Free a GSlist completely

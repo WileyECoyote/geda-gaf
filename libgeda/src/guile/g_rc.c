@@ -1004,3 +1004,19 @@ SCM g_rc_untitled_name(SCM name)
 
   return SCM_BOOL_T;
 }
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+SCM g_rc_show_full_path(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , "enabled" },
+    {FALSE, "disabled"},
+  };
+
+  RETURN_G_RC_MODE("show-full-path",
+                   default_show_full_path,
+                   2);
+}
