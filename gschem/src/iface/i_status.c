@@ -613,6 +613,13 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
 
 }
 
+static bool
+i_status_threaded_update_title(void *data)
+{
+  GschemToplevel *w_current = data;
+  x_window_update_title(w_current);
+  return FALSE;
+}
 /*! \brief Set filename as gschem window title
  *
  *  \par Function Description
@@ -624,9 +631,12 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
  */
 void i_status_update_title(GschemToplevel *w_current)
 {
-
-  x_window_update_title(w_current);
-
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    g_idle_add (i_status_threaded_update_title, w_current);
+  }
+  else {
+    BUG_MSG("Bad pointer to top-level");
+  }
 }
 
 /** @} endgroup Gschem-Status-Module */

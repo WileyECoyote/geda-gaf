@@ -1,3 +1,18 @@
+2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Add function i_status_threaded_update_title
+      and invoke from i_status_update_title with g_idle_add.
+
+2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Redo i_status_set_filename in preparation to
+      use separate task for status update. Rename function to i_status_
+      update_title and remove string argument.
+
+    * src/x/x_window.c: Rename returning function x_window_set_filename to
+      x_window_update_title and removed string argument, the title of the
+      window will always be the current file name if exist.
+
 2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_sessions.c: Fix leak in i_sessions_load_data
