@@ -75,7 +75,7 @@ static PopupEntry popup_items[] = {
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
-  { N_("Edit..."),           x_menu_popup_execute, pop_edit_butes,     1, "gtk-indent",     NULL},
+  { N_("Edit..."),           x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL},
   { N_("Edit pin type..."),  x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL},
   { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete"},
 
