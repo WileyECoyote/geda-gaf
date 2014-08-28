@@ -980,7 +980,7 @@ x_window_set_current_page (GschemToplevel *w_current, Page *page)
     //gschem_page_view_set_page (GSCHEM_PAGE_VIEW (w_current->drawing_area), page);
     i_status_update_sensitivities (w_current);
 
-    i_status_set_filename (w_current, page->filename);
+    i_status_update_title (w_current);
     x_pagesel_update (w_current);
     x_multiattrib_update (w_current);
 
@@ -1230,6 +1230,44 @@ void x_window_set_cursor(GschemToplevel *w_current, int cursor_id)
       w_current->cursor = gdk_cursor_new (cursor_id);
       gdk_window_set_cursor (draw_window, w_current->cursor);
     }
+  }
+}
+
+/*! \brief Set filename as gschem window title
+ *
+ *  \par Function Description
+ *  Set filename as gschem window title using
+ *  the gnome HID format style.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *  \param [in] string The filename
+ */
+void x_window_update_title(GschemToplevel *w_current)
+{
+  const char *filename=NULL;
+  char       *print_string=NULL;
+
+  if (w_current->main_window) {
+
+    if (w_current->toplevel && Current_Page) {
+
+      if (Current_Page->filename) {
+        filename = f_basename(Current_Page->filename);
+      }
+      else {
+        filename = "undefined"; /* aka BUG */
+      }
+    }
+    else {
+      filename = "loading"; /* Should never happen */
+    }
+
+    print_string = u_string_sprintf("%s - gschem", filename);
+
+    gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
+
+    GEDA_FREE(print_string);
+
   }
 }
 

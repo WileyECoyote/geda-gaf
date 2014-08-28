@@ -25,48 +25,15 @@
 #include <geda_label.h>
 #include <geda_debug.h>
 
-/*! \brief Set filename as gschem window title
+/** \defgroup Gschem-Status-Module Gschem Status Module
+ *  @{
+ * \par
+ * This module contains routines to update user interface components,
+ * i.e. the menus, status-bar, and tool-bars. The module does not set
+ * values in widgets, or interact with GUI components, functions in
+ * this module call the appropriate GUI providers to perform updates.
  *
- *  \par Function Description
- *  Set filename as gschem window title using
- *  the gnome HID format style.
- *
- *  \param [in] w_current GschemToplevel structure
- *  \param [in] string The filename
- */
-void i_status_set_filename(GschemToplevel *w_current, const char *string)
-{
-  const char *filename=NULL;
-  char       *print_string=NULL;
-
-  if (w_current->main_window) {
-
-    if (string == NULL) {
-
-      if (w_current->toplevel && Current_Page) {
-
-        if (Current_Page->filename) {
-          filename = f_basename(Current_Page->filename);
-        }
-        else {
-          filename = "undefined"; /* aka BUG */
-        }
-      }
-      else {
-        filename = "loading"; /* Should never happen */
-      }
-    }
-    else {
-      filename = f_basename(string);
-    }
-
-    print_string = u_string_sprintf("%s - gschem", filename);
-
-    gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
-
-    GEDA_FREE(print_string);
-  }
-}
+*/
 
 /*! \brief Set new state, then show state field including some
  *         message
@@ -80,7 +47,9 @@ void i_status_set_filename(GschemToplevel *w_current, const char *string)
  *  \param [in] message Message to be shown
  *   *EK* Egil Kvaleberg
  */
-void i_status_set_state_msg(GschemToplevel *w_current, enum x_states newstate, const char *message)
+void i_status_set_state_msg(GschemToplevel *w_current,
+                            enum            x_states newstate,
+                            const char     *message)
 {
   w_current->event_state = newstate;
   x_toolbars_update(w_current);
@@ -644,3 +613,20 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
 
 }
 
+/*! \brief Set filename as gschem window title
+ *
+ *  \par Function Description
+ *  Set filename as gschem window title using
+ *  the gnome HID format style.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ *  \param [in] string The filename
+ */
+void i_status_update_title(GschemToplevel *w_current)
+{
+
+  x_window_update_title(w_current);
+
+}
+
+/** @} endgroup Gschem-Status-Module */

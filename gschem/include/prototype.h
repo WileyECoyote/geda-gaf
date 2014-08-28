@@ -210,14 +210,6 @@ void main_prog     (void *closure, int argc, char *argv[]);
 int  main          (int argc, char *argv[]);
 void shut_down_gui (void);
 
-/* i_status.c */
-void i_status_set_filename             (GschemToplevel *w_current, const char *string);
-void i_status_set_state_msg            (GschemToplevel *w_current, enum x_states newstate, const char *message);
-void i_status_set_state                (GschemToplevel *w_current, enum x_states newstate);
-void i_status_show_state               (GschemToplevel *w_current, const char *message);
-void i_status_update_grid_info         (GschemToplevel *w_current);
-void i_status_update_sensitivities     (GschemToplevel *w_current);
-
 /*! \note WEH: MACRO: I_CALLBACK_ARGUMENTS is left defined and is without a
  *             semi-colon. This macro is re-used in the associated source file */
 #define I_CALLBACK_ARGUMENTS (GschemToplevel* w_current, unsigned int callback_action, GtkWidget *widget)
@@ -285,6 +277,14 @@ void i_sessions_set_show_at_startup    (bool show);
 bool i_sessions_present_at_startup     (void);
 void i_sessions_update_menus           (GschemToplevel *w_current);
 void i_sessions_init                   (GschemToplevel *w_current);
+
+/* i_status.c */
+void i_status_set_state_msg            (GschemToplevel *w_current, enum x_states newstate, const char *message);
+void i_status_set_state                (GschemToplevel *w_current, enum x_states newstate);
+void i_status_show_state               (GschemToplevel *w_current, const char *message);
+void i_status_update_grid_info         (GschemToplevel *w_current);
+void i_status_update_sensitivities     (GschemToplevel *w_current);
+void i_status_update_title             (GschemToplevel *w_current);
 
 /* i_threads.c */
 void gschem_threads_enter (void);
@@ -840,6 +840,7 @@ void x_window_setup_page               (GschemToplevel *w_current, Page *page, i
 int  x_window_save_page                (GschemToplevel *w_current, Page *page, const char *filename);
 void x_window_close_page               (GschemToplevel *w_current, Page *page);
 void x_window_set_cursor               (GschemToplevel *w_current, int cursor_id);
+void x_window_update_title             (GschemToplevel *w_current);
 void x_window_add_toolbar_toggle       (GtkWidget *widget, GschemToplevel *w_current);
 void x_window_attribute_toolbar_toggle (GtkWidget *widget, GschemToplevel *w_current);
 void x_window_gridsnap_toolbar_toggle  (GtkWidget *widget, GschemToplevel *w_current);
