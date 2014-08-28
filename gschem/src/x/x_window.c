@@ -1252,7 +1252,14 @@ void x_window_update_title(GschemToplevel *w_current)
     if (w_current->toplevel && Current_Page) {
 
       if (Current_Page->filename) {
-        filename = f_basename(Current_Page->filename);
+
+        if (w_current->toplevel->show_full_path) {
+          filename = Current_Page->filename;
+        }
+        else {
+          filename = f_basename(Current_Page->filename);
+        }
+
       }
       else {
         filename = "undefined"; /* aka BUG */

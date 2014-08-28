@@ -1,5 +1,10 @@
 2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_window.c: Implement new top-level show_full_path in function
+      x_window_update_title.
+
+2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/xxx-gschemrc.scm: Add new Libgeda variable "show-full-path"
 
 2014-08-28 Wiley E. Hill <wileyhill@gmail.com>

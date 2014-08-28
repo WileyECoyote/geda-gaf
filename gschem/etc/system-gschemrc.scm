@@ -847,8 +847,8 @@
 ; Controls if application should display the full path in the file name or not.
 ; This is a libgeda settings.
 ;
-(show-full-path "enabled")
-;(show-full-path "disabled")
+;(show-full-path "enabled")
+(show-full-path "disabled")
 
 ; toolbars string
 ;
