@@ -695,6 +695,7 @@ static void i_sessions_load_data(void)
 
         if (iter->data) {
 
+          /* Copy filename from list to the buffer AND set file pointer */
           file = strcpy (&buffer[0], iter->data);
 
           record.session_file = g_build_filename(path, file, NULL);
@@ -706,11 +707,11 @@ static void i_sessions_load_data(void)
           record.session_name = u_string_strdup(tmpname);
 
           sessions = g_array_append_val(sessions, record);
+
+          GEDA_FREE(iter->data);
         }
       } /* next session file */
 
-      /* Note we do not free the file name element, because they are
-       * reference in the array structures */
       g_slist_free(session_files);
 
     }
