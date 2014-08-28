@@ -127,7 +127,7 @@ void i_vars_libgeda_set(GedaToplevel *toplevel)
     toplevel->component_groups = g_list_append(toplevel->component_groups,
                                                u_string_strdup(iter->data));
   }
-fprintf(stderr, "toplevel->show_full_path=%d\n", toplevel->show_full_path);
+
   for (iter = toplevel->always_promote_attributes; iter != NULL;
        iter = g_list_next(iter))
     iter->data = u_string_strdup(iter->data);
