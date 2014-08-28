@@ -557,8 +557,6 @@ const char   *u_stristr                (const char *str1, const char *str2);
       char   *u_string_split           (char *string, char delimiter, int count);
       int     u_string_word_count      (char *str);
 
-
-
 /* u_program.c */
       void    u_program_backtrace      (void);
       void    u_program_mem_set_vtable (void);

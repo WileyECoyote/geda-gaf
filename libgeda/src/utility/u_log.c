@@ -44,6 +44,8 @@ int is_logging = FALSE; /* Variable to controls whether logging is enable or not
                           (G_LOG_LEVEL_WARNING | G_LOG_LEVEL_MESSAGE))
 
 #define LOG_OPEN_ATTEMPTS 5
+#define LOG_READ_BUFFER_SIZE  200
+#define LOG_WRITE_BUFFER_SIZE 256
 
 static void u_log_handler (const char *log_domain, GLogLevelFlags log_level,
                            const char *message, void *user_data);
@@ -51,6 +53,65 @@ static void u_log_handler (const char *log_domain, GLogLevelFlags log_level,
 static int logfile_fd = -1;
 
 static unsigned int log_handler_id;
+
+/*! \brief Write a message to the current log file.
+ *  \par Function Description
+ *  Writes <B>message</B> to the current log file whose file descriptor
+ *  is <B>logfile_fd</B>.
+ *
+ *  It also sends <B>message</B> to the optional function <B>x_log_update</B>
+ *  for further use.
+ *
+ *  \param [in] log_domain  (unused).
+ *  \param [in] log_level   (unused).
+ *  \param [in] message     Character string containing message to
+ *                          write to log.
+ *  \param [in] user_data   (unused).
+ *
+ */
+static void u_log_handler (const char    *log_domain,
+                           GLogLevelFlags log_level,
+                           const char    *message,
+                           void          *user_data)
+{
+  char    buffer[LOG_WRITE_BUFFER_SIZE];
+  char   *log_entry;
+  int     len;
+  int     status;
+  struct  tm *nowtm;
+  time_t  nowt;
+
+  g_return_if_fail (logfile_fd != -1);
+
+  time (&nowt);
+  nowtm = localtime (&nowt);
+
+  if(strftime(buffer,LOG_WRITE_BUFFER_SIZE,"[%H:%M:%S]", nowtm) == 0) {
+    perror("Could not format time string");
+    status = write (logfile_fd, message, strlen (message));
+  }
+  else {
+    log_entry = strcat(buffer, " ");
+    len = LOG_WRITE_BUFFER_SIZE - strlen (log_entry);
+    log_entry = strncat(buffer, message, len);
+    status = write (logfile_fd, log_entry, strlen (log_entry));
+  }
+
+  if (status == -1) {
+    perror("Could not write message to log file\n");
+  }
+
+  if ((status == -1) || (log_level & PRINT_LOG_LEVELS)) {
+    /* If messages are serious or writing to file failed, call the
+     * default handler to write to the console. */
+    g_log_default_handler (log_domain, log_level, message, NULL);
+  }
+
+  if (x_log_update_func) {
+    (*x_log_update_func) (log_domain, log_level, message);
+  }
+
+}
 
 /*! \brief Initialize libgeda logging feature.
  *  \par Function Description
@@ -199,11 +260,11 @@ void u_log_close (void)
  */
 char *u_log_read (void)
 {
-  gboolean tmp;
-#define BUFSIZE 200
-  char buf[BUFSIZE];
+  bool tmp;
+
+  char buf[LOG_READ_BUFFER_SIZE];
   GString *contents;
-  gint len;
+  int len;
 
   if (logfile_fd == -1) {
     return NULL;
@@ -217,51 +278,11 @@ char *u_log_read (void)
 
   /* read its contents and build a string */
   contents = g_string_new ("");
-  while ((len = read (logfile_fd, &buf, BUFSIZE)) != 0) {
+  while ((len = read (logfile_fd, &buf, LOG_READ_BUFFER_SIZE)) != 0) {
     contents = g_string_append_len (contents, buf, len);
   }
 
   is_logging = tmp;
 
   return g_string_free (contents, FALSE);
-}
-
-/*! \brief Write a message to the current log file.
- *  \par Function Description
- *  Writes <B>message</B> to the current log file whose file descriptor
- *  is <B>logfile_fd</B>.
- *
- *  It also sends <B>message</B> to the optional function <B>x_log_update</B>
- *  for further use.
- *
- *  \param [in] log_domain  (unused).
- *  \param [in] log_level   (unused).
- *  \param [in] message     Character string containing message to
- *                          write to log.
- *  \param [in] user_data   (unused).
- *
- */
-static void u_log_handler (const char *log_domain,
-                           GLogLevelFlags log_level,
-                           const char *message,
-                           void* user_data)
-{
-  int status;
-
-  g_return_if_fail (logfile_fd != -1);
-
-  status = write (logfile_fd, message, strlen (message));
-  if (status == -1) {
-    fprintf(stderr, "Could not write message to log file\n");
-  }
-  if ((status == -1) || (log_level & PRINT_LOG_LEVELS)) {
-    /* If messages are serious or writing to file failed, call the
-     * default handler to write to the console. */
-    g_log_default_handler (log_domain, log_level, message, NULL);
-  }
-
-  if (x_log_update_func) {
-    (*x_log_update_func) (log_domain, log_level, message);
-  }
-
 }

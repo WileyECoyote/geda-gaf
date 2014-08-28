@@ -1,5 +1,10 @@
 2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_log.c: Add time of day to log entries to file, change
+      fprintf to perror in function u_log_handler.
+
+2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * Add new top-level variable show_full_path, alogn with associated
       default_show_full_path, initialization and rc processing. The new
       variable is intended for client applications and is not used by
