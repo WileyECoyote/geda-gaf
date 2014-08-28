@@ -1,5 +1,9 @@
 2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/xxx-gschemrc.scm: Add new Libgeda variable "show-full-path"
+
+2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.?: Rename enumerated pop_edit_butes to pop_edit_objects, is
       not just for Attributes anymore.
 

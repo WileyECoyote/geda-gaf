@@ -842,6 +842,14 @@
 (save-ui-settings "enabled")
 ;(save-ui-settings "disabled")
 
+; show-full-path string
+;
+; Controls if application should display the full path in the file name or not.
+; This is a libgeda settings.
+;
+(show-full-path "enabled")
+;(show-full-path "disabled")
+
 ; toolbars string
 ;
 ; Controls if the toolbars are visible or not. If toolbars are not enabled
