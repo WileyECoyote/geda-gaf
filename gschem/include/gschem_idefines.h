@@ -148,6 +148,12 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define MAX_AUTOPLACE_GRID      500
 #define DEFAULT_ATTRIB_PLACE_GRID 50
 
+/* Flag to inhibit unnecessary update of sessions */
+#define BYPASS_SESSION_UPDATES   -1
+
+/* Flag to differentiate auto vs explicit saving of sessions */
+#define UPDATE_SESSION_QUIETLY    2
+
 /* select_slack_pixels */
 #define DEFAULT_SLACK_PIXELS      4
 

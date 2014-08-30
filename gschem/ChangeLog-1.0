@@ -1,5 +1,20 @@
 2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_idefines.h: Added defines used to control Session log
+      verbosity and bypassing; BYPASS_SESSION_UPDATES & UPDATE_SESSION_QUIETLY
+
+    * src/x/x_sessions.c: Implement auto_sessions in x_sessions_save_settings.
+
+    * src/x/x_window.c: New function x_window_idle_thread_update_session called
+      as by both x_window_close and x_window_open_page when appropriate in
+      order to implement auto_sessions.
+
+    * src/iface/i_command.c/: In i_cmd_do_open, set flag BYPASS_SESSION_UPDATES
+      to bypass updating of sessions when multible pages are being opened so
+      the the Session system does not update the records for each file.
+
+2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/gschem_sdefines.h: Added define the Session configuration groups;
       SESSIONS_CONFIG_GROUP.
 

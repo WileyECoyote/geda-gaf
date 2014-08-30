@@ -646,6 +646,19 @@ void x_window_close_all_dialogs(GschemToplevel *w_current)
 
   x_console_close();
 }
+
+static bool
+x_window_idle_thread_update_session (void *data)
+{
+  GschemToplevel *w_current = data;
+
+  w_current->auto_sessions = UPDATE_SESSION_QUIETLY;
+  i_sessions_save_session (w_current, NULL);
+  w_current->auto_sessions = TRUE;
+
+  return FALSE;
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description
@@ -683,12 +696,22 @@ void x_window_close(GschemToplevel *w_current)
       x_sessions_save_settings(w_current);
       x_settings_save_settings(w_current);
     }
+    else {
+      if (w_current->auto_sessions > 0 && w_current->session_name) {
+        g_idle_add (x_window_idle_thread_update_session, w_current);
+      }
+    }
 
     /* close the log file */
     u_log_close ();
 
     /* free the buffers */
     o_buffer_free (w_current);
+  }
+  else {
+    if (w_current->auto_sessions > 0 && w_current->session_name) {
+      g_idle_add (x_window_idle_thread_update_session, w_current);
+    }
   }
 
   x_toolbars_free_window(w_current);
@@ -877,6 +900,9 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
         else { /* the file was loaded */
           q_log_message (_("Loading \"%s\"\n"), filename);
           recent_files_add (filename);
+          if (w_current->auto_sessions == TRUE && w_current->session_name) {
+            g_idle_add (x_window_idle_thread_update_session, w_current);
+          }
         }
       }
       else { /* File is already open, so make it the current page */

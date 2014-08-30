@@ -835,10 +835,25 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
   }
 }
 
+/*! \brief Save Session Configuration Settings and Auto Session
+ *  \par Function Description
+ *  This function is call at shutdown to preserve the state of
+ *  the auto_sessions variable to the configuration system. The
+ *  function first saves the current session if appropriate.
+ *  The auto_sessions is restored by #i_sessions_init
+ *
+ *  \param w_current Pointer to #GschemToplevel Object
+ *
+ *  \sa i_sessions_init
+ */
 void x_sessions_save_settings (GschemToplevel *w_current)
 {
   EdaConfig  *cfg = eda_config_get_user_context ();
   const char *group_name = SESSIONS_CONFIG_GROUP;
+
+  if (w_current->auto_sessions > 0 && w_current->session_name) {
+    i_sessions_save_session (w_current, NULL);
+  }
 
   eda_config_set_boolean (cfg, group_name, "auto-update-sessions",
                           w_current->auto_sessions);

@@ -884,6 +884,7 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
   Session *record;
   bool     result;
   char    *old_session_name;
+  bool     old_auto_sessions;
 
   record = i_session_get_record(name);
 
@@ -893,6 +894,12 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
     old_session_name = w_current->session_name;
 
     w_current->session_name = NULL;
+
+    /* preserve existing auto_sessions setting*/
+    old_auto_sessions = w_current->auto_sessions;
+
+    /* Set flag so we do not update sessions while loading a session */
+    w_current->auto_sessions = BYPASS_SESSION_UPDATES;
 
     i_session_load_session(w_current, record);
 
@@ -906,6 +913,8 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
       v_log_message(_("Opened session %s\n"), name);
       result = TRUE;
     }
+
+    w_current->auto_sessions = old_auto_sessions;
   }
   else {
     result = FALSE;
@@ -1034,7 +1043,15 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = -1;
   }
   else {
-    q_log_message(msg);
+    if (w_current->auto_sessions == UPDATE_SESSION_QUIETLY) {
+      /* The verbose suppression is only used during single loads, which
+       * could have been initiated from the recent files list */
+      v_log_message(msg);
+    }
+    else {
+      /* For explicit session saves and multi page loads with auto update */
+      q_log_message(msg);
+    }
   }
 
   GEDA_FREE(msg);
@@ -1156,9 +1173,13 @@ void i_sessions_update_menus(GschemToplevel *w_current)
 /*! \brief Initialize Session system
  *  \par Function Description
  *   This function is called to initialized the Session system. The
- *   function to calls i_sessions_load_data() to load the Session array.
+ *   function to calls i_sessions_load_data() to load the Session
+ *   array. This function also restores the auto_sessions variable
+ *   preserved by x_sessions_save_settings.
  *
  *  \param w_current Pointer to #GschemToplevel Object
+ *
+ *  \sa x_sessions_save_settings
  */
 void i_sessions_init(GschemToplevel *w_current)
 {
