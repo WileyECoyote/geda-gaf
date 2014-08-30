@@ -1389,6 +1389,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
     }
 
     o_set_fill_options (object, &fill_options);
+    o_invalidate (w_current, object);
   }
 
   toplevel->page_current->CHANGED = 1;
