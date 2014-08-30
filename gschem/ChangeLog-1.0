@@ -1,5 +1,11 @@
 2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_window.c: Use local string in x_window_open_page::empty_page
+      instead of Current_Page->filename, is safer, replace if !verbose with
+      v_log_message.
+
+2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/gschem_idefines.h: Added defines used to control Session log
       verbosity and bypassing; BYPASS_SESSION_UPDATES & UPDATE_SESSION_QUIETLY
 
