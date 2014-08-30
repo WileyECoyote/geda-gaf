@@ -783,6 +783,7 @@ void x_sessions_manage_dialog          (GschemToplevel *w_current);
 void x_sessions_open_dialog            (GschemToplevel *w_current);
 void x_sessions_new_dialog             (GschemToplevel *w_current);
 void x_sessions_save_as_dialog         (GschemToplevel *w_current);
+void x_sessions_save_settings          (GschemToplevel *w_current);
 
 /* x_settings.c */
 void x_configure_settings              (GschemToplevel *w_current);

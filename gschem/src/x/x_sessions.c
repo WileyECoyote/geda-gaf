@@ -835,5 +835,14 @@ void x_sessions_save_as_dialog (GschemToplevel *w_current)
   }
 }
 
+void x_sessions_save_settings (GschemToplevel *w_current)
+{
+  EdaConfig  *cfg = eda_config_get_user_context ();
+  const char *group_name = SESSIONS_CONFIG_GROUP;
+
+  eda_config_set_boolean (cfg, group_name, "auto-update-sessions",
+                          w_current->auto_sessions);
+}
+
 /** @} endgroup Gschem-Sessions-Dialogs */
 #undef TreeSelection

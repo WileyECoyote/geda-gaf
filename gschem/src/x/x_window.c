@@ -680,6 +680,7 @@ void x_window_close(GschemToplevel *w_current)
       x_menu_save_state(w_current);
       x_window_close_all_dialogs(w_current);
       x_window_save_settings(w_current);
+      x_sessions_save_settings(w_current);
       x_settings_save_settings(w_current);
     }
 

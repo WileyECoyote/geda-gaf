@@ -1081,7 +1081,7 @@ bool i_sessions_get_show_at_startup(void)
 {
         bool  answer;
         bool  tmp_bool;
-  const char *group     = "Sessions";
+  const char *group     = SESSIONS_CONFIG_GROUP;
   const char *key       = "sessions-at-startup";
   GError     *err       = NULL;
   EdaConfig  *cfg       = eda_config_get_user_context();
@@ -1108,7 +1108,7 @@ bool i_sessions_get_show_at_startup(void)
  */
 void i_sessions_set_show_at_startup(bool show)
 {
-  const char *group = "Sessions";
+  const char *group = SESSIONS_CONFIG_GROUP;
   const char *key   = "sessions-at-startup";
   EdaConfig  *cfg   = eda_config_get_user_context();
 
@@ -1162,11 +1162,26 @@ void i_sessions_update_menus(GschemToplevel *w_current)
  */
 void i_sessions_init(GschemToplevel *w_current)
 {
-   i_sessions_load_data();
-   geda_atexit((geda_atexit_func)i_sessions_destroy_sessions, NULL);
-   w_current->session_name = NULL;     /* means no session */
-   i_sessions_update_menus(w_current);
-   v_log_message(_("Session system initialized!\n"));
+  bool  tmp_bool;
+  const char *group     = SESSIONS_CONFIG_GROUP;
+  const char *key       = "auto-update-sessions";
+  GError     *err       = NULL;
+  EdaConfig  *cfg       = eda_config_get_user_context();
+
+  i_sessions_load_data();
+  geda_atexit((geda_atexit_func)i_sessions_destroy_sessions, NULL);
+  w_current->session_name = NULL;     /* means no session */
+  i_sessions_update_menus(w_current);
+
+  tmp_bool = eda_config_get_boolean (cfg, group, key, &err);
+
+  if (err != NULL) {
+    g_clear_error (&err);
+  }
+  else {
+    w_current->auto_sessions = tmp_bool;
+  }
+  v_log_message(_("Session system initialized!\n"));
 }
 /** @} endgroup sessions-global-utilities */
 /** @} endgroup sessions-global-functions */

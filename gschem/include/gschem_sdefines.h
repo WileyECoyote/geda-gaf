@@ -44,6 +44,8 @@
 ;; ------------------------------------------------------------------
 ;; WEH | 10/16/13 | Remove string for Schematic's and Symbols and relocated
 ;;                | to include/libgeda/defines.h.
+;; ------------------------------------------------------------------
+;; WEH | 08/30/14 | Added SESSIONS_CONFIG_GROUP
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -67,9 +69,11 @@
 #define TOOLBAR_CONFIG_STORE       "gschem-toolbar-user.conf"
 //#define WINDOW_GEOMETRY_STORE      "gschem-window"
 
+/* string name of configuration groups */
 #define IVAR_CONFIG_GROUP          "global"
 #define MENU_CONFIG_GROUP          "menu"
 #define WINDOW_CONFIG_GROUP        "window"
+#define SESSIONS_CONFIG_GROUP      "Sessions"
 
 #define GEDA_TYPE_OBJECTS          "application/x-geda-objects"
 #define MIME_TYPE_SCHEMATIC        "application/x-geda-schematic"

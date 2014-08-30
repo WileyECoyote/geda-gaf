@@ -1,5 +1,23 @@
 2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_sdefines.h: Added define the Session configuration groups;
+      SESSIONS_CONFIG_GROUP.
+
+    * src/x/x_sessions.c: New function x_sessions_save_settings, this function
+      will eventually be used to also save the session when appropriate.
+
+    * src/x/x_window.c: Call x_sessions_save_settings in x_window_close.
+
+2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_toplevel.h: Add variable auto_sessions for new setting to
+      automatically add and remove files from session list.
+
+    * src/x/x_sessions.c: Add check box to create_action_area and callback for
+      new toplevel varible auto_sessions.
+
+2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_window.c: New feature, show session name in the title bar if
       session is active, in x_window_update_title.
 
