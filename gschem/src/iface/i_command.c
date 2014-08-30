@@ -677,9 +677,7 @@ open_command_idle_callback (void *data)
  * us that the main loop source open_command_idle_callback
  * has been destroyed, which is of no particular interest.
  * These idle threads were to release the memory associated
- * with x_fileselect_list If the auto_sessions variable was
- * set to bypass, then re-enable auto_sessions and call to
- * update the sessions record */
+ * with x_fileselect_list */
 static void
 open_command_idle_notify (void *data)
 {
@@ -703,13 +701,6 @@ open_command_idle_notify (void *data)
   g_slist_foreach (files, (GFunc)g_free, NULL);
   /* free the list that held pointers to filenames */
   g_slist_free (files);
-
-  if (packet->w_current->auto_sessions == BYPASS_SESSION_UPDATES) {
-    /* Note, we do not use UPDATE_SESSION_QUIETLY here*/
-    packet->w_current->auto_sessions = TRUE;
-    i_sessions_save_session (packet->w_current, NULL);
-  }
-
   /* free the IdleTaskData structure */
   GEDA_FREE(data);
 }
@@ -729,10 +720,6 @@ open_command_idle_notify (void *data)
  *  guile routines need to be ran in the main context.
  *  As a bonus, our multi-document load performance increased
  *  dramatically, compared to the old sequential loading.
- *
- *  If auto_sessions is enabled then set to bypass mode so that
- *  the sessions record is not updated with each file open. The
- *  DestroyNotifier will re-enable and call to update record.
  */
 COMMAND ( do_open ) {
   BEGIN_W_COMMAND(do_open);
@@ -744,15 +731,6 @@ COMMAND ( do_open ) {
 
   if ( NULL != (files = x_fileselect_list (w_current))) {
 
-    count = g_slist_length(files);
-
-    if (w_current->auto_sessions == TRUE && w_current->session_name) {
-      /* if only 1 file then let normal handler update */
-      if (count > 1) {
-        w_current->auto_sessions = BYPASS_SESSION_UPDATES;
-      }
-    }
-
     w_current->toplevel->open_flags = F_OPEN_RC | F_OPEN_CHECK_BACKUP;
 
     lambda (void *filename) {
@@ -761,6 +739,7 @@ COMMAND ( do_open ) {
       task->arg1    = command_struc[cmd_do_open].w_current;
       task->arg2    = filename;
       g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
+      count++;
       return FALSE;
     }
     mapcar(files);

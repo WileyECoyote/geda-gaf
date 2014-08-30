@@ -884,7 +884,6 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
   Session *record;
   bool     result;
   char    *old_session_name;
-  bool     old_auto_sessions;
 
   record = i_session_get_record(name);
 
@@ -894,12 +893,6 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
     old_session_name = w_current->session_name;
 
     w_current->session_name = NULL;
-
-    /* preserve existing auto_sessions setting*/
-    old_auto_sessions = w_current->auto_sessions;
-
-    /* Set flag so we do not update sessions while loading a session */
-    w_current->auto_sessions = BYPASS_SESSION_UPDATES;
 
     i_session_load_session(w_current, record);
 
@@ -914,7 +907,6 @@ bool i_sessions_open_session(GschemToplevel *w_current, const char *name)
       result = TRUE;
     }
 
-    w_current->auto_sessions = old_auto_sessions;
   }
   else {
     result = FALSE;
@@ -1043,15 +1035,7 @@ int i_sessions_save_session(GschemToplevel *w_current, const char *name)
     count = -1;
   }
   else {
-    if (w_current->auto_sessions == UPDATE_SESSION_QUIETLY) {
-      /* The verbose suppression is only used during single loads, which
-       * could have been initiated from the recent files list */
-      v_log_message(msg);
-    }
-    else {
-      /* For explicit session saves and multi page loads with auto update */
-      q_log_message(msg);
-    }
+    q_log_message(msg);
   }
 
   GEDA_FREE(msg);
