@@ -1269,7 +1269,14 @@ void x_window_update_title(GschemToplevel *w_current)
       filename = "loading"; /* Should never happen */
     }
 
-    print_string = u_string_sprintf("%s - gschem", filename);
+    if (w_current->session_name != NULL) {
+      print_string = u_string_sprintf("%s: %s - gschem",
+                                      w_current->session_name,
+                                      filename);
+    }
+    else {
+      print_string = u_string_sprintf("%s - gschem", filename);
+    }
 
     gtk_window_set_title(GTK_WINDOW(w_current->main_window), print_string);
 

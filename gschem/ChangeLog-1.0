@@ -1,5 +1,10 @@
 2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_window.c: New feature, show session name in the title bar if
+      session is active, in x_window_update_title.
+
+2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/globals.h: Added new members and resequenced EID_SENITIVITY_MODE
       enumerators.
 
