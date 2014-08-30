@@ -735,6 +735,16 @@ void x_window_close_all(GschemToplevel *w_current)
 
 }
 
+/* Threaded from x_window_open_page after successful open */
+static bool
+x_window_idle_thread_post_load_file (void *filename)
+{
+  q_log_message (_("Loading \"%s\"\n"), filename);
+  recent_files_add (filename);
+
+  return FALSE;
+}
+
 /*! \brief Opens a new page from a file.
  *  \par Function Description
  *  This function opens the file whose name is <B>filename</B> in a
@@ -839,7 +849,6 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
       s_page_goto (toplevel, old_current);
     }
     else { /* There was error and no previous page */
-      /*fprintf(stderr, "creating empty page\n"); */
       page = empty_page(name);
     }
   }
@@ -874,8 +883,8 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
           resolve_2_recover(NULL);
         }
         else { /* the file was loaded */
-          q_log_message (_("Loading \"%s\"\n"), filename);
-          recent_files_add (filename);
+          g_idle_add (x_window_idle_thread_post_load_file,
+                      Current_Page->filename);
         }
       }
       else { /* File is already open, so make it the current page */
@@ -922,7 +931,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
           /* set Flag for file-save to use file-saveas */
           w_current->force_save_as = TRUE;
 #if DEBUG
-          fprintf(stderr, "filename:%s\n path:%s\n", path, filename);
+          perror(stderr, "filename:%s\n path:%s\n", path, filename);
 #endif
           resolve_2_recover(path);
         }
