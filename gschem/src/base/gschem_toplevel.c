@@ -178,6 +178,10 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->pointer_sx                   = 0;
   w_current->pointer_sy                   = 0;
 
+  /* Sessions */
+  w_current->session_name                 = NULL;
+  w_current->auto_sessions                = TRUE;
+
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */

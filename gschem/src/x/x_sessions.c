@@ -355,7 +355,7 @@ static void on_close_butt_clicked(GtkButton *button, void *user_data)
 
 /*! \brief Session dialog "Display at Startup" check button Toggled.
  *  \par Function Description
- *   Executes when even the check-button changes state. The function
+ *   Executes whenever the check-button changes state. The function
  *   passes the state to i_sessions_set_show_at_startup function to
  *   update the configuration setting with the new value.
  */
@@ -368,6 +368,21 @@ callback_session_startup_toggled(GtkToggleButton *button, void *nothing)
   i_sessions_set_show_at_startup(state);
 }
 
+
+/*! \brief Session Auto Update check button Toggled.
+ *  \par Function Description
+ *   Executes whenever the check-button changes state. The function
+ *   passes set the toplevel variable to the value of the state of
+ *   the widget, either enabled or disabled.
+ */
+static void
+callback_session_auto_toggled(GtkToggleButton *button, void *data)
+{
+  GschemToplevel *w_current = data;
+
+  w_current->auto_sessions =  gtk_toggle_button_get_active(button);
+}
+
 /*! \brief Creates Action Area for the  for Session dialogs.
  *  \par Function Description
  *  We create our own "Action Area", because; 1.) GTK's entire
@@ -377,24 +392,36 @@ callback_session_startup_toggled(GtkToggleButton *button, void *nothing)
 static GtkWidget*
 create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
 {
-  GtkWidget  *action_hbox  = NULL;
-  GtkWidget  *checkbutton;
+  GschemToplevel *w_current = ThisDialog->w_current;
+  GtkWidget  *action_hbox   = NULL;
+  GtkWidget  *auto_check_butt;
+  GtkWidget  *startup_checkbutt;
   const char *open_tip;
   const char *startup_tip;
+  const char *update_tip;
+
   int         startup;
 
-  open_tip     = _("Loads the selected session");
-  startup_tip  = _("Show the Open Session dialog at startup, over-rides auto-load-last feature");
+  open_tip    = _("Loads the selected session");
+  startup_tip = _("Show the Open Session dialog at startup, over-rides auto-load-last feature");
+  update_tip  = _("Add and remove files to the sessions automatically");
 
   /* Create a Horizontal Box for everything to go into */
   NEW_HCONTROL_BOX(parent, action, DIALOG_H_SPACING);
 
-  checkbutton = gtk_check_button_new_with_mnemonic (_("Show at startup"));
-  g_object_set (checkbutton, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (action_hbox), checkbutton, FALSE, FALSE, 0);
-  gtk_widget_set_tooltip_text(checkbutton, startup_tip);
+  startup_checkbutt = gtk_check_button_new_with_mnemonic (_("Show at startup"));
+  g_object_set (startup_checkbutt, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (action_hbox), startup_checkbutt, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text(startup_checkbutt, startup_tip);
   startup = i_sessions_get_show_at_startup();
-  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(checkbutton), startup);
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(startup_checkbutt), startup);
+
+  auto_check_butt = gtk_check_button_new_with_mnemonic (_("Auto update"));
+  g_object_set (auto_check_butt, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX (action_hbox), auto_check_butt, FALSE, FALSE, 0);
+  gtk_widget_set_tooltip_text(auto_check_butt, update_tip);
+  gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(auto_check_butt),
+                               w_current->auto_sessions);
 
   /* Create and connect the Close and Apply Buttons */
   GtkWidget *close_butt = gtk_button_new_from_stock (GTK_STOCK_CLOSE);
@@ -412,9 +439,13 @@ create_action_area (GschemDialog *ThisDialog, GtkWidget *parent)
   gtk_widget_set_sensitive (open_butt, FALSE);
   gtk_widget_set_tooltip_text(open_butt, open_tip);
 
-  g_signal_connect (checkbutton, "toggled",
+  g_signal_connect (startup_checkbutt, "toggled",
                     G_CALLBACK (callback_session_startup_toggled),
                     NULL);
+
+  g_signal_connect (auto_check_butt, "toggled",
+                    G_CALLBACK (callback_session_auto_toggled),
+                    w_current);
 
   g_signal_connect (close_butt, "clicked",
                     G_CALLBACK (on_close_butt_clicked),

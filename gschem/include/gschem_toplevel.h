@@ -195,6 +195,7 @@ struct _GschemToplevel {
 
   /* Sessions */
   char *session_name;                   /* Name of active session */
+  bool  auto_sessions;
 
   /* ----------------- rc/user parameters ----------------- */
 
