@@ -1,3 +1,19 @@
+2014-08-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/globals.h: Added new members and resequenced EID_SENITIVITY_MODE
+      enumerators.
+
+    * include/x_toolbars.h: Added new GLIST members to ToolBarWidgets for
+      sensitivities.
+
+    * src/x/x_toolbars.c: Update sensitivities, added can_hatch, can_edit_line
+      and pin_selected, renamed remainder of the sensitivity list to coincide
+      with variables in i_status_update_sensitivities.
+
+    * src/iface/i_status.c: Renamed some of the booleans for sensitivities in
+      i_status_update_sensitivities to coincide with corresponding variables in
+      the tool-bars module.
+
 2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_window.c: Implement new top-level show_full_path in function

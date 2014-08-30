@@ -398,14 +398,14 @@ selected_at_least_one_pin_object(GList *list)
  */
 void i_status_update_sensitivities(GschemToplevel *w_current)
 {
-  bool anything_is_selected;
-  bool have_hatchable;
-  bool have_line_editable;
-  bool have_mutil_pages;
-  bool have_text_selected;
-  bool is_complex_selected;
+  bool any_object;
+  bool can_hatch;
+  bool can_edit_line;
+  bool complex_selected;
+  bool mutil_pages;
+  bool text_selected;
+  bool pin_selected;
   bool is_editing_symbol;
-  bool is_pin_selected;
 
   void set_sensitivity_for_complexes (bool state) {
 
@@ -450,16 +450,16 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
    */
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
 
-  anything_is_selected = o_select_is_selection (w_current);
-  have_hatchable       = hatchable_object_selected(list);
-  have_line_editable   = linetype_object_selected(list);
-  have_mutil_pages     = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
-  have_text_selected   = selected_at_least_one_text_object(list);
-  is_complex_selected  = selected_complex_object(list);
+  any_object = o_select_is_selection (w_current);
+  can_hatch            = hatchable_object_selected(list);
+  can_edit_line        = linetype_object_selected(list);
+  mutil_pages          = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
+  complex_selected     = selected_complex_object(list);
   is_editing_symbol    = s_page_is_symbol_file(Current_Page);
-  is_pin_selected      = selected_at_least_one_pin_object(list);
+  pin_selected         = selected_at_least_one_pin_object(list);
+  text_selected        = selected_at_least_one_text_object(list);
 
-  if ( have_mutil_pages ) {
+  if ( mutil_pages ) {
     x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
     x_menus_sensitivity(w_current, "_Page/_Previous", TRUE);
   }
@@ -468,24 +468,24 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Page/_Previous", FALSE);
   }
 
-  if ( anything_is_selected  ) {
+  if ( any_object  ) {
 
     /* since one or more objects are selected, we set these TRUE */
-    if ( is_complex_selected ) {
+    if ( complex_selected ) {
       set_sensitivity_for_complexes (TRUE);
     }
     else {
       set_sensitivity_for_complexes (FALSE);
     }
 
-    if (is_complex_selected  || is_editing_symbol) {
+    if (complex_selected  || is_editing_symbol) {
       x_menus_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
     }
     else {
       x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
-    if (is_pin_selected) {
+    if (pin_selected) {
         x_menus_sensitivity(w_current, "_Edit/Edit Pin...", TRUE);
         x_menus_popup_sensitivity(w_current, "Edit pin type...", TRUE);
     }
@@ -494,7 +494,7 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
         x_menus_popup_sensitivity(w_current,  "Edit pin type...", FALSE);
     }
 
-    if (have_text_selected) {
+    if (text_selected) {
       set_sensitivity_for_text (TRUE);
     }
     else {
@@ -515,14 +515,14 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Edit/Lock", TRUE);
     x_menus_sensitivity(w_current, "_Edit/Unlock", TRUE);
 
-    if (have_line_editable) {
+    if (can_edit_line) {
       x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", TRUE);
     }
     else {
       x_menus_sensitivity(w_current, "_Edit/Line Width & Type...", FALSE);
     }
 
-    if (have_hatchable) {
+    if (can_hatch) {
       x_menus_sensitivity(w_current, "_Edit/Fill Type...", TRUE);
     }
     else {
@@ -606,15 +606,20 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
   x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[5] != NULL));
 
   /* Update sensitivities on the Toolbars */
-  x_toolbars_set_sensitivities (w_current, SOME_OBJECTS,    anything_is_selected);
-  x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECTS, is_complex_selected);
-  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,      have_mutil_pages);
-  x_toolbars_set_sensitivities (w_current, TEXT_OBJECTS,    have_text_selected);
 
+  x_toolbars_set_sensitivities (w_current, CAN_HATCH,      can_hatch);
+  x_toolbars_set_sensitivities (w_current, CAN_ELINE,      can_edit_line);
+  x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECT, complex_selected);
+  x_toolbars_set_sensitivities (w_current, HAVE_PAGES,     mutil_pages);
+  x_toolbars_set_sensitivities (w_current, HAVE_PIN,       pin_selected);
+  x_toolbars_set_sensitivities (w_current, HAVE_TEXT,      text_selected);
+
+  /* This list must be last*/
+  x_toolbars_set_sensitivities (w_current, ANY_OBJECT,     any_object);
 }
 
 static bool
-i_status_threaded_update_title(void *data)
+i_status_threaded_update_title (void *data)
 {
   GschemToplevel *w_current = data;
   x_window_update_title(w_current);

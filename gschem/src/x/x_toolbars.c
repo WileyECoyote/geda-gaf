@@ -45,13 +45,17 @@
 #include <geda_debug.h>
 
 /* convenience macros */
-#define CAN_PASTE_LIST       bar_widgets->can_paste
-#define CAN_UNDO_LIST        bar_widgets->can_undo
-#define CAN_REDO_LIST        bar_widgets->can_redo
-#define HAVE_PAGES_LIST      bar_widgets->have_pages
-#define COMPLEX_OBJECTS_LIST bar_widgets->complex_object
-#define SOME_OBJECTS_LIST    bar_widgets->some_object    /* List of widgets on toolbars to set if some object is selected */
-#define TEXT_OBJECTS_LIST    bar_widgets->text_object
+#define ANY_OBJECT_LIST   bar_widgets->any_object    /* List of widgets on toolbars to set if some object is selected */
+#define CAN_PASTE_LIST    bar_widgets->can_paste
+#define CAN_UNDO_LIST     bar_widgets->can_undo
+#define CAN_REDO_LIST     bar_widgets->can_redo
+
+#define CAN_HATCH_LIST    bar_widgets->can_hatch
+#define CAN_ELINE_LIST    bar_widgets->can_edit_line
+#define HAVE_COMPLEX_LIST bar_widgets->complex_selected
+#define HAVE_PAGES_LIST   bar_widgets->mutil_pages
+#define HAVE_PIN_LIST     bar_widgets->pin_selected
+#define TEXT_OBJECT_LIST  bar_widgets->text_selected
 
 #define TOOLBAR_RADIOS bar_widgets->toolbar_radio_list   /* Single list of toolbar radios */
 
@@ -599,24 +603,32 @@ void x_toolbars_free_window(GschemToplevel *w_current) {
   mapcar(TheToolBars);
   g_slist_free (TheToolBars);
 
+  g_slist_free (ANY_OBJECT_LIST);
   g_slist_free (CAN_PASTE_LIST);
   g_slist_free (CAN_UNDO_LIST);
   g_slist_free (CAN_REDO_LIST);
+  g_slist_free (CAN_HATCH_LIST);
+  g_slist_free (CAN_ELINE_LIST);
+  g_slist_free (HAVE_COMPLEX_LIST);
   g_slist_free (HAVE_PAGES_LIST);
-  g_slist_free (COMPLEX_OBJECTS_LIST);
-  g_slist_free (SOME_OBJECTS_LIST);
-  g_slist_free (TEXT_OBJECTS_LIST);
+  g_slist_free (HAVE_PIN_LIST);
+  g_slist_free (TEXT_OBJECT_LIST);
+
   g_slist_free (TOOLBAR_RADIOS);
 
-  CAN_PASTE_LIST       = NULL;
-  CAN_UNDO_LIST        = NULL;
-  CAN_REDO_LIST        = NULL;
-  HAVE_PAGES_LIST      = NULL;
-  COMPLEX_OBJECTS_LIST = NULL;
-  SOME_OBJECTS_LIST    = NULL;
-  TEXT_OBJECTS_LIST    = NULL;
-  TOOLBAR_RADIOS       = NULL;
-  TheToolBars          = NULL;
+  ANY_OBJECT_LIST    = NULL;
+  CAN_PASTE_LIST     = NULL;
+  CAN_UNDO_LIST      = NULL;
+  CAN_REDO_LIST      = NULL;
+  CAN_HATCH_LIST     = NULL;
+  CAN_ELINE_LIST     = NULL;
+  HAVE_COMPLEX_LIST  = NULL;
+  HAVE_PAGES_LIST    = NULL;
+  HAVE_PIN_LIST      = NULL;
+  TEXT_OBJECT_LIST   = NULL;
+
+  TOOLBAR_RADIOS     = NULL;
+  TheToolBars        = NULL;
 
   ui_list = g_slist_remove (ui_list, bar_widgets);
   GEDA_FREE(bar_widgets);
@@ -817,6 +829,7 @@ On_Close_Handlebar(GtkWidget *CloseButton, GschemToplevel *w_current)
   container = gtk_widget_get_parent(container);
   do_Hide_HandleBox((GedaHandleBox*) container);
 }
+
 /*! @brief Toolbar On Dock Handler to Hide the Close Button */
 static void
 On_Dock_ToolBar(GedaHandleBox *handlebox, GtkWidget *widget, GtkWidget *CloseButton) {
@@ -920,15 +933,18 @@ void x_toolbars_init_window(GschemToplevel *w_current) {
 
   ToolBarWidgets *bar_widgets = GEDA_MEM_ALLOC0(sizeof(ToolBarWidgets));
 
-  TheToolBars          = NULL;
+  TheToolBars        = NULL;
 
-  CAN_PASTE_LIST       = NULL;
-  CAN_UNDO_LIST        = NULL;
-  CAN_REDO_LIST        = NULL;
-  HAVE_PAGES_LIST      = NULL;
-  COMPLEX_OBJECTS_LIST = NULL;
-  SOME_OBJECTS_LIST    = NULL;
-  TEXT_OBJECTS_LIST    = NULL;
+  ANY_OBJECT_LIST    = NULL;
+  CAN_PASTE_LIST     = NULL;
+  CAN_UNDO_LIST      = NULL;
+  CAN_REDO_LIST      = NULL;
+  CAN_HATCH_LIST     = NULL;
+  CAN_ELINE_LIST     = NULL;
+  HAVE_COMPLEX_LIST  = NULL;
+  HAVE_PAGES_LIST    = NULL;
+  HAVE_PIN_LIST      = NULL;
+  TEXT_OBJECT_LIST   = NULL;
 
   if (w_current->ui_index > -1)
     ui_list = g_slist_insert (ui_list, bar_widgets, w_current->ui_index);
@@ -1013,11 +1029,11 @@ void x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   SET_TOOLBAR_WC  (w_current->standard_handlebox, w_current);
   x_toolbars_add_closer(w_current, w_current->standard_handlebox, Standard_Toolbar );
 
-  CAN_PASTE_LIST    = g_slist_append ( CAN_PASTE_LIST,     TB_BUTTON (etb_paste));
-  SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST,  TB_BUTTON (etb_cut  ));
-  SOME_OBJECTS_LIST = g_slist_append ( SOME_OBJECTS_LIST,  TB_BUTTON (etb_copy ));
-  CAN_UNDO_LIST     = g_slist_append ( CAN_UNDO_LIST,      TB_BUTTON (etb_undo ));
-  CAN_REDO_LIST     = g_slist_append ( CAN_REDO_LIST,      TB_BUTTON (etb_redo ));
+  CAN_PASTE_LIST  = g_slist_append ( CAN_PASTE_LIST,   TB_BUTTON (etb_paste));
+  ANY_OBJECT_LIST = g_slist_append ( ANY_OBJECT_LIST,  TB_BUTTON (etb_cut  ));
+  ANY_OBJECT_LIST = g_slist_append ( ANY_OBJECT_LIST,  TB_BUTTON (etb_copy ));
+  CAN_UNDO_LIST   = g_slist_append ( CAN_UNDO_LIST,    TB_BUTTON (etb_undo ));
+  CAN_REDO_LIST   = g_slist_append ( CAN_REDO_LIST,    TB_BUTTON (etb_redo ));
 
   /* ----------- Create and Populate the Page Toolbar ----------- */
 
@@ -1045,10 +1061,10 @@ void x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_next_page ));
 
-  COMPLEX_OBJECTS_LIST = g_slist_append ( COMPLEX_OBJECTS_LIST, TB_BUTTON( etb_down_schematic));
-  COMPLEX_OBJECTS_LIST = g_slist_append ( COMPLEX_OBJECTS_LIST, TB_BUTTON( etb_down_symbol   ));
-  COMPLEX_OBJECTS_LIST = g_slist_append ( COMPLEX_OBJECTS_LIST, TB_BUTTON( etb_hierarchy_up  ));
-  COMPLEX_OBJECTS_LIST = g_slist_append ( COMPLEX_OBJECTS_LIST, TB_BUTTON( etb_view_document ));
+  HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_schematic));
+  HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_symbol   ));
+  HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_hierarchy_up  ));
+  HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_view_document ));
 
   g_object_set (Page_Toolbar, "visible", TRUE, NULL);
 
@@ -1236,26 +1252,26 @@ void x_toolbars_init_left(GschemToplevel *w_current, GtkWidget *parent_container
   TOOLBAR_GEDA_BUTTON( Edit, etb_unlock,     LOCAL_PIX, GEDA_UNLOCK_BITMAP,     x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON( Edit, etb_update,     LOCAL_STK, REFRESH,                x_toolbars_execute, w_current);
 
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_copy  ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_multi_copy ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_move   ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_mirror ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_rotate ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_copy  ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_multi_copy ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_move   ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_mirror ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_rotate ));
 
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_butes ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_color ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_butes ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_color ));
 
-  TEXT_OBJECTS_LIST    = g_slist_append (TEXT_OBJECTS_LIST,    TB_BUTTON ( etb_edit_text ));
-  COMPLEX_OBJECTS_LIST = g_slist_append (COMPLEX_OBJECTS_LIST, TB_BUTTON ( etb_edit_slot ));
+  TEXT_OBJECT_LIST  = g_slist_append (TEXT_OBJECT_LIST,  TB_BUTTON ( etb_edit_text ));
+  HAVE_COMPLEX_LIST = g_slist_append (HAVE_COMPLEX_LIST, TB_BUTTON ( etb_edit_slot ));
 
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_pin  ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_line ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_fill ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_edit_arc  ));
+  HAVE_PIN_LIST     = g_slist_append (HAVE_PIN_LIST,   TB_BUTTON ( etb_edit_pin  ));
+  CAN_ELINE_LIST    = g_slist_append (CAN_ELINE_LIST,  TB_BUTTON ( etb_edit_line ));
+  CAN_HATCH_LIST    = g_slist_append (CAN_HATCH_LIST, TB_BUTTON ( etb_edit_fill ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_edit_arc  ));
 
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_lock   ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_unlock ));
-  SOME_OBJECTS_LIST = g_slist_append (SOME_OBJECTS_LIST, TB_BUTTON ( etb_update ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_lock   ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_unlock ));
+  ANY_OBJECT_LIST   = g_slist_append (ANY_OBJECT_LIST, TB_BUTTON ( etb_update ));
 
   g_object_set (Edit_Toolbar, "visible", TRUE, NULL);
 
@@ -1314,11 +1330,11 @@ void x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_contain
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_FAC, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
 
-  TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_attach     ));
-  TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_detach     ));
-  TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_show_value ));
-  TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_show_name  ));
-  TEXT_OBJECTS_LIST = g_slist_append ( TEXT_OBJECTS_LIST, TB_BUTTON ( etb_show_both  ));
+  TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_attach     ));
+  TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_detach     ));
+  TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_show_value ));
+  TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_show_name  ));
+  TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_show_both  ));
 
   g_object_set (Attribute_Toolbar, "visible", TRUE, NULL);
 
@@ -1419,19 +1435,26 @@ void x_toolbars_set_sensitivities(GschemToplevel *w_current,
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
 
   switch (mode) {
+    case ANY_OBJECT:     x_toolbar_set_sensitivity( ANY_OBJECT_LIST, state);
+      break;
     case CAN_PASTE:      x_toolbar_set_sensitivity( CAN_PASTE_LIST, state);
       break;
     case CAN_UNDO:       x_toolbar_set_sensitivity( CAN_UNDO_LIST, state);
       break;
     case CAN_REDO:       x_toolbar_set_sensitivity( CAN_REDO_LIST, state);
       break;
+    case CAN_HATCH:      x_toolbar_set_sensitivity( CAN_HATCH_LIST, state);
+      break;
+    case CAN_ELINE:      x_toolbar_set_sensitivity( CAN_ELINE_LIST, state);
+      break;
+    case COMPLEX_OBJECT: x_toolbar_set_sensitivity( HAVE_COMPLEX_LIST, state);
+      break;
     case HAVE_PAGES:     x_toolbar_set_sensitivity( HAVE_PAGES_LIST, state);
       break;
-    case COMPLEX_OBJECTS: x_toolbar_set_sensitivity( COMPLEX_OBJECTS_LIST, state);
-      break; /* is optional */
-    case TEXT_OBJECTS:    x_toolbar_set_sensitivity( TEXT_OBJECTS_LIST, state);
+    case HAVE_PIN:       x_toolbar_set_sensitivity( HAVE_PIN_LIST, state);
       break;
-    case SOME_OBJECTS:    x_toolbar_set_sensitivity( SOME_OBJECTS_LIST, state);
+    case HAVE_TEXT:      x_toolbar_set_sensitivity( TEXT_OBJECT_LIST, state);
+      break;
   }
 }
 

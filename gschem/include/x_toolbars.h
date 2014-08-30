@@ -52,13 +52,16 @@ typedef struct {
   GSList *toolbar_slist;       /* Single-linked list of all toolbars */
 
   /* The are Single-linked list of button grouped for sensitivity */
+  GSList *any_object;    /* List of widgets on toolbars to set if some object is selected */
   GSList *can_paste;
   GSList *can_undo;
   GSList *can_redo;
-  GSList *have_pages;
-  GSList *complex_object;
-  GSList *some_object;    /* List of widgets on toolbars to set if some object is selected */
-  GSList *text_object;
+  GSList *can_hatch;
+  GSList *can_edit_line;
+  GSList *complex_selected;
+  GSList *mutil_pages;
+  GSList *pin_selected;
+  GSList *text_selected;
 
   GSList *toolbar_radio_list;  /* Single-linked list of mode radios on toolbars */
 
