@@ -42,7 +42,7 @@
  *  closest end point.
  *
  *  If the line represents a single point (the endpoints are the same), this
- *  function calcualtes the distance to that point.
+ *  function calculates the distance to that point.
  *
  *  \param [in] line  The Line object.
  *  \param [in] x     The x coordinate of the given point.

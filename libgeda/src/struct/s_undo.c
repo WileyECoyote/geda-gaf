@@ -173,7 +173,7 @@ void s_undo_print_all( UNDO *head )
  *  \par Function Description
  *
  */
-void s_undo_destroy_all(GedaToplevel *toplevel, UNDO *head)
+void s_undo_destroy_all(UNDO *head)
 {
   UNDO *u_current;
   UNDO *u_prev;
@@ -199,7 +199,7 @@ void s_undo_destroy_all(GedaToplevel *toplevel, UNDO *head)
  *  \par Function Description
  *
  */
-void s_undo_remove(GedaToplevel *toplevel, UNDO *head, UNDO *u_tos)
+void s_undo_remove(UNDO *head, UNDO *u_tos)
 {
   UNDO *u_current;
 
@@ -241,7 +241,7 @@ void s_undo_remove(GedaToplevel *toplevel, UNDO *head, UNDO *u_tos)
  *  \par Function Description
  *
  */
-void s_undo_remove_rest(GedaToplevel *toplevel, UNDO *head)
+void s_undo_remove_rest(UNDO *head)
 {
   UNDO *u_current;
   UNDO *u_next;
@@ -304,10 +304,11 @@ void s_undo_init(Page *p_current)
  *  \par Function Description
  *
  */
-void s_undo_free_all(GedaToplevel *toplevel, Page *p_current)
+void s_undo_free_all(Page *p_current)
 {
-  s_undo_destroy_all(toplevel, p_current->undo_bottom);
+  s_undo_destroy_all(p_current->undo_bottom);
   p_current->undo_bottom = NULL;
   p_current->undo_tos = NULL;
   p_current->undo_current = NULL;
 }
+

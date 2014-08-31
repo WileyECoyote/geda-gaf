@@ -392,7 +392,7 @@ o_circle_rotate_world(int world_centerx, int world_centery, int angle, Object *o
   /* rotate the center of the circle around the origin */
   x = object->circle->center_x;
   y = object->circle->center_y;
-  rotate_point_90(x, y, angle, &newx, &newy);
+  m_rotate_point_90(x, y, angle, &newx, &newy);
   object->circle->center_x = newx;
   object->circle->center_y = newy;
 

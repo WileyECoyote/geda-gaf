@@ -1,3 +1,40 @@
+2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/prototype.h: General cleanup, revise declarations
+      per function changes below.
+
+    * src/file/f_get.c: New file with function relocated and renamed as
+      follows:
+                o_file_format_header->f_get_format_header
+                f_create_path->f_path_create
+                f_get_filename_ext->f_get_basename
+
+    * src/file/f_file.c: Renamed from f_utilities.c renamed as functions
+      follows:
+
+                f_copy->f_file_copy
+                f_follow_symlinks->f_file_follow_symlinks
+                f_normalize_filename->f_file_normalize_name
+                f_remove->f_file_remove
+                f_remove_extension->f_file_remove_extension
+
+    * src/math/m_basic.c: Rename functions as folows:
+
+                m_dist->m_distance
+                PAPERSIZEtoWORLD->m_papersize_to_world
+                rotate_point->m_rotate_point
+                rotate_point_90->m_rotate_point
+
+    * src/object/o_basic.c: Remove GedaToplevel as first argument to o_save,
+      revise to check access to the directory not the file. Eliminate check
+      for existence. Use result variable to eliminate multi-exit points.
+
+    * src/struct/s_undo.c: Remove GedaToplevel as first argument to s_undo
+      _destroy_all, s_undo_remove, s_undo_remove_rest, and s_undo_free_all.
+      The toplevel is not used by the s_undo module.
+
+      resequenced functions in above files, alphabetically.
+
 2014-08-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_log.c: Add time of day to log entries to file, change

@@ -84,7 +84,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const gchar *filename,
   switch (flag) {
   case HIERARCHY_NORMAL_LOAD:
     {
-      gchar *filename = f_normalize_filename (string, NULL);
+      gchar *filename = f_file_normalize_name (string, NULL);
       found = s_page_search (toplevel, filename);
       GEDA_FREE (filename);
 

@@ -380,10 +380,10 @@ o_arc_rotate_world(int world_centerx, int world_centery, int angle, Object *obje
   x = object->arc->x;
   y = object->arc->y;
   if(angle % 90 == 0) {
-    rotate_point_90(x, y, angle % 360, &newx, &newy);
+    m_rotate_point_90(x, y, angle % 360, &newx, &newy);
   }
   else {
-    rotate_point(x, y, angle % 360, &newx, &newy);
+    m_rotate_point(x, y, angle % 360, &newx, &newy);
   }
   object->arc->x = newx;
   object->arc->y = newy;

@@ -480,11 +480,11 @@ void o_box_rotate_world(int world_centerx, int world_centery, int angle, Object 
   object->box->lower_y -= world_centery;
 
   /* rotate the upper left corner of the box */
-  rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
+  m_rotate_point_90(object->box->upper_x, object->box->upper_y, angle,
                   &newx1, &newy1);
 
   /* rotate the lower left corner of the box */
-  rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
+  m_rotate_point_90(object->box->lower_x, object->box->lower_y, angle,
                   &newx2, &newy2);
 
   /* reorder the corners after rotation */

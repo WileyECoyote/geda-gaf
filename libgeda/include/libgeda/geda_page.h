@@ -85,11 +85,11 @@ struct _GedaPage {
   UNDO *undo_current;
   UNDO *undo_tos;                      /* Top Of Stack */
 
-  /* For hierarchy */
-  int up;                    /* pid of the parent page */
-
   /* used to control which pages are viewable when moving around */
   int page_control; /* WEH sound's hokey */
+
+  /* For hierarchy */
+  int up;                    /* pid of the parent page */
 
   /* Flag to indicate if hidden text should be displayed */
   int show_hidden_text;

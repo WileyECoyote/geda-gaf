@@ -1135,16 +1135,10 @@ const char *s_clib_symbol_get_name (const CLibSymbol *symbol)
  *  Get the filename of the file a symbol was loaded from, if possible
  *  (e.g. to allow loading for user editing).
  *
- *  \warning The returned string should be freed when no longer
- *  needed.
- *
- *  \todo This is hack until there is a way to edit documents in
- *  gschem which do not have a file in the filesystem associated with
- *  them.
- *
- *  \deprecated This function is a temporary workaround.
+ *  \remarks The returned string should be freed when no longer needed.
  *
  *  \param symbol Symbol to be examined.
+ *
  *  \return Filename of symbol.
  */
 char *s_clib_symbol_get_filename (const CLibSymbol *symbol)

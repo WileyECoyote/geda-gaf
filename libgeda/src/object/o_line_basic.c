@@ -372,14 +372,14 @@ o_line_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
   o_line_translate_world(-world_centerx, -world_centery, object);
 
   /* rotate line end 1 */
-  rotate_point_90(line->x[0], line->y[0], angle,
+  m_rotate_point_90(line->x[0], line->y[0], angle,
                   &newx, &newy);
 
   line->x[0] = newx;
   line->y[0] = newy;
 
   /* rotate line end 2 */
-  rotate_point_90(line->x[1], line->y[1], angle, &newx, &newy);
+  m_rotate_point_90(line->x[1], line->y[1], angle, &newx, &newy);
 
   line->x[1] = newx;
   line->y[1] = newy;

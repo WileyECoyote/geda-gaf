@@ -160,7 +160,7 @@ void u_log_init (const char *prefix)
   dir_path = g_build_filename (f_path_user_config (), "logs", NULL);
 
   /* Try to create the directory. */
-  if (f_create_path (dir_path, 0777 /*octal*/ ) != 0) {
+  if (f_path_create (dir_path, 0777 /*octal*/ ) != 0) {
     /* It is okay to use the logging functions from here, because
      * there is already a default handler. */
     g_warning ("Could not create log directory %s: %s\n",

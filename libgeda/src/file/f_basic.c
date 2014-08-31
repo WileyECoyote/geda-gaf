@@ -24,292 +24,12 @@
  */
 
 #include <config.h>
-#include <geda_stat.h>
-#include <stdio.h>
-
-#include <sys/param.h>
-
-#ifdef HAVE_FCNTL_H
-#include <fcntl.h>
-#endif
 
 #ifdef HAVE_ERRNO_H
 #include <errno.h>
 #endif
 
-# if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-#  define WIN32_LEAN_AND_MEAN
-#  include <windows.h> /* for GetFullPathName */
-#  include <io.h>
-# endif
-
 #include "libgeda_priv.h"
-
-#ifndef O_BINARY
-#define O_BINARY 0
-#endif
-
-/*! \brief Get the autosave filename for a file
- *  \par Function description
- *  Returns the expected autosave filename for the \a filename passed.
- *
- *  \warning The result should be freed when no longer needed.
- *
- *  \param [in] filename The filename to create an autosave filename for.
- *  \return A newly allocated string buffer.
- */
-char *f_get_autosave_filename (const char *filename)
-{
-  char       *autosave_name, *path_spec, *new_basename;
-  const char *old_basename;
-
-  if (filename == NULL) {
-    autosave_name = NULL;
-  }
-  else {
-    old_basename  = f_basename(filename);
-    path_spec     = g_path_get_dirname(filename);
-    new_basename  = g_strdup_printf(AUTOSAVE_BACKUP_FILENAME_STRING, old_basename);
-    autosave_name = g_build_filename(path_spec, new_basename, NULL);
-
-    GEDA_FREE(new_basename);
-    GEDA_FREE(path_spec);
-  }
-
-  return autosave_name;
-}
-
-static bool
-get_contents_stdio (const char *filename, FILE *f, char **contents,
-                    size_t     *length,   GError        **err)
-{
-  bool   ret_val         = FALSE;
-
-  char   buf[DISK_BUFFER_SIZE];
-  char  *str             = NULL;
-  char  *tmp;
-  int    save_errno;
-  size_t bytes;
-  size_t total_bytes     = 0;
-  size_t total_allocated = 0;
-
-  while (!feof (f))
-  {
-
-    bytes = fread (buf, 1, sizeof (buf), f);
-    save_errno = errno;
-
-    while ((total_bytes + bytes + 1) > total_allocated)
-    {
-      if (str)
-        total_allocated *= 2;
-      else
-        total_allocated = MIN (bytes + 1, sizeof (buf));
-
-      tmp = g_try_realloc (str, total_allocated);
-
-      if (tmp == NULL) {
-        g_free (str);
-        g_set_error (err, G_FILE_ERROR, ENOMEM,
-                   _("Could not allocate %lu bytes to read file \"%s\""),
-                    (unsigned long)total_allocated,
-                    filename);
-        goto error;
-      }
-
-      str = tmp;
-    }
-
-    if (ferror (f)) {
-      g_set_error (err, G_FILE_ERROR, save_errno,
-                 _("Error reading file '%s': %s"),
-                   filename,
-                   strerror(save_errno));
-      g_free (str);
-      goto error;
-    }
-
-    memcpy (str + total_bytes, buf, bytes);
-
-    if (total_bytes + bytes < total_bytes) {
-      g_set_error (err, G_FILE_ERROR, ENOMEM,
-                   _("File \"%s\" is too large"),
-                   filename);
-      g_free (str);
-      goto error;
-    }
-
-    total_bytes += bytes;
-  }
-
-  if (total_allocated == 0) {
-    str = g_new (char, 1);
-    total_bytes = 0;
-  }
-
-  str[total_bytes] = '\0';
-
-  if (length) {
-    *length = total_bytes;
-  }
-
-  *contents = str;
-
-  ret_val = TRUE;
-
-error:
-
-  fclose (f);
-
-  return ret_val;
-}
-
-#ifndef OS_WIN32_NATIVE
-
-static bool
-get_contents_regfile (const char  *filename,
-                      struct stat *stat_buf,
-                      int          fd,
-                      char       **contents,
-                      size_t      *length,
-                      GError      **err)
-{
-  bool   ret_val = FALSE;
-  char  *buf;
-  int    save_errno;
-
-  size_t bytes_read;
-  size_t size;
-  size_t alloc_size;
-
-  size = stat_buf->st_size;
-  alloc_size = size + 1;
-
-  buf = g_try_malloc (alloc_size);
-
-  if (buf == NULL) {
-
-    g_set_error (err, G_FILE_ERROR, ENOMEM,
-               _("Could not allocate %ld byte to read file \"%s\""),
-                (unsigned long) alloc_size,
-                 filename);
-  }
-  else {
-    bytes_read = 0;
-
-    while (bytes_read < size)
-    {
-      gssize rc;
-
-      rc = read (fd, buf + bytes_read, size - bytes_read);
-
-      if (rc < 0) {
-
-        if (errno != EINTR) {
-          save_errno = errno;
-
-          g_free (buf);
-          g_set_error (err, G_FILE_ERROR, save_errno,
-                     _("Failed to read from file '%s': %s"),
-                        filename,
-                        strerror(save_errno));
-
-                       goto error;
-        }
-      }
-      else if (rc == 0)
-        break;
-      else
-        bytes_read += rc;
-    }
-
-    buf[bytes_read] = '\0';
-
-    if (length) {
-      *length = bytes_read;
-    }
-
-    *contents = buf;
-
-     ret_val = TRUE;
-  }
-
-error:
-
-  close (fd);
-
-  return ret_val;
-}
-
-bool
-f_get_file_contents(const char *filename, char **contents, size_t *length, GError **err)
-{
-  *contents = NULL;
-  if (length)
-    *length = 0;
-
-  struct stat stat_buf;
-
-  int save_errno;
-  bool retval = FALSE;
-  FILE *f;
-
-  if ( filename != NULL && contents != NULL) {
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-
-    f = g_fopen (filename, "rb");
-    if (f == NULL) {
-
-#else
-
-    int fd;
-    fd = open (filename, O_RDONLY|O_BINARY);
-    if (fd < 0) {
-
-#endif
-      g_set_error (err, G_FILE_ERROR, errno,
-                 _("Failed to open file '%s': %s"),
-                    filename, strerror (errno));
-    }
-
-#if defined (OS_WIN32_NATIVE) || defined(__MINGW32__)
-    else {
-#endif
-    else if (fstat (fd, &stat_buf) < 0) {
-
-      save_errno = errno;
-
-      close (fd);
-
-      g_set_error (err, G_FILE_ERROR, save_errno,
-                 _("Failed to get attributes of file '%s': fstat() failed: %s"),
-                    filename, strerror (errno));
-    }
-    else if (stat_buf.st_size > 0 && S_ISREG (stat_buf.st_mode)) {
-
-      fsync(fd);
-      retval = get_contents_regfile (filename, &stat_buf,
-                                     fd, contents, length, err);
-    }
-    else {
-
-      fsync(fd);
-      f = fdopen (fd, "r");
-
-      if (f == NULL) {
-
-        g_set_error (err, G_FILE_ERROR, errno,
-                   _("Failed to open file '%s': fdopen() failed: %s"),
-                      filename, strerror (errno));
-      }
-#endif
-
-      retval = get_contents_stdio (filename, f, contents, length, err);
-    }
-  }
-  return retval;
-}
 
 void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
 {
@@ -321,6 +41,7 @@ void f_set_backup_loader_query_func (GedaToplevel *toplevel, void *func, ...)
     va_end (argp);
   }
 }
+
 /*! \brief Check if a file has an active autosave file
  *  \par Function Description
  *  Checks whether an autosave file exists for the \a filename passed
@@ -430,7 +151,7 @@ f_open(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
   }
 
   /* get full, absolute path to file */
-  full_filename = f_normalize_filename (filename, &tmp_err);
+  full_filename = f_file_normalize_name (filename, &tmp_err);
   if (full_filename == NULL) {
     g_set_error (err, G_FILE_ERROR, tmp_err->code,
                  _("Cannot find file %s: %s"),
@@ -570,9 +291,6 @@ void f_close(GedaToplevel *toplevel)
  *  \par Function Description
  *  This function saves the current schematic file in the toplevel object.
  *
- *  \bug g_access introduces a race condition in certain cases, but
- *  solves bug #698565 in the normal use-case
- *
  *  \param [in,out] toplevel  The GedaToplevel object containing the schematic.
  *  \param [in]     page      A Page object to be associated with the file
  *  \param [in]     filename  The file name to save the schematic to.
@@ -583,118 +301,124 @@ void f_close(GedaToplevel *toplevel)
 bool
 f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 {
-  char *backup_filename;
-  char *real_filename;
-  char *only_filename;
-  char *dirname;
-  struct stat st_ActiveFile;
-  GError *tmp_err = NULL;
+  char   *backup_filename;
+  char   *real_filename;
+  char   *only_filename;
+  char   *dirname;
+  int     result;
+
+  GError *tmp_err;
+  struct  stat st_ActiveFile;
+
+  tmp_err = NULL;
+  result = 1;
 
   /* Get the real filename and file permissions */
-  real_filename = follow_symlinks (filename, &tmp_err);
+  real_filename = f_file_follow_symlinks (filename, &tmp_err);
 
   if (real_filename == NULL) {
     g_set_error (err, tmp_err->domain, tmp_err->code,
                  _("Can't get the real filename of %s: %s"),
                  filename, tmp_err->message);
-    return 0;
+    result = 0;
   }
-
   /* Check to see if filename is writable */
-  if (g_file_test(filename, G_FILE_TEST_EXISTS))
-  {
+  else if (g_file_test(filename, G_FILE_TEST_EXISTS))  {
+
     errno = 0;
     access(filename, W_OK);
     if (errno == EACCES) {
       g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM, _("File %s is read-only"), filename);
-      return 0;
+      result = 0;
     }
   }
 
-  /* Get the files original permissions */
-  if (stat (real_filename, &st_ActiveFile) != 0)
-  {
-    /* if problem then save default values */
-    st_ActiveFile.st_mode = 0666 & ~umask(0);
-  }
+  if (result) {
 
-  /* Get the directory in which the real filename lives */
-  dirname = g_path_get_dirname (real_filename);
-  only_filename = g_path_get_basename(real_filename);
+    /* Get the files original permissions */
+    if (stat (real_filename, &st_ActiveFile) != 0) {
 
-  /* Do a backup if it's not an undo file backup and it was never saved.
-   * Only do a backup if backup files are enabled */
-  if (page->saved_since_first_loaded == 0 &&
+      /* if problem then save default values */
+      st_ActiveFile.st_mode = 0666 & ~umask(0);
+    }
+
+    /* Get the directory in which the real filename lives */
+    dirname = g_path_get_dirname (real_filename);
+    only_filename = g_path_get_basename(real_filename);
+
+    /* Do a backup if it's not an undo file backup and it was never saved.
+     * Only do a backup if backup files are enabled */
+    if (page->saved_since_first_loaded == 0 &&
       toplevel->make_backup_files == TRUE)
-  {
-    if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
-      (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
     {
-      backup_filename = g_strdup_printf("%s%c%s~", dirname,DIR_SEPARATOR,
-                                        only_filename);
-
-      /* Make the backup file read-write before saving a new one */
-      if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
-        (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
+      if ( (g_file_test (real_filename, G_FILE_TEST_EXISTS)) &&
+        (!g_file_test(real_filename, G_FILE_TEST_IS_DIR)) )
       {
-        if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
-          u_log_message (_("Could not set previous backup file [%s] read-write:%s\n"),
-                         backup_filename, strerror (errno));
+        backup_filename = g_strdup_printf("%s%c%s~", dirname,DIR_SEPARATOR,
+                                          only_filename);
+
+        /* Make the backup file read-write before saving a new one */
+        if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
+           (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
+        {
+          if (chmod(backup_filename, S_IREAD|S_IWRITE) != 0) {
+            u_log_message (_("Could not set previous backup file [%s] read-write:%s\n"),
+                           backup_filename, strerror (errno));
+          }
+          else
+            f_file_remove (backup_filename); /* delete backup from previous session */
         }
-        else
-          remove (backup_filename); /* delete backup from previous session */
-      }
 
-      if (f_copy(real_filename, backup_filename) != 0) {
-        u_log_message (_("Can not create backup file: %s: %s"),
-                       backup_filename, strerror (errno));
+        if (f_file_copy(real_filename, backup_filename) != 0) {
+          u_log_message (_("Can not create backup file: %s: %s"),
+                            backup_filename, strerror (errno));
+        }
+        else {
+          /* Make backup readonly so a 'rm *' will ask user before deleting */
+          chmod(backup_filename, 0444 & ~umask(0));
+        }
+        GEDA_FREE(backup_filename);
       }
-      else {
-        /* Make backup readonly so a 'rm *' will ask user before deleting */
-        chmod(backup_filename, 0444 & ~umask(0));
-      }
-      GEDA_FREE(backup_filename);
     }
-  }
-  /* If there is not an existing file with that name, compute the
-   * permissions and uid/gid that we will use for the newly-created file.
-   */
 
-  GEDA_FREE (dirname);
-  GEDA_FREE (only_filename);
+    /* If there is not an existing file with that name, compute the
+     * permissions and uid/gid that we will use for the newly-created file.
+     */
 
-  if (o_save (toplevel, s_page_get_objects (page), real_filename, &tmp_err))
-  {
+    GEDA_FREE (dirname);
+    GEDA_FREE (only_filename);
 
-    page->saved_since_first_loaded = 1;
+    if (o_save (s_page_get_objects (page), real_filename, &tmp_err)) {
 
-    /* Reset the last saved timer */
-    g_get_current_time (&page->last_load_or_save_time);
-    page->ops_since_last_backup = 0;
-    page->do_autosave_backup = 0;
-    page->CHANGED=0; /* added 11/17/13 */
+      page->saved_since_first_loaded = 1;
 
-    /* Restore permissions. */
-    chmod (real_filename, st_ActiveFile.st_mode);
+      /* Reset the last saved timer */
+      g_get_current_time (&page->last_load_or_save_time);
+      page->ops_since_last_backup = 0;
+      page->do_autosave_backup = 0;
+      page->CHANGED=0; /* added 11/17/13 */
 
-    #ifdef HAVE_CHOWN
-    if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
-      /* Either the current user has permissioin to change ownership
-       * or they didn't. */
+      /* Restore permissions. */
+      chmod (real_filename, st_ActiveFile.st_mode);
+
+      #ifdef HAVE_CHOWN
+      if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
+        /* Either the current user has permissioin to change ownership
+         * or they didn't. */
+      }
+      #endif
+      GEDA_FREE (real_filename);
+      result = 1;
     }
-    #endif
-    GEDA_FREE (real_filename);
-    return 1;
-  }
-  else {
-    g_set_error (err, tmp_err->domain, tmp_err->code,
+    else {
+      g_set_error (err, tmp_err->domain, tmp_err->code,
                  _("Could NOT save file: %s"), tmp_err->message);
-                 g_clear_error (&tmp_err);
-                 GEDA_FREE (real_filename);
-                 return 0;
+      g_clear_error (&tmp_err);
+      GEDA_FREE (real_filename);
+      result = 0;
+    }
   }
-
-  return 0;
+  return result;
 }
 
 /*! \brief Builds an absolute pathname.
@@ -720,7 +444,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
  *  \return A newly-allocated string with the resolved absolute
  *  pathname on success, NULL otherwise.
  */
-char *f_normalize_filename (const char *name, GError **error)
+char *f_file_normalize_name (const char *name, GError **error)
 {
 #if defined (OS_WIN32_NATIVE)
     char buf[MAX_PATH];
@@ -850,100 +574,4 @@ error:
   return NULL;
 #undef ROOT_MARKER_LEN
 #endif
-}
-
-/*! \brief Follow symlinks until a real file is found
- *  \par Function Description
- *  Does readlink() recursively until we find a real filename.
- *
- *  \param [in]     filename  The filename to search for.
- *  \param [in,out] err       GError structure for error reporting,
- *                            or NULL to disable error reporting.
- *  \return The newly-allocated path to real file on success, NULL
- *          otherwise.
- *
- *  \note Originally taken from gedit's source code.
- */
-char *follow_symlinks (const char *filename, GError **err)
-{
-  char *followed_filename = NULL;
-  int link_count = 0;
-  GError *tmp_err = NULL;
-
-  if (filename == NULL) {
-    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_INVAL,
-                 "%s", strerror (EINVAL));
-    return NULL;
-  }
-
-  if (strlen (filename) + 1 > MAXPATHLEN) {
-    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_NAMETOOLONG,
-                 "%s", strerror (ENAMETOOLONG));
-    return NULL;
-  }
-
-  followed_filename = g_strdup (filename);
-
-#ifdef __MINGW32__
-  /* MinGW does not have symlinks */
-  return followed_filename;
-#else
-
-  while (link_count < MAX_LINK_LEVEL) {
-    struct stat st;
-    char *linkname = NULL;
-
-    if (lstat (followed_filename, &st) != 0) {
-      /* We could not access the file, so perhaps it does not
-       * exist.  Return this as a real name so that we can
-       * attempt to create the file.
-       */
-      return followed_filename;
-    }
-
-    if (!S_ISLNK (st.st_mode)) {
-      /* It's not a link, so we've found what we're looking for! */
-      return followed_filename;
-    }
-
-    link_count++;
-
-    linkname = g_file_read_link (followed_filename, &tmp_err);
-
-    if (linkname == NULL) {
-      g_propagate_error(err, tmp_err);
-      GEDA_FREE (followed_filename);
-      return NULL;
-    }
-
-    /* If the linkname is not an absolute path name, append
-     * it to the directory name of the followed filename.  E.g.
-     * we may have /foo/bar/baz.lnk -> eek.txt, which really
-     * is /foo/bar/eek.txt.
-     */
-
-    if (!g_path_is_absolute(linkname)) {
-      char *dirname = NULL;
-      char *tmp = NULL;
-
-      dirname = g_path_get_dirname(followed_filename);
-
-      tmp = g_build_filename (dirname, linkname, NULL);
-      GEDA_FREE (followed_filename);
-      GEDA_FREE (dirname);
-      GEDA_FREE (linkname);
-      followed_filename = tmp;
-    } else {
-      GEDA_FREE (followed_filename);
-      followed_filename = linkname;
-    }
-  }
-
-  /* Too many symlinks */
-  g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_LOOP,
-               _("%s: %s"), strerror (EMLINK), followed_filename);
-  GEDA_FREE (followed_filename);
-  return NULL;
-
-#endif /* __MINGW32__ */
 }

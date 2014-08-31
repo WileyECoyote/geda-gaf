@@ -233,7 +233,7 @@ struct st_undo {
   int up;
 
   /* used to control which pages are viewable when moving around */
-  int page_control;
+  int page_control; /* WEH: Still sounds hokey */
 
   UNDO *prev;
   UNDO *next;

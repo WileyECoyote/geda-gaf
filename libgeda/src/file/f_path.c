@@ -267,7 +267,7 @@ const char *f_path_user_config () {
 
 /*! \brief Make a Directory
  *  \par Function description
- *  This is an internal function used by the f_create_path below.
+ *  This is an internal function used by the f_path_create below.
  *  This function creates a new non-nested directory entry with the
  *  given permission attribute.
  *
@@ -314,7 +314,7 @@ static int f_create_dir(const char *path, mode_t mode)
  *
  *  \remark WEH Tweeked for libgeda
  */
-int f_create_path(const char *path, mode_t mode)
+int f_path_create(const char *path, mode_t mode)
 {
     char           *pp;
     char           *sp;
@@ -341,7 +341,7 @@ int f_create_path(const char *path, mode_t mode)
     return (status);
 }
 #else
-int f_create_path(const char *path, mode_t mode)
+int f_path_create(const char *path, mode_t mode)
 {
   return g_mkdir_with_parents (path, mode);
 }

@@ -260,7 +260,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
   }
 
   /* Get the real filename and file permissions */
-  real_filename = follow_symlinks (page->filename, NULL);
+  real_filename = f_file_follow_symlinks (page->filename, NULL);
 
   if (real_filename == NULL) {
     u_log_message (_("s_page_delete: Can't get the real filename of %s."),
@@ -297,7 +297,7 @@ void s_page_delete (GedaToplevel *toplevel, Page *page)
   s_tile_free_all (page);
 
   /* free current page undo structs */
-  s_undo_free_all (toplevel, page);
+  s_undo_free_all (page);
 
   /* ouch, deal with parents going away and the children still around */
   page->up = -2;

@@ -418,8 +418,8 @@ o_path_rotate_world (int world_centerx, int world_centery, int angle, Object *ob
       /* Two control point grips */
       section->x1 -= world_centerx; section->y1 -= world_centery;
       section->x2 -= world_centerx; section->y2 -= world_centery;
-      rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
-      rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
+      m_rotate_point_90 (section->x1, section->y1, angle, &section->x1, &section->y1);
+      m_rotate_point_90 (section->x2, section->y2, angle, &section->x2, &section->y2);
       section->x1 += world_centerx; section->y1 += world_centery;
       section->x2 += world_centerx; section->y2 += world_centery;
       /* Fall through */
@@ -428,7 +428,7 @@ o_path_rotate_world (int world_centerx, int world_centery, int angle, Object *ob
     case PATH_LINETO:
       /* Destination point grip */
       section->x3 -= world_centerx; section->y3 -= world_centery;
-      rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
+      m_rotate_point_90 (section->x3, section->y3, angle, &section->x3, &section->y3);
       section->x3 += world_centerx; section->y3 += world_centery;
       break;
     case PATH_END:

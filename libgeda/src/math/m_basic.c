@@ -24,6 +24,69 @@
 
 #include "libgeda_priv.h"
 
+/*! \brief calculate the distance between two points
+ *
+ *  \par Function Description
+ *  This function calculates the distance between two points.
+ *  The two points are defined by the (\a x1, \a y1) and (\a x2, \a y2)
+ *  parameters.
+ *
+ *  \param [in]  x1  x-value of the first point
+ *  \param [in]  y1  y-value of the first point
+ *  \param [in]  x2  x-value of the second point
+ *  \param [in]  y2  y-value of the second point
+ *
+ *  \return the distance
+ */
+int m_distance(int x1, int y1, int x2, int y2)
+{
+  return sqrt(pow(x1-x2,2)+pow(y1-y2,2));
+}
+
+/*! \brief Convert Paper size to World coordinates.
+ *  \par Function Description
+ *  This function takes the paper size and converts it to
+ *  world coordinates. It supports landscape with a fixed aspect ratio.
+ *
+ *  \param [in]  width   Paper width. (units?)
+ *  \param [in]  height  Paper height. (units?)
+ *  \param [in]  border  Paper border size. (units?)
+ *  \param [out] right   Right world coordinate. (units?)
+ *  \param [out] bottom  Bottom world coordinate. (units?)
+ *
+ *  \todo Support more modes than just landscape only mode.
+ */
+void m_papersize_to_world(int width, int height, int border, int *right, int *bottom)
+{
+  float aspect;
+
+  aspect = (float) width / (float) height;
+
+#if DEBUG
+  printf("%f\n", aspect);
+#endif
+
+  if (aspect < 1.333333333) {
+    /* is this lrint really needed? */
+#ifdef HAVE_LRINT
+    *right = lrint (width+border + ((height+border)*1.33333333 - (width+border)));
+#else
+    *right = (int) width+border +
+      ((height+border)*1.33333333 - (width+border));
+#endif
+    *bottom = height+border;
+  } else {
+    *right = (int) width+border;
+    *bottom = (int) height+border + ((width+border)/1.33333333 - (height+border));
+  }
+
+#if DEBUG
+  aspect = (float) *right / (float) *bottom;
+  printf("%f\n", aspect);
+#endif
+
+}
+
 /*! \brief Rotate a point by an arbitrary angle.
  *  \par Function Description
  *  This function will rotate a point coordinate by an arbitrary angle
@@ -35,7 +98,7 @@
  *  \param [out] newx   Output point x coordinate.
  *  \param [out] newy   Output point y coordinate.
  */
-void rotate_point(int x, int y, int angle, int *newx, int *newy)
+void m_rotate_point(int x, int y, int angle, int *newx, int *newy)
 {
   double cos_theta, sin_theta;
   double rad;
@@ -61,7 +124,7 @@ void rotate_point(int x, int y, int angle, int *newx, int *newy)
  *  \param [out] newx   Output point x coordinate.
  *  \param [out] newy   Output point y coordinate.
  */
-void rotate_point_90(int x, int y, int angle, int *newx, int *newy)
+void m_rotate_point_90(int x, int y, int angle, int *newx, int *newy)
 {
   double costheta=1;
   double sintheta=0;
@@ -94,68 +157,4 @@ void rotate_point_90(int x, int y, int angle, int *newx, int *newy)
 
   *newx = x * costheta - y * sintheta;
   *newy = x * sintheta + y * costheta;
-}
-
-
-/*! \brief Convert Paper size to World coordinates.
- *  \par Function Description
- *  This function takes the paper size and converts it to
- *  world coordinates. It supports landscape with a fixed aspect ratio.
- *
- *  \param [in]  width   Paper width. (units?)
- *  \param [in]  height  Paper height. (units?)
- *  \param [in]  border  Paper border size. (units?)
- *  \param [out] right   Right world coordinate. (units?)
- *  \param [out] bottom  Bottom world coordinate. (units?)
- *
- *  \todo Support more modes than just landscape only mode.
- */
-void PAPERSIZEtoWORLD(int width, int height, int border, int *right, int *bottom)
-{
-  float aspect;
-
-  aspect = (float) width / (float) height;
-
-#if DEBUG
-  printf("%f\n", aspect);
-#endif
-
-  if (aspect < 1.333333333) {
-    /* is this lrint really needed? */
-#ifdef HAVE_LRINT
-    *right = lrint (width+border + ((height+border)*1.33333333 - (width+border)));
-#else
-    *right = (int) width+border +
-      ((height+border)*1.33333333 - (width+border));
-#endif
-    *bottom = height+border;
-  } else {
-    *right = (int) width+border;
-    *bottom = (int) height+border + ((width+border)/1.33333333 - (height+border));
-  }
-
-#if DEBUG
-  aspect = (float) *right / (float) *bottom;
-  printf("%f\n", aspect);
-#endif
-
-}
-
-/*! \brief calculate the distance between two points
- *
- *  \par Function Description
- *  This function calculates the distance between two points.
- *  The two points are defined by the (\a x1, \a y1) and (\a x2, \a y2)
- *  parameters.
- *
- *  \param [in]  x1  x-value of the first point
- *  \param [in]  y1  y-value of the first point
- *  \param [in]  x2  x-value of the second point
- *  \param [in]  y2  y-value of the second point
- *
- *  \return the distance
- */
-int m_dist(int x1, int y1, int x2, int y2)
-{
-  return sqrt(pow(x1-x2,2)+pow(y1-y2,2));
 }

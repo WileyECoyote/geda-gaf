@@ -158,7 +158,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
     scheme_rc_config_fluid = scm_permanent_object (scm_make_fluid ());
 
   /* Normalise filename */
-  name_norm = f_normalize_filename (rcfile, err);
+  name_norm = f_file_normalize_name (rcfile, err);
 
   if (name_norm != NULL) {
 
@@ -397,8 +397,8 @@ g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
  * Attempt to load system, user and local (current working directory)
  * configuration \a gafrc files. The second parameter is not used by
  * this function but serves a place holder to be consistence with the
- * other g_xxxx_parse_handler's; g_rcname_parse_handler and
- * g_rcfile_parse_handler.
+ * other g_xxxx_parse_handler's; g_rc_rcname_parse_handler and
+ * g_rc_rcfile_parse_handler.
  *
  * If an error occurs, calls \a handler with the provided \a user_data
  * and a GError.
@@ -409,7 +409,7 @@ g_rc_parse (const char *pname, const char *rcname, const char *rcfile)
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void g_gafrc_parse_handler (const char *dummy,
+void g_rc_gafrc_parse_handler (const char *dummy,
                             ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
@@ -435,8 +435,8 @@ void g_gafrc_parse_handler (const char *dummy,
  * \param handler   Handler function for config parse errors.
  * \param user_data Data to be passed to \a handler.
  */
-void g_rcname_parse_handler (const char *rcname,
-                             ConfigParseErrorFunc handler, void *user_data)
+void g_rc_rcname_parse_handler (const char *rcname,
+                                ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
 
@@ -461,7 +461,8 @@ void g_rcname_parse_handler (const char *rcname,
  * \param user_data Data to be passed to \a handler.
  */
 void
-g_rcfile_parse_handler (const char *rcfile, ConfigParseErrorFunc handler, void *user_data)
+g_rc_rcfile_parse_handler (const char *rcfile,
+                           ConfigParseErrorFunc handler, void *user_data)
 {
   GError *err = NULL;
 
@@ -501,15 +502,15 @@ void g_rc_parse_handler (const char *rcname,
 {
   /* Load RC files in order. */
   /* First gafrc files. */
-  g_gafrc_parse_handler (NULL, handler, user_data);
+  g_rc_gafrc_parse_handler (NULL, handler, user_data);
 
   /* Next application-specific rcname. */
-  g_rcname_parse_handler (rcname, handler, user_data);
+  g_rc_rcname_parse_handler (rcname, handler, user_data);
 
   /* Finally, optional additional RC file.  Specifically use the
    * current working directory's configuration context here, no matter
    * where the rc file is located on disk. */
-  g_rcfile_parse_handler (rcfile, handler, user_data);
+  g_rc_rcfile_parse_handler (rcfile, handler, user_data);
 }
 /*!
  * \brief Get the name of the RC filename being evaluated.

@@ -39,33 +39,15 @@
  *  Object</b> is a symbol, then the complex symbol contains all the pins,
  *  the text and the graphics.
  *
- *  \#include "version.h"image html o_object_relations.png
+ *  \#include "version.h" image html o_object_relations.png
  *  \image latex o_object_relations.pdf "object relations" width=14cm
  */
 
 #include <config.h>
 #include <stdio.h>
-#include "version.h"
+#include <libgen.h>
 #include "ascii.h"
 #include "libgeda_priv.h"
-
-/*! \brief Get the file header string.
- *  \par Function Description
- *  This function simply returns the DATE_VERSION and
- *  FILEFORMAT_VERSION formatted as a gEDA file header.
- *
- *  \warning <em>Do not</em> free the returned string.
- */
-const char *o_file_format_header()
-{
-  static char *header = NULL;
-
-  if (header == NULL)
-    header = g_strdup_printf("v %s %u\n", PACKAGE_DATE_VERSION,
-                             FILEFORMAT_VERSION);
-
-  return header;
-}
 
 /*! \brief Save a series of objects into a string buffer
  *  \par Function Description
@@ -163,12 +145,11 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
           break;
 
         default:
-          /*! \todo Maybe we can continue instead of just failing
-           *  completely? In any case, failing gracefully is better
-           *  than killing the program, which is what this used to
-           *  do... */
-          g_critical (_("o_save_objects: object %p has unknown type '%c'\n"),
-                      o_current, o_current->type);
+          /*! \todo Maybe we can continue instead of just failing completely?
+           *  In any case, failing gracefully is better than killing the
+           *  program, which is what this used to do... */
+          g_critical (_("%s: object %p has unknown type '%c'\n"),
+                      __func__, o_current, o_current->type);
           /* Dump string built so far */
           g_string_free(acc, TRUE);
           return NULL;
@@ -178,7 +159,8 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
       if (!already_wrote) {
         g_string_append_printf(acc, "%s\n", out);
         GEDA_FREE(out);
-      } else {
+      }
+      else {
         already_wrote = FALSE;
       }
 
@@ -215,7 +197,7 @@ char *o_save_buffer (const GList *object_list)
   GString *acc;
   char    *buffer;
 
-  acc = g_string_new (o_file_format_header());
+  acc = g_string_new (f_get_format_header());
 
   buffer = o_save_objects (object_list, FALSE);
   g_string_append (acc, buffer);
@@ -228,37 +210,44 @@ char *o_save_buffer (const GList *object_list)
  *  \par Function Description
  *  This function saves the data in a libgeda format to a file
  *
- *  \bug g_access introduces a race condition in certain cases, but
- *  solves bug #698565 in the normal use-case
- *
- *  \param [in] toplevel    The current GedaToplevel.
  *  \param [in] object_list The head of a GList of Objects to save.
  *  \param [in] filename    The filename to save the data to.
  *  \param [in,out] err     GError structure for error reporting.
  *  \return 1 on success, 0 on failure.
  */
-int o_save (GedaToplevel *toplevel, const GList *object_list,
-            const char *filename, GError **err)
+bool
+o_save (const GList *object_list, const char *filename, GError **err)
 {
   char *buffer;
+  char *path;
   FILE* output;
+  int   result;
 
-  /* Check to see if real filename is writable; if file doesn't exists
-     we assume all is well */
-  if (g_file_test(filename, G_FILE_TEST_EXISTS) &&
-      g_access(filename, W_OK) != 0) {
-    g_set_error (err, G_FILE_ERROR, G_FILE_ERROR_PERM,
-                 _("File %s is read-only"), filename);
-    return 0;
+  errno = 0;
+  path = g_path_get_dirname(filename);
+
+  /* Check to see if real filename is writable */
+  if (access(path, W_OK) != 0) {
+    g_set_error (err, G_FILE_ERROR, errno, _("<%s>: because %s"),
+                 path, strerror(errno));
+    result = 0;
   }
+  else {
 
-  output = fopen (filename, "w" );
-  buffer = o_save_buffer (object_list);
-  fputs(buffer, output);
-  fclose(output);
-  GEDA_FREE (buffer);
+    output = fopen (filename, "w" );
 
-  return 1;
+    buffer = o_save_buffer (object_list);
+
+    fputs(buffer, output);
+
+    fclose(output);
+
+    GEDA_FREE (buffer);
+
+    result = 1;
+  }
+  GEDA_FREE (path);
+  return result;
 }
 
 /*! \brief Read a memory buffer

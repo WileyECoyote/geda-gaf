@@ -860,7 +860,7 @@ o_complex_rotate_world(int centerx, int centery, int angle, Object *object)
   x = object->complex->x + (-centerx);
   y = object->complex->y + (-centery);
 
-  rotate_point_90(x, y, angle, &newx, &newy);
+  m_rotate_point_90(x, y, angle, &newx, &newy);
 
   x = newx + (centerx);
   y = newy + (centery);

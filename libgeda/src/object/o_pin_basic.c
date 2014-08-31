@@ -295,12 +295,12 @@ o_pin_rotate_world(int world_centerx, int world_centery, int angle, Object *obje
   /* translate object to origin */
   o_pin_translate_world(-world_centerx, -world_centery, object);
 
-  rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
+  m_rotate_point_90(object->line->x[0], object->line->y[0], angle, &newx, &newy);
 
   object->line->x[0] = newx;
   object->line->y[0] = newy;
 
-  rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
+  m_rotate_point_90(object->line->x[1], object->line->y[1], angle, &newx, &newy);
 
   object->line->x[1] = newx;
   object->line->y[1] = newy;

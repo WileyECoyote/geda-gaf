@@ -742,14 +742,14 @@ o_text_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
   int x, y;
   int newx, newy;
 
-  if(GEDA_IS_TEXT(object)) {
+  if (GEDA_IS_TEXT(object)) {
 
     object->text->angle = ( object->text->angle + angle ) % 360;
 
     x = object->text->x + (-world_centerx);
     y = object->text->y + (-world_centery);
 
-    rotate_point_90(x, y, angle, &newx, &newy);
+    m_rotate_point_90(x, y, angle, &newx, &newy);
 
     x = newx + (world_centerx);
     y = newy + (world_centery);
@@ -759,7 +759,7 @@ o_text_rotate_world(int world_centerx, int world_centery, int angle, Object *obj
     o_text_recreate(object);
   }
   else {
-    BUG_MSG("o_glist_rotate_world");
+    BUG_MSG("GEDA_IS TEXT failed");
   }
 }
 

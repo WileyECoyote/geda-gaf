@@ -535,11 +535,11 @@ o_picture_rotate_world( int world_centerx, int world_centery, int angle, Object 
   object->picture->lower_y -= world_centery;
 
   /* rotate the upper left corner of the picture */
-  rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
+  m_rotate_point_90(object->picture->upper_x, object->picture->upper_y, angle,
                   &newx1, &newy1);
 
   /* rotate the lower left corner of the picture */
-  rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
+  m_rotate_point_90(object->picture->lower_x, object->picture->lower_y, angle,
                   &newx2, &newy2);
 
   /* reorder the corners after rotation */
