@@ -25,6 +25,8 @@ static int undo_file_index=0;
 
 static char* tmp_path = NULL;
 
+#define UNDO_FILE_PATTERN "%s%cgschem.save%d_%d.sch"
+
 /* this is additional number of levels (or history) at which point the */
 /* undo stack will be trimmed, it's used a safety to prevent running out */
 /* of entries to free */
@@ -122,7 +124,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
 
-      filename = g_strdup_printf("%s%cgschem.save%d_%d.sch",
+      filename = g_strdup_printf(UNDO_FILE_PATTERN,
                                  tmp_path, DIR_SEPARATOR,
                                  prog_pid, undo_file_index++);
 
@@ -323,6 +325,10 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   char *save_filename;
   char *tmp_filename;
 
+  const char *disk_err_msg;
+
+  disk_err_msg = _("An error occurred during an UNDO disk operation: %s.");
+
   if (w_current->undo_control == FALSE) {
     q_log_message(_("Undo/Redo disabled\n"));
     return;
@@ -345,10 +351,12 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   }
 
   if (u_next->type == UNDO_ALL && u_current->type == UNDO_VIEWPORT_ONLY) {
+
 #if DEBUG
     printf("Type: %d\n", u_current->type);
     printf("Current is an undo all, next is viewport only!\n");
 #endif
+
     find_prev_data = TRUE;
 
     if (w_current->undo_type == UNDO_DISK) {
@@ -380,7 +388,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     tmp_filename = NULL;
   }
 
-  /* Distroy the current page and create a new one */
+  /* Destory the current page and create a new one */
   if (tmp_filename) {
 
     s_page_delete (toplevel, Current_Page);
@@ -405,15 +413,15 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     int old_flags = toplevel->open_flags;
     toplevel->open_flags = 0;
 
-    if(f_open(toplevel, Current_Page, u_current->filename, &err)) {
+    if (f_open(toplevel, Current_Page, u_current->filename, &err)) {
       x_manual_resize(w_current);
       Current_Page->page_control = u_current->page_control;
       Current_Page->up = u_current->up;
       Current_Page->CHANGED=1;
     }
     else {
-      char *errmsg = g_strdup_printf ( _("An error occurred during an UNDO disk operation: %s."), err->message);
-      titled_pango_error_dialog ( _("<b>Undo error.</b>"), errmsg, _("Undo failed") );
+      char *errmsg = g_strdup_printf (disk_err_msg, err->message);
+      titled_pango_error_dialog(_("<b>Undo error.</b>"), errmsg, _("Undo failed"));
       GEDA_FREE(errmsg);
       g_error_free(err);
       return;
@@ -509,7 +517,7 @@ void o_undo_finalize(void)
   char *filename;
 
   for (i = 0 ; i < undo_file_index; i++) {
-    filename = g_strdup_printf("%s%cgschem.save%d_%d.sch", tmp_path,
+    filename = g_strdup_printf(UNDO_FILE_PATTERN, tmp_path,
                                DIR_SEPARATOR, prog_pid, i);
     unlink(filename);
     GEDA_FREE(filename);
