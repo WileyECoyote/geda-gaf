@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-27 04:02-0500\n"
+"POT-Creation-Date: 2014-08-31 07:37-0500\n"
 "PO-Revision-Date: 2012-02-20 00:09+0000\n"
 "Last-Translator: Carlos Nieves <Unknown>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -43,62 +43,22 @@ msgstr "Esquema de circuito gEDA"
 msgid "gEDA Schematic Symbol"
 msgstr "Símbolo de esquema gEDA"
 
-#: libgeda/src/file/f_basic.c:114
-#, c-format
-msgid "Could not allocate %lu bytes to read file \"%s\""
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:125
-#, fuzzy, c-format
-msgid "Error reading file '%s': %s"
-msgstr "No se puede encontrar el archivo %s: %s"
-
-#: libgeda/src/file/f_basic.c:136
-#, fuzzy, c-format
-msgid "File \"%s\" is too large"
-msgstr "Fichero %s es de solo lectura"
-
-#: libgeda/src/file/f_basic.c:193
-#, c-format
-msgid "Could not allocate %ld byte to read file \"%s\""
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:213
-#, fuzzy, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Error al cargar imagen desde el archivo [%s]: %s\n"
-
-#: libgeda/src/file/f_basic.c:272
-#, fuzzy, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Error al abrir la carpeta [%s]: %s\n"
-
-#: libgeda/src/file/f_basic.c:286
-#, c-format
-msgid "Failed to get attributes of file '%s': fstat() failed: %s"
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:303
-#, fuzzy, c-format
-msgid "Failed to open file '%s': fdopen() failed: %s"
-msgstr "Error al cargar imagen desde el archivo [%s]: %s\n"
-
-#: libgeda/src/file/f_basic.c:363 libgeda/src/file/f_basic.c:376
+#: libgeda/src/file/f_basic.c:84 libgeda/src/file/f_basic.c:97
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "No se ha podido determinar [%s]: %s"
 
-#: libgeda/src/file/f_basic.c:436
+#: libgeda/src/file/f_basic.c:157
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "No se puede encontrar el archivo %s: %s"
 
-#: libgeda/src/file/f_basic.c:453
+#: libgeda/src/file/f_basic.c:174
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:489
+#: libgeda/src/file/f_basic.c:210
 #, c-format
 msgid ""
 "\n"
@@ -111,7 +71,7 @@ msgstr ""
 "  %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:491
+#: libgeda/src/file/f_basic.c:212
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
@@ -119,7 +79,7 @@ msgstr ""
 "No se ha podido averiguar si es más reciente, así que lo tendrá que hacer "
 "usted manualmente.\n"
 
-#: libgeda/src/file/f_basic.c:493
+#: libgeda/src/file/f_basic.c:214
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -127,7 +87,7 @@ msgstr ""
 "La copia de seguridad es más reciente que el esquema. Parece que debería "
 "cargar la copia de seguridad en vez del archivo original.\n"
 
-#: libgeda/src/file/f_basic.c:495
+#: libgeda/src/file/f_basic.c:216
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -136,7 +96,7 @@ msgstr ""
 "Gschem normalmente realiza copias de seguridad automáticamente y esta "
 "situaciónocurre cuando ha fallado o se ha forzado una salida abrupta.\n"
 
-#: libgeda/src/file/f_basic.c:498
+#: libgeda/src/file/f_basic.c:219
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -144,42 +104,111 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:549
+#: libgeda/src/file/f_basic.c:270
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:598
+#: libgeda/src/file/f_basic.c:321
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "No se puede obtener el nombre de fichero real de %s: %s"
 
-#: libgeda/src/file/f_basic.c:609 libgeda/src/object/o_basic.c:251
+#: libgeda/src/file/f_basic.c:331
 #, c-format
 msgid "File %s is read-only"
 msgstr "Fichero %s es de solo lectura"
 
-#: libgeda/src/file/f_basic.c:641
+#: libgeda/src/file/f_basic.c:365
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr ""
 "No se ha podido poner el archivo de copia de seguridad anterior [%s] en modo "
 "de lectura-escritura\n"
 
-#: libgeda/src/file/f_basic.c:649
+#: libgeda/src/file/f_basic.c:373
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s"
 msgstr "No se puede guardar la copia de seguridad: %s"
 
-#: libgeda/src/file/f_basic.c:691
+#: libgeda/src/file/f_basic.c:415
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "No se pudo guardar el fichero: %s"
 
-#: libgeda/src/file/f_basic.c:944
+#: libgeda/src/file/f_file.c:67
+#, c-format
+msgid "File error: \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:78
+msgid "File error(strerror): Memory Allocation Error!\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:84
+#, c-format
+msgid "File error(strerror[source]): \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:90
+#, c-format
+msgid "File error(strerror)[source]: \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:98 libgeda/src/file/f_file.c:102
+#, c-format
+msgid "File lock error(strerror): \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:241
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: libgeda/src/file/f_get.c:143
+#, c-format
+msgid "%s: error accessing: %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:182
+#, c-format
+msgid "Could not allocate %lu bytes to read file \"%s\""
+msgstr ""
+
+#: libgeda/src/file/f_get.c:193
+#, fuzzy, c-format
+msgid "Error reading file '%s': %s"
+msgstr "No se puede encontrar el archivo %s: %s"
+
+#: libgeda/src/file/f_get.c:204
+#, fuzzy, c-format
+msgid "File \"%s\" is too large"
+msgstr "Fichero %s es de solo lectura"
+
+#: libgeda/src/file/f_get.c:261
+#, c-format
+msgid "Could not allocate %ld byte to read file \"%s\""
+msgstr ""
+
+#: libgeda/src/file/f_get.c:281
+#, fuzzy, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Error al cargar imagen desde el archivo [%s]: %s\n"
+
+#: libgeda/src/file/f_get.c:340
+#, fuzzy, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Error al abrir la carpeta [%s]: %s\n"
+
+#: libgeda/src/file/f_get.c:354
+#, c-format
+msgid "Failed to get attributes of file '%s': fstat() failed: %s"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:371
+#, fuzzy, c-format
+msgid "Failed to open file '%s': fdopen() failed: %s"
+msgstr "Error al cargar imagen desde el archivo [%s]: %s\n"
 
 #: libgeda/src/file/f_print.c:125
 msgid "Unable to get time of day in f_print_header()\n"
@@ -233,35 +262,6 @@ msgstr "No se puede ejecutar el comando [%s] para impresión\n"
 #: libgeda/src/file/f_print.c:690
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Demasiados caracteres UTF-8, no se puede imprimir\n"
-
-#: libgeda/src/file/f_utilities.c:125
-#, c-format
-msgid "File error: \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:136
-msgid "File error(strerror): Memory Allocation Error!\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:142
-#, c-format
-msgid "File error(strerror[source]): \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:148
-#, c-format
-msgid "File error(strerror)[source]: \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:156 libgeda/src/file/f_utilities.c:160
-#, c-format
-msgid "File lock error(strerror): \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:251
-#, c-format
-msgid "%s: error accessing: %s\n"
-msgstr ""
 
 #: libgeda/src/geda/geda_config.c:101
 msgid "Configuration file"
@@ -631,20 +631,25 @@ msgstr "Se trató de ajuntar un item de texto inválido como atributo."
 msgid "Unexpected end-of-file in attribute list"
 msgstr "Fin de Fichero inesperado en lista de atributos."
 
-#: libgeda/src/object/o_basic.c:170
-#, c-format
-msgid "o_save_objects: object %p has unknown type '%c'\n"
+#: libgeda/src/object/o_basic.c:151
+#, fuzzy, c-format
+msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: el objeto %p tiene un tipo '%c' desconocido\n"
 
-#: libgeda/src/object/o_basic.c:310
+#: libgeda/src/object/o_basic.c:231
+#, c-format
+msgid "<%s>: because %s"
+msgstr ""
+
+#: libgeda/src/object/o_basic.c:299
 msgid "<o_read_buffer> detected NULL pointer to buffer "
 msgstr ""
 
-#: libgeda/src/object/o_basic.c:317
+#: libgeda/src/object/o_basic.c:306
 msgid "Schematic data was not valid UTF-8"
 msgstr ""
 
-#: libgeda/src/object/o_basic.c:458
+#: libgeda/src/object/o_basic.c:447
 #, fuzzy, c-format
 msgid ""
 "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
@@ -656,7 +661,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:482 libgeda/src/object/o_basic.c:490
+#: libgeda/src/object/o_basic.c:471 libgeda/src/object/o_basic.c:479
 #, fuzzy, c-format
 msgid ""
 "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
@@ -667,7 +672,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:521
+#: libgeda/src/object/o_basic.c:510
 #, fuzzy, c-format
 msgid ""
 "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
@@ -678,7 +683,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:557
+#: libgeda/src/object/o_basic.c:546
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -689,7 +694,7 @@ msgstr ""
 "Por favor ejecute: g[sym|sch]update en: \n"
 "[%s]\n"
 
-#: libgeda/src/object/o_basic.c:576
+#: libgeda/src/object/o_basic.c:565
 #, fuzzy, c-format
 msgid ""
 "Read garbage line <%d> in [%s] :\n"
@@ -700,7 +705,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:580
+#: libgeda/src/object/o_basic.c:569
 #, fuzzy, c-format
 msgid "Read garbage line <%d> in [%s]"
 msgstr ""
@@ -1346,22 +1351,22 @@ msgstr ""
 "No se puede añadir la librería de Scheme [%s]: las funciones de llamada "
 "deben ser cierres (closures)\n"
 
-#: libgeda/src/struct/s_clib.c:1197
+#: libgeda/src/struct/s_clib.c:1191
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Error al cargar símbolo desde el archivo [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:1256
+#: libgeda/src/struct/s_clib.c:1250
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Error al cargar los datos del símbolo [%s] desde la fuente [%s]\n"
 
-#: libgeda/src/struct/s_clib.c:1498
+#: libgeda/src/struct/s_clib.c:1492
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "No se ha encontrado el componente [%s] en la librería de componentes\n"
 
-#: libgeda/src/struct/s_clib.c:1504
+#: libgeda/src/struct/s_clib.c:1498
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Se ha encontrado más de un componente con el nombre [%s]\n"

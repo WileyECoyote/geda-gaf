@@ -246,7 +246,7 @@ static void setup_keyfile ()
   geda_atexit(save_geometry_to_file, NULL);
 
   if (!g_file_test (file, G_FILE_TEST_EXISTS)) {
-    f_create_path (f_path_user_config (), S_IRWXU | S_IRWXG);
+    f_path_create (f_path_user_config (), S_IRWXU | S_IRWXG);
 
     g_file_set_contents (file, "", -1, NULL);
   }

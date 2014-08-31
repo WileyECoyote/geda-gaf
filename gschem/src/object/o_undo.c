@@ -516,7 +516,6 @@ void o_undo_finalize(void)
   }
 
   GEDA_FREE(tmp_path);
-  tmp_path = NULL;
 }
 
 /*! \todo Finish function documentation!!!

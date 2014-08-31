@@ -393,6 +393,21 @@ void o_copy_multiple_end          (GschemToplevel *w_current);
 void o_delete                     (GschemToplevel *w_current, Object *object);
 void o_delete_selected            (GschemToplevel *w_current);
 
+/* o_edit.c */
+void o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
+void o_edit_lock                  (GschemToplevel *w_current);
+void o_edit_unlock                (GschemToplevel *w_current);
+void o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
+void o_edit_mirror_world          (GschemToplevel *w_current, int centerx, int centery, GList *list);
+//void o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
+void o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
+void o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
+int  o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
+void o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
+void o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
+void o_autosave_backups           (GschemToplevel *w_current);
+OBJ *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
+
 /* o_find.c */
 bool o_find_object                (GschemToplevel *w_current, int x, int y, bool deselect_afterwards);
 OBJ *o_find_selected_object       (GschemToplevel *w_current, int x, int y);
@@ -427,21 +442,6 @@ void o_line_end                   (GschemToplevel *w_current, int x, int y);
 void o_line_motion                (GschemToplevel *w_current, int x, int y);
 void o_line_draw_rubber           (GschemToplevel *w_current);
 //int  o_line_visible               (GschemToplevel *w_current, LINE *line, int *x1, int *y1, int *x2, int *y2);
-
-/* o_misc.c */
-void o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
-void o_edit_lock                  (GschemToplevel *w_current);
-void o_edit_unlock                (GschemToplevel *w_current);
-void o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
-void o_edit_mirror_world          (GschemToplevel *w_current, int centerx, int centery, GList *list);
-//void o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
-void o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
-void o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
-int  o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
-void o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
-void o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
-void o_autosave_backups           (GschemToplevel *w_current);
-OBJ *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
 
 /* o_move.c */
 GLT *o_move_stretch_add           (GList *list, Object *object, int whichone);

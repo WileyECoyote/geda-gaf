@@ -1227,7 +1227,7 @@ PyGeda_open_page( const char *filename )
          * to sort out the problem:
          */
         if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if( f_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+          if( f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             page = empty_page(filename);
             errno = NO_ERROR;
           }

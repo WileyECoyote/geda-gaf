@@ -27,11 +27,12 @@ gschem/src/guile/g_select.x
 gschem/src/guile/g_util.x
 gschem/src/guile/g_window.x
 
-gschem/src/iface/i_status.c
 gschem/src/iface/i_callbacks.c
 gschem/src/iface/i_command.c
-gschem/src/iface/i_sessions.c
 gschem/src/iface/i_pan_world.c
+gschem/src/iface/i_sessions.c
+gschem/src/iface/i_status.c
+gschem/src/iface/i_sessions.c
 gschem/src/iface/i_vars.c
 gschem/src/iface/i_zoom_world.c
 
@@ -46,11 +47,11 @@ gschem/src/object/o_circle.c
 gschem/src/object/o_complex.c
 gschem/src/object/o_copy.c
 gschem/src/object/o_delete.c
+gschem/src/object/o_edit.c
 gschem/src/object/o_find.c
 gschem/src/object/o_grips.c
 gschem/src/object/o_invalidate.c
 gschem/src/object/o_line.c
-gschem/src/object/o_misc.c
 gschem/src/object/o_move.c
 gschem/src/object/o_net.c
 gschem/src/object/o_path.c
@@ -70,9 +71,11 @@ gschem/src/x/x_clipboard.c
 gschem/src/x/x_color.c
 gschem/src/x/x_compselect.c
 gschem/src/x/x_console.c
+gschem/src/x/x_coord.c
 gschem/src/x/x_dialog.c
 gschem/src/x/x_dnd.c
 gschem/src/x/x_edit_color.c
+gschem/src/x/x_edit_cprop.c
 gschem/src/x/x_edit_pin.c
 gschem/src/x/x_edit_text.c
 gschem/src/x/x_event.c

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-27 04:02-0500\n"
+"POT-Creation-Date: 2014-08-31 07:37-0500\n"
 "PO-Revision-Date: 2012-12-01 09:48+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -44,62 +44,22 @@ msgstr "gEDA Schakeling Schema"
 msgid "gEDA Schematic Symbol"
 msgstr "gEDA Schema Symbool"
 
-#: libgeda/src/file/f_basic.c:114
-#, c-format
-msgid "Could not allocate %lu bytes to read file \"%s\""
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:125
-#, fuzzy, c-format
-msgid "Error reading file '%s': %s"
-msgstr "Kan bestand %s niet vinden: %s"
-
-#: libgeda/src/file/f_basic.c:136
-#, fuzzy, c-format
-msgid "File \"%s\" is too large"
-msgstr "Bestand %s is alleen-lezen"
-
-#: libgeda/src/file/f_basic.c:193
-#, c-format
-msgid "Could not allocate %ld byte to read file \"%s\""
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:213
-#, fuzzy, c-format
-msgid "Failed to read from file '%s': %s"
-msgstr "Laden van afbeelding uit bestand faalde [%s]: %s\n"
-
-#: libgeda/src/file/f_basic.c:272
-#, fuzzy, c-format
-msgid "Failed to open file '%s': %s"
-msgstr "Openen van directory faalde [%s]: %s\n"
-
-#: libgeda/src/file/f_basic.c:286
-#, c-format
-msgid "Failed to get attributes of file '%s': fstat() failed: %s"
-msgstr ""
-
-#: libgeda/src/file/f_basic.c:303
-#, fuzzy, c-format
-msgid "Failed to open file '%s': fdopen() failed: %s"
-msgstr "Laden van afbeelding uit bestand faalde [%s]: %s\n"
-
-#: libgeda/src/file/f_basic.c:363 libgeda/src/file/f_basic.c:376
+#: libgeda/src/file/f_basic.c:84 libgeda/src/file/f_basic.c:97
 #, c-format
 msgid "Failed to stat [%s]: %s"
 msgstr "Status niet gelukt [%s]: %s"
 
-#: libgeda/src/file/f_basic.c:436
+#: libgeda/src/file/f_basic.c:157
 #, c-format
 msgid "Cannot find file %s: %s"
 msgstr "Kan bestand %s niet vinden: %s"
 
-#: libgeda/src/file/f_basic.c:453
+#: libgeda/src/file/f_basic.c:174
 #, c-format
 msgid "ERROR, <libgeda>: Could not changed current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:489
+#: libgeda/src/file/f_basic.c:210
 #, c-format
 msgid ""
 "\n"
@@ -112,13 +72,13 @@ msgstr ""
 " %s.\n"
 "\n"
 
-#: libgeda/src/file/f_basic.c:491
+#: libgeda/src/file/f_basic.c:212
 #, fuzzy
 msgid ""
 "Could not detemine which file is newer, so you should do this manually.\n"
 msgstr "Ik kan niet raden of het nieuwer is, je moet het dus handmatig doen.\n"
 
-#: libgeda/src/file/f_basic.c:493
+#: libgeda/src/file/f_basic.c:214
 msgid ""
 "The backup copy is newer than the schematic, so it seems you should load it "
 "instead of the original file.\n"
@@ -126,7 +86,7 @@ msgstr ""
 "De reservekopie is nieuwer dan het schema, het lijkt erop dat je deze zou "
 "moeten laden in plaats van het orginele bestand.\n"
 
-#: libgeda/src/file/f_basic.c:495
+#: libgeda/src/file/f_basic.c:216
 #, fuzzy
 msgid ""
 "This situation may have when an application crashed or was forced to exit "
@@ -136,7 +96,7 @@ msgstr ""
 "voor wanneer er een crash is of wanneer er een abrupte gedwongen beeindiging "
 "was.\n"
 
-#: libgeda/src/file/f_basic.c:498
+#: libgeda/src/file/f_basic.c:219
 msgid ""
 "\n"
 "Run the application to correct this situation or manually delete the backup "
@@ -144,40 +104,109 @@ msgid ""
 "\n"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:549
+#: libgeda/src/file/f_basic.c:270
 #, c-format
 msgid "ERROR, <libgeda>: Could not restore current directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/file/f_basic.c:598
+#: libgeda/src/file/f_basic.c:321
 #, c-format
 msgid "Can't get the real filename of %s: %s"
 msgstr "Kan de werkelijke bestandsnaam van %s: %s niet krijgen"
 
-#: libgeda/src/file/f_basic.c:609 libgeda/src/object/o_basic.c:251
+#: libgeda/src/file/f_basic.c:331
 #, c-format
 msgid "File %s is read-only"
 msgstr "Bestand %s is alleen-lezen"
 
-#: libgeda/src/file/f_basic.c:641
+#: libgeda/src/file/f_basic.c:365
 #, fuzzy, c-format
 msgid "Could not set previous backup file [%s] read-write:%s\n"
 msgstr "Kan vorige reservekopie [%s] NIET op lezen-schrijven instellen\n"
 
-#: libgeda/src/file/f_basic.c:649
+#: libgeda/src/file/f_basic.c:373
 #, fuzzy, c-format
 msgid "Can not create backup file: %s: %s"
 msgstr "Kan reservekopie niet opslaan: %s."
 
-#: libgeda/src/file/f_basic.c:691
+#: libgeda/src/file/f_basic.c:415
 #, c-format
 msgid "Could NOT save file: %s"
 msgstr "Kan bestand: %s NIET opslaan"
 
-#: libgeda/src/file/f_basic.c:944
+#: libgeda/src/file/f_file.c:67
+#, c-format
+msgid "File error: \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:78
+msgid "File error(strerror): Memory Allocation Error!\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:84
+#, c-format
+msgid "File error(strerror[source]): \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:90
+#, c-format
+msgid "File error(strerror)[source]: \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:98 libgeda/src/file/f_file.c:102
+#, c-format
+msgid "File lock error(strerror): \"%s\", %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_file.c:241
 #, c-format
 msgid "%s: %s"
 msgstr "%s: %s"
+
+#: libgeda/src/file/f_get.c:143
+#, c-format
+msgid "%s: error accessing: %s\n"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:182
+#, c-format
+msgid "Could not allocate %lu bytes to read file \"%s\""
+msgstr ""
+
+#: libgeda/src/file/f_get.c:193
+#, fuzzy, c-format
+msgid "Error reading file '%s': %s"
+msgstr "Kan bestand %s niet vinden: %s"
+
+#: libgeda/src/file/f_get.c:204
+#, fuzzy, c-format
+msgid "File \"%s\" is too large"
+msgstr "Bestand %s is alleen-lezen"
+
+#: libgeda/src/file/f_get.c:261
+#, c-format
+msgid "Could not allocate %ld byte to read file \"%s\""
+msgstr ""
+
+#: libgeda/src/file/f_get.c:281
+#, fuzzy, c-format
+msgid "Failed to read from file '%s': %s"
+msgstr "Laden van afbeelding uit bestand faalde [%s]: %s\n"
+
+#: libgeda/src/file/f_get.c:340
+#, fuzzy, c-format
+msgid "Failed to open file '%s': %s"
+msgstr "Openen van directory faalde [%s]: %s\n"
+
+#: libgeda/src/file/f_get.c:354
+#, c-format
+msgid "Failed to get attributes of file '%s': fstat() failed: %s"
+msgstr ""
+
+#: libgeda/src/file/f_get.c:371
+#, fuzzy, c-format
+msgid "Failed to open file '%s': fdopen() failed: %s"
+msgstr "Laden van afbeelding uit bestand faalde [%s]: %s\n"
 
 #: libgeda/src/file/f_print.c:125
 msgid "Unable to get time of day in f_print_header()\n"
@@ -230,35 +259,6 @@ msgstr "Kan opdracht [%s] niet uitvoeren voor afdrukken\n"
 #: libgeda/src/file/f_print.c:690
 msgid "Too many UTF-8 characters, cannot print\n"
 msgstr "Te veel UTF-8 karakters, kan niet afdrukken\n"
-
-#: libgeda/src/file/f_utilities.c:125
-#, c-format
-msgid "File error: \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:136
-msgid "File error(strerror): Memory Allocation Error!\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:142
-#, c-format
-msgid "File error(strerror[source]): \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:148
-#, c-format
-msgid "File error(strerror)[source]: \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:156 libgeda/src/file/f_utilities.c:160
-#, c-format
-msgid "File lock error(strerror): \"%s\", %s\n"
-msgstr ""
-
-#: libgeda/src/file/f_utilities.c:251
-#, c-format
-msgid "%s: error accessing: %s\n"
-msgstr ""
 
 #: libgeda/src/geda/geda_config.c:101
 msgid "Configuration file"
@@ -628,20 +628,25 @@ msgstr "Probeerde een niet tekst item toe te voegen als een attribuut"
 msgid "Unexpected end-of-file in attribute list"
 msgstr "Onverwacht einde-bestand in attribuutlijst"
 
-#: libgeda/src/object/o_basic.c:170
-#, c-format
-msgid "o_save_objects: object %p has unknown type '%c'\n"
+#: libgeda/src/object/o_basic.c:151
+#, fuzzy, c-format
+msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: object %p heeft een onbekend type '%c'\n"
 
-#: libgeda/src/object/o_basic.c:310
+#: libgeda/src/object/o_basic.c:231
+#, c-format
+msgid "<%s>: because %s"
+msgstr ""
+
+#: libgeda/src/object/o_basic.c:299
 msgid "<o_read_buffer> detected NULL pointer to buffer "
 msgstr ""
 
-#: libgeda/src/object/o_basic.c:317
+#: libgeda/src/object/o_basic.c:306
 msgid "Schematic data was not valid UTF-8"
 msgstr "Schema gegevens waren geen geldige UTF-8"
 
-#: libgeda/src/object/o_basic.c:458
+#: libgeda/src/object/o_basic.c:447
 #, fuzzy, c-format
 msgid ""
 "Read unexpected attach symbol start marker on line <%d>, in [%s] :\n"
@@ -652,7 +657,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:482 libgeda/src/object/o_basic.c:490
+#: libgeda/src/object/o_basic.c:471 libgeda/src/object/o_basic.c:479
 #, fuzzy, c-format
 msgid ""
 "Read unexpected embedded symbol start marker on line <%d>, in [%s] :\n"
@@ -663,7 +668,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:521
+#: libgeda/src/object/o_basic.c:510
 #, fuzzy, c-format
 msgid ""
 "Read unexpected embedded symbol end marker on line <%d>, in [%s] :\n"
@@ -674,7 +679,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:557
+#: libgeda/src/object/o_basic.c:546
 #, c-format
 msgid ""
 "Read an old format sym/sch file!\n"
@@ -685,7 +690,7 @@ msgstr ""
 "Voer g[sym|sch]update uit op:\n"
 "[%s]\n"
 
-#: libgeda/src/object/o_basic.c:576
+#: libgeda/src/object/o_basic.c:565
 #, fuzzy, c-format
 msgid ""
 "Read garbage line <%d> in [%s] :\n"
@@ -696,7 +701,7 @@ msgstr ""
 ">>\n"
 "%s<<\n"
 
-#: libgeda/src/object/o_basic.c:580
+#: libgeda/src/object/o_basic.c:569
 #, fuzzy, c-format
 msgid "Read garbage line <%d> in [%s]"
 msgstr ""
@@ -1313,23 +1318,23 @@ msgstr ""
 "Kan scheme bibliotheek niet toevoegen [%s]: callbacks moeten afsluitingen "
 "zijn\n"
 
-#: libgeda/src/struct/s_clib.c:1197
+#: libgeda/src/struct/s_clib.c:1191
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr "Laden van symbool uit bestand faalde [%s]: %s\n"
 
-#: libgeda/src/struct/s_clib.c:1256
+#: libgeda/src/struct/s_clib.c:1250
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr "Laden van symbool gegevens [%s] uit bron [%s] faalde\n"
 
-#: libgeda/src/struct/s_clib.c:1498
+#: libgeda/src/struct/s_clib.c:1492
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr "Komponent [%s] is niet in de komponenten bibliotheek gevonden\n"
 
 # Meer dan een symbool
-#: libgeda/src/struct/s_clib.c:1504
+#: libgeda/src/struct/s_clib.c:1498
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr "Meer dan een komponent gevonden met de naam [%s]\n"

@@ -4,9 +4,10 @@ libgeda/data/x-geda-schematic.desktop.in
 libgeda/data/x-geda-symbol.desktop.in
 
 libgeda/src/file/f_basic.c
+libgeda/src/file/f_file.c
+libgeda/src/file/f_get.c
 libgeda/src/file/f_path.c
 libgeda/src/file/f_print.c
-libgeda/src/file/f_utilities.c
 
 libgeda/src/geda/geda_config.c
 libgeda/src/geda/geda_errors.c
