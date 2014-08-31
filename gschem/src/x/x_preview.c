@@ -156,7 +156,7 @@ preview_callback_expose (GtkWidget      *widget,
   preview_window->cr = gdk_cairo_create (widget->window);
 
   gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
-  o_redraw_rects (preview_window, rectangles, n_rectangles);
+  o_redraw_rectangles (preview_window, rectangles, n_rectangles);
   GEDA_FREE (rectangles);
 
   cairo_destroy (preview_window->cr);

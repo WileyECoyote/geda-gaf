@@ -1033,7 +1033,7 @@ static void ma_callback_toggled_visible(GtkCellRendererToggle *cell_renderer,
     o_attrib = (Object *)a_iter->data;
 
     /* Modify the attribute */
-    o_invalidate     (w_current, o_attrib);
+    o_invalidate_object     (w_current, o_attrib);
     o_set_visibility (o_attrib, new_visibility ? VISIBLE : INVISIBLE);
     o_text_recreate  (o_attrib);
 
@@ -1100,7 +1100,7 @@ ma_callback_toggled_show_name(GtkCellRendererToggle *cell_renderer,
     else
       new_snv = SHOW_VALUE;
 
-    o_invalidate (w_current, o_attrib);
+    o_invalidate_object (w_current, o_attrib);
 
     /* actually modifies the attribute */
     o_attrib->show_name_value = new_snv;
@@ -1174,7 +1174,7 @@ ma_callback_toggled_show_value(GtkCellRendererToggle *cell_renderer,
     else
       new_snv = SHOW_NAME;
 
-    o_invalidate (w_current, o_attrib);
+    o_invalidate_object (w_current, o_attrib);
 
     /* Modify the attribute */
     o_attrib->show_name_value = new_snv;

@@ -350,19 +350,6 @@ void o_attrib_toggle_visibility        (GschemToplevel *w_current, Object *objec
 void o_attrib_toggle_show_name_value   (GschemToplevel *w_current, Object *object, int new_show_name_value);
 OBJ *o_attrib_add_attrib               (GschemToplevel *w_current, const char *text_string, int visibility,
                                         int show_name_value, Object *object);
-
-/* o_basic.c */
-void o_redraw_rects               (GschemToplevel *w_current, GdkRectangle *rectangles, int n_rectangles);
-int  o_invalidate_rubber          (GschemToplevel *w_current);
-int  o_redraw_cleanstates         (GschemToplevel *w_current);
-void o_invalidate_rect            (GschemToplevel *w_current, int x1, int y1, int x2, int y2);
-void o_invalidate_all             (GschemToplevel *w_current);
-void o_invalidate                 (GschemToplevel *w_current, Object *object);
-void o_invalidate_force           (GschemToplevel *w_current, Object *object);
-void o_invalidate_glist           (GschemToplevel *w_current, GList *list);
-int  o_drawing_color              (GschemToplevel *w_current, Object *object);
-OBJ *o_update_component           (GschemToplevel *w_current, Object *o_current);
-
 /* o_box.c */
 void o_box_invalidate_rubber      (GschemToplevel *w_current);
 void o_box_start                  (GschemToplevel *w_current, int x, int y);
@@ -425,6 +412,14 @@ void o_grips_cancel               (GschemToplevel *w_current);
 int  o_grips_half_size            (GschemToplevel *w_current, Object *o_current);
 void o_grips_draw_rubber          (GschemToplevel *w_current);
 
+/* o_invalidate.c */
+int  o_invalidate_rubber          (GschemToplevel *w_current);
+void o_invalidate_rectangle       (GschemToplevel *w_current, int x1, int y1, int x2, int y2);
+void o_invalidate_all             (GschemToplevel *w_current);
+void o_invalidate_object          (GschemToplevel *w_current, Object *object);
+void o_invalidate_force           (GschemToplevel *w_current, Object *object);
+void o_invalidate_glist           (GschemToplevel *w_current, GList *list);
+
 /* o_line.c */
 void o_line_invalidate_rubber     (GschemToplevel *w_current);
 void o_line_start                 (GschemToplevel *w_current, int x, int y);
@@ -434,11 +429,11 @@ void o_line_draw_rubber           (GschemToplevel *w_current);
 //int  o_line_visible               (GschemToplevel *w_current, LINE *line, int *x1, int *y1, int *x2, int *y2);
 
 /* o_misc.c */
-void o_edit                       (GschemToplevel *w_current, GList *list, int who);
-void o_lock                       (GschemToplevel *w_current);
-void o_unlock                     (GschemToplevel *w_current);
-void o_rotate_world_update        (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
-void o_mirror_world_update        (GschemToplevel *w_current, int centerx, int centery, GList *list);
+void o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
+void o_edit_lock                  (GschemToplevel *w_current);
+void o_edit_unlock                (GschemToplevel *w_current);
+void o_edit_rotate_world          (GschemToplevel *w_current, int centerx, int centery, int angle, GList *list);
+void o_edit_mirror_world          (GschemToplevel *w_current, int centerx, int centery, GList *list);
 //void o_edit_show_hidden_lowlevel  (GschemToplevel *w_current, const GList *o_list);
 void o_edit_show_hidden           (GschemToplevel *w_current, const GList *o_list, int inherited);
 void o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_list);
@@ -446,6 +441,7 @@ int  o_edit_find_text             (GschemToplevel *w_current, const GList *o_lis
 void o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void o_autosave_backups           (GschemToplevel *w_current);
+OBJ *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
 
 /* o_move.c */
 GLT *o_move_stretch_add           (GList *list, Object *object, int whichone);
@@ -514,6 +510,10 @@ void o_place_motion                    (GschemToplevel *w_current, int x, int y)
 void o_place_invalidate_rubber         (GschemToplevel *w_current, int drawing);
 void o_place_draw_rubber               (GschemToplevel *w_current, int drawing);
 void o_place_rotate                    (GschemToplevel *w_current);
+
+/* o_redraw.c */
+int  o_redraw_cleanstates              (GschemToplevel *w_current);
+void o_redraw_rectangles               (GschemToplevel *w_current, GdkRectangle *rectangles, int n_rectangles);
 
 /* o_select.c */
 void o_select_object                   (GschemToplevel *w_current, Object *o_current, int type, int count);

@@ -76,7 +76,8 @@ int x_event_button_pressed(GtkWidget      *widget,
   {
     o_find_object(w_current, w_x, w_y, TRUE);
     if (o_select_is_selection (w_current)) {
-      o_edit(w_current, geda_list_get_glist( Top_Selection ), ID_ORIGIN_EVENT);
+      o_edit_objects (w_current, geda_list_get_glist( Top_Selection ),
+                      ID_ORIGIN_EVENT);
       i_status_set_state(w_current, SELECT);
       return(0);
     }
@@ -278,7 +279,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case(ENDROTATEP):
-          o_rotate_world_update(w_current, w_x, w_y, 90,
+          o_edit_rotate_world(w_current, w_x, w_y, 90,
                                 geda_list_get_glist(Current_Selection));
 
           w_current->inside_action = FALSE;
@@ -286,7 +287,7 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case(ENDMIRROR):
-          o_mirror_world_update(w_current, w_x, w_y,
+          o_edit_mirror_world(w_current, w_x, w_y,
                                 geda_list_get_glist(Current_Selection));
 
           w_current->inside_action = FALSE;
@@ -838,7 +839,7 @@ void x_event_governor(GschemToplevel *w_current)
  *  The expose event in Gtk is equivalent to the OnDraw in MS Windows,
  *  except it's not just a hook, we actually  have do the drawing. We
  *  don't do in any drawing here, the function creates a temporary Cairo
- *  drawable context and call o_redraw_rects() to do the actually drawing.
+ *  drawable context and call o_redraw_rectangles() to do the actually drawing.
  *  The temporary drawable is destroyed and the originals restored.
  */
 int
@@ -862,7 +863,7 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
 
     w_current->cr = gdk_cairo_create( widget->window );
 
-    o_redraw_rects (w_current, rectangles, n_rectangles);
+    o_redraw_rectangles (w_current, rectangles, n_rectangles);
     gdk_window_end_paint(widget->window);
 
     GEDA_FREE (rectangles);

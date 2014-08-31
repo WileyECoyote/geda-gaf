@@ -941,8 +941,8 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
 
   /* Damage notifications should invalidate the object on screen */
   o_add_change_notify (page,
-                      (ChangeNotifyFunc) o_invalidate,
-                      (ChangeNotifyFunc) o_invalidate, w_current);
+                      (ChangeNotifyFunc) o_invalidate_object,
+                      (ChangeNotifyFunc) o_invalidate_object, w_current);
 
   i_zoom_world_extents (w_current,
                   s_page_get_objects (toplevel->page_current),

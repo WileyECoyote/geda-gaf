@@ -712,7 +712,7 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
     if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
       magnetic_halfsize = max (4 * size, MAGNETIC_HALFSIZE);
 
-      o_invalidate_rect (w_current, magnetic_x - magnetic_halfsize,
+      o_invalidate_rectangle (w_current, magnetic_x - magnetic_halfsize,
                                     magnetic_y - magnetic_halfsize,
                                     magnetic_x + magnetic_halfsize,
                                     magnetic_y + magnetic_halfsize);
@@ -723,13 +723,13 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
   x2 = max (first_x, second_x) + bloat;
   y1 = min (first_y, second_y) - bloat;
   y2 = max (first_y, second_y) + bloat;
-  o_invalidate_rect (w_current, x1, y1, x2, y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
 
   x1 = min (second_x, third_x) - bloat;
   x2 = max (second_x, third_x) + bloat;
   y1 = min (second_y, third_y) - bloat;
   y2 = max (second_y, third_y) + bloat;
-  o_invalidate_rect (w_current, x1, y1, x2, y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
 }
 
 

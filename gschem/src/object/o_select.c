@@ -263,10 +263,10 @@ void o_select_box_invalidate_rubber (GschemToplevel *w_current)
   WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &x1, &y1);
   WORLDtoSCREEN (w_current, w_current->second_wx, w_current->second_wy, &x2, &y2);
 
-  o_invalidate_rect (w_current, x1, y1, x2, y1);
-  o_invalidate_rect (w_current, x1, y1, x1, y2);
-  o_invalidate_rect (w_current, x2, y1, x2, y2);
-  o_invalidate_rect (w_current, x1, y2, x2, y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y1);
+  o_invalidate_rectangle (w_current, x1, y1, x1, y2);
+  o_invalidate_rectangle (w_current, x2, y1, x2, y2);
+  o_invalidate_rectangle (w_current, x1, y2, x2, y2);
 }
 
 /*! \todo Finish function documentation!!!

@@ -24,7 +24,7 @@
 
 /*! \brief Repaint Background Region
  *  \par Function Description
- *  This function is called by o_redraw_rects to redraw the grid
+ *  This function is called by o_redraw_rectangles to redraw the grid
  *  within a rectangular region given by specific parameters.
  *
  */

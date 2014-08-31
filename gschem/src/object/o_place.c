@@ -210,7 +210,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
     WORLDtoSCREEN (w_current, left + diff_x, top + diff_y, &s_left, &s_top);
     WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
 
-    o_invalidate_rect (w_current, s_left, s_top, s_right, s_bottom);
+    o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
   }
   else {
     BUG_MSG("Error No bounds");

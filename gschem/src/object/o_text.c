@@ -206,7 +206,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
         if( text_size >= 0 && object->text->size != text_size) {
           if (!invalidated && text_size < object->text->size) {
             /* New size is smaller, make sure old text gets erased */
-            o_invalidate (w_current, object);
+            o_invalidate_object (w_current, object);
             invalidated = TRUE;
           }
           object->text->size = text_size;
@@ -217,7 +217,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
         if(text_align >= 0 && object->text->alignment != text_align) {
           if (!invalidated) {
             /* Make sure text with old alignment gets erased */
-            o_invalidate (w_current, object);
+            o_invalidate_object (w_current, object);
             invalidated = TRUE;
           }
           object->text->alignment = text_align;
@@ -234,7 +234,7 @@ o_text_edit_end(GschemToplevel *w_current, char *string, int text_align,
         if (rotate >= 0 && object->text->angle != rotate) {
           if (!invalidated) {
             /* Make sure text with old text gets erased */
-            o_invalidate (w_current, object);
+            o_invalidate_object (w_current, object);
             invalidated = TRUE;
           }
           object->text->angle = rotate;

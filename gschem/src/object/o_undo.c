@@ -373,8 +373,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     /* Damage notifications should invalidate the object on screen */
     o_add_change_notify (p_new,
-                        (ChangeNotifyFunc) o_invalidate,
-                        (ChangeNotifyFunc) o_invalidate, w_current);
+                        (ChangeNotifyFunc) o_invalidate_object,
+                        (ChangeNotifyFunc) o_invalidate_object, w_current);
   }
 
   /* temporarily disable logging */

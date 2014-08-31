@@ -1273,8 +1273,8 @@ COMMAND ( do_rotate )
       object_list = geda_list_get_glist( Current_Selection );
 
       if (object_list) {
-        /* Allow o_rotate_world_update to redraw the objects */
-        o_rotate_world_update(w_current, CMD_X(do_rotate),
+        /* Allow o_edit_rotate_world to redraw the objects */
+        o_edit_rotate_world(w_current, CMD_X(do_rotate),
                                          CMD_Y(do_rotate), 90, object_list);
       }
 
@@ -1313,7 +1313,7 @@ COMMAND ( do_mirror )
                                        page_current->selection_list );
 
     if (object_list) {
-      o_mirror_world_update(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
+      o_edit_mirror_world(w_current, CMD_X(do_mirror), CMD_Y(do_mirror), object_list);
     }
 
     state = SELECT;
@@ -1332,7 +1332,7 @@ COMMAND ( do_mirror )
  *  @brief i_cmd_edit_butes in i_command_Edit_Actions
  *
  *  \par Function Description
- *   Calls o_edit to initiate the Edit Attributes dialog for
+ *   Calls o_edit_objects to initiate the Edit Attributes dialog for
  *   selected object
  *
  */
@@ -1340,8 +1340,8 @@ COMMAND ( do_edit_butes )
 {
   BEGIN_W_COMMAND(do_edit_butes);
 
-  o_edit(w_current, geda_list_get_glist( Current_Selection ),
-         CMD_WHO(do_edit_butes));
+  o_edit_objects (w_current, geda_list_get_glist( Current_Selection ),
+                  CMD_WHO(do_edit_butes));
 
   EXIT_COMMAND(do_edit_butes);
 }
@@ -1433,7 +1433,7 @@ COMMAND ( do_filltype )
 
 /*! \brief Lock in i_command_Edit_Actions
  *  \par Function Description
- *  This function calls o_lock to locks all objects in selection list.
+ *  This function calls o_edit_lock to locks all objects in selection list.
  *
  */
 COMMAND ( do_lock )
@@ -1441,7 +1441,7 @@ COMMAND ( do_lock )
   BEGIN_W_COMMAND(do_lock);
 
   if (o_select_return_first_object(w_current)) {
-    o_lock(w_current);
+    o_edit_lock(w_current);
   }
   EXIT_COMMAND(do_lock);
 }
@@ -1451,14 +1451,14 @@ COMMAND ( do_lock )
  *  @brief i_cmd_do_unlock in i_command_Edit_Actions
  *
  *  \par Function Description
- *  This function calls o_unlock to unlocks all objects in selection list.
+ *  This function calls o_edit_unlock to unlocks all objects in selection.
  *
  */
 COMMAND ( do_unlock )
 {
   BEGIN_W_COMMAND(do_unlock);
   if (o_select_return_first_object(w_current)) {
-    o_unlock(w_current);
+    o_edit_unlock(w_current);
   }
   EXIT_COMMAND(do_unlock);
 }
@@ -3207,7 +3207,7 @@ COMMAND (do_update)
 
     for (iter = selected_components; iter != NULL; NEXT(iter)) {
       Object *o_current = (Object *) iter->data;
-      iter->data = o_update_component (w_current, o_current);
+      iter->data = o_edit_update_component (w_current, o_current);
     }
 
     g_list_free (selected_components);

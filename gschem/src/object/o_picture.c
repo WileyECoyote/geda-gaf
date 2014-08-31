@@ -176,10 +176,10 @@ void o_picture_invalidate_rubber (GschemToplevel *w_current)
   width = SCREENabs (w_current, GET_PICTURE_WIDTH (w_current));
   height = SCREENabs (w_current, GET_PICTURE_HEIGHT(w_current));
 
-  o_invalidate_rect (w_current, left, top, left + width, top);
-  o_invalidate_rect (w_current, left, top, left, top + height);
-  o_invalidate_rect (w_current, left + width, top, left + width, top + height);
-  o_invalidate_rect (w_current, left, top + height, left + width, top + height);
+  o_invalidate_rectangle (w_current, left, top, left + width, top);
+  o_invalidate_rectangle (w_current, left, top, left, top + height);
+  o_invalidate_rectangle (w_current, left + width, top, left + width, top + height);
+  o_invalidate_rectangle (w_current, left, top + height, left + width, top + height);
 }
 
 /*! \brief Draw picture from GschemToplevel object.
@@ -239,13 +239,13 @@ bool o_picture_exchange (GschemToplevel *w_current,
       bool status;
 
       /* Erase previous picture */
-      o_invalidate (w_current, object);
+      o_invalidate_object (w_current, object);
 
       status = o_picture_set_from_file (object, filename, error);
       if (!status) return FALSE;
 
       /* Draw new picture */
-      o_invalidate (w_current, object);
+      o_invalidate_object (w_current, object);
     }
   }
   return TRUE;

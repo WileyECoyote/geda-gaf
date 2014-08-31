@@ -787,11 +787,11 @@ x_dialog_edit_arc_angle_apply(GtkWidget *Dialog, GschemToplevel *w_current)
       else {
         if(object->type == OBJ_ARC) {
           /* invalidate the old arc object */
-          o_invalidate (w_current, object);
+          o_invalidate_object (w_current, object);
           o_arc_modify(object, radius,      0, ARC_RADIUS);
           o_arc_modify(object, start_angle, 0, ARC_START_ANGLE);
           o_arc_modify(object, sweep_angle, 0, ARC_END_ANGLE);
-          o_invalidate (w_current, object);
+          o_invalidate_object (w_current, object);
         }
       }
       NEXT(s_current);
@@ -1389,7 +1389,7 @@ x_dialog_edit_fill_type_ok(GtkWidget *Dialog, fill_type_data *fill_data)
     }
 
     o_set_fill_options (object, &fill_options);
-    o_invalidate (w_current, object);
+    o_invalidate_object (w_current, object);
   }
 
   toplevel->page_current->CHANGED = 1;
@@ -1896,7 +1896,7 @@ x_dialog_edit_line_type_ok(GtkWidget *Dialog, line_type_data *line_data)
     }
 
     o_set_line_options (object, &line_options);
-    o_invalidate (w_current, object);
+    o_invalidate_object (w_current, object);
   }
 
   toplevel->page_current->CHANGED = 1;

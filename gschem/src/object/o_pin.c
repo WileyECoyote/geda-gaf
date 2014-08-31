@@ -136,7 +136,7 @@ void o_pin_invalidate_rubber (GschemToplevel *w_current)
   min_y = min (y1, y2) - bloat;
   max_y = max (y1, y2) + bloat;
 
-  o_invalidate_rect (w_current, min_x, min_y, max_x, max_y);
+  o_invalidate_rectangle (w_current, min_x, min_y, max_x, max_y);
 }
 
 /*! \todo Finish function documentation!!!

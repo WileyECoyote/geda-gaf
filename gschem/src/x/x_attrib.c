@@ -212,7 +212,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
     new = o_attrib_add_attrib(w_current, newtext, vis, show, object);
 
     if ( w_current->first_wx != -1 && w_current->first_wy != -1) {
-      o_invalidate (w_current, new);
+      o_invalidate_object (w_current, new);
       new->text->x = w_current->first_wx;
       new->text->y = w_current->first_wy;
 

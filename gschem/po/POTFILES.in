@@ -39,7 +39,6 @@ gschem/src/math/m_basic.c
 
 gschem/src/object/o_arc.c
 gschem/src/object/o_attrib.c
-gschem/src/object/o_basic.c
 gschem/src/object/o_box.c
 gschem/src/object/o_buffer.c
 gschem/src/object/o_bus.c
@@ -49,6 +48,7 @@ gschem/src/object/o_copy.c
 gschem/src/object/o_delete.c
 gschem/src/object/o_find.c
 gschem/src/object/o_grips.c
+gschem/src/object/o_invalidate.c
 gschem/src/object/o_line.c
 gschem/src/object/o_misc.c
 gschem/src/object/o_move.c
@@ -57,6 +57,7 @@ gschem/src/object/o_path.c
 gschem/src/object/o_picture.c
 gschem/src/object/o_pin.c
 gschem/src/object/o_place.c
+gschem/src/object/o_redraw.c
 gschem/src/object/o_select.c
 gschem/src/object/o_slot.c
 gschem/src/object/o_text.c

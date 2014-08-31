@@ -1,5 +1,18 @@
 2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/o/o_basic.c: Separate and rename module o_invalidate.c and o_redraw.c,
+      and rename member functions with module prefix.
+
+    * src/o/o_misc.c: Rename module o_edit and and rename member functions with
+      module prefix, remove unsed function o_draw_color.
+
+2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Call o_invalidate in x_dialog_edit_fill_type_ok if
+      o_set_fill_options is called.
+
+2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_window.c: Add x_window_idle_thread_post_load_file to log and
       and update recent files list in idle thread when a file has been opened
       successfully.

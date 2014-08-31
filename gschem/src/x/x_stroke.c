@@ -154,7 +154,7 @@ x_stroke_translate_and_execute (GschemToplevel *w_current)
     max_y = max (max_y, point->y);
   }
 
-   o_invalidate_rect (w_current, min_x, min_y, max_x + 1, max_y + 1);
+   o_invalidate_rectangle (w_current, min_x, min_y, max_x + 1, max_y + 1);
 
   /* resets length of array */
   stroke_points->len = 0;

@@ -36,7 +36,7 @@ void o_arc_invalidate_rubber (GschemToplevel *w_current)
   radius = SCREENabs (w_current, w_current->distance);
 
   /* FIXME: This isn't a tight bounding box */
-  o_invalidate_rect (w_current, cx - radius, cy - radius,
+  o_invalidate_rectangle (w_current, cx - radius, cy - radius,
                                 cx + radius, cy + radius);
 }
 

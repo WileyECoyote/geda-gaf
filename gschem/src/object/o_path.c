@@ -333,7 +333,7 @@ o_path_invalidate_rubber (GschemToplevel *w_current)
 
   WORLDtoSCREEN (w_current, min_x, max_y, &x1, &y1);
   WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
-  o_invalidate_rect (w_current, x1, y1, x2, y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
 
   w_current->temp_path->num_sections -= added_sections;
 }
@@ -601,7 +601,7 @@ o_path_invalidate_rubber_grips (GschemToplevel *w_current)
 
   WORLDtoSCREEN (w_current, min_x, max_y, &x1, &y1);
   WORLDtoSCREEN (w_current, max_x, min_y, &x2, &y2);
-  o_invalidate_rect (w_current, x1, y1, x2, y2);
+  o_invalidate_rectangle (w_current, x1, y1, x2, y2);
 }
 
 

@@ -878,7 +878,7 @@ int o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
 
   /* Switch off drawing for the object being modified */
   object->dont_redraw = TRUE;
-  o_invalidate (w_current, object);
+  o_invalidate_object (w_current, object);
 
   /* there is one */
   /* depending on its type, start the modification process */
@@ -1092,7 +1092,7 @@ static void o_grips_end_box(GschemToplevel *w_current, Object *o_current,
    * we want this? hack */
   if ((box_width == 0) || (box_height == 0)) {
     o_box_invalidate_rubber (w_current);
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1129,7 +1129,7 @@ static void o_grips_end_picture(GschemToplevel *w_current, Object *o_current,
    * we want this? hack */
   if ((GET_PICTURE_WIDTH(w_current) == 0) || (GET_PICTURE_HEIGHT(w_current) == 0)) {
     o_picture_invalidate_rubber (w_current);
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1165,7 +1165,7 @@ static void o_grips_end_circle(GschemToplevel *w_current, Object *o_current,
    * we want this? hack */
   if (w_current->distance == 0) {
     o_circle_invalidate_rubber (w_current);
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1198,7 +1198,7 @@ static void o_grips_end_line(GschemToplevel *w_current, Object *o_current,
   if ((w_current->first_wx == w_current->second_wx) &&
       (w_current->first_wy == w_current->second_wy)) {
     o_box_invalidate_rubber (w_current);
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1233,7 +1233,7 @@ static void o_grips_end_net(GschemToplevel *w_current, Object *o_current,
    * we want this? hack */
   if ((w_current->first_wx == w_current->second_wx) &&
       (w_current->first_wy == w_current->second_wy)) {
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1271,7 +1271,7 @@ static void o_grips_end_pin(GschemToplevel *w_current, Object *o_current,
    * we want this? hack */
   if ((w_current->first_wx == w_current->second_wx) &&
       (w_current->first_wy == w_current->second_wy)) {
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1305,7 +1305,7 @@ static void o_grips_end_bus(GschemToplevel *w_current, Object *o_current,
    * we want this? hack */
   if ((w_current->first_wx == w_current->second_wx) &&
       (w_current->first_wy == w_current->second_wy)) {
-    o_invalidate (w_current, o_current);
+    o_invalidate_object (w_current, o_current);
     return;
   }
 
@@ -1401,7 +1401,7 @@ void o_grips_end(GschemToplevel *w_current)
 
   /* Switch drawing of the object back on */
   object->dont_redraw = FALSE;
-  o_invalidate (w_current, object);
+  o_invalidate_object (w_current, object);
 
   /* reset global variables */
   w_current->which_grip = -1;

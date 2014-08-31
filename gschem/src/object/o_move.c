@@ -167,7 +167,7 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
       {
         STRETCH *stretch = s_iter->data;
         stretch->object->dont_redraw = TRUE;
-        o_invalidate (w_current, stretch->object);
+        o_invalidate_object (w_current, stretch->object);
       }
     }
 
@@ -372,7 +372,7 @@ void o_move_invalidate_rubber (GschemToplevel *w_current, int drawing)
           WORLDtoSCREEN (w_current, object->line->x[1] + dx2,
                                     object->line->y[1] + dy2, &x2, &y2);
 
-          o_invalidate_rect (w_current, x1, y1, x2, y2);
+          o_invalidate_rectangle (w_current, x1, y1, x2, y2);
       }
     }
   }

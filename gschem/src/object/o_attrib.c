@@ -163,12 +163,12 @@ void o_attrib_toggle_visibility(GschemToplevel *w_current, Object *object)
   if (object->visibility == VISIBLE) {
 
     /* Must hide before changing or libgedacairo will not redraw */
-    o_invalidate (w_current, object);
+    o_invalidate_object (w_current, object);
 
     o_set_visibility (object, INVISIBLE);
 
     if (Current_Page->show_hidden_text) {
-      o_invalidate (w_current, object);
+      o_invalidate_object (w_current, object);
     }
 
   }
@@ -199,7 +199,7 @@ void o_attrib_toggle_show_name_value(GschemToplevel *w_current,
 
   g_return_if_fail (object != NULL && object->type == OBJ_TEXT);
 
-  o_invalidate (w_current, object);
+  o_invalidate_object (w_current, object);
   object->show_name_value = show_name_value;
   o_text_recreate(object);
 

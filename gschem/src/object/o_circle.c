@@ -34,7 +34,7 @@ void o_circle_invalidate_rubber (GschemToplevel *w_current)
   WORLDtoSCREEN (w_current, w_current->first_wx, w_current->first_wy, &cx, &cy);
   radius = SCREENabs (w_current, w_current->distance);
 
-  o_invalidate_rect (w_current, cx - radius, cy - radius,
+  o_invalidate_rectangle (w_current, cx - radius, cy - radius,
                                 cx + radius, cy + radius);
 }
 

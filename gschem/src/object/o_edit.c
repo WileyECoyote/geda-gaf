@@ -37,7 +37,7 @@
  *  \par Function Description
  *
  */
-void o_edit(GschemToplevel *w_current, GList *list, int who)
+void o_edit_objects (GschemToplevel *w_current, GList *list, int who)
 {
   Object     *o_current;
   bool        isSymbol;
@@ -114,7 +114,7 @@ void o_edit(GschemToplevel *w_current, GList *list, int who)
  * NOT change the color (of primatives of the components) though this cannot
  * be called recursively
  */
-void o_lock(GschemToplevel *w_current)
+void o_edit_lock (GschemToplevel *w_current)
 {
   Object *object = NULL;
   GList *s_current = NULL;
@@ -149,7 +149,7 @@ void o_lock(GschemToplevel *w_current)
 /* this will probably change in the future, but for now it's a
    something.. :-) */
 /* this cannot be called recursively */
-void o_unlock(GschemToplevel *w_current)
+void o_edit_unlock(GschemToplevel *w_current)
 {
   Object *object    = NULL;
   GList  *s_current = NULL;
@@ -186,7 +186,7 @@ void o_unlock(GschemToplevel *w_current)
  *  \param [in] angle      Angle to rotate the objects through.
  *  \param [in] list       The list of objects to rotate.
  */
-void o_rotate_world_update(GschemToplevel *w_current,
+void o_edit_rotate_world(GschemToplevel *w_current,
                            int centerx, int centery, int angle, GList *list)
 {
   GedaToplevel *toplevel = w_current->toplevel;
@@ -242,7 +242,7 @@ void o_rotate_world_update(GschemToplevel *w_current,
  *  \par Function Description
  *
  */
-void o_mirror_world_update(GschemToplevel *w_current, int centerx, int centery, GList *list)
+void o_edit_mirror_world(GschemToplevel *w_current, int centerx, int centery, GList *list)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object   *o_current;
@@ -852,4 +852,134 @@ void o_autosave_backups(GschemToplevel *w_current)
   }
   /* restore current page */
   s_page_goto (toplevel, p_save);
+}
+
+
+/*! \brief Update a component.
+ *
+ * \par Function Description
+ * Updates \a o_current to the latest version of the symbol available
+ * in the symbol library, while preserving any attributes set in the
+ * current schematic. On success, returns the new Object which
+ * replaces \a o_current on the page; \a o_current is deleted. On
+ * failure, returns NULL, and \a o_current is left unchanged.
+ *
+ * \param [in]     w_current The GschemToplevel object.
+ * \param [in,out] o_current The Object to be updated.
+ *
+ * \return the new Object that replaces \a o_current.
+ *
+ * TODO: This function retains attribute positions. If an attribute
+ * position was what changed between symbols versions then using
+ * this "update" function will have no effect.
+ */
+Object *
+o_edit_update_component (GschemToplevel *w_current, Object *o_current)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  Object   *o_new;
+  Object   *attr_old;
+  Page  *page;
+  GList *new_attribs;
+  GList *old_attribs;
+  GList *iter;
+  const CLibSymbol *clib;
+
+  g_return_val_if_fail (GEDA_IS_COMPLEX(o_current), NULL);
+  g_return_val_if_fail (o_current->complex->filename != NULL, NULL);
+
+  page = o_get_page (o_current);
+
+  /* Force symbol data to be reloaded from source */
+  clib = s_clib_get_symbol_by_name (o_current->complex->filename);
+  s_clib_symbol_invalidate_data (clib);
+
+  if (clib == NULL) {
+    u_log_message (_("Could not find symbol [%s] in library. Update failed.\n"),
+                   o_current->complex->filename);
+    return NULL;
+  }
+  else
+    q_log_message (_("Updating symbol [%s]\n"), o_current->complex->filename);
+
+  /* Unselect the old object. */
+  o_selection_remove (page->selection_list, o_current);
+
+  /* Create new object and set embedded */
+  o_new = o_complex_new (toplevel,
+                         o_current->complex->x,
+                         o_current->complex->y,
+                         o_current->complex->angle,
+                         o_current->complex->mirror,
+                         clib, o_current->complex->filename,
+                         1);
+  if (o_complex_is_embedded (o_current)) {
+    o_embed (toplevel, o_new);
+  }
+
+  new_attribs = o_complex_promote_attribs (toplevel, o_new);
+
+  /* Cull any attributes from new COMPLEX that are already attached to
+   * old COMPLEX. Note that the new_attribs list is kept consistent by
+   * setting GList data pointers to NULL if their Objects are
+   * culled. At the end, the new_attribs list is updated by removing
+   * all list items with NULL data. This is slightly magic, but
+   * works. */
+  for (iter = new_attribs; iter != NULL; NEXT(iter)) {
+    Object *attr_new = iter->data;
+    char *name;
+    char *old_value;
+    char *new_value;
+
+    if (attr_new->type != OBJ_TEXT) {
+      u_log_message("Internal Error: <o_edit_update_component> "
+                    "detected attr_new->type != OBJ_TEXT\n");
+    }
+    else {
+
+      o_attrib_get_name_value (attr_new, &name, &new_value);
+
+      old_value = o_attrib_search_attached_attribs_by_name (o_current, name, 0);
+
+      if (old_value != NULL) {
+        if ( strcmp(name, "symversion") == 0 ) {
+          attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+          o_attrib_set_value (attr_old, name,  new_value);
+        }
+        o_attrib_remove (&o_new->attribs, attr_new);
+        s_object_release (attr_new);
+        iter->data = NULL;
+      }
+
+      GEDA_FREE (name);
+      GEDA_FREE (old_value);
+      GEDA_FREE (new_value);
+    }
+  }
+  new_attribs = g_list_remove_all (new_attribs, NULL);
+
+  /* Detach attributes from old Object and attach to new Object */
+  old_attribs = g_list_copy (o_current->attribs);
+  o_attrib_detach_all (o_current);
+  o_attrib_attach_list (old_attribs, o_new, 1);
+  g_list_free (old_attribs);
+
+  /* Add new attributes to page */
+  s_page_append_list (page, new_attribs);
+
+  /* Update pinnumbers for current slot */
+  s_slot_update_object (o_new);
+
+  /* Replace old Object with new Object */
+  s_page_replace_object (page, o_current, o_new);
+  s_object_release (o_current);
+
+  /* Select new Object */
+  o_selection_add (page->selection_list, o_new);
+
+  /* mark the page as modified */
+  toplevel->page_current->CHANGED = 1;
+  o_undo_savestate (w_current, UNDO_ALL);
+
+  return o_new;
 }
