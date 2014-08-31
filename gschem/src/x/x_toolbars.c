@@ -421,7 +421,7 @@ void x_toolbars_save_state(GschemToplevel *w_current) {
 
     if (access(filename, W_OK) != 0) {
       v_log_message("Creating new Toolbar configuration\n");
-      f_create_path (f_path_user_config (), S_IRWXU | S_IRWXG);
+      f_path_create (f_path_user_config (), S_IRWXU | S_IRWXG);
       g_file_set_contents (filename, "", -1, NULL);
     }
     if (!g_file_test (filename, G_FILE_TEST_EXISTS))

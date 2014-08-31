@@ -411,7 +411,7 @@ SCM g_rc_world_size(SCM width, SCM height, SCM border)
 #define FUNC_NAME "world-size"
 {
   int i_width, i_height, i_border;
-  int init_right, init_bottom;
+  int i_right, i_bottom;
 
   SCM_ASSERT (SCM_NIMP (width) && SCM_REALP (width), width,
               SCM_ARG1, FUNC_NAME);
@@ -425,16 +425,15 @@ SCM g_rc_world_size(SCM width, SCM height, SCM border)
   i_height = (int) (scm_to_double (height) * MILS_PER_INCH);
   i_border = (int) (scm_to_double (border) * MILS_PER_INCH);
 
-  PAPERSIZEtoWORLD(i_width, i_height, i_border,
-                   &init_right, &init_bottom);
+  m_papersize_to_world(i_width, i_height, i_border, &i_right, &i_bottom);
 
 #if DEBUG
   printf("%d %d\n", i_width, i_height);
-  printf("%d %d\n", init_right, init_bottom);
+  printf("%d %d\n", i_right, i_bottom);
 #endif
 
-  default_world_right  = init_right;
-  default_world_bottom = init_bottom;
+  default_world_right  = i_right;
+  default_world_bottom = i_bottom;
 
   return SCM_BOOL_T;
 }

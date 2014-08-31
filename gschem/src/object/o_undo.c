@@ -60,22 +60,32 @@ void o_undo_init(GschemToplevel *w_current)
  *  \par Function Description
  *   This function is called to push the current state onto the
  *   undo buffer.
+ *
  * \param [in] w_current The toplevel environment.
- * \param [in] flag      integer <B>flag</B> can be one of the
+ * \param [in] flag      integer <B>\a flag</B> can be one of the
  *                       following values:
  *  <DL>
- *    <DT>*</DT><DD>UNDO_ALL
- *    <DT>*</DT><DD>UNDO_VIEWPORT_ONLY
+ *    <DD>UNDO_ALL</DD>
+ *    <DD>UNDO_VIEWPORT_ONLY</DD>
  *  </DL>
  */
 void o_undo_savestate(GschemToplevel *w_current, int flag)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
-  char     *filename = NULL;
-  GList    *object_list = NULL;
-  UNDO     *u_current;
-  UNDO     *u_current_next;
-  int       levels;
+  GedaToplevel *toplevel     = w_current->toplevel;
+  GError       *err          = NULL;
+  GList        *object_list  = NULL;
+  char         *filename     = NULL;
+  UNDO         *u_current;
+  UNDO         *u_current_next;
+  int           levels;
+
+  const char *file_err_msg;
+  const char *sys_err_msg;
+  const char *int_err_msg;
+
+  file_err_msg = _("Undo: encountered an error: file=<%s> %s\n");
+  sys_err_msg  = _("Undo: system error: <%d>, switching to MEMORY mode\n");
+  int_err_msg  = _("Internal Error: <%s> line <%d> u_current == NULL\n");
 
   /* save autosave backups if necessary */
   o_autosave_backups(w_current);
@@ -84,159 +94,167 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
     return;
   }
 
-  if (flag == UNDO_ALL) {
+  if (w_current->toplevel == NULL) {
+    BUG_MSG("toplevel == NULL");
+  }
+  else if (Current_Page == NULL) {
+    BUG_MSG("w_current->toplevel->current_page == NULL");
+  }
+  else {
 
-    /* Increment the number of operations since last backup if
-     *      auto-save is enabled */
-    if (toplevel->auto_save_interval != 0) {
-      Current_Page->ops_since_last_backup++;
+    if (flag == UNDO_ALL) {
+
+      /* Increment the number of operations since last backup if
+       *      auto-save is enabled */
+      if (toplevel->auto_save_interval != 0) {
+        Current_Page->ops_since_last_backup++;
+      }
+
+      /* HACK */
+      /* Before we save the undo state, consolidate nets as necessary */
+
+      /* This is where the net consolidation call would have been
+       * triggered before it was removed from o_save_buffer().
+       */
+      if (toplevel->net_consolidate == TRUE)
+        o_net_consolidate (toplevel, Current_Page);
     }
 
-    /* HACK */
-    /* Before we save the undo state, consolidate nets as necessary */
+    if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
 
-    /* This is where the net consolidation call would have been
-     * triggered before it was removed from o_save_buffer().
-     */
-    if (toplevel->net_consolidate == TRUE)
-      o_net_consolidate (toplevel, Current_Page);
-  }
+      filename = g_strdup_printf("%s%cgschem.save%d_%d.sch",
+                                 tmp_path, DIR_SEPARATOR,
+                                 prog_pid, undo_file_index++);
 
-  if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
-
-    filename = g_strdup_printf("%s%cgschem.save%d_%d.sch",
-                               tmp_path, DIR_SEPARATOR,
-                               prog_pid, undo_file_index++);
-
-    /* Changed from f_save to o_save when adding backup copy creation. */
-    /* f_save manages the creaton of backup copies.
-     *      This way, f_save is called only when saving a file, and not when
-     *      saving an undo backup copy */
-    o_save (toplevel, s_page_get_objects (Current_Page), filename, NULL);
-
-  }
-  else if (w_current->undo_type == UNDO_MEMORY && flag == UNDO_ALL) {
-    object_list = o_glist_copy_all (s_page_get_objects (Current_Page),
-                                    object_list);
-  }
-
-  /* Clear Anything above current */
-  if (Current_Page->undo_current) {
-    s_undo_remove_rest(toplevel,
-                       Current_Page->undo_current->next);
-    Current_Page->undo_current->next = NULL;
-  } else { /* undo current is NULL */
-    s_undo_remove_rest(toplevel,
-                       Current_Page->undo_bottom);
-    Current_Page->undo_bottom = NULL;
-  }
-
-  Current_Page->undo_tos = Current_Page->undo_current;
-
-  Current_Page->undo_tos =
-  s_undo_add(Current_Page->undo_tos,
-             flag, filename, object_list,
-             Current_Page->left,
-             Current_Page->top,
-             Current_Page->right,
-             Current_Page->bottom,
-             Current_Page->page_control,
-             Current_Page->up);
-
-  Current_Page->undo_current =
-  Current_Page->undo_tos;
-
-  if (Current_Page->undo_bottom == NULL) {
-    Current_Page->undo_bottom =
-    Current_Page->undo_tos;
-  }
-
-#if DEBUG
-  printf("\n\n---Undo----\n");
-  s_undo_print_all(Current_Page->undo_bottom);
-  printf("BOTTOM: %s\n", Current_Page->undo_bottom->filename);
-  printf("TOS: %s\n", Current_Page->undo_tos->filename);
-  printf("CURRENT: %s\n", Current_Page->undo_current->filename);
-  printf("----\n");
-#endif
-
-  GEDA_FREE(filename);
-
-  /* Now go through and see if we need to free/remove some undo levels */
-  /* so we stay within the limits */
-
-  /* only check history every 10 undo savestates */
-  if (undo_file_index % 10) {
-    return;
-  }
-
-  levels = s_undo_levels(Current_Page->undo_bottom);
-
-#if DEBUG
-  printf("levels: %d\n", levels);
-#endif
-
-  if (levels >= w_current->undo_levels + UNDO_PADDING) {
-    levels = levels - w_current->undo_levels;
-
-#if DEBUG
-    printf("Trimming: %d levels\n", levels);
-#endif
-
-    u_current = Current_Page->undo_bottom;
-
-    while (levels > 0) {
-      /* Because we use a pad you are always guaranteed to never */
-      /* exhaust the list */
-
-      if (u_current == NULL) {
-        u_log_message("Internal Error Detected: <o_undo_savestate:198> u_current == NULL\n");
-        return;
-      }
-      u_current_next = u_current->next;
-
-      if (u_current->filename) {
-#if DEBUG
-        printf("Freeing: %s\n", u_current->filename);
-#endif
-        unlink(u_current->filename);
-        GEDA_FREE(u_current->filename);
+      if (!o_save (s_page_get_objects (Current_Page), filename, &err)) {
+          u_log_message(file_err_msg, filename, err->message);
+          u_log_message(sys_err_msg, err->code);
+          g_clear_error (&err);
+          w_current->undo_type = UNDO_MEMORY;
+          s_undo_free_all (Current_Page);
+          object_list = o_glist_copy_all (s_page_get_objects (Current_Page),
+                                          object_list);
       }
 
-      if (u_current->object_list) {
-        s_object_release_objects (u_current->object_list);
-        u_current->object_list = NULL;
-      }
-
-      u_current->next = NULL;
-      u_current->prev = NULL;
-      GEDA_FREE(u_current);
-
-      u_current = u_current_next;
-      levels--;
+    }
+    else if (w_current->undo_type == UNDO_MEMORY && flag == UNDO_ALL) {
+      object_list = o_glist_copy_all (s_page_get_objects (Current_Page),
+                                      object_list);
     }
 
-    if (u_current == NULL) {
-      u_log_message("Internal Error Detected: <o_undo_savestate:225> u_current == NULL\n");
+    /* Clear Anything above current */
+    if (Current_Page->undo_current) {
+      s_undo_remove_rest(Current_Page->undo_current->next);
+      Current_Page->undo_current->next = NULL;
+    }
+    else { /* undo current is NULL */
+      s_undo_remove_rest(Current_Page->undo_bottom);
+      Current_Page->undo_bottom = NULL;
+    }
+
+    Current_Page->undo_tos = Current_Page->undo_current;
+
+    Current_Page->undo_tos = s_undo_add(Current_Page->undo_tos,
+                                        flag, filename, object_list,
+                                        Current_Page->left,
+                                        Current_Page->top,
+                                        Current_Page->right,
+                                        Current_Page->bottom,
+                                        Current_Page->page_control,
+                                        Current_Page->up);
+
+    Current_Page->undo_current = Current_Page->undo_tos;
+
+    if (Current_Page->undo_bottom == NULL) {
+      Current_Page->undo_bottom = Current_Page->undo_tos;
+    }
+
+#if DEBUG
+    printf("\n\n---Undo----\n");
+    s_undo_print_all       (Current_Page->undo_bottom);
+    printf("BOTTOM: %s\n",  Current_Page->undo_bottom->filename);
+    printf("TOS: %s\n",     Current_Page->undo_tos->filename);
+    printf("CURRENT: %s\n", Current_Page->undo_current->filename);
+    printf("----\n");
+#endif
+
+    GEDA_FREE(filename);
+
+    /* Now go through and see if we need to free/remove some undo levels */
+    /* so we stay within the limits */
+
+    /* only check history every 10 undo savestates */
+    if (undo_file_index % 10) {
       return;
     }
 
-    u_current->prev = NULL;
-    Current_Page->undo_bottom = u_current;
+    levels = s_undo_levels(Current_Page->undo_bottom);
 
 #if DEBUG
-    printf("New current is: %s\n", u_current->filename);
+    printf("levels: %d\n", levels);
+#endif
+
+    if (levels >= w_current->undo_levels + UNDO_PADDING) {
+      levels = levels - w_current->undo_levels;
+
+#if DEBUG
+      printf("Trimming: %d levels\n", levels);
+#endif
+
+      u_current = Current_Page->undo_bottom;
+
+      while (levels > 0) {
+        /* Because we use a pad we are always guaranteed to never */
+        /* exhaust the list */
+
+        if (u_current == NULL) {
+          break;
+        }
+        u_current_next = u_current->next;
+
+        if (u_current->filename) {
+#if DEBUG
+          printf("Freeing: %s\n", u_current->filename);
+#endif
+          unlink(u_current->filename);
+          GEDA_FREE(u_current->filename);
+        }
+
+        if (u_current->object_list) {
+          s_object_release_objects (u_current->object_list);
+          u_current->object_list = NULL;
+        }
+
+        u_current->next = NULL;
+        u_current->prev = NULL;
+        GEDA_FREE(u_current);
+
+        u_current = u_current_next;
+        levels--;
+      }
+
+      if (u_current == NULL) {
+        u_log_message(int_err_msg, __func__, __LINE__);
+      }
+      else {
+        u_current->prev = NULL;
+        Current_Page->undo_bottom = u_current;
+
+#if DEBUG
+        printf("New current is: %s\n", u_current->filename);
+#endif
+      }
+    }
+
+#if DEBUG
+    printf("\n\n---Undo----\n");
+    s_undo_print_all(Current_Page->undo_bottom);
+    printf("BOTTOM: %s\n", Current_Page->undo_bottom->filename);
+    printf("TOS: %s\n", Current_Page->undo_tos->filename);
+    printf("CURRENT: %s\n", Current_Page->undo_current->filename);
+    printf("----\n");
 #endif
   }
-
-#if DEBUG
-  printf("\n\n---Undo----\n");
-  s_undo_print_all(Current_Page->undo_bottom);
-  printf("BOTTOM: %s\n", Current_Page->undo_bottom->filename);
-  printf("TOS: %s\n", Current_Page->undo_tos->filename);
-  printf("CURRENT: %s\n", Current_Page->undo_current->filename);
-  printf("----\n");
-#endif
 }
 
 /*! \todo Finish function documentation!!!

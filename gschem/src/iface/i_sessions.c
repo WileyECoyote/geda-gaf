@@ -678,7 +678,7 @@ static void i_sessions_load_data(void)
   if(!g_file_test(path, G_FILE_TEST_EXISTS)) {
 
     /* There was no session directory so create an empty one */
-    f_create_path(path, S_IRWXU | S_IRWXG);
+    f_path_create(path, S_IRWXU | S_IRWXG);
 
   }
   else {
@@ -701,8 +701,8 @@ static void i_sessions_load_data(void)
           record.session_file = g_build_filename(path, file, NULL);
           record.page_count   = i_sessions_get_count(record.session_file);
 
-          tmpname = f_basename(file);
-          f_remove_extension(tmpname);
+          tmpname = f_get_basename(file);
+          f_file_remove_extension(tmpname);
 
           record.session_name = u_string_strdup(tmpname);
 
@@ -822,7 +822,7 @@ int i_sessions_delete_session(GschemToplevel *w_current, const char *name)
 int i_sessions_export_session(const char *name, const char *filename)
 {
   Session *record = i_session_get_record(name);
-  return f_copy (record->session_file, filename);
+  return f_file_copy (record->session_file, filename);
 }
 
 /*! \brief Create a New Session

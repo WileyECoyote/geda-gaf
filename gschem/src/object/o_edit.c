@@ -746,6 +746,7 @@ void o_edit_show_specific_text (GschemToplevel *w_current,
 void o_autosave_backups(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+  GError   *err;
   GList    *iter;
   Page     *p_save, *p_current;
   char     *backup_filename;
@@ -771,11 +772,13 @@ void o_autosave_backups(GschemToplevel *w_current)
       s_page_goto (toplevel, p_current);
 
       /* Get the real filename and file permissions */
-      real_filename = follow_symlinks (p_current->filename, NULL);
+      real_filename = f_file_follow_symlinks (p_current->filename, NULL);
 
       if (real_filename == NULL) {
-        u_log_message (_("o_autosave_backups: Can't get the real filename of %s."), p_current->filename);
-      } else {
+        u_log_message (_("%s: Can't get real filename of %s."),
+                       __func__, p_current->filename);
+      }
+      else {
         /* Get the directory in which the real filename lives */
         dirname = g_path_get_dirname (real_filename);
         only_filename = g_path_get_basename(real_filename);
@@ -813,8 +816,9 @@ void o_autosave_backups(GschemToplevel *w_current)
         GEDA_FREE (real_filename);
 
         /* Make the backup file writable before saving a new one */
-        if ( g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
-             (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR))) {
+        if (g_file_test (backup_filename, G_FILE_TEST_EXISTS) &&
+           (! g_file_test (backup_filename, G_FILE_TEST_IS_DIR)))
+        {
           saved_umask = umask(0);
           if (chmod(backup_filename, (S_IWRITE|S_IWGRP|S_IWOTH) &
                     ((~saved_umask) & 0777)) != 0) {
@@ -824,12 +828,11 @@ void o_autosave_backups(GschemToplevel *w_current)
           umask(saved_umask);
         }
 
-        if (o_save (toplevel,
-                    s_page_get_objects (toplevel->page_current),
-                    backup_filename, NULL)) {
-
+        if (o_save (s_page_get_objects (toplevel->page_current),
+                    backup_filename, &err))
+        {
           p_current->ops_since_last_backup = 0;
-                p_current->do_autosave_backup = 0;
+          p_current->do_autosave_backup = 0;
 
           /* Make the backup file readonly so a 'rm *' command will ask
              the user before deleting it */
@@ -842,9 +845,11 @@ void o_autosave_backups(GschemToplevel *w_current)
                            backup_filename);
           }
           umask(saved_umask);
-        } else {
-          u_log_message (_("Could NOT save backup file [%s]\n"),
-                         backup_filename);
+        }
+        else {
+          u_log_message (_("Could NOT save backup file <%s>: %s\n"),
+                            backup_filename, err->message);
+          g_clear_error (&err);
         }
         GEDA_FREE (backup_filename);
       }

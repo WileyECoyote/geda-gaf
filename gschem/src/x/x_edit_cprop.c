@@ -559,7 +559,7 @@ x_dialog_edit_properties_component_change(GschemToplevel *w_current,
 
     if (GEDA_IS_PAGE(page)) {
 
-      filename = f_basename(Current_Page->filename);
+      filename = f_get_basename(Current_Page->filename);
       SetEntryText(properties->symbol_entry, filename);
 
       /* symbol mode, get all objects on the page */

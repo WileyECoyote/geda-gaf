@@ -1391,7 +1391,7 @@ void recent_files_add(const char *filename)
    GEDA_FREE(basename);
 
    /* Normalize the filename. */
-   save_fn = f_normalize_filename (filename, &err);
+   save_fn = f_file_normalize_name (filename, &err);
    if (err != NULL) {
      save_fn = u_string_strdup (filename);
      g_error_free (err);
@@ -1485,7 +1485,7 @@ void recent_files_load()
    char *file = g_build_filename(f_path_user_config (), RECENT_FILES_STORE, NULL);
 
    if(!g_file_test(file, G_FILE_TEST_EXISTS)) {
-     f_create_path(f_path_user_config (), S_IRWXU | S_IRWXG);
+     f_path_create(f_path_user_config (), S_IRWXU | S_IRWXG);
 
       recent_files_create_empty();
    }

@@ -910,7 +910,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
          * to sort out the problem:
          */
         if( errno == ENOENT) { /* 100% sure file_err == ENOENT */
-          if( f_create_path (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
+          if( f_path_create (path, S_IRWXU | S_IRWXG) == NO_ERROR ) {
             u_log_message("Path \"%s\": did not exist\n, successfully created\n", path);
             page = empty_page(filename);
             errno = NO_ERROR;
@@ -1192,7 +1192,7 @@ x_window_close_page (GschemToplevel *w_current, Page *page)
         /* new_current will be the new current page at the end of the function */
       }
 
-      if ((u_string_strncmpi(f_basename(page->filename), "untitled", 8) != 0) ||
+      if ((u_string_strncmpi(f_get_basename(page->filename), "untitled", 8) != 0) ||
         verbose_mode)
       {
         u_log_message (page->CHANGED ? _("Discarding page [%s]\n") : _("Closing [%s]\n"),
@@ -1266,7 +1266,7 @@ void x_window_update_title(GschemToplevel *w_current)
           filename = Current_Page->filename;
         }
         else {
-          filename = f_basename(Current_Page->filename);
+          filename = f_get_basename(Current_Page->filename);
         }
 
       }
