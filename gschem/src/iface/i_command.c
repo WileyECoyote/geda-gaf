@@ -460,7 +460,7 @@ COMMAND (do_debug)
 
   float cpu_time[10];
   float total = 0;
-  float average, per_unit;
+  float average, per_obj;
   int   cycle, count;
   int   old_page_state;
   char *results;
@@ -495,8 +495,8 @@ COMMAND (do_debug)
       }
       average = total / 10;
       count   = g_list_length((GList*)s_page_get_objects(Current_Page));
-      per_unit = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
-      results = g_strdup_printf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_unit);
+      per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
+      results = g_strdup_printf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
       printf ("file=%s, has %d objects: %s\n", Current_Page->filename, count, results);
       msg = complete;
       g_free(results);
@@ -517,9 +517,9 @@ COMMAND (do_debug)
         }
         average = total / 10;
         count   = g_list_length(s_page_get_objects(Current_Page));
-        per_unit = ((average / count) * 1000) / NUMBER_UNDO_TEST;
+        per_obj = ((average / count) * 1000) / NUMBER_UNDO_TEST;
         printf ("file=%s, has %d objects after testing\n", Current_Page->filename, count);
-        results = g_strdup_printf("Average per 10 undo's= %.4f seconds, or %.5f ms per Undo", average, per_unit);
+        results = g_strdup_printf("Average per 10 undo's= %.4f seconds, or %.5f ms per Object", average, per_obj);
         printf ("%s\n", results);
         msg = complete;
         g_free(results);
