@@ -127,7 +127,6 @@ GList   *o_read_attribs           (GedaToplevel *toplevel, Object *receiving_obj
                                    unsigned int release_ver,  unsigned int fileformat_ver, GError **err);
 
 /* o_basic.c */
-char  *o_save_objects        (const GList *object_list, bool save_attribs);
 void   o_bounds_invalidate   (Object *object);
 
 /* o_box_basic.c */

@@ -17,8 +17,8 @@
 
           geda-gaf-2.0.8.10/utils/tests/gxyrs/outputs/chunits_units_not_supported-protel_example1_mil.txt-error: file name is too long (max 99); not dumped
 
-          Which is 102 characters long. Also renamed case_insens file to icase
-          for consistency.
+          Which has name that is 102 characters long. Also renamed case_insens
+          file to icase for consistency.
 
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 

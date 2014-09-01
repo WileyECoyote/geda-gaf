@@ -1,4 +1,4 @@
-/* -*- C header file: f_utilities.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- C header file: f_file.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * Copyright (C) 2013-2014 Wiley Edward Hill
  * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
@@ -22,7 +22,7 @@
  * Contributing Author: Wiley Edward Hill
  *
 */
-/*! \file f_files.c
+/*! \file f_file.c
  *  \brief utilility file functions
  */
 
@@ -159,7 +159,7 @@ int f_file_copy(const char *source, const char *target)
  *          otherwise.
  *
  *  \note Originally taken from gedit's source code.
- *  \TODO Get rid of MAXPATHLEN
+ *  TODO: Get rid of MAXPATHLEN
  */
 char *f_file_follow_symlinks (const char *filename, GError **err)
 {

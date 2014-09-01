@@ -38,8 +38,9 @@ static char* tmp_path = NULL;
 
 /*! \brief Inititialize Undo System
  *  \par Function Description
- *  This function obtains the process ID and temporary directory path for
- *  later use, and retrieves user settings affecting the UNDO system.
+ *  This function obtains the process ID and temporary directory path
+ *  for later use when using the "disk" type undo, and retrieves user
+ *  settings affecting the UNDO system.
  */
 void o_undo_init(GschemToplevel *w_current)
 {
@@ -126,14 +127,49 @@ void o_undo_finalize(void)
   GEDA_FREE(tmp_path);
 }
 
+
 /*! \brief Undo Save State
  *  \par Function Description
- *   This function is called to push the current state onto the
- *   undo buffer.
+ *   This is a multipurpose function with two main purposes:
+ *
+ *   1. o_undo_savestate is part of the automatic backup system
+ *      In this role, the function checks if automatic backups
+ *      are enables and calls o_save_auto_backup to perform any
+ *      required backups. This is done first. Note that o_auto
+ *      save_backups could perform backups on any number of
+ *      files before returning.
+ *
+ *      \note WEH: o_save_auto_backup uses o_save, same as us.
+ *
+ *      TODO:o_undo_savestate does not currently check if the
+ *      backup system is enabled via the auto_save_interval
+ *      variable, nor does o_save_auto_backup. o_undo_savestate
+ *      blindly calls o_save_auto_backup, which backs up all files
+ *      flaged by timer s_page_autosave with do_autosave_backup
+ *      AND marked here with ops_since_last_backup if interval
+ *      is none zero, but after the call to o_save_auto_backup.
+ *      Sounds hokey huh?  It works because the change was just
+ *      made or we wouldn't be here, the file will flaged when
+ *      the timer counts down, and backed-up the next time a
+ *      change is made, i mean o_undo_savestate is called. So
+ *      is not all bad but what if Wiley makes an important
+ *      change and then goes for donuts and coffee and forgets
+ *      to save and comes the to find his puter won't come out
+ *      of sleep mode? What if timer spawned a one-shot deadman
+ *      killed here?
+ *
+ *   2. AFTER satisfying 1 above, the function checks if an UNDO
+ *      type is enabled and performs the necessary operations to
+ *      push the current state onto an undo buffer, aka either
+ *      the entire file is saved to the tmp directory or a copy
+ *      of all of the objects are saved in memory and referenced
+ *      in a glist. TODO: In this capacity the UNDO system is
+ *      inefficient and makes no attempt to determine what has
+ *      be changed in the data.
  *
  *  \param [in] w_current The toplevel environment.
  *  \param [in] flag      integer <B>\a flag</B> can be one of the
- *                       following values:
+ *                        following values:
  *  \par
  *  <DL>
  *    <DT>UNDO_ALL</DT>
@@ -158,8 +194,8 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   sys_err_msg  = _("Undo: system error: <%d>, switching to MEMORY mode\n");
   int_err_msg  = _("Internal Error: <%s> line <%d> u_current == NULL\n");
 
-  /* save autosave backups if necessary */
-  o_autosave_backups(w_current);
+  /* save auto save backups if necessary */
+  o_save_auto_backup(w_current->toplevel);
 
   if (w_current->undo_control == FALSE) {
     return;

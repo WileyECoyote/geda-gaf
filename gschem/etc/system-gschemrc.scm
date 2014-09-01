@@ -987,7 +987,9 @@
 ; the storing medium (ie after every action the undo information is stored
 ; to disk).  The other mechanism uses only memory.  The disk mechanism is
 ; nice because you get undo-level number of backups of the schematic written
-; to disk as backups so you should never lose a schematic due to a crash.
+; to disk as backups so you should never lose a schematic due to a crash,
+; the memory type is faster doesn't clutter the file system with stranded
+; file in the event of a crash.
 ;
 ;(undo-type "disk")
 ;(undo-type "memory")

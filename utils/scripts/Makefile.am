@@ -9,32 +9,32 @@ SHdir	 =  $(TARGET_DIR)
 PERLdir	 =  $(TARGET_DIR)
 PYdir	 =  $(TARGET_DIR)
 
-SH_SCRIPTS	     = gcheck-library \
-				   gfix-library \
-                   gnet_hier_verilog \
-                   gpstoimage
+SH_SCRIPTS	 = gcheck-library \
+		   gfix-library \
+		   gnet_hier_verilog \
+		   gpstoimage
 
 PERL_SCRIPTS	 = gsymfix.pl gschupdate.pl gsymupdate.pl \
-				   pads_backannotate.pl pcb_backannotate.pl \
-				   refdes_renum.pl \
-                   sarlacc_sym.pl \
-                   scale-schematic.pl \
-                   schdiff.pl \
-                   verilog2vhdl.pl
+		   pads_backannotate.pl pcb_backannotate.pl \
+		   refdes_renum.pl \
+		   sarlacc_sym.pl \
+		   scale-schematic.pl \
+		   schdiff.pl \
+		   verilog2vhdl.pl
 
-PY_SCRIPTS 	     = garchive.py \
-                   gclean-symbol.py \
-                   tragesym.py
+PY_SCRIPTS 	 = garchive.py \
+		   gclean-symbol.py \
+		   tragesym.py
 
-installer	     = geda-install \
-                   geda-install-bin
+installer	 = geda-install \
+		   geda-install-bin
 
 noinst_SCRIPTS	 = convert_sym.awk sw2asc.awk $(installer)
 
 #enble this for distcheck
 distcheck:
 dist_bin_SCRIPTS = $(PERL_SCRIPTS) $(PY_SCRIPTS) $(SH_SCRIPTS) \
-				   $(noinst_SCRIPTS)
+		   $(noinst_SCRIPTS)
 
 .pl:
 	@for script in $(PERL_SCRIPTS); do \

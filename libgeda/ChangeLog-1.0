@@ -1,3 +1,9 @@
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_save.c: New file with 3 o_save_xxx functions
+      relocated from o_basic.c and o_autosave_backups relocated
+      from gschem::o_edit.c and renamed o_save_auto_backup.
+
 2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_basic.c: Add new function m_random_number, tried

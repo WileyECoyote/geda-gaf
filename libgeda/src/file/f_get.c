@@ -1,4 +1,4 @@
-/* -*- C header file: f_utilities.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+/* -*- C header file: f_get.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
  *
  * Copyright (C) 2013-2014 Wiley Edward Hill
  * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
@@ -395,8 +395,8 @@ const char *f_get_filename_ext(const char *filename) {
 
 /*! \brief Get the file header string.
  *  \par Function Description
- *  This function returns the #DATE_VERSION and #FILEFORMAT_VERSION
- *  formatted as a gEDA file header.
+ *  This function returns the PACKAGE_DATE_VERSION and
+ *  #FILEFORMAT_VERSION formatted as a gEDA file header.
  *
  *  \remarks <em>Do not</em> free the returned string.
  */

@@ -55,6 +55,7 @@
 #ifdef HAVE_UNISTD_H
 #include <unistd.h>
 #endif
+
 #include "libgeda_priv.h"
 
 
@@ -578,44 +579,58 @@ void s_page_autosave_init(GedaToplevel *toplevel)
 
 /*! \brief Autosave callback function.
  *  \par Function Description
- *  This function is a callback of the glib g_timeout functions.
- *  It is called every "interval" milliseconds and it sets a flag to save
+ *  This function is a g_timeout callback functions that is called
+ *  every "interval" milliseconds and check and sets a flag to save
  *  a backup copy of the opened pages.
  *
+ *  Applications can check the flag to determine if a backup should be
+ *  created, the check could be done in an Undo function so that files
+ *  that change get backed-up and opened files with no user activity
+ *  are not.
+ *
+ *  The reason for using the auto_save_interval as the return value is
+ *  so that if the applications wants to kill the source, maybe because
+ *  the user changed the settings, then the accessible variable can be
+ *  set to zero, and when the function returns the zero to glib, the
+ *  source will be destroyed.
+ *
+ *  TODO: ops_since_last_backup, incremented in the gschem::undo pusher
+ *  and checked here and reset in "the" backup performer, appears to be
+ *  part of an incomplete backup-threshold feature and is otherwise just
+ *  a redundant page modified flag.
+ *
  *  \param [in] toplevel  The GedaToplevel object.
- *  \return The length in milliseconds to set for next interval.
+ *
+ *  \return The auto_save_interval setting.
  */
 int s_page_autosave (GedaToplevel *toplevel)
 {
   const GList *iter;
-  Page *p_current;
+        Page  *p_current;
 
   if (toplevel == NULL) {
+    u_log_message (_("Disabling auto save timer, no toplevel"));
     return 0;
   }
 
-  /* Do nothing if the interval is 0 */
-  if (toplevel->auto_save_interval == 0) {
-    return toplevel->auto_save_interval;
-  }
+  /* Do nothing if the interval is 0, we will not be called again */
+  if (toplevel->auto_save_interval != 0) {
 
-  /* Should we just disable the autosave timeout returning 0 or
-   *    just wait for more pages to be added? */
-  if ( toplevel->pages == NULL)
-    return toplevel->auto_save_interval;
+    if ( toplevel->pages != NULL) {
 
-  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
-  {
-    p_current = (Page *)iter->data;
+      for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+      {
+        p_current = (Page *)iter->data;
 
-    if (p_current->CHANGED){
-      if (p_current->ops_since_last_backup != 0) {
-        /* Real autosave is done in o_undo_savestate */
-        p_current->do_autosave_backup = 1;
+        if (p_current->CHANGED) {
+          if (p_current->ops_since_last_backup != 0) {
+            /* Real autosave is done in o_undo_savestate */
+            p_current->do_autosave_backup = 1;
+          }
+        }
       }
     }
   }
-
   return toplevel->auto_save_interval;
 }
 

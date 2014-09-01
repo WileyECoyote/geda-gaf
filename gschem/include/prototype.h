@@ -405,7 +405,6 @@ void o_edit_show_netnames         (GschemToplevel *w_current, const GList *o_lis
 int  o_edit_find_text             (GschemToplevel *w_current, const GList *o_list, const char *stext, int descend, int skip);
 void o_edit_hide_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
 void o_edit_show_specific_text    (GschemToplevel *w_current, const GList *o_list, const char *stext);
-void o_autosave_backups           (GschemToplevel *w_current);
 OBJ *o_edit_update_component      (GschemToplevel *w_current, Object *o_current);
 
 /* o_find.c */

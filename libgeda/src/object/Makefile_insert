@@ -20,6 +20,7 @@ libgeda_la_SOURCES += \
 			object/o_path_basic.c \
 			object/o_picture.c \
 			object/o_pin_basic.c \
+			object/o_save.c \
 			object/o_selection.c \
 			object/o_set.c \
 			object/o_style.c \

@@ -61,6 +61,7 @@ libgeda/src/object/o_notify.c
 libgeda/src/object/o_path_basic.c
 libgeda/src/object/o_picture.c
 libgeda/src/object/o_pin_basic.c
+libgeda/src/object/o_save.c
 libgeda/src/object/o_selection.c
 libgeda/src/object/o_set.c
 libgeda/src/object/o_style.c

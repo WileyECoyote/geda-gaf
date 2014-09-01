@@ -1,5 +1,11 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/o/o_edit.c: Relocated function o_autosave_backups to
+      libgeda::o_save::o_save_auto_backup, seems like a better
+      place, did not really "fit" in with any gschem module.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/base/gschem.c: Moved o_undo_init after the log initialization so
       that if command-line -t options is used, the event will be logged.
 
@@ -70,11 +76,11 @@
 
 2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/o/o_basic.c: Separate and rename module o_invalidate.c and o_redraw.c,
-      and rename member functions with module prefix.
+    * src/o/o_basic.c: Separate and rename module o_invalidate.c and
+      o_redraw.c, and rename member functions with module prefix.
 
-    * src/o/o_misc.c: Rename module o_edit and and rename member functions with
-      module prefix, remove unsed function o_draw_color.
+    * src/o/o_misc.c: Rename module o_edit and and rename member functions
+      with module prefix, remove unsed function o_draw_color.
 
 2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -128,8 +128,7 @@ const char   *f_path_user_config            (void);
       void    o_attrib_thaw_hooks                       (Object *object);
 
 /* o_basic.c */
-      char   *o_save_buffer            (const GList *object_list);
-      int     o_save                   (const GList *object_list, const char *filename, GError **err);
+
       GList  *o_read_buffer            (GedaToplevel *toplevel, GList *object_list, const char *buffer,
                                         const int size, const char *name, GError **err);
       GList  *o_read                   (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
@@ -299,6 +298,12 @@ const char   *o_picture_get_filename        (Object *object);
 const char   *o_pin_get_electrical          (Object *object);
 const char   *o_pin_get_label               (Object *object);
 const char   *o_pin_get_mechanical          (Object *object);
+
+/* o_save.c */
+      void    o_save_auto_backup            (GedaToplevel *toplevel);
+      char   *o_save_objects                (const GList *object_list, bool save_attribs);
+      char   *o_save_buffer                 (const GList *object_list);
+      int     o_save                        (const GList *object_list, const char *filename, GError **err);
 
 /* o_selection.c */
  SELECTION   *o_selection_new               (void);
