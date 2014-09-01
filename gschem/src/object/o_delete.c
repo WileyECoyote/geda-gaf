@@ -40,8 +40,6 @@ void o_delete (GschemToplevel *w_current, Object *object)
   s_page_remove_object (toplevel->page_current, object);
   g_run_hook_object    (w_current, "%remove-objects-hook", object);
   s_object_release      (object);
-
-  toplevel->page_current->CHANGED = 1;
 }
 
 /*! \brief Delete objects from the selection.
