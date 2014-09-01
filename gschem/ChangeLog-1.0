@@ -1,5 +1,15 @@
 2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Relocated diagnostic dialog to a separate file,
+      still compiled with i_command module. Extensive revisions in function
+      i_cmd_do_debug (essentially a responder still located in i_command.c).
+
+    * src/iface/diagnostics.c: New file with performance diagnostics dialog
+      code previously located in i_command.c; dialog extensively revised and
+      a performance test for the Undo system was added.
+
+2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/o/o_delete.c: Delete page_current->CHANGED from o_delete, libgeda
       already sets the flag in s_page_remove_object.
 

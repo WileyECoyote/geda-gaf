@@ -252,7 +252,7 @@ void o_move_end(GschemToplevel *w_current)
     object = (Object *) selection_list->data;
 
     if (object == NULL) {
-      fprintf(stderr, _("ERROR: NULL object in o_move_end!\n"));
+      BUG_MSG("NULL object in o_move_end!");
       return;
     }
 

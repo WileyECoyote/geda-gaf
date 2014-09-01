@@ -32,14 +32,16 @@
 
 #include <geda_debug.h>
 
-//#define PERFORMANCE
+#define PERFORMANCE
 #ifdef PERFORMANCE
+
 # include <sys/time.h>
 # include <sys/resource.h>
 # include "rusage/tlpi_hdr.h"
 #endif
 
 #define NUMBER_REDRAW_TEST     100
+#define NUMBER_UNDO_TEST        10
 
 #define USE_POSIX
 #define MAX_THREADS              12
@@ -55,9 +57,22 @@
 #define COMMAND(symbol, repeat, aflag,  func) [ cmd_##func ] = \
 { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, {0, 0}, 0, 0, 0},
 
-static bool performance_diagnostics = FALSE;
+/*! \brief Enumerated Performance Diagnostics Directives
+ *  \par Description
+ *  Performance Diagnostics directives are include in the build if
+ *  the PERFORMANCE options is defined. These enumerator are for
+ *  dialog responses to the Diagnostics dialog, which is accessible
+ *  by typing "debug" in the command console.
+ */
+typedef enum { CLOSE_PERFORMANCE, /* = 0, means not compiled in */
+               TOGGLE_RUSAGE_DATA,
+               RUN_REDRAW_TESTS,
+               RUN_UNDO_TESTS,
+} EID_PERFORMANCE;
 
 #ifdef PERFORMANCE
+
+static bool performance_diagnostics = FALSE;
 
 void printRusage(const char *leader, const struct rusage *ru)
 {
@@ -426,123 +441,102 @@ static inline char *tokenizer( int index, int *argc, char **argv[])
 #define BEGIN_NO_ARGUMENT(efunc) GEDA_FREE(CMD_OPTIONS(efunc))
 #define HOT_ACTION(symbol) (((CMD_WHO(symbol)==ID_ORIGIN_KEYBOARD) || (CMD_WHO(symbol)==ID_ORIGIN_MOUSE)) && (CMD_Y(symbol) != 0))
 
-static float test_draw_time(GschemToplevel *w_current, int attempts)
-{
-
- #ifdef PERFORMANCE
-
-   GdkDisplay   *display;
-   struct rusage before;
-   struct rusage after;
-   float a_cputime, b_cputime, e_cputime;
-   float a_systime, b_systime, e_systime;
-//   double micros;
-//   float seconds;
-//   clock_t start, end;
-   int i;
-
-   display = gdk_display_get_default();
-   gdk_display_flush(display);
-
-   gtk_window_present (GTK_WINDOW(w_current->main_window));
-
-   getrusage(RUSAGE_SELF, &before);
-   for( i = 0; i < attempts; i++) {
-     gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
-     gdk_window_process_updates(w_current->window, FALSE);;
-   }
-   getrusage(RUSAGE_SELF, &after);
-/*
-   start = clock();
-   for( i = 0; i < attempts; i++) {
-     gdk_window_invalidate_rect (w_current->window, NULL, FALSE);
-     gdk_window_process_updates(w_current->window, FALSE);;
-   }
-   end = clock();
-*/
-   a_cputime = after.ru_utime.tv_sec + after.ru_utime.tv_usec / 1000000.0;
-   b_cputime = before.ru_utime.tv_sec + before.ru_utime.tv_usec / 1000000.0;
-   e_cputime = a_cputime - b_cputime;
-   a_systime = after.ru_stime.tv_sec + after.ru_stime.tv_usec / 1000000.0;
-   b_systime = before.ru_stime.tv_sec + before.ru_stime.tv_usec / 1000000.0;
-   e_systime = a_systime - b_systime;
-/*
-   micros = end - start;
-   seconds = micros / 1000000;
-
-   printf("Redraw %d tines, CPU time (secs): user=%.4f; system=%.4f; real=%.4f\n",
-           attempts, e_cputime, e_systime, seconds);
-*/
-  printf("Redraw %d tines, CPU time (secs): user=%.4f; system=%.4f\n",
-           attempts, e_cputime, e_systime);
-
-   return e_cputime;
+#ifdef PERFORMANCE
+#  include "i_diagnostics.c"
 #else
-  printf("test_draw_time: performance_diagnostic is not enable\n");
-  return 0.0;
-#endif
-}
-
-
 int gschem_diagnostics_dialog (GschemToplevel *w_current)
 {
-  GtkWidget *dialog;
-  int r;
-  gschem_threads_enter();
-  dialog =  gtk_dialog_new_with_buttons ("GSCHEM Internal Diagnostics",
-                                        (GtkWindow*) w_current->main_window,
-                                         GTK_DIALOG_MODAL | GTK_DIALOG_DESTROY_WITH_PARENT,
-                                         "Show Thread Stats", GTK_RESPONSE_OK,
-                                         "Toggle rusage data", GTK_RESPONSE_APPLY,
-                                         "Run Redraw Tests", GTK_RESPONSE_YES,
-                                         GTK_STOCK_CLOSE,  GTK_BUTTONS_CLOSE,
-                                         NULL);
-
-  r = gtk_dialog_run (GTK_DIALOG (dialog));
-
-  gtk_widget_destroy (dialog);
-  gschem_threads_leave();
-  return r;
+  return 0;
 }
+#endif
+
 /* -------------------- Begin Handler Functions ------------------- */
+
 COMMAND (do_debug)
 {
   BEGIN_COMMAND(do_debug);
 
-  //msgbox("The string is \"%s\"\n and the integer is %d", arg, narg);
+#ifdef PERFORMANCE
+
+  float cpu_time[10];
+  float total = 0;
+  float average, per_unit;
+  int   cycle, count;
+  int   old_page_state;
+  char *results;
+
+  const char *msg;
+  const char *normal   = "exiting performance diagnostic, resumming normal mode\n";
+  const char *complete ="Test complete, resumming normal mode\n";
+  const char *linefeed ="\n";
+
   int test = gschem_diagnostics_dialog(w_current);
 
-  if (test == GTK_RESPONSE_OK) {
-    if(is_engaged) {
-      int nt = g_thread_pool_get_num_threads (CommandPool);
-      int up = g_thread_pool_unprocessed (CommandPool);
-      int it = g_thread_pool_get_max_idle_time()/1000;
-      msgbox("The number of threads is %d, of which %d are pending, max idle is %d seconds\n", nt, up, it);
-    }
-  }
-  if (test == GTK_RESPONSE_APPLY) {
-    performance_diagnostics = performance_diagnostics ? FALSE : TRUE;
-  }
-  if (test == GTK_RESPONSE_YES) {
-    float cpu_time[10];
-    float total = 0;
-    float average, per_obj;
-    int   cycle, count;
-    char *results;
-    printf ("Running Redraw, 10 cycles * %d redraws per cycle\n", NUMBER_REDRAW_TEST);
-    for (cycle = 0; cycle < 10; cycle++) {
-      cpu_time[cycle] = test_draw_time(w_current, NUMBER_REDRAW_TEST);
-      total = total + cpu_time[cycle];
-    }
-    average = total / 10;
-    count   = g_list_length((GList*)s_page_get_objects(Current_Page));
-    per_obj = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
-    results = g_strdup_printf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_obj);
-    printf ("file=%s, has %d objects: %s\n", Current_Page->filename, count, results);
-    printf ("Test complete, resumming normal mode\n");
-    g_free(results);
-  }
+  old_page_state = Current_Page->CHANGED;
 
+  switch ( test ) {
+
+    case CLOSE_PERFORMANCE:
+      msg = normal;
+      break;
+
+    case TOGGLE_RUSAGE_DATA:
+      performance_diagnostics = performance_diagnostics ? FALSE : TRUE;
+      printf ("toggled performance_diagnostics: state=<%d>", performance_diagnostics);
+      msg = linefeed;
+      break;
+
+    case RUN_REDRAW_TESTS:
+
+      printf ("Running Redraw tests, 10 cycles x %d redraws per cycle\n", NUMBER_REDRAW_TEST);
+      for (cycle = 0; cycle < 10; cycle++) {
+        cpu_time[cycle] = test_draw_time(w_current, NUMBER_REDRAW_TEST);
+        total = total + cpu_time[cycle];
+      }
+      average = total / 10;
+      count   = g_list_length((GList*)s_page_get_objects(Current_Page));
+      per_unit = ((average / count) * 1000) / NUMBER_REDRAW_TEST;
+      results = g_strdup_printf("Average per 10 redraws= %.4f seconds, or %.5f ms per object", average, per_unit);
+      printf ("file=%s, has %d objects: %s\n", Current_Page->filename, count, results);
+      msg = complete;
+      g_free(results);
+      break;
+
+    case RUN_UNDO_TESTS:
+      count   = g_list_length(s_page_get_objects(Current_Page));
+      if (count > NUMBER_UNDO_TEST - 1) {
+        printf ("file=%s, has %d objects before testing\n", Current_Page->filename, count);
+        printf ("undo system type: %s, ", (w_current->undo_type == UNDO_DISK) ? "DISK" : "MEMORY");
+        printf ("undo capacity (levels): %d, undo pan-zoom setting: %d\n", w_current->undo_levels,
+                                                                           w_current->undo_panzoom );
+        printf ("Running Undo tests, 10 cycles x %d Undo per cycle\n", NUMBER_UNDO_TEST);
+        for (cycle = 0; cycle < 10; cycle++) {
+          test_undo_randomly_delete (w_current, NUMBER_UNDO_TEST);
+          cpu_time[cycle] = test_undo_time(w_current, NUMBER_UNDO_TEST);
+          total = total + cpu_time[cycle];
+        }
+        average = total / 10;
+        count   = g_list_length(s_page_get_objects(Current_Page));
+        per_unit = ((average / count) * 1000) / NUMBER_UNDO_TEST;
+        printf ("file=%s, has %d objects after testing\n", Current_Page->filename, count);
+        results = g_strdup_printf("Average per 10 undo's= %.4f seconds, or %.5f ms per Undo", average, per_unit);
+        printf ("%s\n", results);
+        msg = complete;
+        g_free(results);
+      }
+      else {
+        printf ("Can not run tests, must have at least %d objects, count=%d\n", NUMBER_UNDO_TEST, count);
+      }
+      break;
+
+    default:
+      break;
+  }
+  printf("%s", msg);
+#else
+  printf("Performance_diagnostic is not enable, must recompile\n");
+#endif
+  Current_Page->CHANGED = old_page_state;
   EXIT_COMMAND(do_debug);
 }
 

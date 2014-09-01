@@ -85,7 +85,7 @@ x_dialog_coord_dnd_drag_receive
 #if DEBUG  || DEBUG_DND_EVENTS
   const char *WidgetId;
   WidgetId = gtk_widget_get_name (widget);
-  g_print ("%s: x_dialog_coord_dnd_drag_receive:", WidgetId);
+  g_print ("%s: %s:", WidgetId, __func__);
 #endif
 
   toplevel = w_current->toplevel;
@@ -541,11 +541,11 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
                       w_current);
 
   /* Make the world_entry a DnD destination. */
-  gtk_drag_dest_set (world_entry,               /* Our widget that will accept the drop */
-                     GTK_DEST_DEFAULT_MOTION,   /* default actions for dest on DnD */
-                     dnd_target_list,           /* lists of targets we support */
-                     dnd_ntargets,              /* size of list */
-                     GDK_ACTION_COPY);          /* what to do with data after dropped */
+   gtk_drag_dest_set (world_entry,               /* Our widget that will accept the drop */
+                      GTK_DEST_DEFAULT_MOTION,   /* default actions for dest on DnD */
+                      dnd_target_list,           /* lists of targets we support */
+                      dnd_ntargets,              /* size of list */
+                      GDK_ACTION_COPY);          /* what to do with data after dropped */
 
     gtk_widget_show(ThisDialog);
 
