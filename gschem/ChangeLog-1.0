@@ -1,5 +1,10 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_sessions.c: Change u_log_message to v_log_message in
+      i_session_close_all, is too noisy.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_undo.c: Exert due diligence to find a read-writable
       temporary directory in o_undo_init, alert user and switch to type
       UNDO_MEMORY if unsuccessful. Add doxygen grouping and some source

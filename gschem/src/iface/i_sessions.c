@@ -182,7 +182,7 @@ static bool i_session_close_all (GschemToplevel *w_current)
 
   if (close_all) {          /* Still want to close all? */
 
-    q_log_message(_("Closing all documents\n"));
+    v_log_message(_("Closing all documents\n"));
 
     /* Loop through all the pages */
     for ( iter = pages; iter != NULL; NEXT(iter))
