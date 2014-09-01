@@ -326,7 +326,7 @@ void select_all_text_in_textview(GtkTextView *textview)
     gtk_text_buffer_select_range(textbuffer, &start, &end);
   }
   else
-    g_warning("select_all_text: parameter is not a textview widget\n");
+    BUG_MSG("parameter is not a textview widget");
 }
 
 /*! \todo Finish function documentation!!!
@@ -2776,7 +2776,7 @@ void x_dialog_text_input (GschemToplevel *w_current)
                               tab_array);
     }
     else {
-      g_warning ("x_dialog_text_input: Impossible to set tab width.\n");
+      g_warning ("%s: Impossible to set tab width.\n", __func__);
     }
     pango_tab_array_free (tab_array);
     gtk_container_add(GTK_CONTAINER(scrolled_window), tientry);

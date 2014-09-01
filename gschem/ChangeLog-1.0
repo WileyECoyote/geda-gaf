@@ -1,3 +1,25 @@
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_undo.c: Exert due diligence to find a read-writable
+      temporary directory in o_undo_init, alert user and switch to type
+      UNDO_MEMORY if unsuccessful. Add doxygen grouping and some source
+      documentation. Performance result (so far), based on average of
+      500 undo operations for each type, 308 objects:
+
+                  seconds per  | Avg seconds  | milli-seconds
+                    10 Undo    | per 1 Undo   |  per object
+      --------------------------------------------------------
+      UNDO_MEMORY   0.4790     |   0.0479     |    0.1555
+      UNDO DISK     0.6306     |   0.0631     |    0.2048
+
+      This is before any real tweeking, but o_basic.c::o_save was revised
+      to use fopen/fputs/fclose back in 2012-10-31, and that has to be a
+      major performance boost. The master branch still uses the hideously
+      despicable g_file_set_contents.
+      These results seems unreasonably fast; I4820@3.7GHz, i.e. 4 channel
+      1600MHz memory with dual 840 Pro SSD`s (read speeds > 1.7GHz/s) =>
+      good development machine, maybe not so good for performance testing.
+
 2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Relocated diagnostic dialog to a separate file,

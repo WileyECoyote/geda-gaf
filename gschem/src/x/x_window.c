@@ -1245,11 +1245,10 @@ void x_window_set_cursor(GschemToplevel *w_current, int cursor_id)
 /*! \brief Set filename as gschem window title
  *
  *  \par Function Description
- *  Set filename as gschem window title using
- *  the gnome HID format style.
+ *  Set filename as gschem window title using the Qt HID
+ *  format style.
  *
  *  \param [in] w_current GschemToplevel structure
- *  \param [in] string The filename
  */
 void x_window_update_title(GschemToplevel *w_current)
 {

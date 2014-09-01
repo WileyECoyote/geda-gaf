@@ -21,6 +21,10 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+/** \defgroup gschem-undo-system Gschem Undo System
+ *  @{ \par This Group contains Routines for Undo and Redo.
+ */
+
 static int undo_file_index=0;
 
 static char* tmp_path = NULL;
@@ -39,7 +43,13 @@ static char* tmp_path = NULL;
  */
 void o_undo_init(GschemToplevel *w_current)
 {
-  EdaConfig *cfg = eda_config_get_user_context ();
+  EdaConfig  *cfg = eda_config_get_user_context ();
+  const char *msg_not_rw;
+  const char *msg_use_mem;
+  const char *tmp_tmp;
+
+  msg_not_rw  = _("Directory: %s is not read/writable, check permissions.");
+  msg_use_mem = _("<b>Auto switching Undo system to type Memory</b>");
 
   prog_pid = getpid();
 
@@ -48,14 +58,62 @@ void o_undo_init(GschemToplevel *w_current)
   i_var_restore_global_boolean(cfg, "undo-panzoom", &w_current->undo_panzoom, FALSE);
   i_var_restore_global_boolean(cfg, "undo-type",    &w_current->undo_type,    UNDO_DISK);
 
-  tmp_path = u_string_strdup (g_getenv("TMP"));
-  if (tmp_path == NULL) {
-     tmp_path = u_string_strdup ("/tmp");
+  tmp_path = NULL;
+  tmp_tmp = getenv("TMP");
+  if (tmp_tmp != NULL) {
+    if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
+      tmp_path = u_string_strdup(tmp_tmp);
+    }
   }
-#if DEBUG
-  printf("%s\n", tmp_path);
-#endif
+  if (tmp_path == NULL) {
+    tmp_tmp = getenv("TMPDIR");
+    if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
+      tmp_path = u_string_strdup(tmp_tmp);
+    }
+  }
+  if (tmp_path == NULL) {
+    tmp_tmp = getenv("TEMP");
+    if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
+      tmp_path = u_string_strdup(tmp_tmp);
+    }
+  }
+  if (tmp_path == NULL) {
+    tmp_path = u_string_strdup(g_get_tmp_dir());
+  }
 
+  if (w_current->undo_type == UNDO_DISK) {
+    if ((access(tmp_path, R_OK) != 0) || (access(tmp_path, W_OK) != 0)) {
+      char *errmsg = u_string_sprintf (msg_not_rw, tmp_path);
+      titled_pango_warning_dialog (msg_use_mem,  errmsg, _("Gschem Undo System"));
+      GEDA_FREE(errmsg);
+      w_current->undo_type = UNDO_MEMORY;
+    }
+  }
+}
+
+/*! \brief Finalize the Undo System
+ *  \par Function Description
+ *  This function is called by gschem::gschem_quit() at program
+ *  shutdown in order to release memory allocated by the Undo
+ *  system and remove the temporary files. The individual Undo
+ *  structures associated with each page were freed when the
+ *  pages were destroyed so the only memory to potentially
+ *  release is the path to the tmp directory.
+ *
+ */
+void o_undo_finalize(void)
+{
+  int i;
+  char *filename;
+
+  for (i = 0 ; i < undo_file_index; i++) {
+    filename = g_strdup_printf(UNDO_FILE_PATTERN, tmp_path,
+                               DIR_SEPARATOR, prog_pid, i);
+    unlink(filename);
+    GEDA_FREE(filename);
+  }
+
+  GEDA_FREE(tmp_path);
 }
 
 /*! \brief Undo Save State
@@ -63,12 +121,13 @@ void o_undo_init(GschemToplevel *w_current)
  *   This function is called to push the current state onto the
  *   undo buffer.
  *
- * \param [in] w_current The toplevel environment.
- * \param [in] flag      integer <B>\a flag</B> can be one of the
+ *  \param [in] w_current The toplevel environment.
+ *  \param [in] flag      integer <B>\a flag</B> can be one of the
  *                       following values:
+ *  \par
  *  <DL>
- *    <DD>UNDO_ALL</DD>
- *    <DD>UNDO_VIEWPORT_ONLY</DD>
+ *    <DT>UNDO_ALL</DT>
+ *    <DT>UNDO_VIEWPORT_ONLY</DT>
  *  </DL>
  */
 void o_undo_savestate(GschemToplevel *w_current, int flag)
@@ -259,10 +318,10 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+
+/*! \brief Find file name associated with previous Undo operation
  *  \par Function Description
- *
+ *  This function is only used for UNDO_DISK
  */
 char *o_undo_find_prev_filename(UNDO *start)
 {
@@ -280,10 +339,10 @@ char *o_undo_find_prev_filename(UNDO *start)
   return(NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
+/*! \brief Find Objects associated with previous Undo Operation
  *
+ *  \par Function Description
+ *UNDO_MEMORY
  */
 GList *o_undo_find_prev_object_head (UNDO *start)
 {
@@ -301,14 +360,16 @@ GList *o_undo_find_prev_object_head (UNDO *start)
   return(NULL);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Undo
  *  \par Function Description
+ *   The function restores the current page to the previous
+ *   state
  *
  *  <B>type</B> can be one of the following values:
+ *  \par
  *  <DL>
- *    <DT>*</DT><DD>UNDO_ACTION
- *    <DT>*</DT><DD>REDO_ACTION
+ *    <DT>UNDO_ACTION</DT>
+ *    <DT>REDO_ACTION</DT>
  *  </DL>
  */
 void o_undo_callback(GschemToplevel *w_current, int type)
@@ -320,8 +381,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   UNDO *save_bottom;
   UNDO *save_tos;
   UNDO *save_current;
-  int save_logging;
-  int find_prev_data=FALSE;
+  int   save_logging;
+  int   find_prev_data=FALSE;
   char *save_filename;
   char *tmp_filename;
 
@@ -506,28 +567,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 #endif
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void o_undo_finalize(void)
-{
-  int i;
-  char *filename;
-
-  for (i = 0 ; i < undo_file_index; i++) {
-    filename = g_strdup_printf(UNDO_FILE_PATTERN, tmp_path,
-                               DIR_SEPARATOR, prog_pid, i);
-    unlink(filename);
-    GEDA_FREE(filename);
-  }
-
-  GEDA_FREE(tmp_path);
-}
-
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief This is likely the Culprit
  *  \par Function Description
  *
  */
@@ -546,3 +586,4 @@ void o_undo_remove_last_undo(GschemToplevel *w_current)
     }
   }
 }
+/** @} endgroup gschem-undo-system */

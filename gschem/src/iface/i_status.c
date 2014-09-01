@@ -625,14 +625,14 @@ i_status_idle_thread_update_title (void *data)
   x_window_update_title(w_current);
   return FALSE;
 }
-/*! \brief Set filename as gschem window title
+
+/*! \brief Schedule Set filename as gschem window title
  *
  *  \par Function Description
  *  Set filename as gschem window title using
  *  the gnome HID format style.
  *
  *  \param [in] w_current GschemToplevel structure
- *  \param [in] string The filename
  */
 void i_status_update_title(GschemToplevel *w_current)
 {
