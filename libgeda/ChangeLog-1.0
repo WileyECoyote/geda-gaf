@@ -1,5 +1,10 @@
 2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/math/m_basic.c: Add new function m_random_number, tried
+      experimenting with seeding but this seems to work just fine.
+
+2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/prototype.h: General cleanup, revise declarations
       per function changes below.
 

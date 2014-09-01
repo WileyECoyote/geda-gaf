@@ -20,6 +20,7 @@
 #include <config.h>
 
 #include <stdio.h>
+#include <time.h>
 #include <math.h>
 
 #include "libgeda_priv.h"
@@ -85,6 +86,35 @@ void m_papersize_to_world(int width, int height, int border, int *right, int *bo
   printf("%f\n", aspect);
 #endif
 
+}
+
+/*! \brief Return a randon Number between given limits.
+ *  \par Function Description
+ *  This function intentionally does not seed the generator.
+ *  Seems to work just fine.
+ *
+ *  \param [in]  min_num The smallest value.
+ *  \param [in]  max_num The largest value.
+ *
+ *  \returns random integer
+ */
+int m_random_number (int min_num, int max_num)
+{
+  int result  = 0;
+  int low_num = 0;
+  int hi_num  = 0;
+
+  if (min_num < max_num) {
+    low_num = min_num;
+    hi_num  = max_num + 1; /* this is done to include max_num in output */
+  }
+  else {
+    low_num = max_num + 1; /* this is done to include max_num in output */
+    hi_num  = min_num;
+  }
+
+  result = (rand()%(hi_num-low_num))+low_num;
+  return result;
 }
 
 /*! \brief Rotate a point by an arbitrary angle.

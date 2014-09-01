@@ -77,6 +77,7 @@ const char   *f_path_user_config            (void);
 /* m_basic.c */
       int     m_distance                    (int x1, int y1, int x2, int y2);
       void    m_papersize_to_world          (int width, int height, int border, int *right, int *bottom);
+      int     m_random_number               (int min_num, int max_num);
       void    m_rotate_point                (int x, int y, int angle, int *newx, int *newy);
       void    m_rotate_point_90             (int x, int y, int angle, int *newx, int *newy);
 
