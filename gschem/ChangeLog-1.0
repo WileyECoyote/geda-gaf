@@ -1,5 +1,15 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/base/gschem.c: Moved o_undo_init after the log initialization so
+      that if command-line -t options is used, the event will be logged.
+
+    * src/iface/i_diagnostics.c: Revise performance test routines for Undo
+      so that function <test_undo_randomly_delete> is not so random, skips
+      symversion attributes because this generates errors when an Undo file
+      is loaded with older version=0 symbols, cluttering the log.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * docs/gschem.1.in: Update with new command line option.
 
     * include/globals.?: Add new global variable tmp_directory for

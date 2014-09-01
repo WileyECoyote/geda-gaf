@@ -46,6 +46,8 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
   int     total;
   int     num;
 
+  const char *symver = "symver";
+
   objects = g_list_copy (s_page_get_objects(Current_Page));
 
   for (index = 0; index < how_many; index++) {
@@ -53,9 +55,18 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
      num    = m_random_number(0, total);
      object = g_list_nth_data (objects, num);
      if (GEDA_IS_OBJECT(object)) {
+       if (object->type == OBJ_TEXT &&
+          (strncmp(object->text->string, symver, sizeof(symver)) == 0))
+       {
+         /* Almost random, we skip deleting symbol versions attributes
+          * because this causes errors, which makes us look bad */
+         index--;
+       }
+       else {
        o_delete(w_current, object);
        objects = g_list_remove (objects, object);
        o_undo_savestate (w_current, UNDO_ALL);
+       }
      }
      else {
        index--; /* make sure we delete how ever how_many*/

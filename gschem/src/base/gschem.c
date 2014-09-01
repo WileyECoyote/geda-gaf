@@ -281,9 +281,6 @@ void gschem( int argc, char *argv[])
   w_current->toplevel = geda_toplevel_new ();
   toplevel            = w_current->toplevel;
 
-  /* Initialize the Undo system */
-  o_undo_init(w_current);
-
   f_set_backup_loader_query_func  (toplevel, x_fileselect_load_backup,
                                    w_current);
 
@@ -352,6 +349,9 @@ void gschem( int argc, char *argv[])
     v_log_message("Logging system is disabled");
 
   /*! \internal End Setup Log & Console Systems > */
+
+  /* Initialize the Undo system */
+  o_undo_init(w_current);
 
   /* Load recent files list before calling x_window_setup.*/
   recent_files_load();
