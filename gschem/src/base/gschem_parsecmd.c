@@ -24,7 +24,7 @@
 #include <geda_debug.h>
 
 /* Colon after character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "c:hL:mno:p:qr:s:vVx:"
+#define GETOPT_OPTIONS "c:hL:mno:p:qr:s:t:vVx:"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -41,15 +41,16 @@ char *start_session;
 #ifdef HAVE_GETOPT_LONG
 struct option long_options[] =
   {
-    {"config-file", 0, 0, 'c'},
+    {"config-file", 1, 0, 'c'},
     {"help",        0, 0, 'h'},
     {"safe-mode",   0, 0, 'm'},
     {"no-auto",     0, 0, 'n'},
-    {"output",      0, 0, 'o'},
+    {"output",      1, 0, 'o'},
     {"version",     0, 0, 'V'},
     {"quiet",       0, 0, 'q'},
-    {"run",         0, 0, 'r'},
-    {"start",       0, 0, 's'},
+    {"run",         1, 0, 'r'},
+    {"start",       1, 0, 's'},
+    {"tmp-dir",     1, 0, 't'},
     {"verbose",     0, 0, 'v'},
     {0, 0, 0, 0}
   };
@@ -94,6 +95,7 @@ usage(char *cmd)
     "  -q, --quiet              Quiet mode.\n"
     "  -r, --run FILE           Scheme script to run at startup.\n"
     "  -s, --start name         Startup using the given session name.\n"
+    "  -t, --tmp-dir DIR        Specify tmp directory for Undo files.\n"
     "  -v, --verbose            Verbose mode.\n"
     "  -V, --version            Show version information.\n"
     "  -x EXPR                  Scheme expression to run at startup.\n"
@@ -209,6 +211,10 @@ gschem_parse_commandline(int argc, char *argv[])
 
       case 's':
         start_session = u_string_strdup (optarg);
+        break;
+
+      case 't':
+        tmp_directory = u_string_strdup (optarg);
         break;
 
       case 'v':

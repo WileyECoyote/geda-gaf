@@ -52,6 +52,13 @@ Specify a Scheme script to be executed at startup.
 .TP 8
 \fB-s\fR, \fB--start NAME\fR
 Startup using the named session. This over-rides the current auto-load-last configuration setting.
+\fB-t\fR, \fB--tmp-dir DIR\fR
+Specify a directory temporary for files. Normally \fBgschem\fR searches the environment to
+determine the location of a system temporary directory. This option maybe used to specify
+the directory. In any event, if the undo-type is configured as "disk", the location must be
+read-writable or the Undo system will automatically switch to type "memory". For undo-type
+"disk" a tmpfs or ramfs is recommended for systems using SDD`s in order to help reduce
+"burn-out".
 .TP 8
 \fB-o\fR, \fB--output\fR=\fIFILE\fR
 Specify a filename for PostScript output.  This command line argument

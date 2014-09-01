@@ -33,9 +33,6 @@ extern GList *global_window_list;
 extern GdkColor white;
 extern GdkColor black;
 
-extern char *rc_filename;
-extern char *output_filename;
-
 /* command line options */
 extern int auto_place_mode;
 extern int auto_load_last;
@@ -43,6 +40,9 @@ extern int run_mode;
 extern int quiet_mode;
 extern int verbose_mode;
 
+extern char *output_filename;
+extern char *rc_filename;
+extern char *tmp_directory;
 
 /* Log Related */
 extern volatile int logging;             /* controls if whether logging is enabled or not */

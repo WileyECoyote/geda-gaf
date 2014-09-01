@@ -32,20 +32,21 @@ int prog_pid = 0;
 /* window list */
 GList *global_window_list = NULL;
 
-char *rc_filename     = NULL;
-char *output_filename = NULL;
-
 /* colors */
 GdkColor white;
 GdkColor black;
 int cmap_flag = 0;
 
 /* command line options */
-int auto_place_mode = FALSE;
-int auto_load_last  = FALSE;
-int quiet_mode      = FALSE;
-int run_mode        = 0;
-int verbose_mode    = FALSE;
+int  auto_place_mode  = FALSE;
+int  auto_load_last   = FALSE;
+int  quiet_mode       = FALSE;
+int  run_mode         = 0;
+int  verbose_mode     = FALSE;
+
+char *output_filename = NULL;
+char *rc_filename     = NULL;
+char *tmp_directory   = NULL;
 
 /* Global Log Configuration - gotta move someday, these should not be
  * globals */

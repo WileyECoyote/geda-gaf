@@ -1,7 +1,21 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * docs/gschem.1.in: Update with new command line option.
+
+    * include/globals.?: Add new global variable tmp_directory for
+      new command-line option.
+
+    * src/base/gschem_parsecmd.c: Add new option -t/--tmp-dir using
+      global variable tmp_directory
+
+    * src/object/o_undo.c: Implement new global variable tmp_directory
+      in function o_undo_init.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_sessions.c: Change u_log_message to v_log_message in
-      i_session_close_all, is too noisy.
+      i_session_close_all, is too noisy.  The session opening get logged
+      right after the i_session_close_all function anyways.
 
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -22,8 +36,9 @@
       major performance boost. The master branch still uses the hideously
       despicable g_file_set_contents.
       These results seems unreasonably fast; I4820@3.7GHz, i.e. 4 channel
-      1600MHz memory with dual 840 Pro SSD`s (read speeds > 1.7GHz/s) =>
-      good development machine, maybe not so good for performance testing.
+      1600MHz memory, tmp directory is on tmpfs, so the only significant
+      difference is the io schedule, in this case BFQ. Good development
+      machine, maybe not so good for performance testing.
 
 2014-08-31 Wiley E. Hill <wileyhill@gmail.com>
 

@@ -32,8 +32,7 @@ user-gschemrc: $(top_builddir)/configure user-gschemrc.scm
 
 EXTRA_DIST = system-gschemrc.scm user-gschemrc.scm gschem-gtkrc \
              gschem-colormap-lightbg gschem-colormap-darkbg \
-             gschem-colormap-bw gschem-colormap-custom \
-             
+             gschem-colormap-bw gschem-colormap-custom
 
 MOSTLYCLEANFILES     = *.log core FILE *~
 CLEANFILES           = *.log core FILE *~

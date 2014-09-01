@@ -44,10 +44,13 @@ static char* tmp_path = NULL;
 void o_undo_init(GschemToplevel *w_current)
 {
   EdaConfig  *cfg = eda_config_get_user_context ();
+
+  const char *msg_cl_tmp;
   const char *msg_not_rw;
   const char *msg_use_mem;
   const char *tmp_tmp;
 
+  msg_cl_tmp  = _("Undo: using tmp directory specified on command-line: <%s>");
   msg_not_rw  = _("Directory: %s is not read/writable, check permissions.");
   msg_use_mem = _("<b>Auto switching Undo system to type Memory</b>");
 
@@ -58,29 +61,36 @@ void o_undo_init(GschemToplevel *w_current)
   i_var_restore_global_boolean(cfg, "undo-panzoom", &w_current->undo_panzoom, FALSE);
   i_var_restore_global_boolean(cfg, "undo-type",    &w_current->undo_type,    UNDO_DISK);
 
-  tmp_path = NULL;
-  tmp_tmp = getenv("TMP");
-  if (tmp_tmp != NULL) {
-    if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
-      tmp_path = u_string_strdup(tmp_tmp);
-    }
+  if (tmp_directory != NULL) {
+    tmp_path = tmp_directory;
+    v_log_message(msg_cl_tmp, tmp_path);
   }
-  if (tmp_path == NULL) {
-    tmp_tmp = getenv("TMPDIR");
-    if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
-      tmp_path = u_string_strdup(tmp_tmp);
-    }
-  }
-  if (tmp_path == NULL) {
-    tmp_tmp = getenv("TEMP");
-    if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
-      tmp_path = u_string_strdup(tmp_tmp);
-    }
-  }
-  if (tmp_path == NULL) {
-    tmp_path = u_string_strdup(g_get_tmp_dir());
-  }
+  else {
 
+    tmp_path = NULL;
+    tmp_tmp = getenv("TMP");
+
+    if (tmp_tmp != NULL) {
+      if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
+        tmp_path = u_string_strdup(tmp_tmp);
+      }
+    }
+    if (tmp_path == NULL) {
+      tmp_tmp = getenv("TMPDIR");
+      if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
+        tmp_path = u_string_strdup(tmp_tmp);
+      }
+    }
+    if (tmp_path == NULL) {
+      tmp_tmp = getenv("TEMP");
+      if ((access(tmp_tmp, R_OK) == 0) && (access(tmp_tmp, W_OK) == 0)) {
+        tmp_path = u_string_strdup(tmp_tmp);
+      }
+    }
+    if (tmp_path == NULL) {
+      tmp_path = u_string_strdup(g_get_tmp_dir());
+    }
+  }
   if (w_current->undo_type == UNDO_DISK) {
     if ((access(tmp_path, R_OK) != 0) || (access(tmp_path, W_OK) != 0)) {
       char *errmsg = u_string_sprintf (msg_not_rw, tmp_path);
