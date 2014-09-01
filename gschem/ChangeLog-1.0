@@ -3,6 +3,9 @@
     * src/o/o_delete.c: Delete page_current->CHANGED from o_delete, libgeda
       already sets the flag in s_page_remove_object.
 
+    * src/x/x_multiattrib.c: removed page_current->CHANGED in function
+      multiattrib_action_delete_attributes, which calls o_delete.
+
 2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/o/o_basic.c: Separate and rename module o_invalidate.c and o_redraw.c,

@@ -657,7 +657,7 @@ static void multiattrib_action_delete_attributes(Multiattrib *ThisDialog,
     NEXT(iter);
   };
 
-  w_current->toplevel->page_current->CHANGED = 1;
+  //w_current->toplevel->page_current->CHANGED = 1;
   o_undo_savestate (w_current, UNDO_ALL);
 }
 
