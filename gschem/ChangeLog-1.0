@@ -1,5 +1,9 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_undo.c: Replace g_strdup_printf with u_string_sprintf.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_diagnostics.c: Temporarily disable backups so as not to
       interfere with tests. This is only done for the current file, which
       should be the only file open during testing.

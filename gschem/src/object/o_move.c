@@ -146,8 +146,8 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
 
   if (o_select_is_selection (w_current)) {
 
-    /* Save the current state. When rotating the selection when moving,
-       we have to come back to here */
+    /* Save the current state. When rotating the selection when
+     * moving, we have to come back to here */
     o_undo_savestate(w_current, UNDO_ALL);
     w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
     w_current->event_state = MOVE;
@@ -160,9 +160,9 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     if (w_current->netconn_rubberband) {
       o_move_prep_rubberband(w_current);
 
-      /* Set the dont_redraw flag on rubberbanded objects and invalidate them.
-       * This ensures that they are not drawn (in their un-stretched position)
-       * during screen updates. */
+      /* Set the do not_redraw flag on rubberbanded objects and invalidate
+       * them. This ensures that they are not drawn (in their un-stretched
+       * position) during screen updates. */
       for (s_iter = w_current->stretch_list; s_iter != NULL; NEXT(s_iter))
       {
         STRETCH *stretch = s_iter->data;

@@ -21,6 +21,15 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+/*!
+ * \file o_undo.c
+ * \brief
+ *  Gschem Undo system works in conjunction with the libgeda s_undo module
+ *  to provide two post operative non-intelligent mechanisms to recreate
+ *  data. A pre-operative system scheduled for 2.0.11 have been pulled in
+ *  an is now scheduled for the 2.0.10 release.
+ */
+
 /** \defgroup gschem-undo-system Gschem Undo System
  *  @{ \par This Group contains Routines for Undo and Redo.
  */
@@ -118,8 +127,8 @@ void o_undo_finalize(void)
   char *filename;
 
   for (i = 0 ; i < undo_file_index; i++) {
-    filename = g_strdup_printf(UNDO_FILE_PATTERN, tmp_path,
-                               DIR_SEPARATOR, prog_pid, i);
+    filename = u_string_sprintf(UNDO_FILE_PATTERN, tmp_path,
+                                DIR_SEPARATOR, prog_pid, i);
     unlink(filename);
     GEDA_FREE(filename);
   }
@@ -133,30 +142,28 @@ void o_undo_finalize(void)
  *   This is a multipurpose function with two main purposes:
  *
  *   1. o_undo_savestate is part of the automatic backup system
- *      In this role, the function checks if automatic backups
- *      are enables and calls o_save_auto_backup to perform any
+ *      In this role, calls o_save_auto_backup to perform any
  *      required backups. This is done first. Note that o_auto
  *      save_backups could perform backups on any number of
  *      files before returning.
  *
  *      \note WEH: o_save_auto_backup uses o_save, same as us.
  *
- *      TODO:o_undo_savestate does not currently check if the
- *      backup system is enabled via the auto_save_interval
- *      variable, nor does o_save_auto_backup. o_undo_savestate
- *      blindly calls o_save_auto_backup, which backs up all files
- *      flaged by timer s_page_autosave with do_autosave_backup
- *      AND marked here with ops_since_last_backup if interval
- *      is none zero, but after the call to o_save_auto_backup.
- *      Sounds hokey huh?  It works because the change was just
- *      made or we wouldn't be here, the file will flaged when
- *      the timer counts down, and backed-up the next time a
- *      change is made, i mean o_undo_savestate is called. So
- *      is not all bad but what if Wiley makes an important
- *      change and then goes for donuts and coffee and forgets
- *      to save and comes the to find his puter won't come out
- *      of sleep mode? What if timer spawned a one-shot deadman
- *      killed here?
+ *      TODO:o_undo_savestate does not currently check if the backup
+ *      system is enabled via the auto_save_interval variable, nor does
+ *      o_save_auto_backup, nor should they check. o_undo_savestate
+ *      blindly calls o_save_auto_backup, which backs up all files flaged
+ *      by timer s_page_autosave with do_autosave_backup  AND marked here
+ *      with ops_since_last_backup if interval is none zero, but after the
+ *      call to o_save_auto_backup.
+ *      Sounds hokey huh? The scheme works because the change was just made
+ *      or we wouldn't be here, the file will be flaged the next time the
+ *      timer counts down, and backed-up the next time a change is made,
+ *      i mean o_undo_savestate is called. Any files flaged before the
+ *      auto_save_interval setting is changed still get backed-up. So is
+ *      not all bad but what if Wiley makes an important change and then
+ *      goes for donuts and coffee and forgets to save and comes back the
+ *      to find his puter won't come out of sleep mode?
  *
  *   2. AFTER satisfying 1 above, the function checks if an UNDO
  *      type is enabled and performs the necessary operations to
@@ -229,11 +236,14 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     if (w_current->undo_type == UNDO_DISK && flag == UNDO_ALL) {
 
-      filename = g_strdup_printf(UNDO_FILE_PATTERN,
-                                 tmp_path, DIR_SEPARATOR,
-                                 prog_pid, undo_file_index++);
+      filename = u_string_sprintf(UNDO_FILE_PATTERN,
+                                  tmp_path, DIR_SEPARATOR,
+                                  prog_pid, undo_file_index++);
 
       if (!o_save (s_page_get_objects (Current_Page), filename, &err)) {
+          /* Error recovery sequence, the last disk operation failed
+           * so log the event and switched to type Memory. We do not,
+           * and likely can not, remove any existing undo files.*/
           u_log_message(file_err_msg, filename, err->message);
           u_log_message(sys_err_msg, err->code);
           g_clear_error (&err);
@@ -365,7 +375,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 }
 
 
-/*! \brief Find file name associated with previous Undo operation
+/*! \brief Find file name associated prev Head when using Undo Disk
  *  \par Function Description
  *  This function is only used for UNDO_DISK
  */
@@ -385,10 +395,9 @@ char *o_undo_find_prev_filename(UNDO *start)
   return(NULL);
 }
 
-/*! \brief Find Objects associated with previous Undo Operation
- *
+/*! \brief Finds object list associated prev Head when using Undo Memory
  *  \par Function Description
- *UNDO_MEMORY
+ *  This function is only used for UNDO_MEMORY
  */
 GList *o_undo_find_prev_object_head (UNDO *start)
 {
@@ -477,11 +486,11 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   save_filename = u_string_strdup (Current_Page->filename);
 
   /* save structure so it's not nuked */
-  save_bottom = Current_Page->undo_bottom;
-  save_tos = Current_Page->undo_tos;
-  save_current = Current_Page->undo_current;
-  Current_Page->undo_bottom = NULL;
-  Current_Page->undo_tos = NULL;
+  save_bottom                = Current_Page->undo_bottom;
+  save_tos                   = Current_Page->undo_tos;
+  save_current               = Current_Page->undo_current;
+  Current_Page->undo_bottom  = NULL;
+  Current_Page->undo_tos     = NULL;
   Current_Page->undo_current = NULL;
 
   /* Set the appropriate file name */
@@ -527,7 +536,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       Current_Page->CHANGED=1;
     }
     else {
-      char *errmsg = g_strdup_printf (disk_err_msg, err->message);
+      char *errmsg = u_string_sprintf (disk_err_msg, err->message);
       titled_pango_error_dialog(_("<b>Undo error.</b>"), errmsg, _("Undo failed"));
       GEDA_FREE(errmsg);
       g_error_free(err);
@@ -578,21 +587,17 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   if (type == UNDO_ACTION) {
     if (Current_Page->undo_current) {
-      Current_Page->undo_current =
-          Current_Page->undo_current->prev;
+      Current_Page->undo_current = Current_Page->undo_current->prev;
       if (Current_Page->undo_current == NULL) {
-        Current_Page->undo_current =
-            Current_Page->undo_bottom;
+        Current_Page->undo_current = Current_Page->undo_bottom;
       }
     }
   }
   else { /* type is REDO_ACTION */
     if (Current_Page->undo_current) {
-      Current_Page->undo_current =
-          Current_Page->undo_current->next;
+      Current_Page->undo_current = Current_Page->undo_current->next;
       if (Current_Page->undo_current == NULL) {
-        Current_Page->undo_current =
-            Current_Page->undo_tos;
+        Current_Page->undo_current = Current_Page->undo_tos;
       }
     }
   }
@@ -613,9 +618,11 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 #endif
 }
 
-/*! \brief This is likely the Culprit
+/*! \brief Remove Last Undo Record
  *  \par Function Description
- *
+ *  This function supports drag-move and rotations during move
+ *  operations by allowing o_move_end to essentially undo the
+ *  previous Undo.
  */
 void o_undo_remove_last_undo(GschemToplevel *w_current)
 {

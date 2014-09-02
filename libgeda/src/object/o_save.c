@@ -73,8 +73,8 @@ void o_save_auto_backup(GedaToplevel *toplevel)
         dirname = g_path_get_dirname (real_filename);
         only_filename = g_path_get_basename(real_filename);
 
-        backup_filename = g_strdup_printf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
-                                          dirname, DIR_SEPARATOR, only_filename);
+        backup_filename = u_string_sprintf("%s%c"AUTOSAVE_BACKUP_FILENAME_STRING,
+                                            dirname, DIR_SEPARATOR, only_filename);
 
         /* If there is not an existing file with that name, compute the
          * permissions and uid/gid that we will use for the newly-created file.
@@ -321,7 +321,7 @@ o_save (const GList *object_list, const char *filename, GError **err)
 {
   char *buffer;
   char *path;
-  FILE* output;
+
   int   result;
 
   errno = 0;
@@ -334,6 +334,8 @@ o_save (const GList *object_list, const char *filename, GError **err)
     result = 0;
   }
   else {
+
+    FILE* output;
 
     output = fopen (filename, "w" );
 

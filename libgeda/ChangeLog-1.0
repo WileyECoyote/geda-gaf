@@ -1,5 +1,10 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_save.c: Replace g_strdup_printf with u_string_sprintf.
+      in function o_save_auto_backup.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_save.c: New file with 3 o_save_xxx functions
       relocated from o_basic.c and o_autosave_backups relocated
       from gschem::o_edit.c and renamed o_save_auto_backup.
