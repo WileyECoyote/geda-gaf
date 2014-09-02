@@ -415,6 +415,7 @@ void main_prog(void *closure, int argc, char *argv[])
 #  if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 32 ))
 
      g_thread_init (NULL);
+
 #  endif
 
   if (gschem_threads_init()) {

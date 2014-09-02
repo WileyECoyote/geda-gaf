@@ -268,19 +268,19 @@ struct _GschemToplevel {
   char *bus_ripper_symname; /* filename of the bus ripper component if set above */
 
 /* Pointer Device, aka Mouse stuff */
-  GdkCursor* cursor;       /* Mouse GEDA Cursor Code */
-  int drawing_pointer;     /* Mouse GEDA Cursor Code */
-  int fast_mousepan;       /* controls if text is completely drawn during mouse pan */
-  int drag_can_move;       /* Controls if drag can move objects or not */
-  int middle_button;       /* controls what the third mouse button does */
-  int mousepan_gain;       /* Controls the gain of the mouse pan */
-  int scrollpan_steps;     /* Number of scroll pan events required to traverse the viewed area */
-  int scroll_wheel;        /* controls what the mouse scroll wheel does */
-  int pointer_hscroll;     /* controls if the mouse can do horizonal scrolling */
-  int third_button;        /* controls what the third mouse button does */
+  GdkCursor* cursor;        /* Mouse GEDA Cursor Code */
+  int drawing_pointer;      /* Mouse GEDA Cursor Code */
+  int fast_mousepan;        /* controls if text is completely drawn during mouse pan */
+  int drag_can_move;        /* Controls if drag can move objects or not */
+  int middle_button;        /* controls what the third mouse button does */
+  int mousepan_gain;        /* Controls the gain of the mouse pan */
+  int scrollpan_steps;      /* Number of scroll pan events required to traverse the viewed area */
+  int scroll_wheel;         /* controls what the mouse scroll wheel does */
+  int pointer_hscroll;      /* controls if the mouse can do horizonal scrolling */
+  int third_button;         /* controls what the third mouse button does */
 
   /* Print Related */
-  char *print_command;     /* The command to send postscript to when printing */
+  char *print_command;      /* The command to send postscript to when printing */
 
   /* System Related */
   int file_preview;         /* controls if the preview area is enabled or not */
@@ -292,9 +292,9 @@ struct _GschemToplevel {
   int show_toolbar_tips;    /* determines if tips are enbled on toolbar items */
 
   /* Scrollbar Stuff */
-  int scrollbars;         /* controls if scrollbars are enabled */
-  int scrollbar_update;   /* controls if display is updated while scrolling */
-  int scrollbars_visible; /* controls if scrollbars are displayed */
+  int scrollbars;           /* controls if scrollbars are enabled */
+  int scrollbar_update;     /* controls if display is updated while scrolling */
+  int scrollbars_visible;   /* controls if scrollbars are displayed */
 
   /* Text Related Stuff */
   int text_alignment;           /* current alignment of text */
@@ -304,10 +304,10 @@ struct _GschemToplevel {
   int text_size;
 
   /* Undo System */
-  int undo_levels;        /* number of undo levels stored on disk */
-  int undo_control;       /* sets if undo is enabled or not */
-  int undo_type;          /* type of undo (disk/memory) */
-  int undo_panzoom;       /* sets if pan / zoom info is saved in undo */
+  int       undo_levels;        /* number of undo levels stored on disk */
+  int       undo_control;       /* sets if undo is enabled or not */
+  UNDO_TYPE undo_type;          /* type of undo (disk/memory) */
+  int       undo_panzoom;       /* sets if pan / zoom info is saved in undo */
 
   SCM smob;               /* The Scheme representation of this window */
 };

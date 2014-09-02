@@ -89,15 +89,12 @@ static float test_undo_time(GschemToplevel *w_current, int attempts)
 
   /* Temporarily disable backups for the current page */
   old_do_autosave_backup = Current_Page->do_autosave_backup;
-  /*gtk_window_iconify (GTK_WINDOW(w_current->main_window));*/
 
   getrusage(RUSAGE_SELF, &before);
   for( i = 0; i < attempts; i++) {
     o_undo_callback(w_current, UNDO_ACTION);
   }
   getrusage(RUSAGE_SELF, &after);
-
-  /*gtk_window_deiconify (GTK_WINDOW(w_current->main_window));*/
 
   /* Restore the backup flag to the previous value */
   Current_Page->do_autosave_backup = old_do_autosave_backup;

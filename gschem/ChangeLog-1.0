@@ -1,5 +1,10 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_idefines.h: Replace defines for UNDO_DISK and UNDO
+      _MEMORY with enumerated UNDO_TYPE.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_undo.c: Replace g_strdup_printf with u_string_sprintf.
 
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>

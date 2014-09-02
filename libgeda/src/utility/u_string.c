@@ -174,12 +174,7 @@ char *u_string_sprintf (const char *format, ...)
   if (len < 0) {
     buffer = NULL;
   }
-  else if (!g_mem_is_system_malloc ()) {
-    /* vasprintf returns malloc-allocated memory */
-    char *string = u_string_strndup (buffer, len);
-    free (buffer);
-    buffer = string;
-  }
+
   return buffer;
 }
 

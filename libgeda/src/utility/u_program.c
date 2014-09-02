@@ -80,17 +80,16 @@ void u_program_backtrace(void)
 /*! \brief Setup GLib Memory Table
  *
  *  \par Function Description
- *  This function provides a pre-set memory table to Glib memory
- * functions in order to set \a GLIB to use only \a GLIBC memory
+ *  This function provides a pre-set memory table to Glibc memory
+ * functions in order to set \a GLIB to only use \a GLIBC memory
  * routines. This would normally be the default but GLIB does not
  * provide any other means to insure GLIB is not using non-standard
  * routines. GLIBs g_mem_is_system_malloc() is pretty much useless
  * as run-time is a little too late to find out we are not using
  * GLIBC.
- * \note As a bonus, if application call this function then malloc
+ * \note As a bonus, if applications call this function then malloc
  * and g_malloc, free and g_free can be freely mixed. Guile uses
- * GLIBC.
- *
+ * GLIBC, and not GLIB.
  */
 void u_program_mem_set_vtable(void)
 {
@@ -103,3 +102,16 @@ void u_program_mem_set_vtable(void)
    g_mem_set_vtable (&memvtable);
 }
 
+/* Virutal over-ride, because we set the vtable, glib incorrectly
+ * reports that we are not using malloc, but we are. Setting the
+ * vtable forces glib to use malloc even when glib would not other
+ * wise do so. This slows down glib but not for us, when linked
+ * against libgeda g_mem_is_system_malloc correctly reports that
+ * malloc is being used, that's because the linker must respect
+ * our version of ....
+ */
+int
+g_mem_is_system_malloc (void)
+{
+  return TRUE;
+}

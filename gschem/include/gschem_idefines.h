@@ -269,8 +269,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* For undo_levels */
 #define DEFAULT_UNDO_LEVELS     10
 
-/* used for undo_type */
-#define UNDO_DISK                0
-#define UNDO_MEMORY              1
+/*! \brief Undo Type mechanism the Undo system is to use */
+typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} UNDO_TYPE;
 
 #endif /* !_GSCHEM_IDEFINES_H_INCL */
