@@ -75,14 +75,20 @@ test_undo_randomly_delete(GschemToplevel *w_current, int how_many)
   g_list_free(objects);
 }
 
+/* When conducting Undo performance tests, no other files should be
+ * open, otherwise automatic backups could interfere with the tests
+ */
 static float test_undo_time(GschemToplevel *w_current, int attempts)
 {
   struct rusage before;
   struct rusage after;
   float a_cputime, b_cputime, e_cputime;
   float a_systime, b_systime, e_systime;
+  bool  old_do_autosave_backup;
   int i;
 
+  /* Temporarily disable backups for the current page */
+  old_do_autosave_backup = Current_Page->do_autosave_backup;
   /*gtk_window_iconify (GTK_WINDOW(w_current->main_window));*/
 
   getrusage(RUSAGE_SELF, &before);
@@ -92,6 +98,9 @@ static float test_undo_time(GschemToplevel *w_current, int attempts)
   getrusage(RUSAGE_SELF, &after);
 
   /*gtk_window_deiconify (GTK_WINDOW(w_current->main_window));*/
+
+  /* Restore the backup flag to the previous value */
+  Current_Page->do_autosave_backup = old_do_autosave_backup;
 
   a_cputime = after.ru_utime.tv_sec + after.ru_utime.tv_usec / 1000000.0;
   b_cputime = before.ru_utime.tv_sec + before.ru_utime.tv_usec / 1000000.0;

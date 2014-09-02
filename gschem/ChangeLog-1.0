@@ -1,5 +1,11 @@
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_diagnostics.c: Temporarily disable backups so as not to
+      interfere with tests. This is only done for the current file, which
+      should be the only file open during testing.
+
+2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/o/o_edit.c: Relocated function o_autosave_backups to
       libgeda::o_save::o_save_auto_backup, seems like a better
       place, did not really "fit" in with any gschem module.
@@ -50,7 +56,9 @@
       This is before any real tweeking, but o_basic.c::o_save was revised
       to use fopen/fputs/fclose back in 2012-10-31, and that has to be a
       major performance boost. The master branch still uses the hideously
-      despicable g_file_set_contents.
+      despicable g_file_set_contents. The module also uses DIR_SEPARATOR
+      instead of G_DIR_SEPARATOR.
+
       These results seems unreasonably fast; I4820@3.7GHz, i.e. 4 channel
       1600MHz memory, tmp directory is on tmpfs, so the only significant
       difference is the io schedule, in this case BFQ. Good development
