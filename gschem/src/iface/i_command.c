@@ -40,8 +40,8 @@
 # include "rusage/tlpi_hdr.h"
 #endif
 
-#define NUMBER_REDRAW_TEST     100
-#define NUMBER_UNDO_TEST        10
+#define NUMBER_REDRAW_TEST      100
+#define NUMBER_UNDO_TEST         15
 
 #define USE_POSIX
 #define MAX_THREADS              12
@@ -505,6 +505,9 @@ COMMAND (do_debug)
     case RUN_UNDO_TESTS:
       count   = g_list_length(s_page_get_objects(Current_Page));
       if (count > NUMBER_UNDO_TEST - 1) {
+        if (w_current->undo_levels < NUMBER_UNDO_TEST) {
+          printf ("Warning undo levels setting=%d, number of tests=%d\n", NUMBER_UNDO_TEST, w_current->undo_levels);
+        }
         printf ("file=%s, has %d objects before testing\n", Current_Page->filename, count);
         printf ("undo system type: %s, ", (w_current->undo_type == UNDO_DISK) ? "DISK" : "MEMORY");
         printf ("undo capacity (levels): %d, undo pan-zoom setting: %d\n", w_current->undo_levels,

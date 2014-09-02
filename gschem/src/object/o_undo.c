@@ -28,6 +28,8 @@
  *  to provide two post operative non-intelligent mechanisms to recreate
  *  data. A pre-operative system scheduled for 2.0.11 have been pulled in
  *  an is now scheduled for the 2.0.10 release.
+ *
+ *  \remarks Just band-aid till new system implemented
  */
 
 /** \defgroup gschem-undo-system Gschem Undo System
@@ -49,7 +51,8 @@ static char* tmp_path = NULL;
  *  \par Function Description
  *  This function obtains the process ID and temporary directory path
  *  for later use when using the "disk" type undo, and retrieves user
- *  settings affecting the UNDO system.
+ *  settings affecting the UNDO system. Undo configuration settings
+ *  are saved by x_settings_save_settings.
  */
 void o_undo_init(GschemToplevel *w_current)
 {
@@ -187,7 +190,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 {
   GedaToplevel *toplevel     = w_current->toplevel;
   GError       *err          = NULL;
-  GList        *object_list  = NULL;
+  //GList        *object_list  = NULL;
   char         *filename     = NULL;
   UNDO         *u_current;
   UNDO         *u_current_next;
@@ -249,15 +252,13 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
           s_undo_free_all (Current_Page);
-          object_list = o_glist_copy_all (s_page_get_objects (Current_Page),
-                                          object_list);
+     //     object_list = o_glist_copy_all (s_page_get_objects (Current_Page), object_list);
       }
 
     }
-    else if (w_current->undo_type == UNDO_MEMORY && flag == UNDO_ALL) {
-      object_list = o_glist_copy_all (s_page_get_objects (Current_Page),
-                                      object_list);
-    }
+    //else if (w_current->undo_type == UNDO_MEMORY && flag == UNDO_ALL) {
+    //  object_list = o_glist_copy_all (s_page_get_objects (Current_Page), object_list);
+    // }
 
     /* Clear Anything above current */
     if (Current_Page->undo_current) {
@@ -271,6 +272,15 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     Current_Page->undo_tos = Current_Page->undo_current;
 
+    if (w_current->undo_type == UNDO_DISK){
+      Current_Page->undo_tos = s_undo_add_disk(flag,
+                                               filename,
+                                               Current_Page);
+    }
+    else if (w_current->undo_type == UNDO_MEMORY) {
+      Current_Page->undo_tos = s_undo_add_memory(flag, Current_Page);
+    }
+/*
     Current_Page->undo_tos = s_undo_add(Current_Page->undo_tos,
                                         flag, filename, object_list,
                                         Current_Page->left,
@@ -279,7 +289,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
                                         Current_Page->bottom,
                                         Current_Page->page_control,
                                         Current_Page->up);
-
+*/
     Current_Page->undo_current = Current_Page->undo_tos;
 
     if (Current_Page->undo_bottom == NULL) {
@@ -436,7 +446,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   UNDO *save_bottom;
   UNDO *save_tos;
   UNDO *save_current;
-  int   save_logging;
+
   int   find_prev_data=FALSE;
   char *save_filename;
   char *tmp_filename;
@@ -456,7 +466,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   if (type == UNDO_ACTION) {
     u_current = Current_Page->undo_current->prev;
-  } else {
+  }
+  else {
     u_current = Current_Page->undo_current->next;
   }
 
@@ -477,7 +488,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     if (w_current->undo_type == UNDO_DISK) {
       u_current->filename = o_undo_find_prev_filename(u_current);
-    } else {
+    }
+    else {
       u_current->object_list = o_undo_find_prev_object_head (u_current);
     }
   }
@@ -485,7 +497,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   /* save filename */
   save_filename = u_string_strdup (Current_Page->filename);
 
-  /* save structure so it's not nuked */
+  /* save UNDO structures so they do not get released */
   save_bottom                = Current_Page->undo_bottom;
   save_tos                   = Current_Page->undo_tos;
   save_current               = Current_Page->undo_current;
@@ -520,20 +532,21 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   }
 
   /* temporarily disable logging */
+  int  save_logging;
+  int  restored;
+
   save_logging = logging;
-  logging = FALSE;
+  logging      = FALSE;
+  restored     = FALSE;
 
   if (w_current->undo_type == UNDO_DISK && u_current->filename) {
 
-    GError *err = NULL;
-    int old_flags = toplevel->open_flags;
+    GError *err          = NULL;
+    int old_flags        = toplevel->open_flags;
     toplevel->open_flags = 0;
 
     if (f_open(toplevel, Current_Page, u_current->filename, &err)) {
-      x_manual_resize(w_current);
-      Current_Page->page_control = u_current->page_control;
-      Current_Page->up = u_current->up;
-      Current_Page->CHANGED=1;
+      restored = TRUE;
     }
     else {
       char *errmsg = u_string_sprintf (disk_err_msg, err->message);
@@ -550,17 +563,20 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     s_page_append_list (Current_Page,
                         o_glist_copy_all (u_current->object_list, NULL));
+    restored = TRUE;
+  }
 
-    x_manual_resize(w_current);
-    Current_Page->page_control = u_current->page_control;
-    Current_Page->up = u_current->up;
-    Current_Page->CHANGED=1;
+  if (restored) {
+      x_manual_resize(w_current);
+      Current_Page->page_control = u_current->page_control;
+      Current_Page->up           = u_current->up;
+      Current_Page->CHANGED      = u_current->modified;
   }
 
   /* do misc setups */
   x_window_setup_page(w_current, Current_Page,
                       u_current->left, u_current->right,
-                      u_current->top, u_current->bottom);
+                      u_current->top,  u_current->bottom);
 
   x_hscrollbar_update(w_current);
   x_vscrollbar_update(w_current);
@@ -605,7 +621,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   /* don't have to free data here since filename, object_list are */
   /* just pointers to the real data (lower in the stack) */
   if (find_prev_data) {
-    u_current->filename = NULL;
+    u_current->filename    = NULL;
     u_current->object_list = NULL;
   }
 

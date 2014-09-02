@@ -40,15 +40,15 @@
 int     default_attribute_color           = ATTRIBUTE_COLOR;
 int     default_background_color          = BACKGROUND_COLOR;
 int     default_detachattr_color          = DETACHED_ATTRIBUTE_COLOR;
-int     default_junction_color            = JUNCTION_COLOR;
-int     default_net_endpoint_color        = NET_ENDPOINT_COLOR;
-int     default_override_net_color        = -1;
-int     default_override_bus_color        = -1;
-int     default_override_pin_color        = -1;
+int     default_junction_color            = RC_NIL;
+int     default_net_endpoint_color        = RC_NIL;
+int     default_override_net_color        = RC_NIL;
+int     default_override_bus_color        = RC_NIL;
+int     default_override_pin_color        = RC_NIL;
 
 /* Display Sub-System */
 
-int     default_draw_grips                = TRUE;
+int     default_draw_grips                = RC_NIL;
 
 int     default_grid_mode                 = GRID_MESH;
 int     default_dots_grid_dot_size        = DEFAULT_GRID_DOT_SIZE;
@@ -57,9 +57,9 @@ int     default_dots_grid_mode            = DOTS_GRID_VARIABLE_MODE;
 int     default_mesh_grid_threshold       = DEFAULT_GRID_MESH_THRESHOLD;
 
 int     default_object_clipping           = TRUE;
-int     default_scrollbars                = TRUE;
-int     default_scrollbar_update          = TRUE;
-int     default_scrollbars_visible        = TRUE;
+int     default_scrollbars                = RC_NIL;
+int     default_scrollbar_update          = RC_NIL;
+int     default_scrollbars_visible        = RC_NIL;
 
 /* This should be renamed to describe h&w of what, maybe something like default_screen_height */
 int     default_window_height             = DEFAULT_WINDOW_HEIGHT;  /* these variables are used in x_window.c */
@@ -73,10 +73,10 @@ int     default_world_right               = WIDTH_C;
 int     default_world_bottom              = HEIGHT_C;
 
 /* Image Related */
-int     default_image_color               = FALSE;
-int     default_invert_images             = TRUE;
-int     default_image_width               = DEFAULT_IMAGE_WIDTH;
-int     default_image_height              = DEFAULT_IMAGE_HEIGHT;
+int     default_image_color               = RC_NIL;
+int     default_invert_images             = RC_NIL;
+int     default_image_width               = RC_NIL;
+int     default_image_height              = RC_NIL;
 
 /* Log Related */
 int     default_logging                   = TRUE;
@@ -90,7 +90,7 @@ int     default_add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
 int     default_auto_load_last            = DEFAULT_AUTO_LOAD_LAST;
 int     default_auto_save_interval        = DEFAULT_SAVE_INTERVAL;
 int     default_attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
-int     default_chooser_filter            = FILTER_GSCHEM;
+int     default_chooser_filter            = RC_NIL;
 GList  *default_component_select_attrlist = NULL;
 int     default_continue_component_place  = TRUE;
 int     default_embed_components          = FALSE;
@@ -118,15 +118,14 @@ int     default_bus_ripper_type           = COMP_BUS_RIPPER;
 char   *default_bus_ripper_symname        = NULL;
 
 /* Pointer Device, aka Mouse stuff */
-int     default_drag_can_move             = TRUE;
-int     default_fast_mousepan             = TRUE;
-
-int     default_middle_button             = DEFAULT_MOUSE_MIDDLE;
-int     default_mousepan_gain             = DEFAULT_MOUSEPAN_GAIN;
-int     default_scrollpan_steps           = DEFAULT_SCROLLPAN_STEPS;
-int     default_scroll_wheel              = SCROLL_WHEEL_CLASSIC;
-int     default_pointer_hscroll           = FALSE;
-int     default_third_button              = POPUP_ENABLED;
+int     default_drag_can_move             = RC_NIL;
+int     default_fast_mousepan             = RC_NIL;
+int     default_middle_button             = RC_NIL;
+int     default_mousepan_gain             = RC_NIL;
+int     default_pointer_hscroll           = RC_NIL;
+int     default_scrollpan_steps           = RC_NIL;
+int     default_scroll_wheel              = RC_NIL;
+int     default_third_button              = RC_NIL;
 
 /* Print Related */
 int     default_paper_width               = DEFAULT_PAPER_WIDTH; /* letter size */
@@ -145,7 +144,7 @@ int     default_file_preview              = TRUE;
 int     default_handleboxes               = TRUE;
 int     default_raise_dialog_boxes        = DEFAULT_RAISE_TIMER;
 int     default_save_ui_settings          = TRUE;
-int     default_toolbars                  = TRUE;
+int     default_toolbars                  = RC_NIL;
 int     default_toolbars_mode             = RC_NIL;
 int     default_show_toolbar_tips         = RC_NIL;
 
@@ -153,7 +152,7 @@ int     default_show_toolbar_tips         = RC_NIL;
 int     default_text_case                 = LOWER_CASE;
 
 /* default zoom_factor at which text is displayed completely */
-int     default_text_display_zoomfactor   = DEFAULT_TEXT_ZOOM;
+int     default_text_display_zoomfactor   = RC_NIL;
 int     default_text_feedback             = ONLY_WHEN_READABLE;
 int     default_text_origin_marker        = TRUE;
 int     default_text_marker_size          = DEFAULT_TEXT_MARKER_SIZE;
@@ -161,7 +160,7 @@ int     default_text_size                 = DEFAULT_TEXT_SIZE;
 
 /* Undo System */
 int     default_undo_control              = TRUE;
-int     default_undo_levels               = DEFAULT_UNDO_LEVELS;
+int     default_undo_levels               = RC_NIL;
 int     default_undo_panzoom              = FALSE;
 int     default_undo_type                 = UNDO_DISK;
 
@@ -385,6 +384,9 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 void i_vars_set(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel               = w_current->toplevel;
+
+  inline void i_set_rc(int *var, int rc) { if (rc != RC_NIL) *var = rc; };
+
   i_vars_libgeda_set(toplevel);
 
   w_current->world_right               = default_world_right;
@@ -403,18 +405,21 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->mesh_grid_threshold       = default_mesh_grid_threshold;
 
   w_current->object_clipping           = default_object_clipping;
-  w_current->scrollbars                = default_scrollbars;
-  w_current->scrollbar_update          = default_scrollbar_update;
-  w_current->scrollbars_visible        = default_scrollbars_visible;
+
+  i_set_rc (&w_current->scrollbars,         default_scrollbars);
+  i_set_rc (&w_current->scrollbar_update,   default_scrollbar_update);
+  i_set_rc (&w_current->scrollbars_visible, default_scrollbars_visible);
+
   w_current->warp_cursor               = default_warp_cursor;
   w_current->zoom_gain                 = default_zoom_gain;
   w_current->zoom_with_pan             = default_zoom_with_pan;
 
 /* Imaging Related */
-  toplevel->image_color                = default_image_color;
-  toplevel->invert_images              = default_invert_images;
-  w_current->image_width               = default_image_width;
-  w_current->image_height              = default_image_height;
+  i_set_rc (&toplevel->image_color,      default_image_color);
+  i_set_rc (&toplevel->invert_images,    default_invert_images);
+  i_set_rc (&w_current->image_width,     default_image_width);
+  i_set_rc (&w_current->image_height,    default_image_height);
+
 
 /* Miscellaneous - in  alphabetical order */
   w_current->action_feedback_mode      = default_action_feedback_mode;
@@ -422,7 +427,9 @@ void i_vars_set(GschemToplevel *w_current)
   toplevel->attribute_offset           = default_add_attribute_offset;
   toplevel->auto_save_interval         = default_auto_save_interval;
   w_current->attribute_placement_grid  = default_attribute_placement_grid;
-  w_current->chooser_filter            = default_chooser_filter;
+
+  i_set_rc (&w_current->chooser_filter,  default_chooser_filter);
+
   w_current->component_select_attrlist = default_component_select_attrlist;
   w_current->continue_component_place  = default_continue_component_place;
   w_current->embed_components          = default_embed_components;
@@ -449,14 +456,14 @@ void i_vars_set(GschemToplevel *w_current)
   INIT_STR(w_current, bus_ripper_symname, DEFAULT_BUS_RIPPER_SYMNAME);
 
 /* Pointer Device, aka Mouse stuff */
-  w_current->drag_can_move             = default_drag_can_move;
-  w_current->fast_mousepan             = default_fast_mousepan;
-  w_current->middle_button             = default_middle_button;
-  w_current->mousepan_gain             = default_mousepan_gain;
-  w_current->pointer_hscroll           = default_pointer_hscroll;
-  w_current->scrollpan_steps           = default_scrollpan_steps;
-  w_current->scroll_wheel              = default_scroll_wheel;
-  w_current->third_button              = default_third_button;
+  i_set_rc (&w_current->drag_can_move,   default_drag_can_move);
+  i_set_rc (&w_current->fast_mousepan,   default_fast_mousepan);
+  i_set_rc (&w_current->middle_button,   default_middle_button);
+  i_set_rc (&w_current->mousepan_gain,   default_mousepan_gain);
+  i_set_rc (&w_current->pointer_hscroll, default_pointer_hscroll);
+  i_set_rc (&w_current->scrollpan_steps, default_scrollpan_steps);
+  i_set_rc (&w_current->scroll_wheel,    default_scroll_wheel);
+  i_set_rc (&w_current->third_button,    default_third_button);
 
 /* Print & Related */
   INIT_STR(w_current, print_command, DEFAULT_PRINT_COMMAND);
@@ -476,25 +483,27 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->handleboxes               = default_handleboxes;
   w_current->raise_dialog_boxes        = default_raise_dialog_boxes ? DEFAULT_RAISE_TIMER : 0;
   w_current->save_ui_settings          = default_save_ui_settings;
-  w_current->toolbars                  = default_toolbars;
-  w_current->toolbars_mode             = default_toolbars_mode;
-  w_current->show_toolbar_tips         = default_show_toolbar_tips;
+
+  i_set_rc (&w_current->toolbars,           default_toolbars);
+  i_set_rc (&w_current->toolbars_mode,      default_toolbars_mode);
+  i_set_rc (&w_current->show_toolbar_tips,  default_show_toolbar_tips);
 
 /* Text Related */
   w_current->text_case                 = default_text_case;
 
 /* default zoom_factor at which text is displayed completely */
-  w_current->text_display_zoomfactor   = default_text_display_zoomfactor;
+  i_set_rc (&w_current->text_display_zoomfactor, default_text_display_zoomfactor);
+
   w_current->text_feedback             = default_text_feedback;
    Renderer->text_origin_marker        = default_text_origin_marker;
    Renderer->text_marker_size          = default_text_marker_size;
   w_current->text_size                 = default_text_size;
 
 /* Undo Sub-System */
-  w_current->undo_levels               = default_undo_levels;
-  w_current->undo_control              = default_undo_control;
-  w_current->undo_type                 = default_undo_type;
-  w_current->undo_panzoom              = default_undo_panzoom;
+  i_set_rc (&w_current->undo_levels,     default_undo_levels);
+  i_set_rc (&w_current->undo_control,    default_undo_control);
+  i_set_rc (&w_current->undo_type,       default_undo_type);
+  i_set_rc (&w_current->undo_panzoom,    default_undo_panzoom);
 
   i_vars_recall_user_settings (w_current);
 

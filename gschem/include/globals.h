@@ -141,6 +141,9 @@ typedef enum { ZOOM_OUT_DIRECTIVE,
                ZOOM_FULL_DIRECTIVE
 } EID_ZOOM_DIRECTIVE;
 
+/*! \brief Undo Type mechanism the Undo system is to use */
+typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
+
 /* These macros are used to help reduce lines lengths */
 #define Current_Page      w_current->toplevel->page_current
 #define Current_Selection w_current->toplevel->page_current->selection_list

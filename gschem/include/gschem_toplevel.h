@@ -304,10 +304,10 @@ struct _GschemToplevel {
   int text_size;
 
   /* Undo System */
-  int       undo_levels;        /* number of undo levels stored on disk */
-  int       undo_control;       /* sets if undo is enabled or not */
-  UNDO_TYPE undo_type;          /* type of undo (disk/memory) */
-  int       undo_panzoom;       /* sets if pan / zoom info is saved in undo */
+  int undo_levels;        /* number of undo levels stored on disk */
+  int undo_control;       /* sets if undo is enabled or not */
+  int undo_type;          /* type of undo (disk/memory), enumerated UNDO_TYPE */
+  int undo_panzoom;       /* sets if pan / zoom info is saved in undo */
 
   SCM smob;               /* The Scheme representation of this window */
 };

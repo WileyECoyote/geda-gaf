@@ -179,10 +179,10 @@ void x_configure_settings (GschemToplevel* w_current)
 
 void x_settings_save_settings(GschemToplevel *w_current)
 {
-  GedaToplevel   *toplevel = w_current->toplevel;
-  EdaConfig  *cfg = eda_config_get_user_context ();
-  const char *group_name = IVAR_CONFIG_GROUP;
-  int         array[4];
+  GedaToplevel *toplevel   = w_current->toplevel;
+  EdaConfig    *cfg        = eda_config_get_user_context ();
+  const char   *group_name = IVAR_CONFIG_GROUP;
+  int           array[4];
 
   eda_config_set_boolean (cfg, group_name, "image-color",    toplevel->image_color);
   eda_config_set_boolean (cfg, group_name, "invert-images",  toplevel->invert_images);
