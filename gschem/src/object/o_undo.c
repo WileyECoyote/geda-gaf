@@ -26,10 +26,10 @@
  * \brief
  *  Gschem Undo system works in conjunction with the libgeda s_undo module
  *  to provide two post operative non-intelligent mechanisms to recreate
- *  data. A pre-operative system scheduled for 2.0.11 have been pulled in
- *  an is now scheduled for the 2.0.10 release.
+ *  data. A pre-operative system scheduled for 2.0.11 has been pulled-in
+ *  and is now scheduled for the 2.0.10 release.
  *
- *  \remarks Just band-aid till new system implemented
+ *  \remarks Just band-aid until new system implemented
  */
 
 /** \defgroup gschem-undo-system Gschem Undo System
@@ -156,7 +156,7 @@ void o_undo_finalize(void)
  *      system is enabled via the auto_save_interval variable, nor does
  *      o_save_auto_backup, nor should they check. o_undo_savestate
  *      blindly calls o_save_auto_backup, which backs up all files flaged
- *      by timer s_page_autosave with do_autosave_backup  AND marked here
+ *      by timer s_page_autosave with do_autosave_backup AND marked here
  *      with ops_since_last_backup if interval is none zero, but after the
  *      call to o_save_auto_backup.
  *      Sounds hokey huh? The scheme works because the change was just made
@@ -165,17 +165,16 @@ void o_undo_finalize(void)
  *      i mean o_undo_savestate is called. Any files flaged before the
  *      auto_save_interval setting is changed still get backed-up. So is
  *      not all bad but what if Wiley makes an important change and then
- *      goes for donuts and coffee and forgets to save and comes back the
- *      to find his puter won't come out of sleep mode?
+ *      goes for donuts and coffee and forgets to save and comes back to
+ *      find his puter won't come out of sleep mode?
  *
- *   2. AFTER satisfying 1 above, the function checks if an UNDO
- *      type is enabled and performs the necessary operations to
- *      push the current state onto an undo buffer, aka either
- *      the entire file is saved to the tmp directory or a copy
- *      of all of the objects are saved in memory and referenced
- *      in a glist. TODO: In this capacity the UNDO system is
- *      inefficient and makes no attempt to determine what has
- *      be changed in the data.
+ *   2. AFTER satisfying 1 above, the function checks if UNDO coontrol
+ *      is enabled and performs the necessary operations to push the
+ *      current state onto an undo buffer, aka either the entire file
+ *      is saved to the tmp directory or a copy of all of the objects
+ *      are saved in memory and referenced in a glist. TODO: In this
+ *      capacity the UNDO system is inefficient and makes no attempt
+ *      to determine what has be changed in the data.
  *
  *  \param [in] w_current The toplevel environment.
  *  \param [in] flag      integer <B>\a flag</B> can be one of the
@@ -503,8 +502,16 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     tmp_filename = NULL;
   }
 
+  GedaNotifyList *ptr_notify_funcs;
+
   /* Destory the current page and create a new one */
   if (tmp_filename) {
+
+    ptr_notify_funcs = Current_Page->change_notify_funcs;
+
+    g_object_ref (ptr_notify_funcs);
+
+    geda_notify_list_freeze (ptr_notify_funcs);
 
     s_page_delete (toplevel, Current_Page);
 
@@ -512,11 +519,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     s_page_goto (toplevel, p_new);
 
-    /* Damage notifications should invalidate the object on screen
-     * But what about any other change notifiers that were registered? SOL*/
-    o_notify_change_add (p_new,
-                        (ChangeNotifyFunc) o_invalidate_object,
-                        (ChangeNotifyFunc) o_invalidate_object, w_current);
+    p_new->change_notify_funcs = ptr_notify_funcs;
+
   }
 
   /* temporarily disable logging */
@@ -579,6 +583,10 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   /* final redraw */
   x_pagesel_update (w_current);
   x_multiattrib_update (w_current);
+
+  if (tmp_filename) {
+    geda_notify_list_thaw (ptr_notify_funcs);
+  }
 
   /* Let the caller to decide if redraw or not */
   o_invalidate_all (w_current);

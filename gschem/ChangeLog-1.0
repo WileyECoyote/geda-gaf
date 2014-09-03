@@ -1,5 +1,17 @@
 2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_undo.c: Implemented GedaNotifyList in o_undo_callback
+      and confirmed notifiers survive undo cycles using diagnostics tools.
+      Added freeze/thaw will no significant improvement, even though it has
+      to be a good thing to not do notification while no page exist. Then
+      postponed thawing until right before o_invalidate_all and measured
+      radical improvements in performance. Posting gnumeric data in root,
+      temporarily, currently at about 33us/per object faster. This is by
+      far the most significant improvement so far. And as a bonus, gschem`s
+      Undo system appears to working correctly!
+
+2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_diagnostics.c: Add more functionality to diagnostics
       dialog, second table, print_page_info button and function plus
       add and remove seperate callback notifiers.

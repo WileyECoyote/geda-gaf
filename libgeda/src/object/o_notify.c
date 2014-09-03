@@ -45,10 +45,7 @@
  * \param change_func     Function to be called just after changes.
  * \param user_data       User data to be passed to callback functions.
  *
- * TODO: WEH: Does not check for uniquness! Also, there is no reason to
- *            allocate storage for a "set" of handlers, there can only
- *            be 1 handler, others will be forgotten about when the
- *            undo function in gschem creates a new page.
+ * TODO: WEH: Does not check for uniquness!
  */
 void o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
                                       ChangeNotifyFunc change_func,
@@ -158,16 +155,59 @@ o_notify_emit_change (Object *object)
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
 
-    GList *iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
+    if (!object->page->change_notify_funcs->freeze_count) {
 
-    while (iter != NULL) {
+      GList *iter;
 
-       change_notify *entry = (change_notify *) iter->data;
+      iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
 
-      if ((entry != NULL) && (entry->change_func != NULL)) {
-        entry->change_func (entry->user_data, object);
+      while (iter != NULL) {
+
+        change_notify *entry = (change_notify *) iter->data;
+
+        if ((entry != NULL) && (entry->change_func != NULL)) {
+
+          entry->change_func (entry->user_data, object);
+
+        }
+        NEXT(iter);
       }
-      NEXT(iter);
     }
+  }
+}
+
+/*! \brief Suspense Notification for a GedaNotifyList
+ *
+ * \par Function Description
+ *  This function increments the freeze count of an #GedaNotifyList.
+ *  Notification of changes is suspended until the freeze is reduced
+ *  to zero.
+ *
+ * \sa geda_notify_list_thaw
+ *
+ * \param list #GedaNotifyList to freeze notifications for.
+ */
+void geda_notify_list_freeze (GedaNotifyList *list)
+{
+  if (list != NULL) {
+    list->freeze_count++;
+  }
+}
+
+/*! \brief Thaw Notification for a GedaNotifyList
+ *
+ * \par Function Description
+ *  This function add a hook to each new page
+ *
+ * \sa geda_notify_list_freeze
+ *
+ * \param list #GedaNotifyList to thaw notifications for.
+ */
+void geda_notify_list_thaw (GedaNotifyList *list)
+{
+  if (list != NULL) {
+
+    list->freeze_count--;
+    list->freeze_count = (list->freeze_count < 0) ? 0 : list->freeze_count;
   }
 }

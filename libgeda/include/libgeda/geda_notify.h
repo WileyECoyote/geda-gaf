@@ -55,6 +55,7 @@ typedef struct _GedaNotifyListClass GedaNotifyListClass;
 struct _GedaNotifyList {
   GObject parent;
   GList  *glist;
+  int     freeze_count;
 };
 
 struct _GedaNotifyListClass {
@@ -64,6 +65,9 @@ struct _GedaNotifyListClass {
 unsigned int    geda_notify_list_get_type          (void);
 
 GedaNotifyList *geda_notify_list_new               ( void );
+
+void      geda_notify_list_freeze                  ( GedaNotifyList *list );
+void      geda_notify_list_thaw                    ( GedaNotifyList *list );
 
 void      geda_notify_list_add                     ( GedaNotifyList *list, void *item );
 void      geda_notify_list_add_glist               ( GedaNotifyList *list, GList *items );

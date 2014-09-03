@@ -1,5 +1,10 @@
 2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_notify.?: Add and freeze and thaw to GedaNotifyList
+      objects.
+
+2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_notify.?: New files for GedaList like object without the
       signals. Use for Page::change_notify_funcs instead of glist so the
       notify structures don't get wiped out by gschem:Undo

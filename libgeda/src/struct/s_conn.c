@@ -748,7 +748,7 @@ void s_conn_emit_conns_changed (Object *object)
  *
  * \par Function Description
  *  This function increments the freeze count of an
- *#Object. Notification of connection changes si
+ *#Object. Notification of connection changes is
  *  suspended until the freeze is reduced to zero.
  *
  * \sa s_conn_thaw_hooks
