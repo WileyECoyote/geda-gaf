@@ -32,7 +32,7 @@
  * \remarks If this file gets included twice then it most likely means the
  *          inclusion of headers in the source file in not setup correctly!
  *
- * @{\par This contains constants uses through-out the gEDA suite
+ * @{\par This contains constants used through-out the gEDA suite
  */
 
 #include <missing.h>

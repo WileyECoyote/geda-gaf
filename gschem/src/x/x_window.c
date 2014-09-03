@@ -821,7 +821,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
 
   /* Create an empty page with optional filename */
   inline Page* new_page( const char *fname ) {
-    page = s_page_new (toplevel, fname);
+    page = s_page_new_with_notify (toplevel, fname);
     x_window_setup_page(w_current, page, w_current->world_left,
                                          w_current->world_right,
                                          w_current->world_top,
@@ -940,7 +940,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
   }
 
   /* Damage notifications should invalidate the object on screen */
-  o_add_change_notify (page,
+  o_notify_change_add (page,
                       (ChangeNotifyFunc) o_invalidate_object,
                       (ChangeNotifyFunc) o_invalidate_object, w_current);
 

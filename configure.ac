@@ -196,7 +196,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([50:5:0])
+AX_LIBGEDA([50:6:0])
 
 # Set up libgedacairo with the correct ld version number
 AX_LIBGEDACAIRO([1:2:0])

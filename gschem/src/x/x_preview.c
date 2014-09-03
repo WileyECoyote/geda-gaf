@@ -111,13 +111,13 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
 
   x_window_setup_gc (preview_window);
 
-  preview_page = s_page_new (preview_toplevel, "unknown");
+  preview_page = s_page_new_with_notify (preview_toplevel, "unknown");
   x_window_setup_page(preview_window, preview_page,
                       preview_window->world_left,
                       preview_window->world_right,
                       preview_window->world_top,
                       preview_window->world_bottom);
-  o_add_change_notify (preview_page,
+  o_notify_change_add (preview_page,
                       (ChangeNotifyFunc) preview_invalidate,
                       (ChangeNotifyFunc) preview_invalidate,
                        preview_window);
@@ -577,7 +577,7 @@ preview_dispose  (GObject *self)
   if (preview_window != NULL) {
     toplevel = preview_window->toplevel;
     if (GEDA_IS_PAGE(toplevel->page_current)) {
-      o_remove_change_notify (toplevel->page_current,
+      o_notify_change_remove (toplevel->page_current,
                              (ChangeNotifyFunc) preview_invalidate,
                              (ChangeNotifyFunc) preview_invalidate,
                               preview_window);

@@ -718,8 +718,8 @@ typedef struct
 
 /* ivalue : initial value */
 #define GTK_NUMERIC_SPIN(parent, name, spacing, ivalue, minval, maxval)  { \
-        gdouble step = (maxval > 100 ? 5 : 1 ); \
-        gdouble page = (maxval > 100 ? 25 : 10 ); \
+        double step = (maxval > 100 ? 5 : 1 ); \
+        double page = (maxval > 100 ? 25 : 10 ); \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, spacing); /* create hbox and label */  \
@@ -733,8 +733,8 @@ typedef struct
 }
 
 #define GEDA_NUMERIC_SPIN(name, ivalue, minval, maxval) { \
-        gdouble step = (maxval > 100 ? 5 : 1 ); \
-        gdouble page = (maxval > 100 ? 25 : 10 ); \
+        double step = (maxval > 100 ? 5 : 1 ); \
+        double page = (maxval > 100 ? 25 : 10 ); \
                 page = (maxval > 1000 ? 50 : 10 ); \
         GtkObject *name##Spin_adj = gtk_adjustment_new (ivalue, minval, maxval, step, page, 0); \
         name##Spin = gtk_spin_button_new (GTK_ADJUSTMENT (name##Spin_adj), 1, 0); \

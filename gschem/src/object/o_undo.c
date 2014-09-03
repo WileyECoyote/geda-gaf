@@ -190,7 +190,6 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 {
   GedaToplevel *toplevel     = w_current->toplevel;
   GError       *err          = NULL;
-  //GList        *object_list  = NULL;
   char         *filename     = NULL;
   UNDO         *u_current;
   UNDO         *u_current_next;
@@ -252,13 +251,9 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
           g_clear_error (&err);
           w_current->undo_type = UNDO_MEMORY;
           s_undo_free_all (Current_Page);
-     //     object_list = o_glist_copy_all (s_page_get_objects (Current_Page), object_list);
       }
 
     }
-    //else if (w_current->undo_type == UNDO_MEMORY && flag == UNDO_ALL) {
-    //  object_list = o_glist_copy_all (s_page_get_objects (Current_Page), object_list);
-    // }
 
     /* Clear Anything above current */
     if (Current_Page->undo_current) {
@@ -272,7 +267,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     Current_Page->undo_tos = Current_Page->undo_current;
 
-    if (w_current->undo_type == UNDO_DISK){
+    if (w_current->undo_type == UNDO_DISK) {
       Current_Page->undo_tos = s_undo_add_disk(flag,
                                                filename,
                                                Current_Page);
@@ -280,16 +275,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
     else if (w_current->undo_type == UNDO_MEMORY) {
       Current_Page->undo_tos = s_undo_add_memory(flag, Current_Page);
     }
-/*
-    Current_Page->undo_tos = s_undo_add(Current_Page->undo_tos,
-                                        flag, filename, object_list,
-                                        Current_Page->left,
-                                        Current_Page->top,
-                                        Current_Page->right,
-                                        Current_Page->bottom,
-                                        Current_Page->page_control,
-                                        Current_Page->up);
-*/
+
     Current_Page->undo_current = Current_Page->undo_tos;
 
     if (Current_Page->undo_bottom == NULL) {
@@ -331,6 +317,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       u_current = Current_Page->undo_bottom;
 
       while (levels > 0) {
+
         /* Because we use a pad we are always guaranteed to never */
         /* exhaust the list */
 
@@ -428,7 +415,7 @@ GList *o_undo_find_prev_object_head (UNDO *start)
 /*! \brief Undo
  *  \par Function Description
  *   The function restores the current page to the previous
- *   state
+ *   state, wiping out any change-notify-funcs in the process.
  *
  *  <B>type</B> can be one of the following values:
  *  \par
@@ -440,12 +427,12 @@ GList *o_undo_find_prev_object_head (UNDO *start)
 void o_undo_callback(GschemToplevel *w_current, int type)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Page *p_new;
-  UNDO *u_current;
-  UNDO *u_next;
-  UNDO *save_bottom;
-  UNDO *save_tos;
-  UNDO *save_current;
+  Page  *p_new;
+  UNDO  *u_current;
+  UNDO  *u_next;
+  UNDO  *save_bottom;
+  UNDO  *save_tos;
+  UNDO  *save_current;
 
   int   find_prev_data=FALSE;
   char *save_filename;
@@ -525,8 +512,9 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     s_page_goto (toplevel, p_new);
 
-    /* Damage notifications should invalidate the object on screen */
-    o_add_change_notify (p_new,
+    /* Damage notifications should invalidate the object on screen
+     * But what about any other change notifiers that were registered? SOL*/
+    o_notify_change_add (p_new,
                         (ChangeNotifyFunc) o_invalidate_object,
                         (ChangeNotifyFunc) o_invalidate_object, w_current);
   }
