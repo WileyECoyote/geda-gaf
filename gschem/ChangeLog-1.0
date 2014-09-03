@@ -1,9 +1,15 @@
-2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_diagnostics.c: Add more functionality to diagnostics
+      dialog, second table, print_page_info button and function plus
+      add and remove seperate callback notifiers.
+
+2014-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_vars.c: Create i_set_rc in i_vars_set and implement for
       variables in key file but also can be set with rc file.
 
-2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
+2014-09-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_idefines.h: Replace defines for UNDO_DISK and UNDO
       _MEMORY with enumerated UNDO_TYPE.

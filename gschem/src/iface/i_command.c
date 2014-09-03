@@ -467,9 +467,14 @@ COMMAND (do_debug)
 
   const char *msg;
   const char *normal   = "exiting performance diagnostic, resumming normal mode\n";
-  const char *complete ="Test complete, resumming normal mode\n";
-  const char *linefeed ="\n";
+  const char *complete = "Test complete, resumming normal mode\n";
+  const char *linefeed = "\n";
 
+/*
+  o_attrib_append_attribs_changed_hook (Current_Page,
+                                       (AttribsChangedFunc) o_diagnostics_notify_attribute,
+                                        w_current);
+*/
   int test = gschem_diagnostics_dialog(w_current);
 
   old_page_state = Current_Page->CHANGED;

@@ -2,6 +2,58 @@
 #include <geda_dialog_controls.h>
 #include <geda_widgets.h>
 
+
+static void
+print_page_info(GtkWidget *button, GschemToplevel *w_current)
+{
+  geda_page_debug_print (Current_Page);
+}
+
+static int
+o_diagnostics_notifier_one(void *wc, Object *object)
+{
+  //GschemToplevel *w_current = wc;
+  if (object)
+    printf( "%s object <%s>\n", __func__, object->name);
+  else
+    printf( "%s object is NULL\n", __func__);
+  return FALSE;
+}
+
+static int
+o_diagnostics_notifier_two(void *wc, Object *object)
+{
+ if (object)
+    printf( "%s object <%s>\n", __func__, object->name);
+  else
+    printf( "%s object is NULL\n", __func__);
+  return FALSE;
+}
+
+static void
+add_page_object_notifiers(GtkWidget *button, GschemToplevel *w_current)
+{
+  o_notify_change_add (Current_Page,
+                       o_diagnostics_notifier_one,
+                       o_diagnostics_notifier_two, w_current);
+}
+static void
+remove_page_object_notifiers(GtkWidget *button, GschemToplevel *w_current)
+{
+  o_notify_change_remove (Current_Page,
+                          o_diagnostics_notifier_one,
+                          o_diagnostics_notifier_two, w_current);
+}
+/*
+static void
+o_diagnostics_notify_attribute (GschemToplevel *w_current, Object *object)
+{
+ if (object)
+    printf( "%s object type = <%c>\n", __func__, object->type);
+  else
+    printf( "%s object is NULL\n", __func__);
+}
+*/
 static float test_draw_time(GschemToplevel *w_current, int attempts)
 {
 
@@ -115,9 +167,8 @@ static float test_undo_time(GschemToplevel *w_current, int attempts)
 int gschem_diagnostics_dialog (GschemToplevel *w_current)
 {
   GtkWidget *dialog;
-  GtkWidget *entry;
-  GtkWidget *label;
   GtkWidget *vbox;
+  GtkWidget *widget;
   GtkWidget *table;
   GdkColor   bg_color;
   char      *string;
@@ -148,75 +199,75 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   gtk_box_pack_start(GTK_BOX(vbox), table, FALSE, FALSE, 0);
 
   /* Row 1 */
-  label = geda_aligned_label_new (_("Program:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,0,1, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Program:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 0,1,0,1, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 1,4,0,1, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 1,4,0,1, GTK_FILL,0,0,0);
 
-  SetEntryText(entry, getenv("_"));
+  SetEntryText(widget, getenv("_"));
 
-  label = geda_aligned_label_new (_("Process ID:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 4,5,0,1, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Process ID:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 4,5,0,1, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 5,6,0,1, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 5,6,0,1, GTK_FILL,0,0,0);
 
   string = u_string_sprintf("%i", prog_pid);
-  SetEntryText(entry, string);
+  SetEntryText(widget, string);
   GEDA_FREE(string);
 
   /* Row 2 */
-    label = geda_aligned_label_new (_("Threads:"), 0, 0);
-    gtk_table_attach(GTK_TABLE(table), label, 0,1,1,2, GTK_FILL,0,0,0);
+    widget = geda_aligned_label_new (_("Threads:"), 0, 0);
+    gtk_table_attach(GTK_TABLE(table), widget, 0,1,1,2, GTK_FILL,0,0,0);
 
   /* Row 3 */
   if (getrusage (RUSAGE_SELF, &usage) == 0) {
 
-    label = geda_aligned_label_new (_("Max resident Size:"), 0, 0);
-    gtk_table_attach(GTK_TABLE(table), label, 0,1,2,3, GTK_FILL,0,0,0);
+    widget = geda_aligned_label_new (_("Max resident Size:"), 0, 0);
+    gtk_table_attach(GTK_TABLE(table), widget, 0,1,2,3, GTK_FILL,0,0,0);
 
-    entry = geda_visible_entry_new ( DISABLE, DISABLE);
-    gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-    gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-    geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-    gtk_table_attach(GTK_TABLE(table), entry, 1,2,2,3, GTK_FILL,0,0,0);
+    widget = geda_visible_entry_new ( DISABLE, DISABLE);
+    gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+    gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+    geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+    gtk_table_attach(GTK_TABLE(table), widget, 1,2,2,3, GTK_FILL,0,0,0);
 
     string = u_string_sprintf("%ld", usage.ru_maxrss);
-    SetEntryText(entry, string);
+    SetEntryText(widget, string);
     GEDA_FREE(string);
   }
 
-  label = geda_aligned_label_new (_("Max Threads:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 2,3,2,3, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Max Threads:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 2,3,2,3, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 3,4,2,3, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 3,4,2,3, GTK_FILL,0,0,0);
 
   string = u_string_sprintf("%i", MAX_THREADS);
-  SetEntryText(entry, string);
+  SetEntryText(widget, string);
   GEDA_FREE(string);
 
-  label = geda_aligned_label_new (_("Max Unused:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 4,5,2,3, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Max Unused:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 4,5,2,3, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 5,6,2,3, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 5,6,2,3, GTK_FILL,0,0,0);
 
   string = u_string_sprintf("%i", MAX_THREADS_UNUSED);
-  SetEntryText(entry, string);
+  SetEntryText(widget, string);
   GEDA_FREE(string);
 
   /* Row 4 */
@@ -224,44 +275,83 @@ int gschem_diagnostics_dialog (GschemToplevel *w_current)
   int up = g_thread_pool_unprocessed (CommandPool);
   int it = g_thread_pool_get_max_idle_time()/MAX_THREADS_IDLE_TIME;
 
-  label = geda_aligned_label_new (_("Number of threads:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 0,1,3,4, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Number of threads:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 0,1,3,4, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 1,2,3,4, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 1,2,3,4, GTK_FILL,0,0,0);
 
   string = u_string_sprintf("%i", nt);
-  SetEntryText(entry, string);
+  SetEntryText(widget, string);
   GEDA_FREE(string);
 
-  label = geda_aligned_label_new (_("Pending:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 2,3,3,4, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Pending:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 2,3,3,4, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 3,4,3,4, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 3,4,3,4, GTK_FILL,0,0,0);
 
   string = u_string_sprintf("%i", up);
-  SetEntryText(entry, string);
+  SetEntryText(widget, string);
   GEDA_FREE(string);
 
-  label = geda_aligned_label_new (_("Max Idle:"), 0, 0);
-  gtk_table_attach(GTK_TABLE(table), label, 4,5,3,4, GTK_FILL,0,0,0);
+  widget = geda_aligned_label_new (_("Max Idle:"), 0, 0);
+  gtk_table_attach(GTK_TABLE(table), widget, 4,5,3,4, GTK_FILL,0,0,0);
 
-  entry = geda_visible_entry_new ( DISABLE, DISABLE);
-  gtk_entry_set_has_frame (GTK_ENTRY(entry), FALSE);
-  gtk_entry_set_alignment (GTK_ENTRY(entry), 0.5);
-  geda_entry_widget_modify_color (entry, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
-  gtk_table_attach(GTK_TABLE(table), entry, 5,6,3,4, GTK_FILL,0,0,0);
+  widget = geda_visible_entry_new ( DISABLE, DISABLE);
+  gtk_entry_set_has_frame (GTK_ENTRY(widget), FALSE);
+  gtk_entry_set_alignment (GTK_ENTRY(widget), 0.5);
+  geda_entry_widget_modify_color (widget, GTK_RC_BASE, GTK_STATE_NORMAL, &bg_color);
+  gtk_table_attach(GTK_TABLE(table), widget, 5,6,3,4, GTK_FILL,0,0,0);
 
   string = u_string_sprintf("%i", it);
-  SetEntryText(entry, string);
+  SetEntryText(widget, string);
   GEDA_FREE(string);
+
+  /* -------------------------- Table 2 -------------------------- */
+
+  GtkWidget *frame;
+  GtkWidget *alignment;
+
+  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "Debug data", NULL));
+  gtk_box_pack_start(GTK_BOX(vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
+
+  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
+                                        "right-padding",
+                                         DIALOG_H_SPACING,
+                                        "left-padding",
+                                         DIALOG_H_SPACING,
+                                        "xscale", 0.0,
+                                        "yscale", 0.0,
+                                        "xalign", 0.5,
+                                        "yalign", 0.5,
+                                        NULL));
+
+  gtk_container_add (GTK_CONTAINER (frame), alignment);
+
+  /* Create a second table and put in the alignment */
+  table = gtk_table_new (3, 3, FALSE);
+  gtk_table_set_row_spacings(GTK_TABLE(table), DIALOG_V_SPACING);
+  gtk_table_set_col_spacings(GTK_TABLE(table), DIALOG_H_SPACING);
+  gtk_container_add (GTK_CONTAINER (alignment), table);
+
+  widget = gtk_button_new_with_label ("Print Page Info");
+  gtk_table_attach(GTK_TABLE(table), widget, 0,1,0,1, GTK_FILL,0,0,0);
+  g_signal_connect(widget, "clicked", G_CALLBACK(print_page_info), w_current);
+
+  widget = gtk_button_new_with_label ("Add Notify Funcs");
+  gtk_table_attach(GTK_TABLE(table), widget, 0,1,1,2, GTK_FILL,0,0,0);
+  g_signal_connect(widget, "clicked", G_CALLBACK(add_page_object_notifiers), w_current);
+
+  widget = gtk_button_new_with_label ("Remove Notify Funcs");
+  gtk_table_attach(GTK_TABLE(table), widget, 0,1,2,3, GTK_FILL,0,0,0);
+  g_signal_connect(widget, "clicked", G_CALLBACK(remove_page_object_notifiers), w_current);
 
   gtk_widget_show_all (dialog);
 
