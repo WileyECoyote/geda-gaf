@@ -1,6 +1,6 @@
 /* gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library - Scheme API
- * Copyright (C) 2010-2013 Peter Brett <peter@peter-b.co.uk>
+ * Copyright (C) 2010-2014 Peter Brett <peter@peter-b.co.uk>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -187,9 +187,9 @@ SCM_DEFINE (attach_attrib_x, "%attach-attrib!", 2, 0, 0,
   }
 
   /* Carry out the attachment */
-  o_emit_pre_change_notify (attrib);
+  o_notify_emit_pre_change (attrib);
   o_attrib_attach (attrib, obj, TRUE);
-  o_emit_change_notify (attrib);
+  o_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);
 
@@ -235,10 +235,10 @@ SCM_DEFINE (detach_attrib_x, "%detach-attrib!", 2, 0, 0,
   }
 
   /* Detach object */
-  o_emit_pre_change_notify (attrib);
+  o_notify_emit_pre_change (attrib);
   o_attrib_remove (&obj->attribs, attrib);
   o_set_color (attrib, DETACHED_ATTRIBUTE_COLOR);
-  o_emit_change_notify (attrib);
+  o_notify_emit_change (attrib);
 
   s_object_set_page_changed (obj);
 

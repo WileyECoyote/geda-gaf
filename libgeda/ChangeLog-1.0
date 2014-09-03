@@ -1,3 +1,32 @@
+2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_notify.?: New files for GedaList like object without the
+      signals. Use for Page::change_notify_funcs instead of glist so the
+      notify structures don't get wiped out by gschem:Undo
+
+    * src/geda/geda_notify.h: Relocate typedef and struction definition for
+      change_notify_entry to this header and rename without "entry"
+      st_change_notify, since the Page object declares a GedaNotifyList and
+      this seem to work out best, say header hell.
+
+    * src/geda/geda_page.?: Revise to support the new GedaNotifyList object
+      adding function geda_page_new_with_notify. Eliminated some redundent
+      initialization of variables to make up for time lost creating new
+      object, application not need a change notify call back system can still
+      use geda_page_new.
+
+    * src/struct/s_page.c: Revise to support the new GedaNotifyList object
+      by breaking up s_page_new to new function s_page_new_common, sharing
+      with new function s_page_new_with_notify.
+
+    * src/object/o_notify.c: Extensive revision to support new GedaNotifyList
+      object.
+
+2014-09-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_page.?: Added function geda_page_debug_print to support
+      diagnostics in client applications.
+
 2014-09-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_save.c: Replace g_strdup_printf with u_string_sprintf.

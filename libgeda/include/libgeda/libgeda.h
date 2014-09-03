@@ -51,6 +51,7 @@
 #include <libgeda/geda_colors.h>
 #include <libgeda/papersizes.h>
 #include <libgeda/geda_list.h>
+#include <libgeda/geda_notify.h>
 #include <libgeda/geda_object.h>
 #include <libgeda/geda_page.h>
 

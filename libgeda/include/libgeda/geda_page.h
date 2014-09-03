@@ -85,7 +85,7 @@ struct _GedaPage {
   UNDO *undo_current;
   UNDO *undo_tos;                      /* Top Of Stack */
 
-  /* used to control which pages are viewable when moving around */
+  /* used to control which pages are viewable when traversing hierarchy */
   int page_control; /* WEH sound's hokey */
 
   /* For hierarchy */
@@ -95,17 +95,17 @@ struct _GedaPage {
   int show_hidden_text;
 
   /* backup variables */
-  GTimeVal last_load_or_save_time;
+  GTimeVal last_load_or_save_time; /* set (twice) but never read */
   char saved_since_first_loaded;
-  int  ops_since_last_backup;
-  char do_autosave_backup;
+  int  ops_since_last_backup;      /* page->CHANGED since last backup */
+  char do_autosave_backup;         /* If true file should backed up */
 
   /* Callback function for calculating text bounds */
   RenderedBoundsFunc rendered_text_bounds_func;
   void *rendered_text_bounds_data;
 
   /* Callback functions for object change notification */
-  GList *change_notify_funcs;
+  GedaNotifyList *change_notify_funcs;
 
   /* Callback functions for object attribute change notification */
   GList *attribs_changed_hooks;
@@ -113,15 +113,17 @@ struct _GedaPage {
   /* Callback functions for object connections change notification */
   GList *conns_changed_hooks;
 
-  GList   *weak_refs;             /* Weak references */
+  GList *weak_refs;               /* Weak references */
 
   unsigned int tail_marker;       /* structure type signature */
 };
 
-unsigned int geda_page_get_type             (void);
+unsigned int geda_page_get_type          (void);
 bool      is_a_geda_page                 (Page *page);
+void      geda_page_debug_print          (Page *page);
 
 Page     *geda_page_new                  (void);
+Page     *geda_page_new_with_notify      (void);
 void      geda_page_weakref_notify       (Page *page);
 void      geda_page_weak_ref             (Page *page, WeakNotifyFunc notify_func, void *user_data);
 void      geda_page_weak_unref           (Page *page, WeakNotifyFunc notify_func, void *user_data);

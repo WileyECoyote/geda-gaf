@@ -13,6 +13,7 @@ libgeda_la_SOURCES += \
 			geda/geda_complex.c \
 			geda/geda_line.c \
 			geda/geda_net.c \
+			geda/geda_notify.c \
 			geda/geda_path.c \
 			geda/geda_picture.c \
 			geda/geda_pin.c \

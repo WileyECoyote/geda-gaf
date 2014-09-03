@@ -71,7 +71,7 @@ static void object_added (Page *page, Object *object)
 #endif
   object->page = page;
 
-  o_emit_pre_change_notify (object);
+  o_notify_emit_pre_change (object);
 
   /* Add object to tile system. */
   s_tile_add_object        (object);
@@ -81,7 +81,7 @@ static void object_added (Page *page, Object *object)
 
   page->CHANGED = 1;
 
-  o_emit_change_notify     (object);
+  o_notify_emit_change     (object);
 
 }
 
@@ -91,7 +91,7 @@ pre_object_removed (Page *page, Object *object)
 {
   if (GEDA_IS_OBJECT(object)) {
 
-    o_emit_pre_change_notify (object);
+    o_notify_emit_pre_change (object);
 
     /* Clear object parent pointer */
     #ifdef DEBUG
@@ -114,6 +114,29 @@ pre_object_removed (Page *page, Object *object)
   }
   else
     BUG_MSG("Object is not a GedaObject");
+}
+
+static Page *
+s_page_new_common(Page *page)
+{
+  page->up = -2;
+
+  /* Init tile array */
+  s_tile_init (page);
+
+  /* new selection mechanism */
+  page->selection_list = o_selection_new();
+
+  /* init undo struct pointers */
+  s_undo_init(page);
+
+  /* Backup variables */
+  g_get_current_time (&page->last_load_or_save_time);
+  page->ops_since_last_backup    = 0;
+  page->saved_since_first_loaded = 0;
+  page->do_autosave_backup       = 0;
+
+  return page;
 }
 
 /*! \brief create a new page object
@@ -157,24 +180,44 @@ Page *s_page_new (GedaToplevel *toplevel, const char *filename)
   geda_list_add( toplevel->pages, page );
   geda_page_set_toplevel(page, toplevel);
 
-  page->up = -2;
+  return s_page_new_common(page);
+}
 
-  /* Init tile array */
-  s_tile_init (page);
+Page*
+s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
+{
+  Page *page;
 
-  /* new selection mechanism */
-  page->selection_list = o_selection_new();
+  /* Create a blank Page object */
+  page = geda_page_new_with_notify();
 
-  /* init undo struct pointers */
-  s_undo_init(page);
+  if (filename != NULL) {
+    if (g_path_is_absolute (filename)) {
+      page->filename = u_string_strdup (filename);
+    }
+    else {
+      char *pwd = getcwd(0,0);
+      page->filename = g_build_filename (pwd, filename, NULL);
+      free (pwd);
+    }
+  }
+  else {
+    page->filename = u_string_strdup (toplevel->untitled_name);
+  }
 
-  /* Backup variables */
-  g_get_current_time (&page->last_load_or_save_time);
-  page->ops_since_last_backup    = 0;
-  page->saved_since_first_loaded = 0;
-  page->do_autosave_backup       = 0;
+  page->width  = toplevel->width;
+  page->height = toplevel->height;
 
-  return page;
+  page->left   = 0;
+  page->right  = toplevel->width;
+  page->top    = 0;
+  page->bottom = toplevel->height;
+
+  /* append page to page list of toplevel */
+  geda_list_add( toplevel->pages, page );
+  geda_page_set_toplevel(page, toplevel);
+
+  return s_page_new_common(page);
 }
 
 /*! \brief Get File Extension of the File Assocatiacted with Page.
@@ -343,7 +386,7 @@ void s_page_delete_list(GedaToplevel *toplevel)
 
   for (iter = list_copy; iter != NULL; NEXT(iter)) {
     page = (Page *)iter->data;
-    o_change_notify_remove_all(page);
+    o_notify_change_remove_all(page);
     s_page_delete (toplevel, page);
   }
 
@@ -594,11 +637,6 @@ void s_page_autosave_init(GedaToplevel *toplevel)
  *  set to zero, and when the function returns the zero to glib, the
  *  source will be destroyed.
  *
- *  TODO: ops_since_last_backup, incremented in the gschem::undo pusher
- *  and checked here and reset in "the" backup performer, appears to be
- *  part of an incomplete backup-threshold feature and is otherwise just
- *  a redundant page modified flag.
- *
  *  \param [in] toplevel  The GedaToplevel object.
  *
  *  \return The auto_save_interval setting.
@@ -687,7 +725,7 @@ void s_page_remove_object (Page *page, Object *object)
 {
   pre_object_removed (page, object);
   page->_object_list = g_list_remove (page->_object_list, object);
-  o_emit_change_notify (object);
+  o_notify_emit_change (object);
   page->CHANGED = 1;
 }
 

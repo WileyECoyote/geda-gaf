@@ -438,14 +438,14 @@ void o_text_recreate(Object *o_current)
 {
   Page *page;
 
-  o_emit_pre_change_notify(o_current);
+  o_notify_emit_pre_change(o_current);
   update_disp_string(o_current);
 
   if (!geda_object_bounds(o_current)) {
     o_current->w_bounds_valid_for = NULL;
   }
 
-  o_emit_change_notify(o_current);
+  o_notify_emit_change(o_current);
 
   page = geda_object_get_page(o_current);
   if (page) {

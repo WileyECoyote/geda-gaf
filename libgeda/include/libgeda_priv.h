@@ -28,6 +28,7 @@
 #include <prototype.h>
 
 #include <geda_list.h>
+#include <geda_notify.h>
 #include <geda_object.h>
 #include <geda_page.h>
 #include <geda_line.h>

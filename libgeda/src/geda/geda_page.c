@@ -196,17 +196,7 @@ geda_page_instance_init( GTypeInstance *instance, void *g_class )
 
   page->major_changed_refdes      = NULL;
 
-  page->filename                  = NULL;
   page->CHANGED                   = 0;
-
- /* World coord limits */
-  page->left                      = 0;
-  page->right                     = DEFAULT_PAGE_WIDTH;
-  page->top                       = 0;
-  page->bottom                    = DEFAULT_PAGE_HEIGHT;
-
-  page->width                     = page->left - page->right;
-  page->height                    = page->top - page->bottom;
 
   page->page_control              = 0;
   page->show_hidden_text          = 0;
@@ -226,6 +216,7 @@ geda_page_instance_init( GTypeInstance *instance, void *g_class )
 
   /* Call hooks */
   g_list_foreach (new_page_hooks, call_new_page_hook, page);
+
 }
 
 static void
@@ -245,12 +236,8 @@ geda_page_dispose(GObject *object)
     g_list_free(page->major_changed_refdes);
   }
 
-  /* Remove all change notification handlers */
-  for (iter = page->change_notify_funcs; iter != NULL; NEXT(iter)) {
-    GEDA_FREE (iter->data);
-  }
-  g_list_free (page->change_notify_funcs);
-  page->change_notify_funcs = NULL;
+  /* Unreference change notification handlers */
+  GEDA_UNREF (page->change_notify_funcs);
 
   for (iter = page->attribs_changed_hooks; iter != NULL; NEXT(iter)) {
     GEDA_FREE (iter->data);
@@ -357,6 +344,21 @@ Page *geda_page_new (void)
 {
   Page *page;
   page = g_object_new( geda_page_get_type(), NULL );
+  return page;
+}
+
+/*! \brief Returns a pointer to a new Page object.
+ *
+ *  \par Function Description
+ *  Returns a pointer to a new Page object.
+ *
+ *  \return pointer to the new Page object.
+ */
+Page *geda_page_new_with_notify (void)
+{
+  Page *page;
+  page = g_object_new( geda_page_get_type(), NULL );
+  page->change_notify_funcs = geda_notify_list_new();
   return page;
 }
 
@@ -498,3 +500,46 @@ GedaToplevel *geda_page_get_toplevel (Page *page)
   return page->toplevel;
 }
 /** @} endgroup geda-page */
+void
+geda_page_debug_print (Page *page)
+{
+
+  printf( "toplevel=%p, pid=%d, filename=%s\n", page->toplevel, page->pid, page->filename);
+
+  printf( "object    count=%d\n", g_list_length(page->_object_list));
+  printf( "selection count=%d\n", g_list_length(page->selection_list->glist));
+  printf( "place     count=%d\n", g_list_length(page->place_list));
+
+  if (page->object_lastplace)
+    printf( "object_lastplace=%s\n", page->object_lastplace->name);
+  else
+    printf( "last object is not set\n");
+
+  printf( "major_changed_refdes count=%d\n", g_list_length(page->major_changed_refdes));
+
+  printf( "CHANGED=%d\n", page->CHANGED);
+
+  printf( "left=%d, right=%d, top=%d, bottom=%d\n", page->left, page->right, page->top, page->bottom);
+
+  printf( "width=%d, height=%d\n", page->width, page->height);
+
+  printf( "coord_aspectratio=%5.10f\n", page->coord_aspectratio);
+
+  printf( "to_screen_x_constant=%5.10f, to_screen_x_constant=%f\n", page->to_screen_x_constant, page->to_screen_y_constant);
+
+  printf( "to_world_x_constant=%5.10f, to_world_y_constant=%f\n", page->to_world_x_constant, page->to_world_y_constant);
+
+  printf( "show_hidden_text=%d\n", page->show_hidden_text);
+
+  printf( "saved_since_first_loaded=%d\n", page->saved_since_first_loaded);
+  printf( "ops_since_last_backup=%d\n", page->ops_since_last_backup);
+  printf( "do_autosave_backup=%d\n", page->do_autosave_backup);
+
+  printf( "rendered_text_bounds_func=%p\n", page->rendered_text_bounds_func);
+  printf( "rendered_text_bounds_data=%p\n", page->rendered_text_bounds_data);
+
+  printf( "change_notify_funcs    count=%d\n", g_list_length(page->change_notify_funcs->glist));
+  printf( "attribs_changed_hooks  count=%d\n", g_list_length(page->attribs_changed_hooks));
+  printf( "conns_changed_hooks    count=%d\n", g_list_length(page->conns_changed_hooks));
+  printf( "weak_refs              count=%d\n\n", g_list_length(page->weak_refs));
+};

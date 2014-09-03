@@ -100,6 +100,91 @@ void s_undo_destroy_head(UNDO *u_head)
  *  \par Function Description
  *
  */
+UNDO *s_undo_add_disk (int type, char *filename, Page *page)
+{
+  UNDO *head;
+  UNDO *tail;
+  UNDO *u_new;
+  UNDO *u_ret;
+
+  head = page->undo_tos;
+
+  u_new = (UNDO *) GEDA_MEM_ALLOC(sizeof(UNDO));
+
+  u_new->filename     = u_string_strdup (filename);
+
+  u_new->object_list  = NULL;
+
+  u_new->type         = type;
+  u_new->modified     = page->CHANGED;
+  u_new->left         = page->left;
+  u_new->top          = page->top;
+  u_new->right        = page->right;
+  u_new->bottom       = page->bottom;
+
+  u_new->page_control = page->page_control;
+  u_new->up           = page->up;
+
+  if (head == NULL) {
+    u_new->prev = NULL; /* setup previous link */
+    u_new->next = NULL;
+    u_ret       = u_new;
+  }
+  else {
+    tail        = s_undo_return_tail(head);
+    u_new->prev = tail; /* setup previous link */
+    u_new->next = NULL;
+    tail->next  = u_new;
+    u_ret       = tail->next;
+  }
+  return u_ret;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+UNDO *s_undo_add_memory (int type, Page *page)
+{
+  UNDO *head;
+  UNDO *tail;
+  UNDO *u_new;
+  UNDO *u_ret;
+
+  head = page->undo_tos;
+
+  u_new = (UNDO *) GEDA_MEM_ALLOC(sizeof(UNDO));
+
+  u_new->filename     = NULL;
+
+  u_new->object_list  = o_glist_copy_all (s_page_get_objects (page), NULL);
+
+  u_new->modified     = type;
+  u_new->type         = page->CHANGED;
+  u_new->left         = page->left;
+  u_new->top          = page->top;
+  u_new->right        = page->right;
+  u_new->bottom       = page->bottom;
+
+  u_new->page_control = page->page_control;
+  u_new->up           = page->up;
+
+  if (head == NULL) {
+    u_new->prev = NULL; /* setup previous link */
+    u_new->next = NULL;
+    u_ret       = u_new;
+  }
+  else {
+    tail        = s_undo_return_tail(head);
+    u_new->prev = tail; /* setup previous link */
+    u_new->next = NULL;
+    tail->next  = u_new;
+    u_ret       = tail->next;
+  }
+  return u_ret;
+}
+
 UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
                   int left, int top, int right, int bottom, int page_control,
                   int up)

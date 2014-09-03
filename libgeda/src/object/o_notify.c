@@ -33,14 +33,6 @@
 
 #include "libgeda_priv.h"
 
-/* Structure for each entry in a GedaToplevel's list of registered change
- * notification handlers, why is the defined here? */
-struct change_notify_entry {
-  ChangeNotifyFunc pre_change_func;
-  ChangeNotifyFunc change_func;
-  void *user_data;
-};
-
 /*! \brief Add change notification handlers to a GedaToplevel.
  * \par Function Description
  * Adds a set of change notification handlers to a #GedaToplevel instance.
@@ -53,18 +45,23 @@ struct change_notify_entry {
  * \param change_func     Function to be called just after changes.
  * \param user_data       User data to be passed to callback functions.
  *
- * TODO: Does not check for uniquness!
+ * TODO: WEH: Does not check for uniquness! Also, there is no reason to
+ *            allocate storage for a "set" of handlers, there can only
+ *            be 1 handler, others will be forgotten about when the
+ *            undo function in gschem creates a new page.
  */
-void o_add_change_notify (Page *page,
-                          ChangeNotifyFunc pre_change_func,
-                          ChangeNotifyFunc change_func,
-                          void *user_data)
+void o_notify_change_add (Page *page, ChangeNotifyFunc pre_change_func,
+                                      ChangeNotifyFunc change_func,
+                                      void *user_data)
 {
-  struct change_notify_entry *entry = g_new0 (struct change_notify_entry, 1);
+  change_notify *entry;
+  entry = GEDA_MEM_ALLOC0( sizeof(change_notify));
+
   entry->pre_change_func = pre_change_func;
-  entry->change_func = change_func;
-  entry->user_data = user_data;
-  page->change_notify_funcs = g_list_prepend (page->change_notify_funcs, entry);
+  entry->change_func     = change_func;
+  entry->user_data       = user_data;
+
+  geda_notify_list_add(page->change_notify_funcs, entry);
 }
 
 /*! \brief Remove change notification handlers from a Page.
@@ -74,7 +71,7 @@ void o_add_change_notify (Page *page,
  * matches the given \a pre_change_func, \a change_func and \a
  * user_data, does nothing.
  *
- * \see o_add_change_notify()
+ * \see o_notify_change_add()
  *
  * \param page #Page structure to remove handlers from.
  * \param pre_change_func Function called just before changes.
@@ -82,43 +79,39 @@ void o_add_change_notify (Page *page,
  * \param user_data User data passed to callback functions.
  */
 void
-o_remove_change_notify (Page *page,
+o_notify_change_remove (Page *page,
                         ChangeNotifyFunc pre_change_func,
                         ChangeNotifyFunc change_func,
                         void *user_data)
 {
   GList *iter;
-  for (iter = page->change_notify_funcs;
-       iter != NULL; iter = g_list_next (iter)) {
 
-    struct change_notify_entry *entry =
-      (struct change_notify_entry *) iter->data;
+  iter = page->change_notify_funcs->glist;
+
+  while (iter) {
+
+    change_notify *entry = (change_notify *) iter->data;
 
     if ((entry != NULL)
-        && (entry->pre_change_func == pre_change_func)
-        && (entry->change_func == change_func)
-        && (entry->user_data == user_data)) {
+      && (entry->pre_change_func == pre_change_func)
+      && (entry->change_func == change_func)
+      && (entry->user_data == user_data))
+    {
       GEDA_FREE (entry);
       iter->data = NULL;
+      break;
     }
+
+    NEXT(iter);
   }
-  page->change_notify_funcs = g_list_remove_all (page->change_notify_funcs, NULL);
+  page->change_notify_funcs->glist =
+  g_list_remove_all (page->change_notify_funcs->glist, NULL);
 }
 
 void
-o_change_notify_remove_all (Page *page)
+o_notify_change_remove_all (Page *page)
 {
-  GList *iter;
-  for (iter = page->change_notify_funcs; iter != NULL; iter = g_list_next (iter)) {
-
-    struct change_notify_entry *entry = (struct change_notify_entry *) iter->data;
-
-    if (entry != NULL) {
-      GEDA_FREE (entry);
-      iter->data = NULL;
-    }
-  }
-  page->change_notify_funcs = g_list_remove_all (page->change_notify_funcs, NULL);
+  geda_notify_list_remove_all(page->change_notify_funcs);
 }
 
 /*! \brief Emit an object pre-change notification.
@@ -130,19 +123,20 @@ o_change_notify_remove_all (Page *page)
  *
  * \param object   #Object structure to emit notifications for.
  */
-void o_emit_pre_change_notify (Object *object)
+void o_notify_emit_pre_change (Object *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
-    GList *iter;
-    for (iter = object->page->change_notify_funcs; iter != NULL; NEXT(iter))
+    GList *iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
+    while (iter != NULL)
     {
-      struct change_notify_entry *entry;
-      entry = (struct change_notify_entry *) iter->data;
+      change_notify *entry;
+      entry = (change_notify *) iter->data;
       if ((entry != NULL) && (entry->pre_change_func != NULL)) {
         entry->pre_change_func (entry->user_data, object);
       }
+      NEXT(iter);
     }
   }
 }
@@ -158,22 +152,22 @@ void o_emit_pre_change_notify (Object *object)
  *
  */
 void
-o_emit_change_notify (Object *object)
+o_notify_emit_change (Object *object)
 {
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
 
-    GList *iter;
+    GList *iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
 
-    for (iter = object->page->change_notify_funcs; iter != NULL; NEXT(iter)) {
+    while (iter != NULL) {
 
-      struct change_notify_entry *entry =
-      (struct change_notify_entry *) iter->data;
+       change_notify *entry = (change_notify *) iter->data;
 
       if ((entry != NULL) && (entry->change_func != NULL)) {
         entry->change_func (entry->user_data, object);
       }
+      NEXT(iter);
     }
   }
 }

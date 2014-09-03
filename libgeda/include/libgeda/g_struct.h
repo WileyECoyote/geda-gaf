@@ -226,6 +226,8 @@ struct st_undo {
   /* either UNDO_ALL or UNDO_VIEWPORT_ONLY */
   int type;
 
+  int modified;
+
   /* viewport information */
   int left, top, right, bottom;
 

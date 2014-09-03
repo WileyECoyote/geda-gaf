@@ -125,7 +125,7 @@ int s_conn_remove_other (Object *other_object, Object *to_remove)
     GList *c_current = NULL;
     CONN *conn = NULL;
 
-    o_emit_pre_change_notify (other_object);
+    o_notify_emit_pre_change (other_object);
 
     c_current = other_object->conn_list;
     while (c_current != NULL) {
@@ -162,7 +162,7 @@ int s_conn_remove_other (Object *other_object, Object *to_remove)
     c_current = g_list_next(c_current);
     }
 
-    o_emit_change_notify (other_object);
+    o_notify_emit_change (other_object);
 
     return (FALSE);
 }
@@ -426,7 +426,7 @@ void s_conn_update_linear_object (Object *object)
               object->line->y[j] == other_object->line->y[k] &&
               check_direct_compat (object, other_object)) {
 
-              o_emit_pre_change_notify (other_object);
+              o_notify_emit_pre_change (other_object);
 
             add_connection (object, other_object, CONN_ENDPOINT,
                             other_object->line->x[k],
@@ -436,7 +436,7 @@ void s_conn_update_linear_object (Object *object)
                             object->line->x[j],
                             object->line->y[j], k, j);
 
-            o_emit_change_notify (other_object);
+            o_notify_emit_change (other_object);
               }
           }
         }

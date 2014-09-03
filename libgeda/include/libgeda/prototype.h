@@ -236,11 +236,11 @@ const char   *f_path_user_config            (void);
       bool    o_net_is_fully_connected (Object *object);
 
 /* o_notify.c */
-      void    o_add_change_notify      (Page *page, ChangeNotifyFunc pre_change_func,
+      void    o_notify_change_add      (Page *page, ChangeNotifyFunc pre_change_func,
                                         ChangeNotifyFunc change_func, void *user_data);
-      void    o_remove_change_notify   (Page *page, ChangeNotifyFunc pre_change_func,
+      void    o_notify_change_remove   (Page *page, ChangeNotifyFunc pre_change_func,
                                         ChangeNotifyFunc change_func, void *user_data);
-      void    o_change_notify_remove_all (Page *page);
+      void    o_notify_change_remove_all    (Page *page);
 
 /* o_path_basic.c */
       Object *o_path_new               (int color, const char *path_string);
@@ -419,6 +419,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /* s_page.c */
       Page   *s_page_new                    (GedaToplevel *toplevel, const char *filename);
+      Page   *s_page_new_with_notify        (GedaToplevel *toplevel, const char *filename);
 const char   *s_page_get_file_extension     (Page *page);
       bool    s_page_is_symbol_file         (Page *page);
 
@@ -502,6 +503,8 @@ GedaToplevel *s_toplevel_new                          (void);
      UNDO    *s_undo_return_head       (UNDO *tail);
      UNDO    *s_undo_new_head          (void);
      void     s_undo_destroy_head      (UNDO *u_head);
+     UNDO    *s_undo_add_disk          (int type, char *filename, Page *page);
+     UNDO    *s_undo_add_memory        (int type, Page *page);
      UNDO    *s_undo_add               (UNDO *head,  int type,  char *filename, GList *object_list, int left, int top,
                                                      int right, int bottom, int  page_control, int up);
     void      s_undo_print_all         (UNDO *head);

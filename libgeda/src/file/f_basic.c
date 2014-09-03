@@ -396,17 +396,17 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       g_get_current_time (&page->last_load_or_save_time);
       page->ops_since_last_backup = 0;
       page->do_autosave_backup = 0;
-      page->CHANGED=0; /* added 11/17/13 */
+      page->CHANGED=0; /* WEH: added 11/17/13, really */
 
       /* Restore permissions. */
       chmod (real_filename, st_ActiveFile.st_mode);
 
-      #ifdef HAVE_CHOWN
+#ifdef HAVE_CHOWN
       if (chown (real_filename, st_ActiveFile.st_uid, st_ActiveFile.st_gid)) {
         /* Either the current user has permissioin to change ownership
          * or they didn't. */
       }
-      #endif
+#endif
       GEDA_FREE (real_filename);
       result = 1;
     }

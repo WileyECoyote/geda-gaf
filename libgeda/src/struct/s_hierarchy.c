@@ -109,7 +109,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const gchar *filename,
         return found;
       }
 
-      found = s_page_new (toplevel, string);
+      found = s_page_new_with_notify (toplevel, string);
 
       f_open (toplevel, found, found->filename, NULL);
     }
@@ -117,7 +117,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const gchar *filename,
 
   case HIERARCHY_FORCE_LOAD:
     {
-      found = s_page_new (toplevel, string);
+      found = s_page_new_with_notify (toplevel, string);
       f_open (toplevel, found, found->filename, NULL);
     }
     break;
@@ -165,7 +165,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
     return;
   }
 
-  page = s_page_new (toplevel, filename);
+  page = s_page_new_with_notify (toplevel, filename);
   GEDA_FREE(filename);
 
   s_page_goto (toplevel, page);

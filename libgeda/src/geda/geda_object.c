@@ -109,6 +109,7 @@ int geda_object_no_bounds (Object *o)
   fprintf(stderr, "ERROR: <geda_object_bound> bounds function not set, name=%s\n", o->name);
   return FALSE;
 }
+
 int geda_object_bounds(Object *object)
 {
   ObjectClass *object_class = (ObjectClass*)G_OBJECT_GET_CLASS(object);

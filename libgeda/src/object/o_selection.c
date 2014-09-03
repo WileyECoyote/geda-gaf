@@ -121,9 +121,9 @@ void o_selection_select(Object *object)
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (object->selected == FALSE) {
-    o_emit_pre_change_notify (object);
+    o_notify_emit_pre_change (object);
     object->selected = TRUE;
-    o_emit_change_notify (object);
+    o_notify_emit_change (object);
   }
 
 }
@@ -140,9 +140,9 @@ void o_selection_unselect (Object *object)
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (object->selected == TRUE) {
-    o_emit_pre_change_notify (object);
+    o_notify_emit_pre_change (object);
     object->selected = FALSE;
-    o_emit_change_notify (object);
+    o_notify_emit_change (object);
   }
 }
 
