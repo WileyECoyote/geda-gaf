@@ -1,3 +1,17 @@
+2014-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Use g_idle_add  to update sensitivities in idle
+      thread, a modest improvement was detected during Undo performance testing,
+      = 3.27 ns per object faster. Add doxygen (subgroups) for sensitivities,
+      and sensitivity helper functions.
+
+    * src/x/x_scroll.c: Use g_idle_add  to update scrollbars in idle thread,
+      a modest improvement was detected during Undo performance testing, =
+      1.12 ns per object faster.
+
+    * src/object/o_undo.c: Use x_scrollbars_update instead of calling
+      x_hscrollbar_update and x_vscrollbar_update separately.
+
 2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_undo.c: Implemented GedaNotifyList in o_undo_callback

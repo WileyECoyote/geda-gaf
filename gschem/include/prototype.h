@@ -768,7 +768,7 @@ bool x_print_export_pdf           (GschemToplevel *w_current, const char *filena
 void x_print                      (GschemToplevel *w_current);
 
 /* x_rc.c */
-void x_rc_parse_gschem            (GschemToplevel *w_current, const char *rcfile);
+void x_rc_parse_gschem                 (GschemToplevel *w_current, const char *rcfile);
 
 /* x_scroll.c */
 void x_hscrollbar_set_ranges           (GschemToplevel *w_current);

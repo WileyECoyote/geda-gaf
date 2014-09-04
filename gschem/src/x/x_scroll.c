@@ -47,22 +47,17 @@ void x_hscrollbar_set_ranges(GschemToplevel *w_current)
 
 }
 
-/*! \brief Update Horizontal Scroll Bar
+/*! \brief Idle Update Horizontal Scroll Bar
  *  \par Function Description
  *   This functions updates the scale of horizontal scroll bar.
  */
-void x_hscrollbar_update(GschemToplevel *w_current)
+static bool
+x_hscrollbar_idle_update(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   GtkAdjustment *hadjustment;
 
-  if (w_current->scrollbars == FALSE) {
-    return;
-  }
-
-  if (w_current->h_scrollbar == NULL) {
-    return;
-  }
+  if (w_current->h_scrollbar) {
 
   hadjustment = gtk_range_get_adjustment (GTK_RANGE (w_current->h_scrollbar));
 
@@ -80,6 +75,26 @@ void x_hscrollbar_update(GschemToplevel *w_current)
 
   gtk_signal_emit_by_name(GTK_OBJECT(hadjustment), "changed");
   gtk_signal_emit_by_name(GTK_OBJECT(hadjustment), "value_changed");
+  }
+#if DEBUG
+  else {
+    BUG_MSG("Bad pointer, w_current->h_scrollbar == NULL");
+  }
+#endif
+  return FALSE;
+}
+
+/*! \brief Schedule Update Horizontal Scroll Bar
+ *  \par Function Description
+ *   This functions create an idle thread to updates the scale of
+ *   horizontal scroll bar.
+ */
+void x_hscrollbar_update(GschemToplevel *w_current)
+{
+  if (w_current->scrollbars) {
+    g_idle_add ((GSourceFunc)x_hscrollbar_idle_update, w_current);
+  }
+
 }
 
 /*! \brief Set Vertical Scroll Bar Range
@@ -92,52 +107,65 @@ void x_vscrollbar_set_ranges(GschemToplevel *w_current)
 {
   GtkAdjustment *vadjustment;
 
-  if (w_current->scrollbars == FALSE) {
-    return;
+  if (w_current->scrollbars) {
+
+    vadjustment =
+    gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));
+
+    vadjustment->lower = w_current->world_top;
+    vadjustment->upper = w_current->world_bottom;
   }
-
-  vadjustment =
-  gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));
-
-  vadjustment->lower = w_current->world_top;
-  vadjustment->upper = w_current->world_bottom;
 }
 
-/*! \brief Update Vertical Scroll Bar
+/*! \brief Idle Update Vertical Scroll Bar
  *  \par Function Description
  *   This functions updates the scale of vertical scroll bar.
  */
-void x_vscrollbar_update(GschemToplevel *w_current)
+static bool
+x_vscrollbar_idle_update(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   GtkAdjustment *vadjustment;
 
-  if (w_current->scrollbars == FALSE) {
-    return;
-  }
+  if (w_current->v_scrollbar != NULL) {
 
-  if (w_current->v_scrollbar == NULL) {
-    return;
-  }
+    vadjustment =
+    gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));
 
-  vadjustment =
-  gtk_range_get_adjustment(GTK_RANGE(w_current->v_scrollbar));
+    vadjustment->page_size = fabs(toplevel->page_current->bottom -
+    toplevel->page_current->top);
 
-  vadjustment->page_size = fabs(toplevel->page_current->bottom -
-                                toplevel->page_current->top);
+    vadjustment->page_increment = vadjustment->page_size - 100.0;
 
-  vadjustment->page_increment = vadjustment->page_size - 100.0;
-
-  vadjustment->value =
-  w_current->world_bottom - toplevel->page_current->bottom;
+    vadjustment->value =
+    w_current->world_bottom - toplevel->page_current->bottom;
 
 #if DEBUG
-  printf("V %f %f\n", vadjustment->lower, vadjustment->upper);
-  printf("Vp %f\n", vadjustment->page_size);
+    printf("V %f %f\n", vadjustment->lower, vadjustment->upper);
+    printf("Vp %f\n", vadjustment->page_size);
 #endif
 
-  gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "changed");
-  gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "value_changed");
+    gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "changed");
+    gtk_signal_emit_by_name(GTK_OBJECT(vadjustment), "value_changed");
+  }
+#if DEBUG
+  else {
+    BUG_MSG("Bad pointer, w_current->v_scrollbar = NULL");
+  }
+#endif
+  return FALSE;
+}
+
+/*! \brief Schedule Update Vertical Scroll Bar
+ *  \par Function Description
+ *   This functions starts an idle thread to updates the scale of
+ *   vertical scroll bar.
+ */
+void x_vscrollbar_update(GschemToplevel *w_current)
+{
+  if (w_current->scrollbars) {
+    g_idle_add ((GSourceFunc)x_vscrollbar_idle_update, w_current);
+  }
 }
 
 /*! \brief Update Scroll Bars
@@ -147,10 +175,8 @@ void x_vscrollbar_update(GschemToplevel *w_current)
  */
 void x_scrollbars_update(GschemToplevel *w_current)
 {
-  if (w_current->scrollbars == FALSE) {
-    return;
+  if (w_current->scrollbars) {
+    g_idle_add ((GSourceFunc)x_hscrollbar_idle_update, w_current);
+    g_idle_add ((GSourceFunc)x_vscrollbar_idle_update, w_current);
   }
-
-  x_hscrollbar_update(w_current);
-  x_vscrollbar_update(w_current);
 }

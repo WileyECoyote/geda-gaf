@@ -570,8 +570,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
                       u_current->left, u_current->right,
                       u_current->top,  u_current->bottom);
 
-  x_hscrollbar_update(w_current);
-  x_vscrollbar_update(w_current);
+  x_scrollbars_update(w_current);
 
   /* restore logging */
   logging = save_logging;

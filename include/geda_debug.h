@@ -26,13 +26,30 @@
 #ifndef __GEDA_DEBUG__
 #  define __GEDA_DEBUG__
 
-#define DEBUG_DND_EVENTS 0
-#define DEBUG_EVENTS     0
-#define DEBUG_IMAGING    0
-#define DEBUG_TOOLBARS   0
+#define SET_DEBUG_DND_EVENTS  0
+#define SET_DEBUG_EVENTS      0
+#define SET_DEBUG_IMAGING     0
+#define SET_DEBUG_STATUS      0
+#define SET_DEBUG_SENSITIVITY 0
+#define SET_DEBUG_TOOLBARS    0
 
 /* libgedauio*/
-#define DEBUG_GEDA_ENTRY 0
+#define SET_DEBUG_LIBGEDAUIO  0
+
+#define SET_DEBUG_GEDA_ENTRY  0
+
+/* ------------------------------------------------------ */
+#define DEBUG_DND_EVENTS  ( SET_DEBUG_DND_EVENTS  || DEBUG )
+#define DEBUG_EVENTS      ( SET_DEBUG_EVENTS      || DEBUG )
+#define DEBUG_IMAGING     ( SET_DEBUG_IMAGING     || DEBUG )
+#define DEBUG_STATUS      ( SET_DEBUG_STATUS      || DEBUG )
+#define DEBUG_SENSITIVITY ( SET_DEBUG_SENSITIVITY || DEBUG_STATUS )
+#define DEBUG_TOOLBARS    ( SET_DEBUG_TOOLBARS    || DEBUG )
+
+/* libgedauio*/
+#define DEBUG_LIBGEDAUIO  ( SET_DEBUG_LIBGEDAUIO || DEBUG )
+
+#define DEBUG_GEDA_ENTRY  ( SET_DEBUG_GEDA_ENTRY || DEBUG_LIBGEDAUIO)
 
 #  ifdef HAVE_LIBDMALLOC
 #    include <dmalloc.h>

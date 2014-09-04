@@ -189,8 +189,11 @@ static const char *i_status_string(GschemToplevel *w_current)
     case ENDMCOPY:
       return _("Multiple Copy Mode");
   }
-#if DEBUG
+
+#if DEBUG_STATUS
+
   fprintf(stderr, "%s: Invalid state <%d>\n", __func__, w_current->event_state);
+
 #endif
 
   return ""; /* should not happen */
@@ -265,6 +268,15 @@ void i_status_update_grid_info (GschemToplevel *w_current)
   x_status_bar_update_grid_label (w_current);
 }
 
+/** \defgroup status-set-sensitivity Sensitivity Status
+ *  @{
+ *  \defgroup status-sensitivity-helpers Sensitivity Status Helpers
+ *   @{
+ *   \par
+ *   This sections for helper function for determining how the
+ *   Sensitivity should be set.
+ */
+
 /*! \brief Update sensitivity of the Edit/Paste menu item
  *  \par Function Description
  *  Asynchronous callback to update sensitivity of the Edit/Paste
@@ -280,7 +292,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
 
 /*! \brief Can anything selected be hatched for filled?
  *  \par Function Description
- * i_status_update_sensitivities helper function to determine
+ * update sensitivities helper function to determine
  * if any selected objects can be hatched or filled
  */
 static bool
@@ -302,7 +314,7 @@ hatchable_object_selected(GList *list)
 
 /*! \brief Does anything selected have line-type properties?
  *  \par Function Description
- * i_status_update_sensitivities helper function to determine
+ * update sensitivities helper function to determine
  * if any selected objects have line-type properties
  */
 static bool
@@ -325,7 +337,7 @@ linetype_object_selected(GList *list)
 
 /*! \brief Is at least one Text object selected?
  *  \par Function Description
- * i_status_update_sensitivities helper function to determine
+ * update sensitivities helper function to determine
  * if any selected objects are Text objects
  */
 static bool
@@ -345,7 +357,7 @@ selected_at_least_one_text_object(GList *list)
 
 /*! \brief Is at least one Complex object selected?
  *  \par Function Description
- * i_status_update_sensitivities helper function to determine
+ * update sensitivities helper function to determine
  * if any selected objects are Complex objects
  */
 static bool
@@ -365,7 +377,7 @@ selected_complex_object(GList *list)
 
 /*! \brief Is at least one Pin object selected?
  *  \par Function Description
- * i_status_update_sensitivities helper function to determine
+ * update sensitivities helper function to determine
  * if any selected objects are Pin objects
  */
 static bool
@@ -383,7 +395,9 @@ selected_at_least_one_pin_object(GList *list)
   return FALSE;
 }
 
-/*! \brief Update sensitivity of relevant menu items
+/** @} endgroup status-sensitivity-helpers */
+
+/*! \brief Idle Thread Update Sensitivity of relevant menu items
  *
  *  \par Function Description
  *  Update sensitivity of relevant menu & toolbar items.
@@ -396,7 +410,8 @@ selected_at_least_one_pin_object(GList *list)
  *
  * TODO: Fix this ludicrousness
  */
-void i_status_update_sensitivities(GschemToplevel *w_current)
+static bool
+i_status_idle_update_sensitivities(GschemToplevel *w_current)
 {
   bool any_object;
   bool can_hatch;
@@ -435,29 +450,33 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
   GedaToplevel *toplevel = w_current->toplevel;
   GList *list = geda_list_get_glist(toplevel->page_current->selection_list);
 
-  if (w_current == NULL) {
-    u_log_message("Internal Error Detected: <i_status_update_sensitivities> w_current == NULL\n");
-    return;
-  }
-
-  if (toplevel->page_current == NULL) {
-    u_log_message("Internal Error Detected: <i_status_update_sensitivities> toplevel->page_current == NULL\n");
-    return;
-  }
 
   /* This is improve but still fairly simplistic.  What gets enabled/disabled
    * could be more selective based based on what is in the selection list, WEH
    */
   x_clipboard_query_usable (w_current, clipboard_usable_cb, w_current);
 
-  any_object = o_select_is_selection (w_current);
-  can_hatch            = hatchable_object_selected(list);
-  can_edit_line        = linetype_object_selected(list);
-  mutil_pages          = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
-  complex_selected     = selected_complex_object(list);
-  is_editing_symbol    = s_page_is_symbol_file(Current_Page);
-  pin_selected         = selected_at_least_one_pin_object(list);
-  text_selected        = selected_at_least_one_text_object(list);
+
+  if (w_current->toplevel->page_current == NULL) {
+    any_object           = FALSE;
+    can_hatch            = FALSE;
+    can_edit_line        = FALSE;
+    mutil_pages          = FALSE;
+    complex_selected     = FALSE;
+    is_editing_symbol    = FALSE;
+    pin_selected         = FALSE;
+    text_selected        = FALSE;
+  }
+  else {
+    any_object           = o_select_is_selection (w_current);
+    can_hatch            = hatchable_object_selected(list);
+    can_edit_line        = linetype_object_selected(list);
+    mutil_pages          = g_list_length(geda_list_get_glist(toplevel->pages)) > 1 ? TRUE : FALSE;
+    complex_selected     = selected_complex_object(list);
+    is_editing_symbol    = s_page_is_symbol_file(Current_Page);
+    pin_selected         = selected_at_least_one_pin_object(list);
+    text_selected        = selected_at_least_one_text_object(list);
+  }
 
   if ( mutil_pages ) {
     x_menus_sensitivity(w_current, "_Page/_Next", TRUE);
@@ -616,12 +635,32 @@ void i_status_update_sensitivities(GschemToplevel *w_current)
 
   /* This list must be last*/
   x_toolbars_set_sensitivities (w_current, ANY_OBJECT,     any_object);
+  return FALSE;
 }
 
-static bool
-i_status_idle_thread_update_title (void *data)
+/*! \brief Schedule Update Sensitivity of relevant menu items
+ *
+ *  \par Function Description
+ *  Spawns idle thread to update the sensitivities of widgets.
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void i_status_update_sensitivities(GschemToplevel *w_current)
 {
-  GschemToplevel *w_current = data;
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    g_idle_add ((GSourceFunc)i_status_idle_update_sensitivities, w_current);
+  }
+#if DEBUG_SENSITIVITY
+  else {
+    BUG_MSG("Bad pointer, w_current == NULL");
+  }
+#endif
+}
+/** @} endgroup status-set-sensitivity */
+
+static bool
+i_status_idle_thread_update_title (GschemToplevel *w_current)
+{
   x_window_update_title(w_current);
   return FALSE;
 }
@@ -629,19 +668,20 @@ i_status_idle_thread_update_title (void *data)
 /*! \brief Schedule Set filename as gschem window title
  *
  *  \par Function Description
- *  Set filename as gschem window title using
- *  the gnome HID format style.
+ *  Spawn threas to update the  window title
  *
  *  \param [in] w_current GschemToplevel structure
  */
 void i_status_update_title(GschemToplevel *w_current)
 {
   if (GSCHEM_IS_TOPLEVEL(w_current)) {
-    g_idle_add (i_status_idle_thread_update_title, w_current);
+    g_idle_add ((GSourceFunc)i_status_idle_thread_update_title, w_current);
   }
+#if DEBUG_SENSITIVITY
   else {
     BUG_MSG("Bad pointer to top-level");
   }
+#endif
 }
 
 /** @} endgroup Gschem-Status-Module */

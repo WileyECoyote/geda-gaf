@@ -836,7 +836,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
     fname = u_string_strdup ( name ? name : generate_untitled() );
     new_page(fname);
     /* Hack: There is no page so status bar did not get updated */
-    x_status_bar_update_grid_label(w_current);
+    i_status_update_grid_info (w_current);
     v_log_message (_("New file [%s]\n"), fname);
     GEDA_FREE (fname);
     return page;
