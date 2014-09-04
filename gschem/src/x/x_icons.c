@@ -1,4 +1,5 @@
-/* C
+/* -*- C x_icons.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
  * File: x_icons.c
  *
  * gEDA - GPL Electronic Design Automation
@@ -25,6 +26,7 @@
  * Contributing Author: Wiley Edward Hill
  *
  */
+
 /************************ REVISION HISTORY *************************
  * Who |   When   |  What (Why)
  * ---------------|--------------------------------------------------
@@ -45,6 +47,10 @@
  * WEH | 07/20/14 | Added Doxygen grouping wrapper for this module (to
  *                | to improve source documentation).
  */
+/*!
+ * \file x_icons.c
+ * \brief General Program Module for Icons and Bitmaps
+ */
 
 #include <gschem.h>
 #include <geda_debug.h>
@@ -53,7 +59,7 @@
  *  @{
  *  \par This module contains routines for icons images
  *  in support of Gschem's GUI subsystems such as menus and toolbars.
- *  This support primarily consist of an Gtk icon factory.
+ *  This support primarily consist of a Gtk icon factory.
  */
 
 static GtkIconFactory* gschem_factory;

@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_window.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
+/*!
+ * \file x_window.c
+ * \brief Main Window Module
+ */
 
 #include <errno.h>
 #include <libgen.h>        /* dirname */
@@ -28,6 +35,10 @@
 #include "x_menus.h"
 #include "x_window.h"
 #include <geda_dialog_controls.h>
+
+/** \defgroup main-window Main Window Module
+ *  @{ \par
+*/
 
 typedef bool (*GschemDrawEvent) (GtkWidget*, void*, GschemToplevel*);
 
@@ -1423,3 +1434,5 @@ void x_window_zoom_toolbar_toggle(GtkWidget *widget,
   else
     gtk_widget_hide(w_current->zoom_handlebox);
 }
+
+/** @} endgroup main-window */

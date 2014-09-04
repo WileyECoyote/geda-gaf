@@ -1,6 +1,10 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_console.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 2013-2014 Wiley Edward Hill
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -18,9 +22,9 @@
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
  */
 
-/*
- * \file x_log.c
- * \brief Type class and functions to support the gschem log window.
+/*!
+ * \file x_console.c
+ * \brief A dialog box for command input entry and displays log data
  */
 
 /* Who |   When   |  What (Why)

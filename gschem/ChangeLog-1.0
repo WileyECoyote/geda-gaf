@@ -1,5 +1,10 @@
 2014-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_*.c: Revise file headers, update doxygen documentation; add
+      more grouping.
+
+2014-09-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_status.c: Use g_idle_add  to update sensitivities in idle
       thread, a modest improvement was detected during Undo performance testing,
       = 3.27 ns per object faster. Add doxygen (subgroups) for sensitivities,

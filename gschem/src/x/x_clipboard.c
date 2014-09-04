@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_clipboard.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -17,6 +20,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
+/*!
+ * \file x_clipboard.c
+ * \brief Module to provide System Clipboard suppport
+ */
 
 #include "gschem.h"
 #include <geda_debug.h>
@@ -32,7 +39,6 @@ struct query_usable {
 };
 
 /*! \brief Callback System Clipboard Change Ownership.
- *
  *  \par Function Description
  *
  */
@@ -101,7 +107,6 @@ x_clipboard_init (GschemToplevel *w_current)
 }
 
 /*! \brief Initialises system clipboard support
- *
  *  \par Function Description
  *
  * Registers a signal handler to detect if the clipboard has changed
@@ -120,7 +125,6 @@ x_clipboard_finish (GschemToplevel *w_current)
 }
 
 /*! \brief Callback for determining if any clipboard targets are pastable
- *
  *  \par Function Description
  *
  * Checks if the clipboard targets match any format we recognise, then
@@ -158,7 +162,6 @@ query_usable_targets_cb (GtkClipboard *clip, GdkAtom *targets, int ntargets, voi
 
 
 /*! \brief Checks if the system clipboard contains schematic data.
- *
  *  \par Function Description
  *
  * Checks whether the current owner of the system clipboard is
@@ -214,7 +217,6 @@ x_clipboard_query_usable (GschemToplevel *w_current,
 }
 
 /*! \brief Set the contents of the system clipboard
- *
  *  \par Function Description
  *
  * Sets the system clipboard to contain the gschem objects listed in \a
@@ -255,7 +257,6 @@ x_clipboard_set (GschemToplevel *w_current, const GList *object_list)
 }
 
 /*! \brief Get the contents of the system clipboard
- *
  *  \par Function Description
  *
  * If the system clipboard contains schematic data, retrieve it.

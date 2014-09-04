@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_image.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -21,9 +24,7 @@
 
 /*!
  * \file x_image.c
- *
- * \brief A dialog box for creating output images.
- *
+ * \brief A dialog box for creating and Exporting Images
  */
 
 #include <errno.h>

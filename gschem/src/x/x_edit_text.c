@@ -1,6 +1,8 @@
-
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_edit_text.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -19,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file x_edit_text.c
+ * \brief A dialog box for creating and editing Text Objects.
+ */
 
 #include <gdk/gdk.h>
 
@@ -30,12 +36,6 @@
 #include <geda_widgets.h>
 
 #include <geda_debug.h>
-
-/*!
- * \file x_edit_text.c
- *
- * \brief A dialog box for creating and editing Text Objects.
- */
 
 /** \defgroup Edit-Text-Dialog Edit Text Editing-Dialog Functions
  *  @{

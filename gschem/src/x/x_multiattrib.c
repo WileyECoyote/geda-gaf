@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_multiattrib.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,6 +21,11 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file x_multiattrib.c
+ * \brief A dialog box for editing Object Attributes.
+ */
+
 #include <config.h>
 
 #include "gschem.h"

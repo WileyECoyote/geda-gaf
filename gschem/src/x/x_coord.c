@@ -1,8 +1,11 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_coord.c  indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * File: x_coord.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 2013-2014 Wiley Edward Hill
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -18,6 +21,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
+ */
+/*!
+ * \file x_coord.c
+ * \brief A dialog box for selecting Component Symbols
  */
 
 #include <ctype.h>

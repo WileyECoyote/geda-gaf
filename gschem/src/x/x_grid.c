@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_grid.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,10 +21,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file x_grid.c
+ * \brief Main Window Auxiliary Module for Grid systems applied to drawing area
+ */
 
 #include "gschem.h"
-
 #include <geda_debug.h>
+
+/** \defgroup grid-module Grid Module
+ *  @{\brief This group contains functions for Grid systems
+ *    \ingroup (main-window)
+*/
 
 #define DOTS_POINTS_ARRAY_SIZE       5000
 #define DOTS_VARIABLE_MODE_SPACING   30
@@ -407,3 +418,5 @@ void x_draw_tiles(GschemToplevel *w_current)
 
   gdk_font_unref(font);
 }
+
+/** @} endgroup grid-module */

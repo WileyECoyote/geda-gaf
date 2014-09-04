@@ -1,6 +1,11 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_rc.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * File: x_rc.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,6 +21,14 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
+ *
+ * Date: October, 17, 2014
+ * Contributing Author: Wiley Edward Hill
+ *
+ */
+/*!
+ * \file x_rc.c
+ * \brief Module for interfacing with Library initialization routines
  */
 
 #include <config.h>

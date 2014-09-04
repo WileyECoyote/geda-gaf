@@ -1,4 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_toolbars.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * File: x_toolbars.c
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
@@ -17,6 +21,10 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
+ */
+/*!
+ * \file x_toolbars.c
+ * \brief Main Window Auxiliary Module for Toolbars
  */
 
 #include "config.h"
@@ -43,6 +51,11 @@
 #include "i_actions.h"
 
 #include <geda_debug.h>
+
+/** \defgroup toolbars-module Toolbars Module
+ *  @{\brief This group contains functions to the toolbars
+ *    \ingroup (main-window)
+*/
 
 /* convenience macros */
 #define ANY_OBJECT_LIST   bar_widgets->any_object    /* List of widgets on toolbars to set if some object is selected */
@@ -1683,3 +1696,4 @@ void x_toolbars_update(GschemToplevel *w_current)
     }
   }
 }
+/** @} endgroup toolbars-module */

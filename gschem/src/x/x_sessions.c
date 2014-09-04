@@ -1,4 +1,5 @@
-/* C
+/* -*- C x_sessions.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
  * File: x_sessions.c
  *
  * gEDA - GPL Electronic Design Automation
@@ -24,6 +25,10 @@
  * Date: July, 13, 2014
  * Contributing Author: Wiley Edward Hill
  *
+ */
+/*!
+ * \file x_sessions.c
+ * \brief Sessions Module
  */
 
 #include "gschem.h"

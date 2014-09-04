@@ -1,7 +1,10 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_status_bar.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 2014 Ales Hvezda
- * Copyright (C) 2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 1998-2014 Ales Hvezda
+ * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,8 +23,7 @@
  */
 /*!
  * \file x_status_bar.c
- *
- * \brief A widget for the "status bar" at the bottom of the window
+ * \brief Interface to the "status bar" widget
  */
 
 #include <config.h>
@@ -30,6 +32,11 @@
 
 #include <geda_widgets.h>
 #include <geda_debug.h>
+
+/** \defgroup status-module Status Module
+ *  @{\brief This group implements the #GschemStatusBar class
+ *    \ingroup (main-window)
+*/
 
 /*! \brief Update the grid and snap settings for the gschem status bar
  *
@@ -196,3 +203,5 @@ GtkWidget *x_status_bar_create(GschemToplevel *w_current)
 
   return status_bar;
 }
+
+/** @} endgroup status-module */

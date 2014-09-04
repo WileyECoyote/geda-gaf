@@ -1,9 +1,11 @@
-/* -*- x_dnd.c -*-
+/* -*- C x_dnd.c  indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * File: x_dnd.c
+ *
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 2013-2014 Wiley Edward Hill
- * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,7 +24,10 @@
  *  Contributing Author: Wiley Edward Hill
  *  Date Contributed: September, 27, 2013
  */
-/*! \remarks
+/*!
+ * \file x_dnd.c
+ * \brief Drag and Drop Module
+ * \par
  *  There are several different ways we could implement Drag & Drop.
  * Using the "basic" Gtk D&D works well but interferes with both implicit
  * drag moving and drawing selection boxes. The basic D&D could easily
@@ -44,8 +49,8 @@
  * and this seems mostly correct. One functionality GTK/GDK lacks is a
  * practical means to abort D&D. The depreciated functions to do this
  * don't seem to abort anything, and maybe that is why they have been
- * depreciated, there is no replacement. The best tactic seems to be
- * to let GTK/GDK finish, and ignore the data.
+ * depreciated, there are no replacements functions. The best tactic
+ * seems to be to let GTK/GDK finish normally, and ignore the data.
  *
  */
 

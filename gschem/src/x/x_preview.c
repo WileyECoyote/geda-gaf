@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_preview.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  */
+/*!
+ * \file x_preview.c
+ * \brief Preview Widget used in dialog boxes
+ */
 
 #include <config.h>
 
@@ -35,7 +42,6 @@ enum {
 };
 
 static GObjectClass *preview_parent_class = NULL;
-
 
 static void preview_class_init   (PreviewClass   *class);
 static void preview_init         (Preview        *preview);

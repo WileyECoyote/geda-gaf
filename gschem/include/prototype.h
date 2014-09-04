@@ -573,9 +573,9 @@ bool x_clipboard_set                   (GschemToplevel *w_current, const GList *
 GLT *x_clipboard_get                   (GschemToplevel *w_current);
 
 /* x_color.c */
-void      x_color_init                 (void);
-void      x_color_free                 (void);
-void      x_color_allocate             (void);
+void      x_color_init                      (void);
+void      x_color_free                      (void);
+void      x_color_allocate                  (void);
 GdkColor *x_get_color                       (int color);
 GdkColor *x_get_darkcolor                   (int color);
 GArray   *x_color_get_display_color_map     (void);

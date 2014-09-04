@@ -1,4 +1,6 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_dialog.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 1998-2014 Ales Hvezda
@@ -19,8 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-
-/*! \todo STILL NEED to clean up line lengths in aa and tr */
+/*!
+ * \file x_dialog.c
+ * \brief A Collection of Utilities and Dialogs for Editing & Messages
+ */
 
 #include <ctype.h>
 

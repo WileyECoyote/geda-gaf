@@ -1,4 +1,5 @@
-/* C
+/* -*- C x_settings.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
  * File: x_settings.c
  *
  * gEDA - GPL Electronic Design Automation
@@ -54,6 +55,10 @@
  *     |          |  status-bar when the dialog closes)
  * ------------------------------------------------------------------
 */
+/*!
+ * \file x_settings.c
+ * \brief Program configuration settings support module
+ */
 
 #define USE_POSIX
 

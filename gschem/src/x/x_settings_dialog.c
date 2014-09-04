@@ -1,4 +1,5 @@
-/* C
+/* -*- C x_settings_dialog.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
  * File: x_settings_dialog.c
  *
  * gEDA - GPL Electronic Design Automation
@@ -62,9 +63,7 @@
 
 /*!
  * \file x_settings_dialog.c
- *
  * \brief A dialog box for setting program preferences.
- *
  * \remarks To add a new variable or control:
  *
  * 1. The variable should be valid and readable in the RC system, but

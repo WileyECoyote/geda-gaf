@@ -652,7 +652,7 @@ COMMAND (do_file_new_window)
  *    \ingroup (i_command_File_Actions)
  */
 /* This does not do anything productive, is a delay, the destroy
- * notifier, open_command_idle_notify, does all the work.
+ * notifier; open_command_idle_notify, does all the work.
  * This is a low priority main-loop task, instigated after higher
  * priority main-loop task were delegated to opening files */
 static bool

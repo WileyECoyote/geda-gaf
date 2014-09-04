@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_attrib.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file x_attrib.c
+ * \brief A dialog box for editing Attribute Text objects
+ */
 
 #include "gschem.h"
 #include "x_dialog.h"
@@ -25,12 +32,6 @@
 #include "geda_widgets.h"
 
 #include <geda_debug.h>
-
-/*!
- * \file x_attrib.c
- *
- * \brief A dialog box for editing Attribute Text objects.
- */
 
 /***************** Start of Attrib Edit dialog box ********************/
 
@@ -567,10 +568,26 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
   x_dialog_attrib_edit_update_selection (w_current, object);
 
 }
+
+/*! \brief Launch the Single Attribute Dialog in Add mode
+ *  \par Function Description
+ *  This functioncall the main dialog routine to construct and
+ *  display the single attribute editor in #SAE_ADD_MODE mode,
+ *  this mode is used to add new attributes to objects.
+ *
+ */
 void x_attrib_add_dialog (GschemToplevel *w_current, Object *object)
 {
   attrib_edit_dialog (w_current, object, SAE_ADD_MODE);
 }
+
+/*! \brief Launch the Single Attribute Dialog in Edit mode
+ *  \par Function Description
+ *  This functioncall the main dialog routine to construct and
+ *  display the single attribute editor in #SAE_EDIT_MODE mode,
+ *  this mode is used to edit existing attributes of objects.
+ *
+ */
 void x_attrib_edit_dialog (GschemToplevel *w_current, Object *object)
 {
   attrib_edit_dialog (w_current, object, SAE_EDIT_MODE);

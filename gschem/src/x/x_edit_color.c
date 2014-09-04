@@ -1,6 +1,8 @@
-
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_edit_color.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -22,8 +24,7 @@
 
 /*!
  * \file x_edit_color.c
- *
- * \brief A dialog box for adding editing object color.
+ * \brief A dialog box for editing object color property.
  */
 
 #include "gschem.h"

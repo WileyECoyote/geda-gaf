@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_scroll.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,12 +21,21 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file x_scroll.c
+ * \brief Main Window Auxiliary Module for Scrollbars
+ */
 
 #include <config.h>
 #include <math.h>
 
 #include "gschem.h"
 #include <geda_debug.h>
+
+/** \defgroup scrollbars-module Scrollbars Module
+ *  @{\brief This group contains functions to the scrollbars
+ *    \ingroup (main-window)
+ */
 
 /*! \brief Set Horizontal Scroll Bar Range
  *  \par Function Description
@@ -180,3 +192,5 @@ void x_scrollbars_update(GschemToplevel *w_current)
     g_idle_add ((GSourceFunc)x_vscrollbar_idle_update, w_current);
   }
 }
+
+/** @} endgroup scrollbars-module */

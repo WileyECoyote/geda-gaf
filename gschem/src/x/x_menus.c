@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_menus.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,17 +21,23 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file x_menus.c
+ * \brief Main Window Auxiliary Module for Menus, including Context
+ */
 
 #include "gschem.h"
 #include <geda_stat.h>
 
 #include <x_menus.h>
-
 #include <geda_widgets.h>
-
 #include <i_actions.h>
-
 #include <geda_debug.h>
+
+/** \defgroup Menu-Module Menu Module
+ *  @{\brief This group contains Menu related functions
+ *    \ingroup (main-window)
+ */
 
 #define MENU_BAR         menu_data->menu_bar
 #define POPUP_MENU       menu_data->popup_menu
@@ -1538,3 +1547,4 @@ const char *recent_files_last(void) {
 
 /** @} end group recent-file-menu */
 /** @} end group Main-Menu-Support */
+/** @} end group Menu-Module */

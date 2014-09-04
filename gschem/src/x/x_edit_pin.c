@@ -1,8 +1,9 @@
-
-/* gEDA - GPL Electronic Design Automation
+/* -*- C x_edit_pin.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * Copyright (C) 1998-2014 Ales Hvezda
- * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
+ *
+ * Copyright (C) 2013-2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -11,13 +12,17 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
- * MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
+ * 02110-1301 USA
+ */
+/*!
+ * \file x_edit_pin.c
+ * \brief A dialog box for editing Pin Object properties.
  */
 
 #include <gdk/gdk.h>
@@ -30,12 +35,6 @@
 #include <geda_widgets.h>
 
 #include <geda_debug.h>
-
-/*!
- * \file x_edit_pin.c
- *
- * \brief A dialog box for editing Pin Object properties.
- */
 
 /** \defgroup Edit-Pin-Dialog Edit Pin Properties Dialog
  *  @{
