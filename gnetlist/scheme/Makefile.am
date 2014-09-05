@@ -8,22 +8,47 @@ PCBCONFDIR=	@PCBCONFDIR@
 scmdatadir = @GEDADATADIR@/scheme
 nobase_scmdata_DATA = $(DIST_SCM) $(BUILT_SCM)
 
-DIST_SCM = gnet-PCB.scm gnet-allegro.scm gnet-bom.scm gnet-ewnet.scm \
-	   gnet-geda.scm spice-common.scm \
-	   gnet-spice.scm gnet-tango.scm gnet-verilog.scm \
-	   gnet-vhdl.scm gnet-vipec.scm \
-           gnet-pads.scm gnetlist.scm gnetlist-post.scm \
-           gnet-bae.scm gnet-protelII.scm \
-           gnet-bom2.scm gnet-gossip.scm gnet-drc.scm gnet-vams.scm \
-	   partslist-common.scm gnet-partslist1.scm \
-	   gnet-partslist2.scm gnet-partslist3.scm gnet-maxascii.scm \
-	   gnet-switcap.scm gnet-spice-sdb.scm gnet-drc2.scm \
-	   gnet-futurenet2.scm gnet-cascade.scm \
-	   gnet-redac.scm gnet-systemc.scm gnet-eagle.scm \
-	   gnet-pcbpins.scm gnet-calay.scm gnet-osmond.scm \
-	   gnet-mathematica.scm gnet-liquidpcb.scm \
-	   gnetlist/backend-getopt.scm gnet-makedepend.scm
-
+DIST_SCM = gnet-PCB.scm \
+	   gnet-allegro.scm \
+           gnet-bae.scm \
+	   gnet-bom.scm \
+           gnet-bom2.scm \
+	   gnet-calay.scm \
+	   gnet-cascade.scm \
+	   gnet-drc.scm \
+	   gnet-drc2.scm \
+	   gnet-eagle.scm \
+	   gnet-ewnet.scm \
+	   gnet-futurenet2.scm \
+	   gnet-geda.scm \
+	   gnet-gossip.scm \
+	   gnetlist.scm \
+	   gnetlist-post.scm \
+	   gnet-liquidpcb.scm \
+	   gnet-mathematica.scm \
+	   gnet-osmond.scm \
+           gnet-pads.scm \
+	   gnet-partslist1.scm \
+	   gnet-partslist2.scm \
+	   gnet-partslist3.scm \
+	   gnet-protelII.scm \
+	   gnet-pcbpins.scm \
+	   gnet-makedepend.scm \
+	   gnet-maxascii.scm \
+	   gnet-redac.scm \
+	   gnet-spice.scm \
+	   gnet-spice-noqsi.scm \
+	   gnet-spice-sdb.scm \
+	   gnet-systemc.scm \
+	   gnet-switcap.scm   \
+           gnet-tango.scm \
+	   gnet-vams.scm \
+	   gnet-verilog.scm \
+	   gnet-vhdl.scm \
+	   gnet-vipec.scm \
+	   partslist-common.scm \
+	   spice-common.scm \
+	   gnetlist/backend-getopt.scm
 
 EXTRA_DIST = $(DIST_SCM) $(SCM_SRCS)
 

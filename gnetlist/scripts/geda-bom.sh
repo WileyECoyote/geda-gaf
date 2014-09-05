@@ -23,7 +23,7 @@
 #+ MA 02111-1301, USA
 
 #  This is a Bash Wrapper encapsulating a utility command function. The
-#  Wrapper provides system level interfacing for command-line options,
+#  Wrapper provides system level interface for command-line options,
 #  logging, I/O Management, debugging, and Error handling. The embedded
 #+ function is defined in do_CommandFunction.
 #

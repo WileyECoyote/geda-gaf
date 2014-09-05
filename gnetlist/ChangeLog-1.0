@@ -1,3 +1,7 @@
+2014-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-spice-noqsi.scm: Add new backend; gnet-spice-noqsi.scm
+
 2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: rename geda_strdup u_string_strdup to match libgeda
