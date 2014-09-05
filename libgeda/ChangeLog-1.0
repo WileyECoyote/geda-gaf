@@ -1,3 +1,11 @@
+2014-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_notify.c: Resolved two issues, neither o_notify_emit_pre_
+      change nor o_notify_emit_change was checking for a NULL change_notify_
+      funcs, which would the case if page was created without a notify object.
+      Secondly, o_notify_emit_pre_change was not checking freeze count, oops,
+      makes a big difference.
+
 2014-09-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_notify.?: Add and freeze and thaw to GedaNotifyList

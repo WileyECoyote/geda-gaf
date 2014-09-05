@@ -91,8 +91,8 @@ static void geda_notify_list_finalize (GObject *object)
  *  GedaType class initialiser for GedaNotifyList. We override our parents
  *  virtual class methods as needed and register our GObject signals.
  *
- *  \param [in]  g_class       The GedaNotifyList we are initialising
- *  \param [in]  g_class_data  (unused)
+ *  \param [in]  class       The GedaNotifyList we are initialising
+ *  \param [in]  class_data  (unused)
  */
 static void geda_notify_list_class_init(void *class, void *class_data)
 {

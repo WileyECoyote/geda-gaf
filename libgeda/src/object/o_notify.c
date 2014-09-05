@@ -125,15 +125,24 @@ void o_notify_emit_pre_change (Object *object)
   g_return_if_fail(GEDA_IS_OBJECT(object));
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
-    GList *iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
-    while (iter != NULL)
+
+    if (object->page->change_notify_funcs != NULL &&
+       !object->page->change_notify_funcs->freeze_count)
     {
-      change_notify *entry;
-      entry = (change_notify *) iter->data;
-      if ((entry != NULL) && (entry->pre_change_func != NULL)) {
-        entry->pre_change_func (entry->user_data, object);
+
+      GList *iter;
+
+      iter = geda_notify_list_get_glist(object->page->change_notify_funcs);
+
+      while (iter != NULL)
+      {
+        change_notify *entry;
+        entry = (change_notify *) iter->data;
+        if ((entry != NULL) && (entry->pre_change_func != NULL)) {
+          entry->pre_change_func (entry->user_data, object);
+        }
+        NEXT(iter);
       }
-      NEXT(iter);
     }
   }
 }
@@ -155,7 +164,9 @@ o_notify_emit_change (Object *object)
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
 
-    if (!object->page->change_notify_funcs->freeze_count) {
+    if (object->page->change_notify_funcs != NULL &&
+       !object->page->change_notify_funcs->freeze_count)
+    {
 
       GList *iter;
 
