@@ -52,19 +52,18 @@
  */
 static int query_dots_grid_spacing (GschemToplevel *w_current)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   int incr, screen_incr;
 
-  g_return_val_if_fail(w_current != NULL, -1);
   g_return_val_if_fail(w_current->toplevel != NULL, -1);
 
-  if (GEDA_IS_PAGE(toplevel->page_current)) {
+  if (GEDA_IS_PAGE(Current_Page)) {
+
     if (w_current->dots_grid_mode == DOTS_GRID_VARIABLE_MODE) {
 
       /* In the variable mode around every (DOTS_VARIABLE_MODE_SPACING)'th
-       * screenpixel will be grid-point. adding 0.1 for correct cast*/
-      incr = round_5_2_1 (toplevel->page_current->to_world_x_constant *
-      DOTS_VARIABLE_MODE_SPACING) + 0.1;
+       * screenpixel will be grid-point. Adding 0.1 for correct cast*/
+      incr = m_round_5_2_1 (Current_Page->to_world_x_constant *
+                            DOTS_VARIABLE_MODE_SPACING) + 0.1;
 
       /* limit minimum grid spacing to grid to snap_size */
       if (incr < w_current->snap_size) {
@@ -72,9 +71,11 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
       }
     }
     else {
+
       /* Fixed size grid in world coorinates */
-      incr = w_current->snap_size;
+      incr        = w_current->snap_size;
       screen_incr = SCREENabs (w_current, incr);
+
       if (screen_incr < w_current->dots_grid_fixed_threshold) {
         /* No grid drawn if the on-screen spacing is less than the threshold */
         incr = -1;
@@ -103,7 +104,6 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
 static void draw_dots_grid_region (GschemToplevel *w_current,
                                    int x, int y, int width, int height)
 {
-  GedaToplevel *toplevel = w_current->toplevel;
   int i, j;
   int dot_x, dot_y;
   int x_start, y_start, x_end, y_end;
@@ -112,8 +112,6 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
 
   int incr = query_dots_grid_spacing (w_current);
 
-  /* Note: Previous call to query_dots_grid_spacing checked
-   * w_current & toplevel for NULL values, so we do not */
   if (incr == -1)
     return;
 
@@ -123,18 +121,20 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
   SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
 
   /* figure starting grid coordinates, work by taking the start
-   * and end coordinates and rounding down to the nearest
-   * increment */
+   * and end coordinates and rounding down to the nearest increment */
   x_start -= (x_start % incr);
   y_start -= (y_start % incr);
 
   for (i = x_start; i <= x_end; i = i + incr) {
+
     for(j = y_start; j <= y_end; j = j + incr) {
+
       WORLDtoSCREEN (w_current, i,j, &dot_x, &dot_y);
-      if (inside_region (toplevel->page_current->left,
-                         toplevel->page_current->top,
-                         toplevel->page_current->right,
-                         toplevel->page_current->bottom, i, j)) {
+
+      if (inside_region (Current_Page->left,
+                         Current_Page->top,
+                         Current_Page->right,
+                         Current_Page->bottom, i, j)) {
 
         if (w_current->dots_grid_dot_size == 1) {
           points[count].x = dot_x;
@@ -147,7 +147,8 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
                              w_current->gc, points, count);
             count = 0;
           }
-        } else {
+        }
+        else {
           gdk_draw_arc (w_current->drawable, w_current->gc,
                         TRUE, dot_x, dot_y,
                         w_current->dots_grid_dot_size,
@@ -184,7 +185,8 @@ static void draw_mesh (GschemToplevel *w_current, int color,
   if (coarse_incr == 0) {
     next_coarse_x = x_start - 1; /* Ensures we never hit this when looping */
     next_coarse_y = y_start - 1; /* Ensures we never hit this when looping */
-  } else {
+  }
+  else {
     next_coarse_x = x_start - (x_start % coarse_incr);
     next_coarse_y = y_start - (y_start % coarse_incr);
     if (next_coarse_x < x_start) next_coarse_x += coarse_incr;
@@ -209,10 +211,12 @@ static void draw_mesh (GschemToplevel *w_current, int color,
       next_coarse_y += coarse_incr;
       continue;
     }
+
     WORLDtoSCREEN (w_current, x_start, j, &x1, &y1);
     WORLDtoSCREEN (w_current, x_end,   j, &x2, &y2);
     cairo_move_to (w_current->cr, x1, y1);
     cairo_line_to (w_current->cr, x2, y2);
+
   }
   cairo_stroke (w_current->cr);
 
@@ -223,10 +227,12 @@ static void draw_mesh (GschemToplevel *w_current, int color,
       next_coarse_y += coarse_incr;
       continue;
     }
+
     WORLDtoSCREEN (w_current, i, y_start, &x1, &y1);
     WORLDtoSCREEN (w_current, i, y_end,   &x2, &y2);
     cairo_move_to (w_current->cr, x1, y1);
     cairo_line_to (w_current->cr, x2, y2);
+
   }
   cairo_stroke (w_current->cr);
 
@@ -278,8 +284,8 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
  *  \param [in] width      The width of the region to draw.
  *  \param [in] height     The height of the region to draw.
  */
-static void draw_mesh_grid_region (GschemToplevel *w_current,
-                                   int x, int y, int width, int height)
+static void
+draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int height)
 {
   int x_start, y_start, x_end, y_end;
   int incr;
@@ -319,8 +325,8 @@ static void draw_mesh_grid_region (GschemToplevel *w_current,
  *  \param [in] width      The width of the region to draw.
  *  \param [in] height     The height of the region to draw.
  */
-void x_grid_draw_region (GschemToplevel *w_current,
-                         int x, int y, int width, int height)
+void
+x_grid_draw_region (GschemToplevel *w_current, int x, int y, int width, int height)
 {
   switch (w_current->grid_mode) {
     case GRID_NONE:
@@ -339,8 +345,8 @@ void x_grid_draw_region (GschemToplevel *w_current,
   /* highly temp, just for diag purposes */
   x_draw_tiles(w_current);
 #endif
-}
 
+}
 
 /*! \brief Query the spacing in world coordinates at which the grid is drawn.
  *
@@ -383,8 +389,11 @@ void x_draw_tiles(GschemToplevel *w_current)
   gdk_gc_set_foreground (w_current->gc, x_get_color (LOCK_COLOR));
 
   font = gdk_fontset_load ("fixed");
+
   for (j = 0; j < MAX_TILES_Y; j++) {
+
     for (i = 0; i < MAX_TILES_X; i++) {
+
       t_current = &toplevel->page_current->world_tiles[i][j];
       WORLDtoSCREEN (w_current, t_current->left, t_current->top, &x1, &y1);
       WORLDtoSCREEN (w_current, t_current->right, t_current->bottom, &x2, &y2);

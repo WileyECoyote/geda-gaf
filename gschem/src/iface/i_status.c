@@ -52,8 +52,8 @@ void i_status_set_state_msg(GschemToplevel *w_current,
                             const char     *message)
 {
   w_current->event_state = newstate;
-  x_toolbars_update(w_current);
-  i_status_show_state(w_current, message);
+  x_toolbars_update (w_current);
+  i_status_show_state (w_current, message);
 }
 
 /*! \brief Set new state, then show state field
@@ -67,7 +67,7 @@ void i_status_set_state_msg(GschemToplevel *w_current,
  */
 void i_status_set_state(GschemToplevel *w_current, enum x_states newstate)
 {
-  i_status_set_state_msg(w_current, newstate, NULL);
+  i_status_set_state_msg (w_current, newstate, NULL);
 }
 
 
@@ -85,9 +85,9 @@ i_status_update_status(GschemToplevel *w_current, const char *string)
   if (!StatusBar->status_label)
     return;
 
-  if (string) {
-    /* NOTE: consider optimizing this if same label */
-    geda_label_widget_set_text(StatusBar->status_label, (char*) string);
+  if (string)
+    if (strcmp(geda_label_widget_get_text(StatusBar->status_label), string) != 0) {
+      geda_label_widget_set_text(StatusBar->status_label, (char*) string);
   }
 }
 
@@ -211,8 +211,9 @@ static const char *i_status_string(GschemToplevel *w_current)
 void i_status_show_state(GschemToplevel *w_current, const char *message)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  char *what_to_say;
-  const char *array[5] = { NULL };
+  char         *what_to_say;
+  const char   *array[5] = { NULL };
+
   int i = 3; /* array[4] must be NULL */
 
   /* Fill in the string array */
@@ -236,18 +237,19 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
   what_to_say = g_strjoinv(" - ", (char **) array + i);
 
   if(w_current->keyaccel_string) {
-     char *p = what_to_say;
+
+     char *ptr = what_to_say;
 
      what_to_say = g_strdup_printf("%s \t\t %s", w_current->keyaccel_string,
-           what_to_say);
-     GEDA_FREE(p);
+                                                 what_to_say);
+     GEDA_FREE(ptr);
   }
 
   i_status_update_status(w_current, what_to_say);
   GEDA_FREE(what_to_say);
 }
 
-/*! \brief Update the Grid and Snap Display on the gschem Status-Bar
+/*! \brief Idle Update the Grid and Snap Display on the gschem Status-Bar
  *
  *  \par Function Description
  *  This function calls the appropriate interface to update the Grid/Snap
@@ -255,17 +257,30 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
  *
  *  \param [in] w_current GschemToplevel structure
  */
-/*
- * i_pan_world.c:159  i_pan_world_general()
- * i_command.c:2665   i_cmd_do_grid_dots()
- * i_command.c:2674   i_cmd_do_grid_mesh()
- * i_command.c:2683   i_cmd_do_grid_off()
- * i_command.c:2705   i_cmd_do_cycle_grid()
- *
- */
-void i_status_update_grid_info (GschemToplevel *w_current)
+static bool
+i_status_idle_update_grid_info (GschemToplevel *w_current)
 {
   x_status_bar_update_grid_label (w_current);
+  return FALSE;
+}
+
+/*! \brief Schedule Update Grid and Snap Display
+ *
+ *  \par Function Description
+ *  Spawn thread to update the Grid and Snap Display
+ *
+ *  \param [in] w_current GschemToplevel structure
+ */
+void i_status_update_grid_info(GschemToplevel *w_current)
+{
+  if (GSCHEM_IS_TOPLEVEL(w_current)) {
+    g_idle_add ((GSourceFunc)i_status_idle_update_grid_info, w_current);
+  }
+#if DEBUG_STATUS
+  else {
+    BUG_MSG("Bad pointer to top-level");
+  }
+#endif
 }
 
 /** \defgroup status-set-sensitivity Sensitivity Status
@@ -668,7 +683,7 @@ i_status_idle_thread_update_title (GschemToplevel *w_current)
 /*! \brief Schedule Set filename as gschem window title
  *
  *  \par Function Description
- *  Spawn threas to update the  window title
+ *  Spawn thread to update the  window title
  *
  *  \param [in] w_current GschemToplevel structure
  */

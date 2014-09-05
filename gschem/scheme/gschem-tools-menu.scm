@@ -93,14 +93,6 @@
   )
 )
 
-;; ----------------- tools:verilog-netlist ----------------------------
-(define (tools:verilog-netlist)
-  (tools:sch-netlist-0 "verilog" ".v"))
-
-;; ----------------- tools:vhdl-sch-netlist ---------------------------
-(define (tools:vhdl-sch-netlist)
-    (tools:sch-netlist-0 "vhdl" ".vhd"))
-
 ;; ----------------- tools:geda-netlist -------------------------------
 (define (tools:geda-netlist)
     (tools:sch-netlist-0 "geda" ".geda"))
@@ -108,6 +100,18 @@
 ;; ----------------- tools:spice-sdb-netlist --------------------------
 (define (tools:spice-sdb-netlist)
     (tools:sch-netlist-0 "spice-sdb" ".cir"))
+
+;; ----------------- tools:spice-noqsi-netlist ------------------------
+(define (tools:spice-noqsi-netlist)
+    (tools:sch-netlist-0 "spice-noqsi" ".cir"))
+
+;; ----------------- tools:verilog-netlist ----------------------------
+(define (tools:verilog-netlist)
+  (tools:sch-netlist-0 "verilog" ".v"))
+
+;; ----------------- tools:vhdl-sch-netlist ---------------------------
+(define (tools:vhdl-sch-netlist)
+    (tools:sch-netlist-0 "vhdl" ".vhd"))
 
 ;; ----------------- tools:gnet_hier_verilog  -----------------------
 (define (tools:gnet_hier_verilog)
@@ -117,21 +121,24 @@
         (system (string-append "gnet_hier_verilog " (tools:ifpath)))
         (tools:open-editor? fout)
 ))))
+
 ;; ==================================================================
 (define tools:menu-items
 ;;
 ;;    menu item name       menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-  '(("SEPARATOR"                #f                   #f)
-    ("_Open Editor"         tools:open-editor        "geda-text-editor"   "Open text editor")
-    ("Run DRC2"             tools:run-drc2           #f)
-    ("SEPARATOR"                #f                   #f)
-    ("gEDA netlist"         tools:geda-netlist       "gschem-net")
-    ("Verilog netlist"      tools:verilog-netlist    #f)
-    ("Spice-sdb netlist"    tools:spice-sdb-netlist  #f)
-    ("VHDL netlist"         tools:vhdl-sch-netlist   #f)
-    ("SEPARATOR"                #f                   #f)
-    ("gnet_hier_verilog"    tools:gnet_hier_verilog  #f)
+  '(("SEPARATOR"                #f                     #f)
+    ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
+    ("Run DRC2"             tools:run-drc2             #f)
+    ("SEPARATOR"                #f                     #f)
+    ("gEDA netlist"         tools:geda-netlist         "gschem-net")
+    ("Spice-sdb netlist"    tools:spice-sdb-netlist    #f)
+    ("Spice-noqsi netlist"  tools:spice-noqsi-netlist  #f)
+    ("SEPARATOR"                #f                     #f)
+    ("Verilog netlist"      tools:verilog-netlist      #f)
+    ("VHDL netlist"         tools:vhdl-sch-netlist     #f)
+    ("SEPARATOR"                #f                     #f)
+    ("gnet_hier_verilog"    tools:gnet_hier_verilog    #f)
   )
 )
 

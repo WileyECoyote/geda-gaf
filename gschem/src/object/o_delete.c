@@ -111,8 +111,6 @@ void o_delete_selected (GschemToplevel *w_current)
 
     g_list_free (to_remove);
 
-    //w_current->inside_action = 0;
     o_undo_savestate (w_current, UNDO_ALL);
-    //i_status_update_sensitivities (w_current);
   }
 }

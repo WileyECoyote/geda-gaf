@@ -332,7 +332,7 @@ int  WORLDabs                     (GschemToplevel *w_current, int val);
 int  WORLDclip_change             (GschemToplevel *w_current, int *x1,   int *y1,  int *x2,    int *y2);
 int  clip_nochange                (GschemToplevel *w_current, int x1,    int y1,   int x2,     int y2);
 int  visible                      (GschemToplevel *w_current, int wleft, int wtop, int wright, int wbottom);
-double round_5_2_1                (double unrounded);
+double m_round_5_2_1              (double unrounded);
 
 /* o_arc.c */
 void o_arc_invalidate_rubber      (GschemToplevel *w_current);

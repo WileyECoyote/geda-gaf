@@ -844,10 +844,11 @@ void x_event_governor(GschemToplevel *w_current)
 /*! \brief On event Expose
  *  \par Function Description
  *  The expose event in Gtk is equivalent to the OnDraw in MS Windows,
- *  except it's not just a hook, we actually  have do the drawing. We
+ *  except it's not just a hook, we actually have do the drawing. We
  *  don't do in any drawing here, the function creates a temporary Cairo
- *  drawable context and call o_redraw_rectangles() to do the actually drawing.
- *  The temporary drawable is destroyed and the originals restored.
+ *  drawable context and calls o_redraw_rectangles() to do the actual
+ *  drawing. The temporary drawable is destroyed and the original
+ *  restored.
  */
 int
 x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_current)
@@ -861,24 +862,26 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
   fprintf (stderr, "x_event_expose, exposing %s\n", name);
 #endif
 
-    g_return_val_if_fail ((w_current != NULL), 0);
-    save_cr = w_current->cr;
+  g_return_val_if_fail (w_current != NULL, FALSE);
 
-    gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
+  save_cr = w_current->cr;
 
-    gdk_window_begin_paint_region(widget->window, event->region);
+  gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
 
-    w_current->cr = gdk_cairo_create( widget->window );
+  gdk_window_begin_paint_region(widget->window, event->region);
 
-    o_redraw_rectangles (w_current, rectangles, n_rectangles);
-    gdk_window_end_paint(widget->window);
+  w_current->cr = gdk_cairo_create( widget->window );
 
-    GEDA_FREE (rectangles);
+  o_redraw_rectangles (w_current, rectangles, n_rectangles);
 
-    cairo_destroy (w_current->cr);
-    w_current->cr = save_cr;
+  gdk_window_end_paint(widget->window);
 
-    return FALSE;
+  GEDA_FREE (rectangles);
+
+  cairo_destroy (w_current->cr);
+  w_current->cr = save_cr;
+
+  return FALSE;
 }
 
 /*! \brief Get a snapped pointer position in world coordinates

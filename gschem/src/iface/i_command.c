@@ -1128,12 +1128,10 @@ COMMAND ( do_delete )
 
     o_redraw_cleanstates(w_current);
     o_delete_selected(w_current);
-
     /* After deletion go into select mode */
     w_current->inside_action = 0;
     i_status_set_state(w_current, SELECT);
     i_status_update_sensitivities(w_current);
-    Current_Page->CHANGED = TRUE;
 
   }
   EXIT_COMMAND(do_delete);

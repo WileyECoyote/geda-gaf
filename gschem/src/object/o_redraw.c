@@ -161,6 +161,7 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
 
   GList *obj_list;
   GList *iter;
+
   RECTANGLE   *world_rects;
   EdaRenderer *renderer;
 
@@ -168,17 +169,17 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
   GArray *render_outline_color_map = NULL;
   cairo_matrix_t render_mtx;
 
+  g_return_if_fail (w_current->toplevel != NULL);
+  g_return_if_fail (w_current->toplevel->page_current != NULL);
+
   for (i = 0; i < n_rectangles; i++) {
     x_repaint_background_region (w_current, rectangles[i].x, rectangles[i].y,
                                  rectangles[i].width, rectangles[i].height);
   }
 
-  g_return_if_fail (toplevel != NULL);
-  g_return_if_fail (toplevel->page_current != NULL);
-
   grip_half_size = w_current->grip_pixel_size / 2;
 
-  /*grip_half_size = o_grips_half_size (w_current, NULL); */
+  /* grip_half_size = o_grips_half_size (w_current, NULL); */
 
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
@@ -186,6 +187,7 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
   world_rects = g_new (RECTANGLE, n_rectangles);
 
   for (i = 0; i < n_rectangles; i++) {
+
     int x, y, width, height;
 
     x = rectangles[i].x;
@@ -278,7 +280,7 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
   for (iter = obj_list; iter != NULL; NEXT(iter)) {
     Object *o_current = iter->data;
     if (!(o_current->dont_redraw || o_current->selected)) {
-      o_style_set_object(toplevel, o_current);
+      o_style_set_object(w_current->toplevel, o_current);
       eda_renderer_draw (renderer, o_current);
     }
   }
@@ -288,7 +290,6 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
     for (iter = obj_list; iter != NULL; NEXT(iter)) {
       Object *o_current = iter->data;
       if (!(o_current->dont_redraw || o_current->selected)) {
-        /* o_style_set_object(toplevel, o_current); cues don't have style yet*/
         eda_renderer_draw_cues (renderer, o_current);
       }
     }
@@ -304,7 +305,7 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
          iter != NULL; NEXT(iter)) {
       Object *o_current = iter->data;
       if (!o_current->dont_redraw) {
-        o_style_set_object(toplevel, o_current);
+        o_style_set_object(w_current->toplevel, o_current);
         eda_renderer_draw (renderer, o_current);
         eda_renderer_draw_cues (renderer, o_current);
         if (w_current->renderer->draw_grips ) {

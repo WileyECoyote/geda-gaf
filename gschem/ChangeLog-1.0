@@ -1,3 +1,8 @@
+2014-09-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem-tools-menu.scm: Add spice-noqsi to tools menu, is hack
+      until a better arrangement can be implemented.
+
 2014-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_*.c: Revise file headers, update doxygen documentation; add
