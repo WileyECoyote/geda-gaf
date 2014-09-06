@@ -1,5 +1,12 @@
 2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gschem-tools-menu.scm: Add check and prompt to save the file if
+      the current page has been modified because it was really annoying when
+      I made a change and forget to save before generating a netlist. There
+      is also an option to cancel the operation.
+
+2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_funcs.c: Resequenced general guile functions is Aphabetical
       order. Add API function "gschem-save-file" g_funcs_save_file, see source
       documentation.

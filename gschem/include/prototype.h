@@ -16,30 +16,34 @@ bool  g_action_get_position  (bool snap, int *x, int *y);
 void  g_init_attrib ();
 
 /* g_funcs.c */
-SCM   g_funcs_print          (SCM filename);
-SCM   g_funcs_pdf            (SCM filename);
-SCM   g_funcs_postscript     (SCM filename);
-SCM   g_funcs_image          (SCM filename);
+SCM   g_funcs_confirm        (SCM msg);
+SCM   g_funcs_confirm_cancel (SCM msg);
 SCM   g_funcs_exit           (void);
+SCM   g_funcs_filesel        (SCM msg, SCM templ, SCM flags);
+SCM   g_funcs_image          (SCM filename);
 SCM   g_funcs_log            (SCM msg);
 SCM   g_funcs_msg            (SCM msg);
-SCM   g_funcs_confirm        (SCM msg);
-SCM   g_funcs_filesel        (SCM msg, SCM templ, SCM flags);
-SCM   g_funcs_use_rc_values              (void);
-SCM   get_selected_component_attributes  (GschemToplevel *w_current);
+SCM   g_funcs_pdf            (SCM filename);
+SCM   g_funcs_postscript     (SCM filename);
+SCM   g_funcs_print          (SCM filename);
+SCM   g_funcs_save_file      (void);
+SCM   g_funcs_use_rc_values  (void);
+
+SCM   get_selected_component_attributes     (GschemToplevel *w_current);
 
 /* g_hook.c */
-void  g_init_hook                  (void);
-void  g_run_hook_object            (GschemToplevel *w_current, const char *name, Object *obj);
-void  g_run_hook_object_list       (GschemToplevel *w_current, const char *name, GList *obj_lst);
-void  g_run_hook_page              (GschemToplevel *w_current, const char *name, Page *page);
-EHP * g_hook_new_proxy_by_name     (const char *name);
+void  g_init_hook                 (void);
+void  g_run_hook_object           (GschemToplevel *w_current, const char *name, Object *obj);
+void  g_run_hook_object_list      (GschemToplevel *w_current, const char *name, GList *obj_lst);
+void  g_run_hook_page             (GschemToplevel *w_current, const char *name, Page *page);
+EHP * g_hook_new_proxy_by_name    (const char *name);
 
 /* g_keys.c */
 void  g_keys_reset                (GschemToplevel *w_current);
 int   g_keys_execute              (GschemToplevel *w_current, GdkEventKey *event);
 char *g_find_key                  (char *func_name);
-GtkListStore *g_keys_to_list_store (void);
+
+GtkListStore *g_keys_to_list_store     (void);
 
 /* Hoykeys */
 SCM   buffer_copy1           (SCM action);
@@ -650,33 +654,34 @@ void x_dialog_symbol_changed      (GschemToplevel* w_current);
 int  x_dialog_validate_attribute  (GtkWindow* parent, char *attribute);
 
 /* Gschem-Generic-Dialogs */
-int   gschem_confirm_dialog            (const char *, gEDA_MessageType context, bool thread);
-char *gschem_filesel_dialog            (const char *, const char *, int);
-void  gschem_message_dialog            (const char *, gEDA_MessageType context, const char *title);
-void  gschem_markup_message_dialog     (const char *msg1, const char *msg2,
+int   x_dialog_confirmation            (const char *, gEDA_MessageType context, bool thread);
+int   x_dialog_confirm_with_cancel     (const char *, gEDA_MessageType context, bool thread);
+char *x_dialog_select_file             (const char *, const char *, int);
+void  x_dialog_show_message            (const char *, gEDA_MessageType context, const char *title);
+void  x_dialog_message_with_markup     (const char *msg1, const char *msg2,
                                         gEDA_MessageType context, const char *title);
 /* x_attrib.c */
-int option_menu_get_history            (GtkOptionMenu *option_menu);
-/*   attrib_edit_dialog_ok             (GtkWidget *w, GschemToplevel *w_current);*/
-/*   attrib_edit_dialog                (GschemToplevel *w_current, Object *attr_obj, int flag); */
-void x_attrib_add_dialog               (GschemToplevel *w_current, Object *object);
-void x_attrib_edit_dialog              (GschemToplevel *w_current, Object *object);
+int   option_menu_get_history               (GtkOptionMenu *option_menu);
+/*    attrib_edit_dialog_ok                 (GtkWidget *w, GschemToplevel *w_current);*/
+/*    attrib_edit_dialog                    (GschemToplevel *w_current, Object *attr_obj, int flag); */
+void  x_attrib_add_dialog                   (GschemToplevel *w_current, Object *object);
+void  x_attrib_edit_dialog                  (GschemToplevel *w_current, Object *object);
 
 /* x_edit_color.c */
-void x_dialog_edit_color          (GschemToplevel *w_current);
+void  x_dialog_edit_color          (GschemToplevel *w_current);
 
 /* x_edit_pin.c */
-void x_dialog_edit_pin_type       (GschemToplevel *w_current);
+void  x_dialog_edit_pin_type       (GschemToplevel *w_current);
 
 /* x_edit_property.c */
-void x_dialog_edit_properties     (GschemToplevel *w_current, Object *o_current);
+void  x_dialog_edit_properties     (GschemToplevel *w_current, Object *o_current);
 
 /* x_edit_text.c */
-void x_dialog_edit_text           (GschemToplevel *w_current, Object *o_current);
+void  x_dialog_edit_text           (GschemToplevel *w_current, Object *o_current);
 
 /* x_dnd.c */
-bool x_dnd_receive_string         (GschemToplevel *w_current, int x, int y, const char *string, int where);
-void x_dnd_setup_event_handlers   (GschemToplevel *w_current);
+bool  x_dnd_receive_string         (GschemToplevel *w_current, int x, int y, const char *string, int where);
+void  x_dnd_setup_event_handlers   (GschemToplevel *w_current);
 
 /* x_event.c */
 bool x_event_button_pressed       (GtkWidget     *widget, GdkEventButton    *event, GschemToplevel *w_current);

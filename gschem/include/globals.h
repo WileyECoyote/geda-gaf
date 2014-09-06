@@ -150,13 +150,13 @@ typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 
 /* Utility Macros for Message Dialogs */
 #define message_dialog(text, type) \
-        gschem_message_dialog(text, type, NULL);
+        x_dialog_show_message(text, type, NULL);
 
 #define titled_message_dialog(text, type, title) \
-        gschem_message_dialog(text, type, title);
+        x_dialog_show_message(text, type, title);
 
 #define pango_message_dialog(text1, text2, type, title) \
-        gschem_markup_message_dialog(text1, text2, type, title);
+        x_dialog_message_with_markup(text1, text2, type, title);
 
 /* These don't really justify their own functions - just do inline */
 /* Plain Text dialogs */

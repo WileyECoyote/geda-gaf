@@ -12,6 +12,11 @@
 ;;
 ;     (load-from-path "gschem-tools-menu.scm")
 ;;
+
+
+(use-modules (geda page)
+             (gschem action))
+
 ;; =================================================================
 ;; Define your favorite editor here
 ;(define tools:editor "emacs")
@@ -41,15 +46,28 @@
 ;; -----------------------------------------------------------------
 ;; This allows checking of schematic/sym file extention,
 ;; in case some tools need symbol file as input.
-(define (tools:check-ext  chk-ext)
+(define (tools:check-file chk-ext)
   (if (not (string-ci=? (tools:ifext) chk-ext))
     (begin
       (gschem-msg (string-append
           "Error: \n"
           " Please make sure the input file extention is ." chk-ext))
       #f)
-    #t
-))
+    (if (page-dirty? (active-page))
+      (let* ((response (gschem-confirm-cancel (string-append
+                        "Save " (get-selected-filename) " first?\n"))))
+        (if (= response 1)
+            (gschem-save-file)
+            (if (= response 0)
+              #t
+              #f
+            )
+        )
+      )
+      #t
+    )
+  )
+)
 
 ;; ---------------- tools:open-editor? ------------------------------
 (define (tools:open-editor? filename)
@@ -65,10 +83,10 @@
 ;; Can call this template code, if needed form is:
 ;; gnetlist -g [netlist-type] -o filebase[foutext] inputfilename
 ;;
-(define (tools:sch-netlist-0   netlist-type  foutext)
-  (let* ( (fout   (string-append (tools:ifbase) foutext)))
+(define (tools:sch-netlist-0 netlist-type foutext)
+  (let* ( (fout (string-append (tools:ifbase) foutext)))
     ;; Make sure the file opened in gschem is .sch instead of .sym file
-    (if (tools:check-ext "sch")
+    (if (tools:check-file "sch")
       (begin
         (system (string-append
             "gnetlist -g " netlist-type " -o " fout " " (tools:ifpath)))
@@ -84,7 +102,7 @@
 ;; ----------------- tools:run-drc2 ----------------------------
 (define (tools:run-drc2)
   (let	((fout   (string-append (tools:ifbase) "_drc2.txt")))
-    (if (tools:check-ext "sch")
+    (if (tools:check-file "sch")
       (begin
         (system (string-append "gnetlist -g drc2 -o " fout " " (tools:ifpath)))
         (tools:open-editor? fout)
@@ -121,7 +139,6 @@
         (system (string-append "gnet_hier_verilog " (tools:ifpath)))
         (tools:open-editor? fout)
 ))))
-
 ;; ==================================================================
 (define tools:menu-items
 ;;

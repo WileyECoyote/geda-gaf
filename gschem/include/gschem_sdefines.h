@@ -57,7 +57,7 @@
 #define u_log_message g_message
 
 /* Can use like: msgbox("example = [%d]", g_list_length(geda_list_get_glist(toplevel->pages))) */
-#define    msgbox(...)gschem_message_dialog(g_strdup_printf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
+#define    msgbox(...)x_dialog_show_message(g_strdup_printf(__VA_ARGS__), GTK_MESSAGE_INFO, NULL);
 
 #endif
 
