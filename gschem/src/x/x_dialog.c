@@ -4141,7 +4141,51 @@ int x_dialog_validate_attribute(GtkWindow* parent, char *attribute)
 /*! \brief General Purpose Confirmation Dialog
  *  \remarks TODO: derive this from gschem dialog class
  */
-int gschem_confirm_dialog (const char *msg, gEDA_MessageType context, bool thread)
+int x_dialog_confirmation (const char *msg, gEDA_MessageType context, bool thread)
+{
+  GtkWidget *dialog;
+  int response;
+
+  if (thread) {
+    gschem_threads_enter();
+  }
+
+  dialog = gtk_message_dialog_new (NULL,
+                                   GTK_DIALOG_MODAL |
+                                   GTK_DIALOG_DESTROY_WITH_PARENT,
+                                   context,
+                                   GTK_BUTTONS_NONE,
+                                   "%s", msg);
+
+  /* add buttons to dialog action area */
+  gtk_dialog_add_buttons (GTK_DIALOG (dialog),
+                          GTK_STOCK_NO,         GTK_RESPONSE_NO,
+                          GTK_STOCK_YES,        GTK_RESPONSE_YES,
+                          NULL);
+
+  /* Set the alternative button order (ok, cancel, help) for other systems */
+  gtk_dialog_set_alternative_button_order(GTK_DIALOG(dialog),
+                                          GTK_RESPONSE_YES,
+                                          GTK_RESPONSE_NO,
+                                          -1);
+
+  gtk_dialog_set_default_response (GTK_DIALOG (dialog), GTK_RESPONSE_YES);
+
+  gtk_window_set_title(GTK_WINDOW(dialog), _(IDS_MESSEAGE_TITLES[GEDA_MESSAGE_QUESTON]));
+
+  response = gtk_dialog_run (GTK_DIALOG (dialog));
+  gtk_widget_destroy (dialog);
+
+  if (thread) {
+    gschem_threads_leave();
+  }
+  return response;
+}
+
+/*! \brief General Purpose Confirmation Dialog with Cancel Option
+ *  \remarks TODO: derive this from gschem dialog class
+ */
+int x_dialog_confirm_with_cancel (const char *msg, gEDA_MessageType context, bool thread)
 {
   GtkWidget *dialog;
   int response;
@@ -4199,7 +4243,7 @@ int gschem_confirm_dialog (const char *msg, gEDA_MessageType context, bool threa
  *  \warning
  *   Caller must GEDA_FREE returned character string.
  */
-char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
+char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 {
   GtkWidget *dialog;
   char *result = NULL, *folder, *seed;
@@ -4299,9 +4343,9 @@ char *gschem_filesel_dialog (const char *msg, const char *templ, int flags)
 /*! \brief General Purpose Message Dialog
  *  \remarks See Utility Macros defined in globals.h
  *  \remarks This dialog is not for messages with Pango markups,
- *           gschem_markup_message_dialog.
+ *           x_dialog_message_with_markup.
  */
-void gschem_message_dialog (const char *msg, gEDA_MessageType context, const char *title)
+void x_dialog_show_message (const char *msg, gEDA_MessageType context, const char *title)
 {
   GtkWidget *dialog;
 
@@ -4330,7 +4374,7 @@ void gschem_message_dialog (const char *msg, gEDA_MessageType context, const cha
 /*! \brief General Purpose Pango Message Dialog
  *  \remarks See Utility Macros defined in globals.h
  */
-void gschem_markup_message_dialog (const char *msg1, const char *msg2,
+void x_dialog_message_with_markup (const char *msg1, const char *msg2,
                                    gEDA_MessageType context, const char *title)
 {
   GtkWidget *dialog;

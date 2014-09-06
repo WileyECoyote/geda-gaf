@@ -1013,7 +1013,7 @@ static void clear_attributes( void ){
 static void filter_list_set_default( void )
 {
   const char *question = _("Clear attributes and restore default filter list?");
-  int response = gschem_confirm_dialog(question, GTK_MESSAGE_INFO, FALSE);
+  int response = x_dialog_confirmation(question, GTK_MESSAGE_INFO, FALSE);
   if (response == GTK_RESPONSE_YES) {
     clear_attributes();
     load_tree_view_str(GTK_TREE_VIEW (SelectedAttributesView), View2DefaultData);

@@ -167,6 +167,7 @@ static struct gsubr_t gschem_g_funcs[] = {
   { "gschem-log",                1, 0, 0, g_funcs_log },
   { "gschem-msg",                1, 0, 0, g_funcs_msg },
   { "gschem-confirm",            1, 0, 0, g_funcs_confirm },
+  { "gschem-confirm-cancel",     1, 0, 0, g_funcs_confirm_cancel },
   { "gschem-filesel",            2, 0, 1, g_funcs_filesel },
 
   { NULL,                        0, 0, 0, NULL }

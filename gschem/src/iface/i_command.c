@@ -888,7 +888,7 @@ COMMAND ( do_run_script ) {
   BEGIN_W_COMMAND(do_run_script);
   char* filename = NULL;
   gschem_threads_enter();
-  filename = gschem_filesel_dialog("Execute Script...", filename, FSB_LOAD );
+  filename = x_dialog_select_file("Execute Script...", filename, FSB_LOAD );
   if(filename != NULL) { /* if user did not cancel */
     g_read_scheme_file(filename, NULL);
     GEDA_FREE(filename);
@@ -1985,7 +1985,7 @@ COMMAND ( do_page_revert ) {
   int up;
   int answer;
 
-  answer = gschem_confirm_dialog (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
+  answer = x_dialog_confirmation (_("Really revert page?"), GTK_MESSAGE_QUESTION, TRUE);
 
   if (answer == GTK_RESPONSE_YES ) {
 
@@ -2589,7 +2589,7 @@ COMMAND ( do_add_picture )
     filename = w_current->pixbuf_filename;
   }
 
-  filename = gschem_filesel_dialog("Select image file", filename, FSB_LOAD);
+  filename = x_dialog_select_file("Select image file", filename, FSB_LOAD);
 
   if(filename != NULL) { /* if user did not cancel */
 

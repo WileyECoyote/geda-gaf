@@ -186,7 +186,7 @@ SCM g_funcs_msg(SCM scm_msg)
 
   msg = scm_to_utf8_string (scm_msg);
 
-  gschem_message_dialog(msg, GEDA_MESSAGE_INFO, NULL);
+  x_dialog_show_message(msg, GEDA_MESSAGE_INFO, NULL);
 
   free(msg);
   return SCM_BOOL_T;
@@ -205,13 +205,47 @@ SCM g_funcs_confirm(SCM scm_msg)
   SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-msg");
 
   msg = scm_to_utf8_string (scm_msg);
-  response = gschem_confirm_dialog (msg, GTK_MESSAGE_INFO, FALSE);
+  response = x_dialog_confirmation (msg, GTK_MESSAGE_INFO, FALSE);
   free(msg);
 
   if (response == GTK_RESPONSE_YES)
     return SCM_BOOL_T;
   else
     return SCM_BOOL_F;
+}
+
+/*! \todo Finish function documentation!!!
+ *  \brief
+ *  \par Function Description
+ *
+ */
+SCM g_funcs_confirm_cancel(SCM scm_msg)
+{
+  int   response;
+  char *msg;
+  SCM   scm_response;
+
+  SCM_ASSERT (scm_is_string (scm_msg), scm_msg, SCM_ARG1, "gschem-msg");
+
+  msg = scm_to_utf8_string (scm_msg);
+  response = x_dialog_confirmation (msg, GTK_MESSAGE_INFO, FALSE);
+  free(msg);
+
+  scm_response  = scm_from_int (-1);
+
+  switch (response) {
+    case GTK_RESPONSE_YES:
+      scm_response  = scm_from_int (1);
+      break;
+    case GTK_RESPONSE_NO:
+      scm_response  = scm_from_int (0);
+      break;
+    case GTK_RESPONSE_CANCEL:
+      default: /* The default response is cancel */
+      scm_response  = scm_from_int (-1);
+      break;
+  }
+  return scm_response;
 }
 
 /*! \todo Finish function documentation!!!
@@ -267,7 +301,7 @@ SCM g_funcs_filesel(SCM scm_msg, SCM scm_templ, SCM scm_flags)
   templ = scm_to_utf8_string (scm_templ);
   scm_dynwind_free (templ);
 
-  r = gschem_filesel_dialog (msg, templ, c_flags);
+  r = x_dialog_select_file (msg, templ, c_flags);
   scm_dynwind_unwind_handler (g_free, r, SCM_F_WIND_EXPLICITLY);
 
   v = scm_from_utf8_string (r);

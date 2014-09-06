@@ -28,8 +28,10 @@
 SCM g_process_action(SCM action)
 {
   GschemToplevel *w_current = g_current_window ();
+
   char *action_str;
   action_str = scm_to_utf8_string(action);
+
   i_command_process(w_current, action_str, 0, NULL, ID_ORIGIN_KEYBOARD);
   free(action_str);
   return SCM_BOOL_T;
@@ -44,6 +46,8 @@ SCM g_process_action(SCM action)
  *
  * \param w_current    Current gschem toplevel structure.
  * \param action_name  Name of action to evaluate.
+ *
+ *
  *
  * \return TRUE on success, FALSE on failure.
  */
