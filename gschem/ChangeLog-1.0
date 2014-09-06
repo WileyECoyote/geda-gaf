@@ -1,7 +1,32 @@
+2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_funcs.c: Resequenced general guile functions is Aphabetical
+      order. Add API function "gschem-save-file" g_funcs_save_file, see source
+      documentation.
+
+2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x_dialog.c: Rename generic gschem_xxx message dialog x_dialog,
+      add dialog x_dialog_confirmation, a two button yes or no, rename
+      previous three button gschem_confirm_dialog to "x_dialog_confirm_
+      with_cancel".
+
+    * src/guile/g_funcs.c: Provide scheme API for g_funcs_confirm_cancel
+
+    * src/guile/g_register.c: Register API "gschem-confirm-cancel" for
+      old three button g_funcs_confirm_cancel, leaving the old API for
+      the new two button version.
+
 2014-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem-tools-menu.scm: Add spice-noqsi to tools menu, is hack
       until a better arrangement can be implemented.
+
+    * src/math/m_basic.c: Renamed round_5_2_1 to m_round_5_2_1
+
+    * src/iface/i_command.c: Remove Current_Page->CHANGED in do_delete.
+
+    * src/iface/i_status.c: Add strcmp in i_status_update_status
 
 2014-09-04 Wiley E. Hill <wileyhill@gmail.com>
 
