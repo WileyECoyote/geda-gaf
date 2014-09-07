@@ -316,7 +316,7 @@ i_session_load_session(GschemToplevel *w_current, Session *record)
     /* Update the window for the current page */
     i_status_update_sensitivities(w_current);
     i_status_update_title (w_current);
-
+    x_pagesel_update (w_current); /* If dialog open, update tree */
     /* x_window_set_current_page( w_current, toplevel->page_current ); */
 
     w_current->session_name = record->session_name;

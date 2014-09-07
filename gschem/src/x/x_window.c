@@ -624,8 +624,6 @@ void x_window_close_edit_dialogs(GschemToplevel *w_current)
   if (w_current->trwindow)
   gtk_widget_destroy(w_current->trwindow);
 
-  x_pagesel_close (w_current);
-
   if (w_current->tswindow)
   gtk_widget_destroy(w_current->tswindow);
 
@@ -649,10 +647,12 @@ void x_window_close_all_dialogs(GschemToplevel *w_current)
 {
   x_window_close_edit_dialogs(w_current);
 
+  x_pagesel_close (w_current);
+
   if (w_current->hkwindow) /* Help/Hotkeys */
     gtk_widget_destroy(w_current->hkwindow);
 
-  if (w_current->cowindow)
+  if (w_current->cowindow) /* Coordinate Dialog */
     gtk_widget_destroy(w_current->cowindow);
 
   x_console_close();

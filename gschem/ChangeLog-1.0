@@ -1,3 +1,13 @@
+2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_sessions.c: Add call to x_pagesel_update function
+      i_session_load_session so that the dialog need not be close when
+      before loading sessions.
+
+    * gschem/src/x/x_window.c: Move call to x_pagesel_close from function
+      x_window_close_edit_dialogs to function x_window_close_all_dialogs so
+      the page manager will not be close when opening a session.
+
 2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem-tools-menu.scm: Add check and prompt to save the file if
