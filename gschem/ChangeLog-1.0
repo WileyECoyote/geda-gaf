@@ -1,5 +1,10 @@
 2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Fix incorrect group for default title-block
+      in do_page_new.
+
+2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_sessions.c: Add call to x_pagesel_update function
       i_session_load_session so that the dialog need not be close when
       before loading sessions.

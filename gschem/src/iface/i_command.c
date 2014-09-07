@@ -1926,11 +1926,12 @@ COMMAND ( do_page_new )
   BEGIN_W_COMMAND(do_page_new);
 
   EdaConfig *cfg = eda_config_get_user_context ();
-  Page *page;
+  char *group    = IVAR_CONFIG_GROUP;
   char *tblock;
   char *sym_file;
   const CLibSymbol *clib;
   Object *object;
+  Page *page;
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
@@ -1942,9 +1943,10 @@ COMMAND ( do_page_new )
  /* would be far easier, faster, and safer to set page->CHANGED=FALSE
   * here then for scheme to have done this in the hook, could just add
   * the titleblock here too, like so */
-  tblock = eda_config_get_string (cfg, "gschem", "default-titleblock", NULL);
+  tblock = eda_config_get_string (cfg, group, "default-titleblock", NULL);
 
   sym_file = g_strconcat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+
   clib = s_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
