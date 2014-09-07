@@ -131,7 +131,8 @@ s_page_new_common(Page *page)
   s_undo_init(page);
 
   /* Backup variables */
-  g_get_current_time (&page->last_load_or_save_time);
+  time (&page->last_load_or_save_time);
+
   page->ops_since_last_backup    = 0;
   page->saved_since_first_loaded = 0;
   page->do_autosave_backup       = 0;

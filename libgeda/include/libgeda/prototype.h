@@ -10,6 +10,7 @@ G_BEGIN_DECLS
 
 /* f_file.c */
       int     f_file_copy                   (const char *source, const char *target);
+      int     f_file_cmp_mod_time           (const char *filename, time_t ref_time);
       char   *f_file_follow_symlinks        (const char *filename, GError **error);
       char   *f_file_normalize_name         (const char *filename, GError **error);
       int     f_file_remove                 (const char *pathname);
@@ -300,6 +301,7 @@ const char   *o_pin_get_label               (Object *object);
 const char   *o_pin_get_mechanical          (Object *object);
 
 /* o_save.c */
+
       void    o_save_auto_backup            (GedaToplevel *toplevel);
       char   *o_save_objects                (const GList *object_list, bool save_attribs);
       char   *o_save_buffer                 (const GList *object_list);
@@ -512,6 +514,7 @@ GedaToplevel *s_toplevel_new                          (void);
     void      s_undo_remove            (UNDO *head, UNDO *u_tos);
     void      s_undo_remove_rest       (UNDO *head);
     int       s_undo_levels            (UNDO *head);
+    void      s_undo_update_modified   (Page *p_current);
     void      s_undo_init              (Page *p_current);
     void      s_undo_free_all          (Page *p_current);
 

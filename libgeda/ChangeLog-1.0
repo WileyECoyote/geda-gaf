@@ -1,3 +1,24 @@
+2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/libgeda/geda_page.h: Changed last_load_or_save_time from
+      type GTimeVal to type time_t. Because it does not make sense to
+      convert seconds Epoch to Greenwich Mean Time using a depreciated
+      function without a reason. Note variable is being set in f_basic
+      ::f_save and s_page::s_page_new.
+
+    * src/file/f_basic.c: In function f_save, changed setting of time to
+      seconds, last_load_or_save_time; after sucessfully saving and reset-
+      ting the changed flag, call new function s_undo_update_modified
+
+    * src/file/f_file.c: Add new function f_file_cmp_mod_time, was going to
+      use for Undo page change but that did not work out, but kept, cause
+      seems nifty.
+
+    * src/struct/s_undo.c: Added new function s_undo_update_modified to set
+      what could be the page changed flag if Undo is used. Added doxygen
+      documentation for this module, it don`t look so good. Looks like half
+      of the module could/should be scrapped.
+
 2014-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_notify.c: Resolved two issues, neither o_notify_emit_pre_
@@ -15,7 +36,7 @@
 
     * src/geda/geda_notify.?: New files for GedaList like object without the
       signals. Use for Page::change_notify_funcs instead of glist so the
-      notify structures don't get wiped out by gschem:Undo
+      notify structures do not get wiped out by gschem:Undo
 
     * src/geda/geda_notify.h: Relocate typedef and struction definition for
       change_notify_entry to this header and rename without "entry"

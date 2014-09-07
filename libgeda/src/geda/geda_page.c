@@ -531,6 +531,8 @@ geda_page_debug_print (Page *page)
 
   printf( "show_hidden_text=%d\n", page->show_hidden_text);
 
+  printf( "file_modified_time=%f\n", difftime(page->last_load_or_save_time, 0));
+
   printf( "saved_since_first_loaded=%d\n", page->saved_since_first_loaded);
   printf( "ops_since_last_backup=%d\n", page->ops_since_last_backup);
   printf( "do_autosave_backup=%d\n", page->do_autosave_backup);

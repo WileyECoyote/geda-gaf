@@ -118,8 +118,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
           umask(saved_umask);
         }
 
-        if (o_save (s_page_get_objects (toplevel->page_current),
-                    backup_filename, &err))
+        if (o_save (s_page_get_objects (toplevel->page_current), backup_filename, &err))
         {
           p_current->ops_since_last_backup = 0;
           p_current->do_autosave_backup = 0;
@@ -335,7 +334,7 @@ o_save (const GList *object_list, const char *filename, GError **err)
   }
   else {
 
-    FILE* output;
+    FILE  *output;
 
     output = fopen (filename, "w" );
 

@@ -371,7 +371,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 }
 
 
-/*! \brief Find file name associated prev Head when using Undo Disk
+/*! \brief Find file name associated wth prev Head
  *  \par Function Description
  *  This function is only used for UNDO_DISK
  */

@@ -23,10 +23,12 @@
 
 #include "libgeda_priv.h"
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Returns the Last Undo Record given some Record
  *  \par Function Description
+ *  This function returns the last record of the chain of
+ *  Undo records associated with \a head.
  *
+ *  \remarks should probably just make static
  */
 UNDO *s_undo_return_tail(UNDO *head)
 {
@@ -42,10 +44,15 @@ UNDO *s_undo_return_tail(UNDO *head)
   return(ret_struct);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Returns the First Undo Record given some Record
  *  \par Function Description
+ *  The function starts at the given record, \a tail and
+ *  transverses upward until the top record is found.
  *
+ *  \returns the real HEAD of the undo stack.
+ *
+ *  \remarks Another no so usefull function. This function
+ *           is not used
  */
 UNDO *s_undo_return_head(UNDO *tail)
 {
@@ -62,9 +69,12 @@ UNDO *s_undo_return_head(UNDO *tail)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Allocate and Iniclize a New Empty Undo Record
  *  \par Function Description
+ *  This function is not used
  *
+ *  \returns An Empty UNDO structure, the structure should be
+ *           freed when no longer needed.
  */
 UNDO *s_undo_new_head(void)
 {
@@ -86,19 +96,31 @@ UNDO *s_undo_new_head(void)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Frees Allocation of the Given Undo Record
  *  \par Function Description
+ *  This function is not used
  *
+ *  \param [in] u_head Pointer to UNDO struture to be freed
  */
 void s_undo_destroy_head(UNDO *u_head)
 {
   GEDA_FREE(u_head);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Creates and Returns a New Disk Type Undo record
  *  \par Function Description
+ *   Allocates an Undo structure and poplates values with data
+ *   from the given \a page for a Disk Memory type record. The
+ *   new record becomes tail and is returned.
  *
+ *  \param [in] page  A GedaPage Object
+ *  \param [in] type  integer <B>\a flag</B> can be one of the
+ *                    following values:
+ *  \par
+ *  <DL>
+ *    <DT>UNDO_ALL</DT>
+ *    <DT>UNDO_VIEWPORT_ONLY</DT>
+ *  </DL>
  */
 UNDO *s_undo_add_disk (int type, char *filename, Page *page)
 {
@@ -117,6 +139,7 @@ UNDO *s_undo_add_disk (int type, char *filename, Page *page)
 
   u_new->type         = type;
   u_new->modified     = page->CHANGED;
+
   u_new->left         = page->left;
   u_new->top          = page->top;
   u_new->right        = page->right;
@@ -140,10 +163,20 @@ UNDO *s_undo_add_disk (int type, char *filename, Page *page)
   return u_ret;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Creates and Returns a New Memory Type Undo record
  *  \par Function Description
+ *   Allocates an Undo structure and poplates values with data
+ *   from the given \a page for a Memory type Undo record. The
+ *   new record becomes tail and is returned.
  *
+ *  \param [in] page  A GedaPage Object
+ *  \param [in] type  integer <B>\a flag</B> can be one of the
+ *                    following values:
+ *  \par
+ *  <DL>
+ *    <DT>UNDO_ALL</DT>
+ *    <DT>UNDO_VIEWPORT_ONLY</DT>
+ *  </DL>
  */
 UNDO *s_undo_add_memory (int type, Page *page)
 {
@@ -160,8 +193,9 @@ UNDO *s_undo_add_memory (int type, Page *page)
 
   u_new->object_list  = o_glist_copy_all (s_page_get_objects (page), NULL);
 
-  u_new->modified     = type;
-  u_new->type         = page->CHANGED;
+  u_new->type         = type;
+  u_new->modified     = page->CHANGED;
+
   u_new->left         = page->left;
   u_new->top          = page->top;
   u_new->right        = page->right;
@@ -185,6 +219,13 @@ UNDO *s_undo_add_memory (int type, Page *page)
   return u_ret;
 }
 
+/*! \brief Creates and Returns a New Undo record
+ *  \par Function Description
+ *   This function is obsolete and is not used, performance test indicate
+ *   passing a pointer to the page as is done in s_undo_add_memory and
+ *   s_undo_add_disk, is more efficient the passing 9 separate arguments
+ *   that are all members of the Page structure.
+ */
 UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
                   int left, int top, int right, int bottom, int page_control,
                   int up)
@@ -199,6 +240,7 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
   u_new->object_list = object_list;
 
   u_new->type = type;
+  u_new->modified = 1;
 
   u_new->left = left;
   u_new->top = top;
@@ -221,10 +263,10 @@ UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Print all Undo records for debugging purposes
  *  \par Function Description
- *
+ *   Does not print every field of the record but does manage to
+ *   convolute the terminal.
  */
 void s_undo_print_all( UNDO *head )
 {
@@ -253,10 +295,12 @@ void s_undo_print_all( UNDO *head )
 
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Real Release all Memory Allocated for a Given Head
  *  \par Function Description
- *
+ *   s_undo_destroy_all starts at the bottom of the stack and
+ *   works upward, releasing all objects (MEMORY) and freeing
+ *   all filename (DISK) until the top of the stack is reached
+ *   as indicated by a NULL pointer to the previous record.
  */
 void s_undo_destroy_all(UNDO *head)
 {
@@ -280,9 +324,9 @@ void s_undo_destroy_all(UNDO *head)
 }
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief Removes head from the Undo stack
  *  \par Function Description
- *
+ *  Fortunately, this function is not used.
  */
 void s_undo_remove(UNDO *head, UNDO *u_tos)
 {
@@ -321,10 +365,11 @@ void s_undo_remove(UNDO *head, UNDO *u_tos)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Remove all Undo record After the given Record
  *  \par Function Description
- *
+ *   Free memory or releases object belonging to records older
+ *   than \a head, essentially, the record \a head will become
+ *   tail.
  */
 void s_undo_remove_rest(UNDO *head)
 {
@@ -373,27 +418,58 @@ int s_undo_levels(UNDO *head)
   return(count);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Reset Page Changed Flags in the Undo System
  *  \par Function Description
+ *  Called by f_save to reset the page changed flags in the Undo system.
+ *  This is accomplished by setting all Undo records as modified, and
+ *  then setting the current record as not modified. This results in a
+ *  "saved" page floating around in the Undo stack if a file is saved
+ *  within the limits of the Undo buffer window.
  *
+ *  For example, deleting 3 objects, then saving the page, then deleting
+ *  3 more object followed by 4 Undo's and 1 Redo will leave the user
+ *  back on the page that was saved and the page->CHANGED flag will be
+ *  set accordingly.
+ */
+void s_undo_update_modified (Page *p_current)
+{
+  UNDO *u_current;
+  UNDO *u_iter;
+
+  u_iter = p_current->undo_tos;
+
+  while (u_iter != NULL) {
+    u_iter->modified = 1;
+    u_iter = u_iter->prev;;
+  }
+
+  u_current = p_current->undo_current;
+  if (u_current) u_current->modified = 0;
+}
+
+/*! \brief Initialize Page Object's Undo
+ *  \par Function Description
+ *  Fortunately, the complier is intelligent enough to optimize
+ *  out this function!
  */
 void s_undo_init(Page *p_current)
 {
-  p_current->undo_tos = p_current->undo_bottom = NULL;
+  p_current->undo_tos     = NULL;
+  p_current->undo_bottom  = NULL;
   p_current->undo_current = NULL;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Release all Memory Allocated by the Undo System for Page
  *  \par Function Description
- *
+ *  This function is called when a page is destroyed to free all
+ *  memory allocated by this module that is referenced by the
+ *  given Page object. The functions calls s_undo_destroy_all
+ *  to do the actual work.
  */
 void s_undo_free_all(Page *p_current)
 {
   s_undo_destroy_all(p_current->undo_bottom);
-  p_current->undo_bottom = NULL;
-  p_current->undo_tos = NULL;
-  p_current->undo_current = NULL;
+  p_current->undo_bottom   = NULL;
+  p_current->undo_tos      = NULL;
+  p_current->undo_current  = NULL;
 }
-

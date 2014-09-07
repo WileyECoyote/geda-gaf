@@ -95,7 +95,8 @@ struct _GedaPage {
   int show_hidden_text;
 
   /* backup variables */
-  GTimeVal last_load_or_save_time; /* set (twice) but never read */
+  time_t last_load_or_save_time;   /* Current set but not used */
+
   char saved_since_first_loaded;
   int  ops_since_last_backup;      /* page->CHANGED since last backup */
   char do_autosave_backup;         /* If true file should backed up */

@@ -53,6 +53,17 @@
  *  specific routines.
  */
 
+/*! \brief Copy a file
+ *  \par Function Description
+ *  This function copies the file specified by \a source to \a target
+ *  if possible. If and error is encountered, a message is written to
+ *  the log and -1 is returned. If successful, the function returns 0.
+ *
+ *  \param [in]  source   Name of source file to be copied
+ *  \param [out] target   Name of target or destination file
+ *
+ *  \returns 0 on success, -1 on failure.
+ */
 int f_file_copy(const char *source, const char *target)
 {
   int input = 0;
@@ -146,6 +157,52 @@ int f_file_copy(const char *source, const char *target)
   free(buffer);
   return 0; /* Success! */
 
+}
+
+/*! \brief Compare file modification time to a given time
+ *  \par Function Description
+ *  Compares the file system modification time to the given
+ *  \a time and returns the difference in seconds. Note that
+ *  the modification is subtracted from the reference time,
+ *  so a positive return value means the file is older than
+ *  the reference time by the returned number of seconds.
+ *
+ *  \param [in] filename File to check
+ *  \param [in] ref_time Time to compare too
+ *
+ *  \returns difference in seconds or -1 if an error occurred
+ *
+ *  example:
+ *
+ *    time_t now;
+ *    int secs = f_file_cmp_mod_time(filename, time(&now));
+ *    printf( "%s is %d seconds old\n",filename, secs);
+ *
+ */
+int f_file_cmp_mod_time (const char *filename, time_t ref_time)
+{
+  int    result;
+
+  struct stat file_stat;
+
+  errno = 0;
+
+  if (stat (filename, &file_stat) != 0) {
+    if (errno == ENOENT) {
+      /* The file does not exist. */
+      result =  -1;
+    }
+    else {
+      fprintf (stderr, "%s: %s\n", __func__, strerror (errno));
+      result = -1;
+    }
+  }
+  else {
+
+    result = difftime (ref_time, file_stat.st_mtime);
+  }
+
+  return result;
 }
 
 /*! \brief Follow symlinks until a real file is found

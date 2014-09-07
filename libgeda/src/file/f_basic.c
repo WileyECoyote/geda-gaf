@@ -392,12 +392,6 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
 
       page->saved_since_first_loaded = 1;
 
-      /* Reset the last saved timer */
-      g_get_current_time (&page->last_load_or_save_time);
-      page->ops_since_last_backup = 0;
-      page->do_autosave_backup = 0;
-      page->CHANGED=0; /* WEH: added 11/17/13, really */
-
       /* Restore permissions. */
       chmod (real_filename, st_ActiveFile.st_mode);
 
@@ -407,6 +401,16 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
          * or they didn't. */
       }
 #endif
+
+      /* Reset the last saved timer */
+      time (&page->last_load_or_save_time);
+
+      page->ops_since_last_backup = 0;
+      page->do_autosave_backup = 0;
+      page->CHANGED=0; /* WEH: added 11/17/13, really */
+
+      s_undo_update_modified(toplevel->page_current);
+
       GEDA_FREE (real_filename);
       result = 1;
     }
