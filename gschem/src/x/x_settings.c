@@ -134,20 +134,33 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
                                GschemToplevel *w_current)
 {
   switch (response) {
-  case GTK_RESPONSE_APPLY:
-    GatherSettings (w_current);
-    generate_rc(w_current, "gschemrc");
-    break;
-  case GTK_RESPONSE_OK:
-    GatherSettings (w_current);
-  case GTK_RESPONSE_DELETE_EVENT:
-  case GTK_RESPONSE_CANCEL:
-    /* void */
-    break;
-  default:
-    BUG_IMSG ("unhandled case for signal <%d>", response);
+    case GTK_RESPONSE_APPLY:
+      GatherSettings (w_current);
+      generate_rc(w_current, "gschemrc");
+      break;
+    case GTK_RESPONSE_OK:
+      GatherSettings (w_current);
+    case GTK_RESPONSE_DELETE_EVENT:
+    case GTK_RESPONSE_CANCEL:
+      /* void */
+      break;
+    default:
+      BUG_IMSG ("unhandled case for signal <%d>", response);
   }
 
+  GtkWidget  *notebook;
+  EdaConfig  *cfg;
+  const char *group;
+  int         note_tab;
+
+  if (w_current->save_ui_settings) {
+    notebook = g_object_get_data (G_OBJECT(Dialog), "notebook");
+    note_tab = gtk_notebook_get_current_page (GTK_NOTEBOOK(notebook));
+    cfg      = eda_config_get_user_context();
+    group    = IVAR_CONFIG_GROUP;
+
+    eda_config_set_integer (cfg, group, "pref-tab", note_tab);
+  }
   gtk_widget_destroy(w_current->cpwindow);
 
   /* Call to update the middle-mouse label on the status bar, which may or

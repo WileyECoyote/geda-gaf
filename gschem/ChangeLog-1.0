@@ -1,5 +1,13 @@
 2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_settings.c: Add retrieve and save the active notebook tab in
+      dialog response function.
+
+    * src/x/x_settings_dialog.c: Restore previous active notebook tab after
+      dialog construction.
+
+2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * gschem/src/x/x_grid.c: Redo x_draw_tiles similar to changes in master
       branch keep text in upper left corner.
 

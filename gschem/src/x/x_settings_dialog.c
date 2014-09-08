@@ -872,8 +872,8 @@ static bool is_not_in_list(GtkTreeView *list, const char *str)
   GtkListStore *store;
   bool answer = FALSE;
 
-  gboolean foreach_func (GtkTreeModel *model, GtkTreePath  *path,
-                         GtkTreeIter  *iter,  void *      user_data)
+  bool foreach_func (GtkTreeModel *model, GtkTreePath  *path,
+                     GtkTreeIter  *iter,  void *      user_data)
   {
     char *attribute;
 
@@ -1959,6 +1959,10 @@ bool load_settings_dialog (GschemToplevel *w_current)
 GtkWidget*
 create_settings_dialog (GschemToplevel *w_current)
 {
+  EdaConfig  *cfg;
+  const char *group;
+  int         last_tab;
+
   GtkWidget *ThisDialog;
   GtkWidget *MainDialogVBox;
   GtkWidget *notebook;
@@ -1972,6 +1976,7 @@ create_settings_dialog (GschemToplevel *w_current)
   GtkWidget *OkayButt;
 
   PangoFontDescription *FontDescription;
+
   FontDescription = pango_font_description_from_string("Monospace");
   pango_font_description_set_absolute_size(FontDescription, 10);
 
@@ -2269,14 +2274,21 @@ create_settings_dialog (GschemToplevel *w_current)
   GTK_HOOKUP_OBJECT (ThisDialog, notebook, "notebook");
   GTK_HOOKUP_OBJECT_NO_REF (ThisDialog, dialog_action_area, "dialog_action_area");
   GTK_HOOKUP_OBJECT (ThisDialog, CancelButt, "CancelButt");
-  GTK_HOOKUP_OBJECT (ThisDialog, SaveButt, "SaveButt");
-  GTK_HOOKUP_OBJECT (ThisDialog, OkayButt, "OkayButt");
+  GTK_HOOKUP_OBJECT (ThisDialog, SaveButt,   "SaveButt");
+  GTK_HOOKUP_OBJECT (ThisDialog, OkayButt,   "OkayButt");
 
   gtk_widget_grab_default (CancelButt);
 
   g_signal_connect ((void *) notebook, "switch-page",
                     G_CALLBACK (on_notebook_switch_page),
                     NULL);
+
+  cfg      = eda_config_get_user_context();
+  group    = IVAR_CONFIG_GROUP;
+  last_tab = eda_config_get_integer (cfg, group, "pref-tab", NULL);
+  if (last_tab >= 0)
+    gtk_notebook_set_current_page ((GtkNotebook*)notebook, last_tab);
+
   return ThisDialog;
 }
 
