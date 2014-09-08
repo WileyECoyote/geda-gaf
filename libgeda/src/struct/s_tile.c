@@ -28,6 +28,7 @@
 #include <math.h>
 
 #include "libgeda_priv.h"
+#include <geda_debug.h>
 
 /*! \file s_tile.c
  *  \brief Splits a page into tiles
@@ -64,7 +65,7 @@ void s_tile_init(Page * p_current)
   int x_sum = 0;
   int y_sum = 0;
 
-#if DEBUG
+#if DEBUG_TILES
   fprintf(stderr, "World (%d,%d), Tile size X, Y: %d %d\n",
          p_current->width, p_current->height, x_size, y_size);
 #endif
@@ -87,7 +88,7 @@ void s_tile_init(Page * p_current)
     y_sum = y_sum + y_size;
   }
 
-#if DEBUG
+#if DEBUG_TILES
   for (j = 0; j < MAX_TILES_Y; j++) {
     for (i = 0; i < MAX_TILES_X; i++) {
       tile_current = &p_current->world_tiles[i][j];
@@ -132,9 +133,11 @@ s_tile_add_linear_object (Object *object, int x_1, int y_1, int x_2, int y_2)
   int start, end;
 
   g_return_if_fail (GEDA_IS_LINE(object));
-#if DEBUG
+
+#if DEBUG_TILES
   printf("<%s> name: %s\n", __func__, object->name);
 #endif
+
   p_current = geda_object_get_page (object);
 
   if (p_current == NULL) {

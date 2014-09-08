@@ -1,3 +1,9 @@
+2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_tile.c: Change DEBUG to DEBUG_TILES
+
+    * src/struct/s_conn.c: Change DEBUG to DEBUG_CONNS
+
 2014-09-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/libgeda/geda_page.h: Changed last_load_or_save_time from

@@ -20,12 +20,8 @@
  */
 
 #include <geda_standard.h>
-
 #include "libgeda_priv.h"
-
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*! \file s_conn.c
  *  \brief The connection system
@@ -63,7 +59,7 @@ CONN *s_conn_return_new(Object * other_object, int type, int x, int y,
 
   new_conn = (CONN *) GEDA_MEM_ALLOC(sizeof(CONN));
 
-#if DEBUG
+#if DEBUG_CONNS
   printf("** creating: %s %d %d\n", other_object->name, x, y);
 #endif
 
@@ -135,7 +131,7 @@ int s_conn_remove_other (Object *other_object, Object *to_remove)
         other_object->conn_list =
         g_list_remove(other_object->conn_list, conn);
 
-#if DEBUG
+#if DEBUG_CONNS
         printf("Found other_object in remove_other\n");
         printf("Freeing other: %s %d %d\n", conn->other_object->name,
            conn->x, conn->y);
@@ -262,9 +258,11 @@ Object *s_conn_check_midpoint(Object *o_current, int x, int y)
            (y > min_y) && (y < max_y) &&
            (o_current->line->x[0] ==
             o_current->line->x[1]) ) {
-#if DEBUG
+
+#if DEBUG_CONNS
         printf("Found vertical point\n");
 #endif
+
         return(o_current);
       }
 
@@ -278,9 +276,11 @@ Object *s_conn_check_midpoint(Object *o_current, int x, int y)
            (x > min_x) && (x < max_x) &&
            (o_current->line->y[0] ==
             o_current->line->y[1]) ) {
-#if DEBUG
+
+#if DEBUG_CONNS
         printf("Found horizontal point\n");
 #endif
+
         return(o_current);
       }
 
@@ -502,7 +502,7 @@ void s_conn_update_linear_object (Object *object)
       }
     }
 
-#if DEBUG
+#if DEBUG_CONNS
     s_conn_print(object->conn_list);
 #endif
 

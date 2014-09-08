@@ -20,7 +20,6 @@
  */
 
 #include <geda_standard.h>
-
 #include "libgeda_priv.h"
 
 /*! \brief Returns the Last Undo Record given some Record
@@ -68,8 +67,7 @@ UNDO *s_undo_return_head(UNDO *tail)
   return(ret_struct);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Allocate and Iniclize a New Empty Undo Record
+/*! \brief Allocate and Iniclize a New Empty Undo Record
  *  \par Function Description
  *  This function is not used
  *
@@ -95,8 +93,7 @@ UNDO *s_undo_new_head(void)
   return(u_new);
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Frees Allocation of the Given Undo Record
+/*! \brief Frees Allocation of the Given Undo Record
  *  \par Function Description
  *  This function is not used
  *
@@ -323,8 +320,7 @@ void s_undo_destroy_all(UNDO *head)
   }
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief Removes head from the Undo stack
+/*! \brief Removes head from the Undo stack
  *  \par Function Description
  *  Fortunately, this function is not used.
  */
