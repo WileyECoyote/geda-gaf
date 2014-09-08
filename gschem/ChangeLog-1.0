@@ -1,5 +1,10 @@
 2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/src/x/x_grid.c: Redo x_draw_tiles similar to changes in master
+      branch keep text in upper left corner.
+
+2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_select.c: In function o_select_object, add call to
       i_status_set_state(SELECT) in the removing_obj == TRUE if there are
       no more object select, i.e. when in Deselect mode, goto Select mode

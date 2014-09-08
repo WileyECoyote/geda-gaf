@@ -36,8 +36,8 @@
 
 #define DOTS_POINTS_ARRAY_SIZE       5000
 #define DOTS_VARIABLE_MODE_SPACING   30
-
 #define MESH_COARSE_GRID_MULTIPLIER  5
+#define TILES_FONT_SIZE              21
 
 /*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
  *
@@ -291,7 +291,7 @@ draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int h
   int incr;
   int screen_incr;
 
-  incr = w_current->snap_size;
+  incr        = w_current->snap_size;
   screen_incr = SCREENabs (w_current, incr);
 
   SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
@@ -313,6 +313,67 @@ draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int h
   }
 }
 
+void x_draw_tiles(GschemToplevel *w_current)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  TILE         *t_current;
+  char         *tempstring;
+  int i,j;
+  int x1, y1, x2, y2;
+  int screen_x, screen_y;
+  int width, height;
+
+  GdkColor *color;
+
+  color = x_get_color (LOCK_COLOR);
+
+  cairo_set_source_rgb (w_current->cr,
+                        color->red   / 65535.0,
+                        color->green / 65535.0,
+                        color->blue  / 65535.0);
+
+  cairo_select_font_face (w_current->cr,
+                          "Sans",
+                          CAIRO_FONT_SLANT_NORMAL,
+                          CAIRO_FONT_WEIGHT_BOLD);
+
+  for (j = 0; j < MAX_TILES_Y; j++) {
+
+    for (i = 0; i < MAX_TILES_X; i++) {
+
+      t_current = &toplevel->page_current->world_tiles[i][j];
+
+      WORLDtoSCREEN (w_current, t_current->left, t_current->top, &x1, &y1);
+      WORLDtoSCREEN (w_current, t_current->right, t_current->bottom, &x2, &y2);
+
+      screen_x = min(x1, x2);
+      screen_y = min(y1, y2);
+
+      width  = abs(x1 - x2);
+      height = abs(y1 - y2);
+
+      cairo_rectangle (w_current->cr, screen_x, screen_y, width, height);
+
+      cairo_stroke(w_current->cr);
+
+      cairo_save (w_current->cr);
+
+      cairo_translate (w_current->cr, screen_x,  screen_y);
+
+      cairo_move_to (w_current->cr, TILES_FONT_SIZE / 7, TILES_FONT_SIZE / 1.1);
+
+      cairo_set_font_size (w_current->cr, TILES_FONT_SIZE);
+
+      tempstring = u_string_sprintf ("(%d,%d)", i, j);
+
+      cairo_show_text (w_current->cr, tempstring);
+
+      cairo_restore (w_current->cr);
+
+      GEDA_FREE(tempstring);
+    }
+  }
+}
 
 /*! \brief Draw an area of the screen with the current grid pattern.
  *
@@ -341,8 +402,8 @@ x_grid_draw_region (GschemToplevel *w_current, int x, int y, int width, int heig
       break;
   }
 
-#if DEBUG
-  /* highly temp, just for diag purposes */
+#if DEBUG_TILES
+  /* For diagnostic purposes */
   x_draw_tiles(w_current);
 #endif
 
@@ -367,65 +428,6 @@ int x_grid_query_drawn_spacing (GschemToplevel *w_current)
     case GRID_DOTS: return query_dots_grid_spacing (w_current);
     case GRID_MESH: return query_mesh_grid_spacing (w_current);
   }
-}
-
-
-/*! \todo Finish function documentation!!!
- *  \brief
- *  \par Function Description
- *
- */
-void x_draw_tiles(GschemToplevel *w_current)
-{
-  GedaToplevel *toplevel = w_current->toplevel;
-  TILE *t_current;
-  GdkFont *font;
-  int i,j;
-  int x1, y1, x2, y2;
-  int screen_x, screen_y;
-  int width, height;
-  char *tempstring;
-
-  gdk_gc_set_foreground (w_current->gc, x_get_color (LOCK_COLOR));
-
-  font = gdk_fontset_load ("fixed");
-
-  for (j = 0; j < MAX_TILES_Y; j++) {
-
-    for (i = 0; i < MAX_TILES_X; i++) {
-
-      t_current = &toplevel->page_current->world_tiles[i][j];
-      WORLDtoSCREEN (w_current, t_current->left, t_current->top, &x1, &y1);
-      WORLDtoSCREEN (w_current, t_current->right, t_current->bottom, &x2, &y2);
-
-      screen_x = min(x1, x2);
-      screen_y = min(y1, y2);
-
-      width = abs(x1 - x2);
-      height = abs(y1 - y2);
-
-#if DEBUG
-      printf("x, y: %d %d\n", screen_x, screen_y);
-      printf("w x h: %d %d\n", width, height);
-#endif
-      gdk_draw_rectangle (w_current->drawable,
-                          w_current->gc,
-                          FALSE, screen_x, screen_y,
-                          width, height);
-
-      tempstring = g_strdup_printf("%d %d", i, j);
-
-      gdk_draw_text (w_current->drawable,
-                     font,
-                     w_current->gc,
-                     screen_x+10, screen_y+10,
-                     tempstring,
-                     strlen(tempstring));
-      GEDA_FREE(tempstring);
-    }
-  }
-
-  gdk_font_unref(font);
 }
 
 /** @} endgroup grid-module */
