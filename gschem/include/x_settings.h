@@ -68,6 +68,11 @@ struct rc_4_strings_t
    const char *three;
 };
 
+/* The following defines are for saving settings to an RC file, this is
+ * not required for key-file variables. If following instruction to add
+ * a widget to the preference dialog, then skip over these defines to the
+ * enumerator ControlID
+ */
 #define RC_BOOL_STRINGS(WhichOne) ((WhichOne) ? RC_STR_ENABLED : RC_STR_DISABLED)
 #define RC_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_NONE, RC_STR_DOTS, RC_STR_MESH, NULL};
 #define RC_DOTS_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_DOTS_MODE_VARIABLE, RC_STR_DOTS_MODE_FIXED, NULL, NULL};
@@ -136,18 +141,22 @@ typedef enum {
         Nets,
 
 /* Button Controls */
-  /* Edit TAB */
+    /* Edit TAB */
         GripStrokeColor,
         GripFillColor,
         NetEndpointColor,
 
-  /* Attributes TAB */
+    /* Attributes TAB */
         AddAttribute,
         RemoveAttribute,
         ClearAttributes,
         DefaultAttributes,
         IncreaseAttribute,
         DecreaseAttribute,
+
+    /* Window TAB */
+        MeshMinorColor,
+        MeshMajorColor,
 
     /* Text TAB */
         TextMarkerColor,
@@ -226,6 +235,7 @@ typedef enum {
         JunctionSize,
         KeyboardPanGain,
         MeshGridThreshold,
+        MeshGridWidth,
         MousePanGain,
         RipperSize,
         ScrollPanSteps,

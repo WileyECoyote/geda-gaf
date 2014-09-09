@@ -34,8 +34,8 @@
  *  \par Function Description
  *  This function is called by o_redraw_rectangles to redraw the grid
  *  within a rectangular region given by specific parameters.
- *
  */
+/*
 void x_repaint_background_region (GschemToplevel *w_current,
                                   int x, int y, int width, int height)
 {
@@ -44,6 +44,21 @@ void x_repaint_background_region (GschemToplevel *w_current,
 
   gdk_draw_rectangle (w_current->drawable,
                       w_current->gc, TRUE, x, y, width, height);
+
+  x_grid_draw_region (w_current, x, y, width, height);
+}
+*/
+void x_repaint_background_region (GschemToplevel *w_current,
+                                  int x, int y, int width, int height)
+{
+  GdkColor *color = x_get_color (w_current->background_color);
+
+  cairo_set_source_rgb (w_current->cr,
+                        color->red   / 65535.0,
+                        color->green / 65535.0,
+                        color->blue  / 65535.0);
+
+  cairo_paint (w_current->cr);
 
   x_grid_draw_region (w_current, x, y, width, height);
 }

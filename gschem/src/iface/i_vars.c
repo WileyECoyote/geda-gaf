@@ -50,11 +50,17 @@ int     default_override_pin_color        = RC_NIL;
 
 int     default_draw_grips                = RC_NIL;
 
-int     default_grid_mode                 = GRID_MESH;
-int     default_dots_grid_dot_size        = DEFAULT_GRID_DOT_SIZE;
-int     default_dots_grid_fixed_threshold = DEFAULT_GRID_DOT_THRESHOLD;
-int     default_dots_grid_mode            = DOTS_GRID_VARIABLE_MODE;
-int     default_mesh_grid_threshold       = DEFAULT_GRID_MESH_THRESHOLD;
+int     default_grid_mode                 = RC_NIL;
+int     default_dots_grid_dot_size        = RC_NIL;
+int     default_dots_grid_threshold       = RC_NIL;
+int     default_dots_grid_mode            = RC_NIL;
+int     default_mesh_grid_threshold       = RC_NIL;
+int     default_mesh_line_width_factor    = RC_NIL;
+int     default_mesh_grid_minor_alpha     = DEFAULT_MESH_GRID_MINOR_ALPHA;
+int     default_mesh_grid_major_alpha     = DEFAULT_MESH_GRID_MAJOR_ALPHA;
+
+GdkColor default_mesh_grid_minor_color     = { 88 };
+GdkColor default_mesh_grid_major_color     = { 88 };
 
 int     default_object_clipping           = TRUE;
 int     default_scrollbars                = RC_NIL;
@@ -305,53 +311,91 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
     GEDA_FREE (tmp_str);
   }
 
-  i_var_restore_global_boolean(cfg, "image-color",   &toplevel->image_color,   TRUE);
-  i_var_restore_global_boolean(cfg, "invert-images", &toplevel->invert_images, TRUE);
-  i_var_restore_global_integer(cfg, "image-width",   &w_current->image_width,  DEFAULT_IMAGE_WIDTH);
-  i_var_restore_global_integer(cfg, "image-height",  &w_current->image_height, DEFAULT_IMAGE_HEIGHT);
+  i_var_restore_global_boolean(cfg, "image-color",         &toplevel->
+                                     image_color,           TRUE);
+
+  i_var_restore_global_boolean(cfg, "invert-images",       &toplevel->
+                                     invert_images,         TRUE);
+
+  i_var_restore_global_integer(cfg, "image-width",         &w_current->
+                                     image_width,           DEFAULT_IMAGE_WIDTH);
+
+  i_var_restore_global_integer(cfg, "image-height",        &w_current->
+                                     image_height,          DEFAULT_IMAGE_HEIGHT);
 
   /* User GedaFileChooser filter preference - Saved by: x_window_save_settings */
-  i_var_restore_window_integer(cfg, "chooser-filter",     &w_current->chooser_filter,     FILTER_GSCHEM);
+  i_var_restore_window_integer(cfg, "chooser-filter",     &w_current->
+                                     chooser_filter,       FILTER_GSCHEM);
 
   /* Scrolling Settings - Saved by: x_window_save_settings */
-  i_var_restore_window_integer(cfg, "scrollbars",         &w_current->scrollbars,         TRUE);
-  i_var_restore_window_integer(cfg, "scrollbar-update",   &w_current->scrollbar_update,   TRUE);
-  i_var_restore_window_integer(cfg, "scrollbars-visible", &w_current->scrollbars_visible, TRUE);
+  i_var_restore_window_integer(cfg, "scrollbars",          &w_current->
+                                     scrollbars,            TRUE);
+
+  i_var_restore_window_integer(cfg, "scrollbar-update",    &w_current->
+                                     scrollbar_update,      TRUE);
+
+  i_var_restore_window_integer(cfg, "scrollbars-visible",  &w_current->
+                                     scrollbars_visible,    TRUE);
 
   /* Grips Settings - Saved by: x_window_save_settings */
-  i_var_restore_window_boolean(cfg, "draw-grips",  &w_current->renderer->
-                                     draw_grips,      TRUE);
+  i_var_restore_window_boolean(cfg, "draw-grips",          &w_current->renderer->
+                                     draw_grips,            TRUE);
 
-  i_var_restore_window_integer(cfg, "grip-pixels", &w_current->
-                                     grip_pixel_size, DEFAULT_GRIP_SIZE);
+  /* Grid Settings - Saved by: x_window_save_settings */
+  i_var_restore_window_integer(cfg, "grid-mode",           &w_current->
+                                     grid_mode,             GRID_MESH);
 
-  i_var_restore_window_color(cfg, "grips-stroke",  &w_current->renderer->
-                                   grip_stroke_color, DEFAULT_GRIP_STROKE_COLOR);
+  i_var_restore_window_integer(cfg, "dots-grid-dot-size",  &w_current->
+                                     dots_grid_dot_size,    DEFAULT_GRID_DOT_SIZE);
 
-  i_var_restore_window_color(cfg, "grips-fill",    &w_current->renderer->
-                                   grip_fill_color,   DEFAULT_GRIP_FILL_COLOR);
+  i_var_restore_window_integer(cfg, "dots-grid-mode",      &w_current->
+                                     dots_grid_mode,        DOTS_GRID_VARIABLE_MODE);
+
+  i_var_restore_window_integer(cfg, "grid-dot-threshold",  &w_current->
+                                     dots_grid_threshold,   DEFAULT_GRID_DOT_THRESHOLD);
+
+  i_var_restore_window_integer(cfg, "mesh-grid-threshold", &w_current->
+                                     mesh_grid_threshold,   DEFAULT_GRID_MESH_THRESHOLD);
+
+  i_var_restore_window_integer(cfg, "mesh-line-width-factor", &w_current->
+                                     mesh_line_width_factor,   DEFAULT_MESH_LINE_WIDTH_FACTOR);
+
+  i_var_restore_window_color (cfg,  "mesh-grid-minor-color", &w_current->
+                                     mesh_grid_minor_color,   MESH_GRID_MINOR_COLOR);
+
+  i_var_restore_window_color (cfg,  "mesh-grid-major-color", &w_current->
+                                     mesh_grid_major_color,   MESH_GRID_MAJOR_COLOR);
+
+  i_var_restore_window_integer(cfg, "grip-pixels",         &w_current->
+                                     grip_pixel_size,       DEFAULT_GRIP_SIZE);
+
+  i_var_restore_window_color (cfg,  "grips-stroke",        &w_current->renderer->
+                                     grip_stroke_color,     DEFAULT_GRIP_STROKE_COLOR);
+
+  i_var_restore_window_color (cfg,  "grips-fill",          &w_current->renderer->
+                                     grip_fill_color,       DEFAULT_GRIP_FILL_COLOR);
 
   /* Restore Cues & Endpoints settings - Saved by: x_window_save_settings */
-  i_var_restore_window_integer(cfg, "junction-size", &w_current->renderer->
-                                     junction_size,   DEFAULT_JUNCTION_SIZE);
+  i_var_restore_window_integer(cfg, "junction-size",       &w_current->renderer->
+                                     junction_size,         DEFAULT_JUNCTION_SIZE);
 
-  i_var_restore_window_color(cfg, "junction-color",  &w_current->renderer->
-                                   junction_color,    DEFAULT_JUNCTION_COLOR);
+  i_var_restore_window_color (cfg,  "junction-color",      &w_current->renderer->
+                                     junction_color,        DEFAULT_JUNCTION_COLOR);
 
-  i_var_restore_window_color(cfg, "net-endpoint-color", &w_current->renderer->
-                                   net_endpoint_color,   DEFAULT_NET_ENDPOINT_COLOR);
+  i_var_restore_window_color (cfg,  "net-endpoint-color",  &w_current->renderer->
+                                     net_endpoint_color,    DEFAULT_NET_ENDPOINT_COLOR);
 
   /* Restore text related stuff - Saved by: x_settings_save_settings */
-  i_var_restore_global_integer(cfg, "text-case",          &w_current->text_case,     BOTH_CASES);
-  i_var_restore_global_integer(cfg, "text-zoomfactor",    &w_current->text_display_zoomfactor, DEFAULT_TEXT_ZOOM);
-  i_var_restore_global_integer(cfg, "text-feedback",      &w_current->text_feedback, ONLY_WHEN_READABLE);
-  i_var_restore_global_integer(cfg, "text-size",          &w_current->text_size,     DEFAULT_TEXT_SIZE);
-  i_var_restore_global_boolean(cfg, "text-origin-marker", &w_current->renderer->
-                                     text_origin_marker,   TRUE);
-  i_var_restore_global_integer(cfg, "text-marker-size",   &w_current->renderer->
-                                     text_marker_size,     DEFAULT_TEXT_MARKER_SIZE);
-  i_var_restore_global_color(cfg,   "text_marker_color",  &w_current->renderer->
-                                     text_marker_color,    DEFAULT_TEXT_MARKER_COLOR);
+  i_var_restore_global_integer(cfg, "text-case",           &w_current->text_case,     BOTH_CASES);
+  i_var_restore_global_integer(cfg, "text-zoomfactor",     &w_current->text_display_zoomfactor, DEFAULT_TEXT_ZOOM);
+  i_var_restore_global_integer(cfg, "text-feedback",       &w_current->text_feedback, ALWAYS_FEEDBACK);
+  i_var_restore_global_integer(cfg, "text-size",           &w_current->text_size,     DEFAULT_TEXT_SIZE);
+  i_var_restore_global_boolean(cfg, "text-origin-marker",  &w_current->renderer->
+                                     text_origin_marker,    TRUE);
+  i_var_restore_global_integer(cfg, "text-marker-size",    &w_current->renderer->
+                                     text_marker_size,      DEFAULT_TEXT_MARKER_SIZE);
+  i_var_restore_global_color(cfg,   "text_marker_color",   &w_current->renderer->
+                                     text_marker_color,     DEFAULT_TEXT_MARKER_COLOR);
 
   /* Pointer Device, aka Mouse stuff - Saved by: x_window_save_settings */
   i_var_restore_global_integer(cfg, "cursor-index",    &w_current->drawing_pointer, DEFAULT_CURSOR_INDEX);
@@ -398,11 +442,28 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->override_bus_color        = default_override_bus_color;
   w_current->override_pin_color        = default_override_pin_color;
 
-  w_current->grid_mode                 = default_grid_mode;
-  w_current->dots_grid_dot_size        = default_dots_grid_dot_size;
-  w_current->dots_grid_mode            = default_dots_grid_mode;
-  w_current->dots_grid_fixed_threshold = default_dots_grid_fixed_threshold;
-  w_current->mesh_grid_threshold       = default_mesh_grid_threshold;
+  i_set_rc (&w_current->grid_mode,             default_grid_mode);
+  i_set_rc (&w_current->dots_grid_dot_size,    default_dots_grid_dot_size);
+  i_set_rc (&w_current->dots_grid_dot_size,    default_dots_grid_dot_size);
+  i_set_rc (&w_current->dots_grid_mode,        default_dots_grid_mode);
+  i_set_rc (&w_current->dots_grid_threshold,   default_dots_grid_threshold);
+  i_set_rc (&w_current->mesh_grid_threshold,   default_mesh_grid_threshold);
+  i_set_rc (&w_current->mesh_line_width_factor,  default_mesh_line_width_factor);
+
+  w_current->mesh_grid_minor_alpha     = default_mesh_grid_minor_alpha;
+  w_current->mesh_grid_major_alpha     = default_mesh_grid_major_alpha;
+
+  if (w_current->mesh_grid_minor_color.pixel != 88) {
+    w_current->mesh_grid_minor_color.red   = default_mesh_grid_minor_color.red;
+    w_current->mesh_grid_minor_color.green = default_mesh_grid_minor_color.green;
+    w_current->mesh_grid_minor_color.blue  = default_mesh_grid_minor_color.blue;
+  }
+
+  if (w_current->mesh_grid_major_color.pixel != 88) {
+    w_current->mesh_grid_major_color.red   = default_mesh_grid_major_color.red;
+    w_current->mesh_grid_major_color.green = default_mesh_grid_major_color.green;
+    w_current->mesh_grid_major_color.blue  = default_mesh_grid_major_color.blue;
+  }
 
   w_current->object_clipping           = default_object_clipping;
 
@@ -550,7 +611,7 @@ i_vars_init(GschemToplevel *w_current)
   eda_config_set_string (cfg, group, "default-font-name",   (DEFAULT_FONT_NAME));
   eda_config_set_string (cfg, group, "default-titleblock", _(DEFAULT_TITLEBLOCK));
 
-  eda_config_set_boolean (cfg, group, "auto-file-suffix",  TRUE);
+  eda_config_set_boolean (cfg, group, "auto-file-suffix",    TRUE);
 
   eda_config_set_boolean (cfg, IDS_COMP_SELECT, "sort",      FALSE);
   eda_config_set_boolean (cfg, IDS_COMP_SELECT, "groups",    TRUE);
@@ -563,7 +624,7 @@ i_vars_init(GschemToplevel *w_current)
 }
 
 /*! \brief Save user config on exit.
- * \par Function Description
+ * \par Function Dcoarseescription
  * When gschem exits, try to save the user configuration to disk.
  */
 void

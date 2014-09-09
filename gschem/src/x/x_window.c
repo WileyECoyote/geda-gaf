@@ -115,6 +115,7 @@ bool x_window_setup_gc(GschemToplevel *w_current)
     else {
       g_critical(_("Could not allocate gc, w_current->window is not a valid GdkWindow\n"));
     }
+      x_grid_setup_color (w_current);
   }
   return result;
 }
@@ -129,11 +130,11 @@ void x_window_free_gc(GschemToplevel *w_current)
   gdk_gc_unref(w_current->gc);
 }
 
-/*! \brief Set up callbacks for window events that affect drawing.
+/*! \brief Create the Drawing Area
  *  \par Function Description
- * Installs GTK+ callback handlers for signals that are emitted by
- * the drawing area, and some for the main window that affect the drawing
- * area.
+ *  the routine create and setup the drawing area widget, the widget is
+ *  added to the given container \a window and assigned a name base on
+ *  the programs process ID.
  *
  * \param [in] window    The Main window
  * \param [in] w_current The toplevel environment.
@@ -197,18 +198,36 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "window-width",      width );
   eda_config_set_integer (cfg, win_group, "window-height",     height);
 
-  /* Retain Users FileChooser filter preference */
+  /* FileChooser filter users preference */
   eda_config_set_integer (cfg, win_group, "chooser-filter", w_current->chooser_filter);
 
   /* All settings from here down are restored by i_vars_recall_user_settings */
-  /* Scrolling Settings */
-  eda_config_set_integer (cfg, win_group, "scrollbars",         w_current->scrollbars);
-  eda_config_set_integer (cfg, win_group, "scrollbar-update",   w_current->scrollbar_update);
-  eda_config_set_integer (cfg, win_group, "scrollbars-visible", w_current->scrollbars_visible);
 
+  /* Grid Setup - mark check */
+  eda_config_set_integer (cfg, win_group, "grid-mode",           w_current->grid_mode);
+  eda_config_set_integer (cfg, win_group, "dots-grid-dot-size",  w_current->dots_grid_dot_size);
+  eda_config_set_integer (cfg, win_group, "dots-grid-mode",      w_current->dots_grid_mode);
+  eda_config_set_integer (cfg, win_group, "grid-dot-threshold",  w_current->dots_grid_threshold);
+
+  eda_config_set_integer (cfg, win_group, "mesh-grid-threshold",   w_current->mesh_grid_threshold);
+  eda_config_set_integer (cfg, win_group, "mesh-line-width-factor",  w_current->mesh_line_width_factor);
+
+  array[0] = w_current->mesh_grid_minor_color.pixel;
+  array[1] = w_current->mesh_grid_minor_color.red;
+  array[2] = w_current->mesh_grid_minor_color.green;
+  array[3] = w_current->mesh_grid_minor_color.blue;
+  eda_config_set_int_list (cfg, win_group, "mesh-grid-minor-color", array, 4);
+
+  array[0] = w_current->mesh_grid_major_color.pixel;
+  array[1] = w_current->mesh_grid_major_color.red;
+  array[2] = w_current->mesh_grid_major_color.green;
+  array[3] = w_current->mesh_grid_major_color.blue;
+  eda_config_set_int_list (cfg, win_group, "mesh-grid-major-color", array, 4);
+
+  /* unmark */
   /* Grips Settings */
-  eda_config_set_boolean (cfg, win_group, "draw-grips",   w_current->renderer->draw_grips);
-  eda_config_set_integer (cfg, win_group, "grip-pixels",  w_current->grip_pixel_size);
+  eda_config_set_boolean (cfg, win_group, "draw-grips",    w_current->renderer->draw_grips);
+  eda_config_set_integer (cfg, win_group, "grip-pixels",   w_current->grip_pixel_size);
 
   array[0] = w_current->renderer->grip_stroke_color.pixel;
   array[1] = w_current->renderer->grip_stroke_color.red;
@@ -222,7 +241,7 @@ void x_window_save_settings(GschemToplevel *w_current)
   array[3] = w_current->renderer->grip_fill_color.blue;
   eda_config_set_int_list (cfg, win_group, "grips-fill", array, 4);
 
-  /* Save setting for Junction Cues and Nets */
+  /* Junction Cues and Nets */
   eda_config_set_integer (cfg, win_group, "junction-size", w_current->renderer->junction_size);
 
   array[0] = w_current->renderer->junction_color.pixel;
@@ -237,7 +256,7 @@ void x_window_save_settings(GschemToplevel *w_current)
   array[3] = w_current->renderer->net_endpoint_color.blue;
   eda_config_set_int_list (cfg, win_group, "net-endpoint-color", array, 4);
 
-  /* Save Pointer, aka Mouse stuff */
+  /* Pointer, aka Mouse stuff */
   eda_config_set_integer (cfg, global_group, "cursor-index",    w_current->drawing_pointer);
   eda_config_set_integer (cfg, global_group, "drag-can-move",   w_current->drag_can_move);
   eda_config_set_integer (cfg, global_group, "fast-mousepan",   w_current->fast_mousepan);
@@ -248,6 +267,10 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, global_group, "scroll-wheel",    w_current->scroll_wheel);
   eda_config_set_integer (cfg, global_group, "third-button",    w_current->third_button);
 
+  /* Scrolling Settings */
+  eda_config_set_integer (cfg, win_group, "scrollbars",         w_current->scrollbars);
+  eda_config_set_integer (cfg, win_group, "scrollbar-update",   w_current->scrollbar_update);
+  eda_config_set_integer (cfg, win_group, "scrollbars-visible", w_current->scrollbars_visible);
 }
 
 /*! \brief Restore Window Geometry and Cursor

@@ -113,14 +113,14 @@
 (dots-grid-dot-size 2)
 ;(dots-grid-dot-size 3)
 
-; dots-grid-fixed-threshold integer
+; dots-grid-threshold integer
 ;
-; The dots-grid-fixed-threshold specifies the minimum number of pixels
+; The dots-grid-threshold specifies the minimum number of pixels
 ; grid-spacing for the grid to be displayed. Using this parameter you can
 ; control the density of the displayed grid (smaller numbers will cause the
 ; grid to be drawn denser). This mode is only used when grid-mode is fixed.
 ;
-(dots-grid-fixed-threshold 10)
+(dots-grid-threshold 10)
 
 ; dots-grid-mode string
 ;
@@ -128,7 +128,7 @@
 ; variable or fixed. In the variable mode, the grid spacing changes
 ; depending on the zoom factor. In the fixed mode, the grid always
 ; represents the same number of units as the snap-spacing. You can
-; control the density of the grid using the dots-grid-fixed-threshold.
+; control the density of the grid using the dots-grid-threshold.
 (dots-grid-mode "variable")
 ;(dots-grid-mode "fixed")
 
@@ -138,7 +138,57 @@
 ; grid to be displayed. Using this parameter you can control maximum density
 ; of the displayed before the minor, then major grid-lines are switched off.
 ;
-(mesh-grid-threshold 25)
+(mesh-grid-threshold 8)
+
+; mesh-line-width-factor integer
+;
+; The mesh-line-width-factor specifies the line width factor to apply when
+; using the mesh grid.
+;
+(mesh-line-width-factor 120)
+
+; mesh-grid-minor-alpha integer
+;
+; The mesh-grid-minor-alpha specifies the percentage transparency to apply to
+; the color used for minor grid lines when when using the mesh grid.
+;
+; min value: 0
+; max value: 100
+; default value: 30
+;
+(mesh-grid-minor-alpha 25)
+
+; mesh-grid-major-alpha integer
+;
+; The mesh-grid-major-alpha specifies the percentage transparency to apply to
+; the color used for major grid lines when when using the mesh grid.
+;
+; min value: 0
+; max value: 100
+; default value: 40
+;
+(mesh-grid-major-alpha 35)
+
+; mesh-grid-minor-color 3 integers
+;
+; The mesh-grid-minor-color specifies the color index to use for minor lines when
+; when using the mesh grid. Note that using this option here limits the color to
+; basic colors. If the setting is set with in the preference dialog to any color
+; except the default, then the setting will be retain in the key file, usually
+; ~/.config/gEDA/gschem-user.conf because gschem does not currently support setting
+; actual colors with scheme
+;
+;  RED GREEN BLUE (in decimal format)
+;
+(mesh-grid-minor-color 63197 57429 12817)
+
+; mesh-grid-major-color 3 integers
+;
+; The mesh-grid-major-color specifies the color index to use for major lines when
+; when using the mesh grid, see comments for mesh-grid-minor-color.
+;
+;  RED GREEN BLUE (in decimal format)
+(mesh-grid-major-color 61694 5916 51704)
 
 ;END ------------------------> Grid Setup <-------------------------
 
@@ -979,7 +1029,7 @@
 ; Determines the number of levels of undo.  Basically this number decides
 ; how many backup schematics are saved on disk.
 ;
-;(undo-levels 10)
+;(undo-levels 20)
 
 ; undo-type string
 ;

@@ -104,8 +104,13 @@ SCM   g_rc_draw_grips                  (SCM mode);
 SCM   g_rc_grid_mode                   (SCM mode);
 SCM   g_rc_dots_grid_dot_size          (SCM dotsize);
 SCM   g_rc_dots_grid_mode              (SCM mode);
-SCM   g_rc_dots_grid_fixed_threshold   (SCM spacing);
+SCM   g_rc_dots_grid_threshold         (SCM spacing);
 SCM   g_rc_mesh_grid_threshold         (SCM spacing);
+SCM   g_rc_mesh_line_width_factor      (SCM width);
+SCM   g_rc_mesh_grid_minor_alpha       (SCM percent);
+SCM   g_rc_mesh_grid_major_alpha       (SCM percent);
+SCM   g_rc_mesh_grid_minor_color       (SCM red, SCM green, SCM blue);
+SCM   g_rc_mesh_grid_major_color       (SCM red, SCM green, SCM blue);
 SCM   g_rc_net_endpoint_mode           (SCM mode);
 SCM   g_rc_net_midpoint_mode           (SCM mode);
 SCM   g_rc_net_direction_mode          (SCM mode);
@@ -301,6 +306,7 @@ char *i_var_get_global_config_string   (EdaConfig *cfg, char *str);
 void  i_var_restore_global_boolean     (EdaConfig *cfg, char *key, int *var, bool def_val);
 void  i_var_restore_global_integer     (EdaConfig *cfg, char *key, int *var, int def_val);
 void  i_var_restore_global_color       (EdaConfig *cfg, char *key, GdkColor *var, int index);
+
 void  i_var_restore_window_boolean     (EdaConfig *cfg, char *key, int *var, bool def_val);
 void  i_var_restore_window_integer     (EdaConfig *cfg, char *key, int *var, int def_val);
 void  i_var_restore_window_color       (EdaConfig *cfg, char *key, GdkColor *var, int index);
@@ -709,6 +715,7 @@ bool x_fileselect_load_backup     (GString *message, GschemToplevel *w_current);
 /* x_grid.c */
 void x_grid_draw_region           (GschemToplevel *w_current, int x, int y, int width, int height);
 int  x_grid_query_drawn_spacing   (GschemToplevel *w_current);
+void x_grid_setup_color           (GschemToplevel *w_current);
 void x_draw_tiles                 (GschemToplevel *w_current);
 
 /* x_icons.c */

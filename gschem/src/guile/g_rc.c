@@ -289,20 +289,20 @@ SCM g_rc_dots_grid_dot_size (SCM dotsize)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots-grid-fixed-threshold RC entry.
+/*! \brief This function processes the dots-grid-threshold RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the dots-grid-fixed-threshold RC
+ *       processing configuration data for the dots-grid-threshold RC
  *       entry.
  *
  */
-SCM g_rc_dots_grid_fixed_threshold (SCM threshold)
+SCM g_rc_dots_grid_threshold (SCM threshold)
 {
-  default_dots_grid_fixed_threshold = ICHECK(threshold,
-                                      MIN_GRID_DOT_THRESHOLD,
-                                      MAX_GRID_DOT_THRESHOLD,
-                                      DEFAULT_GRID_DOT_THRESHOLD,
-                                     "dots-grid-fixed-threshold");
+  default_dots_grid_threshold = ICHECK(threshold,
+                                       MIN_GRID_DOT_THRESHOLD,
+                                       MAX_GRID_DOT_THRESHOLD,
+                                       DEFAULT_GRID_DOT_THRESHOLD,
+                                       "dots-grid-threshold");
   return SCM_BOOL_T;
 }
 
@@ -336,6 +336,107 @@ SCM g_rc_mesh_grid_threshold (SCM threshold)
                                 MAX_GRID_DOT_THRESHOLD,
                                 DEFAULT_GRID_MESH_THRESHOLD,
                                 "mesh-grid-threshold");
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the mesh-line-width-factor RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the mesh-line-width-factor RC
+ *       entry.
+ *
+ */
+SCM g_rc_mesh_line_width_factor (SCM width)
+{
+  default_mesh_line_width_factor = ICHECK(width,
+                                        MIN_MESH_LINE_WIDTH_FACTOR,
+                                        MAX_MESH_LINE_WIDTH_FACTOR,
+                                        DEFAULT_MESH_LINE_WIDTH_FACTOR,
+                                       "mesh-line-width-factor");
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the mesh-grid-minor-alpha RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the mesh-grid-minor-alpha RC
+ *       entry.
+ *
+ */
+SCM g_rc_mesh_grid_minor_alpha (SCM percent)
+{
+  default_mesh_grid_minor_alpha = ICHECK(percent,
+                                         MIN_MESH_GRID_ALPHA,
+                                         MAX_MESH_GRID_ALPHA,
+                                         MESH_GRID_MINOR_COLOR,
+                                         "mesh-grid-minor-alpha");
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the mesh-grid-major-alpha RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the mesh-grid-minor-alpha RC
+ *       entry.
+ *
+ */
+SCM g_rc_mesh_grid_major_alpha (SCM percent)
+{
+  default_mesh_grid_major_alpha = ICHECK(percent,
+                                         MIN_MESH_GRID_ALPHA,
+                                         MAX_MESH_GRID_ALPHA,
+                                         MESH_GRID_MAJOR_COLOR,
+                                         "mesh-grid-major-alpha");
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the mesh-grid-minor-color RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the mesh-grid-minor-color RC
+ *       entry.
+ *
+ */
+SCM g_rc_mesh_grid_minor_color (SCM red, SCM green, SCM blue)
+{
+  int r = ICHECK(red, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+                "mesh-grid-minor-color");
+
+  int g = ICHECK(green, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+                "mesh-grid-minor-color");
+
+  int b = ICHECK(blue, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+                "mesh-grid-minor-color");
+
+  default_mesh_grid_minor_color.red   = r;
+  default_mesh_grid_minor_color.green = g;
+  default_mesh_grid_minor_color.blue  = b;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the mesh-grid-major-color RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the mesh-grid-minor-color RC
+ *       entry.
+ *
+ */
+SCM g_rc_mesh_grid_major_color (SCM red, SCM green, SCM blue)
+{
+  int r = ICHECK(red, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+                "mesh-grid-major-color");
+
+  int g = ICHECK(green, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+                "mesh-grid-major-color");
+
+  int b = ICHECK(blue, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+                "mesh-grid-major-color");
+
+  default_mesh_grid_major_color.red   = r;
+  default_mesh_grid_major_color.green = g;
+  default_mesh_grid_major_color.blue  = b;
+
   return SCM_BOOL_T;
 }
 

@@ -3575,10 +3575,10 @@ COMMAND (dots_grid_dot_size) {
   SHOW_VARIABLE(grid_mode, W);
 }
 
-/** @brief i_cmd_dots_grid_fixed_threshold in i_command_Variable_Handlers */
-COMMAND (dots_grid_fixed_threshold) {
+/** @brief i_cmd_dots_grid_threshold in i_command_Variable_Handlers */
+COMMAND (dots_grid_threshold) {
 
-  SHOW_VARIABLE(dots_grid_fixed_threshold, W);
+  SHOW_VARIABLE(dots_grid_threshold, W);
 }
 
 /** @brief i_cmd_dots_grid_mode in i_command_Variable_Handlers */

@@ -46,10 +46,11 @@
  * referenced using enumerated ControlID's . To add or remove a
  * control:
  *
- *    1.) Besure to add an enumerator in the ControlID array in the
+ *    1.) Be sure to add an enumerator in the ControlID array in the
  *        file x_settings.h
  *
  *    2.) Add the string text to the SAME position in DialogStrings
+ *        below.
  *
  *    3.) Reference the string with the enumerators using the
  *        macros in geda_dialog_controls.h
@@ -99,6 +100,11 @@ WidgetStringData DialogStrings[] = {
         { "DefaultAttributeButt", "Default",      "Restore default fliter list of attributes to display"},
         { "IncreaseAttributeButt","Up",           "Increase selected attribute in the Add Attribute list"},
         { "DecreaseAttributeButt","Down",         "Decrease selected attribute in the Add Attribute list"},
+
+    /* Window TAB */
+        { "Select Minor Mesh Color",  " Minor Mesh Color:",   "Set the mesh minor grid color"},
+        { "Select Major Mesh Color",  " Major Mesh Color:",   "Set the mesh major grid color"},
+
     /* Text TAB */
         { "Select Text Marker Color", "Marker Color:",  "Set the color for text markers"},
 
@@ -108,7 +114,7 @@ WidgetStringData DialogStrings[] = {
   /* String for Combo Controls  */
         { "TitleBlockCombo",        "Titleblock:",   "Name of Default Titleblock"},
         { "ColorMapSchemeCombo",    "Scheme:",          "Choose which color scheme should be load at startup"},
-        { "DotGridModeCombo",       "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-fixed-threshold."},
+        { "DotGridModeCombo",       "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-threshold."},
         { "ConsoleWindowTypeCombo", "  Window:",        "Controls if the console window is a transient or decorated as a normal window. The window manager is responsible for doing the decoration"},
         { "PointerCursorCombo",     "    Cursor:",      "Select the prefered Pointer Cursor Style"},
         { "MiddleButtonCombo",      "Middle Button:",   "Controls if the middle mouse button draws strokes, repeats the last command, does an action (move and copy (pressing the ALT key) are supported) on a single objects, or if it does the mouse panning."},
@@ -204,19 +210,20 @@ WidgetStringData DialogStrings[] = {
 
   /* Spinner Controls in Alphabetical order */
         { "AttributeOffsetSpin",        "Offset Factor:",	"Controls a offset which is added to the location of text items that are added to an object as an attribute. This offset is added when certain conditions occur."},
-        { "AutoPlacementGridSpin",      "Autoplacement Grid:",  "When placing components, snaps attributes to the nearest point on the grid within the specified value"},
+        { "AutoPlacementGridSpin",      "Autoplacement Grid:",   "When placing components, snaps attributes to the nearest point on the grid within the specified value"},
         { "AutoSaveIntervalSpin",       "   Save Interval:",	"The unit for interval is seconds."},
-        { "DotGridThresholdSpin",       "Fixed Threshold:",	"The dots-grid-fixed-threshold specifies the minimum number of pixels grid-spacing for the grid to be displayed. Using this parameter you can control the density of the displayed grid (smaller numbers will cause the grid to be drawn denser). This mode is only used when grid-mode is fixed."},
+        { "DotGridThresholdSpin",       "Fixed Threshold:",	"The dots-grid-threshold specifies the minimum number of pixels grid-spacing for the grid to be displayed. Using this parameter you can control the density of the displayed grid (smaller numbers will cause the grid to be drawn denser). This mode is only used when grid-mode is fixed."},
         { "GripPixelSizeSpin",          "Grip Size:",	        "Sets the size of the grips."},
-        { "JunctionSizeSpin",           "Node Size:",     "Controls the junction \"cues\" size of drawing nodes"},
+        { "JunctionSizeSpin",           "Node Size:",            "Controls the junction \"cues\" size of drawing nodes"},
         { "KeyboardPanGainSpin",        " Keyboard Gain:",	"Controls how much the display pans when using the keyboard cursor keys. A larger value provides greater pan distance when pressing the cursor keys while a smaller value provides a smoother but smaller pan distance when moving the cursor keys."},
-        { "MeshGridThresholdSpin",      "        Mesh Threshold:","The mesh-grid-display-threshold specifies the minimum line pitch for a the grid to be displayed. Using this parameter you can control maximum density of the displayed before the minor then major grid-lines are switched off."},
+        { "MeshGridThresholdSpin",      "   Mesh Threshold:",    "The mesh-grid-display-threshold specifies the minimum line pitch for a the grid to be displayed. Using this parameter you can control maximum density of the displayed before the minor then major grid-lines are switched off."},
+        { "MeshGridWidthSpin    ",      "  Mesh Line Width:",    "The line width used for the mesh grid disply"},
         { "MousePanGainSpin",           "     Mouse Pan Gain:",	"Controls how much the display pans when using mousepan. A larger value provides greater pan distance when moving the mouse while a smaller value provides a smoother but smaller pan distance when moving the mouse."},
-        { "RipperSizeSpin",             "   Ripper Size:",      "Sets the size of the auto bus rippers."},
-        { "ScrollPanStepsSpin",         "    Scroll Pan Steps:","Controls the number of scroll pan events required to traverse the viewed schematic area. Larger numbers mean more scroll steps are required to pan across the viewed area and giving finer control over positioning."},
+        { "RipperSizeSpin",             "   Ripper Size:",       "Sets the size of the auto bus rippers."},
+        { "ScrollPanStepsSpin",         "    Scroll Pan Steps:", "Controls the number of scroll pan events required to traverse the viewed schematic area. Larger numbers mean more scroll steps are required to pan across the viewed area and giving finer control over positioning."},
         { "SelectPixelsSpin",           "Select Pixels:",	"Controls how many pixels around an object can still be clicked as part of that object. A larger value gives greater ease in selecting small or narrow objects."},
         { "SnapSizeSpin",               "     Snap Size:",	"Sets the default spacing which objects snaps to."},
-        { "TextMarkerSizeSpin",         "  Marker Size:",       "Sets the default size of text origin markers."},
+        { "TextMarkerSizeSpin",         "  Marker Size:",        "Sets the default size of text origin markers."},
         { "TextSizeSpin",               "     Text Size:",	"Sets the default text font size."},
         { "TextZoomFactorSpin",         "   Zoom Factor:",	"Sets the zoomfactor number (~150 being the most zoomed out factor)(zoom factors get smaller as you zoom in) at which text is displayed completely (not a line). This is only valid if FeedBack is set to \"only-when-readable\""},
         { "ThickBusWidthSpin",          "Thick",                "Set the width, in mils, of the Thick Buss"},

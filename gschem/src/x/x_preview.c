@@ -153,17 +153,13 @@ preview_callback_expose (GtkWidget      *widget,
 {
   Preview *preview = PREVIEW (widget);
   GschemToplevel *preview_window = preview->preview_window;
-  GdkRectangle *rectangles;
-  int n_rectangles;
   cairo_t *save_cr;
 
   save_cr = preview_window->cr;
 
   preview_window->cr = gdk_cairo_create (widget->window);
 
-  gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
-  o_redraw_rectangles (preview_window, rectangles, n_rectangles);
-  GEDA_FREE (rectangles);
+  o_redraw_rectangles (preview_window, &(event->area), 1);
 
   cairo_destroy (preview_window->cr);
 
@@ -184,9 +180,9 @@ preview_callback_expose (GtkWidget      *widget,
  *  \returns FALSE to propagate the event further.
  */
 static bool
-preview_callback_button_press (GtkWidget *widget,
+preview_callback_button_press (GtkWidget      *widget,
                                GdkEventButton *event,
-                               void * user_data)
+                               void           *user_data)
 {
   Preview *preview = PREVIEW (widget);
   GschemToplevel *preview_window = preview->preview_window;
@@ -443,6 +439,9 @@ preview_init (Preview *preview)
 
   /* be sure to turn off scrollbars */
   preview_window->scrollbars           = FALSE;
+
+  preview_window->net_endpoint_mode    = NET_NONE;
+  preview_window->net_midpoint_mode    = NET_NONE;
 
   /* be sure to turn off the grid */
   preview_window->grid_mode            = FALSE;

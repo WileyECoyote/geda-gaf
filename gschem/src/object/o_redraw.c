@@ -28,8 +28,7 @@
  */
 
 
-/*! \todo Finish function documentation!!!
- *  \brief Function Clean State - if drawing action in-progress
+/*! \brief Function Clean State - if drawing action in-progress
  *  \par Function Description
  *  This function is neccesary to make jumps between event_states.
  *  If we are inside an drawing action that created something on the dc,

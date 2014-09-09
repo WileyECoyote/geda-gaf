@@ -54,7 +54,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DOTS_GRID_VARIABLE_MODE 0
 #define DOTS_GRID_FIXED_MODE    1
 
-/* For dots-grid-fixed-threshold */
+/* For dots-grid-threshold */
 #define MIN_GRID_DOT_THRESHOLD      5
 #define MAX_GRID_DOT_THRESHOLD     50
 #define DEFAULT_GRID_DOT_THRESHOLD 10
@@ -64,18 +64,31 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_GRID_DOT_SIZE   1
 
 /* For mesh_grid_threshold */
-#define MIN_GRID_MESH_THRESHOLD 1
-#define MAX_GRID_MESH_THRESHOLD 99
-#define DEFAULT_GRID_MESH_THRESHOLD 25
+#define MIN_GRID_MESH_THRESHOLD        1
+#define MAX_GRID_MESH_THRESHOLD        99
+#define DEFAULT_GRID_MESH_THRESHOLD    10
 
-/* for console-window-type */
-#define MAX_JUNCTION_SIZE       100
-#define MIN_JUNCTION_SIZE         0
-#define DEFAULT_JUNCTION_SIZE    40
-#define DEFAULT_JUNCTION_COLOR  JUNCTION_COLOR
+#define MIN_MESH_LINE_WIDTH_FACTOR     10
+#define MAX_MESH_LINE_WIDTH_FACTOR     500
+#define DEFAULT_MESH_LINE_WIDTH_FACTOR 120
+
+#define MIN_MESH_GRID_ALPHA            0
+#define MAX_MESH_GRID_ALPHA            100
+
+#define DEFAULT_MESH_GRID_MINOR_ALPHA  30
+#define DEFAULT_MESH_GRID_MAJOR_ALPHA  40
+
+#define MAX_MESH_GRID_COLOR            65535
+#define DEFAULT_MESH_GRID_COLOR        MAX_MESH_GRID_COLOR
+
+/* for junctions */
+#define MAX_JUNCTION_SIZE              100
+#define MIN_JUNCTION_SIZE              0
+#define DEFAULT_JUNCTION_SIZE          40
+#define DEFAULT_JUNCTION_COLOR         JUNCTION_COLOR
 
 /* For Both Scrollbars and Mousewheel */
-#define DEFAULT_SCROLLPAN_STEPS 8
+#define DEFAULT_SCROLLPAN_STEPS        8
 
 /* For Window-Size */
 /* Note Min/Max is really just an attempt to catch typo's, WEH */
@@ -167,13 +180,12 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 
 /* These modes are for net_endpoint_mode and net_midpoint_mode*/
 #define NET_NONE        0
-#define EMPTY_BOX	1
-#define FILLED_BOX	2
-#define X		3
+#define EMPTY_BOX       1
+#define FILLED_BOX      2
 
 /* These modes are for net_selection_mode */
-#define NET_SELECT_NET	2
-#define NET_SELECT_ALL	3
+#define NET_SELECT_NET  2
+#define NET_SELECT_ALL  3
 
 /* for bus_ripper_size */
 #define DEFAULT_RIPPER_SIZE     200
@@ -237,8 +249,8 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define MAX_TEXT_ZOOM          99
 
 /* modes for text-feedback */
-#define ONLY_WHEN_READABLE	0
-#define ALWAYS_FEEDBACK		1
+#define ONLY_WHEN_READABLE       0
+#define ALWAYS_FEEDBACK          1
 
 /* text_marker_size */
 #define MIN_TEXT_MARKER_SIZE     5
@@ -248,7 +260,7 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 
 /* text_size */
 #ifndef DEFAULT_TEXT_SIZE
-  #define DEFAULT_TEXT_SIZE       10
+  #define DEFAULT_TEXT_SIZE     10
 #endif
 #define MIN_TEXT_SIZE           1
 #define MAX_TEXT_SIZE           99
@@ -267,6 +279,6 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define REDO_ACTION              1
 
 /* For undo_levels */
-#define DEFAULT_UNDO_LEVELS     10
+#define DEFAULT_UNDO_LEVELS     20
 
 #endif /* !_GSCHEM_IDEFINES_H_INCL */

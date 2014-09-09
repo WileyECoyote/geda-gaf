@@ -130,10 +130,15 @@ struct _GschemToplevel {
   int world_top;
   int world_bottom;
 
-  int screen_width;                        /* Actual size of window (?) */
+  int screen_width;                      /* Actual size of window (?) */
   int screen_height;
 
   int background_color;
+
+  double   mesh_minor_alpha;             /* Set by x_grid_set_colors */
+  double   mesh_major_alpha;
+  GdkColor mesh_minor_color;
+  GdkColor mesh_major_color;
 
   /* --------------------- Drawing state ------------------ */
   EdaRenderer *renderer;
@@ -204,12 +209,18 @@ struct _GschemToplevel {
 
   /* sets the mininum number of pixels necessary for the grid to be displayed */
   int grid_mode;          /* sets what type of grid to show, can be None, Dots, or Mesh */
-  int dots_grid_fixed_threshold;
+  int dots_grid_threshold;
   int dots_grid_dot_size; /* sets the grid dot size */
   int dots_grid_mode;     /* sets the mode of the dotted grid (either variable or fixed) */
 
   /* Minimum grid line pitch to display. Applies to major and minor lines. */
   int mesh_grid_threshold;
+  int mesh_line_width_factor;
+  int mesh_grid_minor_alpha;
+  int mesh_grid_major_alpha;
+
+  GdkColor mesh_grid_minor_color;
+  GdkColor mesh_grid_major_color;
 
   /* controls whether objects are clipped */
   int object_clipping;
@@ -256,8 +267,8 @@ struct _GschemToplevel {
   SNAP_STATE old_snap;        /* Use to toggle the snap to the previous state */
 
   /* Nets and Routing */
-  int net_endpoint_mode;    /* can be either NONE, FILLEDBOX, EMPTYBOX, X */
-  int net_midpoint_mode;    /* can be either NONE or FILLED or EMPTY */
+  int net_endpoint_mode;    /* can be either NONE, FILLED_BOX, EMPTY_BOX, X */
+  int net_midpoint_mode;    /* can be either NONE or FILLED_BOX or EMPTY_BOX */
   int net_direction_mode;   /* controls if the net direction mode is used */
   int net_selection_mode;   /* controls the behaviour when selecting a net */
   int net_selection_state;  /* current status of the net selecting mode */

@@ -44,6 +44,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "drag-can-move",               1, 0, 0, g_rc_drag_can_move },
   { "logging-destination",         1, 0, 0, g_rc_log_destiny },
   { "text-caps-style",             1, 0, 0, g_rc_text_case },
+  { "dots-grid-fixed-threshold",   1, 0, 0, g_rc_dots_grid_threshold },
   { "mesh-grid-display-threshold", 1, 0, 0, g_rc_mesh_grid_threshold },
   /* End legacy support */
 
@@ -55,9 +56,15 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "draw-grips",                1, 0, 0, g_rc_draw_grips },
   { "grid-mode",                 1, 0, 0, g_rc_grid_mode },
   { "dots-grid-dot-size",        1, 0, 0, g_rc_dots_grid_dot_size },
-  { "dots-grid-fixed-threshold", 1, 0, 0, g_rc_dots_grid_fixed_threshold },
+  { "dots-grid-threshold",       1, 0, 0, g_rc_dots_grid_threshold },
   { "dots-grid-mode",            1, 0, 0, g_rc_dots_grid_mode },
   { "mesh-grid-threshold",       1, 0, 0, g_rc_mesh_grid_threshold },
+  { "mesh-line-width-factor",    1, 0, 0, g_rc_mesh_line_width_factor },
+  { "mesh-grid-minor-alpha",     1, 0, 0, g_rc_mesh_grid_minor_alpha },
+  { "mesh-grid-major-alpha",     1, 0, 0, g_rc_mesh_grid_major_alpha },
+  { "mesh-grid-minor-color",     3, 0, 0, g_rc_mesh_grid_minor_color },
+  { "mesh-grid-major-color",     3, 0, 0, g_rc_mesh_grid_major_color },
+
   { "snap-size",                 1, 0, 0, g_rc_snap_size },
 
   { "net-endpoint-mode",         1, 0, 0, g_rc_net_endpoint_mode },

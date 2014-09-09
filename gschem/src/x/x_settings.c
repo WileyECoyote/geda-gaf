@@ -648,9 +648,9 @@ KEYWORD (dots_grid_dot_size) {
   RC_INTEGER_TRIAD_WOUT (dots_grid_dot_size, 1, 2, 3);
 }
 
-/** @brief function do_kw_dots_grid_fixed_threshold in Settings-Keyword-Handlers */
-KEYWORD (dots_grid_fixed_threshold) {
-  RC_INTEGER_WOUT (dots_grid_fixed_threshold);
+/** @brief function do_kw_dots_grid_threshold in Settings-Keyword-Handlers */
+KEYWORD (dots_grid_threshold) {
+  RC_INTEGER_WOUT (dots_grid_threshold);
 }
 
 /** @brief function do_kw_dots_grid_mode in Settings-Keyword-Handlers */
@@ -662,6 +662,21 @@ KEYWORD (dots_grid_mode) {
 /** @brief function do_kw_mesh_grid_threshold in Settings-Keyword-Handlers */
 KEYWORD (mesh_grid_threshold) {
   RC_INTEGER_WOUT (mesh_grid_threshold);
+}
+
+/** @brief function do_kw_mesh_line_width_factor in Settings-Keyword-Handlers */
+KEYWORD (mesh_line_width_factor) {
+  RC_INTEGER_WOUT (mesh_line_width_factor);
+}
+
+/** @brief function do_kw_mesh_grid_minor_alpha in Settings-Keyword-Handlers */
+KEYWORD (mesh_grid_minor_alpha) {
+  RC_INTEGER_WOUT (mesh_grid_minor_alpha);
+}
+
+/** @brief function do_kw_mesh_grid_major_alpha in Settings-Keyword-Handlers */
+KEYWORD (mesh_grid_major_alpha) {
+  RC_INTEGER_WOUT (mesh_grid_major_alpha);
 }
 
 /** @brief function do_kw_object_clipping in Settings-Keyword-Handlers */

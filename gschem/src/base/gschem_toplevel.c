@@ -57,13 +57,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
 
   w_current->macro_widget       = NULL;
   w_current->status_bar         = NULL;
-/*
-  w_current->left_label         = NULL;
-  w_current->middle_label       = NULL;
-  w_current->right_label        = NULL;
-  w_current->grid_label         = NULL;
-  w_current->status_label       = NULL;
-*/
+
   w_current->keyaccel_string    = NULL;
   w_current->keyaccel_ssid      = FALSE;
 
@@ -109,9 +103,6 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->window             = NULL;
   w_current->drawable           = NULL;
   w_current->cr                 = NULL;
-
-//  w_current->redraw_enabled     = 1;
-//  w_current->throttle           = 7; /* milliseconds */
 
   w_current->world_left         = 0;
   w_current->world_right        = default_world_right;
@@ -190,9 +181,14 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   /* Grid Related - Display=>Grid */
     w_current->grid_mode                  = GRID_MESH;
     w_current->dots_grid_dot_size         = DEFAULT_GRID_DOT_SIZE;
-    w_current->dots_grid_fixed_threshold  = DEFAULT_GRID_DOT_THRESHOLD;
+    w_current->dots_grid_threshold        = DEFAULT_GRID_DOT_THRESHOLD;
     w_current->dots_grid_mode             = DOTS_GRID_VARIABLE_MODE;
+
     w_current->mesh_grid_threshold        = DEFAULT_GRID_MESH_THRESHOLD;
+    w_current->mesh_line_width_factor     = DEFAULT_MESH_LINE_WIDTH_FACTOR;
+
+    w_current->mesh_grid_minor_alpha      = DEFAULT_MESH_GRID_MINOR_ALPHA;
+    w_current->mesh_grid_major_alpha      = DEFAULT_MESH_GRID_MAJOR_ALPHA;
 
   w_current->scrollbars                   = TRUE;
   w_current->scrollbar_update             = 0;

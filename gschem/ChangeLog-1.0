@@ -1,3 +1,11 @@
+2014-09-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * *: Add color and transparency for the mesh grid, with rc variables.
+      The alpha transparency can not yet be set in the preferences dialog
+      but the color can be. Also add mesh line width factor so user can
+      better customize the mesh grid. Is a work in progress, but believed
+      to be fully functional now.
+
 2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings.c: Add retrieve and save the active notebook tab in

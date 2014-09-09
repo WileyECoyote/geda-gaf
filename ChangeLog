@@ -1,3 +1,7 @@
+2014-09-07 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_debug.h: Add DEBUG_TILES and DEBUG_CONNS
+
 2014-08-26 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_debug.h: Add DEBUG_STATUS, DEBUG_SENSITIVITY, and

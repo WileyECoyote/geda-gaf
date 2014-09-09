@@ -26,6 +26,8 @@
  * \brief Main Window Auxiliary Module for Grid systems applied to drawing area
  */
 
+#include <math.h>
+
 #include "gschem.h"
 #include <geda_debug.h>
 
@@ -76,7 +78,7 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
       incr        = w_current->snap_size;
       screen_incr = SCREENabs (w_current, incr);
 
-      if (screen_incr < w_current->dots_grid_fixed_threshold) {
+      if (screen_incr < w_current->dots_grid_threshold) {
         /* No grid drawn if the on-screen spacing is less than the threshold */
         incr = -1;
       }
@@ -164,10 +166,9 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
   }
 }
 
-
 /*! \brief Helper function for draw_mesh_grid_regin
  */
-static void draw_mesh (GschemToplevel *w_current, int color,
+static void draw_mesh (GschemToplevel *w_current,
                        int x_start, int y_start, int x_end, int y_end,
                        int incr, int coarse_mult)
 {
@@ -175,7 +176,6 @@ static void draw_mesh (GschemToplevel *w_current, int color,
   int x1, y1, x2, y2;
   int next_coarse_x, next_coarse_y;
   int coarse_incr = incr * coarse_mult;
-  COLOR *c;
 
   /* figure starting grid coordinates, work by taking the start
    * and end coordinates and rounding down to the nearest increment */
@@ -192,17 +192,6 @@ static void draw_mesh (GschemToplevel *w_current, int color,
     if (next_coarse_x < x_start) next_coarse_x += coarse_incr;
     if (next_coarse_y < y_start) next_coarse_y += coarse_incr;
   }
-
-  c = x_color_lookup (color);
-  cairo_set_source_rgba (w_current->cr, (double)c->r / 255.0,
-                                        (double)c->g / 255.0,
-                                        (double)c->b / 255.0,
-                                        (double)c->a / 255.0);
-
-  cairo_set_line_width (w_current->cr, 1.);
-  cairo_set_line_cap (w_current->cr, CAIRO_LINE_CAP_SQUARE);
-
-  cairo_translate (w_current->cr, 0.5, 0.5);
 
   for (j = y_start; j < y_end; j = j + incr) {
 
@@ -236,41 +225,6 @@ static void draw_mesh (GschemToplevel *w_current, int color,
   }
   cairo_stroke (w_current->cr);
 
-  cairo_translate (w_current->cr, -0.5, -0.5);
-}
-
-
-/*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
- *
- *  \par Function Description
- *  Returns the world spacing of the rendered grid, taking into account where
- *  the grid drawing code may drop elelments which are too densly packed for a
- *  given zoom level.
- *
- *  \param [in] w_current  The GschemToplevel.
- *  \returns The grid spacing in world units of the grid as rendered, or -1
- *           if there are no items drawn.
- */
-static int query_mesh_grid_spacing (GschemToplevel *w_current)
-{
-  int incr, screen_incr;
-
-  incr = w_current->snap_size;
-  screen_incr = SCREENabs (w_current, incr);
-
-  /* We draw a fine grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_threshold) {
-    return incr;
-  }
-
-  incr *= MESH_COARSE_GRID_MULTIPLIER;
-  screen_incr = SCREENabs (w_current, incr);
-
-  /* We draw a coarse grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_threshold)
-    return incr;
-
-  return -1;
 }
 
 /*! \brief Draw an area of the screen with a mesh grid pattern
@@ -287,6 +241,7 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
 static void
 draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int height)
 {
+  GdkColor *color;
   int x_start, y_start, x_end, y_end;
   int incr;
   int screen_incr;
@@ -297,22 +252,51 @@ draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int h
   SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
   SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
 
-  /* Draw the fine grid if its on-screen spacing is large enough */
+  cairo_set_line_width (w_current->cr, w_current->
+                        mesh_line_width_factor * 0.01);
+
+  cairo_set_line_cap (w_current->cr, CAIRO_LINE_CAP_SQUARE);
+
+  /** Draw the fine grid if its on-screen spacing is large enough **/
   if (screen_incr >= w_current->mesh_grid_threshold) {
-    draw_mesh (w_current, MESH_GRID_MINOR_COLOR, x_start, y_start,
+
+    color = &w_current->mesh_minor_color;
+
+    cairo_set_source_rgba (w_current->cr,
+                           (double)color->red   / 65535.0,
+                           (double)color->green / 65535.0,
+                           (double)color->blue  / 65535.0,
+                           w_current->mesh_minor_alpha);
+
+    draw_mesh (w_current, x_start, y_start,
                x_end, y_end, incr, MESH_COARSE_GRID_MULTIPLIER);
   }
 
-  incr *= MESH_COARSE_GRID_MULTIPLIER;
+  incr       *= MESH_COARSE_GRID_MULTIPLIER;
   screen_incr = SCREENabs (w_current, incr);
 
-  /* Draw the coarse grid if its on-screen spacing is large enough */
+  /** Draw the coarse grid if its on-screen spacing is large enough **/
   if (screen_incr >= w_current->mesh_grid_threshold) {
-    draw_mesh (w_current, MESH_GRID_MAJOR_COLOR,
-               x_start, y_start, x_end, y_end, incr, 0);
+
+    color = &w_current->mesh_major_color;
+
+    cairo_set_source_rgba (w_current->cr,
+                           (double)color->red     / 65535.0,
+                           (double)color->green  / 65535.0,
+                           (double)color->blue  / 65535.0,
+                           w_current->mesh_major_alpha);
+
+    draw_mesh (w_current, x_start, y_start, x_end, y_end, incr, 0);
   }
 }
 
+/*! \brief Draw tile grid pattern
+ *
+ *  \par Function Description
+ *  Draws the tile grid pattern over the screen area.
+ *
+ *  \param [in] w_current  The GschemToplevel.
+ */
 void x_draw_tiles(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
@@ -407,6 +391,53 @@ x_grid_draw_region (GschemToplevel *w_current, int x, int y, int width, int heig
   x_draw_tiles(w_current);
 #endif
 
+}
+
+/*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
+ *
+ *  \par Function Description
+ *  Returns the world spacing of the rendered grid, taking into account where
+ *  the grid drawing code may drop elelments which are too densly packed for a
+ *  given zoom level.
+ *
+ *  \param [in] w_current  The GschemToplevel.
+ *  \returns The grid spacing in world units of the grid as rendered, or -1
+ *           if there are no items drawn.
+ */
+static int query_mesh_grid_spacing (GschemToplevel *w_current)
+{
+  int incr, screen_incr;
+
+  incr = w_current->snap_size;
+  screen_incr = SCREENabs (w_current, incr);
+
+  /* We draw a fine grid if its on-screen spacing is large enough */
+  if (screen_incr >= w_current->mesh_grid_threshold) {
+    return incr;
+  }
+
+  incr *= MESH_COARSE_GRID_MULTIPLIER;
+  screen_incr = SCREENabs (w_current, incr);
+
+  /* We draw a coarse grid if its on-screen spacing is large enough */
+  if (screen_incr >= w_current->mesh_grid_threshold)
+    return incr;
+
+  return -1;
+}
+
+void x_grid_setup_color (GschemToplevel *w_current)
+{
+  w_current->mesh_minor_alpha       = w_current->mesh_grid_minor_alpha * 0.01;
+  w_current->mesh_major_alpha       = w_current->mesh_grid_major_alpha * 0.01;
+
+  w_current->mesh_minor_color.red   = w_current->mesh_grid_minor_color.red;
+  w_current->mesh_minor_color.green = w_current->mesh_grid_minor_color.green;
+  w_current->mesh_minor_color.blue  = w_current->mesh_grid_minor_color.blue;
+
+  w_current->mesh_major_color.red   = w_current->mesh_grid_major_color.red;
+  w_current->mesh_major_color.green = w_current->mesh_grid_major_color.green;
+  w_current->mesh_major_color.blue  = w_current->mesh_grid_major_color.blue;
 }
 
 /*! \brief Query the spacing in world coordinates at which the grid is drawn.

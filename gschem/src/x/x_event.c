@@ -853,36 +853,36 @@ void x_event_governor(GschemToplevel *w_current)
 int
 x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_current)
 {
-  GdkRectangle *rectangles;
-  int           n_rectangles;
-  cairo_t      *save_cr;
 
 #if DEBUG || DEBUG_EVENTS
   const char  *name = gtk_widget_get_name (widget);
   fprintf (stderr, "x_event_expose, exposing %s\n", name);
 #endif
 
-  g_return_val_if_fail (w_current != NULL, FALSE);
+  if (w_current != NULL) {
 
-  save_cr = w_current->cr;
+    cairo_t      *save_cr;
 
-  gdk_region_get_rectangles (event->region, &rectangles, &n_rectangles);
+    save_cr = w_current->cr;
 
-  gdk_window_begin_paint_region(widget->window, event->region);
+    gdk_window_begin_paint_region(widget->window, event->region );
 
-  w_current->cr = gdk_cairo_create( widget->window );
+    w_current->cr = gdk_cairo_create( widget->window );
+    gdk_cairo_rectangle (w_current->cr, &(event->area));
+    //cairo_clip (w_current->cr);
 
-  o_redraw_rectangles (w_current, rectangles, n_rectangles);
+    o_redraw_rectangles (w_current, &(event->area), 1);
 
-  gdk_window_end_paint(widget->window);
+    gdk_window_end_paint(widget->window);
 
-  GEDA_FREE (rectangles);
+    cairo_destroy (w_current->cr);
 
-  cairo_destroy (w_current->cr);
-  w_current->cr = save_cr;
+    w_current->cr = save_cr;
+  }
 
   return FALSE;
 }
+
 
 /*! \brief Get a snapped pointer position in world coordinates
  *

@@ -64,20 +64,24 @@
 /*!
  * \file x_settings_dialog.c
  * \brief A dialog box for setting program preferences.
+ *
  * \remarks To add a new variable or control:
  *
- * 1. The variable should be valid and readable in the RC system, but
- *    this is not a requirement to add the widget.
+ * 1. The variable should be valid and readable in either the RC system,
+ *    or the key-file system, but this is not a requirement to add the
+ *    widget.
  *
  * 2. Create the control
  *
- *      a.) Delare widget variable in the section Global Variables
- *      b.) Add the widget in the create_settings_dialog function.
+ *      a.) Declare widget variable in the section Global Variables
+ *      b.) Add the widget in the create_settings_dialog function,
+ *          i.e. where the widget should appear in the dialog.
  *      c.) Added a WidgetStringData record to struct in the file
  *          x_settings_dialog.h, see instructions at the top of the
  *          header.
  *      d.) Add any necassary support functions and code to the
- *          responder, i.e. the existing callback function
+ *          responder, i.e. the existing callback function. note
+ *          that spinners do not generally have a callback.
  *      e.) If there is an error such as "Unknown button Id" then
  *          there is a generic/common responder with a switch/case
  *          that does not have a case for the new control being
@@ -90,7 +94,7 @@
  * 4. Retrieve the value of the control in GatherSettings
  *
  *      (At this point the widget should be functioning but the
- *       value will not be saved to disk.)
+ *       value will not be saved to rc files.)
  *
  * 5. Add the keyword and keyword handlers to the list in the
  *    header file keywords.h
@@ -215,6 +219,7 @@ void load_combo_str( GtkComboBox *combo, const char *list[])
  *  \memberof (Settings-Dialog)
  *  \par
  *   This group contains global variables for the Settings Dialog.
+ *  \note The variables are only global to this module, not gschem
  */
 
 gschem_rc_options rc_options={
@@ -243,6 +248,8 @@ static GtkWidget *DefaultAttributesButt=NULL;
 static GtkWidget *GripStrokeColorButt;
 static GtkWidget *GripFillColorButt;
 static GtkWidget *JunctionColorButt;
+static GtkWidget *MeshMinorColorButt;
+static GtkWidget *MeshMajorColorButt;
 static GtkWidget *NetEndpointColorButt;
 static GtkWidget *TextMarkerColorButt;
 
@@ -299,6 +306,7 @@ static GtkWidget *JunctionSizeSpin;
 static GtkWidget *KeyboardPanGainSpin;
 static GtkWidget *KeyboardPanGainSpin;
 static GtkWidget *MeshGridThresholdSpin;
+static GtkWidget *MeshGridWidthSpin;
 static GtkWidget *MousePanGainSpin;
 static GtkWidget *RipperSizeSpin;
 static GtkWidget *ScrollPanStepsSpin;
@@ -367,8 +375,8 @@ static GtkWidget *SelectedAttributesView=NULL;
  *  @{
  *  \memberof (Settings-Dialog)
  *  \par
- *   Support functions for the Settings dialog are subgroup into categories
- *   as follows:
+ *   Support functions for the Settings dialog are subgrouped into
+ *   categories as follows:
  *
  *        1. Inhibitor Support Functions
  *        2. Attributes Support ~ Group 1 & Group 2
@@ -384,7 +392,7 @@ static GtkWidget *SelectedAttributesView=NULL;
  *  \memberof (Settings-Dialog-Support)
  *  \par
  *   The Inhibitors enable and disable Widgets based on other selections.
- *   This groups is comprised of the following functions:
+ *   This groups is contains the following functions:
  *
  *      1. enable_attribute_list_controls        called in callback functions
  *      2. enable_color_map_controls
@@ -408,6 +416,7 @@ static void enable_attribute_list_controls( bool state ){
   gtk_widget_set_sensitive (SelectedAttributesView, state);
   return;
 }
+
 /** @brief enable_color_map_controls in X_Settings_Dialog_Support_Functions */
 /*! \brief enables and disables FriendlyOutlineMapSwitch.
  *  \par Function Description
@@ -421,11 +430,13 @@ static void enable_color_map_controls( bool state ){
     if (GET_SWITCH_STATE (FriendlyOutlineMapSwitch))
       gtk_widget_set_sensitive (ColorMapSchemeCombo, TRUE);
 }
+
 /** @brief enable_color_map_scheme in X_Settings_Dialog_Support_Functions */
 /*! \brief enables and disables ColorMapSchemeCombo.*/
 static void enable_color_map_scheme( bool state ){
   gtk_widget_set_sensitive (ColorMapSchemeCombo, state);
 }
+
 /** @brief enable_log_controls in X_Settings_Dialog_Support_Functions */
 /*! \brief enables and disables log related configuration options. */
 static void enable_log_controls( bool state ){
@@ -435,6 +446,7 @@ static void enable_log_controls( bool state ){
   gtk_widget_set_sensitive (LogDestinyTTYRadio, state);
   gtk_widget_set_sensitive (LogDestinyBothRadio, state);
 }
+
 /** @brief enable_undo_controls in X_Settings_Dialog_Support_Functions */
 /*! \brief enables and disables undo related configuration options. */
 static void enable_undo_controls( bool state ){
@@ -442,6 +454,7 @@ static void enable_undo_controls( bool state ){
   gtk_widget_set_sensitive (UndoTypeCombo, state);
   gtk_widget_set_sensitive (UndoBufferSizeSpin, state);
 }
+
 /** @brief on_notebook_switch_page in X_Settings_Dialog_Support_Functions */
 /*! \brief Callback on TAB change.
  *  \par Function Description
@@ -451,7 +464,7 @@ static void enable_undo_controls( bool state ){
  */
 static void
 on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
-                         guint        page_num, void *    user_data)
+                         unsigned int page_num, void            *user_data)
 {
   bool state;
   switch ( page_num ) {
@@ -535,6 +548,8 @@ static void st_callback_selection_changed_view(GtkTreeSelection *selection,
  *  \par Function Description
  *  This is a callback handler for attribute views and is called
  *  when an attribute is selected/single clicked.
+ *
+ *
  *  @param[in]  selection GtkTreeSelection set.
  *  @param[in]  Dialog    is really w_current.
  *
@@ -1041,7 +1056,7 @@ static void filter_list_set_default( void )
  *  \memberof (Settings-Dialog-Buttons)
  *  \weakgroup Settings-Dialog-Attributes
  *  \par
- *  The only member of this groups is a button repsonder to handler signals
+ *  The only member of this groups is a button responder to handler signals
  *  generated from buttons on the Attributes TAB.
  *
  *      1. butt_responder
@@ -1107,7 +1122,7 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
  *  \par
  *  Currently, the remainder of the buttons on the Settings dialog are for
  *  setting color preferences. These color buttons have a supporting utility
- *  menu acciable from the right mouse buttons that can be used to restore
+ *  menu accessible from the right mouse button that can be used to restore
  *  default colors. Popup menu support for the color buttons are all in
  *  Settings-Dialog-Buttons-Group-2
 */
@@ -1126,8 +1141,11 @@ void butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *Control
 static GtkWidget *popup_menu; /* Seems safer to use a global for this */
 
 /*! \brief Restore Default Color Setting - Display Menu item responder
- *  \par Function Description: Called when once of the two menu items
- *       on the "restore default color" mini menu is selected. If
+ *  \par Function Description
+ *   Called when once of the two menu items on the "restore default
+ *   color" mini menu is selected.
+ *
+ *  \remarks to add a color button \sa color_butt_responder
 */
 static void
 color_button_popup_menu_callback (GtkMenuItem *item, void * data)
@@ -1148,14 +1166,17 @@ color_button_popup_menu_callback (GtkMenuItem *item, void * data)
 }
 
 /*! \brief Restore Default Color Setting - Display Menu
- *  \par Function Description: We need used to be able to restore
- *   default colors, since the Color Selector Dialog is a child of
- *   button, only display after the button pressed, we can not easily
- *   add a "restore default" button to the action area, so instead we
- *   have the user right click on the color button and display a "mini"
- *   menu with just two choices, restore defaults or cancel. This function
- *   creates that menu and sets up the callback to the preceding function
- *   after embedding the pertinent data in the menu item.
+ *  \par Function Description
+ *   We need used to be able to restore default colors, since the Color
+ *   Selector Dialog is a child of button, only display after the button
+ *   pressed, we can not easily add a "restore default" button to the
+ *   action area, so instead we have the user right click on the color
+ *   button and display a "mini" menu with just two choices, restore
+ *   defaults or cancel. This function creates that menu and sets up
+ *   the callback to the preceding function after embedding the
+ *   pertinent data in the menu item.
+ *
+ *  \remarks to add a color button \sa color_butt_responder
 */
 static void default_color_button_popup (GtkColorButton *button, GdkEventButton *event, int index)
 {
@@ -1217,19 +1238,25 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
        resolved = TRUE;
        switch ( WhichButt ) {
          case GripStrokeColor:
-            color_index = SELECT_COLOR;
+           color_index = SELECT_COLOR;
            break;
          case GripFillColor:
-            color_index = BACKGROUND_COLOR;
+           color_index = BACKGROUND_COLOR;
+           break;
+         case MeshMinorColor:
+           color_index = MESH_GRID_MINOR_COLOR;
+           break;
+         case MeshMajorColor:
+           color_index = MESH_GRID_MAJOR_COLOR;
            break;
          case NetEndpointColor:
-            color_index = NET_ENDPOINT_COLOR;
+           color_index = NET_ENDPOINT_COLOR;
            break;
          case TextMarkerColor:
-            color_index = LOCK_COLOR;
+           color_index = LOCK_COLOR;
            break;
          case JunctionColor:
-            color_index = JUNCTION_COLOR;
+           color_index = JUNCTION_COLOR;
            break;
          default:
             BUG_IMSG( "Unknown button Id", WhichButt);
@@ -1737,19 +1764,25 @@ bool load_settings_dialog (GschemToplevel *w_current)
   }
 
   color = eda_renderer_get_grips_stroke_color (w_current->renderer);
-  gtk_color_button_set_color(GTK_COLOR_BUTTON(GripStrokeColorButt),  color);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(GripStrokeColorButt), color);
 
   color = eda_renderer_get_grips_fill_color (w_current->renderer);
-  gtk_color_button_set_color(GTK_COLOR_BUTTON(GripFillColorButt),    color);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(GripFillColorButt), color);
+
+  color = &w_current->mesh_grid_minor_color;
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(MeshMinorColorButt), color);
+
+  color = &w_current->mesh_grid_major_color;
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(MeshMajorColorButt), color);
 
   color = eda_renderer_get_net_endpoint_color (w_current->renderer);
   gtk_color_button_set_color(GTK_COLOR_BUTTON(NetEndpointColorButt), color);
 
   color = eda_renderer_get_text_marker_color (w_current->renderer);
-  gtk_color_button_set_color(GTK_COLOR_BUTTON(TextMarkerColorButt),  color);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(TextMarkerColorButt), color);
 
   color = eda_renderer_get_junction_color (w_current->renderer);
-  gtk_color_button_set_color(GTK_COLOR_BUTTON(JunctionColorButt),    color);
+  gtk_color_button_set_color(GTK_COLOR_BUTTON(JunctionColorButt), color);
 
 /* Combo Boxes (7) */
 
@@ -1781,11 +1814,11 @@ bool load_settings_dialog (GschemToplevel *w_current)
   }
   SetCombo ( ColorMapScheme, rc_options.color_scheme_index);
 
-  SetCombo ( DotGridMode,   w_current->dots_grid_mode);
+  SetCombo ( DotGridMode,       w_current->dots_grid_mode);
   SetCombo ( ConsoleWindowType, console_window_type);
-  SetCombo ( ThirdButton,   w_current->third_button);
-  SetCombo ( PointerCursor, w_current->drawing_pointer);
-  SetCombo ( MiddleButton,  w_current->middle_button);
+  SetCombo ( ThirdButton,       w_current->third_button);
+  SetCombo ( PointerCursor,     w_current->drawing_pointer);
+  SetCombo ( MiddleButton,      w_current->middle_button);
 
 #ifdef DEBUG
   LOAD_COMBO_STR( TitleBlock, DefaultTitleBlockList );
@@ -1912,15 +1945,16 @@ bool load_settings_dialog (GschemToplevel *w_current)
 /* Attributes TAB */
   SetBulbGroup(DialogListAttributes, GetAttributeFilterMode(w_current));
 
-/* The Spin Controls - Alphabetically (23) */
+/* The Spin Controls - Alphabetically (24) */
   SetSpin (AttributeOffset, w_current->add_attribute_offset);
   SetSpin (AutoPlacementGrid, w_current->attribute_placement_grid);
   SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
-  SetSpin (DotGridThreshold, w_current->dots_grid_fixed_threshold);
+  SetSpin (DotGridThreshold, w_current->dots_grid_threshold);
   SetSpin (GripPixelSize, w_current->grip_pixel_size);
   SetSpin (JunctionSize, w_current->renderer->junction_size);
   SetSpin (KeyboardPanGain, w_current->keyboardpan_gain);
   SetSpin (MeshGridThreshold, w_current->mesh_grid_threshold);
+  SetSpin (MeshGridWidth, w_current->mesh_line_width_factor);
   SetSpin (MousePanGain, w_current->mousepan_gain);
   SetSpin (RipperSize, w_current->bus_ripper_size);
   SetSpin (ScrollPanSteps, w_current->scrollpan_steps);
@@ -2115,20 +2149,24 @@ create_settings_dialog (GschemToplevel *w_current)
 
    GTK_START_TAB (WindowPref);
      HSECTION (WindowPrefTab_vbox, DisplaySizeOptions) /* WT Row 1 Display Size */
-       GTK_V_QUAD_BULB(DisplaySizeOptions_hbox, WindowSize, 10, W650H487, W900H650, W950H712, W1100H825, W950H712)
+       GTK_V_QUAD_BULB(DisplaySizeOptions_hbox, WindowSize, 10, W650H487, W900H650, W950H712, W1100H825, W950H712);
        GTK_V_BULB_TRIAD( DisplaySizeOptions_hbox, WorldSize, 20, Small, Medium, Large, Medium);
      HD_SEPERATOR (WindowPrefTab_vbox, Grp2);
        HPSECTION(WindowPrefTab_vbox, GridOptions, DIALOG_V_SPACING) /* WT Row 2 */
          GTK_V_BULB_TRIAD( GridOptions_hbox, GridMode, 0, None, Dots, Mesh, Mesh);
-         VPSECTION(GridOptions_hbox, GridDotOptions, 50) /* WT Row 2 Grp 2 Dot Grid Options */
+         VPSECTION(GridOptions_hbox, GridDotOptions, 50); /* WT Row 2 Grp 2 Dot Grid Options */
            GTK_NEW_COMBO (GridDotOptions_vbox, DotGridMode, 150, DIALOG_V_SPACING);
-           GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE)
-           GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED)
+           GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_VARIABLE);
+           GTK_LOAD_COMBO (DotGridMode, RC_STR_DOTS_MODE_FIXED);
            GTK_NUMERIC_SPIN (GridDotOptions_vbox, DotGridThreshold, DIALOG_V_SPACING, DEFAULT_GRID_DOT_SIZE, MIN_GRID_DOT_SIZE, MAX_GRID_DOT_THRESHOLD);
      HD_SEPERATOR (WindowPrefTab_vbox, Grp3);
        HSECTION(WindowPrefTab_vbox, MeshGridSizeOptions) /* WT Row 3 */
          GTK_V_BULB_TRIAD (MeshGridSizeOptions_hbox, GridDotSize, 8, One, Two, Three, One);
-         GTK_NUMERIC_SPIN (MeshGridSizeOptions_hbox, MeshGridThreshold, 0, DEFAULT_GRID_MESH_THRESHOLD, MIN_GRID_MESH_THRESHOLD, MAX_GRID_MESH_THRESHOLD);
+         VPSECTION(MeshGridSizeOptions_hbox, GridMeshOptions, 50); /* WT Row 2 Grp 2 Dot Grid Options */
+         GTK_NUMERIC_SPIN (GridMeshOptions_vbox, MeshGridThreshold, 0, DEFAULT_GRID_MESH_THRESHOLD, MIN_GRID_MESH_THRESHOLD, MAX_GRID_MESH_THRESHOLD);
+         GTK_NUMERIC_SPIN (GridMeshOptions_vbox, MeshGridWidth, 0, DEFAULT_MESH_LINE_WIDTH_FACTOR, MIN_MESH_LINE_WIDTH_FACTOR, MAX_MESH_LINE_WIDTH_FACTOR);
+         GEDA_COLOR_BUTTON (GridMeshOptions_vbox, MeshMinorColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
+         GEDA_COLOR_BUTTON (GridMeshOptions_vbox, MeshMajorColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
      HD_SEPERATOR (WindowPrefTab_vbox, Grp4);
        GEDA_FRAME (WindowPrefTab_vbox, Scrolling, -1, 58, 0.05, 0.2, 10)
          GTK_SWITCH(Scrolling_hbox, ScrollBars,        DIALOG_H_SPACING + 10, TRUE);
@@ -2146,13 +2184,13 @@ create_settings_dialog (GschemToplevel *w_current)
          GTK_NEW_COMBO (TextOptionsRow1_hbox, FontName, 160, DIALOG_V_SPACING);
        HSECTION (TextOptionsGrp1_vbox, TextOptionsRow2)   /* TT Grp 1 Row 1 Text Styles */
          GTK_NUMERIC_SPIN (TextOptionsRow2_hbox, TextZoomFactor, 9, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
-       GEDA_FRAME (TextOptionsGrp1_vbox, Markers, -1, 110, 0.3, 0.2, DIALOG_H_SPACING)
+       GEDA_FRAME (TextOptionsGrp1_vbox, Markers, -1, 110, 0.3, 0.2, DIALOG_H_SPACING);
          VSECTION (Markers_hbox, MarkerOptions)  /* Grp 1 Row 1 */
            HSECTION ( MarkerOptions_vbox, MarkerOptionsRow3)  /* Grp 1 Row 3 */
              GTK_SWITCH(MarkerOptionsRow3_hbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
            HSECTION (MarkerOptions_vbox, MarkerOptionsRow4)  /* Grp 1 Row 2 */
              GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, DIALOG_H_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
-             GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0)
+             GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
      HD_SEPERATOR (TextPrefTab_vbox, Grp2);
      HSECTION (TextPrefTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
        GTK_V_BULB_TRIAD(CapsStyleOptions_hbox, CapsStyle, DIALOG_H_SPACING, Lower, Upper, Both, Both);
@@ -2329,6 +2367,14 @@ void GatherSettings(GschemToplevel *w_current) {
   eda_config_set_string (cfg, group, "default-filename", tmpstr);
 
 /* The Color Buttons */
+
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(MeshMinorColorButt),
+                             &w_current->mesh_grid_minor_color);
+  gtk_color_button_get_color(GTK_COLOR_BUTTON(MeshMajorColorButt),
+                             &w_current->mesh_grid_major_color);
+
+  x_grid_setup_color (w_current);
+
   gtk_color_button_get_color(GTK_COLOR_BUTTON(GripStrokeColorButt), &color);
   eda_renderer_set_grips_stroke_color (w_current->renderer, &color);
 
@@ -2451,11 +2497,12 @@ void GatherSettings(GschemToplevel *w_current) {
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
    toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);
-  w_current->dots_grid_fixed_threshold  = GET_SPIN_IVALUE (DotGridThresholdSpin);
+  w_current->dots_grid_threshold  = GET_SPIN_IVALUE (DotGridThresholdSpin);
   w_current->grip_pixel_size            = GET_SPIN_IVALUE (GripPixelSizeSpin);
   w_current->renderer->junction_size    = GET_SPIN_IVALUE (JunctionSizeSpin);
   w_current->keyboardpan_gain           = GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        = GET_SPIN_IVALUE (MeshGridThresholdSpin);
+  w_current->mesh_line_width_factor       = GET_SPIN_IVALUE (MeshGridWidthSpin);
   w_current->mousepan_gain              = GET_SPIN_IVALUE (MousePanGainSpin);
   w_current->scrollpan_steps            = GET_SPIN_IVALUE (ScrollPanStepsSpin);
   w_current->select_slack_pixels        = GET_SPIN_IVALUE (SelectPixelsSpin);

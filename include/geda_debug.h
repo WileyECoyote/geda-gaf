@@ -33,6 +33,10 @@
 #define SET_DEBUG_SENSITIVITY 0
 #define SET_DEBUG_TOOLBARS    0
 
+/* libgeda*/
+#define SET_DEBUG_CONNS       0
+#define SET_DEBUG_TILES       0
+
 /* libgedauio*/
 #define SET_DEBUG_LIBGEDAUIO  0
 
@@ -46,10 +50,14 @@
 #define DEBUG_SENSITIVITY ( SET_DEBUG_SENSITIVITY || DEBUG_STATUS )
 #define DEBUG_TOOLBARS    ( SET_DEBUG_TOOLBARS    || DEBUG )
 
-/* libgedauio*/
-#define DEBUG_LIBGEDAUIO  ( SET_DEBUG_LIBGEDAUIO || DEBUG )
+/* libgeda*/
+#define DEBUG_CONNS       ( SET_DEBUG_CONNS       || DEBUG )
+#define DEBUG_TILES       ( SET_DEBUG_TILES       || DEBUG )
 
-#define DEBUG_GEDA_ENTRY  ( SET_DEBUG_GEDA_ENTRY || DEBUG_LIBGEDAUIO)
+/* libgedauio*/
+#define DEBUG_LIBGEDAUIO  ( SET_DEBUG_LIBGEDAUIO  || DEBUG )
+
+#define DEBUG_GEDA_ENTRY  ( SET_DEBUG_GEDA_ENTRY  || DEBUG_LIBGEDAUIO)
 
 #  ifdef HAVE_LIBDMALLOC
 #    include <dmalloc.h>

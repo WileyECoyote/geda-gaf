@@ -154,12 +154,11 @@ void x_color_allocate (void)
 /*! \brief Get Pointer to GdkColor
  *  \par Function Documentation
  *   Returns a pointer to the active GdkColor object given the geda
- *  /gschem color index.
+ *   gschem color index.
  */
 GdkColor *x_get_color(int color)
 {
-  if ((color < 0) || (color >= MAX_COLORS)
-      || (gdk_colors[color] == NULL)) {
+  if ((color < 0) || (color >= MAX_COLORS) || (gdk_colors[color] == NULL)) {
     fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
     return(&white);
   } else {
@@ -223,7 +222,8 @@ GdkColor *x_get_darkcolor(int color)
       || (gdk_outline_colors[color] == NULL)) {
     fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
     return(&white);
-  } else {
+  }
+  else {
     return(gdk_outline_colors[color]);
   }
 }
@@ -238,7 +238,8 @@ COLOR *x_color_lookup (int color)
   if (color < 0 || color >= MAX_COLORS || !display_colors[color].enabled) {
     fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
     return &display_colors[DEFAULT_COLOR_INDEX];
-  } else {
+  }
+  else {
     return &display_colors[color];
   }
 }
@@ -254,7 +255,8 @@ COLOR *x_color_lookup_dark (int color)
   if (color < 0 || color >= MAX_COLORS || !outline_colors[color].enabled) {
     fprintf(stderr, _("Tried to get an invalid outline color: %d\n"), color);
     return &outline_colors[DEFAULT_COLOR_INDEX];
-  } else {
+  }
+  else {
     return &outline_colors[color];
   }
 
