@@ -23,9 +23,9 @@
 #define STRUCT_STRUCT_H
 
 /* Structures for grapical shapes and objects */
-
 typedef struct st_bezier        BEZIER;
 typedef struct st_box           RECTANGLE;
+typedef struct st_object_color  COLOR;
 typedef struct st_fill_options  FILL_OPTIONS;
 typedef struct st_line          LINE;
 typedef struct st_line_options  LINE_OPTIONS;
@@ -33,16 +33,17 @@ typedef struct st_point         POINT;
 typedef struct st_path_section  PATH_SECTION;
 
 /* Structures for user interface objects */
-typedef struct st_menu_item    MENU;
+typedef struct st_color         edaColor;
+typedef struct st_menu_item     MENU;
 
 /* Structures for mathmatical stuff */
-typedef struct st_bounds       BOUNDS;
-typedef struct st_transform    TRANSFORM;
+typedef struct st_bounds        BOUNDS;
+typedef struct st_transform     TRANSFORM;
 
 /* Non-categorized structures */
-typedef struct st_bus_ripper   BUS_RIPPER;
-typedef struct st_color        COLOR;
-typedef struct st_TextBuffer   TextBuffer;     /* For Managed text buffers */
+typedef struct st_bus_ripper    BUS_RIPPER;
+
+typedef struct st_TextBuffer    TextBuffer;     /* For Managed text buffers */
 
 /** ********** structures for grapical shapes and objects ***********/
 
@@ -246,6 +247,13 @@ struct st_bus_ripper
  *                            COLOR
  *------------------------------------------------------------------*/
 struct st_color {
+    double r;
+    double g;
+    double b;
+    double a;
+};
+
+struct st_object_color {
   unsigned char r, g, b, a;
   bool enabled;
 };
