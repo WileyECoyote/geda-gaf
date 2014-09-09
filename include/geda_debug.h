@@ -28,6 +28,7 @@
 
 #define SET_DEBUG_DND_EVENTS  0
 #define SET_DEBUG_EVENTS      0
+#define SET_DEBUG_GRID        0
 #define SET_DEBUG_IMAGING     0
 #define SET_DEBUG_STATUS      0
 #define SET_DEBUG_SENSITIVITY 0
@@ -45,6 +46,7 @@
 /* ------------------------------------------------------ */
 #define DEBUG_DND_EVENTS  ( SET_DEBUG_DND_EVENTS  || DEBUG )
 #define DEBUG_EVENTS      ( SET_DEBUG_EVENTS      || DEBUG )
+#define DEBUG_GRID        ( SET_DEBUG_GRID        || DEBUG )
 #define DEBUG_IMAGING     ( SET_DEBUG_IMAGING     || DEBUG )
 #define DEBUG_STATUS      ( SET_DEBUG_STATUS      || DEBUG )
 #define DEBUG_SENSITIVITY ( SET_DEBUG_SENSITIVITY || DEBUG_STATUS )
