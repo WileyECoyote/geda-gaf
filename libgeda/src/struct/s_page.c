@@ -386,9 +386,14 @@ void s_page_delete_list(GedaToplevel *toplevel)
   list_copy = g_list_copy (geda_list_get_glist (toplevel->pages));
 
   for (iter = list_copy; iter != NULL; NEXT(iter)) {
-    page = (Page *)iter->data;
-    o_notify_change_remove_all(page);
-    s_page_delete (toplevel, page);
+
+    if (GEDA_IS_PAGE (page = (Page *)iter->data)) {
+
+      o_notify_change_remove_all(page);
+
+      s_page_delete (toplevel, page);
+
+    }
   }
 
   g_list_free (list_copy);

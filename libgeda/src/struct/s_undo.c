@@ -110,9 +110,10 @@ void s_undo_destroy_head(UNDO *u_head)
  *   from the given \a page for a Disk Memory type record. The
  *   new record becomes tail and is returned.
  *
- *  \param [in] page  A GedaPage Object
- *  \param [in] type  integer <B>\a flag</B> can be one of the
- *                    following values:
+ *  \param [in] page     A GedaPage Object
+ *  \param [in] filename Name of the undo file
+ *  \param [in] type     integer <B>\a flag</B> can be one of the
+ *                       following values:
  *  \par
  *  <DL>
  *    <DT>UNDO_ALL</DT>

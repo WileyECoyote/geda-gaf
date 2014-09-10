@@ -1,5 +1,12 @@
 2014-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_notify.c: Add conditional check for change_notify_funcs
+      in function o_notify_change_remove_all.
+
+    * src/struct/s_page.c: Add check for page object in s_page_delete_list
+
+2014-09-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/s_struct.h: Rename st_color to st_object_color and
       created a st_color with doubles, with typedef edaColor as scheme to
       transition away from the older color structure.

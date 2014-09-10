@@ -108,7 +108,9 @@ o_notify_change_remove (Page *page,
 void
 o_notify_change_remove_all (Page *page)
 {
-  geda_notify_list_remove_all(page->change_notify_funcs);
+  if (page->change_notify_funcs) {
+    geda_notify_list_remove_all(page->change_notify_funcs);
+  }
 }
 
 /*! \brief Emit an object pre-change notification.
