@@ -1,0 +1,141 @@
+v 20140831 2
+T 1000 1950 5 10 1 1 0 0 1
+device=BQ27210
+T 2575 3600 8 10 1 1 0 0 1
+refdes=U?
+T 2575 3425 5 10 0 1 0 0 1
+footprint=SON-10
+T 100 4800 5 10 0 0 0 0 1
+author=AutoTron
+T 100 4000 5 10 0 0 0 0 1
+documentation=http://www.ti.com/product/BQ27210
+T 100 3800 5 10 0 0 0 0 1
+description=Boost Converter with Battery Management for Energy Harvester
+T 100 4200 5 10 0 0 0 0 1
+numslots=0
+T 100 4600 5 10 0 0 0 0 1
+dist-license=GPLv3
+T 100 4400 5 10 0 0 0 0 1
+use-license=unlimited
+B 400 500 2000 3000 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+P 100 3200 400 3200 1 0 0
+{
+T 300 3300 5 8 1 1 0 6 1
+pinnumber=1
+T 300 3300 5 8 0 1 0 6 1
+pinseq=6
+T 450 3250 9 8 1 1 0 1 1
+pinlabel=RBI
+T 150 3225 5 8 0 1 0 2 1
+pintype=in
+}
+P 100 1500 400 1500 1 0 0
+{
+T 300 1550 5 8 1 1 0 6 1
+pinnumber=5
+T 200 1550 5 8 0 1 0 0 1
+pinseq=4
+T 450 1500 9 8 1 1 180 7 1
+pinlabel=HDQ
+T 200 1375 5 8 0 1 0 0 1
+pintype=io
+}
+P 100 1000 400 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=3
+T 200 1050 5 8 0 1 0 0 1
+pinseq=12
+T 450 1000 9 8 1 1 180 7 1
+pinlabel=VSS
+T 150 900 5 8 0 1 0 0 1
+pintype=pwr
+}
+P 2700 2000 2400 2000 1 0 0
+{
+T 2500 2050 5 8 1 1 0 0 1
+pinnumber=8
+T 2500 2050 5 8 0 1 0 0 1
+pinseq=10
+T 2350 2000 9 8 1 1 0 7 1
+pinlabel=SPR
+T 2675 1850 5 8 0 1 0 0 1
+pintype=in
+}
+P 2700 1000 2400 1000 1 0 0
+{
+T 2525 1075 5 8 1 1 0 0 1
+pinnumber=6
+T 2525 1075 5 8 0 1 0 0 1
+pinseq=1
+T 2375 1050 9 8 1 1 180 0 1
+pinlabel=BAT
+T 2675 875 5 8 0 1 0 0 1
+pintype=in
+}
+P 2700 1500 2400 1500 1 0 0
+{
+T 2500 1550 5 8 1 1 0 0 1
+pinnumber=7
+T 2500 1550 5 8 0 1 0 0 1
+pinseq=9
+T 2375 1540 9 8 1 1 180 0 1
+pinlabel=SRN
+T 2675 1350 5 8 0 1 0 0 1
+pintype=in
+}
+P 100 2700 400 2700 1 0 0
+{
+T 300 2800 5 8 1 1 0 6 1
+pinnumber=2
+T 300 2800 5 8 0 1 0 6 1
+pinseq=11
+T 450 2800 9 8 1 1 180 6 1
+pinlabel=VCC
+T 125 2700 5 8 0 1 180 6 1
+pintype=in
+}
+P 2400 2500 2700 2500 1 0 1
+{
+T 2500 2550 5 8 1 1 0 0 1
+pinnumber=9
+T 2500 2550 5 8 0 1 0 0 1
+pinseq=3
+T 2675 2350 5 8 0 1 0 0 1
+pintype=io
+T 2350 2500 9 8 0 1 0 7 1
+pinlabel=GPIO
+}
+P 100 2000 400 2000 1 0 0
+{
+T 300 2075 5 8 1 1 0 6 1
+pinnumber=4
+T 300 2075 5 8 0 1 0 6 1
+pinseq=2
+T 450 2000 9 8 1 1 180 7 1
+pinlabel=D/C
+T 125 1950 5 8 0 1 180 6 1
+pintype=pas
+}
+P 2700 3000 2400 3000 1 0 0
+{
+T 2475 3050 5 8 1 1 0 0 1
+pinnumber=10
+T 2475 3050 5 8 0 1 0 0 1
+pinseq=5
+T 2350 3000 9 8 1 1 0 7 1
+pinlabel=PGM
+T 2700 2950 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 1500 200 1500 500 1 0 0
+{
+T 1450 300 5 8 1 1 0 6 1
+pinnumber=11
+T 1600 350 5 8 0 1 0 0 1
+pinseq=13
+T 1500 550 9 8 1 1 270 7 1
+pinlabel=PGND
+T 1600 250 5 8 0 1 90 0 1
+pintype=pwr
+}

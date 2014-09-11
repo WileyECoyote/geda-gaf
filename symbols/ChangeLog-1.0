@@ -1,5 +1,12 @@
 2014-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
+        * ti/: new symbols, power control/management:
+
+             BQ27210-1.sym
+             BQ76920-1.sym
+
+2014-09-11 Wiley E. Hill <wileyhill@gmail.com>
+
         * io/out-2.sym: Fix visiable footprint attributes
 
         * io/ribbon_bond-2.sym: Fix visible device attribute
