@@ -1,8 +1,8 @@
-2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
+2014-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * ti/: new symbol motor control/drive:
+        * io/out-2.sym: Fix visiable footprint attributes
 
-             DRV8313-1.sym
+        * io/ribbon_bond-2.sym: Fix visible device attribute
 
 2014-08-17 Wiley E. Hill <wileyhill@gmail.com>
 
