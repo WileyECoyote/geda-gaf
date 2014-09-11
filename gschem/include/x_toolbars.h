@@ -85,6 +85,7 @@ typedef struct {
 
 } ToolBarWidgets;
 
+
 /* ---------------------- Toolbar tooltip strings ---------------------- */
    /* Standard Toolbar*/
 #define TBTS_FILE_NEW           "Create a new file"

@@ -32,7 +32,7 @@
  *  \remarks Just band-aid until new system implemented
  */
 
-/** \defgroup gschem-undo-system Gschem Undo System
+/** \defgroup gschem-undo-module Undo Module
  *  @{ \par This Group contains Routines for Undo and Redo.
  */
 
@@ -650,4 +650,4 @@ void o_undo_remove_last_undo(GschemToplevel *w_current)
     }
   }
 }
-/** @} endgroup gschem-undo-system */
+/** @} endgroup gschem-undo-module */

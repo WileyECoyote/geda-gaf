@@ -32,7 +32,7 @@
 
 #include <geda_debug.h>
 
-#define PERFORMANCE
+//#define PERFORMANCE
 #ifdef PERFORMANCE
 
 # include <sys/time.h>
@@ -541,10 +541,12 @@ COMMAND (do_debug)
       break;
   }
   printf("%s", msg);
+
+  Current_Page->CHANGED = old_page_state;
 #else
   printf("Performance_diagnostic is not enable, must recompile\n");
 #endif
-  Current_Page->CHANGED = old_page_state;
+
   EXIT_COMMAND(do_debug);
 }
 

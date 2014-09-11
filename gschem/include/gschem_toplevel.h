@@ -135,10 +135,9 @@ struct _GschemToplevel {
 
   int background_color;
 
-  double   mesh_minor_alpha;             /* Set by x_grid_set_colors */
-  double   mesh_major_alpha;
-  GdkColor mesh_minor_color;
-  GdkColor mesh_major_color;
+  double   grid_size_factor;
+  edaColor grid_minor_color;
+  edaColor grid_major_color;
 
   /* --------------------- Drawing state ------------------ */
   EdaRenderer *renderer;

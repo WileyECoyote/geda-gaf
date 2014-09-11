@@ -714,8 +714,8 @@ bool x_fileselect_load_backup     (GString *message, GschemToplevel *w_current);
 
 /* x_grid.c */
 void x_grid_draw_region           (GschemToplevel *w_current, int x, int y, int width, int height);
+void x_grid_configure_variables   (GschemToplevel *w_current);
 int  x_grid_query_drawn_spacing   (GschemToplevel *w_current);
-void x_grid_setup_color           (GschemToplevel *w_current);
 void x_draw_tiles                 (GschemToplevel *w_current);
 
 /* x_icons.c */
@@ -829,8 +829,9 @@ void x_toolbar_icons_only              (GtkWidget *widget, GschemToplevel *w_cur
 void x_toolbar_text_only               (GtkWidget *widget, GschemToplevel *w_current);
 void x_toolbar_display_both            (GtkWidget *widget, GschemToplevel *w_current);
 void x_toolbar_display_horiz           (GtkWidget *widget, GschemToplevel *w_current);
-void x_toolbars_turn_off_all_radios    (GschemToplevel *w_current );
-void x_toolbars_activate_select        (GschemToplevel *w_current );
+void x_toolbars_turn_off_all_radios    (GschemToplevel *w_current);
+void x_toolbars_activate_select        (GschemToplevel *w_current);
+void x_toolbars_set_grid_radio         (GschemToplevel *w_current);
 void x_toolbars_update                 (GschemToplevel *w_current);
 
 /* x_window.c */
@@ -852,6 +853,7 @@ void x_window_setup_page               (GschemToplevel *w_current, Page *page, i
 int  x_window_save_page                (GschemToplevel *w_current, Page *page, const char *filename);
 void x_window_close_page               (GschemToplevel *w_current, Page *page);
 void x_window_set_cursor               (GschemToplevel *w_current, int cursor_id);
+void x_window_set_grid_type            (GschemToplevel *w_current);
 void x_window_update_title             (GschemToplevel *w_current);
 void x_window_add_toolbar_toggle       (GtkWidget *widget, GschemToplevel *w_current);
 void x_window_attribute_toolbar_toggle (GtkWidget *widget, GschemToplevel *w_current);

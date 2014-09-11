@@ -75,12 +75,15 @@ void x_window_setup (GschemToplevel *w_current)
   x_icons_initialize();  /* Initialize icons - must be done before menus! */
 
   x_window_create_main (w_current);
-  x_window_restore_settings(w_current);
-  x_menu_attach_recent_files_submenu(w_current);
+
+  x_window_restore_settings (w_current);
+
+  x_window_set_grid_type (w_current);
+
+  x_menu_attach_recent_files_submenu (w_current);
 
   /* Initialize the clipboard callback */
   x_clipboard_init (w_current);
-
 }
 
 /*! \brief Create Graphic Context for Drawing Area
@@ -115,7 +118,6 @@ bool x_window_setup_gc(GschemToplevel *w_current)
     else {
       g_critical(_("Could not allocate gc, w_current->window is not a valid GdkWindow\n"));
     }
-      x_grid_setup_color (w_current);
   }
   return result;
 }
@@ -1274,6 +1276,12 @@ void x_window_set_cursor(GschemToplevel *w_current, int cursor_id)
       gdk_window_set_cursor (draw_window, w_current->cursor);
     }
   }
+}
+
+void x_window_set_grid_type (GschemToplevel *w_current)
+{
+  x_grid_configure_variables (w_current);
+  x_toolbars_set_grid_radio (w_current);
 }
 
 /*! \brief Set filename as gschem window title

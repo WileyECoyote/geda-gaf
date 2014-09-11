@@ -145,29 +145,31 @@
 ; The mesh-line-width-factor specifies the line width factor to apply when
 ; using the mesh grid.
 ;
-(mesh-line-width-factor 120)
+(mesh-line-width-factor 118)
 
 ; mesh-grid-minor-alpha integer
 ;
 ; The mesh-grid-minor-alpha specifies the percentage transparency to apply to
-; the color used for minor grid lines when when using the mesh grid.
+; the color used for minor grid lines when when using the mesh grid. The alpha
+; setting is dependent on the color choice, and requires some experimentation.
 ;
 ; min value: 0
 ; max value: 100
 ; default value: 30
 ;
-(mesh-grid-minor-alpha 25)
+(mesh-grid-minor-alpha 27)
 
 ; mesh-grid-major-alpha integer
 ;
 ; The mesh-grid-major-alpha specifies the percentage transparency to apply to
-; the color used for major grid lines when when using the mesh grid.
+; the color used for major grid lines when when using the mesh grid. The alpha
+; setting is dependent on the color choice, and requires some experimentation.
 ;
 ; min value: 0
 ; max value: 100
 ; default value: 40
 ;
-(mesh-grid-major-alpha 35)
+(mesh-grid-major-alpha 38)
 
 ; mesh-grid-minor-color 3 integers
 ;

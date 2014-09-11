@@ -128,7 +128,11 @@ struct {
 
 /*! \brief Response function for the configure_settings dialog
  *  \par Function Description
- *  This function destroys the configure_settings dialog.
+ *  This function destroys the configure_settings dialog. Depending
+ *  on how the dialog was terminated, GatherSettings maybe call to
+ *  retrieve values from widget and possiably generate or regenerate
+ *  the users RC file. Changes to certain variables require modules
+ *  to be updated and these modules are called before exiting.
  */
 void configure_dialog_response(GtkWidget *Dialog, int response,
                                GschemToplevel *w_current)
@@ -136,10 +140,12 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
   switch (response) {
     case GTK_RESPONSE_APPLY:
       GatherSettings (w_current);
+      x_window_set_grid_type (w_current);
       generate_rc(w_current, "gschemrc");
       break;
     case GTK_RESPONSE_OK:
       GatherSettings (w_current);
+      x_window_set_grid_type (w_current);
     case GTK_RESPONSE_DELETE_EVENT:
     case GTK_RESPONSE_CANCEL:
       /* void */
@@ -168,6 +174,7 @@ void configure_dialog_response(GtkWidget *Dialog, int response,
    * was not "changed" to "repeat and the current setting is not "repeat,
    * then the string being passed will be ignored */
   x_status_bar_middle_mouse(w_current, "Preferences");
+
 }
 
 /* ----------------- Start Attribute TAB Support Functions ------------------ */

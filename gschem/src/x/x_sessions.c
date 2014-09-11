@@ -38,7 +38,7 @@
 
 #include <geda_debug.h>
 
-/** \defgroup Gschem-Sessions-Dialogs Gschem Sessions Dialogs
+/** \defgroup Gschem-Session-Dialogs Sessions Dialogs
  *  @{
  *  \ingroup (Gschem-Session-System Systemic-Dialogs)
  *
@@ -864,5 +864,5 @@ void x_sessions_save_settings (GschemToplevel *w_current)
                           w_current->auto_sessions);
 }
 
-/** @} endgroup Gschem-Sessions-Dialogs */
+/** @} endgroup Gschem-Session-Dialogs */
 #undef TreeSelection

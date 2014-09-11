@@ -59,7 +59,7 @@ static char *advance2char(const char *string)
   return (char*)ptr;
 }
 
-/** \defgroup Gschem-Session-System Gschem Sessions System
+/** \defgroup Gschem-Session-System Sessions System
  *  @{ \par This Group contains core Routines for Sessions.
 */
 
@@ -1190,4 +1190,4 @@ void i_sessions_init(GschemToplevel *w_current)
 }
 /** @} endgroup sessions-global-utilities */
 /** @} endgroup sessions-global-functions */
-/** @} endgroup Gschem-Sessions-System */
+/** @} endgroup Gschem-Session-System */

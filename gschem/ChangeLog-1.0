@@ -1,3 +1,21 @@
+2014-09-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c: Fix BUG in draw_mesh, was skipping the wrong increments
+
+2014-09-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c: Added function x_grid_configure_variables, which
+      performs calculations on color and line width data out-side of the
+      expose event loop. Need to update the dots grid, looks awful now
+      that the mesh grid has pizazz.
+
+    * src/x/x_toolbars.c: Added function x_toolbars_set_grid_radio in order
+      to be able to programmatically set the active grid button.
+
+    * src/x/x_window.c: Added function x_window_set_grid_type to update both
+      the grid variables with x_grid_configure_variables and radios for the
+      grid mode on the toolbars with x_toolbars_set_grid_radio.
+
 2014-09-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * *: Add color and transparency for the mesh grid, with rc variables.
@@ -952,8 +970,8 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2014-03-07 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/i_pan_world.c: Add conditional in i_pan_world_general() so i_update_grid_info
-          is only called if the zoom changed. Without the conditional, function
-          were being called when the view was only panned, which does not require
+          is only called if the zoom changed. Without the conditional, the function
+          was being called when the view was only panned, which does not require
           updating the status.
 
         * src/i_basic.c: Functionality of i_update_grid_info is now performed by
@@ -1114,7 +1132,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           Made prog_pid, the main process ID, a program global, instead
           of a module level global in the undo module.
 
-        * src/*: Renamed the w_current widgets for the coord labels to
+        * src/ *: Renamed the w_current widgets for the coord labels to
           world_entry & screen_entry.
 
         * src/o_select.c: Re-write; functions o_select_unselect_all.
@@ -1132,11 +1150,11 @@ Rename to v_zoom.c and relocated to new view subdirectory
           ENDDNDOOBJ, = END D&D Our Object ENDDNDFOBJ = END D&D Foreign
           Object. A Foreign object means from another instance of Gschem,
           only distingished between because dragging in a Foreign defaults
-          to a copy, droping natives defaults to moves, maybe haven't done
+          to a copy, droping natives defaults to moves, maybe haven`t done
           it yet! There is no such distingishment for strings, which can
           only come from Foreign windows. Note that these state pertain to
           dragging TO and dropping on the coordinate world entry widget,
-          not the Drawing Area. The DrawingArea has it's own algorithms
+          not the Drawing Area. The DrawingArea has it`s own algorithms
           that do not induce new states, but utilize existing ones. All
           string inputs are processed by algorithms in the DND module.
 
@@ -1170,7 +1188,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           Revised x_image_get_pixbuf function to dynamically allocates the
           memory for "new_w_current" and "toplevel", rather than using static
           declarations for GSCHEM_TOPLEVEL & TOPLEVEL, was 948 bytes.
-          x_image_get_pixbuf function now uses it's own EdaRenderer, with
+          x_image_get_pixbuf function now uses it`s own EdaRenderer, with
           new variables GArray color-map, and PangoContext *context. Junction
           and end-point markers are now set to black for B&W imaging, (this
           was needed due to recent upgrades to the EdaRenderer to allow
@@ -1195,7 +1213,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/gschem.c: More tweeking; moved logging and console initialize
           after x_window_setup so that the console/log can be a transient
           child of the main window but this makes the console/log window an
-          annoyance that won't get out of the way, reverted modification to
+          annoyance that won`t get out of the way, reverted modification to
           src/x_console.c so the dialog does not set the main window as the
           parent. Revised to use new function f_set_backup_loader_query_func
 
@@ -1277,7 +1295,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           replaced with an experimental dynamic grip size system. In this system the
           grip size for redraws is object dependent, and maximized for invalidates.
           At higher zoom levels the grip size for objects can be absolute or based
-          on the object's width and the zoom factor.
+          on the object`s width and the zoom factor.
 
         * src/x_compselect.c: Added parent property to g_object_new in function
           x_compselect_open. Removed gtk_window_set_transient_for since parent
@@ -1351,7 +1369,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           new ActionFlags using bits 2 and 3. None of the threads use the new bit 2,
           which is a fallback to in-line mode. When bit 3 of the Action flag is set,
           i_command_process captures the cursor X-Y position to the new members or
-          zero's both if x_event_get_pointer_position returns false. Bit 3 is set for
+          zero`s both if x_event_get_pointer_position returns false. Bit 3 is set for
           each action potentially responding to Hot-key or Right-Mouse input, where
           the cursor position is relevant. This was done in i_command_process rather
           then repeating the same blocks of code or adding function calls in each of
@@ -1414,14 +1432,14 @@ Rename to v_zoom.c and relocated to new view subdirectory
           saving and restoring.
 
         * include/gschem_idefines.h: Eliminated defines for selected from "HOTKEY"
-          and "MENU. Replaced in sources with ID_ORIGIN_KEYBOARD and ID_ORIGIN_MENU.
+          and "MENU". Replaced in sources with ID_ORIGIN_KEYBOARD and ID_ORIGIN_MENU.
 
 
 2013-09-10 Wiley E. Hill <wileyhill@gmail.com>
 
         * include/prototype.h: fix typo o_net_finishmagnetic->o_net_finish_magnetic
 
-        * src/*.c: Replaced GTK_WIDGET_SET_FLAGS with equivenlent gtk function in
+        * src/ *.c: Replaced GTK_WIDGET_SET_FLAGS with equivenlent gtk function in
           x_window.x, function x_window_create_drawing, x_dialog, function x_dialog
           _create_search_replace_dialog and x_settings_dialog.c, function create_
           settings_dialog, also replace g_widget_show with g_object_set.
@@ -1434,7 +1452,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           Added call to XInitThreads().
 
         * src/x_edit_pin.c: Relocate pin-type dialog from x-dialog to a seperate
-          file and revamp'ed again. Add accessibility and tool tips and improved
+          file and revamped again. Add accessibility and tool tips and improved
           handling of widget senitivities. Convert gtk_labels to geda_labels and
           consolidated many strings to module level string structure. Added 2nd
           table for over-ride switch, lots of code cleaning.
@@ -1447,7 +1465,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           after selecting an attribute from the combo, the Value entry text was
           selected, but the Value widget did not have focus. Gtk erronously
           generates the "changed" signal for every keypress and a change of the
-          selection in the combo's tree. Added tooltip and atk objects to this
+          selection in the combo`s tree. Added tooltip and atk objects to this
           dialog.
 
         * src/widgets/geda_font_dialog.c: New replacement widget for gtkchooser
@@ -1529,7 +1547,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/Makefile.am: Change -I$(abs_top_builddir)/include to
-        -I$(top_srcddir)/include. Don't know where i got abs_top_build.
+        -I$(top_srcddir)/include. Don`t know where i got abs_top_build.
         Does not work for distcheck or on Mint (and probably Ubuntu) with
         automake ver? autoconf v?
 
@@ -1544,7 +1562,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         the geda-gaf project is the "immature" libraries. So I have striven
         to add new symbols in "bulk" and much more work is needed, partic-
         ularly for modern integrated circuits. The Component Selection dia-
-        log was one of Gschem's best and most sophisticated dialogs but as
+        log was one of Gschem`s best and most sophisticated dialogs but as
         more symbols were added to the library an even more elaborate sys-
         tems was necessary. This "experimental" release along with the March
         2013 release have primarily been devoted to improving this situation.
@@ -1566,7 +1584,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/x_compselect.c: Another re-vamp as follows: Behavior button
         relocated to custom action area, aka on the same row as the "close"
         and "okay" button. A new Menu Button widget was added to the left of
-        GtkOptionMenu Behavior combo. The GtkMenuToolButton's disappearing
+        GtkOptionMenu Behavior combo. The GtkMenuToolButton`s disappearing
         button pre-light was not consistence with the steady combo outline
         so the new Menu Button widget was invented. The Menu button contains
         a new "style" check menu which is used to filter displaying of -x.sym
@@ -1588,14 +1606,14 @@ Rename to v_zoom.c and relocated to new view subdirectory
         opened folders would collapse because the model was replaced in the
         view. The new algorithms locate the folders, sub-folders and selected
         symbol and re-centers the new view of the tree on the selection. If
-        the previously selected symbol is no longer in the view because it's
+        the previously selected symbol is no longer in the view because it`s
         style was turned off then the first symbol matching the name without
         considering the -x.sym characters, is selected instead. See new
         function compselect_callback_refresh_views. (This was a lot of work!)
 
         A custom signal is emitted with the style is changed and all of the
         tree-views are automatically "refreshed" so the "refresh" button or
-        menu option shouldn't really be needed.
+        menu option shouldn`t really be needed.
 
         Note: With this new scheme, different symbol style sources may or may
         not be loaded into memory when gschem starts. Those that are, may or
@@ -1640,9 +1658,9 @@ Rename to v_zoom.c and relocated to new view subdirectory
         tree views, 1 for enumerated data types to support nested structures and
         1 for tool-tips. Added tool-tips through-out. Converted combo-box to check
         menu for consistency with other dialogs, (probably need to derive widget
-        class someday since GtkOptionMenu is depreciated (don't care, GTK as a
+        class someday since GtkOptionMenu is depreciated (don`t care, GTK as a
         whole is depreciated). Dialog uses new toplevel glist variable to obtain
-        group data even though this isn't really required. It does provide users
+        group data even though this isn`t really required. It does provide users
         with more flexibility in controlling how component library information is
         displayed. Function x_compselect_close, was eliminated. New Property
         PROP_VIEW added. General clean-up and improved documentation.
@@ -1771,7 +1789,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           bitmap routines and consolidate into one file or move to some to
           miscellaneous, dunno.
 
-        * lib/system-gschemrc.scm: Added tooltip and icon id's to menu list.
+        * lib/system-gschemrc.scm: Added tooltip and icon id`s to menu list.
           New section 'General System Options' added with new keywords "show-menu-icons"
           and "toolbars-mode", relocated related keywords to this new section.
           New section 'Scrollbar Options' added with new keyword scrollbars-visible.
@@ -1860,7 +1878,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           to free the aforemention structure when a window is closed.
 
           * src/widgets/geda_handlebox.c and associated header: This is an adaptation
-          of the gtkhandlebox in it's entirety, not a derived sub-class. The reason
+          of the gtkhandlebox in it`s entirety, not a derived sub-class. The reason
           for this is because gtk has declared gtkhandlebox depreciated (do to lack
           lack of functionality). The gnome docker is better but this would impose
           additional linkage. If we wanted to link to a new library just for toolbars
@@ -1872,9 +1890,9 @@ Rename to v_zoom.c and relocated to new view subdirectory
           perhaps should be added since all of the gtk_toolbar_??pend_item/element
           class functions have been depreciated in favor of gtk_toolbar_insert, which
           is less convenient and requires more effort to implement. It seems that it
-          would be easier to replace gtk_toolbar's rather then use the new ones.
+          would be easier to replace gtk_toolbar`s rather then use the new ones.
 
-          That's most of the major stuff! Wiley
+          That`s most of the major stuff! Wiley
 
 2013-01-06 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -1883,7 +1901,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           values to strings defined with macros in gschem_sdefined.h because these
           string have to match what is written by x_settings.c.
 
-        * src/*.c: Revised as needed for relocation of bus_ripper_symname variable
+        * src/ *.c: Revised as needed for relocation of bus_ripper_symname variable
 
         * include/gschem_sdefined.h: Added Bus Ripper Strings
 
@@ -1961,7 +1979,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           g_app_info_launch_default_for_uri seems to work REALLY well.
           Why C interface was replaced with SCM is beyond me, are we forgetting that
           we are a C program and that Guild is for "extensions" not for core routines.
-          This would be like replacing Excel's internal C++ routines with Visual Basic
+          This would be like replacing Excel`s internal C++ routines with Visual Basic
           equivalents. Must keep "extension" in context.
 
 2012-12-22 Wiley E. Hill <wileyhill@gmail.com>
@@ -1989,13 +2007,13 @@ Rename to v_zoom.c and relocated to new view subdirectory
           entry in the RC file. This meant autoplace-attribute-grid could not
           be read twice while processing xxx-gschemrc files without an error.
 
-        * src/*.c & include/*.h: Implemented renaming of autoplace_attribute
+        * src/ *.c & include/ *.h: Implemented renaming of autoplace_attribute
           _grid to attribute_placement_grid in various files. Added RC support
           for new top-level variable invert_images.
 
         * src/x_settings.c: Added new function x_settings_set_scm_int; could
           not find in libgeda. Revised function generate_rc to use the template
-          rc file and to write to the user's home directory. This resolves the
+          rc file and to write to the user`s home directory. This resolves the
           implementation issues on Linux system associated with permissions of
           /etc/geda. Added handling for new invert_images variable, (image-
           color was setup with inital release of this file but was not setup in
@@ -2096,7 +2114,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           a problem with a redundant search.
         * lib/system-gschemrc: Extensive revisions to cleanup, document,
           and group related keywords.
-        * src/*: Seem like much more was done, why are the git Changelogs
+        * src/ *: Seem like much more was done, why are the git Changelogs
           not used?
 
 2012-07-22 Sergey Alyoshin <alyoshin.s@gmail.com> Added notify on locked
@@ -2108,9 +2126,9 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/x_dialog.c: revised lookup_widget to log widget not found
         * src/x_log.c: added destroy_with_parent to x_log_open function. The
           log window was not always being closed when gschem crashed.
-        * src/*.c: replaced depreciated g_strcasecmp with function
+        * src/ *.c: replaced depreciated g_strcasecmp with function
           g_ascii_strcasecmp
-        * src/*: Made temporary repairs to logging system variables and
+        * src/ *: Made temporary repairs to logging system variables and
           variable implementation
         * src/g_util.c: Added scm_2_cstring function.
         * src/i_callbacks.c:  Added new call-back for configure_settings.
@@ -2159,7 +2177,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           g_file_set_contents() if GLib < 2.8.
 
           Patch from Ivan Stankovic, fixing problem with recent files
-          support where gschem didn't work on systems with older versions
+          support where gschem didn`t work on systems with older versions
           of GLib, due to g_file_set_contents() not being available.
 
 2007-05-05 Peter Brett <peter@peter-b.co.uk>
@@ -2169,7 +2187,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           gschem.
 
           Applied patch #1706411 by Ivan Stankovic, which adds a list of
-          recently-accessed files to gschem's File menu.
+          recently-accessed files to gschem`s File menu.
 
 2007-04-27 Carlos Nieves Onega <cnieves (AT) iespana (DOT) es>
 
@@ -2221,7 +2239,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2007-04-21  Mike Jarabek  <mjarabek@sentex.ca>
 
         * scripts/print.scm: Commented out first the four lines so that
-          printing defaults don't get accidentally overridden.
+          printing defaults don`t get accidentally overridden.
 
 2007-04-21 Peter Brett <peter@peter-b.co.uk>
 
@@ -2262,7 +2280,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
          Applied patch from Peter Brett. Thanks!
 
          Not only is it more intuitive to use the page keys to swap
-         between pages, but the current bindings ('<' & '>') don't
+         between pages, but the current bindings ('<' & '>') don`t
          work on German keyboards.
 
        * src/x_fileselect.c:
@@ -2425,9 +2443,9 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * scheme/auto-place-attribs.scm:
             - Use ceiling instead of inexact->exact.
-              The latter doesn't round if the argument is 400.5 (example).
+              The latter doesn`t round if the argument is 400.5 (example).
             - Added support for net and bus attributes.
-            - In adjust_pos_to_avoid_collision, don't loop again if
+            - In adjust_pos_to_avoid_collision, don`t loop again if
             the offset is changed, and fixed x_offset instead of y_offset
             bug.
         * lib/system-gschemrc.in:
@@ -2439,7 +2457,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           in default-position-of-text-attributes,
 
         * src/g_hook.c: Fixed custom_world_get_single_object_bounds,
-          and custom_world_get_object_list_bounds, so they don't traverse
+          and custom_world_get_object_list_bounds, so they don`t traverse
           the whole object list.
 
         * include/globals.h, include/prototype.h, src/g_register.c,
@@ -2571,7 +2589,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           Added two new hotkeys to increase and decrease the snap grid size.
           Feature Request #1443637. Thanks to KaiMartin for the suggestion.
 
-        * src/x_image.c: Free the GError after using it, and don't unlink
+        * src/x_image.c: Free the GError after using it, and don`t unlink
           the image file in case of errors. It's not always safe.
           For example: if the operation was not allowed due to permissions,
           the _previous existing_ file will be removed.
@@ -2598,7 +2616,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         It broken during the transition from Ales' custom linked list
         implementation for the selection lists to using GList for
         selection lists.  It seems that iterating over a list that is
-        being change doesn't work in the same way with GLists.        Fix for
+        being change doesn`t work in the same way with GLists.        Fix for
         this was to make a shallow copy of the selection list and use
         that copy when iterating.
 
@@ -2642,7 +2660,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * po/de_DE.po: updated german translation
 
-        * po/*po: updated files to add the strings for the attribute editor
+        * po/ *po: updated files to add the strings for the attribute editor
 
         * include/prototypes.h: removed unused declarations
 
@@ -2762,7 +2780,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2006-12-26 Carlos Nieves Onega <cnieves@iespana.es>
 
-        * lib/system-gschemrc.in: Don't place the titleblock automatically if
+        * lib/system-gschemrc.in: Don`t place the titleblock automatically if
           editing a symbol file (page filename ending in ".sym").
 
 2006-12-23 Carlos Nieves Onega <cnieves@iespana.es>
@@ -2852,12 +2870,12 @@ Rename to v_zoom.c and relocated to new view subdirectory
         2006-10-22 Carlos Nieves Onega <cnieves@iespana.es>
 
                 * src/o_delete.c: Changed a check to use glib debugging
-                functions.  Don't free objects at the end of o_delete,
+                functions.  Don`t free objects at the end of o_delete,
                 but free only the list.
 
                 * src/o_misc.c: Added a sanity check.
 
-                * src/o_basic.c: Don't free objects in the complex place
+                * src/o_basic.c: Don`t free objects in the complex place
                 list. It is only a reference to the objects in the page.
 
         2006-10-21 Carlos Nieves Onega <cnieves@iespana.es>
@@ -2884,7 +2902,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2006-12-14 Carlos Nieves Onega <cnieves@iespana.es>
 
-        * src/g_hook.c (g_add_component): Don't log message if a component
+        * src/g_hook.c (g_add_component): Don`t log message if a component
           name "" is passed to this function.
           Changed the function name in the error messages from
           add-component to add-component-at-xy.
@@ -2900,10 +2918,10 @@ Rename to v_zoom.c and relocated to new view subdirectory
           This should fix bug #1599582.
 
         * scheme/auto-place-attribs.scm:
-          - Define object types here (by now). This shouldn't be here,
+          - Define object types here (by now). This shouldn`t be here,
             and should be defined in libgeda if anyone objects.
           - in get-reference, the object bounds should include the pins
-            if the object is a pin, but otherwise don't .
+            if the object is a pin, but otherwise don`t .
             This makes the object bounds correctly calculated for pins.
             Thanks to Ales for reporting this bug.
           - Corrected typo (horiz-pos should be vertical-pos) in
@@ -2941,7 +2959,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           Removed keyboard accelerators (by Tomaz Solz #1589430)
 
         2006-11-09 Werner Hoch  <werner.ho@gmx.de>
-        * src/x_autonumber.c:  (scope_skip == SCOPE_SELECTED) didn't work as
+        * src/x_autonumber.c:  (scope_skip == SCOPE_SELECTED) didn`t work as
           expected, fixed it.
 
         2006-11-07 Werner Hoch  <werner.ho@gmx.de>
@@ -2989,7 +3007,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         the configure.ac and autogen.sh files to dynamically figure out the
         gettext version (instead of hard coding the version) when autogen.sh
         is ran.  Hard coding 0.15 inside configure.ac broke everybody
-        who doesn't have gettext 0.15 installed.  The configure.ac file
+        who doesn`t have gettext 0.15 installed.  The configure.ac file
         is now generated from the configure.ac.in.  configure.ac was
         removed from CVS at this point.
 
@@ -3075,7 +3093,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2006-11-13 Carlos Nieves Onega <cnieves@iespana.es>
 
         * src/x_compselect.c: Always update the complex place list.
-          Before, the list wasn't updated if the user opens the file chooser
+          Before, the list wasn`t updated if the user opens the file chooser
           and choose the same component and library than the last time.
 
 
@@ -3111,7 +3129,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_arc.c, src/o_box.c, src/o_bus.c, src/o_circle.c,
           src/o_cue.c, src/o_grips.c, src/o_line.c, src/o_net.c,
           src/o_picture.c, src/o_pin.c, src/o_text.c:
-          Don't draw objects if w_current->DONT_REDRAW is 1.
+          Don`t draw objects if w_current->DONT_REDRAW is 1.
 
         * src/o_text.c: Added some sanity checks in o_text_draw_lowlevel and
         o_text_draw functions.
@@ -3131,13 +3149,13 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * lib/system-gschemrc.in: Rearranged the order of the attribute-name
         entries and added some missing attributes.
 
-        * po/*.po, geda-gschem.pot: make distcheck updated all po/port files.
+        * po/ *.po, geda-gschem.pot: make distcheck updated all po/port files.
 
 2006-10-20  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
         * po/fr_FR.po: Updated the French translation.
 
-        * po/*: Updated and merged i18n files for new POTFILES.
+        * po/ *: Updated and merged i18n files for new POTFILES.
 
         * po/POTFILES.in: Added x_compselect.c to list.
 
@@ -3175,7 +3193,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * po/fr_FR.po: Updated the French translation.
 
-        * po/*: Updated and merged i18n files.
+        * po/ *: Updated and merged i18n files.
 
         * src/rcstrings.c: Rebuilt file from system-gschemrc for changes
         in the application menus.
@@ -3410,7 +3428,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         scheme files were wrong.
 
         * lib/system-gschemrc.in: Changed the mouse gain to be unity since
-        various people have mentioned that mouse pan doesn't feel right with
+        various people have mentioned that mouse pan doesn`t feel right with
         a large value.
 
         * src/x_window.c: Had to put the keypress signal handler back on
@@ -3427,11 +3445,11 @@ Rename to v_zoom.c and relocated to new view subdirectory
         to all printfs/output/dialog boxes where VERSION is used so that
         it is easier to create custom version of gEDA/gaf.
 
-        * include/Makefile.am: Oops, x_print.h wasn't added.  This was
+        * include/Makefile.am: Oops, x_print.h wasn`t added.  This was
         discovered by make distcheck (have I mentioned how much I like
         make distcheck. :-)
 
-        * po/*.po: make dist(check) updated all po files in prep for the
+        * po/ *.po: make dist(check) updated all po files in prep for the
         new release (20060906).
 
 2006-09-05 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -3487,7 +3505,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_misc.c: Fixed o_update_component to actually work correctly.
         All this time, it was just doing the wrong thing by search for
         existing components in the wrong place.  Update Component still
-        doesn't do the right thing for symversion, but that can be fixed
+        doesn`t do the right thing for symversion, but that can be fixed
         later.
 
         * examples/filter_1.sch: Updated all components to the latest version.
@@ -3550,7 +3568,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/x_window.c: Applied Patch#1533822: gschem: Tidy up
         gtk_widget_show calls by Peter Brett.
 
-        * src/*.c: Applied Patch#1533798: Remove pre-GTK2 code from geda
+        * src/ *.c: Applied Patch#1533798: Remove pre-GTK2 code from geda
         by Peter Brett.
 
         * src/x_window.c: Applied patch by Tomaz Solc to use stock gtk
@@ -3558,7 +3576,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         are not available.   Minor cleanup of the code afterwords.
          Removed obsolete code and functions.
 
-        * src/*.c: Applied patch by Tomaz Solc to add cursor key panning.
+        * src/ *.c: Applied patch by Tomaz Solc to add cursor key panning.
         Minor cleanup of the code afterwards (mainly to add the
         keyboardpan_gain to the toplevel as a proper rc variable)
 
@@ -3611,7 +3629,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * po/POTFILES.in: Updated files to get rid of old noweb references.
 
-        * po/*.po, po/gschem.pot: Updated files to take into account above
+        * po/ *.po, po/gschem.pot: Updated files to take into account above
         changes (via make dist).
 
         * src/rcstrings.c, src/Makefile.am, po/POTFILES.in: Oops forgot
@@ -3742,7 +3760,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           include/prototype.h, noweb/x_event.nw:
           Allow rotating while copying or moving objects.
         * noweb/g_hook.nw, noweb/o_complex.nw, noweb/o_misc.nw:
-          Don't draw text if w_current->DONT_REDRAW == 1.
+          Don`t draw text if w_current->DONT_REDRAW == 1.
 
 2006-05-16 22:31  Dan McMahill <danmc>
 
@@ -3938,7 +3956,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2006-01-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * po/*: auto* tools update all po files for distribution.
+        * po/ *: auto* tools update all po files for distribution.
 
         * src/Makefile.am (and the toplevel Makefile): Applied build
         patch by Matthias Wenzel.  Thanks.
@@ -3969,7 +3987,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * po/fr_FR.po: Updated the French translation.
 
-        * po/*: Updated and merged i18n files.
+        * po/ *: Updated and merged i18n files.
 
         * noweb/rcstrings.nw: Rebuilt file from latest system-gschemrc.
 
@@ -3977,7 +3995,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * po/fr_FR.po: Updated the French translation.
 
-        * po/*: Updated and merged i18n files.
+        * po/ *: Updated and merged i18n files.
 
         * noweb/i_callbacks.nw, noweb/o_misc.nw, noweb/o_picture.nw:
         * noweb/o_text.nw, noweb/x_image.nw, noweb/x_preview.nw:
@@ -4017,7 +4035,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2005-12-17 Carlos Nieves Onega <cnieves@iespana.es>
         * noweb/x_attribedit.nw:
         When mass replacing properties using the add property command,
-        don't delete the old attribute and add a new one: just change
+        don`t delete the old attribute and add a new one: just change
         the property text, visibility and show proerties, keeping the
         text location.
         Bug reported by Karel Kulhavy. Thanks for the bug report.
@@ -4050,7 +4068,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2005-11-18 Carlos Nieves Onega <cnieves@iespana.es>
         * include/prototype.h, lib/system-gschemrc.in, noweb/o_misc.nw,
           noweb/o_undo.nw:
-        Changed autosave code so the timer callback doesn't do the
+        Changed autosave code so the timer callback doesn`t do the
         autosave backups. Now are made within o_undo_savestate, so
         backups will ONLY be saved when there was a change to the
         schematic and there was a timeout of the autosave timer.
@@ -4159,7 +4177,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2005-09-09 08:05  Dan McMahill <danmc>
 
-        * noweb/x_dialog.nw: don't declare variables in the middle of
+        * noweb/x_dialog.nw: don`t declare variables in the middle of
           functions.  Not all compilers like that.
 
 2005-09-05 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -4194,7 +4212,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * noweb/g_rc.nw, g_register.nw, i_vars.nw: Added
         g_rc_grid_fixed_threshold, g_rc_grid_mode and
-        g_rc_add_attribute_offset (which isn't used yet)
+        g_rc_add_attribute_offset (which isn`t used yet)
 
         * noweb/x_grid.nw: Added implmentation for fixed grid mode and
         threshold (control by grid-mode and grid-fixed-threshold keywords).
@@ -4225,7 +4243,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         Basically a variable was defined twice, once in libgeda and once
         in gschem.  Apparently OSX behaves very differently when this
         happens (the two variables are different while other platforms
-        didn't complain but the "right" thing happened).  This bug was
+        didn`t complain but the "right" thing happened).  This bug was
         created when the rc code was refactored.
 
 2005-03-13 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -4276,7 +4294,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * tests/Makefile.am: Added missing files to EXTRA_DIST
 
         * lib/system-gschemrc.in: Fixed hotkey for Autonumber Text... dialog
-        box to be unique (so it will even work; hasn't worked since 01/2001).
+        box to be unique (so it will even work; hasn`t worked since 01/2001).
 
         * noweb/gschem.c: Fixed code to allow user to specify absolute
         filenames on the command line again.
@@ -4452,7 +4470,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * include/prototype.h, noweb/x_pagesel.nw:
           Commented out the code defining the "Discard page" button,
-          so it doesn't appear in the page manager.
+          so it doesn`t appear in the page manager.
           Added new function "e_gtk_button_new_with_icon" which allows
           to create a button with a given text, and an icon from the GTK
           stock. Which is the right file to include such a generic function?
@@ -4492,7 +4510,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2005-02-04  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-        * noweb/*.nw: Made it use GLib's G_DIR_SEPARATOR* instead of
+        * noweb/ *.nw: Made it use GLib's G_DIR_SEPARATOR* instead of
         libgeda's *_SEPARATER_*.
         Replaced u_basic_strdup() and u_basic_strdup_multiple() by GLib
         functions.
@@ -4535,7 +4553,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2005-02-01  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
-        * noweb/*.nw: Switched to the new scm interface of guile.
+        * noweb/ *.nw: Switched to the new scm interface of guile.
 
 2005-01-29  Patrick Bernaud  <b-patrick@wanadoo.fr>
 
@@ -4739,7 +4757,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * include/Makefile.am, include/papersizes.h: Moved papersizes.h
         into libgeda and fixed makefile for this change.
 
-        * noweb/*.nw: Removed reference to papersizes.h include file
+        * noweb/ *.nw: Removed reference to papersizes.h include file
         (now inside of libgeda).
 
         * include/i_vars.h, prototype.h, noweb/g_rc.nw, g_register.nw,
@@ -4766,7 +4784,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         these functions used are gtk+ 2.2.x specific.  Also added some
         code that if you hold down the control key and scroll in the
         vertical direction, you will pan left or right.  This is for
-        people who don't have two scroll wheels.
+        people who don`t have two scroll wheels.
 
 2004-05-23 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -4810,7 +4828,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * docs/gschem.1: Spent a little time fixing up the man page.
 
-        * examples/*.sch: Updated most schematics to the last file format
+        * examples/ *.sch: Updated most schematics to the last file format
         version.
 
 2004-01-01 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -5006,7 +5024,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * noweb/x_attribedit.nw: Fixed up a few of calls to
         o_attrib_get_name_value to use the new function signature.
-        Also initalized two pointers to null, so they wouldn't be
+        Also initalized two pointers to null, so they wouldn`t be
         attempted to be freed.
 
         * noweb/x_dialog.nw: Added select_all_text_in_textview and
@@ -5057,7 +5075,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * noweb/x_window.nw: Added casts around gtk+ toolbar functions.
 
-        * examples/*.sch: Updated all example schematics
+        * examples/ *.sch: Updated all example schematics
 
         * noweb/x_attribedit.nw, noweb/x_dialog.nw, noweb/o_grips.nw,
         noweb/x_multiattrib.nw, noweb/o_misc.nw, noweb/o_text.nw:
@@ -5086,7 +5104,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2003-09-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * tests/*.sch: Added a few new test schematics
+        * tests/ *.sch: Added a few new test schematics
 
         * noweb/x_print.nw: Changed the print dialog box so that it closes
         when the print button is pressed.
@@ -5126,11 +5144,11 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * configure.ac: Removed the use of GUILE_PROGS as it is not part
         of guile 1.4.  Put in a manual check for guile-config.
 
-        * examples/*.sch: Updated schematics to 20030901
+        * examples/ *.sch: Updated schematics to 20030901
 
 2003-08-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * noweb/x_multiattrib.nw: Oops wasn't return true or false in the
+        * noweb/x_multiattrib.nw: Oops wasn`t return true or false in the
         keypress routine, so no input was going to the entries.  Fixed.
 
         * noweb/x_attribedit.nw, x_dialog.nw, x_fileselect.nw, x_image.nw
@@ -5179,7 +5197,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * configure.in: Updated version
 
-        * examples/*.sch: Updated to latest version
+        * examples/ *.sch: Updated to latest version
 
 2003-04-27 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -5278,7 +5296,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
              * noweb/o_misc.nw: Find Specific Text, replaced the strcmp used
              to search for the text with a strstr so that we can search for
              C12 instead of having to seach for refdes=C12. That way the user
-             doesn't have to know what the symbol internal names are.
+             doesn`t have to know what the symbol internal names are.
 
 2003-01-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -5374,7 +5392,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2002-11-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * examples/*.sch, tests/*.sch: Updated schematics to the latest
+        * examples/ *.sch, tests/ *.sch: Updated schematics to the latest
         version via gschupdate
 
         * configure.in: Updated version to 20021103 (an official version)
@@ -5480,7 +5498,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * tests/oldsym2.sch: Added an old single pin symbol, to test that
         the auto whichend code handles the single pin correctly.
 
-        * noweb/*.nw, include/*.h: Intergrated patch from Egil for
+        * noweb/ *.nw, include/ *.h: Intergrated patch from Egil for
         "Snap Off" and "Show Hidden" status indicators (originally written
         on 10/09/2002).
 
@@ -5505,7 +5523,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2002-10-09 Egil Kvaleberg       <egil@kvaleberg.no>
 
-        * noweb/*, include/*: Implemented "Snap Off" and "Show Hidden"
+        * noweb/ *, include/ *: Implemented "Snap Off" and "Show Hidden"
         status indicators.
 
 2002-10-07 Egil Kvaleberg   <egil@kvaleberg.no>
@@ -5532,7 +5550,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * noweb/rcstrings.nw: Added the toplevel menu items into this file
         so that they can be translated.
 
-        * po/*.po: Removed geda-gschem.pot which caused the translation files
+        * po/ *.po: Removed geda-gschem.pot which caused the translation files
         to be rebuilt.
 
 2002-09-25 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -5552,7 +5570,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * noweb/Makefile.am: Added above file to EXTRA_DIST=
 
-        * po/*: Updates to the files from rcstrings.nw
+        * po/ *: Updates to the files from rcstrings.nw
 
 2002-09-22 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -5655,7 +5673,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         where the found text would sometimes be unlegible because of the
         zoom factor (pointed out by Dave Lawrence a long long time ago).
 
-        * noweb/*.nw: Cleaned up -Wall warnings
+        * noweb/ *.nw: Cleaned up -Wall warnings
 
         * configure.in: Added -mwindows flag for the mingw port
 
@@ -5681,7 +5699,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2002-08-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * noweb/*: Added gettext patch by Alexandre P. Nunes.  Thank you for
+        * noweb/ *: Added gettext patch by Alexandre P. Nunes.  Thank you for
         the work on i18n.
 
         * intl/ m4/ po/ ABOUT-NLS config.rpath: Added directories / files
@@ -5703,7 +5721,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * noweb/o_misc.nw, x_dialog.nw, lib/system-gschemrc.in: Renamed
         user visible references of uref to refdes
 
-        * examples/*.sch: Update all schematics using gschupdate
+        * examples/ *.sch: Update all schematics using gschupdate
 
 2002-07-09 Ales Hvezda   <ahvezda@geda.seul.org>
 
@@ -5713,7 +5731,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * tests/: Created tests directory mainly to hold various tests
 
-        * examples/*.sch: Moved some of the developer only schematics into
+        * examples/ *.sch: Moved some of the developer only schematics into
         the test/ directory
 
         * tests/ext_chars.sch: Added a simple little schematic to test the
@@ -5722,7 +5740,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2002-07-06 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * examples/*.sch: Updated all schematics to use netname instead of
+        * examples/ *.sch: Updated all schematics to use netname instead of
         label
 
         * noweb/x_attribedit.nw: Changed all occurrances of label to netname
@@ -5827,7 +5845,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * noweb/x_window.nw: Oops forgot to free a temporary string. Fixed.
 
-        * bitmaps/*.xpm: Updated some of the bitmaps I drew to look a little
+        * bitmaps/ *.xpm: Updated some of the bitmaps I drew to look a little
         better.
 
 2002-06-03 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -5913,7 +5931,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * noweb/x_window.nw: Added the use of bitmap_directory
 
         * noweb/x_window.nw, x_preview.nw and others: Fixed a few possible
-        places where something is freed but wasn't be initialized to NULL
+        places where something is freed but wasn`t be initialized to NULL
 
         * lib/system-gschemrc.in: Changed the default background color
         and all the colors to correspond to a light (almost white) background
@@ -6070,7 +6088,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2002-02-16 Ales Hvezda <ahvezda@geda.seul.org>
 
         * noweb/x_event.nw: Added a check in the configure callback to return
-          if gschem hasn't finished setting up the current page.
+          if gschem hasn`t finished setting up the current page.
 
 2002-02-11 Ales Hvezda <ahvezda@geda.seul.org>
 
@@ -6101,7 +6119,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         everything (which is wrong).
 
         * noweb/o_misc.nw: Added suggestion by Wojciech Kazubski for a
-        function which just shows hidden text, but doesn't toggle the
+        function which just shows hidden text, but doesn`t toggle the
         visibility.  This new function is called o_edit_show_hidden.
         The original function is now called o_edit_make_visible.
         Added it to the rc/lib (g_*.nw) files as well.
@@ -6116,7 +6134,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * noweb/x_dialog.nw: Put in fix from Dave Lawrence wrt
         find_text_ok, redraw_all after you find no more text occurances
 
-        * noweb/*.nw: Removed all -Wall warnings
+        * noweb/ *.nw: Removed all -Wall warnings
 
 2002-01-24 Stefan Petersen <spe@stacken.kth.se>
 
@@ -6238,10 +6256,10 @@ Rename to v_zoom.c and relocated to new view subdirectory
           for the menus.
 
         * noweb/i_callbacks.nw: Fixed the "scrollbar not updating when
-          panning" bug pointed out by Chris; wasn't updating the
+          panning" bug pointed out by Chris; wasn`t updating the
           scrollbars when panning :)
 
-        * noweb/i_callbacks.nw: Fixed the wasn't updating connections when
+        * noweb/i_callbacks.nw: Fixed the wasn`t updating connections when
           doing a symbol translate in a schematic (valid and should work)
           This still does NOT work. :(
 
@@ -6270,7 +6288,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           had to add a third item to the menu item list (the hotkey scheme
           function)
 
-        * noweb/*.nw: Renamed all *zoom_limits* functions to
+        * noweb/ *.nw: Renamed all *zoom_limits* functions to
           *zoom_extents*
 
         * lib/system-gschemrc.in: Misc updates to some of the key mappings
@@ -6312,7 +6330,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
           operation, should improve performance a tremendous amount when
           dealing with bounding boxes (constant time to draw)
 
-        * noweb/*.nw: Went through all code which references
+        * noweb/ *.nw: Went through all code which references
           o_drawbounding and set the above parameter to the correct value
 
         * noweb/o_copy.nw, o_move.nw: The bounding box (when enabled) was
@@ -6379,12 +6397,12 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2001-06-03 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * noweb/*: Added .nw files from Patrick B.
+        * noweb/ *: Added .nw files from Patrick B.
 
         * Started down the path toward using noweb (still need to integrated
           noweb tools into the configure mechanism)
 
-        * scripts/*: Added noweb -> texi backed written by Patrick B.
+        * scripts/ *: Added noweb -> texi backed written by Patrick B.
 
         * Moved some files around for above move
 
@@ -6408,10 +6426,10 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2001-03-16  Stefan Petersen  <spe@geda.seul.org>
 
-        * configure.in, configure: didn't build properly if libgdgeda
-          wasn't placed in it' "usual place".
+        * configure.in, configure: didn`t build properly if libgdgeda
+          wasn`t placed in it' "usual place".
 
-        * src/x_menus.c: if libgdgeda isn't added, the menu alternative
+        * src/x_menus.c: if libgdgeda isn`t added, the menu alternative
           will not appear (silly, but I did it).
 
 2001-03-07  Stefan Petersen  <spe@geda.seul.org>
@@ -6427,7 +6445,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 2001-03-04 Ales Hvezda         <ahvezda@geda.seul.org>
 
         * src/o_complex.c: Fixed the symbol translate code to do a zoom limits
-          first and then the translate, fixes a bug where symbol didn't always
+          first and then the translate, fixes a bug where symbol didn`t always
           get to the origin
 
         * src/o_misc.c: Put back the code to call the screen coord version of
@@ -6460,9 +6478,9 @@ Rename to v_zoom.c and relocated to new view subdirectory
           should not have been.  Bug was in an if statement which included
           an || which was causing a false hit
 
-        * src/*.c: Changed some // comments to be /* */
+        * src/ *.c: Changed some // comments to be / * */
 
-        * src/*.c: Fixed a bunch of -Wall warnings
+        * src/ *.c: Fixed a bunch of -Wall warnings
 
 2001-02-23 Ales Hvezda         <ahvezda@geda.seul.org>
 
@@ -6531,7 +6549,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_misc.c: Got mirror to use the new connection / cue system
 
         * src/o_misc.c: Removed the call to o_complex_mirror2 from the
-          mirror switch.  I don't think this special exception is needed
+          mirror switch.  I don`t think this special exception is needed
           anymore.  Have to watch out for any breakage.
 
         * src/o_misc.c: Finally removed the restriction that you could not
@@ -6550,7 +6568,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_copy.c: Got copy to use the new connection / cue system
 
         * src/o_copy.c: Rearranged things around in the switch statement
-          so that you don't have to do a o_redraw at the end
+          so that you don`t have to do a o_redraw at the end
 
         * src/o_basic.c: Minor cleanup
 
@@ -6566,7 +6584,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_bus.c: Updated o_bus_end to use the new connection / cue
           system (also removed some old obsolete functions)
 
-        * src/o_misc.c: #if'd out some function calls which don't exist
+        * src/o_misc.c: #if'd out some function calls which don`t exist
           anymore (but I need the place holder to add new functions)
 
 2001-01-27  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -6594,7 +6612,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2001-01-19  Stefan Petersen  <spe@geda.seul.org>
 
-        * scheme/auto-uref.scm: If there wasn't a question mark in the
+        * scheme/auto-uref.scm: If there wasn`t a question mark in the
           uref string, the auto-ref function blew up.
 
 2001-01-18  Ales Hvezda         <ahvezda@geda.seul.org>
@@ -6632,7 +6650,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2001-01-01  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/*.c: Removed all trace of conn table (and functions), nethash
+        * src/ *.c: Removed all trace of conn table (and functions), nethash
           table (and functions), and temporarily commented out stretch code
 
         * src/x_grid.c: Added x_draw_tiles to help in the coding of the tile
@@ -6723,7 +6741,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2000-12-03  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/*.c: Removed some of the DONT_REDRAW from the code (the
+        * src/ *.c: Removed some of the DONT_REDRAW from the code (the
           DONT_* are total hacks)
 
         * src/i_callbacks.c, a_zoom.c, i_pan_world.c and friends: Added a flag
@@ -6798,7 +6816,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_move.c: Started working on the first cut of the net/pin/bus
           stretch while doing a move
 
-        * src/*.c: Removed all traces of the old stretch callback etc...
+        * src/ *.c: Removed all traces of the old stretch callback etc...
 
         * include/x_states.c: Removed all traces of the old stretch command
 
@@ -6891,7 +6909,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2000-10-06  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/*.c: Removed all // comments
+        * src/ *.c: Removed all // comments
 
         * src/gschem.c: Changed CYGWIN32 warning message
 
@@ -6919,7 +6937,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_circle.c, o_line.c, o_box.c: Made sure the line width was 0
           before drawing all grips
 
-        * src/*.c: Added draw-grips *rc keyword and enabling/disabling code
+        * src/ *.c: Added draw-grips *rc keyword and enabling/disabling code
 
         * src/o_grips.c: Oops forgot to update the CHANGED flag at the end of
           o_grips_end
@@ -6930,14 +6948,14 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_<primitive>.c: Added some defaults to various error conditions
             to prevent visual errors and core dumps
 
-        * src/*.c: Fixed all -Wall warnings
+        * src/ *.c: Fixed all -Wall warnings
 
         * src/o_complex.c: Added o_complex_place_rotate (allows you to rotate
             a component before you place it)
 
         * src/x_event.c: Added code to call o_complex_place_rotate
 
-        * src/x_dialog.c: Removed some code (o_undo_savestate) which didn't
+        * src/x_dialog.c: Removed some code (o_undo_savestate) which didn`t
            belong
 
         * src/x_dialog.c: Added line type / line width dialog box
@@ -6947,7 +6965,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * src/x_menus.c: Added Edit/Line Width & Type menu option
 
-        * src/*.c, lib/system-gschemrc.in: Added hotkeys for Edit/Line Width &
+        * src/ *.c, lib/system-gschemrc.in: Added hotkeys for Edit/Line Width &
            Type
 
 2000-10-04  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -6965,7 +6983,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * src/o_bus.c: Added code to draw grips
 
-        * */*: Removed all calls to *stretch functions
+        * */ *: Removed all calls to *stretch functions
 
         * src/x_dialog.c: Removed the file/component selection dialog box
              from the "raise on expose event"
@@ -7048,7 +7066,7 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_complex.c *.c: Converted all complex references to use the new
           complex structure
 
-        * src/*.c: Went through all code and made sure code compiles with
+        * src/ *.c: Went through all code and made sure code compiles with
           all the renamed variables
 
 2000-08-20  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -7062,10 +7080,10 @@ Rename to v_zoom.c and relocated to new view subdirectory
         * src/o_text.c: Converted all text_* references to use the new
           text structure
 
-        * src/o_text.c: Found a long hidden bug, wasn't properly recomputing
+        * src/o_text.c: Found a long hidden bug, wasn`t properly recomputing
           screen_x and screen_y for text items
 
-        * src/*.c: Converted all text_* references to use the new text
+        * src/ *.c: Converted all text_* references to use the new text
           structure
 
         * src/o_line.c: Converted all line_points references to use the new
@@ -7122,9 +7140,9 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
 2000-07-04  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/*.c: Updated copyright info in each file
+        * src/ *.c: Updated copyright info in each file
 
-        * src/*.c: Changed all GNU to GPL in the appropriate places
+        * src/ *.c: Changed all GNU to GPL in the appropriate places
 
         * src/x_multimulti.c: Added copyright banner to file
 
@@ -7133,11 +7151,11 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * configure.in: Bumped version up to 20000704
 
-        * src/*.c: Removed all warnings
+        * src/ *.c: Removed all warnings
 
 2000-06-27  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/o_undo.c: DOH! Didn't #include <math.h> which caused rint to
+        * src/o_undo.c: DOH! Didn`t #include <math.h> which caused rint to
           cause highly unpredictable behavior (core dumping).  Fixed
 
         * src/o_undo.c: Added code to look for undo save data when
@@ -7176,11 +7194,11 @@ Rename to v_zoom.c and relocated to new view subdirectory
 
         * lib/system-gschemrc.in: Added undo-type rc file
 
-/***********************************************************************/
-/* NOT DONE */
-src/*.c: Removed all traces of the ADDING_SEL flag
-/* NOT DONE */
-/***********************************************************************/
+/ ***********************************************************************/
+/ * NOT DONE */
+src/ *.c: Removed all traces of the ADDING_SEL flag
+/ * NOT DONE */
+/ ***********************************************************************/
 
         * src/a_zoom.c, src/i_pan_world.c: Moved some of the redraw functions
           around
@@ -7230,7 +7248,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         * src/gschem.c, src/i_callbacks.c, src/x_fileselect.c, src/x_window.c:
           Added a o_undo_savestate immediately after you open/create a new page
 
-        * src/*.c: Added an o_undo_savestate after all code which causes a
+        * src/ *.c: Added an o_undo_savestate after all code which causes a
           schematic change
 
         * src/a_zoom.c, src/i_pan_world.c, src/x_events.c: Added an o_undo_savestate
@@ -7263,12 +7281,12 @@ src/*.c: Removed all traces of the ADDING_SEL flag
           the attribute, now o_attrib_add_attrib cannot return NULL (returns
           the new text object always)
 
-        * src/o_attrib.c: For some odd reason I wasn't using the color
+        * src/o_attrib.c: For some odd reason I wasn`t using the color
           variable in o_attrib_add_attrib, fixed that.        Also attributes
           which are floating should not be yellow (attached color),
           so they are now red which signify a floating attrib.  It is the
           user's responsibility to change the color to something else.
-          The red is meant as a warning that this attribute isn't attached
+          The red is meant as a warning that this attribute isn`t attached
           to anything.
 
 2000-06-04  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -7278,7 +7296,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         * src/i_vars.c: Made net_consolidate variable enabled (TRUE)
 
         * src/x_dialog.c: Added an if to make sure returned object from
-          o_attrib_add_attrib isn't NULL (that can happen if you try to
+          o_attrib_add_attrib isn`t NULL (that can happen if you try to
           attach an attribute to another text item).  This bug caused at
           least one core dump.
 
@@ -7426,7 +7444,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
           an if ...) (Bug pointed out by Stefan, Thanks)
 
         * src/i_callbacks.c: Added the ability to search for the source=
-          attribute inside the symbol if it isn't found attached to the
+          attribute inside the symbol if it isn`t found attached to the
           outside of the symbol (omission pointed out by Thepthai Tabtieng).
           If you attach source= attribute to the outside, then inside is
           NEVER searched.
@@ -7477,7 +7495,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
           net consolidation and selections (unselect everything before you
           attempt consolidation)  Not a good solution, but for now it will do.
 
-        * src/*.c: Removed most // comments
+        * src/ *.c: Removed most // comments
 
 2000-03-16  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -7542,7 +7560,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 2000-03-07  Matt Ettus <matt@ettus.com>
 
         * src/x_multimulti.c:  Moving along on dialog box
-          Shouldn't segault anymore, looks nicer.
+          Shouldn`t segault anymore, looks nicer.
 
 2000-03-05  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -7561,7 +7579,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         * src/o_select.c: Fixed a bug where you could select invisible objects
           using the selection box and caused other invisible objects to be
-          selected (don't consider invisible objects for anything).
+          selected (don`t consider invisible objects for anything).
 
         * src/Makefile.am: Removed old *.h entries
 
@@ -7585,13 +7603,13 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         * src/o_text.c, o_attrib.c: Fixed o_drawbounding in code
 
-        * src/*.c: Fixed rest of the o_drawbounding[_new] in the code
+        * src/ *.c: Fixed rest of the o_drawbounding[_new] in the code
 
 2000-02-28  Ales Hvezda  <ahvezda@geda.seul.org>
 
         * src/o_*.c: Added required o_*_erase functions
 
-        * src/*.c: Continued work on getting new selection mechanism working
+        * src/ *.c: Continued work on getting new selection mechanism working
 
         * src/o_misc.c: Finished a few of the functions for above, but
           #if 0'ed out the rest
@@ -7623,11 +7641,11 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         * src/o_select.c: Added new object selection code
 
-        * src/*.c: Changed #define SELECTION to SELECTION_FLAG in all the code
+        * src/ *.c: Changed #define SELECTION to SELECTION_FLAG in all the code
 
-        * src/*.c: Changed #define NORMAL to NORMAL_FLAG in all the code
+        * src/ *.c: Changed #define NORMAL to NORMAL_FLAG in all the code
 
-        * src/*.c: Started work on using new selection mechanism, got basic
+        * src/ *.c: Started work on using new selection mechanism, got basic
           selection (single/multiple) working
 
         * src/o_misc: Fixed a minor bug in o_unlock (will be rewritten anyway)
@@ -7636,7 +7654,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         * src/o_basic.c: Removed a whole bunch of old functions
 
-        * src/*.c: Started removing all traces of the old selection
+        * src/ *.c: Started removing all traces of the old selection
           mechanism
 
         * src/o_basic.c: Removed a bunch of functions which are no longer
@@ -7668,12 +7686,12 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         * README/INSTALL: Updated files to reflect next release
 
-        * src/*.c: Removed all // comments (changed to /* */)
+        * src/ *.c: Removed all // comments (changed to / * */)
 
         * src/i_callbacks.c: Got rid of setup_attr_selector, instead now
           calling attrib_edit_dialog directly
 
-        * src/*.c: Fixed all warnings (using -Wall -Werror)
+        * src/ *.c: Fixed all warnings (using -Wall -Werror)
 
 2000-02-17  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -7686,7 +7704,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         * src/o_text.c: Added the ability to edit the text alignment using
           Edit/Edit... (or Edit/Edit Text...)
 
-        * examples/*.sch: Loaded and saved all example schematics so that they
+        * examples/ *.sch: Loaded and saved all example schematics so that they
           use the new text format
 
 2000-02-16  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -7694,7 +7712,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         * src/o_misc.c: Selecting Edit/Edit... on nets, buses, and pins now
           brings up the multi-attrib
 
-        * src/*.c: Update a bunch of files to use call o_text_add with the
+        * src/ *.c: Update a bunch of files to use call o_text_add with the
           extra text alignment parameter
 
         * src/o_text.c: Added a small x where the origin of a text object is
@@ -7784,7 +7802,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 2000-01-18  Ales Hvezda  <ahvezda@geda.seul.org>
 
         * src/x_dialog.c: Moved some code around and added a check to
-          the multiple attrib edit dialog box so gschem won't crash
+          the multiple attrib edit dialog box so gschem won`t crash
 
         * src/x_dialog.c: Filled a string (text[1]) with some thing to avoid
           garbage chars in the multi edit dialog box
@@ -7932,7 +7950,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 1999-10-19  Ales Hvezda  <ahvezda@geda.seul.org>
 
         * src/gschem.c: Found/Fixed an old bug which basically was causing
-          the first argument to always be interpreted as a filename which isn't
+          the first argument to always be interpreted as a filename which isn`t
           always true.
 
 1999-10-18  Ales Hvezda  <ahvezda@geda.seul.org>
@@ -8007,7 +8025,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 1999-10-09  Ales Hvezda  <ahvezda@geda.seul.org>
 
-        * src/gschem.c: Added full path to page_filename (if filename doesn't
+        * src/gschem.c: Added full path to page_filename (if filename doesn`t
           start with a /
 
         * src/x_log.c: Added x_log_init to deal with the chdir gschem is doing
@@ -8023,7 +8041,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         * src/x_dialog.c: Added x_destroy_window
 
-        * src/x_fs.c: Made sure you can't open up a directory
+        * src/x_fs.c: Made sure you can`t open up a directory
 
 1999-10-05  Ales Hvezda  <ahvezda@geda.seul.org>
 
@@ -8103,7 +8121,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Added OBJ_BUS and OBJ_PIN to the color change routine in the
         color edit dialog box
 
-9/18/99        Increased world size to be much much larger.  Hopefully this won't
+9/18/99        Increased world size to be much much larger.  Hopefully this won`t
         break anything.
 
         Fixed the extension code in i_callback.c to add the NULL character
@@ -8116,7 +8134,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         (since I doubled the world size)
 
 9/17/99        Put some code into i_set_filename which truncates extra long
-        files, so that the window size isn't affected.
+        files, so that the window size isn`t affected.
 
         Changed the botton status bar a bit.
                 - Removed the "Mouse buttons" label
@@ -8263,7 +8281,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Updated the stroke mechanism to what Stefan suggested.  Much better
 
-8/30/99        Fixed a bug in the print dialog box, where it wasn't setting the state
+8/30/99        Fixed a bug in the print dialog box, where it wasn`t setting the state
         of the window to the previous states
 
         Fixed net stretch to only stretch ONE net for now
@@ -8278,9 +8296,9 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Removed all warnings from the code
 
-        Disabled bus stretching... still doesn't work
+        Disabled bus stretching... still doesn`t work
 
-        Fixed stretch_start so that it doesn't try to start a stretch on
+        Fixed stretch_start so that it doesn`t try to start a stretch on
         an unsupported object
 
         Commented out the ps/png extension code in i_callbacks.c till it's
@@ -8294,7 +8312,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Updated all *.c and *.h files to have the right address for the
         FSF in the copyright/licence header
 
-8/20/99        Fixed a really really subtle bug in i_sbox.c wasn't checking for
+8/20/99        Fixed a really really subtle bug in i_sbox.c wasn`t checking for
         the head node.  This bug causes some rather nasty coredumps.
         Hidden for so long, because of the way the selection head node
         was being initialized in the new leaner object creation scheme.
@@ -8322,7 +8340,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Removed some old code from o_ales.c
 
-        Fixed a minor bug when writing an image, wasn't removing .sch
+        Fixed a minor bug when writing an image, wasn`t removing .sch
         from filename
 
 8/17/99        Started adding bus object
@@ -8375,7 +8393,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 7/16/99 Cleaned up i_sbox.c and i_vars.c o_ales.c (by Kazu Hirata)
 
-        Increased world coord space to 120x90, don't know if there are any
+        Increased world coord space to 120x90, don`t know if there are any
         side effects of this.
 
         Increased the max zoom factor to 256
@@ -8431,7 +8449,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Removed some // comments (should not use // comments in general)
 
-7/6/99         Didn't really disable libgdgeda when using --disable-gdgeda
+7/6/99         Didn`t really disable libgdgeda when using --disable-gdgeda
         Now fixed.
 
 7/5/99        Added in manually configure.in patch Manu provided to help in his
@@ -8458,7 +8476,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         objects
 
 7/2/99  Fixed the ./configure stuff dealing with libgdgeda so that it works
-        when libgdgeda isn't installed in a system directory
+        when libgdgeda isn`t installed in a system directory
 
 7/1/99         Removed the libgd #include from all files (not needed)
 
@@ -8553,11 +8571,11 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         ability to have toplevel hidden unattached attributes)
                 And everything required to implement the above
 
-        Fixed that stupid log problem where if you couldn't open the log
+        Fixed that stupid log problem where if you couldn`t open the log
         the log window would lose it's mind (fixed by disabling logging
-        if you can't read/write the log file)
+        if you can`t read/write the log file)
 
-        If logging is off or disabled, don't show the log window on startup
+        If logging is off or disabled, don`t show the log window on startup
 
 5/28/99 Got ./configure working with gesym-config
 
@@ -8608,7 +8626,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 5/9/99        Removed some redundant code from o_move.c
 
         Fixed log-window keyword code to work with the later option.
-        (didn't work at all)
+        (didn`t work at all)
 
 4/18/99 Added some #ifdefs to the coord dialog box so that it compiles under
         gtk+ 1.0.x
@@ -8639,7 +8657,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 3/27/99 As a request, added a default keymapping (Delete -> edit-delete)
 
-3/25/99 Removed all traces of i_callbacks.h from the C files (haven't removed
+3/25/99 Removed all traces of i_callbacks.h from the C files (haven`t removed
         the actual include file yet)
 
         Changed x_window and x_menu so that those warnings about menufactory
@@ -8700,7 +8718,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         actions, you are prompted for a save instead of just quitting
 
         When opening a symbol using hierarchy, filename at the bottom
-        wasn't being set right
+        wasn`t being set right
 
 3/18/99 Updated g_rc_parse to use new macro for system-gschemrc file
 
@@ -8853,7 +8871,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 1/05/98  Incorperated negative grid point display patch by Mike Jarabek
 
          Found and fixed (I think) a bug with displaying schematics for
-         the first time (after a load), display wasn't being zoomed limits
+         the first time (after a load), display wasn`t being zoomed limits
          if there where coordinates with negative values (display will not be
          zoomed properly, since negative values are not supported for
          scrollbars)
@@ -8888,7 +8906,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
          Changed the add component dialog box to allow for a selection between
          the default, embed and now include ways of adding components.
-         I don't like the way it works, so I'm probably going to go with a
+         I don`t like the way it works, so I'm probably going to go with a
          option menu instead of radio buttons
 
          Changed the above radio boxes to an option menu, much cleaner looking
@@ -9036,7 +9054,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
          component from the list (pointed out by Patrick Bertholon, thanks)
 
 10/20/98 Added Stefan's and thi's latest gschem.scm
-                - repeat-last-command doesn't cause a stack overflow
+                - repeat-last-command doesn`t cause a stack overflow
                 - bit more paranoid code.
                 - last-command-sequence (holds what it says)
 
@@ -9066,7 +9084,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
          Display ONLY symbols with the extension .sym, this implies that u
          symbols must end .sym to be displayed
 
-         An attempt fix the arc bound box code of arcs, doesn't quite
+         An attempt fix the arc bound box code of arcs, doesn`t quite
          work 100%.
 
 10/12/98 Added device attribute to the list of default attributes in the rc
@@ -9126,7 +9144,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 0.0.5
 -------
-9/27/98 Discovered that selection_tail wasn't being set to tail in o_select
+9/27/98 Discovered that selection_tail wasn`t being set to tail in o_select
         Fixed.
 
         I think I got my kludge for rotating complex objects done.  Need to
@@ -9138,13 +9156,13 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Fixed the same bug in o_ntext_end
 
         Found/fixed a really nasty old bug in o_unselect_all where
-        selection_tail wasn't being update at all
+        selection_tail wasn`t being update at all
 
         Found/fixed a whole bunch more places where selection_tail
-        (in o_select_*) wasn't being update (ie it was dangling)
+        (in o_select_*) wasn`t being update (ie it was dangling)
 
         Fixed a bunch of places in the i_callback functions where the middle
-        button short cut key wasn't been set to the hotkey version of the
+        button short cut key wasn`t been set to the hotkey version of the
         function
 
         Added selection_list code for rotating complex objects (ie once a
@@ -9154,7 +9172,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         all applicable locations (x_menus, g_*, gschemrc.in files)
 
         Added code and a message stating that rotating an embedded component
-        isn't possible yet. (it should be, but I'll worry about that later)
+        isn`t possible yet. (it should be, but I'll worry about that later)
 
         Changed default pan behavior when you select it from the hotkey--
         it pan using the current mouse position as the center
@@ -9171,7 +9189,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 9/25/98 Worked some more on o_rotate (a_basic)
 
-        Missed a zoom_scale/factor bug dealing with sboxes, you couldn't
+        Missed a zoom_scale/factor bug dealing with sboxes, you couldn`t
         draw an sbox at high zoom factors.  Now fixed, by removing multipler
 
         Removed all attempts at getting complex's rotating... that will
@@ -9231,7 +9249,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Renamed paper-size to world-size to reflect that paper is no longer
         specified in the same fashion
 
-        Fixed the lack of scrollbar updates when you don't specify a schematic
+        Fixed the lack of scrollbar updates when you don`t specify a schematic
         to be loaded
 
 9/17/98 Added the modifiers (Alt, Shift, Control) into the string which
@@ -9275,7 +9293,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         soon.  Made most necessary changes to accomodate this.
 
         Found a very very serious bug when the above change was made
-        (copy/move of objects wouldn't copy complex vs nets/pins correctly)
+        (copy/move of objects wouldn`t copy complex vs nets/pins correctly)
         Fixed by making all *_translate -> *_translate_world (in a_basic.c)
 
         Spent some more time getting size of endpoint cues and friends
@@ -9306,8 +9324,8 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
 9/3/98        Major code reoganization with the new libgeda
 
-        Fixed a bug in o_box, where the new recalc routine wasn't setting
-        some local variables (shouldn't have been using the vars anyways)
+        Fixed a bug in o_box, where the new recalc routine wasn`t setting
+        some local variables (shouldn`t have been using the vars anyways)
 
         Removed Add/NEW text menu item (old test code)
 
@@ -9315,22 +9333,22 @@ src/*.c: Removed all traces of the ADDING_SEL flag
                 . o_ntext_copy does not handle attributes now, it is handled by
                   who ever called it
                 . o_list_copy_to and o_list_copy_all now take a flag which is
-                  either NORMAL or SELECTION (we don't want to do attributes)
+                  either NORMAL or SELECTION (we don`t want to do attributes)
                   when we are adding stuff to the selection buffer
                 . Text is copied (o_list_* and o_copy_end routines) last to
                   make sure that all the attribute recieving objects exist
                   in the list
 
         Fixed another attribute which changed color (to red) at the wrong
-        time (basically all text was changing color, eventhough it wasn't
+        time (basically all text was changing color, eventhough it wasn`t
         supposed to) (fixed in o_copy_end)
 
         Divided the x_create_drawing into the drawing function and a function
         which sets up the events (x_window_setup_draw_events)
 
-        Added a check to make sure a widget wasn't null in i_set_filename
+        Added a check to make sure a widget wasn`t null in i_set_filename
 
-        Added a check to make sure a widget wasn't null in x_hscrollbar_update
+        Added a check to make sure a widget wasn`t null in x_hscrollbar_update
         and x_vscrollbar_update
 
         Created x_preview.c, a highly temp file demonstrating the preview
@@ -9406,7 +9424,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         OBJ_TEXT)
 
         Fixed a minor bug with symbol translate and the new text.  Basically
-        the origin point wasn't being translated, object were, but not that
+        the origin point wasn`t being translated, object were, but not that
         one point
 
         In the code, changed font def files from .sch to .sym
@@ -9414,10 +9432,10 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         You should not symbol translate with the snap off, so put in warnings
         to log and snap is automatically turned on.  Might change this later
 
-8/7/98        Slightly robustified the reading in of font defs, if char isn't found
+8/7/98        Slightly robustified the reading in of font defs, if char isn`t found
         then use something else (only then do you exit)
 
-        Fixed a minor bug where copying an attached attribute didn't change
+        Fixed a minor bug where copying an attached attribute didn`t change
         to the detached attribute color
 
         Fixed a bug in o_list_copy_all (new routine) which was nuking the
@@ -9475,7 +9493,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Added code to free up the font set
 
-8/3/98        Changed startup behavior of gschem (it doesn't set it position to 0,0)
+8/3/98        Changed startup behavior of gschem (it doesn`t set it position to 0,0)
         (basically causes most window managers to prompt for the position)
 
         Cleaned up o_ntext a bit more
@@ -9485,7 +9503,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Fixed all #include <gh.h> to #include <guile/gh.h>
 
         Added s_clib_uniq and supporting functions to see if a clib path is
-        uniq (if so add it, else don't)
+        uniq (if so add it, else don`t)
 
         Added s_attrib_uniq to make sure attribute names (which are specified
         in the init file are uniq
@@ -9516,7 +9534,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
              - ./gschemrc
           where latter rc files override previous ones
 
-        Discovered/fixed a bug in o_net.c, net_style wasn't being used
+        Discovered/fixed a bug in o_net.c, net_style wasn`t being used
         (accidentally left to pin_style), hence you would always get
         nets which were the same style as pins.  oops
 
@@ -9527,7 +9545,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         (Perfect excuse to try out debian :-)
 
 7/22/98        A user trying to build gEDA on HP-UX discovered that I missed an rint
-        call (it wasn't wrappered by the HAS_RINT define).  Fixed it.
+        call (it wasn`t wrappered by the HAS_RINT define).  Fixed it.
 
 7/21/98 Finally fixed arcs so that any start or end angle arcs print
         properly, involved changing how I handled the translate and rotate
@@ -9535,7 +9553,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 
         Put back the filename*.sch -> filename*.ps code when you print to
         postscript.  Even fixed it so that it changes the .sch to .ps or
-        if there isn't a .sch extension then just adds it.
+        if there isn`t a .sch extension then just adds it.
 
 7/19/98        Fixed some misc formatting on most case statements (break statement
         now lined up correctly) and some indentation was wrong as well
@@ -9555,7 +9573,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Rearranged some code (bounding box recalc) inside the object draws
         just to be consistent
 
-        Removed the /* PAGE */ tag from almost every file
+        Removed the / * PAGE */ tag from almost every file
 
         Fixed the threshold bug when you are zoomed in really close, now the
         start an sbox or not is based on the zoom scale
@@ -9617,7 +9635,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Fixed a minor memory leak dealing with the allocation of page_filename
 
         Fixed a core dump condition (if there was no gschemrc, untiled_name or
-        series_name would be null and doing a strlen of a null doesn't work.
+        series_name would be null and doing a strlen of a null doesn`t work.
 
 6/30/98        Fixed the page manager core dump (open schematic, open page manager,
         open another page (page manager now messed up), click on another page)
@@ -9663,7 +9681,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         completely correct but close enough for now)
 
         Squashed another nasty bug, which should have been caught by the
-        prototype mechanism, but I didn't update my prototype.h DOH!
+        prototype mechanism, but I didn`t update my prototype.h DOH!
         Wrong number of parameters to update_page_manager
 
 6/14/98        Changed the way the CHANGED flag works.  Now you get a single dialog
@@ -9690,7 +9708,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Added code to free *all* pages when you exit the program
 
         Found a minor bug in above code which caused a coredump (w_current->
-        page_current wasn't being reset)
+        page_current wasn`t being reset)
 
         Added very prelim ability to load up *all* specified schematics
         (which are on the commandline) at startup. (try gschem *.sch in ../bin)
@@ -9703,7 +9721,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         box
 
         When you create a new filename the cwd is prepended to it.  (that
-        wasn't the case till I added the code back to do so)
+        wasn`t the case till I added the code back to do so)
 
         Started work on the page manager (nothing more than a dialog box
         which makes dealing with all the open pages easier).
@@ -9720,12 +9738,12 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         in a per page structure
 
         Fixed a minor bug when drawing arc and the new page mechanism,
-        wasn't setting up the world coord system at the right time (too late)
+        wasn`t setting up the world coord system at the right time (too late)
 
-        Added a check to see if a schematic file exists, if it doesn't then
+        Added a check to see if a schematic file exists, if it doesn`t then
         do nothing else load the file.  This was causing a core dump.
 
-        Found a few places where the HAS_TCL wasn't and hence gschem wouldn't
+        Found a few places where the HAS_TCL wasn`t and hence gschem wouldn`t
         compile (added the HAS_TCL #ifdef).
 
 6/8/98        Did some more testing of the page mechanism.  Still very crude.
@@ -9759,11 +9777,11 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 5/10/98        Changed MOVE/COPY/PAN modes so that they DO NOT stay in MOVE/COPY/PAN
         Staying after execution of these modes was driving me nuts.
 
-        Fixed a minor cosmetic bug in the saveas dialog box (wasn't updating
+        Fixed a minor cosmetic bug in the saveas dialog box (wasn`t updating
         the filename at the bottom of the screen)
 
         Fixed a nasty (been there since v0.0.1) with the creation of selection
-        lists in o_move_end and o_copy_end.  prev link wasn't being set, which
+        lists in o_move_end and o_copy_end.  prev link wasn`t being set, which
         caused a segfault in o_attrib_get_name_value
 
         Found another bug in change_basename (x_compsel.c) which has a holdout
@@ -9782,7 +9800,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Re-enabled the window grab on the text edit dialog box.  This might
         stay this way for a while.
 
-        Fixed a minor bug in x_window_close_all, so that you didn't free
+        Fixed a minor bug in x_window_close_all, so that you didn`t free
         the window_head node unless next was empty
 
         Fixed the names of menu items (New/Close Window etc...)
@@ -9790,23 +9808,23 @@ src/*.c: Removed all traces of the ADDING_SEL flag
 5/7/98        Worked a bit more on the multi window code, getting it solid
 
         Added a head node to window_head just to make my life easier
-        ( head nodes aren't deallocated and so window_head doesn't change)
+        ( head nodes aren`t deallocated and so window_head doesn`t change)
 
         Fixed a nasty bug with the text size dialog box.  Had a variable
-        entry which wasn't inited or used, but was being referenced!
+        entry which wasn`t inited or used, but was being referenced!
 
         Fixed another holdover bug (from the days when null entry input
         caused gtk to coredump) in the text size dialog box
 
 5/6/98  Fixed a few memory leaks, there are still a few, but those are in
-        gtk/my code that doesn't deallocate resources which gtk provides
+        gtk/my code that doesn`t deallocate resources which gtk provides
 
 5/3/98         Fixed a minor bug dealing with not having a default for
         override_net|pin_color, which caused problems when gschem
         could not find a gschemrc file.
 
         Fixed a minor bug dealing with sending delete events to a window,
-        data parameter wasn't being passed.  (disabled both delete and
+        data parameter wasn`t being passed.  (disabled both delete and
         destroy for now)
 
 5/2/98  Finished global cleanup, gschem now builds cleanly, and seems to
@@ -9848,8 +9866,8 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Changed the order of init functions in main.c
 
         Fixed two nasty bugs that deal with the Add Attribute code
-        1) wasn't properly checking for no input in the name/value boxes
-        2) wasn't allocating enough memory for current_attribute.
+        1) wasn`t properly checking for no input in the name/value boxes
+        2) wasn`t allocating enough memory for current_attribute.
 
 4/15/98 Added some finishing touches to the Add Attribute dialog box and
         the code that actually does the work.
@@ -9875,7 +9893,7 @@ src/*.c: Removed all traces of the ADDING_SEL flag
         Disabled the very broken "get correct filename.ps" code when you
          print something.  Right now all postscript output goes to out.ps
 
-        Fixed a minor bug: if you are drawing a net and haven't yet placed
+        Fixed a minor bug: if you are drawing a net and haven`t yet placed
           the first point and then you hit the right button a redraw is not
         needed.  (removed the redraw)
 

@@ -38,7 +38,7 @@
 
 #define DOTS_POINTS_ARRAY_SIZE       5000
 #define DOTS_VARIABLE_MODE_SPACING   30
-#define MESH_COARSE_GRID_MULTIPLIER  5
+#define COARSE_GRID_MULTIPLIER  5
 #define TILES_FONT_SIZE              21
 
 /*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
@@ -91,6 +91,38 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
   return incr;
 }
 
+/*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
+ *
+ *  \par Function Description
+ *  Returns the world spacing of the rendered grid, taking into account where
+ *  the grid drawing code may drop elelments which are too densly packed for a
+ *  given zoom level.
+ *
+ *  \param [in] w_current  The GschemToplevel.
+ *  \returns The grid spacing in world units of the grid as rendered, or -1
+ *           if there are no items drawn.
+ */
+static int query_mesh_grid_spacing (GschemToplevel *w_current)
+{
+  int incr, screen_incr;
+
+  incr = w_current->snap_size;
+  screen_incr = SCREENabs (w_current, incr);
+
+  /* We draw a fine grid if its on-screen spacing is large enough */
+  if (screen_incr >= w_current->mesh_grid_threshold) {
+    return incr;
+  }
+
+  incr *= COARSE_GRID_MULTIPLIER;
+  screen_incr = SCREENabs (w_current, incr);
+
+  /* We draw a coarse grid if its on-screen spacing is large enough */
+  if (screen_incr >= w_current->mesh_grid_threshold)
+    return incr;
+
+  return -1;
+}
 
 /*! \brief Draw an area of the screen with a dotted grid pattern
  *
@@ -103,7 +135,8 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
  *  \param [in] width      The width of the region to draw.
  *  \param [in] height     The height of the region to draw.
  */
-static void draw_dots_grid_region (GschemToplevel *w_current,
+static void
+draw_dots_grid_region (GschemToplevel *w_current,
                                    int x, int y, int width, int height)
 {
   int i, j;
@@ -115,7 +148,7 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
   int incr = query_dots_grid_spacing (w_current);
 
   if (incr == -1)
-    return;
+  return;
 
   gdk_gc_set_foreground (w_current->gc, x_get_color (DOTS_GRID_COLOR));
 
@@ -166,6 +199,7 @@ static void draw_dots_grid_region (GschemToplevel *w_current,
   }
 }
 
+
 /*! \brief Helper function for draw_mesh_grid_regin
  */
 static void draw_mesh (GschemToplevel *w_current,
@@ -193,6 +227,7 @@ static void draw_mesh (GschemToplevel *w_current,
     if (next_coarse_y < y_start) next_coarse_y += coarse_incr;
   }
 
+  /* Draw the horizontal grid lines */
   for (j = y_start; j < y_end; j = j + incr) {
 
     /* Skip lines which will be drawn in the coarser grid */
@@ -209,11 +244,12 @@ static void draw_mesh (GschemToplevel *w_current,
   }
   cairo_stroke (w_current->cr);
 
+  /* Draw the vertical grid lines  */
   for (i = x_start; i < x_end; i = i + incr) {
 
     /* Skip lines which will be drawn in the coarser grid */
-    if (j == next_coarse_y) {
-      next_coarse_y += coarse_incr;
+    if (i == next_coarse_x) {
+      next_coarse_x += coarse_incr;
       continue;
     }
 
@@ -241,7 +277,7 @@ static void draw_mesh (GschemToplevel *w_current,
 static void
 draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int height)
 {
-  GdkColor *color;
+  edaColor *c;
   int x_start, y_start, x_end, y_end;
   int incr;
   int screen_incr;
@@ -252,41 +288,167 @@ draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int h
   SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
   SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
 
-  cairo_set_line_width (w_current->cr, w_current->
-                        mesh_line_width_factor * 0.01);
+  cairo_set_line_width (w_current->cr, w_current->grid_size_factor);
 
   cairo_set_line_cap (w_current->cr, CAIRO_LINE_CAP_SQUARE);
 
   /** Draw the fine grid if its on-screen spacing is large enough **/
   if (screen_incr >= w_current->mesh_grid_threshold) {
 
-    color = &w_current->mesh_minor_color;
+    c = &w_current->grid_minor_color;
 
-    cairo_set_source_rgba (w_current->cr,
-                           (double)color->red   / 65535.0,
-                           (double)color->green / 65535.0,
-                           (double)color->blue  / 65535.0,
-                           w_current->mesh_minor_alpha);
+    cairo_set_source_rgba (w_current->cr, c->r, c->g, c->b, c->a);
 
     draw_mesh (w_current, x_start, y_start,
-               x_end, y_end, incr, MESH_COARSE_GRID_MULTIPLIER);
+               x_end, y_end, incr, COARSE_GRID_MULTIPLIER);
   }
 
-  incr       *= MESH_COARSE_GRID_MULTIPLIER;
+  incr       *= COARSE_GRID_MULTIPLIER;
   screen_incr = SCREENabs (w_current, incr);
 
   /** Draw the coarse grid if its on-screen spacing is large enough **/
   if (screen_incr >= w_current->mesh_grid_threshold) {
 
-    color = &w_current->mesh_major_color;
+    c = &w_current->grid_major_color;
 
-    cairo_set_source_rgba (w_current->cr,
-                           (double)color->red     / 65535.0,
-                           (double)color->green  / 65535.0,
-                           (double)color->blue  / 65535.0,
-                           w_current->mesh_major_alpha);
+    cairo_set_source_rgba (w_current->cr, c->r, c->g, c->b, c->a);
 
     draw_mesh (w_current, x_start, y_start, x_end, y_end, incr, 0);
+  }
+}
+
+/*! \brief Draw an area of the screen with the current grid pattern.
+ *
+ *  \par Function Description
+ *  Draws the desired grid pattern over a given region of the screen.
+ *
+ *  \param [in] w_current  The GschemToplevel.
+ *  \param [in] x          The left screen coordinate for the drawing.
+ *  \param [in] y          The top screen coordinate for the drawing.
+ *  \param [in] width      The width of the region to draw.
+ *  \param [in] height     The height of the region to draw.
+ */
+void
+x_grid_draw_region (GschemToplevel *w_current, int x, int y, int width, int height)
+{
+  switch (w_current->grid_mode) {
+    case GRID_NONE:
+      return;
+
+    case GRID_DOTS:
+      draw_dots_grid_region (w_current, x, y, width, height);
+      break;
+
+    case GRID_MESH:
+      draw_mesh_grid_region (w_current, x, y, width, height);
+      break;
+  }
+
+#if DEBUG_TILES
+  /* For diagnostic purposes */
+  x_draw_tiles(w_current);
+#endif
+
+}
+
+#if DEBUG_GRID
+static void x_grid_print_parameters (GschemToplevel *w_current, char *when)
+{
+  printf("%s on %s:\n", __func__, when);
+  printf("mesh_grid_minor_color: ");
+  printf("\tred=%d ",    w_current->mesh_grid_minor_color.red);
+  printf("\tgreen=%d ",  w_current->mesh_grid_minor_color.green);
+  printf("\tblue=%d\n",  w_current->mesh_grid_minor_color.blue);
+
+  printf("grid_minor_color:");
+  printf("\tred=%f ",    w_current->grid_minor_color.r);
+  printf("\tgreen=%f ",  w_current->grid_minor_color.g);
+  printf("\tblue=%f",    w_current->grid_minor_color.b);
+  printf("\talpha=%f\n", w_current->grid_minor_color.a);
+
+  printf("mesh_grid_major_color: ");
+  printf("\tred=%d ",    w_current->mesh_grid_major_color.red);
+  printf("\tgreen=%d ",  w_current->mesh_grid_major_color.green);
+  printf("\tblue=%d\n",  w_current->mesh_grid_major_color.blue);
+
+  printf("grid_minor_color: ");
+  printf("\tred=%f ",    w_current->grid_major_color.r);
+  printf("\tgreen=%f ",  w_current->grid_major_color.g);
+  printf("\tblue=%f",    w_current->grid_major_color.b);
+  printf("\talpha=%f\n", w_current->grid_major_color.a);
+
+  printf("grid_size_factor=%f\n", w_current->grid_size_factor);
+  printf("\n");
+}
+#endif
+
+/*! \brief Configure Grid Variables for the Current Grid Mode
+ *
+ *  \par Function Description
+ *  This function sets up toplevel variables used by the grid system
+ *  for the grid mode and must be called if the grid color settings
+ *  are changed. Numerical adjustments are made to data here so that
+ *  the computations are performed outside of the expose event loop.
+ *
+ *  \param [in] w_current  The GschemToplevel
+ *
+ */
+void x_grid_configure_variables (GschemToplevel *w_current)
+{
+  double red;
+  double green;
+  double blue;
+
+#if DEBUG_GRID
+  x_grid_print_parameters (w_current, "entry");
+#endif
+
+  /* mesh_grid_minor_color is a GdkColor structure */
+  red   = w_current->mesh_grid_minor_color.red   / 65535.0;
+  green = w_current->mesh_grid_minor_color.green / 65535.0;
+  blue  = w_current->mesh_grid_minor_color.blue  / 65535.0;
+
+  w_current->grid_minor_color.r  = red;
+  w_current->grid_minor_color.g  = green;
+  w_current->grid_minor_color.b  = blue;
+
+  w_current->grid_minor_color.a  = w_current->mesh_grid_minor_alpha * 0.01;
+
+  red   = w_current->mesh_grid_major_color.red   / 65535.0;
+  green = w_current->mesh_grid_major_color.green / 65535.0;
+  blue  = w_current->mesh_grid_major_color.blue  / 65535.0;
+
+  w_current->grid_major_color.r  = red;
+  w_current->grid_major_color.g  = green;
+  w_current->grid_major_color.b  = blue;
+
+  w_current->grid_major_color.a  = w_current->mesh_grid_major_alpha * 0.01;
+
+  w_current->grid_size_factor    = w_current->mesh_line_width_factor * 0.01;
+
+#if DEBUG_GRID
+  x_grid_print_parameters (w_current, "exit");
+#endif
+}
+
+/*! \brief Query the spacing in world coordinates at which the grid is drawn.
+ *
+ *  \par Function Description
+ *  Returns the world spacing of the rendered grid, taking into account where
+ *  the grid drawing code may drop elelments which are too densly packed for a
+ *  given zoom level.
+ *
+ *  \param [in] w_current  The GschemToplevel.
+ *  \returns The grid spacing in world units of the grid as rendered, or -1
+ *           if there are no items drawn.
+ */
+int x_grid_query_drawn_spacing (GschemToplevel *w_current)
+{
+  switch (w_current->grid_mode) {
+    default:
+    case GRID_NONE: return -1;
+    case GRID_DOTS: return query_dots_grid_spacing (w_current);
+    case GRID_MESH: return query_mesh_grid_spacing (w_current);
   }
 }
 
@@ -356,108 +518,6 @@ void x_draw_tiles(GschemToplevel *w_current)
 
       GEDA_FREE(tempstring);
     }
-  }
-}
-
-/*! \brief Draw an area of the screen with the current grid pattern.
- *
- *  \par Function Description
- *  Draws the desired grid pattern over a given region of the screen.
- *
- *  \param [in] w_current  The GschemToplevel.
- *  \param [in] x          The left screen coordinate for the drawing.
- *  \param [in] y          The top screen coordinate for the drawing.
- *  \param [in] width      The width of the region to draw.
- *  \param [in] height     The height of the region to draw.
- */
-void
-x_grid_draw_region (GschemToplevel *w_current, int x, int y, int width, int height)
-{
-  switch (w_current->grid_mode) {
-    case GRID_NONE:
-      return;
-
-    case GRID_DOTS:
-      draw_dots_grid_region (w_current, x, y, width, height);
-      break;
-
-    case GRID_MESH:
-      draw_mesh_grid_region (w_current, x, y, width, height);
-      break;
-  }
-
-#if DEBUG_TILES
-  /* For diagnostic purposes */
-  x_draw_tiles(w_current);
-#endif
-
-}
-
-/*! \brief Query the spacing in world coordinates at which the mesh grid is drawn.
- *
- *  \par Function Description
- *  Returns the world spacing of the rendered grid, taking into account where
- *  the grid drawing code may drop elelments which are too densly packed for a
- *  given zoom level.
- *
- *  \param [in] w_current  The GschemToplevel.
- *  \returns The grid spacing in world units of the grid as rendered, or -1
- *           if there are no items drawn.
- */
-static int query_mesh_grid_spacing (GschemToplevel *w_current)
-{
-  int incr, screen_incr;
-
-  incr = w_current->snap_size;
-  screen_incr = SCREENabs (w_current, incr);
-
-  /* We draw a fine grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_threshold) {
-    return incr;
-  }
-
-  incr *= MESH_COARSE_GRID_MULTIPLIER;
-  screen_incr = SCREENabs (w_current, incr);
-
-  /* We draw a coarse grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_threshold)
-    return incr;
-
-  return -1;
-}
-
-void x_grid_setup_color (GschemToplevel *w_current)
-{
-  w_current->mesh_minor_alpha       = w_current->mesh_grid_minor_alpha * 0.01;
-  w_current->mesh_major_alpha       = w_current->mesh_grid_major_alpha * 0.01;
-
-  w_current->mesh_minor_color.red   = w_current->mesh_grid_minor_color.red;
-  w_current->mesh_minor_color.green = w_current->mesh_grid_minor_color.green;
-  w_current->mesh_minor_color.blue  = w_current->mesh_grid_minor_color.blue;
-
-  w_current->mesh_major_color.red   = w_current->mesh_grid_major_color.red;
-  w_current->mesh_major_color.green = w_current->mesh_grid_major_color.green;
-  w_current->mesh_major_color.blue  = w_current->mesh_grid_major_color.blue;
-}
-
-/*! \brief Query the spacing in world coordinates at which the grid is drawn.
- *
- *  \par Function Description
- *  Returns the world spacing of the rendered grid, taking into account where
- *  the grid drawing code may drop elelments which are too densly packed for a
- *  given zoom level.
- *
- *  \param [in] w_current  The GschemToplevel.
- *  \returns The grid spacing in world units of the grid as rendered, or -1
- *           if there are no items drawn.
- */
-int x_grid_query_drawn_spacing (GschemToplevel *w_current)
-{
-  switch (w_current->grid_mode) {
-    default:
-    case GRID_NONE: return -1;
-    case GRID_DOTS: return query_dots_grid_spacing (w_current);
-    case GRID_MESH: return query_mesh_grid_spacing (w_current);
   }
 }
 

@@ -25,7 +25,7 @@
 #include <geda_label.h>
 #include <geda_debug.h>
 
-/** \defgroup Gschem-Status-Module Gschem Status Module
+/** \defgroup Gschem-Status-System Status System
  *  @{
  * \par
  * This module contains routines to update user interface components,
@@ -699,4 +699,4 @@ void i_status_update_title(GschemToplevel *w_current)
 #endif
 }
 
-/** @} endgroup Gschem-Status-Module */
+/** @} endgroup Gschem-Status-System */

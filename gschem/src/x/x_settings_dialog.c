@@ -1454,7 +1454,7 @@ void setup_ripper_symbol_combo(char* cur_name) {
  *      2. switch_responder
 */
 
-/*! \brief Function to toggle radio images
+/*! \brief Function to toggle radio images on the Preferences Dialog
  *  \par Function Description: This function changes the images of
  *       controls created with create_geda_switch to the opposite
  *       state, i.e. if ON use OFF image and if OFF use ON image.
@@ -2347,9 +2347,13 @@ int x_settings_lookup_cursor(int offset) {
 
 /*! \brief Post Dialog procedure to retrieves values in dialog controls.
  *  \par Function Description
- *       This function retrieves and saves the values from all widgets. The
- *       values are saved to either the memory variables from which they were
- *       loaded or to the rc_options structure.
+ *   This function retrieves and saves the values from all widgets. The
+ *   values are saved to either the memory variables from which they were
+ *   loaded or to the rc_options structure. In some cases, the new setting
+ *   is compared to the old setting and only updated when changed, this
+ *   primarily applies to strings.
+ *
+ *   \sa configure_dialog_response
  */
 void GatherSettings(GschemToplevel *w_current) {
 
@@ -2372,8 +2376,6 @@ void GatherSettings(GschemToplevel *w_current) {
                              &w_current->mesh_grid_minor_color);
   gtk_color_button_get_color(GTK_COLOR_BUTTON(MeshMajorColorButt),
                              &w_current->mesh_grid_major_color);
-
-  x_grid_setup_color (w_current);
 
   gtk_color_button_get_color(GTK_COLOR_BUTTON(GripStrokeColorButt), &color);
   eda_renderer_set_grips_stroke_color (w_current->renderer, &color);

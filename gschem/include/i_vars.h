@@ -21,7 +21,6 @@ extern int default_mesh_grid_major_alpha;
 extern GdkColor default_mesh_grid_minor_color;
 extern GdkColor default_mesh_grid_major_color;
 
-
 extern int default_object_clipping;
 extern int default_scrollbars;
 extern int default_scrollbar_update;

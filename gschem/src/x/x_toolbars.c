@@ -52,25 +52,32 @@
 
 #include <geda_debug.h>
 
+/** toolbars-button-lists GLists of Toolbar Buttons
+ *  \brief Collection GList of Toolbar Widgets
+ *  \par
+ *  These are convenience macros to reference GList in the bar_widgets
+ *  structure, various buttons on toolbars are categorically added to
+ *  the lists, which are used when setting sensitivities states
+ */
+
+#define ANY_OBJECT_LIST    bar_widgets->any_object    /* List of widgets on toolbars to set if some object is selected */
+#define CAN_PASTE_LIST     bar_widgets->can_paste
+#define CAN_UNDO_LIST      bar_widgets->can_undo
+#define CAN_REDO_LIST      bar_widgets->can_redo
+
+#define CAN_HATCH_LIST     bar_widgets->can_hatch
+#define CAN_ELINE_LIST     bar_widgets->can_edit_line
+#define HAVE_COMPLEX_LIST  bar_widgets->complex_selected
+#define HAVE_PAGES_LIST    bar_widgets->mutil_pages
+#define HAVE_PIN_LIST      bar_widgets->pin_selected
+#define TEXT_OBJECT_LIST   bar_widgets->text_selected
+
+#define TOOLBAR_RADIOS bar_widgets->toolbar_radio_list   /* Single list of toolbar radios */
+
 /** \defgroup toolbars-module Toolbars Module
  *  @{\brief This group contains functions to the toolbars
  *    \ingroup (main-window)
-*/
-
-/* convenience macros */
-#define ANY_OBJECT_LIST   bar_widgets->any_object    /* List of widgets on toolbars to set if some object is selected */
-#define CAN_PASTE_LIST    bar_widgets->can_paste
-#define CAN_UNDO_LIST     bar_widgets->can_undo
-#define CAN_REDO_LIST     bar_widgets->can_redo
-
-#define CAN_HATCH_LIST    bar_widgets->can_hatch
-#define CAN_ELINE_LIST    bar_widgets->can_edit_line
-#define HAVE_COMPLEX_LIST bar_widgets->complex_selected
-#define HAVE_PAGES_LIST   bar_widgets->mutil_pages
-#define HAVE_PIN_LIST     bar_widgets->pin_selected
-#define TEXT_OBJECT_LIST  bar_widgets->text_selected
-
-#define TOOLBAR_RADIOS bar_widgets->toolbar_radio_list   /* Single list of toolbar radios */
+ */
 
 static GSList    *ui_list = NULL;
 
@@ -1572,8 +1579,7 @@ void x_toolbar_display_horiz(GtkWidget *widget, GschemToplevel *w_current)
   turn_off_radio ((RadioMenuData*) g_slist_nth_data (w_current->toolbar_mode_grp, 2));
 }
 
-/*! \brief Sett All Toolbar Radios InActive
- *
+/*! \brief Set All Toolbar Radios InActive
  *  \par Function Description
  * This function completes the final configuration of the toolbar setup
 
@@ -1589,6 +1595,44 @@ void x_toolbars_activate_select ( GschemToplevel *w_current) {
   ToolBarWidgets *bar_widgets;
   bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
   gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(bar_widgets->toolbar_none), TRUE);
+}
+
+/*! \brief Set The Grid Radio
+ *  \par Function Description
+ *  This function should be called after construction of the main
+ *  window to the correct button is pressed in for the grid_mode
+ *  or anytime after the grid mode is changed programmatically.
+ *
+ *  \param [in] w_current pointer to top-level data structure
+ */
+void x_toolbars_set_grid_radio ( GschemToplevel *w_current) {
+
+  ToolBarWidgets  *bar_widgets;
+  GtkToggleButton *target = NULL;
+
+  bar_widgets = g_slist_nth_data (ui_list, w_current->ui_index);
+
+  switch(w_current->grid_mode) {
+    case(GRID_NONE):
+      target = (GtkToggleButton*) bar_widgets->toolbar_off;
+      break;
+    case(GRID_DOTS):
+      target = (GtkToggleButton*) bar_widgets->toolbar_dot;
+      break;
+    case(GRID_MESH):
+      target = (GtkToggleButton*) bar_widgets->toolbar_mesh;
+      break;
+    default:
+      break;
+  }
+  if(GTK_IS_TOGGLE_BUTTON(target)) {
+    /* if button is not active then action was not initiated by the toolbar */
+    if (!target->active) {
+      g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
+      gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(target), TRUE);
+      g_signal_handlers_unblock_by_func (target, x_toolbars_execute_radio, w_current);
+    }
+  }
 }
 
 /*! \brief Update the Toolbars based on the current state
