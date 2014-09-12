@@ -56,7 +56,6 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   int w_diff_x, w_diff_y;
 
   /* erase old image */
-  /* o_place_invaidate_rubber (w_current, FALSE); */
   w_current->rubber_visible = 0;
 
   /* Calc final object positions */
@@ -88,6 +87,7 @@ o_place_end (GschemToplevel *w_current, int w_x, int w_y,
   p_current = toplevel->page_current;
 
   for (iter = temp_dest_list; iter != NULL; NEXT(iter)) {
+
     o_current = iter->data;
 
     s_page_append_object (p_current, o_current);

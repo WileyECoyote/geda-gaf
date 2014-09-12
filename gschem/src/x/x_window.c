@@ -777,7 +777,6 @@ x_window_idle_thread_post_load_file (void *filename)
 {
   q_log_message (_("Loading \"%s\"\n"), filename);
   recent_files_add (filename);
-
   return FALSE;
 }
 
@@ -820,18 +819,18 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
 
   /* Generate unique untitled filename if none was specified */
   char *generate_untitled() {
-  char  s_val[3];
-  char *tmp;
-  char *str;
+    char  s_val[3];
+    char *tmp;
+    char *str;
 
     inline void unique_untitled () {
       /* Get DIR in buffer */
       ptr = str = getcwd  ( &strbuff[0], MAX_PATH - 1 );
       /* Append a seperator onto the end of DIR */
       while ( *ptr != '\0') ++ptr; /* advance to end of string */
-       *ptr = DIR_SEPARATOR;     /* add separator */
-      ++ptr;                       /* advance over separator */
-       *ptr = '\0';                /* Add new NULL */
+        *ptr = DIR_SEPARATOR;     /* add separator */
+        ++ptr;                       /* advance over separator */
+        *ptr = '\0';                /* Add new NULL */
 
         /* Append default name from config */
         if (toplevel->untitled_name) {
@@ -841,12 +840,12 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
           str = &untitled[0];
         }
 
-      /* Converted and append an integer to the string */
-      tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
-      str = strcat  ( str, tmp );
+        /* Converted and append an integer to the string */
+        tmp = u_string_int2str ( ++toplevel->num_untitled, &s_val[0], 10 );
+        str = strcat  ( str, tmp );
 
-      /* Append our file extension */
-      str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
+        /* Append our file extension */
+        str = strcat  ( str, SCHEMATIC_FILE_DOT_SUFFIX );
     }
 
     memset(&strbuff[0], '\0', sizeof(strbuff));
@@ -859,9 +858,9 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
   inline Page* new_page( const char *fname ) {
     page = s_page_new_with_notify (toplevel, fname);
     x_window_setup_page(w_current, page, w_current->world_left,
-                                         w_current->world_right,
-                                         w_current->world_top,
-                                         w_current->world_bottom);
+                        w_current->world_right,
+                        w_current->world_top,
+                        w_current->world_bottom);
     s_page_goto (toplevel, page);
     return page;
   }
@@ -899,6 +898,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
 
       /* An existing filename was passed, see if already loaded */
       page = s_page_search (toplevel, filename);
+
       if ( page == NULL ) {
 
         GError *err = NULL;
@@ -937,7 +937,7 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
       /* If the path is OK but no file then just create a new file */
       if ((access(path, W_OK && X_OK && F_OK) == 0) && (file_err == ENOENT)) {
         q_log_message("Creating new file \"%s\"\n", filename);
-       /* Filespec may not exist but user has authority to create */
+        /* Filespec may not exist but user has authority to create */
         page = empty_page(filename);
       }
       else { /* Houston, we have problem */
@@ -959,17 +959,17 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
         if( errno != NO_ERROR) {
           const char   *homedir = g_getenv ("HOME"); /* does not allocate */
           if (!homedir) homedir = g_get_home_dir (); /* does not allocate */
-          path = strcpy(&strbuff[0], homedir);
+            path = strcpy(&strbuff[0], homedir);
           ptr  = (char*) filename;
           while ( *ptr != '\0') ++ptr;      /* advance to end of argument */
-          while ( *ptr != DIR_SEPARATOR) --ptr;  /* backup to separator */
-          path = strcat(path, ptr);
-          /* set Flag for file-save to use file-saveas */
-          w_current->force_save_as = TRUE;
+            while ( *ptr != DIR_SEPARATOR) --ptr;  /* backup to separator */
+              path = strcat(path, ptr);
+            /* set Flag for file-save to use file-saveas */
+            w_current->force_save_as = TRUE;
 #if DEBUG
-          perror(stderr, "filename:%s\n path:%s\n", path, filename);
+            perror(stderr, "filename:%s\n path:%s\n", path, filename);
 #endif
-          resolve_2_recover(path);
+            resolve_2_recover(path);
         }
       }
     }
@@ -977,12 +977,12 @@ x_window_open_page (GschemToplevel *w_current, const char *filename)
 
   /* Damage notifications should invalidate the object on screen */
   o_notify_change_add (page,
-                      (ChangeNotifyFunc) o_invalidate_object,
-                      (ChangeNotifyFunc) o_invalidate_object, w_current);
+                       (ChangeNotifyFunc) o_invalidate_object,
+                       (ChangeNotifyFunc) o_invalidate_object, w_current);
 
   i_zoom_world_extents (w_current,
-                  s_page_get_objects (toplevel->page_current),
-                  I_PAN_DONT_REDRAW);
+                        s_page_get_objects (toplevel->page_current),
+                        I_PAN_DONT_REDRAW);
 
   o_undo_savestate (w_current, UNDO_ALL);
 

@@ -522,7 +522,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     p_new->change_notify_funcs = ptr_notify_funcs;
 
   }
-
+fprintf(stderr, "%s page=%p, id=%d, %p\n", __func__, Current_Page, Current_Page->pid, geda_notify_list_get_glist(Current_Page->change_notify_funcs));
   /* temporarily disable logging */
   int  save_logging;
   int  restored;

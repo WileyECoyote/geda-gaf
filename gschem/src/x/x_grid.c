@@ -137,7 +137,7 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
  */
 static void
 draw_dots_grid_region (GschemToplevel *w_current,
-                                   int x, int y, int width, int height)
+                       int x, int y, int width, int height)
 {
   int i, j;
   int dot_x, dot_y;

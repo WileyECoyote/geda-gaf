@@ -121,6 +121,7 @@ main_prog(void *closure, int argc, char *argv[])
   exit_status = s_check_all(pr_current);
 
   s_page_delete_list(pr_current);
+
   gsymcheck_quit();
 
   exit(exit_status);

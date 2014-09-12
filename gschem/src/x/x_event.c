@@ -869,7 +869,7 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
 
     w_current->cr = gdk_cairo_create( widget->window );
     gdk_cairo_rectangle (w_current->cr, &(event->area));
-    //cairo_clip (w_current->cr);
+    cairo_clip (w_current->cr);
 
     o_redraw_rectangles (w_current, &(event->area), 1);
 
