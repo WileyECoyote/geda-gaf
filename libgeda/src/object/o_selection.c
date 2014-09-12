@@ -48,9 +48,7 @@ SELECTION *o_selection_new( void )
  */
 void o_selection_add (SELECTION *selection, Object *o_selected)
 {
-  if (o_selected->selected == FALSE)
-  {
-    /* WEH:Got enough stack? Lets find out! */
+  if (o_selected->selected == FALSE) {
     o_selection_select (o_selected);
     geda_list_add( (GedaList *)selection, o_selected );
   }
@@ -125,7 +123,6 @@ void o_selection_select(Object *object)
     object->selected = TRUE;
     o_notify_emit_change (object);
   }
-
 }
 
 /*! \brief Unselects the given object

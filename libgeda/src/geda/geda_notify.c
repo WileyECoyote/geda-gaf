@@ -50,7 +50,6 @@
 
 static GObjectClass *geda_notify_list_parent_class = NULL;
 
-
 /*! \brief GedaType instance initialiser for GedaNotifyList
  *
  *  GedaType Function Description
@@ -65,8 +64,8 @@ static void geda_notify_list_instance_init (GTypeInstance *instance, void *class
 
   /* Strictly un-necessary, as the memory is zero'd after allocation */
   list->glist = NULL;
+  list->freeze_count = 0;
 }
-
 
 /*! \brief GObject finalise handler
  *
@@ -83,7 +82,6 @@ static void geda_notify_list_finalize (GObject *object)
   list->glist = NULL;
   G_OBJECT_CLASS( geda_notify_list_parent_class )->finalize (object);
 }
-
 
 /*! \brief GedaType class initialiser for GedaNotifyList
  *
@@ -104,7 +102,6 @@ static void geda_notify_list_class_init(void *class, void *class_data)
   gobject_class->finalize       = geda_notify_list_finalize;
 
 }
-
 
 /*! \brief Function to retrieve GedaNotifyList's Type identifier.
  *
@@ -135,7 +132,6 @@ GedaType geda_notify_list_get_type (void)
   return type;
 }
 
-
 /*! \brief Returns a pointer to a new GedaNotifyList object.
  *
  *  \par Function Description
@@ -144,9 +140,69 @@ GedaType geda_notify_list_get_type (void)
  *  \return pointer to the new GedaNotifyList object.
  */
 GedaNotifyList *geda_notify_list_new (void) {
-  return g_object_new( GEDA_TYPE_LIST, NULL );
+
+  return g_object_new( GEDA_TYPE_NOTIFY_LIST, NULL );
 }
 
+/*! \brief Returns is a GedaNotifyList Frozen.
+ *
+ *  \par Function Description
+ *  If \a list is a valid #GedaNotifyList and the freeze count is 0
+ *  then the functions returns zero, otherwise the function returns
+ *  -1 if \a list was not valid #GedaNotifyList, or a positive interger
+ *  equal to the current freeze count.
+ *
+ *  \return TRUE if the freeze count is non zero
+ */
+int
+geda_notify_list_is_frozen (GedaNotifyList *list)
+{
+  bool answer;
+
+  if (GEDA_IS_NOTIFY_LIST(list)) {
+    answer = list->freeze_count;
+  }
+  else {
+    answer = -1;
+  }
+  return answer;
+}
+
+/*! \brief Suspense Notification for a GedaNotifyList
+ *
+ * \par Function Description
+ *  This function increments the freeze count of an #GedaNotifyList.
+ *  Notification of changes is suspended until the freeze is reduced
+ *  to zero.
+ *
+ * \sa geda_notify_list_thaw
+ *
+ * \param list #GedaNotifyList to freeze notifications for.
+ */
+void geda_notify_list_freeze (GedaNotifyList *list)
+{
+  if (list != NULL) {
+    list->freeze_count++;
+  }
+}
+
+/*! \brief Thaw Notification for a GedaNotifyList
+ *
+ * \par Function Description
+ *  This function add a hook to each new page
+ *
+ * \sa geda_notify_list_freeze
+ *
+ * \param list #GedaNotifyList to thaw notifications for.
+ */
+void geda_notify_list_thaw (GedaNotifyList *list)
+{
+  if (list != NULL) {
+
+    list->freeze_count--;
+    list->freeze_count = (list->freeze_count < 0) ? 0 : list->freeze_count;
+  }
+}
 
 /*! \brief Adds the given item to the GedaNotifyList
  *
@@ -160,7 +216,6 @@ void geda_notify_list_add (GedaNotifyList *list, void *item)
 {
   list->glist = g_list_append (list->glist, item);
 }
-
 
 /*! \brief Adds the given glist of items to the GedaNotifyList
  *
@@ -216,6 +271,7 @@ int geda_notify_list_in_list (GedaNotifyList *list, void *func)
   }
   return answer;
 }
+
 /*! \brief Removes the given item from the GedaNotifyList
  *
  *  \par Function Description
@@ -233,7 +289,6 @@ void geda_notify_list_remove (GedaNotifyList *list, void *item)
 
   list->glist = g_list_remove (list->glist, item);
 }
-
 
 /*! \brief Removes all the items in the given GedaNotifyList.
  *

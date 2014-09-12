@@ -359,6 +359,7 @@ Page *geda_page_new_with_notify (void)
   Page *page;
   page = g_object_new( geda_page_get_type(), NULL );
   page->change_notify_funcs = geda_notify_list_new();
+
   return page;
 }
 

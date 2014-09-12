@@ -128,9 +128,7 @@ void o_notify_emit_pre_change (Object *object)
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
 
-    if (object->page->change_notify_funcs != NULL &&
-       !object->page->change_notify_funcs->freeze_count)
-    {
+    if (!geda_notify_list_is_frozen(object->page->change_notify_funcs)) {
 
       GList *iter;
 
@@ -140,6 +138,7 @@ void o_notify_emit_pre_change (Object *object)
       {
         change_notify *entry;
         entry = (change_notify *) iter->data;
+
         if ((entry != NULL) && (entry->pre_change_func != NULL)) {
           entry->pre_change_func (entry->user_data, object);
         }
@@ -150,11 +149,11 @@ void o_notify_emit_pre_change (Object *object)
 }
 
 /*! \brief Emit an object change notification.
- * \par Function Description
- * Calls each change callback function registered with #Page to
- * notify listeners that \a object has just been modified.  All
- * libgeda functions that modify #Object structures should call this
- * just after making a change to an #Object.
+ *  \par Function Description
+ *  Calls each change callback function registered with #Page to
+ *  notify listeners that \a object has just been modified.  All
+ *  libgeda functions that modify #Object structures should call
+ *  this just after making a change to an #Object.
  *
  * \param object   #Object structure to emit notifications for.
  *
@@ -166,9 +165,7 @@ o_notify_emit_change (Object *object)
 
   if (GEDA_IS_PAGE(object->page) && IS_ACTIVE_PAGE(object->page)) {
 
-    if (object->page->change_notify_funcs != NULL &&
-       !object->page->change_notify_funcs->freeze_count)
-    {
+    if (!geda_notify_list_is_frozen(object->page->change_notify_funcs)) {
 
       GList *iter;
 
@@ -186,41 +183,5 @@ o_notify_emit_change (Object *object)
         NEXT(iter);
       }
     }
-  }
-}
-
-/*! \brief Suspense Notification for a GedaNotifyList
- *
- * \par Function Description
- *  This function increments the freeze count of an #GedaNotifyList.
- *  Notification of changes is suspended until the freeze is reduced
- *  to zero.
- *
- * \sa geda_notify_list_thaw
- *
- * \param list #GedaNotifyList to freeze notifications for.
- */
-void geda_notify_list_freeze (GedaNotifyList *list)
-{
-  if (list != NULL) {
-    list->freeze_count++;
-  }
-}
-
-/*! \brief Thaw Notification for a GedaNotifyList
- *
- * \par Function Description
- *  This function add a hook to each new page
- *
- * \sa geda_notify_list_freeze
- *
- * \param list #GedaNotifyList to thaw notifications for.
- */
-void geda_notify_list_thaw (GedaNotifyList *list)
-{
-  if (list != NULL) {
-
-    list->freeze_count--;
-    list->freeze_count = (list->freeze_count < 0) ? 0 : list->freeze_count;
   }
 }

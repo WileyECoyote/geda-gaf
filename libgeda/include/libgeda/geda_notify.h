@@ -66,6 +66,7 @@ unsigned int    geda_notify_list_get_type          (void);
 
 GedaNotifyList *geda_notify_list_new               ( void );
 
+int       geda_notify_list_is_frozen               ( GedaNotifyList *list );
 void      geda_notify_list_freeze                  ( GedaNotifyList *list );
 void      geda_notify_list_thaw                    ( GedaNotifyList *list );
 

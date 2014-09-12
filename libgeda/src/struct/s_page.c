@@ -69,6 +69,7 @@ static void object_added (Page *page, Object *object)
     g_critical ("Object %p already has parent page %p!", object, object->page);
   }
 #endif
+
   object->page = page;
 
   o_notify_emit_pre_change (object);

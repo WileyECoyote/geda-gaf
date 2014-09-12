@@ -1,3 +1,12 @@
+2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_notify.c: Add function geda_notify_list_is_frozen, fix
+      geda_notify_list_new returning the wrong type, GEDA_TYPE_LIST, instead
+      of GEDA_TYPE_NOTIFY_LIST.
+
+    * src/object/o_notify.c: Use geda_notify_list_is_frozen in
+      o_notify_emit_pre_change and o_notify_emit_change
+
 2014-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_notify.c: Add conditional check for change_notify_funcs
