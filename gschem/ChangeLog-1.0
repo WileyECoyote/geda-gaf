@@ -1,5 +1,10 @@
 2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_console.c: Do not issue "Unknown command" when empty command
+      entered at conole.
+
+2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_callbacks.c: Escape key Clear Selection if not in Action
 
 2014-09-12 Wiley E. Hill <wileyhill@gmail.com>

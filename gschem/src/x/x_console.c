@@ -415,9 +415,11 @@ void x_console_eval_command (GedaEntry *entry, int arg1, void * user_data)
       i_command_process(w_current, command, u_string_word_count(command_line),
                         command_line, ID_ORIGIN_CONSOLE);
     }
-    else
-      u_log_message("Unknown command: \"%s\"\n", command );
-
+    else {
+      if (strlen(command)) {
+        u_log_message("Unknown command: \"%s\"\n", command );
+      }
+    }
     GEDA_FREE (command);
   }
   SetEntryText( entry, "");
