@@ -179,9 +179,12 @@ o_select_object(GschemToplevel *w_current, Object *o_current,
 
   /* do the attributes */
   if ( TRUE == removing_obj) {
+
     /* Remove the invisible attributes from the object list as well,
      * so they don't remain selected without the user knowing. */
      o_attrib_deselect_invisible (w_current, selection, o_current);
+
+     /* If nothing else to "deselect", then goto select mode */
      if (g_list_length(selection->glist) == 0) {
        i_status_set_state (w_current, SELECT);
      }

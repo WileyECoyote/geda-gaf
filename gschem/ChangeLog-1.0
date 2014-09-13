@@ -1,5 +1,9 @@
 2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_callbacks.c: Escape key Clear Selection if not in Action
+
+2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_undo.c: Maintain PID during Undo/Redo
 
 2014-09-12 Wiley E. Hill <wileyhill@gmail.com>

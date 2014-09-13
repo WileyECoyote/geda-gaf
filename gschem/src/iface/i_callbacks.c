@@ -212,17 +212,19 @@ DEFINE_I_CALLBACK(cancel)
     if (w_current->event_state == GRIPS)
       o_grips_cancel (w_current);
   }
-
+  else if (o_select_is_selection (w_current)) {
+    /* Was not in an action so clear the selection */
+    o_select_unselect_all(w_current);
+  }
   /* Free the place list and its contents. If we were in a move
    * action, the list (refering to objects on the page) would
    * already have been cleared in o_move_cancel(), so this is OK. */
-
   s_object_release_objects(toplevel->page_current->place_list);
   toplevel->page_current->place_list = NULL;
 
   /* leave this on for now... but it might have to change */
   /* this is problematic since we don't know what the right mode */
-  /* (when you cancel inside an action) should be */
+  /* should be (when you cancel inside an action) */
   i_status_set_state(w_current, SELECT);
 
   /* clear the key guile command-sequence */
