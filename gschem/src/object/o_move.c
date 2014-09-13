@@ -121,7 +121,7 @@ void o_move_stretch_print_all (GList *list)
  *  \par Function Description
  *  This function is used to free the memory assocaited with
  *  the scretch routines.
- *  TODO: WEH USed u_glist_clear insead and eliminate this
+ *  TODO: WEH Used u_glist_clear insead and eliminate this
  *        function.
  */
 void o_move_stretch_destroy_all (GList *list)

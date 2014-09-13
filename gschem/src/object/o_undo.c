@@ -434,6 +434,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   UNDO  *save_current;
 
   int   find_prev_data=FALSE;
+  int   pid;
+
   char *save_filename;
   char *tmp_filename;
 
@@ -513,16 +515,20 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     geda_notify_list_freeze (ptr_notify_funcs);
 
+    pid = Current_Page->pid;
+
     s_page_delete (toplevel, Current_Page);
 
     p_new = s_page_new (toplevel, tmp_filename);
+
+    p_new->pid = pid;
 
     s_page_goto (toplevel, p_new);
 
     p_new->change_notify_funcs = ptr_notify_funcs;
 
   }
-fprintf(stderr, "%s page=%p, id=%d, %p\n", __func__, Current_Page, Current_Page->pid, geda_notify_list_get_glist(Current_Page->change_notify_funcs));
+
   /* temporarily disable logging */
   int  save_logging;
   int  restored;

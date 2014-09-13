@@ -30,6 +30,7 @@
 void o_copy_start(GschemToplevel *w_current, int w_x, int w_y)
 {
   GedaToplevel *toplevel = w_current->toplevel;
+
   GList *s_current;
 
   /* Copy the objects into the buffer at their current position,
@@ -70,6 +71,11 @@ void o_copy_cancel(GschemToplevel *w_current)
  */
 void o_copy_end(GschemToplevel *w_current)
 {
+  GList *iter;
+  for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
+    Object *o_current = iter->data;
+    o_current->page = NULL;
+  }
   o_place_end (w_current, w_current->second_wx, w_current->second_wy, FALSE,
                NULL, "%paste-objects-hook");
 }
@@ -81,6 +87,11 @@ void o_copy_end(GschemToplevel *w_current)
  */
 void o_copy_multiple_end(GschemToplevel *w_current)
 {
+  GList *iter;
+  for (iter = Current_PlaceList; iter != NULL; NEXT(iter)) {
+    Object *o_current = iter->data;
+    o_current->page = NULL;
+  }
   o_place_end (w_current, w_current->second_wx, w_current->second_wy, TRUE,
                NULL, "%paste-objects-hook");
 }

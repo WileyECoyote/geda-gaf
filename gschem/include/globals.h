@@ -147,6 +147,7 @@ typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 /* These macros are used to help reduce lines lengths */
 #define Current_Page      w_current->toplevel->page_current
 #define Current_Selection w_current->toplevel->page_current->selection_list
+#define Current_PlaceList w_current->toplevel->page_current->place_list
 
 /* Utility Macros for Message Dialogs */
 #define message_dialog(text, type) \
