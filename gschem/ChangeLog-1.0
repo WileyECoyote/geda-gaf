@@ -1,7 +1,7 @@
 2014-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_grid.c: Replace gdk_draw_points with local function
-      x_grid_draw_points.
+      x_grid_draw_points and gdk_draw_arc with x_grid_draw_arc.
 
 2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
 

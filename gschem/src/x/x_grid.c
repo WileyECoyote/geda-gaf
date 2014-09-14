@@ -31,6 +31,9 @@
 #include "gschem.h"
 #include <geda_debug.h>
 
+#include <X11/Xlib.h>
+#include <gdk/gdkx.h>
+
 /** \defgroup grid-module Grid Module
  *  @{\brief This group contains functions for Grid systems
  *    \ingroup (main-window)
@@ -123,8 +126,22 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
 
   return -1;
 }
-#include <X11/Xlib.h>
-#include <gdk/gdkx.h>
+
+static void
+x_grid_draw_arc (GschemToplevel *w_current, bool filled, int x, int y,
+                 int width, int height, int angle1, int angle2)
+{
+  GdkGC     *gc       = w_current->gc;
+  GdkScreen *screen   = gdk_gc_get_screen(gc);
+  Drawable   drawable = GDK_WINDOW_XID(w_current->window);
+
+  if (filled)
+    XFillArc (GDK_SCREEN_XDISPLAY (screen), drawable,
+              GDK_GC_XGC (gc), x, y, width, height, angle1, angle2);
+  else
+    XDrawArc (GDK_SCREEN_XDISPLAY (screen), drawable,
+              GDK_GC_XGC (gc), x, y, width, height, angle1, angle2);
+}
 
 static void
 x_grid_draw_points (GschemToplevel *w_current, POINT *points, int npoints)
@@ -171,8 +188,7 @@ x_grid_draw_points (GschemToplevel *w_current, POINT *points, int npoints)
  *  \param [in] height     The height of the region to draw.
  */
 static void
-draw_dots_grid_region (GschemToplevel *w_current,
-                       int x, int y, int width, int height)
+x_grid_draw_dots_region(GschemToplevel *w_current, int x, int y, int width, int height)
 {
   int i, j;
   int dot_x, dot_y;
@@ -220,8 +236,7 @@ draw_dots_grid_region (GschemToplevel *w_current,
           }
         }
         else {
-          gdk_draw_arc (w_current->drawable, w_current->gc,
-                        TRUE, dot_x, dot_y,
+          x_grid_draw_arc (w_current, TRUE, dot_x, dot_y,
                         w_current->dots_grid_dot_size,
                         w_current->dots_grid_dot_size, 0, FULL_CIRCLE);
         }
@@ -311,7 +326,7 @@ static void draw_mesh (GschemToplevel *w_current,
  *  \param [in] height     The height of the region to draw.
  */
 static void
-draw_mesh_grid_region (GschemToplevel *w_current, int x, int y, int width, int height)
+x_grid_draw_mesh_region (GschemToplevel *w_current, int x, int y, int width, int height)
 {
   edaColor *c;
   int x_start, y_start, x_end, y_end;
@@ -372,11 +387,11 @@ x_grid_draw_region (GschemToplevel *w_current, int x, int y, int width, int heig
       return;
 
     case GRID_DOTS:
-      draw_dots_grid_region (w_current, x, y, width, height);
+      x_grid_draw_dots_region (w_current, x, y, width, height);
       break;
 
     case GRID_MESH:
-      draw_mesh_grid_region (w_current, x, y, width, height);
+      x_grid_draw_mesh_region (w_current, x, y, width, height);
       break;
   }
 
