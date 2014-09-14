@@ -36,7 +36,7 @@
  *    \ingroup (main-window)
 */
 
-#define DOTS_POINTS_ARRAY_SIZE       5000
+#define DOTS_POINTS_ARRAY_SIZE       8192
 #define DOTS_VARIABLE_MODE_SPACING   30
 #define COARSE_GRID_MULTIPLIER  5
 #define TILES_FONT_SIZE              21
@@ -123,6 +123,41 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
 
   return -1;
 }
+#include <X11/Xlib.h>
+#include <gdk/gdkx.h>
+
+static void
+x_grid_draw_points (GschemToplevel *w_current, POINT *points, int npoints)
+{
+  GdkScreen *screen   = gdk_gc_get_screen(w_current->gc);
+  Drawable   drawable = GDK_WINDOW_XID(w_current->window);
+
+  if (npoints == 1) {
+    XDrawPoint (GDK_SCREEN_XDISPLAY (screen),
+                drawable,
+                GDK_GC_XGC (w_current->gc),
+                points[0].x, points[0].y);
+  }
+  else {
+
+    int i;
+    XPoint *tmp_points = g_new (XPoint, npoints);
+
+    for (i=0; i<npoints; i++) {
+      tmp_points[i].x = points[i].x;
+      tmp_points[i].y = points[i].y;
+    }
+
+    XDrawPoints (GDK_SCREEN_XDISPLAY (screen),
+                 drawable,
+                 GDK_GC_XGC (w_current->gc),
+                 tmp_points,
+                 npoints,
+                 CoordModeOrigin);
+
+    g_free (tmp_points);
+  }
+}
 
 /*! \brief Draw an area of the screen with a dotted grid pattern
  *
@@ -143,7 +178,7 @@ draw_dots_grid_region (GschemToplevel *w_current,
   int dot_x, dot_y;
   int x_start, y_start, x_end, y_end;
   int count = 0;
-  GdkPoint points[DOTS_POINTS_ARRAY_SIZE];
+  POINT points[DOTS_POINTS_ARRAY_SIZE];
 
   int incr = query_dots_grid_spacing (w_current);
 
@@ -172,14 +207,15 @@ draw_dots_grid_region (GschemToplevel *w_current,
                          Current_Page->bottom, i, j)) {
 
         if (w_current->dots_grid_dot_size == 1) {
+
           points[count].x = dot_x;
           points[count].y = dot_y;
           count++;
 
           /* get out of loop if we're hit the end of the array */
           if (count == DOTS_POINTS_ARRAY_SIZE) {
-            gdk_draw_points (w_current->drawable,
-                             w_current->gc, points, count);
+
+            x_grid_draw_points (w_current, points, count);
             count = 0;
           }
         }
@@ -195,10 +231,10 @@ draw_dots_grid_region (GschemToplevel *w_current,
 
   /* now draw all the points in one step */
   if(count != 0) {
-    gdk_draw_points (w_current->drawable, w_current->gc, points, count);
+    x_grid_draw_points (w_current, points, count);
   }
-}
 
+}
 
 /*! \brief Helper function for draw_mesh_grid_regin
  */

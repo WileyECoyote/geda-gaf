@@ -444,7 +444,6 @@ void i_vars_set(GschemToplevel *w_current)
 
   i_set_rc (&w_current->grid_mode,             default_grid_mode);
   i_set_rc (&w_current->dots_grid_dot_size,    default_dots_grid_dot_size);
-  i_set_rc (&w_current->dots_grid_dot_size,    default_dots_grid_dot_size);
   i_set_rc (&w_current->dots_grid_mode,        default_dots_grid_mode);
   i_set_rc (&w_current->dots_grid_threshold,   default_dots_grid_threshold);
   i_set_rc (&w_current->mesh_grid_threshold,   default_mesh_grid_threshold);

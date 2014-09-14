@@ -210,7 +210,6 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "dots-grid-dot-size",  w_current->dots_grid_dot_size);
   eda_config_set_integer (cfg, win_group, "dots-grid-mode",      w_current->dots_grid_mode);
   eda_config_set_integer (cfg, win_group, "grid-dot-threshold",  w_current->dots_grid_threshold);
-
   eda_config_set_integer (cfg, win_group, "mesh-grid-threshold",   w_current->mesh_grid_threshold);
   eda_config_set_integer (cfg, win_group, "mesh-line-width-factor",  w_current->mesh_line_width_factor);
 

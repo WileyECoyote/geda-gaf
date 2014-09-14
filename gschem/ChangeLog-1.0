@@ -1,3 +1,8 @@
+2014-09-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c: Replace gdk_draw_points with local function
+      x_grid_draw_points.
+
 2014-09-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_console.c: Do not issue "Unknown command" when empty command
