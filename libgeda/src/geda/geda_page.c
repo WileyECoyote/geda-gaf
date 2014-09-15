@@ -526,9 +526,14 @@ geda_page_debug_print (Page *page)
 
   printf( "coord_aspectratio=%5.10f\n", page->coord_aspectratio);
 
-  printf( "to_screen_x_constant=%5.10f, to_screen_x_constant=%f\n", page->to_screen_x_constant, page->to_screen_y_constant);
+  printf( "to_screen_x_constant=%5.10f, to_screen_y_constant=%5.10f\n", page->to_screen_x_constant, page->to_screen_y_constant);
 
-  printf( "to_world_x_constant=%5.10f, to_world_y_constant=%f\n", page->to_world_x_constant, page->to_world_y_constant);
+  printf( "to_world_x_constant=%5.10f, to_world_y_constant=%5.10f\n", page->to_world_x_constant, page->to_world_y_constant);
+
+  int x_res = (page->left - page->right) * page->to_screen_x_constant;
+  int y_res = (page->bottom - page->top) * page->to_screen_y_constant;
+
+  printf( "screen resolution x=%d, y=%d\n", x_res, y_res);
 
   printf( "show_hidden_text=%d\n", page->show_hidden_text);
 
