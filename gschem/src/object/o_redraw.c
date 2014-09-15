@@ -144,7 +144,7 @@ int o_redraw_cleanstates(GschemToplevel *w_current)
  *
  */
 void
-o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_rectangles)
+o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
@@ -154,14 +154,18 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
   int bloat;
   int cue_half_size;
   int grip_half_size;
-  int i;
   int render_flags;
   int zoom;
+
+  int x       = rectangle->x;
+  int y       = rectangle->y;
+  int width   = rectangle->width;
+  int height  = rectangle->height;
 
   GList *obj_list;
   GList *iter;
 
-  RECTANGLE   *world_rects;
+  RECTANGLE    world_rect;
   EdaRenderer *renderer;
 
   GArray *render_color_map         = NULL;
@@ -171,10 +175,7 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
   g_return_if_fail (w_current->toplevel != NULL);
   g_return_if_fail (w_current->toplevel->page_current != NULL);
 
-  for (i = 0; i < n_rectangles; i++) {
-    x_repaint_background_region (w_current, rectangles[i].x, rectangles[i].y,
-                                 rectangles[i].width, rectangles[i].height);
-  }
+//return;
 
   grip_half_size = w_current->grip_pixel_size / 2;
 
@@ -183,27 +184,12 @@ o_redraw_rectangles (GschemToplevel *w_current, GdkRectangle *rectangles, int n_
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
 
-  world_rects = g_new (RECTANGLE, n_rectangles);
+  SCREENtoWORLD (w_current, x - bloat, y + height + bloat,
+                &world_rect.lower_x, &world_rect.lower_y);
+  SCREENtoWORLD (w_current, x + width + bloat, y - bloat,
+                 &world_rect.upper_x, &world_rect.upper_y);
 
-  for (i = 0; i < n_rectangles; i++) {
-
-    int x, y, width, height;
-
-    x = rectangles[i].x;
-    y = rectangles[i].y;
-    width = rectangles[i].width;
-    height = rectangles[i].height;
-
-    SCREENtoWORLD (w_current, x - bloat, y + height + bloat,
-                   &world_rects[i].lower_x, &world_rects[i].lower_y);
-    SCREENtoWORLD (w_current, x + width + bloat, y - bloat,
-                   &world_rects[i].upper_x, &world_rects[i].upper_y);
-  }
-
-  obj_list = s_page_objects_in_regions (toplevel->page_current,
-                                        world_rects, n_rectangles);
-
-  GEDA_FREE (world_rects);
+  obj_list = s_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
 
   /* Set up renderer based on configuration in w_current and list */
   render_flags = EDA_RENDERER_FLAG_HINTING;

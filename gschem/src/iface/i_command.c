@@ -470,6 +470,8 @@ COMMAND (do_debug)
   const char *complete = "Test complete, resumming normal mode\n";
   const char *linefeed = "\n";
 
+  gtk_window_resize (GTK_WINDOW(w_current->main_window), 1092, 924);
+
 /*
   o_attrib_append_attribs_changed_hook (Current_Page,
                                        (AttribsChangedFunc) o_diagnostics_notify_attribute,

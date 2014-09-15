@@ -846,7 +846,7 @@ void x_event_governor(GschemToplevel *w_current)
  *  The expose event in Gtk is equivalent to the OnDraw in MS Windows,
  *  except it's not just a hook, we actually have do the drawing. We
  *  don't do in any drawing here, the function creates a temporary Cairo
- *  drawable context and calls o_redraw_rectangles() to do the actual
+ *  drawable context and calls o_redraw_rectangle() to do the actual
  *  drawing. The temporary drawable is destroyed and the original
  *  restored.
  */
@@ -871,7 +871,11 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
     gdk_cairo_rectangle (w_current->cr, &(event->area));
     cairo_clip (w_current->cr);
 
-    o_redraw_rectangles (w_current, &(event->area), 1);
+    x_repaint_background_region (w_current, &(event->area));
+
+    x_grid_draw_grid_region (w_current, &(event->area));
+
+    o_redraw_rectangle (w_current, &(event->area));
 
     gdk_window_end_paint(widget->window);
 

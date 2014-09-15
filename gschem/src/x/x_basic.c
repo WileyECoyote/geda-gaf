@@ -32,11 +32,10 @@
 
 /*! \brief Repaint Background Region
  *  \par Function Description
- *  This function is called by o_redraw_rectangles to redraw the grid
+ *  This function is called by x_event_expose to redraw the grid
  *  within a rectangular region given by specific parameters.
  */
-void x_repaint_background_region (GschemToplevel *w_current,
-                                  int x, int y, int width, int height)
+void x_repaint_background_region (GschemToplevel *w_current, GdkRectangle *r)
 {
   GdkColor *color = x_get_color (w_current->background_color);
 
@@ -46,8 +45,6 @@ void x_repaint_background_region (GschemToplevel *w_current,
                         color->blue  / 65535.0);
 
   cairo_paint (w_current->cr);
-
-  x_grid_draw_region (w_current, x, y, width, height);
 }
 
 /*! \brief Set Cursor/Pointer Position

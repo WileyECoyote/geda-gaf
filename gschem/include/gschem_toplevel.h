@@ -136,6 +136,7 @@ struct _GschemToplevel {
   int background_color;
 
   double   grid_size_factor;
+  edaColor grid_dots_color;
   edaColor grid_minor_color;
   edaColor grid_major_color;
 

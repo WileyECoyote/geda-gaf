@@ -1,3 +1,11 @@
+2014-09-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Add gtk_window_resize 1092, 924, to better
+      standardize test.
+
+    * src/x/x_grid.c: Redo gdk_draw_points and gdk_draw_arc, renaming the
+      later to x_grid_draw_point.
+
 2014-09-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_grid.c: Replace gdk_draw_points with local function

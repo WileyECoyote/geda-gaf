@@ -522,7 +522,7 @@ void o_place_rotate                    (GschemToplevel *w_current);
 
 /* o_redraw.c */
 int  o_redraw_cleanstates              (GschemToplevel *w_current);
-void o_redraw_rectangles               (GschemToplevel *w_current, GdkRectangle *rectangles, int n_rectangles);
+void o_redraw_rectangle                (GschemToplevel *w_current, GdkRectangle *rectangle);
 
 /* o_select.c */
 void o_select_object                   (GschemToplevel *w_current, Object *o_current, int type, int count);
@@ -568,7 +568,7 @@ int gschem_parse_commandline           (int argc, char *argv[]);
 void autonumber_text_dialog            (GschemToplevel *w_current);
 
 /* x_basic.c */
-void x_repaint_background_region       (GschemToplevel *w_current, int x, int y, int width, int height);
+void x_repaint_background_region       (GschemToplevel *w_current, GdkRectangle *rectangle);
 void x_basic_warp_cursor               (GtkWidget *widget, int x, int y);
 
 /*TODO: Move these libgedauio widgets*/
@@ -600,8 +600,8 @@ bool      x_color_display_enabled           (int index);
 int       x_load_color_scheme               (char * scheme);
 
 /* x_compselect.c */
-void x_compselect_open                      (GschemToplevel *w_current);
-void x_compselect_deselect                  (GschemToplevel *w_current);
+void      x_compselect_open                 (GschemToplevel *w_current);
+void      x_compselect_deselect             (GschemToplevel *w_current);
 
 /* x_console.c */
 const char  *x_console_get_alphanumeric     (void);
@@ -713,7 +713,7 @@ void x_fileselect_save            (GschemToplevel *w_current);
 bool x_fileselect_load_backup     (GString *message, GschemToplevel *w_current);
 
 /* x_grid.c */
-void x_grid_draw_region           (GschemToplevel *w_current, int x, int y, int width, int height);
+void x_grid_draw_grid_region      (GschemToplevel *w_current, GdkRectangle *rectangle);
 void x_grid_configure_variables   (GschemToplevel *w_current);
 int  x_grid_query_drawn_spacing   (GschemToplevel *w_current);
 void x_draw_tiles                 (GschemToplevel *w_current);

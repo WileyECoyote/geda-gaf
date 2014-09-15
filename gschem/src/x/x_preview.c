@@ -159,7 +159,7 @@ preview_callback_expose (GtkWidget      *widget,
 
   preview_window->cr = gdk_cairo_create (widget->window);
 
-  o_redraw_rectangles (preview_window, &(event->area), 1);
+  o_redraw_rectangle (preview_window, &(event->area));
 
   cairo_destroy (preview_window->cr);
 
