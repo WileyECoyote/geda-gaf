@@ -20,7 +20,7 @@ EXTRA_DIST  = TODO.grenum why.grenum gsch2pcb.1.in grenum.1.in gxyrs.1.in \
 	      gschlas.1.in gsymfix.1.in sarlacc_sym.1.in sarlacc_schem.1.in \
 	      gnet_hier_verilog.1.in geda-install.1.in geda-install-bin.1.in \
 	      $(GEDA_EXTRA) $(LOCAL_DOX) $(LOCAL_HTML) $(LOCAL_TEX) \
-	      $(READ_MES) 
+	      $(READ_MES)
 
 dist_man_MANS = gsch2pcb.1 grenum.1 gxyrs.1 olib.1 pads_backannotate.1 \
 	pcb_backannotate.1 refdes_renum.1 schdiff.1 sw2asc.1 tragesym.1 \

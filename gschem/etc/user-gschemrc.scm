@@ -99,7 +99,17 @@
 ;
 ;(grid-mode "none")
 ;(grid-mode "dots")
-(grid-mode "mesh")
+;(grid-mode "mesh")
+
+; dots-grid-dot-color 3 integers
+;
+; The dots-grid-dot-color specifies the color to use for the dots grid. Note
+; that using this option here limits the color to basic colors.
+;
+;  RED GREEN BLUE
+;
+(dots-grid-dot-color 48830 48830 48830)
+;(dots-grid-dot-color 46956 4943 42960)
 
 ; dots-grid-dot-size integer
 ;
@@ -173,24 +183,22 @@
 
 ; mesh-grid-minor-color 3 integers
 ;
-; The mesh-grid-minor-color specifies the color index to use for minor lines when
-; when using the mesh grid. Note that using this option here limits the color to
-; basic colors. If the setting is set with in the preference dialog to any color
-; except the default, then the setting will be retain in the key file, usually
-; ~/.config/gEDA/gschem-user.conf because gschem does not currently support setting
-; actual colors with scheme
+; The mesh-grid-minor-color specifies the color to use for minor lines for the
+; mesh grid.
 ;
-;  RED GREEN BLUE (in decimal format)
+;  RED GREEN BLUE
 ;
-(mesh-grid-minor-color 63197 57429 12817)
+;(mesh-grid-minor-color 5781  56202 17928)
+;(mesh-grid-minor-color 42747 41944 3217)
 
 ; mesh-grid-major-color 3 integers
 ;
-; The mesh-grid-major-color specifies the color index to use for major lines when
-; when using the mesh grid, see comments for mesh-grid-minor-color.
+; The mesh-grid-major-color specifies the color to use for major lines when
+; using the mesh grid, see comments for mesh-grid-minor-color.
 ;
-;  RED GREEN BLUE (in decimal format)
-(mesh-grid-major-color 61694 5916 51704)
+;  RED GREEN BLUE
+;(mesh-grid-major-color 22084 3125 63070)
+;(mesh-grid-major-color 46956 4943 42960)
 
 ;END ------------------------> Grid Setup <-------------------------
 
@@ -993,7 +1001,7 @@
 ; -zoomfactor. Comment out if you want the default mode.
 ;
 ;(text-feedback "only-when-readable")
-;(text-feedback "always")
+(text-feedback "always")
 
 ; text-origin-marker string
 ;

@@ -78,8 +78,8 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define DEFAULT_MESH_GRID_MINOR_ALPHA  30
 #define DEFAULT_MESH_GRID_MAJOR_ALPHA  40
 
-#define MAX_MESH_GRID_COLOR            65535
-#define DEFAULT_MESH_GRID_COLOR        MAX_MESH_GRID_COLOR
+#define MAX_GRID_COLOR                 65535
+#define DEFAULT_GRID_COLOR             MAX_GRID_COLOR
 
 /* for junctions */
 #define MAX_JUNCTION_SIZE              100

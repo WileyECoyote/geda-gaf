@@ -102,6 +102,7 @@ int   check_and_convert_scm_integer    (SCM val2chk, int min_value, int max_valu
 SCM   g_rc_gschem_version              (SCM version);
 SCM   g_rc_draw_grips                  (SCM mode);
 SCM   g_rc_grid_mode                   (SCM mode);
+SCM   g_rc_dots_grid_dot_color         (SCM red, SCM green, SCM blue);
 SCM   g_rc_dots_grid_dot_size          (SCM dotsize);
 SCM   g_rc_dots_grid_mode              (SCM mode);
 SCM   g_rc_dots_grid_threshold         (SCM spacing);

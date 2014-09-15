@@ -11,13 +11,15 @@ extern int default_draw_grips;
 
 extern int default_grid_mode;
 extern int default_dots_grid_dot_size;
-extern int default_dots_grid_threshold;
 extern int default_dots_grid_mode;
+extern int default_dots_grid_threshold;
+
 extern int default_mesh_grid_threshold;
 extern int default_mesh_line_width_factor;
 extern int default_mesh_grid_minor_alpha;
 extern int default_mesh_grid_major_alpha;
 
+extern GdkColor default_dots_grid_dot_color;
 extern GdkColor default_mesh_grid_minor_color;
 extern GdkColor default_mesh_grid_major_color;
 

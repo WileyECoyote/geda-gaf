@@ -1,3 +1,11 @@
+2014-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c: Added revises dots grid for user settable color from
+      rc file, not settable from the preferences dialog (or the mesh alphas).
+
+    * *: Added dots_grid_dot_color with key dots-grid-dot-color and associated
+      settings handlers.
+
 2014-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add gtk_window_resize 1092, 924, to better

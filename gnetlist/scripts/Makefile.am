@@ -13,6 +13,7 @@ SHdir	 =  $(TARGET_DIR)
 SH_FILES = 	bompp \
 		bom_xref \
 		annotate \
+		geda-bom \
 		unannotate \
 		sch2eaglepos
 
@@ -22,10 +23,7 @@ distcheck:
 
 dist_bin_SCRIPTS=$(SH_FILES)
 
-CLEANFILES = *.log *~  $(SH_FILES)
-
-MOSTLYCLEANFILES = $(CONFIG_CLEAN) $(SH_FILES)
-
-DISTCLEANFILES = *.log core FILE *~  $(SH_FILES)
-
-MAINTAINERCLEANFILES = *.log *~ Makefile.in  $(SH_FILES)
+CLEANFILES           = *.log *~ $(SH_FILES)
+MOSTLYCLEANFILES     = *.log *~ $(CONFIG_CLEAN) $(SH_FILES)
+DISTCLEANFILES       = *.log *~ $(SH_FILES)
+MAINTAINERCLEANFILES = *.log *~ $(SH_FILES) Makefile.in 

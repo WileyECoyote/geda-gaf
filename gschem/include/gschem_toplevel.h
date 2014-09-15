@@ -136,7 +136,6 @@ struct _GschemToplevel {
   int background_color;
 
   double   grid_size_factor;
-  edaColor grid_dots_color;
   edaColor grid_minor_color;
   edaColor grid_major_color;
 
@@ -209,9 +208,9 @@ struct _GschemToplevel {
 
   /* sets the mininum number of pixels necessary for the grid to be displayed */
   int grid_mode;          /* sets what type of grid to show, can be None, Dots, or Mesh */
-  int dots_grid_threshold;
   int dots_grid_dot_size; /* sets the grid dot size */
   int dots_grid_mode;     /* sets the mode of the dotted grid (either variable or fixed) */
+  int dots_grid_threshold;
 
   /* Minimum grid line pitch to display. Applies to major and minor lines. */
   int mesh_grid_threshold;
@@ -219,6 +218,7 @@ struct _GschemToplevel {
   int mesh_grid_minor_alpha;
   int mesh_grid_major_alpha;
 
+  GdkColor dots_grid_dot_color;
   GdkColor mesh_grid_minor_color;
   GdkColor mesh_grid_major_color;
 

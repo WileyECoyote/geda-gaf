@@ -32,6 +32,7 @@
 #include <geda_debug.h>
 
 #include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <gdk/gdkx.h>
 
 /** \defgroup grid-module Grid Module
@@ -130,27 +131,20 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
 #include "cairo-xlib.h"
 
 static void
-x_grid_draw_point (GschemToplevel *w_current, cairo_surface_t *surface, int x, int y, int size)
+x_grid_draw_point (Display *xdisplay, Drawable drawable, GC gc, int x, int y, int size)
 {
-  Display *xdisplay = cairo_xlib_surface_get_display (surface);
-  Drawable drawable = cairo_xlib_surface_get_drawable (surface);
-  GC       xgc      = GDK_GC_XGC (w_current->gc);
 
-  XFillArc (xdisplay, drawable, xgc, x, y, size, size, 0, FULL_CIRCLE);
+  XFillArc (xdisplay, drawable, gc, x, y, size, size, 0, FULL_CIRCLE);
 
 }
 
 static void
-x_grid_draw_points (GschemToplevel *w_current, cairo_surface_t *surface, POINT *points, int npoints)
+x_grid_draw_points (Display *xdisplay, Drawable drawable, GC gc, POINT *points, int npoints)
 {
-  Display *xdisplay = cairo_xlib_surface_get_display (surface);
-  Drawable drawable = cairo_xlib_surface_get_drawable (surface);
-  GC       xgc      = GDK_GC_XGC (w_current->gc);
-
   if (npoints == 1) {
     XDrawPoint (xdisplay,
                 drawable,
-                xgc,
+                gc,
                 points[0].x, points[0].y);
   }
   else {
@@ -165,7 +159,7 @@ x_grid_draw_points (GschemToplevel *w_current, cairo_surface_t *surface, POINT *
 
     XDrawPoints (xdisplay,
                  drawable,
-                 xgc,
+                 gc,
                  tmp_points,
                  npoints,
                  CoordModeOrigin);
@@ -202,6 +196,13 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   POINT points[DOTS_POINTS_ARRAY_SIZE];
 
+  Colormap  colormap;
+  XColor    xc;
+  GC        gc;
+  Display  *xdisplay;
+  Drawable  drawable;
+  int       screen;
+
   int incr = query_dots_grid_spacing (w_current);
 
   if (incr == -1)
@@ -209,9 +210,21 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   count = 0;
 
-  gdk_gc_set_foreground (w_current->gc, x_get_color (DOTS_GRID_COLOR));
+  surface  = cairo_get_target (w_current->cr);
+  xdisplay = cairo_xlib_surface_get_display (surface);
+  drawable = cairo_xlib_surface_get_drawable (surface);
+  screen   = DefaultScreen(xdisplay);
+  colormap = DefaultColormap(xdisplay, screen);
+  gc       = XCreateGC(xdisplay, drawable, 0, 0 );
 
-  surface = cairo_get_target (w_current->cr);
+  xc.pixel = w_current->dots_grid_dot_color.pixel;
+  xc.red   = w_current->dots_grid_dot_color.red;
+  xc.green = w_current->dots_grid_dot_color.green;
+  xc.blue  = w_current->dots_grid_dot_color.blue;
+
+  XAllocColor(xdisplay, colormap, &xc);
+
+  XSetForeground(xdisplay, gc, xc.pixel);
 
   SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
   SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
@@ -225,7 +238,7 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   for (i = x_start; i <= x_end; i = i + incr) {
 
-    for(j = y_start; j <= y_end; j = j + incr) {
+    for (j = y_start; j <= y_end; j = j + incr) {
 
       WORLDtoSCREEN (w_current, i,j, &dot_x, &dot_y);
 
@@ -243,12 +256,12 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
           /* get out of loop if we're hit the end of the array */
           if (count == DOTS_POINTS_ARRAY_SIZE) {
 
-            x_grid_draw_points (w_current, surface, points, count);
+            x_grid_draw_points (xdisplay, drawable, gc, points, count);
             count = 0;
           }
         }
         else {
-          x_grid_draw_point (w_current, surface, dot_x, dot_y, dot_size);
+          x_grid_draw_point (xdisplay, drawable, gc, dot_x, dot_y, dot_size);
         }
       }
     }
@@ -256,8 +269,10 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   /* now draw all the points in one step */
   if(count != 0) {
-    x_grid_draw_points (w_current, surface, points, count);
+    x_grid_draw_points (xdisplay, drawable, gc, points, count);
   }
+
+  XFreeGC(xdisplay, gc);
 }
 
 /*! \brief Helper function for draw_mesh_grid_regin
@@ -468,15 +483,6 @@ void x_grid_configure_variables (GschemToplevel *w_current)
 #if DEBUG_GRID
   x_grid_print_parameters (w_current, "entry");
 #endif
-
-  red   = 255 / 65535.0;
-  green = 255 / 65535.0;
-  blue  = 255 / 65535.0;
-
-  w_current->grid_dots_color.r  = red;
-  w_current->grid_dots_color.g  = green;
-  w_current->grid_dots_color.b  = blue;
-  w_current->grid_dots_color.a  = 1;
 
   /* mesh_grid_minor_color is a GdkColor structure */
   red   = w_current->mesh_grid_minor_color.red   / 65535.0;

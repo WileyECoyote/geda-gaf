@@ -59,8 +59,9 @@ int     default_mesh_line_width_factor    = RC_NIL;
 int     default_mesh_grid_minor_alpha     = DEFAULT_MESH_GRID_MINOR_ALPHA;
 int     default_mesh_grid_major_alpha     = DEFAULT_MESH_GRID_MAJOR_ALPHA;
 
-GdkColor default_mesh_grid_minor_color     = { 88 };
-GdkColor default_mesh_grid_major_color     = { 88 };
+GdkColor default_dots_grid_dot_color      = { 88 };
+GdkColor default_mesh_grid_minor_color    = { 88 };
+GdkColor default_mesh_grid_major_color    = { 88 };
 
 int     default_object_clipping           = TRUE;
 int     default_scrollbars                = RC_NIL;
@@ -345,6 +346,9 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_window_integer(cfg, "grid-mode",           &w_current->
                                      grid_mode,             GRID_MESH);
 
+  i_var_restore_window_color (cfg,  "dots-grid-dot-color", &w_current->
+                                     dots_grid_dot_color,   DOTS_GRID_COLOR);
+
   i_var_restore_window_integer(cfg, "dots-grid-dot-size",  &w_current->
                                      dots_grid_dot_size,    DEFAULT_GRID_DOT_SIZE);
 
@@ -433,6 +437,8 @@ void i_vars_set(GschemToplevel *w_current)
 
   i_vars_libgeda_set(toplevel);
 
+  i_vars_recall_user_settings (w_current);
+
   w_current->world_right               = default_world_right;
   w_current->world_bottom              = default_world_bottom;
 
@@ -452,13 +458,19 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->mesh_grid_minor_alpha     = default_mesh_grid_minor_alpha;
   w_current->mesh_grid_major_alpha     = default_mesh_grid_major_alpha;
 
-  if (w_current->mesh_grid_minor_color.pixel != 88) {
+  if (default_dots_grid_dot_color.pixel != 88) {
+    w_current->dots_grid_dot_color.red     = default_dots_grid_dot_color.red;
+    w_current->dots_grid_dot_color.green   = default_dots_grid_dot_color.green;
+    w_current->dots_grid_dot_color.blue    = default_dots_grid_dot_color.blue;
+  }
+
+  if (default_mesh_grid_minor_color.pixel != 88) {
     w_current->mesh_grid_minor_color.red   = default_mesh_grid_minor_color.red;
     w_current->mesh_grid_minor_color.green = default_mesh_grid_minor_color.green;
     w_current->mesh_grid_minor_color.blue  = default_mesh_grid_minor_color.blue;
   }
 
-  if (w_current->mesh_grid_major_color.pixel != 88) {
+  if (default_mesh_grid_minor_color.pixel != 88) {
     w_current->mesh_grid_major_color.red   = default_mesh_grid_major_color.red;
     w_current->mesh_grid_major_color.green = default_mesh_grid_major_color.green;
     w_current->mesh_grid_major_color.blue  = default_mesh_grid_major_color.blue;
@@ -564,8 +576,6 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->undo_control,    default_undo_control);
   i_set_rc (&w_current->undo_type,       default_undo_type);
   i_set_rc (&w_current->undo_panzoom,    default_undo_panzoom);
-
-  i_vars_recall_user_settings (w_current);
 
 }
 

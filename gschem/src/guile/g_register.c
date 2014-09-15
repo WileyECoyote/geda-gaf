@@ -55,6 +55,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
 
   { "draw-grips",                1, 0, 0, g_rc_draw_grips },
   { "grid-mode",                 1, 0, 0, g_rc_grid_mode },
+  { "dots-grid-dot-color",       3, 0, 0, g_rc_dots_grid_dot_color },
   { "dots-grid-dot-size",        1, 0, 0, g_rc_dots_grid_dot_size },
   { "dots-grid-threshold",       1, 0, 0, g_rc_dots_grid_threshold },
   { "dots-grid-mode",            1, 0, 0, g_rc_dots_grid_mode },

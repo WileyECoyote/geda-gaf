@@ -277,6 +277,35 @@ SCM g_rc_grid_mode(SCM mode)
                    3);
 }
 
+/*! \brief This function processes the dots-grid-dot-color RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the dots-grid-dot-color RC
+ *       entry. The pixel field of the structure for default values is
+ *       set to a value other than 88, to indicate the fields have been
+ *       set from rc values.
+ *
+ */
+SCM g_rc_dots_grid_dot_color (SCM red, SCM green, SCM blue)
+{
+  int r = ICHECK(red, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
+                "dots-grid-dot-color");
+
+  int g = ICHECK(green, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
+                "dots-grid-dot-color");
+
+  int b = ICHECK(blue, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
+                "dots-grid-dot-color");
+
+ /* The pixel field is not used for color, but we use as flag */
+  default_dots_grid_dot_color.pixel = 99;
+  default_dots_grid_dot_color.red   = r;
+  default_dots_grid_dot_color.green = g;
+  default_dots_grid_dot_color.blue  = b;
+
+  return SCM_BOOL_T;
+}
+
 /*! \brief This function processes the dots-grid-dot-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -394,20 +423,24 @@ SCM g_rc_mesh_grid_major_alpha (SCM percent)
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the mesh-grid-minor-color RC
- *       entry.
+ *       entry. The pixel field of the structure for default values is
+ *       set to a value other than 88, to indicate the fields have been
+ *       set from rc values.
  *
  */
 SCM g_rc_mesh_grid_minor_color (SCM red, SCM green, SCM blue)
 {
-  int r = ICHECK(red, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+  int r = ICHECK(red, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
                 "mesh-grid-minor-color");
 
-  int g = ICHECK(green, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+  int g = ICHECK(green, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
                 "mesh-grid-minor-color");
 
-  int b = ICHECK(blue, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+  int b = ICHECK(blue, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
                 "mesh-grid-minor-color");
 
+ /* The pixel field is not used for color, but we use as a flag */
+  default_mesh_grid_minor_color.pixel = 99;
   default_mesh_grid_minor_color.red   = r;
   default_mesh_grid_minor_color.green = g;
   default_mesh_grid_minor_color.blue  = b;
@@ -419,20 +452,24 @@ SCM g_rc_mesh_grid_minor_color (SCM red, SCM green, SCM blue)
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
  *       processing configuration data for the mesh-grid-minor-color RC
- *       entry.
+ *       entry. The pixel field of the structure for default values is
+ *       set to a value other than 88, to indicate the fields have been
+ *       set from rc values.
  *
  */
 SCM g_rc_mesh_grid_major_color (SCM red, SCM green, SCM blue)
 {
-  int r = ICHECK(red, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+  int r = ICHECK(red, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
                 "mesh-grid-major-color");
 
-  int g = ICHECK(green, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+  int g = ICHECK(green, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
                 "mesh-grid-major-color");
 
-  int b = ICHECK(blue, 0, MAX_MESH_GRID_COLOR, DEFAULT_MESH_GRID_COLOR,
+  int b = ICHECK(blue, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
                 "mesh-grid-major-color");
 
+ /* The pixel field is not used for color, but we use as a flag */
+  default_mesh_grid_major_color.pixel = 99;
   default_mesh_grid_major_color.red   = r;
   default_mesh_grid_major_color.green = g;
   default_mesh_grid_major_color.blue  = b;

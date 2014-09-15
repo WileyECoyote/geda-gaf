@@ -175,7 +175,6 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   g_return_if_fail (w_current->toplevel != NULL);
   g_return_if_fail (w_current->toplevel->page_current != NULL);
 
-//return;
 
   grip_half_size = w_current->grip_pixel_size / 2;
 

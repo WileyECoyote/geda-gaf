@@ -114,7 +114,7 @@ x_stroke_record (GschemToplevel *w_current, int x, int y)
   }
 
 }
-//SCM gh_symbol2scm (char *name);
+
 /*! \brief Evaluates the stroke.
  *  \par Function Description
  *  This function transforms the stroke input so far in an action.

@@ -102,8 +102,9 @@ bool x_window_setup_gc(GschemToplevel *w_current)
 
     if ( (w_current->window) && GDK_IS_WINDOW(w_current->window)) {
 
-      w_current->gc = gdk_gc_new(w_current->window);
-      w_current->cr = gdk_cairo_create(w_current->drawing_area->window);
+      w_current->gc  = gdk_gc_new(w_current->window);
+      //w_current->xgc = GDK_GC_XGC (w_current->gc);
+      w_current->cr  = gdk_cairo_create(w_current->drawing_area->window);
 
       if (w_current->gc == NULL) {
         g_critical(_("Could not allocate gc, is window?\n"));
@@ -212,6 +213,12 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "grid-dot-threshold",  w_current->dots_grid_threshold);
   eda_config_set_integer (cfg, win_group, "mesh-grid-threshold",   w_current->mesh_grid_threshold);
   eda_config_set_integer (cfg, win_group, "mesh-line-width-factor",  w_current->mesh_line_width_factor);
+
+  array[0] = w_current->dots_grid_dot_color.pixel;
+  array[1] = w_current->dots_grid_dot_color.red;
+  array[2] = w_current->dots_grid_dot_color.green;
+  array[3] = w_current->dots_grid_dot_color.blue;
+  eda_config_set_int_list (cfg, win_group, "dots-grid-dot-color", array, 4);
 
   array[0] = w_current->mesh_grid_minor_color.pixel;
   array[1] = w_current->mesh_grid_minor_color.red;
