@@ -1,5 +1,9 @@
 2014-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_event.c: Set anti-aliasing in expose event to improve screen quality
+
+2014-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_grid.c: Eliminate call to inside_region in functions x_grid_draw
       _dots_region, was in the wrong place and too late of X was out of bounds.
       Add if (i < Current_Page->left) in outer loop and if (j < Current_Page->top)
