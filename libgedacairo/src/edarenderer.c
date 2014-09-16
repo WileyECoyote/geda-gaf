@@ -56,6 +56,7 @@
 
 #define EDAR_DEFAULT_OVERRIDE_COLOR_INDEX 1
 
+#define EdaFontOptions renderer->priv->font_options
 
 enum {
   PROP_CAIRO_CONTEXT = 1,
@@ -92,11 +93,13 @@ struct _EdaRendererPrivate
   EdaPangoRenderer *pr;
   int pc_from_cr;
 
-  unsigned int flags;
-  char        *font_name;
-  int          override_color;
+  unsigned int      flags;
+  char             *font_name;
+  int               override_color;
 
-  GArray      *color_map;
+  GArray           *color_map;
+
+  cairo_font_options_t *font_options;
 
   /* Cache of font metrics for different font sizes. */
   //GHashTable *metrics_cache;
@@ -345,9 +348,12 @@ eda_renderer_class_init (EdaRendererClass *class)
 static void
 eda_renderer_init (EdaRenderer *renderer)
 {
+
   renderer->priv = G_TYPE_INSTANCE_GET_PRIVATE (renderer,
                                                 EDA_TYPE_RENDERER,
                                                 EdaRendererPrivate);
+
+  EdaFontOptions = cairo_font_options_create();
 
   /* Setup default options */
   if (renderer->priv->font_name == NULL) {
@@ -419,6 +425,11 @@ eda_renderer_finalize (GObject *object)
 */
   cairo_destroy (renderer->priv->cr);
   renderer->priv->cr = NULL;
+
+  if (EdaFontOptions != NULL) {
+    cairo_font_options_destroy(EdaFontOptions);
+    EdaFontOptions = NULL;
+  }
 
   GEDA_FREE (renderer->priv->font_name);
   renderer->priv->font_name = NULL;
@@ -572,35 +583,19 @@ eda_renderer_get_property (GObject *object, unsigned int property_id,
 }
 
 static void
-eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
+eda_renderer_update_contexts (EdaRenderer  *renderer,
+                              cairo_t      *new_cr,
                               PangoContext *new_pc)
 {
   /* First figure out what's invalidated */
   if (new_cr != NULL) {
-    cairo_destroy (renderer->priv->cr);
-    renderer->priv->cr = NULL;
-    if (renderer->priv->pr != NULL) {
-      GEDA_UNREF (renderer->priv->pr);
-      renderer->priv->pr = NULL;
-    }
 
-    /* If the PangoContext was created from the previous Cairo
-     * context, it needs destroying too. */
-    if (renderer->priv->pc_from_cr) {
-      if (renderer->priv->pc != NULL) {
-        GEDA_UNREF (renderer->priv->pc);
-        renderer->priv->pc = NULL;
-      }
-      if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
-        GEDA_UNREF (renderer->priv->pl);
-        renderer->priv->pl = NULL;
-      }
+    if (renderer->priv->cr) {
+     cairo_destroy (renderer->priv->cr);
     }
-
     renderer->priv->cr = cairo_reference (new_cr);
   }
-
-  if (new_pc != NULL) {
+  else if (new_pc != NULL) {
     if (renderer->priv->pc != NULL) {
       GEDA_UNREF (G_OBJECT (renderer->priv->pc));
       renderer->priv->pc = NULL;
@@ -609,7 +604,6 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
       GEDA_UNREF (G_OBJECT (renderer->priv->pl));
       renderer->priv->pl = NULL;
     }
-
     renderer->priv->pc = g_object_ref (G_OBJECT (new_pc));
     renderer->priv->pc_from_cr = 0;
   }
@@ -617,7 +611,12 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
   /* Now recreate anything necessary */
   if ((renderer->priv->pc == NULL) && (renderer->priv->cr != NULL)) {
     renderer->priv->pc = pango_cairo_create_context (renderer->priv->cr);
+    cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
+    pango_cairo_context_set_font_options (renderer->priv->pc, EdaFontOptions);
     renderer->priv->pc_from_cr = 1;
+  }
+  else if (renderer->priv->cr != NULL) {
+    pango_cairo_update_context(new_cr, renderer->priv->pc);
   }
 
   if ((renderer->priv->pl == NULL) && (renderer->priv->pc != NULL)) {
@@ -627,6 +626,9 @@ eda_renderer_update_contexts (EdaRenderer *renderer, cairo_t *new_cr,
   if ((renderer->priv->pr == NULL) && (renderer->priv->cr != NULL)) {
     renderer->priv->pr =
       (EdaPangoRenderer *) eda_pango_renderer_new (renderer->priv->cr);
+  }
+  else if (renderer->priv->cr != NULL) {
+    eda_pango_renderer_update(renderer->priv->pr, renderer->priv->cr);
   }
 }
 
@@ -654,36 +656,48 @@ eda_renderer_draw (EdaRenderer *renderer, Object *object)
 static void
 eda_renderer_default_draw (EdaRenderer *renderer, Object *object)
 {
+  static int color_map_error = 0;
+
   void (*draw_func)(EdaRenderer *, Object *);
 
   g_return_if_fail (object != NULL);
   g_return_if_fail (renderer->priv->cr != NULL);
   g_return_if_fail (renderer->priv->pl != NULL);
-  g_return_if_fail (renderer->priv->color_map != NULL);
 
-  if (!eda_renderer_is_drawable (renderer, object)) return;
+  if (renderer->priv->color_map != NULL) {
 
-  switch (object->type) {
-  case OBJ_LINE:        draw_func = eda_renderer_draw_line; break;
-  case OBJ_NET:         draw_func = eda_renderer_draw_net; break;
-  case OBJ_BUS:         draw_func = eda_renderer_draw_bus; break;
-  case OBJ_PIN:         draw_func = eda_renderer_draw_pin; break;
-  case OBJ_BOX:         draw_func = eda_renderer_draw_box; break;
-  case OBJ_ARC:         draw_func = eda_renderer_draw_arc; break;
-  case OBJ_CIRCLE:      draw_func = eda_renderer_draw_circle; break;
-  case OBJ_PATH:        draw_func = eda_renderer_draw_path; break;
-  case OBJ_TEXT:        draw_func = eda_renderer_draw_text; break;
-  case OBJ_PICTURE:     draw_func = eda_renderer_draw_picture; break;
+    if (!eda_renderer_is_drawable (renderer, object)) return;
 
-  case OBJ_COMPLEX:
-  case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
+    switch (object->type) {
+      case OBJ_LINE:        draw_func = eda_renderer_draw_line; break;
+      case OBJ_NET:         draw_func = eda_renderer_draw_net; break;
+      case OBJ_BUS:         draw_func = eda_renderer_draw_bus; break;
+      case OBJ_PIN:         draw_func = eda_renderer_draw_pin; break;
+      case OBJ_BOX:         draw_func = eda_renderer_draw_box; break;
+      case OBJ_ARC:         draw_func = eda_renderer_draw_arc; break;
+      case OBJ_CIRCLE:      draw_func = eda_renderer_draw_circle; break;
+      case OBJ_PATH:        draw_func = eda_renderer_draw_path; break;
+      case OBJ_TEXT:        draw_func = eda_renderer_draw_text; break;
+      case OBJ_PICTURE:     draw_func = eda_renderer_draw_picture; break;
 
-  default:
-    g_return_if_reached ();
+      case OBJ_COMPLEX:
+      case OBJ_PLACEHOLDER: draw_func = eda_renderer_draw_complex; break;
+
+      default:
+        g_return_if_reached ();
+    }
+
+    eda_renderer_set_color (renderer, object->color);
+    draw_func (renderer, object);
   }
-
-  eda_renderer_set_color (renderer, object->color);
-  draw_func (renderer, object);
+  else {
+    /* We use a static here so we do not flood the console with so many
+     * error, all saying the same thing, No color map, that everything
+     * else is scrolled beyond the consoles buffer = vary annoying */
+    if (!color_map_error)
+      BUG_MSG("renderer->priv->color_map != NULL");
+      color_map_error++;
+  }
 }
 
 static void
@@ -1029,29 +1043,28 @@ static int
 eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
 {
   double points_size, dx, dy;
-  int size, descent;
-  char *draw_string;
-  cairo_font_options_t *options;
+  int    size, descent;
+  char  *draw_string;
+
   PangoFontDescription *desc;
-  PangoAttrList *attrs;
+  PangoAttrList        *attrs;
 
   points_size = o_text_get_font_size_in_points (object);
   size = lrint (points_size * PANGO_SCALE);
 
   /* Set hinting as appropriate */
-  options = cairo_font_options_create ();
-
-  cairo_font_options_set_hint_metrics (options, CAIRO_HINT_METRICS_OFF);
+  cairo_font_options_set_hint_metrics (EdaFontOptions, CAIRO_HINT_METRICS_OFF);
 
   if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
-    cairo_font_options_set_hint_style (options, CAIRO_HINT_STYLE_MEDIUM);
+    cairo_font_options_set_hint_style (EdaFontOptions, CAIRO_HINT_STYLE_MEDIUM);
   }
   else {
-    cairo_font_options_set_hint_style (options, CAIRO_HINT_STYLE_NONE);
+    cairo_font_options_set_hint_style (EdaFontOptions, CAIRO_HINT_STYLE_NONE);
   }
-  pango_cairo_context_set_font_options (renderer->priv->pc, options);
 
-  cairo_font_options_destroy (options);
+  //cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
+
+  //cairo_font_options_destroy (EdaFontOptions);
 
   pango_cairo_context_set_resolution (renderer->priv->pc, 1000);
 
@@ -1102,7 +1115,7 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
     cairo_translate (renderer->priv->cr, dx, dy);
   }
 
-  /* Tell Pango to re-layout the text with the new transformation matrix */
+  /* tell Pango to re-layout the text with the new transformation matrix */
   pango_layout_context_changed (renderer->priv->pl);
 
   pango_cairo_update_layout (renderer->priv->cr, renderer->priv->pl);
@@ -1596,8 +1609,7 @@ eda_renderer_default_draw_cues (EdaRenderer *renderer, Object *object)
     if ((object->pin->whichend == 1) || (object->pin->whichend == 0))
       eda_renderer_draw_end_cues (renderer, object, object->pin->whichend);
     else
-      fprintf(stderr, "eda_renderer_default_draw_cues, object->pin->whichend is invalid=%d \n",
-              object->pin->whichend);
+      BUG_IMSG("pin->whichend is invalid=%d \n", object->pin->whichend);
     break;
   default:
     g_return_if_reached ();

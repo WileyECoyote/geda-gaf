@@ -51,10 +51,12 @@ struct _EdaPangoRenderer
   EdaPangoRendererPrivate *priv;
 };
 
-GedaType eda_pango_renderer_get_type (void) G_GNUC_CONST;
-PangoRenderer *eda_pango_renderer_new (cairo_t *cr) WARN_UNUSED;
-void eda_pango_renderer_show_layout (EdaPangoRenderer *renderer,
-                                     PangoLayout *pl);
+GedaType eda_pango_renderer_get_type   (void) G_GNUC_CONST;
+PangoRenderer *eda_pango_renderer_new  (cairo_t *cr) WARN_UNUSED;
+
+void eda_pango_renderer_update         (EdaPangoRenderer *renderer, cairo_t *cr);
+void eda_pango_renderer_show_layout    (EdaPangoRenderer *renderer,
+                                        PangoLayout *pl);
 
 /* ---------------------------------------- */
 
@@ -66,12 +68,14 @@ struct _EdaPangoAttrOverbar
 };
 
 PangoAttrClass *eda_pango_attr_overbar_get_class (void) G_GNUC_CONST;
-PangoAttribute *eda_pango_attr_overbar_new (bool overbar) WARN_UNUSED;
-bool eda_is_pango_attr_overbar (PangoAttribute *attr);
-bool eda_pango_parse_overbars (const gchar *overbar_text,
-                                   int length,
-                                   PangoAttrList **attr_list,
-                                   gchar **text);
+
+PangoAttribute *eda_pango_attr_overbar_new       (bool overbar) WARN_UNUSED;
+
+bool            eda_is_pango_attr_overbar        (PangoAttribute *attr);
+bool            eda_pango_parse_overbars         (const char *overbar_text,
+                                                  int length,
+                                                  PangoAttrList **attr_list,
+                                                  char **text);
 
 G_END_DECLS
 

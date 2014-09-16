@@ -113,7 +113,6 @@ eda_pango_renderer_class_init (EdaPangoRendererClass *klass)
                                                          _("Cairo context"),
                                                          _("The Cairo context for rendering"),
                                                          G_PARAM_READWRITE
-                                                         | G_PARAM_CONSTRUCT_ONLY
                                                          | G_PARAM_STATIC_NAME
                                                          | G_PARAM_STATIC_NICK
                                                          | G_PARAM_STATIC_BLURB));
@@ -132,44 +131,44 @@ eda_pango_renderer_constructor (GedaType type,
                                 unsigned int n_construct_properties,
                                 GObjectConstructParam *construct_params)
 {
-  GObject *object;
-  GObjectClass *parent_object_class;
-  EdaPangoRenderer *renderer;
+  GObject          *object;
+  GObjectClass     *parent_object_class;
 
   parent_object_class = G_OBJECT_CLASS (eda_pango_renderer_parent_class);
   object = parent_object_class->constructor (type, n_construct_properties,
                                              construct_params);
 
-  renderer = EDA_PANGO_RENDERER (object);
-
-  #ifndef G_DISABLE_ASSERT
-  if (renderer->priv->cr == NULL) {
-    g_warning ("EdaPangoRenderer: Cairo context must be specified at construction.");
-  }
-  #endif
+  object = EDA_IS_PANGO_RENDERER (object) ? object : NULL;
 
   return object;
 }
 
 static void
-eda_pango_renderer_set_property (GObject *object, guint property_id,
+eda_pango_renderer_set_property (GObject *object, unsigned int property_id,
                                  const GValue *value, GParamSpec *pspec)
 {
   EdaPangoRenderer *renderer = EDA_PANGO_RENDERER (object);
   switch (property_id) {
   case PROP_CAIRO_CONTEXT:
+
+    if (renderer->priv->cr != NULL) {
+      cairo_destroy (renderer->priv->cr); /* IS decrement */
+    }
+
     renderer->priv->cr = (cairo_t *) g_value_get_pointer (value);
+
     if (renderer->priv->cr != NULL) {
       cairo_reference (renderer->priv->cr);
     }
     break;
+
   default:
     G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
   }
 }
 
 static void
-eda_pango_renderer_get_property (GObject *object, guint property_id,
+eda_pango_renderer_get_property (GObject *object, unsigned int property_id,
                                  GValue *value, GParamSpec *pspec)
 {
   EdaPangoRenderer *renderer = EDA_PANGO_RENDERER (object);
@@ -305,6 +304,11 @@ eda_pango_renderer_prepare_run (PangoRenderer *renderer,
 PangoRenderer *eda_pango_renderer_new (cairo_t *cr)
 {
   return g_object_new (EDA_TYPE_PANGO_RENDERER, "cairo-context", cr, NULL);
+}
+
+void eda_pango_renderer_update (EdaPangoRenderer *renderer, cairo_t *cr)
+{
+  g_object_set (G_OBJECT (renderer), "cairo-context", cr, NULL);
 }
 
 void

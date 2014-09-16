@@ -1,3 +1,19 @@
+2014-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * libgedacairo/src/edarenderer.c: Use BUG_IMSG instead of fprintf in
+      eda_renderer_default_draw_cues (because the error for will occur for
+      every object and this will flood the consoles buffer so we can not
+      see what really happened.
+
+      Major revision to function eda_renderer_update_contexts and eda_renderer
+      _draw_text, move cairo_font_options to priv instead of constantly
+      creating and destroying, destroy in finalizer.
+
+    * src/edapangorenderer.c: Add new function eda_pango_renderer_update,
+      and decrement reference in property setter. Remove G_PARAM_CONSTRUCT_ONLY
+      property for "cairo-context". Change g_warning to fprintf in function
+      eda_pango_renderer_init.
+
 2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: rename geda_strdup u_string_strdup to match libgeda
