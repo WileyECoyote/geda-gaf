@@ -73,7 +73,7 @@ Object *o_grips_search_world(GschemToplevel *w_current, int x, int y, int *which
   }
 
   /* size = GRIP_PIXEL_SIZE / 2; */
-  size = w_current->grip_pixel_size / 2;
+  size = w_current->grip_size / 2;
   w_size = WORLDabs (w_current, size );
 
   s_current = geda_list_get_glist( toplevel->page_current->selection_list );
@@ -1421,7 +1421,7 @@ void o_grips_end(GschemToplevel *w_current)
  *  width, the size returned is the greater of width - factor and
  *  <b>GRIP_SIZE_ZOOM1</b>. The value returned for "grippables" with
  *  zero width is GRIP_SIZE_ZOOM1. If object is NULL then have of
- *  MAX_GRIP_PIXELS is returned.
+ *  #MAX_GRIP_SIZE is returned.
  *
  *  \param [in] w_current  The GschemToplevel object.
  *  \param [in] object     Object associated with operation.
@@ -1437,7 +1437,7 @@ int o_grips_half_size(GschemToplevel *w_current,  Object *object)
 
   if ( object == NULL)
   {
-    ret_size = w_current->grip_pixel_size / 2;//MAX_GRIP_PIXELS / 2;
+    ret_size = w_current->grip_size / 2;//MAX_GRIP_SIZE / 2;
   }
   else
   {
@@ -1455,7 +1455,7 @@ int o_grips_half_size(GschemToplevel *w_current,  Object *object)
         abs_size = SCREENabs (w_current, GRIP_SIZE_ZOOM1);
         if (object->line_options->line_width > 0)
         {
-          if (( object->line_options->line_width > w_current->grip_pixel_size) && (factor > 0)) {
+          if (( object->line_options->line_width > w_current->grip_size) && (factor > 0)) {
             ret_size = max( abs_size, (object->line_options->line_width - factor) / 2) ;
           }
           else
@@ -1469,14 +1469,14 @@ int o_grips_half_size(GschemToplevel *w_current,  Object *object)
         }
       }
       else {
-        ret_size = w_current->grip_pixel_size / 2;
+        ret_size = w_current->grip_size / 2;
       }
     }
     else {
-      ret_size = w_current->grip_pixel_size / 2;
+      ret_size = w_current->grip_size / 2;
     }
   }
-  return min(ret_size, MAX_GRIP_PIXELS/2);
+  return min(ret_size, MAX_GRIP_SIZE/2);
 }
 
 /*! \brief Draw objects being grip maniuplated from GschemToplevel object.

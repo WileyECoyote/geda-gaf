@@ -1,3 +1,10 @@
+2014-09-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * *: Add new rc`able variable anti-aliasing (to allow user control of screen
+      drawing quality, and added grip-pixel-size, which was already in the new
+      configuration system, (but had previously been removed from the rc system).
+      implement new toplevel variable anti_aliasing x_event_expose.
+
 2014-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Set anti-aliasing in expose event to improve screen quality

@@ -60,12 +60,15 @@
 #define Radio_Responder radio_responder
 #define Switch_Responder switch_responder
 
-struct rc_4_strings_t
+struct rc_7_strings_t
 {
    const char *zero;
    const char *one;
    const char *two;
    const char *three;
+   const char *four;
+   const char *five;
+   const char *six;
 };
 
 /* The following defines are for saving settings to an RC file, this is
@@ -74,33 +77,37 @@ struct rc_4_strings_t
  * enumerator ControlID
  */
 #define RC_BOOL_STRINGS(WhichOne) ((WhichOne) ? RC_STR_ENABLED : RC_STR_DISABLED)
-#define RC_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_NONE, RC_STR_DOTS, RC_STR_MESH, NULL};
-#define RC_DOTS_GRID_MODE_STRINGS struct rc_4_strings_t string_table = {RC_STR_DOTS_MODE_VARIABLE, RC_STR_DOTS_MODE_FIXED, NULL, NULL};
-#define RC_BARS_UPDATE_STRINGS struct rc_4_strings_t string_table = {RC_STR_BARS_CONTINUOUS, RC_STR_BARS_DELAYED, NULL, NULL};
-#define RC_LOG_DESTINY_STRINGS struct rc_4_strings_t string_table = {RC_STR_DESTINY_WINDOW, RC_STR_DESTINY_TTY, RC_STR_DESTINY_BOTH, NULL};
-#define RC_CONSOLE_WINTYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_CONWIN_DECORATED, RC_STR_CONWIN_TRANSIENT, NULL, NULL};
-#define RC_ACTION_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_FEEDBACK_OUTLINE, RC_STR_FEEDBACK_BOUNDBOX, NULL, NULL};
+#define RC_ANTI_ALIASING_STRINGS struct rc_7_strings_t string_table = {RC_STR_ANTIALIAS_DEFAULT, RC_STR_ANTIALIAS_NONE \
+                                                                       RC_STR_ANTIALIAS_GRAY, RC_STR_ANTIALIAS_SUBPIXEL \
+                                                                       RC_STR_ANTIALIAS_FAST, RC_STR_ANTIALIAS_GOOD \
+                                                                       RC_STR_ANTIALIAS_BEST, NULL};
+#define RC_GRID_MODE_STRINGS struct rc_7_strings_t string_table = {RC_STR_NONE, RC_STR_DOTS, RC_STR_MESH, NULL};
+#define RC_DOTS_GRID_MODE_STRINGS struct rc_7_strings_t string_table = {RC_STR_DOTS_MODE_VARIABLE, RC_STR_DOTS_MODE_FIXED, NULL, NULL};
+#define RC_BARS_UPDATE_STRINGS struct rc_7_strings_t string_table = {RC_STR_BARS_CONTINUOUS, RC_STR_BARS_DELAYED, NULL, NULL};
+#define RC_LOG_DESTINY_STRINGS struct rc_7_strings_t string_table = {RC_STR_DESTINY_WINDOW, RC_STR_DESTINY_TTY, RC_STR_DESTINY_BOTH, NULL};
+#define RC_CONSOLE_WINTYPE_STRINGS struct rc_7_strings_t string_table = {RC_STR_CONWIN_DECORATED, RC_STR_CONWIN_TRANSIENT, NULL, NULL};
+#define RC_ACTION_FEEDBACK_STRINGS struct rc_7_strings_t string_table = {RC_STR_FEEDBACK_OUTLINE, RC_STR_FEEDBACK_BOUNDBOX, NULL, NULL};
 
-#define RC_WINDOW_SIZE_STRINGS struct rc_4_strings_t string_table = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650, \
+#define RC_WINDOW_SIZE_STRINGS struct rc_7_strings_t string_table = {RC_STR_WINDOW_W650H487, RC_STR_WINDOW_W900H650, \
                                                                      RC_STR_WINDOW_W950H712, RC_STR_WINDOW_W1100H825};
 
-#define RC_WORLD_SIZE_STRINGS struct rc_4_strings_t string_table =  {RC_STR_WORLD_SMALL, RC_STR_WORLD_MEDIUM, RC_STR_WORLD_LARGE, NULL};
+#define RC_WORLD_SIZE_STRINGS struct rc_7_strings_t string_table =  {RC_STR_WORLD_SMALL, RC_STR_WORLD_MEDIUM, RC_STR_WORLD_LARGE, NULL};
 
-#define RC_NET_MAKER_STRINGS struct rc_4_strings_t string_table = {RC_STR_NET_NONE, RC_STR_EMPTY_BOX, RC_STR_FILLED_BOX, NULL};
-#define RC_NET_SELECTION_STRINGS struct rc_4_strings_t string_table = {RC_STR_DISABLED, RC_STR_NET_NET, RC_STR_NET_ALL, NULL};
-#define RC_STYLES_STRINGS struct rc_4_strings_t string_table = {RC_STR_STYLE_NONE, RC_STR_STYLE_THIN, RC_STR_STYLE_THICK, NULL};
+#define RC_NET_MAKER_STRINGS struct rc_7_strings_t string_table = {RC_STR_NET_NONE, RC_STR_EMPTY_BOX, RC_STR_FILLED_BOX, NULL};
+#define RC_NET_SELECTION_STRINGS struct rc_7_strings_t string_table = {RC_STR_DISABLED, RC_STR_NET_NET, RC_STR_NET_ALL, NULL};
+#define RC_STYLES_STRINGS struct rc_7_strings_t string_table = {RC_STR_STYLE_NONE, RC_STR_STYLE_THIN, RC_STR_STYLE_THICK, NULL};
 
-#define RC_MIDDLE_MOUSE_STRINGS struct rc_4_strings_t string_table = {RC_STR_MID_STROKE, RC_STR_MID_REPEAT, \
+#define RC_MIDDLE_MOUSE_STRINGS struct rc_7_strings_t string_table = {RC_STR_MID_STROKE, RC_STR_MID_REPEAT, \
                                                                    RC_STR_MID_ACTION, RC_STR_MID_MOUSEPAN};
-#define RC_3RD_BUTT_STRINGS struct rc_4_strings_t string_table = {RC_STR_3RD_POPUP, RC_STR_3RD_PAN, NULL, NULL};
-#define RC_SCROLL_STRINGS struct rc_4_strings_t string_table = {RC_STR_SCROLL_GTK, RC_STR_SCROLL_CLASSIC, NULL, NULL};
+#define RC_3RD_BUTT_STRINGS struct rc_7_strings_t string_table = {RC_STR_3RD_POPUP, RC_STR_3RD_PAN, NULL, NULL};
+#define RC_SCROLL_STRINGS struct rc_7_strings_t string_table = {RC_STR_SCROLL_GTK, RC_STR_SCROLL_CLASSIC, NULL, NULL};
 
-#define RC_TEXT_CASE_STRINGS struct rc_4_strings_t string_table = {RC_STR_TEXT_LOWER, RC_STR_TEXT_UPPER, RC_STR_TEXT_BOTH };
-#define RC_TXT_FEEDBACK_STRINGS struct rc_4_strings_t string_table = {RC_STR_TXT_READABLE, RC_STR_TXT_ALWAYS, NULL, NULL};
-#define RC_UNDO_TYPE_STRINGS struct rc_4_strings_t string_table = {RC_STR_UNDO_DISK, RC_STR_UNDO_MEMORY, NULL, NULL};
+#define RC_TEXT_CASE_STRINGS struct rc_7_strings_t string_table = {RC_STR_TEXT_LOWER, RC_STR_TEXT_UPPER, RC_STR_TEXT_BOTH };
+#define RC_TXT_FEEDBACK_STRINGS struct rc_7_strings_t string_table = {RC_STR_TXT_READABLE, RC_STR_TXT_ALWAYS, NULL, NULL};
+#define RC_UNDO_TYPE_STRINGS struct rc_7_strings_t string_table = {RC_STR_UNDO_DISK, RC_STR_UNDO_MEMORY, NULL, NULL};
 
-#define RC_RIPPER_ROTATION_STRINGS struct rc_4_strings_t string_table = {RC_STR_RIP_SYMMETRIC, RC_STR_RIP_NON_SYMMETRIC, NULL, NULL};
-#define RC_RIPPER_TYPE_STRINGS     struct rc_4_strings_t string_table = {RC_STR_RIP_NET, RC_STR_RIP_COMPONENT, NULL, NULL};
+#define RC_RIPPER_ROTATION_STRINGS struct rc_7_strings_t string_table = {RC_STR_RIP_SYMMETRIC, RC_STR_RIP_NON_SYMMETRIC, NULL, NULL};
+#define RC_RIPPER_TYPE_STRINGS     struct rc_7_strings_t string_table = {RC_STR_RIP_NET, RC_STR_RIP_COMPONENT, NULL, NULL};
 
 /* This structure is initialized in x_settings_dialog.c, see rc_options */
 typedef struct

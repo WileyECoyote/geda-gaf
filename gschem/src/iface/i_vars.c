@@ -47,8 +47,9 @@ int     default_override_bus_color        = RC_NIL;
 int     default_override_pin_color        = RC_NIL;
 
 /* Display Sub-System */
-
+int     default_anti_aliasing             = RC_NIL;
 int     default_draw_grips                = RC_NIL;
+int     default_grip_size           = RC_NIL;
 
 int     default_grid_mode                 = RC_NIL;
 int     default_dots_grid_dot_size        = RC_NIL;
@@ -338,9 +339,22 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_window_integer(cfg, "scrollbars-visible",  &w_current->
                                      scrollbars_visible,    TRUE);
 
+  /* Display Settings - Saved by: x_window_save_settings */
+  i_var_restore_window_integer(cfg, "anti-aliasing",       &w_current->
+                                     anti_aliasing,         DEFAULT_ANTI_ALIASING);
+
   /* Grips Settings - Saved by: x_window_save_settings */
   i_var_restore_window_boolean(cfg, "draw-grips",          &w_current->renderer->
                                      draw_grips,            TRUE);
+
+  i_var_restore_window_integer(cfg, "grip-size",            &w_current->
+                                     grip_size,              DEFAULT_GRIP_SIZE);
+
+  i_var_restore_window_color (cfg,  "grips-stroke-color",  &w_current->renderer->
+                                     grip_stroke_color,     DEFAULT_GRIP_STROKE_COLOR);
+
+  i_var_restore_window_color (cfg,  "grips-fill-color",    &w_current->renderer->
+                                     grip_fill_color,       DEFAULT_GRIP_FILL_COLOR);
 
   /* Grid Settings - Saved by: x_window_save_settings */
   i_var_restore_window_integer(cfg, "grid-mode",           &w_current->
@@ -369,15 +383,6 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 
   i_var_restore_window_color (cfg,  "mesh-grid-major-color", &w_current->
                                      mesh_grid_major_color,   MESH_GRID_MAJOR_COLOR);
-
-  i_var_restore_window_integer(cfg, "grip-pixels",         &w_current->
-                                     grip_pixel_size,       DEFAULT_GRIP_SIZE);
-
-  i_var_restore_window_color (cfg,  "grips-stroke",        &w_current->renderer->
-                                     grip_stroke_color,     DEFAULT_GRIP_STROKE_COLOR);
-
-  i_var_restore_window_color (cfg,  "grips-fill",          &w_current->renderer->
-                                     grip_fill_color,       DEFAULT_GRIP_FILL_COLOR);
 
   /* Restore Cues & Endpoints settings - Saved by: x_window_save_settings */
   i_var_restore_window_integer(cfg, "junction-size",       &w_current->renderer->
@@ -442,6 +447,11 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->world_right               = default_world_right;
   w_current->world_bottom              = default_world_bottom;
 
+  i_set_rc (&w_current->anti_aliasing,   default_anti_aliasing);
+
+  i_set_rc (&Renderer->draw_grips,       default_draw_grips);
+  i_set_rc (&w_current->grip_size,       default_grip_size);
+
 /* Color Related */
   w_current->background_color          = default_background_color;
   w_current->override_net_color        = default_override_net_color;
@@ -476,7 +486,7 @@ void i_vars_set(GschemToplevel *w_current)
     w_current->mesh_grid_major_color.blue  = default_mesh_grid_major_color.blue;
   }
 
-  w_current->object_clipping           = default_object_clipping;
+  w_current->object_clipping               = default_object_clipping;
 
   i_set_rc (&w_current->scrollbars,         default_scrollbars);
   i_set_rc (&w_current->scrollbar_update,   default_scrollbar_update);

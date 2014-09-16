@@ -84,12 +84,37 @@
 
 ;BEGIN =================> Display Configuration <===================
 ;
+; anti-aliasing string
+;
+; Controls the anti-aliasing method or hinting when drawing object on the
+; screen, excluding fonts. The "default" is Cairo's default, which is not
+; defined. Gschem's default, if not option is uncommented is "subpixel".
+; primarily effects the edge quality when rendering non-text objects.
+;
+;(anti-aliasing "default")
+;(anti-aliasing "none")
+;(anti-aliasing "gray")
+;(anti-aliasing "subpixel")
+;(anti-aliasing "fast")
+;(anti-aliasing "good")
+;(anti-aliasing "best")
+
+;
 ; draw-grips string
 ;
 ; Controls if the editing grips are drawn when selecting objects
 ;
 ;(draw-grips "enabled")
 ;(draw-grips "disabled")
+
+;
+; grip-size integer
+;
+; Controls the size of grips in pixel units.
+;
+; Min value: 7, Max value: 30, Default value: 12
+;
+;(grip-size 12)
 
 ;BEGIN ----------------------> Grid Setup <-------------------------
 ;
@@ -120,7 +145,7 @@
 ; too small for your tastes. Anything larger than 3 is probably too large.
 ;
 ;(dots-grid-dot-size 1)
-(dots-grid-dot-size 2)
+;(dots-grid-dot-size 2)
 ;(dots-grid-dot-size 3)
 
 ; dots-grid-threshold integer

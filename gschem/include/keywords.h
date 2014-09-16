@@ -69,7 +69,9 @@
 
      KEYWORD ( define_in_rc )
      KEYWORD ( load_in_rc )
+     KEYWORD ( anti_aliasing )
      KEYWORD ( draw_grips )
+     KEYWORD ( grip_size )
      KEYWORD ( grid_mode )
      KEYWORD ( dots_grid_dot_size )
      KEYWORD ( dots_grid_threshold )
@@ -169,7 +171,9 @@ enum {
 #endif
      KEYWORD(define,                       1, 0, define_in_rc)
      KEYWORD(load,                         1, 0, load_in_rc)
+     KEYWORD(anti-aliasing,                0, 0, anti_aliasing)
      KEYWORD(draw-grips,                   0, 0, draw_grips)
+     KEYWORD(grip-size,                    0, 0, grip_size)
      KEYWORD(grid-mode,                    0, 0, grid_mode)
      KEYWORD(dots-grid-dot-size,           0, 0, dots_grid_dot_size)
      KEYWORD(dots-grid-threshold,          0, 0, dots_grid_threshold)
@@ -530,6 +534,49 @@ enum {
   RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
   RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
   RC_STRING_TABLE_OUT(variable, 3, string_table.three)
+
+
+/*\remark
+ * Use this Macro to write w_current var with selection of 5 strings
+ * @param[in] variable   w_current string variable
+ *\attention Associated strings are asuume to be in string_table structure
+ */
+#define RC_STRING_TABLE_W5OUT(variable) \
+  int state = w_current->variable; \
+  RC_STRING_TABLE_OUT(variable, 0, string_table.zero) \
+  RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
+  RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.three) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.four)
+
+/*\remark
+ * Use this Macro to write w_current var with selection of 6 strings
+ * @param[in] variable   w_current string variable
+ *\attention Associated strings are asuume to be in string_table structure
+ */
+#define RC_STRING_TABLE_W6OUT(variable) \
+  int state = w_current->variable; \
+  RC_STRING_TABLE_OUT(variable, 0, string_table.zero) \
+  RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
+  RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.three) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.four) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.five)
+
+/*\remark
+ * Use this Macro to write w_current var with selection of 7 strings
+ * @param[in] variable   w_current string variable
+ *\attention Associated strings are asuume to be in string_table structure
+ */
+#define RC_STRING_TABLE_W7OUT(variable) \
+  int state = w_current->variable; \
+  RC_STRING_TABLE_OUT(variable, 0, string_table.zero) \
+  RC_STRING_TABLE_OUT(variable, 1, string_table.one) \
+  RC_STRING_TABLE_OUT(variable, 2, string_table.two) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.three) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.four) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.five) \
+  RC_STRING_TABLE_OUT(variable, 3, string_table.six)
 
 /** @} END Group KEYWORD_RC_MAC_STRINGS */
 /** @} END Group KEYWORD_RC_MACROS */

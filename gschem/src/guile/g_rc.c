@@ -238,6 +238,30 @@ SCM g_rc_display_outline_color_map (SCM scm_map)
 
 /* Display Sub-System */
 
+/*! (category "Display")
+ *  (sub-category "Cario")
+ *  \brief This function processes the anti-aliasing RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the anti-aliasing RC entry.
+ */
+SCM g_rc_anti_aliasing(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {CAIRO_ANTIALIAS_DEFAULT,  RC_STR_ANTIALIAS_DEFAULT},
+    {CAIRO_ANTIALIAS_NONE,     RC_STR_ANTIALIAS_NONE},
+    {CAIRO_ANTIALIAS_GRAY,     RC_STR_ANTIALIAS_GRAY},
+    {CAIRO_ANTIALIAS_SUBPIXEL, RC_STR_ANTIALIAS_SUBPIXEL},
+    {CAIRO_ANTIALIAS_FAST,     RC_STR_ANTIALIAS_FAST},
+    {CAIRO_ANTIALIAS_GOOD,     RC_STR_ANTIALIAS_GOOD},
+    {CAIRO_ANTIALIAS_BEST,     RC_STR_ANTIALIAS_BEST}
+  };
+
+  RETURN_G_RC_MODE("anti-aliasing",
+                    default_anti_aliasing,
+                    7);
+}
+
 /*! \brief This function processes the draw-grips RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -257,12 +281,24 @@ SCM g_rc_draw_grips(SCM mode)
                    2);
 }
 
-/*! (category "Display")
- *  (sub-category "Grid")
- *  \brief This function processes the grid_mode RC entry.
+/*! \brief This function processes the grip-size RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
- *       processing configuration data for the grid_mode RC entry.
+ *       processing configuration data for the grip-size RC entry.
+ */
+SCM g_rc_grips_pixel_size (SCM size)
+{
+  default_grip_size = ICHECK(size, MIN_GRIP_SIZE, MAX_GRIP_SIZE,
+                                   DEFAULT_GRIP_SIZE, "grip-size");
+  return SCM_BOOL_T;
+}
+
+/*! (category "Display")
+ *  (sub-category "Grid")
+ *  \brief This function processes the grid-mode RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the grid-mode RC entry.
  */
 SCM g_rc_grid_mode(SCM mode)
 {

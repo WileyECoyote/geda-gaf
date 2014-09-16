@@ -869,13 +869,10 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
 
     w_current->cr = gdk_cairo_create( widget->window );
 
-    /*Choices: CAIRO_ANTIALIAS_GRAY
-     *         CAIRO_ANTIALIAS_SUBPIXEL
-     *         CAIRO_ANTIALIAS_GOOD,
-     *         CAIRO_ANTIALIAS_BEST
-     */
-    cairo_set_antialias(w_current->cr, CAIRO_ANTIALIAS_SUBPIXEL);
+    cairo_set_antialias(w_current->cr, w_current->anti_aliasing);
+
     gdk_cairo_rectangle (w_current->cr, &(event->area));
+
     cairo_clip (w_current->cr);
 
     x_repaint_background_region (w_current, &(event->area));

@@ -644,10 +644,21 @@ KEYWORD (logging) {
   RC_BOOLEAN_GOUT (logging);
 }
 
+/** @brief function do_kw_anti_aliasing in Settings-Keyword-Handlers */
+KEYWORD (anti_aliasing) {
+  RC_ANTI_ALIASING_STRINGS;
+  RC_STRING_TABLE_W7OUT (anti_aliasing);
+}
+
 /** @brief function do_kw_grid_mode in Settings-Keyword-Handlers */
 KEYWORD (grid_mode) {
   RC_GRID_MODE_STRINGS;
   RC_STRING_TABLE_W3OUT (grid_mode);
+}
+
+/** @brief function do_kw_grip_size in Settings-Keyword-Handlers */
+KEYWORD (grip_size) {
+  RC_INTEGER_WOUT (grip_size);
 }
 
 /** @brief function do_kw_dots_grid_dot_size in Settings-Keyword-Handlers */

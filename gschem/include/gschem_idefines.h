@@ -109,14 +109,18 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 #define GRIP_SIZE_ZOOM1         60
 #define GRIP_ZOOM_THREASHOLD_1  15
 
-#define MIN_GRIP_PIXELS          7
+#define MIN_ANTI_ALIASING       CAIRO_ANTIALIAS_DEFAULT
+#define MAX_ANTI_ALIASING       CAIRO_ANTIALIAS_BEST
+#define DEFAULT_ANTI_ALIASING   CAIRO_ANTIALIAS_SUBPIXEL
+
+#define MIN_GRIP_SIZE            7
 #define DEFAULT_GRIP_SIZE       12
-#define MAX_GRIP_PIXELS         30
+#define MAX_GRIP_SIZE           30
 
 /* These aren't int's, but they don't belong in sdefines */
 #define DEFAULT_GRIP_STROKE_COLOR  SELECT_COLOR
 #define DEFAULT_GRIP_FILL_COLOR    BACKGROUND_COLOR
-#define GRIP_PIXEL_SIZE w_current->grip_pixel_size
+#define GRIP_PIXEL_SIZE w_current->grip_size
 
 /*
  * These are used in g_funcs.c, supposely Flags for generic_filesel_dialog()

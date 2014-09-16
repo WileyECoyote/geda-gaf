@@ -1950,7 +1950,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSpin (AutoPlacementGrid, w_current->attribute_placement_grid);
   SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
   SetSpin (DotGridThreshold, w_current->dots_grid_threshold);
-  SetSpin (GripPixelSize, w_current->grip_pixel_size);
+  SetSpin (GripPixelSize, w_current->grip_size);
   SetSpin (JunctionSize, w_current->renderer->junction_size);
   SetSpin (KeyboardPanGain, w_current->keyboardpan_gain);
   SetSpin (MeshGridThreshold, w_current->mesh_grid_threshold);
@@ -2079,7 +2079,7 @@ create_settings_dialog (GschemToplevel *w_current)
          VSECTION (Grips_hbox, GripOptions)  /* Grp 1 Row 1 */
            HSECTION ( GripOptions_vbox, GripOptionsRow1)  /* Grp 1 Row 3 */
              GTK_SWITCH(GripOptionsRow1_hbox, DrawGrips, 34, TRUE);
-             GTK_NUMERIC_SPIN (GripOptionsRow1_hbox, GripPixelSize, 45, 10, MIN_GRIP_PIXELS, MAX_GRIP_PIXELS);
+             GTK_NUMERIC_SPIN (GripOptionsRow1_hbox, GripPixelSize, 45, 10, MIN_GRIP_SIZE, MAX_GRIP_SIZE);
            HSECTION (GripOptions_vbox, GripOptionsRow2)  /* Grp 1 Row 2 */
              GEDA_COLOR_BUTTON (GripOptionsRow2_hbox, GripStrokeColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 34)
              GEDA_COLOR_BUTTON (GripOptionsRow2_hbox, GripFillColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 28)
@@ -2499,8 +2499,8 @@ void GatherSettings(GschemToplevel *w_current) {
                                 tmp_int = GET_SWITCH_STATE (AutoSaveSwitch);
    toplevel->auto_save_interval         = tmp_int == 0 ? 0 : GET_SPIN_IVALUE (AutoSaveIntervalSpin);
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);
-  w_current->dots_grid_threshold  = GET_SPIN_IVALUE (DotGridThresholdSpin);
-  w_current->grip_pixel_size            = GET_SPIN_IVALUE (GripPixelSizeSpin);
+  w_current->dots_grid_threshold        = GET_SPIN_IVALUE (DotGridThresholdSpin);
+  w_current->grip_size                  = GET_SPIN_IVALUE (GripPixelSizeSpin);
   w_current->renderer->junction_size    = GET_SPIN_IVALUE (JunctionSizeSpin);
   w_current->keyboardpan_gain           = GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        = GET_SPIN_IVALUE (MeshGridThresholdSpin);

@@ -134,7 +134,7 @@ void o_invalidate_rectangle (GschemToplevel *w_current,
   /* Ensure we only invalidate GdkWindows - probably wasting time here */
   if (GDK_IS_WINDOW( w_current->window )) {
 
-    grip_half_size = w_current->grip_pixel_size / 2;
+    grip_half_size = w_current->grip_size / 2;
     //grip_half_size = o_grips_half_size (w_current, NULL);
 
     cue_half_size  = SCREENabs (w_current, CUE_BOX_SIZE);

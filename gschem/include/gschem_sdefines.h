@@ -46,6 +46,8 @@
 ;;                | to include/libgeda/defines.h.
 ;; ------------------------------------------------------------------
 ;; WEH | 08/30/14 | Added SESSIONS_CONFIG_GROUP
+;; ------------------------------------------------------------------
+;; WEH | 09/15/14 | Add strings for anti-aliasing rc setting
 */
 
 #ifndef _GSCHEM_SDEFINES_H_INCL
@@ -138,6 +140,15 @@
 #define IDS_MULTI_ATTRBI       "multiattrib"  /* Type: MODELESS */
 
 /* -----------------  Strings for RC Read/Write ----------------- */
+
+/* Strings for Anti-Aliasing RC mode */
+#define RC_STR_ANTIALIAS_DEFAULT   "default"
+#define RC_STR_ANTIALIAS_NONE       RC_STR_NONE
+#define RC_STR_ANTIALIAS_GRAY      "gray"
+#define RC_STR_ANTIALIAS_SUBPIXEL  "subpixel"
+#define RC_STR_ANTIALIAS_FAST      "fast"
+#define RC_STR_ANTIALIAS_GOOD      "good"
+#define RC_STR_ANTIALIAS_BEST      "best"
 
 /* Generic Strings for RC code */
 #define RC_STR_NONE            "none"

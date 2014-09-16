@@ -232,22 +232,23 @@ void x_window_save_settings(GschemToplevel *w_current)
   array[3] = w_current->mesh_grid_major_color.blue;
   eda_config_set_int_list (cfg, win_group, "mesh-grid-major-color", array, 4);
 
-  /* unmark */
+  eda_config_set_integer (cfg, win_group, "anti-aliasing",   w_current->anti_aliasing);
+
   /* Grips Settings */
-  eda_config_set_boolean (cfg, win_group, "draw-grips",    w_current->renderer->draw_grips);
-  eda_config_set_integer (cfg, win_group, "grip-pixels",   w_current->grip_pixel_size);
+  eda_config_set_boolean (cfg, win_group, "draw-grips",      w_current->renderer->draw_grips);
+  eda_config_set_integer (cfg, win_group, "grip-size",       w_current->grip_size);
 
   array[0] = w_current->renderer->grip_stroke_color.pixel;
   array[1] = w_current->renderer->grip_stroke_color.red;
   array[2] = w_current->renderer->grip_stroke_color.green;
   array[3] = w_current->renderer->grip_stroke_color.blue;
-  eda_config_set_int_list (cfg, win_group, "grips-stroke", array, 4);
+  eda_config_set_int_list (cfg, win_group, "grips-stroke-color", array, 4);
 
   array[0] = w_current->renderer->grip_fill_color.pixel;
   array[1] = w_current->renderer->grip_fill_color.red;
   array[2] = w_current->renderer->grip_fill_color.green;
   array[3] = w_current->renderer->grip_fill_color.blue;
-  eda_config_set_int_list (cfg, win_group, "grips-fill", array, 4);
+  eda_config_set_int_list (cfg, win_group, "grips-fill-color", array, 4);
 
   /* Junction Cues and Nets */
   eda_config_set_integer (cfg, win_group, "junction-size", w_current->renderer->junction_size);

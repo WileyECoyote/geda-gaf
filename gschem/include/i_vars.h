@@ -7,7 +7,9 @@ extern int default_override_net_color;
 extern int default_override_pin_color;
 
 /* Display Related */
+extern int default_anti_aliasing;
 extern int default_draw_grips;
+extern int default_grip_size;
 
 extern int default_grid_mode;
 extern int default_dots_grid_dot_size;

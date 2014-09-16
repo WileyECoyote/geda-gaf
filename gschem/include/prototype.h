@@ -100,7 +100,9 @@ void  g_rc_parse_gtkrc();
 int   check_and_convert_scm_integer    (SCM val2chk, int min_value, int max_value,
                                         int default_value, char* keyword);
 SCM   g_rc_gschem_version              (SCM version);
+SCM   g_rc_anti_aliasing               (SCM mode);
 SCM   g_rc_draw_grips                  (SCM mode);
+SCM   g_rc_grips_pixel_size            (SCM size);
 SCM   g_rc_grid_mode                   (SCM mode);
 SCM   g_rc_dots_grid_dot_color         (SCM red, SCM green, SCM blue);
 SCM   g_rc_dots_grid_dot_size          (SCM dotsize);

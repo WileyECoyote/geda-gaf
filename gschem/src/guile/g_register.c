@@ -53,7 +53,11 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "display-color-map",         0, 1, 0, g_rc_display_color_map },
   { "display-outline-color-map", 0, 1, 0, g_rc_display_outline_color_map },
 
+  { "anti-aliasing",             1, 0, 0, g_rc_anti_aliasing },
+
   { "draw-grips",                1, 0, 0, g_rc_draw_grips },
+  { "grip-size",           1, 0, 0, g_rc_grips_pixel_size },
+
   { "grid-mode",                 1, 0, 0, g_rc_grid_mode },
   { "dots-grid-dot-color",       3, 0, 0, g_rc_dots_grid_dot_color },
   { "dots-grid-dot-size",        1, 0, 0, g_rc_dots_grid_dot_size },

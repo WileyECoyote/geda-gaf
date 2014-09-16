@@ -204,7 +204,8 @@ struct _GschemToplevel {
   /* ----------------- rc/user parameters ----------------- */
 
 /* Display Related */
-  int grip_pixel_size;
+  int anti_aliasing;
+  int grip_size;
 
   /* sets the mininum number of pixels necessary for the grid to be displayed */
   int grid_mode;          /* sets what type of grid to show, can be None, Dots, or Mesh */
