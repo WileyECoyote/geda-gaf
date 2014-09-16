@@ -1,5 +1,13 @@
 2014-09-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_grid.c: Eliminate call to inside_region in functions x_grid_draw
+      _dots_region, was in the wrong place and too late of X was out of bounds.
+      Add if (i < Current_Page->left) in outer loop and if (j < Current_Page->top)
+      in inner loop, this eliminate repeated calls to WORLDtoSCREEN and many extra
+      inned loops with out-of-bounds X.
+
+2014-09-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_grid.c: Added revises dots grid for user settable color from
       rc file, not settable from the preferences dialog (or the mesh alphas).
 

@@ -152,7 +152,7 @@ x_grid_draw_points (Display *xdisplay, Drawable drawable, GC gc, POINT *points, 
     int i;
     XPoint *tmp_points = g_new (XPoint, npoints);
 
-    for (i=0; i<npoints; i++) {
+    for (i = 0; i < npoints; i++) {
       tmp_points[i].x = points[i].x;
       tmp_points[i].y = points[i].y;
     }
@@ -189,21 +189,21 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   int i, j;
   int dot_x, dot_y, dot_size;
+  int x1, y1, x2, y2;
   int x_start, y_start, x_end, y_end;
-  int count;
+  int count, incr;
 
   cairo_surface_t *surface;
 
   POINT points[DOTS_POINTS_ARRAY_SIZE];
 
-  Colormap  colormap;
   XColor    xc;
   GC        gc;
   Display  *xdisplay;
   Drawable  drawable;
   int       screen;
 
-  int incr = query_dots_grid_spacing (w_current);
+  incr = query_dots_grid_spacing (w_current);
 
   if (incr == -1)
     return;
@@ -211,10 +211,11 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   count = 0;
 
   surface  = cairo_get_target (w_current->cr);
-  xdisplay = cairo_xlib_surface_get_display (surface);
   drawable = cairo_xlib_surface_get_drawable (surface);
+
+  xdisplay = cairo_xlib_surface_get_display (surface);
   screen   = DefaultScreen(xdisplay);
-  colormap = DefaultColormap(xdisplay, screen);
+
   gc       = XCreateGC(xdisplay, drawable, 0, 0 );
 
   xc.pixel = w_current->dots_grid_dot_color.pixel;
@@ -222,12 +223,17 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   xc.green = w_current->dots_grid_dot_color.green;
   xc.blue  = w_current->dots_grid_dot_color.blue;
 
-  XAllocColor(xdisplay, colormap, &xc);
+  XAllocColor(xdisplay, DefaultColormap(xdisplay, screen), &xc);
 
   XSetForeground(xdisplay, gc, xc.pixel);
 
-  SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
-  SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
+  x1 = x - 1;
+  y1 = y + height + 1;
+  x2 = x + width  + 1;
+  y2 = y - 1;
+
+  SCREENtoWORLD (w_current, x1 , y1, &x_start, &y_start);
+  SCREENtoWORLD (w_current, x2,  y2, &x_end,   &y_end);
 
   /* figure starting grid coordinates, work by taking the start
    * and end coordinates and rounding down to the nearest increment */
@@ -238,37 +244,36 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   for (i = x_start; i <= x_end; i = i + incr) {
 
+    if (i < Current_Page->left)
+      continue;
+
     for (j = y_start; j <= y_end; j = j + incr) {
 
-      WORLDtoSCREEN (w_current, i,j, &dot_x, &dot_y);
+      if (j < Current_Page->top)
+        continue;
 
-      if (inside_region (Current_Page->left,
-                         Current_Page->top,
-                         Current_Page->right,
-                         Current_Page->bottom, i, j)) {
+      WORLDtoSCREEN (w_current, i, j, &dot_x, &dot_y);
 
-        if (dot_size == 1) {
+      if (dot_size == 1) {
 
-          points[count].x = dot_x;
-          points[count].y = dot_y;
-          count++;
+        points[count].x = dot_x;
+        points[count].y = dot_y;
+        count++;
 
-          /* get out of loop if we're hit the end of the array */
-          if (count == DOTS_POINTS_ARRAY_SIZE) {
-
-            x_grid_draw_points (xdisplay, drawable, gc, points, count);
-            count = 0;
-          }
+        /* get out of loop if we're hit the end of the array */
+        if (count == DOTS_POINTS_ARRAY_SIZE) {
+          x_grid_draw_points (xdisplay, drawable, gc, points, count);
+          count = 0;
         }
-        else {
-          x_grid_draw_point (xdisplay, drawable, gc, dot_x, dot_y, dot_size);
-        }
+      }
+      else {
+        x_grid_draw_point (xdisplay, drawable, gc, dot_x, dot_y, dot_size);
       }
     }
   }
 
   /* now draw all the points in one step */
-  if(count != 0) {
+  if (count > 0) {
     x_grid_draw_points (xdisplay, drawable, gc, points, count);
   }
 
@@ -335,7 +340,6 @@ static void draw_mesh (GschemToplevel *w_current,
 
   }
   cairo_stroke (w_current->cr);
-
 }
 
 /*! \brief Draw an area of the screen with a mesh grid pattern
@@ -369,9 +373,8 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
   SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
 
-  cairo_set_line_width (w_current->cr, w_current->grid_size_factor);
-
   cairo_set_line_cap (w_current->cr, CAIRO_LINE_CAP_SQUARE);
+  cairo_set_line_width (w_current->cr, w_current->grid_size_factor);
 
   /** Draw the fine grid if its on-screen spacing is large enough **/
   if (screen_incr >= w_current->mesh_grid_threshold) {
