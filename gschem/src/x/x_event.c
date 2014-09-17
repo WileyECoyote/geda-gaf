@@ -503,7 +503,7 @@ bool x_event_button_released (GtkWidget      *widget,
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   printf("%s: entry! %d \n", __func__, w_current->event_state);
 #endif
 
@@ -708,7 +708,7 @@ bool x_event_button_released (GtkWidget      *widget,
   }
 
   end_button_released:
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   printf("x_event_button_released: exit! %d \n", w_current->event_state);
 #endif
   return(FALSE);
@@ -854,9 +854,9 @@ int
 x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_current)
 {
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   const char  *name = gtk_widget_get_name (widget);
-  fprintf (stderr, "x_event_expose, exposing %s\n", name);
+  fprintf (stderr, "x_event_expose, exposing %s <%p>\n", name, widget);
 #endif
 
   if (w_current != NULL) {
@@ -872,7 +872,6 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
     cairo_set_antialias(w_current->cr, w_current->anti_aliasing);
 
     gdk_cairo_rectangle (w_current->cr, &(event->area));
-
     cairo_clip (w_current->cr);
 
     x_repaint_background_region (w_current, &(event->area));
@@ -934,7 +933,7 @@ bool x_event_key (GtkWidget      *widget,
   int  pressed;
   int  wx, wy;
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   printf("x_event_key_pressed: Pressed key %i.\n", event->keyval);
 #endif
 
@@ -1041,7 +1040,7 @@ bool x_event_motion (GtkWidget      *widget,
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
   w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   /*  printf("MOTION!\n");*/
 #endif
 
@@ -1380,7 +1379,7 @@ void x_event_vschanged (GtkAdjustment *adjust, GschemToplevel *w_current)
     toplevel->page_current->top -
     (current_bottom - new_bottom);
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
     printf("vrange %f %f\n",  adjust->lower, adjust->upper);
     printf("vvalue %f\n",     adjust->value);
     printf("actual: %d %d\n", toplevel->page_current->top,
@@ -1473,7 +1472,7 @@ void x_manual_resize(GschemToplevel *w_current)
   w_current->screen_width  = DrawingArea->allocation.width;
   w_current->screen_height = DrawingArea->allocation.height;
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   printf("manual: %d %d\n", w_current->screen_width, w_current->screen_height);
 #endif
 
@@ -1487,7 +1486,7 @@ void x_manual_resize(GschemToplevel *w_current)
                       toplevel->page_current->top,
                       toplevel->page_current->bottom);
 
-#if DEBUG || DEBUG_EVENTS
+#if DEBUG_EVENTS
   printf("Window aspect: %f\n",
          (float) w_current->screen_width / (float) w_current->screen_height);
   /* No longer used?

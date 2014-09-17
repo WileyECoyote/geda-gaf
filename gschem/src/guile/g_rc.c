@@ -313,31 +313,60 @@ SCM g_rc_grid_mode(SCM mode)
                    3);
 }
 
-/*! \brief This function processes the dots-grid-dot-color RC entry.
+/*! \brief This function processes the dots-grid-minor-color RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variables while
- *       processing configuration data for the dots-grid-dot-color RC
+ *       processing configuration data for the dots-grid-minor-color RC
  *       entry. The pixel field of the structure for default values is
  *       set to a value other than 88, to indicate the fields have been
  *       set from rc values.
  *
  */
-SCM g_rc_dots_grid_dot_color (SCM red, SCM green, SCM blue)
+SCM g_rc_dots_grid_minor_color (SCM red, SCM green, SCM blue)
 {
   int r = ICHECK(red, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
-                "dots-grid-dot-color");
+                "dots-grid-minor-color");
 
   int g = ICHECK(green, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
-                "dots-grid-dot-color");
+                "dots-grid-minor-color");
 
   int b = ICHECK(blue, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
-                "dots-grid-dot-color");
+                "dots-grid-minor-color");
 
  /* The pixel field is not used for color, but we use as flag */
-  default_dots_grid_dot_color.pixel = 99;
-  default_dots_grid_dot_color.red   = r;
-  default_dots_grid_dot_color.green = g;
-  default_dots_grid_dot_color.blue  = b;
+  default_dots_grid_minor_color.pixel = 99;
+  default_dots_grid_minor_color.red   = r;
+  default_dots_grid_minor_color.green = g;
+  default_dots_grid_minor_color.blue  = b;
+
+  return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the dots-grid-major-color RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the dots-grid-major-color RC
+ *       entry. The pixel field of the structure for default values is
+ *       set to a value other than 88, to indicate the fields have been
+ *       set from rc values.
+ *
+ */
+SCM g_rc_dots_grid_major_color (SCM red, SCM green, SCM blue)
+{
+  int r = ICHECK(red, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
+                "dots-grid-major-color");
+
+  int g = ICHECK(green, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
+                "dots-grid-major-color");
+
+  int b = ICHECK(blue, 0, MAX_GRID_COLOR, DEFAULT_GRID_COLOR,
+                "dots-grid-major-color");
+
+ /* The pixel field is not used for color, but we use as flag */
+  default_dots_grid_major_color.pixel = 99;
+  default_dots_grid_major_color.red   = r;
+  default_dots_grid_major_color.green = g;
+  default_dots_grid_major_color.blue  = b;
 
   return SCM_BOOL_T;
 }
@@ -352,6 +381,23 @@ SCM g_rc_dots_grid_dot_size (SCM dotsize)
   default_dots_grid_dot_size = ICHECK(dotsize, MIN_GRID_DOT_SIZE, -1,
                                DEFAULT_GRID_DOT_SIZE, "dots-grid-dot-size");
   return SCM_BOOL_T;
+}
+
+/*! \brief This function processes the dots_grid_mode RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the dots_grid_mode RC entry.
+ */
+SCM g_rc_dots_grid_mode (SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {DOTS_GRID_VARIABLE_MODE, RC_STR_DOTS_MODE_VARIABLE },
+    {DOTS_GRID_FIXED_MODE,    RC_STR_DOTS_MODE_FIXED }
+  };
+
+  RETURN_G_RC_MODE ("dots-grid-mode",
+                    default_dots_grid_mode,
+                    2);
 }
 
 /*! \brief This function processes the dots-grid-threshold RC entry.
@@ -371,21 +417,38 @@ SCM g_rc_dots_grid_threshold (SCM threshold)
   return SCM_BOOL_T;
 }
 
-/*! \brief This function processes the dots_grid_mode RC entry.
+/*! \brief This function processes the dots-grid-minor-alpha RC entry.
  *  \par Function Description
- *       C function to dynamically convert lisp variable while
- *       processing configuration data for the dots_grid_mode RC entry.
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the dots-grid-minor-alpha RC
+ *       entry.
+ *
  */
-SCM g_rc_dots_grid_mode (SCM mode)
+SCM g_rc_dots_grid_minor_alpha (SCM percent)
 {
-  static const vstbl_entry mode_table[] = {
-    {DOTS_GRID_VARIABLE_MODE, RC_STR_DOTS_MODE_VARIABLE },
-    {DOTS_GRID_FIXED_MODE,    RC_STR_DOTS_MODE_FIXED }
-  };
+  default_dots_grid_minor_alpha = ICHECK(percent,
+                                         MIN_GRID_ALPHA,
+                                         MAX_GRID_ALPHA,
+                                         DEFAULT_GRID_MINOR_ALPHA,
+                                         "dots-grid-minor-alpha");
+  return SCM_BOOL_T;
+}
 
-  RETURN_G_RC_MODE ("dots-grid-mode",
-                    default_dots_grid_mode,
-                    2);
+/*! \brief This function processes the dots-grid-major-alpha RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variables while
+ *       processing configuration data for the dots-grid-minor-alpha RC
+ *       entry.
+ *
+ */
+SCM g_rc_dots_grid_major_alpha (SCM percent)
+{
+  default_dots_grid_major_alpha = ICHECK(percent,
+                                         MIN_GRID_ALPHA,
+                                         MAX_GRID_ALPHA,
+                                         DEFAULT_GRID_MAJOR_ALPHA,
+                                         "dots-grid-major-alpha");
+  return SCM_BOOL_T;
 }
 
 /*! \brief This function processes the mesh-grid-threshold RC entry.
@@ -431,9 +494,9 @@ SCM g_rc_mesh_line_width_factor (SCM width)
 SCM g_rc_mesh_grid_minor_alpha (SCM percent)
 {
   default_mesh_grid_minor_alpha = ICHECK(percent,
-                                         MIN_MESH_GRID_ALPHA,
-                                         MAX_MESH_GRID_ALPHA,
-                                         MESH_GRID_MINOR_COLOR,
+                                         MIN_GRID_ALPHA,
+                                         MAX_GRID_ALPHA,
+                                         DEFAULT_GRID_MINOR_ALPHA,
                                          "mesh-grid-minor-alpha");
   return SCM_BOOL_T;
 }
@@ -448,9 +511,9 @@ SCM g_rc_mesh_grid_minor_alpha (SCM percent)
 SCM g_rc_mesh_grid_major_alpha (SCM percent)
 {
   default_mesh_grid_major_alpha = ICHECK(percent,
-                                         MIN_MESH_GRID_ALPHA,
-                                         MAX_MESH_GRID_ALPHA,
-                                         MESH_GRID_MAJOR_COLOR,
+                                         MIN_GRID_ALPHA,
+                                         MAX_GRID_ALPHA,
+                                         DEFAULT_GRID_MAJOR_ALPHA,
                                          "mesh-grid-major-alpha");
   return SCM_BOOL_T;
 }

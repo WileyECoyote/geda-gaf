@@ -1,3 +1,21 @@
+2014-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c: More work on the dots grid; added dual grids like the mesh
+      grid with major and minor dots, along with separate user controllable color
+      and alpha settings. cario-turtle-arc is God awful slow. Compared to X11 cario
+      takes twice as long to draw the dots grid. Drawing directly using X11 works
+      good but cario did not respect the activated pixels in the buffer, for example
+      when dragging a new component the component acted like an eraser for the dots
+      grid, (but not the mesh, which is drawn using cario). The dots grid would not
+      be refreshed until the component was placed. And the alpha was not uniform.
+      Cario seems more suited for simple drawing programs and not well suited for
+      high-performance CAD systems.
+
+      Also added user configurable anti-alias variable for cairo_set_antialias but
+      difference in image quality between CAIRO_ANTIALIAS_FAST and CAIRO_ANTIALIAS_
+      GOOD varied from poor to no-so-good, with CAIRO_ANTIALIAS_BEST generating X11
+      errors. The glyph quality is even worst.
+
 2014-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * *: Add new rc`able variable anti-aliasing (to allow user control of screen

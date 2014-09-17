@@ -126,15 +126,27 @@
 ;(grid-mode "dots")
 ;(grid-mode "mesh")
 
-; dots-grid-dot-color 3 integers
+; dots-grid-minor-color 3 integers
 ;
-; The dots-grid-dot-color specifies the color to use for the dots grid. Note
-; that using this option here limits the color to basic colors.
+; The dots-grid-minor-color specifies the color to use for the minor dots grid,
+; The color is specified as three integers for red, green, and blue, respectively.
 ;
 ;  RED GREEN BLUE
 ;
-(dots-grid-dot-color 48830 48830 48830)
-;(dots-grid-dot-color 46956 4943 42960)
+;(mesh-grid-minor-color 48830 48830 48830)
+;(mesh-grid-minor-color 5781 56202 17928)
+(mesh-grid-minor-color 42747 41944 3217)
+
+; dots-grid-major-color 3 integers
+;
+; The dots-grid-minor-color specifies the color to use for the major dots grid,
+; The color is specified as three integers for red, green, and blue, respectively.
+;
+;  RED GREEN BLUE
+;
+;(mesh-grid-major-color 48830 48830 48830)
+;(mesh-grid-major-color 22084 3125 63070)
+(mesh-grid-major-color 46956 4943 42960)
 
 ; dots-grid-dot-size integer
 ;
@@ -148,6 +160,16 @@
 ;(dots-grid-dot-size 2)
 ;(dots-grid-dot-size 3)
 
+; dots-grid-mode string
+;
+; The dots-grid-mode keyword controls the mode of the dotted grid, either
+; variable or fixed. In the variable mode, the grid spacing changes
+; depending on the zoom factor. In the fixed mode, the grid always
+; represents the same number of units as the snap-spacing. You can
+; control the density of the grid using the dots-grid-threshold.
+;(dots-grid-mode "variable")
+;(dots-grid-mode "fixed")
+
 ; dots-grid-threshold integer
 ;
 ; The dots-grid-threshold specifies the minimum number of pixels
@@ -157,23 +179,31 @@
 ;
 (dots-grid-threshold 10)
 
-; dots-grid-mode string
+; dots-grid-minor-alpha integer
 ;
-; The dots-grid-mode keyword controls the mode of the dotted grid, either
-; variable or fixed. In the variable mode, the grid spacing changes
-; depending on the zoom factor. In the fixed mode, the grid always
-; represents the same number of units as the snap-spacing. You can
-; control the density of the grid using the dots-grid-threshold.
-(dots-grid-mode "variable")
-;(dots-grid-mode "fixed")
+; The dots-grid-minor-alpha specifies the percentage transparency to apply to
+; the color used for minor grid lines when when using the dots grid. The alpha
+; setting is dependent on the color choice, and requires some experimentation.
+;
+; min value: 0
+; max value: 100
+; default value: 30
+;
+;(dots-grid-minor-alpha 15)
+(dots-grid-minor-alpha 30)
 
-; mesh-grid-threshold integer
+; dots-grid-major-alpha integer
 ;
-; The mesh-grid-threshold specifies the minimum line pitch for the
-; grid to be displayed. Using this parameter you can control maximum density
-; of the displayed before the minor, then major grid-lines are switched off.
+; The dots-grid-major-alpha specifies the percentage transparency to apply to
+; the color used for major grid lines when when using the dots grid. The alpha
+; setting is dependent on the color choice, and requires some experimentation.
 ;
-(mesh-grid-threshold 8)
+; min value: 0
+; max value: 100
+; default value: 40
+;
+;(dots-grid-major-alpha 20)
+(dots-grid-major-alpha 50)
 
 ; mesh-line-width-factor integer
 ;
@@ -181,6 +211,15 @@
 ; using the mesh grid.
 ;
 (mesh-line-width-factor 118)
+
+; mesh-grid-threshold integer
+;
+; The mesh-grid-threshold specifies the minimum line pitch for the grid to
+; be displayed. This parameter can be used to control the maximum density
+; of the displayed grid before the minor, and then major grid-lines are
+; turned off.
+;
+(mesh-grid-threshold 10)
 
 ; mesh-grid-minor-alpha integer
 ;
@@ -192,6 +231,7 @@
 ; max value: 100
 ; default value: 30
 ;
+;(mesh-grid-minor-alpha 15)
 (mesh-grid-minor-alpha 27)
 
 ; mesh-grid-major-alpha integer
@@ -204,26 +244,40 @@
 ; max value: 100
 ; default value: 40
 ;
+;(mesh-grid-major-alpha 20)
 (mesh-grid-major-alpha 38)
 
 ; mesh-grid-minor-color 3 integers
 ;
 ; The mesh-grid-minor-color specifies the color to use for minor lines for the
-; mesh grid.
+; mesh grid. The color is specified as three integers for red, green, and blue,
+; respectively.
 ;
-;  RED GREEN BLUE
+; For the "white" values provided in set 1, try lower alpha setting, i.e. the
+; 15/20 set. Some experimentation maybe required.
 ;
-;(mesh-grid-minor-color 5781  56202 17928)
-;(mesh-grid-minor-color 42747 41944 3217)
+; Set 1 Minor: White
+;(mesh-grid-minor-color 48830 48830 48830)
+;
+; Set 2 Minor: Blue
+;(mesh-grid-minor-color 5781 56202 17928)
+;
+; Set 3 Minor: Magenta
+(mesh-grid-minor-color 42747 41944 3217)
 
 ; mesh-grid-major-color 3 integers
 ;
 ; The mesh-grid-major-color specifies the color to use for major lines when
 ; using the mesh grid, see comments for mesh-grid-minor-color.
 ;
-;  RED GREEN BLUE
+; Set 1 Major: White
+;(mesh-grid-major-color 48830 48830 48830)
+;
+; Set 2 Major: Green
 ;(mesh-grid-major-color 22084 3125 63070)
-;(mesh-grid-major-color 46956 4943 42960)
+;
+; Set 3 Major: Yellow
+(mesh-grid-major-color 46956 4943 42960)
 
 ;END ------------------------> Grid Setup <-------------------------
 

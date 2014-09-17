@@ -53,14 +53,18 @@ int     default_grip_size           = RC_NIL;
 
 int     default_grid_mode                 = RC_NIL;
 int     default_dots_grid_dot_size        = RC_NIL;
-int     default_dots_grid_threshold       = RC_NIL;
 int     default_dots_grid_mode            = RC_NIL;
+int     default_dots_grid_threshold       = RC_NIL;
+int     default_dots_grid_minor_alpha     = DEFAULT_GRID_MINOR_ALPHA;
+int     default_dots_grid_major_alpha     = DEFAULT_GRID_MAJOR_ALPHA;
+
 int     default_mesh_grid_threshold       = RC_NIL;
 int     default_mesh_line_width_factor    = RC_NIL;
-int     default_mesh_grid_minor_alpha     = DEFAULT_MESH_GRID_MINOR_ALPHA;
-int     default_mesh_grid_major_alpha     = DEFAULT_MESH_GRID_MAJOR_ALPHA;
+int     default_mesh_grid_minor_alpha     = DEFAULT_GRID_MINOR_ALPHA;
+int     default_mesh_grid_major_alpha     = DEFAULT_GRID_MAJOR_ALPHA;
 
-GdkColor default_dots_grid_dot_color      = { 88 };
+GdkColor default_dots_grid_major_color    = { 88 };
+GdkColor default_dots_grid_minor_color    = { 88 };
 GdkColor default_mesh_grid_minor_color    = { 88 };
 GdkColor default_mesh_grid_major_color    = { 88 };
 
@@ -360,29 +364,32 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_window_integer(cfg, "grid-mode",           &w_current->
                                      grid_mode,             GRID_MESH);
 
-  i_var_restore_window_color (cfg,  "dots-grid-dot-color", &w_current->
-                                     dots_grid_dot_color,   DOTS_GRID_COLOR);
+  i_var_restore_window_color (cfg,  "dots-grid-minor-color",  &w_current->
+                                     dots_grid_minor_color,    DOTS_GRID_COLOR);
 
-  i_var_restore_window_integer(cfg, "dots-grid-dot-size",  &w_current->
-                                     dots_grid_dot_size,    DEFAULT_GRID_DOT_SIZE);
+  i_var_restore_window_color (cfg,  "dots-grid-major-color",  &w_current->
+                                     dots_grid_major_color,    DOTS_GRID_COLOR);
 
-  i_var_restore_window_integer(cfg, "dots-grid-mode",      &w_current->
-                                     dots_grid_mode,        DOTS_GRID_VARIABLE_MODE);
+  i_var_restore_window_integer(cfg, "dots-grid-dot-size",     &w_current->
+                                     dots_grid_dot_size,       DEFAULT_GRID_DOT_SIZE);
 
-  i_var_restore_window_integer(cfg, "grid-dot-threshold",  &w_current->
-                                     dots_grid_threshold,   DEFAULT_GRID_DOT_THRESHOLD);
+  i_var_restore_window_integer(cfg, "dots-grid-mode",         &w_current->
+                                     dots_grid_mode,           DOTS_GRID_VARIABLE_MODE);
 
-  i_var_restore_window_integer(cfg, "mesh-grid-threshold", &w_current->
-                                     mesh_grid_threshold,   DEFAULT_GRID_MESH_THRESHOLD);
+  i_var_restore_window_integer(cfg, "grid-dot-threshold",     &w_current->
+                                     dots_grid_threshold,      DEFAULT_GRID_DOT_THRESHOLD);
+
+  i_var_restore_window_integer(cfg, "mesh-grid-threshold",    &w_current->
+                                     mesh_grid_threshold,      DEFAULT_GRID_MESH_THRESHOLD);
 
   i_var_restore_window_integer(cfg, "mesh-line-width-factor", &w_current->
                                      mesh_line_width_factor,   DEFAULT_MESH_LINE_WIDTH_FACTOR);
 
-  i_var_restore_window_color (cfg,  "mesh-grid-minor-color", &w_current->
-                                     mesh_grid_minor_color,   MESH_GRID_MINOR_COLOR);
+  i_var_restore_window_color (cfg,  "mesh-grid-minor-color",  &w_current->
+                                     mesh_grid_minor_color,    MESH_GRID_MINOR_COLOR);
 
-  i_var_restore_window_color (cfg,  "mesh-grid-major-color", &w_current->
-                                     mesh_grid_major_color,   MESH_GRID_MAJOR_COLOR);
+  i_var_restore_window_color (cfg,  "mesh-grid-major-color",  &w_current->
+                                     mesh_grid_major_color,    MESH_GRID_MAJOR_COLOR);
 
   /* Restore Cues & Endpoints settings - Saved by: x_window_save_settings */
   i_var_restore_window_integer(cfg, "junction-size",       &w_current->renderer->
@@ -462,16 +469,26 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->dots_grid_dot_size,    default_dots_grid_dot_size);
   i_set_rc (&w_current->dots_grid_mode,        default_dots_grid_mode);
   i_set_rc (&w_current->dots_grid_threshold,   default_dots_grid_threshold);
-  i_set_rc (&w_current->mesh_grid_threshold,   default_mesh_grid_threshold);
+
+  w_current->dots_grid_minor_alpha     = default_dots_grid_minor_alpha;
+  w_current->dots_grid_major_alpha     = default_dots_grid_major_alpha;
+
+  i_set_rc (&w_current->mesh_grid_threshold,     default_mesh_grid_threshold);
   i_set_rc (&w_current->mesh_line_width_factor,  default_mesh_line_width_factor);
 
   w_current->mesh_grid_minor_alpha     = default_mesh_grid_minor_alpha;
   w_current->mesh_grid_major_alpha     = default_mesh_grid_major_alpha;
 
-  if (default_dots_grid_dot_color.pixel != 88) {
-    w_current->dots_grid_dot_color.red     = default_dots_grid_dot_color.red;
-    w_current->dots_grid_dot_color.green   = default_dots_grid_dot_color.green;
-    w_current->dots_grid_dot_color.blue    = default_dots_grid_dot_color.blue;
+  if (default_dots_grid_minor_color.pixel != 88) {
+    w_current->dots_grid_minor_color.red     = default_dots_grid_minor_color.red;
+    w_current->dots_grid_minor_color.green   = default_dots_grid_minor_color.green;
+    w_current->dots_grid_minor_color.blue    = default_dots_grid_minor_color.blue;
+  }
+
+  if (default_dots_grid_major_color.pixel != 88) {
+    w_current->dots_grid_major_color.red     = default_dots_grid_major_color.red;
+    w_current->dots_grid_major_color.green   = default_dots_grid_major_color.green;
+    w_current->dots_grid_major_color.blue    = default_dots_grid_major_color.blue;
   }
 
   if (default_mesh_grid_minor_color.pixel != 88) {

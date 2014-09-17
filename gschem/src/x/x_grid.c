@@ -33,6 +33,7 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include "cairo-xlib.h"
 #include <gdk/gdkx.h>
 
 /** \defgroup grid-module Grid Module
@@ -42,8 +43,32 @@
 
 #define DOTS_POINTS_ARRAY_SIZE       8192
 #define DOTS_VARIABLE_MODE_SPACING   30
-#define COARSE_GRID_MULTIPLIER  5
+#define COARSE_GRID_MULTIPLIER        5
 #define TILES_FONT_SIZE              21
+
+static inline int
+query_grid_fixed_spacing (GschemToplevel *w_current, int *threshold)
+{
+  int incr, screen_incr;
+
+  /* Fixed size grid in world coorinates */
+  incr        = w_current->snap_size;
+  screen_incr = SCREENabs (w_current, incr);
+
+  /* We draw a fine grid if its on-screen spacing is large enough */
+  if (screen_incr >= *threshold) {
+    return incr;
+  }
+
+  incr *= COARSE_GRID_MULTIPLIER;
+  screen_incr = SCREENabs (w_current, incr);
+
+  /* We draw a coarse grid if its on-screen spacing is large enough */
+  if (screen_incr >= *threshold)
+    return incr;
+
+  return -1;
+}
 
 /*! \brief Query the spacing in world coordinates at which the dots grid is drawn.
  *
@@ -58,7 +83,7 @@
  */
 static int query_dots_grid_spacing (GschemToplevel *w_current)
 {
-  int incr, screen_incr;
+  int incr;
 
   g_return_val_if_fail(w_current->toplevel != NULL, -1);
 
@@ -77,15 +102,7 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
       }
     }
     else {
-
-      /* Fixed size grid in world coorinates */
-      incr        = w_current->snap_size;
-      screen_incr = SCREENabs (w_current, incr);
-
-      if (screen_incr < w_current->dots_grid_threshold) {
-        /* No grid drawn if the on-screen spacing is less than the threshold */
-        incr = -1;
-      }
+      return query_grid_fixed_spacing (w_current, &w_current->dots_grid_threshold);
     }
   }
   else {
@@ -108,63 +125,78 @@ static int query_dots_grid_spacing (GschemToplevel *w_current)
  */
 static int query_mesh_grid_spacing (GschemToplevel *w_current)
 {
-  int incr, screen_incr;
-
-  incr = w_current->snap_size;
-  screen_incr = SCREENabs (w_current, incr);
-
-  /* We draw a fine grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_threshold) {
-    return incr;
-  }
-
-  incr *= COARSE_GRID_MULTIPLIER;
-  screen_incr = SCREENabs (w_current, incr);
-
-  /* We draw a coarse grid if its on-screen spacing is large enough */
-  if (screen_incr >= w_current->mesh_grid_threshold)
-    return incr;
-
-  return -1;
+  return query_grid_fixed_spacing (w_current, &w_current->mesh_grid_threshold);
 }
 
-#include "cairo-xlib.h"
+/*************************** Dots Grid ****************************/
 
-static void
-x_grid_draw_point (Display *xdisplay, Drawable drawable, GC gc, int x, int y, int size)
+/*! \brief Draw an area of the screen with a dotted grid pattern
+ *
+ *  \par Function Description
+ *  Draws the dotted grid pattern over a given region of the screen.
+ *
+ *  \param [in] w_current  The GschemToplevel.
+ *  \param [in] x          The left screen coordinate for the drawing.
+ *  \param [in] y          The top screen coordinate for the drawing.
+ *  \param [in] width      The width of the region to draw.
+ *  \param [in] height     The height of the region to draw.
+ */
+static inline void
+draw_dots (GschemToplevel *w_current,
+           int x_start, int y_start, int x_end, int y_end, int incr,
+           int coarse_mult)
 {
+  int i, j;
+  int dot_x, dot_y;
+  int next_coarse_x, next_coarse_y;
+  int coarse_incr = incr * coarse_mult;
 
-  XFillArc (xdisplay, drawable, gc, x, y, size, size, 0, FULL_CIRCLE);
+  double dot_size = w_current->grid_size_factor;
 
-}
+  /* figure starting grid coordinates, work by taking the start
+   * and end coordinates and rounding down to the nearest increment */
+  x_start -= (x_start % incr);
+  y_start -= (y_start % incr);
 
-static void
-x_grid_draw_points (Display *xdisplay, Drawable drawable, GC gc, POINT *points, int npoints)
-{
-  if (npoints == 1) {
-    XDrawPoint (xdisplay,
-                drawable,
-                gc,
-                points[0].x, points[0].y);
+  if (coarse_incr == 0) {
+    next_coarse_x = x_start - 1; /* Ensures we never hit this when looping */
+    next_coarse_y = y_start - 1; /* Ensures we never hit this when looping */
   }
   else {
+    next_coarse_x = x_start - (x_start % coarse_incr);
+    next_coarse_y = y_start - (y_start % coarse_incr);
+    if (next_coarse_x < x_start) next_coarse_x += coarse_incr;
+    if (next_coarse_y < y_start) next_coarse_y += coarse_incr;
+  }
 
-    int i;
-    XPoint *tmp_points = g_new (XPoint, npoints);
+  for (i = x_start; i <= x_end; i = i + incr) {
 
-    for (i = 0; i < npoints; i++) {
-      tmp_points[i].x = points[i].x;
-      tmp_points[i].y = points[i].y;
+    if (i < Current_Page->left)
+      continue;
+
+    /* Skip columns drawn in the coarser grid */
+    /*if (i == next_coarse_x) {
+      next_coarse_x += coarse_incr;
+      continue;
+    }*/
+
+    for(j = y_start; j <= y_end; j = j + incr) {
+
+      if (j < Current_Page->top)
+        continue;
+
+      /* Skip rows drawn in the coarser grid */
+      if (j == next_coarse_y) {
+        next_coarse_y += coarse_incr;
+        continue;
+      }
+
+      WORLDtoSCREEN (w_current, i,j, &dot_x, &dot_y);
+
+      cairo_new_sub_path(w_current->cr);
+
+      cairo_arc (w_current->cr, dot_x, dot_y, dot_size, 0, 2 * M_PI);
     }
-
-    XDrawPoints (xdisplay,
-                 drawable,
-                 gc,
-                 tmp_points,
-                 npoints,
-                 CoordModeOrigin);
-
-    g_free (tmp_points);
   }
 }
 
@@ -187,104 +219,67 @@ x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   int width   = rectangle->width;
   int height  = rectangle->height;
 
-  int i, j;
-  int dot_x, dot_y, dot_size;
-  int x1, y1, x2, y2;
+  int incr;
+  int screen_incr;
   int x_start, y_start, x_end, y_end;
-  int count, incr;
 
-  cairo_surface_t *surface;
+  edaColor *c;
 
-  POINT points[DOTS_POINTS_ARRAY_SIZE];
+  if (w_current->dots_grid_mode == DOTS_GRID_VARIABLE_MODE) {
+    if ((incr = query_dots_grid_spacing (w_current)) == -1)
+      return;
+  }
+  else {
+    incr      = w_current->snap_size;
+  }
 
-  XColor    xc;
-  GC        gc;
-  Display  *xdisplay;
-  Drawable  drawable;
-  int       screen;
+  screen_incr = SCREENabs (w_current, incr);
 
-  incr = query_dots_grid_spacing (w_current);
+  SCREENtoWORLD (w_current, x - 1, y + height + 1, &x_start, &y_start);
+  SCREENtoWORLD (w_current, x + width + 1, y - 1, &x_end, &y_end);
 
-  if (incr == -1)
-    return;
-
-  count = 0;
-
-  surface  = cairo_get_target (w_current->cr);
-  drawable = cairo_xlib_surface_get_drawable (surface);
-
-  xdisplay = cairo_xlib_surface_get_display (surface);
-  screen   = DefaultScreen(xdisplay);
-
-  gc       = XCreateGC(xdisplay, drawable, 0, 0 );
-
-  xc.pixel = w_current->dots_grid_dot_color.pixel;
-  xc.red   = w_current->dots_grid_dot_color.red;
-  xc.green = w_current->dots_grid_dot_color.green;
-  xc.blue  = w_current->dots_grid_dot_color.blue;
-
-  XAllocColor(xdisplay, DefaultColormap(xdisplay, screen), &xc);
-
-  XSetForeground(xdisplay, gc, xc.pixel);
-
-  x1 = x - 1;
-  y1 = y + height + 1;
-  x2 = x + width  + 1;
-  y2 = y - 1;
-
-  SCREENtoWORLD (w_current, x1 , y1, &x_start, &y_start);
-  SCREENtoWORLD (w_current, x2,  y2, &x_end,   &y_end);
-
-  /* figure starting grid coordinates, work by taking the start
+  /* figure starting grid coordinates, work by taking the start inc
    * and end coordinates and rounding down to the nearest increment */
   x_start -= (x_start % incr);
   y_start -= (y_start % incr);
 
-  dot_size = w_current->dots_grid_dot_size;
+  /** Draw the fine grid if its on-screen spacing is large enough **/
+  if (screen_incr >= w_current->dots_grid_threshold) {
 
-  for (i = x_start; i <= x_end; i = i + incr) {
+    c = &w_current->grid_minor_color;
 
-    if (i < Current_Page->left)
-      continue;
+    cairo_set_source_rgba (w_current->cr, c->r, c->g, c->b, c->a);
 
-    for (j = y_start; j <= y_end; j = j + incr) {
+    draw_dots (w_current,
+               x_start, y_start, x_end, y_end, incr, COARSE_GRID_MULTIPLIER);
 
-      if (j < Current_Page->top)
-        continue;
-
-      WORLDtoSCREEN (w_current, i, j, &dot_x, &dot_y);
-
-      if (dot_size == 1) {
-
-        points[count].x = dot_x;
-        points[count].y = dot_y;
-        count++;
-
-        /* get out of loop if we're hit the end of the array */
-        if (count == DOTS_POINTS_ARRAY_SIZE) {
-          x_grid_draw_points (xdisplay, drawable, gc, points, count);
-          count = 0;
-        }
-      }
-      else {
-        x_grid_draw_point (xdisplay, drawable, gc, dot_x, dot_y, dot_size);
-      }
-    }
+    cairo_stroke (w_current->cr);
   }
 
-  /* now draw all the points in one step */
-  if (count > 0) {
-    x_grid_draw_points (xdisplay, drawable, gc, points, count);
-  }
+  incr       *= COARSE_GRID_MULTIPLIER;
+  screen_incr = SCREENabs (w_current, incr);
 
-  XFreeGC(xdisplay, gc);
+  /** Draw the coarse grid if its on-screen spacing is large enough **/
+  if (screen_incr >= w_current->dots_grid_threshold) {
+
+    c = &w_current->grid_major_color;
+
+    cairo_set_source_rgba (w_current->cr, c->r, c->g, c->b, c->a);
+
+    draw_dots (w_current, x_start, y_start, x_end, y_end, incr, 0);
+
+    cairo_stroke (w_current->cr);
+  }
 }
+
+/*************************** Mesh Grid ****************************/
 
 /*! \brief Helper function for draw_mesh_grid_regin
  */
-static void draw_mesh (GschemToplevel *w_current,
-                       int x_start, int y_start, int x_end, int y_end,
-                       int incr, int coarse_mult)
+static void inline
+draw_mesh (GschemToplevel *w_current, int x_start, int y_start,
+                                      int x_end,   int y_end,
+                                      int incr,    int coarse_mult)
 {
   int i, j;
   int x1, y1, x2, y2;
@@ -361,9 +356,9 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
   int width   = rectangle->width;
   int height  = rectangle->height;
 
-  int x_start, y_start, x_end, y_end;
   int incr;
   int screen_incr;
+  int x_start, y_start, x_end, y_end;
 
   edaColor *c;
 
@@ -439,10 +434,25 @@ x_grid_draw_grid_region (GschemToplevel *w_current, GdkRectangle *rectangle)
 static void x_grid_print_parameters (GschemToplevel *w_current, char *when)
 {
   printf("%s on %s:\n", __func__, when);
+  printf("dots_grid_minor_color: ");
+  printf("\tred=%d ",    w_current->dots_grid_minor_color.red);
+  printf("\tgreen=%d ",  w_current->dots_grid_minor_color.green);
+  printf("\tblue=%d\n",  w_current->dots_grid_minor_color.blue);
+
+  printf("dots_grid_major_color: ");
+  printf("\tred=%d ",    w_current->dots_grid_major_color.red);
+  printf("\tgreen=%d ",  w_current->dots_grid_major_color.green);
+  printf("\tblue=%d\n",  w_current->dots_grid_major_color.blue);
+
   printf("mesh_grid_minor_color: ");
   printf("\tred=%d ",    w_current->mesh_grid_minor_color.red);
   printf("\tgreen=%d ",  w_current->mesh_grid_minor_color.green);
   printf("\tblue=%d\n",  w_current->mesh_grid_minor_color.blue);
+
+  printf("mesh_grid_major_color: ");
+  printf("\tred=%d ",    w_current->mesh_grid_major_color.red);
+  printf("\tgreen=%d ",  w_current->mesh_grid_major_color.green);
+  printf("\tblue=%d\n",  w_current->mesh_grid_major_color.blue);
 
   printf("grid_minor_color:");
   printf("\tred=%f ",    w_current->grid_minor_color.r);
@@ -450,12 +460,7 @@ static void x_grid_print_parameters (GschemToplevel *w_current, char *when)
   printf("\tblue=%f",    w_current->grid_minor_color.b);
   printf("\talpha=%f\n", w_current->grid_minor_color.a);
 
-  printf("mesh_grid_major_color: ");
-  printf("\tred=%d ",    w_current->mesh_grid_major_color.red);
-  printf("\tgreen=%d ",  w_current->mesh_grid_major_color.green);
-  printf("\tblue=%d\n",  w_current->mesh_grid_major_color.blue);
-
-  printf("grid_minor_color: ");
+  printf("grid_major_color: ");
   printf("\tred=%f ",    w_current->grid_major_color.r);
   printf("\tgreen=%f ",  w_current->grid_major_color.g);
   printf("\tblue=%f",    w_current->grid_major_color.b);
@@ -483,36 +488,64 @@ void x_grid_configure_variables (GschemToplevel *w_current)
   double green;
   double blue;
 
-#if DEBUG_GRID
+  #if DEBUG_GRID
   x_grid_print_parameters (w_current, "entry");
-#endif
+  #endif
+  if (w_current->grid_mode == GRID_MESH) {
 
-  /* mesh_grid_minor_color is a GdkColor structure */
-  red   = w_current->mesh_grid_minor_color.red   / 65535.0;
-  green = w_current->mesh_grid_minor_color.green / 65535.0;
-  blue  = w_current->mesh_grid_minor_color.blue  / 65535.0;
+    /* mesh_grid_minor_color is a GdkColor structure */
+    red   = w_current->mesh_grid_minor_color.red   / 65535.0;
+    green = w_current->mesh_grid_minor_color.green / 65535.0;
+    blue  = w_current->mesh_grid_minor_color.blue  / 65535.0;
 
-  w_current->grid_minor_color.r  = red;
-  w_current->grid_minor_color.g  = green;
-  w_current->grid_minor_color.b  = blue;
+    w_current->grid_minor_color.r  = red;
+    w_current->grid_minor_color.g  = green;
+    w_current->grid_minor_color.b  = blue;
 
-  w_current->grid_minor_color.a  = w_current->mesh_grid_minor_alpha * 0.01;
+    w_current->grid_minor_color.a  = w_current->mesh_grid_minor_alpha * 0.01;
 
-  red   = w_current->mesh_grid_major_color.red   / 65535.0;
-  green = w_current->mesh_grid_major_color.green / 65535.0;
-  blue  = w_current->mesh_grid_major_color.blue  / 65535.0;
+    red   = w_current->mesh_grid_major_color.red   / 65535.0;
+    green = w_current->mesh_grid_major_color.green / 65535.0;
+    blue  = w_current->mesh_grid_major_color.blue  / 65535.0;
 
-  w_current->grid_major_color.r  = red;
-  w_current->grid_major_color.g  = green;
-  w_current->grid_major_color.b  = blue;
+    w_current->grid_major_color.r  = red;
+    w_current->grid_major_color.g  = green;
+    w_current->grid_major_color.b  = blue;
 
-  w_current->grid_major_color.a  = w_current->mesh_grid_major_alpha * 0.01;
+    w_current->grid_major_color.a  = w_current->mesh_grid_major_alpha * 0.01;
 
-  w_current->grid_size_factor    = w_current->mesh_line_width_factor * 0.01;
+    w_current->grid_size_factor    = w_current->mesh_line_width_factor * 0.01;
 
-#if DEBUG_GRID
+  }
+  else {
+
+     /* dots_grid_minor_color is a GdkColor structure */
+    red   = w_current->dots_grid_minor_color.red   / 65535.0;
+    green = w_current->dots_grid_minor_color.green / 65535.0;
+    blue  = w_current->dots_grid_minor_color.blue  / 65535.0;
+
+    w_current->grid_minor_color.r  = red;
+    w_current->grid_minor_color.g  = green;
+    w_current->grid_minor_color.b  = blue;
+
+    w_current->grid_minor_color.a  = w_current->dots_grid_minor_alpha * 0.01;
+
+    red   = w_current->dots_grid_major_color.red   / 65535.0;
+    green = w_current->dots_grid_major_color.green / 65535.0;
+    blue  = w_current->dots_grid_major_color.blue  / 65535.0;
+
+    w_current->grid_major_color.r  = red;
+    w_current->grid_major_color.g  = green;
+    w_current->grid_major_color.b  = blue;
+
+    w_current->grid_major_color.a  = w_current->dots_grid_major_alpha * 0.01;
+
+    w_current->grid_size_factor    = w_current->dots_grid_dot_size / 2.0;
+  }
+
+  #if DEBUG_GRID
   x_grid_print_parameters (w_current, "exit");
-#endif
+  #endif
 }
 
 /*! \brief Query the spacing in world coordinates at which the grid is drawn.

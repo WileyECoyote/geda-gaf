@@ -164,6 +164,7 @@ void x_window_create_drawing_area (GtkWidget *window, GschemToplevel *w_current)
   char *unique_name = g_strdup_printf("GschemDrawingArea:%i", prog_pid);
   g_object_set (DrawingArea, "visible", TRUE, "name", unique_name, NULL);
   GEDA_FREE(unique_name);
+
 }
 
 /*! \brief Save Window Geometry
@@ -214,11 +215,17 @@ void x_window_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, win_group, "mesh-grid-threshold",   w_current->mesh_grid_threshold);
   eda_config_set_integer (cfg, win_group, "mesh-line-width-factor",  w_current->mesh_line_width_factor);
 
-  array[0] = w_current->dots_grid_dot_color.pixel;
-  array[1] = w_current->dots_grid_dot_color.red;
-  array[2] = w_current->dots_grid_dot_color.green;
-  array[3] = w_current->dots_grid_dot_color.blue;
-  eda_config_set_int_list (cfg, win_group, "dots-grid-dot-color", array, 4);
+  array[0] = w_current->dots_grid_minor_color.pixel;
+  array[1] = w_current->dots_grid_minor_color.red;
+  array[2] = w_current->dots_grid_minor_color.green;
+  array[3] = w_current->dots_grid_minor_color.blue;
+  eda_config_set_int_list (cfg, win_group, "dots-grid-minor-color", array, 4);
+
+  array[0] = w_current->dots_grid_major_color.pixel;
+  array[1] = w_current->dots_grid_major_color.red;
+  array[2] = w_current->dots_grid_major_color.green;
+  array[3] = w_current->dots_grid_major_color.blue;
+  eda_config_set_int_list (cfg, win_group, "dots-grid-major-color", array, 4);
 
   array[0] = w_current->mesh_grid_minor_color.pixel;
   array[1] = w_current->mesh_grid_minor_color.red;

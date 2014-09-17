@@ -184,11 +184,14 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
     w_current->dots_grid_threshold        = DEFAULT_GRID_DOT_THRESHOLD;
     w_current->dots_grid_mode             = DOTS_GRID_VARIABLE_MODE;
 
+    w_current->dots_grid_minor_alpha      = DEFAULT_GRID_MINOR_ALPHA;
+    w_current->dots_grid_major_alpha      = DEFAULT_GRID_MAJOR_ALPHA;
+
     w_current->mesh_grid_threshold        = DEFAULT_GRID_MESH_THRESHOLD;
     w_current->mesh_line_width_factor     = DEFAULT_MESH_LINE_WIDTH_FACTOR;
 
-    w_current->mesh_grid_minor_alpha      = DEFAULT_MESH_GRID_MINOR_ALPHA;
-    w_current->mesh_grid_major_alpha      = DEFAULT_MESH_GRID_MAJOR_ALPHA;
+    w_current->mesh_grid_minor_alpha      = DEFAULT_GRID_MINOR_ALPHA;
+    w_current->mesh_grid_major_alpha      = DEFAULT_GRID_MAJOR_ALPHA;
 
   w_current->scrollbars                   = TRUE;
   w_current->scrollbar_update             = 0;
