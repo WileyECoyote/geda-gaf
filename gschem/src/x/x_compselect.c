@@ -1714,7 +1714,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     if (sym_name) GEDA_FREE ( sym_name);
     if (src_name) GEDA_FREE ( src_name);
 */
-    tree_view_row_make_visible(tree_view, &iter, TRUE);
+    geda_tree_view_row_make_visible (tree_view, &iter, TRUE);
   } /* End if do_restore */
   GEDA_FREE (src_name);
   GEDA_FREE (sym_name);

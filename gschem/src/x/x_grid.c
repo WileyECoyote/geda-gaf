@@ -572,7 +572,8 @@ int x_grid_query_drawn_spacing (GschemToplevel *w_current)
 /*! \brief Repaint Background Region
  *  \par Function Description
  *  This function is called by x_event_expose to redraw the grid
- *  within a rectangular region given by specific parameters.
+ *  within a rectangular region given by specific parameters and
+ *  is also used by the preview widget.
  */
 void
 x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)

@@ -139,7 +139,7 @@ preview_callback_realize (GtkWidget *widget, void *user_data)
 
 /*! \brief Redraws the view when widget is exposed.
  *  \par Function Description
- *  It redraws the preview pixmap every time the widget is exposed.
+ *  Redraws the preview pixmap every time the widget is exposed.
  *
  *  \param [in] widget    The preview widget.
  *  \param [in] event     The event structure.
@@ -158,6 +158,8 @@ preview_callback_expose (GtkWidget      *widget,
   save_cr = preview_window->cr;
 
   preview_window->cr = gdk_cairo_create (widget->window);
+
+  x_grid_repaint_background (preview_window, &(event->area));
 
   o_redraw_rectangle (preview_window, &(event->area));
 
@@ -443,7 +445,7 @@ preview_init (Preview *preview)
   preview_window->net_endpoint_mode    = NET_NONE;
   preview_window->net_midpoint_mode    = NET_NONE;
 
-  /* be sure to turn off the grid */
+  /* turn off the grid */
   preview_window->grid_mode            = FALSE;
 
   /* preview_window windows don't have toolbars */

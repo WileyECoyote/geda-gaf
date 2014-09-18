@@ -1,3 +1,19 @@
+2014-09-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_basic.c: Removed tree row visibility support function, which are now
+      available in Libgedauio.
+
+    * src/x/x_compselect.c: Change tree_view_row_make_visible to geda_tree_view_row_
+      make_visible (even though the tree view object is not derived from GedaTreeView).
+
+2014-09-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_grid.c Relocate paint background from x_basic to x_grid module -- is
+      somewhat related.
+
+    * src/x/x_preview.c: Add missing call to x_grid_repaint_background in function
+      x preview_callback_expose, (part of re org of expose event).
+
 2014-09-17 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_grid.c: More work on the dots grid; added dual grids like the mesh
@@ -12,7 +28,7 @@
       high-performance CAD systems.
 
       Also added user configurable anti-alias variable for cairo_set_antialias but
-      difference in image quality between CAIRO_ANTIALIAS_FAST and CAIRO_ANTIALIAS_
+      differences in image quality between CAIRO_ANTIALIAS_FAST and CAIRO_ANTIALIAS_
       GOOD varied from poor to no-so-good, with CAIRO_ANTIALIAS_BEST generating X11
       errors. The glyph quality is even worst.
 

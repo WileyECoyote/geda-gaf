@@ -24,7 +24,7 @@
 /*!
  * \file x_basic.c
  * \brief Module to provide general suppport for the Main Window
- * TODO: Eliminate this module
+ * TODO: Eliminate or re-assign this module
  */
 
 #include "gschem.h"
@@ -54,105 +54,4 @@ void x_basic_warp_cursor (GtkWidget* widget, int x, int y)
   display = gdk_screen_get_display (screen);
 
   gdk_display_warp_pointer (display, screen, window_x + x, window_y + y);
-}
-
-/* WEH: Credit for the next two functions goes to The Geeqie Team, I added
- * the test for iter.stamp to surpress gtk's non-sense.
- *
- * (SLIK) SimpLIstic sKin functions
- * (C) 2004 John Ellis
- * Copyright (C) 2004 - 2014 The Geeqie Team
- *
- * Author: John Ellis   http://geeqie.sourceforge.net/
- *
- * This software is released under the GNU General Public License (GNU GPL).
- * Please read the included file COPYING for more information.
- * This software comes with no warranty of any kind, use at your own risk!
- */
-
-/*! \brief Get visibility of Row in GtkTreeView
- *  \par Function Description
- *  This function is primarily used by the next function to determine if
- *  a row in a scrollable view is centered.
- */
-int tree_view_row_get_visibility(GtkTreeView *tree_view, GtkTreeIter *iter,
-                                 bool fully_visible)
-{
-  GtkTreeModel *model;
-  GtkTreePath *path, *start_path, *end_path;
-  int ret = 0;
-  bool valid;
-
-  valid = ( iter->stamp != 0 ? TRUE : FALSE);
-
-  if (valid) {
-    if (!gtk_tree_view_get_visible_range(tree_view, &start_path, &end_path)) return -1;
-    /* we will most probably scroll down, needed for tree_view_row_make_visible */
-
-    model = gtk_tree_view_get_model(tree_view);
-    path = gtk_tree_model_get_path(model, iter);
-
-    if (fully_visible) {
-      if (gtk_tree_path_compare(path, start_path) <= 0) {
-        ret = -1;
-      }
-      else if (gtk_tree_path_compare(path, end_path) >= 0) {
-        ret = 1;
-      }
-    }
-    else {
-      if (gtk_tree_path_compare(path, start_path) < 0) {
-        ret = -1;
-      }
-      else
-        if (gtk_tree_path_compare(path, end_path) > 0) {
-          ret = 1;
-        }
-    }
-
-    gtk_tree_path_free(path);
-    gtk_tree_path_free(start_path);
-    gtk_tree_path_free(end_path);
-  }
-  else ret = -1;
-  return ret;
-}
-
-/*! \brief Make Tree Row Visible in GtkTreeView
- *  \par Function Description
- *  This function provides a reliable method to adjust tree views to
- *  positions. GTK lacks comparable functionality. Don't bother with
- *  gtk_tree_view_set_cursor.
- */
-int tree_view_row_make_visible(GtkTreeView *tree_view, GtkTreeIter *iter,
-                               bool center)
-{
-  GtkTreePath *path;
-  int visible;
-  bool valid;
-
-  valid = ( iter->stamp != 0 ? TRUE : FALSE);
-
-  if (valid) {
-  visible = tree_view_row_get_visibility(tree_view, iter, TRUE);
-
-  path = gtk_tree_model_get_path(gtk_tree_view_get_model(tree_view), iter);
-  if (center && visible != 0) {
-    gtk_tree_view_scroll_to_cell(tree_view, path, NULL, TRUE, 0.5, 0.0);
-  }
-  else
-    if (visible < 0) {
-      gtk_tree_view_scroll_to_cell(tree_view, path, NULL, TRUE, 0.0, 0.0);
-    }
-    else if (visible > 0) {
-      gtk_tree_view_scroll_to_cell(tree_view, path, NULL, TRUE, 1.0, 0.0);
-    }
-
-  gtk_tree_path_free(path);
-
-  }
-  else {
-    visible = -1;
-  }
-  return visible;
 }
