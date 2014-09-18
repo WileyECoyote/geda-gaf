@@ -30,23 +30,6 @@
 #include "gschem.h"
 #include <geda_debug.h>
 
-/*! \brief Repaint Background Region
- *  \par Function Description
- *  This function is called by x_event_expose to redraw the grid
- *  within a rectangular region given by specific parameters.
- */
-void x_repaint_background_region (GschemToplevel *w_current, GdkRectangle *r)
-{
-  GdkColor *color = x_get_color (w_current->background_color);
-
-  cairo_set_source_rgb (w_current->cr,
-                        color->red   / 65535.0,
-                        color->green / 65535.0,
-                        color->blue  / 65535.0);
-
-  cairo_paint (w_current->cr);
-}
-
 /*! \brief Set Cursor/Pointer Position
  *  \par Function Description
  *   This function sets the pointer position to relative

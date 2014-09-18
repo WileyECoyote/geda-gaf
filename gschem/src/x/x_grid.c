@@ -569,6 +569,25 @@ int x_grid_query_drawn_spacing (GschemToplevel *w_current)
   }
 }
 
+/*! \brief Repaint Background Region
+ *  \par Function Description
+ *  This function is called by x_event_expose to redraw the grid
+ *  within a rectangular region given by specific parameters.
+ */
+void
+x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
+{
+  GdkColor *color = x_get_color (w_current->background_color);
+
+  cairo_set_source_rgb (w_current->cr,
+                        color->red   / 65535.0,
+                        color->green / 65535.0,
+                        color->blue  / 65535.0);
+
+  cairo_paint (w_current->cr);
+}
+
+
 /*! \brief Draw tile grid pattern
  *
  *  \par Function Description
@@ -576,7 +595,7 @@ int x_grid_query_drawn_spacing (GschemToplevel *w_current)
  *
  *  \param [in] w_current  The GschemToplevel.
  */
-void x_draw_tiles(GschemToplevel *w_current)
+void x_grid_draw_tiles(GschemToplevel *w_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   TILE         *t_current;

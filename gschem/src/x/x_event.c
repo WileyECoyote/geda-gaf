@@ -874,7 +874,7 @@ x_event_expose (GtkWidget *widget, GdkEventExpose *event, GschemToplevel *w_curr
     gdk_cairo_rectangle (w_current->cr, &(event->area));
     cairo_clip (w_current->cr);
 
-    x_repaint_background_region (w_current, &(event->area));
+    x_grid_repaint_background (w_current, &(event->area));
 
     x_grid_draw_grid_region (w_current, &(event->area));
 
