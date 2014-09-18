@@ -1,3 +1,12 @@
+2014-09-18 Wiley E. Hill <wileyhill@gmail.com>
+
+      * A new widget GedaTreeView derived from GtkTreeview in to relocate
+        support function from gschem, where the function did not belong.
+
+      * include/geda_tree_view.h: New header file for GedaTreeView widget
+
+      * src/widgets/geda_tree_view.c: New source file implements GedaTreeView.
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
       * docs/libgedauio.dox: Generate TAGFILES files for libgedauio in the

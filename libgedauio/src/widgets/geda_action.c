@@ -84,7 +84,6 @@ static void geda_action_finalize (GObject *object)
   G_OBJECT_CLASS (geda_action_parent_class)->finalize (object);
 }
 
-
 /*! \brief GObject property setter function
  *
  *  \par Function Description

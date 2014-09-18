@@ -22,10 +22,11 @@ libgedauio_HEADERS = \
 			geda_imagemenuitem.h     \
 			geda_input_dialog.h      \
 			geda_label.h             \
-			geda_marshal.h			 \
+			geda_marshal.h		 \
 			geda_menu_button.h       \
 			geda_swatch_renderer.h   \
 			geda_toggle_action.h     \
+			geda_tree_view.h         \
 			geda_dialogs.h           \
 			geda_uio_functions.h     \
 			geda_widgets.h

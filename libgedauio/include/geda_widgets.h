@@ -37,5 +37,6 @@
 #include "geda_action.h"
 #include "geda_font_button.h"
 #include "geda_toggle_action.h"
+#include "geda_tree_view.h"
 
 #endif /* __GEDA_WIDGETS_H__ */

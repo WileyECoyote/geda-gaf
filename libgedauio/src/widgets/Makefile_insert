@@ -14,6 +14,7 @@ libgedauio_la_SOURCES += \
 			widgets/geda_label.c             \
 			widgets/geda_menu_button.c       \
 			widgets/geda_swatch_renderer.c   \
-			widgets/geda_toggle_action.c
+			widgets/geda_toggle_action.c     \
+			widgets/geda_tree_view.c
 
 
