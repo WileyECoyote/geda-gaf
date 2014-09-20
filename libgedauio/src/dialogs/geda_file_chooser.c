@@ -60,6 +60,8 @@ static unsigned int chooser_signals[LAST_SIGNAL] = { 0 };
 
 static GtkFileChooserDialogClass *geda_file_chooser_parent_class = NULL;
 
+static GtkEntry *chooser_entry;
+
 static GedaFileFilterDataDef filter_data[] = {
     GEDA_FILTER_SCHEMATIC,
     GEDA_FILTER_SYMBOL,
@@ -156,6 +158,38 @@ static void FixGtkCrap(GtkWidget *widget, void *self)
   }
 }
 
+static void look_for_entry(GtkWidget *widget, void *self)
+{
+  if (GTK_IS_ENTRY(widget)) {
+    chooser_entry = (GtkEntry*)widget;
+  }
+  else if (GTK_IS_CONTAINER(widget)) {
+     gtk_container_forall ( GTK_CONTAINER (widget), look_for_entry, self);
+  }
+}
+
+static void
+geda_file_chooser_find_entry (GtkWidget *chooser)
+{
+  GList   *children, *iter;
+
+  /* Get all objects inside the dialog */
+  children = gtk_container_get_children (GTK_CONTAINER (chooser));
+
+  for (iter = children; iter; iter = iter->next) {
+
+    if (GTK_IS_CONTAINER(iter->data)) {
+
+      gtk_container_forall ( GTK_CONTAINER (iter->data), look_for_entry, chooser);
+
+      if (chooser_entry != NULL) {
+        break;
+      }
+    }
+  }
+  g_list_free (children);
+}
+
 static GObject *
 geda_file_chooser_constructor (GedaType               type,
                                unsigned int           n_properties,
@@ -167,6 +201,8 @@ geda_file_chooser_constructor (GedaType               type,
 
   /* Chain up to the parent constructor */
   obj = G_OBJECT_CLASS (geda_file_chooser_parent_class)->constructor (type, n_properties, properties);
+
+  gtk_dialog_set_has_separator (GTK_DIALOG(obj), TRUE);
 
   /* Get all object inside the contents area of the dialog */
   children = gtk_container_get_children (GTK_CONTAINER (GTK_DIALOG (obj)->vbox));
@@ -183,7 +219,6 @@ geda_file_chooser_constructor (GedaType               type,
 
   g_list_free (children);
 
-
   return obj;
 }
 
@@ -197,6 +232,9 @@ geda_file_chooser_constructor (GedaType               type,
  */
 static void geda_file_chooser_finalize (GObject *object)
 {
+
+  chooser_entry = NULL;
+
   (G_OBJECT_CLASS (geda_file_chooser_parent_class))->finalize (object);
 }
 
@@ -451,6 +489,7 @@ geda_file_chooser_class_init (GedaFileChooserClass *class)
  */
 static void geda_file_chooser_init (GedaFileChooser *self)
 {
+  chooser_entry       = NULL;
   self->filter_button = NULL;
 }
 
@@ -575,6 +614,7 @@ geda_file_chooser_new (GtkWidget *parent,
   else {
     widget = NULL;
   }
+
   return widget;
 }
 
@@ -582,7 +622,7 @@ static GtkWidget *
 geda_file_chooser_dialog_new_valist (const char        *title,
                                      GtkWindow         *parent,
                                      FileChooserAction  action,
-                                     const gchar       *first_button_text,
+                                     const char        *first_button_text,
                                      va_list            varargs)
 {
   GtkWidget  *result;
@@ -640,13 +680,56 @@ geda_file_chooser_dialog_new_full (const char       *title,
   return result;
 }
 
-char*
-geda_file_chooser_get_filename(GtkWidget *chooser)
+/*! \brief Get Geda File Chooser Entry Widget
+ *  \par Function Description
+ *  This function returns a pointer to the internal GtkEntry widget
+ *
+ *  \param [in] widget The file chooser widget.
+ *
+ *  \returns GtkEntry object
+ */
+GtkEntry *geda_file_chooser_get_entry (GtkWidget *widget)
 {
-  char *name;
+  if (chooser_entry == NULL) {
+    geda_file_chooser_find_entry (widget);
+  }
+  return chooser_entry;
+}
 
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    name = gtk_file_chooser_get_filename((GtkFileChooser*)chooser);
+char*
+geda_file_chooser_get_entry_text(GtkWidget *despicable)
+{
+  char       *name;
+  GtkEntry   *entry;
+
+  name = NULL;
+
+  if (GTK_IS_FILE_CHOOSER(despicable)) {
+
+    entry = geda_file_chooser_get_entry(despicable);
+
+    if (GTK_IS_ENTRY(entry)) {
+
+      if (gtk_entry_get_text_length (entry)) {
+        name = u_string_strdup (gtk_entry_get_text(entry));
+      }
+    }
+  }
+  else {
+    BUG_MSG ("Operative is not a GtkFileChooser");
+    name = NULL;
+  }
+  return name;
+}
+
+char*
+geda_file_chooser_get_filename(GtkWidget *hideous)
+{
+  char     *name;
+
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    name = gtk_file_chooser_get_filename((GtkFileChooser*)hideous);
+
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -656,10 +739,10 @@ geda_file_chooser_get_filename(GtkWidget *chooser)
 }
 
 void
-geda_file_chooser_set_filename (GtkWidget *chooser, const char *name)
+geda_file_chooser_set_filename (GtkWidget *hideous, const char *name)
 {
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    gtk_file_chooser_set_filename((GtkFileChooser*)chooser, name);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    gtk_file_chooser_set_filename((GtkFileChooser*)hideous, name);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -667,12 +750,12 @@ geda_file_chooser_set_filename (GtkWidget *chooser, const char *name)
 }
 
 GSList*
-geda_file_chooser_get_filenames(GtkWidget *chooser)
+geda_file_chooser_get_filenames(GtkWidget *hideous)
 {
   GSList *list;
 
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    list = gtk_file_chooser_get_filenames((GtkFileChooser*)chooser);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    list = gtk_file_chooser_get_filenames((GtkFileChooser*)hideous);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -681,14 +764,13 @@ geda_file_chooser_get_filenames(GtkWidget *chooser)
   return list;
 }
 
-
 char*
-geda_file_chooser_get_current_folder(GtkWidget *chooser)
+geda_file_chooser_get_current_folder(GtkWidget *hideous)
 {
   char *folder;
 
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    folder = gtk_file_chooser_get_current_folder((GtkFileChooser*)chooser);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    folder = gtk_file_chooser_get_current_folder((GtkFileChooser*)hideous);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -698,10 +780,10 @@ geda_file_chooser_get_current_folder(GtkWidget *chooser)
 }
 
 void
-geda_file_chooser_set_current_folder (GtkWidget *chooser, const char *folder)
+geda_file_chooser_set_current_folder (GtkWidget *hideous, const char *folder)
 {
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    gtk_file_chooser_set_current_folder((GtkFileChooser*)chooser, folder);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    gtk_file_chooser_set_current_folder((GtkFileChooser*)hideous, folder);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -709,10 +791,10 @@ geda_file_chooser_set_current_folder (GtkWidget *chooser, const char *folder)
 }
 
 void
-geda_file_chooser_set_current_name (GtkWidget *chooser, const char *folder)
+geda_file_chooser_set_current_name (GtkWidget *hideous, const char *folder)
 {
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    gtk_file_chooser_set_current_name((GtkFileChooser*)chooser, folder);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    gtk_file_chooser_set_current_name((GtkFileChooser*)hideous, folder);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -720,12 +802,12 @@ geda_file_chooser_set_current_name (GtkWidget *chooser, const char *folder)
 }
 
 GtkWidget*
-geda_file_chooser_get_extra_widget(GtkWidget *chooser)
+geda_file_chooser_get_extra_widget(GtkWidget *hideous)
 {
   GtkWidget *extra;
 
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    extra = gtk_file_chooser_get_extra_widget((GtkFileChooser*)chooser);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    extra = gtk_file_chooser_get_extra_widget((GtkFileChooser*)hideous);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");
@@ -735,10 +817,10 @@ geda_file_chooser_get_extra_widget(GtkWidget *chooser)
 }
 
 void
-geda_file_chooser_set_extra_widget (GtkWidget *chooser, GtkWidget *extra)
+geda_file_chooser_set_extra_widget (GtkWidget *hideous, GtkWidget *extra)
 {
-  if (GTK_IS_FILE_CHOOSER(chooser)) {
-    gtk_file_chooser_set_extra_widget((GtkFileChooser*)chooser, extra);
+  if (GTK_IS_FILE_CHOOSER(hideous)) {
+    gtk_file_chooser_set_extra_widget((GtkFileChooser*)hideous, extra);
   }
   else {
     BUG_MSG ("Operative is not a GtkFileChooser");

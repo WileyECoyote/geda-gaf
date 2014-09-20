@@ -81,14 +81,17 @@ struct _GedaFileChooserClass {
   void (* geometry_restore) (GedaFileChooser *chooser, char *group);
 };
 
-GedaType      geda_file_chooser_get_type        (void) G_GNUC_CONST;
-GtkWidget    *geda_file_chooser_new             (GtkWidget         *parent,
-                                                 FileChooserAction  action);
-GtkWidget    *geda_file_chooser_dialog_new_full (const char       *title,
-                                                 GtkWindow        *parent,
-                                                 FileChooserAction action,
-                                                 const char       *first_button_text,
-                                                 ...);
+GedaType      geda_file_chooser_get_type         (void) G_GNUC_CONST;
+GtkWidget    *geda_file_chooser_new              (GtkWidget         *parent,
+                                                  FileChooserAction  action);
+GtkWidget    *geda_file_chooser_dialog_new_full  (const char       *title,
+                                                  GtkWindow        *parent,
+                                                  FileChooserAction action,
+                                                  const char       *first_button_text,
+                                                  ...);
+
+GtkEntry     *geda_file_chooser_get_entry          (GtkWidget *chooser);
+char         *geda_file_chooser_get_entry_text     (GtkWidget *chooser);
 
 int           geda_file_chooser_get_filter         (GtkWidget *chooser);
 void          geda_file_chooser_set_filter         (GtkWidget *chooser, int value);
