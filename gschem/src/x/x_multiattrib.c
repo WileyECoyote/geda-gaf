@@ -2105,7 +2105,7 @@ static void multiattrib_init(Multiattrib *ThisDialog)
   gtk_box_pack_start (GTK_BOX (attrib_vbox), scrolled_win, TRUE, TRUE, 0);
 
   /* Create a new Toggle Switch widget */
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), attrib_vbox, ShowInherited, 0, FALSE);
+  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), attrib_vbox, ShowInherited, 0, FALSE);
 
   /* Setup callback for Switch widget */
   GEDA_CALLBACK_SWITCH (ShowInherited, multiattrib_show_inherited_toggled, ThisDialog)

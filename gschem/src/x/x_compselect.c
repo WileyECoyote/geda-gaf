@@ -3109,9 +3109,9 @@ compselect_constructor (GedaType type,
   GTK_NEW_hBOX(opts, FALSE, DEFAULT_DIALOG_SPACING);
 
   /* Create Toggle Switch widgets and put inside the horizontal options box*/
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
-  GEDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SubGroups,   5, ThisDialog->subgroups);
+  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SortLibrary, 5, ThisDialog->do_sort);
+  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, ShowGroups,  5, ThisDialog->show_groups);
+  EDA_SWITCH( (GTK_WIDGET(ThisDialog)), opts_hbox, SubGroups,   5, ThisDialog->subgroups);
 
   /* Setup callback for Switch widgets */
   GEDA_CALLBACK_SWITCH (SortLibrary, cs_callback_switch_toggled, ThisDialog)

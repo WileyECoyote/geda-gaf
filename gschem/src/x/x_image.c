@@ -128,8 +128,9 @@ static GtkWidget* create_size_menu (void)
 static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
 {
   GSList *formats;
-  GSList *ptr;
-  char   *buf;
+  GSList *list;
+  char   *name;
+  char   *descr;
   int i=0, default_index=-1;
 
   GtkWidget   *combo = geda_combo_box_text_new();
@@ -140,33 +141,33 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
   }
 
   formats = gdk_pixbuf_get_formats ();
-  ptr     = formats;
-  if(ptr) {
-    while (ptr) {
+  list    = formats;
+  if(list) {
+    while (list) {
 
-      if (gdk_pixbuf_format_is_writable (ptr->data)) {
+      if (gdk_pixbuf_format_is_writable (list->data)) {
 
         /* Get the format description and add it to the menu */
-        buf = u_string_strdup (gdk_pixbuf_format_get_description(ptr->data));
-        geda_combo_box_text_widget_append (combo, buf);
+        descr = gdk_pixbuf_format_get_description(list->data);
+        geda_combo_box_text_widget_append (combo, descr);
+        GEDA_FREE(descr);
 
         /* Compare the name with default and store the index */
-        //buf = u_string_strdup (gdk_pixbuf_format_get_name(ptr->data));
-        buf = gdk_pixbuf_format_get_name(ptr->data);
+        name = gdk_pixbuf_format_get_name(list->data);
 
 #if DEBUG_IMAGING
-        fprintf(stderr, "default_type=[%d], buf=[%s]\n",default_type, buf);
+        fprintf(stderr, "default_type=[%d], buf=[%s]\n",default_type, name);
 #endif
 
-        if (strcasecmp(buf, ImageTypeStrings[default_type]) == 0) {
+        if (strcasecmp(name, ImageTypeStrings[default_type]) == 0) {
           default_index = i;
         }
 
         i++;  /* this is the count of items added to the combo box */
         /* not the total number of pixbuf formats */
-        GEDA_FREE(buf);
+        GEDA_FREE(name);
       }
-      ptr = ptr->next;
+      list = list->next;
     }
     g_slist_free (formats);
   }
@@ -200,6 +201,7 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
 static char *x_image_get_type_from_description(char *descr) {
 
   GSList *formats;
+  GSList *list;
   char   *ptr_descr;
   char   *ret_val;
 
@@ -215,20 +217,23 @@ static char *x_image_get_type_from_description(char *descr) {
     }
     else {
       formats = gdk_pixbuf_get_formats ();
-      while (formats) {
-        ptr_descr = gdk_pixbuf_format_get_description (formats->data);
-        if (ptr_descr && (strcasecmp(ptr_descr, descr) == 0)) {
-          //ret_val = u_string_strdup(gdk_pixbuf_format_get_name(formats->data));
-          ret_val = gdk_pixbuf_format_get_name(formats->data);
-          break;
+      list = formats;
+      if(list) {
+        while (formats) {
+          ptr_descr = gdk_pixbuf_format_get_description (formats->data);
+          if (ptr_descr && (strcasecmp(ptr_descr, descr) == 0)) {
+            ret_val = gdk_pixbuf_format_get_name(formats->data);
+            GEDA_FREE(ptr_descr);
+            break;
+          }
+          GEDA_FREE(ptr_descr);
+          formats = formats->next;
         }
-        formats = formats->next;
+        g_slist_free (list);
       }
-      g_slist_free (formats);
     }
   }
   return ret_val;
-
 }
 
 /*! \brief Update the filename of a file dialog, when the image type has changed.
@@ -248,13 +253,14 @@ static void
 x_image_update_dialog_filename(GedaComboBox     *combo,
                                GschemToplevel   *w_current)
 {
-  GedaToplevel *toplevel       = w_current->toplevel;
-  char* image_type_descr   = NULL;
-  char *image_type         = NULL;
-  char *old_image_filename = NULL;
-  char *file_basename      = NULL;
-  char *file_name          = NULL ;
-  char *new_image_filename = NULL;
+  GedaToplevel *toplevel  = w_current->toplevel;
+  char *image_type_descr  = NULL;
+  char *image_type        = NULL;
+  char *old_filename      = NULL;
+  char *file_name         = NULL ;
+  char *fullname          = NULL;
+
+  char string[MAX_FILE];
 
   GtkWidget *file_chooser;
 
@@ -272,44 +278,37 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
   file_chooser = gtk_widget_get_ancestor(GTK_WIDGET(combo),
                                          GTK_TYPE_FILE_CHOOSER);
 
-  /* Get the previous file name. If none, revert to the page filename */
-  old_image_filename = geda_file_chooser_get_filename (file_chooser);
+  /* Try and get the previous file name. If none, revert to the page filename */
+  old_filename = geda_file_chooser_get_entry_text (file_chooser);
 
-  if (!old_image_filename) {
-    old_image_filename = toplevel->page_current->filename;
-  }
-
-  /* Get the file name, without extension */
-  if (old_image_filename) {
-    file_basename = g_path_get_basename(old_image_filename);
-
-    if (g_strrstr(file_basename, ".") != NULL) {
-      file_name = g_strndup(file_basename,
-          g_strrstr(file_basename, ".") - file_basename);
-    }
-  }
-  //GEDA_FREE(old_image_filename);
-
-  /* Add the extension */
-  if (file_name) {
-    new_image_filename = g_strdup_printf("%s.%s", file_name, image_type);
+  /* If no previous name, then revert to the page filename */
+  if (old_filename == NULL) {
+    fullname = strcpy (&string[0], toplevel->page_current->filename);
   }
   else {
-    new_image_filename = g_strdup_printf("%s.%s", file_basename, image_type);
+    fullname = strcpy (&string[0], old_filename);
+    GEDA_FREE(old_filename);
   }
+
+  /* Get pointer pass the any path characters */
+  file_name = f_get_basename (fullname);
+
+  /* Get file name, without extension, add NULL where right-most period */
+  f_file_remove_extension (file_name);
+
+  /* Add the extension */
+  strcat(file_name, ".");
+  strcat(file_name, image_type);
+
   GEDA_FREE(image_type);
 
   /* Set the new filename */
   if (file_chooser) {
-    geda_file_chooser_set_current_name (file_chooser, new_image_filename);
+    geda_file_chooser_set_current_name (file_chooser, file_name);
   }
   else {
     u_log_message("%s: No parent file chooser found!.\n", __func__);
   }
-
-  GEDA_FREE(file_name);
-  GEDA_FREE(file_basename);
-  GEDA_FREE(new_image_filename);
 
 #if DEBUG_IMAGING
   fprintf(stderr, "%s: exit\n", __func__);
@@ -731,10 +730,10 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   GTK_SWITCH  (switch_vbox, Extents, 10, last_extents);
 
   /* Create Toggle Switch widget for Color or B/W with independent callback */
-  GEDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, EnableColor, 0, image_color_save);
+  EDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, EnableColor, 0, image_color_save);
 
   /* Create Toggle Switch widget for Invert Image using Switch_Responder callback */
-  GEDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, InvertImage, 0, invert_images_save);
+  EDA_SWITCH ((GTK_WIDGET(ThisDialog)), switch_vbox, InvertImage, 0, invert_images_save);
 
   gtk_widget_show_all(switch_vbox); /* set every widget in container visible */
 
@@ -843,11 +842,13 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
       invert_color_bw = FALSE;
     }
 
-    filename = geda_file_chooser_get_filename(ThisDialog);
+    filename = geda_file_chooser_get_entry_text(ThisDialog);
 
     /* Call low-level to do the work */
     x_image_lowlevel(w_current, filename, width, height, image_type, image_extents,
                      use_print_map, invert_color_bw);
+
+    GEDA_FREE(filename);
   }
 
   gtk_widget_destroy (ThisDialog);
