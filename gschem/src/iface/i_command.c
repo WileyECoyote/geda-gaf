@@ -883,7 +883,7 @@ COMMAND ( do_write_pdf ) {
     i_status_set_state_msg(w_current, SELECT, _("Write PDF"));
     i_status_set_state(w_current, SELECT);
     i_status_update_sensitivities(w_current);
-  x_image_setup(w_current, pdf_image);
+    x_image_setup(w_current, pdf_image);
   EXIT_COMMAND(do_write_pdf);
 }
 

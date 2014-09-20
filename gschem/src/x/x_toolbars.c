@@ -1635,6 +1635,8 @@ void x_toolbars_set_grid_radio ( GschemToplevel *w_current) {
   }
 }
 
+#define HideFromDoxygen x_toolbars_execute_radio
+
 /*! \brief Update the Toolbars based on the current state
  *  This function sets the state of the "mode" radio buttons on the Add
  *  tool-bar. This is done to synchronize the tool-bars with the rest of
@@ -1734,9 +1736,9 @@ void x_toolbars_update(GschemToplevel *w_current)
   if(GTK_IS_TOGGLE_BUTTON(target)) {
     /* if button is not active then action was not initiated by the toolbar */
     if (!target->active) {
-      g_signal_handlers_block_by_func (target, x_toolbars_execute_radio, w_current);
+      g_signal_handlers_block_by_func (target, HideFromDoxygen, w_current);
       gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON(target), TRUE);
-      g_signal_handlers_unblock_by_func (target, x_toolbars_execute_radio, w_current);
+      g_signal_handlers_unblock_by_func (target, HideFromDoxygen, w_current);
     }
   }
 }

@@ -151,9 +151,10 @@ static GtkWidget* create_type_menu(IMAGE_TYPES default_type)
         geda_combo_box_text_widget_append (combo, buf);
 
         /* Compare the name with default and store the index */
-        buf = u_string_strdup (gdk_pixbuf_format_get_name(ptr->data));
+        //buf = u_string_strdup (gdk_pixbuf_format_get_name(ptr->data));
+        buf = gdk_pixbuf_format_get_name(ptr->data);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
         fprintf(stderr, "default_type=[%d], buf=[%s]\n",default_type, buf);
 #endif
 
@@ -217,7 +218,8 @@ static char *x_image_get_type_from_description(char *descr) {
       while (formats) {
         ptr_descr = gdk_pixbuf_format_get_description (formats->data);
         if (ptr_descr && (strcasecmp(ptr_descr, descr) == 0)) {
-          ret_val = u_string_strdup(gdk_pixbuf_format_get_name(formats->data));
+          //ret_val = u_string_strdup(gdk_pixbuf_format_get_name(formats->data));
+          ret_val = gdk_pixbuf_format_get_name(formats->data);
           break;
         }
         formats = formats->next;
@@ -244,7 +246,7 @@ static char *x_image_get_type_from_description(char *descr) {
  */
 static void
 x_image_update_dialog_filename(GedaComboBox     *combo,
-                               GschemToplevel *w_current)
+                               GschemToplevel   *w_current)
 {
   GedaToplevel *toplevel       = w_current->toplevel;
   char* image_type_descr   = NULL;
@@ -256,7 +258,7 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
 
   GtkWidget *file_chooser;
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "%s: begin\n", __func__);
 #endif
 
@@ -271,7 +273,8 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
                                          GTK_TYPE_FILE_CHOOSER);
 
   /* Get the previous file name. If none, revert to the page filename */
-  old_image_filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(file_chooser));
+  old_image_filename = geda_file_chooser_get_filename (file_chooser);
+
   if (!old_image_filename) {
     old_image_filename = toplevel->page_current->filename;
   }
@@ -285,6 +288,7 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
           g_strrstr(file_basename, ".") - file_basename);
     }
   }
+  //GEDA_FREE(old_image_filename);
 
   /* Add the extension */
   if (file_name) {
@@ -297,8 +301,7 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
 
   /* Set the new filename */
   if (file_chooser) {
-    gtk_file_chooser_set_current_name(GTK_FILE_CHOOSER(file_chooser),
-        new_image_filename);
+    geda_file_chooser_set_current_name (file_chooser, new_image_filename);
   }
   else {
     u_log_message("%s: No parent file chooser found!.\n", __func__);
@@ -308,7 +311,7 @@ x_image_update_dialog_filename(GedaComboBox     *combo,
   GEDA_FREE(file_basename);
   GEDA_FREE(new_image_filename);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "%s: exit\n", __func__);
 #endif
 }
@@ -391,7 +394,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
 {
   GedaToplevel *toplevel = w_current->toplevel;
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_lowlevel: begin\n");
 #endif
 
@@ -447,11 +450,14 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
     if (strcmp(filetype, "pdf") == 0)
       x_print_export_pdf (w_current, filename);
     else {
+
       pixbuf = x_image_get_pixbuf(w_current, extent, use_print_map, invert_color_bw);
+
       if (pixbuf != NULL) {
+
         if (!gdk_pixbuf_save(pixbuf, filename, filetype, &err, NULL)) {
           /* Log the error */
-          u_log_message(_("x_image_lowlevel: Unable to write %s file %s. %s\n"), filetype, filename, err->message);
+          u_log_message(_("Unable to write %s file %s. %s\n"), filetype, filename, err->message);
           char *errmsg = g_strdup_printf (_("An error occured while saving image with type %s to filename:\n%s\n\n%s.\n"),
                                             filetype, filename, err->message);
           /* Warn the user */
@@ -480,7 +486,7 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
         }
       }
       else {
-        u_log_message(_("x_image_lowlevel: Unable to get pixbuf from gschem's window.\n"));
+        u_log_message(_("Unable to get pixbuf from gschem's window.\n"));
       }
     }
   }
@@ -493,9 +499,10 @@ void x_image_lowlevel(GschemToplevel *w_current, const char* filename,
                                                          save_page_right,
                                                          save_page_top,
                                                          save_page_bottom);
+
   o_invalidate_all (w_current);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_lowlevel: exit\n");
 #endif
 }
@@ -634,34 +641,28 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   bool  invert_images_save = w_current->toplevel->invert_images;
   bool  image_extents      = Image_Display;
 
-#if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: begin\n");
+#if DEBUG_IMAGING
+  fprintf(stderr, "%s: begin\n", __func__);
 #endif
   /* de-select everything first */
   o_select_unselect_all( w_current );
-#if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_setup: back o_select_unselect_all\n");
+#if DEBUG_IMAGING
+  fprintf(stderr, "%s: back o_select_unselect_all\n", __func__);
 #endif
 
-  gschem_threads_enter();
-
   /* Create the dialog */
-  ThisDialog = gtk_file_chooser_dialog_new (_("Write image..."),
-                   GTK_WINDOW(w_current->main_window),
-                   GTK_FILE_CHOOSER_ACTION_SAVE,
-                   GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
-                   GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
-                   NULL);
-
-  /* Set the alternative button order (ok, cancel, help) for other systems */
-  gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-      GTK_RESPONSE_ACCEPT,
-      GTK_RESPONSE_CANCEL,
-      -1);
+  ThisDialog = geda_file_chooser_dialog_new_full (_("Write image..."),
+                                            GTK_WINDOW(w_current->main_window),
+                                            FILE_CHOOSER_ACTION_SAVE,
+                                            GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL,
+                                            GTK_STOCK_SAVE,   GTK_RESPONSE_ACCEPT,
+                                            NULL);
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
-  gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), cwd);
+
+  geda_file_chooser_set_current_folder (dialog, cwd);
+
   GEDA_FREE (cwd);
 
   hbox = gtk_hbox_new(FALSE, 0);
@@ -675,7 +676,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_misc_set_padding   (GTK_MISC (label), 0, 0);
   gtk_box_pack_start     (GTK_BOX (vbox1), label, FALSE, FALSE, 0);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_setup: Creating image size button\n");
 #endif
 
@@ -691,7 +692,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_misc_set_padding (GTK_MISC (label), 0, 0);
   gtk_box_pack_start (GTK_BOX (vbox2), label, FALSE, FALSE, 0);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_setup: Creating image type button\n");
 #endif
 
@@ -709,7 +710,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   switch_vbox = gtk_vbox_new(FALSE, 0);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_setup: Creating check buttons\n");
 #endif
 
@@ -721,7 +722,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   widget_list = g_list_append (widget_list, use_print);
   widget_list = g_list_append (widget_list, invert_bw);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_setup: Creating toggle switches\n");
 #endif
 
@@ -768,7 +769,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
 
   gtk_widget_show_all(vbox3); /* set every widget in container visible */
 
-  gtk_file_chooser_set_extra_widget (GTK_FILE_CHOOSER(ThisDialog), hbox);
+  geda_file_chooser_set_extra_widget (ThisDialog, hbox);
 
   /* Setup the GtkFileChooser options */
   g_object_set (ThisDialog, "select-multiple", FALSE,
@@ -780,7 +781,7 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   /* Update the filename */
   x_image_update_dialog_filename(GEDA_COMBO_BOX(type_combo), w_current);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "%s: configuring the dialog window\n", __func__);
 #endif
 
@@ -796,11 +797,11 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
   gtk_box_set_spacing(GTK_BOX(((GtkDialog*)ThisDialog)->vbox),
       DIALOG_V_SPACING);
 
-  gtk_widget_show (ThisDialog);
+  g_object_set (ThisDialog, "visible", TRUE, NULL);
 
   if (gtk_dialog_run((GtkDialog*)ThisDialog) == GTK_RESPONSE_ACCEPT) {
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "%s: Dialog GTK_RESPONSE_ACCEPT \n", __func__);
 #endif
 
@@ -817,8 +818,6 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
     image_type = x_image_get_type_from_description(image_type_descr);
 
     GEDA_FREE(image_type_descr);
-
-    filename = gtk_file_chooser_get_filename(GTK_FILE_CHOOSER(ThisDialog));
 
     /* Only the Extents switch/button use a local variable */
                          image_extents = GET_SWITCH_STATE(ExtentsSwitch);
@@ -844,16 +843,17 @@ void x_image_setup (GschemToplevel *w_current, IMAGE_TYPES default_type)
       invert_color_bw = FALSE;
     }
 
+    filename = geda_file_chooser_get_filename(ThisDialog);
+
     /* Call low-level to do the work */
     x_image_lowlevel(w_current, filename, width, height, image_type, image_extents,
                      use_print_map, invert_color_bw);
   }
 
   gtk_widget_destroy (ThisDialog);
-  gschem_threads_leave();
+
   g_list_free (widget_list);
   widget_list = NULL;
-
 }
 
 /*! \brief Convert Image to Grey Scale
@@ -979,7 +979,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
                                bool use_print_map, bool invert_color_bw)
 {
   GschemToplevel *new_w_current;
-         GedaToplevel *toplevel;
+  GedaToplevel   *toplevel;
 
   GArray       *color_map;
   GdkPixbuf    *pixbuf;
@@ -991,8 +991,8 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   int origin_x, origin_y, bottom, right;
   int size_x, size_y, s_right, s_left, s_top,s_bottom;
 
-#if DEBUG || DEBUG_IMAGING
-  fprintf(stderr, "x_image_get_pixbuf: begin\n");
+#if DEBUG_IMAGING
+  fprintf(stderr, "%s: begin\n", __func__);
 #endif
 
   new_w_current = malloc(sizeof(GschemToplevel));
@@ -1000,7 +1000,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
 
   if ( !new_w_current || !toplevel) {
     char *errmsg = strerror(errno);
-    fprintf(stderr, "Error: <x_image_get_pixbuf> could not allocate memory resources: %s\n", errmsg);
+    fprintf(stderr, "%s: could not allocate memory resources: %s\n",__func__, errmsg);
     error_dialog("Could not allocate memory resources; %s, maybe you should try saving next",
                   errmsg);
     return NULL;
@@ -1013,6 +1013,8 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   memcpy(toplevel, w_current->toplevel, sizeof(GedaToplevel));
 
   new_w_current->toplevel = toplevel;
+
+  new_w_current->status_bar = NULL;
 
   /* Do zoom extents to get entire schematic in the window if imaging All */
   if (extent == Image_All)
@@ -1048,8 +1050,8 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   /* Note that since we copied w_current, w_current->renderer is pointing at a
    * valid renderer, we are replacing that pointer here with a new instances */
   renderer = g_object_new (EDA_TYPE_RENDERER,
-                           "cairo-context", new_w_current->cr,
                            "pango-context", context,
+                           "cairo-context", new_w_current->cr,
                            "color-map",     color_map,
                            "render-flags",  EDA_RENDERER_FLAG_HINTING,
                            NULL);
@@ -1065,7 +1067,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
     eda_renderer_set_net_endpoint_color (renderer, &black);
   }
 
-  new_w_current->grid_mode = 0;
+  new_w_current->grid_mode = GRID_NONE;
   new_w_current->renderer->text_origin_marker = FALSE;
 
   new_w_current->screen_width  = new_w_current->image_width;
@@ -1080,6 +1082,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   rect.width  = right - origin_x;
   rect.height = bottom - origin_y;
 
+  x_grid_repaint_background (new_w_current, &rect);
   o_redraw_rectangle (new_w_current, &rect);
 
   /* Get the pixbuf */
@@ -1096,8 +1099,8 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   }
 
   /* Cleanup resources */
-
   eda_renderer_destroy (new_w_current->renderer);
+  g_object_unref (layout);
   g_array_free (color_map, TRUE);
 
   if (new_w_current->cr != NULL) cairo_destroy (new_w_current->cr);
@@ -1109,7 +1112,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   free (toplevel);
   free (new_w_current);
 
-#if DEBUG || DEBUG_IMAGING
+#if DEBUG_IMAGING
   fprintf(stderr, "x_image_get_pixbuf: exit\n");
 #endif
 

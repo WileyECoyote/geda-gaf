@@ -739,7 +739,7 @@ void       x_image_lowlevel             (GschemToplevel *w_current, const char* 
                                    ImageExtent extent,
                                    bool use_print_map, bool invert_color_bw );
 
-void       x_image_setup                (GschemToplevel *w_current, IMAGE_TYPES default_type);
+void       x_image_setup          (GschemToplevel *w_current, IMAGE_TYPES default_type);
 /* GdkPixbuf *x_image_get_pixbuf  (GschemToplevel *w_current, ImageExtent extent); */
 GdkPixbuf *x_image_get_pixbuf     (GschemToplevel *w_current, ImageExtent extent,
                                    bool use_print_map, bool invert_color_bw);

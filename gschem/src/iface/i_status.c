@@ -260,7 +260,9 @@ void i_status_show_state(GschemToplevel *w_current, const char *message)
 static bool
 i_status_idle_update_grid_info (GschemToplevel *w_current)
 {
-  x_status_bar_update_grid_label (w_current);
+  if (w_current->status_bar != NULL) {
+    x_status_bar_update_grid_label (w_current);
+  }
   return FALSE;
 }
 

@@ -30,12 +30,12 @@
 
 /*! \brief Function Clean State - if drawing action in-progress
  *  \par Function Description
- *  This function is neccesary to make jumps between event_states.
+ *  This function is necessary to make jumps between event_states.
  *  If we are inside an drawing action that created something on the dc,
  *  e.g. if we are drawing a box and then jump to line drawing without
- *  leaving the box drawing mode, there will remain some rubberbands on the
- *  screen.
- *  Usually a intermediate select state would clean (redraw) the screen.
+ *  leaving the box drawing mode, there will remain some rubberbands on
+ *  the screen. Usually a intermediate select state would clean (redraw)
+ *  the screen.
  */
 int o_redraw_cleanstates(GschemToplevel *w_current)
 {

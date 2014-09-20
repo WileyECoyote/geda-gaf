@@ -60,9 +60,9 @@ x_status_bar_update_grid_label (GschemToplevel *w_current)
 
     /* If sum of differences is non-zero then update */
     do_update = (StatusBar->grid_mode - grid_mode) +
-                (StatusBar->grid_size - grid_size) +
-                (StatusBar->snap_mode - snap_mode) +
-                (StatusBar->snap_size - snap_size);
+    (StatusBar->grid_size - grid_size) +
+    (StatusBar->snap_mode - snap_mode) +
+    (StatusBar->snap_size - snap_size);
 
     if ( do_update ) {
       StatusBar->grid_mode = grid_mode;

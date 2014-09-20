@@ -912,8 +912,8 @@ static void x_print_draw_page (GedaToplevel *toplevel, Page *page,
 
   /* Thirdly, create and initialise a renderer */
   renderer = g_object_new (EDA_TYPE_RENDERER,
-                           "cairo-context", cr,
                            "pango-context", pc,
+                           "cairo-context", cr,
                            "color-map", color_map,
                            "render-flags", is_raster ? EDA_RENDERER_FLAG_HINTING : 0,
                            NULL);

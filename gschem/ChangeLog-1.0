@@ -1,3 +1,9 @@
+2014-09-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_image.c: Use GedaFileChooser instead of GtkFileChooser because on some
+      system GedaFileChooser does not restore geometry properly (not at all) and our
+      chooser widget does.
+
 2014-09-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_basic.c: Removed tree row visibility support function, which are now
