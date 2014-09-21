@@ -234,14 +234,14 @@ get_bulb_image (bool WhichState)
 void set_bulb_on( GtkWidget *widget) {
 
   GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
-  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
+  GList* align    = gtk_container_get_children (GTK_CONTAINER(button->data));
+  GList* lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
 
   GtkWidget* BulbOnImage  = lightbox->data;
   lightbox                = lightbox->next;
   GtkWidget* BulbOffImage = lightbox->data;
 
-  g_object_set (BulbOnImage, "visible", TRUE, NULL);
+  g_object_set (BulbOnImage,  "visible", TRUE, NULL);
   g_object_set (BulbOffImage, "visible", FALSE, NULL);
 
   g_list_free(lightbox);
@@ -252,14 +252,14 @@ void set_bulb_on( GtkWidget *widget) {
 void set_bulb_off( GtkWidget *widget) {
 
   GList* button   = gtk_container_get_children (GTK_CONTAINER(widget));
-  GList* align    = gtk_container_get_children (GTK_CONTAINER (button->data));
-  GList* lightbox = gtk_container_get_children (GTK_CONTAINER (align->data));
+  GList* align    = gtk_container_get_children (GTK_CONTAINER(button->data));
+  GList* lightbox = gtk_container_get_children (GTK_CONTAINER(align->data));
 
-  GtkWidget* BulbOnImage = lightbox->data;
-  lightbox = lightbox->next;
+  GtkWidget* BulbOnImage  = lightbox->data;
+  lightbox                = lightbox->next;
   GtkWidget* BulbOffImage = lightbox->data;
 
-  g_object_set (BulbOnImage, "visible", FALSE, NULL);
+  g_object_set (BulbOnImage,  "visible", FALSE, NULL);
   g_object_set (BulbOffImage, "visible", TRUE, NULL);
 
   g_list_free(lightbox);
@@ -979,16 +979,16 @@ color_menu_swatch_layout_data (GtkCellLayout *layout,
                                GtkTreeIter *iter,
                                void* data)
 {
-  /* GschemToplevel *w_current = (GschemToplevel *) data; */
+  GdkColor *color;
   GValue v = {0, };
   int index;
 
   /* Get the index of the color on this row */
   gtk_tree_model_get_value (model, iter, 1, &v);
   index = g_value_get_int (&v);
-
+  color = x_color_get_color_from_index (index);
   /* Set the cell's background color */
-  g_object_set (cell, "background-gdk", x_get_color (index), NULL);
+  g_object_set (cell, "background-gdk", color, NULL);
 }
 
 /*! \brief Create a ComboBox with the gschem colors.

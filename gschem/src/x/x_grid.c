@@ -578,7 +578,9 @@ int x_grid_query_drawn_spacing (GschemToplevel *w_current)
 void
 x_grid_repaint_background (GschemToplevel *w_current, GdkRectangle *r)
 {
-  GdkColor *color = x_get_color (w_current->background_color);
+  GdkColor *color;
+
+  color = x_color_get_color_from_index (w_current->background_color);
 
   cairo_set_source_rgb (w_current->cr,
                         color->red   / 65535.0,
@@ -608,7 +610,7 @@ void x_grid_draw_tiles(GschemToplevel *w_current)
 
   GdkColor *color;
 
-  color = x_get_color (LOCK_COLOR);
+  color = x_color_get_color_from_index (LOCK_COLOR);
 
   cairo_set_source_rgb (w_current->cr,
                         color->red   / 65535.0,

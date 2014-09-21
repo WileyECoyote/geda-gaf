@@ -108,7 +108,7 @@ x_stroke_record (GschemToplevel *w_current, int x, int y)
 
       g_array_append_val (stroke_points, point);
 
-      gdk_gc_set_foreground (w_current->gc, x_get_color (STROKE_COLOR));
+      gdk_gc_set_foreground (w_current->gc, x_color_get_color_from_index (STROKE_COLOR));
       gdk_draw_point (w_current->window, w_current->gc, x, y);
     }
   }

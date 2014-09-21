@@ -156,13 +156,14 @@ void x_color_allocate (void)
  *   Returns a pointer to the active GdkColor object given the geda
  *   gschem color index.
  */
-GdkColor *x_get_color(int color)
+GdkColor *x_color_get_color_from_index(int index)
 {
-  if ((color < 0) || (color >= MAX_COLORS) || (gdk_colors[color] == NULL)) {
-    fprintf(stderr, _("Tried to get an invalid color: %d\n"), color);
+  if ((index < 0) || (index >= MAX_COLORS) || (gdk_colors[index] == NULL)) {
+    u_log_message (_("Tried to get an invalid color index: %d\n"), index);
     return(&white);
-  } else {
-    return(gdk_colors[color]);
+  }
+  else {
+    return(gdk_colors[index]);
   }
 }
 
@@ -216,7 +217,7 @@ GArray   *x_color_get_print_color_map()
  *
  *  \todo this has to change... to the right code
  */
-GdkColor *x_get_darkcolor(int color)
+GdkColor *x_color_get_darkcolor(int color)
 {
   if ((color < 0) || (color >= MAX_COLORS)
       || (gdk_outline_colors[color] == NULL)) {
@@ -224,7 +225,7 @@ GdkColor *x_get_darkcolor(int color)
     return(&white);
   }
   else {
-    return(gdk_outline_colors[color]);
+    return (gdk_outline_colors[color]);
   }
 }
 
@@ -317,7 +318,7 @@ bool x_color_display_enabled (int index)
  *       relative to the path returned by geda-rc-path. The
  *       current colors are free and the new color allocated.
  */
-int x_load_color_scheme(char* scheme) {
+int x_color_load_scheme(char* scheme) {
 
   char *strBuffer;
   char *inputfile;
@@ -349,10 +350,10 @@ int x_load_color_scheme(char* scheme) {
     }
     else {
       GEDA_FREE(strBuffer);
-      u_log_message (_("x_load_color_scheme: Could not locate file:%s\n"), scheme);
+      u_log_message (_("x_color_load_scheme: Could not locate file:%s\n"), scheme);
     }
   }
   else
-    u_log_message(_("x_load_color_scheme: Memory allocation error\n"));
+    u_log_message(_("x_color_load_scheme: Memory allocation error\n"));
   return result;
 }

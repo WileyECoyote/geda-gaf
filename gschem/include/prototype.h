@@ -592,8 +592,8 @@ GLT          *x_clipboard_get               (GschemToplevel *w_current);
 void          x_color_init                  (void);
 void          x_color_free                  (void);
 void          x_color_allocate              (void);
-GdkColor     *x_get_color                   (int color);
-GdkColor     *x_get_darkcolor               (int color);
+GdkColor     *x_color_get_color_from_index  (int color);
+GdkColor     *x_color_get_darkcolor         (int color);
 GArray       *x_color_get_display_color_map (void);
 GArray       *x_color_get_outline_color_map (void);
 GArray       *x_color_get_print_color_map   (void);
@@ -603,7 +603,7 @@ bool          x_color_get_state             (int color);
 void          x_color_set_state             (int color, int state);
 char         *x_color_get_name              (int index);
 bool          x_color_display_enabled       (int index);
-int           x_load_color_scheme           (char * scheme);
+int           x_color_load_scheme           (char * scheme);
 
 /* x_compselect.c */
 void          x_compselect_open             (GschemToplevel *w_current);

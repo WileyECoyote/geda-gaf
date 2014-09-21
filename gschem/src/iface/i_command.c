@@ -1804,7 +1804,7 @@ COMMAND ( do_dark_colors )
 {
   BEGIN_W_COMMAND(do_dark_colors);
   /* Change the scheme here */
-  x_load_color_scheme(DARK_COLOR_MAP); /* call for load */
+  x_color_load_scheme(DARK_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
   EXIT_COMMAND(do_dark_colors);
 }
@@ -1817,7 +1817,7 @@ COMMAND ( do_light_colors )
 {
   BEGIN_W_COMMAND(do_light_colors);
   /* Change the scheme here */
-  x_load_color_scheme(LIGHT_COLOR_MAP); /* call for load */
+  x_color_load_scheme(LIGHT_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
   EXIT_COMMAND(do_light_colors);
 }
@@ -1830,7 +1830,7 @@ COMMAND ( do_bw_colors )
 {
   BEGIN_W_COMMAND(do_bw_colors);
   /* Change the scheme here */
-  x_load_color_scheme(BW_COLOR_MAP); /* call for load */
+  x_color_load_scheme(BW_COLOR_MAP); /* call for load */
   o_invalidate_all (w_current);
   EXIT_COMMAND(do_bw_colors);
 }

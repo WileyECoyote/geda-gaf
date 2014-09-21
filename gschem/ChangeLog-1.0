@@ -1,3 +1,8 @@
+2014-09-21 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_color.c: Rename x_load_color_scheme->x_color_load_scheme, x_get_color->
+      x_color_get_color_from_index, and x_get_darkcolor->x_color_get_darkcolor
+
 2014-09-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_image.c: Clean up memory leaks, again.
