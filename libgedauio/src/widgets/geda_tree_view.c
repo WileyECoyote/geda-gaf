@@ -129,7 +129,8 @@ geda_tree_view_new (void)
 /*! \brief Create a New GedaTreeView with a given Model
  *
  *  \par Function Description
- * Creates a new #GedaTreeView widget with the model initialized to @model.
+ * Creates a new #GedaTreeView widget with the model initialized to
+ * the given \a model.
  *
  * Returns: A newly created #GedaTreeView widget.
  */
