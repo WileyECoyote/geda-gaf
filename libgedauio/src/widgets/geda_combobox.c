@@ -46,7 +46,7 @@
  * make a new choice. The style in which the selected value is displayed,
  * and the style of the popup is determined by the current theme. It may
  * be similar to a Windows-style combo box.
- *
+ * \par
  * The GedaComboBox uses the model-view pattern; the list of valid choices
  * is specified in the form of a tree model, and the display of the choices
  * can be adapted to the data in the model by using cell renderers, as you
@@ -54,15 +54,18 @@
  * GtkCellLayout interface. The tree model holding the valid choices is
  * not restricted to a flat list, it can be a real tree, and the popup will
  * reflect the tree structure.
- *
+ * \par
  * To allow the user to enter values not in the model, the 'has-entry'
  * property allows the GedaComboBox to contain a GtkEntry. This entry
  * can be accessed by calling gtk_bin_get_child() on the combo box.
- *
+ * \par
  * For a simple list of textual choices, the model-view API of GedaComboBox
  * can be a bit overwhelming. In this case, #GedaComboBoxText offers a
  * simple alternative. Both GedaComboBox and #GedaComboBoxText can contain
  * an entry.
+ *
+ * \defgroup GedaComboBox Combination Box
+ * @{
  */
 
 /* WELCOME, to THE house of evil code */
@@ -6280,3 +6283,5 @@ geda_combo_box_buildable_get_internal_child (GtkBuildable *buildable,
 
   return parent_buildable_iface->get_internal_child (buildable, builder, childname);
 }
+
+/** @} end group GedaComboBox */

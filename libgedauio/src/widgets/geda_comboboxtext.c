@@ -78,7 +78,6 @@
  * @{
  */
 
-
 static void geda_combo_box_text_buildable_interface_init    (GtkBuildableIface *iface);
 static bool geda_combo_box_text_buildable_custom_tag_start  (GtkBuildable      *buildable,
                                                              GtkBuilder        *builder,
