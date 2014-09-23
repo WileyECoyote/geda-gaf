@@ -1,3 +1,8 @@
+2014-09-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_compselect.c: Add inline function is_symbol_record, similar to master
+      branch b9c6eef5bbf64dd1c289016697152791c77e8c2f
+
 2014-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_color.c: Rename x_load_color_scheme->x_color_load_scheme, x_get_color->
