@@ -44,6 +44,7 @@ remove_page_object_notifiers(GtkWidget *button, GschemToplevel *w_current)
                           o_diagnostics_notifier_one,
                           o_diagnostics_notifier_two, w_current);
 }
+
 /*
 static void
 o_diagnostics_notify_attribute (GschemToplevel *w_current, Object *object)

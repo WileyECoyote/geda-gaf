@@ -216,7 +216,7 @@ create_geda_switch(GtkWidget *Dialog, GtkWidget *parent, GtkWidget *widget,
  *  embed into the widget when bulb widgets are created and then each
  *  image is set visible or invisible based on the state of the radio
  *  widgets. This groups contain functions to work with widgets. Note
- *  that the actual creation is done with a macro, see #GEDA_BULB.
+ *  that the actual creation is done with a macro, see #EDA_BULB.
  */
 
 GtkWidget*

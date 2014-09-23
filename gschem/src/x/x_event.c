@@ -81,7 +81,6 @@ int x_event_button_pressed(GtkWidget      *widget,
     (w_current->event_state == STARTSELECT ||
     w_current->event_state == SELECT))
   {
-    o_find_object(w_current, w_x, w_y, TRUE);
     if (o_select_is_selection (w_current)) {
       o_edit_objects (w_current, geda_list_get_glist( Top_Selection ),
                       ID_ORIGIN_EVENT);
