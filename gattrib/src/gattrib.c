@@ -106,8 +106,8 @@
 #include <unistd.h>
 #endif
 
-/*------------------------------------------------------------------*/
-/* Includes originally from testgtksheet -- stuff needed to deal with
+/*------------------------------------------------------------------
+ * Includes originally from testgtksheet -- stuff needed to deal with
  * spreadsheet widget.
  *------------------------------------------------------------------*/
 #include <stdio.h>
@@ -123,14 +123,15 @@
 #include <string.h>
 #endif
 
-/*------------------------------------------------------------------*/
-/* Gattrib specific includes -- stuff dealing with gattrib data structs.
+#include <locale.h>
+#include "gettext.h"
+
+/*------------------------------------------------------------------
+ * Gattrib specific includes -- stuff dealing with gattrib data structs.
  *------------------------------------------------------------------*/
 #include "../include/gattrib.h"  /* include Gattrib specific headers  */
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 typedef struct {
   void (*func)(void*);

@@ -27,6 +27,7 @@
  */
 
 #include <gdk/gdkkeysyms.h>
+#include <ctype.h>
 
 #include "gschem.h"
 
@@ -435,7 +436,13 @@ inuse_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   g_object_set ((GObject*)cell, "text", s_clib_symbol_get_name (symbol), NULL);
 }
 
-/*! \brief Returns whether a treeview node contains symbol data. */
+/*! \brief Returns whether a treeview node contains symbol data.
+ *  \par Function Description
+ *  This function returns the integer store in column LVC_ROW_TYPE at
+ *  the given (row) \a iter. A zero in this columns indicate the row
+ *  contains sources (folder or category) data, otherwise the row is
+ *  for a symbol record.
+ */
 static inline bool
 is_symbol_record (GtkTreeModel *tree_model, GtkTreeIter *iter)
 {
@@ -464,9 +471,6 @@ lib_treeview_set_cell_data (GtkTreeViewColumn *tree_column,
   CLibSymbol *symbol;
   const char *text;
   const char *ptr;
-  //bool        is_symbol;
-
-  //gtk_tree_model_get (tree_model, iter, LVC_ROW_TYPE, &is_symbol, -1);
 
   if (is_symbol_record(tree_model, iter)) {
 
@@ -574,13 +578,9 @@ static void tree_row_activated (GtkTreeView *tree_view, GtkTreePath *path,
 {
   GtkTreeModel *model;
   GtkTreeIter   iter;
- // bool is_symbol;
 
   model = gtk_tree_view_get_model (tree_view);
   gtk_tree_model_get_iter (model, &iter, path);
-
-  /* get column 0 data into variable is_symbol */
-  //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
 
   if (is_symbol_record(model, &iter)) {
     gtk_dialog_response (GTK_DIALOG (dialog), COMPSELECT_RESPONSE_HIDE);
@@ -661,13 +661,11 @@ static void close_tree_row (GtkWidget *menu_widget, GtkTreeView *tree_view)
   GtkTreeIter       iter;
   GtkTreeSelection *selection;
   GtkTreePath      *path;
-  //bool              is_symbol;
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(tree_view));
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
     path = gtk_tree_model_get_path ( model, &iter);
 
-    //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
     if (is_symbol_record(model, &iter)) {
       gtk_tree_path_up (path);
     }
@@ -692,14 +690,17 @@ static int sort_object_text (Object *a, Object *b)
 void
 update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
 {
-  GtkListStore *model;
-  GtkTreeIter iter;
+  GtkListStore      *model;
+  GtkTreeIter        iter;
   GtkTreeViewColumn *column;
-  GList *listiter, *o_iter, *o_attrlist, *filter_list;
-  char *name, *value;
+
+  GList  *listiter, *o_iter, *o_attrlist, *filter_list;
+
+  char   *name, *value;
   Object *o_current;
 
   model = (GtkListStore*) gtk_tree_view_get_model (compselect->attrtreeview);
+
   gtk_list_store_clear (model);
 
   /* Invalidate the column width for the attribute value column, so
@@ -746,6 +747,7 @@ update_attributes_model (Compselect *compselect, GedaToplevel *preview_toplevel)
         if (o_attrib_get_name_value (o_current, &name, &value)) {
           if (strcmp (name, listiter->data) == 0) {
             gtk_list_store_append (model, &iter);
+            name[0] = toupper(name[0]);
             gtk_list_store_set (model, &iter, 0, name, 1, value, -1);
           }
           GEDA_FREE (name);
@@ -787,8 +789,6 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
 
   if (gtk_tree_selection_get_selected (selection, &model, &iter)) {
 
-    //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
-
     is_symbol = is_symbol_record(model, &iter);
 
     if(is_symbol) {
@@ -813,10 +813,11 @@ cs_callback_tree_selection_changed (GtkTreeSelection *selection,
                 NULL);
 
   /* update the attributes with the toplevel of the preview widget*/
-  if (compselect->attrtreeview != NULL)
+  if (compselect->attrtreeview != NULL) {
     update_attributes_model (compselect,
                              compselect->preview->
-                                         preview_window->toplevel);
+                             preview_window->toplevel);
+  }
 
   if(is_symbol) {
     /* signal a component has been selected to parent of dialog */
@@ -1560,7 +1561,6 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
   GtkTreePath      *path;
   GtkTreeSelection *selection;
 
-  bool   is_symbol;
   bool   at_boundary;
   bool   do_restore;
   bool   was_expanded = FALSE;
@@ -1578,7 +1578,6 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
    * the contain folder and the symbol if there is one */
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
 
-    //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
     if (is_symbol_record(model, &iter)) {
        gtk_tree_model_get ( model, &iter, LVC_ROW_DATA, &symbol, -1);
        sym_name = u_string_strdup(symbol->name);
@@ -1621,7 +1620,6 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
 
     if( gp_src_name ) { /* 1st Look for Grand Parent */
       while (valid) {
-        //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
         if (!is_symbol_record(model, &iter)) {
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
           src_name2 = source->name;
@@ -1645,7 +1643,6 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
 
     while (valid) {                               /* Look for Parent */
-      //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
       if (!is_symbol_record(model, &iter)) {
         gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &source, -1);
         src_name2 = source->name;
@@ -1678,8 +1675,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
       if (!valid ) valid = gtk_tree_model_get_iter_first (model, &iter);
 
       while (valid) {
-        gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
-        if (is_symbol) {
+        if (is_symbol_record(model, &iter)) {
           gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
           sym_name2 = symbol->name;
           if ( strcmp(sym_name2, sym_name) == 0) {
@@ -1704,7 +1700,6 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
         valid = gtk_tree_model_iter_children(model, &iter, &parent);
 
         while (valid) {
-          //gtk_tree_model_get ( model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
           if (is_symbol_record(model, &iter)) {
             gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
             sym_name2 = symbol->name;
@@ -1721,10 +1716,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
         GEDA_FREE (sym_name2);
       }
     }
-/*
-    if (sym_name) GEDA_FREE ( sym_name);
-    if (src_name) GEDA_FREE ( src_name);
-*/
+
     geda_tree_view_row_make_visible (tree_view, &iter, TRUE);
   } /* End if do_restore */
   GEDA_FREE (src_name);
@@ -2035,11 +2027,11 @@ static GtkWidget *build_view_menu(Compselect *compselect, GtkWidget *treeview)
 
   selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(treeview));
   if (gtk_tree_selection_get_selected(selection, &model, &iter)) {
-    //gtk_tree_model_get (model, &iter, LVC_ROW_TYPE, &is_symbol, -1);
     is_symbol = is_symbol_record(model, &iter);
   }
-  else
+  else {
     is_symbol = FALSE;
+  }
 
   menu=gtk_menu_new();
 
@@ -3210,59 +3202,54 @@ static void compselect_get_property (GObject     *object,
       case PROP_SYMBOL:
         {
           GtkTreeModel *model;
-          GtkTreeIter iter, parent;
-          CLibSymbol *symbol = NULL;
+          GtkTreeIter   iter;
+          CLibSymbol   *symbol  = NULL;
+          int           invalid = TRUE;
 
           switch (compselect->active_tab) {
           case IN_USE_TAB:
             if (gtk_tree_selection_get_selected (
-                  gtk_tree_view_get_selection (compselect->inusetreeview),
-                  &model,
-                  &iter)) {
+                gtk_tree_view_get_selection (compselect->inusetreeview), &model, &iter))
+            {
               gtk_tree_model_get (model, &iter, IU_DATA_COLUMN, &symbol, -1);
             }
             break;
           case STD_TAB:
             if (gtk_tree_selection_get_selected (
-                  gtk_tree_view_get_selection (compselect->stdtreeview),
-                  &model,
-                  &iter)
-                && gtk_tree_model_iter_parent (model, &parent, &iter)) {
+                gtk_tree_view_get_selection (compselect->stdtreeview), &model, &iter))
+            {
               gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
             }
             break;
           case MAN_TAB:
             if (gtk_tree_selection_get_selected (
-                  gtk_tree_view_get_selection (compselect->mantreeview),
-                  &model,
-                  &iter)
-                && gtk_tree_model_iter_parent (model, &parent, &iter)) {
+                gtk_tree_view_get_selection (compselect->mantreeview), &model, &iter))
+            {
               gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
             }
             break;
           case SIM_TAB:
             if (gtk_tree_selection_get_selected (
-                  gtk_tree_view_get_selection (compselect->simtreeview),
-                  &model,
-                  &iter)
-                && gtk_tree_model_iter_parent (model, &parent, &iter)) {
+                gtk_tree_view_get_selection (compselect->simtreeview), &model, &iter))
+            {
               gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
             }
             break;
           case LOCAL_TAB:
             if (gtk_tree_selection_get_selected (
-                  gtk_tree_view_get_selection (compselect->localtreeview),
-                  &model,
-                  &iter)
-                && gtk_tree_model_iter_parent (model, &parent, &iter)) {
+                gtk_tree_view_get_selection (compselect->localtreeview), &model, &iter))
+            {
               gtk_tree_model_get (model, &iter, LVC_ROW_DATA, &symbol, -1);
             }
             break;
           default:
             BUG_MSG("OOPS!: unknown Tab");
+            invalid = TRUE;
+            break;
           }
-
-          g_value_set_pointer (value, symbol);
+          if (!invalid) {
+            g_value_set_pointer (value, symbol);
+          }
           break;
         }
       case PROP_BEHAVIOR:

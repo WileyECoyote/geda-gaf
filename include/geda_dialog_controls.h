@@ -56,8 +56,10 @@
  * WEH | 06/23/14 | Replaced gtk_label with geda_label_new or variants.
  *                |
  * ------------------------------------------------------------------
- * WEH | 08/21/14 | Added GEDA_BULB_x and corresponding cluster type for
+ * WEH | 08/21/14 | Added EDA_BULB_x and corresponding cluster type for
  *                | labeless groups
+ * ------------------------------------------------------------------
+ * WEH | 09/21/14 | Renamed GEDA_SWITCH->EDA_SWITCH
 */
 
 #pragma once
@@ -524,7 +526,7 @@ typedef struct
         group##Group = gtk_radio_button_get_group (GTK_RADIO_BUTTON (name##Radio)); \
         HOOKUP_GEDA_OBJECT(name, Radio)
 
-/* Note that if Dialog uses GEDA_BULB  then don't use show_all short cut, use
+/* Note that if Dialog uses EDA_BULB  then don't use show_all short cut, use
  * traditional g_object_set(widget) because both the off and on images are
  * inside the controls, show_all will cause both images to be displayed.
  * One might also consider not defining groups for Bulbs, radio groups are a
@@ -567,17 +569,17 @@ typedef struct
         GEDA_BASE_BULB( group, name, dir) \
         GTK_ICALLBACK_RADIO (name, Radio_Responder)
 
-#define GEDA_BULB( group, name, dir) \
+#define EDA_BULB( group, name, dir) \
         GEDA_BASE_BULB( group, name, dir) \
         GTK_ICALLBACK_RADIO (name, Radio_Responder)
 
-/* These are labeless because GEDA_BULB_ type all use GEDA_RADIO_GROUP */
-#define GEDA_BULB_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) \
+/* These are labeless because EDA_BULB_ type all use GEDA_RADIO_GROUP */
+#define EDA_BULB_TRIAD(parent, group, dir, spacing, R1, R2, R3, Default) \
         HPSECTION (parent, group, spacing); \
         GEDA_RADIO_GROUP (group, dir);      \
-        GEDA_BULB (group, group##R1, dir);  \
-        GEDA_BULB (group, group##R2, dir);  \
-        GEDA_BULB (group, group##R3, dir);  \
+        EDA_BULB (group, group##R1, dir);  \
+        EDA_BULB (group, group##R2, dir);  \
+        EDA_BULB (group, group##R3, dir);  \
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
         set_bulb_on(group##Default##Radio); \
         group##RadioGroup=group##Group;
@@ -595,10 +597,10 @@ typedef struct
 #define GEDA_QUAD_BULB(parent, group, dir, spacing, R1, R2, R3, R4, Default) \
         HPSECTION (parent, group, spacing); \
         GEDA_RADIO_GROUP (group, dir);     { \
-        GEDA_BULB (group, group##R1, dir);  \
-        GEDA_BULB (group, group##R2, dir);  \
-        GEDA_BULB (group, group##R3, dir);  \
-        GEDA_BULB (group, group##R4, dir);  \
+        EDA_BULB (group, group##R1, dir);  \
+        EDA_BULB (group, group##R2, dir);  \
+        EDA_BULB (group, group##R3, dir);  \
+        EDA_BULB (group, group##R4, dir);  \
         gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (group##Default##Radio), TRUE); \
         set_bulb_on(group##Default##Radio); \
         group##RadioGroup=group##Group; \
@@ -673,7 +675,7 @@ typedef struct
         GEDA_QUAD_RADIO (parent, group, v, spacing, R1, R2, R3, R4, Default)
 
 #define GEDA_H_BULB_TRIAD(parent, group, R1, R2, R3, Default) \
-        GEDA_BULB_TRIAD (parent, group, h, DIALOG_V_SPACING, R1, R2, R3, Default)
+        EDA_BULB_TRIAD (parent, group, h, DIALOG_V_SPACING, R1, R2, R3, Default)
 
 #define GEDA_H_RADIO_TRIAD(parent, group, R1, R2, R3, Default) \
         GEDA_RADIO_TRIAD (parent, group, h, DIALOG_V_SPACING, R1, R2, R3, Default)
@@ -744,7 +746,7 @@ typedef struct
         HOOKUP_GEDA_OBJECT(name, Spin) \
 }
 
-#define GEDA_SWITCH(GedaDialog, parent, name, spacing, state)  {     \
+#define EDA_SWITCH(GedaDialog, parent, name, spacing, state)  {     \
         GtkWidget *name##_hbox=NULL;                    \
         GtkWidget *name##Label=NULL;                    \
         GtkWidget *name##Image=NULL;                    \
@@ -765,7 +767,7 @@ typedef struct
 }
 
 #define GTK_SWITCH(parent, name, spacing, state) \
-        GEDA_SWITCH (ThisDialog, parent, name, spacing, state) \
+        EDA_SWITCH (ThisDialog, parent, name, spacing, state) \
         GTK_ICALLBACK_SWITCH (name)
 
 #define TOGGLE_SWITCH( switch ) { \

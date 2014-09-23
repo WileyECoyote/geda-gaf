@@ -30,6 +30,7 @@
 #include <getopt.h>
 
 /* Gettext translation */
+#include <locale.h>
 #include "gettext.h"
 
 #include <glib.h>

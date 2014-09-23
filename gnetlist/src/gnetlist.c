@@ -31,6 +31,7 @@
 #include "gnetlist.h"
 #include <libgeda/libgedaguile.h>
 
+#include <locale.h>
 #include <gettext.h>
 #include <geda_debug.h>
 

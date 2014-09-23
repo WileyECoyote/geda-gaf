@@ -587,6 +587,7 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
                               cairo_t      *new_cr,
                               PangoContext *new_pc)
 {
+
   /* First figure out what's invalidated */
   if (new_cr != NULL) {
 
@@ -630,6 +631,7 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   else if (renderer->priv->cr != NULL) {
     eda_pango_renderer_update(renderer->priv->pr, renderer->priv->cr);
   }
+
 }
 
 /* ================================================================
