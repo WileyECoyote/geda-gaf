@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C o_undo.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -15,15 +18,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
-
-#include <gschem.h>
-#include <geda_debug.h>
-
 /*!
  * \file o_undo.c
- * \brief
+ * \brief A dialog box for editing Attribute Text objects
  *  Gschem Undo system works in conjunction with the libgeda s_undo module
  *  to provide two post operative non-intelligent mechanisms to recreate
  *  data. A pre-operative system scheduled for 2.0.11 has been pulled-in
@@ -31,6 +31,9 @@
  *
  *  \remarks Just band-aid until new system implemented
  */
+
+#include <gschem.h>
+#include <geda_debug.h>
 
 /** \defgroup gschem-undo-module Undo Module
  *  @{ \par This Group contains Routines for Undo and Redo.

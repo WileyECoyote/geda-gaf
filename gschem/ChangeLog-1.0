@@ -1,5 +1,10 @@
 2014-09-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/o/o_*.c: Revise file headers, update doxygen documentation; add
+      more grouping.
+
+2014-09-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_compselect.c: Display  attribute names in proper/title case in the
       attribute view.
 

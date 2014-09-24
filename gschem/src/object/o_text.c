@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C o_text.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,15 +21,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
-
+/*!
+ * \file o_text.c
+ * \brief Low-level module for manipulating Text objects
+ */
 #include <gschem.h>
 #include <math.h>
 #include <geda_debug.h>
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Get Bounds of text object
  *  \par Function Description
- *
+ *  This function is used bassically as a callback for text object
+ *  to determine the XY bounderies of the Text objects.
  */
 int o_text_get_rendered_bounds (void *user_data, Object *o_current,
                                 int  *min_x, int *min_y,

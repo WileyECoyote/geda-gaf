@@ -1,5 +1,8 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C o_attrib.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
+ *
  * Copyright (C) 1998-2014 Ales Hvezda
  * Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
  *
@@ -18,6 +21,10 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02110-1301 USA
  */
+/*!
+ * \file o_attrib.c
+ * \brief Low-level module for manipulating Attribute objects
+ */
 
 #include <gschem.h>
 #include <geda_debug.h>
@@ -25,16 +32,16 @@
 /* No special type for attributes */
 /* You can only edit text attributes */
 
-/* be sure in o_copy o_move o_delete you maintain the attributes */
-/* delete is a bare, because you will have to unattach the other end */
-/* and in o_save o_read as well */
-/* and in o_select when selecting objects, select the attributes */
+/* be sure in o_copy o_move o_delete you maintain the attributes delete
+ * delete is a bare, because you will have to unattach the other end and
+ * and in o_save o_read as well and in o_select when selecting objects,
+ * select the attributes.
+ *
+ * There needs to be a modifier (in struct.h, such as a flag) which
+ * signifies that this is an attribute
+ */
 
-/* there needs to be a modifier (in struct.h, such as a flag) which
- * signifies that this is an attribute */
-
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Add attributes of obejct to selection
  *  \par Function Description
  *  Copy all attributes select to the selection list.
  *
@@ -48,12 +55,12 @@ void o_attrib_add_selected(GschemToplevel *w_current, SELECTION *selection,
   GList *selected_objects = NULL;
 
   if (selection == NULL) {
-    u_log_message(_("Internal Error Detected: <%s> selection == NULL\n"), __func__);
+    BUG_MSG("selection == NULL\n");
     return;
   }
 
-  for (a_iter = selected->attribs; a_iter != NULL;
-       a_iter = g_list_next (a_iter)) {
+  for (a_iter = selected->attribs; a_iter; a_iter = a_iter->next)
+  {
     a_current = a_iter->data;
 
     /* make sure object isn't selected already */

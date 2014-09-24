@@ -1,4 +1,6 @@
-/* gEDA - GPL Electronic Design Automation
+/* -*- C o_complex.c indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4 -*-
+ *
+ * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
  * Copyright (C) 1998-2014 Ales Hvezda
@@ -16,8 +18,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
- * 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
+ */
+/*!
+ * \file o_complex.c
+ * \brief Low-level module for manipulating Complex objects
  */
 
 #include <gschem.h>
