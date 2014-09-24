@@ -205,7 +205,8 @@ x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
         if (symbol == NULL) {
           /* If there is no symbol selected, switch to SELECT mode */
           w_current->event_state = SELECT;
-        } else {
+        }
+        else {
           /* Otherwise set the new symbol to place */
           o_complex_prepare_place (w_current, symbol);
         }
@@ -3203,8 +3204,8 @@ static void compselect_get_property (GObject     *object,
         {
           GtkTreeModel *model;
           GtkTreeIter   iter;
-          CLibSymbol   *symbol  = NULL;
-          int           invalid = TRUE;
+          CLibSymbol   *symbol = NULL;
+          int           valid  = TRUE;
 
           switch (compselect->active_tab) {
           case IN_USE_TAB:
@@ -3244,10 +3245,10 @@ static void compselect_get_property (GObject     *object,
             break;
           default:
             BUG_MSG("OOPS!: unknown Tab");
-            invalid = TRUE;
+            valid = FALSE;
             break;
           }
-          if (!invalid) {
+          if (valid) {
             g_value_set_pointer (value, symbol);
           }
           break;
