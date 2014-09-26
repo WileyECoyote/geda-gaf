@@ -1,3 +1,13 @@
+2014-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/DRV8301-2.sym: Revise symbol
+
+        * ti/LMC6772-1.sym: Revise symbol
+
+        * ti/LMC6772-2.sym: Add symbol
+
+        * ti/CSD18533QA-1.sym: Add symbol
+
 2014-09-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * ti/: new 8301 dash 2 symbol motor control/drive:
