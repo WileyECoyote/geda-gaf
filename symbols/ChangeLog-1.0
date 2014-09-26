@@ -1,3 +1,9 @@
+2014-09-25 Wiley E. Hill <wileyhill@gmail.com>
+
+        * ti/: new 8301 dash 2 symbol motor control/drive:
+
+             DRV8301-2.sym
+
 2014-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
         * ti/: new symbols, power control/management:
