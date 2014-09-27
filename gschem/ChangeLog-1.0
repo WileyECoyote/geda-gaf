@@ -1,5 +1,10 @@
 2014-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_edit_cprop.c: Remove complex from glist instead of calling
+      o_selection_remove.
+
+2014-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * etc/xxx-gschemrc.scm: Add new variable undo-preserve for preserving views
       during undo operations when undo-panzoom disabled.
 

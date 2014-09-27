@@ -341,9 +341,8 @@ x_dialog_edit_properties_type_ok(GtkWidget *dialog, property_data *properties)
           Object     *o_new;
           Object     *attrib;
 
-          /* Remove from the current selection list, noting that this trigger
-           * gschem_dialog to remove reference to object from dialog */
-          o_selection_remove (Current_Selection, o_current);
+          /* do not use library, the selection change will trigger an event */
+          Current_Selection->glist = g_list_remove (Current_Selection->glist, o_current);
 
           /* Create new object and set embedded */
           o_new = o_complex_new (w_current->toplevel,
@@ -389,7 +388,7 @@ x_dialog_edit_properties_type_ok(GtkWidget *dialog, property_data *properties)
 
           for (iter = old_ribs; iter != NULL; iter = g_list_next (iter)) {
             Object *obj = (Object *) iter->data;
-            o_selection_remove (Current_Selection, obj);
+            Current_Selection->glist = g_list_remove (Current_Selection->glist, obj);
             s_page_remove_object (Current_Page, obj);
             s_object_release (obj);
           }
@@ -574,6 +573,7 @@ x_dialog_edit_properties_component_change(GschemToplevel *w_current,
   if (object) {
 
     filename = object->complex->filename;
+
     SetEntryText(properties->symbol_entry, filename);
 
     attribs   = o_attrib_get_attached_attribs(object);
