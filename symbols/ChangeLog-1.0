@@ -1,5 +1,9 @@
 2014-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
+        * st/Si476_nmosfet_30V_43W-8.sym: Add symbol
+
+2014-09-26 Wiley E. Hill <wileyhill@gmail.com>
+
         * ti/DRV8301-2.sym: Revise symbol
 
         * ti/LMC6772-1.sym: Revise symbol

@@ -1,4 +1,4 @@
-v 20140728 2
+v 20140915 2
 P 200 0 200 200 1 0 0
 {
 T 200 0 5 10 0 0 0 0 1
@@ -53,7 +53,7 @@ T 600 900 5 10 0 0 0 0 1
 pinseq=3
 }
 V 200 900 25 3 0 0 0 -1 -1 1 -1 -1 -1 -1 -1
-T 499 295 8 10 1 1 0 0 1
+T 599 1395 8 10 1 1 0 0 1
 refdes=D?
 T 398 2295 8 10 0 0 0 0 1
 device=BAT54S
@@ -65,5 +65,5 @@ T 398 1695 8 10 0 0 0 0 1
 author=Thomas Wagner Nielsen <thomasATdiagramtips.com>
 T 398 1495 8 10 0 0 0 0 1
 documentation=http://www.fairchildsemi.com/ds/BA/BAT54.pdf
-T 300 0 9 10 1 0 0 0 1
+T 600 1200 9 10 1 0 0 0 1
 BAT54S
