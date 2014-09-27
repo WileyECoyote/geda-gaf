@@ -2047,6 +2047,7 @@ SCM g_rc_undo_levels(SCM levels)
                          "undo-levels");
   return SCM_BOOL_T;
 }
+
 /*! \brief This function processes the undo-panzoom RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2061,6 +2062,22 @@ SCM g_rc_undo_panzoom(SCM mode)
 
   RETURN_G_RC_MODE("undo-panzoom", default_undo_panzoom, 2);
 }
+
+/*! \brief This function processes the undo-preserve RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the undo-preserve RC entry.
+ */
+SCM g_rc_undo_preserve(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {TRUE , RC_STR_ENABLED },
+    {FALSE, RC_STR_DISABLED}
+  };
+
+  RETURN_G_RC_MODE("undo-preserve", default_undo_preserve, 2);
+}
+
 /*! \brief This function processes the undo-type RC entry.
  *  \par Function Description
  *       C function to dynamically convert lisp variable while
@@ -2077,4 +2094,5 @@ SCM g_rc_undo_type(SCM mode)
                    default_undo_type,
                    2);
 }
+
 /** @} end group System-User-RC-Options */

@@ -160,6 +160,7 @@
      KEYWORD ( undo_control )
      KEYWORD ( undo_levels )
      KEYWORD ( undo_panzoom )
+     KEYWORD ( undo_preserve )
      KEYWORD ( undo_type )
      KEYWORD ( attribute_name )
 
@@ -259,6 +260,7 @@ enum {
      KEYWORD(undo-levels,                  0, 0, undo_levels)
      KEYWORD(undo-control,                 0, 0, undo_control)
      KEYWORD(undo-panzoom,                 0, 0, undo_panzoom)
+     KEYWORD(undo-preserve,                0, 0, undo_preserve)
      KEYWORD(undo-type,                    0, 0, undo_type)
      KEYWORD(attribute-name,               0, 0, attribute_name)
 

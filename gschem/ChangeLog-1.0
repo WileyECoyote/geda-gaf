@@ -1,5 +1,12 @@
 2014-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/xxx-gschemrc.scm: Add new variable undo-preserve for preserving views
+      during undo operations when undo-panzoom disabled.
+
+    * src/object/o_undo.c: Implement undo_preserve
+
+2014-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_move.c: Revise error mesages o_move_check_endpoint, change
       fprintf to v_log_message in o_move_return_whichone.
 

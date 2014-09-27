@@ -1147,6 +1147,16 @@
 ;(undo-panzoom "enabled")
 ;(undo-panzoom "disabled")
 
+; undo-preserve string
+;
+; Controls if after the undo operation is performed whether to restore
+; the viewport to the values prior to the operation. When undo-panzoom
+; is disabled this has the effect of preserving views when undo'ing.
+; If undo-panzoom is enabled this keyword has no effect.
+;
+;(undo-preserve "disabled")
+;(undo-preserve "enabled")
+
 ;END ====================>  Undo Sub-System  <======================
 
 ; reset-componet-library

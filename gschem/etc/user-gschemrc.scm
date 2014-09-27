@@ -1138,12 +1138,26 @@
 ; Controls if pan or zoom commands are saved in the undo list.  If this
 ; is enabled then a pan or zoom command will be considered a command and
 ; can be undone.  If this is false, then panning and zooming is not saved
-; in the undo list and cannot be undone.  Note, the current viewport
-; information is saved for every command, so the display will change to the
-; viewport before a command is executed.
+; in the undo list and cannot be undone.
 ;
 ;(undo-panzoom "enabled")
 ;(undo-panzoom "disabled")
+
+; undo-preserve string
+;
+; Controls if after the undo operation is performed whether to restore
+; the viewport to the values prior to the operation. When undo-panzoom
+; is disabled this has the effect of preserving views when undo'ing.
+; Note this does not "restore" the view to when the operation being undone
+; was performed unless the undo-panzoom is enabled. This means that if
+; undo-panzoom is "disabled" and "undo-preserve" is enabled, operations
+; may be undone that are not in the current view.
+; (User familar with gschem before this feature was implemented, that
+; disabled undo-panzoom, should try setting both to enabled)
+;
+;(undo-preserve "disabled")
+;(undo-preserve "enabled")
+
 
 ;END ====================>  Undo Sub-System  <======================
 

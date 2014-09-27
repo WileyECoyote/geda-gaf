@@ -300,6 +300,7 @@ enum ActionFlag
         COMMAND ( undo_levels )
         COMMAND ( undo_control )
         COMMAND ( undo_panzoom )
+        COMMAND ( undo_preserve )
         COMMAND ( undo_type )
 
 #undef  COMMAND
@@ -582,7 +583,8 @@ enum {
      COMMAND ( text-size,                    NULL, USE_WORKER_THREAD, text_size)
      COMMAND ( undo-levels,                  NULL, USE_WORKER_THREAD, undo_levels)
      COMMAND ( undo-control,                 NULL, USE_WORKER_THREAD, undo_control)
-     COMMAND ( undo-panzoom,                 NULL, USE_WORKER_THREAD, undo_panzoom)
+     COMMAND ( undo-preserve,                NULL, USE_WORKER_THREAD, undo_panzoom)
+     COMMAND ( undo-restore-view,            NULL, USE_WORKER_THREAD, undo_preserve)
      COMMAND ( undo-type,                    NULL, USE_WORKER_THREAD, undo_type)
 
 #ifndef I_DO_DECLARE

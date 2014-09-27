@@ -3987,6 +3987,12 @@ COMMAND ( undo_panzoom ) {
   SHOW_VARIABLE(undo_panzoom, W)
 }
 
+/** @brief i_cmd_undo_preserve in i_command_Variable_Handlers */
+COMMAND ( undo_preserve ) {
+
+  SHOW_VARIABLE(undo_preserve, W)
+}
+
 /** @brief i_cmd_undo_type in i_command_Variable_Handlers */
 COMMAND ( undo_type ) {
 

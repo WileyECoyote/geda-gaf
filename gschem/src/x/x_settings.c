@@ -234,10 +234,11 @@ void x_settings_save_settings(GschemToplevel *w_current)
   eda_config_set_int_list (cfg, group_name, "text_marker_color", array, 4);
 
   /* Undo Sub-System - Restored by o_undo_init */
-  eda_config_set_boolean (cfg, group_name, "undo-control", w_current->undo_control);
-  eda_config_set_integer (cfg, group_name, "undo-levels",  w_current->undo_levels);
-  eda_config_set_boolean (cfg, group_name, "undo-panzoom", w_current->undo_panzoom);
-  eda_config_set_boolean (cfg, group_name, "undo-type",    w_current->undo_type);
+  eda_config_set_boolean (cfg, group_name, "undo-control",  w_current->undo_control);
+  eda_config_set_integer (cfg, group_name, "undo-levels",   w_current->undo_levels);
+  eda_config_set_boolean (cfg, group_name, "undo-panzoom",  w_current->undo_panzoom);
+  eda_config_set_boolean (cfg, group_name, "undo-preserve", w_current->undo_preserve);
+  eda_config_set_boolean (cfg, group_name, "undo-type",     w_current->undo_type);
 }
 
 /** @brief function change_default_titleblock in GatherSettings */
@@ -1204,6 +1205,11 @@ KEYWORD ( undo_type ) {
 /** @brief function do_kw_undo_panzoom in Settings-Keyword-Handlers */
 KEYWORD ( undo_panzoom ) {
   RC_BOOLEAN_WOUT (undo_panzoom)
+}
+
+/** @brief function do_kw_undo_preserve in Settings-Keyword-Handlers */
+KEYWORD ( undo_preserve ) {
+  RC_BOOLEAN_WOUT (undo_preserve)
 }
 
 /** @brief function do_kw_attribute_name in Settings-Keyword-Handlers */

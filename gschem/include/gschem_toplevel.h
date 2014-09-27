@@ -323,6 +323,7 @@ struct _GschemToplevel {
   int undo_control;       /* sets if undo is enabled or not */
   int undo_type;          /* type of undo (disk/memory), enumerated UNDO_TYPE */
   int undo_panzoom;       /* sets if pan / zoom info is saved in undo */
+  int undo_preserve;      /* sets whether views should be restored when undoing */
 
   SCM smob;               /* The Scheme representation of this window */
 };

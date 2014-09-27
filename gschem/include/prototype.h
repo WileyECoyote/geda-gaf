@@ -160,6 +160,7 @@ SCM   g_rc_undo_levels                 (SCM levels);
 SCM   g_rc_undo_control                (SCM mode);
 SCM   g_rc_undo_type                   (SCM mode);
 SCM   g_rc_undo_panzoom                (SCM mode);
+SCM   g_rc_undo_preserve               (SCM mode);
 SCM   g_rc_netconn_rubberband          (SCM mode);
 SCM   g_rc_magnetic_net_mode           (SCM mode);
 SCM   g_rc_sort_component_library      (SCM mode);

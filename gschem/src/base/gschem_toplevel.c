@@ -141,118 +141,118 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   /* ---------------- Gschem internal state ---------------- */
 
   /* Buffer Related */
-  w_current->buffer_number                = 0;
-  w_current->clipboard_buffer             = NULL;
+  w_current->buffer_number             = 0;
+  w_current->clipboard_buffer          = NULL;
 
   /* Drag&Drop */
-  w_current->drag_event                   = NULL;
-  w_current->dnd_state                    = 0;
-  w_current->dnd_save_state               = 0;
-  w_current->drag_action                  = GDK_ACTION_COPY;
+  w_current->drag_event                = NULL;
+  w_current->dnd_state                 = 0;
+  w_current->dnd_save_state            = 0;
+  w_current->drag_action               = GDK_ACTION_COPY;
 
   /* Key States */
-  w_current->CONTROLKEY                   = 0;
-  w_current->SHIFTKEY                     = 0;
-  w_current->ALTKEY                       = 0;
+  w_current->CONTROLKEY                = 0;
+  w_current->SHIFTKEY                  = 0;
+  w_current->ALTKEY                    = 0;
 
   /* Misc status flags and limits */
-  w_current->drawbounding_action_mode     = FREE;
-  w_current->doing_pan                    = 0;
-  w_current->event_state                  = SELECT;
-  w_current->force_save_as                = FALSE;
-  w_current->inside_redraw                = 0;
-  w_current->last_drawb_mode              = LAST_DRAWB_MODE_NONE;
-  w_current->min_zoom                     = 0;
-  w_current->max_zoom                     = 8;
+  w_current->drawbounding_action_mode  = FREE;
+  w_current->doing_pan                 = 0;
+  w_current->event_state               = SELECT;
+  w_current->force_save_as             = FALSE;
+  w_current->inside_redraw             = 0;
+  w_current->last_drawb_mode           = LAST_DRAWB_MODE_NONE;
+  w_current->min_zoom                  = 0;
+  w_current->max_zoom                  = 8;
 
   /* Pointer Device */
-  w_current->pointer_sx                   = 0;
-  w_current->pointer_sy                   = 0;
+  w_current->pointer_sx                = 0;
+  w_current->pointer_sy                = 0;
 
   /* Sessions */
-  w_current->session_name                 = NULL;
-  w_current->auto_sessions                = TRUE;
+  w_current->session_name              = NULL;
+  w_current->auto_sessions             = TRUE;
 
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */
-    w_current->renderer->draw_grips       = TRUE;
+    w_current->renderer->draw_grips    = TRUE;
 
   /* Grid Related - Display=>Grid */
-    w_current->grid_mode                  = GRID_MESH;
-    w_current->dots_grid_dot_size         = DEFAULT_GRID_DOT_SIZE;
-    w_current->dots_grid_threshold        = DEFAULT_GRID_DOT_THRESHOLD;
-    w_current->dots_grid_mode             = DOTS_GRID_VARIABLE_MODE;
+    w_current->grid_mode               = GRID_MESH;
+    w_current->dots_grid_dot_size      = DEFAULT_GRID_DOT_SIZE;
+    w_current->dots_grid_threshold     = DEFAULT_GRID_DOT_THRESHOLD;
+    w_current->dots_grid_mode          = DOTS_GRID_VARIABLE_MODE;
 
-    w_current->dots_grid_minor_alpha      = DEFAULT_GRID_MINOR_ALPHA;
-    w_current->dots_grid_major_alpha      = DEFAULT_GRID_MAJOR_ALPHA;
+    w_current->dots_grid_minor_alpha   = DEFAULT_GRID_MINOR_ALPHA;
+    w_current->dots_grid_major_alpha   = DEFAULT_GRID_MAJOR_ALPHA;
 
-    w_current->mesh_grid_threshold        = DEFAULT_GRID_MESH_THRESHOLD;
-    w_current->mesh_line_width_factor     = DEFAULT_MESH_LINE_WIDTH_FACTOR;
+    w_current->mesh_grid_threshold     = DEFAULT_GRID_MESH_THRESHOLD;
+    w_current->mesh_line_width_factor  = DEFAULT_MESH_LINE_WIDTH_FACTOR;
 
-    w_current->mesh_grid_minor_alpha      = DEFAULT_GRID_MINOR_ALPHA;
-    w_current->mesh_grid_major_alpha      = DEFAULT_GRID_MAJOR_ALPHA;
+    w_current->mesh_grid_minor_alpha   = DEFAULT_GRID_MINOR_ALPHA;
+    w_current->mesh_grid_major_alpha   = DEFAULT_GRID_MAJOR_ALPHA;
 
-  w_current->scrollbars                   = TRUE;
-  w_current->scrollbar_update             = 0;
-  w_current->scrollpan_steps              = DEFAULT_SCROLLPAN_STEPS;
+  w_current->scrollbars                = TRUE;
+  w_current->scrollbar_update          = 0;
+  w_current->scrollpan_steps           = DEFAULT_SCROLLPAN_STEPS;
 
   /* Zoom Related - Display=>Zoom */
-    w_current->warp_cursor                = 0;
-    w_current->zoom_gain                  = DEFAULT_ZOOM_GAIN;
-    w_current->zoom_with_pan              = 0;
+    w_current->warp_cursor             = 0;
+    w_current->zoom_gain               = DEFAULT_ZOOM_GAIN;
+    w_current->zoom_with_pan           = 0;
 
   /* Imaging Related */
-  w_current->image_width                = 0;
-  w_current->image_height               = 0;
-  w_current->background_color           = 0;
+  w_current->image_width               = 0;
+  w_current->image_height              = 0;
+  w_current->background_color          = 0;
 
   /*    Log Related    */
-  logging                               = 0;
-  log_destiny                           = 0;
-  console_window                        = 0;
-  console_window_type                   = 0;
+  logging                              = 0;
+  log_destiny                          = 0;
+  console_window                       = 0;
+  console_window_type                  = 0;
 
  /* Miscellaneous - in  alphabetical order */
-  w_current->action_feedback_mode       = OUTLINE;
-  w_current->add_attribute_offset       = DEFAULT_ATTRIBUTE_OFFSET;
-  w_current->attribute_placement_grid   = DEFAULT_ATTRIB_PLACE_GRID;
-  w_current->chooser_filter             = 0;
-  w_current->component_select_attrlist  = NULL;
-  w_current->continue_component_place   = 0;
-  w_current->embed_components           = 0;
-  w_current->enforce_hierarchy          = 0;
-  w_current->force_boundingbox          = FALSE;
-  w_current->file_preview               = 0;
-  w_current->handleboxes                = 0;
-  w_current->include_complex            = 0;
-  w_current->keyboardpan_gain           = DEFAULT_KEYBOARD_GAIN;
-  w_current->magnetic_net_mode          = 0;
-  w_current->netconn_rubberband         = 0;
-  w_current->object_clipping            = 0;
-  w_current->raise_dialog_boxes         = DEFAULT_RAISE_TIMER;
-  w_current->save_ui_settings           = 1;
-  w_current->select_slack_pixels        = DEFAULT_SLACK_PIXELS;
-  w_current->sort_component_library     = 0;
-  w_current->toolbars                   = 0;
-  w_current->snap                       = SNAP_GRID;
-  w_current->snap_size                  = 100;
+  w_current->action_feedback_mode      = OUTLINE;
+  w_current->add_attribute_offset      = DEFAULT_ATTRIBUTE_OFFSET;
+  w_current->attribute_placement_grid  = DEFAULT_ATTRIB_PLACE_GRID;
+  w_current->chooser_filter            = 0;
+  w_current->component_select_attrlist = NULL;
+  w_current->continue_component_place  = 0;
+  w_current->embed_components          = 0;
+  w_current->enforce_hierarchy         = 0;
+  w_current->force_boundingbox         = FALSE;
+  w_current->file_preview              = 0;
+  w_current->handleboxes               = 0;
+  w_current->include_complex           = 0;
+  w_current->keyboardpan_gain          = DEFAULT_KEYBOARD_GAIN;
+  w_current->magnetic_net_mode         = 0;
+  w_current->netconn_rubberband        = 0;
+  w_current->object_clipping           = 0;
+  w_current->raise_dialog_boxes        = DEFAULT_RAISE_TIMER;
+  w_current->save_ui_settings          = 1;
+  w_current->select_slack_pixels       = DEFAULT_SLACK_PIXELS;
+  w_current->sort_component_library    = 0;
+  w_current->toolbars                  = 0;
+  w_current->snap                      = SNAP_GRID;
+  w_current->snap_size                 = 100;
 
   /* Nets and Routing */
-  w_current->net_direction_mode         = TRUE;
-  w_current->net_endpoint_mode          = FILLED_BOX;
-  w_current->net_midpoint_mode          = FILLED_BOX;
-  w_current->net_selection_mode         = NET_SELECT_NET;
-  w_current->net_selection_state        = 0; /* internal, not RC */
+  w_current->net_direction_mode        = TRUE;
+  w_current->net_endpoint_mode         = FILLED_BOX;
+  w_current->net_midpoint_mode         = FILLED_BOX;
+  w_current->net_selection_mode        = NET_SELECT_NET;
+  w_current->net_selection_state       = 0; /* internal, not RC */
 
   /* Ripper Related - Nets and Routing=>Ripper */
-    w_current->bus_ripper_rotation      = 0;
-    w_current->bus_ripper_size          = DEFAULT_RIPPER_SIZE;
-    w_current->bus_ripper_type          = 0;
-    w_current->bus_ripper_symname       = NULL;
+    w_current->bus_ripper_rotation     = 0;
+    w_current->bus_ripper_size         = DEFAULT_RIPPER_SIZE;
+    w_current->bus_ripper_type         = 0;
+    w_current->bus_ripper_symname      = NULL;
 
   /* Print Related */
-  w_current->print_command = NULL;
+  w_current->print_command             = NULL;
 
   /* Text Related */
   w_current->text_alignment               = 0;
@@ -264,12 +264,12 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->text_size                    = DEFAULT_TEXT_SIZE;
 
   /* Undo Sub-System */
-  w_current->undo_control               = 0;
-  w_current->undo_levels                = 0;
-  w_current->undo_type                  = 0;
-  w_current->undo_panzoom               = FALSE;
-
-  w_current->smob                       = SCM_UNDEFINED;
+  w_current->undo_control              = 0;
+  w_current->undo_levels               = 0;
+  w_current->undo_type                 = 0;
+  w_current->undo_panzoom              = FALSE;
+  w_current->undo_preserve             = TRUE;
+  w_current->smob                      = SCM_UNDEFINED;
 }
 
 /*! \brief GObject finalise handler for GschemToplevel

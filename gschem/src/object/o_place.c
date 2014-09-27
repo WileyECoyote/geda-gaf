@@ -174,52 +174,56 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
   int left, top, bottom, right;
   int s_left, s_top, s_bottom, s_right;
 
-  g_return_if_fail (toplevel->page_current->place_list != NULL);
+  if (toplevel->page_current->place_list != NULL) {
 
-  /* If drawing is true, then don't worry about the previous drawing
-   * method and movement constraints, use with the current settings */
-  if (drawing) {
-    /* Ensure we set this to flag there is "something" supposed to be
-     * drawn when the invaliate call below causes an expose event. */
-    w_current->last_drawb_mode = w_current->action_feedback_mode;
-    w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
-    ? CONSTRAINED : FREE;
-  }
+    /* If drawing is true, then don't worry about the previous drawing
+     * method and movement constraints, use with the current settings */
+    if (drawing) {
+      /* Ensure we set this to flag there is "something" supposed to be
+       * drawn when the invaliate call below causes an expose event. */
+      w_current->last_drawb_mode = w_current->action_feedback_mode;
+      w_current->drawbounding_action_mode = (w_current->CONTROLKEY)
+      ? CONSTRAINED : FREE;
+    }
 
-  /* Calculate delta of X-Y positions from buffer's origin */
-  diff_x = w_current->second_wx - w_current->first_wx;
-  diff_y = w_current->second_wy - w_current->first_wy;
+    /* Calculate delta of X-Y positions from buffer's origin */
+    diff_x = w_current->second_wx - w_current->first_wx;
+    diff_y = w_current->second_wy - w_current->first_wy;
 
-  /* Adjust the coordinates according to the movement constraints */
+    /* Adjust the coordinates according to the movement constraints */
 
-  /* Need to update the w_current->{first,second}_w{x,y} coords even
-   * though we're only invalidating because the move rubberband code
-   * (which may execute right after this function) expects these
-   * coordinates to be correct.
-   */
-  if (w_current->drawbounding_action_mode == CONSTRAINED) {
-    if (abs (diff_x) >= abs (diff_y)) {
-      w_current->second_wy = w_current->first_wy;
-      diff_y = 0;
+    /* Need to update the w_current->{first,second}_w{x,y} coords even
+     * though we're only invalidating because the move rubberband code
+     * (which may execute right after this function) expects these
+     * coordinates to be correct.
+     */
+    if (w_current->drawbounding_action_mode == CONSTRAINED) {
+      if (abs (diff_x) >= abs (diff_y)) {
+        w_current->second_wy = w_current->first_wy;
+        diff_y = 0;
+      }
+      else {
+        w_current->second_wx = w_current->first_wx;
+        diff_x = 0;
+      }
+    }
+
+    /* Find the bounds of the drawing to be done */
+    if (world_get_object_glist_bounds (toplevel->page_current->place_list,
+      &left, &top, &right, &bottom))
+    {
+
+      WORLDtoSCREEN (w_current, left + diff_x, top + diff_y, &s_left, &s_top);
+      WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
+
+      o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
     }
     else {
-      w_current->second_wx = w_current->first_wx;
-      diff_x = 0;
+      BUG_MSG("Error No bounds");
     }
   }
-
-  /* Find the bounds of the drawing to be done */
-  if (world_get_object_glist_bounds (toplevel->page_current->place_list,
-    &left, &top, &right, &bottom))
-  {
-
-    WORLDtoSCREEN (w_current, left + diff_x, top + diff_y, &s_left, &s_top);
-    WORLDtoSCREEN (w_current, right + diff_x, bottom + diff_y, &s_right, &s_bottom);
-
-    o_invalidate_rectangle (w_current, s_left, s_top, s_right, s_bottom);
-  }
   else {
-    BUG_MSG("Error No bounds");
+    BUG_TRACE("page_current->place_list is NULL");
   }
 }
 

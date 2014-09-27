@@ -171,10 +171,11 @@ int     default_text_marker_size          = DEFAULT_TEXT_MARKER_SIZE;
 int     default_text_size                 = DEFAULT_TEXT_SIZE;
 
 /* Undo System */
-int     default_undo_control              = TRUE;
+int     default_undo_control              = RC_NIL;
 int     default_undo_levels               = RC_NIL;
-int     default_undo_panzoom              = FALSE;
-int     default_undo_type                 = UNDO_DISK;
+int     default_undo_panzoom              = RC_NIL;
+int     default_undo_preserve             = RC_NIL;
+int     default_undo_type                 = RC_NIL;
 
 void
 i_var_restore_color(EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index)
@@ -602,8 +603,9 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->undo_levels,     default_undo_levels);
   i_set_rc (&w_current->undo_control,    default_undo_control);
   i_set_rc (&w_current->undo_type,       default_undo_type);
-  i_set_rc (&w_current->undo_panzoom,    default_undo_panzoom);
 
+  i_set_rc (&w_current->undo_panzoom,    default_undo_panzoom);
+  i_set_rc (&w_current->undo_preserve,   default_undo_preserve);
 }
 
 /*! \brief Free default names

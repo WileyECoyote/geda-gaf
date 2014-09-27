@@ -143,3 +143,4 @@ extern int default_undo_levels;
 extern int default_undo_control;
 extern int default_undo_type;
 extern int default_undo_panzoom;
+extern int default_undo_preserve;

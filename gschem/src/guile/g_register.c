@@ -168,7 +168,7 @@ static struct gsubr_t gschem_rc_funcs[] = {
   { "undo-control",              1, 0, 0, g_rc_undo_control },
   { "undo-type",                 1, 0, 0, g_rc_undo_type },
   { "undo-panzoom",              1, 0, 0, g_rc_undo_panzoom },
-
+  { "undo-preserve",             1, 0, 0, g_rc_undo_preserve },
   { NULL,                        0, 0, 0, NULL }
 };
 

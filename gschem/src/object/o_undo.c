@@ -72,10 +72,11 @@ void o_undo_init(GschemToplevel *w_current)
 
   prog_pid = getpid();
 
-  i_var_restore_global_boolean(cfg, "undo-control", &w_current->undo_control, TRUE);
-  i_var_restore_global_integer(cfg, "undo-levels",  &w_current->undo_levels,  DEFAULT_UNDO_LEVELS);
-  i_var_restore_global_boolean(cfg, "undo-panzoom", &w_current->undo_panzoom, FALSE);
-  i_var_restore_global_boolean(cfg, "undo-type",    &w_current->undo_type,    UNDO_DISK);
+  i_var_restore_global_boolean(cfg, "undo-control",  &w_current->undo_control,  TRUE);
+  i_var_restore_global_integer(cfg, "undo-levels",   &w_current->undo_levels,   DEFAULT_UNDO_LEVELS);
+  i_var_restore_global_boolean(cfg, "undo-panzoom",  &w_current->undo_panzoom,  FALSE);
+  i_var_restore_global_boolean(cfg, "undo-preserve", &w_current->undo_preserve, TRUE);
+  i_var_restore_global_boolean(cfg, "undo-type",     &w_current->undo_type,     UNDO_DISK);
 
   if (tmp_directory != NULL) {
     tmp_path = tmp_directory;
@@ -439,6 +440,12 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   int   find_prev_data=FALSE;
   int   pid;
 
+  /* The following varible are initialse to suppress errently gcc warning */
+  int left    = left;
+  int right   = right;
+  int top     = top;
+  int bottom  = bottom;
+
   char *save_filename;
   char *tmp_filename;
 
@@ -509,6 +516,13 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   GedaNotifyList *ptr_notify_funcs;
 
+  if (w_current->undo_preserve) {
+      left   = Current_Page->left;
+      right  = Current_Page->right;
+      top    = Current_Page->top;
+      bottom = Current_Page->bottom;
+  }
+
   /* Destory the current page and create a new one */
   if (tmp_filename) {
 
@@ -574,10 +588,15 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       Current_Page->CHANGED      = u_current->modified;
   }
 
-  /* do misc setups */
-  x_window_setup_page(w_current, Current_Page,
-                      u_current->left, u_current->right,
-                      u_current->top,  u_current->bottom);
+  /* if not undo_panzoom then preserve based on user preference */
+  if (!w_current->undo_panzoom && w_current->undo_preserve ) {
+    x_window_setup_page(w_current, Current_Page, left, right, top, bottom);
+  }
+  else {
+    x_window_setup_page(w_current, Current_Page,
+                        u_current->left, u_current->right,
+                        u_current->top,  u_current->bottom);
+  }
 
   x_scrollbars_update(w_current);
 
