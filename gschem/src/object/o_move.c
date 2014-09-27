@@ -156,6 +156,7 @@ void o_move_start(GschemToplevel *w_current, int w_x, int w_y)
     /* Save the current state. When rotating the selection when
      * moving, we have to come back to here */
     o_undo_savestate(w_current, UNDO_ALL);
+
     w_current->last_drawb_mode = LAST_DRAWB_MODE_NONE;
     w_current->event_state = MOVE;
 
@@ -511,8 +512,8 @@ int o_move_return_whichone(Object * object, int x, int y)
     return (1);
   }
 
-  fprintf(stderr,
-          _("DOH! tried to find the whichone, but didn't find it!\n"));
+  v_log_message(_("Could not resolve which end of pin to connect\n"));
+
   return (-1);
 }
 
@@ -535,7 +536,7 @@ void o_move_check_endpoint(GschemToplevel *w_current, Object * object)
   if (object->type != OBJ_NET &&
       object->type != OBJ_PIN &&
       object->type != OBJ_BUS) {
-    fprintf(stderr, _("Got a non line object in o_move_check_endpoint\n"));
+    BUG_MSG("Non-linear object in o_move_check_endpoint\n");
     return;
   }
 
