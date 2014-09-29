@@ -800,6 +800,7 @@ eda_renderer_draw_complex (EdaRenderer *renderer, Object *object)
 static void eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
+
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   object->line_options->line_end, object->line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
@@ -815,6 +816,7 @@ static void eda_renderer_draw_line (EdaRenderer *renderer, Object *object)
 static void eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
+
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_SQUARE, object->line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
@@ -829,6 +831,7 @@ static void eda_renderer_draw_net (EdaRenderer *renderer, Object *object)
 static void eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
+
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_SQUARE, object->line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);
@@ -843,6 +846,7 @@ static void eda_renderer_draw_bus (EdaRenderer *renderer, Object *object)
 static void eda_renderer_draw_pin (EdaRenderer *renderer, Object *object)
 {
   Line *line = GEDA_LINE(object);
+
   eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                   END_SQUARE, object->line_options->line_width,
                   line->x[0], line->y[0], line->x[1], line->y[1]);

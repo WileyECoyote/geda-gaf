@@ -26,6 +26,7 @@
 
 /* GTK Headers */
 #include <glib.h>
+#include <stdio.h>
 
 #include <cairo.h>
 
@@ -62,7 +63,7 @@ WORLDtoSCREEN (cairo_t *cr, double wx, double wy, double *sx, double *sy)
   cairo_user_to_device (cr, &wx, &wy);
   *sx = round (wx); *sy = round (wy);
 }
-#include <stdio.h>
+
 void
 eda_cairo_set_source_color (cairo_t *cr, int color, GArray *map)
 {
@@ -94,12 +95,12 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
                 double w_x1, double w_y1, double w_x2, double w_y2)
 {
   double x1, y1, x2, y2;
-  int line_width;
   double offset;
-  double xoffset = 0;
-  double yoffset = 0;
+  double xoffset    = 0;
+  double yoffset    = 0;
   double horizontal = 0;
-  double vertical = 0;
+  double vertical   = 0;
+  int    line_width;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
     cairo_move_to (cr, w_x1, w_y1);
@@ -110,19 +111,23 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
   WORLDtoSCREEN (cr, w_x1, w_y1, &x1, &y1);
   WORLDtoSCREEN (cr, w_x2, w_y2, &x2, &y2);
   line_width = screen_width (cr, w_line_width);
-  offset = ((line_width % 2) == 0) ? 0 : 0.5;
+
+  offset = line_width & 1 ? 0 : 0.5;
 
   if (y1 == y2) horizontal = 1;
-  if (x1 == x2) vertical = 1;
+  if (x1 == x2) vertical   = 1;
 
   /* Hint so the length of the line runs along a pixel boundary */
 
-  if (horizontal)
+  if (horizontal) {
     yoffset = offset;
-  else if (vertical)
+  }
+  else if (vertical) {
     xoffset = offset;
-  else
+  }
+  else {
     xoffset = yoffset = offset;
+  }
 
   /* Now hint the ends of the lines */
 
@@ -132,29 +137,46 @@ eda_cairo_line (cairo_t *cr, int flags, int line_end,
 
       /* Add an extra pixel to give an inclusive span */
       if (horizontal) {
-        if (x1 > x2) x1 += 1; else x2 += 1;
-      } else if (vertical) {
-        if (y1 > y2) y1 += 1; else y2 += 1;
+        if (x1 > x2) {
+          x1 += 1;
+        }
+        else {
+          x2 += 1;
+        }
+      }
+      else if (vertical) {
+        if (y1 > y2) {
+          y1 += 1;
+        }
+        else {
+          y2 += 1;
+        }
       }
       break;
 
     case END_SQUARE:
     case END_ROUND:
+
       /* Line terminates half a width away from the passed coordinate */
       if (horizontal) {
         xoffset = offset;
-      } else if (vertical) {
+      }
+      else if (vertical) {
         yoffset = offset;
       }
       break;
   }
 
-  x1 += xoffset; y1 += yoffset;
-  x2 += xoffset; y2 += yoffset;
+  x1 += xoffset;
+  y1 += yoffset;
+  x2 += xoffset;
+  y2 += yoffset;
+
   cairo_device_to_user (cr, &x1, &y1);
   cairo_device_to_user (cr, &x2, &y2);
-  cairo_move_to (cr, x1, y1);  cairo_line_to (cr, x2, y2);
-
+  cairo_move_to        (cr, x1,   y1);
+  cairo_line_to        (cr, x2,   y2);
+  cairo_line_to        (cr, x1,   y1);
 }
 
 
@@ -376,27 +398,41 @@ void
 eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
                   double wwidth, double wlength, double wspace)
 {
-  double offset = 0;
+
   double dashes[4];
-  double dummy = 0;
+  double dummy  = 0;
+  double offset = 0;
+  double width;
+  double length;
+  double space;
+
   cairo_line_cap_t cap;
   cairo_line_cap_t round_cap_if_legible = CAIRO_LINE_CAP_ROUND;
   int num_dashes;
   int iwidth;
-  double width = wwidth, length = wlength, space = wspace;
 
   if (flags & EDA_CAIRO_ENABLE_HINTS) {
+
+    /* cairo_user_to_device_distance */
     width  = iwidth = screen_width (cr, wwidth);
+
     length = screen_width (cr, wlength);
     space  = screen_width (cr, wspace);
+
     cairo_device_to_user_distance (cr, &width, &dummy);
     cairo_device_to_user_distance (cr, &length, &dummy);
     cairo_device_to_user_distance (cr, &space, &dummy);
 
-    offset = ((iwidth % 2) == 0) ? 0 : 0.5;
+    offset = iwidth & 1 ? 0 : 0.5;
 
     round_cap_if_legible =
       (iwidth <= 1) ? CAIRO_LINE_CAP_SQUARE : CAIRO_LINE_CAP_ROUND;
+  }
+  else {
+
+    width  = wwidth;
+    length = wlength;
+    space  = wspace;
   }
 
   cairo_set_line_width (cr, width);
@@ -419,71 +455,70 @@ eda_cairo_stroke (cairo_t *cr, int flags, int line_type, int line_end,
       /* Fall through */
 
     case TYPE_SOLID:
-      num_dashes = 0;
 
-      cairo_set_dash (cr, dashes, num_dashes, 0.);
-      cairo_set_line_cap (cr, cap);
-      cairo_stroke (cr);
+      num_dashes = 0;
+      offset     = 0.0;
       break;
 
     case TYPE_DOTTED:
-      dashes[0] = 0;                    /* DOT */
-      dashes[1] = space;
-      num_dashes = 2;
 
-      cairo_set_dash (cr, dashes, num_dashes, offset);
-      cairo_set_line_cap (cr, round_cap_if_legible);
-      cairo_stroke (cr);
+      dashes[0]  = 0;                    /* DOT */
+      dashes[1]  = space;
+      num_dashes = 2;
+      cap        = round_cap_if_legible;
       break;
 
     case TYPE_DASHED:
-      dashes[0] = length;               /* DASH */
-      dashes[1] = space;
-      num_dashes = 2;
 
-      cairo_set_dash (cr, dashes, num_dashes, 0.);
-      cairo_set_line_cap (cr, CAIRO_LINE_CAP_BUTT);
-      cairo_stroke (cr);
+      dashes[0]  = length;               /* DASH */
+      dashes[1]  = space;
+      num_dashes = 2;
+      offset     = 0.0;
+      cap        = CAIRO_LINE_CAP_BUTT;
       break;
 
     case TYPE_CENTER:
-      dashes[0] = length;               /* DASH */
-      dashes[1] = 2 * space;
+
+      dashes[0]  = length;               /* DASH */
+      dashes[1]  = 2 * space;
       num_dashes = 2;
 
       cairo_set_dash (cr, dashes, num_dashes, 0.);
       cairo_set_line_cap (cr, CAIRO_LINE_CAP_BUTT);
       cairo_stroke_preserve (cr);
 
-      dashes[0] = 0;                    /* DOT */
-      dashes[1] = 2 * space + length;
+      dashes[0]  = 0;                    /* DOT */
+      dashes[1]  = 2 * space + length;
       num_dashes = 2;
-
-      cairo_set_dash (cr, dashes, num_dashes, -length - space + offset);
-      cairo_set_line_cap (cr, round_cap_if_legible);
-      cairo_stroke (cr);
+      offset     = offset - length - space;
+      cap        = round_cap_if_legible;
       break;
 
     case TYPE_PHANTOM:
-      dashes[0] = length;               /* DASH */
-      dashes[1] = 3 * space;
+
+      dashes[0]  = length;               /* DASH */
+      dashes[1]  = 3 * space;
       num_dashes = 2;
 
       cairo_set_dash (cr, dashes, num_dashes, 0.);
       cairo_set_line_cap (cr, CAIRO_LINE_CAP_BUTT);
       cairo_stroke_preserve (cr);
 
-      dashes[0] = 0;                    /* DOT */
-      dashes[1] = space;
-      dashes[2] = 0;                    /* DOT */
-      dashes[3] = 2 * space + length;
+      dashes[0]  = 0;                    /* DOT */
+      dashes[1]  = space;
+      dashes[2]  = 0;                    /* DOT */
+      dashes[3]  = 2 * space + length;
       num_dashes = 4;
-
-      cairo_set_dash (cr, dashes, num_dashes, -length - space + offset);
-      cairo_set_line_cap (cr, round_cap_if_legible);
-      cairo_stroke (cr);
+      offset     = offset - length - space;
+      cap        = round_cap_if_legible;
       break;
   }
+
+  cairo_set_dash (cr, dashes, num_dashes, offset);
+
+  cairo_set_line_cap (cr, cap);
+
+  cairo_stroke (cr);
 
   cairo_set_dash (cr, NULL, 0, 0.);
 }

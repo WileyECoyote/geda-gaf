@@ -1,3 +1,7 @@
+2014-09-28 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edacairo.c: Cleanup function eda_cairo_stroke.c.
+
 2014-09-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgedacairo/src/edarenderer.c: Use BUG_IMSG instead of fprintf in
