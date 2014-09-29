@@ -1,3 +1,12 @@
+2014-09-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols/source/generic-power.sym: Revise symbol so is generic
+
+2014-09-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols/simulation/verilog: Clean up symbols; block-1.sym, block_pos-1.sym,
+      and test_verilog.sym.
+
 2014-09-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * st/Si476_nmosfet_30V_43W-8.sym: Add symbol
