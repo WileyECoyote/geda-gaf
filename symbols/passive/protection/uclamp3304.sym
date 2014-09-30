@@ -1,4 +1,4 @@
-v 20130414 2
+v 20140915 2
 B 300 0 1800 1400 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 300 1500 5 10 0 0 0 0 1
 footprint=SOT666.fp
@@ -80,7 +80,7 @@ pinseq=6
 T 2200 550 5 8 0 1 0 0 1
 pintype=io
 }
-T 300 2100 5 10 0 0 0 0 1
-description=4-line ESD protector
+T 300 2100 5 10 1 0 0 0 1
+documentation=www.semtech.com/images/datasheet/uclamp3304a.pdf
 T 2185 1400 8 10 1 1 0 0 1
 refdes=U?
