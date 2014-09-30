@@ -235,11 +235,11 @@ int geda_glist_is_homogeneous_objects ( GList *list)
  */
 void geda_list_remove( GedaList *list, void *item )
 {
-  if (g_list_find(list->glist, item) == NULL)
-    return;
+  if (g_list_find(list->glist, item)) {
 
   list->glist = g_list_remove(list->glist, item);
   g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
+  }
 }
 
 

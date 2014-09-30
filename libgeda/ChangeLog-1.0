@@ -1,3 +1,7 @@
+2014-09-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_save.c: Put back in write to log after making backup.
+
 2014-09-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_page.c: Add debugging function geda_page_debug_print.

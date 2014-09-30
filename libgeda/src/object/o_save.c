@@ -120,6 +120,9 @@ void o_save_auto_backup(GedaToplevel *toplevel)
 
         if (o_save (s_page_get_objects (toplevel->page_current), backup_filename, &err))
         {
+
+          u_log_message (_("Automatic backup file saved <%s>\n"), backup_filename);
+
           p_current->ops_since_last_backup = 0;
           p_current->do_autosave_backup = 0;
 

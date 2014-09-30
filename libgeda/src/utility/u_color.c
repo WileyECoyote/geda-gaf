@@ -76,9 +76,10 @@ void u_color_init(void)
  */
 void u_color_map_defaults (COLOR *map)
 {
-  int i;
-  bool reached_end = FALSE;
+  bool  reached_end = FALSE;
   COLOR c;
+  int   i;
+
   for (i = 0; i < MAX_COLORS; i++) {
     if (reached_end) {
       map[i].enabled = FALSE;

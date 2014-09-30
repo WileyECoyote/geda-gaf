@@ -67,12 +67,13 @@ void o_selection_add (SELECTION *selection, Object *o_selected)
  */
 void o_selection_remove (SELECTION *selection, Object *o_selected)
 {
+
   if (o_selected != NULL) {
-    if (g_list_find( geda_list_get_glist( selection ), o_selected ) != NULL) {
+
+    if (g_list_find( geda_list_get_glist(selection), o_selected ) != NULL) {
+
       o_selection_unselect (o_selected);
       geda_list_remove( (GedaList *)selection, o_selected );
-      /* called by gschem o_select_unselect_all, which doesn't want: */
-      /* toplevel->page_current->CHANGED = 1; */
     }
   }
 }
