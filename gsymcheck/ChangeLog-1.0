@@ -1,3 +1,9 @@
+2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/s_check.c: Allow "netname" attribute so inter-page objects can
+      use netname instead of "refdes", which conflicts with refdes_renum
+      (and common sense).
+
 2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/*/*.c: Rename geda_str* u_string_str* to match libgeda

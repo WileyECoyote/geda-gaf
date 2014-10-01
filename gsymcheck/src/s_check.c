@@ -199,6 +199,7 @@ void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
                                 "use-license",
                                 "graphical",
                                 "net",
+                                "netname",
                                 "slot",
                                 "slotdef",
                                 "value",
