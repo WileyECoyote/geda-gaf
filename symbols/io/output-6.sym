@@ -18,10 +18,12 @@ L 800 0 200 0 3 0 0 0 -1 -1
 T 200 300 5 10 0 1 0 1 1
 device=OUTPUT
 T 250 100 5 10 1 1 0 1 1
-refdes=OUTPUT
+netname=OUTPUT
 T 200 750 5 10 0 0 0 0 1
 description=Output module port
 T 200 425 9 10 0 0 0 0 1
 numslots=0
 T 200 550 9 10 0 0 0 0 1
 footprint=none
+T 0 400 9 10 0 0 0 0 1
+refdes=none

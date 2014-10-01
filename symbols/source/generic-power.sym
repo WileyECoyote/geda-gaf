@@ -26,4 +26,6 @@ L 50 200 350 200 3 0 0 0 -1 -1
 T 0 400 9 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 T 50 250 8 10 1 1 0 0 1
-refdes=V??
+netname=V??
+T 400 200 9 10 1 1 0 0 1
+refdes=none

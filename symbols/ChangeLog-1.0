@@ -1,3 +1,8 @@
+2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * input/output-?.sym: Change "refdes" attribute to "netname" so refdes_renum
+      will stop changing the would-be lables.
+
 2014-09-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/protection/NUP4201MR6.sym: New symbol transient protection diode array
@@ -40,7 +45,7 @@
 
 2014-09-11 Wiley E. Hill <wileyhill@gmail.com>
 
-        * io/out-2.sym: Fix visiable footprint attributes
+        * io/out-2.sym: Fix visible footprint attributes
 
         * io/ribbon_bond-2.sym: Fix visible device attribute
 
