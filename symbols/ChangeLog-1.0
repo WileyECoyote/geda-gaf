@@ -1,5 +1,10 @@
 2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/TM4C1292NCZAD-??.sym" Add new symbol for Tiva C series BGA Micro controller
+      and create ti/src subdirectory for ods file.
+
+2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * input/output-?.sym: Change "refdes" attribute to "netname" so refdes_renum
       will stop changing the would-be lables.
 
