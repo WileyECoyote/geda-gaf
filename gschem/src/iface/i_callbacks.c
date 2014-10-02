@@ -233,7 +233,7 @@ DEFINE_I_CALLBACK(cancel)
   if (w_current->inside_action) {
      o_invalidate_all (w_current);
   }
-  w_current->inside_action=0;
+  w_current->inside_action = 0;
 }
 
 /** \defgroup help-menu Help Menu Callback Functions

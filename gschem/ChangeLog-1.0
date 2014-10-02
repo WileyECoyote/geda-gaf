@@ -1,3 +1,15 @@
+2014-10-02 Wiley E. Hill <wileyhill@gmail.com>
+
+   ** src/object/o_net.c: Remove w_current->inside_action = 1 in function
+      o_net_start_magnetic so that x_event_button_pressed for third button
+      will bring up popup menu wafter second click. This mean the magnetic
+      rubber will not get drawn unless we rehack...
+
+   ** src/object/o_redraw.c: Revise function o_redraw_rectangle; change
+      if (w_current->inside_action) to w_current->rubber_visible, removing
+      if (w_current->rubber_visible) from each of the cases, and adding a
+      if (w_current->event_state == ENDMOVE else clause.
+
 2014-09-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Remove complex from glist instead of calling

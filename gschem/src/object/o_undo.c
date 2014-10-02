@@ -156,7 +156,7 @@ void o_undo_finalize(void)
  *
  *      \note WEH: o_save_auto_backup uses o_save, same as us.
  *
- *      TODO:o_undo_savestate does not currently check if the backup
+ *      \remarks:o_undo_savestate does not currently check if the backup
  *      system is enabled via the auto_save_interval variable, nor does
  *      o_save_auto_backup, nor should they check. o_undo_savestate
  *      blindly calls o_save_auto_backup, which backs up all files flaged
@@ -172,13 +172,13 @@ void o_undo_finalize(void)
  *      goes for donuts and coffee and forgets to save and comes back to
  *      find his puter won't come out of sleep mode?
  *
- *   2. AFTER satisfying 1 above, the function checks if UNDO coontrol
+ *   2. AFTER satisfying 1 above, the function checks if UNDO control
  *      is enabled and performs the necessary operations to push the
  *      current state onto an undo buffer, aka either the entire file
  *      is saved to the tmp directory or a copy of all of the objects
- *      are saved in memory and referenced in a glist. TODO: In this
+ *      is saved in memory and referenced in a glist. TODO: In this
  *      capacity the UNDO system is inefficient and makes no attempt
- *      to determine what has be changed in the data.
+ *      to determine what has been changed in the data.
  *
  *  \param [in] w_current The toplevel environment.
  *  \param [in] flag      integer <B>\a flag</B> can be one of the

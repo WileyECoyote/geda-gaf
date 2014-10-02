@@ -191,7 +191,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   bloat = MAX (grip_half_size, cue_half_size);
 
   SCREENtoWORLD (w_current, x - bloat, y + height + bloat,
-                &world_rect.lower_x, &world_rect.lower_y);
+                 &world_rect.lower_x, &world_rect.lower_y);
   SCREENtoWORLD (w_current, x + width + bloat, y - bloat,
                  &world_rect.upper_x, &world_rect.upper_y);
 
@@ -199,17 +199,17 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   /* Set up renderer based on configuration in w_current and list */
   render_flags = EDA_RENDERER_FLAG_HINTING;
- /* if (toplevel->page_current->show_hidden_text) {
-    render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
-  }*/
+  /* if (toplevel->page_current->show_hidden_text) {
+   *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+}*/
 
   is_only_text = TRUE;
   iter = g_list_first(obj_list);
   while(iter != NULL) {
     Object *object = iter->data;
     if (object->type != OBJ_TEXT) {
-       is_only_text = FALSE;
-       break;
+      is_only_text = FALSE;
+      break;
     }
     NEXT(iter);
   }
@@ -221,14 +221,14 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   else {
     zoom = toplevel->page_current->to_world_x_constant;
     if ((zoom > w_current->text_display_zoomfactor) &&
-        (w_current->text_feedback != ALWAYS_FEEDBACK))
-       render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
+      (w_current->text_feedback != ALWAYS_FEEDBACK))
+      render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
   }
 
   if ((is_only_text) &&
-      ( w_current->text_feedback != ALWAYS_FEEDBACK) &&
-      ( w_current->inside_action))
-     render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
+    ( w_current->text_feedback != ALWAYS_FEEDBACK) &&
+    ( w_current->inside_action))
+    render_flags |= (EDA_RENDERER_FLAG_TEXT_OUTLINE);
 
   /* The display color map is used for "normal" rendering. */
   render_color_map = x_color_get_display_color_map();
@@ -257,18 +257,18 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
                      - (double) toplevel->page_current->to_screen_y_constant,
                      (- (double) toplevel->page_current->left * toplevel->page_current->to_screen_x_constant),
                      ((double) toplevel->page_current->to_screen_y_constant * toplevel->page_current->top + w_current->screen_height)
-                    );
+  );
 
   cairo_save (w_current->cr);
   cairo_set_matrix (w_current->cr, &render_mtx);
 
   /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action &&
-                  ((w_current->event_state == MOVE) ||
-                   (w_current->event_state == ENDMOVE)));
+  ((w_current->event_state == MOVE) ||
+  (w_current->event_state == ENDMOVE)));
 
   /* First pass -- render non-selected objects */
-  for (iter = obj_list; iter != NULL; NEXT(iter)) {
+  for (iter = obj_list; iter != NULL; iter = iter->next) {
     Object *o_current = iter->data;
     if (!(o_current->dont_redraw || o_current->selected)) {
       o_style_set_object(w_current->toplevel, o_current);
@@ -278,7 +278,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   if (!is_only_text) {
     /* Second pass -- render cues */
-    for (iter = obj_list; iter != NULL; NEXT(iter)) {
+    for (iter = obj_list; iter != NULL; iter = iter->next) {
       Object *o_current = iter->data;
       if (!(o_current->dont_redraw || o_current->selected)) {
         eda_renderer_draw_cues (renderer, o_current);
@@ -292,13 +292,17 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   if (draw_selected) {
 
     g_object_set (G_OBJECT (renderer), "override-color", SELECT_COLOR, NULL);
-    for (iter = geda_list_get_glist (toplevel->page_current->selection_list);
-         iter != NULL; NEXT(iter)) {
+
+    for (iter = Current_Selection->glist; iter; iter = iter->next) {
+
       Object *o_current = iter->data;
+
       if (!o_current->dont_redraw) {
+
         o_style_set_object(w_current->toplevel, o_current);
         eda_renderer_draw (renderer, o_current);
         eda_renderer_draw_cues (renderer, o_current);
+
         if (w_current->renderer->draw_grips ) {
           /* get the dynamic size of the grip */
           //grip_half_size = o_grips_half_size (w_current, o_current);
@@ -310,22 +314,20 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     g_object_set (G_OBJECT (renderer), "override-color", -1, NULL);
   }
 
-  if (w_current->inside_action) {
-    /* Redraw the rubberband objects (if they were previously visible) */
+  /* Redraw the rubberband objects if previously visible */
+  if (w_current->rubber_visible) {
 
     switch (w_current->event_state) {
       case MOVE:
       case ENDMOVE:
         if (w_current->last_drawb_mode != -1) {
-          /* FIXME shouldn't need to save/restore matrix/colormap here */
-          cairo_save (w_current->cr);
+
           cairo_set_matrix (w_current->cr, &render_mtx);
           eda_renderer_set_color_map (renderer, render_outline_color_map);
 
           o_move_draw_rubber (w_current, draw_selected);
 
           eda_renderer_set_color_map (renderer, render_color_map);
-          cairo_restore (w_current->cr);
         }
         break;
 
@@ -334,100 +336,100 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       case ENDCOMP:
       case ENDTEXT:
       case ENDPASTE:
-        if (w_current->rubber_visible) {
-          /* FIXME shouldn't need to save/restore matrix/colormap here */
-          cairo_save (w_current->cr);
-          cairo_set_matrix (w_current->cr, &render_mtx);
-          eda_renderer_set_color_map (renderer, render_outline_color_map);
+        /* FIXME shouldn't need to save/restore matrix/colormap here */
+        cairo_save (w_current->cr);
+        cairo_set_matrix (w_current->cr, &render_mtx);
+        eda_renderer_set_color_map (renderer, render_outline_color_map);
 
-          o_place_draw_rubber (w_current, draw_selected);
+        o_place_draw_rubber (w_current, draw_selected);
 
-          eda_renderer_set_color_map (renderer, render_color_map);
-          cairo_restore (w_current->cr);
-        }
+        eda_renderer_set_color_map (renderer, render_color_map);
+        cairo_restore (w_current->cr);
         break;
 
       case STARTDRAWNET:
       case DRAWNET:
       case NETCONT:
-        if (w_current->rubber_visible) {
-          /* FIXME shouldn't need to save/restore matrix/colormap here */
-          cairo_save (w_current->cr);
-          cairo_set_matrix (w_current->cr, &render_mtx);
-          eda_renderer_set_color_map (renderer, render_outline_color_map);
+        /* FIXME shouldn't need to save/restore matrix/colormap here */
+        cairo_save (w_current->cr);
+        cairo_set_matrix (w_current->cr, &render_mtx);
+        eda_renderer_set_color_map (renderer, render_outline_color_map);
 
-          o_net_draw_rubber (w_current);
+        o_net_draw_rubber (w_current);
 
-          eda_renderer_set_color_map (renderer, render_color_map);
-          cairo_restore (w_current->cr);
-        }
+        eda_renderer_set_color_map (renderer, render_color_map);
+        cairo_restore (w_current->cr);
         break;
 
       case STARTDRAWBUS:
       case DRAWBUS:
       case BUSCONT:
-        if (w_current->rubber_visible) {
-          /* FIXME shouldn't need to save/restore matrix/colormap here */
-          cairo_save (w_current->cr);
-          cairo_set_matrix (w_current->cr, &render_mtx);
-          eda_renderer_set_color_map (renderer, render_outline_color_map);
+        /* FIXME shouldn't need to save/restore matrix/colormap here */
+        cairo_save (w_current->cr);
+        cairo_set_matrix (w_current->cr, &render_mtx);
+        eda_renderer_set_color_map (renderer, render_outline_color_map);
 
-          o_bus_draw_rubber(w_current);
+        o_bus_draw_rubber(w_current);
 
-          eda_renderer_set_color_map (renderer, render_color_map);
-          cairo_restore (w_current->cr);
-        }
+        eda_renderer_set_color_map (renderer, render_color_map);
+        cairo_restore (w_current->cr);
         break;
 
       case GRIPS:
-        if (w_current->rubber_visible)
-          o_grips_draw_rubber (w_current);
+        o_grips_draw_rubber (w_current);
         break;
 
       case SBOX:
-        if (w_current->rubber_visible)
-          o_select_box_draw_rubber (w_current);
+        o_select_box_draw_rubber (w_current);
         break;
 
       case ZOOMBOXEND:
-        if (w_current->rubber_visible)
-          i_zoom_world_box_draw_rubber (w_current);
+        i_zoom_world_box_draw_rubber (w_current);
         break;
 
       case ENDLINE:
-        if (w_current->rubber_visible)
-          o_line_draw_rubber (w_current);
+        o_line_draw_rubber (w_current);
         break;
       case PATHCONT:
       case ENDPATH:
-        if (w_current->rubber_visible)
-          o_path_draw_rubber (w_current);
+        o_path_draw_rubber (w_current);
         break;
 
       case ENDBOX:
-        if (w_current->rubber_visible)
-          o_box_draw_rubber (w_current);
+        o_box_draw_rubber (w_current);
         break;
 
       case ENDPICTURE:
-        if (w_current->rubber_visible)
-          o_picture_draw_rubber (w_current);
+        o_picture_draw_rubber (w_current);
         break;
 
       case ENDCIRCLE:
-        if (w_current->rubber_visible)
-          o_circle_draw_rubber (w_current);
+        o_circle_draw_rubber (w_current);
         break;
 
       case ENDARC:
-        if (w_current->rubber_visible)
-          o_arc_draw_rubber (w_current);
+        o_arc_draw_rubber (w_current);
         break;
 
       case ENDPIN:
-        if (w_current->rubber_visible)
-          o_pin_draw_rubber (w_current);
+        o_pin_draw_rubber (w_current);
         break;
+    }
+  }
+  else if (w_current->event_state == ENDMOVE ||
+           w_current->event_state == MOVE)
+  {
+
+    if (w_current->last_drawb_mode != -1) {
+      /* FIXME shouldn't need to save/restore matrix/colormap here */
+      cairo_save (w_current->cr);
+      cairo_set_matrix (w_current->cr, &render_mtx);
+      eda_renderer_set_color_map (renderer, render_outline_color_map);
+
+      o_move_draw_rubber (w_current, draw_selected);
+
+      eda_renderer_set_color_map (renderer, render_color_map);
+      cairo_restore (w_current->cr);
     }
   }
 

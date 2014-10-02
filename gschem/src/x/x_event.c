@@ -62,7 +62,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
   g_return_val_if_fail ((w_current != NULL), 0);
 
-#if DEBUG  || DEBUG_EVENTS
+#if DEBUG_EVENTS
   printf("pressed button %d\n", event->button);
   printf("event state: %d\n", event->state);
   printf("event type: %d\n", event->type);
@@ -388,6 +388,7 @@ int x_event_button_pressed(GtkWidget      *widget,
 
     }
     else if (event->button == 3) {
+
       if (!w_current->inside_action) {
         if (w_current->third_button == POPUP_ENABLED) {
           i_status_update_sensitivities(w_current);  /* update menus before popup  */
@@ -404,20 +405,21 @@ int x_event_button_pressed(GtkWidget      *widget,
       }
       else { /* this is the default cancel */
         switch (w_current->event_state) {
+          case(NETCONT):
+
           case(STARTDRAWNET):
           case(DRAWNET):
-          case(NETCONT):
             w_current->inside_action = FALSE;
-            i_status_set_state(w_current, STARTDRAWNET);
+            i_status_set_state (w_current, STARTDRAWNET);
             o_net_invalidate_rubber (w_current);
-            o_net_reset(w_current);
+            o_net_reset (w_current);
             break;
 
           case(STARTDRAWBUS):
           case(DRAWBUS):
           case(BUSCONT):
             w_current->inside_action = FALSE;
-            i_status_set_state(w_current, STARTDRAWBUS);
+            i_status_set_state (w_current, STARTDRAWBUS);
             o_bus_invalidate_rubber (w_current);
             break;
 
@@ -710,6 +712,7 @@ bool x_event_button_released (GtkWidget      *widget,
 #if DEBUG_EVENTS
   printf("x_event_button_released: exit! %d \n", w_current->event_state);
 #endif
+
   return(FALSE);
 }
 
@@ -962,7 +965,7 @@ bool x_event_key (GtkWidget      *widget,
       break;
   }
 
-  /* Huge switch statement to evaluate state transitions. Jump to
+  /* Switch statement to evaluate state transitions. Jump to
    * end_key label to escape the state evaluation rather
    * than returning from the function directly. */
 

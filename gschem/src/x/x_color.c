@@ -88,19 +88,14 @@ void x_color_allocate (void)
   COLOR c;
 
   gdk_color_parse ("black", &black);
-  if (!gdk_colormap_alloc_color (colormap,
-                                 &black,
-                                 FALSE,
-                                 TRUE)) {
+  if (!gdk_colormap_alloc_color (colormap, &black, FALSE, TRUE)) {
     fprintf (stderr, _("Could not allocate the color %s!\n"), _("black"));
     exit (-1);
   }
 
   gdk_color_parse ("white", &white);
-  if (!gdk_colormap_alloc_color (colormap,
-                                 &white,
-                                 FALSE,
-                                 TRUE)) {
+
+  if (!gdk_colormap_alloc_color (colormap, &white, FALSE, TRUE)) {
     fprintf (stderr, _("Could not allocate the color %s!\n"), _("white"));
     exit (-1);
   }
@@ -115,9 +110,9 @@ void x_color_allocate (void)
       /* Interpolate 8-bpp colours into 16-bpp GDK color
        * space. N.b. ignore transparency because GDK doesn't
        * understand it. */
-      gdk_colors[i]->red = c.r + (c.r<<8);
+      gdk_colors[i]->red   = c.r + (c.r<<8);
       gdk_colors[i]->green = c.g + (c.g<<8);
-      gdk_colors[i]->blue = c.b + (c.b<<8);
+      gdk_colors[i]->blue  = c.b + (c.b<<8);
 
       error = gdk_color_alloc(colormap, gdk_colors[i]);
 
@@ -136,16 +131,17 @@ void x_color_allocate (void)
       /* Interpolate 8-bpp colours into 16-bpp GDK color
        * space. N.b. ignore transparency because GDK doesn't
        * understand it. */
-      gdk_outline_colors[i]->red = c.r + (c.r<<8);
+      gdk_outline_colors[i]->red   = c.r + (c.r<<8);
       gdk_outline_colors[i]->green = c.g + (c.g<<8);
-      gdk_outline_colors[i]->blue = c.b + (c.b<<8);
+      gdk_outline_colors[i]->blue  = c.b + (c.b<<8);
 
       error = gdk_color_alloc(colormap, gdk_outline_colors[i]);
 
       if (error == FALSE) {
         g_error (_("Could not allocate outline color %i!\n"), i);
       }
-    } else {
+    }
+    else {
       gdk_outline_colors[i] = NULL;
     }
   }

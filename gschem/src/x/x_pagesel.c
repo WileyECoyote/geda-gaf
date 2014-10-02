@@ -34,8 +34,8 @@
 #include <geda_debug.h>
 
 static void x_pagesel_callback_response (GtkDialog *dialog,
-                                         gint arg1,
-                                         void *user_data);
+                                         int        arg1,
+                                         void      *user_data);
 
 /*! \brief Open the page manager dialog.
  *  \par Function Description
@@ -61,7 +61,7 @@ void x_pagesel_open (GschemToplevel *w_current)
     gtk_widget_show (w_current->pswindow);
   }
   else {
-    gdk_window_raise (w_current->pswindow->window);
+    gtk_window_present(GTK_WINDOW(w_current->pswindow));
   }
 
 }
@@ -266,8 +266,8 @@ static void pagesel_popup_menu (Pagesel *pagesel,
 
   if (event != NULL &&
       gtk_tree_view_get_path_at_pos (pagesel->treeview,
-                                     (gint)event->x,
-                                     (gint)event->y,
+                                     (int)event->x,
+                                     (int)event->y,
                                      &path, NULL, NULL, NULL)) {
     GtkTreeSelection *selection;
     selection = gtk_tree_view_get_selection (pagesel->treeview);

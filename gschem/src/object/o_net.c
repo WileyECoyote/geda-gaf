@@ -52,16 +52,16 @@
 
 /*! \brief Reset all variables used for net drawing
  *  \par Function Description
- *  This function resets all variables from GschemToplevel that are used
+ *  This function resets all variables in GschemToplevel that are used
  *  for net drawing. This function should be called when escaping from
  *  a net drawing action or before entering it.
  */
 void o_net_reset(GschemToplevel *w_current)
 {
-  w_current->first_wx = w_current->first_wy = -1;
-  w_current->second_wx = w_current->second_wy = -1;
-  w_current->third_wx = w_current->third_wy = -1;
-  w_current->magnetic_wx = w_current->magnetic_wy = -1;
+  w_current->first_wx       = w_current->first_wy    = -1;
+  w_current->second_wx      = w_current->second_wy   = -1;
+  w_current->third_wx       = w_current->third_wy    = -1;
+  w_current->magnetic_wx    = w_current->magnetic_wy = -1;
   w_current->rubber_visible = 0;
 }
 
@@ -211,8 +211,8 @@ void o_net_find_magnetic(GschemToplevel *w_current, int w_x, int w_y)
   min_weight = 0;
 
   /* max distance of all the different reaches */
-  magnetic_reach = max(MAGNETIC_PIN_REACH, MAGNETIC_NET_REACH);
-  magnetic_reach = max(magnetic_reach, MAGNETIC_BUS_REACH);
+  magnetic_reach   = max(MAGNETIC_PIN_REACH, MAGNETIC_NET_REACH);
+  magnetic_reach   = max(magnetic_reach, MAGNETIC_BUS_REACH);
   w_magnetic_reach = WORLDabs (w_current, magnetic_reach);
 
   /* calculate the reachable region */
@@ -412,7 +412,7 @@ void o_net_start_magnetic(GschemToplevel *w_current, int w_x, int w_y)
 
   o_net_invalidate_rubber (w_current);
   w_current->rubber_visible = 1;
-  w_current->inside_action = 1;
+  //w_current->inside_action = 1;
 }
 
 /*! \brief set the start point of a new net
@@ -698,7 +698,7 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
   int size = 0, magnetic_halfsize;
   int bloat;
   int magnetic_x, magnetic_y;
-  int first_x, first_y, third_x, third_y, second_x, second_y;
+  int first_x, first_y, second_x, second_y, third_x, third_y;
   int x1, y1, x2, y2;
 
   WORLDtoSCREEN (w_current, w_current->magnetic_wx, w_current->magnetic_wy,
@@ -715,7 +715,9 @@ void o_net_invalidate_rubber (GschemToplevel *w_current)
   bloat = size / 2;
 
   if (w_current->magnetic_net_mode) {
+
     if (w_current->magnetic_wx != -1 && w_current->magnetic_wy != -1) {
+
       magnetic_halfsize = max (4 * size, MAGNETIC_HALFSIZE);
 
       o_invalidate_rectangle (w_current, magnetic_x - magnetic_halfsize,
