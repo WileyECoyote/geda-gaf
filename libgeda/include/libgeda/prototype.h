@@ -422,24 +422,26 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 /* s_page.c */
       Page   *s_page_new                    (GedaToplevel *toplevel, const char *filename);
       Page   *s_page_new_with_notify        (GedaToplevel *toplevel, const char *filename);
-const char   *s_page_get_file_extension     (Page *page);
-      bool    s_page_is_symbol_file         (Page *page);
+
+      void    s_page_autosave_init          (GedaToplevel *toplevel);
+      int     s_page_autosave               (GedaToplevel *toplevel);
+
+      bool    s_page_check_changed          (PageList *list);
+      void    s_page_clear_changed          (PageList *list);
 
       void    s_page_delete                 (GedaToplevel *toplevel, Page *page);
       void    s_page_delete_list            (GedaToplevel *toplevel);
       Page   *s_page_get_current            (GedaToplevel *toplevel);
       bool    s_page_set_current            (GedaToplevel *toplevel, Page *page);
+const char   *s_page_get_file_extension     (Page *page);
+      bool    s_page_is_symbol_file         (Page *page);
+
       bool    s_page_goto                   (GedaToplevel *toplevel, Page *page);
+      void    s_page_print_all              (GedaToplevel *toplevel);
+      bool    s_page_resequence_ids         (GedaToplevel *toplevel);
+      int     s_page_save_all               (GedaToplevel *toplevel);
       Page   *s_page_search                 (GedaToplevel *toplevel, const char *filename);
       Page   *s_page_search_by_page_id      (PageList *list, int pid);
-      void    s_page_print_all              (GedaToplevel *toplevel);
-      int     s_page_save_all               (GedaToplevel *toplevel);
-
-      bool    s_page_check_changed          (PageList *list);
-      void    s_page_clear_changed          (PageList *list);
-
-      void    s_page_autosave_init          (GedaToplevel *toplevel);
-      int     s_page_autosave               (GedaToplevel *toplevel);
 
       void    s_page_append_object          (Page *page, Object *object);
       void    s_page_append_list            (Page *page, GList *obj_list);

@@ -500,6 +500,7 @@ GedaToplevel *geda_page_get_toplevel (Page *page)
   g_return_val_if_fail (GEDA_IS_PAGE(page), NULL);
   return page->toplevel;
 }
+
 /** @} endgroup geda-page */
 void
 geda_page_debug_print (Page *page)

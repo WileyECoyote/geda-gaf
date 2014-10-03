@@ -176,6 +176,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       scm_dynwind_end ();
 
       if (status) {
+        /*TODO: This is rude noise with out option to suppress */
         u_log_message (_("Loaded RC file [%s]\n"), name_norm);
       }
       else {

@@ -119,6 +119,11 @@ static char *s_slot_search_slotdef (Object *object, int slotnumber)
  *
  *  \param [in,out] object    The Object to update.
  *
+ *  TODO: If old symbol has slot def and the slot has been set, and
+ *  replacement does not then "Did not find slotdef" error message
+ *  below shows up in the log. if this occurs, the should check if
+ *  "numslot=0", in which case the call should remove "slotdef"
+ *   attribute.
  */
 void s_slot_update_object (Object *object)
 {

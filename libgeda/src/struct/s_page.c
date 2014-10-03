@@ -144,10 +144,9 @@ s_page_new_common(Page *page)
 /*! \brief create a new page object
  *  \par Function Description
  *  Creates a new page and add it to <B>toplevel</B>'s list of pages.
- *
- *  It initializes the#Page structure and set its <B>filename</B>
- *  to <B>filename</B>. <B>toplevel</B>'s current page is not changed by
- *  this function.
+ *  The #Page structure is initializes and the <B>filename</B> is set
+ *  to \a <B>filename</B>. <B>toplevel</B>'s current page is not
+ *  changed by this function.
  */
 Page *s_page_new (GedaToplevel *toplevel, const char *filename)
 {
@@ -222,48 +221,117 @@ s_page_new_with_notify (GedaToplevel *toplevel, const char *filename)
   return s_page_new_common(page);
 }
 
-/*! \brief Get File Extension of the File Assocatiacted with Page.
+/*! \brief Autosave initialization function.
+ *  \par Function Description
+ *  This function sets up the autosave callback function.
  *
- * \par Function Description
- * Returns a pointer to extension of the filename associated with Page.
- * The string is owned by the Page and must not be changed!
- *
- * \param [in] page Pointer to a Page data structure.
- *
- * \return point to the page file name extension or NULL if there
- *         either no file name or no DOT suffix used in the name.
- *
+ *  \param [in] toplevel  The GedaToplevel object.
  */
-const char *s_page_get_file_extension (Page *page)
+void s_page_autosave_init(GedaToplevel *toplevel)
 {
-  if (page != NULL && page->filename != NULL) {
-    return f_get_filename_ext(page->filename);
+  if (toplevel->auto_save_interval != 0) {
+
+    /* 1000 converts seconds into milliseconds */
+    toplevel->auto_save_timeout =
+      g_timeout_add(toplevel->auto_save_interval*1000,
+                    (GSourceFunc) s_page_autosave,
+                    toplevel);
   }
-  return NULL;
 }
 
-/*! \brief Get is Page a Symbol file.
+/*! \brief Autosave callback function.
+ *  \par Function Description
+ *  This function is a g_timeout callback functions that is called
+ *  every "interval" milliseconds and check and sets a flag to save
+ *  a backup copy of the opened pages.
  *
- * \par Function Description
- * Returns true if the filename assocaited with page ends in ".sym"!
+ *  Applications can check the flag to determine if a backup should be
+ *  created, the check could be done in an Undo function so that files
+ *  that change get backed-up and opened files with no user activity
+ *  are not.
  *
- * \param [in] page Pointer to a Page data structure.
+ *  The reason for using the auto_save_interval as the return value is
+ *  so that if the applications wants to kill the source, maybe because
+ *  the user changed the settings, then the accessible variable can be
+ *  set to zero, and when the function returns the zero to glib, the
+ *  source will be destroyed.
  *
- * \return bool TRUE if Page is data from a Symbol file
+ *  \param [in] toplevel  The GedaToplevel object.
  *
+ *  \return The auto_save_interval setting.
  */
-bool s_page_is_symbol_file (Page *page) {
-  const char *ext;
-  bool isSymbol = FALSE;
-  if (page != NULL) {
-    if ((ext = s_page_get_file_extension(page)) != NULL) {
-      if (strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
-        isSymbol = TRUE;
+int s_page_autosave (GedaToplevel *toplevel)
+{
+  const GList *iter;
+        Page  *p_current;
+
+  if (toplevel == NULL) {
+    u_log_message (_("Disabling auto save timer, no toplevel"));
+    return 0;
+  }
+
+  /* Do nothing if the interval is 0, we will not be called again */
+  if (toplevel->auto_save_interval != 0) {
+
+    if ( toplevel->pages != NULL) {
+
+      for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+      {
+        p_current = (Page *)iter->data;
+
+        if (p_current->CHANGED) {
+          if (p_current->ops_since_last_backup != 0) {
+            /* Real autosave is done in o_undo_savestate */
+            p_current->do_autosave_backup = 1;
+          }
+        }
       }
     }
   }
-  return isSymbol;
+  return toplevel->auto_save_interval;
 }
+/*! \brief Check if CHANGED flag is set for any page in list.
+ *  \par Function Description
+ *  This function checks the CHANGED flag for all pages in the <B>list</B>
+ *  object.
+ *
+ *  \param [in] list  PageList to check CHANGED flag in.
+ *  \return 1 if any page has the CHANGED flag set, 0 otherwise.
+ */
+bool s_page_check_changed (PageList *list)
+{
+  const GList *iter;
+  Page *p_current;
+
+  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  {
+    p_current = (Page *)iter->data;
+    if (p_current->CHANGED) {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+/*! \brief Reset the CHANGED flag of all pages.
+ *  \par Function Description
+ *  This function resets the CHANGED flag of each page following \a head.
+ *
+ *  \param [in,out] list  Page list to set CHANGED flags in.
+ */
+void s_page_clear_changed (PageList *list)
+{
+  const GList *iter;
+  Page *p_current;
+
+  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  {
+    p_current = (Page *)iter->data;
+    p_current->CHANGED = 0;
+  }
+}
+
 /*! \brief delete a page and it's contents
  *
  *  \par Function Description
@@ -403,38 +471,26 @@ void s_page_delete_list(GedaToplevel *toplevel)
   toplevel->page_current = NULL;
 }
 
-/*! \brief Get the current page
- *  \par Function Description
- *  This function returns the current Page object.
+/*! \brief Get File Extension of the File Assocatiacted with Page.
  *
- * \sa s_page_set_current, s_page_goto
+ * \par Function Description
+ * Returns a pointer to extension of the filename associated with Page.
+ * The string is owned by the Page and must not be changed!
  *
- * \param [in,out] toplevel This toplevel
+ * \param [in] page Pointer to a Page data structure.
+ *
+ * \return point to the page file name extension or NULL if there
+ *         either no file name or no DOT suffix used in the name.
+ *
+ *
+ * \sa s_page_is_symbol_file
  */
-Page * s_page_get_current (GedaToplevel *toplevel )
+const char *s_page_get_file_extension (Page *page)
 {
-  g_return_val_if_fail (toplevel != NULL, FALSE);
-
-  return toplevel->page_current;
-
-}
-
-/*! \brief Set the current page
- *  \par Function Description
- *  Changes the current page in \a toplevel to the page \a page.
- *
- * \sa s_page_get_current, s_page_goto
- *
- * \param [in,out] toplevel This toplevel
- * \param [in] page The new current page
- */
-bool s_page_set_current (GedaToplevel *toplevel, Page *page)
-{
-  g_return_val_if_fail (toplevel != NULL, FALSE);
-
-  toplevel->page_current = page;
-
-  return TRUE;
+  if (page != NULL && page->filename != NULL) {
+    return f_get_filename_ext(page->filename);
+  }
+  return NULL;
 }
 
 /*! \brief changes the current page in toplevel
@@ -465,53 +521,27 @@ bool s_page_goto (GedaToplevel *toplevel, Page *page)
   return result;
 }
 
-/*! \brief Search for pages by filename.
- *  \par Function Description
- *  Searches in \a toplevel's list of pages for a page with a filename
- *  equal to \a filename.
+/*! \brief Get is Page a Symbol file.
  *
- *  \param toplevel  The GedaToplevel object
- *  \param filename  The filename string to search for
+ * \par Function Description
+ * Returns true if the filename assocaited with page ends in ".sym"!
  *
- *  \return Page pointer to a matching page, NULL otherwise.
+ * \param [in] page Pointer to a Page data structure.
+ *
+ * \return bool TRUE if Page is data from a Symbol file
+ *
  */
-Page *s_page_search (GedaToplevel *toplevel, const char *filename)
-{
-  const GList *iter;
-  Page *page;
-
-  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
-  {
-    page = (Page *)iter->data;
-    if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )
-      return page;
-  }
-  return NULL;
-}
-
-/*! \brief Search for a page given its page id in a page list.
- *  \par Function Description
- *  This functions returns the page that have the page id \a pid in
- *  the list of pages starting at \a page_list, or NULL if there is no
- *  such page.
- *
- *  \param [in] list      The list of page to search the page in.
- *  \param [in] pid       The ID of the page to find.
- *  \returns A pointer on the page found or NULL if not found.
- */
-Page *s_page_search_by_page_id (PageList *list, int pid)
-{
-  const GList *iter;
-
-  for ( iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
-  {
-    Page *page = (Page *)iter->data;
-    if (page->pid == pid) {
-      return page;
+bool s_page_is_symbol_file (Page *page) {
+  const char *ext;
+  bool isSymbol = FALSE;
+  if (page != NULL) {
+    if ((ext = s_page_get_file_extension(page)) != NULL) {
+      if (strcmp (ext, SYMBOL_FILE_SUFFIX) == 0) {
+        isSymbol = TRUE;
+      }
     }
   }
-
-  return NULL;
+  return isSymbol;
 }
 
 /*! \brief Print full GedaToplevel structure.
@@ -567,116 +597,73 @@ int s_page_save_all (GedaToplevel *toplevel)
   return status;
 }
 
-/*! \brief Check if CHANGED flag is set for any page in list.
+/*! \brief Search for pages by filename.
  *  \par Function Description
- *  This function checks the CHANGED flag for all pages in the <B>list</B>
- *  object.
+ *  Searches in \a toplevel's list of pages for a page with a filename
+ *  equal to \a filename.
  *
- *  \param [in] list  PageList to check CHANGED flag in.
- *  \return 1 if any page has the CHANGED flag set, 0 otherwise.
+ *  \param toplevel  The GedaToplevel object
+ *  \param filename  The filename string to search for
+ *
+ *  \return Page pointer to a matching page, NULL otherwise.
  */
-bool s_page_check_changed (PageList *list)
+Page *s_page_search (GedaToplevel *toplevel, const char *filename)
 {
   const GList *iter;
-  Page *p_current;
+  Page *page;
 
-  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
+  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
   {
-    p_current = (Page *)iter->data;
-    if (p_current->CHANGED) {
-      return TRUE;
+    page = (Page *)iter->data;
+    if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )
+      return page;
+  }
+  return NULL;
+}
+
+/*! \brief Search for a page given its page id in a page list.
+ *  \par Function Description
+ *  This functions returns the page that have the page id \a pid in
+ *  the list of pages starting at \a page_list, or NULL if there is no
+ *  such page.
+ *
+ *  \param [in] list      The list of page to search the page in.
+ *  \param [in] pid       The ID of the page to find.
+ *  \returns A pointer on the page found or NULL if not found.
+ */
+Page *s_page_search_by_page_id (PageList *list, int pid)
+{
+  const GList *iter;
+
+  for ( iter = geda_list_get_glist (list); iter != NULL; NEXT(iter))
+  {
+    Page *page = (Page *)iter->data;
+    if (page->pid == pid) {
+      return page;
     }
   }
 
-  return FALSE;
+  return NULL;
 }
 
-/*! \brief Reset the CHANGED flag of all pages.
+/*! \brief Set the font-renderer-specific bounds function.
  *  \par Function Description
- *  This function resets the CHANGED flag of each page following \a head.
+ *  Set the function to be used to calculate text bounds for #Text
+ *  Object associated with the page. This allow a per page object renderer
+ *  function to be defined. If the function is not defined the renderer for
+ *  the Toplevel will be used instead, if a Toplevel renderer is defined.
  *
- *  \param [in,out] list  Page list to set CHANGED flags in.
+ *  \param [in] page      The Page to associate this function with to render text.
+ *  \param [in] func      Function to use.
+ *  \param [in] user_data User data to be passed to the function.
  */
-void s_page_clear_changed (PageList *list)
+void
+s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
 {
-  const GList *iter;
-  Page *p_current;
+  g_return_if_fail(GEDA_IS_PAGE(page));
 
-  for ( iter = geda_list_get_glist( list ); iter != NULL; NEXT(iter))
-  {
-    p_current = (Page *)iter->data;
-    p_current->CHANGED = 0;
-  }
-}
-
-/*! \brief Autosave initialization function.
- *  \par Function Description
- *  This function sets up the autosave callback function.
- *
- *  \param [in] toplevel  The GedaToplevel object.
- */
-void s_page_autosave_init(GedaToplevel *toplevel)
-{
-  if (toplevel->auto_save_interval != 0) {
-
-    /* 1000 converts seconds into milliseconds */
-    toplevel->auto_save_timeout =
-      g_timeout_add(toplevel->auto_save_interval*1000,
-                    (GSourceFunc) s_page_autosave,
-                    toplevel);
-  }
-}
-
-/*! \brief Autosave callback function.
- *  \par Function Description
- *  This function is a g_timeout callback functions that is called
- *  every "interval" milliseconds and check and sets a flag to save
- *  a backup copy of the opened pages.
- *
- *  Applications can check the flag to determine if a backup should be
- *  created, the check could be done in an Undo function so that files
- *  that change get backed-up and opened files with no user activity
- *  are not.
- *
- *  The reason for using the auto_save_interval as the return value is
- *  so that if the applications wants to kill the source, maybe because
- *  the user changed the settings, then the accessible variable can be
- *  set to zero, and when the function returns the zero to glib, the
- *  source will be destroyed.
- *
- *  \param [in] toplevel  The GedaToplevel object.
- *
- *  \return The auto_save_interval setting.
- */
-int s_page_autosave (GedaToplevel *toplevel)
-{
-  const GList *iter;
-        Page  *p_current;
-
-  if (toplevel == NULL) {
-    u_log_message (_("Disabling auto save timer, no toplevel"));
-    return 0;
-  }
-
-  /* Do nothing if the interval is 0, we will not be called again */
-  if (toplevel->auto_save_interval != 0) {
-
-    if ( toplevel->pages != NULL) {
-
-      for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
-      {
-        p_current = (Page *)iter->data;
-
-        if (p_current->CHANGED) {
-          if (p_current->ops_since_last_backup != 0) {
-            /* Real autosave is done in o_undo_savestate */
-            p_current->do_autosave_backup = 1;
-          }
-        }
-      }
-    }
-  }
-  return toplevel->auto_save_interval;
+  page->rendered_text_bounds_func = func;
+  page->rendered_text_bounds_data = user_data;
 }
 
 /*! \brief Append an Object to the Page
@@ -893,24 +880,4 @@ s_page_objects_in_region (Page *page, int min_x, int min_y, int max_x, int max_y
   rect.upper_y = max_y;
 
   return s_page_objects_in_regions (page, &rect, 1);
-}
-
-/*! \brief Set the font-renderer-specific bounds function.
- *  \par Function Description
- *  Set the function to be used to calculate text bounds for #Text
- *  Object associated with the page. This allow a per page object renderer
- *  function to be defined. If the function is not defined the renderer for
- *  the Toplevel will be used instead, if a Toplevel renderer is defined.
- *
- *  \param [in] page      The Page to associate this function with to render text.
- *  \param [in] func      Function to use.
- *  \param [in] user_data User data to be passed to the function.
- */
-void
-s_page_set_bounds_func(Page *page, RenderedBoundsFunc func, void *user_data)
-{
-  g_return_if_fail(GEDA_IS_PAGE(page));
-
-  page->rendered_text_bounds_func = func;
-  page->rendered_text_bounds_data = user_data;
 }
