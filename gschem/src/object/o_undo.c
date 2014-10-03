@@ -540,6 +540,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     p_new->pid = pid;
 
+    s_page_resequence_by_ids (toplevel);
+
     s_page_goto (toplevel, p_new);
 
     p_new->change_notify_funcs = ptr_notify_funcs;

@@ -26,13 +26,19 @@
   (and=> (attrib-attachment attribute)
          (lambda (object)
            ;; with auto-place-attribs.scm
-           (set-default-position object attribute 
+           (set-default-position object attribute
                                  (get-net-connection-sides object)
-                                 default-position-of-text-attributes))))
+                                 default-position-of-text-attributes)))
+)
 
 (define (place-netname-attribute-handler objects)
   (for-each (lambda (o)
-              (and (attribute? o)
-                   (string=? (attrib-name o) "netname")
-                   (place-netname-attribute o)))
-            objects))
+              (begin
+                (and (attribute? o)
+                     (string=? (attrib-name o) "netname")
+                     (place-netname-attribute o)
+                )
+              )
+            ) objects
+  )
+)

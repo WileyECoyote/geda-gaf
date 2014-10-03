@@ -336,43 +336,40 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       case ENDCOMP:
       case ENDTEXT:
       case ENDPASTE:
-        /* FIXME shouldn't need to save/restore matrix/colormap here */
-        cairo_save (w_current->cr);
+
         cairo_set_matrix (w_current->cr, &render_mtx);
         eda_renderer_set_color_map (renderer, render_outline_color_map);
 
         o_place_draw_rubber (w_current, draw_selected);
 
         eda_renderer_set_color_map (renderer, render_color_map);
-        cairo_restore (w_current->cr);
+
         break;
 
       case STARTDRAWNET:
       case DRAWNET:
       case NETCONT:
-        /* FIXME shouldn't need to save/restore matrix/colormap here */
-        cairo_save (w_current->cr);
+
         cairo_set_matrix (w_current->cr, &render_mtx);
         eda_renderer_set_color_map (renderer, render_outline_color_map);
 
         o_net_draw_rubber (w_current);
 
         eda_renderer_set_color_map (renderer, render_color_map);
-        cairo_restore (w_current->cr);
+
         break;
 
       case STARTDRAWBUS:
       case DRAWBUS:
       case BUSCONT:
-        /* FIXME shouldn't need to save/restore matrix/colormap here */
-        cairo_save (w_current->cr);
+
         cairo_set_matrix (w_current->cr, &render_mtx);
         eda_renderer_set_color_map (renderer, render_outline_color_map);
 
         o_bus_draw_rubber(w_current);
 
         eda_renderer_set_color_map (renderer, render_color_map);
-        cairo_restore (w_current->cr);
+
         break;
 
       case GRIPS:
@@ -421,15 +418,14 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   {
 
     if (w_current->last_drawb_mode != -1) {
-      /* FIXME shouldn't need to save/restore matrix/colormap here */
-      cairo_save (w_current->cr);
+
       cairo_set_matrix (w_current->cr, &render_mtx);
       eda_renderer_set_color_map (renderer, render_outline_color_map);
 
       o_move_draw_rubber (w_current, draw_selected);
 
       eda_renderer_set_color_map (renderer, render_color_map);
-      cairo_restore (w_current->cr);
+
     }
   }
 

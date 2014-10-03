@@ -1,3 +1,12 @@
+2014-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_undo.c: Call new libgeda::s_page_resequence_by_ids to
+      reset the page list order after creating a new page when undoing with
+      type UNDO_DISK so that the page list stays in the same order. Previous
+      when ever an undo operation was perform, that page would appended to
+      the end of page list, this was annoying when working with multiple
+      pages as the order kept changing when undoing.
+
 2014-10-02 Wiley E. Hill <wileyhill@gmail.com>
 
    ** src/object/o_net.c: Remove w_current->inside_action = 1 in function
