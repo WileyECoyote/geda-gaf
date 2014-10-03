@@ -471,6 +471,40 @@ void s_page_delete_list(GedaToplevel *toplevel)
   toplevel->page_current = NULL;
 }
 
+
+/*! \brief Get the current page
+* \par Function Description
+* This function returns the current Page object.
+*
+* \sa s_page_set_current, s_page_goto
+*
+* \param [in,out] toplevel This toplevel
+*/
+Page * s_page_get_current (GedaToplevel *toplevel )
+{
+  g_return_val_if_fail (toplevel != NULL, FALSE);
+
+  return toplevel->page_current;
+
+}
+/*! \brief Set the current page
+* \par Function Description
+* Changes the current page in \a toplevel to the page \a page.
+*
+* \sa s_page_get_current, s_page_goto
+*
+* \param [in,out] toplevel This toplevel
+* \param [in] page The new current page
+*/
+bool s_page_set_current (GedaToplevel *toplevel, Page *page)
+{
+  g_return_val_if_fail (toplevel != NULL, FALSE);
+
+  toplevel->page_current = page;
+
+  return TRUE;
+}
+
 /*! \brief Get File Extension of the File Assocatiacted with Page.
  *
  * \par Function Description
@@ -556,11 +590,29 @@ void s_page_print_all (GedaToplevel *toplevel)
   const GList *iter;
   Page *page;
 
-  for ( iter = geda_list_get_glist( toplevel->pages ); iter != NULL; NEXT(iter))
+  for ( iter = geda_list_get_glist(toplevel->pages); iter; iter = iter->next)
   {
     page = (Page *)iter->data;
     printf ("FILENAME: %s\n", page->filename);
     print_struct_forw (page->_object_list);
+  }
+}
+
+static int
+page_comparator(const void *pg1, const void *pg2)
+{
+   const Page *page1 = pg1;
+   const Page *page2 = pg2;
+
+   return page1->pid - page2->pid;
+}
+
+void s_page_resequence_by_ids (GedaToplevel *toplevel)
+{
+  if (g_list_length(geda_list_get_glist(toplevel->pages)) > 1) {
+
+    toplevel->pages->glist = g_list_sort (toplevel->pages->glist,
+                                          page_comparator);
   }
 }
 
@@ -577,7 +629,7 @@ int s_page_save_all (GedaToplevel *toplevel)
   Page *p_current;
   int status = 0;
 
-  for ( iter = geda_list_get_glist( toplevel->pages ); iter != NULL; NEXT(iter))
+  for ( iter = geda_list_get_glist( toplevel->pages ); iter; iter = iter->next)
   {
     p_current = (Page *)iter->data;
 
@@ -612,7 +664,7 @@ Page *s_page_search (GedaToplevel *toplevel, const char *filename)
   const GList *iter;
   Page *page;
 
-  for ( iter = geda_list_get_glist(toplevel->pages); iter != NULL; NEXT(iter))
+  for (iter = geda_list_get_glist(toplevel->pages); iter; iter = iter->next)
   {
     page = (Page *)iter->data;
     if ( g_ascii_strcasecmp( page->filename, filename ) == 0 )

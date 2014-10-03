@@ -1,5 +1,10 @@
 2014-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_page.c: Add new function s_page_resequence_by_ids with
+      helper page_comparator.
+
+2014-10-03 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/struct/s_page.c: Resequence non-container/object functions
 
 2014-09-30 Wiley E. Hill <wileyhill@gmail.com>

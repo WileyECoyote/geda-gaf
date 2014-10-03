@@ -438,10 +438,11 @@ const char   *s_page_get_file_extension     (Page *page);
 
       bool    s_page_goto                   (GedaToplevel *toplevel, Page *page);
       void    s_page_print_all              (GedaToplevel *toplevel);
-      bool    s_page_resequence_ids         (GedaToplevel *toplevel);
+      void    s_page_resequence_by_ids      (GedaToplevel *toplevel);
       int     s_page_save_all               (GedaToplevel *toplevel);
       Page   *s_page_search                 (GedaToplevel *toplevel, const char *filename);
       Page   *s_page_search_by_page_id      (PageList *list, int pid);
+      void    s_page_set_bounds_func        (Page *page, RenderedBoundsFunc func, void *user_data);
 
       void    s_page_append_object          (Page *page, Object *object);
       void    s_page_append_list            (Page *page, GList *obj_list);
@@ -453,7 +454,6 @@ const char   *s_page_get_file_extension     (Page *page);
       GList  *s_page_get_objects            (Page *page);
       GList  *s_page_objects_in_region      (Page *page, int min_x, int min_y, int max_x, int max_y);
       GList  *s_page_objects_in_regions     (Page *page, RECTANGLE *rects, int n_rects);
-      void    s_page_set_bounds_func        (Page *page, RenderedBoundsFunc func, void *user_data);
 
 /* s_papersizes.c */
      int      s_papersizes_add_entry        (char *new_papersize, int width, int height);
