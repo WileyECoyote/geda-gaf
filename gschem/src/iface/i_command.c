@@ -804,6 +804,7 @@ COMMAND ( do_save ) {
 COMMAND ( do_save_as ) {
   BEGIN_W_COMMAND(do_save_as);
   x_fileselect_save (w_current);
+  i_status_update_title (w_current);
   EXIT_COMMAND(do_save_as);
 }
 
@@ -818,7 +819,7 @@ COMMAND ( do_save_all ) {
   } else {
      i_status_set_state_msg(w_current, SELECT, _("Saved All"));
   }
-
+  i_status_update_title (w_current);
   x_pagesel_update (w_current);
   i_status_update_sensitivities(w_current);
 }

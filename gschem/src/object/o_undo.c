@@ -209,6 +209,8 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
   /* save auto save backups if necessary */
   o_save_auto_backup(w_current->toplevel);
 
+  i_status_update_title (w_current);
+
   if (w_current->undo_control == FALSE) {
     return;
   }
@@ -619,7 +621,10 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   /* Let the caller to decide if redraw or not */
   o_invalidate_all (w_current);
-  i_status_update_sensitivities(w_current);
+  i_status_update_sensitivities (w_current);
+
+  /* The page status may have changed */
+  i_status_update_title (w_current);
 
   /* restore saved undo structures */
   Current_Page->undo_bottom  = save_bottom;

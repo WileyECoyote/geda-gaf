@@ -1,3 +1,15 @@
+2014-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_undo.c: Add calls to i_status_update_title to update title
+      if file modified in functions o_undo_savestate and o_undo_callback.
+
+    * src/iface/i_command.c: Add call to i_status_update_title in functions
+      i_cmd_do_save_as and do_save_all.
+
+    * src/x/x_window.c: Revise function x_window_update_title to prepend and
+      asterisk if to the file name in the title if the file has been modified
+      and no saved.
+
 2014-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_undo.c: Call new libgeda::s_page_resequence_by_ids to
