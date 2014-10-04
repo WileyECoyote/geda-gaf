@@ -482,7 +482,8 @@ bool o_select_is_selection(GschemToplevel *w_current)
 void o_select_unselect_all(GschemToplevel *w_current)
 {
   GedaToplevel  *toplevel  = w_current->toplevel;
-  SELECTION *selection = Top_Selection;
+  SELECTION     *selection = Top_Selection;
+
   GList     *removed;
   GList     *iter;
   Object    *object;

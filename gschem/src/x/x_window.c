@@ -58,8 +58,8 @@ void x_window_setup (GschemToplevel *w_current)
   s_page_autosave_init(toplevel);
 
   /* setup world */
-  w_current->world_left = -45;
-  w_current->world_top  = -45;
+  //w_current->world_left = -45;
+  //w_current->world_top  = -45;
 
   /* init_right and _bottom are set before this function is called */
   toplevel->width          = w_current->world_right;

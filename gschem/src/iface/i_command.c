@@ -2227,7 +2227,7 @@ COMMAND ( do_down_symbol )
       i_zoom_world_extents(w_current,
                      s_page_get_objects (Current_Page),
                      I_PAN_DONT_REDRAW);
-      o_undo_savestate(w_current, UNDO_ALL);
+      //o_undo_savestate(w_current, UNDO_ALL);
       x_window_set_current_page(w_current, Current_Page);
     }
   }

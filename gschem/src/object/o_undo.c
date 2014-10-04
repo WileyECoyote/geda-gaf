@@ -432,7 +432,7 @@ GList *o_undo_find_prev_object_head (UNDO *start)
 void o_undo_callback(GschemToplevel *w_current, int type)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Page  *p_new;
+
   UNDO  *u_current;
   UNDO  *u_next;
   UNDO  *save_bottom;
@@ -440,7 +440,6 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   UNDO  *save_current;
 
   int   find_prev_data=FALSE;
-  int   pid;
 
   /* The following varible are initialse to suppress errently gcc warning */
   int left    = left;
@@ -525,7 +524,17 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       bottom = Current_Page->bottom;
   }
 
-  /* Destory the current page and create a new one */
+  o_select_unselect_all (w_current);
+
+  ptr_notify_funcs = Current_Page->change_notify_funcs;
+
+  geda_notify_list_freeze (ptr_notify_funcs);
+
+  s_page_delete_objects (Current_Page);
+
+  s_place_free_place_list(toplevel);
+
+  /* Destory the current page and create a new one
   if (tmp_filename) {
 
     ptr_notify_funcs = Current_Page->change_notify_funcs;
@@ -538,6 +547,8 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
     s_page_delete (toplevel, Current_Page);
 
+    s_place_free_place_list (toplevel);
+
     p_new = s_page_new (toplevel, tmp_filename);
 
     p_new->pid = pid;
@@ -549,7 +560,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     p_new->change_notify_funcs = ptr_notify_funcs;
 
   }
-
+*/
   /* temporarily disable logging */
   int  save_logging;
   int  restored;
@@ -577,8 +588,6 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     toplevel->open_flags = old_flags;
   }
   else if (w_current->undo_type == UNDO_MEMORY && u_current->object_list) {
-
-    s_page_delete_objects (Current_Page);
 
     s_page_append_list (Current_Page,
                         o_glist_copy_all (u_current->object_list, NULL));
