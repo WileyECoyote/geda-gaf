@@ -287,7 +287,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
       Current_Page->undo_bottom = Current_Page->undo_tos;
     }
 
-#if DEBUG
+#if DEBUG_UNDO
     printf("\n\n---Undo----\n");
     s_undo_print_all       (Current_Page->undo_bottom);
     printf("BOTTOM: %s\n",  Current_Page->undo_bottom->filename);
@@ -308,14 +308,14 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
 
     levels = s_undo_levels(Current_Page->undo_bottom);
 
-#if DEBUG
+#if DEBUG_UNDO
     printf("levels: %d\n", levels);
 #endif
 
     if (levels >= w_current->undo_levels + UNDO_PADDING) {
       levels = levels - w_current->undo_levels;
 
-#if DEBUG
+#if DEBUG_UNDO
       printf("Trimming: %d levels\n", levels);
 #endif
 
@@ -332,7 +332,7 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
         u_current_next = u_current->next;
 
         if (u_current->filename) {
-#if DEBUG
+#if DEBUG_UNDO
           printf("Freeing: %s\n", u_current->filename);
 #endif
           unlink(u_current->filename);
@@ -359,13 +359,13 @@ void o_undo_savestate(GschemToplevel *w_current, int flag)
         u_current->prev = NULL;
         Current_Page->undo_bottom = u_current;
 
-#if DEBUG
+#if DEBUG_UNDO
         printf("New current is: %s\n", u_current->filename);
 #endif
       }
     }
 
-#if DEBUG
+#if DEBUG_UNDO
     printf("\n\n---Undo----\n");
     s_undo_print_all(Current_Page->undo_bottom);
     printf("BOTTOM: %s\n", Current_Page->undo_bottom->filename);
@@ -478,7 +478,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   if (u_next->type == UNDO_ALL && u_current->type == UNDO_VIEWPORT_ONLY) {
 
-#if DEBUG
+#if DEBUG_UNDO
     printf("Type: %d\n", u_current->type);
     printf("Current is an undo all, next is viewport only!\n");
 #endif
@@ -664,7 +664,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     u_current->object_list = NULL;
   }
 
-#if DEBUG
+#if DEBUG_UNDO
   printf("\n\n---Undo----\n");
   s_undo_print_all(Current_Page->undo_bottom);
   printf("TOS: %s\n", Current_Page->undo_tos->filename);

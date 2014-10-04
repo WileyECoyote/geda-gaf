@@ -33,6 +33,7 @@
 #define SET_DEBUG_STATUS      0
 #define SET_DEBUG_SENSITIVITY 0
 #define SET_DEBUG_TOOLBARS    0
+#define SET_DEBUG_UNDO        1
 
 /* libgeda*/
 #define SET_DEBUG_CONNS       0
@@ -51,6 +52,7 @@
 #define DEBUG_STATUS      ( SET_DEBUG_STATUS      || DEBUG )
 #define DEBUG_SENSITIVITY ( SET_DEBUG_SENSITIVITY || DEBUG_STATUS )
 #define DEBUG_TOOLBARS    ( SET_DEBUG_TOOLBARS    || DEBUG )
+#define DEBUG_UNDO        ( SET_DEBUG_UNDO        || DEBUG )
 
 /* libgeda*/
 #define DEBUG_CONNS       ( SET_DEBUG_CONNS       || DEBUG )

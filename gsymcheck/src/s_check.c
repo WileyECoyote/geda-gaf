@@ -211,8 +211,8 @@ void s_check_symbol_structure (const GList *obj_list, SYMCHECK *s_current)
                                 "spice-type",
                                 NULL};
 
-  char *obsolete_attributes[] = {"email", "label", "uref", NULL};
-  char *forbidden_attributes[] = {"name", "type", NULL};
+  char *obsolete_attributes[]  = {"email", "label", "uref", NULL};
+  char *forbidden_attributes[] = {"name",  "type", NULL};
   /* pin# ?, slot# ? */
 
   for (iter = obj_list; iter != NULL; iter = g_list_next (iter)) {
