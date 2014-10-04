@@ -1,7 +1,11 @@
+2014-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
+    * graphic/nc-*-2.sym: New alternate no-connect symbols.
+
 2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/TM4C1292NCZAD-??.sym" Add new symbol for Tiva C series BGA Micro controller
-      and create ti/src subdirectory for ods file.
+    * microchip/TM4C1292NCZAD-??.sym Add new symbol for Tiva C series BGA Micro
+      controller and create ti/src subdirectory for ods file.
 
 2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
 

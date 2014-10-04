@@ -1,4 +1,4 @@
-v 20140330 2
+v 20140915 2
 T 0 3100 5 8 0 0 0 0 1
 author=AutoTron
 T 0 2950 5 8 0 0 0 0 1
@@ -7,18 +7,18 @@ T 0 2800 5 8 0 0 0 0 1
 use-license=unrestricted
 T 0 2650 5 8 0 0 0 0 1
 symversion=0.1
-T 800 1700 5 10 1 1 0 0 1
-device=SI7272
+T 1200 1700 5 10 1 1 0 0 1
+value=SI7272
 T 0 2500 5 8 0 0 0 0 1
 numslots=0
 T 0 2200 5 8 0 0 0 0 1
 description=Dual N channel MOS transistor
-T 400 1700 8 10 1 1 0 0 1
+T 1200 1900 8 10 1 1 0 0 1
 refdes=Q?
 T 0 1900 9 8 0 0 0 0 1
 footprint=SO8
 T 0 2050 8 8 0 0 0 0 1
-comment=model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.8
+model=NMOS NMOS LEVEL=2 CAPOP=3 VTO=1.8
 T 0 2350 9 8 0 0 0 0 1
 documentation=http://www.wikipedia.org/wiki/MOSFET
 P 800 900 1000 900 1 0 1
@@ -156,3 +156,5 @@ L 700 1500 700 1300 3 0 0 0 100 100
 L 700 1300 800 1300 3 0 0 0 100 100
 L 700 700 700 500 3 0 0 0 100 100
 L 700 500 800 500 3 0 0 0 100 100
+T 0 1700 5 10 0 1 0 0 1
+device=NMOS
