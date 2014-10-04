@@ -1,5 +1,11 @@
 2014-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * microchip/: Add new symbols for MCP8024 three-phase half bridger driver
+      in QGN and TQFP packages and create microchip/src subdirectory for ods
+      file.
+
+2014-10-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * graphic/nc-*-2.sym: New alternate no-connect symbols.
 
 2014-09-31 Wiley E. Hill <wileyhill@gmail.com>
