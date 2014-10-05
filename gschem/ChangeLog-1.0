@@ -1,3 +1,15 @@
+2014-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_undo.c: Revised per Vladimir Zhbanov`s updates to the
+      master branch; to not delete the page and create new pages for undo
+      type UNDO_DISK, commit 191de3c1a443572d35335fa7148db0dfc5e4b490.
+      Would have thought this would be faster but is not, for object counts
+      around 350, deleting the page is slightly faster, even with all the
+      crap I went though below to fix. For high object count files, the
+      one I tested had 4080 objects, the performence was virtually equal.
+      Re-creating the page is cleaner solution and not calling was a serious
+      bug.
+
 2014-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_undo.c: Add calls to i_status_update_title to update title

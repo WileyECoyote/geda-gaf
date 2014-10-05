@@ -238,7 +238,7 @@ void x_settings_save_settings(GschemToplevel *w_current)
   eda_config_set_integer (cfg, group_name, "undo-levels",   w_current->undo_levels);
   eda_config_set_boolean (cfg, group_name, "undo-panzoom",  w_current->undo_panzoom);
   eda_config_set_boolean (cfg, group_name, "undo-preserve", w_current->undo_preserve);
-  eda_config_set_boolean (cfg, group_name, "undo-type",     w_current->undo_type);
+  eda_config_set_integer (cfg, group_name, "undo-type",     w_current->undo_type);
 }
 
 /** @brief function change_default_titleblock in GatherSettings */

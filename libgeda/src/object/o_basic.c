@@ -541,6 +541,14 @@ Object *o_object_copy (Object *selected)
       return NULL;
   }
 
+
+  new_obj->color             = selected->color;
+  new_obj->dont_redraw       = selected->dont_redraw;
+  new_obj->locked_color      = selected->locked_color;
+  new_obj->selectable        = selected->selectable;
+  new_obj->show_name_value   = selected->show_name_value;
+  new_obj->visibility        = selected->visibility;
+
   /* Store a reference in the copied object to where it was copied.
    * Used to retain associations when copying attributes */
   selected->copied_to = new_obj;

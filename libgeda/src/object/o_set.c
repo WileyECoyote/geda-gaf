@@ -160,7 +160,7 @@ void o_set_color (Object *object, int color)
       o_glist_set_color (object->complex->prim_objs, color);
   }
   else {
-    BUG_TRACE ("object is not a GedaObject");
+    BUG_MSG ("object is not a GedaObject");
   }
 }
 
@@ -183,6 +183,6 @@ o_set_visibility (Object *object, int visibility)
     }
   }
   else {
-    BUG_TRACE ("object is not a GedaObject");
+    BUG_MSG ("object is not a GedaObject");
   }
 }

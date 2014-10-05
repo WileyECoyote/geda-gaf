@@ -221,8 +221,8 @@ UNDO *s_undo_add_memory (int type, Page *page)
  *  \par Function Description
  *   This function is obsolete and is not used, performance test indicate
  *   passing a pointer to the page as is done in s_undo_add_memory and
- *   s_undo_add_disk, is more efficient the passing 9 separate arguments
- *   that are all members of the Page structure.
+ *   s_undo_add_disk, is more efficient then passing 9 separate arguments
+ *   (which are all members of the Page structure.
  */
 UNDO *s_undo_add (UNDO *head, int type, char *filename, GList *object_list,
                   int left, int top, int right, int bottom, int page_control,

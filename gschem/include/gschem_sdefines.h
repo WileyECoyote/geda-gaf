@@ -141,6 +141,9 @@
 
 /* -----------------  Strings for RC Read/Write ----------------- */
 
+/* Generic Strings for RC code */
+#define RC_STR_NONE            "none"
+
 /* Strings for Anti-Aliasing RC mode */
 #define RC_STR_ANTIALIAS_DEFAULT   "default"
 #define RC_STR_ANTIALIAS_NONE       RC_STR_NONE
@@ -149,9 +152,6 @@
 #define RC_STR_ANTIALIAS_FAST      "fast"
 #define RC_STR_ANTIALIAS_GOOD      "good"
 #define RC_STR_ANTIALIAS_BEST      "best"
-
-/* Generic Strings for RC code */
-#define RC_STR_NONE            "none"
 
 /* Generic Boolean Strings for RC code */
 #define RC_STR_ENABLED         "enabled"
@@ -194,7 +194,7 @@
 #define RC_STR_FEEDBACK_BOUNDBOX "boundingbox"
 
 /* Net POINT MODE Strings for RC code */
-#define RC_STR_NET_NONE        "none"
+#define RC_STR_NET_NONE        RC_STR_NONE
 #define RC_STR_FILLED_BOX      "filledbox"
 #define RC_STR_EMPTY_BOX       "empty"
 
@@ -248,6 +248,7 @@
 #define RC_STR_TB_LAST         "retention"
 
 /* RC string for Undo options */
+#define RC_STR_UNDO_NONE       RC_STR_NONE
 #define RC_STR_UNDO_DISK       "disk"
 #define RC_STR_UNDO_MEMORY     "memory"
 

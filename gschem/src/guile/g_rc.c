@@ -2086,13 +2086,14 @@ SCM g_rc_undo_preserve(SCM mode)
 SCM g_rc_undo_type(SCM mode)
 {
   static const vstbl_entry mode_table[] = {
+    {UNDO_NONE  , RC_STR_UNDO_NONE},
     {UNDO_DISK  , RC_STR_UNDO_DISK},
     {UNDO_MEMORY, RC_STR_UNDO_MEMORY}
   };
 
   RETURN_G_RC_MODE("undo-type",
                    default_undo_type,
-                   2);
+                   3);
 }
 
 /** @} end group System-User-RC-Options */

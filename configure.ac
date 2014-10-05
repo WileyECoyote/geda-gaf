@@ -10,7 +10,7 @@ dnl directory.
 m4_define([geda_major_version],   [2])
 m4_define([geda_minor_version],   [0])
 m4_define([geda_micro_version],   [8])
-m4_define([geda_mutation],        [15])
+m4_define([geda_mutation],        [16])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])
@@ -30,8 +30,8 @@ AC_CONFIG_HEADERS([config.h])
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
-#AM_INIT_AUTOMAKE
-AM_INIT_AUTOMAKE([parallel-tests color-tests])
+AM_INIT_AUTOMAKE
+#AM_INIT_AUTOMAKE([parallel-tests color-tests])
 
 AX_SET_AM_OPTIONS
 
@@ -196,7 +196,7 @@ AX_GEDA_DIRS
 #####################################################################
 
 # Set up libgeda with the correct ld version number
-AX_LIBGEDA([50:6:0])
+AX_LIBGEDA([50:7:0])
 
 # Set up libgedacairo with the correct ld version number
 AX_LIBGEDACAIRO([1:3:0])

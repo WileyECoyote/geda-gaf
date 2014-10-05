@@ -76,7 +76,7 @@ void o_undo_init(GschemToplevel *w_current)
   i_var_restore_global_integer(cfg, "undo-levels",   &w_current->undo_levels,   DEFAULT_UNDO_LEVELS);
   i_var_restore_global_boolean(cfg, "undo-panzoom",  &w_current->undo_panzoom,  FALSE);
   i_var_restore_global_boolean(cfg, "undo-preserve", &w_current->undo_preserve, TRUE);
-  i_var_restore_global_boolean(cfg, "undo-type",     &w_current->undo_type,     UNDO_DISK);
+  i_var_restore_global_integer(cfg, "undo-type",     &w_current->undo_type,     UNDO_DISK);
 
   if (tmp_directory != NULL) {
     tmp_path = tmp_directory;
@@ -120,12 +120,11 @@ void o_undo_init(GschemToplevel *w_current)
 
 /*! \brief Finalize the Undo System
  *  \par Function Description
- *  This function is called by gschem::gschem_quit() at program
- *  shutdown in order to release memory allocated by the Undo
- *  system and remove the temporary files. The individual Undo
- *  structures associated with each page were freed when the
- *  pages were destroyed so the only memory to potentially
- *  release is the path to the tmp directory.
+ *  This function is called by gschem::gschem_quit() at program shutdown
+ *  in order to release memory allocated by the Undo system and remove the
+ *  temporary files. The individual Undo structures associated with each
+ *  page were freed when the pages were destroyed so the only memory to
+ *  potentially release is the path to the tmp directory.
  *
  */
 void o_undo_finalize(void)
@@ -161,8 +160,8 @@ void o_undo_finalize(void)
  *      o_save_auto_backup, nor should they check. o_undo_savestate
  *      blindly calls o_save_auto_backup, which backs up all files flaged
  *      by timer s_page_autosave with do_autosave_backup AND marked here
- *      with ops_since_last_backup if interval is none zero, but after the
- *      call to o_save_auto_backup.
+ *      with ops_since_last_backup if interval is none zero, but only after
+ *      the call to o_save_auto_backup.
  *      Sounds hokey huh? The scheme works because the change was just made
  *      or we wouldn't be here, the file will be flaged the next time the
  *      timer counts down, and backed-up the next time a change is made,
@@ -440,15 +439,13 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   UNDO  *save_current;
 
   int   find_prev_data=FALSE;
+  int   restored;
 
   /* The following varible are initialse to suppress errently gcc warning */
   int left    = left;
   int right   = right;
   int top     = top;
   int bottom  = bottom;
-
-  char *save_filename;
-  char *tmp_filename;
 
   const char *disk_err_msg;
 
@@ -470,11 +467,11 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     u_current = Current_Page->undo_current->next;
   }
 
-  u_next = Current_Page->undo_current;
-
   if (u_current == NULL) {
     return;
   }
+
+  u_next = Current_Page->undo_current;
 
   if (u_next->type == UNDO_ALL && u_current->type == UNDO_VIEWPORT_ONLY) {
 
@@ -493,9 +490,6 @@ void o_undo_callback(GschemToplevel *w_current, int type)
     }
   }
 
-  /* save filename */
-  save_filename = u_string_strdup (Current_Page->filename);
-
   /* save UNDO structures so they do not get released */
   save_bottom                = Current_Page->undo_bottom;
   save_tos                   = Current_Page->undo_tos;
@@ -504,19 +498,6 @@ void o_undo_callback(GschemToplevel *w_current, int type)
   Current_Page->undo_tos     = NULL;
   Current_Page->undo_current = NULL;
 
-  /* Set the appropriate file name */
-  if (w_current->undo_type == UNDO_DISK && u_current->filename) {
-    tmp_filename = u_current->filename;
-  }
-  else if (w_current->undo_type == UNDO_MEMORY && u_current->object_list) {
-    tmp_filename = save_filename;
-  }
-  else {
-    tmp_filename = NULL;
-  }
-
-  GedaNotifyList *ptr_notify_funcs;
-
   if (w_current->undo_preserve) {
       left   = Current_Page->left;
       right  = Current_Page->right;
@@ -524,55 +505,32 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       bottom = Current_Page->bottom;
   }
 
+  geda_notify_list_freeze (Current_Page->change_notify_funcs);
+
+  /* Clear the selection list */
   o_select_unselect_all (w_current);
 
-  ptr_notify_funcs = Current_Page->change_notify_funcs;
-
-  geda_notify_list_freeze (ptr_notify_funcs);
-
-  s_page_delete_objects (Current_Page);
-
-  s_place_free_place_list(toplevel);
-
-  /* Destory the current page and create a new one
-  if (tmp_filename) {
-
-    ptr_notify_funcs = Current_Page->change_notify_funcs;
-
-    g_object_ref (ptr_notify_funcs);
-
-    geda_notify_list_freeze (ptr_notify_funcs);
-
-    pid = Current_Page->pid;
-
-    s_page_delete (toplevel, Current_Page);
+  if ((w_current->undo_type == UNDO_DISK && u_current->filename) ||
+      (w_current->undo_type == UNDO_MEMORY && u_current->object_list))
+  {
 
     s_place_free_place_list (toplevel);
 
-    p_new = s_page_new (toplevel, tmp_filename);
-
-    p_new->pid = pid;
-
-    s_page_resequence_by_ids (toplevel);
-
-    s_page_goto (toplevel, p_new);
-
-    p_new->change_notify_funcs = ptr_notify_funcs;
+    s_page_delete_objects (Current_Page);
 
   }
-*/
-  /* temporarily disable logging */
-  int  save_logging;
-  int  restored;
 
-  save_logging = logging;
-  logging      = FALSE;
-  restored     = FALSE;
+  restored = FALSE;
 
   if (w_current->undo_type == UNDO_DISK && u_current->filename) {
 
     GError *err          = NULL;
-    int old_flags        = toplevel->open_flags;
+
+    char *save_filename  = u_string_strdup (Current_Page->filename);
+    int  save_logging    = logging;
+    int  old_flags       = toplevel->open_flags;
+
+    logging              = FALSE;   /* temporarily disable logging */
     toplevel->open_flags = 0;
 
     if (f_open(toplevel, Current_Page, u_current->filename, &err)) {
@@ -585,6 +543,14 @@ void o_undo_callback(GschemToplevel *w_current, int type)
       g_error_free(err);
       return;
     }
+
+    /* set filename right */
+    GEDA_FREE(Current_Page->filename);
+    Current_Page->filename = save_filename;
+
+    /* restore logging */
+    logging = save_logging;
+
     toplevel->open_flags = old_flags;
   }
   else if (w_current->undo_type == UNDO_MEMORY && u_current->object_list) {
@@ -613,20 +579,11 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   x_scrollbars_update(w_current);
 
-  /* restore logging */
-  logging = save_logging;
-
-  /* set filename right */
-  GEDA_FREE(Current_Page->filename);
-  Current_Page->filename = save_filename;
-
-  /* final redraw */
   x_pagesel_update (w_current);
+
   x_multiattrib_update (w_current);
 
-  if (tmp_filename) {
-    geda_notify_list_thaw (ptr_notify_funcs);
-  }
+  geda_notify_list_thaw (Current_Page->change_notify_funcs);
 
   /* Let the caller to decide if redraw or not */
   o_invalidate_all (w_current);

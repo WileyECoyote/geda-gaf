@@ -2064,6 +2064,7 @@ create_settings_dialog (GschemToplevel *w_current)
          VSECTION (UndoOptions_hbox, UndoExtraOptions);
            GTK_NUMERIC_SPIN (UndoExtraOptions_vbox, UndoBufferSize, 0, 10, 1, 99);
            GTK_NEW_COMBO (UndoExtraOptions_vbox, UndoType, 150, 5);
+             GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_NONE)
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_DISK)
              GTK_LOAD_COMBO (UndoType, RC_STR_UNDO_MEMORY)
      HXYP_SEPERATOR (GeneralPrefTab_vbox, End, 10);
@@ -2397,6 +2398,11 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->dots_grid_mode = gtk_combo_box_get_active (GTK_COMBO_BOX (DotGridModeCombo));
   console_window_type       = gtk_combo_box_get_active (GTK_COMBO_BOX (ConsoleWindowTypeCombo));
   w_current->undo_type      = gtk_combo_box_get_active (GTK_COMBO_BOX (UndoTypeCombo));
+
+  if (w_current->undo_type == UNDO_NONE) {
+    w_current->undo_control = FALSE;
+  }
+
   w_current->middle_button  = gtk_combo_box_get_active (GTK_COMBO_BOX (MiddleButtonCombo));
   w_current->third_button   = gtk_combo_box_get_active (GTK_COMBO_BOX (ThirdButtonCombo));
   tmp_int                   = gtk_combo_box_get_active (GTK_COMBO_BOX (PointerCursorCombo));

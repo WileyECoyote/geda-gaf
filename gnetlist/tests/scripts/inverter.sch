@@ -1,4 +1,4 @@
-v 20140831 2
+v 20140915 2
 C 0 0 0 0 0 title-B.sym
 C 12600 5800 1 0 0 transformer-3.sym
 {

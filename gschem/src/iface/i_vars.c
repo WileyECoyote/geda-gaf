@@ -603,7 +603,6 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->undo_levels,     default_undo_levels);
   i_set_rc (&w_current->undo_control,    default_undo_control);
   i_set_rc (&w_current->undo_type,       default_undo_type);
-
   i_set_rc (&w_current->undo_panzoom,    default_undo_panzoom);
   i_set_rc (&w_current->undo_preserve,   default_undo_preserve);
 }

@@ -1257,10 +1257,11 @@
 ;(add-hook! complex-place-list-changed-hook (lambda (object)
 ;         (autoplace-object-attributes object)) #t)
 
-; Autoplace netname= attribute hook.  This autoplaces netname
-; attribute at the time that it's added.
-(load-from-path "auto-place-netname.scm")
-(add-hook! add-objects-hook place-netname-attribute-handler)
+; Autoplace netname= attribute hook. This autoplaces netname attributes or
+; causes seg-faults if either the load-from-path "default-attrib-positions"
+; and load-from-path "auto-place-attribs" above are commented out!
+;(load-from-path "auto-place-netname.scm")
+;(add-hook! add-objects-hook place-netname-attribute-handler)
 
 ;; Automatically place a titleblock (or other components) when creating
 ;; a new page.

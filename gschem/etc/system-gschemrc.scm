@@ -1258,6 +1258,7 @@
 ; Autoplace netname= attribute hook. This autoplaces netname attributes or
 ; causes seg-faults if either the load-from-path "default-attrib-positions"
 ; and load-from-path "auto-place-attribs" above are commented out!
+;(load-from-path "auto-place-netname.scm")
 ;(add-hook! add-objects-hook place-netname-attribute-handler)
 
 ;; Automatically place a titleblock (or other components) when creating
