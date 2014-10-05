@@ -1,7 +1,7 @@
 #!/bin/sh
 #                                                   -*-Shell-script-*-
 # Developer helper script for setting up gEDA build environment
-# Copyright (C) 2009-2013  Peter Brett <peter@peter-b.co.uk>
+# Copyright (C) 2009-2014  Peter Brett <peter@peter-b.co.uk>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
