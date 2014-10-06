@@ -133,6 +133,27 @@ autopoint_fix() {
   fi
 }
 
+fix_asneeded() {
+
+  needed="ltmain-asneeded.patch"
+  clunker="ltmain.sh"
+
+  if test -d $tooldir; then
+    cd $tooldir
+    if test -f $clunker ; then
+      if test -f $needed ; then
+        if patch -s -t -p0 --dry-run < $needed; then
+          patch -t -p0 < $needed    
+        fi
+      else
+        echo "File needed to fix libtool as-needed, \"$needed\", seems to be missing"
+      fi
+    else
+      echo "File \"$clunker\", seems to be missing from $tooldir/"
+    fi
+    cd ..
+  fi
+}
 #####################################################################
 # Do some checks for directories and tools
 #####################################################################
@@ -214,3 +235,5 @@ fi
   run_tool "$AUTOHEADER" &&
   run_tool "$AUTOMAKE" -Wall --copy --add-missing --gnu &&
   run_tool "$AUTOCONF" )
+
+fix_asneeded

@@ -1,3 +1,14 @@
+2014-10-05 Wiley E. Hill <wileyhill@gmail.com>
+
+      * autogen.sh: Automake 1.11 pissed me off one too many times, switching
+        back to 1.9.6. Automake consistently fails to perform parallel installs,
+        and causes unit tests to fail due to poor coordination. These tests were
+        fixed by spreading accross different modules, but the same tests passed
+        when performed serially with Automake 1.9. Is not suppose to be a tests
+        "of automake". Besides, many computers with distro lag do not have newer
+        versions of automake avaliable and not about to upgrade distro to, Squeeze
+        is too stable.
+
 2014-09-09 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_debug.h: Add DEBUG_GRID

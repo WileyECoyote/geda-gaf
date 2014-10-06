@@ -7,7 +7,7 @@ nobase_scmdata_DATA = geda/core/gettext.scm
 
 check-am: update-gaf-tool
 
-# Unit test support.  The unit tests are run using the geda-batch
+# Unit test support.  The unit tests are run using the geda-shell
 # program, with config loading disabled (-q) so that user config
 # already on the system can't interfere with the test process.
 

@@ -45,13 +45,13 @@ EXTRA_DIST       = $(BUILT_SOURCES)
 
 AM_CFLAGS        = $(DEBUGGING) $(GEDA_INCLUDES)
 gschem_CPPFLAGS  =
-gschem_CFLAGS    = $(AM_CFLAGS)       $(GCC_CFLAGS)     $(LIBSTROKE_CFLAGS) \
-		   		   $(GLIB_CFLAGS)     $(GTK_CFLAGS)     $(GUILE_CFLAGS) \
-		  		   $(GTHREAD_CFLAGS)  $(MINGW_CFLAGS)   $(gschem_CXXFLAGS)
+gschem_CFLAGS    = $(AM_CFLAGS)      $(GCC_CFLAGS)   $(LIBSTROKE_CFLAGS) \
+		   $(GLIB_CFLAGS)    $(GTK_CFLAGS)   $(GUILE_CFLAGS) \
+		   $(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
 
-gschem_LDFLAGS   = $(GLIB_LIBS)       $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
-				   $(GTHREAD_LIBS)    $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
-				   $(DEBUGGING)
+gschem_LDFLAGS   = $(GLIB_LIBS)    $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
+		   $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
+		   $(DEBUGGING)
 
 gschem_LDADD     = $(top_builddir)/libgedauio/src/libgedauio.la \
 				   $(top_builddir)/libgedacairo/src/libgedacairo.la \
@@ -61,7 +61,7 @@ gschem_LDADD     = $(top_builddir)/libgedauio/src/libgedauio.la \
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
 snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \
-				   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
+		   $(gschem_CPPFLAGS)  $(gschem_CFLAGS)
 
 .c.x:
 	     @CPP="$(CPP)" $(GUILE_SNARF) -o $@ $< $(snarf_cpp_opts)

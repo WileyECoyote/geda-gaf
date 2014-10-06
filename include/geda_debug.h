@@ -44,6 +44,8 @@
 
 #define SET_DEBUG_GEDA_ENTRY  0
 
+#define SET_DMALLOC           1
+
 /* ------------------------------------------------------ */
 #define DEBUG_DND_EVENTS  ( SET_DEBUG_DND_EVENTS  || DEBUG )
 #define DEBUG_EVENTS      ( SET_DEBUG_EVENTS      || DEBUG )
@@ -63,7 +65,12 @@
 
 #define DEBUG_GEDA_ENTRY  ( SET_DEBUG_GEDA_ENTRY  || DEBUG_LIBGEDAUIO)
 
+#if SET_DMALLOC
 #  ifdef HAVE_LIBDMALLOC
 #    include <dmalloc.h>
+#  else
+#    error "DMALLOC is set but HAVE_LIBDMALLOC not defined, is libdmalloc-dev installed?"
 #  endif
 #endif
+
+#endif /* __GEDA_DEBUG__ */

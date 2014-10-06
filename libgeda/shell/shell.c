@@ -73,18 +73,18 @@ version ()
 }
 
 /* Some symbols we need */
-SCM_SYMBOL (sym_load,        "load");
-SCM_SYMBOL (sym_eval_string, "eval-string");
-SCM_SYMBOL (sym_set_x,       "set!");
-SCM_SYMBOL (sym_load_path,   "%load-path");
-SCM_SYMBOL (sym_cons,        "cons");
-SCM_SYMBOL (sym_use_modules, "use-modules");
-SCM_SYMBOL (sym_ice_9,       "ice-9");
-SCM_SYMBOL (sym_readline,    "readline");
+SCM_SYMBOL (sym_load,              "load");
+SCM_SYMBOL (sym_eval_string,       "eval-string");
+SCM_SYMBOL (sym_set_x,             "set!");
+SCM_SYMBOL (sym_load_path,         "%load-path");
+SCM_SYMBOL (sym_cons,              "cons");
+SCM_SYMBOL (sym_use_modules,       "use-modules");
+SCM_SYMBOL (sym_ice_9,             "ice-9");
+SCM_SYMBOL (sym_readline,          "readline");
 SCM_SYMBOL (sym_activate_readline, "activate-readline");
 SCM_SYMBOL (sym_top_repl,          "top-repl");
 SCM_SYMBOL (sym_quit,              "quit");
-SCM_SYMBOL (sym_begin,       "begin");
+SCM_SYMBOL (sym_begin,             "begin");
 
 static void
 shell_main (void *data, int argc, char **argv)

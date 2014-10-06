@@ -7,6 +7,61 @@ Copyright (C) 1998-2014 gEDA Developers
 This file documents important user-visible changes in gEDA/gaf.  For
 more information, please consult the `ChangeLog' file.
 
+Notable changes in gEDA/gaf 2.0.9 - Rampage Edition
+
+* Gschem has improved performance and improved memory management. The main
+  menu has been revised for better organization and extended with improved
+  access to simulation netlist generators. New features have been added
+  with emphasis on user configurability.
+
+  A new Session system manages collections of schematics and or symbols.
+  Sessions can be invoked at startup via a new command-line option and
+  offers a configurable startup dialog. The active session name can
+  optionally be displayed in the title bar.
+
+  User can now elect to show the full path in the title bar or just the basic
+  filename as before. File names are prefixed with an asterisk when ever the
+  current page has been modified and not saved.
+
+  A new Component Properties dialog allows user to change components with
+  out having to edit the schematic file with an editor. The Component
+  Properties dialog is also used for editing symbols, allowing user to set
+  or edit standard attributes for symbols form a single access point.
+
+  Grids systems have been completely revised and feature user configurable
+  dual color mesh and dots, colors for the minor and major step can be set
+  separately for each grid type. The alpha transparency for grid types are
+  also user configurable. The settings can be adjusted to produce the same
+  "dull gray" lines and dots as before but adding colors can improve the
+  contrast and usability of the grids.
+
+  The File Chooser dialog used for selecting and saving documents has been
+  replaced. The new dialog retains position and geometry settings like other
+  gschem dialogs. The File Chooser dialog also retains user filter preferences.
+
+* Additonal Symbols, including symbols for newer more modern semiconductors.
+
+* Libgeda API has been expanded to provide more functionality and has
+  improved stability. The API is cleaner and the Doxygen documentation
+  has been improved.
+
+* Libgedacairo offers improved image quality and better Doxygen documentation.
+
+* Libgedathon now accept either a string or an integer for the pin number
+  argument. The Doxygen documentation has been improved.
+
+* Libgedauio has more Widgets and expanded Doxygen documentation. The
+  new File Chooser implemented in gschem is a new Libgedauio dialog.
+  The library's build system is better organized to acoomodate future
+  expansion. Other new widgets include custom Combo boxes and TreeView.
+  The Doxygen documentation has been expanded.
+
+* The build system is compatible with Automake 1.9, the previous version
+  required Automake 1.11 or newer but this is not available on some older
+  systems.
+
+  Numerous Bugs and annoyances resolved!
+
 Notable changes in gEDA/gaf 2.0.8 - Rampage Edition
 
 * Gschem has improved performances, additional toolbars, improved stability,
@@ -102,7 +157,7 @@ Notable changes in gEDA/gaf 2.0.6 - Rampage Edition
 
 * GUI Enhancments for gschem GUI with better consistency between
   dialogs. Most dialog are now modeless and react to selection
-  changes. 
+  changes.
 
 * Component selection enhanced to facilitate selection of library
   symbols with larger libraries. The selection dialog provides a
@@ -125,7 +180,7 @@ Notable changes in gEDA/gaf 2.0.1 - Rampage Edition
   toolbars and additional menu options, check box menu items, and
   more. All user options can now be set in Gschem via a multi-tab
   dialog with custom controls without adding GTK+3 as dependent or
-  any other new dependencies. Dialogs uniformity has been improved. 
+  any other new dependencies. Dialogs uniformity has been improved.
 
 * Functionality of gattrib has been greatly extended including a
   new Search and Replace function complete with session search

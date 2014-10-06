@@ -32,7 +32,7 @@
 
 #include <geda_debug.h>
 
-#define PERFORMANCE
+//#define PERFORMANCE
 #ifdef PERFORMANCE
 
 # include <sys/time.h>

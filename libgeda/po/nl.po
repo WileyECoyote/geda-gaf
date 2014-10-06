@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-09-09 21:04-0500\n"
+"POT-Creation-Date: 2014-10-05 06:32-0500\n"
 "PO-Revision-Date: 2012-12-01 09:48+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -550,28 +550,28 @@ msgstr "Configuratie bestand is reeds ingelezen"
 msgid "Failed to load config from '%s': %s\n"
 msgstr "Laden van afbeelding uit [%s] faalde: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:179
+#: libgeda/src/guile/g_rc_parse.c:180
 #, fuzzy, c-format
 msgid "Loaded RC file [%s]\n"
 msgstr "Bibliotheek opdracht faalde [%s]\n"
 
-#: libgeda/src/guile/g_rc_parse.c:185
+#: libgeda/src/guile/g_rc_parse.c:186
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:335
+#: libgeda/src/guile/g_rc_parse.c:336
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 "FOUT: Een onbekende fout trad op tijdens het doorlopen van configuratie "
 "bestanden."
 
-#: libgeda/src/guile/g_rc_parse.c:348 libgeda/src/guile/g_rc_parse.c:349
+#: libgeda/src/guile/g_rc_parse.c:349 libgeda/src/guile/g_rc_parse.c:350
 #, c-format
 msgid "ERROR: %s\n"
 msgstr "FOUT: %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:355
+#: libgeda/src/guile/g_rc_parse.c:356
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr "FOUT: De %s log kan meer informatie bevatten.\n"
@@ -1027,22 +1027,27 @@ msgstr "Kan de werkelijke bestandsnaam van %s: %s niet krijgen"
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr "Kan vorige reservekopie [%s] NIET op lezen-schrijven instellen\n"
 
-#: libgeda/src/object/o_save.c:133
+#: libgeda/src/object/o_save.c:124
+#, c-format
+msgid "Automatic backup file saved <%s>\n"
+msgstr ""
+
+#: libgeda/src/object/o_save.c:136
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr "Kan reservekopie [%s] NIET op alleen-lezen instellen\n"
 
-#: libgeda/src/object/o_save.c:139
+#: libgeda/src/object/o_save.c:142
 #, fuzzy, c-format
 msgid "Could NOT save backup file <%s>: %s\n"
 msgstr "Kan bestand: %s NIET opslaan"
 
-#: libgeda/src/object/o_save.c:250
+#: libgeda/src/object/o_save.c:253
 #, fuzzy, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: object %p heeft een onbekend type '%c'\n"
 
-#: libgeda/src/object/o_save.c:331
+#: libgeda/src/object/o_save.c:334
 #, c-format
 msgid "<%s>: because %s"
 msgstr ""
@@ -1376,47 +1381,47 @@ msgstr "Er zijn geen schema's boven de huidige!\n"
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Faalde om af te dalen in hierarchie '%s: %s\n"
 
-#: libgeda/src/struct/s_page.c:311
+#: libgeda/src/struct/s_page.c:269
+msgid "Disabling auto save timer, no toplevel"
+msgstr ""
+
+#: libgeda/src/struct/s_page.c:380
 #, c-format
 msgid "s_page_delete: Can't get the real filename of %s."
 msgstr "s_page_delete: Kan de echte bestandsnaam van %s niet krijgen."
 
-#: libgeda/src/struct/s_page.c:322
+#: libgeda/src/struct/s_page.c:391
 #, c-format
 msgid "s_page_delete: Unable to delete backup file %s."
 msgstr "s_page_delete: Niet mogelijk om reservekopie %s te verwijderen."
 
-#: libgeda/src/struct/s_page.c:554
+#: libgeda/src/struct/s_page.c:637
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "[%s] opgeslagen\n"
 
-#: libgeda/src/struct/s_page.c:559
+#: libgeda/src/struct/s_page.c:642
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "Kan [%s] NIET opslaan\n"
 
-#: libgeda/src/struct/s_page.c:656
-msgid "Disabling auto save timer, no toplevel"
-msgstr ""
-
-#: libgeda/src/struct/s_slot.c:162
+#: libgeda/src/struct/s_slot.c:167
 msgid "Did not find slotdef=#:#,#,#... attribute\n"
 msgstr "Geen slotdef=#:#,#,#... attribuut gevonden\n"
 
-#: libgeda/src/struct/s_slot.c:168
+#: libgeda/src/struct/s_slot.c:173
 msgid "Improper slotdef syntax: missing \":\".\n"
 msgstr "Goed slotdef syntax: ontbreekt \":\".\n"
 
-#: libgeda/src/struct/s_slot.c:183
+#: libgeda/src/struct/s_slot.c:188
 msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
 msgstr "Geen goed slotdef=#:#,#,#... attribuut gevonden\n"
 
-#: libgeda/src/struct/s_slot.c:212
+#: libgeda/src/struct/s_slot.c:217
 msgid "component missing pinseq= attribute\n"
 msgstr "component mist een pinseq- attribuut\n"
 
-#: libgeda/src/utility/u_color.c:191
+#: libgeda/src/utility/u_color.c:192
 msgid "Color index out of range"
 msgstr "Kleuren index buiten bereik"
 

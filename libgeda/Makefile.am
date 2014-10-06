@@ -7,8 +7,8 @@ pkgconfigdir         = $(libdir)/pkgconfig
 pkgconfig_DATA       = libgeda.pc
 
 libgeda-pc-install: libgeda.pc
-	$(mkinstalldirs) $(DESTDIR)$(pkgconfigdir)
-	$(INSTALL_DATA) libgeda.pc $(DESTDIR)$(pkgconfigdir)
+		    $(mkinstalldirs) $(DESTDIR)$(pkgconfigdir)
+		    $(INSTALL_DATA) libgeda.pc $(DESTDIR)$(pkgconfigdir)
 
 if HAVE_GIT_REPO
 ChangeLog: $(top_builddir)/stamp-git

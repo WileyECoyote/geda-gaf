@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-07 05:32-0500\n"
+"POT-Creation-Date: 2014-10-05 06:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:23+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -522,19 +522,19 @@ msgstr ""
 msgid "Border between button edges and child."
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:214
+#: libgedauio/src/widgets/geda_action.c:213
 msgid "multikey-accelerator"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:215
+#: libgedauio/src/widgets/geda_action.c:214
 msgid "A string with characters in positions key characters"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:222
+#: libgedauio/src/widgets/geda_action.c:221
 msgid "icon-identification"
 msgstr ""
 
-#: libgedauio/src/widgets/geda_action.c:223
+#: libgedauio/src/widgets/geda_action.c:222
 msgid "String name of the icon image"
 msgstr ""
 

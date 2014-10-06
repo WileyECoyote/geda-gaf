@@ -30,6 +30,9 @@ AC_CONFIG_HEADERS([config.h])
 # Honor aclocal flags
 ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
 
+# The current configuration builds with Automake 1.9, but Distro checks
+# are performed using Automake 1.11,
+# use update-alternatives --config automake to switch on debian systems
 AM_INIT_AUTOMAKE
 #AM_INIT_AUTOMAKE([parallel-tests color-tests])
 
@@ -44,7 +47,7 @@ AC_GNU_SOURCE # This enable extensions on GNU/Linux platforms (used by intl)
 AX_GIT_VERSION([20140915])
 
 # This is used for keeping the ChangeLog files up-to-date
-AC_SUBST([CHANGELOG_BASE], [1.0-20140915])
+AC_SUBST([CHANGELOG_BASE], [1.0-20141005])
 
 #####################################################################
 # Windows/MinGW/Cygwin support
@@ -66,10 +69,8 @@ AC_LIBTOOL_WIN32_DLL
 AC_DISABLE_STATIC
 AC_PROG_LIBTOOL
 
-# If automake 1.11 shave the output to look nice or comment if debug
-m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])dnl
-
 # Last flag added is first flag on command line
+AX_GCC_FLAGS([-Wl,--as-needed])
 AX_GCC_FLAGS([-Wformat-security])
 AX_GCC_FLAGS([-fstack-protector])
 AX_GCC_FLAGS([-D_FORTIFY_SOURCE=2])

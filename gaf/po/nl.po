@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gaf\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-08-07 05:32-0500\n"
+"POT-Creation-Date: 2014-10-05 06:32-0500\n"
 "PO-Revision-Date: 2012-12-01 17:01+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers\n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gaf/src/gaf.c:66
+#: gaf/src/gaf.c:67
 #, fuzzy, c-format
 msgid ""
 "Usage: gaf [OPTION...] COMMAND [ARGS ...]\n"
@@ -50,7 +50,7 @@ msgstr ""
 "\n"
 "Rapporteer onvolkomenheden aan %s.\n"
 
-#: gaf/src/gaf.c:86
+#: gaf/src/gaf.c:87
 #, fuzzy, c-format
 msgid ""
 "gEDA/gaf %s (g%.7s)\n"
@@ -67,7 +67,7 @@ msgstr ""
 "de gEDA distributie is bijgevoegd.\n"
 "Er is GEEN GARANTIE, voor zover toegelaten door de wet.\n"
 
-#: gaf/src/gaf.c:134
+#: gaf/src/gaf.c:135
 #, c-format
 msgid ""
 "\n"
@@ -76,7 +76,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/src/gaf.c:146
+#: gaf/src/gaf.c:147
 #, c-format
 msgid ""
 "ERROR: You must specify a command to run.\n"
@@ -87,7 +87,7 @@ msgstr ""
 "\n"
 "Voer `gaf --help' uit voor meer informatie.\n"
 
-#: gaf/src/gaf.c:164
+#: gaf/src/gaf.c:165
 #, c-format
 msgid ""
 "ERROR: Unrecognised command `%s'.\n"

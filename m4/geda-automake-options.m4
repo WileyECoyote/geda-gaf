@@ -39,7 +39,11 @@ dnl  Automake version >= 1.11 and enable for supporting Automake's.
   else
     GEDA_AUTOMAKE_OPTIONS= "1.6 subdir-objects"
   fi
+
   AC_SUBST([GEDA_AUTOMAKE_OPTIONS])
+
+  m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])dnl
+
   []dnl
 ])dnl
 

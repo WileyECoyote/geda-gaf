@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-09-09 21:04-0500\n"
+"POT-Creation-Date: 2014-10-05 06:32-0500\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Serbian <sr@li.org>\n"
@@ -544,26 +544,26 @@ msgstr ""
 msgid "Failed to load config from '%s': %s\n"
 msgstr "Нисам успео да учитам слику из датотеке (%s): %s\n"
 
-#: libgeda/src/guile/g_rc_parse.c:179
+#: libgeda/src/guile/g_rc_parse.c:180
 #, fuzzy, c-format
 msgid "Loaded RC file [%s]\n"
 msgstr "Није успела наредба библиотеке (%s)\n"
 
-#: libgeda/src/guile/g_rc_parse.c:185
+#: libgeda/src/guile/g_rc_parse.c:186
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:335
+#: libgeda/src/guile/g_rc_parse.c:336
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:348 libgeda/src/guile/g_rc_parse.c:349
+#: libgeda/src/guile/g_rc_parse.c:349 libgeda/src/guile/g_rc_parse.c:350
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:355
+#: libgeda/src/guile/g_rc_parse.c:356
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
@@ -1016,22 +1016,27 @@ msgstr "s_page_delete: Не могу да добавим прави назив �
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr "НЕ могу да подесим читање-писање претходног резервног примерка (%s)\n"
 
-#: libgeda/src/object/o_save.c:133
+#: libgeda/src/object/o_save.c:124
+#, c-format
+msgid "Automatic backup file saved <%s>\n"
+msgstr ""
+
+#: libgeda/src/object/o_save.c:136
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr "НЕ могу да подесим само за читање датотеку резервног примерка (%s)\n"
 
-#: libgeda/src/object/o_save.c:139
+#: libgeda/src/object/o_save.c:142
 #, fuzzy, c-format
 msgid "Could NOT save backup file <%s>: %s\n"
 msgstr "НЕ могу да подесим само за читање датотеку резервног примерка (%s)\n"
 
-#: libgeda/src/object/o_save.c:250
+#: libgeda/src/object/o_save.c:253
 #, fuzzy, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "о_сачувај_објекат: објекат „%p“ има непознату врсту „%c“\n"
 
-#: libgeda/src/object/o_save.c:331
+#: libgeda/src/object/o_save.c:334
 #, c-format
 msgid "<%s>: because %s"
 msgstr ""
@@ -1358,47 +1363,47 @@ msgstr "Нема других електричних шема осим ове!\n
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr "Нисам успео да отворим директоријум (%s): %s\n"
 
-#: libgeda/src/struct/s_page.c:311
+#: libgeda/src/struct/s_page.c:269
+msgid "Disabling auto save timer, no toplevel"
+msgstr ""
+
+#: libgeda/src/struct/s_page.c:380
 #, c-format
 msgid "s_page_delete: Can't get the real filename of %s."
 msgstr "s_page_delete: Не могу да добавим прави назив датотеке „%s“."
 
-#: libgeda/src/struct/s_page.c:322
+#: libgeda/src/struct/s_page.c:391
 #, c-format
 msgid "s_page_delete: Unable to delete backup file %s."
 msgstr "s_page_delete: Не могу да избришем датотеку резервног примерка „%s“."
 
-#: libgeda/src/struct/s_page.c:554
+#: libgeda/src/struct/s_page.c:637
 #, c-format
 msgid "Saved [%s]\n"
 msgstr "Сачувао сам (%s)\n"
 
-#: libgeda/src/struct/s_page.c:559
+#: libgeda/src/struct/s_page.c:642
 #, c-format
 msgid "Could NOT save [%s]\n"
 msgstr "НЕ МОГУ да сачувам (%s)\n"
 
-#: libgeda/src/struct/s_page.c:656
-msgid "Disabling auto save timer, no toplevel"
-msgstr ""
-
-#: libgeda/src/struct/s_slot.c:162
+#: libgeda/src/struct/s_slot.c:167
 msgid "Did not find slotdef=#:#,#,#... attribute\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:168
+#: libgeda/src/struct/s_slot.c:173
 msgid "Improper slotdef syntax: missing \":\".\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:183
+#: libgeda/src/struct/s_slot.c:188
 msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:212
+#: libgeda/src/struct/s_slot.c:217
 msgid "component missing pinseq= attribute\n"
 msgstr ""
 
-#: libgeda/src/utility/u_color.c:191
+#: libgeda/src/utility/u_color.c:192
 msgid "Color index out of range"
 msgstr "Индекс боје је изван опсега"
 
