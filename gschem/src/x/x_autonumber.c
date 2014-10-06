@@ -1135,13 +1135,13 @@ void restore_dialog_values(AUTONUMBER_TEXT *autotext)
 static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 {
   GtkWidget *widget;
-  char *text;
+  char      *text;
 
   /* Scope */
 
   /* Search text history */
   widget = gtk_bin_get_child(GTK_BIN(ScopeTextCombo));
-  text = u_string_strdup( GetEntryText(widget));
+  text   = u_string_strdup( GetEntryText(widget));
 
   autotext->scope_text = autonumber_history_add(autotext->scope_text, text);
 
@@ -1178,8 +1178,8 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 /*! \brief response callback for the autonumber text dialog
  *  \par Function Description
  *  The function just closes the dialog if the close button is pressed or
- *  the  user closes the dialog window. When the Apply button is pressed
- *  this function calls retrieve_values_from_dialog and then it doesn't make
+ *  the user closes the dialog window. If the Apply button is pressed this
+ *  function calls retrieve_values_from_dialog and then it doesn't make
  *  any sense.
  */
 void autonumber_text_response(GtkWidget * widget, int response,
@@ -1375,7 +1375,7 @@ GtkWidget* autonumber_create_dialog(GschemToplevel *w_current)
                     (GtkAttachOptions) (0), 0, 0);
   gtk_misc_set_alignment (GTK_MISC (label12), 0, 0.5);
 
-  GEDA_NUMERIC_SPIN(StartNumber, 1, 0, 100);
+  GEDA_NUMERIC_SPIN(StartNumber, 1, 0, 99999);
   gtk_table_attach (GTK_TABLE (table3), StartNumberSpin, 1, 2, 0, 1,
                     (GtkAttachOptions) ( GTK_FILL),
                     (GtkAttachOptions) (0), 0, 0);
