@@ -312,8 +312,8 @@ const char   *o_pin_get_mechanical          (Object *object);
       void    o_selection_add               (SELECTION *selection, Object *o_selected);
       void    o_selection_print_all         (const SELECTION *selection);
       void    o_selection_remove            (SELECTION *selection, Object *o_selected);
-      void    o_selection_select            (Object *object);
-      void    o_selection_unselect          (Object *object);
+      int     o_selection_select            (Object *object);
+      int     o_selection_unselect          (Object *object);
 
 /* o_set.c */
       void    o_set_line_options            (Object *o_current, LINE_OPTIONS *line_options);

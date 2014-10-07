@@ -1,3 +1,18 @@
+2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_list.c: Added conditional GEDA_IS_OBJECT two places
+      in function o_glist_copy_all because of gobject noise in o_selection
+      _select. Now noise can only come from o_selection_add.
+
+    * src/object/o_selection.c: replace g_return_if_fail in functions
+      o_selection_select and o_selection_unselect with something less
+      mundane. Revamp both functions to return a value based on prior
+      state or an error flag.
+
+      Revise function o_selection_add to not add object unless o_selection
+      _select returns 0, which indicates object is a valid unselected
+      gEDA object.
+
 2014-10-03 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Add new function s_page_resequence_by_ids with

@@ -48,8 +48,7 @@ SELECTION *o_selection_new( void )
  */
 void o_selection_add (SELECTION *selection, Object *o_selected)
 {
-  if (o_selected->selected == FALSE) {
-    o_selection_select (o_selected);
+  if (o_selection_select (o_selected) == 1) {
     geda_list_add( (GedaList *)selection, o_selected );
   }
 }
@@ -114,16 +113,31 @@ void o_selection_print_all(const SELECTION *selection)
  *  setting the flag the change notifier is called.
  *
  *  \param [in] object    Object to select.
+ *
+ *  \returns TRUE if the was not selected, FALSE if the object
+ *           was already selected, or -1 to indicate an error
+ *           because \a object is not a valid gEDA object.
  */
-void o_selection_select(Object *object)
+int o_selection_select(Object *object)
 {
-  g_return_if_fail(GEDA_IS_OBJECT(object));
+  int result;
 
-  if (object->selected == FALSE) {
-    o_notify_emit_pre_change (object);
-    object->selected = TRUE;
-    o_notify_emit_change (object);
+  if (GEDA_IS_OBJECT(object)) {
+
+    result = !object->selected;
+
+    if (result) { /* if was not selected */
+      o_notify_emit_pre_change (object);
+      object->selected = TRUE;
+      o_notify_emit_change (object);
+    }
   }
+  else {
+     fprintf(stderr, "%s: Is not gEDA Object:<%p>\n", __func__, object);
+     result = -1;
+  }
+
+  return result;
 }
 
 /*! \brief Unselects the given object
@@ -132,15 +146,26 @@ void o_selection_select(Object *object)
  *  Unsets the select flag for the given object.
  *
  *  \param [in] object    Object to unselect.
+ *
+ *  \returns TRUE if the was selected, FALSE if the object
+ *           was not selected, or -1 to indicate an error
+ *           because \a object is not a valid gEDA object.
  */
-void o_selection_unselect (Object *object)
+int o_selection_unselect (Object *object)
 {
-  g_return_if_fail(GEDA_IS_OBJECT(object));
+  int result;
 
-  if (object->selected == TRUE) {
-    o_notify_emit_pre_change (object);
-    object->selected = FALSE;
-    o_notify_emit_change (object);
+  if (GEDA_IS_OBJECT(object)) {
+
+    if ((result = object->selected)) { /* if was selected */
+      o_notify_emit_pre_change (object);
+      object->selected = FALSE;
+      o_notify_emit_change (object);
+    }
   }
+  else {
+    fprintf(stderr, "%s: Is not gEDA Object:<%p>\n", __func__, object);
+    result = -1;
+  }
+  return result;
 }
-

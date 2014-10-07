@@ -56,22 +56,25 @@ o_glist_copy_all (const GList *src_list, GList *dest_list)
 
   /* first do all NON text items */
   while(src != NULL) {
+
     src_object = (Object *) src->data;
 
-    /* unselect the object before the copy */
-    selected_save = src_object->selected;
-    if (selected_save)
-      o_selection_unselect (src_object);
+    if (GEDA_IS_OBJECT(src_object)) {
+      /* unselect the object before the copy */
+      selected_save = src_object->selected;
+      if (selected_save)
+        o_selection_unselect (src_object);
 
-    if (src_object->type != OBJ_TEXT) {
-      dst_object = o_object_copy (src_object);
-      dest = g_list_prepend (dest, dst_object);
+      if (src_object->type != OBJ_TEXT) {
+        dst_object = o_object_copy (src_object);
+        dest = g_list_prepend (dest, dst_object);
+      }
+
+      /* reselect it */
+      if (selected_save) {
+        o_selection_select (src_object);
+      }
     }
-
-    /* reselect it */
-    if (selected_save)
-      o_selection_select (src_object);
-
     src = g_list_next(src);
   }
 
@@ -79,30 +82,34 @@ o_glist_copy_all (const GList *src_list, GList *dest_list)
 
   /* then do all text items */
   while(src != NULL) {
+
     src_object = (Object *) src->data;
 
-    /* unselect the object before the copy */
-    selected_save = src_object->selected;
-    if (selected_save)
-      o_selection_unselect (src_object);
+    if (GEDA_IS_OBJECT(src_object)) {
 
-    if (src_object->type == OBJ_TEXT) {
-      dst_object = o_object_copy (src_object);
-      dest = g_list_prepend (dest, dst_object);
+      /* unselect the object before the copy */
+      selected_save = src_object->selected;
+      if (selected_save)
+        o_selection_unselect (src_object);
 
-      if (src_object->attached_to != NULL &&
+      if (src_object->type == OBJ_TEXT) {
+        dst_object = o_object_copy (src_object);
+        dest = g_list_prepend (dest, dst_object);
+
+        if (src_object->attached_to != NULL &&
           src_object->attached_to->copied_to != NULL) {
-        o_attrib_attach(dst_object, src_object->attached_to->copied_to, FALSE);
+          o_attrib_attach(dst_object, src_object->attached_to->copied_to, FALSE);
         /* handle slot= attribute, it's a special case */
         if (g_ascii_strncasecmp (dst_object->text->string, "slot=", 5) == 0)
           s_slot_update_object (src_object->attached_to->copied_to);
+          }
+      }
+
+      /* reselect it */
+      if (selected_save) {
+        o_selection_select (src_object);
       }
     }
-
-    /* reselect it */
-    if (selected_save)
-      o_selection_select (src_object);
-
     src = g_list_next(src);
   }
 
