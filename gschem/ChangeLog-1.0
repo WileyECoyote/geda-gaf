@@ -1,3 +1,9 @@
+2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_edit_cprop.c: Do not set the tooltip for the constructor for
+      the symbol name. In function x_dialog_edit_properties_component_change
+      set the tooltip to be the full file name (for both sch and sym files).
+
 2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_move.c: Eliminate call to s_place_free_place_list in

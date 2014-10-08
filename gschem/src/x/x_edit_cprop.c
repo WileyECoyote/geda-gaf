@@ -572,9 +572,22 @@ x_dialog_edit_properties_component_change(GschemToplevel *w_current,
 
   if (object) {
 
+    char *fullname;
+    const CLibSymbol *clib;
+
     filename = object->complex->filename;
 
     SetEntryText(properties->symbol_entry, filename);
+
+    /* Get the full name */
+    clib = s_clib_get_symbol_by_name (filename);
+
+    fullname = s_clib_symbol_get_filename(clib);
+
+    /* set the tooltip as the full file name */
+    SetWidgetTip(properties->symbol_entry, fullname);
+
+    GEDA_FREE(fullname);
 
     attribs   = o_attrib_get_attached_attribs(object);
     all_butes = o_attrib_return_attribs(object);
@@ -591,6 +604,9 @@ x_dialog_edit_properties_component_change(GschemToplevel *w_current,
 
       filename = f_get_basename(Current_Page->filename);
       SetEntryText(properties->symbol_entry, filename);
+
+      /* set the tooltip as the full file name */
+      SetWidgetTip(properties->symbol_entry, Current_Page->filename);
 
       /* symbol mode, get all objects on the page */
       attribs   = s_page_get_objects(Current_Page);
@@ -1003,7 +1019,7 @@ x_dialog_edit_properties_constructor (GschemToplevel *w_current)
   widget = gtk_entry_new();
   gtk_entry_set_activates_default (GTK_ENTRY(widget), TRUE);
   gtk_table_attach_defaults(GTK_TABLE(table), widget, 1,2,0,1);
-  SetWidgetTip(widget, _(symbol_tip));
+  /* Tooltip not set here, see x_dialog_edit_properties_component_change */
   properties->symbol_entry = widget;
 
   /* Row 1 Col 4 */

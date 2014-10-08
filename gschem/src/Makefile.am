@@ -58,6 +58,8 @@ gschem_LDADD     = $(top_builddir)/libgedauio/src/libgedauio.la \
 				   $(top_builddir)/libgeda/src/libgeda.la \
 				   @LIBINTL@
 
+LIBTOOL          = @LIBTOOL@ --silent
+
 # This is used to generate boilerplate for defining Scheme functions in C.
 SUFFIXES = .x
 snarf_cpp_opts   = $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(AM_CFLAGS) \

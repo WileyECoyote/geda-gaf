@@ -101,7 +101,7 @@ g_run_hook_object_list (GschemToplevel *w_current, const char *name,
 
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
-fprintf(stderr, "%s begin\n", __func__);
+
   for (iter = obj_lst; iter != NULL; NEXT(iter)) {
 
     if (GEDA_IS_OBJECT(iter->data)) {
@@ -121,7 +121,7 @@ fprintf(stderr, "%s begin\n", __func__);
 
     scm_remember_upto_here_1 (expr);
   }
-fprintf(stderr, "%s end\n", __func__);
+
   scm_dynwind_end ();
 }
 
