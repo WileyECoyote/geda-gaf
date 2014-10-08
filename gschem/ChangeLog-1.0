@@ -1,5 +1,10 @@
 2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_undo.c: In function o_undo_callback; use geda_list_remove_all
+      instead of o_select_unselect_all.
+
+2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_select.c: Check return value of o_selection_remove and
       only call hook if a valid object in o_select_unselect_all.
 

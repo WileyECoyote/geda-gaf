@@ -340,7 +340,6 @@ void o_move_cancel (GschemToplevel *w_current)
   i_status_set_state (w_current, SELECT);
 
   o_undo_callback(w_current, UNDO_ACTION);
-
 }
 
 /*! \todo Finish function documentation!!!

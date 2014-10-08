@@ -507,8 +507,9 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   geda_notify_list_freeze (Current_Page->change_notify_funcs);
 
-  /* Clear the selection list */
-  o_select_unselect_all (w_current);
+  /* Clear the selection list Note the we do not use o_select_unselect_all
+   * here because all of the object are soon to be wiped-out */
+  geda_list_remove_all(Top_Selection);
 
   if ((w_current->undo_type == UNDO_DISK && u_current->filename) ||
       (w_current->undo_type == UNDO_MEMORY && u_current->object_list))
@@ -587,6 +588,7 @@ void o_undo_callback(GschemToplevel *w_current, int type)
 
   /* Let the caller to decide if redraw or not */
   o_invalidate_all (w_current);
+
   i_status_update_sensitivities (w_current);
 
   /* The page status may have changed */

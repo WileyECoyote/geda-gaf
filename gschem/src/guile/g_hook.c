@@ -95,25 +95,34 @@ void
 g_run_hook_object_list (GschemToplevel *w_current, const char *name,
                         GList *obj_lst)
 {
-  SCM lst = SCM_EOL;
   GList *iter;
+  int    count = 0;
+  SCM    lst   = SCM_EOL;
 
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
-
+fprintf(stderr, "%s begin\n", __func__);
   for (iter = obj_lst; iter != NULL; NEXT(iter)) {
-    lst = scm_cons (edascm_from_object ((Object *) iter->data), lst);
+
+    if (GEDA_IS_OBJECT(iter->data)) {
+      lst = scm_cons (edascm_from_object ((Object *) iter->data), lst);
+      count++;
+    }
   }
 
-  SCM expr = scm_list_3 (run_hook_sym,
-                         g_get_hook_by_name (name),
-                         scm_cons (list_sym,
-                                   scm_reverse_x (lst, SCM_EOL)));
+  if (count) {
 
-  g_scm_eval_protected (expr, scm_interaction_environment ());
+    SCM expr = scm_list_3 (run_hook_sym,
+                           g_get_hook_by_name (name),
+                           scm_cons (list_sym,
+                                     scm_reverse_x (lst, SCM_EOL)));
+
+    g_scm_eval_protected (expr, scm_interaction_environment ());
+
+    scm_remember_upto_here_1 (expr);
+  }
+fprintf(stderr, "%s end\n", __func__);
   scm_dynwind_end ();
-  scm_remember_upto_here_1 (expr);
-
 }
 
 /*! \brief Runs a page hook.
