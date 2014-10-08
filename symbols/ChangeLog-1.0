@@ -1,3 +1,7 @@
+2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * fairchild/FAN7380-2.sym: Revise symbols for better grid alignment.
+
 2014-10-04 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/: Add new symbols for MCP8024 three-phase half bridger driver
