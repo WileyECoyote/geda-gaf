@@ -1,5 +1,10 @@
 2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_move.c: Eliminate call to s_place_free_place_list in
+      function o_move_cancel because this is done in o_undo_callback.
+
+2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_undo.c: In function o_undo_callback; use geda_list_remove_all
       instead of o_select_unselect_all.
 

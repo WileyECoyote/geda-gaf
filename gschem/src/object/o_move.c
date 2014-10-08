@@ -331,7 +331,7 @@ void o_move_cancel (GschemToplevel *w_current)
     stretch->object->dont_redraw = FALSE;
   }
 
-  s_place_free_place_list(w_current->toplevel);
+  //s_place_free_place_list(w_current->toplevel);
 
   o_move_stretch_destroy_all (w_current->stretch_list);
   w_current->stretch_list = NULL;
