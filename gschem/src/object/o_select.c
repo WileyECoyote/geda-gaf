@@ -481,38 +481,54 @@ bool o_select_is_selection(GschemToplevel *w_current)
  */
 void o_select_unselect_all(GschemToplevel *w_current)
 {
-  GedaToplevel  *toplevel  = w_current->toplevel;
-  SELECTION     *selection = Top_Selection;
+  if (o_select_is_selection(w_current)) {
 
-  GList     *removed;
-  GList     *iter;
-  Object    *object;
-  int        count;
+    GedaToplevel  *toplevel  = w_current->toplevel;
+    SELECTION     *selection = Top_Selection;
 
-  if (selection->glist != NULL) {
+    Object    *object;
+    GList     *iter;
+    GList     *removed;
 
-    removed = g_list_copy(selection->glist);
+    removed = NULL;
 
-    count   = g_list_length(removed);
+    if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
-    if (count > 1) {
-      iter = g_list_first(removed);
+
+      iter = g_list_first(geda_list_get_glist (selection));
+
       do {
+
         object = iter->data;
-        o_selection_remove(selection, object );
-        NEXT(iter);
+
+        if (o_selection_remove(selection, object) == 1) {
+
+          removed = g_list_prepend(removed, object);
+
+        }
+
+        iter = iter->next;
+
       } while (iter);
-      /* Call hooks with list of removed objects */
-      g_run_hook_object_list(w_current, "%deselect-objects-hook", removed);
     }
     else {
-      object = removed->data;
-      if (GEDA_IS_OBJECT(object)) {
+
+      object = geda_list_get_glist (selection)->data;
+
+      if (o_selection_remove(selection, object) == 1) {
+
         o_selection_remove(selection, object);
+
         g_run_hook_object(w_current, "%deselect-objects-hook", object);
       }
     }
-    g_list_free(removed);
+
+    if (removed) {
+
+      g_run_hook_object_list (w_current, "%deselect-objects-hook", removed);
+
+      g_list_free(removed);
+    }
   }
 }
 

@@ -1,3 +1,8 @@
+2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_select.c: Check return value of o_selection_remove and
+      only call hook if a valid object in o_select_unselect_all.
+
 2014-10-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: Increase spinner limit for starting number from
