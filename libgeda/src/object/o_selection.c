@@ -63,18 +63,37 @@ void o_selection_add (SELECTION *selection, Object *o_selected)
  *
  *  \param [in] selection  Pointer to the selection list
  *  \param [in] o_selected Object to unselect and remove from the list.
+ *
+ *  \returns TRUE if \a object was selected and was removed, FALSE if the
+ *           object was either not selected or was not in the selection
+ *           or -1 to indicate an error if \a object is not a valid gEDA
+ *           object.
  */
-void o_selection_remove (SELECTION *selection, Object *o_selected)
+int o_selection_remove (SELECTION *selection, Object *object)
 {
+  int result;
 
-  if (o_selected != NULL) {
+  if (object != NULL) {
 
-    if (g_list_find( geda_list_get_glist(selection), o_selected ) != NULL) {
+    if (g_list_find( geda_list_get_glist(selection), object ) != NULL) {
 
-      o_selection_unselect (o_selected);
-      geda_list_remove( (GedaList *)selection, o_selected );
+      result = o_selection_unselect (object);
+      geda_list_remove( (GedaList *)selection, object );
     }
+    else {
+      if (GEDA_IS_OBJECT(object)) {
+        result = 0;
+      }
+      else {
+        result = -1;
+      }
+    }
+
   }
+  else {
+    result = -1;
+  }
+  return result;
 }
 
 
