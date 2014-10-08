@@ -681,8 +681,14 @@ Object *o_complex_read (GedaToplevel *toplevel,
   else {
 
     const CLibSymbol *clib = s_clib_get_symbol_by_name (basename);
+   /* GList  *symlist = NULL;
+
+    symlist = s_clib_search (basename, CLIB_EXACT);
+    clib    = (CLibSymbol *) symlist->data;*/
 
     new_obj = o_complex_new(toplevel, x1, y1, angle, mirror, clib, basename, selectable);
+
+    //g_list_free (symlist);
 
     /* Delete or hide attributes eligible for promotion inside the complex */
     if (new_obj) {

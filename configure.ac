@@ -9,8 +9,8 @@ dnl directory.
 #####################################################################
 m4_define([geda_major_version],   [2])
 m4_define([geda_minor_version],   [0])
-m4_define([geda_micro_version],   [8])
-m4_define([geda_mutation],        [16])
+m4_define([geda_micro_version],   [9])
+m4_define([geda_mutation],        [0])
 
 m4_define([geda_version],
 [geda_major_version.geda_minor_version.geda_micro_version.geda_mutation])

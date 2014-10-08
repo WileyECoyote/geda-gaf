@@ -487,17 +487,18 @@ void o_select_unselect_all(GschemToplevel *w_current)
     SELECTION     *selection = Top_Selection;
 
     Object    *object;
-    GList     *iter;
     GList     *removed;
 
     removed = NULL;
 
     if (g_list_length(geda_list_get_glist (selection)) > 1) {
 
+      GList     *list;
+      GList     *iter;
 
-      iter = g_list_first(geda_list_get_glist (selection));
+      list = g_list_copy (geda_list_get_glist (selection));
 
-      do {
+      for (iter = list; iter; iter = iter->next) {
 
         object = iter->data;
 
@@ -506,10 +507,9 @@ void o_select_unselect_all(GschemToplevel *w_current)
           removed = g_list_prepend(removed, object);
 
         }
+      }
 
-        iter = iter->next;
-
-      } while (iter);
+      g_list_free(list);
     }
     else {
 

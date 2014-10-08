@@ -78,9 +78,12 @@ int o_selection_remove (SELECTION *selection, Object *object)
     if (g_list_find( geda_list_get_glist(selection), object ) != NULL) {
 
       result = o_selection_unselect (object);
+
       geda_list_remove( (GedaList *)selection, object );
+
     }
     else {
+
       if (GEDA_IS_OBJECT(object)) {
         result = 0;
       }
@@ -88,7 +91,6 @@ int o_selection_remove (SELECTION *selection, Object *object)
         result = -1;
       }
     }
-
   }
   else {
     result = -1;

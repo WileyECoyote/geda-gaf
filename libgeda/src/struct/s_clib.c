@@ -1532,7 +1532,7 @@ char *s_clib_symbol_get_data_by_name (const char *name)
  *
  *  \warning The #CLibSymbol instances in the \b GList returned belong
  *  to the component library, and should be considered constants; they
- *  should not be manipulated or free()'d.  On the other hand, the \b
+ *  should not be manipulated or free'd.  On the other hand, the \b
  *  GList returned must be freed with \b g_list_free() when no longer
  *  needed.  Note that the values returned will be invalidated by a
  *  call to s_clib_free() or s_clib_refresh().

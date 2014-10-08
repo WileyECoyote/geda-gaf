@@ -238,7 +238,7 @@ void geda_list_remove( GedaList *list, void *item )
   if (g_list_find(list->glist, item)) {
 
   list->glist = g_list_remove(list->glist, item);
-  g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
+    g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
   }
 }
 

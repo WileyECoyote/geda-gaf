@@ -713,13 +713,13 @@ x_dialog_edit_properties_update_selection (GschemToplevel *w_current,
 
   properties = g_object_get_data (G_OBJECT (dialog), IDS_PROP_EDIT);
 
-  x_dialog_edit_properties_component_change(w_current, object, properties);
-
   if (object != NULL && object->type == OBJ_COMPLEX) {
+    x_dialog_edit_properties_component_change(w_current, object, properties);
     g_object_set_data(G_OBJECT(dialog), "object", object);
     gtk_widget_grab_focus(properties->symbol_entry);
   }
-  else {
+  else if (s_page_is_symbol_file(Current_Page)) {
+    x_dialog_edit_properties_component_change(w_current, NULL, properties);
     g_object_set_data(G_OBJECT(dialog), "object", NULL);
     gtk_widget_grab_focus(properties->author_entry);
   }
