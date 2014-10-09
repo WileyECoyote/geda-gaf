@@ -1,3 +1,8 @@
+2014-10-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip/: Add new symbols for MCP16321 and MCP16322, 1A and 2A
+      Synchronous Buck Regulators
+
 2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * fairchild/FAN7380-2.sym: Revise symbols for better grid alignment.
