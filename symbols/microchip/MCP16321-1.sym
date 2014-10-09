@@ -1,0 +1,209 @@
+v 20140915 2
+P 100 1900 400 1900 1 0 0
+{
+T 300 1950 5 8 1 1 0 6 1
+pinnumber=1
+T 300 1850 5 8 0 1 0 8 1
+pinseq=1
+T 450 1900 9 8 1 1 0 0 1
+pinlabel=SW
+T 450 1900 5 8 0 1 0 2 1
+pintype=pas
+}
+P 100 1600 400 1600 1 0 0
+{
+T 300 1650 5 8 1 1 0 6 1
+pinnumber=2
+T 300 1550 5 8 0 1 0 8 1
+pinseq=2
+T 450 1600 9 8 1 1 0 0 1
+pinlabel=VIN
+T 450 1600 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 1300 400 1300 1 0 0
+{
+T 300 1350 5 8 1 1 0 6 1
+pinnumber=3
+T 300 1250 5 8 0 1 0 8 1
+pinseq=3
+T 450 1300 9 8 1 1 0 0 1
+pinlabel=VIN
+T 450 1300 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 100 1000 400 1000 1 0 0
+{
+T 300 1050 5 8 1 1 0 6 1
+pinnumber=4
+T 300 950 5 8 0 1 0 8 1
+pinseq=4
+T 450 1000 9 8 1 1 0 0 1
+pinlabel=SGND
+T 450 1000 5 8 0 1 0 2 1
+pintype=pwr
+}
+P 1000 100 1000 400 1 0 0
+{
+T 950 300 5 8 1 1 90 6 1
+pinnumber=5
+T 1050 300 5 8 0 1 90 8 1
+pinseq=5
+T 1000 450 9 8 1 1 90 0 1
+pinlabel=FB
+T 1000 450 5 8 0 1 90 2 1
+pintype=pas
+}
+P 1300 100 1300 400 1 0 0
+{
+T 1250 300 5 8 1 1 90 6 1
+pinnumber=6
+T 1350 300 5 8 0 1 90 8 1
+pinseq=6
+T 1300 450 9 8 1 1 90 0 1
+pinlabel=NC
+T 1300 450 5 8 0 1 90 2 1
+pintype=pas
+}
+P 1600 100 1600 400 1 0 0
+{
+T 1550 300 5 8 1 1 90 6 1
+pinnumber=7
+T 1650 300 5 8 0 1 90 8 1
+pinseq=7
+T 1600 450 9 8 1 1 90 0 1
+pinlabel=NC
+T 1600 450 5 8 0 1 90 2 1
+pintype=pas
+}
+P 1900 100 1900 400 1 0 0
+{
+T 1850 300 5 8 1 1 90 6 1
+pinnumber=8
+T 1950 300 5 8 0 1 90 8 1
+pinseq=8
+T 1900 450 9 8 1 1 90 0 1
+pinlabel=PG
+T 1900 450 5 8 0 1 90 2 1
+pintype=pwr
+}
+P 3100 1900 2800 1900 1 0 0
+{
+T 2900 1950 5 8 1 1 0 0 1
+pinnumber=12
+T 2900 1850 5 8 0 1 0 2 1
+pinseq=9
+T 2750 1900 9 8 1 1 0 6 1
+pinlabel=SW
+T 2750 1900 5 8 0 1 0 8 1
+pintype=out
+}
+P 3100 1600 2800 1600 1 0 0
+{
+T 2900 1650 5 8 1 1 0 0 1
+pinnumber=11
+T 2900 1550 5 8 0 1 0 2 1
+pinseq=10
+T 2750 1600 9 8 1 1 0 6 1
+pinlabel=VIN
+T 2750 1600 5 8 0 1 0 8 1
+pintype=pwr
+}
+P 3100 1300 2800 1300 1 0 0
+{
+T 2900 1350 5 8 1 1 0 0 1
+pinnumber=10
+T 2900 1250 5 8 0 1 0 2 1
+pinseq=11
+T 2750 1300 9 8 1 1 0 6 1
+pinlabel=BOOST
+T 2750 1300 5 8 0 1 0 8 1
+pintype=in
+}
+P 3100 1000 2800 1000 1 0 0
+{
+T 2900 1050 5 8 1 1 0 0 1
+pinnumber=9
+T 2900 950 5 8 0 1 0 2 1
+pinseq=12
+T 2750 1000 9 8 1 1 0 6 1
+pinlabel=EN
+T 2750 1000 5 8 0 1 0 8 1
+pintype=in
+}
+P 1200 2800 1200 2500 1 0 0
+{
+T 1150 2600 5 8 1 1 90 0 1
+pinnumber=16
+T 1250 2600 5 8 0 1 90 2 1
+pinseq=13
+T 1200 2450 9 8 1 1 90 6 1
+pinlabel=SW
+T 1200 2450 5 8 0 1 90 8 1
+pintype=out
+}
+P 1500 2800 1500 2500 1 0 0
+{
+T 1450 2600 5 8 1 1 90 0 1
+pinnumber=15
+T 1550 2600 5 8 0 1 90 2 1
+pinseq=14
+T 1500 2450 9 8 1 1 90 6 1
+pinlabel=PGND
+T 1500 2450 5 8 0 1 90 8 1
+pintype=pwr
+}
+P 1800 2800 1800 2500 1 0 0
+{
+T 1750 2600 5 8 1 1 90 0 1
+pinnumber=14
+T 1850 2600 5 8 0 1 90 2 1
+pinseq=15
+T 1800 2450 9 8 1 1 90 6 1
+pinlabel=PGND
+T 1800 2450 5 8 0 1 90 8 1
+pintype=pwr
+}
+P 2100 2800 2100 2500 1 0 0
+{
+T 2050 2600 5 8 1 1 90 0 1
+pinnumber=13
+T 2150 2600 5 8 0 1 90 2 1
+pinseq=16
+T 2100 2450 9 8 1 1 90 6 1
+pinlabel=SW
+T 2100 2450 5 8 0 1 90 8 1
+pintype=out
+}
+P 2200 100 2200 400 1 0 0
+{
+T 2150 300 5 8 1 1 90 6 1
+pinnumber=17
+T 2250 300 5 8 0 1 90 8 1
+pinseq=17
+T 2200 450 9 8 1 1 90 0 1
+pinlabel=EP
+T 2200 450 5 8 0 1 90 2 1
+pintype=pwr
+}
+B 400 400 2400 2100 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 2800 2600 8 10 1 1 0 6 1
+refdes=U?
+T 1200 1550 9 10 1 0 0 0 1
+MCP16321
+T 200 3050 5 10 0 0 0 0 1
+device=MCP16321
+T 200 3250 5 10 0 0 0 0 1
+footprint=QFN-3
+T 200 3450 5 10 0 0 0 0 1
+author=AutoTron
+T 200 3650 5 10 0 0 0 0 1
+documentation=http://ww1.microchip.com/downloads/en/DeviceDoc/22285A.pdf
+T 200 3850 5 10 0 0 0 0 1
+description=Synchronous Buck Regulator
+T 200 4050 5 10 0 0 0 0 1
+numslots=0
+T 200 4250 5 10 0 0 0 0 1
+dist-license=GPL3
+T 200 4450 5 10 0 0 0 0 1
+use-license=unlimited

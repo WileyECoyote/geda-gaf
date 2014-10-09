@@ -1,4 +1,10 @@
-2014-10-09 Wiley E. Hill <wileyhill@gmail.com>
+2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * onsemi/: New group for manufacture ON Semiconductor, add new symbols
+      for MC34063-1 and MC34063-2, Synchronous Buck Regulators, relocate
+      NUP4201MR6-1.sym to this group.
+
+2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/: Add new symbols for MCP16321 and MCP16322, 1A and 2A
       Synchronous Buck Regulators
