@@ -30,7 +30,7 @@ Fields in the TAB or space delimited parameter file are read and interpreted as 
 4. Package name,  if the -p option is present on the command line then the 4th field interpreted  as the package ID and included in the file name
 5. FootPrint must be the next argument and is substituted for unknown in the template
 6. Optional symbol file modifier, if present, the value is used as a second suffix before dash suffix. Normally this would be used to select the template with the correct pin -out, for example using ECB or BEC. The string is prefixed with a underscore composing the template file name.
-7. Optional symbol file suffix, if this value is present in the parameter file, the string will be used between the template given on the commanline and the symbol file extension, in this case the name of the template given on the command line should only be the base file name. The string is prefixed with a dash composing the template file name. Note that if a modifier is not given then this parameter 6 is assumed to be the symbol file suffix
+7. Optional symbol file suffix, if this value is present in the parameter file, the string will be used between the template given on the commanline and the symbol file extension, in this case the name of the template given on the command line should only be the base file name. The string is prefixed with a dash composing the template file name. Note that if a modifier is not given then parameter ini position 6 is assumed to be the symbol file suffix
 
 .SH INFORMATION
 Use of the following options displays information related to gmake-transistors-sym

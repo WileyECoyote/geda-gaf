@@ -35,7 +35,7 @@ echo
 echo Usage:   `basename $0` '[-options] template-symbol parameters-file'
 echo
 echo "Abstract: This script is for 'batch' production of transistor symbols"
-echo "         for the geda=gaf project. The script uses template symbol file"
+echo "         for the geda-gaf project. The script uses template symbol file"
 echo "         and a parameter file. Parameters read from the file are used"
 echo "         in the output symbol file name or used as replacement values for"
 echo "         pre-set variables in the symbol template file. The parameters are"
@@ -46,22 +46,22 @@ echo "         2. Voltage string is included in the file name and as part of the
 echo "         3. Features string also included in the file name and in the COMPONENT_VALUE. This"
 echo "            could be, for example, Wattage or Ampacity"
 echo "         4. Package name,  if the -p option is present on the command line then the 4th field"
-echo "            interpreted  as the package ID and included in the file name"
+echo "            is interpreted  as the package ID and included in the file name"
 echo "         5. FootPrint must be the next argument and is substituted for unknown in the template"
 echo "         6. Optional symbol file modifier, if present, the value is used as a second suffix before"
-echo "            dash suffix. Normally this would be used to select the template with the correct pin"
+echo "            the dash suffix. Normally this would be used to select the template with the correct pin"
 echo "            -out, for example using ECB or BEC. The string is prefixed with a underscore composing"
 echo "            the template file name."
 echo "         7. Optional symbol file suffix, if this value is present in the parameter file, the"
 echo "            string will be used between the template given on the commanline and the symbol"
 echo "            file extension, in this case the name of the template given on the command line"
 echo "            should only be the base file name. The string is prefixed with a dash composing"
-echo "            the template file name. Note that if a modifier is not given then this parameter"
-echo "            6 is assumed to be the symbol file suffix"
+echo "            the template file name. Note that if a modifier is not given then parameter in"
+echo "            position 6 is assumed to be the symbol file suffix"
 echo
 echo "            Note on styles: The standard symbols include the technically correct symbols!"
 echo "            Alternative styles can be used to provide a visual indication of something unusual"
-echo "            about a component or group of components such as odd pin or package configurations"
+echo "            about a component or group of components such as odd pin or package configuration"
 echo "            When creating new styles a complementary symbol should also be created!"
 echo
 echo "Options: -h, --help       Show this information"
@@ -88,10 +88,10 @@ do_Assimilate_Arguments(){
 
    for Arg in $*; do
       case $Arg in
-         --help | -h) do_show_help ; return=1                         ;;
-        --usage | -u) do_show_usage ; return=1                        ;;
+         --help | -h) do_show_help ; exit 0                           ;;
+        --usage | -u) do_show_usage ; exit 0                          ;;
       --verbose | -v) VERBOSE=true  ;                                 ;;
-           --version) echo `basename $0` "Version $VER" ; return=1    ;;
+           --version) echo `basename $0` "Version $VER" ; exit 0      ;;
         --quiet | -q) QUIET=true  ;                                   ;;
 
       --package | -p) include_package=true ;                          ;;
