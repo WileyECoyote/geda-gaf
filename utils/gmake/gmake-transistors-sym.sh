@@ -32,7 +32,7 @@ do_show_usage(){
 
 do_show_help(){
 echo
-echo Usage:   `basename $0` '[-options] template-symbol parameters-file'
+echo Usage:   `basename $0` '[-options] template-symbol parameter-file'
 echo
 echo "Abstract: This script is for 'batch' production of transistor symbols"
 echo "         for the geda-gaf project. The script uses template symbol file"

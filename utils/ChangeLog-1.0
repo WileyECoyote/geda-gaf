@@ -1,3 +1,9 @@
+2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gmake/gmake-transistors-sym.sh: Fix minor grammatical errors and help strings
+
+        * docs/gmake-transistors-sym.1.in: Fix minor grammatical errors in man page
+
 2014-08-27 Wiley E. Hill <wileyhill@gmail.com>
 
         * tests/gxyrs: Rename several output file and changed corresponding
