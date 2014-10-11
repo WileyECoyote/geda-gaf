@@ -1,3 +1,10 @@
+2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * vishay: Regenerate all single MOSFETs (both nmosfet and pmosfet) symbols
+      using new template that have a path for triangle rather than three lines
+      that did not butt together well, thanks Cario. Filled triangles for type
+      4`s, add diodes. Add src directory to expose templates and data.
+
 2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/: New group for manufacture ON Semiconductor, add new symbols
