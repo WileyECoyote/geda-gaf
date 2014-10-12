@@ -1353,6 +1353,11 @@ autonumber_create_filter_options (GtkWidget *Dialog,
 {
   GtkWidget *widget;
 
+  widget = geda_aligned_visible_label_new(_("<b>Filter:</b>"), 0, 0);
+  geda_label_widget_set_use_markup(widget, TRUE);
+  gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
+  gtk_misc_set_alignment (GTK_MISC (widget), 0, 0.5);
+
   widget = geda_bulb_new_visible_with_mnemonic(NULL, "History");
   gtk_widget_set_direction(widget, GTK_TEXT_DIR_RTL);
   gtk_box_pack_start (GTK_BOX (container), widget,  FALSE, FALSE, 5);
@@ -1424,6 +1429,7 @@ autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
   GtkWidget *ThisDialog;
   GtkWidget *main_vbox;
   GtkWidget *alignment;
+  GtkWidget *frame;
   GtkWidget *hbox;
   GtkWidget *label;
   GtkWidget *upper_table;
@@ -1451,15 +1457,18 @@ autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
   main_vbox = GTK_DIALOG(ThisDialog)->vbox;
 
   /* scope section */
+  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
+  gtk_box_pack_start(GTK_BOX(main_vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
+
   label = geda_aligned_visible_label_new(_("<b>Scope</b>"), 0, 0);
-  gtk_box_pack_start (GTK_BOX(main_vbox), label, TRUE, TRUE, 0);
   geda_label_widget_set_use_markup(label, TRUE);
+  gtk_frame_set_label_widget (GTK_FRAME(frame), label);
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
   g_object_set (alignment, "visible", TRUE, NULL);
-  gtk_box_pack_start (GTK_BOX (main_vbox), alignment, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (frame), alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
-                             DIALOG_INDENTATION, 0);
+                             DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   upper_vbox = gtk_vbox_new (FALSE, 0);
   g_object_set (upper_vbox, "visible", TRUE, NULL);
@@ -1521,15 +1530,18 @@ autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
   GTK_SWITCH(upper_vbox, ScopeOverwrite, 6, FALSE)
 
   /* Options section */
+  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME, "label", "", NULL));
+  gtk_box_pack_start(GTK_BOX(main_vbox), frame, FALSE, FALSE, DEFAULT_WIDGET_SPACING);
+
   label = geda_aligned_visible_label_new(_("<b>Options</b>"), 0, 0);
   geda_label_widget_set_use_markup(label, TRUE);
-  gtk_box_pack_start(GTK_BOX(main_vbox), label, TRUE, TRUE, 0);
+  gtk_frame_set_label_widget (GTK_FRAME(frame), label);
 
   alignment = gtk_alignment_new (0, 0, 1, 1);
   g_object_set (alignment, "visible", TRUE, NULL);
-  gtk_box_pack_start(GTK_BOX(main_vbox), alignment, TRUE, TRUE, 0);
+  gtk_container_add (GTK_CONTAINER (frame), alignment);
   gtk_alignment_set_padding (GTK_ALIGNMENT (alignment), 0, 0,
-                             DIALOG_INDENTATION, 0);
+                             DIALOG_INDENTATION, DIALOG_INDENTATION);
 
   lower_vbox = gtk_vbox_new (FALSE, 3);
   g_object_set (lower_vbox, "visible", TRUE, NULL);
