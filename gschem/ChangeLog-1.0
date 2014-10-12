@@ -1,3 +1,8 @@
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: Pass w_current to autonumber_init_state to check
+      hierarchy, preset options based on findings.
+
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/o&x/ *.c: Revise and update Doxygen documentation

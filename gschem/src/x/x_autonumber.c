@@ -782,9 +782,9 @@ autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
 /*! \brief Handles all the options of the autonumber text dialog
  *  \par Function Description
  *  This function is the main routine for the autonumber code. The function
- *  retreives options from the \a autotext structure. First it collects all
+ *  retrieves options from the \a autotext structure. First it collects all
  *  pages of a hierarchical schematic, even if hierarchy info is not used.
- *  The function retreives all matching text elements for the searchtext and
+ *  The function retrieves all matching text elements for the searchtext and
  *  then renumbers text elements based on options from the dialog.
  *
  *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
@@ -1227,9 +1227,11 @@ set_scope_filter_text_wild (GtkWidget *button, void *data)
  *  Values in the structure are initialized to default or set to
  *  trigger the defaults to be load later.
  *
+ *  \param [in] w_current Pointer to the top level struct
+ *
  *  \return Pointer to the allocated structure or NULL on error.
  */
-static AUTONUMBER_TEXT *autonumber_init_state()
+static AUTONUMBER_TEXT *autonumber_init_state(GschemToplevel *w_current)
 {
   AUTONUMBER_TEXT *autotext;
 
@@ -1243,13 +1245,19 @@ static AUTONUMBER_TEXT *autonumber_init_state()
 
   autotext->last_criteria = SCOPE_QUESTION;
 
-  /*TODO: Check hierarchy and assign scope based on results.
-   *  for example is the current page below another page? if so
-   *  then we should start with SCOPE_HIERARCHY*/
-  autotext->scope_skip = SCOPE_PAGE;
-
-  /*TODO: Check selection and assign scope based on results */
-  autotext->scope_number = SCOPE_SELECTED;
+  if (s_hierarchy_find_up_page(w_current->toplevel->pages, Current_Page)) {
+    autotext->scope_skip   = SCOPE_HIERARCHY;
+    autotext->scope_number = SCOPE_HIERARCHY;
+  }
+  else {
+    autotext->scope_skip = SCOPE_PAGE;
+    if (o_select_is_selection(w_current)) {
+      autotext->scope_number = SCOPE_SELECTED;
+    }
+    else {
+      autotext->scope_number = SCOPE_PAGE;
+    }
+  }
 
   autotext->scope_overwrite = FALSE;
   autotext->order = AUTONUMBER_SORT_DIAGONAL;
@@ -1711,7 +1719,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
 
   if(autotext == NULL) {
     /* first call of this function, to allocate and init our structure */
-    autotext=autonumber_init_state();
+    autotext=autonumber_init_state(w_current);
   }
 
   /* set the GschemToplevel always. Can it be changed between the calls??? */

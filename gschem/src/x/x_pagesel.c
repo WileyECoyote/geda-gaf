@@ -172,9 +172,8 @@ pagesel_callback_selection_changed (GtkTreeSelection *selection,
   }
 
   w_current = GSCHEM_DIALOG (pagesel)->w_current;
-  gtk_tree_model_get (model, &iter,
-                      COLUMN_Page, &page,
-                      -1);
+
+  gtk_tree_model_get (model, &iter, COLUMN_Page, &page, -1);
 
   /* Since setting the current page may call x_pagesel_update(), which
    * might change the current page selection, make sure we do nothing
