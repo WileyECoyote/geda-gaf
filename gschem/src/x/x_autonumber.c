@@ -1152,11 +1152,14 @@ set_scope_filter_text_history (GtkWidget *button, void *data)
   for (iter = autotext->scope_history; iter; NEXT(iter)) {
 
     geda_combo_box_text_widget_append(ScopeTextCombo, iter->data);
+
     count++;
   }
 
   if (count) {
+
     SetEntryText( combo->entry, g_list_first(autotext->scope_history)->data);
+
   }
 
   autotext->last_criteria = SCOPE_HISTORY;

@@ -1,7 +1,11 @@
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
-    * call retrieve_values_from_dialog when dialog closed, not just when
-      applied, is close not cancel.
+    * src/x/x_autonumber.c: Do not set entry when there is no history.
+
+2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: Call retrieve_values_from_dialog when dialog
+      closing, not just when applied, is close not cancel.
 
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
