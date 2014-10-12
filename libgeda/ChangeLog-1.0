@@ -1,3 +1,8 @@
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+  ** src/struct/s_slot.c: Fix memory leak in s_slot_update_object by
+     passing tmp string to o_text_set_string.
+
 2014-10-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_selection.c: Also revamp o_selection_remove to return
