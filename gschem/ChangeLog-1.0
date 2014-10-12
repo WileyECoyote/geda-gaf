@@ -1,3 +1,8 @@
+2014-10-1a Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: Implement GschemResponseType for Auto-Number
+      Dialog
+
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_dialog.h: Add enumeration for GschemDialog Responses.

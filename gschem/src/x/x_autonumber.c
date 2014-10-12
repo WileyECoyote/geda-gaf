@@ -146,7 +146,7 @@ struct autonumber_text_t {
   GList *scope_history;
 
   /** @brief What scope data set to restore */
-  ScopeFilter last_criteria;
+  int last_criteria;
 
   /** @brief Scope for autonumbering text */
   AutoNumberScope scope_number;
@@ -1283,7 +1283,7 @@ static void autonumber_text_response(GtkWidget       *widget,
                                      AUTONUMBER_TEXT *autotext)
 {
   switch (response) {
-    case GTK_RESPONSE_ACCEPT:
+    case GSCHEM_RESPONSE_ACCEPT:
       retrieve_values_from_dialog(autotext);
       if (autotext->removenum == TRUE && autotext->scope_overwrite == FALSE) {
         /* temporarly set the overwrite flag */
@@ -1296,9 +1296,9 @@ static void autonumber_text_response(GtkWidget       *widget,
       }
       break;
 
-    case GTK_RESPONSE_REJECT:
+    case GSCHEM_RESPONSE_CLOSE:
 
-    case GTK_RESPONSE_DELETE_EVENT:
+    case GSCHEM_RESPONSE_DELETE_EVENT:
       gtk_widget_destroy(autotext->dialog);
       autotext->dialog = NULL;
       break;
@@ -1314,7 +1314,8 @@ static void autonumber_text_response(GtkWidget       *widget,
  *       The functions handles callback for all switches on This
  *       Dialog.
  */
-static void switch_responder(GtkWidget *widget, ControlID *Control)
+static void
+switch_responder(GtkWidget *widget, ControlID *Control)
 {
   bool state = GET_SWITCH_STATE (widget);
   GtkWidget* SwitchImage = get_geda_switch_image( state);
@@ -1435,14 +1436,14 @@ autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
             /* modal-less */                  GSCHEM_MODELESS_DIALOG,
                                               IDS_AUTONUMBER,
                                               w_current,
-                                              GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                              GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                              GTK_STOCK_CLOSE, GSCHEM_RESPONSE_CLOSE,
+                                              GTK_STOCK_APPLY, GSCHEM_RESPONSE_ACCEPT,
                                               NULL );
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
   gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                          GTK_RESPONSE_ACCEPT,
-                                          GTK_RESPONSE_REJECT,
+                                          GSCHEM_RESPONSE_ACCEPT,
+                                          GSCHEM_RESPONSE_CLOSE,
                                           -1);
 
   /* gtk_window_position (GTK_WINDOW (ThisDialog), GTK_WIN_POS_MOUSE);*/
@@ -1600,7 +1601,7 @@ void autonumber_text_dialog(GschemToplevel *w_current)
     autonumber_sortorder_create(w_current);
 
     gtk_dialog_set_default_response (GTK_DIALOG (autotext->dialog),
-                                     GTK_RESPONSE_ACCEPT);
+                                     GSCHEM_RESPONSE_ACCEPT);
 
     g_signal_connect (G_OBJECT (autotext->dialog), "response",
                       G_CALLBACK (autonumber_text_response),
