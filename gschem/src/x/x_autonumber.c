@@ -1140,19 +1140,24 @@ autonumber_add_history(GList *history, char *text)
 static void
 set_scope_filter_text_history (GtkWidget *button, void *data)
 {
-  AUTONUMBER_TEXT *autotext = data;
-  GedaComboBoxText *combo   = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
+  AUTONUMBER_TEXT  *autotext = data;
+  GedaComboBoxText *combo    = GEDA_COMBO_BOX_TEXT(ScopeTextCombo);
+
   GList *iter;
+
+  int count = 0;
 
   geda_combo_box_text_remove_all(combo);
 
   for (iter = autotext->scope_history; iter; NEXT(iter)) {
 
     geda_combo_box_text_widget_append(ScopeTextCombo, iter->data);
-
+    count++;
   }
 
-  SetEntryText( combo->entry, g_list_first(autotext->scope_history)->data);
+  if (count) {
+    SetEntryText( combo->entry, g_list_first(autotext->scope_history)->data);
+  }
 
   autotext->last_criteria = SCOPE_HISTORY;
 }
@@ -1411,7 +1416,7 @@ static void autonumber_text_response(GtkWidget       *widget,
       break;
 
     case GSCHEM_RESPONSE_CLOSE:
-
+      retrieve_values_from_dialog(autotext);
     case GSCHEM_RESPONSE_DELETE_EVENT:
       gtk_widget_destroy(autotext->dialog);
       autotext->dialog = NULL;
