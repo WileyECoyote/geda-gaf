@@ -1,3 +1,18 @@
+2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_autonumber.c: User Current_Page and NEXT macros to cleanup
+      long lines. Eliminate ->CHANGED in autonumber_apply_new_text, autonumber_
+      remove_number, this is done by Libgeda when o_text_set_string calls o_
+      text_recreate. Fix SCOPE_Page, remnants of global S&R, S/B SCOPE_PAGE.
+      Add enumerator ScopeFilter, add asterisk version string table; wild_text,
+      and make default_text global with wild_text, renaming to unset_text.
+      In function autonumber_text_autonumber; Skip trailing alpha characters.
+      In function autonumber_match; remove requirement for "only digits" and
+      subsequent unused variable "i".
+      Get rid of gconstpointer, is claptrap rubbish.
+      autonumber_create_dialog: Redo the dialog to add user selectable filters,
+      handle all repsonders and manipulators accordingly.
+
 2014-10-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_edit_cprop.c: Do not set the tooltip for the constructor for
