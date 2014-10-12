@@ -201,6 +201,7 @@ void i_command_router(char* command, GschemToplevel *w_current)
       task = g_new( gschem_task, 1);
       task->func.F1 = (void*)command_struc[i].func;
       task->arg1 = command_struc[i].w_current;
+      task->arg2 = NULL;
       g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
     }
     else /* USE_WORKER_THREAD */ {

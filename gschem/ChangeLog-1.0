@@ -1,5 +1,11 @@
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Initialize task->arg2 = NULL in i_command_router
+      because is compared to in i_command_dispatch but was not initialized in
+      in i_command_router because is allocated with g_new not g_new0.
+
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_autonumber.c: Add frames to Auto-Number, one for the Scope
       and one for the Options section.
 
