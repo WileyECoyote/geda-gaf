@@ -52,11 +52,11 @@ static int page_control_counter=0;
  *  \return The page loaded, or NULL if failed.
  *
  *  \note
- *  This function finds the associated source files and loads all up
- *  It only works for schematic files though
- *  this is basically push
+ *  This function finds the associated source file and loads the page
+ *  but only works for schematic files though this is basically push
  *  flag can either be HIERARCHY_NORMAL_LOAD or HIERARCHY_FORCE_LOAD
- *  flag is mainly used by gnetlist where pushed down schematics MUST be unique
+ *  flag is mainly used by gnetlist where pushed down schematics MUST
+ *  be unique
  */
 Page *
 s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
@@ -142,7 +142,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
  *  \par Function Description
  *
  */
-void
+Page *
 s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
                          Page *parent)
 {
@@ -152,27 +152,27 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
   filename = s_clib_symbol_get_filename (symbol);
 
   page = s_page_search (toplevel, filename);
+
   if (page) {
-    /* change link to parent page since we
-     * can come here from any parent and must
-     * come back to the same page */
+    /* change link to parent page since we can come here from
+     * any parent and must come back to the same page */
     page->up = parent->pid;
     s_page_goto (toplevel, page);
     GEDA_FREE (filename);
-    return;
   }
+  else {
+    page = s_page_new_with_notify (toplevel, filename);
+    GEDA_FREE(filename);
 
-  page = s_page_new_with_notify (toplevel, filename);
-  GEDA_FREE(filename);
+    s_page_goto (toplevel, page);
 
-  s_page_goto (toplevel, page);
+    f_open(toplevel, page, page->filename, NULL);
 
-  f_open(toplevel, page, page->filename, NULL);
-
-  page->up = parent->pid;
-  page_control_counter++;
-  page->page_control = page_control_counter;
-
+    page->up = parent->pid;
+    page_control_counter++;
+    page->page_control = page_control_counter;
+  }
+  return page;
 }
 
 /*! \brief Search for the parent page of a page in hierarchy.

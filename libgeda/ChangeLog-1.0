@@ -1,5 +1,10 @@
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_hierarchy.c: Return page from s_hierarchy_down_symbol
+      so as to be consistence with hierarchical functions.
+
+2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_rc.c: Fix g_rc_component_library symbols in the current
       directory.
 
