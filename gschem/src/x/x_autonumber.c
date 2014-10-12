@@ -23,7 +23,7 @@
  */
 /*!
  * \file x_autonumber.c
- * \brief A dialog box for Automatically Reference Numbering
+ * \brief A dialog box for Automatically Text Numbering
  */
 
 #include <config.h>
@@ -42,7 +42,18 @@
 #define ThisDialog autonumber_text
 #define Switch_Responder switch_responder
 
-/** @brief How many entries to keep in the "Search text" combo box. */
+/** \defgroup Auto-Number-Dialog Auto Number Dialog
+ *  @{
+ *  \ingroup (Editing-Dialogs)
+ *
+ *  \par This Group contains routines for the AutoNumber dialog.
+ *  AutoNumber dialog is primarily used for editing reference
+ *  designator attribute, particularly for automatically number
+ *  designation but can also be used to auto-number any other
+ *  types of text attributes.
+ */
+
+/*! \brief How many entries to keep in the "Search text" combo box. */
 #define HISTORY_LENGTH		15
 
 /* autonumber text structs and enums */
@@ -73,7 +84,7 @@ typedef enum {
   SCOPE_HIERARCHY
 } AutoNumberScope;
 
-/** @brief Enumerate Control IDs. */
+/*! \brief Enumerate Control IDs. */
 typedef enum {
   /* Combo Entry */
   ScopeText,
@@ -93,7 +104,10 @@ typedef enum {
 
 } ControlID;
 
-/** @brief String Arrays for Dialog Contrls. */
+
+/*! \brief String Arrays for Dialog Contrls.
+ *  { "Hook-Up-String", "Label", "Tooltip string"},
+ */
 static WidgetStringData DialogStrings[] = {
   { "scope_text",      "Search for:",                 "Set the search criteria"},
   { "scope_number",    "Autonumber text in:",         "Set the context of the search scope"},
@@ -139,40 +153,40 @@ static char *wild_text[] = {
 
 typedef struct autonumber_text_t AUTONUMBER_TEXT;
 
-/** @brief Stored state of the autonumber text dialog */
+/*! \brief Stored state of the autonumber text dialog */
 struct autonumber_text_t {
 
-  /** @brief Search text history */
+  /*! \brief Search text history */
   GList *scope_history;
 
-  /** @brief What scope data set to restore */
+  /*! \brief What scope data set to restore */
   int last_criteria;
 
-  /** @brief Scope for autonumbering text */
+  /*! \brief Scope for autonumbering text */
   AutoNumberScope scope_number;
 
-  /** @brief Scope for searching existing numbers */
+  /*! \brief Scope for searching existing numbers */
   AutoNumberScope scope_skip;
 
-  /** @brief Overwrite existing numbers in scope */
+  /*! \brief Overwrite existing numbers in scope */
   bool scope_overwrite;
 
-  /** @brief Sort order */
+  /*! \brief Sort order */
   int order;
 
-  /** @brief Starting number for automatic numbering */
+  /*! \brief Starting number for automatic numbering */
   int startnum;
 
-  /** @brief Remove numbers instead of automatic numbering */
+  /*! \brief Remove numbers instead of automatic numbering */
   bool removenum;
 
-  /** @brief Automatic assignments of slots */
+  /*! \brief Automatic assignments of slots */
   bool slotting;
 
-  /** @brief Pointer to the dialog */
+  /*! \brief Pointer to the dialog */
   GtkWidget *dialog;
 
-  /** @brief Pointer to the GschemToplevel struct */
+  /*! \brief Pointer to the GschemToplevel struct */
   GschemToplevel *w_current;
 
   /* variables used while autonumbering */
@@ -209,6 +223,11 @@ static GtkWidget *DoSlottingSwitch    =NULL;
 static GtkWidget *ScopeOverwriteSwitch=NULL;
 
 /* **************************** BACK-END CODE ****************************** */
+
+/** \defgroup Auto-Number-Sorters Auto-Number-Sorters
+ *  @{
+ *  \ingroup (Auto-Number-Dialog)
+ */
 
 /* ******************* compare functions for g_list_sort, ****************** */
 /*! \brief GCompareFunc function to sort a list with g_list_sort().
@@ -331,6 +350,8 @@ static int autonumber_sort_diagonal(const void *a, const void *b) {
   return 0;
 }
 
+/** @} end group Auto-Number-Sorters */
+
 /*! \brief GCompareFunc function to acces <B>AUTONUMBER_SLOT</B> object in a GList
  *  \par Function Description
  *  This Funcion takes two <B>AUTONUMBER_SLOT*</B> arguments and compares them.
@@ -369,8 +390,8 @@ static int freeslot_compare(const void *a, const void *b)
 
 /*! \brief Prints a <B>GList</B> of <B>AUTONUMBER_SLOT</B> elements
  *  \par Function Description
- *  This funcion prints the elements of a GList that contains <B>AUTONUMBER_SLOT</B> elements
- *  It is only used for debugging purposes.
+ *  This funcion prints the elements of a GList that contains <B>AUTONUMBER_SLOT</B>
+ *  elements. This function is is only used for debugging purposes.
  */
 void freeslot_print(GList *list) {
   GList *item;
@@ -383,9 +404,11 @@ void freeslot_print(GList *list) {
   }
 }
 
-/*! \brief Function to clear the databases of used parts
+/*! \brief Function to Clear the Databases of used parts
  *  \par Function Descriptions
  *  Just remove the list of used numbers, used slots and free slots.
+ *
+ *  \param [in] autotext   Pointer to <B>AUTONUMBER_TEXT</B> data structure
  */
 static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
 {
@@ -411,9 +434,19 @@ static void autonumber_clear_database (AUTONUMBER_TEXT *autotext)
  *  The criteria are those of the autonumber text dialog. The function decides
  *  whether the <B>Object</B> has to be renumberd, ignored or taken care of when
  *  renumbering all other objects.
- *  \return one of these integer values: <B>AUTONUMBER_IGNORE</B>,
- *  <B>AUTONUMBER_RESPECT</B> or <B>AUTONUMBER_RENUMBER</B> and the current number
- *  of the text object in <B>*number</B>.
+ *  \return one of these integer values:
+ *  <DL>
+ *    <DT><B>AUTONUMBER_IGNORE</B></DT>
+ *    <DT><B>AUTONUMBER_RESPECT</B>and the text number of the object in \a number </DT>
+ *    <DT><B>AUTONUMBER_RENUMBER</B></DT>
+ *  </DL>
+ *
+ *  \param [in] autotext   Pointer to <B>AUTONUMBER_TEXT</B> data structure
+ *  \param [in] o_current  Is an attribute GedaTextObject to be interrogated
+ *
+ *  \param [out] number    integer value that is to be the designation*
+ *
+ *  \note *number is not modified unless the returned value is AUTONUMBER_RESPECT
  */
 static int
 autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *number)
@@ -476,6 +509,9 @@ autonumber_match(AUTONUMBER_TEXT *autotext, Object *o_current, int *number)
  *  The slotting container is a little bit different. The container stores
  *  free slots of multislotted symbols, that were only partially used.
  *  The criterias are derivated from the autonumber dialog entries.
+ *
+ *  \param [in] w_current Pointer to GschemToplevel data structure
+ *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> data structure
  */
 static void
 autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
@@ -566,29 +602,41 @@ autonumber_get_used(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
  *  \par Function Description
  *  This function gets or generates new numbers for the <B>Object o_current</B>.
  *  It uses the element numbers <B>used_numbers</B> and the list of the free slots
- *  <B>free_slots</B> of the <B>AUTONUMBER_TEXT</B> struct.
- *  \return
- *  The new number is returned into the <B>number</B> parameter.
- *  <B>slot</B> is set if autoslotting is active, else it is set to zero.
+ *  <B>free_slots</B> of the <B>AUTONUMBER_TEXT</B> struct. The new number is
+ *  returned into the <B>number</B> parameter. <B>slot</B> is set if autoslotting
+ *  is active, else it is set to zero.
+ *
+ *  \param [in]  autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
+ *  \param [in]  o_current Is an attribute GedaTextObject
+ *
+ *  \param [out] number    integer value that is to be the designation
+ *  \param [out] slot      integer value is the slot id the parent object should be
+ *
+ *  \returns designation and slot number
  */
 static void
 autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
-                           Object *o_current,
-                           int *number, int *slot)
+                           Object          *o_current,
+                           int             *number,
+                           int             *slot)
 {
-  GList *item;
-  int new_number, numslots, i;
   AUTONUMBER_SLOT *freeslot;
+
   Object *o_parent = NULL;
-  GList *freeslot_item;
-  char *numslot_str;
+  GList  *freeslot_item;
+  GList  *item;
+  char   *numslot_str;
+
+  int new_number, numslots, i;
 
   new_number = autotext->startnum;
 
   /* Check for slots first */
   /* 1. are there any unused slots in the database? */
   o_parent = o_current->attached_to;
+
   if (autotext->slotting && o_parent != NULL) {
+
     freeslot = g_new(AUTONUMBER_SLOT,1);
     freeslot->symbolname = o_parent->complex->filename;
     freeslot->number = 0;
@@ -620,6 +668,7 @@ autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
     else  /* new_number == item->data */
       new_number++;
   }
+
   *number = new_number;
   *slot = 0;
 
@@ -652,12 +701,12 @@ autonumber_get_new_numbers(AUTONUMBER_TEXT *autotext,
   }
 }
 
-/** @brief Removes the number from the element.
- *
+/*! \brief Removes the number from the element.
+ *  \par Function Description
  *  This function updates the text content of the \a o_current object.
  *
- *  @param autotext Pointer to the state structure
- *  @param o_current Pointer to the object from which to remove the number
+ *  \param [in] autotext Pointer to the state structure
+ *  \param [in] o_current Pointer to the object from which to remove the number
  *
  */
 static void
@@ -700,7 +749,12 @@ autonumber_remove_number(AUTONUMBER_TEXT * autotext, Object *o_current)
  *  element that is also the parent object of the o_current element is also
  *  updates.
  *
- * \note 11/04/12 WEH: Revised to eliminate gmalloc of trivial strings (twice).
+ *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
+ *  \param [in] o_current Is an attribute GedaTextObject
+ *  \param [in] number    integer value that is to be the designation
+ *  \param [in] slot      integer value is the slot id of the parent object
+ */
+/* \note 11/04/12 WEH: Revised to eliminate gmalloc of trivial strings (twice).
  *       added conditional so that slot=0 is not passed to o_slot_end function
  *       even though slot=0 is valid, it just means the component has none.
  */
@@ -711,7 +765,7 @@ autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
                           int              slot)
 {
   char string[32]="slot=";  /* char buffer to hold set=refdes=xx*/
-  char s_val[5];            /* char buffer or integer conversion to string */
+  char s_val[5];            /* char buffer for integer conversion to string */
 
   if ( slot > 0) {
     /* update the slot on the owner object */
@@ -727,12 +781,13 @@ autonumber_apply_new_text(AUTONUMBER_TEXT *autotext,
 
 /*! \brief Handles all the options of the autonumber text dialog
  *  \par Function Description
- *  This function is the master of all autonumber code. It receives the options
- *  from the autonumber text dialog in an <B>AUTONUMBER_TEXT</B> structure.
- *  First it collects all pages of a hierarchical schematic.
- *  Second it gets all matching text elements for the searchtext.
- *  Then it renumbers all text elements of all schematic pages. The renumbering
- *  follows the rules of the parameters given in the autonumber text dialog.
+ *  This function is the main routine for the autonumber code. The function
+ *  retreives options from the \a autotext structure. First it collects all
+ *  pages of a hierarchical schematic, even if hierarchy info is not used.
+ *  The function retreives all matching text elements for the searchtext and
+ *  then renumbers text elements based on options from the dialog.
+ *
+ *  \param [in] autotext  Pointer to <B>AUTONUMBER_TEXT</B> state data structure
  */
 static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
 {
@@ -763,16 +818,17 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   autotext->free_slots = NULL;
   autotext->used_slots = NULL;
 
+  /* Step 1: Retrieve the Scope Search text */
   scope_text = g_list_first(autotext->scope_history)->data;
 
-  /* Step1: get all pages of the hierarchy */
+  /* Step 2: Get all pages of the hierarchy */
   pages = s_hierarchy_traverse_pages (w_current->toplevel,
                                       Current_Page,
                                       HIERARCHY_NODUPS);
 
   /*  g_list_foreach(pages, (GFunc) s_hierarchy_print_page, NULL); */
 
-  /* Step2: if searchtext has an asterisk at the end we have to find
+  /* Step 3: if searchtext has an asterisk at the end we have to find
    *    all matching searchtextes.
    *
    *  Example:  "refdes=*" will match each text that starts with "refdes="
@@ -848,7 +904,7 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
     return;
   }
 
-  /* Step3: iterate over the search items in the list */
+  /* Step 4: iterate over the search items in the list */
   for (text_item=searchtext_list; text_item !=NULL; NEXT(text_item)) {
 
     autotext->current_searchtext = text_item->data;
@@ -950,65 +1006,73 @@ static void autonumber_text_autonumber(AUTONUMBER_TEXT *autotext)
   o_undo_savestate(w_current, UNDO_ALL);
 }
 
-/*! \brief Put the icons and the text into the sortorder combobox
+/*! \brief Put the icons and the text into the SortOrder combobox
  *  \par Function Description
  *  Load all bitmaps for the combobox and store them together with the label
  *  in a GtkListStore.
+ *
+ *  \param w_current Pointer to GschemToplevel data structure
  */
 static void autonumber_sortorder_create(GschemToplevel *w_current)
 {
-  GtkListStore *store;
-  GtkTreeIter iter;
+  GtkListStore    *store;
+  GtkTreeIter      iter;
   GtkCellRenderer *renderer;
-  GdkPixbuf *pixbuf;
-  char *path;
-  GError *error=NULL;
+  GdkPixbuf       *pixbuf;
+  GError          *error=NULL;
+  char             *path;
+
+  int i;
 
   char *filenames[] = { "gschem_diagonal.png",
-  "gschem_top2bottom.png", "gschem_bottom2top.png",
-  "gschem_left2right.png", "gschem_left2right.png",
-  "gschem_fileorder.png",
-  NULL};
-  char *names[] = {N_( "Diagonal"),
-  N_("Top to bottom"), N_("Bottom to top"),
-                          N_("Left to right"), N_("Right to left"),
-                             N_("File order"),
-                             NULL};
-                             int i;
+                        "gschem_top2bottom.png",
+                        "gschem_bottom2top.png",
+                        "gschem_left2right.png",
+                        "gschem_left2right.png",
+                        "gschem_fileorder.png",
+                        NULL};
 
-                             store = gtk_list_store_new(2, G_TYPE_STRING, GDK_TYPE_PIXBUF);
+  char *names[] = { N_( "Diagonal"),
+                    N_("Top to bottom"),
+                    N_("Bottom to top"),
+                    N_("Left to right"),
+                    N_("Right to left"),
+                    N_("File order"),
+                    NULL};
 
-                             for (i=0; filenames[i] != NULL; i++) {
-                               path=g_build_filename(w_current->toplevel->bitmap_directory,
-                                                     filenames[i], NULL);
-                               pixbuf = gdk_pixbuf_new_from_file(path, &error);
-                               GEDA_FREE(path);
-                               gtk_list_store_append(store, &iter);
-                               gtk_list_store_set(store, &iter,
-                                                  0, _(names[i]),
-                                                  1, pixbuf,
-                                                  -1);
-                             }
+  store = gtk_list_store_new(2, G_TYPE_STRING, GDK_TYPE_PIXBUF);
 
-                             gtk_combo_box_set_model(GTK_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));
-                             renderer = gtk_cell_renderer_text_new ();
+  for (i=0; filenames[i] != NULL; i++) {
+    path=g_build_filename(w_current->toplevel->bitmap_directory,
+                          filenames[i], NULL);
+    pixbuf = gdk_pixbuf_new_from_file(path, &error);
+    GEDA_FREE(path);
+    gtk_list_store_append(store, &iter);
+    gtk_list_store_set(store, &iter, 0, _(names[i]), 1, pixbuf, -1);
+  }
 
-                             gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (SortOrderCombo),
-                                                         renderer, TRUE);
-                             gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (SortOrderCombo),
-                                                             renderer, "text", 0, NULL);
-                             renderer = gtk_cell_renderer_pixbuf_new();
-                             g_object_set(G_OBJECT(renderer), "xpad", 5, "ypad", 5, NULL);
+  gtk_combo_box_set_model(GTK_COMBO_BOX(SortOrderCombo), GTK_TREE_MODEL(store));
+  renderer = gtk_cell_renderer_text_new ();
 
-                          gtk_cell_layout_pack_start (GTK_CELL_LAYOUT (SortOrderCombo),
-                                                      renderer, FALSE);
-                          gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (SortOrderCombo),
-                                                          renderer, "pixbuf", 1, NULL);
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(SortOrderCombo), renderer, TRUE);
+
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (SortOrderCombo),
+                                  renderer, "text", 0, NULL);
+
+  renderer = gtk_cell_renderer_pixbuf_new();
+
+  g_object_set(G_OBJECT(renderer), "xpad", 5, "ypad", 5, NULL);
+
+  gtk_cell_layout_pack_start (GTK_CELL_LAYOUT(SortOrderCombo), renderer, FALSE);
+
+  gtk_cell_layout_set_attributes (GTK_CELL_LAYOUT (SortOrderCombo),
+                                  renderer, "pixbuf", 1, NULL);
 }
 
 /* ***** STATE STRUCT HANDLING (interface between GUI and backend code) **** */
 
-/** @brief Adds a line to the search text history list
+/*! \brief Adds a line to the search text history list
+ *  \par Function Description
  *  This function prepends \a text to the list \a history and removes
  *  AND releases \a text from any other position in the \a history if
  *  present. The length of the list is checked and truncated if longer
@@ -1017,8 +1081,10 @@ static void autonumber_sortorder_create(GschemToplevel *w_current)
  *  <DL>
  *    <DT>1) Removes \a text from the list</DT>
  *    <DT>2) Prepends \a text to the list list</DT>
- *    <DT>3) Truncates list if longer than #HISTORY_LENGTH</DT>
+ *    <DT>3) Truncates \a history if longer than #HISTORY_LENGTH</DT>
  *  </DL>
+ *  \param [in] history GList to be prepended with \a text
+ *  \param [in] text    The text string to be prepended to the list
  */
 static GList *
 autonumber_add_history(GList *history, char *text)
@@ -1060,6 +1126,17 @@ autonumber_add_history(GList *history, char *text)
   return history;
 }
 
+/*! \brief Set the Scope Filter Text to the History option
+ *  \par Function Description
+ *  Clears the ScopeTextCombo and reloads the combo with values
+ *  from the scope_history list. The combo entry is set to the
+ *  first value in the list. The value of last_criteria in the
+ *  state \a data structure is set to SCOPE_HISTORY so that the
+ *  same list will be restored if the dialog is reloaded.
+ *
+ *  \param [in] button Pointer to Widget that was Activated (bulb) or NULL
+ *  \param [in] data   Is a pointer to data structure
+ */
 static void
 set_scope_filter_text_history (GtkWidget *button, void *data)
 {
@@ -1080,10 +1157,17 @@ set_scope_filter_text_history (GtkWidget *button, void *data)
   autotext->last_criteria = SCOPE_HISTORY;
 }
 
-/** @brief Restore the settings for the autonumber text dialog
+/*! \brief Set the Scope Filter Text to the Question type
+ *  \par Function Description
+ *  Clears the ScopeTextCombo and reloads the combo with values
+ *  in the structure #unset_text. The combo entry is set to the
+ *  first value in the structure. The value of last_criteria in
+ *  the state \a data structure is set to SCOPE_QUESTION so the
+ *  same list will be restored if the dialog is reloaded.
  *
- * @param autotext Pointer to the state struct.
-*/
+ *  \param [in] button Pointer to Widget that was Activated (bulb) or NULL
+ *  \param [in] data   Is a pointer to data structure
+ */
 static void
 set_scope_filter_text_question (GtkWidget *button, void *data)
 {
@@ -1105,6 +1189,17 @@ set_scope_filter_text_question (GtkWidget *button, void *data)
   autotext->last_criteria = SCOPE_QUESTION;
 }
 
+/*! \brief Set the Scope Filter Text to the Wild type
+ *  \par Function Description
+ *  Clears the ScopeTextCombo and reloads the combo with values
+ *  in the structure #wild_text. The combo entry is set to the
+ *  first value in the structure. The value of last_criteria in
+ *  the state \a data structure is set to SCOPE_WILD so that the
+ *  same list will be restored if the dialog is reloaded.
+ *
+ *  \param [in] button Pointer to Widget that was Activated (bulb) or NULL
+ *  \param [in] data   Is a pointer to data structure
+ */
 static void
 set_scope_filter_text_wild (GtkWidget *button, void *data)
 {
@@ -1126,9 +1221,13 @@ set_scope_filter_text_wild (GtkWidget *button, void *data)
   autotext->last_criteria = SCOPE_WILD;
 }
 
-/** @brief Allocate and initialize the state structure
+/*! \brief Allocate and initialize the state structure
+ *  \par Function Description
+ *  Creates and returns a new <B>AUTONUMBER_TEXT</B> structure.
+ *  Values in the structure are initialized to default or set to
+ *  trigger the defaults to be load later.
  *
- * @return Pointer to the allocated structure or NULL on error.
+ *  \return Pointer to the allocated structure or NULL on error.
  */
 static AUTONUMBER_TEXT *autonumber_init_state()
 {
@@ -1145,8 +1244,8 @@ static AUTONUMBER_TEXT *autonumber_init_state()
   autotext->last_criteria = SCOPE_QUESTION;
 
   /*TODO: Check hierarchy and assign scope based on results.
-   *  f or example is the c*urrent page below another page? if so
-   *  then we shuld start with SCOPE_HIERARCHY*/
+   *  for example is the current page below another page? if so
+   *  then we should start with SCOPE_HIERARCHY*/
   autotext->scope_skip = SCOPE_PAGE;
 
   /*TODO: Check selection and assign scope based on results */
@@ -1165,9 +1264,12 @@ static AUTONUMBER_TEXT *autonumber_init_state()
   return autotext;
 }
 
-/** @brief Restore the settings for the autonumber text dialog
+/*! \brief Restore the settings for the autonumber text dialog
+ *  \par Function Description
+ *   Retrieves values from control in the dialog and save the
+ *   values to the \a autotext <B>AUTONUMBER_TEXT</B> structure.
  *
- * @param autotext Pointer to the state struct.
+ *  \param [in] autotext  Pointer to state data structure
  */
 static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
 {
@@ -1219,12 +1321,12 @@ static void restore_dialog_values(AUTONUMBER_TEXT *autotext)
 
 }
 
-/** @brief Get the settings from the autonumber text dialog
+/*! \brief Get the settings from the autonumber text dialog
+ *  \par Function Description
+ *   Retrieves values from control in the dialog and save the
+ *   values to the \a autotext <B>AUTONUMBER_TEXT</B> structure.
  *
- * Get the settings from the autonumber text dialog and store it in the
- * <B>AUTONUMBER_TEXT</B> structure.
- *
- * @param autotext Pointer to the state struct.
+ *  \param [in] autotext  Pointer to data structure
  */
 static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 {
@@ -1271,12 +1373,16 @@ static void retrieve_values_from_dialog(AUTONUMBER_TEXT *autotext)
 
 /* ***** CALLBACKS (functions that get called from GTK) ******* */
 
-/*! \brief response callback for the autonumber text dialog
+/*! \brief response callback for the Autonumber text dialog
  *  \par Function Description
  *  The function just closes the dialog if the close button is pressed or
  *  the user closes the dialog window. If the Apply button is pressed this
  *  function calls retrieve_values_from_dialog and then it doesn't make
  *  any sense.
+ *
+ *  \param [in] widget    Pointer to Widget that was Activated.
+ *  \param [in] response  Integer response (basically control id)
+ *  \param [in] autotext  Pointer to data structure
  */
 static void autonumber_text_response(GtkWidget       *widget,
                                      int              response,
@@ -1313,6 +1419,9 @@ static void autonumber_text_response(GtkWidget       *widget,
  *       state, i.e. if ON use OFF image and if OFF use ON image.
  *       The functions handles callback for all switches on This
  *       Dialog.
+ *
+ *  \param [in] widget    Pointer to the GedaSwitch object.
+ *  \param [in] Control   Pointer to integer Switch identifier
  */
 static void
 switch_responder(GtkWidget *widget, ControlID *Control)
@@ -1339,7 +1448,7 @@ switch_responder(GtkWidget *widget, ControlID *Control)
 
 /* ***** DIALOG SET-UP ***************************************************** */
 
-/** @brief Creates the Filter Option Bulbs on the Autonumber text dialog.
+/*! \brief Creates the Filter Option Bulbs on the Autonumber text dialog.
  *  Constructor extension for the AutoNumber Dialog.
  *
  *  \param [in] Dialog    Pointer to the AutoNumber Dialog.
@@ -1417,11 +1526,14 @@ autonumber_create_scope_menu (GschemToplevel *w_current)
   return(menu);
 }
 
-/** @brief Creates the autonumber text dialog.
- *  Constructor for the AutoNumber Dialog, the Dialog returned but is not shown.
+/*! \brief Creates the autonumber text dialog.
+ *   Constructor for the AutoNumber Dialog, the Dialog returned but is not
+ *   shown.
  *
- * @param w_current Pointer to the top level struct.
- * @return Pointer to the dialog window.
+ *  \param [in] w_current Pointer to the top level struct.
+ *  \param [in] autotext  Pointer to AUTONUMBER_TEXT data structure
+ *
+ *  \returns Pointer to the dialog window.
  */
 static GtkWidget*
 autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
@@ -1591,7 +1703,7 @@ autonumber_create_dialog(GschemToplevel *w_current, AUTONUMBER_TEXT *autotext)
  *  If the function is called the first time the dialog is created.
  *  If the dialog is only in background it is moved to the foreground.
  *
- *  @param w_current Pointer to the top level struct
+ *  \param [in] w_current Pointer to the top level struct
  */
 void autonumber_text_dialog(GschemToplevel *w_current)
 {
@@ -1627,5 +1739,6 @@ void autonumber_text_dialog(GschemToplevel *w_current)
   /* if the dialog is in the background or minimized: show it */
   gtk_window_present(GTK_WINDOW(autotext->dialog));
 }
+/** @} end group Auto-Number-Dialog */
 #undef ThisDialog
 #undef Switch_Responder

@@ -135,11 +135,13 @@ static int query_mesh_grid_spacing (GschemToplevel *w_current)
  *  \par Function Description
  *  Draws the dotted grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel.
- *  \param [in] x          The left screen coordinate for the drawing.
- *  \param [in] y          The top screen coordinate for the drawing.
- *  \param [in] width      The width of the region to draw.
- *  \param [in] height     The height of the region to draw.
+ *  \param [in] w_current   The GschemToplevel.
+ *  \param [in] x_start     The left screen coordinate for the drawing.
+ *  \param [in] y_start     The top screen coordinate for the drawing.
+ *  \param [in] x_end       The right screen coordinate to draw.
+ *  \param [in] y_end       The bottom screen coordinate to draw.
+ *  \param [in] incr        The step of the minor grid.
+ *  \param [in] coarse_mult The step of the major grid.
  */
 static inline void
 draw_dots (GschemToplevel *w_current,
@@ -205,11 +207,8 @@ draw_dots (GschemToplevel *w_current,
  *  \par Function Description
  *  Draws the dotted grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel.
- *  \param [in] x          The left screen coordinate for the drawing.
- *  \param [in] y          The top screen coordinate for the drawing.
- *  \param [in] width      The width of the region to draw.
- *  \param [in] height     The height of the region to draw.
+ *  \param [in] w_current  The GschemToplevel
+ *  \param [in] rectangle  The screen rectangle region to drawing
  */
 static void
 x_grid_draw_dots_region (GschemToplevel *w_current, GdkRectangle *rectangle)
@@ -342,11 +341,8 @@ draw_mesh (GschemToplevel *w_current, int x_start, int y_start,
  *  \par Function Description
  *  Draws the mesh grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel.
- *  \param [in] x          The left screen coordinate for the drawing.
- *  \param [in] y          The top screen coordinate for the drawing.
- *  \param [in] width      The width of the region to draw.
- *  \param [in] height     The height of the region to draw.
+ *  \param [in] w_current  The GschemToplevel
+ *  \param [in] rectangle  The screen rectangle region to drawing
  */
 static void
 x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
@@ -401,11 +397,8 @@ x_grid_draw_mesh_region (GschemToplevel *w_current, GdkRectangle *rectangle)
  *  \par Function Description
  *  Draws the desired grid pattern over a given region of the screen.
  *
- *  \param [in] w_current  The GschemToplevel.
- *  \param [in] x          The left screen coordinate for the drawing.
- *  \param [in] y          The top screen coordinate for the drawing.
- *  \param [in] width      The width of the region to draw.
- *  \param [in] height     The height of the region to draw.
+ *  \param [in] w_current  The GschemToplevel
+ *  \param [in] rectangle  The screen rectangle region to drawing
  */
 void
 x_grid_draw_grid_region (GschemToplevel *w_current, GdkRectangle *rectangle)

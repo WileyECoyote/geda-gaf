@@ -22,8 +22,9 @@
  * MA 02110-1301 USA
  */
 /*!
- * \file o_picture.c
+ * file o_picture.c
  * \brief Low-level module for manipulating Picture objects
+ * \todo o_picture.c conflicts with o_picture.c in libgeda
  */
 #include <gschem.h>
 #include <geda_debug.h>
@@ -67,6 +68,7 @@ void o_picture_start(GschemToplevel *w_current, int w_x, int w_y)
 }
 
 /*! \brief End the input of a circle.
+ *
  *  \par Function Description
  *  This function ends the input of the second corner of a picture.
  *  The picture is defined by (<B>w_current->first_wx</B>,<B>w_current->first_wy</B>
@@ -121,7 +123,9 @@ void o_picture_end(GschemToplevel *w_current, int w_x, int w_y)
   toplevel->page_current->CHANGED = 1;
   o_undo_savestate(w_current, UNDO_ALL);
 }
-/*! \brief Draw temporary picture while dragging edge.
+
+/*! \brief Draw temporary picture while dragging edge
+ *
  *  \par Function Description
  *  This function is used to draw the box while dragging one of its edge or
  *  angle. It erases the previous temporary box drawn before, and draws
@@ -165,12 +169,11 @@ void o_picture_motion (GschemToplevel *w_current, int w_x, int w_y)
   w_current->rubber_visible = 1;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Invalidate the Rubber for Picture Objects
+ *
  *  \par Function Description
  *
- *  \note
- * used in button cancel code in x_events.c
+ *  \note used in button cancel code in x_events.c
  */
 void o_picture_invalidate_rubber (GschemToplevel *w_current)
 {
@@ -188,7 +191,8 @@ void o_picture_invalidate_rubber (GschemToplevel *w_current)
   o_invalidate_rectangle (w_current, left, top + height, left + width, top + height);
 }
 
-/*! \brief Draw picture from GschemToplevel object.
+/*! \brief Draw picture from GschemToplevel object
+ *
  *  \par Function Description
  *  This function draws the box from the variables in the GschemToplevel
  *  structure <B>*w_current</B>.
@@ -218,6 +222,7 @@ void o_picture_draw_rubber (GschemToplevel *w_current)
 }
 
 /*! \brief Replace all selected pictures with a new picture
+ *
  * \par Function Description
  * Replaces all pictures in the current selection with a new image.
  *
@@ -258,6 +263,7 @@ bool o_picture_exchange (GschemToplevel *w_current,
 }
 
 /*! \brief Create dialog to exchange picture objects
+ *
  *  \par Function Description
  *  This function opens a file chooser and replaces all pictures of the selections
  *  with the new picture.

@@ -22,8 +22,9 @@
  * MA 02110-1301 USA
  */
 /*!
- * \file o_attrib.c
+ * file o_attrib.c
  * \brief Low-level module for manipulating Attribute objects
+ * \todo o_attrib.c conflicts with o_attrib.c in libgeda
  */
 
 #include <gschem.h>

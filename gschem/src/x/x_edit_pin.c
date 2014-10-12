@@ -583,8 +583,9 @@ xd_edit_pin_switch_toggled(GtkWidget *Switch, GschemDialog *Dialog)
  *  \par Function Description
  *  Updates the Pin Properties dialog widgets when the selection changes.
  *  It uses the selection to set it's initial values.
- *  \param w_current pointer to GschemToplevel context
- *  \param object    pointer to a selected Object.
+ *
+ *  \param w_current Pointer to GschemToplevel data structure
+ *  \param object    Pointer to a selected Object
  */
 static void
 x_dialog_pin_type_update_selection (GschemToplevel *w_current, Object *object)
