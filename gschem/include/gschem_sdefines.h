@@ -114,8 +114,9 @@
 /* -----------------  Strings for Dialogs Boxes  ---------------- */
 
 /* Identifcation Strings for Saving & Restoring Window Geometry */
-#define IDS_SNAP_SIZE          "snap-size"   /* Type: MODAL  */
-#define IDS_TEXT_SIZE          "text-size"   /* Type: MODAL  */
+#define IDS_AUTONUMBER         "autonumber"  /* Type: MODELESS */
+#define IDS_SNAP_SIZE          "snap-size"   /* Type: MODAL    */
+#define IDS_TEXT_SIZE          "text-size"   /* Type: MODAL    */
 #define IDS_ARC_ANGLE          "arc-angle"   /* Type: MODELESS */
 #define IDS_COLOR_EDIT         "color-edit"  /* Type: MODELESS */
 #define IDS_FILL_TYPE          "fill-type"   /* Type: MODELESS */

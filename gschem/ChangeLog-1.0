@@ -1,3 +1,7 @@
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_sdefines.h: Add IDS_AUTONUMBER for Auto-Number Dialog
+
 2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_autonumber.c: User Current_Page and NEXT macros to cleanup
