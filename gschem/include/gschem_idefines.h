@@ -229,10 +229,6 @@ typedef enum {SNAP_OFF, SNAP_GRID, SNAP_RESNAP, SNAP_STATE_COUNT} SNAP_STATE;
 /* for selected_from */
 #define DONTCARE		0
 
-/* for v_pan_general and v_zoom
-#define I_PAN_IGNORE_BORDERS 	1
-#define I_PAN_DONT_REDRAW 	2
- */
 /* selection types */
 /* used in o_select_object */
 #define SINGLE                  0

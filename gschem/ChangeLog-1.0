@@ -1,5 +1,11 @@
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Call x_window_setup_page to setup page loaded
+      by s_hierarchy_down_schematic_single, (hack gets hierarchy down working)
+      in function do_down_schematic.
+
+2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_autonumber.c: Do not set entry when there is no history.
 
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>

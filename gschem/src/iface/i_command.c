@@ -2072,6 +2072,7 @@ COMMAND ( do_down_schematic )
 
   Object *object           = NULL;
   Page   *child            = NULL;
+  Page   *parent           = NULL;
   Page   *save_first_page  = NULL;
 
   bool    loaded_flag      = FALSE;
@@ -2090,6 +2091,7 @@ COMMAND ( do_down_schematic )
   if (object == NULL || object->type != OBJ_COMPLEX)
     return;
 
+  parent = Current_Page;
   attrib = o_attrib_search_attached_attribs_by_name (object, "source", count);
 
   /* if above is null, then look inside symbol */
@@ -2110,22 +2112,30 @@ COMMAND ( do_down_schematic )
 
     /* loop over all filenames */
     while(current_filename != NULL) {
+
       GError *err = NULL;
+
       u_log_message(_("Searching for source [%s]\n"), current_filename);
+
       child = s_hierarchy_down_schematic_single(w_current->toplevel,
                                                 current_filename,
-                                                Current_Page,
+                                                parent,
                                                 page_control,
                                                 HIERARCHY_NORMAL_LOAD,
                                                 &err);
 
       /* s_hierarchy_down_schematic_single() will not zoom the loaded page */
       if (child != NULL) {
+        x_window_setup_page(w_current, child, w_current->world_left,
+                                              w_current->world_right,
+                                              w_current->world_top,
+                                              w_current->world_bottom);
         s_page_goto (w_current->toplevel, child);
-        i_zoom_world_extents(w_current, s_page_get_objects (Current_Page),
-                       I_PAN_DONT_REDRAW);
+        i_zoom_world_extents(w_current,
+                             s_page_get_objects (child),
+                             I_PAN_DONT_REDRAW);
         o_undo_savestate(w_current, UNDO_ALL);
-        s_page_goto (w_current->toplevel, Current_Page);
+        s_page_goto (w_current->toplevel, parent);
       }
 
       /* save the first page */
@@ -2186,8 +2196,7 @@ COMMAND ( do_down_schematic )
 #if DEBUG
       printf("looking inside\n");
 #endif
-      attrib =
-        o_attrib_search_inherited_attribs_by_name (object, "source", count);
+      attrib = o_attrib_search_inherited_attribs_by_name(object, "source", count);
     }
   }
 
