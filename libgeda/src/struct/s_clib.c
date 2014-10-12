@@ -985,6 +985,10 @@ const CLibSource *s_clib_add_directory (const char *directory,
   /* Sources added later get scanned earlier */
   clib_sources = g_list_prepend (clib_sources, source);
 
+#if DEBUG
+  fprintf(stderr, "%s \t name %s \t directory %s \t category %s \t group %s\n",__func__,
+       source->name, source->directory, source->category, source->group);
+#endif
   return source;
 }
 

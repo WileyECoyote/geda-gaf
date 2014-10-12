@@ -72,8 +72,8 @@ int s_slib_add_entry(char *new_path)
   }
 
   slib[slib_index].dir_name = u_string_strdup (new_path);
-
   slib_index++;
+
   return(slib_index);
 }
 

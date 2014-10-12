@@ -32,8 +32,7 @@
 /*! \brief */
 static int page_control_counter=0;
 
-/*! \todo Finish function documentation!!!
- *  \brief Search for schematic associated source files and load them.
+/*! \brief Search for schematic associated source files and load them.
  *  \par Function Description
  *  This function searches the associated source file refered by the
  *  <B>filename</B> and loads it.  If the <B>flag</B> is set to
@@ -60,13 +59,13 @@ static int page_control_counter=0;
  *  flag is mainly used by gnetlist where pushed down schematics MUST be unique
  */
 Page *
-s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const gchar *filename,
+s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const char *filename,
                                   Page *parent, int page_control, int flag,
                                   GError **err)
 {
-  gchar *string;
-  Page *found = NULL;
-  Page *forbear;
+  char *string;
+  Page  *found = NULL;
+  Page  *forbear;
 
   g_return_val_if_fail ((toplevel != NULL), NULL);
   g_return_val_if_fail ((filename != NULL), NULL);
@@ -82,7 +81,7 @@ s_hierarchy_down_schematic_single(GedaToplevel *toplevel, const gchar *filename,
   switch (flag) {
   case HIERARCHY_NORMAL_LOAD:
     {
-      gchar *filename = f_file_normalize_name (string, NULL);
+      char *filename = f_file_normalize_name (string, NULL);
       found = s_page_search (toplevel, filename);
       GEDA_FREE (filename);
 
@@ -148,7 +147,7 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
                          Page *parent)
 {
   Page *page;
-  gchar *filename;
+  char *filename;
 
   filename = s_clib_symbol_get_filename (symbol);
 
@@ -177,17 +176,19 @@ s_hierarchy_down_symbol (GedaToplevel *toplevel, const CLibSymbol *symbol,
 }
 
 /*! \brief Search for the parent page of a page in hierarchy.
+ *
  *  \par Function Description
  *  This function searches the parent page of page \a page in the
- *  hierarchy. It checks all the pages in the list \a page_list.
- *
- *  It returns a pointer on the page if found, NULL otherwise.
+ *  hierarchy and checks all the pages in the list \a page_list.
+ *  The function returns a pointer to the page if found, NULL
+ *  otherwise.
  *
  *  \note
  *  The page \a current_page must be in the list \a page_list.
  *
  *  \param [in] page_list    The list of pages in which to search.
  *  \param [in] current_page The reference page for the search.
+ *
  *  \returns A pointer on the page found or NULL if not found.
  */
 Page *
@@ -219,7 +220,7 @@ s_hierarchy_find_up_page (PageList *page_list, Page *current_page)
  *  Caller must destroy returned GList with g_list_free().
  */
 GList *
-s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, gint flags)
+s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, int flags)
 {
   Object *o_current;
   Page *child_page;
@@ -305,7 +306,7 @@ s_hierarchy_traverse_pages (GedaToplevel *toplevel, Page *p_current, gint flags)
  *  \note
  *  Test function which only prints the name of a page and its number.
  */
-gint
+int
 s_hierarchy_print_page (Page *p_current, void * data)
 {
   printf("pagefilename: %s pageid: %d\n",
@@ -316,10 +317,10 @@ s_hierarchy_print_page (Page *p_current, void * data)
 /*! \brief Search for a page preceding a given page in hierarchy.
  *  \par Function Description
  *  This function searches the previous sibling of page \a page in the
- *  hierarchy. It checks all the pages preceding \a page in the list
+ *  hierarchy and checks all the pages preceding \a page in the list
  *  \a page_list.
  *
- *  It returns a pointer on the page if found, NULL otherwise.
+ *  The function returns a pointer on the page if found, NULL otherwise.
  *
  *  \note
  *  The page \a current_page must be in the list \a page_list.
@@ -350,10 +351,10 @@ s_hierarchy_find_prev_page (PageList *page_list, Page *current_page)
 /*! \brief Search for a page following a given page in hierarchy.
  *  \par Function Description
  *  This function searches the next sibling of page \a page in the
- *  hierarchy. It checks all the pages following \a page in the list
+ *  hierarchy and checks all the pages following \a page in the list
  *  \a page_list.
  *
- *  It returns a pointer on the page if found, NULL otherwise.
+ *  This function returns a pointer on the page if found, NULL otherwise.
  *
  *  \note
  *  The page \a current_page must be in the list \a page_list.

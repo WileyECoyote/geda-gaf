@@ -117,7 +117,6 @@ SCM g_rc_component_library(SCM path, SCM name)
 
   scm_dynwind_begin (0);
   if (name != SCM_UNDEFINED) {
-    //SCM_ASSERT (scm_is_string (name), name, SCM_ARG2, "component-library");
     namestr = scm_to_utf8_string (name);
     scm_dynwind_free(namestr);
   }
@@ -131,7 +130,6 @@ SCM g_rc_component_library(SCM path, SCM name)
   /* is invalid path? */
   if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
     /*fprintf(stderr, "Check library path [%s]\n", directory);*/
-    //scm_dynwind_end();
     result = SCM_BOOL_F;
   }
   else {
@@ -142,14 +140,15 @@ SCM g_rc_component_library(SCM path, SCM name)
       char *cwd = g_get_current_dir ();
       char *temp;
 
-      if (*directory == '.' && *directory + 1 == '/' )
-        temp = g_build_filename (cwd, directory + 2, NULL);
-      else
+      if (*directory == '.' && *directory + 1 == '/' ) {
+        s_clib_add_directory (cwd, namestr);
+      }
+      else {
         temp = g_build_filename (cwd, directory, NULL);
+        s_clib_add_directory (temp, namestr);
+        GEDA_FREE(temp);
+      }
 
-      s_clib_add_directory (temp, namestr);
-
-      GEDA_FREE(temp);
       GEDA_FREE(cwd);
     }
     result = SCM_BOOL_T;
@@ -264,8 +263,7 @@ SCM g_rc_source_library(SCM path)
   char *string;
   char *temp;
 
-  SCM_ASSERT (scm_is_string (path), path,
-              SCM_ARG1, "source-library");
+  SCM_ASSERT (scm_is_string (path), path, SCM_ARG1, "source-library");
 
   /* take care of any shell variables */
   temp   = scm_to_utf8_string (path);
@@ -283,7 +281,8 @@ SCM g_rc_source_library(SCM path)
 
   if (g_path_is_absolute (string)) {
     s_slib_add_entry (string);
-  } else {
+  }
+  else {
     char *cwd = g_get_current_dir ();
     char *temp;
     temp = g_build_filename (cwd, string, NULL);

@@ -1,5 +1,10 @@
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc.c: Fix g_rc_component_library symbols in the current
+      directory.
+
+2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/all/.c: Update inclusion of debug header aka <geda_debug.h>
 
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
