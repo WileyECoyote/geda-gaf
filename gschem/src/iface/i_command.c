@@ -2260,13 +2260,16 @@ COMMAND ( do_hierarchy_up )
     u_log_message(_("Cannot find any schematics above the current one!\n"));
   }
   else {
-    int answer = TRUE;
-    if (Current_Page->CHANGED){
-      answer = x_dialog_close_changed_page (w_current, Current_Page);
+
+    int   answer = TRUE;
+    Page *child  = Current_Page;
+
+    if (child->CHANGED) {
+      answer = x_dialog_close_changed_page (w_current, child);
     }
-    if(answer == TRUE) {
+    if (answer == TRUE) {
       x_window_set_current_page(w_current, up_page);
-      x_window_close_page (w_current, Current_Page);
+      x_window_close_page (w_current, child);
     }
   }
 }
