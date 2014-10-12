@@ -169,6 +169,13 @@ geda_combo_box_text_init (GedaComboBoxText *combo_box)
 
 }
 
+/*! \brief GedaComboBoxText Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] klass A GedaComboBoxTextClass Object
+ */
 static void
 geda_combo_box_text_class_init (GedaComboBoxTextClass *klass)
 {

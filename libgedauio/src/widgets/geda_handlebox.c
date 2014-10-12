@@ -177,6 +177,13 @@ static unsigned int handle_box_signals[SIGNAL_LAST] = { 0 };
 
 G_DEFINE_TYPE (GedaHandleBox, geda_handle_box, GTK_TYPE_BIN)
 
+/*! \brief GedaHandleBox Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaHandleBoxClass Object
+ */
 static void
 geda_handle_box_class_init (GedaHandleBoxClass *class)
 {

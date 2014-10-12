@@ -46,7 +46,7 @@
  * @{
  * \brief A button resembling a light bulb used for multiple choices options
  * \par
- * A single bulb button performs the same basic function as a #GtkCheckButton,
+ * A single bulb button performs the same basic function as a GtkCheckButton,
  * as its position in the object hierarchy reflects. Only when multiple bulb
  * buttons are grouped together that they perform a different role in the user
  * interface. When bulb buttons are grouped and one is selected, all other bulb
@@ -94,7 +94,7 @@
  * \endcode
  * \par
  * When an unselected button in the group is clicked both the clicked button
- * and the active group member receives the #GtkToggleButton::toggled signal,
+ * and the active group member receives the GtkToggleButton::toggled signal,
  * but only the bulb that was clicked receives the "clicked" signal. This is
  * different from Gtk, where both buttons receive both signals.
  *
@@ -649,6 +649,13 @@ geda_bulb_draw_indicator (GtkCheckButton *check_button, GdkRectangle *area)
   }
 }
 
+/*! \brief GedaBulb Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaBulbClass Object
+ */
 static void
 geda_bulb_class_init (GedaBulbClass *class)
 {
@@ -676,7 +683,7 @@ geda_bulb_class_init (GedaBulbClass *class)
 
   geda_bulb_parent_class = g_type_class_peek_parent (class);
 
-  /*! \property "group"  GedaBulb::group
+  /*! property "group": GedaBulb::group
    *  \brief Sets a new group for a bulb button.
    *  \par
    *   The group property is actually a GSList containing pointers to all bulbs
@@ -690,7 +697,7 @@ geda_bulb_class_init (GedaBulbClass *class)
 
   g_object_class_install_property (gobject_class, PROP_GROUP, params);
 
-  /*! \property "use-font":
+  /*! property "use-font":
    *  \par If this property is set to %TRUE, the button widget will be displayed
    *       during mouse over-events.
    */
@@ -786,7 +793,7 @@ geda_bulb_init (GedaBulb *bulb)
  *
  *  \par Function Description
  *  Function to retrieve GedaBulb's Type identifier. On the first
- *  call, this registers the GedaBulb in the GedaType system.
+ *  call, this registers the #GedaBulb in the GedaType system.
  *  Subsequently it returns the saved value from its first execution.
  *
  *  \return the GedaType identifier associated with GedaBulb.
@@ -1093,7 +1100,7 @@ geda_bulb_get_group (GtkWidget *bulb)
 
 /*! \brief Set the Group a GedaBulb is to be Assocatiated
  *  \par Function Description
- *  Sets a #GedaBulb’s group.
+ *  Sets the group of the #GedaBulb object.
  *
  *  \note Setting the group does not change the interface layout in any way,
  *  if groups are changed the layout may need to be rearranged to reflect the
@@ -1179,9 +1186,9 @@ geda_bulb_set_group (GtkWidget *widget, GSList *group)
 /*! \brief Add #GedaBulb to a Group given a group member
  *  \par Function Description
  *  Joins a #GedaBulb object to the group of another #GedaBulb object.
- *  If \a group_source is NULL, \bulb will removed from any group that is currently
- *  a member. This function is equivilent to using geda_bulb_get_group and
- *  geda_bulb_set_group() methods
+ *  If \a group_source is NULL, \a bulb will removed from any group that is
+ *  currently a member. This function is equivilent to using geda_bulb_get_
+ *  group and geda_bulb_set_group() methods
  *
  *  \param [in] bulb         The #GedaBulb is group is to be set
  *  \param [in] group_source The bulb whose group \a bulb is to join
@@ -1234,7 +1241,7 @@ geda_bulb_join_group (GtkWidget *bulb, GtkWidget *group_source)
  *  \note Group list are Zero based single-linked list, so the
  *  first bulb is 0 and the last is group length minus 1.
  *
- *  \param [in] group The bulb group to be queried
+ *  \param [in] group_list The bulb group to be queried
  *
  *
  */
@@ -1268,7 +1275,7 @@ int geda_bulb_group_get_active_index (GSList *group_list) {
  *  \note Group list are Zero based single-linked list, so the
  *  first bulb is 0 and the last is group length minus 1.
  *
- *  \param [in] group       The bulb group to be set
+ *  \param [in] group_list  The bulb group to be set
  *  \param [in] which_bulb  Index of bulb in group to set active
  *
  */
@@ -1311,7 +1318,7 @@ void geda_bulb_group_set_active_index (GSList *group_list, int which_bulb)
  *  \note Group list are Zero based single-linked list, so the
  *  first bulb is 0 and the last is group length minus 1.
  *
- *  \param [in] group       The bulb group to be set
+ *  \param [in] group_list  The bulb group to be set
  *  \param [in] which_bulb  Index of bulb in group to set active
  *
  */

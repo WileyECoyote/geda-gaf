@@ -707,6 +707,13 @@ static void geda_label_ensure_layout (GedaLabel *label)
   }
 }
 
+/*! \brief GedaLabel Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaLabelClass Object
+ */
 static void
 geda_label_class_init (GedaLabelClass *class)
 {

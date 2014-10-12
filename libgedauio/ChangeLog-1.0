@@ -1,3 +1,7 @@
+2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/*.c: Revise and update Doxygen documentation
+
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_bulb.c: New GedaBulb widget, similar to GtkRadio but

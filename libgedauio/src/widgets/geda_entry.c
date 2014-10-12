@@ -585,6 +585,13 @@ geda_entry_drag_data_delete (GtkWidget *widget, GdkDragContext *context)
    g_print ("TODO: geda_entry_drag_data_get\n" );
 }
 
+/*! \brief GedaEntry Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaEntryClass Object
+ */
 static void geda_entry_class_init (GedaEntryClass *class)
 {
   GParamSpec     *params;

@@ -1027,6 +1027,13 @@ static void geda_font_dialog_finalize (GObject *object)
   }
 }
 
+/*! \brief GedaFontDialog Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaFontDialogClass Object
+ */
 static void
 geda_font_dialog_class_init (GedaFontDialogClass *class)
 {

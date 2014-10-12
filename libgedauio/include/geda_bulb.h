@@ -28,6 +28,13 @@ G_BEGIN_DECLS
 
 #include <gtk/gtkcheckbutton.h>
 
+/*! \class GedaBulb geda_bulb.h "geda_bulb.h"
+ *  \brief A toggle type button widget
+ *  \par
+ *  A GedaBulb a button widget resembling a light bulb used for multiple
+ *  choices options.
+ */
+
 #define GEDA_TYPE_BULB            (geda_bulb_get_type ())
 #define GEDA_BULB(obj)            (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_BULB, GedaBulb))
 #define GEDA_BULB_CLASS(klass)    (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_BULB, GedaBulbClass))

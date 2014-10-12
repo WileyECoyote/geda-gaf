@@ -26,7 +26,7 @@
 #define GEDA_TYPE_ACTION           (geda_action_get_type())
 #define GEDA_ACTION(obj)           (G_TYPE_CHECK_INSTANCE_CAST ((obj), GEDA_TYPE_ACTION, GedaAction))
 #define GEDA_ACTION_CLASS(klass)   (G_TYPE_CHECK_CLASS_CAST ((klass),  GEDA_TYPE_ACTION, GedaActionClass))
-#define GEDA_IS_ACTION(obj)      (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_ACTION))
+#define GEDA_IS_ACTION(obj)        (G_TYPE_CHECK_INSTANCE_TYPE ((obj), GEDA_TYPE_ACTION))
 #define GEDA_ACTION_GET_CLASS(obj) (G_TYPE_INSTANCE_GET_CLASS ((obj),  GEDA_TYPE_ACTION, GedaActionClass))
 
 typedef struct _GedaAction      GedaAction;

@@ -339,6 +339,13 @@ geda_accel_label_set_accel_string (GedaAccelLabel *accel_label,
   g_object_notify (G_OBJECT (accel_label), "accel-string");
 }
 
+/*! \brief GedaAccelLabel Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaAccelLabelClass Object
+ */
 static void
 geda_accel_label_class_init (GedaAccelLabelClass *class)
 {

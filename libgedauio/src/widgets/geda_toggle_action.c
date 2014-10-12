@@ -176,6 +176,13 @@ geda_toggle_action_connect_proxy (GtkAction *action, GtkWidget *proxy)
   GTK_ACTION_CLASS ( geda_toggle_action_parent_class)->connect_proxy (action, proxy);
 }
 
+/*! \brief GedaToggleAction Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] klass A GedaToggleActionClass Object
+ */
 static void
 geda_toggle_action_class_init (GedaToggleActionClass *klass)
 {

@@ -996,6 +996,13 @@ static void geda_menu_button_init (GedaMenuButton *button)
 
 /* BEGIN ------+-------+-------  Initialization -------+-------+-------+-----*/
 
+/*! \brief GedaMenuButton Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] klass A GedaMenuButtonClass Object
+ */
 static void geda_menu_button_class_init (GedaMenuButtonClass *klass)
 {
   GtkObjectClass   *gtk_object_class;

@@ -694,6 +694,13 @@ geda_font_button_clicked (GtkButton *button)
   gtk_window_present (GTK_WINDOW (priv->font_dialog));
 }
 
+/*! \brief GedaFontButton Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] class A GedaFontButtonClass Object
+ */
 static void
 geda_font_button_class_init (GedaFontButtonClass *class)
 {

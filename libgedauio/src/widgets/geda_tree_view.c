@@ -52,7 +52,13 @@
 
 static GObjectClass *geda_tree_view_parent_class = NULL;
 
-
+/*! \brief GedaTreeView Class Initializer
+ *
+ *  \par Function Description
+ *  Function is called to initialize the class instance.
+ *
+ * \param [in] klass A GedaTreeViewClass Object
+ */
 static void
 geda_tree_view_class_init (GedaTreeViewClass *klass)
 {
