@@ -6,5 +6,6 @@ TAGS
 *.txt
 *.bak
 ChangeLog
+geda.pc
 libgedathon.pc
 

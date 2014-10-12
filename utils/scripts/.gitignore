@@ -1,5 +1,13 @@
 Makefile
 Makefile.in
 garchive
+garchive.py
+geda-install
+geda-install.sh
+geda-install-bin
+geda-install-bin.sh
 sw2asc
+*-swp
+*.swp
+*.bak
 *~

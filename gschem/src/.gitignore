@@ -9,6 +9,6 @@ gschem.exe
 *.o
 *.x
 *~
-TAGS
 stash/
 stash/*
+TAGS

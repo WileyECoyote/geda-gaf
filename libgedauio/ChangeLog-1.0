@@ -1,3 +1,19 @@
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_bulb.c: New GedaBulb widget, similar to GtkRadio but
+        is not derived from GtkRadio, is alternative replacement derived from
+        GtkCheckButton. The GedaBulb class is intended to replace the current
+        kludged scheme with radio like widgets build with macros but resolves
+        many of the short-comings of GtkRadio, even when compared to Gtk-3.x.
+        The class contains xpm data, no images are loaded from disk. The xpm
+        data is used to create shared pixmaps, with the pixel data released
+        when the last GedaBulb is destroyed, thus using the heap space more
+        efficiently and still out performing GtkRadio. Unlike with GtkRadio,
+        groups of GedaBulb are easy to create and manage! Bulbs only emit a
+        "clicked" signal when actually clicked and can be set without signal
+        emissions. The class has more extensive and more practical methods,
+        and accessible properties and better documentation.
+
 2014-09-21 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Add doxygen grouping for GedaComboBox

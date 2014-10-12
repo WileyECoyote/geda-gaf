@@ -24,6 +24,7 @@
 #ifndef __GEDA_WIDGETS_H__
 #define __GEDA_WIDGETS_H__
 
+#include "geda_bulb.h"
 #include "geda_combobox.h"
 #include "geda_comboboxtext.h"
 #include "geda_entry.h"

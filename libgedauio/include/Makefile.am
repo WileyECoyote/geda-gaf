@@ -11,6 +11,7 @@ libgedauio_HEADERS = \
 			geda_action.h            \
 			geda_actionhelper.h      \
 			geda_accumulate.h        \
+			geda_bulb.h              \
 			geda_combobox.h          \
 			geda_comboboxtext.h      \
 			geda_completion.h        \

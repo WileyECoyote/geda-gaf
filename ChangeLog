@@ -1,3 +1,6 @@
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_dialog_controls.h: Fix memory leak with PANGO_R5_LABEL Macro
 
 2014-10-05 Wiley E. Hill <wileyhill@gmail.com>
 
@@ -7,7 +10,7 @@
         fixed by spreading accross different modules, but the same tests passed
         when performed serially with Automake 1.9. Is not suppose to be a tests
         "of automake". Besides, many computers with distro lag do not have newer
-        versions of automake avaliable and not about to upgrade distro to, Squeeze
+        versions of automake avaliable and not about to upgrade distro, Squeeze
         is too stable.
 
 2014-09-09 Wiley E. Hill <wileyhill@gmail.com>

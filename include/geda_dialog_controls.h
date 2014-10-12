@@ -340,7 +340,11 @@ typedef struct
 
 #define PANGO_R5_LABEL(name) GEDA_PADDED_LABEL (name, 5, 0, FALSE, FALSE, h) \
         geda_label_widget_set_justify (name##Label, GTK_JUSTIFY_RIGHT); \
-        gtk_widget_modify_font (name##Label, pango_font_description_from_string (DialogFont));
+        { \
+          PangoFontDescription *font_desc = pango_font_description_from_string (DialogFont); \
+          gtk_widget_modify_font (name##Label, font_desc); \
+          pango_font_description_free (font_desc); \
+        }
 
 /* Combine Label and Box */
 #define GTK_LABEL_HBOX(parent, name, spacing)  \
