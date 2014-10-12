@@ -30,10 +30,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
-
+#include <geda_debug.h>
 
 /*! \brief Calculates the distance between the given point and the closest
  * point on the perimeter or interior of the circle.

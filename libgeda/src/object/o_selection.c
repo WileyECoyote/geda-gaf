@@ -62,7 +62,7 @@ void o_selection_add (SELECTION *selection, Object *o_selected)
  *  selected, or even with a NULL pointer for an object.
  *
  *  \param [in] selection  Pointer to the selection list
- *  \param [in] o_selected Object to unselect and remove from the list.
+ *  \param [in] object     Object to unselect and remove from the list.
  *
  *  \returns TRUE if \a object was selected and was removed, FALSE if the
  *           object was either not selected or was not in the selection

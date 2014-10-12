@@ -35,9 +35,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /* need to test everything at boundary conditions (exceed cache size etc...) */
 

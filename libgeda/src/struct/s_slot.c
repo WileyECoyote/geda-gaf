@@ -32,9 +32,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*! Basic string splitting delimiters */
 #define DELIMITERS ",; "

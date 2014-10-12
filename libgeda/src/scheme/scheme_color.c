@@ -29,9 +29,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 SCM
 s_color_map_to_scm (const COLOR *map)

@@ -22,9 +22,7 @@
 
 #include "libgeda_priv.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 char  *default_untitled_name             = NULL;
 char  *default_bitmap_directory          = NULL;
