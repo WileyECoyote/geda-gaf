@@ -1,6 +1,10 @@
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * include/gschem_sdefines.h: Add IDS_AUTONUMBER for Auto-Number Dialog
+    * include/gschem_dialog.h: Add enumeration for GschemDialog Responses.
+
+2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/gschem_sdefines.h: Add IDS_AUTONUMBER for Auto-Number Dialog.
 
 2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
 

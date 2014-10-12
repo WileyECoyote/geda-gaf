@@ -67,6 +67,21 @@ enum {
   PROP_TITLE,
 };
 
+typedef enum
+{
+  GSCHEM_RESPONSE_NONE         = -1,
+  GSCHEM_RESPONSE_REJECT       = -2,
+  GSCHEM_RESPONSE_ACCEPT       = -3,
+  GSCHEM_RESPONSE_DELETE_EVENT = -4,
+  GSCHEM_RESPONSE_OK           = -5,
+  GSCHEM_RESPONSE_CANCEL       = -6,
+  GSCHEM_RESPONSE_CLOSE        = -7,
+  GSCHEM_RESPONSE_YES          = -8,
+  GSCHEM_RESPONSE_NO           = -9,
+  GSCHEM_RESPONSE_APPLY        = -10,
+  GSCHEM_RESPONSE_HELP         = -11
+} GschemResponseType;
+
 struct _GschemDialogClass {
   GtkDialogClass parent_class;
 
