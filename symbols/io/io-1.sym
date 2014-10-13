@@ -1,4 +1,14 @@
-v 20140330 2
+v 20140915 2
+T 0 1300 5 8 0 0 0 0 1
+author=AutoTron
+T 0 1150 5 8 0 0 0 0 1
+symversion=0.3
+T 0 1000 9 10 0 0 0 0 1
+numslots=0
+T 0 850 5 8 0 0 0 0 1
+dist-license=GPL3
+T 0 700 5 8 0 0 0 0 1
+use-license=free, no restrictions
 P 0 100 200 100 1 0 0
 {
 T 150 150 5 8 0 1 0 0 1

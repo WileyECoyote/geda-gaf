@@ -1,5 +1,11 @@
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * in/out-?.sym: Minor revision to dash 1, change symverion for dash 1 and
+      2 symverion to 0.3. Set footprint for dash 1 to "none" and created new
+      dash 3 that are the similar to dash 1 except the footprint=JUMPER-1.
+
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * transistor/basic: Add old basic npn, pnp, nmosfet, pmosfet back after
       cleaning, for backwards compatibility.
 

@@ -22,7 +22,7 @@ description=signal that leaves a sub sheet
 T 100 1400 5 8 0 0 0 0 1
 comment=The value of the refdes should correspond to a pin label in a subsheet symbol.
 T 100 1200 5 8 0 0 0 0 1
-symversion=1.0
+symversion=0.3
 T 100 1000 5 8 0 0 0 0 1
 author=K-M. Knaak, kmk@lilalaser.de
 T 100 800 5 8 0 0 0 0 1
