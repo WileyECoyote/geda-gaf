@@ -305,10 +305,10 @@ GList *o_complex_get_promotable (GedaToplevel *toplevel, Object *object, int det
 /*! \brief Promote attributes from a complex Object
  *  \par Function Description
  *  Selects promotable attributes from \a object, and returns a new
- *  GList containing them (suitable for appending to a #Page).
+ *  GList containing them (suitable for appending to a#Page).
  *
- *  \param [in]  toplevel The #GedaToplevel environment.
- *  \param [in]  object   The complex #Object to promote from.
+ *  \param [in]  toplevel The#GedaToplevel environment.
+ *  \param [in]  object   The complex#Object to promote from.
  *
  *  \return A GList of promoted attributes.
  */
@@ -969,20 +969,46 @@ Object *o_complex_find_pin_by_attribute (Object *object, char *name, char *wante
  *  \param object    The complex Object
  */
 void
-o_complex_check_symversion(Object* object)
+o_complex_check_symversion(GedaToplevel *toplevel, Object* object)
 {
-  char *inside = NULL;
-  char *outside = NULL;
-  char *refdes = NULL;
-  double inside_value = -1.0;
+  char *inside         = NULL;
+  char *outside        = NULL;
+  double inside_value  = -1.0;
   double outside_value = -1.0;
-  char *err_check = NULL;
-  int inside_present = FALSE;
-  int outside_present = FALSE;
+  char *err_check      = NULL;
+  int inside_present   = FALSE;
+  int outside_present  = FALSE;
+
   double inside_major, inside_minor;
   double outside_major, outside_minor;
 
   g_return_if_fail (GEDA_IS_COMPLEX(object));
+
+  const char *refdes;
+  const char *match;
+  const char *newer;
+  const char *oddity;
+  const char *older;
+  const char *parse;
+
+  const char *clash_msg;
+  const char *major_msg;
+  const char *minor_msg;
+  const char *parse_msg;
+  const char *warn_msg;
+
+  match     = _("mismatch");
+  newer     = _("newer");
+  oddity    = _("oddity");
+  older     = _("older");
+  parse     = _("parse error");
+
+
+  clash_msg = _("\tInstantiated symbol <%s> is %s than the version in library\n");
+  major_msg = _("\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n");
+  minor_msg = _("\tMinor version change (instantiated %.3f, library %.3f)\n");
+  parse_msg = _("\tCould not parse symbol file\n");
+  warn_msg  = _("WARNING: Symbol version %s on refdes %s:\n");
 
   /* first look on the inside for the symversion= attribute */
   inside = o_attrib_search_inherited_attribs_by_name (object, "symversion", 0);
@@ -991,27 +1017,28 @@ o_complex_check_symversion(Object* object)
   outside = o_attrib_search_attached_attribs_by_name (object, "symversion", 0);
 
   /* get the uref for future use */
-  refdes = o_attrib_search_object_attribs_by_name(object, "refdes", 0);
-  if (!refdes)
-  {
-    refdes = u_string_strdup ("unknown");
+  refdes = o_get_object_attrib_value(object, "refdes");
+
+  if (!refdes) {
+    refdes = "unknown";
   }
 
-  if (inside)
-  {
+  if (inside) {
+
     inside_value = strtod(inside, &err_check);
-    if (inside_value == 0 && inside == err_check)
-    {
-      if (inside)
-      {
-        u_log_message(_("WARNING: Symbol version parse error on refdes %s:\n"
-                        "\tCould not parse symbol file symversion=%s\n"),
-                      refdes, inside);
-      } else {
-        u_log_message(_("WARNING: Symbol version parse error on refdes %s:\n"
-                        "\tCould not parse symbol file symversion=\n"),
-                      refdes);
+
+    if (inside_value == 0 && inside == err_check) {
+
+      u_log_message(warn_msg, parse, refdes);
+
+      if (inside) {
+
+        u_log_message("\t%s symversion=%s\n", parse_msg, inside);
       }
+      else {
+        u_log_message("\t%s\n",parse_msg);
+      }
+
       goto done;
     }
     inside_present = TRUE;
@@ -1020,14 +1047,14 @@ o_complex_check_symversion(Object* object)
     inside_present = FALSE;  /* attribute not inside */
   }
 
-  if (outside)
-  {
+  if (outside) {
+
     outside_value = strtod(outside, &err_check);
+
     if (outside_value == 0 && outside == err_check)
     {
-      u_log_message(_("WARNING: Symbol version parse error on refdes %s:\n"
-                      "\tCould not parse attached symversion=%s\n"),
-                    refdes, outside);
+      u_log_message(warn_msg, parse, refdes);
+      u_log_message(_("\tCould not parse attached symversion=%s\n"), outside);
       goto done;
     }
     outside_present = TRUE;
@@ -1041,104 +1068,96 @@ o_complex_check_symversion(Object* object)
          inside_value, outside_value);
 #endif
 
-  /* symversion= is not present anywhere */
-  if (!inside_present && !outside_present)
-  {
-    /* symbol is legacy and versioned okay */
-    goto done;
-  }
-
-  /* No symversion inside, but a version is outside, this is a weird case */
-  if (!inside_present && outside_present)
-  {
-    u_log_message(_("WARNING: Symbol version oddity on refdes %s:\n"
-                    "\tsymversion=%s attached to instantiated symbol, "
-                    "but no symversion= inside symbol file\n"),
-                  refdes, outside);
-    goto done;
-  }
-
-  /* inside & not outside is a valid case, means symbol in library is newer */
-  /* also if inside_value is greater than outside_value, then symbol in */
-  /* library is newer */
-  if ((inside_present && !outside_present) ||
-      ((inside_present && outside_present) && (inside_value > outside_value)))
+  /* if neither symbol nor library have version then skip */
+  if (inside_present || outside_present)
   {
 
-    u_log_message(_("WARNING: Symbol version mismatch on refdes %s (%s):\n"
-                    "\tSymbol in library is newer than "
-                    "instantiated symbol\n"),
-                  refdes, object->complex->filename);
-
-    /* break up the version values into major.minor numbers */
-    inside_major = floor(inside_value);
-    inside_minor = inside_value - inside_major;
-
-    if (outside_present)
+    /* No symversion inside, but a version is outside, is a weird case */
+    if (!inside_present && outside_present)
     {
-      outside_major = floor(outside_value);
-      outside_minor = outside_value - outside_major;
-    } else {
-      /* symversion was not attached to the symbol, set all to zero */
-      outside_major = 0.0;
-      outside_minor = 0.0;
-      outside_value = 0.0;
+      u_log_message(warn_msg, oddity, refdes);
+      u_log_message(_("\tsymversion=%s attached to instantiated symbol,"
+      " but version not found inside symbol file\n"), outside);
     }
+    else {
+      /* inside & not outside is a valid case, means symbol in library is */
+      /* newer also if inside_value is greater than outside_value, than the */
+      /* symbol in library is newer */
+      if ((inside_present && !outside_present) ||
+         ((inside_present && outside_present) &&
+          (inside_value > outside_value)))
+      {
+        u_log_message(warn_msg, match, refdes);
+        u_log_message(clash_msg, object->complex->filename, older);
+
+        /* break up the version values into major.minor numbers */
+        inside_major = floor(inside_value);
+        inside_minor = inside_value - inside_major;
+
+        if (outside_present)
+        {
+          outside_major = floor(outside_value);
+          outside_minor = outside_value - outside_major;
+        } else {
+          /* symversion was not attached to the symbol, set all to zero */
+          outside_major = 0.0;
+          outside_minor = 0.0;
+          outside_value = 0.0;
+        }
 
 #if DEBUG
-    printf("i: %f %f %f\n", inside_value, inside_major, inside_minor);
-    printf("o: %f %f %f\n", outside_value, outside_major, outside_minor);
+        printf("i: %f %f %f\n", inside_value, inside_major, inside_minor);
+        printf("o: %f %f %f\n", outside_value, outside_major, outside_minor);
 #endif
 
-    if (inside_major > outside_major)
-    {
-      Page * page;
-      g_return_if_fail(GEDA_IS_PAGE(object->page));
-      page = object->page;
+        if (inside_major > outside_major)
+        {
+          Page *page;
+          char *refdes_copy;
 
-      char* refdes_copy;
-      u_log_message(_("\tMAJOR VERSION CHANGE (file %.3f, "
-                      "instantiated %.3f, %s)!\n"),
-                    inside_value, outside_value, refdes);
+          u_log_message (major_msg, outside_value, inside_value, refdes);
 
-      /* add the refdes to the major_changed_refdes GList */
-      /* make sure refdes_copy is freed somewhere */
-      refdes_copy = g_strconcat (refdes, " (",
-                                 object->complex->filename,
-                                 ")", NULL);
-      page->major_changed_refdes =
-        g_list_append(page->major_changed_refdes, refdes_copy);
+          if (GEDA_IS_PAGE(object->page)) {
+            page = object->page;
+          }
+          else if (GEDA_IS_PAGE(toplevel->page_current)) {
+            page = toplevel->page_current;
+          }
+          else {
+            page = NULL;
+          }
 
-      /* don't bother checking minor changes if there are major ones*/
-      goto done;
+          if (page) {
+            /* Add the refdes to the major_changed_refdes GList */
+            /* if a page was found */
+            refdes_copy = g_strconcat (refdes, " (",
+                                                  object->complex->filename,
+                                                  ")", NULL);
+            page->major_changed_refdes =
+            g_list_append(page->major_changed_refdes, refdes_copy);
+          }
+
+          /* don't bother checking minor changes if there are major ones*/
+        }
+        else if (inside_minor > outside_minor) {
+          u_log_message (minor_msg,  outside_value, inside_value);
+        }
+      }
+      else {
+        /* outside value is greater than inside value, this is weird case */
+        if ((inside_present && outside_present) && (outside_value > inside_value))
+        {
+          u_log_message(warn_msg, oddity, refdes);
+          u_log_message(clash_msg, object->complex->filename, newer);
+        }
+      }
     }
-
-    if (inside_minor > outside_minor)
-    {
-      u_log_message(_("\tMinor version change (file %.3f, "
-                      "instantiated %.3f)\n"),
-                    inside_value, outside_value);
-    }
-
-    goto done;
   }
-
-  /* outside value is greater than inside value, this is weird case */
-  if ((inside_present && outside_present) && (outside_value > inside_value))
-  {
-    u_log_message(_("WARNING: Symbol version oddity on refdes %s:\n"
-                    "\tInstantiated symbol is newer than "
-                    "symbol in library\n"),
-                  refdes);
-    goto done;
-  }
-
-  /* if inside_value and outside_value match, then symbol versions are okay */
 
 done:
+
   GEDA_FREE(inside);
   GEDA_FREE(outside);
-  GEDA_FREE(refdes);
 }
 
 /*! \brief Calculates the distance between the given point and the closest

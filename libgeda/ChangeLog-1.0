@@ -1,5 +1,15 @@
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_complex_basic.c: In rediculously over complex function
+      o_complex_check_symversion; Add GedaToplevel *toplevel argument back.
+      For reporting descrepencies in major revision, check the object for
+      a page, and then toplevel current. Report only if a page is found.
+      Redo all of the message strings to const char pointers. Get reference
+      to refdes with new function o_get_object_attrib_value. Do not free
+      reference to refdes.
+
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_get.c: New utility function o_get_object_attrib_value
       gets a pointer to the value of named attribute belonging to object,
       the string belongs to libgeda and must not be freed.

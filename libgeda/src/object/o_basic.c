@@ -126,7 +126,7 @@ o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
     {
         /* yes */
         /* verify symbol version (not file format but rather contents) */
-        o_complex_check_symversion(last_complex);
+        o_complex_check_symversion(toplevel, last_complex);
         last_complex = NULL;  /* no longer need to check */
     }
 
@@ -230,7 +230,7 @@ o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
           {
             /* yes */
             /* verify symbol version (not file format but rather contents) */
-            o_complex_check_symversion(last_complex);
+            o_complex_check_symversion(toplevel, last_complex);
             last_complex = NULL;
           }
 
@@ -376,7 +376,7 @@ o_read_buffer (GedaToplevel *toplevel, GList    *object_list,
   /* yet?  This would happen if the complex is at the very end of the file  */
   /* and had no attached attributes */
   if (last_complex) {
-    o_complex_check_symversion(last_complex);
+    o_complex_check_symversion(toplevel, last_complex);
     last_complex = NULL;  /* no longer need to check */
   }
 
