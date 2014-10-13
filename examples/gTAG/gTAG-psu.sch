@@ -1,7 +1,11 @@
-v 20080110 1
+v 20140915 2
 C 48300 42000 0 0 0 title-A2.sym
 C 54700 52300 1 0 0 in-1.sym
 {
+T 54700 53450 5 8 0 0 0 0 1
+symversion=0.3
+T 55300 52400 5 10 0 0 0 0 1
+footprint=none
 T 54700 52600 5 10 1 1 0 0 1
 refdes=usb_power
 T 54700 52600 5 10 0 0 0 0 1
@@ -9,6 +13,10 @@ device=INPUT
 }
 C 54700 51600 1 0 0 in-1.sym
 {
+T 54700 52750 5 8 0 0 0 0 1
+symversion=0.3
+T 55300 51700 5 10 0 0 0 0 1
+footprint=none
 T 54700 51900 5 10 1 1 0 0 1
 refdes=jtag_power
 T 54700 51900 5 10 0 0 0 0 1
@@ -164,6 +172,10 @@ device=RESISTOR
 }
 C 65000 52300 1 0 0 out-1.sym
 {
+T 65000 53450 5 8 0 0 0 0 1
+symversion=0.3
+T 65600 52400 5 10 0 0 0 0 1
+footprint=none
 T 65000 52600 5 10 1 1 0 0 1
 refdes=pon_reset#
 T 65000 52600 5 10 0 0 0 0 1

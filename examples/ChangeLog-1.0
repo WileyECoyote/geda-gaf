@@ -1,3 +1,8 @@
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gTAG: Update several symbols to suppress warning messages regarding
+      symbol versions.
+
 2007-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.ac: Updated version to 20070526 in prep for the next
@@ -7,7 +12,7 @@
 	* TwoStageAmp/models/Makefile.am, TwoStageAmp/Makefile.am,
 	TwoStageAmp/configure.ac:  Fixed automake stuff so the 2N3904
 	model would be installed.
-	
+
 2007-02-16 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* configure.ac: Bumped package version to 20070216.
@@ -18,9 +23,9 @@
 	Updated schematics to get rid of symbol warnings.
 
 2007-2-10 Stuart Brorson <sdb@cloud9.net>
-	* RF_Amp/MSA-2643.sch: Removed source attribute from 
+	* RF_Amp/MSA-2643.sch: Removed source attribute from
 	transistors since spice-sdb didn't like hierarchy.
-	
+
 2007-2-10 Stuart Brorson <sdb@cloud9.net>
         * TwoStageAmp/:  Various fixes to bit-rot problems.
 
@@ -30,7 +35,7 @@
 
 2006-09-24 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * AUTHORS: Updated file pointing people at gschem's AUTHOR file 
+        * AUTHORS: Updated file pointing people at gschem's AUTHOR file
         as the complete list of authors.  Merged all listed files in this
         file into gschem's file.
 
@@ -41,7 +46,7 @@
 2006-08-30 Werner Hoch	<werner.ho@gmx.de>
 
 	* configure.ac: fixed installation error. Install into docdir
-	
+
 	* */Makefile.am: changed for the installation
 
 2006-08-21 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -67,7 +72,7 @@
 
 2005-08-14 Ales Hvezda   <ahvezda@geda.seul.org>
 
-        * configure.ac: Updated package version to 20050814.  This is a 
+        * configure.ac: Updated package version to 20050814.  This is a
         temporary version and not a real release number.
 
 2005-03-08 Ales Hvezda   <ahvezda@geda.seul.org>
@@ -119,7 +124,7 @@
 
 	* configure.ac: Updated version to something more recent, but this
 	version is not an official release.
-	
+
 2003-10-04 Ales Hvezda   <ahvezda@geda.seul.org>
 
         * configure.ac: Updated version to something more recent, but this
@@ -136,12 +141,12 @@
 
 2003-07-20 Ales Hvezda   <ahvezda@geda.seul.org>
 
-	* configure.ac: Renamed from configure.in 
+	* configure.ac: Renamed from configure.in
 
 	* configure.ac: Minor tweeks to get this file up to snuff.
-	
+
 	* *.in, *.h, etc: Removed a bunch of old unneeded auto* files.
-	
+
 2003-05-25 Ales Hvezda   <ahvezda@geda.seul.org>
 
 	* lightning_detector/: Added sch/pcb example by Terry Porter.
