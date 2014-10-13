@@ -1,3 +1,9 @@
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_get.c: New utility function o_get_object_attrib_value
+      gets a pointer to the value of named attribute belonging to object,
+      the string belongs to libgeda and must not be freed.
+
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_hierarchy.c: Return page from s_hierarchy_down_symbol

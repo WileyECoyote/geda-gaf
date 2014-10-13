@@ -182,30 +182,31 @@ const char   *f_path_user_config            (void);
       void    o_complex_rotate_world             (int world_centerx, int world_centery, int angle, Object *object);
       void    o_complex_mirror_world             (int world_centerx, int world_centery, Object *object);
       Object *o_complex_find_pin_by_attribute    (Object *object, char *name, char *wanted_value);
-      void    o_complex_check_symversion         (Object *object);
+      void    o_complex_check_symversion         (GedaToplevel *toplevel, Object *object);
 
 /* o_color.c */
       int     o_color_get_object_default    (char type);
 
 /* o_embed.c */
-      void    o_embed                  (GedaToplevel *toplevel, Object *o_current);
-      void    o_unembed                (GedaToplevel *toplevel, Object *o_current);
+      void    o_embed                       (GedaToplevel *toplevel, Object *o_current);
+      void    o_unembed                     (GedaToplevel *toplevel, Object *o_current);
 
 /* o_get.c */
-      bool    o_get_fill_options       (Object *object, OBJECT_FILLING *type, int *width, int *pitch1,
-                                        int *angle1, int *pitch2, int *angle2);
-      bool    o_get_is_bus_related     (Object *object);
-      bool    o_get_is_selectable      (Object *object);
-      bool    o_get_is_selected        (Object *object);
-      bool    o_get_is_visible         (Object *object);
- LINE_END     o_get_line_end           (int capstyle);
-      bool    o_get_line_options       (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
-      GList  *o_get_objects_by_type    (GList *object_list, int type);
-      Page   *o_get_page               (Object *obj);
-      Object *o_get_parent             (Object *object);
-      int     o_get_parent_id          (Object *object);
-      bool    o_get_position           (int *x, int *y, Object *object);
-      double  o_get_shortest_distance  (Object *object, int x, int y);
+      bool    o_get_fill_options            (Object *object, OBJECT_FILLING *type, int *width, int *pitch1,
+                                             int *angle1, int *pitch2, int *angle2);
+      bool    o_get_is_bus_related          (Object *object);
+      bool    o_get_is_selectable           (Object *object);
+      bool    o_get_is_selected             (Object *object);
+      bool    o_get_is_visible              (Object *object);
+ LINE_END     o_get_line_end                (int capstyle);
+      bool    o_get_line_options            (Object *object, LINE_END *end, LINE_TYPE *type, int *width, int *length, int *space);
+const char   *o_get_object_attrib_value     (Object *object, const char *name);
+      GList  *o_get_objects_by_type         (GList *object_list, int type);
+      Page   *o_get_page                    (Object *obj);
+      Object *o_get_parent                  (Object *object);
+      int     o_get_parent_id               (Object *object);
+      bool    o_get_position                (int *x, int *y, Object *object);
+      double  o_get_shortest_distance       (Object *object, int x, int y);
 
 /* o_line_basic.c */
       Object *o_line_new               (int color, int x1, int y1, int x2, int y2);
@@ -350,7 +351,7 @@ const char   *o_text_get_string                  (Object *obj);
       int     s_attrib_uniq                      (char *name);
       void    s_attrib_free                      (void);
       void    s_attrib_init                      (void);
-      char    *s_attrib_get                      (int counter);
+      char   *s_attrib_get                       (int counter);
 
 /* s_basic.c */
       void    print_struct_forw                  (GList *list);
@@ -405,7 +406,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 /* s_hierarchy.c */
       Page   *s_hierarchy_down_schematic_single  (GedaToplevel *toplevel, const char *filename, Page *parent,
                                                   int page_control, int flag, GError **err);
-      void    s_hierarchy_down_symbol            (GedaToplevel *toplevel, const CLibSymbol *symbol, Page *parent);
+      Page   *s_hierarchy_down_symbol            (GedaToplevel *toplevel, const CLibSymbol *symbol, Page *parent);
       Page   *s_hierarchy_find_up_page           (PageList *page_list, Page *current_page);
       GList  *s_hierarchy_traverse_pages         (GedaToplevel *toplevel, Page *p_current, int flags);
       int     s_hierarchy_print_page             (Page *p_current, void *data);

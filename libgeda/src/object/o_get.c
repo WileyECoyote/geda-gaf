@@ -29,9 +29,11 @@
  */
 
 #include <config.h>
+#include <ascii.h>
 #include <stdio.h>
 
 #include "libgeda_priv.h"
+#include "geda_text.h"
 
 /*! \brief Get capstyle for printing of an object.
  *  \par Function Description
@@ -219,6 +221,48 @@ bool o_get_line_options(Object *object,
   return result;
 }
 
+/*! \brief Get pointer to an Object's Attribute Value given the name
+ *
+ * \par Function Description
+ *  Returns a pointer to the value of a named attribute belonging to object,
+ *  the string belongs to libgeda and must not be freed. The value returned
+ *  is for the first attribute found with the given \a name.
+ *
+ * \param [in] object Object whose attributes are to be searched
+ * \param [in] name   The name of the attribute to search for
+ *
+ * \return If objects is valid and has an attribute with a matching \a name
+ *         then the value of the attribute is returned , otherwise NULL.
+ */
+const char*
+o_get_object_attrib_value (Object *object, const char *name)
+{
+        Object *attrib;
+  const char   *value;
+
+  if (GEDA_IS_OBJECT(object)) {
+
+    if (object->attribs) {
+      attrib = o_attrib_find_attrib_by_name (object->attribs, name, 0);
+      if (GEDA_IS_TEXT(attrib)) {
+        value  = attrib->text->string;
+        while (value && *(value - 1) != ASCII_EQUAL_SIGN) value++;
+      }
+      else {
+        value = NULL;
+      }
+    }
+    else {
+      value = NULL;
+    }
+  }
+  else {
+    BUG_MSG("Invalid GEDA Object");
+    value = NULL;
+  }
+  return value;
+}
+
 /*! \brief Get List of Objects in List by Object Type.
  *
  * \par Function Description
@@ -231,7 +275,6 @@ bool o_get_line_options(Object *object,
  * \return list of Objects if found, or %NULL if no member was the requested
  *         type or the input list was empty.
  */
-
 GList*
 o_get_objects_by_type (GList *olist, int type)
 {
