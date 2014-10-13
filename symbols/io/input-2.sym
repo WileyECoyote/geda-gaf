@@ -24,6 +24,6 @@ description=Input module port
 T 0 750 9 10 0 0 0 0 1
 numslots=0
 T 0 450 9 10 0 0 0 0 1
-refdes=none
+refdes=INPUT
 T 0 600 9 10 0 0 0 0 1
 footprint=none
