@@ -2136,6 +2136,9 @@ COMMAND ( do_down_schematic )
                              I_PAN_DONT_REDRAW);
         o_undo_savestate(w_current, UNDO_ALL);
         s_page_goto (w_current->toplevel, parent);
+        o_notify_change_add (child,
+                            (ChangeNotifyFunc) o_invalidate_object,
+                            (ChangeNotifyFunc) o_invalidate_object, w_current);
       }
 
       /* save the first page */
@@ -2215,15 +2218,21 @@ COMMAND ( do_down_symbol )
   BEGIN_NO_ARGUMENT(do_down_symbol);
 
   Object *object;
-  const CLibSymbol *sym;
 
   object = o_select_return_first_object(w_current);
+
   if (object != NULL) {
-    /* only allow going into symbols */
-    if (object->type == OBJ_COMPLEX) {
-      u_log_message(_("Searching for symbol [%s]\n"),
-                    object->complex->filename);
-      sym = s_clib_get_symbol_by_name (object->complex->filename);
+
+    if (object->type == OBJ_COMPLEX) { /* only allow going into symbols */
+
+      const char *filename = object->complex->filename;
+      const CLibSymbol *sym;
+      Page *child;
+
+      u_log_message(_("Searching for symbol [%s]\n"), filename);
+
+      sym = s_clib_get_symbol_by_name (filename);
+
       if (sym == NULL)
         return;
       if (s_clib_symbol_get_filename(sym) == NULL) {
@@ -2231,14 +2240,25 @@ COMMAND ( do_down_symbol )
                         " Symbol cannot be loaded.\n"));
         return;
       }
-      s_hierarchy_down_symbol(w_current->toplevel, sym, Current_Page);
+
+      child = s_hierarchy_down_symbol(w_current->toplevel, sym, Current_Page);
+
+      x_window_setup_page(w_current, child, w_current->world_left,
+                                            w_current->world_right,
+                                            w_current->world_top,
+                                            w_current->world_bottom);
 
       /* s_hierarchy_down_symbol() will not zoom the loaded page */
       i_zoom_world_extents(w_current,
-                     s_page_get_objects (Current_Page),
-                     I_PAN_DONT_REDRAW);
+                           s_page_get_objects (child),
+                           I_PAN_DONT_REDRAW);
+
+      o_notify_change_add (child,
+                          (ChangeNotifyFunc) o_invalidate_object,
+                          (ChangeNotifyFunc) o_invalidate_object, w_current);
+
       //o_undo_savestate(w_current, UNDO_ALL);
-      x_window_set_current_page(w_current, Current_Page);
+      x_window_set_current_page(w_current, child);
     }
   }
 }

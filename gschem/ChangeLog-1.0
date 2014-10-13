@@ -1,8 +1,16 @@
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_command.c: Add change notifiers after going down in
+      hierarchy in functions do_down_schematic and do_down_symbol.
+
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Call x_window_setup_page to setup page loaded
       by s_hierarchy_down_schematic_single, (hack gets hierarchy down working)
       in function do_down_schematic.
+
+      In function do_hierarchy_up, do not refer to current page after changing
+      to the parent page.
 
 2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
 
