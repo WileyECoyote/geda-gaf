@@ -1,3 +1,8 @@
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * transistor/basic: Add old basic npn, pnp, nmosfet, pmosfet back after
+      cleaning, for backwards compatibility.
+
 2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * vishay: Regenerate all single MOSFETs (both nmosfet and pmosfet) symbols
