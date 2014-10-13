@@ -1,17 +1,51 @@
-v 20131031 2
+v 20140915 2
 C 29900 23000 1 0 0 pmosfet-wb-gds-2.sym
+{
+T 30600 23200 5 10 0 0 0 0 1
+device=PMOS_TRANSISTOR
+T 29700 23700 5 10 1 1 0 0 1
+refdes=Q2
+T 30500 23100 5 10 0 0 0 0 1
+footprint=unknown
+}
 C 28500 23000 1 0 0 pmosfet-wb-gds-2.sym
+{
+T 29200 23200 5 10 0 0 0 0 1
+device=PMOS_TRANSISTOR
+T 28300 23700 5 10 1 1 0 0 1
+refdes=Q1
+T 29100 23100 5 10 0 0 0 0 1
+footprint=unknown
+}
 N 30400 23800 30400 24000 4
 N 30400 19900 30400 19700 4
 C 29900 19900 1 0 0 nmosfet-wb-gds-2.sym
+{
+T 30900 20500 5 10 1 1 0 0 1
+refdes=Q4
+T 30600 20100 5 6 0 0 0 0 1
+value=w=1u
+T 30600 20200 5 6 0 0 0 0 1
+value=l=.35u
+T 30900 20400 5 10 0 0 0 0 1
+device=none
+T 31000 20600 5 10 0 0 0 0 1
+footprint=unknown
+T 29800 21600 5 8 0 0 0 0 1
+symversion=0.3
+T 30600 19950 5 8 0 1 0 0 1
+value=COMPONENT_VALUE
+}
 N 30600 20300 30700 20300 4
 N 30600 23400 30700 23400 4
 C 30800 24000 1 0 0 vdd-1.sym
 C 30900 19400 1 0 0 gnd-1.sym
 C 27300 22500 1 0 0 in-1.sym
 {
+T 27400 22750 5 10 0 1 0 0 1
+refdes=IN_1
 T 27300 23700 5 8 0 0 0 0 1
-symversion=1.0
+symversion=0.3
 T 27300 22800 5 10 0 0 0 0 1
 device=INPUT
 T 27900 22600 5 10 0 0 0 0 1
@@ -19,8 +53,10 @@ footprint=none
 }
 C 27300 21700 1 0 0 in-1.sym
 {
+T 27400 21950 5 10 0 1 0 0 1
+refdes=IN_2
 T 27300 22900 5 8 0 0 0 0 1
-symversion=1.0
+symversion=0.3
 T 27300 22000 5 10 0 0 0 0 1
 device=INPUT
 T 27900 21800 5 10 0 0 0 0 1
@@ -28,8 +64,10 @@ footprint=none
 }
 C 31300 22100 1 0 0 out-1.sym
 {
+T 31300 22350 5 8 0 1 0 0 1
+refdes=OUT
 T 31300 23300 5 8 0 0 0 0 1
-symversion=1.0
+symversion=0.3
 T 31300 22400 5 10 0 0 0 0 1
 device=OUTPUT
 T 31900 22200 5 10 0 0 0 0 1
@@ -47,6 +85,22 @@ N 30700 23400 30700 24000 4
 N 29000 23000 29000 22900 4
 N 29000 22900 30400 22900 4
 C 29900 20900 1 0 0 nmosfet-wb-gds-2.sym
+{
+T 30700 21500 5 10 1 1 0 0 1
+refdes=Q3
+T 30600 21100 5 6 0 0 0 0 1
+value=w=1u
+T 30600 21200 5 6 0 0 0 0 1
+value=l=.35u
+T 30900 21400 5 10 0 0 0 0 1
+device=none
+T 31000 21600 5 10 0 0 0 0 1
+footprint=unknown
+T 29800 22600 5 8 0 0 0 0 1
+symversion=0.3
+T 30600 20950 5 8 0 1 0 0 1
+value=COMPONENT_VALUE
+}
 N 30400 20900 30400 20700 4
 N 29900 23400 29800 23400 4
 N 29800 23400 29800 20300 4

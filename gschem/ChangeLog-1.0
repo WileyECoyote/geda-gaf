@@ -1,5 +1,9 @@
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * examples: Update symbols in gschem examples where applicable
+
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Add change notifiers after going down in
       hierarchy in functions do_down_schematic and do_down_symbol.
 
