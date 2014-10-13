@@ -139,6 +139,7 @@
                   ("io"                 "Standard/Input-Output")
                   ("thyristor"          "Standard/Thyristors")
                   ("transistor"         "Standard/Transistors")
+                     ("transistor/basic"        "Standard/Basic transistors")
                      ("transistor/npn-smt"      "Standard/NPN Surface Mount")
                      ("transistor/pnp-smt"      "Standard/PNP Surface Mount")
                      ("transistor/npn-thru"     "Standard/NPN Thru-Hole")
