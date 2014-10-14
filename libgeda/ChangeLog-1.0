@@ -1,3 +1,17 @@
+2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_refdes.c: Increase buffer size and check for over-run
+      in function u_refdes_reset
+
+#2  0xb72ea788 in __libc_message () at ../sysdeps/posix/libc_fatal.c:175
+#3  0xb7366eb0 in __fortify_fail () from /lib/i386-linux-gnu/libc.so.6
+#4  0xb7366e6a in __stack_chk_fail () from /lib/i386-linux-gnu/libc.so.6
+#5  0xb7888084 in __stack_chk_fail_local () from /opt/gEDA/lib/libgeda.so.50
+#6  0xb788735a in u_refdes_reset (object=0x8d588c8) at utility/u_refdes.c:205
+#7  0xb786ed37 in o_complex_reset_refdes (object=0x8d56cd0) at object/o_complex_basic.c:837
+#8  0x0807fe05 in o_buffer_copy (w_current=w_current@entry=0x81503a0, buf_num=buf_num@entry=1) at object/o_buffer.c:91
+#9  0x08075f7c in i_cmd_do_copy_clip (w_current=0x81503a0) at iface/i_command.c:1077
+
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_complex_basic.c: In rediculously over complex function

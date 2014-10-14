@@ -163,11 +163,14 @@ u_refdes_get_ieee_designators()
 }
 
 /*! \brief Reset the refdes number back to a question mark
- *
- *  \par If this text object represents a refdes attribute,
- *  then this function resets the refdes number back to the
- *  question mark. In other cases, this function does
- *  nothing.
+ *  \par Function Description
+ *  If this text object represents a refdes attribute, then
+ *  this function resets the refdes number back to a question
+ *  mark if the length of the string is less than the buffer
+ *  size. This is likely the desirable result since a refdes
+ *  attribute larger than 32 characters is likely to be used
+ *  for a inter-page connection and not a normal refdes.
+ *  In other cases, this function does nothing.
  *
  *  \param [in] object      The text object
  */
@@ -175,7 +178,7 @@ void u_refdes_reset(Object *object)
 {
   int   len;
   int   index;
-  char  buffer[16] = "refdes=\0";
+  char  buffer[32] = "refdes=\0";
   char *ptr;
 
   g_return_if_fail (GEDA_IS_TEXT(object));
@@ -189,17 +192,19 @@ void u_refdes_reset(Object *object)
 
     len = strlen (object->text->string);
 
-    for ( ; index < len; index++) {
-      if ( isdigit(ptr[index]) ) {
-        GEDA_FREE (object->text->string);
-        buffer[index] = '?';
-        buffer[++index] = '\0';
-        object->text->string= strdup(&buffer[0]);
-        o_text_recreate (object);
-        break;
+    if (len < sizeof (buffer) - 1) {
+      for ( ; index < len; index++) {
+        if ( isdigit(ptr[index]) ) {
+          GEDA_FREE (object->text->string);
+          buffer[index] = '?';
+          buffer[++index] = '\0';
+          object->text->string= strdup(&buffer[0]);
+          o_text_recreate (object);
+          break;
+        }
+        else
+          buffer[index] = ptr[index];
       }
-      else
-        buffer[index] = ptr[index];
     }
   }
 }

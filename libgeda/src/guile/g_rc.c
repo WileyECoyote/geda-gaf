@@ -140,15 +140,24 @@ SCM g_rc_component_library(SCM path, SCM name)
       char *cwd = g_get_current_dir ();
       char *temp;
 
-      if (*directory == '.' && *directory + 1 == '/' ) {
-        s_clib_add_directory (cwd, namestr);
+      switch (strlen(directory)) {
+        case 1:
+        case 2:
+          if (*directory == '.' && *directory + 1 == '/' ) {
+            s_clib_add_directory (cwd, namestr);
+            break;
+          }
+        default:
+          if (*directory == '.' && *directory + 1 == '/' ) {
+            temp = g_build_filename (cwd, directory + 2, NULL);
+          }
+          else {
+            temp = g_build_filename (cwd, directory, NULL);
+          }
+          s_clib_add_directory (temp, namestr);
+          GEDA_FREE(temp);
+          break;
       }
-      else {
-        temp = g_build_filename (cwd, directory, NULL);
-        s_clib_add_directory (temp, namestr);
-        GEDA_FREE(temp);
-      }
-
       GEDA_FREE(cwd);
     }
     result = SCM_BOOL_T;
