@@ -1,34 +1,39 @@
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-       ** src/export.c: In function export_svg, no need to pass file
-          to cairo_svg_surface_create when determining size.
+    ** src/export.c: Use seperate draw function when exporting svg
+       format
 
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-       ** src/export.c: Destroy surface when done exporting
+    ** src/export.c: In function export_svg, no need to pass file
+       to cairo_svg_surface_create when determining size.
 
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-       ** src/export.c: Destroy drawing context when done exporting
+    ** src/export.c: Destroy surface when done exporting
+
+2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    ** src/export.c: Destroy drawing context when done exporting
 
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/export.c: Pass pointers to integer instead of pointers to
-          double, change fmin/fmax to min, max in o_text_get_rendered_bounds
-          function.
+     * src/export.c: Pass pointers to integer instead of pointers to
+       double, change fmin/fmax to min, max in o_text_get_rendered_bounds
+       function.
 
 2013-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/Makefile.am: Add AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
+     * src/Makefile.am: Add AUTOMAKE_OPTIONS = $(GEDA_AUTO_MAKE_OPTIONS)
 
 2013-05-03 Wiley E. Hill <wileyhill@gmail.com>
 
-        * src/ChangeLog-1.0: Created new change log file!
+     * src/ChangeLog-1.0: Created new change log file!
 
-        * src/Makefile.am: Change -I$(abs_top_builddir)/include to
-        -I$(top_srcdir)/include. Don't know where i got abs_top_build.
-        Added $(BUILT_SOURCES) to EXTRA_DIST, Don't know correct way to
-        resolve but this seems to pass distro checks.
+     * src/Makefile.am: Change -I$(abs_top_builddir)/include to
+       -I$(top_srcdir)/include. Don't know where i got abs_top_build.
+       Added $(BUILT_SOURCES) to EXTRA_DIST, Don't know correct way to
+       resolve but this seems to pass distro checks.
 
 
 

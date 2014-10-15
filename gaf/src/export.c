@@ -599,6 +599,61 @@ export_pdf (void)
 }
 
 static void
+export_draw_svg_page (cairo_t *cr)
+{
+  const GList *pages;
+  const GList *contents;
+  GList *complexes = NULL;
+  GList *simpleton = NULL;
+
+  const GList *iter;
+
+  pages = geda_list_get_glist (toplevel->pages);
+
+  if (pages) {
+
+    contents = s_page_get_objects ((Page *) pages->data);
+
+    /* Draw background */
+    eda_cairo_set_source_color (cr, OUTPUT_BACKGROUND_COLOR,
+                                eda_renderer_get_color_map (renderer));
+    cairo_paint (cr);
+
+    /* Sort objects */
+    for (iter = contents; iter != NULL; iter = g_list_next (iter)) {
+      Object *object = iter->data;
+      if (object->type == OBJ_COMPLEX) {
+        complexes = g_list_prepend(complexes, object);
+      }
+      else {
+        simpleton = g_list_prepend(simpleton, object);
+      }
+    }
+
+    /* Draw complexes & cues */
+    for (iter = complexes; iter != NULL; iter = g_list_next (iter)) {
+      eda_renderer_draw (renderer, (Object *) iter->data);
+      eda_renderer_draw_cues (renderer, (Object *) iter->data);
+
+    }
+
+    cairo_stroke (cr);
+
+    /* Draw simpleton & cues */
+    for (iter = simpleton; iter != NULL; iter = g_list_next (iter)) {
+      eda_renderer_draw (renderer, (Object *) iter->data);
+      eda_renderer_draw_cues (renderer, (Object *) iter->data);
+      cairo_stroke (cr);
+    }
+
+    cairo_stroke (cr);
+
+    g_list_free(simpleton);
+    g_list_free(complexes);
+  }
+}
+
+static void
 export_svg ()
 {
   cairo_surface_t *surface;
@@ -626,7 +681,7 @@ export_svg ()
   g_object_set (renderer, "cairo-context", cr, NULL);
 
   cairo_set_matrix (cr, &mtx);
-  export_draw_page (NULL);
+  export_draw_svg_page (cr);
 
   cairo_show_page (cr);
 
