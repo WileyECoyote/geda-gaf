@@ -166,7 +166,7 @@ PyGeda_append_2_pylist(PyObject *pylist, Object *object) {
  *   This function creates a new PyList object and adds a GedaCapsule
  *   for each GedaObject in the given glist. GedaCapsules are similar
  *   to a PyCapsule, but are not derived from PyCapsule_Type, in that
- *   that contain a pointer to something, in this case the pointer with
+ *   they contain a pointer to something, in this case the pointer with
  *   in the given glist, i.e. pointers to Libgeda Objects.
  *
  *  \sa PyGeda_append_2_pylist
@@ -189,7 +189,7 @@ PyGeda_glist_2_pylist(GList *object_list)
   while(ptr != NULL) {
     capsule = GedaCapsule_New(GEDA_OBJECT(ptr->data));
     if (capsule) {
-      PyList_Append(objects, capsule);
+      PyList_Append(objects,capsule);
     }
     else { /* Was error, should have been reported by encapsulator */
       break;
@@ -1483,37 +1483,41 @@ PyGeda_GedaCapsule_Type(PyObject *py_object)
 PyObject*
 PyGeda_get_object(PyObject *py_capsule)
 {
-  Object      *object;
+  Object *object;
 
-  object = GEDA_OBJECT(GedaCapsule_GetPointer(py_capsule));
+  object = GedaCapsule_GetPointer(py_capsule);
 
-  switch (object->type) {
-    case OBJ_PLACEHOLDER:
-    case OBJ_COMPLEX:
-      return get_complex_object_data(object);
-    case OBJ_TEXT:
-      return get_text_object_data(object);
-    case OBJ_NET:
-      return get_net_object_data(object);
-    case OBJ_LINE:
-      return get_line_object_data(object);
-    case OBJ_PATH:
-      return get_path_object_data(object);
-    case OBJ_BOX:
-      return get_box_object_data(object);
-    case OBJ_PICTURE:
-      return get_picture_object_data(object);
-    case OBJ_CIRCLE:
-      return get_circle_object_data(object);
-    case OBJ_BUS:
-      return get_bus_object_data(object);
-    case OBJ_PIN:
-      return get_pin_object_data(object);
-    case OBJ_ARC:
-      return get_arc_object_data(object);
-    default:
-      break;
+  if GEDA_IS_OBJECT(object) {
+
+    switch (object->type) {
+      case OBJ_PLACEHOLDER:
+      case OBJ_COMPLEX:
+        return get_complex_object_data(object);
+      case OBJ_TEXT:
+        return get_text_object_data(object);
+      case OBJ_NET:
+        return get_net_object_data(object);
+      case OBJ_LINE:
+        return get_line_object_data(object);
+      case OBJ_PATH:
+        return get_path_object_data(object);
+      case OBJ_BOX:
+        return get_box_object_data(object);
+      case OBJ_PICTURE:
+        return get_picture_object_data(object);
+      case OBJ_CIRCLE:
+        return get_circle_object_data(object);
+      case OBJ_BUS:
+        return get_bus_object_data(object);
+      case OBJ_PIN:
+        return get_pin_object_data(object);
+      case OBJ_ARC:
+        return get_arc_object_data(object);
+      default:
+        break;
+    }
   }
+
   return NULL;
 }
 

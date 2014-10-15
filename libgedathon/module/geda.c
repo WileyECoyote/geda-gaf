@@ -865,18 +865,22 @@ METHOD(get_object)
 {
   TYPE_PYOBJECT_P1(get_object);
 
-  GedaCapsule *py_capsule;
-  PyObject    *object_data;
-  PyObject    *py_object;
+  PyObject *py_capsule;
+  PyObject *object_data;
+  PyObject *py_object;
   int type;
 
-  if (!do_GedaCapsule_Type(self, args)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");;
+  if (!PyArg_ParseTuple(args, "O:geda.get_object", &py_capsule)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
     return NULL;
   }
-  py_capsule = (GedaCapsule*)args;
 
-  object_data = library.func(args);
+  if (!do_GedaCapsule_Type(self, args)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
+    return NULL;
+  }
+
+  object_data = library.func(py_capsule);
 
   type = ((GedaCapsule*)py_capsule)->type;
 
@@ -916,6 +920,7 @@ METHOD(get_object)
       py_object = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
       break;
     default:
+      PyErr_SetString(PyExc_TypeError, "Bad Capsule object");
       py_object = NULL;
   }
   ON_METHOD_EXIT(get_object);
