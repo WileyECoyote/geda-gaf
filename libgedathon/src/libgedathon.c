@@ -189,7 +189,7 @@ PyGeda_glist_2_pylist(GList *object_list)
   while(ptr != NULL) {
     capsule = GedaCapsule_New(GEDA_OBJECT(ptr->data));
     if (capsule) {
-      PyList_Append(objects,capsule);
+      PyList_Append(objects, capsule);
     }
     else { /* Was error, should have been reported by encapsulator */
       break;
@@ -1467,6 +1467,51 @@ PyGeda_GedaCapsule_Type(PyObject *py_object)
     answer = PyObject_TypeCheck(py_object, GedaCapsuleClass());
   }
   return answer;
+}
+
+PyObject*
+PyGeda_get_bounds( int pid, int sid )
+{
+  GList    *list;
+  Object   *object;
+  Page     *page;
+  PyObject *py_list;
+
+  int left, top, right, bottom;
+
+  page = geda_toplevel_get_page(toplevel, pid);
+
+  if( sid < 0) {
+    list = s_page_get_objects(page);
+    if (world_get_object_glist_bounds (list, &left, &top, &right, &bottom)) {
+      py_list = Py_BuildValue("iiii",  left, top, right, bottom);
+    }
+    else {
+      py_list = Py_None;
+    }
+  }
+  else {
+
+    object = s_page_get_object(page, sid);
+
+    if (!object) {
+      object = get_floating_object(sid);
+    }
+
+    if (object) {
+      if (world_get_single_object_bounds (object, &left, &top, &right, &bottom)) {
+        py_list = Py_BuildValue("iiii",  left, top, right, bottom);
+      }
+      else {
+        py_list = Py_None;
+      }
+    }
+    else {
+      py_list = NULL;
+    }
+  }
+
+  return py_list;
 }
 
 /*! \brief Get an Object from GedaCapsuleObject

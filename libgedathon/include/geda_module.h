@@ -67,7 +67,8 @@ const char save_page_docs[]          = "Save the page by writing to storage\n";
 const char save_all_pages_docs[]     = "Save all opened pages to storage\n";
 
 /* Page Level Object operations/Methods */
-const char GedaCapsule_Type_docs[]   = "Returns True is object is a GedaCapsule, otherwise False";
+const char GedaCapsule_Type_docs[]   = "Returns True is object is a GedaCapsule, otherwise False.";
+const char get_bounds_docs[]         = "Returns the rectangular boundaries of an object.\n";
 const char get_object_docs[]         = "Retrieve an object from a GedaCapsule.\n";
 const char get_objects_docs[]        = "Retrieve all objects belonging to a page.\n";
 const char add_object_docs[]         = "Add an object to a page or another object.\n";
@@ -138,6 +139,7 @@ const char refresh_attribs_docs[]    = "Refresh Objects attributes\n";
         METHOD ( save_all_pages )
 
         METHOD ( GedaCapsule_Type )
+        METHOD ( get_bounds )
         METHOD ( get_object )
         METHOD ( get_objects )
         METHOD ( add_object )
@@ -203,6 +205,7 @@ enum {
      METHOD ( save_all_pages,     METH_VARARGS )
 
      METHOD ( GedaCapsule_Type,   METH_O)
+     METHOD ( get_bounds,         METH_VARARGS )
      METHOD ( get_object,         METH_VARARGS )
      METHOD ( get_objects,        METH_VARARGS )
      METHOD ( add_object,         METH_VARARGS )

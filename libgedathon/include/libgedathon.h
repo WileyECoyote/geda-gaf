@@ -67,6 +67,7 @@ int       PyGeda_save_all_pages     ( PyObject * );
 int       PyGeda_save_all_pages     ( PyObject * );
 
 int       PyGeda_GedaCapsule_Type   ( PyObject * );
+PyObject *PyGeda_get_bounds         ( int pid, int sid );
 PyObject *PyGeda_get_object         ( PyObject * );
 PyObject *PyGeda_get_objects        ( int pid, int sid );
 int       PyGeda_add_object         ( PyObject *, PyObject *, PyObject * );

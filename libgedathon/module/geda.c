@@ -850,6 +850,44 @@ METHOD(GedaCapsule_Type)
   return Py_BuildValue("i", answer);
 }
 
+METHOD(get_bounds)
+{
+  TYPE_PYOBJECT_I2(get_bounds);
+  PyObject *unknown;
+  PyObject *py_object;
+  PyObject *list;
+  int       pid;
+  int       sid;
+
+  if(!PyArg_ParseTuple(args, "O:geda.get_bounds", &unknown)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_bounds(PageObject | GedaObject )");
+    return NULL;
+  }
+
+  if (PyObject_TypeCheck(unknown, PageObjectClass())) {
+    pid = ((PageObject*)unknown)->pid;
+    sid = -1;
+  }
+  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {
+    pid = ((GedaObject*)unknown)->pid; /* which could be -1 (not on a page) */
+    sid = ((GedaObject*)unknown)->sid;
+  }
+  else if (do_GedaCapsule_Type(self, args)) {
+    py_object = do_get_object(self, args);
+    pid = ((GedaObject*)py_object)->pid;
+    sid = ((GedaObject*)py_object)->sid;
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_bounds(PageObject | GedaObject )");
+    return NULL;
+  }
+
+  list = library.func(pid, sid);
+
+  ON_METHOD_EXIT(get_bounds);
+  return list;
+}
+
 /*! \brief Get an Object from GedaCapsuleObject
  *  \par Method Description
  *    This function provides a method to create PyGedaObjects from a GedaCapsule

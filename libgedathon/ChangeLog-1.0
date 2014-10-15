@@ -1,5 +1,14 @@
 2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
+        * src/libgedathon.c: Add new API PyGeda_get_bounds for page,
+          object for encapsulated objects.
+
+        * module/geda.c: implemented PyGeda_get_bounds with gede method
+
+        * module/objects/geda_py_page.c: Add getter for bounds attribute
+
+2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
         * module/geda.c: Revise/Fixed decapsulator get_object method
 
 2014-10-15 Wiley E. Hill <wileyhill@gmail.com>

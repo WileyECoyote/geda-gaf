@@ -157,6 +157,12 @@ static PyMethodDef Page_methods[] = {
 };
 
 static PyObject *
+Page_getbounds(PageObject *self, void *closure)
+{
+  return PyObject_CallMethod(geda_module, "get_bounds", "O", self);
+}
+
+static PyObject *
 Page_getfilename(PageObject *self, void *closure)
 {
     Py_INCREF(self->filename);
@@ -185,6 +191,7 @@ Page_setfilename(PageObject *self, PyObject *value, void *closure)
 }
 
 static PyGetSetDef Page_getseters[] = {
+  {"bounds", (getter)Page_getbounds, (setter)NULL, "Bounds", NULL},
   {"filename", (getter)Page_getfilename, (setter)Page_setfilename, "file name", NULL},
   {NULL}  /* Sentinel */
 };
