@@ -1,5 +1,10 @@
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
+       ** src/export.c: In function export_svg, no need to pass file
+          to cairo_svg_surface_create when determining size.
+
+2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
        ** src/export.c: Destroy surface when done exporting
 
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>

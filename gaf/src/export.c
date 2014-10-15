@@ -460,8 +460,10 @@ export_draw_page (Page *page)
 
   /* Draw objects & cues */
   contents = s_page_get_objects (page);
+
   for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
     eda_renderer_draw (renderer, (Object *) iter->data);
+
   for (iter = (GList *) contents; iter != NULL; iter = g_list_next (iter))
     eda_renderer_draw_cues (renderer, (Object *) iter->data);
 }
@@ -608,7 +610,7 @@ export_svg ()
    * the picture extents and set up the cairo transformation
    * matrix.  The surface is created only in order to force
    * eda_renderer_default_get_user_bounds() to behave quietly. */
-  surface = cairo_svg_surface_create (settings.outfile, 0, 0);
+  surface = cairo_svg_surface_create (NULL, 0, 0);
   cr = cairo_create (surface);
   g_object_set (renderer, "cairo-context", cr, NULL);
   export_layout_page (NULL, &extents, &mtx);
