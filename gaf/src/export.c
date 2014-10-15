@@ -514,6 +514,8 @@ export_png (void)
   /* Save to file */
   status = cairo_surface_write_to_png (surface, settings.outfile);
   export_cairo_check_error (status);
+
+  cairo_destroy (cr);
 }
 
 /* Worker function used by both export_ps and export_eps */
@@ -546,6 +548,8 @@ export_postscript (bool is_eps)
 
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
+
+  cairo_destroy (cr);
 }
 
 static void
@@ -588,6 +592,8 @@ export_pdf (void)
 
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
+
+  cairo_destroy (cr);
 }
 
 static void
@@ -621,6 +627,8 @@ export_svg ()
   cairo_show_page (cr);
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
+
+  cairo_destroy (cr);
 }
 
 /* Parse a distance specification. A distance specification consists

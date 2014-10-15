@@ -1,3 +1,7 @@
+2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
+       ** src/export.c: Destroy drawing context when done exporting
+
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/export.c: Pass pointers to integer instead of pointers to
