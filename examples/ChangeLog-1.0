@@ -1,5 +1,9 @@
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gTAG/gTAG-jtagio.sch: Add nc-left-2.sym on pin 8.
+
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * gTAG: Update several symbols to suppress warning messages regarding
       symbol versions.
 
