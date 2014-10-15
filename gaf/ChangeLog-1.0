@@ -1,5 +1,9 @@
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
+       ** src/export.c: Destroy surface when done exporting
+
+2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
+
        ** src/export.c: Destroy drawing context when done exporting
 
 2014-07-26 Wiley E. Hill <wileyhill@gmail.com>

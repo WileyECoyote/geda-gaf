@@ -514,7 +514,7 @@ export_png (void)
   /* Save to file */
   status = cairo_surface_write_to_png (surface, settings.outfile);
   export_cairo_check_error (status);
-
+  cairo_surface_destroy(surface);
   cairo_destroy (cr);
 }
 
@@ -548,7 +548,7 @@ export_postscript (bool is_eps)
 
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
-
+  cairo_surface_destroy(surface);
   cairo_destroy (cr);
 }
 
@@ -592,7 +592,7 @@ export_pdf (void)
 
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
-
+  cairo_surface_destroy(surface);
   cairo_destroy (cr);
 }
 
@@ -612,6 +612,8 @@ export_svg ()
   cr = cairo_create (surface);
   g_object_set (renderer, "cairo-context", cr, NULL);
   export_layout_page (NULL, &extents, &mtx);
+
+  cairo_surface_destroy(surface);
   cairo_destroy (cr);
 
   /* Now create a new surface with the known extents. */
@@ -625,9 +627,10 @@ export_svg ()
   export_draw_page (NULL);
 
   cairo_show_page (cr);
+
   cairo_surface_finish (surface);
   export_cairo_check_error (cairo_surface_status (surface));
-
+  cairo_surface_destroy(surface);
   cairo_destroy (cr);
 }
 
