@@ -1,3 +1,9 @@
+2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+        * module/constants.c: Added constants for object types, not sure
+          why these were not in orginal release, the python scripts used
+          for development were lost. Well, here now.
+
 2014-08-25 Wiley E. Hill <wileyhill@gmail.com>
 
         * docs/libgedathon.dox: Generate TAGFILES files for libgedathon

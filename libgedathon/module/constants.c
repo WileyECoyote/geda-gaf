@@ -40,6 +40,20 @@ initConstants(PyObject *module)
   if (self == NULL)
     return;
 
+  /* Entity Types */
+  PyModule_AddIntMacro(self, OBJ_ARC);
+  PyModule_AddIntMacro(self, OBJ_BOX);
+  PyModule_AddIntMacro(self, OBJ_BUS);
+  PyModule_AddIntMacro(self, OBJ_CIRCLE);
+  PyModule_AddIntMacro(self, OBJ_COMPLEX);
+  PyModule_AddIntMacro(self, OBJ_LINE);
+  PyModule_AddIntMacro(self, OBJ_NET);
+  PyModule_AddIntMacro(self, OBJ_PATH);
+  PyModule_AddIntMacro(self, OBJ_PICTURE);
+  PyModule_AddIntMacro(self, OBJ_PIN);
+  PyModule_AddIntMacro(self, OBJ_PLACEHOLDER);
+  PyModule_AddIntMacro(self, OBJ_TEXT);
+
   /* Line End Types from LINE_END enumerators */
   PyModule_AddIntMacro(self, END_NONE);
   PyModule_AddIntMacro(self, END_SQUARE);
