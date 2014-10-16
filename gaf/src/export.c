@@ -447,6 +447,9 @@ export_draw_page (Page *page)
 
   cr = eda_renderer_get_cairo_context (renderer);
 
+  /* For the remote chance the backend will support... */
+  cairo_set_antialias(cr, CAIRO_ANTIALIAS_BEST);
+
   if (page == NULL) {
     const GList *pages = geda_list_get_glist (toplevel->pages);
     g_assert (pages != NULL && pages->data != NULL);
@@ -680,6 +683,8 @@ export_svg ()
   cr = cairo_create (surface);
   g_object_set (renderer, "cairo-context", cr, NULL);
 
+  cairo_set_antialias(cr, CAIRO_ANTIALIAS_BEST);
+
   cairo_set_matrix (cr, &mtx);
   export_draw_svg_page (cr);
 
@@ -716,8 +721,7 @@ export_parse_dist (const char *dist)
     mult = 12.0;
   } else if (g_strcmp0 (unit, "px") == 0) {
     mult = 72.0 / settings.dpi;
-  } else if (g_strcmp0 (unit, "pt") == 0
-             || unit[0] == 0) {
+  } else if (g_strcmp0 (unit, "pt") == 0 || unit[0] == 0) {
     mult = 1.0;
   } else {
     return -1; /* Indicate that parsing unit failed */

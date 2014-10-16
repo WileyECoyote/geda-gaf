@@ -1,6 +1,10 @@
+2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
+     * src/export.c: Set cairo_set_antialias = BEST in draw routines.
+
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
-    ** src/export.c: Use seperate draw function when exporting svg
+     * src/export.c: Use seperate draw function when exporting svg
        format
 
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
