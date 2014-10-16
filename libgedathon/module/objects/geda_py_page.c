@@ -156,6 +156,8 @@ static PyMethodDef Page_methods[] = {
   {NULL}  // Sentinel
 };
 
+/* -------------------------- PageObject GetSeters ------------------------- */
+
 static PyObject *
 Page_getbounds(PageObject *self, void *closure)
 {

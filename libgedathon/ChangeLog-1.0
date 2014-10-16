@@ -1,5 +1,10 @@
 2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
+        * objects/geda_py_object.c: Add getseters, only one; getter for
+          bounds.
+
+2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
         * src/libgedathon.c: Add new API PyGeda_get_bounds for page,
           object for encapsulated objects.
 

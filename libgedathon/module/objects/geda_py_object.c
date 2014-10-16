@@ -223,6 +223,18 @@ static PyMethodDef GedaObject_methods[] = {
   {NULL, NULL, 0, NULL}
 };
 
+/* -------------------------- PageObject GetSeters ------------------------- */
+
+static PyObject *
+Geda_getbounds(GedaObject *self, void *closure)
+{
+  return PyObject_CallMethod(geda_module, "get_bounds", "O", self);
+}
+
+static PyGetSetDef GedaObject_getseters[] = {
+  {"bounds", (getter)Geda_getbounds, (setter)NULL, "Bounds", NULL},
+  {NULL}  /* Sentinel */
+};
 /* -------------------------- Begin Type Definition ------------------------ */
 
 static PyTypeObject GedaObjectType = {
@@ -256,7 +268,7 @@ static PyTypeObject GedaObjectType = {
     0,                              /* tp_iternext */
     GedaObject_methods,             /* tp_methods */
     GedaObject_members,             /* tp_members */
-    0,                              /* tp_getset */
+    GedaObject_getseters,           /* tp_getset */
     0,                              /* tp_base */
     0,                              /* tp_dict */
     0,                              /* tp_descr_get */

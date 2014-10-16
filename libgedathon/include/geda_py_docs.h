@@ -41,6 +41,7 @@ extern const char close_page_docs[];
 extern const char new_page_docs[];
 extern const char save_page_docs[];
 
+extern const char get_bounds_docs[];
 extern const char object_help_docs[];
 extern const char get_objects_docs[];
 extern const char add_object_docs[];
