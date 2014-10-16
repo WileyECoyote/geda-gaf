@@ -1,3 +1,17 @@
+2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * input/output-?.sym: DRC2 conflicts with gsymcheck, nothing new about
+      that, blame goes to DRC. DRC should honor device=none and refdes=none.
+      Other netlist back ends are also deficient, requiring that refdes be
+      set in order to establish inter-page connection, that is what netnames
+      are for. So changing input and output symbols once again, setting all
+      device=none and refdes=none because that is the right thing to do, if
+      this breaks a netlist back end, so be it - that backend is the problem
+      not the symbols. These symbols have been tweaked numerous time in order
+      to work with netlist back ends and comply with gsymcheck, conclusion:
+      tweaking attributes in symbols is never the correction solution for
+      fixing errent code.
+
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/electrolytic/capacitor-2.sym: Add symbol back for backwards

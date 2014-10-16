@@ -15,15 +15,15 @@ L 0 200 600 200 3 0 0 0 -1 -1
 L 600 200 700 100 3 0 0 0 -1 -1
 L 700 100 600 0 3 0 0 0 -1 -1
 L 600 0 0 0 3 0 0 0 -1 -1
-T 600 300 5 10 0 1 0 7 1
-device=INPUT
+T 1000 200 5 10 0 1 0 0 1
+device=none
 T 600 300 5 10 1 1 0 7 1
 netname=INPUT
-T 0 900 5 10 0 0 0 0 1
+T 0 550 5 10 0 0 0 0 1
 description=Input module port
-T 0 750 9 10 0 0 0 0 1
+T 0 400 9 10 0 0 0 0 1
 numslots=0
-T 0 450 9 10 0 0 0 0 1
-refdes=INPUT
-T 0 600 9 10 0 0 0 0 1
+T 1000 200 5 10 0 1 0 0 1
+refdes=none
+T 1000 200 5 10 0 1 0 0 1
 footprint=none
