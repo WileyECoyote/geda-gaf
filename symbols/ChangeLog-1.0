@@ -1,5 +1,10 @@
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * fairchild/BAT54S-2.sym: Delete extra device text, rearrange hidden
+      attributes.
+
+2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * input/output-?.sym: DRC2 conflicts with gsymcheck, nothing new about
       that, blame goes to DRC. DRC should honor device=none and refdes=none.
       Other netlist back ends are also deficient, requiring that refdes be
