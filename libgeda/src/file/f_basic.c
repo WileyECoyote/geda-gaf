@@ -370,7 +370,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
         }
 
         if (f_file_copy(real_filename, backup_filename) != 0) {
-          u_log_message (_("Can not create backup file: %s: %s"),
+          u_log_message (_("Can not create backup file: %s: %s\n"),
                             backup_filename, strerror (errno));
         }
         else {
@@ -422,6 +422,7 @@ f_save(GedaToplevel *toplevel, Page *page, const char *filename, GError **err)
       result = 0;
     }
   }
+
   return result;
 }
 

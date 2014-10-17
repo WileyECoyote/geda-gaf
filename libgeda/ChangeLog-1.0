@@ -1,3 +1,8 @@
+2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/file/f_basic.c: Add missing line-feed to error message in function
+      f_save, "Can not create backup file".
+
 2014-10-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_refdes.c: Increase buffer size and check for over-run
