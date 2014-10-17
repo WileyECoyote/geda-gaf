@@ -1,5 +1,10 @@
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * onsemi/NUP4201MR6-2.sym: Add dash 2 version, swaping pin locations
+      for pin 2 & 3 so ground on the bottom of symbol.
+
+2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * fairchild/BAT54S-2.sym: Delete extra device text, rearrange hidden
       attributes.
 
