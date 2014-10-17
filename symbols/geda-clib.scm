@@ -76,6 +76,7 @@
                      ("passive/transformer"     "Standard/Transformers")
                      ("passive/crystal"         "Standard/Crystals")
                      ("passive/resonator"       "Standard/Resonator")
+                     ("passive/filter"          "Standard/Filters")
                      ("passive/lamp"            "Standard/Lamps")
                      ("passive/protection"      "Standard/Protection")
                      ("passive/thermistor"      "Standard/Thermistors")

@@ -1,3 +1,7 @@
+2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/filter/NFE31P-1.sym: Add new group and Murata EMI filter
+
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * onsemi/NUP4201MR6-2.sym: Add dash 2 version, swaping pin locations
