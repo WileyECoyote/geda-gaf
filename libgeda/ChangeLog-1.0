@@ -1,5 +1,11 @@
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_save.c: Change "[]" to instead of "<>" to suppress
+      obnoxious glib pango message when file in /home diretories (most
+      all user files).
+
+2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/file/f_basic.c: Add missing line-feed to error message in function
       f_save, "Can not create backup file".
 
