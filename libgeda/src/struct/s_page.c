@@ -64,7 +64,7 @@
 static void object_added (Page *page, Object *object)
 {
   /* Set up object parent pointer */
-#ifndef NDEBUG
+#ifdef DEBUG_PAGE
   if (object->page != NULL) {
     g_critical ("Object %p already has parent page %p!", object, object->page);
   }

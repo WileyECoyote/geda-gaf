@@ -121,7 +121,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
         if (o_save (s_page_get_objects (toplevel->page_current), backup_filename, &err))
         {
 
-          u_log_message (_("Automatic backup file saved <%s>\n"), backup_filename);
+          u_log_message (_("Automatic backup file saved [%s]\n"), backup_filename);
 
           p_current->ops_since_last_backup = 0;
           p_current->do_autosave_backup = 0;
@@ -139,7 +139,7 @@ void o_save_auto_backup(GedaToplevel *toplevel)
           umask(saved_umask);
         }
         else {
-          u_log_message (_("Could NOT save backup file <%s>: %s\n"),
+          u_log_message (_("Could NOT save backup file [%s]: %s\n"),
                             backup_filename, err->message);
           g_clear_error (&err);
         }
@@ -331,7 +331,7 @@ o_save (const GList *object_list, const char *filename, GError **err)
 
   /* Check to see if real filename is writable */
   if (access(path, W_OK) != 0) {
-    g_set_error (err, G_FILE_ERROR, errno, _("<%s>: because %s"),
+    g_set_error (err, G_FILE_ERROR, errno, _("[%s]: because %s"),
                  path, strerror(errno));
     result = 0;
   }

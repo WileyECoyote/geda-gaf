@@ -1,5 +1,10 @@
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/struct/s_page.c: Change #ifndef NDEBUG to #ifdef funky DEBUG_PAGE
+      in function object_added
+
+2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_save.c: Change "[]" to instead of "<>" to suppress
       obnoxious glib pango message when file in /home diretories (most
       all user files).
