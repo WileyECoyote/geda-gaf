@@ -19,9 +19,9 @@
 #-------------------------------------------------------------------
 
 """
-This program is used to create a gEDA design archive.  It operates in two 
+This program is used to create a gEDA design archive.  It operates in two
 modes: archive mode and extract mode.  In archive mode it creates a
-project archive from a bunch of project files, and in extract mode it 
+project archive from a bunch of project files, and in extract mode it
 extracts the files from the archive and places them in the local dir.
 
 Detailed description:
@@ -32,7 +32,7 @@ Information about program invocation is held in the Usage string below.
 1.  It gets the local directory name, as well as a bunch of info from the
     command line & stores all the info in the object "Args".  Then it
     cd's into /tmp (ScratchDirectory).
-2.  It gets the symbol library search path from $(GEDADATADIR)/ 
+2.  It gets the symbol library search path from $(GEDADATADIR)/
     gschemrc-common and ./gschemrc & creates a list of all search
     paths.  Note that the system-dependent search path is hardcoded into
     the script by "make" when the file is installed.
@@ -44,10 +44,10 @@ Information about program invocation is held in the Usage string below.
 5.  For each schem file in the list, it opens the file, runs through it,
     and builds a list of symbols used in that file.  Naturally, duplicate
     symbols are ignored.
-6.  It opens a directory called /tmp/garchive-symbols.  For each symbol 
+6.  It opens a directory called /tmp/garchive-symbols.  For each symbol
     file in the symbol file list, it gets the file from $(GEDADATADIR)/sym
     and sticks it into ./garchive-symbols.
-7.  It takes the local gschemrc, and munges it so that gschem will find 
+7.  It takes the local gschemrc, and munges it so that gschem will find
     all symbols in ./garchive-symbols.
 8.  It then creates a tar archive of the following:
     *  All files listed in garchiverc and/or the command line.
@@ -108,10 +108,10 @@ Command line switches:
                     <filename> instead of garchiverc.
   -v             -- Optional.  Verbose mode.  Used in both archive and extract mode.
                     Spews lots of info about what the prog is doing.
-  -e             -- Mandatory if you want to extract.  Extract mode.  
+  -e             -- Mandatory if you want to extract.  Extract mode.
                     Open up the archive specified on the command line.
   -a             -- Optional.  Archive mode.  Archive mode (i.e. create a project
-                    archive) is the default; this flag exists to give people 
+                    archive) is the default; this flag exists to give people
                     the warm and fuzzies.
   -o <outfile>   -- Optional.  Used in archive mode.  Specifies the name of
                     the output archive file.  The output file extension
@@ -167,7 +167,7 @@ def NormalizePath(SearchDir, DirName):
     if re.match('\${[\w]+}', DirName):
         Match = re.search('(\${)([\w]+)(}/)([\w/]+)', DirName)
         EnvVar = Match.group(2)
-        
+
         #  Need to make sure that something exists beyond ${ENVVAR}
         try:
             Remainder = Match.group(4)
@@ -197,7 +197,7 @@ def NormalizePath(SearchDir, DirName):
     os.chdir(CurrentDir)
 
     return DirName
-    
+
 
 #---------------------------------------------------------------------------
 class CmdLineArgs:
@@ -205,7 +205,7 @@ class CmdLineArgs:
     This class holds info about the environment and cmd line args passed to the
     program.  It has only one method:  the constructor, which gets the args
     and fills out the public vars.  The public vars are:
-    
+
     ProgramMode = "archive", "extract"
     OutputFileName (archive only) = the name of the archive.  default = ProjectArchive.tar.gz
     InputFileNames = [list of input files on command line]
@@ -256,20 +256,20 @@ class CmdLineArgs:
 
         # First pass through args.  Get switch settings & set program modes.
         for Option, Value in OptList:
-            
+
             if Option == '-a':
                 self.ProgramMode = "archive"
-                    
+
             if Option == '-e':
                 self.ProgramMode = "extract"
-                        
+
             if Option == '-v':
                 self.VerboseMode = "verbose"
-                            
+
             if Option in ('-h', '--help'):
                 print Usage
                 sys.exit(0)
-                
+
         # Second pass.  Do sanity checking and get configured filenames.
         for Option, Value in OptList:
 
@@ -304,14 +304,14 @@ class CmdLineArgs:
                     if ( (len(Input) == 0) or (Input[0] != "y") ):
                         sys.exit(1)
                     else:
-                        self.OutputFileName = Value         
+                        self.OutputFileName = Value
 
         # Third step: Create list of files remaining on command line, and create output
         # base file name.
         self.CmdLineFileList = Args
 
         self.OutputFileNameBase = re.sub('\.tar\.gz', '', self.OutputFileName)
-        
+
         return
 
 
@@ -345,7 +345,7 @@ def GetLibraryPath(Args):
             # DebugSpew(Args, "Sticking "+Dir+" into LibraryPathList")
             LibraryPathList.append(Dir)
 
-        #  Match "(component-library-search " string. . . .            
+        #  Match "(component-library-search " string. . . .
         if re.match('^\(component-library-search', line):
             Match = re.search('(")([{$}\w/]+)(")', line)
             Dir = Match.group(2)
@@ -375,7 +375,7 @@ def GetLibraryPath(Args):
         if re.match('^\(component-library ', line):
             Match = re.search('(")([\S]+)(")', line)    # Note additional . to search for
             Dir = Match.group(2)
-            Dir = NormalizePath(Args.UserDir, Dir) #  Expand any env variables and ./ 
+            Dir = NormalizePath(Args.UserDir, Dir) #  Expand any env variables and ./
 
             if Dir in LibraryPathList:
                 pass
@@ -387,9 +387,9 @@ def GetLibraryPath(Args):
 
     # Reverse list because that's how it is searched
     LibraryPathList.reverse()
-    
+
     return LibraryPathList
-    
+
 #---------------------------------------------------------------------------
 def CreateArchiveFileList(Args):
     """
@@ -399,10 +399,10 @@ def CreateArchiveFileList(Args):
     """
     DebugSpew(Args, "Now in CreateArchiveFileList.")
     ArchFileList = []
-    
-    # Start with known file names 
+
+    # Start with known file names
     PotentialArchFileList = [Args.UserDir+"/"+Args.GschemRcFileName, Args.UserDir+"/"+Args.GarchiveRcFileName]  # Could use map here. . .
-    
+
     #  Make sure each file exists and can be saved
     for FileName in PotentialArchFileList:
         if (os.path.isfile(FileName) or os.path.isdir(FileName)):
@@ -461,7 +461,7 @@ def CreateArchiveFileList(Args):
                 pass
             else:
                 ArchFileList.append(FileName)
-    
+
     return ArchFileList
 
 #---------------------------------------------------------------------------
@@ -492,7 +492,7 @@ def CreateSchemFileList(Args, FileList):
                 pass
             else:
                 SchemFileList.append( os.path.basename(File) )
-            
+
     return SchemFileList
 
 #---------------------------------------------------------------------------
@@ -513,7 +513,7 @@ def CreateSymbolFileList(SchemFileList, LibraryFileList):
             if re.match('^C ', line):
                 Match = re.match('(C )([\d]+ )([\d]+ )([\d]+ )([\d]+ )([\d]+ )([\d\w\-\./]+)', line)
                 SymFile = Match.group(7)
-                
+
                 # DebugSpew(Args, "Found "+SymFile+" in schematic "+SchemFileName)
 
                 #  Now find path for symbol file & stick it in list
@@ -548,9 +548,9 @@ def CreateSPICEFileList(Args, SchemFileList):
             if (re.match('^file=', Line)):
                 Match = re.match('(file=)(\S+)', Line)
                 SPICEFile = Match.group(2)
-                #  This needs to be more sophosticated 
+                #  This needs to be more sophosticated
                 # SPICEFile = os.path.normpath(SPICEFile)
-                SPICEFile = os.path.abspath(SPICEFile)                    
+                SPICEFile = os.path.abspath(SPICEFile)
                 DebugSpew(Args, "Found "+SPICEFile+" in schematic "+SchemFileName)
 
                 # Next we need to make sure that this file is not already in the list.
@@ -558,7 +558,7 @@ def CreateSPICEFileList(Args, SchemFileList):
                     pass
                 else:
                     SPICEFileList.append(SPICEFile)
-                    
+
     return SPICEFileList
 
 #---------------------------------------------------------------------------
@@ -603,21 +603,21 @@ def UpdateSchemFiles(Args, SchemFileList):
 
     GschemFile.close()
 
-    return 
+    return
 
 #---------------------------------------------------------------------------
 def SaveSymbols(SymFileList, LibraryFileList, ArchiveDirectory):
     """
-    This fcn loops through all symbols in the list, 
+    This fcn loops through all symbols in the list,
     and  copies the file into the local
-    archive.  
+    archive.
     """
     DebugSpew(Args, "Now in SaveSymbols.")
     for SymFileName in SymFileList:
         DebugSpew(Args, "Saving symbol "+SymFileName+" into archive "+ArchiveDirectory)
         os.system("cp "+SymFileName+" "+ArchiveDirectory+"/"+os.path.basename(SymFileName) )
-                
-    return 
+
+    return
 #---------------------------------------------------------------------------
 def SaveSPICEFiles(SPICEFileList,  ArchiveDirectory):
     """
@@ -629,8 +629,8 @@ def SaveSPICEFiles(SPICEFileList,  ArchiveDirectory):
     for SPICEFileName in SPICEFileList:
         DebugSpew(Args, "Saving SPICE file "+SPICEFileName+" into archive "+ArchiveDirectory)
         os.system("cp "+SPICEFileName+" "+ArchiveDirectory+"/"+os.path.basename(SPICEFileName) )
-                
-    return 
+
+    return
 
 #---------------------------------------------------------------------------
 def UpdateRC(Args):
@@ -704,7 +704,7 @@ def Archive(Args):
     else:
         TestFile.close()
         os.remove(Args.ScratchDir+"/gschem_test")
-    
+
     #  Create list of files (and directories) to stick into archive.  Returned paths point
     #  to the absolute paths of the files.
     ArchiveFileList = CreateArchiveFileList(Args)
@@ -720,7 +720,7 @@ def Archive(Args):
     # print "LibraryPathList = ",
     # print LibraryPathList
 
-    #  Create list of schematic files to open and search.  Returned paths 
+    #  Create list of schematic files to open and search.  Returned paths
     #  give only the base name (i.e. no path)
     SchemFileList = CreateSchemFileList(Args, ArchiveFileList)
 
@@ -766,7 +766,7 @@ def Archive(Args):
 
     SaveSymbols(SymbolFileList, LibraryPathList, Dir)
     SaveSPICEFiles(SPICEFileList,  Dir)
-            
+
     #  Now create tar file.  We copy remaining files over to /tmp, and then tar them
     #  all up using a local, relative file prefix.
 
@@ -841,7 +841,7 @@ def Extract(Args):
         except IOError:
             print("Can't work in the "+Args.ScratchDir+" directory.  Check that you have write permisison there.")
             sys.exit(1)
-            
+
         os.chdir(Args.ScratchDir)
 
         # Change name of file so it can be gunziped.
@@ -852,7 +852,7 @@ If this archive was created using garchive, you can rename it using
 .tar.gz as suffix and try again.  Otherwise, just gunzip and tar -xvf
 the file manually.
             """)
-            sys.exit(1)     
+            sys.exit(1)
 
         # Now gunzip the file, then change File name to reflect new status (.tar)
         os.system("gunzip -f "+FileName)

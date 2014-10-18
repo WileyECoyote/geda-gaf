@@ -1068,10 +1068,6 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
     cairo_font_options_set_hint_style (EdaFontOptions, CAIRO_HINT_STYLE_NONE);
   }
 
-  //cairo_font_options_set_antialias(EdaFontOptions, CAIRO_ANTIALIAS_GOOD);
-
-  //cairo_font_options_destroy (EdaFontOptions);
-
   pango_cairo_context_set_resolution (renderer->priv->pc, 1000);
 
   /* Set font name and size, and obtain descent metric */
