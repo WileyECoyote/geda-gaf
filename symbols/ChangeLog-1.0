@@ -1,5 +1,9 @@
 2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/bq24765-1.sym: New symbol BQ24765 Multi-Chemistry Battery Charger
+
+2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * passive/filter/NFE31P-1.sym: Add new group and Murata EMI filter
 
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
