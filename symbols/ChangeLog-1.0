@@ -1,5 +1,9 @@
 2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/BQ20z45-1.sch: Add New symbol ti\BQ20z45 fuel gauge.
+
+2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/bq24765-1.sym: New symbol BQ24765 Multi-Chemistry Battery Charger
 
 2014-10-17 Wiley E. Hill <wileyhill@gmail.com>
