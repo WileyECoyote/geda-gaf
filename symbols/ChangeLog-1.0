@@ -1,6 +1,12 @@
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
-    * ti/LM5050-1.sym:Add New symbol ti, Ideal Diode
+    * ti/LM3481-1.sym: Add New symbol For ti/LM3481 Controller Low-Side
+      Switching Regulator
+
+
+2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/LM5050-1.sym: Add New symbol FOR ti/LM5050-1 Ideal Diode
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
