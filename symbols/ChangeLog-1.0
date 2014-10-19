@@ -1,8 +1,14 @@
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * Makefile.am: Force do normal install in parallel, there are just
+      too many symbols and install.sh is too lame to properly handle
+      -j's, so add a "&" in just the right place in make file to force
+      the issue. May not wait for error code, who cares?
+
+2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM3481-1.sym: Add New symbol For ti/LM3481 Controller Low-Side
       Switching Regulator
-
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 

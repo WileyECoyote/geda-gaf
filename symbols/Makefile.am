@@ -48,7 +48,7 @@ install-data-local:
 	    $(MKDIR_P) "$$d/$$dirs"; \
 	    list=`(ls $(srcdir)/$$lib/$$dirs) | grep '.[Ss][Yy][Mm]$$'`; \
 	    if test -n "$$list"; then \
-	      (cd $(srcdir)/$$lib/$$dirs && $(INSTALL_DATA) $$list "$$d/$$dirs") || exit $$?; \
+	      (cd $(srcdir)/$$lib/$$dirs && $(INSTALL_DATA) $$list "$$d/$$dirs"&) || exit $$?; \
 	    fi; \
 	  done; \
 	done;
