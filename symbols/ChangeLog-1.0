@@ -1,5 +1,9 @@
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM5050-1.sym:Add New symbol ti, Ideal Diode
+
+2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/BQ20z45-2.sch: Add dash 2 version of ti\BQ20z45 fuel gauge.
 
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
