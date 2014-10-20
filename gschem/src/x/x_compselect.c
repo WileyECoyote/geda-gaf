@@ -161,97 +161,96 @@ static unsigned int signals[LAST_SIGNAL] = { 0 };
 static void
 x_compselect_callback_response(GtkDialog *dialog, int response, void *user_data)
 {
-  Compselect     *compselect = (Compselect*)dialog;
-  GschemToplevel *w_current  = (GschemToplevel *)user_data;
-  GedaToplevel   *toplevel   = w_current->toplevel;
+    Compselect     *compselect = (Compselect*)dialog;
+    GschemToplevel *w_current  = (GschemToplevel *)user_data;
+    GedaToplevel   *toplevel   = w_current->toplevel;
 
-  switch (response) {
-      case COMPSELECT_RESPONSE_PLACE: {
-        CLibSymbol *symbol = NULL;
-        CompselectBehavior behavior;
+    switch (response) {
 
-        g_object_get (compselect,
-                      "symbol", &symbol,
-                      "behavior", &behavior,
-                      NULL);
+        case COMPSELECT_RESPONSE_PLACE: {
 
-        w_current->include_complex = w_current->embed_components = 0;
-        switch (behavior) {
-            case COMPSELECT_BEHAVIOR_REFERENCE:
-              break;
-            case COMPSELECT_BEHAVIOR_EMBED:
-              w_current->embed_components   = 1;
-              break;
-            case COMPSELECT_BEHAVIOR_INCLUDE:
-              w_current->include_complex = 1;
-              break;
-            default:
-              BUG_MSG("OOPS!: unknown behavior");
+            CLibSymbol *symbol = NULL;
+            CompselectBehavior behavior;
+
+            g_object_get (compselect,
+                          "symbol", &symbol,
+                          "behavior", &behavior,
+                          NULL);
+
+            w_current->include_complex = w_current->embed_components = 0;
+
+            if (behavior == COMPSELECT_BEHAVIOR_EMBED) {
+                w_current->embed_components   = 1;
+            }
+            if (behavior == COMPSELECT_BEHAVIOR_INCLUDE) {
+                w_current->include_complex = 1;
+            }
+
+            if (w_current->event_state == ENDCOMP) {
+                if (toplevel->page_current->place_list != NULL) {
+                    /* Delete the component which was being placed */
+                    if (w_current->rubber_visible) {
+                        o_place_invalidate_rubber (w_current, FALSE);
+                    }
+                    w_current->rubber_visible = 0;
+                    s_place_free_place_list(toplevel);
+                }
+            }
+            else {
+                /* Cancel whatever other action is currently in progress */
+                o_redraw_cleanstates (w_current);
+            }
+
+            if (symbol == NULL) {
+                /* If there is no symbol selected, switch to SELECT mode */
+                w_current->event_state = SELECT;
+            }
+            else {
+                /* Otherwise set the new symbol to place */
+                o_complex_prepare_place (w_current, symbol);
+            }
+            break;
         }
 
-        if (w_current->event_state == ENDCOMP) {
-          /* Delete the component which was being placed */
-          if (w_current->rubber_visible)
-            o_place_invalidate_rubber (w_current, FALSE);
-          w_current->rubber_visible = 0;
-          s_place_free_place_list(toplevel);
+        case COMPSELECT_RESPONSE_HIDE:
+            /* Response when clicking on the "hide" button */
 
-        }
-        else {
-          /* Cancel whatever other action is currently in progress */
-          o_redraw_cleanstates (w_current);
-        }
+            /* If there is no component in the complex place list, set the current one */
+            if (toplevel->page_current->place_list == NULL) {
+                gtk_dialog_response (GTK_DIALOG (compselect),
+                                     COMPSELECT_RESPONSE_PLACE);
+            }
 
-        if (symbol == NULL) {
-          /* If there is no symbol selected, switch to SELECT mode */
-          w_current->event_state = SELECT;
-        }
-        else {
-          /* Otherwise set the new symbol to place */
-          o_complex_prepare_place (w_current, symbol);
-        }
-        break;
-      }
+            /* Hide the Component Select Dialog */
+            g_object_set (G_OBJECT (compselect), "hidden", TRUE, NULL);
+            break;
 
-      case COMPSELECT_RESPONSE_HIDE:
-        /* Response when clicking on the "hide" button */
+        case GTK_RESPONSE_CLOSE:
+        case GTK_RESPONSE_DELETE_EVENT:
+            if (GTK_WIDGET (dialog) == w_current->cswindow) {
+                if(ThisDialog->style_menu_widgets) {
+                    g_slist_free(ThisDialog->style_menu_widgets);
+                }
+                /* gtk_widget_destroy(tree_view_popup_menu); */
+                if(GTK_IS_DIALOG(dialog)) {
+                    gtk_widget_destroy (GTK_WIDGET (dialog));
+                }
+            }
+            if (w_current->event_state == ENDCOMP) {
+                /* Can not wait for base class todo this*/
+                w_current->cswindow = NULL;
+                /* Cancel the place operation currently in progress */
+                o_redraw_cleanstates (w_current);
+                /* return to the default state */
+                i_status_set_state (w_current, SELECT);
+            }
+            break;
 
-        /* If there is no component in the complex place list, set the current one */
-        if (toplevel->page_current->place_list == NULL) {
-          gtk_dialog_response (GTK_DIALOG (compselect),
-                               COMPSELECT_RESPONSE_PLACE);
-        }
-
-        /* Hide the Component Select Dialog */
-        g_object_set (G_OBJECT (compselect), "hidden", TRUE, NULL);
-        break;
-
-      case GTK_RESPONSE_CLOSE:
-      case GTK_RESPONSE_DELETE_EVENT:
-        if (GTK_WIDGET (dialog) == w_current->cswindow) {
-          if(ThisDialog->style_menu_widgets) {
-            g_slist_free(ThisDialog->style_menu_widgets);
-          }
-          /* gtk_widget_destroy(tree_view_popup_menu); */
-          if(GTK_IS_DIALOG(dialog)) {
-            gtk_widget_destroy (GTK_WIDGET (dialog));
-          }
-        }
-        if (w_current->event_state == ENDCOMP) {
-          /* Can not wait for base class todo this*/
-          w_current->cswindow = NULL;
-          /* Cancel the place operation currently in progress */
-          o_redraw_cleanstates (w_current);
-          /* return to the default state */
-          i_status_set_state (w_current, SELECT);
-        }
-        break;
-
-      default:
-        /* Do nothing, in case there's another handler function which
-           can handle the response ID received. */
-        break;
-  }
+        default:
+            /* Do nothing, in case there's another handler function which
+             *          can handle the response ID received. */
+            break;
+    }
 }
 
 /*! \brief Opens a component selection dialog.

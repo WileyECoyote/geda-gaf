@@ -1,5 +1,11 @@
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_compselect.c: Eliminate nested switch case in function
+      x_compselect_callback_response, and check for place list before
+      calling o_place_invalidate_rubber and s_place_free_place_list.
+
+2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * examples: Update symbols in gschem examples where applicable
 
 2014-10-13 Wiley E. Hill <wileyhill@gmail.com>
