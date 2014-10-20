@@ -1,3 +1,17 @@
+2014-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/inductor/inductor-dot-1.sym: Rename coil-dot-1 and create
+      new symbol inductor-dot-1.sym.
+
+2014-10-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * vishay: Regenerate all single MOSFETs (both nmosfet and pmosfet) symbols
+      using new template for dash "12", with package designation 1212-8.
+
+2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/BQ294700-1.sym: Add new symbol; ti/BQ294700 Multi cell OVP
+
 2014-10-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * Makefile.am: Force do normal install in parallel, there are just
