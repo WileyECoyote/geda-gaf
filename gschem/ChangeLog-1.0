@@ -1,5 +1,11 @@
 2014-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_autonumber.c: Do not call s_hierarchy_find_up_page in
+      function autonumber_init_state to check for hierarchy, check
+      flag directly because s_hierarchy_find_up_page makes noise.
+
+2014-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_toolbars.c: Revert autonumber icon back to manual load,
       gtk factory always seem to provide the wrong size image, is too
       small.

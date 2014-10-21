@@ -1255,11 +1255,7 @@ static AUTONUMBER_TEXT *autonumber_init_state(GschemToplevel *w_current)
 
   autotext->last_criteria = SCOPE_QUESTION;
 
-  if (s_hierarchy_find_up_page(w_current->toplevel->pages, Current_Page)) {
-    autotext->scope_skip   = SCOPE_HIERARCHY;
-    autotext->scope_number = SCOPE_HIERARCHY;
-  }
-  else {
+  if (Current_Page->up < 0) {
     autotext->scope_skip = SCOPE_PAGE;
     if (o_select_is_selection(w_current)) {
       autotext->scope_number = SCOPE_SELECTED;
@@ -1267,6 +1263,10 @@ static AUTONUMBER_TEXT *autonumber_init_state(GschemToplevel *w_current)
     else {
       autotext->scope_number = SCOPE_PAGE;
     }
+  }
+  else {
+    autotext->scope_skip   = SCOPE_HIERARCHY;
+    autotext->scope_number = SCOPE_HIERARCHY;
   }
 
   autotext->scope_overwrite = FALSE;
