@@ -19,6 +19,59 @@
    sodipodi:docname="gschem-icons.svg">
   <defs
      id="defs4">
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleOutS"
+       style="overflow:visible">
+      <path
+         id="path6385"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.2)" />
+    </marker>
+    <marker
+       inkscape:stockid="EmptyTriangleInS"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="EmptyTriangleInS"
+       style="overflow:visible">
+      <path
+         id="path6394"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;fill:#FFFFFF;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(-0.2) translate(-3.0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Sstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Sstart"
+       style="overflow:visible">
+      <path
+         id="path6249"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.2) translate(6,0)" />
+    </marker>
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect4923"
+       is_visible="true"
+       pattern="m -1.25,-3.3333228 0,10 10,-5 z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
     <linearGradient
        id="linearGradient13085"
        osb:paint="gradient">
@@ -7705,6 +7758,62 @@
        y1="670.1499"
        x2="-634.18964"
        y2="670.1499" />
+    <marker
+       inkscape:stockid="TriangleInS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleInS-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8372-2"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(-0.2,-0.2)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="TriangleOutS-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path6385-1"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(0.2,0.2)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleInS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker8679"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8681"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(-0.2,-0.2)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutS"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker8683"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8685"
+         d="m 5.77,0 -8.65,5 0,-10 8.65,5 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         transform="scale(0.2,0.2)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -7713,9 +7822,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.2556824"
-     inkscape:cx="858.1824"
-     inkscape:cy="411.9868"
+     inkscape:zoom="2.459375"
+     inkscape:cx="337.54169"
+     inkscape:cy="413.89378"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -11899,6 +12008,40 @@
            x="-651.56476"
            id="tspan13062-9-2"
            sodipodi:role="line">T</tspan></text>
+    </g>
+    <g
+       id="gschem-move-22"
+       inkscape:export-filename="gschem-move-22.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       inkscape:label="gschem-move-22">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4925"
+         d="m 378.70125,653.70292 17.94208,0"
+         style="fill:none;stroke:#000000;stroke-width:1.58633375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS);marker-mid:none;marker-end:url(#TriangleOutS)" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4925-2"
+         d="m 387.65251,644.73177 0,17.94231"
+         style="fill:none;stroke:#000000;stroke-width:1.58630025px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#TriangleInS);marker-end:url(#TriangleOutS)" />
+    </g>
+    <g
+       transform="matrix(0.72728045,0,0,0.72725599,67.925577,179.27357)"
+       id="g8661-2"
+       inkscape:export-filename="gschem-move-16.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4925-4"
+         d="m 378.70125,653.70292 17.94208,0"
+         style="fill:none;stroke:#000000;stroke-width:1.58633375;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#TriangleInS);marker-mid:none;marker-end:url(#TriangleOutS)" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path4925-2-6"
+         d="m 387.65251,644.73177 0,17.94231"
+         style="fill:none;stroke:#000000;stroke-width:1.58630025px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-start:url(#TriangleInS);marker-end:url(#TriangleOutS)" />
     </g>
   </g>
 </svg>

@@ -7,6 +7,10 @@ icondir = $(GEDADATADIR)/icons/$(theme)
 iconsvg = gschem-icons.svg
 
 action_icons = \
+	gschem-attribute-attach \
+	gschem-attribute-detach \
+	gschem-datasheet \
+	gschem-clone \
 	gschem-insert-box \
 	gschem-insert-line \
 	gschem-insert-circle \
@@ -18,14 +22,11 @@ action_icons = \
 	gschem-insert-pin \
 	gschem-insert-attribute \
 	gschem-insert-text \
-	gschem-datasheet \
-	gschem-attribute-attach \
-	gschem-attribute-detach \
+	gschem-move \
+	gschem-multi-clone \
 	gschem-show-value \
 	gschem-show-name \
-	gschem-show-both \
-	gschem-clone \
-	gschem-multi-clone
+	gschem-show-both
 
 action_icons2 = \
 	gschem-deselect \
@@ -35,6 +36,7 @@ action_icons2 = \
 	gschem-insert-text \
 	gschem-insert-symbol \
 	gschem-insert-net \
+	gschem-move \
 	gschem-select \
 	gschem-unselect-all \
 	gschem-zoom-extents \

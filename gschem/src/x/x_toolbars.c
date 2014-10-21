@@ -193,7 +193,7 @@ static ToolbarStringData ToolbarStrings[] = {
   /* Edit Toolbar */
   { ACTION(EDIT_COPY),          "Copy",       TBTS_EDIT_COPY,          "Private"},
   { ACTION(EDIT_MCOPY),         "Multi",      TBTS_EDIT_MCOPY,         "Private"},
-  { ACTION(EDIT_MOVE),          "Move",       TBTS_EDIT_MOVE,          "Private"},
+  { ACTION(EDIT_MOVE),          "Move",       TBTS_EDIT_MOVE,          "geda-move"},
   { ACTION(EDIT_ROTATE),        "Rotate",     TBTS_EDIT_ROTATE,        "Private"},
   { ACTION(EDIT_MIRROR),        "Mirror",     TBTS_EDIT_MIRROR,        "Private"},
 
@@ -1348,7 +1348,7 @@ void x_toolbars_init_bottom(GschemToplevel *w_current, GtkWidget *parent_contain
   TOOLBAR_GEDA_BUTTON(Attribute, etb_find_text,     LOCAL_ALT, FIND,                         x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_hide_text,     LOCAL_PIX, GEDA_GHOST_INVISIBLE_BITMAP,  x_toolbars_execute,  w_current);
   TOOLBAR_GEDA_BUTTON(Attribute, etb_show_specific, LOCAL_PIX, GEDA_LOCATE_REFERENCE_BITMAP, x_toolbars_execute,  w_current);
-  TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_FAC, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
+  TOOLBAR_GEDA_BUTTON(Attribute, etb_auto_number,   LOCAL_PIX, GEDA_NUMBER_BITMAP,           x_toolbars_execute,  w_current);
 
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_attach     ));
   TEXT_OBJECT_LIST = g_slist_append ( TEXT_OBJECT_LIST, TB_BUTTON ( etb_detach     ));

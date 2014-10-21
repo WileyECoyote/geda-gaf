@@ -99,7 +99,7 @@ const char* IDS_THEME_ICONS[] = {
   "gschem-insert-arc",       "gschem-insert-attribute",  "gschem-insert-box",
   "gschem-insert-bus",       "gschem-insert-circle",     "gschem-insert-line",
   "gschem-insert-net",       "gschem-insert-path",       "gschem-insert-symbol",
-  "gschem-insert-pin",       "gschem-insert-text",
+  "gschem-insert-pin",       "gschem-insert-text",       "gschem-move",
   "gschem-multi-clone",      "gschem-show-both",         "gschem-show-value",
   "gschem-show-name",        "gschem-unselect-all",      "gschem-zoom-extents",
   "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-out",

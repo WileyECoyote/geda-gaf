@@ -3423,9 +3423,10 @@ COMMAND ( do_toggle_feedback )
     w_current->action_feedback_mode = BOUNDINGBOX;
     q_log_message(_("Action feedback mode set to BOUNDINGBOX\n"));
   }
-  if (w_current->inside_action &&
-      Current_Page->place_list != NULL)
+
+  if (w_current->inside_action && Current_Page->place_list != NULL) {
     o_place_invalidate_rubber (w_current, FALSE);
+  }
 
   x_menu_set_toggle(w_current, OUTLINE_TOGGLE, w_current->action_feedback_mode);
 }

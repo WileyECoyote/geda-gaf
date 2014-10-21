@@ -4382,10 +4382,10 @@ void x_dialog_message_with_markup (const char *msg1, const char *msg2,
   bool       msg_1_has_markup = FALSE;
   bool       msg_2_has_markup = FALSE;
 
-  if (strstr(msg1, "</"))
+  if (strstr(msg1, "</") && !(strstr(msg1, "</ho")))
     msg_1_has_markup = TRUE;
 
-  if (strstr(msg2, "</"))
+  if (strstr(msg2, "</") && !(strstr(msg2, "</ho")))
     msg_2_has_markup = TRUE;
 
   dialog = g_object_new (GTK_TYPE_MESSAGE_DIALOG,
