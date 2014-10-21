@@ -1,3 +1,8 @@
+2014-10-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/protection/polyfuse-?.sym: Add new symbols for Poly-Surge
+      ESD suppressors.
+
 2014-10-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/inductor/inductor-dot-1.sym: Rename coil-dot-1 and create
