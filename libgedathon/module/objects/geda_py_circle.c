@@ -176,8 +176,8 @@ static PyMemberDef Circle_members[] = {
  /* Hatching */
   {"fill_type",   T_INT, offsetof(CircleObject, fill_type),   0, "Hatch fill type"},
   {"fill_width",  T_INT, offsetof(CircleObject, fill_width),  0, "Hatch line width"},
-  {"fill_angle1", T_INT, offsetof(CircleObject, fill_angle1), 0, "Mesh hatch fill angle"},
-  {"fill_pitch1", T_INT, offsetof(CircleObject, fill_pitch1), 0, "Mesh hatch fill angle"},
+  {"fill_angle1", T_INT, offsetof(CircleObject, fill_angle1), 0, "hatch fill angle"},
+  {"fill_pitch1", T_INT, offsetof(CircleObject, fill_pitch1), 0, "hatch fill pitch"},
   {"fill_angle2", T_INT, offsetof(CircleObject, fill_angle2), 0, "Mesh hatch second fill angle"},
   {"fill_pitch2", T_INT, offsetof(CircleObject, fill_pitch2), 0, "Mesh hatch second fill pitch"},
 

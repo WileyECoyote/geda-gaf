@@ -1,5 +1,10 @@
 2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
 
+        * module/objects/geda_py_line.c: Add missing line-end property
+          in Line_members
+
+2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
+
         * objects/geda_py_object.c: Add getseters, only one; getter for
           bounds.
 
