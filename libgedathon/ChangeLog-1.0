@@ -1,4 +1,10 @@
-2014-10-15 Wiley E. Hill <wileyhill@gmail.com>
+2014-10-21 Wiley E. Hill <wileyhill@gmail.com>
+
+        * src/libgedathon.c: Fix bug: Function get_line_object_data was
+          not returing enough parameters to constructor; line_length was
+          not correct for line-types using this parameter.
+
+2014-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * module/objects/geda_py_line.c: Add missing line-end property
           in Line_members
