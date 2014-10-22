@@ -233,6 +233,20 @@ static int Line_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 }
 
 /* ------------------------------ Begin Methods ---------------------------- */
+static PyObject* Line_length(PyObject *self)
+{
+  LineObject *line = (LineObject*)self;
+  int result;
+
+  result = sqrt(pow(line->x[0]-line->x[1],2)+pow(line->y[0]-line->y[1],2));
+
+  return Py_BuildValue("i", result);
+}
+
+static PyMethodDef Line_methods[] = {
+  {"length", (PyCFunction)Line_length,  METH_NOARGS,  line_length_docs},
+  {NULL}  // Sentinel
+};
 
 /* -------------------------- Begin Type Definition ------------------------ */
 
@@ -266,7 +280,7 @@ static PyTypeObject LineObjectType = {
     0,                              /* tp_weaklistoffset */
     0,                              /* tp_iter */
     0,                              /* tp_iternext */
-    0,                              /* tp_methods */
+    Line_methods,                   /* tp_methods */
     Line_members,                   /* tp_members */
     0,                              /* tp_getset */
     0,                              /* tp_base, for portability, do not fill here*/

@@ -110,6 +110,9 @@ const char selection_remove_docs[]   = ".\n";
 const char append_selection_docs[]   = ".\n";
 const char delete_selected_docs[]    = ".\n";
 
+/* Line Object Methods */
+const char line_length_docs[]        = "Returns the length of a linear object.\n";
+
 /* Page Object Methods */
 const char filename_docs[]           = "File Name of this Page.\n";
 

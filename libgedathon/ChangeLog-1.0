@@ -1,3 +1,9 @@
+2014-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_line.c: A member struct with just one
+      member (for now) to PyGedaLine object, the member is length, which
+      returns the PyInt length of the line.
+
 2014-10-21 Wiley E. Hill <wileyhill@gmail.com>
 
         * src/libgedathon.c: Fix bug: Function get_line_object_data was

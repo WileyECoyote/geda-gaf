@@ -92,6 +92,8 @@ static PyMemberDef Page_members[] = {
   {NULL}  /* Sentinel */
 };
 
+/* ------------------------------ Begin Methods ---------------------------- */
+
 static PyObject *
 Page_filename(PageObject* self)
 {
