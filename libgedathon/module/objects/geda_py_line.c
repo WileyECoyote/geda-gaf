@@ -154,10 +154,9 @@ static PyMemberDef Line_members[] = {
   {"y2",     T_INT, offsetof(LineObject, y[1]),     0, "Line point 2 Ordinate"},
 
   /* Line-Type */
-  {"end_type",    T_INT, offsetof(LineObject, line_end),    0, "Endpoint style"},
-  {"line_width",  T_INT, offsetof(LineObject, line_width),  0, "Line width"},
   {"line_type",   T_INT, offsetof(LineObject, line_type),   0, "Line type"},
   {"line_width",  T_INT, offsetof(LineObject, line_width),  0, "Line width"},
+  {"end_type",    T_INT, offsetof(LineObject, line_end),    0, "Endpoint style"},
   {"line_space",  T_INT, offsetof(LineObject, line_space),  0, "Line space/gaps"},
   {"line_length", T_INT, offsetof(LineObject, line_length), 0, "Line dash length"},
   {NULL}  /* Sentinel */
