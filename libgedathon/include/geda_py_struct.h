@@ -275,6 +275,8 @@ struct st_py_path {
 
     GedaObject object;
 
+    bool dirty_string;
+
     PyObject *path_string;
     PyObject *sections; /* Bezier path segments  */
     int num_sections;       /* Number with data      */

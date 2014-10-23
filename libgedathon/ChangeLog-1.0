@@ -1,5 +1,13 @@
 2014-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/objects/geda_py_path.c: A getseters, for the path string.
+      The setter in only functional within Ligedathon because Libgeda
+      does not currently have the functionality to "set" the string
+      with out recreating the path object. Needs more work setter, but
+      getter is fully functional.
+
+2014-10-22 Wiley E. Hill <wileyhill@gmail.com>
+
     * module/objects/geda_py_line.c: A member struct with just one
       member (for now) to PyGedaLine object, the member is length, which
       returns the PyInt length of the line.

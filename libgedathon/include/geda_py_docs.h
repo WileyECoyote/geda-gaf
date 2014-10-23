@@ -48,9 +48,10 @@ extern const char add_object_docs[];
 extern const char delete_object_docs[];
 extern const char remove_object_docs[];
 
-extern const char *line_length_docs[];
-
+extern const char line_length_docs[];
 extern const char filename_docs[];
+extern const char path_string_docs[];
+
 extern const char object_name_docs[];
 extern const char add_attrib_docs[];
 extern const char copy_object_docs[];

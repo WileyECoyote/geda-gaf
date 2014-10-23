@@ -116,6 +116,9 @@ const char line_length_docs[]        = "Returns the length of a linear object.\n
 /* Page Object Methods */
 const char filename_docs[]           = "File Name of this Page.\n";
 
+/* Path Object Attributes */
+const char path_string_docs[]        = "String describing gemertric a element";
+
 /* Module Attribute Object Methods */
 const char get_attrib_docs[]         = "Retrieve a specific attribute Object\n";
 const char get_attribs_docs[]        = "Retrieve list of associated attribute Objects\n";

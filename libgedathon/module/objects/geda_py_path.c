@@ -174,7 +174,7 @@ PathObject_print(PathObject *path, FILE *file, int flags)
                    line_width, line_end, line_type, line_length, line_space);
   fprintf(file, " <fill-type <type=%d <width=%d> <angle1=%d> <pitch1=%d> <angle2=%d>>> <pitch2=%d>>",
                    fill_type, fill_width, fill_angle1, fill_pitch1, fill_angle2, fill_pitch2);
-  fprintf(file, " <path_stringe <%s>>", path_string);
+  fprintf(file, " <path_string <%s>>", path_string);
   return 0;
 }
 
@@ -299,6 +299,46 @@ static PyMethodDef Path_methods[] = {
   {NULL, NULL, 0, NULL}
 };
 
+/* -------------------------- PathObject GetSeters ------------------------- */
+
+/* ------------------------ Begin Getters and Setters ---------------------- */
+static PyObject *
+Path_get_string(PathObject *self, void *closure)
+{
+  Py_INCREF(self->path_string);
+  return self->path_string;
+}
+
+static int
+Path_set_string(PathObject *self, PyObject *value, void *closure)
+{
+  if (value == NULL) {
+    PyErr_SetString(PyExc_TypeError, "Cannot delete the path-string attribute");
+    return -1;
+  }
+
+  if (! PyString_Check(value)) {
+    PyErr_SetString(PyExc_TypeError,
+                    "The path-string attribute value must be a string");
+    return -1;
+  }
+
+  Py_DECREF(self->path_string);
+  Py_INCREF(value);
+  self->path_string = value;
+
+  self->dirty_string = 1;
+  self->object.dirty = 1;
+  if(self->object.pid >= 0)
+    PyObject_CallMethod(geda_module, "refresh_attribs", "O", self);
+
+  return 0;
+}
+
+static PyGetSetDef Path_getseters[] = {
+  {"string", (getter)Path_get_string, (setter)Path_set_string, "path_string_docs", NULL},
+  {NULL}  /* Sentinel */
+};
 /* -------------------------- Begin Type Definition ------------------------ */
 
 static PyTypeObject PathObjectType = {
@@ -333,7 +373,7 @@ static PyTypeObject PathObjectType = {
     0,                                 /* tp_iternext */
     Path_methods,                      /* tp_methods */
     Path_members,                      /* tp_members */
-    0,                                 /* tp_getset */
+    Path_getseters,                    /* tp_getset */
     0,                                 /* tp_base, for portability, do not fill here*/
     0,                                 /* tp_dict */
     0,                                 /* tp_descr_get */

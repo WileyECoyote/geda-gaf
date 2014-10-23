@@ -233,7 +233,9 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
 
   return result;
 }
+
 /* ------------------------ Begin Getters and Setters ---------------------- */
+
 static PyObject *
 Complex_get_filename(ComplexObject *self, void *closure)
 {
