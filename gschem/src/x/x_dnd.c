@@ -363,6 +363,13 @@ const char *x_dnd_send_objects (GschemToplevel   *w_current,
     return DND_NIL;
 }
 
+/*! \brief When Received String filename with SYM suffix
+ *
+ *  \par Function Description
+ *
+ * Called by x_dnd_receive_string after determining the recieved
+ * string ends with ".sym".
+*/
 bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const char *filename, int where)
 {
   bool        result;
@@ -381,6 +388,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
     symbolfile = g_path_get_basename (filename);
     symbol     = s_clib_get_symbol_by_name(symbolfile);
 
+    result = FALSE;
     if (symbol) {
 
       if(where == DROPPED_ON_COORD) {
@@ -391,18 +399,23 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
         o_place_end(w_current, x, y, 0, 0, NULL);
       }
       else {
-        o_redraw_cleanstates    (w_current);
-        o_complex_prepare_place (w_current, symbol);
+        /* If the current page is not a sym, then insert symbol*/
+        if (!s_page_is_symbol_file(page)) {
+          o_redraw_cleanstates    (w_current);
+          o_complex_prepare_place (w_current, symbol);
+        }
+        else {
+          result = TRUE;
+        }
       }
     }
     else {
       u_log_message(_("Could not locate symbol [%s] in library, try refreshing\n"), symbolfile);
     }
     GEDA_FREE(symbolfile);
-    result = FALSE;
   }
   else { /* symbol file is not our library source path so load new page */
-	v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
+    v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
     result = TRUE;
   }
   GEDA_FREE(path);
@@ -450,12 +463,12 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer
         if (buffer[tail] == '\0' || buffer[tail] == bad_tail ) break;
       }
 
-      --tail;  /* backup from what ever found */
+      --tail;  /* backup from what ever we found */
       --tail;  /* + 1 more, is base zero      */
 
       filename = g_strndup (buffer + 7, tail );  /* copy just the file spec */
 
-      /* now that we have stripped the bad stuff, glib will work us again */
+      /* now that we have stripped the bad stuff, glib will work for us again */
       if ( g_str_has_suffix(filename, SCHEMATIC_FILE_DOT_SUFFIX)) {
         load_as_page = TRUE;
       }
@@ -489,7 +502,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
 
   if (buffer) {
 
-    /* Make sure the buffer is empty, if str maybe deep dodo */
+    /* Make sure the buffer is empty, if str maybe in deep dodo */
     if (object_buffer[DND_BUFFER] != NULL) {
       s_object_release_objects(object_buffer[DND_BUFFER]);
       object_buffer[DND_BUFFER] = NULL;
