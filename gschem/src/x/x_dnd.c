@@ -402,6 +402,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
     result = FALSE;
   }
   else { /* symbol file is not our library source path so load new page */
+	v_log_message(_("symbol [%s] not in library opening as page\n"), filename);
     result = TRUE;
   }
   GEDA_FREE(path);

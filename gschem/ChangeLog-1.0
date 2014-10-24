@@ -1,5 +1,11 @@
 2014-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_dnd.c: In function x_dnd_receive_string_sym, add verbose
+      log message if symbol file is being opened as a page because the
+      symbols was not found by clib.
+
+2014-10-23 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_dnd.c: Use macro to reference file leader string and
       move define to header file (dnd.h).
 
