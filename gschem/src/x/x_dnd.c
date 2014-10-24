@@ -178,7 +178,7 @@ x_dnd_send_string_object (GschemToplevel *w_current, Object *object)
       string_2 = "";
       break;
     case OBJ_PICTURE:
-      string_1 = "file://";
+      string_1 = DND_FILE_LEADER;
       string_2 = object->picture->filename;
       break;
     default:
@@ -363,8 +363,6 @@ const char *x_dnd_send_objects (GschemToplevel   *w_current,
     return DND_NIL;
 }
 
-#define DND_FILE_LEADER "file://"
-
 bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const char *filename, int where)
 {
   bool        result;
@@ -378,7 +376,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
   page = Current_Page;
   path = g_path_get_dirname(filename);
 
-  if(s_clib_source_path_exist(path)) {
+  if (s_clib_source_path_exist(path)) {
 
     symbolfile = g_path_get_basename (filename);
     symbol     = s_clib_get_symbol_by_name(symbolfile);
@@ -410,7 +408,7 @@ bool x_dnd_receive_string_sym(GschemToplevel *w_current, int x, int y, const cha
   return result;
 }
 
-/*! \brief Process String Data Received from Drag & Drop Source */
+/*! \brief Process String Data Received from a Drag & Drop Source */
 bool
 x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer, int where)
 {
@@ -419,7 +417,7 @@ x_dnd_receive_string(GschemToplevel *w_current, int x, int y, const char *buffer
   bool  load_as_page;   /* Could be either .sch or .sym */
   bool  result;
 
-  const char *leader   = "file:\x2F\x2f\0";
+  const char *leader   = DND_FILE_LEADER;
   const char  bad_tail = '\x13';
   char       *filename;
 
@@ -664,7 +662,9 @@ drag_motion (GtkWidget *widget, GdkDragContext *context, gint x, gint y, guint t
 
 }
 */
-/*! \brief When Drag gets Dropped om the Drawing Area
+
+
+/*! \brief When Drag gets Dropped on the Drawing Area
  *
  *  \par Function Description
  *

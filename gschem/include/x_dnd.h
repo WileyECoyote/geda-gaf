@@ -1,10 +1,10 @@
 /* -*- x_dnd.h -*-
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
- * 
+ *
  * Copyright (C) 2013-2014 Ales Hvezda
  * Copyright (C) 2013-2014 Wiley Edward Hill
- * 
+ *
  * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
  *
  * This program is free software; you can redistribute it and/or modify
@@ -20,13 +20,15 @@
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
- * 
+ *
  *  Date: September, 27, 2013
  *  Contributing Author: Wiley Edward Hill
  */
 
 #ifndef H_GSCHEM_DRAGnDROP_H
 #define H_GSCHEM_DRAGnDROP_H
+
+#define DND_FILE_LEADER "file:\x2F\x2f\0"
 
 #define DND_NIL "nil"
 
