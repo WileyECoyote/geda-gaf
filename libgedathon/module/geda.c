@@ -2089,6 +2089,7 @@ METHOD(get_attrib)
 METHOD(get_attribs)
 {
   TYPE_PYOBJECT_P1(get_attribs);
+  PyObject *unknown;
   PyObject *parent;
   PyObject *py_input_list;
   PyObject *py_output_list;
@@ -2096,30 +2097,49 @@ METHOD(get_attribs)
 
   int i, count;
 
-  if(!PyArg_ParseTuple(args, "O!:geda.get_attribs", GedaObjectClass(), &parent)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_attribs(GedaObject)");
+  if(!PyArg_ParseTuple(args, "O:geda.get_attribs", &unknown)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_attribs(GedaObject || GedaCapsuleObject)");
     return NULL;
   }
 
-  py_input_list  = library.func(parent);
-  py_output_list = PyList_New(0);
-
-  if ( PyList_Check(py_input_list)) {
-
-    count = (int) PyList_GET_SIZE(py_input_list);
-
-    for (i = 0; i < count ; i++)
-    {
-      PyObject *object_data;
-
-      object_data  = PyList_GET_ITEM(py_input_list, i);
-      py_text      = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
-      if(py_text && PyObject_Type(py_text))
-        PyList_Append(py_output_list, py_text);
-    }
+  if (PyObject_TypeCheck(unknown, GedaObjectClass())) { /* Accept GedaObject */
+    parent = unknown;
+  }
+  else if (do_GedaCapsule_Type(self, unknown)) {          /* Or GedaCapsuleObject */
+    parent =  do_get_object(self, args);
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_attribs(GedaObject || GedaCapsuleObject)");
+    py_output_list = NULL;
+    parent = NULL;
   }
 
-  Py_XDECREF(py_input_list);
+  if (parent) {
+
+    py_input_list  = library.func(parent);
+    py_output_list = PyList_New(0);
+
+    if ( PyList_Check(py_input_list)) {
+
+      count = (int) PyList_GET_SIZE(py_input_list);
+
+      for (i = 0; i < count ; i++)
+      {
+        PyObject *object_data;
+
+        object_data  = PyList_GET_ITEM(py_input_list, i);
+        py_text      = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+        if(py_text && PyObject_Type(py_text))
+          PyList_Append(py_output_list, py_text);
+      }
+    }
+
+    Py_XDECREF(py_input_list);
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, "get_attribs: Bad GedaCapsuleObject");
+    py_output_list = NULL;
+  }
   ON_METHOD_EXIT(get_attribs);
   return py_output_list;
 }
@@ -2232,15 +2252,17 @@ METHOD(refresh_attribs)
  *  @{
  */
 
-/*! \brief Get an Object from GedaCapsuleObject
+/*! \brief Get all Objects Connect to a Given GedaObject
  *  \par Method Description
- *    This function provides a method to create PyGedaObjects from a GedaCapsule
- *  object but is not normally need directly. This method is used by other methods
- *  to get an Python version of the object contained within a Geda capsule.
+ *    This function provides a method to a list of all of the objects
+ *  connected with a given GedaObject or GedaCapsule. The returned list
+ *  contains is GedaCapsule and is guaranteed to contain at least one
+ *  object -- the object used as an argument since this object must be
+ *  connected to itself.
  *
- *  [in] PyObject capsule  The container object
+ *  [in] PyObject object is a GedaObject or GedaCapsuleObject
  *
- *  \return [out] A GedaObject.
+ *  \return [out] PyList of GedaCapsules.
  *
  */
 METHOD(get_network)
