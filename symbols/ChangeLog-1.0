@@ -1,3 +1,11 @@
+2014-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * passive/capacitor/capacitor-1.sym: Cleanup symbols repositioned
+      labels, sequence and pin numbers to coincidee.
+
+    * passive/electrolytic/capacitor-2.sym: Cleanup symbols, should have
+      done then when symbol was re-inducted.
+
 2014-10-20 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/protection/polyfuse-?.sym: Add new symbols for Poly-Surge
