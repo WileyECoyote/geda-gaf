@@ -142,8 +142,7 @@ o_get_is_bus_related (Object *object)
 bool
 o_get_is_selectable (Object *object)
 {
-  g_return_val_if_fail (GEDA_IS_OBJECT(object), FALSE);
-  return object->selectable == TRUE;
+  return GEDA_IS_OBJECT(object) && (object->selectable);
 }
 
 /*! \brief Query if object is selected
@@ -158,8 +157,7 @@ o_get_is_selectable (Object *object)
 bool
 o_get_is_selected (Object *object)
 {
-  g_return_val_if_fail (GEDA_IS_OBJECT(object), FALSE);
-  return object->selected == 1;
+  return GEDA_IS_OBJECT(object) && (object->selected);
 }
 
 /*! \brief Query visibility of the object
@@ -174,8 +172,7 @@ o_get_is_selected (Object *object)
 bool
 o_get_is_visible (Object *object)
 {
-  g_return_val_if_fail (object != NULL, FALSE);
-  return object->visibility > 0;
+  return GEDA_IS_OBJECT(object) && (object->visibility > 0);
 }
 
 /*! \brief Get line end using capstyle value

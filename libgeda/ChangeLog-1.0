@@ -1,5 +1,10 @@
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: G-noise reduction, functions; o_get_is_selectable,
+      o_get_is_selected, and o_get_is_visible.
+
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_get.c: Add new utility function o_get_is_attached
 
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
