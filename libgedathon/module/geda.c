@@ -1194,9 +1194,9 @@ METHOD(copy_object)
     Py_DECREF(py_capsule);
     if (destroy)
       Py_XDECREF(py_object_A);
-
+    else
     if (!py_object_B) {
-      PyErr_SetString(PyExc_RuntimeError, "copy_object: library function returned unknown error");
+      PyErr_SetString(PyExc_RuntimeError, "copy_object: unknown error during decapsulation");
     }
   }
   else {

@@ -1,3 +1,8 @@
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Set elect_type and mech_type to empty strings
+      if NULL in function get_pin_object_data.
+
 2014-10-22 Wiley E. Hill <wileyhill@gmail.com>
 
     * module/objects/geda_py_path.c: A getseters, for the path string.

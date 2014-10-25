@@ -1,4 +1,4 @@
-v 20140728 2
+v 20140915 2
 C 1000 1000 0 0 0 title-B.sym
 {
 T 1900 2800 5 10 0 0 0 0 1
@@ -278,21 +278,25 @@ device=GROUND_NODE
 }
 C 2300 7800 1 0 0 in-1.sym
 {
-T 2300 9000 5 8 0 0 0 0 1
-symversion=1.0
+T 2300 8950 5 8 0 0 0 0 1
+symversion=0.3
 T 2300 8200 5 10 0 0 0 0 1
-device=INPUT
+device=none
+T 2400 8050 5 10 1 1 0 0 1
+refdes=pinlabel
 T 2900 7900 5 10 0 0 0 0 1
-footprint=JUMPER-1
+footprint=none
 }
 C 15600 7400 1 0 0 out-1.sym
 {
-T 15600 8700 5 8 0 0 0 0 1
-symversion=1.0
-T 15600 7700 5 8 0 0 0 0 1
-device=OUTPUT
+T 15600 8550 5 8 0 0 0 0 1
+symversion=0.3
+T 15600 7800 5 8 0 0 0 0 1
+device=none
+T 15600 7650 5 8 1 1 0 0 1
+refdes=pinlabel
 T 16200 7500 5 10 0 0 0 0 1
-footprint=JUMPER-1
+footprint=none
 }
 N 12200 5500 12200 7300 4
 N 12200 7300 12500 7300 4

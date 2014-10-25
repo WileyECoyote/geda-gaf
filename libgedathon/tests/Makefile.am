@@ -16,7 +16,7 @@ tests:
 	@exec $(srcdir)/${RUN_TESTS}
 
 tester:
-	mv $(srcdir)/tmp/lpfilter.sch $(builddir)/lpfilter.sch
+	mv $(srcdir)/tmp/lpfilter.sch $(BUILDDIR)/lpfilter.sch
 	rm -f  $(BUILDDIR)/tmp/sym/*
 	rm -rf $(BUILDDIR)/tmp/sym
 	rm -r  $(BUILDDIR)/tmp/*

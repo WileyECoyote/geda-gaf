@@ -484,7 +484,7 @@ get_line_object_data(Object *object)
   int line_space  = object->line_options->line_space;
   int line_length = object->line_options->line_length;
 
-  data = Py_BuildValue("siiiiiiiiiiiii",  name, type, pid, sid, lock,
+  data = Py_BuildValue("siiiiiiiiiiii",  name, type, pid, sid, lock,
                         x1, y1, x2, y2,
                         line_end, line_type, line_width, line_space, line_length);
   return data;
@@ -692,6 +692,12 @@ get_pin_object_data(Object *object)
   PIN_NODE  n_type = object->pin->node_type;
 
   int line_width   = object->line_options->line_width;
+
+  if (!elect_type)
+    elect_type = "";
+
+  if (!mech_type)
+    mech_type = "";
 
   data = Py_BuildValue("siiiiiissssiiiiiiiiii",  name, type, pid, sid, lock,
                        cid, nid, elect_type, mech_type, label,
