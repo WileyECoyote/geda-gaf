@@ -171,7 +171,7 @@ static int Complex_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     return -1;
   }
 
-  for (index = 0; Complex_members[index].name; index++){
+  for (index = 0; Complex_members[index].name; index++) {
     member = &Complex_members[index];
     str = member->name;
     if (!strcmp(str, name)) {

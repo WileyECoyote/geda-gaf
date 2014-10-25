@@ -524,6 +524,14 @@ get_net_object_data(Object *object)
   int   width     = object->line_options->line_width;
   char *net_name  = object->net->net_name;
 
+  if (!net_name)
+    net_name = "";
+
+#if DEBUG
+  fprintf(stderr, "gpod: name=%s, pid=%d, sid=%d, net_name=<%s> nid=%d from (%d,%d) to (%d,%d)\n",
+                         name, pid, sid, net_name, nid, x1, y1, x2, y2);
+#endif
+
   data = Py_BuildValue("siiiiiiiiiis",  name, type, pid, sid, lock,
                         nid, x1, y1, x2, y2, width, net_name);
   return data;
@@ -2834,4 +2842,50 @@ PyGeda_refresh_attribs( PyObject *py_object )
   return status;
 }
 /** @} END Group Python_API_Attribute_Functions */
+
+
+/** \defgroup Python_API_Connections  Geda Python Module API Network Methods
+ *  @{
+ */
+
+PyObject*
+PyGeda_get_network( int pid, int sid )
+{
+  GList    *list;
+  Object   *object;
+  Page     *page;
+  PyObject *py_list;
+
+  list = NULL;
+
+  page = geda_toplevel_get_page(toplevel, pid);
+
+  if( sid >= 0) {
+
+    object = s_page_get_object(page, sid);
+
+    if (!object) {
+      object = get_floating_object(sid);
+    }
+
+    if (object) {
+      list = s_conn_return_others(list, object);
+      if (list) {
+        list = g_list_prepend (list, object);
+      }
+    }
+  }
+
+  if (list) {
+    py_list = PyGeda_glist_2_pylist(list);
+    g_list_free(list);
+  }
+  else {
+    py_list = Py_None;
+  }
+  return py_list;
+}
+
+/** @} END Group Python_API_Connections */
+
 /** @} END Group Python_API_Library */

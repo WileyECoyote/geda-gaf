@@ -322,7 +322,7 @@ struct st_py_picture {
 };
 
 struct st_py_pin {
-
+    //TODO: should have a netname
     GedaObject object;
 
  /* Pin specific admistrative data members */

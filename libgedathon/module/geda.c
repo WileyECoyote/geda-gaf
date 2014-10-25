@@ -2225,6 +2225,54 @@ METHOD(refresh_attribs)
   ON_METHOD_EXIT(refresh_attribs);
   return Py_BuildValue("i", status);
 }
+
 /** @} END Group Python_Attribute_Handlers */
+
+/** \defgroup Python_Connections  Geda Python Module API Network Methods
+ *  @{
+ */
+
+/*! \brief Get an Object from GedaCapsuleObject
+ *  \par Method Description
+ *    This function provides a method to create PyGedaObjects from a GedaCapsule
+ *  object but is not normally need directly. This method is used by other methods
+ *  to get an Python version of the object contained within a Geda capsule.
+ *
+ *  [in] PyObject capsule  The container object
+ *
+ *  \return [out] A GedaObject.
+ *
+ */
+METHOD(get_network)
+{
+  TYPE_PYOBJECT_I2(get_network);
+  PyObject *unknown;
+  PyObject *list;
+  int       pid;
+  int       sid;
+
+  if(!PyArg_ParseTuple(args, "O:geda.get_network", &unknown)) {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_network(GedaObject || GedaCapsuleObject)");
+    return NULL;
+  }
+
+  if (PyObject_TypeCheck(unknown, GedaObjectClass()) ||
+    do_GedaCapsule_Type(self, unknown))
+  {
+    pid = ((GedaObject*)unknown)->pid;
+    sid = ((GedaObject*)unknown)->sid;
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, "syntax: get_network(GedaObject || GedaCapsuleObject)");
+    return NULL;
+  }
+
+  list = library.func(pid, sid);
+
+  ON_METHOD_EXIT(get_network);
+  return list;
+}
+
+/** @} END Group Python_Connections */
 
 /** @} END Group Python_Method_Handlers */

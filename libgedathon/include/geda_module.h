@@ -125,6 +125,9 @@ const char get_attribs_docs[]        = "Retrieve list of associated attribute Ob
 const char set_attrib_docs[]         = "Set the value of a specified attribute Object\n";
 const char refresh_attribs_docs[]    = "Refresh Objects attributes\n";
 
+/* Connection and Nodes */
+const char get_network_docs[]        = "Retrieve all objects connect to specific Object\n";
+
 /* define Macro for declarations because METHOD was not defined */
 #define METHOD(method) FIRST_PASS_METHODS(method);
 
@@ -178,6 +181,9 @@ const char refresh_attribs_docs[]    = "Refresh Objects attributes\n";
         METHOD ( set_attrib )
         METHOD ( refresh_attribs)
 
+/* Connection and Nodes */
+        METHOD ( get_network )
+
 #undef  METHOD
 
 #endif
@@ -219,6 +225,7 @@ enum {
      METHOD ( copy_object,        METH_VARARGS )
      METHOD ( remove_object,      METH_VARARGS )
      METHOD ( remove_objects,     METH_VARARGS )
+
 /* End Page level Methods */
      METHOD ( delete_object,      METH_VARARGS )
      METHOD ( delete_objects,     METH_VARARGS )
@@ -237,10 +244,14 @@ enum {
      METHOD ( new_text,           METH_VARARGS )
      METHOD ( new_attrib,         METH_VARARGS )
 
+/* Attributes */
      METHOD ( get_attrib,         METH_VARARGS )
      METHOD ( get_attribs,        METH_VARARGS )
      METHOD ( set_attrib,         METH_VARARGS )
      METHOD ( refresh_attribs,    METH_VARARGS )
+
+/* Connection and Nodes */
+     METHOD ( get_network,        METH_VARARGS )
 
 #ifdef _MAKE_METHOD_ENUM_
      METHOD_COUNT,

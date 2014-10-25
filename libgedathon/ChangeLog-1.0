@@ -1,3 +1,16 @@
+2014-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Add new API PyGeda_get_network to get list
+      of encapsulated objects that connect to a given object, which
+      could optionally be in a capsule.
+
+    * module/geda.c: implemented PyGeda_get_network with geda method
+
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/libgedathon.c: Set net_name to empty strings if NULL in function
+      get_net_object_data.
+
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Set floating text cid to sid if attached
@@ -42,7 +55,7 @@
         * src/libgedathon.c: Add new API PyGeda_get_bounds for page,
           object for encapsulated objects.
 
-        * module/geda.c: implemented PyGeda_get_bounds with gede method
+        * module/geda.c: implemented PyGeda_get_bounds with geda method
 
         * module/objects/geda_py_page.c: Add getter for bounds attribute
 
