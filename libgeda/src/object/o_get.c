@@ -97,6 +97,23 @@ bool o_get_fill_options(Object *object,
   return answer;
 }
 
+/*! \brief Checks if an object is attached to something
+ *
+ *  \par Function Description
+ *  Noramally \a object would be a text attribute that is
+ *  attached to another object but could be any type of
+ *  GedaObject
+ *
+ *  \param object  The Object to test
+ *
+ *  \return TRUE if attached to another object, other wise FALSE.
+ */
+bool
+o_get_is_attached (Object *object)
+{
+  return GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->attached_to);
+}
+
 /*! \brief Checks if an object is bus, or a bus pin
  *
  *  \par Function Description

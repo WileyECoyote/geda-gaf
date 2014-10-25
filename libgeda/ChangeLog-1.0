@@ -1,5 +1,9 @@
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Add new utility function o_get_is_attached
+
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_attrib.c: Rename function o_attrib_is_attached
       o_attrib_is_attached_to because the former sound as there should
       only be one argument.
