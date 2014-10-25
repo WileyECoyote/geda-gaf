@@ -419,7 +419,7 @@ void o_move_motion (GschemToplevel *w_current, int w_x, int w_y)
       for (s_current = selection; s_current != NULL && resnap == TRUE; NEXT(s_current))
       {
         if (!(object == (Object *) s_current->data)
-            && !o_attrib_is_attached((Object *) s_current->data, object)) {
+            && !o_attrib_is_attached_to((Object *) s_current->data, object)) {
           resnap = FALSE;
         }
       }

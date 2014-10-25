@@ -89,7 +89,7 @@ GList *o_attrib_get_attached_attribs (Object *object)
  *  \param [in]  object     The object where you want to add item as an attribute.
  *  \return TRUE if attrib is an attribute of object, FALSE otherwise
  */
-bool o_attrib_is_attached (Object *attrib, Object *object)
+bool o_attrib_is_attached_to (Object *attrib, Object *object)
 {
   if (attrib == NULL || object == NULL)
     return FALSE;

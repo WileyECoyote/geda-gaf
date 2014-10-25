@@ -1,3 +1,9 @@
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Rename function o_attrib_is_attached
+      o_attrib_is_attached_to because the former sound as there should
+      only be one argument.
+
 2014-10-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_page.c: Change #ifndef NDEBUG to #ifdef funky DEBUG_PAGE
