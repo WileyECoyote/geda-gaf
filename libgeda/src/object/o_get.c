@@ -321,7 +321,6 @@ Page *o_get_page (Object *object)
   return geda_object_get_page(object);
 }
 
-
 /*! \brief Get an object's containing complex object.
  *
  * \par Function Description
@@ -334,12 +333,17 @@ Page *o_get_page (Object *object)
  */
 Object *o_get_parent (Object *object)
 {
-  g_return_val_if_fail (GEDA_IS_OBJECT(object), NULL);
+  Object *parent;
 
-  if (object->parent_object != NULL) {
-    return object->parent_object;
+  if ((GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->parent_object)))
+  {
+      parent = object->parent_object;
   }
-  return NULL;
+  else {
+    parent = NULL;
+  }
+
+  return parent;
 }
 
 /*! \brief Get an object's containing object index.
@@ -354,12 +358,14 @@ Object *o_get_parent (Object *object)
  */
 int o_get_parent_id (Object *object)
 {
-  g_return_val_if_fail (GEDA_IS_OBJECT(object), -1);
+  int cid;
 
-  int cid = -1;
-
-  if (object->parent_object != NULL) {
-    cid = object->parent_object->sid;
+  if ((GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->parent_object)))
+  {
+      cid = object->parent_object->sid;
+  }
+  else {
+    cid = -1;
   }
   return cid;
 }
@@ -418,30 +424,36 @@ bool o_get_position (int *x, int *y, Object *object)
  */
 double o_get_shortest_distance_full (Object *object, int x, int y, int force_solid)
 {
-  double shortest_distance = G_MAXDOUBLE;
+  double shortest_distance;
   double (*func) (Object *, int, int, int) = NULL;
 
-  g_return_val_if_fail (GEDA_IS_OBJECT(object), G_MAXDOUBLE);
+  if(GEDA_IS_OBJECT(object)) {
 
-  switch(object->type) {
-    case OBJ_BUS:
-    case OBJ_NET:
-    case OBJ_PIN:
-    case OBJ_LINE:        func = o_line_shortest_distance;     break;
-    case OBJ_BOX:         func = o_box_shortest_distance;      break;
-    case OBJ_PICTURE:     func = o_picture_shortest_distance;  break;
-    case OBJ_CIRCLE:      func = o_circle_shortest_distance;   break;
-    case OBJ_PLACEHOLDER:
-    case OBJ_COMPLEX:     func = o_complex_shortest_distance;  break;
-    case OBJ_TEXT:        func = o_text_shortest_distance;     break;
-    case OBJ_PATH:        func = o_path_shortest_distance;     break;
-    case OBJ_ARC:         func = o_arc_shortest_distance;      break;
+    switch(object->type) {
+      case OBJ_BUS:
+      case OBJ_NET:
+      case OBJ_PIN:
+      case OBJ_LINE:        func = o_line_shortest_distance;     break;
+      case OBJ_BOX:         func = o_box_shortest_distance;      break;
+      case OBJ_PICTURE:     func = o_picture_shortest_distance;  break;
+      case OBJ_CIRCLE:      func = o_circle_shortest_distance;   break;
+      case OBJ_PLACEHOLDER:
+      case OBJ_COMPLEX:     func = o_complex_shortest_distance;  break;
+      case OBJ_TEXT:        func = o_text_shortest_distance;     break;
+      case OBJ_PATH:        func = o_path_shortest_distance;     break;
+      case OBJ_ARC:         func = o_arc_shortest_distance;      break;
+    }
+
+    if (func != NULL) {
+      shortest_distance = (*func) (object, x, y, force_solid);
+    }
+    else {
+      shortest_distance = G_MAXDOUBLE;
+    }
   }
-
-  if (func != NULL) {
-    shortest_distance = (*func) (object, x, y, force_solid);
+  else {
+    shortest_distance = G_MAXDOUBLE;
   }
-
   return shortest_distance;
 }
 
