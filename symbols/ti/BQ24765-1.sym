@@ -1,4 +1,4 @@
-v 20140915 2
+v 20140915 1
 P 100 4000 400 4000 1 0 0
 {
 T 300 4050 5 8 1 1 0 6 1
@@ -138,7 +138,7 @@ pinnumber=13
 T 1250 300 5 8 0 1 90 8 1
 pinseq=13
 T 1200 450 9 8 1 1 90 0 1
-pinlabel=FBO
+pinlabel=CE
 T 1200 450 5 8 0 1 90 2 1
 pintype=out
 }
@@ -149,7 +149,7 @@ pinnumber=14
 T 1550 300 5 8 0 1 90 8 1
 pinseq=14
 T 1500 450 9 8 1 1 90 0 1
-pinlabel=CE
+pinlabel=VICM
 T 1500 450 5 8 0 1 90 2 1
 pintype=in
 }
@@ -160,7 +160,7 @@ pinnumber=15
 T 1850 300 5 8 0 1 90 8 1
 pinseq=15
 T 1800 450 9 8 1 1 90 0 1
-pinlabel=VICM
+pinlabel=SDA
 T 1800 450 5 8 0 1 90 2 1
 pintype=out
 }
@@ -171,7 +171,7 @@ pinnumber=16
 T 2150 300 5 8 0 1 90 8 1
 pinseq=16
 T 2100 450 9 8 1 1 90 0 1
-pinlabel=SDA
+pinlabel=SCL
 T 2100 450 5 8 0 1 90 2 1
 pintype=in
 }
@@ -182,7 +182,7 @@ pinnumber=17
 T 2450 300 5 8 0 1 90 8 1
 pinseq=17
 T 2400 450 9 8 1 1 90 0 1
-pinlabel=SCL
+pinlabel=VDDSMB
 T 2400 450 5 8 0 1 90 2 1
 pintype=in
 }
@@ -387,19 +387,21 @@ pintype=pwr
 B 400 400 3000 3900 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 T 3400 4400 8 10 1 1 0 6 1
 refdes=U?
-T 1500 2350 5 10 1 1 0 0 1
+T 1700 2250 9 10 1 0 0 0 1
+BQ24765
+T 1700 2550 5 10 0 0 0 0 1
 device=BQ24765
-T 100 4750 5 10 0 0 0 0 1
+T 1700 2750 5 10 0 0 0 0 1
 footprint=R-PVQFN-N34
-T 100 4950 5 10 0 0 0 0 1
+T 1700 2950 5 10 0 0 0 0 1
 author=AutoTron
-T 100 5150 5 10 0 0 0 0 1
+T 1700 3150 5 10 0 0 0 0 1
 documentation=http://www.ti.com/product/BQ24765
-T 100 5350 5 10 0 0 0 0 1
+T 1700 3350 5 10 0 0 0 0 1
 description=Multi-Chemistry Battery Charger
-T 100 5550 5 10 0 0 0 0 1
+T 1700 3550 5 10 0 0 0 0 1
 numslots=0
-T 100 5750 5 10 0 0 0 0 1
+T 1700 3750 5 10 0 0 0 0 1
 dist-license=GPL3
-T 100 5950 5 10 0 0 0 0 1
+T 1700 3950 5 10 0 0 0 0 1
 use-license=unlimited
