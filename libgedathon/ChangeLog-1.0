@@ -1,5 +1,9 @@
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgedathon.c: Set floating text cid to sid if attached
+
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/libgedathon.c: Set elect_type and mech_type to empty strings
       if NULL in function get_pin_object_data.
 

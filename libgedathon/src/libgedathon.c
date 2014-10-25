@@ -747,6 +747,9 @@ get_text_object_data(Object *object)
   int      align = object->text->alignment;
   int      angle = object->text->angle;
 
+  /* if text was not integral with complex check if attached */
+  if (cid < 0) cid = o_get_attached_parent_id(object);
+
   data = Py_BuildValue("siiiiissiiiiiii", name, type, pid, sid, lock, cid,
                        str, dstr, x, y, size, align, angle, vis, show);
   return data;
