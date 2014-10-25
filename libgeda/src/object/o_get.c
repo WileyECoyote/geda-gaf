@@ -114,6 +114,29 @@ o_get_is_attached (Object *object)
   return GEDA_IS_OBJECT(object) && GEDA_IS_OBJECT(object->attached_to);
 }
 
+/*! \brief Get the Parent index an object is attached to
+ *
+ * \par Function Description
+ * If \a object is a attached to another #Object, returns the
+ * sid of the parent object. Otherwise, returns -1.
+ *
+ * \param [in] object The Object for which to get the parent index.
+ *
+ * \return sid of the parent \a object is attached or -1 if none.
+ */
+int o_get_attached_parent_id (Object *object)
+{
+  int sid;
+
+  if (o_get_is_attached(object)) {
+    sid = object->attached_to->sid;
+  }
+  else {
+    sid = -1;
+  }
+  return sid;
+}
+
 /*! \brief Checks if an object is bus, or a bus pin
  *
  *  \par Function Description

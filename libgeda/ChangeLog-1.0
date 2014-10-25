@@ -1,5 +1,9 @@
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_get.c: Add new function o_get_attached_parent_id.
+
+2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_get.c: More General cleanup in libgeda::o_get module
 
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>

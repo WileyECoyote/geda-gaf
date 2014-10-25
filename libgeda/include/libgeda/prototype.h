@@ -194,6 +194,7 @@ const char   *f_path_user_config            (void);
 /* o_get.c */
       bool    o_get_fill_options            (Object *object, OBJECT_FILLING *type, int *width, int *pitch1,
                                              int *angle1, int *pitch2, int *angle2);
+      int     o_get_attached_parent_id      (Object *object);
       bool    o_get_is_attached             (Object *object);
       bool    o_get_is_bus_related          (Object *object);
       bool    o_get_is_selectable           (Object *object);
