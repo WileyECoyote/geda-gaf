@@ -328,6 +328,9 @@ get_bus_object_data(Object *object)
 
   object->bus->bus_ripper_direction = direction;
 
+  if (!bus_name)
+    bus_name = "";
+
   data = Py_BuildValue("siiiiiiiisii",  name, type, pid, sid, lock,
                        x1, y1, x2, y2, bus_name, direction, line_width);
 
@@ -1871,7 +1874,7 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     py_capsule = GedaCapsule_New(new_object);
     g_list_free(dest_list);
   }
-
+fprintf(stderr, "%s py_capsule address=%p (contains object=%p)", __func__,py_capsule, new_object);
   return py_capsule;
 }
 
@@ -2870,9 +2873,7 @@ PyGeda_get_network( int pid, int sid )
 
     if (object) {
       list = s_conn_return_others(list, object);
-      if (list) {
-        list = g_list_prepend (list, object);
-      }
+      list = g_list_prepend (list, object);
     }
   }
 

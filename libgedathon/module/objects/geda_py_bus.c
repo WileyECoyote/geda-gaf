@@ -276,6 +276,7 @@ Bus_set_busname(BusObject *self, PyObject *value, void *closure)
 
 static PyGetSetDef Bus_getseters[] = {
   {"bus_name", (getter)Bus_get_busname, (setter)Bus_set_busname, "bus_name_docs", NULL},
+  {"net_name", (getter)Bus_get_busname, (setter)Bus_set_busname, "bus_name_docs", NULL},
   {NULL}  /* Sentinel */
 };
 

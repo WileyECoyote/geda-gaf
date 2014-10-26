@@ -1,5 +1,15 @@
 2014-10-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/objects/geda_py_bus.c: Add getseter for net_name with
+      synonymous with bus_name
+
+2014-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/geda.c: Revise do_get_attribs method to also accept
+      capsule type objects
+
+2014-10-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/libgedathon.c: Add new API PyGeda_get_network to get list
       of encapsulated objects that connect to a given object, which
       could optionally be in a capsule.

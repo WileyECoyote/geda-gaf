@@ -154,7 +154,8 @@ GedaCapsule_New(void *obj)
 
 #if DEBUG
   int size = GedaCapsuleType.tp_basicsize;
-  fprintf(stderr, "GedaCapsule_New: capsule for <%s> capsule address=%p, size=%d, ", object->name, capsule, size);
+  fprintf(stderr, "GedaCapsule_New: capsule for <%s> capsule address=%p, size=%d, type=%d, ",
+          object->name, capsule, size, capsule->type);
   fprintf(stderr, "gobject address=%p\n", object);
 #endif
 

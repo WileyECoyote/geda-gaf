@@ -903,7 +903,7 @@ METHOD(get_object)
 {
   TYPE_PYOBJECT_P1(get_object);
 
-  PyObject *py_capsule;
+  PyObject *py_capsule = NULL;
   PyObject *object_data;
   PyObject *py_object;
   int type;
@@ -917,6 +917,9 @@ METHOD(get_object)
     PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
     return NULL;
   }
+  //else {
+  //   py_capsule = &args[0];
+  //}
 
   object_data = library.func(py_capsule);
 
@@ -1161,12 +1164,12 @@ METHOD(copy_object)
   PyObject *py_object;
   PyObject *py_object_A;
   PyObject *py_object_B;
+  PyObject *py_object_D;
   int       dx = -1;
   int       dy = -1;
-  int       destroy = 0;
 
   if (!PyArg_ParseTuple(args, "O|ii:geda.copy_object, Object PyList",
-                        &py_object, &dx, &dy))
+    &py_object, &dx, &dy))
   {
     PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
     return NULL;
@@ -1174,36 +1177,50 @@ METHOD(copy_object)
 
   if (PyObject_TypeCheck(py_object, GedaObjectClass())) {
     py_object_A = py_object;
+    py_object_D = NULL;
   }
   else {
     if (do_GedaCapsule_Type(self, py_object)) {
-      py_object_A = do_get_object(self, py_object);
-      destroy++;
+      py_object_A = py_object_D = do_get_object(self, py_object);
+      py_object_B = NULL;
     }
     else {
       PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
-      return NULL;
+      py_object_A = NULL;
+      py_object_B = NULL;
     }
   }
 
-  py_capsule = library.func(py_object_A, dx, dy);
+  if (py_object_A) { /* Either passed-in or extracted from capsule */
 
-  if (py_capsule) {
+    py_capsule = library.func(py_object_A, dx, dy);
 
-    py_object_B = do_get_object(self, py_capsule);
-    Py_DECREF(py_capsule);
-    if (destroy)
-      Py_XDECREF(py_object_A);
-    else
-    if (!py_object_B) {
-      PyErr_SetString(PyExc_RuntimeError, "copy_object: unknown error during decapsulation");
+    if (py_capsule) {
+
+      if (py_object_D) { /* If passed capsule return capsule */
+        py_object_B = py_capsule;
+      }
+      else { /* extract new object from capsule */
+fprintf(stderr, "%s address=%p", __func__,py_capsule);
+        py_object_B = do_get_object(self, py_capsule);
+
+        if (py_object_B) {
+          Py_DECREF(py_capsule);
+        }
+        //else {
+        //  PyErr_SetString(PyExc_RuntimeError, "copy_object: unknown error during decapsulation");
+        //}
+      }
+    }
+    else {
+      PyErr_SetString(PyExc_RuntimeError, "copy_object: library function returned unknown error");
+      py_object_B = NULL;
+    }
+
+    if (py_object_D) {
+      Py_XDECREF(py_object_D);
     }
   }
-  else {
-    PyErr_SetString(PyExc_RuntimeError, "copy_object: library function returned unknown error");
-    py_object_B = NULL;
-  }
-
   ON_METHOD_EXIT(copy_object);
   return py_object_B;
 }
