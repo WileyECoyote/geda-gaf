@@ -67,6 +67,7 @@ void      geda_list_remove_all              ( GedaList *list );
 //#define geda_list_get_glist(list) (list->glist)
 
 #define geda_list_get_glist(list) ((list->glist) ? ((GList *)(g_list_first (list->glist))) : NULL)
+#define geda_list_length(list) g_list_length(list->glist)
 
 #define Place_List    toplevel->page_current->place_list
 #define Top_Selection toplevel->page_current->selection_list

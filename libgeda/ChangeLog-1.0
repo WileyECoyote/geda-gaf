@@ -1,5 +1,9 @@
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * libgeda/geda_list.h: Add Macro geda_list_length
+
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_list.c: Add new function geda_list_add_glist_unique
       and geda_list_add_unique
 
