@@ -53,7 +53,9 @@ GedaList *geda_list_new                     ( void );
 void      geda_list_add                     ( GedaList *list, void *item );
 void      geda_list_add_glist               ( GedaList *list, GList *items );
 GList    *geda_list_copy_glist              ( GedaList *list );
+void     *geda_list_find                    ( GedaList *list, void *item );
 int       geda_glist_is_homogeneous_objects ( GList *list);
+bool      geda_list_is_in_list              ( GedaList *list, void *item );
 void      geda_list_remove                  ( GedaList *list, void *item );
 
 /*void geda_list_remove_glist( GedaList *list, GList *items ); */ /* Undemanded as yet */

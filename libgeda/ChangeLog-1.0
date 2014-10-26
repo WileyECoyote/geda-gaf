@@ -1,3 +1,8 @@
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_list.c: Add new functions geda_list_find and
+      geda_list_is_in_list.
+
 2014-10-24 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_get.c: Add new function o_get_attached_parent_id.

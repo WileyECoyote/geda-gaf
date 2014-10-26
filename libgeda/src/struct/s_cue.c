@@ -114,8 +114,8 @@ s_cue_postscript_arrow (GedaToplevel *toplevel, FILE *fp,
  *  \par Function Description
  *
  */
-void s_cue_output_all (GedaToplevel * toplevel, const GList *obj_list, FILE * fp,
-                       int type)
+void
+s_cue_output_all (GedaToplevel * toplevel, const GList *obj_list, FILE * fp, int type)
 {
   Object *o_current;
   const GList *iter;
@@ -132,8 +132,7 @@ void s_cue_output_all (GedaToplevel * toplevel, const GList *obj_list, FILE * fp
 
       case (OBJ_COMPLEX):
       case (OBJ_PLACEHOLDER):
-        s_cue_output_all(toplevel, o_current->complex->prim_objs, fp,
-                         type);
+        s_cue_output_all(toplevel, o_current->complex->prim_objs, fp, type);
         break;
 
     }
@@ -146,8 +145,9 @@ void s_cue_output_all (GedaToplevel * toplevel, const GList *obj_list, FILE * fp
  *  \par Function Description
  *
  */
-void s_cue_output_lowlevel(GedaToplevel * toplevel, Object * object, int whichone,
-               FILE * fp, int output_type)
+void
+s_cue_output_lowlevel(GedaToplevel * toplevel, Object * object, int whichone,
+                      FILE * fp, int output_type)
 {
   int x, y;
   GList *cl_current;
@@ -279,8 +279,8 @@ void s_cue_output_lowlevel_midpoints(GedaToplevel * toplevel, Object * object,
  *  \param [in] fp         The file handle to output to
  *  \param [in] type       The type of output being produced
  */
-void s_cue_output_single(GedaToplevel * toplevel, Object * object, FILE * fp,
-             int type)
+void
+s_cue_output_single(GedaToplevel * toplevel, Object * object, FILE * fp, int type)
 {
   g_return_if_fail (object != NULL);
 
@@ -301,6 +301,4 @@ void s_cue_output_single(GedaToplevel * toplevel, Object * object, FILE * fp,
   }
   s_cue_output_lowlevel_midpoints(toplevel, object, fp, type);
 }
-
-
 

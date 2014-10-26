@@ -182,6 +182,7 @@ void geda_list_add_glist( GedaList *list, GList *items )
   g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
 }
 
+
 /*! \brief Returns a copy of the glist associated with the given GedaList
  *
  *  \par Function Description
@@ -195,6 +196,22 @@ GList *geda_list_copy_glist( GedaList *list )
 {
   return g_list_copy(list->glist);
 }
+
+
+/*! \brief Find a given item in a GedaList
+ *
+ *  \par Function Description
+ *  Searches a GedaList for the item and returns the
+ *  item if found or NULL if the item was not in the list.
+ *
+ *  \param [in] list Pointer to the GedaList
+ *  \param [in] item to find for in the GedaList.
+ */
+void *geda_list_find( GedaList *list, void *item )
+{
+  return g_list_find(list->glist, item);
+}
+
 
 int geda_glist_is_homogeneous_objects ( GList *list)
 {
@@ -223,6 +240,23 @@ int geda_glist_is_homogeneous_objects ( GList *list)
     answer = FALSE;
   return answer;
 }
+
+
+/*! \brief Get is a given item in a GedaList
+ *
+ *  \par Function Description
+ *  Searches a GedaList for the item and returns TRUE
+ *  if found or FALSE of the item was not in the list.
+ *
+ *  \param [in] list Pointer to the GedaList
+ *  \param [in] item to find for in the GedaList.
+ */
+bool geda_list_is_in_list( GedaList *list, void *item )
+{
+  return g_list_find(list->glist, item) ? 1 : 0;
+}
+
+
 /*! \brief Removes the given item from the GedaList
  *
  *  \par Function Description
@@ -241,7 +275,6 @@ void geda_list_remove( GedaList *list, void *item )
     g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
   }
 }
-
 
 /*! \brief Removes all the items in the given GedaList.
  *

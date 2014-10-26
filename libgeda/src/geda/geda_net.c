@@ -3,7 +3,6 @@
  * gEDA - GPL Electronic Design Automation
  * libgeda - gEDA's library
  *
- * Copyright (C) 2013-2014 Ales Hvezda
  * Copyright (C) 2013-2014 Wiley Edward Hill
  *
  * Copyright (C) 2013-2014 gEDA Contributors (see ChangeLog for details)
