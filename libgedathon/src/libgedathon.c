@@ -1874,8 +1874,8 @@ PyGeda_copy_object( PyObject *py_object, int dx, int dy )
     py_capsule = GedaCapsule_New(new_object);
     g_list_free(dest_list);
   }
-fprintf(stderr, "%s py_capsule address=%p (contains object=%p)", __func__,py_capsule, new_object);
-  return py_capsule;
+
+  return Py_BuildValue("(O)", py_capsule);
 }
 
 /*! \brief Remove an Object from a Page

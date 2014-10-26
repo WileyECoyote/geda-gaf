@@ -48,6 +48,8 @@
 
 extern PyTypeObject PageObjectType;
 
+static PyObject *ThisModule;
+
 static PyObject *GedaError;
 static char     *libgedapath;
 
@@ -231,7 +233,7 @@ static API_FunctionTable PyGeda_API[METHOD_COUNT];
 PyMODINIT_FUNC
 initgeda(void)
 {
-  static PyObject *module;
+  //static PyObject *module;
 
   GedaMethods[METHOD_COUNT].name = NULL;
 
@@ -242,20 +244,20 @@ initgeda(void)
 
   initializer.func(PyGeda_API);
 
-  module = Py_InitModule("geda", (PyMethodDef*)GedaMethods);
-  if (module == NULL)
+  ThisModule = Py_InitModule("geda", (PyMethodDef*)GedaMethods);
+  if (ThisModule == NULL)
     return;
 
-  initConstants(module);
-  initPage(module);
-  initGedaObject(module);
-  initFunctions(module);
+  initConstants(ThisModule);
+  initPage(ThisModule);
+  initGedaObject(ThisModule);
+  initFunctions(ThisModule);
 
   GedaError = PyErr_NewException("Geda.error", NULL, NULL);
   Py_INCREF(GedaError);
 
   /* Register Object Types */
-  PyModule_AddObject(module, "error", GedaError);
+  PyModule_AddObject(ThisModule, "error", GedaError);
 }
 
 /*! \brief BlockMethod function in Geda Libgedathon API Library
@@ -903,7 +905,7 @@ METHOD(get_object)
 {
   TYPE_PYOBJECT_P1(get_object);
 
-  PyObject *py_capsule = NULL;
+  PyObject *py_capsule;
   PyObject *object_data;
   PyObject *py_object;
   int type;
@@ -913,13 +915,10 @@ METHOD(get_object)
     return NULL;
   }
 
-  if (!do_GedaCapsule_Type(self, args)) {
+  if (!do_GedaCapsule_Type(self, py_capsule)) {
     PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
     return NULL;
   }
-  //else {
-  //   py_capsule = &args[0];
-  //}
 
   object_data = library.func(py_capsule);
 
@@ -1168,8 +1167,7 @@ METHOD(copy_object)
   int       dx = -1;
   int       dy = -1;
 
-  if (!PyArg_ParseTuple(args, "O|ii:geda.copy_object, Object PyList",
-    &py_object, &dx, &dy))
+  if (!PyArg_ParseTuple(args, "O|ii:geda.copy_object, Object PyList", &py_object, &dx, &dy))
   {
     PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
     return NULL;
@@ -1201,15 +1199,15 @@ METHOD(copy_object)
         py_object_B = py_capsule;
       }
       else { /* extract new object from capsule */
-fprintf(stderr, "%s address=%p", __func__,py_capsule);
+
         py_object_B = do_get_object(self, py_capsule);
 
         if (py_object_B) {
           Py_DECREF(py_capsule);
         }
-        //else {
-        //  PyErr_SetString(PyExc_RuntimeError, "copy_object: unknown error during decapsulation");
-        //}
+        else {
+          PyErr_SetString(PyExc_RuntimeError, "copy_object: unknown error during decapsulation");
+        }
       }
     }
     else {
