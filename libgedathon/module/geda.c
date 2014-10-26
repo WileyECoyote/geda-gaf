@@ -300,6 +300,7 @@ static inline void BlockMethod (int index)
 
 #define TYPE_PYOBJECT_I1(symbol)       ON_METHOD_ENTRY(pyobject, symbol, i1)
 #define TYPE_PYOBJECT_I2(symbol)       ON_METHOD_ENTRY(pyobject, symbol, i2)
+#define TYPE_PYOBJECT_I3(symbol)       ON_METHOD_ENTRY(pyobject, symbol, i3)
 #define TYPE_PYOBJECT_I3P1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, i3p1)
 #define TYPE_PYOBJECT_I4P1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, i4p1)
 #define TYPE_PYOBJECT_I5P1(symbol)     ON_METHOD_ENTRY(pyobject, symbol, i5p1)
@@ -334,6 +335,7 @@ typedef int       (*PyGeda_int_p3_type)          ( PyObject *, PyObject *, PyObj
 
 typedef PyObject* (*PyGeda_pyobject_i1_type)     ( int pid );
 typedef PyObject* (*PyGeda_pyobject_i2_type)     ( int, int);
+typedef PyObject* (*PyGeda_pyobject_i3_type)     ( int, int, int);
 typedef PyObject* (*PyGeda_pyobject_i3p1_type)   ( int, int, int, PyObject *);
 typedef PyObject* (*PyGeda_pyobject_i4p1_type)   ( int, int, int, int, PyObject * );
 typedef PyObject* (*PyGeda_pyobject_i5p1_type)   ( int, int, int, int, int, PyObject * );
@@ -422,8 +424,10 @@ METHOD(append_symbol_path)
   const char *path;
   int         status;
 
+  const char *syntax = "syntax: append_symbol_path(path)";
+
   if (!PyArg_ParseTuple(args, "s:geda.append_symbol_path", &path)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: append_symbol_path(path)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return Py_None;
   }
 
@@ -469,8 +473,10 @@ METHOD(declare_local_sym)
   const char *directory = NULL;
   int         status;
 
+  const char *syntax = "syntax: declare_local_sym([folder])";
+
   if (!PyArg_ParseTuple(args, "|s:geda.declare_local_sym", &directory)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: declare_local_sym([folder])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return Py_None;
   }
 
@@ -580,8 +586,10 @@ METHOD(set_active_page)
   int       pid;
   int       status;
 
+  const char *syntax = "syntax: set_active_page(PageObject)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.set_active_page", PageObjectClass(), &page)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: set_active_page(PageObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
   pid = ((PageObject*)page)->pid;
@@ -620,8 +628,10 @@ METHOD(goto_page)
   int       pid;
   int       status;
 
+  const char *syntax = "syntax: goto_page(PageObject)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.goto_page", PageObjectClass(), &page)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: goto_page(PageObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
   pid = ((PageObject*)page)->pid;
@@ -657,8 +667,10 @@ METHOD(open_page)
   PyObject   *info;
   PyObject   *page;
 
+  const char *syntax = "syntax: open_page(filename)";
+
   if (!PyArg_ParseTuple(args, "|s:geda.open_page", &filename)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: open_page(filename)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return Py_None;
   }
 
@@ -697,8 +709,10 @@ METHOD(close_page)
   int       do_save = 0;
   int       status  = 1;
 
+  const char *syntax = "syntax: close_page(PageObject [, save])";
+
   if(!PyArg_ParseTuple(args, "O!|i:geda.close_page", PageObjectClass(), &page, &do_save)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: close_page(PageObject [, save])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -748,9 +762,11 @@ METHOD(new_page)
 
   int   over_write = -1;
 
+  const char *syntax = "syntax: new_page([filename] [, over_write])";
+
   if (!PyArg_ParseTuple(args, "|si:geda.new_page", &filename, &over_write))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_page([filename] [, over_write])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return Py_None;
   }
 
@@ -785,8 +801,10 @@ METHOD(save_page)
   PyObject *page;
   int       status;
 
+  const char *syntax = "syntax: save_page(PageObject)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.save_page", PageObjectClass(), &page)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: save_page(PageObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -817,8 +835,10 @@ METHOD(save_all_pages)
   PyObject *pages;
   int       status;
 
+  const char *syntax = "syntax: save_all_pages(PyList_Type[PageObject,...])";
+
   if(!PyArg_ParseTuple(args, "|O!:geda.save_all_pages", &PyList_Type, &pages)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: save_all_pages(PyList_Type[PageObject,...])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
   else{
@@ -861,8 +881,10 @@ METHOD(get_bounds)
   int       pid;
   int       sid;
 
+  const char *syntax = "syntax: get_bounds(PageObject | GedaObject )";
+
   if(!PyArg_ParseTuple(args, "O:geda.get_bounds", &unknown)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_bounds(PageObject | GedaObject )");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -880,7 +902,7 @@ METHOD(get_bounds)
     sid = ((GedaObject*)py_object)->sid;
   }
   else {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_bounds(PageObject | GedaObject )");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -910,8 +932,10 @@ METHOD(get_object)
   PyObject *py_object;
   int type;
 
+  const char *syntax = "syntax: get_object(GedaCapsuleObject)";
+
   if (!PyArg_ParseTuple(args, "O:geda.get_object", &py_capsule)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -921,7 +945,7 @@ METHOD(get_object)
   else {
 
     if (!do_GedaCapsule_Type(self, py_capsule)) {
-      PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
+      PyErr_SetString(PyExc_TypeError, syntax);
       py_object = NULL;
     }
     else {
@@ -1013,8 +1037,10 @@ METHOD(get_objects)
   int       pid;
   int       sid;
 
+  const char *syntax = "syntax: get_objects(PageObject | GedaObject )";
+
   if(!PyArg_ParseTuple(args, "O:geda.get_objects", &unknown)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_objects(PageObject | GedaObject )");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1027,7 +1053,7 @@ METHOD(get_objects)
     sid = ((GedaObject*)unknown)->sid;
   }
   else {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_objects(PageObject | GedaObject )");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1067,11 +1093,13 @@ METHOD(add_object)
   PyObject *py_object_B;
   int       status;
 
+  const char *syntax = "syntax: add_object(Page || GedaObject, GedaObject)";
+
   if(!PyArg_ParseTuple(args, "OO!:geda.add_object",
                        &py_object_A,
                        GedaObjectClass(), &py_object_B))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: add_object(Page || GedaObject, GedaObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1116,10 +1144,12 @@ METHOD(add_objects)
   PyObject *py_object_B;
   int       status;
 
+  const char *syntax = "syntax: add_objects(Page || GedaObject, PyList_Type[GedaObject,...])";
+
   if (!PyArg_ParseTuple(args, "OO!:geda.add_objects, Object PyList",
                         &py_object_A, &PyList_Type, &py_object_B))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: add_objects(Page || GedaObject, PyList_Type[GedaObject,...])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1175,9 +1205,11 @@ METHOD(copy_object)
   int       dx = -1;
   int       dy = -1;
 
+  const char *syntax = "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])";
+
   if (!PyArg_ParseTuple(args, "O|ii:geda.copy_object, Object PyList", &py_object, &dx, &dy))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1191,7 +1223,7 @@ METHOD(copy_object)
       py_object_B = NULL;
     }
     else {
-      PyErr_SetString(PyExc_TypeError, "syntax: copy_object(GedaObject || GedaCapsuleObject [, dx, dy])");
+      PyErr_SetString(PyExc_TypeError, syntax);
       py_object_A = NULL;
       py_object_B = NULL;
     }
@@ -1251,9 +1283,11 @@ METHOD(remove_object)
   PyObject *py_object;
   int       status;
 
+  const char *syntax = "syntax: remove_object(GedaObject || GedaCapsuleObject)";
+
   if (!PyArg_ParseTuple(args, "O:geda.remove_object", &py_object))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: remove_object(GedaObject || GedaCapsuleObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1284,8 +1318,10 @@ METHOD(remove_objects)
   PyObject *objects;
   int       status;
 
+  const char *syntax = "syntax: remove_objects(PyList of GedaObjects)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.remove_objects, Bad Argument", &PyList_Type, &objects)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: remove_objects(PyList of GedaObjects)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1315,8 +1351,10 @@ METHOD(delete_object)
   PyObject  *object;
   int        status;
 
+  const char *syntax = "syntax: delete_object(GedaObject)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.delete_object, Bad Argument", GedaObjectClass(), &object)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: delete_object(GedaObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1347,8 +1385,10 @@ METHOD(delete_objects)
   PyObject *objects;
   int       status;
 
+  const char *syntax = "syntax: delete_objects(PyList of GedaObjects)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.delete_objects, Bad Argument", &PyList_Type, &objects)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: delete_objects(PyList of GedaObjects)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
   status = library.func(objects);
@@ -1376,9 +1416,11 @@ METHOD(sync_object)
   PyObject *py_object;
   int       status;
 
+  const char *syntax = "syntax: sync_object(GedaObject)";
+
   if (!PyArg_ParseTuple(args, "O:geda.sync_object", &py_object))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: sync_object(GedaObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1405,7 +1447,7 @@ METHOD(sync_object)
  *
  *  Optional argument:
  *
- *  [in] color PyObject a color object (not fully implemented yet)
+ *  [in] color PyObject a color object (not implemented yet)
  *
  *  \return [out] PyObject Or NULL if an error occurs.
  *
@@ -1422,9 +1464,11 @@ METHOD(new_arc)
 
   int x; int y; int radius; int start_angle; int end_angle;
 
+  const char *syntax = "syntax: new_arc(x, y, radius, start_angle, end_angle [, color])";
+
   if(!PyArg_ParseTuple(args, "iiiii|O:geda.new_arc, Bad Arc Arguments", &x, &y, &radius,
                        &start_angle, &end_angle, &py_color)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_arc(x, y, radius, start_angle, end_angle [, color])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1467,9 +1511,11 @@ METHOD(new_box)
 
   int lower_x; int lower_y; int upper_x; int upper_y;
 
+  const char *syntax = "syntax: new_box( lower_x, lower_y, upper_x, upper_y [, color])";
+
   if(!PyArg_ParseTuple(args, "iiii|O:geda.new_box, Bad Arguments",
                        &lower_x, &lower_y, &upper_x, &upper_y, &py_color)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_box( lower_x, lower_y, upper_x, upper_y [, color])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1513,9 +1559,11 @@ METHOD(new_bus)
   const char *bus_name = NULL;
   int x1; int y1; int x2; int y2;
 
+  const char *syntax = "syntax: new_bus(x1, y1, x2, y2 [, bus_name [, color]])";
+
   if(!PyArg_ParseTuple(args, "iiii|sO:geda.new_bus, Bad Arguments",
                        &x1, &y1, &x2, &y2, &bus_name, &py_color)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_bus(x1, y1, x2, y2 [, bus_name [, color]])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
   object_data = library.func(bus_name, x1, y1, x2, y2, py_color);
@@ -1556,9 +1604,11 @@ METHOD(new_circle)
 
   int x; int y; int radius;
 
+  const char *syntax = "syntax: new_circle(x, y, radius [, color])";
+
   if(!PyArg_ParseTuple(args, "iii|O:geda.new_circle, Bad Arguments",
                        &x, &y, &radius, &py_color)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_circle(x, y, radius [, color])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1607,6 +1657,8 @@ METHOD(new_complex)
 
   int x; int y; int angle; int mirror; bool embed;
 
+  const char *syntax = "syntax: new_complex(name, x, y [, angle [, mirror [, embed]])";
+
   angle  = -1;
   mirror = -1;
   embed  = -1;
@@ -1614,7 +1666,7 @@ METHOD(new_complex)
   if (! PyArg_ParseTuple(args, "sii|iii:geda.new_complex, Bad Arguments",
                          &basename, &x, &y, &angle, &mirror, &embed))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_complex(name, x, y [, angle [, mirror [, embed]])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1665,9 +1717,11 @@ METHOD(new_line)
 
   int x1; int y1; int x2; int y2;
 
+  const char *syntax = "syntax: new_line(x1, y1, x2, y2 [, color])";
+
   if(!PyArg_ParseTuple(args, "iiii|O:geda.new_line, Bad Arguments",
                        &x1, &y1, &x2, &y2, &py_color)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_line(x1, y1, x2, y2 [, color])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1713,9 +1767,11 @@ METHOD(new_net)
 
   int x1; int y1; int x2; int y2;
 
+  const char *syntax = "syntax: new_net(x1, y1, x2, y2 [, net_name [, color]])";
+
   if(!PyArg_ParseTuple(args, "iiii|sO:geda.new_net, Bad Arguments",
                        &x1, &y1, &x2, &y2, &net_name, &py_color)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_net(x1, y1, x2, y2 [, net_name [, color]])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1755,9 +1811,11 @@ METHOD(new_path)
 
   const char *path_string = NULL;
 
+  const char *syntax = "syntax: new_path(path_string [, color])";
+
   if(!PyArg_ParseTuple(args, "s|O:geda.new_path, Bad Arguments", &path_string, &py_color))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_path(path_string [, color])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1810,6 +1868,8 @@ METHOD(new_picture)
   PyObject   *object_data;
   const char *filepath = NULL;
 
+  const char *syntax = "syntax: new_picture(filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]])";
+
   int x1; int y1; int x2; int y2; int angle; int mirror; bool embedded;
 
   angle    = -1;
@@ -1819,7 +1879,7 @@ METHOD(new_picture)
   if (! PyArg_ParseTuple(args, "siiii|iii:geda.new_picture, Bad Arguments",
                                &filepath, &x1, &y1, &x2, &y2, &angle, &mirror, &embedded))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_picture(filename, x1, y1, x2, y2 [, angle [, mirror [, embedded]]])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1902,10 +1962,12 @@ METHOD(new_pin)
   const char *number = NULL;
   const char *label = NULL;
 
+  const char *syntax = "syntax: new_pin(x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]])";
+
   if (! PyArg_ParseTuple(args, "iiii|iOsiii:geda.new_pin, Bad Arguments",
                          &x1, &y1, &x2, &y2, &whichend, &py_number, &label, &etype, &mtype, &ntype))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_pin(x1, y1, x2, y2 [, whichend [, number [, label [, etype [, mtype [, ntype ]]]]]])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -1977,10 +2039,12 @@ METHOD(new_text)
   int align  = -1;
   int angle  = -1;
 
+  const char *syntax = "syntax: new_text(string, x, y, [, size [, align [, angle] [, color]]]";
+
   if (!PyArg_ParseTuple(args, "sii|iiiO:geda.new_text, Bad Argument",
                         &text, &x, &y, &size, &align, &angle, &py_color))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_text(string, x, y, [, size [, align [, angle] [, color]]}");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -2041,10 +2105,12 @@ METHOD(new_attrib)
   int align   = -1;
   int angle   = -1;
 
+  const char *syntax = "syntax: new_attrib(name, value, x, y, [, visible [, show-option [, align [, angle [, color]]]]]}";
+
   if (! PyArg_ParseTuple(args, "ssii|iiiiO:geda.new_attrib, Bad Argument",
                          &name, &value, &x, &y, &visible, &show, &align, &angle, &py_color))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: new_attrib(name, value, x, y, [, visible [, show-option [, align [, angle [, color]]]]]}");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -2082,8 +2148,10 @@ METHOD(get_attrib)
   PyObject *py_attrib = Py_None;
   const char *name;
 
+  const char *syntax = "syntax: get_attrib(GedaObject, name)";
+
   if(!PyArg_ParseTuple(args, "Os:geda.get_attrib", GedaObjectClass(), &py_parent, &name)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_attrib(GedaObject, name)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -2120,8 +2188,10 @@ METHOD(get_attribs)
 
   int i, count;
 
+  const char *syntax = "syntax: get_attribs(GedaObject || GedaCapsuleObject)";
+
   if(!PyArg_ParseTuple(args, "O:geda.get_attribs", &unknown)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_attribs(GedaObject || GedaCapsuleObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -2132,7 +2202,7 @@ METHOD(get_attribs)
     parent =  do_get_object(self, args);
   }
   else {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_attribs(GedaObject || GedaCapsuleObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     py_output_list = NULL;
     parent = NULL;
   }
@@ -2197,9 +2267,11 @@ METHOD(set_attrib)
   const char *value;
   int         ret_obj = 0;
 
-  if(!PyArg_ParseTuple(args, "OsO|i:set_attrib.get_attrib", &py_object_A, &name, &py_value, &ret_obj))
+  const char *syntax = "syntax: set_attrib(GedaObject, name, value [, return-object])";
+
+  if(!PyArg_ParseTuple(args, "OsO|i:set_attrib", &py_object_A, &name, &py_value, &ret_obj))
   {
-    PyErr_SetString(PyExc_TypeError, "syntax: set_attrib(GedaObject, name, value [, return-object])");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
   if (PyObject_TypeCheck(py_object_A, ComplexObjectClass())) {
@@ -2259,8 +2331,10 @@ METHOD(refresh_attribs)
   PyObject *object;
   int       status;
 
+  const char *syntax = "syntax: refresh_attribs(GedaObject)";
+
   if(!PyArg_ParseTuple(args, "O!:geda.refresh_attribs", GedaObjectClass(), &object)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: refresh_attribs(GedaObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -2290,14 +2364,17 @@ METHOD(refresh_attribs)
  */
 METHOD(get_network)
 {
-  TYPE_PYOBJECT_I2(get_network);
+  TYPE_PYOBJECT_I3(get_network);
   PyObject *unknown;
   PyObject *list;
   int       pid;
   int       sid;
+  int       filter;
 
-  if(!PyArg_ParseTuple(args, "O:geda.get_network", &unknown)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_network(GedaObject || GedaCapsuleObject)");
+  const char *syntax = "syntax: get_network(GedaObject || GedaCapsuleObject [, filter] )";
+
+  if(!PyArg_ParseTuple(args, "O|i:geda.get_network", &unknown, &filter)) {
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
@@ -2308,11 +2385,11 @@ METHOD(get_network)
     sid = ((GedaObject*)unknown)->sid;
   }
   else {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_network(GedaObject || GedaCapsuleObject)");
+    PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  list = library.func(pid, sid);
+  list = library.func(pid, sid, filter);
 
   ON_METHOD_EXIT(get_network);
   return list;

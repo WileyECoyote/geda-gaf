@@ -1,5 +1,9 @@
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/geda.c: Revise module to use pointer to syntax strings
+
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * module/geda.c: Revise do_get_object to return object if was
       passed a valid PyGedaObject, used to error out because was
       expecting a GedaCapsule type (from which to extract a valid
