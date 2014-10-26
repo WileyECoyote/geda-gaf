@@ -1,5 +1,10 @@
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_list.c: Add new function geda_list_add_glist_unique
+      and geda_list_add_unique
+
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_list.c: Add new functions geda_list_find and
       geda_list_is_in_list.
 

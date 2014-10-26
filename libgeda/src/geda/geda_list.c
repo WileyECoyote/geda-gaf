@@ -182,6 +182,38 @@ void geda_list_add_glist( GedaList *list, GList *items )
   g_signal_emit( list, geda_list_signals[ CHANGED ], 0 );
 }
 
+void geda_list_add_glist_unique ( GedaList *list, GList *items )
+{
+  GList *one_list = NULL;
+  GList *iter;
+
+  for (iter = items; iter; iter = iter->next) {
+    if (!geda_list_is_in_list( list, iter->data)) {
+      if (!g_list_find(one_list, iter->data)) {
+        one_list = g_list_append(one_list, iter->data);
+      }
+    }
+  }
+  geda_list_add_glist(list, one_list);
+  g_list_free(one_list);
+}
+
+/*! \brief Add item to the GedaList if not already in list
+ *
+ *  \par Function Description
+ *  Adds the given item to the GedaList if the item is not
+ *  already in the list.
+ *
+ *  \param [in] list Pointer to the GedaList
+ *  \param [in] item item to add to the GedaList.
+ */
+void geda_list_add_unique ( GedaList *list, void *item )
+{
+  if (!geda_list_is_in_list(list, item)) {
+    geda_list_add(list, item);
+  }
+}
+
 
 /*! \brief Returns a copy of the glist associated with the given GedaList
  *
