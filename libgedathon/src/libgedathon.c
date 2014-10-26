@@ -2850,11 +2850,41 @@ PyGeda_refresh_attribs( PyObject *py_object )
 /** \defgroup Python_API_Connections  Geda Python Module API Network Methods
  *  @{
  */
+static GedaList *
+get_connected(Object* o_net)
+{
+  Object  *o_current;
+  GedaList *network;
+  int       index;
+
+  network = geda_list_new();
+
+  /* the current net is the startpoint for the stack */
+  geda_list_add(network, o_net);
+  index = -1;
+  do {
+
+    GList *nets;
+
+    index++;
+
+    o_current = g_list_nth_data (network->glist, index);
+
+    nets =  s_conn_return_others(NULL, o_current);
+
+    geda_list_add_glist_unique(network, nets);
+
+    g_list_free(nets);
+
+  } while ( index != geda_list_length(network) - 1);
+
+  return network;
+}
 
 PyObject*
-PyGeda_get_network( int pid, int sid )
+PyGeda_get_network( int pid, int sid, int filter )
 {
-  GList    *list;
+  GedaList *list;
   Object   *object;
   Page     *page;
   PyObject *py_list;
@@ -2872,18 +2902,18 @@ PyGeda_get_network( int pid, int sid )
     }
 
     if (object) {
-      list = s_conn_return_others(list, object);
-      list = g_list_prepend (list, object);
+      list = get_connected(object);
     }
   }
 
   if (list) {
-    py_list = PyGeda_glist_2_pylist(list);
-    g_list_free(list);
+    py_list = PyGeda_glist_2_pylist(list->glist);
+    GEDA_UNREF(list);
   }
   else {
     py_list = Py_None;
   }
+
   return py_list;
 }
 

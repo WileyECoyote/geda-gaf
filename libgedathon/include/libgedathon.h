@@ -99,7 +99,7 @@ PyObject *PyGeda_get_attrib         ( PyObject *py_object, const char *name);
 PyObject *PyGeda_get_attribs        ( PyObject *py_object );
 PyObject *PyGeda_set_attrib         ( PyObject *py_complex, PyObject *py_attrib, const char *name, const char *value, int ret_obj);
 int       PyGeda_refresh_attribs    ( PyObject *py_object );
-PyObject *PyGeda_get_network        ( int pid, int sid );
+PyObject *PyGeda_get_network        ( int pid, int sid, int filter);
 #endif
 
 

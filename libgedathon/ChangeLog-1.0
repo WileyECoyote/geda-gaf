@@ -1,5 +1,10 @@
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgedathon.c: Revise function PyGeda_get_network to return
+      all "geometrically" connected nets, pins, and buses.
+
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * module/geda.c: Revise module to use pointer to syntax strings
 
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
