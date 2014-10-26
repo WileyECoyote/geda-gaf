@@ -1,5 +1,12 @@
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * module/geda.c: Revise do_get_object to return object if was
+      passed a valid PyGedaObject, used to error out because was
+      expecting a GedaCapsule type (from which to extract a valid
+      PyGedaObject).
+
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/libgedathon.c: Fix tuplelization discombobulation by
       parenthesizing format specifier.
 

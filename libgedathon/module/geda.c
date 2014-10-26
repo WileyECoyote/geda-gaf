@@ -915,53 +915,61 @@ METHOD(get_object)
     return NULL;
   }
 
-  if (!do_GedaCapsule_Type(self, py_capsule)) {
-    PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
-    return NULL;
+  if (PyObject_TypeCheck(py_capsule, GedaObjectClass())) {
+    py_object = py_capsule; /* was an object not capsule so give back */
   }
+  else {
 
-  object_data = library.func(py_capsule);
-
-  type = ((GedaCapsule*)py_capsule)->type;
-
-  switch (type) {
-    case OBJ_PLACEHOLDER:
-    case OBJ_COMPLEX:
-      py_object = PyObject_CallObject((PyObject *) ComplexObjectClass(), object_data);
-      break;
-    case OBJ_TEXT:
-      py_object = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
-      break;
-    case OBJ_NET:
-      py_object = PyObject_CallObject((PyObject *) NetObjectClass(), object_data);
-      break;
-    case OBJ_LINE:
-      py_object = PyObject_CallObject((PyObject *) LineObjectClass(), object_data);
-      break;
-    case OBJ_PATH:
-      py_object = PyObject_CallObject((PyObject *) PathObjectClass(), object_data);
-      break;
-    case OBJ_BOX:
-      py_object = PyObject_CallObject((PyObject *) BoxObjectClass(), object_data);
-      break;
-    case OBJ_PICTURE:
-      py_object = PyObject_CallObject((PyObject *) PictureObjectClass(), object_data);
-      break;
-    case OBJ_CIRCLE:
-      py_object = PyObject_CallObject((PyObject *) CircleObjectClass(), object_data);
-      break;
-    case OBJ_BUS:
-      py_object = PyObject_CallObject((PyObject *) BusObjectClass(), object_data);
-      break;
-    case OBJ_PIN:
-      py_object = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);
-      break;
-    case OBJ_ARC:
-      py_object = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
-      break;
-    default:
-      PyErr_SetString(PyExc_TypeError, "Bad Capsule object");
+    if (!do_GedaCapsule_Type(self, py_capsule)) {
+      PyErr_SetString(PyExc_TypeError, "syntax: get_object(GedaCapsuleObject)");
       py_object = NULL;
+    }
+    else {
+
+      object_data = library.func(py_capsule);
+
+      type = ((GedaCapsule*)py_capsule)->type;
+
+      switch (type) {
+        case OBJ_PLACEHOLDER:
+        case OBJ_COMPLEX:
+          py_object = PyObject_CallObject((PyObject *) ComplexObjectClass(), object_data);
+          break;
+        case OBJ_TEXT:
+          py_object = PyObject_CallObject((PyObject *) TextObjectClass(), object_data);
+          break;
+        case OBJ_NET:
+          py_object = PyObject_CallObject((PyObject *) NetObjectClass(), object_data);
+          break;
+        case OBJ_LINE:
+          py_object = PyObject_CallObject((PyObject *) LineObjectClass(), object_data);
+          break;
+        case OBJ_PATH:
+          py_object = PyObject_CallObject((PyObject *) PathObjectClass(), object_data);
+          break;
+        case OBJ_BOX:
+          py_object = PyObject_CallObject((PyObject *) BoxObjectClass(), object_data);
+          break;
+        case OBJ_PICTURE:
+          py_object = PyObject_CallObject((PyObject *) PictureObjectClass(), object_data);
+          break;
+        case OBJ_CIRCLE:
+          py_object = PyObject_CallObject((PyObject *) CircleObjectClass(), object_data);
+          break;
+        case OBJ_BUS:
+          py_object = PyObject_CallObject((PyObject *) BusObjectClass(), object_data);
+          break;
+        case OBJ_PIN:
+          py_object = PyObject_CallObject((PyObject *) PinObjectClass(), object_data);
+          break;
+        case OBJ_ARC:
+          py_object = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
+          break;
+        default:
+          PyErr_SetString(PyExc_TypeError, "Bad Capsule object");
+          py_object = NULL;
+      }
+    }
   }
   ON_METHOD_EXIT(get_object);
   return py_object;
