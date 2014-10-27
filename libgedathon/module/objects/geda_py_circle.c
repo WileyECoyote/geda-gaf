@@ -169,7 +169,7 @@ CircleObject_print(CircleObject *circle, FILE *file, int flags)
 /* -------------------------- CircleObject Members ------------------------- */
 
 static PyMemberDef Circle_members[] = {
-  {"center_x",    T_INT, offsetof(CircleObject, center_y),    0, "Circle centerpoint abscissa"},
+  {"center_x",    T_INT, offsetof(CircleObject, center_x),    0, "Circle centerpoint abscissa"},
   {"center_y",    T_INT, offsetof(CircleObject, center_y),    0, "Circle centerpoint ordinate"},
   {"radius",      T_INT, offsetof(CircleObject, radius),      0, "Circle radius"},
 

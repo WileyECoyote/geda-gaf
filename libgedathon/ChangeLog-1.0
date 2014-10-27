@@ -1,3 +1,8 @@
+2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_circle.c: Fix BUG Circle_members center_x
+      was center_y, oops.
+
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Implement ability to filter output from
