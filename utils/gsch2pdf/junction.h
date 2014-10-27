@@ -18,4 +18,4 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
  */
 
-void junction_locate(GedaToplevel *current, const GList *objects, GArray *junctions, GArray *unconnected);
+void junction_locate(const GList *objects, GArray *junctions, GArray *unconnected);

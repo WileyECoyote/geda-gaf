@@ -1,3 +1,8 @@
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+        * gsch2pdf/junction.c: Eliminate toplevel "current" variable for junction_locate
+          and extern reference to o_pin_get_position
+
 2014-10-10 Wiley E. Hill <wileyhill@gmail.com>
 
         * gmake/gmake-transistors-sym.sh: Fix minor grammatical errors and help strings

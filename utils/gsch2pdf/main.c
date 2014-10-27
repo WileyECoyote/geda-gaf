@@ -795,7 +795,7 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 
     GArray *junctions = g_array_new(FALSE, FALSE, sizeof(POINT));
 
-    junction_locate(current, list, junctions, NULL);
+    junction_locate(list, junctions, NULL);
 
     print_junctions(current, cairo, junctions);
 

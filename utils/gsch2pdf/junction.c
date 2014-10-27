@@ -20,8 +20,7 @@
 
 #include "common.h"
 
-extern gboolean o_pin_get_position (GedaToplevel *toplevel, gint *x, gint *y,
-                             Object *object);
+extern bool o_pin_get_position (int *x, int *y, Object *object);
 
 typedef struct st_sweep_event SWEEP_EVENT;
 typedef struct st_sweep_status SWEEP_STATUS;
@@ -38,7 +37,7 @@ struct st_sweep_event
     SWEEP_STATUS status;
 };
 
-static gint compare_points(gconstpointer a, gconstpointer b)
+static int compare_points(gconstpointer a, gconstpointer b)
 {
   POINT *point_a = (POINT*) a;
   POINT *point_b = (POINT*) b;
@@ -57,7 +56,7 @@ static gint compare_points(gconstpointer a, gconstpointer b)
  *  of unconnected endpoints.  This function appends new endpoints to the GArray and leaves
  *  existing GArray contents unchanged.
  */
-void junction_locate(GedaToplevel *current, const GList *objects, GArray *junctions, GArray *unconnected)
+void junction_locate(const GList *objects, GArray *junctions, GArray *unconnected)
 {
   const GList *node = objects;
 
@@ -88,7 +87,7 @@ void junction_locate(GedaToplevel *current, const GList *objects, GArray *juncti
     }
     else if (object->type == OBJ_PIN) {
       POINT point;
-      o_pin_get_position(current, &point.x, &point.y, object);
+      o_pin_get_position(&point.x, &point.y, object);
       g_array_append_val(points, point);
     }
     else if ((object->type == OBJ_COMPLEX) || (object->type == OBJ_PLACEHOLDER)) {
@@ -97,7 +96,7 @@ void junction_locate(GedaToplevel *current, const GList *objects, GArray *juncti
         Object *object2 = (Object*) node2->data;
         if (object2->type == OBJ_PIN) {
           POINT point2;
-          o_pin_get_position(current, &point2.x, &point2.y, object2);
+          o_pin_get_position(&point2.x, &point2.y, object2);
           g_array_append_val(points, point2);
         }
         node2 = g_list_next(node2);
