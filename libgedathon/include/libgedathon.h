@@ -100,6 +100,8 @@ PyObject *PyGeda_get_attribs        ( PyObject *py_object );
 PyObject *PyGeda_set_attrib         ( PyObject *py_complex, PyObject *py_attrib, const char *name, const char *value, int ret_obj);
 int       PyGeda_refresh_attribs    ( PyObject *py_object );
 PyObject *PyGeda_get_network        ( int pid, int sid, int filter);
+PyObject *PyGeda_get_junctions      ( PyObject *py_list);
+PyObject *PyGeda_get_unconnected    ( PyObject *py_list);
 #endif
 
 

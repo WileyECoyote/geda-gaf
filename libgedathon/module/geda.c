@@ -940,6 +940,7 @@ METHOD(get_object)
   }
 
   if (PyObject_TypeCheck(py_capsule, GedaObjectClass())) {
+
     py_object = py_capsule; /* was an object not capsule so give back */
   }
   else {
@@ -1342,7 +1343,7 @@ METHOD(remove_objects)
  *  \return [out] status True if success otherwise False, False
  *                would only be returned if an object did not exist.
  *
- *  example 1. geda.delete_objects(Old_Objects)
+ *  example 1. geda.delete_object(tmpObject)
  *
  */
 METHOD(delete_object)
@@ -1378,6 +1379,7 @@ METHOD(delete_object)
  *
  *  example 1. geda.delete_objects(Old_Objects)
  *
+ * TODO: See get_junctions for a friendly method of accepting arguments
  */
 METHOD(delete_objects)
 {
@@ -2351,7 +2353,7 @@ METHOD(refresh_attribs)
 
 /*! \brief Get all Objects Connect to a Given GedaObject
  *  \par Method Description
- *    This function provides a method to a list of all of the objects
+ *    This function provides a method to obtain a list of all of objects
  *  connected with a given GedaObject or GedaCapsule. The returned list
  *  contains is GedaCapsule and is guaranteed to contain at least one
  *  object -- the object used as an argument, unless the optional filter
@@ -2408,6 +2410,149 @@ METHOD(get_network)
 
   ON_METHOD_EXIT(get_network);
   return list;
+}
+
+/*! \brief Get all Junctions Associated with GedaObjects
+ *  \par Method Description
+ *  This function provides a method to obtain X-Y coordinates data
+ *  of connection junctions.
+ *
+ *  [in] PyObject object is a GedaObject or GedaCapsuleObject
+ *
+ *  \return [out] PyList of Points; integer X-Y pairs or an empty
+ *                list if no junctions were found.
+ *
+ */
+METHOD(get_junctions)
+{
+  TYPE_PYOBJECT_P1(get_junctions);
+  PyObject *unknown;
+  PyObject *py_object;
+  PyObject *py_source_list;
+  PyObject *py_output_list;
+  PyObject *py_tmp;
+
+  const char *syntax = "syntax: get_junctions( PyList || GedaObject)";
+
+  if(!PyArg_ParseTuple(args, "O:geda.get_junctions", &unknown)) {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  py_tmp = NULL;
+  py_source_list = PyList_New(0);
+
+  if (PyObject_TypeCheck(unknown, &PyList_Type)) {
+    int i;
+    int count = PyList_GET_SIZE(unknown);
+    for (i = 0; i < count; i++) {
+      py_object = PyList_GET_ITEM(unknown, i);
+      if (PyObject_TypeCheck(py_object, GedaObjectClass())) { /* GedaObject was in list */
+        PyList_Append(py_source_list, py_object);
+      }
+      else if (do_GedaCapsule_Type(self, unknown)) {          /* Capsule was in list */
+        py_tmp = Py_BuildValue("(O)", py_object);
+        py_object = do_get_object(self, py_tmp);
+        if (py_object) {
+          PyList_Append(py_source_list, py_object);
+        }
+      }
+    }
+  }
+  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {  /* Just 1 Object not in list */
+    PyList_Append(py_source_list, unknown);
+  }
+  else if (do_GedaCapsule_Type(self, unknown)) {              /* Just 1 Capsule not in list */
+    py_tmp = do_get_object(self, args);
+    PyList_Append(py_source_list, py_tmp);
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  py_output_list = library.func(py_source_list);
+
+  if (py_tmp) {
+    Py_DECREF(py_tmp);
+  }
+  Py_DECREF(py_source_list);
+  ON_METHOD_EXIT(get_junctions);
+
+  return py_output_list;
+}
+
+/*! \brief Get Points Associated with Unconnected GedaObjects
+ *  \par Method Description
+ *   This function provides a method to obtain X-Y coordinates data
+ *   of unconnected object, normally pins and nets.
+ *
+ *  [in] PyObject can be PyList of PyObjects that can be any combination
+ *       of GedaObjects and or GedaCapsuleObjects, or a single GedaObject
+ *       or single GedaCapsuleObject not in a PyList. All objects types are
+ *       accepted but graphical objects will always return an empty list.
+ *
+ *  \return [out] PyList of Points; integer X-Y pairs or an empty list
+ *                if no unconnected nodes were found.
+ *
+ */
+METHOD(get_unconnected)
+{
+  TYPE_PYOBJECT_P1(get_unconnected);
+  PyObject *unknown;
+  PyObject *py_object;
+  PyObject *py_source_list;
+  PyObject *py_output_list;
+  PyObject *py_tmp;
+
+  const char *syntax = "syntax: get_unconnected( PyList || GedaObject)";
+
+  if(!PyArg_ParseTuple(args, "O:geda.get_unconnected:", &unknown)) {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  py_tmp = NULL;
+  py_source_list = PyList_New(0);
+
+  if (PyObject_TypeCheck(unknown, &PyList_Type)) {
+    int i;
+    int count = PyList_GET_SIZE(unknown);
+    for (i = 0; i < count; i++) {
+      py_object = PyList_GET_ITEM(unknown, i);
+      if (PyObject_TypeCheck(py_object, GedaObjectClass())) { /* GedaObject was in list */
+        PyList_Append(py_source_list, py_object);
+      }
+      else if (do_GedaCapsule_Type(self, unknown)) {          /* Capsule was in list */
+        py_tmp = Py_BuildValue("(O)", py_object);
+        py_object = do_get_object(self, py_tmp);
+        if (py_object) {
+          PyList_Append(py_source_list, py_object);
+        }
+      }
+    }
+  }
+  else if (PyObject_TypeCheck(unknown, GedaObjectClass())) {  /* Just 1 Object not in list */
+    PyList_Append(py_source_list, unknown);
+  }
+  else if (do_GedaCapsule_Type(self, unknown)) {              /* Just 1 Capsule not in list */
+    py_tmp = do_get_object(self, args);
+    PyList_Append(py_source_list, py_tmp);
+  }
+  else {
+    PyErr_SetString(PyExc_TypeError, syntax);
+    return NULL;
+  }
+
+  py_output_list = library.func(py_source_list);
+
+  if (py_tmp) {
+    Py_DECREF(py_tmp);
+  }
+  Py_DECREF(py_source_list);
+  ON_METHOD_EXIT(get_unconnected);
+
+  return py_output_list;
 }
 
 /** @} END Group Python_Connections */

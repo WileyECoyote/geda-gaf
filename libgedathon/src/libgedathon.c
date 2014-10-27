@@ -1922,23 +1922,23 @@ PyGeda_remove_object( PyObject *py_object )
  *  objects are associated. The objects in the list do not have to be the
  *  same page.
  *
- *  \param [in] objects PyList Of Geda objects to be removed
+ *  \param [in] pyobjects PyList Of Geda objects to be removed
  *
  *  \return [out] status True if success otherwise False, False
  *                would only be returned if the page conatining
  *                the object did not exist.
  */
 int
-PyGeda_remove_objects( PyObject *objects )
+PyGeda_remove_objects( PyObject *pyobjects )
 {
   PyObject     *geda_object;
   int           i;
   int           count;
   int           status = 0;
 
-  count = (int) PyList_GET_SIZE(objects);
+  count = (int) PyList_GET_SIZE(pyobjects);
   for (i = 1; count < i; i++) {
-    geda_object = PyList_GET_ITEM(objects, i);
+    geda_object = PyList_GET_ITEM(pyobjects, i);
     status += PyGeda_remove_object(geda_object);
   }
   return status;
@@ -2983,6 +2983,136 @@ PyGeda_get_network( int pid, int sid, int filter )
   }
 
   return py_list;
+}
+
+/* flag = 0 return unconnect, flag = 1 return junctions */
+static void
+get_cue_locations_lowlevel(GList *list, PyObject *py_list, int flag)
+{
+  GArray   *junctions;
+  GArray   *noconnects;
+  GArray   *results;
+  POINT    *point;
+  PyObject *py_pair;
+  int       index;
+
+  junctions  = g_array_new(FALSE, FALSE, sizeof(POINT));
+  noconnects = g_array_new(FALSE, FALSE, sizeof(POINT));
+
+  s_cue_get_locations (list, junctions, noconnects);
+
+  if (flag) {
+    results = junctions;
+  }
+  else {
+    results = noconnects;
+  }
+
+  for (index = 0; index<results->len; index++) {
+    point   = NULL;
+    point   = &g_array_index(results, POINT, index);
+    py_pair = Py_BuildValue("ii", point->x, point->y);
+    PyList_Append(py_list, py_pair);
+  }
+
+  g_array_free(junctions, TRUE);
+  g_array_free(noconnects, TRUE);
+
+}
+
+static PyObject*
+get_cue_locations(PyObject *py_objects, int flag)
+{
+  Object     *object;
+  Page       *page        = NULL;
+  GedaObject *geda_object = NULL;
+  PyObject   *py_list;
+
+  int         pid;
+  int         sid;
+  int         i;
+  int         count;
+
+  if (py_objects) {
+    count = (int) PyList_GET_SIZE(py_objects);
+  }
+  else  {
+    count = 0;
+  }
+
+  py_list = PyList_New(0);
+
+  if (count > 0) {
+
+    GList *list = NULL;
+    geda_object = (GedaObject*)PyList_GET_ITEM(py_objects, 1);
+    pid         = geda_object->pid;
+
+    page = geda_toplevel_get_page(toplevel, pid);
+
+    for (i = 1; i < count; i++) {
+
+      geda_object = (GedaObject*)PyList_GET_ITEM(py_objects, i);
+      sid         = geda_object->sid;
+      object      = s_page_get_object(page, sid);
+
+      if (object) {
+        list = g_list_append(list, object);
+      }
+    }
+
+    count = g_list_length(list);
+
+    if (count > 0) {
+      get_cue_locations_lowlevel(list, py_list, flag);
+    }
+    g_list_free(list);
+  }
+  return py_list;
+}
+
+/*! \brief Python API Library Get Coordinates of Junctions for Objects
+ *  \ingroup Python_API_Connections
+ *  \par Function Description
+ *  This function provides an API to libgeda to obtain X-Y coordinates
+ *  data of where junctions occur, normally where nets cross or meet.
+ *  Junctions are used for illustion purposes.
+ *
+ *  \param [in] PyList Must contain only GedaObjects to analyzed
+ *
+ *  \return [out] PyList of order integer pairs representing points
+ *                where a junction occurs or an empty list if none
+ *                where found.
+ *  example:
+ *
+ *        junctions = geda.get_junctions(network)
+ *        for point in junctions:
+ *           circle = geda.new_circle(point[0], point[1], JUNCTION_SIZE)
+ *           circle.fill_type = FILL_SOLID
+ *           geda.add_object(schematic, circle)
+ */
+PyObject*
+PyGeda_get_junctions (PyObject *py_objects)
+{
+  return get_cue_locations(py_objects, 1);
+}
+
+/*! \brief Python API Library Get Coordinates of Unconnnected Objects
+ *  \ingroup Python_API_Connections
+ *  \par Function Description
+ *  This function provides an API to libgeda to obtain X-Y coordinates
+ *  data of unconnected object, normally pins and nets.
+ *
+ *  \param [in] PyList Must contain only GedaObjects to analyzed
+ *
+ *  \return [out] PyList of order integer pairs representing points
+ *                where objects are disconnected or an empty list if
+ *                none where found.
+ */
+PyObject*
+PyGeda_get_unconnected (PyObject *py_objects)
+{
+  return get_cue_locations(py_objects, 0);
 }
 
 /** @} END Group Python_API_Connections */

@@ -1,5 +1,14 @@
 2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgedathon.c: Add new API functions PyGeda_get_junctions and
+      PyGeda_get_unconnected, with common helpers get_cue_locations and
+      get_cue_locations_lowlevel.
+
+    * module/geda.c: Implement new API for cues with new methods
+      get_junctions and get_unconnected
+
+2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
     * module/objects/geda_py_circle.c: Fix BUG Circle_members center_x
       was center_y, oops.
 

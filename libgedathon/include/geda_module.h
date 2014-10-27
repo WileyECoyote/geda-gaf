@@ -127,6 +127,8 @@ const char refresh_attribs_docs[]    = "Refresh Objects attributes\n";
 
 /* Connection and Nodes */
 const char get_network_docs[]        = "Retrieve all objects connect to specific Object\n";
+const char get_junctions_docs[]      = "Retrieve list of points for junction for specified Objects\n";
+const char get_unconnected_docs[]    = "Retrieve list of points of unconnect nodes for specified Objects\n";
 
 /* define Macro for declarations because METHOD was not defined */
 #define METHOD(method) FIRST_PASS_METHODS(method);
@@ -183,7 +185,8 @@ const char get_network_docs[]        = "Retrieve all objects connect to specific
 
 /* Connection and Nodes */
         METHOD ( get_network )
-
+        METHOD ( get_junctions )
+        METHOD ( get_unconnected )
 #undef  METHOD
 
 #endif
@@ -252,6 +255,8 @@ enum {
 
 /* Connection and Nodes */
      METHOD ( get_network,        METH_VARARGS )
+     METHOD ( get_junctions,      METH_VARARGS )
+     METHOD ( get_unconnected,    METH_VARARGS )
 
 #ifdef _MAKE_METHOD_ENUM_
      METHOD_COUNT,
