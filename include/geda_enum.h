@@ -70,6 +70,25 @@ typedef enum
   GEDA_MESSAGE_OTHER,
 } gEDA_MessageType;
 
+/*! \enum GedaObjectFilter Used by Libgedathon
+ *  \brief Control returned Object types.
+ */
+typedef enum
+{
+  GEDA_FILTER_ALL        = 0,
+  GEDA_FILTER_ARC        = 1 << 1,
+  GEDA_FILTER_BOX        = 1 << 2,
+  GEDA_FILTER_BUS        = 1 << 3,
+  GEDA_FILTER_CIRCLE     = 1 << 4,
+  GEDA_FILTER_COMPLEX    = 1 << 5,
+  GEDA_FILTER_LINE       = 1 << 6,
+  GEDA_FILTER_NET        = 1 << 7,
+  GEDA_FILTER_PATH       = 1 << 8,
+  GEDA_FILTER_PICTURE    = 1 << 9,
+  GEDA_FILTER_PIN        = 1 << 10,
+  GEDA_FILTER_TEXT       = 1 << 11
+} GedaObjectFilter;
+
 /* File System Stuff */
 
 /*! \enum FOpenFlags flags used by libgeda controling file open events

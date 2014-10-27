@@ -1,3 +1,7 @@
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_enum.h: Add enumerated GedaObjectFilter
+
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_dialog_controls.h: Fix memory leak with PANGO_R5_LABEL Macro
