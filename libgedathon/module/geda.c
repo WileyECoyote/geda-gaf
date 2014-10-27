@@ -2354,13 +2354,28 @@ METHOD(refresh_attribs)
  *    This function provides a method to a list of all of the objects
  *  connected with a given GedaObject or GedaCapsule. The returned list
  *  contains is GedaCapsule and is guaranteed to contain at least one
- *  object -- the object used as an argument since this object must be
- *  connected to itself.
+ *  object -- the object used as an argument, unless the optional filter
+ *  argument excludes the object used as an argument.
  *
  *  [in] PyObject object is a GedaObject or GedaCapsuleObject
  *
  *  \return [out] PyList of GedaCapsules.
  *
+ *  example 1:
+ *
+ *      sub_net = geda.get_network(capsule)
+ *      for node in sub_net:
+ *          print node.name
+ *
+ *  example 2:
+ *
+ *      U10_SCI = geda.get_network(Pin, GEDA_FILTER_NET)
+ *      for net in U10_SCI:
+ *          set_attrib(net, "netname", "U10_SCI")
+ *
+ *  note: In in example 2, the pin does not get a netname attribute
+ *        attached to the pin because pins were excluded by the NET
+ *        filter.
  */
 METHOD(get_network)
 {
@@ -2369,7 +2384,7 @@ METHOD(get_network)
   PyObject *list;
   int       pid;
   int       sid;
-  int       filter;
+  int       filter = GEDA_FILTER_ALL;
 
   const char *syntax = "syntax: get_network(GedaObject || GedaCapsuleObject [, filter] )";
 

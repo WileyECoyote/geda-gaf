@@ -75,7 +75,6 @@ initConstants(PyObject *module)
   PyModule_AddIntMacro(self, FILLING_HATCH);
   PyModule_AddIntMacro(self, FILLING_VOID);
 
-
   /* Text Alignment */
   PyModule_AddIntMacro(self, LOWER_LEFT);
   PyModule_AddIntMacro(self, MIDDLE_LEFT);
@@ -110,6 +109,20 @@ initConstants(PyObject *module)
   PyModule_AddIntMacro(self, PIN_ELECT_CLK);
   PyModule_AddIntMacro(self, PIN_ELECT_PWR);
   PyModule_AddIntMacro(self, PIN_ELECT_VOID);
+
+
+  PyModule_AddIntConstant(self, "GEDA_FILTER_ALL",     GEDA_FILTER_ALL);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_ARC",     GEDA_FILTER_ARC);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_BOX",     GEDA_FILTER_BOX);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_BUS",     GEDA_FILTER_BUS);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_CIRCLE",  GEDA_FILTER_CIRCLE);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_COMPLEX", GEDA_FILTER_COMPLEX);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_LINE",    GEDA_FILTER_LINE);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_NET",     GEDA_FILTER_NET);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_PATH",    GEDA_FILTER_PATH);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_PICTURE", GEDA_FILTER_PICTURE);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_PIN",     GEDA_FILTER_PIN);
+  PyModule_AddIntConstant(self, "GEDA_FILTER_TEXT",    GEDA_FILTER_TEXT);
 
   /* Make geda.constants.XXX legal */
   PyModule_AddObject(module, "constants", self);

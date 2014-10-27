@@ -1,5 +1,12 @@
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/libgedathon.c: Implement ability to filter output from
+      function PyGeda_get_network
+
+    * module/geda.c: Implement filter for get_network method
+
+2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/libgedathon.c: Revise function PyGeda_get_network to return
       all "geometrically" connected nets, pins, and buses.
 

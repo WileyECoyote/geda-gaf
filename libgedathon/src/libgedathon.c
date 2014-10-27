@@ -2881,15 +2881,31 @@ get_connected(Object* o_net)
   return network;
 }
 
+/*! \brief Python API Library Get Network
+ *  \ingroup Python_API_Connections
+ *  \par Function Description
+ *  This function use the helper function interconnected to collect all
+ *  geometrically connected "conductive" objects; Net, Buses and Pins,
+ *  that are connected to the object with the \a sid on page \a pid.
+ *
+ *  \param [in] pid    Integer, the page id of the page to search
+ *  \param [in] sid    Integer, the sequence id of Object whose connections are to found
+ *  \param [in] filter Interer, filter to indicate the type of objects to be returned
+ *
+ *  \return PyList of all objects connected to sid, inclusive of the object
+ *          itself, unless excluded by the filter, inclusive of the object
+ *          itself, unless excluded by the filter.
+ *
+ */
 PyObject*
 PyGeda_get_network( int pid, int sid, int filter )
 {
-  GedaList *list;
+  GedaList *network;
   Object   *object;
   Page     *page;
   PyObject *py_list;
 
-  list = NULL;
+  network = NULL;
 
   page = geda_toplevel_get_page(toplevel, pid);
 
@@ -2902,13 +2918,65 @@ PyGeda_get_network( int pid, int sid, int filter )
     }
 
     if (object) {
-      list = get_connected(object);
+      network = get_connected(object);
     }
   }
 
-  if (list) {
-    py_list = PyGeda_glist_2_pylist(list->glist);
-    GEDA_UNREF(list);
+  if (network) {
+
+    GList *list = network->glist;
+    GList *tmp  = NULL;
+
+    switch (filter) {
+      case GEDA_FILTER_ALL:
+        break;
+
+      case GEDA_FILTER_BUS:
+        list = o_get_objects_by_type (list, OBJ_BUS);
+        break;
+
+      case GEDA_FILTER_NET:
+        list = o_get_objects_by_type (list, OBJ_NET);
+        break;
+
+      case GEDA_FILTER_PIN:
+        list = o_get_objects_by_type (list, OBJ_PIN);
+        break;
+
+      case GEDA_FILTER_NET | GEDA_FILTER_BUS:
+        list = o_get_objects_by_type (list, OBJ_NET);
+        tmp  = o_get_objects_by_type (list, OBJ_BUS);
+        list = g_list_concat(list, tmp);
+        break;
+
+      case GEDA_FILTER_NET | GEDA_FILTER_PIN:
+        list = o_get_objects_by_type (list, OBJ_NET);
+        tmp  = o_get_objects_by_type (list, OBJ_PIN);
+        list = g_list_concat(list, tmp);
+        break;
+
+      case GEDA_FILTER_BUS | GEDA_FILTER_PIN:
+        list = o_get_objects_by_type (list, OBJ_BUS);
+        tmp  = o_get_objects_by_type (list, OBJ_PIN);
+        list = g_list_concat(list, tmp);
+        break;
+
+      default:
+        filter = GEDA_FILTER_ALL;
+        break;
+
+    }
+
+    py_list = PyGeda_glist_2_pylist(list);
+
+    if (filter != GEDA_FILTER_ALL) {
+      g_list_free(list);
+      if (tmp) {
+        g_list_free(tmp);
+      }
+    }
+
+    GEDA_UNREF(network);
   }
   else {
     py_list = Py_None;
