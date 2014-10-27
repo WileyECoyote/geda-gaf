@@ -30,6 +30,124 @@
 
 #include <geda_debug.h>
 
+/*! \brief Get Locations for Junctions and Unconnected Cues
+ *  \par Function Description
+ *   This function populates the supplied GArrays with POINT locations of
+ *   junction and unconnected points. This function appends new POINT to
+ *   the GArrays and leaves existing GArray contents unchanged. Both array
+ *   arguments are optional, but would only make sense to supply a least
+ *   one array. The array argument for undisred points should be set to
+ *   NULL.
+ *
+ *  \param [in]     objects     Objects to get the cue points for
+ *  \param [in,out] junctions   GArray of POINT to contain the coordinates of junctions
+ *  \param [in,out] unconnected GArray of POINT to contain the coordinates of unconnected
+ *                              endpoints.
+ *
+ *  example 1: s_cue_get_locations (list, junctions, noconnects);
+ *
+ *  example 2: s_cue_get_locations (list, junctions, NULL);
+ *
+ */
+void
+s_cue_get_locations(const GList *objects, GArray *junctions, GArray *unconnected)
+{
+  const GList *iter = objects;
+  Object *object;
+  POINT point;
+
+  void add_end_cues (Object *object, int end)
+  {
+    int x = object->line->x[end], y = object->line->y[end];
+    int conn_count = 0;
+    int conn_type = CONN_ENDPOINT;
+    int is_bus = FALSE;
+    GList *iter;
+
+    /* We should never be at the unconnectable end of a pin */
+    g_return_if_fail ((object->type != OBJ_PIN) || (object->pin->whichend == end));
+
+    /* Check whether the current object is a bus or bus pin */
+    is_bus = ((object->type == OBJ_BUS) || ((object->type == OBJ_PIN)
+    && (object->pin->node_type == PIN_BUS_NODE)));
+
+    for (iter = object->conn_list; iter != NULL; iter = iter->next) {
+      CONN *conn = (CONN *) iter->data;
+      if ((conn->x != x) || (conn->y != y)) continue;
+
+      /* Check whether the connected object is a bus or bus pin */
+      is_bus |= ((conn->other_object->type == OBJ_BUS)
+             || ((conn->other_object->type == OBJ_PIN)
+             && (conn->other_object->pin->node_type == PIN_BUS_NODE)));
+
+      if (conn->type == CONN_MIDPOINT) {
+        /* If it's a mid-line connection, we can stop already. */
+        conn_type = CONN_MIDPOINT;
+        break;
+      }
+
+      conn_count++;
+    }
+
+    /* Draw a midpoint, if necessary */
+    if ((conn_type == CONN_MIDPOINT) ||
+       ((object->type == OBJ_NET) && (conn_count > 1)))
+    {
+      if (junctions) {
+        point.x = x;
+        point.y = y;
+        g_array_append_val(junctions, point);
+      }
+      return;
+    }
+
+    switch (object->type) {
+      case OBJ_NET:
+      case OBJ_PIN:
+        if (conn_count > 0) break;
+        if (unconnected) {
+          point.x = x;
+          point.y = y;
+          g_array_append_val(unconnected, point);
+        }
+        break;
+
+      case OBJ_BUS:
+        break;
+      default:
+        break;
+    }
+  }
+
+  void add_mid_cues (Object *object)
+  {
+    if (junctions) {
+      GList *iter;
+      for (iter = object->conn_list; iter != NULL; iter = iter->next) {
+        CONN *conn = (CONN *) iter->data;
+        if (conn->type == CONN_MIDPOINT) {
+          point.x = conn->x;
+          point.y = conn->y;
+          g_array_append_val(junctions, point);
+        }
+      }
+    }
+  }
+
+  while (iter != NULL) {
+    object = iter->data;
+    if (object->type == OBJ_NET || object->type == OBJ_BUS) {
+      add_mid_cues (object);
+      add_end_cues (object, 0);
+      add_end_cues (object, 1);
+    }
+    else if (object->type == OBJ_PIN) {
+      add_end_cues (object, object->pin->whichend);
+    }
+    iter = iter->next;
+  }
+}
+
 /*! \todo Finish function documentation!!!
  *  \brief
  *  \par Function Description

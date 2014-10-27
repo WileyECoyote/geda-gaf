@@ -398,6 +398,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
       void    s_conn_thaw_hooks                  (Object *object);
 
 /* s_cue.c */
+      void    s_cue_get_locations                (const GList *objects, GArray *junctions, GArray *unconnected);
       void    s_cue_postscript_fillbox           (GedaToplevel *toplevel, FILE *fp, int x, int y);
       void    s_cue_postscript_junction          (GedaToplevel *toplevel, FILE *fp, int x, int y, int bus_involved);
       void    s_cue_output_all                   (GedaToplevel *toplevel, const GList *obj_list, FILE *fp, int type);

@@ -1,3 +1,7 @@
+2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/struct/s_cue.c: Add function s_cue_get_locations
+
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * libgeda/geda_list.h: Add Macro geda_list_length
