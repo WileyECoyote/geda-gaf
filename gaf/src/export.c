@@ -75,7 +75,7 @@ static void export_command_line (int argc, char * const *argv);
 #define DEFAULT_MARGIN 18
 
 enum ExportFormatFlags {
-  OUTPUT_MULTIPage = 1,
+  OUTPUT_MULTIPAGE = 1,
   OUTPUT_POINTS = 2,
   OUTPUT_PIXELS = 4,
 };
@@ -83,7 +83,7 @@ enum ExportFormatFlags {
 struct ExportFormat {
   char *name; /* UTF-8 */
   char *alias; /* UTF-8 */
-  gint flags;
+  int flags;
   void (*func)(void);
 };
 
@@ -95,10 +95,10 @@ enum ExportOrientation {
 
 struct ExportSettings {
   /* Input & output */
-  int infilec;
-  char * const *infilev; /* Filename encoding */
-  const char *outfile; /* Filename encoding */
-  char *format; /* UTF-8 */
+  int    infilec;
+  char  *const *infilev; /* Filename encoding */
+  const  char *outfile; /* Filename encoding */
+  char  *format; /* UTF-8 */
 
   enum ExportOrientation layout;
 
@@ -116,9 +116,9 @@ struct ExportSettings {
 static struct ExportFormat formats[] =
   {
     {"Portable Network Graphics (PNG)", "png", OUTPUT_PIXELS, export_png},
-    {"Postscript (PS)", "ps", OUTPUT_POINTS | OUTPUT_MULTIPage, export_ps},
+    {"Postscript (PS)", "ps", OUTPUT_POINTS | OUTPUT_MULTIPAGE, export_ps},
     {"Encapsulated Postscript (EPS)", "eps", OUTPUT_POINTS, export_eps},
-    {"Portable Document Format (PDF)", "pdf", OUTPUT_POINTS | OUTPUT_MULTIPage, export_pdf},
+    {"Portable Document Format (PDF)", "pdf", OUTPUT_POINTS | OUTPUT_MULTIPAGE, export_pdf},
     {"Scalable Vector Graphics (SVG)", "svg", OUTPUT_POINTS, export_svg},
     {NULL, NULL, 0, NULL},
   };
@@ -219,7 +219,7 @@ cmd_export (int argc, char **argv)
 
   /* If more than one schematic/symbol file was specified, check that
    * exporter supports multipage output. */
-  if ((settings.infilec > 1) && !(exporter->flags & OUTPUT_MULTIPage)) {
+  if ((settings.infilec > 1) && !(exporter->flags & OUTPUT_MULTIPAGE)) {
     fprintf (stderr,
              _("ERROR: Selected output format does not support multipage output\n"));
     exit (1);
@@ -782,7 +782,7 @@ export_parse_layout (const char *layout)
 static bool
 export_parse_margins (const char *margins)
 {
-  gint n;
+  int n;
   char **dists;
 
   g_assert (margins != NULL);
@@ -841,7 +841,7 @@ export_parse_paper (const char *paper)
 static bool
 export_parse_size (const char *size)
 {
-  gint n;
+  int n;
   char **dists;
 
   /* Automatic size case */
