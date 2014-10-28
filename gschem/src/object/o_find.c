@@ -86,7 +86,7 @@ is_object_hit (GschemToplevel *w_current, Object *object,
  *  \param [in] change_selection  Whether to select the found object or not.
  *  \returns TRUE if the Object was hit, otherwise FALSE.
  *
- *  \remark WEH 07/23/13: This function is ONLY call by the o_find_object
+ *  \remark WEH 07/23/13: This function is ONLY called by the o_find_object
  *  function below.
  */
 static bool
