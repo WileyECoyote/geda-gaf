@@ -1,3 +1,12 @@
+2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem-tools-menu.scm: Add a "Version Control" option under
+      the Tools Menu in gschem, default configuration is for "git gui",
+      add function tools:check-saved for the "Version Control" option
+      to call before launching. Is primitive but at least this gives
+      geda-gaf some presents of versioning control. Okay, I just used
+      it, is way cool.
+
 2014-10-23 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: In function x_dnd_receive_string_sym; Check if

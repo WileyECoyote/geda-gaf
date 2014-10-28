@@ -23,6 +23,11 @@
 ;(define tools:editor "kwrite")
 (define tools:editor "gedit")
 
+;; Define your favorite git client here
+;(define tools:gitclient "git-cola")
+;(define tools:gitclient "gitk")
+(define tools:gitclient "git gui")
+
 ;; ======================== Utilities code  ========================
 ;; Get the current input schematic/sym filepath when called
 (define (tools:ifpath) (get-selected-filename))
@@ -69,6 +74,24 @@
   )
 )
 
+;; -----------------------------------------------------------------
+;; This allows checking of schematic/sym file has been modified.
+(define (tools:check-saved)
+  (if (page-dirty? (active-page))
+      (let* ((response (gschem-confirm-cancel (string-append
+                        "Save " (get-selected-filename) " first?\n"))))
+        (if (= response 1)
+            (gschem-save-file)
+            (if (= response 0)
+              #t
+              #f
+            )
+        )
+      )
+      #t
+  )
+)
+
 ;; ---------------- tools:open-editor? ------------------------------
 (define (tools:open-editor? filename)
   (if (gschem-confirm (string-append
@@ -111,6 +134,14 @@
   )
 )
 
+;; ----------------- tools:open-gitclient -----------------------------
+(define (tools:open-gitclient)
+  (if (tools:check-saved)
+      (system (string-append tools:gitclient))
+  )
+)
+
+
 ;; ----------------- tools:geda-netlist -------------------------------
 (define (tools:geda-netlist)
     (tools:sch-netlist-0 "geda" ".geda"))
@@ -147,6 +178,7 @@
   '(("SEPARATOR"                #f                     #f)
     ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
     ("Run DRC2"             tools:run-drc2             #f)
+    ("Version Control"      tools:open-gitclient       #f)
     ("SEPARATOR"                #f                     #f)
     ("gEDA netlist"         tools:geda-netlist         "gschem-net")
     ("Spice-sdb netlist"    tools:spice-sdb-netlist    #f)
