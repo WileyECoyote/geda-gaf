@@ -1,3 +1,8 @@
+2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+      * bitmaps/* New icons; geda-check-grn.png, geda-check-org.png, geda-check
+        -red.png, geda-verilog-blue.*, geda-verilog-grd.*, git-logo.*
+
 2014-10-26 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_enum.h: Add enumerated GedaObjectFilter

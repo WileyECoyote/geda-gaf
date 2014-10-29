@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="48.068314"
+   inkscape:export-xdpi="48.068314"
+   inkscape:export-filename="../geda-verilog-grn.png"
+   width="128"
+   height="128"
+   id="svg11300"
+   sodipodi:version="0.32"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="geda-verilog-grn.svg"
+   version="1.1">
+  <title
+     id="title3036">Verilog</title>
+  <defs
+     id="defs3">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3782">
+      <stop
+         style="stop-color:#008000;stop-opacity:1;"
+         offset="0"
+         id="stop3784" />
+      <stop
+         style="stop-color:#008000;stop-opacity:0;"
+         offset="1"
+         id="stop3786" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient3774">
+      <stop
+         style="stop-color:#008000;stop-opacity:1;"
+         offset="0"
+         id="stop3776" />
+      <stop
+         style="stop-color:#008000;stop-opacity:0;"
+         offset="1"
+         id="stop3778" />
+    </linearGradient>
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect2997"
+       is_visible="true"
+       pattern="m -1.545802,-27.081416 10.0000003,5.000001 0,-10.000001 z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+    <inkscape:path-effect
+       effect="skeletal"
+       id="path-effect2997-6"
+       is_visible="true"
+       pattern="m -0.90194326,40.884694 9.99994806,5 0,-10 z"
+       copytype="single_stretched"
+       prop_scale="1"
+       scale_y_rel="false"
+       spacing="0"
+       normal_offset="0"
+       tang_offset="0"
+       prop_units="false"
+       vertical_pattern="false"
+       fuse_tolerance="0" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3774"
+       id="linearGradient3780"
+       x1="34.120377"
+       y1="10.226789"
+       x2="34.066475"
+       y2="30.264576"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3782"
+       id="linearGradient3788"
+       x1="92.588387"
+       y1="-42.17004"
+       x2="92.415657"
+       y2="-62.553307"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     stroke="#3465a4"
+     fill="#729fcf"
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="0.25490196"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="5.7890625"
+     inkscape:cx="66.418353"
+     inkscape:cy="63.503391"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:showpageshadow="false"
+     inkscape:window-width="1490"
+     inkscape:window-height="939"
+     inkscape:window-x="193"
+     inkscape:window-y="31"
+     inkscape:window-maximized="0"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata4">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Wiley Edward hill</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:source>wilyhill@gmail.com</dc:source>
+        <cc:license
+           rdf:resource="GPL3" />
+        <dc:title>Verilog</dc:title>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Verilog</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(0,80)">
+    <path
+       style="fill:url(#linearGradient3788);fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 2.6,-40.04704 c 6.0469587,-1.490643 12.091529,-2.980611 18.13371,-4.469903 13.13344,-2.959916 26.351843,-5.445021 39.622592,-7.027677 10e-7,0 2e-6,0 3e-6,0 6.977622,-0.832012 13.953344,-1.416278 20.884354,-1.501024 6.043779,-0.06508 12.000376,0.176899 17.624436,1.342494 10e-7,0 2e-6,10e-7 3e-6,10e-7 2.310412,0.48059 4.515082,1.088116 6.510182,1.949944 1e-5,1e-6 1e-5,2e-6 1e-5,3e-6 1.6984,0.746683 3.22551,1.597345 4.37449,2.652579 0,0 0,10e-7 0,10e-7 1.00703,0.919988 1.8165,1.97657 2.23614,3.064386 0.50313,1.144509 0.65845,2.564426 0.6146,4.036236 l 9.99956,-0.09407 c -0.0832,-2.712147 -0.7467,-5.501431 -2.08203,-8.115525 -1.30186,-2.431654 -3.08797,-4.435745 -5.14663,-5.955368 -2.25084,-1.650254 -4.6512,-2.787739 -7.0239,-3.559113 0,-1e-6 0,-1e-6 -1e-5,-1e-6 -2.76226,-0.912132 -5.53029,-1.455246 -8.23333,-1.777648 -6.531058,-0.781257 -12.967245,-0.547618 -19.215985,0.04382 -7.202519,0.670093 -14.293385,1.838113 -21.290543,3.249304 -13.322757,2.686079 -26.391126,6.245003 -39.274549,10.253551 C 14.41968,-43.985041 8.5086456,-42.015703 2.6,-40.04704 z"
+       id="path2995"
+       inkscape:path-effect="#path-effect2997"
+       inkscape:original-d="m 2.5999936,-40.047037 c 0,0 114.6534064,-36.873766 115.0003064,0"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:url(#linearGradient3780);fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 123.20008,8.0471757 c -6.04696,1.4906553 -12.09153,2.9806353 -18.13371,4.4699393 -13.133437,2.95994 -26.351842,5.445065 -39.622594,7.027736 -6.977621,0.832019 -13.953343,1.416291 -20.884353,1.501041 -6.04378,0.06508 -12.000377,-0.176897 -17.624435,-1.342499 -2.310414,-0.480592 -4.515081,-1.088122 -6.510182,-1.949954 -1.698404,-0.746688 -3.22552,-1.597357 -4.374492,-2.652597 0,-10e-7 -1e-6,-10e-7 -1e-6,-2e-6 -1.00704,-0.919995 -1.816502,-1.976587 -2.236145,-3.064415 C 13.311029,10.891899 13.155706,9.4719646 13.199557,8.0001363 L 3.2,8.0942109 c 0.083213,2.7121551 0.7467009,5.5014491 2.0820277,8.1155541 1.3018503,2.43166 3.0879612,4.435763 5.1466253,5.955398 2e-6,2e-6 5e-6,4e-6 7e-6,5e-6 2.250832,1.65026 4.651195,2.787753 7.023892,3.559134 3e-6,10e-7 5e-6,10e-7 7e-6,2e-6 2.762269,0.912138 5.530301,1.455258 8.233344,1.777663 2e-6,0 4e-6,0 6e-6,1e-6 6.531054,0.781263 12.967241,0.547624 19.21598,-0.04382 7.20252,-0.670095 14.293387,-1.838121 21.290545,-3.24932 13.322758,-2.686093 26.391127,-6.245037 39.274546,-10.253607 5.91342,-1.970026 11.82446,-3.939376 17.7331,-5.9080503 z"
+       id="path2995-5"
+       inkscape:path-effect="#path-effect2997-6"
+       inkscape:original-d="m 123.20009,8.0471736 c 0,0 -114.6534051,36.8740134 -115.0003113,0"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:43.25001144px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Khmer OS System;-inkscape-font-specification:Khmer OS System Bold"
+       x="2.7037463"
+       y="-3.2619514"
+       id="text3812"
+       sodipodi:linespacing="125%"
+       transform="scale(0.91768554,1.0896979)"><tspan
+         sodipodi:role="line"
+         id="tspan3814"
+         x="2.7037463"
+         y="-3.2619514">Verilog</tspan></text>
+  </g>
+</svg>
