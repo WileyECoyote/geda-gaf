@@ -1,5 +1,11 @@
 2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_toolbars.c: Change hierarchy demote icon macros, demote
+      symbols now uses a green version, just to distinguish from schematic
+      down icons.
+
+2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gschem-tools-menu.scm: Add a icons and tooltips for git,
       DRC, Spice-sdb netlist=geda-wave, Spice-noqsi netlist=geda-waves
       VHDL netlist=geda-simulate, Verilog netlist=geda-verilog-blue

@@ -1073,10 +1073,10 @@ void x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   gtk_toolbar_append_space (GTK_TOOLBAR(Page_Toolbar));
 
-  TOOLBAR_GEDA_BUTTON( Page, etb_down_schematic, LOCAL_PIX, GEDA_DEMOTE_BITMAP,   x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_down_symbol,    LOCAL_PIX, GEDA_DEMOTE_BITMAP,   x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,  x_toolbars_execute, w_current);
-  TOOLBAR_GEDA_BUTTON( Page, etb_view_document,  LOCAL_PIX, GAF_SEE_NOTES_BITMAP, x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Page, etb_down_symbol,    LOCAL_PIX, GEDA_DEMOTE_SYM_BITMAP, x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Page, etb_down_schematic, LOCAL_PIX, GEDA_DEMOTE_SCH_BITMAP, x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Page, etb_hierarchy_up,   LOCAL_PIX, GEDA_PROMOTE_BITMAP,    x_toolbars_execute, w_current);
+  TOOLBAR_GEDA_BUTTON( Page, etb_view_document,  LOCAL_PIX, GAF_SEE_NOTES_BITMAP,   x_toolbars_execute, w_current);
 
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_prev_page ));
   HAVE_PAGES_LIST     = g_slist_append ( HAVE_PAGES_LIST, TB_BUTTON( etb_next_page ));
