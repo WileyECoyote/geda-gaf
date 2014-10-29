@@ -1083,7 +1083,7 @@ void x_toolbars_init_top(GschemToplevel *w_current, GtkWidget *parent_container)
 
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_schematic));
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_down_symbol   ));
-  HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_hierarchy_up  ));
+  HAVE_PAGES_LIST   = g_slist_append ( HAVE_PAGES_LIST,   TB_BUTTON( etb_hierarchy_up  ));
   HAVE_COMPLEX_LIST = g_slist_append ( HAVE_COMPLEX_LIST, TB_BUTTON( etb_view_document ));
 
   g_object_set (Page_Toolbar, "visible", TRUE, NULL);
