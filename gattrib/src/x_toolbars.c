@@ -243,8 +243,8 @@ void x_toolbars_init(GtkWidget *parent_container) {
   TOOLBAR_STD_BUTTON(Attribute, invisible, PIX, GEDA_GHOST_INVISIBLE_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, visible,   PIX, GEDA_EYE_GLASSES_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, add,       PIX, GEDA_REDCROSS_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, promote,   PIX, GEDA_PROMOTE_BITMAP, callBack_AttributeBar0);
-  TOOLBAR_STD_BUTTON(Attribute, demote,    PIX, GEDA_DEMOTE_BITMAP, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, promote,   PIX, GAF_PROMOTE_BITMAP, callBack_AttributeBar0);
+  TOOLBAR_STD_BUTTON(Attribute, demote,    PIX, GAF_DEMOTE_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, name_only, PIX, GEDA_NAME_TAG_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, value_only, PIX, GEDA_VALUE_BITMAP, callBack_AttributeBar0);
   TOOLBAR_STD_BUTTON(Attribute, name_value, PIX, GEDA_NAME_VALUE_BITMAP, callBack_AttributeBar0);
