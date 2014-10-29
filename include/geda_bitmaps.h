@@ -115,6 +115,11 @@
 #define GEDA_BITMAP_DEMOTE_MEDIUM                        "26x26/geda_demote_26x26.png"
 #define GEDA_BITMAP_DEMOTE_LARGE                         "28x28/geda_demote_28x28.png"
 #define GEDA_BITMAP_DEMOTE_XLARGE                        "32x32/geda_demote_32x32.png"
+#define GEDA_BITMAP_DEMOTE_GRN_TINY                      "22x22/geda_demote_grn_22x22.png"
+#define GEDA_BITMAP_DEMOTE_GRN_SMALL                     "24x24/geda_demote_grn_24x24.png"
+#define GEDA_BITMAP_DEMOTE_GRN_MEDIUM                    "26x26/geda_demote_grn_26x26.png"
+#define GEDA_BITMAP_DEMOTE_GRN_LARGE                     "28x28/geda_demote_grn_28x28.png"
+#define GEDA_BITMAP_DEMOTE_GRN_XLARGE                    "32x32/geda_demote_grn_32x32.png"
 #define GEDA_BITMAP_DESELECT_TINY                        "22x22/geda_deselect_22x22.png"
 #define GEDA_BITMAP_DESELECT_SMALL                       "24x24/geda_deselect_24x24.png"
 #define GEDA_BITMAP_DESELECT_MEDIUM                      "26x26/geda_deselect_26x26.png"
@@ -410,7 +415,8 @@
 #define GEDA_CIRCLE_BITMAP              GEDA_BITMAP_CIRCLE_MEDIUM
 #define GEDA_CIRCLES_BITMAP             GEDA_BITMAP_CIRCLES_MEDIUM
 #define GEDA_COPY_BITMAP                GEDA_BITMAP_COPY_MEDIUM
-#define GEDA_DEMOTE_BITMAP              GEDA_BITMAP_DEMOTE_LARGE
+#define GEDA_DEMOTE_SCH_BITMAP          GEDA_BITMAP_DEMOTE_LARGE
+#define GEDA_DEMOTE_SYM_BITMAP          GEDA_BITMAP_DEMOTE_GRN_LARGE
 #define GEDA_DESELECT_BITMAP            GEDA_BITMAP_DESELECT_TINY
 #define GEDA_DISPLAY_COLOR_BITMAP       GEDA_BITMAP_DISPLAY_COLOR_MEDIUM
 #define GEDA_EYE_GLASSES_BITMAP         GEDA_BITMAP_EYE_GLASSES_MEDIUM

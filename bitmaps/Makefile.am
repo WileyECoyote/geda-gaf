@@ -38,6 +38,8 @@ bitmapdata_DATA    = close_box.png                      \
 					 geda-close-all.png                 \
 					 geda-component.png                 \
 					 geda-copy.png                      \
+					 geda_demote_16x16.png              \
+					 geda_demote_grn_16x16.png          \
 					 geda-design.png                    \
 					 geda-design1.png                   \
 					 geda-design2.png                   \
@@ -151,6 +153,7 @@ bitmapdata_22_DATA = gaf_add_attribute_22x22.png        \
 					 geda_circle_22x22.xpm              \
 					 geda_circles_22x22.png             \
 					 geda_demote_22x22.png              \
+					 geda_demote_grn_22x22.png          \
 					 geda_deselect_22x22.png            \
 					 geda_design_22x22.png              \
 					 geda_design1_22x22.png             \
@@ -235,6 +238,7 @@ bitmapdata_24_DATA = gaf_add_attribute_24x24.png        \
 					 geda_display_24x24.png             \
 					 geda_display_color_24x24.xpm       \
 					 geda_demote_24x24.png              \
+					 geda_demote_grn_24x24.png          \
 					 geda_deselect_24x24.png            \
 					 geda_design_24x24.png              \
 					 geda_design1_24x24.png             \
@@ -316,6 +320,7 @@ bitmapdata_26_DATA = gaf_add_attribute_26x26.png        \
 					 geda_circle_26x26.xpm              \
 					 geda_circles_26x26.png             \
 					 geda_demote_26x26.png              \
+					 geda_demote_grn_26x26.png          \
 					 geda_display_26x26.png             \
 					 geda_display_color_26x26.xpm       \
 					 geda_film_roll_26x26.xpm           \
@@ -374,6 +379,7 @@ bitmapdata_28_DATA = gaf_add_attribute_28x28.png        \
 					 geda_display_color_28x28.xpm       \
 					 geda_draft_28x28.png               \
 					 geda_demote_28x28.png              \
+					 geda_demote_grn_28x28.png          \
 					 geda_deselect_28x28.png            \
 					 geda_design_28x28.png              \
 					 geda_design1_28x28.png             \
@@ -455,6 +461,7 @@ bitmapdata_32_DATA = gaf_add_attribute_32x32.png        \
 					 geda_circles_32x32.png             \
 					 geda_copy_32x32.png                \
 					 geda_demote_32x32.png              \
+					 geda_demote_grn_32x32.png          \
 					 geda_deselect_32x32.png            \
 					 geda_design_32x32.png              \
 					 geda_design1_32x32.png             \
