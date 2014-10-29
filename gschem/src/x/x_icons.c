@@ -67,7 +67,8 @@ static GtkIconFactory* gschem_factory;
 const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-arc",           "geda-arc-edit",      "geda-analysis",     "geda-autonum-blue",
   "geda-autonum-green", "geda-autonum-red",   "geda-bed",          "geda-box",
-  "geda-bus",           "geda-circle",        "geda-circles",      "geda-close-all",
+  "geda-bus",           "geda-check-grn",     "geda-check-org",    "geda-check-red"
+  "geda-circle",        "geda-circles",       "geda-close-all",
   "geda-calculate",     "geda-component",     "geda-copy",         "geda-design",
   "geda-design1",       "geda-design2",       "geda-design3",      "geda-design4",
   "geda-display",       "geda-draft",         "geda-grid-dot",     "geda-grid-mesh",
@@ -80,10 +81,12 @@ const char* IDS_GEDA_ICONS[] = {  /* Menu Icons Strings*/
   "geda-plot",          "geda-probe",         "geda-probe2",       "geda-save-image",
   "geda-schem2",        "geda-schem",         "geda-scope2",       "geda-scopehairs",
   "geda-scope",         "geda-show-nets",     "geda-simulate",     "geda-sinx",
-  "geda-slot",          "geda-snap-off",      "geda-wave",         "geda-waves",
+  "geda-slot",          "geda-snap-off",      "geda-verilog-blue", "geda-verilog-grn",
+  "geda-wave",          "geda-waves",
   "geda-snap-on",       "geda-spectrum",      "geda-text-editor",  "geda-rotate",
   "geda-unlock",        "geda-unselect-all",  "geda-zoom-box",     "geda-zoom-pan",
   "geda-zoom-selection",
+  "git-logo",
   NULL
 };
 

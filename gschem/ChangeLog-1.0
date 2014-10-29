@@ -1,3 +1,14 @@
+2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem-tools-menu.scm: Add a icons and tooltips for git,
+      DRC, Spice-sdb netlist=geda-wave, Spice-noqsi netlist=geda-waves
+      VHDL netlist=geda-simulate, Verilog netlist=geda-verilog-blue
+      hierarchy Verilog=geda-verilog-grn. Changed Run DRC2 to Run DRC,
+      still runs DRC2, but 2 does not look so good in the menu.
+
+    * src/x/x_icons.c: Add icons "geda-verilog-blue", "geda-verilog-grn"
+      and "git-logo" to factory.
+
 2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gschem-tools-menu.scm: Add a "Version Control" option under
