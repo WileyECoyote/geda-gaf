@@ -290,34 +290,81 @@ g_read_scheme_file__pre_handler (struct g_read_scheme_file_data_t *data, SCM key
  * \param err       Return location for errors, or NULL.
  *  \return TRUE on success, FALSE on failure.
  */
-/*
- *  Seems Guile is not smart enough to recognize (if (procedure? symbol)
- */
-bool g_read_scheme_file(const char *filename, GError **err)
+bool g_read_scheme_file (const char *filename, GError **err)
 {
   struct g_read_scheme_file_data_t data;
 
-  g_return_val_if_fail ((filename != NULL), FALSE);
+  bool  result;
+  char *file_directory = NULL;
+  char *saved_cwd      = NULL;
 
-  data.stack = SCM_BOOL_F;
-  data.filename = scm_from_utf8_string (filename);
-  data.err = NULL;
+  const char *msg_change  = _("changed");
+  const char *msg_restore = _("restore");
 
-  scm_dynwind_begin (SCM_F_DYNWIND_REWINDABLE);
+  const char *err_dir = _("<error> libgeda could not %s directory to %s:%s");
 
-  scm_c_catch (SCM_BOOL_T,
-              (scm_t_catch_body)    g_read_scheme_file__body, &data,
-              (scm_t_catch_handler) g_read_scheme_file__post_handler, &data,
-              (scm_t_catch_handler) g_read_scheme_file__pre_handler, &data);
+  if (filename == NULL) {
+    result = FALSE;
+  }
+  else {
 
-  scm_dynwind_end ();
+    data.stack = SCM_BOOL_F;
+    data.filename = scm_from_utf8_string (filename);
+    data.err = NULL;
 
-  /* If no error occurred, indicate success. */
-  if (data.err == NULL) return TRUE;
+    /* Before we load the file, first cd into file's directory. */
+    file_directory = g_path_get_dirname (filename);
 
-  g_propagate_error (err, data.err);
+    if (file_directory == NULL) {
+      result = FALSE;
+    }
+    else {
 
-  free(data.filename);
+      bool dir_okay;
 
-  return FALSE;
+      dir_okay  = TRUE;
+      result    = FALSE;
+      saved_cwd = getcwd(0,0);
+
+      if (strcmp(saved_cwd, file_directory)) {
+        if (chdir (file_directory)) { /* Error occurred with chdir */
+          fprintf(stderr, err_dir, msg_change, file_directory, strerror (errno));
+          dir_okay = FALSE;
+        }
+      }
+      else {
+        free(saved_cwd);
+        saved_cwd = NULL;
+      }
+
+      if (dir_okay) {
+
+        scm_dynwind_begin (SCM_F_DYNWIND_REWINDABLE);
+
+        scm_c_catch (SCM_BOOL_T,
+                     (scm_t_catch_body)    g_read_scheme_file__body, &data,
+                     (scm_t_catch_handler) g_read_scheme_file__post_handler, &data,
+                     (scm_t_catch_handler) g_read_scheme_file__pre_handler, &data);
+
+        scm_dynwind_end ();
+
+        /* If no error occurred, indicate success. */
+        if (data.err == NULL) {
+          result = TRUE;
+        }
+        else { /* otherwise propagate the error */
+          g_propagate_error (err, data.err);
+        }
+
+        if (saved_cwd) {
+          if (chdir (saved_cwd)) {
+            fprintf(stderr, err_dir, msg_restore, saved_cwd, strerror (errno));
+          }
+          free(saved_cwd);
+        }
+      }
+      free(file_directory);
+    }
+  }
+  return result;
 }

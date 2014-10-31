@@ -1,5 +1,13 @@
 2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
+   ** src/guile/g_evaluate.c: Major change in functionality to
+      function g_read_scheme_file; Make sure the containing directory
+      is the current directory before procssing rc files. Consolidated
+      and revised error strings. Revise flow so there is one and only
+      one exit from function.
+
+2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/guile/g_rc_parse.c: Major revision to function g_rc_parse_file;
       Distinguish between rc and key files and check if the name stored
       in configuration should be used instead if the argument file.
