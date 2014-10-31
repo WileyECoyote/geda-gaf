@@ -1,3 +1,8 @@
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dnd.c: Raise main window when something dropped in function
+      x_dnd_receive_objects, this was really annoying me.
+
 2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_toolbars.c: Change hierarchy up to HAVE_PAGES_LIST sensitivity

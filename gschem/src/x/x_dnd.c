@@ -523,6 +523,7 @@ x_dnd_receive_objects(GschemToplevel  *w_current, int x, int y, const char *buff
       result = FALSE;
     }
     else {
+      gtk_window_present(GTK_WINDOW(w_current->main_window));
       result = TRUE;
     }
   }
