@@ -1,3 +1,9 @@
+2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * ti/LMP2021-1.sym: Change pinseq to match footprint = SOIC-8
+
+    * ti/LMP2021_SOT23-1.sym: New symbols file SOT-23 version of LMP2021
+
 2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip/MCP8024MP-1.sym, MCP8024PT-1.sym: Add new symbols (actually
