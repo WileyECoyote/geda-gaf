@@ -765,13 +765,22 @@ Object *
 o_edit_update_component (GschemToplevel *w_current, Object *o_current)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  Object   *o_new;
-  Object   *attr_old;
-  Page  *page;
-  GList *new_attribs;
-  GList *old_attribs;
-  GList *iter;
-  const CLibSymbol *clib;
+
+  Object *o_new;
+  Object *attr_old;
+  Page   *page;
+  GList  *new_attribs;
+  GList  *old_attribs;
+  GList  *iter;
+
+  const  CLibSymbol *clib;
+
+  const char *keepers[] = {  "pinnumber",
+                              "pinlabel",
+                              "pinseq",
+                              "pintype",
+                              "symversion",
+                              NULL };
 
   g_return_val_if_fail (GEDA_IS_COMPLEX(o_current), NULL);
   g_return_val_if_fail (o_current->complex->filename != NULL, NULL);
@@ -830,10 +839,17 @@ o_edit_update_component (GschemToplevel *w_current, Object *o_current)
       old_value = o_attrib_search_attached_attribs_by_name (o_current, name, 0);
 
       if (old_value != NULL) {
-        if ( strcmp(name, "symversion") == 0 ) {
-          attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
-          o_attrib_set_value (attr_old, name,  new_value);
-        }
+        int index = 0;
+        do {
+          if ( strcmp(name, keepers[index]) == 0 ) {
+            fprintf(stderr, "\tkeeping %s\n", keepers[index]);
+            attr_old = o_attrib_find_attrib_by_name (o_current->attribs, name, 0);
+            o_attrib_set_value (attr_old, name,  new_value);
+            break;
+          }
+          index++;
+        } while (keepers[index]);
+
         o_attrib_remove (&o_new->attribs, attr_new);
         s_object_release (attr_new);
         iter->data = NULL;
