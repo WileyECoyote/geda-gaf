@@ -105,7 +105,7 @@ pinnumber=10
 T 300 1550 5 8 0 1 0 8 1
 pinseq=10
 T 450 1600 9 8 1 1 0 0 1
-pinlabel=ISENSE3M
+pinlabel=ISENSE3N
 T 450 1600 5 8 0 1 0 2 1
 pintype=in
 }
@@ -138,7 +138,7 @@ pinnumber=13
 T 1450 300 5 8 0 1 90 8 1
 pinseq=13
 T 1400 450 9 8 1 1 90 0 1
-pinlabel=ISENSE2M
+pinlabel=ISENSE2N
 T 1400 450 5 8 0 1 90 2 1
 pintype=in
 }
@@ -182,7 +182,7 @@ pinnumber=17
 T 2650 300 5 8 0 1 90 8 1
 pinseq=17
 T 2600 450 9 8 1 1 90 0 1
-pinlabel=ISENSE1M
+pinlabel=ISENSE1N
 T 2600 450 5 8 0 1 90 2 1
 pintype=in
 }
