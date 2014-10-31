@@ -1,5 +1,13 @@
 2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * simulation/spice/spice-directive-1.sym: Remove file=? attribute from
+      spice-directive because this results in empty INCLUDE line, which can
+      be confusing if was not used. Still can use file=something attribute
+      with spice-directive (so as to have 2 directive tags with one symbol)
+      but user must add file attribute manually.
+
+2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LMP2021-1.sym: Change pinseq to match footprint = SOIC-8
 
     * ti/LMP2021_SOT23-1.sym: New symbols file SOT-23 version of LMP2021
