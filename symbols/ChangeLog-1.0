@@ -1,5 +1,10 @@
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/LM3481-?.sym: Change pinseq to match model, not that TI model
+      works.
+
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * simulation/spice/spice-directives-1.sym: Add the old spice-directive
       symbols back but rename plural so is more obvious.
 

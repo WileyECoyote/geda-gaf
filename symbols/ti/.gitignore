@@ -2,4 +2,4 @@
 doc/
 doc/*
 ./model
-./model/
+model/
