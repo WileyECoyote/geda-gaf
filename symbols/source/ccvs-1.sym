@@ -71,7 +71,7 @@ pintype=pas
 }
 T 600 900 8 12 1 1 0 0 1
 refdes=H?
-T 0 0 8 10 0 1 0 0 1
+T 100 0 8 10 0 1 0 0 1
 comment=source=ccvs.sch
 T 1400 300 8 10 0 1 0 0 1
 comment=transres=1

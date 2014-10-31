@@ -1,15 +1,15 @@
 v 20140728 2
-T 0 1350 8 10 0 0 0 0 1
+T 100 1350 8 10 0 0 0 0 1
 author=AutoTron
-T 0 1200 8 10 0 0 0 0 1
+T 100 1200 8 10 0 0 0 0 1
 dist-license=GPL3
-T 0 1050 8 10 0 0 0 0 1
+T 100 1050 8 10 0 0 0 0 1
 use-license=unlimited
-T 0 900 8 10 0 0 0 0 1
+T 100 900 8 10 0 0 0 0 1
 numslots=0
-T 0 750 8 10 0 0 0 0 1
+T 100 750 8 10 0 0 0 0 1
 footprint=none
-T 0 600 9 10 0 0 0 0 1
+T 100 600 9 10 0 0 0 0 1
 description=Collector power-source
 V 200 250 50 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
 P 200 200 200 0 1 0 1
@@ -25,7 +25,7 @@ pintype=pwr
 }
 T 450 0 8 10 0 0 0 0 1
 net=VCC:1
-T 0 400 9 10 0 0 0 0 1
+T 100 400 9 10 0 0 0 0 1
 device=VOLTAGE_SOURCE
 T 450 125 8 10 0 1 0 0 1
 refdes=none
