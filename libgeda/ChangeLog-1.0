@@ -1,5 +1,12 @@
 2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/guile/g_rc_parse.c: Major revision to function g_rc_parse_file;
+      Distinguish between rc and key files and check if the name stored
+      in configuration should be used instead if the argument file.
+      Consolidated and revised error strings.
+
+2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/configure.c: Fix missing directory separator in
       function eda_config_get_context_for_file, amazingly, this
       blatant BUG did not fix the issue I was working on, helps

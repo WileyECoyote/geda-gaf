@@ -128,6 +128,10 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
   char   *name_norm  = NULL;
   GError *tmp_err    = NULL;
 
+  const char *err_load_msg = _("Failed to load configuration from '%s': %s\n");
+  const char *err_process  = _("Error encounted processing RC file [%s]: ");
+  const char *err_access   = _("Error accessing configuration %s, %s\n");
+
   if (rcfile == NULL) {
     BUG_MSG("rcfile is NULL.");
     return FALSE;
@@ -137,17 +141,41 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
    * configuration file for the rc file. */
   if (cfg == NULL) {
     cfg = eda_config_get_context_for_path (rcfile);
+  }
 
-    /* If the configuration wasn't loaded yet, attempt to load it
-     * Config loading is on a best-effort basis; if we fail, just
-     * print a warning. WEH: changed previous conditional so that we
-     * only do this if the cfg was NULL */
-    if (!eda_config_is_loaded (cfg)) {
-      eda_config_load (cfg, &tmp_err);
-      if (tmp_err != NULL &&
-        !g_error_matches (tmp_err, G_IO_ERROR, G_IO_ERROR_NOT_FOUND))
-        g_warning (_("Failed to load config from '%s': %s\n"),
-        eda_config_get_filename (cfg), tmp_err->message);
+  /* If the configuration wasn't loaded yet, attempt to load it
+   * Config loading is on a best-effort basis; if we fail, just
+   * print a warning. WEH: changed previous conditional so that we
+   * only do this if the cfg was NULL */
+  if (!eda_config_is_loaded (cfg)) {
+
+    const char *fig_file;
+
+    fig_file = eda_config_get_filename (cfg);
+
+    if (fig_file) {
+
+      /* See get file extension and check for keystyle conf files*/
+      const char *extension;
+      extension = f_get_filename_ext(fig_file);
+
+      if (extension && (strcmp(extension, "conf") == 0)) {
+        eda_config_load (cfg, &tmp_err);
+      }
+      else { /* was not a .conf keyfile */
+
+        /* Check if base rc file is the same name as config version, if
+         * the names match we substitude the filename from config because
+         * this is the file that was found for the given context */
+        if (strcmp(f_get_basename(rcfile), f_get_basename(fig_file)) == 0) {
+          rcfile = fig_file;
+        }
+      }
+      if (tmp_err) {
+        if (!g_error_matches (tmp_err, G_IO_ERROR, G_IO_ERROR_NOT_FOUND)) {
+          u_log_message ( err_load_msg, fig_file, tmp_err->message);
+        }
+      }
       g_clear_error (&tmp_err);
     }
   }
@@ -182,9 +210,7 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
       else {
 
         /* Copy tmp_err into err, with a prefixed message. */
-        g_propagate_prefixed_error (err, tmp_err,
-                                    _("Error encounted processing RC file [%s]: "),
-                                    name_norm);
+        g_propagate_prefixed_error (err, tmp_err, err_process, name_norm);
         GEDA_FREE (name_norm); /* was not successful so not stored */
       }
     }
@@ -195,13 +221,11 @@ g_rc_parse_file (const char *rcfile, EdaConfig *cfg, GError **err)
                     "accessing file %s", name_norm);
       }
       else {
-        fprintf(stderr, "Error loading configuration %s, %s\n",
-                name_norm, strerror(errno));
+        fprintf(stderr, err_access, name_norm, strerror(errno));
       }
       GEDA_FREE (name_norm);
     }
   }
-
   return status;
 }
 
