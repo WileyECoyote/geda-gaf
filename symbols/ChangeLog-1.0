@@ -1,3 +1,8 @@
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * simulation/spice/spice-directives-1.sym: Add the old spice-directive
+      symbols back but rename plural so is more obvious.
+
 2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
     * simulation/spice/spice-directive-1.sym: Remove file=? attribute from

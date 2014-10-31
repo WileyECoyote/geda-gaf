@@ -1,0 +1,16 @@
+v 20140915 2
+B 0 500 2000 300 3 0 0 0 -1 -1 0 -1 -1 -1 -1 -1
+T 0 850 9 10 0 1 0 0 1
+device=directive
+T 100 600 9 10 1 1 0 0 1
+refdes=A?
+T 600 600 9 10 1 0 0 0 1
+SPICE directives
+T 100 100 8 10 1 1 0 0 1
+file=?
+T 100 100 8 10 1 1 0 0 1
+value=?
+T 100 300 8 10 1 1 0 0 1
+value=.options TEMP=25
+T 800 850 9 10 0 0 0 0 1
+footprint=none
