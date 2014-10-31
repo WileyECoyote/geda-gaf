@@ -540,7 +540,7 @@ find_project_root (const char *path, char *filename)
   }
 
   while (dir && strlen(dir) > 1){
-      char *filespec = g_strconcat(dir, filename, NULL);
+      char *filespec = g_strconcat(dir, DIR_SEPARATOR_S, filename, NULL);
       if (g_file_test (filespec, G_FILE_TEST_EXISTS)) {
         root_dir = u_string_strdup (dir);
         found = 1;
@@ -554,6 +554,7 @@ find_project_root (const char *path, char *filename)
     g_free(root_dir);
     root_dir = u_string_strdup (path);
   }
+
   return root_dir;
 }
 
@@ -563,6 +564,7 @@ static bool strhashcmp (const void *a, const void *b) {
   if (((char*)a != '\0') && ((char*)b != '\0')) {
      answer = strcmp ((const char*) a, (const char*) b) == 0;
   }
+
   return answer;
 }
 /*! \public \memberof EdaConfig
@@ -595,7 +597,7 @@ static bool strhashcmp (const void *a, const void *b) {
 EdaConfig *
 eda_config_get_context_for_file (const char *path)
 {
-  static unsigned int initialized = 0;
+  static unsigned int initialized   = 0;
   static GHashTable *local_contexts = NULL;
   char  *root;
   char  *file = NULL;
@@ -625,7 +627,7 @@ eda_config_get_context_for_file (const char *path)
 
     root = find_project_root (ptr, LOCAL_CONFIG_FILE);     /* traverse looking for figs */
 
-    file = g_build_filename(root, LOCAL_CONFIG_FILE, NULL);
+    file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE, NULL);
 
     /* If there is already a context available for this file, return that.
      * Otherwise, create a new context and record it in the global state. */
@@ -639,7 +641,7 @@ eda_config_get_context_for_file (const char *path)
 
       root = find_project_root (ptr, LOCAL_CONFIG_FILE_ALT);     /* traverse looking for figs */
 
-      file = g_build_filename(root, LOCAL_CONFIG_FILE_ALT, NULL);
+      file = g_build_filename(root, DIR_SEPARATOR_S, LOCAL_CONFIG_FILE_ALT, NULL);
 
       config = g_hash_table_lookup (local_contexts, file);
 
@@ -648,24 +650,29 @@ eda_config_get_context_for_file (const char *path)
         EdaConfig *cfg = eda_config_get_user_context ();
 
         config = g_object_new (EDA_TYPE_CONFIG,
-                              "file", NULL,
-                              "parent", cfg,
-                              "trusted", FALSE,
+                               "file", file,
+                               "parent", cfg,
+                               "trusted", FALSE,
                                NULL);
         g_hash_table_insert (local_contexts, file, config);
       }
+      else {
+        g_free (file);
+      }
     }
-
+    else {
+      g_free (file);
+    }
     g_free (root);
-    g_free (file);
+
   }
   else {
 
     /* The file does not exist so return the default context */
-      config = g_object_new (EDA_TYPE_CONFIG,
-                             "file", NULL,
-                             "parent", eda_config_get_default_context(),
-                             "trusted", FALSE, NULL);
+    config = g_object_new (EDA_TYPE_CONFIG,
+                           "file", NULL,
+                           "parent", eda_config_get_default_context(),
+                           "trusted", FALSE, NULL);
   }
 
   return config;

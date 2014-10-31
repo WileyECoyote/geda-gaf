@@ -1,3 +1,16 @@
+2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/configure.c: Fix missing directory separator in
+      function eda_config_get_context_for_file, amazingly, this
+      blatant BUG did not fix the issue I was working on, helps
+      though, also add file to the config for old style rc files
+      otherwise they will not get read when the rc is in a parent
+      directory and this once irritating feature is now a must
+      have. (The real is the before was that fact that clib only
+      use the basename to refer to symbols in the library and two
+      symbols have the same name the first one is the only one
+      available.
+
 2014-10-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/struct/s_cue.c: Add function s_cue_get_locations
