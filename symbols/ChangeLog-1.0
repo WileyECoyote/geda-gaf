@@ -1,5 +1,13 @@
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
+    * inductor-coupled-1.sym: Fix pin slot definition
+
+    * inductor-coupled-2.sym: New symbol: Is same as -1 but pin numbers
+      so to visible.
+
+
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM3481-?.sym: Change pinseq to match model, not that TI model
       works.
 
