@@ -1,5 +1,11 @@
 2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-clib.scm: Add new group; linear/Video
+
+    * linear/video/CXA2075M-1.sym: Add symbol for CXA2075M Sony video encoder
+
+2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * xilinx/XC9572_PC84-1.sym: Add XC9572 PLCC84 symbol to library
 
     * xilinx/XC9572XL_VQ64-1.sym: Add XC9572 VQFP64 symbol to library

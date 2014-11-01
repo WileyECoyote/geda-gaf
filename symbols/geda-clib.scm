@@ -112,6 +112,7 @@
                   ("linear" "Standard/Linear")
                      ("linear/amplifiers"       "Standard/Amplifiers")
                      ("linear/audio"            "Standard/Audio")
+                     ("linear/video"            "Standard/Video")
                      ("linear/comparators"      "Standard/Comparators")
                      ("linear/opamp"            "Standard/Operational Amplifiers")
                      ("linear/led_drivers"      "Standard/LED Drivers")
