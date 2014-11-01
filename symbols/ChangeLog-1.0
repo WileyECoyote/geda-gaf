@@ -1,5 +1,11 @@
 2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/timers: General over-haul, add LM555C, 556 + model
+
+    * symbols/ti/TLC55*.sym: General cleaning
+
+2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * geda-clib.scm: Add new group; linear/Video
 
     * linear/video/CXA2075M-1.sym: Add symbol for CXA2075M Sony video encoder

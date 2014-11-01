@@ -1,0 +1,32 @@
+****************************************************
+* Schematics Subcircuit                            *
+* Author: James E.Thompson                         *
+* Analog Innovations, Inc.                         *
+* Phoenix, Arizona  85048    Skype: Contacts Only  *
+* Voice:(480)460-2350  Fax: Available upon request *
+* E-mail Icon at http://www.analog-innovations.com * 
+****************************************************
+.SUBCKT LM555C VN TRIGGERbar OUTPUT RESETbar CONTROL THRESHOLD DISCHARGE VP 
+R_R2   CONTROL N_1  100K 
+R_R3   N_1 VN  100K 
+R_R1   VP CONTROL  100K 
+X_MN7  N_3 N_2 N_4 VN NHV PARAMS: W=20u M=5
+X_MP6  N_3 N_2 N_5 VP PHV PARAMS: W=100u M=4
+X_MP7  N_3 N_6 VP VP PHV PARAMS: W=100u M=2
+X_MN1  OUTPUT N_7 VN VN NHV PARAMS: W=122u M=10
+X_MN3  N_7 N_8 VN VN NHV PARAMS: W=30.5u M=10
+X_MN4  N_8 N_3 VN VN NHV PARAMS: W=25.4u M=3
+X_MN5  N_3 N_8 VN VN NHV PARAMS: W=5u M=1
+X_MP1  OUTPUT N_7 VP VP PHV PARAMS: W=100u M=17
+X_MP2  N_7 N_8 VP VP PHV PARAMS: W=25u M=17
+X_MP4  N_3 N_8 VP VP PHV PARAMS: W=5u M=3
+X_MP3  N_8 N_3 VP VP PHV PARAMS: W=26.6u M=4
+X_MN2  DISCHARGE N_7 VN VN NHV PARAMS: W=101u M=30
+X_MP5  N_5 N_9 VP VP PHV PARAMS: W=100u M=4
+E_E1   VP N_9 VALUE {((TANH(220*V(THRESHOLD,CONTROL))+1)/2)*(V(VP)-V(VN))}
+E_E2   N_2 VN VALUE {((TANH(220*V(N_1,TRIGGERbar))+1)/2)*(V(VP)-V(VN))}
+R_R4   N_10 VN  1K 
+V_V3   N_10 VN 0.9V
+X_MN6  N_4 N_6 VN VN NHV PARAMS: W=20u M=5
+E_E3   VP N_6 VALUE { ((TANH(22*V(N_10, RESETbar))+1)/2)*(V(VP)-V(VN)) }
+.ENDS  LM555C
