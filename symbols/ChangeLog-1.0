@@ -1,3 +1,6 @@
+
+    * diode/schottky-2.sym: Clean up symbol Schottky-2
+
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * inductor-coupled-1.sym: Fix pin slot definition

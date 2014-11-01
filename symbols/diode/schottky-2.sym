@@ -1,25 +1,25 @@
-v 20100214 2
+v 20141031 2
 P 0 300 200 300 1 0 0
 {
-T 200 500 5 10 0 0 0 6 1
-pintype=pas
-T 255 295 9 10 0 1 0 0 1
-pinlabel=K
-T 155 345 5 8 0 1 0 6 1
+T 200 370 5 8 0 1 0 6 1
 pinnumber=1
-T 200 400 5 10 0 0 0 6 1
+T 200 375 5 8 0 1 0 6 1
 pinseq=1
+T 75 375 5 10 0 0 0 6 1
+pintype=pas
+T 50 100 9 10 0 1 0 0 1
+pinlabel=K
 }
 P 1000 300 800 300 1 0 0
 {
-T 800 500 5 10 0 0 0 0 1
-pintype=pas
-T 755 295 9 10 0 1 0 6 1
-pinlabel=A
-T 855 345 5 8 0 1 0 0 1
+T 825 375 5 8 0 1 0 0 1
 pinnumber=2
-T 800 400 5 10 0 0 0 0 1
+T 825 375 5 8 0 1 0 0 1
 pinseq=2
+T 975 400 5 10 0 1 0 0 1
+pintype=pas
+T 775 375 9 10 0 1 0 6 1
+pinlabel=A
 }
 L 600 400 400 300 3 0 0 0 -1 -1
 L 400 300 600 200 3 0 0 0 -1 -1
@@ -29,21 +29,21 @@ L 200 300 400 300 3 0 0 0 -1 -1
 L 600 300 800 300 3 0 0 0 -1 -1
 T 200 450 8 10 1 1 0 0 1
 refdes=D?
-T 100 3000 8 10 0 0 0 0 1
+T 100 2100 8 10 0 0 0 0 1
 device=SCHOTTKY DIODE
-T 100 2800 8 10 0 0 0 0 1
+T 100 1900 8 10 0 0 0 0 1
 description=Schottky Diode
-T 100 2600 8 10 0 0 0 0 1
-documentation=~
-T 100 2200 8 10 0 0 0 0 1
-footprint=~
-T 100 2000 8 10 0 0 0 0 1
+T 100 900 8 10 0 1 0 0 1
+documentation=http://en.wikipedia.org/wiki/Schottky_diode
+T 100 700 8 10 0 1 0 0 1
+footprint=DO-41
+T 100 1300 8 10 0 0 0 0 1
 numslots=0
-T 100 1600 8 10 0 0 0 0 1
+T 100 1100 8 10 0 0 0 0 1
 author=Daniel Fekete <thefekete AT gmail DOT com>
-T 100 1400 8 10 0 0 0 0 1
+T 100 1700 8 10 0 0 0 0 1
 dist-license=GPL
-T 100 1200 8 10 0 0 0 0 1
+T 100 1500 8 10 0 0 0 0 1
 use-license=unlimited
 L 400 400 425 400 3 0 0 0 -1 -1
 L 400 200 375 200 3 0 0 0 -1 -1
