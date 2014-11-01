@@ -1,3 +1,8 @@
+2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
+    * micro/M41T00-SO8-1.sym: Remove invalid character in Author`s name
+
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * diode/schottky-2.sym: Clean up symbol Schottky-2
 
