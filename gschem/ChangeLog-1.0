@@ -1,4 +1,10 @@
-2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_slot.c: Do not set page_current->CHANGED = 1, in function
+      o_slot_end, call o_undo_savestate instead, the flag was already set by
+      libgeda.
+
+2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dialog.c: Call o_invalidate in x_dialog_edit_slot_response if
       response is GTK_RESPONSE_ACCEPT. Change GTK_RESPONSE_ACCEPT to APPLY.

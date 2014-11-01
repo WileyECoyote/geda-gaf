@@ -126,7 +126,8 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
 
   if (o_slot != NULL && !o_attrib_is_inherited (o_slot)) {
     o_text_set_string (o_slot, string);
-  } else {
+  }
+  else {
     /* here you need to do the add the slot
        attribute since it doesn't exist */
     new_obj = o_text_new (ATTRIBUTE_COLOR,
@@ -144,6 +145,6 @@ void o_slot_end(GschemToplevel *w_current, Object *object, const char *string)
 
   s_slot_update_object (object);
 
-  toplevel->page_current->CHANGED = 1;
+  o_undo_savestate(w_current, UNDO_ALL);
   GEDA_FREE (value);
 }
