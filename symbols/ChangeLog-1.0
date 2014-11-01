@@ -1,5 +1,9 @@
 2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * linear/video/V9990-1.sym: Add symbol for V9990 Video Processor
+
+2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/timers: General over-haul, add LM555C, 556 + model
 
     * symbols/ti/TLC55*.sym: General cleaning
