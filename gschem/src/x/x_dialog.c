@@ -2114,10 +2114,11 @@ void x_dialog_edit_line_type (GschemToplevel *w_current)
  *  The function calles o_slot_end to apply the dialog entry to the slot
  *  the selected symbol, if they exist.
  */
-void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
+void x_dialog_edit_slot_response(GtkWidget      *ThisDialog, int response,
                                  GschemToplevel *w_current)
 {
   GtkWidget  *textentry;
+  Object     *object;
   char       *slot_string;
   const char *string = NULL;
   int         len;
@@ -2128,15 +2129,19 @@ void x_dialog_edit_slot_response(GtkWidget *ThisDialog, int response,
     gtk_widget_destroy(ThisDialog);
     i_status_set_state(w_current, SELECT);
     break;
-  case GTK_RESPONSE_ACCEPT:
+  case GTK_RESPONSE_APPLY:
     textentry = g_object_get_data(G_OBJECT(ThisDialog), IDS_SLOT_EDIT);
     string =  GetEntryText( textentry );
     len = strlen(string);
     if (len != 0) {
-      slot_string = g_strdup_printf ("slot=%s", string);
-      o_slot_end (w_current, o_select_return_first_object (w_current),
-                  slot_string);
-      GEDA_FREE (slot_string);
+
+      object = o_select_return_first_object (w_current);
+      if (object != NULL) {
+        slot_string = g_strdup_printf ("slot=%s", string);
+        o_slot_end (w_current, object, slot_string);
+        GEDA_FREE (slot_string);
+        o_invalidate_object (w_current, object);
+      }
     }
     break;
 
@@ -2209,12 +2214,12 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
           /* nonmodal Editing ThisDialog */    GSCHEM_MODELESS_DIALOG,
                                              IDS_SLOT_EDIT, w_current,
                                  GTK_STOCK_CLOSE, GTK_RESPONSE_REJECT,
-                                 GTK_STOCK_APPLY, GTK_RESPONSE_ACCEPT,
+                                 GTK_STOCK_APPLY, GTK_RESPONSE_APPLY,
                                                                   NULL);
 
   /* Set the alternative button order (ok, cancel, help) for other systems */
     gtk_dialog_set_alternative_button_order(GTK_DIALOG(ThisDialog),
-                                            GTK_RESPONSE_ACCEPT,
+                                            GTK_RESPONSE_APPLY,
                                             GTK_RESPONSE_REJECT,
                                             -1);
 
@@ -2222,7 +2227,7 @@ void x_dialog_edit_slot (GschemToplevel *w_current, const char *string)
                         GTK_WIN_POS_MOUSE);
 
     gtk_dialog_set_default_response (GTK_DIALOG (ThisDialog),
-                                     GTK_RESPONSE_ACCEPT);
+                                     GTK_RESPONSE_APPLY);
 
     vbox = GTK_DIALOG(ThisDialog)->vbox;
 

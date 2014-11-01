@@ -1,3 +1,8 @@
+2014-08-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_dialog.c: Call o_invalidate in x_dialog_edit_slot_response if
+      response is GTK_RESPONSE_ACCEPT. Change GTK_RESPONSE_ACCEPT to APPLY.
+
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_dnd.c: Raise main window when something dropped in function
