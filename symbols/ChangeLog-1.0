@@ -1,5 +1,14 @@
 2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
+    * analogdevices/AD8067-1.sym: Add symbols and model.
+
+    * linear/amplifiers/: Add symbols; L165-1.sym, LM675-1.sym, TDA2030-1.sym,
+      TDA2050-1.sym
+
+    * linear/amplifiers/LM2822x-1.sym: Add foot prints
+
+2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
+
     * linear/video/V9990-1.sym: Add symbol for V9990 Video Processor
 
 2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
