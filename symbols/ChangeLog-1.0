@@ -1,3 +1,10 @@
+2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * microchip: Reorganize folder with subfolders add various flavors
+      of 24LC16 device
+
+    * /geda-clib.scm: Add catagories for Microchip components
+
 2014-11-01 Wiley E. Hill <wileyhill@gmail.com>
 
     * analogdevices/AD8067-1.sym: Add symbols and model.
