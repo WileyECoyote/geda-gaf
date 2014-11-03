@@ -520,7 +520,7 @@ void x_dialog_coord_dialog (GschemToplevel *w_current, int x, int y)
     gtk_container_add(GTK_CONTAINER (frame), world_entry);
     geda_entry_set_valid_input((GedaEntry*)world_entry, ACCEPT_COORDINATE);
 
-    world_name = g_strdup_printf("GschemWorldEntry:%i", prog_pid);
+    world_name = u_string_sprintf("GschemWorldEntry:%i", prog_pid);
     g_object_set (world_entry, "name", world_name, NULL);
     GEDA_FREE(world_name);
 

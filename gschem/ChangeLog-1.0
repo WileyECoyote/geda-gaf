@@ -1,3 +1,8 @@
+2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
+
+      world_name = g_strdup_printf("GschemWorldEntry:%i", prog_pid);
+      use u_string_sprintf
+
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_slot.c: Do not set page_current->CHANGED = 1, in function
