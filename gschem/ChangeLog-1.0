@@ -1,7 +1,15 @@
 2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
-      world_name = g_strdup_printf("GschemWorldEntry:%i", prog_pid);
-      use u_string_sprintf
+    * include/gschem_sdefines.h: Use u_string_sprintf instead of g_strdup_printf
+      in utility macro msgbox
+
+    * src/guile/g_attrib.c: Use u_string_sprintf instead of g_strdup_printf
+
+    * src/guile/g_window.c: Use u_string_sprintf instead of g_strdup_printf
+
+2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_coord.c: Useu_string_sprintf instead of g_strdup_printf
 
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
