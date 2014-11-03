@@ -81,7 +81,7 @@ int       PyGeda_delete_object      ( PyObject * );
 int       PyGeda_delete_objects     ( PyObject * );
 int       PyGeda_sync_object        ( PyObject * );
 
-PyObject *PyGeda_new_arc            ( int x, int y, int radius, int start_angle, int end_angle, PyObject *color);
+PyObject *PyGeda_new_arc            ( int x, int y, int radius, int start_angle, int arc_sweep, PyObject *color);
 PyObject *PyGeda_new_box            ( int lower_x, int lower_y, int upper_x, int upper_y, PyObject *color);
 PyObject *PyGeda_new_bus            ( const char *busname, int x1, int y1, int x2, int y2, PyObject *color);
 PyObject *PyGeda_new_circle         ( int x, int y, int radius, PyObject *color);

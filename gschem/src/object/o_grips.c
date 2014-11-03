@@ -211,14 +211,14 @@ static bool inside_grip( int x, int y, int grip_x, int grip_y, int size )
 Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
                                  int x, int y, int size, int *whichone)
 {
-  int centerx, centery, radius, start_angle, end_angle;
+  int centerx, centery, radius, start_angle, arc_sweep;
   double tmp;
 
   centerx     = o_current->arc->x;
   centery     = o_current->arc->y;
   radius      = o_current->arc->width / 2;
   start_angle = o_current->arc->start_angle;
-  end_angle   = o_current->arc->end_angle;
+  arc_sweep   = o_current->arc->arc_sweep;
 
   /* check the grip on the center of the arc */
   if (inside_grip(x, y, centerx, centery, size)) {
@@ -227,7 +227,7 @@ Object *o_grips_search_arc_world(GschemToplevel *w_current, Object *o_current,
   }
 
   /* check the grip at the end angle of the arc */
-  tmp = ((double) start_angle + end_angle) * M_PI / 180;
+  tmp = ((double) start_angle + arc_sweep) * M_PI / 180;
   if (inside_grip(x, y,
                   centerx + radius * cos(tmp),
                   centery + radius * sin(tmp), size)) {
@@ -568,7 +568,7 @@ static void o_grips_start_arc(GschemToplevel *w_current, Object *o_current,
   w_current->distance  = o_current->arc->width / 2;
   /* angles */
   w_current->second_wx = o_current->arc->start_angle;
-  w_current->second_wy = o_current->arc->end_angle;
+  w_current->second_wy = o_current->arc->arc_sweep;
 
   /* draw the first temporary arc */
   /* o_arc_invalidate_rubber (w_current); */

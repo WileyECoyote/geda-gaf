@@ -296,15 +296,15 @@ eda_cairo_center_box (cairo_t *cr, int flags,
 
 static inline void
 do_arc (cairo_t *cr, double x, double y, double radius,
-        double start_angle, double end_angle)
+        double start_angle, double arc_sweep)
 {
   cairo_new_sub_path (cr);
-  if (start_angle < start_angle + end_angle) {
+  if (start_angle < start_angle + arc_sweep) {
     cairo_arc (cr, x, y, radius, start_angle * (M_PI / 180.),
-                   (start_angle + end_angle) * (M_PI / 180.));
+                   (start_angle + arc_sweep) * (M_PI / 180.));
   } else {
     cairo_arc_negative (cr, x, y, radius, start_angle * (M_PI / 180.),
-                            (start_angle + end_angle) * (M_PI / 180.));
+                            (start_angle + arc_sweep) * (M_PI / 180.));
   }
 }
 
@@ -312,7 +312,7 @@ do_arc (cairo_t *cr, double x, double y, double radius,
 void
 eda_cairo_arc (cairo_t *cr, int flags,
                double width, double x, double y,
-               double radius, double start_angle, double end_angle)
+               double radius, double start_angle, double arc_sweep)
 {
   int s_width;
   double x1, y1, x2, y2;
@@ -320,7 +320,7 @@ eda_cairo_arc (cairo_t *cr, int flags,
   double offset, dummy = 0;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
-    do_arc (cr, x, y, radius, start_angle, end_angle);
+    do_arc (cr, x, y, radius, start_angle, arc_sweep);
     return;
   }
 
@@ -338,7 +338,7 @@ eda_cairo_arc (cairo_t *cr, int flags,
   cairo_device_to_user_distance (cr, &s_radius, &dummy);
 
   do_arc (cr, s_x + offset, s_y + offset,
-          s_radius, start_angle, end_angle);
+          s_radius, start_angle, arc_sweep);
 }
 
 
@@ -346,7 +346,7 @@ void
 eda_cairo_center_arc (cairo_t *cr, int flags,
                       double center_width,
                       double line_width, double x, double y,
-                      double radius, double start_angle, double end_angle)
+                      double radius, double start_angle, double arc_sweep)
 {
   int s_center_width, s_line_width;
   double s_x, s_y, dummy = 0;
@@ -359,7 +359,7 @@ eda_cairo_center_arc (cairo_t *cr, int flags,
   int do_radius_hint = TRUE;
 
   if (!(flags & EDA_CAIRO_ENABLE_HINTS)) {
-    do_arc (cr, x, y, radius, start_angle, end_angle);
+    do_arc (cr, x, y, radius, start_angle, arc_sweep);
     return;
   }
 
@@ -390,7 +390,7 @@ eda_cairo_center_arc (cairo_t *cr, int flags,
   cairo_device_to_user (cr, &s_x, &s_y);
   cairo_device_to_user_distance (cr, &s_radius, &dummy);
 
-  do_arc (cr, s_x, s_y, s_radius, start_angle, end_angle);
+  do_arc (cr, s_x, s_y, s_radius, start_angle, arc_sweep);
 }
 
 

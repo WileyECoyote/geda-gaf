@@ -57,7 +57,7 @@ struct st_arc {
   int height;
 
   int start_angle;
-  int end_angle;
+  int arc_sweep;
 };
 
 #define ARC_CENTER 0

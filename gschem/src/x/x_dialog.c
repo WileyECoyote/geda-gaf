@@ -743,7 +743,7 @@ x_dialog_edit_arc_angle_selection (GschemToplevel *w_current, Object *object)
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_start),
                                 object->arc->start_angle);
       gtk_spin_button_set_value(GTK_SPIN_BUTTON(spin_sweep),
-                                object->arc->end_angle);
+                                object->arc->arc_sweep);
 
       gtk_widget_grab_focus(spin_radius);
     }

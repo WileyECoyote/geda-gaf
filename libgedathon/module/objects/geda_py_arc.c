@@ -39,7 +39,7 @@
 static PyObject* arc_module;
 static PyObject* geda_module;
 
-static char ArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_angle, end_angle [, color]");
+static char ArcObject_doc[] = PyDoc_STR("Geda Arc: x, y, radius, start_angle, arc_sweep [, color]");
 
 /* ------------------------- ArcObject Constructor ------------------------- */
 
@@ -57,7 +57,7 @@ Arc_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
     self->y           =  0;
     self->radius      =  1;
     self->start_angle =  0;
-    self->end_angle   =  0;
+    self->arc_sweep   =  0;
 
  /* Generic Graphical Attributes Applicable to Arcs */
     self->color.r         =  default_color.r;
@@ -92,7 +92,7 @@ Arc_init(ArcObject *self, PyObject *args, PyObject *kwds)
   int       locked;
 
   static char *kwlist[] = {"name", "type", "pid", "sid", "locked",
-                           "x", "y", "radius", "start_angle", "end_angle",
+                           "x", "y", "radius", "start_angle", "arc_sweep",
                            "line_end", "line_type", "line_width", "line_space",
                            "line_length", NULL};
 
@@ -101,7 +101,7 @@ Arc_init(ArcObject *self, PyObject *args, PyObject *kwds)
                                     kwlist,
                                     &py_name, &type, &pid, &sid, &locked,
                                     &self->x, &self->y, &self->radius,
-                                    &self->start_angle, &self->end_angle,
+                                    &self->start_angle, &self->arc_sweep,
                                     &self->line_end, &self->line_type,
                                     &self->line_width, &self->line_space,
                                     &self->line_length))
@@ -120,7 +120,7 @@ static int
 ArcObject_print(ArcObject *arc, FILE *file, int flags)
 {
   const char *name;
-  int  radius, x, y, start_angle, end_angle;
+  int  radius, x, y, start_angle, arc_sweep;
   int  color_code;
   int  fill_type, fill_width, fill_angle1, fill_pitch1, fill_angle2, fill_pitch2;
   int  line_width, line_end, line_type, line_length, line_space;
@@ -133,7 +133,7 @@ ArcObject_print(ArcObject *arc, FILE *file, int flags)
   x           = arc->x;
   y           = arc->y;
   start_angle = arc->start_angle;
-  end_angle   = arc->end_angle;
+  arc_sweep   = arc->arc_sweep;
 
   fill_type   = arc->fill_type;
   fill_width  = arc->fill_width;
@@ -151,7 +151,7 @@ ArcObject_print(ArcObject *arc, FILE *file, int flags)
 
   /* Describe a arc with post-20000704 file parameters */
   fprintf(file, "<<%s> <%d %d> <radius=%d> <start-angle=%d> <end-angle=%d> <color=%d>",
-                   name, x, y, radius, start_angle, end_angle, color_code);
+                   name, x, y, radius, start_angle, arc_sweep, color_code);
   fprintf(file, " <line-type <width=%d> <end=%d> <type=%d> <dash=%d> <spaces=%d>>",
                    line_width, line_end, line_type, line_length, line_space);
   fprintf(file, " <fill-type <type=%d <width=%d> <angle1=%d> <pitch1=%d> <angle2=%d>>> <pitch2=%d>>",
@@ -166,7 +166,7 @@ static PyMemberDef Arc_members[] = {
   {"y",           T_INT, offsetof(ArcObject, y),           0, "Arc Center Ordinate"},
   {"radius",      T_INT, offsetof(ArcObject, radius),      0, "Arc Radius"},
   {"start_angle", T_INT, offsetof(ArcObject, start_angle), 0, "Arc Start Angle"},
-  {"end_angle",   T_INT, offsetof(ArcObject, end_angle),   0, "Arc End Angle"},
+  {"arc_sweep",   T_INT, offsetof(ArcObject, arc_sweep),   0, "Arc End Angle"},
   {"end_type",    T_INT, offsetof(ArcObject, line_end),    0, "Endpoint style"},
   {"line_type",   T_INT, offsetof(ArcObject, line_type),   0, "Line type"},
   {"line_width",  T_INT, offsetof(ArcObject, line_width),  0, "Line width"},

@@ -41,7 +41,7 @@ PyGeda_update_arc(Object *object, GedaObject *py_object )
   object->arc->width         = py_arc->radius * 2;
   object->arc->height        = py_arc->radius * 2;
   object->arc->start_angle   = py_arc->start_angle;
-  object->arc->end_angle     = py_arc->end_angle;
+  object->arc->arc_sweep     = py_arc->arc_sweep;
 
   //COLOR color;
   //COLOR locked_color;

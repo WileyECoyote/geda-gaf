@@ -93,7 +93,7 @@ struct st_py_arc {
     int y;
     int radius;
     int start_angle;
-    int end_angle;
+    int arc_sweep;
 
  /* Generic Graphical Attributes Applicable to Arcs */
     COLOR color;

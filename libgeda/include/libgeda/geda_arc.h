@@ -57,7 +57,7 @@ struct _GedaArc {
   int       height;
 
   int       start_angle;
-  int       end_angle;
+  int       arc_sweep;
 
   FILL_OPTIONS  fill_options;
   LINE_OPTIONS  line_options;

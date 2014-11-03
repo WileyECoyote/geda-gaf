@@ -1203,7 +1203,7 @@ do_arc(FILE *fp)
   unsigned int color;
   double x2p, y2p, x3p, y3p, yop, xop, xo, yo;
   double to_rad;
-  double gstart, sweep_angle, start_angle, end_angle;
+  double gstart, sweep_angle, start_angle, arc_sweep;
   double radius;
   struct LineStyle linestyle;
   struct FillStyle fillstyle;
@@ -1267,21 +1267,21 @@ do_arc(FILE *fp)
   /* calculate start and end angles */
   to_rad = 180.0/atan2(0,-1);
   start_angle = atan2(y1-yo, x1-xo) * to_rad;
-  end_angle = atan2(y3-yo, x3-xo) * to_rad;
+  arc_sweep = atan2(y3-yo, x3-xo) * to_rad;
 
-  if(start_angle > end_angle)
+  if(start_angle > arc_sweep)
     {
-      gstart = end_angle;
-      sweep_angle = start_angle - end_angle;
+      gstart = arc_sweep;
+      sweep_angle = start_angle - arc_sweep;
     }
   else
     {
       gstart = start_angle;
-      sweep_angle = end_angle - start_angle;
+      sweep_angle = arc_sweep - start_angle;
     }
 
-  /* end_angle   =
-   * end_angle   = int(atan2(y1-yo, x1-xo) * to_rad) % 360;
+  /* arc_sweep   =
+   * arc_sweep   = int(atan2(y1-yo, x1-xo) * to_rad) % 360;
    * start_angle = int(atan2(y3-yo, x3-xo) * to_rad) % 360;
    */
 

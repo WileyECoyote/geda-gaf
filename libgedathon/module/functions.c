@@ -657,7 +657,7 @@ FUNCTION(DefaultTitleblockSymbol)
  *  [in] y           Integer center Y location
  *  [in] radius      Integer radius of the arc sector
  *  [in] start_angle Integer start angle of the sector
- *  [in] end_angle   Integer ending angle of the sector
+ *  [in] arc_sweep   Integer ending angle of the sector
  *
  *  Optional parameters:
  *
@@ -675,12 +675,12 @@ FUNCTION ( AddArc)
   PyObject *py_y;
   PyObject *py_radius;
   PyObject *py_s_angle;      /* start_angle */
-  PyObject *py_e_angle;      /* end_angle */
+  PyObject *py_e_angle;      /* arc_sweep */
   PyObject *py_color = NULL;
   PyObject *py_arc   = NULL;
 
   static char *kwlist[] = {"page", "name", "x", "y",
-                           "radius", "start_angle", "end_angle", "color",
+                           "radius", "start_angle", "arc_sweep", "color",
                             NULL};
 
   if (! PyArg_ParseTupleAndKeywords(args, kwds, "OOOOOO|O:AddArc, Bad Arguments",

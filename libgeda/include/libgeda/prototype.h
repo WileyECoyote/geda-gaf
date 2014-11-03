@@ -93,7 +93,7 @@ const char   *f_path_user_config            (void);
       void    m_polygon_append_point        (GArray *points, int x, int y);
 
 /* o_arc_basic.c */
-      Object *o_arc_new                     (int color, int x, int y, int radius, int start_angle, int end_angle);
+      Object *o_arc_new                     (int color, int x, int y, int radius, int start_angle, int arc_sweep);
       Object *o_arc_copy                    (Object *o_current);
       void    o_arc_modify                  (Object *object, int x, int y, int whichone);
       void    o_arc_translate_world         (int dx, int dy, Object *object);

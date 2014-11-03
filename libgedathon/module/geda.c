@@ -1445,7 +1445,7 @@ METHOD(sync_object)
  *  [in] y           Integer center Y location
  *  [in] radius      Integer radius of the arc sector
  *  [in] start_angle Integer start angle of the sector
- *  [in] end_angle   Integer ending angle of the sector
+ *  [in] arc_sweep   Integer ending angle of the sector
  *
  *  Optional argument:
  *
@@ -1464,17 +1464,17 @@ METHOD(new_arc)
   PyObject *py_color = NULL;
   PyObject *object_data;
 
-  int x; int y; int radius; int start_angle; int end_angle;
+  int x; int y; int radius; int start_angle; int arc_sweep;
 
-  const char *syntax = "syntax: new_arc(x, y, radius, start_angle, end_angle [, color])";
+  const char *syntax = "syntax: new_arc(x, y, radius, start_angle, arc_sweep [, color])";
 
   if(!PyArg_ParseTuple(args, "iiiii|O:geda.new_arc, Bad Arc Arguments", &x, &y, &radius,
-                       &start_angle, &end_angle, &py_color)) {
+                       &start_angle, &arc_sweep, &py_color)) {
     PyErr_SetString(PyExc_TypeError, syntax);
     return NULL;
   }
 
-  object_data = library.func(x, y, radius, start_angle, end_angle, py_color);
+  object_data = library.func(x, y, radius, start_angle, arc_sweep, py_color);
 
   py_arc = PyObject_CallObject((PyObject *) ArcObjectClass(), object_data);
 

@@ -48,7 +48,7 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
 
     cairo_new_sub_path(cairo);
 
-    if (object->arc->end_angle > 0)
+    if (object->arc->arc_sweep > 0)
     {
         cairo_arc(
             cairo,
@@ -56,7 +56,7 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
             object->arc->y,
             object->arc->width / 2.0,
             M_PI * object->arc->start_angle / 180.0,
-            M_PI * (object->arc->start_angle + object->arc->end_angle) / 180.0
+            M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
             );
     }
     else
@@ -67,7 +67,7 @@ static void print_arc(GedaToplevel *current, cairo_t *cairo, Object *object)
             object->arc->y,
             object->arc->width / 2.0,
             M_PI * object->arc->start_angle / 180.0,
-            M_PI * (object->arc->start_angle + object->arc->end_angle) / 180.0
+            M_PI * (object->arc->start_angle + object->arc->arc_sweep) / 180.0
             );
     }
 

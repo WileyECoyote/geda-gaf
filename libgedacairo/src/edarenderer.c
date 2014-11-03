@@ -888,7 +888,7 @@ static void eda_renderer_draw_arc (EdaRenderer *renderer, Object *object)
                  object->arc->y,
                  object->arc->width / 2,
                  object->arc->start_angle,
-                 object->arc->end_angle);
+                 object->arc->arc_sweep);
 
   eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
                     object->line_options->line_type,
@@ -1374,7 +1374,7 @@ eda_renderer_draw_grips_impl (EdaRenderer *renderer, int type, int n_grips, ...)
 static void
 eda_renderer_draw_arc_grips (EdaRenderer *renderer, Object *object)
 {
-  double radius, start_angle, end_angle;
+  double radius, start_angle, arc_sweep;
   int x1, y1, x2, y2, x3, y3;
 
   /*
@@ -1391,17 +1391,17 @@ eda_renderer_draw_arc_grips (EdaRenderer *renderer, Object *object)
 
   radius      = object->arc->width / 2.;
   start_angle = object->arc->start_angle;
-  end_angle   = object->arc->end_angle;
+  arc_sweep   = object->arc->arc_sweep;
 
   x2 = x1 + radius * cos ( start_angle              * M_PI / 180);
   y2 = y1 + radius * sin ( start_angle              * M_PI / 180);
-  x3 = x1 + radius * cos ((start_angle + end_angle) * M_PI / 180);
-  y3 = y1 + radius * sin ((start_angle + end_angle) * M_PI / 180);
+  x3 = x1 + radius * cos ((start_angle + arc_sweep) * M_PI / 180);
+  y3 = y1 + radius * sin ((start_angle + arc_sweep) * M_PI / 180);
 
   eda_renderer_draw_grips_impl (renderer, EDAR_GRIP_SQUARE, 3,
                                 x1, y1, /* center */
                                 x2, y2, /* start_angle */
-                                x3, y3); /* end_angle */
+                                x3, y3); /* arc_sweep */
 }
 
 static void

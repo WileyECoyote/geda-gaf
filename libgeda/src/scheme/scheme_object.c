@@ -1199,7 +1199,7 @@ SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
  * param y_s           the new y-coordinate of the center of the arc.
  * param r_s           the new radius of the arc.
  * param start_angle_s the start angle of the arc.
- * param end_angle_s   the start angle of the arc.
+ * param arc_sweep_s   the start angle of the arc.
  * param color_s       the colormap index of the color to be used for
  *                      drawing the arc.
  *
@@ -1207,7 +1207,7 @@ SCM_DEFINE (make_arc, "%make-arc", 0, 0, 0,
  */
 SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
             (SCM arc_s, SCM x_s, SCM y_s, SCM r_s, SCM start_angle_s,
-             SCM end_angle_s, SCM color_s),
+             SCM arc_sweep_s, SCM color_s),
             "Set arc parameters")
 {
   SCM_ASSERT (edascm_is_object_type (arc_s, OBJ_ARC), arc_s,
@@ -1218,8 +1218,8 @@ SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
   SCM_ASSERT (scm_is_integer (color_s), color_s, SCM_ARG7, s_set_arc_x);
   SCM_ASSERT (scm_is_integer (start_angle_s),
                                   start_angle_s, SCM_ARG5, s_set_arc_x);
-  SCM_ASSERT (scm_is_integer (end_angle_s),
-                                  end_angle_s, SCM_ARG6, s_set_arc_x);
+  SCM_ASSERT (scm_is_integer (arc_sweep_s),
+                                  arc_sweep_s, SCM_ARG6, s_set_arc_x);
 
   Object *obj = edascm_to_object (arc_s);
 
@@ -1228,7 +1228,7 @@ SCM_DEFINE (set_arc_x, "%set-arc!", 7, 0, 0,
   o_arc_modify (obj, scm_to_int(x_s), scm_to_int(y_s), ARC_CENTER);
   o_arc_modify (obj, scm_to_int(r_s), 0, ARC_RADIUS);
   o_arc_modify (obj, scm_to_int(start_angle_s), 0, ARC_START_ANGLE);
-  o_arc_modify (obj, scm_to_int(end_angle_s), 0, ARC_END_ANGLE);
+  o_arc_modify (obj, scm_to_int(arc_sweep_s), 0, ARC_END_ANGLE);
 
   o_set_color (obj, scm_to_int (color_s));
 
@@ -1270,7 +1270,7 @@ SCM_DEFINE (arc_info, "%arc-info", 1, 0, 0,
                      scm_from_int (obj->arc->y),
                      scm_from_int (obj->arc->width / 2),
                      scm_from_int (obj->arc->start_angle),
-                     scm_from_int (obj->arc->end_angle),
+                     scm_from_int (obj->arc->arc_sweep),
                      scm_from_int (obj->color),
                      SCM_UNDEFINED);
 }

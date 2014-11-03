@@ -65,7 +65,7 @@ geda_arc_bounds(Object *object)
 {
   int x1, y1, x2, y2, x3, y3;
   int left, top, right, bottom;
-  int radius, start_angle, end_angle;
+  int radius, start_angle, arc_sweep;
   int i, angle;
   int halfwidth;
 
@@ -75,14 +75,14 @@ geda_arc_bounds(Object *object)
 
   radius      = object->arc->width / 2;
   start_angle = object->arc->start_angle;
-  end_angle   = object->arc->end_angle;
+  arc_sweep   = object->arc->arc_sweep;
 
   x1 = object->arc->x;
   y1 = object->arc->y;
   x2 = x1 + radius * cos(start_angle * M_PI / 180);
   y2 = y1 + radius * sin(start_angle * M_PI / 180);
-  x3 = x1 + radius * cos((start_angle + end_angle) * M_PI / 180);
-  y3 = y1 + radius * sin((start_angle + end_angle) * M_PI / 180);
+  x3 = x1 + radius * cos((start_angle + arc_sweep) * M_PI / 180);
+  y3 = y1 + radius * sin((start_angle + arc_sweep) * M_PI / 180);
 
   left   = (x1 < x2) ? ((x1 < x3) ? x1 : x3) : ((x2 < x3) ? x2 : x3);
   right  = (x1 > x2) ? ((x1 > x3) ? x1 : x3) : ((x2 > x3) ? x2 : x3);
@@ -98,14 +98,14 @@ geda_arc_bounds(Object *object)
    *  CCW arc before this calculation we have to move the
    *  start angle to the end angle and reverse the sweep angle.
    */
-  if (end_angle < 0) {
-    start_angle = (start_angle + end_angle + 360) % 360;
-    end_angle   = -end_angle;
+  if (arc_sweep < 0) {
+    start_angle = (start_angle + arc_sweep + 360) % 360;
+    arc_sweep   = -arc_sweep;
   }
   angle = ((int) (start_angle / 90)) * 90;
   for(i = 0; i < 4; i++) {
     angle = angle + 90;
-    if(angle < start_angle + end_angle) {
+    if(angle < start_angle + arc_sweep) {
       if(angle % 360 == 0)   right  = x1 + radius;
       if(angle % 360 == 90)  bottom = y1 + radius;
       if(angle % 360 == 180) left   = x1 - radius;
@@ -144,7 +144,7 @@ static void geda_arc_init(Arc *arc)
   arc->height       = 0;
 
   arc->start_angle  = 0;
-  arc->end_angle    = 0;
+  arc->arc_sweep    = 0;
 
   arc->fill_options.fill_type     = default_fill_type;
   arc->fill_options.fill_width    = default_fill_width;

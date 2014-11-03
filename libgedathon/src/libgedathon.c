@@ -228,7 +228,7 @@ get_arc_object_data(Object *object)
   int y           = object->arc->y;
   int radius      = object->arc->width / 2;
   int start_angle = object->arc->start_angle;
-  int end_angle   = object->arc->end_angle;
+  int arc_sweep   = object->arc->arc_sweep;
 
   int line_end    = object->line_options->line_end;
   int line_type   = object->line_options->line_type;
@@ -237,7 +237,7 @@ get_arc_object_data(Object *object)
   int line_length = object->line_options->line_length;
 
   data = Py_BuildValue("siiiiiiiiiiiiii", name, type, pid, sid, lock,
-                       x, y, radius, start_angle, end_angle,
+                       x, y, radius, start_angle, arc_sweep,
                        line_end, line_type, line_width, line_space, line_length);
   return data;
 }
@@ -2083,18 +2083,18 @@ PyGeda_sync_object( PyObject *py_object )
  *  \param [in] y           Integer center Y location
  *  \param [in] radius      Integer radius of the arc sector
  *  \param [in] start_angle Integer start angle of the sector
- *  \param [in] end_angle   Integer ending angle of the sector
+ *  \param [in] arc_sweep   Integer ending angle of the sector
  *  \param [in] py_color    PyObject color
  *
  *  \return [out] ArcObject construction data.
  */
-PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int end_angle, PyObject *py_color)
+PyObject *PyGeda_new_arc ( int x, int y, int radius, int start_angle, int arc_sweep, PyObject *py_color)
 {
   Object   *object;
 
   int color = translate_color(py_color, GRAPHIC_COLOR);
 
-  object = o_arc_new(color, x, y, radius, start_angle, end_angle);
+  object = o_arc_new(color, x, y, radius, start_angle, arc_sweep);
 
   floating_objects = g_list_append(floating_objects, object);
 

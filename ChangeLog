@@ -1,6 +1,11 @@
+2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
+
+      * Rename varible Arc::end_angle Arc::arc_sweep (because I changed
+        long time ago but did not rename the variable.
+
 2014-10-31 Wiley E. Hill <wileyhill@gmail.com>
 
-        * configure.ac: Bumped version = 2.0.9.1
+      * configure.ac: Bumped version = 2.0.9.1
 
 2014-10-29 Wiley E. Hill <wileyhill@gmail.com>
 

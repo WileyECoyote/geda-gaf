@@ -120,7 +120,7 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
 /*! \brief Ends the process of arc input.
  *  \par Function Description
  *  The #o_arc_end4() function ends the process of the input of an arc.
- *  <B>start_angle</B> and <B>end_angle</B> are the start and end angle of the
+ *  <B>start_angle</B> and <B>arc_sweep</B> are the start and end angle of the
  *  arc in degrees. The partial internal representation of the arc, i.e.
  *  the center and the radius of the arc, are converted in world units.
  *  A new object is created and linked to the object list.
@@ -128,10 +128,10 @@ void o_arc_end1(GschemToplevel *w_current, int w_x, int w_y)
  *  \param [in] w_current    The GschemToplevel object.
  *  \param [in] radius       Radius of the arc
  *  \param [in] start_angle  Start of angle in degrees.
- *  \param [in] end_angle    End of angle in degrees.
+ *  \param [in] arc_sweep    End of angle in degrees.
  */
 void o_arc_end4(GschemToplevel *w_current, int radius,
-        int start_angle, int end_angle)
+        int start_angle, int arc_sweep)
 {
   GedaToplevel *toplevel = w_current->toplevel;
   Object *new_obj;
@@ -139,7 +139,7 @@ void o_arc_end4(GschemToplevel *w_current, int radius,
   /* create, initialize and link the new arc object */
   new_obj = o_arc_new (GRAPHIC_COLOR,
                        w_current->first_wx, w_current->first_wy,
-                       radius, start_angle, end_angle);
+                       radius, start_angle, arc_sweep);
   new_obj->line_options->line_width =  o_style_get_line_width(toplevel);
   s_page_append_object (toplevel->page_current, new_obj);
 
@@ -224,7 +224,7 @@ void o_arc_motion (GschemToplevel *w_current, int w_x, int w_y, int whichone)
     case ARC_END_ANGLE:
       w_current->second_wy = (((angle_deg + 360) % 360) -
                               w_current->second_wx + 360) % 360;
-      if (w_current->which_object->arc->end_angle < 0)
+      if (w_current->which_object->arc->arc_sweep < 0)
         w_current->second_wy = w_current->second_wy - 360;
       if (w_current->second_wy == 0)
         w_current->second_wy = 360;
