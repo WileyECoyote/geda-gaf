@@ -1,3 +1,12 @@
+2014-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Add new scripts, primarily intended to cleanup symbol files in an
+      attempt to provide more uniform library symbols, added:
+
+          scripts/gsym-attribute.py
+          scripts/gsym-set-font-size.py
+          scripts/gsym-set-visibility.py
+
 2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/libgedathon.c: Add missing line-feeds in PyGeda_save_all_pages
