@@ -1,3 +1,12 @@
+2014-11-03 Wiley E. Hill <wileyhill@gmail.com>
+
+    * linear/special/SCA3000.sym:
+
+    * connector/special: Create new connector subcatagories
+
+    * special/SIM600.sym: Add symbol, probably some other connectors
+      that belong in this folder.
+
 2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * microchip: Reorganize folder with subfolders add various flavors

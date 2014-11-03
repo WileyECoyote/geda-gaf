@@ -98,6 +98,7 @@
                      ("connector/rj"            "Standard/RJ Registered Jack")
                      ("connector/rs"            "Standard/RS Radio Sector")
                      ("connector/socket"        "Standard/Sockets")
+                     ("connector/special"       "Standard/Special")
                      ("connector/terminal"      "Standard/Terminals")
                      ("connector/usb"           "Standard/Universal Serial Bus")
 
