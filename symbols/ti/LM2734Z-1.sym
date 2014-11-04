@@ -6,7 +6,7 @@ LM2724Z
 T 0 1650 8 10 0 0 0 0 1
 device=LM2724Z
 T 0 1850 8 10 0 0 0 0 1
-footprint=SOT-6
+footprint=SOT26
 T 0 2050 8 10 0 0 0 0 1
 author=AutoTron
 T 0 2250 8 10 0 0 0 0 1

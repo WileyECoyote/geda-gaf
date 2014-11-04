@@ -4,7 +4,7 @@ refdes=U?
 T 1200 600 5 10 1 1 0 0 1
 device=LM5050
 T 250 2000 9 10 0 0 0 0 1
-footprint=SOT-6
+footprint=SOT26
 T 250 2400 9 10 0 0 0 0 1
 author=AutoTron
 T 250 2600 9 10 0 0 0 0 1
