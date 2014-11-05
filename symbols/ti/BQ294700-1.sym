@@ -4,7 +4,7 @@ refdes=U?
 T 250 2100 5 10 1 1 0 0 1
 device=BQ294700
 T 250 2300 9 10 0 0 0 0 1
-footprint=SON-8
+footprint=VSSOP-8
 T 250 2500 9 10 0 0 0 0 1
 author=AutoTron
 T 250 2700 9 10 0 0 0 0 1

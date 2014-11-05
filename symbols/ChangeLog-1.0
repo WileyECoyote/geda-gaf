@@ -1,5 +1,9 @@
 2014-11-04 Wiley E. Hill <wileyhill@gmail.com>
 
+    * ti/BQ294700-1.sym: footprint=SON-8 -> footprint=VSSOP-8
+
+2014-11-04 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/LM3481-1.sym: footprint=SON-8 -> footprint=VSSOP-10
 
     * ti/LM3481-2.sym: footprint=SON-8 -> footprint=VSSOP-10
