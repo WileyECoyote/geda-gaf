@@ -1,3 +1,8 @@
+2014-11-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnet-gsch2pcb.scm.in: In function gsch2pcb:open-io-pipe, there is
+      no ensure-batch-mode.
+
 2014-09-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice-noqsi.scm: Add new backend; gnet-spice-noqsi.scm

@@ -185,7 +185,7 @@
       (if (= pid 0)
         (begin
          ;; child process
-         (ensure-batch-mode!)
+         ;;(ensure-batch-mode!)
 
          ;; select the three file descriptors to be used as
          ;; standard descriptors 0, 1, 2 for the new
