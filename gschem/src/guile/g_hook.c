@@ -182,19 +182,20 @@ init_module_gschem_core_hook ()
     scm_c_export (name, NULL); \
   } while (0)
 
-  DEFINE_HOOK ("%add-objects-hook",      1);
-  DEFINE_HOOK ("%remove-objects-hook",   1);
-  DEFINE_HOOK ("%move-objects-hook",     1);
-  DEFINE_HOOK ("%mirror-objects-hook",   1);
-  DEFINE_HOOK ("%rotate-objects-hook",   1);
-  DEFINE_HOOK ("%paste-objects-hook",    1);
-  DEFINE_HOOK ("%attach-attribs-hook",   1);
-  DEFINE_HOOK ("%detach-attribs-hook",   1);
-  DEFINE_HOOK ("%select-objects-hook",   1);
-  DEFINE_HOOK ("%deselect-objects-hook", 1);
-  DEFINE_HOOK ("%new-page-hook",         1);
   DEFINE_HOOK ("%action-property-hook",  3);
+  DEFINE_HOOK ("%add-objects-hook",      1);
+  DEFINE_HOOK ("%attach-attribs-hook",   1);
   DEFINE_HOOK ("%bind-keys-hook",        3);
+  DEFINE_HOOK ("%copy-objects-hook",     1);
+  DEFINE_HOOK ("%deselect-objects-hook", 1);
+  DEFINE_HOOK ("%detach-attribs-hook",   1);
+  DEFINE_HOOK ("%mirror-objects-hook",   1);
+  DEFINE_HOOK ("%move-objects-hook",     1);
+  DEFINE_HOOK ("%new-page-hook",         1);
+  DEFINE_HOOK ("%paste-objects-hook",    1);
+  DEFINE_HOOK ("%remove-objects-hook",   1);
+  DEFINE_HOOK ("%rotate-objects-hook",   1);
+  DEFINE_HOOK ("%select-objects-hook",   1);
 }
 
 /*!

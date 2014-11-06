@@ -22,28 +22,32 @@
   ;; Import C definitions
   #:use-module (gschem core hook))
 
+(define-public action-property-hook  %action-property-hook)
+
 (define-public add-objects-hook      %add-objects-hook)
-
-(define-public remove-objects-hook   %remove-objects-hook)
-
-(define-public move-objects-hook     %move-objects-hook)
-
-(define-public mirror-objects-hook   %mirror-objects-hook)
-
-(define-public rotate-objects-hook   %rotate-objects-hook)
-
-(define-public paste-objects-hook    %paste-objects-hook)
 
 (define-public attach-attribs-hook   %attach-attribs-hook)
 
-(define-public detach-attribs-hook   %detach-attribs-hook)
+(define-public bind-keys-hook        %bind-keys-hook)
 
-(define-public select-objects-hook   %select-objects-hook)
+(define-public copy-objects-hook     %copy-objects-hook)
 
 (define-public deselect-objects-hook %deselect-objects-hook)
 
+(define-public detach-attribs-hook   %detach-attribs-hook)
+
+(define-public mirror-objects-hook   %mirror-objects-hook)
+
+(define-public move-objects-hook     %move-objects-hook)
+
 (define-public new-page-hook         %new-page-hook)
 
-(define-public action-property-hook  %action-property-hook)
+(define-public paste-objects-hook    %paste-objects-hook)
 
-(define-public bind-keys-hook        %bind-keys-hook)
+(define-public remove-objects-hook   %remove-objects-hook)
+
+(define-public rotate-objects-hook   %rotate-objects-hook)
+
+(define-public select-objects-hook   %select-objects-hook)
+
+

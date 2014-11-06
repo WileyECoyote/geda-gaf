@@ -1,3 +1,8 @@
+2014-11-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * guile/g_hook.c: Alphabetize the order of hooks in hook.scm and
+      function init_module_gschem_core_hook
+
 2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_sdefines.h: Use u_string_sprintf instead of g_strdup_printf
