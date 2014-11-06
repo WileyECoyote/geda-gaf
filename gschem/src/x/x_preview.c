@@ -217,8 +217,8 @@ preview_callback_button_press (GtkWidget      *widget,
 
 /*! \brief Updates the preview widget.
  *  \par Function Description
- *  This function update the preview: if the preview is active and a
- *  filename has been given, it opens the file and display
+ *  This function updates the preview: if the preview is active and a
+ *  filename has been given, it opens the file and displays
  *  the contents. Otherwise the display will be a blank page.
  *
  *  \param [in] preview The preview widget.
@@ -374,12 +374,13 @@ preview_event_configure (GtkWidget         *widget,
 {
   bool retval;
   GschemToplevel *preview_window = PREVIEW (widget)->preview_window;
-  Page     *preview_page = preview_window->toplevel->page_current;
+  //Page     *preview_page = preview_window->toplevel->page_current;
 
   retval = x_event_configure (widget, event, preview_window);
+  /*
   if (preview_page != NULL) {
     i_zoom_world_extents(preview_window, s_page_get_objects (preview_page), 0);
-  }
+  }*/
   return retval;
 }
 
@@ -517,7 +518,7 @@ preview_set_property (GObject *object, unsigned int property_id,
         }
         GEDA_FREE (preview->filename);
         preview->filename = u_string_strdup (g_value_get_string (value));
-        preview_update (preview);
+        //preview_update (preview);
         break;
 
       case PROP_BUFFER:
@@ -528,7 +529,7 @@ preview_set_property (GObject *object, unsigned int property_id,
         }
         GEDA_FREE (preview->buffer);
         preview->buffer = u_string_strdup (g_value_get_string (value));
-        preview_update (preview);
+        //preview_update (preview);
         break;
 
       case PROP_ACTIVE:

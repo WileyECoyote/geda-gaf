@@ -116,7 +116,7 @@ x_fileselect_add_preview (GtkFileChooser *filechooser)
                                         NULL));
 
   preview = GTK_WIDGET (g_object_new (TYPE_PREVIEW,
-                                      "active", TRUE,
+                                      /*"active", TRUE,*/
                                       NULL));
 
   gtk_container_add (GTK_CONTAINER (alignment), preview);
