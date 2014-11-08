@@ -1,3 +1,7 @@
+2014-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_complex.c: Add new function o_complex_reset_attrib_positions
+
 2014-11-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/object/o_attrib.c: Add new function o_attrib_reset_position

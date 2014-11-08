@@ -209,3 +209,32 @@ void o_complex_translate_all(GschemToplevel *w_current, int offset)
   o_undo_savestate(w_current, UNDO_ALL);
   i_status_update_sensitivities(w_current);
 }
+
+/*! \brief Reposition attributes to original positions
+ *  \par Function Description
+ *  The functions iterates over the attributes attached to the
+ *  given object and calls o_attrib_reset_position to reposition
+ *  each attribute back to where the attribute was defined in the
+ *  symbol file if the attribute was inherited.
+ *
+ *  \returns TRUE if an object was modified, otherwise FALSE.
+ */
+bool o_complex_reset_attrib_positions (GschemToplevel *w_current, Object *o_current)
+{
+  int    modified = FALSE;
+  GList *attributes = o_attrib_return_attribs (o_current);
+  GList *a_iter;
+
+  for (a_iter = attributes; a_iter != NULL; a_iter = a_iter->next)
+  {
+     Object *a_current = a_iter->data;
+
+     if (!o_attrib_is_inherited(a_current)) {
+       if (o_attrib_reset_position(w_current, o_current, a_current)) {
+            modified = TRUE;
+          }
+     }
+  }
+  g_list_free (attributes);
+  return modified;
+}
