@@ -1,3 +1,8 @@
+2014-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
+    * symbols/ti/TPS55340-1.sym: Add new symbols for TI TPS55340,
+      Integrated 5-A, 40-V Boost/SEPIC/Flyback DC-DC Regulator
+
 2014-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * passive/inductor/inductor-coupled-2.sym: Moved the pin numbers
