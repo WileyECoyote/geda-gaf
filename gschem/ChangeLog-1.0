@@ -1,3 +1,7 @@
+2014-11-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/object/o_attrib.c: Add new function o_attrib_reset_position
+
 2014-11-06 Wiley E. Hill <wileyhill@gmail.com>
 
     * guile/g_hook.c: Alphabetize the order of hooks in hook.scm and

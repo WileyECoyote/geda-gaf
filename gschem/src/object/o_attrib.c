@@ -373,3 +373,61 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
 
   return new_obj;
 }
+
+/*! \brief Reset Attributes to original positions
+ *  \par Function Description
+ *  The functions searches for a floating version of the given attribute
+ *  and if found, compares the positional data and sets the orientation
+ *  of \a attrib to match the floating version if the the positions do
+ *  do not match. Essentially, this resets the position to the position
+ *  defined in the symbol file if the attribute was inherited.
+ *
+ *  \returns TRUE if the attribute was modified, otherwise FALSE.
+ */
+bool o_attrib_reset_position (GschemToplevel *w_current, Object *parent, Object *attrib)
+{
+  char   *name;
+  bool    modified;
+  Text   *floater;
+
+  if (o_attrib_get_name_value (attrib, &name,  NULL)) {
+
+    GList *attributes = o_attrib_return_attribs (parent);
+    GList *floating   = o_attrib_find_floating_attribs(attributes);
+    floater           = (Text*)o_attrib_find_attrib_by_name(floating, name, 0);
+    g_list_free (attributes);
+    g_list_free (floating);
+
+    if (floater != NULL) {
+      Text *attribute = (Text*)attrib;
+      if ((attribute->x - floater->x) ||
+          (attribute->y - floater->y) ||
+          (attribute->angle - floater->angle) ||
+          (attribute->alignment - floater->alignment)
+         )
+      {
+        int save_visible = attrib->visibility;
+        attrib->visibility = INVISIBLE;
+        o_invalidate_force (w_current, attrib); /* Erase from screen at old positon */
+        attribute->x = floater->x;
+        attribute->y = floater->y;
+        attribute->angle = floater->angle;
+        attribute->alignment = floater->alignment;
+        attrib->visibility = save_visible;
+        o_invalidate_object (w_current, attrib);
+        modified = TRUE;
+      }
+      else {
+        modified = FALSE;
+      }
+    }
+    else {
+      modified = FALSE;
+    }
+    GEDA_FREE(name);
+  }
+  else {
+    modified = FALSE;
+  }
+  return modified;
+}
