@@ -79,7 +79,6 @@ int world_get_single_object_bounds(Object *o_current, int *rleft, int *rtop,
  *  \retval 0 No bounds were found
  *  \retval 1 Bound was found
  */
-
 int world_get_object_glist_bounds(const GList *list, int *left, int *top, int *right, int *bottom)
 {
   const GList *s_current;
@@ -99,7 +98,8 @@ int world_get_object_glist_bounds(const GList *list, int *left, int *top, int *r
     o_current = GEDA_OBJECT(s_current->data);
 
     if (GEDA_IS_OBJECT(o_current)) {
-      if ( world_get_single_object_bounds(o_current, &rleft, &rtop, &rright, &rbottom) ) {
+      if (world_get_single_object_bounds(o_current, &rleft, &rtop, &rright, &rbottom))
+      {
         if ( found ) {
           *left   = min( *left, rleft );
           *top    = min( *top, rtop );

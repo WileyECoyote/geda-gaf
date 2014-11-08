@@ -30,9 +30,9 @@
 
 #include "gschem.h"
 
-SCM_SYMBOL (name_sym , "name");
+SCM_SYMBOL (name_sym ,  "name");
 SCM_SYMBOL (value_sym , "value");
-SCM_SYMBOL (both_sym , "both");
+SCM_SYMBOL (both_sym ,  "both");
 SCM_SYMBOL (object_state_sym, "object-state");
 
 /*! \brief Add an attribute to an object, or floating.

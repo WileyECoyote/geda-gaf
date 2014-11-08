@@ -233,7 +233,7 @@ SCM_DEFINE (object_type, "%object-type", 1, 0, 0,
 
   return result;
 }
-
+extern int myflag;
 /*! \brief Get the bounds of a list of objects
  * \par Function Description
  * Returns the bounds of the objects in the variable-length argument

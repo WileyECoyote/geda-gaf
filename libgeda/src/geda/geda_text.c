@@ -47,7 +47,6 @@
 
 G_DEFINE_TYPE (Text, geda_text, GEDA_TYPE_OBJECT);
 
-
 /*! \brief calculate and return the boundaries of a text object
  *
  *  \par Function Description
@@ -78,7 +77,8 @@ geda_text_bounds(Object *o_current)
   else {
 
     /* Text object must be associated with page */
-    if(GEDA_IS_PAGE(o_current->page)) {
+    if (GEDA_IS_PAGE(o_current->page)) {
+
       page = o_current->page;
 
       /* Check if page level render func is set */
