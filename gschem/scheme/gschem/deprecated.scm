@@ -216,7 +216,8 @@
         (cons (cons (caar bounds) (cadr bounds))
               (cons (cddr bounds) (cdar bounds)))
         ;; Stupid default
-        '((1000000 . 0) . (1000000 . 0)))))
+        '((1000000 . 0) . (1000000 . 0))))
+)
 
 ;; get-pin-ends pin
 ;;

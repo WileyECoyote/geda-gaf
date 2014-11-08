@@ -368,6 +368,8 @@ void       o_attrib_toggle_visibility        (GschemToplevel *w_current, Object 
 void       o_attrib_toggle_show_name_value   (GschemToplevel *w_current, Object *object, int new_show_name_value);
 OBJ       *o_attrib_add_attrib               (GschemToplevel *w_current, const char *text_string, int visibility,
                                               int show_name_value, Object *object);
+bool       o_attrib_reset_position           (GschemToplevel *w_current, Object *parent, Object *attrib);
+
 /* o_box.c */
 void       o_box_invalidate_rubber      (GschemToplevel *w_current);
 void       o_box_start                  (GschemToplevel *w_current, int x, int y);
@@ -400,6 +402,7 @@ void       o_circle_draw_rubber         (GschemToplevel *w_current);
 void       o_complex_prepare_place           (GschemToplevel *w_current, const CLibSymbol *sym);
 void       o_complex_place_changed_run_hook  (GschemToplevel *w_current);
 void       o_complex_translate_all           (GschemToplevel *w_current, int offset);
+bool       o_complex_reset_attrib_positions  (GschemToplevel *w_current, Object *complex);
 
 /* o_copy.c */
 void       o_copy_start                 (GschemToplevel *w_current, int x, int y);

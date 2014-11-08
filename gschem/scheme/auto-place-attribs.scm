@@ -570,16 +570,16 @@
 ;   Example: "Lower Right".
 (define (get-reference object position-string)
   (if (not (string-index position-string #\ ))
-      (error "get-reference : Wrong reference format"))
-  (let* ( (object-type (get-object-type object))
-      ; Get the object bounds:
-          ;  - If it's a pin: including everything.
-          ;  - otherwise: without attributes neither pins.
-      (bounds (if (char=? object-type OBJ_PIN)
-              (get-object-bounds object (list "all") (list))
-              (get-object-bounds object (list "all")
-                     (list (list->string (list OBJ_PIN)))))
-          )
+      (error "get-reference : Wrong reference format")
+  )
+  (let* ((object-type (get-object-type object))
+              ; Get the object bounds:
+              ;  - If it's a pin: including everything.
+              ;  - otherwise: without attributes neither pins.
+         (bounds (if (char=? object-type OBJ_PIN)
+                     (get-object-bounds object (list "all") (list))
+                     (get-object-bounds object (list "all")
+                     (list (list->string (list OBJ_PIN))))))
       (horiz-bounds (car bounds))
       (vertical-bounds (cdr bounds))
       (space-pos (string-index position-string #\ ))
@@ -605,9 +605,11 @@
                      (cdr vertical-bounds))
                     (error (string-append
                         "get-reference : Unknown reference (vertical): "
-                        vertical-string)))))) )
-      (cons horiz-pos vertical-pos)))
-
+                        vertical-string))))))
+      )
+      (cons horiz-pos vertical-pos)
+  )
+)
 
 ; Given a matching pattern and a list, return false if no member of the list
 ; matches the pattern, or true if any does.
@@ -656,8 +658,6 @@
       )
   )
 
-
-
 ; This function sets the default parameters of each attribute,
 ; provided it is specified in the default-position-of-text-attributes.
 ; It gets the attrib name from the attribute and sets
@@ -665,56 +665,45 @@
 (define (set-default-position object attribute direction defaults)
   (if (null? defaults)
       0
-      (let* ( (attrib-name-value (get-attribute-name-value attribute))
-          (attrib-name (car attrib-name-value)) ; Attribute name
-          (default-def (car defaults)) ; Default definition
-          (def-attrib-name (list-ref default-def ; Default attrib name
-                     def-attrib-name-pos))
-          (def-direction (list-ref default-def ; Default direction
-                       def-direction-pos)) )
+      (let* ((attrib-name-value (get-attribute-name-value attribute))
+             (attrib-name       (car attrib-name-value))                     ; Attribute name
+             (default-def       (car defaults))                              ; Default definition
+             (def-attrib-name   (list-ref default-def def-attrib-name-pos))  ; Default attrib name
+             (def-direction     (list-ref default-def def-direction-pos))    ; Default direction
+            )
     ; Check if the attribute's name and direction matches.
     (if (and (string=? attrib-name def-attrib-name)
-         (string=? def-direction
-               direction)
-         (check-object-attributes object
+             (string=? def-direction direction)
+             (check-object-attributes object
                       (list-ref default-def ; attrib match
                             def-attrib-match)))
-        (begin
           ; It matches, so change the text parameters
-          (let* ( (ref (get-reference object (list-ref default-def
-                               def-reference-pos)))
-              (new-alignment (list-ref default-def def-alignment-pos))
-              (new-angle (list-ref default-def def-angle-pos))
-              (new-color (list-ref default-def def-color-pos))
-              (new-x (+ (list-ref default-def def-x-offset-pos)
-                (car ref)))
-              (new-y (+ (list-ref default-def def-y-offset-pos)
-                (cdr ref)))
-              (attrib-move-dir (list-ref default-def def-move-pos))
-              (attrib-spacing (abs (list-ref default-def
-                             def-spacing-pos)))
-               (new-attrib-bounds (calcule-new-attrib-bounds attribute
+          (let* ((ref             (get-reference object (list-ref default-def def-reference-pos)))
+                 (new-alignment   (list-ref default-def def-alignment-pos))
+                 (new-angle       (list-ref default-def def-angle-pos))
+                 (new-color       (list-ref default-def def-color-pos))
+                 (new-x           (+ (list-ref default-def def-x-offset-pos) (car ref)))
+                 (new-y           (+ (list-ref default-def def-y-offset-pos) (cdr ref)))
+                 (attrib-move-dir (list-ref default-def def-move-pos))
+                 (attrib-spacing  (abs (list-ref default-def def-spacing-pos)))
+                 (new-attrib-bounds (calcule-new-attrib-bounds attribute
                                      new-alignment
                                      new-angle
                                      new-x
                                      new-y))
-              (new-attrib-bounds-adjusted
-                (adjust-pos-to-avoid-collision new-attrib-bounds
-                               object
-                               attrib-move-dir
-                               attrib-spacing))
-              (x_offset
-               (if (null? new-attrib-bounds-adjusted)
-               0
-               (- (get-point-of-bound "min-x"
-                          new-attrib-bounds-adjusted)
-                  (get-point-of-bound "min-x" new-attrib-bounds))))
-              (y_offset
-               (if (null? new-attrib-bounds-adjusted)
-               0
-               (- (get-point-of-bound "min-y"
-                          new-attrib-bounds-adjusted)
-                  (get-point-of-bound "min-y" new-attrib-bounds))))
+                 (new-attrib-bounds-adjusted
+                   (adjust-pos-to-avoid-collision new-attrib-bounds
+                                                  object
+                                                  attrib-move-dir
+                                                  attrib-spacing))
+                 (x_offset (if (null? new-attrib-bounds-adjusted)
+                               0
+                               (- (get-point-of-bound "min-x" new-attrib-bounds-adjusted)
+                                  (get-point-of-bound "min-x" new-attrib-bounds))))
+                 (y_offset (if (null? new-attrib-bounds-adjusted)
+                               0
+                               (- (get-point-of-bound "min-y" new-attrib-bounds-adjusted)
+                                  (get-point-of-bound "min-y" new-attrib-bounds))))
               )
         (set-attribute-text-properties! attribute
                         new-color
@@ -726,18 +715,41 @@
         (if (not (= new-color -1))
              (set-object-color! attribute new-color))
         )
-      )
      )
     )
   )
 ) ; End of definition of set-default-position
+
+(define (get-attrib-default-position attribute direction)
+  (let* ((attrib-name-value (get-attribute-name-value attribute))
+         (attrib-name       (car attrib-name-value))                     ; Attribute name
+        )
+    (filter
+        (lambda (record)
+          (let* ((default-name (list-ref record def-attrib-name-pos))  ; Default attrib name
+                 (default-dir  (list-ref record def-direction-pos)))   ; Default direction
+            (if (and (string=? attrib-name default-name)
+                     (string=? default-dir direction))
+                #t
+                #f
+             )
+           )
+        ) default-position-of-text-attributes
+    )
+  )
+)
+
 
 ; This function processes the attribute list and calls
 ; set-default-position for each attribute
 (define (autoplace-text object direction attrib-list)
   (map
     (lambda (attrib)
-      (set-default-position object attrib direction default-position-of-text-attributes)
+      (let* ((attrib-defaults (get-attrib-default-position attrib direction)))
+        (if (null? attrib-defaults)
+          (set-default-position object attrib direction attrib-defaults)
+        )
+      )
     ) attrib-list
   )
 ) ; End of definition of autoplace-pin-text
@@ -789,7 +801,7 @@
                        OBJ_BUS))
                    (get-net-connection-sides object)
                    (get-connection-sides pin-directions)))
-     (attribute-list (get-object-attributes object)) )
+     (attribute-list (get-object-attributes object)))
     (autoplace-text object connection-sides attribute-list)))
 
 
@@ -798,4 +810,3 @@
 ;; written by Carlos Nieves Onega ends here.
 ;;
 ;; --------------------------------------------------------------------------
-

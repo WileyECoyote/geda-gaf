@@ -174,6 +174,7 @@ enum ActionFlag
 /* Attributes */
         COMMAND ( do_attach )
         COMMAND ( do_detach )
+        COMMAND ( do_home_attributes )
         COMMAND ( do_show_value )
         COMMAND ( do_show_name )
         COMMAND ( do_show_both )
@@ -458,6 +459,7 @@ enum {
 
      COMMAND ( ATTRIB_ATTACH,       "attach",           USE_MAIN_LOOP,          do_attach)
      COMMAND ( ATTRIB_DETACH,       "detach",           USE_MAIN_LOOP,          do_detach)
+     COMMAND ( ATTRIB_HOME,         "home attributes",  USE_MAIN_LOOP,          do_home_attributes)
      COMMAND ( ATTRIB_VALUE,        "show value",       USE_MAIN_LOOP,          do_show_value)
      COMMAND ( ATTRIB_NAME,         "show name",        USE_MAIN_LOOP,          do_show_name)
      COMMAND ( ATTRIB_BOTH,         "show both",        USE_MAIN_LOOP,          do_show_both)

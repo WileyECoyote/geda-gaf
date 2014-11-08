@@ -4,22 +4,22 @@
    ; Dividing each list entry in two lines:
    ;   - the first line is the attribute matching. It specifies the properties
    ;     of the object and the attribute that should match in order to use
-   ;     that entry (all the specified properties should match). 
+   ;     that entry (all the specified properties should match).
    ;     It has the following items:
    ;       - attrib_name: the attribute's name for this entry.
    ;       - direction: direction of the pin(s) (the arrow points to the inside
    ;         of the symbol. The direction is specified by one character of
    ;         v, ^, < or >. This item is a string with one or several direction
-   ;         characters. Including several directions here means that the 
-   ;         object should have pins in all those directions if using this 
+   ;         characters. Including several directions here means that the
+   ;         object should have pins in all those directions if using this
    ;         entry.
    ;
-   ;       - list of object attribute matching properties. It's a list with 
+   ;       - list of object attribute matching properties. It's a list with
    ;         attribute_name, attribute_value pairs. A regular expression can be
    ;         used in the attribute_values field.
    ;         There is a special attribute name: "OBJ_TYPE" if you want to check
    ;         the object type. However, the attribute_value field should be
-   ;         one of the already defined variables: 
+   ;         one of the already defined variables:
    ;         OBJ_LINE, OBJ_BOX, OBJ_PICTURE, OBJ_CIRCLE, OBJ_NET, OBJ_BUS,
    ;         OBJ_COMPLEX, OBJ_TEXT, OBJ_PIN, OBJ_ARC, OBJ_PLACEHOLDER
    ;         converted into strings (for example using the function char2str).
@@ -31,8 +31,8 @@
    ;        - x_offset, y_offset: the position offset to the reference point.
    ;          The attribute position is offset by these amounts from the
    ;          reference point. They can be positive or negative integers.
-   ;        - reference: the component's reference point where to place 
-   ;          the attribute. The reference point is calculated using 
+   ;        - reference: the component's reference point where to place
+   ;          the attribute. The reference point is calculated using
    ;          component's bounds, so pin's line width, for example, matter.
    ;          Example: Pin from (100,50) to (400,50), pin's line width is 10.
    ;            Pin bounds:
@@ -48,16 +48,16 @@
    ;        - alignment: the attribute text's alignment.
    ;        - angle: the attribute's angle.
    ;
-   ;       As a special case, the attributes can be automaticaly moved if 
+   ;       As a special case, the attributes can be automaticaly moved if
    ;       they overlap with the pins or the pin connection direction, in
    ;       order to avoid cluttering the schematic. Note that pinnames are
    ;       also included when calculing the new position.
    ;       By pin connection direction I mean the space in front of a pin
-   ;       where a net connecting to that pin is supposed to be drawn 
+   ;       where a net connecting to that pin is supposed to be drawn
    ;       afterwards.
-   ; 
+   ;
    ;       For this purpose, two more items are added:
-   ;         - mov_dir: specify the movement directions, or where can the 
+   ;         - mov_dir: specify the movement directions, or where can the
    ;           attribute be moved if overlapping.
    ;           It is an empty string if no movement is allowed, or a string
    ;           containing one or several horizontal/vertical directions.
@@ -68,7 +68,7 @@
    ;           When overlapping with horizontal pins, the attribute will be
    ;           moved vertically (v or ^ characters).
    ;
-   ;           Example: "<^" means that the attribute will be moved to the 
+   ;           Example: "<^" means that the attribute will be moved to the
    ;           left if overlapping with vertical pins, or to the top if
    ;           overlapping horizontal pins.
    ;
@@ -203,13 +203,13 @@
       50     50       "Upper Middle"  "Lower Left"     0      ""   0  -1)
  ;   Four directions
    (list
-    "refdes" "<>^v"(list "OBJ_TYPE" (char2str OBJ_COMPLEX))
+    "refdes" "<>^v" (list "OBJ_TYPE" (char2str OBJ_COMPLEX))
       50     50      "Upper Left"    "Lower Left"     0      "^<" 50  -1)
    (list
-    "value"  "<>^v"(list "OBJ_TYPE" (char2str OBJ_COMPLEX))
+    "value"  "<>^v" (list "OBJ_TYPE" (char2str OBJ_COMPLEX))
       50    -50      "Lower Right"   "Upper Right"    0      "v>" 50  -1)
    (list
-    "device" "<>^v"(list "OBJ_TYPE" (char2str OBJ_COMPLEX))
+    "device" "<>^v" (list "OBJ_TYPE" (char2str OBJ_COMPLEX))
       50    -50      "Lower Right"   "Upper Right"    0      "v>" 50  -1)
 
      ; Net attributes

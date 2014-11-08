@@ -91,7 +91,8 @@
       ("Upper Middle" . upper-center)
       ("Lower Right" . lower-right)
       ("Middle Right" . middle-right)
-      ("Upper Right" . upper-right)))
+      ("Upper Right" . upper-right))
+  )
 
   (let* ((t (copy-object attrib))
          (params (text-info t))
@@ -107,10 +108,15 @@
     ;; object-bounds returns ((left . top) . (right . bottom)).
     ;; Put in form ((left . right) . (bottom . top))
     (let* ((bounds (object-bounds t))
-           (top (cdr (car bounds)))
+           (bounds (if (pair? bounds) bounds
+                       (cons (cons x (+ y 10)) (cons (+ x 10) y))))
+           (top    (cdr (car bounds)))
            (bottom (cdr (cdr bounds)))
-           (right (car (cdr bounds))))
+           (right  (car (cdr bounds)))
+          )
       (set-cdr! (car bounds) right)
       (set-car! (cdr bounds) bottom)
       (set-cdr! (cdr bounds) top)
-      bounds)))
+      bounds)
+  )
+)
