@@ -2884,6 +2884,62 @@ COMMAND ( do_detach )
   EXIT_COMMAND(do_detach);
 }
 
+/*! \brief Set Attributes to default X-Y Positions
+ *  \par Function Description
+ *  This is the action handler function to reset Attributes
+ *  positions. The function operates on either selected text
+ *  attributes or complex objects.
+ *
+ */
+/** @brief do_home_attributes in i_command_Attribute_Actions */
+COMMAND ( do_home_attributes )
+{
+  BEGIN_W_COMMAND(do_home_attributes);
+
+  /* Do Not do this while inside an action */
+  if (!w_current->inside_action) {
+
+    if (o_select_is_selection (w_current)) {
+
+      bool       modified  = FALSE;
+      Page      *page      = Current_Page;
+      SELECTION *selection = Current_Selection;
+      GList     *s_current;
+
+      for (s_current = geda_list_get_glist (selection); s_current != NULL; NEXT(s_current)) {
+
+        Object *object = (Object*)s_current->data;
+
+        if (object->type == OBJ_COMPLEX) {
+          if (o_complex_reset_attrib_positions (w_current, object)) {
+            modified = TRUE;
+          }
+        }
+        else if ((object->type == OBJ_TEXT && o_get_is_attached(object))) {
+          if (o_attrib_reset_position(w_current, object->attached_to, object)) {
+            modified = TRUE;
+          }
+        }
+      }
+
+      if (modified) {
+
+        o_undo_savestate (w_current, UNDO_ALL);
+        if (GEDA_IS_PAGE(page)) {
+          page->CHANGED = 1;
+        }
+        else {
+          BUG_MSG("Object has no page association")
+        }
+      }
+    }
+  }
+  else
+    v_log_message(_("Cannot edit attribute properties inside action!\n"));
+
+  EXIT_COMMAND(do_home_attributes);
+}
+
 /*! \brief Set selected Attributes to Show value
  *  \par Function Description
  *  This is the action handler function to set selected Attributes bits

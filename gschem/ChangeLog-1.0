@@ -1,5 +1,12 @@
 2014-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Add new action handeler:do_home_attributes
+
+    * etc/system-gschemrc.scm: Implement new menu option attributes-home with
+      hot-keys "B R"
+
+2014-11-08 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_complex.c: Add new function o_complex_reset_attrib_positions
 
 2014-11-07 Wiley E. Hill <wileyhill@gmail.com>

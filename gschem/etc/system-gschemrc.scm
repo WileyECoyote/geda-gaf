@@ -1214,7 +1214,7 @@
 
 ; Load the default position of attributes, for attribute autoplacing
 ; functions.
-;(load-from-path "default-attrib-positions.scm")
+(load-from-path "default-attrib-positions.scm")
 
 ; Adds the default pin attributes to each newly placed pin.
 ;(define (add-default-pin-attributes object)
@@ -1227,7 +1227,12 @@
 ;(add-hook! add-pin-hook add-default-pin-attributes)
 
 ; Comment in this to load the functions to place the attributes automatically.
-;(load-from-path "auto-place-attribs.scm")
+(load-from-path "auto-place-attribs.scm")
+
+(define (reset-attribute-positions object)
+  (autoplace-object-attributes object)
+  ;;
+)
 
 ; Autoplace pin text attributes hook.
 ; Comment in these if you want the pin attributes to be automatically placed.
@@ -1239,7 +1244,7 @@
 ;(add-hook! mirror-pin-hook (lambda (pin) (autoplace-pin-attributes pin )) #t)
 
 ; Autoplace component/net/buses text attributes hook.
-; Comment in these if you want the component attributes to be
+; Uncomment in these if you want the component attributes to be
 ; automatically placed.
 ; There are different hooks for situations like adding a new pin, rotating
 ; or mirroring an existing one, adding a new attribute or a new component.
@@ -1263,7 +1268,7 @@
 
 ;; Automatically place a titleblock (or other components) when creating
 ;; a new page.
-;; Comment in these lines if you want gschem to automatically place a titleblock
+;; Uncomment in these lines if you want gschem to automatically place a titleblock
 ;; when you create a new _empty_ page.
 ;; Users can customize the default titleblock by adding the following line
 ;; (without the semi-colons at the beginning) to the gschemrc file;
@@ -1551,6 +1556,7 @@
 (map-keys "B H"        "attributes-hide-text")
 (map-keys "B <Shift>H" "attributes-show-text")
 (map-keys "B E"        "attributes-editor")
+(map-keys "B R"        "attributes-home")
 
 (map-keys "<Control>A"        "edit-select-all")
 (map-keys "<Control><Shift>A" "edit-deselect")
@@ -1924,6 +1930,8 @@
         (,(N_ "Show _Both")        attributes-show-both          "attribute-show-both"  ,(N_ "Set selected name and value visible"))
         ("SEPARATOR"                    #f                       #f)
         (,(N_ "_Toggle Visibility")      attributes-visibility   "attribute-visibility" ,(N_ "Toggle attribute visibilty"))
+        (,(N_ "_Reset Position")         attributes-home         "attribute-visibility" ,(N_ "Restore attribute positions and orientation"))
+
         (,(N_ "_Find Specific Text...")  attributes-find-text    "gtk-find-and-replace" ,(N_ "Find an attribute"))
         (,(N_ "_Hide Specific Text...")  attributes-hide-text    "gtk-clear"            ,(N_ "Hide selected attribute"))
         (,(N_ "_Show Specific Text...")  attributes-show-text    #f                     ,(N_ "Show a specific attribute value"))
