@@ -35,6 +35,71 @@
 ;;
 ;;  Change log:
 ;;  3.5.2003 -- Started hacking.  SDB.
+;;  3.17.2003 -- 2nd version.  Hacked to allow for .SUBCKT files to model ics.
+;;               Changed write-ic.  Added get-file-type.  Added
+;;               write-subcircuit.  SDB.
+;;  3.31.2003 -- 3rd version.  Hacked to enable creating .SUBCKT schematics for
+;;               hierarchical circuit modeling.
+;;  8.29.2003 -- 4th version.  Include patches from Ken Healy to sort netlist,
+;;               code by SDB to use gnetlist command line args in Scheme fcns,
+;;               as well as from Theo Deckers to fix strange problem with '.SUBCKT
+;;               quoting.
+;;  9.9.2003  -- 5th version.  Rearranged code for more organization (I was beginning
+;;               to get lost. . . .).  Incorporated changes to handle external SPICE
+;;               files more intelligently.  Changed spew to be configurable by setting
+;;               -v from the command line.  Placed new fcn debug-spew into gnetlist.scm.
+;;               Added -I command line flag.
+;;  10.14.2003 -- Bugfixes: Added empty-string? and hacked get-file-type to handle
+;;                case where a model file has an empty line before .SUBCKT or .MODEL.
+;;                Also modified write-net-names-on-component to gracefully handle
+;;                case where not every pin has a pinseq attribute.  Now only outputs
+;;                pins with valid pinseq attribute.
+;;  12.25.2003 -- Bugfix:  Unswizzled emission of pins from user-defined .subckts.
+;;                (Now correctly uses pinseq to define emission order of pins.)  Also
+;;                added ability to emit attributes for semiconductors (e.g. area, off,
+;;                ic, etc.)  Added in response to user requests.
+;;  12.29.2003 -- Two small enhancements requested by Peter Kaiser.
+;;  12.29.2003.a -- Minor bugfix.
+;;  12.29.2003.b -- Second minor bugfix.
+;;  12.29.2003.c -- Change res & cap to incorporate modelname & "area=" attrib.
+;;  3.24.2004 -- Bugfixes made to JFET stuff during Feb.  Change released now.
+;;  8.22.2004 -- Added command line as first line of file.
+;;  8.29.2004 -- Changed sense source naming in controlled sources because the old convention
+;;               was confusing ngspice.
+;;  10.9.2004 -- Added patches for voltage controlled switches from Peter Kaiser.
+;;  3.16.2005 -- Fixed CCCS bug (typo in Vsense) noticed by David Logan
+;;  5.16.2005 -- Modified behavior of .INCLUDE directive.  Now by default it just
+;;               spits out the string instead of putting the contents of the file
+;;               into the SPICE netlist.  You can force insertion of the file using
+;;               the -e flag.
+;;  6.12.2005 -- Changed order of writing out netlist and .model/.subckt cards to
+;;               facilitate use of numparam with ngspice.  Change supplied by
+;;               Dominique Michel.
+;;  9.11.2005 -- Incorporated patch from Paul Bunyk to enable netlisting of
+;;               Josephson junctions and "K" mutual inductances.  Also enabled
+;;               netlisting of "COIL" devices as inductors.
+;;  12.27.2005 -- Fix bug discovered by John Doty: spice-IO pins with refdes greater
+;;                than P9 were sorted incorrectly (as strings).  Now they are sorted
+;;                as numbers.
+;;  3.10.2006 -- Added "m" attribute to PMOS and NMOS per request of Peter Kaiser.
+;;  4.11.2006 --  Changed the .END and .ENDS cards to lowercase.
+;;                This fixes bug 1442912. Carlos Nieves Onega.
+;;  2.10.2007 -- Various bugfixes.  Also incorporated slotted part
+;;               netlist patch from Jeff Mallatt.  SDB.
+;;  4.28.2007 -- Fixed slotted part stuff so that it uses pinseq to emit pins.  SDB
+;;  1.9.2008 -- Fix slotted part handling to work without a modified pinseq.  pcjc2
+;;  1.3.2011 -- Combine write-ic and write-subcircuit with a fix to the unbound
+;;              type variable.  Fully document a check for the special "?" value
+;;              explaining why it fails silently.  Clean up
+;;              write-net-names-on-component to make it a bit more flexible.
+;;              Combine write-probe-item and write-net-names-on-component.  Add
+;;              a range utility function.  CC
+;;  1.13.2011 -- Add four lines of code (and some comments) that allow formaitting strings
+;;               to be used for netlisting NGspice device models. CC
+;;  6.12.2011 -- Updated the Problematci name=? symbols to name=unknown and removed the
+;;               FIXME check for them. This should be a step closer to place holder consistancy. CC
+;;  1.13.2011 -- Subcircuits use the value= attribute attached to the spice-subcircuit-LL symbol
+;;               to hold parameters. Dan White
 ;;
 ;;**********************************************************************************
 ;;
@@ -77,6 +142,7 @@
 )))
 
 
+
 ;;--------------------------------------------------------------------------------
 ;; spice-anise:get-file-info-list-item  -- loops through the model-file list looking
 ;;  for triplet corresponding to model-name.  If found, it returns the corresponding
@@ -98,23 +164,6 @@
           )
         )  ;; end of let*
 )))
-
-
-;;--------------------------------------------------------------------------
-;; handle-spice-file:  This wraps insert-text-file.
-;; Calling form: (handle-spice-file file-name)
-;; It looks to see if the -I flag was set at the command line.  If so,
-;; it just writes a .INCLUDE card with the file name.  If not,  it calls
-;; insert-text-file to stick the file's contents into the SPICE netlist.
-;;--------------------------------------------------------------------------
-(define spice-anise:handle-spice-file
-  (lambda (file-name)
-    (debug-spew (string-append "Handling spice model file " file-name "\n"))
-    (if (calling-flag? "include_mode" (gnetlist:get-calling-flags))
-        (display (string-append ".INCLUDE " file-name "\n"))       ;; -I found: just print out .INCLUDE card
-        (spice-anise:insert-text-file file-name)                     ;; -I not found: invoke insert-text-file
-    )  ;; end of if (calling-flag
-))
 
 
 ;;--------------------------------------------------------------------------
@@ -152,6 +201,24 @@
   )
 )
 
+;;--------------------------------------------------------------------------
+;; handle-spice-file:  This wraps insert-text-file.
+;; Calling form: (handle-spice-file file-name)
+;; It looks to see if the -I flag was set at the command line.  If so,
+;; it just writes a .INCLUDE card with the file name.  If not,  it calls
+;; insert-text-file to stick the file's contents into the SPICE netlist.
+;;--------------------------------------------------------------------------
+(define spice-anise:handle-spice-file
+  (lambda (file-name)
+    (debug-spew (string-append "Handling spice model file " file-name "\n"))
+    (if (calling-flag? "include_mode" (gnetlist:get-calling-flags))
+        (display (string-append ".INCLUDE " file-name "\n"))       ;; -I found: just print out .INCLUDE card
+        (begin
+        (message (string-append "calling-flag said no bueno.\n"))
+        (spice-anise:insert-text-file file-name)                     ;; -I not found: invoke insert-text-file
+        )
+    )  ;; end of if (calling-flag
+))
 
 ;;----------------------------------------------------------
 ;; Figure out if this schematic is a .SUBCKT lower level.
@@ -185,6 +252,25 @@
   )
 )
 
+;;----------------------------------------------------------
+;; Get the value= attribute of the spice-subcircuit-LL device.
+;; For holding subcircuit parameters.
+;;---------------------------------------------------------
+(define spice-anise:get-subcircuit-params
+  (lambda (ls)
+      (let* ((package (car ls))
+         (device (get-device package))
+        )
+    (begin
+      (if (string=? device "spice-subcircuit-LL")  ;; look for subcircuit label
+          (let* ((value (gnetlist:get-package-attribute package "value"))
+                     )
+                (if (string=? value "unknown") "" value))
+          (spice-anise:get-subcircuit-params (cdr ls))  ;; otherwise just iterate to next package.
+      )
+    )
+      );let*
+))
 
 ;;-----------------------------------------------------------
 ;;  This iterates through the schematic and compiles a list of
@@ -1142,7 +1228,7 @@
       (debug-spew (string-append "Found SPICE include box.  Refdes = " package "\n"))
 
       (if (not (string=? file "unknown"))
-        (if  (calling-flag? "embedd_mode" (gnetlist:get-calling-flags))
+        (if  (calling-flag? "embed_mode" (gnetlist:get-calling-flags))
               (begin
                 (spice-anise:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
@@ -1458,9 +1544,7 @@
 (define (spice-anise:write-top-header)
   (display "*********************************************************\n")
   (display "* Spice file generated by gnetlist                      *\n")
-  (display "* spice-anise version 4.28.2007 by SDB --                 *\n")
-  (display "* provides advanced spice netlisting capability.        *\n")
-  (display "* Documentation at http://www.brorson.com/gEDA/SPICE/   *\n")
+  (display "* spice-anise version 11.09.2014                        *\n")
   (display "*********************************************************\n")
 )
 
@@ -1471,7 +1555,7 @@
 (define (spice-anise:write-subcircuit-header)
   (display "*******************************\n")
   (display "* Begin .SUBCKT model         *\n")
-  (display "* spice-anise ver 4.28.2007     *\n")
+  (display "* spice-anise ver 11.09.2014  *\n")
   (display "*******************************\n")
 )
 
@@ -1527,7 +1611,7 @@
            (model-name (spice-anise:get-subcircuit-modelname schematic-type))
            (file-info-list (list))
           )
-      (message "Using SPICE backend by SDB -- Version of 4.28.2007\n")
+      (message "Using Anise SPICE backend -- Version of 11.09.2014\n")
       (message (string-append "schematic-type = " schematic-type "\n"))
 
       (if (not (string=? schematic-type "normal schematic"))
@@ -1539,8 +1623,9 @@
             (debug-spew "found .SUBCKT type schematic")
       ;; now write out .SUBCKT header and .SUBCKT line
             (spice-anise:write-subcircuit-header)
-            (let ((io-nets-string (list-2-string io-nets-list)) )
-              (display (string-append schematic-type " " (list-2-string io-nets-list) "\n"))
+            (let ((io-nets-string (list-2-string io-nets-list))
+                  (params (spice-anise:get-subcircuit-params packages)) )
+              (display (string-append schematic-type " " (list-2-string io-nets-list) params"\n"))
             )
           )
 

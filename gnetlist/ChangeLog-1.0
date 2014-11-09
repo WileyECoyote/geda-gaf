@@ -1,5 +1,12 @@
 2014-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-anise.scm: Change embedd_mode to embed_mode, add
+      get-subcircuit-params.
+
+    * scheme/gnet-spice-sdb.scm: Change embedd_mode to embed_mode
+
+2014-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/prototype.h: Fix incomplete function declarations (missing void)
 
     * src/g_netlist.c: Fix incomplete function definitions (missing void)

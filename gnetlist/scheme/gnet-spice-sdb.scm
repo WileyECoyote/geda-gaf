@@ -1205,7 +1205,7 @@
       (debug-spew (string-append "Found SPICE include box.  Refdes = " package "\n"))
 
       (if (not (string=? file "unknown"))
-        (if  (calling-flag? "embedd_mode" (gnetlist:get-calling-flags))
+        (if  (calling-flag? "embed_mode" (gnetlist:get-calling-flags))
               (begin
                 (spice-sdb:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
