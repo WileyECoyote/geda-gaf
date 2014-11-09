@@ -1,4 +1,10 @@
-2014-11-05 Wiley E. Hill <wileyhill@gmail.com>
+2014-11-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/prototype.h: Fix incomplete function declarations (missing void)
+
+    * src/g_netlist.c: Fix incomplete function definitions (missing void)
+
+2014-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice-anise.scm: Add spice backend, is the same spice-sdb.scm,
       for hacking, I mean experiments.

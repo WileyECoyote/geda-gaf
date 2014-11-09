@@ -730,7 +730,7 @@ SCM g_get_toplevel_attribute(SCM scm_wanted_attrib)
  * Otherwise, returns 0.
  */
 SCM
-g_get_verbosity ()
+g_get_verbosity (void)
 {
   if (verbose_mode) {
     return scm_from_int (1);
@@ -748,15 +748,13 @@ g_get_verbosity ()
  * Returns a list of arguments passed to the gnetlist backend via the
  * `-O' gnetlist command-line option.
  */
-SCM
-g_get_backend_arguments()
+SCM g_get_backend_arguments(void)
 {
   SCM result = SCM_EOL;
   GSList *iter;
 
   for (iter = backend_params; iter != NULL; iter = g_slist_next (iter)) {
-    result = scm_cons (scm_from_locale_string ((char *) iter->data),
-                       result);
+    result = scm_cons (scm_from_locale_string ((char *) iter->data), result);
   }
 
   return scm_reverse_x (result, SCM_UNDEFINED);
@@ -769,7 +767,7 @@ g_get_backend_arguments()
  *
  *  \return A list of filenames as strings.
  */
-SCM g_get_input_files()
+SCM g_get_input_files(void)
 {
   SCM list = SCM_EOL;
   GSList *current = input_files;

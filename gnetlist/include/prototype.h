@@ -1,9 +1,9 @@
 /* g_netlist.c */
 void g_set_project_current(GedaToplevel *pr_current);
 //SCM g_scm_c_get_uref(GedaToplevel *toplevel, Object *object);
-SCM g_get_verbosity ();
-SCM g_get_backend_arguments ();
-SCM g_get_input_files();
+SCM g_get_verbosity (void);
+SCM g_get_backend_arguments (void);
+SCM g_get_input_files(void);
 SCM g_get_packages(SCM level);
 SCM g_get_non_unique_packages(SCM level);
 SCM g_get_pins(SCM uref);
@@ -17,6 +17,7 @@ SCM g_get_attribute_by_pinseq(SCM scm_uref, SCM scm_pinseq, SCM scm_wanted_attri
 SCM g_get_attribute_by_pinnumber(SCM scm_uref, SCM scm_pin, SCM scm_wanted_attrib);
 SCM g_get_toplevel_attribute(SCM scm_wanted_attrib);
 SCM g_graphical_objs_in_net_with_attrib_get_attrib(SCM scm_netname, SCM scm_has_attribute, SCM scm_wanted_attribute);
+
 /* g_rc.c */
 SCM g_rc_gnetlist_version(SCM version);
 SCM g_rc_net_naming_priority(SCM mode);
@@ -32,39 +33,45 @@ SCM g_rc_hierarchy_netname_order(SCM mode);
 SCM g_rc_hierarchy_uref_order(SCM mode);
 SCM g_rc_unnamed_netname(SCM name);
 SCM g_rc_unnamed_busname(SCM name);
+
 /* g_register.c */
 void g_register_funcs(void);
-SCM g_quit(void);
+SCM  g_quit(void);
+
 /* globals.c */
 /* gnetlist.c */
 void gnetlist_quit(void);
 void main_prog(void *closure, int argc, char *argv[]);
-int main(int argc, char *argv[]);
+int  main(int argc, char *argv[]);
+
 /* i_vars.c */
 void i_vars_set(GedaToplevel *pr_current);
 void i_vars_init_gnetlist_defaults (void);
+
 /* parsecmd.c */
-void usage(char *cmd);
+void    usage(char *cmd);
 GSList *create_input_files_list(int argi, int argc, char *argv[]);
-int parse_commandline(int argc, char *argv[]);
+int     parse_commandline(int argc, char *argv[]);
+
 /* s_cpinlist.c */
 CPINLIST *s_cpinlist_return_tail(CPINLIST *head);
 CPINLIST *s_cpinlist_return_head(CPINLIST *tail);
 CPINLIST *s_cpinlist_add(CPINLIST *ptr);
-void s_cpinlist_print(CPINLIST *ptr);
+void      s_cpinlist_print(CPINLIST *ptr);
 CPINLIST *s_cpinlist_search_pin(CPINLIST *ptr, char *pin_number);
+
 /* s_hierarchy.c */
-void s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current, NETLIST *netlist);
-void s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head);
-int s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref, char *label, char *new_name);
-void s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable);
-void s_hierarchy_remove_compsite_all(NETLIST *head);
+void  s_hierarchy_traverse(GedaToplevel *pr_current, Object *o_current, NETLIST *netlist);
+void  s_hierarchy_post_process(GedaToplevel *pr_current, NETLIST *head);
+int   s_hierarchy_setup_rename(GedaToplevel *pr_current, NETLIST *head, char *uref, char *label, char *new_name);
+void  s_hierarchy_remove_urefconn(NETLIST *head, char *uref_disable);
+void  s_hierarchy_remove_compsite_all(NETLIST *head);
 char *s_hierarchy_create_uref(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
 char *s_hierarchy_create_netname(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
 char *s_hierarchy_create_netattrib(GedaToplevel *pr_current, char *basename, char *hierarchy_tag);
-void s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head);
+void  s_hierarchy_remove_uref_mangling(GedaToplevel *pr_current, NETLIST *head);
 char *s_hierarchy_return_baseuref(GedaToplevel *pr_current, char *uref);
-int s_hierarchy_graphical_search(Object* o_current, int count);
+int   s_hierarchy_graphical_search(Object* o_current, int count);
 
 /* s_misc.c */
 void verbose_print(char *string);
