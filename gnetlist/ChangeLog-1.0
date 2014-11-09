@@ -1,5 +1,10 @@
 2014-11-05 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-spice-anise.scm: Add spice backend, is the same spice-sdb.scm,
+      for hacking, I mean experiments.
+
+2014-11-05 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnet-gsch2pcb.scm.in: In function gsch2pcb:open-io-pipe, there is
       no ensure-batch-mode.
 
