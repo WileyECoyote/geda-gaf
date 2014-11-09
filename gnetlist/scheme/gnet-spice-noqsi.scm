@@ -1,6 +1,6 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist back end for SPICE
-;;; Copyright (C) 2012, 2013 John P. Doty
+;;; Copyright (C) 2012-2014 John P. Doty
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -14,8 +14,8 @@
 ;;;
 ;;; You should have received a copy of the GNU General Public License
 ;;; along with this program; if not, write to the Free Software
-;;; Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-
+;;; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+;;; MA 02111-1301 USA.
 
 
 ;; Essentially, this back end works by collecting lists of output "cards"
@@ -76,7 +76,7 @@
 (define (process-toplevel attr)
     (let ((t (gnetlist:get-toplevel-attribute attr)))
     	(or
-	    (equal? t "not found") 
+	    (equal? t "not found")
 	    (collect-card (expand-string #f t)))))
 
 
@@ -86,7 +86,7 @@
 
 (define (process-part refdes)
     (let ((proto (gnetlist:get-package-attribute refdes "spice-prototype")))
-        (if (equal? proto "unknown") 
+        (if (equal? proto "unknown")
             (set! proto (lookup-proto refdes)))
 	(collect-card (expand-string refdes proto))))
 
@@ -94,7 +94,7 @@
 ;; Put the "card" in the right place
 
 (define (collect-card card)
-    (if (string-prefix-ci? ".subckt" card) 
+    (if (string-prefix-ci? ".subckt" card)
         (subckt card)
         (set! cards (cons card cards))))
 
@@ -104,8 +104,8 @@
 ;; device.
 
 (define (lookup-proto refdes)
-    (or 
-        (hash-ref prototypes 
+    (or
+        (hash-ref prototypes
             (gnetlist:get-package-attribute refdes "device"))
         (hash-ref prototypes "unknown")))
 
@@ -115,12 +115,12 @@
 (define (subckt card)
     (if subcircuit
         (begin
-            (format (current-error-port) 
+            (format (current-error-port)
                 "More than one .subckt card generated!\n")
             (set! error-count (1+ error-count)))
         (set! subcircuit card)))
 
-     
+
 ;; This variable will hold the .subckt card if given.
 
 (define subcircuit #f)
@@ -148,7 +148,7 @@
     (apply format (append (list (current-error-port)) args))
     (set! error-count (1+ error-count))
     "")
-    
+
 
 ;; Get a list of numbers 1..n
 ;; Why isn't this basic function in Guile?
@@ -163,12 +163,12 @@
 (define (get-net-by-pinseq refdes n)
     (let* (
         (pinseq (number->string n))
-        (pinnumber (gnetlist:get-attribute-by-pinseq 
+        (pinnumber (gnetlist:get-attribute-by-pinseq
             refdes pinseq "pinnumber")))
 
-        (if (equal? pinnumber "unknown") 
+        (if (equal? pinnumber "unknown")
             (error-report "pinseq=~A not found for refdes=~A
-This may indicate an erroneously duplicated refdes.\n" 
+This may indicate an erroneously duplicated refdes.\n"
 		pinseq refdes)
             (get-net refdes pinnumber))))
 
@@ -182,7 +182,7 @@ This may indicate an erroneously duplicated refdes.\n"
         (if (equal? "ERROR_INVALID_PIN" net)
             (error-report "pinnumber=~A not found for refdes=~A\n" pin refdes)
             net)))
-            
+
 
 ;; Expand a string in context of a particular refdes
 ;; This is how we convert symbol data and connections into
@@ -197,13 +197,13 @@ This may indicate an erroneously duplicated refdes.\n"
 ;; Split string into whitespace and ink.
 
 (define (parse-fields s)
-    (let ((i (or 
+    (let ((i (or
         (field-skip s char-set:whitespace)
-        (field-skip s 
+        (field-skip s
             (char-set-complement char-set:whitespace)))))
 
-        (if i    
-            (append 
+        (if i
+            (append
                 (list (string-take s i))
                 (parse-fields (string-drop s i)))
             (list s))))
@@ -216,14 +216,14 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (field-skip s cs)
     (let ((i (string-skip s cs)))
-    
-    (if i 
-        (if (zero? i) 
-            #f 
+
+    (if i
+        (if (zero? i)
+            #f
             i)
         #f)))
 
-  
+
 ;; Magic characters for field expansion.
 
 (define magic (string->char-set "?#=@%"))
@@ -234,7 +234,7 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (check-field refdes field)
     (let ((i (string-index field magic)))
-        (if i 
+        (if i
             (expand-field refdes
                 (string-take field i)
                 (substring field i (+ i 1))
@@ -258,8 +258,8 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (expand-refdes refdes left right)
     (string-append
-        (if (string-prefix-ci? left refdes) 
-            refdes 
+        (if (string-prefix-ci? left refdes)
+            refdes
             (get-munged left refdes))
         right))
 
@@ -283,10 +283,10 @@ This may indicate an erroneously duplicated refdes.\n"
 
 
 ;; Get the munged version of refdes
-;; 
+;;
 
 (define (get-munged prefix refdes)
-    (or 
+    (or
         (hash-ref munges (list prefix refdes))
         (make-munged prefix refdes (string-append prefix refdes))))
 
@@ -327,8 +327,8 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (all-spice-io)
     (string-join
-        (map pin-1 
-	    (sort-spice-io (spice-io-pins))) 
+        (map pin-1
+	    (sort-spice-io (spice-io-pins)))
 	" "))
 
 
@@ -342,27 +342,27 @@ This may indicate an erroneously duplicated refdes.\n"
 
 ;; Make a list of (number . refdes) pairs
 
-(define (number-packages lp) 
+(define (number-packages lp)
     (map (lambda (p) (cons (numeric->number p)  p)) lp))
 
-;; Sort a list of refdes by their numeric parts  
+;; Sort a list of refdes by their numeric parts
 
 (define (sort-spice-io p)
-    (map cdr (sort (number-packages p) 
+    (map cdr (sort (number-packages p)
        (lambda (p1 p2) (< (car p1) (car p2))))))
 
 ;; find SPICE subcircuit IO pin symbols
 
 (define (spice-io-pins)
     (filter
-    	(lambda (p) 
-	    (equal? "spice-IO" 
+    	(lambda (p)
+	    (equal? "spice-IO"
 	        (gnetlist:get-package-attribute p "device"))) packages ))
 
 ;; get all net connections in pinseq order
 
 (define (all-by-pinseq refdes)
-    (or (slot-problem? refdes (string->number 
+    (or (slot-problem? refdes (string->number
         (gnetlist:get-package-attribute refdes "numslots")))
         (string-join
             (map
@@ -376,11 +376,11 @@ This may indicate an erroneously duplicated refdes.\n"
 (define (slot-problem? refdes numslots)
     (if (and numslots (positive? numslots))
         (error-report
-"~A uses slotting. You must list its connections by pinnumber,\n  not pinseq.\n" 
+"~A uses slotting. You must list its connections by pinnumber,\n  not pinseq.\n"
                 refdes)
        #f))
-       
-            
+
+
 ;; Expand attribute. Result is name=value.
 ;; Empty string if it doesn't exist, and no default given.
 
@@ -407,21 +407,21 @@ This may indicate an erroneously duplicated refdes.\n"
     (if refdes
         (gnetlist:get-package-attribute refdes name)
 	(gnetlist:get-toplevel-attribute name)))
-	
+
 
 ;; List input/output symbols in lexical order
 
 (define (all-up)
     (string-join
-        (map pin-1 
-	    (sort (io-pins) string<?)) 
+        (map pin-1
+	    (sort (io-pins) string<?))
 	" "))
 
 
 ;; Track down input/output symbols
 
 (define (io-pins)
-    (filter 
+    (filter
         (lambda (p) (let ((device (gnetlist:get-package-attribute p "device")))
 	    (or
 	    	(equal? "INPUT" device)
@@ -451,9 +451,9 @@ This may indicate an erroneously duplicated refdes.\n"
 ;; list pinlabels and pins
 
 (define (labels-pins refdes)
-    (map 
-        (lambda (p) 
-	    (cons 
+    (map
+        (lambda (p)
+	    (cons
 	        (gnetlist:get-attribute-by-pinnumber refdes p "pinlabel")
 		p ))
 	(gnetlist:get-pins refdes)))
@@ -466,7 +466,7 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (spice-device device proto) (hash-set! prototypes device proto))
 
-;; Standard prototypes. Most of these are intended to be similar to the 
+;; Standard prototypes. Most of these are intended to be similar to the
 ;; hard-wired behavior of spice-sdb.
 
 (spice-device "unknown" "? %pinseq value@ model-name@ spice-args@")
@@ -498,16 +498,16 @@ This may indicate an erroneously duplicated refdes.\n"
 (spice-device "VOLTAGE_SOURCE" "V? %pinseq value@")
 (spice-device "INPUT" "*")
 (spice-device "OUTPUT" "*")
-(spice-device 
+(spice-device
     "CAPACITOR" "C? %pinseq value@ model-name@ spice-args@ l= w= area= ic=")
 (spice-device "DIODE" "D? %pinseq model-name@ spice-args@ area= ic= temp=")
-(spice-device "NMOS_TRANSISTOR" 
+(spice-device "NMOS_TRANSISTOR"
     "M? %pinseq model-name@ spice-args@ l= w= as= ad= pd= ps= nrd= nrs= temp= ic= m=")
-(spice-device "PMOS_TRANSISTOR" 
+(spice-device "PMOS_TRANSISTOR"
     "M? %pinseq model-name@ spice-args@ l= w= as= ad= pd= ps= nrd= nrs= temp= ic= m=")
-(spice-device "RESISTOR" 
+(spice-device "RESISTOR"
     "R? %pinseq value@ model-name@ spice-args@ w= l= area= temp=")
-(spice-device "DUAL_OPAMP" 
+(spice-device "DUAL_OPAMP"
     "X1? #3 #2 #8 #4 #1 model-name@\nX2? #5 #6 #8 #4 #7 model-name@")
 (spice-device "QUAD_OPAMP"
     "X1? #3 #2 #11 #4 #1 model-name@
