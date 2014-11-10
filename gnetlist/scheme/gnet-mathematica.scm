@@ -1,6 +1,6 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
-;;; Copyright (C) 2007-2010 John P. Doty
+;;; Copyright (C) 2007-2014 John P. Doty
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -48,7 +48,7 @@
   (if (not (null? netnames))
       (let ((netname (car netnames)))
          (mathematica:write-pin-voltages netname
-            (gnetlist:get-all-connections netname))
+            (get-all-connections netname))
          (mathematica:write-voltages (cdr netnames)))))
 
 
@@ -83,7 +83,7 @@
                   (mathematica:,newline)
                 )
                (mathematica:write-node-currents
-                  (gnetlist:get-all-connections netname))
+                  (get-all-connections netname))
                (display "==0")
                (mathematica:write-currents (cdr netnames) #f)
              )
@@ -111,9 +111,9 @@
 
 
 (define (mathematica:write-model refdes)
-   (let ((device (gnetlist:get-package-attribute refdes "device"))
-         (value (gnetlist:get-package-attribute refdes "value"))
-         (model (gnetlist:get-package-attribute refdes "model")))
+   (let ((device (get-package-attribute refdes "device"))
+         (value (get-package-attribute refdes "value"))
+         (model (get-package-attribute refdes "model")))
       (if (equal? model "unknown")
          (if (equal? value "unknown")
             (mathematica:write-device-value device (string-downcase refdes)
@@ -176,7 +176,7 @@
    (if (not (null? netnames))
       (let ((netname (car netnames)))
          (mathematica:list-pin-currents
-            (gnetlist:get-all-connections netname))
+            (get-all-connections netname))
          (mathematica:list-currents (cdr netnames))
       )
    )
@@ -184,8 +184,8 @@
 
 
 (define (mathematica output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
-  (let ((nets (gnetlist:get-all-unique-nets "dummy")))
+  (set-current-output-port (output-port output-filename))
+  (let ((nets netlist:all-unique-nets))
      (mathematica:write-voltages nets)
      (display "nodeEquations={")
      (newline)
@@ -194,7 +194,7 @@
      (newline)
      (display "modelEquations={")
      (newline)
-     (mathematica:write-models packages #t)
+     (mathematica:write-models netlist:packages #t)
      (display "};")
      (newline)
      (display "variables={")

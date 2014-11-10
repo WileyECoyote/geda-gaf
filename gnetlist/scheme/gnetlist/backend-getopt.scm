@@ -69,7 +69,7 @@ following table lists the possible properties:
         returns a boolean value.
 
 Normally, you will want to pass the result of calling
-`gnetlist:get-backend-arguments' as the ARGS parameter.
+`get-backend-arguments' as the ARGS parameter.
 
 If `backend-getopt' finds a problem with ARGS, it raises an error with
 the key `option-error'."

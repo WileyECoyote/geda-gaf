@@ -41,24 +41,23 @@
           (open-input-file filename)
           (if (backend-option-ref options 'attribs) #f
               (begin
-                (format (current-error-port)
-"ERROR: Attribute file '~A' not found. You must do one of the following:\n"
-"         - Create an 'attribs' file\n"
-"         - Specify an attribute file using -Oattrib_file=<filename>\n"
-"         - Specify which attributes to include using -Oattribs=attrib1,attrib2,... (no spaces)\n"
+                (format #t
+"ERROR: Attribute file '~A' not found. You must do one of the following: ~%
+         - Create an 'attribs' file ~%
+         - Specify an attribute file using -Oattrib_file=<filename> ~%
+         - Specify which attributes to include using -Oattribs=attrib1,attrib2,... (no spaces) ~%"
 filename)
                 (primitive-exit 1)))))))
 
 (define bom
   (lambda (output-filename)
-    (let* ((options (backend-getopt
-                     (gnetlist:get-backend-arguments)
+    (let* ((options (backend-getopt (get-backend-arguments)
                      '((attrib_file (value #t)) (attribs (value #t)))))
            (attriblist (bom:parseconfig (bom:open-input-file options) options)))
-      (set-current-output-port (gnetlist:output-port output-filename))
+      (set-current-output-port (output-port output-filename))
       (and attriblist
            (begin (bom:printlist (cons 'refdes attriblist))
-                  (bom:components packages attriblist)
+                  (bom:components netlist:packages attriblist)
                   ))
       (close-output-port (current-output-port)))))
 
@@ -89,7 +88,7 @@ filename)
   (lambda (ls attriblist)
     (if (not (null? ls))
         (let ((package (car ls)))
-          (if (not (string=? "1" (gnetlist:get-package-attribute package "nobom")))
+          (if (not (string=? "1" (get-package-attribute package "nobom")))
               (begin
                 (display package)
                 (write-char #\tab)
@@ -100,7 +99,7 @@ filename)
   (lambda (package attriblist)
     (if (null? attriblist)
         '()
-        (cons (gnetlist:get-package-attribute package (car attriblist))
+        (cons (get-package-attribute package (car attriblist))
               (bom:find-attribs package (cdr attriblist))))))
 
 ;;

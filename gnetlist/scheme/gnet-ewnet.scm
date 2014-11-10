@@ -1,7 +1,7 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
 ;;; Ultiboard (ewnet) backend
-;;; Copyright (C) 2011 Dan McMahill
+;;; Copyright (C) 2011-2014 Dan McMahill
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -95,7 +95,7 @@
             ;; net
             (display "\t\t\t(net \"")
             (display
-             (gnetlist:alias-net (car (gnetlist:get-nets package pin))))
+             (netlist:alias-net (car (get-nets package pin))))
             (display "\")\n")
 
             ;; pin type.  I have seen "PWR", "GND", "IN", "OUT", "BIDIR"
@@ -132,11 +132,11 @@
       (if (not (null? packages))
          (begin
             (let (
-                  (device (gnetlist:get-package-attribute (car packages)
+                  (device (get-package-attribute (car packages)
                                                            "device"))
-                  (pattern (gnetlist:get-package-attribute (car packages)
+                  (pattern (get-package-attribute (car packages)
                                                            "pattern"))
-                  (value (gnetlist:get-package-attribute (car packages)
+                  (value (get-package-attribute (car packages)
                                                            "value"))
             ;; The above pattern should stay as "pattern" and not "footprint"
                   (package (car packages)))
@@ -145,12 +145,12 @@
               (display "\t(instance \"")
 
               ;; write the footprint
-              (display (gnetlist:get-package-attribute package
+              (display (get-package-attribute package
                                                        "footprint"))
               (display "\" \"")
 
               ;; write the reference designator
-              (display (gnetlist:alias-refdes package))
+              (display (netlist:alias-refdes package))
               (display "\"\n")
 
 
@@ -198,7 +198,7 @@
       (if (not (null? netnames))
          (let (
                (netname (car netnames))
-               (alias (gnetlist:alias-net (car netnames)))
+               (alias (netlist:alias-net (car netnames)))
                )
            (display "\t( net \"")
            (display alias)
@@ -271,14 +271,14 @@
     (message "windows based layout tools\n")
     (message "---------------------------------\n\n")
 
-    (set-current-output-port (gnetlist:output-port output-filename))
-    (let ((all-nets (gnetlist:get-all-unique-nets "dummy")))
+    (set-current-output-port (output-port output-filename))
+    (let ((all-nets netlist:all-unique-nets))
 
       ;; initialize the net-name aliasing
-      (gnetlist:build-net-aliases ewnet:map-net-names all-unique-nets)
+      (netlist:build-net-aliases ewnet:map-net-names netlist:all-unique-nets)
 
       ;; initialize the refdes aliasing
-      (gnetlist:build-refdes-aliases ewnet:map-refdes packages)
+      (netlist:build-refdes-aliases ewnet:map-refdes netlist:packages)
 
       ;; write the header
       (ewnet:write-header)
@@ -290,7 +290,7 @@
 
       ;; write the components
       (display "(components\n")
-      (ewnet:components packages)
+      (ewnet:components netlist:packages)
       (display ")\n")
 
       ;; write the board layers

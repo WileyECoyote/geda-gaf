@@ -43,11 +43,11 @@
       (let ((netname (car netnames)))
 	(display netname)
 	(display "\t")
-	(display (gnetlist:wrap (PCB:display-connections (gnetlist:get-all-connections netname)) 200 " \\"))
+	(display (wrap (PCB:display-connections (get-all-connections netname)) 200 " \\"))
 	(PCB:write-net (cdr netnames)))))
 
 
 (define (PCB output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
-  (PCB:write-net (gnetlist:get-all-unique-nets "dummy"))
+  (set-current-output-port (output-port output-filename))
+  (PCB:write-net netlist:all-unique-nets)
   (close-output-port (current-output-port)))

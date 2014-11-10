@@ -32,8 +32,8 @@
   (newline))
 
 (define (partslist1 output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
-  (let ((parts-table (marge-sort-with-multikey (get-parts-table packages) '(0 1 2 3))))
+  (set-current-output-port (output-port output-filename))
+  (let ((parts-table (marge-sort-with-multikey (get-parts-table netlist:packages) '(0 1 2 3))))
     (partslist1:write-top-header)
     (partslist1:write-partslist parts-table)
     (partslist1:write-bottom-footer))

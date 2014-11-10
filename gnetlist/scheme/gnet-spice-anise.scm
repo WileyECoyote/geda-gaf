@@ -211,12 +211,9 @@
 (define spice-anise:handle-spice-file
   (lambda (file-name)
     (debug-spew (string-append "Handling spice model file " file-name "\n"))
-    (if (calling-flag? "include_mode" (gnetlist:get-calling-flags))
+    (if (calling-flag? "include_mode" (get-calling-flags))
         (display (string-append ".INCLUDE " file-name "\n"))       ;; -I found: just print out .INCLUDE card
-        (begin
-        (message (string-append "calling-flag said no bueno.\n"))
         (spice-anise:insert-text-file file-name)                     ;; -I not found: invoke insert-text-file
-        )
     )  ;; end of if (calling-flag
 ))
 
@@ -233,7 +230,7 @@
              (device (get-device package))  ;; assign device.
             )                               ;; end of let* assignments
         (if (string=? device "spice-subcircuit-LL")  ;; look for subcircuit label
-              (string-append ".SUBCKT " (gnetlist:get-package-attribute package "model-name"))
+              (string-append ".SUBCKT " (get-package-attribute package "model-name"))
               (spice-anise:get-schematic-type (cdr ls))  ;; otherwise just iterate to next package.
         )
       )    ; end of let*
@@ -263,7 +260,7 @@
         )
     (begin
       (if (string=? device "spice-subcircuit-LL")  ;; look for subcircuit label
-          (let* ((value (gnetlist:get-package-attribute package "value"))
+          (let* ((value (get-package-attribute package "value"))
                      )
                 (if (string=? value "unknown") "" value))
           (spice-anise:get-subcircuit-params (cdr ls))  ;; otherwise just iterate to next package.
@@ -339,7 +336,7 @@
         net-list        ;; end iteration & return net-list if ls is empty.
 
         (let* ((package (car package-list))                  ;; otherwise process package. . .
-               (net (car (gnetlist:get-nets package "1")))   ;; get the net attached to pin 1
+               (net (car (get-nets package "1")))   ;; get the net attached to pin 1
               )
          ;; now iterate
           (spice-anise:get-IO-nets (cdr package-list) (cons net net-list))
@@ -465,7 +462,7 @@
 (define spice-anise:write-prefix
     (lambda (package prefix)
       (let ((different-prefix (not (string=? (substring package 0 1) prefix)) )
-            (nomunge (calling-flag? "nomunge_mode" (gnetlist:get-calling-flags)) )
+            (nomunge (calling-flag? "nomunge_mode" (get-calling-flags)) )
            )
         (debug-spew (string-append "Checking prefix.  Package prefix =" (substring package 0 1) "\n"))
         (debug-spew (string-append "                  correct prefix =" prefix "\n"))
@@ -519,7 +516,7 @@
 ;;   Returns #t or #f depending upon if -s was discovered in
 ;;   the calling flags given to gnetlist.   Used in conjunction with
 ;;   spice-anise:packsort.
-;;   Calling form: (spice-anise:sort-refdes? (gnetlist:get-calling-flags))
+;;   Calling form: (spice-anise:sort-refdes? (get-calling-flags))
 ;;   9.1.2003 -- SDB.
 ;;---------------------------------------------------------------
 ;;  Note:  I should re-write this to use calling-flag? . . . .
@@ -572,12 +569,12 @@
   (lambda (package prefix type attrib-list)
 
     ;; First do local assignments
-    (let ((model-name (gnetlist:get-package-attribute package "model-name"))
-          (model (gnetlist:get-package-attribute package "model"))
-          (value (gnetlist:get-package-attribute package "value"))
-          (area (gnetlist:get-package-attribute package "area"))
-          (off (gnetlist:get-package-attribute package "off"))
-          (model-file (gnetlist:get-package-attribute package "file"))
+    (let ((model-name (get-package-attribute package "model-name"))
+          (model (get-package-attribute package "model"))
+          (value (get-package-attribute package "value"))
+          (area (get-package-attribute package "area"))
+          (off (get-package-attribute package "off"))
+          (model-file (get-package-attribute package "file"))
          )   ;; end of local assignments
 
    ;; Write out the refdes prefix, if specified and necessary.
@@ -675,11 +672,11 @@
 
     ;; First do local assignments
     (let ((first-char (string (string-ref package 0)))  ;; extract first char of refdes
-          (model-name (gnetlist:get-package-attribute package "model-name"))
-          (model (gnetlist:get-package-attribute package "model"))
-          (value (gnetlist:get-package-attribute package "value"))
-          (type  (gnetlist:get-package-attribute package "type"))
-          (model-file (gnetlist:get-package-attribute package "file"))
+          (model-name (get-package-attribute package "model-name"))
+          (model (get-package-attribute package "model"))
+          (value (get-package-attribute package "value"))
+          (type  (get-package-attribute package "type"))
+          (model-file (get-package-attribute package "file"))
           (list-item (list))
          )   ;; end of local assignments
 
@@ -875,13 +872,13 @@
     (spice-anise:write-component-no-value package)
 
     ;; next write out mandatory resistor value if it exists.
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
         (if (not (string=? value "unknown"))
                 (display (string-append value " " )))
     )
 
     ;; next write our model name if it exists
-    (let* ((model-name (gnetlist:get-package-attribute package "model-name")))
+    (let* ((model-name (get-package-attribute package "model-name")))
         (if (not (string=? model-name "unknown"))
                 (display (string-append model-name " " )))
     )
@@ -913,14 +910,14 @@
 
     ;; next write capacitor value, if any.  Note that if the
     ;; component value is not assigned nothing will be written out.
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
         (if (not (string=? value "unknown"))
                 (display (string-append value " " )))
     )
 
     ;; next write capacitor model name, if any.  This is applicable to
     ;; semiconductor caps used in chip design.
-    (let ((model-name (gnetlist:get-package-attribute package "model-name")))
+    (let ((model-name (get-package-attribute package "model-name")))
         (if (not (string=? model-name "unknown"))
                 (display (string-append model-name " " )))
     )
@@ -952,7 +949,7 @@
 
     ;; next write inductor value, if any.  Note that if the
     ;; component value is not assigned, then it will write "unknown"
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
                 (display value)
     )
 
@@ -982,7 +979,7 @@
 
             ;; next write voltage value, if any.  Note that if the
             ;; voltage value is not assigned, then it will write "unknown"
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
                 (display value)
     )
 
@@ -1005,7 +1002,7 @@
 
             ;; next write current value, if any.  Note that if the
             ;; current value is not assigned, then it will write "unknown"
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
                 (display value)
     )
 
@@ -1030,7 +1027,7 @@
     (display (string-append package " "))
 
     ;; next write JJ model name, if any.
-    (let ((model-name (gnetlist:get-package-attribute package "model-name")))
+    (let ((model-name (get-package-attribute package "model-name")))
         (if (not (string=? model-name "unknown"))
                 (display (string-append model-name " " )))
     )
@@ -1059,8 +1056,8 @@
     (spice-anise:write-component-no-value package)
 
     ;; next two inductor names and value
-    (let ((inductors (gnetlist:get-package-attribute package "inductors"))
-          (value (gnetlist:get-package-attribute package "value")) )
+    (let ((inductors (get-package-attribute package "inductors"))
+          (value (get-package-attribute package "value")) )
         (if (not (string=? inductors "unknown"))
                 (display (string-append inductors " " )))
         (if (not (string=? value "unknown"))
@@ -1078,7 +1075,7 @@
 ;;----------------------------------------------------------------------------
 (define (spice-anise:write-probe package)
     ;; fetch only one attr we care about, so far
-    (let ((value (gnetlist:get-package-attribute package "value"))
+    (let ((value (get-package-attribute package "value"))
          ) ;; end of local assignments
 
     (debug-spew (string-append "Found Probe item, refdes = " package "\n"))
@@ -1137,7 +1134,7 @@
     (let ((netnames (filter-map get-net-name (range 1 (length (gnetlist:get-pins refdes)))))
          )  ;; let
       (if (null? format) ;; Format agument take priority, otherwise use attribute
-        (set! format (gnetlist:get-package-attribute refdes "net-format"))
+        (set! format (get-package-attribute refdes "net-format"))
         (set! format (car format)) )
       (if (string=? format "unknown")
         (display (string-join netnames " " 'suffix))               ;; write out nets.
@@ -1166,7 +1163,7 @@
 ;;------------------------------------------------------------
 (define spice-anise:component-optional-value
   (lambda (package)
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
       (if (not (string=? value "unknown"))
         (string-append value " ")
         ""))))
@@ -1177,7 +1174,7 @@
 ;;-----------------------------------------------------------
 (define spice-anise:component-model
   (lambda (package)
-    (let ((model (gnetlist:get-package-attribute package "model")))
+    (let ((model (get-package-attribute package "model")))
       (if (not (string=? model "unknown"))
         model spice:component-value))))
 
@@ -1188,8 +1185,8 @@
 (define spice-anise:write-directive
   (lambda (package)
              ;; Collect variables used in creating spice code
-        (let ((value (gnetlist:get-package-attribute package "value"))
-              (file (gnetlist:get-package-attribute package "file"))
+        (let ((value (get-package-attribute package "value"))
+              (file (get-package-attribute package "file"))
              )   ;; end of local assignments
 
           (debug-spew (string-append "Found SPICE directive box.  Refdes = " package "\n"))
@@ -1223,12 +1220,12 @@
 ;;----------------------------------------------------------
 (define spice-anise:write-include
   (lambda (package)
-    (let ((file (gnetlist:get-package-attribute package "file")))
+    (let ((file (get-package-attribute package "file")))
 
       (debug-spew (string-append "Found SPICE include box.  Refdes = " package "\n"))
 
       (if (not (string=? file "unknown"))
-        (if  (calling-flag? "embed_mode" (gnetlist:get-calling-flags))
+        (if  (calling-flag? "embed_mode" (get-calling-flags))
               (begin
                 (spice-anise:insert-text-file file)                 ;; -e found: invoke insert-text-file
                 (debug-spew (string-append "embedding contents of file " file " into netlist.\n")))
@@ -1268,10 +1265,10 @@
 (define spice-anise:write-model
   (lambda (package)
              ;; Collect variables used in creating spice code
-        (let ((model-name (gnetlist:get-package-attribute package "model-name"))
-              (model-file (gnetlist:get-package-attribute package "file"))
-              (model (gnetlist:get-package-attribute package "model"))
-              (type (gnetlist:get-package-attribute package "type"))
+        (let ((model-name (get-package-attribute package "model-name"))
+              (model-file (get-package-attribute package "file"))
+              (model (get-package-attribute package "model"))
+              (type (get-package-attribute package "type"))
              )   ;; end of local assignments
 
           (debug-spew (string-append "Found .MODEL box.  Refdes = " package "\n"))
@@ -1466,9 +1463,9 @@
               )                                 ;; end of let* assignments
 
           (set! device (get-device package) )
-          (set! model (gnetlist:get-package-attribute package "model-name") )
-          (set! value (gnetlist:get-package-attribute package "value") )
-          (set! model-file (gnetlist:get-package-attribute package "file") )
+          (set! model (get-package-attribute package "model-name") )
+          (set! value (get-package-attribute package "value") )
+          (set! model-file (get-package-attribute package "file") )
 
           ;; Now run a series of checks to see if we should stick this file into the file-info-list
           ;; Check to see if "file" attribute is non-empty
@@ -1606,8 +1603,8 @@
 ;; First find out if this is a .SUBCKT lower level,
 ;; or if it is a regular schematic.
 ;;
-    (set-current-output-port (gnetlist:output-port output-filename))
-    (let* ((schematic-type (spice-anise:get-schematic-type packages))
+    (set-current-output-port (output-port output-filename))
+    (let* ((schematic-type (spice-anise:get-schematic-type netlist:packages))
            (model-name (spice-anise:get-subcircuit-modelname schematic-type))
            (file-info-list (list))
           )
@@ -1616,7 +1613,7 @@
 
       (if (not (string=? schematic-type "normal schematic"))
       ;; we have found a .SUBCKT type schematic.
-          (let* ((io-pin-packages (spice-anise:get-spice-IO-pins packages (list) ))
+          (let* ((io-pin-packages (spice-anise:get-spice-IO-pins netlist:packages (list) ))
                  (io-pin-packages-ordered (spice-anise:sort-spice-IO-pins io-pin-packages))
                  (io-nets-list (spice-anise:get-IO-nets io-pin-packages-ordered (list) ))
                 )
@@ -1624,7 +1621,7 @@
       ;; now write out .SUBCKT header and .SUBCKT line
             (spice-anise:write-subcircuit-header)
             (let ((io-nets-string (list-2-string io-nets-list))
-                  (params (spice-anise:get-subcircuit-params packages)) )
+                  (params (spice-anise:get-subcircuit-params netlist:packages)) )
               (display (string-append schematic-type " " (list-2-string io-nets-list) params"\n"))
             )
           )
@@ -1632,7 +1629,7 @@
       ;; Otherwise it's a regular schematic.  Write out command line followed by comments in file header.
           (begin
             (debug-spew "found normal type schematic")
-            (display (string-append "* " (gnetlist:get-command-line) "\n"))
+            (display (string-append "* " (get-command-line) "\n"))
             (spice-anise:write-top-header)
           )
 
@@ -1646,7 +1643,7 @@
 ;; geda-dev which is the genesis of this section.
 ;;
       (debug-spew "\nMake first pass through design and create list of all model files referenced.\n")
-      (set! file-info-list (spice-anise:create-file-info-list packages file-info-list))
+      (set! file-info-list (spice-anise:create-file-info-list netlist:packages file-info-list))
       (debug-spew "Done creating file-info-list.\n\n")
 
 
@@ -1671,9 +1668,9 @@
 ;;
       (debug-spew "Make second pass through design and write out a SPICE card for each component found.\n")
       (display (string-append "*==============  Begin SPICE netlist of main design ============\n"))
-      (if (spice-anise:sort-refdes? (gnetlist:get-calling-flags))
-          (spice-anise:write-netlist file-info-list (sort packages spice-anise:packsort))  ;; sort on refdes
-          (spice-anise:write-netlist file-info-list packages)                            ;; don't sort.
+      (if (spice-anise:sort-refdes? (get-calling-flags))
+          (spice-anise:write-netlist file-info-list (sort netlist:packages spice-anise:packsort))  ;; sort on refdes
+          (spice-anise:write-netlist file-info-list netlist:packages)                            ;; don't sort.
       )
       (debug-spew "Done writing SPICE cards . . .\n\n")
 
@@ -1687,12 +1684,12 @@
             (spice-anise:write-bottom-footer (string-append ".ends " model-name))
             (display "*******************************\n")
           )
-          (if (not (calling-flag? "no_end_card" (gnetlist:get-calling-flags)))
+          (if (not (calling-flag? "no_end_card" (get-calling-flags)))
               (spice-anise:write-bottom-footer ".end"))
       )
 
 
-      (debug-spew "\nOutput file is written.  We are done.\n")
+      (debug-spew "\nOutput file is written.  Done.\n")
    )
 ;;
 ;;  Finally, close up and go home.
@@ -1706,11 +1703,11 @@
 ;; has a "slot=${SLOT}" attribute attached.
 ;;
 ;; NOTE: Original test for appending the ".<SLOT>" was this:
-;;   (let ((numslots (gnetlist:get-package-attribute package "numslots"))
-;;        (slot-count (length (gnetlist:get-unique-slots package)))
+;;   (let ((numslots (get-package-attribute package "numslots"))
+;;        (slot-count (length (get-unique-slots package)))
 ;;     (if (or (string=? numslots "unknown") (string=? numslots "0"))
 ;;
-(define get-uref
+(define spice-anise:get-uref
   (lambda (object)
     (let ((real_uref (gnetlist:get-uref object)))
       (if (null? (get-attrib-value-by-attrib-name object "slot"))

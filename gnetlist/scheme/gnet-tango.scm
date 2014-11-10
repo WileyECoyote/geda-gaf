@@ -28,14 +28,14 @@
 ;;
 (define tango:get-device
    (lambda (package)
-      (gnetlist:get-package-attribute package "device")))
+      (get-package-attribute package "device")))
 
 ;;
 ;; Given a uref, returns the footprint attribute value (PATTERN if not defined)
 ;;
 (define tango:get-pattern
    (lambda (package)
-      (define pattern (gnetlist:get-package-attribute package "footprint"))
+      (define pattern (get-package-attribute package "footprint"))
       (if (string=? "unknown" pattern)
          "PATTERN"
          pattern)))
@@ -47,7 +47,7 @@
 ;;
 (define tango:get-value
    (lambda (package)
-      (define value (gnetlist:get-package-attribute package "value"))
+      (define value (get-package-attribute package "value"))
       (if (string=? "unknown" value)
          ""
          value)))
@@ -112,7 +112,7 @@
                (display netname)
                (newline)
 
-               (tango:display-name-nets (gnetlist:get-all-connections netname))
+               (tango:display-name-nets (get-all-connections netname))
                (newline)
                (display ")")
                (newline)
@@ -123,16 +123,16 @@
 ;; Top level function to write out nets associated with a particular component
 ;;
 (define (tango:nets)
-  (let ((all-uniq-nets (gnetlist:get-all-unique-nets "dummy")))
+  (let ((all-uniq-nets netlist:all-unique-nets))
      (tango:write-net all-uniq-nets)))
 
 ;;; Highest level function
 ;;; Write tango netlist format
 ;;;
 (define (tango output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
-     (tango:components packages)
+     (tango:components netlist:packages)
      (tango:nets))
   (close-output-port (current-output-port)))
 

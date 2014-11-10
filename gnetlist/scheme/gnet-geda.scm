@@ -163,7 +163,7 @@
             (begin
                (display netname)
                (display " : ")
-               (geda:display-name-nets (gnetlist:get-all-connections netname))
+               (geda:display-name-nets (get-all-connections netname))
                (geda:write-net (cdr netnames)))))))
 
 ;;
@@ -171,21 +171,21 @@
 ;;
 (define geda:nets
    (lambda ()
-      (let ((all-uniq-nets (gnetlist:get-all-unique-nets "dummy")))
+      (let ((all-uniq-nets netlist:all-unique-nets))
          (geda:write-net all-uniq-nets))))
 
 ;;; Highest level function
 ;;; Write my special testing netlist format
 ;;;
 (define (geda output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
     (geda:write-top-header)
     (geda:start-components)
-    (geda:components packages)
+    (geda:components netlist:packages)
     (geda:end-components)
     (geda:start-renamed-nets)
-    (geda:renamed-nets (gnetlist:get-renamed-nets "dummy"))
+    (geda:renamed-nets netlist:get-renamed-nets)
     (geda:end-renamed-nets)
     (geda:start-nets)
     (geda:nets)

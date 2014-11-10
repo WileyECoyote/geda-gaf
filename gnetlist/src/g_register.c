@@ -36,21 +36,21 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "exit",                         0, 0, 0, g_quit },
 
   /* gnetlistrc functions */
-  { "gnetlist-version",             1, 0, 0, g_rc_gnetlist_version },
+  { "gnetlist-version",                 1, 0, 0, g_rc_gnetlist_version },
 
-  { "net-naming-priority",          1, 0, 0, g_rc_net_naming_priority },
-  { "hierarchy-traversal",          1, 0, 0, g_rc_hierarchy_traversal },
-  { "hierarchy-uref-mangle",        1, 0, 0, g_rc_hierarchy_uref_mangle },
-  { "hierarchy-netname-mangle",     1, 0, 0, g_rc_hierarchy_netname_mangle },
-  { "hierarchy-netattrib-mangle",   1, 0, 0, g_rc_hierarchy_netattrib_mangle },
-  { "hierarchy-uref-separator",     1, 0, 0, g_rc_hierarchy_uref_separator },
-  { "hierarchy-netname-separator",  1, 0, 0, g_rc_hierarchy_netname_separator },
-  { "hierarchy-netattrib-separator", 1, 0, 0, g_rc_hierarchy_netattrib_separator },
-  { "hierarchy-netattrib-order",    1, 0, 0, g_rc_hierarchy_netattrib_order },
-  { "hierarchy-netname-order",      1, 0, 0, g_rc_hierarchy_netname_order },
-  { "hierarchy-uref-order",         1, 0, 0, g_rc_hierarchy_uref_order },
-  { "unnamed-netname",              1, 0, 0, g_rc_unnamed_netname },
-  { "unnamed-busname",              1, 0, 0, g_rc_unnamed_busname },
+  { "net-naming-priority",              1, 0, 0, g_rc_net_naming_priority },
+  { "hierarchy-traversal",              1, 0, 0, g_rc_hierarchy_traversal },
+  { "hierarchy-uref-mangle",            1, 0, 0, g_rc_hierarchy_uref_mangle },
+  { "hierarchy-netname-mangle",         1, 0, 0, g_rc_hierarchy_netname_mangle },
+  { "hierarchy-netattrib-mangle",       1, 0, 0, g_rc_hierarchy_netattrib_mangle },
+  { "hierarchy-uref-separator",         1, 0, 0, g_rc_hierarchy_uref_separator },
+  { "hierarchy-netname-separator",      1, 0, 0, g_rc_hierarchy_netname_separator },
+  { "hierarchy-netattrib-separator",    1, 0, 0, g_rc_hierarchy_netattrib_separator },
+  { "hierarchy-netattrib-order",        1, 0, 0, g_rc_hierarchy_netattrib_order },
+  { "hierarchy-netname-order",          1, 0, 0, g_rc_hierarchy_netname_order },
+  { "hierarchy-uref-order",             1, 0, 0, g_rc_hierarchy_uref_order },
+  { "unnamed-netname",                  1, 0, 0, g_rc_unnamed_netname },
+  { "unnamed-busname",                  1, 0, 0, g_rc_unnamed_busname },
 
   /* netlist functions */
   { "gnetlist:get-packages",            1, 0, 0, g_get_packages },
@@ -69,8 +69,7 @@ static struct gsubr_t gnetlist_funcs[] = {
   { "gnetlist:get-attribute-by-pinnumber",  3, 0, 0, g_get_attribute_by_pinnumber },
   { "gnetlist:vams-get-package-attributes", 1, 0, 0, vams_get_package_attributes },
 
-  { "gnetlist:graphical-objs-in-net-with-attrib-get-attrib",
-    3, 0, 0, g_graphical_objs_in_net_with_attrib_get_attrib },
+  { "gnetlist:graphical-net-objs-attrib",   3, 0, 0, g_graphical_objs_in_net_with_attrib_get_attrib },
 
   { "gnetlist:get-backend-arguments",       0, 0, 0, g_get_backend_arguments },
   { "gnetlist:get-input-files",             0, 0, 0, g_get_input_files },

@@ -1,7 +1,7 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
 ;;; FutureNet2 backend
-;;; Copyright (C) 2003, 2005-2010 Dan McMahill
+;;; Copyright (C) 2003, 2005-2014 Dan McMahill
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -115,7 +115,7 @@
             (display "PIN,,")
 
             (display
-             (gnetlist:alias-net (car (gnetlist:get-nets package pin))))
+             (netlist:alias-net (car (get-nets package pin))))
 
             ;; XXX I've seen 20, 23, and 100 in the position where the
             ;; "23" is here.  Seems to be a property like signal vs
@@ -138,7 +138,7 @@
    (lambda (packages symcnt)
       (if (not (null? packages))
          (begin
-            (let ((pattern (gnetlist:get-package-attribute (car packages)
+            (let ((pattern (get-package-attribute (car packages)
                                                            "pattern"))
             ;; The above pattern should stay as "pattern" and not "footprint"
                   (package (car packages)))
@@ -147,16 +147,16 @@
 
               ;; write the reference designator
               (display "\nDATA,2,")
-              (display (gnetlist:alias-refdes package))
+              (display (netlist:alias-refdes package))
 
               ;; If there is a "value" attribute, output that.
               ;; Otherwise output the "device" attribute (the symbol name).
               (display "\nDATA,3,")
               (let
-                  ((val (gnetlist:get-package-attribute package
+                  ((val (get-package-attribute package
                                                         "value")) )
                 (if (string=? val "unknown")
-                    (set! val (gnetlist:get-package-attribute package "device") )
+                    (set! val (get-package-attribute package "device") )
                     )
                 (display  val)
                 )
@@ -164,7 +164,7 @@
 
               ;; write the footprint
               (display "DATA,4,")
-              (display (gnetlist:get-package-attribute package
+              (display (get-package-attribute package
                                                        "footprint"))
               (display "\n")
 
@@ -188,7 +188,7 @@
       (if (not (null? netnames))
          (let (
                (netname (car netnames))
-               (alias (gnetlist:alias-net (car netnames)))
+               (alias (netlist:alias-net (car netnames)))
                )
            (display "SIG,")
            (display alias)
@@ -213,21 +213,21 @@
      (message "Ranger2 or other windows based layout tools\n")
      (message "---------------------------------\n\n")
 
-      (set-current-output-port (gnetlist:output-port output-filename))
-      (let ((all-nets (gnetlist:get-all-unique-nets "dummy")))
+      (set-current-output-port (output-port output-filename))
+      (let ((all-nets netlist:all-unique-nets))
 
         ;; initialize the net-name aliasing
-        (gnetlist:build-net-aliases futurenet2:map-net-names all-unique-nets)
+        (netlist:build-net-aliases futurenet2:map-net-names netlist:all-unique-nets)
 
         ;; initialize the refdes aliasing
-        (gnetlist:build-refdes-aliases futurenet2:map-refdes packages)
+        (netlist:build-refdes-aliases futurenet2:map-refdes netlist:packages)
 
         ;; write the header
         (display "PINLIST,2\n")
         (display "(DRAWING,GEDA.PIN,1-1\n")
 
         ;; write the components
-        (futurenet2:components packages 1)
+        (futurenet2:components netlist:packages 1)
         (display ")\n")
 
         ;; write the nets

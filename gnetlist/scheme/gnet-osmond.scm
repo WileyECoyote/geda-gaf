@@ -1,6 +1,6 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist back end for Osmond PCB Design
-;;; Copyright (C) 2007-2010 John P. Doty
+;;; Copyright (C) 2007-2015 John P. Doty
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -20,9 +20,9 @@
 ; Export a design to Osmond PCB
 
 (define (osmond output-filename)
-        (set-current-output-port (gnetlist:output-port output-filename))
-        (for-each osmond:part packages)
-        (for-each osmond:signal all-unique-nets))
+        (set-current-output-port (output-port output-filename))
+        (for-each osmond:part netlist:packages)
+        (for-each osmond:signal netlist:all-unique-nets))
 
 
 ; The first section of the file consists of a list of packages,
@@ -32,7 +32,7 @@
 (define (osmond:part package)
         (format #t
                 "Part ~A { Name ~A }\n"
-                (gnetlist:get-package-attribute package "footprint")
+                (get-package-attribute package "footprint")
                 package))
 
 
@@ -43,7 +43,7 @@
 
 (define (osmond:signal net)
         (format #t "Signal \"~A\"\n  {" net)
-        (for-each osmond:pin (gnetlist:get-all-connections net))
+        (for-each osmond:pin (get-all-connections net))
         (format #t " }\n"))
 
 

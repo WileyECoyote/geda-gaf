@@ -309,11 +309,9 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
   char *pin;
   char *uref;
 
-  SCM_ASSERT(scm_is_string (scm_uref), scm_uref, SCM_ARG1,
-             "gnetlist:get-nets");
+  SCM_ASSERT(scm_is_string (scm_uref), scm_uref, SCM_ARG1, "gnetlist:get-nets");
 
-  SCM_ASSERT(scm_is_string (scm_pin), scm_pin, SCM_ARG2,
-             "gnetlist:get-nets");
+  SCM_ASSERT(scm_is_string (scm_pin), scm_pin, SCM_ARG2, "gnetlist:get-nets");
 
   scm_dynwind_begin (0);
 
@@ -327,18 +325,18 @@ SCM g_get_nets(SCM scm_uref, SCM scm_pin)
 
   /* search for the first instance */
   /* through the entire list */
-  for (nl_current = netlist_head;
-       nl_current != NULL;
-  nl_current = nl_current->next) {
+  for (nl_current = netlist_head; nl_current != NULL;
+       nl_current = nl_current->next)
+  {
 
     if (!nl_current->component_uref) continue;
              if (strcmp (nl_current->component_uref, wanted_uref) != 0) continue;
 
-             for (pl_current = nl_current->cpins;
-                  pl_current != NULL;
-             pl_current = pl_current->next) {
+             for (pl_current = nl_current->cpins; pl_current != NULL;
+                  pl_current = pl_current->next)
+             {
 
-               if (!pl_current->pin_number) continue;
+             if (!pl_current->pin_number) continue;
              if (strcmp(pl_current->pin_number, wanted_pin) != 0) continue;
 
              if (pl_current->net_name) {
@@ -799,11 +797,11 @@ SCM g_graphical_objs_in_net_with_attrib_get_attrib (SCM scm_netname, SCM scm_has
   char *has_attrib_name = NULL;
 
   SCM_ASSERT(scm_is_string (scm_netname), scm_netname, SCM_ARG1,
-             "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
+             "gnetlist:graphical-net-objs-attrib");
 
   SCM_ASSERT(scm_is_string (scm_wanted_attribute),
              scm_wanted_attribute, SCM_ARG3,
-             "gnetlist:graphical-objs-in-net-with-attrib-get-attrib");
+             "gnetlist:graphical-net-objs-attrib");
 
   SCM_ASSERT(scm_is_string (scm_has_attribute),
              scm_has_attribute, SCM_ARG2,

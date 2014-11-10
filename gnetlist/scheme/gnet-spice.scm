@@ -36,7 +36,7 @@
     (let ((attrib-list (list "l" "w" "as" "ad" "pd" "ps" "nrd" "nrs" "temp" "ic")))
       (spice:write-list-of-attributes package attrib-list))
             ;; write the off attribute separately
-    (let ((off-value (gnetlist:get-package-attribute package "off")))
+    (let ((off-value (get-package-attribute package "off")))
       (cond ((string=? off-value "#t") (display " off"))
             ((string=? off-value "1" ) (display " off"))))
     (newline)))
@@ -111,9 +111,9 @@
 ;; Spice netlist generation
 ;;
 (define (spice output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (spice:write-top-header)
-  (spice:write-netlist packages)
+  (spice:write-netlist netlist:packages)
   (spice:write-bottom-footer)
   (close-output-port (current-output-port)))
 

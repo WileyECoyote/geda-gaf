@@ -30,10 +30,10 @@
 (define (spice-noqsi filename)
     (set-current-output-port(open-output-file filename))
     (write-header)
-    (for-each reserve-refdes packages)
-    (for-each collect-file packages)
+    (for-each reserve-refdes netlist:packages)
+    (for-each collect-file netlist:packages)
     (process-toplevel "spice-epilog")
-    (for-each process-part packages)
+    (for-each process-part netlist:packages)
     (process-toplevel "spice-prolog")
     (if subcircuit (format #t "~A\n" subcircuit))
     (for-each (lambda (f) (format #t ".INCLUDE ~A\n" f)) files)
@@ -60,7 +60,7 @@
 ;; any symbol to request a file to be included.
 
 (define (collect-file refdes)
-    (let ((f (gnetlist:get-package-attribute refdes "file")))
+    (let ((f (get-package-attribute refdes "file")))
         (or (equal? f "unknown")
             (member f files)
             (set! files (cons f files)))))
@@ -85,7 +85,7 @@
 ;; out if this is an ordinary "card" or a .SUBCKT
 
 (define (process-part refdes)
-    (let ((proto (gnetlist:get-package-attribute refdes "spice-prototype")))
+    (let ((proto (get-package-attribute refdes "spice-prototype")))
         (if (equal? proto "unknown")
             (set! proto (lookup-proto refdes)))
 	(collect-card (expand-string refdes proto))))
@@ -106,7 +106,7 @@
 (define (lookup-proto refdes)
     (or
         (hash-ref prototypes
-            (gnetlist:get-package-attribute refdes "device"))
+            (get-package-attribute refdes "device"))
         (hash-ref prototypes "unknown")))
 
 
@@ -175,10 +175,10 @@ This may indicate an erroneously duplicated refdes.\n"
 
 ;; Get the net attached to a particular pin.
 ;; This really should be a helper in gnetlist.scm, or even
-;; replace the partially broken (gnetlist:get-nets).
+;; replace the partially broken (get-nets).
 
 (define (get-net refdes pin)
-    (let ((net (car (gnetlist:get-nets refdes pin))))
+    (let ((net (car (get-nets refdes pin))))
         (if (equal? "ERROR_INVALID_PIN" net)
             (error-report "pinnumber=~A not found for refdes=~A\n" pin refdes)
             net)))
@@ -357,13 +357,13 @@ This may indicate an erroneously duplicated refdes.\n"
     (filter
     	(lambda (p)
 	    (equal? "spice-IO"
-	        (gnetlist:get-package-attribute p "device"))) packages ))
+	        (get-package-attribute p "device"))) netlist:packages ))
 
 ;; get all net connections in pinseq order
 
 (define (all-by-pinseq refdes)
     (or (slot-problem? refdes (string->number
-        (gnetlist:get-package-attribute refdes "numslots")))
+        (get-package-attribute refdes "numslots")))
         (string-join
             (map
                 (lambda (n) (get-net-by-pinseq refdes n))
@@ -405,7 +405,7 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (get-attribute refdes name)
     (if refdes
-        (gnetlist:get-package-attribute refdes name)
+        (get-package-attribute refdes name)
 	(gnetlist:get-toplevel-attribute name)))
 
 
@@ -422,12 +422,12 @@ This may indicate an erroneously duplicated refdes.\n"
 
 (define (io-pins)
     (filter
-        (lambda (p) (let ((device (gnetlist:get-package-attribute p "device")))
+        (lambda (p) (let ((device (get-package-attribute p "device")))
 	    (or
 	    	(equal? "INPUT" device)
 		(equal? "OUTPUT" device)
 		(equal? "IO" device))))
-	packages))
+	netlist:packages))
 
 
 ;; get all net connections in lexical pinlabel order

@@ -24,7 +24,7 @@
    (lambda (packages)
       (if (not (null? packages))
          (begin
-            (let ((pattern (gnetlist:get-package-attribute (car packages)
+            (let ((pattern (get-package-attribute (car packages)
                                                            "footprint"))
                   (package (car packages)))
 ;               (if (not (string=? pattern "unknown"))
@@ -33,7 +33,7 @@
                (display package)
                (write-char #\tab)
                (display "\"")
-               (display (gnetlist:get-package-attribute package "footprint"))
+               (display (get-package-attribute package "footprint"))
                (display "\"")
                (newline))
             (maxascii:components (cdr packages))))))
@@ -78,22 +78,22 @@
             (display "\"")
             (display (maxascii:wrap
                       (maxascii:display-connections
-                       (gnetlist:get-all-connections netname))
+                       (get-all-connections netname))
                       490 netname)
                     )
 ;;            (display (maxascii:display-connections
-;;                     (gnetlist:get-all-connections netname))
+;;                     (get-all-connections netname))
 ;;                  )
             (maxascii:write-net (cdr netnames))))))
 
 (define (maxascii output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
 
   (display "*OrCAD\n*START\n")
 
-  (maxascii:components packages)
+  (maxascii:components netlist:packages)
 
-  (maxascii:write-net (gnetlist:get-all-unique-nets "dummy"))
+  (maxascii:write-net netlist:all-unique-nets)
   (display "\n*END\n")
 
   (close-output-port (current-output-port)))

@@ -92,14 +92,14 @@
 ;;
 (define liquidpcb:write-netlist
    (lambda ()
-      (let ((all-uniq-nets (gnetlist:get-all-unique-nets "dummy")))
+      (let ((all-uniq-nets netlist:all-unique-nets))
          (liquidpcb:write-net all-uniq-nets))))
 
 ;;
 ;; Highest level function
 ;;
 (define (liquidpcb output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
      (liquidpcb:write-top-header)
      (liquidpcb:start-netlist)

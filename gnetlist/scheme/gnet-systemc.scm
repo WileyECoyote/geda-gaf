@@ -64,7 +64,7 @@
 ;; pair
 (define systemc:get-matching-nets
   (lambda (attribute value)
-    (map car (systemc:filter attribute value packages))))
+    (map car (systemc:filter attribute value netlist:packages))))
 
 ;; This function takes an attribute name, desired value, and a list of
 ;; packages.  For each of the packages, it looks up that attribute, and
@@ -77,11 +77,11 @@
 (define systemc:filter
   (lambda (attribute value package-list)
     (cond ((null? package-list) '())
-          ((string=? (gnetlist:get-package-attribute (car package-list)
+          ((string=? (get-package-attribute (car package-list)
                                                       attribute) value)
            (cons
             (map (lambda (pin)
-                   (car (gnetlist:get-nets (car package-list) pin)))
+                   (car (get-nets (car package-list) pin)))
                  (pins (car package-list)))
             (systemc:filter attribute value (cdr package-list))))
           (else (systemc:filter attribute value (cdr package-list)))))
@@ -124,8 +124,9 @@
                           (begin
                             (display "#include \"")
                             (systemc:display-escaped-identifier (get-device package))
-                            (display ".h\"\n"))))))
-                packages)
+                            (display ".h\"\n")))))
+                ) netlist:packages
+      )
       (newline)
       (display "SC_MODULE (") (systemc:display-escaped-identifier module-name) (display ")\n{\n")
     )
@@ -465,7 +466,7 @@
 ;;         (display  "systemc:get-nets(parsed)-> ")
          )
 
-        all-unique-nets)
+        netlist:all-unique-nets)
       the-nets)
     )
     systemc:get-nets
@@ -561,8 +562,9 @@
                           (begin
                             (systemc:display-escaped-identifier (get-device package)) (display " ")
                             (systemc:display-escaped-identifier package) (display ";")
-                            (newline))))))
-                packages)
+                            (newline)))))
+                ) packages
+      )
 
       (newline)
       (display "SC_CTOR(") (systemc:display-escaped-identifier systemc:get-module-name)
@@ -583,7 +585,7 @@
 
 (do ((lp 1 (+ lp 1))) ((> lp 32))
   (let* ((attr (string-append "attr" (number->string lp)))
-       (description (gnetlist:get-package-attribute package attr)))
+       (description (get-package-attribute package attr)))
       (begin
           (if (not (string=? description "unknown"))
                (begin (display "\",\"") (display description)))))
@@ -591,8 +593,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
                              (display "\")")
-                            )))))
-                packages)
+                            ))))
+                ) packages
+      )
       (display "\n  {")
 
       (for-each (lambda (package)         ; loop on packages
@@ -605,9 +608,12 @@
                             ; then output that format, otherwise
                             ; output normal named declaration
                             (systemc:display-connections package
-                             (string=? (gnetlist:get-package-attribute package "VERILOG_PORTS" ) "POSITIONAL"))
-                            )))))
-                packages))))
+                             (string=? (get-package-attribute package "VERILOG_PORTS" ) "POSITIONAL"))
+                            ))))
+                ) packages
+      )
+  ))
+)
 
 ;;
 ;; output a module connection for the package given to us with named ports
@@ -615,7 +621,7 @@
 (define systemc:display-connections
    (lambda (package positional)
      (begin
-       (let ( (pin-list (gnetlist:get-pins-nets package))
+       (let ( (pin-list (get-pins-nets package))
               (comma_pending #f) )
         (if (not (null? pin-list))
             (begin
@@ -667,7 +673,7 @@
 ;;; Write Structural systemc representation of the schematic
 ;;;
 (define (systemc output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
     (systemc:get-nets-once!)
     (systemc:write-top-header)
@@ -675,7 +681,7 @@
     (systemc:write-wires)
 ;;    (display "***** end write-wires ********")(newline)
     (systemc:write-continuous-assigns)
-    (systemc:components packages)
+    (systemc:components netlist:packages)
     (systemc:write-bottom-footer)
     )
   (close-output-port (current-output-port)))

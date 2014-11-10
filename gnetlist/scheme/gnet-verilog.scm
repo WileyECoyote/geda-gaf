@@ -68,7 +68,7 @@
 ;; pair
 (define verilog:get-matching-nets
   (lambda (attribute value)
-    (map car (verilog:filter attribute value packages))))
+    (map car (verilog:filter attribute value netlist:packages))))
 
 ;; This function takes an attribute name, desired value, and a list of
 ;; packages.  For each of the packages, it looks up that attribute, and
@@ -81,11 +81,10 @@
 (define verilog:filter
   (lambda (attribute value package-list)
     (cond ((null? package-list) '())
-          ((string=? (gnetlist:get-package-attribute (car package-list)
-                                                      attribute) value)
+          ((string=? (get-package-attribute (car package-list) attribute) value)
            (cons
             (map (lambda (pin)
-                   (car (gnetlist:get-nets (car package-list) pin)))
+                   (car (get-nets (car package-list) pin)))
                  (pins (car package-list)))
             (verilog:filter attribute value (cdr package-list))))
           (else (verilog:filter attribute value (cdr package-list)))))
@@ -435,7 +434,7 @@
            ))
          )
 
-        all-unique-nets)
+        netlist:all-unique-nets)
       the-nets)
     )
     verilog:get-nets
@@ -558,7 +557,7 @@
                             ; output normal named declaration
                             (verilog:display-connections
                              package
-                             (string=? (gnetlist:get-package-attribute
+                             (string=? (get-package-attribute
                                         package "VERILOG_PORTS" )
                                        "POSITIONAL"))
                             (display "    );")
@@ -573,7 +572,7 @@
 (define verilog:display-connections
    (lambda (package positional)
      (begin
-       (let ( (pin-list (gnetlist:get-pins-nets package))
+       (let ( (pin-list (get-pins-nets package))
               (comma_pending #f) )
         (if (not (null? pin-list))
             (begin
@@ -625,13 +624,13 @@
 ;;; Write Structural verilog representation of the schematic
 ;;;
 (define (verilog output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
     (verilog:get-nets-once!)
     (verilog:write-top-header)
     (verilog:write-wires)
     (verilog:write-continuous-assigns)
-    (verilog:components packages)
+    (verilog:components netlist:packages)
     (verilog:write-bottom-footer)
     )
   (close-output-port (current-output-port)))

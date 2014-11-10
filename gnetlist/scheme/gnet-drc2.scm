@@ -364,7 +364,7 @@
                   (check-slots-loop (cdr slots_list))
                   ))))
         (check-slots-loop (gnetlist:get-slots uref))))
-    (for-each check-duplicated-slots-of-package packages)
+    (for-each check-duplicated-slots-of-package netlist:packages)
 ))
 
 
@@ -379,7 +379,7 @@
 
         (define check-slots-loop
           (lambda (slot_number slots_list)
-            (let ( (numslots (string->number (gnetlist:get-package-attribute uref "numslots"))) )
+            (let ( (numslots (string->number (get-package-attribute uref "numslots"))) )
               (if (not (member slot_number slots_list))
                   (begin
                     (if (not (char=? action-unused-slots #\c))
@@ -399,12 +399,12 @@
               (if (< slot_number numslots)
                   (check-slots-loop (+ slot_number 1) slots_list)))))
 
-        (if (integer? (string->number (gnetlist:get-package-attribute uref "numslots")))
-            (check-slots-loop 1 (gnetlist:get-unique-slots uref))
+        (if (integer? (string->number (get-package-attribute uref "numslots")))
+            (check-slots-loop 1 (get-unique-slots uref))
             )
         ))
 
-    (for-each check-unused-slots-of-package packages)
+    (for-each check-unused-slots-of-package netlist:packages)
     ))
 
 ;;
@@ -415,9 +415,9 @@
     (define check-slots-of-package
       (lambda (uref)
 
-        (let* ( (numslots_string (gnetlist:get-package-attribute uref "numslots"))
+        (let* ( (numslots_string (get-package-attribute uref "numslots"))
                 (numslots (string->number numslots_string))
-                (slot_string (let ((slots (gnetlist:get-all-package-attributes uref "slot")))
+                (slot_string (let ((slots (get-all-package-attributes uref "slot")))
                                (if (or (null? slots) (not (car slots)))
                                    "unknown" (car slots))))
                 (slot (string->number slot_string))
@@ -479,7 +479,7 @@
                   ;; If it's a number, then check slots. If it's not, then report an error.
                   (if (integer? slot)
                       (if (integer? numslots)
-                          (check-slots-loop (gnetlist:get-unique-slots uref))
+                          (check-slots-loop (get-unique-slots uref))
                           (begin
                             ;; Slot is defined and it's a number, but numslots it's not a number.
                             (display (string-append "ERROR: Reference " uref
@@ -497,7 +497,7 @@
                   ))))))
 
 
-    (for-each check-slots-of-package packages)
+    (for-each check-slots-of-package netlist:packages)
     ))
 
 ;; Count the ocurrences of a given reference in the given list.
@@ -517,7 +517,7 @@
         0
         (let ( (refdes (car list)))
                (if (> (drc2:count-reference-in-list refdes (gnetlist:get-non-unique-packages ""))
-                      (length (gnetlist:get-unique-slots refdes)))
+                      (length (get-unique-slots refdes)))
                    (begin
                      (display (string-append "ERROR: Duplicated reference " refdes "."))
                      (newline)
@@ -544,19 +544,19 @@
   (for-each
     (lambda (netname)
       (let
-        ((directives (gnetlist:graphical-objs-in-net-with-attrib-get-attrib
+        ((directives (gnetlist:graphical-net-objs-attrib
                     netname
                     "device=DRC_Directive"
                     "value")))
         ;Only check nets with a NoConnection directive
         (and
           (member "NoConnection" directives)
-          ( >  (length (gnetlist:get-all-connections netname)) '1)
+          ( >  (length (get-all-connections netname)) '1)
           (begin
             (display (string-append "ERROR: Net '"
                             netname "' has connections, but "
                             "has the NoConnection DRC directive: "))
-            (drc2:display-pins-of-type "all" (gnetlist:get-all-connections netname))
+            (drc2:display-pins-of-type "all" (get-all-connections netname))
             (display ".")
             (newline)
             (set! errors_number (1+ errors_number))))))
@@ -570,7 +570,7 @@
   (lambda (all-nets)
       (if (not (null? all-nets))
           (let* ((netname (car all-nets))
-                 (directives (gnetlist:graphical-objs-in-net-with-attrib-get-attrib
+                 (directives (gnetlist:graphical-net-objs-attrib
                               netname
                               "device=DRC_Directive"
                               "value")))
@@ -579,17 +579,17 @@
               ; then it shouldn't be checked.
               (if (not (member "NoConnection" directives))
                   (begin
-                    (if (eq? (length (gnetlist:get-all-connections netname)) '0)
+                    (if (eq? (length (get-all-connections netname)) '0)
                         (begin (display (string-append "ERROR: Net '"
                                                        netname "' has no connections."))
                                (newline)
                                (set! errors_number (+ errors_number 1))
                                )
                         )
-                    (if (eq? (length (gnetlist:get-all-connections netname)) '1)
+                    (if (eq? (length (get-all-connections netname)) '1)
                         (begin (display (string-append "ERROR: Net '"
                                                        netname "' is connected to only one pin: "))
-                               (drc2:display-pins-of-type "all" (gnetlist:get-all-connections netname))
+                               (drc2:display-pins-of-type "all" (get-all-connections netname))
                                (display ".")
                                (newline)
                                (set! errors_number (+ errors_number 1))
@@ -791,12 +791,12 @@
       (if (not (null? all-nets))
           (let ((netname (car all-nets)))
             (begin
-              (let*  ( (connections (gnetlist:get-all-connections netname))
+              (let*  ( (connections (get-all-connections netname))
                        (pintypes    (drc2:get-pintypes-of-net-connections
                                      connections
                                      '()))
                        (pintype-count (drc2:count-pintypes-of-net pintypes))
-                       (directives (gnetlist:graphical-objs-in-net-with-attrib-get-attrib
+                       (directives (graphical-net-objs-attrib
                                     netname
                                     "device=DRC_Directive"
                                     "value"))
@@ -872,7 +872,7 @@
                 ))
               (if (> (length ref-list) 1)
                   (drc2:check-unconnected-pins (cdr ref-list)
-                                               (gnetlist:get-pins-nets (car (cdr ref-list)))))
+                                               (get-pins-nets (car (cdr ref-list)))))
             ))
         )
     ))
@@ -882,7 +882,7 @@
   (define (count-unknown-pintypes nets)
     (fold
      (lambda (netname count)
-       (let* ((connections (gnetlist:get-all-connections netname))
+       (let* ((connections (get-all-connections netname))
               (pintypes (drc2:get-pintypes-of-net-connections connections '()))
               (pintype-count (drc2:count-pintypes-of-net pintypes)))
          (+ count
@@ -893,7 +893,7 @@
      (lambda (netname)
        (drc2:display-pins-of-type
                                   (drc2:position-of-pintype "unknown")
-                                  (gnetlist:get-all-connections netname)))
+                                  (get-all-connections netname)))
      nets))
   (and (> (count-unknown-pintypes nets) 0)
        (begin
@@ -906,13 +906,11 @@
 ;-----------------------------------------------------------------------
 
 
-
-
 ;;; Highest level function
 ;;; Write my special testing netlist format
 ;;;
 (define (drc2 output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
      (begin
 
         ;; Perform DRC-matrix sanity checks.
@@ -928,7 +926,7 @@
             (begin
               (display "Checking non-numbered parts...")
               (newline)
-              (drc2:check-non-numbered-items packages)
+              (drc2:check-non-numbered-items netlist:packages)
               (newline)))
 
         ;; Check for duplicated references
@@ -936,7 +934,7 @@
             (begin
               (display "Checking duplicated references...")
               (newline)
-              (drc2:check-duplicated-references packages)
+              (drc2:check-duplicated-references netlist:packages)
               (newline)))
 
         ;; Check for NoConnection nets with more than one pin connected.
@@ -944,7 +942,7 @@
             (begin
               (display "Checking NoConnection nets for connections...")
               (newline)
-              (drc2:check-connected-noconnects (gnetlist:get-all-unique-nets "dummy"))
+              (drc2:check-connected-noconnects netlist:all-unique-nets)
               (newline)))
 
         ;; Check nets with only one connection
@@ -952,7 +950,7 @@
             (begin
               (display "Checking nets with only one connection...")
               (newline)
-              (drc2:check-single-nets (gnetlist:get-all-unique-nets "dummy"))
+              (drc2:check-single-nets netlist:all-unique-nets)
               (newline)))
 
         ;; Check "unknown" pintypes
@@ -960,7 +958,7 @@
             (begin
               (display "Checking pins without the 'pintype' attribute...")
               (newline)
-              (drc2:report-unknown-pintypes (gnetlist:get-all-unique-nets "dummy"))
+              (drc2:report-unknown-pintypes netlist:all-unique-nets)
               (newline)))
 
         ;; Check pintypes of the pins connected to every net
@@ -968,7 +966,7 @@
             (begin
               (display "Checking type of pins connected to a net...")
               (newline)
-              (drc2:check-pintypes-of-nets (gnetlist:get-all-unique-nets "dummy"))
+              (drc2:check-pintypes-of-nets netlist:all-unique-nets)
               (newline)))
 
         ;; Check unconnected pins
@@ -976,8 +974,8 @@
             (begin
               (display "Checking unconnected pins...")
               (newline)
-              (if (not (null? packages))
-                  (drc2:check-unconnected-pins packages (gnetlist:get-pins-nets (car packages))))
+              (if (not (null? netlist:packages))
+                  (drc2:check-unconnected-pins netlist:packages (get-pins-nets (car netlist:packages))))
               (newline)))
 
         ;; Check slots
@@ -1034,7 +1032,7 @@
      (if (and (not (string=? "-" output-filename)) (> errors_number 0))
          (message "DRC errors found. See output file.\n")
          (if (> warnings_number 0)
-             (if (not (calling-flag? "ignore-warnings-in-return-value" (gnetlist:get-calling-flags)))
+             (if (not (calling-flag? "ignore-warnings-in-return-value" (get-calling-flags)))
                  (message "DRC warnings found. See output file.\n"))))
 
      ))

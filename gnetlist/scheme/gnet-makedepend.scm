@@ -120,8 +120,7 @@
       ;collect values from all packages into a list
       (append-map
         ;get all values for a given refdes
-        (lambda (x) (gnetlist:get-all-package-attributes x attribute))
-        packages)))
+        (lambda (x) (get-all-package-attributes x attribute)) packages)))
 )
 
 
@@ -150,10 +149,10 @@
 
 
 (define (makedepend output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (let* (
-         (source-attrs (makedepend:get-all-attr-values "source" packages))
-         (file-attrs (makedepend:get-all-attr-values "file" packages))
+         (source-attrs (makedepend:get-all-attr-values "source" netlist:packages))
+         (file-attrs (makedepend:get-all-attr-values "file" netlist:packages))
          (input-files (gnetlist:get-input-files))
         )
     (makedepend:output-make-command input-files source-attrs file-attrs)

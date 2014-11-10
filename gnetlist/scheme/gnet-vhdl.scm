@@ -39,18 +39,17 @@
 (define vhdl:get-top-port-list
   (lambda ()
     ;; construct list
-    (list (vhdl:get-matching-urefs "device" "IPAD"  packages)
-          (vhdl:get-matching-urefs "device" "OPAD"  packages)
-          (vhdl:get-matching-urefs "device" "IOPAD" packages))))
+    (list (vhdl:get-matching-urefs "device" "IPAD"  netlist:packages)
+          (vhdl:get-matching-urefs "device" "OPAD"  netlist:packages)
+          (vhdl:get-matching-urefs "device" "IOPAD" netlist:packages))))
 
 ;;; Get matching urefs
 (define vhdl:get-matching-urefs
   (lambda (attribute value package-list)
      (cond ((null? package-list) '())
-          ((string=? (gnetlist:get-package-attribute (car package-list)
-                                                      attribute) value)
+          ((string=? (get-package-attribute (car package-list) attribute) value)
            (cons
-            (cons (car package-list) (gnetlist:get-package-attribute (car package-list) "width"))
+            (cons (car package-list) (get-package-attribute (car package-list) "width"))
             (vhdl:get-matching-urefs attribute value (cdr package-list))))
           (else (vhdl:get-matching-urefs attribute value (cdr package-list))))
 
@@ -303,7 +302,7 @@
                      (display device)
                      (newline)
                      (vhdl:write-port-clause (vhdl:get-device-port-list
-                                                (find-device packages device)))
+                                                (find-device netlist:packages device)))
                      (display "    END COMPONENT ")
                      (display ";")
                      (newline)
@@ -373,7 +372,7 @@
 
 (define unique-devices
   (lambda nil
-    (vhdl:get-unique-devices (map get-device packages))
+    (vhdl:get-unique-devices (map get-device netlist:packages))
 ))
 
 
@@ -404,7 +403,7 @@
          (newline)
        )
      )
-     all-unique-nets)
+     netlist:all-unique-nets)
   )
 )
 
@@ -597,7 +596,7 @@
     (cond ((null? package-list) '())
           ((string=? (get-device (car package-list)) pad-type)
            (cons (cons (car package-list)
-                       (cdar (gnetlist:get-pins-nets (car package-list))) )
+                       (cdar (get-pins-nets (car package-list))) )
                  (vhdl:get-top-level-ports (cdr package-list ) pad-type )))
            (else (vhdl:get-top-level-ports (cdr package-list ) pad-type ))
 
@@ -656,7 +655,7 @@
 (define vhdl:write-port-map
   (lambda (package)
     (begin
-      (let ((pin-list (gnetlist:get-pins-nets package)))
+      (let ((pin-list (get-pins-nets package)))
         (if (not (null? pin-list))
             (begin
               (display "    PORT MAP (")
@@ -771,7 +770,7 @@
     (display "BEGIN")
     (newline)
     ; architecture_statement_part
-    (vhdl:write-architecture-statement-part packages)
+    (vhdl:write-architecture-statement-part netlist:packages)
     (display "END netlist;")
     (newline)
   )
@@ -781,7 +780,7 @@
 ;;; Write structural VHDL representation of the schematic
 ;;;
 (define (vhdl output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (let ((module-name (gnetlist:get-toplevel-attribute "module-name"))
         (port-list (vhdl:get-top-port-list)))
     (begin

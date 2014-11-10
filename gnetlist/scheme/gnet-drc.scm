@@ -46,10 +46,10 @@
    "attribs"))
 
 (define (drc output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
-  (drc:device-rules drc:attriblist packages)
-  (drc:net-rules (gnetlist:get-all-unique-nets "dummy"))
-  (drc:pin-rules packages)
+  (set-current-output-port (output-port output-filename))
+  (drc:device-rules drc:attriblist netlist:packages)
+  (drc:net-rules netlist:all-unique-nets)
+  (drc:pin-rules netlist:packages)
   (close-output-port (current-output-port)))
 
 
@@ -57,14 +57,14 @@
   (lambda(nets)
     (cond
       ((null? nets) #t)
-      ((null? (gnetlist:get-all-connections (car nets)))
+      ((null? (get-all-connections (car nets)))
           (begin
             (display "Net ")
             (display (car nets))
             (display " has no connected pins\n")
             (drc:net-rules (cdr nets))
             #f))
-      ((null? (cdr (gnetlist:get-all-connections (car nets))))
+      ((null? (cdr (get-all-connections (car nets))))
           (begin
             (display "Net ")
             (display (car nets))
@@ -88,7 +88,7 @@
   (lambda (attriblist uref)
     (if (not (null? attriblist))
       (begin
-        (if (string=? "unknown" (gnetlist:get-package-attribute uref (car attriblist)))
+        (if (string=? "unknown" (get-package-attribute uref (car attriblist)))
           (begin
             (display uref)
             (display " Does not have attribute: ")

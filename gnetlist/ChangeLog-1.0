@@ -1,3 +1,17 @@
+2014-11-10 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gnetlist.scm: Revise defines to public and add public defines
+      to gnetlist.c functions.
+
+    * scheme/gnetlist-post.scm: Revise module to use netlist: prefix, adding
+      to all functions, in order to distingish from gnetlist:, AND packages
+      as an argument (in many modules) and netlist:packages. Add new function
+      netlist:get-renamed-nets.
+
+    * scheme/gnet*.scm: Revise all backends to use changes above, think I got
+      most of the gnetlist: rerouted through gnetlist.scm and I thnk this is
+      less confusing.
+
 2014-11-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * scheme/gnet-spice-anise.scm: Change embedd_mode to embed_mode, add

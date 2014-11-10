@@ -59,15 +59,15 @@
   (if (not (null? netnames))
       (let ((netname (car netnames)))
         (display "/")
-        (display (gnetlist:alias-net netname))
+        (display (netlist:alias-net netname))
         (display "\t")
         (display (calay:wrap (calay:display-connections
-          (gnetlist:get-all-connections netname)) 66))
+          (get-all-connections netname)) 66))
         (calay:write-net (cdr netnames)))))
 
 
 (define (calay output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
-  (gnetlist:build-net-aliases calay:translate all-unique-nets)
-  (calay:write-net (gnetlist:get-all-unique-nets "dummy"))
+  (set-current-output-port (output-port output-filename))
+  (netlist:build-net-aliases calay:translate netlist:all-unique-nets)
+  (calay:write-net netlist:all-unique-nets)
   (close-output-port (current-output-port)))

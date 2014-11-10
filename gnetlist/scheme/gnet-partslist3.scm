@@ -48,8 +48,8 @@
         (cons (cons uref-ls (append first-ls  (list match-length))) (count-same-parts rest-ls)))))
 
 (define (partslist3 output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
-  (let ((parts-table (marge-sort-with-multikey (get-parts-table packages) '(1 2 3 0))))
+  (set-current-output-port (output-port output-filename))
+  (let ((parts-table (marge-sort-with-multikey (get-parts-table netlist:packages) '(1 2 3 0))))
     (set! parts-table (count-same-parts parts-table))
     (partslist3:write-top-header)
     (partslist3:write-partslist parts-table)

@@ -120,8 +120,8 @@
 ;; We redefine the newline function, because this file format requires
 ;; Windows-style "\r\n" line endings rather than Unix-style "\n"
 ;; endings.
-(define* (newline #:optional)
-  (display "\r\n" (or (current-output-port))))
+(define* (newline)
+  (display "\r\n" (current-output-port)))
 
 ;;
 ;; Top level header
@@ -146,7 +146,7 @@
                (newline)
                (display "FOOTPRINT")
                (newline)
-               (display (gnetlist:get-package-attribute package  "footprint"))
+               (display (get-package-attribute package  "footprint"))
                (newline)
                (display "PARTTYPE")
                (newline)
@@ -304,7 +304,7 @@
                (newline)
                (display netname)
                (newline)
-               (protelII:display-name-nets (gnetlist:get-all-connections netname))
+               (protelII:display-name-nets (get-all-connections netname))
                (display ")")
                (newline)
                (protelII:write-net (cdr netnames)))))))
@@ -314,17 +314,17 @@
 ;;
 (define protelII:nets
    (lambda ()
-      (let ((all-uniq-nets (gnetlist:get-all-unique-nets "dummy")))
+      (let ((all-uniq-nets netlist:all-unique-nets))
          (protelII:write-net all-uniq-nets))))
 
 ;;; Highest level function
 ;;; Write my special testing netlist format
 ;;;
 (define (protelII output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
     (protelII:write-top-header)
-    (protelII:components packages)
+    (protelII:components netlist:packages)
     (protelII:nets))
   (close-output-port (current-output-port)))
 

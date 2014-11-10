@@ -1,7 +1,7 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
 ;;; Backend for cascade (http://rfcascade.sourceforge.net)
-;;; Copyright (C) 2003-2010 Dan McMahill
+;;; Copyright (C) 2003-2014 Dan McMahill
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@
                 (display "# Initial global defaults\n")
                 (display "defaults ")
                 (map (lambda (attrib)
-                       (let ((val (gnetlist:get-package-attribute pkg attrib)))
+                       (let ((val (get-package-attribute pkg attrib)))
                          (if (not (string=? val "unknown"))
                              (display (string-append attrib "=" val " "))
                              )
@@ -57,10 +57,10 @@
                )
           (if (string=? (get-device package) "cascade-source")
               (begin
-                (set! sourcenet (gnetlist:get-nets package "1"))
+                (set! sourcenet (get-nets package "1"))
                 (display "source ")
                 (map (lambda (attrib)
-                       (let ((val (gnetlist:get-package-attribute package attrib)))
+                       (let ((val (get-package-attribute package attrib)))
                          (if (not (string=? val "unknown"))
                              (display (string-append attrib "=" val " "))
                              )
@@ -90,7 +90,7 @@
   (lambda (pkg)
     (if (not (null? pkg))
         (begin
-          (let ( (outnet (gnetlist:get-nets pkg "2"))
+          (let ( (outnet (get-nets pkg "2"))
                  )
 
             ;; Is this a "defaults" element or a normal element?
@@ -105,7 +105,7 @@
             ;; spit out all the relevant attributes for element or
             ;; defaults lines
             (map (lambda (attrib)
-                   (let ((val (gnetlist:get-package-attribute pkg attrib)))
+                   (let ((val (get-package-attribute pkg attrib)))
                      (if (not (string=? val "unknown"))
                          (display (string-append attrib "=" val " "))
                          )
@@ -142,7 +142,7 @@
 
      (message (string-append "Writing to output file \"" output-filename
                              "\"... ") )
-     (set-current-output-port (gnetlist:output-port output-filename))
+     (set-current-output-port (output-port output-filename))
 
       (let ((first_block #f))
 
@@ -151,16 +151,16 @@
         (display "# Created with gEDA/gnetlist\n\n")
 
         ;; Write out an initial "defaults" line if it exists
-        (cascade:write-defaults-top packages)
+        (cascade:write-defaults-top netlist:packages)
 
         ;; Write out the "source" line and keep track of what its
         ;; connected to.  If we couldn't find the source, then
         ;; exit out.
         (display "# Source definition\n")
-        (set! first_block (cascade:write-source packages))
+        (set! first_block (cascade:write-source netlist:packages))
         (if (null? first_block)
-            (error "You must include a source element in your schematic!")
-            )
+            (display "You must include a source element in your schematic!")
+        )
 
         ;; write the components
         (display "\n# Cascaded system\n")

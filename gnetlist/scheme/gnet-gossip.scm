@@ -38,7 +38,7 @@
 (define gossip:get-libraries
   (lambda (components done)
     (if (not (null? components))
-      (let ((lib (gnetlist:get-package-attribute (car components) "library")))
+      (let ((lib (get-package-attribute (car components) "library")))
         (if (string=? "unknown" lib)
           (begin
             (message "Component ")
@@ -69,7 +69,7 @@
 ;   (lambda (allnets)
 ;      (if (null? allnets)
 ;         '()
-;         (let ((connections (gnetlist:get-all-connections (car allnets))))
+;         (let ((connections (get-all-connections (car allnets))))
 ;            (cons (gossip:connectionlist connections)
 ;                  (gossip:reverse-netlist (cdr allnets))))))
 
@@ -77,7 +77,7 @@
    (lambda (uref pin allnets)
       (cond
          ((null? allnets) "Not Connected" )
-         ((gossip:finder uref pin (gnetlist:get-all-connections (car allnets)))(car allnets))
+         ((gossip:finder uref pin (get-all-connections (car allnets)))(car allnets))
          (#t (gossip:find-net uref pin (cdr allnets))))))
 
 (define gossip:finder
@@ -119,7 +119,7 @@
 (define gossip:signals
    (lambda ()
       (display "(signals ")
-      (display (gnetlist:get-all-unique-nets "dummy"))
+      (display netlist:all-unique-nets)
       (display ")\n")))
 
 (define gossip:write-block-header
@@ -131,11 +131,11 @@
          (newline))))
 
 (define (gossip output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   (begin
      (gossip:write-top-header)
-     (gossip:get-libraries packages '())
+     (gossip:get-libraries netlist:packages '())
      (gossip:write-block-header)
      (gossip:signals)
-     (gossip:blocks packages (gnetlist:get-all-unique-nets "dummy")))
+     (gossip:blocks netlist:packages netlist:all-unique-nets))
   (close-output-port (current-output-port)))

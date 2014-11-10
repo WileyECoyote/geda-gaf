@@ -87,7 +87,7 @@
           ;; the user should create the refdes label begining with a f
       (display (string-append package " "))
       (spice:write-two-pin-names package "1" "2")
-      (display (string-append "Vsense_" package " " (gnetlist:get-package-attribute package "value") "\n" ))
+      (display (string-append "Vsense_" package " " (get-package-attribute package "value") "\n" ))
           ;; implement the current measuring voltage source
       (display (string-append "Vsense_" package " "))
       (spice:write-two-pin-names package "3" "4")
@@ -130,7 +130,7 @@
           ;; the user should create a refdes label beginning with an e
       (display (string-append package " "))
       (spice:write-net-names-on-component package)
-      (display (string-append (gnetlist:get-package-attribute package "value") "\n" ))
+      (display (string-append (get-package-attribute package "value") "\n" ))
           ;; implement the voltage measuring current source
           ;; imagine yourself copying the voltage of a voltage source with an internal
           ;; impedance, spice starts complaining about unconnected nets if this current
@@ -151,7 +151,7 @@
 ;;--------------------------------------------------------------------------
 (define spice:write-nullor
   (lambda (package)
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
       (display "* begin nullor expansion, e<name>\n")
           ;; implement the controlled voltage source
       (display (string-append "E_" package " "))
@@ -178,7 +178,7 @@
 (define spice:write-list-of-attributes
   (lambda (package attrib-list)
     (if (not (null? attrib-list))
-      (let ((attrib (gnetlist:get-package-attribute package (car attrib-list))))
+      (let ((attrib (get-package-attribute package (car attrib-list))))
             ; Is it possible to make no differentiation between upper and lower case?
             ; That relieves you of mixed case forms e.g. As, AS, as..., they are the
             ; same attributes, spice3f5 is case insensitive.  And other spice versions?
@@ -194,16 +194,16 @@
 ;;-----------------------------------------------------------
 (define spice:component-value
   (lambda (package)
-    (let ((value (gnetlist:get-package-attribute package "value")))
+    (let ((value (get-package-attribute package "value")))
       (if (not (string=? value "unknown"))
         value
         "<No valid value attribute found>"))))
 
 ;;-----------------------------------------------------------
-;; gnet-spice replacement of gnetlist:get-nets, a net labeled "GND" becomes 0
+;; gnet-spice replacement of get-nets, a net labeled "GND" becomes 0
 ;;-----------------------------------------------------------
 (define spice:get-net
   (lambda (refdes pin-name)
-    (let ((net-name (gnetlist:get-nets refdes pin-name)))
+    (let ((net-name (get-nets refdes pin-name)))
       (cond ((string=? (car net-name) "GND") (cons "0" #t))
             (else                            (cons (car net-name) #t))))))

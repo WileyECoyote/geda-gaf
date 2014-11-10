@@ -1,6 +1,6 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;;
-;;; Copyright (C) 2003, 2005-2010 Dan McMahill
+;;; Copyright (C) 2003, 2005-2014 Dan McMahill
 ;;;
 ;;; This program is free software; you can redistribute it and/or modify
 ;;; it under the terms of the GNU General Public License as published by
@@ -129,7 +129,7 @@
 ;;
 (define switcap:write-pin-net
   (lambda (package pin)
-    (display (gnetlist:alias-net (car (gnetlist:get-nets package pin))))
+    (display (netlist:alias-net (car (get-nets package pin))))
     )
   )
 
@@ -140,7 +140,7 @@
 ;;
 (define switcap:write-attrib
   (lambda (package attrib)
-      (let ((val (gnetlist:get-package-attribute package attrib)))
+      (let ((val (get-package-attribute package attrib)))
         (if (string=? val "unknown")
             (begin
               (display "*** WARNING ***\n")
@@ -171,7 +171,7 @@
     ( begin
       ;; Write out the refdes
       (display "     ")
-      (display (gnetlist:alias-refdes package))
+      (display (netlist:alias-refdes package))
       (display " ")
 
       ;; Write out the nodes
@@ -202,7 +202,7 @@
     ( begin
       ;; Write out the refdes
       (display "     ")
-      (display (gnetlist:alias-refdes package))
+      (display (netlist:alias-refdes package))
       (display " ")
 
       ;; Write out the nodes
@@ -232,7 +232,7 @@
     ( begin
       ;; Write out the refdes
       (display "     ")
-      (display (gnetlist:alias-refdes package))
+      (display (netlist:alias-refdes package))
       (display " ")
 
       ;; Write out the nodes
@@ -266,7 +266,7 @@
     ( begin
       ;; Write out the refdes
       (display "     ")
-      (display (gnetlist:alias-refdes package))
+      (display (netlist:alias-refdes package))
       (display " ")
 
       ;; Write out the nodes
@@ -474,23 +474,23 @@
 ;; Switcap netlist generation -- top level
 ;; ----------------------------------------------------------------------------
 (define (switcap output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
 
   ;; initialize the net-name aliasing
-  (gnetlist:build-net-aliases switcap:map-net-names all-unique-nets)
+  (netlist:build-net-aliases switcap:map-net-names netlist:all-unique-nets)
 
   ;; initialize the refdes aliasing
-  (gnetlist:build-refdes-aliases switcap:map-refdes packages)
+  (netlist:build-refdes-aliases switcap:map-refdes netlist:packages)
 
   (switcap:write-top-header)
-  (switcap:write-title-block packages)
+  (switcap:write-title-block netlist:packages)
   (display "TIMING;\n")
-  (switcap:write-timing-block packages)
+  (switcap:write-timing-block netlist:packages)
   (display "END;\n\n")
   (display "CIRCUIT;\n")
-  (switcap:write-netlist packages)
+  (switcap:write-netlist netlist:packages)
   (display "END;\n\n")
-  (switcap:write-analysis-block packages)
+  (switcap:write-analysis-block netlist:packages)
   (display "\n\n/* End of SWITCAP netlist */\n")
   (display "END;\n")
 

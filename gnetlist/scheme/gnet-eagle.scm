@@ -1,6 +1,6 @@
 ;;; gEDA - GPL Electronic Design Automation
 ;;; gnetlist - gEDA Netlist
-;;; Copyright (C) 2004-2010 Braddock Gaskill (braddock@braddock.com,
+;;; Copyright (C) 2004-2014 Braddock Gaskill (braddock@braddock.com,
 ;;;                                           adapted PCB code to Eagle)
 ;;; Copyright (C) 1998-2014 Ales Hvezda
 ;;; Copyright (C) 1998-2014 gEDA Contributors (see ChangeLog for details)
@@ -43,13 +43,13 @@
    (lambda (packages)
       (if (not (null? packages))
          (begin
-            (let ((pattern (gnetlist:get-package-attribute (car packages)
+            (let ((pattern (get-package-attribute (car packages)
                                                            "pattern"))
             ;; The above pattern should stay as "pattern" and not "footprint"
                   (package (car packages))
-                  (lib (gnetlist:get-package-attribute (car packages) "lib"))
-                  (value (gnetlist:get-package-attribute (car packages) "value"))
-                  (device (gnetlist:get-package-attribute (car packages) "device"))
+                  (lib (get-package-attribute (car packages) "lib"))
+                  (value (get-package-attribute (car packages) "value"))
+                  (device (get-package-attribute (car packages) "device"))
                   )
                (if (not (string=? pattern "unknown"))
                   (display pattern))
@@ -58,7 +58,7 @@
                (display "' ")
 ;;             (display "' TQFP144@atmel (0 0)")
 ;;;            (write-char #\tab)
-               (display (gnetlist:get-package-attribute package "footprint"))
+               (display (get-package-attribute package "footprint"))
                (display "@")
                (if (not (string=? lib "unknown"))
                    (display lib)
@@ -113,22 +113,22 @@
       (if (not (null? netnames))
          (let ((netname (car netnames)))
             (display "SIGNAL '")
-            (display (gnetlist:alias-net netname))
+            (display (netlist:alias-net netname))
             (display "'")
             (newline)
-;            (display (gnetlist:wrap
+;            (display (wrap
 ;                     (eagle:display-connections
-;                      (gnetlist:get-all-connections netname))
+;                      (get-all-connections netname))
 ;                     78
 ;                     ""))
             (display (eagle:display-connections
-                       (gnetlist:get-all-connections netname)))
+                       (get-all-connections netname)))
             (eagle:write-net (cdr netnames))))))
 
 (define (eagle output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
   ;; initialize the net-name aliasing
-  (gnetlist:build-net-aliases eagle:map-net-names all-unique-nets)
+  (netlist:build-net-aliases eagle:map-net-names netlist:all-unique-nets)
 
   ;; print out the header
 ;;(display "!EAGLE-POWERPCB-V3.0-MILS!\n")
@@ -137,11 +137,11 @@
   (display "   ;\n")
 
   ;; print out the parts
-  (eagle:components packages)
+  (eagle:components netlist:packages)
 
   ;; print out the net information
 ;;(display "\n*NET*\n")
-  (eagle:write-net (gnetlist:get-all-unique-nets "dummy"))
+  (eagle:write-net netlist:all-unique-nets)
 
   ;; print out the footer
 ;;(display "\n*END*\n")

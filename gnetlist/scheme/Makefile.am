@@ -31,8 +31,8 @@ DIST_SCM = gnet-PCB.scm \
 		   gnet-partslist1.scm \
 		   gnet-partslist2.scm \
 		   gnet-partslist3.scm \
-		   gnet-protelII.scm \
 		   gnet-pcbpins.scm \
+		   gnet-protelII.scm \
 		   gnet-makedepend.scm \
 		   gnet-maxascii.scm \
 		   gnet-redac.scm \

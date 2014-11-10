@@ -69,7 +69,7 @@
            (display "    ")
            (display package)
            (display " : ")
-           (display (gnetlist:get-package-attribute package  "footprint"))
+           (display (get-package-attribute package  "footprint"))
            (display ";")
            (newline)
            (bae:components (cdr ls))))))
@@ -108,7 +108,7 @@
         (display "/'")
         (display netname)
         (display "'/ ")
-        (bae:display-name-nets (gnetlist:get-all-connections netname))
+        (bae:display-name-nets (get-all-connections netname))
         (newline)
         (bae:write-net (cdr netnames))))))
 
@@ -116,18 +116,18 @@
 ;; Write the net part of the gEDA format
 ;;
 (define (bae:nets)
-  (let ((all-uniq-nets (gnetlist:get-all-unique-nets "dummy")))
+  (let ((all-uniq-nets netlist:all-unique-nets))
      (bae:write-net all-uniq-nets)))
 
 ;;; Highest level function
 ;;; Write my special testing netlist format
 ;;;
 (define (bae output-filename)
-  (set-current-output-port (gnetlist:output-port output-filename))
+  (set-current-output-port (output-port output-filename))
     (begin
       (bae:write-top-header)
       (bae:start-components)
-      (bae:components packages)
+      (bae:components netlist:packages)
       (bae:start-nets)
       (bae:nets)
       (bae:end-nets))

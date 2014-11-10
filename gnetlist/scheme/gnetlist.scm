@@ -21,6 +21,28 @@
 (use-modules (srfi srfi-1))
 (use-modules (geda deprecated))
 
+;; The real problem is that this module hase the same name as gnetlist.c
+;; so I do not know how to modularize, so here is my feeble attempt to
+;; hack-around:
+(define-public get-packages                gnetlist:get-packages)
+(define-public get-backend-arguments       gnetlist:get-backend-arguments)
+(define-public get-non-unique-packages     gnetlist:get-non-unique-packages)
+(define-public get-pins                    gnetlist:get-pins)
+(define-public get-all-nets                gnetlist:get-all-nets)
+(define-public get-all-unique-nets         gnetlist:get-all-unique-nets)
+(define-public get-all-connections         gnetlist:get-all-connections)
+(define-public get-nets                    gnetlist:get-nets)
+(define-public get-pins-nets               gnetlist:get-pins-nets)
+(define-public get-all-package-attributes  gnetlist:get-all-package-attributes)
+(define-public get-toplevel-attribute      gnetlist:get-toplevel-attribute)
+(define-public get-renamed-nets            gnetlist:get-renamed-nets)
+(define-public get-attribute-by-pinseq     gnetlist:get-attribute-by-pinseq)
+(define-public get-attribute-by-pinnumber  gnetlist:get-attribute-by-pinnumber)
+(define-public vams-get-package-attributes gnetlist:vams-get-package-attributes)
+(define-public graphical-net-objs-attrib   gnetlist:graphical-net-objs-attrib)
+(define-public get-input-files             gnetlist:get-input-files)
+(define-public get-verbosity               gnetlist:get-verbosity)
+
 ;;----------------------------------------------------------------------
 ;; The below functions added by SDB in Sept 2003 to support command-line flag
 ;; processing.
@@ -32,21 +54,21 @@
 ;;  does nothing.
 ;;  Calling form:  (debug-spew "verbose debug text")
 ;;--------------------------------------------------------------
-(define debug-spew
+(define-public debug-spew
   (lambda (debug-string)
     (if (= 1 (gnetlist:get-verbosity))
         (display debug-string)
 )))
 
-
-(define (gnetlist:get-calling-flags) ; DEPRECATED
+(define-public (get-calling-flags) ; DEPRECATED
   "Returns a list of `-O' arguments in the form:
 
   ((ARGUMENT #t) ...)
 
 This function is deprecated, and should not be used in new code.  New
 code should use `gnetlist:get-backend-arguments' directly."
-  (map (lambda (x) (list x #t)) (gnetlist:get-backend-arguments)))
+  (map (lambda (x) (list x #t)) (gnetlist:get-backend-arguments))
+)
 
 ;;---------------------------------------------------------------
 ;; calling-flag?
@@ -54,7 +76,7 @@ code should use `gnetlist:get-backend-arguments' directly."
 ;;   was set in the calling flags given to gnetlist.
 ;;   9.7.2003 -- SDB.
 ;;---------------------------------------------------------------
-(define calling-flag?
+(define-public calling-flag?
   (lambda (searched-4-flag calling-flag-list)
 
     (if (null? calling-flag-list)
@@ -87,7 +109,7 @@ code should use `gnetlist:get-backend-arguments' directly."
 ;;  I needed to write this because substring chokes when the string arg is
 ;;  shorter than the end arg.
 ;;  1.4.2006 -- SDB.
-(define strncmp?
+(define-public strncmp?
   (lambda (string1 string2 end)
     (and
      (string-ci=? (substring string1 0 (min end (string-length string1)))
@@ -101,7 +123,7 @@ code should use `gnetlist:get-backend-arguments' directly."
 ;;  This fcn returns the first len characters of the string str.  If
 ;;  str has less than len characters, it returns the whole string
 ;;  (but doesn't choke)
-(define safe-string-head
+(define-public safe-string-head
   (lambda (str len)
     (substring str 0 (min len (string-length str)))
   )
@@ -109,7 +131,7 @@ code should use `gnetlist:get-backend-arguments' directly."
 
 ;; Default resolver: returns value associated with first symbol instance
 ;; in file order and warns if instances have different values.
-(define (unique-attribute refdes name values)
+(define-public (unique-attribute refdes name values)
     (let ((value (car values)))
       (or (every (lambda (x) (equal? x value)) values)
           (format (current-error-port) "\
@@ -119,12 +141,12 @@ values: ~A
 " refdes name values))
       value))
 
-(define (gnetlist:get-package-attribute refdes name)
+(define-public (get-package-attribute refdes name)
   "Return the value associated with attribute NAME on package
 identified by REFDES.
 
 It actually computes a single value from the full list of values
-produced by 'gnetlist:get-all-package-attributes' as that list is
+produced by 'get-all-package-attributes' as that list is
 passed through 'unique-attribute'.
 
 For backward compatibility, the default behavior is to return the
@@ -167,7 +189,7 @@ REFDES. As a result, slots may be repeated in the returned list."
     (gnetlist:get-all-package-attributes refdes "slot"))
    <))
 
-(define (gnetlist:get-unique-slots refdes)
+(define-public (get-unique-slots refdes)
   "Return a sorted list of unique slots used by package REFDES."
   (delete-duplicates! (gnetlist:get-slots refdes)))
 
@@ -176,18 +198,18 @@ REFDES. As a result, slots may be repeated in the returned list."
 ;;
 (define get-device
    (lambda (package)
-      (gnetlist:get-package-attribute package "device")))
+      (get-package-attribute package "device")))
 
 ;; Shorthand for get component values
 (define get-value
    (lambda (package)
-      (gnetlist:get-package-attribute package "value")))
+      (get-package-attribute package "value")))
 
 (define get-component-text
    (lambda (package)
-      (let ((value (gnetlist:get-package-attribute package "value"))
-            (label (gnetlist:get-package-attribute package "label"))
-            (device (gnetlist:get-package-attribute package "device")))
+      (let ((value (get-package-attribute package "value"))
+            (label (get-package-attribute package "label"))
+            (device (get-package-attribute package "device")))
          (if (not (string=? "unknown" value))
             value
             (if (not (string=? "unknown" label))
@@ -228,7 +250,7 @@ REFDES. As a result, slots may be repeated in the returned list."
 ;; find-device
 ;; Usage:  (find-device packages devicename)
 ;; Returns the first package which matches the devicename
-(define find-device
+(define-public find-device
    (lambda (components devicename)
       (if (not (null? components))
          (if (string=? devicename (get-device (car components)))
@@ -256,7 +278,7 @@ REFDES. As a result, slots may be repeated in the returned list."
 ;; contains?
 ;; Usage (contains? list item)
 ;; True if the list contains the item, according to string=?
-(define contains?
+(define-public contains?
    (lambda (ls item)
       (cond
          ((null? ls) #f)
@@ -266,7 +288,7 @@ REFDES. As a result, slots may be repeated in the returned list."
 ;; ETTUS
 ;; Usage: (number-nets all-unique-nets 1)
 ;; Returns a list of pairs of form (netname . number)
-(define (number-nets nets number)
+(define-public (number-nets nets number)
   (define (number-nets-impl in i out)
     (if (null? in)
         (reverse! out) ; Return value
@@ -280,7 +302,7 @@ REFDES. As a result, slots may be repeated in the returned list."
 ;; Usage: (get-net-number netname numberlist)
 ;; numberlist should be from (number-nets) above
 ;; Returns the number corresponding to the net
-(define get-net-number
+(define-public get-net-number
    (lambda (netname numberlist)
       (if (not (null? numberlist))
          (if (string=? netname (car (car numberlist)))
@@ -290,17 +312,17 @@ REFDES. As a result, slots may be repeated in the returned list."
 ;;
 ;; Useful output functions contributed by Andrew Bardsley
 ;;
-(define (print-to-port port . l)
+(define-public (print-to-port port . l)
     (for-each (lambda (elem) (display elem port)) l))
 
-(define (print . l)
+(define-public (print . l)
     (apply print-to-port (cons (current-output-port) l)))
 
 ;;
 ;; Wrap a string into lines no longer than wrap-length
 ;; wrap-char is put on the end-of-the-wrapped-line, before the return
 ;; (from Stefan Petersen)
-(define (gnetlist:wrap string-to-wrap wrap-length wrap-char)
+(define-public (wrap string-to-wrap wrap-length wrap-char)
   (if (> wrap-length (string-length string-to-wrap))
       string-to-wrap ; Last snippet of string
       (let ((pos (string-rindex string-to-wrap #\space 0 wrap-length)))
@@ -312,14 +334,14 @@ REFDES. As a result, slots may be repeated in the returned list."
 		(substring string-to-wrap 0 pos)
 		wrap-char
 		"\n "
-		(gnetlist:wrap (substring string-to-wrap (+ pos 1)) wrap-length wrap-char)))))))
+		(wrap (substring string-to-wrap (+ pos 1)) wrap-length wrap-char)))))))
 
 ;; example use
 ; (define (run-test test-string wrap-len)
 ;   (display (string-append "Wrapping \"" test-string "\" into "))
 ;   (display wrap-len)
 ;   (newline)
-;   (display (gnetlist:wrap test-string wrap-len " \\"))
+;   (display (wrap test-string wrap-len " \\"))
 ;   (newline)
 ;   (newline))
 
@@ -350,24 +372,25 @@ REFDES. As a result, slots may be repeated in the returned list."
    (else #f)))
 
 ;; define the default handler for get-uref
-(define get-uref gnetlist:get-uref)
+;;(define get-uref gnetlist:get-uref)
 
-(define (gnetlist:get-command-line)
+(define-public (get-command-line)
   "Return the command line used to invoke the program."
   (string-join (program-arguments)))
 
-(define (gnetlist:stdout? output-filename)
+(define-public (stdout? output-filename)
   (string=? output-filename "-"))
 
 ;; If the output file name is "-", use stdout instead
-(define (gnetlist:output-port output-filename)
-  (if (gnetlist:stdout? output-filename)
+(define-public (output-port output-filename)
+  (if (stdout? output-filename)
     (current-output-port)
     (open-output-file output-filename)))
 
 ;; Where to output messages for the user
-(define message-port (current-error-port))
+(define-public message-port (current-error-port))
+
 ;; Procedure to output messages to message-port
-(define (message output-string)
+(define-public (message output-string)
   (display output-string message-port)
   )
