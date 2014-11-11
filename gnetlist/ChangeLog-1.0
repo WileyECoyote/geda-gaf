@@ -1,15 +1,19 @@
 2014-11-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * scheme/gnet-gsch2pcb.scm.in: gnetlist: Missed one,
+
+2014-11-10 Wiley E. Hill <wileyhill@gmail.com>
+
     * scheme/gnetlist.scm: Revise defines to public and add public defines
-      to gnetlist.c functions.
+      for gnetlist.c functions.
 
     * scheme/gnetlist-post.scm: Revise module to use netlist: prefix, adding
-      to all functions, in order to distingish from gnetlist:, AND packages
+      to all functions in order to distingish from gnetlist:, AND packages
       as an argument (in many modules) and netlist:packages. Add new function
       netlist:get-renamed-nets.
 
     * scheme/gnet*.scm: Revise all backends to use changes above, think I got
-      most of the gnetlist: rerouted through gnetlist.scm and I thnk this is
+      most of the gnetlist: rerouted through gnetlist.scm and I think this is
       less confusing.
 
 2014-11-09 Wiley E. Hill <wileyhill@gmail.com>
