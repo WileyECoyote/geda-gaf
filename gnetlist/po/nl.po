@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda-gnetlist\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-10-05 06:33-0500\n"
+"POT-Creation-Date: 2014-11-09 21:49-0600\n"
 "PO-Revision-Date: 2012-12-08 09:38+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA Developers\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Poedit-Language: Dutch\n"
 "X-Poedit-Country: NETHERLANDS\n"
 
-#: gnetlist/src/g_netlist.c:382
+#: gnetlist/src/g_netlist.c:380
 #, c-format
 msgid "Invalid refdes ('%s') and pin ('%s') passed to get-nets\n"
 msgstr "Ongeldige refdes ('%s') en pen ('%s') overgedragen aan get-nets\n"
@@ -37,44 +37,44 @@ msgstr ""
 "Lijst van beschikbare backends:\n"
 "\n"
 
-#: gnetlist/src/gnetlist.c:177
+#: gnetlist/src/gnetlist.c:176
 msgid ""
 "gEDA/gnetlist comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
 "details.\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:179
+#: gnetlist/src/gnetlist.c:178
 msgid ""
 "This is free software, and you are welcome to redistribute it under certain\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:181
+#: gnetlist/src/gnetlist.c:180
 msgid ""
 "conditions; please see the COPYING file for more details.\n"
 "\n"
 msgstr ""
 
-#: gnetlist/src/gnetlist.c:226
+#: gnetlist/src/gnetlist.c:225
 #, fuzzy, c-format
 msgid "Loading schematic <%s>\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:227
+#: gnetlist/src/gnetlist.c:226
 #, fuzzy, c-format
 msgid "Loading schematic [%s]\n"
 msgstr "Laden van schema [%s]\n"
 
-#: gnetlist/src/gnetlist.c:234
+#: gnetlist/src/gnetlist.c:233
 #, fuzzy, c-format
 msgid "ERROR: Failed to load [%s]: %s\n"
 msgstr "FOUT: Faalde bij het laden van '%s': %s\n"
 
-#: gnetlist/src/gnetlist.c:253 gnetlist/src/gnetlist.c:305
+#: gnetlist/src/gnetlist.c:252 gnetlist/src/gnetlist.c:304
 #, fuzzy, c-format
 msgid "ERROR: File System, could change to directory [%s:] %s\n"
 msgstr "FOUT: Faalde om subcircuit '%s': %s te laden\n"
 
-#: gnetlist/src/gnetlist.c:260
+#: gnetlist/src/gnetlist.c:259
 #, fuzzy, c-format
 msgid "ERROR: No schematics files specified for processing.\n"
 msgstr ""
@@ -82,7 +82,7 @@ msgstr ""
 "\n"
 "Doe `%s --help' voor meer informatie.\n"
 
-#: gnetlist/src/gnetlist.c:261 gnetlist/src/parsecmd.c:220
+#: gnetlist/src/gnetlist.c:260 gnetlist/src/parsecmd.c:220
 #, c-format
 msgid ""
 "\n"
@@ -91,7 +91,7 @@ msgstr ""
 "\n"
 "Doe `%s --help' voor meer informatie.\n"
 
-#: gnetlist/src/gnetlist.c:282
+#: gnetlist/src/gnetlist.c:281
 #, fuzzy, c-format
 msgid "ERROR: Could not find backend `%s' in load path.\n"
 msgstr ""
@@ -99,7 +99,7 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:285
+#: gnetlist/src/gnetlist.c:284
 #, fuzzy, c-format
 msgid ""
 "\n"
@@ -109,7 +109,7 @@ msgstr ""
 "\n"
 "Doe `%s --list-backends' voor een volledige lijst van beschikbare backends.\n"
 
-#: gnetlist/src/gnetlist.c:325
+#: gnetlist/src/gnetlist.c:324
 #, fuzzy, c-format
 msgid "Either specify a backend to execute or interactive mode!\n"
 msgstr "U gaf geen backend om uit voeren noch interactieve modus!\n"

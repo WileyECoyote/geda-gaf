@@ -32,6 +32,8 @@ libgedauio_HEADERS = \
 			geda_uio_functions.h     \
 			geda_widgets.h
 
+EXTRA_DIST = geda_bulb.xpm
+
 MOSTLYCLEANFILES     = *~ *.log core FILE
 CLEANFILES           = *~ *.log core FILE
 DISTCLEANFILES       = *~ *.log core FILE

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-10-05 06:32-0500\n"
+"POT-Creation-Date: 2014-11-09 21:49-0600\n"
 "PO-Revision-Date: 2012-01-27 14:12+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Danish <da@li.org>\n"
@@ -113,7 +113,7 @@ msgstr ""
 
 #: libgeda/src/file/f_basic.c:373
 #, c-format
-msgid "Can not create backup file: %s: %s"
+msgid "Can not create backup file: %s: %s\n"
 msgstr ""
 
 #: libgeda/src/file/f_basic.c:419
@@ -254,31 +254,31 @@ msgstr ""
 msgid "Set underlying file for EdaConfig"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:763 libgeda/src/geda/geda_config.c:876
+#: libgeda/src/geda/geda_config.c:770 libgeda/src/geda/geda_config.c:883
 msgid "Undefined configuration filename"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:897
+#: libgeda/src/geda/geda_config.c:904
 #, c-format
 msgid "file <%s> %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:936
+#: libgeda/src/geda/geda_config.c:943
 #, c-format
 msgid "bad path in file %s"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1228
+#: libgeda/src/geda/geda_config.c:1235
 #, c-format
 msgid "Configuration does not have group '%s'\n"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1292
+#: libgeda/src/geda/geda_config.c:1299
 #, c-format
 msgid "Configuration does not have group '%s'"
 msgstr ""
 
-#: libgeda/src/geda/geda_config.c:1306
+#: libgeda/src/geda/geda_config.c:1313
 #, c-format
 msgid "Configuration does not have key '%s'"
 msgstr ""
@@ -417,109 +417,122 @@ msgid ""
 "Backtrace:\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:278
+#: libgeda/src/guile/g_evaluate.c:301
+msgid "changed"
+msgstr ""
+
+#: libgeda/src/guile/g_evaluate.c:302
+msgid "restore"
+msgstr ""
+
+#: libgeda/src/guile/g_evaluate.c:304
+#, c-format
+msgid "<error> libgeda could not %s directory to %s:%s"
+msgstr ""
+
+#: libgeda/src/guile/g_rc.c:285
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:325 libgeda/src/guile/g_rc.c:334
+#: libgeda/src/guile/g_rc.c:333 libgeda/src/guile/g_rc.c:342
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:426
+#: libgeda/src/guile/g_rc.c:434
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:427 libgeda/src/guile/g_rc.c:433
-#: libgeda/src/guile/g_rc.c:463 libgeda/src/guile/g_rc.c:469
-#: libgeda/src/guile/g_rc.c:501 libgeda/src/guile/g_rc.c:507
-#: libgeda/src/guile/g_rc.c:539 libgeda/src/guile/g_rc.c:545
-#: libgeda/src/guile/g_rc.c:570 libgeda/src/guile/g_rc.c:594
-#: libgeda/src/guile/g_rc.c:618 libgeda/src/guile/g_rc.c:643
-#: libgeda/src/guile/g_rc.c:668 libgeda/src/guile/g_rc.c:693
-#: libgeda/src/guile/g_rc.c:718 libgeda/src/guile/g_rc.c:743
+#: libgeda/src/guile/g_rc.c:435 libgeda/src/guile/g_rc.c:441
+#: libgeda/src/guile/g_rc.c:471 libgeda/src/guile/g_rc.c:477
+#: libgeda/src/guile/g_rc.c:509 libgeda/src/guile/g_rc.c:515
+#: libgeda/src/guile/g_rc.c:547 libgeda/src/guile/g_rc.c:553
+#: libgeda/src/guile/g_rc.c:578 libgeda/src/guile/g_rc.c:602
+#: libgeda/src/guile/g_rc.c:626 libgeda/src/guile/g_rc.c:651
+#: libgeda/src/guile/g_rc.c:676 libgeda/src/guile/g_rc.c:701
+#: libgeda/src/guile/g_rc.c:726 libgeda/src/guile/g_rc.c:751
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:432
+#: libgeda/src/guile/g_rc.c:440
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:462
+#: libgeda/src/guile/g_rc.c:470
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:468
+#: libgeda/src/guile/g_rc.c:476
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:500
+#: libgeda/src/guile/g_rc.c:508
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:506
+#: libgeda/src/guile/g_rc.c:514
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:538
+#: libgeda/src/guile/g_rc.c:546
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:544
+#: libgeda/src/guile/g_rc.c:552
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:569
+#: libgeda/src/guile/g_rc.c:577
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:593
+#: libgeda/src/guile/g_rc.c:601
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:617
+#: libgeda/src/guile/g_rc.c:625
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:642
+#: libgeda/src/guile/g_rc.c:650
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:667
+#: libgeda/src/guile/g_rc.c:675
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:692
+#: libgeda/src/guile/g_rc.c:700
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:717
+#: libgeda/src/guile/g_rc.c:725
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:742
+#: libgeda/src/guile/g_rc.c:750
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:795
+#: libgeda/src/guile/g_rc.c:803
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
@@ -527,31 +540,36 @@ msgstr ""
 msgid "RC file already loaded"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:149
+#: libgeda/src/guile/g_rc_parse.c:131
 #, c-format
-msgid "Failed to load config from '%s': %s\n"
+msgid "Failed to load configuration from '%s': %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:180
-#, c-format
-msgid "Loaded RC file [%s]\n"
-msgstr ""
-
-#: libgeda/src/guile/g_rc_parse.c:186
+#: libgeda/src/guile/g_rc_parse.c:132
 #, c-format
 msgid "Error encounted processing RC file [%s]: "
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:336
+#: libgeda/src/guile/g_rc_parse.c:133
+#, c-format
+msgid "Error accessing configuration %s, %s\n"
+msgstr ""
+
+#: libgeda/src/guile/g_rc_parse.c:208
+#, c-format
+msgid "Loaded RC file [%s]\n"
+msgstr ""
+
+#: libgeda/src/guile/g_rc_parse.c:360
 msgid "ERROR: An unknown error occurred while parsing configuration files."
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:349 libgeda/src/guile/g_rc_parse.c:350
+#: libgeda/src/guile/g_rc_parse.c:373 libgeda/src/guile/g_rc_parse.c:374
 #, c-format
 msgid "ERROR: %s\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc_parse.c:356
+#: libgeda/src/guile/g_rc_parse.c:380
 #, c-format
 msgid "ERROR: The %s log may contain more information.\n"
 msgstr ""
@@ -568,7 +586,7 @@ msgstr ""
 #: libgeda/src/object/o_arc_basic.c:260 libgeda/src/object/o_box_basic.c:307
 #: libgeda/src/object/o_bus_basic.c:141
 #: libgeda/src/object/o_circle_basic.c:246
-#: libgeda/src/object/o_line_basic.c:237 libgeda/src/object/o_net_basic.c:151
+#: libgeda/src/object/o_line_basic.c:237 libgeda/src/object/o_net_basic.c:149
 #: libgeda/src/object/o_path_basic.c:204 libgeda/src/object/o_pin_basic.c:174
 #: libgeda/src/object/o_text_basic.c:343
 #, c-format
@@ -578,7 +596,7 @@ msgstr ""
 #: libgeda/src/object/o_arc_basic.c:261 libgeda/src/object/o_box_basic.c:308
 #: libgeda/src/object/o_bus_basic.c:142
 #: libgeda/src/object/o_circle_basic.c:247
-#: libgeda/src/object/o_line_basic.c:238 libgeda/src/object/o_net_basic.c:152
+#: libgeda/src/object/o_line_basic.c:238 libgeda/src/object/o_net_basic.c:150
 #: libgeda/src/object/o_path_basic.c:205 libgeda/src/object/o_pin_basic.c:175
 #: libgeda/src/object/o_text_basic.c:344
 msgid "Setting color to default color\n"
@@ -739,57 +757,60 @@ msgstr ""
 msgid "Setting mirror to 0\n"
 msgstr ""
 
+#: libgeda/src/object/o_complex_basic.c:1000
+msgid "mismatch"
+msgstr ""
+
 #: libgeda/src/object/o_complex_basic.c:1001
+msgid "newer"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1002
+msgid "oddity"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1003
+msgid "older"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1004
+msgid "parse error"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1007
+#, c-format
+msgid "\tInstantiated symbol <%s> is %s than the version in library\n"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1008
+#, c-format
+msgid "\tMAJOR VERSION CHANGE (instantiated %.3f, library %.3f, %s)!\n"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1009
+#, c-format
+msgid "\tMinor version change (instantiated %.3f, library %.3f)\n"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1010
+msgid "\tCould not parse symbol file\n"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1011
+#, c-format
+msgid "WARNING: Symbol version %s on refdes %s:\n"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1057
+#, c-format
+msgid "\tCould not parse attached symversion=%s\n"
+msgstr ""
+
+#: libgeda/src/object/o_complex_basic.c:1079
 #, c-format
 msgid ""
-"WARNING: Symbol version parse error on refdes %s:\n"
-"\tCould not parse symbol file symversion=%s\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1005
-#, c-format
-msgid ""
-"WARNING: Symbol version parse error on refdes %s:\n"
-"\tCould not parse symbol file symversion=\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1022
-#, c-format
-msgid ""
-"WARNING: Symbol version parse error on refdes %s:\n"
-"\tCould not parse attached symversion=%s\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1048
-#, c-format
-msgid ""
-"WARNING: Symbol version oddity on refdes %s:\n"
-"\tsymversion=%s attached to instantiated symbol, but no symversion= inside "
-"symbol file\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1062
-#, c-format
-msgid ""
-"WARNING: Symbol version mismatch on refdes %s (%s):\n"
-"\tSymbol in library is newer than instantiated symbol\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1094
-#, c-format
-msgid "\tMAJOR VERSION CHANGE (file %.3f, instantiated %.3f, %s)!\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1112
-#, c-format
-msgid "\tMinor version change (file %.3f, instantiated %.3f)\n"
-msgstr ""
-
-#: libgeda/src/object/o_complex_basic.c:1123
-#, c-format
-msgid ""
-"WARNING: Symbol version oddity on refdes %s:\n"
-"\tInstantiated symbol is newer than symbol in library\n"
+"\tsymversion=%s attached to instantiated symbol, but version not found "
+"inside symbol file\n"
 msgstr ""
 
 #: libgeda/src/object/o_embed.c:52
@@ -818,11 +839,11 @@ msgstr ""
 msgid "Found a zero length line [ %c %d %d %d %d %d ]\n"
 msgstr ""
 
-#: libgeda/src/object/o_net_basic.c:136
+#: libgeda/src/object/o_net_basic.c:134
 msgid "Failed to parse net object"
 msgstr ""
 
-#: libgeda/src/object/o_net_basic.c:141
+#: libgeda/src/object/o_net_basic.c:139
 #, c-format
 msgid "Found a zero length net [ %c %d %d %d %d %d ]\n"
 msgstr ""
@@ -963,7 +984,7 @@ msgstr ""
 
 #: libgeda/src/object/o_save.c:124
 #, c-format
-msgid "Automatic backup file saved <%s>\n"
+msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
 #: libgeda/src/object/o_save.c:136
@@ -973,7 +994,7 @@ msgstr ""
 
 #: libgeda/src/object/o_save.c:142
 #, c-format
-msgid "Could NOT save backup file <%s>: %s\n"
+msgid "Could NOT save backup file [%s]: %s\n"
 msgstr ""
 
 #: libgeda/src/object/o_save.c:253
@@ -983,7 +1004,7 @@ msgstr ""
 
 #: libgeda/src/object/o_save.c:334
 #, c-format
-msgid "<%s>: because %s"
+msgid "[%s]: because %s"
 msgstr ""
 
 #: libgeda/src/object/o_set.c:85
@@ -1155,15 +1176,15 @@ msgstr ""
 msgid "Object ~A has attributes"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_color.c:80
+#: libgeda/src/scheme/scheme_color.c:78
 msgid "Color map entry must be a two-element list"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_color.c:88
+#: libgeda/src/scheme/scheme_color.c:86
 msgid "Index in color map entry must be an integer"
 msgstr ""
 
-#: libgeda/src/scheme/scheme_color.c:113
+#: libgeda/src/scheme/scheme_color.c:111
 msgid "Value in color map entry must be #f or a string"
 msgstr ""
 
@@ -1247,54 +1268,54 @@ msgstr ""
 msgid "Non-string symbol name while scanning library [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1014 libgeda/src/struct/s_clib.c:1061
+#: libgeda/src/struct/s_clib.c:1018 libgeda/src/struct/s_clib.c:1065
 msgid "Cannot add library: name not specified\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1021
+#: libgeda/src/struct/s_clib.c:1025
 #, c-format
 msgid ""
 "Cannot add library [%s]: both 'list' and 'get' commands must be specified.\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1070
+#: libgeda/src/struct/s_clib.c:1074
 #, c-format
 msgid "Cannot add Scheme-library [%s]: callbacks must be closures\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1191
+#: libgeda/src/struct/s_clib.c:1195
 #, c-format
 msgid "Failed to load symbol from file [%s]: %s\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1250
+#: libgeda/src/struct/s_clib.c:1254
 #, c-format
 msgid "Failed to load symbol data [%s] from source [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1492
+#: libgeda/src/struct/s_clib.c:1496
 #, c-format
 msgid "Component [%s] was not found in the component library\n"
 msgstr ""
 
-#: libgeda/src/struct/s_clib.c:1498
+#: libgeda/src/struct/s_clib.c:1502
 #, c-format
 msgid "More than one component found with name [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:80
+#: libgeda/src/struct/s_hierarchy.c:77
 msgid "Schematic not found in source library."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:100
+#: libgeda/src/struct/s_hierarchy.c:97
 msgid "Hierarchy contains a circular dependency."
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:199
+#: libgeda/src/struct/s_hierarchy.c:198
 msgid "There are no schematics above the current one!\n"
 msgstr ""
 
-#: libgeda/src/struct/s_hierarchy.c:281
+#: libgeda/src/struct/s_hierarchy.c:280
 #, c-format
 msgid "Failed to descend hierarchy into '%s': %s\n"
 msgstr ""
@@ -1323,19 +1344,19 @@ msgstr ""
 msgid "Could NOT save [%s]\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:167
+#: libgeda/src/struct/s_slot.c:165
 msgid "Did not find slotdef=#:#,#,#... attribute\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:173
+#: libgeda/src/struct/s_slot.c:171
 msgid "Improper slotdef syntax: missing \":\".\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:188
+#: libgeda/src/struct/s_slot.c:186
 msgid "Did not find proper slotdef=#:#,#,#... attribute\n"
 msgstr ""
 
-#: libgeda/src/struct/s_slot.c:217
+#: libgeda/src/struct/s_slot.c:216
 msgid "component missing pinseq= attribute\n"
 msgstr ""
 
