@@ -71,7 +71,7 @@ pinseq=5
 T 850 350 9 10 1 1 90 0 1
 pinlabel=SYNC
 T 925 50 5 8 0 1 90 0 1
-pintype=out
+pintype=pas
 }
 P 1200 0 1200 300 1 0 0
 {
