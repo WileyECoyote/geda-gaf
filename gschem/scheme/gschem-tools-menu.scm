@@ -28,6 +28,11 @@
 ;(define tools:gitclient "gitk")
 (define tools:gitclient "git gui")
 
+;; Define your preffer BOM backend here
+(define tools:bom "partslist1")
+;(define tools:bom "partslist2")
+;(define tools:bom "partslist3")
+
 ;; ======================== Utilities code  ========================
 ;; Get the current input schematic/sym filepath when called
 (define (tools:ifpath) (get-selected-filename))
@@ -142,6 +147,19 @@
 )
 
 
+;; ----------------- tools:run-bom ----------------------------
+(define (tools:run-bom)
+  (let  ((fout   (string-append (tools:ifbase) "_bom.txt")))
+    (if (tools:check-file "sch")
+      (begin
+        (system (string-append "gnetlist -g " tools:bom " -o " fout " " (tools:ifpath)))
+      )
+    )
+  )
+)
+
+;; ==================================================================
+
 ;; ----------------- tools:geda-netlist -------------------------------
 (define (tools:geda-netlist)
     (tools:sch-netlist-0 "geda" ".geda"))
@@ -179,6 +197,8 @@
     ("_Open Editor"         tools:open-editor          "geda-text-editor"   "Open text editor")
     ("Run DRC"              tools:run-drc2             "geda-check-org"     "Launch design rule checker")
     ("Version Control"      tools:open-gitclient       "git-logo"           "Launch version system")
+    ("Bill of Materials"    tools:run-bom              #f                   "Generate a BOM")
+
     ("SEPARATOR"                #f                     #f)
     ("gEDA netlist"         tools:geda-netlist         "gschem-net")
     ("Spice-sdb netlist"    tools:spice-sdb-netlist    "geda-wave")

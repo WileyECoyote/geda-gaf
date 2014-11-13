@@ -1,3 +1,8 @@
+2014-11-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * scheme/gschem-tools-menu.scm: Add a BOM backend to the menu so users
+      do not have to leave the GUI to generate a Bill Of Materials
+
 2014-11-08 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add new action handeler:do_home_attributes
