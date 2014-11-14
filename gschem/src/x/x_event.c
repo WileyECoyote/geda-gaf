@@ -82,8 +82,7 @@ int x_event_button_pressed(GtkWidget      *widget,
     w_current->event_state == SELECT))
   {
     if (o_select_is_selection (w_current)) {
-      o_edit_objects (w_current, geda_list_get_glist( Top_Selection ),
-                      ID_ORIGIN_EVENT);
+      o_edit_objects (w_current, geda_list_get_glist( Top_Selection ), ID_ORIGIN_EVENT);
       i_status_set_state(w_current, SELECT);
       return(0);
     }
@@ -98,6 +97,7 @@ int x_event_button_pressed(GtkWidget      *widget,
      * returning from the function directly. */
 
     if (event->button == GDK_BUTTON_PRIMARY) {
+
       switch(w_current->event_state) {
         case(DESELECT):
           w_current->event_state = STARTDESELECT;
@@ -106,8 +106,8 @@ int x_event_button_pressed(GtkWidget      *widget,
 
           /* look for grips or fall through if not enabled */
           if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
-            /* now go into normal SELECT */
 
+            /* now go into normal SELECT */
             w_current->event_state = STARTSELECT;
             w_current->first_wx = w_current->second_wx = unsnapped_wx;
             w_current->first_wy = w_current->second_wy = unsnapped_wy;
@@ -385,7 +385,6 @@ int x_event_button_pressed(GtkWidget      *widget,
           throttle = 0;
           break;
       }
-
     }
     else if (event->button == 3) {
 
@@ -512,17 +511,19 @@ bool x_event_button_released (GtkWidget      *widget,
   w_current->CONTROLKEY = (event->state & GDK_CONTROL_MASK) ? 1 : 0;
   w_current->ALTKEY     = (event->state & GDK_MOD1_MASK)    ? 1 : 0;
 
+  /* Capture where in the World this event occurred */
   SCREENtoWORLD (w_current, (int) event->x, (int) event->y,
-                 &unsnapped_wx, &unsnapped_wy);
+                             &unsnapped_wx, &unsnapped_wy);
 
   w_x = snap_grid (w_current, unsnapped_wx);
   w_y = snap_grid (w_current, unsnapped_wy);
 
-  /* Huge switch statement to evaluate state transitions. Jump to
-   * end_button_released label to escape the state evaluation rather
-   * than returning from the function directly. */
-
   if (event->button == 1) {
+
+    /* Huge switch statement to evaluate state transitions. Jump to
+     * end_button_released label to escape the state evaluation rather
+     * than returning from the function directly. */
+
     switch(w_current->event_state) {
       case(DESELECT):
       case(SELECT):
@@ -580,6 +581,7 @@ bool x_event_button_released (GtkWidget      *widget,
         w_current->inside_action = FALSE;
         i_status_set_state(w_current, SELECT);
         break;
+
       case(STARTDESELECT):
         object = o_find_selected_object(w_current, unsnapped_wx, unsnapped_wy);
         if (object) {
@@ -588,9 +590,10 @@ bool x_event_button_released (GtkWidget      *widget,
           }
         }
         break;
-      case(STARTSELECT):
-        /* first look for grips */
 
+      case(STARTSELECT):
+
+        /* first look for grips */
         if (!o_grips_start(w_current, unsnapped_wx, unsnapped_wy)) {
           /* now look for objects to select, TRUE = add to page selection */
           o_find_object(w_current, unsnapped_wx, unsnapped_wy, TRUE);
@@ -602,6 +605,7 @@ bool x_event_button_released (GtkWidget      *widget,
           w_current->inside_action = TRUE;
         }
         break;
+
       case ENDPATH:
         if (o_path_end (w_current, w_x, w_y)) {
           w_current->event_state   = PATHCONT;
@@ -611,6 +615,7 @@ bool x_event_button_released (GtkWidget      *widget,
           w_current->inside_action = FALSE;
         }
         break;
+
       case STARTDND:
         w_current->dnd_state = NONE;
         if (w_current->drag_event) {
@@ -634,6 +639,7 @@ bool x_event_button_released (GtkWidget      *widget,
           o_move_invalidate_rubber (w_current, FALSE);
         }
         else {
+          w_current->debug = X_EVENT_638;
           o_place_invalidate_rubber (w_current, FALSE);
         }
         w_current->rubber_visible = FALSE;
@@ -647,6 +653,7 @@ bool x_event_button_released (GtkWidget      *widget,
         if (w_current->event_state == ENDMOVE) {
           o_move_invalidate_rubber (w_current, TRUE);
         } else {
+          w_current->debug = X_EVENT_652;
           o_place_invalidate_rubber (w_current, TRUE);
         }
         w_current->rubber_visible = TRUE;
@@ -691,7 +698,6 @@ bool x_event_button_released (GtkWidget      *widget,
             i_status_set_state(w_current, SELECT);
             break;
     }
-
   }
   else if (event->button == 3) {
     if (w_current->doing_pan) { /* just for ending a mouse pan */

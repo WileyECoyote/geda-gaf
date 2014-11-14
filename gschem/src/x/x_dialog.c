@@ -135,19 +135,17 @@ GtkWidget* create_pixmap (const char *filename)
 
   pathname = g_build_filename (f_path_sys_data (), "bitmap", filename, NULL);
 
-  if (!pathname)
-    {
+  if (!pathname) {
+
       u_log_message("Could not find image at file: %s.\n", filename);
       return gtk_image_new_from_stock(GTK_STOCK_MISSING_IMAGE,
                                       GTK_ICON_SIZE_INVALID);
-    }
+  }
 
   pixmap = gtk_image_new_from_file (pathname);
   GEDA_FREE (pathname);
   return pixmap;
 }
-
-
 
 /** @} endgroup General-Dialog-Utilities */
 
@@ -163,8 +161,9 @@ GtkWidget* get_geda_switch_image (bool WhichState)
 {
    GtkWidget* image;
 
-   if (WhichState)
+   if (WhichState) {
      image = create_pixmap (GEDA_BITMAP_SWITCH_ON);
+   }
    else
      image = create_pixmap (GEDA_BITMAP_SWITCH_OFF);
 
