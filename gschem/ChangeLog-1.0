@@ -1,5 +1,10 @@
 2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Create "Edit" sub-menu on main popup menu and relocate
+      Edit Attributes, Edit Components and Edit Pin under the new sub-menu
+
+2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Add Edit Component to popup menu
 
 2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
