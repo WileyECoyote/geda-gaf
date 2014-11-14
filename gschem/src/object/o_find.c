@@ -173,9 +173,9 @@ bool o_find_object (GschemToplevel *w_current, int w_x, int w_y,
   /* didn't find anything.... reset lastplace */
   toplevel->page_current->object_lastplace = NULL;
 
-  /* deselect everything only if shift key isn't pressed and
-     the caller allows it */
-  if (change_selection && (!w_current->SHIFTKEY)) {
+  /* Deselect everything if change_selection flag is True AND
+   * the shift key or the control isn't pressed */
+  if (change_selection && ( !(w_current->SHIFTKEY || w_current->CONTROLKEY))) {
     o_select_unselect_all (w_current);
   }
 

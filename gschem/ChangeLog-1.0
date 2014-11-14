@@ -1,5 +1,11 @@
 2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
+  ** src/object/o_find.c: In function o_find_object, do not unselect everything
+     if the CONTROL key is down (because the user could be trying to add to the
+     current selection and miss an object, aka hitting blank canvus).
+
+2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Reinstate Copy, MCopy and move, add rotate and mirror to
       popup. Rename Edit... ->Object, Edit Pin Type... ->PinType, Copy Copy to
       Clipboard and Cut -> Cut to Clipboard
