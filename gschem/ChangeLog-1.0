@@ -1,5 +1,9 @@
 2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Add Edit Component to popup menu
+
+2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Add doxygen comments for popup_items structure
 
 2014-11-11 Wiley E. Hill <wileyhill@gmail.com>

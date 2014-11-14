@@ -58,6 +58,7 @@ typedef enum {
   pop_zoom_box,
   pop_zoom_extents,
   pop_edit_objects,
+  pop_edit_component,
   pop_edit_pintype,
   pop_edit_delete,
   pop_down_schemat,

@@ -55,7 +55,7 @@ const char* IDS_Popup_Actions[] = {
   ACTION(ADD_COMPONENT),  ACTION(ADD_BUS),       ACTION(ADD_TEXT),
   ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT), ACTION(VIEW_BOX),
   ACTION(VIEW_EXTENTS),   ACTION(EDIT_ATTRIB),
-  ACTION(EDIT_PIN),       ACTION(EDIT_DELETE),
+  ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),      ACTION(EDIT_DELETE),
   ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),   ACTION(HIERARCHY_UP),
   ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),  ACTION(EDIT_CB_PASTE),
   NULL
@@ -102,7 +102,9 @@ static PopupEntry popup_items[] = {
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
   { N_("Edit..."),           x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL},
+  { N_("Edit Component"),    x_menu_popup_execute, pop_edit_component, 0, "geda-component", NULL},
   { N_("Edit pin type..."),  x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL},
+
   { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete"},
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
