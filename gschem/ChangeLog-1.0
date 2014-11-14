@@ -1,5 +1,13 @@
 2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_menus.c: Reinstate Copy, MCopy and move, add rotate and mirror to
+      popup. Rename Edit... ->Object, Edit Pin Type... ->PinType, Copy Copy to
+      Clipboard and Cut -> Cut to Clipboard
+
+    * src/iface/i_status.c: Revise sensitivity calls based on new additions above.
+
+2014-11-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_menus.c: Create "Edit" sub-menu on main popup menu and relocate
       Edit Attributes, Edit Components and Edit Pin under the new sub-menu
 

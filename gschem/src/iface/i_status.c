@@ -304,7 +304,7 @@ static void clipboard_usable_cb (int usable, void *userdata)
   GschemToplevel *w_current = userdata;
   x_menus_sensitivity (w_current, "_Edit/_Paste", usable);
   x_toolbars_set_sensitivities(w_current, CAN_PASTE, usable);
-  x_menus_popup_sensitivity (w_current, "Paste", usable);
+  x_menus_popup_sensitivity (w_current, "Paste Clipboard", usable);
 }
 
 /*! \brief Can anything selected be hatched for filled?
@@ -515,19 +515,21 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     }
 
     if (complex_selected  || is_editing_symbol) {
+      x_menus_popup_sensitivity(w_current, "Component...",      TRUE);
       x_menus_sensitivity(w_current, "_Edit/Edit Component...", TRUE);
     }
     else {
+      x_menus_popup_sensitivity(w_current, "Component...",      FALSE);
       x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
     if (pin_selected) {
         x_menus_sensitivity(w_current, "_Edit/Edit Pin...", TRUE);
-        x_menus_popup_sensitivity(w_current, "Edit pin type...", TRUE);
+        x_menus_popup_sensitivity(w_current, "Pin type...", TRUE);
     }
     else {
-        x_menus_sensitivity(w_current, "_Edit/Edit Pin...", FALSE);
-        x_menus_popup_sensitivity(w_current,  "Edit pin type...", FALSE);
+        x_menus_sensitivity(w_current, "_Edit/Edit Pin...",  FALSE);
+        x_menus_popup_sensitivity(w_current,  "Pin type...", FALSE);
     }
 
     if (text_selected) {
@@ -570,18 +572,24 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Copy into 3", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 4", TRUE);
     x_menus_sensitivity(w_current, "_Buffer/Copy into 5", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 1", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 2", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 3", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 4", TRUE);
-    x_menus_sensitivity(w_current, "_Buffer/Cut into 5", TRUE);
+    x_menus_sensitivity(w_current, "_Buffer/Cut into 1",  TRUE);
+    x_menus_sensitivity(w_current, "_Buffer/Cut into 2",  TRUE);
+    x_menus_sensitivity(w_current, "_Buffer/Cut into 3",  TRUE);
+    x_menus_sensitivity(w_current, "_Buffer/Cut into 4",  TRUE);
+    x_menus_sensitivity(w_current, "_Buffer/Cut into 5",  TRUE);
 
-    x_menus_popup_sensitivity(w_current, "Cut",     TRUE);
-    x_menus_popup_sensitivity(w_current, "Copy",    TRUE);
-    x_menus_popup_sensitivity(w_current, "Edit...", TRUE);
-    //x_menus_popup_sensitivity(w_current, "Duplicate", TRUE);
-    //x_menus_popup_sensitivity(w_current, "Move",      TRUE);
+    x_menus_popup_sensitivity(w_current, "Edit",          TRUE);
+    x_menus_popup_sensitivity(w_current, "Object...",     TRUE);
+
     x_menus_popup_sensitivity(w_current, "Delete", TRUE);
+    x_menus_popup_sensitivity(w_current, "Copy",   TRUE);
+    x_menus_popup_sensitivity(w_current, "MCopy",  TRUE);
+    x_menus_popup_sensitivity(w_current, "Move",   TRUE);
+    x_menus_popup_sensitivity(w_current, "Mirror", TRUE);
+    x_menus_popup_sensitivity(w_current, "Rotate", TRUE);
+
+    x_menus_popup_sensitivity(w_current, "Cut to Clipboard",  TRUE);
+    x_menus_popup_sensitivity(w_current, "Copy to Clipboard", TRUE);
 
   }
   else { /* Nothing is selected, grey these out */
@@ -593,6 +601,7 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
 
     if (! is_editing_symbol) {
       /* This is not handled in complex because of conditional */
+      x_menus_popup_sensitivity(w_current, "Component...",  FALSE);
       x_menus_sensitivity(w_current, "_Edit/Edit Component...", FALSE);
     }
 
@@ -625,14 +634,20 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Buffer/Cut into 4",  FALSE);
     x_menus_sensitivity(w_current, "_Buffer/Cut into 5",  FALSE);
 
-    x_menus_popup_sensitivity(w_current, "Edit...",          FALSE);
-    x_menus_popup_sensitivity(w_current, "Edit pin type...", FALSE);
-    //x_menus_popup_sensitivity(w_current, "Duplicate",        FALSE);
-    //x_menus_popup_sensitivity(w_current, "Move",             FALSE);
-    x_menus_popup_sensitivity(w_current,  "Delete",          FALSE);
+    x_menus_popup_sensitivity(w_current, "Edit",          FALSE);
+    //x_menus_popup_sensitivity(w_current, "Object...",     FALSE);
+    //x_menus_popup_sensitivity(w_current, "Component...",  FALSE);
+    //x_menus_popup_sensitivity(w_current, "Pin type...", FALSE);
 
-    x_menus_popup_sensitivity(w_current, "Cut",  FALSE);
-    x_menus_popup_sensitivity(w_current, "Copy", FALSE);
+    x_menus_popup_sensitivity(w_current, "Delete", FALSE);
+    x_menus_popup_sensitivity(w_current, "Copy",   FALSE);
+    x_menus_popup_sensitivity(w_current, "MCopy",  FALSE);
+    x_menus_popup_sensitivity(w_current, "Move",   FALSE);
+    x_menus_popup_sensitivity(w_current, "Mirror", FALSE);
+    x_menus_popup_sensitivity(w_current, "Rotate", FALSE);
+
+    x_menus_popup_sensitivity(w_current, "Cut to Clipboard",  FALSE);
+    x_menus_popup_sensitivity(w_current, "Copy to Clipboard", FALSE);
   }
 
   x_menus_sensitivity(w_current, "_Buffer/Paste from 1", (object_buffer[1] != NULL));

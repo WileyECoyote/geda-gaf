@@ -150,6 +150,7 @@
 
 #define ATTRIB_ATTACH        attributes-attach
 #define ATTRIB_DETACH        attributes-detach
+#define ATTRIB_HOME          attributes-home
 #define ATTRIB_VALUE         attributes-show-value
 #define ATTRIB_NAME          attributes-show-name
 #define ATTRIB_BOTH          attributes-show-both

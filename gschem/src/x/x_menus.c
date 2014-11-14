@@ -56,6 +56,8 @@ const char* IDS_Popup_Actions[] = {
   ACTION(VIEW_ZOOM_IN),   ACTION(VIEW_ZOOM_OUT), ACTION(VIEW_BOX),
   ACTION(VIEW_EXTENTS),   ACTION(EDIT_ATTRIB),
   ACTION(EDIT_COMPONENT), ACTION(EDIT_PIN),      ACTION(EDIT_DELETE),
+  ACTION(EDIT_COPY),      ACTION(EDIT_MCOPY),    ACTION(EDIT_MOVE),
+  ACTION(EDIT_MIRROR),    ACTION(EDIT_ROTATE),
   ACTION(DOWN_SCHEMATIC), ACTION(DOWN_SYMBOL),   ACTION(HIERARCHY_UP),
   ACTION(EDIT_CB_CUT),    ACTION(EDIT_CB_COPY),  ACTION(EDIT_CB_PASTE),
   NULL
@@ -102,13 +104,18 @@ static PopupEntry popup_items[] = {
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
   { N_("Edit"),              NULL,                 1,                  0,  NULL,            NULL},
-  { N_("Edit Object..."),    x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL},
-  { N_("Edit Component..."), x_menu_popup_execute, pop_edit_component, 0, "geda-component", NULL},
-  { N_("Edit pin type..."),  x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL},
+  { N_("Object..."),         x_menu_popup_execute, pop_edit_objects,   1, "gtk-indent",     NULL},
+  { N_("Component..."),      x_menu_popup_execute, pop_edit_component, 0, "geda-component", NULL},
+  { N_("Pin type..."),       x_menu_popup_execute, pop_edit_pintype,   1, "geda-pin-type",  NULL},
 
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
 
   { N_("Delete"),            x_menu_popup_execute, pop_edit_delete,    1, "gtk-delete"},
+  { N_("Copy"),              x_menu_popup_execute, pop_edit_copy,      1, "geda-copy",      NULL },
+  { N_("MCopy"),             x_menu_popup_execute, pop_edit_mcopy,     1, "geda-multi",     NULL },
+  { N_("Move"),              x_menu_popup_execute, pop_edit_move,      1, "geda-move",      NULL },
+  { N_("Mirror"),            x_menu_popup_execute, pop_edit_mirror,    1, "geda-rotate",    NULL },
+  { N_("Rotate"),            x_menu_popup_execute, pop_edit_rotate,    1, "geda-mirror",    NULL },
 
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
@@ -122,9 +129,9 @@ static PopupEntry popup_items[] = {
   /* Menu items for clip-board added by WEH 07.20.2013 */
   { "END_SUB",               NULL,                 0,                  0,  NULL,            NULL },
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
-  { N_("Cut"),               x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        NULL },
-  { N_("Copy"),              x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       NULL },
-  { N_("Paste"),             x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      NULL },
+  { N_("Cut to Clipboard"),  x_menu_popup_execute, pop_cb_cut,         1, "gtk-cut",        NULL },
+  { N_("Copy to Clipboard"), x_menu_popup_execute, pop_cb_copy,        1, "gtk-copy",       NULL },
+  { N_("Paste Clipboard"),   x_menu_popup_execute, pop_cb_paste,       1, "gtk-paste",      NULL },
   {NULL} /* sentinel */
 };
 
@@ -797,6 +804,10 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
         gtk_menu_item_set_submenu (GTK_MENU_ITEM( submenu ), menu) ;
         g_object_set (menu, "visible", TRUE, NULL);
+
+        POPUP_ITEMS_LIST = g_slist_append(POPUP_ITEMS_LIST, submenu);
+        g_hash_table_insert (POPUP_HASH_TABLE, (char*)item.name, submenu);
+
         continue;
       }
       else {
