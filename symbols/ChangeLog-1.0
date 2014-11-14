@@ -1,7 +1,7 @@
 2014-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/ti/TPS55340-1.sym: Change SYNC pin to type passive so DRC
-      does not complain that pin is not driven
+      does not complain that pin is not driven.
 
 2014-11-08 Wiley E. Hill <wileyhill@gmail.com>
 

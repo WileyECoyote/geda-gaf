@@ -61,6 +61,23 @@ const char* IDS_Popup_Actions[] = {
   NULL
 };
 
+/*! \struct Popup-Menu-Structure x_menus.h
+ *
+ *  Record Format: x_menus.h::st_popup_menu_entry
+ *
+ *    Menu Text,   function,  action_id, use_stock, icon, Tooltip
+ *
+ *  Where action_id is the action enumerated in .pop_MenuItem
+ *  function must be NULL for Separators and Sub-menu entries, when
+ *  function is NULL action_id = 0 is a separator, action_id = 1 is
+ *  sub-menu.
+ *
+ *  Note: gschem factory, setup by x_icons_setup_factory, are referenced
+ *  use_stock = True. if use_stock = False, the string in the icon field
+ *  is passed to create_pixmap().
+ *
+ */
+
 static PopupEntry popup_items[] = {
 
   { N_("Select"),            x_menu_popup_execute, pop_edit_select,    1, "gschem-select",  NULL},
@@ -91,6 +108,7 @@ static PopupEntry popup_items[] = {
   { "SEPARATOR",             NULL,                 0,                  0,  NULL,            NULL },
 
   /* Menu items for hierarchy added by SDB 1.9.2005. */
+
   { N_("Hierarchy"),         NULL,                 1,                  0,  NULL,             NULL },
   { N_("Down Schematic"),    x_menu_popup_execute, pop_down_schemat,   1, "gtk-go-down",     NULL},
   { N_("Down Symbol"),       x_menu_popup_execute, pop_down_symbol,    1, "gtk-goto-bottom", NULL},
@@ -759,7 +777,7 @@ int x_menu_setup_popup (GschemToplevel *w_current)
 
     PopupEntry item = popup_items[i];
 
-    if (item.func == NULL) {
+    if (item.func == NULL) { /* if sub-menu or seperator */
 
       /* Then is not an action item */
       if (item.action_id == 1) {
