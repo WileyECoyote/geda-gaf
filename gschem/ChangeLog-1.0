@@ -1,5 +1,17 @@
 2014-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
+    Add Menu Toggle item for drag-can-move:
+
+    * etc/system-gschemrc.scm: Add menu item, no icon for togglers
+    * include/i_actions.h: Add macro TOGGLE_DRAW_MOVE for options-drawcanmove
+    * include/i_command.h: Declare and enumerate do_toggle_drawcanmove
+    * include/x_menus.h: Enumerate DRAG_CAN_MOVE in MenuToggleItem
+    * iface/i_command.c: Define do_toggle_drawcanmove calling x_menu_set_toggle
+    * src/x/x_menus.c: Add reference to reset in x_menu_set_toggle
+    * src/x/x_settings_dialog.c: call x_menu_set_toggle if drag_can_move changed
+
+2014-11-14 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_dialog.c: Minor code cleaning
 
     * src/x/x_event.c: Minor code cleaning

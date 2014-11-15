@@ -3525,6 +3525,28 @@ COMMAND ( do_toggle_magneticnet )
   i_status_show_state(w_current, NULL);
 }
 
+/*! \brief Toggle Drag-Can-Move Mode in i_command_Option_Actions
+ *  \par Function Description
+ *  This is a callback function for the Toggle draw-can-move action API.
+ *
+ */
+COMMAND ( do_toggle_drawcanmove )
+{
+  NOT_NULL(w_current);
+  BEGIN_NO_ARGUMENT(do_toggle_drawcanmove);
+  const char *OnOff;
+  if (w_current->drag_can_move) {
+    w_current->drag_can_move = 0;
+    OnOff =_("Off");
+  } else {
+    w_current->drag_can_move = 1;
+    OnOff =_("On");
+  }
+  q_log_message(_("Drag-Can-Move is now %s\n"), OnOff);
+  x_menu_set_toggle(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
+}
+
+
 /*! @brief Launch the Show Text Dialog */
 COMMAND ( do_show_text_size )
 {

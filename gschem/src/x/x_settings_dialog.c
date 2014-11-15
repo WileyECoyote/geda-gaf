@@ -58,6 +58,9 @@
  * ---------------|--------------------------------------------------
  * WEH | 07/20/14 | Make-over for Doxygen Documentation/Comments in order
  *                | to improve source documentation.
+ * ---------------|--------------------------------------------------
+ * WEH | 11/14/14 | Add call x_menu_set_toggle if drag_can_move changed
+ *                | in GatherSettings.
  *
  */
 
@@ -126,6 +129,7 @@
 #include "gschem.h"
 #include "gschem_xdefines.h"            /* Define dialog default internal spacing */
 #include "gschem_dialog.h"              /* Definition the base Dialog Class */
+#include "x_menus.h"                    /* MenuToggleItem enumeration */
 
 #include <geda_dialog_controls.h>       /* Macros for Dialogs */
 #include <geda_widgets.h>               /* Switches use geda_labels */
@@ -2455,7 +2459,12 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->bus_ripper_rotation        = GET_SWITCH_STATE (RipperRotationSwitch);
   w_current->bus_ripper_type            = GET_SWITCH_STATE (RipperTypeSwitch);
   w_current->continue_component_place   = GET_SWITCH_STATE (ContinuePlaceSwitch);
-  w_current->drag_can_move              = GET_SWITCH_STATE (DragMoveSwitch);
+             tmp_int                    = GET_SWITCH_STATE (DragMoveSwitch);
+  if (tmp_int != w_current->drag_can_move) {
+    w_current->drag_can_move = tmp_int;
+    x_menu_set_toggle(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
+  }
+
   w_current->renderer->draw_grips       = GET_SWITCH_STATE (DrawGripsSwitch);
   w_current->embed_components           = GET_SWITCH_STATE (EmbedComponentsSwitch);
    toplevel->image_color                = GET_SWITCH_STATE (EnableColorImagingSwitch);

@@ -675,7 +675,8 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
 
             gtk_widget_show_all(menu_item);
     }
-    /* Menu Options*/
+
+    /* Menu Options */
     menu_item   = gtk_menu_item_new_with_mnemonic("_Menu");
     toggle_menu = gtk_menu_new();
 
@@ -1210,6 +1211,7 @@ void x_menu_set_toggle(GschemToplevel *w_current, int toggle_id, bool state){
     set_toggler(OUTLINE_TOGGLE,  (w_current->action_feedback_mode > 0));
     set_toggler(RUBBER_TOGGLE,   (w_current->netconn_rubberband > 0));
     set_toggler(MAGNETIC_TOGGLE, (w_current->magnetic_net_mode > 0));
+    set_toggler(DRAG_CAN_MOVE,   (w_current->drag_can_move > 0));
   }
   else {
    if(toggle_id < number_of_togglers)
