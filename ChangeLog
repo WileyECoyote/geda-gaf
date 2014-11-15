@@ -1,3 +1,9 @@
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+      * configure.ac: Bumped version = 2.0.9.3 (skipped.2, also not
+        counting BOM in menu because users could have added this feature
+        themselves).
+
 2014-11-02 Wiley E. Hill <wileyhill@gmail.com>
 
       * Rename varible Arc::end_angle Arc::arc_sweep (because I changed
