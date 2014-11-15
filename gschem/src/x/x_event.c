@@ -368,8 +368,11 @@ int x_event_button_pressed(GtkWidget      *widget,
           break;
 
         case(MOUSE_MIDDLE_REPEAT):
+          w_current->pointer_sx = event->x;
+          w_current->pointer_sy = event->y;
           i_command_process(w_current, "repeat-last", 0, NULL, ID_ORIGIN_MOUSE);
           break;
+
 #ifdef HAVE_LIBSTROKE
         case(MOUSE_MIDDLE_STROKE):
           DOING_STROKE=TRUE;
@@ -662,7 +665,9 @@ bool x_event_button_released (GtkWidget      *widget,
     }
 
     switch(w_current->middle_button) {
+
       case(MOUSE_MIDDLE_ACTION):
+
         switch(w_current->event_state) {
           case(MOVE):
             o_move_end(w_current);
@@ -679,24 +684,26 @@ bool x_event_button_released (GtkWidget      *widget,
         break;
 
 #ifdef HAVE_LIBSTROKE
-          case(MOUSE_MIDDLE_STROKE):
-            DOING_STROKE = FALSE;
-            x_stroke_translate_and_execute (w_current);
-            break;
+     case(MOUSE_MIDDLE_STROKE):
+       DOING_STROKE = FALSE;
+       x_stroke_translate_and_execute (w_current);
+       break;
 #endif /* HAVE_LIBSTROKE */
 
-          case(MOUSE_MIDDLE_PAN):
-            w_current->doing_pan=FALSE;
-            o_invalidate_all (w_current);
-            if (w_current->undo_panzoom) {
-              o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
-            }
-            /* this needs to be REDONE */
-            /* if you mouse pan, you will be thrown out of the current mode. */
-            /* not good */
-            w_current->inside_action = FALSE;
-            i_status_set_state(w_current, SELECT);
-            break;
+     case(MOUSE_MIDDLE_PAN):
+       w_current->doing_pan=FALSE;
+       o_invalidate_all (w_current);
+       if (w_current->undo_panzoom) {
+          o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+       }
+       /* this needs to be REDONE because if you mouse pan, you will
+        * be thrown out of the current mode. not good */
+        w_current->inside_action = FALSE;
+       i_status_set_state(w_current, SELECT);
+       break;
+
+     default:
+       break;
     }
   }
   else if (event->button == 3) {

@@ -1,5 +1,11 @@
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_event.c: Save screen X-Y in function x_event_button_pressed
+      for case MOUSE_MIDDLE_REPEAT, otherwise the function being repeated
+      has no cue as to where the action occured.
+
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
    ** src/x/x_attrib.c: Call o_text_recreate and o_undo_savestate even
       if Add Attribute was not initiated from a hot-key, aka just
       moved bracket for conditional.
