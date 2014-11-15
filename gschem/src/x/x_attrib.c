@@ -145,7 +145,6 @@ int option_menu_get_history (GtkOptionMenu *option_menu)
 static void
 attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
 {
-  GedaToplevel  *toplevel;
   GtkWidget *ThisDialog;
 
   GtkEntry   *value_entry;
@@ -162,7 +161,6 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
   int option_index;
 
   ThisDialog = w_current->aewindow;
-  toplevel   = w_current->toplevel;
 
   value_entry  = g_object_get_data(G_OBJECT(ThisDialog), "value_entry");
   name_entry   = g_object_get_data(G_OBJECT(ThisDialog), "attrib_combo_entry");
@@ -213,6 +211,7 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
     new = o_attrib_add_attrib(w_current, newtext, vis, show, object);
 
     if ( w_current->first_wx != -1 && w_current->first_wy != -1) {
+
       o_invalidate_object (w_current, new);
       new->text->x = w_current->first_wx;
       new->text->y = w_current->first_wy;
@@ -569,7 +568,7 @@ void attrib_edit_dialog (GschemToplevel *w_current, Object *object, int flag)
 
 /*! \brief Launch the Single Attribute Dialog in Add mode
  *  \par Function Description
- *  This functioncall the main dialog routine to construct and
+ *  This function calls the main dialog routine to construct and
  *  display the single attribute editor in #SAE_ADD_MODE mode,
  *  this mode is used to add new attributes to objects.
  *
@@ -581,7 +580,7 @@ void x_attrib_add_dialog (GschemToplevel *w_current, Object *object)
 
 /*! \brief Launch the Single Attribute Dialog in Edit mode
  *  \par Function Description
- *  This functioncall the main dialog routine to construct and
+ *  This function calls the main dialog routine to construct and
  *  display the single attribute editor in #SAE_EDIT_MODE mode,
  *  this mode is used to edit existing attributes of objects.
  *

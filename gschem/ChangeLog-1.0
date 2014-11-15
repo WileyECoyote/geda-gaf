@@ -1,5 +1,10 @@
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * x/x_attrib.c: Remove GedaToplevel in function attrib_edit_dialog_ok,
+      do not need this any more since we do not set the page changed flag.
+
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * x/x_attrib.c: Remove toplevel->page_current->CHANGED = 1 in function
       attrib_edit_dialog_ok, libgeda already set this flag.
 

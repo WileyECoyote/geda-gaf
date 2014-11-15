@@ -331,15 +331,15 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
     world_x = left;
     world_y = top;
 
-    /* printf("%d %d\n", world_x, world_y); */
   }
+
+  /* printf("%d %d\n", world_x, world_y); */
 
   /* first create text item */
   new_obj = o_text_new(color, world_x, world_y,
                        align, angle, text_string, /* zero is angle */
                        w_current->text_size, /* current text size */
                        visibility, show_name_value);
-
 
   /* Attach the new attribute to the object if parent is not NULL */
   /* remember that parent contains the object to get the attribute */
