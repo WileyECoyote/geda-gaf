@@ -222,15 +222,13 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
       }
 
       o_text_recreate(new);
-      toplevel->page_current->CHANGED = 1;
       o_undo_savestate(w_current, UNDO_ALL);
     }
   }
-  else {
+  else { /* Editing an existing Attribute */
     object =  g_object_get_data(G_OBJECT(ThisDialog), "attrib");
     if (object != NULL && object->type == OBJ_TEXT) {
       o_text_change(w_current, object, newtext, vis, show);
-      toplevel->page_current->CHANGED = 1;
       o_undo_savestate(w_current, UNDO_ALL);
     }
   }

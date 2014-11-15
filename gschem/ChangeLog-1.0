@@ -1,3 +1,8 @@
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * x/x_attrib.c: Remove toplevel->page_current->CHANGED = 1 in function
+      attrib_edit_dialog_ok, libgeda already set this flag.
+
 2014-11-14 Wiley E. Hill <wileyhill@gmail.com>
 
     Add Menu Toggle item for drag-can-move:
