@@ -219,10 +219,9 @@ attrib_edit_dialog_ok(AttributeEditMode mode, GschemToplevel *w_current)
       if (strncmp(newtext, "pinlabel", 8) == 0){
         new->color = TEXT_COLOR;
       }
-
-      o_text_recreate(new);
-      o_undo_savestate(w_current, UNDO_ALL);
     }
+    o_text_recreate(new);
+    o_undo_savestate(w_current, UNDO_ALL);
   }
   else { /* Editing an existing Attribute */
     object =  g_object_get_data(G_OBJECT(ThisDialog), "attrib");

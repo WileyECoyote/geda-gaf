@@ -1,5 +1,11 @@
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+   ** src/x/x_attrib.c: Call o_text_recreate and o_undo_savestate even
+      if Add Attribute was not initiated from a hot-key, aka just
+      moved bracket for conditional.
+
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: In function i_command_process, set first_wx
       and first_wy to -1 if not from mouse or keyboard. Revise function
       do_add_attribute to properly update coordinates.
