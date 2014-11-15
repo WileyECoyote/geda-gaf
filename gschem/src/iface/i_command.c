@@ -331,10 +331,11 @@ void i_command_process(GschemToplevel *w_current, const char* command,
             check_magnet = TRUE;
           }
           else {
+            /* Most likely toolbar */
             command_struc[i].point.x = 0;
             command_struc[i].point.y = 0;
-            //w_current->first_wx      = -1; /* is the right thing to do? */
-            //w_current->first_wy      = -1;
+            w_current->first_wx      = -1;
+            w_current->first_wy      = -1;
           }
         }
         else { /* Must have been ID_ORIGIN_MOUSE*/
@@ -344,8 +345,8 @@ void i_command_process(GschemToplevel *w_current, const char* command,
           command_struc[i].point.y = wy;
           check_magnet = TRUE;
         }
-        /* could check action but all current action that also
-         * use "hot" seem magnet-able candidates */
+        /* could check action but all current actions that also
+         * use "hot" seem magnetic-able candidates */
         if (check_magnet && w_current->magnetic_net_mode) {
           command_struc[i].point.x = snap_grid (w_current, wx);
           command_struc[i].point.y = snap_grid (w_current, wy);
@@ -2391,23 +2392,20 @@ COMMAND ( do_add_bus )
 /*! \brief Action Add Attribute in i_command_Add_Actions
  *  \par Function Description
  *  This is the action handler function for #ADD_ATTRIB action.
- *  \note This function calls the attrib_edit_dialog passing
- *  the integer who, which is a flag to indicate whether the
- *  Small Attribute Editor is creating a new attribute or
- *  editing an existing attribute. To create a new attribute
- *  the flag must be set to SAE_CREATE_NEW (non zero really).
+ *  The function calls x_attrib_add_dialog to launch the Single
+ *  Attribute Editor with the SAE_ADD_MODE flag.
+ *
  */
 COMMAND ( do_add_attribute )
 {
   BEGIN_W_COMMAND( do_add_attribute);
 
   Object *o_current = o_select_return_first_object(w_current);
-
   if HOT_ACTION (do_add_attribute) {
-    x_attrib_add_dialog(w_current, o_current );
+    w_current->first_wx = CMD_X(do_add_attribute);
+    w_current->first_wy = CMD_Y(do_add_attribute);
   }
-  else
-    x_attrib_add_dialog(w_current, o_current);
+  x_attrib_add_dialog(w_current, o_current);
 
   i_status_set_state(w_current, SELECT);
 
@@ -3481,6 +3479,7 @@ COMMAND ( do_toggle_feedback )
   }
 
   if (w_current->inside_action && Current_Page->place_list != NULL) {
+    w_current->debug = I_COMMAND_3485;
     o_place_invalidate_rubber (w_current, FALSE);
   }
 
