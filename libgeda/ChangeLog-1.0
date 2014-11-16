@@ -1,3 +1,7 @@
+2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/guile/g_rc.c: Normalize component-library path if above CWD
+
 2014-10-30 Wiley E. Hill <wileyhill@gmail.com>
 
    ** src/guile/g_evaluate.c: Major change in functionality to

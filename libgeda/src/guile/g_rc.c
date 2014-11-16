@@ -126,33 +126,42 @@ SCM g_rc_component_library(SCM path, SCM name)
   directory = u_expand_env_variable (temp);
   scm_dynwind_unwind_handler (g_free, directory, SCM_F_WIND_EXPLICITLY);
   free (temp);
+  temp = NULL;
 
-  /* is invalid path? */
+  /* Check if path is valid */
   if (!g_file_test (directory, G_FILE_TEST_IS_DIR)) {
-    /*fprintf(stderr, "Check library path [%s]\n", directory);*/
+    fprintf(stderr, "Check library path [%s]\n", directory);
     result = SCM_BOOL_F;
   }
   else {
+
+    /* Check if path is absolute */
     if (g_path_is_absolute (directory)) {
       s_clib_add_directory (directory, namestr);
     }
     else {
+
       char *cwd = g_get_current_dir ();
       char *temp;
 
       switch (strlen(directory)) {
         case 1:
         case 2:
+          /* Check if IS current directory */
           if (*directory == '.' && *directory + 1 == '/' ) {
             s_clib_add_directory (cwd, namestr);
             break;
           }
+
         default:
-          if (*directory == '.' && *directory + 1 == '/' ) {
+
+          /* Check if is below the current directory */
+          if (strncmp(directory, "./", 2) == 0) {
             temp = g_build_filename (cwd, directory + 2, NULL);
           }
-          else {
-            temp = g_build_filename (cwd, directory, NULL);
+          else { /* Is above so normalize the path */
+            temp = f_file_normalize_name(directory, NULL);
+            /*temp = g_build_filename (cwd, directory, NULL);*/
           }
           s_clib_add_directory (temp, namestr);
           GEDA_FREE(temp);
@@ -163,7 +172,6 @@ SCM g_rc_component_library(SCM path, SCM name)
     result = SCM_BOOL_T;
   }
   scm_dynwind_end();
-
   return result;
 }
 
