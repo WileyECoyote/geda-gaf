@@ -1,3 +1,7 @@
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
+    * allegro/A8498.sym: Rename to A8498-1.sym. Add A8498-2.sym.
+
 2014-11-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * symbols/ti/TPS55340-1.sym: Change SYNC pin to type passive so DRC
