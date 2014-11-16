@@ -1,5 +1,10 @@
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * geda-clib.scm: Eliminate top-level "power", did not exist, fix
+      missing directory seperator for N-FET Differential Pair
+
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * symbols/ti/LM5050-1.sym: Add LM5050-2 with pin 3 on bottom
 
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
