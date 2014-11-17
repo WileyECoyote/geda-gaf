@@ -197,11 +197,13 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   obj_list = s_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
 
-  /* Set up renderer based on configuration in w_current and list */
   render_flags = EDA_RENDERER_FLAG_HINTING;
+
+  /* Set up renderer based on configuration in w_current and list - or not */
   /* if (toplevel->page_current->show_hidden_text) {
    *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
 }*/
+
 
   is_only_text = TRUE;
   iter = g_list_first(obj_list);
@@ -413,8 +415,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
         break;
     }
   }
-  else if (w_current->event_state == ENDMOVE ||
-           w_current->event_state == MOVE)
+  else if (w_current->event_state == ENDMOVE || w_current->event_state == MOVE)
   {
 
     if (w_current->last_drawb_mode != -1) {

@@ -31,7 +31,7 @@
 
 /*! \brief Get Bounds of text object
  *  \par Function Description
- *  This function is used bassically as a callback for text object
+ *  This function is used basically as a callback for text object
  *  to determine the XY bounderies of the Text objects.
  */
 int o_text_get_rendered_bounds (void *user_data, Object *o_current,
@@ -55,11 +55,11 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   /* Set up renderer based on configuration in w_current. Note that we
    * *don't* enable hinting, because if its enabled the calculated
    * bounds are zoom-level-dependent.
+   *
   if (o_current->visibility != INVISIBLE) {
     render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
   }
- */
-
+  */
   renderer = g_object_ref (w_current->renderer);
 
   g_object_set (G_OBJECT (renderer),
@@ -87,10 +87,10 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   return result;
 }
 
-/*! \todo Finish function documentation!!!
- *  \brief
+/*! \brief Prepare for Placement of New Text Object
  *  \par Function Description
- *
+ *  Creates a new text object and adds the Text object to #place_list
+ *  after ensuring the place list is empty.
  */
 void o_text_prepare_place(GschemToplevel *w_current, char *text)
 {
@@ -162,7 +162,7 @@ o_text_edit(GschemToplevel *w_current, Object *o_current)
  */
 /*
  * 02/27/13 WEH Added text_color, changed_something conditionals and documentation
- * 07/20/13 WEH Added rotatation, eliminated numselect and len & add conditonal
+ * 07/20/13 WEH Added rotation, eliminated numselect and len & add conditonal
  *          skip for values less then 0.
  */
 void

@@ -691,8 +691,8 @@ void o_text_print(GedaToplevel *toplevel, FILE *fp, Object *o_current,
     break;
   }
 
-  font_size = o_text_get_font_size_in_points (o_current)
-                / 72.0 * 1000.0;
+  font_size = o_text_get_font_size_in_points (o_current) / 72.0 * 1000.0;
+
   fprintf(fp,"%s %f [",centering_control, font_size * PRINT_LINE_SPACING);
 
   /* split the line at each newline and print them */
