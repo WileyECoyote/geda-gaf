@@ -1026,11 +1026,12 @@ static void geda_font_dialog_finalize (GObject *object)
     pango_font_description_free (dialog->font_desc);
 
   dialog->font_desc = NULL;
-
+/*
   if ( dialog->font_map && G_IS_OBJECT(dialog->font_map) ) {
     g_object_unref (dialog->font_map);
     dialog->font_map = NULL;
   }
+*/
 }
 
 /*! \brief GedaFontDialog Class Initializer

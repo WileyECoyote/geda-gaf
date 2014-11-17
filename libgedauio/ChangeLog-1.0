@@ -2,6 +2,11 @@
 
       * src/widgets/*.c: Revise and update Doxygen documentation
 
+2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_font_dialog.c: Do not destroy the font map in
+        geda_font_dialog_finalize.
+
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_bulb.c: New GedaBulb widget, similar to GtkRadio but
