@@ -1,6 +1,6 @@
-/* C header                                       -*- geda_py_colors.h -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*!
- * \file geda_py_colors.h
+ * \file geda_py_color.h
  *
  * gEDA - GPL Electronic Design Automation
  * libgedathon - gEDA's Python API Extension library

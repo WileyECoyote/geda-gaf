@@ -33,7 +33,7 @@
 #include "geda_python.h"
 #include "geda_py_struct.h"
 #include "geda_py_object.h"
-#include "geda_py_colors.h"
+#include "geda_py_color.h"
 #include "geda_py_docs.h"
 
 static PyObject* arc_module;
@@ -116,6 +116,7 @@ Arc_init(ArcObject *self, PyObject *args, PyObject *kwds)
 
   return 0;
 }
+
 static int
 ArcObject_print(ArcObject *arc, FILE *file, int flags)
 {

@@ -33,7 +33,7 @@
 #include "geda_python.h"
 #include "geda_py_struct.h"
 #include "geda_py_object.h"
-#include "geda_py_colors.h"
+#include "geda_py_color.h"
 #include "geda_py_docs.h"
 
 static PyObject* picture_module;
@@ -98,7 +98,7 @@ Picture_init(PictureObject *self, PyObject *args, PyObject *kwds)
   int       locked;
 
   static char *kwlist[] = {"name", "type", "pid", "sid", "locked",
-                           "filename", "file_length", "ratio", 
+                           "filename", "file_length", "ratio",
                            "upper_x", "upper_y", "lower_x", "lower_y",
                            "angle", "mirror", "embedded", "pixel_buffer",
                            NULL};

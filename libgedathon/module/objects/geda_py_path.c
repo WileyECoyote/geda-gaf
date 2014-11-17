@@ -33,7 +33,7 @@
 #include "geda_python.h"
 #include "geda_py_struct.h"
 #include "geda_py_object.h"
-#include "geda_py_colors.h"
+#include "geda_py_color.h"
 #include "geda_py_docs.h"
 
 static PyObject* path_module;

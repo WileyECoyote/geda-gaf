@@ -47,7 +47,7 @@ Options:
   The following options can be used to modify the default behavior of gsym-set-font-size
   The following list of attributes are set to 8 points by default, if these options are used
   the corresponding attributes will not be modified:
-  
+
   -q, --pinseq
   -i, --pinnumber
   -t, --pintype
