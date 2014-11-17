@@ -1,3 +1,10 @@
+2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c: Move pango_cairo_context_set_resolution from
+      eda_renderer_prepare_text to eda_renderer_update_contexts and
+      change point size to integer. Eliminate adjustment varible in
+      eda_renderer_get_text_user_bounds
+
 2014-09-28 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edacairo.c: Cleanup function eda_cairo_stroke.c.

@@ -397,17 +397,23 @@ eda_renderer_dispose (GObject *object)
   EdaRenderer *renderer = (EdaRenderer *) object;
 
   if (renderer->priv->pc != NULL) {
-    GEDA_UNREF (renderer->priv->pc);
+    if (G_IS_OBJECT(renderer->priv->pc)) {
+      GEDA_UNREF (renderer->priv->pc);
+    }
     renderer->priv->pc = NULL;
   }
 
-  if (PANGO_IS_LAYOUT(renderer->priv->pl)) {
-    GEDA_UNREF (renderer->priv->pl);
+  if (renderer->priv->pl != NULL) {
+    if (G_IS_OBJECT(renderer->priv->pl)) {
+      GEDA_UNREF (renderer->priv->pl);
+    }
     renderer->priv->pl = NULL;
   }
 
   if (renderer->priv->pr != NULL) {
-    GEDA_UNREF (renderer->priv->pr);
+    if (G_IS_OBJECT(renderer->priv->pr)) {
+      GEDA_UNREF (renderer->priv->pr);
+    }
     renderer->priv->pr = NULL;
   }
 
@@ -618,6 +624,10 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   }
   else if (renderer->priv->cr != NULL) {
     pango_cairo_update_context(new_cr, renderer->priv->pc);
+  }
+
+  if (renderer->priv->pc != NULL) {
+    pango_cairo_context_set_resolution (renderer->priv->pc, 1000);
   }
 
   if ((renderer->priv->pl == NULL) && (renderer->priv->pc != NULL)) {
@@ -982,7 +992,7 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
   }
 
   /* Note: we must access visibility flag directly */
-  if (object->visibility != 1) { /* If not normal visible text */
+  if (object->visibility != 1) { /* If not normally visible text */
 
     /*  We are showing hidden text so draw a little "I". */
 
@@ -1045,18 +1055,83 @@ eda_renderer_get_font_descent (EdaRenderer *renderer,
   return descent ;
 }
 */
+
+/* Calculate position to draw text relative to text origin marker, in
+ * world coordinates. */
+static void
+eda_renderer_calc_text_position (EdaRenderer *renderer,
+                                 Object      *object,
+                                 int descent, double *x, double *y)
+{
+  PangoRectangle inked_rect, logical_rect;
+  double temp;
+  double y_lower, y_middle, y_upper;
+  double x_left,  x_middle, x_right;
+
+  pango_layout_get_extents (renderer->priv->pl, &inked_rect, &logical_rect);
+
+  x_left   = 0;
+  x_middle = -logical_rect.width / 2.0;
+  x_right  = -logical_rect.width;
+
+  /*! \note Ideally, we would be using just font / logical metrics for vertical
+   *        alignment, however this way seems to be more backward compatible
+   *        with the old gschem rendering.
+   *
+   *        Lower alignment is at the baseline of the bottom text line, whereas
+   *        middle and upper alignment is based upon the inked extents of the
+   *        entire text block.
+   */
+  y_upper  = -inked_rect.y;                     /* Top of inked extents */
+  y_middle = y_upper - inked_rect.height / 2.;  /* Middle of inked extents */
+  y_lower  = descent - logical_rect.height;     /* Baseline of bottom line */
+
+  /* Special case flips attachment point to opposite corner when
+   * the text is rotated to 180 degrees, since the drawing code
+   * does not rotate the text to be shown upside down.
+   */
+  if (object->text->angle == 180) {
+    temp = y_lower; y_lower = y_upper; y_upper = temp;
+    temp = x_left;  x_left  = x_right; x_right = temp;
+  }
+
+  //if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
+
+  //}
+
+  switch (object->text->alignment) {
+    default:
+      /* Fall through to LOWER_left case */
+    case LOWER_LEFT:    *y = y_lower;  *x = x_left;   break;
+    case MIDDLE_LEFT:   *y = y_middle; *x = x_left;   break;
+    case UPPER_LEFT:    *y = y_upper;  *x = x_left;   break;
+    case LOWER_MIDDLE:  *y = y_lower;  *x = x_middle; break;
+    case MIDDLE_MIDDLE: *y = y_middle; *x = x_middle; break;
+    case UPPER_MIDDLE:  *y = y_upper;  *x = x_middle; break;
+    case LOWER_RIGHT:   *y = y_lower;  *x = x_right;  break;
+    case MIDDLE_RIGHT:  *y = y_middle; *x = x_right;  break;
+    case UPPER_RIGHT:   *y = y_upper;  *x = x_right;  break;
+  }
+
+  *x /= PANGO_SCALE;
+  *y /= PANGO_SCALE;
+}
+
 static int
 eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
 {
-  double points_size, dx, dy;
-  int    size, descent;
+  int    pango_size;
+  int    points_size;
+  int    descent;
   char  *draw_string;
+  double dx, dy;
 
   PangoFontDescription *desc;
   PangoAttrList        *attrs;
 
-  points_size = o_text_get_font_size_in_points (object);
-  size = lrint (points_size * PANGO_SCALE);
+  //points_size = object->text->size;
+  points_size = o_text_get_font_size_in_points(object);
+  pango_size = lrint (points_size * PANGO_SCALE);
 
   /* Set hinting as appropriate */
   cairo_font_options_set_hint_metrics (EdaFontOptions, CAIRO_HINT_METRICS_OFF);
@@ -1068,16 +1143,16 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
     cairo_font_options_set_hint_style (EdaFontOptions, CAIRO_HINT_STYLE_NONE);
   }
 
-  pango_cairo_context_set_resolution (renderer->priv->pc, 1000);
+  //fprintf(stderr, "font_name: %s, points_size; %d ", renderer->priv->font_name, points_size);
 
   /* Set font name and size, and obtain descent metric */
   desc = pango_font_description_from_string (renderer->priv->font_name);
 
-  pango_font_description_set_size (desc, size);
+  pango_font_description_set_size (desc, pango_size);
 
   pango_layout_set_font_description (renderer->priv->pl, desc);
 
-  descent = round ((EDAR_DESCENT_FACTOR * size) + EDAR_DESCENT_OFFSET);
+  descent = round ((EDAR_DESCENT_FACTOR * pango_size) + EDAR_DESCENT_OFFSET);
   //descent = eda_renderer_get_font_descent (renderer, desc);
 
   pango_font_description_free (desc);
@@ -1122,63 +1197,6 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
 
   pango_cairo_update_layout (renderer->priv->cr, renderer->priv->pl);
   return TRUE;
-}
-
-/* Calculate position to draw text relative to text origin marker, in
- * world coordinates. */
-static void
-eda_renderer_calc_text_position (EdaRenderer *renderer, Object *object,
-                                 int descent, double *x, double *y)
-{
-  PangoRectangle inked_rect, logical_rect;
-  double temp;
-  double y_lower, y_middle, y_upper;
-  double x_left, x_middle, x_right;
-
-  pango_layout_get_extents (renderer->priv->pl,
-                            &inked_rect, &logical_rect);
-
-  x_left = 0;
-  x_middle = -logical_rect.width / 2.0;
-  x_right = -logical_rect.width;
-
-  /*! \note Ideally, we would be using just font / logical metrics for vertical
-   *        alignment, however this way seems to be more backward compatible
-   *        with the old gschem rendering.
-   *
-   *        Lower alignment is at the baseline of the bottom text line, whereas
-   *        middle and upper alignment is based upon the inked extents of the
-   *        entire text block.
-   */
-  y_upper  = -inked_rect.y;                     /* Top of inked extents */
-  y_middle = y_upper - inked_rect.height / 2.;  /* Middle of inked extents */
-  y_lower  = descent - logical_rect.height;     /* Baseline of bottom line */
-
-  /* Special case flips attachment point to opposite corner when
-   * the text is rotated to 180 degrees, since the drawing code
-   * does not rotate the text to be shown upside down.
-   */
-  if (object->text->angle == 180) {
-    temp = y_lower; y_lower = y_upper; y_upper = temp;
-    temp = x_left;  x_left  = x_right; x_right = temp;
-  }
-
-  switch (object->text->alignment) {
-    default:
-      /* Fall through to LOWER_left case */
-    case LOWER_LEFT:    *y = y_lower;  *x = x_left;   break;
-    case MIDDLE_LEFT:   *y = y_middle; *x = x_left;   break;
-    case UPPER_LEFT:    *y = y_upper;  *x = x_left;   break;
-    case LOWER_MIDDLE:  *y = y_lower;  *x = x_middle; break;
-    case MIDDLE_MIDDLE: *y = y_middle; *x = x_middle; break;
-    case UPPER_MIDDLE:  *y = y_upper;  *x = x_middle; break;
-    case LOWER_RIGHT:   *y = y_lower;  *x = x_right;  break;
-    case MIDDLE_RIGHT:  *y = y_middle; *x = x_right;  break;
-    case UPPER_RIGHT:   *y = y_upper;  *x = x_right;  break;
-  }
-
-  *x /= PANGO_SCALE;
-  *y /= PANGO_SCALE;
 }
 
 static void
@@ -1686,9 +1704,10 @@ int
 eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
                                    int         *left,     int *top,
                                    int         *right,    int *bottom)
+
 {
   PangoRectangle inked_rect; /* logical_rect; */
-  int adjustment;
+
   int ret_val = FALSE;
   int visible;
 
@@ -1727,6 +1746,7 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
           cairo_device_to_user (renderer->priv->cr, &dleft,  &dtop);
           cairo_device_to_user (renderer->priv->cr, &dright, &dbottom);
 
+          /* Gid rid of all the zeros Cairo just passed on the stack */
           *left   = lrint(dleft);
           *top    = lrint(dtop);
           *right  = lrint(dright);
@@ -1734,8 +1754,7 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
 
           /* If not normal visible text, account for the little "I" */
           if (object->visibility != 1) {
-             adjustment = 2 * EDAR_TEXT_MARKER_SIZE + MIN_LINE_WIDTH_THRESHOLD;
-            *bottom = *bottom - adjustment;
+            *bottom = *bottom - EDAR_TEXT_MARKER_SIZE;
           }
 
           ret_val = TRUE;
@@ -1754,7 +1773,6 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
 
   return ret_val;
 }
-
 
 /* ================================================================
  * MISCELLANEOUS (CREATION, DESTRUCTION, ACCESSORS)
