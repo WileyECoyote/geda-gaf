@@ -37,25 +37,6 @@
 /* We don't use gettext */
 #define _(x) (x)
 
-#define EDAR_DEFAULT_GRIP_SIZE             100
-#define EDAR_DEFAULT_JUNCTION_SIZE          50
-#define EDAR_DEFAULT_TEXT_MARKER_SIZE       15
-#define EDAR_MIN_TEXT_MARKER_SIZE            5
-#define EDAR_MAX_TEXT_MARKER_SIZE          100
-
-#define EDAR_DEFAULT_FONT_NAME          DEFAULT_FONT_NAME
-
-#define EDAR_DESCENT_FACTOR 3.01728024042074
-#define EDAR_DESCENT_OFFSET -886.034560480839
-
-#define EDAR_DEFAULT_GRIP_STROKE_COLOR  "orange"
-#define EDAR_DEFAULT_GRIP_FILL_COLOR    "black"
-#define EDAR_DEFAULT_TEXT_MARKER_COLOR  "gray"
-#define EDAR_DEFAULT_JUNCTION_COLOR     "yellow"
-#define EDAR_DEFAULT_ENDPOINT_COLOR     "red"
-
-#define EDAR_DEFAULT_OVERRIDE_COLOR_INDEX 1
-
 #define EdaFontOptions renderer->priv->font_options
 
 enum {
@@ -998,33 +979,42 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
 
     /* If the text marker is too tiny, don't draw it. */
     if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
+
       cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
-      if (marker_dist < 1) return;
+
+      if (marker_dist > EDAR_MARKER_DIST_THREASHOLD) {
+
+        gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
+
+        /* Centre of marker is just below and to the right of the text
+         * object's origin - FIXME: even if it falls on top of text. */
+        x = object->text->x + 2 * EDAR_TEXT_MARKER_SIZE;
+        y = object->text->y - 2 * EDAR_TEXT_MARKER_SIZE;
+
+        /* Top */
+        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                        END_NONE, 0,
+                        x - EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE,
+                        x + EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE);
+
+        /* Vertical */
+        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                        END_NONE, 0,
+                        x + EDAR_MARKER_DIST_THREASHOLD, y + EDAR_TEXT_MARKER_SIZE,
+                        x + EDAR_MARKER_DIST_THREASHOLD, y - EDAR_TEXT_MARKER_SIZE);
+
+        /* Bottom */
+        eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                        END_NONE, 0,
+                        x - EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE,
+                        x + EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE);
+
+        eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
+                          TYPE_SOLID, END_NONE,
+                          EDA_RENDERER_STROKE_WIDTH (renderer, 0),
+                          -1, -1);
+      }
     }
-
-    gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
-
-    /* Centre of marker is just below and to the right of the text
-     * object's origin. */
-    x = object->text->x + 2 * EDAR_TEXT_MARKER_SIZE;
-    y = object->text->y - 2 * EDAR_TEXT_MARKER_SIZE;
-
-    eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    END_NONE, 0,  /* Top */
-                    x - EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE,
-                    x + EDAR_TEXT_MARKER_SIZE, y + EDAR_TEXT_MARKER_SIZE);
-    eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    END_NONE, 0,  /* Vertical */
-                    x, y + EDAR_TEXT_MARKER_SIZE,
-                    x, y - EDAR_TEXT_MARKER_SIZE);
-    eda_cairo_line (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                    END_NONE, 0,  /* Bottom */
-                    x - EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE,
-                    x + EDAR_TEXT_MARKER_SIZE, y - EDAR_TEXT_MARKER_SIZE);
-    eda_cairo_stroke (renderer->priv->cr, EDA_RENDERER_CAIRO_FLAGS (renderer),
-                      TYPE_SOLID, END_NONE,
-                      EDA_RENDERER_STROKE_WIDTH (renderer, 0),
-                      -1, -1);
   }
 }
 
@@ -1481,7 +1471,7 @@ eda_renderer_draw_text_grips (EdaRenderer *renderer, Object *object)
 
   /* If the text marker is too tiny, don't draw it. */
   cairo_user_to_device_distance (renderer->priv->cr, &marker_dist, &dummy);
-  if (marker_dist < 1) return;
+  if (marker_dist < EDAR_MARKER_DIST_THREASHOLD) return;
 
   gdk_cairo_set_source_color (renderer->priv->cr, &EDAR_TEXT_MARKER_COLOR);
 
@@ -1706,7 +1696,6 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
 
 {
   PangoRectangle inked_rect; /* logical_rect; */
-
   int ret_val = FALSE;
   int visible;
 
@@ -1728,7 +1717,6 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
           /* Figure out the bounds, send them back. Note that Pango thinks
            * in device coordinates, but we need world coordinates. */
           pango_layout_get_pixel_extents (renderer->priv->pl, &inked_rect, NULL);
-
 
           double dleft   = (double) inked_rect.x;
           double dtop    = (double) inked_rect.y;
@@ -1754,22 +1742,25 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
           /* If not normal visible text, account for the little "I" */
           if (object->visibility != 1) {
 
+            double offset = EDAR_TEXT_MARKER_SIZE;
+
             if ((object->text->alignment = LOWER_LEFT) ||
-                (object->text->alignment = LOWER_MIDDLE) ||
-                (object->text->alignment = LOWER_RIGHT))
+              (object->text->alignment = LOWER_MIDDLE) ||
+              (object->text->alignment = LOWER_RIGHT))
             {
-                *bottom = *bottom - EDAR_TEXT_MARKER_SIZE;
+              *bottom = *bottom - offset;
             }
 
             /* someday, MIDDLE_MIDDLE UPPER_MIDDLE MIDDLE_LEFT UPPER_LEFT */
             if ((object->text->alignment = UPPER_RIGHT) ||
-                (object->text->alignment = MIDDLE_RIGHT) ||
-                (object->text->alignment = LOWER_RIGHT))
+              (object->text->alignment = MIDDLE_RIGHT) ||
+              (object->text->alignment = LOWER_RIGHT))
             {
-                *right = *right + 2 * EDAR_TEXT_MARKER_SIZE;
+              int    size       = object->text->size;
+              double adjustment = 1.5 * size  + (2 * offset / 3);
+              *right = *right + adjustment;
             }
           }
-
           ret_val = TRUE;
         }
         else {
@@ -1779,12 +1770,12 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
     }
   }
 
-#ifdef DEBUG_RENDER_TEXT
+  #ifdef DEBUG_RENDER_TEXT
   else
     fprintf(stderr, "skippping %s\n", object->text->disp_string);
-#endif
+  #endif
 
-  return ret_val;
+    return ret_val;
 }
 
 /* ================================================================

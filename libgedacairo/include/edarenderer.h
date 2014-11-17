@@ -22,6 +22,30 @@
 
 G_BEGIN_DECLS
 
+/*! \def MIN_MARKER_DISTENCE
+  The minimum text marker size, "x" smaller then this value are not drawn
+*/
+#define EDAR_MARKER_DIST_THREASHOLD        2.69
+
+#define EDAR_DEFAULT_GRIP_SIZE             100
+#define EDAR_DEFAULT_JUNCTION_SIZE          50
+#define EDAR_DEFAULT_TEXT_MARKER_SIZE       15
+#define EDAR_MIN_TEXT_MARKER_SIZE            5
+#define EDAR_MAX_TEXT_MARKER_SIZE          100
+
+#define EDAR_DEFAULT_FONT_NAME          DEFAULT_FONT_NAME
+
+#define EDAR_DESCENT_FACTOR    3.01728024042074
+#define EDAR_DESCENT_OFFSET -886.034560480839
+
+#define EDAR_DEFAULT_GRIP_STROKE_COLOR  "orange"
+#define EDAR_DEFAULT_GRIP_FILL_COLOR    "black"
+#define EDAR_DEFAULT_TEXT_MARKER_COLOR  "gray"
+#define EDAR_DEFAULT_JUNCTION_COLOR     "yellow"
+#define EDAR_DEFAULT_ENDPOINT_COLOR     "red"
+
+#define EDAR_DEFAULT_OVERRIDE_COLOR_INDEX 1
+
 /* These macros are used to help reduce lines lengths */
 #define EDAR_GRIP_SIZE          renderer->grip_size
 #define EDAR_GRIP_STROKE_COLOR  renderer->grip_stroke_color

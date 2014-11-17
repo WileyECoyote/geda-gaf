@@ -1,5 +1,15 @@
 2014-11-17 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/edarenderer.h: Define EDAR_MARKER_DIST_THREASHOLD and
+      move some clutter (other macro defines) to header file.
+
+    * src/edarenderer.c: Move some defines to header file, revise
+      conditional for marker_dist in eda_renderer_draw_text. Add
+      offset adjustment back in function eda_renderer_get_text_user
+      _bounds with more dynamic approach.
+
+2014-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/edarenderer.c:  Adjust the bounds for the little "I" based
       on alignment in eda_renderer_get_text_user_bounds, is better but
       the little "I" are not always in the right place, aka sometimes
