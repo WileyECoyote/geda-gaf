@@ -1,4 +1,4 @@
-/* C header                                         -*- geda_capsule.h -*- */
+/* -*- Mode: C; indent-tabs-mode: t; c-basic-offset: 4 tab-width: 4 -*- */
 /*!
  * \file geda_capsule.h
  *

@@ -1,5 +1,9 @@
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/ *.h: Add file tags
+
+2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/geda_py_color.h: Rename file geda_py_colors.h
 
 2014-11-03 Wiley E. Hill <wileyhill@gmail.com>
