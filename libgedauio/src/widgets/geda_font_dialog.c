@@ -279,30 +279,32 @@ geda_font_dialog_take_font_desc (GedaFontDialog *dialog,
   if (dialog->show_preview && changed) {
     geda_font_dialog_update_preview(dialog);
   }
-
 }
+
 static void
 geda_font_dialog_ref_family (GedaFontDialog *dialog, PangoFontFamily *family)
 {
   if (family) {
+
     family = g_object_ref (family);
-  }
 
-  if (G_IS_OBJECT(dialog->family)) {
-    g_object_unref (dialog->family);
+    if (G_IS_OBJECT(dialog->family)) {
+      g_object_unref (dialog->family);
+    }
   }
-
   dialog->family = family;
 }
 
 static void
 geda_font_dialog_ref_face (GedaFontDialog *dialog, PangoFontFace *face)
 {
-  if (face)
+  if (face) {
+
     face = g_object_ref (face);
 
-  if (G_IS_OBJECT(dialog->face)) {
-    g_object_unref (dialog->face);
+    if (G_IS_OBJECT(dialog->face)) {
+      g_object_unref (dialog->face);
+    }
   }
 
   dialog->face = face;
@@ -738,13 +740,15 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
     }
   }
 
-  if (!valid_family)
+  if (!valid_family) {
     return FALSE;
+  }
 
   if (pfamily)
     *pfamily = new_family;
-  else
+  else {
     g_object_unref (new_family);
+  }
 
   set_cursor_to_iter (GTK_TREE_VIEW (dialog->family_list), &iter);
 
@@ -779,13 +783,15 @@ geda_font_dialog_select_font_desc (GedaFontDialog        *dialog,
 
   if (!new_face)
     new_face = fallback_face;
-  else if (fallback_face)
+  else if (fallback_face) {
     g_object_unref (fallback_face);
+  }
 
   if (pface)
     *pface = new_face;
-  else if (new_face)
+  else if (new_face) {
     g_object_unref (new_face);
+  }
 
   set_cursor_to_iter (GTK_TREE_VIEW (dialog->style_list), &match_iter);
 
@@ -1653,8 +1659,9 @@ GtkWidget* geda_font_dialog_new_with_font_name (const char *font_name)
 
   dialog = g_object_new (GEDA_TYPE_FONT_DIALOG, NULL);
 
-  if (font_name)
+  if (font_name) {
     geda_font_dialog_set_font_name (GEDA_FONT_DIALOG (dialog), font_name);
+  }
 
   return GTK_WIDGET (dialog);
 }
@@ -1715,7 +1722,7 @@ char *geda_font_dialog_get_font_name (GedaFontDialog *dialog)
 
   g_return_val_if_fail (GEDA_IS_FONT_DIALOG (dialog),  NULL);
 
-  fontname=pango_font_description_to_string (dialog->font_desc);
+  fontname = pango_font_description_to_string (dialog->font_desc);
 
   return fontname;
 }
@@ -1730,28 +1737,36 @@ geda_font_dialog_set_font_name (GedaFontDialog *dialog, const char *fontname)
   PangoFontFace        *face;
   PangoFontDescription *new_desc;
 
-  family = NULL;
-  face   = NULL;
+  bool result;
 
-  if (!gtk_widget_has_screen (GTK_WIDGET (dialog)))
-    return FALSE;
+  if (!gtk_widget_has_screen (GTK_WIDGET (dialog))) {
+    result = FALSE;
+  }
+  else {
 
-  new_desc = pango_font_description_from_string (fontname);
+    family   = NULL;
+    face     = NULL;
+    new_desc = NULL;
 
-  if (geda_font_dialog_select_font_desc (dialog, new_desc, &family, &face))
+    new_desc = pango_font_description_from_string (fontname);
+
+    if (geda_font_dialog_select_font_desc (dialog, new_desc, &family, &face))
     {
       geda_font_dialog_ref_family (dialog, family);
-      if (family)
+      if (family) {
         g_object_unref (family);
+      }
 
       geda_font_dialog_ref_face (dialog, face);
-      if (face)
+      if (face) {
         g_object_unref (face);
+      }
     }
 
-  pango_font_description_free (new_desc);
-
-  return TRUE;
+    pango_font_description_free (new_desc);
+    result = TRUE;
+  }
+  return result;
 }
 
 /*! \brief Get Font Size property from Font Dialog

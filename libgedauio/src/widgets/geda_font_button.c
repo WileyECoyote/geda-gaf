@@ -652,7 +652,7 @@ dialog_destroy (GtkWidget *widget, void * data)
 static void
 geda_font_button_clicked (GtkButton *button)
 {
-  GedaFontDialog          *font_dialog;
+  GedaFontDialog        *font_dialog;
   GedaFontButton        *font_button;
   GedaFontButtonPrivate *priv;
 
