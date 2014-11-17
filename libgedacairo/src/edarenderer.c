@@ -1095,10 +1095,6 @@ eda_renderer_calc_text_position (EdaRenderer *renderer,
     temp = x_left;  x_left  = x_right; x_right = temp;
   }
 
-  //if (EDA_RENDERER_CHECK_FLAG (renderer, FLAG_HINTING)) {
-
-  //}
-
   switch (object->text->alignment) {
     default:
       /* Fall through to LOWER_left case */
@@ -1757,7 +1753,21 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
 
           /* If not normal visible text, account for the little "I" */
           if (object->visibility != 1) {
-            *bottom = *bottom - EDAR_TEXT_MARKER_SIZE;
+
+            if ((object->text->alignment = LOWER_LEFT) ||
+                (object->text->alignment = LOWER_MIDDLE) ||
+                (object->text->alignment = LOWER_RIGHT))
+            {
+                *bottom = *bottom - EDAR_TEXT_MARKER_SIZE;
+            }
+
+            /* someday, MIDDLE_MIDDLE UPPER_MIDDLE MIDDLE_LEFT UPPER_LEFT */
+            if ((object->text->alignment = UPPER_RIGHT) ||
+                (object->text->alignment = MIDDLE_RIGHT) ||
+                (object->text->alignment = LOWER_RIGHT))
+            {
+                *right = *right + 2 * EDAR_TEXT_MARKER_SIZE;
+            }
           }
 
           ret_val = TRUE;

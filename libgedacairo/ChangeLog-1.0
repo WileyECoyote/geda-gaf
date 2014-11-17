@@ -1,3 +1,10 @@
+2014-11-17 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/edarenderer.c:  Adjust the bounds for the little "I" based
+      on alignment in eda_renderer_get_text_user_bounds, is better but
+      the little "I" are not always in the right place, aka sometimes
+      over text.
+
 2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/edarenderer.c:  In function eda_renderer_prepare_text; update
