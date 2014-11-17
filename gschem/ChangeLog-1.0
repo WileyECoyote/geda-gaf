@@ -1,3 +1,7 @@
+2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
+    * Relocate DEFAULT_FONT_NAME to topsrc/include/geda_sdefines.h
+
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_event.c: Save screen X-Y in function x_event_button_pressed

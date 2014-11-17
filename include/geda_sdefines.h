@@ -30,6 +30,8 @@
  *   \ingroup (geda-globals)
  */
 
+#define DEFAULT_FONT_NAME          "Arial"
+
 /*!
  *  \def SCHEMATIC_FILE_SUFFIX      File extension chanaraters for Schematic
  *  \def SCHEMATIC_FILE_DOT_SUFFIX  Schematic extension

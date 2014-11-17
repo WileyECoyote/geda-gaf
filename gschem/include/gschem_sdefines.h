@@ -84,8 +84,6 @@
 #define TITLE_BLOCK_PATH           "/sym/titleblock"
 #define DEFAULT_TITLEBLOCK         "title-B.sym"
 
-#define DEFAULT_FONT_NAME          "Arial"
-
 #define DEFAULT_UNTITLED_NAME      "untitled"
 
 /* Filenames for Stock Color Maps  */
