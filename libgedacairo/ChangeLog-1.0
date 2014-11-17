@@ -1,5 +1,10 @@
 2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/edarenderer.c:  In function eda_renderer_prepare_text; update
+      the pango layout before calculations.
+
+2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/edarenderer.c: Define EDAR_DEFAULT_FONT_NAME in terms of
       DEFAULT_FONT_NAME
 

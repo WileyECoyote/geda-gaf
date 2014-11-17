@@ -1143,8 +1143,6 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
     cairo_font_options_set_hint_style (EdaFontOptions, CAIRO_HINT_STYLE_NONE);
   }
 
-  //fprintf(stderr, "font_name: %s, points_size; %d ", renderer->priv->font_name, points_size);
-
   /* Set font name and size, and obtain descent metric */
   desc = pango_font_description_from_string (renderer->priv->font_name);
 
@@ -1157,15 +1155,18 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
 
   pango_font_description_free (desc);
 
-  /* Extract text to display and Pango text attributes, and then set
-   * up layout. */
+  /* Extract text to display and Pango text attributes, and set up layout. */
   if (!eda_pango_parse_overbars (object->text->disp_string, -1,
                                  &attrs, &draw_string)) {
     return FALSE;
   }
 
   pango_layout_set_text (renderer->priv->pl, draw_string, -1);
+
   pango_layout_set_attributes (renderer->priv->pl, attrs);
+
+  pango_cairo_update_layout (renderer->priv->cr, renderer->priv->pl);
+
   GEDA_FREE (draw_string);
   pango_attr_list_unref (attrs);
 
@@ -1208,6 +1209,7 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
 
   /* Get a pixbuf, or, failing that, a fallback image. */
   pixbuf = g_object_ref (object->picture->pixbuf);
+
   if (pixbuf == NULL) pixbuf = o_picture_get_fallback_pixbuf (NULL /* FIXME */);
 
   /* If no pixbuf was found, fall back to drawing an outline */
@@ -1229,9 +1231,10 @@ eda_renderer_draw_picture (EdaRenderer *renderer, Object *object)
   cairo_save (renderer->priv->cr);
 
   swap_wh = ((object->picture->angle == 90) || (object->picture->angle == 270));
+
   orig_width  = swap_wh ? gdk_pixbuf_get_height (object->picture->pixbuf)
-                        : gdk_pixbuf_get_width (object->picture->pixbuf);
-  orig_height = swap_wh ? gdk_pixbuf_get_width (object->picture->pixbuf)
+                        : gdk_pixbuf_get_width  (object->picture->pixbuf);
+  orig_height = swap_wh ? gdk_pixbuf_get_width  (object->picture->pixbuf)
                         : gdk_pixbuf_get_height (object->picture->pixbuf);
 
   cairo_translate (renderer->priv->cr,
