@@ -370,3 +370,14 @@ T 200 4950 5 10 0 0 0 0 1
 dist-license=GPL3
 T 200 5150 5 10 0 0 0 0 1
 use-license=unlimited
+P 1000 100 1000 400 1 0 0
+{
+T 950 300 5 8 1 1 90 6 1
+pinnumber=33
+T 1050 300 5 8 0 1 90 8 1
+pinseq=33
+T 1000 450 9 10 1 1 90 0 1
+pinlabel=PPAD
+T 1000 450 5 8 0 1 90 2 1
+pintype=pwr
+}
