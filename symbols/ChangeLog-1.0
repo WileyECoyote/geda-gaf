@@ -1,5 +1,10 @@
 2014-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
+    * source/gnd-3.sym: Revise to make more pointed, was too stubby, is
+      off screen but needs to be interchangeable with other gnd symbols.
+
+2014-11-18 Wiley E. Hill <wileyhill@gmail.com>
+
     * ti/BQ294700-2.sym: Add BQ294700 version 2
 
 2014-11-18 Wiley E. Hill <wileyhill@gmail.com>
