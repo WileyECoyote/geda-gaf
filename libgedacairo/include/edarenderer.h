@@ -25,7 +25,7 @@ G_BEGIN_DECLS
 /*! \def MIN_MARKER_DISTENCE
   The minimum text marker size, "x" smaller then this value are not drawn
 */
-#define EDAR_MARKER_DIST_THREASHOLD        2.69
+#define EDAR_MARKER_DIST_THREASHOLD        2.3
 
 #define EDAR_DEFAULT_GRIP_SIZE             100
 #define EDAR_DEFAULT_JUNCTION_SIZE          50
