@@ -948,7 +948,8 @@ eda_renderer_draw_text (EdaRenderer *renderer, Object *object)
   }
 
   /* First check if this is hidden text. */
-  if (!o_get_is_visible(object) && !EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
+  if (!o_get_is_visible(object) &&
+      !EDA_RENDERER_CHECK_FLAG (renderer, FLAG_TEXT_HIDDEN)) {
     return;
   }
 
@@ -1115,8 +1116,8 @@ eda_renderer_prepare_text (EdaRenderer *renderer, Object *object)
   PangoFontDescription *desc;
   PangoAttrList        *attrs;
 
-  //points_size = object->text->size;
   points_size = o_text_get_font_size_in_points(object);
+
   pango_size = lrint (points_size * PANGO_SCALE);
 
   /* Set hinting as appropriate */
@@ -1744,17 +1745,17 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
 
             double offset = EDAR_TEXT_MARKER_SIZE;
 
-            if ((object->text->alignment = LOWER_LEFT) ||
-              (object->text->alignment = LOWER_MIDDLE) ||
-              (object->text->alignment = LOWER_RIGHT))
+            if ((object->text->alignment == LOWER_LEFT) ||
+              (object->text->alignment == LOWER_MIDDLE) ||
+              (object->text->alignment == LOWER_RIGHT))
             {
               *bottom = *bottom - offset;
             }
 
             /* someday, MIDDLE_MIDDLE UPPER_MIDDLE MIDDLE_LEFT UPPER_LEFT */
-            if ((object->text->alignment = UPPER_RIGHT) ||
-              (object->text->alignment = MIDDLE_RIGHT) ||
-              (object->text->alignment = LOWER_RIGHT))
+            if ((object->text->alignment == UPPER_RIGHT) ||
+              (object->text->alignment == MIDDLE_RIGHT) ||
+              (object->text->alignment == LOWER_RIGHT))
             {
               int    size       = object->text->size;
               double adjustment = 1.5 * size  + (2 * offset / 3);

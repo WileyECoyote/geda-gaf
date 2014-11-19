@@ -1,11 +1,20 @@
-2014-10-12 Wiley E. Hill <wileyhill@gmail.com>
+2014-11-18 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/*.c: Revise and update Doxygen documentation
 
 2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_font_dialog.c: Do not destroy the font map in
-        geda_font_dialog_finalize.
+        geda_font_dialog_finalize. Or else unreliable glibc will report:
+
+        g_object_unref: assertion G_IS_OBJECT Failed
+
+        when eda_renderer_dispose unreferences the layout if the sub-dialog
+        is ever viewed, when gschem shuts down, even though PANGO_IS_LAYOUT
+        and G_IS_OBJECT return true in the disposer and yes that was so fun
+        to track down. That's glibc wasting another 6 hours of my life, as
+        typical. Reaffirming my conviction that the less g's in the source
+        code the better.
 
 2014-10-11 Wiley E. Hill <wileyhill@gmail.com>
 
