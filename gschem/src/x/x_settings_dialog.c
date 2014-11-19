@@ -61,7 +61,8 @@
  * ---------------|--------------------------------------------------
  * WEH | 11/14/14 | Add call x_menu_set_toggle if drag_can_move changed
  *                | in GatherSettings.
- *
+ * ---------------|--------------------------------------------------
+ * WEH | 11/18/14 | Add "FreeMono" to IDS_FONT_NAMES
  */
 
 /*!
@@ -146,7 +147,7 @@
 #include <x_settings_dialog.h>          /* Dialog String Data */
 
 const char* IDS_FONT_NAMES[] = {  /* Menu Icons Strings*/
-  DEFAULT_FONT_NAME, "Courier New", "Helvetica", "Monospace", "Tahoma", "Verdana",
+  DEFAULT_FONT_NAME, "FreeMono", "Courier New", "Helvetica", "Monospace", "Tahoma", "Verdana",
   NULL
 };
 
