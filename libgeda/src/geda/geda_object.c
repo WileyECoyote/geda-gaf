@@ -137,7 +137,7 @@ geda_object_get_property (GObject *gobject, unsigned int property_id,
   switch (property_id)
   {
     case OBJECT_TYPE:
-      g_value_set_schar (value, object->type);
+      g_value_set_char (value, object->type);
       break;
     case OBJECT_ID:
       g_value_set_int (value, object->sid);
