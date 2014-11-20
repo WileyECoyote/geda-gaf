@@ -299,7 +299,7 @@ void geda_notify_list_remove (GedaNotifyList *list, void *item)
  */
 void geda_notify_list_remove_all (GedaNotifyList *list)
 {
-  g_list_free_full (list->glist, g_free);
+  u_glist_free_full (list->glist, g_free);
 
   list->glist = NULL;
 }

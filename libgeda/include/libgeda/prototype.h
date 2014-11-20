@@ -541,6 +541,7 @@ GedaToplevel *s_toplevel_new                          (void);
 
 /* u_glist.c */
       int     u_glist_find_string      (GList* list, char *str);
+      void    u_glist_free_full        (GList* list);
       void    u_glist_free_strings     (void *data);
       GList  *u_glist_clear            (GList* list);
 
