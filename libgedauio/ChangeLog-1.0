@@ -1,5 +1,10 @@
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/widgets/geda_combobox.c: Change gdk_window_get_display to
+        gdk_drawable_get_display in function popup_grab_on_window
+
+2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/widgets/geda_label.c: Replace glist_free_full with g_list_foreach
         g_list_free in function parse_uri_markup and geda_label_clear_links.
 
