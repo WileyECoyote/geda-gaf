@@ -541,11 +541,12 @@ GedaToplevel *s_toplevel_new                          (void);
 
 /* u_glist.c */
       int     u_glist_find_string      (GList* list, char *str);
-      void    u_glist_free_full        (GList* list);
+      void    u_glist_free_full        (GList* list, GDestroyNotify free_func);
       void    u_glist_free_strings     (void *data);
       GList  *u_glist_clear            (GList* list);
 
       int     u_gslist_find_string     (GSList* list, char *str);
+      void    u_gslist_free_full       (GSList* list, GDestroyNotify free_func);
       void    u_gslist_free_strings    (void *data);
       GSList *u_gslist_clear           (GSList* list);
 
