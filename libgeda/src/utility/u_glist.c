@@ -68,6 +68,18 @@ int u_glist_find_string(GList *list, char *str) {
 
 }
 
+/*! \brief Free a Glist Full
+ *  \par Function Description
+ *  This function provides the same functionality as g_list_free_full
+ *  which is not avaliable until glib 2.28.
+ *
+ */
+void u_glist_free_full (GList* list, GDestroyNotify free_func)
+{
+  g_list_foreach (list, (GFunc) free_func, NULL);
+  g_list_free (list);
+}
+
 /*! \brief Free a Glist of Strings
  *  \par Function Description
  *  This function will free all strings in a glist.

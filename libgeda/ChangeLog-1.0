@@ -1,3 +1,7 @@
+2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/utility/u_glist.c: Add function u_glist_free_full
+
 2014-11-16 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/guile/g_rc.c: Normalize component-library path if above CWD
