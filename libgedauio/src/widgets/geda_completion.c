@@ -178,7 +178,7 @@ geda_completion_add_items (GedaCompletion* cmp, GList* items)
  *  \par Function Description
  *
  * Removes items from a #GedaCompletion. The items are not freed, if the
- * memory was dynamically allocated, free items with g_list_free_full()
+ * memory was dynamically allocated, free items with u_glist_free_full()
  * after calling this function.
  *
  * \param [in] cmp:   A #GedaCompletion object.

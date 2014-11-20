@@ -2630,8 +2630,9 @@ parse_uri_markup (GedaLabel *label,   const char  *str,
 failed:
   g_markup_parse_context_free (context);
   g_string_free (pdata.new_str, TRUE);
-  g_list_free_full (pdata.links, (GDestroyNotify) link_free);
-
+  g_list_foreach (pdata.links, (GFunc) link_free, NULL);
+  g_list_free (pdata.links);
+  pdata.links = NULL;
   return FALSE;
 }
 
@@ -5916,6 +5917,8 @@ geda_label_clear_links (GedaLabel *label)
     return;
 
   g_list_free_full (info->links, (GDestroyNotify) link_free);
+  g_list_foreach (info->links, (GFunc) link_free, NULL);
+  g_list_free (info->links);
   info->links = NULL;
   info->active_link = NULL;
 }
