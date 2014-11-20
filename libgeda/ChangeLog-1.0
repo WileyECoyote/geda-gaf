@@ -1,5 +1,9 @@
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/utility/u_gslist.c: Add function u_gslist_free_full
+
+2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_object.c: use g_value_set_char instad of g_value_set_schar
       do need to worry about about powerpc or arm user.
 
@@ -7,7 +11,9 @@
 
     * src/file/f_get.c: Include errno.h, Lucid said no gotta
 
-    * src/guile/g_evaluate.c: : Include errno.h, same reason
+    * src/guile/g_evaluate.c: Include errno.h, same reason
+
+    * src/object/o_save.c: Include errno.h, same reason
 
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 

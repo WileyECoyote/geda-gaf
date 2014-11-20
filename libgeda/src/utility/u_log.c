@@ -186,7 +186,8 @@ void u_log_init (const char *prefix)
 
     logcount = g_slist_length (files);
     logcount = logcount;                 /* stub */
-    g_slist_free_full (files, g_free);
+    u_gslist_free_full (files, g_free);
+    files = NULL;
 
     /* Now try and create a new file. When we fail, increment the number. */
     i = 0;
