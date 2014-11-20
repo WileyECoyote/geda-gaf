@@ -57,6 +57,17 @@ G_BEGIN_DECLS
 #define EDAR_TEXT_MARKER_COLOR  renderer->text_marker_color
 #define EDAR_TEXT_MARKER_SIZE   renderer->text_marker_size
 
+#ifndef  CAIRO_ANTIALIAS_GOOD
+typedef enum {
+
+    /* hints */
+    CAIRO_ANTIALIAS_FAST = CAIRO_ANTIALIAS_SUBPIXEL + 1,
+    CAIRO_ANTIALIAS_GOOD,
+    CAIRO_ANTIALIAS_BEST
+} cairo_antialias_t2;
+
+#endif
+
 #define EDA_TYPE_RENDERER (eda_renderer_get_type ())
 #define EDA_RENDERER(obj) (G_TYPE_CHECK_INSTANCE_CAST ((obj), EDA_TYPE_RENDERER, EdaRenderer))
 #define EDA_RENDERER_CLASS(klass) (G_TYPE_CHECK_CLASS_CAST ((klass), EDA_TYPE_RENDERER, EdaRendererClass))
