@@ -1,5 +1,11 @@
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/file/f_get.c: Include errno.h, Lucid said no gotta
+
+    * src/guile/g_evaluate.c: : Include errno.h, same reason
+
+2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/geda/geda_notify.c: Replace glist_free_full with u_glist_free_full
     in functions geda_notify_list_finalize and geda_notify_list_remove_all.
 

@@ -21,6 +21,10 @@
 #include <config.h>
 #include <stdio.h>
 
+#ifdef HAVE_ERRNO_H
+#include <errno.h>
+#endif
+
 #include "libgeda_priv.h"
 
 static void process_error_stack (SCM s_stack, SCM s_key, SCM s_args, GError **err);
