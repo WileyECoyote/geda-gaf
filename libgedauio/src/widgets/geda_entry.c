@@ -31,7 +31,6 @@
 #include <ctype.h>
 
 #include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
 
 #include "geda_entry.h"
 #include "geda_imagemenuitem.h"
@@ -39,6 +38,12 @@
 #include "gettext.h"
 
 #include <geda_debug.h>
+
+#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 28 ))
+#  include "geda_keysyms.h"
+#else
+#  include <gdk/gdkkeysyms.h>
+#endif
 
 #define MAX_ICONS 2
 
@@ -868,24 +873,24 @@ geda_entry_key_press (GedaEntry *entry, GdkEventKey *event, void *data)
   }
 
   switch (event->keyval) {
-    case GDK_Down:
+    case GDK_KEY_Down:
       if ((state == 0) && (entry->have_history)) {
         geda_entry_history_down (entry);
         handled = TRUE;
       }
       break;
-    case GDK_Up:
+    case GDK_KEY_Up:
       if ((state == 0) && (entry->have_history)) {
         geda_entry_history_up (entry);
         handled = TRUE;
       }
       break;
-    case GDK_KP_Enter:
+    case GDK_KEY_KP_Enter:
     case GDK_KEY_Return:
     case GDK_KEY_ISO_Enter:
       handled = TRUE;
       break;
-    case GDK_Tab:
+    case GDK_KEY_Tab:
       if ( (state  == 0) && (entry->auto_complete) ) {
         handled = geda_entry_tab_complete (GTK_ENTRY (entry));
       }

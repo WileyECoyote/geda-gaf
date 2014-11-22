@@ -1,3 +1,7 @@
+2014-11-20 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_keysyms.h: New file for gdk_keysym defines
+
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Change gdk_window_get_display to

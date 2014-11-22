@@ -65,7 +65,7 @@
 #include <math.h>
 
 #include <gtk/gtk.h>
-#include <gdk/gdkkeysyms.h>
+
 
 #include "geda_label.h"
 #include "geda_imagemenuitem.h"
@@ -73,6 +73,12 @@
 #include "gettext.h"
 
 #include <geda_debug.h>
+
+#if (( GLIB_MAJOR_VERSION == 2 ) && ( GLIB_MINOR_VERSION < 28 ))
+#  include "geda_keysyms.h"
+#else
+#  include <gdk/gdkkeysyms.h>
+#endif
 
 /* GLIB < 2.30 */
 #ifndef G_VALUE_INIT
@@ -5916,7 +5922,6 @@ geda_label_clear_links (GedaLabel *label)
   if (!info)
     return;
 
-  g_list_free_full (info->links, (GDestroyNotify) link_free);
   g_list_foreach (info->links, (GFunc) link_free, NULL);
   g_list_free (info->links);
   info->links = NULL;

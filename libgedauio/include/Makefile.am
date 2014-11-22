@@ -22,6 +22,7 @@ libgedauio_HEADERS = \
 			geda_handlebox.h         \
 			geda_imagemenuitem.h     \
 			geda_input_dialog.h      \
+			geda_keysyms.h		 \
 			geda_label.h             \
 			geda_marshal.h		 \
 			geda_menu_button.h       \
