@@ -1,5 +1,10 @@
 2014-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
+      * src/widgets/geda_menu_button.c: Try gtk_widget_get_window instead of
+        gtk_button_get_event_window
+
+2014-11-22 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/widgets/geda_handlebox.c: Use mgdk_window_get_size when gdk_window_get_width
         and gdk_window_get_height are not available
 

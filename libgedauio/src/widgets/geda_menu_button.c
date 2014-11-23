@@ -413,8 +413,14 @@ geda_menu_button_get_image_position (GedaMenuButton *button)
 GdkWindow*
 geda_menu_button_get_event_window (GedaMenuButton *button)
 {
+  GdkWindow *window;
+  
   g_return_val_if_fail (GEDA_IS_MENU_BUTTON (button), NULL);
-  return gtk_button_get_event_window (GTK_BUTTON (button->priv->button));
+
+  //window =  gtk_button_get_event_window (GTK_BUTTON (button->priv->button));
+  window = gtk_widget_get_window(GTK_WIDGET(button->priv->button));
+  
+  return window;
 }
 
 /*! \brief  Set Properties of a GedaMenuButton.
