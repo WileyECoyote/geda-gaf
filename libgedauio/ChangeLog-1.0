@@ -1,3 +1,7 @@
+2014-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/dialogs/geda_file_chooser.c: Use const char * in geda_file_chooser_new
+
 2014-11-22 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_menu_button.c: Try gtk_widget_get_window instead of

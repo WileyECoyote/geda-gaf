@@ -150,7 +150,7 @@ chooser_update_filter_index(GtkWidget *button, GedaFileChooser *chooser)
  * is the only combobox used in the dialog */
 static void FixGtkCrap(GtkWidget *widget, void *self)
 {
-  if (GTK_IS_COMBO_BOX_TEXT(widget)) {
+  if (GTK_IS_COMBO_BOX(widget)) {
     (GEDA_FILE_CHOOSER(self))->filter_button = widget;
   }
   else if (GTK_IS_CONTAINER(widget)) {
@@ -547,8 +547,8 @@ geda_file_chooser_new (GtkWidget *parent,
   GtkDialog       *dialog;
   GedaFileChooser *chooser;
 
-  char *title = NULL;
-  char *second_button_text;
+  const char *second_button_text;
+  const char *title = NULL;
 
   widget = g_object_new (geda_file_chooser_get_type(),
                          "action", chooser_action,
