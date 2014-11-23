@@ -930,8 +930,12 @@ geda_handle_box_paint (GtkWidget      *widget, GdkEventExpose *event, GdkRectang
   handle_orientation = GTK_ORIENTATION_VERTICAL;
   handle_position    = effective_handle_position (handlebox);
 
+#if (HAVE_GDK_WINDOW_GET_WIDTH)
   width  = gdk_window_get_width (handlebox->bin_window);
   height = gdk_window_get_height (handlebox->bin_window);
+#else
+  gdk_window_get_size(handlebox->bin_window, &width, &height);
+#endif
 
   if (!event)
     gtk_paint_box (widget->style,
@@ -1139,8 +1143,13 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
                                   gtk_widget_get_screen (GTK_WIDGET (handlebox)));
         gdk_window_get_deskrelative_origin (handlebox->bin_window, &desk_x, &desk_y);
         gdk_window_get_origin (handlebox->bin_window, &root_x, &root_y);
-        width = gdk_window_get_width (handlebox->bin_window);
+	
+#if (HAVE_GDK_WINDOW_GET_WIDTH)
+        width  = gdk_window_get_width (handlebox->bin_window);
         height = gdk_window_get_height (handlebox->bin_window);
+#else
+        gdk_window_get_size(handlebox->bin_window, &width, &height);
+#endif	
 
         private->orig_x = event->x_root;
         private->orig_y = event->y_root;
@@ -1156,8 +1165,13 @@ geda_handle_box_button_press (GtkWidget *widget, GdkEventButton *event)
         if (gdk_window_is_viewable (widget->window))
         {
           gdk_window_get_origin (widget->window, &root_x, &root_y);
-          width = gdk_window_get_width (widget->window);
-          height = gdk_window_get_height (widget->window);
+
+#if (HAVE_GDK_WINDOW_GET_WIDTH)
+        width  = gdk_window_get_width (widget->window);
+        height = gdk_window_get_height (widget->window);
+#else
+        gdk_window_get_size(widget->window, &width, &height);
+#endif	
 
           handlebox->attach_allocation.x = root_x;
           handlebox->attach_allocation.y = root_y;
@@ -1314,12 +1328,17 @@ geda_handle_box_motion (GtkWidget *widget, GdkEventMotion *event)
         gtk_widget_queue_resize (widget);
       }
     }
-    else
-    {
+    else {
+
       int width, height;
 
-      width = gdk_window_get_width (handlebox->float_window);
+#if (HAVE_GDK_WINDOW_GET_WIDTH)
+      width  = gdk_window_get_width (handlebox->float_window);
       height = gdk_window_get_height (handlebox->float_window);
+#else
+      gdk_window_get_size(handlebox->float_window, &width, &height);
+#endif	
+
       new_x += handlebox->deskoff_x;
       new_y += handlebox->deskoff_y;
 
