@@ -1600,6 +1600,7 @@ compselect_callback_refresh_views (GtkWidget *widget, void *user_data)
     do_restore = TRUE;
   }
   else {
+    at_boundary = FALSE;
     do_restore = FALSE;
   }
 
