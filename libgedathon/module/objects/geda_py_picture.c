@@ -180,7 +180,9 @@ static int Picture_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
     return -1;
   }
-
+  
+  old_value = &index;
+  
   for (index = 0; Picture_members[index].name; index++){
     member = &Picture_members[index];
     str = member->name;

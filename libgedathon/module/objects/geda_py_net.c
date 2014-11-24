@@ -181,6 +181,8 @@ static int Net_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     return -1;
   }
 
+  old_value = &index;
+
   for (index = 0; Net_members[index].name; index++){
     member = &Net_members[index];
     str = member->name;

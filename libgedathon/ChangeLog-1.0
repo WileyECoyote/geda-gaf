@@ -1,3 +1,8 @@
+2014-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
+    * module/objects/geda_py_net.c, geda_py_picture.c, geda_py_pin.c, and
+      geda_py_text.c: initialize old_value in each module initialization function
+
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/ *.h: Add file tags
