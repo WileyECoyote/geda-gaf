@@ -20,7 +20,8 @@ libgtksheet_a_SOURCES = gtkitementry.c	\
 
 gtksheet_extra_sources = gtksheet-marshal.list
 
-libgtksheet_a_CPPFLAGS = $(GTKSHEET_LOCAL) -gtoggle
+#libgtksheet_a_CPPFLAGS = $(GTKSHEET_LOCAL) -gtoggle
+libgtksheet_a_CPPFLAGS = $(GTKSHEET_LOCAL)
 
 libgtksheet_a_CFLAGS   = $(GLIB_CFLAGS) $(GTK_CFLAGS)
 

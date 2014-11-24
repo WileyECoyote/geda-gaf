@@ -1,8 +1,8 @@
-theme=hicolor
-xdgdatadir=$(XDGDATADIR)
-themedir=$(xdgdatadir)/icons/$(theme)
+theme      =  hicolor
+xdgdatadir = $(XDGDATADIR)
+themedir   = $(xdgdatadir)/icons/$(theme)
 
-app_icon = geda-gattrib
+app_icon   = geda-gattrib
 
 app_icon_files = \
 	$(app_icon:%=%-48.png) \
@@ -12,15 +12,13 @@ app_icon_files = \
 #	$(app_icon:%=%-24.png)
 #	$(app_icon:%=%-32.png)
 #
-theme_icons = \
-	$(app_icon_files:%=apps,%)
+theme_icons        = $(app_icon_files:%=apps,%)
 
+desktopdir         = $(xdgdatadir)/applications
+desktop_in_files   = geda-gattrib.desktop.in
+desktop_DATA       = $(desktop_in_files:.desktop.in=.desktop)
 
-desktopdir=$(xdgdatadir)/applications
-desktop_in_files = geda-gattrib.desktop.in
-desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
-
-DOMAIN=geda-gattrib
+DOMAIN             = geda-gattrib
 
 @DESKTOP_I18N_LANGS_RULE@
 @DESKTOP_I18N_DESKTOP_RULE@
@@ -50,6 +48,5 @@ endif
 	$(install_icon_exec) -u $(theme_icons)
 
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
-DISTCLEANFILES = $(desktop_DATA)
-EXTRA_DIST = $(app_icon_files) \
-             $(desktop_in_files) $(desktop_DATA)
+DISTCLEANFILES       = $(desktop_DATA)
+EXTRA_DIST           = $(app_icon_files) $(desktop_in_files) $(desktop_DATA)
