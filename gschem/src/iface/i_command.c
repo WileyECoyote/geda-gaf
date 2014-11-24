@@ -202,7 +202,7 @@ void i_command_router(char* command, GschemToplevel *w_current)
       task->func.F1 = (void*)command_struc[i].func;
       task->arg1 = command_struc[i].w_current;
       task->arg2 = NULL;
-      g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
+      geda_main_context_invoke (NULL, (void*) i_command_dispatch, task);
     }
     else /* USE_WORKER_THREAD */ {
       gschem_threads_enter();
@@ -746,7 +746,7 @@ COMMAND ( do_open ) {
       task->func.F2 = (void*)x_window_open_page;
       task->arg1    = command_struc[cmd_do_open].w_current;
       task->arg2    = filename;
-      g_main_context_invoke (NULL, (void*) i_command_dispatch, task);
+      geda_main_context_invoke (NULL, (void*) i_command_dispatch, task);
       count++;
       return FALSE;
     }

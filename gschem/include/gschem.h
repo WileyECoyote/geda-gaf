@@ -11,6 +11,8 @@
 #include <libgeda/libgedaguile.h>
 #include <libgedacairo.h>
 
+#include <geda_uio_functions.h>
+
 /* gschem headers */
 #include "gschem_idefines.h"       /* integer defines */
 #include "gschem_sdefines.h"       /* string defines  */

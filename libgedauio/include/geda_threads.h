@@ -3,7 +3,7 @@
  *
  * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
- * Date: August 17, 2014
+ * Date: November 24, 2014
  * Contributing Author: Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
@@ -21,12 +21,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
  * MA 02111-1301 USA
  */
-#ifndef __GEDA_FUNCTIONS_H__
-#define __GEDA_FUNCTIONS_H__
+#ifndef __GEDA_THREADS_H__
+#define __GEDA_THREADS_H__
 
-#include "geda_accumulate.h"
-#include "geda_marshal.h"
+#include <glib.h>
 
-#include "geda_threads.h"
-
-#endif /* __GEDA_FUNCTIONS_H__ */
+void          geda_main_context_invoke           (GMainContext   *context,
+						  GSourceFunc     function,
+						  void           *data);
+void          geda_main_context_invoke_full      (GMainContext   *context,
+						  int             priority,
+						  GSourceFunc     function,
+                                                  void           *data,
+						  GDestroyNotify  notify);
+			       
+#endif /* __GEDA_THREADS_H__ */

@@ -1,5 +1,11 @@
 2014-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
+      * include/geda_threads.h: New header for new module
+
+      * src/functions/geda_threads.c: New uio module for thread related functions
+
+2014-11-23 Wiley E. Hill <wileyhill@gmail.com>
+
       * src/dialogs/geda_file_chooser.c: Use const char * in geda_file_chooser_new
 
 2014-11-22 Wiley E. Hill <wileyhill@gmail.com>
