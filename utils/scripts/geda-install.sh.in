@@ -183,7 +183,7 @@ do_install_info(){
     qecho "$me: \"install-info\" program was not found, not installing info pages"
     result=1;
   elif [ ! -f "$src_path/dir" ] ; then
-    qecho "$me: \"$src_path/dir)\" file missing, not installing info pages"
+    qecho "$me: \"$src_path/dir\" file missing, not installing info pages"
     result=1;
   else
     nfvecho "$me: installing info pages..."
@@ -246,7 +246,7 @@ do_install_desktop(){
   if [ "$(ls -A $src_path/*.desktop)" ] ; then
     mkdir -p "$LOCAL_SHARE/applications"
     for file in $src_path/*.desktop; do
-      filename=$(basename $file)
+      filename=basename $file
       target=$LOCAL_SHARE/applications/$filename
       if [ ! -f $target ] && [ ! -h $target ] ; then
         vecho "installing ${file} to ${target}"
