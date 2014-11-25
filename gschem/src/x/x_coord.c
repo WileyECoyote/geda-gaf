@@ -101,12 +101,12 @@ x_dialog_coord_dnd_drag_receive
   /* Deal with what we are given from source */
   if((selection_data != NULL) && (gtk_selection_data_get_length(selection_data) >= 0))
   {
-    if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK)
-    {
+    //if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK)
+    if (context->suggested_action == GDK_ACTION_ASK) {
       /* Ask the user to move or copy, then set the context action. */
     }
 
-    if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_MOVE)
+    if (context->suggested_action == GDK_ACTION_MOVE)
       delete_selection_data = TRUE;
 
     Dialog      = gtk_widget_get_toplevel(widget);
@@ -243,17 +243,19 @@ bool x_dialog_coord_drag_drop
 
   /* Check to see if (x,y) is a valid drop site within widget */
   is_valid_drop_site = TRUE;
-  targets = NULL;
+  
+  /* Get a list of target types to choose from */
+  //targets = gdk_drag_context_list_targets(context);
+  targets = context->targets;
 
   /* If the source offers a target */
-  if (gdk_drag_context_list_targets (context)) {
-    /* Get a list of target types to choose from */
-    targets = gdk_drag_context_list_targets(context);
+  if (targets) {
 
     /* Set what we really want! */
     target_type = GDK_POINTER_TO_ATOM (&dnd_target_list[DND_TARGET_OBJECTS]);
 
     index  = dnd_ntargets - 1;
+
     /* For each of our targets, look backwards to see if we find a match */
     for (target_entry = &dnd_target_list[index]; index > -1 ; index--) {
       target_entry = &dnd_target_list[index];

@@ -1,5 +1,9 @@
 2014-11-24 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_coord.c: Access suggested_action and targets context members directly
+
+2014-11-24 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_compselect.c: Set at_boundary in compselect_callback_refresh_views
       to appease compiler.
 
