@@ -105,9 +105,9 @@ x_dialog_coord_dnd_drag_receive
     if (context->suggested_action == GDK_ACTION_ASK) {
       /* Ask the user to move or copy, then set the context action. */
     }
-
-    if (context->suggested_action == GDK_ACTION_MOVE)
+    else if (context->suggested_action == GDK_ACTION_MOVE) {
       delete_selection_data = TRUE;
+    }
 
     Dialog      = gtk_widget_get_toplevel(widget);
     world_entry = g_object_get_data(G_OBJECT(Dialog), "world_entry");

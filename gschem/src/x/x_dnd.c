@@ -571,13 +571,13 @@ x_dnd_drag_receive
   if ((selection_data != NULL) &&
     (gtk_selection_data_get_length(selection_data) >= 0))
   {
-    if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK)
-    {
+    //if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_ASK)
+    if (context->suggested_action == GDK_ACTION_ASK) {
       /* Ask the user to move or copy, then set the context action. */
     }
-
-    if (gdk_drag_context_get_suggested_action(context) == GDK_ACTION_MOVE)
+    else if (context->suggested_action == GDK_ACTION_MOVE) {
       delete_data = TRUE;
+    }
 
     /* Get pointer to the data */
 #if GTK_CHECK_VERSION(2,14,0)
@@ -589,8 +589,8 @@ x_dnd_drag_receive
     string = (char*)buffer;
 
     /* Check that we got the format we can use */
-    switch (target_type)
-    {
+    switch (target_type) {
+
       case DND_TARGET_TEXT:
       case DND_TARGET_STRING:
       case DND_TARGET_PLAIN_TEXT:
@@ -707,11 +707,13 @@ bool x_dnd_drag_drop
   /* Check to see if (x,y) is a valid drop site within widget */
   is_valid_drop_site = TRUE;
 
+  /* Get a list of target types to choose from */
+  targets = context->targets;
+  
   /* If the source offers a target */
-  if ( gdk_drag_context_list_targets (context)) {
+  if (targets) {
 
-    /* Get a list of target types to choose from */
-    targets = gdk_drag_context_list_targets(context);
+    //targets = gdk_drag_context_list_targets(context);
 
     /* Set what we really want! */
     target_type = GDK_POINTER_TO_ATOM (&dnd_target_list[DND_TARGET_OBJECTS]);
