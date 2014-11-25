@@ -1,5 +1,10 @@
 2014-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Don't add symbol suffix of config already has in
+      function do_page_new
+
+2014-11-25 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_coord.c: Access suggested_action and targets context members directly
 
     * src/x/x_dnd.c: Access suggested_action and targets context members directly

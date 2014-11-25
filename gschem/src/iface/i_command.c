@@ -1932,13 +1932,16 @@ COMMAND ( do_page_new )
 {
   BEGIN_W_COMMAND(do_page_new);
 
-  EdaConfig *cfg = eda_config_get_user_context ();
-  char *group    = IVAR_CONFIG_GROUP;
-  char *tblock;
-  char *sym_file;
+  EdaConfig *cfg   = eda_config_get_user_context();
+  char      *group = IVAR_CONFIG_GROUP;
+  char      *tblock;
+  char      *sym_file;
+  char      *ext;
+
+  Object    *object;
+  Page      *page;
+
   const CLibSymbol *clib;
-  Object *object;
-  Page *page;
 
   /* create a new page */
   page = x_window_open_page (w_current, NULL);
@@ -1950,16 +1953,22 @@ COMMAND ( do_page_new )
  /* would be far easier, faster, and safer to set page->CHANGED=FALSE
   * here then for scheme to have done this in the hook, could just add
   * the titleblock here too, like so */
-  tblock = eda_config_get_string (cfg, group, "default-titleblock", NULL);
+  ext = tblock = eda_config_get_string (cfg, group, "default-titleblock", NULL);
 
-  sym_file = g_strconcat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+  while (*ext) ext++;
+  ext = ext - 4;
 
+  if (strcmp(ext, SYMBOL_FILE_DOT_SUFFIX)) {
+    sym_file = g_strconcat(tblock, SYMBOL_FILE_DOT_SUFFIX, NULL);
+  }
+  else {
+    sym_file = g_strdup(tblock);
+  }
+  
   clib = s_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {
-    object = o_complex_new (w_current->toplevel, 0, 0, 0,
-                            FALSE, clib, sym_file, FALSE);
-
+    object = o_complex_new (w_current->toplevel, 0, 0, 0, FALSE, clib, sym_file, FALSE);
     s_page_append_object (page, object);
   }
 
