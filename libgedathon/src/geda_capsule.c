@@ -177,5 +177,4 @@ initGedaCapsule(void)
 
   Py_INCREF(&GedaCapsuleType);
   PyModule_AddObject(capsule_module, "GedaCapsule", (PyObject *)&GedaCapsuleType);
-
 }

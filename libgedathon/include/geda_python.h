@@ -46,5 +46,5 @@
     self->symbol = py_##symbol;             \
     Py_XDECREF(tmp);                        \
   }
-
+  
 #endif

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
 "Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
-"POT-Creation-Date: 2014-11-09 21:49-0600\n"
+"POT-Creation-Date: 2014-11-23 03:18-0600\n"
 "PO-Revision-Date: 2010-02-06 22:09+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -161,47 +161,47 @@ msgstr ""
 msgid "%s: %s"
 msgstr "%s: %s"
 
-#: libgeda/src/file/f_get.c:143
+#: libgeda/src/file/f_get.c:147
 #, c-format
 msgid "%s: error accessing: %s\n"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:182
+#: libgeda/src/file/f_get.c:186
 #, c-format
 msgid "Could not allocate %lu bytes to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:193
+#: libgeda/src/file/f_get.c:197
 #, fuzzy, c-format
 msgid "Error reading file '%s': %s"
 msgstr "Nie odnaleziono pliku %s: %s"
 
-#: libgeda/src/file/f_get.c:204
+#: libgeda/src/file/f_get.c:208
 #, c-format
 msgid "File \"%s\" is too large"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:261
+#: libgeda/src/file/f_get.c:265
 #, c-format
 msgid "Could not allocate %ld byte to read file \"%s\""
 msgstr ""
 
-#: libgeda/src/file/f_get.c:281
+#: libgeda/src/file/f_get.c:285
 #, fuzzy, c-format
 msgid "Failed to read from file '%s': %s"
 msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
 
-#: libgeda/src/file/f_get.c:340
+#: libgeda/src/file/f_get.c:344
 #, fuzzy, c-format
 msgid "Failed to open file '%s': %s"
 msgstr "Błąd otwarcia katalogu [%s]: %s\n"
 
-#: libgeda/src/file/f_get.c:354
+#: libgeda/src/file/f_get.c:358
 #, c-format
 msgid "Failed to get attributes of file '%s': fstat() failed: %s"
 msgstr ""
 
-#: libgeda/src/file/f_get.c:371
+#: libgeda/src/file/f_get.c:375
 #, fuzzy, c-format
 msgid "Failed to open file '%s': fdopen() failed: %s"
 msgstr "Błąd odczytu obrazka z pliku [%s]: %s\n"
@@ -422,128 +422,128 @@ msgstr ""
 msgid "Whether the object is displayed, normaly text attributes"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:56
+#: libgeda/src/guile/g_evaluate.c:60
 msgid ""
 "\n"
 "Backtrace:\n"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:301
+#: libgeda/src/guile/g_evaluate.c:305
 msgid "changed"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:302
+#: libgeda/src/guile/g_evaluate.c:306
 msgid "restore"
 msgstr ""
 
-#: libgeda/src/guile/g_evaluate.c:304
+#: libgeda/src/guile/g_evaluate.c:308
 #, c-format
 msgid "<error> libgeda could not %s directory to %s:%s"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:285
+#: libgeda/src/guile/g_rc.c:293
 #, c-format
 msgid "Invalid path [%s] passed to source-library\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:333 libgeda/src/guile/g_rc.c:342
+#: libgeda/src/guile/g_rc.c:341 libgeda/src/guile/g_rc.c:350
 #, c-format
 msgid "Invalid path [%s] passed to source-library-search\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:434
+#: libgeda/src/guile/g_rc.c:442
 #, c-format
 msgid "Bad value [%d], check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:435 libgeda/src/guile/g_rc.c:441
-#: libgeda/src/guile/g_rc.c:471 libgeda/src/guile/g_rc.c:477
-#: libgeda/src/guile/g_rc.c:509 libgeda/src/guile/g_rc.c:515
-#: libgeda/src/guile/g_rc.c:547 libgeda/src/guile/g_rc.c:553
-#: libgeda/src/guile/g_rc.c:578 libgeda/src/guile/g_rc.c:602
-#: libgeda/src/guile/g_rc.c:626 libgeda/src/guile/g_rc.c:651
-#: libgeda/src/guile/g_rc.c:676 libgeda/src/guile/g_rc.c:701
-#: libgeda/src/guile/g_rc.c:726 libgeda/src/guile/g_rc.c:751
+#: libgeda/src/guile/g_rc.c:443 libgeda/src/guile/g_rc.c:449
+#: libgeda/src/guile/g_rc.c:479 libgeda/src/guile/g_rc.c:485
+#: libgeda/src/guile/g_rc.c:517 libgeda/src/guile/g_rc.c:523
+#: libgeda/src/guile/g_rc.c:555 libgeda/src/guile/g_rc.c:561
+#: libgeda/src/guile/g_rc.c:586 libgeda/src/guile/g_rc.c:610
+#: libgeda/src/guile/g_rc.c:634 libgeda/src/guile/g_rc.c:659
+#: libgeda/src/guile/g_rc.c:684 libgeda/src/guile/g_rc.c:709
+#: libgeda/src/guile/g_rc.c:734 libgeda/src/guile/g_rc.c:759
 #, c-format
 msgid "Continuing with default value=[%d]\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:440
+#: libgeda/src/guile/g_rc.c:448
 #, c-format
 msgid "Invalid type assignment, check bus-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:470
+#: libgeda/src/guile/g_rc.c:478
 #, c-format
 msgid "Bad value [%d], check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:476
+#: libgeda/src/guile/g_rc.c:484
 #, c-format
 msgid "Invalid type assignment, check line-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:508
+#: libgeda/src/guile/g_rc.c:516
 #, c-format
 msgid "Bad value [%d], check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:514
+#: libgeda/src/guile/g_rc.c:522
 #, c-format
 msgid "Invalid type assignment, check net-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:546
+#: libgeda/src/guile/g_rc.c:554
 #, c-format
 msgid "Bad value [%d], check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:552
+#: libgeda/src/guile/g_rc.c:560
 #, c-format
 msgid "Invalid type assignment, check pin-style entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:577
+#: libgeda/src/guile/g_rc.c:585
 #, c-format
 msgid "Invalid type assignment, check thick-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:601
+#: libgeda/src/guile/g_rc.c:609
 #, c-format
 msgid "Invalid type assignment, check thick-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:625
+#: libgeda/src/guile/g_rc.c:633
 #, c-format
 msgid "Invalid type assignment, check thick-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:650
+#: libgeda/src/guile/g_rc.c:658
 #, c-format
 msgid "Invalid type assignment, check thick-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:675
+#: libgeda/src/guile/g_rc.c:683
 #, c-format
 msgid "Invalid type assignment, check thin-bus-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:700
+#: libgeda/src/guile/g_rc.c:708
 #, c-format
 msgid "Invalid type assignment, check thin-line-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:725
+#: libgeda/src/guile/g_rc.c:733
 #, c-format
 msgid "Invalid type assignment, check thin-net-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:750
+#: libgeda/src/guile/g_rc.c:758
 #, c-format
 msgid "Invalid type assignment, check thin-pin-width entry in rc file\n"
 msgstr ""
 
-#: libgeda/src/guile/g_rc.c:803
+#: libgeda/src/guile/g_rc.c:811
 msgid "always-promote-attribute: list element is not a string"
 msgstr ""
 
@@ -1029,38 +1029,38 @@ msgstr ""
 "Napotkano nieprawidłową wartość 'whichend' przypisaną do pinu (użyję "
 "wartości 0): %d\n"
 
-#: libgeda/src/object/o_save.c:68
+#: libgeda/src/object/o_save.c:73
 #, fuzzy, c-format
 msgid "%s: Can't get real filename of %s."
 msgstr "Nie można odczytać rzeczywistej nazwy %s."
 
-#: libgeda/src/object/o_save.c:115
+#: libgeda/src/object/o_save.c:120
 #, fuzzy, c-format
 msgid "Could NOT set previous backup file [%s] read-write\n"
 msgstr "Nie można ustawić pliku kopii zapasowej w tryb zapisu i odczytu [%s]\n"
 
-#: libgeda/src/object/o_save.c:124
+#: libgeda/src/object/o_save.c:129
 #, c-format
 msgid "Automatic backup file saved [%s]\n"
 msgstr ""
 
-#: libgeda/src/object/o_save.c:136
+#: libgeda/src/object/o_save.c:141
 #, c-format
 msgid "Could NOT set backup file [%s] readonly\n"
 msgstr ""
 "Nie można ustawić pliku kopii zapasowej w tryb tylko do odczytu [%s].\n"
 
-#: libgeda/src/object/o_save.c:142
+#: libgeda/src/object/o_save.c:147
 #, fuzzy, c-format
 msgid "Could NOT save backup file [%s]: %s\n"
 msgstr "Nie można zapisać [%s]\n"
 
-#: libgeda/src/object/o_save.c:253
+#: libgeda/src/object/o_save.c:258
 #, fuzzy, c-format
 msgid "%s: object %p has unknown type '%c'\n"
 msgstr "o_save_objects: objekt %p jest nieznanego typu '%c'\n"
 
-#: libgeda/src/object/o_save.c:334
+#: libgeda/src/object/o_save.c:339
 #, c-format
 msgid "[%s]: because %s"
 msgstr ""

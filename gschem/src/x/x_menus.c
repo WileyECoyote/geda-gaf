@@ -340,6 +340,7 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
   show_pop_tips   = eda_config_get_boolean (cfg, group, "show-popup-tips",  NULL);
 
   menus_broken = FALSE;
+  toggler_data = NULL;
   scm_dynwind_begin (0);
   g_dynwind_window (w_current);
 
