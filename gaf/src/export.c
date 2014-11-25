@@ -331,7 +331,7 @@ export_cairo_check_error (cairo_status_t status)
 static void
 export_layout_page (Page *page, cairo_rectangle_t *extents, cairo_matrix_t *mtx)
 {
-cairo_rectangle_t drawable;
+  cairo_rectangle_t drawable;
   int wx_min, wy_min, wx_max, wy_max, w_width, w_height;
   bool landscape = FALSE;
   double m[4]; /* Calculated margins */

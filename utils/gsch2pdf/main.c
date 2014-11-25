@@ -739,37 +739,32 @@ static void print_object_list(GedaToplevel *current, cairo_t *cairo, const GList
 
 static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
 {
+    cairo_rectangle_t  rectangle;
+
+    const GList       *list;
+    int wx_min, wy_min, wx_max, wy_max;
+  
     cairo_save(cairo);
 
-    const GList *list = s_page_get_objects(page);
+    list = s_page_get_objects(page);
 
-    cairo_surface_t *surface = cairo_recording_surface_create(CAIRO_CONTENT_COLOR_ALPHA, NULL);
+    /* Now calculate extents of objects within page */
+    world_get_object_glist_bounds (list, &wx_min, &wy_min, &wx_max, &wy_max);
 
-    cairo_t *cairo2 = cairo_create(surface);
-
-    cairo_rectangle_t rectangle;
-
-    print_object_list(current, cairo2, list);
-
-    cairo_recording_surface_ink_extents(
-        surface,
-        &rectangle.x,
-        &rectangle.y,
-        &rectangle.width,
-        &rectangle.height
-        );
+    rectangle.x = wx_min;
+    rectangle.y = wy_min;
+    rectangle.width  = wx_max - wx_min;
+    rectangle.height = wy_max - wy_min;
 
     double sx = 72.0 * print_settings_get_print_width(print_settings) / rectangle.width;
     double sy = 72.0 * print_settings_get_print_height(print_settings) / rectangle.height;
 
     double s;
 
-    if (sx < sy)
-    {
+    if (sx < sy) {
         s = sx;
     }
-    else
-    {
+    else {
         s = sy;
     }
 
@@ -779,17 +774,9 @@ static void print_page(GedaToplevel *current, cairo_t *cairo, Page *page)
         72.0 * (print_settings_get_page_margin_top(print_settings) + print_settings_get_print_height(print_settings)) - (72.0 * print_settings_get_print_height(print_settings) - s * rectangle.height) * print_settings_get_page_align_vertical(print_settings)
         );
 
-    cairo_scale(
-        cairo,
-        s,
-        -s
-        );
+    cairo_scale(cairo, s, -s);
 
-    cairo_translate(
-        cairo,
-        -rectangle.x,
-        -rectangle.y
-        );
+    cairo_translate( cairo, -rectangle.x, -rectangle.y);
 
     print_object_list(current, cairo, list);
 
@@ -810,7 +797,7 @@ static void main2(void *closure, int argc, char *argv[])
     int i;
     cairo_surface_t *surface = NULL;
     cairo_t *cairo = NULL;
-    gboolean need_cairo_init = TRUE;
+    bool need_cairo_init = TRUE;
 
     print_settings = print_settings_new();
 

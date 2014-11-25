@@ -12,11 +12,11 @@ AM_LDFLAGS = -version-info $(LIBGTKSHEET_SO_VERSION)    \
 
 noinst_LIBRARIES = libgtksheet.a
 
-libgtksheet_a_SOURCES = gtkitementry.c	\
-						gtksheet.c \
-						gtksheet-marshal.c \
-						gtksheettypebuiltins.c	\
-						gtksheetwidget.c
+libgtksheet_a_SOURCES =         gtkitementry.c	\
+				gtksheet.c \
+				gtksheet-marshal.c \
+				gtksheettypebuiltins.c	\
+				gtksheetwidget.c
 
 gtksheet_extra_sources = gtksheet-marshal.list
 
