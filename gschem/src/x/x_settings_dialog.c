@@ -147,7 +147,7 @@
 #include <x_settings_dialog.h>          /* Dialog String Data */
 
 const char* IDS_FONT_NAMES[] = {  /* Menu Icons Strings*/
-  DEFAULT_FONT_NAME, "FreeMono", "Courier New", "Helvetica", "Monospace", "Tahoma", "Verdana",
+  DEFAULT_FONT_NAME, "FreeMono", "Courier New", "Helvetica", "Monospace", "Tahoma", "Symbol", "Verdana",
   NULL
 };
 

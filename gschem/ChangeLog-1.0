@@ -1,3 +1,7 @@
+2014-11-26 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Add font "Symbol" to IDS_FONT_NAMES
+
 2014-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Don't add symbol suffix of config already has in
