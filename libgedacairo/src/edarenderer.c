@@ -445,9 +445,7 @@ eda_renderer_set_property (GObject *object, unsigned int property_id,
     break;
 
   case PROP_FONT_NAME:
-    if (renderer->priv->font_name != NULL)
-      GEDA_FREE (renderer->priv->font_name);
-    renderer->priv->font_name = g_value_dup_string (value);
+    eda_renderer_set_font_name(renderer, g_value_get_string(value));
     /* Clear font metrics cache */
     //g_hash_table_remove_all (renderer->priv->metrics_cache);
     break;
@@ -622,7 +620,6 @@ eda_renderer_update_contexts (EdaRenderer  *renderer,
   else if (renderer->priv->cr != NULL) {
     eda_pango_renderer_update(renderer->priv->pr, renderer->priv->cr);
   }
-
 }
 
 /* ================================================================
@@ -1836,10 +1833,10 @@ const char *eda_renderer_get_font_name(EdaRenderer *renderer)
 {
   return (renderer->priv->font_name);
 }
-void eda_renderer_set_font_name(EdaRenderer *renderer, const char *fontname)
+void eda_renderer_set_font_name(EdaRenderer *renderer, const char *font_name)
 {
   GEDA_FREE(renderer->priv->font_name);
-  renderer->priv->font_name = u_string_strdup (fontname);
+  renderer->priv->font_name = u_string_strdup (font_name);
 }
 
 bool eda_renderer_set_flags (EdaRenderer *renderer, int flags)
