@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: geda\n"
-"Report-Msgid-Bugs-To: geda-bug@seul.org\n"
-"POT-Creation-Date: 2012-09-22 20:08-0500\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2014-11-27 00:20-0600\n"
 "PO-Revision-Date: 2012-01-18 14:31+0100\n"
 "Last-Translator: Bert Timmerman <bert.timmerman@xs4all.nl>\n"
 "Language-Team: gEDA developers <geda-dev@seul.org>\n"
@@ -28,40 +28,17 @@ msgstr "gEDA Attribuut Editor"
 msgid "Manipulate component attributes with gattrib"
 msgstr "Manipuleer componenten attributen met gattrib"
 
-#: gattrib/src/f_export.c:86
+#: gattrib/src/f_export.c:67
 #, c-format
 msgid "o_save: Could not open [%s]\n"
 msgstr "o_save: Kan [%s] niet openen\n"
 
-#: gattrib/src/gattrib.c:178
-#, c-format
-msgid "In gattrib_quit, calling gtk_main_quit()\n"
-msgstr "In gattrib_quit, ga gtk_main_quit() aanroepen\n"
-
-#: gattrib/src/gattrib.c:235
-#, c-format
-msgid ""
-"gEDA/gattrib version %s%s.%s\n"
-"gEDA/gattrib comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
-"details.\n"
-"This is free software, and you are welcome to redistribute it under certain\n"
-"conditions; please see the COPYING file for more details.\n"
-"\n"
-msgstr ""
-"gEDA/gattrib versie %s%s.%s\n"
-"gEDA/gattrib komt met ABSOLUUT GEEN GARANTIE; zie ook COPYING voor meer "
-"details.\n"
-"Dt is vrije software, en jij bent welkom om deze te her-distribueren onder "
-"bepaalde\n"
-"condities; zie alstublieft het COPYING bestand voor meer details.\n"
-"\n"
-
-#: gattrib/src/gattrib.c:271
-#, c-format
-msgid "Couldn't find file [%s]\n"
+#: gattrib/src/gattrib.c:312
+#, fuzzy, c-format
+msgid "Couldn not find file [%s]\n"
 msgstr "Kan bestand [%s] niet vinden\n"
 
-#: gattrib/src/g_rc.c:76
+#: gattrib/src/g_rc.c:49
 #, c-format
 msgid ""
 "You are running gEDA/gaf version [%s%s.%s],\n"
@@ -72,15 +49,7 @@ msgstr ""
 "maar U heeft een versie [%s] gattribrc bestand.\n"
 "Wilt U gaarne het laatste rc bestand gebruiken.\n"
 
-#: gattrib/src/gtksheet_2_2.c:6203
-msgid "Entry type must be GtkEntry subclass, using default"
-msgstr "Invoer type moet een GtkEntry subklasse zijn, gebruik de standaard"
-
-#: gattrib/src/gtksheet_2_2.c:8383
-msgid "Widget must be a GtkSheet child"
-msgstr "Widget moet een kind van GtkSheet zijn"
-
-#: gattrib/src/parsecmd.c:81
+#: gattrib/src/parsecmd.c:59
 #, c-format
 msgid ""
 "\n"
@@ -140,14 +109,7 @@ msgstr ""
 "net.\n"
 "\n"
 
-#: gattrib/src/s_attrib.c:105
-#, c-format
-msgid "WARNING: Found uref=%s, uref= is deprecated, please use refdes=\n"
-msgstr ""
-"WAARSCHUWING: uref=%s gevonden, uref= is vervallen, gebruik alstublieft "
-"refdes=\n"
-
-#: gattrib/src/s_misc.c:85
+#: gattrib/src/s_misc.c:66
 #, c-format
 msgid ""
 "\n"
@@ -156,12 +118,12 @@ msgstr ""
 "\n"
 "GEDAAN\n"
 
-#: gattrib/src/s_misc.c:87
+#: gattrib/src/s_misc.c:68
 #, c-format
 msgid " DONE\n"
 msgstr " GEDAAN\n"
 
-#: gattrib/src/s_object.c:222
+#: gattrib/src/s_object.c:209
 #, c-format
 msgid ""
 "In s_object_replace_attrib_in_object, we have failed to find the attrib %s "
@@ -170,16 +132,7 @@ msgstr ""
 "In s_object_replace_attrib_in_object, is gefaald om attrib %s te vinden in "
 "de component.  Afsluiten . . .\n"
 
-#: gattrib/src/s_object.c:281
-#, c-format
-msgid ""
-"In s_object_remove_attrib_in_object, we have failed to find the attrib %s on "
-"the component.  Exiting . . .\n"
-msgstr ""
-"In s_object_remove_attrib_in_object, is gefaald om attrib %s in de component "
-"te vinden.  Afsluiten . . .\n"
-
-#: gattrib/src/s_object.c:336
+#: gattrib/src/s_object.c:325
 #, c-format
 msgid ""
 "In s_object_attrib_add_attrib_in_object, trying to add attrib to non-complex "
@@ -188,22 +141,22 @@ msgstr ""
 "In s_object_attrib_add_attrib_in_object, geprobeerd om attrib toe te voegen "
 "aan een non-complex of niet-net!\n"
 
-#: gattrib/src/s_rename.c:121
+#: gattrib/src/s_rename.c:96
 #, c-format
 msgid "Increase number of rename_pair sets in s_net.c\n"
 msgstr "Verhoog het aantal rename_pair sets in s_net.c\n"
 
-#: gattrib/src/s_rename.c:139
+#: gattrib/src/s_rename.c:114
 #, c-format
 msgid "%d) Source: _%s_"
 msgstr "%d) Bron: _%s_"
 
-#: gattrib/src/s_rename.c:143
+#: gattrib/src/s_rename.c:118
 #, c-format
 msgid " -> Dest: _%s_\n"
 msgstr " -> Best: _%s_\n"
 
-#: gattrib/src/s_rename.c:174
+#: gattrib/src/s_rename.c:149
 #, c-format
 msgid ""
 "WARNING: Trying to rename something twice:\n"
@@ -216,27 +169,27 @@ msgstr ""
 "zijn beide een bron en bestemming naam\n"
 "Deze waarschuwing is in orde als U meervoudige hiërarchie niveaus heeft!\n"
 
-#: gattrib/src/s_rename.c:240
+#: gattrib/src/s_rename.c:214
 #, c-format
 msgid "Increase number of rename_pairs (MAX_RENAME) in s_rename.c\n"
 msgstr "Verhoog het aantal rename_pairs (MAX_RENAME) in s_rename.c\n"
 
-#: gattrib/src/s_sheet_data.c:120
-#, c-format
-msgid "- Starting master comp list creation.\n"
+#: gattrib/src/s_sheet_data.c:221
+#, fuzzy, c-format
+msgid "Starting master comp list creation.\n"
 msgstr "- Start het aanmaken van de hoofdcomponentenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:188
+#: gattrib/src/s_sheet_data.c:284
 #, c-format
 msgid "- Starting master comp attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdattributenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:301
-#, c-format
-msgid "- Starting master pin list creation.\n"
+#: gattrib/src/s_sheet_data.c:399
+#, fuzzy, c-format
+msgid "- Creating master pin list.\n"
 msgstr "- Start het aanmaken van de hoofdpennenlijst.\n"
 
-#: gattrib/src/s_sheet_data.c:335
+#: gattrib/src/s_sheet_data.c:434
 #, c-format
 msgid ""
 "In s_sheet_data_add_master_pin_list_items, found component pin with no "
@@ -245,75 +198,35 @@ msgstr ""
 "In s_sheet_data_add_master_pin_list_items, is een component pen zonder "
 "pennummer gevonden.\n"
 
-#: gattrib/src/s_sheet_data.c:393
+#: gattrib/src/s_sheet_data.c:490
 #, c-format
 msgid "- Starting master pin attrib list creation.\n"
 msgstr "- Start het aanmaken van de hoofdpennenattributenlijst.\n"
 
-#: gattrib/src/s_string_list.c:127
+#: gattrib/src/s_string_list.c:120
 #, c-format
 msgid "In s_string_list_add_item, tried to add to a NULL list.\n"
 msgstr ""
 "In s_string_list_add_item, is geprobeerd toe te voegen aan een NULL lijst.\n"
 
-#: gattrib/src/s_string_list.c:192
+#: gattrib/src/s_string_list.c:181
 #, c-format
 msgid "In s_string_list_delete_item, tried to remove item from empty list\n"
 msgstr ""
 "In s_string_list_delete_item, is geprobeerd om een item te verwijderen van "
 "een lege lijst\n"
 
-#: gattrib/src/s_string_list.c:256
+#: gattrib/src/s_string_list.c:245
 #, c-format
 msgid "In s_string_list_delete_item, couldn't delete item %s\n"
 msgstr "In s_string_list_delete_item, kan item %s niet verwijderen\n"
 
-#: gattrib/src/s_table.c:246
-#, c-format
-msgid ""
-"In s_table_create_attrib_pair, we didn't find the row name in the row list!\n"
-msgstr ""
-"In s_table_create_attrib_pair, is de naam van de regel niet gevonden in de "
-"lijst met regels!\n"
-
-#: gattrib/src/s_table.c:289
-#, c-format
-msgid "- Starting internal component TABLE creation\n"
-msgstr "- Start het aanmaken van de interne componenten TABEL.\n"
-
-#: gattrib/src/s_table.c:348
-#, c-format
-msgid ""
-"In s_table_add_toplevel_comp_items_to_comp_table, we didn't find either row "
-"or col in the lists!\n"
-msgstr ""
-"In s_table_add_toplevel_comp_items_to_comp_table, is geen regel of kolom "
-"gevonden in de lijsten!\n"
-
-#: gattrib/src/s_table.c:497
+#: gattrib/src/s_table.c:540
 #, c-format
 msgid "- Starting internal pin TABLE creation\n"
 msgstr "- Start het aanmaken van de interne pennen TABEL.\n"
 
-#: gattrib/src/s_table.c:557
-#, c-format
-msgid ""
-"In s_table_add_toplevel_pin_items_to_pin_table, we didn't find either row or "
-"col in the lists!\n"
-msgstr ""
-"In s_table_add_toplevel_pin_items_to_pin_table, is noch regel noch kolom "
-"gevonden in de lijsten!\n"
-
-#: gattrib/src/s_toplevel.c:188
-msgid "_cancel"
-msgstr "_afbreken"
-
-#: gattrib/src/s_toplevel.c:315
-#, c-format
-msgid "In s_toplevel_delete_attrib_col, can't get attrib name\n"
-msgstr "In s_toplevel_delete_attrib_col, kan geen attrib naam krijgen\n"
-
-#: gattrib/src/s_toplevel.c:551
+#: gattrib/src/s_toplevel.c:475
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, we didn't find the refdes in "
@@ -322,7 +235,7 @@ msgstr ""
 "In s_toplevel_get_component_attribs_in_sheet, geen refdes gevonden in de "
 "hoofdlijst!\n"
 
-#: gattrib/src/s_toplevel.c:579
+#: gattrib/src/s_toplevel.c:504
 #, c-format
 msgid ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  Exiting . . . .\n"
@@ -330,7 +243,7 @@ msgstr ""
 "In s_toplevel_get_component_attribs_in_sheet, count != i!  "
 "Afsluiten . . . .\n"
 
-#: gattrib/src/s_toplevel.c:888
+#: gattrib/src/s_toplevel.c:809
 #, c-format
 msgid ""
 "In s_toplevel_get_pin_attribs_in_sheet, either refdes or pinnumber of object "
@@ -339,45 +252,37 @@ msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, ofwel een refdes of een pennummer "
 "van het object ontbreken!\n"
 
-#: gattrib/src/s_toplevel.c:897
-#, c-format
-msgid ""
-"In s_toplevel_get_pin_attribs_in_sheet, we didn't find the refdes:pin in the "
-"master list!\n"
-msgstr ""
-"In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
-"hoofdlijst!\n"
-
-#: gattrib/src/s_toplevel.c:925
+#: gattrib/src/s_toplevel.c:846
 #, c-format
 msgid "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Exiting . . . .\n"
 msgstr ""
 "In s_toplevel_get_pin_attribs_in_sheet, count != i!  Afsluiten . . . .\n"
 
-#: gattrib/src/x_dialog.c:78
+#: gattrib/src/x_dialog.c:107
 msgid "Add new attribute"
 msgstr "Voeg nieuwe attribuut toe"
 
-#: gattrib/src/x_dialog.c:87
+#: gattrib/src/x_dialog.c:116
 msgid "Enter new attribute name"
 msgstr "Voer nieuwe attribuutnaam toe"
 
-#: gattrib/src/x_dialog.c:150
+#: gattrib/src/x_dialog.c:174
 msgid "Are you sure you want to delete this attribute?"
 msgstr "Bent U zeker dat U deze attribuut wil verwijderen?"
 
-#: gattrib/src/x_dialog.c:152
+#: gattrib/src/x_dialog.c:176
 msgid "Delete attribute"
 msgstr "Verwijder attribuut"
 
-#: gattrib/src/x_dialog.c:177
+#: gattrib/src/x_dialog.c:201
+#, fuzzy
 msgid ""
 "One or more components have been found with missing symbol files!\n"
 "\n"
-"This probably happened because gattrib couldn't find your component "
+"This probably happened because gattrib could not find your component "
 "libraries, perhaps because your gafrc or gattribrc files are misconfigured.\n"
 "\n"
-"Chose \"Quit\" to leave gattrib and fix the problem, or\n"
+"Choose \"Quit\" to leave gattrib and fix the problem, or\n"
 "\"Forward\" to continue working with gattrib.\n"
 msgstr ""
 "Een of meer componenten gevonden met ontbrekende symboolbestanden!\n"
@@ -389,39 +294,40 @@ msgstr ""
 "Kies \"Quit\" om gattrib te verlaten en het probleem op te lossen, of\n"
 "\"Forward\" om door te gaan met werken met gattrib.\n"
 
-#: gattrib/src/x_dialog.c:190
+#: gattrib/src/x_dialog.c:214
 msgid "Missing symbol file found for component!"
 msgstr "Ontbrekende symbool voor component gevonden!"
 
-#: gattrib/src/x_dialog.c:218
+#: gattrib/src/x_dialog.c:237
 msgid "Save the changes before closing?"
 msgstr "Sla de wijzigingen op voor het afsluiten?"
 
-#: gattrib/src/x_dialog.c:219
+#: gattrib/src/x_dialog.c:238
 msgid "<big><b>"
 msgstr "<big><b>"
 
-#: gattrib/src/x_dialog.c:219
+#: gattrib/src/x_dialog.c:238
 msgid "</b></big>"
 msgstr "</b></big>"
 
-#: gattrib/src/x_dialog.c:221
+#: gattrib/src/x_dialog.c:240
 msgid "If you don't save, all your changes will be permanently lost."
 msgstr "Als je niet opslaat, zullen alle veranderingen verloren gaan."
 
-#: gattrib/src/x_dialog.c:231
+#: gattrib/src/x_dialog.c:250
 msgid "Close without saving"
 msgstr "Afsluiten zonder opslaan"
 
-#: gattrib/src/x_dialog.c:278
+#: gattrib/src/x_dialog.c:307
+#, fuzzy
 msgid ""
-"Sorry -- you have chosen a feature which has net been\n"
+"Sorry -- you have chosen a feature which has not been\n"
 "implemented yet.\n"
 "\n"
 "Gattrib is an open-source program which\n"
-"I work on as a hobby.  It is still a work in progress.\n"
+"I work on as a hobby. It is still a work in progress.\n"
 "If you wish to contribute (perhaps by implementing this\n"
-"feature), please do so!  Please send patches to gattrib\n"
+"feature), please do so! Please send patches to gattrib\n"
 "to Stuart Brorson: sdb@cloud9.net.\n"
 "\n"
 "Otherwise, just hang tight -- I'll implement this feature soon!\n"
@@ -437,15 +343,15 @@ msgstr ""
 "\n"
 "Of anders, hou je vast -- implementeer ik deze opties snel!\n"
 
-#: gattrib/src/x_dialog.c:286
+#: gattrib/src/x_dialog.c:315
 msgid "Unimplemented feature!"
 msgstr "Niet geïmplementeerde functie"
 
-#: gattrib/src/x_dialog.c:313
+#: gattrib/src/x_dialog.c:342
 msgid "Fatal error"
 msgstr "Fatale fout"
 
-#: gattrib/src/x_dialog.c:328
+#: gattrib/src/x_dialog.c:357
 #, c-format
 msgid ""
 "gEDA : GPL Electronic Design Automation\n"
@@ -468,92 +374,81 @@ msgstr ""
 "met genereuze programmacodebijdragen van gschem, gnetlist, \n"
 "en gtkextra, en ook ondersteuning van de gEDA gemeenschap."
 
-#: gattrib/src/x_dialog.c:339
+#: gattrib/src/x_dialog.c:368
 msgid "About..."
 msgstr "Over..."
 
-#: gattrib/src/x_dialog.c:355
+#: gattrib/src/x_dialog.c:385
 msgid "Export CSV"
 msgstr "Exporteer CSV"
 
-#: gattrib/src/x_fileselect.c:91
+#: gattrib/src/x_dialog.c:435
+msgid "Find Text"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:783
+msgid "Close this dialog"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:785
+msgid "Replace All"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:791
+msgid "Replace All and close dialog"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:793
+msgid "Replace"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:799
+msgid "Replace selected text and continue"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:801
+msgid "Find"
+msgstr ""
+
+#: gattrib/src/x_dialog.c:806
+msgid "Find next"
+msgstr ""
+
+#: gattrib/src/x_fileselect.c:50
 msgid "Schematics"
 msgstr "Schema's"
 
-#: gattrib/src/x_fileselect.c:96
+#: gattrib/src/x_fileselect.c:55
 msgid "Symbols"
 msgstr "Symbolen"
 
-#: gattrib/src/x_fileselect.c:101
+#: gattrib/src/x_fileselect.c:60
 msgid "Schematics and symbols"
 msgstr "Schema's en symbolen"
 
-#: gattrib/src/x_fileselect.c:107
+#: gattrib/src/x_fileselect.c:66
 msgid "All files"
 msgstr "Alle bestanden"
 
-#: gattrib/src/x_fileselect.c:138
+#: gattrib/src/x_fileselect.c:92
+msgid "Save as..."
+msgstr "Opslaan als..."
+
+#: gattrib/src/x_fileselect.c:156
 #, c-format
 msgid "Loading file [%s]\n"
 msgstr "Laad bestand [%s]\n"
 
-#: gattrib/src/x_fileselect.c:144
-#, c-format
-msgid "Couldn't load schematic [%s]\n"
+#: gattrib/src/x_fileselect.c:162
+#, fuzzy, c-format
+msgid "Could not load schematic [%s]\n"
 msgstr "Kon schema [%s] niet laden\n"
 
-#: gattrib/src/x_fileselect.c:234
+#: gattrib/src/x_fileselect.c:231
 msgid "Open..."
 msgstr "Open..."
 
-#: gattrib/src/x_fileselect.c:279
-msgid "Save as..."
-msgstr "Opslaan als..."
-
-#: gattrib/src/x_fileselect.c:308
-#, c-format
-msgid "Saved As [%s]\n"
-msgstr "Opgeslagen Als [%s]\n"
-
-#: gattrib/src/x_fileselect.c:319
-#, c-format
-msgid "Could NOT save [%s]\n"
-msgstr "Kan [%s] NIET opslaan\n"
-
-#: gattrib/src/x_gtksheet.c:75 gattrib/src/x_gtksheet.c:84
-msgid "Components"
-msgstr "Componenten"
-
-#: gattrib/src/x_gtksheet.c:76 gattrib/src/x_gtksheet.c:93
-#: gattrib/src/x_gtksheet.c:96
-msgid "Nets"
-msgstr "Netten"
-
-#: gattrib/src/x_gtksheet.c:77 gattrib/src/x_gtksheet.c:109
-#: gattrib/src/x_gtksheet.c:112
-msgid "Pins"
-msgstr "Pennen"
-
-#: gattrib/src/x_gtksheet.c:86
-msgid ""
-"No components found in design.  Please check your schematic and try again!\n"
-msgstr ""
-"Geen componenten gevonden in het ontwerp. Controleer alstublieft uw schema "
-"en probeer opnieuw!\n"
-
-#: gattrib/src/x_gtksheet.c:97 gattrib/src/x_gtksheet.c:99
-msgid "TBD"
-msgstr "NTD"
-
-#: gattrib/src/x_gtksheet.c:360
-msgid "couldn't allocate color"
-msgstr "kan geen kleur toewijzen"
-
-#: gattrib/src/x_window.c:97
-msgid "gattrib -- gEDA attribute editor"
-msgstr "gattrib -- gEDA attribuut editor"
-
-#: gattrib/src/x_window.c:289
+#: gattrib/src/x_menus.c:530
 #, c-format
 msgid ""
 "Error loading %s:\n"
@@ -562,26 +457,130 @@ msgstr ""
 "Fout tijdens laden %s:\n"
 "%s\n"
 
-#: gattrib/src/x_window.c:326
-msgid ""
-"No components found in entire design!\n"
-"Do you have refdeses on your components?"
-msgstr ""
-"Geen componenten gevonden in het gehele ontwerp!\n"
-"Heeft U wel refdeses aan Uw componenten?"
+#~ msgid "In gattrib_quit, calling gtk_main_quit()\n"
+#~ msgstr "In gattrib_quit, ga gtk_main_quit() aanroepen\n"
 
-#: gattrib/src/x_window.c:331
-msgid ""
-"No configurable component attributes found in entire design!\n"
-"Please attach at least some attributes before running gattrib."
-msgstr ""
-"Geen configureerbare component attributen gevonden in het gehele ontwerp!\n"
-"Bevestig alstublieft ten minste enige attributen voor gattrib te starten. "
+#~ msgid ""
+#~ "gEDA/gattrib version %s%s.%s\n"
+#~ "gEDA/gattrib comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
+#~ "details.\n"
+#~ "This is free software, and you are welcome to redistribute it under "
+#~ "certain\n"
+#~ "conditions; please see the COPYING file for more details.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "gEDA/gattrib versie %s%s.%s\n"
+#~ "gEDA/gattrib komt met ABSOLUUT GEEN GARANTIE; zie ook COPYING voor meer "
+#~ "details.\n"
+#~ "Dt is vrije software, en jij bent welkom om deze te her-distribueren "
+#~ "onder bepaalde\n"
+#~ "condities; zie alstublieft het COPYING bestand voor meer details.\n"
+#~ "\n"
 
-#: gattrib/src/x_window.c:336
-msgid ""
-"No pins found on any components!\n"
-"Please check your design."
-msgstr ""
-"Geen pennen gevonden op geen van de componenten!\n"
-"Controleer alstublieft uw ontwerp."
+#~ msgid "Entry type must be GtkEntry subclass, using default"
+#~ msgstr "Invoer type moet een GtkEntry subklasse zijn, gebruik de standaard"
+
+#~ msgid "Widget must be a GtkSheet child"
+#~ msgstr "Widget moet een kind van GtkSheet zijn"
+
+#~ msgid "WARNING: Found uref=%s, uref= is deprecated, please use refdes=\n"
+#~ msgstr ""
+#~ "WAARSCHUWING: uref=%s gevonden, uref= is vervallen, gebruik alstublieft "
+#~ "refdes=\n"
+
+#~ msgid ""
+#~ "In s_object_remove_attrib_in_object, we have failed to find the attrib %s "
+#~ "on the component.  Exiting . . .\n"
+#~ msgstr ""
+#~ "In s_object_remove_attrib_in_object, is gefaald om attrib %s in de "
+#~ "component te vinden.  Afsluiten . . .\n"
+
+#~ msgid ""
+#~ "In s_table_create_attrib_pair, we didn't find the row name in the row "
+#~ "list!\n"
+#~ msgstr ""
+#~ "In s_table_create_attrib_pair, is de naam van de regel niet gevonden in "
+#~ "de lijst met regels!\n"
+
+#~ msgid "- Starting internal component TABLE creation\n"
+#~ msgstr "- Start het aanmaken van de interne componenten TABEL.\n"
+
+#~ msgid ""
+#~ "In s_table_add_toplevel_comp_items_to_comp_table, we didn't find either "
+#~ "row or col in the lists!\n"
+#~ msgstr ""
+#~ "In s_table_add_toplevel_comp_items_to_comp_table, is geen regel of kolom "
+#~ "gevonden in de lijsten!\n"
+
+#~ msgid ""
+#~ "In s_table_add_toplevel_pin_items_to_pin_table, we didn't find either row "
+#~ "or col in the lists!\n"
+#~ msgstr ""
+#~ "In s_table_add_toplevel_pin_items_to_pin_table, is noch regel noch kolom "
+#~ "gevonden in de lijsten!\n"
+
+#~ msgid "_cancel"
+#~ msgstr "_afbreken"
+
+#~ msgid "In s_toplevel_delete_attrib_col, can't get attrib name\n"
+#~ msgstr "In s_toplevel_delete_attrib_col, kan geen attrib naam krijgen\n"
+
+#~ msgid ""
+#~ "In s_toplevel_get_pin_attribs_in_sheet, we didn't find the refdes:pin in "
+#~ "the master list!\n"
+#~ msgstr ""
+#~ "In s_toplevel_get_pin_attribs_in_sheet, is geen refdes:pin gevonden in de "
+#~ "hoofdlijst!\n"
+
+#~ msgid "Saved As [%s]\n"
+#~ msgstr "Opgeslagen Als [%s]\n"
+
+#~ msgid "Could NOT save [%s]\n"
+#~ msgstr "Kan [%s] NIET opslaan\n"
+
+#~ msgid "Components"
+#~ msgstr "Componenten"
+
+#~ msgid "Nets"
+#~ msgstr "Netten"
+
+#~ msgid "Pins"
+#~ msgstr "Pennen"
+
+#~ msgid ""
+#~ "No components found in design.  Please check your schematic and try "
+#~ "again!\n"
+#~ msgstr ""
+#~ "Geen componenten gevonden in het ontwerp. Controleer alstublieft uw "
+#~ "schema en probeer opnieuw!\n"
+
+#~ msgid "TBD"
+#~ msgstr "NTD"
+
+#~ msgid "couldn't allocate color"
+#~ msgstr "kan geen kleur toewijzen"
+
+#~ msgid "gattrib -- gEDA attribute editor"
+#~ msgstr "gattrib -- gEDA attribuut editor"
+
+#~ msgid ""
+#~ "No components found in entire design!\n"
+#~ "Do you have refdeses on your components?"
+#~ msgstr ""
+#~ "Geen componenten gevonden in het gehele ontwerp!\n"
+#~ "Heeft U wel refdeses aan Uw componenten?"
+
+#~ msgid ""
+#~ "No configurable component attributes found in entire design!\n"
+#~ "Please attach at least some attributes before running gattrib."
+#~ msgstr ""
+#~ "Geen configureerbare component attributen gevonden in het gehele "
+#~ "ontwerp!\n"
+#~ "Bevestig alstublieft ten minste enige attributen voor gattrib te starten. "
+
+#~ msgid ""
+#~ "No pins found on any components!\n"
+#~ "Please check your design."
+#~ msgstr ""
+#~ "Geen pennen gevonden op geen van de componenten!\n"
+#~ "Controleer alstublieft uw ontwerp."

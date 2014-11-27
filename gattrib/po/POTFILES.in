@@ -5,7 +5,6 @@ gattrib/src/gattrib_dialog.c
 gattrib/src/globals.c
 gattrib/src/g_rc.c
 gattrib/src/g_register.c
-gattrib/src/gtksheet.c
 gattrib/src/g_util.c
 gattrib/src/i_basic.c
 gattrib/src/i_vars.c
