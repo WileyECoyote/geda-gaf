@@ -1,0 +1,1657 @@
+# Japanese translation for gschem.
+# Copyright (C) 2002-2008 Miyamoto Takanori
+# This file is distributed under the same license as the gschem package.
+# Miyamoto Takanori <pnms@jcom.home.ne.jp>, 2002.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: geda\n"
+"Report-Msgid-Bugs-To: https://bugs.launchpad.net/geda\n"
+"POT-Creation-Date: 2014-11-09 21:49-0600\n"
+"PO-Revision-Date: 2012-01-31 12:07+0000\n"
+"Last-Translator: Peter TB Brett <Unknown>\n"
+"Language-Team: gEDA developers <geda-dev@seul.org>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2012-11-14 16:52+0000\n"
+"X-Generator: Launchpad (build 16265)\n"
+
+#: libgedauio/src/widgets/geda_entry.c:637
+msgid "Activates default"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:638
+msgid "Whether to activate the default widget when Enter is pressed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:645
+#: libgedauio/src/widgets/geda_label.c:911
+msgid "Attributes"
+msgstr "アトリビュート"
+
+#: libgedauio/src/widgets/geda_entry.c:646
+msgid "A list of style attributes to apply to the text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:653
+msgid "Auto-Completion"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:654
+msgid "Enable Auto-completion, if installed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:661
+msgid "FALSE Auto-Completion in NOT case sensitive"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:662
+msgid "if Auto-completion is enabled, set case compare function"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:669
+msgid "Set case of input"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:670
+#: libgedauio/src/widgets/geda_entry.c:680
+msgid "0 = lower, 1 lower, 2 don't change the case"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:679
+msgid "Set maxium history"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:689
+msgid "Set valid input type"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:690
+msgid "0 = All, 1 Alphnumeric, 3 Numeric, 4 Number, 5 Integer, 6 Real"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_entry.c:1119
+#, fuzzy
+msgid "Auto Complete"
+msgstr "部品"
+
+#: libgedauio/src/widgets/geda_entry.c:1126
+#, fuzzy
+msgid "On"
+msgstr "開く"
+
+#: libgedauio/src/widgets/geda_entry.c:1130
+msgid "Off"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1057
+#: libgedauio/src/widgets/geda_font_button.c:728
+msgid "Title"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1058
+#: libgedauio/src/widgets/geda_font_button.c:729
+msgid "The title of the font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1059
+#: libgedauio/src/widgets/geda_font_button.c:730
+msgid "Pick a Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1065
+#: libgedauio/src/widgets/geda_font_button.c:1407
+msgid "Font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1066
+msgid "The GdkFont that is currently selected"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1073
+msgid "Font description"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1074
+msgid "Pango Font Description struct"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1081
+#: libgedauio/src/widgets/geda_font_button.c:739
+msgid "Font name"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1082
+msgid "The string that represents this font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1092
+#: libgedauio/src/widgets/geda_font_button.c:800
+#, fuzzy
+msgid "Set Size"
+msgstr "テキストサイズ"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1093
+#: libgedauio/src/widgets/geda_font_button.c:801
+msgid "Set point size of the font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1103
+#, fuzzy
+msgid "Preview text"
+msgstr "プレビュー"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1104
+msgid "The text to display in order to demonstrate the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1111
+msgid "Show preview text entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1112
+msgid "Whether the preview text entry is displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1254
+msgid "Select the desired font family"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1255
+msgid "Select the style to apply to the font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1256
+msgid "Current font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1257
+msgid "Select the desired font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1258
+msgid "Editable sample preview of the currently selected font settings"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1266
+msgid "_Family:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1271
+msgid "_Style:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1276
+msgid "Si_ze:"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1329
+msgid "Family"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1369
+#: libgedauio/src/widgets/geda_font_dialog.c:1409
+msgid "Face"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1443
+#, fuzzy
+msgid "_Preview:"
+msgstr "プレビュー"
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1470
+msgid "Font scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1474
+msgid "Font style scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1478
+msgid "Font size scroll list"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1482
+msgid "Font preview text entry"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_dialog.c:1615
+#, fuzzy
+msgid "_Select"
+msgstr "選択"
+
+#: libgedauio/src/widgets/geda_handlebox.c:205
+#: libgedauio/src/widgets/geda_handlebox.c:214
+msgid "Appearance of the shadow that surrounds the container"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:223
+msgid "Position of the handle relative to the child widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:232
+msgid ""
+"Side of the handlebox that's lined up with the docking point to dock the "
+"handlebox"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:241
+msgid ""
+"Whether to use the value from the snap_edge property or a value derived from "
+"handle_position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_handlebox.c:249
+msgid ""
+"A boolean value indicating whether the handlebox's child is attached or "
+"detached."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:801
+msgid "move-cursor"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:821
+msgid "copy-clipboard"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:842
+msgid "populate-popup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:904
+#: libgedauio/src/widgets/geda_label.c:1400
+#: libgedauio/src/widgets/geda_menu_button.c:1047
+msgid "Label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:905
+msgid "The text of the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:912
+msgid "A list of style attributes to apply to the text of the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:918
+msgid "Use markup"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:919
+msgid "The text of the label includes XML markup. See pango_parse_markup()"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:925
+msgid "Use underline"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:926
+msgid ""
+"If set, underline in text indicates the next character is mnemonic for "
+"accelerator key"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:931
+msgid "Justification"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:932
+msgid ""
+"The alignment of the lines in the text of the label relative to each other. "
+"This does NOT affect the alignment of the label within its allocation. See "
+"GtkMisc::xalign for that"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:939
+msgid "Pattern"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:940
+msgid ""
+"A string with _ characters in positions correspond to characters in the text "
+"to underline"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:946
+#, fuzzy
+msgid "Line wrap"
+msgstr "線"
+
+#: libgedauio/src/widgets/geda_label.c:947
+msgid "If set, wrap lines if the text becomes too wide"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:961
+#, fuzzy
+msgid "Line wrap mode"
+msgstr "線モード"
+
+#: libgedauio/src/widgets/geda_label.c:962
+msgid "If wrap is set, controls how linewrapping is done"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:969
+#, fuzzy
+msgid "Selectable"
+msgstr "選択"
+
+#: libgedauio/src/widgets/geda_label.c:970
+msgid "Whether the label text can be selected with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:976
+msgid "Mnemonic key"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:977
+msgid "The mnemonic accelerator key for this label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:985
+msgid "Mnemonic widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:986
+msgid "The widget to be activated when the label's mnemonic key is pressed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:993
+msgid "Cursor Position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:994
+msgid "The current position of the insertion cursor in chars"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1002
+#, fuzzy
+msgid "Selection Bound"
+msgstr "選択モード"
+
+#: libgedauio/src/widgets/geda_label.c:1003
+msgid ""
+"The position of the opposite end of the selection from the cursor in chars"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1027
+msgid "Ellipsize"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1028
+msgid "The preferred place to break the string, if ellipes needed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1046
+msgid "Width In Characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1047
+msgid "The desired width of the label, in characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1065
+#, fuzzy
+msgid "Single Line Mode"
+msgstr "線モード"
+
+#: libgedauio/src/widgets/geda_label.c:1066
+msgid "Whether the label is in single line mode"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1081
+msgid "Angle"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1082
+msgid "Angle at which the label is rotated"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1101
+msgid "Maximum Width In Characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1102
+msgid "The desired maximum width of the label, in characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1118
+msgid "Track visited links"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1119
+msgid "Whether visited links should be tracked"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:1935
+msgid "gtk-mnemonic-menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:5727
+msgid "gtk-signal"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_label.c:5851
+#, fuzzy
+msgid "_Open Link"
+msgstr "ファイルを開く..."
+
+#: libgedauio/src/widgets/geda_label.c:5863
+msgid "Copy _Link Address"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1040
+msgid "Menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1041
+msgid "The dropdown menu"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1048
+msgid ""
+"Text of the label widget inside the button, if the button contains a label "
+"widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1055
+msgid "Use stock"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1056
+msgid ""
+"If set, the label is used to pick a stock item instead of being displayed"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1063
+msgid "Focus on click"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1064
+msgid "Whether the button grabs focus when it is clicked with the mouse"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1071
+msgid "Border relief"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1072
+msgid "The border relief style"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1080
+msgid "Arrow Border relief"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1081
+msgid "The arrow border relief style"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1090
+msgid "Image widget"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1091
+msgid "Child widget to appear next to the button text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1099
+msgid "Image position"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1100
+msgid "The position of the image relative to the text"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1114
+msgid "Default Spacing"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1115
+msgid "Extra space to add for GTK_CAN_DEFAULT buttons"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1128
+msgid "Default Outside Spacing"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1129
+msgid ""
+"Extra space to add for GTK_CAN_DEFAULT buttons that is always drawn outside "
+"the border"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1139
+msgid "Inner Border"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_menu_button.c:1140
+msgid "Border between button edges and child."
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:213
+msgid "multikey-accelerator"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:214
+msgid "A string with characters in positions key characters"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:221
+msgid "icon-identification"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_action.c:222
+msgid "String name of the icon image"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:740
+msgid "The name of the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:751
+msgid "Use font in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:752
+msgid "Whether the label is drawn in the selected font"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:763
+msgid "Use size in label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:764
+msgid "Whether the label is drawn with the selected font size"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:776
+#, fuzzy
+msgid "Show style"
+msgstr "隠しテキスト表示"
+
+#: libgedauio/src/widgets/geda_font_button.c:777
+msgid "Whether the selected font style is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:789
+#, fuzzy
+msgid "Show size"
+msgstr "隠しテキスト表示"
+
+#: libgedauio/src/widgets/geda_font_button.c:790
+msgid "Whether selected font size is shown in the label"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:821
+msgid "font-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:829
+msgid "size-set"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:848
+msgid "Open font selection dialog"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_font_button.c:886
+msgid "Font button"
+msgstr ""
+
+#: libgedauio/src/widgets/geda_swatch_renderer.c:139
+#: libgedauio/src/widgets/geda_swatch_renderer.c:140
+#, fuzzy
+msgid "Swatch Color"
+msgstr "色"
+
+#: libgedauio/src/widgets/geda_swatch_renderer.c:146
+#: libgedauio/src/widgets/geda_swatch_renderer.c:147
+msgid "Swatch Enabled"
+msgstr ""
+
+#~ msgid "Zoom too small!  Cannot zoom further.\n"
+#~ msgstr "これ以上ズームできません。\n"
+
+#~ msgid "Invalid size [%d] passed to text-size\n"
+#~ msgstr "無効なサイズ[%d]がtext-sizeに指定されました。\n"
+
+#~ msgid "Invalid size [%d] passed to snap-size\n"
+#~ msgstr "無効なサイズ[%d]がsnap-sizeに指定されました。\n"
+
+#~ msgid "Invalid num levels [%d] passed to undo-levels\n"
+#~ msgstr "無効なアンドゥレベル[%d]がundo-levelsに指定されました。\n"
+
+#~ msgid "Invalid size [%d] passed to bus-ripper-size\n"
+#~ msgstr "無効なサイズ[%d]がbus-ripperに指定されました。\n"
+
+#~ msgid ""
+#~ "gEDA/gschem comes with ABSOLUTELY NO WARRANTY; see COPYING for more "
+#~ "details.\n"
+#~ msgstr ""
+#~ "gEDA/gschemは完全に無保証で提供されます。詳しくはCOPYINGファイルをご覧くだ"
+#~ "さい。\n"
+
+#~ msgid ""
+#~ "This is free software, and you are welcome to redistribute it under "
+#~ "certain\n"
+#~ msgstr ""
+#~ "これはフリーソフトウェアであり、ある条件の下で再頒布することが奨励されてい"
+#~ "ます。\n"
+
+#~ msgid ""
+#~ "conditions; please see the COPYING file for more details.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "詳しくはCOPYINGファイルをご覧ください。\n"
+#~ "\n"
+
+#~ msgid "This is the MINGW32 port.\n"
+#~ msgstr "MIGW32版です。\n"
+
+#~ msgid "Read init scm file [%s]\n"
+#~ msgstr "初期化scmファイルを読み込んでいます。[%s]\n"
+
+#~ msgid "Failed to read init scm file [%s]\n"
+#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+
+#~ msgid "Component Mode"
+#~ msgstr "部品モード"
+
+#~ msgid "Text Mode"
+#~ msgstr "ネットモード"
+
+#~ msgid "Copy Mode"
+#~ msgstr "コピーモード"
+
+#~ msgid "Move Mode"
+#~ msgstr "移動モード"
+
+#~ msgid "Rotate Mode"
+#~ msgstr "回転モード"
+
+#~ msgid "Mirror Mode"
+#~ msgstr "反転モード"
+
+#~ msgid "Zoom Box"
+#~ msgstr "拡大"
+
+#~ msgid "Pan Mode"
+#~ msgstr "パンモード"
+
+#~ msgid "Paste %d Mode"
+#~ msgstr "ペースト%dモード"
+
+#~ msgid "Net Mode"
+#~ msgstr "ネットモード"
+
+#~ msgid "Bus Mode"
+#~ msgstr "バスモード"
+
+#, fuzzy
+#~ msgid "Path Mode"
+#~ msgstr "パンモード"
+
+#~ msgid "Box Mode"
+#~ msgstr "ボックスモード"
+
+#~ msgid "Circle Mode"
+#~ msgstr "円モード"
+
+#~ msgid "Arc Mode"
+#~ msgstr "円弧モード"
+
+#~ msgid "Pin Mode"
+#~ msgstr "ピンモード"
+
+#~ msgid "Copy"
+#~ msgstr "コピー"
+
+#~ msgid "Move"
+#~ msgstr "移動"
+
+#~ msgid "Multiple Copy Mode"
+#~ msgstr "複数コピーモード"
+
+#~ msgid "Snap Off"
+#~ msgstr "スナップ・オフ"
+
+#~ msgid "Action"
+#~ msgstr "アクション"
+
+#~ msgid "Stroke"
+#~ msgstr "ストローク"
+
+#~ msgid "none"
+#~ msgstr "なし"
+
+#~ msgid "Repeat/"
+#~ msgstr "繰り返し/"
+
+#~ msgid "Saved All"
+#~ msgstr "すべて保存"
+
+#~ msgid "Closing Window\n"
+#~ msgstr "ウィンドウを閉じています。\n"
+
+#~ msgid "Select objs first"
+#~ msgstr "まずオブジェクトを選択してください。"
+
+#~ msgid "Delete"
+#~ msgstr "削除"
+
+#~ msgid "Edit"
+#~ msgstr "編集"
+
+#~ msgid "Edit Text"
+#~ msgstr "テキスト編集"
+
+#~ msgid "Slot"
+#~ msgstr "スロット"
+
+#~ msgid "Color"
+#~ msgstr "色"
+
+#~ msgid "Rotate"
+#~ msgstr "回転"
+
+#~ msgid "Mirror"
+#~ msgstr "反転"
+
+#~ msgid "Lock"
+#~ msgstr "ロック"
+
+#~ msgid "Unlock"
+#~ msgstr "ロック解除"
+
+#~ msgid "Translate"
+#~ msgstr "転送"
+
+#~ msgid "WARNING: Do not translate with snap off!\n"
+#~ msgstr "警告:スナップ・オフで転送しないでください!\n"
+
+#~ msgid "WARNING: Turning snap on and continuing with translate.\n"
+#~ msgstr "警告:スナップをオンしてから転送してください。\n"
+
+#~ msgid "WARNING: Snap grid size is not equal to 100!\n"
+#~ msgstr "警告:グリッドサイズが100ではありません!\n"
+
+#~ msgid ""
+#~ "WARNING: If you are translating a symbol to the origin, the snap grid "
+#~ "size should be set to 100\n"
+#~ msgstr ""
+#~ "警告:原点へ転送するときはスナップのグリッドサイズを\n"
+#~ "100に設定してください。\n"
+
+#~ msgid "Embed"
+#~ msgstr "組み込み"
+
+#~ msgid "Unembed"
+#~ msgstr "組み込み解除"
+
+#~ msgid "Update"
+#~ msgstr "更新"
+
+#~ msgid "ShowHidden"
+#~ msgstr "隠しテキスト表示"
+
+#~ msgid "Pan"
+#~ msgstr "パン"
+
+#, fuzzy
+#~ msgid "Copy %i"
+#~ msgstr "コピー1"
+
+#, fuzzy
+#~ msgid "Cut %i"
+#~ msgstr "カット1"
+
+#, fuzzy
+#~ msgid "Paste %i"
+#~ msgstr "ペースト1"
+
+#~ msgid "Empty buffer"
+#~ msgstr "バッファが空です。"
+
+#~ msgid "Component"
+#~ msgstr "部品"
+
+#~ msgid "Attribute"
+#~ msgstr "アトリビュート"
+
+#~ msgid "Net"
+#~ msgstr "ネット"
+
+#~ msgid "Bus"
+#~ msgstr "バス"
+
+#~ msgid "Box"
+#~ msgstr "ボックス"
+
+#~ msgid "Circle"
+#~ msgstr "円"
+
+#~ msgid "Arc"
+#~ msgstr "円弧"
+
+#~ msgid "Pin"
+#~ msgstr "ピン"
+
+#~ msgid "Searching for source [%s]\n"
+#~ msgstr "ソース検索中[%s]\n"
+
+#, fuzzy
+#~ msgid "Failed to descend into '%s': %s\n"
+#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+
+#, fuzzy
+#~ msgid "Failed to descend hierarchy."
+#~ msgstr "下の階層も検索"
+
+#~ msgid "Searching for symbol [%s]\n"
+#~ msgstr "シンボル検索中[%s]\n"
+
+#~ msgid "Attach"
+#~ msgstr "アタッチ"
+
+#~ msgid "Detach"
+#~ msgstr "アタッチ解除"
+
+#~ msgid "ShowN"
+#~ msgstr "N表示"
+
+#~ msgid "ShowV"
+#~ msgstr "表示V"
+
+#~ msgid "ShowB"
+#~ msgstr "表示B"
+
+#~ msgid "VisToggle"
+#~ msgstr "表示切替え"
+
+#~ msgid "Sorry but this is a non-functioning menu option\n"
+#~ msgstr "機能しないメニューオプションです。\n"
+
+#~ msgid "Grid OFF\n"
+#~ msgstr "グリッド・オフ\n"
+
+#~ msgid "Snap OFF (CAUTION!)\n"
+#~ msgstr "スナップ・オフ(注意!)\n"
+
+#~ msgid "Snap ON\n"
+#~ msgstr "スナップ・オン\n"
+
+#~ msgid "Rubber band OFF \n"
+#~ msgstr "ラバーバンド・オフ \n"
+
+#~ msgid "Rubber band ON\n"
+#~ msgstr "ラバーバンド・オン\n"
+
+#~ msgid "Translating schematic [%d %d]\n"
+#~ msgstr "スケマチックを転送しています。[%d %d]\n"
+
+#~ msgid "Hidden text is now visible\n"
+#~ msgstr "隠しテキストが表示されました。\n"
+
+#~ msgid "Hidden text is now invisible\n"
+#~ msgstr "隠しテキストが非表示になりました。\n"
+
+#~ msgid "Slot attribute malformed\n"
+#~ msgstr "スロットアトリビュートが変です。\n"
+
+#~ msgid "numslots attribute missing\n"
+#~ msgstr "スロット番号がありません。\n"
+
+#~ msgid "Slotting not allowed for this component\n"
+#~ msgstr "この部品にスロットは許可されていません。\n"
+
+#~ msgid "New slot number out of range\n"
+#~ msgstr "スロット番号が範囲を越えています。\n"
+
+#~ msgid "Undo/Redo disabled in rc file\n"
+#~ msgstr "アンドゥ/リドゥはrcファイルで無効に設定されています。\n"
+
+#~ msgid "Single Attribute Editor"
+#~ msgstr "シングルアトルビュートエディタ"
+
+#~ msgid "Name:"
+#~ msgstr "名前:"
+
+#~ msgid "Value:"
+#~ msgstr "値:"
+
+#~ msgid "Visible"
+#~ msgstr "表示"
+
+#~ msgid "Show Value Only"
+#~ msgstr "値のみ表示"
+
+#~ msgid "Show Name Only"
+#~ msgstr "名前のみ表示"
+
+#~ msgid "Show Name & Value"
+#~ msgstr "名前と値を表示"
+
+#~ msgid "All"
+#~ msgstr "すべて"
+
+#~ msgid "Components"
+#~ msgstr "部品"
+
+#~ msgid "Nets"
+#~ msgstr "ネット"
+
+#~ msgid "Autonumber text"
+#~ msgstr "オートナンバーテキスト"
+
+#~ msgid "Could not allocate the color %s!\n"
+#~ msgstr "指定できない色[%s]です!\n"
+
+#~ msgid "black"
+#~ msgstr "黒"
+
+#~ msgid "white"
+#~ msgstr "白"
+
+#~ msgid "Tried to get an invalid color: %d\n"
+#~ msgstr "無効な色の指定です。 : %d\n"
+
+#~ msgid "Name"
+#~ msgstr "名前"
+
+#~ msgid "Value"
+#~ msgstr "値"
+
+#~ msgid "Select Component..."
+#~ msgstr "部品選択..."
+
+#~ msgid "Libraries"
+#~ msgstr "ライブラリ"
+
+#~ msgid "Arc Params"
+#~ msgstr "円弧パラメータ"
+
+#~ msgid ""
+#~ "Offset to translate?\n"
+#~ "(0 for origin)"
+#~ msgstr ""
+#~ "転送しますか?\n"
+#~ "(0で原点)"
+
+#~ msgid "Edit slot number"
+#~ msgstr "スロット番号編集"
+
+#~ msgid "Coords"
+#~ msgstr "座標"
+
+#~ msgid "Screen"
+#~ msgstr "スクリーン"
+
+#~ msgid "World"
+#~ msgstr "ワールド"
+
+#~ msgid "Text to find:"
+#~ msgstr "検索テキスト"
+
+#~ msgid "descend into hierarchy"
+#~ msgstr "下の階層も検索"
+
+#~ msgid "Hide text starting with:"
+#~ msgstr "隠しテキスト"
+
+#~ msgid "Show text starting with:"
+#~ msgstr "テキスト"
+
+#~ msgid "Open..."
+#~ msgstr "開く..."
+
+#~ msgid "Wrote color image to [%s] [%d x %d]\n"
+#~ msgstr "カラーイメージを出力しました。[%s] [%d x %d]\n"
+
+#~ msgid "Wrote black and white image to [%s] [%d x %d]\n"
+#~ msgstr "白黒イメージを出力しました。[%s] [%d x %d]\n"
+
+#~ msgid "Status"
+#~ msgstr "ステータス"
+
+#, fuzzy
+#~ msgid "Add Net"
+#~ msgstr "テキスト追加..."
+
+#, fuzzy
+#~ msgid "Add Text"
+#~ msgstr "テキスト追加..."
+
+#, fuzzy
+#~ msgid "Zoom In"
+#~ msgstr "拡大(_I)"
+
+#, fuzzy
+#~ msgid "Zoom Out"
+#~ msgstr "縮小(_O)"
+
+#, fuzzy
+#~ msgid "Zoom Extents"
+#~ msgstr "回路全体の表示(_E)"
+
+#~ msgid "Edit..."
+#~ msgstr "編集..."
+
+#, fuzzy
+#~ msgid "Edit Pin Type..."
+#~ msgstr "塗りつぶしを編集"
+
+#~ msgid "Show Value only"
+#~ msgstr "値のみ表示"
+
+#~ msgid "Show Name only"
+#~ msgstr "名前のみ表示"
+
+#~ msgid "Edit Attributes"
+#~ msgstr "アトリビュート編集"
+
+#~ msgid "Vis?"
+#~ msgstr "表示"
+
+#~ msgid "N"
+#~ msgstr "名前"
+
+#~ msgid "V"
+#~ msgstr "値"
+
+#, fuzzy
+#~ msgid "Edit Attributes - %s"
+#~ msgstr "アトリビュート編集"
+
+#~ msgid "New Page"
+#~ msgstr "新規ページ"
+
+#~ msgid "Open Page..."
+#~ msgstr "開く..."
+
+#~ msgid "Save Page"
+#~ msgstr "保存"
+
+#~ msgid "Close Page"
+#~ msgstr "閉じる"
+
+#~ msgid "Page Manager"
+#~ msgstr "ページマネージャ"
+
+#~ msgid "Filename"
+#~ msgstr "ファイル名"
+
+#, fuzzy
+#~ msgid "Failed to write PDF to '%s': %s\n"
+#~ msgstr "初期化scmファイルの読み込みに失敗。[%s]\n"
+
+#~ msgid "Execute Script..."
+#~ msgstr "スクリプト実行..."
+
+#~ msgid "Executing guile script [%s]\n"
+#~ msgstr "guileスクリプトを実行しています。[%s]\n"
+
+#~ msgid "New"
+#~ msgstr "新規"
+
+#~ msgid "New file"
+#~ msgstr "新規ファイル"
+
+#~ msgid "Open file..."
+#~ msgstr "ファイルを開く..."
+
+#~ msgid "Save"
+#~ msgstr "保存"
+
+#~ msgid "Save file"
+#~ msgstr "ファイルを保存"
+
+#~ msgid "Undo"
+#~ msgstr "アンドゥ"
+
+#~ msgid "Undo last operation"
+#~ msgstr "アンドゥ"
+
+#~ msgid "Redo"
+#~ msgstr "リドゥ"
+
+#~ msgid "Redo last undo"
+#~ msgstr "リドゥ"
+
+#~ msgid ""
+#~ "Add component...\n"
+#~ "Select library and component from list, move the mouse into main window, "
+#~ "click to place\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "部品追加...\n"
+#~ "ライブラリから部品を選択し、メインウィンドウで\n"
+#~ "クリックすると、配置します。\n"
+#~ "右ボタンでキャンセルします。"
+
+#~ msgid ""
+#~ "Add nets mode\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "ネット追加モード\n"
+#~ "右ボタンでキャンセル"
+
+#~ msgid ""
+#~ "Add buses mode\n"
+#~ "Right mouse button to cancel"
+#~ msgstr ""
+#~ "バス追加モード\n"
+#~ "右ボタンでキャンセル"
+
+#~ msgid "Text"
+#~ msgstr "テキスト"
+
+#~ msgid "Add Text..."
+#~ msgstr "テキスト追加..."
+
+#~ msgid "Select mode"
+#~ msgstr "選択モード"
+
+#~ msgid "Pick"
+#~ msgstr "ピック"
+
+#~ msgid "Repeat/none"
+#~ msgstr "繰り返し/なし"
+
+#~ msgid "Menu/Cancel"
+#~ msgstr "メニュー/キャンセル"
+
+#~ msgid "Pan/Cancel"
+#~ msgstr "パン/キャンセル"
+
+#~ msgid "Loading schematic [%s]\n"
+#~ msgstr "スケマチックを読み込んでいます。[%s]\n"
+
+#~ msgid "Error while trying to save"
+#~ msgstr "保存中にエラー発生"
+
+#~ msgid "Saved [%s]\n"
+#~ msgstr "保存しました。[%s]\n"
+
+#~ msgid "Saved"
+#~ msgstr "保存しました。"
+
+#~ msgid "Discarding page [%s]\n"
+#~ msgstr "ページを破棄しています。[%s]\n"
+
+#~ msgid "Closing [%s]\n"
+#~ msgstr "閉じています。[%s]\n"
+
+#~ msgid "_New"
+#~ msgstr "新規(_N)"
+
+#~ msgid "_Open..."
+#~ msgstr "開く(_O)..."
+
+#~ msgid "Open Recen_t"
+#~ msgstr "最近使用したファイル(_T)"
+
+#~ msgid "_Save"
+#~ msgstr "保存(_S)"
+
+#~ msgid "Save _As..."
+#~ msgstr "別名で保存(_A)..."
+
+#~ msgid "Save All"
+#~ msgstr "すべて保存"
+
+#~ msgid "_Revert"
+#~ msgstr "再読み込み(_R)"
+
+#~ msgid "_Print..."
+#~ msgstr "印刷(_P)..."
+
+#~ msgid "Write _image..."
+#~ msgstr "画像として保存(_I)..."
+
+#~ msgid "New Window"
+#~ msgstr "新規ウィンドウ"
+
+#~ msgid "_Quit"
+#~ msgstr "終了(_Q)"
+
+#~ msgid "_Undo"
+#~ msgstr "元に戻す(_U)"
+
+#~ msgid "_Redo"
+#~ msgstr "やり直す(_R)"
+
+#~ msgid "Cu_t"
+#~ msgstr "切り取り(_T)"
+
+#~ msgid "_Copy"
+#~ msgstr "コピー(_C)"
+
+#~ msgid "_Paste"
+#~ msgstr "貼り付け(_P)"
+
+#~ msgid "_Delete"
+#~ msgstr "削除(_D)"
+
+#~ msgid "Rotate 90 Mode"
+#~ msgstr "90度回転モード"
+
+#~ msgid "Edit Text..."
+#~ msgstr "テキスト編集..."
+
+#~ msgid "Slot..."
+#~ msgstr "スロット..."
+
+#~ msgid "Color..."
+#~ msgstr "色..."
+
+#~ msgid "Line Width & Type..."
+#~ msgstr "線種と幅..."
+
+#~ msgid "Fill Type..."
+#~ msgstr "塗りつぶし種類..."
+
+#, fuzzy
+#~ msgid "Pin Type..."
+#~ msgstr "塗りつぶし種類..."
+
+#~ msgid "Symbol Translate..."
+#~ msgstr "シンボル転送..."
+
+#~ msgid "Invoke Macro"
+#~ msgstr "マクロの実行"
+
+#~ msgid "Embed Component/Picture"
+#~ msgstr "画像・コンポーネントの埋め込み"
+
+#~ msgid "Unembed Component/Picture"
+#~ msgstr "画像・コンポーネントの埋め込み解除"
+
+#~ msgid "Update Component"
+#~ msgstr "部品更新"
+
+#~ msgid "Show/Hide Inv Text"
+#~ msgstr "テキスト表示/非表示"
+
+#~ msgid "Copy into 1"
+#~ msgstr "コピー1"
+
+#~ msgid "Copy into 2"
+#~ msgstr "コピー2"
+
+#~ msgid "Copy into 3"
+#~ msgstr "コピー3"
+
+#~ msgid "Copy into 4"
+#~ msgstr "コピー4"
+
+#~ msgid "Copy into 5"
+#~ msgstr "コピー5"
+
+#~ msgid "Cut into 1"
+#~ msgstr "カット1"
+
+#~ msgid "Cut into 2"
+#~ msgstr "カット2"
+
+#~ msgid "Cut into 3"
+#~ msgstr "カット3"
+
+#~ msgid "Cut into 4"
+#~ msgstr "カット4"
+
+#~ msgid "Cut into 5"
+#~ msgstr "カット5"
+
+#~ msgid "Paste from 1"
+#~ msgstr "ペースト1"
+
+#~ msgid "Paste from 2"
+#~ msgstr "ペースト2"
+
+#~ msgid "Paste from 3"
+#~ msgstr "ペースト3"
+
+#~ msgid "Paste from 4"
+#~ msgstr "ペースト4"
+
+#~ msgid "Paste from 5"
+#~ msgstr "ペースト5"
+
+#~ msgid "_Redraw"
+#~ msgstr "再描画"
+
+#~ msgid "_Pan"
+#~ msgstr "パン"
+
+#~ msgid "Zoom _Box"
+#~ msgstr "ズームボックス"
+
+#~ msgid "Zoom _Extents"
+#~ msgstr "回路全体の表示(_E)"
+
+#~ msgid "Zoom _In"
+#~ msgstr "拡大(_I)"
+
+#~ msgid "Zoom _Out"
+#~ msgstr "縮小(_O)"
+
+#~ msgid "Zoom _Full"
+#~ msgstr "最縮小して表示(_F)"
+
+#~ msgid "_Dark color scheme"
+#~ msgstr "暗い配色(_D)"
+
+#~ msgid "_Light color scheme"
+#~ msgstr "明るい配色(_L)"
+
+#~ msgid "_Manager..."
+#~ msgstr "管理(_M)"
+
+#~ msgid "_Previous"
+#~ msgstr "前のページ(_P)"
+
+#~ msgid "_Next"
+#~ msgstr "次のページ(_N)"
+
+#~ msgid "_Close"
+#~ msgstr "閉じる(_C)"
+
+#~ msgid "_Component..."
+#~ msgstr "部品(_C)"
+
+#~ msgid "_Net"
+#~ msgstr "ネット(_N)"
+
+#~ msgid "B_us"
+#~ msgstr "バス(_U)"
+
+#~ msgid "_Attribute..."
+#~ msgstr "アトリビュート(_A)"
+
+#~ msgid "_Text..."
+#~ msgstr "テキスト(_T)..."
+
+#~ msgid "_Line"
+#~ msgstr "直線(_L)"
+
+#~ msgid "_Box"
+#~ msgstr "ボックス(_B)"
+
+#~ msgid "C_ircle"
+#~ msgstr "円(_I)"
+
+#~ msgid "A_rc"
+#~ msgstr "円弧(_R)"
+
+#~ msgid "_Pin"
+#~ msgstr "ピン(_P)"
+
+#~ msgid "Pictu_re..."
+#~ msgstr "画像(_R)"
+
+#~ msgid "_File"
+#~ msgstr "ファイル(_F)"
+
+#~ msgid "_Edit"
+#~ msgstr "編集(_E)"
+
+#~ msgid "_View"
+#~ msgstr "表示(_V)"
+
+#~ msgid "_Page"
+#~ msgstr "ページ(_P)"
+
+#~ msgid "_Add"
+#~ msgstr "追加"
+
+#~ msgid "Hie_rarchy"
+#~ msgstr "階層"
+
+#~ msgid "A_ttributes"
+#~ msgstr "アトリビュート"
+
+#~ msgid "_Options"
+#~ msgstr "オプション"
+
+#~ msgid "_Help"
+#~ msgstr "ヘルプ"
+
+#, fuzzy
+#~ msgid "New File"
+#~ msgstr "新規ファイル"
+
+#, fuzzy
+#~ msgid "Save As"
+#~ msgstr "すべて保存"
+
+#, fuzzy
+#~ msgid "Print"
+#~ msgstr "印刷..."
+
+#, fuzzy
+#~ msgid "Close Window"
+#~ msgstr "ウィンドウを閉じています。\n"
+
+#, fuzzy
+#~ msgid "Quit"
+#~ msgstr "終了(_Q)"
+
+#~ msgid "Edit Line Width & Type"
+#~ msgstr "線種と幅編集"
+
+#~ msgid "Edit Fill Type"
+#~ msgstr "塗りつぶしを編集"
+
+#, fuzzy
+#~ msgid "Edit Pin Type"
+#~ msgstr "塗りつぶしを編集"
+
+#, fuzzy
+#~ msgid "Translate Symbol"
+#~ msgstr "転送"
+
+#, fuzzy
+#~ msgid "Embed Component/Pictore"
+#~ msgstr "画像・コンポーネントの埋め込み"
+
+#, fuzzy
+#~ msgid "Show/Hide Invisible Text"
+#~ msgstr "テキスト表示/非表示"
+
+#, fuzzy
+#~ msgid "Cut"
+#~ msgstr "切り取り(_T)"
+
+#, fuzzy
+#~ msgid "Paste"
+#~ msgstr "貼り付け(_P)"
+
+#, fuzzy
+#~ msgid "Redraw"
+#~ msgstr "再描画"
+
+#, fuzzy
+#~ msgid "Pan Left"
+#~ msgstr "パンモード"
+
+#, fuzzy
+#~ msgid "Pan Right"
+#~ msgstr "上 右"
+
+#, fuzzy
+#~ msgid "Pan Down"
+#~ msgstr "パンモード"
+
+#, fuzzy
+#~ msgid "Zoom Full"
+#~ msgstr "最縮小して表示(_F)"
+
+#, fuzzy
+#~ msgid "Previous Page"
+#~ msgstr "前のページ(_P)"
+
+#, fuzzy
+#~ msgid "Next Page"
+#~ msgstr "新規ページ"
+
+#, fuzzy
+#~ msgid "Add Line"
+#~ msgstr "線"
+
+#, fuzzy
+#~ msgid "Add Circle"
+#~ msgstr "円"
+
+#, fuzzy
+#~ msgid "Add Picture"
+#~ msgstr "画像(_R)"
+
+#, fuzzy
+#~ msgid "Component Documentation"
+#~ msgstr "部品モード"
+
+#~ msgid "Ne_w"
+#~ msgstr "新規(_W)"
+
+#~ msgid "_Buffer"
+#~ msgstr "バッファ(_B)"
+
+#~ msgid "Invalid zoomfactor [%d] passed to %s\n"
+#~ msgstr "無効な拡大率[%d]が%sに指定されました。\n"
+
+#~ msgid "Copy 2"
+#~ msgstr "コピー2"
+
+#~ msgid "Copy 3"
+#~ msgstr "コピー3"
+
+#~ msgid "Copy 4"
+#~ msgstr "コピー4"
+
+#~ msgid "Copy 5"
+#~ msgstr "コピー5"
+
+#~ msgid "Cut 2"
+#~ msgstr "カット2"
+
+#~ msgid "Cut 3"
+#~ msgstr "カット3"
+
+#~ msgid "Cut 4"
+#~ msgstr "カット4"
+
+#~ msgid "Cut 5"
+#~ msgstr "カット5"
+
+#~ msgid "Paste 2"
+#~ msgstr "ペースト 2"
+
+#~ msgid "Paste 3"
+#~ msgstr "ペースト 3"
+
+#~ msgid "Paste 4"
+#~ msgstr "ペースト 4"
+
+#~ msgid "Paste 5"
+#~ msgstr "ペースト 5"
+
+#~ msgid "Text Entry..."
+#~ msgstr "テキスト..."
+
+#~ msgid ""
+#~ "Enter text, click apply,\n"
+#~ "move cursor into window, click to place text.\n"
+#~ "Middle button to rotate while placing."
+#~ msgstr ""
+#~ "テキストを入力し、クリックしてください。\n"
+#~ "ウィンドウ内でクリックするとテキストを配置します。\n"
+#~ "中ボタンで回転します。"
+
+#~ msgid "Upper Left"
+#~ msgstr "上 左"
+
+#~ msgid "Upper Middle"
+#~ msgstr "上 中央"
+
+#~ msgid "Middle Left"
+#~ msgstr "中央 左"
+
+#~ msgid "Middle Middle"
+#~ msgstr "中央 中央"
+
+#~ msgid "Middle Right"
+#~ msgstr "中央 右"
+
+#~ msgid "Lower Left"
+#~ msgstr "下 左"
+
+#~ msgid "Lower Middle"
+#~ msgstr "下 中央"
+
+#~ msgid "Lower Right"
+#~ msgstr "下 右"
+
+#~ msgid "Solid"
+#~ msgstr "実線"
+
+#~ msgid "Dotted"
+#~ msgstr "点線"
+
+#~ msgid "Dashed"
+#~ msgstr "破線"
+
+#~ msgid "Center"
+#~ msgstr "中央"
+
+#~ msgid "Phantom"
+#~ msgstr "ファントム"
+
+#~ msgid "Hollow"
+#~ msgstr "空洞"
+
+#~ msgid "Filled"
+#~ msgstr "塗りつぶし"
+
+#~ msgid "Mesh"
+#~ msgstr "メッシュ"
+
+#~ msgid "Hatch"
+#~ msgstr "ハッチ"
+
+#~ msgid "Color Edit"
+#~ msgstr "色編集"
+
+#~ msgid "Discard Page"
+#~ msgstr "破棄"
+
+#~ msgid "_Discard"
+#~ msgstr "破棄(_D)"
+
+#~ msgid "Unknown end for line (%d)\n"
+#~ msgstr "不明な線の先端(%d)\n"
+
+#~ msgid "Cannot find source [%s]\n"
+#~ msgstr "ソースが見付かりません。[%s]\n"
+
+#~ msgid "Unknown type for box (fill)!\n"
+#~ msgstr "不明なボックスの種類(塗りつぶし)!\n"
+
+#~ msgid "Unknown type for circle (fill)!\n"
+#~ msgstr "不明な円の種類(塗りつぶし)!\n"
+
+#~ msgid "Current Window"
+#~ msgstr "現在のウィンドウ"
+
+#~ msgid "Landscape"
+#~ msgstr "ランドスケープ"
+
+#~ msgid "Portrait"
+#~ msgstr "ポートレイト"
+
+#~ msgid "Cannot print current schematic to [%s]\n"
+#~ msgstr "現在のスケマチックを印刷できません。[%s]\n"
+
+#~ msgid "Printed current schematic to [%s]\n"
+#~ msgstr "現在のスケマチックを印刷しました。[%s]\n"

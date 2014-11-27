@@ -1,3 +1,7 @@
+2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+      * libgedadraw: New library created to provide a higher quality rendering
+
 2014-11-15 Wiley E. Hill <wileyhill@gmail.com>
 
       * configure.ac: Bumped version = 2.0.9.3 (skipped.2, also not

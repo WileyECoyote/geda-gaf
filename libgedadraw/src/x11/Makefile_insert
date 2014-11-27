@@ -1,0 +1,7 @@
+## Makefile.am fragment included by src/Makefile.am.
+
+libgedadraw_la_SOURCES +=       x11/geda-x11.c
+
+
+
+

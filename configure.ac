@@ -143,7 +143,7 @@ AX_CHECK_PANGO
 #####################################################################
 # Multitasking and Threading ( Not checked by GTK above )
 #####################################################################
-AC_PATH_X             # used for inclusion of X11.h, XInitThreads();
+AX_CHECK_X11
 
 #####################################################################
 # Python stuff
@@ -199,6 +199,9 @@ AX_GEDA_DIRS
 # Set up libgeda with the correct ld version number
 AX_LIBGEDA([50:8:0])
 
+# Set up libgedadraw with the correct ld version number
+AX_LIBGEDADRAW([0:1:0])
+
 # Set up libgedacairo with the correct ld version number
 AX_LIBGEDACAIRO([1:3:0])
 
@@ -249,6 +252,14 @@ AC_CONFIG_FILES([Makefile
                  libgedacairo/docs/images/Makefile
                  libgedacairo/include/Makefile
                  libgedacairo/src/Makefile
+
+                 libgedadraw/Makefile
+                 libgedadraw/libgedadraw.pc
+                 libgedadraw/po/Makefile.in
+                 libgedadraw/docs/Makefile
+                 libgedadraw/docs/images/Makefile
+                 libgedadraw/include/Makefile
+                 libgedadraw/src/Makefile
 
                  libgedathon/Makefile
                  libgedathon/geda.pc

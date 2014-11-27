@@ -3,8 +3,8 @@ if ENABLE_GATTRIB
 GATTRIB_DIR=gattrib
 endif
 
-SUBDIRS = bitmaps include intl libgeda libgedacairo libgedauio \
-		  libgedathon gaf ${GATTRIB_DIR} \
+SUBDIRS = bitmaps include intl libgeda libgedacairo libgedadraw \
+		  libgedauio libgedathon gaf ${GATTRIB_DIR} \
 		  gschem gsymcheck gnetlist utils symbols docs examples
 
 # See doxygen below (in this same file) - these all have configs.dox

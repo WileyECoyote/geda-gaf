@@ -1,0 +1,10 @@
+2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+     *: New library libgedadraw created to provide a higher quality replacement for
+        libgedacario, the quality of cario based graphic is deplorable and the quality
+        of the pango routine are even worst.
+
+
+
+
+

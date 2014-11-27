@@ -1,8 +1,7 @@
 ## Makefile.am fragment included by src/Makefile.am.
 
-libgedauio_la_SOURCES += \
-				functions/geda_accumulate.c       \
-				functions/geda_marshal.c	  \
+libgedauio_la_SOURCES +=        functions/geda_accumulate.c     \
+				functions/geda_marshal.c	\
 				functions/geda_threads.c
 
 

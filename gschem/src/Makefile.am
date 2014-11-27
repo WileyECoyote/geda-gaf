@@ -11,9 +11,10 @@ INC_LOCAL =  -I$(srcdir)/../include
 INC_LIBUIO = -I$(top_srcdir)/libgedauio/include
 INC_LIBGEDA = -I$(top_srcdir)/libgeda/include
 INC_LIBCAIRO = -I$(top_srcdir)/libgedacairo/include
+INC_LIBDRAW  = -I$(top_srcdir)/libgedadraw/include
 
 GEDA_INCLUDES = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBUIO) $(INC_LIBGEDA) \
-				$(INC_LIBCAIRO)
+		$(INC_LIBCAIRO) $(INC_LIBDRAW)
 
 bin_PROGRAMS  = gschem
 
@@ -39,7 +40,7 @@ include x/Makefile_insert
 
 # Extra files not mentioned as sources to include in the source tarball
 MAKE_INPUTS	 = base/makefile.in guile/makefile.in iface/makefile.in \
-		 	   math/makefile.in object/makefile.in x/makefile.in
+		   math/makefile.in object/makefile.in x/makefile.in
 
 EXTRA_DIST       = $(BUILT_SOURCES)
 
@@ -53,10 +54,11 @@ gschem_LDFLAGS   = $(GLIB_LIBS)    $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
 		   $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
 		   $(DEBUGGING)
 
-gschem_LDADD     = $(top_builddir)/libgedauio/src/libgedauio.la \
-				   $(top_builddir)/libgedacairo/src/libgedacairo.la \
-				   $(top_builddir)/libgeda/src/libgeda.la \
-				   @LIBINTL@
+gschem_LDADD     = $(top_builddir)/libgedadraw/src/libgedadraw.la \
+		   $(top_builddir)/libgedauio/src/libgedauio.la \
+		   $(top_builddir)/libgedacairo/src/libgedacairo.la \
+		   $(top_builddir)/libgeda/src/libgeda.la \
+		   @LIBINTL@
 
 LIBTOOL          = @LIBTOOL@ --silent
 
