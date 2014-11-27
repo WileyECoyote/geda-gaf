@@ -1,3 +1,13 @@
+2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
+
+        * m4/geda-std-checks.m4: Add check header float.h in AX_GEDA_MATH, add checks
+         for function strchr and strcspn in AX_GEDA_STR_FUNCS, add check for function
+         atexit in AX_GEDA_MISC
+
+        * m4/geda-libgedauio.m4: Rename libgedawidgets to libgedauio
+
+        * m4/geda-x11.m4: New file to check to set X11 and Xft flags
+
 2014-04-07 Wiley E. Hill <wileyhill@gmail.com>
 
         * m4/geda-stroke.m4: 2 Corrections:LIBSTROKE_CPPFLAGS to LIBSTROKE_CFLAGS in

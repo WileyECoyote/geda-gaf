@@ -65,6 +65,8 @@ m4_define([AX_GEDA_MATH],
 
   AC_CHECK_LIB([m], [atan2])
 
+  AC_CHECK_HEADERS([float.h])
+
   AC_CHECK_FUNCS([rint])               dnl used by gschem & libgedacairo
   AC_CHECK_FUNCS([pow])                dnl used by gschem & libgeda
   AC_CHECK_FUNCS([floor])              dnl used by pango
@@ -133,7 +135,9 @@ m4_define([AX_GEDA_STR_FUNCS],
 
   AC_CHECK_FUNCS([strerror strstr])
 
-  AC_CHECK_FUNCS([strrchr strndup])
+  AC_CHECK_FUNCS([strchr strrchr strndup])
+
+  AC_CHECK_FUNCS([strcspn])
 
   []dnl
 ])dnl AX_GEDA_STR_FUNCS
@@ -170,6 +174,8 @@ m4_define([AX_GEDA_MISC],
 
   dnl Check for misc features of awk
   AX_AWK_FEATURES
+
+  AC_CHECK_FUNCS([atexit])
 
   []dnl
 ])dnl AX_GEDA_STR_MISC
