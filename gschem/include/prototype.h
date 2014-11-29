@@ -414,6 +414,9 @@ void       o_copy_multiple_end          (GschemToplevel *w_current);
 void       o_delete                     (GschemToplevel *w_current, Object *object);
 void       o_delete_selected            (GschemToplevel *w_current);
 
+/* o_draw.c */
+void       o_draw_text                  (GschemToplevel *w_current, Object *object, GdkColor *color);
+
 /* o_edit.c */
 void       o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
 void       o_edit_lock                  (GschemToplevel *w_current);

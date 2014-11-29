@@ -1,7 +1,7 @@
 ## Process this file with automake to produce Makefile.in
 ## `pkg-config --cflags freetype2`
 
-DEBUGGING                   = --debug --verbose
+#DEBUGGING                   = --debug --verbose
 
 AUTOMAKE_OPTIONS             = $(GEDA_AUTO_MAKE_OPTIONS)
 

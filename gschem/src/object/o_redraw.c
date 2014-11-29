@@ -177,11 +177,11 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   GArray *render_color_map         = NULL;
   GArray *render_outline_color_map = NULL;
+  
   cairo_matrix_t render_mtx;
 
   g_return_if_fail (w_current->toplevel != NULL);
   g_return_if_fail (w_current->toplevel->page_current != NULL);
-
 
   grip_half_size = w_current->grip_size / 2;
 
@@ -203,7 +203,6 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* if (toplevel->page_current->show_hidden_text) {
    *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
 }*/
-
 
   is_only_text = TRUE;
   iter = g_list_first(obj_list);
@@ -265,16 +264,21 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   cairo_set_matrix (w_current->cr, &render_mtx);
 
   /* Determine whether we should draw the selection at all */
-  draw_selected = !(w_current->inside_action &&
-  ((w_current->event_state == MOVE) ||
-  (w_current->event_state == ENDMOVE)));
+  draw_selected = !(w_current->inside_action && ((w_current->event_state == MOVE) ||
+                                                 (w_current->event_state == ENDMOVE)));
 
   /* First pass -- render non-selected objects */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
     Object *o_current = iter->data;
+
     if (!(o_current->dont_redraw || o_current->selected)) {
       o_style_set_object(w_current->toplevel, o_current);
-      eda_renderer_draw (renderer, o_current);
+      if (o_current->type == OBJ_TEXT) {
+        o_draw_text(w_current, o_current, x_color_get_color_from_index(o_current->color));
+      }
+      else {
+        eda_renderer_draw (renderer, o_current);
+      }
     }
   }
 
@@ -287,7 +291,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       }
     }
   }
-
+  
   /* Third pass -- render selected objects, cues & grips. This is
    * done in a separate pass to non-selected items to make sure that
    * the selection and grips are never obscured by other objects. */
@@ -302,7 +306,12 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       if (!o_current->dont_redraw) {
 
         o_style_set_object(w_current->toplevel, o_current);
-        eda_renderer_draw (renderer, o_current);
+	if (o_current->type == OBJ_TEXT) {
+          o_draw_text(w_current, o_current, x_color_get_color_from_index(SELECT_COLOR));
+        }
+        else {
+          eda_renderer_draw (renderer, o_current);
+	}
         eda_renderer_draw_cues (renderer, o_current);
 
         if (w_current->renderer->draw_grips ) {
@@ -322,13 +331,12 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     switch (w_current->event_state) {
       case MOVE:
       case ENDMOVE:
-        if (w_current->last_drawb_mode != -1) {
+
+	if (w_current->last_drawb_mode != -1) {
 
           cairo_set_matrix (w_current->cr, &render_mtx);
           eda_renderer_set_color_map (renderer, render_outline_color_map);
-
           o_move_draw_rubber (w_current, draw_selected);
-
           eda_renderer_set_color_map (renderer, render_color_map);
         }
         break;
