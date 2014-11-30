@@ -1,3 +1,8 @@
+2014-11-30 Wiley E. Hill <wileyhill@gmail.com>
+
+    * etc/system-gschemrc.scm: Change hot keys for options-action-feedback
+      from "O A" to "O B" since the menu item is "Outline-Box"
+
 2014-11-26 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Add font "Symbol" to IDS_FONT_NAMES

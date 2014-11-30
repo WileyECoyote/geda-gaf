@@ -1620,7 +1620,7 @@
 (map-keys "M"          "edit-move")
 (map-keys "N"          "add-net")
 
-(map-keys "O A"        "options-action-feedback")
+(map-keys "O B"        "options-action-feedback")
 (map-keys "O G"        "options-cycle-grid")
 (map-keys "O S"        "options-cycle-snap")
 (map-keys "O R"        "options-rubberband")
