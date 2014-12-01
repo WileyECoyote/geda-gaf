@@ -24,6 +24,15 @@
 #ifndef __GEDA_DRAW_H__
 #define __GEDA_DRAW_H__
 
+#define Picture xPicture
+
+#include<X11/Xlib.h>
+#include<X11/Xutil.h>
+#include<X11/Xft/Xft.h>
+
+#undef Complex
+#undef Picture
+
 #include "geda_x11.h"
 
 #endif /* __GEDA_DRAW_H__ */

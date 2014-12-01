@@ -31,8 +31,6 @@
 #ifndef _G_TYPES_H_INCL
 #define _G_TYPES_H_INCL
 
-
-
 typedef struct _GedaToplevel     GedaToplevel;
 typedef struct _GedaPage         Page;
 

@@ -25,8 +25,13 @@
  * \file o_redraw.c
  * \brief Low-level module for redrawing objects or regions
  */
+
 #include <gschem.h>
+#include <geda_draw.h>
+#include <o_draw.h>   /* after geda_draw.h */
 #include <geda_debug.h>
+
+#include <cairo-xlib.h>
 
 #define INVALIDATE_MARGIN 1
 
@@ -171,13 +176,14 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   GList *obj_list;
   GList *iter;
-
+ 
+  GedaDrawData draw_data;
   RECTANGLE    world_rect;
   EdaRenderer *renderer;
 
   GArray *render_color_map         = NULL;
   GArray *render_outline_color_map = NULL;
-  
+
   cairo_matrix_t render_mtx;
 
   g_return_if_fail (w_current->toplevel != NULL);
@@ -190,14 +196,18 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   cue_half_size = SCREENabs (w_current, CUE_BOX_SIZE);
   bloat = MAX (grip_half_size, cue_half_size);
 
-  SCREENtoWORLD (w_current, x - bloat, y + height + bloat,
-                 &world_rect.lower_x, &world_rect.lower_y);
-  SCREENtoWORLD (w_current, x + width + bloat, y - bloat,
-                 &world_rect.upper_x, &world_rect.upper_y);
+  SCREENtoWORLD (w_current, x - bloat, y + height + bloat, &world_rect.lower_x, &world_rect.lower_y);
+  SCREENtoWORLD (w_current, x + width + bloat, y - bloat, &world_rect.upper_x, &world_rect.upper_y);
 
   obj_list = s_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
 
   render_flags = EDA_RENDERER_FLAG_HINTING;
+
+  draw_data.surface  = cairo_get_target (w_current->cr);
+  draw_data.drawable = cairo_xlib_surface_get_drawable (draw_data.surface);
+  draw_data.display  = cairo_xlib_surface_get_display (draw_data.surface);
+  draw_data.screen   = DefaultScreen(draw_data.display);
+  draw_data.gc       = XCreateGC(draw_data.display, draw_data.drawable, 0, 0 );
 
   /* Set up renderer based on configuration in w_current and list - or not */
   /* if (toplevel->page_current->show_hidden_text) {
@@ -212,7 +222,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       is_only_text = FALSE;
       break;
     }
-    NEXT(iter);
+    iter = iter->next;
   }
 
   if (w_current->fast_mousepan && w_current->doing_pan) {
@@ -252,12 +262,10 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* We need to transform the cairo context to world coordinates while
    * we're drawing using the renderer. */
   cairo_matrix_init (&render_mtx,
-                     (double) toplevel->page_current->to_screen_x_constant,
-                     0,
-                     0,
-                     - (double) toplevel->page_current->to_screen_y_constant,
-                     (- (double) toplevel->page_current->left * toplevel->page_current->to_screen_x_constant),
-                     ((double) toplevel->page_current->to_screen_y_constant * toplevel->page_current->top + w_current->screen_height)
+                     (double) toplevel->page_current->to_screen_x_constant, 0, 0,
+                   - (double) toplevel->page_current->to_screen_y_constant,
+                   - (double) toplevel->page_current->left * toplevel->page_current->to_screen_x_constant,
+                     (double) toplevel->page_current->to_screen_y_constant * toplevel->page_current->top + w_current->screen_height
   );
 
   cairo_save (w_current->cr);
@@ -269,12 +277,15 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   /* First pass -- render non-selected objects */
   for (iter = obj_list; iter != NULL; iter = iter->next) {
+
     Object *o_current = iter->data;
 
     if (!(o_current->dont_redraw || o_current->selected)) {
+
       o_style_set_object(w_current->toplevel, o_current);
       if (o_current->type == OBJ_TEXT) {
-        o_draw_text(w_current, o_current, x_color_get_color_from_index(o_current->color));
+        draw_data.object = o_current;
+        o_draw_object(w_current, &draw_data, x_color_get_color_from_index(o_current->color));
       }
       else {
         eda_renderer_draw (renderer, o_current);
@@ -291,7 +302,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       }
     }
   }
-  
+ 
   /* Third pass -- render selected objects, cues & grips. This is
    * done in a separate pass to non-selected items to make sure that
    * the selection and grips are never obscured by other objects. */
@@ -307,7 +318,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
         o_style_set_object(w_current->toplevel, o_current);
 	if (o_current->type == OBJ_TEXT) {
-          o_draw_text(w_current, o_current, x_color_get_color_from_index(SELECT_COLOR));
+          //o_draw_object(w_current, o_current, x_color_get_color_from_index(SELECT_COLOR));
         }
         else {
           eda_renderer_draw (renderer, o_current);
