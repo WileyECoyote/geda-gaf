@@ -283,16 +283,16 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     if (!(o_current->dont_redraw || o_current->selected)) {
 
       o_style_set_object(w_current->toplevel, o_current);
-      if (o_current->type == OBJ_TEXT) {
+      //if (o_current->type == OBJ_TEXT) {
         draw_data.object = o_current;
         o_draw_object(w_current, &draw_data, x_color_get_color_from_index(o_current->color));
-      }
+      /*}
       else {
         eda_renderer_draw (renderer, o_current);
-      }
+      }*/
     }
   }
-
+return;
   if (!is_only_text) {
     /* Second pass -- render cues */
     for (iter = obj_list; iter != NULL; iter = iter->next) {

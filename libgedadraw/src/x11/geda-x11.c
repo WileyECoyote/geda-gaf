@@ -16,7 +16,7 @@
 #include <libgeda/libgeda.h>
 #include <geda_draw.h>
 
-int buildColor(GedaDrawData *draw_data)
+static int buildColor(GedaDrawData *draw_data)
 {
   int red   = ((draw_data->color.red*255)%256)<<16;
   int green = ((draw_data->color.green*255)%256)<<8;
@@ -25,11 +25,21 @@ int buildColor(GedaDrawData *draw_data)
   return red + green + blue;
 } 
 
+static inline int
+LINE_WIDTH (int line_width) {
+  return max (line_width, MIN_LINE_WIDTH_THRESHOLD) / 2;
+}
+
 int geda_x11_draw_line (GedaDrawData *draw_data, int x1, int y1, int x2, int y2)
 {
   Display *display = draw_data->display;
-  
+  Object *object   = draw_data->object;
+  XGCValues gcvals;
+
+  gcvals.line_width = LINE_WIDTH(object->line_options->line_width);
+  XChangeGC(draw_data->display, draw_data->gc, GCLineWidth, &gcvals);
   XSetForeground(display, draw_data->gc, buildColor(draw_data)); 
+//fprintf (stderr, "from (%d,%d) to (%d,%d)\n", x1, y1, x2, y2);
   XDrawLine(draw_data->display, draw_data->drawable, draw_data->gc, x1, y1, x2, y2);
   return 0;
 }
