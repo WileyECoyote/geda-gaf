@@ -2969,8 +2969,9 @@ COMMAND ( do_show_value )
            s_current != NULL;
            NEXT(s_current)) {
         Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT)
+        if (object->type == OBJ_TEXT) {
           o_attrib_toggle_show_name_value (w_current, object, SHOW_VALUE);
+	}
       }
 
       o_undo_savestate (w_current, UNDO_ALL);
@@ -3004,8 +3005,9 @@ COMMAND ( do_show_name )
            s_current != NULL;
            NEXT(s_current)) {
         Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT)
+        if (object->type == OBJ_TEXT) {
             o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME);
+	}
       }
 
       o_undo_savestate (w_current, UNDO_ALL);
@@ -3028,8 +3030,6 @@ COMMAND ( do_show_both )
 {
   BEGIN_W_COMMAND(do_show_both);
 
-  //GedaToplevel *toplevel = w_current->toplevel;
-
   /* Do Not show both while inside an action */
   if (!w_current->inside_action) {
 
@@ -3041,8 +3041,9 @@ COMMAND ( do_show_both )
            s_current != NULL;
            NEXT(s_current)) {
         Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT)
+        if (object->type == OBJ_TEXT) {
           o_attrib_toggle_show_name_value (w_current, object, SHOW_NAME_VALUE);
+	}
       }
 
       o_undo_savestate (w_current, UNDO_ALL);
@@ -3071,8 +3072,9 @@ COMMAND ( do_toggle_visibility )
            s_current != NULL;
            NEXT(s_current)) {
         Object *object = (Object*)s_current->data;
-        if (object->type == OBJ_TEXT)
+        if (object->type == OBJ_TEXT) {
           o_attrib_toggle_visibility (w_current, object);
+	}
       }
 
       o_undo_savestate (w_current, UNDO_ALL);
