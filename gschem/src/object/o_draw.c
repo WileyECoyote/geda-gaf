@@ -32,12 +32,11 @@ o_draw_line (GschemToplevel *w_current, GedaDrawData *draw_data)
   if (GEDA_IS_LINE(draw_data->object)) {
 
     oline = draw_data->object->line;
-
+  fprintf (stderr, "red (%d) green (%d) blue(%d)\n", draw_data->color.red, draw_data->color.green, draw_data->color.blue);
     WORLDtoSCREEN (w_current, oline->x[0],  oline->y[0], &sx1,  &sy1);
     WORLDtoSCREEN (w_current, oline->x[1],  oline->y[1], &sx2,  &sy2);
     geda_draw_line (draw_data, sx1, sy1, sx2, sy2);
   }
-  else fprintf (stderr, "is not a line %c\n", draw_data->object->type);
 }
 static void
 o_draw_net (GschemToplevel *w_current, GedaDrawData *draw_data)
@@ -68,6 +67,11 @@ o_draw_text (GschemToplevel *w_current, GedaDrawData *draw_data)
 
   /* First check if this is visible */
   if ( o_get_is_visible(draw_data->object)) {
+
+    draw_data->color.red    = draw_data->color.red   * 65535;
+    draw_data->color.green  = draw_data->color.green * 65535;
+    draw_data->color.blue   = draw_data->color.blue * 65535;
+
     otext = (Text*)draw_data->object;
     WORLDtoSCREEN (w_current, otext->x,  otext->y, &sx,  &sy);
     geda_draw_text (draw_data, sx, sy);
@@ -116,9 +120,9 @@ o_draw_object (GschemToplevel *w_current, GedaDrawData *draw_data, GdkColor *c)
       g_return_if_reached ();
   }
 
-  draw_data->color.red    = c->red;
-  draw_data->color.green  = c->green;
-  draw_data->color.blue   = c->blue;
+  draw_data->color.red    = c->red   / 65535;
+  draw_data->color.green  = c->green / 65535;
+  draw_data->color.blue   = c->blue  / 65535;
   draw_data->color.flags = DoRed | DoGreen | DoBlue;
     
   draw_func (w_current, draw_data);
