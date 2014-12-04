@@ -255,7 +255,6 @@ AC_CONFIG_FILES([Makefile
 
                  libgedadraw/Makefile
                  libgedadraw/libgedadraw.pc
-                 libgedadraw/po/Makefile.in
                  libgedadraw/docs/Makefile
                  libgedadraw/docs/images/Makefile
                  libgedadraw/include/Makefile

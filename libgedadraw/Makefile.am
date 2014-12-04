@@ -1,5 +1,5 @@
 
-SUBDIRS = po docs include src
+SUBDIRS = docs include src
 
 EXTRA_DIST = README ChangeLog ChangeLog-1.0
 

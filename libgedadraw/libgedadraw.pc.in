@@ -8,6 +8,6 @@ Description: gEDA/gaf schematic renderer library
 Requires: glib-2.0 gobject-2.0 gdk-2.0 gdk-pixbuf-2.0
 Requires.private:
 Version: @DATE_VERSION@
-Libs: -L${libdir} -lgedauio -lm
+Libs: -L${libdir} -lgeda -lm
 Libs.private:
 Cflags: -I${includedir}

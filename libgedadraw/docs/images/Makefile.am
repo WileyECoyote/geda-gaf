@@ -1,10 +1,10 @@
 
-svg_images = libgedauio_overview.svg palelle_colors.svg
+svg_images = libgedadraw_overview.svg palelle_colors.svg
 
 EXTRA_DIST = $(svg_images)
 
 png_images = $(EXTRA_DIST:.svg=.png)
-pdf_images = $(EXTRA_DIST:.svg=.pdf) 
+pdf_images = $(EXTRA_DIST:.svg=.pdf)
 
 SUFFIXES = .svg .pdf .png
 
@@ -12,7 +12,7 @@ all:
 	@echo 'Type: make images to create all the png/pdf images'
 
 images: $(png_images) $(pdf_images)
-	
+
 clean-local:
 	rm -rf $(png_images) $(pdf_images)
 
