@@ -176,7 +176,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   GList *obj_list;
   GList *iter;
- 
+
   GedaDrawData draw_data;
   RECTANGLE    world_rect;
   EdaRenderer *renderer;
@@ -208,7 +208,9 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   draw_data.display  = cairo_xlib_surface_get_display (draw_data.surface);
   draw_data.screen   = DefaultScreen(draw_data.display);
   draw_data.gc       = XCreateGC(draw_data.display, draw_data.drawable, 0, 0 );
-  fprintf(stderr, "w=%d, h=%d\n", cairo_xlib_surface_get_width (draw_data.surface), cairo_xlib_surface_get_height (draw_data.surface));
+  draw_data.scale    = toplevel->page_current->to_world_x_constant;
+
+ //fprintf(stderr, "w=%d, h=%d\n", cairo_xlib_surface_get_width (draw_data.surface), cairo_xlib_surface_get_height (draw_data.surface));
   /* Set up renderer based on configuration in w_current and list - or not */
   /* if (toplevel->page_current->show_hidden_text) {
    *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
@@ -259,8 +261,10 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
                 "color-map", render_color_map,
                 NULL);
 
+  cairo_save (w_current->cr);
+
   /* We need to transform the cairo context to world coordinates while
-   * we're drawing using the renderer. */
+   * we're drawing using the renderer.
   cairo_matrix_init (&render_mtx,
                     (double) toplevel->page_current->to_screen_x_constant, 0, 0,
                    -(double) toplevel->page_current->to_screen_y_constant,
@@ -268,9 +272,8 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
                     (double) toplevel->page_current->to_screen_y_constant * toplevel->page_current->top + w_current->screen_height
   );
 
-  cairo_save (w_current->cr);
   cairo_set_matrix (w_current->cr, &render_mtx);
-
+ */
   /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action && ((w_current->event_state == MOVE) ||
                                                  (w_current->event_state == ENDMOVE)));
@@ -303,7 +306,7 @@ return;
       }
     }
   }
- 
+
   /* Third pass -- render selected objects, cues & grips. This is
    * done in a separate pass to non-selected items to make sure that
    * the selection and grips are never obscured by other objects. */

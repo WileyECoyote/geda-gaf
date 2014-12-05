@@ -18,11 +18,7 @@ o_draw_box (GschemToplevel *w_current, GedaDrawData *draw_data)
 {
 
 }
-static void
-o_draw_bus (GschemToplevel *w_current, GedaDrawData *draw_data)
-{
 
-}
 static void
 o_draw_line (GschemToplevel *w_current, GedaDrawData *draw_data)
 {
@@ -32,16 +28,31 @@ o_draw_line (GschemToplevel *w_current, GedaDrawData *draw_data)
   if (GEDA_IS_LINE(draw_data->object)) {
 
     oline = draw_data->object->line;
-  fprintf (stderr, "red (%d) green (%d) blue(%d)\n", draw_data->color.red, draw_data->color.green, draw_data->color.blue);
     WORLDtoSCREEN (w_current, oline->x[0],  oline->y[0], &sx1,  &sy1);
     WORLDtoSCREEN (w_current, oline->x[1],  oline->y[1], &sx2,  &sy2);
     geda_draw_line (draw_data, sx1, sy1, sx2, sy2);
   }
 }
+
+static void
+o_draw_bus (GschemToplevel *w_current, GedaDrawData *draw_data)
+{
+  o_draw_line (w_current, draw_data);
+}
+
 static void
 o_draw_net (GschemToplevel *w_current, GedaDrawData *draw_data)
 {
+  Line *oline;
+  int sx1, sy1, sx2, sy2;
 
+  if (GEDA_IS_LINE(draw_data->object)) {
+
+    oline = draw_data->object->line;
+    WORLDtoSCREEN (w_current, oline->x[0],  oline->y[0], &sx1,  &sy1);
+    WORLDtoSCREEN (w_current, oline->x[1],  oline->y[1], &sx2,  &sy2);
+    geda_draw_net (draw_data, sx1, sy1, sx2, sy2);
+  }
 }
 static void
 o_draw_path (GschemToplevel *w_current, GedaDrawData *draw_data)
@@ -51,7 +62,7 @@ o_draw_path (GschemToplevel *w_current, GedaDrawData *draw_data)
 static void
 o_draw_pin (GschemToplevel *w_current, GedaDrawData *draw_data)
 {
- 
+  o_draw_line (w_current, draw_data);
 }
 static void
 o_draw_picture (GschemToplevel *w_current, GedaDrawData *draw_data)
@@ -71,8 +82,10 @@ o_draw_text (GschemToplevel *w_current, GedaDrawData *draw_data)
     draw_data->color.red    = draw_data->color.red   * 65535;
     draw_data->color.green  = draw_data->color.green * 65535;
     draw_data->color.blue   = draw_data->color.blue * 65535;
+    draw_data->font_name    = DEFAULT_FONT_NAME;
 
     otext = (Text*)draw_data->object;
+
     WORLDtoSCREEN (w_current, otext->x,  otext->y, &sx,  &sy);
     geda_draw_text (draw_data, sx, sy);
   }
@@ -124,6 +137,6 @@ o_draw_object (GschemToplevel *w_current, GedaDrawData *draw_data, GdkColor *c)
   draw_data->color.green  = c->green / 65535;
   draw_data->color.blue   = c->blue  / 65535;
   draw_data->color.flags = DoRed | DoGreen | DoBlue;
-    
+
   draw_func (w_current, draw_data);
 }
