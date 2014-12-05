@@ -57,7 +57,7 @@ G_BEGIN_DECLS
 #define EDAR_TEXT_MARKER_COLOR  renderer->text_marker_color
 #define EDAR_TEXT_MARKER_SIZE   renderer->text_marker_size
 
-#ifndef  CAIRO_ANTIALIAS_GOOD
+#if (( CAIRO_MAJOR_VERSION == 1 ) && ( CAIRO_MINOR_VERSION < 11 ))
 typedef enum {
 
     /* hints */

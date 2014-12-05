@@ -20,7 +20,8 @@ dnl GNU General Public License for more details.
 dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
-dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+dnl Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+dnl MA 02110-1301 USA
 
 AC_DEFUN([AX_CHECK_CAIRO],
 [
@@ -38,11 +39,20 @@ AC_DEFUN([AX_CHECK_CAIRO],
       AC_MSG_ERROR([Cairo PostScript support 1.8.0 or later is required.]))
     PKG_CHECK_MODULES([CAIRO_SVG], [cairo-svg >= 1.8], ,
       AC_MSG_ERROR([Cairo SVG support 1.8.0 or later is required.]))
-      CAIRO_PKG=`$PKG_CONFIG --modversion cairo`
+      CAIRO_VERSION=`$PKG_CONFIG --modversion cairo`
   else
     PKG_CHECK_MODULES([cairo_ok], [cairo >= 1.8], [],
       AC_MSG_ERROR([Cairo 1.8.0 or later is required.]))
   fi
-  AC_SUBST([CAIRO_PKG])
+
+  CAIRO_MAJOR_VERSION="`expr $CAIRO_VERSION : '\([0-9][0-9]*\).*'`"
+  CAIRO_MINOR_VERSION="`expr $CAIRO_VERSION : '[0-9][0-9]*\.\([0-9][0-9]*\).*'`"
+  CAIRO_DOTDOT_VERSION="`expr $CAIRO_VERSION : '[0-9][0-9]*\.[0-9][0-9]*\.\([0-9][0-9]*\).*'`"
+
+  AC_SUBST([CAIRO_VERSION])
+  AC_SUBST([CAIRO_MAJOR_VERSION])
+  AC_SUBST([CAIRO_MINOR_VERSION])
+  AC_SUBST([CAIRO_DOTDOT_VERSION])
+
   []dnl
 ])dnl AX_CHECK_CAIRO
