@@ -47,7 +47,7 @@ pinnumber=11
 T 600 600 5 10 0 0 0 0 1
 pinseq=3
 T 500 600 5 10 0 0 0 0 1
-pinlabel=V+
+pinlabel=V-
 T 500 600 5 10 0 0 0 0 1
 pintype=pwr
 }
@@ -58,7 +58,7 @@ pinnumber=4
 T 600 100 5 10 0 0 0 0 1
 pinseq=4
 T 500 200 5 10 0 0 0 0 1
-pinlabel=V-
+pinlabel=V+
 T 500 200 5 10 0 0 0 0 1
 pintype=pwr
 }
