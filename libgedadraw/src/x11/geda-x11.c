@@ -27,7 +27,7 @@ static unsigned long buildColor(GedaDrawData *draw_data)
 
 static inline int
 LINE_WIDTH (int line_width) {
-  return max (line_width, MIN_LINE_WIDTH_THRESHOLD) / 10;
+  return max (line_width, MIN_LINE_WIDTH_THRESHOLD) / 12;
 }
 
 static inline unsigned int
