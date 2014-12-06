@@ -1964,7 +1964,7 @@ COMMAND ( do_page_new )
   else {
     sym_file = g_strdup(tblock);
   }
-  
+
   clib = s_clib_get_symbol_by_name (sym_file);
 
   if (clib != NULL) {

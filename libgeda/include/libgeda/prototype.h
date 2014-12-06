@@ -89,8 +89,10 @@ const char   *f_path_user_config            (void);
       void    m_bounds_init                 (BOUNDS *bounds);
       void    m_bounds_of_points            (BOUNDS *bounds, POINT points[], int count);
 
-/* m_circle.c */
+/* m_arc.c */
+      double  m_arc_length                  (int radius, int sweep);
 
+/* m_circle.c */
       double  m_circle_shortest_distance    (Circle *circle, int x, int y, int solid);
       double  m_circumference               (int radius);
 
@@ -102,7 +104,7 @@ const char   *f_path_user_config            (void);
       GArray *m_hatch_object                (Object *object);
 
 /* m_line.c */
-      int     m_line_length                 (Line *line);
+      int     m_line_length                 (int x1, int y1, int x2, int y2);
       double  m_line_shortest_distance      (Line *line, int x, int y);
 
 /* m_polygon.c */
@@ -148,7 +150,6 @@ const char   *f_path_user_config            (void);
       void    o_attrib_thaw_hooks                       (Object *object);
 
 /* o_basic.c */
-
       GList  *o_read_buffer            (GedaToplevel *toplevel, GList *object_list, const char *buffer,
                                         const int size, const char *name, GError **err);
       GList  *o_read                   (GedaToplevel *toplevel, GList *object_list, char *filename, GError **err);
@@ -207,8 +208,8 @@ const char   *f_path_user_config            (void);
       int     o_color_get_object_default    (char type);
 
 /* o_embed.c */
-      void    o_embed                       (GedaToplevel *toplevel, Object *o_current);
-      void    o_unembed                     (GedaToplevel *toplevel, Object *o_current);
+      void    o_embed                       (GedaToplevel *toplevel, Object *object);
+      void    o_unembed                     (GedaToplevel *toplevel, Object *object);
 
 /* o_get.c */
       bool    o_get_fill_options            (Object *object, OBJECT_FILLING *type, int *width, int *pitch1,
@@ -230,14 +231,14 @@ const char   *o_get_object_attrib_value     (Object *object, const char *name);
       double  o_get_shortest_distance       (Object *object, int x, int y);
 
 /* o_line_basic.c */
-      Object *o_line_new               (int color, int x1, int y1, int x2, int y2);
-      Object *o_line_copy              (Object *o_current);
-      void    o_line_modify            (Object *object, int x, int y, int whichone);
-      void    o_line_translate_world   (int dx, int dy, Object *object);
-      void    o_line_rotate_world      (int world_centerx, int world_centery, int angle, Object *object);
-      void    o_line_mirror_world      (int world_centerx, int world_centery, Object *object);
-      void    o_line_scale_world       (int x_scale, int y_scale, Object *object);
-      double  o_line_length            (Object *object);
+      Object *o_line_new                    (int color, int x1, int y1, int x2, int y2);
+      Object *o_line_copy                   (Object *object);
+      void    o_line_modify                 (Object *object, int x, int y, int whichone);
+      void    o_line_translate_world        (int dx, int dy, Object *object);
+      void    o_line_rotate_world           (int world_centerx, int world_centery, int angle, Object *object);
+      void    o_line_mirror_world           (int world_centerx, int world_centery, Object *object);
+      void    o_line_scale_world            (int x_scale, int y_scale, Object *object);
+      double  o_line_length                 (Object *object);
 
 /* o_list.c */
       GList  *o_glist_copy_all         (const GList *src_list, GList *dest_list);

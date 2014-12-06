@@ -231,7 +231,7 @@ static int Pin_set_int(PyObject *obj, PyObject *key, PyObject *py_value)
     PyErr_Format(PyExc_ValueError, "Cannot delete the %s attribute", name);
     return -1;
   }
-  
+
   old_value = &index;
 
   for (index = 0; Pin_members[index].name; index++){

@@ -3,6 +3,7 @@
 ## FRAGMENTS=geda_gobject_sources
 
 libgeda_la_SOURCES += \
+			math/m_arc.c \
 			math/m_basic.c \
 			math/m_bounds.c \
 			math/m_box.c \

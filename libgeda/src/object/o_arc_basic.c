@@ -125,7 +125,7 @@ Object *o_arc_copy(Object *o_current)
 /*! \brief
  *  \par Function Description
  *  This function modifies the internal values of the arc object
- *  *object according to the whichone parameter.
+ *  object according to the whichone parameter.
  *
  *  The new values are given by <B>x</B> and/or <B>y</B>. Their meaning depends on the value of whichone.
  *

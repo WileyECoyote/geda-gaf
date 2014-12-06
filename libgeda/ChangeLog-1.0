@@ -1,3 +1,7 @@
+2014-12-06 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_arc.c: New module for low level arc support.
+
 2014-12-05 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/math/m_line.c: Add new function m_line_length

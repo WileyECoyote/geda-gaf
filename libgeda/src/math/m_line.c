@@ -32,15 +32,8 @@
 
 #include <geda_debug.h>
 
-int m_line_length (Line *line)
+int m_line_length (int x1, int y1, int x2, int y2)
 {
-  int x1, y1, x2, y2;
-
-  x1 = line->x[0];
-  y1 = line->y[0];
-  x2 = line->x[1];
-  y2 = line->y[1];
-
   return m_distance (x1, y1, x2, y2);
 };
 
