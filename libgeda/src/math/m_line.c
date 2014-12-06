@@ -15,7 +15,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston,
+ * MA 02110-1301 USA
  */
 
 /*! \file m_line.c
@@ -30,6 +31,18 @@
 #include "libgeda_priv.h"
 
 #include <geda_debug.h>
+
+int m_line_length (Line *line)
+{
+  int x1, y1, x2, y2;
+
+  x1 = line->x[0];
+  y1 = line->y[0];
+  x2 = line->x[1];
+  y2 = line->y[1];
+
+  return m_distance (x1, y1, x2, y2);
+};
 
 /*! \brief Calculates the distance between the given point and the closest
  *  point on the given line segment.
