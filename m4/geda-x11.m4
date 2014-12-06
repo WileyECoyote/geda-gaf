@@ -19,7 +19,7 @@ dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
 
-  
+
 AC_DEFUN([AX_CHECK_X11],
 [
   AC_PREREQ([2.52])dnl

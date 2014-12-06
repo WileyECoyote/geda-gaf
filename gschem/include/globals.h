@@ -23,6 +23,12 @@
 #ifndef H_GSCHEM_GLOBALS_H
 #define H_GSCHEM_GLOBALS_H
 
+enum {
+  I_COMMAND_3485,
+  X_EVENT_638,
+  X_EVENT_652
+};
+
 /* Our Process ID */
 extern int prog_pid;
 
