@@ -16,13 +16,17 @@
 #include <libgeda/libgeda.h>
 #include <geda_draw.h>
 
-static unsigned long buildColor(GedaDrawData *draw_data)
+static void XSetColor(GedaDrawData *draw_data)
 {
-  int red   = ((draw_data->color.red*255)%256)<<16;
-  int green = ((draw_data->color.green*255)%256)<<8;
-  int blue  =  (draw_data->color.blue*255)%256;
+  draw_data->color.flags = DoRed | DoGreen | DoBlue;
 
-  return red + green + blue;
+  draw_data->colormap = DefaultColormap(draw_data->display, draw_data->screen);
+
+  XAllocColor(draw_data->display, draw_data->colormap, &draw_data->color);
+
+  XSetForeground(draw_data->display,draw_data->gc,draw_data->color.pixel);
+
+  return;
 }
 
 static inline int
@@ -31,13 +35,18 @@ LINE_WIDTH (int line_width) {
 }
 
 static inline unsigned int
-set_line_attributes(GedaDrawData *draw_data, XGCValues *gcvals)
+set_line_attributes(GedaDrawData *draw_data, XGCValues *gcvals, int total)
 {
-  Object *object = draw_data->object;
+  Display *display = draw_data->display;
+  Object  *object  = draw_data->object;
 
+  char dash_list[6];
   int  dash_offset;
   int  num_dash;
-  char dash_list[6];
+  int  length;
+  int  space;
+  int  length_factor;
+  int  space_factor;
 
   switch (object->line_options->line_end) {
     case END_NONE:   gcvals->cap_style = CapButt;   break;
@@ -46,56 +55,72 @@ set_line_attributes(GedaDrawData *draw_data, XGCValues *gcvals)
     default:         gcvals->cap_style = CapButt;   break;
   }
 
-  dash_offset = 0;
+  if ( object->line_options->line_type == TYPE_SOLID) {
+    gcvals->line_style = LineSolid;
+  }
+  else {
 
-  switch (object->line_options->line_type) {
+    dash_offset = 0;
+    length = object->line_options->line_length;
+    space  = object->line_options->line_space;
 
-    default:
-      g_warn_if_reached ();
-      /* Fall through */
+    if ( length < total / 20) {
+      length_factor = length > 0 ? length : 100;
+      space_factor  = space > 0 ? space : 50;
+    }
+    else {
+      length_factor = length > 2 ? length / 2 : 50;
+      space_factor  = space > 2 ? space / 2 : 25;
+    }
 
-    case TYPE_SOLID:
-      gcvals->line_style = LineSolid;
-      break;
+    length_factor = length_factor ? length_factor : length;
 
-    case TYPE_DOTTED:
-      dash_list[0]      = 1;
-      dash_list[1]      = object->line_options->line_space;
-      num_dash          = 2;
-      XSetDashes(draw_data->display, draw_data->gc, dash_offset, dash_list, num_dash);
-      gcvals->cap_style = CapRound;
-      gcvals->line_style = LineOnOffDash;
-      break;
+    switch (object->line_options->line_type) {
 
-    case TYPE_DASHED:
-      dash_list[0]      = object->line_options->line_length;
-      dash_list[1]      = object->line_options->line_space;
-      num_dash          = 2;
-      XSetDashes(draw_data->display, draw_data->gc, dash_offset, dash_list, num_dash);
-      gcvals->line_style = LineOnOffDash;
-      break;
+      case TYPE_DOTTED:
+        dash_list[0]      = 1;
+        dash_list[1]      = space_factor;
+        num_dash          = 2;
+        XSetDashes(display, draw_data->gc, dash_offset, dash_list, num_dash);
+        gcvals->cap_style = CapRound;
+        gcvals->line_style = LineOnOffDash;
+        break;
 
-    case TYPE_CENTER:
-      dash_list[0]      = object->line_options->line_length * 10;
-      dash_list[1]      = object->line_options->line_space  / 2;
-      dash_list[2]      = object->line_options->line_length / 3;
-      dash_list[3]      = object->line_options->line_space  / 2;
-      num_dash          = 4;
-      XSetDashes(draw_data->display, draw_data->gc, dash_offset, dash_list, num_dash);
-      gcvals->line_style = LineOnOffDash;
-      break;
+      case TYPE_DASHED:
+        dash_list[0]      = length_factor;
+        dash_list[1]      = space_factor;
+        num_dash          = 2;
+        XSetDashes(display, draw_data->gc, dash_offset, dash_list, num_dash);
+        gcvals->line_style = LineOnOffDash;
+        break;
 
-    case TYPE_PHANTOM:
-      dash_list[0]      = object->line_options->line_length * 10;
-      dash_list[1]      = object->line_options->line_space  / 2;
-      dash_list[2]      = object->line_options->line_length / 3;
-      dash_list[3]      = object->line_options->line_space  / 2;
-      dash_list[4]      = object->line_options->line_length / 3;
-      dash_list[5]      = object->line_options->line_space  / 2;
-      num_dash          = 6;
-      XSetDashes(draw_data->display, draw_data->gc, dash_offset, dash_list, num_dash);
-      gcvals->line_style = LineOnOffDash;
-      break;
+      case TYPE_CENTER:
+        dash_list[0]      = length_factor * 9;
+        dash_list[1]      = space_factor  / 2;
+        dash_list[2]      = length_factor / 3;
+        dash_list[3]      = space_factor  / 2;
+        num_dash          = 4;
+        XSetDashes(display, draw_data->gc, dash_offset, dash_list, num_dash);
+        gcvals->line_style = LineOnOffDash;
+        break;
+
+      case TYPE_PHANTOM:
+        dash_list[0]      = length_factor * 6;
+        dash_list[1]      = space_factor  / 2;
+        dash_list[2]      = length_factor / 3;
+        dash_list[3]      = space_factor  / 2;
+        dash_list[4]      = length_factor / 3;
+        dash_list[5]      = space_factor  / 2;
+        num_dash          = 6;
+        XSetDashes(display, draw_data->gc, dash_offset, dash_list, num_dash);
+        gcvals->line_style = LineOnOffDash;
+        break;
+
+      default:
+        g_warn_if_reached ();
+        gcvals->line_style = LineSolid;
+        break;
+    }
   }
 
   gcvals->line_width = LINE_WIDTH(object->line_options->line_width);
@@ -103,15 +128,66 @@ set_line_attributes(GedaDrawData *draw_data, XGCValues *gcvals)
   return GCCapStyle | GCLineStyle | GCLineWidth;
 }
 
+int geda_x11_draw_box (GedaDrawData *draw_data, int x, int y, int width, int height)
+{
+  Display *display = draw_data->display;
+  XGCValues gcvals;
+  unsigned int bits;
+  int length;
+
+  XSetColor(draw_data);
+
+  length = min(width, height);
+
+  bits = set_line_attributes(draw_data, &gcvals, length);
+
+  XChangeGC(display, draw_data->gc, bits, &gcvals);
+
+  XDrawRectangle(draw_data->display, draw_data->drawable, draw_data->gc, x, y, width, height);
+
+  return 0;
+}
+
+int geda_x11_draw_circle (GedaDrawData *draw_data, int cx, int cy, int radius)
+{
+  Display *display = draw_data->display;
+  XGCValues gcvals;
+
+  int x, y;
+  int circum;
+
+  //int angle1, angle2;
+  unsigned int half_radius;
+  unsigned int bits;
+
+  XSetColor(draw_data);
+
+  circum = m_circumference(radius);
+  bits   = set_line_attributes(draw_data, &gcvals, circum);
+
+  XChangeGC(display, draw_data->gc, bits, &gcvals);
+
+  half_radius = radius / 2;
+  x           = cx - half_radius;
+  y           = cy - half_radius;
+
+  XDrawArc(display, draw_data->drawable, draw_data->gc, x, y, radius, radius, 0, 360*64);
+
+  return 0;
+}
+
 int geda_x11_draw_line (GedaDrawData *draw_data, int x1, int y1, int x2, int y2)
 {
   Display *display = draw_data->display;
   XGCValues gcvals;
   unsigned int bits;
+  int length;
 
-  XSetForeground(display, draw_data->gc, buildColor(draw_data));
+  XSetColor(draw_data);
 
-  bits = set_line_attributes(draw_data, &gcvals);
+  length = m_line_length(draw_data->object->line);
+
+  bits = set_line_attributes(draw_data, &gcvals, length);
 
   XChangeGC(display, draw_data->gc, bits, &gcvals);
 
@@ -125,7 +201,7 @@ int geda_x11_draw_net (GedaDrawData *draw_data, int x1, int y1, int x2, int y2)
   Display *display = draw_data->display;
   XGCValues gcvals;
 
-  XSetForeground(display, draw_data->gc, buildColor(draw_data));
+  XSetColor(draw_data);
 
   gcvals.line_width = LINE_WIDTH(draw_data->object->line_options->line_width);
 
@@ -135,6 +211,7 @@ int geda_x11_draw_net (GedaDrawData *draw_data, int x1, int y1, int x2, int y2)
 
   return 0;
 }
+
 int geda_x11_draw_text (GedaDrawData *draw_data, int x, int y)
 {
   Display      *display;
@@ -224,8 +301,7 @@ int geda_x11_draw_text (GedaDrawData *draw_data, int x, int y)
 
     if (font) {
 
-      XSetForeground(display, draw_data->gc, buildColor(draw_data));
-
+      XSetColor(draw_data);
       //ytext = font->max_bounds.ascent + font->max_bounds.descent;
       //wtext = font->max_bounds.width / 2 + XTextWidth( font, string, length + 4 );
 

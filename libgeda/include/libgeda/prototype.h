@@ -102,7 +102,8 @@ const char   *f_path_user_config            (void);
       GArray *m_hatch_object                (Object *object);
 
 /* m_line.c */
-      double  m_line_shortest_distance      (Line *circle, int x, int y);
+      int     m_line_length                 (Line *line);
+      double  m_line_shortest_distance      (Line *line, int x, int y);
 
 /* m_polygon.c */
       bool    m_polygon_interior_point      (GArray *points, int x, int y);

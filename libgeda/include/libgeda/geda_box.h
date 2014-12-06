@@ -60,7 +60,6 @@ struct _GedaBox {
   int          lower_x;
   int          lower_y;
 
-
   LINE_OPTIONS line_options;
   FILL_OPTIONS fill_options;
 

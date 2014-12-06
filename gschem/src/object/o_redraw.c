@@ -210,7 +210,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   draw_data.gc       = XCreateGC(draw_data.display, draw_data.drawable, 0, 0 );
   draw_data.scale    = toplevel->page_current->to_world_x_constant;
 
- //fprintf(stderr, "w=%d, h=%d\n", cairo_xlib_surface_get_width (draw_data.surface), cairo_xlib_surface_get_height (draw_data.surface));
+  //fprintf(stderr, "w=%d, h=%d\n", cairo_xlib_surface_get_width (draw_data.surface), cairo_xlib_surface_get_height (draw_data.surface));
   /* Set up renderer based on configuration in w_current and list - or not */
   /* if (toplevel->page_current->show_hidden_text) {
    *   render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
@@ -264,7 +264,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   cairo_save (w_current->cr);
 
   /* We need to transform the cairo context to world coordinates while
-   * we're drawing using the renderer.
+   * we're drawing using the renderer. */
   cairo_matrix_init (&render_mtx,
                     (double) toplevel->page_current->to_screen_x_constant, 0, 0,
                    -(double) toplevel->page_current->to_screen_y_constant,
@@ -273,7 +273,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   );
 
   cairo_set_matrix (w_current->cr, &render_mtx);
- */
+
   /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action && ((w_current->event_state == MOVE) ||
                                                  (w_current->event_state == ENDMOVE)));
@@ -286,13 +286,10 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     if (!(o_current->dont_redraw || o_current->selected)) {
 
         o_style_set_object(w_current->toplevel, o_current);
-      //if (o_current->type == OBJ_TEXT) {
+
         draw_data.object = o_current;
         o_draw_object(w_current, &draw_data, x_color_get_color_from_index(o_current->color));
-      /*}
-      else {
-        eda_renderer_draw (renderer, o_current);
-      }*/
+        //eda_renderer_draw (renderer, o_current);
     }
   }
 
