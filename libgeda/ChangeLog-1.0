@@ -1,3 +1,7 @@
+2014-12-05 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/math/m_*.c: Make math functions public.
+
 2014-11-19 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/utility/u_gslist.c: Add function u_gslist_free_full

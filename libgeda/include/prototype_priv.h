@@ -73,23 +73,6 @@ void           geda_toplevel_unref                 (GedaToplevel *toplevel);
 
 /* m_bounds.c */
 void   m_bounds_init                   (BOUNDS *bounds);
-void   m_bounds_of_points              (BOUNDS *bounds, POINT points[], int count);
-
-/* m_box.c */
-double m_box_shortest_distance         (Box *box, int x, int y, int solid);
-
-/* m_circle.c */
-double m_circle_shortest_distance      (Circle *circle, int x, int y, int solid);
-
-/* m_hatch.c */
-void   m_hatch_polygon                 (GArray *points, int angle, int pitch, GArray *lines);
-
-/* m_line.c */
-double m_line_shortest_distance        (Line *circle, int x, int y);
-
-/* m_polygon.c */
-bool   m_polygon_interior_point        (GArray *points, int x, int y);
-double m_polygon_shortest_distance     (GArray *points, int x, int y, bool closed);
 
 /* m_transform.c */
 void m_transform_combine       (TRANSFORM *result, TRANSFORM *a, TRANSFORM *b );

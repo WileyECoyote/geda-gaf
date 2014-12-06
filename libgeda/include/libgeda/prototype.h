@@ -82,13 +82,31 @@ const char   *f_path_user_config            (void);
       void    m_rotate_point                (int x, int y, int angle, int *newx, int *newy);
       void    m_rotate_point_90             (int x, int y, int angle, int *newx, int *newy);
 
+/* m_box.c */
+      double  m_box_shortest_distance       (Box *box, int x, int y, int solid);
+
+/* m_bounds.c */
+      void    m_bounds_init                 (BOUNDS *bounds);
+      void    m_bounds_of_points            (BOUNDS *bounds, POINT points[], int count);
+
+/* m_circle.c */
+
+      double  m_circle_shortest_distance    (Circle *circle, int x, int y, int solid);
+      double  m_circumference               (int radius);
+
 /* m_hatch.c */
       void    m_hatch_box                   (Box    *box,    int angle, int pitch, GArray *lines);
       void    m_hatch_circle                (Circle *circle, int angle, int pitch, GArray *lines);
       void    m_hatch_path                  (Path   *path,   int angle, int pitch, GArray *lines);
+      void    m_hatch_polygon               (GArray *points, int angle, int pitch, GArray *lines);
       GArray *m_hatch_object                (Object *object);
 
+/* m_line.c */
+      double  m_line_shortest_distance      (Line *circle, int x, int y);
+
 /* m_polygon.c */
+      bool    m_polygon_interior_point      (GArray *points, int x, int y);
+      double  m_polygon_shortest_distance   (GArray *points, int x, int y, bool closed);
       void    m_polygon_append_bezier       (GArray *points, BEZIER *bezier, int segments);
       void    m_polygon_append_point        (GArray *points, int x, int y);
 
