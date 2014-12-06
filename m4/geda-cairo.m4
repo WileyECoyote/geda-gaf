@@ -45,14 +45,15 @@ AC_DEFUN([AX_CHECK_CAIRO],
       AC_MSG_ERROR([Cairo 1.8.0 or later is required.]))
   fi
 
-  CAIRO_MAJOR_VERSION="`expr $CAIRO_VERSION : '\([0-9][0-9]*\).*'`"
-  CAIRO_MINOR_VERSION="`expr $CAIRO_VERSION : '[0-9][0-9]*\.\([0-9][0-9]*\).*'`"
-  CAIRO_DOTDOT_VERSION="`expr $CAIRO_VERSION : '[0-9][0-9]*\.[0-9][0-9]*\.\([0-9][0-9]*\).*'`"
+  CAIRO_MAJOR=`expr $CAIRO_VERSION : '\([0-9][0-9]*\).*'`
+  CAIRO_MINOR=`expr $CAIRO_VERSION : '[0-9][0-9]*\.\([0-9][0-9]*\).*'`
+  CAIRO_DOTDOT=`expr $CAIRO_VERSION : '[0-9][0-9]*\.[0-9][0-9]*\.\([0-9][0-9]*\).*'`
+
+  AC_DEFINE_UNQUOTED([CAIRO_MAJOR_VERSION], $CAIRO_MAJOR, [Define to Cairo Major version])
+  AC_DEFINE_UNQUOTED([CAIRO_MINOR_VERSION], $CAIRO_MINOR, [Define to Cairo Minor version])
+  AC_DEFINE_UNQUOTED([CAIRO_DOTDOT_VERSION], $CAIRO_DOTDOT, [Define to Cairo Dot version])
 
   AC_SUBST([CAIRO_VERSION])
-  AC_SUBST([CAIRO_MAJOR_VERSION])
-  AC_SUBST([CAIRO_MINOR_VERSION])
-  AC_SUBST([CAIRO_DOTDOT_VERSION])
 
   []dnl
 ])dnl AX_CHECK_CAIRO
