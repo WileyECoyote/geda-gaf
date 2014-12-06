@@ -65,3 +65,8 @@ double m_circle_shortest_distance (Circle *circle, int x, int y, int solid)
 
   return shortest_distance;
 }
+
+double  m_circumference (int radius)
+{
+  return 2 * M_PI * radius;
+}
