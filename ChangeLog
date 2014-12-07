@@ -1,3 +1,7 @@
+2014-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_types.h: Wrap __cplusplus around typedef int bool
+
 2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
       * libgedadraw: New library created to provide a higher quality rendering

@@ -27,7 +27,11 @@
  *   \ingroup (geda-globals)
  */
 
+#ifndef __cplusplus
+
 typedef int bool;
+
+#endif
 
 typedef unsigned char uint8;
 typedef unsigned long DWORD;
