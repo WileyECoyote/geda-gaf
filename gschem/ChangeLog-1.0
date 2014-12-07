@@ -1,3 +1,9 @@
+2014-12-07 Wiley E. Hill <wileyhill@gmail.com>
+
+    * include/prototype.h: Guard C headers, while including them from C++
+
+    * include/o_draw.h: Guard C headers, while including them from C++
+
 2014-12-02 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Add missing parenthesis in do_show_
@@ -13,7 +19,7 @@
 
 2014-11-25 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/iface/i_command.c: Don't add symbol suffix of config already has in
+    * src/iface/i_command.c: Do not add symbol suffix of config already has in
       function do_page_new
 
 2014-11-25 Wiley E. Hill <wileyhill@gmail.com>

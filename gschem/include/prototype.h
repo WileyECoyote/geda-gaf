@@ -5,6 +5,8 @@
 #define EHP EdascmHookProxy
 #define GAY GArray
 
+G_BEGIN_DECLS
+
 /* gschem_toplevel.c - refer to gschem_toplevel.h */
 
 /* g_action.c */
@@ -875,6 +877,9 @@ void       x_window_page_toolbar_toggle      (GtkWidget *widget, GschemToplevel 
 void       x_window_standard_toolbar_toggle  (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_select_toolbar_toggle    (GtkWidget *widget, GschemToplevel *w_current);
 void       x_window_zoom_toolbar_toggle      (GtkWidget *widget, GschemToplevel *w_current);
+
+G_END_DECLS
+
 #undef GAY
 #undef EHP
 #undef GSL

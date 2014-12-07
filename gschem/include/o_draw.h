@@ -4,5 +4,9 @@
  * Current, only o_redraw.c needs to include this file
  */
 
+G_BEGIN_DECLS
+
 /* o_draw.c */
 void       o_draw_object                (GschemToplevel *w_current, GedaDrawData *draw_data, GdkColor *color);
+
+G_END_DECLS
