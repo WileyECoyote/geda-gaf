@@ -71,6 +71,8 @@ void x_window_setup (GschemToplevel *w_current)
   /* Add to the list of windows */
   global_window_list = g_list_append (global_window_list, w_current);
 
+  o_draw_initialize();
+
   /* X related stuff */
   x_icons_initialize();  /* Initialize icons - must be done before menus! */
 

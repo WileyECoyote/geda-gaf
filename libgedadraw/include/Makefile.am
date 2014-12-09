@@ -5,8 +5,8 @@
 libgedadrawdir      = $(includedir)/libgedadraw
 
 libgedadraw_HEADERS = \
-			geda_draw.h     \
-			geda_x11.h
+						geda_draw.h  \
+						geda_x11.hpp
 
 MOSTLYCLEANFILES     = *~ *.log core FILE
 CLEANFILES           = *~ *.log core FILE

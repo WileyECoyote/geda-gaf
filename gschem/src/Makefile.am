@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## This file is processed by automake to produce Makefile.in, after which
 ## The configure script generates the actual Makefile from the Makefile.in.
 
@@ -45,19 +46,21 @@ MAKE_INPUTS	 = base/makefile.in guile/makefile.in iface/makefile.in \
 EXTRA_DIST       = $(BUILT_SOURCES)
 
 AM_CFLAGS        = $(DEBUGGING) $(GEDA_INCLUDES)
-gschem_CPPFLAGS  =
+
 gschem_CFLAGS    = $(AM_CFLAGS)      $(GCC_CFLAGS)   $(LIBSTROKE_CFLAGS) \
-		   $(GLIB_CFLAGS)    $(GTK_CFLAGS)   $(GUILE_CFLAGS) \
-		   $(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
+				   $(GLIB_CFLAGS)    $(GTK_CFLAGS)   $(GUILE_CFLAGS) \
+				   $(GTHREAD_CFLAGS) $(MINGW_CFLAGS) $(gschem_CXXFLAGS)
+
+gschem_CPPFLAGS  = $(gschem_CFLAGS)
 
 gschem_LDFLAGS   = $(GLIB_LIBS)    $(GTK_LIBS)   $(LIBSTROKE_LDFLAGS) \
-		   $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
-		   $(DEBUGGING)
+				   $(GTHREAD_LIBS) $(GUILE_LIBS) $(MINGW_GUI_LDFLAGS) \
+				   $(DEBUGGING)
 
 gschem_LDADD     = $(top_builddir)/libgedadraw/src/libgedadraw.la \
-		   $(top_builddir)/libgedauio/src/libgedauio.la \
-		   $(top_builddir)/libgedacairo/src/libgedacairo.la \
-		   $(top_builddir)/libgeda/src/libgeda.la \
+				   $(top_builddir)/libgedauio/src/libgedauio.la \
+				   $(top_builddir)/libgedacairo/src/libgedacairo.la \
+				   $(top_builddir)/libgeda/src/libgeda.la \
 		   @LIBINTL@
 
 LIBTOOL          = @LIBTOOL@ --silent

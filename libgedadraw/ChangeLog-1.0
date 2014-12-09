@@ -1,3 +1,9 @@
+2014-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+     *: Switch code base to c++ to improve performance (by having an object rather
+        than procedural - and yet another G-object is out of the question. Cpp also
+        allows for better handling of X11 errors.)
+
 2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
      *: New library libgedadraw created to provide a higher quality replacement for

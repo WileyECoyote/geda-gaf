@@ -27,11 +27,7 @@
  */
 
 #include <gschem.h>
-#include <geda_draw.h>
-#include <o_draw.h>   /* after geda_draw.h */
 #include <geda_debug.h>
-
-#include <cairo-xlib.h>
 
 #define INVALIDATE_MARGIN 1
 
@@ -177,7 +173,6 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   GList *obj_list;
   GList *iter;
 
-  GedaDrawData draw_data;
   RECTANGLE    world_rect;
   EdaRenderer *renderer;
 
@@ -202,13 +197,6 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   obj_list = s_page_objects_in_regions (toplevel->page_current, &world_rect, 1);
 
   render_flags = EDA_RENDERER_FLAG_HINTING;
-
-  draw_data.surface  = cairo_get_target (w_current->cr);
-  draw_data.drawable = cairo_xlib_surface_get_drawable (draw_data.surface);
-  draw_data.display  = cairo_xlib_surface_get_display (draw_data.surface);
-  draw_data.screen   = DefaultScreen(draw_data.display);
-  draw_data.gc       = XCreateGC(draw_data.display, draw_data.drawable, 0, 0 );
-  draw_data.scale    = toplevel->page_current->to_world_x_constant;
 
   //fprintf(stderr, "w=%d, h=%d\n", cairo_xlib_surface_get_width (draw_data.surface), cairo_xlib_surface_get_height (draw_data.surface));
   /* Set up renderer based on configuration in w_current and list - or not */
@@ -274,6 +262,8 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   cairo_set_matrix (w_current->cr, &render_mtx);
 
+  o_draw_set_surface (w_current);
+
   /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action && ((w_current->event_state == MOVE) ||
                                                  (w_current->event_state == ENDMOVE)));
@@ -286,9 +276,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     if (!(o_current->dont_redraw || o_current->selected)) {
 
         o_style_set_object(w_current->toplevel, o_current);
-
-        draw_data.object = o_current;
-        o_draw_object(w_current, &draw_data, x_color_get_color_from_index(o_current->color));
+        o_draw_object(w_current, o_current);
         //eda_renderer_draw (renderer, o_current);
     }
   }
@@ -318,12 +306,8 @@ return;
       if (!o_current->dont_redraw) {
 
         o_style_set_object(w_current->toplevel, o_current);
-	if (o_current->type == OBJ_TEXT) {
-          //o_draw_object(w_current, o_current, x_color_get_color_from_index(SELECT_COLOR));
-        }
-        else {
-          eda_renderer_draw (renderer, o_current);
-	}
+        //o_draw_object(w_current, o_current);
+        eda_renderer_draw (renderer, o_current);
         eda_renderer_draw_cues (renderer, o_current);
 
         if (w_current->renderer->draw_grips ) {

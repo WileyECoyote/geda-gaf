@@ -12,7 +12,7 @@ gschem_SOURCES += \
 		object/o_complex.c \
 		object/o_copy.c \
 		object/o_delete.c \
-		object/o_draw.c \
+		object/o_draw.cpp \
 		object/o_edit.c \
 		object/o_find.c \
 		object/o_grips.c \

@@ -1,3 +1,4 @@
+## $Id$ indent-tabs-mode: t; c-basic-offset: 4; tab-width: 4
 ## Process this file with automake to produce Makefile.in
 ## `pkg-config --cflags freetype2`
 
@@ -12,10 +13,10 @@ INC_LIBGEDA                  = -I$(top_srcdir)/libgeda/include
 GEDA_INCLUDES                = $(INC_GEDA) $(INC_LOCAL) $(INC_LIBGEDA)
 
 AM_CFLAGS                    = $(GCC_CFLAGS) $(MINGW_CFLAGS) $(GLIB_CFLAGS)  $(GTK_CFLAGS) \
-	             	       $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
+							   $(GDK_CFLAGS) $(CAIRO_CFLAGS) $(PANGO_CFLAGS) $(GDK_PIXBUF_CFLAGS)
 
 AM_LDFLAGS                   = -version-info $(LIBGEDADRAW_SHLIB_VERSION) $(GLIB_LIBS)     $(X11_LIBS) \
-					     $(WINDOWS_LIBTOOL_FLAGS)     $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
+											 $(WINDOWS_LIBTOOL_FLAGS)     $(MINGW_LDFLAGS) $(GDK_PIXBUF_LIBS)
 
 lib_LTLIBRARIES              = libgedadraw.la
 
@@ -23,9 +24,9 @@ libgedadraw_la_SOURCES       =
 
 include x11/Makefile_insert
 
-libgedadraw_la_CFLAGS         = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
+libgedadraw_la_CFLAGS         =
 
-libgedadraw_la_CPPFLAGS       =
+libgedadraw_la_CPPFLAGS       = $(DEBUGGING) $(GEDA_INCLUDES) $(AM_CFLAGS)
 
 libgedadraw_la_LDFLAGS        = $(DEBUGGING) $(LDFLAGS) $(AM_LDFLAGS)
 

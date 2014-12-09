@@ -586,7 +586,7 @@ GedaToplevel *s_toplevel_new                          (void);
       char   *u_string_scm2c           (char *scm_str_name) G_GNUC_WARN_UNUSED_RESULT;
       void    u_string_sort_array      (char *strings[], size_t strings_size);
       bool    u_string_strequal        (const char *str1, const char *str2) G_GNUC_WARN_UNUSED_RESULT;
-      char   *u_string_strstr_rep      (char *original,   const char *old, const char *new);
+      char   *u_string_strstr_rep      (char *original,   const char *old_str, const char *new_str);
       int     u_string_stricmp         (const char *str1, const char *str2);
       int     u_string_strncmpi        (const char *str1, const char *str2, int n);
 const char   *u_stristr                (const char *str1, const char *str2);
