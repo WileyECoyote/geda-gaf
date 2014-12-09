@@ -298,21 +298,21 @@ void       i_sessions_update_menus          (GschemToplevel *w_current);
 void       i_sessions_init                  (GschemToplevel *w_current);
 
 /* i_status.c */
-void       i_status_set_state_msg        (GschemToplevel *w_current, enum x_states newstate, const char *message);
-void       i_status_set_state            (GschemToplevel *w_current, enum x_states newstate);
-void       i_status_show_state           (GschemToplevel *w_current, const char *message);
-void       i_status_update_grid_info     (GschemToplevel *w_current);
-void       i_status_update_sensitivities (GschemToplevel *w_current);
-void       i_status_update_title         (GschemToplevel *w_current);
+void       i_status_set_state_msg           (GschemToplevel *w_current, enum x_states newstate, const char *message);
+void       i_status_set_state               (GschemToplevel *w_current, enum x_states newstate);
+void       i_status_show_state              (GschemToplevel *w_current, const char *message);
+void       i_status_update_grid_info        (GschemToplevel *w_current);
+void       i_status_update_sensitivities    (GschemToplevel *w_current);
+void       i_status_update_title            (GschemToplevel *w_current);
 
 /* i_threads.c */
-void       gschem_threads_enter (void);
-void       gschem_threads_leave (void);
-bool       gschem_threads_init (void);
+void       gschem_threads_enter             (void);
+void       gschem_threads_leave             (void);
+bool       gschem_threads_init              (void);
 
 /* i_vars.c */
 void       i_var_restore_color              (EdaConfig *cfg, const char *group, char *key, GdkColor *var, int index);
-char         *i_var_get_global_config_string   (EdaConfig *cfg, char *str);
+char      *i_var_get_global_config_string   (EdaConfig *cfg, char *str);
 void       i_var_restore_global_boolean     (EdaConfig *cfg, char *key, int *var, bool def_val);
 void       i_var_restore_global_integer     (EdaConfig *cfg, char *key, int *var, int def_val);
 void       i_var_restore_global_color       (EdaConfig *cfg, char *key, GdkColor *var, int index);
@@ -328,8 +328,8 @@ void       i_vars_atexit_save_user_config   (void * user_data);
 
 /* i_zoom_world.c */
 void       i_zoom_world                      (GschemToplevel *w_current, EID_ZOOM_DIRECTIVE dir,
-                                                                   EID_ACTION_ORIGIN  selected_from,
-                                                                   EID_PAN_DIRECTIVES pan_flags);
+                                                                         EID_ACTION_ORIGIN  selected_from,
+                                                                         EID_PAN_DIRECTIVES pan_flags);
 void       i_zoom_world_extents              (GschemToplevel *w_current, const GList *list, int pan_flags);
 void       i_zoom_world_box                  (GschemToplevel *w_current, int pan_flags);
 void       i_zoom_world_box_start            (GschemToplevel *w_current, int x, int y);
@@ -415,6 +415,12 @@ void       o_copy_multiple_end          (GschemToplevel *w_current);
 /* o_delete.c */
 void       o_delete                     (GschemToplevel *w_current, Object *object);
 void       o_delete_selected            (GschemToplevel *w_current);
+
+/* o_draw.c */
+void       o_draw_object                (GschemToplevel *w_current, Object *object);
+void       o_draw_set_surface           (GschemToplevel *w_current);
+void       o_draw_initialize            (void);
+void       o_draw_shutdown              (void *user_data);
 
 /* o_edit.c */
 void       o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
