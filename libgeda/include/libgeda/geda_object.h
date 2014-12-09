@@ -129,4 +129,6 @@ int           geda_object_bounds             (Object *object);
 Page         *geda_object_get_page           (Object *object);
 int           geda_object_get_filltype       (Object *object);
 
+G_END_DECLS
+
 #endif /* __GEDA_OBJECT_H__ */
