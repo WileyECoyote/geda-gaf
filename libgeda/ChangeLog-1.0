@@ -1,5 +1,9 @@
 2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: Add new function o_attrib_detach
+
+2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/object/o_attrib.c: In function o_attrib_detach_all, checked
       if object has attributes first, and set the page changed flag.
 

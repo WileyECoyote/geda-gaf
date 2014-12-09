@@ -127,6 +127,7 @@ const char   *f_path_user_config            (void);
       bool    o_attrib_is_attached_to                   (Object *attrib, Object *object);
       void    o_attrib_attach                           (Object *attrib, Object *object, int set_color);
       void    o_attrib_attach_list                      (GList  *attr_list, Object *object, int set_color);
+      void    o_attrib_detach                           (Object *object);
       void    o_attrib_detach_all                       (Object *object);
       Object *o_attrib_new_attached                     (Object *object, const char *name, const char *value, int visibility, int show_name_value);
       void    o_attrib_print                            (GList  *attributes);

@@ -156,6 +156,38 @@ o_attrib_attach_list (GList *attr_list, Object *object, int set_color)
     o_attrib_attach (iter->data, object, set_color);
 }
 
+/*! \brief Detach an attribute from parent
+ *
+ *  \par Function Description
+ *  Detaches an attributes from the parent object.
+ *  Currently in gschem, this would only apply to floating
+ *  attributes because a non-floating can not be selected
+ *  individually.
+ *
+ *  \param [in,out] object The Attribute to be detached.
+ */
+void o_attrib_detach(Object *a_current)
+{
+  Page   *page;
+  Object *parent;
+
+  if(a_current->attached_to != NULL) {
+
+    parent = a_current->attached_to;
+    a_current->attached_to = NULL;
+    o_set_color (a_current, DETACHED_ATTRIBUTE_COLOR);
+    o_attrib_emit_attribs_changed (a_current);
+
+    parent->attribs = g_list_remove (parent->attribs, a_current);
+
+    page = geda_object_get_page(parent);
+
+    if (page && (GEDA_IS_PAGE(page))) {
+      page->CHANGED = TRUE;
+    }
+  }
+}
+
 /*! \brief Detach all attribute items in a list
  *
  *  \par Function Description
@@ -183,7 +215,7 @@ void o_attrib_detach_all(Object *object)
     g_list_free (object->attribs);
     object->attribs = NULL;
 
-    page = geda_object_get_page(parent);
+    page = geda_object_get_page(object);
 
     if (page && (GEDA_IS_PAGE(page))) {
       page->CHANGED = TRUE;
