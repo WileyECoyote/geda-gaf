@@ -1,5 +1,5 @@
 # geda-x11.m4              -*-Autoconf-*-
-# serial 1.0
+# serial 1.1
 
 dnl gEDA Prebuild checks for GTK Library Headers and Functions
 dnl
@@ -18,7 +18,6 @@ dnl
 dnl You should have received a copy of the GNU General Public License
 dnl along with this program; if not, write to the Free Software
 dnl Foundation, Inc., 51 Franklin Street, Boston, MA 02110-1301 USA
-
 
 AC_DEFUN([AX_CHECK_X11],
 [
@@ -39,15 +38,24 @@ AC_DEFUN([AX_CHECK_X11],
     AC_PATH_X             # used for inclusion of X11.h, XInitThreads();
   fi
 
-  if test "$OS_LINUX" = "yes"; then
-    AC_CHECK_LIB([Xft], [XftDrawCreate], [XFT=yes], [XFT=no])
-  fi
-  AC_MSG_CHECKING([for Xft])
-  AC_MSG_RESULT($XFT)
+  AC_ARG_ENABLE([Xft], AS_HELP_STRING([--enable-Xft], [Enable FreeType fonts for X11, default no]),
+  [case "${enableval}" in
+    no) enable_Xft=no ;;
+     *) enable_Xft=yes;;
+   esac])
 
-  if test "$XFT"  = "yes" ; then
-    X11_LIBS="$X11_LIBS -lXft"
-    AC_DEFINE([HAVE_XFT], [1], [Define to 1 if have Xft])
+   AH_TEMPLATE([HAVE_XFT], [Whether FreeType is installed])
+   if test x$enable_Xft  = xyes; then
+     if test "$OS_LINUX" = "yes"; then
+       AC_CHECK_LIB([Xft], [XftDrawCreate], [XFT=yes], [XFT=no])
+     fi
+     AC_MSG_CHECKING([for Xft])
+     AC_MSG_RESULT($XFT)
+
+     if test "$XFT"  = "yes" ; then
+       X11_LIBS="$X11_LIBS -lXft"
+       AC_DEFINE([HAVE_XFT], [1], [Define to 1 if have Xft])
+     fi
   fi
 
   AC_SUBST(X11_LIBS)

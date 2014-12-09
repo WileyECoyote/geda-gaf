@@ -1,3 +1,10 @@
+2014-12-08 Wiley E. Hill <wileyhill@gmail.com>
+
+      * m4/geda-x11.m4: Revised FreeType with enable option, defaulting
+        to off, at least for now. After optimization, the free-type font
+        extension server is still too slow, roughly halve the performence
+        of Cairo and the default XFont server. Still work in progress.
+
 2014-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_types.h: Wrap __cplusplus around typedef int bool
