@@ -1,3 +1,7 @@
+2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/iface/i_status.c: Redo sensitivities for Attach and Detach Attributes
+
 2014-12-07 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/prototype.h: Guard C headers, while including them from C++

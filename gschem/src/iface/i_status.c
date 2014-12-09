@@ -445,8 +445,6 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
     x_menus_sensitivity(w_current, "_Page/Down _Symbol",      state);
     x_menus_sensitivity(w_current, "_Page/D_ocumentation...", state);
 
-    x_menus_sensitivity(w_current, "A_ttributes/_Attach",     state);
-    x_menus_sensitivity(w_current, "A_ttributes/_Detach",     state);
     x_menus_sensitivity(w_current, "_Edit/Slot...",           state);
 
     x_menus_popup_sensitivity(w_current, "Down Schematic",    state);
@@ -656,8 +654,21 @@ i_status_idle_update_sensitivities(GschemToplevel *w_current)
   x_menus_sensitivity(w_current, "_Buffer/Paste from 4", (object_buffer[4] != NULL));
   x_menus_sensitivity(w_current, "_Buffer/Paste from 5", (object_buffer[5] != NULL));
 
-  /* Update sensitivities on the Toolbars */
+  if (complex_selected && text_selected) {
+    x_menus_sensitivity(w_current, "A_ttributes/_Attach", TRUE);
+  }
+  else {
+    x_menus_sensitivity(w_current, "A_ttributes/_Attach", FALSE);
+  }
 
+  if (complex_selected || text_selected) {
+    x_menus_sensitivity(w_current, "A_ttributes/_Detach", TRUE);
+  }
+  else {
+    x_menus_sensitivity(w_current, "A_ttributes/_Detach", FALSE);
+  }
+
+  /* Update sensitivities on the Toolbars */
   x_toolbars_set_sensitivities (w_current, CAN_HATCH,      can_hatch);
   x_toolbars_set_sensitivities (w_current, CAN_ELINE,      can_edit_line);
   x_toolbars_set_sensitivities (w_current, COMPLEX_OBJECT, complex_selected);
