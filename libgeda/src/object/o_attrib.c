@@ -167,20 +167,29 @@ void o_attrib_detach_all(Object *object)
 {
   Object *a_current;
   GList  *a_iter;
+  Page   *page;
 
-  o_attrib_freeze_hooks (object);
+  if (object->attribs != NULL) {
 
-  for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
-    a_current = a_iter->data;
-    a_current->attached_to = NULL;
-    o_set_color (a_current, DETACHED_ATTRIBUTE_COLOR);
-    o_attrib_emit_attribs_changed (object);
+    o_attrib_freeze_hooks (object);
+
+    for (a_iter = object->attribs; a_iter != NULL; NEXT (a_iter)) {
+      a_current = a_iter->data;
+      a_current->attached_to = NULL;
+      o_set_color (a_current, DETACHED_ATTRIBUTE_COLOR);
+      o_attrib_emit_attribs_changed (object);
+    }
+
+    g_list_free (object->attribs);
+    object->attribs = NULL;
+
+    page = geda_object_get_page(parent);
+
+    if (page && (GEDA_IS_PAGE(page))) {
+      page->CHANGED = TRUE;
+    }
+    o_attrib_thaw_hooks (object);
   }
-
-  g_list_free (object->attribs);
-  object->attribs = NULL;
-
-  o_attrib_thaw_hooks (object);
 }
 
 /*! \brief Create a new Attributes Object

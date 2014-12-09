@@ -274,7 +274,6 @@ char *o_save_objects (const GList *object_list, bool save_attribs)
       /* save any attributes */
       if (o_current->attribs != NULL) {
         g_string_append (acc, "{\n");
-
         out = o_save_objects (o_current->attribs, TRUE);
         g_string_append (acc, out);
         GEDA_FREE(out);

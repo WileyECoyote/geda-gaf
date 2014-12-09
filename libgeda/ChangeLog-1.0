@@ -1,5 +1,10 @@
 2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/object/o_attrib.c: In function o_attrib_detach_all, checked
+      if object has attributes first, and set the page changed flag.
+
+2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/struct/s_object.c: Rename function s_object_add
       s_object_add_child and add doxygen info.
 
