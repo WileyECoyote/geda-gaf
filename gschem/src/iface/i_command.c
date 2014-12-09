@@ -2814,6 +2814,7 @@ COMMAND ( do_attach )
 
   /* skip over head */
     s_current = geda_list_get_glist( Current_Selection );
+
     if (s_current) {
 
       first_object = (Object *) s_current->data;
@@ -2821,7 +2822,7 @@ COMMAND ( do_attach )
         NEXT(s_current); /* skipping over first object */
         while (s_current != NULL) {
           Object *object = s_current->data;
-          if (object != NULL) {
+          if (object != NULL && object->attached_to == NULL) {
             o_attrib_attach (object, first_object, TRUE);
             attached_objects = g_list_prepend (attached_objects, object);
             Current_Page->CHANGED=1;
@@ -2871,7 +2872,13 @@ COMMAND ( do_detach )
           detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
                                             detached_attribs);
           o_attrib_detach_all (o_current);
-          Current_Page->CHANGED=1;
+        }
+        else {
+          if (o_current->attached_to) {
+            o_attrib_detach (o_current);
+            detached_attribs = g_list_concat (g_list_copy (o_current->attribs),
+                                              detached_attribs);
+          }
         }
       }
       NEXT(s_current);
