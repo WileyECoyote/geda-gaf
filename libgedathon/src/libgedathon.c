@@ -1714,9 +1714,9 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
               /* We get here when an object was added to a page and the object
                * had attributes and these "children" need to be referenced by
                * the parent object. Note that when the capsule was retrieved
-               * the, they are removed from the the list of "floating" objects.
+               * they are removed from the the list of "floating" objects.
                */
-              s_object_add(parent, object);
+              s_object_add_child(parent, object);
               if (geda_pyobject->auto_attributes == TRUE) {
                 if (parent->type == OBJ_PIN) {
                   o_pin_realize_attributes(toplevel, parent);
@@ -1740,7 +1740,7 @@ PyGeda_add_object( PyObject *PyPage, PyObject *py_object_A, PyObject *py_object_
       object = retrieve_floating_object(sid);
 
       if (PyGeda_update_object(object, geda_pyobject)) {
-        s_object_add(parent, object);
+        s_object_add_child(parent, object);
       }
     }
     else { /* Parent is still in Que (and child is also) */

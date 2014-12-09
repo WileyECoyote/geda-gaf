@@ -30,27 +30,41 @@
  *  for its properties.
  *
  *  \returns the newly created Object.
- *
- *  \todo rethink block below that is set in gschem but used in libgeda.
  */
 Object *s_object_new (int type, char const *name)
 {
   return geda_object_new(type, name);
 }
 
-void s_object_add(Object *parent, Object *child){
+/*! \brief Attach attribute to an Object and append Parent's Page
+ *  \par Function Description
+ *  This function is simular to o_attrib_add, which is called by
+ *  the function, the difference being that this function also
+ *  adds the attribute being attached to the page if the parent
+ *  is already on a page.
+ *
+ *  \param [in]  parent     The Object that child is being added to.
+ *  \param [in]  child      The item you want to add as an attribute.
+ *
+ *  \return nothing.
+ */
+void s_object_add_child(Object *parent, Object *child){
 
   /* if the object is on a page then add the child */
   Page *page = geda_object_get_page(parent);
+
   if (page && (GEDA_IS_PAGE(page))) {
     s_page_append_object(page, child);
   }
 
   o_attrib_add(parent, child);
 }
+
 /*! \brief Remove an Object
  *  \par Function Description
- *  This function does not
+ *  This function unreferences an Object after first removing the Object
+ *  from a page if the object is on a page, and disconnecting any "elec-
+ *  trical" connections.
  */
 /*
  * Note: WEH (11/04/13): Modified to add conditional for s_conn_remove_object

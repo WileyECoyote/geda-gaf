@@ -438,7 +438,7 @@ const CLibSymbol *s_clib_get_symbol_by_name      (const char *name);
 
 /*  s_object.c */
       Object *s_object_new                  (int type, char const *name);
-      void    s_object_add                  (Object *parent, Object *child);
+      void    s_object_add_child            (Object *parent, Object *child);
       void    s_object_release              (Object *object);
       void    s_object_release_objects      (GList *list);
       void    s_object_set_page_changed     (Object *obj);
