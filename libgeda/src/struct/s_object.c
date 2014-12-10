@@ -48,7 +48,7 @@ Object *s_object_new (int type, char const *name)
  *
  *  \return nothing.
  */
-void s_object_add_child(Object *parent, Object *child){
+void s_object_add_child(Object *parent, Object *child) {
 
   /* if the object is on a page then add the child */
   Page *page = geda_object_get_page(parent);

@@ -1,3 +1,7 @@
+2014-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
+   ** src/object/o_attrib.c: Allow text to have attributes
+
 2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/iface/i_command.c: Fix do_detach function, and remove setting page

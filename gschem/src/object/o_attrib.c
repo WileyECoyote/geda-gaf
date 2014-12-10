@@ -232,6 +232,7 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   int angle;
   int color;
   int left, right, top, bottom;
+  int offset;
 
   Object *new_obj;
 
@@ -313,10 +314,10 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
       break;
 
       case(OBJ_TEXT):
+        offset = 1.3 * w_current->text_size * Current_Page->to_world_x_constant;
         world_x = parent->text->x;
-        world_y = parent->text->y;
+        world_y = parent->text->y - offset - 2 * DEFAULT_ATTRIBUTE_OFFSET;
         color = DETACHED_ATTRIBUTE_COLOR;
-        parent = NULL;
         break;
     }
   }
@@ -344,19 +345,12 @@ Object *o_attrib_add_attrib(GschemToplevel *w_current,
   /* Attach the new attribute to the object if parent is not NULL */
   /* remember that parent contains the object to get the attribute */
   if (parent) {
-    if (parent->page) {
-      page = parent->page;
-    }
-    else {
-      page = Current_Page;
-    }
-    o_attrib_attach (new_obj, parent, FALSE);
+    s_object_add_child(parent, new_obj);
   }
   else {
     page = Current_Page;
+    s_page_append_object (page, new_obj);
   }
-
-  s_page_append_object (page, new_obj);
 
   /* handle slot= attribute, it's a special case */
   if (parent != NULL &&
