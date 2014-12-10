@@ -1,5 +1,10 @@
 2014-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_settings_dialog.c: Pass GschemToplevel to setup_font_name_combo
+      and use dynamic list of font names. Remove static IDS_FONT_NAMES
+
+2014-12-10 Wiley E. Hill <wileyhill@gmail.com>
+
    ** src/object/o_attrib.c: Allow text to have attributes
 
 2014-12-09 Wiley E. Hill <wileyhill@gmail.com>

@@ -63,6 +63,9 @@
  *                | in GatherSettings.
  * ---------------|--------------------------------------------------
  * WEH | 11/18/14 | Add "FreeMono" to IDS_FONT_NAMES
+ * ---------------|--------------------------------------------------
+ * WEH | 12/11/14 | Pass w_current to setup_font_name_combo and use dynamically
+ *                  list of font names. Remove static IDS_FONT_NAMES
  */
 
 /*!
@@ -145,11 +148,6 @@
 
 #include <x_settings.h>                 /* Common Declarations and Enumerators */
 #include <x_settings_dialog.h>          /* Dialog String Data */
-
-const char* IDS_FONT_NAMES[] = {  /* Menu Icons Strings*/
-  DEFAULT_FONT_NAME, "FreeMono", "Courier New", "Helvetica", "Monospace", "Tahoma", "Symbol", "Verdana",
-  NULL
-};
 
 /* ---------------  Functions that Should Be Somewhere Else  --------------- */
 
@@ -1395,6 +1393,15 @@ int setup_titleblock_combo( char *titleblock ){
 }
 #endif
 
+static int
+cmp_families (const void *a, const void *b)
+{
+  const char *a_name = pango_font_family_get_name (*(PangoFontFamily **)a);
+  const char *b_name = pango_font_family_get_name (*(PangoFontFamily **)b);
+
+  return g_utf8_collate (a_name, b_name);
+}
+
 /*! \brief Loads Font Name Combo Box and Set Active
  *  \par Function Description:
  *   This function up loads font name strings into the FontName
@@ -1404,23 +1411,34 @@ int setup_titleblock_combo( char *titleblock ){
  *
  *  @param[in] cur_font ptr to name of current font.
  */
-void setup_font_name_combo(char* cur_font) {
+void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
+
+  PangoContext     *context;
+  PangoFontFamily **families;
 
   int current;
   int index;
-  const char* pfont;
+  int n_families;
+  const char* name;
+
+  context = gtk_widget_get_pango_context ( GTK_WIDGET (w_current->drawing_area));
+  pango_context_list_families (context, &families, &n_families);
+  qsort (families, n_families, sizeof (PangoFontFamily *), cmp_families);
 
   current = 0;
-  for ( index = 0; IDS_FONT_NAMES[index] != NULL; index++ ) {
 
-    pfont = IDS_FONT_NAMES[index];
-    GTK_LOAD_COMBO (FontName, pfont);
-    if ( cur_font && u_string_strequal(cur_font, pfont)) {
+  for (index = 0;index < n_families; index++) {
+
+    name = pango_font_family_get_name (families[index]);
+
+    GTK_LOAD_COMBO (FontName, name);
+    if ( cur_font && u_string_strequal(cur_font, name)) {
      current = index;
     }
   }
-  gtk_combo_box_set_active((GtkComboBox *)FontNameCombo, current);
 
+  gtk_combo_box_set_active((GtkComboBox *)FontNameCombo, current);
+  GEDA_FREE (families);
 }
 
 void setup_ripper_symbol_combo(char* cur_name) {
@@ -1838,7 +1856,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetCombo ( UndoType, w_current->undo_type );
 
   tmpstr = eda_config_get_string (cfg, group, "default-font-name", NULL);
-  setup_font_name_combo(tmpstr);
+  setup_font_name_combo(w_current, tmpstr);
   GEDA_FREE (tmpstr);
 
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);

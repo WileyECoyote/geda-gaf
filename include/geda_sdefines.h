@@ -33,7 +33,7 @@
 #ifdef _WIN32
   #define DEFAULT_FONT_NAME          "Arial"
 #else
-  #define DEFAULT_FONT_NAME          "FreeMono"
+  #define DEFAULT_FONT_NAME          "Bitstream Charter"
 #endif
 
 /*!
