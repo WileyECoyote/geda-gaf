@@ -3,6 +3,8 @@ if ENABLE_GATTRIB
 GATTRIB_DIR=gattrib
 endif
 
+CLEAN_DIRS = M4/*~
+
 SUBDIRS = bitmaps include intl libgeda libgedacairo libgedadraw \
 		  libgedauio libgedathon gaf ${GATTRIB_DIR} \
 		  gschem gsymcheck gnetlist utils symbols docs examples
@@ -94,7 +96,7 @@ maintainer-clean-local:
 	-rm -rf autom4te.cache
 
 MOSTLYCLEANFILES     = *~ *.log
-CLEANFILES           = *~ *.log
-DISTCLEANFILES       = *~ *.log Makefile.in stamp-git
-MAINTAINERCLEANFILES = *~ *.log aclocal.m4 config.h.in configure
+CLEANFILES           = *~ *.log $(CLEAN_DIRS)
+DISTCLEANFILES       = *~ *.log $(CLEAN_DIRS) Makefile.in stamp-git
+MAINTAINERCLEANFILES = *~ *.log $(CLEAN_DIRS) aclocal.m4 config.h.in configure
 
