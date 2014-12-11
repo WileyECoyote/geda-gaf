@@ -341,8 +341,10 @@ void x_window_restore_settings(GschemToplevel *w_current)
   else
     gtk_window_move (window, x, y);
 
-  /* If, for any reason, we pass a zero value to gtk_window_resize and error
-   * will be generated. This value should be set, as fail safe ... */
+  /* If, for any reason, we pass a zero value to gtk_window_resize an error
+   * will be generated. We double check these as fail safe because the above
+   * conditionals only set default values if an error occurred retrieving
+   * settings, so...*/
   if (width == 0 ) {
     width = 800;
   }

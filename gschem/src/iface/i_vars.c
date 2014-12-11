@@ -639,7 +639,7 @@ i_vars_init(GschemToplevel *w_current)
 
   /* This is the prefix of the default filename used for newly created
    * schematics and symbols. */
-  /// TRANSLATORS: this string is used to generate a filename for
+  /// TRANSLATORS: This string is used to generate a filename for
   /// newly-created files.  It will be used to create a filename of
   /// the form "untitled_N.sch", where N is a number.  Please make
   /// sure that the translation contains characters suitable for use
