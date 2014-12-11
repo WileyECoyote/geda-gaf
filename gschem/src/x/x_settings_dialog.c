@@ -1786,10 +1786,10 @@ bool load_settings_dialog (GschemToplevel *w_current)
     rc_options.display_outline_color_map = FALSE;
   }
 
-  color = eda_renderer_get_grips_stroke_color (w_current->renderer);
+  color = eda_renderer_get_grips_stroke_color (CairoRenderer);
   gtk_color_button_set_color(GTK_COLOR_BUTTON(GripStrokeColorButt), color);
 
-  color = eda_renderer_get_grips_fill_color (w_current->renderer);
+  color = eda_renderer_get_grips_fill_color (CairoRenderer);
   gtk_color_button_set_color(GTK_COLOR_BUTTON(GripFillColorButt), color);
 
   color = &w_current->mesh_grid_minor_color;
@@ -1798,13 +1798,13 @@ bool load_settings_dialog (GschemToplevel *w_current)
   color = &w_current->mesh_grid_major_color;
   gtk_color_button_set_color(GTK_COLOR_BUTTON(MeshMajorColorButt), color);
 
-  color = eda_renderer_get_net_endpoint_color (w_current->renderer);
+  color = eda_renderer_get_net_endpoint_color (CairoRenderer);
   gtk_color_button_set_color(GTK_COLOR_BUTTON(NetEndpointColorButt), color);
 
-  color = eda_renderer_get_text_marker_color (w_current->renderer);
+  color = eda_renderer_get_text_marker_color (CairoRenderer);
   gtk_color_button_set_color(GTK_COLOR_BUTTON(TextMarkerColorButt), color);
 
-  color = eda_renderer_get_junction_color (w_current->renderer);
+  color = eda_renderer_get_junction_color (CairoRenderer);
   gtk_color_button_set_color(GTK_COLOR_BUTTON(JunctionColorButt), color);
 
 /* Combo Boxes (7) */
@@ -1875,7 +1875,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSwitch(ContinuePlace, w_current->continue_component_place);
   SetSwitch(DelayScrolling, w_current->scrollbar_update);
   SetSwitch(DragMove, w_current->drag_can_move);
-  SetSwitch(DrawGrips, w_current->renderer->draw_grips);
+  SetSwitch(DrawGrips, CairoRenderer->draw_grips);
   SetSwitch(EmbedComponents, w_current->embed_components);
   SetSwitch(EnableColorImaging, toplevel->image_color);
   SetSwitch(EnableLog, logging);
@@ -1907,7 +1907,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSwitch(ScrollBars, w_current->scrollbars);
   SetSwitch(ScrollBarsVisible, w_current->scrollbars_visible);
   SetSwitch(SortLibrary, w_current->sort_component_library);
-  SetSwitch(TextOriginMarker, w_current->renderer->text_origin_marker);
+  SetSwitch(TextOriginMarker, CairoRenderer->text_origin_marker);
   SetSwitch(UndoViews, w_current->undo_panzoom);
   SetSwitch(WarpCursor, w_current->warp_cursor);
   SetSwitch(ZoomPan, w_current->zoom_with_pan);
@@ -1974,7 +1974,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSpin (AutoSaveInterval, w_current->toplevel->auto_save_interval);
   SetSpin (DotGridThreshold, w_current->dots_grid_threshold);
   SetSpin (GripPixelSize, w_current->grip_size);
-  SetSpin (JunctionSize, w_current->renderer->junction_size);
+  SetSpin (JunctionSize, CairoRenderer->junction_size);
   SetSpin (KeyboardPanGain, w_current->keyboardpan_gain);
   SetSpin (MeshGridThreshold, w_current->mesh_grid_threshold);
   SetSpin (MeshGridWidth, w_current->mesh_line_width_factor);
@@ -1983,7 +1983,7 @@ bool load_settings_dialog (GschemToplevel *w_current)
   SetSpin (ScrollPanSteps, w_current->scrollpan_steps);
   SetSpin (SelectPixels, w_current->select_slack_pixels);
   SetSpin (SnapSize, w_current->snap_size);
-  SetSpin (TextMarkerSize, w_current->renderer->text_marker_size);
+  SetSpin (TextMarkerSize, CairoRenderer->text_marker_size);
   SetSpin (TextSize, w_current->text_size);
   SetSpin (TextZoomFactor, w_current->text_display_zoomfactor);
 
@@ -2402,19 +2402,19 @@ void GatherSettings(GschemToplevel *w_current) {
                              &w_current->mesh_grid_major_color);
 
   gtk_color_button_get_color(GTK_COLOR_BUTTON(GripStrokeColorButt), &color);
-  eda_renderer_set_grips_stroke_color (w_current->renderer, &color);
+  eda_renderer_set_grips_stroke_color (CairoRenderer, &color);
 
   gtk_color_button_get_color(GTK_COLOR_BUTTON(GripFillColorButt), &color);
-  eda_renderer_set_grips_fill_color (w_current->renderer, &color);
+  eda_renderer_set_grips_fill_color (CairoRenderer, &color);
 
   gtk_color_button_get_color(GTK_COLOR_BUTTON(NetEndpointColorButt), &color);
-  eda_renderer_set_net_endpoint_color (w_current->renderer, &color);
+  eda_renderer_set_net_endpoint_color (CairoRenderer, &color);
 
   gtk_color_button_get_color(GTK_COLOR_BUTTON(TextMarkerColorButt), &color);
-  eda_renderer_set_text_marker_color (w_current->renderer, &color);
+  eda_renderer_set_text_marker_color (CairoRenderer, &color);
 
   gtk_color_button_get_color(GTK_COLOR_BUTTON(JunctionColorButt), &color);
-  eda_renderer_set_junction_color (w_current->renderer, &color);
+  eda_renderer_set_junction_color (CairoRenderer, &color);
 
 /* Combo Boxes (10) */
 
@@ -2470,7 +2470,7 @@ void GatherSettings(GschemToplevel *w_current) {
 
   tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (FontNameCombo));
   eda_config_set_string (cfg, group, "default-font-name", tmpstr);
-  eda_renderer_set_font_name(w_current->renderer, tmpstr);
+  eda_renderer_set_font_name(CairoRenderer, tmpstr);
   /* Don't free the font name string, belongs to the dialog control */
 
 /* The Switches Alphabetically (31) */
@@ -2484,7 +2484,7 @@ void GatherSettings(GschemToplevel *w_current) {
     x_menu_set_toggle(w_current, DRAG_CAN_MOVE, w_current->drag_can_move);
   }
 
-  w_current->renderer->draw_grips       = GET_SWITCH_STATE (DrawGripsSwitch);
+  CairoRenderer->draw_grips             = GET_SWITCH_STATE (DrawGripsSwitch);
   w_current->embed_components           = GET_SWITCH_STATE (EmbedComponentsSwitch);
    toplevel->image_color                = GET_SWITCH_STATE (EnableColorImagingSwitch);
    toplevel->invert_images              = GET_SWITCH_STATE (InvertImagesSwitch);
@@ -2519,7 +2519,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->scroll_wheel               = GET_SWITCH_STATE (ClassicWheelSwitch);
   w_current->sort_component_library     = GET_SWITCH_STATE (SortLibrarySwitch);
   w_current->pointer_hscroll            = GET_SWITCH_STATE (PointerHScrollSwitch);
-  w_current->renderer->text_origin_marker = GET_SWITCH_STATE (TextOriginMarkerSwitch);
+  CairoRenderer->text_origin_marker = GET_SWITCH_STATE (TextOriginMarkerSwitch);
   w_current->undo_control               = GET_SWITCH_STATE (EnableUndoSwitch);
   w_current->undo_panzoom               = GET_SWITCH_STATE (UndoViewsSwitch);
   w_current->warp_cursor                = GET_SWITCH_STATE (WarpCursorSwitch);
@@ -2535,7 +2535,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->bus_ripper_size            = GET_SPIN_IVALUE (RipperSizeSpin);
   w_current->dots_grid_threshold        = GET_SPIN_IVALUE (DotGridThresholdSpin);
   w_current->grip_size                  = GET_SPIN_IVALUE (GripPixelSizeSpin);
-  w_current->renderer->junction_size    = GET_SPIN_IVALUE (JunctionSizeSpin);
+  CairoRenderer->junction_size    = GET_SPIN_IVALUE (JunctionSizeSpin);
   w_current->keyboardpan_gain           = GET_SPIN_IVALUE (KeyboardPanGainSpin);
   w_current->mesh_grid_threshold        = GET_SPIN_IVALUE (MeshGridThresholdSpin);
   w_current->mesh_line_width_factor       = GET_SPIN_IVALUE (MeshGridWidthSpin);
@@ -2543,7 +2543,7 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->scrollpan_steps            = GET_SPIN_IVALUE (ScrollPanStepsSpin);
   w_current->select_slack_pixels        = GET_SPIN_IVALUE (SelectPixelsSpin);
   w_current->snap_size                  = GET_SPIN_IVALUE (SnapSizeSpin);
-  w_current->renderer->text_marker_size = GET_SPIN_IVALUE (TextMarkerSizeSpin);
+  CairoRenderer->text_marker_size = GET_SPIN_IVALUE (TextMarkerSizeSpin);
   w_current->text_size                  = GET_SPIN_IVALUE (TextSizeSpin);
   w_current->text_display_zoomfactor    = GET_SPIN_IVALUE (TextZoomFactorSpin);
 

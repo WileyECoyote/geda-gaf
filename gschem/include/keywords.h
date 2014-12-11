@@ -315,11 +315,11 @@ enum {
  RC_BOOLEAN_OUT(variable)     /* Expand Base */
 
 /*\remark
-   Use this Macro to write a w_current->renderer Boolean Variable
-   @param[in] variable   w_current->renderer integer variable
+   Use this Macro to write a CairoRenderer Boolean Variable
+   @param[in] variable   CairoRenderer integer variable
  */
 #define RC_BOOLEAN_ROUT(variable) \
- int state = w_current->renderer->variable; \
+ int state = CairoRenderer->variable; \
  RC_BOOLEAN_OUT(variable)     /* Expand Base */
 
 /*\remark
@@ -390,11 +390,11 @@ enum {
   RC_INTEGER_OUT(variable, 4)
 
   /*\remark
- * Use this Macro to write a w_current->renderer var with single integer
- * @param[in] variable   a w_current->renderer integer variable
+ * Use this Macro to write a CairoRenderer var with single integer
+ * @param[in] variable   a CairoRenderer integer variable
 */
 #define RC_INTEGER_ROUT(variable) \
-  int number = w_current->renderer->variable; \
+  int number = CairoRenderer->variable; \
   RC_INTEGER_OUT(variable, 4)
 
 /*\remark

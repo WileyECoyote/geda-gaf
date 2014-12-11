@@ -60,7 +60,7 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
     render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
   }
   */
-  renderer = g_object_ref (w_current->renderer);
+  renderer = g_object_ref (CairoRenderer);
 
   g_object_set (G_OBJECT (renderer),
                 "cairo-context", cr,

@@ -525,7 +525,7 @@ void x_dialog_edit_text (GschemToplevel *w_current, Object *text_object)
     font_label = geda_aligned_mnemonic_label_new(_LABEL(TextFont), 0, 0);
     gtk_table_attach(GTK_TABLE(table), font_label, 0,1,2,3, GTK_FILL,0,0,0);
 
-    font_name = eda_renderer_get_font_name (w_current->renderer);
+    font_name = eda_renderer_get_font_name (CairoRenderer);
     font_button = geda_font_button_new_with_font (font_name);
     geda_font_button_set_title((GedaFontButton*)font_button,
                                  "Select font and size");

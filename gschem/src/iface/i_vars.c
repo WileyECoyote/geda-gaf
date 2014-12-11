@@ -21,8 +21,6 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
-#define Renderer w_current->renderer
-
 /* Absolute default used when default_... strings are NULL */
 /* Which is to say that the values assigned here will be the */
 /* value assigned if a SCM does not return a different value */
@@ -49,7 +47,7 @@ int     default_override_pin_color        = RC_NIL;
 /* Display Sub-System */
 int     default_anti_aliasing             = RC_NIL;
 int     default_draw_grips                = RC_NIL;
-int     default_grip_size           = RC_NIL;
+int     default_grip_size                 = RC_NIL;
 
 int     default_grid_mode                 = RC_NIL;
 int     default_dots_grid_dot_size        = RC_NIL;
@@ -314,7 +312,7 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
 
   tmp_str = i_var_get_global_config_string (cfg, "default-font-name");
   if (tmp_str != NULL) {
-    eda_renderer_set_font_name(w_current->renderer, tmp_str);
+    eda_renderer_set_font_name(CairoRenderer, tmp_str);
     GEDA_FREE (tmp_str);
   }
 
@@ -349,16 +347,16 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
                                      anti_aliasing,         DEFAULT_ANTI_ALIASING);
 
   /* Grips Settings - Saved by: x_window_save_settings */
-  i_var_restore_window_boolean(cfg, "draw-grips",          &w_current->renderer->
+  i_var_restore_window_boolean(cfg, "draw-grips",          &CairoRenderer->
                                      draw_grips,            TRUE);
 
   i_var_restore_window_integer(cfg, "grip-size",            &w_current->
                                      grip_size,              DEFAULT_GRIP_SIZE);
 
-  i_var_restore_window_color (cfg,  "grips-stroke-color",  &w_current->renderer->
+  i_var_restore_window_color (cfg,  "grips-stroke-color",  &CairoRenderer->
                                      grip_stroke_color,     DEFAULT_GRIP_STROKE_COLOR);
 
-  i_var_restore_window_color (cfg,  "grips-fill-color",    &w_current->renderer->
+  i_var_restore_window_color (cfg,  "grips-fill-color",    &CairoRenderer->
                                      grip_fill_color,       DEFAULT_GRIP_FILL_COLOR);
 
   /* Grid Settings - Saved by: x_window_save_settings */
@@ -393,13 +391,13 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
                                      mesh_grid_major_color,    MESH_GRID_MAJOR_COLOR);
 
   /* Restore Cues & Endpoints settings - Saved by: x_window_save_settings */
-  i_var_restore_window_integer(cfg, "junction-size",       &w_current->renderer->
+  i_var_restore_window_integer(cfg, "junction-size",       &CairoRenderer->
                                      junction_size,         DEFAULT_JUNCTION_SIZE);
 
-  i_var_restore_window_color (cfg,  "junction-color",      &w_current->renderer->
+  i_var_restore_window_color (cfg,  "junction-color",      &CairoRenderer->
                                      junction_color,        DEFAULT_JUNCTION_COLOR);
 
-  i_var_restore_window_color (cfg,  "net-endpoint-color",  &w_current->renderer->
+  i_var_restore_window_color (cfg,  "net-endpoint-color",  &CairoRenderer->
                                      net_endpoint_color,    DEFAULT_NET_ENDPOINT_COLOR);
 
   /* Restore text related stuff - Saved by: x_settings_save_settings */
@@ -407,11 +405,11 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
   i_var_restore_global_integer(cfg, "text-zoomfactor",     &w_current->text_display_zoomfactor, DEFAULT_TEXT_ZOOM);
   i_var_restore_global_integer(cfg, "text-feedback",       &w_current->text_feedback, ALWAYS_FEEDBACK);
   i_var_restore_global_integer(cfg, "text-size",           &w_current->text_size,     DEFAULT_TEXT_SIZE);
-  i_var_restore_global_boolean(cfg, "text-origin-marker",  &w_current->renderer->
+  i_var_restore_global_boolean(cfg, "text-origin-marker",  &CairoRenderer->
                                      text_origin_marker,    TRUE);
-  i_var_restore_global_integer(cfg, "text-marker-size",    &w_current->renderer->
+  i_var_restore_global_integer(cfg, "text-marker-size",    &CairoRenderer->
                                      text_marker_size,      DEFAULT_TEXT_MARKER_SIZE);
-  i_var_restore_global_color(cfg,   "text_marker_color",   &w_current->renderer->
+  i_var_restore_global_color(cfg,   "text_marker_color",   &CairoRenderer->
                                      text_marker_color,     DEFAULT_TEXT_MARKER_COLOR);
 
   /* Pointer Device, aka Mouse stuff - Saved by: x_window_save_settings */
@@ -457,7 +455,7 @@ void i_vars_set(GschemToplevel *w_current)
 
   i_set_rc (&w_current->anti_aliasing,   default_anti_aliasing);
 
-  i_set_rc (&Renderer->draw_grips,       default_draw_grips);
+  i_set_rc (&CairoRenderer->draw_grips,       default_draw_grips);
   i_set_rc (&w_current->grip_size,       default_grip_size);
 
 /* Color Related */
@@ -595,8 +593,8 @@ void i_vars_set(GschemToplevel *w_current)
   i_set_rc (&w_current->text_display_zoomfactor, default_text_display_zoomfactor);
 
   w_current->text_feedback             = default_text_feedback;
-   Renderer->text_origin_marker        = default_text_origin_marker;
-   Renderer->text_marker_size          = default_text_marker_size;
+   CairoRenderer->text_origin_marker   = default_text_origin_marker;
+   CairoRenderer->text_marker_size     = default_text_marker_size;
   w_current->text_size                 = default_text_size;
 
 /* Undo Sub-System */
@@ -678,4 +676,3 @@ i_vars_atexit_save_user_config (void * user_data)
     g_clear_error (&err);
   }
 }
-#undef Renderer

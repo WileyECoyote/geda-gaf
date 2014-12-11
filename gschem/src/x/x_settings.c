@@ -222,15 +222,13 @@ void x_settings_save_settings(GschemToplevel *w_current)
 
   /* text-marker probably belong in the x_window_save group but for now well keep
    * text-marks stuff with text stuff */
-  eda_config_set_boolean (cfg, group_name, "text-origin-marker", w_current->
-                                  renderer->text_origin_marker);
-  eda_config_set_integer (cfg, group_name, "text-marker-size",   w_current->
-                                  renderer->text_marker_size);
+  eda_config_set_boolean (cfg, group_name, "text-origin-marker", CairoRenderer->text_origin_marker);
+  eda_config_set_integer (cfg, group_name, "text-marker-size",   CairoRenderer->text_marker_size);
 
-  array[0] = w_current->renderer->text_marker_color.pixel;
-  array[1] = w_current->renderer->text_marker_color.red;
-  array[2] = w_current->renderer->text_marker_color.green;
-  array[3] = w_current->renderer->text_marker_color.blue;
+  array[0] = CairoRenderer->text_marker_color.pixel;
+  array[1] = CairoRenderer->text_marker_color.red;
+  array[2] = CairoRenderer->text_marker_color.green;
+  array[3] = CairoRenderer->text_marker_color.blue;
   eda_config_set_int_list (cfg, group_name, "text_marker_color", array, 4);
 
   /* Undo Sub-System - Restored by o_undo_init */

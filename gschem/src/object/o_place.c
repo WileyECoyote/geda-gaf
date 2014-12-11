@@ -264,7 +264,7 @@ void o_place_invalidate_rubber (GschemToplevel *w_current, int drawing)
 void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
 {
   GedaToplevel *toplevel = w_current->toplevel;
-  cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
+  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
   int diff_x, diff_y;
 
   g_return_if_fail (toplevel->page_current->place_list != NULL);
@@ -298,8 +298,8 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
 
   /* Draw with the appropriate mode */
   if (w_current->last_drawb_mode == BOUNDINGBOX) {
-    GArray *map = eda_renderer_get_color_map (w_current->renderer);
-    int flags = eda_renderer_get_cairo_flags (w_current->renderer);
+    GArray *map = eda_renderer_get_color_map (CairoRenderer);
+    int flags = eda_renderer_get_cairo_flags (CairoRenderer);
     int left, top, bottom, right;
 
     /* Find the bounds of the drawing to be done */
@@ -316,7 +316,7 @@ void o_place_draw_rubber (GschemToplevel *w_current, int drawing)
   else {
     GList *iter;
     for (iter = Place_List; iter != NULL; NEXT(iter)) {
-      eda_renderer_draw (w_current->renderer, (Object *) iter->data);
+      eda_renderer_draw (CairoRenderer, (Object *) iter->data);
     }
   }
   cairo_restore (cr);

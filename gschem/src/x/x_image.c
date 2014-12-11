@@ -1057,7 +1057,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
                            "render-flags",  EDA_RENDERER_FLAG_HINTING,
                            NULL);
 
-  new_w_current->renderer = renderer;
+  new_w_current->cairo_renderer = renderer;
 
   /* if B&W then all colors in map except BACKGROUND_COLOR were set to black
    * but marks and enpoints may not be using the stock map so ...*/
@@ -1069,7 +1069,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   }
 
   new_w_current->grid_mode = GRID_NONE;
-  new_w_current->renderer->text_origin_marker = FALSE;
+  renderer->text_origin_marker = FALSE;
 
   new_w_current->screen_width  = new_w_current->image_width;
   new_w_current->screen_height = new_w_current->image_height;
@@ -1100,7 +1100,7 @@ GdkPixbuf *x_image_get_pixbuf (GschemToplevel *w_current, ImageExtent extent,
   }
 
   /* Cleanup resources */
-  eda_renderer_destroy (new_w_current->renderer);
+  eda_renderer_destroy (new_w_current->cairo_renderer);
   g_object_unref (layout);
   g_array_free (color_map, TRUE);
 

@@ -870,7 +870,7 @@ int o_grips_start(GschemToplevel *w_current, int w_x, int w_y)
   Object *object;
   int whichone;
 
-  if (w_current->renderer->draw_grips == FALSE) {
+  if (CairoRenderer->draw_grips == FALSE) {
     return(FALSE);
   }
 

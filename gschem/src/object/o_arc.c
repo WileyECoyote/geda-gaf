@@ -253,9 +253,9 @@ void o_arc_draw_rubber (GschemToplevel *w_current)
   int rdx, rdy;
   double wwidth = 0;
 
-  cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
-  GArray *color_map = eda_renderer_get_color_map (w_current->renderer);
-  int flags = eda_renderer_get_cairo_flags (w_current->renderer);
+  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
+  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
+  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
 
   eda_cairo_arc (cr, flags, wwidth,
                  w_current->first_wx, w_current->first_wy,

@@ -214,9 +214,9 @@ void o_box_draw_rubber (GschemToplevel *w_current)
 {
   int width = o_style_get_line_width(w_current->toplevel);
 
-  cairo_t *cr = eda_renderer_get_cairo_context (w_current->renderer);
-  GArray *color_map = eda_renderer_get_color_map (w_current->renderer);
-  int flags = eda_renderer_get_cairo_flags (w_current->renderer);
+  cairo_t *cr = eda_renderer_get_cairo_context (CairoRenderer);
+  GArray *color_map = eda_renderer_get_color_map (CairoRenderer);
+  int flags = eda_renderer_get_cairo_flags (CairoRenderer);
 
   eda_cairo_box (cr, flags, width, w_current->first_wx, w_current->first_wy,
                  w_current->second_wx, w_current->second_wy);

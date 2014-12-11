@@ -240,7 +240,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   render_outline_color_map = x_color_get_outline_color_map();
 
   /* Set up renderer */
-  renderer = g_object_ref (w_current->renderer);
+  renderer = g_object_ref (CairoRenderer);
 
   g_object_set (G_OBJECT (renderer),
                 "cairo-context", w_current->cr,
@@ -277,7 +277,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
         o_style_set_object(w_current->toplevel, o_current);
         o_draw_object(w_current, o_current);
-        //eda_renderer_draw (renderer, o_current);
+//        eda_renderer_draw (renderer, o_current);
     }
   }
 
@@ -310,7 +310,7 @@ return;
         eda_renderer_draw (renderer, o_current);
         eda_renderer_draw_cues (renderer, o_current);
 
-        if (w_current->renderer->draw_grips ) {
+        if (CairoRenderer->draw_grips ) {
           /* get the dynamic size of the grip */
           //grip_half_size = o_grips_half_size (w_current, o_current);
           //g_object_set (G_OBJECT (renderer), "grip-size",((double) grip_half_size * toplevel->page_current->to_world_x_constant), NULL);

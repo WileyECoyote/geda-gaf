@@ -487,7 +487,7 @@ o_move_draw_rubber (GschemToplevel *w_current, int drawing)
     object->line->y[whichone] += diff_y;
 
     /* Draw stretched object */
-    eda_renderer_draw (w_current->renderer, object);
+    eda_renderer_draw (CairoRenderer, object);
 
     /* Restore original geometry */
     object->line->x[whichone] -= diff_x;

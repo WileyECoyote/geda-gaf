@@ -51,8 +51,8 @@
 #define TASK_WAIT_INTERVAL      100   /* microseconds */
 #define MAX_WAIT_FOR_TASK        10   /* X x TASK_WAIT_INTERVAL */
 
-#define Renderer w_current->renderer
-#define Toplevel w_current->toplevel
+#define CairoRenderer w_current->cairo_renderer
+#define Toplevel      w_current->toplevel
 
 #define COMMAND(symbol, repeat, aflag,  func) [ cmd_##func ] = \
 { ACTION(symbol), repeat, 0, aflag, i_cmd_##func, 0, {0, 0}, 0, 0, 0},
@@ -144,7 +144,7 @@ static struct {
 #define CMD_STATUS(symbol)command_struc[cmd_##symbol].status
 
 #define GET_G(var)command_struc[cmd_##var].narg=var;
-#define GET_R(var)command_struc[cmd_##var].narg=Renderer->var;
+#define GET_R(var)command_struc[cmd_##var].narg=CairoRenderer->var;
 #define GET_T(var)command_struc[cmd_##var].narg=Toplevel->var;
 #define GET_W(var)command_struc[cmd_##var].narg=w_current->var;
 
@@ -4132,7 +4132,7 @@ COMMAND ( undo_type ) {
 /** @} END Group i_command_Variable_Handlers */
 /** @} END Group i_command Command Functions */
 
-#undef Renderer
+#undef CairoRenderer
 #undef Toplevel
 #undef CMD_FUNC
 #undef CMD_OPTIONS

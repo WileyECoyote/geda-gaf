@@ -324,15 +324,13 @@ extern "C" void o_draw_set_surface(GschemToplevel *w_current)
 
 extern "C" void o_draw_initialize(void)
 {
+  EdaConfig  *cfg      = eda_config_get_user_context();
+  const char *group    = IVAR_CONFIG_GROUP;
   const char *font_name;
 
   v_log_message(_("Initializing: Graphics Renderer Adaptor...."));
 
-#ifdef HAVE_XFT
-  font_name = DEFAULT_FONT_NAME;
-#else
-  font_name = "bitstream-bitstream";
-#endif
+  font_name = eda_config_get_string (cfg, group, "default-font-name", NULL);
 
   RenderAdaptor = new EdaX11Render(font_name);
 

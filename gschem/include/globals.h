@@ -151,6 +151,9 @@ typedef enum { ZOOM_OUT_DIRECTIVE,
 typedef enum {UNDO_NONE, UNDO_DISK, UNDO_MEMORY} EID_UNDO_TYPE;
 
 /* These macros are used to help reduce lines lengths */
+
+#define CairoRenderer w_current->cairo_renderer
+
 #define Current_Page      w_current->toplevel->page_current
 #define Current_Selection w_current->toplevel->page_current->selection_list
 #define Current_PlaceList w_current->toplevel->page_current->place_list

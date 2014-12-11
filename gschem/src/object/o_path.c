@@ -557,7 +557,7 @@ o_path_draw_rubber (GschemToplevel *w_current)
   Object *object;
   int added_sections = 0;
 
-  renderer = w_current->renderer;
+  renderer = CairoRenderer;
 
   /* Draw a helper for when we're dragging a control point */
   if (w_current->first_wx != w_current->second_wx
@@ -662,7 +662,7 @@ o_path_draw_rubber_grips (GschemToplevel *w_current)
                                    w_current->second_wx,
                                    w_current->second_wy, w_current->which_grip);
 
-  eda_renderer_draw (w_current->renderer, object);
+  eda_renderer_draw (CairoRenderer, object);
 
   /* Get rid of temp object */
   GEDA_UNREF(object);

@@ -32,7 +32,6 @@
 
 static GObjectClass *gschem_toplevel_parent_class = NULL;
 
-
 /*! \brief Type instance initialiser for GschemToplevel
  *
  *  \par Function Description
@@ -113,7 +112,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->screen_height      = 0;
 
   /* -------------------- Drawing state -------------------- */
-  w_current->renderer           = EDA_RENDERER (g_object_new (EDA_TYPE_RENDERER, NULL));
+  w_current->cairo_renderer     = EDA_RENDERER (g_object_new (EDA_TYPE_RENDERER, NULL));
   w_current->first_wx           = -1;
   w_current->first_wy           = -1;
   w_current->second_wx          = -1;
@@ -176,7 +175,7 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   /* ------------------ rc/user parameters ----------------- */
 
   /* Display Sub-System */
-    w_current->renderer->draw_grips    = TRUE;
+    CairoRenderer->draw_grips = TRUE;
 
   /* Grid Related - Display=>Grid */
     w_current->grid_mode               = GRID_MESH;
@@ -255,13 +254,14 @@ static void gschem_toplevel_instance_init( GTypeInstance *instance, void * g_cla
   w_current->print_command             = NULL;
 
   /* Text Related */
-  w_current->text_alignment               = 0;
-  w_current->text_case                    = BOTH_CASES;
-  w_current->text_display_zoomfactor      = DEFAULT_TEXT_ZOOM;
-  w_current->text_feedback                = ONLY_WHEN_READABLE;
-  w_current->renderer->text_origin_marker = TRUE;
-  w_current->renderer->text_marker_size   = DEFAULT_TEXT_MARKER_SIZE;
-  w_current->text_size                    = DEFAULT_TEXT_SIZE;
+  w_current->text_alignment            = 0;
+  w_current->text_case                 = BOTH_CASES;
+  w_current->text_display_zoomfactor   = DEFAULT_TEXT_ZOOM;
+  w_current->text_feedback             = ONLY_WHEN_READABLE;
+
+  CairoRenderer->text_origin_marker    = TRUE;
+  CairoRenderer->text_marker_size      = DEFAULT_TEXT_MARKER_SIZE;
+  w_current->text_size                 = DEFAULT_TEXT_SIZE;
 
   /* Undo Sub-System */
   w_current->undo_control              = 0;
@@ -305,9 +305,9 @@ static void gschem_toplevel_finalize( GObject *object )
     w_current->print_command = NULL;
   }
 
-  if (w_current->renderer != NULL) {
-    GEDA_UNREF (w_current->renderer);
-    w_current->renderer = NULL;
+  if (CairoRenderer != NULL) {
+    GEDA_UNREF (CairoRenderer);
+    CairoRenderer = NULL;
   }
 
   if (w_current->cr != NULL) {
