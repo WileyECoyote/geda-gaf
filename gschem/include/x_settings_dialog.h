@@ -197,10 +197,10 @@ WidgetStringData DialogStrings[] = {
         { "WindowSizeH900W650Radio",    "900 x 650",		"Good size for 1024x768"},
         { "WindowSizeH950W712Radio",    "950 x 712",		"Good size for 1152x864"},
         { "WindowSizeH1100W825Radio",   "1100 x 825",		"Good size for 1280x1024"},
-        { "WorldSizeRadio",             " World Size:",	        "Specifies the size of the world and a border in world space units this is not the paper size."},
-        { "WorldSizeSmallRadio",        "60.0 x 45.0 x 1.0",	"A small World"},
-        { "WorldSizeMediumRadio",       "120.0 x 90.0 x 1.0",	"Default normal World size"},
-        { "WorldSizeLargeRadio",        "180.0 x 135.0 x 1.0",  "Large World size"},
+        { "WorldSizeRadio",             "   World Size:",	    "Specifies the size of the world and a border in world space units this is not the paper size."},
+        { "WorldSizeSmallRadio",        "60.0 x 45.0",	 "A small World"},
+        { "WorldSizeMediumRadio",       "120.0 x 90.0",	 "Default normal World size"},
+        { "WorldSizeLargeRadio",        "180.0 x 135.0",  "Large World size"},
 
     /* Attributes TAB */
         { "DialogListAttributesRadio",     "Dialog Attributes:", "Options for the attributes list in the Select Component dialog."},

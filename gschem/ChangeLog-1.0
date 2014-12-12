@@ -1,3 +1,7 @@
+2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Rearange items on Preference Dialog Window Tab
+
 2014-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/x/x_settings_dialog.c: Pass GschemToplevel to setup_font_name_combo

@@ -2172,9 +2172,9 @@ create_settings_dialog (GschemToplevel *w_current)
   { /*------------------- Start Window TAB Contents -------------------*/
 
    GTK_START_TAB (WindowPref);
-     HSECTION (WindowPrefTab_vbox, DisplaySizeOptions) /* WT Row 1 Display Size */
-       GTK_V_QUAD_BULB(DisplaySizeOptions_hbox, WindowSize, 10, W650H487, W900H650, W950H712, W1100H825, W950H712);
-       GTK_V_BULB_TRIAD( DisplaySizeOptions_hbox, WorldSize, 20, Small, Medium, Large, Medium);
+     VSECTION (WindowPrefTab_vbox, DisplaySizeOptions) /* WT Row 1 Display Size */
+       GTK_H_QUAD_BULB(DisplaySizeOptions_vbox, WindowSize, 10, W650H487, W900H650, W950H712, W1100H825, W950H712);
+       GTK_H_BULB_TRIAD( DisplaySizeOptions_vbox, WorldSize, Small, Medium, Large, Medium);
      HD_SEPERATOR (WindowPrefTab_vbox, Grp2);
        HPSECTION(WindowPrefTab_vbox, GridOptions, DIALOG_V_SPACING) /* WT Row 2 */
          GTK_V_BULB_TRIAD( GridOptions_hbox, GridMode, 0, None, Dots, Mesh, Mesh);
