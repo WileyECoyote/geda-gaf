@@ -114,7 +114,6 @@ WidgetStringData DialogStrings[] = {
 
   /* String for Combo Controls  */
         { "TitleBlockCombo",        "Titleblock:",      "Name of Default Titleblock"},
-        { "ColorMapSchemeCombo",    "Scheme:",          "Choose which color scheme should be load at startup"},
         { "DotGridModeCombo",       "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-threshold."},
         { "ConsoleWindowTypeCombo", "  Window:",        "Controls if the console window is a transient or decorated as a normal window. The window manager is responsible for doing the decoration"},
         { "PointerCursorCombo",     "    Cursor:",      "Select the prefered Pointer Cursor Style"},
@@ -123,8 +122,9 @@ WidgetStringData DialogStrings[] = {
         { "UndoTypeCombo",          "Undo Type:",       "Controls which Undo System configuration. The default is to use the disk as the storing medium (ie after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
         { "FontNameCombo",          "Font:",            "Select the Default Font"},
         { "RipperSymbolCombo",      "Symbol:",          "Specify the symbol name to be used if ripper type is \"component\""},
-        { "RendererCombo",          "Renderer",         "Choose which rendering system to use"},
+        { "RendererCombo",          "     Renderer:",    "Choose which rendering system to use"},
         { "AntiAliasCombo",         "AntiAlias",        "Choose the Anti Alias level for the rendered"},
+        { "ColorMapSchemeCombo",    "  Scheme:",      "Choose which color scheme should be load at startup"},
 
   /* 1 String for Edit Controls Label */
         { "UntitledNameEntry",	        "Untitled Name:",	"Initial name for new drawings"},

@@ -173,9 +173,8 @@ typedef enum {
     /* Text TAB */
         TextMarkerColor,
 
-/* 10 Combo Controls  */
+/* 12 Combo Controls  */
         TitleBlock,
-        ColorMapScheme,
         DotGridMode,
         ConsoleWindowType,
         PointerCursor,
@@ -186,6 +185,7 @@ typedef enum {
         RipperSymbol,
         Renderer,
         AntiAlias,
+        ColorMapScheme,
 
 /* 1 Edit Control Ids  */
         UntitledName,

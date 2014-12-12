@@ -1867,6 +1867,9 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
+  SetCombo ( Renderer, w_current->render_adaptor );
+  SetCombo ( AntiAlias, w_current->anti_aliasing );
+
   tmpstr = eda_config_get_string (cfg, group, "default-filename", NULL);
   SetEntryText( UntitledNameEntry, tmpstr );
   GEDA_FREE (tmpstr);
@@ -2063,18 +2066,6 @@ create_settings_dialog (GschemToplevel *w_current)
        HSECTION (GeneralOptions_vbox, GeneralOptionsRow1)     /* Grp 2 Row 1 */
            GTK_SWITCH(GeneralOptionsRow1_hbox, FilePreview, 18, TRUE);
            GTK_NEW_COMBO (GeneralOptionsRow1_hbox, TitleBlock, 200, 49);
-       HSECTION (GeneralOptions_vbox, GeneralOptionsRow2)     /* Grp 2 Row 2 */
-           GTK_SWITCH(GeneralOptionsRow2_hbox, EnableColorImaging, 7, FALSE);
-           GTK_SWITCH(GeneralOptionsRow2_hbox, FriendlyColorMap, 114, TRUE);
-       HSECTION (GeneralOptions_vbox, GeneralOptionsRow3)     /* Grp 2 Row 3 */
-           GTK_SWITCH(GeneralOptionsRow3_hbox, InvertImages, 8, TRUE);
-           GTK_SWITCH(GeneralOptionsRow3_hbox, FriendlyOutlineMap, 101, TRUE);
-      HSECTION (GeneralOptions_vbox, GeneralOptionsRow4)     /* Grp 2 Row 4 */
-           GTK_NEW_COMBO (GeneralOptionsRow4_hbox, ColorMapScheme, 150, 27);
-              GTK_LOAD_COMBO (ColorMapScheme, "dark");
-              GTK_LOAD_COMBO (ColorMapScheme, "light");
-              GTK_LOAD_COMBO (ColorMapScheme, "BW");
-              GTK_LOAD_COMBO (ColorMapScheme, "custom");
      HXYP_SEPERATOR (GeneralPrefTab_vbox, Grp3, 10);
      CSECTION_OPTIONS(GeneralPrefTab_vbox, Logging, -1, 10, H); /* GT Grp 3 Log Related */
        VSECTION (LoggingOptions_hbox, LogOptions);   /* Grp 3 Row 1 */
@@ -2207,20 +2198,32 @@ create_settings_dialog (GschemToplevel *w_current)
 
   { /*-------------------- Start Render TAB Contents --------------------*/
    GTK_START_TAB (RenderPref);
-     HSECTION(RenderPrefTab_vbox, RenderRow1); /* ST Grp 1 Bus and Net */
-     GTK_NEW_COMBO (RenderRow1_hbox, Renderer, 0, DIALOG_H_SPACING);
-     gtk_widget_set_size_request (RendererCombo, 110, 31);
-     GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_CAIRO);
-     GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_X11);
-     GTK_NEW_COMBO (RenderRow1_hbox, AntiAlias, 0, DIALOG_H_SPACING);
-     gtk_widget_set_size_request (AntiAliasCombo, 110, 31);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GRAY);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_SUBPIXEL);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_FAST);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GOOD);
-     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_BEST);
+     HSECTION(RenderPrefTab_vbox, RenderOptionsRow1); /* ST Grp 1 */
+       GTK_NEW_COMBO (RenderOptionsRow1_hbox, Renderer, 10, 8);
+           gtk_widget_set_size_request (RendererCombo, 110, 31);
+           GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_CAIRO);
+           GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_X11);
+       GTK_NEW_COMBO (RenderOptionsRow1_hbox, AntiAlias, 10, 75);
+           gtk_widget_set_size_request (AntiAliasCombo, 130, 31);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GRAY);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_SUBPIXEL);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_FAST);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GOOD);
+           GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_BEST);
+     HSECTION (RenderPrefTab_vbox, RenderOptionsRow2)     /* Grp 2 Row 2 */
+       GTK_SWITCH(RenderOptionsRow2_hbox, EnableColorImaging, 7, FALSE);
+       GTK_SWITCH(RenderOptionsRow2_hbox, FriendlyColorMap, 85, TRUE);
+     HSECTION (RenderPrefTab_vbox, RenderOptionsRow3)     /* Grp 2 Row 3 */
+       GTK_SWITCH(RenderOptionsRow3_hbox, InvertImages, 8, TRUE);
+       GTK_SWITCH(RenderOptionsRow3_hbox, FriendlyOutlineMap, 75, TRUE);
+     HSECTION (RenderPrefTab_vbox, RenderOptionsRow4)     /* Grp 2 Row 4 */
+       GTK_NEW_COMBO (RenderOptionsRow4_hbox, ColorMapScheme, 150, 64);
+           GTK_LOAD_COMBO (ColorMapScheme, "dark");
+           GTK_LOAD_COMBO (ColorMapScheme, "light");
+           GTK_LOAD_COMBO (ColorMapScheme, "BW");
+           GTK_LOAD_COMBO (ColorMapScheme, "custom");
   GTK_END_TAB(RenderPref);
   } /***  END Text TAB Contents ***/
 
@@ -2492,6 +2495,9 @@ void GatherSettings(GschemToplevel *w_current) {
     u_string_strdup(gtk_combo_box_get_active_text(GTK_COMBO_BOX (RipperSymbolCombo)));
     strcpy(rc_options.ripper_symbol_fname, w_current->bus_ripper_symname); /* save the filename */
   }
+
+  w_current->render_adaptor   = gtk_combo_box_get_active (GTK_COMBO_BOX (RendererCombo));
+  w_current->anti_aliasing    = gtk_combo_box_get_active (GTK_COMBO_BOX (AntiAliasCombo));
 
   tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (FontNameCombo));
   eda_config_set_string (cfg, group, "default-font-name", tmpstr);

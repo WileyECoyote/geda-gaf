@@ -457,10 +457,10 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->world_right               = default_world_right;
   w_current->world_bottom              = default_world_bottom;
 
-  i_set_rc (&w_current->render_adaptor,  default_render_adaptor);
   i_set_rc (&w_current->anti_aliasing,   default_anti_aliasing);
   i_set_rc (&CairoRenderer->draw_grips,  default_draw_grips);
   i_set_rc (&w_current->grip_size,       default_grip_size);
+  i_set_rc (&w_current->render_adaptor,  default_render_adaptor);
 
 /* Color Related */
   w_current->background_color          = default_background_color;
@@ -483,15 +483,15 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->mesh_grid_major_alpha     = default_mesh_grid_major_alpha;
 
   if (default_dots_grid_minor_color.pixel != 88) {
-    w_current->dots_grid_minor_color.red     = default_dots_grid_minor_color.red;
-    w_current->dots_grid_minor_color.green   = default_dots_grid_minor_color.green;
-    w_current->dots_grid_minor_color.blue    = default_dots_grid_minor_color.blue;
+    w_current->dots_grid_minor_color.red   = default_dots_grid_minor_color.red;
+    w_current->dots_grid_minor_color.green = default_dots_grid_minor_color.green;
+    w_current->dots_grid_minor_color.blue  = default_dots_grid_minor_color.blue;
   }
 
   if (default_dots_grid_major_color.pixel != 88) {
-    w_current->dots_grid_major_color.red     = default_dots_grid_major_color.red;
-    w_current->dots_grid_major_color.green   = default_dots_grid_major_color.green;
-    w_current->dots_grid_major_color.blue    = default_dots_grid_major_color.blue;
+    w_current->dots_grid_major_color.red   = default_dots_grid_major_color.red;
+    w_current->dots_grid_major_color.green = default_dots_grid_major_color.green;
+    w_current->dots_grid_major_color.blue  = default_dots_grid_major_color.blue;
   }
 
   if (default_mesh_grid_minor_color.pixel != 88) {
