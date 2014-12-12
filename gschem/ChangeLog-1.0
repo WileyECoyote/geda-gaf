@@ -1,5 +1,9 @@
 2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
+    * include/gschem_toplevel.h: Add top-level variable render_adaptor
+
+2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_settings_dialog.c: Create Render TAB on Preference Dialog
 
 2014-12-11 Wiley E. Hill <wileyhill@gmail.com>

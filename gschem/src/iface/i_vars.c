@@ -45,6 +45,7 @@ int     default_override_bus_color        = RC_NIL;
 int     default_override_pin_color        = RC_NIL;
 
 /* Display Sub-System */
+int     default_render_adaptor            = RC_NIL;
 int     default_anti_aliasing             = RC_NIL;
 int     default_draw_grips                = RC_NIL;
 int     default_grip_size                 = RC_NIL;
@@ -316,17 +317,17 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
     GEDA_FREE (tmp_str);
   }
 
-  i_var_restore_global_boolean(cfg, "image-color",         &toplevel->
-                                     image_color,           TRUE);
+  i_var_restore_global_boolean(cfg, "image-color",        &toplevel->
+                                     image_color,          TRUE);
 
-  i_var_restore_global_boolean(cfg, "invert-images",       &toplevel->
-                                     invert_images,         TRUE);
+  i_var_restore_global_boolean(cfg, "invert-images",      &toplevel->
+                                     invert_images,        TRUE);
 
-  i_var_restore_global_integer(cfg, "image-width",         &w_current->
-                                     image_width,           DEFAULT_IMAGE_WIDTH);
+  i_var_restore_global_integer(cfg, "image-width",        &w_current->
+                                     image_width,          DEFAULT_IMAGE_WIDTH);
 
-  i_var_restore_global_integer(cfg, "image-height",        &w_current->
-                                     image_height,          DEFAULT_IMAGE_HEIGHT);
+  i_var_restore_global_integer(cfg, "image-height",       &w_current->
+                                     image_height,         DEFAULT_IMAGE_HEIGHT);
 
   /* User GedaFileChooser filter preference - Saved by: x_window_save_settings */
   i_var_restore_window_integer(cfg, "chooser-filter",     &w_current->
@@ -343,6 +344,9 @@ void i_vars_recall_user_settings(GschemToplevel *w_current)
                                      scrollbars_visible,    TRUE);
 
   /* Display Settings - Saved by: x_window_save_settings */
+  i_var_restore_window_integer(cfg, "render-adaptor",      &w_current->
+                                     render_adaptor,        DEFAULT_RENDERER);
+
   i_var_restore_window_integer(cfg, "anti-aliasing",       &w_current->
                                      anti_aliasing,         DEFAULT_ANTI_ALIASING);
 
@@ -453,9 +457,9 @@ void i_vars_set(GschemToplevel *w_current)
   w_current->world_right               = default_world_right;
   w_current->world_bottom              = default_world_bottom;
 
+  i_set_rc (&w_current->render_adaptor,  default_render_adaptor);
   i_set_rc (&w_current->anti_aliasing,   default_anti_aliasing);
-
-  i_set_rc (&CairoRenderer->draw_grips,       default_draw_grips);
+  i_set_rc (&CairoRenderer->draw_grips,  default_draw_grips);
   i_set_rc (&w_current->grip_size,       default_grip_size);
 
 /* Color Related */

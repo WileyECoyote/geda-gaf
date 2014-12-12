@@ -140,7 +140,10 @@ struct _GschemToplevel {
   edaColor grid_major_color;
 
   /* --------------------- Drawing state ------------------ */
+
   EdaRenderer *cairo_renderer;
+  int render_adaptor;
+
   int first_wx;
   int first_wy;
   int second_wx;

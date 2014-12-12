@@ -230,6 +230,25 @@ SCM g_rc_display_outline_color_map (SCM scm_map)
 /* Display Sub-System */
 
 /*! (category "Display")
+ *  (sub-category "Render")
+ *  \brief This function processes the render-adaptor RC entry.
+ *  \par Function Description
+ *       C function to dynamically convert lisp variable while
+ *       processing configuration data for the render-adaptor RC entry.
+ */
+SCM g_rc_render_adaptor(SCM mode)
+{
+  static const vstbl_entry mode_table[] = {
+    {CAIRO_ADAPTOR,  RC_RENDERER_OPTION_CAIRO},
+    {X11_ADAPTOR,    RC_RENDERER_OPTION_X11}
+  };
+
+  RETURN_G_RC_MODE("render-adaptor",
+                    default_render_adaptor,
+                    2);
+}
+
+/*! (category "Display")
  *  (sub-category "Cario")
  *  \brief This function processes the anti-aliasing RC entry.
  *  \par Function Description
@@ -258,7 +277,6 @@ SCM g_rc_anti_aliasing(SCM mode)
  *       C function to dynamically convert lisp variable while
  *       processing configuration data for draw-grips RC entry.
  *
- * Depreciated!
  */
 SCM g_rc_draw_grips(SCM mode)
 {

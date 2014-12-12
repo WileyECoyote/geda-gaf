@@ -257,6 +257,7 @@ static GtkWidget *NetEndpointColorButt;
 static GtkWidget *TextMarkerColorButt;
 
 /* The Combo Boxes */
+static GtkWidget *AntiAliasCombo;
 static GtkWidget *ColorMapSchemeCombo;
 static GtkWidget *DotGridModeCombo;
 static GtkWidget *ConsoleWindowTypeCombo;
@@ -267,6 +268,7 @@ static GtkWidget *TitleBlockCombo;
 static GtkWidget *UndoTypeCombo;
 static GtkWidget *FontNameCombo;
 static GtkWidget *RipperSymbolCombo;
+static GtkWidget *RendererCombo;
 
 /* The one and only Text Entry Box */
 static GtkWidget *UntitledNameEntry;
@@ -1327,6 +1329,8 @@ void combo_responder(GtkWidget *widget, void * data)
   case MiddleButton:
   case FontName:
   case RipperSymbol:
+  case Renderer:
+  case AntiAlias:
     break;
   default:
     BUG_IMSG( "Unknown Combo Id", WhichComboBox);
@@ -2202,10 +2206,24 @@ create_settings_dialog (GschemToplevel *w_current)
   } /*** END Window TAB Contents ***/
 
   { /*-------------------- Start Render TAB Contents --------------------*/
-
    GTK_START_TAB (RenderPref);
-   GTK_END_TAB(RenderPref);
+     HSECTION(RenderPrefTab_vbox, RenderRow1); /* ST Grp 1 Bus and Net */
+     GTK_NEW_COMBO (RenderRow1_hbox, Renderer, 0, DIALOG_H_SPACING);
+     gtk_widget_set_size_request (RendererCombo, 110, 31);
+     GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_CAIRO);
+     GTK_LOAD_COMBO (Renderer, RC_RENDERER_OPTION_X11);
+     GTK_NEW_COMBO (RenderRow1_hbox, AntiAlias, 0, DIALOG_H_SPACING);
+     gtk_widget_set_size_request (AntiAliasCombo, 110, 31);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_DEFAULT);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_NONE);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GRAY);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_SUBPIXEL);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_FAST);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_GOOD);
+     GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_BEST);
+  GTK_END_TAB(RenderPref);
   } /***  END Text TAB Contents ***/
+
   { /*-------------------- Start Styles TAB Contents --------------------*/
    GTK_START_TAB (StylesPref);
      HD_SEPERATOR (StylesPrefTab_vbox, Grp1);

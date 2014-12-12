@@ -643,6 +643,12 @@ KEYWORD (logging) {
   RC_BOOLEAN_GOUT (logging);
 }
 
+/** @brief function do_kw_render_adaptor in Settings-Keyword-Handlers */
+KEYWORD (render_adaptor) {
+  RC_RENDER_ADAPTOR_STRINGS;
+  RC_STRING_TABLE_W2OUT (render_adaptor);
+}
+
 /** @brief function do_kw_anti_aliasing in Settings-Keyword-Handlers */
 KEYWORD (anti_aliasing) {
   RC_ANTI_ALIASING_STRINGS;

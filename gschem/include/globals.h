@@ -93,7 +93,9 @@ extern SCM complex_place_list_changed_hook;
 #define ATTRIBUTE_UNUSED
 #endif
 
-typedef enum  { Image_Display, Image_All,} ImageExtent;
+typedef enum  { CAIRO_ADAPTOR, X11_ADAPTOR } RenderSystem;
+
+typedef enum  { Image_Display, Image_All } ImageExtent;
 
 /*! \brief Enumerated Sensitivity Mode - EID_SENITIVITY_MODE
  *  \par Description

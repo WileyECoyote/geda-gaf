@@ -69,6 +69,7 @@
 
      KEYWORD ( define_in_rc )
      KEYWORD ( load_in_rc )
+     KEYWORD ( render_adaptor)
      KEYWORD ( anti_aliasing )
      KEYWORD ( draw_grips )
      KEYWORD ( grip_size )
@@ -174,6 +175,7 @@ enum {
 #endif
      KEYWORD(define,                       1, 0, define_in_rc)
      KEYWORD(load,                         1, 0, load_in_rc)
+     KEYWORD(render-adaptor,               0, 0, render_adaptor)
      KEYWORD(anti-aliasing,                0, 0, anti_aliasing)
      KEYWORD(draw-grips,                   0, 0, draw_grips)
      KEYWORD(grip-size,                    0, 0, grip_size)

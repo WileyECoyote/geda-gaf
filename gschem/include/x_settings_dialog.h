@@ -43,7 +43,7 @@
 /*************************** CAUTION! ******************************/
 /*
  * String data for Labels and ToolTips in the string arrays are
- * referenced using enumerated ControlID's . To add or remove a
+ * referenced using enumerated Control ID's . To add or remove a
  * control:
  *
  *    1.) Be sure to add an enumerator in the ControlID array in the
@@ -113,7 +113,7 @@ WidgetStringData DialogStrings[] = {
         { "Select Text Marker Color", "Marker Color:",  "Set the color for text markers"},
 
   /* String for Combo Controls  */
-        { "TitleBlockCombo",        "Titleblock:",   "Name of Default Titleblock"},
+        { "TitleBlockCombo",        "Titleblock:",      "Name of Default Titleblock"},
         { "ColorMapSchemeCombo",    "Scheme:",          "Choose which color scheme should be load at startup"},
         { "DotGridModeCombo",       "  Dot Grid Mode:", "With variable mode, the dotted grid spacing changes depending on the zoom factor. In the fixed mode, the grid always represents the same number of units as the snap-spacing. The density of the dotted grid can be controled using the dots-grid-threshold."},
         { "ConsoleWindowTypeCombo", "  Window:",        "Controls if the console window is a transient or decorated as a normal window. The window manager is responsible for doing the decoration"},
@@ -122,7 +122,9 @@ WidgetStringData DialogStrings[] = {
         { "ThirdButtonCombo",       "Third Button:",    "Controls if the third mouse button displays a popup menu or performs panning"},
         { "UndoTypeCombo",          "Undo Type:",       "Controls which Undo System configuration. The default is to use the disk as the storing medium (ie after every action the undo information is stored to disk). The other mechanism uses only memory. The disk mechanism is slower but allows undoing even after a system crash"},
         { "FontNameCombo",          "Font:",            "Select the Default Font"},
-        { "RipperSymbolCombo",      "Symbol:",   "Specify the symbol name to be used if ripper type is \"component\""},
+        { "RipperSymbolCombo",      "Symbol:",          "Specify the symbol name to be used if ripper type is \"component\""},
+        { "RendererCombo",          "Renderer",         "Choose which rendering system to use"},
+        { "AntiAliasCombo",         "AntiAlias",        "Choose the Anti Alias level for the rendered"},
 
   /* 1 String for Edit Controls Label */
         { "UntitledNameEntry",	        "Untitled Name:",	"Initial name for new drawings"},

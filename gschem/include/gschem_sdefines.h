@@ -143,6 +143,10 @@
 /* Generic Strings for RC code */
 #define RC_STR_NONE            "none"
 
+/* Renderer Options */
+#define RC_RENDERER_OPTION_CAIRO   "Cario"
+#define RC_RENDERER_OPTION_X11     "X11"
+
 /* Strings for Anti-Aliasing RC mode */
 #define RC_STR_ANTIALIAS_DEFAULT   "default"
 #define RC_STR_ANTIALIAS_NONE       RC_STR_NONE
@@ -252,5 +256,3 @@
 #define RC_STR_UNDO_MEMORY     "memory"
 
 #endif /* !_GSCHEM_IDEFINES_H_INCL */
-
-

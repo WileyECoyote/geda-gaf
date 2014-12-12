@@ -77,6 +77,7 @@ struct rc_7_strings_t
  * enumerator ControlID
  */
 #define RC_BOOL_STRINGS(WhichOne) ((WhichOne) ? RC_STR_ENABLED : RC_STR_DISABLED)
+#define RC_RENDER_ADAPTOR_STRINGS struct rc_7_strings_t string_table = {RC_RENDERER_OPTION_CAIRO, RC_RENDERER_OPTION_X11, NULL, NULL};
 #define RC_ANTI_ALIASING_STRINGS struct rc_7_strings_t string_table = {RC_STR_ANTIALIAS_DEFAULT, RC_STR_ANTIALIAS_NONE \
                                                                        RC_STR_ANTIALIAS_GRAY, RC_STR_ANTIALIAS_SUBPIXEL \
                                                                        RC_STR_ANTIALIAS_FAST, RC_STR_ANTIALIAS_GOOD \
@@ -183,6 +184,8 @@ typedef enum {
         UndoType,
         FontName,
         RipperSymbol,
+        Renderer,
+        AntiAlias,
 
 /* 1 Edit Control Ids  */
         UntitledName,
