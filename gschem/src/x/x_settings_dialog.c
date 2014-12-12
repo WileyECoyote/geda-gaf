@@ -499,10 +499,12 @@ on_notebook_switch_page (GtkNotebook *notebook, GtkNotebookPage *page,
     gtk_widget_set_sensitive (ScrollBarsVisibleSwitch, state);
     gtk_widget_set_sensitive (DelayScrollingSwitch, state);
     break;
-  case TextPref:
+  case RenderPref:
+    break;
   case StylesPref:
     state = GET_SWITCH_STATE (RipperTypeSwitch);
     gtk_widget_set_sensitive (RipperSymbolCombo, state);
+  case TextPref:
     break;
   case AttributesPref:
     state = GET_SWITCH_STATE (DialogListAttributesListRadio);
@@ -2199,31 +2201,11 @@ create_settings_dialog (GschemToplevel *w_current)
    GTK_END_TAB(WindowPref);
   } /*** END Window TAB Contents ***/
 
-  { /*-------------------- Start Text TAB Contents --------------------*/
+  { /*-------------------- Start Render TAB Contents --------------------*/
 
-   GTK_START_TAB (TextPref);
-     VSECTION(TextPrefTab_vbox, TextOptionsGrp1); /* TT Grp 1 Text Options */
-       HSECTION (TextOptionsGrp1_vbox, TextOptionsRow1)   /* TT Grp 1 Row 1 Text Styles */
-         GTK_NUMERIC_SPIN (TextOptionsRow1_hbox, TextSize, 9, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
-         GTK_NEW_COMBO (TextOptionsRow1_hbox, FontName, 160, DIALOG_V_SPACING);
-       HSECTION (TextOptionsGrp1_vbox, TextOptionsRow2)   /* TT Grp 1 Row 1 Text Styles */
-         GTK_NUMERIC_SPIN (TextOptionsRow2_hbox, TextZoomFactor, 9, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
-       GEDA_FRAME (TextOptionsGrp1_vbox, Markers, -1, 110, 0.3, 0.2, DIALOG_H_SPACING);
-         VSECTION (Markers_hbox, MarkerOptions)  /* Grp 1 Row 1 */
-           HSECTION ( MarkerOptions_vbox, MarkerOptionsRow3)  /* Grp 1 Row 3 */
-             GTK_SWITCH(MarkerOptionsRow3_hbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
-           HSECTION (MarkerOptions_vbox, MarkerOptionsRow4)  /* Grp 1 Row 2 */
-             GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, DIALOG_H_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
-             GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
-     HD_SEPERATOR (TextPrefTab_vbox, Grp2);
-     HSECTION (TextPrefTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
-       GTK_V_BULB_TRIAD(CapsStyleOptions_hbox, CapsStyle, DIALOG_H_SPACING, Lower, Upper, Both, Both);
-     HD_SEPERATOR (TextPrefTab_vbox, Grp3);
-     HSECTION (TextPrefTab_vbox, TextOptionsGrp3) /* TT Grp 3 Feedback */
-       GTK_V_BULB_TRIAD(TextOptionsGrp3_hbox, TextFeedback, DIALOG_H_SPACING, Readable, Always, Default, Readable);
-   GTK_END_TAB(TextPref);
+   GTK_START_TAB (RenderPref);
+   GTK_END_TAB(RenderPref);
   } /***  END Text TAB Contents ***/
-
   { /*-------------------- Start Styles TAB Contents --------------------*/
    GTK_START_TAB (StylesPref);
      HD_SEPERATOR (StylesPrefTab_vbox, Grp1);
@@ -2267,6 +2249,31 @@ create_settings_dialog (GschemToplevel *w_current)
 
    GTK_END_TAB(StylesPref);
   } /*** END Styles TAB Contents ***/
+
+  { /*-------------------- Start Text TAB Contents --------------------*/
+
+   GTK_START_TAB (TextPref);
+     VSECTION(TextPrefTab_vbox, TextOptionsGrp1); /* TT Grp 1 Text Options */
+       HSECTION (TextOptionsGrp1_vbox, TextOptionsRow1)   /* TT Grp 1 Row 1 Text Styles */
+         GTK_NUMERIC_SPIN (TextOptionsRow1_hbox, TextSize, 9, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
+         GTK_NEW_COMBO (TextOptionsRow1_hbox, FontName, 160, DIALOG_V_SPACING);
+       HSECTION (TextOptionsGrp1_vbox, TextOptionsRow2)   /* TT Grp 1 Row 1 Text Styles */
+         GTK_NUMERIC_SPIN (TextOptionsRow2_hbox, TextZoomFactor, 9, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
+       GEDA_FRAME (TextOptionsGrp1_vbox, Markers, -1, 110, 0.3, 0.2, DIALOG_H_SPACING);
+         VSECTION (Markers_hbox, MarkerOptions)  /* Grp 1 Row 1 */
+           HSECTION ( MarkerOptions_vbox, MarkerOptionsRow3)  /* Grp 1 Row 3 */
+             GTK_SWITCH(MarkerOptionsRow3_hbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
+           HSECTION (MarkerOptions_vbox, MarkerOptionsRow4)  /* Grp 1 Row 2 */
+             GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, DIALOG_H_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
+             GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
+     HD_SEPERATOR (TextPrefTab_vbox, Grp2);
+     HSECTION (TextPrefTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */
+       GTK_V_BULB_TRIAD(CapsStyleOptions_hbox, CapsStyle, DIALOG_H_SPACING, Lower, Upper, Both, Both);
+     HD_SEPERATOR (TextPrefTab_vbox, Grp3);
+     HSECTION (TextPrefTab_vbox, TextOptionsGrp3) /* TT Grp 3 Feedback */
+       GTK_V_BULB_TRIAD(TextOptionsGrp3_hbox, TextFeedback, DIALOG_H_SPACING, Readable, Always, Default, Readable);
+   GTK_END_TAB(TextPref);
+  } /***  END Text TAB Contents ***/
 
   { /*------------------ Start Attribute TAB Contents ------------------*/
    GTK_START_TAB (AttributesPref);

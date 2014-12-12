@@ -135,8 +135,9 @@ typedef enum {
        EditPref,
        PointerPref,
        WindowPref,
-       TextPref,
+       RenderPref,
        StylesPref,
+       TextPref,
        AttributesPref,
        LibraryPref,
 } DialogTabs;
@@ -165,11 +166,11 @@ typedef enum {
         MeshMinorColor,
         MeshMajorColor,
 
-    /* Text TAB */
-        TextMarkerColor,
-
     /* Styles TAB */
         JunctionColor,  /* 13 */
+
+    /* Text TAB */
+        TextMarkerColor,
 
 /* 10 Combo Controls  */
         TitleBlock,

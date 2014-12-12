@@ -74,8 +74,9 @@ static WidgetStringData DialogTabData[] = {
         { "EditTab",           "Edit",         "Editing preferences"},
         { "PointerTab",        "Pointer",      "Mouse related configuration options"},
         { "WindowTab",         "Window",       "Window sizes and grid options"},
-        { "TextTab",           "Text",         "Text"},
+        { "RenderTab",         "Render",       "Renderer options"},
         { "StylesTab",         "Styles",       "Styles"},
+        { "TextTab",           "Text",         "Text options"},
         { "AttributesTab",     "Attributes",   "Attributes"},
         { "LibraryTab",        "Library",      "Library related perferences"},
 };
@@ -105,11 +106,11 @@ WidgetStringData DialogStrings[] = {
         { "Select Minor Mesh Color",  " Minor Mesh Color:",   "Set the mesh minor grid color"},
         { "Select Major Mesh Color",  " Major Mesh Color:",   "Set the mesh major grid color"},
 
-    /* Text TAB */
-        { "Select Text Marker Color", "Marker Color:",  "Set the color for text markers"},
-
     /* Styles TAB */
         { "Select Junction Color",  "Cue Color:",    "Set the color for junction cues"},
+
+    /* Text TAB */
+        { "Select Text Marker Color", "Marker Color:",  "Set the color for text markers"},
 
   /* String for Combo Controls  */
         { "TitleBlockCombo",        "Titleblock:",   "Name of Default Titleblock"},

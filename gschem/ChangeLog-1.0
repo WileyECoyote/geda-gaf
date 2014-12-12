@@ -1,6 +1,10 @@
 2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_settings_dialog.c: Rearange items on Preference Dialog Window Tab
+    * src/x/x_settings_dialog.c: Create Render TAB on Preference Dialog
+
+2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Rrearrange items on Preference Dialog Window Tab
 
 2014-12-10 Wiley E. Hill <wileyhill@gmail.com>
 
