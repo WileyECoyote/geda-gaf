@@ -1,3 +1,11 @@
+2014-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/base/gschem_parsecmd.c: Add render-adaptor command-line option
+
+2014-12-12 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/x/x_settings_dialog.c: Rearrange items on Preference Tabs
+
 2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
     * include/gschem_toplevel.h: Add top-level variable render_adaptor
@@ -8,7 +16,7 @@
 
 2014-12-11 Wiley E. Hill <wileyhill@gmail.com>
 
-    * src/x/x_settings_dialog.c: Rrearrange items on Preference Dialog Window Tab
+    * src/x/x_settings_dialog.c: Rearrange items on Preference Dialog Window Tab
 
 2014-12-10 Wiley E. Hill <wileyhill@gmail.com>
 

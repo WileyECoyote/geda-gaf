@@ -24,7 +24,7 @@
 #include <geda_debug.h>
 
 /* Colon after character means the argument expects a parameter strings */
-#define GETOPT_OPTIONS "c:hL:mno:p:qr:s:t:vVx:"
+#define GETOPT_OPTIONS "a:c:hL:mno:p:qr:s:t:vVx:"
 
 #ifndef OPTARG_IN_UNISTD
 extern char *optarg;
@@ -41,17 +41,18 @@ char *start_session;
 #ifdef HAVE_GETOPT_LONG
 struct option long_options[] =
   {
-    {"config-file", 1, 0, 'c'},
-    {"help",        0, 0, 'h'},
-    {"safe-mode",   0, 0, 'm'},
-    {"no-auto",     0, 0, 'n'},
-    {"output",      1, 0, 'o'},
-    {"version",     0, 0, 'V'},
-    {"quiet",       0, 0, 'q'},
-    {"run",         1, 0, 'r'},
-    {"start",       1, 0, 's'},
-    {"tmp-dir",     1, 0, 't'},
-    {"verbose",     0, 0, 'v'},
+    {"render-adaptor", 1, 0, 'a'},
+    {"config-file",    1, 0, 'c'},
+    {"help",           0, 0, 'h'},
+    {"safe-mode",      0, 0, 'm'},
+    {"no-auto",        0, 0, 'n'},
+    {"output",         1, 0, 'o'},
+    {"version",        0, 0, 'V'},
+    {"quiet",          0, 0, 'q'},
+    {"run",            1, 0, 'r'},
+    {"start",          1, 0, 's'},
+    {"tmp-dir",        1, 0, 't'},
+    {"verbose",        0, 0, 'v'},
     {0, 0, 0, 0}
   };
 #endif
@@ -85,6 +86,7 @@ usage(char *cmd)
     "schematic.\n"
     "\n"
     "Options:\n"
+    "  -a, --render-adaptor=DRV Specify which render adaptor to use, Cario or X11.\n"
     "  -c, --config-file=FILE   Additional configuration file to load.\n"
     "  -h, --help               Help; this message.\n"
     "  -L DIR                   Add DIR to Scheme search path.\n"
@@ -139,7 +141,8 @@ version ()
 int
 gschem_parse_commandline(int argc, char *argv[])
 {
-  int ch;
+  char *str;
+  int   ch;
 
   SCM sym_cons        = scm_from_utf8_symbol ("cons");
   SCM sym_set_x       = scm_from_utf8_symbol ("set!");
@@ -158,6 +161,21 @@ gschem_parse_commandline(int argc, char *argv[])
 #endif
 
     switch (ch) {
+
+      case 'a':
+        str = u_string_strdup (optarg);
+        if (str) {
+          if (strcmp(str, RC_RENDERER_OPTION_CAIRO) == 0) {
+            default_render_adaptor = CAIRO_ADAPTOR;
+          }
+          else if (strcmp(str, RC_RENDERER_OPTION_X11) == 0) {
+            default_render_adaptor = X11_ADAPTOR;
+          }
+          else {
+            GEDA_FREE(str);
+          }
+        }
+        break;
 
       case 'c':
         rc_filename = u_string_strdup (optarg);
