@@ -755,7 +755,7 @@ GtkWidget* x_dialog_create_search_replace_dialog (GtkWindow *parent, int find_on
     GTK_NEW_COMBO (InputText_hbox, SearchText, 200, 41);
 
   HSECTION (MainDialogVBox, NewText);   /*  Row 2 */
-    GEDA_NEW_COMBO (NewText_hbox, ReplaceText, 200, 41);
+    GTK_NEW_COMBO (NewText_hbox, ReplaceText, 200, 41);
   if (find_only_mode) {
     gtk_widget_hide(ReplaceTextLabel);
     gtk_widget_hide(ReplaceTextCombo);

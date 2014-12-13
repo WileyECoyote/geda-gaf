@@ -1,3 +1,8 @@
+2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * gattrib/src/x_dialog.c: Change GEDA_NEW_COMBO to GTK_NEW_COMBO
+      in function x_dialog_create_search_replace_dialog.
+
 2014-11-27 Wiley E. Hill <wileyhill@gmail.com>
 
     * po/POTFILES.in: Remove src/gtksheet.c, the file does not exist
