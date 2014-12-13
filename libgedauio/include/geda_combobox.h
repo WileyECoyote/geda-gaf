@@ -130,7 +130,7 @@ void          geda_combo_box_insert_text      (GedaComboBox   *combo_box,
                                                const char     *text);
 void          geda_combo_box_prepend_text     (GedaComboBox   *combo_box,
                                                const char     *text);
-void          geda_combo_box_remove_text      (GedaComboBox   *combo_box,
+void          geda_combo_box_remove_index     (GedaComboBox   *combo_box,
                                                int             position);
 char         *geda_combo_box_get_active_text  (GedaComboBox   *combo_box);
 

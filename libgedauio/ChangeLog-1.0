@@ -1,3 +1,8 @@
+2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_combobox.c: General code cleaning, rename function
+        geda_combo_box_remove_text geda_combo_box_remove_index.
+
 2014-11-23 Wiley E. Hill <wileyhill@gmail.com>
 
       * include/geda_threads.h: New header for new module
