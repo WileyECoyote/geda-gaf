@@ -51,31 +51,97 @@
 
 #include <geda_draw.h>
 
-void EdaX11Render::SetupFontfamily(const char *font_name)
+/* Used run-time by the text renderer funtion to determine if the
+ * current font needs to be updated */
+bool
+EdaX11Render::QueryCurrentFont (const char *font_name, int size)
 {
-  char* tmp_string;
-  if (font_name == NULL ) {
+  char *tmp_string;
+  int   new_size;
+  bool  update;
+
+  tmp_string = NULL;
+  update     = false;
+
+  if (font_name == NULL) {
+    font_name = font_family.c_str();
+  }
+  else {
+    update = true;
+  }
 
 #if HAVE_XFT
-    font_name  = "morpheus";
+  new_size    = (size / scale) * FONT_SIZE_FACTOR;
 #else
-    font_name  = "bitstream-bitstream";
+  new_size    = size < 8 ? 8 : size;
+#endif
+
+  if (font_size != new_size || update) {
+
+    font_size = new_size;
+
+#if HAVE_XFT
+    tmp_string = u_string_sprintf("%s-%d", font_name, new_size);
+#else
+    tmp_string = u_string_sprintf("-%s charter-medium-i-normal--0-0-0-0-p-0-iso8859-1", font_name);
 #endif
 
   }
+  else {
+    tmp_string = NULL;
+  }
 
-  font_family = font_name;
+  if (tmp_string) {
 
-#if HAVE_XFT
-  font_size   = font_size < 8 ? 8 : font_size;
-  tmp_string  = u_string_sprintf("%s-%d", font_name, font_size);
-#else
-  tmp_string  = u_string_sprintf("-%s charter-medium-i-normal--0-0-0-0-p-0-iso8859-1", font_name);
-#endif
+    if (!font_string.compare(tmp_string)) {
+      update  = false;
+    }
+    else {
+      font_string = tmp_string;
+      update = true;
+    }
 
-  font_string = tmp_string;
+    GEDA_FREE(tmp_string);
+  }
 
-  GEDA_FREE(tmp_string);
+  return update;
+}
+/*
+ * This routine returns True if the font string is a properly formed
+ * XLFD styled font name with a pixel size, point size, and average
+ * width (fields 7,8, and 12) are "0".
+ */
+bool EdaX11Render::IsScalableFont(char *name)
+{
+  int i, field;
+  bool anwser;
+
+  if ((name == NULL) || (name[0] != '-')) {
+    anwser = false;
+  }
+  else {
+
+    anwser = true;
+
+    for(i = field = 0; name[i] != '\0' && field <= 14; i++) {
+      if (name[i] == '-') {
+        field++;
+        if ((field == 7) || (field == 8) || (field == 12)) {
+          if ((name[i+1] != '0') || (name[i+2] != '-')) {
+            anwser = false;
+            break;
+          }
+        }
+      }
+    }
+
+    if (anwser) {
+      if (field != 14) {
+        anwser = false;
+      }
+    }
+  }
+  return anwser;
 }
 
 #if DEBUG
@@ -91,6 +157,14 @@ int EdaX11Render::XSetColorRed(void)
 }
 #endif
 
+/* Call from all drawing routines to set line properties,
+ * i.e. cap-style, style and width. The total (length)
+ * parameter is used to adjust the dash-length and spaces
+ * for dash, center and phantom styles so tht short lines
+ * look better when the specified dash-length exceeds 20%
+ * of the segment length. Could be improved further but is
+ * better than what we do with Cairo renderer.
+ */
 unsigned int
 EdaX11Render::SetLineAttributes(XGCValues *gcvals, int total)
 {
@@ -189,6 +263,58 @@ EdaX11Render::SetLineAttributes(XGCValues *gcvals, int total)
   return success ? GCCapStyle | GCLineStyle | GCLineWidth : 0;
 }
 
+void EdaX11Render::DrawBezierCurve (XPoint *points)
+{
+  double A, B, C, D, E, F, G, H;  /* The Coefficients */
+  double time;
+  double step;
+
+  int from_x, from_y, to_x, to_y;
+
+  /* Calculation Coefficients */
+  int x0 = points[0].x;
+  int y0 = points[0].y;
+  int x1 = points[1].x;
+  int y1 = points[1].y;
+  int x2 = points[2].x;
+  int y2 = points[2].y;
+  int x3 = points[3].x;
+  int y3 = points[3].y;
+
+  A = x3 - 3 * x2  + 3 * x1 - x0;
+  B = 3 * x2 - 6 * x1 + 3 * x0;
+  C = 3 * x1 - 3 * x0;
+  D = x0;
+  E = y3 - 3 * y2 + 3 * y1 - y0;
+  F = 3 * y2 - 6 * y1 + 3 * y0;
+  G = 3 * y1 - 3 * y0;
+  H = y0;
+
+  from_x = x0;
+  from_y = y0;
+  step   = BEZIER_STEP;
+
+  /* Step from 0 to 1 in BEZIER_STEP increments and
+   * calculate X,Y and draw a line from previous point */
+  for(time = step; time <= 1; time = time + step) {
+
+    to_x = ((( A * time ) + B ) * time + C ) * time + D;
+    to_y = ((( E * time ) + F ) * time + G ) * time + H;
+
+    XDrawLine(display, drawable, gc, from_x, from_y, to_x, to_y);
+
+#if DEBUG
+    XSetColorRed();
+    XDrawPoint(display, drawable, gc, from_x, from_y);
+#endif
+
+    from_x = to_x;
+    from_y = to_y;
+  }
+}
+
+/*---------------------- Begin Public Drawing Routines ----------------------*/
+
 /* Only God knows what xorg developers were thinking, obviously the developer
  * were confused */
 void EdaX11Render::
@@ -249,7 +375,7 @@ void EdaX11Render::geda_x11_draw_circle (int cx, int cy, int radius)
 
   int x, y;
   int circum;
-
+  int axe;
   unsigned long bits;
 
   circum = m_circumference(radius);
@@ -259,10 +385,10 @@ void EdaX11Render::geda_x11_draw_circle (int cx, int cy, int radius)
 
     XChangeGC(display, gc, bits, &gcvals);
 
-    x = cx - radius / 2;
-    y = cy - radius / 2;
-
-    XDrawArc(display, drawable, gc, x, y, radius, radius, 0, 360*64);
+    x    = cx - radius;
+    y    = cy - radius;
+    axe  = radius * 2;
+    XDrawArc(display, drawable, gc, x, y, axe, axe, 0, 360*64);
 
   }
 
@@ -297,53 +423,6 @@ void EdaX11Render::geda_x11_draw_net (int x1, int y1, int x2, int y2)
     XDrawLine(display, drawable, gc, x1, y1, x2, y2);
   }
   return;
-}
-
-void EdaX11Render::DrawBezierCurve (XPoint *points)
-{
-  double A, B, C, D, E, F, G, H;
-  double time;
-  double step;
-
-  int from_x, from_y, to_x, to_y;
-
-  int x0 = points[0].x;
-  int y0 = points[0].y;
-  int x1 = points[1].x;
-  int y1 = points[1].y;
-  int x2 = points[2].x;
-  int y2 = points[2].y;
-  int x3 = points[3].x;
-  int y3 = points[3].y;
-
-  A = x3 - 3 * x2  + 3 * x1 - x0;
-  B = 3 * x2 - 6 * x1 + 3 * x0;
-  C = 3 * x1 - 3 * x0;
-  D = x0;
-  E = y3 - 3 * y2 + 3 * y1 - y0;
-  F = 3 * y2 - 6 * y1 + 3 * y0;
-  G = 3 * y1 - 3 * y0;
-  H = y0;
-
-  from_x = x0;
-  from_y = y0;
-  step   = BEZIER_STEP;
-
-  for(time = step; time <= 1; time = time + step) {
-
-    to_x = ((( A * time ) + B ) * time + C ) * time + D;
-    to_y = ((( E * time ) + F ) * time + G ) * time + H;
-
-    XDrawLine(display, drawable, gc, from_x, from_y, to_x, to_y);
-
-#if DEBUG
-    XSetColorRed();
-    XDrawPoint(display, drawable, gc, from_x, from_y);
-#endif
-
-    from_x = to_x;
-    from_y = to_y;
-  }
 }
 
 #pragma GCC diagnostic push
@@ -475,9 +554,9 @@ void EdaX11Render::geda_x11_draw_text (int x, int y)
 #else
 
     /* set up font */
-    int new_size    = (o_text->size / scale) * 10;
-    char *tmp_string = u_string_sprintf("-misc-fixed-*-*-*-*-%d-*-*-*-*-*-*-*", new_size);
-    fprintf(stderr,"using: %s\n", tmp_string);
+    int new_size     = (o_text->size / scale) * FONT_SIZE_FACTOR;
+    char *tmp_string = u_string_sprintf(font_string.c_str(), new_size);
+    //fprintf(stderr,"using: %s\n", tmp_string);
     //if (!font) {
       font = XLoadQueryFont(display, tmp_string);
     //}
@@ -515,58 +594,74 @@ geda_x11_draw_set_color (unsigned short red, unsigned short green, unsigned shor
   return;
 }
 
-bool
-EdaX11Render::geda_x11_draw_query_free (const char *font_name, int size)
+int EdaX11Render::geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 {
-  char *tmp_string;
-  int   new_size;
-  bool  update;
+  int length;
 
-  tmp_string = NULL;
-  update     = false;
+  length = font_family.length();
+  length = font_family.copy(font_name, size_of_buffer, 0);
+  font_name[length] = '\0';
 
-  if (font_name == NULL) {
-    font_name = font_family.c_str();
-  }
-  else {
-    update = true;
-  }
+  return length;
+}
 
-#if HAVE_XFT
-  new_size    = (size / scale) * 10;
-#else
-  new_size    = size < 8 ? 8 : size;
-#endif
+void EdaX11Render::geda_x11_draw_set_font_name (const char *font_name)
+{
+  char* tmp_string;
 
-  if (font_size != new_size || update) {
-
-    font_size = new_size;
+  if (font_name == NULL ) {
 
 #if HAVE_XFT
-    tmp_string = u_string_sprintf("%s-%d", font_name, new_size);
+    font_name  = "morpheus";
 #else
-    tmp_string = u_string_sprintf("-%s charter-medium-i-normal--0-0-0-0-p-0-iso8859-1", font_name);
+    font_name  = DEFAULT_FONT_NAME;
 #endif
 
   }
-  else {
-    tmp_string = NULL;
+
+  font_family = font_name;
+
+#if HAVE_XFT
+  font_size   = font_size < 8 ? 8 : font_size;
+  tmp_string  = u_string_sprintf("%s-%d", font_name, font_size);
+#else
+  tmp_string  = u_string_sprintf("-*-%s", font_name);
+#endif
+
+  font_string = tmp_string;
+
+#ifndef HAVE_XFT
+  font_string  = font_string + "-medium-r-normal--%d-0-0-0-p-0-iso10646-1";
+#endif
+
+  GEDA_FREE(tmp_string);
+}
+
+void EdaX11Render::geda_x11_draw_set_font (const char *font_name, int size)
+{
+  font_size = size;
+  geda_x11_draw_set_font_name(font_name);
+}
+
+bool EdaX11Render::geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
+{
+  bool result;
+  int  maxnames = 256;
+  int  count;
+  int  index;
+  char **font_list;
+
+  font_list = XListFonts (display, pattern, maxnames, &count);
+
+  for (index = 0; index < count; index++) {
+    char *name = u_string_strdup(font_list[index]);
+    g_array_append_val (listing, name);
   }
+  XFreeFontNames(font_list);
 
-  if (tmp_string) {
+  result = true;
 
-    if (!font_string.compare(tmp_string)) {
-      update  = false;
-    }
-    else {
-      font_string = tmp_string;
-      update = true;
-    }
-
-    GEDA_FREE(tmp_string);
-  }
-
-  return update;
+  return result;
 }
 
 void EdaX11Render::geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
@@ -620,8 +715,9 @@ EdaX11Render::~EdaX11Render () {
   xftdraw = NULL;
 
 #else
-
-  XFreeFont(display, font);
+  if (font) {
+    XFreeFont(display, font);
+  }
 
 #endif
 
@@ -658,6 +754,6 @@ EdaX11Render::EdaX11Render (const char *font_name) {
 
 #endif
 
-  SetupFontfamily(font_name);
+  geda_x11_draw_set_font_name(font_name);
   return;
 }

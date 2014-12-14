@@ -1,3 +1,8 @@
+2014-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+     *: Continuing development of new renderer, add font routines as needed to
+        set and restore the basic font configuration.
+
 2014-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
      *: Switch code base to c++ to improve performance (by having an object rather

@@ -5,7 +5,7 @@
  * gEDA - GPL Electronic Design Automation
  * gschem - gEDA Schematic Capture
  *
- * Copyright (C) 2012-2014 Wiley Edward Hill <wileyhill@gmail.com>
+ * Copyright (C) 2014 Wiley Edward Hill <wileyhill@gmail.com>
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,8 @@
 #ifndef __GEDA_DRAW_H__
 #define __GEDA_DRAW_H__
 
+
+#define FONT_SIZE_FACTOR 18
 #define BEZIER_STEP 0.0025
 
 #include "geda_x11.hpp"
