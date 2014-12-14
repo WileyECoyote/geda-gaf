@@ -214,6 +214,42 @@ void geda_list_add_unique ( GedaList *list, void *item )
   }
 }
 
+/*! \brief Add pointer to a string to the GedaList if not already in list
+ *
+ *  \par Function Description
+ *  Adds the given item to the GedaList if the string is not found
+ *  in the data associated with the list.
+ *
+ *  \param [in] list Pointer to the GedaList
+ *  \param [in] item item to add to the GedaList.
+ *
+ *  \returns TRUE if the string pointer was added
+ */
+bool geda_list_add_unique_string (GedaList *list, char  *text)
+{
+  GList *iter;
+  char  *str;
+  bool   found;
+
+  found = FALSE;
+
+  for (iter = list->glist; iter; iter = iter->next) {
+
+    str = iter->data;
+
+    if (str != NULL && isalpha (str[0])) {
+      if (strcmp(text, str) == 0) {
+        found = TRUE;
+        break;  /* No need to continue */
+      }
+    }
+  }
+
+  if (!found) {
+    list->glist = g_list_append(list->glist, text);
+  }
+  return !found;
+}
 
 /*! \brief Returns a copy of the glist associated with the given GedaList
  *

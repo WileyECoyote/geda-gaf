@@ -1,5 +1,9 @@
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/geda/geda_list.c: Add new function geda_list_add_unique_string
+
+2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * include/libgeda/geda_list.h: Add Macro geda_list_free_full
 
 2014-12-09 Wiley E. Hill <wileyhill@gmail.com>
