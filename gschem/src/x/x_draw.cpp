@@ -43,7 +43,7 @@
 
 static EdaX11Render *RenderAdaptor;
 
-static void o_draw_set_color(GschemToplevel *w_current)
+static void x_draw_set_color(GschemToplevel *w_current)
 {
   GdkColor *color;
   Object   *o_current = RenderAdaptor->object;
@@ -59,7 +59,7 @@ static void o_draw_set_color(GschemToplevel *w_current)
 }
 
 static void
-o_draw_arc (GschemToplevel *w_current)
+x_draw_arc (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -72,7 +72,7 @@ o_draw_arc (GschemToplevel *w_current)
     int angle1;
     int angle2;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     o_arc   = o_current->arc;
     radius  = o_arc->width / 2;
@@ -87,7 +87,7 @@ o_draw_arc (GschemToplevel *w_current)
 }
 
 static void
-o_draw_circle (GschemToplevel *w_current)
+x_draw_circle (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -97,10 +97,11 @@ o_draw_circle (GschemToplevel *w_current)
     int scx, scy;
     int radius;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     o_circle = o_current->circle;
-    radius   = pix_x (w_current, o_current->circle->radius);
+
+    radius = SCREENabs(w_current, o_current->circle->radius);
 
     WORLDtoSCREEN (w_current, o_circle->center_x, o_circle->center_y, &scx,  &scy);
 
@@ -109,7 +110,7 @@ o_draw_circle (GschemToplevel *w_current)
 }
 
 static void
-o_draw_box (GschemToplevel *w_current)
+x_draw_box (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -119,7 +120,7 @@ o_draw_box (GschemToplevel *w_current)
     int sx1, sy1, sx2, sy2;
     int width, height;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     o_box = o_current->box;
 
@@ -134,7 +135,7 @@ o_draw_box (GschemToplevel *w_current)
 }
 
 static void
-o_draw_line (GschemToplevel *w_current)
+x_draw_line (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -143,7 +144,7 @@ o_draw_line (GschemToplevel *w_current)
     Line *o_line;
     int sx1, sy1, sx2, sy2;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     o_line = o_current->line;
 
@@ -155,7 +156,7 @@ o_draw_line (GschemToplevel *w_current)
 }
 
 static void
-o_draw_bus (GschemToplevel *w_current)
+x_draw_bus (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -164,7 +165,7 @@ o_draw_bus (GschemToplevel *w_current)
     Line *o_line;
     int sx1, sy1, sx2, sy2;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     o_line = o_current->line;
 
@@ -176,7 +177,7 @@ o_draw_bus (GschemToplevel *w_current)
 }
 
 static void
-o_draw_net (GschemToplevel *w_current)
+x_draw_net (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -185,7 +186,7 @@ o_draw_net (GschemToplevel *w_current)
     Line *o_line;
     int sx1, sy1, sx2, sy2;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     o_line = o_current->line;
 
@@ -197,7 +198,7 @@ o_draw_net (GschemToplevel *w_current)
 }
 
 static void
-o_draw_path (GschemToplevel *w_current)
+x_draw_path (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -208,7 +209,7 @@ o_draw_path (GschemToplevel *w_current)
     int     nsections;
     int     i;
 
-    o_draw_set_color (w_current);
+    x_draw_set_color (w_current);
 
     tmp_obj   = o_path_copy (o_current);
     s_path    = tmp_obj->path;
@@ -238,18 +239,18 @@ o_draw_path (GschemToplevel *w_current)
 }
 
 static void
-o_draw_pin (GschemToplevel *w_current)
+x_draw_pin (GschemToplevel *w_current)
 {
-  o_draw_line (w_current);
+  x_draw_line (w_current);
 }
 static void
-o_draw_picture (GschemToplevel *w_current)
+x_draw_picture (GschemToplevel *w_current)
 {
 
 }
 
 static void
-o_draw_text (GschemToplevel *w_current)
+x_draw_text (GschemToplevel *w_current)
 {
   Object *o_current = RenderAdaptor->object;
 
@@ -261,7 +262,7 @@ o_draw_text (GschemToplevel *w_current)
       Text *o_text;
       int   sx, sy;
 
-      o_draw_set_color (w_current);
+      x_draw_set_color (w_current);
 
       o_text = o_current->text;
 
@@ -273,7 +274,7 @@ o_draw_text (GschemToplevel *w_current)
 }
 
 static void
-o_draw_complex (GschemToplevel *w_current)
+x_draw_complex (GschemToplevel *w_current)
 {
   GList    *iter;
 
@@ -281,48 +282,76 @@ o_draw_complex (GschemToplevel *w_current)
 
   while (iter) {
     Object *o_child = (Object*)iter->data;
-    o_draw_object(w_current, o_child);
+    x_draw_object(w_current, o_child);
     iter = iter->next;
   }
 }
 
 extern "C" void
-o_draw_object (GschemToplevel *w_current, Object *o_current)
+x_draw_object (GschemToplevel *w_current, Object *o_current)
 {
   void (*draw_func)(GschemToplevel *w_current);
 
   g_return_if_fail (o_current != NULL);
 
-  switch (o_current->type) {
-    case OBJ_LINE:        draw_func = o_draw_line;    break;
-    case OBJ_NET:         draw_func = o_draw_net;     break;
-    case OBJ_BUS:         draw_func = o_draw_bus;     break;
-    case OBJ_PIN:         draw_func = o_draw_pin;     break;
-    case OBJ_BOX:         draw_func = o_draw_box;     break;
-    case OBJ_ARC:         draw_func = o_draw_arc;     break;
-    case OBJ_CIRCLE:      draw_func = o_draw_circle;  break;
-    case OBJ_PATH:        draw_func = o_draw_path;    break;
-    case OBJ_TEXT:        draw_func = o_draw_text;    break;
-    case OBJ_PICTURE:     draw_func = o_draw_picture; break;
-    case OBJ_COMPLEX:
-    case OBJ_PLACEHOLDER: draw_func = o_draw_complex;
+  if(w_current->render_adaptor == CAIRO_ADAPTOR) {
+    eda_renderer_draw (CairoRenderer, o_current);
+  }
+  else {
+    switch (o_current->type) {
+      case OBJ_LINE:        draw_func = x_draw_line;    break;
+      case OBJ_NET:         draw_func = x_draw_net;     break;
+      case OBJ_BUS:         draw_func = x_draw_bus;     break;
+      case OBJ_PIN:         draw_func = x_draw_pin;     break;
+      case OBJ_BOX:         draw_func = x_draw_box;     break;
+      case OBJ_ARC:         draw_func = x_draw_arc;     break;
+      case OBJ_CIRCLE:      draw_func = x_draw_circle;  break;
+      case OBJ_PATH:        draw_func = x_draw_path;    break;
+      case OBJ_TEXT:        draw_func = x_draw_text;    break;
+      case OBJ_PICTURE:     draw_func = x_draw_picture; break;
+      case OBJ_COMPLEX:
+      case OBJ_PLACEHOLDER: draw_func = x_draw_complex;
       break;
 
-    default:
-      g_return_if_reached ();
+      default:
+        g_return_if_reached ();
+    }
+
+    RenderAdaptor->object = o_current;
+
+    draw_func (w_current);
   }
-
-  RenderAdaptor->object = o_current;
-
-  draw_func (w_current);
 }
 
-extern "C" void o_draw_set_surface(GschemToplevel *w_current)
+extern "C" void x_draw_set_surface(GschemToplevel *w_current)
 {
   RenderAdaptor->geda_draw_set_surface(w_current->cr, Current_Page->to_world_x_constant);
 }
 
-extern "C" void o_draw_initialize(void)
+/*! \brief Get Font Listing
+ *  \par Function Documentation
+ *   Returns a pointer to a new Garray containing a list of font names.
+ *
+ *  \note the returned color-map MUST be freed using g_array_free.
+ */
+extern "C" GArray *x_draw_get_font_list(const char *pattern)
+{
+  GArray     *font_list;
+  const char *default_pattern = "-*-*-medium-r-normal--0-0-0-0-p-0-iso10646-1";
+  bool result;
+
+  if (pattern == NULL) {
+    pattern = default_pattern;
+  }
+
+  font_list = g_array_sized_new (FALSE, FALSE, sizeof(char *), 256);
+
+  result = RenderAdaptor->geda_draw_get_font_list (pattern, font_list);
+
+  return font_list;
+}
+
+extern "C" void x_draw_initialize(void)
 {
   EdaConfig  *cfg      = eda_config_get_user_context();
   const char *group    = IVAR_CONFIG_GROUP;
@@ -334,12 +363,12 @@ extern "C" void o_draw_initialize(void)
 
   RenderAdaptor = new EdaX11Render(font_name);
 
-  geda_atexit(o_draw_shutdown, NULL);
+  geda_atexit(x_draw_shutdown, NULL);
 
   v_log_message(_("done\n"));
 }
 
-extern "C" void o_draw_shutdown(void *user_data)
+extern "C" void x_draw_shutdown(void *user_data)
 {
   v_log_message(_("Shutting down: Graphics RenderAdaptorer..."));
   delete RenderAdaptor;

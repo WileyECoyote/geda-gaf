@@ -173,13 +173,12 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   GList *obj_list;
   GList *iter;
 
-  RECTANGLE    world_rect;
-  EdaRenderer *renderer;
+  RECTANGLE      world_rect;
+  EdaRenderer   *renderer;
+  cairo_matrix_t render_mtx;
 
   GArray *render_color_map         = NULL;
   GArray *render_outline_color_map = NULL;
-
-  cairo_matrix_t render_mtx;
 
   g_return_if_fail (w_current->toplevel != NULL);
   g_return_if_fail (w_current->toplevel->page_current != NULL);
@@ -262,7 +261,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   cairo_set_matrix (w_current->cr, &render_mtx);
 
-  o_draw_set_surface (w_current);
+  x_draw_set_surface (w_current);
 
   /* Determine whether we should draw the selection at all */
   draw_selected = !(w_current->inside_action && ((w_current->event_state == MOVE) ||
@@ -274,14 +273,11 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
     Object *o_current = iter->data;
 
     if (!(o_current->dont_redraw || o_current->selected)) {
-
         o_style_set_object(w_current->toplevel, o_current);
-        o_draw_object(w_current, o_current);
-//        eda_renderer_draw (renderer, o_current);
+        x_draw_object(w_current, o_current);
     }
   }
 
-return;
   if (!is_only_text) {
     /* Second pass -- render cues */
     for (iter = obj_list; iter != NULL; iter = iter->next) {
@@ -306,8 +302,7 @@ return;
       if (!o_current->dont_redraw) {
 
         o_style_set_object(w_current->toplevel, o_current);
-        //o_draw_object(w_current, o_current);
-        eda_renderer_draw (renderer, o_current);
+        x_draw_object(w_current, o_current);
         eda_renderer_draw_cues (renderer, o_current);
 
         if (CairoRenderer->draw_grips ) {

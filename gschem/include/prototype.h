@@ -417,12 +417,6 @@ void       o_copy_multiple_end          (GschemToplevel *w_current);
 void       o_delete                     (GschemToplevel *w_current, Object *object);
 void       o_delete_selected            (GschemToplevel *w_current);
 
-/* o_draw.c */
-void       o_draw_object                (GschemToplevel *w_current, Object *object);
-void       o_draw_set_surface           (GschemToplevel *w_current);
-void       o_draw_initialize            (void);
-void       o_draw_shutdown              (void *user_data);
-
 /* o_edit.c */
 void       o_edit_objects               (GschemToplevel *w_current, GList *list, int who);
 void       o_edit_lock                  (GschemToplevel *w_current);
@@ -642,7 +636,7 @@ void          x_dialog_coord_update_display (GschemToplevel *w_current, int x, i
 void          x_dialog_coord_dialog         (GschemToplevel *w_current, int x, int y);
 
 /* x_dialog.c */
-/* Dialog-Utility functions */
+  /* Dialog-Utility functions */
 AtkObject*    atk_widget_linked_label_new           (GtkWidget *label, GtkWidget *linkto);
 GtkWidget*    create_pixmap                         (const char *filename);
 void          destroy_gschem_dialog                 (GtkWidget *widget, GtkWidget **window);
@@ -655,12 +649,12 @@ void          select_all_text_in_textview           (GtkTextView *textview);
 int           text_view_calculate_real_tab_width    (GtkTextView *textview, int tab_size);
 GtkWidget    *create_color_menu                     (GschemToplevel * w_current, int color_index);
 
-/* Standard-Dialogs */
+  /* Standard-Dialogs */
 void          about_dialog                  (GschemToplevel *w_current);
 void          snap_size_dialog              (GschemToplevel *w_current);
 void          text_size_dialog              (GschemToplevel *w_current);
 
-/* Editing-Dialogs */
+  /* Editing-Dialogs */
 void          x_dialog_edit_arc_angle       (GschemToplevel *w_current, Object *arc_object);
 void          x_dialog_edit_fill_type       (GschemToplevel *w_current);
 void          x_dialog_edit_line_type       (GschemToplevel *w_current);
@@ -671,7 +665,7 @@ void          x_dialog_show_text            (GschemToplevel *w_current);
 void          x_dialog_text_input           (GschemToplevel *w_current);
 void          x_dialog_translate            (GschemToplevel *w_current);
 
-/* Systemic-Dialogs */
+  /* Systemic-Dialogs */
 void          x_dialog_hotkeys              (GschemToplevel *w_current);
 bool          x_dialog_close_changed_page   (GschemToplevel *w_current, Page *page);
 bool          x_dialog_close_window         (GschemToplevel *w_current);
@@ -679,19 +673,28 @@ void          x_dialog_raise_all            (GschemToplevel *w_current);
 void          x_dialog_symbol_changed       (GschemToplevel* w_current);
 int           x_dialog_validate_attribute   (GtkWindow* parent, char *attribute);
 
-/* Gschem-Generic-Dialogs */
-int           x_dialog_confirmation            (const char *, gEDA_MessageType context, bool thread);
-int           x_dialog_confirm_with_cancel     (const char *, gEDA_MessageType context, bool thread);
-char         *x_dialog_select_file             (const char *, const char *, int);
-void          x_dialog_show_message            (const char *, gEDA_MessageType context, const char *title);
-void          x_dialog_message_with_markup     (const char *msg1, const char *msg2,
-                                                gEDA_MessageType context, const char *title);
+  /* Gschem-Generic-Dialogs */
+int           x_dialog_confirmation         (const char *, gEDA_MessageType context, bool thread);
+int           x_dialog_confirm_with_cancel  (const char *, gEDA_MessageType context, bool thread);
+char         *x_dialog_select_file          (const char *, const char *, int);
+void          x_dialog_show_message         (const char *, gEDA_MessageType context, const char *title);
+void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
+                                             gEDA_MessageType context, const char *title);
+
+/* o_draw.c */
+void          x_draw_object                 (GschemToplevel *w_current, Object *object);
+void          x_draw_set_surface            (GschemToplevel *w_current);
+void          x_draw_set_font               (const char *font_name, int size);
+GArray       *x_draw_get_font_list          (const char *pattern);
+void          x_draw_initialize             (void);
+void          x_draw_shutdown               (void *user_data);
+
 /* x_attrib.c */
-int           option_menu_get_history               (GtkOptionMenu *option_menu);
+int           option_menu_get_history       (GtkOptionMenu *option_menu);
 /*    attrib_edit_dialog_ok                 (GtkWidget *w, GschemToplevel *w_current);*/
 /*    attrib_edit_dialog                    (GschemToplevel *w_current, Object *attr_obj, int flag); */
-void          x_attrib_add_dialog                   (GschemToplevel *w_current, Object *object);
-void          x_attrib_edit_dialog                  (GschemToplevel *w_current, Object *object);
+void          x_attrib_add_dialog           (GschemToplevel *w_current, Object *object);
+void          x_attrib_edit_dialog          (GschemToplevel *w_current, Object *object);
 
 /* x_edit_color.c */
 void        x_dialog_edit_color          (GschemToplevel *w_current);

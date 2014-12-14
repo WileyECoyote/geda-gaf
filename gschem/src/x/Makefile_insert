@@ -13,6 +13,7 @@ gschem_SOURCES += \
 		x/x_coord.c \
 		x/x_dialog.c \
 		x/x_dnd.c \
+		x/x_draw.cpp \
 		x/x_edit_color.c \
 		x/x_edit_pin.c \
 		x/x_edit_cprop.c \
