@@ -109,7 +109,7 @@ typedef struct
 
 #define NOT_BELOW_ZERO(padding) padding < 0 ? 0 : padding
 
-/* Set Widget Values */
+/* Set Widget Values, see also geda_gui_funcs.h */
 //const char *depth = gtk_entry_get_text( GTK_ENTRY(GTK_COMBO(textureDepthCombo)->entry) );
 #define SetCombo( name, var)  gtk_combo_box_set_active (GTK_COMBO_BOX(name##Combo), var);
 #define SetSwitch( name, var) gtk_toggle_button_set_active (GTK_TOGGLE_BUTTON (name##Switch), var);
@@ -469,7 +469,7 @@ typedef struct
         g_object_set (name##CheckBox, "visible", TRUE, NULL); \
         gtk_box_pack_start (GTK_BOX (parent), name##CheckBox, FALSE, FALSE, 0);
 
-#define GTK_NEW_COMBO(parent, name, width, hpad)  {    \
+#define GTK_NEW_COMBO(parent, name, width, hpad)    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
@@ -479,17 +479,40 @@ typedef struct
         SET_WIDGET_SIZE ( name##Combo, width, 32) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
         GTK_ICALLBACK_COMBO (name) \
-}
+
 #define GEDA_NEW_COMBO(parent, name, width, hpad)    \
         GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
         GtkWidget *name##Label=NULL;         /* declare Label */             \
         GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
-        name##Combo = gtk_combo_box_entry_new_text(); \
+        name##Combo = geda_combo_box_new(); \
         g_object_set (name##Combo, "visible", TRUE, NULL); \
         PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
         SET_WIDGET_SIZE ( name##Combo, width, 34) \
         HOOKUP_GEDA_OBJECT(name, Combo) \
         GTK_ICALLBACK_COMBO (name)
+
+#define GEDA_NEW_TEXT_COMBO(parent, name, width, hpad)    \
+        GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
+        GtkWidget *name##Label=NULL;         /* declare Label */             \
+        GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
+        name##Combo = geda_combo_box_text_new(); \
+        g_object_set (name##Combo, "visible", TRUE, NULL); \
+        PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
+        SET_WIDGET_SIZE ( name##Combo, width, 34) \
+        HOOKUP_GEDA_OBJECT(name, Combo)
+
+#define GEDA_NEW_TEXT_ENTRY_COMBO(parent, name, width, hpad)    \
+        GtkWidget *name##_hbox=NULL; /* declare hbox widget (alias gint) */  \
+        GtkWidget *name##Label=NULL;         /* declare Label */             \
+        GTK_LABEL_HBOX (parent, name, hpad); /* create hbox and label */     \
+        name##Combo = geda_combo_box_text_new_with_entry(); \
+        g_object_set (name##Combo, "visible", TRUE, NULL); \
+        PACK_hBOX(name, name##Combo, FALSE, FALSE, 0) \
+        SET_WIDGET_SIZE ( name##Combo, width, 34) \
+        HOOKUP_GEDA_OBJECT(name, Combo)
+
+#define LOAD_GEDA_TEXT_COMBO(name, text) \
+        geda_combo_box_text_append (GEDA_COMBO_BOX_TEXT (name##Combo), text);
 
 #define GTK_LOAD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), _(text));
 #define LOAD_STD_COMBO(name, text) gtk_combo_box_append_text (GTK_COMBO_BOX (name##Combo), text);

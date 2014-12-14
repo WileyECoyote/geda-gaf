@@ -1,3 +1,10 @@
+2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+      * include/geda_dialog_controls.h: Remove scope limiters from macro
+        GTK_NEW_COMBO, revise GEDA_NEW_COMBO to use geda_combo_box_new_
+        with_entry (which can not be mixed with GTK_NEW_COMBO. Added new
+        macro LOAD_GEDA_TEXT_COMBO.
+
 2014-12-08 Wiley E. Hill <wileyhill@gmail.com>
 
       * m4/geda-x11.m4: Revised FreeType with enable option, defaulting
