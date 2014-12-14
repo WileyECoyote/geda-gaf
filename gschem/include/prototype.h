@@ -684,8 +684,10 @@ void          x_dialog_message_with_markup  (const char *msg1, const char *msg2,
 /* o_draw.c */
 void          x_draw_object                 (GschemToplevel *w_current, Object *object);
 void          x_draw_set_surface            (GschemToplevel *w_current);
+char         *x_draw_get_font               (void);
 void          x_draw_set_font               (const char *font_name, int size);
 GArray       *x_draw_get_font_list          (const char *pattern);
+char         *x_draw_strip_font_provider    (const char *font_string);
 void          x_draw_initialize             (void);
 void          x_draw_shutdown               (void *user_data);
 

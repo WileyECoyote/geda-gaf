@@ -122,11 +122,11 @@ typedef struct
    int custom_world_size;
    int titleblock_index;
    int ripper_symbol_index;
+   int render_adaptor;
    char color_map_scheme[MAX_FILENAME];
    char untitled_name[MAX_FILENAME];
    char titleblock_fname[MAX_FILENAME];
    char ripper_symbol_fname[MAX_FILENAME];
-
 }  gschem_rc_options;
 
 extern gschem_rc_options rc_options;

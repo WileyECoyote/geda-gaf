@@ -1,5 +1,9 @@
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/x/x_settings_dialog.c: Redo Font configuration settings
+
+2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/x/x_draw.cpp: Rename file (and all function) x_ instead of o_
 
 2014-12-12 Wiley E. Hill <wileyhill@gmail.com>

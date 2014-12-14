@@ -328,6 +328,26 @@ extern "C" void x_draw_set_surface(GschemToplevel *w_current)
   RenderAdaptor->geda_draw_set_surface(w_current->cr, Current_Page->to_world_x_constant);
 }
 
+extern "C" char *x_draw_get_font(void)
+{
+  char strBuffer[128];
+  RenderAdaptor->geda_draw_set_font(&strBuffer[0], sizeof(strBuffer));
+  return u_string_strdup(&strBuffer[0]);
+}
+
+extern "C" void x_draw_set_font(const char *font_string, int size)
+{
+
+  char *font_name;
+
+  if (font_string) {
+
+    font_name = x_draw_strip_font_provider(font_string);
+    RenderAdaptor->geda_draw_set_font(font_name, size);
+    GEDA_FREE(font_name);
+  }
+}
+
 /*! \brief Get Font Listing
  *  \par Function Documentation
  *   Returns a pointer to a new Garray containing a list of font names.
@@ -346,22 +366,58 @@ extern "C" GArray *x_draw_get_font_list(const char *pattern)
 
   font_list = g_array_sized_new (FALSE, FALSE, sizeof(char *), 256);
 
-  result = RenderAdaptor->geda_draw_get_font_list (pattern, font_list);
-
+  if (font_list) {
+    result = RenderAdaptor->geda_draw_get_font_list (pattern, font_list);
+    if (!result) {
+      font_list = NULL;
+    }
+  }
+  if (!font_list) {
+    BUG_MSG("Unable to get font list from RenderAdaptor");
+  }
   return font_list;
+}
+
+extern "C" char *x_draw_strip_font_provider(const char *font_string)
+{
+  char  strBuffer[128];
+  char *font_name;
+  int   length;
+  int   index;
+
+  /* This ensures we return at least what was passed in */
+  font_name = &strBuffer[0];
+
+  length = strlen ( strcpy (&strBuffer[0], font_string));
+
+  for(index = 0; index < length; index++) {
+    if (strBuffer[index] == ASCII_COMMA) {
+      font_name = &strBuffer[index + 2];  /* Save pointer to font name */
+      continue;
+    }
+    if (isupper(strBuffer[index])) {
+      strBuffer[index] = strBuffer[index] ^ 0x20; /* Make lower case*/
+    }
+  }
+  return u_string_strdup(font_name);
 }
 
 extern "C" void x_draw_initialize(void)
 {
   EdaConfig  *cfg      = eda_config_get_user_context();
   const char *group    = IVAR_CONFIG_GROUP;
-  const char *font_name;
+  const char *font_string;
+        char *font_name;
 
   v_log_message(_("Initializing: Graphics Renderer Adaptor...."));
 
-  font_name = eda_config_get_string (cfg, group, "default-font-name", NULL);
+  font_string = eda_config_get_string (cfg, group, "default-font-name", NULL);
+
+  font_name = x_draw_strip_font_provider(font_string);
 
   RenderAdaptor = new EdaX11Render(font_name);
+
+  GEDA_FREE(font_name);
 
   geda_atexit(x_draw_shutdown, NULL);
 

@@ -66,6 +66,9 @@
  * ---------------|--------------------------------------------------
  * WEH | 12/11/14 | Pass w_current to setup_font_name_combo and use dynamically
  *                  list of font names. Remove static IDS_FONT_NAMES
+ * ---------------|--------------------------------------------------
+ * WEH | 12/13/14 | Add on_change_renderer, revise setup_font_name_combo to
+ *                | include X11 scalable fonts.
  */
 
 /*!
@@ -225,6 +228,16 @@ void load_combo_str( GtkComboBox *combo, const char *list[])
  *  \note The variables are only global to this module, not gschem
  */
 
+/** \struct rc_options x_settings.h
+ *  \par
+ *   This structure allows temporary editing of configuration items to be changed
+ *   on the Settings Dialog without changing toplevel members. In general, do not
+ *   use unless required. Initial values should be set in load_settings_dialog and
+ *   then manipulated by the dialog function. The final value should be retrieved
+ *   in GatherSettings.
+ *
+ *  \note The values loaded into the structure here are defaults.
+ */
 gschem_rc_options rc_options={
         1,  /* display_color_map flag */
         0,  /* color_scheme_index */
@@ -235,6 +248,7 @@ gschem_rc_options rc_options={
         0,  /* custom_world_size flag */
         0,  /* titleblock_index */
         0,  /* ripper_symbol_index */
+        0,  /* render_adaptor */
         "gschem-colormap-darkbg", /* color_map_scheme file name [MAX_FILE]*/
         "",                       /* untitled_name[MAX_FILE] */
         "",                       /* titleblock_fname[64]; */
@@ -1294,7 +1308,8 @@ bool color_butt_responder(GtkWidget *widget, GdkEventButton *event, ControlID *C
  *      1. combo_responder
  *      2. setup_titleblock_combo
  *      3. setup_font_name_combo
- *      4. setup_ripper_symbol_combo
+ *      4. on_change_renderer
+ *      5. setup_ripper_symbol_combo
 */
 
 /*! \brief Function combo_responder
@@ -1327,8 +1342,8 @@ void combo_responder(GtkWidget *widget, void * data)
   case PointerCursor:
   case ThirdButton:
   case MiddleButton:
-  case FontName:
   case RipperSymbol:
+    break;
   case Renderer:
   case AntiAlias:
     break;
@@ -1410,56 +1425,222 @@ cmp_families (const void *a, const void *b)
 
 /*! \brief Loads Font Name Combo Box and Set Active
  *  \par Function Description:
- *   This function up loads font name strings into the FontName
- *   combobox. If one of strings matches the given font name,
- *   then that entry is set to be the active combo entry, other
- *   wise the first entry is set to be the active string.
+ *   This function up-loads font name strings into the FontName combobox
+ *   based on the value in rc_options.render_adaptor. The list returned by
+ *   Pango is used when Cairo is the renderer, when libgedadraw is used,
+ *   the list returned by x_draw_get_font_list is filtered to retrieve the
+ *   font provider and the font family name into a temporary buffer where
+ *   both are capitalized for aesthetics. Only unique entry are added to
+ *   the combobox. If one of strings matches the given font name, then that
+ *   entry is set to be the active combo entry, otherwise the combo entry
+ *   will be blank.
  *
- *  @param[in] cur_font ptr to name of current font.
+ *  \param [in] w_current   The GschemToplevel object
+ *  \param [in] cur_font    ptr to name of current font (to match)
  */
 void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
 
-  PangoContext     *context;
-  PangoFontFamily **families;
+  GedaList   *font_list;
+  GList      *iter;
+  const char *pfont;
 
   int current;
   int index;
   int n_families;
-  const char* name;
 
-  context = gtk_widget_get_pango_context ( GTK_WIDGET (w_current->drawing_area));
-  pango_context_list_families (context, &families, &n_families);
-  qsort (families, n_families, sizeof (PangoFontFamily *), cmp_families);
+  font_list = geda_list_new();
 
-  current = 0;
+  if (rc_options.render_adaptor == CAIRO_ADAPTOR) {
 
-  for (index = 0;index < n_families; index++) {
+    PangoContext     *context;
+    PangoFontFamily **families;
 
-    name = pango_font_family_get_name (families[index]);
+    context = gtk_widget_get_pango_context ( GTK_WIDGET (w_current->drawing_area));
+    pango_context_list_families (context, &families, &n_families);
+    qsort (families, n_families, sizeof (PangoFontFamily *), cmp_families);
 
-    GTK_LOAD_COMBO (FontName, name);
-    if ( cur_font && u_string_strequal(cur_font, name)) {
-     current = index;
+    /* Load the output list with data from Pango */
+    for (index = 0; index < n_families; index++) {
+      pfont = pango_font_family_get_name (families[index]);
+      geda_list_add_unique_string (font_list, u_string_strdup(pfont));
+    }
+    GEDA_FREE (families);
+  }
+  else { /* Load glist from libgedadraw supplied list */
+
+    GArray *fonts;
+    char strBuffer[128];
+
+    fonts = x_draw_get_font_list(NULL);
+
+    /* Index thru all fonts strings in the array */
+    for(index = 0; index < fonts->len; index++) {
+
+      char *family;
+      int   pos, field, target;
+
+      pfont  = g_array_index (fonts, char*, index);
+
+      /* Index thru this font string and get the provider and family = fields 1 & 2 */
+      for(target = pos = field = 0; pfont[pos] != '\0' && field <= 2; pos++) {
+        if (pfont[pos] == ASCII_MINUS) {
+          if (field == 1) {
+            strBuffer[target] = ASCII_COMMA;  target++;
+            strBuffer[target] = ASCII_SPACE;  target++;
+          }
+          field++;
+          continue;
+        }
+        if ((field == 1) || (field == 2)) {
+          strBuffer[target] = pfont[pos];
+          if (target == 0) {
+            /* This only capitalizes the first character in the output buffer */
+            strBuffer[target] = strBuffer[target] ^ 0x20;
+          }
+          target++;
+        }
+      }
+
+      /* Add a terminator to the end of the string in the buffer */
+      strBuffer[target] = '\0';
+
+      /* Index over the buffer and capitalize characters after spaces*/
+      for (pos = 0; pos < target; pos++) {
+        if ( strBuffer[pos] == ASCII_SPACE) {
+          strBuffer[pos + 1] = strBuffer[pos + 1] ^ 0x20; /* Capitalize first character */
+        }
+      }
+
+      /* Make a copy of the Provider, Family string and add to glist*/
+      family = u_string_strdup(&strBuffer[0]);
+      geda_list_add_unique_string (font_list, family);
+    }                                                    /* Next font string in array */
+    g_array_free(fonts, TRUE);
+  }                                                      /* else was for libgedadraw */
+
+  /* Load the FontName Combo from the Glist and look for cur_font */
+  current = -1;
+  index   = 0;
+  for (iter = geda_list_get_glist(font_list); iter; iter = iter->next) {
+
+    pfont = iter->data;
+    LOAD_GEDA_TEXT_COMBO (FontName, pfont);
+
+    /* current < 0 here means do not keep looking, but we got to keep loading */
+    if ( current < 0 && cur_font && u_string_strequal(cur_font, pfont)) {
+      current = index;
+    }
+    index++;
+  }
+
+  if (current < 0) { /* If we did not find exact, try harder */
+
+    const char *needle;
+    const char *haystack;
+          char *reduced;
+
+    index = 0;
+
+    reduced = x_draw_strip_font_provider(cur_font);
+
+    if (reduced) {
+
+      for (iter = geda_list_get_glist(font_list); iter; iter = iter->next) {
+
+        pfont = iter->data;
+
+        /* The longer string needs to be the haystack */
+        if (strlen(pfont) > strlen(reduced)) {
+          haystack = pfont; needle = reduced;
+        }
+        else {
+          haystack = reduced; needle = pfont;
+        }
+
+        if ( pfont && !u_string_stristr(haystack, needle)) {
+          current = index;
+          break;
+        }
+
+        index++;
+      }
+      GEDA_FREE (reduced);
     }
   }
 
-  gtk_combo_box_set_active((GtkComboBox *)FontNameCombo, current);
-  GEDA_FREE (families);
+  geda_combo_box_set_active((GedaComboBox *)FontNameCombo, current);
+  geda_list_free_full (font_list);
+
 }
 
+/* TODO: This should be moved to the Combo responder once the GTK Combo
+ *       are converted to GedaCombo's */
+static void
+on_change_renderer (GtkWidget *widget, void *user_data)
+{
+  GtkComboBox      *combo      = (GtkComboBox*) widget; // callee */
+  GedaComboBoxText *font_combo = (GedaComboBoxText*) FontNameCombo;
+  GschemToplevel   *w_current  = user_data;
+  EdaConfig        *cfg        = eda_config_get_user_context ();
+  const char       *group      = IVAR_CONFIG_GROUP;
+  char             *name_now;
+  char             *prev_name;
+
+  /* Set which render is to be used in the temporary block */
+  rc_options.render_adaptor = gtk_combo_box_get_active(combo);
+
+  /* Don't free the font name, the string belongs to the dialog control */
+  name_now = geda_combo_box_text_get_active_text (font_combo);
+
+  /* Preserve the current font name */
+  if (rc_options.render_adaptor == CAIRO_ADAPTOR) { /* name_now is for X11 */
+    eda_config_set_string (cfg, group, "last-draw-font", name_now);
+    prev_name = i_var_get_global_config_string (cfg, "last-cairo-font");
+  }
+  else { /* name_now is for Cairo */
+    eda_config_set_string (cfg, group, "last-cairo-font", name_now);
+    prev_name = i_var_get_global_config_string (cfg, "last-draw-font");
+  }
+
+  /* Empty out the */
+  geda_combo_box_text_remove_all(font_combo);
+
+  if (prev_name != NULL) {
+    setup_font_name_combo(w_current, prev_name);
+    GEDA_FREE (prev_name);
+  }
+  else {
+    /* There was no preserved value, pass the current font name and let
+     * setup_font_name_combo() sort out the new font name */
+    setup_font_name_combo(w_current, name_now);
+  }
+
+  GEDA_FREE (name_now); /* Free the string from libgedauio */
+  GEDA_FREE (prev_name);
+}
+
+/*! \brief Set Ripper Symbol Name Combo Box Active
+ *  \par Function Description:
+ *   The RipperSymbol combo-box was load when the dialog was created,
+ *   this function copies the passed symbol name to the temporary
+ *   structure and sets the corresponding combo-box index active.
+ *
+ *  \param [in] cur_name  ptr to name of ripper symbol name (to match)
+ */
 void setup_ripper_symbol_combo(char* cur_name) {
 
   strcpy(rc_options.ripper_symbol_fname, cur_name);
 
   if (u_string_strequal(rc_options.ripper_symbol_fname, DEFAULT_BUS_RIPPER_SYMNAME))
     rc_options.ripper_symbol_index = 0;
-  else
+  else {
     if (u_string_strequal(rc_options.ripper_symbol_fname, SECOND_BUS_RIPPER_SYMNAME))
       rc_options.ripper_symbol_index = 1;
     else {
       LOAD_STD_COMBO(RipperSymbol, rc_options.ripper_symbol_fname);
       rc_options.ripper_symbol_index = 2;
     }
+  }
 
   gtk_combo_box_set_active((GtkComboBox *)RipperSymbolCombo, rc_options.ripper_symbol_index);
 
@@ -1861,13 +2042,16 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   SetCombo ( UndoType, w_current->undo_type );
 
+  /* Note: This should be set before calling setup_font_name_combo */
+  rc_options.render_adaptor = w_current->render_adaptor;
+
   tmpstr = eda_config_get_string (cfg, group, "default-font-name", NULL);
   setup_font_name_combo(w_current, tmpstr);
   GEDA_FREE (tmpstr);
 
   setup_ripper_symbol_combo(w_current->bus_ripper_symname);
 
-  SetCombo ( Renderer, w_current->render_adaptor );
+  SetCombo( Renderer, w_current->render_adaptor );
   SetCombo ( AntiAlias, w_current->anti_aliasing );
 
   tmpstr = eda_config_get_string (cfg, group, "default-filename", NULL);
@@ -2008,6 +2192,10 @@ bool load_settings_dialog (GschemToplevel *w_current)
 
   SetSpin (UndoBufferSize, w_current->undo_levels);
   SetSpin (ZoomGain, w_current->zoom_gain);
+
+  g_signal_connect ((void *) RendererCombo, "changed",
+                    G_CALLBACK (on_change_renderer),
+                    w_current);
 
   return TRUE;
 }
@@ -2277,7 +2465,7 @@ create_settings_dialog (GschemToplevel *w_current)
      VSECTION(TextPrefTab_vbox, TextOptionsGrp1); /* TT Grp 1 Text Options */
        HSECTION (TextOptionsGrp1_vbox, TextOptionsRow1)   /* TT Grp 1 Row 1 Text Styles */
          GTK_NUMERIC_SPIN (TextOptionsRow1_hbox, TextSize, 9, DEFAULT_TEXT_SIZE, MIN_TEXT_SIZE, MAX_TEXT_SIZE);
-         GTK_NEW_COMBO (TextOptionsRow1_hbox, FontName, 160, DIALOG_V_SPACING);
+         GEDA_NEW_TEXT_ENTRY_COMBO (TextOptionsRow1_hbox, FontName, 325, DIALOG_V_SPACING);
        HSECTION (TextOptionsGrp1_vbox, TextOptionsRow2)   /* TT Grp 1 Row 1 Text Styles */
          GTK_NUMERIC_SPIN (TextOptionsRow2_hbox, TextZoomFactor, 9, DEFAULT_TEXT_ZOOM, MIN_TEXT_ZOOM, MAX_TEXT_ZOOM);
        GEDA_FRAME (TextOptionsGrp1_vbox, Markers, -1, 110, 0.3, 0.2, DIALOG_H_SPACING);
@@ -2499,10 +2687,16 @@ void GatherSettings(GschemToplevel *w_current) {
   w_current->render_adaptor   = gtk_combo_box_get_active (GTK_COMBO_BOX (RendererCombo));
   w_current->anti_aliasing    = gtk_combo_box_get_active (GTK_COMBO_BOX (AntiAliasCombo));
 
-  tmpstr = gtk_combo_box_get_active_text (GTK_COMBO_BOX (FontNameCombo));
+  /* Don't free the font name, the string belongs to the dialog control */
+  tmpstr = geda_combo_box_get_active_text (GEDA_COMBO_BOX (FontNameCombo));
   eda_config_set_string (cfg, group, "default-font-name", tmpstr);
-  eda_renderer_set_font_name(CairoRenderer, tmpstr);
-  /* Don't free the font name string, belongs to the dialog control */
+
+  if (w_current->render_adaptor == CAIRO_ADAPTOR) {
+    eda_renderer_set_font_name(CairoRenderer, tmpstr);
+  }
+  else {
+    x_draw_set_font (tmpstr, GET_SPIN_IVALUE (TextSizeSpin));
+  }
 
 /* The Switches Alphabetically (31) */
              auto_load_last             = GET_SWITCH_STATE (AutoLoadSwitch);
