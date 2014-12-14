@@ -1,3 +1,10 @@
+2014-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/Makefile.am: Modified to allow cleaning from sub-folders.
+
+    * src/ * /Makefile.in: Modified to allow local cleaning and building
+      from sub-folders.
+
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/geda/geda_list.c: Add new function geda_list_add_unique_string

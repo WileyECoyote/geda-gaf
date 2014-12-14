@@ -27,7 +27,8 @@
  */
 
 /*! TODO: review function s_slib_getbasename. Could other modules use this
- *       function? if so then should relocate to this module */
+ *        function? if so then should relocate to this module
+ */
 
 #include <config.h>
 

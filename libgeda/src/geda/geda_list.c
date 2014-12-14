@@ -31,7 +31,9 @@
 
 #include <config.h>
 
+#include <ctype.h>
 #include <glib-object.h>
+
 #include "libgeda_priv.h"
 #include "geda_list.h"
 

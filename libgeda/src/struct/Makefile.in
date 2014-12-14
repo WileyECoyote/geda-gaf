@@ -2,14 +2,15 @@
 
 @SET_MAKE@
 
-OBJEXT = l@OBJEXT@
+OBJEXT    = l@OBJEXT@
+SubFolder = struct
 
 # Explicit so that it's the default rule.
 all:
-	cd .. && $(MAKE) struct/all
+	cd .. && $(MAKE) all
 
 clean %.a %.$(OBJEXT):
-	cd .. && $(MAKE) struct/$@
+	cd .. && $(MAKE) $(SubFolder)/$@
 
 .PHONY: all clean
 

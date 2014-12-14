@@ -2,14 +2,15 @@
 
 @SET_MAKE@
 
-OBJEXT = l@OBJEXT@
+OBJEXT    = l@OBJEXT@
+SubFolder = scheme
 
 # Explicit so that it's the default rule.
 all:
-	cd .. && $(MAKE) scheme/all
+	cd .. && $(MAKE) all
 
 clean %.a %.$(OBJEXT):
-	cd .. && $(MAKE) scheme/$@
+	cd .. && $(MAKE) $(SubFolder)/$@
 
 .PHONY: all clean
 

@@ -71,10 +71,31 @@ else
 	@echo 'in the top of the source tree and then try again'
 endif
 
-MOSTLYCLEANFILES     = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~
-CLEANFILES           = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~ $(BUILT_SOURCES)
-DISTCLEANFILES       = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~
-MAINTAINERCLEANFILES = *.log core FILE *~ scheme/*~ file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ struct/*~ utility/*~ Makefile.in
+CLEAN_DIRS = file/*~ geda/*~ guile/*~ iface/*~ math/*~ object/*~ scheme/*~ struct/*~ utility/*~
+
+MOSTLYCLEANFILES     = *.log core FILE *~ 
+CLEANFILES           = *.log core FILE *~ $(CLEAN_DIRS) $(BUILT_SOURCES)
+DISTCLEANFILES       = *.log core FILE *~ $(CLEAN_DIRS)
+MAINTAINERCLEANFILES = *.log core FILE *~ $(CLEAN_DIRS) Makefile.in
+
+file/clean: 
+			@rm -rf file/*~
+geda/clean: 
+			@rm -rf geda/*~
+guile/clean: 
+			@rm -rf guile/*~
+iface/clean: 
+			@rm -rf iface/*~
+math/clean: 
+			@rm -rf math/*~
+object/clean: 
+			@rm -rf object/*~
+scheme/clean: 
+			@rm -rf scheme/*~
+struct/clean: 
+			@rm -rf struct/*~
+utility/clean: 
+			@rm -rf utility/*~
 
 # Unfortunately, in order to test libtool thoroughly, we need access
 # to its private directory.
