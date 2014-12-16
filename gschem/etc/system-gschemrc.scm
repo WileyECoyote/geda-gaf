@@ -1665,6 +1665,7 @@
 (map-keys "V R"           "view-redraw")
 (map-keys "V D"           "view-documentation")
 (map-keys "V H"           "view-show-hidden")
+(map-keys "V M"           "view-zoom-to-mag")
 (map-keys "V N"           "view-show-nets")
 (map-keys "V K"           "view-dark-colors")
 (map-keys "V L"           "view-light-colors")
@@ -1847,6 +1848,7 @@
         (,(N_ "Zoom _In")            view-zoom-in            "gtk-zoom-in"          ,(N_ "Increase the Zoom magnification"))
         (,(N_ "Zoom _Out")           view-zoom-out           "gtk-zoom-out"         ,(N_ "Decrease the Zoom magnification"))
         (,(N_ "Zoom _All")           view-zoom-all           "gtk-fullscreen"       ,(N_ "Zoom to the limits of the drawing area"))
+        (,(N_ "Zoom _Mag")           view-zoom-to-mag        "gschem-zoom-mag"      ,(N_ "Zoom to a specified level"))
 
         ("SEPARATOR"                #f                      #f                       #f)
         (,(N_ "D_ocumentation...")   view-documentation      "gtk-index")

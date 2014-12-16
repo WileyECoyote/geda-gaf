@@ -27,7 +27,7 @@
  *
  */
  /*! \warning Unless you really know what your doing - Don't do it.
-  *           This file is included twice in i_command.c and one in
+  *           This file is included twice in i_command.c and once in
   *           i_callbacks.c and is compiled differently each time!
   */
 /*
@@ -44,6 +44,16 @@ connect
 */
 #ifndef __ACTION_FLAGS__
 #define __ACTION_FLAGS__
+
+/*! \enum ActionFlag
+ *   Action flags are used as argument 3 to the Command macro in the second group
+ *   in this file, which initializes the command_struc.aflag in i_command.c.
+ *   The enumerator determines what type of task will be spawned to complete the
+ *   action, see i_command_router(), and whether the cursor coordinates will be
+ *   captured in i_command_process(). Basically, if the action handler is going
+ *   to use the CMD_X or CMD_Y macros then the enumerated XY version should be
+ *   used (to set the correct bits in the action flag field).
+ */
 enum ActionFlag
 {
     USE_WORKER_THREAD   = 0,
@@ -126,6 +136,7 @@ enum ActionFlag
         COMMAND ( do_zoom_in )
         COMMAND ( do_zoom_out )
         COMMAND ( do_zoom_all )
+        COMMAND ( do_zoom_to_mag )
         COMMAND ( do_documentation )
         COMMAND ( do_show_hidden )
         COMMAND ( do_show_inherited )
@@ -416,6 +427,7 @@ enum {
      COMMAND ( VIEW_ZOOM_IN,        NULL,               USE_XY_WORKER,          do_zoom_in)
      COMMAND ( VIEW_ZOOM_OUT,       NULL,               USE_XY_WORKER,          do_zoom_out)
      COMMAND ( VIEW_ZOOM_ALL,       NULL,               USE_WORKER_THREAD,      do_zoom_all)
+     COMMAND ( VIEW_ZOOM_MAG,       "magnification",    USE_XY_WORKER,          do_zoom_to_mag)
      COMMAND ( VIEW_DOCUMENT,       "documentation",    USE_MAIN_LOOP,          do_documentation)
      COMMAND ( VIEW_HIDDEN,         "show hidden",      USE_MAIN_LOOP,          do_show_hidden)
      COMMAND ( VIEW_INHERITED,      "show inherited",   USE_MAIN_LOOP,          do_show_inherited)

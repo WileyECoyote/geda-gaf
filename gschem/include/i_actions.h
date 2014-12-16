@@ -109,6 +109,7 @@
 #define VIEW_ZOOM_IN     view-zoom-in
 #define VIEW_ZOOM_OUT    view-zoom-out
 #define VIEW_ZOOM_ALL    view-zoom-all
+#define VIEW_ZOOM_MAG    view-zoom-to-mag
 #define VIEW_DOCUMENT    view-documentation
 #define VIEW_HIDDEN      view-show-hidden
 #define VIEW_INHERITED   view-show-inherited

@@ -19,17 +19,17 @@ Notable changes in gEDA/gaf 2.0.9 - Rampage Edition
   offers a configurable startup dialog. The active session name can
   optionally be displayed in the title bar.
 
-  User can now elect to show the full path in the title bar or just the basic
+  Users can now elect to show the full path in the title bar or just the basic
   filename as before. File names are prefixed with an asterisk when ever the
   current page has been modified and not saved.
 
-  A new Component Properties dialog allows user to change components with
+  A new Component Properties dialog allows users to change components with
   out having to edit the schematic file with an editor. The Component
-  Properties dialog is also used for editing symbols, allowing user to set
-  or edit standard attributes for symbols form a single access point.
+  Properties dialog is also used for editing symbols, allowing users to set
+  or edit standard attributes for symbols from a single access point.
 
   Grids systems have been completely revised and feature user configurable
-  dual color mesh and dots, colors for the minor and major step can be set
+  dual color mesh and dots. Colors for the minor and major step can be set
   separately for each grid type. The alpha transparency for grid types are
   also user configurable. The settings can be adjusted to produce the same
   "dull gray" lines and dots as before but adding colors can improve the
@@ -37,7 +37,8 @@ Notable changes in gEDA/gaf 2.0.9 - Rampage Edition
 
   The File Chooser dialog used for selecting and saving documents has been
   replaced. The new dialog retains position and geometry settings like other
-  gschem dialogs. The File Chooser dialog also retains user filter preferences.
+  gschem dialogs. The File Chooser dialog also retains user filter preferences
+  between sessions.
 
 * Additonal Symbols, including symbols for newer more modern semiconductors.
 
@@ -52,7 +53,7 @@ Notable changes in gEDA/gaf 2.0.9 - Rampage Edition
 
 * Libgedauio has more Widgets and expanded Doxygen documentation. The
   new File Chooser implemented in gschem is a new Libgedauio dialog.
-  The library's build system is better organized to acoomodate future
+  The library's build system is better organized to accommodate future
   expansion. Other new widgets include custom Combo boxes and TreeView.
   The Doxygen documentation has been expanded.
 

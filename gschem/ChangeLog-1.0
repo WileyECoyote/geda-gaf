@@ -1,5 +1,12 @@
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * src/iface/i_command.c: Implement new action view-zoom-to-mag
+
+    * src/x/x_menus.c: Implement new menu action view-zoom-to-mag
+
+
+2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * data/gschem-icons.svg: Add new gschem icon gschem-zoom-mag
 
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>

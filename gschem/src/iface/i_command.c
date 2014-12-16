@@ -30,6 +30,7 @@
 #include "i_command.h"
 #include "x_menus.h"
 
+#include <geda_dialogs.h>
 #include <geda_debug.h>
 
 #define PERFORMANCE
@@ -1282,7 +1283,7 @@ COMMAND ( do_rotate )
       if (object_list) {
         /* Allow o_edit_rotate_world to redraw the objects */
         o_edit_rotate_world(w_current, CMD_X(do_rotate),
-                                         CMD_Y(do_rotate), 90, object_list);
+                                       CMD_Y(do_rotate), 90, object_list);
       }
 
       state = SELECT;
@@ -1690,12 +1691,39 @@ COMMAND ( do_zoom_out )
 COMMAND ( do_zoom_all)
 {
   BEGIN_W_COMMAND(do_zoom_all);
-  /* scroll bar stuff */
+
   i_zoom_world(w_current, ZOOM_FULL_DIRECTIVE, DONTCARE, 0);
 
   if (w_current->undo_panzoom)
     o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
   EXIT_COMMAND(do_zoom_all);
+}
+
+/*! \brief Zoom to Magnification Function in i_command_View_Actions
+ *  \par Function Description
+ *  This is the callback handler for the view-zoom-to-mag action.
+ *
+ *  \note Magnification in this context is the reciprocal of the scale
+ *        factor, i.e. to_screen_y_constant and to_screen_x_constant.
+ */
+COMMAND ( do_zoom_to_mag)
+{
+  BEGIN_W_COMMAND(do_zoom_to_mag);
+
+  int x, y;
+  double mag;
+
+  x = CMD_X(do_zoom_to_mag);
+  y = CMD_Y(do_zoom_to_mag);
+
+  mag = geda_dialog_get_real(_("Zoom Mag"),
+                             _("Specify new zoom:"));
+
+  i_zoom_world_specify(w_current, mag, x, y, CMD_WHO(do_zoom_to_mag));
+
+  if (w_current->undo_panzoom)
+    o_undo_savestate(w_current, UNDO_VIEWPORT_ONLY);
+  EXIT_COMMAND(do_zoom_to_mag);
 }
 
 /*! \brief View Documentation Action Function in i_command_View_Actions
