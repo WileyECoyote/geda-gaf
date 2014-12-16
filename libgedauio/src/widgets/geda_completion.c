@@ -30,15 +30,14 @@
 
 #include "config.h"
 
+#include <geda.h>
 #include <geda_completion.h>
 
 #include <string.h>
 
 #include "gettext.h"
 
-#ifdef HAVE_LIBDMALLOC
-#include <dmalloc.h>
-#endif
+#include <geda_debug.h>
 
 /*!
  * \brief GedaCompletion - Automatic Entry Completion
@@ -347,62 +346,62 @@ geda_completion_complete_utf8 (GedaCompletion  *cmp,
  *
  */
 GList*
-geda_completion_complete (GedaCompletion *cmp,
-                          const char     *prefix,
-                          char          **new_prefix)
+geda_completion_complete (GedaCompletion *cmp, const char *prefix, char **new_prefix)
 {
-  gsize plen, len;
-  gboolean done = FALSE;
-  GList* list;
+  bool   done = FALSE;
+  gsize  plen, len;
+  GList *list;
 
   g_return_val_if_fail (cmp != NULL, NULL);
   g_return_val_if_fail (prefix != NULL, NULL);
 
   len = strlen (prefix);
-  if (cmp->prefix && cmp->cache)
-    {
-      plen = strlen (cmp->prefix);
-      if (plen <= len && ! cmp->strncmp_func (prefix, cmp->prefix, plen))
-	{
-	  /* use the cache */
-	  list = cmp->cache;
-	  while (list)
-	    {
-	      GList *next = list->next;
 
-	      if (cmp->strncmp_func (prefix,
-				     cmp->func ? cmp->func (list->data) : (char*) list->data,
-				     len))
-		cmp->cache = g_list_delete_link (cmp->cache, list);
+  if (cmp->prefix && cmp->cache) {
 
-	      list = next;
-	    }
-	  done = TRUE;
-	}
-    }
+    plen = strlen (cmp->prefix);
+    if (plen <= len && ! cmp->strncmp_func (prefix, cmp->prefix, plen)) {
 
-  if (!done)
-    {
-      /* normal code */
-      g_list_free (cmp->cache);
-      cmp->cache = NULL;
-      list = cmp->items;
-      while (*prefix && list)
-	{
-	  if (!cmp->strncmp_func (prefix,
-			cmp->func ? cmp->func (list->data) : (char*) list->data,
-			len))
-	    cmp->cache = g_list_prepend (cmp->cache, list->data);
-	  list = list->next;
-	}
+      /* use the cache */
+      list = cmp->cache;
+      while (list) {
+
+        GList *next = list->next;
+
+        if (cmp->strncmp_func (prefix, cmp->func ? cmp->func (list->data) : (char*) list->data, len))
+          cmp->cache = g_list_delete_link (cmp->cache, list);
+
+        list = next;
+      }
+      done = TRUE;
     }
-  if (cmp->prefix)
-    {
-      g_free (cmp->prefix);
-      cmp->prefix = NULL;
+  }
+
+  if (!done) {
+
+    /* normal code */
+    g_list_free (cmp->cache);
+    cmp->cache = NULL;
+    list = cmp->items;
+    while (*prefix && list) {
+
+      if (!cmp->strncmp_func (prefix,
+        cmp->func ? cmp->func (list->data) : (char*) list->data,
+                              len))
+        cmp->cache = g_list_prepend (cmp->cache, list->data);
+      list = list->next;
     }
+  }
+
+  if (cmp->prefix) {
+
+    g_free (cmp->prefix);
+    cmp->prefix = NULL;
+  }
+
   if (cmp->cache)
     cmp->prefix = g_strdup (prefix);
+
   completion_check_cache (cmp, new_prefix);
 
   return *prefix ? cmp->cache : cmp->items;

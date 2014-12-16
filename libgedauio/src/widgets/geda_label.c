@@ -391,9 +391,9 @@ GtkWidgetAuxInfo* geda_widget_get_aux_info (GtkWidget *widget, bool create)
 
   aux_info = g_object_get_qdata (G_OBJECT (widget), quark_aux_info);
 
-  if (!aux_info && create)
-  {
-    aux_info = g_slice_new (GtkWidgetAuxInfo);
+  if (!aux_info && create) {
+
+    aux_info = malloc (sizeof(GtkWidgetAuxInfo));
 
     aux_info->width = -1;
     aux_info->height = -1;
@@ -1686,23 +1686,23 @@ static bool
 geda_label_buildable_custom_tag_start (GtkBuildable     *buildable,
                                        GtkBuilder       *builder,
                                        GObject          *child,
-                                       const char      *tagname,
+                                       const char       *tagname,
                                        GMarkupParser    *parser,
-                                       void *         *data)
+                                       void            **data)
 {
   if (buildable_parent_iface->custom_tag_start (buildable, builder, child,
     tagname, parser, data))
     return TRUE;
 
-  if (strcmp (tagname, "attributes") == 0)
-  {
+  if (strcmp (tagname, "attributes") == 0) {
+
     PangoParserData *parser_data;
 
-    parser_data = g_slice_new0 (PangoParserData);
+    parser_data          = calloc (1, sizeof(PangoParserData));
     parser_data->builder = g_object_ref (builder);
-    parser_data->object = g_object_ref (buildable);
-    *parser = pango_parser;
-    *data = parser_data;
+    parser_data->object  = g_object_ref (buildable);
+   *parser               = pango_parser;
+   *data                 = parser_data;
     return TRUE;
   }
   return FALSE;
@@ -1715,24 +1715,24 @@ geda_label_buildable_custom_finished (GtkBuildable *buildable,
                                       const char  *tagname,
                                       void *      user_data)
 {
-  PangoParserData *data;
+  PangoParserData *parser_data;
 
   buildable_parent_iface->custom_finished (buildable, builder, child,
                                            tagname, user_data);
 
-  if (strcmp (tagname, "attributes") == 0)
-  {
-    data = (PangoParserData*)user_data;
+  if (strcmp (tagname, "attributes") == 0) {
 
-    if (data->attrs)
-    {
-      geda_label_set_attributes (GEDA_LABEL (buildable), data->attrs);
-      pango_attr_list_unref (data->attrs);
+    parser_data = (PangoParserData*)user_data;
+
+    if (parser_data->attrs) {
+
+      geda_label_set_attributes (GEDA_LABEL (buildable), parser_data->attrs);
+      pango_attr_list_unref (parser_data->attrs);
     }
 
-    g_object_unref (data->object);
-    g_object_unref (data->builder);
-    g_slice_free (PangoParserData, data);
+    g_object_unref (parser_data->object);
+    g_object_unref (parser_data->builder);
+    free (parser_data);
   }
 }
 
@@ -2663,16 +2663,15 @@ geda_label_set_markup_internal (GedaLabel    *label,
                                 const char   *str,
                                 bool          with_uline)
 {
-  GedaLabelPrivate *priv = label->priv;
-  char *text = NULL;
-  GError *error = NULL;
-  PangoAttrList *attrs = NULL;
-  gunichar accel_char = 0;
-  char *new_str;
-  GList *links = NULL;
+  GedaLabelPrivate *priv  = label->priv;
+  PangoAttrList    *attrs = NULL;
+  GError           *error = NULL;
+  GList            *links = NULL;
+  gunichar          accel = 0;     /* Accelerator Character */
+  char             *text  = NULL;
+  char             *new_str;
 
-  if (!parse_uri_markup (label, str, &new_str, &links, &error))
-  {
+  if (!parse_uri_markup (label, str, &new_str, &links, &error)) {
     g_warning ("Failed to set text from markup due to error parsing markup: %s",
                error->message);
     g_error_free (error);
@@ -2705,8 +2704,7 @@ geda_label_set_markup_internal (GedaLabel    *label,
       char *pattern;
       unsigned int key;
 
-      if (separate_uline_pattern (new_str, &key, &tmp, &pattern))
-      {
+      if (separate_uline_pattern (new_str, &key, &tmp, &pattern)) {
         g_free (new_str);
         new_str = tmp;
         g_free (pattern);
@@ -2715,7 +2713,7 @@ geda_label_set_markup_internal (GedaLabel    *label,
   }
 
   if (!pango_parse_markup (new_str, -1, with_uline ? '_' : 0, &attrs,
-                          &text, with_uline ? &accel_char : NULL, &error))
+                          &text, with_uline ? &accel : NULL, &error))
   {
     g_warning ("Failed to set text from markup due to error parsing markup: %s",
                error->message);
@@ -2735,8 +2733,8 @@ geda_label_set_markup_internal (GedaLabel    *label,
     label->markup_attrs = attrs;
   }
 
-  if (accel_char != 0)
-    priv->mnemonic_keyval = gdk_keyval_to_lower (gdk_unicode_to_keyval (accel_char));
+  if (accel != 0)
+    priv->mnemonic_keyval = gdk_keyval_to_lower (gdk_unicode_to_keyval (accel));
   else
     priv->mnemonic_keyval = GDK_KEY_VoidSymbol;
 }
@@ -3387,6 +3385,7 @@ geda_label_size_request (GtkWidget *widget, GtkRequisition *requisition)
 
   requisition->width = width;
   requisition->height = height;
+  free(aux_info);
 }
 
 static void
@@ -4429,8 +4428,7 @@ static void limit_layout_lines (PangoLayout *layout)
 
     /* get last lines */
     elem = g_slist_nth (lines, n_lines - DRAG_ICON_MAX_LINES / 2);
-    append_n_lines (str, text, elem,
-                    DRAG_ICON_MAX_LINES / 2);
+    append_n_lines (str, text, elem, DRAG_ICON_MAX_LINES / 2);
 
     pango_layout_set_text (layout, str->str, -1);
     g_string_free (str, TRUE);

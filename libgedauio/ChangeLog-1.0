@@ -1,3 +1,11 @@
+2014-12-14 Wiley E. Hill <wileyhill@gmail.com>
+
+      * src/widgets/geda_combobox.c: Replace g_slice_new0 with calloc, g_slice_new
+        with  malloc, g_slice_free with g_free.
+
+      * src/widgets/geda_label.c: Replace g_slice_new with g_malloc and
+        g_slice_free with g_free.
+
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: General code cleaning, rename function

@@ -36,6 +36,8 @@
 #include "config.h"
 #include <geda.h>
 
+#include <stdlib.h>
+
 #include <gtk/gtk.h>
 
 #include <string.h>
@@ -335,7 +337,7 @@ geda_combo_box_text_buildable_custom_tag_start (GtkBuildable     *buildable,
   if (strcmp (tagname, "items") == 0) {
       ItemParserData *parser_data;
 
-      parser_data          = g_slice_new0 (ItemParserData);
+      parser_data          = calloc (1, sizeof(ItemParserData));
       parser_data->builder = g_object_ref (builder);
       parser_data->object  = g_object_ref (buildable);
       parser_data->domain  = gtk_builder_get_translation_domain (builder);
@@ -354,19 +356,19 @@ geda_combo_box_text_buildable_custom_finished (GtkBuildable *buildable,
                                                const char   *tagname,
                                                void         *user_data)
 {
-  ItemParserData *data;
+  ItemParserData *parser_data;
 
   buildable_parent_iface->custom_finished (buildable, builder, child,
                                            tagname, user_data);
 
   if (strcmp (tagname, "items") == 0) {
 
-    data = (ItemParserData*)user_data;
+    parser_data = (ItemParserData*)user_data;
 
-    g_object_unref (data->object);
-    g_object_unref (data->builder);
-    g_string_free (data->string, TRUE);
-    g_slice_free (ItemParserData, data);
+    g_object_unref (parser_data->object);
+    g_object_unref (parser_data->builder);
+    g_string_free (parser_data->string, TRUE);
+    free (parser_data);
   }
 }
 

@@ -1062,9 +1062,9 @@ static bool geda_entry_tab_complete (GtkEntry *entry)
   GList     *options;
   GedaEntry *geda_entry = GEDA_ENTRY (entry);
 
-  bool exit ( bool answer ) { g_free ( buffer ); return answer; }
+  bool exit ( bool answer ) { free ( buffer ); return answer; }
 
-  buffer = g_malloc0(max_command_length);
+  buffer = calloc(1, max_command_length);
 
   if (!buffer)
     return FALSE;
@@ -1073,13 +1073,12 @@ static bool geda_entry_tab_complete (GtkEntry *entry)
 
   while ( *s_ptr != ASCII_NUL) ++s_ptr;     /* advance to end of string */
 
-  if (s_ptr == buffer) /* if string empty */
-    return exit (TRUE);
+  if (s_ptr == buffer)  /* if string empty */
 
-  if ( *(--s_ptr) == ASCII_SPACE)     /* If previous char is space then */
+  if ( *(--s_ptr) == ASCII_SPACE)       /* If previous char is space then */
     return exit (TRUE);                 /* there is nothing to complete */
 
-  while ( (s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
+  while ((s_ptr != buffer) && *s_ptr != ASCII_SPACE) s_ptr--; /* go backwards */
 
   if (s_ptr != buffer) ++s_ptr;       /* if compounding then skip space */
 

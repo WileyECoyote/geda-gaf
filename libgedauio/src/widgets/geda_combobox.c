@@ -23,6 +23,7 @@
 #include "config.h"
 #include <geda.h>
 
+#include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
 
@@ -335,8 +336,8 @@ static void     geda_combo_box_list_auto_scroll     (GedaComboBox     *combo,
                                                      int               y);
 static bool     geda_combo_box_list_scroll_timeout  (GedaComboBox     *combo);
 static bool     geda_combo_box_list_button_pressed  (GtkWidget        *widget,
-                                                    GdkEventButton    *event,
-                                                    void              *data);
+                                                     GdkEventButton   *event,
+                                                     void             *data);
 
 static bool     geda_combo_box_list_select_func     (GtkTreeSelection *selection,
                                                      GtkTreeModel     *model,
@@ -4311,7 +4312,7 @@ geda_combo_box_cell_layout_pack_start (GtkCellLayout   *layout,
 
   g_object_ref_sink (cell);
 
-  info         = g_slice_new0 (ComboCellInfo);
+  info         = calloc (1, sizeof(ComboCellInfo));
   info->cell   = cell;
   info->expand = expand;
   info->pack   = GTK_PACK_START;
@@ -4370,7 +4371,7 @@ geda_combo_box_cell_layout_pack_end (GtkCellLayout   *layout,
 
   g_object_ref_sink (cell);
 
-  info         = g_slice_new0 (ComboCellInfo);
+  info         = calloc (1, sizeof(ComboCellInfo));
   info->cell   = cell;
   info->expand = expand;
   info->pack   = GTK_PACK_END;
@@ -4451,7 +4452,7 @@ geda_combo_box_cell_layout_clear (GtkCellLayout *layout)
 
     geda_combo_box_cell_layout_clear_attributes (layout, info->cell);
     g_object_unref (info->cell);
-    g_slice_free (ComboCellInfo, info);
+    free (info);
     i->data = NULL;
   }
 
@@ -4503,26 +4504,28 @@ geda_combo_box_cell_layout_add_attribute (GtkCellLayout   *layout,
   ComboCellInfo *info;
 
   info = geda_combo_box_get_cell_info (combo_box, cell);
-  g_return_if_fail (info != NULL);
 
-  info->attributes = g_slist_prepend (info->attributes, GINT_TO_POINTER (column));
-  info->attributes = g_slist_prepend (info->attributes, g_strdup (attribute));
+  if (info != NULL) {
 
-  if (combo_box->priv->cell_view) {
-    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box->priv->cell_view),
-                                   cell, attribute, column);
+    info->attributes = g_slist_prepend (info->attributes, GINT_TO_POINTER (column));
+    info->attributes = g_slist_prepend (info->attributes, g_strdup (attribute));
+
+    if (combo_box->priv->cell_view) {
+      gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box->priv->cell_view),
+                                     cell, attribute, column);
+    }
+
+    if (combo_box->priv->column) {
+      gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box->priv->column),
+                                     cell, attribute, column);
+    }
+
+    if (GTK_IS_MENU (combo_box->priv->popup_widget)) {
+      add_attribute_recurse (combo_box->priv->popup_widget, cell, attribute, column);
+    }
+
+    gtk_widget_queue_resize (GTK_WIDGET (combo_box));
   }
-
-  if (combo_box->priv->column) {
-    gtk_cell_layout_add_attribute (GTK_CELL_LAYOUT (combo_box->priv->column),
-                                   cell, attribute, column);
-  }
-
-  if (GTK_IS_MENU (combo_box->priv->popup_widget)) {
-    add_attribute_recurse (combo_box->priv->popup_widget, cell, attribute, column);
-  }
-
-  gtk_widget_queue_resize (GTK_WIDGET (combo_box));
 }
 
 static void
@@ -4596,50 +4599,55 @@ geda_combo_box_cell_layout_set_cell_data_func (GtkCellLayout         *layout,
   ComboCellInfo *info;
 
   info = geda_combo_box_get_cell_info (combo_box, cell);
-  g_return_if_fail (info != NULL);
 
-  if (info->destroy)
-    {
+  if (info != NULL) {
+
+    if (info->destroy) {
+
       GDestroyNotify d = info->destroy;
 
       info->destroy = NULL;
       d (info->func_data);
     }
 
-  info->func = func;
-  info->func_data = func_data;
-  info->destroy = destroy;
+    info->func = func;
+    info->func_data = func_data;
+    info->destroy = destroy;
 
-  if (priv->cell_view)
-    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->cell_view), cell, func, func_data, NULL);
+    if (priv->cell_view)
+      gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->cell_view), cell, func, func_data, NULL);
 
-  if (priv->column)
-    gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->column), cell, func, func_data, NULL);
+    if (priv->column)
+      gtk_cell_layout_set_cell_data_func (GTK_CELL_LAYOUT (priv->column), cell, func, func_data, NULL);
 
-  if (GTK_IS_MENU (priv->popup_widget))
-    set_cell_data_func_recurse (priv->popup_widget, cell, info);
+    if (GTK_IS_MENU (priv->popup_widget))
+      set_cell_data_func_recurse (priv->popup_widget, cell, info);
 
-  gtk_widget_queue_resize (GTK_WIDGET (combo_box));
+    gtk_widget_queue_resize (GTK_WIDGET (combo_box));
+  }
 }
 
 static void
-clear_attributes_recurse (GtkWidget       *menu,
-			  GtkCellRenderer *cell)
+clear_attributes_recurse (GtkWidget *menu, GtkCellRenderer *cell)
 {
   GList *i, *list;
   GtkWidget *submenu;
 
   list = gtk_container_get_children (GTK_CONTAINER (menu));
-  for (i = list; i; i = i->next)
-    {
-      if (GTK_IS_CELL_LAYOUT (GTK_BIN (i->data)->child))
-	gtk_cell_layout_clear_attributes (GTK_CELL_LAYOUT (GTK_BIN (i->data)->child),
-					    cell);
+
+  for (i = list; i; i = i->next) {
+
+    if (GTK_IS_CELL_LAYOUT (GTK_BIN (i->data)->child))
+
+      gtk_cell_layout_clear_attributes (GTK_CELL_LAYOUT (GTK_BIN (i->data)->child),
+                                        cell);
 
       submenu = gtk_menu_item_get_submenu (GTK_MENU_ITEM (i->data));
-      if (submenu != NULL)
-	clear_attributes_recurse (submenu, cell);
+
+    if (submenu != NULL) {
+      clear_attributes_recurse (submenu, cell);
     }
+  }
 
   g_list_free (list);
 }
@@ -4659,11 +4667,10 @@ geda_combo_box_cell_layout_clear_attributes (GtkCellLayout   *layout,
   g_return_if_fail (info != NULL);
 
   list = info->attributes;
-  while (list && list->next)
-    {
-      g_free (list->data);
-      list = list->next->next;
-    }
+  while (list && list->next) {
+    g_free (list->data);
+    list = list->next->next;
+  }
   g_slist_free (info->attributes);
   info->attributes = NULL;
 
@@ -5765,7 +5772,7 @@ geda_combo_box_finalize (GObject *object)
     g_slist_free (info->attributes);
 
     g_object_unref (info->cell);
-    g_slice_free (ComboCellInfo, info);
+    g_free (info);
   }
   g_slist_free (combo_box->priv->cells);
 
