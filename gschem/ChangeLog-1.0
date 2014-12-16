@@ -1,5 +1,13 @@
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * gschem/src/x/x_icons.c: Break-out missing 22x22 icon image into
+      a seperated data structure and rename existing theme structure
+      to IDS_THEME_ICONS_22, new structure is IDS_THEME_ICONS_16.
+      manually load IDS_THEME_ICONS_22 in x_icons_setup_factory, Gtk
+      does not seem to be getting the job done!
+
+2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_command.c: Implement new action view-zoom-to-mag
 
     * src/x/x_menus.c: Implement new menu action view-zoom-to-mag

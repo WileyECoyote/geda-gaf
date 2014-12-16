@@ -55,6 +55,8 @@
 #include <gschem.h>
 #include <geda_debug.h>
 
+#define ACTION_ICON_THEME_22_PATH "icons/hicolor/22x22/actions"
+
 /** \defgroup Gschem-Icons Gschem-Icons
  *  @{
  *  \par This module contains routines for icons images
@@ -96,20 +98,28 @@ const char* IDS_GSCHEM_ICONS[] = {
   NULL
 };
 
-const char* IDS_THEME_ICONS[] = {
+const char* IDS_THEME_ICONS_16[] = {
   "gschem-attribute-attach", "gschem-attribute-detach",  "gschem-clone",
-  "gschem-datasheet",        "gschem-deselect",
+  "gschem-datasheet",
   "gschem-insert-arc",       "gschem-insert-attribute",  "gschem-insert-box",
   "gschem-insert-bus",       "gschem-insert-circle",     "gschem-insert-line",
   "gschem-insert-net",       "gschem-insert-path",       "gschem-insert-symbol",
   "gschem-insert-pin",       "gschem-insert-text",       "gschem-move",
   "gschem-multi-clone",      "gschem-show-both",         "gschem-show-value",
   "gschem-show-name",        "gschem-unselect-all",      "gschem-zoom-extents",
-  "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-out",
-  "gschem-zoom-selection",
+  "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-mag",
+  "gschem-zoom-out",         "gschem-zoom-selection",
   NULL
 };
-
+const char* IDS_THEME_ICONS_22[] = {
+  "gschem-deselect",         "gschem-insert-bus",
+  "gschem-insert-net",       "gschem-insert-symbol",
+  "gschem-insert-text",      "gschem-move",
+  "gschem-unselect-all",     "gschem-zoom-extents",
+  "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-mag",
+  "gschem-zoom-out",         "gschem-zoom-selection",
+  NULL
+};
 
 /*! \brief Setup default icon for GTK windows
  *
@@ -128,7 +138,8 @@ void x_icons_set_default_icon (const char* icon_name)
 /*! \brief Setup icon search paths.
  * \par Function Description
  * Add the icons installed by gschem to the search path for the
- * default icon theme, so that they can be automatically found by GTK.
+ * default icon theme, so that they can be automatically found
+ * by GTK (even though Gtk will look for them).
  */
 void x_icons_add_search_path (const char *path)
 {
@@ -220,7 +231,37 @@ static void x_icons_setup_factory()
       GEDA_FREE(pathname);
     }
   }
+
+  for ( index = 0; IDS_THEME_ICONS_22[index] != NULL; index++ ) {
+
+    icon_name = IDS_THEME_ICONS_22[index];
+
+    filename = g_strconcat (icon_name, ".png", NULL);
+    pathname = g_build_filename (f_path_sys_data (), ACTION_ICON_THEME_22_PATH, filename, NULL);
+    GEDA_FREE(filename);
+    fprintf(stderr, "looking for %s\n", pathname);
+    if (pathname) {
+      if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
+        ( access(pathname, R_OK) == 0)) {
+        pixbuf = gdk_pixbuf_new_from_file(pathname, &err);
+        if(!err) {
+          icon_set = gtk_icon_set_new_from_pixbuf(pixbuf);
+          gtk_icon_factory_add (gschem_factory, icon_name, icon_set);
+        }
+        else {
+          u_log_message("Warning, Error reading image file: %s\n", err->message);
+          g_clear_error (&err);
+          err = NULL;
+        }
+      }
+      else { /* file non existence or not accessible */
+        u_log_message("Warning, Error accessing image file: %s\n", pathname);
+      }
+      GEDA_FREE(pathname);
+    }
+  }
 }
+
 
 /*! \brief Setup icon search paths.
  * \par Function Description
