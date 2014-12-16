@@ -415,7 +415,11 @@ GtkWidget *x_menu_setup_ui(GschemToplevel *w_current)
           if (menu_item_stock) {
 
             menu_item = geda_image_menu_item_new_with_mnemonic(menu_item_name);
-            image =  GTK_WIDGET(gtk_image_new_from_stock(menu_item_stock, GTK_ICON_SIZE_MENU));
+
+            image = gtk_image_new_from_icon_name (menu_item_stock, GTK_ICON_SIZE_MENU);
+
+            /* Pre Gtk-2.6 */
+            //image =  GTK_WIDGET(gtk_image_new_from_stock(menu_item_stock, GTK_ICON_SIZE_MENU));
 
             g_object_set (image,
                           "no-show-all",       TRUE,
