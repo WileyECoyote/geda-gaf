@@ -42,8 +42,10 @@ action_icons2 = \
 	gschem-zoom-extents \
 	gschem-zoom-fit \
 	gschem-zoom-in \
+	gschem-zoom-mag \
 	gschem-zoom-out \
 	gschem-zoom-selection
+
 
 action_icon_files = \
 	$(action_icons:%=%-16.png) \

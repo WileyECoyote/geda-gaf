@@ -1,5 +1,9 @@
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * data/gschem-icons.svg: Add new gschem icon gschem-zoom-mag
+
+2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * src/iface/i_zoom_world.c: Add new function i_zoom_world_specify.
 
 2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
