@@ -71,7 +71,7 @@ geda_dialog_get_input(const char *title, const char *prompt, GedaEntryAccept typ
     gtk_window_set_focus(GTK_WINDOW(dialog), entry);
     gtk_widget_set_can_default(ok_butt,TRUE);
     gtk_window_set_default(GTK_WINDOW(dialog), ok_butt);
-    gtk_entry_set_activates_default(GTK_ENTRY(entry), TRUE);
+    geda_entry_set_activates_default(GEDA_ENTRY(entry), TRUE);
 
     switch (gtk_dialog_run(dialog))
     {
