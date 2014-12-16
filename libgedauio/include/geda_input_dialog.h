@@ -28,5 +28,6 @@
 #define __GEDA_INPUT_DIALOG_H__
 
 char *geda_dialog_get_string(const char *title, const char *prompt);
+float geda_dialog_get_real(const char *title, const char *prompt);
 
 #endif /* __GEDA_INPUT_DIALOG_H__ */

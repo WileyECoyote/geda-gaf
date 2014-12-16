@@ -27,12 +27,18 @@
 /*! \file geda_input_dialog.c This module contains generic dialog routines
  *  for geda projects.
  */
-#include <gtk/gtk.h>
-#include <geda.h>
-#include <geda_label.h>
 
-/* \note The returned string must be freed */
-char *geda_dialog_get_string(const char *title, const char *prompt)
+#include <stdlib.h>
+
+#include <gtk/gtk.h>
+
+#include <geda.h>
+
+#include "geda_label.h"
+#include "geda_entry.h"
+
+static char*
+geda_dialog_get_input(const char *title, const char *prompt, GedaEntryAccept type)
 {
     GtkDialog *dialog;
     GtkWidget *ok_butt;
@@ -56,9 +62,9 @@ char *geda_dialog_get_string(const char *title, const char *prompt)
       gtk_container_add(GTK_CONTAINER(content_area), label);
     }
 
-    entry = gtk_entry_new();
+    entry = geda_visible_entry_new ( DISABLE, DISABLE);
+    geda_entry_set_valid_input(GEDA_ENTRY(entry), type);
     gtk_container_add(GTK_CONTAINER(content_area), entry);
-    g_object_set (entry, "visible", TRUE, NULL);
 
     gtk_widget_show(GTK_WIDGET(dialog));
 
@@ -85,3 +91,29 @@ char *geda_dialog_get_string(const char *title, const char *prompt)
     gtk_widget_destroy((GtkWidget*)dialog);
     return text;
 }
+
+/* \note The returned string must be freed */
+char *geda_dialog_get_string(const char *title, const char *prompt)
+{
+  return geda_dialog_get_input(title, prompt, ACCEPT_ALL_ASCII);
+}
+
+float geda_dialog_get_real(const char *title, const char *prompt)
+{
+  char *text;
+  float value;
+
+  text = geda_dialog_get_input(title, prompt, ACCEPT_REAL);
+
+  if (text) { /* If user did not cancel */
+    value = atof(text);
+  }
+  else {
+    value = -0;
+  }
+
+  g_free (text);
+
+  return value;
+}
+

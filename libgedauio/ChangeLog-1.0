@@ -1,3 +1,10 @@
+2014-12-15 Wiley E. Hill <wileyhill@gmail.com>
+
+      * geda_input_dialog.?: Added function geda_dialog_get_real, renamed
+        geda_dialog_get_string to geda_dialog_get_input and modified to accept
+        GedaEntryAccept argument and use a geda_entry widget instead of a
+        gtk_entry. Replaced geda_dialog_get_string with consolidated version.
+
 2014-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
       * src/widgets/geda_combobox.c: Replace g_slice_new0 with calloc, g_slice_new
