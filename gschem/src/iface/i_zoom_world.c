@@ -182,8 +182,8 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
   toplevel->page_current->to_screen_y_constant;
 
   /*get the center of the objects*/
-  world_pan_center_x = (double) (lright + lleft) /2.0;
-  world_pan_center_y = (double) (lbottom + ltop) /2.0;
+  world_pan_center_x = (double) (lright + lleft) / 2.0;
+  world_pan_center_y = (double) (lbottom + ltop) / 2.0;
 
   /* and create the new window*/
   i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
@@ -196,6 +196,49 @@ void i_zoom_world_extents (GschemToplevel *w_current, const GList *list, int pan
    */
   /* x_basic_warp_cursor(w_current->drawing_area, mouse_x, mouse_y); */
 
+}
+
+/*! \brief Zoom World to Magnification Level
+ *  \par Function Description
+ *  There really is no "Magnification" in gschem, this function causes scale
+ *  factors to_screen_y_constant and to_screen_x_constant to be set to the
+ *  reciprocal of #zoom_new, is not exact but pretty close. The view of the
+ *  world will be pan to the given XY if #specified_from ID is the keyboard
+ *  or mouse.
+ *
+ */
+void i_zoom_world_specify (GschemToplevel *w_current, double zoom_new, int x, int y,
+                           EID_ACTION_ORIGIN  specified_from)
+{
+  GedaToplevel *toplevel = w_current->toplevel;
+  double top, bottom, right, left;
+  double zoom_old, relative_zoom_factor;
+  double world_pan_center_x, world_pan_center_y;
+
+  /* calc center: either "cursor_to_world" or center=center or center  */
+  if ((specified_from == ID_ORIGIN_KEYBOARD) ||
+      (specified_from == ID_ORIGIN_MOUSE))
+  {
+    world_pan_center_x = x;
+    world_pan_center_y = y;
+  }
+  else {
+
+    top    = toplevel->page_current->top;
+    bottom = toplevel->page_current->bottom;
+    right  = toplevel->page_current->right;
+    left   = toplevel->page_current->left;
+
+    world_pan_center_x = (double) (left + right ) / 2;
+    world_pan_center_y = (double) (top + bottom ) / 2;
+  }
+
+  zoom_old = toplevel->page_current->to_screen_y_constant;
+
+  relative_zoom_factor = 1 / ( zoom_new * zoom_old);
+
+  i_pan_world_general(w_current, world_pan_center_x, world_pan_center_y,
+                      relative_zoom_factor, 0);
 }
 
 /*! \todo Finish function documentation!!!

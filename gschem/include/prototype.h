@@ -332,6 +332,8 @@ void       i_zoom_world                      (GschemToplevel *w_current, EID_ZOO
                                                                          EID_ACTION_ORIGIN  selected_from,
                                                                          EID_PAN_DIRECTIVES pan_flags);
 void       i_zoom_world_extents              (GschemToplevel *w_current, const GList *list, int pan_flags);
+void       i_zoom_world_specify              (GschemToplevel *w_current, double mag, int x, int y,
+                                                                         EID_ACTION_ORIGIN  specified_from);
 void       i_zoom_world_box                  (GschemToplevel *w_current, int pan_flags);
 void       i_zoom_world_box_start            (GschemToplevel *w_current, int x, int y);
 void       i_zoom_world_box_end              (GschemToplevel *w_current, int x, int y);
