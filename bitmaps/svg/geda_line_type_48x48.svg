@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg id="svg2992" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" sodipodi:docname="geda_line_type_48x48.svg" xmlns:osb="http://www.openswatchbook.org/uri/2009/osb" inkscape:export-filename="../geda-line-type.png" height="48px" width="48px" inkscape:export-xdpi="90" version="1.1" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" inkscape:export-ydpi="90" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" inkscape:version="0.48.3.1 r9886" xmlns:dc="http://purl.org/dc/elements/1.1/">
- <sodipodi:namedview id="base" bordercolor="#666666" inkscape:pageshadow="2" inkscape:window-y="81" pagecolor="#ffffff" inkscape:window-height="859" inkscape:grid-bbox="true" inkscape:window-maximized="0" inkscape:zoom="11.077114" inkscape:window-x="56" showgrid="true" borderopacity="1.0" inkscape:current-layer="layer1" inkscape:cx="24.951708" inkscape:cy="23.304695" showguides="true" inkscape:guide-bbox="true" inkscape:window-width="1748" inkscape:pageopacity="0.0" inkscape:document-units="px"/>
- <metadata id="metadata2997">
-  <rdf:RDF>
-   <cc:Work rdf:about="">
-    <dc:format>image/svg+xml</dc:format>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:title/>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
+
+<svg
+xmlns="http://www.w3.org/2000/svg"
+sodipodi:docname="geda_line_type_48x48.svg"
+inkscape:export-filename="../geda-line-type.png" height="48px" width="48px"
+inkscape:export-xdpi="90" version="1.1"
+inkscape:export-ydpi="90">
+ <sodipodi:namedview id="base"
+ bordercolor="#666666" inkscape:pageshadow="2"
+ inkscape:window-y="81" pagecolor="#ffffff"
+ inkscape:window-height="859"
+ inkscape:grid-bbox="true"
+ inkscape:window-maximized="0" inkscape:zoom="11.077114" inkscape:window-x="56" showgrid="true" borderopacity="1.0" inkscape:current-layer="layer1" inkscape:cx="24.951708" inkscape:cy="23.304695" showguides="true" inkscape:guide-bbox="true" inkscape:window-width="1748"
+ inkscape:pageopacity="0.0" inkscape:document-units="px"/>
  <g id="layer1" inkscape:label="Layer 1" inkscape:groupmode="layer">
   <path id="path2999" d="m3.1254 38.863 41.749 0.01192" inkscape:connector-curvature="0" stroke="#00c000" stroke-width="6.251" fill="#008000"/>
   <path id="dashed-line" d="m4.5008 16.5h38.999" inkscape:connector-curvature="0" stroke-dashoffset="1.5004" stroke="#00f" stroke-linecap="square" stroke-dasharray="6.00153393, 6.00153393" stroke-width="3.0008" inkscape:label="#path3791" fill="none"/>

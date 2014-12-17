@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    inkscape:export-ydpi="90.000000"
    inkscape:export-xdpi="90.000000"
    inkscape:export-filename="../geda_view_redraw_48x48.png"
@@ -340,3 +337,4 @@
        sodipodi:nodetypes="cccc" />
   </g>
 </svg>
+

@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-<svg id="svg2986" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" sodipodi:docname="geda_arc_edit_48x48.svg" inkscape:export-filename="../geda-arc-edit.png" height="48px" width="48px" inkscape:export-xdpi="90" version="1.1" inkscape:export-ydpi="90" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" inkscape:version="0.48.3.1 r9886" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd">
- <sodipodi:namedview id="namedview25" bordercolor="#666666" inkscape:pageshadow="2" guidetolerance="10" pagecolor="#ffffff" gridtolerance="10" inkscape:window-maximized="0" inkscape:zoom="4.9166667" objecttolerance="10" borderopacity="1" inkscape:current-layer="svg2986" inkscape:cx="24" inkscape:cy="24" inkscape:window-y="31" inkscape:window-x="0" inkscape:window-width="727" showgrid="false" inkscape:pageopacity="0" inkscape:window-height="480"/>
+
+<svg id="svg2986" xmlns="http://www.w3.org/2000/svg"
+ sodipodi:docname="geda_arc_edit_48x48.svg"
+ inkscape:export-filename="../geda-arc-edit.png" height="48px" width="48px"
+ inkscape:export-xdpi="90" version="1.1"
+ inkscape:export-ydpi="90">
+ <sodipodi:namedview id="namedview25" bordercolor="#666666"
+ inkscape:pageshadow="2" guidetolerance="10" pagecolor="#ffffff" gridtolerance="10"
+ inkscape:window-maximized="0"   inkscape:zoom="4.9166667" objecttolerance="10" borderopacity="1"
+ inkscape:current-layer="svg2986"
+ inkscape:cx="24"
+ inkscape:cy="24"
+ inkscape:window-y="31"
+ inkscape:window-x="0"
+ inkscape:window-width="727" showgrid="false"
+ inkscape:pageopacity="0"
+ inkscape:window-height="480"/>
  <defs id="defs2988">
   <marker id="Arrow1Mstart" refY="0.0" refX="0.0" overflow="visible" orient="auto">
    <path id="path3788" d="m0 0l5-5-17.5 5 17.5 5-5-5z" fill-rule="evenodd" transform="scale(.4) translate(10)" stroke="#000" stroke-width="1pt"/>
