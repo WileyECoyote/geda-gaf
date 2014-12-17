@@ -9,6 +9,7 @@ iconsvg = gschem-icons.svg
 action_icons = \
 	gschem-attribute-attach \
 	gschem-attribute-detach \
+	gschem-attribute-reset \
 	gschem-clone \
 	gschem-datasheet \
 	gschem-deselect \
