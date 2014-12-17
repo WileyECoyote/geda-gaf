@@ -9,35 +9,29 @@ iconsvg = gschem-icons.svg
 action_icons = \
 	gschem-attribute-attach \
 	gschem-attribute-detach \
-	gschem-datasheet \
 	gschem-clone \
-	gschem-insert-box \
-	gschem-insert-line \
-	gschem-insert-circle \
-	gschem-insert-arc \
-	gschem-insert-path \
-	gschem-insert-symbol \
-	gschem-insert-net \
-	gschem-insert-bus \
-	gschem-insert-pin \
+	gschem-datasheet \
+	gschem-deselect \
 	gschem-insert-attribute \
+	gschem-insert-arc \
+	gschem-insert-circle \
+	gschem-insert-box \
+	gschem-insert-bus \
+	gschem-insert-line \
+	gschem-insert-net \
+	gschem-insert-path \
+	gschem-insert-pin \
+	gschem-insert-symbol \
 	gschem-insert-text \
+	gschem-insert-net \
 	gschem-move \
 	gschem-multi-clone \
-	gschem-show-value \
-	gschem-show-name \
-	gschem-show-both
-
-action_icons2 = \
-	gschem-deselect \
-	gschem-insert-bus \
+	gschem-select \
+	gschem-show-both \
 	gschem-show-hidden \
 	gschem-show-inherited \
-	gschem-insert-text \
-	gschem-insert-symbol \
-	gschem-insert-net \
-	gschem-move \
-	gschem-select \
+	gschem-show-name \
+	gschem-show-value \
 	gschem-unselect-all \
 	gschem-zoom-extents \
 	gschem-zoom-fit \
@@ -46,11 +40,9 @@ action_icons2 = \
 	gschem-zoom-out \
 	gschem-zoom-selection
 
-
 action_icon_files = \
 	$(action_icons:%=%-16.png) \
-	$(action_icons2:%=%-16.png) \
-	$(action_icons2:%=%-22.png) \
+	$(action_icons:%=%-22.png) \
 	attribute-visibility-28.png \
 	attribute-visibility-22.png
 
@@ -140,6 +132,5 @@ endif
 
 MAINTAINERCLEANFILES = *.log core FILE *~ Makefile.in
 DISTCLEANFILES       = $(desktop_DATA)
-EXTRA_DIST           = $(iconsvg) $(action_icon_files) \
-             	       $(app_icon_files) \
-             	       $(desktop_in_files) $(desktop_DATA)
+EXTRA_DIST           = $(iconsvg) $(action_icon_files) $(app_icon_files) $(desktop_in_files) $(desktop_DATA)
+

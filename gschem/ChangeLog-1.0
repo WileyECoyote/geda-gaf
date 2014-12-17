@@ -1,5 +1,9 @@
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * data/gschem-icons.svg: Add missing 22x22 icons and regenerated
+
+2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * gschem/src/x/x_icons.c: Break-out missing 22x22 icon image into
       a seperated data structure and rename existing theme structure
       to IDS_THEME_ICONS_22, new structure is IDS_THEME_ICONS_16.

@@ -98,24 +98,16 @@ const char* IDS_GSCHEM_ICONS[] = {
   NULL
 };
 
-const char* IDS_THEME_ICONS_16[] = {
-  "gschem-attribute-attach", "gschem-attribute-detach",  "gschem-clone",
-  "gschem-datasheet",
-  "gschem-insert-arc",       "gschem-insert-attribute",  "gschem-insert-box",
-  "gschem-insert-bus",       "gschem-insert-circle",     "gschem-insert-line",
-  "gschem-insert-net",       "gschem-insert-path",       "gschem-insert-symbol",
-  "gschem-insert-pin",       "gschem-insert-text",       "gschem-move",
-  "gschem-multi-clone",      "gschem-show-both",         "gschem-show-value",
-  "gschem-show-name",        "gschem-unselect-all",      "gschem-zoom-extents",
-  "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-mag",
-  "gschem-zoom-out",         "gschem-zoom-selection",
-  NULL
-};
 const char* IDS_THEME_ICONS_22[] = {
-  "gschem-deselect",         "gschem-insert-bus",
-  "gschem-insert-net",       "gschem-insert-symbol",
-  "gschem-insert-text",      "gschem-move",
-  "gschem-unselect-all",     "gschem-zoom-extents",
+  "attribute-visibility",
+  "gschem-attribute-attach", "gschem-clone",             "gschem-attribute-detach",
+  "gschem-datasheet",        "gschem-deselect",          "gschem-insert-arc",
+  "gschem-insert-attribute", "gschem-insert-box",        "gschem-insert-bus",
+  "gschem-insert-circle",    "gschem-insert-line",       "gschem-insert-net",
+  "gschem-insert-path",      "gschem-insert-pin",        "gschem-insert-symbol",
+  "gschem-insert-text",      "gschem-move",              "gschem-multi-clone",
+  "gschem-show-both",        "gschem-show-value",        "gschem-show-name",
+  "gschem-insert-text",      "gschem-unselect-all",      "gschem-zoom-extents",
   "gschem-zoom-fit",         "gschem-zoom-in",           "gschem-zoom-mag",
   "gschem-zoom-out",         "gschem-zoom-selection",
   NULL
@@ -211,6 +203,7 @@ static void x_icons_setup_factory()
     filename = g_strconcat (icon_name, ".png", NULL);
     pathname = g_build_filename (f_path_sys_data (), "bitmap", filename, NULL);
     GEDA_FREE(filename);
+
     if(pathname) {
       if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
         ( access(pathname, R_OK) == 0)) {
@@ -239,7 +232,7 @@ static void x_icons_setup_factory()
     filename = g_strconcat (icon_name, ".png", NULL);
     pathname = g_build_filename (f_path_sys_data (), ACTION_ICON_THEME_22_PATH, filename, NULL);
     GEDA_FREE(filename);
-    fprintf(stderr, "looking for %s\n", pathname);
+
     if (pathname) {
       if( g_file_test(pathname, G_FILE_TEST_EXISTS) &&
         ( access(pathname, R_OK) == 0)) {
