@@ -2228,12 +2228,11 @@ create_settings_dialog (GschemToplevel *w_current)
   GtkWidget *CancelButt;
   GtkWidget *SaveButt;
   GtkWidget *OkayButt;
-
+/*
   PangoFontDescription *FontDescription;
-
   FontDescription = pango_font_description_from_string("Monospace");
   pango_font_description_set_absolute_size(FontDescription, 10);
-
+*/
   ThisDialog=NEW_STD_GSCHEM_DIALOG( DialogTitle, DialogSettings, w_current);
   MainDialogVBox = GTK_DIALOG (ThisDialog)->vbox;
   g_object_set ( MainDialogVBox, "visible", TRUE, NULL);
@@ -2245,8 +2244,8 @@ create_settings_dialog (GschemToplevel *w_current)
    GTK_START_TAB (GeneralPref);
      VSECTION (GeneralPrefTab_vbox, GeneralAutoOptions) /* GT Grp 1 Auto Options */
        HSECTION (GeneralAutoOptions_vbox, AutoOptionsRow1);   /* Grp 1 Row 1 */
-           GTK_SWITCH (AutoOptionsRow1_hbox, AutoSave, 51, TRUE)
-           GTK_NUMERIC_SPIN (AutoOptionsRow1_hbox, AutoSaveInterval, 30, 180, 60, 3600)
+           GTK_SWITCH (AutoOptionsRow1_hbox, AutoSave, 48, TRUE)
+           GTK_NUMERIC_SPIN (AutoOptionsRow1_hbox, AutoSaveInterval, 38, 180, 60, 3600)
        HSECTION (GeneralAutoOptions_vbox, AutoOptionsRow2)    /* Grp 1 Row 2 */
            GTK_SWITCH(AutoOptionsRow2_hbox, AutoLoad, 7, TRUE);
            GTK_TEXT_ENTRY(AutoOptionsRow2_hbox, UntitledName, 30, DEFAULT_UNTITLED_NAME)
@@ -2300,7 +2299,7 @@ create_settings_dialog (GschemToplevel *w_current)
          GTK_NUMERIC_SPIN (EditOptionsRow4_hbox, SnapSize, 22, 100, MIN_SNAP_SIZE, MAX_SNAP_SIZE);
        HSECTION (EditOptions_vbox, EditOptionsRow5)   /* Grp 1 Row 5 */
          GTK_SWITCH(EditOptionsRow5_hbox, ForceBoundingBox, 22, TRUE);
-         GTK_NUMERIC_SPIN (EditOptionsRow5_hbox, SelectPixels, 22, 10, 0, 20);
+         GTK_NUMERIC_SPIN (EditOptionsRow5_hbox, SelectPixels, 21, 10, 0, 20);
        HSECTION (EditOptions_vbox, EditOptionsRow6)    /* Grp 1 Row 6 */
          GTK_SWITCH(EditOptionsRow6_hbox, NotifyEvents, 12, TRUE);
          GTK_SWITCH(EditOptionsRow6_hbox, ObjectClipping, 0, TRUE);
@@ -2323,7 +2322,7 @@ create_settings_dialog (GschemToplevel *w_current)
      VSECTION(PointerPrefTab_vbox, PointerOptions) /* PT Solo Grp 1 */
        HSECTION (PointerOptions_vbox, PointerRow1)    /* Row 1 */
          GTK_SWITCH(PointerRow1_hbox, ZoomPan, 18, FALSE);
-         GTK_NUMERIC_SPIN (PointerRow1_hbox, ZoomGain, 67, 20, 0, 80);
+         GTK_NUMERIC_SPIN (PointerRow1_hbox, ZoomGain, 63, 20, 0, 80);
        HSECTION (PointerOptions_vbox, PointerRow2)    /* Row 1 */
          GTK_SWITCH(PointerRow2_hbox, FastMousePan, 18, FALSE);
          GTK_NUMERIC_SPIN (PointerRow2_hbox, MousePanGain, 22, 1, 1, 30);
@@ -2337,7 +2336,7 @@ create_settings_dialog (GschemToplevel *w_current)
          gtk_widget_set_size_request (PointerCursorCombo, 150, 31);
        HSECTION (PointerOptions_vbox, PointerRow5)    /* Row 4 */
          GTK_SWITCH(PointerRow5_hbox, PointerHScroll, 8, FALSE);
-         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton,   150, 12);
+         GTK_NEW_COMBO (PointerRow5_hbox, MiddleButton,   150, 13);
          gtk_widget_set_size_request (MiddleButtonCombo,  150, 31);
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_STROKE)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_REPEAT)
@@ -2345,7 +2344,7 @@ create_settings_dialog (GschemToplevel *w_current)
          GTK_LOAD_COMBO (MiddleButton, RC_STR_MID_MOUSEPAN)
        HSECTION (PointerOptions_vbox, PointerRow6)    /* Row 4 */
          GTK_SWITCH(PointerRow6_hbox, WarpCursor, 30, FALSE);
-         GTK_NEW_COMBO (PointerRow6_hbox, ThirdButton,  150, 0);
+         GTK_NEW_COMBO (PointerRow6_hbox, ThirdButton,  150, 1);
          gtk_widget_set_size_request (ThirdButtonCombo, 150, 31);
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_POPUP)
          GTK_LOAD_COMBO (ThirdButton, RC_STR_3RD_PAN)
@@ -2377,7 +2376,7 @@ create_settings_dialog (GschemToplevel *w_current)
          GEDA_COLOR_BUTTON (GridMeshOptions_vbox, MeshMinorColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
          GEDA_COLOR_BUTTON (GridMeshOptions_vbox, MeshMajorColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
      HD_SEPERATOR (WindowPrefTab_vbox, Grp4);
-       GEDA_FRAME (WindowPrefTab_vbox, Scrolling, -1, 58, 0.05, 0.2, 10)
+       GEDA_FRAME (WindowPrefTab_vbox, Scrolling, -1, 60, 0.05, 0.2, 10)
          GTK_SWITCH(Scrolling_hbox, ScrollBars,        DIALOG_H_SPACING + 10, TRUE);
          GTK_SWITCH(Scrolling_hbox, ScrollBarsVisible, DIALOG_H_SPACING + 10, TRUE);
          GTK_SWITCH(Scrolling_hbox, DelayScrolling,    DIALOG_H_SPACING + 10, FALSE);
@@ -2402,12 +2401,12 @@ create_settings_dialog (GschemToplevel *w_current)
            GTK_LOAD_COMBO (AntiAlias, RC_STR_ANTIALIAS_BEST);
      HSECTION (RenderPrefTab_vbox, RenderOptionsRow2)     /* Grp 2 Row 2 */
        GTK_SWITCH(RenderOptionsRow2_hbox, EnableColorImaging, 7, FALSE);
-       GTK_SWITCH(RenderOptionsRow2_hbox, FriendlyColorMap, 85, TRUE);
+       GTK_SWITCH(RenderOptionsRow2_hbox, FriendlyColorMap, 87, TRUE);
      HSECTION (RenderPrefTab_vbox, RenderOptionsRow3)     /* Grp 2 Row 3 */
        GTK_SWITCH(RenderOptionsRow3_hbox, InvertImages, 8, TRUE);
-       GTK_SWITCH(RenderOptionsRow3_hbox, FriendlyOutlineMap, 75, TRUE);
+       GTK_SWITCH(RenderOptionsRow3_hbox, FriendlyOutlineMap, 76, TRUE);
      HSECTION (RenderPrefTab_vbox, RenderOptionsRow4)     /* Grp 2 Row 4 */
-       GTK_NEW_COMBO (RenderOptionsRow4_hbox, ColorMapScheme, 150, 64);
+       GTK_NEW_COMBO (RenderOptionsRow4_hbox, ColorMapScheme, 150, 60);
            GTK_LOAD_COMBO (ColorMapScheme, "dark");
            GTK_LOAD_COMBO (ColorMapScheme, "light");
            GTK_LOAD_COMBO (ColorMapScheme, "BW");
@@ -2447,10 +2446,10 @@ create_settings_dialog (GschemToplevel *w_current)
          GTK_LOAD_COMBO (RipperSymbol, DEFAULT_BUS_RIPPER_SYMNAME)
          GTK_LOAD_COMBO (RipperSymbol, SECOND_BUS_RIPPER_SYMNAME)
        HSECTION(StylesPrefTab_vbox, StylesRow4);     /* ST Grp 2 Lines and Pins */
-         GTK_SWITCH(StylesRow4_hbox, RipperRotation, 18, FALSE);
-         GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 30, 200, 0, 500);
+         GTK_SWITCH(StylesRow4_hbox, RipperRotation, 19, FALSE);
+         GTK_NUMERIC_SPIN (StylesRow4_hbox, RipperSize, 31, 200, 0, 500);
      HD_SEPERATOR (StylesPrefTab_vbox, Grp4);        /* Junction Options */
-       GEDA_FRAME (StylesPrefTab_vbox, Junctions, -1, 58, 0.05, 0.2, 10)
+       GEDA_FRAME (StylesPrefTab_vbox, Junctions, -1, 60, 0.05, 0.2, 10)
          GTK_NUMERIC_SPIN (Junctions_hbox, JunctionSize, 12, DEFAULT_JUNCTION_SIZE, MIN_JUNCTION_SIZE, MAX_JUNCTION_SIZE);
          GEDA_COLOR_BUTTON (Junctions_hbox, JunctionColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, DIALOG_H_SPACING)
          GEDA_COLOR_BUTTON (Junctions_hbox, NetEndpointColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, DIALOG_H_SPACING)
@@ -2473,7 +2472,7 @@ create_settings_dialog (GschemToplevel *w_current)
            HSECTION ( MarkerOptions_vbox, MarkerOptionsRow3)  /* Grp 1 Row 3 */
              GTK_SWITCH(MarkerOptionsRow3_hbox, TextOriginMarker, DIALOG_V_SPACING, TRUE);
            HSECTION (MarkerOptions_vbox, MarkerOptionsRow4)  /* Grp 1 Row 2 */
-             GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, DIALOG_H_SPACING, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
+             GTK_NUMERIC_SPIN (MarkerOptionsRow4_hbox, TextMarkerSize, 2, DEFAULT_TEXT_MARKER_SIZE, MIN_TEXT_MARKER_SIZE, MAX_TEXT_MARKER_SIZE);
              GEDA_COLOR_BUTTON (MarkerOptionsRow4_hbox, TextMarkerColor, COLOR_BUTTON_HSIZE, COLOR_BUTTON_VSIZE, 0);
      HD_SEPERATOR (TextPrefTab_vbox, Grp2);
      HSECTION (TextPrefTab_vbox, CapsStyleOptions)   /* TT Grp 2 Text Styles */

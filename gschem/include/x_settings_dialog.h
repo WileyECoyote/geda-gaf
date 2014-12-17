@@ -237,7 +237,7 @@ WidgetStringData DialogStrings[] = {
         { "ThinLineWidthSpin",          " Thin",                "Set the width, in mils, of the Thin Lines"},
         { "ThinNetWidthSpin",           " Thin",                "Set the width, in mils, of the Think Nets"},
         { "ThinPinWidthSpin",           " Thin",                "Set the width, in mils, of the Thin Pins"},
-        { "UndoBufferSizeSpin",         "      Buffer Size:",   "Determines the number of levels of undo. Basically this number decides how many backup schematics are saved on disk."},
+        { "UndoBufferSizeSpin",         "     Buffer Size:",    "Determines the number of levels of undo. Basically this number decides how many backup schematics are saved on disk."},
         { "ZoomGainSpin",               "      Zoom Gain:",     "Controls the percentage size increase when zooming into the page. Un-zooming uses the inverse factor such that a zoom in / zoom out pair will return the schematic to the same size."},
 
     /* Strings for Switch Controls */

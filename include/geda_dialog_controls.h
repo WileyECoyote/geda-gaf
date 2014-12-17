@@ -76,7 +76,8 @@
  */
 
 /*! \def DialogFont Defines the default font used in gEDA dialogs */
-#define DialogFont "Monospace 13.3"
+#define DialogFont "Liberation Mono Bold 14"
+//#define DialogFont "Monospace 13.3"
 
 typedef struct
 {
