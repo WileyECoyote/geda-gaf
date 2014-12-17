@@ -1,5 +1,11 @@
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
 
+    * etc/system-gschemrc.scm: Replace remaining Gtk-zoom stock icons
+      with gschem-zoom versions and updated gschem-show-xxx with the
+      correct file names.
+
+2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
+
     * data/gschem-icons.svg: Add missing 22x22 icons and regenerated
 
 2014-12-16 Wiley E. Hill <wileyhill@gmail.com>
