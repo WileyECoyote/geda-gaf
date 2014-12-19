@@ -1,4 +1,3 @@
-
 #
 # gschem's gtkrc file
 #
@@ -10,24 +9,14 @@
 #gtk-font-name = "sans 8"
 #gtk-font-name = "DejaVu Sans 12"
 
-# styles definitions:
+########## styles definitions:
+
 #style "default"
 #{
 #   font = "fixed"
-#}
-#widget_class "*" style "default"
-
-#style "default"
-#{
 #   font_name = "sans 8"
 #}
 #widget_class "*" style "default"
-
-#style "gschem"
-#{
-#   font_name = "DejaVu Sans 12"
-#}
-#widget_class "*" style "gschem"
 
 #old way commented out, still works, but use the above block.
 #style "defaultfont"
@@ -35,11 +24,97 @@
 #  font = "fixed"
 #}
 
-# common default
-#class "GtkWidget" style "defaultfont"
+style "small"
+{
+   GtkFrame::font-name = "DejaVu Sans 8"
+}
+
+style "wide" {
+	xthickness = 2
+	ythickness = 2
+}
+
+style "gschem"
+{
+   #font_name = "FreeMono Bold 12"
+   #font_name = "DejaVu Sans 12"
+   font_name = "Liberation Mono Bold 13"
+
+   GedaBulb::indicator-size    = 26
+   GedaBulb::indicator-spacing = 2
+
+   GedaComboBox::arrow-size    = 15
+   GedaComboBox::shadow-type   = 0
+
+   GedaMenuButton::default-border         = "GtkBorder"
+   GedaMenuButton::default-outside-border = "GtkBorder"
+   GedaMenuButton::inner-border           = "GtkBorder"
+
+   GtkScale::slider-length     = 23
+   GtkToolButton::icon-spacing = 4
+}
+widget_class "*" style "gschem"
+
+style "range"
+{
+  GtkRange::arrow-displacement-x 	= 3
+  GtkRange::arrow-displacement-y 	= 3
+  GtkRange::arrow-scaling 	 	    = 0.65
+  GtkRange::slider-width 	 	    = 19
+  GtkRange::stepper-size 	 	    = 19
+  #GtkRange::stepper-spacing 	 	= 2
+  GtkRange::trough-border 	 	    = 0
+  GtkRange::trough-under-steppers   = 1
+
+  bg[NORMAL]   =  shade (1.12,@bg_color)#shade (1.085,@bg_color)
+  bg[ACTIVE]   =  @bg_color
+  bg[PRELIGHT] =  mix(0.95, shade (1.10,@bg_color), @selected_bg_color)
+
+  #Arrows
+  text[NORMAL]      =  shade (0.275,@selected_fg_color) #shade (0.925,@fg_color)
+  text[PRELIGHT]    =  @selected_fg_color
+  text[ACTIVE]      =  shade (0.10,@selected_fg_color)
+  text[INSENSITIVE] =  mix (0.80,shade (0.90,@bg_color),@fg_color)
+}
+
+style "scrollbar" {
+
+  xthickness = 2
+  ythickness = 2
+
+  GtkScrollbar::fixed-slider-length 	       = 0
+  GtkScrollbar::has-backward-stepper           = 1
+  GtkScrollbar::has-forward-stepper            = 1
+  GtkScrollbar::has-secondary-backward-stepper = 1
+  GtkScrollbar::has-secondary-forward-stepper  = 1
+  GtkScrollbar::min-slider-length              = 50
+}
 
 ##################
 #    TOOLBARS    #
 ##################
 
-gtk-toolbar-style   = GTK_TOOLBAR_ICONS
+gtk-toolbar   = GTK_TOOLBAR_ICONS
+
+###############################################################################
+# The following part of the gtkrc applies the different styles to the widgets.
+###############################################################################
+
+# The default style is applied to every widget
+# common default
+#class "GtkWidget"    style "default"
+#class "GtkWidget"    style "defaultfont"
+
+class "GtkFrame"      style "small"
+
+class "GtkRange"      style "range"
+class "GtkSeparator"  style "wide"
+
+# GtkHScrollbar and GtkVScrollbar are derived from GtkScrollbar (which is derived from GtkRange)
+#class "GtkScrollbar"  style "scrollbar"
+
+# The above can be overridden, but these, which have no new style
+# properties of their own, can not:
+#class "GtkHScrollbar" style "scrollbar"
+#class "GtkVScrollbar" style "scrollbar"
+
