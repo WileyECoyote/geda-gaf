@@ -389,8 +389,8 @@
 ;       later   - NOT opened up when gschem starts
 ;                 (can be opened by Options/Show console Window)
 ;
-(console-window "enabled")
-;(console-window "disabled")
+;(console-window "enabled")
+(console-window "disabled")
 
 ; console-window-type string
 ;
@@ -1925,20 +1925,20 @@
 ;;
 ;;      menu item name                    menu action             menu stock icon menu       Menu Item Tooltip
 ;;
-     `( (,(N_ "_Attach")           attributes-attach             "gtk-go-up"            ,(N_ "Attach selected attributes to symbol"))
-        (,(N_ "_Detach")           attributes-detach             "gtk-go-down"          ,(N_ "Dettach selected attributes from a symbol"))
-        (,(N_ "Show _Value")       attributes-show-value         "gschem-show-value"    ,(N_ "Set selected value visible"))
-        (,(N_ "Show _Name")        attributes-show-name          "gschem-show-name"     ,(N_ "Set selected name visible"))
-        (,(N_ "Show _Both")        attributes-show-both          "gschem-show-both"     ,(N_ "Set selected name and value visible"))
+     `( (,(N_ "_Attach")           attributes-attach             "gtk-go-up"              ,(N_ "Attach selected attributes to symbol"))
+        (,(N_ "_Detach")           attributes-detach             "gtk-go-down"            ,(N_ "Dettach selected attributes from a symbol"))
+        (,(N_ "Show _Value")       attributes-show-value         "gschem-show-value"      ,(N_ "Set selected value visible"))
+        (,(N_ "Show _Name")        attributes-show-name          "gschem-show-name"       ,(N_ "Set selected name visible"))
+        (,(N_ "Show _Both")        attributes-show-both          "gschem-show-both"       ,(N_ "Set selected name and value visible"))
         ("SEPARATOR"                    #f                       #f)
-        (,(N_ "_Toggle Visibility")      attributes-visibility   "attribute-visibility" ,(N_ "Toggle attribute visibilty"))
-        (,(N_ "_Reset Position")         attributes-home         "attribute-visibility" ,(N_ "Restore attribute positions and orientation"))
+        (,(N_ "_Toggle Visibility")      attributes-visibility   "attribute-visibility"   ,(N_ "Toggle attribute visibilty"))
+        (,(N_ "_Reset Position")         attributes-home         "gschem-attribute-reset" ,(N_ "Restore attribute positions and orientation"))
 
-        (,(N_ "_Find Specific Text...")  attributes-find-text    "gtk-find-and-replace" ,(N_ "Find an attribute"))
-        (,(N_ "_Hide Specific Text...")  attributes-hide-text    "gtk-clear"            ,(N_ "Hide selected attribute"))
-        (,(N_ "_Show Specific Text...")  attributes-show-text    #f                     ,(N_ "Show a specific attribute value"))
+        (,(N_ "_Find Specific Text...")  attributes-find-text    "gtk-find-and-replace"   ,(N_ "Find an attribute"))
+        (,(N_ "_Hide Specific Text...")  attributes-hide-text    "gtk-clear"              ,(N_ "Hide selected attribute"))
+        (,(N_ "_Show Specific Text...")  attributes-show-text    #f                       ,(N_ "Show a specific attribute value"))
         ("SEPARATOR"                    #f                       #f)
-        (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent"           ,(N_ "Open the Attibutes Editor Dialog"))
+        (,(N_ "Attrbute _Editor...")     attributes-editor       "gtk-indent"             ,(N_ "Open the Attibutes Editor Dialog"))
       )
 )
 

@@ -99,8 +99,8 @@ const char* IDS_GSCHEM_ICONS[] = {
 };
 
 const char* IDS_THEME_ICONS_22[] = {
-  "attribute-visibility",
-  "gschem-attribute-attach", "gschem-clone",             "gschem-attribute-detach",
+  "attribute-visibility",    "gschem-attribute-attach",  "gschem-attribute-detach",
+  "gschem-attribute-reset",  "gschem-clone",
   "gschem-datasheet",        "gschem-deselect",          "gschem-insert-arc",
   "gschem-insert-attribute", "gschem-insert-box",        "gschem-insert-bus",
   "gschem-insert-circle",    "gschem-insert-line",       "gschem-insert-net",

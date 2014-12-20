@@ -12,13 +12,13 @@ Added by wileyhill@gmail.com:
 ghost_invisible_22x22.xpm          kearone@freenet.de, use by permission
 ghost_invisible_24x24.xpm          kearone@freenet.de, use by permission
 ghost_invisible_32x32.xpm          kearone@freenet.de, use by permission
-ghost_invisible_256x256.xpm        kearone@freenet.de, use by permission
+ghost_invisible_256x256.xpm      kearone@freenet.de, use by permission
 
 geda_film_roll_24x24.xpm           richard@hughsie.com,  use by permission (PackageKit)
 geda_film_roll_26x26.xpm           richard@hughsie.com,  use by permission (PackageKit)
 geda_film_roll_28x28.xpm           richard@hughsie.com,  use by permission (PackageKit)
 geda_film_roll_32x32.xpm           richard@hughsie.com,  use by permission (PackageKit)
-geda_film_roll_128x128.xpm         richard@hughsie.com,  use by permission (PackageKit)
+geda_film_roll_128x128.xpm       richard@hughsie.com,  use by permission (PackageKit)
 
 Note: The icons are released under the Gnu General Public License,
        meaning you can use them in free software projects free of
@@ -448,7 +448,7 @@ geda_zoom_pan_24x24.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_pan_26x26.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_pan_28x28.png            Created by wileyhill@gmail.com, GPL2
 geda_zoom_pan_32x32.png            Created by wileyhill@gmail.com, GPL2
-git-logo.png                       Created by wileyhill@gmail.com, GPL2
+git-logo.png                                    Created by wileyhill@gmail.com, GPL2
 
 gschem_project_close_22x22.png     Created by wileyhill@gmail.com, GPL2
 gschem_project_close_24x24.png     Created by wileyhill@gmail.com, GPL2
