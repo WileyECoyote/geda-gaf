@@ -690,7 +690,8 @@ char         *x_draw_get_font               (void);
 void          x_draw_set_font               (const char *font_name, int size);
 GArray       *x_draw_get_font_list          (const char *pattern);
 char         *x_draw_strip_font_provider    (const char *font_string);
-void          x_draw_initialize             (void);
+int           x_draw_set_text_bounds        (Object *object);
+void          x_draw_initialize             (GschemToplevel *w_current);
 void          x_draw_shutdown               (void *user_data);
 
 /* x_attrib.c */

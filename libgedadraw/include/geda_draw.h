@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  *
- * Date: Nov, 27, 2014
+ * Date: Dec, 25, 2014
  * Contributing Author: Wiley Edward Hill
  *
 */
@@ -36,8 +36,11 @@
 #ifndef __GEDA_DRAW_H__
 #define __GEDA_DRAW_H__
 
+/* */
+#define FONT_SIZE_FACTOR     19
+#define EDA_DEFAULT_LEADING   4
+#define EDA_DEFAULT_EOL_SP    4
 
-#define FONT_SIZE_FACTOR 18
 #define BEZIER_STEP 0.0025
 
 #include "geda_x11.hpp"

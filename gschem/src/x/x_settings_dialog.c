@@ -1462,6 +1462,12 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
     /* Load the output list with data from Pango */
     for (index = 0; index < n_families; index++) {
       pfont = pango_font_family_get_name (families[index]);
+
+#if DEBUG
+      bool is_mono =  pango_font_family_is_monospace (families[index]);
+      fprintf(stderr, "font <%s> monospace <%d>\n", pfont, is_mono);
+#endif
+
       geda_list_add_unique_string (font_list, u_string_strdup(pfont));
     }
     GEDA_FREE (families);

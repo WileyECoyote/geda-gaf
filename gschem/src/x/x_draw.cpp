@@ -325,7 +325,13 @@ x_draw_object (GschemToplevel *w_current, Object *o_current)
 
 extern "C" void x_draw_set_surface(GschemToplevel *w_current)
 {
-  RenderAdaptor->geda_draw_set_surface(w_current->cr, Current_Page->to_world_x_constant);
+  if (Current_Page) {
+    RenderAdaptor->geda_draw_set_surface(w_current->cr,
+                                         Current_Page->to_world_x_constant);
+  }
+  else {
+    BUG_MSG("Current page is invalid");
+  }
 }
 
 extern "C" char *x_draw_get_font(void)
@@ -402,7 +408,20 @@ extern "C" char *x_draw_strip_font_provider(const char *font_string)
   return u_string_strdup(font_name);
 }
 
-extern "C" void x_draw_initialize(void)
+extern "C" int x_draw_set_text_bounds(Object *object)
+{
+  int result;
+
+  RenderAdaptor->object = object;
+
+  result = RenderAdaptor->geda_draw_get_text_bounds (&object->left,
+                                                     &object->top,
+                                                     &object->right,
+                                                     &object->bottom);
+  return result;
+}
+
+extern "C" void x_draw_initialize(GschemToplevel *w_current)
 {
   EdaConfig  *cfg      = eda_config_get_user_context();
   const char *group    = IVAR_CONFIG_GROUP;
@@ -416,6 +435,8 @@ extern "C" void x_draw_initialize(void)
   font_name = x_draw_strip_font_provider(font_string);
 
   RenderAdaptor = new EdaX11Render(font_name);
+
+  RenderAdaptor->geda_draw_set_surface(w_current->cr, 5.5);
 
   GEDA_FREE(font_name);
 

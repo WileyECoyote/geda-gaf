@@ -22,7 +22,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA
  *
- * Date: Nov, 27, 2014
+ * Date: Dec, 25, 2014
  * Contributing Author: Wiley Edward Hill
  *
 */
@@ -35,6 +35,7 @@
  * -lX11 -lXft `pkg-config --cflags freetype2
  */
 #include <string>
+#include <cmath>
 
 #include <gdk/gdk.h>
 
@@ -42,7 +43,10 @@
 
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <X11/Xatom.h>
+
 #include <X11/Xft/Xft.h>
+
 #include <cairo-xlib.h>
 #undef Complex
 #undef Picture
@@ -51,17 +55,27 @@
 
 #include <geda_draw.h>
 
+inline std::string
+EdaX11Render::GetFontString(int size) {
+
+  char *tmp_string = u_string_sprintf(font_format.c_str(), size);
+
+  std::string str = tmp_string;
+
+  GEDA_FREE(tmp_string);
+
+  return str.data();
+}
+
 /* Used run-time by the text renderer funtion to determine if the
  * current font needs to be updated */
 bool
 EdaX11Render::QueryCurrentFont (const char *font_name, int size)
 {
-  char *tmp_string;
   int   new_size;
   bool  update;
 
-  tmp_string = NULL;
-  update     = false;
+  update = false;
 
   if (font_name == NULL) {
     font_name = font_family.c_str();
@@ -70,38 +84,23 @@ EdaX11Render::QueryCurrentFont (const char *font_name, int size)
     update = true;
   }
 
-#if HAVE_XFT
-  new_size    = (size / scale) * FONT_SIZE_FACTOR;
-#else
-  new_size    = size < 8 ? 8 : size;
-#endif
+  new_size = rint((size / scale) * FONT_SIZE_FACTOR);
+
+  //fprintf(stderr, "scale <%f> size <%d>, new_size <%d>, font_size=<%d>\t", scale, size, new_size, font_size);
 
   if (font_size != new_size || update) {
 
     font_size = new_size;
 
-#if HAVE_XFT
-    tmp_string = u_string_sprintf("%s-%d", font_name, new_size);
-#else
-    tmp_string = u_string_sprintf("-%s charter-medium-i-normal--0-0-0-0-p-0-iso8859-1", font_name);
-#endif
+    std::string new_string = GetFontString(new_size);
 
-  }
-  else {
-    tmp_string = NULL;
-  }
-
-  if (tmp_string) {
-
-    if (!font_string.compare(tmp_string)) {
-      update  = false;
+    if (!font_string.compare(new_string)) {
+      update = false;
     }
     else {
-      font_string = tmp_string;
+      font_string = new_string;
       update = true;
     }
-
-    GEDA_FREE(tmp_string);
   }
 
   return update;
@@ -507,26 +506,151 @@ void EdaX11Render::geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 }
 #pragma GCC diagnostic pop
 
+void
+EdaX11Render::TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
+{
+  Text       *o_text = object->text;
+  const char *string = o_text->disp_string;
+
+  int ascent;
+  int descent;
+  int height;
+  int width;
+  long unsigned int eol_sp;
+
+  int s_left;
+  int s_lower;
+
+  int w_left;
+  int w_right;
+  int w_bottom;
+  int w_top;
+
+#ifdef HAVE_XFT
+
+  XGlyphInfo  extents;
+
+  XftTextExtents8 (display, font, (XftChar8 *)string, length, &extents);
+  ascent    = font->ascent;
+  descent   = font->descent;
+  height    = extents.height; // font->ascent + font->descent;
+  width     = extents.width;
+  eol_sp    = EDA_DEFAULT_EOL_SP;
+
+#else
+
+  ascent    = font->max_bounds.ascent;
+  descent   = font->max_bounds.descent;
+  height    = ascent - descent;
+  width     = XTextWidth (font, string, length);
+
+ /* additional end-of-line spacing */
+  if (!XGetFontProperty(font, XA_END_SPACE, &eol_sp)) {
+    eol_sp = EDA_DEFAULT_EOL_SP;
+  }
+
+#endif
+
+  ascent    = rint (ascent * scale);
+  descent   = rint (descent * scale);
+
+  switch (o_text->alignment) {
+    default:
+    case LOWER_LEFT:
+      s_left   = sx;
+      s_lower  = sy;
+      w_bottom = rint (s_lower * scale) - descent;
+      w_top    = w_bottom + height - descent;
+      break;
+
+    case MIDDLE_LEFT:
+      s_left   = sx;
+      s_lower  = sy + height / 2;
+      w_bottom = rint (sy * scale) - ( ascent +  descent ) / 2;
+      w_top    = w_bottom + ascent;
+      break;
+
+    case UPPER_LEFT:
+      s_left   = sx;
+      s_lower  = sy + height;
+      w_bottom = rint (sy * scale) - ascent + EDA_DEFAULT_LEADING;
+      w_top    = rint (sy * scale);
+      break;
+
+    case LOWER_MIDDLE:
+      s_left   = sx - width / 2;
+      s_lower  = sy;
+      w_bottom = rint (s_lower * scale) - descent;
+      w_top    = w_bottom + height - descent;
+      break;
+
+    case MIDDLE_MIDDLE:
+      s_left   = sx - width / 2;
+      s_lower  = sy + height / 2;
+      w_bottom = rint (sy * scale) - ( ascent +  descent ) / 2;
+      w_top    = w_bottom + ascent;
+      break;
+
+    case UPPER_MIDDLE:
+      s_left   = sx - width / 2;
+      s_lower  = sy + height;
+      w_bottom = rint (sy * scale) - ascent + EDA_DEFAULT_LEADING;
+      w_top    = rint (sy * scale);
+      break;
+
+    case LOWER_RIGHT:
+      s_left   = sx - width;
+      s_lower  = sy;
+      w_bottom = rint (s_lower * scale) - descent;
+      w_top    = w_bottom + height - descent;
+      break;
+
+    case MIDDLE_RIGHT:
+      s_left   = sx - width;
+      s_lower  = sy + height / 2;
+      w_bottom = rint (sy * scale) - ( ascent +  descent ) / 2;
+      w_top    = w_bottom + ascent;
+      break;
+
+    case UPPER_RIGHT:
+      s_left   = sx - width;
+      s_lower  = sy + height;
+      w_bottom = rint (sy * scale) - ascent + EDA_DEFAULT_LEADING;
+      w_top    = rint (sy * scale);
+  }
+
+  w_left    = rint (s_left * scale);
+  w_right   = w_left + rint (width * scale) - eol_sp;
+
+  object->left   = w_left;
+  object->right  = w_right;
+  object->top    = w_top;
+  object->bottom = w_bottom;
+
+  *x_left  = s_left;
+  *y_lower = s_lower;
+}
+
 void EdaX11Render::geda_x11_draw_text (int x, int y)
 {
   Text         *o_text;
   const char   *string;
 
+  int x_left;
+  int y_lower;
   int length;
-/*
-  int ytext, wtext;
 
-*/
   if (GEDA_IS_TEXT(object)) {
 
     o_text    = object->text;
     string    = o_text->disp_string;
     length    = strlen(string);
 
+    /* set up font */
+    if (QueryCurrentFont (NULL, o_text->size)) {
+
 #ifdef HAVE_XFT
 
-    /* set up font */
-    if (geda_x11_draw_query_free (NULL, o_text->size)) {
       font = XftFontOpenName (display, screen, font_string.c_str());
     }
 
@@ -544,30 +668,28 @@ void EdaX11Render::geda_x11_draw_text (int x, int y)
 
         /* Allocate Color */
         XftColorAllocValue(display, visual, colormap, &xrcolor, &xftcolor);
-
       }
 
+      TextAlignSetBounds (length, x, y, &x_left, &y_lower);
+
       /* Draw the text */
-      XftDrawString8(xftdraw, &xftcolor, font, x, y , (XftChar8 *)string, length);
+      XftDrawString8(xftdraw, &xftcolor, font, x_left, y_lower, (XftChar8 *)string, length);
 
     }
+
 #else
 
-    /* set up font */
-    int new_size     = (o_text->size / scale) * FONT_SIZE_FACTOR;
-    char *tmp_string = u_string_sprintf(font_string.c_str(), new_size);
-    //fprintf(stderr,"using: %s\n", tmp_string);
-    //if (!font) {
-      font = XLoadQueryFont(display, tmp_string);
-    //}
+      font = XLoadQueryFont(display, font_string.c_str());
+    }
 
     if (font) {
 
       XSetFont(display, gc, font->fid);
-      XDrawString(display, drawable, gc, x, y, string, length);
+      TextAlignSetBounds (length, x, y, &x_left, &y_lower);
+      XDrawString(display, drawable, gc, x_left, y_lower, string, length);
 
     }
-    GEDA_FREE(tmp_string);
+
 #endif
 
     XFlush(display);
@@ -594,6 +716,55 @@ geda_x11_draw_set_color (unsigned short red, unsigned short green, unsigned shor
   return;
 }
 
+int EdaX11Render::
+geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
+{
+  Text       *o_text;
+  const char *string;
+
+  int length;
+  int result;
+
+  int sx;
+  int sy;
+  int s_left;
+  int s_bottom;
+
+  if (GEDA_IS_TEXT(object)) {
+
+    o_text   = object->text;
+    string   = o_text->disp_string;
+    length   = strlen(string);
+    sx       = rint (o_text->x / scale);
+    sy       = rint (o_text->y / scale);
+
+    QueryCurrentFont (NULL, o_text->size);
+
+#ifdef HAVE_XFT
+
+    font     = XftFontOpenName (display, screen, font_string.c_str());
+
+#else
+
+    font     = XLoadQueryFont(display, font_string.c_str());
+
+#endif
+
+    TextAlignSetBounds (length, sx, sy, &s_left, &s_bottom);
+
+   *left     = object->left;
+   *right    = object->right;
+   *bottom   = object->bottom;
+   *top      = object->top;
+
+    result = true;
+  }
+  else {
+    result = false;
+  }
+  return result;
+}
+
 int EdaX11Render::geda_x11_draw_get_font_name (char *font_name, int size_of_buffer)
 {
   int length;
@@ -610,29 +781,26 @@ void EdaX11Render::geda_x11_draw_set_font_name (const char *font_name)
   char* tmp_string;
 
   if (font_name == NULL ) {
-
-#if HAVE_XFT
-    font_name  = "morpheus";
-#else
     font_name  = DEFAULT_FONT_NAME;
-#endif
-
   }
 
-  font_family = font_name;
+  font_family  = font_name;
 
 #if HAVE_XFT
-  font_size   = font_size < 8 ? 8 : font_size;
-  tmp_string  = u_string_sprintf("%s-%d", font_name, font_size);
+  tmp_string   = u_string_sprintf("%s-", font_name);
 #else
-  tmp_string  = u_string_sprintf("-*-%s", font_name);
+  tmp_string   = u_string_sprintf("-*-%s", font_name);
 #endif
 
-  font_string = tmp_string;
+  font_format  = tmp_string;
 
-#ifndef HAVE_XFT
-  font_string  = font_string + "-medium-r-normal--%d-0-0-0-p-0-iso10646-1";
+#if HAVE_XFT
+  font_format  = font_format + "%d";
+#else
+  font_format  = font_format + "-medium-r-normal--%d-0-0-0-p-0-iso10646-1";
 #endif
+
+  font_string  = GetFontString(font_size);
 
   GEDA_FREE(tmp_string);
 }
@@ -680,7 +848,7 @@ void EdaX11Render::geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
   gc       = XCreateGC (display, drawable, 0, 0 );
   scale    = scale_factor;
 
-  if ( 0 == visual) {
+  if (0 == visual) {
     visual = cairo_xlib_surface_get_visual (surface);
   }
 
@@ -698,7 +866,6 @@ void EdaX11Render::geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
   }
 
 #endif
-
 }
 
 EdaX11Render::~EdaX11Render () {
@@ -755,5 +922,6 @@ EdaX11Render::EdaX11Render (const char *font_name) {
 #endif
 
   geda_x11_draw_set_font_name(font_name);
+
   return;
 }

@@ -40,8 +40,9 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
 {
   GschemToplevel *w_current = (GschemToplevel *) user_data;
   EdaRenderer    *renderer;
-  cairo_t *cr;
-  cairo_matrix_t render_mtx;
+  cairo_t        *cr;
+  cairo_matrix_t  render_mtx;
+
   int result, render_flags = 0;
   int t = 0;
   int l = 0;
@@ -50,39 +51,54 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
 
   g_return_val_if_fail ((w_current != NULL), FALSE);
 
-  cr = gdk_cairo_create (w_current->drawable);
+  /* First check if this is hidden text. */
+  if (o_get_is_visible(o_current)) {
 
-  /* Set up renderer based on configuration in w_current. Note that we
-   * *don't* enable hinting, because if its enabled the calculated
-   * bounds are zoom-level-dependent.
-   *
-  if (o_current->visibility != INVISIBLE) {
-    render_flags |= EDA_RENDERER_FLAG_TEXT_HIDDEN;
+    if (w_current->render_adaptor == CAIRO_ADAPTOR) {
+
+      cr = gdk_cairo_create (w_current->drawable);
+
+      renderer = g_object_ref (CairoRenderer);
+
+      g_object_set (G_OBJECT (renderer),
+                    "cairo-context", cr,
+                    "render-flags", render_flags,
+                    NULL);
+
+      /* Transform the cairo context to approximate world coordinates. */
+      cairo_matrix_init (&render_mtx, 1, 0, 0, -1, -1, 1);
+      cairo_set_matrix (cr, &render_mtx);
+
+      /* Use the renderer to calculate text bounds */
+      result = eda_renderer_get_text_user_bounds (renderer, o_current, &l, &t, &r, &b);
+
+      /* Clean up */
+      eda_renderer_destroy (renderer);
+      cairo_destroy (cr);
+
+      /* Round bounds to nearest integer */
+      *min_x = min (l, r);
+      *min_y = min (t, b);
+      *max_x = max (l, r);
+      *max_y = max (t, b);
+    }
+    else {
+      result =  x_draw_set_text_bounds(o_current);
+      if (result) {
+        *min_x = o_current->left;
+        *max_x = o_current->right;
+        *min_y = min (o_current->top, o_current->bottom);
+        *max_y = max (o_current->top, o_current->bottom);
+      }
+    }
   }
-  */
-  renderer = g_object_ref (CairoRenderer);
-
-  g_object_set (G_OBJECT (renderer),
-                "cairo-context", cr,
-                "render-flags", render_flags,
-                NULL);
-
-  /* Transform the cairo context to approximate world coordinates. */
-  cairo_matrix_init (&render_mtx, 1, 0, 0, -1, -1, 1);
-  cairo_set_matrix (cr, &render_mtx);
-
-  /* Use the renderer to calculate text bounds */
-  result = eda_renderer_get_user_bounds (renderer, o_current, &l, &t, &r, &b);
-
-  /* Clean up */
-  eda_renderer_destroy (renderer);
-  cairo_destroy (cr);
-
-  /* Round bounds to nearest integer */
-  *min_x = min (l, r);
-  *min_y = min (t, b);
-  *max_x = max (l, r);
-  *max_y = max (t, b);
+  else {
+    result = FALSE;
+  }
+/* debug*/
+  if (result)
+     fprintf(stderr, " o_text_get_bounds <type %d> left<%d>, right<%d>, top<%d>, bottom<%d>\n",w_current->render_adaptor,
+             *min_x , *max_x, *max_y, *min_y);
 
   return result;
 }

@@ -42,12 +42,12 @@
 #undef Complex
 #undef Picture
 
-#define geda_draw_set_surface   geda_x11_draw_set_surface
-#define geda_draw_set_color     geda_x11_draw_set_color
-#define geda_draw_get_font_name geda_x11_draw_get_font_name
-#define geda_draw_set_font      geda_x11_draw_set_font
-#define geda_draw_get_font_list geda_x11_draw_get_font_list
-
+#define geda_draw_set_surface     geda_x11_draw_set_surface
+#define geda_draw_set_color       geda_x11_draw_set_color
+#define geda_draw_get_font_name   geda_x11_draw_get_font_name
+#define geda_draw_set_font        geda_x11_draw_set_font
+#define geda_draw_get_font_list   geda_x11_draw_get_font_list
+#define geda_draw_get_text_bounds geda_x11_draw_get_text_bounds
 
 #define geda_draw_arc    geda_x11_draw_arc
 #define geda_draw_box    geda_x11_draw_box
@@ -57,13 +57,16 @@
 #define geda_draw_path   geda_x11_draw_path
 #define geda_draw_text   geda_x11_draw_text
 
-class EdaX11Render //: public Xlogin
+class EdaX11Render
 {
 
 private:
 
   cairo_surface_t *surface;
   Visual          *visual;
+
+  int world_width;
+  int world_height;
 
 protected:
 
@@ -81,17 +84,21 @@ protected:
   int           font_size;
 
   std::string   font_family;
+  std::string   font_format;
   std::string   font_string;
 
   inline int GetLineWidth (int line_width) {
     return max (line_width, MIN_LINE_WIDTH_THRESHOLD) / 12;
   }
 
+  inline std::string GetFontString(int size);
+
   void         DrawBezierCurve    (XPoint *points);
   unsigned int SetLineAttributes  (XGCValues *gcvals, int total);
 
   bool         IsScalableFont     (char *name);
   bool         QueryCurrentFont   (const char *font_name, int size);
+  void         TextAlignSetBounds (int length, int x, int y, int *x_left, int *y_lower);
 
 public:
 
@@ -102,21 +109,20 @@ public:
   int           screen;
   Object       *object;
 
-
-
   XColor        color;
   Colormap      colormap;
 
   EdaX11Render(const char *font_name);
  ~EdaX11Render();
 
-  void geda_x11_draw_set_surface   (cairo_t *cr, double scale_factor);
-  void geda_x11_draw_set_color     (unsigned short red, unsigned short green, unsigned short blue);
+  void geda_x11_draw_set_surface     (cairo_t *cr, double scale_factor);
+  void geda_x11_draw_set_color       (unsigned short red, unsigned short green, unsigned short blue);
 
-  void geda_x11_draw_set_font      (const char *font_name, int size);
-  bool geda_x11_draw_get_font_list (const char *pattern, GArray *listing);
-  void geda_x11_draw_set_font_name (const char *font_name);
-  int  geda_x11_draw_get_font_name (char *font_name, int size_of_buffer);
+  void geda_x11_draw_set_font        (const char *font_name, int size);
+  bool geda_x11_draw_get_font_list   (const char *pattern, GArray *listing);
+  void geda_x11_draw_set_font_name   (const char *font_name);
+  int  geda_x11_draw_get_font_name   (char *font_name, int size_of_buffer);
+  int  geda_x11_draw_get_text_bounds (int *left,  int *top, int *right, int *bottom);
 
   void geda_x11_draw_arc          (int cx, int cy, int radius, int start_angle, int end_angle);
   void geda_x11_draw_box          (int x, int y, int width, int height);

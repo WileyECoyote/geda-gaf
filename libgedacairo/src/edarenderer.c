@@ -1773,7 +1773,7 @@ eda_renderer_get_text_user_bounds (EdaRenderer *renderer, Object *object,
     fprintf(stderr, "skippping %s\n", object->text->disp_string);
   #endif
 
-    return ret_val;
+  return ret_val;
 }
 
 /* ================================================================
