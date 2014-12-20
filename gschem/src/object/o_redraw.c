@@ -243,7 +243,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
 
   g_object_set (G_OBJECT (renderer),
                 "cairo-context", w_current->cr,
-                "grip-size", ((double) grip_half_size * toplevel->page_current->to_world_x_constant),
+                "grip-size", ((double) grip_half_size * Current_Page->to_world_x_constant),
                 "render-flags", render_flags,
                 "color-map", render_color_map,
                 NULL);
@@ -253,10 +253,10 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
   /* We need to transform the cairo context to world coordinates while
    * we're drawing using the renderer. */
   cairo_matrix_init (&render_mtx,
-                    (double) toplevel->page_current->to_screen_x_constant, 0, 0,
-                   -(double) toplevel->page_current->to_screen_y_constant,
-                   -(double) toplevel->page_current->left * toplevel->page_current->to_screen_x_constant,
-                    (double) toplevel->page_current->to_screen_y_constant * toplevel->page_current->top + w_current->screen_height
+                    (double) Current_Page->to_screen_x_constant, 0, 0,
+                   -(double) Current_Page->to_screen_y_constant,
+                   -(double) Current_Page->to_screen_x_constant * Current_Page->left,
+                    (double) Current_Page->to_screen_y_constant * Current_Page->top + w_current->screen_height
   );
 
   cairo_set_matrix (w_current->cr, &render_mtx);
@@ -302,6 +302,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       if (!o_current->dont_redraw) {
 
         o_style_set_object(w_current->toplevel, o_current);
+
         x_draw_object(w_current, o_current);
         eda_renderer_draw_cues (renderer, o_current);
 
@@ -323,7 +324,7 @@ o_redraw_rectangle (GschemToplevel *w_current, GdkRectangle *rectangle)
       case MOVE:
       case ENDMOVE:
 
-	if (w_current->last_drawb_mode != -1) {
+    if (w_current->last_drawb_mode != -1) {
 
           cairo_set_matrix (w_current->cr, &render_mtx);
           eda_renderer_set_color_map (renderer, render_outline_color_map);
