@@ -31,9 +31,13 @@
  */
 
 #ifdef _WIN32
-  #define DEFAULT_FONT_NAME          "Arial"
+#  define DEFAULT_FONT_NAME          "Arial"
 #else
-  #define DEFAULT_FONT_NAME          "Bitstream Charter"
+#  if HAVE_XFT
+#    define DEFAULT_FONT_NAME        "Ubuntu-Bold"
+#  else
+#    define  DEFAULT_FONT_NAME       "Bitstream Charter"
+#  endif
 #endif
 
 /*!
