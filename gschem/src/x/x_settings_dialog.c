@@ -1555,6 +1555,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
       }                                                    /* Next font string in array */
       g_array_free(fonts, TRUE);
     }
+    font_list->glist = g_list_sort (font_list->glist, (GCompareFunc)strcmp);
   }                                                      /* else was for libgedadraw */
 
   /* Load the FontName Combo from the Glist and look for cur_font */
@@ -1572,7 +1573,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
     index++;
   }
 
-  if (current < 0) { /* If we did not find exact, try harder */
+  if (current < 0) { /* If we did not find exact match, try harder */
 
     const char *needle;
     const char *haystack;

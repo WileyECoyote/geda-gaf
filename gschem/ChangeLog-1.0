@@ -1,3 +1,8 @@
+2014-12-20 Wiley E. Hill <wileyhill@gmail.com>
+
+    * x/x_settings_dialog.c: Redo Font configuration settings again
+      to support Xft and core fonts. Add g_list_sort.
+
 2014-12-18 Wiley E. Hill <wileyhill@gmail.com>
 
     * etc/gschem-gtkrc: Modernize the Gtk RC file a bit.
