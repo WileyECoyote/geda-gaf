@@ -362,8 +362,14 @@ extern "C" void x_draw_set_font(const char *font_string, int size)
  */
 extern "C" GArray *x_draw_get_font_list(const char *pattern)
 {
-  GArray     *font_list;
+#if HAVE_XFT
+  const char *default_pattern = "*";
+#else
   const char *default_pattern = "-*-*-medium-r-normal--0-0-0-0-p-0-iso10646-1";
+#endif
+
+  GArray     *font_list;
+
   bool result;
 
   if (pattern == NULL) {
@@ -378,6 +384,7 @@ extern "C" GArray *x_draw_get_font_list(const char *pattern)
       font_list = NULL;
     }
   }
+
   if (!font_list) {
     BUG_MSG("Unable to get font list from RenderAdaptor");
   }
