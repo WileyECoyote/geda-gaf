@@ -36,7 +36,7 @@
 /*! \brief Updates the preview when the selection changes.
  *  \par Function Description
  *  This is the callback function connected to the 'update-preview'
- *  signal of the <B>GtkFileChooser</B> that updates the preview
+ *  signal of the <B>GedaFileChooser</B> that updates the preview
  *  widget with the name of the newly selected file.
  *
  *  \param [in] chooser   The file chooser to add the preview to.
@@ -51,6 +51,7 @@ x_fileselect_callback_update_preview (GtkFileChooser *chooser,
   char    *filename;
 
   filename = gtk_file_chooser_get_preview_filename (chooser);
+
   if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
     preview_filename = filename;
   }
@@ -64,6 +65,12 @@ x_fileselect_callback_update_preview (GtkFileChooser *chooser,
   GEDA_FREE (filename);
 }
 
+/*! \brief Update file chooser preview window size callback
+ *  \par Function Description
+ *  This function is called when the size check-box is toggled.
+ *  The state of the check-box is retrieved and the "large-size"
+ *  property of the Preview Widget is set to state.
+ */
 static void
 x_fileselect_callback_update_size (GtkToggleButton *button,
                                    void            *user_data)
@@ -76,7 +83,7 @@ x_fileselect_callback_update_size (GtkToggleButton *button,
 /*! \brief Adds a preview to a file chooser.
  *  \par Function Description
  *  This function adds a preview section to the stock
- *  <B>GtkFileChooser</B>.
+ *  <B>GedaFileChooser</B>.
  *
  *  The <B>Preview</B> object is inserted in a frame and alignment
  *  widget for accurate positionning.
@@ -86,14 +93,14 @@ x_fileselect_callback_update_size (GtkToggleButton *button,
  *  active.
  *
  *  Function <B>x_fileselect_callback_update_preview()</B> is
- *  connected to the signal 'update-preview' of <B>GtkFileChooser</B>
+ *  connected to the signal 'update-preview' of <B>GedaFileChooser</B>
  *  so that it redraws the preview area every time a new file is
  *  selected.
  *
  *  \param [in] filechooser The file chooser to add the preview to.
  */
 static void
-x_fileselect_add_preview (GtkFileChooser *filechooser)
+x_fileselect_add_preview (GedaFileChooser *filechooser)
 {
   GtkWidget *alignment, *frame, *preview;
   GtkWidget *vbox;
@@ -185,7 +192,7 @@ GSList *x_fileselect_list(GschemToplevel *w_current)
 
   /* Conditionally add the file previewer */
   if(w_current->file_preview == TRUE) {
-    x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
+    x_fileselect_add_preview (GEDA_FILE_CHOOSER (dialog));
   }
 
   /* force start in current working directory, NOT in 'Recently Used' */
@@ -243,7 +250,7 @@ void x_fileselect_open(GschemToplevel *w_current)
 
   /* 09/09/12 W. E. Hill: Conditionally add the file previewer */
   if(w_current->file_preview == TRUE)
-    x_fileselect_add_preview (GTK_FILE_CHOOSER (dialog));
+    x_fileselect_add_preview (GEDA_FILE_CHOOSER (dialog));
 
   /* force start in current working directory, NOT in 'Recently Used' */
   cwd = g_get_current_dir ();
@@ -350,7 +357,6 @@ x_fileselect_save (GschemToplevel *w_current)
   hbox = gtk_hbox_new(FALSE, 0);
 
   cb_add_ext = gtk_check_button_new_with_label (_("Auto file Suffix"));
-
   gtk_widget_show (cb_add_ext);
   gtk_box_pack_start (GTK_BOX(hbox), cb_add_ext, FALSE, FALSE, 0);
   gtk_widget_set_tooltip_text(cb_add_ext, _("Automatically append the file extension"));
