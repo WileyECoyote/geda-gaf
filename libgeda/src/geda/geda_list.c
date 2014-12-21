@@ -235,7 +235,7 @@ bool geda_list_add_unique_string (GedaList *list, char  *text)
 
   found = FALSE;
 
-  for (iter = list->glist; iter; iter = iter->next) {
+  for (iter = g_list_first(list->glist); iter; iter = iter->next) {
 
     str = iter->data;
 

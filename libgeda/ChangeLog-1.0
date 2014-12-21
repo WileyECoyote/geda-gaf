@@ -1,3 +1,8 @@
+2014-12-13 Wiley E. Hill <wileyhill@gmail.com>
+
+    * src/geda/geda_list.c: Make sure index from beginning of glist in
+      in function geda_list_add_unique_string
+
 2014-12-14 Wiley E. Hill <wileyhill@gmail.com>
 
     * src/Makefile.am: Modified to allow cleaning from sub-folders.
