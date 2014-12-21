@@ -37,9 +37,14 @@
 #define __GEDA_DRAW_H__
 
 /* */
-#define FONT_SIZE_FACTOR     19
-#define EDA_DEFAULT_LEADING   4
+#ifdef HAVE_XFT
+#  define FONT_SIZE_FACTOR     13.6
+#else
+#  define FONT_SIZE_FACTOR     19
+#endif
 #define EDA_DEFAULT_EOL_SP    4
+#define EDA_DEFAULT_LEADING   4
+
 
 #define BEZIER_STEP 0.0025
 

@@ -343,14 +343,22 @@ extern "C" char *x_draw_get_font(void)
 
 extern "C" void x_draw_set_font(const char *font_string, int size)
 {
-
-  char *font_name;
-
   if (font_string) {
+
+#ifdef HAVE_XFT
+
+    RenderAdaptor->geda_draw_set_font(font_string, size);
+
+#else
+
+    char *font_name;
 
     font_name = x_draw_strip_font_provider(font_string);
     RenderAdaptor->geda_draw_set_font(font_name, size);
     GEDA_FREE(font_name);
+
+#endif
+
   }
 }
 
@@ -384,8 +392,7 @@ extern "C" GArray *x_draw_get_font_list(const char *pattern)
       font_list = NULL;
     }
   }
-
-  if (!font_list) {
+  else {
     BUG_MSG("Unable to get font list from RenderAdaptor");
   }
   return font_list;

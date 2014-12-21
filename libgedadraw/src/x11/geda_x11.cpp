@@ -103,6 +103,7 @@ EdaX11Render::QueryCurrentFont (const char *font_name, int size)
     }
   }
 
+  //fprintf(stderr, "font string=%s, update=%d\n", font_string.c_str(), update);
   return update;
 }
 /*
@@ -312,6 +313,134 @@ void EdaX11Render::DrawBezierCurve (XPoint *points)
   }
 }
 
+void
+EdaX11Render::TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
+{
+  Text       *o_text = object->text;
+  const char *string = o_text->disp_string;
+
+  int s_ascent;
+  int s_descent;
+
+  int width;
+  long unsigned int eol_sp;
+
+  int s_left;
+  int s_lower;
+
+  int w_ascent;
+  int w_descent;
+  int w_height;
+
+  int w_left;
+  int w_right;
+  int w_bottom;
+  int w_top;
+
+#ifdef HAVE_XFT
+
+  XGlyphInfo  extents;
+
+  XftTextExtents8 (display, font, (XftChar8 *)string, length, &extents);
+  s_ascent  = font->ascent;
+  s_descent = font->descent;
+  width     = extents.width;
+  eol_sp    = EDA_DEFAULT_EOL_SP;
+
+#else
+
+  s_ascent  = font->max_bounds.ascent;
+  s_descent = font->max_bounds.descent;
+  width     = XTextWidth (font, string, length);
+
+  /* additional end-of-line spacing */
+  if (!XGetFontProperty(font, XA_END_SPACE, &eol_sp)) {
+    eol_sp = EDA_DEFAULT_EOL_SP;
+  }
+
+#endif
+
+  w_ascent  = rint (s_ascent * scale);
+  w_descent = rint (s_descent * scale);
+  w_height  = w_ascent + w_descent;
+
+  switch (o_text->alignment) {
+    default:
+    case LOWER_LEFT:
+      s_left   = sx;
+      s_lower  = sy;
+      w_bottom = rint (s_lower * scale) - w_descent;
+      w_top    = w_bottom + w_ascent;
+      break;
+
+    case MIDDLE_LEFT:
+      s_left   = sx;
+      s_lower  = sy + ( s_ascent - s_descent ) / 2 ;
+      w_bottom = rint ((sy - EDA_DEFAULT_LEADING) * scale) - w_height / 2;
+      w_top    = w_bottom + w_ascent;
+      break;
+
+    case UPPER_LEFT:
+      s_left   = sx;
+      s_lower  = sy + s_ascent - s_descent + EDA_DEFAULT_LEADING;
+      w_bottom = rint ((sy - EDA_DEFAULT_LEADING) * scale) - w_ascent;
+      w_top    = rint (sy * scale);
+      break;
+
+    case LOWER_MIDDLE:
+      s_left   = sx - width / 2;
+      s_lower  = sy;
+      w_bottom = rint (s_lower * scale) - w_descent;
+      w_top    = w_bottom + w_ascent;
+      break;
+
+    case MIDDLE_MIDDLE:
+      s_left   = sx - width / 2;
+      s_lower  = sy + ( s_ascent - s_descent ) / 2 ;
+      w_bottom = rint ((sy - EDA_DEFAULT_LEADING) * scale) - w_height / 2;
+      w_top    = w_bottom + w_ascent;
+      break;
+
+    case UPPER_MIDDLE:
+      s_left   = sx - width / 2;
+      s_lower  = sy + s_ascent - s_descent + EDA_DEFAULT_LEADING;
+      w_bottom = rint ((sy - EDA_DEFAULT_LEADING) * scale) - w_ascent;
+      w_top    = rint (sy * scale);
+      break;
+
+    case LOWER_RIGHT:
+      s_left   = sx - width - eol_sp;
+      s_lower  = sy;
+      w_bottom = rint (s_lower * scale) - w_descent;
+      w_top    = w_bottom + w_ascent;
+      break;
+
+    case MIDDLE_RIGHT:
+      s_left   = sx - width - eol_sp;
+      s_lower  = sy + ( s_ascent - s_descent ) / 2 ;
+      w_bottom = rint ((sy - EDA_DEFAULT_LEADING) * scale) - w_height / 2;
+      w_top    = w_bottom + w_ascent;
+      break;
+
+    case UPPER_RIGHT:
+      s_left   = sx - width - eol_sp;
+      s_lower  = sy + s_ascent - s_descent + EDA_DEFAULT_LEADING;
+      w_bottom = rint ((sy - EDA_DEFAULT_LEADING) * scale) - w_ascent;
+      w_top    = rint (sy * scale);
+  }
+
+  w_left    = rint (s_left * scale);
+  w_right   = w_left + rint ((width + eol_sp) * scale);
+
+  object->left   = w_left;
+  object->right  = w_right;
+  object->top    = w_top;
+  object->bottom = w_bottom;
+
+  *x_left  = s_left;
+  *y_lower = s_lower;
+}
+
 /*---------------------- Begin Public Drawing Routines ----------------------*/
 
 /* Only God knows what xorg developers were thinking, obviously the developer
@@ -506,131 +635,6 @@ void EdaX11Render::geda_x11_draw_path (int nsections, PATH_SECTION *sections)
 }
 #pragma GCC diagnostic pop
 
-void
-EdaX11Render::TextAlignSetBounds (int length, int sx, int sy, int *x_left, int *y_lower)
-{
-  Text       *o_text = object->text;
-  const char *string = o_text->disp_string;
-
-  int ascent;
-  int descent;
-  int height;
-  int width;
-  long unsigned int eol_sp;
-
-  int s_left;
-  int s_lower;
-
-  int w_left;
-  int w_right;
-  int w_bottom;
-  int w_top;
-
-#ifdef HAVE_XFT
-
-  XGlyphInfo  extents;
-
-  XftTextExtents8 (display, font, (XftChar8 *)string, length, &extents);
-  ascent    = font->ascent;
-  descent   = font->descent;
-  height    = extents.height; // font->ascent + font->descent;
-  width     = extents.width;
-  eol_sp    = EDA_DEFAULT_EOL_SP;
-
-#else
-
-  ascent    = font->max_bounds.ascent;
-  descent   = font->max_bounds.descent;
-  height    = ascent - descent;
-  width     = XTextWidth (font, string, length);
-
- /* additional end-of-line spacing */
-  if (!XGetFontProperty(font, XA_END_SPACE, &eol_sp)) {
-    eol_sp = EDA_DEFAULT_EOL_SP;
-  }
-
-#endif
-
-  ascent    = rint (ascent * scale);
-  descent   = rint (descent * scale);
-
-  switch (o_text->alignment) {
-    default:
-    case LOWER_LEFT:
-      s_left   = sx;
-      s_lower  = sy;
-      w_bottom = rint (s_lower * scale) - descent;
-      w_top    = w_bottom + height - descent;
-      break;
-
-    case MIDDLE_LEFT:
-      s_left   = sx;
-      s_lower  = sy + height / 2;
-      w_bottom = rint (sy * scale) - ( ascent +  descent ) / 2;
-      w_top    = w_bottom + ascent;
-      break;
-
-    case UPPER_LEFT:
-      s_left   = sx;
-      s_lower  = sy + height;
-      w_bottom = rint (sy * scale) - ascent + EDA_DEFAULT_LEADING;
-      w_top    = rint (sy * scale);
-      break;
-
-    case LOWER_MIDDLE:
-      s_left   = sx - width / 2;
-      s_lower  = sy;
-      w_bottom = rint (s_lower * scale) - descent;
-      w_top    = w_bottom + height - descent;
-      break;
-
-    case MIDDLE_MIDDLE:
-      s_left   = sx - width / 2;
-      s_lower  = sy + height / 2;
-      w_bottom = rint (sy * scale) - ( ascent +  descent ) / 2;
-      w_top    = w_bottom + ascent;
-      break;
-
-    case UPPER_MIDDLE:
-      s_left   = sx - width / 2;
-      s_lower  = sy + height;
-      w_bottom = rint (sy * scale) - ascent + EDA_DEFAULT_LEADING;
-      w_top    = rint (sy * scale);
-      break;
-
-    case LOWER_RIGHT:
-      s_left   = sx - width;
-      s_lower  = sy;
-      w_bottom = rint (s_lower * scale) - descent;
-      w_top    = w_bottom + height - descent;
-      break;
-
-    case MIDDLE_RIGHT:
-      s_left   = sx - width;
-      s_lower  = sy + height / 2;
-      w_bottom = rint (sy * scale) - ( ascent +  descent ) / 2;
-      w_top    = w_bottom + ascent;
-      break;
-
-    case UPPER_RIGHT:
-      s_left   = sx - width;
-      s_lower  = sy + height;
-      w_bottom = rint (sy * scale) - ascent + EDA_DEFAULT_LEADING;
-      w_top    = rint (sy * scale);
-  }
-
-  w_left    = rint (s_left * scale);
-  w_right   = w_left + rint (width * scale) - eol_sp;
-
-  object->left   = w_left;
-  object->right  = w_right;
-  object->top    = w_top;
-  object->bottom = w_bottom;
-
-  *x_left  = s_left;
-  *y_lower = s_lower;
-}
-
 void EdaX11Render::geda_x11_draw_text (int x, int y)
 {
   Text         *o_text;
@@ -652,6 +656,7 @@ void EdaX11Render::geda_x11_draw_text (int x, int y)
 #ifdef HAVE_XFT
 
       font = XftFontOpenName (display, screen, font_string.c_str());
+
     }
 
     if (font) {
@@ -750,14 +755,20 @@ geda_x11_draw_get_text_bounds (int *left, int *top,  int *right, int *bottom)
 
 #endif
 
-    TextAlignSetBounds (length, sx, sy, &s_left, &s_bottom);
+    if (font) {
 
-   *left     = object->left;
-   *right    = object->right;
-   *bottom   = object->bottom;
-   *top      = object->top;
+      TextAlignSetBounds (length, sx, sy, &s_left, &s_bottom);
 
-    result = true;
+     *left     = object->left;
+     *right    = object->right;
+     *bottom   = object->bottom;
+     *top      = object->top;
+
+      result = true;
+    }
+    else {
+      result = false;
+    }
   }
   else {
     result = false;
@@ -787,7 +798,7 @@ void EdaX11Render::geda_x11_draw_set_font_name (const char *font_name)
   font_family  = font_name;
 
 #if HAVE_XFT
-  tmp_string   = u_string_sprintf("%s-", font_name);
+  tmp_string   = u_string_sprintf("%s,", font_name);
 #else
   tmp_string   = u_string_sprintf("-*-%s", font_name);
 #endif
@@ -814,10 +825,45 @@ void EdaX11Render::geda_x11_draw_set_font (const char *font_name, int size)
 bool EdaX11Render::geda_x11_draw_get_font_list(const char *pattern, GArray *listing)
 {
   bool result;
-  int  maxnames = 256;
-  int  count;
   int  index;
+
+#ifdef HAVE_XFT
+
+  FcFontSet *font_set;
+
+  font_set = XftListFonts (display, screen, XFT_SCALABLE, XftTypeBool, True,
+                           NULL,
+                           XFT_FAMILY, XFT_STYLE,
+                           NULL);
+
+  if (font_set) {
+
+    for (index = 0; index < font_set->nfont; ++index) {
+
+      FcChar8   *family, *style;
+      FcPattern *pattern = font_set->fonts[index];
+
+      if (FcPatternGetString(pattern, FC_FAMILY, 0, &family) == FcResultMatch &&
+          FcPatternGetString(pattern, FC_STYLE, 0, &style) == FcResultMatch)
+      {
+        char *name = u_string_sprintf("-%s-%s", family, style);
+        g_array_append_val (listing, name);
+      }
+    }
+
+    FcFontSetDestroy(font_set);
+
+    result = index > 0 ? True : False;
+  }
+  else {
+    result = false;
+  }
+
+#else
+
   char **font_list;
+  int  maxnames = 4096;
+  int  count;
 
   font_list = XListFonts (display, pattern, maxnames, &count);
 
@@ -827,7 +873,9 @@ bool EdaX11Render::geda_x11_draw_get_font_list(const char *pattern, GArray *list
   }
   XFreeFontNames(font_list);
 
-  result = true;
+  result = count > 0 ? True : False;
+
+#endif
 
   return result;
 }
@@ -846,7 +894,7 @@ void EdaX11Render::geda_x11_draw_set_surface(cairo_t *cr, double scale_factor)
   display  = cairo_xlib_surface_get_display (surface);
   screen   = *(int*)cairo_xlib_surface_get_screen (surface);
   gc       = XCreateGC (display, drawable, 0, 0 );
-  scale    = scale_factor;
+  scale    = scale_factor == 0 ? 1 : scale_factor; /* not allowed to be zero */
 
   if (0 == visual) {
     visual = cairo_xlib_surface_get_visual (surface);

@@ -95,10 +95,12 @@ int o_text_get_rendered_bounds (void *user_data, Object *o_current,
   else {
     result = FALSE;
   }
-/* debug*/
+
+#if DEBUG
   if (result)
-     fprintf(stderr, " o_text_get_bounds <type %d> left<%d>, right<%d>, top<%d>, bottom<%d>\n",w_current->render_adaptor,
-             *min_x , *max_x, *max_y, *min_y);
+     fprintf(stderr, " o_text_get_bounds <type %d> left<%d>, right<%d>, top<%d>, bottom<%d>\n",
+             w_current->render_adaptor, *min_x , *max_x, *max_y, *min_y);
+#endif
 
   return result;
 }

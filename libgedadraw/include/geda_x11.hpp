@@ -75,6 +75,7 @@ protected:
   XftColor      xftcolor;
   XftDraw      *xftdraw;
   XRenderColor  xrcolor;
+
 #else
   XFontStruct  *font;
 #endif
