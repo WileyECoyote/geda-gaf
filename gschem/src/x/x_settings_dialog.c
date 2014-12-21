@@ -1422,7 +1422,7 @@ cmp_families (const void *a, const void *b)
 
   return g_utf8_collate (a_name, b_name);
 }
-
+#include <ctype.h>
 /*! \brief Loads Font Name Combo Box and Set Active
  *  \par Function Description:
  *   This function up-loads font name strings into the FontName combobox
@@ -1463,10 +1463,10 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
     for (index = 0; index < n_families; index++) {
       pfont = pango_font_family_get_name (families[index]);
 
-#if DEBUG
+      #if DEBUG
       bool is_mono =  pango_font_family_is_monospace (families[index]);
       fprintf(stderr, "font <%s> monospace <%d>\n", pfont, is_mono);
-#endif
+      #endif
 
       geda_list_add_unique_string (font_list, u_string_strdup(pfont));
     }
@@ -1475,53 +1475,86 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
   else { /* Load glist from libgedadraw supplied list */
 
     GArray *fonts;
-    char strBuffer[128];
+    char    strBuffer[256];
+    char   *ptr;
 
     fonts = x_draw_get_font_list(NULL);
 
-    /* Index thru all fonts strings in the array */
-    for(index = 0; index < fonts->len; index++) {
+    if (fonts) {
+      /* Index thru all fonts strings in the array */
+      for(index = 0; index < fonts->len; index++) {
 
-      char *family;
-      int   pos, field, target;
+        char *family   = NULL;
+        char *provider = NULL;
+        int   pos, length;
 
-      pfont  = g_array_index (fonts, char*, index);
+        pfont = g_array_index (fonts, char*, index);
 
-      /* Index thru this font string and get the provider and family = fields 1 & 2 */
-      for(target = pos = field = 0; pfont[pos] != '\0' && field <= 2; pos++) {
-        if (pfont[pos] == ASCII_MINUS) {
-          if (field == 1) {
-            strBuffer[target] = ASCII_COMMA;  target++;
-            strBuffer[target] = ASCII_SPACE;  target++;
+        length = strlen(pfont);
+
+        if (length > sizeof(strBuffer))
+          length = sizeof(strBuffer);
+
+        ptr = strncpy(&strBuffer[0], pfont, length);
+
+        pos = 0;
+
+        if (strBuffer[0] == ASCII_MINUS) {
+          provider = ++ptr;
+          if (islower(strBuffer[1])) {
+            strBuffer[1] = strBuffer[1] ^ 0x20;
           }
-          field++;
-          continue;
-        }
-        if ((field == 1) || (field == 2)) {
-          strBuffer[target] = pfont[pos];
-          if (target == 0) {
-            /* This only capitalizes the first character in the output buffer */
-            strBuffer[target] = strBuffer[target] ^ 0x20;
+          while (++pos < length) {
+            if (strBuffer[pos] == ASCII_MINUS) {
+              strBuffer[pos] = '\0';
+              pos++;
+              break;
+            }
           }
-          target++;
         }
-      }
 
-      /* Add a terminator to the end of the string in the buffer */
-      strBuffer[target] = '\0';
-
-      /* Index over the buffer and capitalize characters after spaces*/
-      for (pos = 0; pos < target; pos++) {
-        if ( strBuffer[pos] == ASCII_SPACE) {
-          strBuffer[pos + 1] = strBuffer[pos + 1] ^ 0x20; /* Capitalize first character */
+        if (strBuffer[0] != ASCII_MINUS || !family) {
+          family = &strBuffer[pos];
+          if (islower(strBuffer[pos])) {
+            strBuffer[pos] = strBuffer[pos] ^ 0x20;
+          }
+          while (++pos < length) {
+            if (strBuffer[pos] == ASCII_MINUS) {
+              strBuffer[pos] = '\0';
+              ++pos;
+              break;
+            }
+            /* Look for spaces in family */
+            if (strBuffer[pos] == ASCII_SPACE) {
+              if (islower(strBuffer[pos + 1])) {
+                strBuffer[pos + 1] = strBuffer[pos + 1] ^ 0x20; /* Capitalize first character */
+              }
+            }
+          }
+          strBuffer[pos] = '\0';
         }
-      }
 
-      /* Make a copy of the Provider, Family string and add to glist*/
-      family = u_string_strdup(&strBuffer[0]);
-      geda_list_add_unique_string (font_list, family);
-    }                                                    /* Next font string in array */
-    g_array_free(fonts, TRUE);
+        ptr = NULL;
+
+        if(provider && family) {
+
+#ifdef HAVE_XFT
+          ptr = u_string_sprintf("%s-%s", provider, family);
+#else
+          ptr = u_string_sprintf("%s, %s", provider, family);
+#endif
+
+        }
+        else if (family) {
+          ptr = u_string_strdup(family);
+        }
+
+        if (ptr) {
+          geda_list_add_unique_string (font_list, ptr);
+        }
+      }                                                    /* Next font string in array */
+      g_array_free(fonts, TRUE);
+    }
   }                                                      /* else was for libgedadraw */
 
   /* Load the FontName Combo from the Glist and look for cur_font */
@@ -1543,7 +1576,7 @@ void setup_font_name_combo(GschemToplevel *w_current, char* cur_font) {
 
     const char *needle;
     const char *haystack;
-          char *reduced;
+    char *reduced;
 
     index = 0;
 
