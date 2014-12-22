@@ -26,6 +26,10 @@
 #ifndef __GEDA_IMAGE_CHOOSER_H__
 #define __GEDA_IMAGE_CHOOSER_H__
 
+#define IMAGE_CHOOSER_CONFIG_GROUP   "image-chooser"
+#define IMAGE_CHOOSER_CONFIG_FILTER  "image-chooser-filter"
+#define IMAGE_CHOOSER_CONFIG_PREVIEW "image-chooser-preview"
+
 G_BEGIN_DECLS
 
 /*!
@@ -66,10 +70,12 @@ typedef struct _GedaImageChooserClass   GedaImageChooserClass;
 
 struct _GedaImageChooser {
 
-  GtkFileChooserDialog parent;
-  GtkWidget           *filter_button;
-           int         filter_index;
-  unsigned int         handler;
+  GtkFileChooserDialog  parent;
+  GtkWidget            *preview;
+  GtkWidget            *filter_button;
+           int          filter_index;
+  unsigned int          handler;
+           bool         preview_enabled;
 };
 
 struct _GedaImageChooserClass {

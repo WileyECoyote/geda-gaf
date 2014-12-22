@@ -149,6 +149,115 @@ chooser_update_filter_index(GtkWidget *button, GedaImageChooser *chooser)
   g_signal_emit (chooser, chooser_signals[FILTER_CHANGED], 0);
 }
 
+/*! \brief Updates the visibility of the preview widget.
+ *  \par Function Description
+ *  This function updates the visibility based on teh state of the
+ *  checkbox toggle button object.
+ *
+ *  \param [in] checkbox  The GtkToggleButton widget
+ *  \param [in] user_data Is the ImageChooser widget
+ */
+static void
+chooser_preview_enabler (GtkToggleButton *checkbox, void *user_data)
+{
+  GtkWidget        *widget  = user_data;
+  GedaImageChooser *chooser = user_data;
+
+  chooser->preview_enabled = gtk_toggle_button_get_active (checkbox);
+
+  g_object_set (widget, "preview-widget-active", chooser->preview_enabled, NULL);
+}
+
+/*! \brief Updates the preview widget.
+ *  \par Function Description
+ *  This function updates the preview: if the preview is active and a
+ *  filename has been given, it opens the file and displays
+ *  the contents. Otherwise the display will be a blank page.
+ *
+ *  \param [in] preview The preview widget.
+ */
+static void
+chooser_update_preview (GtkFileChooser *chooser, void *user_data)
+{
+  GtkImage  *preview = GTK_IMAGE (user_data);
+  GError    *err     = NULL;
+  GdkPixbuf *pixbuf;
+  char      *filename;
+
+  filename = gtk_file_chooser_get_preview_filename (chooser);
+
+  if (filename != NULL && !g_file_test (filename, G_FILE_TEST_IS_DIR)) {
+
+    pixbuf = gdk_pixbuf_new_from_file_at_size (filename, 300, 300, &err);
+
+    if (err != NULL) {
+      g_clear_error (&err);
+    }
+    else { /* update preview */
+      gtk_image_set_from_pixbuf (preview, pixbuf);
+    }
+  }
+}
+
+/*! \brief Adds a Preview to the Image Chooser.
+ *  \par Function Description
+ *  This function adds a preview section to a <B>GedaFileChooser</B>.
+ *
+ *  The <B>Preview</B> object is inserted in a frame and alignment
+ *  widget for accurate positionning.
+ *
+ *  Other widgets can be added to this preview area for example to
+ *  enable/disable the preview. Currently, the preview is always
+ *  active.
+ *
+ *  Function <B>chooser_callback_update_preview()</B> is
+ *  connected to the signal 'update-preview' of <B>GedaImageChooser</B>
+ *  so that it redraws the preview area every time a new file is
+ *  selected.
+ *
+ *  \param [in] chooser The Image chooser to add the preview to.
+ */
+static GtkWidget *chooser_add_preview (GtkWidget *chooser, bool state)
+{
+  GtkWidget *alignment, *frame, *preview;
+  GtkWidget *vbox;
+
+  /* Add our extra widget to the dialog */
+  vbox = gtk_vbox_new(FALSE, 0);
+
+  frame = GTK_WIDGET (g_object_new (GTK_TYPE_FRAME,
+                                    "label", _("Preview"),
+                                    NULL));
+
+  alignment = GTK_WIDGET (g_object_new (GTK_TYPE_ALIGNMENT,
+                                        "right-padding", 5,
+                                        "left-padding", 5,
+                                        "xscale", 0.0,
+                                        "yscale", 0.0,
+                                        "xalign", 0.5,
+                                        "yalign", 0.5,
+                                        NULL));
+
+  preview = GTK_WIDGET (g_object_new (GTK_TYPE_IMAGE,
+                                      NULL));
+
+  gtk_container_add (GTK_CONTAINER (alignment), preview);
+  gtk_container_add (GTK_CONTAINER (frame), alignment);
+  gtk_container_add (GTK_CONTAINER (vbox), frame);
+  gtk_widget_show_all (frame);
+
+  g_object_set (chooser, "use-preview-label",     FALSE,
+                         "preview-widget",        vbox,
+                         "preview-widget-active", state,
+                                                  NULL);
+
+  /* connect callback to update preview image */
+  g_signal_connect (chooser, "update-preview",
+                    G_CALLBACK (chooser_update_preview),
+                    preview);
+  return preview;
+}
+
 /* GtkFileChooserDialog does not expose the combo button used for filter
  * selection, we should make our own chooser dialog, but until then, we
  * search all widgets looking for a combobox, the one used for the filter
@@ -197,12 +306,11 @@ geda_image_chooser_find_entry (GtkWidget *chooser)
 
 static GObject *
 geda_image_chooser_constructor (GedaType               type,
-                               unsigned int           n_properties,
-                               GObjectConstructParam *properties)
+                                unsigned int           n_properties,
+                                GObjectConstructParam *properties)
 {
   GObject *obj;
   GList   *children, *iter;
-
 
   /* Chain up to the parent constructor */
   obj = G_OBJECT_CLASS (geda_image_chooser_parent_class)->constructor (type, n_properties, properties);
@@ -216,13 +324,46 @@ geda_image_chooser_constructor (GedaType               type,
   for (iter = children; iter; iter = iter->next) {
     if (GTK_IS_CONTAINER(iter->data)) {
       gtk_container_forall ( GTK_CONTAINER (iter->data), FixGtkCrap, obj);
-      if ((GEDA_IMAGE_CHOOSER(obj))->filter_button) {
+      if ( (GEDA_IMAGE_CHOOSER(obj))->filter_button) {
         break;
       }
     }
   }
 
   g_list_free (children);
+
+  GtkWidget  *widget;
+  GtkWidget  *preview;
+  GtkWidget  *hbox;
+  GtkWidget  *chechbox;
+  EdaConfig  *cfg;
+  const char *group;
+  const char *key;
+  bool        enable;
+
+  group   = IMAGE_CHOOSER_CONFIG_GROUP;
+  key     = IMAGE_CHOOSER_CONFIG_PREVIEW;
+  cfg     = eda_config_get_user_context();
+  widget  = GTK_WIDGET(obj);
+  enable  = eda_config_get_boolean (cfg, group, key, NULL);
+  preview = chooser_add_preview(widget, enable);
+  hbox    = gtk_hbox_new(FALSE, 0);
+
+  chechbox = gtk_check_button_new_with_label (_("Preview"));
+  gtk_toggle_button_set_active ((GtkToggleButton*)chechbox, enable);
+  gtk_widget_set_tooltip_text(chechbox, _("Enable to the preview"));
+  g_object_set (chechbox, "visible", TRUE, NULL);
+  gtk_box_pack_start (GTK_BOX(hbox), chechbox, FALSE, FALSE, 0);
+
+  /* connect callback to update */
+  g_signal_connect (chechbox, "toggled",
+                    G_CALLBACK (chooser_preview_enabler),
+                    widget);
+
+  geda_image_chooser_set_extra_widget (widget, hbox);
+
+  (GEDA_IMAGE_CHOOSER(obj))->preview = preview;
+  (GEDA_IMAGE_CHOOSER(obj))->preview_enabled = enable;
 
   return obj;
 }
@@ -316,7 +457,6 @@ geda_image_chooser_geometry_restore (GedaImageChooser *chooser, char *group_name
   GtkWindow *window;
   int x, y, width, height;
 
-
   window = GTK_WINDOW(chooser);
   cfg    = eda_config_get_user_context ();
 
@@ -368,7 +508,7 @@ geda_image_chooser_geometry_save (GedaImageChooser *chooser, char *group_name)
  */
 static void show_handler (GtkWidget *widget)
 {
-  char *group = "image-chooser";
+  char *group = IMAGE_CHOOSER_CONFIG_GROUP;
 
   /* Hack to fix BUG in GtkFileChooserDialog */
   gtk_window_set_resizable (GTK_WINDOW(widget), FALSE);
@@ -392,10 +532,15 @@ static void show_handler (GtkWidget *widget)
  */
 static void unmap_handler (GtkWidget *widget)
 {
-  char *group = "image-chooser";
+        bool  enable = (GEDA_IMAGE_CHOOSER(widget))->preview_enabled;
+        char *group  = IMAGE_CHOOSER_CONFIG_GROUP;
+  const char *key    = IMAGE_CHOOSER_CONFIG_PREVIEW;
+  EdaConfig  *cfg    = eda_config_get_user_context();
 
   g_signal_emit (GEDA_IMAGE_CHOOSER (widget),
                  chooser_signals[ GEOMETRY_SAVE ], 0, group);
+
+  eda_config_set_boolean (cfg, group, key, enable);
 
   /* Let Gtk unmap the window */
   GTK_WIDGET_CLASS (geda_image_chooser_parent_class)->unmap (widget);
@@ -546,7 +691,7 @@ GedaType geda_image_chooser_get_type ()
  */
 GtkWidget*
 geda_image_chooser_new (GtkWidget *parent,
-                       ImageChooserAction chooser_action)
+                        ImageChooserAction chooser_action)
 {
   GtkWidget       *widget;
   GtkDialog       *dialog;
@@ -668,10 +813,10 @@ geda_image_chooser_dialog_new_valist (const char        *title,
  *
  */
 GtkWidget *
-geda_image_chooser_dialog_new_full (const char       *title,
-                                   GtkWindow        *parent,
-                                   ImageChooserAction action,
-                                   const char       *first_button_text, ...)
+geda_image_chooser_dialog_new_full (const char        *title,
+                                    GtkWindow         *parent,
+                                    ImageChooserAction action,
+                                    const char        *first_button_text, ...)
 {
   GtkWidget *result;
   va_list varargs;
