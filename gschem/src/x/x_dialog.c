@@ -3973,7 +3973,6 @@ void xd_add_changed_symbol_list (GschemToplevel   *w_current,
       gtk_list_store_set (list_store, &iter, 0, value, -1);
     }
 
-    //mess_area = gtk_message_dialog_get_message_area (dialog);
     g_object_get ((GObject*)dialog, "message-area", &mess_area, NULL);
 
     /* This box contains the warning image and the vbox */
@@ -4248,18 +4247,21 @@ int x_dialog_confirm_with_cancel (const char *msg, gEDA_MessageType context, boo
 */
 
 /*! \todo Finish function documentation!!!
- *  \brief
+ *  \brief  Multi-Purpose File Dialog
  *  \par Function Description
+ *  The function creates a generic file open or save files.
  *
  *  \warning
  *   Caller must GEDA_FREE returned character string.
  */
 char *x_dialog_select_file (const char *msg, const char *templ, int flags)
 {
-  GtkWidget *dialog;
-  char *result = NULL, *folder, *seed;
-  char *title;
-  static char *path = NULL;
+  GtkWidget   *dialog;
+  char        *folder;
+  char        *seed;
+  char        *title;
+  char        *result    = NULL;
+  static char *path      = NULL;
   static char *shortcuts = NULL;
 
   /* Default to load if not specified.  Maybe this should cause an error. */
@@ -4301,7 +4303,6 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
     gtk_file_chooser_set_current_folder (GTK_FILE_CHOOSER (dialog), path);
   }
 
-
   /* Pick the current template (*.rc) or default file name */
   if (templ && *templ) {
     if (flags & FSB_SAVE)  {
@@ -4310,7 +4311,6 @@ char *x_dialog_select_file (const char *msg, const char *templ, int flags)
       gtk_file_chooser_select_filename (GTK_FILE_CHOOSER (dialog), templ);
     }
   }
-
 
   if (shortcuts && *shortcuts) {
     printf ("shortcuts = \"%s\"\n", shortcuts);
